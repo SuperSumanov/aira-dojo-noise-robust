@@ -509,6 +509,20 @@ class Greedy(Solver):
         if not isinstance(response["metric"], (float, int)):
             response["metric"] = None
 
+        # Deterministic fallback for the validation metric: parse it from stdout via a fixed marker.
+        # The analyze-LLM JSON extraction is unreliable with some backends (e.g. DeepSeek returns
+        # prose, not JSON), which would otherwise leave metric=None and mark every node buggy.
+        if response["metric"] is None:
+            import re as _re
+            _vm = _re.findall(
+                r"FINAL_VALIDATION_SCORE:\s*([-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?)", node.term_out or ""
+            )
+            if _vm:
+                try:
+                    response["metric"] = float(_vm[-1])
+                except ValueError:
+                    response["metric"] = None
+
         # If a validation fitness value is provided (not test fitness) from the task
         # we replace the validation metric with it.
         if eval_result.get(VALIDATION_FITNESS, None) is not None:
@@ -537,8 +551,11 @@ class Greedy(Solver):
         else:
             aux_eval_info["validity_feedback"] = "submission grader feedback not available"
 
+        # NOTE: the analyze-LLM `is_bug` flag is dropped here — it is unreliable with some backends
+        # (DeepSeek returns non-JSON, defaulting is_bug=True even for valid working solutions).
+        # Bugginess is determined deterministically: failed execution, missing metric, or invalid submission.
         node.is_buggy = (
-            response["is_bug"] or (not node.exit_code == 0) or (response["metric"] is None) or (not valid_solution)
+            (not node.exit_code == 0) or (response["metric"] is None) or (not valid_solution)
         )
 
         if node.is_buggy:

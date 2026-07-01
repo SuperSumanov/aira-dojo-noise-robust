@@ -13,3 +13,14 @@ private_dir: ${task.cache_dir}/${task.name}/prepared/private
 
 # ~~~ Evaluation and results ~~~
 submission_fname: submission.csv
+
+# ~~~ HCE T1 main-line eval/selection protocol (default off -> behavior unchanged) ~~~
+hce_eval: false
+arm: full                       # full | naive | consistency
+proxy_frac: 0.1
+k_repeats: 3
+lambda_var: 1.0
+hce_search_frac: 0.5
+hce_val_frac: 0.25
+hce_split_seed: 0
+hce_eval_seed: ${metadata.seed}  # proxy-subsample noise tracks the run seed

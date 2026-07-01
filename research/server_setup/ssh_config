@@ -1,0 +1,38 @@
+# ~/.ssh/config  —— 放在【你的笔记本本地】的 ~/.ssh/config
+#
+# ★ 连 linux5 之前：先开 CSE VPN，再 ssh linux5（直连，不走网关）。
+#   linux5 只能 VPN 直连；网关 gw 对它是 administratively prohibited，走不通。
+#   刚连上 VPN 若报"不知道这样的主机/unknown host"，是内网 DNS 没热，重试一次即可。
+
+# ★ 主力机 linux5（Ubuntu 24.04，VSCode 可直连）—— 需先开 CSE VPN
+Host linux5
+  HostName linux5.cse.cuhk.edu.hk
+  User yzyang4
+
+# 入口网关（备用：不开 VPN 时经它跳转到 proj103 等老机器）
+Host cse-gw
+  HostName gw.cse.cuhk.edu.hk
+  User yzyang4
+
+# 通用 Linux 登录服务器（备用）
+Host linux-gw
+  HostName linux3.cse.cuhk.edu.hk
+  User yzyang4
+  ProxyJump cse-gw
+
+# 项目网关（老机器/备用，VSCode 连不上它）
+Host proj103
+  HostName projgw.cse.cuhk.edu.hk
+  Port 2303
+  User yzyang
+  HostKeyAlgorithms +ssh-rsa
+  PubkeyAcceptedKeyTypes +ssh-rsa
+  ProxyJump linux-gw
+
+# 全局默认设置
+Host *
+  IdentityFile ~/.ssh/id_ed25519
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+  StrictHostKeyChecking accept-new
+  ForwardAgent yes

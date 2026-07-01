@@ -1,0 +1,6 @@
+# @package task
+
+defaults:
+ - mlebench/_default
+
+name: playground-series-s3e18

@@ -51,6 +51,8 @@ debug:
         - Implements the fix fully.
         - Calculates and clearly prints the evaluation metric using a validation set (use 5-FOLD CV if suitable).
         - Generates a `submission.csv` file with test set predictions stored in the **current directory** (`./submission.csv`).
+        - Handles ALL non-numeric (object/string) columns: convert to numeric (factorize/category/one-hot) or DROP id/free-text columns; NEVER pass object-dtype columns to LightGBM/XGBoost/sklearn (a very common cause of failures).
+        - Prints, as the FINAL line of stdout, the cross-validation score in EXACTLY this format (for automated parsing): `FINAL_VALIDATION_SCORE: <number>` (e.g. `FINAL_VALIDATION_SCORE: 0.8123`).
         - Is fully self-contained and executable as-is (The entire bug-free solution is given).
 
       - **Important Reminders:**

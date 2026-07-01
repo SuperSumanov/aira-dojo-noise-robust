@@ -225,3 +225,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+# --- extra secret/data safety (added for GitHub push) ---
+kaggle.json
+*.pem
+*.key
+id_rsa*
+secrets*
+*.env

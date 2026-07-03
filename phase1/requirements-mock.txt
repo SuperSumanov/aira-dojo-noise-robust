@@ -1,0 +1,4 @@
+# Phase-1a mock smoke / pytest gate — CPU, no model downloads.
+numpy>=1.23
+matplotlib>=3.5   # optional: PNGs. Without it, plot-data CSVs are still written.
+pytest>=7.0       # dev / gate

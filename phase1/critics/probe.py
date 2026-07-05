@@ -28,11 +28,14 @@ class ProbeCritic(Critic):
     uses_labels = True
 
     def __init__(self, backend: str = "mock", lam: float = 2.0, proj_dim: int = 48, seed: int = 0,
-                 model: str = "Qwen/Qwen2.5-Coder-7B-Instruct"):
+                 model_path: str = "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct",
+                 quant: str = "4bit", model: str = "Qwen/Qwen2.5-Coder-7B-Instruct"):
         self.backend = backend
         self.lam = lam
         self.proj_dim = proj_dim
         self.seed = seed
+        self.model_path = model_path
+        self.quant = quant
         self.model = model
         self._P = None            # frozen projection (mock "representation")
         self._mu = self._sd = None
@@ -66,12 +69,21 @@ class ProbeCritic(Critic):
             return self._ridge.predict(self._frozen_repr(cards))
         return self._predict_qwen(cards)
 
-    # -- real backend (step 2) --------------------------------------------------
+    # -- real backend: frozen Qwen hidden-state + token-entropy features -> ridge probe --
     def _fit_qwen(self, train: List[Card]) -> "ProbeCritic":
-        raise NotImplementedError(
-            "step-2 qwen backend: cache frozen Qwen hidden-state + token-entropy features per card, "
-            "fit a linear/MLP probe to y_norm. See README 'real backends'."
-        )
+        from .qwen_backend import extract_features
+        train = [c for c in train if c.y is not None]
+        if not train:
+            return self
+        X = extract_features(train, path=self.model_path, quant=self.quant)
+        self._mu = X.mean(0); self._sd = X.std(0); self._sd[self._sd < 1e-8] = 1.0
+        y = np.array([c.y for c in train], float)
+        self._ridge = Ridge(self.lam).fit((X - self._mu) / self._sd, y)
+        return self
 
     def _predict_qwen(self, cards: List[Card]) -> np.ndarray:
-        raise NotImplementedError("step-2 qwen backend: featurize with frozen model, apply probe. See README.")
+        from .qwen_backend import extract_features
+        if self._ridge is None:
+            return np.zeros(len(cards))
+        X = extract_features(cards, path=self.model_path, quant=self.quant)
+        return self._ridge.predict((X - self._mu) / self._sd)

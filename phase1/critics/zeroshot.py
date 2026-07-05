@@ -27,8 +27,12 @@ class ZeroShotCritic(Critic):
     name = "zeroshot"
     uses_labels = False
 
-    def __init__(self, backend: str = "mock", model: str = "Qwen/Qwen2.5-Coder-14B-Instruct"):
+    def __init__(self, backend: str = "mock",
+                 model_path: str = "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct",
+                 quant: str = "4bit", model: str = "Qwen/Qwen2.5-Coder-14B-Instruct"):
         self.backend = backend
+        self.model_path = model_path   # verify with 7B; full run swaps to 14B-AWQ path
+        self.quant = quant
         self.model = model
         self._qwen = None
 
@@ -51,10 +55,8 @@ class ZeroShotCritic(Critic):
         hib = cards[0].task.higher_is_better if cards else True
         return orient(np.array(out), hib)
 
-    # -- real backend (step 2) --------------------------------------------------
+    # -- real backend: frozen model, single forward per card, parse SCORE --
     def _predict_qwen(self, cards: List[Card]) -> np.ndarray:
-        raise NotImplementedError(
-            "step-2 qwen backend: load frozen Qwen2.5-Coder-14B (8-bit/AWQ), for each card build a "
-            "value prompt from Card.view(), single forward pass, parse `SCORE: x.xx`. See README "
-            "'real backends'. Deferred so the mock smoke needs no torch/transformers."
-        )
+        from .qwen_backend import generate_scores
+        raw = generate_scores(cards, path=self.model_path, quant=self.quant, for_reasoning=False)
+        return np.array([0.5 if s is None else s for s in raw], float)  # unparseable -> neutral

@@ -25,11 +25,15 @@ class ScalarCritic(Critic):
     uses_labels = True
 
     def __init__(self, backend: str = "mock", lam: float = 5.0,
-                 model: str = "Qwen/Qwen2.5-Coder-7B-Instruct"):
+                 model_path: str = "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct",
+                 quant: str = "4bit", model: str = "Qwen/Qwen2.5-Coder-7B-Instruct"):
         self.backend = backend
         self.lam = lam
+        self.model_path = model_path
+        self.quant = quant
         self.model = model
         self._ridge = None
+        self._trainer = None
 
     def fit(self, train: List[Card]) -> "ScalarCritic":
         if self.backend == "mock":
@@ -48,12 +52,16 @@ class ScalarCritic(Critic):
             return self._ridge.predict(features_matrix(cards))
         return self._predict_qwen(cards)
 
-    # -- real backend (step 2) --------------------------------------------------
+    # -- real backend: QLoRA 4bit + scalar head (see qwen_train.ScalarTrainer) --
     def _fit_qwen(self, train: List[Card]) -> "ScalarCritic":
-        raise NotImplementedError(
-            "step-2 qwen backend: QLoRA 4-bit on Qwen2.5-Coder-7B + scalar head; loss = MSE(y_norm) "
-            "+ pairwise ranking hinge; grad-accum for 3090. See README 'real backends'."
-        )
+        from .qwen_train import ScalarTrainer
+        train = [c for c in train if c.y is not None]
+        if not train:
+            return self
+        self._trainer = ScalarTrainer(self.model_path).fit(train)
+        return self
 
     def _predict_qwen(self, cards: List[Card]) -> np.ndarray:
-        raise NotImplementedError("step-2 qwen backend: single forward, read scalar head. See README.")
+        if self._trainer is None:
+            return np.zeros(len(cards))
+        return self._trainer.predict(cards)

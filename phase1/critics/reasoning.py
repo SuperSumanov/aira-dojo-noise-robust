@@ -32,10 +32,14 @@ class ReasoningCritic(Critic):
     uses_labels = True
 
     def __init__(self, backend: str = "mock", lam: float = 5.0,
-                 model: str = "Qwen/Qwen2.5-Coder-7B-Instruct"):
+                 model_path: str = "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct",
+                 quant: str = "4bit", model: str = "Qwen/Qwen2.5-Coder-7B-Instruct"):
         self.backend = backend
         self.lam = lam
+        self.model_path = model_path
+        self.quant = quant
         self.model = model
+        self._trainer = None
         self._ridge = None
 
     @staticmethod
@@ -62,16 +66,16 @@ class ReasoningCritic(Critic):
             return prior + self._ridge.predict(features_matrix(cards))
         return self._predict_qwen(cards)
 
-    # -- real backend (step 2) --------------------------------------------------
+    # -- real backend: QLoRA SFT, hindsight distillation (see qwen_train.ReasoningTrainer) --
     def _fit_qwen(self, train: List[Card]) -> "ReasoningCritic":
-        raise NotImplementedError(
-            "step-2 qwen backend: build hindsight-distilled SFT data (frozen 14B analysis with number "
-            "stripped + true y_norm as target), QLoRA 4-bit SFT on Qwen2.5-Coder-7B to emit "
-            "`analysis... \\n predicted_final_score: x.xx`. See README 'reasoning critic recipe'."
-        )
+        from .qwen_train import ReasoningTrainer
+        train = [c for c in train if c.y is not None]
+        if not train:
+            return self
+        self._trainer = ReasoningTrainer(self.model_path).fit(train)
+        return self
 
     def _predict_qwen(self, cards: List[Card]) -> np.ndarray:
-        raise NotImplementedError(
-            "step-2 qwen backend: single forward -> parse the final `predicted_final_score` number. "
-            "No multi-sample voting. See README."
-        )
+        if self._trainer is None:
+            return np.full(len(cards), 0.5)
+        return self._trainer.predict(cards)

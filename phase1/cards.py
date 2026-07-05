@@ -189,8 +189,18 @@ def card_from_node_data(nd: Dict[str, Any], task: TaskInfo) -> Optional[Card]:
     graded = mi.get("score")                       # external MLE-bench grade (non-hce runs)
     self_val = mi.get("validation_score", nd.get("metric"))  # self-reported val (use_test_score path)
     thr = {k: mi.get(f"{k}_threshold") for k in ("gold", "silver", "bronze")}
+    # refine the task from the grade record itself: real mle-bench metric_info carries
+    # competition_id + is_lower_better + *_threshold (verified against actual MCTS journals).
+    tk = asdict(task)
+    if mi.get("competition_id"):
+        tk["name"] = mi["competition_id"]
+        if not tk.get("desc"):
+            tk["desc"] = mi["competition_id"]
+    if mi.get("is_lower_better") is not None:
+        tk["higher_is_better"] = not bool(mi.get("is_lower_better"))
     if any(v is not None for v in thr.values()):
-        task = TaskInfo(**{**asdict(task), "medal_thresholds": {k: v for k, v in thr.items() if v is not None}})
+        tk["medal_thresholds"] = {k: v for k, v in thr.items() if v is not None}
+    task = TaskInfo(**tk)
     y_norm, bucket = (None, "none")
     if graded is not None and task.medal_thresholds:
         y_norm, bucket = normalize_graded(graded, task.medal_thresholds, task.higher_is_better)

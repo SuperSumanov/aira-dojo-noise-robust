@@ -38,14 +38,24 @@ any aira-dojo core behavior — all code lives in `phase1/`.**
 | zeroshot / scalar | ≈0 | ≈0 / 负 |
 | reasoning | −0.074（恒定） | 0.000（恒定） |
 
-亮点：probe 同任务逼近 baseline；scalar/reasoning **在 nomad 折有真信号**（INTRA nomad reasoning **+0.425**）——learned 非全废，被 spaceship/tps_may 拉低。reasoning **确认退化**（大量恒定值，仅 nomad 折活着）。
+**baseline 设障（mask 掉自报分 `val_at_low`/`val_curve`/`parent_val`，只给代码+血缘）— 翻转裁决**：
+| 预测器 | LOTO 跨任务 | INTRA 同任务 |
+|---|---|---|
+| one_epoch（baseline） | **0.000**（如期废） | **0.000** |
+| **probe** | **+0.14**（tps_may 0.52） | **+0.357**（tps_may 0.57） |
+| scalar | 个别折 +0.23~0.27 | +0.08~0.26 |
+| zeroshot | +0.163 | +0.124 |
 
-**命题分裂 & confound**：
-- 「廉价 critic 能预测 grade」**同任务成立**（probe 0.4–0.5、verify zeroshot 0.227）；
-- 「learned 跨任务 > baseline」**证伪**——但 baseline=`val_at_low` 自报分与真值**同源**而极强，这是最大 confound；
-- 「reasoning 更省样本」**证伪 + 实现退化**（7B 自蒸馏+截断+少样本没训起来），暂不下结论。
+→ **去掉同源自报分后 baseline 归零，而 probe/scalar 保留可观信号** = **critic 有独立于自报分的价值**（从代码的 hidden 表示学到 grade 信号），同任务强、跨任务弱但为正。
 
-**拆 confound 进度**：① 标签 medal→min-max ✅（tps_may 修复）② 同任务 intra 对照 ✅ ③ **baseline 设障进行中**（mask 掉自报分 `val_at_low`/`val_curve`/`parent_val`，只给代码+血缘，测 learned 能否从代码本身预测 grade → job 6854/6855，~6h）④ 待做：修 reasoning（下 14B teacher 做真 hindsight distillation、不截断 code）。
+**命题裁决（拆完 confound）**：
+- 「廉价 critic 能预测 grade」**成立**：设障后 probe 同任务 +0.357 / 跨任务 +0.14 > 废掉的 baseline（0）——**Phase-1 的「learned 输 baseline」是 confound**（baseline=`val_at_low` 自报分与真值同源而虚高），并非 critic 无用；
+- probe（冻结特征+ridge）**最稳**；scalar 去自报分后跨任务反而更好；**reasoning 仍退化**（7B 自蒸馏+截断+少样本，实现问题非方法问题）；
+- 信号整体**偏弱**（真 grade 难 + 数据仅 148 卡，呼应 T0 R²≈0.14）。
+
+**拆 confound 进度**：① 标签 medal→min-max ✅（tps_may 修复）② 同任务 intra 对照 ✅ ③ **baseline 设障 ✅**（去自报分→baseline 归零、probe/scalar 保留信号→critic 有独立价值，见上）④ 待做：修 reasoning（下 14B teacher 真蒸馏、不截断 code）。
+
+**新方向（pivot → 仓库根 `0707_proposal_noise_aware.md`）**：从被动 grade critic 转向 **C1 噪声感知离线偏好蒸馏**——用树里同 parent 的 sibling 做偏好对，**只在分差 > 噪声地板 τ 时配对**（因 grade 噪声大，分差落噪声带内的偏好是假的），ORPO/SimPO 离线训 actor、零新采样。**M0/M1-dry 已在烧 GPU 前证伪现有数据够**：148 卡的树仅 **28 个 graded sibling 对**，无重复 grade（τ 由 T0 R²≈0.14 反推），τ 门控后剩 **5 对(1σ)/1 对(2σ)** → **扩数据是硬前置**（目标每任务几百对）。这也从数据侧印证 proposal 立论（sibling 分差多半落在噪声带内）。
 
 **副产物**：修了 aira 一个执行 bug——agent 代码用 `if __name__=="__main__"` guard 时被误判 buggy（`src/dojo/core/interpreters/python.py:189` exec 前加 `global_scope["__name__"]="__main__"`），采树 grade 产出率 5%→33%。
 

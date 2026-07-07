@@ -30,18 +30,22 @@ any aira-dojo core behavior — all code lives in `phase1/`.**
 |---|---|---|---|---|
 | +0.136 | **+0.227** | +0.190 | +0.104 | −0.106 |
 
-跨任务（LOTO，首轮 medal 标签）— learned 全输给廉价 baseline：
-| 预测器 | spaceship | nomad |
+跨任务 / 同任务（min-max 标签，各 3 折 × N × seed）— **自报分 baseline 两设置都碾压**：
+| 预测器 | LOTO 跨任务 | INTRA 同任务 |
 |---|---|---|
-| **one_epoch** | **+0.238** | **+0.455** |
-| zeroshot / scalar / reasoning | ≈0 / 负 | ≈0 / 负 |
+| **one_epoch（自报分）** | **+0.479** | **+0.450** |
+| probe | +0.12~0.16 | **+0.40~0.50** |
+| zeroshot / scalar | ≈0 | ≈0 / 负 |
+| reasoning | −0.074（恒定） | 0.000（恒定） |
+
+亮点：probe 同任务逼近 baseline；scalar/reasoning **在 nomad 折有真信号**（INTRA nomad reasoning **+0.425**）——learned 非全废，被 spaceship/tps_may 拉低。reasoning **确认退化**（大量恒定值，仅 nomad 折活着）。
 
 **命题分裂 & confound**：
-- 「廉价 critic 能预测 grade」**同任务成立**，跨任务几乎无信号（连冻结大模型 zeroshot 都 ≈0）；
-- 「跨任务 learned > baseline」首轮**证伪**，但 baseline=自报分与真值**同源**而极强 + 跨任务最难 + 数据仅 148 卡 + tps_may 曾是无效折 → 不利结果**站不住脚当结论**；
-- 「reasoning 更省样本」**尚未显出**（弱且疑退化），有强 confound，暂**不下结论**。
+- 「廉价 critic 能预测 grade」**同任务成立**（probe 0.4–0.5、verify zeroshot 0.227）；
+- 「learned 跨任务 > baseline」**证伪**——但 baseline=`val_at_low` 自报分与真值**同源**而极强，这是最大 confound；
+- 「reasoning 更省样本」**证伪 + 实现退化**（7B 自蒸馏+截断+少样本没训起来），暂不下结论。
 
-**正在拆 confound**：① 标签 medal→min-max（tps_may 修复）② 加同任务 intra 对照 ③ 两个矩阵跑中（loto + intra，min-max 标签）④ 待做：给 baseline 设障（去掉自报分、只给代码/血缘）、诊断 reasoning 是否退化成常数。
+**拆 confound 进度**：① 标签 medal→min-max ✅（tps_may 修复）② 同任务 intra 对照 ✅ ③ **baseline 设障进行中**（mask 掉自报分 `val_at_low`/`val_curve`/`parent_val`，只给代码+血缘，测 learned 能否从代码本身预测 grade → job 6854/6855，~6h）④ 待做：修 reasoning（下 14B teacher 做真 hindsight distillation、不截断 code）。
 
 **副产物**：修了 aira 一个执行 bug——agent 代码用 `if __name__=="__main__"` guard 时被误判 buggy（`src/dojo/core/interpreters/python.py:189` exec 前加 `global_scope["__name__"]="__main__"`），采树 grade 产出率 5%→33%。
 

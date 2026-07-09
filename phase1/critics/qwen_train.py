@@ -18,7 +18,7 @@ from .qwen_backend import _chat, build_value_prompt
 
 class ScalarTrainer:
     def __init__(self, model_path: str, r: int = 16, alpha: int = 32, lr: float = 1e-4,
-                 epochs: int = 4, accum: int = 8, max_len: int = 1024, lam_rank: float = 0.5,
+                 epochs: int = 4, accum: int = 8, max_len: int = 768, lam_rank: float = 0.5,
                  seed: int = 0):
         self.model_path = model_path
         self.r, self.alpha, self.lr = r, alpha, lr
@@ -133,11 +133,13 @@ class ReasoningTrainer:
     downloaded."""
 
     def __init__(self, model_path: str, teacher_path: str = None, r: int = 16, alpha: int = 32,
-                 lr: float = 1e-4, epochs: int = 3, accum: int = 8, max_len: int = 768, seed: int = 0):
+                 lr: float = 1e-4, epochs: int = 3, accum: int = 8, max_len: int = 1024,
+                 prompt_len: int = 768, seed: int = 0):
         self.model_path = model_path
         self.teacher_path = teacher_path or model_path
         self.r, self.alpha, self.lr = r, alpha, lr
         self.epochs, self.accum, self.max_len, self.seed = epochs, accum, max_len, seed
+        self.prompt_len = prompt_len   # card prompt truncation (match scalar's context; SFT seq = max_len holds prompt+target)
         self.model = self.tok = None
 
     def _make_sft(self, cards):
@@ -147,13 +149,13 @@ class ReasoningTrainer:
         model, tok = load_model(self.teacher_path, "4bit")
         data = []
         for c in cards:
-            p = _chat(tok, build_value_prompt(c, for_reasoning=True))
-            enc = tok(p, return_tensors="pt", truncation=True, max_length=self.max_len).to(model.device)
+            p = _chat(tok, build_value_prompt(c, for_reasoning=True, max_code=1200))
+            enc = tok(p, return_tensors="pt", truncation=True, max_length=self.prompt_len).to(model.device)
             with torch.no_grad():
-                g = model.generate(**enc, max_new_tokens=180, do_sample=False, pad_token_id=tok.pad_token_id)
+                g = model.generate(**enc, max_new_tokens=256, do_sample=False, pad_token_id=tok.pad_token_id)
             txt = tok.decode(g[0][enc["input_ids"].shape[1]:], skip_special_tokens=True)
             analysis = re.split(r"predicted_final_score", txt, flags=re.I)[0].strip()
-            analysis = re.sub(r"[-+]?\d*\.?\d+", "#", analysis)[:600]        # strip digits
+            analysis = re.sub(r"[-+]?\d*\.?\d+", "#", analysis)[:1200]        # strip digits
             target = f"{analysis}\npredicted_final_score: {c.y:.3f}"
             data.append((build_value_prompt(c, for_reasoning=True), target))
         return data, tok
@@ -188,8 +190,18 @@ class ReasoningTrainer:
             for step, i in enumerate(perm):
                 prompt, target = data[i]
                 b = _sft_ids(tok, prompt, target, self.max_len, model.device)
-                out = model(**b)
-                (out.loss / self.accum).backward()
+                T = int((b["labels"][0] != -100).sum())
+                if T < 1:
+                    continue
+                # logits_to_keep: only materialize the target-region logits. The full-seq (prompt)
+                # logits over the 152k vocab are what OOM'd SFT; prompt labels are all -100 anyway,
+                # so compute CE manually on just the last T positions.
+                import torch.nn.functional as Fnn
+                out = model(input_ids=b["input_ids"], attention_mask=b["attention_mask"],
+                            logits_to_keep=T + 1)
+                lg = out.logits[:, :-1, :].reshape(-1, out.logits.size(-1)).float()
+                loss = Fnn.cross_entropy(lg, b["labels"][0, -T:])
+                (loss / self.accum).backward()
                 if (step + 1) % self.accum == 0 or step == n - 1:
                     opt.step(); opt.zero_grad()
         model.eval()
@@ -203,8 +215,8 @@ class ReasoningTrainer:
         out = []
         with torch.no_grad():
             for c in cards:
-                p = _chat(self.tok, build_value_prompt(c, for_reasoning=True))
-                enc = self.tok(p, return_tensors="pt", truncation=True, max_length=self.max_len).to(self.model.device)
+                p = _chat(self.tok, build_value_prompt(c, for_reasoning=True, max_code=1200))
+                enc = self.tok(p, return_tensors="pt", truncation=True, max_length=self.prompt_len).to(self.model.device)
                 g = self.model.generate(**enc, max_new_tokens=200, do_sample=False, pad_token_id=self.tok.pad_token_id)
                 txt = self.tok.decode(g[0][enc["input_ids"].shape[1]:], skip_special_tokens=True)
                 s = parse_score(txt)

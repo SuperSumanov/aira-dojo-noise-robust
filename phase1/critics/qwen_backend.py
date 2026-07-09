@@ -51,10 +51,13 @@ _SYS = ("You are an expert ML engineer estimating how good a candidate solution 
         "Estimate the final medal-normalized score in [0,1] (0=poor, 1=gold-level).")
 
 
-def build_value_prompt(card: Card, for_reasoning: bool = False) -> str:
+def build_value_prompt(card: Card, for_reasoning: bool = False, max_code: int = 4000) -> str:
     v = card.view()
     tk, o, ln = v["task"], v["obs"], v["lineage"]
-    code = (v["code"] or "")[:4000]
+    # max_code: default 4000 for scalar/probe/zeroshot (they learn from the code; longer=more signal).
+    # reasoning passes max_code=1200 so its 768-tok prompt still fits the # Instructions block AFTER
+    # the code (else Instructions get truncated out and the model just continues the unclosed block).
+    code = (v["code"] or "")[:max_code]
     parts = [
         f"# Task\n{tk.get('name','?')} ({tk.get('type','?')}, metric={tk.get('metric','?')}, "
         f"higher_is_better={tk.get('higher_is_better')})",

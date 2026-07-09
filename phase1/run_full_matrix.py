@@ -75,9 +75,19 @@ def main():
     ap.add_argument("--critics", default="one_epoch,asha,zeroshot,probe,scalar,reasoning")
     ap.add_argument("--mode", default="loto", choices=["loto", "intra"],
                     help="loto=leave-one-task-out (cross-task); intra=same-task train/test split")
+    ap.add_argument("--ablate", action="store_true",
+                    help="H1 ablation: mask self-reported signals (val_at_low/val_curve/parent_val) so "
+                         "critics must learn from code+lineage alone (baselines collapse; a surviving "
+                         "critic proves it extracts grade-signal from the code itself)")
     a = ap.parse_args()
 
     cards = labeled(load_cards(a.cards))
+    if a.ablate:
+        for c in cards:
+            c.obs.val_at_low = None
+            c.obs.val_curve = []
+            c.lineage.parent_val = None
+        print(f"[ablate] masked self-reported signals on {len(cards)} cards", flush=True)
     budgets = [b if b == "all" else int(b) for b in a.budgets.split(",")]
     seeds = tuple(int(s) for s in a.seeds.split(","))
     names = a.critics.split(",")

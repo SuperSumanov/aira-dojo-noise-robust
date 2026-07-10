@@ -84,10 +84,10 @@ We simulate a search under a budget of K expensive evaluations: pick the K candi
 
 | K=3 | critic (probe) | proxy (self-report) | random |
 |---|---|---|---|
-| intra tps-may (dispersed grades) | 0.153 | **0.000** | 0.162 |
-| loto tps-may | 0.292 | **0.000** | 0.244 |
+| intra tps-may (dispersed grades) | 0.215 | **0.000** | 0.171 |
+| loto tps-may | 0.292 | **0.000** | 0.227 |
 
-On the one task with real discrimination room (tps-may, dispersed grades), the **free self-report proxy is optimal (regret 0)** while the probe ≈ random and cross-task is *worse* than random. On top-heavy tasks (spaceship, nomad — 89% of solutions near the max) everyone's regret ≈ 0 (any pick is fine). **No regime makes the probe the right selector** — its +0.41 rank does not translate into budget savings. This is exactly the NAS *rank ≠ regret* warning, and it explains why ArchPilot's low-fidelity proxy (≈ our self-report) is a sound design choice.
+On the one task with real discrimination room (tps-may, dispersed grades), the **free self-report proxy is optimal (regret 0)** while the probe ≈ random (intra 0.215 vs 0.171) and cross-task is *worse* than random (loto 0.292 vs 0.227). On top-heavy tasks (spaceship, nomad — 89% of solutions near the max) everyone's regret ≈ 0 (any pick is fine). **No regime makes the probe the right selector** — its +0.41 rank does not translate into budget savings. This is exactly the NAS *rank ≠ regret* warning, and it explains why ArchPilot's low-fidelity proxy (≈ our self-report) is a sound design choice.
 
 ### 4.3 The probe's value is in *self-report-failure detection*, not selection
 
@@ -147,10 +147,14 @@ Under poor compute, a nearly-free frozen-probe critic **can** predict same-task 
 - Backbone: Qwen2.5-Coder-7B/14B, 4-bit, single RTX 3090; 3 seeds; all runs log seed/commit/budget.
 - Results CSVs: `_h1k*` (H1), `_rfx*`/`_rfx14*` (H2), `bprobe_*.out` (§4.2–4.3).
 
-## References (to complete)
-- ELHSR / Reward Inside the Model. arXiv:2505.12225.
-- AgentRM: Enhancing Agent Generalization with Reward Modeling. arXiv:2502.18407.
-- ArchPilot: Proxy-Guided Multi-Agent ML Engineering. arXiv:2511.03985.
-- I-MCTS. arXiv:2502.14693. · SELA. arXiv:2410.17238. · aira-dojo. arXiv:2507.02554.
-- White et al. How Powerful are Performance Predictors in NAS? NeurIPS 2021. arXiv:2104.01177.
-- MFES-HB (multi-fidelity). arXiv:2012.03011. · AVATAR (pipeline surrogate). arXiv:2001.11158.
+## References
+
+1. J. Guo, Z. Wu, H. Yang, P. S. Yu. **Mining Intrinsic Rewards from LLM Hidden States for Efficient Best-of-N Sampling** (ELHSR/SWIFT). arXiv:2505.12225, May 2025. *KDD 2026 (Research Track).*
+2. Y. Xia, J. Fan, W. Chen, S. Yan, X. Cong, Z. Zhang, Y. Lu, Y. Lin, Z. Liu, M. Sun. **AgentRM: Enhancing Agent Generalization with Reward Modeling.** arXiv:2502.18407, Feb 2025. *ACL 2025.*
+3. Z. Yuan, T. Liu, Y. Yang, Y. Wang, F. Qi, K. Rangadurai, B. Li, S. Yang. **ArchPilot: A Proxy-Guided Multi-Agent Approach for Machine Learning Engineering.** arXiv:2511.03985, Nov 2025.
+4. Z. Liang, F. Wei, W. Xu, L. Chen, Y. Qian, X. Wu. **I-MCTS: Enhancing Agentic AutoML via Introspective Monte Carlo Tree Search.** arXiv:2502.14693, Feb 2025. *EACL 2026 Findings.*
+5. E. Toledo, K. Hambardzumyan, M. Josifoski, R. Hazra, N. Baldwin, et al. **AI Research Agents for Machine Learning: Search, Exploration, and Generalization in MLE-bench** (aira-dojo). arXiv:2507.02554, Jul 2025.
+6. Y. Chi, Y. Lin, S. Hong, D. Pan, Y. Fei, et al. **SELA: Tree-Search Enhanced LLM Agents for Automated Machine Learning.** arXiv:2410.17238, Oct 2024.
+7. C. White, A. Zela, B. Ru, Y. Liu, F. Hutter. **How Powerful are Performance Predictors in Neural Architecture Search?** arXiv:2104.01177. *NeurIPS 2021.*
+8. Y. Li, Y. Shen, J. Jiang, J. Gao, C. Zhang, B. Cui. **MFES-HB: Efficient Hyperband with Multi-Fidelity Quality Measurements.** arXiv:2012.03011. *AAAI 2021.*
+9. T.-D. Nguyen, T. Maszczyk, K. Musial, M.-A. Zöller, B. Gabrys. **AVATAR — Machine Learning Pipeline Evaluation Using Surrogate Model.** arXiv:2001.11158. *IDA 2020.*

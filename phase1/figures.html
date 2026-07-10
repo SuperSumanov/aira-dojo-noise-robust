@@ -1,0 +1,201 @@
+<style>
+  :root {
+    --page:#f6f7f9; --surface:#fcfcfb; --ink1:#0b0b0b; --ink2:#52514e; --muted:#8a8a86;
+    --grid:#e7e8ea; --baseline:#c6c6c0; --zero:#b9bab6;
+    --probe:#2a78d6; --alt:#1baf7a; --base:#9a9a93; --random:#b6b6af;
+    --hair:rgba(11,11,11,.10); --good:#0a8a0a; --bad:#d03b3b;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --page:#0e0f10; --surface:#1a1a19; --ink1:#fff; --ink2:#c3c2b7; --muted:#8f8f89;
+      --grid:#2a2b2c; --baseline:#3a3a37; --zero:#4a4a46;
+      --probe:#3f90ec; --alt:#22b483; --base:#7d7d77; --random:#5c5c57;
+      --hair:rgba(255,255,255,.12); --good:#22b422; --bad:#e05a5a; }
+  }
+  :root[data-theme="light"]{ --page:#f6f7f9; --surface:#fcfcfb; --ink1:#0b0b0b; --ink2:#52514e; --muted:#8a8a86; --grid:#e7e8ea; --baseline:#c6c6c0; --zero:#b9bab6; --probe:#2a78d6; --alt:#1baf7a; --base:#9a9a93; --random:#b6b6af; --hair:rgba(11,11,11,.10); --good:#0a8a0a; --bad:#d03b3b; }
+  :root[data-theme="dark"]{ --page:#0e0f10; --surface:#1a1a19; --ink1:#fff; --ink2:#c3c2b7; --muted:#8f8f89; --grid:#2a2b2c; --baseline:#3a3a37; --zero:#4a4a46; --probe:#3f90ec; --alt:#22b483; --base:#7d7d77; --random:#5c5c57; --hair:rgba(255,255,255,.12); --good:#22b422; --bad:#e05a5a; }
+
+  *{ box-sizing:border-box; }
+  .wrap{ font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--page);
+    color:var(--ink1); padding:32px 22px 48px; min-height:100vh; }
+  .head{ max-width:820px; margin:0 auto 26px; display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+  .title{ font-size:21px; font-weight:680; letter-spacing:-.01em; margin:0 0 5px; text-wrap:balance; }
+  .sub{ font-size:13.5px; color:var(--ink2); margin:0; line-height:1.5; max-width:600px; }
+  .toggle{ flex:0 0 auto; font:inherit; font-size:12px; color:var(--ink2); background:var(--surface);
+    border:1px solid var(--hair); border-radius:8px; padding:7px 11px; cursor:pointer; }
+  .toggle:hover{ color:var(--ink1); }
+  .toggle:focus-visible{ outline:2px solid var(--probe); outline-offset:2px; }
+  .fig{ max-width:820px; margin:0 auto 20px; background:var(--surface); border:1px solid var(--hair);
+    border-radius:14px; padding:20px 22px 18px; }
+  .fig-h{ font-size:15px; font-weight:640; margin:0 0 2px; letter-spacing:-.005em; }
+  .fig-k{ font-size:12.5px; color:var(--ink2); margin:0 0 14px; line-height:1.5; }
+  .fig-k b{ color:var(--ink1); font-weight:620; }
+  .legend{ display:flex; flex-wrap:wrap; gap:14px; margin:2px 0 12px; font-size:12px; color:var(--ink2); }
+  .lg{ display:inline-flex; align-items:center; gap:6px; }
+  .sw{ width:11px; height:11px; border-radius:3px; }
+  .sw.line{ height:3px; width:15px; border-radius:2px; }
+  svg{ display:block; width:100%; height:auto; overflow:visible; }
+  svg text{ font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .ax{ font-size:11px; fill:var(--muted); }
+  .axb{ font-size:11.5px; fill:var(--ink2); }
+  .val{ font-size:10.5px; fill:var(--ink2); font-variant-numeric:tabular-nums; font-weight:560; }
+  .grp{ font-size:11.5px; fill:var(--ink1); font-weight:560; }
+  .tip{ position:fixed; pointer-events:none; opacity:0; transition:opacity .1s; background:var(--ink1);
+    color:var(--surface); font-size:11.5px; padding:5px 8px; border-radius:6px; white-space:nowrap;
+    font-variant-numeric:tabular-nums; z-index:9; box-shadow:0 4px 14px rgba(0,0,0,.22); }
+  .foot{ max-width:820px; margin:16px auto 0; font-size:11.5px; color:var(--muted); line-height:1.55; }
+  rect.bar{ transition:opacity .1s; } rect.bar:hover{ opacity:.82; }
+  circle.pt:hover{ r:5.5; }
+</style>
+
+<div class="wrap">
+  <div class="head">
+    <div>
+      <h1 class="title">A cheap frozen-probe critic: what it can and cannot do</h1>
+      <p class="sub">Poor-compute LLM ML-engineering search · 289 graded solutions, 3 tabular tasks · Spearman &amp; regret, 3 seeds. No LLM-as-judge.</p>
+    </div>
+    <button class="toggle" id="tg" aria-label="Toggle light or dark theme">◐ Theme</button>
+  </div>
+
+  <figure class="fig">
+    <figcaption><h2 class="fig-h">Fig 1 · H1 — the probe carries grade signal independent of the self-report</h2>
+    <p class="fig-k">Under the <b>self-report ablation</b>, the self-report baseline collapses to <b>0</b> — but the probe barely drops (intra .381→<b>.356</b>, cross-task .103→<b>.179</b>, <i>rising</i>). The QLoRA scalar is weak-to-negative throughout.</p></figcaption>
+    <div class="legend">
+      <span class="lg"><span class="sw" style="background:var(--base)"></span>self-report baseline</span>
+      <span class="lg"><span class="sw" style="background:var(--probe)"></span>probe (frozen + ridge)</span>
+      <span class="lg"><span class="sw" style="background:var(--alt)"></span>scalar (QLoRA)</span>
+    </div>
+    <svg id="f1" viewBox="0 0 760 300" role="img" aria-label="H1 grouped bar chart"></svg>
+  </figure>
+
+  <figure class="fig">
+    <figcaption><h2 class="fig-h">Fig 2 · rank ≠ regret — the probe cannot save evaluations</h2>
+    <p class="fig-k">Best-of-K under a budget of K expensive evaluations (tps-may, the dispersed-grade task). The <b>free self-report proxy hits regret 0</b> — it picks the optimum — while the probe is no better than random. Good rank (Fig 1) does <b>not</b> translate into search savings.</p></figcaption>
+    <div class="legend">
+      <span class="lg"><span class="sw line" style="background:var(--probe)"></span>critic (probe)</span>
+      <span class="lg"><span class="sw line" style="background:var(--alt)"></span>proxy (self-report)</span>
+      <span class="lg"><span class="sw line" style="background:var(--random)"></span>random</span>
+    </div>
+    <svg id="f2" viewBox="0 0 760 300" role="img" aria-label="rank vs regret line chart"></svg>
+  </figure>
+
+  <figure class="fig">
+    <figcaption><h2 class="fig-h">Fig 3 · rescue — the probe's value is where the self-report is WRONG</h2>
+    <p class="fig-k">On candidate pairs the self-report ranks <b>wrong</b> (0% correct by construction; random = <b>.50</b>), the probe is still right — <b>.59 on spaceship</b> (8382 pairs). A self-report-failure / reward-hacking detector, not a selector. Limited: partial independence (&lt; probe@right), and it needs the probe to be strong on that task (tps fails).</p></figcaption>
+    <div class="legend">
+      <span class="lg"><span class="sw" style="background:var(--probe)"></span>probe @ self-report-wrong pairs</span>
+      <span class="lg"><span class="sw" style="background:var(--alt)"></span>probe @ self-report-right pairs</span>
+      <span class="lg"><span class="sw line" style="background:var(--random)"></span>random = .50</span>
+    </div>
+    <svg id="f3" viewBox="0 0 760 300" role="img" aria-label="rescue grouped bar chart"></svg>
+  </figure>
+
+  <p class="foot">Data: <code>cards_real_mm.jsonl</code> (289 cards; spaceship 221 / nomad 37 / tps-may 31), external pristine grading. Fig 1 &amp; 3 mean over 3 seeds; Fig 2 mean over 5 split seeds × 500 random draws. Backbone Qwen2.5-Coder-7B, frozen, single RTX 3090.</p>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  const tip=document.getElementById('tip');
+  function E(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+  function show(html,ev){tip.innerHTML=html;tip.style.opacity=1;tip.style.left=(ev.clientX+12)+'px';tip.style.top=(ev.clientY-8)+'px';}
+  function hide(){tip.style.opacity=0;}
+  const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  // ---- Fig 1: grouped bars, signed y ----
+  function fig1(){
+    const svg=document.getElementById('f1'); svg.innerHTML='';
+    const W=760,H=300,L=52,R=14,T=14,B=64, pw=W-L-R, ph=H-T-B;
+    const groups=[["intra\nnormal",[.619,.381,.060]],["intra\nablated",[.000,.356,-.023]],
+                  ["loto\nnormal",[.502,.103,-.007]],["loto\nablated",[.000,.179,-.015]]];
+    const names=["self-report","probe","scalar"], cols=[css('--base'),css('--probe'),css('--alt')];
+    const ymin=-0.1,ymax=0.7, y=v=>T+ph-(v-ymin)/(ymax-ymin)*ph;
+    for(const gy of [-0.1,0,0.2,0.4,0.6]){ const yy=y(gy);
+      svg.appendChild(E('line',{x1:L,x2:W-R,y1:yy,y2:yy,stroke:gy===0?css('--baseline'):css('--grid'),'stroke-width':gy===0?1.4:1}));
+      const t=E('text',{x:L-8,y:yy+3.5,'text-anchor':'end',class:'ax'});t.textContent=gy.toFixed(1);svg.appendChild(t);}
+    const gw=pw/groups.length, bw=Math.min(30,(gw-18)/3);
+    groups.forEach((g,gi)=>{ const gx=L+gi*gw;
+      const gt=E('text',{x:gx+gw/2,y:H-B+22,'text-anchor':'middle',class:'grp'});
+      g[0].split("\n").forEach((ln,li)=>{const ts=E('tspan',{x:gx+gw/2,dy:li?13:0});ts.textContent=ln;gt.appendChild(ts);});
+      svg.appendChild(gt);
+      g[1].forEach((v,bi)=>{ const x=gx+(gw-bw*3-8)/2+bi*(bw+4);
+        const yv=y(v),y0=y(0),top=Math.min(yv,y0),hh=Math.max(1.5,Math.abs(yv-y0));
+        const r=E('rect',{x,y:top,width:bw,height:hh,rx:3,fill:cols[bi],class:'bar'});
+        r.addEventListener('mousemove',e=>show(`<b>${names[bi]}</b> · ${g[0].replace("\n"," ")}<br>Spearman ${v>=0?'+':''}${v.toFixed(3)}`,e));
+        r.addEventListener('mouseleave',hide); svg.appendChild(r);
+        const vt=E('text',{x:x+bw/2,y:v>=0?top-4:top+hh+11,'text-anchor':'middle',class:'val'});
+        vt.textContent=(v>=0?'+':'')+v.toFixed(2); svg.appendChild(vt);
+      });
+    });
+    const yl=E('text',{x:14,y:T+ph/2,'text-anchor':'middle',class:'axb',transform:`rotate(-90 14 ${T+ph/2})`});
+    yl.textContent='Spearman ρ'; svg.appendChild(yl);
+  }
+
+  // ---- Fig 2: line chart ----
+  function fig2(){
+    const svg=document.getElementById('f2'); svg.innerHTML='';
+    const W=760,H=300,L=52,R=54,T=14,B=48, pw=W-L-R, ph=H-T-B;
+    const Ks=[3,5,10,20];
+    const series=[["critic (probe)",[.215,.098,.000,.000],css('--probe')],
+                  ["proxy (self-report)",[.000,.000,.000,.000],css('--alt')],
+                  ["random",[.171,.114,.036,.000],css('--random')]];
+    const ymax=0.25, x=i=>L+i/(Ks.length-1)*pw, y=v=>T+ph-v/ymax*ph;
+    for(const gy of [0,0.05,0.10,0.15,0.20,0.25]){ const yy=y(gy);
+      svg.appendChild(E('line',{x1:L,x2:W-R,y1:yy,y2:yy,stroke:gy===0?css('--baseline'):css('--grid'),'stroke-width':gy===0?1.4:1}));
+      const t=E('text',{x:L-8,y:yy+3.5,'text-anchor':'end',class:'ax'});t.textContent=gy.toFixed(2);svg.appendChild(t);}
+    Ks.forEach((k,i)=>{const t=E('text',{x:x(i),y:H-B+20,'text-anchor':'middle',class:'axb'});t.textContent='K='+k;svg.appendChild(t);});
+    series.forEach(s=>{
+      let d=''; s[1].forEach((v,i)=>d+=(i?'L':'M')+x(i)+' '+y(v));
+      const dash=s[0]==='random'?'4 4':'0';
+      svg.appendChild(E('path',{d,fill:'none',stroke:s[2],'stroke-width':s[0]==='proxy (self-report)'?3:2.2,'stroke-dasharray':dash,'stroke-linejoin':'round','stroke-linecap':'round'}));
+      s[1].forEach((v,i)=>{ const c=E('circle',{cx:x(i),cy:y(v),r:i===0||s[0]!=='random'?4:3.2,fill:s[2],stroke:css('--surface'),'stroke-width':1.5,class:'pt'});
+        c.addEventListener('mousemove',e=>show(`<b>${s[0]}</b> · K=${Ks[i]}<br>regret ${v.toFixed(3)}`,e)); c.addEventListener('mouseleave',hide); svg.appendChild(c);});
+      const lb=E('text',{x:x(3)+8,y:y(s[1][3])+3.5,class:'val',fill:s[2]}); lb.textContent=s[0]==='proxy (self-report)'?'proxy':s[0]==='critic (probe)'?'probe':'rand'; svg.appendChild(lb);
+    });
+    const yl=E('text',{x:14,y:T+ph/2,'text-anchor':'middle',class:'axb',transform:`rotate(-90 14 ${T+ph/2})`});
+    yl.textContent='regret (lower better)'; svg.appendChild(yl);
+    // annotation on proxy=0
+    const an=E('text',{x:L+pw*0.30,y:y(0)-7,class:'val',fill:css('--alt')}); an.textContent='self-report picks the optimum → regret 0'; svg.appendChild(an);
+  }
+
+  // ---- Fig 3: grouped bars with 0.5 reference ----
+  function fig3(){
+    const svg=document.getElementById('f3'); svg.innerHTML='';
+    const W=760,H=300,L=52,R=14,T=14,B=52, pw=W-L-R, ph=H-T-B;
+    const groups=[["spaceship\n(n=221)",[.59,.71]],["nomad\n(n=37)",[.55,.68]],["tps-may\n(n=31)",[.28,.60]]];
+    const names=["probe @ wrong","probe @ right"], cols=[css('--probe'),css('--alt')];
+    const ymin=0,ymax=0.8, y=v=>T+ph-(v-ymin)/(ymax-ymin)*ph;
+    for(const gy of [0,0.2,0.4,0.6,0.8]){ const yy=y(gy);
+      svg.appendChild(E('line',{x1:L,x2:W-R,y1:yy,y2:yy,stroke:css('--grid'),'stroke-width':1}));
+      const t=E('text',{x:L-8,y:yy+3.5,'text-anchor':'end',class:'ax'});t.textContent=gy.toFixed(1);svg.appendChild(t);}
+    // random=.50 reference
+    const y5=y(0.5); svg.appendChild(E('line',{x1:L,x2:W-R,y1:y5,y2:y5,stroke:css('--random'),'stroke-width':1.6,'stroke-dasharray':'5 4'}));
+    const rt=E('text',{x:W-R,y:y5-5,'text-anchor':'end',class:'val',fill:css('--muted')}); rt.textContent='random = .50'; svg.appendChild(rt);
+    const gw=pw/groups.length, bw=Math.min(46,(gw-30)/2);
+    groups.forEach((g,gi)=>{ const gx=L+gi*gw;
+      const gt=E('text',{x:gx+gw/2,y:H-B+22,'text-anchor':'middle',class:'grp'});
+      g[0].split("\n").forEach((ln,li)=>{const ts=E('tspan',{x:gx+gw/2,dy:li?13:0,class:li?'ax':''});ts.textContent=ln;gt.appendChild(ts);});
+      svg.appendChild(gt);
+      g[1].forEach((v,bi)=>{ const x=gx+(gw-bw*2-10)/2+bi*(bw+10);
+        const yv=y(v),hh=y(0)-yv;
+        const r=E('rect',{x,y:yv,width:bw,height:hh,rx:3,fill:cols[bi],class:'bar'});
+        r.addEventListener('mousemove',e=>show(`<b>${names[bi]}</b> · ${g[0].replace("\n"," ")}<br>accuracy ${v.toFixed(2)}`,e));
+        r.addEventListener('mouseleave',hide); svg.appendChild(r);
+        const vt=E('text',{x:x+bw/2,y:yv-5,'text-anchor':'middle',class:'val'}); vt.textContent=v.toFixed(2); svg.appendChild(vt);
+      });
+    });
+    const yl=E('text',{x:14,y:T+ph/2,'text-anchor':'middle',class:'axb',transform:`rotate(-90 14 ${T+ph/2})`});
+    yl.textContent='pairwise accuracy'; svg.appendChild(yl);
+  }
+
+  function draw(){ fig1(); fig2(); fig3(); }
+  draw();
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const next=cur==='dark'?'light':(cur==='light'?'dark':(matchMedia('(prefers-color-scheme:dark)').matches?'light':'dark'));
+    document.documentElement.setAttribute('data-theme',next); draw();
+  });
+  matchMedia('(prefers-color-scheme:dark)').addEventListener('change',draw);
+})();
+</script>

@@ -23,7 +23,7 @@ from phase1.eval.runner import Row, write_csv
 MODEL = "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct"
 
 
-def _predict(name, tr, test, zs_cache, probe_cache):
+def _predict(name, tr, test, zs_cache, probe_cache, max_code=4000):
     hidden = [c.hidden() for c in test]
     if name in ("one_epoch", "asha"):
         cr = build(name); cr.fit(tr)
@@ -42,7 +42,8 @@ def _predict(name, tr, test, zs_cache, probe_cache):
     if name in ("scalar", "reasoning"):
         import gc
         import torch
-        cr = build(name, backend="qwen"); cr.fit(tr)
+        kw = {"max_code": max_code} if name == "scalar" else {}
+        cr = build(name, backend="qwen", **kw); cr.fit(tr)
         out = np.asarray(cr.predict(hidden), float)
         if getattr(cr, "_trainer", None) is not None:      # free this split's trained model
             cr._trainer.model = None; cr._trainer.tok = None
@@ -79,6 +80,8 @@ def main():
                     help="H1 ablation: mask self-reported signals (val_at_low/val_curve/parent_val) so "
                          "critics must learn from code+lineage alone (baselines collapse; a surviving "
                          "critic proves it extracts grade-signal from the code itself)")
+    ap.add_argument("--max_code", type=int, default=4000,
+                    help="code chars in prompt (H1 uses 4000; H2 uses 1200 to match the reasoning critic)")
     a = ap.parse_args()
 
     cards = labeled(load_cards(a.cards))
@@ -99,11 +102,11 @@ def main():
     from phase1.critics.qwen_backend import extract_features, generate_scores
     if "zeroshot" in names:
         print("[precompute] zeroshot frozen scores over all cards ...", flush=True)
-        raw = generate_scores(cards, path=MODEL, for_reasoning=False)
+        raw = generate_scores(cards, path=MODEL, for_reasoning=False, max_code=a.max_code)
         zs_cache = {c.id: (0.5 if s is None else s) for c, s in zip(cards, raw)}
     if "probe" in names:
         print("[precompute] probe frozen features over all cards ...", flush=True)
-        feats = extract_features(cards, path=MODEL)
+        feats = extract_features(cards, path=MODEL, max_code=a.max_code)
         probe_cache = {c.id: feats[i] for i, c in enumerate(cards)}
 
     # free the frozen backbone before per-split QLoRA training (avoid 2x7B in VRAM -> OOM)
@@ -127,7 +130,7 @@ def main():
                 tr = subsample(train_all, N, seed)
                 blabel = "all" if N == "all" else str(N)
                 for name in names:
-                    pred = _predict(name, tr, test, zs_cache, probe_cache)
+                    pred = _predict(name, tr, test, zs_cache, probe_cache, max_code=a.max_code)
                     if pred is None:
                         continue
                     m = M.compute_all(yte, pred)

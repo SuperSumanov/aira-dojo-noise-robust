@@ -19,11 +19,12 @@ from .qwen_backend import _chat, build_value_prompt
 class ScalarTrainer:
     def __init__(self, model_path: str, r: int = 16, alpha: int = 32, lr: float = 1e-4,
                  epochs: int = 4, accum: int = 8, max_len: int = 768, lam_rank: float = 0.5,
-                 seed: int = 0):
+                 seed: int = 0, max_code: int = 4000):
         self.model_path = model_path
         self.r, self.alpha, self.lr = r, alpha, lr
         self.epochs, self.accum, self.max_len = epochs, accum, max_len
         self.lam_rank, self.seed = lam_rank, seed
+        self.max_code = max_code
         self.model = self.head = self.tok = None
 
     def _build(self):
@@ -55,7 +56,7 @@ class ScalarTrainer:
         """last-token hidden -> scalar head -> pred (differentiable). One card at a time (bs=1)."""
         preds = []
         for c in cards:
-            enc = self.tok(_chat(self.tok, build_value_prompt(c)), return_tensors="pt",
+            enc = self.tok(_chat(self.tok, build_value_prompt(c, max_code=self.max_code)), return_tensors="pt",
                            truncation=True, max_length=self.max_len).to(self.model.device)
             out = self.model(**enc, output_hidden_states=True)
             h = out.hidden_states[-1][0, -1]          # (H,)
@@ -76,7 +77,7 @@ class ScalarTrainer:
             opt.zero_grad()
             for step, i in enumerate(perm):
                 c = cards[i]
-                enc = self.tok(_chat(self.tok, build_value_prompt(c)), return_tensors="pt",
+                enc = self.tok(_chat(self.tok, build_value_prompt(c, max_code=self.max_code)), return_tensors="pt",
                                truncation=True, max_length=self.max_len).to(self.model.device)
                 out = self.model(**enc, output_hidden_states=True)
                 h = out.hidden_states[-1][0, -1]
@@ -104,7 +105,7 @@ class ScalarTrainer:
         out = []
         with torch.no_grad():
             for c in cards:
-                enc = self.tok(_chat(self.tok, build_value_prompt(c)), return_tensors="pt",
+                enc = self.tok(_chat(self.tok, build_value_prompt(c, max_code=self.max_code)), return_tensors="pt",
                                truncation=True, max_length=self.max_len).to(self.model.device)
                 o = self.model(**enc, output_hidden_states=True)
                 h = o.hidden_states[-1][0, -1]

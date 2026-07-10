@@ -102,13 +102,14 @@ def parse_score(text: str) -> Optional[float]:
 # Frozen-feature extraction (for the probe critic).
 # ---------------------------------------------------------------------------
 def extract_features(cards: List[Card], path: str = _DEFAULT_7B, quant: str = "4bit",
-                     layer: int = -1, max_len: int = 2048, batch_size: int = 2) -> np.ndarray:
+                     layer: int = -1, max_len: int = 2048, batch_size: int = 2,
+                     max_code: int = 4000) -> np.ndarray:
     """Frozen features per card: [mean-pooled hidden, last-token hidden, last-token entropy].
     Deterministic (eval, no sampling). Returns (N, 2H+1). Memory-careful: entropy is computed on the
     LAST token only (avoids materializing a full (B,T,vocab) softmax) + small batch + cache clearing."""
     import torch
     model, tok = load_model(path, quant)
-    prompts = [_chat(tok, build_value_prompt(c)) for c in cards]
+    prompts = [_chat(tok, build_value_prompt(c, max_code=max_code)) for c in cards]
     feats = []
     for i in range(0, len(prompts), batch_size):
         chunk = prompts[i:i + batch_size]
@@ -135,13 +136,14 @@ def extract_features(cards: List[Card], path: str = _DEFAULT_7B, quant: str = "4
 # Zero-shot generation (for the zeroshot critic).
 # ---------------------------------------------------------------------------
 def generate_scores(cards: List[Card], path: str, quant: str = "4bit",
-                    for_reasoning: bool = False, max_new_tokens: int = 256) -> List[Optional[float]]:
+                    for_reasoning: bool = False, max_new_tokens: int = 256,
+                    max_code: int = 4000) -> List[Optional[float]]:
     """Single forward per card (greedy), parse the scalar. No multi-sample voting."""
     import torch
     model, tok = load_model(path, quant)
     out_scores = []
     for c in cards:
-        prompt = _chat(tok, build_value_prompt(c, for_reasoning=for_reasoning))
+        prompt = _chat(tok, build_value_prompt(c, for_reasoning=for_reasoning, max_code=max_code))
         enc = tok(prompt, return_tensors="pt", truncation=True, max_length=3072).to(model.device)
         with torch.no_grad():
             gen = model.generate(**enc, max_new_tokens=max_new_tokens, do_sample=False,

@@ -26,12 +26,14 @@ class ScalarCritic(Critic):
 
     def __init__(self, backend: str = "mock", lam: float = 5.0,
                  model_path: str = "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct",
-                 quant: str = "4bit", model: str = "Qwen/Qwen2.5-Coder-7B-Instruct"):
+                 quant: str = "4bit", model: str = "Qwen/Qwen2.5-Coder-7B-Instruct",
+                 max_code: int = 4000):
         self.backend = backend
         self.lam = lam
         self.model_path = model_path
         self.quant = quant
         self.model = model
+        self.max_code = max_code   # code chars in prompt; H1 uses 4000, H2 matches reasoning at 1200
         self._ridge = None
         self._trainer = None
 
@@ -58,7 +60,7 @@ class ScalarCritic(Critic):
         train = [c for c in train if c.y is not None]
         if not train:
             return self
-        self._trainer = ScalarTrainer(self.model_path).fit(train)
+        self._trainer = ScalarTrainer(self.model_path, max_code=self.max_code).fit(train)
         return self
 
     def _predict_qwen(self, cards: List[Card]) -> np.ndarray:

@@ -133,6 +133,8 @@ Reasoning-first underperforms the scalar head overall (mean −0.146 vs −0.065
 
 **Positioning.** Not a system paper; an honest boundary map. The reusable artifacts are the **self-report ablation** as an independence test, the **best-of-K rank→regret** protocol, and the **wrong-pair rescue** metric.
 
+**Future directions** (increasing cost): (a) **online validation** — wire the wrong-pair signal into a live search as a *veto*: flag candidates whose self-report the probe judges untrustworthy, so a reward-hacking / val-overfit solution cannot mislead the search, and measure whether this improves the solution found under a fixed evaluation budget. The offline rescue result (§4.3) is the necessary precondition, but rank≠regret (§4.2) warns the online payoff is not guaranteed and must be measured, not assumed. (b) **Task breadth** — the rescue use-case is strong only where the probe itself is strong (spaceship), absent where it is weak (tps-may); testing on more tasks where the probe is competitive would establish generality. (c) **Stronger, non-truncated reasoning teacher** — the 14B-teacher spaceship reversal (§4.4) hints a still-stronger teacher might shift H2 on more tasks, though the small-data ceiling likely bounds the gain.
+
 ---
 
 ## 6. Conclusion

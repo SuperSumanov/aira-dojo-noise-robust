@@ -10,8 +10,10 @@ from typing import Any, Dict, Optional, Tuple
 
 from mlebench.grade import validate_submission
 from mlebench.registry import registry
+from mlebench.utils import load_answers, read_csv
 
 import dojo.tasks.mlebench.evaluate as evaluate
+import dojo.tasks.mlebench.hce_eval as hce
 from dojo.core.interpreters.base import ExecutionResult, Interpreter
 from dojo.core.tasks.base import Task
 from dojo.core.tasks.constants import (
@@ -81,6 +83,11 @@ class MLEBenchTask(Task):
         self.public_dir = Path(self.cfg.public_dir).resolve()
         self.private_dir = Path(self.cfg.private_dir).resolve()
 
+        # HCE T1 eval state (only used when cfg.hce_eval is True)
+        self._eval_counter = 0
+        self._hce_split_cache = None
+        self._lower_is_better = None
+
     def prepare(self, **task_args):
         state = task_args
         state["init_obs"] = {}
@@ -95,6 +102,56 @@ class MLEBenchTask(Task):
         }
 
         return state, task_info
+
+    def _get_hce_split(self, answers):
+        """Fixed D_search/D_val/D_test partition of the private answers (same across arms & seeds)."""
+        if self._hce_split_cache is None:
+            self._hce_split_cache = hce.make_hce_split(
+                len(answers), self.cfg.hce_search_frac, self.cfg.hce_val_frac, self.cfg.hce_split_seed
+            )
+        return self._hce_split_cache
+
+    def _evaluate_hce(self, eval_result):
+        """T1 main line: search-time fitness = externalized pristine grade on D_search, per arm.
+
+        Sets VALIDATION_FITNESS (what the search selects on) and logs the D_val score in
+        AUX_EVAL_INFO (used only for post-hoc final selection — the search never sees it).
+        D_test is never graded. If D_search grading is degenerate (None), mark the solution invalid
+        so the node is treated as buggy — we never fall back to the gameable self-report under HCE.
+        """
+        if self._lower_is_better is None:
+            self._lower_is_better = evaluate.is_lower_better(self.competition)
+        sub_df = read_csv(self._submission_file_path)
+        answers = load_answers(self.competition.answers)
+        split = self._get_hce_split(answers)
+        vfit, vinfo = hce.dsearch_fitness(
+            self.competition.grader, sub_df, answers, split, self.cfg.arm,
+            proxy_frac=self.cfg.proxy_frac, k=self.cfg.k_repeats, lam=self.cfg.lambda_var,
+            maximize=not self._lower_is_better,
+            eval_seed=[int(self.cfg.hce_eval_seed), int(self._eval_counter)],
+        )
+        aligned = hce._align_submission(sub_df, answers)
+        dval = hce.grade_subset(self.competition.grader, aligned, answers, split["val"])
+        eval_result[AUX_EVAL_INFO] = {
+            "arm": self.cfg.arm,
+            "dsearch_fitness": vfit,
+            "dsearch_info": vinfo,
+            "dval_score": dval,
+            # main_run's final-solution eval expects metric.info["score"]; under HCE the meaningful
+            # final-fitness is the D_val truth. Without this key main_run raises and the run hangs to wall.
+            "score": dval,
+            "n_search": int(len(split["search"])),
+            "n_val": int(len(split["val"])),
+        }
+        if vfit is None:
+            eval_result[VALID_SOLUTION] = False
+            eval_result[VALID_SOLUTION_FEEDBACK] = "HCE D_search grading returned None (degenerate/invalid submission)."
+            self.logger.warning(f"HCE arm={self.cfg.arm}: D_search grade is None -> marking solution invalid")
+        else:
+            eval_result[VALIDATION_FITNESS] = float(vfit)
+        self.logger.info(
+            f"HCE arm={self.cfg.arm} VALIDATION_FITNESS={vfit} dval_score={dval} dsearch_info={vinfo}"
+        )
 
     def step_task(self, state: Dict[str, Any], action: Any) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         """
@@ -117,6 +174,7 @@ class MLEBenchTask(Task):
             exec_output.term_out[0] = f"Invalid solution: {e}"
             return state, {EXECUTION_OUTPUT: exec_output, VALIDATION_FITNESS: None, VALID_SOLUTION: False}
 
+        self._eval_counter += 1
         interpreter = state["solver_interpreter"]
         exec_output: ExecutionResult = interpreter.run(solution, file_name=self._solution_script)
         eval_result = {EXECUTION_OUTPUT: exec_output}
@@ -146,16 +204,19 @@ class MLEBenchTask(Task):
             )
 
             if is_valid_submission:
-                self.logger.info(f"Evaluating submission: {self._submission_file_path}")
-                test_fitness, report = evaluate.evaluate_submission(
-                    submission_path=self._submission_file_path,
-                    data_dir=Path(self.cfg.cache_dir),
-                    competition_id=self.cfg.name,
-                    results_output_dir=Path(self.cfg.results_output_dir),
-                )
-                eval_result[TEST_FITNESS] = test_fitness
-                eval_result[AUX_EVAL_INFO] = parse_report(report)
-                self.logger.info(f"Test fitness: {test_fitness} || AUX eval info: {eval_result[AUX_EVAL_INFO]}")
+                if self.cfg.hce_eval:
+                    self._evaluate_hce(eval_result)
+                else:
+                    self.logger.info(f"Evaluating submission: {self._submission_file_path}")
+                    test_fitness, report = evaluate.evaluate_submission(
+                        submission_path=self._submission_file_path,
+                        data_dir=Path(self.cfg.cache_dir),
+                        competition_id=self.cfg.name,
+                        results_output_dir=Path(self.cfg.results_output_dir),
+                    )
+                    eval_result[TEST_FITNESS] = test_fitness
+                    eval_result[AUX_EVAL_INFO] = parse_report(report)
+                    self.logger.info(f"Test fitness: {test_fitness} || AUX eval info: {eval_result[AUX_EVAL_INFO]}")
 
             self._submission_file_path.unlink(missing_ok=True)  # remove the submission_file locally
             assert not self._submission_file_path.exists(), (

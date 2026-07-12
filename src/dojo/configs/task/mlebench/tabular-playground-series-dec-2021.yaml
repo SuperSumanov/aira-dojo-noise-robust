@@ -1,0 +1,5 @@
+# @package task
+defaults:
+ - mlebench/_default
+
+name: tabular-playground-series-dec-2021

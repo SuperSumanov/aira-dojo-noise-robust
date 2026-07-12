@@ -1,0 +1,27 @@
+# @package _global_
+# T1 main-line: greedy + DeepSeek + HCE, on nomad2018 (regression / RMSLE).
+# Clean-eval "do-no-harm" contrast task. Arm passed via task.arm=...; only the eval protocol varies.
+defaults:
+  - override /interpreter: python
+  - override /solver: mlebench/greedy
+  - override /task: mlebench/nomad2018-predict-transparent-conductors
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_pro
+
+metadata:
+  git_issue_id: t1_hce_nomad
+
+task:
+  hce_eval: true
+  arm: full
+  proxy_frac: 0.1
+  k_repeats: 3
+  lambda_var: 1.0
+  hce_search_frac: 0.5
+  hce_val_frac: 0.25
+  hce_split_seed: 0
+
+solver:
+  step_limit: 20

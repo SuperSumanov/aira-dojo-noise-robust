@@ -1,0 +1,18 @@
+# @package _global_
+# Non-container AIRA_MCTS (UCT + MC backup = the "search strategy doesn't matter" negative-result
+# condition) + DeepSeek, on spaceship-titanic. For T0: collect a baseline tree, then measure the
+# parent->child true-value (external pristine score) conditional correlation (R^2).
+defaults:
+  - override /interpreter: python
+  - override /solver: mlebench/mcts
+  - override /task: mlebench/spaceship-titanic
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_pro
+
+metadata:
+  git_issue_id: deepseek_mcts_t0
+
+solver:
+  step_limit: 20

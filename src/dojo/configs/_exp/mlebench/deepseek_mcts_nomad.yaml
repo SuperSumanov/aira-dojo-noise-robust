@@ -1,0 +1,18 @@
+# @package _global_
+# 2nd-task T0 replication: SAME AIRA_MCTS + DeepSeek + operators as spaceship; ONLY /task changes
+# (nomad2018-predict-transparent-conductors, a regression task / RMSLE). De-risks the single-task T0
+# verdict. Fairness contract: only the task knob differs from deepseek_mcts.yaml.
+defaults:
+  - override /interpreter: python
+  - override /solver: mlebench/mcts
+  - override /task: mlebench/nomad2018-predict-transparent-conductors
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_pro
+
+metadata:
+  git_issue_id: deepseek_mcts_t0_nomad
+
+solver:
+  step_limit: 20

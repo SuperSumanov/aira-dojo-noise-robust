@@ -1,0 +1,27 @@
+# @package _global_
+# T1 main-line: greedy + DeepSeek + HCE, on playground-series-s3e18 (tabular binary classification, AUC).
+# 2nd noise-prone classification task. Arm passed via task.arm=...; only the eval protocol varies.
+defaults:
+  - override /interpreter: python
+  - override /solver: mlebench/greedy
+  - override /task: mlebench/playground-series-s3e18
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_pro
+
+metadata:
+  git_issue_id: t1_hce_s3e18
+
+task:
+  hce_eval: true
+  arm: full
+  proxy_frac: 0.1
+  k_repeats: 3
+  lambda_var: 1.0
+  hce_search_frac: 0.5
+  hce_val_frac: 0.25
+  hce_split_seed: 0
+
+solver:
+  step_limit: 20

@@ -186,6 +186,7 @@ class PythonInterpreter(Interpreter):
             if execute_code:
                 event_outq.put(("state:ready",))
                 try:
+                    global_scope["__name__"] = "__main__"  # run agent `if __name__==main` guards
                     exec(compile(code, agent_file_name, "exec"), global_scope)
                     # We retrieve the user-supplied result (if any) from __result__
                     return_value = global_scope.get("__result__", None)

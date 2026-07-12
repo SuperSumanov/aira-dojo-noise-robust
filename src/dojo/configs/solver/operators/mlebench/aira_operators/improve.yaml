@@ -45,6 +45,8 @@ improve:
         - Replace the deprecated `early_stopping_rounds` argument in `lightgbm.train()` with the `lightgbm.early_stopping(stopping_rounds=…)` callback.
         - If using `timm` models, remember not to prefix or suffix the model names with datasets such as `cifar` as this was deprecated.
         - As much as possible, keep the stdout clean.
+        - CRITICAL — categorical/dtype handling: before fitting ANY model, convert EVERY non-numeric (object/string) column to numeric (factorize / category codes / one-hot) OR DROP identifier/free-text columns. NEVER pass object-dtype columns to LightGBM/XGBoost/sklearn — the #1 cause of crashes here.
+        - MANDATORY OUTPUT MARKER: the FINAL line printed to stdout must be the cross-validation score in EXACTLY this format (used for automated parsing): `FINAL_VALIDATION_SCORE: <number>` (e.g. `FINAL_VALIDATION_SCORE: 0.8123`). Print it exactly once, as the last line.
       
       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
       

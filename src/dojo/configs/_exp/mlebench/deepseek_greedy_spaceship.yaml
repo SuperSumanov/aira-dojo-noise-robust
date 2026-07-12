@@ -1,0 +1,13 @@
+# @package _global_
+# Wide sibling collection: greedy solver + DeepSeek on spaceship; search_policy is monkeypatched by
+# phase1/wide_collect.py to improve each draft seed K times (dense siblings for C1).
+defaults:
+  - override /interpreter: python
+  - override /solver: mlebench/greedy
+  - override /task: mlebench/spaceship-titanic
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_pro
+metadata:
+  git_issue_id: deepseek_greedy_spaceship

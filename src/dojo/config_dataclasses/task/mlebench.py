@@ -121,5 +121,45 @@ class MLEBenchTaskConfig(TaskConfig):
         },
     )
 
+    # ~~~ HCE T1 main-line eval/selection protocol (default off -> behavior unchanged) ~~~
+    hce_eval: bool = field(
+        default=False,
+        metadata={"help": "If True, compute search fitness via externalized D_search grading (T1 main line)."},
+    )
+    arm: str = field(
+        default="full",
+        metadata={"help": "HCE eval arm: 'full' | 'naive' | 'consistency'."},
+    )
+    proxy_frac: float = field(
+        default=0.1,
+        metadata={"help": "Cheap-proxy subsample fraction of D_search (naive/consistency arms)."},
+    )
+    k_repeats: int = field(
+        default=3,
+        metadata={"help": "Consistency arm: number of cheap proxy repeats for the variance estimate."},
+    )
+    lambda_var: float = field(
+        default=1.0,
+        metadata={"help": "Consistency arm: variance-penalty weight (fitness = mean -/+ lambda*std)."},
+    )
+    hce_search_frac: float = field(
+        default=0.5,
+        metadata={"help": "Fraction of the private answers used as D_search (the search signal)."},
+    )
+    hce_val_frac: float = field(
+        default=0.25,
+        metadata={"help": "Fraction of the private answers used as D_val (final selection). Test = remainder."},
+    )
+    hce_split_seed: int = field(
+        default=0,
+        metadata={"help": "Seed for the fixed D_search/D_val/D_test partition (same across arms & seeds).",
+                  "exclude_from_hash": True},
+    )
+    hce_eval_seed: int = field(
+        default=42,
+        metadata={"help": "Run seed for proxy-subsample noise (set = metadata.seed via the sbatch).",
+                  "exclude_from_hash": True},
+    )
+
     def validate(self) -> None:
         super().validate()

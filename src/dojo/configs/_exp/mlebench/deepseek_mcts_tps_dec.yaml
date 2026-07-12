@@ -1,0 +1,14 @@
+# @package _global_
+# P1b data collection: AIRA_MCTS + DeepSeek on tabular-playground-series-dec-2021 (multiclass).
+defaults:
+  - override /interpreter: python
+  - override /solver: mlebench/mcts
+  - override /task: mlebench/tabular-playground-series-dec-2021
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_pro
+metadata:
+  git_issue_id: deepseek_mcts_tps_dec
+solver:
+  step_limit: 20

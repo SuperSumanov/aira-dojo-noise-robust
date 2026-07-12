@@ -1,0 +1,17 @@
+# @package _global_
+# Non-container smoke: AIRA_GREEDY + DeepSeek (v4-pro code / v4-flash feedback) on spaceship-titanic.
+# Uses the python interpreter (no apptainer) since CSE has userns disabled.
+defaults:
+  - override /interpreter: python
+  - override /solver: mlebench/greedy
+  - override /task: mlebench/spaceship-titanic
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_pro
+
+metadata:
+  git_issue_id: deepseek_smoke
+
+solver:
+  step_limit: 5

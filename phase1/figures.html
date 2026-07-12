@@ -26,7 +26,12 @@
   .toggle:focus-visible{ outline:2px solid var(--probe); outline-offset:2px; }
   .fig{ max-width:820px; margin:0 auto 20px; background:var(--surface); border:1px solid var(--hair);
     border-radius:14px; padding:20px 22px 18px; }
-  .fig-h{ font-size:15px; font-weight:640; margin:0 0 2px; letter-spacing:-.005em; }
+  .fig-top{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:0 0 3px; }
+  .fig-h{ font-size:15px; font-weight:640; margin:0; letter-spacing:-.005em; text-wrap:balance; }
+  .tag{ flex:0 0 auto; font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:10.5px;
+    color:var(--ink2); background:var(--page); border:1px solid var(--hair); border-radius:6px;
+    padding:2px 7px; white-space:nowrap; letter-spacing:.01em; }
+  .tag b{ color:var(--ink1); font-weight:680; }
   .fig-k{ font-size:12.5px; color:var(--ink2); margin:0 0 14px; line-height:1.5; }
   .fig-k b{ color:var(--ink1); font-weight:620; }
   .legend{ display:flex; flex-wrap:wrap; gap:14px; margin:2px 0 12px; font-size:12px; color:var(--ink2); }
@@ -56,8 +61,9 @@
     <button class="toggle" id="tg" aria-label="Toggle light or dark theme">◐ Theme</button>
   </div>
 
-  <figure class="fig">
-    <figcaption><h2 class="fig-h">Fig 1 · H1 — the probe carries grade signal independent of the self-report</h2>
+  <figure class="fig" id="fig-h1">
+    <figcaption><div class="fig-top"><h2 class="fig-h">Fig 1 · H1 — the probe carries grade signal independent of the self-report</h2>
+    <span class="tag"><b>F1</b> · run_full_matrix --ablate</span></div>
     <p class="fig-k">Under the <b>self-report ablation</b>, the self-report baseline collapses to <b>0</b> — but the probe barely drops (intra .381→<b>.356</b>, cross-task .103→<b>.179</b>, <i>rising</i>). The QLoRA scalar is weak-to-negative throughout.</p></figcaption>
     <div class="legend">
       <span class="lg"><span class="sw" style="background:var(--base)"></span>self-report baseline</span>
@@ -67,8 +73,9 @@
     <svg id="f1" viewBox="0 0 760 300" role="img" aria-label="H1 grouped bar chart"></svg>
   </figure>
 
-  <figure class="fig">
-    <figcaption><h2 class="fig-h">Fig 2 · rank ≠ regret — the probe cannot save evaluations</h2>
+  <figure class="fig" id="fig-regret">
+    <figcaption><div class="fig-top"><h2 class="fig-h">Fig 2 · rank ≠ regret — the probe cannot save evaluations</h2>
+    <span class="tag"><b>F2</b> · budget_probe.py</span></div>
     <p class="fig-k">Best-of-K under a budget of K expensive evaluations (tps-may, the dispersed-grade task). The <b>free self-report proxy hits regret 0</b> — it picks the optimum — while the probe is no better than random. Good rank (Fig 1) does <b>not</b> translate into search savings.</p></figcaption>
     <div class="legend">
       <span class="lg"><span class="sw line" style="background:var(--probe)"></span>critic (probe)</span>
@@ -78,8 +85,9 @@
     <svg id="f2" viewBox="0 0 760 300" role="img" aria-label="rank vs regret line chart"></svg>
   </figure>
 
-  <figure class="fig">
-    <figcaption><h2 class="fig-h">Fig 3 · rescue — the probe's value is where the self-report is WRONG</h2>
+  <figure class="fig" id="fig-rescue">
+    <figcaption><div class="fig-top"><h2 class="fig-h">Fig 3 · rescue — the probe's value is where the self-report is WRONG</h2>
+    <span class="tag"><b>F3</b> · probe_rescue.py</span></div>
     <p class="fig-k">On candidate pairs the self-report ranks <b>wrong</b> (0% correct by construction; random = <b>.50</b>), the probe is still right — <b>.59 on spaceship</b> (8382 pairs). A self-report-failure / reward-hacking detector, not a selector. Limited: partial independence (&lt; probe@right), and it needs the probe to be strong on that task (tps fails).</p></figcaption>
     <div class="legend">
       <span class="lg"><span class="sw" style="background:var(--probe)"></span>probe @ self-report-wrong pairs</span>

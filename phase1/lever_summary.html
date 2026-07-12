@@ -1,0 +1,175 @@
+<style>
+  :root{
+    --page:#f5f6f7; --surface:#fcfcfb; --ink1:#0b0b0b; --ink2:#52514e; --muted:#8a8a86;
+    --grid:#e5e5df; --hair:rgba(11,11,11,.09); --zero:#c6c6c0;
+    --lever:#0a8a0a; --probe:#2a78d6; --probe-ghost:#9fc0ea; --warn:#d98026; --bad:#d03b3b; --gray:#a2a29a;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --page:#0d0d0d; --surface:#1a1a19; --ink1:#fff; --ink2:#c3c2b7; --muted:#8f8f89;
+      --grid:#2b2b29; --hair:rgba(255,255,255,.11); --zero:#403f3c;
+      --lever:#22b422; --probe:#3f90ec; --probe-ghost:#2c527e; --warn:#e0913f; --bad:#e05a5a; --gray:#6f6f69; }
+  }
+  :root[data-theme="light"]{ --page:#f5f6f7; --surface:#fcfcfb; --ink1:#0b0b0b; --ink2:#52514e; --muted:#8a8a86; --grid:#e5e5df; --hair:rgba(11,11,11,.09); --zero:#c6c6c0; --lever:#0a8a0a; --probe:#2a78d6; --probe-ghost:#9fc0ea; --warn:#d98026; --bad:#d03b3b; --gray:#a2a29a; }
+  :root[data-theme="dark"]{ --page:#0d0d0d; --surface:#1a1a19; --ink1:#fff; --ink2:#c3c2b7; --muted:#8f8f89; --grid:#2b2b29; --hair:rgba(255,255,255,.11); --zero:#403f3c; --lever:#22b422; --probe:#3f90ec; --probe-ghost:#2c527e; --warn:#e0913f; --bad:#e05a5a; --gray:#6f6f69; }
+
+  *{ box-sizing:border-box; }
+  .wrap{ font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--page); color:var(--ink1);
+    padding:34px 22px 44px; min-height:100vh; -webkit-font-smoothing:antialiased; }
+  .inner{ max-width:1020px; margin:0 auto; }
+  .head{ display:flex; align-items:flex-start; justify-content:space-between; gap:18px; margin-bottom:8px; }
+  .eyebrow{ font-size:11.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); font-weight:600; margin:0 0 8px; }
+  h1{ font-size:26px; line-height:1.18; font-weight:720; letter-spacing:-.017em; margin:0 0 10px; text-wrap:balance; max-width:760px; }
+  h1 .hi{ color:var(--lever); } h1 .lo{ color:var(--probe); }
+  .lede{ font-size:14px; line-height:1.55; color:var(--ink2); margin:0 0 26px; max-width:720px; }
+  .toggle{ flex:0 0 auto; font:inherit; font-size:12px; color:var(--ink2); background:var(--surface);
+    border:1px solid var(--hair); border-radius:8px; padding:7px 11px; cursor:pointer; }
+  .toggle:hover{ color:var(--ink1); } .toggle:focus-visible{ outline:2px solid var(--probe); outline-offset:2px; }
+
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:820px){ .grid{ grid-template-columns:1fr; } }
+  .card{ background:var(--surface); border:1px solid var(--hair); border-radius:14px; padding:18px 18px 16px;
+    display:flex; flex-direction:column; }
+  .tag{ display:inline-flex; align-items:center; gap:7px; font-size:11.5px; font-weight:650; letter-spacing:.02em;
+    text-transform:uppercase; margin:0 0 3px; }
+  .dot{ width:9px; height:9px; border-radius:50%; }
+  .tag.lever{ color:var(--lever); } .tag.non{ color:var(--muted); }
+  .ctitle{ font-size:16px; font-weight:670; letter-spacing:-.01em; margin:2px 0 3px; }
+  .csub{ font-size:12.5px; color:var(--ink2); line-height:1.5; margin:0 0 12px; min-height:38px; }
+  svg{ display:block; width:100%; height:auto; overflow:visible; }
+  svg text{ font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .axl{ font-size:10px; fill:var(--muted); } .barlab{ font-size:11px; fill:var(--ink2); font-weight:560; }
+  .val{ font-size:11px; fill:var(--ink1); font-weight:640; font-variant-numeric:tabular-nums; }
+  .take{ font-size:12.5px; line-height:1.5; color:var(--ink1); margin:13px 0 0; padding-top:12px; border-top:1px solid var(--hair); }
+  .take b.g{ color:var(--lever); } .take b.b{ color:var(--bad); } .take b.p{ color:var(--probe); }
+  .foot{ margin:24px auto 0; max-width:1020px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:820px){ .foot{ grid-template-columns:1fr; } }
+  .fcard{ background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:14px 16px; font-size:12.5px; line-height:1.55; color:var(--ink2); }
+  .fcard b{ color:var(--ink1); font-weight:640; }
+  .src{ max-width:1020px; margin:16px auto 0; font-size:11px; color:var(--muted); line-height:1.5; }
+</style>
+
+<div class="wrap">
+  <div class="inner">
+    <div class="head">
+      <div>
+        <p class="eyebrow">Poor-compute LLM ML-engineering search · what actually helps</p>
+        <h1>One lever, two non-levers: under poor compute, <span class="hi">clean evaluation</span> is the lever — <span class="lo">cheap critics</span> and multi-fidelity are not.</h1>
+        <p class="lede">Across a single-GPU study on real, externally-graded LLM solutions, two methodologically unrelated "cheap tricks" carry genuine signal yet fail the same way — the payoff never survives the regime you can afford. The one thing that moves the deployed solution is evaluation <em>quality</em>.</p>
+      </div>
+      <button class="toggle" id="tg" aria-label="Toggle light or dark theme">◐ Theme</button>
+    </div>
+
+    <div class="grid">
+      <!-- LEVER -->
+      <div class="card">
+        <span class="tag lever"><span class="dot" style="background:var(--lever)"></span>The lever</span>
+        <div class="ctitle">Evaluation quality</div>
+        <p class="csub">Clean full-fidelity grading deploys the best solution; the cheap <em>selection statistic</em> (single / mean / variance-penalty) does not matter.</p>
+        <svg id="c1" viewBox="0 0 300 150" role="img" aria-label="Regret by evaluation arm"></svg>
+        <p class="take">Full-fidelity <b class="g">regret 0.009</b> vs ~0.03 for every 10% proxy. Fidelity is the knob — <b>not</b> how you select.</p>
+      </div>
+
+      <!-- NON-LEVER I -->
+      <div class="card">
+        <span class="tag non"><span class="dot" style="background:var(--gray)"></span>Non-lever I</span>
+        <div class="ctitle">A cheap learned critic</div>
+        <p class="csub">The frozen probe carries grade signal independent of self-report (H1) — but as a deployment veto the win is a <em>random-pool artifact</em>.</p>
+        <svg id="c2" viewBox="0 0 300 150" role="img" aria-label="Veto benefit: random pools vs real trees"></svg>
+        <p class="take">Random pools: <b class="p">Δregret +0.18</b>. Real search trees: <b class="b">+0.007, not significant</b> (95% CI crosses 0). <span style="color:var(--muted)">rank ≠ regret.</span></p>
+      </div>
+
+      <!-- NON-LEVER II -->
+      <div class="card">
+        <span class="tag non"><span class="dot" style="background:var(--gray)"></span>Non-lever II</span>
+        <div class="ctitle">Multi-fidelity selection</div>
+        <p class="csub">Cheap low-fidelity screening only helps where candidate grades are dispersed — i.e. exactly the tasks poor compute cannot afford.</p>
+        <svg id="c3" viewBox="0 0 300 150" role="img" aria-label="Multi-fidelity headroom by task"></svg>
+        <p class="take">Affordable tasks are already near-oracle (<b>headroom → 0</b>); the only task with room (<b class="p">tps +0.044</b>) has 3.6M-row training — unsearchable on one GPU.</p>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="fcard"><b>The through-line — rank ≠ regret.</b> Genuine rank skill (the probe's ablation-verified independence) fails to buy search utility across three framings: best-of-K selection, wrong-pair rescue, and the online veto. Necessary, not sufficient.</div>
+      <div class="fcard"><b>The method — falsify offline before you build.</b> Four seconds-to-minutes offline probes each dissolved a "positive-looking" result before an expensive online build: best-of-K, random-vs-real-tree veto, bootstrap significance, multi-fidelity headroom.</div>
+    </div>
+    <p class="src">Sharpens aira-dojo (search strategy barely matters) and pins the mechanism to evaluation noise (AIRA_2). Single RTX 3090 · DeepSeek backbone, never finetuned · external pristine grading, no LLM-as-judge · 289 graded solutions, 3 tabular tasks. Numbers: T1 §4, veto §5.4, headroom §6 of the draft.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  const NS="http://www.w3.org/2000/svg";
+  const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  function E(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+  function txt(p,x,y,s,cls,anchor){const t=E('text',{x,y,class:cls||'axl','text-anchor':anchor||'start'});t.textContent=s;p.appendChild(t);}
+
+  // ---- C1: regret by arm (horizontal bars, lower=better, from 0) ----
+  function c1(){
+    const s=document.getElementById('c1'); s.innerHTML='';
+    const W=300,H=150,L=88,R=30,T=10,B=22, pw=W-L-R;
+    const rows=[["full",0.009,true],["consistency",0.025,false],["mean",0.032,false],["naive (10%)",0.030,false]];
+    const xmax=0.04, x=v=>L+v/xmax*pw, bh=20, gap=8;
+    for(const gx of [0,0.01,0.02,0.03,0.04]){ const xx=x(gx);
+      s.appendChild(E('line',{x1:xx,x2:xx,y1:T,y2:T+rows.length*(bh+gap)-gap+4,stroke:css('--grid'),'stroke-width':1}));
+      txt(s,xx,H-8,gx.toFixed(2),'axl','middle'); }
+    rows.forEach((r,i)=>{ const y=T+i*(bh+gap);
+      txt(s,L-8,y+bh/2+4,r[0],'barlab','end');
+      const w=Math.max(2,x(r[1])-L);
+      s.appendChild(E('rect',{x:L,y,width:w,height:bh,rx:4,fill:r[2]?css('--lever'):css('--gray')}));
+      txt(s,L+w+6,y+bh/2+4,r[1].toFixed(3),'val','start');
+    });
+  }
+
+  // ---- C2: veto benefit random vs real (vertical bars + CI whisker + zero line) ----
+  function c2(){
+    const s=document.getElementById('c2'); s.innerHTML='';
+    const W=300,H=150,L=40,R=16,T=14,B=34, pw=W-L-R, ph=H-T-B;
+    const ymin=-0.03,ymax=0.20, y=v=>T+ph-(v-ymin)/(ymax-ymin)*ph;
+    for(const gy of [0,0.05,0.10,0.15,0.20]){ const yy=y(gy);
+      s.appendChild(E('line',{x1:L,x2:W-R,y1:yy,y2:yy,stroke:gy===0?css('--zero'):css('--grid'),'stroke-width':gy===0?1.4:1}));
+      txt(s,L-6,yy+3.5,gy.toFixed(2),'axl','end'); }
+    const cats=[["random\npools",0.181,css('--probe'),null],["real search\ntrees",0.007,css('--probe-ghost'),[-0.003,0.018]]];
+    const bw=54, step=pw/cats.length;
+    cats.forEach((c,i)=>{ const cx=L+step*i+step/2;
+      const y0=y(0),yv=y(c[1]),top=Math.min(y0,yv),h=Math.max(2,Math.abs(yv-y0));
+      s.appendChild(E('rect',{x:cx-bw/2,y:top,width:bw,height:h,rx:4,fill:c[2]}));
+      txt(s,cx,yv-7,(c[1]>=0?'+':'')+c[1].toFixed(3),'val','middle');
+      if(c[3]){ const lo=y(c[3][0]),hi=y(c[3][1]);
+        s.appendChild(E('line',{x1:cx,x2:cx,y1:hi,y2:lo,stroke:css('--bad'),'stroke-width':1.6}));
+        s.appendChild(E('line',{x1:cx-6,x2:cx+6,y1:hi,y2:hi,stroke:css('--bad'),'stroke-width':1.6}));
+        s.appendChild(E('line',{x1:cx-6,x2:cx+6,y1:lo,y2:lo,stroke:css('--bad'),'stroke-width':1.6}));
+        txt(s,cx+bw/2-2,y(c[3][0])+12,'95% CI','axl','middle'); }
+      c[0].split("\n").forEach((ln,li)=>txt(s,cx,H-B+16+li*11,ln,'axl','middle'));
+    });
+  }
+
+  // ---- C3: multi-fidelity headroom by task ----
+  function c3(){
+    const s=document.getElementById('c3'); s.innerHTML='';
+    const W=300,H=150,L=40,R=16,T=14,B=40, pw=W-L-R, ph=H-T-B;
+    const ymin=0,ymax=0.06, y=v=>T+ph-(v-ymin)/(ymax-ymin)*ph;
+    for(const gy of [0,0.02,0.04,0.06]){ const yy=y(gy);
+      s.appendChild(E('line',{x1:L,x2:W-R,y1:yy,y2:yy,stroke:gy===0?css('--zero'):css('--grid'),'stroke-width':gy===0?1.4:1}));
+      txt(s,L-6,yy+3.5,gy.toFixed(2),'axl','end'); }
+    const cats=[["spaceship",0.015,css('--gray'),"affordable"],["nomad",0.000,css('--gray'),"trivial"],["tps-may",0.044,css('--probe'),"3.6M rows"]];
+    const bw=44, step=pw/cats.length;
+    cats.forEach((c,i)=>{ const cx=L+step*i+step/2;
+      const yv=y(c[1]),h=Math.max(1.5,y(0)-yv);
+      s.appendChild(E('rect',{x:cx-bw/2,y:yv,width:bw,height:h,rx:4,fill:c[2]}));
+      txt(s,cx,yv-6,'+'+c[1].toFixed(3),'val','middle');
+      txt(s,cx,H-B+16,c[0],'axl','middle');
+      const t2=E('text',{x:cx,y:H-B+28,class:'axl','text-anchor':'middle',fill:c[3]==='3.6M rows'?css('--warn'):css('--muted')});
+      t2.textContent=c[3]; t2.style.fontSize='9px'; s.appendChild(t2);
+    });
+  }
+
+  function draw(){ c1(); c2(); c3(); }
+  draw();
+  document.getElementById('tg').addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme');
+    const next=cur==='dark'?'light':(cur==='light'?'dark':(matchMedia('(prefers-color-scheme:dark)').matches?'light':'dark'));
+    document.documentElement.setAttribute('data-theme',next); draw();
+  });
+  matchMedia('(prefers-color-scheme:dark)').addEventListener('change',draw);
+})();
+</script>

@@ -159,7 +159,7 @@
       svg.appendChild(E('path',{d,fill:'none',stroke:s[2],'stroke-width':s[0]==='proxy (self-report)'?3:2.2,'stroke-dasharray':dash,'stroke-linejoin':'round','stroke-linecap':'round'}));
       s[1].forEach((v,i)=>{ const c=E('circle',{cx:x(i),cy:y(v),r:i===0||s[0]!=='random'?4:3.2,fill:s[2],stroke:css('--surface'),'stroke-width':1.5,class:'pt'});
         c.addEventListener('mousemove',e=>show(`<b>${s[0]}</b> · K=${Ks[i]}<br>regret ${v.toFixed(3)}`,e)); c.addEventListener('mouseleave',hide); svg.appendChild(c);});
-      const lb=E('text',{x:x(3)+8,y:y(s[1][3])+3.5,class:'val',fill:s[2]}); lb.textContent=s[0]==='proxy (self-report)'?'proxy':s[0]==='critic (probe)'?'probe':'rand'; svg.appendChild(lb);
+      // end-labels removed: at K=20 all three converge to ~0 and their labels collided; the legend identifies the series
     });
     const yl=E('text',{x:14,y:T+ph/2,'text-anchor':'middle',class:'axb',transform:`rotate(-90 14 ${T+ph/2})`});
     yl.textContent='regret (lower better)'; svg.appendChild(yl);

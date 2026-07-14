@@ -135,12 +135,13 @@ class ReasoningTrainer:
 
     def __init__(self, model_path: str, teacher_path: str = None, r: int = 16, alpha: int = 32,
                  lr: float = 1e-4, epochs: int = 3, accum: int = 8, max_len: int = 1024,
-                 prompt_len: int = 768, seed: int = 0):
+                 prompt_len: int = 768, seed: int = 0, grounded: bool = False):
         self.model_path = model_path
         self.teacher_path = teacher_path or model_path
         self.r, self.alpha, self.lr = r, alpha, lr
         self.epochs, self.accum, self.max_len, self.seed = epochs, accum, max_len, seed
         self.prompt_len = prompt_len   # card prompt truncation (match scalar's context; SFT seq = max_len holds prompt+target)
+        self.grounded = grounded       # if True the teacher SEES the true grade -> coherent post-hoc rationale (advisor idea)
         self.model = self.tok = None
 
     def _make_sft(self, cards):
@@ -150,7 +151,18 @@ class ReasoningTrainer:
         model, tok = load_model(self.teacher_path, "4bit")
         data = []
         for c in cards:
-            p = _chat(tok, build_value_prompt(c, for_reasoning=True, max_code=1200))
+            if self.grounded:
+                # GROUNDED teacher: reveal the true grade so the rationale is COHERENT (explains the real score),
+                # but instruct against restating it (+ digits are stripped below) to limit label leakage.
+                base = build_value_prompt(c, for_reasoning=True, max_code=1200).rsplit("# Instructions", 1)[0]
+                tp = (base + f"# Verified true score (for your reasoning ONLY)\ntrue_score = {c.y:.3f}\n\n"
+                      "# Instructions\nThe verified true score is given above. In 2-4 sentences, explain — from the "
+                      "code, cheap signals, and lineage ALONE — WHY this solution earns that score. Do NOT restate "
+                      "the score or any numeric metric value; a reader must not be able to recover the number from "
+                      f"your text. Then output the final line exactly as `predicted_final_score: {c.y:.3f}`.")
+                p = _chat(tok, tp)
+            else:
+                p = _chat(tok, build_value_prompt(c, for_reasoning=True, max_code=1200))
             enc = tok(p, return_tensors="pt", truncation=True, max_length=self.prompt_len).to(model.device)
             with torch.no_grad():
                 g = model.generate(**enc, max_new_tokens=256, do_sample=False, pad_token_id=tok.pad_token_id)

@@ -34,9 +34,11 @@ class ReasoningCritic(Critic):
     def __init__(self, backend: str = "mock", lam: float = 5.0,
                  model_path: str = "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct",
                  quant: str = "4bit", model: str = "Qwen/Qwen2.5-Coder-7B-Instruct",
-                 teacher_path: str = "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct"):
+                 teacher_path: str = "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct",
+                 grounded: bool = False):
         self.backend = backend
         self.lam = lam
+        self.grounded = grounded       # teacher sees the true grade -> coherent rationale (advisor idea)
         self.model_path = model_path
         self.quant = quant
         self.model = model
@@ -74,7 +76,7 @@ class ReasoningCritic(Critic):
         train = [c for c in train if c.y is not None]
         if not train:
             return self
-        self._trainer = ReasoningTrainer(self.model_path, teacher_path=self.teacher_path).fit(train)
+        self._trainer = ReasoningTrainer(self.model_path, teacher_path=self.teacher_path, grounded=self.grounded).fit(train)
         return self
 
     def _predict_qwen(self, cards: List[Card]) -> np.ndarray:

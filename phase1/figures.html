@@ -109,6 +109,13 @@
     <svg id="f4" viewBox="0 0 760 300" role="img" aria-label="A1 low-dimensionality line chart"></svg>
   </figure>
 
+  <figure class="fig" id="fig-steer">
+    <figcaption><div class="fig-top"><h2 class="fig-h">Fig 5 · A3 — the grade direction does not steer (only surface features do)</h2>
+    <span class="tag"><b>F5</b> · a3_steer2.py</span></div>
+    <p class="fig-k">Activation-steering Qwen's layer-21 residual along each direction (±3σ, CAA) and reading the model's own soft score (289 cards). The <b>quality</b> direction's effect is negligible and barely above a <b>random</b> direction — itself "significant", a generic perturbation. Only <b>code length</b>, a surface feature, genuinely moves the output (≈4.5×). Decodable ≠ steerable [2603.23629].</p></figcaption>
+    <svg id="f5" viewBox="0 0 760 232" role="img" aria-label="A3 steering coefficient plot"></svg>
+  </figure>
+
   <p class="foot">Data: <code>cards_real_mm.jsonl</code> (289 cards; spaceship 221 / nomad 37 / tps-may 31), external pristine grading. Fig 1 &amp; 3 mean over 3 seeds; Fig 2 mean over 5 split seeds × 500 random draws. Backbone Qwen2.5-Coder-7B, frozen, single RTX 3090.</p>
 </div>
 
@@ -235,7 +242,29 @@
     yl.textContent='grade Spearman ρ'; svg.appendChild(yl);
   }
 
-  function draw(){ fig1(); fig2(); fig3(); fig4(); }
+  // ---- Fig 5: A3 steering coefficient plot (slope +/- 95% CI, x1e-3) ----
+  function fig5(){
+    const svg=document.getElementById('f5'); svg.innerHTML='';
+    const W=760,H=232,L=94,R=28,T=16,B=42, pw=W-L-R, ph=H-T-B;
+    const rows=[["code-length",-1.54,-1.63,-1.46,css('--alt')],
+                ["quality",0.34,0.27,0.40,css('--probe')],
+                ["random",0.24,0.20,0.28,css('--random')]];
+    const xmin=-1.8,xmax=0.6, x=v=>L+(v-xmin)/(xmax-xmin)*pw;
+    for(const gx of [-1.5,-1.0,-0.5,0,0.5]){ const xx=x(gx);
+      svg.appendChild(E('line',{x1:xx,x2:xx,y1:T,y2:T+ph,stroke:gx===0?css('--baseline'):css('--grid'),'stroke-width':gx===0?1.4:1}));
+      const t=E('text',{x:xx,y:T+ph+16,'text-anchor':'middle',class:'ax'});t.textContent=gx.toFixed(1);svg.appendChild(t);}
+    const xl=E('text',{x:L+pw/2,y:H-4,'text-anchor':'middle',class:'axb'}); xl.textContent='steering slope  d(score)/dα   (×10⁻³, dot = mean, bar = 95% CI)'; svg.appendChild(xl);
+    const rh=ph/rows.length;
+    rows.forEach((r,i)=>{ const cy=T+rh*(i+0.5);
+      const nm=E('text',{x:L-12,y:cy+4,'text-anchor':'end',class:'grp'}); nm.textContent=r[0]; svg.appendChild(nm);
+      svg.appendChild(E('line',{x1:x(r[2]),x2:x(r[3]),y1:cy,y2:cy,stroke:r[4],'stroke-width':2.6,'stroke-linecap':'round'}));
+      const c=E('circle',{cx:x(r[1]),cy,r:5,fill:r[4],stroke:css('--surface'),'stroke-width':1.5,class:'pt'});
+      c.addEventListener('mousemove',e=>show(`<b>${r[0]}</b><br>slope ${(r[1]>=0?'+':'')+r[1].toFixed(2)}e-3  [${r[2].toFixed(2)}, ${r[3].toFixed(2)}]e-3`,e)); c.addEventListener('mouseleave',hide); svg.appendChild(c);
+      const vt=E('text',{x:x(r[1]),y:cy-11,'text-anchor':'middle',class:'val',fill:r[4]}); vt.textContent=(r[1]>=0?'+':'')+r[1].toFixed(2); svg.appendChild(vt);
+    });
+  }
+
+  function draw(){ fig1(); fig2(); fig3(); fig4(); fig5(); }
   draw();
   document.getElementById('tg').addEventListener('click',()=>{
     const cur=document.documentElement.getAttribute('data-theme');

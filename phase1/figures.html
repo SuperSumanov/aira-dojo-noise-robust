@@ -97,6 +97,18 @@
     <svg id="f3" viewBox="0 0 760 300" role="img" aria-label="rescue grouped bar chart"></svg>
   </figure>
 
+  <figure class="fig" id="fig-lowdim">
+    <figcaption><div class="fig-top"><h2 class="fig-h">Fig 4 · A1 — the grade signal is low-dimensional</h2>
+    <span class="tag"><b>F4</b> · a1b1_probe.py</span></div>
+    <p class="fig-k">Grade Spearman vs. number of PCA components fed to the ridge (per-task 5-fold CV). <b>One component already recovers ρ .21 — ~70% of the full 7,169-dim ρ .31</b>; ≤16 components match it. A single contrastive <i>good−minus−bad</i> direction is weaker (.10) — the signal is <b>top principal variance, not a mean shift</b>. Matches the 3–8-dim "confidence manifold" [2602.08159]. <span style="color:var(--muted)">(k=32 dips — small-sample truncation noise.)</span></p></figcaption>
+    <div class="legend">
+      <span class="lg"><span class="sw line" style="background:var(--probe)"></span>probe · top-k PCA</span>
+      <span class="lg"><span class="sw" style="background:var(--base)"></span>1 contrastive direction</span>
+      <span class="lg"><span class="sw line" style="background:var(--random)"></span>full 7,169-dim = .31</span>
+    </div>
+    <svg id="f4" viewBox="0 0 760 300" role="img" aria-label="A1 low-dimensionality line chart"></svg>
+  </figure>
+
   <p class="foot">Data: <code>cards_real_mm.jsonl</code> (289 cards; spaceship 221 / nomad 37 / tps-may 31), external pristine grading. Fig 1 &amp; 3 mean over 3 seeds; Fig 2 mean over 5 split seeds × 500 random draws. Backbone Qwen2.5-Coder-7B, frozen, single RTX 3090.</p>
 </div>
 
@@ -197,7 +209,33 @@
     yl.textContent='pairwise accuracy'; svg.appendChild(yl);
   }
 
-  function draw(){ fig1(); fig2(); fig3(); }
+  // ---- Fig 4: low-dim PCA-k line ----
+  function fig4(){
+    const svg=document.getElementById('f4'); svg.innerHTML='';
+    const W=760,H=300,L=52,R=20,T=16,B=52, pw=W-L-R, ph=H-T-B;
+    const ks=[1,2,3,5,8,16,32], vals=[.214,.266,.206,.262,.255,.310,.178];
+    const full=0.305, contr=0.099, lxmax=Math.log2(32);
+    const x=k=>L+Math.log2(k)/lxmax*pw, ymax=0.35, y=v=>T+ph-v/ymax*ph;
+    for(const gy of [0,0.1,0.2,0.3]){ const yy=y(gy);
+      svg.appendChild(E('line',{x1:L,x2:W-R,y1:yy,y2:yy,stroke:gy===0?css('--baseline'):css('--grid'),'stroke-width':gy===0?1.4:1}));
+      const t=E('text',{x:L-8,y:yy+3.5,'text-anchor':'end',class:'ax'});t.textContent=gy.toFixed(1);svg.appendChild(t);}
+    const yf=y(full); svg.appendChild(E('line',{x1:L,x2:W-R,y1:yf,y2:yf,stroke:css('--random'),'stroke-width':1.6,'stroke-dasharray':'5 4'}));
+    const ft=E('text',{x:W-R,y:yf-5,'text-anchor':'end',class:'val',fill:css('--muted')}); ft.textContent='full 7,169-dim = .31'; svg.appendChild(ft);
+    ks.forEach(k=>{const t=E('text',{x:x(k),y:H-B+20,'text-anchor':'middle',class:'axb'});t.textContent=k;svg.appendChild(t);});
+    const xl=E('text',{x:L+pw/2,y:H-B+38,'text-anchor':'middle',class:'axb'}); xl.textContent='# PCA components (log scale)'; svg.appendChild(xl);
+    let d=''; ks.forEach((k,i)=>d+=(i?'L':'M')+x(k)+' '+y(vals[i]));
+    svg.appendChild(E('path',{d,fill:'none',stroke:css('--probe'),'stroke-width':2.4,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    // contrastive-1D reference marker (at k=1)
+    const cc=E('circle',{cx:x(1),cy:y(contr),r:4.5,fill:css('--base'),stroke:css('--surface'),'stroke-width':1.5});
+    cc.addEventListener('mousemove',e=>show(`<b>1 contrastive direction</b><br>Spearman +${contr.toFixed(3)}`,e)); cc.addEventListener('mouseleave',hide); svg.appendChild(cc);
+    ks.forEach((k,i)=>{ const c=E('circle',{cx:x(k),cy:y(vals[i]),r:4,fill:css('--probe'),stroke:css('--surface'),'stroke-width':1.5,class:'pt'});
+      c.addEventListener('mousemove',e=>show(`<b>PCA-${k}</b> · Spearman +${vals[i].toFixed(3)}`,e)); c.addEventListener('mouseleave',hide); svg.appendChild(c);});
+    const p1=E('text',{x:x(1)+7,y:y(0.214)-9,class:'val',fill:css('--probe')}); p1.textContent='PCA-1 ≈ 70% of full'; svg.appendChild(p1);
+    const yl=E('text',{x:14,y:T+ph/2,'text-anchor':'middle',class:'axb',transform:`rotate(-90 14 ${T+ph/2})`});
+    yl.textContent='grade Spearman ρ'; svg.appendChild(yl);
+  }
+
+  function draw(){ fig1(); fig2(); fig3(); fig4(); }
   draw();
   document.getElementById('tg').addEventListener('click',()=>{
     const cur=document.documentElement.getAttribute('data-theme');

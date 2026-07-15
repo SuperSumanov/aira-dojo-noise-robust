@@ -116,6 +116,14 @@ def _block(tag, mask, y, v, yhat_n, yhat_r, loglen, tasks):
     print(f"  resid-probe AUROC vs random   : {a_r:.3f} [{lo_r:.3f}, {hi_r:.3f}]  -> "
           f"{'SURVIVES (CI>0.5)' if lo_r > 0.5 else 'dies (CI touches 0.5)'}", flush=True)
     print(f"  GAP normal-probe - resid-probe: {g3:+.3f} [{l3:+.3f}, {h3:+.3f}]  (length's contribution)", flush=True)
+    # complementary? equal-weight fuse of the two orthogonal weak detectors
+    comb = _z(-zyr[H]) + _z(cl)
+    a_c, lo_c, hi_c = _auroc_ci(comb, label)
+    ap = _auroc(-zyr[H], label); acl = _auroc(cl, label)
+    best_sc = (-zyr[H]) if ap >= acl else cl
+    gcb, lcb, hcb = _gap_ci(comb, best_sc, label)
+    print(f"  FUSE resid-probe + code-length: {a_c:.3f} [{lo_c:.3f}, {hi_c:.3f}]  vs best-single {max(ap, acl):.3f}"
+          f"  gap {gcb:+.3f} [{lcb:+.3f}, {hcb:+.3f}]  -> {'complementary' if lcb > 0 else 'no clear add'}", flush=True)
 
 
 def main():

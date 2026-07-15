@@ -20,8 +20,8 @@ from phase1.cards import load_cards
 from phase1.critics.base import Ridge
 from phase1.dataset import labeled, tasks_of
 
-MODEL = "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct"
-LAYERS = [4, 7, 14, 21, 28]
+MODEL = __import__("os").environ.get("H1_MODEL", "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct")
+LAYERS = [int(x) for x in __import__("os").environ.get("H1_LAYERS", "4,7,14,21,28").split(",")]
 LAM = 2.0
 SEEDS = [0, 1, 2]
 MAXCODE = 4000

@@ -116,6 +116,18 @@
     <svg id="f5" viewBox="0 0 760 232" role="img" aria-label="A3 steering coefficient plot"></svg>
   </figure>
 
+  <figure class="fig" id="fig-backbone">
+    <figcaption><div class="fig-top"><h2 class="fig-h">Fig 6 · H1 replicates across model families — not a Qwen artifact</h2>
+    <span class="tag"><b>F6</b> · h1_ablation × 4 backbones</span></div>
+    <p class="fig-k">Same protocol, frozen representations of four code-LLMs across three families. The self-report-ablated cross-task (LOTO) grade signal stays positive and <b>survives length residualization in every family</b> — all far above the code-length floor (−.07). Strength is model-dependent (Qwen-Coder-7B best) and scale doesn't help (14B &lt; 7B): what matters is that it's a code-LLM.</p></figcaption>
+    <div class="legend">
+      <span class="lg"><span class="sw" style="background:var(--probe)"></span>ablated LOTO</span>
+      <span class="lg"><span class="sw" style="background:var(--alt)"></span>+ length-residualized</span>
+      <span class="lg"><span class="sw line" style="background:var(--random)"></span>code-length floor = −.07</span>
+    </div>
+    <svg id="f6" viewBox="0 0 760 300" role="img" aria-label="H1 across four backbones grouped bars"></svg>
+  </figure>
+
   <p class="foot">Data: <code>cards_real_mm.jsonl</code> (289 cards; spaceship 221 / nomad 37 / tps-may 31), external pristine grading. Fig 1 &amp; 3 mean over 3 seeds; Fig 2 mean over 5 split seeds × 500 random draws. Backbone Qwen2.5-Coder-7B, frozen, single RTX 3090.</p>
 </div>
 
@@ -264,7 +276,37 @@
     });
   }
 
-  function draw(){ fig1(); fig2(); fig3(); fig4(); fig5(); }
+  // ---- Fig 6: H1 across backbones (grouped bars, signed y, length floor) ----
+  function fig6(){
+    const svg=document.getElementById('f6'); svg.innerHTML='';
+    const W=760,H=300,L=52,R=14,T=14,B=66, pw=W-L-R, ph=H-T-B;
+    const groups=[["Qwen-Coder\n7B",[.239,.297]],["Qwen-Coder\n14B",[.170,.230]],
+                  ["DeepSeek-Coder\n6.7B",[.143,.202]],["CodeLlama\n7B",[.134,.195]]];
+    const names=["ablated LOTO","+ length-resid"], cols=[css('--probe'),css('--alt')];
+    const ymin=-0.1,ymax=0.35, y=v=>T+ph-(v-ymin)/(ymax-ymin)*ph;
+    for(const gy of [-0.1,0,0.1,0.2,0.3]){ const yy=y(gy);
+      svg.appendChild(E('line',{x1:L,x2:W-R,y1:yy,y2:yy,stroke:gy===0?css('--baseline'):css('--grid'),'stroke-width':gy===0?1.4:1}));
+      const t=E('text',{x:L-8,y:yy+3.5,'text-anchor':'end',class:'ax'});t.textContent=gy.toFixed(1);svg.appendChild(t);}
+    const yf=y(-0.065); svg.appendChild(E('line',{x1:L,x2:W-R,y1:yf,y2:yf,stroke:css('--random'),'stroke-width':1.6,'stroke-dasharray':'5 4'}));
+    const ft=E('text',{x:W-R,y:yf+12,'text-anchor':'end',class:'val',fill:css('--muted')}); ft.textContent='length floor −.07'; svg.appendChild(ft);
+    const gw=pw/groups.length, bw=Math.min(40,(gw-24)/2);
+    groups.forEach((g,gi)=>{ const gx=L+gi*gw;
+      const gt=E('text',{x:gx+gw/2,y:H-B+22,'text-anchor':'middle',class:'grp'});
+      g[0].split("\n").forEach((ln,li)=>{const ts=E('tspan',{x:gx+gw/2,dy:li?13:0,class:li?'ax':''});ts.textContent=ln;gt.appendChild(ts);});
+      svg.appendChild(gt);
+      g[1].forEach((v,bi)=>{ const x=gx+(gw-bw*2-8)/2+bi*(bw+8);
+        const yv=y(v),y0=y(0),top=Math.min(yv,y0),hh=Math.max(1.5,Math.abs(yv-y0));
+        const r=E('rect',{x,y:top,width:bw,height:hh,rx:3,fill:cols[bi],class:'bar'});
+        r.addEventListener('mousemove',e=>show(`<b>${names[bi]}</b> · ${g[0].replace("\n"," ")}<br>LOTO ${v.toFixed(3)}`,e));
+        r.addEventListener('mouseleave',hide); svg.appendChild(r);
+        const vt=E('text',{x:x+bw/2,y:top-4,'text-anchor':'middle',class:'val'}); vt.textContent=v.toFixed(2); svg.appendChild(vt);
+      });
+    });
+    const yl=E('text',{x:14,y:T+ph/2,'text-anchor':'middle',class:'axb',transform:`rotate(-90 14 ${T+ph/2})`});
+    yl.textContent='ablated LOTO Spearman ρ'; svg.appendChild(yl);
+  }
+
+  function draw(){ fig1(); fig2(); fig3(); fig4(); fig5(); fig6(); }
   draw();
   document.getElementById('tg').addEventListener('click',()=>{
     const cur=document.documentElement.getAttribute('data-theme');

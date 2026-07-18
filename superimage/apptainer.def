@@ -53,17 +53,46 @@ From: nvidia/cuda:12.4.1-base-ubuntu22.04
     export PATH="$CONDAHOME/bin:$PATH" && \
     echo "PATH set"
 
-    # Install PyTorch + CUDA (12.4) plus common Python packages
+    # ========================================================
+    # 针对 Mac 模拟层优化的 Conda/Mamba 核心安装段落
+    # ========================================================
+
+    # 1. 强行限制下载并发为 1，防止 Mac 跨架构模拟时死锁或数据截断
+    export MAMBA_CONCURRENT_DOWNLOADS=1
+
+    # 2. 安装 PyTorch + CUDA
     mamba install -q -c pytorch -c nvidia -y \
-        pytorch \
+        pytorch=2.5.1 \
+        torchvision=0.20.1 \
         pytorch-cuda=12.4 \
         cuda-toolkit=12.4
 
     mamba install -y xorg-libx11
 
-    mamba install -c pytorch -c nvidia -c conda-forge faiss-gpu -y
-    mamba install -c rapidsai -c conda-forge -c nvidia rapids=25.02
-    mamba install -c conda-forge implicit implicit-proc=*=gpu
+    # 3. 清理 PyTorch 的缓存，腾出磁盘和内存空间
+    conda clean --all -y
+
+    # 4. 安装 FAISS
+    conda install --solver=classic -y \
+        -c pytorch -c nvidia -c conda-forge \
+        "faiss-gpu=1.12.0=*cuda12.4*"
+
+    # 5. 再次清理，为 RAPIDS 腾出干净的舞台
+    conda clean --all -y
+
+    # 6. 安装 RAPIDS (补上了 -y，限制并发后单线程下载大包)
+    mamba install -y -c rapidsai -c conda-forge -c nvidia rapids=25.02
+
+    # 7. 再次清理，防止残留的损坏包影响后续步骤
+    conda clean --all -y
+
+    # 8. 安装 Implicit
+    mamba install -y -c conda-forge implicit implicit-proc=*=gpu
+
+    # 9. 最终清理 Conda 缓存
+    conda clean --all -y
+
+    # ========================================================
 
     pip install -U pip && \
     pip install \
@@ -78,6 +107,10 @@ From: nvidia/cuda:12.4.1-base-ubuntu22.04
         jupyter-kernel-gateway
 
     pip install -r /opt/pip.requirements.txt
+
+    # Fail the build instead of silently producing a CUDA-13 image that the
+    # target cluster (driver CUDA API 12.9) cannot run.
+    python -c 'import torch, torchvision; print("torch:", torch.__version__); print("torchvision:", torchvision.__version__); print("built CUDA:", torch.version.cuda); assert torch.__version__.split("+")[0] == "2.5.1"; assert torchvision.__version__.split("+")[0] == "0.20.1"; assert torch.version.cuda == "12.4"'
 
     # -----------------------------------------------------
     # 4. Build / configure OpenSSH inside the container

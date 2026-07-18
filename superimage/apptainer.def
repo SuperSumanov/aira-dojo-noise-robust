@@ -59,42 +59,47 @@ From: nvidia/cuda:12.4.1-base-ubuntu22.04
 
     # 1. 强行限制下载并发为 1，防止 Mac 跨架构模拟时死锁或数据截断
     export MAMBA_CONCURRENT_DOWNLOADS=1
+    # Docker Desktop on macOS has no NVIDIA driver, so Conda cannot discover
+    # the __cuda virtual package by itself. Without this override RAPIDS may
+    # silently select its cuda11 build even though the base image is CUDA 12.4.
+    export CONDA_OVERRIDE_CUDA=12.4
 
-    # 2. 安装 PyTorch + CUDA
-    mamba install -q -c pytorch -c nvidia -y \
-        pytorch=2.5.1 \
-        torchvision=0.20.1 \
-        pytorch-cuda=12.4 \
-        cuda-toolkit=12.4
+    # 2. Solve the native Conda stack as one transaction. PyTorch/torchvision
+    # are deliberately excluded: Conda torchvision 0.20.1 requires an older
+    # ffmpeg/zlib ABI that is incompatible with the RAPIDS 25.02 solution.
+    mamba install -y \
+        -c rapidsai -c conda-forge -c nvidia -c pytorch \
+        xorg-libx11 \
+        "faiss-gpu=1.12.0=*cuda12.4*" \
+        "rapids=25.02=*cuda12*" \
+        cuda-version=12.4 \
+        implicit "implicit-proc=*=gpu" \
+        numpy=1.26.4 \
+        pandas=2.1.4 \
+        scipy=1.11.4 \
+        xarray=2024.11.0 \
+        mapclassify=2.8.1
 
-    mamba install -y xorg-libx11
+    # Verify build variants rather than trusting only the public versions.
+    python -c 'import json, subprocess; packages = {p["name"]: p for p in json.loads(subprocess.check_output(["conda", "list", "--json"]))}; print("RAPIDS build:", packages["rapids"]["build_string"]); print("FAISS build:", packages["faiss-gpu"]["build_string"]); assert "cuda12" in packages["rapids"]["build_string"]; assert "cuda12.4" in packages["faiss-gpu"]["build_string"]'
 
-    # 3. 清理 PyTorch 的缓存，腾出磁盘和内存空间
-    conda clean --all -y
-
-    # 4. 安装 FAISS
-    conda install --solver=classic -y \
-        -c pytorch -c nvidia -c conda-forge \
-        "faiss-gpu=1.12.0=*cuda12.4*"
-
-    # 5. 再次清理，为 RAPIDS 腾出干净的舞台
-    conda clean --all -y
-
-    # 6. 安装 RAPIDS (补上了 -y，限制并发后单线程下载大包)
-    mamba install -y -c rapidsai -c conda-forge -c nvidia rapids=25.02
-
-    # 7. 再次清理，防止残留的损坏包影响后续步骤
-    conda clean --all -y
-
-    # 8. 安装 Implicit
-    mamba install -y -c conda-forge implicit implicit-proc=*=gpu
-
-    # 9. 最终清理 Conda 缓存
+    # 3. 清理 Conda 缓存，为 Pip CUDA wheels 腾出空间
     conda clean --all -y
 
     # ========================================================
 
-    pip install -U pip && \
+    pip install -U pip
+
+    # Install the official, mutually compatible CUDA 12.4 wheels. Keeping
+    # these outside the Conda solve avoids the torchvision ffmpeg/zlib ABI
+    # conflict with RAPIDS.
+    pip install \
+        --index-url https://download.pytorch.org/whl/cu124 \
+        torch==2.5.1 \
+        torchvision==0.20.1
+
+    python -c 'import torch, torchvision; from torchvision.extension import _has_ops; print("Wheel torch:", torch.__version__); print("Wheel torchvision:", torchvision.__version__); print("Wheel built CUDA:", torch.version.cuda); assert _has_ops(), "torchvision native ops are unavailable"; assert torch.__version__ == "2.5.1+cu124"; assert torchvision.__version__ == "0.20.1+cu124"; assert torch.version.cuda == "12.4"'
+
     pip install \
         jupyter \
         ipython \
@@ -108,9 +113,8 @@ From: nvidia/cuda:12.4.1-base-ubuntu22.04
 
     pip install -r /opt/pip.requirements.txt
 
-    # Fail the build instead of silently producing a CUDA-13 image that the
-    # target cluster (driver CUDA API 12.9) cannot run.
-    python -c 'import torch, torchvision; print("torch:", torch.__version__); print("torchvision:", torchvision.__version__); print("built CUDA:", torch.version.cuda); assert torch.__version__.split("+")[0] == "2.5.1"; assert torchvision.__version__.split("+")[0] == "0.20.1"; assert torch.version.cuda == "12.4"'
+    # Ensure the broad requirements transaction did not replace the cu124 pair.
+    python -c 'import torch, torchvision; from torchvision.extension import _has_ops; print("Final torch:", torch.__version__); print("Final torchvision:", torchvision.__version__); print("Final built CUDA:", torch.version.cuda); assert _has_ops(), "torchvision native ops are unavailable"; assert torch.__version__.split("+")[0] == "2.5.1"; assert torchvision.__version__.split("+")[0] == "0.20.1"; assert torch.version.cuda == "12.4"'
 
     # -----------------------------------------------------
     # 4. Build / configure OpenSSH inside the container

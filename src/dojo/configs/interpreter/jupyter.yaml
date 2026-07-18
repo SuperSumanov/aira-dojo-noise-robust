@@ -1,7 +1,7 @@
 _target_: dojo.config_dataclasses.interpreter.jupyter.JupyterInterpreterConfig
 
 superimage_directory: ${get_superimage_dir:}
-superimage_version: "2025-05-02v2"
+superimage_version: "2026-07-macos-v1"
 
 read_only_overlays: []
 

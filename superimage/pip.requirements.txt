@@ -50,20 +50,20 @@ lime
 litellm
 loguru==0.7.2
 markovify
+# Keep compatibility with scipy==1.11.4 below.
+mapclassify==2.8.1
 matplotlib
 mlxtend
 nbformat
 nltk
 node2vec
 numba
-numpy
-numpy==1.26.2
+numpy==1.26.4
 omegaconf>=2.3.0
 onnxruntime
 openai>=1.3.5
 opencv-python
 optuna
-pandas
 pandas==2.1.4
 pdf2image
 peft
@@ -104,9 +104,9 @@ textblob
 textstat
 timm
 timm
-# Keep these versions aligned with the CUDA 12.4 Conda installation in
-# apptainer.def.  In particular, an unpinned torchvision can upgrade both
-# packages to CUDA 13 wheels during the final pip install.
+# These public versions match the +cu124 wheels installed from the official
+# PyTorch index in apptainer.def. An unpinned torchvision can upgrade both
+# packages to CUDA 13 wheels during the final requirements install.
 torch==2.5.1
 torch-geometric
 torchinfo
@@ -120,3 +120,5 @@ wandb
 weave
 xgboost
 xlrd
+# Keep compatibility with pandas==2.1.4 above.
+xarray==2024.11.0

@@ -413,19 +413,69 @@ definition file 以 CUDA 12.4 为起点，不代表最终 Python 环境仍是 CU
 会覆盖 Conda 安装的 PyTorch。已有构建产物
 `superimage.root.2026-07-macos-v1.sif` 实际被覆盖成了 `torch 2.13.0+cu130`。
 
-当前仓库已将组合锁定为 `pytorch=2.5.1`、`torchvision=0.20.1` 和 CUDA 12.4，且在
-`%post` 中增加了构建期检查。重新构建时应保持以下约束：
+当前仓库改用官方 `torch==2.5.1+cu124`、`torchvision==0.20.1+cu124` wheels，并在
+`%post` 中增加构建期检查。重新构建时应保持以下约束：
 
-- 在 Conda 安装中同时锁定兼容的一组 `pytorch`、`torchvision` 和 `pytorch-cuda=12.4`；
+- 不要把 Conda torchvision 0.20.1 加进 RAPIDS 25.02 的 native dependency solve；其
+  旧 ffmpeg/zlib 依赖和当前 RAPIDS/conda-forge ABI 无法共同求解；
+- 从 PyTorch 官方 cu124 index 安装严格匹配的 Torch/Torchvision wheels；
 - 不要让 `pip.requirements.txt` 中未锁版本的 `torch`/`torchvision` 再次升级它们；
-- 在 `%post` 最后执行一次 `python -c 'import torch; print(torch.__version__, torch.version.cuda)'`
-  作为构建期 gate，版本不符就让构建失败；
+- 安装 cu124 wheels 后以及完整 requirements 安装后分别 import `torchvision` 并检查 `_has_ops()`，同时检查
+  `torch.version.cuda`；版本或原生算子不符就让构建失败；
 - 集群端先用宿主机 `--nv` 注入的 driver；不要盲目优先使用镜像内更旧的 compat driver。
 
 这些修改不会改变已经生成的 SIF；必须基于修正后的 definition file 重新构建并传输新文件。
 
 构建 Mac 是否有 GPU 与最终兼容性无关；关键是最终 PyTorch wheel/Conda package 的 CUDA
 版本与运行节点 NVIDIA driver 的匹配关系。
+
+### `torchvision::nms does not exist`
+
+这通常不是“没有安装 torchvision”，而是安装了不匹配的 binary variant。典型情况是
+`torch` 来自 CUDA 12.4 build，但 Conda 为同版本号的 `torchvision` 选择了 CPU build。
+Pip 日志中没有再次显示 `Successfully installed torchvision`，也可能只是因为 Pip 发现
+Conda 已安装同一版本号，于是复用了这个错误的 binary。
+
+当前 definition file 不再使用 Conda torchvision，而是安装官方 cu124 wheels。构建时
+应先看到：
+
+```text
+Wheel torch: 2.5.1+cu124
+Wheel torchvision: 0.20.1+cu124
+Wheel built CUDA: 12.4
+```
+
+Pip 安装后还会重复一次检查。任一检查失败都不应继续使用该构建产物。
+
+### Pip 报 RAPIDS dependency conflicts
+
+RAPIDS 通过 Conda 安装时，`libcudf`、`libcugraph` 等原生 Conda 包不一定以 Pip
+distribution metadata 的形式出现。因此 Pip 可能声称这些包“没有安装”，即使 Conda
+已经安装了对应 native library；不要仅为消除 Pip 警告安装 `cupy-cuda11x` 或手工降级
+`cuda-python`。
+
+当前 Conda solve 会选择 `cuda-python 12.9.7`；这仍是 CUDA 12 RAPIDS build 的合法
+Conda 解，包版本号不等于目标 CUDA toolkit minor version。强行按照 Pip 的旧 metadata
+降到 `cuda-python<12` 可能破坏 Conda 环境。
+
+`xarray`、`mapclassify`、`numpy` 则同时在 Conda transaction 和 Pip requirements 中
+固定为分别兼容 `pandas==2.1.4`、`scipy==1.11.4`、FAISS 1.12 的版本。若想系统性确认
+Conda 侧完整性，应查看 `conda list`，而不是只依据 Pip 对 Conda native packages 的
+检查结果。
+
+### Mac 构建时 RAPIDS 错选 CUDA 11
+
+Docker Desktop 的 Linux VM 没有 NVIDIA driver，Conda 因而看不到 `__cuda` virtual
+package。仅使用 `nvidia/cuda:12.4.1` base image 并不足以让求解器自动选择 CUDA 12；
+旧 recipe 因此实际选择了 RAPIDS 的 cuda11 build，日志中的 `cupy-cuda11x` 就是证据。
+
+definition file 现在显式设置：
+
+```bash
+export CONDA_OVERRIDE_CUDA=12.4
+```
+
+并要求 `rapids=25.02=*cuda12*`、`cuda-version=12.4`。不要删除这两个约束。
 
 ## 10. 建议保存构建日志
 

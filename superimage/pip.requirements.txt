@@ -104,11 +104,14 @@ textblob
 textstat
 timm
 timm
-torch
+# Keep these versions aligned with the CUDA 12.4 Conda installation in
+# apptainer.def.  In particular, an unpinned torchvision can upgrade both
+# packages to CUDA 13 wheels during the final pip install.
+torch==2.5.1
 torch-geometric
 torchinfo
 torchmetrics
-torchvision
+torchvision==0.20.1
 tqdm==4.66.3
 transformers
 umap-learn

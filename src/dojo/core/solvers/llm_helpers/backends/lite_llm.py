@@ -7,14 +7,13 @@
 import json
 import logging
 import os
+import time
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple, Union
 
+import httpx
 import jsonschema
 import litellm
-import time
-import httpx
-
 from dataclasses_json import DataClassJsonMixin
 from litellm import completion as completion_fn
 
@@ -23,6 +22,7 @@ litellm.set_verbose = False
 
 NUM_RETRIES = 10
 TIMEOUT = 1500
+STRUCTURED_OUTPUT_RETRIES = 2
 
 
 # Configure logging
@@ -46,12 +46,14 @@ class FunctionSpec(DataClassJsonMixin):
 
     @property
     def as_openai_tool_dict(self) -> Dict[str, Any]:
-        """Convert to OpenAI's function format."""
+        """Convert to the modern OpenAI tools format."""
         return {
             "type": "function",
-            "name": self.name,
-            "description": self.description,
-            "parameters": self.json_schema,
+            "function": {
+                "name": self.name,
+                "description": self.description,
+                "parameters": self.json_schema,
+            },
         }
 
     @property
@@ -150,29 +152,123 @@ class LiteLLMClient:
             return 0
         return len(text.split())
 
+    @staticmethod
+    def _messages_with_json_schema(
+        messages: List[Dict[str, str]], func_spec: FunctionSpec
+    ) -> List[Dict[str, str]]:
+        """Return a copy of messages that explicitly requests schema-conformant JSON."""
+        schema_instruction = (
+            "\n\nReturn only a JSON object for the following operation: "
+            f"{func_spec.description}\nThe JSON object must validate against this JSON Schema:\n"
+            f"{json.dumps(func_spec.json_schema, ensure_ascii=False)}"
+        )
+        structured_messages = [message.copy() for message in messages]
+        for message in structured_messages:
+            if message.get("role") == "system" and isinstance(message.get("content"), str):
+                message["content"] += schema_instruction
+                break
+        else:
+            structured_messages.insert(0, {"role": "system", "content": schema_instruction.strip()})
+        return structured_messages
+
+    @staticmethod
+    def _json_mode_is_unsupported(error: Exception) -> bool:
+        message = str(error).lower()
+        mentions_json_mode = any(
+            marker in message for marker in ("response_format", "json mode", "json_object")
+        )
+        mentions_unsupported = any(
+            marker in message for marker in ("not support", "unsupported", "unknown", "invalid")
+        )
+        return mentions_json_mode and mentions_unsupported
+
+    @staticmethod
+    def _message_tool_call(message: Any) -> Any:
+        tool_calls = getattr(message, "tool_calls", None)
+        if tool_calls:
+            return tool_calls[0].function
+        if isinstance(message, dict):
+            tool_calls = message.get("tool_calls")
+            if tool_calls:
+                return tool_calls[0]["function"]
+        return None
+
+    @staticmethod
+    def _field(value: Any, name: str) -> Any:
+        if isinstance(value, dict):
+            return value.get(name)
+        return getattr(value, name, None)
+
+    def _parse_structured_output(
+        self, completion: Any, func_spec: FunctionSpec, transport: str
+    ) -> FunctionCallType:
+        message = completion.choices[0].message
+        if transport == "json":
+            raw_output = self._field(message, "content")
+            if not raw_output:
+                raise ValueError("JSON mode returned empty message content")
+        else:
+            function_call = self._message_tool_call(message)
+            if function_call is None:
+                raise ValueError("Tools mode returned no tool call")
+            function_name = self._field(function_call, "name")
+            if str(function_name).strip() != func_spec.name.strip():
+                raise ValueError(
+                    f"Function name mismatch: expected {func_spec.name}, got {function_name}"
+                )
+            raw_output = self._field(function_call, "arguments")
+
+        if isinstance(raw_output, dict):
+            output = raw_output
+        else:
+            if not isinstance(raw_output, str):
+                raise TypeError(
+                    f"Structured output must be a JSON string or object, got {type(raw_output).__name__}"
+                )
+            output = json.loads(raw_output)
+        if not isinstance(output, dict):
+            raise TypeError(f"Structured output must be an object, got {type(output).__name__}")
+        jsonschema.Draft7Validator(func_spec.json_schema).validate(output)
+        return output
+
     def _query_client(
         self,
         messages: List[Dict[str, str]],
-        model_kwargs: Dict[str, Any] = {},
+        model_kwargs: Optional[Dict[str, Any]] = None,
         json_schema: Optional[str] = None,
         function_name: Optional[str] = None,
         function_description: Optional[str] = None,
     ) -> Tuple[OutputType, Dict[str, Any]]:
+        model_kwargs = dict(model_kwargs or {})
+
         # Prepare function specifications if provided
         func_spec = None
         if json_schema and function_name and function_description:
             func_spec = FunctionSpec(function_name, json.loads(json_schema), function_description)
+
+        structured_output_mode = model_kwargs.pop("structured_output_mode", "json")
+        structured_output_retries = model_kwargs.pop(
+            "structured_output_retries", STRUCTURED_OUTPUT_RETRIES
+        )
+        if structured_output_mode not in {"json", "tools"}:
+            raise ValueError("structured_output_mode must be either 'json' or 'tools'")
+        if not isinstance(structured_output_retries, int) or structured_output_retries < 0:
+            raise ValueError("structured_output_retries must be a non-negative integer")
+        if func_spec is not None:
+            for transport_argument in (
+                "response_format",
+                "tools",
+                "tool_choice",
+                "functions",
+                "function_call",
+            ):
+                model_kwargs.pop(transport_argument, None)
 
         # Always include necessary model parameters
         model_kwargs["model"] = self.model
         model_kwargs["base_url"] = self.base_url
         model_kwargs["api_key"] = self.api_key
         filtered_kwargs = {k: v for k, v in model_kwargs.items() if v is not None}
-
-        # Attach function specifications if provided
-        if func_spec is not None:
-            filtered_kwargs["functions"] = [func_spec.as_openai_tool_dict]
-            filtered_kwargs["function_call"] = "auto"
 
         filtered_kwargs["max_retries"] = NUM_RETRIES
         filtered_kwargs["num_retries"] = NUM_RETRIES
@@ -181,40 +277,82 @@ class LiteLLMClient:
         # Record start time for latency measurement
         start_time = time.monotonic()
 
-        # Execute the LLM call, with fallback for function calling errors
+        # Execute the LLM call. Structured requests default to JSON mode because
+        # DeepSeek thinking models reject forced tool_choice. Services which reject
+        # JSON mode fall back to the modern tools interface, never to plain text.
         completion = None
-        try:
-            completion = completion_fn(messages=messages, **filtered_kwargs)
-        except litellm.BadRequestError as e:
-            if "function calling" in str(e).lower() or "functions" in str(e).lower():
+        completed_requests = []
+        output = None
+        request_messages = messages
+        transport = structured_output_mode
+        attempts = structured_output_retries + 1 if func_spec is not None else 1
+        for attempt in range(attempts):
+            request_kwargs = filtered_kwargs.copy()
+            if func_spec is not None and transport == "json":
+                request_messages = self._messages_with_json_schema(messages, func_spec)
+                request_kwargs["response_format"] = {"type": "json_object"}
+            elif func_spec is not None:
+                request_messages = messages
+                request_kwargs["tools"] = [func_spec.as_openai_tool_dict]
+                request_kwargs["tool_choice"] = func_spec.openai_tool_choice_dict
+
+            try:
+                completion = completion_fn(messages=request_messages, **request_kwargs)
+                completed_requests.append(completion)
+            except litellm.BadRequestError as error:
+                if func_spec is not None and transport == "json" and self._json_mode_is_unsupported(error):
+                    logger.warning(
+                        "JSON mode is unsupported by this endpoint; retrying with modern tools."
+                    )
+                    transport = "tools"
+                    request_kwargs = filtered_kwargs.copy()
+                    request_kwargs["tools"] = [func_spec.as_openai_tool_dict]
+                    request_kwargs["tool_choice"] = func_spec.openai_tool_choice_dict
+                    request_messages = messages
+                    completion = completion_fn(messages=messages, **request_kwargs)
+                    completed_requests.append(completion)
+                else:
+                    raise
+
+            if func_spec is None:
+                break
+            try:
+                output = self._parse_structured_output(completion, func_spec, transport)
+                break
+            except (json.JSONDecodeError, jsonschema.ValidationError, TypeError, ValueError) as error:
+                if attempt + 1 >= attempts:
+                    raise ValueError(
+                        f"Invalid structured output after {attempts} attempt(s): {error}"
+                    ) from error
                 logger.warning(
-                    "Function calling was attempted but is not supported by this model. "
-                    "Falling back to plain text generation."
+                    "Invalid structured output on attempt %s/%s (%s); retrying.",
+                    attempt + 1,
+                    attempts,
+                    error,
                 )
-                # Remove function calling parameters and retry
-                filtered_kwargs.pop("functions", None)
-                filtered_kwargs.pop("function_call", None)
-                completion = completion_fn(messages=messages, **filtered_kwargs)
-            else:
-                raise
 
         # Calculate latency
         latency = time.monotonic() - start_time
 
         # Extract usage stats from the LLM response (if available)
         choice = completion.choices[0]
-        if completion is not None:
-            usage_stats = completion.to_dict().get("usage", {})
-        else:
-            usage_stats = {}
+        request_usage = [item.to_dict().get("usage", {}) for item in completed_requests]
+        usage_stats = dict(request_usage[-1])
+        for token_key in ("prompt_tokens", "completion_tokens"):
+            token_values = [usage.get(token_key) for usage in request_usage]
+            if token_values and all(isinstance(value, int) for value in token_values):
+                usage_stats[token_key] = sum(token_values)
 
         # Add latency and success status to the stats
         usage_stats["latency"] = latency
         usage_stats["success"] = True
+        if func_spec is not None:
+            usage_stats["structured_output_transport"] = transport
+            usage_stats["structured_output_requests"] = len(completed_requests)
 
         # If token counts are not available from the response, estimate them.
         if "prompt_tokens" not in usage_stats:
-            prompt_text = " ".join([m.get("content", "") for m in messages])
+            prompt_text = " ".join([m.get("content", "") for m in request_messages])
             usage_stats["prompt_tokens"] = self.count_tokens(prompt_text)
         if "completion_tokens" not in usage_stats:
             usage_stats["completion_tokens"] = self.count_tokens(choice.message.content)
@@ -223,33 +361,8 @@ class LiteLLMClient:
         # Calculate cost using a helper (this method can adjust for different backends)
         usage_stats["cost"] = self._calculate_cost(usage_stats["prompt_tokens"], usage_stats["completion_tokens"])
 
-        # Parse the response as before
-        if func_spec is None or "functions" not in filtered_kwargs:
+        if func_spec is None:
             output = choice.message.content
-        else:
-            try:
-                function_call = choice.message.function_call
-            except:
-                function_call = None
-            if not function_call:
-                logger.warning(
-                    "No function call was used despite function spec. Fallback to text.\n"
-                    f"Message content: {choice.message.content}"
-                )
-                output = choice.message.content
-            else:
-                if not str(function_call.name).strip() == str(func_spec.name).strip():
-                    logger.warning(
-                        f"Function name mismatch: expected {func_spec.name}, "
-                        f"got {function_call.name}. Fallback to text."
-                    )
-                    output = choice.message.content
-                else:
-                    try:
-                        output = json.loads(function_call.arguments)
-                    except json.JSONDecodeError as ex:
-                        logger.error(f"Error decoding function arguments:\n{function_call.arguments}")
-                        raise ex
 
         return output, usage_stats
 

@@ -10,9 +10,9 @@ It sends the same analyze-style request through six paths:
 2. OpenAI SDK with modern, forced ``tools`` function calling.
 3. LiteLLM with JSON mode.
 4. LiteLLM with modern, forced ``tools`` function calling.
-5. LiteLLM with the exact legacy ``functions`` payload shape currently built by
-   ``dojo.core.solvers.llm_helpers.backends.lite_llm.FunctionSpec``.
-6. The actual Dojo ``LiteLLMClient.query`` wrapper.
+5. LiteLLM with the exact legacy ``functions`` payload shape used by upstream
+   AIRA-Dojo before the JSON-mode compatibility fix.
+6. The actual (fixed) Dojo ``LiteLLMClient.query`` wrapper.
 
 The request contains several distracting numbers and an expected validation metric.
 A response counts as successful only if it is valid JSON, matches the requested
@@ -235,7 +235,7 @@ def _modern_tool() -> dict[str, Any]:
 
 
 def _dojo_legacy_function_payload() -> dict[str, Any]:
-    """Reproduce FunctionSpec.as_openai_tool_dict from the current LiteLLM backend."""
+    """Reproduce FunctionSpec.as_openai_tool_dict from upstream AIRA-Dojo."""
     return {
         "type": "function",
         "name": FUNCTION_NAME,
@@ -460,7 +460,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--model",
         default=os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash"),
-        help="DeepSeek model ID (default: DEEPSEEK_MODEL or deepseek-v4-pro).",
+        help="DeepSeek model ID (default: DEEPSEEK_MODEL or deepseek-v4-flash).",
     )
     parser.add_argument(
         "--base-url",

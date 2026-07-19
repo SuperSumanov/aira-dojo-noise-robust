@@ -1,20 +1,31 @@
-# DeepSeek 结构化输出：Dojo 实际发送的 payload 及风险
+# DeepSeek 结构化输出兼容性与修复记录
 
-这里的问题位于原仓库的通用 LiteLLM backend，不是学生为 DeepSeek/HCE 新增的代码。`git blame` 显示下述逻辑来自 upstream 初始版本。学生后来增加 metric marker/正则 fallback，主要是在绕开这个 backend 在 DeepSeek 上不稳定造成的后果。
+## 结论
 
-## 调用链
+AIRA-Dojo upstream 的 LiteLLM backend 使用了混合新旧两代格式的
+`functions`/`function_call` 接口，并且只解析 legacy `message.function_call`。
+这与当前 DeepSeek OpenAI-compatible 接口不可靠地兼容；对于启用 thinking 的模型，
+强制现代 `tool_choice` 又会被服务端直接拒绝：
 
-MLE-bench 的 analyze operator 先定义 JSON Schema，要求返回：
-
-```json
-{
-  "is_bug": false,
-  "summary": "...",
-  "metric": 0.8123
-}
+```text
+Thinking mode does not support this tool_choice
 ```
 
-`src/dojo/core/solvers/operators/analyze.py` 将 schema 和函数信息传入 `GenericLLM`：
+本仓库因此将 LiteLLM 结构化输出的默认 transport 改为：
+
+```python
+response_format={"type": "json_object"}
+```
+
+JSON mode 不直接携带 JSON Schema，所以 backend 会把 schema 明确附加到 system
+message，并在本地执行 `json.loads` 和 Draft 7 schema validation。格式或 schema
+错误默认额外重试两次。只有 endpoint 明确报告不支持 JSON mode 时，才回退到正确的
+现代 `tools`/`tool_choice` 接口；结构化请求不再静默退化为普通文本。
+
+## Upstream 问题调用链
+
+MLE-bench 的 analyze operator 在
+`src/dojo/core/solvers/operators/analyze.py` 中定义 schema，并将其交给 `GenericLLM`：
 
 ```python
 return analyze_llm(
@@ -28,115 +39,138 @@ return analyze_llm(
 )
 ```
 
-`GenericLLM` 再原样转交给 `LiteLLMClient.query()`。`LiteLLMClient` 将 schema 包装成 `FunctionSpec`，然后构造如下参数：
+修复前，`LiteLLMClient.query()` 最终构造的是：
 
 ```python
 filtered_kwargs["functions"] = [{
     "type": "function",
     "name": "submit_review",
-    "description": "Submit a review evaluating the output of the training script.",
+    "description": "...",
     "parameters": schema,
 }]
 filtered_kwargs["function_call"] = "auto"
-
-completion_fn(messages=messages, **filtered_kwargs)
 ```
 
-因此 Dojo 并没有使用本次测试中表现稳定的：
+这里同时存在四个问题：
+
+1. `functions` 是 legacy 参数，但列表项又混入现代格式的 `"type": "function"`；
+2. `function_call="auto"` 不保证模型调用函数；
+3. 返回端只读取 legacy `message.function_call`，不读取现代 `message.tool_calls`；
+4. function calling 报错或返回格式不符时，会静默回退到无 schema 约束的普通文本。
+
+现代 tools 的正确请求形状应为：
 
 ```python
-response_format={"type": "json_object"}
-```
-
-它走的是旧版 `functions`/`function_call` 接口。
-
-## 风险 1：payload 混用了两代接口的形状
-
-旧版 `functions` 中的单项通常是：
-
-```python
-{
-    "name": "submit_review",
-    "description": "...",
-    "parameters": schema,
-}
-```
-
-现代 `tools` 中的对应写法则是：
-
-```python
-{
+tools=[{
     "type": "function",
     "function": {
         "name": "submit_review",
         "description": "...",
         "parameters": schema,
     },
+}]
+tool_choice={
+    "type": "function",
+    "function": {"name": "submit_review"},
 }
 ```
 
-Dojo 发送的是 `functions=[...]`，但单项里又加入了现代格式的 `"type": "function"`，同时没有现代格式要求的嵌套 `function`。这是一种 hybrid payload。某些服务端或 LiteLLM 版本会宽容处理，但不能依赖它在所有 OpenAI-compatible provider 上具有一致行为。
+但 `tmp/deepseek-json-report.json` 证明本次使用的 DeepSeek thinking 模型不接受上述
+强制 `tool_choice`，所以它不适合作为默认方案。
 
-## 风险 2：`function_call="auto"` 没有强制结构化返回
+## 修复前的 DeepSeek 实测
 
-`auto` 允许模型自行决定是否调用函数。模型可以把 JSON 放进普通 `message.content`，也可以返回空 content，不能保证一定得到 `submit_review.arguments`。如果 analyze 的下游必须获得字典，更合适的是强制指定函数，或者直接使用 JSON mode。
+诊断脚本为 `src/mle_critic/test/test_deepseek_json_interfaces.py`，完整历史日志为
+`tmp/deepseek-json-report.json`。环境是 Python 3.12、OpenAI SDK 1.72.0、LiteLLM
+1.65.7，模型是 `deepseek-v4-flash`，每条路径 10 次。
 
-## 风险 3：Dojo 只读取 legacy `message.function_call`
+成功不仅要求输出可解析，还要求字段类型正确、`is_bug=false`、`summary` 非空，且
+metric 精确等于提示中的 `0.8123`。
 
-返回后，Dojo 只检查：
-
-```python
-function_call = choice.message.function_call
-```
-
-它没有读取现代响应字段：
-
-```python
-choice.message.tool_calls[0].function.arguments
-```
-
-如果 LiteLLM/provider 用现代 `tool_calls` 返回，即使服务端实际给出了合格 arguments，Dojo 仍可能判断“没有 function call”，转而返回 `message.content`。这个 content 可能是 JSON 字符串，也可能为空；此时 `GenericLLM` 得到的是 `str`/`None`，而不是 analyze 下游预期的 `dict`。
-
-## 风险 4：错误时主动退化为无约束文本
-
-当 LiteLLM 抛出的 `BadRequestError` 文本包含 `function calling` 或 `functions` 时，Dojo 会删除：
-
-```python
-functions
-function_call
-```
-
-然后重新请求普通文本。返回解析阶段如果没有 function call 或函数名不匹配，也会直接返回 `message.content`。因此 schema 在这些 fallback 路径上完全不再是硬约束。
-
-## 本机 DeepSeek 实测
-
-测试脚本：`src/mle_critic/test/test_deepseek_json_interfaces.py`。环境为 Python 3.12、OpenAI SDK 1.72.0、LiteLLM 1.65.7，模型为 `deepseek-v4-flash`，每条路径 10 次：
-
-测试的成功判据除类型/schema 外，还要求 `summary` 非空且 metric 等于提示中的 `0.8123`，因此比当前 Dojo schema（只规定 `summary` 是 string，没有 `minLength`）稍严格。
-
-| 路径 | 成功率 | 含义 |
+| 路径 | 成功率 | 观察 |
 |---|---:|---|
-| OpenAI SDK + `response_format=json_object` | 10/10 | DeepSeek OpenAI-compatible JSON mode 本身稳定 |
-| LiteLLM + `response_format=json_object` | 9/10 | LiteLLM JSON mode 基本稳定，仍有一次空/不可解析响应 |
-| LiteLLM + Dojo hybrid legacy payload | 5/10 | 出现截断 arguments，以及既无 arguments 也无 content |
-| 实际 `LiteLLMClient.query()` | 2/10 | 多数 fallback 成字符串/空 content；另有一次独立的 W&B import 故障 |
+| OpenAI SDK + JSON mode | 10/10 | 同一 endpoint 上最稳定 |
+| LiteLLM + JSON mode | 9/10 | 唯一失败是 `summary` 为空；JSON 本身可解析 |
+| OpenAI SDK + forced tools | 0/10 | 全部被 thinking 模式拒绝 `tool_choice` |
+| LiteLLM + forced tools | 0/10 | 同上 |
+| LiteLLM + upstream hybrid legacy payload | 3/10 | 空响应或截断 arguments 较多 |
+| 修复前的实际 Dojo wrapper | 6/10 | 三次空字符串；另有一次独立 W&B import 故障 |
 
-这组结果支持以下结论：**DeepSeek 并非普遍不能稳定输出 JSON，主要问题是 Dojo 的结构化输出 transport 与当前 DeepSeek/LiteLLM 组合兼容性差。** 但不能把所有失败都归因于同一个 payload：
+因此，这组数据支持选择 JSON mode。它也说明 JSON mode 仍需 schema validation 和
+应用层重试：LiteLLM JSON 的一次失败虽然是合法 JSON，但没有满足更严格的业务约束。
 
-- `litellm_json` 的 1 次失败说明 provider/LiteLLM 链路也不是绝对 100%。
-- `dojo_wrapper` 第 1 次出现 `cannot import name 'Deprecated' from wandb.proto.wandb_telemetry_pb2`，这是 W&B/protobuf 安装不一致，和 JSON transport 无关。
-- wrapper 后续调用能进入 API 请求，说明其余失败才可用于观察 Dojo 的返回解析行为。
+W&B 错误如下，它发生在 backend 请求之前，与 DeepSeek transport 无关：
 
-## 对复现和采数据的建议
-
-严格复现 upstream 时，不应悄悄修改 backend；应保留原 payload，并记录 analyze 解析失败率。这也是为什么 upstream reproduction 与学生 fallback 结果必须分开存放。
-
-如果目标是稳定采数据而不是逐行复现，优先考虑让 analyze 使用：
-
-```python
-response_format={"type": "json_object"}
+```text
+cannot import name 'Deprecated' from wandb.proto.wandb_telemetry_pb2
 ```
 
-并在本地执行 `json.loads` + JSON Schema validation。另一种方案是完整迁移到现代 `tools` + 强制 `tool_choice`，同时兼容解析 `tool_calls`；但本轮四模式结果没有测试现代 tools 路径，实施前应先运行测试脚本中的 `openai_tools` 和 `litellm_tools` 模式验证。
+## 本次代码更改
 
-无论使用哪种 transport，都不应把“fallback 到普通文本”视为结构化调用成功；至少应记录 transport 类型、原始响应和 schema 校验错误，必要时针对结构化失败单独重试。
+主要修改位于 `src/dojo/core/solvers/llm_helpers/backends/lite_llm.py`：
+
+- 结构化调用默认发送 `response_format={"type": "json_object"}`；
+- 将 function description 和完整 JSON Schema 附加到 system message，且不修改调用方
+  原始 messages；
+- 对返回值执行 JSON object 类型检查和 Draft 7 schema validation；
+- 空 content、非法 JSON、字段缺失、字段类型错误等都视为结构化调用失败；
+- 默认额外重试两次，不再把失败伪装成成功的普通文本；
+- endpoint 明确不支持 JSON mode 时，回退到现代 `tools` 和强制 `tool_choice`；
+- tools 响应读取 `message.tool_calls[0].function.arguments`；
+- usage stats 记录最终 transport 和实际结构化 API 请求次数，并汇总重试产生的 token；
+- 修正 `FunctionSpec.as_openai_tool_dict` 的现代 tools 嵌套格式；
+- 修复 `_query_client(..., model_kwargs={})` 的可变默认参数问题；
+- 移除调用方可能传入的冲突 transport 参数，保证一次结构化请求只使用一种接口。
+
+诊断脚本中的 upstream hybrid payload 被保留为历史对照项；`dojo_wrapper` 现在测试修复后的
+真实路径。另新增离线回归测试
+`src/mle_critic/test/test_litellm_structured_output.py`，覆盖：
+
+- 默认 JSON mode 及 schema prompt；
+- 非法 JSON 后重试；
+- schema violation 不退化成文本；
+- 显式现代 tools 的请求与响应解析；
+- JSON mode 不受支持时回退到现代 tools。
+
+## 配置方式
+
+默认配置无需修改。只要调用时提供 `json_schema`、`function_name` 和
+`function_description`，LiteLLM backend 就会使用 JSON mode。
+
+应用层结构化重试次数可在 operator 的 `generation_kwargs` 中调整：
+
+```yaml
+generation_kwargs:
+  structured_output_retries: 2
+```
+
+对于已经验证不处于 thinking 模式、并且 tools 表现更好的 endpoint，可以显式选择：
+
+```yaml
+generation_kwargs:
+  structured_output_mode: tools
+```
+
+可选值只有 `json` 和 `tools`。DeepSeek thinking 模型不要设置为 `tools`，否则仍会收到
+`Thinking mode does not support this tool_choice`。
+
+## 验证
+
+离线回归测试不会访问网络：
+
+```bash
+PYTHONPATH=src pytest -q \
+  src/mle_critic/test/test_litellm_structured_output.py
+```
+
+真实 endpoint 的比较测试会产生 API 调用和费用：
+
+```bash
+python src/mle_critic/test/test_deepseek_json_interfaces.py \
+  --modes openai_json,litellm_json,openai_tools,litellm_tools,litellm_dojo_payload,dojo_wrapper \
+  --trials 10 \
+  --output tmp/deepseek-json-report.json
+```
+
+对于大规模采集，建议至少记录 model、transport、重试次数、原始结构化响应和最终 schema
+错误。不要把 schema validation 失败后的普通文本计为一次成功的 analyze 结果。

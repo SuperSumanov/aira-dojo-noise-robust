@@ -93,11 +93,11 @@ class ApptainerJupyterServer(JupyterConnectable):
             env["SUPERIMAGE_VERSION"] = superimage_version
 
         env["BASE_OVERLAYS"] = " ".join(f"--overlay {overlay}:ro" for overlay in self.read_only_overlays)
-        log.warning(f"Starting `Sand` wrapper server with env:")
-        log.warning(f"  APPTAINER_BIND: {env['APPTAINER_BIND']}")
-        log.warning(f"  SUPERIMAGE_DIR: {env['SUPERIMAGE_DIR']}")
-        log.warning(f"  SUPERIMAGE_VERSION: {env['SUPERIMAGE_VERSION']}")
-        log.warning(f"  BASE_OVERLAYS: {env['BASE_OVERLAYS']}")
+        log.warning("Starting `Sand` wrapper server with env:")
+        log.warning(f"  APPTAINER_BIND: {env.get('APPTAINER_BIND', '')}")
+        log.warning(f"  SUPERIMAGE_DIR: {env.get('SUPERIMAGE_DIR', '')}")
+        log.warning(f"  SUPERIMAGE_VERSION: {env.get('SUPERIMAGE_VERSION', '')}")
+        log.warning(f"  BASE_OVERLAYS: {env.get('BASE_OVERLAYS', '')}")
         log.warning(f"with args: {args}")
         self._subprocess = subprocess.Popen(
             args,

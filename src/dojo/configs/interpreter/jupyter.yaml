@@ -1,5 +1,6 @@
 _target_: dojo.config_dataclasses.interpreter.jupyter.JupyterInterpreterConfig
 
+container_runtime: singularity
 superimage_directory: ${get_superimage_dir:}
 superimage_version: "2026-07-macos-v1"
 

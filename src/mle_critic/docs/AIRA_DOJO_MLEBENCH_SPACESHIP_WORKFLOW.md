@@ -74,7 +74,7 @@ Hydra 原始 experiment 配置
         `-- LLM: GPT-4o / o3
         |
         v
-Apptainer superimage 内启动 Jupyter kernel
+Singularity superimage 内启动 Jupyter kernel
         |
         +-- ./data 只读绑定 prepared/public
         +-- agent 生成并执行候选 Python 代码
@@ -663,7 +663,7 @@ clients: deepseek-v4-pro
 step_limit: 5
 ```
 
-Python interpreter 本身原仓库已有，但原始 `run_example` 和正式 MLE-bench experiments 使用的是 Jupyter。学生 smoke 改用宿主 Python，目的是绕过当时机器上 Apptainer/user namespace 限制。
+Python interpreter 本身原仓库已有，但原始 `run_example` 和正式 MLE-bench experiments 使用的是 Jupyter。学生 smoke 当时改用宿主 Python，是为了绕过 Singularity runtime backend 落地前的 Apptainer/user namespace 限制；当前默认 Jupyter 配置已经可以直接使用 Singularity。
 
 因此它与原流程的主要环境差异是：
 

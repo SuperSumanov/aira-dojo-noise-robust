@@ -13,7 +13,7 @@ from dojo.config_dataclasses.task.mlebench import MLEBenchTaskConfig
 from dojo.utils.config import build
 from dojo.utils.environment import get_mlebench_data_dir
 
-SUPERIMAGE_VERSION = "2025-05-02v2"
+SUPERIMAGE_VERSION = "2026-07-macos-v1"
 
 
 def execute_code(code_file_path: str, task_name: str, timeout_hours: float = 4.0) -> Dict[str, Any]:
@@ -37,7 +37,10 @@ def execute_code(code_file_path: str, task_name: str, timeout_hours: float = 4.0
     )
 
     interpreter_config = JupyterInterpreterConfig(
-        superimage_version=SUPERIMAGE_VERSION, timeout=int(timeout_hours * 60 * 60), working_dir=tmp_dir
+        container_runtime="singularity",
+        superimage_version=SUPERIMAGE_VERSION,
+        timeout=int(timeout_hours * 60 * 60),
+        working_dir=tmp_dir,
     )
 
     try:

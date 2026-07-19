@@ -13,9 +13,9 @@
 - Apptainer 与 Singularity CE 都使用 SIF。由 Apptainer 构建的 `.sif` 通常可以直接由
   Singularity CE 运行。
 - 构建镜像不要求 NVIDIA GPU。GPU 驱动由集群运行时通过 `singularity --nv` 注入。
-- 这一步只解决“生成 SIF”。当前 dojo 的 Jupyter wrapper 仍硬编码了 `apptainer`、
-  `APPTAINER_BIND`、`--fakeroot` 和 Apptainer 日志目录；要在只有 Singularity、没有
-  fakeroot 的机器上运行，还需要另行修改 wrapper。
+- 运行时迁移已经完成：默认 Jupyter 配置使用前台 `singularity exec`，不依赖 instance、
+  fakeroot、动态 writable overlay 或 Apptainer 日志目录。Apptainer backend 仍保留用于兼容
+  原环境。
 
 ## 推荐路线
 
@@ -28,7 +28,7 @@ macOS
        -> Apptainer builder container (linux/amd64, root)
             -> superimage.root.<VERSION>.sif
                  -> 拷贝到 Linux 集群
-                      -> singularity exec / instance run
+                      -> singularity exec
 ```
 
 ## 1. 前置检查

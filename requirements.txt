@@ -32,7 +32,7 @@ tqdm==4.67.1
 xlrd==2.0.1
 submitit==1.5.4
 pynvml
-wandb==0.19.9
+wandb==0.28.1
 websocket-client==1.8.0
 transformers==4.50.1
 ipykernel==6.29.5

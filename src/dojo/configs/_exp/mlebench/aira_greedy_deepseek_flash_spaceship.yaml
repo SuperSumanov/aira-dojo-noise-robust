@@ -1,0 +1,15 @@
+# @package _global_
+defaults:
+  - override /interpreter: jupyter
+  - override /solver: mlebench/greedy
+  - override /task: mlebench/spaceship-titanic
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_flash
+
+metadata:
+  git_issue_id: deepseek_flash_spaceship_smoke
+
+solver:
+  step_limit: 5

@@ -44,7 +44,7 @@ draft:
       
       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
       
-      **COMPUTE**: You have access to a Python environemnt with 1 NVIDIA H200 GPU(s) and 24 CPUs available, and the following packages installed: {{packages}}. If you need to, feel free to use additional libraries that fit the problem. 
+      **COMPUTE**: You have access to a Python environemnt with 1 NVIDIA GeForce RTX 3090 GPU(s) (24GB VRAM) and 6 CPUs available, and the following packages installed: {{packages}}. If you need to, feel free to use additional libraries that fit the problem. 
 
       Consider the previously explored ideas, and make sure the idea you propose considers a DIFFERENT ASPECT OF THE SOLUTION, but keep the EVALUATION CONSISTENT. 
       Brainstorm about possible approaches and WHY THEY ARE LIKELY TO BE EFFECTIVE AND INCREASE THE PERFORMANCE for the given task, and the available data and compute resources.

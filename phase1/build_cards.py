@@ -26,6 +26,10 @@ TASK_TYPE = {
     "tabular-playground-series-may-2022": "tabular",
     "tabular-playground-series-dec-2021": "tabular",
     "aerial-cactus-identification": "image-cls",
+    "leaf-classification": "image-cls",
+    "denoising-dirty-documents": "image-cls",
+    "spooky-author-identification": "nlp",
+    "random-acts-of-pizza": "nlp",
 }
 
 
@@ -45,7 +49,14 @@ def _peek_competition(jp: str):
 
 
 def build(runs_root: str, out_path: str, tasks=None):
-    journals = sorted(glob.glob(os.path.join(runs_root, "**", "journal.jsonl"), recursive=True))
+    # case-insensitive: new runs write json/JOURNAL.jsonl (live), old runs also checkpoint/journal.jsonl.
+    # both files hold the same content -> keep ONE per run dir (dedup) so we can also read in-progress runs.
+    _jset = (glob.glob(os.path.join(runs_root, "**", "journal.jsonl"), recursive=True)
+             + glob.glob(os.path.join(runs_root, "**", "JOURNAL.jsonl"), recursive=True))
+    _byrun = {}
+    for _j in _jset:
+        _byrun.setdefault(os.path.dirname(os.path.dirname(_j)), _j)
+    journals = sorted(_byrun.values())
     kept = {}                       # id -> Card (dedup)
     per_task = Counter()
     per_task_runs = Counter()

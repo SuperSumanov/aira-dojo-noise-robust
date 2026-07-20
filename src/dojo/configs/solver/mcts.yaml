@@ -29,7 +29,7 @@ use_complexity: ??? # Whether to consider complexity differences in prompts - on
 
 
 # --- Environment Configuration ---
-execution_timeout: 14400 # Specifies the timeout for the interpreter (decreased from 32400)
+execution_timeout: 1500 # per-exec cap 25min: 3090 reality; kill runaway/expensive nodes so MCTS explores more (was 14400)
 time_limit_secs: 86400
 # List of Python packages available for execution
 available_packages:

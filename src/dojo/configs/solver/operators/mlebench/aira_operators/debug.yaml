@@ -39,7 +39,7 @@ debug:
       ````
 
       # Compute Environment:
-      - GPU: 1 NVIDIA H200
+      - GPU: 1 NVIDIA GeForce RTX 3090 (24GB)
       - CPUs: 24
       - Available Packages: {{packages}}
       - Additional libraries allowed as needed.

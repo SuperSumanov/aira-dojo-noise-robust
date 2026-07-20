@@ -11,7 +11,39 @@ any aira-dojo core behavior — all code lives in `phase1/`.**
 
 ---
 
-## 实验记录与当前进度（2026-07-07）
+## 当前状态（2026-07-19）——转向「数据优先」
+
+> 下面 2026-07-07 起的记录是历史（reasoning-critic 方向）；此后多轮 pivot，当前方向如下。
+
+**为什么转向。** Phase-1 一串「learned critic 输给自报分 baseline」的结论**大多欠功率**（数据仅 148→289 卡、
+真 grade 噪声大 R²≈0.14、sibling 偏好对稀疏）。学长的方法论批评（对）：**数据太小，没真正证伪** reasoning-critic/PRM
+赖以成立的两假设——①LLM+推理在大量 MLE 数据上能**跨 task 泛化 + 快速拟合**新任务；②GPU 能收集到**够训 LLM 的数据**。
+A2 学习曲线审计更自打脸：probe 随数据一直升 = **data-limited 非到天花板**，故此前「残差不可知」的结论是错的。
+
+**所以先产数据。** 目标 = 自持 MCTS 采集，在**单卡 3090** 下产出尽量大的**带标签 MLE-搜索数据集**（每候选解节点
+一张 card：代码 / 自报验证分 / 外部 MLE-bench 真分 / 树血缘 / 算子），用来 (a) properly 测假设1（`assumption_1.py`）；
+(b) 把 probe/SAE 推过 data-limit；(c) 数据够则（放开「不微调」后）训小 PRM。
+
+**已落地工具（本 branch，均内建验证）：**
+
+| 文件 | 作用 |
+|---|---|
+| `build_cards.py` | 扫 run 的 `checkpoint/journal.jsonl` → 带官方 grade+阈值的 labeled cards（去重、多任务类型） |
+| `cards.py` | Card schema（TaskInfo/Obs/Lineage/Label）+ journal 解析 + label-hiding |
+| `feat_cache.py` | **id-keyed** 冻结特征缓存（按 `card.id` 对齐，取代脆弱的位置对齐） |
+| `refresh_features.py` | 增量抽 layer-21 self-report-masked 特征（只跑新卡，GPU）+ 迁移旧缓存，随数据增长可扩 |
+| `assumption_1.py` | fast-fit harness：probe 在 N−1 任务训 + 留出任务 k 个 adapt 样本 → Spearman vs k，测跨任务泛化+快速拟合 |
+
+**当前数据 & 采集：** ~312 卡（spaceship 223 / nomad 38 / tps_may 46 / tps_dec 5，后两个在长），来自自持 capped
+MCTS（3090-真实 prompt + 单次执行 25min 上限 → ~6 graded/run @ 33% 成功率，墙杀补队自持）。关键复现点：**外部真分只在
+`checkpoint/journal.jsonl`，不在实时 `json/JOURNAL.jsonl`**；`solver.execution_timeout` 要匹配算力（3090 → 1500s）。
+
+**中间的干净正结果（H1，留作地基）：** 冻结中层表征可**线性解码候选解的连续 grade**，独立于自报分、扛住长度残差化——
+本项目少数干净正结果；但多轮 novelty 深搜发现该空间已被 2025-26 工作占尽（VeriLoC 等），故不单独作卖点，并入数据优先地基。
+
+---
+
+## 实验记录（历史 · 2026-07-07 起 · reasoning-critic 方向，后已多轮转向，见上「当前状态」）
 
 > 完整版见仓库根 `phase1_进度报告_20260707.md`；此处为 README 内的浓缩记录。
 

@@ -1,25 +1,6 @@
 # 用 Spaceship Titanic 复现 AIRA-Dojo × MLE-bench：`dojo-reproduce` 流程
 
-本文以 `spaceship-titanic` 为贯穿示例，分别说明：
-
-1. **`dojo-reproduce` 分支的默认复现和采数流程**：superimage + Jupyter interpreter + 原始 AIRA operators + GPT-4o/o3 配置。
-2. **研究分支的差异**：DeepSeek + Python interpreter + prompt/metric 解析改动，以及可选 HCE 评测协议。
-
-如果目标是复现原仓库结果或按原协议采数据，应以第一部分为准。第二部分只用于解释旧的研究分支，不能和原仓库结果直接混算。
-
-## 0. 先明确代码来源边界
-
-当前 `dojo-reproduce` 分支的 Git 边界如下：
-
-| 类别 | 边界/代表提交 | 含义 |
-|---|---|---|
-| 原仓库基线 | `c795d86` | 复现所依据的上游代码快照 |
-| 本机 superimage 适配 | 原提交 `ec6f741`、`9fb0e92`；本分支为 `aef1ed0`、`2a99670` | 为当前机器编译镜像所做的依赖和版本适配；因基点不同，cherry-pick 后 commit ID 改变 |
-| 当前分支 | `dojo-reproduce` | `c795d86` 加上述两个适配提交；不包含学生研究分支提交 |
-
-因此本分支可以直接作为代码级复现和正式采数 checkout。工作区中若有个人文档或实验文件，不会改变上述代码边界；正式运行前仍建议用 `git status` 记录工作区状态。
-
----
+本文以 `spaceship-titanic` 为贯穿示例，说明`dojo-reproduce` 分支的默认复现和采数流程.
 
 # 第一部分：原 AIRA-Dojo 仓库默认流程
 
@@ -52,7 +33,7 @@ Dojo 原仓库从初始提交起就有任务配置：
 src/dojo/configs/task/mlebench/spaceship-titanic.yaml
 ```
 
-它不是学生新增的任务。不过它不属于正式的 75-task benchmark，也不属于 MLE-bench Lite，不能计入正式 Lite/All 汇总成绩。
+不过它不属于正式的 75-task benchmark，也不属于 MLE-bench Lite，不能计入正式 Lite/All 汇总成绩。
 
 ## 2. 原仓库运行链路总览
 
@@ -90,7 +71,7 @@ MLE-bench 使用 prepared/private/test.csv 评分
 journal/checkpoint/search_data/tree/grading_report
 ```
 
-原仓库默认的隔离边界是 superimage/Jupyter，而不是宿主 Python 子进程。你已经编译好的 superimage 正是这条流程需要的运行环境。
+原仓库默认的隔离边界是 superimage/Jupyter，而不是宿主 Python 子进程。
 
 ## 3. 原仓库前置环境
 
@@ -303,87 +284,32 @@ $MLE_BENCH_DATA_DIR/
 
 ## 5. 用当前代码跑 Spaceship
 
-原仓库的单次配置仍然是：
+原仓库的 GPT-4o 单次配置是：
 
 ```text
 src/dojo/configs/_exp/run_example.yaml
 ```
 
-它使用 Jupyter/superimage、MLE-bench Greedy、GPT-4o operators 和 `step_limit=5`，默认任务是 `aerial-cactus-identification`。改成 Spaceship 后，可以先只解析 Hydra 配置，不启动模型或容器：
+它使用 Jupyter/superimage、MLE-bench Greedy、GPT-4o operators 和 `step_limit=5`，默认任务是 `aerial-cactus-identification`。当前分支另有一个只替换 LLM 的 Spaceship 调试配置：
+
+```text
+src/dojo/configs/_exp/mlebench/aira_greedy_deepseek_flash_spaceship.yaml
+```
+
+这个配置仍使用原流程的 Jupyter/superimage、MLE-bench Greedy 和 `step_limit=5`，但把 analyze、debug、draft、improve 四个 operator 都切换为 `deepseek-v4-flash`。它使用 OpenAI-compatible endpoint `https://api.deepseek.com`，读取 `PRIMARY_KEY_DEEPSEEK_V4_FLASH`，未设置时回退到 `PRIMARY_KEY`。
+
+运行前必须激活环境和配置环境变量
 
 ```bash
 source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
 set -a
 source .env
 set +a
-
-python -m dojo.main_run \
-  +_exp=run_example \
-  task.name=spaceship-titanic \
-  logger.use_wandb=false \
-  --cfg job --resolve
+export NO_PROXY=127.0.0.1,localhost
+export no_proxy=127.0.0.1,localhost
 ```
 
-这里涉及两个不同目录：
-
-- `srun_pool` 的 code snapshot 是当前仓库源码的一份固定副本，位于 `$LOGGING_DIR/aira-dojo/snapshots/<timestamp>/`。worker 从该副本加载 Dojo，避免同一批任务因运行期间修改 checkout 而混用不同代码；它不是 LLM 的工作目录。
-- 每个实验都有独立的 `${logger.output_dir}/workspace_agent/`，以读写方式挂载到容器的 `/workspace`。LLM 可以在其中写代码、模型、中间文件和 `submission.csv`；MLE-bench public data 单独只读挂载到 `/workspace/data`。workspace 保留在宿主实验目录中，但每轮评分后 Dojo 会删除 `submission.csv`，避免下一轮误用旧结果。
-
-### 5.1 单次直接运行
-
-如果只是验证原始单次入口，可以在已经申请好的 Slurm allocation 中显式启动一个 step：
-
-```bash
-srun \
-  --jobid="$SLURM_JOB_ID" \
-  --exclusive \
-  --nodes=1 \
-  --ntasks=1 \
-  --cpus-per-task=2 \
-  --gres=gpu:1 \
-  python -m dojo.main_run \
-    +_exp=run_example \
-    task.name=spaceship-titanic \
-    metadata.seed=42 \
-    logger.use_wandb=false
-```
-
-这种方式最接近原来的 `run_example`，但它绕过了新 launcher，不创建 code snapshot 和 pool manifest，也没有 controller 级重试和恢复。它适合排查单个 Spaceship 运行本身，不适合正式并行采数。不要在 `salloc` 返回的 shell 中直接运行 `main_run`；应通过上面的 `srun` 让任务真正进入带 GPU 隔离的 job step。
-
-### 5.2 用 `srun_pool` 跑一个 seed
-
-新 launcher 的入口是 `main_runner_job_array`。它需要 benchmark 配置，因此这里复用与 `run_example` 算法设置一致的 `runner_example`，在命令行把 benchmark 缩成 Spaceship，并把 seed 缩成一个：
-
-```bash
-python -m dojo.main_runner_job_array \
-  +_exp=runner_example \
-  'benchmark.tasks=[spaceship-titanic]' \
-  'vars={metadata.seed:[42]}' \
-  launcher=srun_pool \
-  launcher.debug=true \
-  launcher.max_parallel=1 \
-  launcher.cpus_per_step=2 \
-  launcher.gpus_per_step=1 \
-  logger.use_wandb=false
-```
-
-`launcher.debug=true` 只展开并打印任务，不创建 snapshot，也不启动 `srun`。确认输出只有一个 `spaceship-titanic` 后，在一个至少包含 1 GPU、2 CPU 的单节点 allocation 中改成：
-
-```bash
-python -m dojo.main_runner_job_array \
-  +_exp=runner_example \
-  'benchmark.tasks=[spaceship-titanic]' \
-  'vars={metadata.seed:[42]}' \
-  launcher=srun_pool \
-  launcher.debug=false \
-  launcher.max_parallel=1 \
-  launcher.cpus_per_step=2 \
-  launcher.gpus_per_step=1 \
-  launcher.min_remaining_seconds_to_launch=0 \
-  logger.use_wandb=false
-```
-
-短 smoke allocation 可以这样申请：
+短smoke测试可以申请少量资源进行
 
 ```bash
 salloc \
@@ -397,13 +323,71 @@ salloc \
   --time=02:00:00
 ```
 
-不要添加 `--mem`、`--mem-per-cpu` 或 `--mem-per-gpu`。`min_remaining_seconds_to_launch=0` 只适合这次短链路验证；较长采集应恢复默认的 1800 秒保护，避免 allocation 即将结束时仍启动新任务。
+不要添加 `--mem`、`--mem-per-cpu` 或 `--mem-per-gpu`。可以先只解析 Hydra 配置进行验证，不启动模型或容器：
+
+```bash
+python -m dojo.main_run \
+  +_exp=mlebench/aira_greedy_deepseek_flash_spaceship \
+  logger.use_wandb=false \
+  --cfg job --resolve
+```
+
+`launcher.debug=true` 只展开并打印任务，不创建 snapshot，也不启动 `srun`。这里涉及两个不同目录：
+
+- `srun_pool` 的 code snapshot 是当前仓库源码的一份固定副本，位于 `$LOGGING_DIR/aira-dojo/snapshots/<timestamp>/`。worker 从该副本加载 Dojo，避免同一批任务因运行期间修改 checkout 而混用不同代码；它不是 LLM 的工作目录。
+- 每个实验都有独立的 `${logger.output_dir}/workspace_agent/`，以读写方式挂载到容器的 `/workspace`。LLM 可以在其中写代码、模型、中间文件和 `submission.csv`；MLE-bench public data 单独只读挂载到 `/workspace/data`。workspace 保留在宿主实验目录中，但每轮评分后 Dojo 会删除 `submission.csv`，避免下一轮误用旧结果。
+
+### 5.1 单次直接运行
+
+如果只是验证单次入口，可以在已经申请好的 Slurm allocation 中显式启动一个 step：
+
+```bash
+srun \
+  --jobid="$SLURM_JOB_ID" \
+  --exclusive \
+  --nodes=1 \
+  --ntasks=1 \
+  --cpus-per-task=2 \
+  --gres=gpu:1 \
+  python -m dojo.main_run \
+    +_exp=mlebench/aira_greedy_deepseek_flash_spaceship \
+    metadata.seed=42 \
+    logger.use_wandb=false
+```
+
+这仍是原来的 Jupyter/superimage 执行链路，只是 LLM client 换成了 DeepSeek V4 Flash。它绕过了新 launcher，不创建 code snapshot 和 pool manifest，也没有 controller 级重试和恢复，因此适合排查单个 Spaceship 运行本身，不适合正式并行采数。不要在 `salloc` 返回的 shell 中直接运行 `main_run`；应通过上面的 `srun` 让任务真正进入带 GPU 隔离的 job step。
+
+### 5.2 用 `srun_pool` 跑一个 seed
+
+新 launcher 的入口是 `main_runner_job_array`。它需要 benchmark 配置，因此这里复用与 `run_example` 算法设置一致的 `runner_example`，在命令行把 benchmark 缩成 Spaceship、把 seed 缩成一个，并将四个 operator 的 client 全部覆盖为 DeepSeek V4 Flash：
+
+```bash
+python -m dojo.main_runner_job_array \
+  +_exp=runner_example \
+  'benchmark.tasks=[spaceship-titanic]' \
+  'vars={metadata.seed:[42]}' \
+  'solver/client@solver.operators.analyze.llm.client=litellm_deepseek_flash' \
+  'solver/client@solver.operators.debug.llm.client=litellm_deepseek_flash' \
+  'solver/client@solver.operators.draft.llm.client=litellm_deepseek_flash' \
+  'solver/client@solver.operators.improve.llm.client=litellm_deepseek_flash' \
+  metadata.git_issue_id=oneseed-example \
+  launcher=srun_pool \
+  '~launcher.qos' \
+  launcher.debug=false \
+  launcher.max_parallel=1 \
+  launcher.cpus_per_step=2 \
+  launcher.gpus_per_step=1 \
+  launcher.min_remaining_seconds_to_launch=0 \
+  logger.use_wandb=false
+```
+
+这里使用 Hydra config-group override，而不是只覆盖 `model_id`：这样 `base_url=https://api.deepseek.com` 和 `use_azure_client=false` 也会一起切换，避免继承 `litellm_4o` 的 Azure 配置。`~launcher.qos` 用于删除 `runner_example` 留下的旧 Slurm launcher 字段；allocation 的 QoS 已由外层 `salloc` 决定，`SrunPoolConfig` 也不接受该字段。
 
 5.1 和 5.2 最终都调用 `dojo.main_run._main()`，所以在 task、seed、solver、interpreter 和 LLM 配置相同时，运行的是同一套 Spaceship 求解逻辑。区别在调度外壳：5.1 从当前 checkout 直接运行；5.2 从固定 snapshot 运行，并增加 manifest、独立 attempt 日志、重试、恢复和并发补位。因此两者在算法层面等价，但不是运行管理和产物层面的完全相同；即使 seed 相同，远程 LLM 和 GPU 训练也不保证逐步复现。不要让 5.1 和 5.2 同时运行同一配置，以免写入相同实验目录。
 
 ### 5.3 多 seed 并行
 
-例如并行跑 seed 1、2、3，先申请同一节点上的 3 GPU 和 6 CPU：
+例如并行跑 seed 1、2、3，先申请同一节点上的 4 GPU 和 8 CPU：
 
 ```bash
 salloc \
@@ -411,9 +395,9 @@ salloc \
   --qos=gpu \
   --partition=gpu_8h \
   --nodes=1 \
-  --ntasks=3 \
+  --ntasks=4 \
   --cpus-per-task=2 \
-  --gpus-per-node=3 \
+  --gpus-per-node=4 \
   --time=08:00:00
 ```
 
@@ -423,16 +407,22 @@ salloc \
 python -m dojo.main_runner_job_array \
   +_exp=runner_example \
   'benchmark.tasks=[spaceship-titanic]' \
-  'vars={metadata.seed:[1,2,3]}' \
+  'vars={metadata.seed:[1,2,3,4]}' \
+  'solver/client@solver.operators.analyze.llm.client=litellm_deepseek_flash' \
+  'solver/client@solver.operators.debug.llm.client=litellm_deepseek_flash' \
+  'solver/client@solver.operators.draft.llm.client=litellm_deepseek_flash' \
+  'solver/client@solver.operators.improve.llm.client=litellm_deepseek_flash' \
+  metadata.git_issue_id=multiseed-example \
   launcher=srun_pool \
+  '~launcher.qos' \
   launcher.debug=false \
-  launcher.max_parallel=3 \
+  launcher.max_parallel=4 \
   launcher.cpus_per_step=2 \
   launcher.gpus_per_step=1 \
   logger.use_wandb=false
 ```
 
-controller 会维持最多 3 个独立的 `srun --exclusive` step，每个 step 使用 1 GPU、2 CPU。每个实验的 metadata 记录完整的 `allocation.step` ID；typed config、attempt、stdout/stderr 和状态写入 meta-experiment 下的：
+controller 会维持最多 4 个独立的 `srun --exclusive` step，每个 step 使用 1 GPU、2 CPU。每个实验的 metadata 记录完整的 `allocation.step` ID；typed config、attempt、stdout/stderr 和状态写入 meta-experiment 下的：
 
 ```text
 srun_pool/<batch-hash>/manifest.json
@@ -635,103 +625,7 @@ for node in working[-5:]:
 PY
 ```
 
-## 9. 原仓库的高并发采数
-
-原仓库多运行入口：
-
-```bash
-python -m dojo.main_runner_job_array
-```
-
-原始示例 `runner_example.yaml` 使用：
-
-- `benchmark=mlebench/dev`
-- `interpreter=jupyter`
-- `solver=mlebench/greedy`
-- GPT-4o operators
-- seeds `[1,2,3]`
-
-它不是 Spaceship 单任务 runner。若只想用 Spaceship 验证并发框架，可新增一个**仅选择任务、不改变算法**的 benchmark 配置：
-
-```yaml
-# src/dojo/configs/benchmark/mlebench/spaceship.yaml
-_target_: dojo.config_dataclasses.benchmark.BenchmarkConfig
-
-name: mlebench
-tasks:
-  - spaceship-titanic
-```
-
-再复制原始 runner 结构：
-
-```yaml
-# src/dojo/configs/_exp/mlebench/upstream_spaceship_runner.yaml
-# @package _global_
-defaults:
-  - override /benchmark: mlebench/spaceship
-  - override /interpreter: jupyter
-  - override /solver: mlebench/greedy
-  - override /solver/client@solver.operators.analyze.llm.client: litellm_4o
-  - override /solver/client@solver.operators.debug.llm.client: litellm_4o
-  - override /solver/client@solver.operators.draft.llm.client: litellm_4o
-  - override /solver/client@solver.operators.improve.llm.client: litellm_4o
-
-metadata:
-  git_issue_id: upstream_spaceship_smoke
-
-solver:
-  step_limit: 5
-
-vars:
-  metadata.seed: [1, 2, 3]
-
-launcher:
-  debug: true
-  array_parallelism: 3
-```
-
-这两个配置是为了选择 Spaceship 而增加的薄包装，不应加入 DeepSeek、Python interpreter、HCE 或学生 prompt 改动。
-
-先 dry run：
-
-```bash
-python -m dojo.main_runner_job_array \
-  +_exp=mlebench/upstream_spaceship_runner \
-  logger.use_wandb=False \
-  launcher.debug=True
-```
-
-再正式提交：
-
-```bash
-python -m dojo.main_runner_job_array \
-  +_exp=mlebench/upstream_spaceship_runner \
-  logger.use_wandb=False \
-  launcher.debug=False \
-  launcher.array_parallelism=3
-```
-
-正式复现原仓库 Lite 数据采集时，应直接使用原始 experiment，例如：
-
-```bash
-python -m dojo.main_runner_job_array \
-  +_exp=mlebench/aira_greedy_o3 \
-  logger.use_wandb=False \
-  launcher.debug=True
-```
-
-确认 dry run 后再设 `launcher.debug=False`。`aira_greedy_o3.yaml` 的原始语义是：
-
-- MLE-bench Lite benchmark。
-- Jupyter/superimage。
-- AIRA Greedy。
-- o3 负责 draft/debug/improve。
-- GPT-4o 负责 analyze。
-- 每个任务 10 个 seed。
-
-这才是原仓库面向正式 benchmark 的代表性采数配置；Spaceship 只是用来先验证整个系统。
-
-### 9.1 原仓库 Lite 的 22/20 任务差异
+## 9 原仓库 Lite 的 22/20 任务差异
 
 原仓库存在一个需要显式处理的配置差异：
 
@@ -769,310 +663,10 @@ python src/dojo/tasks/mlebench/utils/prepare.py \
 
 正式提交 runner 前，应以 `benchmark/mlebench/lite.yaml` 为准逐项检查数据是否 prepared，而不是只相信 split 名称。
 
----
 
-# 第二部分：学生研究分支（不在当前 checkout）
+## 10. 当前代码中的共同注意事项
 
-## 10. 学生流程增加和改变了什么
-
-以下内容用于解释 `phase1-value-critic` 等历史研究分支与原协议的差异。所列 DeepSeek/HCE 配置和实现**不在当前 `dojo-reproduce` checkout 中**，也不应为了正式复现而迁回本分支。
-
-### 10.1 新增 DeepSeek client
-
-新增：
-
-```text
-src/dojo/configs/solver/client/litellm_deepseek_pro.yaml
-src/dojo/configs/solver/client/litellm_deepseek_flash.yaml
-```
-
-模型配置：
-
-```text
-deepseek-v4-pro
-deepseek-v4-flash
-https://api.deepseek.com
-```
-
-使用：
-
-```dotenv
-PRIMARY_KEY_DEEPSEEK_V4_PRO=...
-PRIMARY_KEY_DEEPSEEK_V4_FLASH=...
-```
-
-或者通用 `PRIMARY_KEY`。
-
-### 10.2 新增 DeepSeek experiment
-
-Spaceship 相关新增配置：
-
-```text
-src/dojo/configs/_exp/mlebench/deepseek_smoke.yaml
-src/dojo/configs/_exp/mlebench/deepseek_greedy_spaceship.yaml
-src/dojo/configs/_exp/mlebench/deepseek_mcts.yaml
-src/dojo/configs/_exp/mlebench/deepseek_greedy_hce_spaceship.yaml
-```
-
-这些文件不属于原 AIRA-Dojo 默认流程。
-
-### 10.3 Smoke 改用 Python interpreter
-
-`deepseek_smoke.yaml` 明确选择：
-
-```yaml
-interpreter: python
-solver: mlebench/greedy
-task: mlebench/spaceship-titanic
-clients: deepseek-v4-pro
-step_limit: 5
-```
-
-Python interpreter 本身原仓库已有，但原始 `run_example` 和正式 MLE-bench experiments 使用的是 Jupyter。学生 smoke 当时改用宿主 Python，是为了绕过 Singularity runtime backend 落地前的 Apptainer/user namespace 限制；当前默认 Jupyter 配置已经可以直接使用 Singularity。
-
-因此它与原流程的主要环境差异是：
-
-| 项目 | 原仓库默认 | 学生 smoke |
-|---|---|---|
-| 执行环境 | superimage 内 Jupyter kernel | 宿主 Python multiprocessing 子进程 |
-| 数据提供 | container bind | `workspace_agent/data` 符号链接 |
-| 可用依赖 | superimage 固定依赖 | 当前 Conda/宿主环境依赖 |
-| LLM | GPT-4o/o3 | DeepSeek Pro/Flash |
-| 隔离性 | 较强 | 较弱 |
-
-### 10.4 Python interpreter guard 修复
-
-学生在 `src/dojo/core/interpreters/python.py` 增加：
-
-```python
-global_scope["__name__"] = "__main__"
-```
-
-这样候选代码中的：
-
-```python
-if __name__ == "__main__":
-    main()
-```
-
-会在 Python interpreter 中正常执行。原代码没有显式设置该值。
-
-该改动不影响 Jupyter 原流程，因为 Jupyter 走另一套 interpreter 实现。
-
-### 10.5 修改 AIRA operator prompts
-
-学生在 draft/debug/improve prompts 中加入：
-
-- 强制处理 object/string/categorical dtype。
-- 首个方案优先简单、鲁棒、避免过早 Optuna。
-- 强制最后打印：
-
-```text
-FINAL_VALIDATION_SCORE: <number>
-```
-
-这些要求会直接改变 LLM 生成代码的分布，所以即使使用相同模型和 seed，也不能视为原仓库 prompt 的复现。
-
-### 10.6 修改 Greedy/MCTS metric 解析
-
-学生增加正则 fallback：当 analyze LLM 没能给出结构化 metric 时，从 stdout 提取：
-
-```text
-FINAL_VALIDATION_SCORE: 0.8123
-```
-
-学生还改变了 buggy 判定：
-
-```text
-原仓库：analyze is_bug 也参与判定
-学生版：忽略 analyze is_bug，只看退出码、metric 和 submission validity
-```
-
-这会改变搜索树中哪些节点被 debug、哪些节点被保留，因此属于实质性算法行为变化。
-
-### 10.7 新增 HCE 协议
-
-学生新增：
-
-```text
-src/dojo/tasks/mlebench/hce_eval.py
-```
-
-并修改：
-
-```text
-src/dojo/tasks/mlebench/task.py
-src/dojo/config_dataclasses/task/mlebench.py
-src/dojo/configs/task/mlebench/_default.yaml
-```
-
-HCE 把私有答案固定切为：
-
-```text
-D_search / D_val / D_test
-```
-
-支持：
-
-```text
-task.arm=full
-task.arm=naive
-task.arm=consistency
-```
-
-搜索 fitness 可以来自外部 `D_search`，而不是候选自报 validation。它是学生研究噪声鲁棒评估的实验协议，不属于原 MLE-bench/AIRA 默认评测。
-
-## 11. 学生普通 DeepSeek smoke 怎么走
-
-命令：
-
-```bash
-python -m dojo.main_run \
-  +_exp=mlebench/deepseek_smoke \
-  logger.use_wandb=False \
-  metadata.seed=1
-```
-
-链路：
-
-```text
-同一份 prepared/public 和 prepared/private
-        |
-        v
-deepseek_smoke.yaml
-        |
-        +-- Python interpreter
-        +-- Greedy
-        +-- DeepSeek Pro operators
-        `-- step_limit=5
-        |
-        v
-workspace_agent/data -> prepared/public
-        |
-        v
-DeepSeek 生成带 FINAL_VALIDATION_SCORE marker 的代码
-        |
-        v
-宿主 Python 子进程执行
-        |
-        v
-标准 MLEBenchTask submission 校验与 private score
-        |
-        v
-学生版 Greedy metric fallback/buggy 判定
-```
-
-`deepseek_smoke` 的 `step_limit=5`，root 占 step 0，实际候选数量有限；同时默认 `num_drafts=5`，所以 smoke 通常还没进入完整 improve 阶段。
-
-要观察 draft 后的 improve/debug：
-
-```bash
-python -m dojo.main_run \
-  +_exp=mlebench/deepseek_smoke \
-  logger.use_wandb=False \
-  metadata.seed=1 \
-  solver.step_limit=12
-```
-
-这条命令适合复现学生自己的采数协议，不适合替代第一部分的原仓库流程。
-
-## 12. 学生 HCE 流程怎么走
-
-命令示例：
-
-```bash
-python -m dojo.main_run \
-  +_exp=mlebench/deepseek_greedy_hce_spaceship \
-  logger.use_wandb=False \
-  metadata.seed=1 \
-  task.arm=full
-```
-
-HCE 与普通学生 smoke 的差异：
-
-```text
-普通 smoke：
-  搜索 metric = 候选自报 validation
-  private score = 只记录到 metric.info.score
-
-HCE：
-  搜索 metric = D_search 外部评分或其低成本 proxy
-  D_val score = 保存为辅助/最终选择信息
-  D_test = 不在搜索中评分
-```
-
-不同 arm：
-
-| arm | 搜索信号 |
-|---|---|
-| `full` | 完整 D_search 真实评分 |
-| `naive` | D_search 子采样 proxy |
-| `consistency` | 多次 proxy 均值加方差惩罚 |
-
-这套协议改变了 private labels 的使用方式，不能与原仓库默认分数直接比较。
-
-## 13. 学生流程的输入输出和产物
-
-数据准备结果与第一部分相同，但 Python interpreter 工作区表现不同：
-
-```text
-<run_dir>/workspace_agent/
-`-- data -> $MLE_BENCH_DATA_DIR/spaceship-titanic/prepared/public
-```
-
-候选代码在宿主 Python 子进程中执行，输出仍必须是：
-
-```text
-./submission.csv
-```
-
-学生 prompt 额外要求：
-
-```text
-FINAL_VALIDATION_SCORE: <number>
-```
-
-普通学生流程序列化后的节点仍包含：
-
-```text
-metric              候选 validation 或 fallback marker
-metric_info.score   MLE-bench private accuracy
-is_buggy
-code
-term_out
-parents / children
-```
-
-HCE 节点还会包含：
-
-```text
-metric_info.arm
-metric_info.dsearch_fitness
-metric_info.dsearch_info
-metric_info.dval_score
-metric_info.n_search
-metric_info.n_val
-```
-
-## 14. 两套流程的直接对比
-
-| 维度 | 原仓库流程 | 学生流程 |
-|---|---|---|
-| 代表配置 | `run_example`, `aira_greedy_o3` | `deepseek_smoke`, `deepseek_mcts`, `deepseek_greedy_hce_*` |
-| 主要 LLM | GPT-4o/o3 | DeepSeek Pro/Flash |
-| 默认执行环境 | Jupyter + superimage | Python interpreter |
-| 数据接口 | 容器只读 bind `./data` | 宿主 workspace symlink `./data` |
-| 原始 prompt | AIRA/AIDE 默认 prompt | 加 dtype、简单 baseline、marker 要求 |
-| Metric 解析 | analyze LLM 结构化输出 | analyze + marker 正则 fallback |
-| Buggy 判定 | 包含 analyze `is_bug` | 忽略 analyze `is_bug` |
-| 默认搜索信号 | self-reported validation | 普通版相同；HCE 改为 D_search 外部信号 |
-| 私有分数 | 记录到 aux info | 普通版相同；HCE 进一步切分私有答案 |
-| 是否适合原结果复现 | 是 | 否，属于研究 fork |
-
-
-## 15. 当前代码中的共同注意事项
-
-### 15.1 最终 EVAL logging 问题
+### 10.1 最终 EVAL logging 问题
 
 当前 `src/dojo/main_run.py` 调用：
 
@@ -1098,7 +692,7 @@ checkpoint/journal.jsonl
 
 以及其中是否存在非 buggy 节点和 `metric_info.score`。不要只根据最终退出码判断整次搜索没有产物。
 
-### 15.2 `grading_report.json` 会被覆盖
+### 10.2 `grading_report.json` 会被覆盖
 
 每个有效候选写同一个：
 
@@ -1108,6 +702,6 @@ results/grading_report.json
 
 最后留下的不一定是最佳节点。逐节点分析以 journal/search data 为准。
 
-### 15.3 `submission.csv` 会被删除
+### 10.3 `submission.csv` 会被删除
 
 每轮评分后 Dojo 都会删除 submission，避免后续节点复用旧提交。运行结束后 workspace 中没有 submission 是预期行为。

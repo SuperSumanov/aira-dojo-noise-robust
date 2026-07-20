@@ -57,16 +57,31 @@ class MetadataConfig(BaseConfig):
             "exclude_from_hash": True,
         },
     )
-    torch_version: str = field(
-        default=II("get_torch_version:"),
-        metadata={
-            "help": "Version of PyTorch that the experiment was run with. For Arrival experiments, this is generated using omegaconf interpolations."
-        },
-    )
     slurm_id: str = field(
         default="",
         metadata={
-            "help": "Slurm id for the experiment.",
+            "help": "Full Slurm job or job-step ID for the experiment.",
+            "exclude_from_hash": True,
+        },
+    )
+    slurm_allocation_id: str = field(
+        default="",
+        metadata={
+            "help": "Top-level Slurm allocation ID.",
+            "exclude_from_hash": True,
+        },
+    )
+    slurm_step_id: str = field(
+        default="",
+        metadata={
+            "help": "Slurm step ID within an allocation.",
+            "exclude_from_hash": True,
+        },
+    )
+    launcher_type: str = field(
+        default="",
+        metadata={
+            "help": "Launcher that started the experiment.",
             "exclude_from_hash": True,
         },
     )

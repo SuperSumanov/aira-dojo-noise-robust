@@ -29,30 +29,6 @@ def get_hardware():
     return hardware
 
 
-def check_pytorch_gpu():
-    """Check if PyTorch can use a GPU."""
-    try:
-        return subprocess.check_output(
-            "python -c \"import torch; print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'WARNING: No GPU')\"",
-            shell=True,
-            text=True,
-        ).strip()
-    except subprocess.CalledProcessError:
-        return "ERROR: PyTorch check failed"
-
-
-def check_tensorflow_gpu():
-    """Check if TensorFlow can use a GPU."""
-    try:
-        return subprocess.check_output(
-            "python -c \"import tensorflow as tf; print('GPUs Available:', tf.config.list_physical_devices('GPU'))\"",
-            shell=True,
-            text=True,
-        ).strip()
-    except subprocess.CalledProcessError:
-        return "ERROR: TensorFlow check failed"
-
-
 def format_time(seconds):
     """Convert time in seconds to a human-readable format."""
     hours = seconds // 3600

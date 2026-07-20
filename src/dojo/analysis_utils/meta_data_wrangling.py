@@ -18,7 +18,6 @@ import pandas as pd
 from pathlib import Path
 from typing import Callable, Dict, List, Sequence, Tuple, Union, Optional, Any, Set
 import pickle
-import subprocess
 import re
 import mmap
 from datetime import datetime, timedelta
@@ -31,6 +30,8 @@ from dojo.config_dataclasses.run import RunConfig
 from dojo.utils.experiment_logs import is_experiment, is_meta_experiment
 from dojo.utils.environment import get_mlebench_data_dir
 from dojo.analysis_utils.journal_to_tree import save_journal_log_as_json
+from dojo.core.runners.slurm.accounting import TERMINAL_STATES, query_sacct
+from dojo.core.runners.slurm.manifest import get_srun_pool_tasks
 
 
 # Section: Submitit Wrangling
@@ -56,58 +57,6 @@ def metaexp2ids(metaexp_path: Path) -> List[str]:
     return slurm_ids
 
 
-def run_bash_command(command: str) -> str:
-    """
-    Run a bash command and return the output.
-
-    Args:
-        command: Bash command to run
-
-    Returns:
-        Command output
-
-    Raises:
-        Exception: If command fails
-    """
-    result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    if result.returncode == 0:
-        return result.stdout
-    else:
-        raise Exception(f"Error: {result.stderr}")
-
-
-def render_output_paths(job: Dict[str, Any]) -> Tuple[str, str]:
-    """
-    Render the output paths for stdout and stderr based on job data.
-
-    Args:
-        job: Dictionary containing job data
-
-    Returns:
-        Tuple of (stdout_path, stderr_path)
-    """
-
-    def has_valid_pattern(pat):
-        set_pat = set(pat)
-        required_patterns = {"%a", "%A"}
-        return set_pat.issubset(required_patterns) and set_pat.issubset(pat)
-
-    std_out = job.get("stdout")
-    stderr = job.get("stderr")
-    pattern_stdout = re.findall(r"%[a-zA-Z]", std_out)
-    pattern_stderr = re.findall(r"%[a-zA-Z]", stderr)
-    if has_valid_pattern(pattern_stdout) and has_valid_pattern(pattern_stderr):
-        base_job_id = job["array"]["job_id"]
-        task_id = job["array"]["task_id"]["number"]
-        std_out_path = std_out.replace("%A", str(base_job_id)).replace("%a", str(task_id))
-        std_err_path = stderr.replace("%A", str(base_job_id)).replace("%a", str(task_id))
-    else:
-        # Fallback to the old way of getting stdout and stderr paths
-        std_out_path = job.get("stdout_expanded")
-        std_err_path = job.get("stderr_expanded")
-    return std_out_path, std_err_path
-
-
 def _get_job_data(job_ids: List[str]) -> Dict[str, Dict[str, Any]]:
     """
     Get job data from Slurm for specified job IDs.
@@ -121,76 +70,35 @@ def _get_job_data(job_ids: List[str]) -> Dict[str, Dict[str, Any]]:
     Raises:
         ValueError: If job data cannot be retrieved
     """
-    # Build the comma-separated string of job IDs
-    job_ids_str = ",".join(str(jid) for jid in job_ids)
-
-    cmd = ["sacct", "-j", job_ids_str, "--format=ALL", "--json"]
-
-    # Convert the command list to a string (if run_bash_command expects a string)
-    cmd_str = " ".join(cmd)
-
     try:
-        # Execute the sacct command
-        result = run_bash_command(cmd_str)
-        data = json.loads(result)
+        records = query_sacct(job_ids)
     except Exception as e:
         raise ValueError(f"Error retrieving job data: {e}")
-
-    # Check that we received job information
-    jobs = data.get("jobs")
-    if not jobs:
-        raise ValueError("No job information found in the JSON response.")
+    requested = {str(job_id) for job_id in job_ids}
+    records = {job_id: record for job_id, record in records.items() if job_id in requested}
+    if not records:
+        raise ValueError("No job information found in the sacct response.")
 
     results = {}
-
-    for job in jobs:
-        # Extract the basic fields from each job entry
-        job_name = job.get("name")
-        base_job_id = job["array"]["job_id"]
-        task_id = job["array"]["task_id"]["number"]
-        full_job_id = f"{base_job_id}_{task_id}"
-
-        # Extract time information directly from JSON
-        submit_time_epoch = job.get("time", {}).get("submission")
-        start_time_epoch = job.get("time", {}).get("start")
-        end_time_epoch = job.get("time", {}).get("end")
-        elapsed_seconds = job.get("time", {}).get("elapsed")
-
-        submit_str = datetime.fromtimestamp(submit_time_epoch).isoformat() if submit_time_epoch else "Unknown"
-        start_str = datetime.fromtimestamp(start_time_epoch).isoformat() if start_time_epoch else "Unknown"
-
-        elapsed_str = str(timedelta(seconds=elapsed_seconds)) if elapsed_seconds is not None else "Unknown"
-        # job.get("stdout_expanded") and job.get("stderr_expanded") was not always giving me a valid path
-        # So I will try, if possible to render the path myself. The reason is because there exist 2 ids:
-        # job["array"]["job_id"] and job["job_id"]
-        # These 2 don't always match and we use job["array"]["job_id"] for our stdout and stderr paths
-        # but somehow slurm expands stdout_expanded and stderr_expanded with job["job_id"]
-        # However, this is very specific to the current loggin path structure. So will attempt to find the pattern
-        # and if not, I will resort to the old way of getting the stdout and stderr paths
-        std_out_path, std_err_path = render_output_paths(job)
-
-        # Calculate WaitingTime
-        waiting_time_str = None
-        if submit_time_epoch and start_time_epoch:
-            try:
-                dt_submit = datetime.fromtimestamp(submit_time_epoch)
-                dt_start = datetime.fromtimestamp(start_time_epoch)
-                waiting_delta = dt_start - dt_submit
-                waiting_time_str = str(waiting_delta)
-            except ValueError:  # Should not happen with timestamps, but good practice
-                pass
-
+    for full_job_id, record in records.items():
+        elapsed_raw = record.get("ElapsedRaw", "")
+        elapsed = str(timedelta(seconds=int(elapsed_raw))) if elapsed_raw.isdigit() else "Unknown"
+        waiting = None
+        try:
+            waiting = str(datetime.fromisoformat(record["Start"]) - datetime.fromisoformat(record["Submit"]))
+        except (KeyError, ValueError):
+            pass
         results[full_job_id] = {
-            "job_name": job_name,
-            "state": job.get("state"),
-            "exit_code": job.get("derived_exit_code"),
-            "stdout_path": std_out_path,  # See comment above where render_output_paths is called
-            "stderr_path": std_err_path,  # See comment above where render_output_paths is called
-            "JobID": full_job_id,  # Ensure JobID is included, matching previous _get_sacct_times output
-            "Submit": submit_str,
-            "Start": start_str,
-            "Elapsed": elapsed_str,
-            "WaitingTime": waiting_time_str,
+            "job_name": record.get("JobName", ""),
+            "state": record.get("State", ""),
+            "exit_code": record.get("ExitCode", ""),
+            "JobID": full_job_id,
+            "Submit": record.get("Submit", "Unknown"),
+            "Start": record.get("Start", "Unknown"),
+            "End": record.get("End", "Unknown"),
+            "Elapsed": elapsed,
+            "WaitingTime": waiting,
+            "NodeList": record.get("NodeList", ""),
         }
 
     return results
@@ -434,6 +342,9 @@ def prepare_meta_exp_slurm_dataframe(metaexp_dir: Union[str, Path]) -> pd.DataFr
         DataFrame with meta-experiment data
     """
     metaexp_dir = Path(metaexp_dir).resolve()
+    manifest_tasks = get_srun_pool_tasks(metaexp_dir)
+    if manifest_tasks:
+        return prepare_srun_pool_dataframe(metaexp_dir, manifest_tasks)
 
     # Get job IDs
     ids = metaexp2ids(metaexp_dir)
@@ -475,7 +386,9 @@ def prepare_meta_exp_slurm_dataframe(metaexp_dir: Union[str, Path]) -> pd.DataFr
     df_clean["SubmititStdErr"] = err_outs
 
     # Parse state
-    df_clean["State"] = df["state"].apply(lambda x: x["current"][0])
+    df_clean["State"] = df["state"].apply(
+        lambda state: state["current"][0] if isinstance(state, dict) else state
+    )
     df_clean.rename(columns={"state": "state_dict"}, inplace=True)
     df_clean.rename(columns={"WaitingTime": "Waiting"}, inplace=True)
 
@@ -492,6 +405,49 @@ def prepare_meta_exp_slurm_dataframe(metaexp_dir: Union[str, Path]) -> pd.DataFr
     df_clean["Cmd"] = df_clean["JobID"].apply(lambda job_id: job_id2info[job_id][0])
 
     return df_clean
+
+
+def prepare_srun_pool_dataframe(
+    metaexp_dir: Union[str, Path], manifest_tasks: Optional[List[Dict[str, Any]]] = None
+) -> pd.DataFrame:
+    """Build an analysis table from srun manifests and Slurm 19.05 accounting."""
+    metaexp_dir = Path(metaexp_dir).resolve()
+    tasks = manifest_tasks if manifest_tasks is not None else get_srun_pool_tasks(metaexp_dir)
+    step_ids = [task["step_id"] for task in tasks if task.get("step_id")]
+    try:
+        slurm_data = get_slurm_data(step_ids) if step_ids else {}
+    except ValueError:
+        # The manifest remains useful after Slurm accounting retention expires.
+        slurm_data = {}
+    rows = []
+    for task in tasks:
+        config = RunConfig.load_from_json(task["config_path"])
+        step_id = task.get("step_id", "")
+        accounting = slurm_data.get(step_id, {})
+        stdout = task.get("stdout", "")
+        stderr = task.get("stderr", "")
+        rows.append(
+            {
+                "RunID": task["run_id"],
+                "JobID": step_id,
+                "AllocationID": task.get("allocation_id", ""),
+                "State": accounting.get("state") or task.get("slurm_state") or task.get("status", "").upper(),
+                "PoolStatus": task.get("status", ""),
+                "ExitCode": accounting.get("exit_code", task.get("exit_code")),
+                "Elapsed": accounting.get("Elapsed", "Unknown"),
+                "Waiting": accounting.get("WaitingTime"),
+                "NodeList": accounting.get("NodeList", task.get("node_list", "")),
+                "SubmititStdOut": os.path.relpath(stdout, start=metaexp_dir) if stdout else None,
+                "SubmititStdErr": os.path.relpath(stderr, start=metaexp_dir) if stderr else None,
+                "CompID": config.task.name,
+                "ExpDir": Path(task["experiment_dir"]).name,
+                "Cmd": config,
+                "Manifest": os.path.relpath(task["manifest_path"], start=metaexp_dir),
+            }
+        )
+    if not rows:
+        return pd.DataFrame()
+    return pd.DataFrame(rows).set_index("RunID").sort_index()
 
 
 def analyze_failures(
@@ -515,7 +471,7 @@ def analyze_failures(
     std_outs, std_errs, state_logs = [], [], []
 
     for index, row in df_with_logs.iterrows():
-        if row["State"] != "FAILED":
+        if row["State"] not in TERMINAL_STATES - {"COMPLETED"}:
             std_outs.append("/")
             std_errs.append("/")
             state_logs.append(row["State"])
@@ -571,8 +527,12 @@ def print_detailed_failures(df_with_logs: pd.DataFrame, show_std_err: bool = Tru
         show_std_err: Whether to show stderr logs
         show_std_out: Whether to show stdout logs
     """
-    df_failed = df_with_logs[df_with_logs["StateFromLogs"] == "FAILED"].copy()
-    df_failed.sort_values(by=["CompID", "taskID"], inplace=True)
+    df_failed = df_with_logs[
+        df_with_logs["StateFromLogs"].isin(TERMINAL_STATES - {"COMPLETED"})
+    ].copy()
+    sort_columns = [column for column in ("CompID", "taskID") if column in df_failed.columns]
+    if sort_columns:
+        df_failed.sort_values(by=sort_columns, inplace=True)
 
     print("Number of failed jobs:", len(df_failed))
     for index, row in df_failed.iterrows():

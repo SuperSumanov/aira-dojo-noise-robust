@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 from omegaconf import II, MISSING, OmegaConf
 
 from aira_core.config.base import BaseConfig
-from dojo.config_dataclasses.utils import dataclass_from_dict
+from dojo.config_dataclasses.utils import dataclass_from_dict, dataclass_to_dict
 from dojo.config_dataclasses.logger import LoggerConfig
 from dojo.config_dataclasses.metadata import MetadataConfig
 from dojo.config_dataclasses.task.base import TaskConfig
@@ -44,12 +44,19 @@ class RunConfig(BaseConfig):
         """
         For distributed training, be careful to only call this function on the main process.
         """
-        config_dict = OmegaConf.to_container(
-            OmegaConf.structured(self),
-            enum_to_str=True,
-        )
-        with open(f"{self.logger.output_dir}/dojo_config.json", "w") as file:
-            json.dump(config_dict, file)
+        with open(f"{self.logger.output_dir}/dojo_config.json", "w", encoding="utf-8") as file:
+            json.dump(self.to_dict(), file)
+
+    def to_dict(self) -> dict:
+        config_dict = OmegaConf.to_container(OmegaConf.structured(self), enum_to_str=True)
+        assert isinstance(config_dict, dict)
+        return config_dict
+
+    def to_typed_dict(self) -> dict:
+        """Serialize concrete nested config types for the srun worker."""
+        config_dict = dataclass_to_dict(self)
+        assert isinstance(config_dict, dict)
+        return config_dict
 
     @classmethod
     def load_from_json(cls, json_path: str) -> "RunConfig":

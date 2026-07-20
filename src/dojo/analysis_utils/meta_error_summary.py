@@ -9,6 +9,7 @@ from dojo.core.solvers.utils.response import parse_thinking_tags
 from dojo.utils.code_parsing import parse_json_output
 from dojo.utils.experiment_logs import is_experiment
 from dojo.config_dataclasses.run import RunConfig
+from dojo.core.runners.slurm.manifest import get_srun_pool_tasks
 import os
 import glob
 import json
@@ -63,12 +64,17 @@ def slurm_id_to_log(logs_folder):
     Extracts 'Output dir: *' from *.out files, cleaning ANSI escape characters.
     Returns a dictionary mapping job names to cleaned output directories.
     """
-    job_id2experiment_id = {
+    pool_tasks = get_srun_pool_tasks(logs_folder)
+    if pool_tasks:
+        return {
+            task["step_id"] or task["run_id"]: Path(task["experiment_dir"])
+            for task in pool_tasks
+        }
+    return {
         RunConfig.load_from_json(subdir / "dojo_config.json").metadata.slurm_id: subdir
         for subdir in logs_folder.iterdir()
         if is_experiment(subdir)
     }
-    return job_id2experiment_id
 
 
 def likely_crashed(log_text):
@@ -102,9 +108,16 @@ def gather_submitit_data(logs_folder, job_ids):
     results = []
     num_runs = 0
     slurm_log_path = Path(logs_folder).parent.parent / "slurm_logs"
+    pool_logs = {
+        task["step_id"] or task["run_id"]: Path(task["stderr"])
+        for task in get_srun_pool_tasks(logs_folder)
+        if task.get("stderr")
+    }
 
     for job_id in job_ids:
-        err_files = list(slurm_log_path.glob(f"**/*{job_id}*.err"))
+        err_files = [pool_logs[job_id]] if job_id in pool_logs else list(
+            slurm_log_path.glob(f"**/*{job_id}*.err")
+        )
 
         if len(err_files) == 1:
             err_file = err_files[0]

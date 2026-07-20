@@ -10,8 +10,6 @@ import copy
 
 import omegaconf
 from omegaconf import DictConfig, OmegaConf
-import torch
-import transformers
 
 from dojo.config_dataclasses.run import RunConfig
 from dojo.config_dataclasses.runner import RunnerConfig
@@ -50,10 +48,6 @@ def get_current_time() -> str:
     return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
-def get_torch_version() -> str:
-    return str(torch.__version__)
-
-
 def get_git_commit_id() -> str:
     command = "git rev-parse HEAD"
     commit_id = subprocess.check_output(command.split()).strip().decode("utf-8")
@@ -64,7 +58,6 @@ def register_new_resolvers() -> None:
     for resolver, function in {
         "generate_id": generate_id,
         "get_current_time": get_current_time,
-        "get_torch_version": get_torch_version,
         "get_git_commit_id": get_git_commit_id,
         "get_superimage_dir": get_superimage_dir,
         "get_mlebench_data_dir": get_mlebench_data_dir,

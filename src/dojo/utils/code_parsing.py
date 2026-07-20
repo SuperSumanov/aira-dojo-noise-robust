@@ -11,9 +11,13 @@
 
 import re
 
-import black
 import logging
 import json
+
+try:
+    import black
+except ImportError:  # Formatting is optional; syntax validation still runs without Black.
+    black = None
 
 log = logging.getLogger(__name__)
 
@@ -45,6 +49,8 @@ def format_code(code: str) -> str:
     Returns:
         str: The formatted code if successful; otherwise, the original code.
     """
+    if black is None:
+        return code
     try:
         return black.format_str(code, mode=black.FileMode())
     except black.parsing.InvalidInput:  # type: ignore

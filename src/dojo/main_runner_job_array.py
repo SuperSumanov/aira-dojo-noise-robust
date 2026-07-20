@@ -5,39 +5,30 @@
 # LICENSE file in the root directory of this source tree.
 
 import asyncio
+import copy
+import glob
 import itertools
 import logging
 import os
-import copy
-import sys
-import importlib
-import inspect
-import glob
-import subprocess
-from pathlib import Path
 from dataclasses import asdict
 from datetime import datetime
-import time
-
-from submitit.helpers import RsyncSnapshot
+from pathlib import Path
 
 import hydra
-import jinja2
 import submitit
-from submitit.helpers import monitor_jobs
 from dotenv import load_dotenv
 from omegaconf import DictConfig, OmegaConf
+from submitit.helpers import RsyncSnapshot, monitor_jobs
+
 from dojo.config_dataclasses.omegaconf.resolvers import register_new_resolvers
-
-from dojo.utils import rich_utils
-from dojo.utils.environment import get_log_dir
-from dojo.config_dataclasses.run import RunConfig
-
-from dojo.main_run import _main as main_run
 from dojo.config_dataclasses.launcher.base import LauncherConfig
 from dojo.config_dataclasses.launcher.slurm import SlurmConfig
+from dojo.config_dataclasses.launcher.srun_pool import SrunPoolConfig
+from dojo.config_dataclasses.run import RunConfig
 from dojo.config_dataclasses.runner import RunnerConfig
-from dojo.utils.git import make_snapshot_shallow_git, get_git_top_level
+from dojo.core.runners.slurm.srun_pool import SrunPoolLauncher
+from dojo.utils.environment import get_log_dir
+from dojo.utils.git import get_git_top_level
 
 load_dotenv()
 log = logging.getLogger(__name__)
@@ -45,87 +36,93 @@ log = logging.getLogger(__name__)
 register_new_resolvers()
 
 
-def launch_jobs(config_list: list[RunConfig], launcher_cfg: LauncherConfig):
-    # Go to the git root directory
-    og_path = os.getcwd()
-    git_root = Path(get_git_top_level())
-    os.chdir(git_root)
+def run_batch_config(run_cfg: RunConfig) -> None:
+    from dojo.main_run import _main
 
-    # Make snapshot for the batch of jobs
-    date_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    _main(run_cfg)
+
+
+def create_snapshot() -> Path:
+    """Create one shared snapshot containing tracked and untracked source files."""
+    original_path = Path.cwd()
+    git_root = Path(get_git_top_level())
+    date_str = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")
     snapshot_path = Path(get_log_dir()) / "aira-dojo" / "snapshots" / f"{date_str}"
     snapshot_path.mkdir(parents=True, exist_ok=False)
-    log.debug(f"Snapshotting to {snapshot_path}")
+    log.info("Snapshotting code to %s", snapshot_path)
 
-    start_time = time.time()
-    with RsyncSnapshot(
-        snapshot_dir=snapshot_path,
-        with_submodules=True,
-        exclude=[
-            "*.ipynb",
-            "*__pycache__",
-            "*.mypy_cache",
-        ],
-        include=glob.glob(f"./src/dojo/tasks/mlebench/**", recursive=True),
-    ):
-        # Note 1: This copies all files of git repo at the `snapshot_path,
-        # then `cd` into `snapshot_path` so os.getcwd() will return
-        # `snapshot_path` and `snapshot_path` is the root of git
+    try:
+        os.chdir(git_root)
+        with RsyncSnapshot(
+            snapshot_dir=snapshot_path,
+            root_dir=git_root,
+            with_submodules=True,
+            exclude=["*.ipynb", "*__pycache__", "*.mypy_cache"],
+            # RsyncSnapshot otherwise ignores untracked source files, which is
+            # surprising and breaks freshly-added worker/launcher modules.
+            include=glob.glob("./src/**", recursive=True),
+        ):
+            pass
+    finally:
+        os.chdir(original_path)
+    return snapshot_path.resolve()
 
-        # Note 2: Setting the PYTHONPATH to include the snapshot src folder
-        # This is needed to actually use the code from the snapshot
-        # otherwise it will use the code from the change-exposed folder
-        # because of the editable installation of aira-dojo, aira-core and mle-bench
 
-        # Note 3: PYTHONPATH parses multiple paths given with `:` char
-        # So here we are actually bypassing our three editable packages
-        # with snapshot/dojo, snapshot/aira_core and mlebench
+def _snapshot_pythonpath(snapshot_path: Path) -> str:
+    return os.pathsep.join(
+        [
+            str(snapshot_path / "src"),
+            str(snapshot_path / "src/dojo/tasks/mlebench/mle-bench"),
+        ]
+    )
 
-        log.debug(f"Making snapshot took {time.time() - start_time} seconds")
 
-        # Copy the aira-core code to the snapshot path
-        import aira_core
+def launch_batch_jobs(
+    config_list: list[RunConfig], launcher_cfg: SlurmConfig, snapshot_path: Path
+) -> list[submitit.Job]:
+    slurm_folder = Path(get_log_dir()) / "slurm_logs" / "%j"
+    executor = submitit.SlurmExecutor(folder=slurm_folder)
+    executor_kwargs = {
+        key: val
+        for key, val in asdict(launcher_cfg).items()
+        if val is not None
+        and not launcher_cfg.__dataclass_fields__[key].metadata.get("exclude_from_executor", False)
+    }
+    executor.update_parameters(**executor_kwargs)
 
-        aira_core_init_file = Path(
-            inspect.getsourcefile(aira_core)
-        )  # This points to the __init__.py file of aira-core
-        aira_core_path = aira_core_init_file.parents[
-            1
-        ] 
-
-        # Copy the aira-core code to the snapshot path
-        subprocess.run(["cp", "-r", str(aira_core_path), str(snapshot_path)])
-
-        os.environ["PYTHONPATH"] = (
-            f"{snapshot_path}/src:{snapshot_path}/aira-core/src:{snapshot_path}/src/dojo/tasks/mlebench/mle-bench"  # This will override the packages that are installed in editable mode such that it uses the code from the snapshot
-        )
-
-        #####################
-        # Create an Executor
-        if isinstance(launcher_cfg, SlurmConfig):
-            slurm_folder = Path(get_log_dir()) / "slurm_logs" / "%j"
-            executor = submitit.SlurmExecutor(folder=slurm_folder)
-            executor_kwargs = {
-                key: val
-                for key, val in asdict(launcher_cfg).items()
-                if val and not launcher_cfg.__dataclass_fields__[key].metadata.get("exclude_from_executor", False)
-            }
-            executor.update_parameters(**executor_kwargs)
-        else:
-            raise ValueError("Unsupported launcher configuration type")
-
-        #####################
-        ## Submit the jobs
+    previous_cwd = Path.cwd()
+    previous_pythonpath = os.environ.get("PYTHONPATH")
+    try:
+        os.chdir(snapshot_path)
+        os.environ["PYTHONPATH"] = _snapshot_pythonpath(snapshot_path)
         jobs = []
         with executor.batch():
             for run_cfg in config_list:
-                job = executor.submit(main_run, run_cfg)
-                jobs.append(job)
+                jobs.append(executor.submit(run_batch_config, run_cfg))
+        return jobs
+    finally:
+        os.chdir(previous_cwd)
+        if previous_pythonpath is None:
+            os.environ.pop("PYTHONPATH", None)
+        else:
+            os.environ["PYTHONPATH"] = previous_pythonpath
 
-    # Move back to the original path
-    os.chdir(og_path)
 
-    return jobs
+def launch_srun_pool(
+    config_list: list[RunConfig], launcher_cfg: SrunPoolConfig, snapshot_path: Path
+) -> dict:
+    return SrunPoolLauncher(config_list, launcher_cfg, snapshot_path).run()
+
+
+def launch_jobs(config_list: list[RunConfig], launcher_cfg: LauncherConfig):
+    if isinstance(launcher_cfg, SrunPoolConfig):
+        snapshot_path = SrunPoolLauncher.resume_snapshot_path(config_list, launcher_cfg)
+        if snapshot_path is None:
+            snapshot_path = create_snapshot()
+        return launch_srun_pool(config_list, launcher_cfg, snapshot_path)
+    if isinstance(launcher_cfg, SlurmConfig):
+        return launch_batch_jobs(config_list, launcher_cfg, create_snapshot())
+    raise ValueError(f"Unsupported launcher configuration type: {type(launcher_cfg).__name__}")
 
 
 def override_config(config, key, value):
@@ -163,6 +160,11 @@ def fetch_config(config, key):
 
 
 async def _main(runner_configs: list[RunnerConfig]):
+    if not runner_configs:
+        raise ValueError("At least one RunnerConfig is required")
+    launcher_cfg = runner_configs[0].launcher
+    if any(type(cfg.launcher) is not type(launcher_cfg) for cfg in runner_configs):
+        raise ValueError("All swept RunnerConfigs must use the same launcher type")
     run_configs = []
     for runner_cfg in runner_configs:
         for task_cfg in runner_cfg.benchmark.to_cfg_list():
@@ -184,10 +186,10 @@ async def _main(runner_configs: list[RunnerConfig]):
             # Add the run config to the list
             run_configs.append(run_cfg)
 
-    if runner_cfg.launcher.debug:
-        jobs = []
+    if launcher_cfg.debug:
+        result = []
 
-        swept_keys = list(runner_cfg.vars.keys()) + ["task.name"]
+        swept_keys = list(runner_configs[0].vars.keys()) + ["task.name"]
         # Print a summary of the jobs that would be launched
         log.debug("Dry run mode: printing job summary")
         for cfg in run_configs:
@@ -196,9 +198,9 @@ async def _main(runner_configs: list[RunnerConfig]):
             print("============" * 5)
     else:
         log.debug("Launching jobs...")
-        jobs = launch_jobs(run_configs, runner_cfg.launcher)
+        result = launch_jobs(run_configs, launcher_cfg)
 
-    return jobs
+    return result
 
 
 @hydra.main(version_base="1.3.2", config_path="configs", config_name="default_runner")
@@ -223,11 +225,17 @@ def main(_cfg: DictConfig):
 
         runner_configs.append(runner_cfg)
 
-    jobs = asyncio.run(_main(runner_configs))
-    jobs = [
-        j for j in jobs if j is not None
-    ]  # Filter out the jobs that failed to launch (i.e., didn't pass the dry run test)
+    result = asyncio.run(_main(runner_configs))
+    if isinstance(og_cfg.launcher, SrunPoolConfig):
+        if result:
+            log.info("Srun pool manifest: %s", result["manifest_path"])
+            if not result["successful"]:
+                raise RuntimeError(
+                    f"Srun pool finished with incomplete tasks; inspect {result['manifest_path']}"
+                )
+        return
 
+    jobs = [j for j in result if j is not None]
     if og_cfg.launcher.monitor_jobs:
         log.info("Monitoring jobs...")
         # Monitor the jobs

@@ -115,7 +115,7 @@ def analyze_meta_experiment(meta_exp_path: Path) -> Dict:
 
     # Count experiments
     try:
-        experiments = [d for d in exp_path.iterdir() if d.is_dir()]
+        experiments = [d for d in exp_path.iterdir() if is_experiment(d)]
         stats["total_experiments"] = len(experiments)
     except PermissionError:
         return {"error": f"Permission denied accessing experiments directory: {exp_path}"}
@@ -133,6 +133,16 @@ def analyze_meta_experiment(meta_exp_path: Path) -> Dict:
 
     # Check for slurm logs
     try:
+        from dojo.core.runners.slurm.manifest import get_srun_pool_tasks
+
+        pool_tasks = get_srun_pool_tasks(meta_exp_path)
+        if pool_tasks:
+            stats["has_slurm_logs"] = True
+            stats["slurm_job_count"] = sum(bool(task.get("step_id")) for task in pool_tasks)
+            statuses = [task.get("status", "unknown") for task in pool_tasks]
+            stats["srun_pool_status"] = {status: statuses.count(status) for status in sorted(set(statuses))}
+            return stats
+
         # Fetch slurm ids from configs
         slurm_ids = [
             RunConfig.load_from_json(exp / "dojo_config.json").metadata.slurm_id

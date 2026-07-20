@@ -1,0 +1,4 @@
+- +_exp=run_example
+- task.name=spaceship-titanic
+- metadata.seed=42
+- logger.use_wandb=false

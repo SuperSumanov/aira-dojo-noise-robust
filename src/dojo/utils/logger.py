@@ -31,7 +31,6 @@ from dataclasses_json import DataClassJsonMixin
 from omegaconf import DictConfig
 from pandas.io.json._normalize import _simple_json_normalize as flatten_dict
 
-import wandb
 from dojo.config_dataclasses.logger import LoggerConfig
 
 
@@ -178,11 +177,14 @@ class WandBLogger(BaseLogger):
     """Logger for wandb.ai."""
 
     def __init__(self, cfg: LoggerConfig, unique_token: str) -> None:
+        import wandb
+
+        self.wandb = wandb
         tags = list(cfg.logger.tags)
         project = cfg.logger.wandb_project_name
         entity = cfg.logger.wandb_entity
 
-        wandb.init(entity=entity, project=project, tags=tags, config=cfg)
+        self.wandb.init(entity=entity, project=project, tags=tags, config=cfg)
 
         self.detailed_logging = cfg.logger.detailed_logging
         self.unique_token = unique_token
@@ -193,13 +195,13 @@ class WandBLogger(BaseLogger):
         else:
             namespace = event
         data_to_log = {f"{namespace}/{key}": value}
-        wandb.log(data_to_log, step=step)
+        self.wandb.log(data_to_log, step=step)
 
     def log_file(self, file_path: str) -> None:
-        wandb.save(file_path)
+        self.wandb.save(file_path)
 
     def stop(self) -> None:
-        wandb.finish()  # type: ignore
+        self.wandb.finish()  # type: ignore
 
 
 class ConsoleLogger(BaseLogger):

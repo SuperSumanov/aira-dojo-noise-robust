@@ -26,11 +26,9 @@ from dojo.config_dataclasses.interpreter import INTERPRETER_MAP
 from dojo.utils.config import build
 from dojo.utils.environment import (
     get_hardware,
-    check_pytorch_gpu,
-    check_tensorflow_gpu,
     format_time,
 )
-from dojo.utils.slurm import get_slurm_id
+from dojo.utils.slurm import get_slurm_identity
 
 load_dotenv()
 log = logging.getLogger(__name__)
@@ -47,18 +45,18 @@ def _main(cfg: RunConfig):
     log.debug(f"Output dir: {cfg.logger.output_dir}")
     output_dir = Path(cfg.logger.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-    cfg.save()
-
     # Set environment variables
     os.environ["HARDWARE"] = get_hardware()
-    os.environ["PYTORCH_GPU"] = check_pytorch_gpu()
-    os.environ["TENSORFLOW_GPU"] = check_tensorflow_gpu()
     os.environ["TIME_LIMIT_SECS"] = str(cfg.solver.time_limit_secs)
     os.environ["TIME_LIMIT"] = format_time(int(os.environ["TIME_LIMIT_SECS"]))
     os.environ["STEP_LIMIT"] = str(cfg.solver.step_limit)
 
     # Store the slurm job ID
-    cfg.metadata.slurm_id = get_slurm_id()
+    slurm_identity = get_slurm_identity()
+    cfg.metadata.slurm_id = slurm_identity.full_id
+    cfg.metadata.slurm_allocation_id = slurm_identity.allocation_id
+    cfg.metadata.slurm_step_id = slurm_identity.step_id
+    cfg.metadata.launcher_type = slurm_identity.launcher_type
 
     # Sanity checks
     log.info(f"Current working directory: {os.getcwd()}")

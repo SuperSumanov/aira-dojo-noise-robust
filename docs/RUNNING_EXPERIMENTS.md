@@ -88,6 +88,8 @@ python -m dojo.main_runner_job_array +_exp=runner_example logger.use_wandb=False
 ```
 This command submits multiple jobs to run in parallel using slurm, with each job running a different experiment from the configuration. We set `launcher.debug=True` so the jobs won't actually be submitted
 
+> **Current-cluster tip:** The upstream Submitit job-array path does not fit this cluster's Slurm 19.05 and per-user job limits. Use the allocation-backed `srun_pool` path described in the [Slurm migration notes](../src/mle_critic/docs/SLURM_MIGRATION_INVESTIGATION.md); for an executable single- and multi-seed example, follow the [end-to-end MLE-bench workflow](../src/mle_critic/docs/AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md).
+
 ## Creating an Experiment Configuration
 
 To create a new experiment configuration, create a YAML file in `src/dojo/configs/_exp/`:

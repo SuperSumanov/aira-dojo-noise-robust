@@ -5,6 +5,7 @@
 # LICENSE file in the root directory of this source tree.
 
 import logging
+import hashlib
 import os
 import re
 from pathlib import Path
@@ -21,6 +22,16 @@ from .singularity_jupyter_server import SingularityJupyterServer
 log = logging.getLogger(__name__)
 
 
+def _slurm_gateway_port() -> int | None:
+    """Return a stable per-Slurm-step port, or None outside Slurm."""
+    step_id = os.environ.get("SLURM_STEP_ID")
+    if not step_id:
+        return None
+    identity = f"{os.environ.get('SLURM_JOB_ID', '')}:{step_id}".encode()
+    # Keep ports out of common service ranges while allowing many jobs per node.
+    return 20000 + int.from_bytes(hashlib.sha256(identity).digest()[:4], "big") % 30000
+
+
 class JupyterInterpreter(Interpreter):
     local = False
     factory = False
@@ -32,6 +43,7 @@ class JupyterInterpreter(Interpreter):
     ) -> None:
         self.timeout = cfg.timeout
         self.strip_ansi = cfg.strip_ansi
+        self.port = _slurm_gateway_port()
         self.container_runtime = cfg.container_runtime
         self.working_dir = Path(cfg.working_dir).resolve()
         # make sure the working directory ends with a slash
@@ -61,6 +73,7 @@ class JupyterInterpreter(Interpreter):
                 read_only_overlays=self.read_only_overlays,
                 read_only_binds=self.read_only_binds,
                 env=self.env,
+                port=self.port,
             )
         elif self.container_runtime == "singularity":
             self.jupyter_server = SingularityJupyterServer(
@@ -71,6 +84,7 @@ class JupyterInterpreter(Interpreter):
                 read_only_overlays=self.read_only_overlays,
                 read_only_binds=self.read_only_binds,
                 env=self.env,
+                port=self.port,
             )
         else:
             raise ValueError(

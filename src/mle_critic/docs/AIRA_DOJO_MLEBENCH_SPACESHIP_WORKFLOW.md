@@ -208,7 +208,7 @@ build/superimage/superimage.root.2026-07-macos-v1.sif
 superimage_version: "2026-07-macos-v1"
 ```
 
-写入 `src/dojo/configs/interpreter/jupyter.yaml`。因此命令行通常不必再覆盖 `interpreter.superimage_version`。这属于本机运行适配，不是学生的 DeepSeek/HCE 协议；当前镜像的依赖集合与历史镜像不完全相同，所以这里复现的是原流程和代码，不宣称逐包复现历史运行环境。
+写入 `src/dojo/configs/interpreter/jupyter.yaml`。因此命令行通常不必再覆盖 `interpreter.superimage_version`。这属于本机运行适配；当前镜像的依赖集合与历史镜像不完全相同，所以这里复现的是原流程和代码，不宣称逐包复现历史运行环境。
 
 ### 3.4 Kaggle 认证
 
@@ -396,9 +396,22 @@ salloc \
   --partition=gpu_8h \
   --nodes=1 \
   --ntasks=4 \
-  --cpus-per-task=2 \
+  --cpus-per-task=6 \
   --gpus-per-node=4 \
   --time=08:00:00
+```
+
+如果真正开始采集数据，请使用24h或72h这种长时间分区：
+
+```bash
+salloc \
+  --account=gpu \
+  --qos=gpu \
+  --partition=gpu_72h \
+  --nodes=1 \
+  --ntasks=4 \
+  --cpus-per-task=6 \
+  --gpus-per-node=4 
 ```
 
 进入 allocation shell 后运行：
@@ -417,7 +430,7 @@ python -m dojo.main_runner_job_array \
   '~launcher.qos' \
   launcher.debug=false \
   launcher.max_parallel=4 \
-  launcher.cpus_per_step=2 \
+  launcher.cpus_per_step=6 \
   launcher.gpus_per_step=1 \
   logger.use_wandb=false
 ```

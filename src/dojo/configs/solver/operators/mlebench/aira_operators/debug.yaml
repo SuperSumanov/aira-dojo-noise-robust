@@ -39,8 +39,7 @@ debug:
       ````
 
       # Compute Environment:
-      - GPU: 1 NVIDIA H200
-      - CPUs: 24
+      - Hardware: {{hardware}}
       - Available Packages: {{packages}}
       - Additional libraries allowed as needed.
 
@@ -82,3 +81,4 @@ debug:
       - data_overview
       - memory
       - packages
+      - hardware

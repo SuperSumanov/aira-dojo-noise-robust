@@ -44,6 +44,7 @@ def improve_op(
 
     improve_data = {
         "task_desc": task_description,
+        "hardware": os.environ.get("HARDWARE", "the available compute resources"),
         "prev_code": wrap_code(input_node.code),
         "prev_terminal_output": wrap_code(input_node.term_out, lang=""),
         "time_remaining": humanize.naturaldelta(remaining_time),

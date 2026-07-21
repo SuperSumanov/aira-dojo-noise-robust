@@ -37,6 +37,7 @@ def crossover_op(
 
     improve_data = {
         "task_desc": task_description,
+        "hardware": os.environ.get("HARDWARE", "the available compute resources"),
         "prev_code1": wrap_code(input_node1.code),
         "prev_terminal_output1": wrap_code(input_node1.term_out, lang=""),
         "prev_code2": wrap_code(input_node2.code),

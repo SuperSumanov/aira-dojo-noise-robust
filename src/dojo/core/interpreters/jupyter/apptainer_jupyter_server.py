@@ -41,6 +41,7 @@ class ApptainerJupyterServer(JupyterConnectable):
         read_only_overlays: List[str] = None,
         read_only_binds: Dict[str, str] = None,
         env: Dict[str, str] = None,
+        port: int | None = None,
     ):
         self.read_only_overlays = read_only_overlays or []
         self.read_only_overlays = [Path(path).resolve() for path in self.read_only_overlays]
@@ -73,6 +74,8 @@ class ApptainerJupyterServer(JupyterConnectable):
             "--KernelGatewayApp.answer_yes=True",
             "--KernelManager.cache_ports=False",
         ]
+        if port is not None:
+            args.append(f"--KernelGatewayApp.port={port}")
 
         env = os.environ.copy()
         for k, v in self.env.items():

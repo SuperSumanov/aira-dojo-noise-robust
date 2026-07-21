@@ -45,6 +45,7 @@ def debug_op(
 
     debug_data = {
         "task_desc": task_description,
+        "hardware": os.environ.get("HARDWARE", "the available compute resources"),
         "prev_buggy_code": wrap_code(prev_buggy_code),
         "execution_output": wrap_code(execution_output, lang=""),
         "time_remaining": humanize.naturaldelta(remaining_time),

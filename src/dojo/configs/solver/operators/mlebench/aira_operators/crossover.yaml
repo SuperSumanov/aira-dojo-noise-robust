@@ -60,7 +60,7 @@ crossover:
 
       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
 
-      **COMPUTE**: You have access to a Python environment with 1 NVIDIA H200 GPU(s) and 24 CPUs available, and the following packages installed: {{packages}}. If you need to, feel free to use additional libraries that fit the problem.
+      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. If you need to, feel free to use additional libraries that fit the problem.
 
       Start by making sure you understand the task, the provided solutions, the data and compute resources, and your proposed crossover idea. Then, generate a detailed internal implementation plan that will structure and guide you step-by-step through the implementation process. Make sure to reflect on the plan to ensure that the implementation is efficient, faithful to the crossover idea, and that all requirements (e.g., the evaluation score is printed, the submission file follows the correct format and is saved in the correct location, etc.) are satisfied.
 
@@ -83,6 +83,7 @@ crossover:
       - task_desc
       - execution_timeout
       - packages
+      - hardware
       - prev_code1
       - prev_code2
       - memory

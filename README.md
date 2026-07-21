@@ -20,6 +20,7 @@ The following documentation is available to help you get started with `aira-dojo
 - [Solver Development Guide](./docs/SOLVER_DEVELOPMENT.md) - How to implement new solvers
 - [Running Experiments](./docs/RUNNING_EXPERIMENTS.md) - How to run experiments with `aira-dojo`
 - [Building Superimage](./docs/BUILD_SUPERIMAGE.md) - Instructions for building the superimage container
+- [Current-cluster MLE-bench Workflow](./src/mle_critic/docs/AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md) - End-to-end setup, smoke testing, and multi-seed collection on the current Slurm/Singularity cluster
 
 ## Terminology
 

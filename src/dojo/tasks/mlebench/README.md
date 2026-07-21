@@ -48,3 +48,5 @@ Replace line 29 in `src/dojo/tasks/mlebench/mle-bench/mlebench/data.py` with:
     # Run AIRA_Greedy on MLE-Bench's random-acts-of-pizza task
     python -m dojo.main_run +_exp=run_example logger.use_wandb=False task.name=random-acts-of-pizza
     ```
+
+> **Current-cluster tip:** For the complete path from environment and data preparation through Singularity smoke testing and parallel multi-seed Slurm collection, follow the [Spaceship Titanic MLE-bench workflow](../../../mle_critic/docs/AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md).

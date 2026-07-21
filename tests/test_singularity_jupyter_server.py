@@ -120,6 +120,28 @@ def test_build_singularity_command_uses_foreground_exec_and_explicit_binds(
     assert "site.getusersitepackages()" in args[args.index("python") + 2]
 
 
+def test_build_singularity_command_uses_explicit_gateway_port(tmp_path: Path) -> None:
+    image = tmp_path / "superimage.root.test.sif"
+    working_dir = tmp_path / "working"
+    image.touch()
+    working_dir.mkdir()
+
+    args = _build_singularity_command(
+        runtime_executable="/bin/singularity",
+        image_path=image,
+        working_dir=working_dir,
+        bind_inputs_dir=None,
+        read_only_overlays=[],
+        read_only_binds={},
+        container_env={"HOME": "/workspace/.home"},
+        token="secret-token",
+        port=23456,
+    )
+
+    assert "--KernelGatewayApp.port=23456" in args
+    assert "--KernelGatewayApp.port_retries=0" not in args
+
+
 def test_relative_read_only_bind_targets_keep_apptainer_semantics(
     tmp_path: Path,
 ) -> None:

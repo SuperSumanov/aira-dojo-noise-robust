@@ -118,6 +118,7 @@ def _build_singularity_command(
     read_only_binds: Mapping[Path, Path],
     container_env: Mapping[str, str],
     token: str,
+    port: int | None = None,
 ) -> list[str]:
     args = [
         runtime_executable,
@@ -158,6 +159,8 @@ def _build_singularity_command(
             "--KernelManager.cache_ports=False",
         ]
     )
+    if port is not None:
+        args.append(f"--KernelGatewayApp.port={port}")
     return args
 
 
@@ -193,6 +196,7 @@ class SingularityJupyterServer(JupyterConnectable):
         read_only_overlays: Sequence[str] | None = None,
         read_only_binds: Mapping[str, str] | None = None,
         env: Mapping[str, str] | None = None,
+        port: int | None = None,
         startup_timeout: float = _DEFAULT_STARTUP_TIMEOUT_SECONDS,
     ) -> None:
         self._subprocess: subprocess.Popen[str] | None = None
@@ -257,6 +261,7 @@ class SingularityJupyterServer(JupyterConnectable):
             read_only_binds=binds,
             container_env=container_env,
             token=token,
+            port=port,
         )
 
         try:

@@ -43,6 +43,7 @@ def draft_op(
 
     draft_data = {
         "task_desc": task_description,
+        "hardware": os.environ.get("HARDWARE", "the available compute resources"),
         "time_remaining": humanize.naturaldelta(remaining_time),
         "steps_remaining": steps_remaining,
         "execution_timeout": humanize.naturaldelta(exec_timeout),

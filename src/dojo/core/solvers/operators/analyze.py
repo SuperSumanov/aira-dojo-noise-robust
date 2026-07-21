@@ -37,9 +37,9 @@ analyze_schema_with_eval = """{
             "description": "if there is a bug, propose a fix. Otherwise, write a short summary (2-3 sentences) describing the empirical findings. DO NOT suggest fixes or improvements."
         },
         "metric": {
-                "type": "number",
-                "description": "If the code ran successfully, report the value of the validation metric. Otherwise, leave it null."
-            }
+            "type": ["number", "null"],
+            "description": "If the code ran successfully, report the value of the validation metric. Otherwise, leave it null."
+        }
     },
     "required": ["is_bug", "summary", "metric"]
 }"""

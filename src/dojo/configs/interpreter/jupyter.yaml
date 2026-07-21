@@ -7,5 +7,5 @@ superimage_version: "2026-07-macos-v1"
 read_only_overlays: []
 
 env:
-    HF_HUB_OFFLINE: "1"
+    HF_HUB_OFFLINE: "0"
     NLTK_DATA: /root/.nltk_data

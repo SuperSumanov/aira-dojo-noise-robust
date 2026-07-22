@@ -114,7 +114,7 @@ class SrunPoolLauncher:
         self.run_configs = run_configs
         self.cfg = launcher_cfg
         self.snapshot_path = Path(snapshot_path).resolve()
-        self.python_executable = Path(python_executable or sys.executable).resolve()
+        self.python_executable = Path(python_executable or sys.executable).absolute()
         self.allocation = self._discover_allocation()
         self.meta_exp_dir = self._get_meta_experiment_dir(run_configs)
         batch_key = hashlib.sha256("\n".join(sorted(cfg.id for cfg in run_configs)).encode()).hexdigest()[:12]

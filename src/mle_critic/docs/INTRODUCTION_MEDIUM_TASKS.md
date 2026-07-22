@@ -12,6 +12,11 @@
 
 不建议作为短任务：`cdiscount-image-classification-challenge`、`h-and-m-personalized-fashion-recommendations`、`herbarium-2020-fgvc7`、`herbarium-2021-fgvc8`、`herbarium-2022-fgvc9`、`hotel-id-2021-fgvc8`、`inaturalist-2019-fgvc6`、`iwildcam-2020-fgvc7`、`uw-madison-gi-tract-image-segmentation`。它们的图像/行为数据或分割输出会使正常五折训练达到数小时。
 
+# 测试结果
+
+- `tabular-playground-series-may-2022`：速度行，而且初始几乎没有拿牌的
+- `text-normalization-challenge-english-language`：速度行而且拿牌率低。
+
 ## 总表
 
 | 任务 | 类型和规模 | 工作数据 | 3090 上 5 折预估 | 30 分钟目标 |

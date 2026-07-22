@@ -25,6 +25,18 @@
 - `new-york-city-taxi-fare-prediction`：约 5500 万行。agent 可以靠抽样在半小时内跑完，但不同轨迹的抽样比例和内存行为差异很大，不适合作为稳定的短任务。
 - `dog-breed-identification`、`dogs-vs-cats-redux-kernels-edition`：不是跑不了，但正常的 5 折迁移学习大概率超过半小时。
 
+## 测试结果
+
+- `aerial-cactus-identification`：速度够快，平均应该能半小时内产出一个节点，但有点太饱和了。
+- `denoising-dirty-documents`：虽然数据量小，但deepseek肯定会上较大且复杂的u-net，导致两个持续失败，跑通的两个2-3h才能产出一个节点
+- `jigsaw-toxic-comment-classification-challenge`：虽然数据量小，但deepseek会毫不犹豫地上distill-bert模型做微调，要4-5h才能产出一个节点
+- `leaf-classification`：速度够快，差不多10分钟一个点，好像也没有完全饱和
+- `mlsp-2013-birds`：非常buggy，搜索了40个draft没有一个跑通的，可能需要进debug流程再测。
+- `nomad2018-predict-transparent-conductors`：同样非常buggy，唯一跑通的一个预估是半小时到1小时之间
+- `plant-pathology-2020-fgvc7`：差不多半小时一个点，然后难度好像也偏低一点，而且agent会无脑用efficient net
+- `random-acts-of-pizza`：够快，然后甚至难度还行，初始的draft得牌率不高
+- `spooky-author-identification`：同样够快而且难度可以
+
 ## 口径
 
 ### 数据大小

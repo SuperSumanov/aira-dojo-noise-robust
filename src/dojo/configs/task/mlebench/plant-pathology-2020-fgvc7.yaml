@@ -1,0 +1,6 @@
+# @package task
+
+defaults:
+ - mlebench/_default
+
+name: plant-pathology-2020-fgvc7

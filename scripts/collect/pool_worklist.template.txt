@@ -1,0 +1,21 @@
+# pool worklist — one line per 4-GPU batch (2 tasks x 2 seeds), consumed top-down by pool_fill_once.sh
+# columns: seed1 seed2 batch_tag [tasks(semicolon-joined)] [exec_cap_seconds]
+#   - batch_tag must be UNIQUE forever (dedup via pool_submitted.txt; reuse => skipped)
+#   - no tasks column => default tabular pair (tps_may + tps_dec)
+#   - exec cap: 1500 for tabular/text (throughput), 3600 for vision/audio (they need training time)
+# 学长 split (2026-07-24): train 9 = leaf,kuzushiji,petfinder,pizza,spooky,google-quest,tps_may,text-norm-en,mlsp-birds
+#                          val   3 = text-norm-ru,tweet,whale
+# ---- wave 1 (seeds 701-702) ----
+701 702 suiteA leaf-classification;spooky-author-identification
+701 702 suiteB random-acts-of-pizza;text-normalization-challenge-english-language
+701 702 suiteC google-quest-challenge;tabular-playground-series-may-2022
+701 702 suiteV1 text-normalization-challenge-russian-language;tweet-sentiment-extraction
+701 702 suiteD kuzushiji-recognition;petfinder-pawpularity-score 3600
+701 702 suiteE mlsp-2013-birds;whale-categorization-playground 3600
+# ---- wave 2 (seeds 703-704) — uncomment/extend as needed ----
+703 704 w2A leaf-classification;spooky-author-identification
+703 704 w2B random-acts-of-pizza;text-normalization-challenge-english-language
+703 704 w2C google-quest-challenge;tabular-playground-series-may-2022
+703 704 w2V1 text-normalization-challenge-russian-language;tweet-sentiment-extraction
+703 704 w2D kuzushiji-recognition;petfinder-pawpularity-score 3600
+703 704 w2E mlsp-2013-birds;whale-categorization-playground 3600

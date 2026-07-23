@@ -1,0 +1,6 @@
+# @package task
+
+defaults:
+ - mlebench/_default
+
+name: us-patent-phrase-to-phrase-matching

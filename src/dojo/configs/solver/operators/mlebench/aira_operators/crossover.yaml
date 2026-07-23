@@ -57,6 +57,10 @@ crossover:
         - Replace the deprecated `early_stopping_rounds` argument in `lightgbm.train()` with the `lightgbm.early_stopping(stopping_rounds=…)` callback.
         - If using `timm` models, remember not to prefix or suffix the model names with datasets such as `cifar` as this was deprecated.
         - As much as possible, keep the stdout clean.
+        - CRITICAL — categorical/dtype handling: before fitting ANY model, convert EVERY non-numeric (object/string) column to numeric (pandas `factorize` / category codes / one-hot) OR DROP identifier/free-text columns (e.g., IDs, names). NEVER pass object-dtype columns to LightGBM/XGBoost/sklearn — this is the #1 cause of crashes in this environment.
+        - Be ROBUST and SIMPLE FIRST: the script must train end-to-end, print the CV score, and write `submission.csv` reliably. In the FIRST working solution use sensible FIXED hyper-parameters and a battle-tested model; do NOT run expensive hyper-parameter search (Optuna/Bayesian/large grids) until a working baseline already exists.
+        - OFFLINE ENVIRONMENT — NO INTERNET: the sandbox has HF_HUB_OFFLINE=1 and NO network access. Downloading pretrained models/weights/datasets (HuggingFace, timm, torchvision pretrained=True, nltk.download) WILL FAIL. Use classical ML (LightGBM/XGBoost/sklearn, TF-IDF/count features) or train small models FROM SCRATCH on the provided data only.
+        - MANDATORY OUTPUT MARKER: the FINAL line printed to stdout must be the cross-validation score in EXACTLY this format: `FINAL_VALIDATION_SCORE: <number>`. Print it exactly once, as the last line.
 
       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
 

@@ -1,0 +1,14 @@
+# @package _global_
+# breadth data-collection: DeepSeek MCTS on detecting-insults-in-social-commentary (only /task differs from deepseek_mcts_nomad)
+defaults:
+  - override /interpreter: python
+  - override /solver: mlebench/mcts
+  - override /task: mlebench/detecting-insults-in-social-commentary
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_pro
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_pro
+metadata:
+  git_issue_id: mcts_data_detecting_insults_in_social_commentary
+solver:
+  step_limit: 20

@@ -137,5 +137,5 @@ pool_fill_once.sh ──提交──> pool_collect.sbatch(1 job=4 GPU allocation
 研究侧(build_cards/T1 曲线/A 计划文档)在 `phase1-value-critic` 分支。有问题随时找我们。*
 
 > **坑 #13(2026-07-24 补)**:偶发 worker step 在 solver 结束后**僵尸挂起**(不退出,journal 已写完)。
-> 设计上无害:批达 8h 墙 → TERM trap 自动补链;想省时间可直接 (确认该批 run 目录下
->  都在即安全),trap 同样会触发自链。
+> 设计上无害:批达 8h 墙 → TERM trap 自动补链;想省时间可直接 `scancel <job>`(确认该批各 run 目录下
+> `checkpoint/journal.jsonl` 都在即安全),trap 同样会触发自链。

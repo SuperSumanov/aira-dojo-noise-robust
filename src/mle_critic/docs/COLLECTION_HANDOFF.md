@@ -139,3 +139,11 @@ pool_fill_once.sh ──提交──> pool_collect.sbatch(1 job=4 GPU allocation
 > **坑 #13(2026-07-24 补)**:偶发 worker step 在 solver 结束后**僵尸挂起**(不退出,journal 已写完)。
 > 设计上无害:批达 8h 墙 → TERM trap 自动补链;想省时间可直接 `scancel <job>`(确认该批各 run 目录下
 > `checkpoint/journal.jsonl` 都在即安全),trap 同样会触发自链。
+
+
+> **2026-07-24 运维补充(学长反馈)**:
+> - 学长侧已改 `HF_HUB_OFFLINE` 允许容器内下载 → 采集 regime(在线/离线)按 run 记录在 dojo_config,
+>   合并数据时它是一个正式的分布轴;**agent 运行目录用完即删**(re-grade worker 已内建),注意内存清理;
+> - 坑 #6 更正:长驻进程用 **tmux**(不要 nohup);
+> - GLIBC(坑 #8):学长经验=**降级某个组件可解**(conda 下降级 cryptography 生效);uv 环境等效方案待定;
+> - 坑 #14:多账号合并 card id 无需加盐(32-hex uuid,碰撞概率可忽略,已核)。

@@ -23,3 +23,24 @@ target_dir="logs/aira-dojo"; find "$target_dir" -type d -name workspace_agent -p
 target_dir="logs/aira-dojo"; test -n "$target_dir" && test "$target_dir" != "/" && find "$target_dir" -type d -name workspace_agent -prune -exec rm -rf -- {} +
 ```
 删除不可恢复，建议先运行预览命令。
+
+
+# GLIBC
+
+当使用某些ubuntu版本较老的节点时，运行实验可能会遇到以下报错
+
+```python
+  File "/research/jcheng3/hcyang/anaconda3/envs/aira-dojo/lib/python3.12/site-packages/google/auth/crypt/__init__.py", line 41, in <module>
+    from google.auth.crypt import es
+  File "/research/jcheng3/hcyang/anaconda3/envs/aira-dojo/lib/python3.12/site-packages/google/auth/crypt/es.py", line 21, in <module>
+    import cryptography.exceptions
+  File "/research/jcheng3/hcyang/anaconda3/envs/aira-dojo/lib/python3.12/site-packages/cryptography/exceptions.py", line 9, in <module>
+    from cryptography.hazmat.bindings._rust import exceptions as rust_exceptions
+ImportError: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.33' not found (required by /research/jcheng3/hcyang/anaconda3/envs/aira-dojo/lib/python3.12/site-packages/cryptography/hazmat/bindings/_rust.abi3.so)
+```
+
+原因是`GLIBC_2.33`只在高版本ubuntu提供，而高版本`cryptography`依赖这个`GLIBC_2.33`，建议降级`cryptography`
+
+```bash
+conda install -c conda-forge cryptography=49.0.0
+```

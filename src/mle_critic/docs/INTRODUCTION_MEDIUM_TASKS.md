@@ -14,8 +14,17 @@
 
 # 测试结果
 
-- `tabular-playground-series-may-2022`：速度行，而且初始几乎没有拿牌的
 - `text-normalization-challenge-english-language`：速度行而且拿牌率低。
+- `detecting-insults-in-social-commentary`：任务已被废弃
+- `AI4Code`：时间过长
+- `chaii-hindi-and-tamil-question-answering`：不错，时间较短（~10分钟）而且得牌率低
+- `google-quest-challenge`：好任务，不过稍重，接近半个小时
+- `learning-agency-lab-automated-essay-scoring-2`：好任务，基本上在半小时内，但有接近1小时的风险
+- `petfinder-pawpularity-score`：无牌，平均半小时但也可能进1小时
+- `statoil-iceberg-classifier-challenge`：貌似数据有问题？
+- `tweet-sentiment-extraction`：平均半小时左右，无拿牌，但有些进1小时
+- `text-normalization-challenge-russian-language`：同样平均半小时，有一牌，有些进1小时
+- `kuzushiji-recognition`：接近一小时，但是是较难的cv任务
 
 ## 总表
 

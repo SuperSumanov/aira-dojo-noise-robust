@@ -36,6 +36,7 @@
 - `plant-pathology-2020-fgvc7`：差不多半小时一个点，然后难度好像也偏低一点，而且agent会无脑用efficient net
 - `random-acts-of-pizza`：够快，然后甚至难度还行，初始的draft得牌率不高
 - `spooky-author-identification`：同样够快而且难度可以
+- `tabular-playground-series-may-2022`：速度行，而且初始几乎没有拿牌的
 
 ## 口径
 

@@ -147,3 +147,7 @@ pool_fill_once.sh ──提交──> pool_collect.sbatch(1 job=4 GPU allocation
 > - 坑 #6 更正:长驻进程用 **tmux**(不要 nohup);
 > - GLIBC(坑 #8):学长经验=**降级某个组件可解**(conda 下降级 cryptography 生效);uv 环境等效方案待定;
 > - 坑 #14:多账号合并 card id 无需加盐(32-hex uuid,碰撞概率可忽略,已核)。
+
+> **2026-07-25 侦察快报(排卡前必读)**:
+> - **视觉任务退化但未死**:suiteD(kuzushiji/petfinder,exec cap 3600s)跑 5h,40 节点 78% buggy(其中 13 个 exec 超时、4 个 GLIBC/libGL,其余混合),**有 9 个正常节点**。含义:当前镜像上视觉任务吞吐差、性价比低——优先跑 NLP/表格,视觉等镜像 v2 或把 exec cap 提到 5400s+ 再试;音频(mlsp-birds)结果今日出。
+> - **混环境重评会假失败**:tabular 老线(非容器 venv)的解在容器里重跑,18 个撞 LightGBM OpenCL 缺失、3 个撞新 sklearn 删除 multi_class 参数——同一份代码换环境 ~1/3 假阵亡。含义:①re-grade/复现必须与采集同环境;②datasheet 里"环境敏感性"是真实的一根轴。

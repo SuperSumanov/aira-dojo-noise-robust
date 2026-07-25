@@ -22,14 +22,26 @@ from .singularity_jupyter_server import SingularityJupyterServer
 log = logging.getLogger(__name__)
 
 
-def _slurm_gateway_port() -> int | None:
-    """Return a stable per-Slurm-step port, or None outside Slurm."""
+def _gateway_port() -> int | None:
+    """Return a stable per-scheduler execution port when an identity is available."""
     step_id = os.environ.get("SLURM_STEP_ID")
-    if not step_id:
+    if step_id:
+        identity = f"slurm:{os.environ.get('SLURM_JOB_ID', '')}:{step_id}"
+    elif os.environ.get("DOJO_LAUNCHER_TYPE") == "local_gpu_pool":
+        execution_id = os.environ.get("DOJO_EXECUTION_ID", "")
+        if not execution_id:
+            log.warning(
+                "local_gpu_pool worker has no DOJO_EXECUTION_ID; falling back to "
+                "Jupyter's automatic gateway port selection"
+            )
+            return None
+        identity = f"local_gpu_pool:{execution_id}"
+    else:
         return None
-    identity = f"{os.environ.get('SLURM_JOB_ID', '')}:{step_id}".encode()
+
     # Keep ports out of common service ranges while allowing many jobs per node.
-    return 20000 + int.from_bytes(hashlib.sha256(identity).digest()[:4], "big") % 30000
+    digest = hashlib.sha256(identity.encode()).digest()
+    return 20000 + int.from_bytes(digest[:4], "big") % 30000
 
 
 class JupyterInterpreter(Interpreter):
@@ -43,7 +55,7 @@ class JupyterInterpreter(Interpreter):
     ) -> None:
         self.timeout = cfg.timeout
         self.strip_ansi = cfg.strip_ansi
-        self.port = _slurm_gateway_port()
+        self.port = _gateway_port()
         self.container_runtime = cfg.container_runtime
         self.working_dir = Path(cfg.working_dir).resolve()
         # make sure the working directory ends with a slash

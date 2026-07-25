@@ -1,0 +1,251 @@
+diff --git a/src/dojo/core/interpreters/jupyter/singularity_jupyter_server.py b/src/dojo/core/interpreters/jupyter/singularity_jupyter_server.py
+--- a/src/dojo/core/interpreters/jupyter/singularity_jupyter_server.py
++++ b/src/dojo/core/interpreters/jupyter/singularity_jupyter_server.py
+@@ -18,6 +18,6 @@ import subprocess
+ import threading
+ import time
+-from collections.abc import Mapping, Sequence
++from collections.abc import Callable, Mapping, Sequence
+ from pathlib import Path
+ from types import TracebackType
+ 
+@@ -31,6 +31,9 @@ _PYTHON_USER_BASE = _CONTAINER_WORKING_DIR / ".local"
+ _ENV_NAME_PATTERN = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
+ _READY_PATTERN = re.compile(r"is available at http://([^:]+):(\d+)")
+ _DEFAULT_STARTUP_TIMEOUT_SECONDS = 300.0
++_NVIDIA_OPENCL_ICD = Path("/etc/OpenCL/vendors/nvidia.icd")
++_CONTAINER_NVIDIA_OPENCL_ICD = Path("/etc/OpenCL/vendors/nvidia.icd")
++_CONTAINER_NVIDIA_NVVM = Path("/usr/local/nvidia/lib64/libnvidia-nvvm.so.4")
+ _JUPYTER_BOOTSTRAP = (
+     "import runpy, site; from pathlib import Path; "
+     "Path(site.getusersitepackages()).mkdir(parents=True, exist_ok=True); "
+@@ -76,6 +79,109 @@ def _normalise_read_only_binds(read_only_binds: Mapping[str, str]) -> dict[Path,
+     return binds
+ 
+ 
++def _find_ldconfig_library(
++    soname: str,
++    *,
++    run: Callable[..., subprocess.CompletedProcess[str]] = subprocess.run,
++) -> Path | None:
++    ldconfig = shutil.which("ldconfig")
++    if ldconfig is None:
++        return None
++    try:
++        result = run(
++            [ldconfig, "-p"],
++            check=False,
++            capture_output=True,
++            text=True,
++            timeout=10,
++        )
++    except (OSError, subprocess.SubprocessError):
++        return None
++    if result.returncode != 0:
++        return None
++    for line in result.stdout.splitlines():
++        name, separator, path = line.partition("=>")
++        if separator and name.strip().split(maxsplit=1)[0] == soname:
++            candidate = Path(path.strip())
++            try:
++                resolved = candidate.resolve(strict=True)
++            except OSError:
++                continue
++            if resolved.is_file():
++                return resolved
++    return None
++
++
++def _discover_nvidia_opencl_binds(
++    *,
++    icd_path: Path = _NVIDIA_OPENCL_ICD,
++    run: Callable[..., subprocess.CompletedProcess[str]] = subprocess.run,
++) -> dict[Path, Path]:
++    """Find the host NVIDIA OpenCL files missing from legacy Singularity --nv."""
++    if not icd_path.is_file():
++        log.warning(
++            "NVIDIA OpenCL ICD was not found at %s; OpenCL workloads such as "
++            "LightGBM device='gpu' may be unavailable in the container",
++            icd_path,
++        )
++        return {}
++    try:
++        icd_entries = [
++            line.strip()
++            for line in icd_path.read_text(encoding="utf-8").splitlines()
++            if line.strip() and not line.lstrip().startswith("#")
++        ]
++    except OSError as error:
++        log.warning("Could not read NVIDIA OpenCL ICD %s: %s", icd_path, error)
++        return {}
++    if not any(
++        Path(entry).name.startswith("libnvidia-opencl.so") for entry in icd_entries
++    ):
++        log.warning(
++            "OpenCL ICD %s does not reference libnvidia-opencl; refusing to "
++            "inject it into the container",
++            icd_path,
++        )
++        return {}
++
++    nvvm = _find_ldconfig_library("libnvidia-nvvm.so.4", run=run)
++    if nvvm is None:
++        log.warning(
++            "libnvidia-nvvm.so.4 was not found through ldconfig; NVIDIA "
++            "OpenCL kernels may be discoverable but fail to compile"
++        )
++        return {}
++
++    log.info(
++        "Enabling NVIDIA OpenCL container support with ICD %s and NVVM %s",
++        icd_path,
++        nvvm,
++    )
++    return {
++        icd_path.resolve(): _CONTAINER_NVIDIA_OPENCL_ICD,
++        nvvm: _CONTAINER_NVIDIA_NVVM,
++    }
++
++
++def _merge_runtime_binds(
++    configured_binds: Mapping[Path, Path], runtime_binds: Mapping[Path, Path]
++) -> dict[Path, Path]:
++    merged = dict(configured_binds)
++    sources_by_destination = {
++        destination: source for source, destination in merged.items()
++    }
++    for source, destination in runtime_binds.items():
++        configured_source = sources_by_destination.get(destination)
++        if configured_source is not None and configured_source != source:
++            raise ValueError(
++                "Read-only Singularity bind target conflicts with an automatically "
++                f"managed NVIDIA OpenCL path: {destination}"
++            )
++        merged[source] = destination
++        sources_by_destination[destination] = source
++    return merged
++
++
+ def _build_container_environment(
+     configured_env: Mapping[str, str], host_env: Mapping[str, str] | None = None
+ ) -> dict[str, str]:
+@@ -300,6 +406,7 @@ class SingularityJupyterServer(JupyterConnectable):
+                 raise FileNotFoundError(
+                     f"Read-only Singularity bind source does not exist: {source}"
+                 )
++        binds = _merge_runtime_binds(binds, _discover_nvidia_opencl_binds())
+ 
+         if token is None:
+             token = secrets.token_hex(32)
+diff --git a/tests/test_singularity_jupyter_server.py b/tests/test_singularity_jupyter_server.py
+--- a/tests/test_singularity_jupyter_server.py
++++ b/tests/test_singularity_jupyter_server.py
+@@ -1,6 +1,7 @@
+ from __future__ import annotations
+ 
+ import os
++import subprocess
+ from pathlib import Path
+ from types import SimpleNamespace
+ 
+@@ -17,7 +18,10 @@ from dojo.core.interpreters.jupyter import jupyter_interpreter  # noqa: E402
+ from dojo.core.interpreters.jupyter.singularity_jupyter_server import (  # noqa: E402
+     _build_container_environment,
+     _build_runtime_environment,
+     _build_singularity_command,
++    _discover_nvidia_opencl_binds,
++    _find_ldconfig_library,
++    _merge_runtime_binds,
+     _normalise_read_only_binds,
+     _redact_command,
+     _resolve_superimage_path,
+@@ -75,6 +79,89 @@ def test_runtime_environment_ignores_implicit_container_configuration() -> None:
+     assert runtime_env == {"PATH": "/bin", "SINGULARITY_CACHEDIR": "/cache"}
+ 
+ 
++def test_find_ldconfig_library_resolves_driver_version(
++    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
++) -> None:
++    library = tmp_path / "libnvidia-nvvm.so.610.43.02"
++    library.touch()
++    monkeypatch.setattr(
++        "dojo.core.interpreters.jupyter.singularity_jupyter_server.shutil.which",
++        lambda name: "/sbin/ldconfig" if name == "ldconfig" else None,
++    )
++
++    def fake_run(
++        command: list[str], **kwargs: object
++    ) -> subprocess.CompletedProcess[str]:
++        return subprocess.CompletedProcess(
++            command,
++            0,
++            stdout=f"\tlibnvidia-nvvm.so.4 (libc6,x86-64) => {library}\n",
++            stderr="",
++        )
++
++    assert _find_ldconfig_library("libnvidia-nvvm.so.4", run=fake_run) == library
++
++
++def test_discover_nvidia_opencl_binds_is_version_independent(
++    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
++) -> None:
++    icd = tmp_path / "nvidia.icd"
++    icd.write_text("libnvidia-opencl.so.1\n", encoding="utf-8")
++    nvvm = tmp_path / "libnvidia-nvvm.so.999.1"
++    nvvm.touch()
++    monkeypatch.setattr(
++        "dojo.core.interpreters.jupyter.singularity_jupyter_server.shutil.which",
++        lambda name: "/sbin/ldconfig" if name == "ldconfig" else None,
++    )
++
++    def fake_run(
++        command: list[str], **kwargs: object
++    ) -> subprocess.CompletedProcess[str]:
++        return subprocess.CompletedProcess(
++            command,
++            0,
++            stdout=f"libnvidia-nvvm.so.4 (libc6,x86-64) => {nvvm}\n",
++            stderr="",
++        )
++
++    assert _discover_nvidia_opencl_binds(icd_path=icd, run=fake_run) == {
++        icd.resolve(): Path("/etc/OpenCL/vendors/nvidia.icd"),
++        nvvm.resolve(): Path("/usr/local/nvidia/lib64/libnvidia-nvvm.so.4"),
++    }
++
++
++def test_discover_nvidia_opencl_binds_degrades_when_runtime_is_incomplete(
++    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
++) -> None:
++    icd = tmp_path / "nvidia.icd"
++    icd.write_text("libnvidia-opencl.so.1\n", encoding="utf-8")
++    monkeypatch.setattr(
++        "dojo.core.interpreters.jupyter.singularity_jupyter_server.shutil.which",
++        lambda name: "/sbin/ldconfig" if name == "ldconfig" else None,
++    )
++
++    def fake_run(
++        command: list[str], **kwargs: object
++    ) -> subprocess.CompletedProcess[str]:
++        return subprocess.CompletedProcess(command, 0, stdout="", stderr="")
++
++    assert _discover_nvidia_opencl_binds(icd_path=icd, run=fake_run) == {}
++
++
++def test_runtime_opencl_bind_rejects_configured_target_conflict(tmp_path: Path) -> None:
++    configured = tmp_path / "configured"
++    automatic = tmp_path / "automatic"
++    configured.touch()
++    automatic.touch()
++    destination = Path("/etc/OpenCL/vendors/nvidia.icd")
++
++    with pytest.raises(ValueError, match="automatically managed NVIDIA OpenCL"):
++        _merge_runtime_binds(
++            {configured: destination},
++            {automatic: destination},
++        )
++
++
+ def test_build_singularity_command_uses_foreground_exec_and_explicit_binds(
+     tmp_path: Path,
+ ) -> None:

@@ -85,3 +85,24 @@ class MetadataConfig(BaseConfig):
             "exclude_from_hash": True,
         },
     )
+    execution_id: str = field(
+        default="",
+        metadata={
+            "help": "Scheduler-independent execution identifier for this attempt.",
+            "exclude_from_hash": True,
+        },
+    )
+    execution_host: str = field(
+        default="",
+        metadata={
+            "help": "Host on which this attempt executed.",
+            "exclude_from_hash": True,
+        },
+    )
+    gpu_uuids: list[str] = field(
+        default_factory=list,
+        metadata={
+            "help": "Physical GPU UUIDs assigned to this attempt.",
+            "exclude_from_hash": True,
+        },
+    )

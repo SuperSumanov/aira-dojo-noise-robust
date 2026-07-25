@@ -61,6 +61,27 @@ def test_container_environment_is_runtime_independent_and_extensible() -> None:
     assert container_env["PYTHONUSERBASE"] == "/workspace/.local"
 
 
+def test_container_environment_explicitly_inherits_cuda_mask() -> None:
+    container_env = _build_container_environment(
+        {},
+        {
+            "CUDA_VISIBLE_DEVICES": "GPU-a,GPU-b",
+            "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+        },
+    )
+
+    assert container_env["CUDA_VISIBLE_DEVICES"] == "GPU-a,GPU-b"
+    assert container_env["CUDA_DEVICE_ORDER"] == "PCI_BUS_ID"
+
+
+def test_container_environment_rejects_conflicting_cuda_mask() -> None:
+    with pytest.raises(ValueError, match="cannot override launcher-assigned"):
+        _build_container_environment(
+            {"CUDA_VISIBLE_DEVICES": "GPU-b"},
+            {"CUDA_VISIBLE_DEVICES": "GPU-a"},
+        )
+
+
 def test_container_environment_rejects_invalid_names() -> None:
     with pytest.raises(ValueError, match="Invalid container environment variable"):
         _build_container_environment({"INVALID-NAME": "value"})
@@ -140,6 +161,37 @@ def test_build_singularity_command_uses_explicit_gateway_port(tmp_path: Path) ->
 
     assert "--KernelGatewayApp.port=23456" in args
     assert "--KernelGatewayApp.port_retries=0" not in args
+
+
+def test_gateway_port_is_stable_and_distinct_for_local_workers(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.delenv("SLURM_JOB_ID", raising=False)
+    monkeypatch.delenv("SLURM_STEP_ID", raising=False)
+    monkeypatch.setenv("DOJO_LAUNCHER_TYPE", "local_gpu_pool")
+    monkeypatch.setenv("DOJO_EXECUTION_ID", "host:100:200:a1")
+
+    first = jupyter_interpreter._gateway_port()
+    assert first == jupyter_interpreter._gateway_port()
+    assert first is not None
+    assert 20000 <= first <= 49999
+
+    monkeypatch.setenv("DOJO_EXECUTION_ID", "host:101:201:a1")
+    assert jupyter_interpreter._gateway_port() != first
+
+
+def test_gateway_port_preserves_slurm_identity_precedence(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("DOJO_LAUNCHER_TYPE", "local_gpu_pool")
+    monkeypatch.setenv("DOJO_EXECUTION_ID", "host:100:200:a1")
+    monkeypatch.setenv("SLURM_JOB_ID", "123")
+    monkeypatch.setenv("SLURM_STEP_ID", "4")
+
+    slurm_port = jupyter_interpreter._gateway_port()
+    monkeypatch.setenv("DOJO_EXECUTION_ID", "host:999:999:a9")
+
+    assert jupyter_interpreter._gateway_port() == slurm_port
 
 
 def test_relative_read_only_bind_targets_keep_apptainer_semantics(

@@ -9,7 +9,7 @@ from dojo.core.solvers.utils.response import parse_thinking_tags
 from dojo.utils.code_parsing import parse_json_output
 from dojo.utils.experiment_logs import is_experiment
 from dojo.config_dataclasses.run import RunConfig
-from dojo.core.runners.slurm.manifest import get_srun_pool_tasks
+from dojo.core.runners.slurm.manifest import get_pool_tasks
 import os
 import glob
 import json
@@ -64,10 +64,12 @@ def slurm_id_to_log(logs_folder):
     Extracts 'Output dir: *' from *.out files, cleaning ANSI escape characters.
     Returns a dictionary mapping job names to cleaned output directories.
     """
-    pool_tasks = get_srun_pool_tasks(logs_folder)
+    pool_tasks = get_pool_tasks(logs_folder)
     if pool_tasks:
         return {
-            task["step_id"] or task["run_id"]: Path(task["experiment_dir"])
+            task.get("step_id") or task.get("execution_id") or task["run_id"]: Path(
+                task["experiment_dir"]
+            )
             for task in pool_tasks
         }
     return {
@@ -109,8 +111,8 @@ def gather_submitit_data(logs_folder, job_ids):
     num_runs = 0
     slurm_log_path = Path(logs_folder).parent.parent / "slurm_logs"
     pool_logs = {
-        task["step_id"] or task["run_id"]: Path(task["stderr"])
-        for task in get_srun_pool_tasks(logs_folder)
+        task.get("step_id") or task.get("execution_id") or task["run_id"]: Path(task["stderr"])
+        for task in get_pool_tasks(logs_folder)
         if task.get("stderr")
     }
 

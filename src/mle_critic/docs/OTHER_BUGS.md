@@ -1,14 +1,85 @@
-# Jupyter 端口冲突（Slurm `srun_pool`）
+# Jupyter 端口冲突（`srun_pool` / `local_gpu_pool`）
 
 `srun_pool` 的多个 step 会共享同一节点网络。原实现没有指定
 `KernelGatewayApp.port`，每个 Jupyter server 都从 8888 开始自动找端口；任务失败
 并重试时，多个进程会同时扫描同一组端口，可能卡住 300 秒启动超时。
 
-现在 Jupyter interpreter 在 Slurm 环境中使用 `SLURM_JOB_ID` 和 `SLURM_STEP_ID`
-稳定计算一个 20000--49999 的端口，并把它显式传给 Apptainer/Singularity 的
-KernelGateway，作为端口扫描的起点。这样同一 step 重启会从同一端口开始；如果该
-端口偶然被占用，Jupyter 仍可继续扫描后续端口。非 Slurm 本地运行保持原来的自动
-分配行为。
+现在 Jupyter interpreter 会按 launcher 的执行身份稳定计算一个 20000--49999 的端口，
+并把它显式传给 Apptainer/Singularity 的 KernelGateway，作为端口扫描的起点：
+
+- Slurm 使用 `SLURM_JOB_ID` 和 `SLURM_STEP_ID`；
+- `local_gpu_pool` 使用 worker 启动时生成的 `DOJO_EXECUTION_ID`。
+
+这样并发 worker 不再同时从 8888 开始扫描，同一个执行身份也会得到同一个起始端口；
+如果哈希端口偶然被占用，Jupyter 仍可继续扫描后续端口。没有 scheduler execution
+identity 的普通本地直接运行保持原来的自动分配行为。
+
+# Singularity 中 LightGBM 无法使用 NVIDIA OpenCL
+
+在 `local_gpu_pool` 中，PyTorch CUDA 可以正常识别分配的 GPU，但 LightGBM 使用
+`device="gpu"` 时可能报错：
+
+```text
+LightGBMError: No OpenCL device found
+```
+
+这里的 LightGBM `gpu` backend 使用 OpenCL，不等同于 PyTorch 使用的 CUDA。
+在 `build/superimage/superimage.root.2026-07-macos-v1.sif` 上实测发现：
+
+- Singularity `--nv` 会带入 CUDA、`libnvidia-opencl.so.1` 和
+  `libnvidia-ptxjitcompiler.so.1`；
+- 它不会自动带入宿主 `/etc/OpenCL/vendors/nvidia.icd`；
+- 当前 Singularity 3.10.1 的 `/etc/singularity/nvliblist.conf` 没有包含
+  `libnvidia-nvvm.so`，因此 OpenCL kernel compiler 也不会进入容器；
+- 只挂载 ICD 后能够枚举 NVIDIA OpenCL device，但 kernel 编译仍以
+  `CL_BUILD_PROGRAM_FAILURE` 失败；
+- 同时挂载 NVIDIA ICD 和与宿主驱动匹配的 `libnvidia-nvvm.so.4` 后，LightGBM
+  能正常编译 GPU program 并训练。
+
+对应的可选补丁位于：
+
+```text
+src/mle_critic/patches/singularity_nvidia_opencl_runtime.patch
+```
+
+应用补丁：
+
+```bash
+git apply --check src/mle_critic/patches/singularity_nvidia_opencl_runtime.patch
+git apply src/mle_critic/patches/singularity_nvidia_opencl_runtime.patch
+```
+
+回滚补丁：
+
+```bash
+git apply -R src/mle_critic/patches/singularity_nvidia_opencl_runtime.patch
+```
+
+补丁不会写死当前机器的驱动版本。`SingularityJupyterServer` 启动时会：
+
+1. 只检查 `/etc/OpenCL/vendors/nvidia.icd`，并确认其内容指向
+   `libnvidia-opencl`，不会把 Intel 等其他 ICD 一起带入；
+2. 通过 `ldconfig -p` 查找 `libnvidia-nvvm.so.4`，再解析到当前驱动实际文件；
+3. 将 ICD 只读挂载到容器的 `/etc/OpenCL/vendors/nvidia.icd`；
+4. 将 NVVM 只读挂载到已位于容器 `LD_LIBRARY_PATH` 中的
+   `/usr/local/nvidia/lib64/libnvidia-nvvm.so.4`；
+5. 如果宿主缺少完整 NVIDIA OpenCL runtime，只记录 warning，不影响普通
+   PyTorch/CUDA 任务；
+6. 如果用户配置的 `read_only_binds` 占用了上述自动管理目标且来源不同，拒绝
+   启动，避免静默覆盖。
+
+补丁带有 ICD 校验、`ldconfig` 解析、驱动版本无关性、缺失 runtime 降级和 bind
+冲突测试。当前机器上的真实验证使用 RTX 2080 Ti 和上述 SIF，通过完整
+`SingularityJupyterServer -> Jupyter kernel -> LightGBM device="gpu"` 链路完成，日志包含：
+
+```text
+Using GPU Device: NVIDIA GeForce RTX 2080 Ti, Vendor: NVIDIA Corporation
+GPU programs have been built
+OPENCL_PATCH_PASS
+```
+
+镜像中的 LightGBM 没有启用 CUDA Tree Learner，因此把配置改成 `device="cuda"`
+不是替代方案；它会报 `CUDA Tree Learner was not enabled in this build`。
 
 # 储存大小
 
@@ -44,3 +115,13 @@ ImportError: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.33' not found (re
 ```bash
 conda install -c conda-forge cryptography=49.0.0
 ```
+
+# Proxy问题
+
+很多集群都有乱七八糟的网关和防火墙，可能影响到kaggle的下载。这里没有深究，但
+
+```bash
+export KAGGLE_PROXY="${HTTPS_PROXY}"
+```
+
+是有效的。

@@ -46,7 +46,7 @@ def _main(cfg: RunConfig):
     output_dir = Path(cfg.logger.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     # Set environment variables
-    os.environ["HARDWARE"] = get_hardware()
+    os.environ["HARDWARE"] = os.environ.get("DOJO_HARDWARE_DESCRIPTION") or get_hardware()
     os.environ["TIME_LIMIT_SECS"] = str(cfg.solver.time_limit_secs)
     os.environ["TIME_LIMIT"] = format_time(int(os.environ["TIME_LIMIT_SECS"]))
     os.environ["STEP_LIMIT"] = str(cfg.solver.step_limit)
@@ -57,6 +57,11 @@ def _main(cfg: RunConfig):
     cfg.metadata.slurm_allocation_id = slurm_identity.allocation_id
     cfg.metadata.slurm_step_id = slurm_identity.step_id
     cfg.metadata.launcher_type = slurm_identity.launcher_type
+    cfg.metadata.execution_id = os.environ.get("DOJO_EXECUTION_ID", "")
+    cfg.metadata.execution_host = os.environ.get("DOJO_EXECUTION_HOST", "")
+    cfg.metadata.gpu_uuids = [
+        value for value in os.environ.get("DOJO_GPU_UUIDS", "").split(",") if value
+    ]
 
     # Sanity checks
     log.info(f"Current working directory: {os.getcwd()}")

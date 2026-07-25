@@ -31,7 +31,7 @@ from dojo.utils.experiment_logs import is_experiment, is_meta_experiment
 from dojo.utils.environment import get_mlebench_data_dir
 from dojo.analysis_utils.journal_to_tree import save_journal_log_as_json
 from dojo.core.runners.slurm.accounting import TERMINAL_STATES, query_sacct
-from dojo.core.runners.slurm.manifest import get_srun_pool_tasks
+from dojo.core.runners.slurm.manifest import get_pool_tasks
 
 
 # Section: Submitit Wrangling
@@ -342,9 +342,9 @@ def prepare_meta_exp_slurm_dataframe(metaexp_dir: Union[str, Path]) -> pd.DataFr
         DataFrame with meta-experiment data
     """
     metaexp_dir = Path(metaexp_dir).resolve()
-    manifest_tasks = get_srun_pool_tasks(metaexp_dir)
+    manifest_tasks = get_pool_tasks(metaexp_dir)
     if manifest_tasks:
-        return prepare_srun_pool_dataframe(metaexp_dir, manifest_tasks)
+        return prepare_pool_dataframe(metaexp_dir, manifest_tasks)
 
     # Get job IDs
     ids = metaexp2ids(metaexp_dir)
@@ -412,8 +412,12 @@ def prepare_srun_pool_dataframe(
 ) -> pd.DataFrame:
     """Build an analysis table from srun manifests and Slurm 19.05 accounting."""
     metaexp_dir = Path(metaexp_dir).resolve()
-    tasks = manifest_tasks if manifest_tasks is not None else get_srun_pool_tasks(metaexp_dir)
-    step_ids = [task["step_id"] for task in tasks if task.get("step_id")]
+    tasks = manifest_tasks if manifest_tasks is not None else get_pool_tasks(metaexp_dir)
+    step_ids = [
+        task["step_id"]
+        for task in tasks
+        if task.get("launcher_type") == "srun_pool" and task.get("step_id")
+    ]
     try:
         slurm_data = get_slurm_data(step_ids) if step_ids else {}
     except ValueError:
@@ -429,10 +433,14 @@ def prepare_srun_pool_dataframe(
         rows.append(
             {
                 "RunID": task["run_id"],
-                "JobID": step_id,
+                "JobID": step_id or task.get("execution_id", ""),
                 "AllocationID": task.get("allocation_id", ""),
-                "State": accounting.get("state") or task.get("slurm_state") or task.get("status", "").upper(),
+                "State": accounting.get("state")
+                or task.get("slurm_state")
+                or task.get("status", "").upper(),
                 "PoolStatus": task.get("status", ""),
+                "LauncherType": task.get("launcher_type", ""),
+                "GPUUUIDs": task.get("gpu_uuids", []),
                 "ExitCode": accounting.get("exit_code", task.get("exit_code")),
                 "Elapsed": accounting.get("Elapsed", "Unknown"),
                 "Waiting": accounting.get("WaitingTime"),
@@ -448,6 +456,13 @@ def prepare_srun_pool_dataframe(
     if not rows:
         return pd.DataFrame()
     return pd.DataFrame(rows).set_index("RunID").sort_index()
+
+
+def prepare_pool_dataframe(
+    metaexp_dir: Union[str, Path], manifest_tasks: Optional[List[Dict[str, Any]]] = None
+) -> pd.DataFrame:
+    """Build an analysis table from either srun or local GPU pool manifests."""
+    return prepare_srun_pool_dataframe(metaexp_dir, manifest_tasks)
 
 
 def analyze_failures(

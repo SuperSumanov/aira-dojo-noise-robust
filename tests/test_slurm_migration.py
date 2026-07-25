@@ -175,6 +175,7 @@ def test_manifest_reader_maps_tasks(tmp_path: Path) -> None:
 def test_host_runner_import_does_not_load_training_frameworks() -> None:
     code = (
         "import sys; import dojo.main_runner_job_array; import dojo.main_srun_worker; "
+        "import dojo.main_local_worker; "
         "import dojo.main_run; assert 'torch' not in sys.modules; "
         "assert 'tensorflow' not in sys.modules; assert 'wandb' not in sys.modules"
     )

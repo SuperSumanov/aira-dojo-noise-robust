@@ -1,0 +1,13 @@
+_target_: dojo.config_dataclasses.launcher.local_gpu_pool.LocalGpuPoolConfig
+
+await_completion: true
+monitor_jobs: true
+debug: true
+devices: null
+gpus_per_task: 1
+max_parallel: null
+poll_interval_seconds: 2
+max_retries: 1
+fail_fast: false
+task_timeout_seconds: null
+shutdown_grace_seconds: 30

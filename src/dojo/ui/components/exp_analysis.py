@@ -133,14 +133,25 @@ def analyze_meta_experiment(meta_exp_path: Path) -> Dict:
 
     # Check for slurm logs
     try:
-        from dojo.core.runners.slurm.manifest import get_srun_pool_tasks
+        from dojo.core.runners.slurm.manifest import get_pool_tasks
 
-        pool_tasks = get_srun_pool_tasks(meta_exp_path)
+        pool_tasks = get_pool_tasks(meta_exp_path)
         if pool_tasks:
-            stats["has_slurm_logs"] = True
-            stats["slurm_job_count"] = sum(bool(task.get("step_id")) for task in pool_tasks)
+            pool_job_count = sum(
+                bool(task.get("step_id") or task.get("execution_id")) for task in pool_tasks
+            )
+            stats["has_pool_logs"] = True
+            stats["pool_job_count"] = pool_job_count
+            stats["has_slurm_logs"] = any(
+                task.get("launcher_type") == "srun_pool" for task in pool_tasks
+            )
+            stats["slurm_job_count"] = pool_job_count
             statuses = [task.get("status", "unknown") for task in pool_tasks]
-            stats["srun_pool_status"] = {status: statuses.count(status) for status in sorted(set(statuses))}
+            stats["pool_status"] = {
+                status: statuses.count(status) for status in sorted(set(statuses))
+            }
+            if all(task.get("launcher_type") == "srun_pool" for task in pool_tasks):
+                stats["srun_pool_status"] = stats["pool_status"]
             return stats
 
         # Fetch slurm ids from configs

@@ -1,0 +1,38 @@
+# @package _global_
+defaults:
+  - override /benchmark: mlebench/dev
+  - override /interpreter: jupyter
+  - override /solver: mlebench/mcts
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_flash
+
+metadata:
+  git_issue_id: to_be_determined
+
+solver:
+  operators:
+    draft:
+      llm:
+        generation_kwargs:
+          temperature: 1.0
+          top_p: 1.0
+    improve:
+      llm:
+        generation_kwargs:
+          temperature: 1.0
+          top_p: 1.0
+    debug:
+      llm:
+        generation_kwargs:
+          temperature: 1.0
+          top_p: 1.0
+    analyze:
+      llm:
+        generation_kwargs:
+          temperature: 1.0
+          top_p: 1.0
+
+vars:
+  metadata.seed: [1,2,3,4]

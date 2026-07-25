@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import atexit
+import json
 import logging
 import os
 import re
@@ -77,7 +78,9 @@ def _normalise_read_only_binds(read_only_binds: Mapping[str, str]) -> dict[Path,
     return binds
 
 
-def _build_container_environment(configured_env: Mapping[str, str]) -> dict[str, str]:
+def _build_container_environment(
+    configured_env: Mapping[str, str], host_env: Mapping[str, str] | None = None
+) -> dict[str, str]:
     container_env = {
         "HOME": str(_CONTAINER_HOME),
         "JUPYTER_RUNTIME_DIR": str(_JUPYTER_RUNTIME_DIR),
@@ -90,6 +93,18 @@ def _build_container_environment(configured_env: Mapping[str, str]) -> dict[str,
         "CUDA_LAUNCH_BLOCKING": "1",
         "TF_CPP_MIN_LOG_LEVEL": "3",
     }
+    host_env = os.environ if host_env is None else host_env
+    for name in ("CUDA_VISIBLE_DEVICES", "CUDA_DEVICE_ORDER"):
+        host_value = host_env.get(name)
+        configured_value = configured_env.get(name)
+        if host_value is not None:
+            if configured_value is not None and str(configured_value) != host_value:
+                raise ValueError(
+                    f"interpreter.env cannot override launcher-assigned {name}: "
+                    f"configured {configured_value!r}, assigned {host_value!r}"
+                )
+            container_env[name] = host_value
+
     for name, value in configured_env.items():
         if not _ENV_NAME_PATTERN.fullmatch(name):
             raise ValueError(f"Invalid container environment variable name: {name!r}")
@@ -106,6 +121,57 @@ def _build_runtime_environment(host_env: Mapping[str, str]) -> dict[str, str]:
     for name in _SINGULARITY_RUNTIME_ENV_TO_CLEAR:
         runtime_env.pop(name, None)
     return runtime_env
+
+
+def _process_start_ticks(pid: int) -> int | None:
+    try:
+        stat = Path(f"/proc/{pid}/stat").read_text(encoding="utf-8")
+        return int(stat.rsplit(")", 1)[1].split()[19])
+    except (FileNotFoundError, IndexError, ValueError, OSError):
+        return None
+
+
+def _publish_container_identity(pid: int | None) -> None:
+    identity_path = os.environ.get("DOJO_WORKER_IDENTITY_PATH", "")
+    if not identity_path:
+        return
+    path = Path(identity_path)
+    try:
+        with path.open("r", encoding="utf-8") as file:
+            identity = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return
+
+    if pid is None:
+        identity.update(
+            {
+                "container_pid": None,
+                "container_pgid": None,
+                "container_process_start_ticks": None,
+            }
+        )
+    else:
+        try:
+            process_group = os.getpgid(pid)
+        except ProcessLookupError:
+            process_group = None
+        identity.update(
+            {
+                "container_pid": pid,
+                "container_pgid": process_group,
+                "container_process_start_ticks": _process_start_ticks(pid),
+            }
+        )
+    temporary_path = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    try:
+        with temporary_path.open("w", encoding="utf-8") as file:
+            json.dump(identity, file, indent=2, sort_keys=True)
+            file.flush()
+            os.fsync(file.fileno())
+        os.replace(temporary_path, path)
+    except OSError:
+        temporary_path.unlink(missing_ok=True)
+        log.exception("Could not publish Singularity process identity to %s", path)
 
 
 def _build_singularity_command(
@@ -292,6 +358,7 @@ class SingularityJupyterServer(JupyterConnectable):
                 start_new_session=True,
                 env=_build_runtime_environment(os.environ),
             )
+            _publish_container_identity(self._subprocess.pid)
             self._wait_until_ready(startup_timeout)
         except BaseException:
             self.stop()
@@ -380,6 +447,7 @@ class SingularityJupyterServer(JupyterConnectable):
                 process.wait()
 
         self._subprocess = None
+        _publish_container_identity(None)
         output_thread = self._output_thread
         if (
             output_thread is not None

@@ -22,10 +22,12 @@ from submitit.helpers import RsyncSnapshot, monitor_jobs
 
 from dojo.config_dataclasses.omegaconf.resolvers import register_new_resolvers
 from dojo.config_dataclasses.launcher.base import LauncherConfig
+from dojo.config_dataclasses.launcher.local_gpu_pool import LocalGpuPoolConfig
 from dojo.config_dataclasses.launcher.slurm import SlurmConfig
 from dojo.config_dataclasses.launcher.srun_pool import SrunPoolConfig
 from dojo.config_dataclasses.run import RunConfig
 from dojo.config_dataclasses.runner import RunnerConfig
+from dojo.core.runners.local.gpu_pool import LocalGpuPoolLauncher
 from dojo.core.runners.slurm.srun_pool import SrunPoolLauncher
 from dojo.utils.environment import get_log_dir
 from dojo.utils.git import get_git_top_level
@@ -114,7 +116,18 @@ def launch_srun_pool(
     return SrunPoolLauncher(config_list, launcher_cfg, snapshot_path).run()
 
 
+def launch_local_gpu_pool(
+    config_list: list[RunConfig], launcher_cfg: LocalGpuPoolConfig, snapshot_path: Path
+) -> dict:
+    return LocalGpuPoolLauncher(config_list, launcher_cfg, snapshot_path).run()
+
+
 def launch_jobs(config_list: list[RunConfig], launcher_cfg: LauncherConfig):
+    if isinstance(launcher_cfg, LocalGpuPoolConfig):
+        snapshot_path = LocalGpuPoolLauncher.resume_snapshot_path(config_list, launcher_cfg)
+        if snapshot_path is None:
+            snapshot_path = create_snapshot()
+        return launch_local_gpu_pool(config_list, launcher_cfg, snapshot_path)
     if isinstance(launcher_cfg, SrunPoolConfig):
         snapshot_path = SrunPoolLauncher.resume_snapshot_path(config_list, launcher_cfg)
         if snapshot_path is None:
@@ -226,12 +239,12 @@ def main(_cfg: DictConfig):
         runner_configs.append(runner_cfg)
 
     result = asyncio.run(_main(runner_configs))
-    if isinstance(og_cfg.launcher, SrunPoolConfig):
+    if isinstance(og_cfg.launcher, (LocalGpuPoolConfig, SrunPoolConfig)):
         if result:
-            log.info("Srun pool manifest: %s", result["manifest_path"])
+            log.info("Pool manifest: %s", result["manifest_path"])
             if not result["successful"]:
                 raise RuntimeError(
-                    f"Srun pool finished with incomplete tasks; inspect {result['manifest_path']}"
+                    f"Pool finished with incomplete tasks; inspect {result['manifest_path']}"
                 )
         return
 

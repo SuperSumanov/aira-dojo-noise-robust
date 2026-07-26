@@ -156,4 +156,8 @@ pool_fill_once.sh ──提交──> pool_collect.sbatch(1 job=4 GPU allocation
 > `step_limit=10000 / execution_timeout=14400`(树靠墙钟截断、坏节点烧 4 GPU 时)。**采集协议要求在启动命令
 > 显式加**:`solver.step_limit=20 solver.execution_timeout=1500 solver.time_limit_secs=12600`
 > (视觉/音频任务把 execution_timeout 放宽到 3600)。已收的裸配置批次不作废,合并时按"默认配置 regime"单独切片。
+> **为什么必须**:外部真分只在 run 干净退出时写入 checkpoint/journal.jsonl —— **SLURM 24h 强杀会吞掉外部评分**
+> (7-24 批实测:22 seed 只有 3 个有 checkpoint)。带 override 后每 run ≤3.5h 干净收尾:
+> 每卡每天 ~6 run × 100% 带真分 vs 现在 1 run × 14%,**有效 graded 产出 ≈ 40 倍**。
+> 被杀 run 的节点代码仍在 live JOURNAL 里,极端稀缺任务可用 re-grade 机制事后补分(贵,不作默认)。
 > 另:kuzushiji 在双方环境都出不了 graded(我方 GLIBC / 学长方 CUDA OOM+超时),**镜像 v2 之前建议把它的卡改配 NLP 任务**。

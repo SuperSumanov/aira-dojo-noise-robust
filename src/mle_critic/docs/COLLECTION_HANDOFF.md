@@ -151,3 +151,9 @@ pool_fill_once.sh ──提交──> pool_collect.sbatch(1 job=4 GPU allocation
 > **2026-07-25 侦察快报(排卡前必读)**:
 > - **视觉任务退化但未死**:suiteD(kuzushiji/petfinder,exec cap 3600s)跑 5h,40 节点 78% buggy(其中 13 个 exec 超时、4 个 GLIBC/libGL,其余混合),**有 9 个正常节点**。含义:当前镜像上视觉任务吞吐差、性价比低——优先跑 NLP/表格,视觉等镜像 v2 或把 exec cap 提到 5400s+ 再试;音频(mlsp-birds)结果今日出。
 > - **混环境重评会假失败**:tabular 老线(非容器 venv)的解在容器里重跑,18 个撞 LightGBM OpenCL 缺失、3 个撞新 sklearn 删除 multi_class 参数——同一份代码换环境 ~1/3 假阵亡。含义:①re-grade/复现必须与采集同环境;②datasheet 里"环境敏感性"是真实的一根轴。
+
+> **⚠️ 2026-07-27 三个必带 override(7-24 批实测发现的协议漂移)**:裸跑 `solver=mlebench/mcts` 会得到
+> `step_limit=10000 / execution_timeout=14400`(树靠墙钟截断、坏节点烧 4 GPU 时)。**采集协议要求在启动命令
+> 显式加**:`solver.step_limit=20 solver.execution_timeout=1500 solver.time_limit_secs=12600`
+> (视觉/音频任务把 execution_timeout 放宽到 3600)。已收的裸配置批次不作废,合并时按"默认配置 regime"单独切片。
+> 另:kuzushiji 在双方环境都出不了 graded(我方 GLIBC / 学长方 CUDA OOM+超时),**镜像 v2 之前建议把它的卡改配 NLP 任务**。

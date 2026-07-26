@@ -18,22 +18,27 @@ for r in csv.DictReader(open("phase1/regrade_tau_nodes.csv")):
     if r["tau"]: taus[r["competition"]].append(float(r["tau"]))
 floor = {t: 2 * max(sorted(v)[int(0.9*(len(v)-1))], 1e-9) for t, v in taus.items()}
 
+ORI = json.load(open("phase1/task_orientation.json"))
 cards = collections.defaultdict(list)
 for i, path in enumerate(a.cards):
     src = "senior" if "senior" in path else "ours"
     for l in open(path):
         d = json.loads(l)
         t = (d.get("task") or {}).get("name"); lab = d.get("label") or {}
-        yv = lab.get("y_norm")
-        if not t or lab.get("graded") is None or yv is None: continue
+        if not t or lab.get("graded") is None or t not in ORI: continue
         cid = d.get("id") or ""
         if any(cid.startswith(w) for w in WILD): continue
-        cards[t].append({"id": cid, "y": yv, "graded": lab["graded"], "src": src})
+        cards[t].append({"id": cid, "graded": lab["graded"], "src": src})
 
 rng = random.Random(a.seed)
 n_out = 0
 with open(a.out, "w") as f:
     for t, cs in sorted(cards.items()):
+        sign = -1.0 if ORI[t] else 1.0
+        gs = [c["graded"] for c in cs]
+        lo, hi = min(gs), max(gs)
+        for c in cs:
+            c["y"] = 0.5 if hi == lo else (sign * (c["graded"] - lo) / (hi - lo) + (1.0 if sign < 0 else 0.0))
         # in-task split by card (80/20)
         ids = [c["id"] for c in cs]; rng.shuffle(ids)
         holdout = set(ids[int(0.8*len(ids)):])

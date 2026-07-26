@@ -24,10 +24,11 @@ for i, path in enumerate(a.cards):
     for l in open(path):
         d = json.loads(l)
         t = (d.get("task") or {}).get("name"); lab = d.get("label") or {}
-        if not t or lab.get("graded") is None or d.get("y") is None: continue
+        yv = lab.get("y_norm")
+        if not t or lab.get("graded") is None or yv is None: continue
         cid = d.get("id") or ""
         if any(cid.startswith(w) for w in WILD): continue
-        cards[t].append({"id": cid, "y": d["y"], "graded": lab["graded"], "src": src})
+        cards[t].append({"id": cid, "y": yv, "graded": lab["graded"], "src": src})
 
 rng = random.Random(a.seed)
 n_out = 0

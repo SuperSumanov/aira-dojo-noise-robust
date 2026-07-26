@@ -30,6 +30,16 @@ TASK_TYPE = {
     "denoising-dirty-documents": "image-cls",
     "spooky-author-identification": "nlp",
     "random-acts-of-pizza": "nlp",
+    "google-quest-challenge": "nlp",
+    "text-normalization-challenge-english-language": "nlp",
+    "text-normalization-challenge-russian-language": "nlp",
+    "tweet-sentiment-extraction": "nlp",
+    "learning-agency-lab-automated-essay-scoring-2": "nlp",
+    "us-patent-phrase-to-phrase-matching": "nlp",
+    "kuzushiji-recognition": "image-cls",
+    "petfinder-pawpularity-score": "image-cls",
+    "whale-categorization-playground": "image-cls",
+    "mlsp-2013-birds": "image-cls",
 }
 
 

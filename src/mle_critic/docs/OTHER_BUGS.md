@@ -14,6 +14,27 @@
 如果哈希端口偶然被占用，Jupyter 仍可继续扫描后续端口。没有 scheduler execution
 identity 的普通本地直接运行保持原来的自动分配行为。
 
+# Agent 修改 `CUDA_VISIBLE_DEVICES`
+
+Singularity legacy `--nv` 可能把所有 NVIDIA device node 带入容器，
+`CUDA_VISIBLE_DEVICES` 只提供协作式 GPU 可见性限制。如果 Agent 生成的代码主动设置、
+删除或覆盖该变量，可能绕过 `local_gpu_pool` 分配的 GPU mask。
+
+对应的 prompt 补丁位于：
+
+```text
+src/mle_critic/patches/preserve_cuda_visible_devices_in_code_prompts.patch
+```
+
+它会在 AIRA 和 AIDE 的 draft、debug、improve、crossover prompt 中加入一条简短要求：
+不要修改 `CUDA_VISIBLE_DEVICES`，直接使用 runtime 已经暴露的 GPU。应用方式：
+
+```bash
+git apply src/mle_critic/patches/preserve_cuda_visible_devices_in_code_prompts.patch
+```
+
+这只能减少 Agent 无意修改 mask 的情况，不构成 device cgroup 级强隔离。
+
 # Singularity 中 LightGBM 无法使用 NVIDIA OpenCL
 
 在 `local_gpu_pool` 中，PyTorch CUDA 可以正常识别分配的 GPU，但 LightGBM 使用

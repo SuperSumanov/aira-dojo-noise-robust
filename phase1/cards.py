@@ -47,7 +47,12 @@ class Obs:
 class Lineage:
     parent_val: Optional[float] = None
     op: str = "Draft"
-    depth: int = 0
+    depth: int = 0                       # legacy: number of parents (0/1). Kept for feature stability.
+    parent_id: Optional[str] = None      # card id of the parent node ("" root -> None)
+    tree_depth: Optional[int] = None     # true depth from root (root=0), computed per journal
+    children_ids: List[str] = field(default_factory=list)
+    n_siblings: Optional[int] = None     # siblings sharing the same parent (excluding self)
+    step: Optional[int] = None           # journal step index (tree build order)
 
 
 @dataclass
@@ -229,15 +234,46 @@ def parse_journal(path: str, task: TaskInfo) -> List[Card]:
             if line:
                 nodes.append(json.loads(line))
     by_step = {n.get("step"): n for n in nodes}
+
+    def _cid(step):
+        n = by_step.get(step)
+        return f"{task.name}__{n.get('id', n.get('step'))}" if n else None
+
+    # true depth from root, walking `parents` (index-into-step); cycle-safe
+    def _tree_depth(step, _seen=None):
+        _seen = _seen or set()
+        if step in _seen:
+            return None
+        n = by_step.get(step)
+        if n is None:
+            return None
+        ps = n.get("parents") or []
+        if not ps:
+            return 0
+        d = _tree_depth(ps[0], _seen | {step})
+        return None if d is None else d + 1
+
+    kids_of = {}
+    for n in nodes:
+        for p in (n.get("parents") or []):
+            kids_of.setdefault(p, []).append(n.get("step"))
+
     cards = []
     for nd in nodes:
         c = card_from_node_data(nd, task)
         if c is None:
             continue
+        step = nd.get("step")
         parents = nd.get("parents") or []
         if parents and parents[0] in by_step:
             pmi = (by_step[parents[0]].get("metric_info") or {})
             c.lineage.parent_val = pmi.get("validation_score", by_step[parents[0]].get("metric"))
+            c.lineage.parent_id = _cid(parents[0])
+            sibs = kids_of.get(parents[0], [])
+            c.lineage.n_siblings = max(0, len(sibs) - 1)
+        c.lineage.step = step
+        c.lineage.tree_depth = _tree_depth(step)
+        c.lineage.children_ids = [x for x in (_cid(k) for k in kids_of.get(step, [])) if x]
         cards.append(c)
     return cards
 

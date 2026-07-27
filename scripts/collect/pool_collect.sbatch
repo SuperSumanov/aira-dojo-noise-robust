@@ -11,6 +11,13 @@
 refill() { bash "$DOJO_REPO/scripts/collect/pool_fill_once.sh" || true; }
 trap 'echo "TERM -> refill before wall-kill" >&2; refill; exit 0' TERM
 echo "=== pool batch ${PC_ISSUE:-?} seeds=[${PC_S1:-?},${PC_S2:-?}] job=$SLURM_JOB_ID node=$SLURM_JOB_NODELIST $(date -u +%FT%TZ) ==="
+S0=$(date +%s)
 bash "$DOJO_REPO/scripts/collect/pool_collect_inner.sh"
-echo "=== batch done rc=$? $(date -u +%FT%TZ) ==="
-refill
+RC=$?
+EL=$(( $(date +%s) - S0 ))
+echo "=== batch done rc=$RC elapsed=${EL}s $(date -u +%FT%TZ) ==="
+if [ "$EL" -lt 1800 ]; then
+  echo "CIRCUIT_BREAK: batch ended after only ${EL}s - NOT chaining (check API/proxy/node before re-arming)"
+else
+  refill
+fi

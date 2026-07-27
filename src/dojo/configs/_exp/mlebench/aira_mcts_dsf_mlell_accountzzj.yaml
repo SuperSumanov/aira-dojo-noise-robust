@@ -11,28 +11,5 @@ defaults:
 metadata:
   git_issue_id: to_be_determined
 
-solver:
-  operators:
-    draft:
-      llm:
-        generation_kwargs:
-          temperature: 1.0
-          top_p: 1.0
-    improve:
-      llm:
-        generation_kwargs:
-          temperature: 1.0
-          top_p: 1.0
-    debug:
-      llm:
-        generation_kwargs:
-          temperature: 1.0
-          top_p: 1.0
-    analyze:
-      llm:
-        generation_kwargs:
-          temperature: 1.0
-          top_p: 1.0
-
 vars:
   metadata.seed: [1,2,3,4]

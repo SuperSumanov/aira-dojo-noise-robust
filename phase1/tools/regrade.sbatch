@@ -14,9 +14,9 @@ export REGRADE_WORK=/tmp/regrade_$SLURM_JOB_ID
 cd /research/d7/spc/yzyang4/aira-dojo || exit 1
 PY=/research/d7/spc/yzyang4/venvs/exp/bin/python
 resubmit_if_left() {
-  LEFT=$($PY /research/d7/spc/yzyang4/scripts/regrade_worker.py --k 3 --limit 0 --dry-count 2>/dev/null | tail -1)
+  LEFT=$($PY /research/d7/spc/yzyang4/scripts/regrade_worker.py ${REGRADE_ARGS:-} --limit 0 --dry-count 2>/dev/null | tail -1)
   if [ "${LEFT:-0}" -gt 0 ] 2>/dev/null; then
-    sbatch --export=ALL,REGRADE_ARGS="--k 3" /research/d7/spc/yzyang4/scripts/regrade.sbatch && echo "CHAINED next gen (left=$LEFT)"
+    sbatch --export=ALL,REGRADE_ARGS="$REGRADE_ARGS" /research/d7/spc/yzyang4/scripts/regrade.sbatch && echo "CHAINED next gen (left=$LEFT)"
   else
     echo "REGRADE_ALL_DONE"
   fi

@@ -194,11 +194,18 @@ python -m pip install \
   "peft<0.18" \
   "pytorch-lightning<2.6" \
   "sentence-transformers<6" \
+  "tf-keras==2.21.0" \
   timm \
   torch-geometric \
   torchinfo \
   torchmetrics
 ```
+
+`tf-keras` 是必装项，不是只在编写 TensorFlow solution 时才需要的可选包。当前 README/MLE-bench
+环境会安装 TensorFlow 2.21.0 和独立的 Keras 3；但是仓库固定的 Transformers 4.50.1 在导入
+`Trainer` 等组件时可能继续加载 TensorFlow integration，而该版本不支持 Keras 3。实测
+`chaii-hindi-and-tamil-question-answering` 多 seed 任务因此反复在 `from transformers import ...`
+阶段失败，错误明确要求安装 backwards-compatible `tf-keras`。
 
 `torch-geometric` 的基础包可以直接安装；某些稀疏/采样算子还需要额外的
 `pyg_lib`、`torch_scatter`、`torch_sparse` 等和具体 Torch/CUDA 版本匹配的 wheel。只有任务实际
@@ -287,6 +294,7 @@ modules = [
     "torch", "torchvision", "xgboost", "lightgbm", "catboost",
     "sklearn", "imblearn", "statsmodels", "cv2", "PIL",
     "albumentations", "imagecodecs", "transformers",
+    "tensorflow", "tf_keras",
     "sentence_transformers", "datasets", "peft", "timm",
     "fastai", "pytorch_lightning", "torch_geometric",
     "faiss", "implicit", "librosa", "gensim", "spacy",
@@ -302,6 +310,26 @@ for name in modules:
 PY
 ```
 
+再单独触发一次 Transformers 的 TensorFlow/Keras integration；仅执行 `import transformers`
+不一定会加载到发生冲突的模块：
+
+```bash
+python - <<'PY'
+import tensorflow as tf
+import tf_keras
+from transformers.activations_tf import get_tf_activation
+
+print("tensorflow:", tf.__version__)
+print("Keras 2 compatibility package:", tf_keras.__version__)
+print("Transformers TF integration: OK", get_tf_activation("gelu"))
+PY
+```
+
+如果这里仍出现 `Your currently installed version of Keras is Keras 3`，说明 `tf-keras` 没有安装到
+当前正在运行 agent 的同一个 Python 环境；用 `which python` 和
+`python -m pip show tf-keras` 检查，不要让候选代码在 workspace 中临时 `pip install --target`
+另一个 Transformers 副本。后者可能遮蔽主环境的依赖并重复触发相同错误。
+
 如果 `pip check` 只报告 `streamlit`/`protobuf`，这是当前环境与 MLE-bench TensorFlow 版本的
 已知冲突，不一定影响 agent 主流程：
 
@@ -313,7 +341,98 @@ but you have protobuf 7.x
 不要为了消除这一条警告盲目降级 NumPy 或 TensorFlow。只有在确实运行 Streamlit UI 时，才应
 单独决定升级 Streamlit 或为 UI 创建独立环境。
 
-## 8. 用 Python interpreter 运行实验
+## 8. 安装完成后将 Conda 环境标记为 externally managed
+
+完成前面所有依赖安装和验证后，建议用 PEP 668 的 `EXTERNALLY-MANAGED` marker 阻止 agent
+直接修改共享的 `aira-dojo` 环境。
+
+虽然通常把 Conda 环境中的第三方包目录统称为 “site-packages”，但 marker **不能**写在
+`site-packages/EXTERNALLY-MANAGED`。pip 25.0 实际检查：
+
+```python
+Path(sysconfig.get_path("stdlib")) / "EXTERNALLY-MANAGED"
+```
+
+在当前环境中，它通常是
+`$CONDA_PREFIX/lib/python3.12/EXTERNALLY-MANAGED`；真正的 site-packages 则是其下一级
+`$CONDA_PREFIX/lib/python3.12/site-packages`。把文件写进后一个目录不会生效。
+
+激活目标环境后执行：
+
+```bash
+conda activate aira-dojo
+
+python - <<'PY'
+import sys
+import sysconfig
+from pathlib import Path
+
+stdlib = Path(sysconfig.get_path("stdlib")).resolve()
+site_packages = Path(sysconfig.get_path("purelib")).resolve()
+marker = stdlib / "EXTERNALLY-MANAGED"
+prefix = Path(sys.prefix).resolve()
+
+if not stdlib.is_relative_to(prefix):
+    raise RuntimeError(f"Refusing to write outside the active Python prefix: {stdlib}")
+
+marker.write_text(
+    "[externally-managed]\n"
+    "Error=This aira-dojo Conda environment is managed by the operator. "
+    "Agent code must not install or remove packages.\n",
+    encoding="utf-8",
+)
+marker.chmod(0o444)
+
+print("Python prefix:", sys.prefix)
+print("site-packages:", site_packages)
+print("PEP 668 marker:", marker)
+PY
+```
+
+不需要 `sudo`，前提是当前用户拥有这个 Conda 环境。不要对 base 环境或其他用户的环境运行该
+命令。写入后用一个不会真正安装包的命令验证：
+
+```bash
+python -m pip install --dry-run --no-index packaging
+```
+
+预期在依赖解析前失败，并包含：
+
+```text
+error: externally-managed-environment
+This aira-dojo Conda environment is managed by the operator.
+```
+
+`python -m pip check`、导入已有包以及运行 agent 不受影响。以后确实需要维护环境时，可先撤销
+marker，完成安装和验证后再重新写入：
+
+```bash
+python - <<'PY'
+import sysconfig
+from pathlib import Path
+
+marker = Path(sysconfig.get_path("stdlib")) / "EXTERNALLY-MANAGED"
+if marker.exists():
+    marker.chmod(0o644)
+    marker.unlink()
+    print("Removed:", marker)
+PY
+```
+
+PEP 668 是防误操作保险，不是权限隔离。pip 的 `--break-system-packages`、
+`PIP_BREAK_SYSTEM_PACKAGES=1` 和某些 `--target` 安装可以绕过它，Conda/Mamba 也不读取该 marker；
+而且以环境所有者身份运行的代码可以删除 marker。因此还应应用
+[forbid_agent_package_installation.patch](../patches/forbid_agent_package_installation.patch)，让生成代码的
+prompt 明确禁止通过 pip、Conda、subprocess、vendoring 或 workspace-local `--target` 安装依赖。
+
+应用 prompt patch：
+
+```bash
+git apply --check src/mle_critic/patches/forbid_agent_package_installation.patch
+git apply src/mle_critic/patches/forbid_agent_package_installation.patch
+```
+
+## 9. 用 Python interpreter 运行实验
 
 对 README 中默认使用 Jupyter interpreter 的实验，加入 `interpreter=python`：
 
@@ -334,7 +453,7 @@ python -m dojo.main_run \
   logger.use_wandb=False
 ```
 
-### 8.1 Spaceship Titanic 实测 smoke test
+### 9.1 Spaceship Titanic 实测 smoke test
 
 本文所述路径已经按照
 [AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md](./AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md) 的
@@ -422,7 +541,7 @@ $LOGGING_DIR/aira-dojo/user_<user>_issue_deepseek_flash_spaceship_smoke/
 数据准备失败。上面的运行中首个 LightGBM 候选已经完成有效 submission 和评分，后续失败节点
 没有覆盖当前最佳结果。
 
-### 8.2 为 Python interpreter 做的仓库改动
+### 9.2 为 Python interpreter 做的仓库改动
 
 原来的 `src/dojo/tasks/mlebench/task.py` 在评分后使用：
 
@@ -450,7 +569,7 @@ interpreter.run(
 除上述清理修复外，本次完整 smoke 没有修改 solver、task、数据或 `.env` 配置，也没有依赖
 Apptainer/Singularity、Docker、Slurm 或 superimage。
 
-## 9. 安全和资源边界
+## 10. 安全和资源边界
 
 Python interpreter 不等价于 superimage：
 

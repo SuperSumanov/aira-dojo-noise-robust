@@ -165,9 +165,11 @@ class MLEBenchTask(Task):
         if interpreter.factory:
             interpreter.close()
         else:
+            # Use Python rather than Jupyter's ``!rm`` syntax so cleanup also
+            # works with the local PythonInterpreter backend.
             interpreter.run(
-                f"!rm {self.cfg.submission_fname}"
-            )  # remove the submission_file from the agent's environment
+                f"from pathlib import Path; Path({self.cfg.submission_fname!r}).unlink(missing_ok=True)"
+            )
             assert interpreter.fetch_file(self._submission_file_path) is None, (
                 "At this point, the submissions file should not exists in the agent's environment!"
             )

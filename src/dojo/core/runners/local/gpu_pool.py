@@ -546,16 +546,19 @@ class LocalGpuPoolLauncher:
 
     def _required_paths(self) -> set[Path]:
         paths = {self.snapshot_path, self.python_executable, self.meta_exp_dir}
-        if shutil.which("singularity") is None:
-            raise RuntimeError(
-                "local_gpu_pool requires `singularity`, but it was not found in PATH"
-            )
         for run_cfg in self.run_configs:
             runtime = getattr(run_cfg.interpreter, "container_runtime", "")
-            if runtime and runtime != "singularity":
-                raise ValueError(
-                    f"local_gpu_pool currently requires the Singularity interpreter, got {runtime!r}"
-                )
+            if runtime:
+                if runtime != "singularity":
+                    raise ValueError(
+                        "local_gpu_pool currently requires the Singularity "
+                        f"container runtime, got {runtime!r}"
+                    )
+                if shutil.which("singularity") is None:
+                    raise RuntimeError(
+                        "local_gpu_pool requires `singularity` for containerized "
+                        "interpreters, but it was not found in PATH"
+                    )
             configured_env = getattr(run_cfg.interpreter, "env", {}) or {}
             if (
                 "CUDA_DEVICE_ORDER" in configured_env

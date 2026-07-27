@@ -247,6 +247,42 @@ def test_local_pool_fixed_concurrency_gpu_masks_and_manifest(
     assert {task["run_id"] for task in tasks} == {config.id for config in configs}
 
 
+def test_local_pool_python_interpreter_does_not_require_singularity(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    inventory: tuple[GpuDevice, ...],
+) -> None:
+    launcher, _, _ = _make_launcher(
+        tmp_path, monkeypatch, inventory, run_count=1, max_parallel=1
+    )
+    monkeypatch.setattr(
+        gpu_pool.shutil,
+        "which",
+        lambda name: None if name == "singularity" else f"/fake/{name}",
+    )
+
+    launcher._validate_paths()
+
+
+def test_local_pool_container_interpreter_still_requires_singularity(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    inventory: tuple[GpuDevice, ...],
+) -> None:
+    launcher, _, configs = _make_launcher(
+        tmp_path, monkeypatch, inventory, run_count=1, max_parallel=1
+    )
+    configs[0].interpreter = SimpleNamespace(container_runtime="singularity")
+    monkeypatch.setattr(
+        gpu_pool.shutil,
+        "which",
+        lambda name: None if name == "singularity" else f"/fake/{name}",
+    )
+
+    with pytest.raises(RuntimeError, match="containerized interpreters"):
+        launcher._validate_paths()
+
+
 def test_local_pool_retries_and_recovers_terminal_results(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

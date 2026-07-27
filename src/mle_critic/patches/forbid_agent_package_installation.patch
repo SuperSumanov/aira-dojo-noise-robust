@@ -1,0 +1,54 @@
+diff --git a/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml b/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml
+--- a/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml
++++ b/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml
+@@ -56,5 +56,5 @@ system_message_prompt_template:
+       ## Environment:
+-      You have access to Python and the following packages (already installed): {{packages}}. Feel free to use additional libraries that fit the problem.
++      You have access to Python and the following packages (already installed): {{packages}}. Use only these installed packages; do not install, download, vendor, or otherwise add Python packages or system dependencies (including via `pip`, `conda`, `apt`, `subprocess`, or `pip --target`).
+ 
+       # Data Overview:
+       {{data_overview}}
+diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
+--- a/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
++++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
+@@ -61,5 +61,5 @@ system_message_prompt_template:
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
+ 
+-      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. If you need to, feel free to use additional libraries that fit the problem.
++      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. Use only these installed packages; do not install, download, vendor, or otherwise add Python packages or system dependencies (including via `pip`, `conda`, `apt`, `subprocess`, or `pip --target`).
+ 
+       Start by making sure you understand the task, the provided solutions, the data and compute resources, and your proposed crossover idea. Then, generate a detailed internal implementation plan that will structure and guide you step-by-step through the implementation process. Make sure to reflect on the plan to ensure that the implementation is efficient, faithful to the crossover idea, and that all requirements (e.g., the evaluation score is printed, the submission file follows the correct format and is saved in the correct location, etc.) are satisfied.
+diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml
+--- a/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml
++++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml
+@@ -41,7 +41,7 @@ system_message_prompt_template:
+       # Compute Environment:
+       - Hardware: {{hardware}}
+       - Available Packages: {{packages}}
+-      - Additional libraries allowed as needed.
++      - Package policy: use only the listed packages; do not install, download, vendor, or otherwise add Python packages or system dependencies (including via `pip`, `conda`, `apt`, `subprocess`, or `pip --target`).
+ 
+       # Instructions:
+       - **Do NOT** alter the core method or underlying idea. Only correct existing bugs.
+diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
+--- a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
++++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
+@@ -41,6 +41,6 @@ system_message_prompt_template:
+       
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
+       
+-      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. If you need to, feel free to use additional libraries that fit the problem.
++      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. Use only these installed packages; do not install, download, vendor, or otherwise add Python packages or system dependencies (including via `pip`, `conda`, `apt`, `subprocess`, or `pip --target`).
+ 
+       Consider the previously explored ideas, and make sure the idea you propose considers a DIFFERENT ASPECT OF THE SOLUTION, but keep the EVALUATION CONSISTENT. 
+diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
+--- a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
++++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
+@@ -48,6 +48,6 @@ system_message_prompt_template:
+       
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
+       
+-      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. If you need to, feel free to use additional libraries that fit the problem.
++      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. Use only these installed packages; do not install, download, vendor, or otherwise add Python packages or system dependencies (including via `pip`, `conda`, `apt`, `subprocess`, or `pip --target`).
+ 
+       Consider the previously explored ideas, and make sure the improvement idea you propose considers a DIFFERENT IMPROVEMENT OF THE SOLUTION, but keep the EVALUATION CONSISTENT. 

@@ -27,6 +27,18 @@ DATADIR = os.environ.get("MLE_BENCH_DATA_DIR", "/research/d7/spc/yzyang4/mle-ben
 GRADER = "/research/d7/spc/yzyang4/venvs/exp/bin/mlebench"
 WORKBASE = Path(os.environ.get("REGRADE_WORK", "/tmp/regrade_work"))
 
+# OpenCL-in-container fix: stage node's driver-matched nvvm lib once; bind ICD + staged dir.
+import shutil as _sh
+NVFIX = WORKBASE / "nvfix"
+NV_OK = False
+try:
+    NVFIX.mkdir(parents=True, exist_ok=True)
+    _sh.copy("/usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4", NVFIX / "libnvidia-nvvm.so.4")
+    NV_OK = os.path.exists("/etc/OpenCL/vendors/nvidia.icd")
+except Exception as e:
+    print(f"[regrade] opencl-fix staging unavailable: {e}", flush=True)
+print(f"[regrade] opencl_fix={'ON' if NV_OK else 'OFF'}", flush=True)
+
 done = set()
 if os.path.exists(a.out):
     for l in open(a.out):
@@ -53,11 +65,16 @@ for nd, rep in todo:
     (wd / "solution.py").write_text(nd["code"])
     pub = f"{DATADIR}/{comp}/prepared/public"
     t0 = time.time()
+    binds = f"{wd}:/workspace,{pub}:/workspace/data:ro"
+    envs = ["HF_HUB_OFFLINE=1", "PYTHONUNBUFFERED=1", "WANDB_DISABLED=1",
+            "TQDM_DISABLE=1", "TF_CPP_MIN_LOG_LEVEL=3", "HOME=/tmp"]
+    extra = []
+    if NV_OK:
+        extra = ["--bind", "/etc/OpenCL/vendors/nvidia.icd:/etc/OpenCL/vendors/nvidia.icd",
+                 "--bind", f"{NVFIX}:/mnt"]
+        envs.append("LD_LIBRARY_PATH=/mnt:/.singularity.d/libs")
     cmd = ["timeout", str(a.cap), "singularity", "exec", "--containall", "--cleanenv", "--nv",
-           "--pwd", "/workspace",
-           "--bind", f"{wd}:/workspace,{pub}:/workspace/data:ro",
-           SIF, "env", "HF_HUB_OFFLINE=1", "PYTHONUNBUFFERED=1", "WANDB_DISABLED=1",
-           "TQDM_DISABLE=1", "TF_CPP_MIN_LOG_LEVEL=3", "python", "solution.py"]
+           "--pwd", "/workspace", "--bind", binds] + extra + [SIF, "env"] + envs + ["python", "solution.py"]
     r = subprocess.run(cmd, capture_output=True, text=True)
     wall = round(time.time() - t0, 1)
     score = None

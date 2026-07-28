@@ -195,6 +195,7 @@ python -m pip install \
   "pytorch-lightning<2.6" \
   "sentence-transformers<6" \
   "tf-keras==2.21.0" \
+  "transformers==4.49.0" \
   timm \
   torch-geometric \
   torchinfo \
@@ -202,10 +203,16 @@ python -m pip install \
 ```
 
 `tf-keras` 是必装项，不是只在编写 TensorFlow solution 时才需要的可选包。当前 README/MLE-bench
-环境会安装 TensorFlow 2.21.0 和独立的 Keras 3；但是仓库固定的 Transformers 4.50.1 在导入
+环境会安装 TensorFlow 2.21.0 和独立的 Keras 3；但是仓库固定的 Transformers 4.49.0 在导入
 `Trainer` 等组件时可能继续加载 TensorFlow integration，而该版本不支持 Keras 3。实测
 `chaii-hindi-and-tamil-question-answering` 多 seed 任务因此反复在 `from transformers import ...`
 阶段失败，错误明确要求安装 backwards-compatible `tf-keras`。
+
+这里将 Conda 环境、仓库主 requirements 和 superimage 统一固定为 Transformers 4.49.0。原来的
+superimage 配置使用不带版本号的 `transformers`，每次构建会安装当时的 PyPI 最新版，实际上
+不可复现。4.49.0 是仍从顶层导出旧版 `transformers.AdamW` 的最后一个 4.x 版本，可兼容较多
+历史 Kaggle/agent 代码；4.50.0 起已移除该导出。新代码仍应优先使用 `torch.optim.AdamW`，但固定
+4.49.0 可以避免旧代码仅因这一处导入立即失败。
 
 `torch-geometric` 的基础包可以直接安装；某些稀疏/采样算子还需要额外的
 `pyg_lib`、`torch_scatter`、`torch_sparse` 等和具体 Torch/CUDA 版本匹配的 wheel。只有任务实际

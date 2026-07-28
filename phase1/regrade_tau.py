@@ -6,7 +6,14 @@ import json, collections, statistics as st
 
 RES = "/research/d7/spc/yzyang4/aira-dojo/phase1/regrade_results.jsonl"
 MAN = "/research/d7/spc/yzyang4/aira-dojo/phase1/regrade_manifest.jsonl"
-man = {json.loads(l)["card_id"]: json.loads(l) for l in open(MAN)}
+man = {}
+for _mf in (MAN, MAN.replace("regrade_manifest.jsonl", "regrade_manifest_v2.jsonl"),
+            MAN.replace("regrade_manifest.jsonl", "regrade_manifest_b.jsonl")):
+    try:
+        for l in open(_mf):
+            d = json.loads(l); man.setdefault(d["card_id"], d)
+    except FileNotFoundError:
+        pass
 by = collections.defaultdict(list)
 fails, caps = collections.Counter(), collections.Counter()
 for l in open(RES):
@@ -30,8 +37,8 @@ print(f"{'task':28s} {'nodes':>5} {'det%':>5} {'med_tau':>9} {'p90_tau':>9} {'ma
 for comp, rs in sorted(rows.items()):
     taus = sorted(t for t, _, _ in rs)
     det = sum(1 for t in taus if t < 1e-9) / len(taus) * 100
-    offs = [o for _, o, _ in rs if o is not None]
-    gr = [m["graded"] for m in man.values() if m["competition"] == comp]
+    offs = [o for _, o, _ in rs if o is not None] or [float("nan")]
+    gr = [m["graded"] for m in man.values() if m.get("competition") == comp and m.get("graded") is not None] or [float("nan")]
     p90 = taus[int(0.9 * (len(taus)-1))]
     print(f"{comp[:28]:28s} {len(rs):5d} {det:4.0f}% {st.median(taus):9.4f} {p90:9.4f} {max(taus):9.4f} "
           f"{st.median(offs):9.4f} [{min(gr):7.3f},{max(gr):7.3f}] {fails[comp]:4d} {caps[comp]:4d}")

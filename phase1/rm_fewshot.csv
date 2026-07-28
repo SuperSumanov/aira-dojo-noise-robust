@@ -11,3 +11,14 @@ N,split,acc,tau_weight,model,seed,wall_s,n_test,max_len,lr,task_cond,head_frac
 8000,loto:spaceship-titanic|K=200,0.6533,False,qwen2.5-1.5b-instruct,7,911.1,1500,2048,5e-05,True,0.25
 8000,loto:spaceship-titanic|K=1000,0.668,False,qwen2.5-1.5b-instruct,7,2876.1,1500,2048,5e-05,True,0.25
 8000,loto:spaceship-titanic,0.5733,False,qwen2.5-1.5b-instruct,7,6760.7,1500,2048,0.0001,True,0.25
+24000,loto:spaceship-titanic|K=0,0.602,False,qwen2.5-1.5b-instruct,7,18758.9,1500,2048,0.0001,True,0.25
+24000,loto:spaceship-titanic|K=10,0.564,False,qwen2.5-1.5b-instruct,7,425.5,1500,2048,5e-05,True,0.25
+24000,loto:spaceship-titanic|K=50,0.6353,False,qwen2.5-1.5b-instruct,7,520.4,1500,2048,5e-05,True,0.25
+24000,loto:spaceship-titanic|K=200,0.6733,False,qwen2.5-1.5b-instruct,7,878.4,1500,2048,5e-05,True,0.25
+24000,loto:spaceship-titanic|K=1000,0.7067,False,qwen2.5-1.5b-instruct,7,2784.8,1500,2048,5e-05,True,0.25
+24000,loto:spaceship-titanic,0.602,False,qwen2.5-1.5b-instruct,7,18758.9,1500,2048,0.0001,True,0.25
+0,loto:spaceship-titanic|K=10,0.518,False,qwen2.5-1.5b-instruct,7,444.7,1500,2048,5e-05,True,0.25
+0,loto:spaceship-titanic|K=50,0.5853,False,qwen2.5-1.5b-instruct,7,542.0,1500,2048,5e-05,True,0.25
+0,loto:spaceship-titanic|K=200,0.5407,False,qwen2.5-1.5b-instruct,7,908.4,1500,2048,5e-05,True,0.25
+0,loto:spaceship-titanic|K=1000,0.6227,False,qwen2.5-1.5b-instruct,7,2824.5,1500,2048,5e-05,True,0.25
+0,loto:spaceship-titanic,0.5247,False,qwen2.5-1.5b-instruct,7,413.3,1500,2048,0.0001,True,0.25

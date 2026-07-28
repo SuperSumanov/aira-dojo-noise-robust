@@ -131,13 +131,23 @@ def collate(batch):
     return enc(list(bs)), enc(list(ws)), torch.tensor(wt, dtype=torch.float)
 
 @torch.no_grad()
-def evaluate(model, ps):
-    model.eval(); correct = 0
+def evaluate(model, ps, subsets=False):
+    model.eval(); correct = 0; hits = []
     dl = DataLoader(PairDS(ps), batch_size=a.bs * 2, collate_fn=collate)
     for (bi, bm), (wi, wm), _ in dl:
         rb = model(bi.cuda(), bm.cuda()); rw = model(wi.cuda(), wm.cuda())
-        correct += (rb > rw).sum().item()
-    return correct / max(len(ps), 1)
+        h = (rb > rw)
+        correct += h.sum().item()
+        if subsets: hits.extend(h.tolist())
+    acc = correct / max(len(ps), 1)
+    if not subsets:
+        return acc
+    # split by whether the value ranking agrees with the "better right now" ranking
+    ag = [h for h, p in zip(hits, ps) if p.get("agrees_with_quality") is True]
+    dis = [h for h, p in zip(hits, ps) if p.get("agrees_with_quality") is False]
+    subset_acc = {"agree_n": len(ag), "agree_acc": (sum(ag) / len(ag)) if ag else None,
+                  "disagree_n": len(dis), "disagree_acc": (sum(dis) / len(dis)) if dis else None}
+    return acc, subset_acc
 
 rows = []
 for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
@@ -147,7 +157,7 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
     _skip_base = (N == 0)   # TARGET-ONLY control: no cross-task pretraining
     model = RM(a.model).cuda()
     opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=a.lr)
-    dl = DataLoader(PairDS(sub), batch_size=a.bs, shuffle=True, collate_fn=collate, drop_last=True)
+    dl = [] if _skip_base else DataLoader(PairDS(sub), batch_size=a.bs, shuffle=True, collate_fn=collate, drop_last=True)
     t0 = time.time(); model.train(); step = 0
     for ep in range(0 if _skip_base else a.epochs):
         for (bi, bm), (wi, wm), w in dl:
@@ -156,7 +166,14 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
             loss.backward(); step += 1
             if step % a.accum == 0:
                 opt.step(); opt.zero_grad()
-    acc = evaluate(model, test_pool)
+    _has_flag = any(p.get("agrees_with_quality") is not None for p in test_pool)
+    if _has_flag:
+        acc, sub = evaluate(model, test_pool, subsets=True)
+        print(f"[sub] N={N} overall={acc:.4f} | agree n={sub['agree_n']} acc="
+              f"{sub['agree_acc']:.4f} | DISAGREE n={sub['disagree_n']} acc={sub['disagree_acc']:.4f}"
+              f"  (shortcut baseline would be 1.00 / 0.00)", flush=True)
+    else:
+        acc = evaluate(model, test_pool); sub = {}
     wall = round(time.time() - t0, 1)
 
     if a.fewshot_ks and ft_pool:
@@ -199,7 +216,9 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
     rows.append({"N": N, "split": split_name, "acc": round(acc, 4), "tau_weight": a.tau_weight,
                  "model": os.path.basename(a.model), "seed": a.seed, "wall_s": wall,
                  "n_test": len(test_pool), "max_len": a.max_len, "lr": a.lr,
-                 "task_cond": a.task_cond, "head_frac": a.head_frac})
+                 "task_cond": a.task_cond, "head_frac": a.head_frac,
+                 "disagree_acc": (sub or {}).get("disagree_acc"),
+                 "agree_acc": (sub or {}).get("agree_acc")})
     del model, opt; torch.cuda.empty_cache()
 
 import csv

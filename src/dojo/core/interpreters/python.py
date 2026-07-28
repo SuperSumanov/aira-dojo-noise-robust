@@ -55,10 +55,12 @@ def exception_summary(
         tb = IPython.core.ultratb.VerboseTB(tb_offset=1, color_scheme="NoColor")
         tb_str = str(tb.text(*sys.exc_info()))
     else:
-        tb_lines = traceback.format_exception(e)
-        # skip parts of stack trace in weflow code
-        tb_str = "".join([l for l in tb_lines if "dojo/" not in l and "importlib" not in l])
-        # tb_str = "".join([l for l in tb_lines])
+        # Keep the complete traceback. Filtering on the substring ``dojo/``
+        # can remove the actual exception message when the active environment
+        # itself is named ``aira-dojo`` (for example, a site-packages path in an
+        # ImportError). The working-directory substitution below still keeps
+        # agent paths readable without hiding diagnostics.
+        tb_str = "".join(traceback.format_exception(e))
 
     # replace whole path to file with just filename (to remove agent workspace dir)
     tb_str = tb_str.replace(str(working_dir / exec_file_name), exec_file_name)
@@ -168,7 +170,15 @@ class PythonInterpreter(Interpreter):
         """
         self.child_proc_setup(result_outq)
 
-        global_scope: dict[str, Any] = {}
+        # Match normal Python script/REPL semantics.  An empty globals mapping
+        # makes ``__name__`` fall back to ``builtins.__name__`` ("builtins"),
+        # so the standard ``if __name__ == "__main__"`` entry point is skipped.
+        global_scope: dict[str, Any] = {
+            "__name__": "__main__",
+            "__package__": None,
+            "__spec__": None,
+            "__cached__": None,
+        }
         while True:
             # Here, we expect a tuple: (code, file_name, persist_file).
             data = code_inq.get()
@@ -184,6 +194,17 @@ class PythonInterpreter(Interpreter):
                 f.write(code)
 
             if execute_code:
+                # ``reset_session=False`` reuses global_scope, so refresh
+                # per-execution script metadata before every snippet.
+                global_scope.update(
+                    {
+                        "__name__": "__main__",
+                        "__file__": str(self.working_dir / agent_file_name),
+                        "__package__": None,
+                        "__spec__": None,
+                        "__cached__": None,
+                    }
+                )
                 event_outq.put(("state:ready",))
                 try:
                     exec(compile(code, agent_file_name, "exec"), global_scope)

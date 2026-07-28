@@ -34,7 +34,7 @@ submitit==1.5.4
 pynvml
 wandb==0.28.1
 websocket-client==1.8.0
-transformers==4.50.1
+transformers==4.49.0
 ipykernel==6.29.5
 pre-commit==4.2.0
 jupyter-console==6.6.3

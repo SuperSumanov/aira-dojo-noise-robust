@@ -9,7 +9,7 @@ Usage:
       --model /research/.../qwen2.5-1.5b-instruct --sizes 500,2000,8000 --out phase1/rm_curve.csv
 """
 from __future__ import annotations
-import argparse, json, math, os, random, time
+import argparse, json, math, os, random, re, time
 import numpy as np
 import torch
 import torch.nn as nn
@@ -30,14 +30,17 @@ ap.add_argument("--seed", type=int, default=7)
 ap.add_argument("--tau-weight", action="store_true", help="weight pairs by tau-clearance")
 ap.add_argument("--loto", default="", help="hold out this task (LOTO fold); default = in-task split")
 ap.add_argument("--eval-cap", type=int, default=1500)
+ap.add_argument("--task-cond", action="store_true", help="prepend competition id to the code")
+ap.add_argument("--head-frac", type=float, default=0.25, help="head share when head+tail truncating")
 a = ap.parse_args()
 
 random.seed(a.seed); np.random.seed(a.seed); torch.manual_seed(a.seed)
 
-code = {}
+code, ctask = {}, {}
 for l in open(a.cards):
     d = json.loads(l)
-    code[d["id"]] = (d.get("code") or "")[:8000]
+    code[d["id"]] = (d.get("code") or "")[:40000]
+    ctask[d["id"]] = (d.get("task") or {}).get("name", "")
 
 pairs = [json.loads(l) for l in open(a.pairs)]
 pairs = [p for p in pairs if p["better"] in code and p["worse"] in code]
@@ -65,8 +68,10 @@ tok.padding_side = "right"   # last-token pooling depends on this
 class RM(nn.Module):
     def __init__(self, path):
         super().__init__()
-        self.backbone = AutoModel.from_pretrained(path, torch_dtype=torch.bfloat16)
-        self.backbone = get_peft_model(self.backbone, LoraConfig(
+        base = AutoModel.from_pretrained(path, torch_dtype=torch.bfloat16)
+        base.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
+        base.enable_input_require_grads()
+        self.backbone = get_peft_model(base, LoraConfig(
             r=16, lora_alpha=32, lora_dropout=0.05, bias="none",
             target_modules=["q_proj", "k_proj", "v_proj", "o_proj"]))
         self.head = nn.Linear(self.backbone.config.hidden_size, 1, dtype=torch.bfloat16)
@@ -76,9 +81,26 @@ class RM(nn.Module):
         pooled = h[torch.arange(h.size(0), device=h.device), idx]
         return self.head(pooled).squeeze(-1).float()
 
+def _fit(ids):
+    """Head+tail truncation: keep the opening (imports/data) AND the tail (model def, training loop)."""
+    if len(ids) <= a.max_len:
+        return ids
+    h = int(a.max_len * a.head_frac)
+    return ids[:h] + ids[len(ids) - (a.max_len - h):]
+
 def enc(texts):
-    b = tok(texts, truncation=True, max_length=a.max_len, padding=True, return_tensors="pt")
-    return b["input_ids"], b["attention_mask"]
+    seqs = [_fit(tok(t, add_special_tokens=False)["input_ids"]) for t in texts]
+    m = max(len(s_) for s_ in seqs)
+    pad = tok.pad_token_id
+    ids = torch.tensor([s_ + [pad] * (m - len(s_)) for s_ in seqs])
+    mask = torch.tensor([[1] * len(s_) + [0] * (m - len(s_)) for s_ in seqs])
+    return ids, mask
+
+def _render(cid):
+    if a.task_cond:
+        return "# MLE-bench task: " + ctask.get(cid, "") + chr(10) + code[cid]
+    return code[cid]
+
 
 class PairDS(Dataset):
     def __init__(self, ps): self.ps = ps
@@ -87,7 +109,7 @@ class PairDS(Dataset):
         p = self.ps[i]
         w = 1.0
         if a.tau_weight and p.get("clears_tau") is False: w = 0.2
-        return code[p["better"]], code[p["worse"]], w
+        return _render(p["better"]), _render(p["worse"]), w
 
 def collate(batch):
     bs, ws, wt = zip(*batch)
@@ -103,7 +125,7 @@ def evaluate(model, ps):
     return correct / max(len(ps), 1)
 
 rows = []
-for N in [int(x) for x in a.sizes.split(",")]:
+for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
     if N > len(train_pool):
         print(f"[rm] skip N={N} (> pool {len(train_pool)})"); continue
     sub = train_pool[:N]
@@ -123,7 +145,8 @@ for N in [int(x) for x in a.sizes.split(",")]:
     print(f"[rm] N={N} {split_name} acc={acc:.4f} wall={wall}s", flush=True)
     rows.append({"N": N, "split": split_name, "acc": round(acc, 4), "tau_weight": a.tau_weight,
                  "model": os.path.basename(a.model), "seed": a.seed, "wall_s": wall,
-                 "n_test": len(test_pool), "max_len": a.max_len, "lr": a.lr})
+                 "n_test": len(test_pool), "max_len": a.max_len, "lr": a.lr,
+                 "task_cond": a.task_cond, "head_frac": a.head_frac})
     del model, opt; torch.cuda.empty_cache()
 
 import csv

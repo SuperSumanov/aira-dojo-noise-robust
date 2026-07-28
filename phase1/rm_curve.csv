@@ -1,0 +1,9 @@
+N,split,acc,tau_weight,model,seed,wall_s,n_test,max_len,lr
+500,loto:spaceship-titanic,0.4967,False,qwen2.5-1.5b-instruct,7,336.5,1500,1024,0.0001
+2000,loto:spaceship-titanic,0.504,False,qwen2.5-1.5b-instruct,7,771.6,1500,1024,0.0001
+8000,loto:spaceship-titanic,0.51,False,qwen2.5-1.5b-instruct,7,2518.2,1500,1024,0.0001
+24000,loto:spaceship-titanic,0.4993,False,qwen2.5-1.5b-instruct,7,7172.3,1500,1024,0.0001
+500,in-task,0.5353,False,qwen2.5-1.5b-instruct,7,342.6,1500,1024,0.0001
+2000,in-task,0.6053,False,qwen2.5-1.5b-instruct,7,785.8,1500,1024,0.0001
+8000,in-task,0.746,False,qwen2.5-1.5b-instruct,7,2557.6,1500,1024,0.0001
+24000,in-task,0.7573,False,qwen2.5-1.5b-instruct,7,7268.8,1500,1024,0.0001

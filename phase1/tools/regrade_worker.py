@@ -19,13 +19,15 @@ ap.add_argument("--out", default="/research/d7/spc/yzyang4/aira-dojo/phase1/regr
 ap.add_argument("--k", type=int, default=3)
 ap.add_argument("--cap", type=int, default=1500)
 ap.add_argument("--limit", type=int, default=0, help="max (node,rep) executions this invocation (0=all)")
+ap.add_argument("--online", action="store_true",
+                help="match the ONLINE collection regime (HF downloads via proxy) instead of offline")
 ap.add_argument("--dry-count", action="store_true", help="print remaining (node,rep) count and exit")
 a = ap.parse_args()
 
 SIF = "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif"
 DATADIR = os.environ.get("MLE_BENCH_DATA_DIR", "/research/d7/spc/yzyang4/mle-bench-data")
 GRADER = "/research/d7/spc/yzyang4/venvs/exp/bin/mlebench"
-WORKBASE = Path(os.environ.get("REGRADE_WORK", "/tmp/regrade_work"))
+WORKBASE = Path(os.environ.get("REGRADE_WORK", "/research/d7/spc/yzyang4/scratch/regrade_work"))
 
 # OpenCL-in-container fix: stage node's driver-matched nvvm lib once; bind ICD + staged dir.
 import shutil as _sh
@@ -66,8 +68,15 @@ for nd, rep in todo:
     pub = f"{DATADIR}/{comp}/prepared/public"
     t0 = time.time()
     binds = f"{wd}:/workspace,{pub}:/workspace/data:ro"
-    envs = ["HF_HUB_OFFLINE=1", "PYTHONUNBUFFERED=1", "WANDB_DISABLED=1",
-            "TQDM_DISABLE=1", "TF_CPP_MIN_LOG_LEVEL=3", "HOME=/tmp"]
+    envs = ["PYTHONUNBUFFERED=1", "WANDB_DISABLED=1", "TQDM_DISABLE=1",
+            "TF_CPP_MIN_LOG_LEVEL=3", "HOME=/tmp", "HF_HOME=/tmp/hf"]
+    if a.online:
+        envs += ["HF_HUB_OFFLINE=0",
+                 "http_proxy=http://137.189.90.241:8000/",
+                 "https_proxy=http://137.189.90.241:8000/",
+                 "HF_HUB_DISABLE_XET=1"]
+    else:
+        envs.append("HF_HUB_OFFLINE=1")
     extra = []
     if NV_OK:
         extra = ["--bind", "/etc/OpenCL/vendors/nvidia.icd:/etc/OpenCL/vendors/nvidia.icd",

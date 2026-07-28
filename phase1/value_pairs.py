@@ -12,6 +12,7 @@ ap.add_argument("out"); ap.add_argument("cards")
 ap.add_argument("--budget-steps", type=int, default=0, help="0 = whole subtree; else max step distance")
 ap.add_argument("--cap", type=int, default=20000)
 ap.add_argument("--seed", type=int, default=7)
+ap.add_argument("--split-by", choices=["card", "tree"], default="tree")
 a = ap.parse_args()
 
 cards = {}
@@ -55,8 +56,21 @@ with open(a.out, "w") as f:
         lower = ORI[t]
         prs = [(x, y) for x, y in itertools.combinations(v, 2) if x[2] != y[2]]
         rng.shuffle(prs); prs = prs[:a.cap]
-        ids = [c[0] for c in v]; rng.shuffle(ids)
-        hold = set(ids[int(0.8 * len(ids)):])
+        if a.split_by == "tree":
+            root = {}
+            def tree_root(cid, guard=0):
+                if cid in root: return root[cid]
+                p = cards.get(cid, {}).get("lineage", {}).get("parent_id")
+                r = cid if (not p or p not in cards or guard > 200) else tree_root(p, guard + 1)
+                root[cid] = r
+                return r
+            roots = sorted({tree_root(c[0]) for c in v}); rng.shuffle(roots)
+            hold_roots = set(roots[int(0.8 * len(roots)):])
+            hold = {c[0] for c in v if tree_root(c[0]) in hold_roots}
+            print(f"   [{t[:24]}] trees={len(roots)} held_trees={len(hold_roots)} held_nodes={len(hold)}")
+        else:
+            ids = [c[0] for c in v]; rng.shuffle(ids)
+            hold = set(ids[int(0.8 * len(ids)):])
         for (ca, oa, ba, na, da), (cb, ob, bb, nb, db) in prs:
             hi, lo = ((ca, cb) if (ba < bb if lower else ba > bb) else (cb, ca))
             now_hi = (ca if (oa < ob if lower else oa > ob) else cb)

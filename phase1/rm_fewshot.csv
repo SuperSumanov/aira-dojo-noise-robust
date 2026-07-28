@@ -1,0 +1,13 @@
+N,split,acc,tau_weight,model,seed,wall_s,n_test,max_len,lr,task_cond,head_frac
+8000,loto:mlsp-2013-birds|K=0,0.5193,False,qwen2.5-1.5b-instruct,7,6429.1,1500,2048,0.0001,True,0.25
+8000,loto:mlsp-2013-birds|K=10,0.5307,False,qwen2.5-1.5b-instruct,7,411.8,1500,2048,5e-05,True,0.25
+8000,loto:mlsp-2013-birds|K=50,0.5473,False,qwen2.5-1.5b-instruct,7,508.4,1500,2048,5e-05,True,0.25
+8000,loto:mlsp-2013-birds|K=200,0.5793,False,qwen2.5-1.5b-instruct,7,870.0,1500,2048,5e-05,True,0.25
+8000,loto:mlsp-2013-birds|K=1000,0.6567,False,qwen2.5-1.5b-instruct,7,2797.2,1500,2048,5e-05,True,0.25
+8000,loto:mlsp-2013-birds,0.5193,False,qwen2.5-1.5b-instruct,7,6429.1,1500,2048,0.0001,True,0.25
+8000,loto:spaceship-titanic|K=0,0.5733,False,qwen2.5-1.5b-instruct,7,6760.7,1500,2048,0.0001,True,0.25
+8000,loto:spaceship-titanic|K=10,0.5607,False,qwen2.5-1.5b-instruct,7,445.2,1500,2048,5e-05,True,0.25
+8000,loto:spaceship-titanic|K=50,0.6367,False,qwen2.5-1.5b-instruct,7,543.1,1500,2048,5e-05,True,0.25
+8000,loto:spaceship-titanic|K=200,0.6533,False,qwen2.5-1.5b-instruct,7,911.1,1500,2048,5e-05,True,0.25
+8000,loto:spaceship-titanic|K=1000,0.668,False,qwen2.5-1.5b-instruct,7,2876.1,1500,2048,5e-05,True,0.25
+8000,loto:spaceship-titanic,0.5733,False,qwen2.5-1.5b-instruct,7,6760.7,1500,2048,0.0001,True,0.25

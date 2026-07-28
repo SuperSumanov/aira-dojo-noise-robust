@@ -32,6 +32,9 @@ ap.add_argument("--loto", default="", help="hold out this task (LOTO fold); defa
 ap.add_argument("--eval-cap", type=int, default=1500)
 ap.add_argument("--task-cond", action="store_true", help="prepend competition id to the code")
 ap.add_argument("--head-frac", type=float, default=0.25, help="head share when head+tail truncating")
+ap.add_argument("--fewshot-ks", default="", help="LOTO few-shot: comma/semicolon K list, e.g. 0;10;50;200;1000")
+ap.add_argument("--ft-lr", type=float, default=5e-5)
+ap.add_argument("--ft-epochs", type=int, default=3)
 a = ap.parse_args()
 
 random.seed(a.seed); np.random.seed(a.seed); torch.manual_seed(a.seed)
@@ -46,9 +49,21 @@ pairs = [json.loads(l) for l in open(a.pairs)]
 pairs = [p for p in pairs if p["better"] in code and p["worse"] in code]
 print(f"[rm] pairs with code: {len(pairs)}")
 
+ft_pool = []
 if a.loto:
     train_pool = [p for p in pairs if p["task"] != a.loto]
-    test_pool = [p for p in pairs if p["task"] == a.loto]
+    held = [p for p in pairs if p["task"] == a.loto]
+    if a.fewshot_ks:
+        hcards = sorted({c for p in held for c in (p["better"], p["worse"])})
+        random.Random(a.seed).shuffle(hcards)
+        ft_cards = set(hcards[: len(hcards) // 2])
+        ev_cards = set(hcards[len(hcards) // 2 :])
+        ft_pool = [p for p in held if p["better"] in ft_cards and p["worse"] in ft_cards]
+        test_pool = [p for p in held if p["better"] in ev_cards and p["worse"] in ev_cards]
+        print(f"[rm] few-shot card split: ft_cards={len(ft_cards)} ev_cards={len(ev_cards)} "
+              f"ft_pairs={len(ft_pool)} eval_pairs={len(test_pool)}")
+    else:
+        test_pool = held
     split_name = f"loto:{a.loto}"
 else:
     train_pool = [p for p in pairs if p["intask_split"] == "train"]
@@ -129,11 +144,12 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
     if N > len(train_pool):
         print(f"[rm] skip N={N} (> pool {len(train_pool)})"); continue
     sub = train_pool[:N]
+    _skip_base = (N == 0)   # TARGET-ONLY control: no cross-task pretraining
     model = RM(a.model).cuda()
     opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=a.lr)
     dl = DataLoader(PairDS(sub), batch_size=a.bs, shuffle=True, collate_fn=collate, drop_last=True)
     t0 = time.time(); model.train(); step = 0
-    for ep in range(a.epochs):
+    for ep in range(0 if _skip_base else a.epochs):
         for (bi, bm), (wi, wm), w in dl:
             rb = model(bi.cuda(), bm.cuda()); rw = model(wi.cuda(), wm.cuda())
             loss = -(w.cuda() * torch.nn.functional.logsigmoid(rb - rw)).mean() / a.accum
@@ -142,6 +158,43 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
                 opt.step(); opt.zero_grad()
     acc = evaluate(model, test_pool)
     wall = round(time.time() - t0, 1)
+
+    if a.fewshot_ks and ft_pool:
+        import copy
+        base_state = copy.deepcopy({k: v.detach().clone()
+                                    for k, v in model.state_dict().items()})
+        random.Random(a.seed + 1).shuffle(ft_pool)
+        for K in [int(x) for x in re.split(r"[,;:]", a.fewshot_ks) if x.strip()]:
+            if K == 0:
+                print(f"[fs] N={N} K=0 acc={acc:.4f} (zero-shot baseline)", flush=True)
+                rows.append({"N": N, "split": split_name + "|K=0", "acc": round(acc, 4),
+                             "tau_weight": a.tau_weight, "model": os.path.basename(a.model),
+                             "seed": a.seed, "wall_s": wall, "n_test": len(test_pool),
+                             "max_len": a.max_len, "lr": a.lr, "task_cond": a.task_cond,
+                             "head_frac": a.head_frac})
+                continue
+            if K > len(ft_pool):
+                print(f"[fs] skip K={K} (ft_pool={len(ft_pool)})"); continue
+            model.load_state_dict(base_state)
+            fopt = torch.optim.AdamW([q for q in model.parameters() if q.requires_grad], lr=a.ft_lr)
+            fdl = DataLoader(PairDS(ft_pool[:K]), batch_size=a.bs, shuffle=True, collate_fn=collate)
+            model.train(); st_ = 0; tf = time.time()
+            for _ in range(a.ft_epochs):
+                for (bi, bm), (wi, wm), w in fdl:
+                    rb = model(bi.cuda(), bm.cuda()); rw = model(wi.cuda(), wm.cuda())
+                    l = -(w.cuda() * torch.nn.functional.logsigmoid(rb - rw)).mean() / a.accum
+                    l.backward(); st_ += 1
+                    if st_ % a.accum == 0: fopt.step(); fopt.zero_grad()
+            fopt.step(); fopt.zero_grad()
+            fa = evaluate(model, test_pool)
+            print(f"[fs] N={N} K={K} acc={fa:.4f} (zero-shot was {acc:.4f})", flush=True)
+            rows.append({"N": N, "split": split_name + f"|K={K}", "acc": round(fa, 4),
+                         "tau_weight": a.tau_weight, "model": os.path.basename(a.model),
+                         "seed": a.seed, "wall_s": round(time.time() - tf, 1),
+                         "n_test": len(test_pool), "max_len": a.max_len, "lr": a.ft_lr,
+                         "task_cond": a.task_cond, "head_frac": a.head_frac})
+            del fopt
+        model.load_state_dict(base_state); del base_state
     print(f"[rm] N={N} {split_name} acc={acc:.4f} wall={wall}s", flush=True)
     rows.append({"N": N, "split": split_name, "acc": round(acc, 4), "tau_weight": a.tau_weight,
                  "model": os.path.basename(a.model), "seed": a.seed, "wall_s": wall,

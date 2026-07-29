@@ -28,6 +28,8 @@ SIF = "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-
 DATADIR = os.environ.get("MLE_BENCH_DATA_DIR", "/research/d7/spc/yzyang4/mle-bench-data")
 GRADER = "/research/d7/spc/yzyang4/venvs/exp/bin/mlebench"
 WORKBASE = Path(os.environ.get("REGRADE_WORK", "/research/d7/spc/yzyang4/scratch/regrade_work"))
+HFCACHE = Path(os.environ.get("REGRADE_HF_CACHE", "/research/d7/spc/yzyang4/scratch/hf_cache"))
+HFCACHE.mkdir(parents=True, exist_ok=True)
 
 # OpenCL-in-container fix: stage node's driver-matched nvvm lib once; bind ICD + staged dir.
 import shutil as _sh
@@ -67,9 +69,9 @@ for nd, rep in todo:
     (wd / "solution.py").write_text(nd["code"])
     pub = f"{DATADIR}/{comp}/prepared/public"
     t0 = time.time()
-    binds = f"{wd}:/workspace,{pub}:/workspace/data:ro"
+    binds = f"{wd}:/workspace,{pub}:/workspace/data:ro,{HFCACHE}:/hf"
     envs = ["PYTHONUNBUFFERED=1", "WANDB_DISABLED=1", "TQDM_DISABLE=1",
-            "TF_CPP_MIN_LOG_LEVEL=3", "HOME=/tmp", "HF_HOME=/tmp/hf"]
+            "TF_CPP_MIN_LOG_LEVEL=3", "HOME=/tmp", "HF_HOME=/hf", "TORCH_HOME=/hf/torch"]
     if a.online:
         envs += ["HF_HUB_OFFLINE=0",
                  "http_proxy=http://137.189.90.241:8000/",

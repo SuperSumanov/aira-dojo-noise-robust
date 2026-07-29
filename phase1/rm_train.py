@@ -35,6 +35,7 @@ ap.add_argument("--head-frac", type=float, default=0.25, help="head share when h
 ap.add_argument("--fewshot-ks", default="", help="LOTO few-shot: comma/semicolon K list, e.g. 0;10;50;200;1000")
 ap.add_argument("--ft-lr", type=float, default=5e-5)
 ap.add_argument("--ft-epochs", type=int, default=3)
+ap.add_argument("--save-adapter", default="", help="dir to save the trained LoRA + head (for T3 serving)")
 a = ap.parse_args()
 
 random.seed(a.seed); np.random.seed(a.seed); torch.manual_seed(a.seed)
@@ -219,6 +220,16 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
                  "task_cond": a.task_cond, "head_frac": a.head_frac,
                  "disagree_acc": (sub or {}).get("disagree_acc"),
                  "agree_acc": (sub or {}).get("agree_acc")})
+    if a.save_adapter:
+        import os as _os
+        d = _os.path.join(a.save_adapter, f"N{N}")
+        _os.makedirs(d, exist_ok=True)
+        model.backbone.save_pretrained(d)
+        torch.save(model.head.state_dict(), _os.path.join(d, "head.pt"))
+        json.dump({"base_model": a.model, "max_len": a.max_len, "task_cond": a.task_cond,
+                   "head_frac": a.head_frac, "N": N, "split": split_name, "acc": acc,
+                   "pairs": a.pairs}, open(_os.path.join(d, "rm_meta.json"), "w"), indent=1)
+        print(f"[rm] saved adapter -> {d}", flush=True)
     del model, opt; torch.cuda.empty_cache()
 
 import csv

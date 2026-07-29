@@ -10,6 +10,7 @@ import argparse, collections, itertools, json, random
 ap = argparse.ArgumentParser()
 ap.add_argument("out"); ap.add_argument("cards")
 ap.add_argument("--budget-steps", type=int, default=0, help="0 = whole subtree; else max step distance")
+ap.add_argument("--budget-secs", type=float, default=0, help="0 = unlimited; else max cumulative exec seconds along the path")
 ap.add_argument("--cap", type=int, default=20000)
 ap.add_argument("--seed", type=int, default=7)
 ap.add_argument("--split-by", choices=["card", "tree"], default="tree")
@@ -24,14 +25,18 @@ for cid, d in cards.items():
     p = d["lineage"].get("parent_id")
     if p: kids[p].append(cid)
 
+def _rt(cid):
+    v = (cards.get(cid, {}).get("obs") or {}).get("runtime_s")
+    return float(v) if v is not None else 0.0
+
 def subtree(cid):
-    """(descendant_id, step_distance) reachable from cid."""
-    out, stack, seen = [], [(k, 1) for k in kids.get(cid, [])], set()
+    """(descendant_id, step_distance, cumulative_exec_seconds) reachable from cid."""
+    out, stack, seen = [], [(k, 1, _rt(k)) for k in kids.get(cid, [])], set()
     while stack:
-        x, dist = stack.pop()
+        x, dist, secs = stack.pop()
         if x in seen: continue
-        seen.add(x); out.append((x, dist))
-        stack.extend((k, dist + 1) for k in kids.get(x, []))
+        seen.add(x); out.append((x, dist, secs))
+        stack.extend((k, dist + 1, secs + _rt(k)) for k in kids.get(x, []))
     return out
 
 val = {}
@@ -39,8 +44,9 @@ for cid, d in cards.items():
     t = d["task"]["name"]
     if t not in ORI: continue
     lower = ORI[t]; better = min if lower else max
-    ds = [(x, dist) for x, dist in subtree(cid) if x in cards
-          and (a.budget_steps == 0 or dist <= a.budget_steps)]
+    ds = [(x, dist) for x, dist, secs in subtree(cid) if x in cards
+          and (a.budget_steps == 0 or dist <= a.budget_steps)
+          and (a.budget_secs == 0 or secs <= a.budget_secs)]
     own = d["label"]["graded"]
     if not ds: continue
     bd = better([own] + [cards[x]["label"]["graded"] for x, _ in ds])
@@ -79,7 +85,7 @@ with open(a.out, "w") as f:
                 "agrees_with_quality": now_hi == hi,      # False = the 26% that flip
                 "gap_raw": round(abs(ba - bb), 6),
                 "subtree_sizes": [na, nb], "steps_to_best": [da, db],
-                "budget_steps": a.budget_steps,
+                "budget_steps": a.budget_steps, "budget_secs": a.budget_secs,
                 "intask_split": "test" if (hi in hold or lo in hold) else "train",
                 "loto_fold": t, "clears_tau": None, "src": "value"}) + "\n")
             n += 1

@@ -1,0 +1,11 @@
+# Second generator family (fairness contract: ONLY the model knob differs from litellm_deepseek_flash).
+# Fill model_id/base_url per provider; the key goes in the remote .env as PRIMARY_KEY_GEN2.
+#   DashScope (Qwen):  model_id "qwen-max-latest"       base_url "https://dashscope.aliyuncs.com/compatible-mode/v1"
+#   Moonshot (Kimi):   model_id "kimi-k2-0905-preview"  base_url "https://api.moonshot.cn/v1"
+#   OpenRouter:        model_id "openai/gpt-4o-mini"    base_url "https://openrouter.ai/api/v1"
+_target_: dojo.config_dataclasses.client.base.ClientConfig
+api: litellm
+model_id: "qwen-max-latest"
+base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+use_azure_client: false
+provider: openai

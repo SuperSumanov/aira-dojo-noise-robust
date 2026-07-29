@@ -10,6 +10,7 @@ from pathlib import Path
 import time
 from typing import Any, Dict, List, Optional, Tuple, Union
 import json
+import os
 
 import hydra
 from dojo.core.solvers.base import Solver
@@ -120,6 +121,12 @@ class MCTS(Solver):
 
         self.task_desc = task_info[TASK_DESCRIPTION]
         self.lower_is_better = task_info.get("lower_is_better", None)
+        # --- optional value-RM guidance (T3 experiment). Unset env => byte-identical vanilla UCT.
+        self._rm_url = os.environ.get("VALUE_RM_URL", "")
+        self._rm_lambda = float(os.environ.get("VALUE_RM_LAMBDA", "0.5"))
+        self._rm_task_name = str(task_info.get("name", task_info.get("competition_id", "")))
+        self._rm_cache: dict = {}
+        self._rm_fails = 0
 
         assert self.lower_is_better is not None
 
@@ -249,6 +256,28 @@ class MCTS(Solver):
             self.logger.info("No suitable code found after all iterations.")
             return state, None, None
 
+    def _rm_bias(self, node) -> float:
+        """[-0.5, 0.5] bias from the value-RM sidecar; 0.0 on any failure (fail-open)."""
+        if not self._rm_url or self._rm_fails > 5:
+            return 0.0
+        key = id(node)
+        if key in self._rm_cache:
+            return self._rm_cache[key]
+        try:
+            import json as _json
+            import urllib.request as _rq
+            req = _rq.Request(self._rm_url.rstrip("/") + "/score",
+                              _json.dumps({"task": self._rm_task_name,
+                                           "code": (node.code or "")[:40000]}).encode(),
+                              {"Content-Type": "application/json"})
+            r = _json.load(_rq.urlopen(req, timeout=180))
+            b = float(r["score"]) - 0.5
+        except Exception:
+            self._rm_fails += 1
+            b = 0.0
+        self._rm_cache[key] = b
+        return b
+
     def search_policy(self, root_node: MCTSNode) -> List[MCTSNode]:
         """
         Traverse the tree from root to leaf using UCT selection.
@@ -277,7 +306,7 @@ class MCTS(Solver):
                     uct_c=self.cfg.uct_c,
                     global_max_q_val=self.global_max_q_val,
                     global_min_q_val=self.global_min_q_val,
-                ),
+                ) + self._rm_lambda * self._rm_bias(c),
             )
 
     def _draft(self, parent: Optional[MCTSNode] = None) -> MCTSNode:

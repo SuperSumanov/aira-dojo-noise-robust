@@ -36,6 +36,7 @@ ap.add_argument("--fewshot-ks", default="", help="LOTO few-shot: comma/semicolon
 ap.add_argument("--ft-lr", type=float, default=5e-5)
 ap.add_argument("--ft-epochs", type=int, default=3)
 ap.add_argument("--save-adapter", default="", help="dir to save the trained LoRA + head (for T3 serving)")
+ap.add_argument("--ft-pairs", default="", help="second-stage fine-tune on ALL pairs in this file, then re-eval")
 a = ap.parse_args()
 
 random.seed(a.seed); np.random.seed(a.seed); torch.manual_seed(a.seed)
@@ -139,8 +140,15 @@ def evaluate(model, ps, subsets=False):
         rb = model(bi.cuda(), bm.cuda()); rw = model(wi.cuda(), wm.cuda())
         h = (rb > rw)
         correct += h.sum().item()
-        if subsets: hits.extend(h.tolist())
+        if subsets or os.environ.get("RM_EVAL_BREAKDOWN"): hits.extend(h.tolist())
     acc = correct / max(len(ps), 1)
+    if os.environ.get("RM_EVAL_BREAKDOWN") and hits:
+        import collections as _c
+        agg = _c.defaultdict(lambda: [0, 0])   # per-task-acc
+        for h, p_ in zip(hits, ps):
+            a_ = agg[p_["task"]]; a_[0] += int(h); a_[1] += 1
+        for t_, (k_, n_) in sorted(agg.items()):
+            print(f"[task-acc] {t_[:36]:36s} {k_}/{n_} = {k_/max(n_,1):.3f}", flush=True)
     if not subsets:
         return acc
     # split by whether the value ranking agrees with the "better right now" ranking
@@ -220,6 +228,31 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
                  "task_cond": a.task_cond, "head_frac": a.head_frac,
                  "disagree_acc": (sub or {}).get("disagree_acc"),
                  "agree_acc": (sub or {}).get("agree_acc")})
+    if a.ft_pairs:
+        ftp = [json.loads(l) for l in open(a.ft_pairs)]
+        ftp = [p_ for p_ in ftp if p_["better"] in code and p_["worse"] in code]
+        fopt = torch.optim.AdamW([q for q in model.parameters() if q.requires_grad], lr=a.ft_lr)
+        fdl = DataLoader(PairDS(ftp), batch_size=a.bs, shuffle=True, collate_fn=collate)
+        model.train(); st_ = 0
+        for _ in range(a.ft_epochs):
+            for (bi, bm), (wi, wm), w in fdl:
+                rb = model(bi.cuda(), bm.cuda()); rw = model(wi.cuda(), wm.cuda())
+                l_ = -(w.cuda() * torch.nn.functional.logsigmoid(rb - rw)).mean() / a.accum
+                l_.backward(); st_ += 1
+                if st_ % a.accum == 0: fopt.step(); fopt.zero_grad()
+        fopt.step(); fopt.zero_grad()
+        if _has_flag:
+            fa, fsub = evaluate(model, test_pool, subsets=True)
+        else:
+            fa = evaluate(model, test_pool); fsub = {}
+        print(f"[ft] after {len(ftp)}-pair fine-tune: acc={fa:.4f} (base was {acc:.4f})", flush=True)
+        rows.append({"N": N, "split": split_name + f"|ft{len(ftp)}", "acc": round(fa, 4),
+                     "tau_weight": a.tau_weight, "model": os.path.basename(a.model), "seed": a.seed,
+                     "wall_s": 0.0, "n_test": len(test_pool), "max_len": a.max_len, "lr": a.ft_lr,
+                     "task_cond": a.task_cond, "head_frac": a.head_frac,
+                     "disagree_acc": (fsub or {}).get("disagree_acc"), "agree_acc": (fsub or {}).get("agree_acc")})
+        del fopt
+
     if a.save_adapter:
         import os as _os
         d = _os.path.join(a.save_adapter, f"N{N}")

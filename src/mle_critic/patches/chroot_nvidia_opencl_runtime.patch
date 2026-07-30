@@ -1,0 +1,75 @@
+diff --git a/src/dojo/core/interpreters/chroot_python.py b/src/dojo/core/interpreters/chroot_python.py
+--- a/src/dojo/core/interpreters/chroot_python.py
++++ b/src/dojo/core/interpreters/chroot_python.py
+@@ -118,6 +118,7 @@ def _namespace_init(
+                 ),
+                 "CONDA_PKGS_DIRS": f"{workspace_text}/.conda/pkgs",
+                 "CONDA_ENVS_PATH": f"{workspace_text}/.conda/envs",
++                "OCL_ICD_VENDORS": f"{workspace_text}/.runtime/opencl",
+             }
+         )
+         if python_user_site not in sys.path:
+@@ -376,8 +377,13 @@ class ChrootPythonInterpreter(PythonInterpreter):
+                 ".local/share",
+                 ".conda/pkgs",
+                 ".conda/envs",
++                ".runtime/opencl",
+             ):
+                 (self.working_dir / relative).mkdir(mode=0o700, parents=True, exist_ok=True)
++            (self.working_dir / ".runtime/opencl/nvidia.icd").write_text(
++                "libnvidia-opencl.so.1\n",
++                encoding="utf-8",
++            )
+             chown_tree_no_follow(self.working_dir, self._uid_lease.uid, self._uid_lease.gid)
+ 
+             # Start from a fresh interpreter process. This avoids forking the
+diff --git a/tests/test_chroot_python_interpreter.py b/tests/test_chroot_python_interpreter.py
+--- a/tests/test_chroot_python_interpreter.py
++++ b/tests/test_chroot_python_interpreter.py
+@@ -80,12 +80,34 @@ print("data", Path("data/input.txt").read_text())
+ print("home-data", Path("/home/data/input.txt").read_text())
+ print("home-instructions", Path("/home/instructions.txt").is_file())
+ print("xdg-config", os.environ["XDG_CONFIG_HOME"])
++print(
++    "opencl-icd",
++    (Path(os.environ["OCL_ICD_VENDORS"]) / "nvidia.icd").read_text().strip(),
++)
+ user_site = next(Path(path) for path in __import__("sys").path if "site-packages" in path and str(Path.home()) in path)
+ user_site.mkdir(parents=True, exist_ok=True)
+ (user_site / "sandbox_user_package.py").write_text("VALUE = 'user-site-ok'\\n")
+ importlib.invalidate_caches()
+ import sandbox_user_package
+ print("user-site", sandbox_user_package.VALUE)
++if torch.cuda.is_available() and Path("/lib/x86_64-linux-gnu/libnvidia-opencl.so.1").exists():
++    import lightgbm
++
++    features = numpy.random.default_rng(42).normal(size=(2048, 8))
++    labels = (features[:, 0] + features[:, 1] > 0).astype(int)
++    booster = lightgbm.train(
++        {{
++            "objective": "binary",
++            "device": "gpu",
++            "max_bin": 63,
++            "num_leaves": 7,
++            "min_data_in_leaf": 5,
++            "verbosity": -1,
++        }},
++        lightgbm.Dataset(features, label=labels),
++        num_boost_round=1,
++    )
++    print("lightgbm-opencl", booster.current_iteration())
+ for variable in ("XDG_CACHE_HOME", "XDG_CONFIG_HOME", "XDG_DATA_HOME", "MPLCONFIGDIR", "HF_HOME", "TORCH_HOME", "NUMBA_CACHE_DIR", "PIP_CACHE_DIR", "CONDA_PKGS_DIRS", "CONDA_ENVS_PATH"):
+     target = Path(os.environ[variable])
+     target.mkdir(parents=True, exist_ok=True)
+@@ -149,6 +171,11 @@ while not Path("background-host-pid").exists():
+     assert "home-instructions True" in output
+     assert f"xdg-config {workspace}/.config" in output
+     assert "user-site user-site-ok" in output
++    assert "opencl-icd libnvidia-opencl.so.1" in output
++    if torch.cuda.is_available() and Path(
++        "/lib/x86_64-linux-gnu/libnvidia-opencl.so.1"
++    ).exists():
++        assert "lightgbm-opencl 1" in output
+     assert "outside blocked" in output and "symlink blocked" in output
+     assert "data-relative blocked" in output
+     assert "data-home blocked" in output

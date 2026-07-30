@@ -1,0 +1,9 @@
+_target_: dojo.config_dataclasses.interpreter.chroot_python.ChrootPythonInterpreterConfig
+
+use_symlinks: True
+format_tb_ipython: False
+runtime_base_dir: /tmp/dojo-python-sandboxes
+allowed_working_root: null
+uid_min: 200000
+uid_max: 299999
+private_tmp: True

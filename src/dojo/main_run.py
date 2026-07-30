@@ -90,49 +90,58 @@ def _main(cfg: RunConfig):
 
     logger = config_logger(cfg)
 
-    log.info("Instantiating the task...")
-    task = build(cfg.task, TASK_MAP)
+    task = None
+    state = None
+    solver_interpreter = None
+    try:
+        log.info("Instantiating the task...")
+        task = build(cfg.task, TASK_MAP)
 
-    # Allocate resources for the agent's workspace and instantiate an object that lets you reference and use them
-    solver_interpreter = build(cfg.interpreter, INTERPRETER_MAP, data_dir=cfg.task.data_dir)
+        # Allocate resources for the agent's workspace and instantiate an object that lets you reference and use them
+        solver_interpreter = build(cfg.interpreter, INTERPRETER_MAP, data_dir=cfg.task.data_dir)
 
-    eval_interpreter = None
+        eval_interpreter = None
 
-    log.info("Preparing the workspaces...")
-    state, task_info = task.prepare(solver_interpreter=solver_interpreter, eval_interpreter=eval_interpreter)
+        log.info("Preparing the workspaces...")
+        state, task_info = task.prepare(solver_interpreter=solver_interpreter, eval_interpreter=eval_interpreter)
 
-    log.info("Instantiating the solver...")
-    solver = build(cfg.solver, SOLVER_MAP, task_info=task_info)
+        log.info("Instantiating the solver...")
+        solver = build(cfg.solver, SOLVER_MAP, task_info=task_info)
 
-    # Load checkpoint state if it exists
-    log.info("Loading checkpoints, if any...")
-    solver.load_checkpoint()
+        # Load checkpoint state if it exists
+        log.info("Loading checkpoints, if any...")
+        solver.load_checkpoint()
 
-    log.info("Starting the solver...")
-    state, solution, best_node = solver(task, state)
+        log.info("Starting the solver...")
+        state, solution, best_node = solver(task, state)
 
-    if solution is None:
-        log.error("No valid solution was generated")
-    else:
-        log.info("Evaluating the final solution...")
-
-        if (
-            hasattr(best_node, "metric")
-            and hasattr(best_node.metric, "info")
-            and "score" in best_node.metric.info
-            and best_node.metric.info is not None
-        ):
-            log.info("We have the evaluation score already computed...")
-            fitness = best_node.metric.info["score"]
-            log.info(f"Final fitness: {fitness}")
+        if solution is None:
+            log.error("No valid solution was generated")
         else:
-            raise ValueError("This should not be reached and happening.")
+            log.info("Evaluating the final solution...")
 
-        logger.log(fitness, LogEvent.EVAL)
+            if (
+                hasattr(best_node, "metric")
+                and hasattr(best_node.metric, "info")
+                and "score" in best_node.metric.info
+                and best_node.metric.info is not None
+            ):
+                log.info("We have the evaluation score already computed...")
+                fitness = best_node.metric.info["score"]
+                log.info(f"Final fitness: {fitness}")
+            else:
+                raise ValueError("This should not be reached and happening.")
 
-    log.info("Clean up...")
-    task.close(state)
-    logger.stop()
+            logger.log(fitness, LogEvent.EVAL)
+    finally:
+        log.info("Clean up...")
+        try:
+            if task is not None and state is not None:
+                task.close(state)
+            elif solver_interpreter is not None and hasattr(solver_interpreter, "cleanup_session"):
+                solver_interpreter.cleanup_session()
+        finally:
+            logger.stop()
 
 
 @hydra.main(version_base="1.3.2", config_path="configs", config_name="default_run")

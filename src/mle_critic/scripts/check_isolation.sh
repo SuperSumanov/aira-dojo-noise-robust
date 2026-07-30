@@ -1,5 +1,14 @@
 #!/bin/bash
 
+set -u
+
+PROBE_DIR="$(mktemp -d /tmp/dojo-isolation-check.XXXXXX)"
+cleanup() {
+    rmdir "$PROBE_DIR/chroot" 2>/dev/null || true
+    rmdir "$PROBE_DIR" 2>/dev/null || true
+}
+trap cleanup EXIT INT TERM
+
 # K8s Pod 环境隔离能力诊断脚本
 # 用于探测是否具备运行 AI Agent 隔离沙盒的条件
 
@@ -18,14 +27,11 @@ fi
 # 2. 命名空间 (Namespaces) 测试
 # Agent 最佳隔离方式，类似于轻量级容器
 echo -e "\n[2/5] Linux 命名空间 (Namespaces) 隔离检查..."
-# 尝试创建一个新的 User 和 Mount 命名空间
-unshare --user --mount -r echo "success" > /dev/null 2>&1
-if [ $? -eq 0 ]; then
-    echo "  [+] 结果: 支持 User 和 Mount 命名空间 (Unprivileged Namespaces 可用)"
-    echo "  [💡] 建议: 可以使用 bubblewrap (bwrap) 或 proot 创建极轻量、高度安全的沙盒，完全不影响宿主机。"
+# 本方案需要 mount + PID namespace，不依赖已禁用的 user namespace。
+if unshare --mount --pid --fork true > /dev/null 2>&1; then
+    echo "  [+] 结果: 支持 Mount 和 PID namespace"
 else
-    echo "  [-] 结果: 命名空间创建失败 (可能被 K8s SecComp 或 AppArmor 拦截)"
-    echo "  [!] 降级: 无法使用原生容器级隔离，需依赖传统用户权限控制。"
+    echo "  [-] 结果: Mount/PID namespace 创建失败 (可能缺少 CAP_SYS_ADMIN 或被 seccomp 拦截)"
 fi
 
 # 3. Cgroups 资源限制检查
@@ -47,15 +53,16 @@ fi
 
 # 4. Chroot 文件系统隔离检查
 echo -e "\n[4/5] Chroot 文件系统隔离检查..."
-mkdir -p /tmp/chroot_test_dir
-if chroot /tmp/chroot_test_dir /bin/sh -c "echo 1" > /dev/null 2>&1 || [ $? -eq 127 ]; then
+mkdir "$PROBE_DIR/chroot"
+chroot "$PROBE_DIR/chroot" /bin/sh -c "echo 1" > /dev/null 2>&1
+CHROOT_STATUS=$?
+if [ "$CHROOT_STATUS" -eq 0 ] || [ "$CHROOT_STATUS" -eq 127 ]; then
     # 127 意味着 chroot 成功但找不到 /bin/sh，说明 chroot 系统调用是通的
     echo "  [+] 结果: chroot 系统调用可用"
     echo "  [💡] 建议: 可以配合新建普通用户 + chroot 制作一个假的根目录，防止 Agent 乱改系统代码或影响其他人的工作空间。"
 else
     echo "  [-] 结果: chroot 被禁用 (Pod 权限极低)"
 fi
-rm -rf /tmp/chroot_test_dir
 
 # 5. 可用沙盒工具探测
 echo -e "\n[5/5] 用户态沙盒工具探测..."

@@ -1,0 +1,9 @@
+pair,task,seed,control_best,guided_best,winner
+t3cA:t3gA,spooky-author-identification,901,0.41229,0.43514,control
+t3cA:t3gA,spooky-author-identification,902,0.41575,0.45429,control
+t3cA:t3gA,tabular-playground-series-dec-2021,901,0.96084,0.96136,guided
+t3cA:t3gA,tabular-playground-series-dec-2021,902,0.96176,0.96106,control
+t3cB:t3gB,spooky-author-identification,903,0.46843,0.39153,guided
+t3cB:t3gB,spooky-author-identification,904,0.42443,0.3656,guided
+t3cB:t3gB,tabular-playground-series-dec-2021,903,0.96163,0.9619,guided
+t3cB:t3gB,tabular-playground-series-dec-2021,904,0.96218,0.9619,control

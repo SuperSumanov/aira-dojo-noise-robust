@@ -1,0 +1,6 @@
+_target_: dojo.config_dataclasses.client.base.ClientConfig
+api: litellm
+model_id: "claude-haiku-4-5-20251001"
+base_url: "https://api.chatanywhere.org"
+use_azure_client: false
+provider: openai

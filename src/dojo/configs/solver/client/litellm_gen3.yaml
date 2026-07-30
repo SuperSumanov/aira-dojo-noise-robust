@@ -1,7 +1,7 @@
 # Third generator family (fairness contract: only the model knob differs).
 _target_: dojo.config_dataclasses.client.base.ClientConfig
 api: litellm
-model_id: "kimi-k2.5"
+model_id: "glm-5"
 base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
 use_azure_client: false
 provider: openai

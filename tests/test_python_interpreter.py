@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from dojo.config_dataclasses.interpreter.python import PythonInterpreterConfig
 from dojo.core.interpreters.python import PythonInterpreter
 
@@ -80,3 +82,26 @@ def test_python_interpreter_preserves_exception_messages_containing_dojo_path(
     output = "".join(result.term_out)
     assert result.exit_code == 1
     assert f"ImportError: {message}" in output
+
+
+@pytest.mark.parametrize("file_name", ["../escape.py", "/tmp/escape.py"])
+def test_python_interpreter_rejects_file_name_escape(tmp_path: Path, file_name: str) -> None:
+    interpreter = _make_interpreter(tmp_path)
+    try:
+        result = interpreter.run("print('must not execute')", file_name=file_name)
+    finally:
+        interpreter.cleanup_session()
+
+    assert result.exit_code == 1
+    assert "ValueError" in "".join(result.term_out)
+
+
+def test_python_interpreter_fetch_file_stays_in_workspace(tmp_path: Path) -> None:
+    outside = tmp_path.parent / "outside.txt"
+    outside.write_text("sentinel", encoding="utf-8")
+    inside = tmp_path / "inside.txt"
+    inside.write_text("result", encoding="utf-8")
+    interpreter = _make_interpreter(tmp_path)
+
+    assert interpreter.fetch_file(str(inside)) == str(inside.resolve())
+    assert interpreter.fetch_file(str(outside)) is None

@@ -8,6 +8,9 @@ from dojo.utils.config import LazyFactory
 
 INTERPRETER_MAP = {
     "PythonInterpreterConfig": LazyFactory("dojo.core.interpreters.python", "PythonInterpreter"),
+    "ChrootPythonInterpreterConfig": LazyFactory(
+        "dojo.core.interpreters.chroot_python", "ChrootPythonInterpreter"
+    ),
     "JupyterInterpreterConfig": LazyFactory(
         "dojo.core.interpreters.jupyter.jupyter_interpreter", "JupyterInterpreterFactory"
     ),

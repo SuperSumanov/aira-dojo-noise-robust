@@ -102,6 +102,33 @@ OPENCL_PATCH_PASS
 镜像中的 LightGBM 没有启用 CUDA Tree Learner，因此把配置改成 `device="cuda"`
 不是替代方案；它会报 `CUDA Tree Learner was not enabled in this build`。
 
+同一依赖链在 `ChrootPythonInterpreter` 上可能以另一种形式出现：chroot 会直接看到宿主的
+NVIDIA driver libraries，因此不会遇到 Singularity `--nv` 漏带 NVVM 的问题；但某些 K8s Pod
+只注入 `libnvidia-opencl.so.1`、`libnvidia-nvvm.so.4` 和 device nodes，没有安装
+`/etc/OpenCL/vendors/nvidia.icd`。这属于部署环境兼容问题，不是 chroot 隔离的必然要求。
+
+对应的可选补丁位于：
+
+```text
+src/mle_critic/patches/chroot_nvidia_opencl_runtime.patch
+```
+
+应用后，它会在每个 agent workspace 中生成私有 NVIDIA ICD，将 `OCL_ICD_VENDORS` 指向该目录，
+并为 chroot 集成测试增加一轮真实 LightGBM OpenCL 训练。默认 chroot 实现不修改 OpenCL 环境，
+避免影响已有完整 ICD、其他 OpenCL vendor 或没有 NVIDIA runtime 的机器。
+
+```bash
+git apply --check src/mle_critic/patches/chroot_nvidia_opencl_runtime.patch
+git apply src/mle_critic/patches/chroot_nvidia_opencl_runtime.patch
+pytest -q tests/test_chroot_python_interpreter.py
+```
+
+回滚：
+
+```bash
+git apply -R src/mle_critic/patches/chroot_nvidia_opencl_runtime.patch
+```
+
 # 储存大小
 
 将`HF_HUB_OFFLINE`设为`0`之后，每个独立任务都有一个独立的运行目录，可能导致大量下载。

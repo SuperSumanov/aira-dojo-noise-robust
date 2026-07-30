@@ -41,6 +41,25 @@ import logging
 log = logging.getLogger(__name__)
 
 
+def resolve_workspace_path(
+    working_dir: Path,
+    path: str | os.PathLike[str],
+    *,
+    require_relative: bool,
+) -> Path:
+    """Resolve a user-controlled path without allowing it to escape the workspace."""
+    candidate = Path(path)
+    if require_relative and candidate.is_absolute():
+        raise ValueError(f"Path must be relative to the workspace: {path}")
+    if require_relative and (not candidate.parts or ".." in candidate.parts):
+        raise ValueError(f"Path traversal is not allowed: {path}")
+
+    resolved = (working_dir / candidate if not candidate.is_absolute() else candidate).resolve()
+    if resolved == working_dir or not resolved.is_relative_to(working_dir):
+        raise ValueError(f"Path is outside the workspace: {path}")
+    return resolved
+
+
 def exception_summary(
     e: BaseException,
     working_dir: Path,
@@ -98,6 +117,7 @@ class RedirectQueue:
 class PythonInterpreter(Interpreter):
     local = True
     factory = False
+    cleanup_grace_seconds = 2.0
 
     def __init__(
         self,
@@ -110,7 +130,7 @@ class PythonInterpreter(Interpreter):
         Args:
             working_dir (Path | str): Working directory of the agent
             timeout (int, optional): Timeout for each code execution step in seconds. Defaults to 3600.
-            format_tb_ipython (bool, optional): Whether to use IPython or default python REPL formatting for exceptions. Defaults to False.
+            format_tb_ipython (bool, optional): Whether to use IPython or default Python REPL formatting.
         """
         self.logger = get_logger()
         self.working_dir = Path(cfg.working_dir).resolve()
@@ -138,6 +158,9 @@ class PythonInterpreter(Interpreter):
         self.timeout = cfg.timeout
         self.format_tb_ipython = cfg.format_tb_ipython
         self.process: Process | None = None  # type: ignore
+        self.code_inq: Queue | None = None
+        self.result_outq: Queue | None = None
+        self.event_outq: Queue | None = None
 
     def child_proc_setup(self, result_outq: Queue) -> None:
         """
@@ -189,8 +212,21 @@ class PythonInterpreter(Interpreter):
             code, agent_file_name, persist_file, execute_code = data
             os.chdir(str(self.working_dir))
 
+            try:
+                agent_file_path = resolve_workspace_path(
+                    self.working_dir,
+                    agent_file_name,
+                    require_relative=True,
+                )
+            except ValueError as e:
+                event_outq.put(("state:ready",))
+                result_outq.put(f"ValueError: {e}\n")
+                event_outq.put(("state:finished", "ValueError", {"args": [str(e)]}, [], None))
+                result_outq.put("<|EOF|>")
+                continue
+
             # Write code to the chosen file name
-            with open(agent_file_name, "w") as f:
+            with agent_file_path.open("w") as f:
                 f.write(code)
 
             if execute_code:
@@ -199,7 +235,7 @@ class PythonInterpreter(Interpreter):
                 global_scope.update(
                     {
                         "__name__": "__main__",
-                        "__file__": str(self.working_dir / agent_file_name),
+                        "__file__": str(agent_file_path),
                         "__package__": None,
                         "__spec__": None,
                         "__cached__": None,
@@ -231,7 +267,7 @@ class PythonInterpreter(Interpreter):
 
             # Remove the file only if it is NOT meant to persist
             if not persist_file:
-                os.remove(agent_file_name)
+                agent_file_path.unlink()
 
             # put EOF marker to indicate that we're done capturing output
             result_outq.put("<|EOF|>")
@@ -244,6 +280,7 @@ class PythonInterpreter(Interpreter):
         # - code_inq: send code to child to execute
         # - result_outq: receive stdout/stderr from child
         # - event_outq: receive events from child (e.g. state:ready, state:finished)
+        self._close_queues()
         self.code_inq = Queue()
         self.result_outq = Queue()
         self.event_outq = Queue()
@@ -258,10 +295,11 @@ class PythonInterpreter(Interpreter):
         Terminate the child process if it's still running, with escalation (terminate -> kill -> sigkill).
         """
         if self.process is None:
+            self._close_queues()
             return
         try:
             self.process.terminate()
-            self.process.join(timeout=2)
+            self.process.join(timeout=self.cleanup_grace_seconds)
 
             if self.process.exitcode is None:
                 self.logger.warning("Process failed to terminate, killing immediately", LogEvent.INTERPRETER)
@@ -277,14 +315,33 @@ class PythonInterpreter(Interpreter):
             if self.process is not None:
                 self.process.close()
                 self.process = None
+            self._close_queues()
+
+    def _close_queues(self) -> None:
+        """Close multiprocessing queue resources; safe to call repeatedly."""
+        for attribute in ("code_inq", "result_outq", "event_outq"):
+            ipc_queue = getattr(self, attribute, None)
+            if ipc_queue is None:
+                continue
+            try:
+                ipc_queue.cancel_join_thread()
+                ipc_queue.close()
+                ipc_queue.join_thread()
+            except (OSError, ValueError):
+                pass
+            setattr(self, attribute, None)
 
     def fetch_file(
         self,
         path: str,
     ) -> str | None:
-        if not Path(path).exists():
+        try:
+            resolved = resolve_workspace_path(self.working_dir, path, require_relative=False)
+        except ValueError:
             return None
-        return path
+        if not resolved.is_file():
+            return None
+        return str(resolved)
 
     def run(
         self,
@@ -325,9 +382,10 @@ class PythonInterpreter(Interpreter):
             # reset_session must be True on first exec
             assert self.process is not None, "Process not started. Try reset_session=True first."
 
-        assert self.process.is_alive()
-
         # Send the tuple (code, file_name, persist_file, execute_code) to the child
+        assert self.code_inq is not None
+        assert self.result_outq is not None
+        assert self.event_outq is not None
         self.code_inq.put((code, file_name, persist_file, execute_code))
 
         # wait for child to actually start execution
@@ -408,10 +466,11 @@ class PythonInterpreter(Interpreter):
             output.append(f"TimeoutError: Execution exceeded the time limit of {humanize.naturaldelta(self.timeout)}")
         elif include_exec_time:
             output.append(
-                f"Execution time: {humanize.naturaldelta(exec_time)} (time limit is {humanize.naturaldelta(self.timeout)})."
+                f"Execution time: {humanize.naturaldelta(exec_time)} "
+                f"(time limit is {humanize.naturaldelta(self.timeout)})."
             )
 
-        log.info(f"Code execution finished.")
+        log.info("Code execution finished.")
 
         return ExecutionResult(
             term_out=output,
@@ -424,7 +483,7 @@ class PythonInterpreter(Interpreter):
 def main():
     # Instantiate our dummy logger.
     cfg = {}
-    cfg["logger"] = logger_config = {
+    cfg["logger"] = {
         "base_exp_path": "results",  # Base path for logging.
         "use_console": True,  # Whether to log to stdout.
         "use_wandb": False,  # Whether to log to wandb.ai."

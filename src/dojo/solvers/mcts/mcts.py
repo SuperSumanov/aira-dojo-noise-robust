@@ -127,6 +127,9 @@ class MCTS(Solver):
         self._rm_task_name = str(task_info.get("name", task_info.get("competition_id", "")))
         self._rm_cache: dict = {}
         self._rm_fails = 0
+        self._rm_calls = 0
+        if self._rm_url:
+            print(f"[value-rm] enabled url={self._rm_url} lambda={self._rm_lambda}", flush=True)
 
         assert self.lower_is_better is not None
 
@@ -272,6 +275,9 @@ class MCTS(Solver):
                               {"Content-Type": "application/json"})
             r = _json.load(_rq.urlopen(req, timeout=180))
             b = float(r["score"]) - 0.5
+            self._rm_calls += 1
+            if self._rm_calls % 20 == 1:
+                print(f"[value-rm] scored {self._rm_calls} nodes (last={b + 0.5:.3f})", flush=True)
         except Exception:
             self._rm_fails += 1
             b = 0.0

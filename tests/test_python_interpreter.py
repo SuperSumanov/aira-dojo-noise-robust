@@ -63,6 +63,40 @@ def test_python_interpreter_provides_and_refreshes_script_metadata(
     assert "__main__ second.py None 42" in "".join(second.term_out)
 
 
+def test_python_interpreter_supports_spawn_for_user_defined_objects(
+    tmp_path: Path,
+) -> None:
+    interpreter = _make_interpreter(tmp_path)
+    try:
+        result = interpreter.run(
+            """
+import multiprocessing
+
+class SpawnPayload:
+    def __init__(self, value):
+        self.value = value
+
+def send_payload(output):
+    output.put(SpawnPayload(42))
+
+if __name__ == "__main__":
+    context = multiprocessing.get_context("spawn")
+    output = context.Queue()
+    child = context.Process(target=send_payload, args=(output,))
+    child.start()
+    payload = output.get(timeout=5)
+    child.join(timeout=5)
+    print("spawn-payload", payload.value, "exitcode", child.exitcode)
+""",
+            file_name="solution.py",
+        )
+    finally:
+        interpreter.cleanup_session()
+
+    assert result.exit_code == 0, "".join(result.term_out)
+    assert "spawn-payload 42 exitcode 0" in "".join(result.term_out)
+
+
 def test_python_interpreter_preserves_exception_messages_containing_dojo_path(
     tmp_path: Path,
 ) -> None:

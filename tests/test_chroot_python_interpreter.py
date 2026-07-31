@@ -43,6 +43,9 @@ def test_chroot_interpreter_allows_workspace_and_blocks_host_writes() -> None:
     sentinel.chmod(0o666)
     (workspace / "outside-link").symlink_to(sentinel)
     runtime = test_root / "runtime"
+    shm_marker = f"dojo-shm-{test_root.name}"
+    host_shm_marker = Path("/dev/shm") / shm_marker
+    assert not host_shm_marker.exists()
 
     interpreter = ChrootPythonInterpreter(
         ChrootPythonInterpreterConfig(
@@ -60,6 +63,41 @@ def test_chroot_interpreter_allows_workspace_and_blocks_host_writes() -> None:
     inherited_host_fd = fcntl.fcntl(original_host_fd, fcntl.F_DUPFD, 1000)
     os.close(original_host_fd)
     try:
+        multiprocessing_result = interpreter.run(
+            f"""
+import multiprocessing
+import multiprocessing.util
+from pathlib import Path
+
+import torch
+
+class SandboxDataset(torch.utils.data.Dataset):
+    def __len__(self):
+        return 16
+
+    def __getitem__(self, index):
+        return torch.tensor(index)
+
+if __name__ == "__main__":
+    ipc_queue = multiprocessing.Queue()
+    ipc_queue.put("semlock-ok")
+    print("multiprocessing", ipc_queue.get(timeout=5))
+    ipc_queue.close()
+    ipc_queue.join_thread()
+    print("multiprocessing-tempdir", multiprocessing.util.get_temp_dir())
+    Path("/dev/shm/{shm_marker}").write_text("private-shm")
+    loader = torch.utils.data.DataLoader(
+        SandboxDataset(),
+        batch_size=4,
+        num_workers=2,
+    )
+    print("dataloader-workers", sum(batch.sum().item() for batch in loader))
+            """,
+            file_name="multiprocessing_isolation.py",
+        )
+        assert multiprocessing_result.exit_code == 0, "".join(
+            multiprocessing_result.term_out
+        )
         result = interpreter.run(
             f"""
 import os
@@ -132,6 +170,7 @@ os.waitpid(first_child, 0)
 while not Path("background-host-pid").exists():
     time.sleep(0.01)
             """,
+            reset_session=False,
             file_name="isolation.py",
         )
         assert result.exit_code == 0, "".join(result.term_out)
@@ -140,8 +179,11 @@ while not Path("background-host-pid").exists():
         interpreter.cleanup_session()
         os.close(inherited_host_fd)
 
-    output = "".join(result.term_out)
+    output = "".join(multiprocessing_result.term_out + result.term_out)
     assert "uid 240000 groups []" in output
+    assert "multiprocessing semlock-ok" in output
+    assert "multiprocessing-tempdir /dev/shm/dojo-multiprocessing" in output
+    assert "dataloader-workers 120" in output
     assert "research-imports numpy pandas sklearn torch" in output
     assert f"torch-cuda-available {torch.cuda.is_available()}" in output
     assert "data readable" in output
@@ -160,6 +202,7 @@ while not Path("background-host-pid").exists():
     assert (workspace / "output.txt").read_text(encoding="utf-8") == "workspace-write"
     assert sentinel.read_text(encoding="utf-8") == "unchanged"
     assert data_file.read_text(encoding="utf-8") == "readable"
+    assert not host_shm_marker.exists()
     assert Path("/proc/self/mountinfo").read_text(encoding="utf-8") == host_mounts_before
     assert not runtime.exists() or not any(
         path.name.startswith("sandbox-") for path in runtime.iterdir()

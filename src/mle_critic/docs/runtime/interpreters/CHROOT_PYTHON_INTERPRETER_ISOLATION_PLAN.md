@@ -647,3 +647,39 @@ python -m dojo.main_runner_job_array \
 默认集成断言同时验证 `/home/data` 可读不可写、`/home` 不可写、workspace user-site 可 import、
 所有 cache 路径可写，以及宿主 mount table 和 workspace 外 sentinel 保持不变。OpenCL 训练断言仅由
 上述可选 patch 增加。
+
+### 12.7 PyTorch DataLoader 与 `/dev/shm`（2026-07-31）
+
+Dog Breed Identification 的多 seed 真实任务稳定复现了
+`multiprocessing.SemLock: OSError [Errno 30] Read-only file system`。Python 的 POSIX semaphore、
+`multiprocessing.Queue`、`multiprocessing.shared_memory` 及 PyTorch 多 worker `DataLoader` 都依赖
+`/dev/shm`；早期实现将 recursive bind clone 的全部 submount 设为只读，因此也错误地把克隆的宿主
+`/dev/shm` 变成了只读。
+
+sandbox 现在不会重新开放宿主 `/dev/shm`，而是在 private mount namespace 中将一个新的 tmpfs 精确
+挂载到 clone 的 `/dev/shm`。该 tmpfs 使用 `mode=1777,nosuid,nodev,noexec`，容量沿用宿主
+`/dev/shm` 的上限，并作为一个精确路径加入 writable mount allowlist。不同 sandbox 不共享 POSIX IPC
+对象；namespace 最后一个进程退出后内容自动销毁。集成测试会实际创建 `multiprocessing.Queue`、运行
+`DataLoader(num_workers=2)`，并确认 sandbox 的 shm marker 在宿主 `/dev/shm` 中不可见。
+
+修复 `SemLock` 后，PyTorch tensor storage 的 worker-to-parent 传递还会使用
+`multiprocessing.resource_sharer` 的 AF_UNIX socket。spawn supervisor 可能从可信父进程复制已经缓存的
+`multiprocessing` resource-tracker FD 和临时目录；前者会被 executor 的 FD 清理关闭，后者可能位于
+chroot 外或位于不支持 Unix socket 的共享文件系统。因此 executor 会同时清除这两类继承缓存，让
+resource tracker 在降权后的 PID namespace 内重新启动，并把 resource-sharer 的小型控制目录固定到
+private `/dev/shm/dojo-multiprocessing`。普通 `TMPDIR` 不变，训练过程的一般临时文件不会因此占用 shm。
+
+### 12.8 `spawn` 与动态 `__main__` 的 pickle 语义（2026-07-31）
+
+修复 IPC mount 后，Dog Breed Identification 的 8 个 seed 都进一步运行到 DataLoader worker 启动，
+随后稳定报错 `Can't pickle <class '__main__.DogDataset'>: attribute lookup DogDataset on __main__ failed`。
+这不是 chroot 文件可见性问题：chroot supervisor 由 multiprocessing `spawn` 创建，而该 start method
+会被 executor 继承；DataLoader 因此需要 pickle 用户定义的 Dataset，并在 worker 中重新加载主脚本。
+
+原 `PythonInterpreter` 只给一个普通 `exec()` globals dict 设置了 `__name__="__main__"`，但该 dict
+并不是真正的 `sys.modules["__main__"].__dict__`。pickle 按模块名回查 `DogDataset` 时实际看到的是
+Dojo/pytest launcher 的主模块，自然无法找到同一个类。executor 现在为 agent session 建立真实的
+`ModuleType("__main__")`，同时维护 multiprocessing 约定的 `__mp_main__` alias，再用该模块的 dict
+执行代码。这样带标准 `if __name__ == "__main__"` guard 的完整 solution script 可以由 spawn worker
+安全重新加载；测试会实际通过 spawn 往返一个用户定义对象，并让 chroot DataLoader 使用定义在 agent
+脚本中的自定义 Dataset，而不是只测试可 import 的 `TensorDataset`。

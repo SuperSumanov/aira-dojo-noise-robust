@@ -1,0 +1,18 @@
+diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
+--- a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
++++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
+@@ -41,0 +42,2 @@
++        - If using multiprocessing/DataLoader workers, put executable workflow code in `main()` and call it only under `if __name__ == "__main__":`; keep worker classes/functions at module scope.
++        - Before importing numerical libraries, cap `OMP_NUM_THREADS`, `MKL_NUM_THREADS`, and `OPENBLAS_NUM_THREADS` at 4; call `torch.set_num_threads(4)` and use at most 2 DataLoader workers.
+diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
+--- a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
++++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
+@@ -41,0 +42,2 @@
++        - If using multiprocessing/DataLoader workers, put executable workflow code in `main()` and call it only under `if __name__ == "__main__":`; keep worker classes/functions at module scope.
++        - Before importing numerical libraries, cap `OMP_NUM_THREADS`, `MKL_NUM_THREADS`, and `OPENBLAS_NUM_THREADS` at 4; call `torch.set_num_threads(4)` and use at most 2 DataLoader workers.
+diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
+--- a/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
++++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
+@@ -60,0 +61,2 @@
++        - If using multiprocessing/DataLoader workers, put executable workflow code in `main()` and call it only under `if __name__ == "__main__":`; keep worker classes/functions at module scope.
++        - Before importing numerical libraries, cap `OMP_NUM_THREADS`, `MKL_NUM_THREADS`, and `OPENBLAS_NUM_THREADS` at 4; call `torch.set_num_threads(4)` and use at most 2 DataLoader workers.

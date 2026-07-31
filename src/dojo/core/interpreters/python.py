@@ -23,6 +23,7 @@ import signal
 import sys
 import time
 import traceback
+import types
 from multiprocessing import Process, Queue
 from pathlib import Path
 from typing import Any
@@ -193,15 +194,26 @@ class PythonInterpreter(Interpreter):
         """
         self.child_proc_setup(result_outq)
 
-        # Match normal Python script/REPL semantics.  An empty globals mapping
-        # makes ``__name__`` fall back to ``builtins.__name__`` ("builtins"),
-        # so the standard ``if __name__ == "__main__"`` entry point is skipped.
-        global_scope: dict[str, Any] = {
-            "__name__": "__main__",
-            "__package__": None,
-            "__spec__": None,
-            "__cached__": None,
-        }
+        # Execute agent code in a real __main__ module, not merely a dict whose
+        # __name__ happens to be "__main__". Pickle and multiprocessing spawn
+        # resolve user-defined classes/functions through sys.modules, so a
+        # detached globals dict makes objects such as a custom DataLoader
+        # Dataset unpicklable. The module dict still persists across snippets,
+        # preserving the interpreter's existing session semantics.
+        main_module = types.ModuleType("__main__")
+        sys.modules["__main__"] = main_module
+        # Spawn executes the parent script as __mp_main__ in the worker. Keep
+        # the conventional multiprocessing alias pointed at the same live
+        # module so objects sent back from a worker can be unpickled too.
+        sys.modules["__mp_main__"] = main_module
+        global_scope: dict[str, Any] = main_module.__dict__
+        global_scope.update(
+            {
+                "__package__": None,
+                "__spec__": None,
+                "__cached__": None,
+            }
+        )
         while True:
             # Here, we expect a tuple: (code, file_name, persist_file).
             data = code_inq.get()

@@ -111,7 +111,7 @@ CUDA available: True
 
 ## 4. 广覆盖 Python 包
 
-以下列表从 [superimage/pip.requirements.txt](../../../superimage/pip.requirements.txt) 提取，去掉了
+以下列表从 [superimage/pip.requirements.txt](../../../../../superimage/pip.requirements.txt) 提取，去掉了
 重复项，并调整了会破坏当前 README 环境的版本。已经存在于 `requirements.txt` 的包会被 pip
 识别为 satisfied，不会重复安装。
 
@@ -429,7 +429,7 @@ PY
 PEP 668 是防误操作保险，不是权限隔离。pip 的 `--break-system-packages`、
 `PIP_BREAK_SYSTEM_PACKAGES=1` 和某些 `--target` 安装可以绕过它，Conda/Mamba 也不读取该 marker；
 而且以环境所有者身份运行的代码可以删除 marker。因此还应应用
-[forbid_agent_package_installation.patch](../patches/forbid_agent_package_installation.patch)，让生成代码的
+[forbid_agent_package_installation.patch](../../../patches/forbid_agent_package_installation.patch)，让生成代码的
 prompt 明确禁止通过 pip、Conda、subprocess、vendoring 或 workspace-local `--target` 安装依赖。
 
 应用 prompt patch：
@@ -463,7 +463,7 @@ python -m dojo.main_run \
 ### 9.1 Spaceship Titanic 实测 smoke test
 
 本文所述路径已经按照
-[AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md](./AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md) 的
+[AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md](../../workflows/AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md) 的
 单次 Spaceship 流程实测。与原 workflow 的区别是：原流程需要先 `salloc`，再用 `srun` 启动
 Jupyter/superimage；本机 conda 路径不申请 Slurm 资源，也不启动容器，直接在当前 shell 执行
 `main_run`。

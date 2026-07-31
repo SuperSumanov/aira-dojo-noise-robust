@@ -134,8 +134,8 @@ instance 并清理临时目录。
 - `superimage/README.md`
 - `superimage/pip.requirements.txt`
 - `superimage/apptainer.def` 中的 label/comment
-- `src/mle_critic/docs/BUILD_SUPERIMAGE_ON_MACOS.md`
-- `src/mle_critic/docs/AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md`
+- `src/mle_critic/docs/runtime/containers/BUILD_SUPERIMAGE_ON_MACOS.md`
+- `src/mle_critic/docs/workflows/AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md`
 
 其中 `BUILD_SUPERIMAGE_ON_MACOS.md` 已经明确区分“用 Apptainer builder 生成 SIF”和“在
 Singularity 集群运行 SIF”，并指出当前 Jupyter wrapper 仍硬编码 Apptainer。这份文档应在

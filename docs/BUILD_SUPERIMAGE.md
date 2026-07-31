@@ -16,7 +16,7 @@ popd
 ```
 where `{PATH_TO_SUPERIMAGES}` is where the superimage will be created and `{VERSION_ID}` is the version of the superimage you want to build (e.g., `2025-06-v1`). This will create a superimage that can be used to run tasks in the dojo.
 
-> **Current-cluster tip:** The current `apptainer.def` includes dependency compatibility changes, and the target x86_64 SIF can also be built from macOS with Docker; see [Building Superimage on macOS](../src/mle_critic/docs/BUILD_SUPERIMAGE_ON_MACOS.md). For the Singularity 3.5 runtime path used on this cluster, see the [Apptainer-to-Singularity migration notes](../src/mle_critic/docs/APPTAINER_TO_SINGULARITY_INVESTIGATION.md).
+> **Current-cluster tip:** The current `apptainer.def` includes dependency compatibility changes, and the target x86_64 SIF can also be built from macOS with Docker; see [Building Superimage on macOS](../src/mle_critic/docs/runtime/containers/BUILD_SUPERIMAGE_ON_MACOS.md). For the Singularity 3.5 runtime path used on this cluster, see the [Apptainer-to-Singularity migration notes](../src/mle_critic/docs/runtime/containers/APPTAINER_TO_SINGULARITY_INVESTIGATION.md).
 
 ## Setting your superimage as the default
 

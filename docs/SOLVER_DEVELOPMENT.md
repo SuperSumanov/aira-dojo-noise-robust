@@ -34,7 +34,7 @@ The core operators of aira-dojo are:
 
 5. [**Crossover**](../src/dojo/core/solvers/operators/crossover.py): Combines elements from multiple solutions (used in evolutionary solvers)
 
-> **Current-cluster tip:** Structured operator calls through the DeepSeek thinking endpoint use JSON mode, local schema validation, and retries instead of the upstream mixed legacy function-calling payload. See the [structured-output compatibility notes](../src/mle_critic/docs/AIRA_DOJO_DS_STRUCTURED_OUTPUT.md) before changing an operator's schema or LLM transport.
+> **Current-cluster tip:** Structured operator calls through the DeepSeek thinking endpoint use JSON mode, local schema validation, and retries instead of the upstream mixed legacy function-calling payload. See the [structured-output compatibility notes](../src/mle_critic/docs/llm/AIRA_DOJO_DS_STRUCTURED_OUTPUT.md) before changing an operator's schema or LLM transport.
 
 ### Operator Selection Strategies
 

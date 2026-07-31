@@ -130,7 +130,32 @@ def _namespace_init(
             for endpoint in (ipc_queue._reader, ipc_queue._writer)
         }
         close_fds_except({0, 1, 2, *queue_fds})
+        # The spawn supervisor inherited the trusted parent's multiprocessing
+        # resource-tracker pipe. close_fds_except() deliberately closed that
+        # host-facing descriptor, so discard multiprocessing's cached fd/pid as
+        # well. The first sandbox semaphore/shared-memory allocation will then
+        # start a low-privilege tracker inside this PID namespace.
+        from multiprocessing import process as multiprocessing_process
+        from multiprocessing import resource_tracker
+
+        resource_tracker._resource_tracker._fd = None
+        resource_tracker._resource_tracker._pid = None
+        # BaseProcess copies its parent's multiprocessing configuration when
+        # the spawn supervisor is constructed. In particular, ``tempdir`` may
+        # already name a pymp-* directory outside the chroot. TMPDIR does not
+        # override that cached value, so discard it before dropping privileges.
+        multiprocessing_process.current_process()._config["tempdir"] = None
         drop_privileges(uid, gid)
+        # multiprocessing.resource_sharer needs AF_UNIX sockets when PyTorch
+        # sends tensor storage from DataLoader workers. The configured runtime
+        # and workspace may be on a shared filesystem that does not implement
+        # Unix sockets. Keep this tiny control directory on the already-private
+        # tmpfs instead; general temporary files still use TMPDIR.
+        multiprocessing_tempdir = "/dev/shm/dojo-multiprocessing"
+        os.mkdir(multiprocessing_tempdir, mode=0o700)
+        multiprocessing_process.current_process()._config["tempdir"] = (
+            multiprocessing_tempdir
+        )
         PythonInterpreter._run_session(interpreter, code_inq, result_outq, event_outq)
         os._exit(0)
 
@@ -238,6 +263,24 @@ def _sandbox_supervisor(
         workspace_target = runtime.root / interpreter.working_dir.relative_to("/")
         bind_mount(interpreter.working_dir, workspace_target, readonly=False)
         allowed_writable = {workspace_target}
+
+        # Python multiprocessing.SemLock, PyTorch DataLoader workers and
+        # shared_memory use POSIX IPC objects under /dev/shm. The cloned host
+        # mount was made read-only above, so replace it with a sandbox-private
+        # tmpfs. Match the host capacity without sharing its IPC objects.
+        host_shm = os.statvfs("/dev/shm")
+        shm_size = host_shm.f_frsize * host_shm.f_blocks
+        if shm_size <= 0:
+            raise RuntimeError("Unable to determine a positive /dev/shm size")
+        shm_target = runtime.root / "dev/shm"
+        mount(
+            "tmpfs",
+            shm_target,
+            "tmpfs",
+            MS_NOSUID | MS_NODEV | MS_NOEXEC,
+            f"mode=1777,size={shm_size}",
+        )
+        allowed_writable.add(shm_target)
 
         if interpreter.private_tmp:
             for name in ("tmp", "run"):

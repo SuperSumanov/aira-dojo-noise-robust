@@ -1,6 +1,6 @@
 # MLEBench `medium` 任务规模与运行时间预估
 
-本文整理 [`medium.txt`](../../dojo/tasks/mlebench/splits/medium.txt) 中的 38 个任务，供 RTX 3090 批量采数时筛选。目标仍是一次常规 5-fold train/validation 尽量不超过 30 分钟。除特别说明外，数据量和时间都是基于 Kaggle 文件、MLEBench `prepare.py` 和常见 baseline 的工程估算，不是官方保证。
+本文整理 [`medium.txt`](../../../dojo/tasks/mlebench/splits/medium.txt) 中的 38 个任务，供 RTX 3090 批量采数时筛选。目标仍是一次常规 5-fold train/validation 尽量不超过 30 分钟。除特别说明外，数据量和时间都是基于 Kaggle 文件、MLEBench `prepare.py` 和常见 baseline 的工程估算，不是官方保证。
 
 ## 口径
 

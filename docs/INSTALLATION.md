@@ -79,7 +79,7 @@ Note: To run the examples in the "Example Usage" section of this read me, you mu
 ## Step 6: Build a superimage with apptainer
 Follow the steps in [`docs/BUILD_SUPERIMAGE.md`](./BUILD_SUPERIMAGE.md) to build your superimage. This is necessary to run tasks that use jupyter as the interpreter.
 
-> **Current-cluster tip:** This cluster provides Singularity 3.5 rather than the upstream Apptainer runtime. This fork retains Apptainer support and adds a separate Singularity backend; see the [runtime migration and compatibility notes](../src/mle_critic/docs/APPTAINER_TO_SINGULARITY_INVESTIGATION.md) before configuring Jupyter.
+> **Current-cluster tip:** This cluster provides Singularity 3.5 rather than the upstream Apptainer runtime. This fork retains Apptainer support and adds a separate Singularity backend; see the [runtime migration and compatibility notes](../src/mle_critic/docs/runtime/containers/APPTAINER_TO_SINGULARITY_INVESTIGATION.md) before configuring Jupyter.
 
 ## Step 7: Install Task-Specific Dependencies
 

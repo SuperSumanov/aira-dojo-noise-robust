@@ -202,7 +202,7 @@ PRIMARY_KEY=...
 build/superimage/superimage.root.2026-07-macos-v1.sif
 ```
 
-详细的编译流程来自`src/mle_critic/docs/BUILD_SUPERIMAGE_ON_MACOS.md`。当前分支已把：
+详细的编译流程来自 `src/mle_critic/docs/runtime/containers/BUILD_SUPERIMAGE_ON_MACOS.md`。当前分支已把：
 
 ```yaml
 superimage_version: "2026-07-macos-v1"

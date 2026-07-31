@@ -1,6 +1,6 @@
 # MLEBench `high` 任务规模与运行时间预估
 
-本文整理 [`high.txt`](../../dojo/tasks/mlebench/splits/high.txt) 中的 15 个任务。这里的 high 通常意味着大规模图像、视频、3D、医学数据或昂贵的序列建模；“工作数据”是 prepared/public 加 `public.tar` 的近似占盘，“3090 上 5 折预估”是假定使用合理轻量 baseline 的模型与 I/O 时间，不包含 LLM 思考、排队、环境启动和依赖安装。数字是筛选用的区间，实际实现可能更慢。
+本文整理 [`high.txt`](../../../dojo/tasks/mlebench/splits/high.txt) 中的 15 个任务。这里的 high 通常意味着大规模图像、视频、3D、医学数据或昂贵的序列建模；“工作数据”是 prepared/public 加 `public.tar` 的近似占盘，“3090 上 5 折预估”是假定使用合理轻量 baseline 的模型与 I/O 时间，不包含 LLM 思考、排队、环境启动和依赖安装。数字是筛选用的区间，实际实现可能更慢。
 
 ## 先说结论
 

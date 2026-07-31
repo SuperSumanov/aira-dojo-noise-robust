@@ -28,7 +28,7 @@ dojo.main_runner_job_array
 
 ## 2. 代码改动
 
-修改文件：[src/dojo/core/runners/local/gpu_pool.py](../../dojo/core/runners/local/gpu_pool.py)
+修改文件：[src/dojo/core/runners/local/gpu_pool.py](../../../../dojo/core/runners/local/gpu_pool.py)
 
 原实现无条件要求 `singularity` 出现在 `PATH`，因此即使 run config 使用
 `PythonInterpreterConfig` 也会在 launcher 启动前失败。`LocalGpuPoolLauncher._required_paths()`
@@ -50,7 +50,7 @@ if runtime:
   `singularity`，避免误把容器任务静默地当成宿主 Python 任务运行；
 - `nvidia-smi`、GPU 独占部署和 launcher 的设备校验保持不变。
 
-新增测试位于 [tests/test_local_gpu_pool.py](../../../tests/test_local_gpu_pool.py)：分别验证 Python
+新增测试位于 [tests/test_local_gpu_pool.py](../../../../../tests/test_local_gpu_pool.py)：分别验证 Python
 interpreter 在没有 Singularity 时可以通过路径校验，以及容器 interpreter 仍会拒绝缺少
 Singularity 的环境。
 

@@ -1,6 +1,6 @@
 # MLEBench `low` 任务规模与运行时间预估
 
-本文用于从 [`low.txt`](../../dojo/tasks/mlebench/splits/low.txt) 的 20 个任务中筛选适合消费级 GPU 批量采数的任务。目标是：单张 RTX 3090 上，一次常规的 5-fold train/validation 尽量在 30 分钟内结束。
+本文用于从 [`low.txt`](../../../dojo/tasks/mlebench/splits/low.txt) 的 20 个任务中筛选适合消费级 GPU 批量采数的任务。目标是：单张 RTX 3090 上，一次常规的 5-fold train/validation 尽量在 30 分钟内结束。
 
 ## 先说结论
 

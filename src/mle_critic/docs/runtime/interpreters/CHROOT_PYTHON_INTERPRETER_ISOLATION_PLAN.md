@@ -38,7 +38,7 @@ namespace 可以创建。因此目标可行，推荐实现一个显式选择的 
 - `src/dojo/main_run.py`
 - `tests/test_python_interpreter.py`
 - `src/mle_critic/scripts/check_isolation.sh`
-- `src/mle_critic/docs/CONDA_DIRECT_INTERPRETER_SETUP.md`
+- `src/mle_critic/docs/runtime/interpreters/CONDA_DIRECT_INTERPRETER_SETUP.md`
 
 本次只进行了代码阅读和不会影响其他任务的 namespace 能力探测，没有实际运行 agent，没有创建用户，
 也没有在共享 mount namespace 中执行挂载。

@@ -46,6 +46,7 @@ ap.add_argument("--lora", action="store_true", help="LoRA instead of full fine-t
 ap.add_argument("--deepspeed", default=None)
 ap.add_argument("--out", default="phase1/rm_curve_hf.csv")
 ap.add_argument("--save-adapter", default="")
+ap.add_argument("--local_rank", type=int, default=-1)  # injected by the deepspeed launcher
 a = ap.parse_args()
 
 random.seed(a.seed)

@@ -7,3 +7,11 @@ N,split,acc,tau_weight,model,seed,wall_s,n_test,max_len,lr
 2000,in-task,0.6053,False,qwen2.5-1.5b-instruct,7,785.8,1500,1024,0.0001
 8000,in-task,0.746,False,qwen2.5-1.5b-instruct,7,2557.6,1500,1024,0.0001
 24000,in-task,0.7573,False,qwen2.5-1.5b-instruct,7,7268.8,1500,1024,0.0001
+500,in-task,0.5293,False,qwen2.5-1.5b-instruct,9,787.9,1500,2048,0.0001,True,0.25,,
+2000,in-task,0.606,False,qwen2.5-1.5b-instruct,9,1942.1,1500,2048,0.0001,True,0.25,,
+8000,in-task,0.7013,False,qwen2.5-1.5b-instruct,9,6561.3,1500,2048,0.0001,True,0.25,,
+24000,in-task,0.7867,False,qwen2.5-1.5b-instruct,9,18897.3,1500,2048,0.0001,True,0.25,,
+500,in-task,0.5653,False,qwen2.5-1.5b-instruct,8,812.1,1500,2048,0.0001,True,0.25,,
+2000,in-task,0.6407,False,qwen2.5-1.5b-instruct,8,2005.1,1500,2048,0.0001,True,0.25,,
+8000,in-task,0.7467,False,qwen2.5-1.5b-instruct,8,6771.2,1500,2048,0.0001,True,0.25,,
+24000,in-task,0.7833,False,qwen2.5-1.5b-instruct,8,19362.5,1500,2048,0.0001,True,0.25,,

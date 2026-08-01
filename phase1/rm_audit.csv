@@ -1,2 +1,4 @@
 N,split,acc,tau_weight,model,seed,wall_s,n_test,max_len,lr,task_cond,head_frac,disagree_acc,agree_acc
 8000,in-task,0.5497,False,qwen2.5-1.5b-instruct,7,6591.5,3000,2048,0.0001,True,0.25,,
+8000,in-task,0.5347,False,qwen2.5-1.5b-instruct,8,5876.8,475,2048,0.0001,True,0.25,,
+8000,in-task,0.4905,False,qwen2.5-1.5b-instruct,9,5932.1,475,2048,0.0001,True,0.25,,

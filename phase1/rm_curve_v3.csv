@@ -2,3 +2,6 @@ N,split,acc,tau_weight,model,seed,wall_s,n_test,max_len,lr,task_cond,head_frac
 8000,loto:mlsp-2013-birds,0.5107,False,qwen2.5-1.5b-instruct,7,6434.9,1500,2048,0.0001,True,0.25
 8000,loto:spaceship-titanic,0.5973,False,qwen2.5-1.5b-instruct,7,6438.8,1500,2048,0.0001,True,0.25
 8000,loto:random-acts-of-pizza,0.5253,False,qwen2.5-1.5b-instruct,7,6693.6,1500,2048,0.0001,True,0.25
+8000,loto:spaceship-titanic,0.6233,False,qwen2.5-1.5b-instruct,8,6510.6,1500,2048,0.0001,True,0.25,,
+8000,loto:spaceship-titanic,0.596,False,qwen2.5-1.5b-instruct,9,6501.8,1500,2048,0.0001,True,0.25,,
+8000,loto:mlsp-2013-birds,0.4827,False,qwen2.5-1.5b-instruct,9,6499.8,1500,2048,0.0001,True,0.25,,

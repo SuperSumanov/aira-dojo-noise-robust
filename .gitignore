@@ -230,3 +230,6 @@ AGENT.md
 phase1/_*
 outputs/
 *.bak
+
+# merged corpus is derived (>100MB); rebuild with phase1/rebuild_corpus.sh
+phase1/cards_merged_*.jsonl

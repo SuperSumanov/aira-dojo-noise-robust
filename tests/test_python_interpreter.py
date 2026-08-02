@@ -118,6 +118,30 @@ def test_python_interpreter_preserves_exception_messages_containing_dojo_path(
     assert f"ImportError: {message}" in output
 
 
+def test_python_interpreter_hard_timeout_returns_execution_result(
+    tmp_path: Path,
+) -> None:
+    interpreter = PythonInterpreter(
+        PythonInterpreterConfig(working_dir=str(tmp_path), timeout=0.1)
+    )
+    interpreter.timeout_grace_seconds = 0.1
+
+    try:
+        result = interpreter.run(
+            "import signal, time\n"
+            "signal.signal(signal.SIGINT, signal.SIG_IGN)\n"
+            "while True:\n"
+            "    time.sleep(0.01)\n",
+            file_name="solution.py",
+        )
+    finally:
+        interpreter.cleanup_session()
+
+    assert result.exit_code == 1
+    assert result.exec_time == 0.1
+    assert "TimeoutError: Execution exceeded the time limit" in "".join(result.term_out)
+
+
 @pytest.mark.parametrize("file_name", ["../escape.py", "/tmp/escape.py"])
 def test_python_interpreter_rejects_file_name_escape(tmp_path: Path, file_name: str) -> None:
     interpreter = _make_interpreter(tmp_path)

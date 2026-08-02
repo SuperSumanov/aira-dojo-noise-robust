@@ -119,6 +119,7 @@ class PythonInterpreter(Interpreter):
     local = True
     factory = False
     cleanup_grace_seconds = 2.0
+    timeout_grace_seconds = 60.0
 
     def __init__(
         self,
@@ -440,19 +441,26 @@ class PythonInterpreter(Interpreter):
                 if self.timeout is None:
                     continue
                 running_time = time.time() - start_time
-                if running_time > self.timeout:
+                if running_time > self.timeout and not child_in_overtime:
                     self.logger.warning(f"Execution exceeded timeout of {self.timeout}s", LogEvent.INTERPRETER)
                     os.kill(self.process.pid, signal.SIGINT)
                     child_in_overtime = True
+                    continue
 
-                    # terminate if we're overtime by more than 5 seconds
-                    if running_time > self.timeout + 60:
-                        self.logger.warning("Child failed to terminate, killing it..", LogEvent.INTERPRETER)
-                        self.cleanup_session()
-
-                        state = (None, "TimeoutError", {}, [], None)
-                        exec_time = self.timeout
-                        break
+                if (
+                    child_in_overtime
+                    and running_time > self.timeout + self.timeout_grace_seconds
+                ):
+                    self.logger.warning("Child failed to terminate, killing it..", LogEvent.INTERPRETER)
+                    self.cleanup_session()
+                    return ExecutionResult(
+                        term_out=[
+                            "TimeoutError: Execution exceeded the time limit of "
+                            f"{humanize.naturaldelta(self.timeout)}"
+                        ],
+                        exec_time=self.timeout,
+                        exit_code=1,
+                    )
 
         # we now unpack a 5-tuple from the child
         # state: ("state:finished", exc_type, exc_info, exc_stack, eval_return)

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import multiprocessing
 import os
 import signal
@@ -38,6 +39,9 @@ from dojo.core.interpreters.linux_sandbox import (
 from dojo.core.interpreters.python import PythonInterpreter
 
 
+log = logging.getLogger(__name__)
+
+
 _SANDBOX_HOME_INSTRUCTIONS = """Dojo Python sandbox
 
 The current working directory is the writable agent workspace.
@@ -63,6 +67,7 @@ def _namespace_init(
     gid: int,
     supervisor_pid: int,
     allowed_writable_mounts: set[Path],
+    setup_started: float,
 ) -> None:
     """Run as PID 1 in the new namespace, forwarding signals and reaping children."""
     set_parent_death_signal(supervisor_pid)
@@ -78,6 +83,10 @@ def _namespace_init(
     verify_writable_mounts(root, allowed_writable_mounts)
     os.chroot(root)
     os.chdir("/")
+    log.info(
+        "Sandbox setup phase namespace-init-ready completed at %.3fs",
+        time.monotonic() - setup_started,
+    )
 
     executor_pid = os.fork()
     if executor_pid == 0:
@@ -120,6 +129,11 @@ def _namespace_init(
                 ),
                 "CONDA_PKGS_DIRS": f"{workspace_text}/.conda/pkgs",
                 "CONDA_ENVS_PATH": f"{workspace_text}/.conda/envs",
+                # Hugging Face tokenizers uses a Rayon thread pool. Agent code
+                # commonly tokenizes at module scope and later starts PyTorch
+                # DataLoader workers; disable that pool before tokenizers is
+                # imported so a subsequent fork cannot inherit its threads.
+                "TOKENIZERS_PARALLELISM": "false",
             }
         )
         if python_user_site not in sys.path:
@@ -155,6 +169,20 @@ def _namespace_init(
         os.mkdir(multiprocessing_tempdir, mode=0o700)
         multiprocessing_process.current_process()._config["tempdir"] = (
             multiprocessing_tempdir
+        )
+        # The trusted supervisor intentionally starts with ``spawn`` to avoid
+        # inheriting host logger threads. Python propagates that start method
+        # into the spawned process, and the executor's later os.fork() would
+        # otherwise expose ``spawn`` as the agent's default too. That differs
+        # from a normal Linux Python process and makes unguarded DataLoader
+        # usage recursively re-execute the complete solution.py. Restore the
+        # usual Linux default only after entering the isolated PID namespace.
+        # Explicit agent requests for a spawn context continue to use spawn and
+        # therefore still require the conventional __main__ guard.
+        multiprocessing.set_start_method("fork", force=True)
+        log.info(
+            "Sandbox setup phase executor-ready completed at %.3fs",
+            time.monotonic() - setup_started,
         )
         PythonInterpreter._run_session(interpreter, code_inq, result_outq, event_outq)
         os._exit(0)
@@ -222,6 +250,20 @@ def _sandbox_supervisor(
     original_owner: tuple[int, int],
 ) -> None:
     """Construct private mounts, then supervise the PID namespace init process."""
+    setup_started = time.monotonic()
+    previous_phase = setup_started
+
+    def log_phase(name: str) -> None:
+        nonlocal previous_phase
+        now = time.monotonic()
+        log.info(
+            "Sandbox setup phase %s took %.3fs (total %.3fs)",
+            name,
+            now - previous_phase,
+            now - setup_started,
+        )
+        previous_phase = now
+
     init_pid: int | None = None
     pending_signal: int | None = None
 
@@ -244,6 +286,7 @@ def _sandbox_supervisor(
         unshare(CLONE_NEWNS)
         mount(None, "/", flags=MS_REC | MS_PRIVATE)
         mount("/", runtime.root, flags=MS_BIND | MS_REC)
+        log_phase("namespace-and-root-clone")
 
         # MLE-bench prompts and generated solutions commonly use the historical
         # container paths /home/data and /home/instructions.txt.  Build a tiny
@@ -259,6 +302,7 @@ def _sandbox_supervisor(
             encoding="utf-8",
         )
         remount_tree_readonly(runtime.root)
+        log_phase("readonly-root")
 
         workspace_target = runtime.root / interpreter.working_dir.relative_to("/")
         bind_mount(interpreter.working_dir, workspace_target, readonly=False)
@@ -298,6 +342,7 @@ def _sandbox_supervisor(
         bind_mount(passwd, runtime.root / "etc/passwd", readonly=True)
         bind_mount(group, runtime.root / "etc/group", readonly=True)
         verify_writable_mounts(runtime.root, allowed_writable)
+        log_phase("writable-mounts")
 
         # After CLONE_NEWPID succeeds, this process cannot create queue feeder
         # threads until it forks into the namespace. Keep all fallible mount
@@ -316,7 +361,10 @@ def _sandbox_supervisor(
                 gid,
                 supervisor_pid,
                 allowed_writable,
+                setup_started,
             )
+
+        log_phase("pid-namespace-fork")
 
         if pending_signal is not None:
             forward(pending_signal, None)
@@ -395,6 +443,7 @@ class ChrootPythonInterpreter(PythonInterpreter):
         self._workspace_identity = (workspace_status.st_dev, workspace_status.st_ino)
 
     def create_process(self) -> None:
+        setup_started = time.monotonic()
         self._close_queues()
         owner = self.working_dir.stat(follow_symlinks=False)
         if (
@@ -423,6 +472,10 @@ class ChrootPythonInterpreter(PythonInterpreter):
             ):
                 (self.working_dir / relative).mkdir(mode=0o700, parents=True, exist_ok=True)
             chown_tree_no_follow(self.working_dir, self._uid_lease.uid, self._uid_lease.gid)
+            log.info(
+                "Sandbox parent setup phase workspace-ownership took %.3fs",
+                time.monotonic() - setup_started,
+            )
 
             # Start from a fresh interpreter process. This avoids forking the
             # logger's threads; all later forks happen in the single-threaded
@@ -448,6 +501,10 @@ class ChrootPythonInterpreter(PythonInterpreter):
             )
             self.process.start()
             self._runtime.write_state(self.working_dir, self._uid_lease.uid, self.process.pid)
+            log.info(
+                "Sandbox parent setup phase supervisor-spawn completed at %.3fs",
+                time.monotonic() - setup_started,
+            )
         except BaseException:
             self._cleanup_sandbox_resources()
             raise

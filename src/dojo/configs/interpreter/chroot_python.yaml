@@ -2,6 +2,7 @@ _target_: dojo.config_dataclasses.interpreter.chroot_python.ChrootPythonInterpre
 
 use_symlinks: True
 format_tb_ipython: False
+startup_timeout: 60
 runtime_base_dir: /tmp/dojo-python-sandboxes
 allowed_working_root: null
 uid_min: 200000

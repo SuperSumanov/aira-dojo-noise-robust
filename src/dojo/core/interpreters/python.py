@@ -158,6 +158,7 @@ class PythonInterpreter(Interpreter):
             log.info("WARNING: A data directory was not passed, so it was created at {str(self.data_dir)}")
 
         self.timeout = cfg.timeout
+        self.startup_timeout = cfg.startup_timeout
         self.format_tb_ipython = cfg.format_tb_ipython
         self.process: Process | None = None  # type: ignore
         self.code_inq: Queue | None = None
@@ -401,18 +402,47 @@ class PythonInterpreter(Interpreter):
         assert self.event_outq is not None
         self.code_inq.put((code, file_name, persist_file, execute_code))
 
-        # wait for child to actually start execution
-        try:
-            state = self.event_outq.get(timeout=10)
-        except queue.Empty:
-            msg = "REPL child process failed to start execution"
-            self.logger.critical(msg, LogEvent.INTERPRETER)
-            queue_dump = ""
-            while not self.result_outq.empty():
-                queue_dump = self.result_outq.get()
-                self.logger.error(f"REPL output queue dump: {queue_dump[:1000]}", LogEvent.INTERPRETER)
-            self.cleanup_session()
-            return ExecutionResult(term_out=[msg, queue_dump], exec_time=0, exit_code=1)
+        # Wait for the child to finish interpreter/sandbox setup. Chroot setup
+        # can legitimately take longer under concurrent mount and filesystem
+        # load, so distinguish a live but slow child from one that exited.
+        startup_deadline = time.monotonic() + self.startup_timeout
+        while True:
+            remaining = startup_deadline - time.monotonic()
+            if remaining <= 0:
+                msg = (
+                    "REPL child process did not start execution within "
+                    f"{self.startup_timeout:g}s"
+                )
+                self.logger.critical(msg, LogEvent.INTERPRETER)
+                queue_dump = ""
+                while not self.result_outq.empty():
+                    queue_dump = self.result_outq.get()
+                    self.logger.error(
+                        f"REPL output queue dump: {queue_dump[:1000]}",
+                        LogEvent.INTERPRETER,
+                    )
+                self.cleanup_session()
+                return ExecutionResult(term_out=[msg, queue_dump], exec_time=0, exit_code=1)
+            try:
+                state = self.event_outq.get(timeout=min(1.0, remaining))
+                break
+            except queue.Empty:
+                if self.process.is_alive():
+                    continue
+                msg = (
+                    "REPL child process exited before starting execution "
+                    f"(exit code {self.process.exitcode})"
+                )
+                self.logger.critical(msg, LogEvent.INTERPRETER)
+                queue_dump = ""
+                while not self.result_outq.empty():
+                    queue_dump = self.result_outq.get()
+                    self.logger.error(
+                        f"REPL output queue dump: {queue_dump[:1000]}",
+                        LogEvent.INTERPRETER,
+                    )
+                self.cleanup_session()
+                return ExecutionResult(term_out=[msg, queue_dump], exec_time=0, exit_code=1)
         assert state[0] == "state:ready", state
         start_time = time.time()
 

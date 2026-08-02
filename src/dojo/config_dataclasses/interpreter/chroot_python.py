@@ -7,6 +7,7 @@ from dojo.config_dataclasses.interpreter.python import PythonInterpreterConfig
 class ChrootPythonInterpreterConfig(PythonInterpreterConfig):
     """Configuration for the opt-in Linux chroot interpreter."""
 
+    startup_timeout: float = 60.0
     runtime_base_dir: str = "/tmp/dojo-python-sandboxes"
     allowed_working_root: str | None = None
     uid_min: int = 200000

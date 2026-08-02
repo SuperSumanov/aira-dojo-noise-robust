@@ -13,6 +13,10 @@ from dojo.config_dataclasses.interpreter.base import InterpreterConfig
 
 @dataclass
 class PythonInterpreterConfig(InterpreterConfig):
+    startup_timeout: float = field(
+        default=10.0,
+        metadata={"help": "Seconds to wait for the interpreter child to become ready."},
+    )
     use_symlinks: bool = field(
         default=True,
         metadata={"help": "Use symlinks to avoid copying files. This is useful for large files."},
@@ -27,3 +31,5 @@ class PythonInterpreterConfig(InterpreterConfig):
 
     def validate(self) -> None:
         super().validate()
+        if self.startup_timeout <= 0:
+            raise ValueError("startup_timeout must be positive")

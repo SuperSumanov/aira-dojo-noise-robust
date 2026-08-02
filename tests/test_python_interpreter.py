@@ -1,11 +1,24 @@
 from __future__ import annotations
 
+import os
+import time
 from pathlib import Path
 
 import pytest
 
 from dojo.config_dataclasses.interpreter.python import PythonInterpreterConfig
 from dojo.core.interpreters.python import PythonInterpreter
+
+
+class SlowStartingPythonInterpreter(PythonInterpreter):
+    def child_proc_setup(self, result_outq) -> None:
+        time.sleep(0.2)
+        super().child_proc_setup(result_outq)
+
+
+class ExitingPythonInterpreter(PythonInterpreter):
+    def _run_session(self, code_inq, result_outq, event_outq) -> None:
+        os._exit(7)
 
 
 def _make_interpreter(tmp_path: Path) -> PythonInterpreter:
@@ -140,6 +153,40 @@ def test_python_interpreter_hard_timeout_returns_execution_result(
     assert result.exit_code == 1
     assert result.exec_time == 0.1
     assert "TimeoutError: Execution exceeded the time limit" in "".join(result.term_out)
+
+
+def test_python_interpreter_allows_configured_slow_startup(tmp_path: Path) -> None:
+    interpreter = SlowStartingPythonInterpreter(
+        PythonInterpreterConfig(
+            working_dir=str(tmp_path),
+            timeout=10,
+            startup_timeout=1,
+        )
+    )
+    try:
+        result = interpreter.run("print('started')")
+    finally:
+        interpreter.cleanup_session()
+
+    assert result.exit_code == 0
+    assert "started" in "".join(result.term_out)
+
+
+def test_python_interpreter_reports_child_exit_during_startup(tmp_path: Path) -> None:
+    interpreter = ExitingPythonInterpreter(
+        PythonInterpreterConfig(
+            working_dir=str(tmp_path),
+            timeout=10,
+            startup_timeout=2,
+        )
+    )
+    try:
+        result = interpreter.run("print('must not execute')")
+    finally:
+        interpreter.cleanup_session()
+
+    assert result.exit_code == 1
+    assert "exited before starting execution (exit code 7)" in "".join(result.term_out)
 
 
 @pytest.mark.parametrize("file_name", ["../escape.py", "/tmp/escape.py"])

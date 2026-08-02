@@ -2,3 +2,4 @@ _target_: dojo.config_dataclasses.interpreter.python.PythonInterpreterConfig
 
 use_symlinks: True
 format_tb_ipython: False
+startup_timeout: 10

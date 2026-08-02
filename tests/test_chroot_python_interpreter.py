@@ -67,6 +67,7 @@ def test_chroot_interpreter_allows_workspace_and_blocks_host_writes() -> None:
             f"""
 import multiprocessing
 import multiprocessing.util
+import os
 from pathlib import Path
 
 import torch
@@ -78,26 +79,30 @@ class SandboxDataset(torch.utils.data.Dataset):
     def __getitem__(self, index):
         return torch.tensor(index)
 
-if __name__ == "__main__":
-    ipc_queue = multiprocessing.Queue()
-    ipc_queue.put("semlock-ok")
-    print("multiprocessing", ipc_queue.get(timeout=5))
-    ipc_queue.close()
-    ipc_queue.join_thread()
-    print("multiprocessing-tempdir", multiprocessing.util.get_temp_dir())
-    Path("/dev/shm/{shm_marker}").write_text("private-shm")
-    loader = torch.utils.data.DataLoader(
-        SandboxDataset(),
-        batch_size=4,
-        num_workers=2,
-    )
-    print("dataloader-workers", sum(batch.sum().item() for batch in loader))
+print("multiprocessing-start-method", multiprocessing.get_start_method())
+print("tokenizers-parallelism", os.environ["TOKENIZERS_PARALLELISM"])
+ipc_queue = multiprocessing.Queue()
+ipc_queue.put("semlock-ok")
+print("multiprocessing", ipc_queue.get(timeout=5))
+ipc_queue.close()
+ipc_queue.join_thread()
+print("multiprocessing-tempdir", multiprocessing.util.get_temp_dir())
+Path("/dev/shm/{shm_marker}").write_text("private-shm")
+loader = torch.utils.data.DataLoader(
+    SandboxDataset(),
+    batch_size=4,
+    num_workers=2,
+)
+print("dataloader-workers", sum(batch.sum().item() for batch in loader))
             """,
             file_name="multiprocessing_isolation.py",
         )
         assert multiprocessing_result.exit_code == 0, "".join(
             multiprocessing_result.term_out
         )
+        multiprocessing_output = "".join(multiprocessing_result.term_out)
+        assert "multiprocessing-start-method fork" in multiprocessing_output
+        assert "tokenizers-parallelism false" in multiprocessing_output
         result = interpreter.run(
             f"""
 import os

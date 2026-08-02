@@ -150,17 +150,27 @@ class BTTrainer(Trainer):
 
 
 @torch.no_grad()
-def evaluate_pairs(model, ps, bs):
+def evaluate_pairs(model, ps, bs, breakdown=True):
     model.eval()
     dev = next(model.parameters()).device
     ds = PairDS(ps)
     correct = 0
+    hits = []
     for i in range(0, len(ps), bs):
         batch = collate([ds[j] for j in range(i, min(i + bs, len(ps)))])
         out = model(input_ids=batch["input_ids"].to(dev),
                     attention_mask=batch["attention_mask"].to(dev))["logits"]
         n = out.size(0) // 2
-        correct += (out[:n] > out[n:]).sum().item()
+        h = (out[:n] > out[n:])
+        correct += h.sum().item()
+        hits.extend(h.tolist())
+    if breakdown:
+        import collections as _c
+        agg = _c.defaultdict(lambda: [0, 0])
+        for h, p_ in zip(hits, ps):
+            a_ = agg[p_["task"]]; a_[0] += int(h); a_[1] += 1
+        for t_, (k_, n_) in sorted(agg.items()):
+            print(f"[task-acc] {t_[:40]:40s} {k_}/{n_} = {k_/max(n_,1):.3f}", flush=True)
     return correct / max(len(ps), 1)
 
 

@@ -175,6 +175,9 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
             loss.backward(); step += 1
             if step % a.accum == 0:
                 opt.step(); opt.zero_grad()
+    tr_probe = sub[:min(len(sub), 800)]
+    tr_acc = evaluate(model, tr_probe)
+    print(f"[fit] N={N} TRAIN acc={tr_acc:.4f} (n={len(tr_probe)})  <- high+low test = memorization; low+low = underfit", flush=True)
     _has_flag = any(p.get("agrees_with_quality") is not None for p in test_pool)
     if _has_flag:
         acc, sub = evaluate(model, test_pool, subsets=True)
@@ -225,7 +228,7 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
     rows.append({"N": N, "split": split_name, "acc": round(acc, 4), "tau_weight": a.tau_weight,
                  "model": os.path.basename(a.model), "seed": a.seed, "wall_s": wall,
                  "n_test": len(test_pool), "max_len": a.max_len, "lr": a.lr,
-                 "task_cond": a.task_cond, "head_frac": a.head_frac,
+                 "task_cond": a.task_cond, "head_frac": a.head_frac, "train_acc": round(tr_acc, 4),
                  "disagree_acc": (sub or {}).get("disagree_acc"),
                  "agree_acc": (sub or {}).get("agree_acc")})
     if a.ft_pairs:
@@ -266,6 +269,9 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
     del model, opt; torch.cuda.empty_cache()
 
 import csv
+if not rows:
+    print("[rm] NO ROWS - every requested N exceeded the train pool; nothing written", flush=True)
+    raise SystemExit(0)
 new = not os.path.exists(a.out)
 with open(a.out, "a", newline="") as f:
     w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))

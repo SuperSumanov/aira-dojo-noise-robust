@@ -1,0 +1,2 @@
+N,split,acc,model,seed,wall_s,n_test,max_len,lr,lora,budget_cond,trainer
+24000,in-task,0.8183,qwen2.5-1.5b-instruct,7,60716.0,3000,2048,1e-05,False,False,hf+ds

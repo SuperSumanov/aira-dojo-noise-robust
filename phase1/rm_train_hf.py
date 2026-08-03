@@ -211,8 +211,10 @@ def flip_eval(model, path, bs):
         for k, v in zip(chunk, out):
             score[k] = v
     agg = {}
-    for kind in ("flip", "control"):
-        rs = [r for r in recs if r["kind"] == kind]
+    gaps = sorted({r["budget_hi"] for r in recs})
+    combos = [(k, g) for k in ("flip", "control") for g in gaps]
+    for kind, gap in combos:
+        rs = [r for r in recs if r["kind"] == kind and r["budget_hi"] == gap]
         if not rs:
             continue
         lo_ok = hi_ok = moved = 0
@@ -223,8 +225,8 @@ def flip_eval(model, path, bs):
             hi_ok += ph == r["better_hi"]
             moved += pl != ph
         n_ = len(rs)
-        agg[kind] = {"n": n_, "acc_lo": lo_ok / n_, "acc_hi": hi_ok / n_,
-                     "acc_mean": (lo_ok + hi_ok) / (2 * n_), "moved": moved / n_}
+        agg[kind + str(gap)] = {"n": n_, "acc_lo": lo_ok / n_, "acc_hi": hi_ok / n_,
+                                "acc_mean": (lo_ok + hi_ok) / (2 * n_), "moved": moved / n_}
         per = {}
         for r in rs:
             pl = r["x"] if score[(r["x"], r["budget_lo"])] > score[(r["y"], r["budget_lo"])] else r["y"]
@@ -233,9 +235,9 @@ def flip_eval(model, path, bs):
             e[0] += (pl == r["better_lo"]) + (ph == r["better_hi"]); e[1] += 2
         for t_ in sorted(per):
             k_, m_ = per[t_]
-            print("[flip-task] " + kind + " " + t_[:40] + " " + str(k_) + "/" + str(m_) +
+            print("[flip-task] " + kind + " K" + str(gap) + " " + t_[:40] + " " + str(k_) + "/" + str(m_) +
                   " = " + format(k_ / max(m_, 1), ".3f"), flush=True)
-        print("[flip-eval] " + kind + " n=" + str(n_) +
+        print("[flip-eval] " + kind + " K1->K" + str(gap) + " n=" + str(n_) +
               " acc@lo=" + format(lo_ok / n_, ".4f") + " acc@hi=" + format(hi_ok / n_, ".4f") +
               " mean=" + format((lo_ok + hi_ok) / (2 * n_), ".4f") +
               " model_switched=" + format(moved / n_, ".4f"), flush=True)

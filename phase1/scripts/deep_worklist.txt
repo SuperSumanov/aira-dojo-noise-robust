@@ -1,0 +1,6 @@
+720 721 deepA nomad2018-predict-transparent-conductors;petfinder-pawpularity-score 7200
+722 723 deepB chaii-hindi-and-tamil-question-answering;denoising-dirty-documents 7200
+724 725 deepC tabular-playground-series-may-2022;tabular-playground-series-dec-2021 3600
+726 727 deepD mlsp-2013-birds;spooky-author-identification 7200
+728 729 deepE nomad2018-predict-transparent-conductors;chaii-hindi-and-tamil-question-answering 7200
+730 731 deepF petfinder-pawpularity-score;denoising-dirty-documents 7200

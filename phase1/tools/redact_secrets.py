@@ -16,8 +16,9 @@ Idempotent: already-redacted values are skipped, so it can run after every colle
 """
 import hashlib, json, os, re, sys
 
-ROOTS = ["/research/d7/spc/yzyang4/aira-dojo-runs",
-         "/research/d7/spc/yzyang4/logs"]
+import sys as _sys
+ROOTS = _sys.argv[1:] or ["/research/d7/spc/yzyang4/aira-dojo-runs",
+                          "/research/d7/spc/yzyang4/logs"]
 KEYPAT = re.compile(r"(key|token|secret|passwd|password|credential)", re.I)
 VALPAT = re.compile(r"^(sk-|hf_|ghp_|gho_|glpat-|xoxb-|AKIA)[A-Za-z0-9._\-]{8,}")
 TEXT_EXT = {".json", ".jsonl", ".log", ".out", ".txt", ".yaml", ".yml", ".sh", ".py", ".err"}

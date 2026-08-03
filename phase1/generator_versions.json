@@ -1,5 +1,5 @@
 {
- "_note": "deepseek-v4-flash was silently updated server-side; effective 学长 batch 0731+. Config model_id unchanged - this axis exists ONLY via this annotation.",
+ "_note": "deepseek-v4-flash was silently updated server-side around 0730/0731; config model_id never changed - the version axis exists ONLY via this annotation. Senior batches are dated by upload day. Our gen2*/gen3* batches were INTENDED as qwen3-coder-flash / glm-5 but a launcher bug (PC_CLIENT never referenced, client configs missing) ran them all on deepseek-v4-flash - see commit e1abb9d. They are reassigned below by their true collection dates. No real second-generator data exists yet; the qwen/glm keys are kept empty until genuinely collected.",
  "ds-flash-v1": [
   "cards_ours_20260727.jsonl",
   "cards_senior_0724.jsonl",
@@ -7,19 +7,22 @@
   "cards_senior_0727.jsonl",
   "cards_senior_0728.jsonl",
   "cards_senior_0729.jsonl",
-  "cards_senior_0730.jsonl"
- ],
- "ds-flash-v2": [
-  "cards_senior_0731.jsonl",
-  "cards_senior_0801.jsonl"
- ],
- "qwen3-coder-flash": [
+  "cards_senior_0730.jsonl",
   "cards_gen2A.jsonl",
   "cards_gen2B.jsonl",
   "cards_gen2C.jsonl",
   "cards_gen2D.jsonl"
  ],
- "glm-5": [
+ "ds-flash-v1-boundary-note": "gen2C/gen2D/t3c*/t3g* collected 0730, gen3A and t3gB span 0731; the flip day itself is uncertain to +-1 day, treat 0730-0731 collections as version-ambiguous in analyses",
+ "ds-flash-v2": [
+  "cards_senior_0731.jsonl",
+  "cards_senior_0801.jsonl",
+  "cards_senior_0802.jsonl",
   "cards_gen3A.jsonl"
- ]
+ ],
+ "ds-flash-ambiguous": [
+  "cards_t3era_missing.jsonl"
+ ],
+ "qwen3-coder-flash": [],
+ "glm-5": []
 }

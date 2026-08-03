@@ -22,10 +22,34 @@ ap.add_argument("out_pairs"); ap.add_argument("out_flip"); ap.add_argument("card
 ap.add_argument("--ks", default="1,2,3,5")
 ap.add_argument("--cap", type=int, default=6000, help="max pairs per (task,K) for training")
 ap.add_argument("--flip-cap", type=int, default=1200, help="max flip pairs per task for eval")
+ap.add_argument("--tau-filter", action="store_true",
+                help="drop pairs whose value gap is below the task's measured noise floor")
+ap.add_argument("--tau-quantile", type=float, default=0.9)
+ap.add_argument("--flip-boost", type=int, default=1,
+                help="repeat budget-flipping training records N times; only ~5%% of pairs carry "
+                     "any budget signal at all, so at 1x the model sees almost none")
 ap.add_argument("--seed", type=int, default=7)
 a = ap.parse_args()
 KS = [int(x) for x in a.ks.split(",")]
 KLO, KHI = min(KS), max(KS)
+
+# Measured noise floor per task: same container, K re-executions, external re-grading. A pair
+# whose two values differ by less than this is not a preference, it is measurement noise -- 25%
+# of birds pairs fall below it, and birds is where the model scores below chance.
+TAU = {}
+if a.tau_filter:
+    import csv as _csv
+    _t = collections.defaultdict(list)
+    for _r in _csv.DictReader(open("phase1/regrade_tau_nodes.csv")):
+        try:
+            _t[_r["competition"]].append(float(_r["tau"]))
+        except (ValueError, KeyError):
+            pass
+    for _k, _v in _t.items():
+        _v.sort()
+        TAU[_k] = _v[min(int(a.tau_quantile * len(_v)), len(_v) - 1)]
+    print(f"[tau] loaded noise floors for {len(TAU)} tasks "
+          f"(tasks without one are kept unfiltered)")
 
 cards = {}
 for l in open(a.cards):
@@ -71,7 +95,7 @@ by_task = collections.defaultdict(list)
 for cid in cards:
     if cid in val[KLO]: by_task[cards[cid]["task"]["name"]].append(cid)
 
-npair = collections.Counter(); nflip = collections.Counter()
+npair = collections.Counter(); nflip = collections.Counter(); ndrop = collections.Counter()
 fp = open(a.out_pairs, "w"); ff = open(a.out_flip, "w")
 for t, cs in sorted(by_task.items()):
     lower = ORI[t]
@@ -100,13 +124,25 @@ for t, cs in sorted(by_task.items()):
             both = tree_root(hi) in hold and tree_root(lo) in hold
             either = tree_root(hi) in hold or tree_root(lo) in hold
             if either and not both: continue                     # straddles the boundary: drop
-            fp.write(json.dumps({
+            gap = abs(val[K][x] - val[K][y])
+            clears = None if t not in TAU else gap >= TAU[t]
+            if a.tau_filter and clears is False:
+                ndrop[t] += 1
+                continue
+            is_flip = ref is not None and ref != L
+            split = "test" if both else "train"
+            rec = json.dumps({
                 "task": t, "better": hi, "worse": lo, "budget": K,
-                "flips_vs_b1": ref is not None and ref != L,
-                "gap_raw": round(abs(val[K][x] - val[K][y]), 6),
-                "intask_split": "test" if both else "train",
-                "loto_fold": t, "clears_tau": None, "src": "budget_matched"}) + "\n")
-            npair[(K, "test" if both else "train")] += 1
+                "flips_vs_b1": is_flip,
+                "gap_raw": round(gap, 6),
+                "intask_split": split,
+                "loto_fold": t, "clears_tau": clears, "src": "budget_matched"})
+            # Oversample the records that actually depend on the budget. Eval is untouched --
+            # only the training side is reweighted, so the test distribution stays natural.
+            reps = a.flip_boost if (is_flip and split == "train") else 1
+            for _ in range(reps):
+                fp.write(rec + "\n")
+            npair[(K, split)] += reps
         # Paired eval, one set per budget gap. The gaps form a dose-response ladder: if budget
         # conditioning is real, the gain over the 0.500 blind baseline should grow with the gap.
         # Each gap is filtered independently -- requiring >= K_max everywhere would throw away
@@ -134,6 +170,8 @@ for t, cs in sorted(by_task.items()):
 fp.close(); ff.close()
 
 for k in sorted(npair): print(f"  K={k[0]:>2} {k[1]:5s}: {npair[k]}")
+if ndrop:
+    print(f"[tau] dropped {sum(ndrop.values())} records below the noise floor: " + ", ".join(f"{k[:20]}={v}" for k, v in ndrop.most_common(6)))
 print(f"[matched] {sum(npair.values())} training records -> {a.out_pairs}")
 for t in sorted(nflip):
     if nflip[t]: print(f"  flip {t[:44]:44s} {nflip[t]}")

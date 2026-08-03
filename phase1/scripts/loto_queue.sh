@@ -20,7 +20,7 @@ touch "$STATE"
 for T in mlsp-2013-birds chaii-hindi-and-tamil-question-answering \
          petfinder-pawpularity-score nomad2018-predict-transparent-conductors; do
   grep -qxF "$T" "$STATE" && continue
-  A="--pairs $D/budget_pairs_matched.jsonl --cards $D/cards_current.jsonl --sizes 4000 \
+  A="--pairs $D/budget_pairs_v2.jsonl --cards $D/cards_current.jsonl --sizes 4000 \
 --max-len 2048 --eval-cap 2000 --loto $T --out $D/loto_lookahead.csv"
   if sbatch --job-name="loto_${T:0:6}" --export=ALL,FT_ARGS="$A" "$S/rm_fullft23.sbatch" >/dev/null 2>&1; then
     echo "$T" >> "$STATE"

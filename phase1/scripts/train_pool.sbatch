@@ -35,7 +35,7 @@ for i in 0 1 2 3 4 5 6 7; do
   PORT=$(( 29000 + (SLURM_JOB_ID % 800) + i * 7 ))
   echo "--- arm $i on GPU $i port $PORT: $A"
   deepspeed --include "localhost:$i" --master_port $PORT phase1/rm_train_hf.py $A \
-    --deepspeed phase1/ds_zero3_offload.json --bs 1 --accum 16 --lr 1e-5 --epochs 2 --seed 7 \
+    --deepspeed phase1/ds_zero3_offload.json --bs 1 --accum 16 --lr 1e-5 --epochs 2 --seed ${SEED:-7} \
     > /research/d7/spc/yzyang4/logs/train_pool_${SLURM_JOB_ID}_arm$i.log 2>&1 &
   PIDS="$PIDS $!:$i"
 done

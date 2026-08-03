@@ -247,16 +247,20 @@ def flip_eval(model, path, bs):
         rs = [r for r in recs if r["kind"] == kind and r["budget_hi"] == gap]
         if not rs:
             continue
-        lo_ok = hi_ok = moved = 0
+        lo_ok = hi_ok = moved = sw_right = 0
         for r in rs:
             pl = r["x"] if score[(r["x"], r["budget_lo"])] > score[(r["y"], r["budget_lo"])] else r["y"]
             ph = r["x"] if score[(r["x"], r["budget_hi"])] > score[(r["y"], r["budget_hi"])] else r["y"]
             lo_ok += pl == r["better_lo"]
             hi_ok += ph == r["better_hi"]
-            moved += pl != ph
+            if pl != ph:
+                moved += 1
+                # a switch is right when it tracks the label change on both sides
+                sw_right += (pl == r["better_lo"] and ph == r["better_hi"])
         n_ = len(rs)
         agg[kind + str(gap)] = {"n": n_, "acc_lo": lo_ok / n_, "acc_hi": hi_ok / n_,
-                                "acc_mean": (lo_ok + hi_ok) / (2 * n_), "moved": moved / n_}
+                                "acc_mean": (lo_ok + hi_ok) / (2 * n_), "moved": moved / n_,
+                                "n_switch": moved, "switch_acc": (sw_right / moved) if moved else None}
         per = {}
         for r in rs:
             pl = r["x"] if score[(r["x"], r["budget_lo"])] > score[(r["y"], r["budget_lo"])] else r["y"]
@@ -270,7 +274,17 @@ def flip_eval(model, path, bs):
         print("[flip-eval] " + kind + " K1->K" + str(gap) + " n=" + str(n_) +
               " acc@lo=" + format(lo_ok / n_, ".4f") + " acc@hi=" + format(hi_ok / n_, ".4f") +
               " mean=" + format((lo_ok + hi_ok) / (2 * n_), ".4f") +
-              " model_switched=" + format(moved / n_, ".4f"), flush=True)
+              " model_switched=" + format(moved / n_, ".4f") +
+              (" switch_acc=" + format(sw_right / moved, ".3f") + " of " + str(moved)
+               if moved else ""), flush=True)
+    for g in gaps:
+        f_, c_ = agg.get("flip" + str(g)), agg.get("control" + str(g))
+        if f_ and c_ and c_["moved"] > 0:
+            sel = f_["moved"] / c_["moved"]
+            f_["selectivity"] = sel
+            print("[flip-sel] K1->K" + str(g) + " switches on flip pairs vs controls: " +
+                  str(f_["n_switch"]) + " vs " + str(c_["n_switch"]) +
+                  " = " + format(sel, ".2f") + "x", flush=True)
     return agg
 
 

@@ -37,6 +37,12 @@ ap.add_argument("--head-frac", type=float, default=0.25)
 ap.add_argument("--task-cond", action="store_true", default=True)
 ap.add_argument("--loto", default="")
 ap.add_argument("--eval-cap", type=int, default=1500)
+ap.add_argument("--eval-stratify", action="store_true",
+                help="equal share of the eval budget per task, not proportional")
+ap.add_argument("--eval-min-task", type=int, default=60,
+                help="skip tasks with fewer held-out pairs than this")
+ap.add_argument("--eval-len-control", type=float, default=0.0,
+                help="also report accuracy on pairs whose code lengths are within this ratio (e.g. 0.15); 0 disables")
 ap.add_argument("--seed", type=int, default=7)
 ap.add_argument("--bs", type=int, default=1, help="per-device batch of PAIRS")
 ap.add_argument("--accum", type=int, default=16)
@@ -77,7 +83,17 @@ else:
 rng = random.Random(a.seed)
 rng.shuffle(train_pool)
 rng.shuffle(test_pool)
-test_pool = test_pool[:a.eval_cap]
+if a.eval_stratify:
+    _bt = {}
+    for _p in test_pool:
+        _bt.setdefault(_p["task"], []).append(_p)
+    _tasks = [t for t in sorted(_bt) if len(_bt[t]) >= a.eval_min_task]
+    _per = max(a.eval_cap // max(len(_tasks), 1), a.eval_min_task)
+    test_pool = [p for t in _tasks for p in _bt[t][:_per]]
+    print("[rm-hf] stratified eval over " + str(len(_tasks)) + " tasks, <=" +
+          str(_per) + " pairs each", flush=True)
+else:
+    test_pool = test_pool[:a.eval_cap]
 print(f"[rm-hf] split={split_name} train_pool={len(train_pool)} test={len(test_pool)}", flush=True)
 
 tok = AutoTokenizer.from_pretrained(a.model)
@@ -274,12 +290,27 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
     tr.train()
     if tr.is_world_process_zero():
         acc = evaluate_pairs(tr.model, test_pool, max(a.bs, 2))
+        acc_len = None
+        if a.eval_len_control > 0:
+            def _close(p):
+                x, y = len(code.get(p["better"], "")), len(code.get(p["worse"], ""))
+                m = max(x, y)
+                return m > 0 and abs(x - y) / m <= a.eval_len_control
+            sub = [p for p in test_pool if _close(p)]
+            if len(sub) >= 100:
+                acc_len = evaluate_pairs(tr.model, sub, max(a.bs, 2), breakdown=False)
+                print("[len-ctrl] n=" + str(len(sub)) + " (" +
+                      str(len(sub) * 100 // max(len(test_pool), 1)) + "% of eval) acc=" +
+                      format(acc_len, ".4f"), flush=True)
+            else:
+                print("[len-ctrl] only " + str(len(sub)) + " pairs within the length ratio; skipped", flush=True)
         wall = round(time.time() - t0, 1)
         print(f"[rm-hf] N={N} {split_name} acc={acc:.4f} wall={wall}s", flush=True)
         row = {"N": N, "split": split_name, "acc": round(acc, 4),
                      "model": os.path.basename(a.model), "seed": a.seed, "wall_s": wall,
                      "n_test": len(test_pool), "max_len": a.max_len, "lr": a.lr,
                      "lora": a.lora, "budget_cond": a.budget_cond, "budget_pos": a.budget_pos,
+               "acc_len_ctrl": acc_len, "stratified": a.eval_stratify,
                      "trainer": "hf+ds" if a.deepspeed else "hf"}
         if a.flip_eval:
             fe = flip_eval(tr.model, a.flip_eval, max(a.bs, 2) * 2)

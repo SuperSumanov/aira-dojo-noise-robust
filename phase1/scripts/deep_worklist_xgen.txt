@@ -1,0 +1,15 @@
+734 735 gen2deepA nomad2018-predict-transparent-conductors;petfinder-pawpularity-score 1800
+736 737 gen3deepA chaii-hindi-and-tamil-question-answering;leaf-classification 1800
+740 741 gen2deepB chaii-hindi-and-tamil-question-answering;spooky-author-identification 1800
+744 745 gen3deepB random-acts-of-pizza;spooky-author-identification 1800
+746 747 gen2deepC mlsp-2013-birds;tabular-playground-series-dec-2021 1800
+750 751 gen2deepD denoising-dirty-documents;leaf-classification 1800
+752 753 gen3deepC nomad2018-predict-transparent-conductors;tabular-playground-series-dec-2021 1800
+756 757 gen2deepE tabular-playground-series-may-2022;random-acts-of-pizza 1800
+758 759 gen3deepD mlsp-2013-birds;petfinder-pawpularity-score 1800
+762 763 gen2deepF nomad2018-predict-transparent-conductors;denoising-dirty-documents 1800
+764 765 gen3deepE tabular-playground-series-may-2022;denoising-dirty-documents 1800
+768 769 gen2deepG petfinder-pawpularity-score;leaf-classification 1800
+770 771 gen3deepF spooky-author-identification;chaii-hindi-and-tamil-question-answering 1800
+774 775 gen2deepH spooky-author-identification;mlsp-2013-birds 1800
+776 777 gen3deepG denoising-dirty-documents;nomad2018-predict-transparent-conductors 1800

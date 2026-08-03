@@ -45,11 +45,13 @@ ap.add_argument("--epochs", type=float, default=1.0)
 ap.add_argument("--lora", action="store_true", help="LoRA instead of full fine-tune")
 ap.add_argument("--deepspeed", default=None)
 ap.add_argument("--out", default="phase1/rm_curve_hf.csv")
+ap.add_argument("--flip-eval", default="", help="budget-flip eval file (paired lo/hi budgets)")
 ap.add_argument("--save-adapter", default="")
 ap.add_argument("--budget-cond", action="store_true", help="expose remaining budget to the model")
 ap.add_argument("--local_rank", type=int, default=-1)  # injected by the deepspeed launcher
 a = ap.parse_args()
 
+NL = chr(10)
 random.seed(a.seed)
 np.random.seed(a.seed)
 torch.manual_seed(a.seed)
@@ -82,10 +84,14 @@ if tok.pad_token is None:
 tok.padding_side = "right"
 
 
-def render(cid):
+def render(cid, budget=None):
+    head = ""
     if a.task_cond:
-        return "# MLE-bench task: " + ctask.get(cid, "") + "\n" + code[cid]
-    return code[cid]
+        head += "# MLE-bench task: " + ctask.get(cid, "") + NL
+    if budget is not None:
+        head += ("# remaining budget: unlimited" + NL if budget == 0
+                 else "# remaining budget: " + str(budget) + " steps" + NL)
+    return head + code[cid]
 
 
 def fit(ids):
@@ -170,10 +176,70 @@ def evaluate_pairs(model, ps, bs, breakdown=True):
         import collections as _c
         agg = _c.defaultdict(lambda: [0, 0])
         for h, p_ in zip(hits, ps):
-            a_ = agg[p_["task"]]; a_[0] += int(h); a_[1] += 1
+            keys = [p_["task"]]
+            if "budget" in p_:
+                keys.append("BUDGET=" + str(p_["budget"]))
+                if p_.get("flips_vs_b1"):
+                    keys.append("FLIPS@B" + str(p_["budget"]))
+            for k_ in keys:
+                a_ = agg[k_]; a_[0] += int(h); a_[1] += 1
         for t_, (k_, n_) in sorted(agg.items()):
             print(f"[task-acc] {t_[:40]:40s} {k_}/{n_} = {k_/max(n_,1):.3f}", flush=True)
     return correct / max(len(ps), 1)
+
+
+@torch.no_grad()
+def flip_eval(model, path, bs):
+    """Same pair, two budgets. On flip pairs a budget-blind model is exactly 0.500."""
+    recs = [json.loads(l) for l in open(path)]
+    recs = [r for r in recs if r["x"] in code and r["y"] in code]
+    if not recs:
+        return {}
+    model.eval()
+    dev = next(model.parameters()).device
+    want = sorted({(r[k], r[b]) for r in recs for k in ("x", "y")
+                   for b in ("budget_lo", "budget_hi")})
+    score = {}
+    for i in range(0, len(want), bs):
+        chunk = want[i:i + bs]
+        seqs = [fit(tok(render(c, b if a.budget_cond else None),
+                        add_special_tokens=False)["input_ids"]) for c, b in chunk]
+        m = max(len(x) for x in seqs)
+        ids = torch.tensor([x + [tok.pad_token_id] * (m - len(x)) for x in seqs]).to(dev)
+        msk = torch.tensor([[1] * len(x) + [0] * (m - len(x)) for x in seqs]).to(dev)
+        out = model(input_ids=ids, attention_mask=msk)["logits"].tolist()
+        for k, v in zip(chunk, out):
+            score[k] = v
+    agg = {}
+    for kind in ("flip", "control"):
+        rs = [r for r in recs if r["kind"] == kind]
+        if not rs:
+            continue
+        lo_ok = hi_ok = moved = 0
+        for r in rs:
+            pl = r["x"] if score[(r["x"], r["budget_lo"])] > score[(r["y"], r["budget_lo"])] else r["y"]
+            ph = r["x"] if score[(r["x"], r["budget_hi"])] > score[(r["y"], r["budget_hi"])] else r["y"]
+            lo_ok += pl == r["better_lo"]
+            hi_ok += ph == r["better_hi"]
+            moved += pl != ph
+        n_ = len(rs)
+        agg[kind] = {"n": n_, "acc_lo": lo_ok / n_, "acc_hi": hi_ok / n_,
+                     "acc_mean": (lo_ok + hi_ok) / (2 * n_), "moved": moved / n_}
+        per = {}
+        for r in rs:
+            pl = r["x"] if score[(r["x"], r["budget_lo"])] > score[(r["y"], r["budget_lo"])] else r["y"]
+            ph = r["x"] if score[(r["x"], r["budget_hi"])] > score[(r["y"], r["budget_hi"])] else r["y"]
+            e = per.setdefault(r["task"], [0, 0])
+            e[0] += (pl == r["better_lo"]) + (ph == r["better_hi"]); e[1] += 2
+        for t_ in sorted(per):
+            k_, m_ = per[t_]
+            print("[flip-task] " + kind + " " + t_[:40] + " " + str(k_) + "/" + str(m_) +
+                  " = " + format(k_ / max(m_, 1), ".3f"), flush=True)
+        print("[flip-eval] " + kind + " n=" + str(n_) +
+              " acc@lo=" + format(lo_ok / n_, ".4f") + " acc@hi=" + format(hi_ok / n_, ".4f") +
+              " mean=" + format((lo_ok + hi_ok) / (2 * n_), ".4f") +
+              " model_switched=" + format(moved / n_, ".4f"), flush=True)
+    return agg
 
 
 rows = []
@@ -194,10 +260,17 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
         acc = evaluate_pairs(tr.model, test_pool, max(a.bs, 2))
         wall = round(time.time() - t0, 1)
         print(f"[rm-hf] N={N} {split_name} acc={acc:.4f} wall={wall}s", flush=True)
-        rows.append({"N": N, "split": split_name, "acc": round(acc, 4),
+        row = {"N": N, "split": split_name, "acc": round(acc, 4),
                      "model": os.path.basename(a.model), "seed": a.seed, "wall_s": wall,
                      "n_test": len(test_pool), "max_len": a.max_len, "lr": a.lr,
-                     "lora": a.lora, "trainer": "hf+ds" if a.deepspeed else "hf"})
+                     "lora": a.lora, "budget_cond": a.budget_cond,
+                     "trainer": "hf+ds" if a.deepspeed else "hf"}
+        if a.flip_eval:
+            fe = flip_eval(tr.model, a.flip_eval, max(a.bs, 2) * 2)
+            for kind, d_ in fe.items():
+                for k_, v_ in d_.items():
+                    row[kind + "_" + k_] = round(v_, 4) if isinstance(v_, float) else v_
+        rows.append(row)
         if a.save_adapter:
             dd = os.path.join(a.save_adapter, "N" + str(N))
             os.makedirs(dd, exist_ok=True)

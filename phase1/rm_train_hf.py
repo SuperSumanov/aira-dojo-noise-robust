@@ -83,6 +83,18 @@ else:
 rng = random.Random(a.seed)
 rng.shuffle(train_pool)
 rng.shuffle(test_pool)
+_seen = set()
+_uniq = []
+for _p in test_pool:
+    _k = (_p["better"], _p["worse"], _p.get("budget"))
+    if _k in _seen:
+        continue
+    _seen.add(_k)
+    _uniq.append(_p)
+if len(_uniq) != len(test_pool):
+    print("[rm-hf] deduped test pool: " + str(len(test_pool)) + " -> " + str(len(_uniq)) +
+          " (oversampled train-side records leaking into a LOTO test set)", flush=True)
+test_pool = _uniq
 if a.eval_stratify:
     _bt = {}
     for _p in test_pool:

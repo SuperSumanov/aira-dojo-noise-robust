@@ -9,8 +9,8 @@ D=/research/d7/spc/yzyang4/aira-dojo/phase1
 STATE=$S/.batchqua_submitted
 [ -f "$STATE" ] && exit 0
 
-A="--pairs $D/batchqua_pairs.jsonl --cards $D/cards_current.jsonl --sizes 4719 \
---max-len 2048 --eval-cap 999 --out $D/batchqua.csv"
+A="--pairs $D/batchqua_pairs.jsonl --cards $D/cards_batchqua_resolve.jsonl --sizes 4719 \
+--max-len 2048 --eval-cap 999 --out $D/batchqua.csv --save-adapter $D/ckpt_batchqua"
 if sbatch --job-name=batchqua --export=ALL,FT_ARGS="$A" "$S/rm_fullft23.sbatch" >/dev/null 2>&1; then
   touch "$STATE"
   echo "$(date -u +%FT%TZ) submitted batch-qua-batch diagnostic"

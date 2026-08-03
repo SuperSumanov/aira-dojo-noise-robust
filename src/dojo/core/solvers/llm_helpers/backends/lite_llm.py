@@ -92,7 +92,7 @@ class LiteLLMClient:
         """
         self.model = client_cfg.model_id
         self.base_url = client_cfg.base_url
-        api_key = os.getenv("PRIMARY_KEY_" + self.model.replace("-", "_").upper(), "")
+        api_key = os.getenv("PRIMARY_KEY_" + self.model.replace("-", "_").replace(".", "_").upper(), "")
         if api_key:
             self.api_key = api_key
         else:

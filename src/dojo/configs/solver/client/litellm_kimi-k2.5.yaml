@@ -1,6 +1,6 @@
 _target_: dojo.config_dataclasses.client.base.ClientConfig
 api: litellm
-model_id: "kimi-k2.5"
-base_url: "https://api.chatanywhere.org"
+model_id: "moonshotai/kimi-k2.5"
+base_url: "https://openrouter.ai/api/v1"
 use_azure_client: false
 provider: openai

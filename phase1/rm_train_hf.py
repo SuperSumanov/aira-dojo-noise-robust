@@ -48,6 +48,8 @@ ap.add_argument("--out", default="phase1/rm_curve_hf.csv")
 ap.add_argument("--flip-eval", default="", help="budget-flip eval file (paired lo/hi budgets)")
 ap.add_argument("--save-adapter", default="")
 ap.add_argument("--budget-cond", action="store_true", help="expose remaining budget to the model")
+ap.add_argument("--budget-pos", default="head", choices=["head", "tail"],
+                help="where the budget line goes; tail puts it next to the pooled token")
 ap.add_argument("--local_rank", type=int, default=-1)  # injected by the deepspeed launcher
 a = ap.parse_args()
 
@@ -84,21 +86,27 @@ if tok.pad_token is None:
 tok.padding_side = "right"
 
 
+def budget_line(budget):
+    return ("# remaining budget: unlimited" + NL if budget == 0
+            else "# remaining budget: " + str(budget) + " steps" + NL)
+
+
 def render(cid, budget=None):
     head = ""
     if a.task_cond:
         head += "# MLE-bench task: " + ctask.get(cid, "") + NL
-    if budget is not None:
-        head += ("# remaining budget: unlimited" + NL if budget == 0
-                 else "# remaining budget: " + str(budget) + " steps" + NL)
+    if budget is not None and a.budget_pos == "head":
+        head += budget_line(budget)
     return head + code[cid]
 
 
-def fit(ids):
-    if len(ids) <= a.max_len:
-        return ids
-    h = int(a.max_len * a.head_frac)
-    return ids[:h] + ids[len(ids) - (a.max_len - h):]
+def fit(ids, suffix=None):
+    """Truncate, then append the suffix -- so a tail-placed budget survives truncation."""
+    room = a.max_len - (len(suffix) if suffix else 0)
+    if len(ids) > room:
+        h = int(room * a.head_frac)
+        ids = ids[:h] + ids[len(ids) - (room - h):]
+    return ids + (suffix or [])
 
 
 class PairDS(Dataset):
@@ -111,8 +119,10 @@ class PairDS(Dataset):
     def __getitem__(self, i):
         p = self.ps[i]
         bd = p.get("budget") if a.budget_cond else None
-        return {"b": fit(tok(render(p["better"], bd), add_special_tokens=False)["input_ids"]),
-                "w": fit(tok(render(p["worse"], bd), add_special_tokens=False)["input_ids"])}
+        sfx = (tok(NL + budget_line(bd), add_special_tokens=False)["input_ids"]
+               if bd is not None and a.budget_pos == "tail" else None)
+        return {"b": fit(tok(render(p["better"], bd), add_special_tokens=False)["input_ids"], sfx),
+                "w": fit(tok(render(p["worse"], bd), add_special_tokens=False)["input_ids"], sfx)}
 
 
 def collate(batch):
@@ -202,8 +212,12 @@ def flip_eval(model, path, bs):
     score = {}
     for i in range(0, len(want), bs):
         chunk = want[i:i + bs]
-        seqs = [fit(tok(render(c, b if a.budget_cond else None),
-                        add_special_tokens=False)["input_ids"]) for c, b in chunk]
+        seqs = []
+        for c, b in chunk:
+            bb = b if a.budget_cond else None
+            sfx = (tok(NL + budget_line(bb), add_special_tokens=False)["input_ids"]
+                   if bb is not None and a.budget_pos == "tail" else None)
+            seqs.append(fit(tok(render(c, bb), add_special_tokens=False)["input_ids"], sfx))
         m = max(len(x) for x in seqs)
         ids = torch.tensor([x + [tok.pad_token_id] * (m - len(x)) for x in seqs]).to(dev)
         msk = torch.tensor([[1] * len(x) + [0] * (m - len(x)) for x in seqs]).to(dev)
@@ -265,7 +279,7 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
         row = {"N": N, "split": split_name, "acc": round(acc, 4),
                      "model": os.path.basename(a.model), "seed": a.seed, "wall_s": wall,
                      "n_test": len(test_pool), "max_len": a.max_len, "lr": a.lr,
-                     "lora": a.lora, "budget_cond": a.budget_cond,
+                     "lora": a.lora, "budget_cond": a.budget_cond, "budget_pos": a.budget_pos,
                      "trainer": "hf+ds" if a.deepspeed else "hf"}
         if a.flip_eval:
             fe = flip_eval(tr.model, a.flip_eval, max(a.bs, 2) * 2)

@@ -46,6 +46,7 @@ ap.add_argument("--lora", action="store_true", help="LoRA instead of full fine-t
 ap.add_argument("--deepspeed", default=None)
 ap.add_argument("--out", default="phase1/rm_curve_hf.csv")
 ap.add_argument("--save-adapter", default="")
+ap.add_argument("--budget-cond", action="store_true", help="expose remaining budget to the model")
 ap.add_argument("--local_rank", type=int, default=-1)  # injected by the deepspeed launcher
 a = ap.parse_args()
 
@@ -103,8 +104,9 @@ class PairDS(Dataset):
 
     def __getitem__(self, i):
         p = self.ps[i]
-        return {"b": fit(tok(render(p["better"]), add_special_tokens=False)["input_ids"]),
-                "w": fit(tok(render(p["worse"]), add_special_tokens=False)["input_ids"])}
+        bd = p.get("budget") if a.budget_cond else None
+        return {"b": fit(tok(render(p["better"], bd), add_special_tokens=False)["input_ids"]),
+                "w": fit(tok(render(p["worse"], bd), add_special_tokens=False)["input_ids"])}
 
 
 def collate(batch):

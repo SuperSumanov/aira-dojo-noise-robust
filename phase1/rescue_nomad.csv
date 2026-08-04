@@ -1,0 +1,3 @@
+N,split,acc,model,seed,wall_s,n_test,max_len,lr,lora,budget_cond,budget_pos,acc_len_ctrl,stratified,trainer
+8000,in-task,0.6498,qwen2.5-1.5b-instruct,7,17329.5,534,2048,1e-05,False,False,head,0.7009345794392523,False,hf+ds
+8000,in-task,0.7378,qwen2.5-1.5b-instruct,7,12071.9,534,2048,1e-05,False,False,head,0.7850467289719626,False,hf+ds

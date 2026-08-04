@@ -336,6 +336,7 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
                      "model": os.path.basename(a.model), "seed": a.seed, "wall_s": wall,
                      "n_test": len(test_pool), "max_len": a.max_len, "lr": a.lr,
                      "lora": a.lora, "budget_cond": a.budget_cond, "budget_pos": a.budget_pos,
+               "pairs_file": os.path.basename(a.pairs),
                "acc_len_ctrl": acc_len, "stratified": a.eval_stratify,
                      "trainer": "hf+ds" if a.deepspeed else "hf"}
         if a.flip_eval:
@@ -359,6 +360,14 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
     torch.cuda.empty_cache()
 
 if rows:
+    # a header written by an older trainer version must not receive rows with more
+    # columns -- DictWriter would silently write ragged lines. Diverge to _s2 instead.
+    if os.path.exists(a.out):
+        with open(a.out) as _f:
+            _hdr = _f.readline().strip().split(",")
+        if _hdr != list(rows[0].keys()):
+            a.out = a.out.replace(".csv", "_s2.csv")
+            print("[rm-hf] header mismatch with existing csv; writing to " + a.out, flush=True)
     new = not os.path.exists(a.out)
     with open(a.out, "a", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))

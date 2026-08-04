@@ -18,7 +18,7 @@ STATE=$S/.loto_submitted
 touch "$STATE"
 
 for T in mlsp-2013-birds chaii-hindi-and-tamil-question-answering \
-         petfinder-pawpularity-score nomad2018-predict-transparent-conductors; do
+         petfinder-pawpularity-score nomad2018-predict-transparent-conductors spooky-author-identification; do
   grep -qxF "$T" "$STATE" && continue
   A="--pairs $D/budget_pairs_v2.jsonl --cards $D/cards_current.jsonl --sizes 4000 \
 --max-len 2048 --eval-cap 2000 --eval-stratify --eval-len-control 0.15 --loto $T --save-adapter $D/ckpt_loto_${T:0:6} --out $D/loto_lookahead.csv"

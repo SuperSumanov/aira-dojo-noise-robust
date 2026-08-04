@@ -112,6 +112,9 @@ def parse_thinking_tags(text):
     Returns:
         tuple: (thinking_text, text_without_thinking)
     """
+    if not isinstance(text, str):
+        raise TypeError(f"Expected LLM response text, got {type(text).__name__}")
+
     # Case 1: Both <think> and </think> exist
     match = re.search(r"<think>(.*?)</think>", text, re.DOTALL)
     if match:

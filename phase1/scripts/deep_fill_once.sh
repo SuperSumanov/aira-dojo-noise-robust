@@ -6,7 +6,7 @@ export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 [ -f /research/d7/spc/yzyang4/scripts/.deep_hold ] && { echo "deep on hold (L2 has priority)"; exit 0; }
 # refuse to start a batch the account cannot finish (both providers died mid-batch 08-04)
 source ~/env_setup.sh >/dev/null 2>&1
-/research/d7/spc/yzyang4/venvs/critic/bin/python3 /research/d7/spc/yzyang4/scripts/balance_guard.py deepseek 25 || exit 0
+/research/d7/spc/yzyang4/venvs/critic/bin/python3 /research/d7/spc/yzyang4/scripts/balance_guard.py deepseek 60 || exit 0
 WL=/research/d7/spc/yzyang4/scripts/deep_worklist.txt
 STATE=/research/d7/spc/yzyang4/aira-dojo-runs/deep_submitted.txt
 touch "$STATE"

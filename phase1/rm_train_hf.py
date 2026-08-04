@@ -349,6 +349,12 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
             os.makedirs(dd, exist_ok=True)
             tr.model.backbone.save_pretrained(dd, safe_serialization=True)
             torch.save(tr.model.head.state_dict(), os.path.join(dd, "head.pt"))
+            # rm_server.py boots from this file; a checkpoint without it is unusable
+            json.dump({"base_model": a.model, "max_len": a.max_len,
+                       "head_frac": a.head_frac, "task_cond": a.task_cond,
+                       "lora": a.lora, "pairs": a.pairs, "N": N, "seed": a.seed,
+                       "acc": round(acc, 4), "budget_cond": a.budget_cond},
+                      open(os.path.join(dd, "rm_meta.json"), "w"))
     del model, tr
     torch.cuda.empty_cache()
 

@@ -32,7 +32,9 @@ PIDS=""
 for i in 0 1 2 3 4 5 6 7; do
   eval "A=\${ARM$i:-}"
   [ -z "$A" ] && continue
-  PORT=$(( 29000 + (SLURM_JOB_ID % 800) + i * 7 ))
+  # stride 8 per job id so co-located jobs can never collide (9036 arm1 hit 9043 arm0:
+  # old formula made jobid-diff 7 equal the arm offset 7)
+  PORT=$(( 25000 + ((SLURM_JOB_ID % 5000) * 8 + i) % 40000 ))
   echo "--- arm $i on GPU $i port $PORT: $A"
   deepspeed --include "localhost:$i" --master_port $PORT phase1/rm_train_hf.py $A \
     --deepspeed phase1/ds_zero3_offload.json --bs 1 --accum 16 --lr 1e-5 --epochs 2 --seed ${SEED:-7} \

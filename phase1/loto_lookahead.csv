@@ -3,3 +3,4 @@ N,split,acc,model,seed,wall_s,n_test,max_len,lr,lora,budget_cond,budget_pos,acc_
 4000,loto:chaii-hindi-and-tamil-question-answering,0.5305,qwen2.5-1.5b-instruct,7,10942.1,2000,2048,1e-05,False,False,head,0.49848024316109424,True,hf+ds
 4000,loto:petfinder-pawpularity-score,0.648,qwen2.5-1.5b-instruct,7,11067.0,2000,2048,1e-05,False,False,head,0.6139240506329114,True,hf+ds
 4000,loto:nomad2018-predict-transparent-conductors,0.4605,qwen2.5-1.5b-instruct,7,11064.1,2000,2048,1e-05,False,False,head,0.46774193548387094,True,hf+ds
+4000,loto:spooky-author-identification,0.6585,qwen2.5-1.5b-instruct,7,9704.2,2000,2048,1e-05,False,False,head,0.6261261261261262,True,hf+ds

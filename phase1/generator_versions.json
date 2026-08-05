@@ -20,13 +20,16 @@
   "cards_senior_0802.jsonl",
   "cards_gen3A.jsonl",
   "cards_senior_0803.jsonl",
-  "cards_deepA.jsonl"
+  "cards_deepA.jsonl",
+  "cards_senior_0804.jsonl",
+  "cards_deepB2.jsonl"
  ],
  "ds-flash-ambiguous": [
   "cards_t3era_missing.jsonl"
  ],
  "qwen3-coder-flash": [
-  "cards_gen2VAL.jsonl"
+  "cards_gen2VAL.jsonl",
+  "cards_gen2VALb.jsonl"
  ],
  "glm-5": []
 }

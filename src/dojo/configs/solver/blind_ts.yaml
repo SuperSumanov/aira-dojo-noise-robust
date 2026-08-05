@@ -1,0 +1,33 @@
+defaults:
+  - memory: simple_memory
+  - memory@debug_memory: debug_memory
+
+_target_: dojo.config_dataclasses.solver.blind_ts.BlindTSSolverConfig
+
+export_search_results: true
+operators: ???
+
+step_limit: ???
+num_children: ???
+max_debug_depth: ???
+max_llm_call_retries: 3
+max_debug_time: ???
+data_preview: ???
+
+use_test_score: ???
+use_complexity: ???
+
+execution_timeout: 14400
+time_limit_secs: 86400
+available_packages:
+  - numpy
+  - pandas
+  - scikit-learn
+  - statsmodels
+  - xgboost
+  - lightgbm
+  - torch
+  - torchvision
+  - torch-geometric
+  - bayesian-optimization
+  - timm

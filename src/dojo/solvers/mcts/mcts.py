@@ -106,6 +106,8 @@ class MCTSNode(Node):
 
 
 class MCTS(Solver):
+    search_name = "MCTS"
+
     def __init__(self, cfg: MCTSSolverConfig, task_info):
         """
         Initialize the MCTS solver.
@@ -212,7 +214,7 @@ class MCTS(Solver):
         Returns:
             tuple: Updated state and the best code solution (or None if no valid solution found)
         """
-        self.logger.info("Starting MCTS search")
+        self.logger.info(f"Starting {self.search_name} search")
 
         # Create a blank root node to start.
         self.create_root_node()
@@ -238,7 +240,7 @@ class MCTS(Solver):
 
         # Export the search results
         try:
-            export_search_results(self.cfg, self.journal, self.logger, "MCTS")
+            export_search_results(self.cfg, self.journal, self.logger, self.search_name)
         except Exception as e:
             self.logger.error(f"Error exporting search results: {e}")
 
@@ -436,7 +438,7 @@ class MCTS(Solver):
         if not self.journal.nodes or self.data_preview is None:
             self.update_data_preview(state)
 
-        # 1) Selection: Find a path from root → leaf using UCT
+        # 1) Selection: Find a path from root to leaf using the solver's tree policy
         path = self.search_policy(self.root_node)
 
         # 2) Expansion and Backprop

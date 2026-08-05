@@ -348,8 +348,29 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
         if a.save_adapter:
             dd = os.path.join(a.save_adapter, "N" + str(N))
             os.makedirs(dd, exist_ok=True)
-            tr.model.backbone.save_pretrained(dd, safe_serialization=True)
-            torch.save(tr.model.head.state_dict(), os.path.join(dd, "head.pt"))
+            try:
+                import deepspeed
+                _gather = deepspeed.zero.GatheredParameters(
+                    list(tr.model.backbone.parameters()), modifier_rank=0)
+            except ImportError:
+                import contextlib
+                _gather = contextlib.nullcontext()
+            with _gather:
+                tr.model.backbone.save_pretrained(dd, safe_serialization=True)
+            torch.save({k: v.detach().float().cpu().clone()
+                        for k, v in tr.model.head.state_dict().items()},
+                       os.path.join(dd, "head.pt"))
+            from safetensors import safe_open
+            _saved = 0
+            for _fn in os.listdir(dd):
+                if _fn.endswith(".safetensors"):
+                    with safe_open(os.path.join(dd, _fn), framework="pt") as _sf:
+                        for _k in _sf.keys():
+                            _saved += _sf.get_slice(_k).get_shape()[0] if False else 1
+            _live = sum(1 for _ in tr.model.backbone.state_dict())
+            print(f"[save-verify] tensors saved={_saved} live={_live}", flush=True)
+            if _saved < _live:
+                raise RuntimeError(f"checkpoint incomplete: {_saved}/{_live} tensors")
             # rm_server.py boots from this file; a checkpoint without it is unusable
             json.dump({"base_model": a.model, "max_len": a.max_len,
                        "head_frac": a.head_frac, "task_cond": a.task_cond,

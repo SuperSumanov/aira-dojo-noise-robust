@@ -1,0 +1,9 @@
+# Reward-model training dependencies not provided by the base aira-dojo environment.
+torch>=2.4
+transformers==4.49.0
+accelerate>=1.2
+deepspeed>=0.16
+peft>=0.14
+numpy>=1.26
+
+# flash-attn is optional. reward_model.py falls back to the standard attention backend.

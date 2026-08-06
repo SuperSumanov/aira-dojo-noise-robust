@@ -1,0 +1,20 @@
+{
+ "aerial-cactus-identification": false,
+ "chaii-hindi-and-tamil-question-answering": false,
+ "google-quest-challenge": false,
+ "leaf-classification": true,
+ "learning-agency-lab-automated-essay-scoring-2": false,
+ "mlsp-2013-birds": false,
+ "nomad2018-predict-transparent-conductors": true,
+ "petfinder-pawpularity-score": true,
+ "random-acts-of-pizza": false,
+ "spaceship-titanic": false,
+ "spooky-author-identification": true,
+ "tabular-playground-series-dec-2021": false,
+ "tabular-playground-series-may-2022": false,
+ "text-normalization-challenge-english-language": false,
+ "text-normalization-challenge-russian-language": false,
+ "tweet-sentiment-extraction": false,
+ "us-patent-phrase-to-phrase-matching": false,
+ "whale-categorization-playground": false
+}

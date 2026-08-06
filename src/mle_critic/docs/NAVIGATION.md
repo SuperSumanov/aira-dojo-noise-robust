@@ -8,6 +8,8 @@
 
 - [Spaceship Titanic 主流程](workflows/AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md)：当前 checkout 的 AIRA-Dojo × MLEBench 复现、Slurm/Singularity smoke test 和采数流程。
 - [Spaceship Titanic 学生研究流程](workflows/AIRA_DOJO_MLEBENCH_SPACESHIP_STUDENT_WORKFLOW.md)：历史 `phase1-value-critic` 等研究分支的差异说明；不代表当前分支代码。
+- [Lookahead reward model 实验](train/LOOKAHEAD_REWARD_MODEL_EXPERIMENTS.md)：L1、L2、LOTO、rescue、checkpoint sidecar 的运行命令和注意事项。
+- [Lookahead 数据来源](train/LOOKAHEAD_DATA_PROVENANCE.md)：7,190-card corpus、迁移文件清单，以及未提交 L2 v2 数据的复原边界。
 
 ## MLEBench 任务筛选
 

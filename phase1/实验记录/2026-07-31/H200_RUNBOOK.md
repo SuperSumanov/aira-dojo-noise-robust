@@ -73,3 +73,27 @@ context parallel 走 FSDP 路径与 DeepSpeed 互斥;Ulysses 需改注意力层�
 | 编译很慢/反复编译 | 扩展缓存在 NFS 或每节点重编 | `export TORCH_EXTENSIONS_DIR=<共享盘路径>` |
 | NCCL watchdog timeout(启动即挂) | 消费卡 P2P/SHM 问题 | 先试 `NCCL_P2P_DISABLE=1`;仍挂则单卡也能跑 16k,别恋战 |
 | Triton NFS 警告 | 缓存目录在 NFS | `export TRITON_CACHE_DIR=<本地或共享盘>` |
+
+---
+
+# 【2026-08-06 更新】优先级重排:先跑 E0,其余顺延
+
+原 E1(跨生成器)已失效——gen2/gen3 批次实为 DeepSeek(launcher bug,已撤回修复)。
+当前最高价值 = **E0:L1 lookahead 全 context 复验**。我们的头条 0.828±0.009(3 seeds)
+是在 max_len=2048(73% 截断)下测的,这是最后一个全局混杂。
+
+## E0(一条命令,单卡 H200 约 7–9h;多卡 deepspeed 可减半)
+
+```bash
+deepspeed --num_gpus 1 phase1/rm_train_hf.py \
+  --pairs phase1/value_pairs_v3.jsonl --cards phase1/cards_current.jsonl \
+  --sizes 24000 --max-len 8192 --eval-cap 3000 --seed 7 \
+  --deepspeed phase1/ds_zero3_offload.json --bs 1 --accum 16 --lr 1e-5 --epochs 2 \
+  --out phase1/rm_lookahead_fullctx.csv
+```
+
+数据:`value_pairs_v3.jsonl`(37MB,git 里)+ `cards_current.jsonl`(~130MB,gitignore,
+从 `bash phase1/rebuild_corpus.sh phase1/cards_current.jsonl` 重建,或我们 scp 给你)。
+判读:2048 参照 = 0.8183/0.8353/0.8293(seed 7/13/17)。8192 下若 ≥0.82 → 头条终版坐实;
+若显著更高 → 更好;若掉 → 截断依赖,投稿前发现好过审稿人发现。
+之后有余力再 E4(7B)> E3(context 曲线)。

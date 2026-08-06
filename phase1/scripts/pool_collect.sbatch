@@ -20,7 +20,7 @@ if [ "${PC_RM:-}" = "local" ]; then
   /research/d7/spc/yzyang4/venvs/critic/bin/python /research/d7/spc/yzyang4/scripts/rm_server.py > /research/d7/spc/yzyang4/logs/rm_server_$SLURM_JOB_ID.log 2>&1 &
   RM_PID=$!
   RM_UP=0
-  for i in $(seq 1 60); do sleep 5; grep -q "listening" /research/d7/spc/yzyang4/logs/rm_server_$SLURM_JOB_ID.log && { RM_UP=1; break; }; done
+  for i in $(seq 1 120); do sleep 5; grep -q "listening" /research/d7/spc/yzyang4/logs/rm_server_$SLURM_JOB_ID.log && { RM_UP=1; break; }; done
   if [ "$RM_UP" = "1" ]; then
     export VALUE_RM_URL="http://127.0.0.1:8765"
     export VALUE_RM_LAMBDA="${PC_RM_LAMBDA:-0.5}"

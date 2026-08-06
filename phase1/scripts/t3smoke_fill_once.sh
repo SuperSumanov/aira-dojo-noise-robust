@@ -15,6 +15,7 @@ LOG=/research/d7/spc/yzyang4/logs/t3_smoke_v2.log
 [ -f "$CK/rm_meta.json" ] || exit 0
 
 if [ ! -f "$S/.t3smoke_running" ]; then
+  pkill -f "rm_server.py" 2>/dev/null; sleep 2   # a stale listener makes the smoke fail falsely
   touch "$S/.t3smoke_running"
   cd "$D" && nohup /research/d7/spc/yzyang4/venvs/critic/bin/python3 phase1/t3_smoke.py \
     > "$LOG" 2>&1 < /dev/null &

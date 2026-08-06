@@ -370,9 +370,15 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
             _live = sum(1 for _ in tr.model.backbone.state_dict())
             print(f"[save-verify] tensors saved={_saved} live={_live}", flush=True)
             if _saved < _live:
-                raise RuntimeError(f"checkpoint incomplete: {_saved}/{_live} tensors")
+                # loud but non-fatal: the run must still write its CSV. rm_meta.json is the
+                # arming token downstream, so withholding it parks every consumer safely.
+                print(f"[save-verify] CHECKPOINT_INCOMPLETE {_saved}/{_live} -- rm_meta withheld",
+                      flush=True)
+                _meta_ok = False
+            else:
+                _meta_ok = True
             # rm_server.py boots from this file; a checkpoint without it is unusable
-            json.dump({"base_model": a.model, "max_len": a.max_len,
+            if _meta_ok: json.dump({"base_model": a.model, "max_len": a.max_len,
                        "head_frac": a.head_frac, "task_cond": a.task_cond,
                        "lora": a.lora, "pairs": a.pairs, "N": N, "seed": a.seed,
                        "acc": round(acc, 4), "budget_cond": a.budget_cond},

@@ -249,11 +249,11 @@ LOTO 跨任务迁移不稳定。rescue 问的是：保留跨任务训练池，�
 只使用学生正式 L1 输入：
 
 ```bash
-python -m src.mle_critic.src.train.bradley_terry \
+accelerate launch --config_file src/mle_critic/recipes/zero3.yaml \
+  --num_processes 1 src/mle_critic/src/train/bradley_terry.py \
   --pairs data/mle_critic/value_pairs_v3.jsonl \
   --cards data/mle_critic/cards_current.jsonl \
-  --sizes 24000 --max-len 2048 \
-  --deepspeed src/mle_critic/src/train/ds_zero3_offload.json
+  --sizes 24000 --max-len 2048
 ```
 
 重新运行 L2：

@@ -10,7 +10,7 @@
 source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
 ```
 
-训练依赖见 `src/mle_critic/src/train/requirements.txt`。当前项目的 `aira-dojo` conda 环境没有安装 `torch`，需要在训练节点为该环境补装依赖：
+训练依赖见 `src/mle_critic/src/train/requirements.txt`。训练通过 `accelerate launch` 启动，DeepSpeed ZeRO-3 配置统一位于 `src/mle_critic/recipes/zero3.yaml`。当前项目的 `aira-dojo` conda 环境没有安装 `torch`，需要在训练节点为该环境补装依赖：
 
 ```bash
 python -m pip install -r src/mle_critic/src/train/requirements.txt
@@ -22,6 +22,8 @@ python -m pip install -r src/mle_critic/src/train/requirements.txt
 
 学生原脚本同时塞了数据切分、tokenize、模型定义、训练、普通评估、预算翻转评估、checkpoint 保存和 CSV 追加。当前版本的训练逻辑在 `src/mle_critic/src/train/bradley_terry.py`，数据处理在 `src/mle_critic/src/train/dataset/`，普通评估和预算翻转评估在 `src/mle_critic/src/evaluation/bradley_terry_evaluation.py`，HTTP server 在 `bradley_terry_server.py`。评估模块同时提供独立 CLI，详见 [`docs/evaluation/BRADLEY_TERRY_EVALUATION.md`](../evaluation/BRADLEY_TERRY_EVALUATION.md)。
 
+训练参数集中在 `src/mle_critic/src/train/config/bradley_terry_config.py` 的 `BradleyTerryConfig(TrainingArguments)`；训练脚本通过 `HfArgumentParser` 解析，因此 batch size、gradient accumulation、learning rate 和 epoch 等参数使用 Hugging Face 的标准命名。launcher 统一使用 `accelerate launch` 和 `src/mle_critic/recipes/zero3.yaml`。
+
 整体流程是：
 
 ```text
@@ -29,7 +31,7 @@ python -m pip install -r src/mle_critic/src/train/requirements.txt
   -> 构造 train_pool
   -> 固定 seed 后 shuffle train_pool
   -> 对 --sizes 中的每个 N：
-       取 train_pool[:N]，再按 80/20 切 train/validation
+       取 train_pool[:N]，再按 validation 配置切 train/validation
        重新加载一份 pretrained backbone 和新 scalar head
        用其中约 80% 的 training_subset 训练，每 20 个 optimizer step 在 validation_pool 上评估
        保存 validation Bradley–Terry loss 最低的 checkpoint
@@ -90,13 +92,13 @@ train_pool = [p for p in pairs if p["task"] != target]
 
 ### 5. pair batch 和 Bradley–Terry loss
 
-`PairDS` 对每条记录返回 better 和 worse 两段 token。collator 把一个 batch 排成：
+`src/mle_critic/src/train/dataset/PairDataset` 对每条记录返回 better 和 worse 两段 token；`pair_collate` 把一个 batch 排成：
 
 ```text
 [所有 better 序列, 所有 worse 序列]
 ```
 
-因此 `--bs=1` 表示每张 GPU 每步一个 pair，但 backbone 实际前向两条 code 序列。有效 pair batch 约为：
+因此 `--per-device-train-batch-size=1` 表示每张 GPU 每步一个 pair，但 backbone 实际前向两条 code 序列。有效 pair batch 约为：
 
 ```text
 per-device pair batch * gradient accumulation * GPU 数
@@ -121,11 +123,11 @@ Qwen AutoModel
 
 ### 6. 当前 validation 和 best checkpoint 逻辑
 
-学生原版确实没有训练期 validation。当前版本先从 shuffle 后的训练池取当前 size 对应的前 N 条，再做 record-level 80/20 切分：
+学生原版确实没有训练期 validation。当前版本先从 shuffle 后的训练池取当前 size 对应的前 N 条，再按当前配置做 record-level 切分：
 
 ```python
 sized_pool = train_pool[:N]
-validation_size = max(1, int(len(sized_pool) * 0.2))
+validation_size = max(1, int(len(sized_pool) * 0.1))
 training_subset = sized_pool[:-validation_size]
 validation_pool = sized_pool[-validation_size:]
 ```
@@ -133,8 +135,8 @@ validation_pool = sized_pool[-validation_size:]
 随后给 Trainer 同时传入：
 
 ```python
-train_dataset=PairDS(training_subset)
-eval_dataset=PairDS(validation_pool)
+train_dataset=PairDataset(training_subset, encoder)
+eval_dataset=PairDataset(validation_pool, encoder)
 ```
 
 默认每 20 个 optimizer step 计算一次 validation Bradley–Terry loss 和 `eval_pair_accuracy`。这里的 step 是 gradient accumulation 完成后的 optimizer/global step，不是每个 micro-batch；可以用 `--eval-steps` 修改间隔。Trainer 配置为：
@@ -151,7 +153,7 @@ save_total_limit=1
 
 项目锁定的 Transformers 4.49 已原生支持 `save_strategy="best"`。因此每 20 个 optimizer step 验证一次，但只有 `eval_loss` 创下新低时才保存 checkpoint。训练脚本不再执行 test-side evaluation；普通 test、length-control 和 flip/control 评估通过独立 evaluator 执行。`eval_pair_accuracy` 仍作为 validation 观察指标报告，但不参与模型选择。
 
-这里按用户要求采用简单 record-level 80/20，而不是 tree-level validation。对带 flip boost 的 L2 数据，相同记录副本可能分别落入 train 和 validation；因此它能用于训练期选 checkpoint，但不是严格的无泄漏 validation。后续若需要严谨比较超参数，应该在 pair 生成阶段按 tree root 单独生成 validation split。
+这里采用简单 record-level validation，而不是 tree-level validation。对带 flip boost 的 L2 数据，相同记录副本可能分别落入 train 和 validation；因此它能用于训练期选 checkpoint，但不是严格的无泄漏 validation。后续若需要严谨比较超参数，应该在 pair 生成阶段按 tree root 单独生成 validation split。
 
 ### 7. `--sizes` 循环
 

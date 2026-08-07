@@ -3,19 +3,20 @@
 Pairwise Bradley-Terry reward model over MLE solution code. Aligned with rm_train.py semantics
 (same pairs/cards files, same task-conditioning, same head+tail truncation, same split fields)
 so numbers are directly comparable; adds: full fine-tuning, bf16, grad clipping, cosine
-schedule with warmup, gradient checkpointing, flash-attention-2, multi-GPU via deepspeed.
+schedule with warmup, gradient checkpointing, flash-attention-2, multi-GPU via Accelerate.
 
 Single-GPU smoke (3090, from the repository root):
-  python -m src.mle_critic.src.train.bradley_terry --pairs P --cards C \
-      --sizes 2000 --max-len 2048
+  accelerate launch src/mle_critic/src/train/bradley_terry.py --pairs P --cards C \
+      --sizes 2000 --max-len 2048 --per-device-train-batch-size 1
 
 8xH200 full-precision full-context (from repo root):
-  deepspeed --num_gpus 8 src/mle_critic/src/train/bradley_terry.py \
+  accelerate launch --config_file src/mle_critic/recipes/zero3.yaml --num_processes 8 \
+      src/mle_critic/src/train/bradley_terry.py \
       --pairs P --cards C --sizes 24000 --max-len 8192 \
-      --deepspeed src/mle_critic/src/train/ds_zero3_offload.json --bs 2 --accum 2
+      --per-device-train-batch-size 2 --gradient-accumulation-steps 2
 """
 from __future__ import annotations
-import argparse
+import copy
 from functools import partial
 import os
 import random
@@ -24,7 +25,7 @@ import re
 import numpy as np
 import torch
 import torch.nn as nn
-from transformers import AutoModel, Trainer, TrainingArguments
+from transformers import AutoModel, AutoTokenizer, HfArgumentParser, Trainer
 
 from src.mle_critic.src.evaluation.bradley_terry_evaluation import pair_accuracy_metrics
 from src.mle_critic.src.train.dataset import (
@@ -36,28 +37,10 @@ from src.mle_critic.src.train.dataset import (
     read_pairs,
 )
 
-ap = argparse.ArgumentParser()
-ap.add_argument("--pairs", required=True)
-ap.add_argument("--cards", required=True)
-ap.add_argument("--sizes", default="8000")
-ap.add_argument("--model", default=os.environ.get("MLE_CRITIC_MODEL", "Qwen/Qwen2.5-1.5B-Instruct"))
-ap.add_argument("--max-len", type=int, default=8192)
-ap.add_argument("--head-frac", type=float, default=0.25)
-ap.add_argument("--task-cond", action="store_true", default=True)
-ap.add_argument("--loto", default="")
-ap.add_argument("--eval-steps", type=int, default=20,
-                help="validate and consider a checkpoint every N optimizer steps")
-ap.add_argument("--seed", type=int, default=7)
-ap.add_argument("--bs", type=int, default=1, help="per-device batch of PAIRS")
-ap.add_argument("--accum", type=int, default=16)
-ap.add_argument("--lr", type=float, default=1e-5)
-ap.add_argument("--epochs", type=float, default=1.0)
-ap.add_argument("--deepspeed", default=None)
-ap.add_argument("--budget-cond", action="store_true", help="expose remaining budget to the model")
-ap.add_argument("--budget-pos", default="head", choices=["head", "tail"],
-                help="where the budget line goes; tail puts it next to the pooled token")
-ap.add_argument("--local_rank", type=int, default=-1)  # injected by the deepspeed launcher
-a = ap.parse_args()
+from src.mle_critic.src.train.config import BradleyTerryConfig
+
+parser = HfArgumentParser(BradleyTerryConfig)
+(a,) = parser.parse_args_into_dataclasses()
 
 random.seed(a.seed)
 np.random.seed(a.seed)
@@ -70,8 +53,6 @@ print(
     f"[rm-hf] split={split_name} train_pool={len(train_pool)}",
     flush=True,
 )
-
-from transformers import AutoTokenizer
 
 tok = AutoTokenizer.from_pretrained(a.model)
 if tok.pad_token is None:
@@ -145,17 +126,8 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
         flush=True,
     )
     model = RM(a.model)
-    targs = TrainingArguments(
-        output_dir=f"outputs/mle_critic/rmhf_" + str(os.getpid()) + "_" + str(N),
-        per_device_train_batch_size=a.bs,
-        per_device_eval_batch_size=a.bs,
-        gradient_accumulation_steps=a.accum, num_train_epochs=a.epochs, learning_rate=a.lr,
-        lr_scheduler_type="cosine", warmup_ratio=0.03, max_grad_norm=1.0, bf16=True,
-        logging_steps=1, eval_strategy="steps", eval_steps=a.eval_steps,
-        save_strategy="best",
-        load_best_model_at_end=False, metric_for_best_model="eval_loss",
-        greater_is_better=False, save_total_limit=1, report_to=["wandb"], seed=a.seed,
-        deepspeed=a.deepspeed, remove_unused_columns=False, save_only_model=True, dataloader_num_workers=2)
+    targs = copy.copy(a)
+    targs.output_dir = f"outputs/mle_critic/rmhf_{os.getpid()}_{N}"
     tr = BTTrainer(
         model=model,
         args=targs,

@@ -11,7 +11,8 @@ SEED=${3:-7}
 
 accelerate launch --config_file "$ACCELERATE_CONFIG" --num_processes 1 "$TRAIN_SCRIPT" \
   --pairs "$DATA_DIR/rescue_${TARGET}_k${K}_rebuilt.jsonl" \
-  --cards "$DATA_DIR/cards_current.jsonl" --sizes 8000 --max-len 2048 \
+  --cards "$DATA_DIR/cards_current.jsonl" --max-len 2048 \
   --per-device-train-batch-size 1 --per-device-eval-batch-size 1 \
   --gradient-accumulation-steps 16 --learning-rate 1e-5 \
-  --num-train-epochs 2 --seed "$SEED"
+  --num-train-epochs 2 --seed "$SEED" \
+  --output-dir "$OUTPUT_DIR/rescue_${TARGET}_k${K}_seed${SEED}"

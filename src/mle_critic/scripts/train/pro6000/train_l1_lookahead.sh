@@ -10,7 +10,6 @@ accelerate launch \
 --num_processes 2 "$TRAIN_SCRIPT" \
 --pairs "$DATA_DIR/value_pairs_v3.jsonl" \
 --cards "$DATA_DIR/cards_current.jsonl" \
---sizes 24000 \
 --model Qwen/Qwen3-0.6B-Base \
 --max-len 16384 \
 --task-cond \
@@ -19,5 +18,5 @@ accelerate launch \
 --gradient-accumulation-steps 32 \
 --learning-rate 1e-5 \
 --num-train-epochs 2 \
---output_dir "$OUTPUT_DIR/Qwen3-0.6B_critic_lookahead_strong_seed${SEED}" \
+--output-dir "$OUTPUT_DIR/Qwen3-0.6B_critic_lookahead_strong_seed${SEED}" \
 --seed "$SEED" > "$LOG_DIR/rm_lookahead_strong_seed${SEED}.log" 2>&1

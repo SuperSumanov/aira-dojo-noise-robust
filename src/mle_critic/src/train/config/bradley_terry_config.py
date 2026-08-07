@@ -18,7 +18,6 @@ class BradleyTerryConfig(TrainingArguments):
 
     pairs: str = field(default="", metadata={"help": "pair JSONL file"})
     cards: str = field(default="", metadata={"help": "cards JSONL file"})
-    sizes: str = field(default="8000", metadata={"help": "comma/colon/semicolon-separated train caps"})
     model: str = field(
         default_factory=lambda: os.environ.get("MLE_CRITIC_MODEL", "Qwen/Qwen2.5-1.5B-Instruct"),
         metadata={"help": "backbone model"},

@@ -1,2 +1,2 @@
-data/mle_critic/*.jsonl filter=lfs diff=lfs merge=lfs -text
+data/mle_critic/**/*.jsonl filter=lfs diff=lfs merge=lfs -text
 data/augmented_mle_critic/augmented_cards_current.json filter=lfs diff=lfs merge=lfs -text

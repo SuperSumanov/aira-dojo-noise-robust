@@ -253,7 +253,8 @@ accelerate launch --config_file src/mle_critic/recipes/zero3.yaml \
   --num_processes 1 src/mle_critic/src/train/bradley_terry.py \
   --pairs data/mle_critic/value_pairs_v3.jsonl \
   --cards data/mle_critic/cards_current.jsonl \
-  --sizes 24000 --max-len 2048
+  --max-len 2048 \
+  --output-dir outputs/mle_critic/l1_full
 ```
 
 重新运行 L2：

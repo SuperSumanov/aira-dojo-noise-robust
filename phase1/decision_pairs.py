@@ -98,7 +98,11 @@ with open(a.out, "w") as f:
         if t not in ORI:
             continue
         lower = ORI[t]
-        in_hold = tree_root(ch[0]) in hold[t]
+        sides_ = {tree_root(c) in hold[t] for c in ch}
+        if len(sides_) > 1:
+            n["__dropped_cross_fragment_sets__", -1, "drop"] += 1
+            continue
+        in_hold = sides_.pop()
         split = "test" if in_hold else "train"
         sets_seen[(t, split)] += 1
         for K in KS:

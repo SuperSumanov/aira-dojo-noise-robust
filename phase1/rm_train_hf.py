@@ -53,6 +53,8 @@ ap.add_argument("--deepspeed", default=None)
 ap.add_argument("--out", default="phase1/rm_curve_hf.csv")
 ap.add_argument("--flip-eval", default="", help="budget-flip eval file (paired lo/hi budgets)")
 ap.add_argument("--save-adapter", default="")
+ap.add_argument("--eval-ckpt", default="",
+                help="saved RM dir (backbone + head.pt): load and evaluate only, no training")
 ap.add_argument("--budget-cond", action="store_true", help="expose remaining budget to the model")
 ap.add_argument("--budget-pos", default="head", choices=["head", "tail"],
                 help="where the budget line goes; tail puts it next to the pooled token")
@@ -211,6 +213,14 @@ def evaluate_pairs(model, ps, bs, breakdown=True):
         correct += h.sum().item()
         hits.extend(h.tolist())
     if breakdown:
+        _dump = os.environ.get("RM_DUMP_HITS")
+        if _dump:
+            with open(_dump, "a") as _f:
+                for h, p_ in zip(hits, ps):
+                    _f.write(json.dumps({"better": p_["better"], "worse": p_["worse"],
+                                         "budget": p_.get("budget"), "task": p_["task"],
+                                         "gap_raw": p_.get("gap_raw"),
+                                         "hit": int(h)}) + chr(10))
         import collections as _c
         agg = _c.defaultdict(lambda: [0, 0])
         for h, p_ in zip(hits, ps):
@@ -303,17 +313,27 @@ def flip_eval(model, path, bs):
 rows = []
 for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
     sub = train_pool[:N]
-    model = RM(a.model)
-    targs = TrainingArguments(
-        output_dir="/tmp/rmhf_" + str(os.getpid()) + "_" + str(N),
-        per_device_train_batch_size=a.bs,
-        gradient_accumulation_steps=a.accum, num_train_epochs=a.epochs, learning_rate=a.lr,
-        lr_scheduler_type="cosine", warmup_ratio=0.03, max_grad_norm=1.0, bf16=True,
-        logging_steps=50, save_strategy="no", report_to=[], seed=a.seed,
-        deepspeed=a.deepspeed, remove_unused_columns=False, dataloader_num_workers=2)
-    tr = BTTrainer(model=model, args=targs, train_dataset=PairDS(sub), data_collator=collate)
-    t0 = time.time()
-    tr.train()
+    if a.eval_ckpt:
+        model = RM(a.eval_ckpt)
+        model.head.load_state_dict(
+            torch.load(os.path.join(a.eval_ckpt, "head.pt"), map_location="cpu"))
+        if torch.cuda.is_available():
+            model = model.cuda()
+        from types import SimpleNamespace
+        tr = SimpleNamespace(model=model, is_world_process_zero=lambda: True)
+        t0 = time.time()
+    else:
+        model = RM(a.model)
+        targs = TrainingArguments(
+            output_dir="/tmp/rmhf_" + str(os.getpid()) + "_" + str(N),
+            per_device_train_batch_size=a.bs,
+            gradient_accumulation_steps=a.accum, num_train_epochs=a.epochs, learning_rate=a.lr,
+            lr_scheduler_type="cosine", warmup_ratio=0.03, max_grad_norm=1.0, bf16=True,
+            logging_steps=50, save_strategy="no", report_to=[], seed=a.seed,
+            deepspeed=a.deepspeed, remove_unused_columns=False, dataloader_num_workers=2)
+        tr = BTTrainer(model=model, args=targs, train_dataset=PairDS(sub), data_collator=collate)
+        t0 = time.time()
+        tr.train()
     if tr.is_world_process_zero():
         acc = evaluate_pairs(tr.model, test_pool, max(a.bs, 2))
         acc_len = None
@@ -333,19 +353,21 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
         wall = round(time.time() - t0, 1)
         print(f"[rm-hf] N={N} {split_name} acc={acc:.4f} wall={wall}s", flush=True)
         row = {"N": N, "split": split_name, "acc": round(acc, 4),
-                     "model": os.path.basename(a.model), "seed": a.seed, "wall_s": wall,
+                     "model": ("ckpt:" + "/".join(a.eval_ckpt.rstrip("/").split("/")[-2:]))
+                              if a.eval_ckpt else os.path.basename(a.model),
+                     "seed": a.seed, "wall_s": wall,
                      "n_test": len(test_pool), "max_len": a.max_len, "lr": a.lr,
                      "lora": a.lora, "budget_cond": a.budget_cond, "budget_pos": a.budget_pos,
                "pairs_file": os.path.basename(a.pairs),
                "acc_len_ctrl": acc_len, "stratified": a.eval_stratify,
-                     "trainer": "hf+ds" if a.deepspeed else "hf"}
+                     "trainer": "eval-only" if a.eval_ckpt else ("hf+ds" if a.deepspeed else "hf")}
         if a.flip_eval:
             fe = flip_eval(tr.model, a.flip_eval, max(a.bs, 2) * 2)
             for kind, d_ in fe.items():
                 for k_, v_ in d_.items():
                     row[kind + "_" + k_] = round(v_, 4) if isinstance(v_, float) else v_
         rows.append(row)
-        if a.save_adapter:
+        if a.save_adapter and not a.eval_ckpt:
             dd = os.path.join(a.save_adapter, "N" + str(N))
             os.makedirs(dd, exist_ok=True)
             try:

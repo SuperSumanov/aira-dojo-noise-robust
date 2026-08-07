@@ -16,30 +16,24 @@ source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
 python -m pip install -r src/mle_critic/src/train/requirements.txt
 ```
 
-也可以用 `MLE_CRITIC_CONDA_ACTIVATE` 和 `MLE_CRITIC_CONDA_ENV` 指向准备好的环境。LoRA 或读取 LoRA checkpoint 时还需要 `peft`。代码优先使用 Flash Attention 2，加载失败会回退到普通 attention。
-
 正式配置是 Qwen2.5-1.5B-Instruct 全参数微调、bf16、ZeRO-3、optimizer CPU offload、pair batch 1、gradient accumulation 16。单张 RTX 3090 可以运行，但 CPU 内存、磁盘临时空间和接近一天的 wall time 都要预留。可用 `MLE_CRITIC_MODEL=/本地模型路径` 避免从 Hugging Face 下载模型。
 
-## `reward_model.py` 到底做了什么
+## `bradley_terry.py` 到底做了什么
 
-学生原脚本同时塞了数据切分、tokenize、模型定义、训练、普通评估、预算翻转评估、checkpoint 保存和 CSV 追加。当前版本已经把普通评估和预算翻转评估移到 `src/mle_critic/evaluation/reward_model_evaluation.py`，HTTP server 也移到了同一目录。
+学生原脚本同时塞了数据切分、tokenize、模型定义、训练、普通评估、预算翻转评估、checkpoint 保存和 CSV 追加。当前版本的训练逻辑在 `src/mle_critic/src/train/bradley_terry.py`，数据处理在 `src/mle_critic/src/train/dataset/`，普通评估和预算翻转评估在 `src/mle_critic/src/evaluation/bradley_terry_evaluation.py`，HTTP server 在 `bradley_terry_server.py`。评估模块同时提供独立 CLI，详见 [`docs/evaluation/BRADLEY_TERRY_EVALUATION.md`](../evaluation/BRADLEY_TERRY_EVALUATION.md)。
 
 整体流程是：
 
 ```text
 读取 cards 和 pair
-  -> 构造原始 train_pool / test_pool
-  -> 固定 seed 后分别 shuffle
-  -> 截取或按任务平衡 test_pool
+  -> 构造 train_pool
+  -> 固定 seed 后 shuffle train_pool
   -> 对 --sizes 中的每个 N：
        取 train_pool[:N]，再按 80/20 切 train/validation
        重新加载一份 pretrained backbone 和新 scalar head
        用其中约 80% 的 training_subset 训练，每 20 个 optimizer step 在 validation_pool 上评估
        保存 validation Bradley–Terry loss 最低的 checkpoint
-       恢复 best checkpoint 后在 test_pool 上算最终 accuracy
-       可选：算 length-control 和 budget flip/control 指标
-       可选：保存 backbone/adapter、scalar head、rm_meta.json
-  -> 将每个 N 的结果追加到 CSV
+  -> 训练脚本结束；test/length/flip 评估由独立 evaluator 执行
 ```
 
 ### 1. cards 和 pair 如何读入
@@ -55,13 +49,12 @@ card ID -> MLEBench task name
 
 这里模型从 card 读取的监督输入只有任务名、代码和可选 budget。`label.graded`、self-report、parent score 等字段不会送进 reward model；它们只在上游 pair 生成阶段决定 better/worse。
 
-### 2. train/test 是如何划分的
+### 2. 训练数据如何划分
 
 普通 in-task 模式：
 
 ```python
 train_pool = [p for p in pairs if p["intask_split"] == "train"]
-test_pool  = [p for p in pairs if p["intask_split"] == "test"]
 ```
 
 脚本本身不重新做树切分，只信任 pair 文件已经写好的 `intask_split`。因此 L1 是否端点泄漏、L2 是否严格双端留树，取决于上游 pair 生成器，不取决于 trainer。
@@ -70,31 +63,11 @@ LOTO 模式则完全忽略 `intask_split`：
 
 ```python
 train_pool = [p for p in pairs if p["task"] != target]
-test_pool  = [p for p in pairs if p["task"] == target]
 ```
 
-也就是说，其他任务原来的 train/test 记录都会进入 LOTO 训练池；目标任务原来的 train/test 记录都会进入 LOTO 测试池。由于目标任务完全没进训练，这仍是 task-level holdout，但它不是“只在目标任务 test-tree 上评估”。
+也就是说，其他任务原来的 train/test 记录都会进入 LOTO 训练池；目标任务完全不进入训练。训练脚本本身不读取目标任务 test pool，测试评估由独立 evaluator 按需执行。
 
-两个 pool 用同一个 `random.Random(seed)` 依次 shuffle。test 随后按 `(better, worse, budget)` 去重，主要用于去掉 flip boost 在 LOTO 目标任务里带来的重复记录。
-
-### 3. `eval_cap` 和 `eval_stratify`
-
-不传 `--eval-stratify` 时，shuffle 后直接取：
-
-```python
-test_pool = test_pool[:eval_cap]
-```
-
-这种抽法会让 pair 数量最大的任务主导 pooled accuracy。
-
-传 `--eval-stratify` 时：
-
-1. 按 task 分组；
-2. 丢掉测试记录少于 `eval_min_task` 的任务，默认阈值为 60；
-3. 每个保留任务最多取 `max(eval_cap // n_tasks, eval_min_task)` 条；
-4. 将各任务子集拼回 test pool。
-
-这不是严格保证总数等于 `eval_cap` 的 sampler。因为代码用了 `max`，当 `eval_cap < n_tasks * eval_min_task` 时，总数可能超过 cap；记录少的任务也会被整个移除。正式 L2 配置 `eval_cap=2400` 时该行为比较稳定，但修改参数时要重新核对实际 `n_test`。
+训练脚本只 shuffle 训练池，并不截取或平衡测试池。测试 split、`eval-cap` 和任务分组策略由独立 evaluator 的命令行负责。
 
 ### 4. 模型输入和截断
 
@@ -144,7 +117,7 @@ Qwen AutoModel
 -mean(log sigmoid(score(better) - score(worse)))
 ```
 
-默认是全参数微调。`--lora` 时只在 q/k/v/o projection 上加 rank-16 LoRA，同时 scalar head 始终训练。backbone 使用 bf16、gradient checkpointing，优先尝试 Flash Attention 2，失败后回退普通 attention。
+当前只支持全参数微调；backbone 使用 bf16、gradient checkpointing，优先尝试 Flash Attention 2，失败后回退普通 attention。
 
 ### 6. 当前 validation 和 best checkpoint 逻辑
 
@@ -176,7 +149,7 @@ load_best_model_at_end=true
 save_total_limit=1
 ```
 
-项目锁定的 Transformers 4.49 已原生支持 `save_strategy="best"`。因此每 20 个 optimizer step 验证一次，但只有 `eval_loss` 创下新低时才保存 checkpoint；训练结束自动恢复 loss 最低的 checkpoint，然后才运行普通 test、length-control 和 flip/control 评估。传 `--save-adapter` 时导出的也是恢复后的 best model。`eval_pair_accuracy` 仍作为观察指标报告，但不参与模型选择。CSV 和 `rm_meta.json` 额外记录 `n_train_actual`、`n_validation`、`best_validation_loss` 和 best checkpoint 路径。
+项目锁定的 Transformers 4.49 已原生支持 `save_strategy="best"`。因此每 20 个 optimizer step 验证一次，但只有 `eval_loss` 创下新低时才保存 checkpoint。训练脚本不再执行 test-side evaluation；普通 test、length-control 和 flip/control 评估通过独立 evaluator 执行。`eval_pair_accuracy` 仍作为 validation 观察指标报告，但不参与模型选择。
 
 这里按用户要求采用简单 record-level 80/20，而不是 tree-level validation。对带 flip boost 的 L2 数据，相同记录副本可能分别落入 train 和 validation；因此它能用于训练期选 checkpoint，但不是严格的无泄漏 validation。后续若需要严谨比较超参数，应该在 pair 生成阶段按 tree root 单独生成 validation split。
 
@@ -205,22 +178,23 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
 sized_pool = train_pool[:N]
 training_subset, validation_pool = split_80_20(sized_pool)
 model = RM(base_model)
-tr.train()  # 默认每 20 个 optimizer step 验证，结束时恢复最低 eval_loss checkpoint
-evaluate_pairs(tr.model, same_test_pool)
+tr.train()  # 默认每 20 个 optimizer step 验证并保存最低 eval_loss checkpoint
 ```
 
 需要注意四件事：
 
 1. 每个 N 都重新从 pretrained model 加载 backbone，并新建 scalar head；不是 N=500 训练完继续扩到 2,000。
 2. 因为 train pool 只 shuffle 一次，各规模是嵌套前缀：500 是 2,000 的子集，2,000 是 8,000 的子集。
-3. 每个 N 都从各自的 `sized_pool` 尾部取约 20% 作为 validation；因为各规模是嵌套前缀，这些 validation 集并不相同。不同 N 最终评估的是同一个 test pool；如果继续根据 test 选择 N，test 仍会被污染。
-4. CSV 的 `N` 和 checkpoint 目录仍记录请求值；`n_train_actual` 和 `n_validation` 才是 80/20 后实际送入两边的记录数。若训练池只有 5,000 条而传 `--sizes 8000`，实际会把 5,000 条切成约 4,000/1,000。
+3. 每个 N 都从各自的 `sized_pool` 尾部取约 20% 作为 validation；因为各规模是嵌套前缀，这些 validation 集并不相同。
+4. 训练脚本只保存 checkpoint，不再写 test accuracy CSV；需要比较不同 checkpoint 时，用独立 evaluator 对指定 split 评估。
 
-此外，脚本只在最外层调用一次 `torch.manual_seed(seed)`。第二个 N 的 scalar head 是在第一个模型训练已经消耗 RNG 状态之后初始化的，因此多 size 运行并不保证不同 N 使用同一份 head initialization。要做干净 learning curve，更合理的是每个 N 独立进程运行并显式重置 seed。当前 CSV 已记录 `n_train_actual`。
+此外，脚本只在最外层调用一次 `torch.manual_seed(seed)`。第二个 N 的 scalar head 是在第一个模型训练已经消耗 RNG 状态之后初始化的，因此多 size 运行并不保证不同 N 使用同一份 head initialization。要做干净 learning curve，更合理的是每个 N 独立进程运行并显式重置 seed。
 
 正式 L1/L2/rescue 启动脚本都只传一个 N，所以不会触发多模型 learning-curve 循环；在这些实验里可以把 `--sizes` 暂时理解成一个写成字符串的 `--train-record-cap`。
 
 ### 8. 训练后的三类评估
+
+这些评估不再由 `bradley_terry.py` 执行。请使用 `src/mle_critic/src/evaluation/bradley_terry_evaluation.py` 的独立 CLI，见[评估文档](../evaluation/BRADLEY_TERRY_EVALUATION.md)。
 
 普通 accuracy 比较 `score(better) > score(worse)`，并打印 task、budget 和 `flips_vs_b1` breakdown。
 
@@ -235,26 +209,23 @@ evaluate_pairs(tr.model, same_test_pool)
 
 预算盲模型会把 budget 置为 None，所以同一代码在不同 K 下的 token 完全一致。它在真正 flip pair 上的平均正确率解析上应为 0.5。
 
-### 9. checkpoint 和 CSV
+### 9. checkpoint
 
-Trainer 默认每 20 个 optimizer step 验证一次，只有 `eval_loss` 创下新低时才保存，并在训练结束恢复 best checkpoint。传 `--save-adapter` 后，再将这个 best model 导出为可供 sidecar 使用的目录：
+Trainer 默认每 20 个 optimizer step 验证一次，只有 `eval_loss` 创下新低时才保存。训练脚本保留原始 Hugging Face checkpoint，独立 evaluator 直接读取它：
 
 ```text
-<save-adapter>/N<N>/
-  backbone 权重或 LoRA adapter
-  head.pt
-  rm_meta.json
+outputs/mle_critic/rmhf_<pid>_<N>/checkpoint-<step>/
+  model.safetensors
+  trainer_state.json
 ```
 
-`save-adapter` 这个名字仍不准确：全参数微调时保存的是完整 backbone，不是 adapter。当前 `rm_meta.json` 已同时记录 `budget_cond` 和 `budget_pos`。
-
-CSV 使用追加写。如果已有文件 header 和当前 row 字段不一致，脚本会改写到 `_s2.csv`。它不会检查旧行是不是同一个 pairs 文件或同一实验，因此复用输出路径时仍可能把不同配置混在一起。
+训练脚本不再写评估 CSV；评估结果由 evaluator 通过 `--output` 写 JSON。
 
 ### 10. 对当前结果应该怎么读
 
-这个脚本当前产出的 accuracy 是 validation loss 最低的 checkpoint 在独立 `test_pool` 上的排序准确率。相比学生原版，它不再固定使用最终 epoch；但 validation 是训练记录的简单 80/20 record split，不是 tree-level split。
+训练脚本本身不产出 test accuracy；独立 evaluator 产出的 accuracy 是指定 checkpoint 在指定 split 上的排序准确率。相比学生原版，训练和 test evaluation 已经解耦；validation 仍是训练记录的简单 record split，不是 tree-level split。
 
-当前仍值得补的工程项是 tree-level validation，以及把 learning-curve 的每个 N 拆成独立运行。只要不再根据最终 test accuracy 回头选择 N 或超参数，`test_pool` 就可以恢复为最终报告集。
+当前仍值得补的工程项是 tree-level validation，以及把 learning-curve 的每个 N 拆成独立运行。不要根据 test accuracy 回头选择 N 或超参数。
 
 ## L1：整个可见子树的最好分数
 
@@ -275,15 +246,15 @@ bash src/mle_critic/scripts/train/train_l2_budget.sh blind 7
 bash src/mle_critic/scripts/train/train_l2_budget.sh conditioned 7
 ```
 
-Conditioned 模型把 `# remaining budget: K steps` 放在 token 序列尾部。scalar head 读取最后一个非 padding token，因此不能随意把预算文本移回头部。两个脚本默认使用仓库中的 `_rebuilt` 数据；它们可运行和审计，但并非学生缺失的原始 v2 文件，结果不应和已保存 CSV 做逐行相等断言。
+Conditioned 模型把 `# remaining budget: K steps` 放在 token 序列尾部。scalar head 读取最后一个非 padding token，因此不能随意把预算文本移回头部。两个脚本默认使用仓库中的 `_rebuilt` 数据；它们可运行和审计，但并非学生缺失的原始 v2 文件。
 
 要从 cards 重新构造 L1/L2 pair：
 
 ```bash
 bash src/mle_critic/scripts/build_lookahead_datasets.sh
-python -m src.mle_critic.src.dataset.audit_budget_pairs \
+python -m src.mle_critic.src.preprocess.audit_budget_pairs \
   data/mle_critic/budget_pairs_v2_local.jsonl data/mle_critic/cards_current.jsonl
-python -m src.mle_critic.src.dataset.audit_budget_pairs_details \
+python -m src.mle_critic.src.preprocess.audit_budget_pairs_details \
   data/mle_critic/budget_pairs_v2_local.jsonl data/mle_critic/cards_current.jsonl 2400
 ```
 
@@ -321,6 +292,6 @@ sidecar 只接收 `task + code`，适用于学生 T3v2 计划中的静态 L1 bia
 
 - `cards_current.jsonl` 只包含带外部分数并保留在 cards 图中的节点；断链或无分后代不会进入 lookahead 标签。
 - reward model 对超长代码保留头部 25% 和尾部 75%；L2 tail budget 会在截断后追加，确保预算不被裁掉。
-- CSV 是追加写。若 header 与当前字段不一致，trainer 会改写到 `_s2.csv`；跑 seed 前应检查输出路径，避免把不同实验混在一个文件中。
+- 训练日志和 Hugging Face checkpoint 是训练脚本的主要输出；评估结果由独立 evaluator 写入 JSON。
 - `--sizes` 是抽取的记录数。flip boost 和同一节点对的多个预算会造成重复，不能把它当作独立程序数。
 - 多臂并行时每个 DeepSpeed 进程必须绑定不同 GPU 和 master port。这里的脚本默认单 GPU，调度层并发应由 Slurm 或外部 launcher 管理。

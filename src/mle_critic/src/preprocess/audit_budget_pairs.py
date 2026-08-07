@@ -9,7 +9,7 @@ Checks, in rough order of how badly each would invalidate the results:
   6  eval power           -- per-task counts too small to support a per-task claim
   7  degenerate labels    -- tasks where scores are near-constant or clipped
 
-Usage: python -m src.mle_critic.src.dataset.audit_budget_pairs PAIRS cards.jsonl
+Usage: python -m src.mle_critic.src.preprocess.audit_budget_pairs PAIRS cards.jsonl
 """
 import collections, hashlib, json, statistics, sys
 from pathlib import Path

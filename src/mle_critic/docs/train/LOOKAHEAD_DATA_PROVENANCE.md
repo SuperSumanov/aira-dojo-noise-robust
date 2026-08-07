@@ -41,7 +41,7 @@ cards_current 的 SHA-256 是 dbbd5674937c2ebcbf222df591ad522218454d532d2c898448
 
 每行通常包含当前代码、journal step、父节点 parents、agent 自报 validation、MLEBench 外部评分 metric_info.score、任务名、指标方向、medal thresholds、运行时间和错误信息。原始 journal 没有提交到本仓库，所以这里无法重新生成完全相同的 run。
 
-入口是 src/mle_critic/src/dataset/build_cards.py，底层解析在 cards.py 的 parse_journal 和 card_from_node_data：
+入口是 src/mle_critic/src/preprocess/build_cards.py，底层解析在 cards.py 的 parse_journal 和 card_from_node_data：
 
 1. 扫描两种 journal 路径，并按 run 目录去重；
 2. 从 metric_info.competition_id 确定任务；
@@ -118,7 +118,7 @@ budget_pairs 生成器把同一任务所有可用 card 的 tau 排序，取约 p
 重新计算需要原始 results 和 manifest：
 
 ```bash
-python -m src.mle_critic.src.dataset.compute_regrade_tau \
+python -m src.mle_critic.src.preprocess.compute_regrade_tau \
   regrade_results.jsonl manifest_a.jsonl manifest_b.jsonl \
   --out data/mle_critic/regrade_tau_nodes_local.csv
 ```
@@ -249,10 +249,10 @@ LOTO 跨任务迁移不稳定。rescue 问的是：保留跨任务训练池，�
 只使用学生正式 L1 输入：
 
 ```bash
-python -m src.mle_critic.src.train.reward_model \
+python -m src.mle_critic.src.train.bradley_terry \
   --pairs data/mle_critic/value_pairs_v3.jsonl \
   --cards data/mle_critic/cards_current.jsonl \
-  --sizes 24000 --max-len 2048 --eval-cap 3000 \
+  --sizes 24000 --max-len 2048 \
   --deepspeed src/mle_critic/src/train/ds_zero3_offload.json
 ```
 
@@ -265,4 +265,3 @@ bash src/mle_critic/scripts/train_l2_budget.sh conditioned 7
 ```
 
 从新的 Dojo runs 开始时，先生成新 cards，再重新计算 tau、L1/L2 pairs 和 rescue。不要把旧 pairs、旧 tau 和新 cards 混用，因为这些文件通过 card ID、lineage 和任务分布绑定在一起。
-

@@ -3,7 +3,7 @@
 Label for a node = best graded score in its subtree (its own score included), optionally limited to
 descendants reachable within a budget (extra steps / extra exec seconds). Pairs are same-task; each
 record carries the now-labels too, so the "does it disagree with quality ranking" split is free.
-Usage: python -m src.mle_critic.src.dataset.build_subtree_pairs out.jsonl cards.jsonl
+Usage: python -m src.mle_critic.src.preprocess.build_subtree_pairs out.jsonl cards.jsonl
 """
 import argparse, collections, itertools, json, random
 from pathlib import Path

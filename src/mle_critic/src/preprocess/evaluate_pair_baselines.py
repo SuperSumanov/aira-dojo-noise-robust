@@ -6,7 +6,7 @@ the draw is reproducible only if they happen in that order. Reproducing it here 
 number and the baseline numbers refer to the same pairs -- otherwise "the model matches
 self-report" is comparing two different test sets.
 
-Usage: python -m src.mle_critic.src.dataset.evaluate_pair_baselines PAIRS cards.jsonl EVAL_CAP [SEED]
+Usage: python -m src.mle_critic.src.preprocess.evaluate_pair_baselines PAIRS cards.jsonl EVAL_CAP [SEED]
 """
 import json, random, sys
 from pathlib import Path

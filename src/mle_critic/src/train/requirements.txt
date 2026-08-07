@@ -6,4 +6,4 @@ deepspeed>=0.16
 peft>=0.14
 numpy>=1.26
 
-# flash-attn is optional. reward_model.py falls back to the standard attention backend.
+# flash-attn is optional. bradley_terry.py falls back to the standard attention backend.

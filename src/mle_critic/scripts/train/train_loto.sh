@@ -8,8 +8,5 @@ SEED=${2:-7}
 
 deepspeed --num_gpus 1 "$TRAIN_SCRIPT" \
   --pairs "$DATA_DIR/budget_pairs_v2_rebuilt.jsonl" --cards "$DATA_DIR/cards_current.jsonl" \
-  --sizes 4000 --max-len 2048 --eval-cap 2000 --eval-stratify \
-  --eval-len-control 0.15 --loto "$TASK" --bs 1 --accum 16 --lr 1e-5 \
-  --epochs 2 --seed "$SEED" --deepspeed "$DS_CONFIG" \
-  --save-adapter "$OUTPUT_DIR/ckpt_loto_${TASK}_seed${SEED}" \
-  --out "$OUTPUT_DIR/loto_lookahead.csv"
+  --sizes 4000 --max-len 2048 --loto "$TASK" --bs 1 --accum 16 --lr 1e-5 \
+  --epochs 2 --seed "$SEED" --deepspeed "$DS_CONFIG"

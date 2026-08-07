@@ -12,7 +12,7 @@ Construction (leakage rules identical to everything else):
   eval  = the target task's TEST-split records, deduped
 K=0 reproduces the plain LOTO number by construction, so the curve anchors to a measured point.
 
-Usage: python -m src.mle_critic.src.dataset.build_rescue_pairs OUT PAIRS TARGET_TASK K
+Usage: python -m src.mle_critic.src.preprocess.build_rescue_pairs OUT PAIRS TARGET_TASK K
 """
 import argparse, json, random
 

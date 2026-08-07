@@ -8,7 +8,7 @@
   11  eval sampling bias    -- what eval_cap actually draws per task, vs the full test pool
   12  duplicate code within a split -- repeated solutions shrink the effective sample further
 
-Usage: python -m src.mle_critic.src.dataset.audit_budget_pairs_details PAIRS cards.jsonl [EVAL_CAP]
+Usage: python -m src.mle_critic.src.preprocess.audit_budget_pairs_details PAIRS cards.jsonl [EVAL_CAP]
 """
 import collections, hashlib, json, random, statistics, sys
 from pathlib import Path

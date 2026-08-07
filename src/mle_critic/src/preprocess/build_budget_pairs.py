@@ -13,7 +13,7 @@ That is also the question that is actually asked at decision time: given the SAM
 steps, which node goes further.
 
 Emits budget_pairs_matched.jsonl (training) and budget_flip_matched.jsonl (paired eval).
-Usage: python -m src.mle_critic.src.dataset.build_budget_pairs OUT_PAIRS OUT_FLIP cards.jsonl
+Usage: python -m src.mle_critic.src.preprocess.build_budget_pairs OUT_PAIRS OUT_FLIP cards.jsonl
 """
 import argparse, collections, itertools, json, random
 from pathlib import Path

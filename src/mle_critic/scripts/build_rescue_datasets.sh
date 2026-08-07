@@ -9,9 +9,8 @@ for spec in \
   "petfinder petfinder-pawpularity-score"; do
   read -r SHORT TASK <<<"$spec"
   for K in 500 2000; do
-    python -m src.mle_critic.src.dataset.build_rescue_pairs \
+    python -m src.mle_critic.src.preprocess.build_rescue_pairs \
       "$DATA_DIR/rescue_${SHORT}_k${K}_local.jsonl" \
       "$DATA_DIR/budget_pairs_v2_rebuilt.jsonl" "$TASK" "$K" --base 4000 --seed 7
   done
 done
-

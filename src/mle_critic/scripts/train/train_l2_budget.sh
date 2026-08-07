@@ -14,9 +14,7 @@ esac
 
 deepspeed --num_gpus 1 "$TRAIN_SCRIPT" \
   --pairs "$DATA_DIR/budget_pairs_v2_rebuilt.jsonl" \
-  --flip-eval "$DATA_DIR/budget_flip_v2_rebuilt.jsonl" \
   --cards "$DATA_DIR/cards_current.jsonl" --sizes 8000 --max-len 2048 \
-  --eval-cap 2400 --eval-stratify --eval-len-control 0.15 \
   --bs 1 --accum 16 --lr 1e-5 --epochs 2 --seed "$SEED" \
-  --deepspeed "$DS_CONFIG" --out "$OUTPUT_DIR/l2_${ARM}_seed${SEED}.csv" \
+  --deepspeed "$DS_CONFIG" \
   "${EXTRA[@]}"

@@ -12,6 +12,5 @@ SEED=${3:-7}
 deepspeed --num_gpus 1 "$TRAIN_SCRIPT" \
   --pairs "$DATA_DIR/rescue_${TARGET}_k${K}_rebuilt.jsonl" \
   --cards "$DATA_DIR/cards_current.jsonl" --sizes 8000 --max-len 2048 \
-  --eval-cap 2000 --eval-len-control 0.15 --bs 1 --accum 16 --lr 1e-5 \
-  --epochs 2 --seed "$SEED" --deepspeed "$DS_CONFIG" \
-  --out "$OUTPUT_DIR/rescue_${TARGET}_k${K}_seed${SEED}.csv"
+  --bs 1 --accum 16 --lr 1e-5 \
+  --epochs 2 --seed "$SEED" --deepspeed "$DS_CONFIG"

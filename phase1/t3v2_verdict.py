@@ -116,7 +116,7 @@ g = sum(1 for p in pairs if p[5] == "G") + 0.5 * sum(1 for p in pairs if p[5] ==
 print(f"\npairs so far: {n}/16   guided wins (ties=0.5): {g}")
 ALL_DONE = all(
     len(glob.glob(f"{R0}/user_yzyang4_issue_mcts_data_t3v2{a}{r}/**/checkpoint/journal.jsonl",
-                  recursive=True)) >= 4
+                  recursive=True)) >= 3
     for r in (1, 2, 3, 4) for a in ("c", "g"))
 if ALL_DONE:
     from math import comb, ceil

@@ -1,0 +1,21 @@
+rd seed task                              control     guided  win       gap note
+ 1  906 spooky-author-identification      0.29533    0.26865    G   0.02668 
+ 2  907 spooky-author-identification      0.28334    0.30598    C   0.02264 
+ 2  907 tabular-playground-series-dec-    0.96230    0.96249    G   0.00019 indist
+ 2  908 spooky-author-identification      0.24953    0.33452    C   0.08499 
+ 3  909 spooky-author-identification      0.27727    0.28136    C   0.00409 
+ 3  910 spooky-author-identification      0.29820    0.27142    G   0.02678 
+ 4  911 spooky-author-identification      0.29382    0.29424    C   0.00042 
+ 4  911 tabular-playground-series-dec-    0.96242    0.96260    G   0.00018 indist
+ 4  912 spooky-author-identification      0.27072    0.28177    C   0.01105 
+EXCLUDED: (1, 905, 'spooky-author-identification', 'no graded nodes')
+EXCLUDED: (1, 905, 'tabular-playground-series-dec-2021', 'zero consultations: treatment never triggered')
+EXCLUDED: (1, 906, 'tabular-playground-series-dec-2021', 'zero consultations: treatment never triggered')
+EXCLUDED: (2, 908, 'tabular-playground-series-dec-2021', 'control side run missing (wall-kill or error)')
+EXCLUDED: (3, 910, 'tabular-playground-series-dec-2021', 'control side run missing (wall-kill or error)')
+EXCLUDED: (3, 909, 'tabular-playground-series-dec-2021', 'zero consultations: treatment never triggered')
+EXCLUDED: (4, 912, 'tabular-playground-series-dec-2021', 'control side run missing (wall-kill or error)')
+
+pairs so far: 9/16   guided wins (ties=0.5): 4.0
+effective pairs 9 (excluded 7), bar >= 7 guided wins
+VERDICT: NULL ROBUST   one-sided sign p=0.7461

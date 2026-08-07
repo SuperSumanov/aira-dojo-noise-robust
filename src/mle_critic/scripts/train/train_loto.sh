@@ -6,7 +6,9 @@ source "$(dirname "$0")/../experiment_env.sh"
 TASK=${1:?expected an MLEBench task name}
 SEED=${2:-7}
 
-deepspeed --num_gpus 1 "$TRAIN_SCRIPT" \
+accelerate launch --config_file "$ACCELERATE_CONFIG" --num_processes 1 "$TRAIN_SCRIPT" \
   --pairs "$DATA_DIR/budget_pairs_v2_rebuilt.jsonl" --cards "$DATA_DIR/cards_current.jsonl" \
-  --sizes 4000 --max-len 2048 --loto "$TASK" --bs 1 --accum 16 --lr 1e-5 \
-  --epochs 2 --seed "$SEED" --deepspeed "$DS_CONFIG"
+  --sizes 4000 --max-len 2048 --loto "$TASK" \
+  --per-device-train-batch-size 1 --per-device-eval-batch-size 1 \
+  --gradient-accumulation-steps 16 --learning-rate 1e-5 \
+  --num-train-epochs 2 --seed "$SEED"

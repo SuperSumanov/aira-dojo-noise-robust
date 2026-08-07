@@ -12,9 +12,9 @@ case "$ARM" in
   *) echo "unknown arm: $ARM" >&2; exit 2 ;;
 esac
 
-deepspeed --num_gpus 1 "$TRAIN_SCRIPT" \
+accelerate launch --config_file "$ACCELERATE_CONFIG" --num_processes 1 "$TRAIN_SCRIPT" \
   --pairs "$DATA_DIR/budget_pairs_v2_rebuilt.jsonl" \
   --cards "$DATA_DIR/cards_current.jsonl" --sizes 8000 --max-len 2048 \
-  --bs 1 --accum 16 --lr 1e-5 --epochs 2 --seed "$SEED" \
-  --deepspeed "$DS_CONFIG" \
+  --per-device-train-batch-size 1 --per-device-eval-batch-size 1 \
+  --gradient-accumulation-steps 16 --learning-rate 1e-5 --num-train-epochs 2 --seed "$SEED" \
   "${EXTRA[@]}"

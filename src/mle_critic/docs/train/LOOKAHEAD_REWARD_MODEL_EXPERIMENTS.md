@@ -30,11 +30,10 @@ python -m pip install -r src/mle_critic/src/train/requirements.txt
 读取 cards 和 pair
   -> 构造 train_pool
   -> 固定 seed 后 shuffle train_pool
-  -> 对 --sizes 中的每个 N：
-       取 train_pool[:N]，再按 validation 配置切 train/validation
-       重新加载一份 pretrained backbone 和新 scalar head
-       用其中约 80% 的 training_subset 训练，每 20 个 optimizer step 在 validation_pool 上评估
-       保存 validation Bradley–Terry loss 最低的 checkpoint
+  -> 将整个 train_pool 按 90/10 切成 train/validation
+  -> 加载一份 pretrained backbone 和新 scalar head
+  -> 每 20 个 optimizer step 在 validation 上评估
+  -> 保存 validation Bradley–Terry loss 最低的 checkpoint
   -> 训练脚本结束；test/length/flip 评估由独立 evaluator 执行
 ```
 
@@ -123,20 +122,19 @@ Qwen AutoModel
 
 ### 6. 当前 validation 和 best checkpoint 逻辑
 
-学生原版确实没有训练期 validation。当前版本先从 shuffle 后的训练池取当前 size 对应的前 N 条，再按当前配置做 record-level 切分：
+学生原版确实没有训练期 validation。当前版本对 shuffle 后的完整训练池做一次 record-level 80/20 切分：
 
 ```python
-sized_pool = train_pool[:N]
-validation_size = max(1, int(len(sized_pool) * 0.1))
-training_subset = sized_pool[:-validation_size]
-validation_pool = sized_pool[-validation_size:]
+validation_count = max(1, int(len(training_pool) * 0.2))
+training_records = training_pool[:-validation_count]
+validation_records = training_pool[-validation_count:]
 ```
 
 随后给 Trainer 同时传入：
 
 ```python
-train_dataset=PairDataset(training_subset, encoder)
-eval_dataset=PairDataset(validation_pool, encoder)
+train_dataset=PairDataset(training_records, card_encoder)
+eval_dataset=PairDataset(validation_records, card_encoder)
 ```
 
 默认每 20 个 optimizer step 计算一次 validation Bradley–Terry loss 和 `eval_pair_accuracy`。这里的 step 是 gradient accumulation 完成后的 optimizer/global step，不是每个 micro-batch；可以用 `--eval-steps` 修改间隔。Trainer 配置为：
@@ -147,7 +145,7 @@ eval_steps=20
 save_strategy=best
 metric_for_best_model=eval_loss
 greater_is_better=false
-load_best_model_at_end=true
+load_best_model_at_end=false
 save_total_limit=1
 ```
 
@@ -155,44 +153,9 @@ save_total_limit=1
 
 这里采用简单 record-level validation，而不是 tree-level validation。对带 flip boost 的 L2 数据，相同记录副本可能分别落入 train 和 validation；因此它能用于训练期选 checkpoint，但不是严格的无泄漏 validation。后续若需要严谨比较超参数，应该在 pair 生成阶段按 tree root 单独生成 validation split。
 
-### 7. `--sizes` 循环
+### 7. 单次训练入口
 
-原代码是：
-
-```python
-for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
-```
-
-它允许以下写法：
-
-```bash
---sizes 500
---sizes 500,2000,8000
---sizes 500:2000:8000
---sizes '500;2000;8000'
-```
-
-这是早期画 learning curve 的遗留接口。它不是 range 语法，冒号也不表示起点/终点/步长，只是和逗号、分号一样的分隔符。
-
-对每个 N，脚本执行：
-
-```python
-sized_pool = train_pool[:N]
-training_subset, validation_pool = split_80_20(sized_pool)
-model = RM(base_model)
-tr.train()  # 默认每 20 个 optimizer step 验证并保存最低 eval_loss checkpoint
-```
-
-需要注意四件事：
-
-1. 每个 N 都重新从 pretrained model 加载 backbone，并新建 scalar head；不是 N=500 训练完继续扩到 2,000。
-2. 因为 train pool 只 shuffle 一次，各规模是嵌套前缀：500 是 2,000 的子集，2,000 是 8,000 的子集。
-3. 每个 N 都从各自的 `sized_pool` 尾部取约 20% 作为 validation；因为各规模是嵌套前缀，这些 validation 集并不相同。
-4. 训练脚本只保存 checkpoint，不再写 test accuracy CSV；需要比较不同 checkpoint 时，用独立 evaluator 对指定 split 评估。
-
-此外，脚本只在最外层调用一次 `torch.manual_seed(seed)`。第二个 N 的 scalar head 是在第一个模型训练已经消耗 RNG 状态之后初始化的，因此多 size 运行并不保证不同 N 使用同一份 head initialization。要做干净 learning curve，更合理的是每个 N 独立进程运行并显式重置 seed。
-
-正式 L1/L2/rescue 启动脚本都只传一个 N，所以不会触发多模型 learning-curve 循环；在这些实验里可以把 `--sizes` 暂时理解成一个写成字符串的 `--train-record-cap`。
+当前脚本不再提供 `--sizes`，也不在一个进程内循环训练多个数据规模。输入 pair 文件筛选出的整个 training pool 会被使用一次。如果要做 data scaling，应当先生成不同规模的 pair 文件，再为每个文件启动独立训练进程并使用不同的 `--output-dir`。
 
 ### 8. 训练后的三类评估
 
@@ -216,7 +179,7 @@ tr.train()  # 默认每 20 个 optimizer step 验证并保存最低 eval_loss ch
 Trainer 默认每 20 个 optimizer step 验证一次，只有 `eval_loss` 创下新低时才保存。训练脚本保留原始 Hugging Face checkpoint，独立 evaluator 直接读取它：
 
 ```text
-outputs/mle_critic/rmhf_<pid>_<N>/checkpoint-<step>/
+<output-dir>/checkpoint-<step>/
   model.safetensors
   trainer_state.json
 ```
@@ -227,7 +190,7 @@ outputs/mle_critic/rmhf_<pid>_<N>/checkpoint-<step>/
 
 训练脚本本身不产出 test accuracy；独立 evaluator 产出的 accuracy 是指定 checkpoint 在指定 split 上的排序准确率。相比学生原版，训练和 test evaluation 已经解耦；validation 仍是训练记录的简单 record split，不是 tree-level split。
 
-当前仍值得补的工程项是 tree-level validation，以及把 learning-curve 的每个 N 拆成独立运行。不要根据 test accuracy 回头选择 N 或超参数。
+当前仍值得补的工程项是 tree-level validation。不要根据 test accuracy 回头选择数据规模或超参数。
 
 ## L1：整个可见子树的最好分数
 
@@ -237,7 +200,7 @@ L1 标签比较当前节点及全部可见后代中的最佳外部得分。模�
 bash src/mle_critic/scripts/train/pro6000/train_l1_lookahead.sh 7
 ```
 
-学生报告的原配置是 Qwen2.5-1.5B-Instruct、`N=24000`、`max_len=2048`、2 epochs、`lr=1e-5`、seed 7。当前 `pro6000` launcher 已改成 Qwen3-1.7B-Base、16,384 context、2 GPU 和 accumulation 32，是后续本地配置，不会直接复现学生的 `0.8183`。原结果还使用旧的非对称树切分，测试 pair 中约 87.3% 至少有一个端点代码在训练 pair 中出现过，不能解释成严格的未见树泛化。
+学生报告的原配置是 Qwen2.5-1.5B-Instruct、`N=24000`、`max_len=2048`、2 epochs、`lr=1e-5`、seed 7。当前 `pro6000` launcher 已改成 Qwen3-0.6B-Base、16,384 context、2 GPU 和 accumulation 32，并直接使用输入文件中的完整 training pool，是后续本地配置，不会直接复现学生的 `0.8183`。原结果还使用旧的非对称树切分，测试 pair 中约 87.3% 至少有一个端点代码在训练 pair 中出现过，不能解释成严格的未见树泛化。
 
 ## L2：count-matched 预算标签
 
@@ -295,5 +258,5 @@ sidecar 只接收 `task + code`，适用于学生 T3v2 计划中的静态 L1 bia
 - `cards_current.jsonl` 只包含带外部分数并保留在 cards 图中的节点；断链或无分后代不会进入 lookahead 标签。
 - reward model 对超长代码保留头部 25% 和尾部 75%；L2 tail budget 会在截断后追加，确保预算不被裁掉。
 - 训练日志和 Hugging Face checkpoint 是训练脚本的主要输出；评估结果由独立 evaluator 写入 JSON。
-- `--sizes` 是抽取的记录数。flip boost 和同一节点对的多个预算会造成重复，不能把它当作独立程序数。
-- 多臂并行时每个 DeepSpeed 进程必须绑定不同 GPU 和 master port。这里的脚本默认单 GPU，调度层并发应由 Slurm 或外部 launcher 管理。
+- pair 文件中的 flip boost 和同一节点对的多个预算会造成重复，记录数不能直接当作独立程序数。
+- 多臂并行时每个 Accelerate 任务必须绑定不同 GPU 和 master port；调度层并发应由 Slurm 或外部 launcher 管理。

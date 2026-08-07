@@ -1,26 +1,23 @@
-"""RM training, production version: HF Trainer + (optional) DeepSpeed ZeRO-3.
+"""Full fine-tuning for a pairwise Bradley–Terry reward model.
 
-Pairwise Bradley-Terry reward model over MLE solution code. Aligned with rm_train.py semantics
-(same pairs/cards files, same task-conditioning, same head+tail truncation, same split fields)
-so numbers are directly comparable; adds: full fine-tuning, bf16, grad clipping, cosine
-schedule with warmup, gradient checkpointing, flash-attention-2, multi-GPU via Accelerate.
+Single-GPU smoke test from the repository root:
 
-Single-GPU smoke (3090, from the repository root):
-  accelerate launch src/mle_critic/src/train/bradley_terry.py --pairs P --cards C \
-      --sizes 2000 --max-len 2048 --per-device-train-batch-size 1
+  accelerate launch src/mle_critic/src/train/bradley_terry.py \
+      --pairs P --cards C --max-len 2048 \
+      --per-device-train-batch-size 1
 
-8xH200 full-precision full-context (from repo root):
-  accelerate launch --config_file src/mle_critic/recipes/zero3.yaml --num_processes 8 \
-      src/mle_critic/src/train/bradley_terry.py \
-      --pairs P --cards C --sizes 24000 --max-len 8192 \
+Multi-GPU ZeRO-3 training:
+
+  accelerate launch --config_file src/mle_critic/recipes/zero3.yaml \
+      --num_processes 8 src/mle_critic/src/train/bradley_terry.py \
+      --pairs P --cards C --max-len 8192 \
       --per-device-train-batch-size 2 --gradient-accumulation-steps 2
 """
+
 from __future__ import annotations
-import copy
+
 from functools import partial
-import os
 import random
-import re
 
 import numpy as np
 import torch
@@ -28,6 +25,7 @@ import torch.nn as nn
 from transformers import AutoModel, AutoTokenizer, HfArgumentParser, Trainer
 
 from src.mle_critic.src.evaluation.bradley_terry_evaluation import pair_accuracy_metrics
+from src.mle_critic.src.train.config import BradleyTerryConfig
 from src.mle_critic.src.train.dataset import (
     CardEncoder,
     PairDataset,
@@ -37,75 +35,54 @@ from src.mle_critic.src.train.dataset import (
     read_pairs,
 )
 
-from src.mle_critic.src.train.config import BradleyTerryConfig
 
-parser = HfArgumentParser(BradleyTerryConfig)
-(a,) = parser.parse_args_into_dataclasses()
-
-random.seed(a.seed)
-np.random.seed(a.seed)
-torch.manual_seed(a.seed)
-
-code, ctask = read_cards(a.cards)
-pairs = read_pairs(a.pairs, code)
-train_pool, split_name = load_training_pool(pairs, loto=a.loto, seed=a.seed)
-print(
-    f"[rm-hf] split={split_name} train_pool={len(train_pool)}",
-    flush=True,
-)
-
-tok = AutoTokenizer.from_pretrained(a.model)
-if tok.pad_token is None:
-    tok.pad_token = tok.eos_token
-tok.padding_side = "right"
-
-
-encoder = CardEncoder(
-    code=code,
-    tasks=ctask,
-    tokenizer=tok,
-    max_len=a.max_len,
-    head_frac=a.head_frac,
-    task_cond=a.task_cond,
-    budget_cond=a.budget_cond,
-    budget_pos=a.budget_pos,
-)
-
-
-class RM(nn.Module):
-    def __init__(self, path):
+class BradleyTerryRewardModel(nn.Module):
+    def __init__(self, model_name: str):
         super().__init__()
-        kw = dict(torch_dtype=torch.bfloat16)
+        model_kwargs = {"torch_dtype": torch.bfloat16}
         try:
-            self.backbone = AutoModel.from_pretrained(path, attn_implementation="flash_attention_2", **kw)
+            self.backbone = AutoModel.from_pretrained(
+                model_name,
+                attn_implementation="flash_attention_2",
+                **model_kwargs,
+            )
         except Exception:
-            self.backbone = AutoModel.from_pretrained(path, **kw)
-        self.backbone.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
+            self.backbone = AutoModel.from_pretrained(model_name, **model_kwargs)
+        self.backbone.gradient_checkpointing_enable(
+            gradient_checkpointing_kwargs={"use_reentrant": False}
+        )
         self.head = nn.Linear(self.backbone.config.hidden_size, 1, dtype=torch.bfloat16)
 
-    def forward(self, input_ids=None, attention_mask=None, **kw):
-        h = self.backbone(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state
-        idx = attention_mask.sum(1) - 1
-        pooled = h[torch.arange(h.size(0), device=h.device), idx]
-        return {"logits": self.head(pooled).squeeze(-1).float()}
+    def forward(self, input_ids=None, attention_mask=None, **kwargs):
+        hidden_states = self.backbone(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+        ).last_hidden_state
+        final_token_indices = attention_mask.sum(dim=1) - 1
+        pooled_states = hidden_states[
+            torch.arange(hidden_states.size(0), device=hidden_states.device),
+            final_token_indices,
+        ]
+        return {"logits": self.head(pooled_states).squeeze(-1).float()}
 
 
-class BTTrainer(Trainer):
-    def compute_loss(self, model, inputs, return_outputs=False, **kw):
-        out = model(**inputs)["logits"]
-        n = out.size(0) // 2
-        rb, rw = out[:n], out[n:]
-        margins = rb - rw
+class BradleyTerryTrainer(Trainer):
+    def compute_loss(self, model, inputs, return_outputs=False, **kwargs):
+        scores = model(**inputs)["logits"]
+        pair_count = scores.size(0) // 2
+        better_scores = scores[:pair_count]
+        worse_scores = scores[pair_count:]
+        margins = better_scores - worse_scores
         loss = -torch.nn.functional.logsigmoid(margins).mean()
         return (loss, {"logits": margins}) if return_outputs else loss
 
     def prediction_step(self, model, inputs, prediction_loss_only, ignore_keys=None):
-        """Return pair margins so Trainer can compute validation accuracy."""
-        inputs = self._prepare_inputs(inputs)
+        """Return score margins so Trainer can compute validation accuracy."""
+        prepared_inputs = self._prepare_inputs(inputs)
         with torch.no_grad(), self.compute_loss_context_manager():
-            logits = model(**inputs)["logits"]
-            n = logits.size(0) // 2
-            margins = logits[:n] - logits[n:]
+            scores = model(**prepared_inputs)["logits"]
+            pair_count = scores.size(0) // 2
+            margins = scores[:pair_count] - scores[pair_count:]
             loss = -torch.nn.functional.logsigmoid(margins).mean()
         if prediction_loss_only:
             return loss.detach(), None, None
@@ -113,32 +90,65 @@ class BTTrainer(Trainer):
         return loss.detach(), margins.detach(), labels
 
 
-for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
-    sized_pool = train_pool[:N]
-    if len(sized_pool) < 2:
-        raise ValueError(f"N={N} resolves to fewer than two records; cannot make an 80/20 split")
-    validation_size = max(1, int(len(sized_pool) * 0.1))
-    training_subset = sized_pool[:-validation_size]
-    validation_pool = sized_pool[-validation_size:]
+def main() -> None:
+    parser = HfArgumentParser(BradleyTerryConfig)
+    (config,) = parser.parse_args_into_dataclasses()
+
+    random.seed(config.seed)
+    np.random.seed(config.seed)
+    torch.manual_seed(config.seed)
+
+    card_codes, card_tasks = read_cards(config.cards)
+    pair_records = read_pairs(config.pairs, card_codes)
+    training_pool, split_name = load_training_pool(
+        pair_records,
+        loto=config.loto,
+        seed=config.seed,
+    )
+    if len(training_pool) < 2:
+        raise ValueError("training pool has fewer than two records; cannot create validation data")
+
+    validation_count = max(1, int(len(training_pool) * 0.2))
+    training_records = training_pool[:-validation_count]
+    validation_records = training_pool[-validation_count:]
     print(
-        f"[rm-hf] N={N} actual={len(sized_pool)} -> "
-        f"train={len(training_subset)} validation={len(validation_pool)}",
+        f"[rm-hf] split={split_name} total={len(training_pool)} "
+        f"train={len(training_records)} validation={len(validation_records)}",
         flush=True,
     )
-    model = RM(a.model)
-    targs = copy.copy(a)
-    targs.output_dir = f"outputs/mle_critic/rmhf_{os.getpid()}_{N}"
-    tr = BTTrainer(
+
+    tokenizer = AutoTokenizer.from_pretrained(config.model)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "right"
+
+    card_encoder = CardEncoder(
+        code=card_codes,
+        tasks=card_tasks,
+        tokenizer=tokenizer,
+        max_len=config.max_len,
+        head_frac=config.head_frac,
+        task_cond=config.task_cond,
+        budget_cond=config.budget_cond,
+        budget_pos=config.budget_pos,
+    )
+    model = BradleyTerryRewardModel(config.model)
+    trainer = BradleyTerryTrainer(
         model=model,
-        args=targs,
-        train_dataset=PairDataset(training_subset, encoder),
-        eval_dataset=PairDataset(validation_pool, encoder),
-        data_collator=partial(pair_collate, pad_token_id=tok.pad_token_id),
+        args=config,
+        train_dataset=PairDataset(training_records, card_encoder),
+        eval_dataset=PairDataset(validation_records, card_encoder),
+        data_collator=partial(pair_collate, pad_token_id=tokenizer.pad_token_id),
         compute_metrics=pair_accuracy_metrics,
     )
-    tr.train()
-    if tr.is_world_process_zero():
-        print(f"[rm-hf] N={N} training complete; best_validation_loss={tr.state.best_metric} "
-              f"best_checkpoint={tr.state.best_model_checkpoint}", flush=True)
-    del model, tr
-    torch.cuda.empty_cache()
+    trainer.train()
+    if trainer.is_world_process_zero():
+        print(
+            f"[rm-hf] training complete; best_validation_loss={trainer.state.best_metric} "
+            f"best_checkpoint={trainer.state.best_model_checkpoint}",
+            flush=True,
+        )
+
+
+if __name__ == "__main__":
+    main()

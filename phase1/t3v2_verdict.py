@@ -85,6 +85,9 @@ pairs = []
 excluded = []
 for r in (1, 2, 3, 4):
     C, G = runs_of(f"t3v2c{r}"), runs_of(f"t3v2g{r}")
+    for key in sorted(set(C) ^ set(G)):
+        side = "control" if key in G else "guided"
+        excluded.append((r, key[0], key[1], f"{side} side run missing (wall-kill or error)"))
     for key in sorted(set(C) & set(G)):
         seed, task = key
         cv, _ = C[key]

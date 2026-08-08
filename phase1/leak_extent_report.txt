@@ -1,0 +1,30 @@
+
+==============================================================================
+chaii-hindi-and-tamil-question-answering: 658 cards, source 12.4MB
+cards with verbatim source: 18/658
+span lengths: [80, 60, 49, 48, 48, 48, 48, 47, 47, 47, 46, 46, 46, 46, 46, 46, 46, 44]
+
+--- 248441fdb8b8462ec927aac6  span=80 chars ---
+  MATCH: 'एशियन पेंट्स लिमिटेड एक भारतीय बहुराष्ट्रीय कम्पनी है जिसका मुख्यालय मुंबई, महार'
+  FULL TAIL (800 chars): '5/5: loading weight-space soup model...\n5-Fold CV Jaccard: 0.041778\n\nSample OOF predictions:\n  gold: சிம்மம்\n  pred: சிங்கம் என்பது பாலூட்டி வகையைச் சேர்ந்த ஒரு காட்டு விலங்கு ஆகும். இவ்வி\n  gold: 1639ஆம் ஆண்டு ஆகஸ்ட் மாதம் 22\n  pred: சென்னை (Chennai) தமிழ்நாட்டின் தலைநகரமும் இந்தியாவின் நான்காவது பெரிய நகரமும்\n  gold: चंपकलाल चोकसे, चिमनलाल चोकसी, सूर्यकांत दाणी और अरविंद वकिल\n  pred: एशियन पेंट्'
+
+--- 2083452b9a52528db7a27a95  span=60 chars ---
+  MATCH: ' चंपकलाल चोकसे, चिमनलाल चोकसी, सूर्यकांत दाणी और अरविंद वकिल'
+  FULL TAIL (800 chars): 'models...\nFold 3/5: loading weight-space soup model...\nFold 4/5: training 3 seed models...\nFold 4/5: loading weight-space soup model...\nFold 5/5: training 3 seed models...\nFold 5/5: loading weight-space soup model...\nOOF rows with no candidates: 0/1002\n5-Fold CV Jaccard: 0.418173\n\nSample OOF predictions:\n  cands: 142\n  gold: சிம்மம்\n  pred: சிம்மம்\n  cands: 694\n  gold: 1639ஆம் ஆண்டு ஆகஸ்ட் மாதம் 2'
+
+--- c5bc4fc5ace35f79da96be35  span=49 chars ---
+  MATCH: '                                                 '
+  FULL TAIL (800 chars): '596 | val_jaccard: 0.0640\nEpoch 10 | loss: 2.4642 | val_jaccard: 0.0697\nEpoch 12 | loss: 1.5750 | val_jaccard: 0.0750\nEpoch 14 | loss: 1.3382 | val_jaccard: 0.0672\nEarly stopping at epoch 14\nFold 5 best validation Jaccard: 0.0752\n\n=== Average CV Jaccard: 0.1038 ± 0.0311 ===\nSubmission saved to submission.csv\n          id                                   PredictionString\n0  be799d365  चंपकलाल चोकस'
+
+==============================================================================
+google-quest-challenge: 70 cards, source 14.1MB
+cards with verbatim source: 2/70
+span lengths: [103, 40]
+
+--- 3fee4b01a4a7313a3bc2c6a8  span=103 chars ---
+  MATCH: 'Which parts of fresh Fenugreek am I supposed to throw off before attempting to dry them out completely?'
+  FULL TAIL (800 chars): "enugreek am I supposed to throw off before attempting to dry them out completely?'\nBackbone roberta-base failed: could not convert string to float: 'Which parts of fresh Fenugreek am I supposed to throw off before attempting to dry them out completely?'\nBackbone distilbert-base-uncased failed: could not convert string to float: 'Which parts of fresh Fenugreek am I supposed to throw off before atte"
+
+--- 2aa8428195eec562d2d9f914  span=40 chars ---
+  MATCH: '========================================'
+  FULL TAIL (800 chars): "assifier.weight', 'pooler.dense.bias', 'pooler.dense.weight']\nYou should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.\nFold 5 Epoch 1 | Train Loss: 0.0750 | Val Loss: 0.0541 | Avg Spearman: 0.2219\nFold 5 Epoch 2 | Train Loss: 0.0280 | Val Loss: 0.0491 | Avg Spearman: 0.2790\nFold 5 Epoch 3 | Train Loss: 0.0249 | Val Loss: 0.0454 | Avg Spearman: "

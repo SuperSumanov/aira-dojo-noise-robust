@@ -1,0 +1,8 @@
+scrub_stdout: 9433 cards, 20 tasks scanned
+  UNSCANNED (no prepared data on disk): ['dog-breed-identification', 'histopathologic-cancer-detection']
+  cards containing verbatim competition data: 19 (0.20%), spans 34
+   chaii-hindi-and-tamil-question-answering     cards=18 spans=31 max=80
+      e.g. 'एशियन पेंट्स लिमिटेड एक भारतीय बहुराष्ट्रीय कम्पनी है जिसका मुख्यालय मुंबई, महार'
+   google-quest-challenge                       cards=1 spans=3 max=103
+      e.g. 'Which parts of fresh Fenugreek am I supposed to throw off before attempting to dry them out completely?'
+  wrote scrubbed corpus -> phase1/cards_v6_scrubbed.jsonl

@@ -1,0 +1,36 @@
+stdout_tail vs prepared data | minlen=40 cap=200/task budget=40MB
+task                                          cards  hits    rate  longest
+----------------------------------------------------------------------------
+aerial-cactus-identification                      1     0   0.0%        0
+chaii-hindi-and-tamil-question-answering        200    15   7.5%       40
+denoising-dirty-documents                       200     0   0.0%        0
+dog-breed-identification                        146     -  NO SRC
+google-quest-challenge                           70     2   2.9%       40
+histopathologic-cancer-detection                 99     -  NO SRC
+kuzushiji-recognition                            96     0   0.0%        0
+leaf-classification                             155     0   0.0%        0
+learning-agency-lab-automated-essay-scoring-     95     0   0.0%        0
+mlsp-2013-birds                                 200     0   0.0%        0
+nomad2018-predict-transparent-conductors        200     0   0.0%        0
+petfinder-pawpularity-score                     200     0   0.0%        0
+random-acts-of-pizza                            185     0   0.0%        0
+spaceship-titanic                               200     0   0.0%        0
+spooky-author-identification                    200     0   0.0%        0
+tabular-playground-series-dec-2021              200     0   0.0%        0
+tabular-playground-series-may-2022              200     0   0.0%        0
+text-normalization-challenge-english-languag     24     0   0.0%        0
+text-normalization-challenge-russian-languag      5     0   0.0%        0
+tweet-sentiment-extraction                       12     0   0.0%        0
+us-patent-phrase-to-phrase-matching              75     0   0.0%        0
+whale-categorization-playground                  14     0   0.0%        0
+
+TOTAL sampled 2532 cards; 17 contain verbatim source text (0.7%)
+no prepared data on disk (unscanned): ['dog-breed-identification', 'histopathologic-cancer-detection']
+
+--- longest verbatim match per affected task (repr, 240 chars) ---
+
+[chaii-hindi-and-tamil-question-answering] 40 chars:
+   'ூளை மனித நரம்பு மண்டலத்தின் தலைமையானதும்'
+
+[google-quest-challenge] 40 chars:
+   '========================================'

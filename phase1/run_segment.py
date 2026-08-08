@@ -17,14 +17,8 @@ Usage: python phase1/run_segment.py
 """
 import collections, json
 
-FILES = ["cards_ours_20260727.jsonl", "cards_senior_0724.jsonl", "cards_senior_0726.jsonl",
-         "cards_senior_0727.jsonl", "cards_senior_0728.jsonl", "cards_senior_0729.jsonl",
-         "cards_senior_0730.jsonl", "cards_senior_0731.jsonl", "cards_senior_0801.jsonl",
-         "cards_gen2A.jsonl", "cards_gen2B.jsonl", "cards_gen2C.jsonl", "cards_gen2D.jsonl",
-         "cards_gen3A.jsonl", "cards_senior_0802.jsonl", "cards_t3era_missing.jsonl",
-         "cards_senior_0803.jsonl", "cards_deepA.jsonl", "cards_gen2VAL.jsonl",
-         "cards_senior_0804.jsonl", "cards_deepB2.jsonl", "cards_gen2VALb.jsonl",
-         "cards_senior_0805seq.jsonl"]
+FILES = [l.strip() for l in open("phase1/corpus_manifest.txt")
+         if l.strip()]   # single source of truth, shared with rebuild_corpus.sh
 
 run_of, cards = {}, {}
 seg_tasks = {}

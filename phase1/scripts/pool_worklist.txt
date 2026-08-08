@@ -1,0 +1,32 @@
+605 606 poolC3
+607 608 poolC4
+609 610 poolC5
+611 612 poolC6
+613 614 poolC7
+701 702 suiteA leaf-classification;spooky-author-identification
+701 702 suiteB random-acts-of-pizza;text-normalization-challenge-english-language
+701 702 suiteC google-quest-challenge;tabular-playground-series-may-2022
+701 702 suiteV1 text-normalization-challenge-russian-language;tweet-sentiment-extraction
+701 702 suiteD kuzushiji-recognition;petfinder-pawpularity-score 3600
+701 702 suiteE mlsp-2013-birds;whale-categorization-playground 3600
+705 706 suiteLP1 leaf-classification;random-acts-of-pizza
+707 708 suiteLP2 leaf-classification;random-acts-of-pizza
+709 710 suiteLP3 leaf-classification;random-acts-of-pizza
+711 712 suiteLP4 leaf-classification;random-acts-of-pizza
+801 802 gen2A random-acts-of-pizza;leaf-classification
+803 804 gen2B spooky-author-identification;tabular-playground-series-dec-2021
+805 806 gen2C random-acts-of-pizza;leaf-classification
+807 808 gen2D spooky-author-identification;tabular-playground-series-dec-2021
+901 902 t3cA spooky-author-identification;tabular-playground-series-dec-2021
+901 902 t3gA spooky-author-identification;tabular-playground-series-dec-2021
+903 904 t3cB spooky-author-identification;tabular-playground-series-dec-2021
+903 904 t3gB spooky-author-identification;tabular-playground-series-dec-2021
+811 812 gen3A random-acts-of-pizza;leaf-classification
+821 822 gen2Q01 spooky-author-identification;tabular-playground-series-may-2022 1500
+823 824 gen2Q02 nomad2018-predict-transparent-conductors;tabular-playground-series-dec-2021 1500
+825 826 gen2Q03 spooky-author-identification;chaii-hindi-and-tamil-question-answering 1500
+827 828 gen2Q04 spooky-author-identification;tabular-playground-series-may-2022 1500
+829 830 gen2Q05 nomad2018-predict-transparent-conductors;tabular-playground-series-dec-2021 1500
+831 832 gen2Q06 spooky-author-identification;chaii-hindi-and-tamil-question-answering 1500
+833 834 gen2Q07 spooky-author-identification;tabular-playground-series-may-2022 1500
+835 836 gen2Q08 nomad2018-predict-transparent-conductors;chaii-hindi-and-tamil-question-answering 1500

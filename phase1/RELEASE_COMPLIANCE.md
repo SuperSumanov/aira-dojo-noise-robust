@@ -36,9 +36,10 @@ Kaggle Standard Rules §7.B 禁止转发 Competition Data。我们每张卡存 8
 
 1. **补扫 dog-breed / histopathologic**(245 张卡):需要先把这两个任务的 prepared 数据
    拉到集群。在此之前发布说明里必须标注"2 个图像任务未做逐字比对",不能声称全量已验。
-2. **Qwen 批次定性**:我们的 Qwen 走 DashScope compatible-mode,受 Article 4.48(d)(v)
-   "不得用输出训练竞品"约束(DeepSeek 相反,§4.2(3) 明文授权含蒸馏训练)。
-   二选一:这批不进公开发布,或发布声明限定学术研究用途。**需要拍板。**
+2. **Qwen 批次定性 —— 已拍板(2026-08-08,用户决定)**:Qwen 批次保留、进公开发布,
+   发布声明限定学术研究用途(non-commercial academic research only 附加条款,针对
+   qwen3-coder-flash 生成的卡片;DashScope Article 4.48(d)(v) 竞品训练限制随卡片
+   provenance 传递给下游使用者)。DeepSeek 卡片不受此限(§4.2(3) 明文授权)。
 3. **逐赛事规则复核**:22 个赛事只精读了 4 个,其余按 API license 字段和模板年代推断。
    2012-2013 年的老赛事(mlsp-2013-birds、whale-2013、random-acts-of-pizza)最可能非标准,
    发布前必须逐个读规则页。

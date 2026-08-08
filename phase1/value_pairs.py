@@ -80,13 +80,16 @@ with open(a.out, "w") as f:
         for (ca, oa, ba, na, da), (cb, ob, bb, nb, db) in prs:
             hi, lo = ((ca, cb) if (ba < bb if lower else ba > bb) else (cb, ca))
             now_hi = (ca if (oa < ob if lower else oa > ob) else cb)
+            in_hi, in_lo = hi in hold, lo in hold
+            if in_hi != in_lo:
+                continue          # straddles the holdout boundary: drop, never train
             f.write(json.dumps({
                 "task": t, "better": hi, "worse": lo,
                 "agrees_with_quality": now_hi == hi,      # False = the 26% that flip
                 "gap_raw": round(abs(ba - bb), 6),
                 "subtree_sizes": [na, nb], "steps_to_best": [da, db],
                 "budget_steps": a.budget_steps, "budget_secs": a.budget_secs,
-                "intask_split": "test" if (hi in hold or lo in hold) else "train",
+                "intask_split": "test" if in_hi else "train",
                 "loto_fold": t, "clears_tau": None, "src": "value"}) + "\n")
             n += 1
         print(f"{t[:38]:38s} nodes={len(v):5d} pairs={len(prs)}")

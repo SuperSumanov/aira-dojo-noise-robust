@@ -1,0 +1,2 @@
+N,split,acc,model,seed,wall_s,n_test,max_len,lr,lora,budget_cond,budget_pos,pairs_file,acc_len_ctrl,stratified,trainer
+4000,in-task,0.5527,qwen2.5-1.5b-instruct,7,8598.0,1261,2048,1e-05,False,False,head,decision_pairs_runsplit.jsonl,0.5338882282996433,False,hf+ds

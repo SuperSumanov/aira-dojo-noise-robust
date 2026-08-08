@@ -1,0 +1,2 @@
+N,split,acc,model,seed,wall_s,n_test,max_len,lr,lora,budget_cond,budget_pos,pairs_file,acc_len_ctrl,stratified,trainer
+24000,in-task,0.82,ckpt:ckpt_lookahead_v3/N24000,7,737.3,3000,2048,1e-05,False,False,head,value_pairs_v3.jsonl,,False,eval-only

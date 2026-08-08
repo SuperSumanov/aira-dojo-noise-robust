@@ -1,0 +1,4 @@
+N,split,acc,model,seed,wall_s,n_test,max_len,lr,lora,budget_cond,budget_pos,pairs_file,acc_len_ctrl,stratified,trainer
+4000,in-task,0.5216,qwen2.5-1.5b-instruct,8,9804.2,811,2048,1e-05,False,False,head,decision_pairs_v1b.jsonl,0.5,False,hf+ds
+4000,in-task,0.5425,qwen2.5-1.5b-instruct,9,9872.3,811,2048,1e-05,False,False,head,decision_pairs_v1b.jsonl,0.5403508771929825,False,hf+ds
+4000,in-task,0.5697,qwen2.5-1.5b-instruct,7,9875.6,811,2048,1e-05,False,False,head,decision_pairs_v1b.jsonl,0.5385964912280702,False,hf+ds

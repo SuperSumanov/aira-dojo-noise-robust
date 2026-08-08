@@ -56,6 +56,8 @@ ap.add_argument("--save-adapter", default="")
 ap.add_argument("--eval-ckpt", default="",
                 help="saved RM dir (backbone + head.pt): load and evaluate only, no training")
 ap.add_argument("--budget-cond", action="store_true", help="expose remaining budget to the model")
+ap.add_argument("--sr-cond", action="store_true",
+                help="expose the agent's own reported validation score to the model")
 ap.add_argument("--budget-pos", default="head", choices=["head", "tail"],
                 help="where the budget line goes; tail puts it next to the pooled token")
 ap.add_argument("--local_rank", type=int, default=-1)  # injected by the deepspeed launcher
@@ -66,11 +68,16 @@ random.seed(a.seed)
 np.random.seed(a.seed)
 torch.manual_seed(a.seed)
 
-code, ctask = {}, {}
+code, ctask, csr = {}, {}, {}
 for l in open(a.cards):
     d = json.loads(l)
     code[d["id"]] = (d.get("code") or "")[:60000]
     ctask[d["id"]] = (d.get("task") or {}).get("name", "")
+    try:
+        _v = float((d.get("obs") or {}).get("val_at_low"))
+        csr[d["id"]] = _v if _v == _v and abs(_v) != float("inf") else None
+    except (TypeError, ValueError):
+        csr[d["id"]] = None
 
 pairs = [json.loads(l) for l in open(a.pairs)]
 pairs = [p for p in pairs if p["better"] in code and p["worse"] in code]
@@ -125,6 +132,11 @@ def render(cid, budget=None):
     head = ""
     if a.task_cond:
         head += "# MLE-bench task: " + ctask.get(cid, "") + NL
+    if a.sr_cond:
+        _s = csr.get(cid)
+        head += ("# agent-reported validation score: " +
+                 ("unavailable (no score produced)" if _s is None
+                  else format(_s, ".6g")) + NL)
     if budget is not None and a.budget_pos == "head":
         head += budget_line(budget)
     return head + code[cid]
@@ -359,7 +371,7 @@ for N in [int(x) for x in re.split(r"[,;:]", a.sizes) if x.strip()]:
                      "n_test": len(test_pool), "max_len": a.max_len, "lr": a.lr,
                      "lora": a.lora, "budget_cond": a.budget_cond, "budget_pos": a.budget_pos,
                "pairs_file": os.path.basename(a.pairs),
-               "acc_len_ctrl": acc_len, "stratified": a.eval_stratify,
+               "acc_len_ctrl": acc_len, "stratified": a.eval_stratify, "sr_cond": a.sr_cond,
                      "trainer": "eval-only" if a.eval_ckpt else ("hf+ds" if a.deepspeed else "hf")}
         if a.flip_eval:
             fe = flip_eval(tr.model, a.flip_eval, max(a.bs, 2) * 2)

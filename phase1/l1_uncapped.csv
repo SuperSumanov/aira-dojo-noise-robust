@@ -1,0 +1,2 @@
+N,split,acc,model,seed,wall_s,n_test,max_len,lr,lora,budget_cond,budget_pos,pairs_file,acc_len_ctrl,stratified,sr_cond,trainer
+24000,in-task,0.6464,ckpt:ckpt_l1_runsplit/N24000,7,1335.4,5498,2048,1e-05,False,False,head,value_pairs_runsplit.jsonl,,False,False,eval-only

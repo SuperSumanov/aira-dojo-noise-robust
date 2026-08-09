@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Full-FT L1 subtree-best RM. Requires two 96 GB GPU.
+# Full-FT L1 run-clean RM. Requires two 96 GB GPU.
 # Usage: bash src/mle_critic/scripts/train/pro6000/train_l1_lookahead.sh [seed]
 set -euo pipefail
 source "$(dirname "$0")/../../experiment_env.sh"
@@ -8,7 +8,7 @@ SEED=${1:-7}
 accelerate launch \
 --config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
---pairs "$DATA_DIR/value_pairs_v5_local.jsonl" \
+--pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
 --cards "$DATA_DIR/cards_current.jsonl" \
 --model Qwen/Qwen3-1.7B-Base \
 --max-len 16384 \

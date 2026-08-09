@@ -50,6 +50,23 @@ def load_training_pool(
     return pool, split_name
 
 
+def load_testing_pool(
+    pairs: Sequence[dict[str, Any]],
+    *,
+    loto: str = "",
+    seed: int = 7,
+) -> tuple[list[dict[str, Any]], str]:
+    """Select the records used for testing."""
+    if loto:
+        pool = [pair for pair in pairs if pair["task"] == loto]
+        split_name = "loto:" + loto
+    else:
+        pool = [pair for pair in pairs if pair["intask_split"] == "test"]
+        split_name = "in-task"
+    random.Random(seed).shuffle(pool)
+    return pool, split_name
+
+
 @dataclass
 class CardEncoder:
     """Reproduce bradley_terry.py's task/budget rendering and truncation."""

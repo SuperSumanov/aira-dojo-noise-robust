@@ -30,6 +30,7 @@ from src.mle_critic.src.train.dataset import (
     CardEncoder,
     PairDataset,
     load_training_pool,
+    load_testing_pool,
     pair_collate,
     read_cards,
     read_pairs,
@@ -105,12 +106,16 @@ def main() -> None:
         loto=config.loto,
         seed=config.seed,
     )
+    testing_pool, _ = load_testing_pool(
+        pair_records,
+        loto=config.loto,
+        seed=config.seed,
+    )
     if len(training_pool) < 2:
         raise ValueError("training pool has fewer than two records; cannot create validation data")
 
-    validation_count = max(1, int(len(training_pool) * 0.1))
-    training_records = training_pool[:-validation_count]
-    validation_records = training_pool[-validation_count:]
+    training_records = training_pool
+    validation_records = testing_pool
     print(
         f"[rm-hf] split={split_name} total={len(training_pool)} "
         f"train={len(training_records)} validation={len(validation_records)}",

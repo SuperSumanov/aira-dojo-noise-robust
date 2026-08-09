@@ -1,0 +1,11 @@
+N,split,acc,model,seed,wall_s,n_test,max_len,lr,lora,budget_cond,budget_pos,pairs_file,acc_len_ctrl,stratified,sr_cond,trainer
+4000,loto:petfinder-pawpularity-score,0.7385,qwen2.5-1.5b-instruct,7,9859.9,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
+4000,loto:chaii-hindi-and-tamil-question-answering,0.6165,qwen2.5-1.5b-instruct,7,10010.4,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
+4000,loto:spooky-author-identification,0.7655,qwen2.5-1.5b-instruct,7,10143.3,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
+4000,loto:mlsp-2013-birds,0.5525,qwen2.5-1.5b-instruct,7,9986.7,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
+4000,loto:nomad2018-predict-transparent-conductors,0.493,qwen2.5-1.5b-instruct,7,10120.3,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
+4000,loto:tweet-sentiment-extraction,0.528,qwen2.5-1.5b-instruct,7,9880.5,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
+4000,loto:tabular-playground-series-may-2022,0.582,qwen2.5-1.5b-instruct,7,10125.3,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
+4000,loto:google-quest-challenge,0.5925,qwen2.5-1.5b-instruct,7,10160.8,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
+4000,loto:us-patent-phrase-to-phrase-matching,0.5795,qwen2.5-1.5b-instruct,7,9971.6,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
+4000,loto:tabular-playground-series-dec-2021,0.607,qwen2.5-1.5b-instruct,7,10076.2,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds

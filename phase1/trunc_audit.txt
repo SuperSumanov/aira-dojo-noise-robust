@@ -1,0 +1,31 @@
+cards with code: 10755
+
+sampled 2151 programs; token length distribution:
+  p10:   1,775
+  p25:   2,346
+  p50:   3,410
+  p75:   4,924
+  p90:   6,876
+  p99:  10,471
+  max: 14,069   mean: 3,900
+
+programs exceeding max_len=2048: 1807/2151 = 84.0%
+mean fraction of tokens the model saw: 63.3%
+median fraction: 60.1%
+  at max_len= 4096: 37.7% still truncated, mean coverage 89.7%
+  at max_len= 8192:  5.1% still truncated, mean coverage 99.3%
+  at max_len=16384:  0.0% still truncated, mean coverage 100.0%
+
+where the methodology markers live (share of markers inside the kept window):
+  kfold                601/709    = 85% visible
+  cross_val              9/10     = 90% visible
+  train_test_split     108/118    = 92% visible
+  stratified           340/402    = 85% visible
+  early_stop           538/636    = 85% visible
+  fit(                 249/289    = 86% visible
+  predict(             402/449    = 90% visible
+  merge(                15/60     = 25% visible
+  groupby               66/165    = 40% visible
+  target              1295/2294   = 56% visible
+  leak                  31/41     = 76% visible
+  ALL MARKERS        3654/5173 = 71% visible (on truncated programs only)

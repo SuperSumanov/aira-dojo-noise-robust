@@ -48,7 +48,7 @@ Trainer 原始 checkpoint 没有保存 `bradley_terry.py` 自己定义的输入�
 python -m src.mle_critic.src.evaluation.bradley_terry_evaluation \
   --checkpoint outputs/mle_critic/rmhf_205490_24000/checkpoint-300 \
   --base-model Qwen/Qwen3-4B-Base \
-  --pairs data/mle_critic/value_pairs_v3.jsonl \
+  --pairs data/mle_critic/value_pairs_runsplit.jsonl \
   --cards data/mle_critic/cards_current.jsonl \
   --split test --eval-cap 3000 --seed 7 --batch-size 8 \
   --max-len 16384 --task-cond \
@@ -92,7 +92,7 @@ score(better) > score(worse) 的 pair 数量 / 总 pair 数量
 预算 flip/control 数据可以通过下面的参数评估：
 
 ```bash
---flip-eval data/mle_critic/budget_flip_v2_rebuilt.jsonl
+--flip-eval data/mle_critic/budget_flip_v3_runsplit.jsonl
 ```
 
 输出包括低预算准确率、高预算准确率、两端平均准确率、模型改判率、改判正确率，以及 flip/control 改判选择性。评估预算模型时，必须显式传入与训练一致的 `--budget-cond` 和 `--budget-pos`。

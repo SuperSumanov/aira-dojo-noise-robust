@@ -13,7 +13,7 @@ case "$ARM" in
 esac
 
 accelerate launch --config_file "$ACCELERATE_CONFIG" --num_processes 1 "$TRAIN_SCRIPT" \
-  --pairs "$DATA_DIR/budget_pairs_v2_rebuilt.jsonl" \
+  --pairs "$DATA_DIR/budget_pairs_v3_runsplit.jsonl" \
   --cards "$DATA_DIR/cards_current.jsonl" --max-len 2048 \
   --per-device-train-batch-size 1 --per-device-eval-batch-size 1 \
   --gradient-accumulation-steps 16 --learning-rate 1e-5 --num-train-epochs 2 --seed "$SEED" \

@@ -1,0 +1,27 @@
+sibling sets in held-out runs: 422 over 54 runs, 13 tasks
+set sizes: {2: 162, 3: 247, 4: 7, 5: 6}
+
+policy            exec/set  captured   95% CI (run-clustered)
+----------------------------------------------------------------
+execute_all_sr        2.66    0.7500   [0.6990, 0.8261]
+critic_top1           1.00    0.5575   [0.5170, 0.6220]
+critic_top2           2.00    0.7275   [0.6917, 0.7993]
+random1               1.00    0.5315   [0.5047, 0.5929]
+random2               2.00    0.7003   [0.6662, 0.7677]
+oracle1               1.00    0.9941   [0.9906, 1.0000]
+codelen_top1          1.00    0.5310   [0.4405, 0.5735]
+
+the question this answers: at ONE execution per set, does reading the code beat
+guessing?  critic_top1 0.5575 vs random1 0.5315 (delta +0.0260)
+paired delta +0.0260, run-clustered 95% CI [-0.0328, +0.0821] -> not resolved
+
+cost-quality: execute-all buys 0.7500 for 2.66 executions; critic_top1 buys 0.5575 for 1.00.
+  trade: 1.66 executions saved per set for 0.1925 of the achievable gain given up.
+
+per task (captured at 1 execution):
+  spooky-author-identification               n= 255  critic 0.543  random 0.536  delta +0.007
+  petfinder-pawpularity-score                n=  42  critic 0.571  random 0.451  delta +0.120
+  mlsp-2013-birds                            n=  30  critic 0.619  random 0.519  delta +0.100
+  nomad2018-predict-transparent-conductors   n=  24  critic 0.625  random 0.542  delta +0.083
+  chaii-hindi-and-tamil-question-answering   n=  22  critic 0.446  random 0.603  delta -0.157
+  tabular-playground-series-may-2022         n=  21  critic 0.773  random 0.606  delta +0.168

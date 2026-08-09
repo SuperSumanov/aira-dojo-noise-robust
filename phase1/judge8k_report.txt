@@ -1,0 +1,23 @@
+calls: 800
+parsed: 800 (100.0%), answer recovered from a cut-off trace: 326
+pairs with both orders: 400 / 400
+
+order-averaged accuracy: 0.5075  run-clustered 95% CI [0.4102, 0.6059] (35 runs, 400 pairs)
+order consistency: 0.690  (a coin-flipping judge would sit at 0.50)
+accuracy on order-consistent pairs only: 0.5109 [0.3724, 0.6505]  n=276  (self-consistency filter, 2x query cost)
+picks the first-listed option: 0.522 (0.50 = unbiased)
+
+per task:
+  petfinder-pawpularity-score                    59.5/119  = 0.500
+  spooky-author-identification                   57.0/95   = 0.600
+  tabular-playground-series-may-2022             42.0/69   = 0.609
+  mlsp-2013-birds                                18.5/44   = 0.420
+  chaii-hindi-and-tamil-question-answering       20.5/38   = 0.539
+  google-quest-challenge                          0.5/18   = 0.028
+  random-acts-of-pizza                            4.0/15   = 0.267
+
+dumped 247 node scores -> phase1/judge_scores8k.json
+completed reasoning      n= 474  acc=0.5401  CI [0.3788, 0.6922]
+salvaged from cut-off    n= 326  acc=0.4601  CI [0.3966, 0.5163]
+
+note: per-call accuracy, not order-averaged, so the two rows are comparable.

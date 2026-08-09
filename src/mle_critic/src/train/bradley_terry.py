@@ -108,7 +108,7 @@ def main() -> None:
     if len(training_pool) < 2:
         raise ValueError("training pool has fewer than two records; cannot create validation data")
 
-    validation_count = max(1, int(len(training_pool) * 0.2))
+    validation_count = max(1, int(len(training_pool) * 0.1))
     training_records = training_pool[:-validation_count]
     validation_records = training_pool[-validation_count:]
     print(

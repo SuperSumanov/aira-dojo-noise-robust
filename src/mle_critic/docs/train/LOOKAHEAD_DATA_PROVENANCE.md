@@ -149,6 +149,43 @@ V_full(n) = n 自己和 cards 图中全部可见后代的最佳 graded 分
 
 value_pairs_v3.jsonl 已在 b5aa5fe 提交，是 L1 正式训练输入。当前 cards 重跑生成器仍会得到 86,651 行，但 capped 任务的具体抽样记录不完全相同；要复现学生的 0.8183，应使用仓库中的原文件，不要用本地重新生成文件替换它。
 
+更新数据：
+
+```bash
+set -euo pipefail
+
+# 从当前 corpus 的 card 元数据生成完整的方向表。不要沿用旧的
+python - <<'PY'
+import json
+from pathlib import Path
+
+data_dir = Path("data/mle_critic")
+orientations = {}
+with (data_dir / "cards_current.jsonl").open() as f:
+    for line in f:
+        card = json.loads(line)
+        task = card["task"]
+        # build_subtree_pairs 的格式是 lower_is_better，而 card 中存的是反向字段。
+        lower_is_better = not task["higher_is_better"]
+        previous = orientations.setdefault(task["name"], lower_is_better)
+        if previous != lower_is_better:
+            raise ValueError(f"inconsistent metric direction for {task['name']}")
+
+with (data_dir / "task_orientation.json").open("w") as f:
+    json.dump(orientations, f, indent=2, sort_keys=True)
+    f.write("\n")
+PY
+
+# 输出另存为 v5，保留 value_pairs_v3.jsonl 以复现原报告。
+python -m src.mle_critic.src.preprocess.build_subtree_pairs \
+  data/mle_critic/value_pairs_v5_local.jsonl \
+  data/mle_critic/cards_current.jsonl \
+  --orientation data/mle_critic/task_orientation.json \
+  --cap 1500 \
+  --seed 7 \
+  --split-by tree
+```
+
 ## 7. L2：budget_pairs_v2_rebuilt.jsonl
 
 ### 目的

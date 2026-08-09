@@ -8,15 +8,15 @@ SEED=${1:-7}
 accelerate launch \
 --config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
---pairs "$DATA_DIR/value_pairs_v3.jsonl" \
+--pairs "$DATA_DIR/value_pairs_v5_local.jsonl" \
 --cards "$DATA_DIR/cards_current.jsonl" \
---model Qwen/Qwen3-0.6B-Base \
+--model Qwen/Qwen3-1.7B-Base \
 --max-len 16384 \
 --task-cond \
---per-device-train-batch-size 8 \
---per-device-eval-batch-size 8 \
---gradient-accumulation-steps 32 \
+--per-device-train-batch-size 4 \
+--per-device-eval-batch-size 4 \
+--gradient-accumulation-steps 16 \
 --learning-rate 1e-5 \
---num-train-epochs 2 \
---output-dir "$OUTPUT_DIR/Qwen3-0.6B_critic_lookahead_strong_seed${SEED}" \
---seed "$SEED" > "$LOG_DIR/rm_lookahead_strong_seed${SEED}.log" 2>&1
+--num-train-epochs 4 \
+--output-dir "$OUTPUT_DIR/Qwen3-1.7B_critic_lookahead_strong_seed${SEED}" \
+--seed "$SEED" > "$LOG_DIR/Qwen3-1.7B_critic_lookahead_strong_seed${SEED}.log" 2>&1

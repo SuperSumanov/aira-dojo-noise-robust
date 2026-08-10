@@ -30,7 +30,7 @@ held-out run.
 
 Usage: python phase1/predictor_suite.py [--out phase1/suite_results.csv]
 """
-import argparse, collections, json, math, random, re, statistics, time
+import argparse, collections, json, math, random, re, statistics, time, zlib
 
 import numpy as np
 from sklearn.ensemble import HistGradientBoostingClassifier
@@ -96,7 +96,6 @@ def feats(cid):
         "code_len": float(len(code)),
         "n_lines": float(code.count("\n")),
         "n_imports": float(len(imports)),
-        "runtime": float(fin(obs.get("runtime_s")) or 0.0),
         "depth": float(lin.get("depth") or 0),
         "step": float(lin.get("step") or 0),
         "n_sibs": float(lin.get("n_siblings") or 0),
@@ -117,7 +116,6 @@ def feats(cid):
                                  or [0])),
         "risk_leak": float(sum(low.count(w) for w in RISK_WORDS)),
         "has_gpu": float("cuda" in low),
-        "stdout_len": float(len(obs.get("stdout_tail") or "")),
     }
     for m in MODEL_WORDS:
         f["m_" + m] = float(m in low)
@@ -155,6 +153,7 @@ results = []
 def evaluate(name, pred_fn, init_s, query_s, note=""):
     """pred_fn(better, worse) -> 1 if it ranks `better` above `worse`, else 0, or None."""
     per_run = collections.defaultdict(list)
+    per_task = collections.defaultdict(list)
     n_cov = 0
     t0 = time.time()
     for p in test:
@@ -162,36 +161,44 @@ def evaluate(name, pred_fn, init_s, query_s, note=""):
         if v is None:
             continue
         n_cov += 1
+        # a pair often spans two runs, so a run key taken from one endpoint
+        # understates dependence; task is an unambiguous independent unit
         per_run[RUN[p["better"]]].append(float(v))
+        per_task[p["task"]].append(float(v))
     q = (time.time() - t0) / max(n_cov, 1)
     vals = [v for vs in per_run.values() for v in vs]
     if not vals:
         print(f"{name}: no coverage")
         return
     acc = sum(vals) / len(vals)
-    runs = list(per_run)
-    r = random.Random(7)
-    draws = []
-    for _ in range(2000):
-        s = [v for x in (r.choice(runs) for _ in runs) for v in per_run[x]]
-        draws.append(sum(s) / len(s))
-    draws.sort()
-    lo, hi = draws[50], draws[1950]
+    def _boot(d):
+        ks = list(d)
+        rr = random.Random(7)
+        dr = []
+        for _ in range(2000):
+            ss = [v for x in (rr.choice(ks) for _ in ks) for v in d[x]]
+            dr.append(sum(ss) / len(ss))
+        dr.sort()
+        return dr[50], dr[1950]
+    lo, hi = _boot(per_task)          # primary: task-clustered
+    rlo, rhi = _boot(per_run)         # secondary: run-clustered, one endpoint
     results.append({"predictor": name, "acc": round(acc, 4),
                     "ci_lo": round(lo, 4), "ci_hi": round(hi, 4),
-                    "n_pairs": len(vals), "n_runs": len(runs),
+                    "ci_lo_run": round(rlo, 4), "ci_hi_run": round(rhi, 4),
+                    "n_tasks": len(per_task),
+                    "n_pairs": len(vals), "n_runs": len(per_run),
                     "coverage": round(n_cov / len(test), 3),
                     "init_s": round(init_s, 1),
                     "query_ms": round((query_s if query_s is not None else q) * 1000, 3),
                     "note": note})
-    print(f"{name:16s} acc={acc:.4f} [{lo:.4f},{hi:.4f}] "
-          f"cov={n_cov/len(test):.2f} runs={len(runs)} init={init_s:.0f}s "
+    print(f"{name:16s} acc={acc:.4f} task[{lo:.4f},{hi:.4f}] run[{rlo:.4f},{rhi:.4f}] "
+          f"cov={n_cov/len(test):.2f} runs={len(per_run)} init={init_s:.0f}s "
           f"query={(query_s if query_s is not None else q)*1000:.2f}ms {note}", flush=True)
 
 
 print("\n--- zero-cost single features ---", flush=True)
-evaluate("random", lambda b, w: random.Random(hash(b + w) & 0xffff).randint(0, 1), 0.0, 1e-6)
-for f in ("code_len", "runtime", "n_lines", "depth", "step", "n_cv", "n_ensemble"):
+evaluate("random", lambda b, w: zlib.crc32((b + w).encode()) & 1, 0.0, 1e-6)
+for f in ("code_len", "n_lines", "depth", "step", "n_cv", "n_ensemble"):
     i = FN.index(f)
     evaluate(f, (lambda i: lambda b, w: (None if fvec(b)[i] == fvec(w)[i]
                                          else int(fvec(b)[i] > fvec(w)[i])))(i), 0.0, 1e-5)
@@ -219,9 +226,13 @@ evaluate("static_gbm", lambda b, w: int(gbm.predict_proba(
 print("\n--- cheapest learned code model ---", flush=True)
 t0 = time.time()
 ids = sorted({c for p in train + test for c in (p["better"], p["worse"])})
+train_ids = sorted({c for p in train for c in (p["better"], p["worse"])})
 tf = TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5), max_features=30000,
                      min_df=3, sublinear_tf=True)
-M = tf.fit_transform([(cards[c].get("code") or "")[:20000] for c in ids])
+# vocabulary, min_df and idf must come from the training side alone; fitting on
+# train+test let the champion row see held-out nodes
+tf.fit([(cards[c].get("code") or "")[:20000] for c in train_ids])
+M = tf.transform([(cards[c].get("code") or "")[:20000] for c in ids])
 pos = {c: i for i, c in enumerate(ids)}
 Xt = np.vstack([(M[pos[p["better"]]] - M[pos[p["worse"]]]).toarray()[0] for p in train] +
                [(M[pos[p["worse"]]] - M[pos[p["better"]]]).toarray()[0] for p in train])
@@ -257,18 +268,35 @@ def sr_pred(b, w):
 evaluate("self_report", sr_pred, 0.0, med_rt,
          f"query cost = one execution (median {med_rt:.0f}s)")
 
+print("\n--- LLM judges (pairwise decisions read directly) ---", flush=True)
+import os as _os
+for _tag, _path in (("judge_qwen_max", "phase1/judge_qwenmax.jsonl"),
+                    ("judge_deepseek", "phase1/judge_code8k.jsonl")):
+    if not _os.path.exists(_path):
+        continue
+    _dec = {}
+    for _l in open(_path):
+        _d = json.loads(_l)
+        if _d.get("correct") is None:
+            continue
+        # both orders were asked; averaging them is what keeps position bias out
+        _dec.setdefault((_d["better"], _d["worse"]), []).append(_d["correct"])
+    _avg = {k: sum(v) / len(v) for k, v in _dec.items()}
+    evaluate(_tag, lambda b, w, _a=_avg: _a.get((b, w)), 0.0, 30.0,
+             "order-averaged pairwise")
+
 print("\n--- trained critics (from dumped scores) ---", flush=True)
 import os
-for tag, path in (("rm_1.5b_2048_sib", "phase1/rm_scores_sibling.json"),
-                  ("rm_1.5b_2048", "phase1/rm_scores_testpairs.json"),
-                  ("rm_0.5b_8192", "phase1/rm_scores_05b8192.json"),
-                  ("llm_judge", "phase1/judge_scores.json")):
+for tag, path in (("rm_1.5b_2048_SIBSUBSET", "phase1/rm_scores_sibling.json"),
+                  ("embed_frozen_0.5b", "phase1/embed_scores.json"),
+                  ("rm_1.5b_2048", "phase1/rm_scores_testpairs.json")):
     if not os.path.exists(path):
         print(f"  {tag}: {path} not present yet, skipped")
         continue
     sc = {k: float(v) for k, v in json.load(open(path)).items()}
-    evaluate(tag, lambda b, w: (None if b not in sc or w not in sc
-                                else int(sc[b] > sc[w])), 0.0, 0.05, "eval-only")
+    note = "PARTIAL COVERAGE, not comparable" if "SIBSUBSET" in tag else "eval-only"
+    evaluate(tag, lambda b, w, _s=sc: (None if b not in _s or w not in _s
+                                       else int(_s[b] > _s[w])), 0.0, 0.05, note)
 
 import csv
 with open(a.out, "w", newline="") as f:

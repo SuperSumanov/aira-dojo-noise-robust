@@ -9,3 +9,5 @@ N,split,acc,model,seed,wall_s,n_test,max_len,lr,lora,budget_cond,budget_pos,pair
 4000,loto:google-quest-challenge,0.5925,qwen2.5-1.5b-instruct,7,10160.8,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
 4000,loto:us-patent-phrase-to-phrase-matching,0.5795,qwen2.5-1.5b-instruct,7,9971.6,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
 4000,loto:tabular-playground-series-dec-2021,0.607,qwen2.5-1.5b-instruct,7,10076.2,2000,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
+4000,loto:whale-categorization-playground,0.6056,qwen2.5-1.5b-instruct,7,9484.6,393,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds
+4000,loto:leaf-classification,0.4851,qwen2.5-1.5b-instruct,7,9714.9,134,2048,1e-05,False,False,head,value_pairs_v4.jsonl,,True,False,hf+ds

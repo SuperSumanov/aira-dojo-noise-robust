@@ -106,14 +106,30 @@ xs = [rho[t] for t in tasks]
 ys = [loto[t] for t in tasks]
 r = spearman(xs, ys)
 n = len(tasks)
-ge = tot = 0
-for perm in itertools.permutations(range(n)):
+import math as _m, random as _rnd
+if _m.factorial(n) <= 4_000_000:
+    ge = tot = 0
+    for perm in itertools.permutations(range(n)):
+        tot += 1
+        if spearman(xs, [ys[i] for i in perm]) >= r:
+            ge += 1
+    method = 'exact'
+else:
+    # +1 in numerator and denominator: the unbiased Monte-Carlo p, which can never
+    # report 0 and stays conservative at small counts
+    _g = _rnd.Random(7)
+    tot = 200_000
+    idx = list(range(n))
+    ge = 1
+    for _ in range(tot):
+        _g.shuffle(idx)
+        if spearman(xs, [ys[i] for i in idx]) >= r:
+            ge += 1
     tot += 1
-    if spearman(xs, [ys[i] for i in perm]) >= r:
-        ge += 1
+    method = 'Monte Carlo'
 p1 = ge / tot
 print(f"\n[1] Spearman(rho, LOTO) = {r:+.4f}, n={n}")
-print(f"    one-sided exact permutation p = {p1:.4f} over {tot:,} permutations")
+print(f"    one-sided {method} permutation p = {p1:.4f} over {tot:,} draws")
 c1 = (p1 < 0.01 and n >= 8)
 print(f"    criterion 1 (p < 0.01, n >= 8): {'PASS' if c1 else 'FAIL'}")
 

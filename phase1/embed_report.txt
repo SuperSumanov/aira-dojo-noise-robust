@@ -1,0 +1,11 @@
+embeddings: 1921 nodes, dim 896
+train 24000, test 5498 over 39 held-out runs
+fit in 16s
+
+frozen-embedding linear ranker: acc=0.6157 95% CI [0.5061, 0.7095] over 39 runs
+init 16s, query 0.09ms
+
+compare: fine-tuned 1.5B = 0.6493, char n-gram tfidf = 0.6657, self-report = 0.7780 (query 561s)
+if frozen ~ fine-tuned, the fine-tuning bought nothing and the ceiling is the
+representation rather than the head.
+dumped 1921 node scores -> phase1/embed_scores.json

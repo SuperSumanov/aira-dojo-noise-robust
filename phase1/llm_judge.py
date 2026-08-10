@@ -35,13 +35,18 @@ ap.add_argument("--workers", type=int, default=8)
 ap.add_argument("--max-chars", type=int, default=5000)
 ap.add_argument("--max-tokens", type=int, default=1500)
 ap.add_argument("--model", default="deepseek-v4-flash")
+ap.add_argument("--provider", default="deepseek", choices=["deepseek", "qwen"])
 a = ap.parse_args()
 
+_WANT = ('PRIMARY_KEY_DEEPSEEK_V4_FLASH=' if a.provider == 'deepseek'
+         else 'PRIMARY_KEY_QWEN3_CODER_FLASH=')
+_URL = ('https://api.deepseek.com/chat/completions' if a.provider == 'deepseek'
+        else 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions')
 KEY = None
 for line in open("/research/d7/spc/yzyang4/aira-dojo/.env"):
-    if line.strip().startswith("PRIMARY_KEY_DEEPSEEK_V4_FLASH="):
+    if line.strip().startswith(_WANT):
         KEY = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
-assert KEY, "no deepseek key"
+assert KEY, "no key for provider " + a.provider
 
 ORI = json.load(open("phase1/task_orientation.json"))
 RUN = json.load(open("phase1/card_run_map.json"))
@@ -133,7 +138,7 @@ def ask(task, first, second):
              "Which solution scores better on the hidden test set? Answer A or B."}],
         "max_tokens": a.max_tokens, "temperature": 0.0}).encode()
     req = urllib.request.Request(
-        "https://api.deepseek.com/chat/completions", data=body,
+        _URL, data=body,
         headers={"Authorization": "Bearer " + KEY, "Content-Type": "application/json"})
     proxy = urllib.request.ProxyHandler({"https": os.environ.get("https_proxy", "")})
     op = urllib.request.build_opener(proxy)

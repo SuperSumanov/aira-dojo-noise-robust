@@ -1,7 +1,12 @@
 {
  "aerial-cactus-identification": false,
+ "aptos2019-blindness-detection": false,
  "chaii-hindi-and-tamil-question-answering": false,
+ "denoising-dirty-documents": true,
+ "dog-breed-identification": true,
  "google-quest-challenge": false,
+ "histopathologic-cancer-detection": false,
+ "kuzushiji-recognition": false,
  "leaf-classification": true,
  "learning-agency-lab-automated-essay-scoring-2": false,
  "mlsp-2013-birds": false,

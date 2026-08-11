@@ -75,17 +75,9 @@ def val(cid, K):
                 [cards[x]["label"]["graded"] for x in DESC[cid][:K]])
 
 
-rng = random.Random(a.seed)
-by_task_roots = collections.defaultdict(set)
-for cid in cards:
-    t = cards[cid]["task"]["name"]
-    if t in ORI:
-        by_task_roots[t].add(tree_root(cid))
-hold = {}
-for t, roots in by_task_roots.items():
-    rs = sorted(roots)
-    rng.shuffle(rs)
-    hold[t] = set(rs[int(0.8 * len(rs)):])
+# (vestigial fragment-root holdout removed -- build_runsplit.py assigns the real split
+# at physical-run level downstream; the drop rule here only ever hit orphaned sibling sets
+# and which ones it hit depended on corpus size through the shuffle.)
 
 n = collections.Counter()
 sets_seen = collections.Counter()
@@ -98,12 +90,7 @@ with open(a.out, "w") as f:
         if t not in ORI:
             continue
         lower = ORI[t]
-        sides_ = {tree_root(c) in hold[t] for c in ch}
-        if len(sides_) > 1:
-            n["__dropped_cross_fragment_sets__", -1, "drop"] += 1
-            continue
-        in_hold = sides_.pop()
-        split = "test" if in_hold else "train"
+        split = "train"   # placeholder; build_runsplit.py overwrites at run level
         sets_seen[(t, split)] += 1
         for K in KS:
             for x, y in itertools.combinations(ch, 2):

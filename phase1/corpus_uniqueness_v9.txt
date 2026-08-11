@@ -1,0 +1,71 @@
+<unknown>:76: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:175: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:219: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:221: SyntaxWarning: invalid escape sequence '\$'
+<unknown>:98: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:40: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:95: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:96: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:38: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:38: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:71: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:72: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:74: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:76: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:276: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:276: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:214: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:72: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:75: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:72: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:75: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:80: SyntaxWarning: invalid escape sequence '\$'
+<unknown>:84: SyntaxWarning: invalid escape sequence '\$'
+<unknown>:94: SyntaxWarning: invalid escape sequence '\s'
+<unknown>:1632: SyntaxWarning: invalid escape sequence '\]'
+<unknown>:1634: SyntaxWarning: invalid escape sequence '\]'
+cards with code: 14323
+operators: {'Draft': 608, 'Debug': 5992, 'Improve': 7723}  (Debug share 41.8% -- the mechanical-similarity trap)
+AST parse success: 14323/14323 = 100.0%
+
+normalisation       n   unique     rate  dup grps  largest
+raw            14323    14256   0.9953        31       16
+ast_norm       14323    14189   0.9906        82       18
+skeleton       14323    14189   0.9906        82       18
+
+duplicate groups stratified by lineage (skeleton, the strictest):
+  total duplicate groups          82
+  confined to ONE run             82   <- mechanical, expected
+  containing a parent-child edge  73   <- Debug near-copies
+  spanning TWO OR MORE runs       0   <- the only ones that mean 'independently rediscovered'
+  spanning two or more tasks      0   <- boilerplate
+
+  nodes inside cross-run duplicate groups: 0 (0.00% of parsed cards)
+  Read: a low cross-run figure means the corpus is not a few programs re-emitted,
+  which is what the redundancy elimination needs. A high within-run figure is
+  expected and says nothing -- Debug rewrites its parent.
+
+task                                           cards  unique skeletons    rate
+spooky-author-identification                    2513              2505   0.997
+mlsp-2013-birds                                 1456              1432   0.984
+petfinder-pawpularity-score                     1218              1205   0.989
+us-patent-phrase-to-phrase-matching             1105              1104   0.999
+leaf-classification                              881               875   0.993
+nomad2018-predict-transparent-conductors         840               838   0.998
+whale-categorization-playground                  800               793   0.991
+denoising-dirty-documents                        719               716   0.996
+tabular-playground-series-may-2022               712               673   0.945
+chaii-hindi-and-tamil-question-answering         658               652   0.991
+tabular-playground-series-dec-2021               550               534   0.971
+random-acts-of-pizza                             478               472   0.987
+dog-breed-identification                         405               404   0.998
+text-normalization-challenge-russian-languag     367               366   0.997
+google-quest-challenge                           351               351   1.000
+tweet-sentiment-extraction                       277               277   1.000
+spaceship-titanic                                224               223   0.996
+histopathologic-cancer-detection                 201               201   1.000
+text-normalization-challenge-english-languag     185               185   1.000
+kuzushiji-recognition                            162               162   1.000
+learning-agency-lab-automated-essay-scoring-     126               126   1.000
+aptos2019-blindness-detection                     94                94   1.000
+aerial-cactus-identification                       1                 1   1.000

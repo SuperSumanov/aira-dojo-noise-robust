@@ -1,0 +1,22 @@
+input rows: 7368
+budgets present: {0: 5407, 1: 1080, 2: 881}
+
+ budget  split   rows  dedup  rev-conflict  gap==|graded|  order ok
+      0  train   3908   3908             0        100.00%   100.00%
+      0   test   1499   1499             0        100.00%   100.00%
+        -> wrote phase1/decision_clean_b0.jsonl: 1499 pairs, 22 tasks, 751 (50.1%) below gap 1e-2
+        tasks with >=30 hard pairs: {'tabular-playground-series-may-2022': 47, 'spooky-author-identification': 420, 'whale-categorization-playground': 84}
+      1  train    757    757             0         26.71%    72.62%
+      1   test    323    323             0         32.69%    77.88%
+        -> wrote phase1/decision_clean_b1.jsonl: 323 pairs, 20 tasks, 214 (66.3%) below gap 1e-2
+        tasks with >=30 hard pairs: {'spooky-author-identification': 114, 'whale-categorization-playground': 49}
+      2  train    616    616             0         10.47%    64.95%
+      2   test    265    265             0         17.06%    73.81%
+        -> wrote phase1/decision_clean_b2.jsonl: 265 pairs, 17 tasks, 183 (69.1%) below gap 1e-2
+        tasks with >=30 hard pairs: {'spooky-author-identification': 108, 'whale-categorization-playground': 32}
+
+Read: a budget whose rev-conflict column is 0 and whose gap==|graded| column is ~100%
+is a clean evaluation target with an exactly-applicable noise ceiling. That is the
+set the hard-region claim should be tested on, not the lookahead pairs.
+verbatim survival: old 947 pairs -> missing 0, gap changed 0, new total 1499 (+552)
+OK: the old clean set survives verbatim inside the new one

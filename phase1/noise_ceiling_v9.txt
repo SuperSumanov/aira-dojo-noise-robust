@@ -1,0 +1,33 @@
+regrade files: 7; nodes with >=1 successful repeat: 207; with >=2: 207
+tasks represented: 10  {'spaceship-titanic': 46, 'nomad2018-predict-transparent-conductors': 43, 'tabular-playground-series-dec-2021': 26, 'leaf-classification': 24, 'random-acts-of-pizza': 24, 'tabular-playground-series-may-2022': 19, 'google-quest-challenge': 10, 'spooky-author-identification': 7, 'mlsp-2013-birds': 5, 'petfinder-pawpularity-score': 3}
+
+=== within-session ===
+comparable node pairs: 3030; raw agreement 0.9891; pooled a = 0.9945
+          |gap| bucket      n   agree       a
+         [0e+00,1e-04)     26  0.6923  0.8101
+         [1e-04,1e-03)     98  0.9082  0.9518
+         [1e-03,5e-03)    502  0.9821  0.9910
+         [5e-03,2e-02)    784  0.9911  0.9955
+         [2e-02,1e-01)    742  1.0000  1.0000
+           [1e-01,inf)    878  1.0000  1.0000
+  ceiling transported to value pairs (lookahead)    = 0.9977  (n=57013, 1.9% of pairs in the two smallest-gap buckets)
+  ceiling transported to decision pairs (siblings)  = 0.9845  (n=4455, 15.7% of pairs in the two smallest-gap buckets)
+
+=== cross-session ===
+comparable node pairs: 3019; raw agreement 0.9649; pooled a = 0.9821
+          |gap| bucket      n   agree       a
+         [0e+00,1e-04)     25  0.4400  0.5000
+         [1e-04,1e-03)    100  0.8400  0.9123
+         [1e-03,5e-03)    499  0.8898  0.9415
+         [5e-03,2e-02)    776  0.9768  0.9883
+         [2e-02,1e-01)    741  0.9960  0.9980
+           [1e-01,inf)    878  1.0000  1.0000
+  ceiling transported to value pairs (lookahead)    = 0.9923  (n=57013, 1.9% of pairs in the two smallest-gap buckets)
+  ceiling transported to decision pairs (siblings)  = 0.9578  (n=4455, 15.7% of pairs in the two smallest-gap buckets)
+  node bootstrap (300) pooled a: [0.9821, 0.9821]
+
+--- the quotable form ---
+Do not quote the point estimate; quote the margin. If the true ceiling were 0.70,
+two independent measurements would have to agree only about 58% of the time.
+Compare that with the observed cross-session agreement printed above.
+Measured predictors for reference: tfidf 0.6795 / 1.5B 0.6493 / self-report 0.7780.

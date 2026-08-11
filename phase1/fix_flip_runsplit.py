@@ -4,7 +4,8 @@ retrained model's flip eval never touches training runs."""
 import collections, json
 
 RUN = json.load(open("phase1/card_run_map.json"))
-hold = set(json.load(open("phase1/runsplit_holdruns.json")))
+_h = json.load(open("phase1/runsplit_holdruns.json"))
+hold = set(_h["hold"] if isinstance(_h, dict) else _h)
 n = collections.Counter()
 with open("phase1/budget_flip_v3_runsplit.jsonl", "w") as out:
     for l in open("phase1/budget_flip_v3.jsonl"):

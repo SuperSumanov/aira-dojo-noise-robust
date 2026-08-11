@@ -1,0 +1,16 @@
+task                                            rho(corpus)  SR acc hard     n
+spooky-author-identification                         0.9211       0.6384   401
+whale-categorization-playground                      0.0068       0.5417    72
+tabular-playground-series-may-2022                   0.6540       0.8889    45
+mlsp-2013-birds                                      0.7344       0.7241    29
+tweet-sentiment-extraction                           0.4437       0.6429    28
+leaf-classification                                  0.0006       0.5000    24
+histopathologic-cancer-detection                     0.9792       0.8750    16
+nomad2018-predict-transparent-conductors             0.6844       0.8000    15
+text-normalization-challenge-russian-language        0.1480       0.8667    15
+dog-breed-identification                             0.9830       0.6154    13
+aptos2019-blindness-detection                        0.7974       0.7692    13
+
+ROUTING TEST: Spearman(rho_corpus, SR_hard_acc) = +0.2364 over 11 tasks, perm p = 0.2433
+Positive if clearly > 0: the transferable reliability statistic predicts where
+self-report selection fails, so a controller can route trust per task.

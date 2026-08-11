@@ -1,0 +1,20 @@
+
+==== phase1/pbe_desc.jsonl ====
+pairs with >=1 parsed order: 300; tokens 2.49M in / 10k out
+pairs with BOTH orders parsed: 300; between-order disagreement: 120/300 = 40.0%
+  HARD gap<1e-2    n= 150  judge=0.4967 parent[0.4375,0.5621] task[0.4276,0.5698]   self_report(same pool)=0.7254 parent[0.6418,0.8028] n=142
+  EASY gap>=1e-2   n= 150  judge=0.5033 parent[0.4404,0.5685] task[0.4519,0.5533]   self_report(same pool)=0.8168 parent[0.7537,0.8779] n=131
+  ALL              n= 300  judge=0.5000 parent[0.4538,0.5456] task[0.4583,0.5441]   self_report(same pool)=0.7692 parent[0.7191,0.8185] n=273
+  Read: their global figure is the ALL row's ancestor; the claim under test
+  lives in the HARD row. Chance-level there with a tight CI, against ceiling
+  0.8962, adjudicates the execution-free claim at the decision point.
+
+==== phase1/pbe_report.jsonl ====
+pairs with >=1 parsed order: 300; tokens 2.87M in / 10k out
+pairs with BOTH orders parsed: 300; between-order disagreement: 145/300 = 48.3%
+  HARD gap<1e-2    n= 150  judge=0.4800 parent[0.4193,0.5414] task[0.4034,0.5593]   self_report(same pool)=0.7254 parent[0.6475,0.8000] n=142
+  EASY gap>=1e-2   n= 150  judge=0.4767 parent[0.4212,0.5342] task[0.4301,0.5214]   self_report(same pool)=0.8168 parent[0.7500,0.8788] n=131
+  ALL              n= 300  judge=0.4783 parent[0.4375,0.5203] task[0.4302,0.5295]   self_report(same pool)=0.7692 parent[0.7179,0.8179] n=273
+  Read: their global figure is the ALL row's ancestor; the claim under test
+  lives in the HARD row. Chance-level there with a tight CI, against ceiling
+  0.8962, adjudicates the execution-free claim at the decision point.

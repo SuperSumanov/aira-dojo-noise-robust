@@ -6,6 +6,22 @@ self_report        789        64.8%     0.00000       1.42          k x 561s exe
 tfidf_copeland     845        46.7%     0.00015       1.65                ~0 (ms)
 random             845        44.6%     0.00750       1.70                      0
 
+parent-clustered 95% CIs (top-1 rate; and paired differences on shared sets)
+  ALL sets: n=845
+    self_report      top1=0.6477 [0.6160,0.6819] decidable=789
+    tfidf_copeland   top1=0.4675 [0.4343,0.5006] decidable=845
+    random           top1=0.4460 [0.4398,0.4521] decidable=845
+    SR - random     = +0.2004 [+0.1678,+0.2345]  SIG
+    SR - tfidf      = +0.1787 [+0.1356,+0.2231]  SIG
+    tfidf - random  = +0.0214 [-0.0113,+0.0556]
+  HARD sets (top-2 true gap < 1e-2): n=453
+    self_report      top1=0.6136 [0.5682,0.6568] decidable=440
+    tfidf_copeland   top1=0.4415 [0.3951,0.4857] decidable=453
+    random           top1=0.4381 [0.4290,0.4476] decidable=453
+    SR - random     = +0.1756 [+0.1278,+0.2200]  SIG
+    SR - tfidf      = +0.1705 [+0.1091,+0.2318]  SIG
+    tfidf - random  = +0.0034 [-0.0408,+0.0486]
+
 sets whose top-2 true gap < 1e-2 (the hard decisions): 453 (54%)
 Read: if self_report picks the best child far more often than random while every
 static policy sits at random's level, the frontier has a cliff between free and

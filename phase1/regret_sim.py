@@ -117,6 +117,92 @@ print(f"{'random':16s} {rnd['n']:5d} {rnd['top1']/rnd['n']:12.1%} "
       f"{statistics.median(rnd['gaps']):11.5f} {statistics.mean(rnd['ranks']):10.2f} "
       f"{'0':>22}")
 
+# ---- inference: cluster bootstrap over parents (a parent IS one decision) -----------
+import random as _random
+
+
+def _boot_sets(per_parent, nb=4000, seed=7):
+    ks = list(per_parent)
+    rr = _random.Random(seed)
+    out = []
+    for _ in range(nb):
+        v = [x for k in (rr.choice(ks) for _ in ks) for x in per_parent[k]]
+        out.append(sum(v) / len(v))
+    out.sort()
+    return out[int(.025 * nb)], out[int(.975 * nb)]
+
+
+def _per_parent(policy_fn, universe):
+    d = {}
+    for par in universe:
+        ch = [c for c in sets_[par] if G.get(c) is not None]
+        t = TASK[ch[0]]
+        lower = ORI.get(t, False)
+        best_v = (min if lower else max)(G[c] for c in ch)
+        pick = policy_fn(ch, t)
+        if pick is None:
+            continue
+        d[par] = [float(G[pick] == best_v)]
+    return d
+
+
+def _per_parent_rand(universe):
+    d = {}
+    for par in universe:
+        ch = [c for c in sets_[par] if G.get(c) is not None]
+        t = TASK[ch[0]]
+        lower = ORI.get(t, False)
+        best_v = (min if lower else max)(G[c] for c in ch)
+        d[par] = [sum(1 for c in ch if G[c] == best_v) / len(ch)]
+    return d
+
+
+def _top2gap(par):
+    ch = [c for c in sets_[par] if G.get(c) is not None]
+    t = TASK[ch[0]]
+    vs = sorted((G[c] for c in ch), reverse=not ORI.get(t, False))
+    return abs(vs[0] - vs[1])
+
+
+_hard = [p for p in sets_ if _top2gap(p) < 1e-2]
+
+print("\nparent-clustered 95% CIs (top-1 rate; and paired differences on shared sets)")
+for label, universe in (("ALL sets", list(sets_)),
+                        ("HARD sets (top-2 true gap < 1e-2)", _hard)):
+    pp_sr = _per_parent(pick_sr, universe)
+    pp_tf = _per_parent(pick_tfidf, universe)
+    pp_rd = _per_parent_rand(universe)
+    rows = [("self_report", pp_sr), ("tfidf_copeland", pp_tf), ("random", pp_rd)]
+    print(f"  {label}: n={len(universe)}")
+    for nm, pp in rows:
+        if not pp:
+            continue
+        v = [x for vs in pp.values() for x in vs]
+        lo, hi = _boot_sets(pp)
+        print(f"    {nm:16s} top1={sum(v)/len(v):.4f} [{lo:.4f},{hi:.4f}] "
+              f"decidable={len(pp)}")
+    shared = set(pp_sr) & set(pp_rd)
+    diff = {k: [pp_sr[k][0] - pp_rd[k][0]] for k in shared}
+    if diff:
+        v = [x for vs in diff.values() for x in vs]
+        lo, hi = _boot_sets(diff)
+        print(f"    SR - random     = {sum(v)/len(v):+.4f} [{lo:+.4f},{hi:+.4f}]"
+              f"{'  SIG' if lo > 0 or hi < 0 else ''}")
+    shared = set(pp_sr) & set(pp_tf)
+    diff = {k: [pp_sr[k][0] - pp_tf[k][0]] for k in shared}
+    if diff:
+        v = [x for vs in diff.values() for x in vs]
+        lo, hi = _boot_sets(diff)
+        print(f"    SR - tfidf      = {sum(v)/len(v):+.4f} [{lo:+.4f},{hi:+.4f}]"
+              f"{'  SIG' if lo > 0 or hi < 0 else ''}")
+    shared = set(pp_tf) & set(pp_rd)
+    diff = {k: [pp_tf[k][0] - pp_rd[k][0]] for k in shared}
+    if diff:
+        v = [x for vs in diff.values() for x in vs]
+        lo, hi = _boot_sets(diff)
+        print(f"    tfidf - random  = {sum(v)/len(v):+.4f} [{lo:+.4f},{hi:+.4f}]"
+              f"{'  SIG' if lo > 0 or hi < 0 else ''}")
+
 # split by decision difficulty: sets whose top-2 true gap is inside the hard region
 hard_sets = {p for p, ch in sets_.items()
              if len([c for c in ch if G.get(c) is not None]) >= 2

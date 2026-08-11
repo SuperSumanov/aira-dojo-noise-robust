@@ -148,6 +148,17 @@ def pair_matrix(ps):
 
 # ---------------------------------------------------------------- predictors
 results = []
+PERPAIR = {}
+PERPAIR2 = {}
+import os as _os2
+EVAL2 = []
+_e2 = "phase1/decision_clean_b0.jsonl"
+if _os2.path.exists(_e2):
+    for _l in open(_e2):
+        _p = json.loads(_l)
+        if _p["better"] in cards and _p["worse"] in cards:
+            EVAL2.append(_p)
+print(f"secondary eval set: {len(EVAL2)} sibling pairs from {_e2}", flush=True)
 
 
 def evaluate(name, pred_fn, init_s, query_s, note=""):
@@ -156,16 +167,24 @@ def evaluate(name, pred_fn, init_s, query_s, note=""):
     per_task = collections.defaultdict(list)
     n_cov = 0
     t0 = time.time()
+    _pp = PERPAIR.setdefault(name, {})
     for p in test:
         v = pred_fn(p["better"], p["worse"])
         if v is None:
             continue
         n_cov += 1
+        _pp[p["better"] + "|" + p["worse"]] = int(v)
         # a pair often spans two runs, so a run key taken from one endpoint
         # understates dependence; task is an unambiguous independent unit
         per_run[RUN[p["better"]]].append(float(v))
         per_task[p["task"]].append(float(v))
     q = (time.time() - t0) / max(n_cov, 1)
+    if EVAL2:
+        _p2 = PERPAIR2.setdefault(name, {})
+        for p in EVAL2:
+            v2 = pred_fn(p["better"], p["worse"])
+            if v2 is not None:
+                _p2[p["better"] + "|" + p["worse"]] = int(v2)
     vals = [v for vs in per_run.values() for v in vs]
     if not vals:
         print(f"{name}: no coverage")
@@ -225,7 +244,7 @@ evaluate("static_gbm", lambda b, w: int(gbm.predict_proba(
 
 print("\n--- cheapest learned code model ---", flush=True)
 t0 = time.time()
-ids = sorted({c for p in train + test for c in (p["better"], p["worse"])})
+ids = sorted({c for p in train + test + EVAL2 for c in (p["better"], p["worse"])})
 train_ids = sorted({c for p in train for c in (p["better"], p["worse"])})
 tf = TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5), max_features=30000,
                      min_df=3, sublinear_tf=True)
@@ -244,6 +263,8 @@ _tcache = {}
 
 def tf_pred(b, w):
     k = (b, w)
+    if b not in pos or w not in pos:
+        return None
     if k not in _tcache:
         d = (M[pos[b]] - M[pos[w]]).toarray()
         _tcache[k] = int(tlr.decision_function(d)[0] > 0)
@@ -305,3 +326,9 @@ with open(a.out, "w", newline="") as f:
     for r in results:
         wtr.writerow(r)
 print(f"\nwrote {len(results)} rows -> {a.out}")
+with open("phase1/perpair_hits.json", "w") as _f:
+    json.dump(PERPAIR, _f)
+with open("phase1/perpair_decision.json", "w") as _f2:
+    json.dump(PERPAIR2, _f2)
+print(f"wrote per-pair decisions for {len(PERPAIR)} predictors "
+      f"({sum(len(v) for v in PERPAIR.values())} decisions) -> phase1/perpair_hits.json")

@@ -1,0 +1,11 @@
+A. does the FIXED criterion 3 pass on pure-noise covariates?
+   n=12: lstsq passes 0.981 of the time, old Gauss-Seidel 0.960  (20,000 draws)
+   n=10 (pre-registered set): lstsq passes 0.950 of the time, old Gauss-Seidel 0.923  (20,000 draws)
+
+   null control: shuffle LOTO so the true association is destroyed, then feed random covariates
+   n=12: false-pass rate under a true null = 0.086
+   n=10: false-pass rate under a true null = 0.130
+
+B. jackknife at both n, so the contrast is stated rather than chosen
+   n=10 (pre-registered): 6/10 fail at alpha=0.01  -> [('google-quest-challenge', 0.0107), ('mlsp-2013-birds', 0.0156), ('nomad2018-predict-tran', 0.0107), ('spooky-author-identifi', 0.0156), ('tweet-sentiment-extrac', 0.0184), ('us-patent-phrase-to-ph', 0.0156)]
+   n=12 (with extension): 0/12 fail at alpha=0.01

@@ -1,0 +1,51 @@
+ceiling curve recomputed from our own regrades (n>=25 per bucket, unestimable buckets inherit downward):
+  [0e+00,1e-04)  regrade_n=   25  agree=0.4400  ceiling=0.5000
+  [1e-04,3e-04)  regrade_n=   26  agree=0.8077  ceiling=0.8922
+  [3e-04,1e-03)  regrade_n=   74  agree=0.8514  ceiling=0.9191
+  [1e-03,3e-03)  regrade_n=  294  agree=0.8810  ceiling=0.9364
+  [3e-03,1e-02)  regrade_n=  546  agree=0.9396  ceiling=0.9688
+  [1e-02,3e-02)  regrade_n=  620  agree=0.9903  ceiling=0.9951
+  [3e-02,1e-01)  regrade_n=  556  agree=0.9964  ceiling=0.9982
+  [1e-01,3e-01)  regrade_n=  412  agree=1.0000  ceiling=1.0000
+  [3e-01,inf)  regrade_n=  466  agree=1.0000  ceiling=1.0000
+
+scored pairs with a computable gap: 5498
+
+          bucket      n   ceil       rm_1.5b   self_report  embed_frozen      code_len    gap_oracle
+[0e+00,1e-04)     52  0.500 0.6346(  52) 0.6042(  48) 0.5577(  52) 0.4615(  52) 1.0000(  52)
+[1e-04,3e-04)     72  0.892 0.5694(  72) 0.4328(  67) 0.5139(  72) 0.6111(  72) 1.0000(  72)
+[3e-04,1e-03)    146  0.919 0.5753( 146) 0.5227( 132) 0.5411( 146) 0.5822( 146) 1.0000( 146)
+[1e-03,3e-03)    135  0.936 0.4889( 135) 0.6271( 118) 0.4815( 135) 0.5630( 135) 1.0000( 135)
+[3e-03,1e-02)    304  0.969 0.5000( 304) 0.5940( 234) 0.4868( 304) 0.5132( 304) 1.0000( 304)
+[1e-02,3e-02)    960  0.995 0.6792( 960) 0.7662( 757) 0.5958( 960) 0.5406( 960) 1.0000( 960)
+[3e-02,1e-01)   1530  0.998 0.6595(1530) 0.8207(1054) 0.6092(1530) 0.5745(1530) 1.0000(1530)
+[1e-01,3e-01)   1316  1.000 0.6292(1316) 0.8292( 896) 0.6178(1316) 0.6185(1316) 1.0000(1316)
+[3e-01,inf)    983  1.000 0.7009( 983) 0.8903( 392) 0.7223( 983) 0.5036( 983) 1.0000( 983)
+
+--- pre-registered hard/easy split at gap < 1e-2 ---
+
+HARD  gap<1e-2: n=709 (12.9%)   recomputed ceiling = 0.9103
+   rm_1.5b        0.5303  task[0.4518,0.5714]  run[0.4467,0.5965]  n=709
+   self_report    0.5676  task[0.5532,0.7308]  run[0.5103,0.6618]  n=599
+   embed_frozen   0.5049  task[0.3745,0.5349]  run[0.3906,0.5807]  n=709
+   code_len       0.5430  task[0.4581,0.5532]  run[0.4800,0.5698]  n=709
+
+EASY  gap>=1e-2: n=4789 (87.1%)   recomputed ceiling = 0.9984
+   rm_1.5b        0.6636  task[0.5708,0.7030]  run[0.5436,0.8084]  n=4789
+   self_report    0.8187  task[0.7050,0.8344]  run[0.7009,0.8910]  n=3099
+   embed_frozen   0.6321  task[0.5121,0.6898]  run[0.5195,0.7293]  n=4789
+   code_len       0.5653  task[0.4537,0.6174]  run[0.4822,0.6189]  n=4789
+
+--- KILL CONDITIONS ---
+K1  hard-region pairs = 709 (need >= 400)  -> PASS
+    dominant task spooky-author-identification = 73.5% (need <= 85%)  -> PASS
+    task decomposition of the hard region:
+      spooky-author-identification               n=  521  RM=0.5413
+      mlsp-2013-birds                            n=   80  RM=0.5125
+      chaii-hindi-and-tamil-question-answering   n=   61  RM=0.3934
+      tabular-playground-series-may-2022         n=   21  RM=0.6190
+      google-quest-challenge                     n=   15  RM=0.6667
+      petfinder-pawpularity-score                n=   10  RM=0.5000
+      spaceship-titanic                          n=    1  RM=1.0000
+K2  tasks with n>=60: 3; clearly above 0.55: 0; clearly below 0.45: 1  -> PASS (consistent)
+K3  recomputed hard-region ceiling = 0.9103 (need >= 0.65)  -> PASS

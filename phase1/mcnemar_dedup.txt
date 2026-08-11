@@ -1,0 +1,52 @@
+
+=== L1 lookahead (value_pairs_runsplit) ===
+raw scored rows 3000; distinct node pairs 3000; duplicate rows 0 (0.0%)
+deduped covered pairs n=2019 over 31 runs
+  RM 0.6667   self-report 0.7801   discordant 477:248
+  binomial McNemar p = 1.353e-17   <- assumes independence, OPTIMISTIC
+  paired delta (SR - RM) = +0.1134  run-clustered 95% CI [+0.0262, +0.1785]  -> RESOLVED
+  run-level sign test: 17 runs favour SR, 10 favour RM, p = 0.2478
+  per task (RM / SR / n):
+    spooky-author-identification               0.686 / 0.790 / 1463
+    petfinder-pawpularity-score                0.688 / 0.749 / 231
+    chaii-hindi-and-tamil-question-answering   0.582 / 0.823 / 220
+    tabular-playground-series-may-2022         0.638 / 0.745 / 47
+    mlsp-2013-birds                            0.452 / 0.405 / 42
+    google-quest-challenge                     0.444 / 0.778 / 9
+    random-acts-of-pizza                       0.333 / 0.833 / 6
+    leaf-classification                        0.000 / 1.000 / 1
+
+=== decision pairs (sibling comparisons) ===
+raw scored rows 1261; distinct node pairs 1006; duplicate rows 255 (20.2%)
+  multiplicity histogram: {1: 840, 2: 77, 3: 89}
+deduped covered pairs n=933 over 50 runs
+  RM 0.5413   self-report 0.7192   discordant 296:130
+  binomial McNemar p = 5.568e-16   <- assumes independence, OPTIMISTIC
+  paired delta (SR - RM) = +0.1779  run-clustered 95% CI [+0.1178, +0.2523]  -> RESOLVED
+  run-level sign test: 26 runs favour SR, 4 favour RM, p = 0.0001
+  per task (RM / SR / n):
+    spooky-author-identification               0.535 / 0.684 / 617
+    mlsp-2013-birds                            0.506 / 0.747 / 79
+    tabular-playground-series-may-2022         0.521 / 0.873 / 71
+    petfinder-pawpularity-score                0.525 / 0.797 / 59
+    chaii-hindi-and-tamil-question-answering   0.595 / 0.730 / 37
+    random-acts-of-pizza                       0.556 / 0.852 / 27
+    nomad2018-predict-transparent-conductors   0.600 / 0.800 / 25
+    leaf-classification                        0.833 / 0.500 / 6
+
+=== L1 uncapped (full held-out side) ===
+raw scored rows 5498; distinct node pairs 5498; duplicate rows 0 (0.0%)
+deduped covered pairs n=3698 over 35 runs
+  RM 0.6587   self-report 0.7780   discordant 886:445
+  binomial McNemar p = 4.272e-34   <- assumes independence, OPTIMISTIC
+  paired delta (SR - RM) = +0.1193  run-clustered 95% CI [+0.0310, +0.1883]  -> RESOLVED
+  run-level sign test: 20 runs favour SR, 11 favour RM, p = 0.1496
+  per task (RM / SR / n):
+    spooky-author-identification               0.673 / 0.784 / 2670
+    petfinder-pawpularity-score                0.725 / 0.776 / 437
+    chaii-hindi-and-tamil-question-answering   0.544 / 0.800 / 395
+    tabular-playground-series-may-2022         0.670 / 0.791 / 91
+    mlsp-2013-birds                            0.478 / 0.478 / 67
+    google-quest-challenge                     0.524 / 0.619 / 21
+    random-acts-of-pizza                       0.267 / 0.800 / 15
+    leaf-classification                        0.000 / 1.000 / 1

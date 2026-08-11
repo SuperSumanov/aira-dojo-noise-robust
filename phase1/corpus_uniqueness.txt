@@ -1,0 +1,66 @@
+<unknown>:76: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:175: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:219: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:221: SyntaxWarning: invalid escape sequence '\$'
+<unknown>:98: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:40: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:95: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:96: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:38: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:38: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:71: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:72: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:74: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:76: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:276: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:276: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:214: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:72: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:75: SyntaxWarning: invalid escape sequence '\d'
+<unknown>:72: SyntaxWarning: invalid escape sequence '\?'
+<unknown>:75: SyntaxWarning: invalid escape sequence '\d'
+cards with code: 12383
+operators: {'Draft': 582, 'Debug': 5494, 'Improve': 6307}  (Debug share 44.4% -- the mechanical-similarity trap)
+AST parse success: 12383/12383 = 100.0%
+
+normalisation       n   unique     rate  dup grps  largest
+raw            12383    12317   0.9947        30       16
+ast_norm       12383    12254   0.9896        78       18
+skeleton       12383    12254   0.9896        78       18
+
+duplicate groups stratified by lineage (skeleton, the strictest):
+  total duplicate groups          78
+  confined to ONE run             78   <- mechanical, expected
+  containing a parent-child edge  69   <- Debug near-copies
+  spanning TWO OR MORE runs       0   <- the only ones that mean 'independently rediscovered'
+  spanning two or more tasks      0   <- boilerplate
+
+  nodes inside cross-run duplicate groups: 0 (0.00% of parsed cards)
+  Read: a low cross-run figure means the corpus is not a few programs re-emitted,
+  which is what the redundancy elimination needs. A high within-run figure is
+  expected and says nothing -- Debug rewrites its parent.
+
+task                                           cards  unique skeletons    rate
+spooky-author-identification                    2513              2505   0.997
+mlsp-2013-birds                                 1456              1432   0.984
+petfinder-pawpularity-score                     1218              1205   0.989
+nomad2018-predict-transparent-conductors         840               838   0.998
+denoising-dirty-documents                        719               716   0.996
+tabular-playground-series-may-2022               712               673   0.945
+leaf-classification                              705               699   0.991
+whale-categorization-playground                  696               693   0.996
+chaii-hindi-and-tamil-question-answering         658               652   0.991
+tabular-playground-series-dec-2021               550               534   0.971
+dog-breed-identification                         405               404   0.998
+google-quest-challenge                           351               351   1.000
+tweet-sentiment-extraction                       277               277   1.000
+spaceship-titanic                                224               223   0.996
+random-acts-of-pizza                             185               179   0.968
+us-patent-phrase-to-phrase-matching              185               184   0.995
+histopathologic-cancer-detection                 169               169   1.000
+text-normalization-challenge-english-languag     158               158   1.000
+kuzushiji-recognition                            136               136   1.000
+learning-agency-lab-automated-essay-scoring-     126               126   1.000
+aptos2019-blindness-detection                     94                94   1.000
+text-normalization-challenge-russian-languag       5                 5   1.000
+aerial-cactus-identification                       1                 1   1.000

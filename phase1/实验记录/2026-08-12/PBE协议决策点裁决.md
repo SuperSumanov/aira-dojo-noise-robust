@@ -58,3 +58,7 @@ $P phase1/pbe_judge.py phase1/pbe_desc.jsonl   --arm desc --pairs 300
 $P phase1/pbe_score.py phase1/pbe_desc.jsonl phase1/pbe_report.jsonl
 ```
 seed 7;桶阈值 1e-2(预注册);qwen-max temperature 0。
+
+## 补:占位描述稳健性核查(smoke 暴露后补测)
+
+fidelity smoke 发现 3 个任务本地无数据、kuzushiji 未解包,即 pbe_judge 曾对 18% 的样本喂过占位描述头。按描述可得性重新分组(pbe_desc_check.py):**描述齐全子集 desc 臂 0.4959 [0.4482,0.5440]、report 臂 0.4736 [0.4292,0.5184],难区 0.4958/0.4706** —— 塌缩与占位描述无关,判决维持。占位子集 0.50-0.52 同为随机。

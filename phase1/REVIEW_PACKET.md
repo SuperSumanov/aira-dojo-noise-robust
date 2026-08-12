@@ -152,6 +152,7 @@ signed gap = z(真分) − z(自报分),兄弟最优节点:
 | "跨生成器塌陷" | 配置 bug,gen2/gen3 实际全是 DeepSeek,已修复并撤回 |
 | "within-run step 效应" | 小 run 加权伪影(≥6 对/run 时 p=0.143) |
 | "coverage-aware escalation 部署 top-1=0.9600" | 0.9600 是所选 card 的 eventual endpoint 身份命中；停止于 120 秒的实际 mixed 输出达到/超过 all-full 为 0.9200，已拆分两种语义 |
+| "120s submission 与 full signal 等价（P1 parent-CI [−0.1429,+0.2000]）" | 100 parents 仅来自 52 runs；run-cluster CI 扩为 [−0.2353,+0.2424]，只能称未检出差异，不能称等价/非劣 |
 
 ## 7. 代码与数据
 

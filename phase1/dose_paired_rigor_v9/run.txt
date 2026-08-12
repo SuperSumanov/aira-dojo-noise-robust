@@ -1,0 +1,60 @@
+
+== ALL ==
+ALL:policy_sub_vs_full: sets=35 runs=19 A=0.7714 B=0.7429 delta=+0.0286 runCI=[-0.2353,+0.2424] taskCI=[-0.2258,+0.2632]
+  common_candidates Counter({2: 22, 3: 10, 5: 2, 4: 1}) full_set_sizes Counter({2: 22, 3: 10, 5: 2, 4: 1})
+ALL:strict_sub_vs_full: sets=30 runs=15 A=0.9333 B=0.7333 delta=+0.2000 runCI=[+0.0000,+0.3871] taskCI=[+0.0000,+0.4194]
+  common_candidates Counter({2: 21, 3: 8, 5: 1}) full_set_sizes Counter({2: 16, 3: 11, 5: 2, 4: 1})
+ALL:strict_sub_vs_stdout: sets=24 runs=15 A=0.9167 B=0.7083 delta=+0.2083 runCI=[+0.0769,+0.3810] taskCI=[+0.0690,+0.4667]
+  common_candidates Counter({2: 15, 3: 8, 5: 1}) full_set_sizes Counter({2: 11, 3: 10, 5: 2, 4: 1})
+  task_effects
+    chaii-hindi-and-tamil-question-answering: n=1 delta=+1.0000
+    leaf-classification: n=3 delta=+0.3333
+    mlsp-2013-birds: n=5 delta=+0.0000
+    nomad2018-predict-transparent-conductors: n=1 delta=+1.0000
+    petfinder-pawpularity-score: n=1 delta=+0.0000
+    random-acts-of-pizza: n=4 delta=+0.0000
+    spaceship-titanic: n=1 delta=+1.0000
+    spooky-author-identification: n=4 delta=+0.0000
+    whale-categorization-playground: n=4 delta=+0.2500
+  run_sign positive=5 negative=0 tie=10 exact_p=0.062500
+  LOTO min=+0.1739 max=+0.2632 all_positive=True
+
+== HARD ==
+HARD:policy_sub_vs_full: sets=15 runs=9 A=0.7333 B=0.6667 delta=+0.0667 runCI=[-0.1333,+0.3333] taskCI=[-0.1429,+0.2857]
+  common_candidates Counter({2: 7, 3: 6, 5: 1, 4: 1}) full_set_sizes Counter({2: 7, 3: 6, 5: 1, 4: 1})
+HARD:strict_sub_vs_full: sets=15 runs=9 A=0.8667 B=0.7333 delta=+0.1333 runCI=[-0.1333,+0.4375] taskCI=[-0.1538,+0.4118]
+  common_candidates Counter({2: 10, 3: 5}) full_set_sizes Counter({3: 7, 2: 6, 5: 1, 4: 1})
+HARD:strict_sub_vs_stdout: sets=14 runs=9 A=0.8571 B=0.7143 delta=+0.1429 runCI=[-0.1176,+0.4545] taskCI=[-0.1111,+0.4545]
+  common_candidates Counter({2: 9, 3: 5}) full_set_sizes Counter({2: 6, 3: 6, 5: 1, 4: 1})
+  task_effects
+    chaii-hindi-and-tamil-question-answering: n=1 delta=+1.0000
+    leaf-classification: n=3 delta=+0.3333
+    mlsp-2013-birds: n=3 delta=-0.3333
+    nomad2018-predict-transparent-conductors: n=1 delta=+1.0000
+    petfinder-pawpularity-score: n=1 delta=+0.0000
+    random-acts-of-pizza: n=1 delta=+0.0000
+    spooky-author-identification: n=2 delta=+0.0000
+    whale-categorization-playground: n=2 delta=+0.0000
+  run_sign positive=3 negative=1 tie=5 exact_p=0.625000
+  LOTO min=+0.0769 max=+0.2727 all_positive=True
+
+== EASY ==
+EASY:policy_sub_vs_full: sets=20 runs=16 A=0.8000 B=0.8000 delta=+0.0000 runCI=[-0.3529,+0.3043] taskCI=[-0.3333,+0.3333]
+  common_candidates Counter({2: 15, 3: 4, 5: 1}) full_set_sizes Counter({2: 15, 3: 4, 5: 1})
+EASY:strict_sub_vs_full: sets=15 runs=12 A=1.0000 B=0.7333 delta=+0.2667 runCI=[+0.0000,+0.4615] taskCI=[+0.0556,+0.5455]
+  common_candidates Counter({2: 11, 3: 3, 5: 1}) full_set_sizes Counter({2: 10, 3: 4, 5: 1})
+EASY:strict_sub_vs_stdout: sets=10 runs=9 A=1.0000 B=0.7000 delta=+0.3000 runCI=[+0.0000,+0.5556] taskCI=[+0.0769,+0.6250]
+  common_candidates Counter({2: 6, 3: 3, 5: 1}) full_set_sizes Counter({2: 5, 3: 4, 5: 1})
+  task_effects
+    mlsp-2013-birds: n=2 delta=+0.5000
+    random-acts-of-pizza: n=3 delta=+0.0000
+    spaceship-titanic: n=1 delta=+1.0000
+    spooky-author-identification: n=2 delta=+0.0000
+    whale-categorization-playground: n=2 delta=+0.5000
+  run_sign positive=3 negative=0 tie=6 exact_p=0.250000
+  LOTO min=+0.2222 max=+0.4286 all_positive=True
+
+== PARSER TYPES FOR STRICT COMMON @120 ==
+cards 59 val_how Counter({'keyed': 58, 'bare': 1})
+HEADLINE delta=+0.208333 runCI=[0.07692307692307693, 0.38095238095238093] taskCI=[0.06896551724137931, 0.4666666666666667] exact_run_sign_p=0.062500
+WROTE phase1/dose_paired_rigor_v9

@@ -1,136 +1,160 @@
-"""Decision-aligned pairs: train on the comparisons the search actually faces.
+"""Build decision-aligned sibling pairs from a card corpus.
 
-The senior's critique, verbatim in spirit: training enumerates random pairs from the whole
-pool, but deployment ranks nodes DURING tree growth -- the two must align before "does training
-help" means anything. The decision a value model faces at consultation time is: children of one
-parent, at the moment of expansion. Those pairs are the training and eval distribution here.
+A decision set is the graded children of one recorded parent.  For budget K,
+``value_K(child)`` is the best external grade among the child and its first K
+visible descendants in expansion order.  Every unequal sibling combination is
+written as one oriented preference pair.
 
-Construction:
-  decision set  = graded children of a common parent (>= 2 of them)
-  label         = count-matched lookahead within the set: value_K(child) = best graded among
-                  the child and its first K descendants in expansion order; both children must
-                  have >= K descendants (K=0 means own score only, always defined)
-  pair          = every within-set pair whose values differ
-  split         = by tree, both endpoints in the same side (the standing rule)
+This command deliberately does not assign a data split.  The old implementation
+split lineage fragments here, but one physical AIRA run can contain several such
+fragments, causing train/test leakage and corpus-size-dependent pair loss.  Use
+``build_runsplit`` downstream to assign the frozen physical-run split.
 
-K=0 sets double as the "rank siblings by their own eventual score" task; K>=1 sets ask the
-deployment question proper ("which child leads somewhere better").
-
-Usage: python phase1/decision_pairs.py OUT cards.jsonl [--ks 0,1,2] [--seed 7]
+Usage:
+  python -m src.mle_critic.src.preprocess.build_decision_pairs \
+    OUT CARDS --orientation ORIENTATION [--ks 0,1,2]
 """
-import argparse, collections, itertools, json, random
+from __future__ import annotations
+
+import argparse
+import collections
+import itertools
+import json
 from pathlib import Path
 
-ap = argparse.ArgumentParser()
-ap.add_argument("out"); ap.add_argument("cards")
-ap.add_argument("--ks", default="0,1,2")
-ap.add_argument("--seed", type=int, default=7)
-ap.add_argument("--orientation", default=str(Path(__file__).resolve().parents[4] / "data" / "mle_critic" / "task_orientation.json"))
-a = ap.parse_args()
-KS = [int(x) for x in a.ks.split(",")]
 
-cards = {}
-for l in open(a.cards):
-    d = json.loads(l)
-    cards[d["id"]] = d
-ORI = json.load(open(a.orientation))
-kids = collections.defaultdict(list)
-for cid, d in cards.items():
-    p = d["lineage"].get("parent_id")
-    if p:
-        kids[p].append(cid)
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("out", type=Path)
+    parser.add_argument("cards", type=Path)
+    parser.add_argument("--ks", default="0,1,2")
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=7,
+        help="deprecated compatibility option; splitting now happens downstream",
+    )
+    parser.add_argument(
+        "--orientation",
+        type=Path,
+        default=Path(__file__).resolve().parents[4]
+        / "data"
+        / "mle_critic"
+        / "task_orientation.json",
+    )
+    args = parser.parse_args()
+    del args.seed
+    budgets = [int(value) for value in args.ks.split(",")]
+
+    cards = {}
+    with args.cards.open(encoding="utf-8") as stream:
+        for line in stream:
+            card = json.loads(line)
+            cards[card["id"]] = card
+    orientation = json.loads(args.orientation.read_text(encoding="utf-8"))
+
+    children = collections.defaultdict(list)
+    for card_id, card in cards.items():
+        parent_id = card["lineage"].get("parent_id")
+        if parent_id:
+            children[parent_id].append(card_id)
+
+    def descendants_in_order(card_id: str) -> list[str]:
+        descendants = []
+        stack = list(children.get(card_id, []))
+        seen = set()
+        while stack:
+            descendant_id = stack.pop()
+            if descendant_id in seen or descendant_id not in cards:
+                continue
+            seen.add(descendant_id)
+            descendants.append(descendant_id)
+            stack.extend(children.get(descendant_id, []))
+        return sorted(
+            descendants,
+            key=lambda descendant_id: (
+                cards[descendant_id]["lineage"].get("step") or 0,
+                descendant_id,
+            ),
+        )
+
+    descendants = {
+        card_id: descendants_in_order(card_id) for card_id in cards
+    }
+
+    def lookahead_value(card_id: str, budget: int):
+        if budget == 0:
+            return cards[card_id]["label"]["graded"]
+        if len(descendants[card_id]) < budget:
+            return None
+        task = cards[card_id]["task"]["name"]
+        choose = min if orientation[task] else max
+        return choose(
+            [cards[card_id]["label"]["graded"]]
+            + [
+                cards[descendant_id]["label"]["graded"]
+                for descendant_id in descendants[card_id][:budget]
+            ]
+        )
+
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    counts = collections.Counter()
+    decision_sets = collections.Counter()
+    with args.out.open("w", encoding="utf-8") as output:
+        for parent_id, sibling_ids in children.items():
+            sibling_ids = [card_id for card_id in sibling_ids if card_id in cards]
+            if len(sibling_ids) < 2:
+                continue
+            task = cards[sibling_ids[0]]["task"]["name"]
+            if task not in orientation:
+                continue
+            if any(cards[card_id]["task"]["name"] != task for card_id in sibling_ids):
+                raise ValueError(f"siblings under {parent_id} span multiple tasks")
+            lower_is_better = orientation[task]
+            decision_sets[task] += 1
+            for budget in budgets:
+                for left, right in itertools.combinations(sibling_ids, 2):
+                    left_value = lookahead_value(left, budget)
+                    right_value = lookahead_value(right, budget)
+                    if (
+                        left_value is None
+                        or right_value is None
+                        or left_value == right_value
+                    ):
+                        continue
+                    left_wins = (
+                        left_value < right_value
+                        if lower_is_better
+                        else left_value > right_value
+                    )
+                    better, worse = (left, right) if left_wins else (right, left)
+                    record = {
+                        "task": task,
+                        "better": better,
+                        "worse": worse,
+                        "budget": budget,
+                        "parent": parent_id,
+                        "set_size": len(sibling_ids),
+                        "gap_raw": round(abs(left_value - right_value), 6),
+                        "intask_split": "unassigned",
+                        "loto_fold": task,
+                        "clears_tau": None,
+                        "src": "decision",
+                    }
+                    output.write(json.dumps(record, ensure_ascii=False) + "\n")
+                    counts[(budget, task)] += 1
+
+    print(f"[decision_pairs] {sum(counts.values())} pairs -> {args.out}")
+    for budget in budgets:
+        print(
+            f"  K={budget}: "
+            f"{sum(count for (key, _), count in counts.items() if key == budget)}"
+        )
+    print(
+        f"  decision sets: {sum(decision_sets.values())}; "
+        f"tasks with sets: {len(decision_sets)}"
+    )
 
 
-def desc_in_order(cid):
-    out, st, seen = [], list(kids.get(cid, [])), set()
-    while st:
-        x = st.pop()
-        if x in seen or x not in cards:
-            continue
-        seen.add(x)
-        out.append(x)
-        st.extend(kids.get(x, []))
-    return sorted(out, key=lambda c: (cards[c]["lineage"].get("step") or 0, c))
-
-
-root = {}
-def tree_root(cid, g=0):
-    if cid in root:
-        return root[cid]
-    p = cards.get(cid, {}).get("lineage", {}).get("parent_id")
-    r = cid if (not p or p not in cards or g > 200) else tree_root(p, g + 1)
-    root[cid] = r
-    return r
-
-
-DESC = {c: desc_in_order(c) for c in cards}
-
-
-def val(cid, K):
-    if K == 0:
-        return cards[cid]["label"]["graded"]
-    if len(DESC[cid]) < K:
-        return None
-    t = cards[cid]["task"]["name"]
-    pick = min if ORI.get(t, False) else max
-    return pick([cards[cid]["label"]["graded"]] +
-                [cards[x]["label"]["graded"] for x in DESC[cid][:K]])
-
-
-rng = random.Random(a.seed)
-by_task_roots = collections.defaultdict(set)
-for cid in cards:
-    t = cards[cid]["task"]["name"]
-    if t in ORI:
-        by_task_roots[t].add(tree_root(cid))
-hold = {}
-for t, roots in by_task_roots.items():
-    rs = sorted(roots)
-    rng.shuffle(rs)
-    hold[t] = set(rs[int(0.8 * len(rs)):])
-
-n = collections.Counter()
-sets_seen = collections.Counter()
-with open(a.out, "w") as f:
-    for parent, ch in kids.items():
-        ch = [c for c in ch if c in cards]
-        if len(ch) < 2:
-            continue
-        t = cards[ch[0]]["task"]["name"]
-        if t not in ORI:
-            continue
-        lower = ORI[t]
-        sides_ = {tree_root(c) in hold[t] for c in ch}
-        if len(sides_) > 1:
-            n["__dropped_cross_fragment_sets__", -1, "drop"] += 1
-            continue
-        in_hold = sides_.pop()
-        split = "test" if in_hold else "train"
-        sets_seen[(t, split)] += 1
-        for K in KS:
-            for x, y in itertools.combinations(ch, 2):
-                vx, vy = val(x, K), val(y, K)
-                if vx is None or vy is None or vx == vy:
-                    continue
-                hi, lo = (x, y) if ((vx < vy) if lower else (vx > vy)) else (y, x)
-                f.write(json.dumps({
-                    "task": t, "better": hi, "worse": lo, "budget": K,
-                    "parent": parent, "set_size": len(ch),
-                    "gap_raw": round(abs(vx - vy), 6),
-                    "intask_split": split, "loto_fold": t,
-                    "clears_tau": None, "src": "decision"}) + "\n")
-                n[(t[:20], K, split)] += 1
-
-tot = sum(n.values())
-print(f"[decision_pairs] {tot} pairs -> {a.out}")
-per_split = collections.Counter()
-for (t, K, s), v in n.items():
-    per_split[(K, s)] += v
-for k in sorted(per_split):
-    print(f"  K={k[0]} {k[1]:5s}: {per_split[k]}")
-top = collections.Counter()
-for (t, K, s), v in n.items():
-    top[t] += v
-print("  by task:", dict(top.most_common(8)))
-print("  decision sets:", dict(collections.Counter(s for (_, s) in sets_seen)),
-      "total", sum(sets_seen.values()))
+if __name__ == "__main__":
+    main()

@@ -115,26 +115,37 @@ def curve(universe, label):
         print(f"{nm:>22} {sum(v)/len(v):7.4f} [{lo:.4f},{hi:.4f}] {len(pp):8d} "
               f"{'-':>16}")
     for c in CAPS:
-        pp, fell = {}, 0
-        for par in universe:
-            ch = [x for x in manifest_children[par] if G.get(x) is not None]
-            if len(ch) < 2:
+        for chan, getter in (("stdout_val", lambda r: r["stdout_val"]),
+                             ("sub_score", lambda r: r["sub_score"])):
+            pp, fell = {}, 0
+            dec_only = {}
+            for par in universe:
+                ch = [x for x in manifest_children[par] if G.get(x) is not None]
+                if len(ch) < 2:
+                    continue
+                t = TASK[ch[0]]
+                best, _ = best_children(ch, t)
+                sig = {x: getter(R[x][c]) for x in ch
+                       if c in R.get(x, {}) and getter(R[x][c]) is not None}
+                if sig:
+                    hit = float(pick_by(sig, t) in best)
+                    pp[par] = [hit]
+                    dec_only[par] = [hit]
+                else:
+                    fell += 1
+                    pp[par] = [len(best) / len(ch)]      # honest fallback = random
+            v = [x for vs in pp.values() for x in vs]
+            if not v:
                 continue
-            t = TASK[ch[0]]
-            best, _ = best_children(ch, t)
-            sig = {x: R[x][c]["stdout_val"] for x in ch
-                   if c in R.get(x, {}) and R[x][c]["stdout_val"] is not None}
-            if sig:
-                pp[par] = [float(pick_by(sig, t) in best)]
-            else:
-                fell += 1
-                pp[par] = [len(best) / len(ch)]      # honest fallback = random
-        v = [x for vs in pp.values() for x in vs]
-        if not v:
-            continue
-        lo, hi = boot(pp)
-        print(f"{'stdout_val@%ds' % c:>22} {sum(v)/len(v):7.4f} [{lo:.4f},{hi:.4f}] "
-              f"{len(pp)-fell:8d} {fell:16d}")
+            lo, hi = boot(pp)
+            line = (f"{'%s@%ds' % (chan, c):>22} {sum(v)/len(v):7.4f} "
+                    f"[{lo:.4f},{hi:.4f}] {len(pp)-fell:8d} {fell:16d}")
+            if dec_only:
+                dv = [x for vs in dec_only.values() for x in vs]
+                dlo, dhi = boot(dec_only)
+                line += (f"   decided-only {sum(dv)/len(dv):.4f} "
+                         f"[{dlo:.4f},{dhi:.4f}]")
+            print(line)
 
 
 all_sets = [p for p in manifest_children

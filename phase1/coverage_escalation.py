@@ -14,10 +14,9 @@ trained and no frozen split is modified.  Random tie breaking is integrated anal
 Inference is clustered by physical run (primary) and parent (secondary), because multiple
 sampled decisions can come from one run.
 
-The exact costs available here are the observed 120-s-stage wall times and the number of
-full evaluations.  Since per-candidate historical full runtimes are not in the frozen
-manifest, seconds-to-completion are shown only as scenarios calibrated at the independently
-measured corpus median of 561 s; they are not presented as exact runtime measurements.
+Cost accounting uses the observed capped-run wall times plus every sampled candidate's
+historical full runtime exported from the SHA-verified v9 corpus.  The restart policy is
+deployable with the current worker; the continuation figure assumes a resumable executor.
 """
 
 from __future__ import annotations
@@ -40,9 +39,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--manifest", default="phase1/fidelity_manifest.jsonl")
     p.add_argument("--results", default="phase1/fidelity_results.jsonl")
     p.add_argument("--run-map", default="phase1/card_run_map.json")
+    p.add_argument("--runtime-map", default="phase1/fidelity_runtime_v9.jsonl")
     p.add_argument("--orientation", default="phase1/task_orientation.json")
     p.add_argument("--cap", type=int, default=120)
-    p.add_argument("--median-full-s", type=float, default=561.0)
     p.add_argument("--bootstrap", type=int, default=10000)
     p.add_argument("--seed", type=int, default=7)
     p.add_argument("--out-dir", default="phase1/coverage_escalation_v9")
@@ -171,11 +170,11 @@ def summarize_rows(rows: list[dict], nb: int, seed: int) -> dict[str, object]:
         "mean_rank": statistics.mean(rank),
         "mean_artifact_coverage": statistics.mean(float(r["artifact_coverage"]) for r in rows),
         "mean_full_eval_count": statistics.mean(float(r["full_eval_count"]) for r in rows),
-        "mean_cost_ratio_restart_scenario": statistics.mean(
-            float(r["cost_ratio_restart_scenario"]) for r in rows
+        "mean_cost_ratio_restart_exact": statistics.mean(
+            float(r["cost_ratio_restart_exact"]) for r in rows
         ),
-        "mean_cost_ratio_continue_scenario": statistics.mean(
-            float(r["cost_ratio_continue_scenario"]) for r in rows
+        "mean_cost_ratio_continue_exact": statistics.mean(
+            float(r["cost_ratio_continue_exact"]) for r in rows
         ),
     }
 
@@ -223,6 +222,7 @@ def main() -> None:
     manifest_path = Path(args.manifest)
     results_path = Path(args.results)
     run_map_path = Path(args.run_map)
+    runtime_map_path = Path(args.runtime_map)
     orientation_path = Path(args.orientation)
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -230,6 +230,16 @@ def main() -> None:
     manifest = read_jsonl(manifest_path)
     results_all = read_jsonl(results_path)
     run_map = json.loads(run_map_path.read_text(encoding="utf-8"))
+    runtime_rows = read_jsonl(runtime_map_path)
+    runtime = {}
+    runtime_cards_hashes = set()
+    for row in runtime_rows:
+        cid = row["card_id"]
+        assert cid not in runtime, f"duplicate runtime card: {cid}"
+        assert finite(row.get("runtime_s")) and float(row["runtime_s"]) >= 0
+        runtime[cid] = float(row["runtime_s"])
+        runtime_cards_hashes.add(row.get("cards_sha256"))
+    assert len(runtime_cards_hashes) == 1 and None not in runtime_cards_hashes
     lower_is_better = json.loads(orientation_path.read_text(encoding="utf-8"))
 
     # Pre-flight invariants: frozen population, one endpoint, one cap result, and one
@@ -252,6 +262,10 @@ def main() -> None:
     assert set(cap_index) == manifest_ids, (
         f"cap coverage mismatch: missing={len(manifest_ids-set(cap_index))}, "
         f"extra={len(set(cap_index)-manifest_ids)}"
+    )
+    assert set(runtime) == manifest_ids, (
+        f"runtime coverage mismatch: missing={len(manifest_ids-set(runtime))}, "
+        f"extra={len(set(runtime)-manifest_ids)}"
     )
 
     set_rows: list[dict] = []
@@ -290,10 +304,10 @@ def main() -> None:
         assert set(escalated) == set(children)
 
         low_wall = sum(float(cap_index[c]["wall_s"]) for c in children)
-        full_baseline = len(children) * args.median_full_s
-        restart_cost = low_wall + len(silent) * args.median_full_s
-        continuation_cost = low_wall + len(silent) * max(
-            0.0, args.median_full_s - args.cap
+        full_baseline = sum(runtime[c] for c in children)
+        restart_cost = low_wall + sum(runtime[c] for c in silent)
+        continuation_cost = low_wall + sum(
+            max(0.0, runtime[c] - args.cap) for c in silent
         )
         signals = {
             "random": None,
@@ -336,10 +350,11 @@ def main() -> None:
                     **chosen,
                     "observed_low_stage_wall_s": low_wall,
                     "full_eval_count": full_evals,
-                    "cost_restart_scenario_s": restart_s,
-                    "cost_continue_scenario_s": continuation_s,
-                    "cost_ratio_restart_scenario": restart_s / full_baseline,
-                    "cost_ratio_continue_scenario": continuation_s / full_baseline,
+                    "historical_all_full_runtime_s": full_baseline,
+                    "cost_restart_exact_s": restart_s,
+                    "cost_continue_exact_s": continuation_s,
+                    "cost_ratio_restart_exact": restart_s / full_baseline,
+                    "cost_ratio_continue_exact": continuation_s / full_baseline,
                 }
             )
 
@@ -363,6 +378,9 @@ def main() -> None:
             "results_sha256": sha256(results_path),
             "run_map": str(run_map_path),
             "run_map_sha256": sha256(run_map_path),
+            "runtime_map": str(runtime_map_path),
+            "runtime_map_sha256": sha256(runtime_map_path),
+            "runtime_source_cards_sha256": next(iter(runtime_cards_hashes)),
             "orientation": str(orientation_path),
             "orientation_sha256": sha256(orientation_path),
             "git_commit": subprocess.run(
@@ -371,8 +389,7 @@ def main() -> None:
             "python": platform.python_version(),
             "command": (
                 f"python phase1/coverage_escalation.py --cap {args.cap} "
-                f"--median-full-s {args.median_full_s:g} --bootstrap {args.bootstrap} "
-                f"--seed {args.seed}"
+                f"--runtime-map {runtime_map_path} --bootstrap {args.bootstrap} --seed {args.seed}"
             ),
         },
         "design": {
@@ -381,10 +398,9 @@ def main() -> None:
             "bootstrap_seed": args.seed,
             "primary_cluster": "physical run",
             "secondary_cluster": "parent decision",
-            "median_full_runtime_s_scenario": args.median_full_s,
             "cost_warning": (
-                "Only low-stage wall time and full-evaluation counts are exact. Runtime "
-                "ratios use the independently measured 561-s corpus median as a scenario."
+                "Restart cost combines observed cap-run wall time with historical per-card "
+                "full runtime. Continuation cost additionally assumes execution can resume."
             ),
             "population_warning": (
                 "The manifest is deliberately 50 hard + 50 easy sets; ALL is balanced, "
@@ -476,12 +492,12 @@ def main() -> None:
     escalate_rows = [
         r for r in set_rows if r["policy"] == "artifact120_escalate_silent"
     ]
-    baseline_s = sum(float(r["n_children"]) for r in escalate_rows) * args.median_full_s
+    baseline_s = sum(float(r["historical_all_full_runtime_s"]) for r in escalate_rows)
     restart_ratio = sum(
-        float(r["cost_restart_scenario_s"]) for r in escalate_rows
+        float(r["cost_restart_exact_s"]) for r in escalate_rows
     ) / baseline_s
     continue_ratio = sum(
-        float(r["cost_continue_scenario_s"]) for r in escalate_rows
+        float(r["cost_continue_exact_s"]) for r in escalate_rows
     ) / baseline_s
     summary["aggregate_cost_accounting"] = {
         "observed_low_stage_wall_s": sum(
@@ -489,8 +505,9 @@ def main() -> None:
         ),
         "full_eval_count": sum(int(r["full_eval_count"]) for r in escalate_rows),
         "all_full_eval_count": sum(int(r["n_children"]) for r in escalate_rows),
-        "restart_scenario_ratio_to_all_full": restart_ratio,
-        "continuation_scenario_ratio_to_all_full": continue_ratio,
+        "historical_all_full_runtime_s": baseline_s,
+        "restart_exact_ratio_to_all_full": restart_ratio,
+        "continuation_exact_ratio_to_all_full": continue_ratio,
     }
 
     (out_dir / "summary.json").write_text(
@@ -515,7 +532,7 @@ def main() -> None:
         lo, hi = s["top1_run_cluster_ci95"]
         print(
             f"{policy:30s} {s['top1']:.4f}   [{lo:.4f},{hi:.4f}]"
-            f"       {s['mean_cost_ratio_restart_scenario']:.3f}"
+            f"       {s['mean_cost_ratio_restart_exact']:.3f}"
         )
     for d in summary["paired_top1_differences"]:
         if d["stratum"] == "ALL_BALANCED":

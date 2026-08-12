@@ -13,6 +13,7 @@
  "nomad2018-predict-transparent-conductors": true,
  "petfinder-pawpularity-score": true,
  "random-acts-of-pizza": false,
+ "ranzcr-clip-catheter-line-classification": false,
  "spaceship-titanic": false,
  "spooky-author-identification": true,
  "tabular-playground-series-dec-2021": false,

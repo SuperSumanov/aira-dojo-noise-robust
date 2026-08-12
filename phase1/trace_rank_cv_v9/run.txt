@@ -1,0 +1,14 @@
+VERIFIED sets=100 runs=52 children=230 silent=144 pairs=87
+random_expected              top1=0.6433 [0.5578,0.7294] restart=0.4982 continue=0.4717
+stdout_tfidf                 top1=0.6600 [0.5417,0.7677] restart=0.5247 continue=0.4982
+top1_scalar_run_oof          top1=0.5700 [0.4444,0.6951] restart=0.5116 continue=0.4851
+top1_text_run_oof            top1=0.5900 [0.4747,0.6979] restart=0.4853 continue=0.4588
+top1_combined_run_oof        top1=0.6100 [0.4956,0.7222] restart=0.5081 continue=0.4816
+top1_scalar_loto             top1=0.5900 [0.4673,0.7071] restart=0.5323 continue=0.5058
+top1_text_loto               top1=0.6100 [0.4945,0.7176] restart=0.4670 continue=0.4405
+top1_combined_loto           top1=0.6000 [0.4808,0.7130] restart=0.5167 continue=0.4902
+oracle_top1                  top1=0.9600 [0.9010,1.0000] restart=0.4951 continue=0.4686
+all_escalate                 top1=0.9600 [0.9010,1.0000] restart=0.9850 continue=0.9312
+full_external                top1=1.0000 [1.0000,1.0000] restart=1.0000 continue=1.0000
+PREREGISTERED_VERDICT=KILL
+WROTE /tmp/codex_trace_rank_cv_v9_same

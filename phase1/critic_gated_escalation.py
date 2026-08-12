@@ -351,6 +351,24 @@ def main() -> None:
             else:
                 chosen = tied_best(signals, task, lower)
             top1, regret = expected_top1(chosen, truth, task, lower)
+            full_final_best = max(utility(value, task, lower) for value in truth.values())
+            if signals:
+                deployed_utility = statistics.mean(
+                    utility(signals[card_id], task, lower) for card_id in chosen
+                )
+                deployed_available = 1
+                deployed_delta = deployed_utility - full_final_best
+                deployed_matches = float(deployed_delta >= -1e-12)
+                deployed_strictly_beats = float(deployed_delta > 1e-12)
+                deployed_strictly_loses = float(deployed_delta < -1e-12)
+            else:
+                # No artifact and no escalation means that the policy has no deployable output.
+                deployed_utility = float("nan")
+                deployed_available = 0
+                deployed_delta = float("nan")
+                deployed_matches = 0.0
+                deployed_strictly_beats = 0.0
+                deployed_strictly_loses = 1.0
             per_set.append(
                 {
                     "parent": parent,
@@ -363,8 +381,18 @@ def main() -> None:
                     "n_silent": len(silent),
                     "n_escalated": len(selected_silent),
                     "n_pruned": len(pruned),
+                    # This is candidate-identity accuracy: the selected card's eventual
+                    # full endpoint is best.  It is not the score of the output available
+                    # when an artifact-producing run is stopped at ``cap``.
                     "top1_expected": top1,
                     "raw_regret": regret,
+                    "deployed_available": deployed_available,
+                    "deployed_utility": deployed_utility,
+                    "full_final_best_utility": full_final_best,
+                    "deployed_delta_to_full_final": deployed_delta,
+                    "deployed_matches_or_beats_full": deployed_matches,
+                    "deployed_strictly_beats_full": deployed_strictly_beats,
+                    "deployed_strictly_loses_full": deployed_strictly_loses,
                     "low_wall_s": low_wall,
                     "all_full_runtime_s": full_baseline,
                     "restart_cost_s": restart_cost,
@@ -396,6 +424,14 @@ def main() -> None:
             "fixed_consensus_predictors": list(gate_predictors),
             "tuning": "none",
             "no_artifact_fallback": "escalate all silent candidates",
+            "top1_semantics": (
+                "selected card identity's eventual full endpoint is best; this is a "
+                "routing diagnostic, not the actually deployed partial/full score"
+            ),
+            "deployment_semantics": (
+                "artifact candidates contribute their cap-time sub_score; escalated "
+                "candidates contribute their final external grade"
+            ),
         },
         "counts": {
             "sets": len(by_parent),
@@ -423,6 +459,7 @@ def main() -> None:
         )
         summary["policies"][policy] = {
             "top1": top1,
+            "top1_semantics": "endpoint_identity",
             "top1_run_cluster_ci95": [top_lo, top_hi],
             "mean_raw_regret": statistics.mean(row["raw_regret"] for row in rows),
             "full_evaluations": sum(row["n_escalated"] for row in rows),
@@ -430,6 +467,27 @@ def main() -> None:
             "restart_ratio_to_all_full": restart,
             "continuation_ratio_to_all_full": continuation,
         }
+        available_rows = [row for row in rows if row["deployed_available"]]
+        match_lo, match_hi = run_bootstrap(
+            rows, "deployed_matches_or_beats_full", args.bootstrap, args.seed
+        )
+        summary["policies"][policy].update({
+            "deployed_available_sets": len(available_rows),
+            "deployed_matches_or_beats_full": statistics.mean(
+                row["deployed_matches_or_beats_full"] for row in rows
+            ),
+            "deployed_matches_or_beats_full_run_cluster_ci95": [match_lo, match_hi],
+            "deployed_strictly_beats_full": statistics.mean(
+                row["deployed_strictly_beats_full"] for row in rows
+            ),
+            "deployed_strictly_loses_full": statistics.mean(
+                row["deployed_strictly_loses_full"] for row in rows
+            ),
+            "mean_deployed_delta_to_full_final_available": (
+                statistics.mean(row["deployed_delta_to_full_final"] for row in available_rows)
+                if available_rows else None
+            ),
+        })
         difference_rows = []
         for row in rows:
             difference_rows.append(
@@ -442,9 +500,24 @@ def main() -> None:
         delta_lo, delta_hi = run_bootstrap(
             difference_rows, "delta", args.bootstrap, args.seed
         )
+        deployed_difference_rows = []
+        for row in rows:
+            deployed_difference_rows.append({
+                "run_id": row["run_id"],
+                "delta": row["deployed_matches_or_beats_full"]
+                - all_index[row["parent"]]["deployed_matches_or_beats_full"],
+            })
+        deployed_delta = statistics.mean(
+            row["delta"] for row in deployed_difference_rows
+        )
+        deployed_lo, deployed_hi = run_bootstrap(
+            deployed_difference_rows, "delta", args.bootstrap, args.seed
+        )
         summary["paired_vs_all_escalate"][policy] = {
             "delta_top1": delta,
             "run_cluster_ci95": [delta_lo, delta_hi],
+            "delta_deployed_matches_or_beats_full": deployed_delta,
+            "deployed_run_cluster_ci95": [deployed_lo, deployed_hi],
         }
 
     policy_index = {
@@ -467,9 +540,26 @@ def main() -> None:
         delta_lo, delta_hi = run_bootstrap(
             difference_rows, "delta", args.bootstrap, args.seed
         )
+        deployed_difference_rows = []
+        for parent in sorted(by_parent):
+            left_row = policy_index[(left, parent)]
+            right_row = policy_index[(right, parent)]
+            deployed_difference_rows.append({
+                "run_id": left_row["run_id"],
+                "delta": left_row["deployed_matches_or_beats_full"]
+                - right_row["deployed_matches_or_beats_full"],
+            })
+        deployed_delta = statistics.mean(
+            row["delta"] for row in deployed_difference_rows
+        )
+        deployed_lo, deployed_hi = run_bootstrap(
+            deployed_difference_rows, "delta", args.bootstrap, args.seed
+        )
         summary["paired_policy_comparisons"][f"{left}_minus_{right}"] = {
             "delta_top1": delta,
             "run_cluster_ci95": [delta_lo, delta_hi],
+            "delta_deployed_matches_or_beats_full": deployed_delta,
+            "deployed_run_cluster_ci95": [deployed_lo, deployed_hi],
         }
 
     # Independent reproduction checks for the two already-published endpoints.
@@ -499,12 +589,16 @@ def main() -> None:
         f"VERIFIED sets={summary['counts']['sets']} runs={summary['counts']['runs']} "
         f"children={summary['counts']['children']} tasks={summary['counts']['tasks']}"
     )
-    print("policy              top1   run-cluster 95% CI   full-evals pruned restart/full continue/full")
+    print(
+        "policy              endpoint-top1   deployed>=full   full-evals "
+        "pruned restart/full continue/full"
+    )
     for policy in policy_names:
         value = summary["policies"][policy]
         lo, hi = value["top1_run_cluster_ci95"]
         print(
             f"{policy:20s} {value['top1']:.4f} [{lo:.4f},{hi:.4f}] "
+            f"{value['deployed_matches_or_beats_full']:.4f} "
             f"{value['full_evaluations']:10d} {value['pruned_silent']:6d} "
             f"{value['restart_ratio_to_all_full']:.4f} "
             f"{value['continuation_ratio_to_all_full']:.4f}"

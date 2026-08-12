@@ -6,7 +6,8 @@
 
 冻结的 100 个真实 sibling 决策集上，120 秒已有可评分提交的候选可以作为可靠
 incumbent，但其余 144/230 个候选仍无提交。全部续跑几乎不省成本；oracle 只续跑每组
-最有希望的一个 silent candidate，却可保持全部续跑的 0.9600 top-1，说明存在约一半成本的
+最有希望的一个 silent candidate，却可保持全部续跑的 0.9600 eventual endpoint identity，
+说明存在约一半成本的
 可压缩上界。问题是：**只使用 120 秒时已经可见的执行痕迹和已冻结的静态 critic 输出，
 能否跨物理 run 选择应续跑的 silent candidate？**
 
@@ -68,6 +69,11 @@ Python/sklearn 版本、折分映射、逐 parent CSV、汇总 JSON 和确切命
 
 ## 8. 冻结后结果（不得用于改写以上规则）
 
+语义边界：本节预注册的 top-1 是“所选 card 的 eventual full endpoint 是否为最优”的
+routing diagnostic，不是 artifact 停在 120 秒时的实际部署分数。后续独立部署审计发现
+all-escalate 的两者分别为 0.9600 与 0.9200；本方向的 **KILL** 仅依赖 combined 相对
+同预算 random 的配对差，故不受公共语义偏移影响，但这些 top-1 数字不得再称部署质量。
+
 两次同命令复跑的 `summary.json`、`per_set.csv` 和 stdout 逐字节一致。总体为 100 sets、
 52 physical runs、230 children，其中 144 silent；可用于训练的非平局 silent pair 只有 87。
 
@@ -82,4 +88,5 @@ Python/sklearn 版本、折分映射、逐 parent CSV、汇总 JSON 和确切命
 主比较 `combined(run-OOS) - random expected = -0.033333`，run-cluster 95% CI
 `[-0.094982, +0.033003]`；LOTO 差为 `-0.043333 [-0.108911, +0.020000]`。因此严格按
 预注册判为 **KILL**。普通早期 trace 文本/进度统计没有提供可迁移的续跑排序信号；不在
-这批 100 sets 上继续调关键词、正则或模型选择。oracle headroom 仍在，但不能当作方法收益。
+这批 100 sets 上继续调关键词、正则或模型选择。oracle endpoint headroom 仍在，但不能当作
+方法收益或部署质量保证。

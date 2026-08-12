@@ -3,10 +3,12 @@
 ## 结论
 
 存在一个有信息量但尚不能升格为主结果的 Pareto 点：在 120 秒低保真阶段后，按既有
-out-of-sample TF-IDF critic 只升级排名前两名的沉默候选，top-1 为 **0.9300**
-[0.8621, 0.9823]，restart / resumable-continuation 成本分别为全量执行的
-**0.8783 / 0.8290**。相对“升级所有沉默候选”的 0.9600，配对差为 **−0.0300**，
-physical-run clustered 95% CI **[−0.0706, 0.0000]**。
+out-of-sample TF-IDF critic 只升级排名前两名的沉默候选，其“所选 card 的 eventual
+full endpoint 是最优 card”命中率为 **0.9300** [0.8621, 0.9823]；实际部署的 mixed
+输出（artifact 保留 120 秒外部分，升级项使用 full 分）达到或超过 all-full 最优分的比例
+为 **0.8900** [0.8090, 0.9565]。restart / resumable-continuation 成本分别为全量执行的
+**0.8783 / 0.8290**。相对“升级所有沉默候选”的对应两项 0.9600 / 0.9200，配对差均为
+**−0.0300**，physical-run clustered 95% CI **[−0.0706, 0.0000]**。
 
 这说明可以换取约 10.7%（restart）或 17.1%（可恢复执行）的成本节省，但当前数据不能
 证明这 3 个百分点的质量损失可忽略。它是后续独立确认的候选，不是已经成立的突破。
@@ -20,23 +22,23 @@ physical-run clustered 95% CI **[−0.0706, 0.0000]**。
   集上 out-of-sample 查询的预测；本脚本不训练模型。
 - 成本：120 秒阶段的实测 wall time + 每个被升级候选的 v9 历史逐卡 full runtime；同时报
   当前 restart worker 和假设可恢复执行的 continuation。
-- 推断：top-1 以 physical run 聚类 bootstrap 10,000 次，seed=7。
+- 推断：endpoint identity 与实际部署质量均以 physical run 聚类 bootstrap 10,000 次，seed=7。
 - 固定对照：random、TF-IDF、三预测器多数/全票、stdout/progress、truth-oracle 正控；不调参。
 
 ## 主要结果
 
-| policy | top-1（run-cluster CI） | 完整升级次数 | 剪枝 | restart/full | continue/full |
-|---|---:|---:|---:|---:|---:|
-| artifact only | 0.5783 [0.4865, 0.6703] | 0 | 144 | 0.0586 | 0.0586 |
-| all silent | 0.9600 [0.9010, 1.0000] | 144 | 0 | 0.9850 | 0.9312 |
-| unanimous-3 gate | 0.9500 [0.8737, 1.0000] | 141 | 3 | 0.9826 | 0.9300 |
-| top-1 random | 0.6000 [0.4706, 0.7190] | 71 | 73 | 0.5298 | 0.5033 |
-| top-1 TF-IDF | 0.6600 [0.5463, 0.7623] | 71 | 73 | 0.4849 | 0.4584 |
-| top-1 stdout+TF-IDF | 0.6700 [0.5521, 0.7778] | 71 | 73 | 0.5263 | 0.4998 |
-| **top-2 TF-IDF** | **0.9300 [0.8621, 0.9823]** | **132** | **12** | **0.8783** | **0.8290** |
-| top-2 random | 0.9200 [0.8505, 0.9770] | 132 | 12 | 0.9128 | 0.8635 |
-| top-1 truth oracle | 0.9600 [0.9010, 1.0000] | 71 | 73 | 0.4951 | 0.4686 |
-| top-2 truth oracle | 0.9600 [0.9010, 1.0000] | 132 | 12 | 0.8810 | 0.8317 |
+| policy | endpoint identity | deployed ≥ all-full | 完整升级次数 | 剪枝 | restart/full | continue/full |
+|---|---:|---:|---:|---:|---:|---:|
+| artifact only | 0.5783 | 0.2500 | 0 | 144 | 0.0586 | 0.0586 |
+| all silent | 0.9600 | 0.9200 | 144 | 0 | 0.9850 | 0.9312 |
+| unanimous-3 gate | 0.9500 | 0.9100 | 141 | 3 | 0.9826 | 0.9300 |
+| top-1 random | 0.6000 | 0.5600 | 71 | 73 | 0.5298 | 0.5033 |
+| top-1 TF-IDF | 0.6600 | 0.6200 | 71 | 73 | 0.4849 | 0.4584 |
+| top-1 stdout+TF-IDF | 0.6700 | 0.6300 | 71 | 73 | 0.5263 | 0.4998 |
+| **top-2 TF-IDF** | **0.9300** | **0.8900** | **132** | **12** | **0.8783** | **0.8290** |
+| top-2 random | 0.9200 | 0.8800 | 132 | 12 | 0.9128 | 0.8635 |
+| top-1 truth oracle | 0.9600 | 0.9200 | 71 | 73 | 0.4951 | 0.4686 |
+| top-2 truth oracle | 0.9600 | 0.9200 | 132 | 12 | 0.8810 | 0.8317 |
 
 TF-IDF 相对同预算 random 的增益不显著：top-2 为 **+0.0100**
 [−0.0225, +0.0449]；top-1 为 +0.0600 [−0.0392, +0.1591]。所以不能把 top-2 的
@@ -45,7 +47,7 @@ TF-IDF 相对同预算 random 的增益不显著：top-2 为 **+0.0100**
 ## 机制读法
 
 正控非常关键：truth-oracle 只升级一个沉默候选，就能在 **0.4951 restart cost** 下完全
-保留 all-silent 的 0.9600 top-1。这说明这批决策本身存在约一半成本的可压缩空间；当前
+保留 all-silent 的 0.9600 endpoint identity 和 0.9200 实际部署成功率。这说明这批决策本身存在约一半成本的可压缩空间；当前
 失败的瓶颈是“从沉默候选里认出该升级的那个”，而不是 120 秒调度在数学上没有 headroom。
 
 反过来，TF-IDF top-1 只有 0.6600，stdout+TF-IDF 也只有 0.6700。结合学长 Qwen3
@@ -63,11 +65,22 @@ TF-IDF 相对同预算 random 的增益不显著：top-2 为 **+0.0100**
 
 ## 完整性
 
-- `artifact_only=0.578333`、`all_escalate=0.9600`、`restart=0.984978` 必须逐项复现，
+- `artifact_only endpoint=0.578333`、`all_escalate endpoint=0.9600`、
+  `all_escalate deployed>=full=0.9200`、`restart=0.984978` 必须逐项复现，
   否则脚本 fail closed。
 - 两次完整运行的 `summary.json` 与 `per_set.csv` 逐字节相同。
 - 输出严格记录全部输入 SHA、脚本 SHA、git commit、Python、命令、seed。
 - 本分析是在看到 120 秒覆盖率后提出，属于 exploratory；必须用新数据确认。
+
+## 语义更正（同日独立审计）
+
+初版把 0.9600 简写为“部署 top-1”，但该量实际使用 card 的 eventual full `graded` 判定
+所选身份，和“artifact 在 120 秒停止、只部署当时 `sub_score`”的成本口径不一致。独立
+`deployment_semantics_audit.py` 在同一 100 sets 上重算：all-escalate 的 endpoint identity
+为 0.9600，而真实 mixed 输出达到或超过 all-full 为 **0.9200** [0.8462, 0.9798]；严格
+优于/落后分别为 0.0600/0.0800，平均有向分差 **+0.000061**
+[−0.000982, +0.001020]。因此 0.9600 仍可作 routing diagnostic，但不再称作部署质量。
+上述 Pareto 比较已统一补报两种语义；主裁决不变：top-2 TF-IDF 尚非正面突破。
 
 复现：
 

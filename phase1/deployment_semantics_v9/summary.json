@@ -1,0 +1,198 @@
+{
+  "all_escalate": {
+    "deployed_delta_to_full_final": {
+      "mean": 6.0599999999984275e-05,
+      "run_cluster_ci95": [
+        -0.0009816666666666678,
+        0.001019696969696972
+      ]
+    },
+    "deployed_matches_or_beats_full": {
+      "mean": 0.92,
+      "run_cluster_ci95": [
+        0.8461538461538461,
+        0.9797979797979798
+      ]
+    },
+    "deployed_strictly_beats_full": {
+      "mean": 0.06,
+      "run_cluster_ci95": [
+        0.011363636363636364,
+        0.11926605504587157
+      ]
+    },
+    "deployed_strictly_loses_full": {
+      "mean": 0.08,
+      "run_cluster_ci95": [
+        0.020202020202020204,
+        0.15384615384615385
+      ]
+    },
+    "endpoint_identity_top1": {
+      "mean": 0.96,
+      "run_cluster_ci95": [
+        0.900990099009901,
+        1.0
+      ]
+    },
+    "selected_artifact_fraction": {
+      "mean": 0.32,
+      "run_cluster_ci95": [
+        0.18947368421052632,
+        0.46153846153846156
+      ]
+    }
+  },
+  "by_task": {
+    "chaii-hindi-and-tamil-question-answering": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0,
+      "sets": 7
+    },
+    "denoising-dirty-documents": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0,
+      "sets": 8
+    },
+    "google-quest-challenge": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0,
+      "sets": 7
+    },
+    "kuzushiji-recognition": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0,
+      "sets": 4
+    },
+    "leaf-classification": {
+      "deployed_matches_or_beats_full": 0.6666666666666666,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": -0.00027500000000001595,
+      "sets": 6
+    },
+    "learning-agency-lab-automated-essay-scoring-2": {
+      "deployed_matches_or_beats_full": 0.6666666666666666,
+      "endpoint_identity_top1": 0.6666666666666666,
+      "mean_delta": -0.0064333333333333464,
+      "sets": 6
+    },
+    "mlsp-2013-birds": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 0.6666666666666666,
+      "mean_delta": 0.0008166666666666508,
+      "sets": 6
+    },
+    "nomad2018-predict-transparent-conductors": {
+      "deployed_matches_or_beats_full": 0.6666666666666666,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": -0.00016166666666666643,
+      "sets": 6
+    },
+    "petfinder-pawpularity-score": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.007234999999999658,
+      "sets": 4
+    },
+    "random-acts-of-pizza": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0027900000000000147,
+      "sets": 4
+    },
+    "spaceship-titanic": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0022999999999999687,
+      "sets": 1
+    },
+    "spooky-author-identification": {
+      "deployed_matches_or_beats_full": 0.6666666666666666,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": -3.333333333327415e-06,
+      "sets": 6
+    },
+    "tabular-playground-series-dec-2021": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0,
+      "sets": 3
+    },
+    "tabular-playground-series-may-2022": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0,
+      "sets": 6
+    },
+    "text-normalization-challenge-english-language": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0,
+      "sets": 5
+    },
+    "text-normalization-challenge-russian-language": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0,
+      "sets": 3
+    },
+    "tweet-sentiment-extraction": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0,
+      "sets": 6
+    },
+    "us-patent-phrase-to-phrase-matching": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0,
+      "sets": 6
+    },
+    "whale-categorization-playground": {
+      "deployed_matches_or_beats_full": 1.0,
+      "endpoint_identity_top1": 1.0,
+      "mean_delta": 0.0,
+      "sets": 6
+    }
+  },
+  "counts": {
+    "runs": 52,
+    "sets": 100,
+    "tasks": 19
+  },
+  "provenance": {
+    "command": "python /tmp/codex_v10_git_20260813/phase1/deployment_semantics_audit.py --cap 120 --bootstrap 10000 --seed 7 --out-dir phase1/deployment_semantics_v9",
+    "git_commit": "04a079c8a56877ae182ecd48e7ded2cce1493815",
+    "inputs": {
+      "manifest": {
+        "path": "phase1/fidelity_manifest.jsonl",
+        "sha256": "77f696828010e2d6ae10a9b9de2d9ec05d44975b1285ea763d9850a7f30ca4ef"
+      },
+      "orientation": {
+        "path": "phase1/task_orientation.json",
+        "sha256": "ec8239bc522eb35b50718b0dafa0a6e86bf1f990ac6ce129d79bbf6384082150"
+      },
+      "results": {
+        "path": "phase1/fidelity_results.jsonl",
+        "sha256": "b1266d04912596b1e37e13f79ce2387a962f5510cfa264aa1a97b7a1c443180d"
+      },
+      "run_map": {
+        "path": "phase1/card_run_map.json",
+        "sha256": "992d2e8a1e4c1779ced125d7b35821f558667977e5ddf75d90fde2984244167e"
+      }
+    },
+    "python": "3.12.3",
+    "script": {
+      "path": "/tmp/codex_v10_git_20260813/phase1/deployment_semantics_audit.py",
+      "sha256": "78970b2882ea2634d63b79d70fb1ca643ade01849d553986b6be8e40a49e6793"
+    }
+  },
+  "semantics": {
+    "deployed_matches_or_beats_full": "best actually available partial-artifact/silent-full score >= best all-full endpoint score",
+    "endpoint_identity_top1": "selected card ID's eventual full endpoint is best"
+  }
+}

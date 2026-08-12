@@ -1,0 +1,8 @@
+VERIFIED sets=100 runs=52 tasks=19
+endpoint_identity_top1               +0.960000 [+0.900990,+1.000000]
+selected_artifact_fraction           +0.320000 [+0.189474,+0.461538]
+deployed_matches_or_beats_full       +0.920000 [+0.846154,+0.979798]
+deployed_strictly_beats_full         +0.060000 [+0.011364,+0.119266]
+deployed_strictly_loses_full         +0.080000 [+0.020202,+0.153846]
+deployed_delta_to_full_final         +0.000061 [-0.000982,+0.001020]
+WROTE phase1/deployment_semantics_v9

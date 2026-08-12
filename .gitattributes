@@ -2,3 +2,4 @@ phase1/cards_*.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/*_runsplit.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/value_pairs_v4.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/v10_decision/*.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/perpair_decision.json filter=lfs diff=lfs merge=lfs -text

@@ -7,13 +7,17 @@ frozen embedding / LLM judge;难区精确噪声上界 0.8962,self-report 0.6643 
 审稿人最可能的反击是「critic 太弱」。你那边 pro6000 + 8B + 16384 ctx 是当前最干净的
 上限测试:**打不过随机 → 负面主张对容量免疫;打得过 → 我们有正面结果**。两头都赢。
 
-## 数据(集群路径,全部现成)
+## 数据(全部在本分支 `phase1/`,大文件走 LFS)
+
+```bash
+git checkout phase1-value-critic && git lfs pull
+```
 
 ```
-/research/d7/spc/yzyang4/aira-dojo/phase1/
-  cards_current_v9.jsonl            # 14,323 节点,22 任务,含 code/graded/val_at_low/lineage/run_id
-  value_pairs_runsplit.jsonl        # 前瞻对(训练主料,intask_split 字段分 train/test)
-  decision_clean_b0.jsonl           # 兄弟决策对 K=0(1471 train + 1498/1499 test 行内 intask_split)
+phase1/
+  cards_current_v9.jsonl            # 14,323 节点,22 任务,含 code/graded/val_at_low/lineage/run_id(LFS)
+  value_pairs_runsplit.jsonl        # 前瞻对(训练主料,intask_split 字段分 train/test)(LFS)
+  decision_clean_b0.jsonl           # 兄弟决策对 K=0(3777 train + 1498 test,行内 intask_split)
   decision_clean_b1.jsonl           # K=1 前瞻兄弟对(train+test)
   decision_clean_b2.jsonl           # K=2
   task_orientation.json             # 23 任务的 lower_is_better 表(奖牌几何审计过)
@@ -36,6 +40,12 @@ frozen embedding / LLM judge;难区精确噪声上界 0.8962,self-report 0.6643 
 
 训练脚本可直接用 `phase1/rm_train_hf.py`(BT 成对损失,--lora --max-len 16384,
 支持 ZeRO-3;--save-adapter 请开)。
+
+## 最省事的路径(优先):直接评现有 checkpoint
+
+不用重训:把你 0812 那批里最好的 1-2 个 checkpoint(Qwen3-4B/8B base)对
+`decision_clean_b0/b1/b2.jsonl` 中 `intask_split=="test"` 的行逐对打分即可。
+你的模型在旧 train 侧训练,对这些 test 行干净(run 级冻结切分,零交集已验证)。
 
 ## 评测(我们来跑,你只要给分)
 

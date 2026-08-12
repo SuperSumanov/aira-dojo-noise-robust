@@ -5,68 +5,69 @@
 ```text
 AIRA-Dojo journals
   -> cards.py / build_cards.py
-  -> cards_current.jsonl + card_run_map.json + task_orientation.json
+  -> cards_current_v9.jsonl + card_run_map.json + task_orientation.json
        |-> build_subtree_pairs.py -> value_pairs_base.jsonl
        |                         -> build_runsplit.py -> value_pairs_runsplit.jsonl (L1)
        |-> repeated regrade -> regrade_tau_nodes.csv
        |-> build_budget_pairs.py -> budget_pairs_base.jsonl / budget_flip_base.jsonl
        |                         -> build_runsplit.py -> budget_pairs_v3_runsplit.jsonl (L2)
+       |-> build_decision_pairs.py -> decision_pairs_v9raw.jsonl
+                                  -> build_runsplit.py -> decision_pairs_runsplit.jsonl
+                                  -> build_decision_clean.py -> per-K train/test + frozen test
        |-> rescue_pairs.py -> rescue_*_rebuilt.jsonl
 ```
 
 ## 1. 版本和状态
 
-代码来自 origin/phase1-value-critic commit ab580f3（2026-08-09）。当前 corpus 是 v7：按 26 个批次合并后重建为 10,755 张有标签 card、515 个物理 run。当前只保留 run-clean 数据，避免把旧的 tree/fragment split 当成有效评估结果。
+当前 corpus 复用 v9：14,323 张有标签 card；`runsplit_holdruns.json` 记录 586 个已经冻结分配的物理 run，其中 134 个 held-out。所有正式 pair 使用 physical-run split，旧的 tree/fragment split 已废弃。
 
 | 文件 | 行数 | 状态 | 用途 |
 | --- | ---: | --- | --- |
-| cards_current.jsonl | 10,755 | v7 批次合并，注入 `run_id` | 当前所有 pair 生成和 RM 的 card 索引 |
-| card_run_map.json | 10,755 条映射 | 按批次内 run 连续性重建，V1/V2 校验通过 | run-level split 的固定映射 |
-| runsplit_holdruns.json | 约 20% runs | seed=7、按任务抽 held-out runs | 所有 run-clean pair 文件共用 |
-| cards_senior_0806/0807.jsonl | 892 / 430 | 学生分支最新 LFS 批次 | v7 新增数据 |
-| task_orientation.json | 22 条映射 | 原样提取 | 每个任务的分数方向 |
+| cards_current.jsonl | 14,323 | 最新批次，包含 `run_id` | 当前 decision pair 生成和 RM 的 card 索引 |
+| card_run_map.json | 14,323 条映射 | 节点到 physical run 的冻结映射 | run-level split 的固定映射 |
+| runsplit_holdruns.json | 134 held / 586 assigned runs | 冻结旧分配，只对新增 run 按任务 seed=7 扩展 | 所有 run-clean pair 文件共用 |
+| task_orientation.json | 23 条映射 | v9 根据 medal geometry 补全并审计 | 每个任务的分数方向 |
 | regrade_tau_nodes.csv | 196 行含 header | 学生分支已提交，原样提取 | L2 噪声过滤 |
-| rescue_*_rebuilt.jsonl | 5,314 至 9,404 | 从 rebuilt L2 派生 | LOTO rescue |
 | value_pairs_runsplit.jsonl | 57,013 | L1 pair 按物理 run 重切，跨界丢弃 | L1 run-clean 评估/训练 |
-| value_pairs_v4.jsonl | 91,052 | v7 corpus 重新生成的 run-clean L1 | 新 corpus 的 L1 训练候选 |
-| budget_pairs_v3_runsplit.jsonl | 107,359 | L2 count-matched pair 按物理 run 重切 | L2 run-clean 训练/测试 |
-| budget_flip_v3_runsplit.jsonl | 运行后生成 | 同一 run 规则重切的 flip/control 评估集 | L2 预算条件化评估 |
-| decision_pairs_runsplit.jsonl | 4,455 | 同父兄弟决策对，按物理 run 切分 | 决策点实验 |
-| results/*.csv | 各文件不同 | 学生分支已提交 | 历史结果，不是训练输入 |
+| decision_pairs_runsplit.jsonl | 7,368 | v9 同父兄弟对，5,281 train / 2,087 test | budget-blind 或 budget-conditioned 决策训练 |
+| decision_clean_b0/1/2.jsonl | 5,407 / 1,080 / 881 | 固定 K、含 train/test、同一 K 内无反向冲突 | per-K 训练与评估 |
 
-当前大文件仍按仓库的 LFS 规则管理；重建命令会从 `data/mle_critic/raw/corpus_manifest.txt` 读取批次清单。
+完整 cards corpus 如何从 journal 合并属于更上游流程；当前仓库没有足够原件保证能从零复现相同 v9 cards。
 
 ### 1.1 runsplit_holdruns.json
 
-`runsplit_holdruns.json`由 `build_runsplit.py` 根据当前 corpus 的物理 run 映射生成：
+`runsplit_holdruns.json` 当前采用：
 
-1. 读取 `cards_current.jsonl`，用每张 card 的 `task.name` 和 `card_run_map.json` 建立 `task -> run_id` 集合；
-2. 对每个任务分别取其全部唯一 run，按 run ID 排序；
-3. 用固定 `seed=7` 的 `random.Random` 独立打乱该任务的 run 列表；
-4. 取打乱后列表的后 20%：`runs[int(0.8 * len(runs)):]`；
-5. 把所有任务的 held-out run 合并，按排序后的 run ID 写入 `runsplit_holdruns.json`。
+```json
+{"hold": ["held-out run ids"], "all": ["已经分配过身份的全部 run ids"]}
+```
+
+`build_runsplit.py` 的规则是：
+
+1. 读取当前 cards（decision v9 使用 `cards_current_v9.jsonl`），用每张 card 的 `task.name` 和 `card_run_map.json` 建立 `task -> run_id` 集合；
+2. `all` 中的旧 run 保持原身份：在 `hold` 中继续 test，否则继续 train；
+3. 只对当前 corpus 中不在 `all` 的新增 run，按任务、run ID 排序后用固定 `seed=7` 打乱；
+4. 每个任务新增 run 的后 20% 进入 `hold`，所有新增 run 加入 `all`；
+5. pair 两端都在 `hold` 才是 test，都不在才是 train，跨界 pair 丢弃。
 
 因此它实现的是“每个任务内部约 80/20 按物理 run 切分”，不是全局随机抽 20% card。某个 pair 的规则随后固定为：两端 run 都在这个文件中才是 test，两端都不在才是 train，跨界 pair 丢弃。
 
-当前文件由 v7 corpus 的 515 个 run 生成，使用的固定输入是：
+v9 decision 数据使用的固定输入是：
 
 ```text
-data/mle_critic/cards_current.jsonl
+data/mle_critic/cards_current_v9.jsonl
 data/mle_critic/card_run_map.json
+data/mle_critic/runsplit_holdruns.json
 seed = 7
 ```
 
-可以从仓库根目录复现或更新它（如果文件已存在，脚本会读取并复用已有 holdout，不会悄悄换测试集）：
+不要对既有实验使用 `--regenerate-hold`，否则会重抽旧 run、污染与旧 checkpoint 的比较。正常复建会读取并复用冻结文件。旧版 list-only holdout 没有记录其对应的完整 run universe，脚本不会猜；必须同时提供与它匹配的旧 corpus 和 `--prior-cards`，或直接安装权威的 v9 `{"hold","all"}` 文件。
 
 ```bash
-python -m src.mle_critic.src.preprocess.build_runsplit \
-  data/mle_critic/cards_current.jsonl \
-  data/mle_critic/card_run_map.json \
-  data/mle_critic/runsplit_holdruns.json \
-  /tmp data/mle_critic/value_pairs_runsplit.jsonl --seed 7 --regenerate-hold
+bash src/mle_critic/scripts/build_decision_datasets.sh
 ```
 
-实际生成 L1/L2/decision 数据时，三者都必须传入同一个 `runsplit_holdruns.json`；新增 batch 或改变 run map 后，应先重新生成 holdout，再重新生成全部 pair 文件，不能只替换其中一个。
+实际生成 L1/L2/decision 数据时，三者都必须使用同一个冻结的 `runsplit_holdruns.json`。增加 batch 时只能扩展已有分配，不能从全部 run 重新随机抽取。只有明确放弃旧 checkpoint 可比性、建立全新评测版本时才能使用 `--regenerate-hold`。
 
 ## 2. 原始来源：AIRA-Dojo journal
 
@@ -232,7 +233,7 @@ python -m src.mle_critic.src.preprocess.build_subtree_pairs \
   /tmp/value_pairs_base.jsonl \
   data/mle_critic/cards_current.jsonl \
   --orientation data/mle_critic/task_orientation.json \
-  --cap 1500 \
+  --cap 2000 \
   --seed 7 \
   --split-by tree
 
@@ -318,26 +319,49 @@ flip/control 评估数据也必须使用同一份 run 映射；它不是普通�
 
 这份数据模拟搜索时比较同一父节点的候选，但严格说是“同父有分兄弟的事后 pair”，不是日志中一次完整的在线 MCTS decision event。构造过程是：
 
-1. 按 `parent_id` 收集孩子，只保留有外部 grade 的孩子；同一父节点至少有两个孩子才形成 decision set。
+1. 从 `cards_current_v9.jsonl` 按 `parent_id` 收集有外部 grade、且仍存在于 corpus 中的孩子；同一父节点至少有两个孩子才形成 decision set。
 2. 在每个 set 内枚举两两组合；无分兄弟会被排除，因此不应把它解释成完整的兄弟集合。
 3. 对每个 pair 生成 K=0、1、2 三种标签：K=0 只比较孩子自身 grade；K=1/2 比较自身和按 `lineage.step` 排序的前 1/2 个可见后代中的最佳 grade。双方后代不足 K 时，该记录不生成。
-4. 先生成候选 pair，再按 `card_run_map.json` 和固定 `runsplit_holdruns.json` 切分；两端都在 train run 才是 train，两端都在 held-out run 才是 test，跨界 set 丢弃。
+4. raw 生成器不再做 lineage fragment/tree 切分，只写 `intask_split="unassigned"`。随后按 `card_run_map.json` 和冻结的 `runsplit_holdruns.json` 切分；两端都在 train run 才是 train，两端都在 held-out run 才是 test，跨界 pair 丢弃。
+5. orientation 必须来自 v9 审计后的 `task_orientation.json`。缺失 orientation 时不再默认猜测；否则 lower-is-better 任务会被整批标反。
 
-最新文件 `decision_pairs_runsplit.jsonl` 共 4,455 条，run-clean 后训练侧约 3,194 对、测试侧 1,261 对。原始标签构成为 K=0 3,529、K=1 569、K=2 494；run-clean 测试中 K=0/1/2 分别为 947/170/144。由于 K=0 占多数，overall 主要反映同父兄弟的当前 grade 排序，不应直接称为纯 lookahead 能力。
+v9 `decision_pairs_runsplit.jsonl` 共 7,368 条：5,281 train、2,087 test。按 K 分布如下：
+
+| K | train | test | total |
+| ---: | ---: | ---: | ---: |
+| 0 | 3,908 | 1,499 | 5,407 |
+| 1 | 757 | 323 | 1,080 |
+| 2 | 616 | 265 | 881 |
+
+K=0 占多数，因此混合文件的 overall 主要反映同父兄弟当前 grade 排序，不能直接称为纯 lookahead 能力。
+
+同一个无序 sibling pair 在不同 K 下可能方向相反，所以 budget-blind 模型不应把 K=0/1/2 混合后的 accuracy 当作单一无冲突任务。`build_decision_clean.py` 会按 K 拆分、在各 split 内按有向 `(better,worse)` 去重并检查反向冲突：
+
+- `decision_clean_b0/1/2_runsplit.jsonl`：包含 train 和 test，可用于固定 K 的训练；
+- `decision_clean_b0/1/2.jsonl`：只含 test，是论文冻结评测视图，绝不能进训练。
+
+K=0 的 `gap_raw` 精确等于双方自身 graded 差；K=1/2 的 `gap_raw` 是 lookahead value 差，不能用双方当前 graded 差解释。
 
 ### 生产流程
 
 ```bash
-# 1) 从带 run_id 的 cards 生成同父兄弟候选（中间文件）
+# 一条命令重建 raw、run split、per-K train/test 和 frozen test
+bash src/mle_critic/scripts/build_decision_datasets.sh
+
+# 等价的手工步骤：
 python -m src.mle_critic.src.preprocess.build_decision_pairs \
-  /tmp/decision_pairs_base.jsonl data/mle_critic/cards_current.jsonl \
-  --orientation data/mle_critic/task_orientation.json --ks 0,1,2 --seed 7
+  /tmp/decision_pairs_v9raw.jsonl data/mle_critic/cards_current_v9.jsonl \
+  --orientation data/mle_critic/task_orientation.json --ks 0,1,2
 
 # 2) 使用与 L1/L2 相同的 run map 和 held-out runs
 python -m src.mle_critic.src.preprocess.build_runsplit \
-  data/mle_critic/cards_current.jsonl data/mle_critic/card_run_map.json \
+  data/mle_critic/cards_current_v9.jsonl data/mle_critic/card_run_map.json \
   data/mle_critic/runsplit_holdruns.json data/mle_critic \
-  /tmp/decision_pairs_base.jsonl --out-name decision_pairs_runsplit.jsonl
+  /tmp/decision_pairs_v9raw.jsonl --out-name decision_pairs_runsplit.jsonl
+
+python -m src.mle_critic.src.preprocess.build_decision_clean \
+  data/mle_critic/decision_pairs_runsplit.jsonl data/mle_critic \
+  --budgets 0,1,2 --write-frozen-test
 ```
 
 训练命令没有打开 `--budget-cond` 时，K=0/1/2 会混合成 budget-blind RM；因此 K=1/2 的结果只能作为小样本诊断，不能当作严格的预算条件化模型结论。

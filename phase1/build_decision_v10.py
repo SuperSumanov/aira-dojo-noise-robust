@@ -41,7 +41,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--orientation", default="phase1/task_orientation.json")
     parser.add_argument("--prior-hold", default="phase1/runsplit_holdruns.json")
     parser.add_argument("--frozen-prefix", default="phase1/decision_clean_b")
+    parser.add_argument(
+        "--frozen-hold",
+        default=None,
+        help="optional run manifest whose hold list defines the immutable frozen test",
+    )
     parser.add_argument("--out-dir", default="phase1/v10_decision")
+    parser.add_argument("--version", default="v10")
+    parser.add_argument("--base-dir", default=None)
+    parser.add_argument("--base-version", default=None)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--budgets", default="0,1,2")
     return parser.parse_args()
@@ -113,6 +121,9 @@ def atomic_jsonl(path: Path, rows: list[dict]) -> None:
 def main() -> None:
     args = parse_args()
     budgets = tuple(int(item) for item in args.budgets.split(","))
+    if bool(args.base_dir) != bool(args.base_version):
+        raise RuntimeError("--base-dir and --base-version must be provided together")
+    base_dir = Path(args.base_dir) if args.base_dir else None
     cards_rows = load_jsonl(Path(args.cards))
     old_rows = load_jsonl(Path(args.old_cards))
     cards = {row["id"]: row for row in cards_rows}
@@ -131,6 +142,13 @@ def main() -> None:
     prior_all = set(prior["all"])
     if not prior_hold <= prior_all:
         raise RuntimeError("prior held runs are not a subset of the prior universe")
+    if args.frozen_hold:
+        frozen_manifest = json.load(Path(args.frozen_hold).open())
+        frozen_hold = set(frozen_manifest["hold"])
+    else:
+        frozen_hold = set(prior_hold)
+    if not frozen_hold <= prior_hold:
+        raise RuntimeError("immutable frozen runs are not a subset of prior held runs")
 
     task_of_run: dict[str, str] = {}
     for card in cards_rows:
@@ -234,7 +252,7 @@ def main() -> None:
                         "intask_split": split,
                         "loto_fold": task,
                         "clears_tau": None,
-                        "src": "decision_v10",
+                        "src": f"decision_{args.version}",
                         "run_id": run_id,
                     }
                 )
@@ -250,6 +268,11 @@ def main() -> None:
             "run_map": args.run_map,
             "run_map_sha256": hashlib.sha256(Path(args.run_map).read_bytes()).hexdigest(),
             "seed": args.seed,
+            "version": args.version,
+            "prior_hold": args.prior_hold,
+            "frozen_hold": args.frozen_hold or args.prior_hold,
+            "base_dir": args.base_dir,
+            "base_version": args.base_version,
         },
         "corpus": {
             "cards": len(cards),
@@ -269,7 +292,11 @@ def main() -> None:
 
     pending: dict[Path, list[dict]] = {}
     for budget in budgets:
-        frozen_source = Path(f"{args.frozen_prefix}{budget}.jsonl")
+        frozen_source = (
+            base_dir / f"decision_frozen_{args.base_version}_b{budget}.jsonl"
+            if base_dir
+            else Path(f"{args.frozen_prefix}{budget}.jsonl")
+        )
         historical = load_jsonl(frozen_source)
         historical_test = [row for row in historical if row.get("intask_split") == "test"]
         frozen_valid = [
@@ -290,7 +317,7 @@ def main() -> None:
             row
             for row in generated
             if row["budget"] == budget
-            and row["intask_split"] == "test"
+            and row["run_id"] in frozen_hold
             and row["better"] in old_ids
             and row["worse"] in old_ids
         ]
@@ -304,24 +331,55 @@ def main() -> None:
         if reversed_frozen & generated_old_pairs:
             raise RuntimeError(f"frozen b{budget} contains reversed labels")
 
-        train = [
+        regenerated_train = [
             row for row in generated
             if row["budget"] == budget and row["intask_split"] == "train"
         ]
-        extension = [
+        regenerated_new_extension = [
             row for row in generated
             if row["budget"] == budget
             and row["intask_split"] == "test"
             and row["run_id"] not in prior_all
         ]
-        if any(row["run_id"] not in new_hold for row in extension):
+        if base_dir:
+            base_train = load_jsonl(
+                base_dir / f"decision_train_{args.base_version}_b{budget}.jsonl"
+            )
+            base_extension = load_jsonl(
+                base_dir / f"decision_extension_{args.base_version}_b{budget}.jsonl"
+            )
+            generated_keys = {
+                (row["better"], row["worse"], row["budget"]) for row in generated
+            }
+            for role, rows in (("train", base_train), ("extension", base_extension)):
+                keys = [(row["better"], row["worse"], row["budget"]) for row in rows]
+                if len(keys) != len(set(keys)):
+                    raise RuntimeError(f"base {role} b{budget} contains duplicate pairs")
+                missing = set(keys) - generated_keys
+                if missing:
+                    raise RuntimeError(
+                        f"base {role} b{budget} has {len(missing)} pairs absent from regeneration"
+                    )
+            new_train = [row for row in regenerated_train if row["run_id"] not in prior_all]
+            new_extension = regenerated_new_extension
+            train = base_train + new_train
+            extension = base_extension + new_extension
+        else:
+            base_train = []
+            base_extension = []
+            new_train = regenerated_train
+            new_extension = regenerated_new_extension
+            train = regenerated_train
+            extension = regenerated_new_extension
+
+        if any(row["run_id"] not in hold or row["run_id"] in frozen_hold for row in extension):
             raise RuntimeError(f"extension b{budget} contains a non-held run")
         if any(row["run_id"] in hold for row in train):
             raise RuntimeError(f"training b{budget} contains a held run")
 
-        pending[out_dir / f"decision_train_v10_b{budget}.jsonl"] = train
-        pending[out_dir / f"decision_frozen_v10_b{budget}.jsonl"] = frozen_valid
-        pending[out_dir / f"decision_extension_v10_b{budget}.jsonl"] = extension
+        pending[out_dir / f"decision_train_{args.version}_b{budget}.jsonl"] = train
+        pending[out_dir / f"decision_frozen_{args.version}_b{budget}.jsonl"] = frozen_valid
+        pending[out_dir / f"decision_extension_{args.version}_b{budget}.jsonl"] = extension
         audit["budgets"][str(budget)] = {
             "train": len(train),
             "train_old_only": sum(
@@ -335,6 +393,10 @@ def main() -> None:
             "frozen_quarantined": len(historical_test) - len(frozen_valid),
             "frozen_sha256": canonical_hash(frozen_valid),
             "extension": len(extension),
+            "extension_existing": len(base_extension),
+            "extension_new": len(new_extension),
+            "append_only_base_train": len(base_train),
+            "append_only_new_train": len(new_train),
         }
 
     train_nodes = {
@@ -358,11 +420,13 @@ def main() -> None:
     }
     for path, rows in pending.items():
         atomic_jsonl(path, rows)
-    atomic_json(out_dir / "runsplit_holdruns_v10.json", hold_manifest)
-    atomic_json(out_dir / "decision_v10_audit.json", audit)
+    atomic_json(out_dir / f"runsplit_holdruns_{args.version}.json", hold_manifest)
+    atomic_json(out_dir / f"decision_{args.version}_audit.json", audit)
 
     print(json.dumps(audit, indent=2, sort_keys=True))
-    print(f"[build_decision_v10] wrote {len(pending) + 2} artifacts to {out_dir}")
+    print(
+        f"[build_decision_{args.version}] wrote {len(pending) + 2} artifacts to {out_dir}"
+    )
 
 
 if __name__ == "__main__":

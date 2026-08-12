@@ -4,6 +4,7 @@
  "chaii-hindi-and-tamil-question-answering": false,
  "denoising-dirty-documents": true,
  "dog-breed-identification": true,
+ "dogs-vs-cats-redux-kernels-edition": true,
  "google-quest-challenge": false,
  "histopathologic-cancer-detection": false,
  "kuzushiji-recognition": false,

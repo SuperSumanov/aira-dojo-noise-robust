@@ -28,6 +28,7 @@ TASK_TYPE = {
     "aerial-cactus-identification": "image-cls",
     "aptos2019-blindness-detection": "image-cls",
     "dog-breed-identification": "image-cls",
+    "dogs-vs-cats-redux-kernels-edition": "image-cls",
     "histopathologic-cancer-detection": "image-cls",
     "leaf-classification": "image-cls",
     "denoising-dirty-documents": "image-cls",

@@ -1,4 +1,4 @@
-# v10 决策 critic：给学长的数据交接（2026-08-13）
+# v11 决策 critic：给学长的数据交接（2026-08-13）
 
 ## 获取
 
@@ -8,46 +8,46 @@ git pull --ff-only
 git lfs pull
 ```
 
-v10 大文件已经上传到 Git LFS，不需要访问我的 big-data-storage 路径。当前共享分支至少应
-包含 commit `4ebc495`（v10 语料）；后续决策对提交会在它之后。
+v11 大文件通过 Git LFS 共享，不需要访问我的 big-data-storage 路径。
 
 ## 数据文件
 
 ```text
 phase1/
-  cards_current_v10.jsonl            # 15,158 cards / 624 runs / 24 tasks
-  cards_senior_0810.jsonl            # 学长 0810 增量：835 cards / 38 runs / 8 tasks
-  card_run_map.json                   # 15,158 个 card_id -> physical run_id
+  cards_current_v11.jsonl            # 16,012 cards / 667 runs / 25 tasks
+  cards_senior_0811.jsonl            # 学长 0811 有效增量：854 cards / 43 runs / 7 tasks
+  card_run_map.json                   # 16,012 个 card_id -> physical run_id
   task_orientation.json               # lower_is_better
-  v10_decision/
-    decision_train_v10_b0.jsonl       # 4,122 条，只供训练
-    decision_train_v10_b1.jsonl       #   814 条，只供训练
-    decision_train_v10_b2.jsonl       #   661 条，只供训练
-    decision_frozen_v10_b0.jsonl      # 1,498 条，论文冻结测试
-    decision_frozen_v10_b1.jsonl      #   323 条，论文冻结测试
-    decision_frozen_v10_b2.jsonl      #   265 条，论文冻结测试
-    decision_extension_v10_b0.jsonl   #    68 条，v10 新 run 扩展测试
-    decision_extension_v10_b1.jsonl   #    12 条，v10 新 run 扩展测试
-    decision_extension_v10_b2.jsonl   #     9 条，v10 新 run 扩展测试
-    decision_v10_audit.json           # 输入 SHA、计数、泄漏验收
-    runsplit_holdruns_v10.json         # 冻结 + 新增 run 分配
+  v11_decision/
+    decision_train_v11_b0.jsonl       # 4,263 条，只供训练（v10 4,122 原样 + 141）
+    decision_train_v11_b1.jsonl       #   861 条，只供训练（v10   814 原样 +  47）
+    decision_train_v11_b2.jsonl       #   692 条，只供训练（v10   661 原样 +  31）
+    decision_frozen_v11_b0.jsonl      # 1,498 条，论文冻结测试（与 v10 完全相同）
+    decision_frozen_v11_b1.jsonl      #   323 条，论文冻结测试（与 v10 完全相同）
+    decision_frozen_v11_b2.jsonl      #   265 条，论文冻结测试（与 v10 完全相同）
+    decision_extension_v11_b0.jsonl   #   136 条，累计扩展测试（旧68 + 新68）
+    decision_extension_v11_b1.jsonl   #    39 条，累计扩展测试（旧12 + 新27）
+    decision_extension_v11_b2.jsonl   #    30 条，累计扩展测试（旧 9 + 新21）
+    decision_v11_audit.json           # 输入 SHA、计数、泄漏验收
+    runsplit_holdruns_v11.json         # 冻结 + 累计新增 run 分配
 ```
 
-其中 v10 共有 15,140 张有限真分卡；18 张历史非有限标签卡保留节点与血缘，但已明确隔离，
+其中 v11 共有 15,991 张有限真分卡；21 张非有限标签卡保留节点与血缘，但已明确隔离，
 不得参与训练或评测。
 
 ## 公平契约（最重要）
 
 以下文件绝不能进入训练：
 
-- `decision_frozen_v10_b*.jsonl`
-- `decision_extension_v10_b*.jsonl`
+- `decision_frozen_v11_b*.jsonl`
+- `decision_extension_v11_b*.jsonl`
 
-训练只读 `decision_train_v10_b*.jsonl`。已验证：冻结测试节点进入训练为 0；训练 run 与扩展
-测试 run 交集为 0；旧有效冻结集逐对复现，missing/extra/reversed 均为 0。
+训练只读 `decision_train_v11_b*.jsonl`。已验证：冻结测试节点进入训练为 0；训练 run 与扩展
+测试 run 交集为 0；v10 train/frozen/extension 都是 v11 对应文件的原样前缀。
 
-headline 结果只报 `decision_frozen_v10_b*.jsonl`。`decision_extension_v10_b*.jsonl` 是 v10
-新增 held run 的前瞻检验，必须单列，不能和 headline 混算。
+headline 结果只报 `decision_frozen_v11_b*.jsonl`。因为 frozen 与 v10 完全相同，已有 frozen
+预测无需重跑。`decision_extension_v11_b*.jsonl` 是累计 held-run 前瞻检验，必须单列，不能
+和 headline 混算。
 
 ## 建议你现在做的最省事实验
 
@@ -74,5 +74,6 @@ headline 结果只报 `decision_frozen_v10_b*.jsonl`。`decision_extension_v10_b
 
 旧 `decision_clean_b0.jsonl` 实有 1,499 条测试行，其中 1 条引用历史 `NaN` 标签；严格隔离后
 是 1,498 条。旧 README 写的 b0 train=3,777 也已过期：真实旧有效训练对是 3,907，v10
-再增加 215 条，得到 4,122。完整证据见
-`phase1/实验记录/2026-08-13/v10冻结决策集与训练增量验收.md`。
+再增加 215 条，得到 v10 的 4,122；v11 只追加 141 条，得到 4,263。完整证据见
+`phase1/实验记录/2026-08-13/v10冻结决策集与训练增量验收.md` 和
+`phase1/实验记录/2026-08-13/学长0811入库_v11验收.md`。

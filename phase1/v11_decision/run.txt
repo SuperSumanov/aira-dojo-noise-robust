@@ -1,0 +1,91 @@
+{
+  "budgets": {
+    "0": {
+      "append_only_base_train": 4122,
+      "append_only_new_train": 141,
+      "extension": 136,
+      "extension_existing": 68,
+      "extension_new": 68,
+      "frozen_quarantined": 0,
+      "frozen_sha256": "f57f3dd100afe1ea67ca4ef6a29592ca9b0ee709910530484167a572147178c5",
+      "frozen_source_rows": 1498,
+      "frozen_valid": 1498,
+      "train": 4263,
+      "train_new": 141,
+      "train_old_only": 4122
+    },
+    "1": {
+      "append_only_base_train": 814,
+      "append_only_new_train": 47,
+      "extension": 39,
+      "extension_existing": 12,
+      "extension_new": 27,
+      "frozen_quarantined": 0,
+      "frozen_sha256": "91a63ad37d56a60c562fe438720c386ef8be1e0393cf4d34e0ae259ca3d13622",
+      "frozen_source_rows": 323,
+      "frozen_valid": 323,
+      "train": 861,
+      "train_new": 47,
+      "train_old_only": 814
+    },
+    "2": {
+      "append_only_base_train": 661,
+      "append_only_new_train": 31,
+      "extension": 30,
+      "extension_existing": 9,
+      "extension_new": 21,
+      "frozen_quarantined": 0,
+      "frozen_sha256": "5a8d91a263c6c0c3619afa204c3a274340d3f87c1ad396b5b34d097fd7594ea3",
+      "frozen_source_rows": 265,
+      "frozen_valid": 265,
+      "train": 692,
+      "train_new": 31,
+      "train_old_only": 661
+    }
+  },
+  "corpus": {
+    "cards": 16012,
+    "new_hold_runs": 11,
+    "new_runs": 43,
+    "old_cards": 15158,
+    "prior_hold_runs": 145,
+    "prior_runs": 624,
+    "quarantined_cards": 21,
+    "runs": 667,
+    "valid_cards": 15991
+  },
+  "frozen_test_nodes_in_train": 0,
+  "inputs": {
+    "base_dir": "phase1/v10_decision",
+    "base_version": "v10",
+    "cards": "phase1/cards_current_v11.jsonl",
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "frozen_hold": "phase1/runsplit_holdruns.json",
+    "old_cards": "phase1/cards_current_v10.jsonl",
+    "old_cards_sha256": "836c2acec3cd8603225c767ebcb29333cfaf81153d8bae51350df6706f860d74",
+    "prior_hold": "phase1/v10_decision/runsplit_holdruns_v10.json",
+    "run_map": "phase1/card_run_map.json",
+    "run_map_sha256": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30",
+    "seed": 7,
+    "version": "v11"
+  },
+  "new_hold_by_task": {
+    "dogs-vs-cats-redux-kernels-edition": 1,
+    "google-quest-challenge": 2,
+    "histopathologic-cancer-detection": 1,
+    "random-acts-of-pizza": 2,
+    "tabular-playground-series-dec-2021": 1,
+    "text-normalization-challenge-english-language": 2,
+    "whale-categorization-playground": 2
+  },
+  "new_runs_by_task": {
+    "dogs-vs-cats-redux-kernels-edition": 4,
+    "google-quest-challenge": 8,
+    "histopathologic-cancer-detection": 4,
+    "random-acts-of-pizza": 8,
+    "tabular-playground-series-dec-2021": 4,
+    "text-normalization-challenge-english-language": 7,
+    "whale-categorization-playground": 8
+  }
+}
+[build_decision_v11] wrote 11 artifacts to phase1/v11_decision

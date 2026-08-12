@@ -1,66 +1,78 @@
-# 8B 决策点 critic:数据包与冻结评测协议(给学长,2026-08-12)
+# v10 决策 critic：给学长的数据交接（2026-08-13）
 
-## 一句话
-
-我们在干净的兄弟决策集上把所有决策时预测器测到随机(1.5B RM / tfidf / 手工特征 /
-frozen embedding / LLM judge;难区精确噪声上界 0.8962,self-report 0.6643 显著)。
-审稿人最可能的反击是「critic 太弱」。你那边 pro6000 + 8B + 16384 ctx 是当前最干净的
-上限测试:**打不过随机 → 负面主张对容量免疫;打得过 → 我们有正面结果**。两头都赢。
-
-## 数据(全部在本分支 `phase1/`,大文件走 LFS)
+## 获取
 
 ```bash
-git checkout phase1-value-critic && git lfs pull
+git checkout phase1-value-critic
+git pull --ff-only
+git lfs pull
 ```
 
-```
+v10 大文件已经上传到 Git LFS，不需要访问我的 big-data-storage 路径。当前共享分支至少应
+包含 commit `4ebc495`（v10 语料）；后续决策对提交会在它之后。
+
+## 数据文件
+
+```text
 phase1/
-  cards_current_v9.jsonl            # 14,323 节点,22 任务,含 code/graded/val_at_low/lineage/run_id(LFS)
-  value_pairs_runsplit.jsonl        # 前瞻对(训练主料,intask_split 字段分 train/test)(LFS)
-  decision_clean_b0.jsonl           # 兄弟决策对 K=0(3777 train + 1498 test,行内 intask_split)
-  decision_clean_b1.jsonl           # K=1 前瞻兄弟对(train+test)
-  decision_clean_b2.jsonl           # K=2
-  task_orientation.json             # 23 任务的 lower_is_better 表(奖牌几何审计过)
-  card_run_map.json                 # 节点→物理 run
+  cards_current_v10.jsonl            # 15,158 cards / 624 runs / 24 tasks
+  cards_senior_0810.jsonl            # 学长 0810 增量：835 cards / 38 runs / 8 tasks
+  card_run_map.json                   # 15,158 个 card_id -> physical run_id
+  task_orientation.json               # lower_is_better
+  v10_decision/
+    decision_train_v10_b0.jsonl       # 4,122 条，只供训练
+    decision_train_v10_b1.jsonl       #   814 条，只供训练
+    decision_train_v10_b2.jsonl       #   661 条，只供训练
+    decision_frozen_v10_b0.jsonl      # 1,498 条，论文冻结测试
+    decision_frozen_v10_b1.jsonl      #   323 条，论文冻结测试
+    decision_frozen_v10_b2.jsonl      #   265 条，论文冻结测试
+    decision_extension_v10_b0.jsonl   #    68 条，v10 新 run 扩展测试
+    decision_extension_v10_b1.jsonl   #    12 条，v10 新 run 扩展测试
+    decision_extension_v10_b2.jsonl   #     9 条，v10 新 run 扩展测试
+    decision_v10_audit.json           # 输入 SHA、计数、泄漏验收
+    runsplit_holdruns_v10.json         # 冻结 + 新增 run 分配
 ```
 
-## 必须遵守的一条(公平契约)
+其中 v10 共有 15,140 张有限真分卡；18 张历史非有限标签卡保留节点与血缘，但已明确隔离，
+不得参与训练或评测。
 
-**`decision_clean_b0.jsonl` 里 `intask_split=="test"` 的行是论文的冻结评测集,
-绝不能进训练**(b1/b2 的 test 行同理)。切分是 run 级冻结 holdout:
-`value-TRAIN runs ∩ decision-TEST runs = 0` 已验证;训练随便用所有 `train` 行。
+## 公平契约（最重要）
 
-## 建议配置(可自行调整,单 seed 先看方向)
+以下文件绝不能进入训练：
 
-| run | 模型 | ctx | 训练数据 | 目的 |
-|---|---|---|---|---|
-| R1 | Qwen3-8B | 16384 | value-pair train | 容量+ctx 主测 |
-| R2 | 同上 | 16384 | + decision b0/b1/b2 train 混入 | 排除「训练分布不含决策对」 |
-| R3 | qwen2.5-1.5B | 16384 | 同 R2 | 隔离容量变量 |
+- `decision_frozen_v10_b*.jsonl`
+- `decision_extension_v10_b*.jsonl`
 
-训练脚本可直接用 `phase1/rm_train_hf.py`(BT 成对损失,--lora --max-len 16384,
-支持 ZeRO-3;--save-adapter 请开)。
+训练只读 `decision_train_v10_b*.jsonl`。已验证：冻结测试节点进入训练为 0；训练 run 与扩展
+测试 run 交集为 0；旧有效冻结集逐对复现，missing/extra/reversed 均为 0。
 
-## 最省事的路径(优先):直接评现有 checkpoint
+headline 结果只报 `decision_frozen_v10_b*.jsonl`。`decision_extension_v10_b*.jsonl` 是 v10
+新增 held run 的前瞻检验，必须单列，不能和 headline 混算。
 
-不用重训:把你 0812 那批里最好的 1-2 个 checkpoint(Qwen3-4B/8B base)对
-`decision_clean_b0/b1/b2.jsonl` 中 `intask_split=="test"` 的行逐对打分即可。
-你的模型在旧 train 侧训练,对这些 test 行干净(run 级冻结切分,零交集已验证)。
+## 建议你现在做的最省事实验
 
-## 评测(我们来跑,你只要给分)
+优先复用你 0812 的最佳 Qwen3-4B/8B checkpoint，对三份 frozen 文件逐对打分；无需重新训练。
+每个 budget 单独报告 accuracy，并保留逐 pair 结果供 task/run 聚类 bootstrap。8B/16k 的作用是
+检验现有约 0.55 的结果是否受容量或上下文限制，而不是只报最佳单次 seed。
 
-对 b0/b1/b2 的 **test** 行逐对输出 0/1(1 = 模型把 `better` 排在 `worse` 前),存成:
+推荐输出：
 
 ```json
-{"rm_8b_16k": {"<better_id>|<worse_id>": 1, ...}}
+{
+  "model": "qwen3-8b-16k",
+  "checkpoint": "<path-or-id>",
+  "seed": 7,
+  "predictions": {
+    "<better_id>|<worse_id>": 1
+  }
+}
 ```
 
-发回该 json(或放在 phase1/ 下任意文件名),我们的 `gap_strat4.py` 直接读进
-分层表:难/易区 × 精确噪声上界 × parent 聚类 CI,和其他 15 个预测器同表可比。
+`1` 表示模型把 `better` 排在 `worse` 前。请同时保存确切命令、commit、依赖和 seed。
 
-## 背景数字(v9,供校准预期)
+## 为什么旧数字变了
 
-- 难区(gap<1e-2,751 对,占 50.1%):rm_1.5b 0.5128 / tfidf 0.5100 / self-report 0.6643;上界 0.8962(此集精确)
-- 易区(747 对):rm_1.5b 0.5628 / self-report 0.7533;上界 0.9981
-- K=1/K=2:现有一切预测器 ≈ 或低于随机(rm K=2 0.400 [0.309,0.493])
-- 你 pairwise 训练时 0.6B/1.7B/4B 差别不大的观察,是「不是容量」的旁证;8B+16k 是它的上限延伸
+旧 `decision_clean_b0.jsonl` 实有 1,499 条测试行，其中 1 条引用历史 `NaN` 标签；严格隔离后
+是 1,498 条。旧 README 写的 b0 train=3,777 也已过期：真实旧有效训练对是 3,907，v10
+再增加 215 条，得到 4,122。完整证据见
+`phase1/实验记录/2026-08-13/v10冻结决策集与训练增量验收.md`。

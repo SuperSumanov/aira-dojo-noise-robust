@@ -1,0 +1,75 @@
+{
+  "budgets": {
+    "0": {
+      "extension": 68,
+      "frozen_quarantined": 1,
+      "frozen_sha256": "f57f3dd100afe1ea67ca4ef6a29592ca9b0ee709910530484167a572147178c5",
+      "frozen_source_rows": 1499,
+      "frozen_valid": 1498,
+      "train": 4122,
+      "train_new": 215,
+      "train_old_only": 3907
+    },
+    "1": {
+      "extension": 12,
+      "frozen_quarantined": 0,
+      "frozen_sha256": "91a63ad37d56a60c562fe438720c386ef8be1e0393cf4d34e0ae259ca3d13622",
+      "frozen_source_rows": 323,
+      "frozen_valid": 323,
+      "train": 814,
+      "train_new": 57,
+      "train_old_only": 757
+    },
+    "2": {
+      "extension": 9,
+      "frozen_quarantined": 0,
+      "frozen_sha256": "5a8d91a263c6c0c3619afa204c3a274340d3f87c1ad396b5b34d097fd7594ea3",
+      "frozen_source_rows": 265,
+      "frozen_valid": 265,
+      "train": 661,
+      "train_new": 45,
+      "train_old_only": 616
+    }
+  },
+  "corpus": {
+    "cards": 15158,
+    "new_hold_runs": 11,
+    "new_runs": 38,
+    "old_cards": 14323,
+    "prior_hold_runs": 134,
+    "prior_runs": 586,
+    "quarantined_cards": 18,
+    "runs": 624,
+    "valid_cards": 15140
+  },
+  "frozen_test_nodes_in_train": 0,
+  "inputs": {
+    "cards": "phase1/cards_current_v10.jsonl",
+    "cards_sha256": "836c2acec3cd8603225c767ebcb29333cfaf81153d8bae51350df6706f860d74",
+    "old_cards": "phase1/cards_current_v9.jsonl",
+    "old_cards_sha256": "daeb29fc07ad670b5ca7a10cd2d84f1fa9a27dfa9d22510533417f1a8ad9407f",
+    "run_map": "phase1/card_run_map.json",
+    "run_map_sha256": "992d2e8a1e4c1779ced125d7b35821f558667977e5ddf75d90fde2984244167e",
+    "seed": 7
+  },
+  "new_hold_by_task": {
+    "aptos2019-blindness-detection": 1,
+    "leaf-classification": 2,
+    "learning-agency-lab-automated-essay-scoring-2": 2,
+    "random-acts-of-pizza": 1,
+    "ranzcr-clip-catheter-line-classification": 1,
+    "tabular-playground-series-may-2022": 1,
+    "text-normalization-challenge-russian-language": 2,
+    "us-patent-phrase-to-phrase-matching": 1
+  },
+  "new_runs_by_task": {
+    "aptos2019-blindness-detection": 2,
+    "leaf-classification": 6,
+    "learning-agency-lab-automated-essay-scoring-2": 8,
+    "random-acts-of-pizza": 4,
+    "ranzcr-clip-catheter-line-classification": 4,
+    "tabular-playground-series-may-2022": 4,
+    "text-normalization-challenge-russian-language": 6,
+    "us-patent-phrase-to-phrase-matching": 4
+  }
+}

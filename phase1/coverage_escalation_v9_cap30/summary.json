@@ -1,0 +1,636 @@
+{
+  "provenance": {
+    "manifest": "phase1\\fidelity_manifest.jsonl",
+    "manifest_sha256": "5a25b51d7d3f77e78715a3b3c7fc6ed11fc7a66a25f2b860157e38ac747e26c2",
+    "results": "phase1\\fidelity_results.jsonl",
+    "results_sha256": "27345777b7e107af859effa25f247017f4038771837eb8569b322b95f24525a7",
+    "run_map": "phase1\\card_run_map.json",
+    "run_map_sha256": "e792b5cd4e9e84105e2a6c2e58d6ac1bbf71bc0563a07ccc2e18b8c63af8f409",
+    "orientation": "phase1\\task_orientation.json",
+    "orientation_sha256": "e391cab4b4f642cccf7575c3dde670c68f8c9a48e751484ae29f19643f4e0d43",
+    "git_commit": "b820208831ded8e3e4c570b2b93eb4f7b66b52b8",
+    "python": "3.13.4",
+    "command": "python phase1/coverage_escalation.py --cap 30 --median-full-s 561 --bootstrap 10000 --seed 7"
+  },
+  "design": {
+    "cap_s": 30,
+    "bootstrap_draws": 10000,
+    "bootstrap_seed": 7,
+    "primary_cluster": "physical run",
+    "secondary_cluster": "parent decision",
+    "median_full_runtime_s_scenario": 561.0,
+    "cost_warning": "Only low-stage wall time and full-evaluation counts are exact. Runtime ratios use the independently measured 561-s corpus median as a scenario.",
+    "population_warning": "The manifest is deliberately 50 hard + 50 easy sets; ALL is balanced, not an estimate reweighted to the natural corpus difficulty prevalence."
+  },
+  "counts": {
+    "sets": 100,
+    "physical_runs": 52,
+    "children": 230,
+    "tasks": 19,
+    "hard_sets": 50,
+    "easy_sets": 50,
+    "artifact_children": 20,
+    "silent_children": 210,
+    "self_report_children": 217,
+    "complete_self_report_sets": 89
+  },
+  "policy_summary": {
+    "ALL_BALANCED": {
+      "random": {
+        "sets": 100,
+        "runs": 52,
+        "top1": 0.4598333333333333,
+        "top1_run_cluster_ci95": [
+          0.43680555555555556,
+          0.478968253968254
+        ],
+        "top1_parent_cluster_ci95": [
+          0.44266666666666665,
+          0.47583333333333333
+        ],
+        "median_raw_regret": 0.010680000000000009,
+        "mean_rank": 1.6433333333333333,
+        "mean_artifact_coverage": 0.078,
+        "mean_full_eval_count": 0.0,
+        "mean_cost_ratio_restart_scenario": 0.0,
+        "mean_cost_ratio_continue_scenario": 0.0
+      },
+      "full_external": {
+        "sets": 100,
+        "runs": 52,
+        "top1": 1.0,
+        "top1_run_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_parent_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.0,
+        "mean_artifact_coverage": 0.078,
+        "mean_full_eval_count": 2.3,
+        "mean_cost_ratio_restart_scenario": 1.0,
+        "mean_cost_ratio_continue_scenario": 1.0
+      },
+      "full_self_report_available": {
+        "sets": 100,
+        "runs": 52,
+        "top1": 0.78,
+        "top1_run_cluster_ci95": [
+          0.6956521739130435,
+          0.8673469387755102
+        ],
+        "top1_parent_cluster_ci95": [
+          0.695,
+          0.855
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.24,
+        "mean_artifact_coverage": 0.078,
+        "mean_full_eval_count": 2.3,
+        "mean_cost_ratio_restart_scenario": 1.0,
+        "mean_cost_ratio_continue_scenario": 1.0
+      },
+      "full_self_report_complete": {
+        "sets": 89,
+        "runs": 45,
+        "top1": 0.7865168539325843,
+        "top1_run_cluster_ci95": [
+          0.6989247311827957,
+          0.8765432098765432
+        ],
+        "top1_parent_cluster_ci95": [
+          0.6966292134831461,
+          0.8651685393258427
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.2359550561797752,
+        "mean_artifact_coverage": 0.07827715355805244,
+        "mean_full_eval_count": 2.3258426966292136,
+        "mean_cost_ratio_restart_scenario": 1.0,
+        "mean_cost_ratio_continue_scenario": 1.0
+      },
+      "sub120_available": {
+        "sets": 100,
+        "runs": 52,
+        "top1": 0.4678333333333333,
+        "top1_run_cluster_ci95": [
+          0.4249158249158249,
+          0.5109965635738831
+        ],
+        "top1_parent_cluster_ci95": [
+          0.42866666666666664,
+          0.5075
+        ],
+        "median_raw_regret": 0.006852499999999984,
+        "mean_rank": 1.63,
+        "mean_artifact_coverage": 0.078,
+        "mean_full_eval_count": 0.0,
+        "mean_cost_ratio_restart_scenario": 0.04753808674985146,
+        "mean_cost_ratio_continue_scenario": 0.04753808674985146
+      },
+      "artifact120_escalate_silent": {
+        "sets": 100,
+        "runs": 52,
+        "top1": 1.0,
+        "top1_run_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_parent_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.0,
+        "mean_artifact_coverage": 0.078,
+        "mean_full_eval_count": 2.1,
+        "mean_cost_ratio_restart_scenario": 0.9695380867498515,
+        "mean_cost_ratio_continue_scenario": 0.9202332739156269
+      }
+    },
+    "hard": {
+      "random": {
+        "sets": 50,
+        "runs": 28,
+        "top1": 0.45566666666666666,
+        "top1_run_cluster_ci95": [
+          0.42256944444444444,
+          0.4838709677419355
+        ],
+        "top1_parent_cluster_ci95": [
+          0.42866666666666664,
+          0.48
+        ],
+        "median_raw_regret": 0.0018525000000013114,
+        "mean_rank": 1.6666666666666667,
+        "mean_artifact_coverage": 0.049999999999999996,
+        "mean_full_eval_count": 0.0,
+        "mean_cost_ratio_restart_scenario": 0.0,
+        "mean_cost_ratio_continue_scenario": 0.0
+      },
+      "full_external": {
+        "sets": 50,
+        "runs": 28,
+        "top1": 1.0,
+        "top1_run_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_parent_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.0,
+        "mean_artifact_coverage": 0.049999999999999996,
+        "mean_full_eval_count": 2.36,
+        "mean_cost_ratio_restart_scenario": 1.0,
+        "mean_cost_ratio_continue_scenario": 1.0
+      },
+      "full_self_report_available": {
+        "sets": 50,
+        "runs": 28,
+        "top1": 0.71,
+        "top1_run_cluster_ci95": [
+          0.59375,
+          0.8333333333333334
+        ],
+        "top1_parent_cluster_ci95": [
+          0.58,
+          0.83
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.31,
+        "mean_artifact_coverage": 0.049999999999999996,
+        "mean_full_eval_count": 2.36,
+        "mean_cost_ratio_restart_scenario": 1.0,
+        "mean_cost_ratio_continue_scenario": 1.0
+      },
+      "full_self_report_complete": {
+        "sets": 46,
+        "runs": 25,
+        "top1": 0.7391304347826086,
+        "top1_run_cluster_ci95": [
+          0.6226415094339622,
+          0.8571428571428571
+        ],
+        "top1_parent_cluster_ci95": [
+          0.6086956521739131,
+          0.8695652173913043
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.2826086956521738,
+        "mean_artifact_coverage": 0.036231884057971016,
+        "mean_full_eval_count": 2.369565217391304,
+        "mean_cost_ratio_restart_scenario": 1.0,
+        "mean_cost_ratio_continue_scenario": 1.0
+      },
+      "sub120_available": {
+        "sets": 50,
+        "runs": 28,
+        "top1": 0.449,
+        "top1_run_cluster_ci95": [
+          0.3764150943396226,
+          0.5131205673758865
+        ],
+        "top1_parent_cluster_ci95": [
+          0.4,
+          0.499
+        ],
+        "median_raw_regret": 0.0018450000000000133,
+        "mean_rank": 1.68,
+        "mean_artifact_coverage": 0.049999999999999996,
+        "mean_full_eval_count": 0.0,
+        "mean_cost_ratio_restart_scenario": 0.0475513963161022,
+        "mean_cost_ratio_continue_scenario": 0.0475513963161022
+      },
+      "artifact120_escalate_silent": {
+        "sets": 50,
+        "runs": 28,
+        "top1": 1.0,
+        "top1_run_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_parent_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.0,
+        "mean_artifact_coverage": 0.049999999999999996,
+        "mean_full_eval_count": 2.24,
+        "mean_cost_ratio_restart_scenario": 0.9975513963161022,
+        "mean_cost_ratio_continue_scenario": 0.9467492572786691
+      }
+    },
+    "easy": {
+      "random": {
+        "sets": 50,
+        "runs": 38,
+        "top1": 0.464,
+        "top1_run_cluster_ci95": [
+          0.44066666666666665,
+          0.48333333333333334
+        ],
+        "top1_parent_cluster_ci95": [
+          0.442,
+          0.48333333333333334
+        ],
+        "median_raw_regret": 0.02877249999999998,
+        "mean_rank": 1.62,
+        "mean_artifact_coverage": 0.106,
+        "mean_full_eval_count": 0.0,
+        "mean_cost_ratio_restart_scenario": 0.0,
+        "mean_cost_ratio_continue_scenario": 0.0
+      },
+      "full_external": {
+        "sets": 50,
+        "runs": 38,
+        "top1": 1.0,
+        "top1_run_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_parent_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.0,
+        "mean_artifact_coverage": 0.106,
+        "mean_full_eval_count": 2.24,
+        "mean_cost_ratio_restart_scenario": 1.0,
+        "mean_cost_ratio_continue_scenario": 1.0
+      },
+      "full_self_report_available": {
+        "sets": 50,
+        "runs": 38,
+        "top1": 0.85,
+        "top1_run_cluster_ci95": [
+          0.7403846153846154,
+          0.9456521739130435
+        ],
+        "top1_parent_cluster_ci95": [
+          0.75,
+          0.94
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.17,
+        "mean_artifact_coverage": 0.106,
+        "mean_full_eval_count": 2.24,
+        "mean_cost_ratio_restart_scenario": 1.0,
+        "mean_cost_ratio_continue_scenario": 1.0
+      },
+      "full_self_report_complete": {
+        "sets": 43,
+        "runs": 33,
+        "top1": 0.8372093023255814,
+        "top1_run_cluster_ci95": [
+          0.7142857142857143,
+          0.9512195121951219
+        ],
+        "top1_parent_cluster_ci95": [
+          0.7209302325581395,
+          0.9302325581395349
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.186046511627907,
+        "mean_artifact_coverage": 0.12325581395348838,
+        "mean_full_eval_count": 2.2790697674418605,
+        "mean_cost_ratio_restart_scenario": 1.0,
+        "mean_cost_ratio_continue_scenario": 1.0
+      },
+      "sub120_available": {
+        "sets": 50,
+        "runs": 38,
+        "top1": 0.4866666666666667,
+        "top1_run_cluster_ci95": [
+          0.42483660130718953,
+          0.55
+        ],
+        "top1_parent_cluster_ci95": [
+          0.42666666666666664,
+          0.55
+        ],
+        "median_raw_regret": 0.026523333333333343,
+        "mean_rank": 1.58,
+        "mean_artifact_coverage": 0.106,
+        "mean_full_eval_count": 0.0,
+        "mean_cost_ratio_restart_scenario": 0.047524777183600715,
+        "mean_cost_ratio_continue_scenario": 0.047524777183600715
+      },
+      "artifact120_escalate_silent": {
+        "sets": 50,
+        "runs": 38,
+        "top1": 1.0,
+        "top1_run_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_parent_cluster_ci95": [
+          1.0,
+          1.0
+        ],
+        "median_raw_regret": 0.0,
+        "mean_rank": 1.0,
+        "mean_artifact_coverage": 0.106,
+        "mean_full_eval_count": 1.96,
+        "mean_cost_ratio_restart_scenario": 0.9415247771836007,
+        "mean_cost_ratio_continue_scenario": 0.8937172905525846
+      }
+    }
+  },
+  "paired_top1_differences": [
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "random",
+      "sets": 100,
+      "runs": 52,
+      "delta_top1": 0.5401666666666667,
+      "run_cluster_ci95": [
+        0.5210355987055016,
+        0.5632075471698114
+      ],
+      "parent_cluster_ci95": [
+        0.5243333333333333,
+        0.5573333333333333
+      ],
+      "stratum": "ALL_BALANCED"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "sub120_available",
+      "sets": 100,
+      "runs": 52,
+      "delta_top1": 0.5321666666666667,
+      "run_cluster_ci95": [
+        0.489010989010989,
+        0.5750841750841751
+      ],
+      "parent_cluster_ci95": [
+        0.4925,
+        0.5713333333333334
+      ],
+      "stratum": "ALL_BALANCED"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "full_self_report_available",
+      "sets": 100,
+      "runs": 52,
+      "delta_top1": 0.22,
+      "run_cluster_ci95": [
+        0.1326530612244898,
+        0.30434782608695654
+      ],
+      "parent_cluster_ci95": [
+        0.145,
+        0.305
+      ],
+      "stratum": "ALL_BALANCED"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "full_self_report_complete",
+      "sets": 89,
+      "runs": 45,
+      "delta_top1": 0.21348314606741572,
+      "run_cluster_ci95": [
+        0.12345679012345678,
+        0.3010752688172043
+      ],
+      "parent_cluster_ci95": [
+        0.1348314606741573,
+        0.30337078651685395
+      ],
+      "stratum": "ALL_BALANCED"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "full_external",
+      "sets": 100,
+      "runs": 52,
+      "delta_top1": 0.0,
+      "run_cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "parent_cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "stratum": "ALL_BALANCED"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "random",
+      "sets": 50,
+      "runs": 28,
+      "delta_top1": 0.5443333333333333,
+      "run_cluster_ci95": [
+        0.516260162601626,
+        0.5775193798449613
+      ],
+      "parent_cluster_ci95": [
+        0.52,
+        0.5713333333333334
+      ],
+      "stratum": "hard"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "sub120_available",
+      "sets": 50,
+      "runs": 28,
+      "delta_top1": 0.551,
+      "run_cluster_ci95": [
+        0.4868794326241135,
+        0.6235849056603774
+      ],
+      "parent_cluster_ci95": [
+        0.501,
+        0.6
+      ],
+      "stratum": "hard"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "full_self_report_available",
+      "sets": 50,
+      "runs": 28,
+      "delta_top1": 0.29,
+      "run_cluster_ci95": [
+        0.16666666666666666,
+        0.40625
+      ],
+      "parent_cluster_ci95": [
+        0.17,
+        0.42
+      ],
+      "stratum": "hard"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "full_self_report_complete",
+      "sets": 46,
+      "runs": 25,
+      "delta_top1": 0.2608695652173913,
+      "run_cluster_ci95": [
+        0.14285714285714285,
+        0.37735849056603776
+      ],
+      "parent_cluster_ci95": [
+        0.13043478260869565,
+        0.391304347826087
+      ],
+      "stratum": "hard"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "full_external",
+      "sets": 50,
+      "runs": 28,
+      "delta_top1": 0.0,
+      "run_cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "parent_cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "stratum": "hard"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "random",
+      "sets": 50,
+      "runs": 38,
+      "delta_top1": 0.536,
+      "run_cluster_ci95": [
+        0.5166666666666667,
+        0.5593495934959349
+      ],
+      "parent_cluster_ci95": [
+        0.5166666666666667,
+        0.558
+      ],
+      "stratum": "easy"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "sub120_available",
+      "sets": 50,
+      "runs": 38,
+      "delta_top1": 0.5133333333333333,
+      "run_cluster_ci95": [
+        0.45,
+        0.5751633986928105
+      ],
+      "parent_cluster_ci95": [
+        0.45,
+        0.5733333333333334
+      ],
+      "stratum": "easy"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "full_self_report_available",
+      "sets": 50,
+      "runs": 38,
+      "delta_top1": 0.15,
+      "run_cluster_ci95": [
+        0.05434782608695652,
+        0.25961538461538464
+      ],
+      "parent_cluster_ci95": [
+        0.06,
+        0.25
+      ],
+      "stratum": "easy"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "full_self_report_complete",
+      "sets": 43,
+      "runs": 33,
+      "delta_top1": 0.16279069767441862,
+      "run_cluster_ci95": [
+        0.04878048780487805,
+        0.2857142857142857
+      ],
+      "parent_cluster_ci95": [
+        0.06976744186046512,
+        0.27906976744186046
+      ],
+      "stratum": "easy"
+    },
+    {
+      "a": "artifact120_escalate_silent",
+      "b": "full_external",
+      "sets": 50,
+      "runs": 38,
+      "delta_top1": 0.0,
+      "run_cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "parent_cluster_ci95": [
+        0.0,
+        0.0
+      ],
+      "stratum": "easy"
+    }
+  ],
+  "aggregate_cost_accounting": {
+    "observed_low_stage_wall_s": 6193.7,
+    "full_eval_count": 210,
+    "all_full_eval_count": 230,
+    "restart_scenario_ratio_to_all_full": 0.9610454932961326,
+    "continuation_scenario_ratio_to_all_full": 0.9122196388436797
+  }
+}

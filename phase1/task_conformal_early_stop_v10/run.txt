@@ -1,0 +1,10 @@
+PREFLIGHT cards=15158 finite=15140 runs=624 hold=145 test_sets=100 test_runs=52 tasks=19 leakage=0/0/0
+policy          accepts deployed>=full match-delta[CI] restart continuation
+artifact_only     41 0.2500 -0.6700[-0.8036,-0.5268] 0.0586 0.0586
+all_escalate       0 0.9200 +0.0000[+0.0000,+0.0000] 0.9850 0.9312
+full_external      0 1.0000 +0.0800[+0.0202,+0.1538] 1.0000 1.0000
+conformal_a05      0 0.9200 +0.0000[+0.0000,+0.0000] 0.9850 0.9312
+conformal_a10      0 0.9200 +0.0000[+0.0000,+0.0000] 0.9850 0.9312
+conformal_a20      0 0.9200 +0.0000[+0.0000,+0.0000] 0.9850 0.9312
+VERDICT KILL lower=+0.000000 restart=0.984978
+WROTE phase1/task_conformal_early_stop_v10

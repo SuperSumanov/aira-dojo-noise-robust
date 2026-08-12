@@ -26,7 +26,6 @@ class BradleyTerryConfig(TrainingArguments):
     head_frac: float = field(default=0.25, metadata={"help": "fraction retained from the input head"})
     task_cond: bool = field(default=True, metadata={"help": "prepend the MLE-bench task name"})
     loto: str = field(default="", metadata={"help": "leave this task out of the training pool"})
-    eval_steps: int = field(default=20, metadata={"help": "evaluation interval in optimizer steps"})
     budget_cond: bool = field(default=False, metadata={"help": "include the remaining budget"})
     budget_pos: str = field(default="head", metadata={"help": "budget position: head or tail"})
 

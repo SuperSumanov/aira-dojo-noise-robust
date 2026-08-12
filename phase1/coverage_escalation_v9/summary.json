@@ -6,11 +6,14 @@
     "results_sha256": "27345777b7e107af859effa25f247017f4038771837eb8569b322b95f24525a7",
     "run_map": "phase1\\card_run_map.json",
     "run_map_sha256": "e792b5cd4e9e84105e2a6c2e58d6ac1bbf71bc0563a07ccc2e18b8c63af8f409",
+    "runtime_map": "phase1\\fidelity_runtime_v9.jsonl",
+    "runtime_map_sha256": "dff8eb88a1db8d63bab17851c1dce2c1bd389a4744a811d65a5ce1fe5a1f55e7",
+    "runtime_source_cards_sha256": "daeb29fc07ad670b5ca7a10cd2d84f1fa9a27dfa9d22510533417f1a8ad9407f",
     "orientation": "phase1\\task_orientation.json",
-    "orientation_sha256": "e391cab4b4f642cccf7575c3dde670c68f8c9a48e751484ae29f19643f4e0d43",
-    "git_commit": "b820208831ded8e3e4c570b2b93eb4f7b66b52b8",
+    "orientation_sha256": "be4559c0f87ce80798188c2137e94ec7968147162d608c87adb0449ee297418e",
+    "git_commit": "d9a389db0f3ff22aeeeeaa7dc60c18d62440e75c",
     "python": "3.13.4",
-    "command": "python phase1/coverage_escalation.py --cap 120 --median-full-s 561 --bootstrap 10000 --seed 7"
+    "command": "python phase1/coverage_escalation.py --cap 120 --runtime-map phase1\\fidelity_runtime_v9.jsonl --bootstrap 10000 --seed 7"
   },
   "design": {
     "cap_s": 120,
@@ -18,8 +21,7 @@
     "bootstrap_seed": 7,
     "primary_cluster": "physical run",
     "secondary_cluster": "parent decision",
-    "median_full_runtime_s_scenario": 561.0,
-    "cost_warning": "Only low-stage wall time and full-evaluation counts are exact. Runtime ratios use the independently measured 561-s corpus median as a scenario.",
+    "cost_warning": "Restart cost combines observed cap-run wall time with historical per-card full runtime. Continuation cost additionally assumes execution can resume.",
     "population_warning": "The manifest is deliberately 50 hard + 50 easy sets; ALL is balanced, not an estimate reweighted to the natural corpus difficulty prevalence."
   },
   "counts": {
@@ -52,8 +54,8 @@
         "mean_rank": 1.6433333333333333,
         "mean_artifact_coverage": 0.35233333333333333,
         "mean_full_eval_count": 0.0,
-        "mean_cost_ratio_restart_scenario": 0.0,
-        "mean_cost_ratio_continue_scenario": 0.0
+        "mean_cost_ratio_restart_exact": 0.0,
+        "mean_cost_ratio_continue_exact": 0.0
       },
       "full_external": {
         "sets": 100,
@@ -71,8 +73,8 @@
         "mean_rank": 1.0,
         "mean_artifact_coverage": 0.35233333333333333,
         "mean_full_eval_count": 2.3,
-        "mean_cost_ratio_restart_scenario": 1.0,
-        "mean_cost_ratio_continue_scenario": 1.0
+        "mean_cost_ratio_restart_exact": 1.0,
+        "mean_cost_ratio_continue_exact": 1.0
       },
       "full_self_report_available": {
         "sets": 100,
@@ -90,8 +92,8 @@
         "mean_rank": 1.24,
         "mean_artifact_coverage": 0.35233333333333333,
         "mean_full_eval_count": 2.3,
-        "mean_cost_ratio_restart_scenario": 1.0,
-        "mean_cost_ratio_continue_scenario": 1.0
+        "mean_cost_ratio_restart_exact": 1.0,
+        "mean_cost_ratio_continue_exact": 1.0
       },
       "full_self_report_complete": {
         "sets": 89,
@@ -109,8 +111,8 @@
         "mean_rank": 1.2359550561797752,
         "mean_artifact_coverage": 0.3397003745318352,
         "mean_full_eval_count": 2.3258426966292136,
-        "mean_cost_ratio_restart_scenario": 1.0,
-        "mean_cost_ratio_continue_scenario": 1.0
+        "mean_cost_ratio_restart_exact": 1.0,
+        "mean_cost_ratio_continue_exact": 1.0
       },
       "sub120_available": {
         "sets": 100,
@@ -128,8 +130,8 @@
         "mean_rank": 1.5,
         "mean_artifact_coverage": 0.35233333333333333,
         "mean_full_eval_count": 0.0,
-        "mean_cost_ratio_restart_scenario": 0.14695273321449792,
-        "mean_cost_ratio_continue_scenario": 0.14695273321449792
+        "mean_cost_ratio_restart_exact": 0.27196795058472983,
+        "mean_cost_ratio_continue_exact": 0.27196795058472983
       },
       "artifact120_escalate_silent": {
         "sets": 100,
@@ -147,8 +149,8 @@
         "mean_rank": 1.07,
         "mean_artifact_coverage": 0.35233333333333333,
         "mean_full_eval_count": 1.44,
-        "mean_cost_ratio_restart_scenario": 0.7946193998811646,
-        "mean_cost_ratio_continue_scenario": 0.6560810754604872
+        "mean_cost_ratio_restart_exact": 0.947095416099598,
+        "mean_cost_ratio_continue_exact": 0.8651782795757087
       }
     },
     "hard": {
@@ -168,8 +170,8 @@
         "mean_rank": 1.6666666666666667,
         "mean_artifact_coverage": 0.32133333333333336,
         "mean_full_eval_count": 0.0,
-        "mean_cost_ratio_restart_scenario": 0.0,
-        "mean_cost_ratio_continue_scenario": 0.0
+        "mean_cost_ratio_restart_exact": 0.0,
+        "mean_cost_ratio_continue_exact": 0.0
       },
       "full_external": {
         "sets": 50,
@@ -187,8 +189,8 @@
         "mean_rank": 1.0,
         "mean_artifact_coverage": 0.32133333333333336,
         "mean_full_eval_count": 2.36,
-        "mean_cost_ratio_restart_scenario": 1.0,
-        "mean_cost_ratio_continue_scenario": 1.0
+        "mean_cost_ratio_restart_exact": 1.0,
+        "mean_cost_ratio_continue_exact": 1.0
       },
       "full_self_report_available": {
         "sets": 50,
@@ -206,8 +208,8 @@
         "mean_rank": 1.31,
         "mean_artifact_coverage": 0.32133333333333336,
         "mean_full_eval_count": 2.36,
-        "mean_cost_ratio_restart_scenario": 1.0,
-        "mean_cost_ratio_continue_scenario": 1.0
+        "mean_cost_ratio_restart_exact": 1.0,
+        "mean_cost_ratio_continue_exact": 1.0
       },
       "full_self_report_complete": {
         "sets": 46,
@@ -225,8 +227,8 @@
         "mean_rank": 1.2826086956521738,
         "mean_artifact_coverage": 0.28405797101449276,
         "mean_full_eval_count": 2.369565217391304,
-        "mean_cost_ratio_restart_scenario": 1.0,
-        "mean_cost_ratio_continue_scenario": 1.0
+        "mean_cost_ratio_restart_exact": 1.0,
+        "mean_cost_ratio_continue_exact": 1.0
       },
       "sub120_available": {
         "sets": 50,
@@ -244,8 +246,8 @@
         "mean_rank": 1.54,
         "mean_artifact_coverage": 0.32133333333333336,
         "mean_full_eval_count": 0.0,
-        "mean_cost_ratio_restart_scenario": 0.14888336304218658,
-        "mean_cost_ratio_continue_scenario": 0.14888336304218658
+        "mean_cost_ratio_restart_exact": 0.23119886463182296,
+        "mean_cost_ratio_continue_exact": 0.23119886463182296
       },
       "artifact120_escalate_silent": {
         "sets": 50,
@@ -263,8 +265,8 @@
         "mean_rank": 1.12,
         "mean_artifact_coverage": 0.32133333333333336,
         "mean_full_eval_count": 1.54,
-        "mean_cost_ratio_restart_scenario": 0.8275500297088533,
-        "mean_cost_ratio_continue_scenario": 0.6823806892453952
+        "mean_cost_ratio_restart_exact": 0.9136042617898921,
+        "mean_cost_ratio_continue_exact": 0.838019354450541
       }
     },
     "easy": {
@@ -284,8 +286,8 @@
         "mean_rank": 1.62,
         "mean_artifact_coverage": 0.38333333333333336,
         "mean_full_eval_count": 0.0,
-        "mean_cost_ratio_restart_scenario": 0.0,
-        "mean_cost_ratio_continue_scenario": 0.0
+        "mean_cost_ratio_restart_exact": 0.0,
+        "mean_cost_ratio_continue_exact": 0.0
       },
       "full_external": {
         "sets": 50,
@@ -303,8 +305,8 @@
         "mean_rank": 1.0,
         "mean_artifact_coverage": 0.38333333333333336,
         "mean_full_eval_count": 2.24,
-        "mean_cost_ratio_restart_scenario": 1.0,
-        "mean_cost_ratio_continue_scenario": 1.0
+        "mean_cost_ratio_restart_exact": 1.0,
+        "mean_cost_ratio_continue_exact": 1.0
       },
       "full_self_report_available": {
         "sets": 50,
@@ -322,8 +324,8 @@
         "mean_rank": 1.17,
         "mean_artifact_coverage": 0.38333333333333336,
         "mean_full_eval_count": 2.24,
-        "mean_cost_ratio_restart_scenario": 1.0,
-        "mean_cost_ratio_continue_scenario": 1.0
+        "mean_cost_ratio_restart_exact": 1.0,
+        "mean_cost_ratio_continue_exact": 1.0
       },
       "full_self_report_complete": {
         "sets": 43,
@@ -341,8 +343,8 @@
         "mean_rank": 1.186046511627907,
         "mean_artifact_coverage": 0.3992248062015504,
         "mean_full_eval_count": 2.2790697674418605,
-        "mean_cost_ratio_restart_scenario": 1.0,
-        "mean_cost_ratio_continue_scenario": 1.0
+        "mean_cost_ratio_restart_exact": 1.0,
+        "mean_cost_ratio_continue_exact": 1.0
       },
       "sub120_available": {
         "sets": 50,
@@ -360,8 +362,8 @@
         "mean_rank": 1.46,
         "mean_artifact_coverage": 0.38333333333333336,
         "mean_full_eval_count": 0.0,
-        "mean_cost_ratio_restart_scenario": 0.14502210338680926,
-        "mean_cost_ratio_continue_scenario": 0.14502210338680926
+        "mean_cost_ratio_restart_exact": 0.3127370365376367,
+        "mean_cost_ratio_continue_exact": 0.3127370365376367
       },
       "artifact120_escalate_silent": {
         "sets": 50,
@@ -379,8 +381,8 @@
         "mean_rank": 1.02,
         "mean_artifact_coverage": 0.38333333333333336,
         "mean_full_eval_count": 1.34,
-        "mean_cost_ratio_restart_scenario": 0.7616887700534759,
-        "mean_cost_ratio_continue_scenario": 0.6297814616755794
+        "mean_cost_ratio_restart_exact": 0.9805865704093041,
+        "mean_cost_ratio_continue_exact": 0.8923372047008763
       }
     }
   },
@@ -630,7 +632,8 @@
     "observed_low_stage_wall_s": 18846.0,
     "full_eval_count": 144,
     "all_full_eval_count": 230,
-    "restart_scenario_ratio_to_all_full": 0.7721460125552198,
-    "continuation_scenario_ratio_to_all_full": 0.638223668914206
+    "historical_all_full_runtime_s": 321565.3063281734,
+    "restart_exact_ratio_to_all_full": 0.9849782859597027,
+    "continuation_exact_ratio_to_all_full": 0.9312411456030097
   }
 }

@@ -1,0 +1,25 @@
+{
+  "frozen_read": false,
+  "gates_exact": true,
+  "graph_statistics_exact_with_atol_1e_8": true,
+  "integrity": {
+    "all_models_converged": true,
+    "control_counts_exact": true,
+    "fit_valid_endpoint_overlap_zero": true,
+    "fit_valid_raw_code_overlap_zero": true,
+    "fit_valid_run_overlap_zero": true,
+    "five_folds_complete": true,
+    "frozen_read_false": true,
+    "oof_score_coverage_exact": true,
+    "support_exact": true,
+    "temporal_vault_read_false": true
+  },
+  "maximum_refit_score_abs_difference": 0.0,
+  "metrics_exact_with_atol_1e_11": true,
+  "producer_status": "TGCA_DISCOVERY_NO_UNLOCK",
+  "protocol": "tgca_v11_train_oof_discovery_v1",
+  "score_tolerance": 1e-10,
+  "selected_edges_exact": true,
+  "status": "VERIFIED_TGCA_DISCOVERY_NO_UNLOCK",
+  "temporal_vault_read": false
+}

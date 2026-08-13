@@ -1,0 +1,48 @@
+{
+  "accuracy_computed": false,
+  "all_models_accepted": true,
+  "card_audit": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "corpus_rows_scanned": 16012,
+    "non_allowlisted_cards_retained": 0,
+    "post_execution_fields_retained": 0,
+    "retained_fields": [
+      "id",
+      "task",
+      "run",
+      "parent",
+      "code",
+      "code_sha256",
+      "graded"
+    ],
+    "selected_endpoints": 5499
+  },
+  "conservative_formal_chain_extrapolation_s": 3297.5796333281323,
+  "elapsed_s": 219.8386422218755,
+  "endpoints": 5499,
+  "fold": 0,
+  "fold_augmentation_rows": 3386,
+  "fold_isolation": {
+    "endpoint_overlap": 0,
+    "fit_endpoints": 4364,
+    "fit_pairs": 3410,
+    "fit_runs": 267,
+    "raw_code_sha_overlap": 0,
+    "run_overlap": 0,
+    "valid_endpoints": 1135,
+    "valid_pairs": 853,
+    "valid_runs": 66
+  },
+  "formal_chain_budget_s": 14400.0,
+  "graph_stat_rows": 88,
+  "max_rss_kib": 4653076,
+  "metrics_computed": [],
+  "pairs": 4263,
+  "parents": 2293,
+  "protocol": "tgca_v11_train_oof_discovery_v1",
+  "runs": 333,
+  "selected_edge_manifest_rows": 10158,
+  "status": "TGCA_ENGINEERING_SMOKE_PASS",
+  "tasks": 23,
+  "within_formal_chain_budget": true
+}

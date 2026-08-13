@@ -3,6 +3,35 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0H. 2026-08-14 最新覆盖：TGCA 经独立复核关闭，盲测继续封存
+
+本节晚于 0G；稳定主线仍是 run-clean、decision-local 的 MLE-agent 搜索树数据集/benchmark 与前瞻复核。
+
+1. `tgca_v11_train_oof_discovery_v1` 已完成 13 项预检、5-fold producer 和不导入 producer 的完整重拟合
+   verifier；正式状态为 **`VERIFIED_TGCA_DISCOVERY_NO_UNLOCK`**，最大 refit score 差为 0，所有完整性门通过，
+   `frozen_read=false`、`temporal_vault_read=false`。
+2. TGCA 相对 sibling-only 的微平均 utility/top-1 仅为
+   `+0.010310682590593189/+0.004426737494466578`；run/task clustered 区间均跨 0，支持任务中 utility
+   非负仅 `11/20=0.55`。相对 uniform cross-run 的 utility 为 `-0.00639610796665303`。三个预注册效果门
+   全部失败，0812 vault 不解封。
+3. 操纵检查明确成功：114 个 fold×task 图中，TGCA 把平均 components 从 `80.45614035087719` 降至
+   `5.780701754385965`，最大分量占比升至 `0.934134980605146`，正代数连通度图为 `101/114`；因此不能把
+   NO_UNLOCK 归因于“没有把图连起来”。关闭本实现，不在同一 OOF 改 ratio/选边/任务/门。
+4. 学长的规模实验文档已定位到 `myfork/dojo-reproduce` commit `5f071ec`：旧 1,303-pair validation 上
+   1.5B--8B 没有单调规模收益，Qwen3 base final 均值约 55%，1:1 混入 value pairs 下降。它是独立旧口径，
+   不替代本项目 run-clean OOF。该分支更新 commit `2cb6f0c` 仍把
+   `metric_for_best_model=eval_pair_accuracy` 与 `greater_is_better=false` 并置；修复前的新 checkpoint
+   不能按“best accuracy”解释。
+5. 接下来资源只回到固定 scorer 的 first-960 prospective cohort、新 source-journal provenance 与 benchmark
+   发布物。gap/parent-normalized loss 已被 learning-to-rank/NAS top-centered 文献覆盖；若补做只能在新验证
+   证据上作为强 baseline，不作为 novelty，也不在当前 OOF 追参。
+
+直接依据：
+
+- `phase1/实验记录/2026-08-14/TGCA_裁决.md`；
+- `phase1/results/tgca_v11_20260814/independent_verify.json`；
+- `phase1/results/tgca_v11_20260814/summary.json`。
+
 ## 0G. 2026-08-14 最新覆盖：短 run 改变 pair 产率，盲态扩为固定 first-960
 
 本节晚于 0F；没有读取 activation 后 outcome 或论文 frozen pairs，稳定主线不变。

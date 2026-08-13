@@ -1,0 +1,457 @@
+fold,task,arm,nodes,base_edges,augmentation_rows,unique_edges,components,largest_component_nodes,largest_component_share,normalized_algebraic_connectivity,augmentation_gap_bins
+0,aptos2019-blindness-detection,sibling_only,68,34,0,34,34,2,0.029411764705882353,0.0,{}
+0,chaii-hindi-and-tamil-question-answering,sibling_only,340,368,0,368,117,5,0.014705882352941176,0.0,{}
+0,denoising-dirty-documents,sibling_only,198,187,0,187,79,5,0.025252525252525252,0.0,{}
+0,dog-breed-identification,sibling_only,62,47,0,47,27,5,0.08064516129032258,0.0,{}
+0,dogs-vs-cats-redux-kernels-edition,sibling_only,18,9,0,9,9,2,0.1111111111111111,0.0,{}
+0,google-quest-challenge,sibling_only,76,38,0,38,38,2,0.02631578947368421,0.0,{}
+0,histopathologic-cancer-detection,sibling_only,82,41,0,41,41,2,0.024390243902439025,0.0,{}
+0,kuzushiji-recognition,sibling_only,14,7,0,7,7,2,0.14285714285714285,0.0,{}
+0,leaf-classification,sibling_only,243,218,0,218,92,5,0.0205761316872428,0.0,{}
+0,learning-agency-lab-automated-essay-scoring-2,sibling_only,53,40,0,40,22,3,0.05660377358490566,0.0,{}
+0,mlsp-2013-birds,sibling_only,222,238,0,238,79,5,0.02252252252252252,0.0,{}
+0,nomad2018-predict-transparent-conductors,sibling_only,102,123,0,123,33,5,0.049019607843137254,0.0,{}
+0,petfinder-pawpularity-score,sibling_only,513,432,0,432,199,5,0.009746588693957114,0.0,{}
+0,random-acts-of-pizza,sibling_only,470,385,0,385,187,5,0.010638297872340425,0.0,{}
+0,spaceship-titanic,sibling_only,60,78,0,78,19,11,0.18333333333333332,0.0,{}
+0,spooky-author-identification,sibling_only,647,518,0,518,255,4,0.0061823802163833074,0.0,{}
+0,tabular-playground-series-dec-2021,sibling_only,48,27,0,27,23,3,0.0625,0.0,{}
+0,tabular-playground-series-may-2022,sibling_only,141,115,0,115,59,5,0.03546099290780142,0.0,{}
+0,text-normalization-challenge-russian-language,sibling_only,180,90,0,90,90,2,0.011111111111111112,0.0,{}
+0,tweet-sentiment-extraction,sibling_only,80,40,0,40,40,2,0.025,0.0,{}
+0,us-patent-phrase-to-phrase-matching,sibling_only,662,331,0,331,331,2,0.0030211480362537764,0.0,{}
+0,whale-categorization-playground,sibling_only,85,44,0,44,42,3,0.03529411764705882,0.0,{}
+0,aptos2019-blindness-detection,sibling_reweight_control,68,34,34,34,34,2,0.029411764705882353,0.0,"{""2"": 3, ""3"": 3, ""4"": 14, ""5"": 11, ""6"": 2, ""7"": 1}"
+0,chaii-hindi-and-tamil-question-answering,sibling_reweight_control,340,368,368,368,117,5,0.014705882352941176,0.0,"{""1"": 1, ""3"": 14, ""4"": 45, ""5"": 99, ""6"": 127, ""7"": 60, ""8"": 22}"
+0,denoising-dirty-documents,sibling_reweight_control,198,187,187,187,79,5,0.025252525252525252,0.0,"{""0"": 7, ""1"": 4, ""2"": 24, ""3"": 50, ""4"": 41, ""5"": 22, ""6"": 32, ""7"": 7}"
+0,dog-breed-identification,sibling_reweight_control,62,47,46,47,27,5,0.08064516129032258,0.0,"{""2"": 2, ""3"": 1, ""4"": 3, ""5"": 6, ""6"": 7, ""7"": 18, ""8"": 9}"
+0,dogs-vs-cats-redux-kernels-edition,sibling_reweight_control,18,9,9,9,9,2,0.1111111111111111,0.0,"{""2"": 2, ""3"": 2, ""4"": 1, ""5"": 2, ""6"": 2}"
+0,google-quest-challenge,sibling_reweight_control,76,38,38,38,38,2,0.02631578947368421,0.0,"{""3"": 2, ""4"": 12, ""5"": 11, ""6"": 10, ""7"": 3}"
+0,histopathologic-cancer-detection,sibling_reweight_control,82,41,41,41,41,2,0.024390243902439025,0.0,"{""0"": 4, ""1"": 4, ""2"": 11, ""3"": 9, ""4"": 8, ""5"": 3, ""6"": 1, ""8"": 1}"
+0,kuzushiji-recognition,sibling_reweight_control,14,7,6,7,7,2,0.14285714285714285,0.0,"{""5"": 2, ""6"": 1, ""7"": 2, ""8"": 1}"
+0,leaf-classification,sibling_reweight_control,243,218,218,218,92,5,0.0205761316872428,0.0,"{""2"": 3, ""3"": 6, ""4"": 19, ""5"": 20, ""6"": 52, ""7"": 37, ""8"": 81}"
+0,learning-agency-lab-automated-essay-scoring-2,sibling_reweight_control,53,40,40,40,22,3,0.05660377358490566,0.0,"{""0"": 2, ""2"": 1, ""3"": 6, ""4"": 10, ""5"": 16, ""6"": 4, ""8"": 1}"
+0,mlsp-2013-birds,sibling_reweight_control,222,238,238,238,79,5,0.02252252252252252,0.0,"{""2"": 2, ""3"": 8, ""4"": 41, ""5"": 68, ""6"": 67, ""7"": 37, ""8"": 15}"
+0,nomad2018-predict-transparent-conductors,sibling_reweight_control,102,123,123,123,33,5,0.049019607843137254,0.0,"{""0"": 4, ""1"": 15, ""2"": 34, ""3"": 32, ""4"": 19, ""5"": 4, ""6"": 7, ""7"": 8}"
+0,petfinder-pawpularity-score,sibling_reweight_control,513,432,432,432,199,5,0.009746588693957114,0.0,"{""2"": 2, ""3"": 15, ""4"": 26, ""5"": 55, ""6"": 135, ""7"": 104, ""8"": 95}"
+0,random-acts-of-pizza,sibling_reweight_control,470,385,385,385,187,5,0.010638297872340425,0.0,"{""0"": 4, ""1"": 7, ""2"": 19, ""3"": 64, ""4"": 145, ""5"": 84, ""6"": 42, ""7"": 20}"
+0,spaceship-titanic,sibling_reweight_control,60,78,78,78,19,11,0.18333333333333332,0.0,"{""3"": 9, ""4"": 31, ""5"": 24, ""6"": 11, ""7"": 3}"
+0,spooky-author-identification,sibling_reweight_control,647,518,518,518,255,4,0.0061823802163833074,0.0,"{""0"": 7, ""1"": 15, ""2"": 48, ""3"": 64, ""4"": 105, ""5"": 134, ""6"": 111, ""7"": 27, ""8"": 7}"
+0,tabular-playground-series-dec-2021,sibling_reweight_control,48,27,27,27,23,3,0.0625,0.0,"{""0"": 5, ""1"": 4, ""2"": 6, ""3"": 1, ""4"": 3, ""5"": 1, ""7"": 2, ""8"": 5}"
+0,tabular-playground-series-may-2022,sibling_reweight_control,141,115,115,115,59,5,0.03546099290780142,0.0,"{""0"": 3, ""1"": 4, ""2"": 13, ""3"": 15, ""4"": 29, ""5"": 16, ""6"": 8, ""7"": 21, ""8"": 6}"
+0,text-normalization-challenge-russian-language,sibling_reweight_control,180,90,90,90,90,2,0.011111111111111112,0.0,"{""0"": 19, ""1"": 12, ""2"": 25, ""3"": 19, ""4"": 5, ""6"": 7, ""7"": 3}"
+0,tweet-sentiment-extraction,sibling_reweight_control,80,40,33,40,40,2,0.025,0.0,"{""0"": 1, ""1"": 2, ""2"": 4, ""3"": 12, ""4"": 7, ""5"": 1, ""6"": 2, ""7"": 3, ""8"": 1}"
+0,us-patent-phrase-to-phrase-matching,sibling_reweight_control,662,331,316,331,331,2,0.0030211480362537764,0.0,"{""0"": 15, ""1"": 21, ""2"": 32, ""3"": 56, ""4"": 66, ""5"": 78, ""6"": 38, ""7"": 6, ""8"": 4}"
+0,whale-categorization-playground,sibling_reweight_control,85,44,44,44,42,3,0.03529411764705882,0.0,"{""1"": 1, ""2"": 1, ""3"": 5, ""4"": 8, ""5"": 7, ""6"": 7, ""7"": 14, ""8"": 1}"
+0,aptos2019-blindness-detection,uniform_crossrun_control,68,34,34,68,7,54,0.7941176470588235,0.0,"{""3"": 2, ""4"": 2, ""5"": 14, ""6"": 16}"
+0,chaii-hindi-and-tamil-question-answering,uniform_crossrun_control,340,368,368,736,1,340,1.0,0.09282066066651207,"{""2"": 1, ""3"": 1, ""4"": 13, ""5"": 12, ""6"": 66, ""7"": 83, ""8"": 192}"
+0,denoising-dirty-documents,uniform_crossrun_control,198,187,187,374,2,196,0.98989898989899,0.0,"{""1"": 2, ""2"": 9, ""3"": 26, ""4"": 51, ""5"": 37, ""6"": 38, ""7"": 24}"
+0,dog-breed-identification,uniform_crossrun_control,62,47,46,93,2,60,0.967741935483871,0.0,"{""4"": 1, ""5"": 2, ""6"": 8, ""7"": 17, ""8"": 18}"
+0,dogs-vs-cats-redux-kernels-edition,uniform_crossrun_control,18,9,9,18,1,18,1.0,0.028534211553699243,"{""2"": 1, ""3"": 2, ""4"": 2, ""5"": 1, ""6"": 3}"
+0,google-quest-challenge,uniform_crossrun_control,76,38,38,76,8,58,0.7631578947368421,0.0,"{""3"": 1, ""4"": 3, ""5"": 9, ""6"": 16, ""7"": 8, ""8"": 1}"
+0,histopathologic-cancer-detection,uniform_crossrun_control,82,41,41,82,8,68,0.8292682926829268,0.0,"{""1"": 5, ""2"": 4, ""3"": 7, ""4"": 12, ""5"": 7, ""6"": 3, ""8"": 3}"
+0,kuzushiji-recognition,uniform_crossrun_control,14,7,6,13,3,10,0.7142857142857143,0.0,"{""2"": 1, ""7"": 1, ""8"": 4}"
+0,leaf-classification,uniform_crossrun_control,243,218,218,436,3,239,0.9835390946502057,0.0,"{""3"": 3, ""4"": 3, ""5"": 11, ""6"": 25, ""7"": 40, ""8"": 136}"
+0,learning-agency-lab-automated-essay-scoring-2,uniform_crossrun_control,53,40,40,80,1,53,1.0,0.015911683882492984,"{""3"": 4, ""4"": 8, ""5"": 13, ""6"": 12, ""8"": 3}"
+0,mlsp-2013-birds,uniform_crossrun_control,222,238,238,476,1,222,1.0,0.09715544461489994,"{""3"": 6, ""4"": 19, ""5"": 55, ""6"": 77, ""7"": 74, ""8"": 7}"
+0,nomad2018-predict-transparent-conductors,uniform_crossrun_control,102,123,123,246,1,102,1.0,0.09664730519849607,"{""0"": 2, ""1"": 2, ""2"": 10, ""3"": 25, ""4"": 45, ""5"": 19, ""6"": 5, ""7"": 15}"
+0,petfinder-pawpularity-score,uniform_crossrun_control,513,432,432,864,7,498,0.9707602339181286,0.0,"{""2"": 1, ""3"": 1, ""4"": 2, ""5"": 9, ""6"": 27, ""7"": 38, ""8"": 354}"
+0,random-acts-of-pizza,uniform_crossrun_control,470,385,385,770,7,458,0.9744680851063829,0.0,"{""1"": 2, ""2"": 5, ""3"": 13, ""4"": 38, ""5"": 78, ""6"": 188, ""7"": 61}"
+0,spaceship-titanic,uniform_crossrun_control,60,78,78,156,1,60,1.0,0.19217613003586098,"{""3"": 14, ""4"": 24, ""5"": 20, ""6"": 17, ""7"": 3}"
+0,spooky-author-identification,uniform_crossrun_control,647,518,518,1036,11,625,0.9659969088098919,0.0,"{""1"": 2, ""2"": 2, ""3"": 9, ""4"": 45, ""5"": 113, ""6"": 212, ""7"": 119, ""8"": 16}"
+0,tabular-playground-series-dec-2021,uniform_crossrun_control,48,27,27,54,4,42,0.875,0.0,"{""0"": 3, ""1"": 1, ""2"": 8, ""3"": 3, ""4"": 2, ""5"": 5, ""7"": 2, ""8"": 3}"
+0,tabular-playground-series-may-2022,uniform_crossrun_control,141,115,115,230,2,139,0.9858156028368794,0.0,"{""1"": 1, ""2"": 1, ""3"": 4, ""4"": 17, ""5"": 15, ""6"": 37, ""7"": 36, ""8"": 4}"
+0,text-normalization-challenge-russian-language,uniform_crossrun_control,180,90,90,180,15,152,0.8444444444444444,0.0,"{""0"": 4, ""1"": 4, ""2"": 18, ""3"": 22, ""4"": 26, ""5"": 1, ""6"": 7, ""7"": 8}"
+0,tweet-sentiment-extraction,uniform_crossrun_control,80,40,33,73,11,38,0.475,0.0,"{""4"": 9, ""5"": 15, ""6"": 8, ""8"": 1}"
+0,us-patent-phrase-to-phrase-matching,uniform_crossrun_control,662,331,316,647,58,510,0.770392749244713,0.0,"{""2"": 1, ""4"": 2, ""5"": 1, ""6"": 5, ""7"": 245, ""8"": 62}"
+0,whale-categorization-playground,uniform_crossrun_control,85,44,44,88,11,59,0.6941176470588235,0.0,"{""4"": 2, ""5"": 5, ""6"": 10, ""7"": 26, ""8"": 1}"
+0,aptos2019-blindness-detection,tgca,68,34,34,68,1,68,1.0,0.006089371610985688,"{""2"": 3, ""3"": 3, ""4"": 14, ""5"": 11, ""6"": 2, ""7"": 1}"
+0,chaii-hindi-and-tamil-question-answering,tgca,340,368,368,736,1,340,1.0,0.02040777190211566,"{""1"": 1, ""3"": 14, ""4"": 45, ""5"": 99, ""6"": 127, ""7"": 60, ""8"": 22}"
+0,denoising-dirty-documents,tgca,198,187,187,374,1,198,1.0,0.021129394364578946,"{""0"": 7, ""1"": 4, ""2"": 24, ""3"": 50, ""4"": 41, ""5"": 22, ""6"": 32, ""7"": 7}"
+0,dog-breed-identification,tgca,62,47,46,93,1,62,1.0,0.020746848542519025,"{""2"": 1, ""3"": 1, ""4"": 3, ""5"": 7, ""6"": 7, ""7"": 18, ""8"": 9}"
+0,dogs-vs-cats-redux-kernels-edition,tgca,18,9,9,18,1,18,1.0,0.040961362249443,"{""2"": 2, ""3"": 2, ""4"": 1, ""5"": 2, ""6"": 2}"
+0,google-quest-challenge,tgca,76,38,38,76,1,76,1.0,0.008107762882881382,"{""3"": 2, ""4"": 12, ""5"": 11, ""6"": 10, ""7"": 3}"
+0,histopathologic-cancer-detection,tgca,82,41,41,82,1,82,1.0,0.0037614553541021997,"{""0"": 4, ""1"": 4, ""2"": 11, ""3"": 9, ""4"": 8, ""5"": 3, ""6"": 1, ""8"": 1}"
+0,kuzushiji-recognition,tgca,14,7,6,13,1,14,1.0,0.05401818340452414,"{""5"": 1, ""6"": 1, ""7"": 2, ""8"": 2}"
+0,leaf-classification,tgca,243,218,218,436,1,243,1.0,0.03129192989033086,"{""2"": 3, ""3"": 6, ""4"": 19, ""5"": 20, ""6"": 52, ""7"": 37, ""8"": 81}"
+0,learning-agency-lab-automated-essay-scoring-2,tgca,53,40,40,80,1,53,1.0,0.05511842505867074,"{""0"": 2, ""2"": 1, ""3"": 6, ""4"": 10, ""5"": 16, ""6"": 4, ""8"": 1}"
+0,mlsp-2013-birds,tgca,222,238,238,476,1,222,1.0,0.0293532422356573,"{""2"": 2, ""3"": 8, ""4"": 41, ""5"": 68, ""6"": 67, ""7"": 37, ""8"": 15}"
+0,nomad2018-predict-transparent-conductors,tgca,102,123,123,246,1,102,1.0,0.007104215032825498,"{""0"": 4, ""1"": 15, ""2"": 34, ""3"": 32, ""4"": 19, ""5"": 4, ""6"": 7, ""7"": 8}"
+0,petfinder-pawpularity-score,tgca,513,432,432,864,1,513,1.0,0.014836855096342277,"{""2"": 2, ""3"": 15, ""4"": 26, ""5"": 55, ""6"": 135, ""7"": 104, ""8"": 95}"
+0,random-acts-of-pizza,tgca,470,385,385,770,1,470,1.0,0.028641950599722035,"{""0"": 4, ""1"": 7, ""2"": 19, ""3"": 64, ""4"": 145, ""5"": 84, ""6"": 42, ""7"": 20}"
+0,spaceship-titanic,tgca,60,78,78,156,1,60,1.0,0.014128887705060133,"{""3"": 9, ""4"": 31, ""5"": 24, ""6"": 11, ""7"": 3}"
+0,spooky-author-identification,tgca,647,518,518,1036,1,647,1.0,0.03655549926314094,"{""0"": 7, ""1"": 15, ""2"": 48, ""3"": 64, ""4"": 105, ""5"": 134, ""6"": 111, ""7"": 27, ""8"": 7}"
+0,tabular-playground-series-dec-2021,tgca,48,27,27,54,1,48,1.0,0.020430925644898453,"{""0"": 5, ""1"": 4, ""2"": 6, ""3"": 1, ""4"": 3, ""5"": 1, ""7"": 2, ""8"": 5}"
+0,tabular-playground-series-may-2022,tgca,141,115,115,230,1,141,1.0,0.029101504650468145,"{""0"": 3, ""1"": 4, ""2"": 13, ""3"": 15, ""4"": 29, ""5"": 16, ""6"": 8, ""7"": 21, ""8"": 6}"
+0,text-normalization-challenge-russian-language,tgca,180,90,90,180,1,180,1.0,0.002693065820386883,"{""0"": 19, ""1"": 12, ""2"": 25, ""3"": 19, ""4"": 5, ""6"": 7, ""7"": 3}"
+0,tweet-sentiment-extraction,tgca,80,40,33,73,17,36,0.45,0.0,"{""1"": 1, ""2"": 5, ""3"": 10, ""4"": 10, ""5"": 1, ""6"": 2, ""7"": 3, ""8"": 1}"
+0,us-patent-phrase-to-phrase-matching,tgca,662,331,316,647,66,530,0.8006042296072508,0.0,"{""0"": 12, ""1"": 12, ""2"": 35, ""3"": 57, ""4"": 71, ""5"": 80, ""6"": 38, ""7"": 6, ""8"": 5}"
+0,whale-categorization-playground,tgca,85,44,44,88,1,85,1.0,0.003723908366841838,"{""1"": 1, ""2"": 1, ""3"": 5, ""4"": 8, ""5"": 7, ""6"": 7, ""7"": 14, ""8"": 1}"
+1,aptos2019-blindness-detection,sibling_only,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+1,chaii-hindi-and-tamil-question-answering,sibling_only,204,212,0,212,72,5,0.024509803921568627,0.0,{}
+1,denoising-dirty-documents,sibling_only,202,189,0,189,81,5,0.024752475247524754,0.0,{}
+1,dog-breed-identification,sibling_only,113,69,0,69,53,4,0.035398230088495575,0.0,{}
+1,dogs-vs-cats-redux-kernels-edition,sibling_only,22,11,0,11,11,2,0.09090909090909091,0.0,{}
+1,google-quest-challenge,sibling_only,72,36,0,36,36,2,0.027777777777777776,0.0,{}
+1,histopathologic-cancer-detection,sibling_only,30,15,0,15,15,2,0.06666666666666667,0.0,{}
+1,kuzushiji-recognition,sibling_only,18,9,0,9,9,2,0.1111111111111111,0.0,{}
+1,leaf-classification,sibling_only,372,329,0,329,140,5,0.013440860215053764,0.0,{}
+1,learning-agency-lab-automated-essay-scoring-2,sibling_only,63,48,0,48,26,3,0.047619047619047616,0.0,{}
+1,mlsp-2013-birds,sibling_only,204,225,0,225,71,5,0.024509803921568627,0.0,{}
+1,nomad2018-predict-transparent-conductors,sibling_only,148,170,0,170,49,5,0.033783783783783786,0.0,{}
+1,petfinder-pawpularity-score,sibling_only,359,291,0,291,142,3,0.008356545961002786,0.0,{}
+1,random-acts-of-pizza,sibling_only,608,454,0,454,256,5,0.008223684210526315,0.0,{}
+1,spaceship-titanic,sibling_only,48,41,0,41,19,4,0.08333333333333333,0.0,{}
+1,spooky-author-identification,sibling_only,783,645,0,645,302,4,0.005108556832694764,0.0,{}
+1,tabular-playground-series-dec-2021,sibling_only,48,27,0,27,23,3,0.0625,0.0,{}
+1,tabular-playground-series-may-2022,sibling_only,91,76,0,76,38,5,0.054945054945054944,0.0,{}
+1,text-normalization-challenge-english-language,sibling_only,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+1,text-normalization-challenge-russian-language,sibling_only,168,84,0,84,84,2,0.011904761904761904,0.0,{}
+1,tweet-sentiment-extraction,sibling_only,80,40,0,40,40,2,0.025,0.0,{}
+1,us-patent-phrase-to-phrase-matching,sibling_only,672,336,0,336,336,2,0.002976190476190476,0.0,{}
+1,whale-categorization-playground,sibling_only,135,69,0,69,67,3,0.022222222222222223,0.0,{}
+1,aptos2019-blindness-detection,sibling_reweight_control,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+1,chaii-hindi-and-tamil-question-answering,sibling_reweight_control,204,212,212,212,72,5,0.024509803921568627,0.0,"{""3"": 9, ""4"": 30, ""5"": 61, ""6"": 68, ""7"": 34, ""8"": 10}"
+1,denoising-dirty-documents,sibling_reweight_control,202,189,189,189,81,5,0.024752475247524754,0.0,"{""0"": 8, ""1"": 4, ""2"": 25, ""3"": 49, ""4"": 41, ""5"": 21, ""6"": 34, ""7"": 7}"
+1,dog-breed-identification,sibling_reweight_control,113,69,69,69,53,4,0.035398230088495575,0.0,"{""2"": 2, ""3"": 1, ""4"": 12, ""5"": 18, ""6"": 8, ""7"": 20, ""8"": 8}"
+1,dogs-vs-cats-redux-kernels-edition,sibling_reweight_control,22,11,11,11,11,2,0.09090909090909091,0.0,"{""2"": 2, ""3"": 3, ""4"": 1, ""5"": 3, ""6"": 2}"
+1,google-quest-challenge,sibling_reweight_control,72,36,36,36,36,2,0.027777777777777776,0.0,"{""3"": 1, ""4"": 10, ""5"": 10, ""6"": 11, ""7"": 4}"
+1,histopathologic-cancer-detection,sibling_reweight_control,30,15,15,15,15,2,0.06666666666666667,0.0,"{""0"": 2, ""1"": 2, ""2"": 6, ""3"": 2, ""4"": 1, ""5"": 1, ""6"": 1}"
+1,kuzushiji-recognition,sibling_reweight_control,18,9,8,9,9,2,0.1111111111111111,0.0,"{""3"": 1, ""5"": 2, ""6"": 2, ""7"": 2, ""8"": 1}"
+1,leaf-classification,sibling_reweight_control,372,329,329,329,140,5,0.013440860215053764,0.0,"{""1"": 2, ""2"": 6, ""3"": 5, ""4"": 27, ""5"": 57, ""6"": 72, ""7"": 56, ""8"": 104}"
+1,learning-agency-lab-automated-essay-scoring-2,sibling_reweight_control,63,48,48,48,26,3,0.047619047619047616,0.0,"{""0"": 2, ""2"": 1, ""3"": 8, ""4"": 14, ""5"": 17, ""6"": 5, ""8"": 1}"
+1,mlsp-2013-birds,sibling_reweight_control,204,225,225,225,71,5,0.024509803921568627,0.0,"{""2"": 1, ""3"": 7, ""4"": 35, ""5"": 59, ""6"": 63, ""7"": 41, ""8"": 19}"
+1,nomad2018-predict-transparent-conductors,sibling_reweight_control,148,170,170,170,49,5,0.033783783783783786,0.0,"{""0"": 4, ""1"": 17, ""2"": 45, ""3"": 47, ""4"": 31, ""5"": 9, ""6"": 9, ""7"": 8}"
+1,petfinder-pawpularity-score,sibling_reweight_control,359,291,291,291,142,3,0.008356545961002786,0.0,"{""2"": 2, ""3"": 11, ""4"": 23, ""5"": 35, ""6"": 88, ""7"": 62, ""8"": 70}"
+1,random-acts-of-pizza,sibling_reweight_control,608,454,454,454,256,5,0.008223684210526315,0.0,"{""0"": 8, ""1"": 10, ""2"": 29, ""3"": 76, ""4"": 172, ""5"": 89, ""6"": 50, ""7"": 20}"
+1,spaceship-titanic,sibling_reweight_control,48,41,41,41,19,4,0.08333333333333333,0.0,"{""3"": 6, ""4"": 8, ""5"": 14, ""6"": 10, ""7"": 3}"
+1,spooky-author-identification,sibling_reweight_control,783,645,645,645,302,4,0.005108556832694764,0.0,"{""0"": 19, ""1"": 26, ""2"": 33, ""3"": 69, ""4"": 137, ""5"": 160, ""6"": 154, ""7"": 36, ""8"": 11}"
+1,tabular-playground-series-dec-2021,sibling_reweight_control,48,27,27,27,23,3,0.0625,0.0,"{""0"": 6, ""1"": 3, ""2"": 6, ""3"": 1, ""4"": 4, ""7"": 2, ""8"": 5}"
+1,tabular-playground-series-may-2022,sibling_reweight_control,91,76,76,76,38,5,0.054945054945054944,0.0,"{""0"": 1, ""2"": 6, ""3"": 14, ""4"": 19, ""5"": 10, ""6"": 5, ""7"": 19, ""8"": 2}"
+1,text-normalization-challenge-english-language,sibling_reweight_control,34,17,17,17,17,2,0.058823529411764705,0.0,"{""0"": 1, ""1"": 1, ""2"": 5, ""3"": 6, ""4"": 2, ""5"": 1, ""6"": 1}"
+1,text-normalization-challenge-russian-language,sibling_reweight_control,168,84,84,84,84,2,0.011904761904761904,0.0,"{""0"": 17, ""1"": 12, ""2"": 23, ""3"": 17, ""4"": 5, ""5"": 1, ""6"": 6, ""7"": 3}"
+1,tweet-sentiment-extraction,sibling_reweight_control,80,40,33,40,40,2,0.025,0.0,"{""1"": 2, ""2"": 6, ""3"": 10, ""4"": 9, ""5"": 1, ""6"": 2, ""7"": 2, ""8"": 1}"
+1,us-patent-phrase-to-phrase-matching,sibling_reweight_control,672,336,330,336,336,2,0.002976190476190476,0.0,"{""0"": 15, ""1"": 24, ""2"": 36, ""3"": 57, ""4"": 70, ""5"": 79, ""6"": 38, ""7"": 6, ""8"": 5}"
+1,whale-categorization-playground,sibling_reweight_control,135,69,69,69,67,3,0.022222222222222223,0.0,"{""1"": 1, ""2"": 2, ""3"": 6, ""4"": 14, ""5"": 13, ""6"": 14, ""7"": 18, ""8"": 1}"
+1,aptos2019-blindness-detection,uniform_crossrun_control,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+1,chaii-hindi-and-tamil-question-answering,uniform_crossrun_control,204,212,212,424,3,200,0.9803921568627451,0.0,"{""4"": 1, ""5"": 3, ""6"": 33, ""7"": 69, ""8"": 106}"
+1,denoising-dirty-documents,uniform_crossrun_control,202,189,189,378,3,197,0.9752475247524752,0.0,"{""0"": 4, ""1"": 1, ""2"": 10, ""3"": 29, ""4"": 61, ""5"": 25, ""6"": 43, ""7"": 16}"
+1,dog-breed-identification,uniform_crossrun_control,113,69,69,138,3,109,0.9646017699115044,0.0,"{""3"": 1, ""4"": 2, ""5"": 5, ""6"": 17, ""7"": 30, ""8"": 14}"
+1,dogs-vs-cats-redux-kernels-edition,uniform_crossrun_control,22,11,11,22,4,16,0.7272727272727273,0.0,"{""1"": 1, ""2"": 1, ""3"": 2, ""4"": 5, ""5"": 2}"
+1,google-quest-challenge,uniform_crossrun_control,72,36,36,72,8,48,0.6666666666666666,0.0,"{""1"": 1, ""3"": 1, ""4"": 2, ""5"": 4, ""6"": 15, ""7"": 12, ""8"": 1}"
+1,histopathologic-cancer-detection,uniform_crossrun_control,30,15,15,30,3,26,0.8666666666666667,0.0,"{""0"": 1, ""2"": 5, ""3"": 2, ""4"": 5, ""5"": 1, ""6"": 1}"
+1,kuzushiji-recognition,uniform_crossrun_control,18,9,8,17,1,18,1.0,0.043933749650257564,"{""6"": 1, ""7"": 4, ""8"": 3}"
+1,leaf-classification,uniform_crossrun_control,372,329,329,658,2,370,0.9946236559139785,0.0,"{""2"": 2, ""3"": 2, ""4"": 1, ""5"": 18, ""6"": 41, ""7"": 52, ""8"": 213}"
+1,learning-agency-lab-automated-essay-scoring-2,uniform_crossrun_control,63,48,48,96,1,63,1.0,0.023946883893046007,"{""2"": 2, ""3"": 1, ""4"": 13, ""5"": 23, ""6"": 9}"
+1,mlsp-2013-birds,uniform_crossrun_control,204,225,225,450,1,204,1.0,0.05714667930042763,"{""1"": 1, ""3"": 5, ""4"": 16, ""5"": 29, ""6"": 93, ""7"": 66, ""8"": 15}"
+1,nomad2018-predict-transparent-conductors,uniform_crossrun_control,148,170,170,340,1,148,1.0,0.12671462831101823,"{""0"": 3, ""1"": 5, ""2"": 10, ""3"": 36, ""4"": 68, ""5"": 22, ""6"": 14, ""7"": 12}"
+1,petfinder-pawpularity-score,uniform_crossrun_control,359,291,291,582,6,347,0.9665738161559888,0.0,"{""3"": 2, ""4"": 3, ""5"": 5, ""6"": 16, ""7"": 26, ""8"": 239}"
+1,random-acts-of-pizza,uniform_crossrun_control,608,454,454,908,14,577,0.9490131578947368,0.0,"{""1"": 4, ""2"": 4, ""3"": 9, ""4"": 36, ""5"": 82, ""6"": 265, ""7"": 54}"
+1,spaceship-titanic,uniform_crossrun_control,48,41,41,82,2,46,0.9583333333333334,0.0,"{""3"": 5, ""4"": 12, ""5"": 11, ""6"": 11, ""7"": 2}"
+1,spooky-author-identification,uniform_crossrun_control,783,645,645,1290,5,774,0.9885057471264368,0.0,"{""2"": 3, ""3"": 18, ""4"": 31, ""5"": 110, ""6"": 321, ""7"": 147, ""8"": 15}"
+1,tabular-playground-series-dec-2021,uniform_crossrun_control,48,27,27,54,1,48,1.0,0.011163712901390649,"{""0"": 1, ""1"": 3, ""2"": 5, ""3"": 5, ""4"": 3, ""5"": 5, ""6"": 1, ""7"": 2, ""8"": 2}"
+1,tabular-playground-series-may-2022,uniform_crossrun_control,91,76,76,152,2,89,0.978021978021978,0.0,"{""2"": 1, ""3"": 4, ""4"": 6, ""5"": 14, ""6"": 22, ""7"": 26, ""8"": 3}"
+1,text-normalization-challenge-english-language,uniform_crossrun_control,34,17,17,34,4,28,0.8235294117647058,0.0,"{""1"": 2, ""2"": 2, ""3"": 7, ""4"": 4, ""5"": 1, ""6"": 1}"
+1,text-normalization-challenge-russian-language,uniform_crossrun_control,168,84,84,168,16,132,0.7857142857142857,0.0,"{""0"": 2, ""1"": 6, ""2"": 11, ""3"": 21, ""4"": 29, ""5"": 3, ""6"": 8, ""7"": 4}"
+1,tweet-sentiment-extraction,uniform_crossrun_control,80,40,33,73,10,42,0.525,0.0,"{""4"": 9, ""5"": 15, ""6"": 5, ""8"": 4}"
+1,us-patent-phrase-to-phrase-matching,uniform_crossrun_control,672,336,330,666,58,528,0.7857142857142857,0.0,"{""2"": 1, ""3"": 1, ""5"": 5, ""6"": 10, ""7"": 251, ""8"": 62}"
+1,whale-categorization-playground,uniform_crossrun_control,135,69,69,138,11,111,0.8222222222222222,0.0,"{""3"": 1, ""4"": 6, ""5"": 7, ""6"": 20, ""7"": 29, ""8"": 6}"
+1,aptos2019-blindness-detection,tgca,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+1,chaii-hindi-and-tamil-question-answering,tgca,204,212,212,424,1,204,1.0,0.026545051817099197,"{""3"": 9, ""4"": 30, ""5"": 61, ""6"": 68, ""7"": 34, ""8"": 10}"
+1,denoising-dirty-documents,tgca,202,189,189,378,1,202,1.0,0.021893418152987808,"{""0"": 8, ""1"": 4, ""2"": 25, ""3"": 49, ""4"": 41, ""5"": 21, ""6"": 34, ""7"": 7}"
+1,dog-breed-identification,tgca,113,69,69,138,1,113,1.0,0.015001663005697346,"{""2"": 2, ""3"": 1, ""4"": 12, ""5"": 18, ""6"": 8, ""7"": 20, ""8"": 8}"
+1,dogs-vs-cats-redux-kernels-edition,tgca,22,11,11,22,1,22,1.0,0.047614913921534316,"{""2"": 2, ""3"": 3, ""4"": 1, ""5"": 3, ""6"": 2}"
+1,google-quest-challenge,tgca,72,36,36,72,1,72,1.0,0.005721773977692702,"{""3"": 1, ""4"": 10, ""5"": 10, ""6"": 11, ""7"": 4}"
+1,histopathologic-cancer-detection,tgca,30,15,15,30,1,30,1.0,0.025462219451551416,"{""0"": 2, ""1"": 2, ""2"": 6, ""3"": 2, ""4"": 1, ""5"": 1, ""6"": 1}"
+1,kuzushiji-recognition,tgca,18,9,8,17,1,18,1.0,0.037008002130198524,"{""5"": 2, ""6"": 2, ""7"": 2, ""8"": 2}"
+1,leaf-classification,tgca,372,329,329,658,1,372,1.0,0.03473399759735015,"{""1"": 2, ""2"": 6, ""3"": 5, ""4"": 27, ""5"": 57, ""6"": 72, ""7"": 56, ""8"": 104}"
+1,learning-agency-lab-automated-essay-scoring-2,tgca,63,48,48,96,1,63,1.0,0.05719328930632225,"{""0"": 2, ""2"": 1, ""3"": 8, ""4"": 14, ""5"": 17, ""6"": 5, ""8"": 1}"
+1,mlsp-2013-birds,tgca,204,225,225,450,1,204,1.0,0.03515670879688254,"{""2"": 1, ""3"": 7, ""4"": 35, ""5"": 59, ""6"": 63, ""7"": 41, ""8"": 19}"
+1,nomad2018-predict-transparent-conductors,tgca,148,170,170,340,1,148,1.0,0.006252489381678128,"{""0"": 4, ""1"": 17, ""2"": 45, ""3"": 47, ""4"": 31, ""5"": 9, ""6"": 9, ""7"": 8}"
+1,petfinder-pawpularity-score,tgca,359,291,291,582,1,359,1.0,0.037761745742077045,"{""2"": 2, ""3"": 11, ""4"": 23, ""5"": 35, ""6"": 88, ""7"": 62, ""8"": 70}"
+1,random-acts-of-pizza,tgca,608,454,454,908,1,608,1.0,0.024535252014580247,"{""0"": 8, ""1"": 10, ""2"": 29, ""3"": 76, ""4"": 172, ""5"": 89, ""6"": 50, ""7"": 20}"
+1,spaceship-titanic,tgca,48,41,41,82,1,48,1.0,0.04610399325714698,"{""3"": 6, ""4"": 8, ""5"": 14, ""6"": 10, ""7"": 3}"
+1,spooky-author-identification,tgca,783,645,645,1290,1,783,1.0,0.030122837927954508,"{""0"": 19, ""1"": 26, ""2"": 33, ""3"": 69, ""4"": 137, ""5"": 160, ""6"": 154, ""7"": 36, ""8"": 11}"
+1,tabular-playground-series-dec-2021,tgca,48,27,27,54,1,48,1.0,0.02338532027786048,"{""0"": 6, ""1"": 3, ""2"": 6, ""3"": 1, ""4"": 4, ""7"": 2, ""8"": 5}"
+1,tabular-playground-series-may-2022,tgca,91,76,76,152,1,91,1.0,0.024623214324614087,"{""0"": 1, ""2"": 6, ""3"": 14, ""4"": 19, ""5"": 10, ""6"": 5, ""7"": 19, ""8"": 2}"
+1,text-normalization-challenge-english-language,tgca,34,17,17,34,1,34,1.0,0.015736063021120995,"{""0"": 1, ""1"": 1, ""2"": 5, ""3"": 6, ""4"": 2, ""5"": 1, ""6"": 1}"
+1,text-normalization-challenge-russian-language,tgca,168,84,84,168,1,168,1.0,0.0008086298358918441,"{""0"": 17, ""1"": 12, ""2"": 23, ""3"": 17, ""4"": 5, ""5"": 1, ""6"": 6, ""7"": 3}"
+1,tweet-sentiment-extraction,tgca,80,40,33,73,17,40,0.5,0.0,"{""1"": 1, ""2"": 5, ""3"": 10, ""4"": 10, ""5"": 1, ""6"": 2, ""7"": 3, ""8"": 1}"
+1,us-patent-phrase-to-phrase-matching,tgca,672,336,330,666,63,548,0.8154761904761905,0.0,"{""0"": 15, ""1"": 18, ""2"": 36, ""3"": 58, ""4"": 71, ""5"": 82, ""6"": 39, ""7"": 6, ""8"": 5}"
+1,whale-categorization-playground,tgca,135,69,69,138,1,135,1.0,0.00556691262409358,"{""1"": 1, ""2"": 2, ""3"": 6, ""4"": 14, ""5"": 13, ""6"": 14, ""7"": 18, ""8"": 1}"
+2,aptos2019-blindness-detection,sibling_only,68,34,0,34,34,2,0.029411764705882353,0.0,{}
+2,chaii-hindi-and-tamil-question-answering,sibling_only,288,324,0,324,97,5,0.017361111111111112,0.0,{}
+2,denoising-dirty-documents,sibling_only,176,176,0,176,68,5,0.028409090909090908,0.0,{}
+2,dog-breed-identification,sibling_only,123,83,0,83,56,5,0.04065040650406504,0.0,{}
+2,dogs-vs-cats-redux-kernels-edition,sibling_only,14,7,0,7,7,2,0.14285714285714285,0.0,{}
+2,google-quest-challenge,sibling_only,90,45,0,45,45,2,0.022222222222222223,0.0,{}
+2,histopathologic-cancer-detection,sibling_only,92,46,0,46,46,2,0.021739130434782608,0.0,{}
+2,kuzushiji-recognition,sibling_only,10,5,0,5,5,2,0.2,0.0,{}
+2,leaf-classification,sibling_only,336,304,0,304,124,5,0.01488095238095238,0.0,{}
+2,learning-agency-lab-automated-essay-scoring-2,sibling_only,58,44,0,44,24,3,0.05172413793103448,0.0,{}
+2,mlsp-2013-birds,sibling_only,166,168,0,168,61,5,0.030120481927710843,0.0,{}
+2,nomad2018-predict-transparent-conductors,sibling_only,163,187,0,187,54,5,0.03067484662576687,0.0,{}
+2,petfinder-pawpularity-score,sibling_only,291,235,0,235,117,5,0.01718213058419244,0.0,{}
+2,random-acts-of-pizza,sibling_only,400,264,0,264,180,5,0.0125,0.0,{}
+2,spaceship-titanic,sibling_only,68,82,0,82,23,11,0.16176470588235295,0.0,{}
+2,spooky-author-identification,sibling_only,941,781,0,781,358,4,0.004250797024442083,0.0,{}
+2,tabular-playground-series-dec-2021,sibling_only,35,19,0,19,17,3,0.08571428571428572,0.0,{}
+2,tabular-playground-series-may-2022,sibling_only,116,87,0,87,50,5,0.04310344827586207,0.0,{}
+2,text-normalization-challenge-english-language,sibling_only,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+2,text-normalization-challenge-russian-language,sibling_only,168,84,0,84,84,2,0.011904761904761904,0.0,{}
+2,tweet-sentiment-extraction,sibling_only,40,20,0,20,20,2,0.05,0.0,{}
+2,us-patent-phrase-to-phrase-matching,sibling_only,666,333,0,333,333,2,0.003003003003003003,0.0,{}
+2,whale-categorization-playground,sibling_only,127,65,0,65,63,3,0.023622047244094488,0.0,{}
+2,aptos2019-blindness-detection,sibling_reweight_control,68,34,34,34,34,2,0.029411764705882353,0.0,"{""2"": 3, ""3"": 3, ""4"": 14, ""5"": 11, ""6"": 2, ""7"": 1}"
+2,chaii-hindi-and-tamil-question-answering,sibling_reweight_control,288,324,324,324,97,5,0.017361111111111112,0.0,"{""1"": 1, ""3"": 11, ""4"": 43, ""5"": 89, ""6"": 110, ""7"": 50, ""8"": 20}"
+2,denoising-dirty-documents,sibling_reweight_control,176,176,176,176,68,5,0.028409090909090908,0.0,"{""0"": 8, ""1"": 3, ""2"": 23, ""3"": 48, ""4"": 39, ""5"": 21, ""6"": 30, ""7"": 4}"
+2,dog-breed-identification,sibling_reweight_control,123,83,83,83,56,5,0.04065040650406504,0.0,"{""2"": 2, ""3"": 1, ""4"": 13, ""5"": 20, ""6"": 10, ""7"": 24, ""8"": 13}"
+2,dogs-vs-cats-redux-kernels-edition,sibling_reweight_control,14,7,7,7,7,2,0.14285714285714285,0.0,"{""2"": 1, ""3"": 2, ""4"": 1, ""5"": 2, ""6"": 1}"
+2,google-quest-challenge,sibling_reweight_control,90,45,45,45,45,2,0.022222222222222223,0.0,"{""3"": 2, ""4"": 12, ""5"": 13, ""6"": 13, ""7"": 5}"
+2,histopathologic-cancer-detection,sibling_reweight_control,92,46,46,46,46,2,0.021739130434782608,0.0,"{""0"": 5, ""1"": 5, ""2"": 11, ""3"": 11, ""4"": 9, ""5"": 3, ""6"": 1, ""8"": 1}"
+2,kuzushiji-recognition,sibling_reweight_control,10,5,1,5,5,2,0.2,0.0,"{""7"": 1}"
+2,leaf-classification,sibling_reweight_control,336,304,304,304,124,5,0.01488095238095238,0.0,"{""1"": 2, ""2"": 5, ""3"": 4, ""4"": 24, ""5"": 55, ""6"": 61, ""7"": 53, ""8"": 100}"
+2,learning-agency-lab-automated-essay-scoring-2,sibling_reweight_control,58,44,44,44,24,3,0.05172413793103448,0.0,"{""0"": 2, ""3"": 8, ""4"": 16, ""5"": 13, ""6"": 4, ""8"": 1}"
+2,mlsp-2013-birds,sibling_reweight_control,166,168,168,168,61,5,0.030120481927710843,0.0,"{""2"": 2, ""3"": 8, ""4"": 25, ""5"": 44, ""6"": 50, ""7"": 25, ""8"": 14}"
+2,nomad2018-predict-transparent-conductors,sibling_reweight_control,163,187,187,187,54,5,0.03067484662576687,0.0,"{""0"": 4, ""1"": 19, ""2"": 50, ""3"": 50, ""4"": 37, ""5"": 9, ""6"": 10, ""7"": 8}"
+2,petfinder-pawpularity-score,sibling_reweight_control,291,235,235,235,117,5,0.01718213058419244,0.0,"{""3"": 4, ""4"": 8, ""5"": 22, ""6"": 68, ""7"": 63, ""8"": 70}"
+2,random-acts-of-pizza,sibling_reweight_control,400,264,264,264,180,5,0.0125,0.0,"{""0"": 6, ""1"": 6, ""2"": 20, ""3"": 44, ""4"": 104, ""5"": 51, ""6"": 28, ""7"": 5}"
+2,spaceship-titanic,sibling_reweight_control,68,82,82,82,23,11,0.16176470588235295,0.0,"{""3"": 8, ""4"": 32, ""5"": 27, ""6"": 12, ""7"": 3}"
+2,spooky-author-identification,sibling_reweight_control,941,781,781,781,358,4,0.004250797024442083,0.0,"{""0"": 22, ""1"": 33, ""2"": 66, ""3"": 101, ""4"": 172, ""5"": 178, ""6"": 148, ""7"": 47, ""8"": 14}"
+2,tabular-playground-series-dec-2021,sibling_reweight_control,35,19,19,19,17,3,0.08571428571428572,0.0,"{""0"": 3, ""1"": 4, ""2"": 3, ""3"": 1, ""4"": 3, ""5"": 1, ""7"": 2, ""8"": 2}"
+2,tabular-playground-series-may-2022,sibling_reweight_control,116,87,87,87,50,5,0.04310344827586207,0.0,"{""0"": 2, ""1"": 4, ""2"": 8, ""3"": 12, ""4"": 22, ""5"": 13, ""6"": 6, ""7"": 15, ""8"": 5}"
+2,text-normalization-challenge-english-language,sibling_reweight_control,34,17,17,17,17,2,0.058823529411764705,0.0,"{""0"": 1, ""1"": 1, ""2"": 5, ""3"": 6, ""4"": 2, ""5"": 1, ""6"": 1}"
+2,text-normalization-challenge-russian-language,sibling_reweight_control,168,84,84,84,84,2,0.011904761904761904,0.0,"{""0"": 22, ""1"": 9, ""2"": 24, ""3"": 18, ""4"": 2, ""5"": 1, ""6"": 5, ""7"": 3}"
+2,tweet-sentiment-extraction,sibling_reweight_control,40,20,0,20,20,2,0.05,0.0,{}
+2,us-patent-phrase-to-phrase-matching,sibling_reweight_control,666,333,324,333,333,2,0.003003003003003003,0.0,"{""0"": 15, ""1"": 23, ""2"": 35, ""3"": 57, ""4"": 66, ""5"": 80, ""6"": 38, ""7"": 5, ""8"": 5}"
+2,whale-categorization-playground,sibling_reweight_control,127,65,65,65,63,3,0.023622047244094488,0.0,"{""1"": 1, ""2"": 1, ""3"": 5, ""4"": 11, ""5"": 11, ""6"": 16, ""7"": 19, ""8"": 1}"
+2,aptos2019-blindness-detection,uniform_crossrun_control,68,34,34,68,4,60,0.8823529411764706,0.0,"{""2"": 1, ""3"": 5, ""4"": 3, ""5"": 7, ""6"": 18}"
+2,chaii-hindi-and-tamil-question-answering,uniform_crossrun_control,288,324,324,648,2,285,0.9895833333333334,0.0,"{""1"": 1, ""3"": 4, ""4"": 9, ""5"": 25, ""6"": 53, ""7"": 62, ""8"": 170}"
+2,denoising-dirty-documents,uniform_crossrun_control,176,176,176,352,1,176,1.0,0.07401419204031323,"{""0"": 3, ""1"": 3, ""2"": 15, ""3"": 27, ""4"": 58, ""5"": 28, ""6"": 31, ""7"": 11}"
+2,dog-breed-identification,uniform_crossrun_control,123,83,83,166,5,115,0.9349593495934959,0.0,"{""4"": 3, ""5"": 5, ""6"": 17, ""7"": 31, ""8"": 27}"
+2,dogs-vs-cats-redux-kernels-edition,uniform_crossrun_control,14,7,7,14,2,12,0.8571428571428571,0.0,"{""1"": 1, ""2"": 1, ""3"": 1, ""4"": 2, ""5"": 2}"
+2,google-quest-challenge,uniform_crossrun_control,90,45,45,90,7,76,0.8444444444444444,0.0,"{""4"": 3, ""5"": 5, ""6"": 22, ""7"": 13, ""8"": 2}"
+2,histopathologic-cancer-detection,uniform_crossrun_control,92,46,46,92,9,76,0.8260869565217391,0.0,"{""0"": 2, ""1"": 4, ""2"": 8, ""3"": 4, ""4"": 12, ""5"": 7, ""6"": 8, ""8"": 1}"
+2,kuzushiji-recognition,uniform_crossrun_control,10,5,1,6,4,4,0.4,0.0,"{""8"": 1}"
+2,leaf-classification,uniform_crossrun_control,336,304,304,608,4,329,0.9791666666666666,0.0,"{""1"": 1, ""3"": 3, ""4"": 6, ""5"": 13, ""6"": 33, ""7"": 60, ""8"": 188}"
+2,learning-agency-lab-automated-essay-scoring-2,uniform_crossrun_control,58,44,44,88,1,58,1.0,0.04246073070750367,"{""1"": 1, ""2"": 2, ""3"": 6, ""4"": 11, ""5"": 14, ""6"": 9, ""8"": 1}"
+2,mlsp-2013-birds,uniform_crossrun_control,166,168,168,336,2,164,0.9879518072289156,0.0,"{""2"": 1, ""3"": 3, ""4"": 17, ""5"": 29, ""6"": 67, ""7"": 33, ""8"": 18}"
+2,nomad2018-predict-transparent-conductors,uniform_crossrun_control,163,187,187,374,1,163,1.0,0.10854598344841367,"{""0"": 3, ""1"": 5, ""2"": 16, ""3"": 39, ""4"": 75, ""5"": 24, ""6"": 13, ""7"": 12}"
+2,petfinder-pawpularity-score,uniform_crossrun_control,291,235,235,470,3,287,0.9862542955326461,0.0,"{""3"": 3, ""4"": 1, ""5"": 4, ""6"": 20, ""7"": 42, ""8"": 165}"
+2,random-acts-of-pizza,uniform_crossrun_control,400,264,264,528,11,380,0.95,0.0,"{""1"": 1, ""2"": 2, ""3"": 3, ""4"": 15, ""5"": 48, ""6"": 159, ""7"": 36}"
+2,spaceship-titanic,uniform_crossrun_control,68,82,82,164,1,68,1.0,0.1405311649912497,"{""3"": 10, ""4"": 23, ""5"": 27, ""6"": 16, ""7"": 6}"
+2,spooky-author-identification,uniform_crossrun_control,941,781,781,1562,7,926,0.9840595111583422,0.0,"{""1"": 1, ""2"": 4, ""3"": 13, ""4"": 59, ""5"": 202, ""6"": 335, ""7"": 139, ""8"": 28}"
+2,tabular-playground-series-dec-2021,uniform_crossrun_control,35,19,19,38,2,33,0.9428571428571428,0.0,"{""0"": 1, ""2"": 5, ""3"": 3, ""4"": 6, ""5"": 2, ""7"": 1, ""8"": 1}"
+2,tabular-playground-series-may-2022,uniform_crossrun_control,116,87,87,174,2,114,0.9827586206896551,0.0,"{""2"": 2, ""3"": 7, ""4"": 10, ""5"": 16, ""6"": 30, ""7"": 17, ""8"": 5}"
+2,text-normalization-challenge-english-language,uniform_crossrun_control,34,17,17,34,3,28,0.8235294117647058,0.0,"{""1"": 1, ""2"": 4, ""3"": 5, ""4"": 4, ""5"": 3}"
+2,text-normalization-challenge-russian-language,uniform_crossrun_control,168,84,84,168,17,122,0.7261904761904762,0.0,"{""0"": 4, ""1"": 8, ""2"": 17, ""3"": 13, ""4"": 29, ""5"": 2, ""6"": 9, ""7"": 2}"
+2,tweet-sentiment-extraction,uniform_crossrun_control,40,20,0,20,20,2,0.05,0.0,{}
+2,us-patent-phrase-to-phrase-matching,uniform_crossrun_control,666,333,324,657,63,518,0.7777777777777778,0.0,"{""2"": 1, ""3"": 2, ""4"": 3, ""5"": 2, ""6"": 5, ""7"": 241, ""8"": 70}"
+2,whale-categorization-playground,uniform_crossrun_control,127,65,65,130,11,93,0.7322834645669292,0.0,"{""2"": 2, ""3"": 1, ""4"": 3, ""5"": 8, ""6"": 24, ""7"": 24, ""8"": 3}"
+2,aptos2019-blindness-detection,tgca,68,34,34,68,1,68,1.0,0.007951528783463906,"{""2"": 3, ""3"": 3, ""4"": 14, ""5"": 11, ""6"": 2, ""7"": 1}"
+2,chaii-hindi-and-tamil-question-answering,tgca,288,324,324,648,1,288,1.0,0.018423865772815278,"{""1"": 1, ""3"": 11, ""4"": 43, ""5"": 89, ""6"": 110, ""7"": 50, ""8"": 20}"
+2,denoising-dirty-documents,tgca,176,176,176,352,1,176,1.0,0.027933037634276715,"{""0"": 8, ""1"": 3, ""2"": 23, ""3"": 48, ""4"": 39, ""5"": 21, ""6"": 30, ""7"": 4}"
+2,dog-breed-identification,tgca,123,83,83,166,1,123,1.0,0.013078898842302246,"{""2"": 2, ""3"": 1, ""4"": 13, ""5"": 20, ""6"": 10, ""7"": 24, ""8"": 13}"
+2,dogs-vs-cats-redux-kernels-edition,tgca,14,7,7,14,1,14,1.0,0.0982404255214881,"{""2"": 1, ""3"": 2, ""4"": 1, ""5"": 2, ""6"": 1}"
+2,google-quest-challenge,tgca,90,45,45,90,1,90,1.0,0.0031605963418642087,"{""3"": 2, ""4"": 12, ""5"": 13, ""6"": 13, ""7"": 5}"
+2,histopathologic-cancer-detection,tgca,92,46,46,92,1,92,1.0,0.005891370264958877,"{""0"": 5, ""1"": 5, ""2"": 11, ""3"": 11, ""4"": 9, ""5"": 3, ""6"": 1, ""8"": 1}"
+2,kuzushiji-recognition,tgca,10,5,1,6,4,4,0.4,0.0,"{""7"": 1}"
+2,leaf-classification,tgca,336,304,304,608,1,336,1.0,0.03327169658370591,"{""1"": 2, ""2"": 5, ""3"": 4, ""4"": 24, ""5"": 55, ""6"": 61, ""7"": 53, ""8"": 100}"
+2,learning-agency-lab-automated-essay-scoring-2,tgca,58,44,44,88,1,58,1.0,0.06470106136243307,"{""0"": 2, ""3"": 8, ""4"": 16, ""5"": 13, ""6"": 4, ""8"": 1}"
+2,mlsp-2013-birds,tgca,166,168,168,336,1,166,1.0,0.026632312776099554,"{""2"": 2, ""3"": 8, ""4"": 25, ""5"": 44, ""6"": 50, ""7"": 25, ""8"": 14}"
+2,nomad2018-predict-transparent-conductors,tgca,163,187,187,374,1,163,1.0,0.007330603515224665,"{""0"": 4, ""1"": 19, ""2"": 50, ""3"": 50, ""4"": 37, ""5"": 9, ""6"": 10, ""7"": 8}"
+2,petfinder-pawpularity-score,tgca,291,235,235,470,1,291,1.0,0.012239356471503947,"{""3"": 4, ""4"": 8, ""5"": 22, ""6"": 68, ""7"": 63, ""8"": 70}"
+2,random-acts-of-pizza,tgca,400,264,264,528,1,400,1.0,0.0075971727369136596,"{""0"": 6, ""1"": 6, ""2"": 20, ""3"": 44, ""4"": 104, ""5"": 51, ""6"": 28, ""7"": 5}"
+2,spaceship-titanic,tgca,68,82,82,164,1,68,1.0,0.013789085379553307,"{""3"": 8, ""4"": 32, ""5"": 27, ""6"": 12, ""7"": 3}"
+2,spooky-author-identification,tgca,941,781,781,1562,1,941,1.0,0.013224036759496694,"{""0"": 22, ""1"": 33, ""2"": 66, ""3"": 101, ""4"": 172, ""5"": 178, ""6"": 148, ""7"": 47, ""8"": 14}"
+2,tabular-playground-series-dec-2021,tgca,35,19,19,38,1,35,1.0,0.027925728299829956,"{""0"": 3, ""1"": 4, ""2"": 3, ""3"": 1, ""4"": 3, ""5"": 1, ""7"": 2, ""8"": 2}"
+2,tabular-playground-series-may-2022,tgca,116,87,87,174,1,116,1.0,0.022718954041458118,"{""0"": 2, ""1"": 4, ""2"": 8, ""3"": 12, ""4"": 22, ""5"": 13, ""6"": 6, ""7"": 15, ""8"": 5}"
+2,text-normalization-challenge-english-language,tgca,34,17,17,34,1,34,1.0,0.019805588043479674,"{""0"": 1, ""1"": 1, ""2"": 5, ""3"": 6, ""4"": 2, ""5"": 1, ""6"": 1}"
+2,text-normalization-challenge-russian-language,tgca,168,84,84,168,1,168,1.0,0.0020490708412844944,"{""0"": 22, ""1"": 9, ""2"": 24, ""3"": 18, ""4"": 2, ""5"": 1, ""6"": 5, ""7"": 3}"
+2,tweet-sentiment-extraction,tgca,40,20,0,20,20,2,0.05,0.0,{}
+2,us-patent-phrase-to-phrase-matching,tgca,666,333,324,657,66,534,0.8018018018018018,0.0,"{""0"": 14, ""1"": 16, ""2"": 36, ""3"": 58, ""4"": 69, ""5"": 81, ""6"": 39, ""7"": 6, ""8"": 5}"
+2,whale-categorization-playground,tgca,127,65,65,130,1,127,1.0,0.0017225787950031787,"{""1"": 1, ""2"": 1, ""3"": 5, ""4"": 11, ""5"": 11, ""6"": 16, ""7"": 19, ""8"": 1}"
+3,aptos2019-blindness-detection,sibling_only,68,34,0,34,34,2,0.029411764705882353,0.0,{}
+3,chaii-hindi-and-tamil-question-answering,sibling_only,208,216,0,216,73,5,0.02403846153846154,0.0,{}
+3,denoising-dirty-documents,sibling_only,124,62,0,62,62,2,0.016129032258064516,0.0,{}
+3,dog-breed-identification,sibling_only,111,74,0,74,51,5,0.04504504504504504,0.0,{}
+3,dogs-vs-cats-redux-kernels-edition,sibling_only,12,6,0,6,6,2,0.16666666666666666,0.0,{}
+3,google-quest-challenge,sibling_only,76,38,0,38,38,2,0.02631578947368421,0.0,{}
+3,histopathologic-cancer-detection,sibling_only,72,36,0,36,36,2,0.027777777777777776,0.0,{}
+3,kuzushiji-recognition,sibling_only,12,6,0,6,6,2,0.16666666666666666,0.0,{}
+3,leaf-classification,sibling_only,388,349,0,349,145,5,0.01288659793814433,0.0,{}
+3,learning-agency-lab-automated-essay-scoring-2,sibling_only,52,38,0,38,22,3,0.057692307692307696,0.0,{}
+3,mlsp-2013-birds,sibling_only,165,183,0,183,58,5,0.030303030303030304,0.0,{}
+3,nomad2018-predict-transparent-conductors,sibling_only,120,127,0,127,42,5,0.041666666666666664,0.0,{}
+3,petfinder-pawpularity-score,sibling_only,476,400,0,400,185,5,0.01050420168067227,0.0,{}
+3,random-acts-of-pizza,sibling_only,599,451,0,451,251,5,0.008347245409015025,0.0,{}
+3,spaceship-titanic,sibling_only,48,61,0,61,16,11,0.22916666666666666,0.0,{}
+3,spooky-author-identification,sibling_only,1067,883,0,883,408,4,0.0037488284910965324,0.0,{}
+3,tabular-playground-series-dec-2021,sibling_only,35,19,0,19,17,3,0.08571428571428572,0.0,{}
+3,tabular-playground-series-may-2022,sibling_only,138,115,0,115,57,5,0.036231884057971016,0.0,{}
+3,text-normalization-challenge-english-language,sibling_only,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+3,text-normalization-challenge-russian-language,sibling_only,132,66,0,66,66,2,0.015151515151515152,0.0,{}
+3,tweet-sentiment-extraction,sibling_only,40,20,0,20,20,2,0.05,0.0,{}
+3,us-patent-phrase-to-phrase-matching,sibling_only,310,155,0,155,155,2,0.0064516129032258064,0.0,{}
+3,whale-categorization-playground,sibling_only,107,55,0,55,53,3,0.028037383177570093,0.0,{}
+3,aptos2019-blindness-detection,sibling_reweight_control,68,34,34,34,34,2,0.029411764705882353,0.0,"{""2"": 3, ""3"": 3, ""4"": 14, ""5"": 11, ""6"": 2, ""7"": 1}"
+3,chaii-hindi-and-tamil-question-answering,sibling_reweight_control,208,216,216,216,73,5,0.02403846153846154,0.0,"{""1"": 1, ""3"": 8, ""4"": 18, ""5"": 52, ""6"": 78, ""7"": 45, ""8"": 14}"
+3,denoising-dirty-documents,sibling_reweight_control,124,62,62,62,62,2,0.016129032258064516,0.0,"{""0"": 4, ""1"": 1, ""2"": 5, ""3"": 14, ""4"": 14, ""5"": 7, ""6"": 11, ""7"": 6}"
+3,dog-breed-identification,sibling_reweight_control,111,74,74,74,51,5,0.04504504504504504,0.0,"{""3"": 1, ""4"": 12, ""5"": 20, ""6"": 7, ""7"": 22, ""8"": 12}"
+3,dogs-vs-cats-redux-kernels-edition,sibling_reweight_control,12,6,6,6,6,2,0.16666666666666666,0.0,"{""2"": 1, ""3"": 2, ""5"": 2, ""6"": 1}"
+3,google-quest-challenge,sibling_reweight_control,76,38,38,38,38,2,0.02631578947368421,0.0,"{""3"": 2, ""4"": 9, ""5"": 10, ""6"": 12, ""7"": 5}"
+3,histopathologic-cancer-detection,sibling_reweight_control,72,36,36,36,36,2,0.027777777777777776,0.0,"{""0"": 4, ""1"": 4, ""2"": 5, ""3"": 11, ""4"": 9, ""5"": 2, ""8"": 1}"
+3,kuzushiji-recognition,sibling_reweight_control,12,6,5,6,6,2,0.16666666666666666,0.0,"{""6"": 2, ""7"": 1, ""8"": 2}"
+3,leaf-classification,sibling_reweight_control,388,349,349,349,145,5,0.01288659793814433,0.0,"{""1"": 2, ""2"": 5, ""3"": 5, ""4"": 28, ""5"": 58, ""6"": 75, ""7"": 64, ""8"": 112}"
+3,learning-agency-lab-automated-essay-scoring-2,sibling_reweight_control,52,38,38,38,22,3,0.057692307692307696,0.0,"{""0"": 2, ""2"": 1, ""3"": 6, ""4"": 13, ""5"": 12, ""6"": 3, ""8"": 1}"
+3,mlsp-2013-birds,sibling_reweight_control,165,183,183,183,58,5,0.030303030303030304,0.0,"{""2"": 1, ""3"": 5, ""4"": 34, ""5"": 53, ""6"": 51, ""7"": 30, ""8"": 9}"
+3,nomad2018-predict-transparent-conductors,sibling_reweight_control,120,127,127,127,42,5,0.041666666666666664,0.0,"{""0"": 3, ""1"": 11, ""2"": 37, ""3"": 34, ""4"": 29, ""5"": 5, ""6"": 7, ""7"": 1}"
+3,petfinder-pawpularity-score,sibling_reweight_control,476,400,400,400,185,5,0.01050420168067227,0.0,"{""2"": 2, ""3"": 15, ""4"": 24, ""5"": 53, ""6"": 122, ""7"": 95, ""8"": 89}"
+3,random-acts-of-pizza,sibling_reweight_control,599,451,451,451,251,5,0.008347245409015025,0.0,"{""0"": 8, ""1"": 10, ""2"": 29, ""3"": 76, ""4"": 167, ""5"": 90, ""6"": 50, ""7"": 21}"
+3,spaceship-titanic,sibling_reweight_control,48,61,61,61,16,11,0.22916666666666666,0.0,"{""3"": 4, ""4"": 31, ""5"": 21, ""6"": 4, ""7"": 1}"
+3,spooky-author-identification,sibling_reweight_control,1067,883,883,883,408,4,0.0037488284910965324,0.0,"{""0"": 22, ""1"": 33, ""2"": 71, ""3"": 111, ""4"": 192, ""5"": 210, ""6"": 182, ""7"": 49, ""8"": 13}"
+3,tabular-playground-series-dec-2021,sibling_reweight_control,35,19,19,19,17,3,0.08571428571428572,0.0,"{""0"": 5, ""1"": 2, ""2"": 5, ""4"": 3, ""5"": 1, ""8"": 3}"
+3,tabular-playground-series-may-2022,sibling_reweight_control,138,115,115,115,57,5,0.036231884057971016,0.0,"{""0"": 3, ""1"": 4, ""2"": 12, ""3"": 17, ""4"": 28, ""5"": 16, ""6"": 9, ""7"": 20, ""8"": 6}"
+3,text-normalization-challenge-english-language,sibling_reweight_control,34,17,17,17,17,2,0.058823529411764705,0.0,"{""0"": 1, ""1"": 1, ""2"": 5, ""3"": 6, ""4"": 2, ""5"": 1, ""6"": 1}"
+3,text-normalization-challenge-russian-language,sibling_reweight_control,132,66,66,66,66,2,0.015151515151515152,0.0,"{""0"": 17, ""1"": 9, ""2"": 16, ""3"": 12, ""4"": 3, ""5"": 1, ""6"": 5, ""7"": 3}"
+3,tweet-sentiment-extraction,sibling_reweight_control,40,20,9,20,20,2,0.05,0.0,"{""1"": 1, ""2"": 1, ""3"": 3, ""4"": 2, ""7"": 1, ""8"": 1}"
+3,us-patent-phrase-to-phrase-matching,sibling_reweight_control,310,155,138,155,155,2,0.0064516129032258064,0.0,"{""0"": 13, ""1"": 21, ""2"": 22, ""3"": 36, ""4"": 25, ""5"": 15, ""6"": 3, ""7"": 2, ""8"": 1}"
+3,whale-categorization-playground,sibling_reweight_control,107,55,55,55,53,3,0.028037383177570093,0.0,"{""2"": 2, ""3"": 5, ""4"": 12, ""5"": 8, ""6"": 14, ""7"": 13, ""8"": 1}"
+3,aptos2019-blindness-detection,uniform_crossrun_control,68,34,34,68,7,56,0.8235294117647058,0.0,"{""3"": 1, ""4"": 7, ""5"": 7, ""6"": 19}"
+3,chaii-hindi-and-tamil-question-answering,uniform_crossrun_control,208,216,216,432,1,208,1.0,0.08105649394774588,"{""1"": 1, ""3"": 2, ""4"": 7, ""5"": 15, ""6"": 31, ""7"": 66, ""8"": 94}"
+3,denoising-dirty-documents,uniform_crossrun_control,124,62,62,124,9,100,0.8064516129032258,0.0,"{""1"": 1, ""2"": 1, ""3"": 11, ""4"": 29, ""5"": 8, ""6"": 8, ""7"": 4}"
+3,dog-breed-identification,uniform_crossrun_control,111,74,74,148,10,93,0.8378378378378378,0.0,"{""3"": 1, ""4"": 1, ""5"": 2, ""6"": 15, ""7"": 34, ""8"": 21}"
+3,dogs-vs-cats-redux-kernels-edition,uniform_crossrun_control,12,6,6,12,2,10,0.8333333333333334,0.0,"{""3"": 1, ""5"": 4, ""6"": 1}"
+3,google-quest-challenge,uniform_crossrun_control,76,38,38,76,7,64,0.8421052631578947,0.0,"{""0"": 1, ""4"": 1, ""5"": 8, ""6"": 14, ""7"": 11, ""8"": 3}"
+3,histopathologic-cancer-detection,uniform_crossrun_control,72,36,36,72,7,60,0.8333333333333334,0.0,"{""2"": 3, ""3"": 7, ""4"": 15, ""5"": 8, ""6"": 1, ""8"": 2}"
+3,kuzushiji-recognition,uniform_crossrun_control,12,6,5,11,2,10,0.8333333333333334,0.0,"{""6"": 1, ""7"": 3, ""8"": 1}"
+3,leaf-classification,uniform_crossrun_control,388,349,349,698,3,384,0.9896907216494846,0.0,"{""2"": 1, ""3"": 3, ""4"": 9, ""5"": 15, ""6"": 40, ""7"": 72, ""8"": 209}"
+3,learning-agency-lab-automated-essay-scoring-2,uniform_crossrun_control,52,38,38,76,2,49,0.9423076923076923,0.0,"{""1"": 1, ""3"": 2, ""4"": 10, ""5"": 14, ""6"": 8, ""8"": 3}"
+3,mlsp-2013-birds,uniform_crossrun_control,165,183,183,366,1,165,1.0,0.10275680862850779,"{""2"": 2, ""3"": 8, ""4"": 15, ""5"": 31, ""6"": 82, ""7"": 35, ""8"": 10}"
+3,nomad2018-predict-transparent-conductors,uniform_crossrun_control,120,127,127,254,1,120,1.0,0.07533835925699935,"{""0"": 1, ""1"": 5, ""2"": 6, ""3"": 26, ""4"": 61, ""5"": 18, ""6"": 6, ""7"": 4}"
+3,petfinder-pawpularity-score,uniform_crossrun_control,476,400,400,800,3,472,0.9915966386554622,0.0,"{""3"": 2, ""4"": 2, ""5"": 5, ""6"": 20, ""7"": 50, ""8"": 321}"
+3,random-acts-of-pizza,uniform_crossrun_control,599,451,451,902,7,584,0.9749582637729549,0.0,"{""1"": 2, ""2"": 5, ""3"": 17, ""4"": 40, ""5"": 86, ""6"": 232, ""7"": 69}"
+3,spaceship-titanic,uniform_crossrun_control,48,61,61,122,1,48,1.0,0.17655418912483403,"{""3"": 16, ""4"": 11, ""5"": 17, ""6"": 11, ""7"": 6}"
+3,spooky-author-identification,uniform_crossrun_control,1067,883,883,1766,9,1050,0.9840674789128397,0.0,"{""0"": 1, ""1"": 3, ""2"": 4, ""3"": 17, ""4"": 72, ""5"": 222, ""6"": 385, ""7"": 153, ""8"": 26}"
+3,tabular-playground-series-dec-2021,uniform_crossrun_control,35,19,19,38,3,31,0.8857142857142857,0.0,"{""1"": 1, ""2"": 4, ""3"": 1, ""4"": 5, ""5"": 5, ""8"": 3}"
+3,tabular-playground-series-may-2022,uniform_crossrun_control,138,115,115,230,4,132,0.9565217391304348,0.0,"{""1"": 1, ""2"": 5, ""3"": 5, ""4"": 12, ""5"": 14, ""6"": 42, ""7"": 34, ""8"": 2}"
+3,text-normalization-challenge-english-language,uniform_crossrun_control,34,17,17,34,3,28,0.8235294117647058,0.0,"{""1"": 1, ""2"": 3, ""3"": 7, ""4"": 1, ""5"": 3, ""6"": 2}"
+3,text-normalization-challenge-russian-language,uniform_crossrun_control,132,66,66,132,11,108,0.8181818181818182,0.0,"{""0"": 3, ""1"": 4, ""2"": 12, ""3"": 11, ""4"": 19, ""6"": 8, ""7"": 9}"
+3,tweet-sentiment-extraction,uniform_crossrun_control,40,20,9,29,11,14,0.35,0.0,"{""4"": 3, ""5"": 5, ""7"": 1}"
+3,us-patent-phrase-to-phrase-matching,uniform_crossrun_control,310,155,138,293,47,218,0.7032258064516129,0.0,"{""4"": 1, ""5"": 3, ""6"": 2, ""7"": 129, ""8"": 3}"
+3,whale-categorization-playground,uniform_crossrun_control,107,55,55,110,7,93,0.8691588785046729,0.0,"{""3"": 3, ""4"": 4, ""5"": 4, ""6"": 18, ""7"": 22, ""8"": 4}"
+3,aptos2019-blindness-detection,tgca,68,34,34,68,1,68,1.0,0.00817866878328023,"{""2"": 3, ""3"": 3, ""4"": 14, ""5"": 11, ""6"": 2, ""7"": 1}"
+3,chaii-hindi-and-tamil-question-answering,tgca,208,216,216,432,1,208,1.0,0.012418317368620507,"{""1"": 1, ""3"": 8, ""4"": 18, ""5"": 52, ""6"": 78, ""7"": 45, ""8"": 14}"
+3,denoising-dirty-documents,tgca,124,62,62,124,1,124,1.0,0.0024258553522969965,"{""0"": 4, ""1"": 1, ""2"": 5, ""3"": 14, ""4"": 14, ""5"": 7, ""6"": 11, ""7"": 6}"
+3,dog-breed-identification,tgca,111,74,74,148,1,111,1.0,0.020408545116309327,"{""3"": 1, ""4"": 12, ""5"": 20, ""6"": 7, ""7"": 22, ""8"": 12}"
+3,dogs-vs-cats-redux-kernels-edition,tgca,12,6,6,12,1,12,1.0,0.0981526481717515,"{""2"": 1, ""3"": 2, ""5"": 2, ""6"": 1}"
+3,google-quest-challenge,tgca,76,38,38,76,1,76,1.0,0.0032301019819161733,"{""3"": 2, ""4"": 9, ""5"": 10, ""6"": 12, ""7"": 5}"
+3,histopathologic-cancer-detection,tgca,72,36,36,72,1,72,1.0,0.005284124802241451,"{""0"": 4, ""1"": 4, ""2"": 5, ""3"": 11, ""4"": 9, ""5"": 2, ""8"": 1}"
+3,kuzushiji-recognition,tgca,12,6,5,11,1,12,1.0,0.06878564946312207,"{""6"": 2, ""7"": 1, ""8"": 2}"
+3,leaf-classification,tgca,388,349,349,698,1,388,1.0,0.03218192803713798,"{""1"": 2, ""2"": 5, ""3"": 5, ""4"": 28, ""5"": 58, ""6"": 75, ""7"": 64, ""8"": 112}"
+3,learning-agency-lab-automated-essay-scoring-2,tgca,52,38,38,76,1,52,1.0,0.04887891182655803,"{""0"": 2, ""2"": 1, ""3"": 6, ""4"": 13, ""5"": 12, ""6"": 3, ""8"": 1}"
+3,mlsp-2013-birds,tgca,165,183,183,366,1,165,1.0,0.030290684953763018,"{""2"": 1, ""3"": 5, ""4"": 34, ""5"": 53, ""6"": 51, ""7"": 30, ""8"": 9}"
+3,nomad2018-predict-transparent-conductors,tgca,120,127,127,254,1,120,1.0,0.017657090225740784,"{""0"": 3, ""1"": 11, ""2"": 37, ""3"": 34, ""4"": 29, ""5"": 5, ""6"": 7, ""7"": 1}"
+3,petfinder-pawpularity-score,tgca,476,400,400,800,1,476,1.0,0.029983494089259734,"{""2"": 2, ""3"": 15, ""4"": 24, ""5"": 53, ""6"": 122, ""7"": 95, ""8"": 89}"
+3,random-acts-of-pizza,tgca,599,451,451,902,1,599,1.0,0.020660577397691976,"{""0"": 8, ""1"": 10, ""2"": 29, ""3"": 76, ""4"": 167, ""5"": 90, ""6"": 50, ""7"": 21}"
+3,spaceship-titanic,tgca,48,61,61,122,1,48,1.0,0.015108916514191911,"{""3"": 4, ""4"": 31, ""5"": 21, ""6"": 4, ""7"": 1}"
+3,spooky-author-identification,tgca,1067,883,883,1766,1,1067,1.0,0.026013962455443698,"{""0"": 22, ""1"": 33, ""2"": 71, ""3"": 111, ""4"": 192, ""5"": 210, ""6"": 182, ""7"": 49, ""8"": 13}"
+3,tabular-playground-series-dec-2021,tgca,35,19,19,38,1,35,1.0,0.031780268337652885,"{""0"": 5, ""1"": 2, ""2"": 5, ""4"": 3, ""5"": 1, ""8"": 3}"
+3,tabular-playground-series-may-2022,tgca,138,115,115,230,1,138,1.0,0.02088476156745828,"{""0"": 3, ""1"": 4, ""2"": 12, ""3"": 17, ""4"": 28, ""5"": 16, ""6"": 9, ""7"": 20, ""8"": 6}"
+3,text-normalization-challenge-english-language,tgca,34,17,17,34,1,34,1.0,0.023090200736406448,"{""0"": 1, ""1"": 1, ""2"": 5, ""3"": 6, ""4"": 2, ""5"": 1, ""6"": 1}"
+3,text-normalization-challenge-russian-language,tgca,132,66,66,132,1,132,1.0,0.0019866604734737154,"{""0"": 17, ""1"": 9, ""2"": 16, ""3"": 12, ""4"": 3, ""5"": 1, ""6"": 5, ""7"": 3}"
+3,tweet-sentiment-extraction,tgca,40,20,9,29,11,20,0.5,0.0,"{""4"": 5, ""6"": 1, ""7"": 2, ""8"": 1}"
+3,us-patent-phrase-to-phrase-matching,tgca,310,155,138,293,82,148,0.4774193548387097,0.0,"{""0"": 7, ""1"": 10, ""2"": 28, ""3"": 42, ""4"": 27, ""5"": 18, ""6"": 3, ""7"": 2, ""8"": 1}"
+3,whale-categorization-playground,tgca,107,55,55,110,1,107,1.0,0.005792995817710113,"{""2"": 2, ""3"": 5, ""4"": 12, ""5"": 8, ""6"": 14, ""7"": 13, ""8"": 1}"
+4,aptos2019-blindness-detection,sibling_only,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+4,chaii-hindi-and-tamil-question-answering,sibling_only,340,368,0,368,117,5,0.014705882352941176,0.0,{}
+4,denoising-dirty-documents,sibling_only,148,162,0,162,54,5,0.033783783783783786,0.0,{}
+4,dog-breed-identification,sibling_only,83,59,0,59,37,5,0.060240963855421686,0.0,{}
+4,dogs-vs-cats-redux-kernels-edition,sibling_only,22,11,0,11,11,2,0.09090909090909091,0.0,{}
+4,google-quest-challenge,sibling_only,46,23,0,23,23,2,0.043478260869565216,0.0,{}
+4,histopathologic-cancer-detection,sibling_only,92,46,0,46,46,2,0.021739130434782608,0.0,{}
+4,kuzushiji-recognition,sibling_only,18,9,0,9,9,2,0.1111111111111111,0.0,{}
+4,leaf-classification,sibling_only,233,212,0,212,87,5,0.02145922746781116,0.0,{}
+4,learning-agency-lab-automated-essay-scoring-2,sibling_only,42,30,0,30,18,3,0.07142857142857142,0.0,{}
+4,mlsp-2013-birds,sibling_only,207,214,0,214,75,5,0.024154589371980676,0.0,{}
+4,nomad2018-predict-transparent-conductors,sibling_only,151,173,0,173,50,5,0.033112582781456956,0.0,{}
+4,petfinder-pawpularity-score,sibling_only,525,438,0,438,205,5,0.009523809523809525,0.0,{}
+4,random-acts-of-pizza,sibling_only,399,290,0,290,170,4,0.010025062656641603,0.0,{}
+4,spaceship-titanic,sibling_only,68,82,0,82,23,11,0.16176470588235295,0.0,{}
+4,spooky-author-identification,sibling_only,930,773,0,773,353,3,0.0032258064516129032,0.0,{}
+4,tabular-playground-series-dec-2021,sibling_only,42,24,0,24,20,3,0.07142857142857142,0.0,{}
+4,tabular-playground-series-may-2022,sibling_only,126,103,0,103,52,5,0.03968253968253968,0.0,{}
+4,text-normalization-challenge-english-language,sibling_only,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+4,text-normalization-challenge-russian-language,sibling_only,120,60,0,60,60,2,0.016666666666666666,0.0,{}
+4,tweet-sentiment-extraction,sibling_only,80,40,0,40,40,2,0.025,0.0,{}
+4,us-patent-phrase-to-phrase-matching,sibling_only,378,189,0,189,189,2,0.005291005291005291,0.0,{}
+4,whale-categorization-playground,sibling_only,142,71,0,71,71,2,0.014084507042253521,0.0,{}
+4,aptos2019-blindness-detection,sibling_reweight_control,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+4,chaii-hindi-and-tamil-question-answering,sibling_reweight_control,340,368,368,368,117,5,0.014705882352941176,0.0,"{""1"": 1, ""3"": 14, ""4"": 44, ""5"": 99, ""6"": 125, ""7"": 63, ""8"": 22}"
+4,denoising-dirty-documents,sibling_reweight_control,148,162,162,162,54,5,0.033783783783783786,0.0,"{""0"": 5, ""1"": 4, ""2"": 23, ""3"": 43, ""4"": 37, ""5"": 17, ""6"": 29, ""7"": 4}"
+4,dog-breed-identification,sibling_reweight_control,83,59,59,59,37,5,0.060240963855421686,0.0,"{""2"": 2, ""4"": 12, ""5"": 15, ""6"": 8, ""7"": 12, ""8"": 10}"
+4,dogs-vs-cats-redux-kernels-edition,sibling_reweight_control,22,11,11,11,11,2,0.09090909090909091,0.0,"{""2"": 2, ""3"": 3, ""4"": 1, ""5"": 3, ""6"": 2}"
+4,google-quest-challenge,sibling_reweight_control,46,23,23,23,23,2,0.043478260869565216,0.0,"{""3"": 1, ""4"": 5, ""5"": 8, ""6"": 6, ""7"": 3}"
+4,histopathologic-cancer-detection,sibling_reweight_control,92,46,46,46,46,2,0.021739130434782608,0.0,"{""0"": 5, ""1"": 5, ""2"": 11, ""3"": 11, ""4"": 9, ""5"": 3, ""6"": 1, ""8"": 1}"
+4,kuzushiji-recognition,sibling_reweight_control,18,9,8,9,9,2,0.1111111111111111,0.0,"{""3"": 1, ""5"": 2, ""6"": 2, ""7"": 2, ""8"": 1}"
+4,leaf-classification,sibling_reweight_control,233,212,212,212,87,5,0.02145922746781116,0.0,"{""1"": 2, ""2"": 5, ""3"": 4, ""4"": 14, ""5"": 42, ""6"": 48, ""7"": 46, ""8"": 51}"
+4,learning-agency-lab-automated-essay-scoring-2,sibling_reweight_control,42,30,30,30,18,3,0.07142857142857142,0.0,"{""2"": 1, ""3"": 4, ""4"": 11, ""5"": 10, ""6"": 4}"
+4,mlsp-2013-birds,sibling_reweight_control,207,214,214,214,75,5,0.024154589371980676,0.0,"{""2"": 2, ""3"": 8, ""4"": 37, ""5"": 60, ""6"": 53, ""7"": 35, ""8"": 19}"
+4,nomad2018-predict-transparent-conductors,sibling_reweight_control,151,173,173,173,50,5,0.033112582781456956,0.0,"{""0"": 5, ""1"": 18, ""2"": 42, ""3"": 49, ""4"": 36, ""5"": 9, ""6"": 7, ""7"": 7}"
+4,petfinder-pawpularity-score,sibling_reweight_control,525,438,438,438,205,5,0.009523809523809525,0.0,"{""2"": 2, ""3"": 15, ""4"": 27, ""5"": 55, ""6"": 135, ""7"": 108, ""8"": 96}"
+4,random-acts-of-pizza,sibling_reweight_control,399,290,290,290,170,4,0.010025062656641603,0.0,"{""0"": 6, ""1"": 7, ""2"": 19, ""3"": 48, ""4"": 100, ""5"": 58, ""6"": 34, ""7"": 18}"
+4,spaceship-titanic,sibling_reweight_control,68,82,82,82,23,11,0.16176470588235295,0.0,"{""3"": 9, ""4"": 34, ""5"": 26, ""6"": 11, ""7"": 2}"
+4,spooky-author-identification,sibling_reweight_control,930,773,773,773,353,3,0.0032258064516129032,0.0,"{""0"": 22, ""1"": 33, ""2"": 66, ""3"": 99, ""4"": 166, ""5"": 182, ""6"": 145, ""7"": 45, ""8"": 15}"
+4,tabular-playground-series-dec-2021,sibling_reweight_control,42,24,24,24,20,3,0.07142857142857142,0.0,"{""0"": 5, ""1"": 3, ""2"": 4, ""3"": 1, ""4"": 3, ""5"": 1, ""7"": 2, ""8"": 5}"
+4,tabular-playground-series-may-2022,sibling_reweight_control,126,103,103,103,52,5,0.03968253968253968,0.0,"{""0"": 3, ""1"": 4, ""2"": 13, ""3"": 18, ""4"": 26, ""5"": 9, ""6"": 8, ""7"": 17, ""8"": 5}"
+4,text-normalization-challenge-english-language,sibling_reweight_control,34,17,17,17,17,2,0.058823529411764705,0.0,"{""0"": 1, ""1"": 1, ""2"": 5, ""3"": 6, ""4"": 2, ""5"": 1, ""6"": 1}"
+4,text-normalization-challenge-russian-language,sibling_reweight_control,120,60,60,60,60,2,0.016666666666666666,0.0,"{""0"": 17, ""1"": 6, ""2"": 12, ""3"": 14, ""4"": 5, ""5"": 1, ""6"": 5}"
+4,tweet-sentiment-extraction,sibling_reweight_control,80,40,33,40,40,2,0.025,0.0,"{""0"": 1, ""2"": 6, ""3"": 12, ""4"": 8, ""5"": 1, ""6"": 2, ""7"": 2, ""8"": 1}"
+4,us-patent-phrase-to-phrase-matching,sibling_reweight_control,378,189,189,189,189,2,0.005291005291005291,0.0,"{""0"": 2, ""1"": 3, ""2"": 9, ""3"": 17, ""4"": 46, ""5"": 67, ""6"": 37, ""7"": 4, ""8"": 4}"
+4,whale-categorization-playground,sibling_reweight_control,142,71,71,71,71,2,0.014084507042253521,0.0,"{""1"": 1, ""2"": 2, ""3"": 7, ""4"": 15, ""5"": 13, ""6"": 17, ""7"": 16}"
+4,aptos2019-blindness-detection,uniform_crossrun_control,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+4,chaii-hindi-and-tamil-question-answering,uniform_crossrun_control,340,368,368,736,1,340,1.0,0.07995889275774584,"{""1"": 1, ""3"": 4, ""4"": 9, ""5"": 17, ""6"": 57, ""7"": 96, ""8"": 184}"
+4,denoising-dirty-documents,uniform_crossrun_control,148,162,162,324,1,148,1.0,0.08474477044671364,"{""1"": 1, ""2"": 6, ""3"": 20, ""4"": 49, ""5"": 26, ""6"": 45, ""7"": 15}"
+4,dog-breed-identification,uniform_crossrun_control,83,59,59,118,2,81,0.9759036144578314,0.0,"{""4"": 2, ""5"": 2, ""6"": 13, ""7"": 19, ""8"": 23}"
+4,dogs-vs-cats-redux-kernels-edition,uniform_crossrun_control,22,11,11,22,1,22,1.0,0.03234056258701758,"{""2"": 2, ""3"": 2, ""4"": 2, ""5"": 3, ""6"": 2}"
+4,google-quest-challenge,uniform_crossrun_control,46,23,23,46,5,38,0.8260869565217391,0.0,"{""3"": 1, ""4"": 1, ""5"": 4, ""6"": 10, ""7"": 5, ""8"": 2}"
+4,histopathologic-cancer-detection,uniform_crossrun_control,92,46,46,92,11,70,0.7608695652173914,0.0,"{""0"": 1, ""1"": 2, ""2"": 8, ""3"": 5, ""4"": 20, ""5"": 7, ""6"": 3}"
+4,kuzushiji-recognition,uniform_crossrun_control,18,9,8,17,2,16,0.8888888888888888,0.0,"{""6"": 1, ""7"": 2, ""8"": 5}"
+4,leaf-classification,uniform_crossrun_control,233,212,212,424,3,229,0.9828326180257511,0.0,"{""2"": 2, ""3"": 2, ""4"": 2, ""5"": 11, ""6"": 13, ""7"": 41, ""8"": 141}"
+4,learning-agency-lab-automated-essay-scoring-2,uniform_crossrun_control,42,30,30,60,1,42,1.0,0.04516070978896097,"{""3"": 1, ""4"": 7, ""5"": 16, ""6"": 6}"
+4,mlsp-2013-birds,uniform_crossrun_control,207,214,214,428,2,205,0.9903381642512077,0.0,"{""2"": 1, ""3"": 6, ""4"": 13, ""5"": 36, ""6"": 86, ""7"": 52, ""8"": 20}"
+4,nomad2018-predict-transparent-conductors,uniform_crossrun_control,151,173,173,346,1,151,1.0,0.12096978009175573,"{""1"": 5, ""2"": 8, ""3"": 29, ""4"": 85, ""5"": 25, ""6"": 9, ""7"": 12}"
+4,petfinder-pawpularity-score,uniform_crossrun_control,525,438,438,876,8,506,0.9638095238095238,0.0,"{""3"": 1, ""4"": 4, ""5"": 7, ""6"": 21, ""7"": 61, ""8"": 344}"
+4,random-acts-of-pizza,uniform_crossrun_control,399,290,290,580,9,378,0.9473684210526315,0.0,"{""1"": 1, ""2"": 1, ""3"": 3, ""4"": 26, ""5"": 71, ""6"": 155, ""7"": 33}"
+4,spaceship-titanic,uniform_crossrun_control,68,82,82,164,1,68,1.0,0.09816245191540211,"{""3"": 13, ""4"": 26, ""5"": 26, ""6"": 12, ""7"": 5}"
+4,spooky-author-identification,uniform_crossrun_control,930,773,773,1546,5,921,0.9903225806451613,0.0,"{""2"": 3, ""3"": 17, ""4"": 40, ""5"": 193, ""6"": 342, ""7"": 157, ""8"": 21}"
+4,tabular-playground-series-dec-2021,uniform_crossrun_control,42,24,24,48,3,35,0.8333333333333334,0.0,"{""1"": 4, ""2"": 6, ""3"": 2, ""4"": 4, ""5"": 6, ""6"": 1, ""7"": 1}"
+4,tabular-playground-series-may-2022,uniform_crossrun_control,126,103,103,206,2,122,0.9682539682539683,0.0,"{""1"": 1, ""2"": 1, ""3"": 5, ""4"": 16, ""5"": 13, ""6"": 26, ""7"": 38, ""8"": 3}"
+4,text-normalization-challenge-english-language,uniform_crossrun_control,34,17,17,34,4,24,0.7058823529411765,0.0,"{""1"": 3, ""2"": 5, ""3"": 4, ""4"": 1, ""5"": 1, ""6"": 3}"
+4,text-normalization-challenge-russian-language,uniform_crossrun_control,120,60,60,120,14,92,0.7666666666666667,0.0,"{""0"": 1, ""1"": 2, ""2"": 7, ""3"": 8, ""4"": 26, ""5"": 2, ""6"": 9, ""7"": 5}"
+4,tweet-sentiment-extraction,uniform_crossrun_control,80,40,33,73,13,52,0.65,0.0,"{""3"": 1, ""4"": 7, ""5"": 21, ""6"": 2, ""7"": 2}"
+4,us-patent-phrase-to-phrase-matching,uniform_crossrun_control,378,189,189,378,57,266,0.7037037037037037,0.0,"{""4"": 2, ""5"": 7, ""7"": 5, ""8"": 175}"
+4,whale-categorization-playground,uniform_crossrun_control,142,71,71,142,11,122,0.8591549295774648,0.0,"{""2"": 1, ""3"": 1, ""4"": 3, ""5"": 15, ""6"": 20, ""7"": 28, ""8"": 3}"
+4,aptos2019-blindness-detection,tgca,34,17,0,17,17,2,0.058823529411764705,0.0,{}
+4,chaii-hindi-and-tamil-question-answering,tgca,340,368,368,736,1,340,1.0,0.013257575018840635,"{""1"": 1, ""3"": 14, ""4"": 44, ""5"": 99, ""6"": 125, ""7"": 63, ""8"": 22}"
+4,denoising-dirty-documents,tgca,148,162,162,324,1,148,1.0,0.0286319438855807,"{""0"": 5, ""1"": 4, ""2"": 23, ""3"": 43, ""4"": 37, ""5"": 17, ""6"": 29, ""7"": 4}"
+4,dog-breed-identification,tgca,83,59,59,118,1,83,1.0,0.021304717833269204,"{""2"": 2, ""4"": 12, ""5"": 15, ""6"": 8, ""7"": 12, ""8"": 10}"
+4,dogs-vs-cats-redux-kernels-edition,tgca,22,11,11,22,1,22,1.0,0.046602018149281596,"{""2"": 2, ""3"": 3, ""4"": 1, ""5"": 3, ""6"": 2}"
+4,google-quest-challenge,tgca,46,23,23,46,1,46,1.0,0.00698574605097981,"{""3"": 1, ""4"": 5, ""5"": 8, ""6"": 6, ""7"": 3}"
+4,histopathologic-cancer-detection,tgca,92,46,46,92,1,92,1.0,0.003664272654553954,"{""0"": 5, ""1"": 5, ""2"": 11, ""3"": 11, ""4"": 9, ""5"": 3, ""6"": 1, ""8"": 1}"
+4,kuzushiji-recognition,tgca,18,9,8,17,1,18,1.0,0.03342774254167896,"{""5"": 2, ""6"": 2, ""7"": 2, ""8"": 2}"
+4,leaf-classification,tgca,233,212,212,424,1,233,1.0,0.03589316227630832,"{""1"": 2, ""2"": 5, ""3"": 4, ""4"": 14, ""5"": 42, ""6"": 48, ""7"": 46, ""8"": 51}"
+4,learning-agency-lab-automated-essay-scoring-2,tgca,42,30,30,60,1,42,1.0,0.050483809795325546,"{""2"": 1, ""3"": 4, ""4"": 11, ""5"": 10, ""6"": 4}"
+4,mlsp-2013-birds,tgca,207,214,214,428,1,207,1.0,0.022443426662307798,"{""2"": 2, ""3"": 8, ""4"": 37, ""5"": 60, ""6"": 53, ""7"": 35, ""8"": 19}"
+4,nomad2018-predict-transparent-conductors,tgca,151,173,173,346,1,151,1.0,0.00769651060527351,"{""0"": 5, ""1"": 18, ""2"": 42, ""3"": 49, ""4"": 36, ""5"": 9, ""6"": 7, ""7"": 7}"
+4,petfinder-pawpularity-score,tgca,525,438,438,876,1,525,1.0,0.023151441045910555,"{""2"": 2, ""3"": 15, ""4"": 27, ""5"": 55, ""6"": 135, ""7"": 108, ""8"": 96}"
+4,random-acts-of-pizza,tgca,399,290,290,580,1,399,1.0,0.011938108025286637,"{""0"": 6, ""1"": 7, ""2"": 19, ""3"": 48, ""4"": 100, ""5"": 58, ""6"": 34, ""7"": 18}"
+4,spaceship-titanic,tgca,68,82,82,164,1,68,1.0,0.013436050758945823,"{""3"": 9, ""4"": 34, ""5"": 26, ""6"": 11, ""7"": 2}"
+4,spooky-author-identification,tgca,930,773,773,1546,1,930,1.0,0.03040079962289103,"{""0"": 22, ""1"": 33, ""2"": 66, ""3"": 99, ""4"": 166, ""5"": 182, ""6"": 145, ""7"": 45, ""8"": 15}"
+4,tabular-playground-series-dec-2021,tgca,42,24,24,48,1,42,1.0,0.018796454580337477,"{""0"": 5, ""1"": 3, ""2"": 4, ""3"": 1, ""4"": 3, ""5"": 1, ""7"": 2, ""8"": 5}"
+4,tabular-playground-series-may-2022,tgca,126,103,103,206,1,126,1.0,0.01957075667193562,"{""0"": 3, ""1"": 4, ""2"": 13, ""3"": 18, ""4"": 26, ""5"": 9, ""6"": 8, ""7"": 17, ""8"": 5}"
+4,text-normalization-challenge-english-language,tgca,34,17,17,34,1,34,1.0,0.017301921960603647,"{""0"": 1, ""1"": 1, ""2"": 5, ""3"": 6, ""4"": 2, ""5"": 1, ""6"": 1}"
+4,text-normalization-challenge-russian-language,tgca,120,60,60,120,1,120,1.0,0.00209776984016067,"{""0"": 17, ""1"": 6, ""2"": 12, ""3"": 14, ""4"": 5, ""5"": 1, ""6"": 5}"
+4,tweet-sentiment-extraction,tgca,80,40,33,73,17,34,0.425,0.0,"{""1"": 1, ""2"": 5, ""3"": 10, ""4"": 10, ""5"": 1, ""6"": 2, ""7"": 3, ""8"": 1}"
+4,us-patent-phrase-to-phrase-matching,tgca,378,189,189,378,161,58,0.15343915343915343,0.0,"{""0"": 2, ""1"": 3, ""2"": 9, ""3"": 17, ""4"": 46, ""5"": 67, ""6"": 37, ""7"": 4, ""8"": 4}"
+4,whale-categorization-playground,tgca,142,71,71,142,1,142,1.0,0.0031630885920644414,"{""1"": 1, ""2"": 2, ""3"": 7, ""4"": 15, ""5"": 13, ""6"": 17, ""7"": 16}"

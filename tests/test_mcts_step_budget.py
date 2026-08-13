@@ -16,6 +16,7 @@ os.environ.setdefault("DEFAULT_SLURM_QOS", "test")
 # first exposes an unrelated package-initialisation cycle in the upstream repo.
 import dojo.main_run as _main_run  # noqa: E402,F401
 from dojo.solvers.mcts import mcts as mcts_module  # noqa: E402
+from phase1.build_schema_probe_generation_manifest import EXPECTED_STEP_LIMIT  # noqa: E402
 
 
 class _Logger:
@@ -64,3 +65,8 @@ def test_root_consumes_one_journal_step_without_empty_iteration(
     assert node is None
     assert len(calls) == expected_expansions
     assert solver.state.current_step == step_limit
+
+
+def test_schema_generation_manifest_accepts_exactly_one_candidate_budget() -> None:
+    """Keep the post-generation audit aligned with root-plus-candidate accounting."""
+    assert EXPECTED_STEP_LIMIT == 2

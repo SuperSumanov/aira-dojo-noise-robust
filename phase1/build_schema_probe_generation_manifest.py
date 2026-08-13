@@ -11,6 +11,9 @@ import tempfile
 from pathlib import Path
 
 
+EXPECTED_STEP_LIMIT = 2  # blank root is step 1; one generated candidate is step 2
+
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -97,7 +100,7 @@ def main() -> None:
             raise RuntimeError(f"non-public task data path: {task}")
         solver = nested(config, "solver")
         if (
-            int(solver.get("step_limit", -1)) != 1
+            int(solver.get("step_limit", -1)) != EXPECTED_STEP_LIMIT
             or int(solver.get("execution_timeout", -1)) != 600
             or int(solver.get("time_limit_secs", -1)) != 1200
         ):

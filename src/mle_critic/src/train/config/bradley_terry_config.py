@@ -16,7 +16,8 @@ class BradleyTerryConfig(TrainingArguments):
     accumulation, learning rate, epochs, evaluation, saving, and distributed setup.
     """
 
-    pairs: str = field(default="", metadata={"help": "pair JSONL file"})
+    train_pairs: str = field(default="", metadata={"help": "pair JSONL file for training"})
+    test_pairs: str = field(default="", metadata={"help": "pair JSONL file for testing"})
     cards: str = field(default="", metadata={"help": "cards JSONL file"})
     model: str = field(
         default_factory=lambda: os.environ.get("MLE_CRITIC_MODEL", "Qwen/Qwen2.5-1.5B-Instruct"),
@@ -55,8 +56,10 @@ class BradleyTerryConfig(TrainingArguments):
 
     def __post_init__(self):
         super().__post_init__()
-        if not self.pairs:
-            raise ValueError("--pairs is required")
+        if not self.train_pairs:
+            raise ValueError("--train-pairs is required")
+        if not self.test_pairs:
+            raise ValueError("--test-pairs is required")
         if not self.cards:
             raise ValueError("--cards is required")
         if self.budget_pos not in {"head", "tail"}:

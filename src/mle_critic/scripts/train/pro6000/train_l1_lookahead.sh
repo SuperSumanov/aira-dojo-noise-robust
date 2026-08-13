@@ -6,9 +6,10 @@ source "$(dirname "$0")/../../experiment_env.sh"
 SEED=${1:-7}
 
 accelerate launch \
---config_file "$ACCELERATE_CONFIG" \
+--config_file "$ACCELERATE_ZERO3_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
---pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
+--train_pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
+--test_pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
 --cards "$DATA_DIR/cards_current.jsonl" \
 --model Qwen/Qwen3-1.7B-Base \
 --max-len 16384 \

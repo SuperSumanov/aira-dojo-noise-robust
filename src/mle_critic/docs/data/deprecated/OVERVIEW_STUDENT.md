@@ -88,7 +88,7 @@ bash src/mle_critic/scripts/build_decision_datasets.sh
 4. 保存 code、self-report、runtime、parent、step、tree depth；
 5. 将 metric_info.score 保存为 label.graded；
 6. 用 medal thresholds 和指标方向计算 label.y_norm；
-7. 丢弃没有正式外部 graded 分的节点，包括只有 HCE/T1 dval 的记录；
+7. 丢弃无法生成归一化训练目标的节点，即缺少正式外部 grade 或完整 medal thresholds 的记录；
 8. 按 card ID 去重并写 JSONL；合并批次后按文件内连续 run 重建 `run_id`，并验证父子节点不跨段、段内不混任务。
 
 Card 的关键字段是：

@@ -100,14 +100,15 @@ def main() -> None:
     torch.manual_seed(config.seed)
 
     card_codes, card_tasks = read_cards(config.cards)
-    pair_records = read_pairs(config.pairs, card_codes)
+    train_pair_records = read_pairs(config.train_pairs, card_codes)
+    test_pair_records = read_pairs(config.test_pairs, card_codes)
     training_pool, split_name = load_training_pool(
-        pair_records,
+        train_pair_records,
         loto=config.loto,
         seed=config.seed,
     )
     testing_pool, _ = load_testing_pool(
-        pair_records,
+        test_pair_records,
         loto=config.loto,
         seed=config.seed,
     )

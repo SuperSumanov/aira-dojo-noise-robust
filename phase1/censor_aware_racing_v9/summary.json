@@ -1,0 +1,179 @@
+{
+  "censor_survival": {
+    "run_macro_ci95": [
+      0.9711538461538461,
+      1.0
+    ],
+    "run_macro_mean": 0.9887820512820513,
+    "set_mean": 0.98,
+    "task_macro_ci95": [
+      0.956140350877193,
+      1.0
+    ],
+    "task_macro_mean": 0.9824561403508772
+  },
+  "counts": {
+    "cards": 230,
+    "easy": 50,
+    "hard": 50,
+    "runs": 52,
+    "sets": 100,
+    "tasks": 19
+  },
+  "decision": "BORDERLINE",
+  "delta_vs_observed": {
+    "run_macro_ci95": [
+      0.009615384615384614,
+      0.12980769230769232
+    ],
+    "run_macro_mean": 0.0625,
+    "run_sign": {
+      "informative": 5,
+      "negative": 0,
+      "p_two_sided": 0.0625,
+      "positive": 5,
+      "tied": 47
+    },
+    "set_mean": 0.09,
+    "task_macro_ci95": [
+      0.021929824561403508,
+      0.15288220551378445
+    ],
+    "task_macro_mean": 0.08082706766917293
+  },
+  "delta_vs_structured_random": {
+    "run_macro_ci95": [
+      0.09246794871794872,
+      0.2326923076923077
+    ],
+    "run_macro_mean": 0.15897435897435896,
+    "run_sign": {
+      "informative": 16,
+      "negative": 1,
+      "p_two_sided": 0.000518798828125,
+      "positive": 15,
+      "tied": 36
+    },
+    "set_mean": 0.14133333333333334,
+    "task_macro_ci95": [
+      0.06443191311612365,
+      0.26750208855472013
+    ],
+    "task_macro_mean": 0.15902255639097745
+  },
+  "gates": {
+    "avoidable_tail_fraction_ge_0p10": false,
+    "delta_observed_informative_runs_ge_10": false,
+    "delta_observed_point_ge_0p10": false,
+    "delta_observed_run_ci_positive": true,
+    "delta_observed_sign_p_lt_0p05": false,
+    "delta_observed_task_ci_positive": true,
+    "delta_random_point_ge_0p10": true,
+    "delta_random_run_ci_positive": true,
+    "delta_random_task_ci_positive": true,
+    "loto_observed_min_nonnegative": true,
+    "loto_random_min_nonnegative": true,
+    "pruned_fraction_ge_0p10": true,
+    "supported_task_min_delta_random_nonnegative": true,
+    "supported_task_min_survival_ge_0p60": true,
+    "survival_point_ge_0p90": true,
+    "survival_run_ci_low_ge_0p80": true,
+    "survival_task_ci_low_ge_0p75": true
+  },
+  "provenance": {
+    "bootstrap": 10000,
+    "command": [
+      "/research/d7/spc/yzyang4/venvs/exp/bin/python",
+      "phase1/censor_aware_racing.py"
+    ],
+    "cwd": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813",
+    "git_commit": "30e2510896aff747692a2bee2f05f6c80800a093",
+    "inputs": {
+      "manifest": {
+        "path": "phase1/fidelity_manifest.jsonl",
+        "sha256": "77f696828010e2d6ae10a9b9de2d9ec05d44975b1285ea763d9850a7f30ca4ef"
+      },
+      "orientation": {
+        "path": "phase1/task_orientation.json",
+        "sha256": "e11111a3538c54eb91048b54380466b4dc0f041c2f511a78a85573cbc92b121a"
+      },
+      "results": {
+        "path": "phase1/fidelity_results.jsonl",
+        "sha256": "b1266d04912596b1e37e13f79ce2387a962f5510cfa264aa1a97b7a1c443180d"
+      },
+      "run_map": {
+        "path": "phase1/card_run_map.json",
+        "sha256": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+      },
+      "runtime": {
+        "path": "phase1/fidelity_runtime_v9.jsonl",
+        "sha256": "dff8eb88a1db8d63bab17851c1dce2c1bd389a4744a811d65a5ce1fe5a1f55e7"
+      }
+    },
+    "python": "3.11.15",
+    "script_sha256": "7ac139af8f427974d8539a7b22f40a48f3747ecaf6eef4d636f5fec9f5dc9ab0",
+    "seed": 20260813
+  },
+  "resource_accounting": {
+    "actual_speedup_claim_allowed": false,
+    "aggregate_avoidable_tail_fraction": 0.026163397888857624,
+    "aggregate_optimistic_no_restart_cost_ratio": 0.9738366021111424,
+    "aggregate_pessimistic_restart_cost_ratio": 1.02502826906843,
+    "aggregate_pruned_card_fraction": 0.19130434782608696,
+    "aggregate_pruned_historical_full_runtime_fraction": 0.03357879963308806,
+    "grader_wall_unrecorded": true
+  },
+  "signals": {
+    "artifact_exists_cards": 86,
+    "artifact_scored_cards": 86,
+    "artifact_scored_sets": 41
+  },
+  "status": "retrospective frozen-discovery feasibility; not confirmatory",
+  "structured_random_survival_mean": 0.8386666666666667,
+  "task_robustness": {
+    "loto_delta_observed": {
+      "chaii-hindi-and-tamil-question-answering": 0.0967741935483871,
+      "denoising-dirty-documents": 0.09782608695652174,
+      "google-quest-challenge": 0.07526881720430108,
+      "kuzushiji-recognition": 0.09375,
+      "leaf-classification": 0.09574468085106383,
+      "learning-agency-lab-automated-essay-scoring-2": 0.09574468085106383,
+      "mlsp-2013-birds": 0.06382978723404255,
+      "nomad2018-predict-transparent-conductors": 0.07446808510638298,
+      "petfinder-pawpularity-score": 0.08333333333333333,
+      "random-acts-of-pizza": 0.09375,
+      "spaceship-titanic": 0.09090909090909091,
+      "spooky-author-identification": 0.09574468085106383,
+      "tabular-playground-series-dec-2021": 0.09278350515463918,
+      "tabular-playground-series-may-2022": 0.09574468085106383,
+      "text-normalization-challenge-english-language": 0.09473684210526316,
+      "text-normalization-challenge-russian-language": 0.09278350515463918,
+      "tweet-sentiment-extraction": 0.09574468085106383,
+      "us-patent-phrase-to-phrase-matching": 0.09574468085106383,
+      "whale-categorization-playground": 0.0851063829787234
+    },
+    "loto_delta_random": {
+      "chaii-hindi-and-tamil-question-answering": 0.14659498207885305,
+      "denoising-dirty-documents": 0.1536231884057971,
+      "google-quest-challenge": 0.15197132616487455,
+      "kuzushiji-recognition": 0.14722222222222223,
+      "leaf-classification": 0.125531914893617,
+      "learning-agency-lab-automated-essay-scoring-2": 0.150354609929078,
+      "mlsp-2013-birds": 0.150354609929078,
+      "nomad2018-predict-transparent-conductors": 0.13439716312056738,
+      "petfinder-pawpularity-score": 0.14201388888888888,
+      "random-acts-of-pizza": 0.11979166666666666,
+      "spaceship-titanic": 0.1377104377104377,
+      "spooky-author-identification": 0.11134751773049645,
+      "tabular-playground-series-dec-2021": 0.1457044673539519,
+      "tabular-playground-series-may-2022": 0.150354609929078,
+      "text-normalization-challenge-english-language": 0.1487719298245614,
+      "text-normalization-challenge-russian-language": 0.1457044673539519,
+      "tweet-sentiment-extraction": 0.150354609929078,
+      "us-patent-phrase-to-phrase-matching": 0.150354609929078,
+      "whale-categorization-playground": 0.12375886524822695
+    },
+    "supported_task_min_delta_random": 0.0,
+    "supported_task_min_survival": 0.8333333333333334
+  }
+}

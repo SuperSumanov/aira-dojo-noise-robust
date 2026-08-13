@@ -146,18 +146,20 @@ process-group 清理与无残留进程门全部通过。两个 card 的 coverage
 失败历史保留：job `10590` 因把登录节点本地 `/tmp` 工作树误当作 compute-shared 路径，在候选启动前
 1 秒失败；另一次登录节点 compute-only NVIDIA 文件检查在提交前停止。二者均无科学结果、未进入样本。
 
-### 3.6 冻结待跑的一次性方法可行性诊断：Selective Feedback Racing
+### 3.6 已完成的一次性方法可行性诊断：Selective Feedback Racing
 
 在仍不修改旧 100 sets 规则网格的前提下，允许最后一次无阈值、无训练的机制诊断：120 秒时只淘汰
 “已有 finite pristine 分数且被另一 observed candidate 严格支配”的候选；所有 silent/unscored 候选
 一律 abstain/继续。最终目标是保留 full-run winner，因此将保守 abstention 相对 `observed_only` 的贡献，
 以及 observed 分数排序相对“同样保留所有 missing、仅在 observed 内随机”的结构匹配基线分开报告。
 
-输入 SHA、100 sets / 230 cards 总体、run/task-macro bootstrap、资源 accounting 和 GO/BORDERLINE/KILL
-门均已在 outcome 前冻结，另有不 import 主脚本的 verifier。只有同时达到 winner survival、双聚类下界、
-淘汰比例、structured-random 增益和 optimistic tail 空间门，才可记 `GO-FEASIBLE`；即使通过也只授权
-在新 discovery split 实现 `TaskHazard × ScoreValue`，不构成独立确认或实测加速。运行后不得在旧数据
-修改 cap、margin、tie 或任务子集。
+输入 SHA、100 sets / 230 cards 总体、run/task-macro bootstrap、资源 accounting 和裁决门均在 outcome
+前冻结；不 import 主脚本的 verifier 已逐 set 复核。裁决为 **BORDERLINE**：winner survival=0.9800，
+run/task-macro CI=[0.9712,1.0000]/[0.9561,1.0000]；相对严格 structured random +0.1413，双 CI
+均在 0 以上，run sign p=0.000519，确认 observed score value 有稳定价值。策略淘汰 44/230=19.13%
+cards，却只覆盖 3.36% 历史 full runtime；optimistic avoidable tail=2.62%，restart ratio=1.0250。
+相对 observed-only 仅 +0.0900、5 informative runs、双侧 p=0.0625。故统一 120 秒 censor-aware race
+没有实用成本杠杆，关闭旧 100 sets 上全部后续调参。
 
 ## 4. 已关闭或仅历史的方向
 
@@ -179,8 +181,10 @@ process-group 清理与无残留进程门全部通过。两个 card 的 coverage
    若继续，必须显式记录 time-to-artifact 的删失过程和条件分数；现有结果只支持 task-conditional
    propensity，并要求对未见任务 abstain。连续 watcher smoke 已 PASS；首个低容量候选固定为
    `TaskHazard × ScoreValue`：任务级生存曲线决定等待时间，artifact 出现后才使用 pristine 分数。
-   采用 cross-fitting、独立 validation/certification；不能把“是否及时产物”直接当质量，也不能在旧
-   100 sets 上继续搜索 selector、margin 或阈值。
+   Selective Feedback Racing 进一步以 **BORDERLINE** 证明 observed score 排序稳定、但安全淘汰的只是
+   便宜候选。下一裁决问题变为 silent 候选在 120 秒之后是否会转为可评分；有明显 conversion 才继续
+   `TaskHazard`，否则升级 `schema-first operator`。采用独立 validation/certification；不能把“是否及时
+   产物”直接当质量，也不能在旧 100 sets 上继续搜索 selector、margin 或阈值。
 3. **更强但改 operator 的候选**：让 agent 在固定早期预算内优先产 schema-valid cheap submission，
    再继续优化。这可能提高 120 秒 artifact 覆盖，直接攻击 144/230 silent 的瓶颈；但它改变
    operator/prompt，必须另立三臂公平实验，不能冒充只改评估旋钮。

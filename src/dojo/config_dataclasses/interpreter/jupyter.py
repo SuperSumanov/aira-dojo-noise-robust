@@ -6,14 +6,18 @@
 
 from dataclasses import dataclass, field
 
-from omegaconf import SI
-
 from dojo.config_dataclasses.interpreter.base import InterpreterConfig
 from dojo.utils.environment import get_superimage_dir
 
 
 @dataclass
 class JupyterInterpreterConfig(InterpreterConfig):
+    container_runtime: str = field(
+        default="apptainer",
+        metadata={
+            "help": "Container runtime used to launch Jupyter. Supported values: apptainer, singularity."
+        },
+    )
     superimage_directory: str = field(
         default=get_superimage_dir(),
         metadata={
@@ -29,7 +33,7 @@ class JupyterInterpreterConfig(InterpreterConfig):
         metadata={"help": "Strip ANSI escape codes from the output."},
     )
     read_only_overlays: list[str] = field(
-        default="",
+        default_factory=list,
         metadata={"help": "Read-only overlays to mount in the container."},
     )
     read_only_binds: dict = field(
@@ -47,3 +51,9 @@ class JupyterInterpreterConfig(InterpreterConfig):
 
     def validate(self) -> None:
         super().validate()
+        supported_runtimes = {"apptainer", "singularity"}
+        if self.container_runtime not in supported_runtimes:
+            supported = ", ".join(sorted(supported_runtimes))
+            raise ValueError(
+                f"Unsupported container runtime {self.container_runtime!r}. Expected one of: {supported}."
+            )

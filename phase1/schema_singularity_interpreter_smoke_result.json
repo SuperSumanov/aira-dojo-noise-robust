@@ -1,0 +1,23 @@
+{
+  "exit_code": 0,
+  "host_roundtrip": "roundtrip-pass\n",
+  "hostname": "gpu39.cse.cuhk.edu.hk",
+  "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+  "image_sha256": "801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda",
+  "marker_present": true,
+  "public_data": "/research/d7/spc/yzyang4/mle-bench-data/spooky-author-identification/prepared/public",
+  "public_data_is_dir": true,
+  "public_train_visible": true,
+  "runtime_path": "/usr/bin/singularity",
+  "runtime_version": "singularity version 3.5.2+ds1",
+  "schema_version": 1,
+  "slurm_job_id": "10617",
+  "slurm_step_id": "",
+  "term_out": [
+    "SCHEMA_JUPYTER_EXEC_PASS\nPUBLIC_TRAIN_VISIBLE True\n",
+    "15",
+    "Execution time: a moment (time limit is a minute)."
+  ],
+  "timed_out": false,
+  "wall_s": 7.242226
+}

@@ -41,6 +41,7 @@ class ApptainerJupyterServer(JupyterConnectable):
         read_only_overlays: List[str] = None,
         read_only_binds: Dict[str, str] = None,
         env: Dict[str, str] = None,
+        port: int | None = None,
     ):
         self.read_only_overlays = read_only_overlays or []
         self.read_only_overlays = [Path(path).resolve() for path in self.read_only_overlays]
@@ -73,6 +74,8 @@ class ApptainerJupyterServer(JupyterConnectable):
             "--KernelGatewayApp.answer_yes=True",
             "--KernelManager.cache_ports=False",
         ]
+        if port is not None:
+            args.append(f"--KernelGatewayApp.port={port}")
 
         env = os.environ.copy()
         for k, v in self.env.items():
@@ -93,11 +96,11 @@ class ApptainerJupyterServer(JupyterConnectable):
             env["SUPERIMAGE_VERSION"] = superimage_version
 
         env["BASE_OVERLAYS"] = " ".join(f"--overlay {overlay}:ro" for overlay in self.read_only_overlays)
-        log.warning(f"Starting `Sand` wrapper server with env:")
-        log.warning(f"  APPTAINER_BIND: {env['APPTAINER_BIND']}")
-        log.warning(f"  SUPERIMAGE_DIR: {env['SUPERIMAGE_DIR']}")
-        log.warning(f"  SUPERIMAGE_VERSION: {env['SUPERIMAGE_VERSION']}")
-        log.warning(f"  BASE_OVERLAYS: {env['BASE_OVERLAYS']}")
+        log.warning("Starting `Sand` wrapper server with env:")
+        log.warning(f"  APPTAINER_BIND: {env.get('APPTAINER_BIND', '')}")
+        log.warning(f"  SUPERIMAGE_DIR: {env.get('SUPERIMAGE_DIR', '')}")
+        log.warning(f"  SUPERIMAGE_VERSION: {env.get('SUPERIMAGE_VERSION', '')}")
+        log.warning(f"  BASE_OVERLAYS: {env.get('BASE_OVERLAYS', '')}")
         log.warning(f"with args: {args}")
         self._subprocess = subprocess.Popen(
             args,

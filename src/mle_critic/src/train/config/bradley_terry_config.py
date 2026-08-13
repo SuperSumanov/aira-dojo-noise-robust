@@ -45,7 +45,7 @@ class BradleyTerryConfig(TrainingArguments):
     eval_strategy: str = field(default="steps")
     save_strategy: str = field(default="best")
     load_best_model_at_end: bool = field(default=False)
-    metric_for_best_model: str = field(default="eval_loss")
+    metric_for_best_model: str = field(default="eval_pair_accuracy")
     greater_is_better: bool = field(default=False)
     save_total_limit: int = field(default=1)
     report_to: list[str] = field(default_factory=lambda: ["wandb"])

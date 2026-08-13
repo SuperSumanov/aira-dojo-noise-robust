@@ -1,0 +1,38 @@
+{
+  "activation": {
+    "activated_at_utc": "2026-08-13T22:19:17.348021Z",
+    "cohort_eligibility": "all_0812_runs_excluded"
+  },
+  "heuristic_merged_groups": {
+    "cards_senior_0812.jsonl:32": [
+      "cards_senior_0812.jsonl:32",
+      "cards_senior_0812.jsonl:33"
+    ]
+  },
+  "heuristic_split_sources": {},
+  "input_candidate_sha256": "1bbe54adf46fdc78143941e385548099ef36832d3add2ec8ee9c4504b774c57b",
+  "integrity": {
+    "all_runs_single_task": true,
+    "all_sources_unique": true,
+    "cards_eq_805": true,
+    "heuristic_merges_eq_1": true,
+    "heuristic_splits_zero": true,
+    "parent_cross_run_zero": true,
+    "source_archives_preactivation": true,
+    "source_journals_eq_57": true,
+    "source_runs_eq_57": true
+  },
+  "inventory": {
+    "cards": 805,
+    "heuristic_merged_groups": 1,
+    "heuristic_runs": 56,
+    "heuristic_split_sources": 0,
+    "max_cards_per_run": 40,
+    "min_cards_per_run": 2,
+    "source_journals": 57,
+    "source_truth_runs": 57,
+    "tasks": 9
+  },
+  "output_cards_sha256": "ff10af92c6601ae24f4210685cdc0b1035af848819c029ff3222605376c80a36",
+  "status": "VALID_0812_SOURCE_TRUTH"
+}

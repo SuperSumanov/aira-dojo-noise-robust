@@ -21,7 +21,7 @@ done < "$MAN"
 echo "concatenated: $(wc -l < "$OUT.raw") cards from $(grep -cve '^$' "$MAN") batch files"
 
 # run reconstruction reads the same manifest; it writes phase1/card_run_map.json
-"$PY" phase1/run_segment.py >/dev/null || { echo "run segmentation REJECTED -- corpus left at $OUT.raw" >&2; exit 1; }
-"$PY" phase1/add_run_id.py "$OUT.raw" "$OUT"
+"$PY" -m phase1.run_segment >/dev/null || { echo "run segmentation REJECTED -- corpus left at $OUT.raw" >&2; exit 1; }
+"$PY" -m phase1.add_run_id "$OUT.raw" "$OUT"
 rm -f "$OUT.raw"
 echo "rebuilt: $OUT ($(wc -l < "$OUT") cards, run_id injected)"

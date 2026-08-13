@@ -1,0 +1,70 @@
+{
+  "inventory": {
+    "dominant_endpoint_task_share": 0.20869565217391303,
+    "dominant_pair_task_share": 0.20388349514563106,
+    "endpoints": 805,
+    "runs": 57,
+    "sibling_parents": 103,
+    "structural_sibling_pairs": 103,
+    "tasks": 9
+  },
+  "label_values_printed": false,
+  "labels_read_for_metrics": false,
+  "per_task": {
+    "dogs-vs-cats-redux-kernels-edition": {
+      "endpoints": 65,
+      "runs": 4,
+      "sibling_parents": 21,
+      "structural_sibling_pairs": 21
+    },
+    "learning-agency-lab-automated-essay-scoring-2": {
+      "endpoints": 168,
+      "runs": 12,
+      "sibling_parents": 21,
+      "structural_sibling_pairs": 21
+    },
+    "new-york-city-taxi-fare-prediction": {
+      "endpoints": 58,
+      "runs": 6,
+      "sibling_parents": 16,
+      "structural_sibling_pairs": 16
+    },
+    "random-acts-of-pizza": {
+      "endpoints": 124,
+      "runs": 4,
+      "sibling_parents": 8,
+      "structural_sibling_pairs": 8
+    },
+    "ranzcr-clip-catheter-line-classification": {
+      "endpoints": 60,
+      "runs": 8,
+      "sibling_parents": 16,
+      "structural_sibling_pairs": 16
+    },
+    "tabular-playground-series-dec-2021": {
+      "endpoints": 61,
+      "runs": 3,
+      "sibling_parents": 0,
+      "structural_sibling_pairs": 0
+    },
+    "text-normalization-challenge-russian-language": {
+      "endpoints": 104,
+      "runs": 8,
+      "sibling_parents": 15,
+      "structural_sibling_pairs": 15
+    },
+    "tweet-sentiment-extraction": {
+      "endpoints": 55,
+      "runs": 4,
+      "sibling_parents": 0,
+      "structural_sibling_pairs": 0
+    },
+    "us-patent-phrase-to-phrase-matching": {
+      "endpoints": 110,
+      "runs": 8,
+      "sibling_parents": 6,
+      "structural_sibling_pairs": 6
+    }
+  },
+  "protocol": "temporal_blind_0812_v1"
+}

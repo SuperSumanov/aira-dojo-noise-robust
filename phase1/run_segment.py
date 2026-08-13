@@ -1,8 +1,10 @@
-"""Reconstruct physical-run membership for every card, and size the fragment leak.
+"""Validate explicit physical-run IDs or reconstruct legacy batches, then audit leakage.
 
-Cards carry no run id, but each batch file was written by iterating run directories, so a
-run's cards are contiguous. Segment rule within a file: new segment when the task changes
-OR lineage.step fails to increase (journal order is generation order).
+New batches must carry one source-journal run ID on every card.  A batch is either wholly
+explicit or wholly legacy; mixed mode fails closed.  For legacy batches only, files were
+written by iterating run directories, so a run's cards are assumed contiguous.  Their
+fallback segment rule is: new segment when the task changes OR lineage.step fails to
+increase.  This fallback is retained for compatibility, not treated as source truth.
 
 Validation (must both hold or the reconstruction is rejected):
   V1 every present parent_id sits in the SAME segment as the child
@@ -11,7 +13,7 @@ Then quantify: fragments per run, and for each pairs file, the share of test pai
 endpoint RUN also contributed training pairs (the physical-level leak the fragment split
 could not see).
 
-Output: phase1/card_run_map.json  {card_id: "file:seg_idx"}
+Output: phase1/card_run_map.json  {card_id: "file:run_idx"}
 
 Usage: python phase1/run_segment.py
 """
@@ -22,8 +24,10 @@ FILES = [l.strip() for l in open("phase1/corpus_manifest.txt")
 
 run_of, cards = {}, {}
 seg_tasks = {}
+explicit_cards = heuristic_cards = 0
 for fn in FILES:
     prev_task, prev_step, seg = None, None, -1
+    explicit_mode = None
     try:
         fh = open("phase1/" + fn)
     except FileNotFoundError:
@@ -31,12 +35,28 @@ for fn in FILES:
         continue
     for l in fh:
         d = json.loads(l)
+        if d["id"] in cards:
+            raise ValueError(f"duplicate card id across manifest: {d['id']}")
         cards[d["id"]] = d
         t = d["task"]["name"]
         st = d["lineage"].get("step") or 0
-        if t != prev_task or (prev_step is not None and st <= prev_step):
-            seg += 1
-        rid = f"{fn}:{seg}"
+        explicit = d.get("run_id")
+        if explicit is not None:
+            if explicit_mode is False:
+                raise ValueError(f"mixed explicit/implicit run ids within {fn}")
+            explicit_mode = True
+            rid = str(explicit)
+            if not rid.startswith(f"{fn}:"):
+                raise ValueError(f"explicit run id lacks batch prefix in {fn}: {rid}")
+            explicit_cards += 1
+        else:
+            if explicit_mode is True:
+                raise ValueError(f"mixed explicit/implicit run ids within {fn}")
+            explicit_mode = False
+            if t != prev_task or (prev_step is not None and st <= prev_step):
+                seg += 1
+            rid = f"{fn}:{seg}"
+            heuristic_cards += 1
         run_of[d["id"]] = rid
         seg_tasks.setdefault(rid, set()).add(t)
         prev_task, prev_step = t, st
@@ -51,6 +71,7 @@ for cid, d in cards.items():
         v1_bad += 1
         cross_parent[run_of[cid].split(":")[0]] += 1
 print(f"cards={len(cards)} runs reconstructed={n_runs}")
+print(f"run-id source: explicit cards={explicit_cards}; heuristic cards={heuristic_cards}")
 print(f"V1 parent-in-other-segment violations: {v1_bad} {dict(cross_parent.most_common(5))}")
 print(f"V2 mixed-task segments: {v2_bad}")
 ok = v1_bad == 0 and v2_bad == 0

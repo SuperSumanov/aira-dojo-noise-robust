@@ -1,0 +1,48 @@
+{
+  "heuristic_audit": {
+    "heuristic_runs": 56,
+    "merged_heuristic_runs": {
+      "cards_senior_0812.jsonl:32": [
+        "cards_senior_0812.jsonl:32",
+        "cards_senior_0812.jsonl:33"
+      ]
+    },
+    "provided": true,
+    "source_runs": 57,
+    "split_source_runs": {}
+  },
+  "inputs": {
+    "batch_name": "cards_senior_0812.jsonl",
+    "cards_sha256": "1bbe54adf46fdc78143941e385548099ef36832d3add2ec8ee9c4504b774c57b",
+    "journals_root": "/research/d7/spc/yzyang4/external/senior_data/extract_0812_codex_20260814"
+  },
+  "integrity": {
+    "cards_expected": true,
+    "mixed_task_runs_zero": true,
+    "parent_cross_run_zero": true,
+    "runs_expected": true,
+    "source_map_exact": true
+  },
+  "inventory": {
+    "cards": 805,
+    "runs": 57,
+    "tasks": 9
+  },
+  "outputs": {
+    "cards_sha256": "efb10abfd6d0d8deae4a705e47ccaa6bdf55f712d268716eae8242b58536eb57"
+  },
+  "run_audit": {
+    "mixed_task_runs": 0,
+    "parent_cross_run_violations": 0,
+    "runs": 57
+  },
+  "source_audit": {
+    "canonical_journals_scanned": 57,
+    "credential_shape_journals": 0,
+    "mapped_cards": 805,
+    "matched_journals": 57,
+    "source_collisions": 0,
+    "source_missing_cards": 0
+  },
+  "status": "SOURCE_JOURNAL_RUN_IDS_COMPLETE"
+}

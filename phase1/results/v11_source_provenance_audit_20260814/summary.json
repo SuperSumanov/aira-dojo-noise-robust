@@ -1,0 +1,385 @@
+{
+  "card_source_collisions": {},
+  "credential_shape_journals": [
+    "senior_older:0724/user_s1155173938_issue_google-quest-challenge-2seeds/user_s1155173938_issue_google-quest-challenge-2seeds_seed_1_id_b3476724a63b6b89fd85e1cbdb46b096cc8919b572f88a97a03bd72b/json/JOURNAL.jsonl"
+  ],
+  "inputs": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "run_map_sha256": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+  },
+  "inventory": {
+    "card_source_collisions": 0,
+    "cards": 16012,
+    "covered_heuristic_runs": 587,
+    "credential_shape_journals": 1,
+    "heuristic_runs": 667,
+    "merged_heuristic_runs": 5,
+    "source_coverage": 0.895515863102673,
+    "source_covered_cards": 14339,
+    "split_source_journals": 0,
+    "unique_source_journals": 592
+  },
+  "limitations": [
+    "No frozen pair file was opened.",
+    "Uncovered cards remain unaudited; absence of a source match is not proof of a bad run id.",
+    "Journal SHA collapses exact duplicate copies but is not a universal physical-run identifier."
+  ],
+  "merged_heuristic_runs": {
+    "cards_gen2VAL.jsonl:0": {
+      "source_journal_sha256": [
+        "27e24212990a734817ae7c340b196c83a325fc5fdee2255c05ac530dddf68dc8",
+        "f0f45e47a822093947270915495f813b7b74324f2dbbfa013130d41d53751e6c"
+      ],
+      "source_paths": {
+        "27e24212990a734817ae7c340b196c83a325fc5fdee2255c05ac530dddf68dc8": [
+          "ours:user_yzyang4_issue_mcts_data_gen2VAL/user_yzyang4_issue_mcts_data_gen2VAL_seed_814_id_8ce23a56243ad4e6d4cf66c0356e3ee0d9dcdd6aa7d8187d972066f4"
+        ],
+        "f0f45e47a822093947270915495f813b7b74324f2dbbfa013130d41d53751e6c": [
+          "ours:user_yzyang4_issue_mcts_data_gen2VAL/user_yzyang4_issue_mcts_data_gen2VAL_seed_813_id_f8a231699037c8d56e01e3f4b6e05f9e2ffc17feb34c9387d31e8ac5"
+        ]
+      }
+    },
+    "cards_ours_20260727.jsonl:1": {
+      "source_journal_sha256": [
+        "455393b55a7b06d715a24afbe0f2dc7b56180abb09a3f75651e328853400812a",
+        "5598b2a95d42d8d2b25d16c6f9de2ef76e8f521c7e53cacf878ec11fce15e418"
+      ],
+      "source_paths": {
+        "455393b55a7b06d715a24afbe0f2dc7b56180abb09a3f75651e328853400812a": [
+          "ours:user_yzyang4_issue_deepseek_guard/user_yzyang4_issue_deepseek_guard_seed_42_id_d3878ac8d8013bb924cc1e15ae85b9b0013e4afbd98019e60032b73d"
+        ],
+        "5598b2a95d42d8d2b25d16c6f9de2ef76e8f521c7e53cacf878ec11fce15e418": [
+          "ours:user_yzyang4_issue_deepseek_guard2/user_yzyang4_issue_deepseek_guard2_seed_42_id_84750510d95beeec6608dad40f2d6991f5f9ec4d61c82bdcc3b190e1"
+        ]
+      }
+    },
+    "cards_ours_20260727.jsonl:2": {
+      "source_journal_sha256": [
+        "74b017a472fade8546091f256ec75b6fb1d88ae837545980d9a52022c2e23c21",
+        "ce3519940a417b54b6f66c9813126e27af8a55de54bd6e2de33a2452f3157bd3"
+      ],
+      "source_paths": {
+        "74b017a472fade8546091f256ec75b6fb1d88ae837545980d9a52022c2e23c21": [
+          "ours:user_yzyang4_issue_deepseek_guard3/user_yzyang4_issue_deepseek_guard3_seed_42_id_6f5526c00b9415709ef26c6404f1a6b2bd91a984d83cd320402e55e9"
+        ],
+        "ce3519940a417b54b6f66c9813126e27af8a55de54bd6e2de33a2452f3157bd3": [
+          "ours:user_yzyang4_issue_deepseek_guard4/user_yzyang4_issue_deepseek_guard4_seed_42_id_282a38cdfa686e849a2a926c94c0d5129402e35aa6c0602ecf983271"
+        ]
+      }
+    },
+    "cards_senior_0726.jsonl:0": {
+      "source_journal_sha256": [
+        "2af2764b3ce08f271c9420da7e32af5c69772a57c0a343c020cec6a4b9273a68",
+        "d86f792666b01b5cfa3ba77285c037dc305572654105cec0e07065e1a933bcbc"
+      ],
+      "source_paths": {
+        "2af2764b3ce08f271c9420da7e32af5c69772a57c0a343c020cec6a4b9273a68": [
+          "senior_older:0726/user_hcyang_issue_spooky-author-identification-8seeds/user_hcyang_issue_spooky-author-identification-8seeds_seed_3_id_712089a9766d7a969f07c1f74784aed0dc23271f9aa26ef518a2302e"
+        ],
+        "d86f792666b01b5cfa3ba77285c037dc305572654105cec0e07065e1a933bcbc": [
+          "senior_older:0726/user_hcyang_issue_spooky-author-identification-8seeds/user_hcyang_issue_spooky-author-identification-8seeds_seed_1_id_2caed4108b45d99598352f548177c1384b193249e65ce3ebbd74cc13"
+        ]
+      }
+    },
+    "cards_senior_0727.jsonl:4": {
+      "source_journal_sha256": [
+        "4da1c0f9ce8912e2db35290779c99a28929cbab6d1500fc1ee61010c5523a0a0",
+        "de652b97f16573e28c74856c2741bce136f57d08e576b6a0d3386d172c3cb0cc"
+      ],
+      "source_paths": {
+        "4da1c0f9ce8912e2db35290779c99a28929cbab6d1500fc1ee61010c5523a0a0": [
+          "senior_older:0727/user_hcyang_issue_spooky-author-identification-4seeds/user_hcyang_issue_spooky-author-identification-4seeds_seed_1_id_215d9ec566afb51dbbc924b12fbb91ec1e52585754f399a66684e7b3"
+        ],
+        "de652b97f16573e28c74856c2741bce136f57d08e576b6a0d3386d172c3cb0cc": [
+          "senior_older:0727/user_hcyang_issue_spooky-author-identification-4seeds/user_hcyang_issue_spooky-author-identification-4seeds_seed_2_id_08133863c345f3bddfd6d2ff85091284246637a9354b431e04f26942"
+        ]
+      }
+    }
+  },
+  "per_batch": {
+    "cards_deepA.jsonl": {
+      "cards": 146,
+      "heuristic_runs": 4,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 146,
+      "split_source_journals": 0
+    },
+    "cards_deepB2.jsonl": {
+      "cards": 280,
+      "heuristic_runs": 4,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 280,
+      "split_source_journals": 0
+    },
+    "cards_gen2A.jsonl": {
+      "cards": 41,
+      "heuristic_runs": 4,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 41,
+      "split_source_journals": 0
+    },
+    "cards_gen2B.jsonl": {
+      "cards": 28,
+      "heuristic_runs": 4,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 28,
+      "split_source_journals": 0
+    },
+    "cards_gen2C.jsonl": {
+      "cards": 35,
+      "heuristic_runs": 3,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 35,
+      "split_source_journals": 0
+    },
+    "cards_gen2D.jsonl": {
+      "cards": 21,
+      "heuristic_runs": 4,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 21,
+      "split_source_journals": 0
+    },
+    "cards_gen2VAL.jsonl": {
+      "cards": 11,
+      "heuristic_runs": 1,
+      "merged_heuristic_runs": 1,
+      "source_coverage": 1.0,
+      "source_covered_cards": 11,
+      "split_source_journals": 0
+    },
+    "cards_gen2VALb.jsonl": {
+      "cards": 33,
+      "heuristic_runs": 3,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 33,
+      "split_source_journals": 0
+    },
+    "cards_gen3A.jsonl": {
+      "cards": 50,
+      "heuristic_runs": 4,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 50,
+      "split_source_journals": 0
+    },
+    "cards_ours_20260727.jsonl": {
+      "cards": 1072,
+      "heuristic_runs": 175,
+      "merged_heuristic_runs": 2,
+      "source_coverage": 0.9934701492537313,
+      "source_covered_cards": 1065,
+      "split_source_journals": 0
+    },
+    "cards_senior_0724.jsonl": {
+      "cards": 93,
+      "heuristic_runs": 11,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 93,
+      "split_source_journals": 0
+    },
+    "cards_senior_0726.jsonl": {
+      "cards": 768,
+      "heuristic_runs": 15,
+      "merged_heuristic_runs": 1,
+      "source_coverage": 1.0,
+      "source_covered_cards": 768,
+      "split_source_journals": 0
+    },
+    "cards_senior_0727.jsonl": {
+      "cards": 229,
+      "heuristic_runs": 17,
+      "merged_heuristic_runs": 1,
+      "source_coverage": 1.0,
+      "source_covered_cards": 229,
+      "split_source_journals": 0
+    },
+    "cards_senior_0728.jsonl": {
+      "cards": 672,
+      "heuristic_runs": 24,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 672,
+      "split_source_journals": 0
+    },
+    "cards_senior_0729.jsonl": {
+      "cards": 243,
+      "heuristic_runs": 20,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 243,
+      "split_source_journals": 0
+    },
+    "cards_senior_0730.jsonl": {
+      "cards": 1097,
+      "heuristic_runs": 19,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 1097,
+      "split_source_journals": 0
+    },
+    "cards_senior_0731.jsonl": {
+      "cards": 404,
+      "heuristic_runs": 16,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 404,
+      "split_source_journals": 0
+    },
+    "cards_senior_0801.jsonl": {
+      "cards": 2437,
+      "heuristic_runs": 39,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 2437,
+      "split_source_journals": 0
+    },
+    "cards_senior_0802.jsonl": {
+      "cards": 333,
+      "heuristic_runs": 15,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 0.0,
+      "source_covered_cards": 0,
+      "split_source_journals": 0
+    },
+    "cards_senior_0803.jsonl": {
+      "cards": 93,
+      "heuristic_runs": 8,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 0.0,
+      "source_covered_cards": 0,
+      "split_source_journals": 0
+    },
+    "cards_senior_0804.jsonl": {
+      "cards": 386,
+      "heuristic_runs": 25,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 0.0,
+      "source_covered_cards": 0,
+      "split_source_journals": 0
+    },
+    "cards_senior_0805seq.jsonl": {
+      "cards": 854,
+      "heuristic_runs": 26,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 0.0,
+      "source_covered_cards": 0,
+      "split_source_journals": 0
+    },
+    "cards_senior_0806.jsonl": {
+      "cards": 892,
+      "heuristic_runs": 32,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 892,
+      "split_source_journals": 0
+    },
+    "cards_senior_0807.jsonl": {
+      "cards": 430,
+      "heuristic_runs": 26,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 430,
+      "split_source_journals": 0
+    },
+    "cards_senior_0808.jsonl": {
+      "cards": 1628,
+      "heuristic_runs": 38,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 1628,
+      "split_source_journals": 0
+    },
+    "cards_senior_0809.jsonl": {
+      "cards": 1940,
+      "heuristic_runs": 33,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 1940,
+      "split_source_journals": 0
+    },
+    "cards_senior_0810.jsonl": {
+      "cards": 835,
+      "heuristic_runs": 38,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 835,
+      "split_source_journals": 0
+    },
+    "cards_senior_0811.jsonl": {
+      "cards": 854,
+      "heuristic_runs": 43,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 854,
+      "split_source_journals": 0
+    },
+    "cards_t3era_missing.jsonl": {
+      "cards": 107,
+      "heuristic_runs": 16,
+      "merged_heuristic_runs": 0,
+      "source_coverage": 1.0,
+      "source_covered_cards": 107,
+      "split_source_journals": 0
+    }
+  },
+  "root_stats": {
+    "ours": {
+      "canonical_journals": 384,
+      "exists": true,
+      "matched_card_occurrences": 1817,
+      "matched_journals": 219
+    },
+    "senior_0806": {
+      "canonical_journals": 32,
+      "exists": true,
+      "matched_card_occurrences": 892,
+      "matched_journals": 32
+    },
+    "senior_0807": {
+      "canonical_journals": 29,
+      "exists": true,
+      "matched_card_occurrences": 430,
+      "matched_journals": 26
+    },
+    "senior_0808": {
+      "canonical_journals": 40,
+      "exists": true,
+      "matched_card_occurrences": 1628,
+      "matched_journals": 38
+    },
+    "senior_0809": {
+      "canonical_journals": 40,
+      "exists": true,
+      "matched_card_occurrences": 1940,
+      "matched_journals": 33
+    },
+    "senior_0810": {
+      "canonical_journals": 38,
+      "exists": true,
+      "matched_card_occurrences": 835,
+      "matched_journals": 38
+    },
+    "senior_0811": {
+      "canonical_journals": 48,
+      "exists": true,
+      "matched_card_occurrences": 886,
+      "matched_journals": 47
+    },
+    "senior_older": {
+      "canonical_journals": 189,
+      "exists": true,
+      "matched_card_occurrences": 5943,
+      "matched_journals": 163
+    }
+  },
+  "split_source_journals": {},
+  "status": "V11_SOURCE_PROVENANCE_AUDIT_COMPLETE"
+}

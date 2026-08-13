@@ -1,0 +1,14 @@
+{
+  "blind_sibling_structure_sha256": "2c67ab3dae40c34b3eea233ae049afa2462d88e689b737b21421a7a1862c993b",
+  "blind_views_sha256": "c0d6d207f39ea8d113a90c73e75c982ca9e77356d061ac8bffd8caa53e201dc9",
+  "designation": "preactivation temporal analyst-blind holdout",
+  "label_values_printed": false,
+  "label_vault_sha256": "c58af056ba70ed5268b4f37fd8557a0b00728def19a881d55c458820afa4ee4a",
+  "labels_read_for_metrics": false,
+  "prospective_claim": false,
+  "protocol": "temporal_blind_0812_v1",
+  "sealed_at_utc": "2026-08-13T22:38:11.912275Z",
+  "source_cards_sha256": "ff10af92c6601ae24f4210685cdc0b1035af848819c029ff3222605376c80a36",
+  "status": "TEMPORAL_BLIND_HOLDOUT_SEALED",
+  "structure_sha256": "f7580bae8cd5d125aef479fb17521e426c10292d89d24c3b6b5bdd66e586d27e"
+}

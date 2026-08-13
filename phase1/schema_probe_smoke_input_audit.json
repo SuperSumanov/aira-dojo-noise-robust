@@ -1,0 +1,167 @@
+{
+  "public_only": true,
+  "schema_version": 1,
+  "seed_frozen_before_generation": 861,
+  "tasks": [
+    {
+      "file_count": 4,
+      "files": [
+        {
+          "bytes": 4335,
+          "relative_path": "description.md",
+          "sha256": "a64340a1c829f6e2c3ee8411cfa3089a4418571fee7186c91b5be2ef241bfcff"
+        },
+        {
+          "bytes": 1100010,
+          "columns": 2,
+          "header": [
+            "id",
+            "target"
+          ],
+          "relative_path": "sample_submission.csv",
+          "rows": 100000,
+          "sha256": "9f557b7177f5983dedabfc538aea050561bb4e4a362bfe4a35040959c26a6f6a"
+        },
+        {
+          "bytes": 35229612,
+          "columns": 32,
+          "header": [
+            "id",
+            "f_00",
+            "f_01",
+            "f_02",
+            "f_03",
+            "f_04",
+            "f_05",
+            "f_06",
+            "f_07",
+            "f_08",
+            "f_09",
+            "f_10",
+            "f_11",
+            "f_12",
+            "f_13",
+            "f_14",
+            "f_15",
+            "f_16",
+            "f_17",
+            "f_18",
+            "f_19",
+            "f_20",
+            "f_21",
+            "f_22",
+            "f_23",
+            "f_24",
+            "f_25",
+            "f_26",
+            "f_27",
+            "f_28",
+            "f_29",
+            "f_30"
+          ],
+          "relative_path": "test.csv",
+          "rows": 100000,
+          "sha256": "6e758d247d1212a0b31733f751b9ce3f97e4704687294e11aa4290bbab0131ec"
+        },
+        {
+          "bytes": 283303880,
+          "columns": 33,
+          "header": [
+            "id",
+            "f_00",
+            "f_01",
+            "f_02",
+            "f_03",
+            "f_04",
+            "f_05",
+            "f_06",
+            "f_07",
+            "f_08",
+            "f_09",
+            "f_10",
+            "f_11",
+            "f_12",
+            "f_13",
+            "f_14",
+            "f_15",
+            "f_16",
+            "f_17",
+            "f_18",
+            "f_19",
+            "f_20",
+            "f_21",
+            "f_22",
+            "f_23",
+            "f_24",
+            "f_25",
+            "f_26",
+            "f_27",
+            "f_28",
+            "f_29",
+            "f_30",
+            "target"
+          ],
+          "relative_path": "train.csv",
+          "rows": 800000,
+          "sha256": "f0940d6a4c3536752bdc3ba99251fc3020662ea43b28dfad520d810b3cde5514"
+        }
+      ],
+      "public_dir": "/research/d7/spc/yzyang4/mle-bench-data/tabular-playground-series-may-2022/prepared/public",
+      "sample_submission_count": 1,
+      "task": "tabular-playground-series-may-2022"
+    },
+    {
+      "file_count": 4,
+      "files": [
+        {
+          "bytes": 6281,
+          "relative_path": "description.md",
+          "sha256": "35d7de46d74377f997bdc7f5859e36ca3311fb4ae2e37ab63491a9d7c72661bd"
+        },
+        {
+          "bytes": 121411,
+          "columns": 4,
+          "header": [
+            "id",
+            "EAP",
+            "HPL",
+            "MWS"
+          ],
+          "relative_path": "sample_submission.csv",
+          "rows": 1958,
+          "sha256": "5a9d701524a2659476f62e30fa4e61ecfbeb754e0e9c11a8528a7486992ad1f6"
+        },
+        {
+          "bytes": 318476,
+          "columns": 2,
+          "header": [
+            "id",
+            "text"
+          ],
+          "relative_path": "test.csv",
+          "rows": 1958,
+          "sha256": "3f68bfa593154a031ee549899f150ccdf2e7a5ed88083e4d9c3ea2fe2cd3dfd5"
+        },
+        {
+          "bytes": 2882346,
+          "columns": 3,
+          "header": [
+            "id",
+            "text",
+            "author"
+          ],
+          "relative_path": "train.csv",
+          "rows": 17621,
+          "sha256": "87a02befe9c415b976486e4a59b96da0cc907b8645efbb7052256307715ecdbf"
+        }
+      ],
+      "public_dir": "/research/d7/spc/yzyang4/mle-bench-data/spooky-author-identification/prepared/public",
+      "sample_submission_count": 1,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "tasks_frozen_before_generation": [
+    "tabular-playground-series-may-2022",
+    "spooky-author-identification"
+  ]
+}

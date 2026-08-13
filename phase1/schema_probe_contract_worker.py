@@ -386,7 +386,9 @@ def self_test() -> None:
             "atom('submission.csv',pathlib.Path('candidate_probe.csv').read_text())\n"
             "h=hashlib.sha256(pathlib.Path('candidate_probe.csv').read_bytes()).hexdigest()\n"
             "print(f'CANDIDATE_PROBE_READY elapsed_s={time.monotonic()-start:.3f} sha256={h}',flush=True)\n"
-            "time.sleep(0.30)\n"
+            # Keep the probe unchanged for comfortably more than the 0.20 s
+            # stable window; 0.30 s was scheduler-jitter-sensitive on gpu nodes.
+            "time.sleep(0.60)\n"
             "atom('submission.csv','id,pred\\n1,0.3\\n2,0.7\\n')\n"
             "h=hashlib.sha256(pathlib.Path('submission.csv').read_bytes()).hexdigest()\n"
             "print(f'FULL_CANDIDATE_READY elapsed_s={time.monotonic()-start:.3f} sha256={h}',flush=True)\n"

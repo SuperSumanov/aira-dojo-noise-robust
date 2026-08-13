@@ -1,0 +1,74 @@
+{
+  "bootstrap": {
+    "draws": 20000,
+    "seed": 9173
+  },
+  "checks": {
+    "main_point": true,
+    "main_sign": true,
+    "presence_point": true,
+    "score_value_point": true
+  },
+  "counts": {
+    "runs": 52,
+    "sets": 100,
+    "tasks": 19
+  },
+  "inputs": {
+    "manifest": "77f696828010e2d6ae10a9b9de2d9ec05d44975b1285ea763d9850a7f30ca4ef",
+    "orientation": "e11111a3538c54eb91048b54380466b4dc0f041c2f511a78a85573cbc92b121a",
+    "results": "b1266d04912596b1e37e13f79ce2387a962f5510cfa264aa1a97b7a1c443180d",
+    "run_map": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+  },
+  "main_score_minus_stdout": {
+    "delta": 0.07,
+    "run_ci95": [
+      0.0,
+      0.14432989690721648
+    ],
+    "run_sign": {
+      "negative": 2,
+      "p_two_sided": 0.1796875,
+      "positive": 7,
+      "tied": 43
+    },
+    "task_ci95": [
+      0.010416666666666666,
+      0.1375
+    ]
+  },
+  "presence_minus_stdout": {
+    "delta": -0.07466666666666667,
+    "run_ci95": [
+      -0.1409961685823755,
+      -0.016819571865443427
+    ],
+    "run_sign": {
+      "negative": 13,
+      "p_two_sided": 0.09625244140625,
+      "positive": 5,
+      "tied": 34
+    },
+    "task_ci95": [
+      -0.15892255892255894,
+      -0.0048543689320388345
+    ]
+  },
+  "score_value_minus_presence": {
+    "delta": 0.14466666666666667,
+    "run_ci95": [
+      0.07056737588652483,
+      0.22564102564102564
+    ],
+    "run_sign": {
+      "negative": 1,
+      "p_two_sided": 0.000518798828125,
+      "positive": 15,
+      "tied": 36
+    },
+    "task_ci95": [
+      0.05339805825242718,
+      0.2534534534534535
+    ]
+  }
+}

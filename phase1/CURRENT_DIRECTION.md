@@ -5,7 +5,7 @@
 
 ## 1. 审计截面
 
-- 我方分支：`fork/phase1-value-critic@7087db96635a9881ae720e8b59f5382b10b4c96c`
+- 我方分析基线：`fork/phase1-value-critic@f79c8a9c6992ec10a4289fecfb281458ff822fe3`
 - 学长分支：`fork/dojo-reproduce@8c57b7580e22fdbb2cbab350bc34475d084fe5ee`
 - 最新发布语料：v11，16,012 cards / 667 physical runs / 25 tasks；15,991 finite，21 quarantine。
 - 论文冻结决策集：b0/b1/b2 分别 1,498 / 323 / 265 对；v10 与 v11 逐字相同。
@@ -18,6 +18,8 @@
 - `phase1/实验记录/2026-08-13/评分通道前瞻复现_预算与预注册草案.md`；
 - `phase1/实验记录/2026-08-13/v10冻结决策集与训练增量验收.md`；
 - `phase1/实验记录/2026-08-13/学长0811入库_v11验收.md`；
+- `phase1/实验记录/2026-08-13/artifact_first_cascade_探索性预注册.md`；
+- `phase1/实验记录/2026-08-13/artifact_first_cascade_探索性裁决.md`；
 - 学长分支 `src/mle_critic/docs/outcomes/0812/DECISION_MODEL_SIZE_EXPERIMENTS.md`。
 
 ## 2. 最近两周的路线更替
@@ -58,6 +60,17 @@
 允许的当前主张是：**pristine 外部评分通道是最强的正向前瞻机制候选**。不能写成已经确认，
 不能从共同覆盖子集外推到全部候选，也不能说已经带来实用加速。
 
+在同一冻结发现集上，coverage-complete 的 `artifact_score_then_stdout` 探索性 cascade 相对
+`stdout_only` 提高 +0.0700，但未达到预注册 +0.08、run-CI 下界严格大于 0 和 sign p<0.05
+三道门，裁决为 **BORDERLINE**。机制分解揭示了更重要的约束：
+
+- 在同样观察到 artifact 的条件下，使用其 pristine 分数相对只看 artifact 是否存在提高
+  +0.1447；run-CI [+0.0717,+0.2241]，task-CI [+0.0541,+0.2510]；
+- 但“及时产生 artifact”本身相对 stdout 降低 -0.0747；run-CI
+  [-0.1385,-0.0182]，task-CI [-0.1604,-0.0059]；
+- 因而 artifact 可观测性是选择性缺失（MNAR）的候选机制：分数值有用，单纯把“能及时产物”
+  当质量信号会造成偏差。该分解已由不导入主脚本的独立实现复核，但仍属于同一发现集。
+
 ## 3. 当前唯一主实验
 
 ### 3.1 前瞻通道复现
@@ -85,6 +98,14 @@
 
 现有 checkpoint 在学长环境，当前仓库只有日志和 outcome 文档；先交付严格 evaluator，不能伪称已完成。
 
+### 3.3 当前短验证：选择性评分通道
+
+在不改动上述唯一确认性主实验的前提下，只允许一次冻结、无调参的回顾性规则验证：默认使用
+`stdout_only`；仅当 parent 有部署时允许访问的历史 pristine 搜索分数，且 120 秒 artifact 严格优于
+parent 时，才用该改善证书覆盖 stdout。parent 缺失或无改善时回退 stdout。该实验用于检验
+“以 incumbent 为锚点能否缓解 MNAR”，不得把旧 `graded` 当作线上 test 标签，也不得在同一
+100-set 发现集上继续搜索阈值或策略网格。
+
 ## 4. 已关闭或仅历史的方向
 
 - **旧 HCE 三臂**：50/25/25 + 标签子采样 proxy，不符合当前 80/10/10、time-fidelity、
@@ -101,12 +122,15 @@
 ## 5. 正面突破的分层路径
 
 1. **近期最稳**：前瞻确认评分通道机制；这是数据论文可引用的正结果。
-2. **方法化候选**：让 agent 在固定早期预算内优先产 schema-valid cheap submission，再继续优化。
-   这可能提高 120 秒 artifact 覆盖，直接攻击 144/230 silent 的瓶颈；但它改变 operator/prompt，
-   必须另立三臂公平实验，不能冒充只改评估旋钮。
-3. **系统候选**：checkpoint/resume + 异步 successive halving，目标是把 continuation/full 从
+2. **近期方法化候选**：做选择性/删失感知的 score-channel fusion，而非 naive artifact-first。
+   首个无训练候选是 parent-certified improvement；若它失败，只能在新 discovery split 上发展
+   cross-fitted selective override 或校准下置信界，不能在旧 100 sets 上反复调阈值。
+3. **更强但改 operator 的候选**：让 agent 在固定早期预算内优先产 schema-valid cheap submission，
+   再继续优化。这可能提高 120 秒 artifact 覆盖，直接攻击 144/230 silent 的瓶颈；但它改变
+   operator/prompt，必须另立三臂公平实验，不能冒充只改评估旋钮。
+4. **系统候选**：checkpoint/resume + 异步 successive halving，目标是把 continuation/full 从
    0.9312 实际压低；先做执行器可恢复性 smoke，再谈搜索收益。
-4. **长期基准贡献**：持续增加独立 run 和任务平衡，发布 run-aware、gap/noise-aware、
+5. **长期基准贡献**：持续增加独立 run 和任务平衡，发布 run-aware、gap/noise-aware、
    cost-aware 的 predictor benchmark 与完整撤回记录。
 
 ## 6. 每次继续工作前的顺序

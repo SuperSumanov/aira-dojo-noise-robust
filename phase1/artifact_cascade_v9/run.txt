@@ -1,0 +1,9 @@
+VERIFIED sets=100 cards=230 runs=52 tasks=19 hard=50 easy=50
+SIGNALS artifact_cards=86 stdout_cards=130 artifact_sets=41 cost_macro=0.2720 cost_aggregate=0.0586
+MAIN                         delta=+0.0700 runCI=[+0.0000,+0.1429] taskCI=[+0.0108,+0.1369] sign_p=0.179688
+SECONDARY_SCORE_VALUE        delta=+0.1447 runCI=[+0.0717,+0.2241] taskCI=[+0.0541,+0.2510] sign_p=0.000519
+SECONDARY_ARTIFACT_PRESENCE  delta=-0.0747 runCI=[-0.1385,-0.0182] taskCI=[-0.1604,-0.0059] sign_p=0.096252
+ANCHOR_ARTIFACT_RANDOM       delta=+0.1185 runCI=[+0.0326,+0.2087] taskCI=[+0.0208,+0.2337] sign_p=0.004344
+ROBUST_KEYED_ONLY            delta=+0.0700 runCI=[+0.0000,+0.1429] taskCI=[+0.0108,+0.1369] sign_p=0.179688
+DECISION BORDERLINE
+WROTE phase1/artifact_cascade_v9

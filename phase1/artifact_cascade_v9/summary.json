@@ -1,0 +1,757 @@
+{
+  "comparisons": [
+    {
+      "a": "artifact_score_then_stdout",
+      "b": "stdout_only",
+      "delta_mean_normalized_regret": -0.05821092165096347,
+      "delta_mean_rank": -0.06,
+      "delta_top1": 0.07,
+      "label": "MAIN",
+      "run_ci95": [
+        0.0,
+        0.14285714285714285
+      ],
+      "run_sign": {
+        "informative": 9,
+        "negative": 2,
+        "p_two_sided": 0.1796875,
+        "positive": 7,
+        "tied": 43
+      },
+      "runs": 52,
+      "sets": 100,
+      "task_ci95": [
+        0.010752688172043012,
+        0.13690476190476192
+      ],
+      "task_loto": {
+        "chaii-hindi-and-tamil-question-answering": 0.06451612903225806,
+        "denoising-dirty-documents": 0.07608695652173914,
+        "google-quest-challenge": 0.07526881720430108,
+        "kuzushiji-recognition": 0.07291666666666667,
+        "leaf-classification": 0.047872340425531915,
+        "learning-agency-lab-automated-essay-scoring-2": 0.06914893617021277,
+        "mlsp-2013-birds": 0.07446808510638298,
+        "nomad2018-predict-transparent-conductors": 0.06914893617021277,
+        "petfinder-pawpularity-score": 0.08333333333333333,
+        "random-acts-of-pizza": 0.07291666666666667,
+        "spaceship-titanic": 0.06060606060606061,
+        "spooky-author-identification": 0.05851063829787234,
+        "tabular-playground-series-dec-2021": 0.07216494845360824,
+        "tabular-playground-series-may-2022": 0.07446808510638298,
+        "text-normalization-challenge-english-language": 0.07368421052631578,
+        "text-normalization-challenge-russian-language": 0.07216494845360824,
+        "tweet-sentiment-extraction": 0.07446808510638298,
+        "us-patent-phrase-to-phrase-matching": 0.07446808510638298,
+        "whale-categorization-playground": 0.06382978723404255
+      },
+      "task_loto_max": 0.08333333333333333,
+      "task_loto_min": 0.047872340425531915,
+      "tasks": 19
+    },
+    {
+      "a": "artifact_score_then_stdout",
+      "b": "artifact_presence_then_stdout",
+      "delta_mean_normalized_regret": -0.13028858998827747,
+      "delta_mean_rank": -0.19333333333333333,
+      "delta_top1": 0.14466666666666667,
+      "label": "SECONDARY_SCORE_VALUE",
+      "run_ci95": [
+        0.07168458781362007,
+        0.22413793103448276
+      ],
+      "run_sign": {
+        "informative": 16,
+        "negative": 1,
+        "p_two_sided": 0.000518798828125,
+        "positive": 15,
+        "tied": 36
+      },
+      "run_sign_holm_p": 0.00103759765625,
+      "runs": 52,
+      "sets": 100,
+      "task_ci95": [
+        0.05405405405405406,
+        0.251
+      ],
+      "task_loto": {
+        "chaii-hindi-and-tamil-question-answering": 0.15017921146953406,
+        "denoising-dirty-documents": 0.1572463768115942,
+        "google-quest-challenge": 0.15555555555555556,
+        "kuzushiji-recognition": 0.15069444444444446,
+        "leaf-classification": 0.12553191489361704,
+        "learning-agency-lab-automated-essay-scoring-2": 0.15390070921985816,
+        "mlsp-2013-birds": 0.15390070921985816,
+        "nomad2018-predict-transparent-conductors": 0.13794326241134752,
+        "petfinder-pawpularity-score": 0.14548611111111112,
+        "random-acts-of-pizza": 0.1232638888888889,
+        "spaceship-titanic": 0.14107744107744108,
+        "spooky-author-identification": 0.1148936170212766,
+        "tabular-playground-series-dec-2021": 0.14914089347079038,
+        "tabular-playground-series-may-2022": 0.15390070921985816,
+        "text-normalization-challenge-english-language": 0.15228070175438596,
+        "text-normalization-challenge-russian-language": 0.14914089347079038,
+        "tweet-sentiment-extraction": 0.15390070921985816,
+        "us-patent-phrase-to-phrase-matching": 0.15390070921985816,
+        "whale-categorization-playground": 0.1273049645390071
+      },
+      "task_loto_max": 0.1572463768115942,
+      "task_loto_min": 0.1148936170212766,
+      "tasks": 19
+    },
+    {
+      "a": "artifact_presence_then_stdout",
+      "b": "stdout_only",
+      "delta_mean_normalized_regret": 0.07207766833731401,
+      "delta_mean_rank": 0.13333333333333333,
+      "delta_top1": -0.07466666666666667,
+      "label": "SECONDARY_ARTIFACT_PRESENCE",
+      "run_ci95": [
+        -0.1385185185185185,
+        -0.018213058419243987
+      ],
+      "run_sign": {
+        "informative": 18,
+        "negative": 13,
+        "p_two_sided": 0.09625244140625,
+        "positive": 5,
+        "tied": 34
+      },
+      "run_sign_holm_p": 0.09625244140625,
+      "runs": 52,
+      "sets": 100,
+      "task_ci95": [
+        -0.16043956043956045,
+        -0.005919003115264799
+      ],
+      "task_loto": {
+        "chaii-hindi-and-tamil-question-answering": -0.085663082437276,
+        "denoising-dirty-documents": -0.08115942028985508,
+        "google-quest-challenge": -0.08028673835125448,
+        "kuzushiji-recognition": -0.07777777777777778,
+        "leaf-classification": -0.07765957446808511,
+        "learning-agency-lab-automated-essay-scoring-2": -0.0847517730496454,
+        "mlsp-2013-birds": -0.07943262411347518,
+        "nomad2018-predict-transparent-conductors": -0.06879432624113475,
+        "petfinder-pawpularity-score": -0.062152777777777786,
+        "random-acts-of-pizza": -0.050347222222222224,
+        "spaceship-titanic": -0.08047138047138047,
+        "spooky-author-identification": -0.05638297872340426,
+        "tabular-playground-series-dec-2021": -0.07697594501718213,
+        "tabular-playground-series-may-2022": -0.07943262411347518,
+        "text-normalization-challenge-english-language": -0.07859649122807018,
+        "text-normalization-challenge-russian-language": -0.07697594501718213,
+        "tweet-sentiment-extraction": -0.07943262411347518,
+        "us-patent-phrase-to-phrase-matching": -0.07943262411347518,
+        "whale-categorization-playground": -0.06347517730496455
+      },
+      "task_loto_max": -0.050347222222222224,
+      "task_loto_min": -0.085663082437276,
+      "tasks": 19
+    },
+    {
+      "a": "artifact_score_then_random",
+      "b": "random",
+      "delta_mean_normalized_regret": -0.098609788944931,
+      "delta_mean_rank": -0.14333333333333334,
+      "delta_top1": 0.11850000000000001,
+      "label": "ANCHOR_ARTIFACT_RANDOM",
+      "run_ci95": [
+        0.03261648745519714,
+        0.20868055555555556
+      ],
+      "run_sign": {
+        "informative": 22,
+        "negative": 4,
+        "p_two_sided": 0.004343509674072266,
+        "positive": 18,
+        "tied": 30
+      },
+      "runs": 52,
+      "sets": 100,
+      "task_ci95": [
+        0.02075757575757576,
+        0.23369565217391305
+      ],
+      "task_loto": {
+        "chaii-hindi-and-tamil-question-answering": 0.12204301075268818,
+        "denoising-dirty-documents": 0.12880434782608696,
+        "google-quest-challenge": 0.1381720430107527,
+        "kuzushiji-recognition": 0.1234375,
+        "leaf-classification": 0.0923758865248227,
+        "learning-agency-lab-automated-essay-scoring-2": 0.12429078014184398,
+        "mlsp-2013-birds": 0.13439716312056738,
+        "nomad2018-predict-transparent-conductors": 0.12074468085106384,
+        "petfinder-pawpularity-score": 0.11822916666666668,
+        "random-acts-of-pizza": 0.09600694444444445,
+        "spaceship-titanic": 0.11464646464646465,
+        "spooky-author-identification": 0.08705673758865248,
+        "tabular-playground-series-dec-2021": 0.12216494845360826,
+        "tabular-playground-series-may-2022": 0.12606382978723404,
+        "text-normalization-challenge-english-language": 0.12473684210526316,
+        "text-normalization-challenge-russian-language": 0.12216494845360826,
+        "tweet-sentiment-extraction": 0.12606382978723404,
+        "us-patent-phrase-to-phrase-matching": 0.12606382978723404,
+        "whale-categorization-playground": 0.1047872340425532
+      },
+      "task_loto_max": 0.1381720430107527,
+      "task_loto_min": 0.08705673758865248,
+      "tasks": 19
+    },
+    {
+      "a": "artifact_score_then_stdout_keyed",
+      "b": "stdout_only_keyed",
+      "delta_mean_normalized_regret": -0.05821092165096347,
+      "delta_mean_rank": -0.06,
+      "delta_top1": 0.07,
+      "label": "ROBUST_KEYED_ONLY",
+      "run_ci95": [
+        0.0,
+        0.14285714285714285
+      ],
+      "run_sign": {
+        "informative": 9,
+        "negative": 2,
+        "p_two_sided": 0.1796875,
+        "positive": 7,
+        "tied": 43
+      },
+      "runs": 52,
+      "sets": 100,
+      "task_ci95": [
+        0.010752688172043012,
+        0.13690476190476192
+      ],
+      "task_loto": {
+        "chaii-hindi-and-tamil-question-answering": 0.06451612903225806,
+        "denoising-dirty-documents": 0.07608695652173914,
+        "google-quest-challenge": 0.07526881720430108,
+        "kuzushiji-recognition": 0.07291666666666667,
+        "leaf-classification": 0.047872340425531915,
+        "learning-agency-lab-automated-essay-scoring-2": 0.06914893617021277,
+        "mlsp-2013-birds": 0.07446808510638298,
+        "nomad2018-predict-transparent-conductors": 0.06914893617021277,
+        "petfinder-pawpularity-score": 0.08333333333333333,
+        "random-acts-of-pizza": 0.07291666666666667,
+        "spaceship-titanic": 0.06060606060606061,
+        "spooky-author-identification": 0.05851063829787234,
+        "tabular-playground-series-dec-2021": 0.07216494845360824,
+        "tabular-playground-series-may-2022": 0.07446808510638298,
+        "text-normalization-challenge-english-language": 0.07368421052631578,
+        "text-normalization-challenge-russian-language": 0.07216494845360824,
+        "tweet-sentiment-extraction": 0.07446808510638298,
+        "us-patent-phrase-to-phrase-matching": 0.07446808510638298,
+        "whale-categorization-playground": 0.06382978723404255
+      },
+      "task_loto_max": 0.08333333333333333,
+      "task_loto_min": 0.047872340425531915,
+      "tasks": 19
+    }
+  ],
+  "cost": {
+    "aggregate_ratio_to_historical_full": 0.058607068701518196,
+    "gate_uses": "macro_mean_set_ratio_to_historical_full",
+    "macro_mean_set_ratio_to_historical_full": 0.27196795058472983
+  },
+  "counts": {
+    "cards": 230,
+    "easy": 50,
+    "hard": 50,
+    "runs": 52,
+    "sets": 100,
+    "tasks": 19
+  },
+  "gates": {
+    "cascade_go": false,
+    "channel_go": false,
+    "decision": "BORDERLINE"
+  },
+  "policy_summary": {
+    "ALL_BALANCED": {
+      "artifact_presence_then_stdout": {
+        "mean_normalized_regret": 0.5033120786204657,
+        "mean_rank": 1.6933333333333334,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.005707500000000032,
+        "runs": 52,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 0.46366666666666667,
+        "top1_run_ci95": [
+          0.3940972222222222,
+          0.537037037037037
+        ],
+        "top1_task_ci95": [
+          0.39090909090909093,
+          0.5415873015873016
+        ]
+      },
+      "artifact_score_then_random": {
+        "mean_normalized_regret": 0.3994508608992193,
+        "mean_rank": 1.5,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.0021200000000000108,
+        "runs": 52,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 0.5783333333333334,
+        "top1_run_ci95": [
+          0.48717948717948717,
+          0.6691729323308271
+        ],
+        "top1_task_ci95": [
+          0.48,
+          0.6884057971014492
+        ]
+      },
+      "artifact_score_then_stdout": {
+        "mean_normalized_regret": 0.37302348863218826,
+        "mean_rank": 1.5,
+        "median_normalized_regret": 0.49999999999999933,
+        "median_raw_regret": 0.0005775000000000641,
+        "runs": 52,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 0.6083333333333333,
+        "top1_run_ci95": [
+          0.5037037037037037,
+          0.7115384615384616
+        ],
+        "top1_task_ci95": [
+          0.4954545454545454,
+          0.7228260869565217
+        ]
+      },
+      "artifact_score_then_stdout_keyed": {
+        "mean_normalized_regret": 0.3702488966604194,
+        "mean_rank": 1.5,
+        "median_normalized_regret": 0.49999999999999933,
+        "median_raw_regret": 0.0005775000000000641,
+        "runs": 52,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 0.6116666666666667,
+        "top1_run_ci95": [
+          0.507168458781362,
+          0.7131782945736435
+        ],
+        "top1_task_ci95": [
+          0.5017921146953405,
+          0.7239583333333334
+        ]
+      },
+      "full_oracle": {
+        "mean_normalized_regret": 0.0,
+        "mean_rank": 1.0,
+        "median_normalized_regret": 0.0,
+        "median_raw_regret": 0.0,
+        "runs": 52,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 1.0,
+        "top1_run_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_task_ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "random": {
+        "mean_normalized_regret": 0.49806064984415027,
+        "mean_rank": 1.6433333333333333,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.010680000000000009,
+        "runs": 52,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 0.4598333333333333,
+        "top1_run_ci95": [
+          0.4358156028368794,
+          0.4792982456140351
+        ],
+        "top1_task_ci95": [
+          0.4316831683168317,
+          0.48487972508591065
+        ]
+      },
+      "stdout_only": {
+        "mean_normalized_regret": 0.43123441028315174,
+        "mean_rank": 1.56,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.0015600000000000128,
+        "runs": 52,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 0.5383333333333333,
+        "top1_run_ci95": [
+          0.45535714285714285,
+          0.6275362318840579
+        ],
+        "top1_task_ci95": [
+          0.44660194174757284,
+          0.6353135313531353
+        ]
+      },
+      "stdout_only_keyed": {
+        "mean_normalized_regret": 0.42845981831138286,
+        "mean_rank": 1.56,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.0015600000000000128,
+        "runs": 52,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 0.5416666666666666,
+        "top1_run_ci95": [
+          0.45930232558139533,
+          0.6305841924398625
+        ],
+        "top1_task_ci95": [
+          0.45265151515151514,
+          0.6368421052631579
+        ]
+      }
+    },
+    "easy": {
+      "artifact_presence_then_stdout": {
+        "mean_normalized_regret": 0.5213710427301228,
+        "mean_rank": 1.64,
+        "median_normalized_regret": 0.5000000000000001,
+        "median_raw_regret": 0.02460499999999996,
+        "runs": 38,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 0.4573333333333333,
+        "top1_run_ci95": [
+          0.361437908496732,
+          0.5562091503267974
+        ],
+        "top1_task_ci95": [
+          0.3606666666666667,
+          0.5596153846153846
+        ]
+      },
+      "artifact_score_then_random": {
+        "mean_normalized_regret": 0.4134239462764032,
+        "mean_rank": 1.46,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.017170000000000074,
+        "runs": 38,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 0.5733333333333334,
+        "top1_run_ci95": [
+          0.46226415094339623,
+          0.6895424836601307
+        ],
+        "top1_task_ci95": [
+          0.4551282051282051,
+          0.7083333333333334
+        ]
+      },
+      "artifact_score_then_stdout": {
+        "mean_normalized_regret": 0.3823415916186198,
+        "mean_rank": 1.44,
+        "median_normalized_regret": 0.49999999999999933,
+        "median_raw_regret": 0.008794999999999997,
+        "runs": 38,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 0.6033333333333333,
+        "top1_run_ci95": [
+          0.47101449275362317,
+          0.7414965986394558
+        ],
+        "top1_task_ci95": [
+          0.47,
+          0.7450980392156863
+        ]
+      },
+      "artifact_score_then_stdout_keyed": {
+        "mean_normalized_regret": 0.3767924076750821,
+        "mean_rank": 1.44,
+        "median_normalized_regret": 0.49999999999999933,
+        "median_raw_regret": 0.008794999999999997,
+        "runs": 38,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 0.61,
+        "top1_run_ci95": [
+          0.47878787878787876,
+          0.7466666666666667
+        ],
+        "top1_task_ci95": [
+          0.48,
+          0.75
+        ]
+      },
+      "full_oracle": {
+        "mean_normalized_regret": 0.0,
+        "mean_rank": 1.0,
+        "median_normalized_regret": 0.0,
+        "median_raw_regret": 0.0,
+        "runs": 38,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 1.0,
+        "top1_run_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_task_ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "random": {
+        "mean_normalized_regret": 0.516605658026204,
+        "mean_rank": 1.62,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.02877249999999998,
+        "runs": 38,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 0.464,
+        "top1_run_ci95": [
+          0.44013605442176873,
+          0.48299319727891155
+        ],
+        "top1_task_ci95": [
+          0.43623188405797103,
+          0.4876543209876543
+        ]
+      },
+      "stdout_only": {
+        "mean_normalized_regret": 0.4272551554484071,
+        "mean_rank": 1.5,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.015961666666666707,
+        "runs": 38,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 0.5633333333333334,
+        "top1_run_ci95": [
+          0.4557823129251701,
+          0.6770833333333334
+        ],
+        "top1_task_ci95": [
+          0.45348837209302323,
+          0.6761006289308176
+        ]
+      },
+      "stdout_only_keyed": {
+        "mean_normalized_regret": 0.4217059715048694,
+        "mean_rank": 1.5,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.015961666666666707,
+        "runs": 38,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 0.57,
+        "top1_run_ci95": [
+          0.46258503401360546,
+          0.6821705426356589
+        ],
+        "top1_task_ci95": [
+          0.46258503401360546,
+          0.6792452830188679
+        ]
+      }
+    },
+    "hard": {
+      "artifact_presence_then_stdout": {
+        "mean_normalized_regret": 0.48525311451080866,
+        "mean_rank": 1.7466666666666666,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.0015350000000000051,
+        "runs": 28,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 0.47,
+        "top1_run_ci95": [
+          0.37398373983739835,
+          0.5736434108527132
+        ],
+        "top1_task_ci95": [
+          0.3888888888888889,
+          0.5544217687074829
+        ]
+      },
+      "artifact_score_then_random": {
+        "mean_normalized_regret": 0.3854777755220353,
+        "mean_rank": 1.54,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.0009074999999999535,
+        "runs": 28,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 0.5833333333333334,
+        "top1_run_ci95": [
+          0.47619047619047616,
+          0.693939393939394
+        ],
+        "top1_task_ci95": [
+          0.47,
+          0.7019230769230769
+        ]
+      },
+      "artifact_score_then_stdout": {
+        "mean_normalized_regret": 0.36370538564575666,
+        "mean_rank": 1.56,
+        "median_normalized_regret": 0.4999999999999917,
+        "median_raw_regret": 0.0003100000000000047,
+        "runs": 28,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 0.6133333333333333,
+        "top1_run_ci95": [
+          0.48,
+          0.7452830188679245
+        ],
+        "top1_task_ci95": [
+          0.48299319727891155,
+          0.738562091503268
+        ]
+      },
+      "artifact_score_then_stdout_keyed": {
+        "mean_normalized_regret": 0.36370538564575666,
+        "mean_rank": 1.56,
+        "median_normalized_regret": 0.4999999999999917,
+        "median_raw_regret": 0.0003100000000000047,
+        "runs": 28,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 0.6133333333333333,
+        "top1_run_ci95": [
+          0.48,
+          0.7452830188679245
+        ],
+        "top1_task_ci95": [
+          0.48299319727891155,
+          0.738562091503268
+        ]
+      },
+      "full_oracle": {
+        "mean_normalized_regret": 0.0,
+        "mean_rank": 1.0,
+        "median_normalized_regret": 0.0,
+        "median_raw_regret": 0.0,
+        "runs": 28,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 1.0,
+        "top1_run_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_task_ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "random": {
+        "mean_normalized_regret": 0.4795156416620966,
+        "mean_rank": 1.6666666666666667,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.0018525000000013114,
+        "runs": 28,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 0.45566666666666666,
+        "top1_run_ci95": [
+          0.4215277777777778,
+          0.48366013071895425
+        ],
+        "top1_task_ci95": [
+          0.42314814814814816,
+          0.48299319727891155
+        ]
+      },
+      "stdout_only": {
+        "mean_normalized_regret": 0.43521366511789633,
+        "mean_rank": 1.62,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.000632500000000015,
+        "runs": 28,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 0.5133333333333333,
+        "top1_run_ci95": [
+          0.3888888888888889,
+          0.6354166666666666
+        ],
+        "top1_task_ci95": [
+          0.4033333333333333,
+          0.6185897435897436
+        ]
+      },
+      "stdout_only_keyed": {
+        "mean_normalized_regret": 0.43521366511789633,
+        "mean_rank": 1.62,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.000632500000000015,
+        "runs": 28,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 0.5133333333333333,
+        "top1_run_ci95": [
+          0.3888888888888889,
+          0.6354166666666666
+        ],
+        "top1_task_ci95": [
+          0.4033333333333333,
+          0.6185897435897436
+        ]
+      }
+    }
+  },
+  "provenance": {
+    "bootstrap": 10000,
+    "command": [
+      "/usr/bin/python",
+      "phase1/artifact_cascade_audit.py",
+      "--bootstrap",
+      "10000",
+      "--seed",
+      "20260813",
+      "--out-dir",
+      "phase1/artifact_cascade_v9"
+    ],
+    "cwd": "/tmp/codex_cascade_clean_v4_20260813",
+    "git_commit": "f79c8a9c6992ec10a4289fecfb281458ff822fe3",
+    "inputs": {
+      "manifest": {
+        "path": "phase1/fidelity_manifest.jsonl",
+        "sha256": "77f696828010e2d6ae10a9b9de2d9ec05d44975b1285ea763d9850a7f30ca4ef"
+      },
+      "orientation": {
+        "path": "phase1/task_orientation.json",
+        "sha256": "e11111a3538c54eb91048b54380466b4dc0f041c2f511a78a85573cbc92b121a"
+      },
+      "results": {
+        "path": "phase1/fidelity_results.jsonl",
+        "sha256": "b1266d04912596b1e37e13f79ce2387a962f5510cfa264aa1a97b7a1c443180d"
+      },
+      "run_map": {
+        "path": "phase1/card_run_map.json",
+        "sha256": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+      },
+      "runtime": {
+        "path": "phase1/fidelity_runtime_v9.jsonl",
+        "sha256": "dff8eb88a1db8d63bab17851c1dce2c1bd389a4744a811d65a5ce1fe5a1f55e7"
+      }
+    },
+    "python": "3.12.3",
+    "script_sha256": "8a7bf469d93513f4692df96254503c914e268dc1cdbcc8fbf707f51b837c725e",
+    "seed": 20260813
+  },
+  "signal_counts": {
+    "artifact_cards": 86,
+    "artifact_sets": 41,
+    "keyed_stdout_cards": 126,
+    "stdout_cards": 130,
+    "stdout_sets": 62
+  },
+  "status": "retrospective discovery-set adjudication; not confirmatory"
+}

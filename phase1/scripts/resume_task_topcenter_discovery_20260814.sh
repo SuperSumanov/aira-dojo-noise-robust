@@ -9,7 +9,8 @@ export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 
-repo=/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
+repo=$(cd "$script_dir/../.." && pwd -P)
 python=/research/d7/spc/yzyang4/venvs/critic/bin/python
 feature_run=/research/d7/spc/yzyang4/experiments/frozen_embed_v11_20260814_f339eb971c6d
 train_pairs=phase1/v11_decision/decision_train_v11_b0.jsonl
@@ -26,6 +27,7 @@ model_sha=fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe
 extraction_commit=f339eb971c6d04fd149c608cc570b4bcdcdd1aac
 
 cd "$repo"
+test "$(pwd -P)" = "$repo"
 commit=$(git rev-parse HEAD)
 root=/research/d7/spc/yzyang4/experiments/task_topcenter_v11_20260814_${commit:0:12}
 test -d "$root"

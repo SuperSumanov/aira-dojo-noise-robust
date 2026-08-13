@@ -119,6 +119,7 @@ def evaluate(
     selected = children if not selected_signals else tied_best(selected_signals, task, lower)
     true_utility = {card_id: utility(truth[card_id], task, lower) for card_id in children}
     best = max(true_utility.values())
+    worst = min(true_utility.values())
     best_ids = {
         card_id
         for card_id, value in true_utility.items()
@@ -128,11 +129,13 @@ def evaluate(
         value: rank
         for rank, value in enumerate(sorted(set(true_utility.values()), reverse=True), 1)
     }
+    raw_regret = best - statistics.mean(true_utility[card_id] for card_id in selected)
     return {
         "selected": "|".join(selected),
         "selected_n": len(selected),
         "top1": len(set(selected) & best_ids) / len(selected),
-        "raw_regret": best - statistics.mean(true_utility[card_id] for card_id in selected),
+        "raw_regret": raw_regret,
+        "normalized_regret": raw_regret / (best - worst) if best > worst else 0.0,
         "rank": statistics.mean(ranks[true_utility[card_id]] for card_id in selected),
     }
 
@@ -193,8 +196,13 @@ def summarize_policy(rows: list[dict[str, Any]], draws: int, seed: int) -> dict[
         "top1": statistics.mean(float(row["top1"]) for row in rows),
         "top1_run_ci95": cluster_interval(rows, "top1", "run_id", draws, seed),
         "top1_task_ci95": cluster_interval(rows, "top1", "task", draws, seed),
-        "mean_regret": statistics.mean(float(row["raw_regret"]) for row in rows),
-        "median_regret": statistics.median(float(row["raw_regret"]) for row in rows),
+        "median_raw_regret": statistics.median(float(row["raw_regret"]) for row in rows),
+        "mean_normalized_regret": statistics.mean(
+            float(row["normalized_regret"]) for row in rows
+        ),
+        "median_normalized_regret": statistics.median(
+            float(row["normalized_regret"]) for row in rows
+        ),
         "mean_rank": statistics.mean(float(row["rank"]) for row in rows),
     }
 
@@ -224,7 +232,9 @@ def paired_comparison(
                 "task": a_row["task"],
                 "stratum": a_row["stratum"],
                 "delta_top1": float(a_row["top1"]) - float(b_row["top1"]),
-                "delta_regret": float(a_row["raw_regret"]) - float(b_row["raw_regret"]),
+                "delta_normalized_regret": (
+                    float(a_row["normalized_regret"]) - float(b_row["normalized_regret"])
+                ),
                 "delta_rank": float(a_row["rank"]) - float(b_row["rank"]),
             }
         )
@@ -244,7 +254,9 @@ def paired_comparison(
         "run_ci95": cluster_interval(paired, "delta_top1", "run_id", draws, seed),
         "task_ci95": cluster_interval(paired, "delta_top1", "task", draws, seed),
         "run_sign": exact_sign(paired),
-        "delta_mean_regret": statistics.mean(row["delta_regret"] for row in paired),
+        "delta_mean_normalized_regret": statistics.mean(
+            row["delta_normalized_regret"] for row in paired
+        ),
         "delta_mean_rank": statistics.mean(row["delta_rank"] for row in paired),
         "task_loto": loto,
         "task_loto_min": min(loto.values()),
@@ -468,6 +480,7 @@ def main() -> None:
         sum(float(row["low_wall_s"]) for row in all_policy_rows)
         / sum(float(row["full_runtime_s"]) for row in all_policy_rows)
     )
+    macro_set_cost_ratio = statistics.mean(float(row["cost_ratio"]) for row in all_policy_rows)
     main = indexed_comparisons["MAIN"]
     score_value = indexed_comparisons["SECONDARY_SCORE_VALUE"]
     cascade_go = bool(
@@ -476,7 +489,7 @@ def main() -> None:
         and main["task_ci95"][0] > 0
         and main["run_sign"]["p_two_sided"] < 0.05
         and main["task_loto_min"] > -0.10
-        and aggregate_cost_ratio <= 0.35
+        and macro_set_cost_ratio <= 0.35
     )
     channel_go = bool(
         cascade_go
@@ -551,7 +564,11 @@ def main() -> None:
             "artifact_sets": sum(row["n_artifact"] > 0 for row in all_policy_rows),
             "stdout_sets": sum(row["n_stdout"] > 0 for row in all_policy_rows),
         },
-        "aggregate_120s_cost_ratio_to_historical_full": aggregate_cost_ratio,
+        "cost": {
+            "macro_mean_set_ratio_to_historical_full": macro_set_cost_ratio,
+            "aggregate_ratio_to_historical_full": aggregate_cost_ratio,
+            "gate_uses": "macro_mean_set_ratio_to_historical_full",
+        },
         "policy_summary": policy_summary,
         "comparisons": comparisons,
         "gates": {
@@ -573,7 +590,7 @@ def main() -> None:
         f"SIGNALS artifact_cards={summary['signal_counts']['artifact_cards']} "
         f"stdout_cards={summary['signal_counts']['stdout_cards']} "
         f"artifact_sets={summary['signal_counts']['artifact_sets']} "
-        f"cost_ratio={aggregate_cost_ratio:.4f}"
+        f"cost_macro={macro_set_cost_ratio:.4f} cost_aggregate={aggregate_cost_ratio:.4f}"
     )
     for comparison in comparisons:
         print(

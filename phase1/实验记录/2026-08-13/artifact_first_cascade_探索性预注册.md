@@ -73,3 +73,16 @@
 
 无论结果如何，不修改阈值、不增加按 task/coverage/child-count 挑选的 headline，不在同一发现集
 继续搜索新规则。若 GO，下一步只能在机制冻结后新 physical runs 上按同一规则复现。
+
+## 首次运行后的测量口径修正（结果提交前）
+
+首次 clean-worktree 运行后、任何结果入库前的独立审计发现两处**不改变策略、top-1、聚类或
+GO 效应阈值**的报告口径问题：
+
+1. 跨任务 raw regret 的量纲不同，不能求跨任务均值。最终只保留 median raw regret，并增加
+   每 set 以 `[best,worst]` 范围归一化的 regret；配对均值只用于 normalized regret。
+2. `sum(120s wall)/sum(full runtime)` 会被少数超长任务主导。成本同时报告 aggregate ratio 与
+   每 set ratio 的 macro mean，原 `≤0.35` 实用门采用更保守的 macro mean。
+
+这两项在修正 commit 后从锁定输入重新运行；首次临时产物保留在独立 `/tmp` worktree 作失败/修正
+审计，不进入论文结果。主 top-1 裁决规则保持原样，禁止借此重新选策略或阈值。

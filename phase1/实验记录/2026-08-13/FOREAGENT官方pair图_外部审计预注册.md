@@ -24,6 +24,11 @@
 7. 与我方 b0 在全部任务及精确同名 common tasks 上作同口径描述，不作显著性检验；
 8. per-task CSV 必须同时保存 solution 数、pair 数、pair-graph coverage、gap 与 trajectory 指标。
 
+结构预检第一次执行在写任何输出前 fail-closed：b0 共 1,499 行，其中 zero-based row 1013 的
+`gap_raw=NaN`。这解释了既有记录的 1,498 个 finite headline pairs。冻结处理为：保留 total 行数与该行
+身份在 JSON 中，所有 gap 分布只使用 1,498 个 finite、非负 gap；任何负 gap 仍立即报错。该规则在
+看到官方或我方 gap 分布 aggregate 之前确定。
+
 ## 解释约束
 
 - 若官方 common-task hard share 明显低于我方，最多说“pairing distribution 是候选解释”，不能在没有

@@ -165,10 +165,19 @@ def main() -> None:
     ]
     our_by_task: dict[str, list[float]] = collections.defaultdict(list)
     our_pair_keys: list[tuple[str, str]] = []
+    own_nonfinite_gap_rows: list[dict[str, object]] = []
     for index, row in enumerate(our_rows):
         gap = float(row["gap_raw"])
-        if not math.isfinite(gap) or gap < 0:
-            raise RuntimeError(f"invalid own gap at row {index}")
+        if not math.isfinite(gap):
+            own_nonfinite_gap_rows.append({
+                "zero_based_row": index,
+                "task": str(row["task"]),
+                "better": str(row["better"]),
+                "worse": str(row["worse"]),
+            })
+            continue
+        if gap < 0:
+            raise RuntimeError(f"negative own gap at row {index}")
         task = str(row["task"])
         our_by_task[task].append(gap)
         our_pair_keys.append(tuple(sorted((str(row["better"]), str(row["worse"])))))
@@ -227,7 +236,10 @@ def main() -> None:
             "gap": gap_summary(official_by_task),
         },
         "our_b0": {
-            "rows": len(our_rows),
+            "rows_total": len(our_rows),
+            "rows_finite_gap": sum(len(values) for values in our_by_task.values()),
+            "rows_excluded_nonfinite_gap": len(own_nonfinite_gap_rows),
+            "excluded_nonfinite_gap_rows": own_nonfinite_gap_rows,
             "tasks": len(our_by_task),
             "unique_unordered_pairs": len(set(our_pair_keys)),
             "duplicate_unordered_pair_rows": len(our_pair_keys) - len(set(our_pair_keys)),
@@ -259,6 +271,7 @@ def main() -> None:
         f"our_hard={result['our_b0']['gap']['hard_lt_1e2_pair_share']:.6f}",
         f"official_common_hard={result['common_tasks']['official']['hard_lt_1e2_pair_share']:.6f}",
         f"our_common_hard={result['common_tasks']['our_b0']['hard_lt_1e2_pair_share']:.6f}",
+        f"our_nonfinite_excluded={len(own_nonfinite_gap_rows)}",
     )
     print(f"WROTE {out_json} {out_csv}")
 

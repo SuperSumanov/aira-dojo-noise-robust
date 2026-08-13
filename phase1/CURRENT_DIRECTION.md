@@ -194,6 +194,10 @@ Observable Execution Feedback**；late-artifact pilot 的 outcome 前 gate 仍�
 组合复用、pair-graph coverage、同 trajectory 比例、预注册 gap 桶，以及和我方真实 sibling b0 在全部/
 common tasks 的 pair-weighted 与 task-macro 描述。
 
+首次结构预检在 outcome 写盘前发现我方 b0 有 1,499 行，其中恰有 1 行 `gap_raw=NaN`；这与既有
+1,498 finite headline 计数一致。冻结处理是明确记录并排除该行后再算 gap，负 gap 仍 fail-closed；
+此次失败没有产生 audit JSON/CSV，也没有读取任何分布 aggregate。
+
 该审计不做显著性检验、不声称解释官方 61.5%。若 common-task hard share 不更低，必须撤回“主要由 gap
 分布抬高”的强解释；即使更低，也只能把 pairing distribution 写成候选解释。官方真正 executed
 `data_analysis/result` 已确认能在冻结 300-pair 样本中覆盖 211 pairs / 14 tasks；是否花 API 做严格

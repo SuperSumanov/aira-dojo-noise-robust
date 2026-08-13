@@ -146,6 +146,19 @@ process-group 清理与无残留进程门全部通过。两个 card 的 coverage
 失败历史保留：job `10590` 因把登录节点本地 `/tmp` 工作树误当作 compute-shared 路径，在候选启动前
 1 秒失败；另一次登录节点 compute-only NVIDIA 文件检查在提交前停止。二者均无科学结果、未进入样本。
 
+### 3.6 冻结待跑的一次性方法可行性诊断：Selective Feedback Racing
+
+在仍不修改旧 100 sets 规则网格的前提下，允许最后一次无阈值、无训练的机制诊断：120 秒时只淘汰
+“已有 finite pristine 分数且被另一 observed candidate 严格支配”的候选；所有 silent/unscored 候选
+一律 abstain/继续。最终目标是保留 full-run winner，因此将保守 abstention 相对 `observed_only` 的贡献，
+以及 observed 分数排序相对“同样保留所有 missing、仅在 observed 内随机”的结构匹配基线分开报告。
+
+输入 SHA、100 sets / 230 cards 总体、run/task-macro bootstrap、资源 accounting 和 GO/BORDERLINE/KILL
+门均已在 outcome 前冻结，另有不 import 主脚本的 verifier。只有同时达到 winner survival、双聚类下界、
+淘汰比例、structured-random 增益和 optimistic tail 空间门，才可记 `GO-FEASIBLE`；即使通过也只授权
+在新 discovery split 实现 `TaskHazard × ScoreValue`，不构成独立确认或实测加速。运行后不得在旧数据
+修改 cap、margin、tie 或任务子集。
+
 ## 4. 已关闭或仅历史的方向
 
 - **旧 HCE 三臂**：50/25/25 + 标签子采样 proxy，不符合当前 80/10/10、time-fidelity、

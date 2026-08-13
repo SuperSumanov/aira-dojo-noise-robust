@@ -1,0 +1,47 @@
+{
+  "issue": "schema_probe_repair_v2",
+  "manifest": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_repair_v2/generation_manifest.json",
+  "manifest_sha256": "c4c01935e7e7a92ea4b096573537cb7609f2e51b10ad2411ab0f8a9e4fdf720c",
+  "rows": [
+    {
+      "code_nodes": 1,
+      "current_step": 2,
+      "dojo_config_sha256": "6014b10ad186ecd93e2ab8b8243c60fb3b19eb0aebbd36228b0a3ab5c8dc91d2",
+      "experiment_dir": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_repair_v2/runs/aira-dojo/user_yzyang4_issue_schema_probe_repair_v2/user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_ff0fd0968ba9eb0e96e04db083b18a484c871e7ddbdd8c961e60f7a6",
+      "journal_lines": 2,
+      "journal_sha256": "78abed4f0fb378b328f90a99c7b7ad371559ffeada76ce88f24411864f746664",
+      "search_export_sha256": "1046a3dffd890ea1c14fa4aeec47c69f00436d23091e97d0975030a0d5a04747",
+      "seed": 862,
+      "selected_node_is_buggy": false,
+      "selected_node_step": 1,
+      "state_sha256": "1f16f6c8f610ce050ff14e749abc886197b311bf35b90c499b7c011a13e67cc3",
+      "status_sha256": "539d10cc6a1849172a99bfba978549bfa039762234469d0185a06601c521ea8b",
+      "task": "spaceship-titanic",
+      "task_id": "user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_ff0fd0968ba9eb0e96e04db083b18a484c871e7ddbdd8c961e60f7a6",
+      "topology_mode": "draft_valid"
+    },
+    {
+      "code_nodes": 1,
+      "current_step": 2,
+      "dojo_config_sha256": "d57dd41ffad83ea90858d69027949cf7597f8f5e9ed723daf79a4d838dce38e8",
+      "experiment_dir": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_repair_v2/runs/aira-dojo/user_yzyang4_issue_schema_probe_repair_v2/user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_41e3a28453769a9245920a15cefb3579097c1dae60d29c2c331382b8",
+      "journal_lines": 2,
+      "journal_sha256": "fcaccc5edbded44f3d77fa171a7c43829fb8b4901c3c3219a2be903c751d1f02",
+      "search_export_sha256": "fb25f89c6aea15199709e160f3737e409b4ff6e0d930410249fc7b5d66f446d4",
+      "seed": 862,
+      "selected_node_is_buggy": false,
+      "selected_node_step": 1,
+      "state_sha256": "c59ca12a0bd016ff23a3aefb3e9ddb99fb05c940cb6e4ef912882149e5d36241",
+      "status_sha256": "827fc616cf2832c0ec9a58ddfb8547f5e4155b54c2e86493e43a9f4274c89c18",
+      "task": "tweet-sentiment-extraction",
+      "task_id": "user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_41e3a28453769a9245920a15cefb3579097c1dae60d29c2c331382b8",
+      "topology_mode": "draft_valid"
+    }
+  ],
+  "schema_version": 2,
+  "seed": 862,
+  "tasks": [
+    "spaceship-titanic",
+    "tweet-sentiment-extraction"
+  ]
+}

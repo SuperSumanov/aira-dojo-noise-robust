@@ -1,0 +1,38 @@
+{
+  "issue": "schema_probe_repair_v2",
+  "launcher_type": "direct_srun_preregistered_conditional_debug",
+  "seed": 862,
+  "tasks": {
+    "user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_41e3a28453769a9245920a15cefb3579097c1dae60d29c2c331382b8": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "command_sha256": "6a744e0de00159d8e67b4a5409a04e3b60e7d6da336a7b7da46162a6f7516133",
+          "exit_code": 0,
+          "slurm_state": "COMPLETED",
+          "status": "completed"
+        }
+      ],
+      "exit_code": 0,
+      "experiment_dir": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_repair_v2/runs/aira-dojo/user_yzyang4_issue_schema_probe_repair_v2/user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_41e3a28453769a9245920a15cefb3579097c1dae60d29c2c331382b8",
+      "status": "completed",
+      "task_name": "tweet-sentiment-extraction"
+    },
+    "user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_ff0fd0968ba9eb0e96e04db083b18a484c871e7ddbdd8c961e60f7a6": {
+      "attempts": [
+        {
+          "attempt": 1,
+          "command_sha256": "fd2171a74b52066a8127271b37629cc2ea2f34c790beefdba32db6664ac0cd76",
+          "exit_code": 0,
+          "slurm_state": "COMPLETED",
+          "status": "completed"
+        }
+      ],
+      "exit_code": 0,
+      "experiment_dir": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_repair_v2/runs/aira-dojo/user_yzyang4_issue_schema_probe_repair_v2/user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_ff0fd0968ba9eb0e96e04db083b18a484c871e7ddbdd8c961e60f7a6",
+      "status": "completed",
+      "task_name": "spaceship-titanic"
+    }
+  },
+  "version": 2
+}

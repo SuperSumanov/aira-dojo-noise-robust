@@ -1,0 +1,69 @@
+{
+  "expected_tasks": [
+    "spaceship-titanic",
+    "tweet-sentiment-extraction"
+  ],
+  "generated_rows": 2,
+  "issue": "schema_probe_repair_v2",
+  "replay_manifest": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_repair_v2/replay_manifest.jsonl",
+  "replay_manifest_sha256": "77b4f35f7db224cd0d80fad4df1f6862a171d951a6d061fcc3f626c64ad738b0",
+  "rows": [
+    {
+      "code_bytes": 11047,
+      "code_nodes": 1,
+      "code_sha256": "b710ec78e386885da66e9dbfde863386546ab358f977d25603778d919804caec",
+      "experiment_dir": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_repair_v2/runs/aira-dojo/user_yzyang4_issue_schema_probe_repair_v2/user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_ff0fd0968ba9eb0e96e04db083b18a484c871e7ddbdd8c961e60f7a6",
+      "seed": 862,
+      "selected_node_exit_code": 0,
+      "selected_node_id": "6e16adea09fb4ae18a262a8959fe1a0c",
+      "selected_node_is_buggy": false,
+      "selected_node_step": 1,
+      "source_export": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_repair_v2/runs/aira-dojo/user_yzyang4_issue_schema_probe_repair_v2/user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_ff0fd0968ba9eb0e96e04db083b18a484c871e7ddbdd8c961e60f7a6/user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_ff0fd0968ba9eb0e96e04db083b18a484c871e7ddbdd8c961e60f7a6_20260813180906762523_MCTS_search_data.json",
+      "source_export_sha256": "1046a3dffd890ea1c14fa4aeec47c69f00436d23091e97d0975030a0d5a04747",
+      "static_contract": {
+        "candidate_marker": true,
+        "candidate_probe_path": true,
+        "common_fallback_marker_available": false,
+        "full_marker": true,
+        "python_ast_parse": true,
+        "required_pass": true,
+        "uses_fsync": true,
+        "uses_os_replace": true
+      },
+      "task": "spaceship-titanic",
+      "task_id": "user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_ff0fd0968ba9eb0e96e04db083b18a484c871e7ddbdd8c961e60f7a6",
+      "topology_mode": "draft_valid"
+    },
+    {
+      "code_bytes": 13534,
+      "code_nodes": 1,
+      "code_sha256": "70e3d0069b56abae75d86c31dcbebb646b38cc85fa0f392fd2bc5393614f4bb6",
+      "experiment_dir": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_repair_v2/runs/aira-dojo/user_yzyang4_issue_schema_probe_repair_v2/user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_41e3a28453769a9245920a15cefb3579097c1dae60d29c2c331382b8",
+      "seed": 862,
+      "selected_node_exit_code": 0,
+      "selected_node_id": "47d6635e69974155bf4bc90dfbcec357",
+      "selected_node_is_buggy": false,
+      "selected_node_step": 1,
+      "source_export": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_repair_v2/runs/aira-dojo/user_yzyang4_issue_schema_probe_repair_v2/user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_41e3a28453769a9245920a15cefb3579097c1dae60d29c2c331382b8/user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_41e3a28453769a9245920a15cefb3579097c1dae60d29c2c331382b8_20260813181221386652_MCTS_search_data.json",
+      "source_export_sha256": "fb25f89c6aea15199709e160f3737e409b4ff6e0d930410249fc7b5d66f446d4",
+      "static_contract": {
+        "candidate_marker": true,
+        "candidate_probe_path": true,
+        "common_fallback_marker_available": false,
+        "full_marker": true,
+        "python_ast_parse": true,
+        "required_pass": true,
+        "uses_fsync": true,
+        "uses_os_replace": true
+      },
+      "task": "tweet-sentiment-extraction",
+      "task_id": "user_yzyang4_issue_schema_probe_repair_v2_seed_862_id_41e3a28453769a9245920a15cefb3579097c1dae60d29c2c331382b8",
+      "topology_mode": "draft_valid"
+    }
+  ],
+  "run_manifest": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_repair_v2/generation_manifest.json",
+  "run_manifest_sha256": "c4c01935e7e7a92ea4b096573537cb7609f2e51b10ad2411ab0f8a9e4fdf720c",
+  "schema_version": 2,
+  "seed": 862,
+  "static_gate_pass_rows": 2
+}

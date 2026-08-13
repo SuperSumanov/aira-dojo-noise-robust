@@ -1,0 +1,108 @@
+{
+  "independent_of_project_validator": true,
+  "manifest_sha256": "77b4f35f7db224cd0d80fad4df1f6862a171d951a6d061fcc3f626c64ad738b0",
+  "rows": [
+    {
+      "checks": {
+        "candidate_specific_csv": true,
+        "code_hash": true,
+        "continuous_and_clean_exit": true,
+        "full_deadline": true,
+        "full_grade": true,
+        "full_hash": true,
+        "identity": true,
+        "independent_regrade": true,
+        "manifest_hash": true,
+        "markers": true,
+        "ordered_distinct_events": true,
+        "probe_deadline": true,
+        "probe_grade": true,
+        "probe_hash": true,
+        "probe_immutable": true,
+        "source_hash": true,
+        "topology": true,
+        "training_data_and_probe_symbols": true,
+        "workdir_solution": true
+      },
+      "full_first_seen_s": 21.281902,
+      "full_score": 0.81494,
+      "index": 0,
+      "probe_host_capture_s": 12.542975,
+      "probe_score": 0.77241,
+      "regrades": {
+        "full": {
+          "output_sha256": "92897df6f510e5f72c1591dcd8a2abc6fe2f1505e33aa5d2f96d9d8cb2b8a28c",
+          "rc": 0,
+          "score": 0.81494
+        },
+        "probe": {
+          "output_sha256": "1bda38c6eb374473af8eaa25c432888f4ade819b427d76c5a6550f40a90c2b52",
+          "rc": 0,
+          "score": 0.77241
+        }
+      },
+      "sample_comparison": {
+        "candidate_specific": true,
+        "ids_match": true,
+        "prediction_diff_rows": 434,
+        "prediction_nonconstant": true,
+        "same_header": true,
+        "same_row_count": true
+      },
+      "seed": 862,
+      "task": "spaceship-titanic"
+    },
+    {
+      "checks": {
+        "candidate_specific_csv": true,
+        "code_hash": true,
+        "continuous_and_clean_exit": true,
+        "full_deadline": true,
+        "full_grade": true,
+        "full_hash": true,
+        "identity": true,
+        "independent_regrade": true,
+        "manifest_hash": true,
+        "markers": true,
+        "ordered_distinct_events": true,
+        "probe_deadline": true,
+        "probe_grade": true,
+        "probe_hash": true,
+        "probe_immutable": true,
+        "source_hash": true,
+        "topology": true,
+        "training_data_and_probe_symbols": true,
+        "workdir_solution": true
+      },
+      "full_first_seen_s": 99.57539,
+      "full_score": 0.53027,
+      "index": 1,
+      "probe_host_capture_s": 11.046629,
+      "probe_score": 0.43082,
+      "regrades": {
+        "full": {
+          "output_sha256": "6584dd2b1f80092ac7d65c943e1fe61a96ac9b52fb0881a5242d7829caa20b82",
+          "rc": 0,
+          "score": 0.53027
+        },
+        "probe": {
+          "output_sha256": "80fb9eb522347dee1d8ce9e8ea0bc68d6e36720360d2feb3674efb176ec0b2f1",
+          "rc": 0,
+          "score": 0.43082
+        }
+      },
+      "sample_comparison": {
+        "candidate_specific": true,
+        "ids_match": true,
+        "prediction_diff_rows": 2749,
+        "prediction_nonconstant": true,
+        "same_header": true,
+        "same_row_count": true
+      },
+      "seed": 862,
+      "task": "tweet-sentiment-extraction"
+    }
+  ],
+  "schema_version": 1,
+  "verdict": "PASS"
+}

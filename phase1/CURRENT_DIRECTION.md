@@ -22,21 +22,23 @@ schema/probe-first artifact contract。旧 HCE、TD/RL、多保真三臂和继�
 4. KompeteAI 已覆盖 reduced-epoch logs 预测和 MLE pipeline 加速，delayed-feedback BAI、failure-aware
    BO 与 early termination 也已有先例；SandMLE 还使用了 valid-output milestone。因此 novelty 不能写成
    “首个 early metric/valid artifact/early stop”，而必须落在真实自由形态 MLE sibling、候选特异且不可变
-   的 artifact contract、host/pristine provenance、选择性可观测 regret 分解及固定预算搜索因果收益。
+   的 artifact contract、host/pristine provenance、选择性可观测 regret 分解及固定预算搜索因果收益；
+5. 独立新任务/新 seed 的 V2 已按 outcome 前冻结规则正式 **PASS**：Spaceship 与 Tweet 均为
+   `root→valid draft`，host 在 12.542975/11.046629 秒捕获 probe，且两者都在 600 秒内出现 full transition；
+   主验证器与不导入主实现、重新调用 pristine grader 的独立验证器一致为 probes=2/2、full=2/2。
+   这只证明 prompt-only contract 的工程可行性，不证明 coverage、排序、质量非劣或搜索收益。
 
-V1 结果不得回填或同任务修补。预先冻结的唯一一次修复门是：在**新任务、新 seed**上给 original 与未来
-schema 臂都可公平获得的固定 conditional-debug 预算；draft 失败时最多 debug 一步，首次 externally valid
-候选出现即停止。V2 仍沿用 host 120 秒双任务 probe 与至少一个 600 秒 full transition 门：
-
-- V2 PASS：只授权设计新的、小规模、独立因果 A/B；仍不等于质量或搜索收益已成立；
-- V2 PARTIAL/FAIL：关闭 prompt-only schema 路线，不再通过改 prompt 追结果，只允许评估
-  runtime-owned probe API；
+V1 结果不得回填或同任务修补；V2 也不得在这两个任务上继续调 prompt。V2 的 PASS 现在只授权在
+**全新任务、全新 seed**上设计小规模独立因果 A/B：标准 draft 与只增加 artifact contract 的 draft 使用
+相同 conditional-debug、API/GPU/grader 和停止预算，先裁决 time-to-first-scoreable artifact、120 秒 coverage、
+失败率与 full quality。两个 V2 draft 都首次执行成功、没有触发 debug，因此不得把 V2 写成 debug 有效性证据；
 - 150-run 评分通道确认保持 `NOT SUBMITTED`，保留为 benchmark 机制确认资产，但不再阻塞上述低成本
   operator feasibility gate，也不得用旧数据替代前瞻确认。
 
 最新直接证据：
 
 - `phase1/实验记录/2026-08-13/schema_probe_smoke_v1裁决.md`；
+- `phase1/实验记录/2026-08-13/schema_probe_repair_v2裁决.md`；
 - `phase1/实验记录/2026-08-13/Anytime可观测性主张_20260813.md`；
 - `phase1/实验记录/2026-08-13/late-artifact连续轨迹_pilot裁决.md`；
 - `phase1/实验记录/2026-08-13/anytime_oracle_headroom_探索性上界.md`。
@@ -328,9 +330,11 @@ pairs，alignment-only=168、parquet-only=91，而不是同一网格简单少 77
    便宜候选。下一裁决问题变为 silent 候选在 120 秒之后是否会转为可评分；有明显 conversion 才继续
    `TaskHazard`，否则升级 `schema-first operator`。采用独立 validation/certification；不能把“是否及时
    产物”直接当质量，也不能在旧 100 sets 上继续搜索 selector、margin 或阈值。
-3. **更强但改 operator 的候选**：让 agent 在固定早期预算内优先产 schema-valid cheap submission，
-   再继续优化。这可能提高 120 秒 artifact 覆盖，直接攻击 144/230 silent 的瓶颈；但它改变
-   operator/prompt，必须另立三臂公平实验，不能冒充只改评估旋钮。
+3. **当前已过工程门、待因果检验的 operator 候选**：让 agent 在固定早期预算内先产候选特异、
+   schema-valid、可由 pristine grader 评分的 cheap probe，再在同一进程继续 full。V2 在两个新任务上
+   已正式 PASS，但没有 original-prompt 对照。下一步只允许全新任务/seed 的标准 prompt vs contract prompt
+   小规模 A/B；先要求 120 秒 coverage 提升、失败率不升和 full quality 无方向性损害，再冻结多候选固定预算
+   搜索实验。它改变 operator/prompt，不能冒充只改评估旋钮。
 4. **系统候选**：checkpoint/resume + 异步 successive halving，目标是把 continuation/full 从
    0.9312 实际压低；先做执行器可恢复性 smoke，再谈搜索收益。
 5. **长期基准贡献**：持续增加独立 run 和任务平衡，发布 run-aware、gap/noise-aware、

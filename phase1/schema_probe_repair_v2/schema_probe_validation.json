@@ -1,0 +1,126 @@
+{
+  "decision": "PASS",
+  "full_transition_count": 2,
+  "gate": {
+    "fail": "either probe fails validity, provenance, candidate-specificity, immutability, or 120s deadline",
+    "partial": "both probes pass by 120s but no valid full transition by 600s",
+    "pass": "both candidate-specific probes pass by host 120s and at least one valid full transition by 600s"
+  },
+  "manifest_sha256": "77b4f35f7db224cd0d80fad4df1f6862a171d951a6d061fcc3f626c64ad738b0",
+  "probe_pass_count": 2,
+  "rows": [
+    {
+      "card_id": "schema_probe_v2|spaceship-titanic|seed=862|node=6e16adea09fb4ae18a262a8959fe1a0c",
+      "checks": {
+        "at_most_one_full_marker": true,
+        "checkpoint_grid": true,
+        "code_hash": true,
+        "continuous_execution": true,
+        "first_submission_by_120": true,
+        "first_submission_is_probe": true,
+        "identity": true,
+        "manifest_hash": true,
+        "no_common_fallback": true,
+        "one_probe_marker": true,
+        "probe_candidate_specific": true,
+        "probe_finite_grade": true,
+        "probe_host_by_120": true,
+        "probe_marker_hash": true,
+        "probe_persists": true,
+        "probe_unmutated": true,
+        "source_export_hash": true,
+        "valid_full_transition_if_marked": true,
+        "workdir_solution_hash": true
+      },
+      "competition": "spaceship-titanic",
+      "final_rc": 0,
+      "full_event_index": 1,
+      "full_markers": [
+        {
+          "elapsed_s": 14.86,
+          "sha256": "f94c8d6743fe0f4b9250f22387de5e8d2558b507ccbcf8761d0cdda571e1f076"
+        }
+      ],
+      "index": 0,
+      "probe_host_capture_s": 12.542975,
+      "probe_markers": [
+        {
+          "elapsed_s": 5.9,
+          "sha256": "7656c532b700315235611140a8d9664abfd2a1a14494d606f659956851f81ee6"
+        }
+      ],
+      "probe_pass": true,
+      "probe_score": 0.77241,
+      "sample_comparison": {
+        "any_prediction_nonconstant": true,
+        "byte_hash_differs": true,
+        "candidate_specific": true,
+        "prediction_diff_rows": 434,
+        "rows": 870,
+        "same_header": true,
+        "same_row_count": true
+      },
+      "seed": 862,
+      "submission_event_count": 2,
+      "valid_full_transition": true,
+      "wall_s": 21.95498
+    },
+    {
+      "card_id": "schema_probe_v2|tweet-sentiment-extraction|seed=862|node=47d6635e69974155bf4bc90dfbcec357",
+      "checks": {
+        "at_most_one_full_marker": true,
+        "checkpoint_grid": true,
+        "code_hash": true,
+        "continuous_execution": true,
+        "first_submission_by_120": true,
+        "first_submission_is_probe": true,
+        "identity": true,
+        "manifest_hash": true,
+        "no_common_fallback": true,
+        "one_probe_marker": true,
+        "probe_candidate_specific": true,
+        "probe_finite_grade": true,
+        "probe_host_by_120": true,
+        "probe_marker_hash": true,
+        "probe_persists": true,
+        "probe_unmutated": true,
+        "source_export_hash": true,
+        "valid_full_transition_if_marked": true,
+        "workdir_solution_hash": true
+      },
+      "competition": "tweet-sentiment-extraction",
+      "final_rc": 0,
+      "full_event_index": 1,
+      "full_markers": [
+        {
+          "elapsed_s": 93.5,
+          "sha256": "43d5c5da13d80a79cb860783f4fef5a1ebd15bf4ee22118b8c1a74bcbd0b908d"
+        }
+      ],
+      "index": 1,
+      "probe_host_capture_s": 11.046629,
+      "probe_markers": [
+        {
+          "elapsed_s": 4.8,
+          "sha256": "32327a7da22359cdca687727ce41dbedcc7cfe5991a3eb9f39e9304da5d0ac83"
+        }
+      ],
+      "probe_pass": true,
+      "probe_score": 0.43082,
+      "sample_comparison": {
+        "any_prediction_nonconstant": true,
+        "byte_hash_differs": true,
+        "candidate_specific": true,
+        "prediction_diff_rows": 2749,
+        "rows": 2749,
+        "same_header": true,
+        "same_row_count": true
+      },
+      "seed": 862,
+      "submission_event_count": 2,
+      "valid_full_transition": true,
+      "wall_s": 101.261751
+    }
+  ],
+  "schema_version": 1
+}

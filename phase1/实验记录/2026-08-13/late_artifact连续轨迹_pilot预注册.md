@@ -83,6 +83,10 @@ DeepSeek-v4-flash 在 GPU 提交前完成一次固定审稿（13,493 prompt / 3,
 “相同 pre-120 artifact hash 的后续 grader 成功不得算 late conversion”，新增 hash-aware ambiguous 状态、
 snapshot elapsed/liveness/final rc 记录、symlink 与 grader timing 门、result-grid 完整性 self-test。
 
+修订后 synthetic integration 覆盖 all-never→`SCHEMA-FIRST-CANDIDATE`、两个跨任务 genuine late
+hash→`TASKHAZARD-CANDIDATE`、pre-120 相同 hash 的 grader recovery→`INCONCLUSIVE`，三条端到端
+validator 路径均通过。
+
 未采纳以下误报并固定理由：valid stable artifact 即使伴随进程退出仍是部署时可见反馈，不要求在名义
 checkpoint 存活；checkpoint snapshot 本来就应与进程继续运行后的 post-kill source 不同，不能据此判 stale；
 parent/stratum 所在 manifest 从未 bind 给 candidate，candidate workspace 只有 `solution.py` 与 public data；

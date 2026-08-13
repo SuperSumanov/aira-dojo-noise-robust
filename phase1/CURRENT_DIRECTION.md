@@ -26,6 +26,7 @@
 - `phase1/实验记录/2026-08-13/120秒评分可观测性_探索性裁决.md`；
 - `phase1/实验记录/2026-08-13/选择性可观测反馈_正面突破路线.md`；
 - `phase1/实验记录/2026-08-13/anytime_oracle_headroom_探索性上界.md`；
+- `phase1/实验记录/2026-08-13/FOREAGENT官方pair图_外部审计预注册.md`；
 - `phase1/实验记录/2026-08-13/连续fidelity轨迹_watcher_smoke冻结说明.md`；
 - 学长分支 `src/mle_critic/docs/outcomes/0812/DECISION_MODEL_SIZE_EXPERIMENTS.md`。
 
@@ -185,6 +186,18 @@ race 的 optimistic avoidable tail 仅 0.026163；偷看最终 `graded` 的不�
 “让昂贵候选更早产生候选特异的 pristine-scoreable artifact”。禁止声称已节省 51.26% GPU，禁止据此
 在旧 100 sets 上选时间阈值或策略。当前科学问题可概括为 **Anytime MLE Search under Selectively
 Observable Execution Feedback**；late-artifact pilot 的 outcome 前 gate 仍是下一步唯一裁决器。
+
+### 3.9 冻结待跑的 FOREAGENT 官方 pair 图外部审计（CPU 描述，不是模型对决）
+
+官方 Hugging Face 自动转换 parquet 已锁为 8,456,690 bytes、SHA256=`79363b7e...0b5f`，只含
+18,361 行 pair paths/scores/ranking，不含官方逐 pair judge prediction。审计固定报告 unique solutions、
+组合复用、pair-graph coverage、同 trajectory 比例、预注册 gap 桶，以及和我方真实 sibling b0 在全部/
+common tasks 的 pair-weighted 与 task-macro 描述。
+
+该审计不做显著性检验、不声称解释官方 61.5%。若 common-task hard share 不更低，必须撤回“主要由 gap
+分布抬高”的强解释；即使更低，也只能把 pairing distribution 写成候选解释。官方真正 executed
+`data_analysis/result` 已确认能在冻结 300-pair 样本中覆盖 211 pairs / 14 tasks；是否花 API 做严格
+共同覆盖复核，需在 pair 图审计完成后另行 outcome 前冻结，不能沿用旧的 description-paraphrase 报告裁决。
 
 ## 4. 已关闭或仅历史的方向
 

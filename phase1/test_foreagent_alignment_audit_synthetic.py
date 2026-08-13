@@ -75,7 +75,7 @@ def main() -> None:
                         "model_family": source["model_family"],
                         "release_run": source["release_run"],
                         "ordinal": pair_index,
-                        "log_index": pair_index,
+                        "log_index": None if source["release_run"] == 1 else pair_index,
                         "solution_paths": paths,
                         "scores": scores,
                         "is_lower_better": False,

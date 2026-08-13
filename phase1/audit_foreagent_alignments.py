@@ -312,7 +312,8 @@ def main() -> None:
         sources.append(enriched)
 
     by_source: dict[int, dict[tuple[str, str], ParsedRecord]] = defaultdict(dict)
-    log_indices: dict[int, set[Any]] = defaultdict(set)
+    ordinals: dict[int, set[Any]] = defaultdict(set)
+    log_index_values: dict[int, list[Any]] = defaultdict(list)
     with args.master.open("r", encoding="utf-8") as handle:
         for line_number, line in enumerate(handle, start=1):
             raw = json.loads(line)
@@ -322,10 +323,12 @@ def main() -> None:
             parsed = parse_record(raw, sources[source_index])
             if parsed.pair_key in by_source[source_index]:
                 raise RuntimeError(f"duplicate pair in source {source_index}")
-            if raw.get("log_index") in log_indices[source_index]:
-                raise RuntimeError(f"duplicate log_index in source {source_index}")
+            ordinal = raw.get("ordinal")
+            if ordinal in ordinals[source_index]:
+                raise RuntimeError(f"duplicate extraction ordinal in source {source_index}")
             by_source[source_index][parsed.pair_key] = parsed
-            log_indices[source_index].add(raw.get("log_index"))
+            ordinals[source_index].add(ordinal)
+            log_index_values[source_index].append(raw.get("log_index"))
     if set(by_source) != set(range(156)):
         raise RuntimeError("not all 156 source files appear in compact master")
 
@@ -357,6 +360,17 @@ def main() -> None:
     total_ties = sum(
         1 for rows in reference_by_task.values() for record in rows.values() if record.true_path is None
     )
+    log_index_all_null_sources = sum(
+        all(value is None for value in log_index_values[source_index]) for source_index in range(156)
+    )
+    log_index_null_records = sum(
+        value is None for source_index in range(156) for value in log_index_values[source_index]
+    )
+    log_index_duplicate_nonnull_sources = 0
+    for source_index in range(156):
+        nonnull = [repr(value) for value in log_index_values[source_index] if value is not None]
+        if len(nonnull) != len(set(nonnull)):
+            log_index_duplicate_nonnull_sources += 1
 
     per_run_rows: list[dict[str, Any]] = []
     min_valid_coverage = 1.0
@@ -560,6 +574,9 @@ def main() -> None:
             "min_valid_prediction_coverage": min_valid_coverage,
             "tasks_with_quartile_support": len(support_tasks),
             "release_correct_mismatches": release_correct_mismatches,
+            "log_index_all_null_sources": log_index_all_null_sources,
+            "log_index_null_records": log_index_null_records,
+            "log_index_duplicate_nonnull_sources": log_index_duplicate_nonnull_sources,
             "support_gate_pass": integrity_support,
         },
         "overall": overall,

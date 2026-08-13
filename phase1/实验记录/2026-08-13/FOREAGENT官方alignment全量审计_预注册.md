@@ -45,6 +45,12 @@ correctness，不信任发布物的 `correct` 字符串。
 任一 grid/ground-truth 一致性门失败时停止中心准确率裁决并报告 `GRID-MISMATCH`；支持或预测覆盖门失败
 则报告 `INSUFFICIENT-SUPPORT`，不得悄悄取交集或删掉困难任务。
 
+首次全量分析在写任何 summary/CSV 前 fail-closed：26 个 DeepSeek release-run-1 文件的 `log_index`
+全部为 null，其他文件该字段可用。独立结构脚本确认 156/156 文件的 extraction `ordinal` 和无序 pair key
+均唯一，pair-duplicate sources=0；`log_index` 从未在预注册中定义为 pair key 或一致性门，故冻结修正为
+继续用 `task + sorted(paths)` 作唯一主键、`ordinal` 检查抽取完整性，并把 `log_index` null/duplicate 计数
+写入 integrity summary。该修正发生在任何准确率/gap aggregate 产生之前，不允许用它删行或改变 gate。
+
 exact-score ties 单独计数，不进入方向准确率、gap quantile 或 gate。官方论文的 18,438 与自动 parquet 的
 18,361 相差 77；本审计事先**不假定**这 77 都是 ties，只在全量核对后描述。
 

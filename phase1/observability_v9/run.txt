@@ -1,0 +1,6 @@
+VERIFIED cards=230 usable=86 runs=52 tasks=19
+PRIMARY auc=0.8629 runCI=[0.7602,0.9483] taskCI=[0.6951,0.9606]
+BRIER_GAIN_VS_TASK delta=+0.0072 runCI=[-0.0045,+0.0165] taskCI=[-0.0058,+0.0176] sign_p=0.003185
+LOTO pooled_auc=0.6676 taskCI=[0.4554,0.8388] macro_task_auc=0.6114
+SPLIT_SEEDS median_auc=0.8572 variance=0.00005325 min_auc=0.8444
+DECISION BORDERLINE

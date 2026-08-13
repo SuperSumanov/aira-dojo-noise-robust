@@ -1,0 +1,15 @@
+{
+  "pass": true,
+  "cards": 230,
+  "runs": 52,
+  "tasks": 19,
+  "main_auc": 0.8628875968992248,
+  "brier_gain_vs_task": 0.007173463614343428,
+  "run_sign": {
+    "positive": 37,
+    "negative": 15,
+    "ties": 0,
+    "pvalue": 0.003185253447776759
+  },
+  "decision": "BORDERLINE"
+}

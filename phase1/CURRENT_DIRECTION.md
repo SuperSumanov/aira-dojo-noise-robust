@@ -5,7 +5,7 @@
 
 ## 1. 审计截面
 
-- 我方分析基线：`fork/phase1-value-critic@1b317eccc7e7c23754962248ad3548d35b8efd90`
+- 我方分析基线：`fork/phase1-value-critic@383e75b616215d29782e4829ebbfde49f03f37bc`
 - 学长分支：`fork/dojo-reproduce@8c57b7580e22fdbb2cbab350bc34475d084fe5ee`
 - 最新发布语料：v11，16,012 cards / 667 physical runs / 25 tasks；15,991 finite，21 quarantine。
 - 论文冻结决策集：b0/b1/b2 分别 1,498 / 323 / 265 对；v10 与 v11 逐字相同。
@@ -23,6 +23,8 @@
 - `phase1/实验记录/2026-08-13/parent_certified_improvement_回顾性预注册.md`；
 - `phase1/实验记录/2026-08-13/parent_certified_improvement_探索性裁决.md`；
 - `phase1/实验记录/2026-08-13/120秒评分可观测性_机制预注册.md`；
+- `phase1/实验记录/2026-08-13/120秒评分可观测性_探索性裁决.md`；
+- `phase1/实验记录/2026-08-13/选择性可观测反馈_正面突破路线.md`；
 - 学长分支 `src/mle_critic/docs/outcomes/0812/DECISION_MODEL_SIZE_EXPERIMENTS.md`。
 
 ## 2. 最近两周的路线更替
@@ -116,13 +118,20 @@ parent-certified top-1=0.5683，stdout-only=0.5383，差 +0.0300；run-CI
 不能宣称独立确认更差。该规则未过 +0.08、双聚类 CI 与 run sign 门，裁决为
 **BORDERLINE**。因此此候选关闭，不进入前瞻确认，也不得在旧 100 sets 上改 margin、阈值或回退规则。
 
-### 3.4 冻结待跑的机制可行性审计（不是 selector）
+### 3.4 已完成的机制可行性审计（不是 selector）
 
 只用执行前代码与任务身份预测“120 秒时是否有 finite pristine 外部分”，不把最终质量、stdout、
 artifact 分数或 parent 比较用作特征。主模型使用 physical-run 分组的五折 OOF，task/run 双聚类
 推断，另做五个 split-seed 敏感性与 whole-task leave-one-out。它只回答可观测性 propensity 是否
 可建模；即使达到 GO-FEASIBLE，也不能声称搜索收益，只允许在新的 discovery/validation split
 开发显式删失模型。旧 100-set selector 规则仍保持关闭。
+
+冻结审计已一次性完成并由独立实现复核，裁决为 **BORDERLINE**：主模型 AUC=0.8629，run/task
+CI=[0.7602,0.9483]/[0.6951,0.9606]，5 个 split seeds 的 median/min AUC=0.8572/0.8444；
+但 task-only AUC=0.8642，主模型相对 task-only 的 Brier gain 仅 +0.0072，run/task CI 均跨 0。
+whole-task LOTO AUC=0.6676，task-bootstrap CI=[0.4554,0.8388]。因此可观测性在现有任务内高度稳定，
+但没有证据证明代码模型优于任务先验或能可靠迁移到新任务。该结果不授权直接开发通用 propensity
+selector；若继续，只能在新 split 上做 task-conditional 模型，对未见任务 abstain，并独立认证。
 
 ## 4. 已关闭或仅历史的方向
 
@@ -140,10 +149,10 @@ artifact 分数或 parent 比较用作特征。主模型使用 physical-run 分�
 ## 5. 正面突破的分层路径
 
 1. **近期最稳**：前瞻确认评分通道机制；这是数据论文可引用的正结果。
-2. **近期方法化候选**：parent-certified improvement 已以 **BORDERLINE** 关闭。若在新
-   discovery split 上继续方法化，必须显式建模 artifact 的可用性/失败/删失过程及条件分数，采用
-   cross-fitting 或独立 validation；不能把“是否及时产物”直接当质量，也不能在旧 100 sets 上
-   继续搜索 selector、margin 或阈值。
+2. **近期方法化候选**：parent-certified 与执行前可观测性预测均以 **BORDERLINE** 关闭。新数据上
+   若继续，必须显式记录 time-to-artifact 的删失过程和条件分数；现有结果只支持 task-conditional
+   propensity，并要求对未见任务 abstain。采用 cross-fitting、独立 validation/certification；不能把
+   “是否及时产物”直接当质量，也不能在旧 100 sets 上继续搜索 selector、margin 或阈值。
 3. **更强但改 operator 的候选**：让 agent 在固定早期预算内优先产 schema-valid cheap submission，
    再继续优化。这可能提高 120 秒 artifact 覆盖，直接攻击 144/230 silent 的瓶颈；但它改变
    operator/prompt，必须另立三臂公平实验，不能冒充只改评估旋钮。

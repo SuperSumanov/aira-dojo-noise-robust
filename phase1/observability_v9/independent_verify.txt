@@ -1,0 +1,1 @@
+INDEPENDENT_OBSERVABILITY_VERIFY_PASS {"brier_gain_vs_task": 0.007173463614343428, "cards": 230, "decision": "BORDERLINE", "main_auc": 0.8628875968992248, "pass": true, "run_sign": {"negative": 15, "positive": 37, "pvalue": 0.003185253447776759, "ties": 0}, "runs": 52, "tasks": 19}

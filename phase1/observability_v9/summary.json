@@ -1,0 +1,186 @@
+{
+  "protocol": {
+    "seed": 9173,
+    "outer_seeds": [
+      9173,
+      9174,
+      9175,
+      9176,
+      9177
+    ],
+    "n_boot": 20000,
+    "outer": "StratifiedGroupKFold(n_splits=5,shuffle=True,random_state=9173)",
+    "primary_model": "code_task_tfidf",
+    "git_commit": "383e75b616215d29782e4829ebbfde49f03f37bc",
+    "argv": [
+      "/tmp/codex_observability_prereg_20260813/phase1/observability_propensity.py",
+      "--manifest",
+      "/research/d7/spc/yzyang4/aira-dojo/phase1/fidelity_manifest.jsonl",
+      "--results",
+      "/research/d7/spc/yzyang4/aira-dojo/phase1/fidelity_results.jsonl",
+      "--run-map",
+      "/research/d7/spc/yzyang4/aira-dojo/phase1/card_run_map.json",
+      "--out",
+      "/tmp/codex_observability_prereg_20260813/phase1/observability_v9",
+      "--git-commit",
+      "383e75b616215d29782e4829ebbfde49f03f37bc"
+    ],
+    "versions": {
+      "python": "3.12.13",
+      "numpy": "2.5.0",
+      "scipy": "1.18.0",
+      "sklearn": "1.9.0"
+    }
+  },
+  "counts": {
+    "cards": 230,
+    "usable": 86,
+    "sub_exists": 86,
+    "code_truncated": 93,
+    "runs": 52,
+    "tasks": 19,
+    "folds": 5
+  },
+  "input_sha256": {
+    "manifest": "77f696828010e2d6ae10a9b9de2d9ec05d44975b1285ea763d9850a7f30ca4ef",
+    "results": "b1266d04912596b1e37e13f79ce2387a962f5510cfa264aa1a97b7a1c443180d",
+    "run_map": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+  },
+  "models": {
+    "global_prevalence": {
+      "auc": 0.476905684754522,
+      "average_precision": 0.3612830133905375,
+      "brier": 0.23434342294390145,
+      "log_loss": 0.661522083308973
+    },
+    "task_prevalence": {
+      "auc": 0.8642199612403101,
+      "average_precision": 0.8064312866049567,
+      "brier": 0.1596469718049963,
+      "log_loss": 0.49113293529068636
+    },
+    "code_tfidf": {
+      "auc": 0.8355943152454781,
+      "average_precision": 0.8129089201160139,
+      "brier": 0.17605212365351636,
+      "log_loss": 0.5352410305498664
+    },
+    "code_task_tfidf": {
+      "auc": 0.8628875968992248,
+      "average_precision": 0.8153982603844151,
+      "brier": 0.15247350819065286,
+      "log_loss": 0.47214411842140636
+    }
+  },
+  "brier_gain_vs_task": 0.007173463614343428,
+  "bootstrap": {
+    "run": {
+      "auc_ci": [
+        0.7601924554123549,
+        0.9482507968059485
+      ],
+      "auc_vs_task_ci": [
+        -0.038771133285816224,
+        0.031641582074294565
+      ],
+      "brier_gain_vs_task_ci": [
+        -0.004549825061439532,
+        0.016491168289829206
+      ],
+      "valid_replicates": 20000,
+      "skipped_replicates": 0
+    },
+    "task": {
+      "auc_ci": [
+        0.6951297766019988,
+        0.9605566390858943
+      ],
+      "auc_vs_task_ci": [
+        -0.04709509384243638,
+        0.03338689640744541
+      ],
+      "brier_gain_vs_task_ci": [
+        -0.005835506479791681,
+        0.01759943329137686
+      ],
+      "valid_replicates": 20000,
+      "skipped_replicates": 0
+    }
+  },
+  "run_brier_sign": {
+    "positive": 37,
+    "negative": 15,
+    "ties": 0,
+    "pvalue": 0.003185253447776759
+  },
+  "loto": {
+    "pooled_auc": 0.6676356589147286,
+    "macro_task_auc": 0.6113828012265512,
+    "eligible_task_count": 8,
+    "per_task_auc": {
+      "chaii-hindi-and-tamil-question-answering": 1.0,
+      "google-quest-challenge": 0.5833333333333334,
+      "leaf-classification": 0.07142857142857142,
+      "learning-agency-lab-automated-essay-scoring-2": 0.4722222222222222,
+      "mlsp-2013-birds": 0.7555555555555556,
+      "nomad2018-predict-transparent-conductors": 0.65625,
+      "petfinder-pawpularity-score": 0.625,
+      "whale-categorization-playground": 0.7272727272727273
+    },
+    "task_bootstrap": {
+      "auc_ci": [
+        0.4553845029541624,
+        0.8388148615393454
+      ],
+      "valid_replicates": 20000,
+      "skipped_replicates": 0
+    }
+  },
+  "controls": {
+    "label_oracle_auc": 1.0,
+    "crc32_auc": 0.576954134366925
+  },
+  "split_seed_sensitivity": {
+    "per_seed": [
+      {
+        "seed": 9173,
+        "auc": 0.8628875968992248,
+        "average_precision": 0.8153982603844151,
+        "brier": 0.15247350819065286,
+        "log_loss": 0.47214411842140636
+      },
+      {
+        "seed": 9174,
+        "auc": 0.8443959948320414,
+        "average_precision": 0.7834770752109995,
+        "brier": 0.15647944269444958,
+        "log_loss": 0.4844593211367894
+      },
+      {
+        "seed": 9175,
+        "auc": 0.8571543927648578,
+        "average_precision": 0.7938135171377896,
+        "brier": 0.1528831855939646,
+        "log_loss": 0.47429619729948996
+      },
+      {
+        "seed": 9176,
+        "auc": 0.8595768733850129,
+        "average_precision": 0.7844978333637914,
+        "brier": 0.15176917078918792,
+        "log_loss": 0.46966148217735704
+      },
+      {
+        "seed": 9177,
+        "auc": 0.8514211886304909,
+        "average_precision": 0.806609014995477,
+        "brier": 0.1537919031311677,
+        "log_loss": 0.47644079310667103
+      }
+    ],
+    "median_auc": 0.8571543927648578,
+    "sample_variance_auc": 5.325453803023273e-05,
+    "min_auc": 0.8443959948320414
+  },
+  "decision": "BORDERLINE"
+}

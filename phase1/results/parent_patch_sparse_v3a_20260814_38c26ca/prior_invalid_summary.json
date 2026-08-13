@@ -1,0 +1,57 @@
+{
+  "command": [
+    "/research/d7/spc/yzyang4/venvs/critic/bin/python",
+    "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/parent_patch_gate.py",
+    "--cards",
+    "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/cards_current_v11.jsonl",
+    "--run-map",
+    "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/card_run_map.json",
+    "--train-pairs",
+    "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/v11_decision/decision_train_v11_b0.jsonl",
+    "--frozen-pairs",
+    "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/v11_decision/decision_frozen_v11_b0.jsonl",
+    "--prereg",
+    "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/实验记录/2026-08-14/ParentPatchCritic_CPU发现门_预注册.md",
+    "--out-dir",
+    "/research/d7/spc/yzyang4/experiments/parent_patch_sparse_v3_20260814_500f8134e90f",
+    "--repo-root",
+    "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813",
+    "--wall-cap-s",
+    "900"
+  ],
+  "config": {
+    "alpha": 1e-05,
+    "api_calls": 0,
+    "folds": 5,
+    "gpu_count": 0,
+    "n_features": 262144,
+    "ngram_range": [
+      3,
+      5
+    ],
+    "parent_equal_weight": true,
+    "text_limit": 20000,
+    "wall_cap_s": 900.0
+  },
+  "error": "insufficient train support runs=280 tasks=23",
+  "frozen_read": false,
+  "git_commit": "500f8134e90f2d98bdfac61df62206f354cba528",
+  "inputs": {
+    "cards": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/cards_current_v11.jsonl",
+    "frozen_pairs": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/v11_decision/decision_frozen_v11_b0.jsonl",
+    "prereg": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/实验记录/2026-08-14/ParentPatchCritic_CPU发现门_预注册.md",
+    "run_map": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/card_run_map.json",
+    "train_pairs": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/v11_decision/decision_train_v11_b0.jsonl"
+  },
+  "outputs": {},
+  "protocol": "parent_patch_sparse_v3",
+  "seed": 887,
+  "software": {
+    "numpy": "2.5.0",
+    "platform": "Linux-6.8.0-100-generic-x86_64-with-glibc2.39",
+    "python": "3.12.13 (main, Jun 23 2026, 15:18:55) [Clang 22.1.3 ]",
+    "scipy": "1.18.0",
+    "sklearn": "1.9.0"
+  },
+  "status": "INVALID"
+}

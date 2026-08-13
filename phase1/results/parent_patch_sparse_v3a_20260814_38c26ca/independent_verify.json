@@ -1,0 +1,25 @@
+{
+  "discovery_gate": {
+    "all": false,
+    "dominant_task_le_025": true,
+    "finite": true,
+    "oracle_eq_1": true,
+    "pair_gain_ge_002": false,
+    "parent_coverage_ge_090": true,
+    "parent_top1_gain_ge_003": false,
+    "patch_pair_accuracy_ge_054": false,
+    "run_ci_low_gt_0": false,
+    "runs_ge_250": true,
+    "supported_tasks_ge_10": true,
+    "task_ci_low_gt_0": false,
+    "task_nonnegative_share_ge_060": false,
+    "tasks_ge_20": true,
+    "within_wall_cap": true
+  },
+  "frozen_verified": false,
+  "oof_rows": 3948,
+  "score_margin_abs_tolerance": 0.0001,
+  "status": "DISCOVERY_NO_UNLOCK",
+  "verified": true,
+  "verifier_sha256": "18cb757fc7932afbeb089a2f91670ce87dfa392935322c440b4288a7ddf065e0"
+}

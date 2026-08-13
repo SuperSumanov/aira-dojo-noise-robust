@@ -1,0 +1,21 @@
+PARENT_PATCH_RUN_START=2026-08-14T02:35:55+08:00
+HOST=linux5
+COMMIT=38c26cac2c7df23809ca5477ceefeb472f06dc90
+SOURCE_SHA256=ce50246b436b3f0f6ed495f8c81891b3c9460785cf985255c5c08058f3d4c4e4
+VERIFIER_SHA256=c8daaf150444c0702fc2d93763dc2e5864d8053304345ad4fbc6979a4f6864d3
+PREREG_SHA256=4b66d37f9566fd93d5fca26089efbf8f1c70a0c5a3bcc38936ffd363b23e0bf4
+PARENT_PATCH_DISCOVERY_NO_UNLOCK {"all": false, "dominant_task_le_025": true, "finite": true, "oracle_eq_1": true, "pair_gain_ge_002": false, "parent_coverage_ge_090": true, "parent_top1_gain_ge_003": false, "patch_pair_accuracy_ge_054": false, "run_ci_low_gt_0": false, "runs_ge_250": true, "supported_tasks_ge_10": true, "task_ci_low_gt_0": false, "task_nonnegative_share_ge_060": false, "tasks_ge_20": true, "within_wall_cap": true}
+GATE_RC=0
+Traceback (most recent call last):
+  File "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/verify_parent_patch_gate.py", line 340, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/verify_parent_patch_gate.py", line 285, in main
+    oof_rows = read_predictions(args.oof, "discovery")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/verify_parent_patch_gate.py", line 61, in read_predictions
+    close(
+  File "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/verify_parent_patch_gate.py", line 36, in close
+    raise AssertionError(f"{left} != {right}")
+AssertionError: -0.03050372004508972 != -0.030514240264892578
+VERIFY_RC=1

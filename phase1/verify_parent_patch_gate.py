@@ -21,6 +21,7 @@ from typing import Any, Sequence
 SEED = 887
 REPS = 4_000
 EPSILON = 1e-12
+SCORE_MARGIN_ABS_TOLERANCE = 1e-4
 
 
 def sha256(path: Path) -> str:
@@ -58,11 +59,25 @@ def read_predictions(path: Path, expected_split: str) -> list[dict[str, Any]]:
             if not math.isfinite(row[key]):
                 raise AssertionError(f"non-finite {key}")
         for arm in ("absolute", "patch"):
+            endpoint_margin = (
+                row[f"{arm}_better_score"] - row[f"{arm}_worse_score"]
+            )
             close(
                 row[f"{arm}_margin"],
-                row[f"{arm}_better_score"] - row[f"{arm}_worse_score"],
-                tolerance=1e-5,
+                endpoint_margin,
+                tolerance=SCORE_MARGIN_ABS_TOLERANCE,
             )
+            direct_sign = (
+                1 if row[f"{arm}_margin"] > EPSILON else -1 if row[f"{arm}_margin"] < -EPSILON else 0
+            )
+            endpoint_sign = (
+                1 if endpoint_margin > EPSILON else -1 if endpoint_margin < -EPSILON else 0
+            )
+            if direct_sign != endpoint_sign:
+                raise AssertionError(
+                    f"orientation mismatch for {arm}: "
+                    f"{row[f'{arm}_margin']} != {endpoint_margin}"
+                )
             expected_hit = (
                 1.0
                 if row[f"{arm}_margin"] > EPSILON
@@ -294,6 +309,8 @@ def main() -> int:
 
     result: dict[str, Any] = {
         "verified": True,
+        "verifier_sha256": sha256(Path(__file__)),
+        "score_margin_abs_tolerance": SCORE_MARGIN_ABS_TOLERANCE,
         "status": summary["status"],
         "oof_rows": len(oof_rows),
         "discovery_gate": expected_discovery_gate,

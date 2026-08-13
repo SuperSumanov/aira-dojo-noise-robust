@@ -1,0 +1,163 @@
+{
+  "common_tasks": {
+    "names": [
+      "aptos2019-blindness-detection",
+      "denoising-dirty-documents",
+      "dog-breed-identification",
+      "google-quest-challenge",
+      "leaf-classification",
+      "learning-agency-lab-automated-essay-scoring-2",
+      "mlsp-2013-birds",
+      "nomad2018-predict-transparent-conductors",
+      "petfinder-pawpularity-score",
+      "random-acts-of-pizza",
+      "spooky-author-identification",
+      "tabular-playground-series-dec-2021",
+      "tweet-sentiment-extraction",
+      "us-patent-phrase-to-phrase-matching"
+    ],
+    "official": {
+      "buckets": {
+        "[0,0.0001)": 7,
+        "[0.0001,0.0003)": 23,
+        "[0.0003,0.001)": 71,
+        "[0.001,0.003)": 315,
+        "[0.003,0.01)": 713,
+        "[0.01,0.03)": 1433,
+        "[0.03,0.1)": 2851,
+        "[0.1,0.3)": 2589,
+        "[0.3,inf)": 1253
+      },
+      "gap_quantiles": {
+        "q10": 0.007899999999999976,
+        "q25": 0.026000000000000023,
+        "q50": 0.0723,
+        "q75": 0.18434999999999999,
+        "q90": 0.36426000000000003
+      },
+      "hard_lt_1e2_pair_share": 0.12198811453268503,
+      "hard_lt_1e2_pairs": 1129,
+      "hard_lt_1e2_task_macro_share": 0.21863346683954182,
+      "pairs": 9255,
+      "tasks": 14
+    },
+    "our_b0": {
+      "buckets": {
+        "[0,0.0001)": 64,
+        "[0.0001,0.0003)": 79,
+        "[0.0003,0.001)": 140,
+        "[0.001,0.003)": 123,
+        "[0.003,0.01)": 169,
+        "[0.01,0.03)": 139,
+        "[0.03,0.1)": 184,
+        "[0.1,0.3)": 106,
+        "[0.3,inf)": 153
+      },
+      "gap_quantiles": {
+        "q10": 0.00022,
+        "q25": 0.00107,
+        "q50": 0.01024,
+        "q75": 0.07181,
+        "q90": 0.47261000000000075
+      },
+      "hard_lt_1e2_pair_share": 0.4969749351771824,
+      "hard_lt_1e2_pairs": 575,
+      "hard_lt_1e2_task_macro_share": 0.43951207453975794,
+      "pairs": 1157,
+      "tasks": 14
+    }
+  },
+  "input_locks": {
+    "official_parquet": "79363b7ef0b6154061f18e81f6c6fdf380e71ae3f1d7b9a262cc79acb08f0b5f",
+    "our_b0": "33df48f8c9b54f60e6e3f100b9269e5e3950c506c8ff98601a61848e197ede50"
+  },
+  "interpretation_guard": {
+    "causal_explanation_allowed": false,
+    "contains_official_predictions": false,
+    "cross_task_raw_gap_scale_warning": true,
+    "purpose": "audit pairing distribution and dependence before any verified-report judge rerun"
+  },
+  "official": {
+    "duplicate_unordered_pair_rows": 0,
+    "gap": {
+      "buckets": {
+        "[0,0.0001)": 16,
+        "[0.0001,0.0003)": 45,
+        "[0.0003,0.001)": 114,
+        "[0.001,0.003)": 475,
+        "[0.003,0.01)": 1120,
+        "[0.01,0.03)": 2166,
+        "[0.03,0.1)": 4373,
+        "[0.1,0.3)": 4754,
+        "[0.3,inf)": 5298
+      },
+      "gap_quantiles": {
+        "q10": 0.010199999999999987,
+        "q25": 0.036599999999999966,
+        "q50": 0.12390000000000001,
+        "q75": 0.3563,
+        "q90": 2.9263000000000003
+      },
+      "hard_lt_1e2_pair_share": 0.09639997821469419,
+      "hard_lt_1e2_pairs": 1770,
+      "hard_lt_1e2_task_macro_share": 0.17617065687273237,
+      "pairs": 18361,
+      "tasks": 26
+    },
+    "pair_graph_coverage_task_max": 1.0,
+    "pair_graph_coverage_task_median": 0.9959183673469387,
+    "pair_graph_coverage_task_min": 0.36551724137931035,
+    "rows": 18361,
+    "same_trajectory_pairs": 2913,
+    "same_trajectory_share_of_parseable": 0.15865148957028485,
+    "solution_appearance_max": 49,
+    "solution_appearance_mean": 41.03016759776536,
+    "solution_appearance_median": 49,
+    "tasks": 26,
+    "trajectory_parseable_pairs": 18361,
+    "unique_solution_paths": 895,
+    "unique_unordered_pairs": 18361
+  },
+  "our_b0": {
+    "duplicate_unordered_pair_rows": 0,
+    "excluded_nonfinite_gap_rows": [
+      {
+        "better": "google-quest-challenge__943ccd9c26c94c68bb6399e1fb1ba87e",
+        "task": "google-quest-challenge",
+        "worse": "google-quest-challenge__e90cc6af413d460cb63d26347e36638e",
+        "zero_based_row": 1013
+      }
+    ],
+    "gap": {
+      "buckets": {
+        "[0,0.0001)": 71,
+        "[0.0001,0.0003)": 93,
+        "[0.0003,0.001)": 170,
+        "[0.001,0.003)": 176,
+        "[0.003,0.01)": 241,
+        "[0.01,0.03)": 203,
+        "[0.03,0.1)": 238,
+        "[0.1,0.3)": 143,
+        "[0.3,inf)": 163
+      },
+      "gap_quantiles": {
+        "q10": 0.00027,
+        "q25": 0.0013375000000000001,
+        "q50": 0.009895000000000001,
+        "q75": 0.0644575,
+        "q90": 0.34887
+      },
+      "hard_lt_1e2_pair_share": 0.5013351134846462,
+      "hard_lt_1e2_pairs": 751,
+      "hard_lt_1e2_task_macro_share": 0.4633025748369189,
+      "pairs": 1498,
+      "tasks": 22
+    },
+    "rows_excluded_nonfinite_gap": 1,
+    "rows_finite_gap": 1498,
+    "rows_total": 1499,
+    "tasks": 22,
+    "unique_unordered_pairs": 1498
+  },
+  "status": "descriptive external pair-graph audit; no official judge predictions"
+}

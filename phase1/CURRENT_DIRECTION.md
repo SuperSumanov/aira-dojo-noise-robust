@@ -27,6 +27,7 @@
 - `phase1/实验记录/2026-08-13/选择性可观测反馈_正面突破路线.md`；
 - `phase1/实验记录/2026-08-13/anytime_oracle_headroom_探索性上界.md`；
 - `phase1/实验记录/2026-08-13/FOREAGENT官方pair图_外部审计预注册.md`；
+- `phase1/实验记录/2026-08-13/FOREAGENT官方pair图_外部审计裁决.md`；
 - `phase1/实验记录/2026-08-13/连续fidelity轨迹_watcher_smoke冻结说明.md`；
 - 学长分支 `src/mle_critic/docs/outcomes/0812/DECISION_MODEL_SIZE_EXPERIMENTS.md`。
 
@@ -187,7 +188,7 @@ race 的 optimistic avoidable tail 仅 0.026163；偷看最终 `graded` 的不�
 在旧 100 sets 上选时间阈值或策略。当前科学问题可概括为 **Anytime MLE Search under Selectively
 Observable Execution Feedback**；late-artifact pilot 的 outcome 前 gate 仍是下一步唯一裁决器。
 
-### 3.9 冻结待跑的 FOREAGENT 官方 pair 图外部审计（CPU 描述，不是模型对决）
+### 3.9 已完成的 FOREAGENT 官方 pair 图外部审计（CPU 描述，不是模型对决）
 
 官方 Hugging Face 自动转换 parquet 已锁为 8,456,690 bytes、SHA256=`79363b7e...0b5f`，只含
 18,361 行 pair paths/scores/ranking，不含官方逐 pair judge prediction。审计固定报告 unique solutions、
@@ -198,10 +199,16 @@ common tasks 的 pair-weighted 与 task-macro 描述。
 1,498 finite headline 计数一致。冻结处理是明确记录并排除该行后再算 gap，负 gap 仍 fail-closed；
 此次失败没有产生 audit JSON/CSV，也没有读取任何分布 aggregate。
 
-该审计不做显著性检验、不声称解释官方 61.5%。若 common-task hard share 不更低，必须撤回“主要由 gap
-分布抬高”的强解释；即使更低，也只能把 pairing distribution 写成候选解释。官方真正 executed
-`data_analysis/result` 已确认能在冻结 300-pair 样本中覆盖 211 pairs / 14 tasks；是否花 API 做严格
-共同覆盖复核，需在 pair 图审计完成后另行 outcome 前冻结，不能沿用旧的 description-paraphrase 报告裁决。
+独立复核通过，裁决为 **PAIRING-MISMATCH VERIFIED**：官方 `gap<1e-2` share=0.096400，我方=0.501335；
+限制到 14 个同名 common tasks 后为 0.121988 vs 0.496975，task-macro 为 0.218633 vs 0.439512，
+12/14 tasks 方向一致。官方 895 solutions 的每任务 pair graph coverage median=0.995918，每 solution
+组合复用 median=49 次，仅 0.158651 pairs 同 trajectory。该结果直接确认“全局穷举 pair”和 agent
+真实 sibling decision 是不同评测分布，但 parquet 不含官方 predictions，不能单独声称 gap 导致 61.5%。
+
+同时修正 8 月 12 日 PBE 文档：旧 `qwen-max + description-derived unverified report + 非 COT + code
+截断` 只能保留为该配置的历史结果；“报告未执行验证无关紧要”已撤回，不得再称直接裁决 FOREAGENT。
+官方 executed reports 覆盖旧 300-pair 样本中的 211 pairs / 14 tasks；官方还公开 DeepSeek/GPT 三次逐
+pair alignments，优先冻结并直接重算原模型的 gap 曲线，无需先花 API 重跑 Qwen。
 
 ## 4. 已关闭或仅历史的方向
 

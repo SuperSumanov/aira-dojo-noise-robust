@@ -1,5 +1,12 @@
 # 2026-08-12(夜):arXiv:2601.05930 协议在真实决策点上的裁决
 
+> **2026-08-13 范围修正（覆盖原标题中的“裁决”）**：本实验只裁决了
+> `qwen-max + description-derived unverified report + 非 COT + 6000 字符代码截断`，不能作为
+> FOREAGENT 官方协议的直接复现或否定。官方后来确认公开了真正执行得到的
+> `tasks/data_analysis/result`，在本实验冻结 300 pairs 中精确覆盖 211 pairs / 14 tasks；同时公开了
+> DeepSeek-V3.2-Thinking/GPT-5.1 逐 pair alignments。后续以官方原始输入和预测作直接审计。本页数值
+> 保留为诚实历史，论文不得再称其“直接裁决 FOREAGENT”。
+
 ## 背景
 
 zjunlp《Can We Predict Before Executing Machine Learning Agents?》(2026-01,FOREAGENT 系)
@@ -13,10 +20,11 @@ zjunlp《Can We Predict Before Executing Machine Learning Agents?》(2026-01,FOR
 判官 prompt 逐句取自其 repo `grade/util/prompt.py`:同一系统提示(禁止假设真值/禁止
 执行/只输出 JSON)、同一指令句("Predict which solution will perform best WITHOUT
 running code")、同一输出格式(`predicted_best_index`)、非 COT 变体。两臂:
-`desc`(仅任务描述)与 `desc_report`(+ 数据分析报告)。**唯一偏离**:我们的报告由
-qwen-max 从赛题 description.md 生成,未做其"执行验证"步 —— 若 priming 无信号则偏离
-无关紧要(desc 臂无此偏离且同样塌);判官用 qwen-max(此前测得一致性最高 0.79)而非
-其 DeepSeek-V3.2/GPT-5.1;代码截断 6000 字符。
+`desc`(仅任务描述)与 `desc_report`(+ 数据分析报告)。我们的报告由 qwen-max 从赛题
+description.md 生成,未做其"执行验证"步。原文曾推断“若 priming 无信号则偏离无关紧要”，该推断
+于 2026-08-13 **撤回**：执行剖析本身可能添加 description 不含的信息，零增益不能证明两种报告等价。
+此外判官用 qwen-max(此前测得一致性最高 0.79)而非其 DeepSeek-V3.2/GPT-5.1，采用非 COT，代码
+截断 6000 字符；因此至少有四项协议差异，而不是“唯一偏离”。
 
 采样:干净 b0 决策集,150 难 + 150 易,任务分层,seed 7;**每对双序提问**,
 报序平均准确率;序间不一致率如实公布。全部 600 对次 × 2 臂解析成功率 100%。

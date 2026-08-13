@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0C. 2026-08-14 最新覆盖：task-conditioned/top-centered 关闭，转 exact-same-pool 异构审计
+
+本节晚于 0B；稳定论文伞不变。
+
+1. 预注册 `task_topcenter_v11_discovery_v1` 已完成 5-fold physical-run OOF，并由不导入 producer 的
+   verifier 独立重建。裁决为 `VERIFIED_DISCOVERY_NO_UNLOCK`，`frozen_read=false`。
+2. 主模型 pair=`0.5066854327938072`、complete-parent top-1=`0.45108455068614434`、
+   parent-equal gap utility=`0.5125829562017966`。相对 fixed global head 的 top-1/utility 微平均增量只有
+   `0.00398406374501992` / `0.002076308434788266`，run/task clustered CI 全部跨零；任务一致性也未过门。
+3. 2×2 消融没有给 task residual 稳健支持；top-centered objective 只有小而不一致的变化。因此关闭当前
+   task-conditioned linear 实现，不扩大正则网格、不按任务翻转、不读 frozen。
+4. 下一步按 0B 已冻结的条件，只做 exact-same-pool、同一 outer physical-run folds 的 char-TFIDF/static
+   train-only OOF 与 error-complementarity 审计。互补性标准须在结果前固定；只有通过才实现严格 nested
+   ensemble，不能在同一 OOF 行上训练并报告 meta-head。
+
+直接依据：
+
+- `phase1/实验记录/2026-08-14/TaskTopCentered_RunOOF_裁决.md`；
+- `phase1/results/task_topcenter_v11_20260814/independent_verify.json`。
+
 ## 0B. 2026-08-14 最新覆盖：global frozen head 关闭，转 task-conditioned parent objective
 
 本节晚于 0A 并覆盖其中“Parent-Conditioned Patch / Action Critic 是当前首选方法候选”的下一步措辞；

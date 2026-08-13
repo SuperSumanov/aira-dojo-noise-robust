@@ -33,3 +33,8 @@ fallback when a task is absent from an outer-fit partition.
 
 No model accuracy was used to choose task eligibility, and this audit does not
 change the completed frozen-embedding gate.
+
+The JSON records both raw checkout hashes and canonical-LF hashes. This matters
+because the Windows worktree may materialize CRLF while the formal cluster
+launcher locks the LF bytes; row identity and the canonical-LF hash remain
+portable across the two environments.

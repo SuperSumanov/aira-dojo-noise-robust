@@ -47,6 +47,12 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def normalized_lf_sha256(path: Path) -> str:
+    """Hash UTF-8 text after canonical LF conversion and one final newline."""
+    normalized = "\n".join(path.read_text(encoding="utf-8").splitlines()) + "\n"
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
 def reject_forbidden_path(path: Path, label: str) -> None:
     lowered = path.name.lower()
     found = [token for token in FORBIDDEN_PATH_TOKENS if token in lowered]
@@ -289,8 +295,10 @@ def audit(train_pairs: Path, baseline_oof: Path) -> dict[str, Any]:
         "inputs": {
             "train_pairs": display_path(train_pairs),
             "train_pairs_sha256": sha256(train_pairs),
+            "train_pairs_normalized_lf_sha256": normalized_lf_sha256(train_pairs),
             "baseline_oof": display_path(baseline_oof),
             "baseline_oof_sha256": sha256(baseline_oof),
+            "baseline_oof_normalized_lf_sha256": normalized_lf_sha256(baseline_oof),
         },
         "global": {
             "pairs": len(rows),

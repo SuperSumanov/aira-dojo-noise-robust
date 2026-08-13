@@ -520,12 +520,17 @@ def run_fold(
     position: dict[str, int],
     op_indices: Sequence[int],
     output_root: Path | None,
+    checkpoint_key: str,
 ) -> tuple[dict[str, dict[str, float]], dict[str, Any]]:
     if output_root is not None:
         final_dir = output_root / f"fold_{fold}"
         if final_dir.exists():
             previous = json.loads((final_dir / "fold_summary.json").read_text(encoding="utf-8"))
-            if previous.get("status") != "FOLD_COMPLETE" or int(previous.get("fold", -1)) != fold:
+            if (
+                previous.get("status") != "FOLD_COMPLETE"
+                or int(previous.get("fold", -1)) != fold
+                or str(previous.get("checkpoint_key")) != checkpoint_key
+            ):
                 raise IntegrityError(f"invalid existing fold checkpoint: {fold}")
             score_path = final_dir / "valid_scores.npz"
             if sha256(score_path) != str(previous.get("valid_scores_sha256")):
@@ -570,6 +575,7 @@ def run_fold(
     summary = {
         "status": "FOLD_COMPLETE",
         "protocol": PROTOCOL,
+        "checkpoint_key": checkpoint_key,
         "fold": fold,
         "fit_pairs": len(fit_indices),
         "valid_pairs": len(valid_indices),
@@ -820,11 +826,11 @@ def main() -> int:
         (args.baseline_oof, "baseline OOF"),
     ):
         reject_forbidden_path(path, label)
-    if args.out_dir.exists():
-        raise FileExistsError(f"refusing to overwrite output: {args.out_dir}")
-    args.out_dir.mkdir(parents=True)
+    if (args.out_dir / "summary.json").exists():
+        raise FileExistsError(f"refusing to overwrite completed output: {args.out_dir}")
+    args.out_dir.mkdir(parents=True, exist_ok=True)
     checkpoint_root = args.out_dir / "checkpoints"
-    checkpoint_root.mkdir()
+    checkpoint_root.mkdir(exist_ok=True)
 
     manifest, manifest_summary = load_manifest(
         args.manifest, args.manifest_summary, args.expect_manifest_sha256
@@ -852,6 +858,27 @@ def main() -> int:
     if not np.isfinite(static_matrix).all():
         raise IntegrityError("non-finite static feature matrix")
 
+    checkpoint_contract = {
+        "protocol": PROTOCOL,
+        "git_commit": git_commit(args.repo_root),
+        "source_sha256": sha256(Path(__file__)),
+        "pairs_sha256": pairs_sha,
+        "run_map_sha256": sha256(args.run_map),
+        "cards_sha256": card_audit["cards_sha256"],
+        "manifest_sha256": sha256(args.manifest),
+        "baseline_oof_sha256": baseline_audit["sha256"],
+        "arms": list(ARMS),
+        "seed": SEED,
+    }
+    checkpoint_key = json_digest(checkpoint_contract)
+    contract_path = args.out_dir / "checkpoint_contract.json"
+    if contract_path.exists():
+        previous_contract = json.loads(contract_path.read_text(encoding="utf-8"))
+        if previous_contract != {**checkpoint_contract, "checkpoint_key": checkpoint_key}:
+            raise IntegrityError("checkpoint contract mismatch")
+    else:
+        atomic_json(contract_path, {**checkpoint_contract, "checkpoint_key": checkpoint_key})
+
     all_scores: dict[str, dict[str, float]] = {arm: {} for arm in BASE_ARMS}
     fold_summaries: list[dict[str, Any]] = []
     for fold in range(OUTER_FOLDS):
@@ -864,6 +891,7 @@ def main() -> int:
             position,
             op_indices,
             checkpoint_root,
+            checkpoint_key,
         )
         for arm in BASE_ARMS:
             overlap = set(all_scores[arm]) & set(scores[arm])
@@ -951,6 +979,7 @@ def main() -> int:
     summary = {
         "status": status,
         "protocol": PROTOCOL,
+        "checkpoint_key": checkpoint_key,
         "git_commit": git_commit(args.repo_root),
         "frozen_read": False,
         "configuration": {

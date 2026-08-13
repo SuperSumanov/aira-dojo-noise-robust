@@ -170,6 +170,31 @@ def test_gate_thresholds_are_literal():
     assert h.unlock_gate(metrics, comparison, {"integrity": True})["all"] is False
 
 
+def test_fold_checkpoint_resume_is_keyed_and_score_exact(tmp_path: Path):
+    fold_dir = tmp_path / "fold_0"
+    fold_dir.mkdir()
+    score_path = fold_dir / "valid_scores.npz"
+    np.savez_compressed(
+        score_path,
+        card_ids=np.asarray(["a", "b"]),
+        **{arm: np.asarray([1.0, -1.0]) for arm in h.BASE_ARMS},
+    )
+    summary = {
+        "status": "FOLD_COMPLETE",
+        "fold": 0,
+        "checkpoint_key": "key-a",
+        "valid_scores_sha256": h.sha256(score_path),
+    }
+    (fold_dir / "fold_summary.json").write_text(json.dumps(summary), encoding="utf-8")
+    restored, loaded = h.run_fold(
+        0, [], [], {}, np.empty((0, 0)), {}, [], tmp_path, "key-a"
+    )
+    assert loaded == summary
+    assert restored["static_lr"] == {"a": 1.0, "b": -1.0}
+    with pytest.raises(h.IntegrityError, match="checkpoint"):
+        h.run_fold(0, [], [], {}, np.empty((0, 0)), {}, [], tmp_path, "key-b")
+
+
 def test_linear_operator_fit_learns_opposite_directions():
     pytest.importorskip("sklearn")
     cards = {

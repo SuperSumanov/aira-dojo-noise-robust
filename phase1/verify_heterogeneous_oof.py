@@ -516,6 +516,8 @@ def main() -> int:
         }
         fold_dir = args.result_dir / "checkpoints" / f"fold_{fold}"; score_path = fold_dir / "valid_scores.npz"
         fold_summary = json.loads((fold_dir / "fold_summary.json").read_text(encoding="utf-8"))
+        if str(fold_summary.get("checkpoint_key")) != str(producer.get("checkpoint_key")):
+            raise VerificationError(f"checkpoint key mismatch: {fold}")
         if sha256(score_path) != fold_summary.get("valid_scores_sha256"): raise VerificationError(f"checkpoint SHA mismatch: {fold}")
         with np.load(score_path, allow_pickle=False) as data:
             stored_ids = [str(item) for item in data["card_ids"].tolist()]

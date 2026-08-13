@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0A. 2026-08-14 覆盖裁决：回到真实决策 benchmark，Probe Contract 降为支线
+
+本节晚于下方所有 08-13 裁决并覆盖其中“当前唯一主实验/活跃方法主线”的措辞。
+
+1. 稳定论文伞仍是 **run-clean、NAS-Bench-style 的 MLE-agent 搜索树数据集与真实 sibling
+   决策 benchmark**。旧 HCE/TD/RL/多保真三臂不恢复。
+2. Progressive Artifact Contract / Probe-First 与 early-fidelity 相邻；它只保留为 gated 支线，
+   不能再冒充稳定主线。V2 job `10686` 只完成 16/16 generation，自动 replay 已在 outcome 前停掉；
+   因而没有 A/B 质量或固定预算收益结论。
+3. 当前首选方法候选改为 **Parent-Conditioned Patch / Action Critic**：不再独立判断完整 child code，
+   而是在相同 parent 下判断候选 edit/action 的相对改进。即时 b0 先用 run-clean sibling 数据裁决；
+   budget-conditioned future value 只能在相同 continuation policy 或显式 right-censoring 下扩展，
+   禁止重新使用历史 MCTS 的 subtree maximum 当无偏标签。
+4. 文献边界已收紧：SWE-bench 的 Guided Search Strategies 已有 learned action-value + one-step
+   lookahead；BAVT 已有 residual relative progress + budget conditioning。因此“action-value critic”
+   本身不构成 novelty。允许的差异只能落在 MLE patch/action 表示、run-clean/censor-aware 标签、
+   不微调底座与真实 fixed-budget utility，以及本数据基准的系统测量。
+5. 第一闸是零 GPU、outcome 前冻结的 sparse patch CPU discovery。只有 train-run OOF 同时通过效果、
+   双聚类稳健性、任务一致性与完整性门，脚本才允许读取 b0 frozen 文件；否则关闭 sparse patch
+   实现，不把工程 timeout 或旧 lookahead 负面偷换成方法结论。
+
+直接依据：
+
+- `phase1/实验记录/2026-08-14/ParentPatchCritic_文献边界与路线.md`；
+- `phase1/实验记录/2026-08-14/ParentPatchCritic_CPU发现门_预注册.md`。
+
 ## 0. 8 月 13 日晚间覆盖裁决（优先级最高）
 
 ### 0.1 21:20 后的最新覆盖：关闭 identity SPT，保留 Probe-First 因果线

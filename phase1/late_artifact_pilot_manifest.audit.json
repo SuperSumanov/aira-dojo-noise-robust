@@ -1,0 +1,57 @@
+{
+  "eligible_cards": 115,
+  "final_grade_used_for_selection": false,
+  "inputs": {
+    "manifest": "77f696828010e2d6ae10a9b9de2d9ec05d44975b1285ea763d9850a7f30ca4ef",
+    "results": "b1266d04912596b1e37e13f79ce2387a962f5510cfa264aa1a97b7a1c443180d",
+    "run_map": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30",
+    "runtime": "dff8eb88a1db8d63bab17851c1dce2c1bd389a4744a811d65a5ce1fe5a1f55e7"
+  },
+  "output_manifest_sha256": "f535116e51dc7a03a65aa6df4b4621812367eea201f16aeb8d83d21bc398bbe1",
+  "selected_cards": [
+    {
+      "card_id": "google-quest-challenge__9c121e84fa5a451e87b48f608b215dd4",
+      "competition": "google-quest-challenge",
+      "hash_rank": "0252017800bb28b8c0c8f3987da5396c8cb20a8826d210b20336c4ead89cf6bf",
+      "historical_runtime_s": 6466.060486272996,
+      "run_id": "cards_senior_0731.jsonl:8"
+    },
+    {
+      "card_id": "tabular-playground-series-may-2022__d75dd58e0bff47e9bd665df475ee1470",
+      "competition": "tabular-playground-series-may-2022",
+      "hash_rank": "0592ea88717c318c17a6558f7f617d690a204e498374f0a6889d0636d0061e39",
+      "historical_runtime_s": 7935.750172865111,
+      "run_id": "cards_senior_0801.jsonl:29"
+    },
+    {
+      "card_id": "mlsp-2013-birds__83676ff46373471d9a13d595e5dfabd9",
+      "competition": "mlsp-2013-birds",
+      "hash_rank": "077b023e0c95c36f6d3511ed1258c4936a4e502275f340ab9b85f37f3036fb66",
+      "historical_runtime_s": 976.8917811363935,
+      "run_id": "cards_senior_0728.jsonl:18"
+    },
+    {
+      "card_id": "learning-agency-lab-automated-essay-scoring-2__ec12b99e12db4b4fa87adb2a6ce1a191",
+      "competition": "learning-agency-lab-automated-essay-scoring-2",
+      "hash_rank": "0b160e07392f4eb5d31b73c8ba4ed38e0a02597017451e000a86771f606d97c6",
+      "historical_runtime_s": 2937.7804205417633,
+      "run_id": "cards_senior_0803.jsonl:3"
+    },
+    {
+      "card_id": "text-normalization-challenge-russian-language__12df4ee4a31c43728bf318e397db833e",
+      "competition": "text-normalization-challenge-russian-language",
+      "hash_rank": "0b7ab38f6fc891e3d37219e52faea97136c499abf3117b8acae8566aece6ddd0",
+      "historical_runtime_s": 1254.5514597319998,
+      "run_id": "cards_senior_0809.jsonl:23"
+    },
+    {
+      "card_id": "chaii-hindi-and-tamil-question-answering__57ce82f9247a4cc8b626b575d3f2c979",
+      "competition": "chaii-hindi-and-tamil-question-answering",
+      "hash_rank": "10b1b17488d469eedef21a5c629f6213b63b9a8dbc71421e2df53d5c1a925140",
+      "historical_runtime_s": 2520.884269952774,
+      "run_id": "cards_senior_0801.jsonl:13"
+    }
+  ],
+  "selection_rule": "prior fresh-120 sub_score nonfinite; historical runtime>=600; sha256(late-artifact-v1|card_id); greedy unique task/run",
+  "stdout_used_for_selection": false
+}

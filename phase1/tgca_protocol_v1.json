@@ -1,0 +1,60 @@
+{
+  "augmentation": {
+    "gap_bin_uppers": [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, "inf"],
+    "ratio": 1.0,
+    "selection_seed": 20260814,
+    "tgca_priority": ["different_component_first", "max_original_degree", "sum_original_degree", "sha256"],
+    "underfill": "finite_population_only_no_cross_bin_refill"
+  },
+  "arms": [
+    "sibling_only",
+    "sibling_reweight_control",
+    "uniform_crossrun_control",
+    "tgca"
+  ],
+  "bootstrap": {
+    "repetitions": 10000,
+    "seed": 20260815
+  },
+  "expected_support": {
+    "endpoints": 5499,
+    "outer_folds": 5,
+    "pairs": 4263,
+    "parents": 2293,
+    "runs": 333,
+    "tasks": 23
+  },
+  "gates": {
+    "dominant_task_share_max": 0.25,
+    "minimum_supported_tasks": 15,
+    "nonnegative_task_utility_share_min": 0.6,
+    "task_support_min_validation_pairs": 20,
+    "tgca_minus_reweight_utility_min": 0.015,
+    "tgca_minus_sibling_top1_min": 0.02,
+    "tgca_minus_sibling_utility_min": 0.02
+  },
+  "inputs": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "fold_oof_sha256": "fc57c03a1c96ce7be19a4db764a539082258fe4c69a2ec8653b41ff85626cb45",
+    "orientation_sha256": "e11111a3538c54eb91048b54380466b4dc0f041c2f511a78a85573cbc92b121a",
+    "pairs_sha256": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca"
+  },
+  "model": {
+    "C": 0.5,
+    "analyzer": "char_wb",
+    "code_view": "head5000_tail15000",
+    "dtype": "float64",
+    "fit_intercept": false,
+    "max_features": 30000,
+    "max_iter": 2000,
+    "min_df": 3,
+    "ngram_range": [3, 5],
+    "seed": 887,
+    "solver": "liblinear",
+    "sublinear_tf": true,
+    "tol": 0.000001
+  },
+  "protocol": "tgca_v11_train_oof_discovery_v1",
+  "status": "OUTCOME_BLIND_FROZEN",
+  "verifier_score_atol": 1e-10
+}

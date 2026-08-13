@@ -43,7 +43,7 @@ exec > >(tee -a "$root/resume.log") 2>&1
 echo "RESUME_BEGIN $(date -Is) $commit"
 
 set +e
-timeout --signal=TERM 2700 "$python" phase1/task_topcenter_rank.py \
+timeout --signal=TERM 2700 "$python" -m phase1.task_topcenter_rank \
   --repo-root "$repo" \
   --pairs "$train_pairs" \
   --run-map "$run_map" \
@@ -67,7 +67,7 @@ if [[ "$producer_rc" -ne 0 ]]; then
 fi
 
 set +e
-"$python" phase1/verify_task_topcenter_discovery.py \
+"$python" -m phase1.verify_task_topcenter_discovery \
   --pairs "$train_pairs" \
   --manifest "$manifest" \
   --feature-root "$feature_root" \

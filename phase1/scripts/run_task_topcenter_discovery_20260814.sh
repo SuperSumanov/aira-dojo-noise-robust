@@ -64,11 +64,13 @@ echo "PREFLIGHT_02_CHEAP_TESTS"
   phase1/tests/test_task_topcenter_rank.py
 
 echo "PREFLIGHT_03_PAIR_AND_FORBIDDEN_PATH"
-if "$python" phase1/task_topcenter_rank.py --help | grep -Eiq -- '--[^ ]*(frozen|test|held)'; then
+"$python" -m phase1.task_topcenter_rank --help > "$root/prereg/producer_help.txt"
+if grep -Eiq -- '--[^ ]*(frozen|test|held)' "$root/prereg/producer_help.txt"; then
   echo "ABORT_FORBIDDEN_PAIR_ARGUMENT" >&2
   exit 3
 fi
-if "$python" phase1/verify_task_topcenter_discovery.py --help | grep -Eiq -- '--[^ ]*(frozen|test|held)'; then
+"$python" -m phase1.verify_task_topcenter_discovery --help > "$root/prereg/verifier_help.txt"
+if grep -Eiq -- '--[^ ]*(frozen|test|held)' "$root/prereg/verifier_help.txt"; then
   echo "ABORT_FORBIDDEN_VERIFIER_ARGUMENT" >&2
   exit 3
 fi
@@ -140,7 +142,7 @@ echo "HIGH_CONFIDENCE_SECRET_COUNT 0"
 
 echo "PREFLIGHT_10_WALL_CLOCK_SMOKE"
 set +e
-timeout --signal=TERM 600 "$python" phase1/task_topcenter_engineering_smoke.py \
+timeout --signal=TERM 600 "$python" -m phase1.task_topcenter_engineering_smoke \
   --repo-root "$repo" \
   --pairs "$train_pairs" \
   --run-map "$run_map" \
@@ -185,7 +187,7 @@ printf '%s  %s\n' "$baseline_sha" "$baseline_oof" >> "$root/prereg/input_files.s
 echo "PREFLIGHT_ALL_13_PASS $(date -Is)"
 
 set +e
-timeout --signal=TERM 2700 "$python" phase1/task_topcenter_rank.py \
+timeout --signal=TERM 2700 "$python" -m phase1.task_topcenter_rank \
   --repo-root "$repo" \
   --pairs "$train_pairs" \
   --run-map "$run_map" \
@@ -209,7 +211,7 @@ if [[ "$producer_rc" -ne 0 ]]; then
 fi
 
 set +e
-"$python" phase1/verify_task_topcenter_discovery.py \
+"$python" -m phase1.verify_task_topcenter_discovery \
   --pairs "$train_pairs" \
   --manifest "$manifest" \
   --feature-root "$feature_root" \

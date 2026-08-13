@@ -220,7 +220,7 @@ common tasks 的 pair-weighted 与 task-macro 描述。
 官方 executed reports 覆盖旧 300-pair 样本中的 211 pairs / 14 tasks；官方还公开 DeepSeek/GPT 三次逐
 pair alignments，优先冻结并直接重算原模型的 gap 曲线，无需先花 API 重跑 Qwen。
 
-### 3.10 FOREAGENT 官方 alignment v1 结构中止与 v2 冻结
+### 3.10 FOREAGENT 官方 alignment v1 结构中止与 v2 结果
 
 已锁定官方 26 tasks × 2 models × 3 releases 共 156 文件的固定 manifest；compact primitive-field
 JSONL 共 110,620 records，SHA256=`480616317ddebb249084dbc8b36b4060fac4b77353fce16b436351eab9c235fe`。
@@ -233,7 +233,18 @@ v2 已在读取真实性能汇总前另立预注册：DeepSeek 完整三轮网�
 固定交集上作 replication，逐 task 报 union/intersection/排除数且比例必须 `>=0.99`；不计算跨模型
 paired accuracy difference。非法 prediction 对 finite non-tie 按错误计入，禁止 complete-case 删除；
 ties/nonfinite 对称隔离。raw-gap、task-internal quartile/decile、task bootstrap 与原 primary 裁决门不变。
-在主实现、独立 verifier 和显式含 GPT 缺行的合成测试全部通过并提交前，不得运行真实 v2 outcome。
+主实现与不 import 主实现的 verifier 一致通过，但冻结裁决为 **INSUFFICIENT-SUPPORT**，不得事后改门：
+DeepSeek overall task-macro=0.606698，最低任务内 gap 四分位=0.533655，最高减最低=+0.116730，
+task-paired CI=[0.039283,0.196048]；GPT 对应为 0.580067、0.530522、+0.089750，差值
+CI=[0.015195,0.163951]。效应门本身满足，但只有 22/26 tasks 的最低/最高四分位各至少 20 pairs，低于
+冻结的 24-task 支持门；DeepSeek prediction index 在 55,167 个有限非平局 records 上覆盖 100%，但
+confidence 仅覆盖 89.3614%，冻结的 joint-coverage 门也失败。该结果只能作为强描述性、双模型一致的
+正向线索，不能升级为预注册确认；同一数据上禁止另开 v3 删门“修成显著”。
+
+同时纠正 parquet 与 alignment 的版本边界：按 task 与发布物四位 solution id 对齐后，两者共同 18,270
+pairs，alignment-only=168、parquet-only=91，而不是同一网格简单少 77 行；共同网格的 score 也来自不同
+重评分版本，18,221 个双方均可定 winner 的 pairs 中有 5,068 个 winner 不同。因此 3.9 的结果只描述
+锁定 parquet 的 pairing distribution，不能当作本节 alignment predictions 的精确 label/gap 网格。
 
 ## 4. 已关闭或仅历史的方向
 

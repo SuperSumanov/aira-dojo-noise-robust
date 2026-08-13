@@ -1,5 +1,8 @@
 # v11 决策 critic：给学长的数据交接（2026-08-13）
 
+> 研究路线以 `phase1/CURRENT_DIRECTION.md` 为唯一入口；本文件只定义 v11 数据契约与
+> checkpoint 冻结评测，不代表恢复旧 HCE、TD/RL 或 lookahead 主线。
+
 ## 获取
 
 ```bash
@@ -55,7 +58,8 @@ headline 结果只报 `decision_frozen_v11_b*.jsonl`。因为 frozen 与 v10 完
 每个 budget 单独报告 accuracy，并保留逐 pair 结果供 task/run 聚类 bootstrap。8B/16k 的作用是
 检验现有约 0.55 的结果是否受容量或上下文限制，而不是只报最佳单次 seed。
 
-推荐输出：
+推荐输出（单个 pair set 时可用下列扁平格式；仓库 evaluator 为防止 b0/b1/b2
+同端点碰撞，会在最外层再按 pair-set 名分组）：
 
 ```json
 {
@@ -69,6 +73,35 @@ headline 结果只报 `decision_frozen_v11_b*.jsonl`。因为 frozen 与 v10 完
 ```
 
 `1` 表示模型把 `better` 排在 `worse` 前。请同时保存确切命令、commit、依赖和 seed。
+
+仓库已提供严格 evaluator：`phase1/score_frozen_decision_checkpoint.py`。checkpoint 必须先在
+旧 validation 上锁定；不得看过 frozen 结果后改选模型、epoch 或 checkpoint。单卡推理示例：
+
+```bash
+python phase1/score_frozen_decision_checkpoint.py \
+  --cards phase1/cards_current_v11.jsonl \
+  --run-map phase1/card_run_map.json \
+  --pairs frozen_b0=phase1/v11_decision/decision_frozen_v11_b0.jsonl \
+  --pairs frozen_b1=phase1/v11_decision/decision_frozen_v11_b1.jsonl \
+  --pairs frozen_b2=phase1/v11_decision/decision_frozen_v11_b2.jsonl \
+  --expect-cards-sha256 6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75 \
+  --expect-run-map-sha256 3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30 \
+  --expect-pairs frozen_b0=1498:2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8 \
+  --expect-pairs frozen_b1=323:a56f6c7bd6aad141fdaa45f3f30f944062e8dea922eefc03e75bc8b415e7bc90 \
+  --expect-pairs frozen_b2=265:79d4694d4cea5a81a04c9d463b5c6599a559bbf867f34205fa5715b054f10bc7 \
+  --checkpoint /ABS/PATH/TO/LOCKED/CHECKPOINT \
+  --base-model /ABS/PATH/TO/Qwen3-8B-Base \
+  --checkpoint-locked-before-frozen \
+  --max-len 16384 --batch-size 2 --bootstrap 10000 --seed 7 \
+  --out-dir outputs/frozen_qwen3_8b_seed7
+```
+
+脚本把 pair 朝向只用于端点集合和最终 margin，不把朝向输入模型；输出 `per_pair.jsonl`、
+按 pair-set 名嵌套的 `predictions.json` 和
+`summary.json`；后者包含 run/task 聚类区间、run-level exact sign、输入/脚本 SHA 与渲染参数。
+它会拒绝非 test 行、重复/反向 pair、空代码、跨任务或跨 physical-run pair，以及与训练架构
+不匹配的 checkpoint；checkpoint 模式还会强制核对上述数据 SHA/条数，记录完整权重 SHA，且拒绝
+覆盖非空输出目录。当前模型训练时没有 budget conditioning，所以不要加 `--budget-cond`。
 
 ## 为什么旧数字变了
 

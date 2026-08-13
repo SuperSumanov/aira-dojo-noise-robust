@@ -1,0 +1,47 @@
+{
+  "anchors": {
+    "artifact_score_then_stdout": 0.6083333333333333,
+    "random": 0.4598333333333333,
+    "stdout_only": 0.5383333333333333
+  },
+  "checks": {
+    "anchors": true,
+    "counts": true,
+    "point": true,
+    "sign": true,
+    "support": true
+  },
+  "draws": 20000,
+  "inputs": {
+    "cards": "daeb29fc07ad670b5ca7a10cd2d84f1fa9a27dfa9d22510533417f1a8ad9407f",
+    "manifest": "77f696828010e2d6ae10a9b9de2d9ec05d44975b1285ea763d9850a7f30ca4ef",
+    "orientation": "e11111a3538c54eb91048b54380466b4dc0f041c2f511a78a85573cbc92b121a",
+    "results": "b1266d04912596b1e37e13f79ce2387a962f5510cfa264aa1a97b7a1c443180d",
+    "run_map": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+  },
+  "main": {
+    "delta_top1": 0.03,
+    "run_ci95": [
+      -0.024096385542168676,
+      0.08421052631578947
+    ],
+    "run_sign": {
+      "informative": 6,
+      "negative": 2,
+      "p_two_sided": 0.6875,
+      "positive": 4,
+      "tied": 46
+    },
+    "task_ci95": [
+      -0.011627906976744186,
+      0.07446808510638298
+    ]
+  },
+  "seed": 9173,
+  "status": "independent implementation; no import from main analysis",
+  "support": {
+    "runs": 14,
+    "sets": 24,
+    "tasks": 7
+  }
+}

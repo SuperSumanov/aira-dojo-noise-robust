@@ -1,0 +1,488 @@
+{
+  "anchor_semantics": "historical label.graded is a retrospective stand-in for a causally prior permitted D_search score; this run is not deployment-valid confirmation",
+  "anchors": {
+    "artifact_score_then_stdout": 0.6083333333333333,
+    "random": 0.4598333333333333,
+    "stdout_only": 0.5383333333333333
+  },
+  "comparisons": [
+    {
+      "a": "parent_certified_override",
+      "b": "stdout_only",
+      "delta_mean_normalized_regret": -0.02321949377930046,
+      "delta_mean_rank": -0.01,
+      "delta_top1": 0.03,
+      "label": "MAIN_PARENT_VS_STDOUT",
+      "run_ci95": [
+        -0.023529411764705882,
+        0.08333333333333333
+      ],
+      "run_sign": {
+        "informative": 6,
+        "negative": 2,
+        "p_two_sided": 0.6875,
+        "positive": 4,
+        "tied": 46
+      },
+      "runs": 52,
+      "sets": 100,
+      "task_ci95": [
+        -0.011363636363636364,
+        0.07352941176470588
+      ],
+      "task_loto": {
+        "chaii-hindi-and-tamil-question-answering": 0.03225806451612903,
+        "denoising-dirty-documents": 0.03260869565217391,
+        "google-quest-challenge": 0.03225806451612903,
+        "kuzushiji-recognition": 0.03125,
+        "leaf-classification": 0.02127659574468085,
+        "learning-agency-lab-automated-essay-scoring-2": 0.031914893617021274,
+        "mlsp-2013-birds": 0.031914893617021274,
+        "nomad2018-predict-transparent-conductors": 0.026595744680851064,
+        "petfinder-pawpularity-score": 0.041666666666666664,
+        "random-acts-of-pizza": 0.03125,
+        "spaceship-titanic": 0.030303030303030304,
+        "spooky-author-identification": 0.015957446808510637,
+        "tabular-playground-series-dec-2021": 0.030927835051546393,
+        "tabular-playground-series-may-2022": 0.031914893617021274,
+        "text-normalization-challenge-english-language": 0.031578947368421054,
+        "text-normalization-challenge-russian-language": 0.030927835051546393,
+        "tweet-sentiment-extraction": 0.031914893617021274,
+        "us-patent-phrase-to-phrase-matching": 0.031914893617021274,
+        "whale-categorization-playground": 0.02127659574468085
+      },
+      "task_loto_max": 0.041666666666666664,
+      "task_loto_min": 0.015957446808510637,
+      "tasks": 19
+    },
+    {
+      "a": "parent_certified_override",
+      "b": "artifact_score_then_stdout",
+      "delta_mean_normalized_regret": 0.03499142787166301,
+      "delta_mean_rank": 0.05,
+      "delta_top1": -0.04,
+      "label": "SECONDARY_PARENT_VS_NAIVE",
+      "run_ci95": [
+        -0.08415841584158416,
+        -0.005050505050505051
+      ],
+      "run_sign": {
+        "informative": 4,
+        "negative": 4,
+        "p_two_sided": 0.125,
+        "positive": 0,
+        "tied": 48
+      },
+      "runs": 52,
+      "sets": 100,
+      "task_ci95": [
+        -0.08333333333333333,
+        -0.008849557522123894
+      ],
+      "task_loto": {
+        "chaii-hindi-and-tamil-question-answering": -0.03225806451612903,
+        "denoising-dirty-documents": -0.043478260869565216,
+        "google-quest-challenge": -0.043010752688172046,
+        "kuzushiji-recognition": -0.041666666666666664,
+        "leaf-classification": -0.026595744680851064,
+        "learning-agency-lab-automated-essay-scoring-2": -0.03723404255319149,
+        "mlsp-2013-birds": -0.0425531914893617,
+        "nomad2018-predict-transparent-conductors": -0.0425531914893617,
+        "petfinder-pawpularity-score": -0.041666666666666664,
+        "random-acts-of-pizza": -0.041666666666666664,
+        "spaceship-titanic": -0.030303030303030304,
+        "spooky-author-identification": -0.0425531914893617,
+        "tabular-playground-series-dec-2021": -0.041237113402061855,
+        "tabular-playground-series-may-2022": -0.0425531914893617,
+        "text-normalization-challenge-english-language": -0.042105263157894736,
+        "text-normalization-challenge-russian-language": -0.041237113402061855,
+        "tweet-sentiment-extraction": -0.0425531914893617,
+        "us-patent-phrase-to-phrase-matching": -0.0425531914893617,
+        "whale-categorization-playground": -0.0425531914893617
+      },
+      "task_loto_max": -0.026595744680851064,
+      "task_loto_min": -0.043478260869565216,
+      "tasks": 19
+    }
+  ],
+  "cost": {
+    "aggregate_ratio_to_historical_full": 0.058607068701518196,
+    "gate_uses": "macro_mean_set_ratio_to_historical_full",
+    "macro_mean_set_ratio_to_historical_full": 0.27196795058472983
+  },
+  "counts": {
+    "cards": 230,
+    "corpus_cards": 14323,
+    "easy": 50,
+    "hard": 50,
+    "parent_available": 88,
+    "parent_missing": 12,
+    "runs": 52,
+    "sets": 100,
+    "tasks": 19
+  },
+  "gates": {
+    "decision": "BORDERLINE",
+    "go": false,
+    "support_ok": true
+  },
+  "policy_summary": {
+    "ALL_BALANCED": {
+      "artifact_score_then_stdout": {
+        "mean_normalized_regret": 0.37302348863218826,
+        "mean_rank": 1.5,
+        "median_normalized_regret": 0.49999999999999933,
+        "median_raw_regret": 0.0005775000000000641,
+        "parent_known_sets": 88,
+        "runs": 52,
+        "selected_final_improves_parent_rate": 0.5587121212121212,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 0.6083333333333333,
+        "top1_run_ci95": [
+          0.5037037037037037,
+          0.7115384615384616
+        ],
+        "top1_task_ci95": [
+          0.4954545454545454,
+          0.7228260869565217
+        ]
+      },
+      "full_oracle": {
+        "mean_normalized_regret": 0.0,
+        "mean_rank": 1.0,
+        "median_normalized_regret": 0.0,
+        "median_raw_regret": 0.0,
+        "parent_known_sets": 88,
+        "runs": 52,
+        "selected_final_improves_parent_rate": 0.7386363636363636,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 1.0,
+        "top1_run_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_task_ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "parent_certified_override": {
+        "mean_normalized_regret": 0.40801491650385124,
+        "mean_rank": 1.55,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.0011099999999999999,
+        "parent_known_sets": 88,
+        "runs": 52,
+        "selected_final_improves_parent_rate": 0.5643939393939394,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 0.5683333333333334,
+        "top1_run_ci95": [
+          0.4695121951219512,
+          0.6652421652421653
+        ],
+        "top1_task_ci95": [
+          0.4612794612794613,
+          0.6793478260869565
+        ]
+      },
+      "random": {
+        "mean_normalized_regret": 0.49806064984415027,
+        "mean_rank": 1.6433333333333333,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.010680000000000009,
+        "parent_known_sets": 88,
+        "runs": 52,
+        "selected_final_improves_parent_rate": 0.49962121212121213,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 0.4598333333333333,
+        "top1_run_ci95": [
+          0.4358156028368794,
+          0.4792982456140351
+        ],
+        "top1_task_ci95": [
+          0.4316831683168317,
+          0.48487972508591065
+        ]
+      },
+      "stdout_only": {
+        "mean_normalized_regret": 0.43123441028315174,
+        "mean_rank": 1.56,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.0015600000000000128,
+        "parent_known_sets": 88,
+        "runs": 52,
+        "selected_final_improves_parent_rate": 0.5416666666666666,
+        "sets": 100,
+        "tasks": 19,
+        "top1": 0.5383333333333333,
+        "top1_run_ci95": [
+          0.45535714285714285,
+          0.6275362318840579
+        ],
+        "top1_task_ci95": [
+          0.44660194174757284,
+          0.6353135313531353
+        ]
+      }
+    },
+    "easy": {
+      "artifact_score_then_stdout": {
+        "mean_normalized_regret": 0.3823415916186198,
+        "mean_rank": 1.44,
+        "median_normalized_regret": 0.49999999999999933,
+        "median_raw_regret": 0.008794999999999997,
+        "parent_known_sets": 45,
+        "runs": 38,
+        "selected_final_improves_parent_rate": 0.6185185185185185,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 0.6033333333333333,
+        "top1_run_ci95": [
+          0.47101449275362317,
+          0.7414965986394558
+        ],
+        "top1_task_ci95": [
+          0.47,
+          0.7450980392156863
+        ]
+      },
+      "full_oracle": {
+        "mean_normalized_regret": 0.0,
+        "mean_rank": 1.0,
+        "median_normalized_regret": 0.0,
+        "median_raw_regret": 0.0,
+        "parent_known_sets": 45,
+        "runs": 38,
+        "selected_final_improves_parent_rate": 0.8222222222222222,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 1.0,
+        "top1_run_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_task_ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "parent_certified_override": {
+        "mean_normalized_regret": 0.4023415916186198,
+        "mean_rank": 1.46,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.01198750000000004,
+        "parent_known_sets": 45,
+        "runs": 38,
+        "selected_final_improves_parent_rate": 0.6296296296296297,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 0.5833333333333334,
+        "top1_run_ci95": [
+          0.4559748427672956,
+          0.717391304347826
+        ],
+        "top1_task_ci95": [
+          0.4548611111111111,
+          0.7142857142857143
+        ]
+      },
+      "random": {
+        "mean_normalized_regret": 0.516605658026204,
+        "mean_rank": 1.62,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.02877249999999998,
+        "parent_known_sets": 45,
+        "runs": 38,
+        "selected_final_improves_parent_rate": 0.5155555555555555,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 0.464,
+        "top1_run_ci95": [
+          0.44013605442176873,
+          0.48299319727891155
+        ],
+        "top1_task_ci95": [
+          0.43623188405797103,
+          0.4876543209876543
+        ]
+      },
+      "stdout_only": {
+        "mean_normalized_regret": 0.4272551554484071,
+        "mean_rank": 1.5,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.015961666666666707,
+        "parent_known_sets": 45,
+        "runs": 38,
+        "selected_final_improves_parent_rate": 0.562962962962963,
+        "sets": 50,
+        "tasks": 17,
+        "top1": 0.5633333333333334,
+        "top1_run_ci95": [
+          0.4557823129251701,
+          0.6770833333333334
+        ],
+        "top1_task_ci95": [
+          0.45348837209302323,
+          0.6761006289308176
+        ]
+      }
+    },
+    "hard": {
+      "artifact_score_then_stdout": {
+        "mean_normalized_regret": 0.36370538564575666,
+        "mean_rank": 1.56,
+        "median_normalized_regret": 0.4999999999999917,
+        "median_raw_regret": 0.0003100000000000047,
+        "parent_known_sets": 43,
+        "runs": 28,
+        "selected_final_improves_parent_rate": 0.49612403100775193,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 0.6133333333333333,
+        "top1_run_ci95": [
+          0.48,
+          0.7452830188679245
+        ],
+        "top1_task_ci95": [
+          0.48299319727891155,
+          0.738562091503268
+        ]
+      },
+      "full_oracle": {
+        "mean_normalized_regret": 0.0,
+        "mean_rank": 1.0,
+        "median_normalized_regret": 0.0,
+        "median_raw_regret": 0.0,
+        "parent_known_sets": 43,
+        "runs": 28,
+        "selected_final_improves_parent_rate": 0.6511627906976745,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 1.0,
+        "top1_run_ci95": [
+          1.0,
+          1.0
+        ],
+        "top1_task_ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "parent_certified_override": {
+        "mean_normalized_regret": 0.41368824138908267,
+        "mean_rank": 1.64,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.0005775000000000641,
+        "parent_known_sets": 43,
+        "runs": 28,
+        "selected_final_improves_parent_rate": 0.49612403100775193,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 0.5533333333333333,
+        "top1_run_ci95": [
+          0.42333333333333334,
+          0.6773049645390071
+        ],
+        "top1_task_ci95": [
+          0.427536231884058,
+          0.6792452830188679
+        ]
+      },
+      "random": {
+        "mean_normalized_regret": 0.4795156416620966,
+        "mean_rank": 1.6666666666666667,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.0018525000000013114,
+        "parent_known_sets": 43,
+        "runs": 28,
+        "selected_final_improves_parent_rate": 0.48294573643410854,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 0.45566666666666666,
+        "top1_run_ci95": [
+          0.4215277777777778,
+          0.48366013071895425
+        ],
+        "top1_task_ci95": [
+          0.42314814814814816,
+          0.48299319727891155
+        ]
+      },
+      "stdout_only": {
+        "mean_normalized_regret": 0.43521366511789633,
+        "mean_rank": 1.62,
+        "median_normalized_regret": 0.5,
+        "median_raw_regret": 0.000632500000000015,
+        "parent_known_sets": 43,
+        "runs": 28,
+        "selected_final_improves_parent_rate": 0.5193798449612403,
+        "sets": 50,
+        "tasks": 18,
+        "top1": 0.5133333333333333,
+        "top1_run_ci95": [
+          0.3888888888888889,
+          0.6354166666666666
+        ],
+        "top1_task_ci95": [
+          0.4033333333333333,
+          0.6185897435897436
+        ]
+      }
+    }
+  },
+  "provenance": {
+    "bootstrap": 10000,
+    "command": [
+      "/usr/bin/python",
+      "phase1/parent_certified_override.py",
+      "--bootstrap",
+      "10000",
+      "--seed",
+      "20260813",
+      "--out-dir",
+      "phase1/parent_certified_v9"
+    ],
+    "cwd": "/tmp/codex_parent_clean_v2_20260813",
+    "epsilon": 1e-12,
+    "git_commit": "9a465244466ce23476f1001b4609a0e93ae09132",
+    "inputs": {
+      "cards": {
+        "path": "phase1/cards_current_v9.jsonl",
+        "sha256": "daeb29fc07ad670b5ca7a10cd2d84f1fa9a27dfa9d22510533417f1a8ad9407f"
+      },
+      "manifest": {
+        "path": "phase1/fidelity_manifest.jsonl",
+        "sha256": "77f696828010e2d6ae10a9b9de2d9ec05d44975b1285ea763d9850a7f30ca4ef"
+      },
+      "orientation": {
+        "path": "phase1/task_orientation.json",
+        "sha256": "e11111a3538c54eb91048b54380466b4dc0f041c2f511a78a85573cbc92b121a"
+      },
+      "results": {
+        "path": "phase1/fidelity_results.jsonl",
+        "sha256": "b1266d04912596b1e37e13f79ce2387a962f5510cfa264aa1a97b7a1c443180d"
+      },
+      "run_map": {
+        "path": "phase1/card_run_map.json",
+        "sha256": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+      },
+      "runtime": {
+        "path": "phase1/fidelity_runtime_v9.jsonl",
+        "sha256": "dff8eb88a1db8d63bab17851c1dce2c1bd389a4744a811d65a5ce1fe5a1f55e7"
+      }
+    },
+    "python": "3.12.3",
+    "script_sha256": "453ab6d49a59f645e1525167fc9602be9fc75cddd95dd2194ca15a590682c71a",
+    "seed": 20260813
+  },
+  "status": "retrospective discovery-set adjudication; not confirmatory",
+  "support": {
+    "runs": 14,
+    "sets": 24,
+    "tasks": 7
+  }
+}

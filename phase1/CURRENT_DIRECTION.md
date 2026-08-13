@@ -5,7 +5,7 @@
 
 ## 1. 审计截面
 
-- 我方分析基线：`fork/phase1-value-critic@f79c8a9c6992ec10a4289fecfb281458ff822fe3`
+- 我方分析基线：`fork/phase1-value-critic@9a465244466ce23476f1001b4609a0e93ae09132`
 - 学长分支：`fork/dojo-reproduce@8c57b7580e22fdbb2cbab350bc34475d084fe5ee`
 - 最新发布语料：v11，16,012 cards / 667 physical runs / 25 tasks；15,991 finite，21 quarantine。
 - 论文冻结决策集：b0/b1/b2 分别 1,498 / 323 / 265 对；v10 与 v11 逐字相同。
@@ -20,6 +20,8 @@
 - `phase1/实验记录/2026-08-13/学长0811入库_v11验收.md`；
 - `phase1/实验记录/2026-08-13/artifact_first_cascade_探索性预注册.md`；
 - `phase1/实验记录/2026-08-13/artifact_first_cascade_探索性裁决.md`；
+- `phase1/实验记录/2026-08-13/parent_certified_improvement_回顾性预注册.md`；
+- `phase1/实验记录/2026-08-13/parent_certified_improvement_探索性裁决.md`；
 - 学长分支 `src/mle_critic/docs/outcomes/0812/DECISION_MODEL_SIZE_EXPERIMENTS.md`。
 
 ## 2. 最近两周的路线更替
@@ -98,13 +100,20 @@
 
 现有 checkpoint 在学长环境，当前仓库只有日志和 outcome 文档；先交付严格 evaluator，不能伪称已完成。
 
-### 3.3 当前短验证：选择性评分通道
+### 3.3 已完成的短验证：选择性评分通道
 
 在不改动上述唯一确认性主实验的前提下，只允许一次冻结、无调参的回顾性规则验证：默认使用
 `stdout_only`；仅当 parent 有部署时允许访问的历史 pristine 搜索分数，且 120 秒 artifact 严格优于
 parent 时，才用该改善证书覆盖 stdout。parent 缺失或无改善时回退 stdout。该实验用于检验
 “以 incumbent 为锚点能否缓解 MNAR”，不得把旧 `graded` 当作线上 test 标签，也不得在同一
 100-set 发现集上继续搜索阈值或策略网格。
+
+该冻结规则已一次性执行并由不导入主脚本的独立实现复核：证书支持仅 24 sets / 14 runs / 7 tasks；
+parent-certified top-1=0.5683，stdout-only=0.5383，差 +0.0300；run-CI
+[-0.0235,+0.0833]，task-CI [-0.0114,+0.0735]，run sign p=0.6875。相对 naive cascade
+为 -0.0400；尽管 run/task bootstrap CI 均低于 0，只有 4 个 informative runs，run sign p=0.125，
+不能宣称独立确认更差。该规则未过 +0.08、双聚类 CI 与 run sign 门，裁决为
+**BORDERLINE**。因此此候选关闭，不进入前瞻确认，也不得在旧 100 sets 上改 margin、阈值或回退规则。
 
 ## 4. 已关闭或仅历史的方向
 
@@ -122,9 +131,10 @@ parent 时，才用该改善证书覆盖 stdout。parent 缺失或无改善时�
 ## 5. 正面突破的分层路径
 
 1. **近期最稳**：前瞻确认评分通道机制；这是数据论文可引用的正结果。
-2. **近期方法化候选**：做选择性/删失感知的 score-channel fusion，而非 naive artifact-first。
-   首个无训练候选是 parent-certified improvement；若它失败，只能在新 discovery split 上发展
-   cross-fitted selective override 或校准下置信界，不能在旧 100 sets 上反复调阈值。
+2. **近期方法化候选**：parent-certified improvement 已以 **BORDERLINE** 关闭。若在新
+   discovery split 上继续方法化，必须显式建模 artifact 的可用性/失败/删失过程及条件分数，采用
+   cross-fitting 或独立 validation；不能把“是否及时产物”直接当质量，也不能在旧 100 sets 上
+   继续搜索 selector、margin 或阈值。
 3. **更强但改 operator 的候选**：让 agent 在固定早期预算内优先产 schema-valid cheap submission，
    再继续优化。这可能提高 120 秒 artifact 覆盖，直接攻击 144/230 silent 的瓶颈；但它改变
    operator/prompt，必须另立三臂公平实验，不能冒充只改评估旋钮。

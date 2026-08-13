@@ -1,0 +1,6 @@
+VERIFIED sets=100 cards=230 runs=52 tasks=19 parents=88
+SUPPORT sets=24 runs=14 tasks=7 cost_macro=0.2720 cost_aggregate=0.0586
+MAIN_PARENT_VS_STDOUT        delta=+0.0300 runCI=[-0.0235,+0.0833] taskCI=[-0.0114,+0.0735] sign_p=0.687500
+SECONDARY_PARENT_VS_NAIVE    delta=-0.0400 runCI=[-0.0842,-0.0051] taskCI=[-0.0833,-0.0088] sign_p=0.125000
+DECISION BORDERLINE
+WROTE phase1/parent_certified_v9

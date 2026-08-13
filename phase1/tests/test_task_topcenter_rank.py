@@ -197,7 +197,7 @@ def test_outer_fold_checkpoint_resumes_without_refit(tmp_path: Path, monkeypatch
             "selected": configuration,
             "selected_key": [],
             "candidates": [],
-        }
+        }, [], np.zeros((0, 0), dtype=np.float64)
 
     monkeypatch.setattr(rank_module, "select_hyperparameters", fixed_selection)
     first_scores, first = rank_module.run_outer_fold(

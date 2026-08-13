@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 
 source "$HOME/env_setup.sh"
+set -u
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 export OMP_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1

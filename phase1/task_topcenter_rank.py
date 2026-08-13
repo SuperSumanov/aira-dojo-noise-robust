@@ -534,7 +534,7 @@ def select_hyperparameters(
     position: dict[str, int],
     endpoint_tasks: Sequence[str],
     task_names: Sequence[str],
-) -> tuple[dict[str, float | None], dict[str, Any]]:
+) -> tuple[dict[str, float | None], dict[str, Any], list[str], np.ndarray]:
     definition = FAMILIES[family]
     splits = inner_splits(rows, outer_fit)
     candidates: list[dict[str, Any]] = []
@@ -595,6 +595,7 @@ def select_hyperparameters(
                 "inner_complete_parents": metrics["complete_parents"],
                 "inner_parents": metrics["parents"],
                 "fits": fit_records,
+                "_inner_oof_scores": oof_scores,
             }
         )
     valid = [candidate for candidate in candidates if candidate["accepted"]]
@@ -611,6 +612,22 @@ def select_hyperparameters(
         )
 
     selected = max(valid, key=selection_key)
+    inner_ids = sorted(
+        {
+            str(rows[index][key])
+            for index in outer_fit
+            for key in ("better", "worse")
+        }
+    )
+    score_matrix_artifact = np.asarray(
+        [
+            [float(candidate["_inner_oof_scores"][card_id]) for card_id in inner_ids]
+            for candidate in candidates
+        ],
+        dtype=np.float64,
+    )
+    for candidate in candidates:
+        del candidate["_inner_oof_scores"]
     return dict(selected["configuration"]), {
         "family": family,
         "selection_order": [
@@ -622,7 +639,7 @@ def select_hyperparameters(
         "selected": selected["configuration"],
         "selected_key": list(selection_key(selected)),
         "candidates": candidates,
-    }
+    }, inner_ids, score_matrix_artifact
 
 
 def save_weights(path: Path, weights: dict[str, np.ndarray]) -> None:
@@ -664,6 +681,9 @@ def run_outer_fold(
             weight_path = final_dir / f"{family}_weights.npz"
             if sha256(weight_path) != summary["files"][f"{family}_weights_sha256"]:
                 raise IntegrityError(f"checkpoint weight hash mismatch: {family} fold {fold}")
+            inner_path = final_dir / f"{family}_inner_oof_scores.npz"
+            if sha256(inner_path) != summary["files"][f"{family}_inner_oof_scores_sha256"]:
+                raise IntegrityError(f"checkpoint inner-score hash mismatch: {family} fold {fold}")
         summary["resumed"] = True
         return scores, summary
 
@@ -689,7 +709,7 @@ def run_outer_fold(
     family_records: dict[str, Any] = {}
     files: dict[str, str] = {}
     for family, definition in FAMILIES.items():
-        selected, inner_record = select_hyperparameters(
+        selected, inner_record, inner_ids, inner_scores = select_hyperparameters(
             family,
             rows,
             fit_indices,
@@ -698,6 +718,13 @@ def run_outer_fold(
             endpoint_tasks,
             task_names,
         )
+        inner_path = temporary / f"{family}_inner_oof_scores.npz"
+        atomic_npz(
+            inner_path,
+            card_ids=np.asarray(inner_ids, dtype="U"),
+            scores=np.asarray(inner_scores, dtype=np.float64),
+        )
+        files[f"{family}_inner_oof_scores_sha256"] = sha256(inner_path)
         weights, fit_record = fit_ranker(
             rows,
             fit_indices,

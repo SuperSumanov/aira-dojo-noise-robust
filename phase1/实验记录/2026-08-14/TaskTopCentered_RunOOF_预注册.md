@@ -31,7 +31,8 @@ frozen/test 不作为参数、不读取、不抽 embedding；v12+ 也不进入�
 - 每个 outer fold 内，候选按聚合 inner-OOF 的 `(complete-parent top1, parent-equal gap utility)`
   字典序最大化；仍并列时优先更大的 `lambda_task`，再优先更大的 `lambda_global`；
 - L-BFGS-B 从全零启动，float64 优化与 checkpoint，`maxiter=300, ftol=1e-10, gtol=1e-6, maxls=50`；每个 outer
-  fold 原子保存选择记录、权重和 valid scores，可校验后 resume；
+  fold 原子保存完整 inner-candidate OOF score 矩阵、选择记录、最终权重和 outer-valid scores，可由
+  verifier 重算选择后 resume；
 - `gap_raw` 只用于预注册 utility 与 inner tie-break，不进入主损失；不能 outcome 后改成 gap-weighted loss；
 - 所有 task、run、parent、feature、fold 和输出记录 SHA-256；实验目录 append-only。
 
@@ -87,7 +88,8 @@ overlap=0、feature/OOF 覆盖严格相等；A 的固定 hash 与旧指标复现
   只决定墙钟/内存是否可运行，不改变网格、arm 或门；
 - formal nested OOF：0 GPU / 1 CPU，5 outer folds × 每 fold 3 inner folds；G/B 各 3 个网格点，C/D 各
   9 个网格点。预计 8--35 CPU 分钟，hard cap 45 分钟；每个 outer fold 原子 checkpoint/resume；
-- independent verifier：0 GPU / 1 CPU，预计 1--5 分钟；API=0，底座训练=0。
+- independent verifier：0 GPU / 1 CPU，预计 1--8 分钟；重算每个 candidate 的 inner top-1/utility、
+  fixed grid 选择、outer checkpoint scores 和全部 gate；API=0，底座训练=0。
 
 ## 允许的结论
 

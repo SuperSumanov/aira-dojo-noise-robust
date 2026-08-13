@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 
 source "$HOME/env_setup.sh"
+set -u
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 export OMP_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
@@ -101,6 +102,7 @@ PY
 echo "PREFLIGHT_06_CHECKPOINT_DESIGN"
 grep -q 'FOLD_COMPLETE' phase1/task_topcenter_rank.py
 grep -q 'os.replace(temporary, final_dir)' phase1/task_topcenter_rank.py
+grep -q 'inner_oof_scores' phase1/verify_task_topcenter_discovery.py
 grep -q 'checkpoint_key' phase1/verify_task_topcenter_discovery.py
 
 echo "PREFLIGHT_07_LEAKAGE"

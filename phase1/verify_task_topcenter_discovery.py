@@ -36,6 +36,12 @@ ARMS = (
 )
 FAMILIES = ARMS[1:]
 MAIN_ARM = "nested_task_topcenter"
+FAMILY_DEFINITIONS = {
+    "nested_global_allpair": {"objective": "allpair", "task_residual": False},
+    "nested_global_topcenter": {"objective": "topcenter", "task_residual": False},
+    "nested_task_allpair": {"objective": "allpair", "task_residual": True},
+    "nested_task_topcenter": {"objective": "topcenter", "task_residual": True},
+}
 METRIC_SEED_OFFSETS = {
     "fixed_global_allpair": 10,
     "nested_global_allpair": 200,
@@ -275,7 +281,89 @@ def expected_grid(family: str) -> set[tuple[float, float | None]]:
     }
 
 
-def verify_selection(record: dict[str, Any], family: str) -> None:
+def selection_metrics(
+    rows: Sequence[dict[str, Any]], scores: dict[str, float]
+) -> dict[str, float]:
+    hits = [
+        tie_hit(scores[str(row["better"])] - scores[str(row["worse"])])
+        for row in rows
+    ]
+    grouped: dict[str, list[tuple[dict[str, Any], float]]] = collections.defaultdict(list)
+    for row, hit in zip(rows, hits):
+        grouped[str(row["parent"])].append((row, float(hit)))
+    top1_values: list[float] = []
+    utility_values: list[float] = []
+    for parent, items in grouped.items():
+        parent_rows = [row for row, _ in items]
+        candidates = {
+            str(row[key]) for row in parent_rows for key in ("better", "worse")
+        }
+        if len(parent_rows) == len(candidates) * (len(candidates) - 1) // 2:
+            losses = collections.Counter({candidate: 0 for candidate in candidates})
+            for row in parent_rows:
+                losses[str(row["worse"])] += 1
+            true_top = {
+                candidate for candidate, value in losses.items() if value == min(losses.values())
+            }
+            maximum = max(scores[candidate] for candidate in candidates)
+            predicted = {
+                candidate
+                for candidate in candidates
+                if abs(scores[candidate] - maximum) <= EPSILON
+            }
+            top1_values.append(len(predicted & true_top) / len(predicted))
+        denominator = sum(float(row["gap_raw"]) for row in parent_rows)
+        if denominator <= 0:
+            raise VerificationError(f"non-positive inner gap denominator: {parent}")
+        utility_values.append(
+            sum(float(row["gap_raw"]) * hit for row, hit in items) / denominator
+        )
+    if not top1_values or not utility_values:
+        raise VerificationError("inner selection metric support is empty")
+    return {
+        "pair_accuracy": sum(hits) / len(hits),
+        "complete_parent_top1": sum(top1_values) / len(top1_values),
+        "parent_equal_gap_utility": sum(utility_values) / len(utility_values),
+        "complete_parents": len(top1_values),
+        "parents": len(utility_values),
+    }
+
+
+def expected_inner_support(
+    rows: Sequence[dict[str, Any]], outer_fit: Sequence[int]
+) -> list[dict[str, int]]:
+    from sklearn.model_selection import GroupKFold
+
+    selected = np.asarray(outer_fit, dtype=np.int64)
+    groups = np.asarray([str(rows[index]["run"]) for index in selected])
+    output: list[dict[str, int]] = []
+    for inner_fold, (fit_local, valid_local) in enumerate(
+        GroupKFold(n_splits=3).split(np.zeros(len(selected)), groups=groups)
+    ):
+        fit_indices = selected[fit_local].tolist()
+        valid_indices = selected[valid_local].tolist()
+        fit_runs = {str(rows[index]["run"]) for index in fit_indices}
+        valid_runs = {str(rows[index]["run"]) for index in valid_indices}
+        if fit_runs & valid_runs:
+            raise VerificationError("recomputed inner physical-run overlap")
+        output.append(
+            {
+                "inner_fold": inner_fold,
+                "fit_runs": len(fit_runs),
+                "valid_runs": len(valid_runs),
+                "run_overlap": 0,
+            }
+        )
+    return output
+
+
+def verify_selection(
+    record: dict[str, Any],
+    family: str,
+    rows: Sequence[dict[str, Any]],
+    outer_fit: Sequence[int],
+    inner_score_path: Path,
+) -> None:
     selection = record["inner_selection"]
     candidates = selection["candidates"]
     observed = {
@@ -289,12 +377,44 @@ def verify_selection(record: dict[str, Any], family: str) -> None:
     }
     if observed != expected_grid(family) or not all(candidate["accepted"] for candidate in candidates):
         raise VerificationError(f"inner grid/acceptance mismatch: {family}")
-    if any(
-        not fit["accepted"] or int(fit["run_overlap"]) != 0
-        for candidate in candidates
-        for fit in candidate["fits"]
-    ):
-        raise VerificationError(f"inner fit/run integrity mismatch: {family}")
+    expected_support = expected_inner_support(rows, outer_fit)
+    for candidate in candidates:
+        if len(candidate["fits"]) != 3:
+            raise VerificationError(f"inner fold count mismatch: {family}")
+        for fit, expected in zip(candidate["fits"], expected_support):
+            if not fit["accepted"]:
+                raise VerificationError(f"inner fit rejected: {family}")
+            for key, value in expected.items():
+                if int(fit[key]) != value:
+                    raise VerificationError(f"inner support mismatch {family}.{key}")
+    fit_rows = [rows[index] for index in outer_fit]
+    expected_ids = sorted(
+        {
+            str(rows[index][key])
+            for index in outer_fit
+            for key in ("better", "worse")
+        }
+    )
+    with np.load(inner_score_path, allow_pickle=False) as data:
+        ids = [str(value) for value in data["card_ids"].tolist()]
+        score_matrix = np.asarray(data["scores"])
+    if ids != expected_ids or score_matrix.dtype != np.float64:
+        raise VerificationError(f"inner score identity/dtype mismatch: {family}")
+    if score_matrix.shape != (len(candidates), len(expected_ids)) or not np.isfinite(score_matrix).all():
+        raise VerificationError(f"inner score shape/value mismatch: {family}")
+    for candidate, score_row in zip(candidates, score_matrix):
+        score_map = {
+            card_id: float(value) for card_id, value in zip(expected_ids, score_row.tolist())
+        }
+        recomputed = selection_metrics(fit_rows, score_map)
+        for recorded, key in (
+            ("inner_pair_accuracy", "pair_accuracy"),
+            ("inner_top1", "complete_parent_top1"),
+            ("inner_utility", "parent_equal_gap_utility"),
+            ("inner_complete_parents", "complete_parents"),
+            ("inner_parents", "parents"),
+        ):
+            assert_close(candidate[recorded], recomputed[key], f"{family}.{recorded}")
 
     def key(candidate: dict[str, Any]) -> tuple[float, float, float, float]:
         config = candidate["configuration"]
@@ -316,6 +436,9 @@ def verify_selection(record: dict[str, Any], family: str) -> None:
         raise VerificationError(f"outer fit/task lambda null mismatch: {family}")
     if selected_task is not None and float(outer["lambda_task"]) != float(selected_task):
         raise VerificationError(f"outer fit/task lambda mismatch: {family}")
+    definition = FAMILY_DEFINITIONS[family]
+    if outer["objective"] != definition["objective"] or bool(outer["task_residual"]) != definition["task_residual"]:
+        raise VerificationError(f"outer family definition mismatch: {family}")
 
 
 def verify_checkpoints(
@@ -359,7 +482,17 @@ def verify_checkpoints(
                 if not np.allclose(stored, expected, atol=1e-12, rtol=1e-12):
                     raise VerificationError(f"valid-score NPZ/CSV mismatch: {family} fold {fold}")
         for family in FAMILIES:
-            verify_selection(record["families"][family], family)
+            inner_score_path = fold_dir / f"{family}_inner_oof_scores.npz"
+            if sha256(inner_score_path) != record["files"][f"{family}_inner_oof_scores_sha256"]:
+                raise VerificationError(f"inner-score hash mismatch: {family} fold {fold}")
+            outer_fit = [index for index, value in enumerate(folds) if value != fold]
+            verify_selection(
+                record["families"][family],
+                family,
+                rows,
+                outer_fit,
+                inner_score_path,
+            )
             weight_path = fold_dir / f"{family}_weights.npz"
             if sha256(weight_path) != record["files"][f"{family}_weights_sha256"]:
                 raise VerificationError(f"weight hash mismatch: {family} fold {fold}")

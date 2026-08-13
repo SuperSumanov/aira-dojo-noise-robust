@@ -25,6 +25,7 @@
 - `phase1/实验记录/2026-08-13/120秒评分可观测性_机制预注册.md`；
 - `phase1/实验记录/2026-08-13/120秒评分可观测性_探索性裁决.md`；
 - `phase1/实验记录/2026-08-13/选择性可观测反馈_正面突破路线.md`；
+- `phase1/实验记录/2026-08-13/anytime_oracle_headroom_探索性上界.md`；
 - `phase1/实验记录/2026-08-13/连续fidelity轨迹_watcher_smoke冻结说明.md`；
 - 学长分支 `src/mle_critic/docs/outcomes/0812/DECISION_MODEL_SIZE_EXPERIMENTS.md`。
 
@@ -172,6 +173,18 @@ manifest SHA=`f535116e51dc7a03a65aa6df4b4621812367eea201f16aeb8d83d21bc398bbe1`�
 inputs 独立重建并逐字节一致。validator 在 GPU outcome 前冻结，区分真正新 artifact hash 与早期 artifact
 仅在后续 grader recovery；≥2 个不同任务 late conversion 才保留 `TaskHazard`，0 个才转向
 `schema-first operator`，1 个或 grader-recovery ambiguity 为 `INCONCLUSIVE`。完整性门失败则 INVALID。
+
+### 3.8 已完成的 hindsight oracle headroom（探索性上界，不是 speedup）
+
+冻结 v9 的 100 sets / 230 cards 上，120 秒 observed/missing 分别为 86/144；历史完整 runtime median
+分别为 86.2466/1323.1667 秒，68/100 sets 的全部 final winner 在 120 秒仍 missing。当前 censor-aware
+race 的 optimistic avoidable tail 仅 0.026163；偷看最终 `graded` 的不可实现 perfect-score-at-120 oracle
+为 0.512644。两份实现从锁定 raw input 独立重算一致。
+
+该结果只证明改善早期 score coverage 有理论成本空间，并把方法优先级从“继续调 120 秒 selector”转向
+“让昂贵候选更早产生候选特异的 pristine-scoreable artifact”。禁止声称已节省 51.26% GPU，禁止据此
+在旧 100 sets 上选时间阈值或策略。当前科学问题可概括为 **Anytime MLE Search under Selectively
+Observable Execution Feedback**；late-artifact pilot 的 outcome 前 gate 仍是下一步唯一裁决器。
 
 ## 4. 已关闭或仅历史的方向
 

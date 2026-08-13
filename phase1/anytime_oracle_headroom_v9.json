@@ -1,0 +1,51 @@
+{
+  "counts": {
+    "cards": 230,
+    "runs": 52,
+    "sets": 100,
+    "tasks": 19
+  },
+  "current_censor_aware": {
+    "optimistic_avoidable_tail_fraction": 0.026163397888857624,
+    "pruned_card_fraction": 0.19130434782608696,
+    "pruned_cards": 44,
+    "pruned_full_runtime_fraction": 0.03357879963308806
+  },
+  "inputs": {
+    "manifest": "77f696828010e2d6ae10a9b9de2d9ec05d44975b1285ea763d9850a7f30ca4ef",
+    "orientation": "e11111a3538c54eb91048b54380466b4dc0f041c2f511a78a85573cbc92b121a",
+    "results": "b1266d04912596b1e37e13f79ce2387a962f5510cfa264aa1a97b7a1c443180d",
+    "run_map": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30",
+    "runtime": "dff8eb88a1db8d63bab17851c1dce2c1bd389a4744a811d65a5ce1fe5a1f55e7"
+  },
+  "interpretation_guard": {
+    "actual_speedup_claim_allowed": false,
+    "purpose": "quantify whether improving early score coverage has enough theoretical cost leverage",
+    "uses_final_grade_for_oracle": true
+  },
+  "perfect_score_at_120_hindsight_oracle": {
+    "optimistic_avoidable_tail_fraction": 0.5126440089125565,
+    "optimistic_resume_cost_ratio": 0.48735599108744354,
+    "pessimistic_restart_cost_ratio": 0.5143806394402891,
+    "pruned_card_fraction": 0.5608695652173913,
+    "pruned_cards": 129,
+    "pruned_full_runtime_fraction": 0.5442264292612291
+  },
+  "selective_missingness": {
+    "missing_cards": 144,
+    "missing_runtime_median_s": 1323.1666508644703,
+    "missing_runtime_q25_q75_s": [
+      690.4439871991053,
+      2937.7804205417633
+    ],
+    "observed_cards": 86,
+    "observed_runtime_median_s": 86.24655995084322,
+    "observed_runtime_q25_q75_s": [
+      49.6182267293334,
+      145.83705657703103
+    ],
+    "sets_all_final_winners_missing": 68,
+    "sets_any_final_winner_missing": 68
+  },
+  "status": "hindsight descriptive upper bound on frozen v9 discovery set; not a method result"
+}

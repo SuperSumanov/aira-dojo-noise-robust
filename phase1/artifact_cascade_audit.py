@@ -508,11 +508,17 @@ def main() -> None:
         raise FileExistsError(f"refusing to overwrite non-empty directory: {out_dir}")
     out_dir.mkdir(parents=True, exist_ok=True)
     with (out_dir / "per_set_policy.csv").open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(set_rows[0]))
+        writer = csv.DictWriter(
+            handle, fieldnames=list(set_rows[0]), lineterminator="\n",
+        )
         writer.writeheader()
         writer.writerows(set_rows)
     with (out_dir / "main_paired.csv").open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(paired_outputs["MAIN"][0]))
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=list(paired_outputs["MAIN"][0]),
+            lineterminator="\n",
+        )
         writer.writeheader()
         writer.writerows(paired_outputs["MAIN"])
 
@@ -528,7 +534,9 @@ def main() -> None:
             }
         )
     with (out_dir / "per_task.csv").open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(per_task[0]))
+        writer = csv.DictWriter(
+            handle, fieldnames=list(per_task[0]), lineterminator="\n",
+        )
         writer.writeheader()
         writer.writerows(per_task)
 

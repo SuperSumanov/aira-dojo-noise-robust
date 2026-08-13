@@ -12,6 +12,7 @@ from pathlib import Path
 
 
 EXPECTED_STEP_LIMIT = 2  # blank root is step 1; one generated candidate is step 2
+EXPECTED_CODE_NODES = 1
 
 
 def sha256_file(path: Path) -> str:
@@ -126,7 +127,11 @@ def main() -> None:
         code_nodes = [node for node in nodes or [] if isinstance(node, dict) and str(node.get("code", "")).strip()]
         journal_lines = sum(1 for line in journals[0].read_text(encoding="utf-8").splitlines() if line.strip())
         state = json.loads(states[0].read_text(encoding="utf-8"))
-        if len(code_nodes) != 1 or journal_lines != 1 or int(state.get("current_step", -1)) != 1:
+        if (
+            len(code_nodes) != EXPECTED_CODE_NODES
+            or journal_lines != EXPECTED_STEP_LIMIT
+            or int(state.get("current_step", -1)) != EXPECTED_STEP_LIMIT
+        ):
             raise RuntimeError(
                 f"one-step topology mismatch {task}: code_nodes={len(code_nodes)} journal={journal_lines} "
                 f"state={state.get('current_step')}"

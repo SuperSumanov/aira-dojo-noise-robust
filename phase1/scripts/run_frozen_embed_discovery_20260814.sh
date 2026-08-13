@@ -135,7 +135,13 @@ printf 'PREFLIGHT_07_RUN_NODE_CODE_LEAKAGE\n'
   --expect-split-sha256 "$split_sha"
 jq -e '.run_overlap == 0 and .node_overlap == 0 and .raw_code_hash_overlap == 0 and .frozen_pair_file_opened == false' \
   "$root/manifest/train_held_isolation.json" >/dev/null
-test "$(grep -Ec 'decision_frozen|decision_clean_b' phase1/frozen_embed_manifest.py phase1/frozen_embed_worker.py phase1/frozen_embed_rank.py || true)" = 0
+if grep -Eq 'decision_frozen|decision_clean_b' \
+  phase1/frozen_embed_manifest.py \
+  phase1/frozen_embed_worker.py \
+  phase1/frozen_embed_rank.py; then
+  echo FROZEN_EMBED_ABORT_DISCOVERY_SOURCE_NAMES_FROZEN_DATA >&2
+  exit 2
+fi
 
 printf 'PREFLIGHT_08_RNG_AND_SPLIT_FREEZE\n'
 test "$(jq -r '.seed' "$root/manifest/train_endpoints_summary.json")" = 887

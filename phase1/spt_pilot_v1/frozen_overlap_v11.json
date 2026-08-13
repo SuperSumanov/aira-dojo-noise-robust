@@ -1,0 +1,27 @@
+{
+  "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+  "decision": "PASS_ZERO_OVERLAP",
+  "forbidden_fields_not_accessed": [
+    "label",
+    "obs",
+    "gap_raw"
+  ],
+  "frozen_endpoints": 2028,
+  "frozen_parents": 848,
+  "frozen_rows": 2086,
+  "frozen_runs": 92,
+  "frozen_sha256": {
+    "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/v11_decision/decision_frozen_v11_b0.jsonl": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8",
+    "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/v11_decision/decision_frozen_v11_b1.jsonl": "a56f6c7bd6aad141fdaa45f3f30f944062e8dea922eefc03e75bc8b415e7bc90",
+    "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/v11_decision/decision_frozen_v11_b2.jsonl": "79d4694d4cea5a81a04c9d463b5c6599a559bbf867f34205fa5715b054f10bc7"
+  },
+  "manifest_sha256": "5b74f725822b0290393de976020c02bfb456ac3164cc094a848637b53ef55a06",
+  "schema_version": 1,
+  "selected_card_vs_frozen_any_id": [],
+  "selected_card_vs_frozen_endpoint": [],
+  "selected_cards": 6,
+  "selected_parent_vs_frozen_parent": [],
+  "selected_parents": 3,
+  "selected_run_vs_frozen_run": [],
+  "selected_runs": 3
+}

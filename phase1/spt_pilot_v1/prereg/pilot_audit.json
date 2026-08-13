@@ -1,0 +1,546 @@
+{
+  "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+  "census": {
+    "petfinder-pawpularity-score": {
+      "cards_seen": 1218,
+      "excluded_hold_or_unknown_run": 251,
+      "instrumentable_cards": 639,
+      "missing_required_field": 0,
+      "not_instrumentable": 328,
+      "secret_pattern_rejected": 0
+    },
+    "random-acts-of-pizza": {
+      "cards_seen": 1121,
+      "excluded_hold_or_unknown_run": 204,
+      "instrumentable_cards": 857,
+      "missing_required_field": 0,
+      "not_instrumentable": 60,
+      "secret_pattern_rejected": 0
+    },
+    "us-patent-phrase-to-phrase-matching": {
+      "cards_seen": 1188,
+      "excluded_hold_or_unknown_run": 103,
+      "instrumentable_cards": 175,
+      "missing_required_field": 0,
+      "not_instrumentable": 910,
+      "secret_pattern_rejected": 0
+    }
+  },
+  "eligible_groups": {
+    "petfinder-pawpularity-score": 144,
+    "random-acts-of-pizza": 245,
+    "us-patent-phrase-to-phrase-matching": 33
+  },
+  "forbidden_fields_not_accessed": [
+    "label",
+    "obs"
+  ],
+  "manifest_sha256": "5b74f725822b0290393de976020c02bfb456ac3164cc094a848637b53ef55a06",
+  "runtime_sha256": "407c3574a4f58fff1eede976f7cd6a4020467b18159c9e87e1374528f350cd20",
+  "schema_version": 1,
+  "selected": [
+    {
+      "base_code_bytes": 52162,
+      "base_code_sha256": "883915a20600c84ad82ee119db575cd154b2ff292348536db4274a559d43b8be",
+      "card_id": "random-acts-of-pizza__d44791fd2e304932ad1a8f4e3713d513",
+      "competition": "random-acts-of-pizza",
+      "group_id": "a40dcc1bdda4073fc0bc",
+      "group_index": 0,
+      "parent_id": "random-acts-of-pizza__abfe28d9638d46528d762ac6215face2",
+      "run_id": "cards_senior_0809.jsonl:17",
+      "sibling_index": 0,
+      "tap_site_count": 22,
+      "tap_sites": [
+        {
+          "argument": "test_rank",
+          "callsite": "L758C21",
+          "end_byte": 25242,
+          "method": "predict_proba",
+          "start_byte": 25214
+        },
+        {
+          "argument": "tfidf_word_test",
+          "callsite": "L1391C19",
+          "end_byte": 42862,
+          "method": "predict_proba",
+          "start_byte": 42824
+        },
+        {
+          "argument": "tfidf_char_test",
+          "callsite": "L1398C19",
+          "end_byte": 43069,
+          "method": "predict_proba",
+          "start_byte": 43031
+        },
+        {
+          "argument": "sub_tfidf_test",
+          "callsite": "L1405C19",
+          "end_byte": 43271,
+          "method": "predict_proba",
+          "start_byte": 43235
+        },
+        {
+          "argument": "X_nb_test_full",
+          "callsite": "L1412C19",
+          "end_byte": 43470,
+          "method": "predict_proba",
+          "start_byte": 43435
+        },
+        {
+          "argument": "X_scaled_test_full",
+          "callsite": "L1419C19",
+          "end_byte": 43686,
+          "method": "predict_proba",
+          "start_byte": 43644
+        },
+        {
+          "argument": "X_scaled_test_full",
+          "callsite": "L1426C19",
+          "end_byte": 43889,
+          "method": "decision_function",
+          "start_byte": 43848
+        },
+        {
+          "argument": "X_scaled_test_full",
+          "callsite": "L1438C16",
+          "end_byte": 44176,
+          "method": "predict_proba",
+          "start_byte": 44139
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1454C15",
+          "end_byte": 44598,
+          "method": "predict_proba",
+          "start_byte": 44565
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1470C15",
+          "end_byte": 45018,
+          "method": "predict_proba",
+          "start_byte": 44985
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1492C16",
+          "end_byte": 45592,
+          "method": "predict_proba",
+          "start_byte": 45552
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1514C16",
+          "end_byte": 46178,
+          "method": "predict_proba",
+          "start_byte": 46138
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1528C19",
+          "end_byte": 46572,
+          "method": "predict_proba",
+          "start_byte": 46537
+        },
+        {
+          "argument": "Xg_test_full[1]",
+          "callsite": "L1541C19",
+          "end_byte": 46879,
+          "method": "predict_proba",
+          "start_byte": 46841
+        },
+        {
+          "argument": "Xg_test_full[2]",
+          "callsite": "L1554C19",
+          "end_byte": 47186,
+          "method": "predict_proba",
+          "start_byte": 47148
+        },
+        {
+          "argument": "Xg_test_full[3]",
+          "callsite": "L1567C19",
+          "end_byte": 47502,
+          "method": "predict_proba",
+          "start_byte": 47461
+        },
+        {
+          "argument": "Xg_test_full[1]",
+          "callsite": "L1586C19",
+          "end_byte": 47918,
+          "method": "predict_proba",
+          "start_byte": 47879
+        },
+        {
+          "argument": "Xg_test_full[2]",
+          "callsite": "L1605C19",
+          "end_byte": 48334,
+          "method": "predict_proba",
+          "start_byte": 48295
+        },
+        {
+          "argument": "Xg_test_full[3]",
+          "callsite": "L1624C19",
+          "end_byte": 48759,
+          "method": "predict_proba",
+          "start_byte": 48717
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1645C21",
+          "end_byte": 49306,
+          "method": "predict_proba",
+          "start_byte": 49267
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1669C21",
+          "end_byte": 49954,
+          "method": "predict_proba",
+          "start_byte": 49915
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1694C21",
+          "end_byte": 50632,
+          "method": "predict_proba",
+          "start_byte": 50593
+        }
+      ],
+      "tapped_code_sha256": "e99329d6352e5e54b5a2630b0d3971e2b4b96085ec46f21c37244d2f65cadf0e"
+    },
+    {
+      "base_code_bytes": 48498,
+      "base_code_sha256": "e7e5373d630c38519f70a160153c47f173b3a5c551ea29f629d33d29026d2606",
+      "card_id": "random-acts-of-pizza__eb4da6eb491f436f97be85c1d7d9c839",
+      "competition": "random-acts-of-pizza",
+      "group_id": "a40dcc1bdda4073fc0bc",
+      "group_index": 0,
+      "parent_id": "random-acts-of-pizza__abfe28d9638d46528d762ac6215face2",
+      "run_id": "cards_senior_0809.jsonl:17",
+      "sibling_index": 1,
+      "tap_site_count": 20,
+      "tap_sites": [
+        {
+          "argument": "tfidf_word_test",
+          "callsite": "L1230C19",
+          "end_byte": 37626,
+          "method": "predict_proba",
+          "start_byte": 37588
+        },
+        {
+          "argument": "tfidf_char_test",
+          "callsite": "L1237C19",
+          "end_byte": 37833,
+          "method": "predict_proba",
+          "start_byte": 37795
+        },
+        {
+          "argument": "sub_tfidf_test",
+          "callsite": "L1244C19",
+          "end_byte": 38035,
+          "method": "predict_proba",
+          "start_byte": 37999
+        },
+        {
+          "argument": "X_nb_test_full",
+          "callsite": "L1251C19",
+          "end_byte": 38234,
+          "method": "predict_proba",
+          "start_byte": 38199
+        },
+        {
+          "argument": "X_scaled_test_full",
+          "callsite": "L1258C19",
+          "end_byte": 38450,
+          "method": "predict_proba",
+          "start_byte": 38408
+        },
+        {
+          "argument": "X_scaled_test_full",
+          "callsite": "L1265C19",
+          "end_byte": 38653,
+          "method": "decision_function",
+          "start_byte": 38612
+        },
+        {
+          "argument": "X_scaled_test_full",
+          "callsite": "L1277C16",
+          "end_byte": 38940,
+          "method": "predict_proba",
+          "start_byte": 38903
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1293C15",
+          "end_byte": 39362,
+          "method": "predict_proba",
+          "start_byte": 39329
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1309C15",
+          "end_byte": 39782,
+          "method": "predict_proba",
+          "start_byte": 39749
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1331C16",
+          "end_byte": 40356,
+          "method": "predict_proba",
+          "start_byte": 40316
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1353C16",
+          "end_byte": 40942,
+          "method": "predict_proba",
+          "start_byte": 40902
+        },
+        {
+          "argument": "Xg_test_full[0]",
+          "callsite": "L1367C19",
+          "end_byte": 41336,
+          "method": "predict_proba",
+          "start_byte": 41301
+        },
+        {
+          "argument": "Xg_test_full[1]",
+          "callsite": "L1380C19",
+          "end_byte": 41643,
+          "method": "predict_proba",
+          "start_byte": 41605
+        },
+        {
+          "argument": "Xg_test_full[2]",
+          "callsite": "L1393C19",
+          "end_byte": 41950,
+          "method": "predict_proba",
+          "start_byte": 41912
+        },
+        {
+          "argument": "Xg_test_full[3]",
+          "callsite": "L1406C19",
+          "end_byte": 42266,
+          "method": "predict_proba",
+          "start_byte": 42225
+        },
+        {
+          "argument": "Xg_test_full[1]",
+          "callsite": "L1425C19",
+          "end_byte": 42682,
+          "method": "predict_proba",
+          "start_byte": 42643
+        },
+        {
+          "argument": "Xg_test_full[2]",
+          "callsite": "L1444C19",
+          "end_byte": 43098,
+          "method": "predict_proba",
+          "start_byte": 43059
+        },
+        {
+          "argument": "Xg_test_full[3]",
+          "callsite": "L1463C19",
+          "end_byte": 43523,
+          "method": "predict_proba",
+          "start_byte": 43481
+        },
+        {
+          "argument": "X_test_meta",
+          "callsite": "L1571C17",
+          "end_byte": 47566,
+          "method": "predict_proba",
+          "start_byte": 47536
+        },
+        {
+          "argument": "X_test_meta",
+          "callsite": "L1592C17",
+          "end_byte": 48202,
+          "method": "predict_proba",
+          "start_byte": 48170
+        }
+      ],
+      "tapped_code_sha256": "61a28f0da2461473693f5c24e8ff74e9d228b6501a0a91ee4a3089a9c657e32e"
+    },
+    {
+      "base_code_bytes": 10044,
+      "base_code_sha256": "2434bd584e5c20f969fd4936740bee1c3fad43a0d5488ca3fd571f2344468c59",
+      "card_id": "us-patent-phrase-to-phrase-matching__aaf0959a86004fd09d14705579bc89a7",
+      "competition": "us-patent-phrase-to-phrase-matching",
+      "group_id": "312ca30d985246f82827",
+      "group_index": 1,
+      "parent_id": "us-patent-phrase-to-phrase-matching__cd0c6946273e418b83c6cee6df633ebc",
+      "run_id": "cards_senior_0809.jsonl:1",
+      "sibling_index": 0,
+      "tap_site_count": 2,
+      "tap_sites": [
+        {
+          "argument": "X_test",
+          "callsite": "L287C17",
+          "end_byte": 8696,
+          "method": "predict",
+          "start_byte": 8676
+        },
+        {
+          "argument": "X_test",
+          "callsite": "L309C18",
+          "end_byte": 9547,
+          "method": "predict",
+          "start_byte": 9521
+        }
+      ],
+      "tapped_code_sha256": "751fa04267ea18782a805cb19da9d865ded19eac6fc565f607b4959406d20b2a"
+    },
+    {
+      "base_code_bytes": 12429,
+      "base_code_sha256": "44d04f91caba7434401e28dc6c2d6f8757a8149d4933ae8700e5990604c90204",
+      "card_id": "us-patent-phrase-to-phrase-matching__532a14da9a754b67a3e5b7cc61844421",
+      "competition": "us-patent-phrase-to-phrase-matching",
+      "group_id": "312ca30d985246f82827",
+      "group_index": 1,
+      "parent_id": "us-patent-phrase-to-phrase-matching__cd0c6946273e418b83c6cee6df633ebc",
+      "run_id": "cards_senior_0809.jsonl:1",
+      "sibling_index": 1,
+      "tap_site_count": 2,
+      "tap_sites": [
+        {
+          "argument": "X_test[te_mask]",
+          "callsite": "L348C30",
+          "end_byte": 11126,
+          "method": "predict",
+          "start_byte": 11092
+        },
+        {
+          "argument": "feat_test",
+          "callsite": "L357C21",
+          "end_byte": 11418,
+          "method": "predict",
+          "start_byte": 11385
+        }
+      ],
+      "tapped_code_sha256": "c0ba247ff12e56b0997603514c6b8f3a9e10ef00eaa56c6190c35cdbd6603bdc"
+    },
+    {
+      "base_code_bytes": 10250,
+      "base_code_sha256": "59d65a135c03ffc71a3b280987e4912cbaf1fdab016618d4b3b25f4d7ed1007e",
+      "card_id": "petfinder-pawpularity-score__c342d20d73444566b0bf2ba6477622ed",
+      "competition": "petfinder-pawpularity-score",
+      "group_id": "9629319c1a61a1e04352",
+      "group_index": 2,
+      "parent_id": "petfinder-pawpularity-score__0ffbbd56336142f6b3b599806eae7b84",
+      "run_id": "cards_senior_0724.jsonl:1",
+      "sibling_index": 0,
+      "tap_site_count": 5,
+      "tap_sites": [
+        {
+          "argument": "X_test",
+          "callsite": "L216C30",
+          "end_byte": 7073,
+          "method": "predict",
+          "start_byte": 6994
+        },
+        {
+          "argument": "X_test",
+          "callsite": "L242C30",
+          "end_byte": 7674,
+          "method": "predict",
+          "start_byte": 7649
+        },
+        {
+          "argument": "X_test",
+          "callsite": "L263C29",
+          "end_byte": 8202,
+          "method": "predict",
+          "start_byte": 8178
+        },
+        {
+          "argument": "X_test",
+          "callsite": "L277C29",
+          "end_byte": 8585,
+          "method": "predict",
+          "start_byte": 8561
+        },
+        {
+          "argument": "meta_test_features",
+          "callsite": "L310C12",
+          "end_byte": 10024,
+          "method": "predict",
+          "start_byte": 9980
+        }
+      ],
+      "tapped_code_sha256": "e1eb708eff6a430974f7a29c2d8e3fddfe4fd6a4525d0f0c926891ecc74d0c08"
+    },
+    {
+      "base_code_bytes": 12651,
+      "base_code_sha256": "39640e65f90f2c4de58ebafb2b79c11aeaa59be4a2d22923917fbb9bda6447da",
+      "card_id": "petfinder-pawpularity-score__9e5b6d9bbf51494399a88f6450ac9ace",
+      "competition": "petfinder-pawpularity-score",
+      "group_id": "9629319c1a61a1e04352",
+      "group_index": 2,
+      "parent_id": "petfinder-pawpularity-score__0ffbbd56336142f6b3b599806eae7b84",
+      "run_id": "cards_senior_0724.jsonl:1",
+      "sibling_index": 1,
+      "tap_site_count": 5,
+      "tap_sites": [
+        {
+          "argument": "X_test_fold",
+          "callsite": "L289C16",
+          "end_byte": 8957,
+          "method": "predict",
+          "start_byte": 8895
+        },
+        {
+          "argument": "X_test_fold",
+          "callsite": "L303C16",
+          "end_byte": 9385,
+          "method": "predict",
+          "start_byte": 9355
+        },
+        {
+          "argument": "X_test_fold",
+          "callsite": "L319C15",
+          "end_byte": 9846,
+          "method": "predict",
+          "start_byte": 9817
+        },
+        {
+          "argument": "X_test_fold",
+          "callsite": "L327C15",
+          "end_byte": 10131,
+          "method": "predict",
+          "start_byte": 10102
+        },
+        {
+          "argument": "meta_test",
+          "callsite": "L394C18",
+          "end_byte": 12407,
+          "method": "predict",
+          "start_byte": 12378
+        }
+      ],
+      "tapped_code_sha256": "fedafad8d9e11a1f88424002fc66795e73d0e5ddca58ca55223467e99062940e"
+    }
+  ],
+  "selection": "Fixed three-task whitelist; non-hold runs only; group by (task,run,parent); require two unique precision-instrumentable siblings; rank by maximum minimum tap-site count, then minimum maximum code bytes, then deterministic group hash.",
+  "split_sha256": "b31bd70a4483ac1ca207eae47ae39d7b00ced1b02c81583d0b0447fdd3d8489b",
+  "task_metadata": {
+    "petfinder-pawpularity-score": {
+      "higher_is_better": false,
+      "metric": ""
+    },
+    "random-acts-of-pizza": {
+      "higher_is_better": true,
+      "metric": ""
+    },
+    "us-patent-phrase-to-phrase-matching": {
+      "higher_is_better": true,
+      "metric": ""
+    }
+  },
+  "tasks": [
+    "random-acts-of-pizza",
+    "us-patent-phrase-to-phrase-matching",
+    "petfinder-pawpularity-score"
+  ]
+}

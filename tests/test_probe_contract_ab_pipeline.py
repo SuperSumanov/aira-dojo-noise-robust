@@ -68,6 +68,8 @@ def test_ab_builder_extractor_and_gate_fixture(tmp_path: Path, monkeypatch) -> N
             },
             "metadata": {"seed": SEED, "git_issue_id": expected["issue"]},
             "solver": {
+                "exp_name": task_id,
+                "checkpoint_path": str(experiment_dir / "checkpoint"),
                 "step_limit": 3,
                 "num_children": 1,
                 "max_debug_depth": 1,
@@ -176,3 +178,30 @@ def test_ab_builder_extractor_and_gate_fixture(tmp_path: Path, monkeypatch) -> N
     )
     assert verdict == "PROMISING"
     assert all(gates.values())
+
+
+def test_solver_normalization_ignores_only_per_run_identity() -> None:
+    base = {
+        "exp_name": "run-a",
+        "checkpoint_path": "/tmp/run-a/checkpoint",
+        "step_limit": 3,
+        "operators": {
+            "draft": {
+                "system_message_prompt_template": {"template": "original prompt"}
+            }
+        },
+    }
+    paired = {
+        "exp_name": "run-b",
+        "checkpoint_path": "/tmp/run-b/checkpoint",
+        "step_limit": 3,
+        "operators": {
+            "draft": {
+                "system_message_prompt_template": {"template": "contract prompt"}
+            }
+        },
+    }
+    assert builder.normalize_solver(base) == builder.normalize_solver(paired)
+
+    paired["step_limit"] = 4
+    assert builder.normalize_solver(base) != builder.normalize_solver(paired)

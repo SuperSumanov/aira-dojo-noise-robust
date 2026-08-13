@@ -1,0 +1,7 @@
+group_index,group_id,sibling_index,card_id,competition,metric,higher_is_better,tap_site_count,baseline_valid,original_a_score,original_b_score,original_score_span,tap_endpoint_valid,tap_endpoint_score,semantics_equal,equivalence_mode,tap_probe_valid,tap_probe_by_120,tap_probe_score,tap_probe_elapsed_s,baseline_endpoint_elapsed_s,absolute_feedback_gain_s,relative_feedback_gain
+2,9629319c1a61a1e04352,1,petfinder-pawpularity-score__9e5b6d9bbf51494399a88f6450ac9ace,petfinder-pawpularity-score,,False,5,False,,,,False,,False,,True,False,18.00226,308.143884,,,
+2,9629319c1a61a1e04352,0,petfinder-pawpularity-score__c342d20d73444566b0bf2ba6477622ed,petfinder-pawpularity-score,,False,5,False,,,,False,,False,,False,False,,,,,
+0,a40dcc1bdda4073fc0bc,0,random-acts-of-pizza__d44791fd2e304932ad1a8f4e3713d513,random-acts-of-pizza,,True,22,False,,,,False,,False,,False,False,,,,,
+0,a40dcc1bdda4073fc0bc,1,random-acts-of-pizza__eb4da6eb491f436f97be85c1d7d9c839,random-acts-of-pizza,,True,20,False,,,,False,,False,,False,False,,,,,
+1,312ca30d985246f82827,1,us-patent-phrase-to-phrase-matching__532a14da9a754b67a3e5b7cc61844421,us-patent-phrase-to-phrase-matching,,True,2,True,0.60246,0.60246,0.0,True,0.60246,True,exact_hash,True,True,0.30524,27.054646,29.268753500000003,2.214107500000001,0.07564748187858429
+1,312ca30d985246f82827,0,us-patent-phrase-to-phrase-matching__aaf0959a86004fd09d14705579bc89a7,us-patent-phrase-to-phrase-matching,,True,2,True,0.60409,0.60409,0.0,True,0.60409,True,exact_hash,True,True,0.60178,64.344369,64.8015795,0.4572105000000022,0.007055545613668293

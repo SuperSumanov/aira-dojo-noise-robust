@@ -59,3 +59,26 @@ checkpoint-180(仅约 6% 训练量)accuracy **0.8143** / macro 0.7956,「加长 
 → 但那是**旧的泄漏切分**,不能与 run 级干净的 0.6493 直接比;干净 pairs 已推送给他(`ab580f3`)。
 
 相关:[[decision-point-inversion]] [[fragment-run-leakage]] [[preflight-checklist]] [[top-venue-bar]]
+
+## G. 2026-08-11—13 新增意见与已交付结果
+
+- **数据生产节奏**：「现在理想情况下每天能出 60 个 run 左右，打算按这个速度再跑两三周，之后先停数据生产，
+  把精力集中在方法。」
+  → 规则：新数据优先提高独立 physical run、task balance 与真实 sibling pair yield；不能用 cards 数代替决策支持数。
+  任何前瞻确认必须按机制冻结时间筛 physical run，晚入库的旧 run 不能冒充 prospective。
+- **训练结果交付位置**：学长会把结果放在其 branch 的
+  `src/mle_critic/docs/outcomes`。每次设计新实验前先只读检查该目录、commit 与对应数据 LFS object，不能只看聊天摘要。
+- **约 4k decision 数据的规模实验**：学长报告 Qwen3 1.7B—14B 在测试上最好约 0.55 浮动。正式 0812 文档目前可验证：
+  Qwen3 1.7B/4B/8B final 为 54.80%/55.41%/55.18%，best 为 55.33%/58.79%/56.64%；Qwen2.5
+  1.5B/3B/7B final 为 55.03%/52.80%/54.57%。没有模型规模单调性，14B 尚未完成，且缺少 multi-seed
+  显著性；只能说“现有 1.5B—8B 证据不支持容量是主杠杆”，不能说规模永远无效。
+- **数据文件区分**：约 4k 的 `decision_pairs_runsplit.jsonl` 是较早的、用于训练/开发的 run-split pair pool；
+  `decision_frozen_v11_b0/b1/b2` 是从 v11 在固定规则下重建、全部 `intask_split=test` 的论文冻结评测集，
+  分别 1,498/323/265 个 finite pairs。前者的 train/test 与后者不能按文件名假定等价，必须做 endpoint、parent、
+  physical-run 与 SHA 对照；冻结 test 绝不进入训练。
+- **共享可访问性**：学长无法访问我方 big-data storage 时，README 引用的必要小型 manifest/eval/result 必须随 Git
+  或正确的 Git LFS object 推送；大型 raw corpus 保留可重建 manifest、SHA、远端共享路径。不能写一个学长打不开的路径
+  就声称已交付数据。
+- **配置审计提醒**：学长最新 `2cb6f0c` 把 best metric 改为 `eval_pair_accuracy` 却保留
+  `greater_is_better=False`。逐 checkpoint 日志不受影响，但 best-only 保存方向会反；修复后先用人为递增 metric
+  做最小保存测试。旧 0812 结果使用较早的 eval-loss 配置，不能把旧 0.55 事后归因于这个新 bug。

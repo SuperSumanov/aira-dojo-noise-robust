@@ -47,9 +47,25 @@
 | [AgentExecutor](https://arxiv.org/abs/2608.05959) | 0.5 | 0 | 0 | 0 | 0 | 0.5/5 | 通过合成上下文执行不完整代码；没有 MLE artifact 恢复或评分。 |
 | [EET](https://arxiv.org/abs/2601.05777) / [Semantic Early-Stopping](https://arxiv.org/abs/2606.27009) | 0 | 0 | 0 | 0 | 0.5 | 0.5/5 | 依据经验/置信度或语义收敛停止 agent loop，不产生 task-level intermediate prediction score。 |
 
-没有单篇工作达到预先冻结的 3/5 close-baseline 门，更没有达到 4/5 direct-scoop 门。但
-**mlinspect + AutoDL 的组合在概念上覆盖 A/B/C/D**，所以 SPT 很容易被审稿人视为已有部件的自然拼接，
-不能作为“新的 instrumentation primitive”单独立论。
+### Outcome 前扩展审计与撤回
+
+在 pilot outcome 读取前进一步重读最新正文和官方代码后，原句“没有单篇达到 3/5”被撤回：
+
+| 工作 | A | B | C | D | E | 总重叠 | 裁决 |
+|---|---:|---:|---:|---:|---:|---:|---|
+| [ArchPilot](https://arxiv.org/abs/2511.03985) | 1 | 0.5 | 0.5 | 0 | 1 | **3/5** | **close baseline**。Evaluation Agent 自动把生成脚本改写为 1 epoch/10% 数据 proxy、保存 submission，并用 one-epoch/noisy/feature-dropout proxy 指导 MCTS/full escalation。它不是从同一 full execution 被动截获 prediction，也不保持相同训练 fidelity。 |
+| [FOREAGENT](https://arxiv.org/abs/2601.05930) | 0 | 0 | 0 | 0 | 1 | 1/5 | 最强 pre-execution critic/end-to-end baseline：代码、数据报告与 world model 从 10 个候选选 top-1 再完整执行；后续不能只和静态启发式比较。 |
+| [AMID](https://arxiv.org/abs/2607.10522) | 0 | 0 | 1 | 0 | 1 | 2/5 | reviewer 检查完整 attempt 的 validation/prediction artifact 后做 lane promotion；没有同一未完成候选的 intermediate prediction capture。 |
+| [Frontis-MA1 / OpenMLE](https://arxiv.org/abs/2607.28568) | 0 | 0 | 1 | 0 | 1 | 2/5 | 官方代码等待完整 `step_task` 与显式 submission 后再写 validation fitness；没有 prediction interception 或 same-code tap。 |
+
+修正后的结论是：**没有 4/5 direct scoop，但 ArchPilot 达到冻结的 3/5 close-baseline 门。** 按预先规则，
+3/5 要求重写差异和纳入强基线，而不是停止 pilot；因此当时运行中的 6-card feasibility pilot仍可完成，但
+不能授权原 100-pair 设计。后续必须至少比较 ArchPilot-style low-fidelity rewrite、最强 pre-execution critic、
+same-code SPT 与 full execution。
+
+同时，**mlinspect + AutoDL 的组合在概念上覆盖 A/B/C/D**，所以 SPT 很容易被审稿人视为已有部件的自然拼接，
+不能作为“新的 instrumentation primitive”单独立论。pilot 随后又显示 identity tap 只有 2/6 cards 在
+120 秒内有 probe、中位提前 4.14%；其核心方法路线已关闭，详见 `SPT_标签盲机制pilot裁决.md`。
 
 ## 可辩护、但必须由实验支持的主张
 
@@ -73,8 +89,8 @@ search benefit；不能来自 AST wrapper 本身。
 
 ## Pilot 决策与 kill conditions
 
-因没有 4/5 scoop 或 3/5 单篇 close paper，允许进入 train-only 小规模证伪 pilot。以下任一触发即关闭或
-根本重写 SPT：
+因没有 4/5 direct scoop，且 ArchPilot 已提升为 3/5 close baseline，当时只允许 train-only 小规模证伪
+pilot。以下任一触发即关闭或根本重写 SPT：
 
 1. tap-eligible execution 的语义保持率低于 95%；
 2. 6 张冻结 train-only card 中少于 4 张能在 120 秒前产生 schema-valid、finite-score probe；

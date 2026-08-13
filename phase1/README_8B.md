@@ -8,10 +8,20 @@
 ```bash
 git checkout phase1-value-critic
 git pull --ff-only
-git lfs pull
+git lfs pull \
+  --include="phase1/cards_current_v11.jsonl,phase1/cards_senior_0811.jsonl" \
+  --exclude=""
 ```
 
 v11 大文件通过 Git LFS 共享，不需要访问我的 big-data-storage 路径。
+2026-08-13 已从 GitHub `phase1-value-critic@a4c9d190` 做端到端 LFS fetch：
+`cards_current_v11.jsonl` 下载后为 305,750,663 bytes、SHA-256=`6794acbf...1b75`；
+`cards_senior_0811.jsonl` 为 18,241,949 bytes、SHA-256=`592c4f26...05c7`，均与 pointer 一致。
+
+8 月 13 日 SPT pilot 的完整小型复核包则直接保存在普通 Git：
+`phase1/spt_pilot_v1/`（约 0.7 MB，不依赖 Git LFS 或我的服务器路径）。其中包含 manifest、18 个 status、
+18 个 raw result、主/独立裁决与复现命令；冻结结论为 `INCONCLUSIVE`，baseline/probe@120 均为 2/6，
+中位相对反馈提前为 `0.04135151374612629`。当前路线与撤回链仍以 `phase1/CURRENT_DIRECTION.md` 为准。
 
 ## 数据文件
 

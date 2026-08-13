@@ -1,0 +1,13 @@
+{
+  "command_sha256": "195048ea3ff2568aaad0b3d5aa0b4d37edb435bee7cb0eddafbd66f79dd179c7",
+  "cuda_visible_devices": "0",
+  "ended_wall_ns": 1786625945987802974,
+  "hostname": "gpu27",
+  "index": 13,
+  "return_code": 0,
+  "schema_version": 1,
+  "slurm_job_id": "10648",
+  "slurm_step_id": "13",
+  "started_wall_ns": 1786625327002200543,
+  "wall_s": 618.985592
+}

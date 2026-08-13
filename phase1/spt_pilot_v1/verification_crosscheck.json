@@ -1,0 +1,33 @@
+{
+  "crosscheck": "PASS",
+  "job_accounting": "10648|COMPLETED|0:0|00:45:53|billing=18,cpu=18,gres/gpu=3,node=1",
+  "primary_summary": {
+    "baseline_valid_cards": 2,
+    "card_count": 6,
+    "claim_scope": "feasibility/mechanism pilot only; no population effect or p-value",
+    "execution_count": 18,
+    "gates": {
+      "K0_complete_provenance": true,
+      "K1_baseline_evaluable_at_least_4_of_6": false,
+      "K2_finite_probe_by_120_at_least_4_of_6": false,
+      "K3_semantics_rate_at_least_0p95": true,
+      "K4_latency_pairs_at_least_4": false,
+      "K5_median_relative_feedback_gain_at_least_0p25": false
+    },
+    "group_count": 3,
+    "latency_pair_count": 2,
+    "manifest_sha256": "5b74f725822b0290393de976020c02bfb456ac3164cc094a848637b53ef55a06",
+    "median_relative_feedback_gain": 0.04135151374612629,
+    "probe_by_120_cards": 2,
+    "schema_version": 1,
+    "semantic_denominator": 2,
+    "semantic_numerator": 2,
+    "semantic_rate": 1.0,
+    "sibling_rank_correct": 1,
+    "sibling_rank_evaluable": 1,
+    "verdict": "INCONCLUSIVE"
+  },
+  "raw_verifier": "independent_raw_v1",
+  "schema_version": 1,
+  "verdict": "INCONCLUSIVE"
+}

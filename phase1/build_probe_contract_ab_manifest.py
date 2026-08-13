@@ -74,6 +74,11 @@ def aggregate_usage(code_nodes: list[dict]) -> dict:
 
 def normalize_solver(solver: dict) -> dict:
     value = copy.deepcopy(solver)
+    # Hydra resolves these two fields from the per-run experiment identity.
+    # They must differ across independent A/B runs and do not change solver
+    # behavior.  Keep every scientific knob fail-closed below this boundary.
+    value.pop("checkpoint_path", None)
+    value.pop("exp_name", None)
     value["operators"]["draft"]["system_message_prompt_template"]["template"] = "<ARM_PROMPT>"
     return value
 

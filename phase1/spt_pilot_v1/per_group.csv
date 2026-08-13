@@ -1,0 +1,4 @@
+group_id,group_index,competition,reference_ready,probe_ready,reference_oriented_gap,probe_oriented_gap,tap_sibling_rank_correct
+312ca30d985246f82827,1,us-patent-phrase-to-phrase-matching,True,True,0.0016300000000000203,0.29653999999999997,True
+9629319c1a61a1e04352,2,petfinder-pawpularity-score,False,False,,,
+a40dcc1bdda4073fc0bc,0,random-acts-of-pizza,False,False,,,

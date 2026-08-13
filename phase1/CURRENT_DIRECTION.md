@@ -5,6 +5,33 @@
 
 ## 0. 8 月 13 日晚间覆盖裁决（优先级最高）
 
+### 0.1 21:20 后的最新覆盖：关闭 identity SPT，保留 Probe-First 因果线
+
+本小节晚于 0 节后续文字并覆盖其中“下一步”措辞：
+
+1. Scoreable Prediction Tap 的冻结 job `10648` 已真实完成 18/18 executions（3×RTX3090，
+   `00:45:53`）。主 verifier 与独立 raw verifier 一致为 **`INCONCLUSIVE`**：baseline evaluable=2/6，
+   probe-by-120=2/6，语义等价=2/2，latency pairs=2，中位相对提前仅
+   `0.04135151374612629`。不启动 v11 176-pair 扩展。
+2. 机制诊断表明 identity wrapper 只能在候选已有 `.predict*` call 时截获，而这些 call 通常位于昂贵训练之后、
+   submission 写盘之前；它不能主动创造早期 fidelity。因此 SPT 只保留为 measurement/baseline，不再是核心方法。
+3. Probe-First original-vs-contract A/B job `10637` 的 12 个 generation entry 都 `rc=0`，但 manifest builder
+   错把每个 run 必然不同的 `solver.exp_name/checkpoint_path` 当作科学配置漂移，parent `FAILED 1:0`，replay
+   未启动。按冻结规则该批保持 **`INVALID`**，不能解释方法输赢或修后追认。
+4. validator 已收窄为只忽略上述两个 run-identity 字段，并增加“真正改变 `step_limit` 仍必须失败”的回归门。
+   活跃正方法仍是 **Probe-First/Progressive Artifact Contract**，但下一批必须全新任务、全新 seed、重新冻结；
+   headline 是 coverage、full-quality safety、observability/ranking regret 与固定预算 best-final，而非 prompt
+   compliance。
+5. 文献审计已撤回“没有 3/5 close baseline”：ArchPilot 是 3/5 close baseline，后续必须实测
+   ArchPilot-style low-fidelity rewrite、FOREAGENT/最强 critic、Probe-First 与 full execution。仍未发现 4/5
+   direct scoop，但若没有端到端 search utility，仅靠 artifact contract 不足以构成顶会方法贡献。
+
+最新直接证据新增：
+
+- `phase1/实验记录/2026-08-13/SPT_标签盲机制pilot裁决.md`；
+- `phase1/实验记录/2026-08-13/probe_contract_ab_safety_v1无效运行裁决.md`；
+- `phase1/实验记录/2026-08-13/SPT_文献防scoop审计.md`。
+
 本节发生在本文后续各节之后，**覆盖**后文“当前唯一主实验”和后续顺序中的旧措辞。论文伞形定位仍是
 NAS-Bench-style 的 MLE-agent 搜索树 benchmark；当前方法主线已经进一步收敛为：
 **Anytime MLE Search under Selectively Observable Execution Feedback**，首个主动干预是

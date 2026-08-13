@@ -105,15 +105,15 @@ def main() -> None:
                 label_status = "finite_nontie"
             predicted_index = index(row["prediction_best_index"])
             predicted_path = paths[predicted_index] if predicted_index is not None else None
-            confidence = row["confidence"]
-            valid = (
-                true_path is not None
-                and predicted_path is not None
-                and isinstance(confidence, (int, float))
-                and not isinstance(confidence, bool)
-                and math.isfinite(float(confidence))
-                and 0.0 <= float(confidence) <= 1.0
-            )
+            def canonical_score(value: float) -> Any:
+                if math.isnan(value):
+                    return "nan"
+                if value == math.inf:
+                    return "+inf"
+                if value == -math.inf:
+                    return "-inf"
+                return value
+
             records[source_index][key] = {
                 "task": source["task"],
                 "model": source["model_family"],
@@ -121,8 +121,8 @@ def main() -> None:
                 "scores": tuple(
                     sorted(
                         (
-                            (paths[0], "nan" if math.isnan(scores[0]) else scores[0]),
-                            (paths[1], "nan" if math.isnan(scores[1]) else scores[1]),
+                            (paths[0], canonical_score(scores[0])),
+                            (paths[1], canonical_score(scores[1])),
                         )
                     )
                 ),
@@ -130,69 +130,129 @@ def main() -> None:
                 "true": true_path,
                 "gap": abs(scores[0] - scores[1]) if scores_finite else None,
                 "label_status": label_status,
-                "correct": float(predicted_path == true_path) if valid else None,
+                "correct": float(predicted_path == true_path) if true_path is not None else None,
             }
 
     task_sources: dict[str, list[int]] = defaultdict(list)
     for source_index, source in enumerate(sources):
         task_sources[source["task"]].append(source_index)
-    base_pairs = 0
-    ties = 0
-    nonfinite = 0
-    references: dict[str, dict[tuple[str, str], dict[str, Any]]] = {}
+    references: dict[tuple[str, str], dict[tuple[str, str], dict[str, Any]]] = {}
+    model_sources_by_task: dict[tuple[str, str], list[int]] = {}
+    grid_totals = {
+        "deepseek": {"union_pairs": 0, "intersection_pairs": 0, "excluded_incomplete_triplicate_pairs": 0},
+        "gpt": {"union_pairs": 0, "intersection_pairs": 0, "excluded_incomplete_triplicate_pairs": 0},
+    }
     for task, indices in task_sources.items():
         if len(indices) != 6:
             raise RuntimeError("source count mismatch")
-        reference = records[indices[0]]
-        base_pairs += len(reference)
-        ties += sum(row["label_status"] == "exact_tie" for row in reference.values())
-        nonfinite += sum(row["label_status"] == "nonfinite_score" for row in reference.values())
-        for source_index in indices[1:]:
-            current = records[source_index]
-            if set(current) != set(reference):
-                raise RuntimeError("grid mismatch")
-            for key in reference:
-                for field in ("scores", "lower", "true", "gap"):
-                    if current[key][field] != reference[key][field]:
-                        raise RuntimeError("truth mismatch")
-        references[task] = reference
+        for model in ("deepseek", "gpt"):
+            model_sources = sorted(
+                [index_value for index_value in indices if sources[index_value]["model_family"] == model],
+                key=lambda index_value: sources[index_value]["release_run"],
+            )
+            if len(model_sources) != 3:
+                raise RuntimeError("model source count mismatch")
+            model_sources_by_task[(model, task)] = model_sources
+            key_sets = [set(records[index_value]) for index_value in model_sources]
+            union_keys = set().union(*key_sets)
+            intersection_keys = set.intersection(*key_sets)
+            ratio = len(intersection_keys) / len(union_keys) if union_keys else 0.0
+            if model == "deepseek" and any(keys != key_sets[0] for keys in key_sets[1:]):
+                raise RuntimeError("primary grid mismatch")
+            if model == "gpt" and ratio < 0.99:
+                raise RuntimeError("GPT intersection support failure")
+            grid_totals[model]["union_pairs"] += len(union_keys)
+            grid_totals[model]["intersection_pairs"] += len(intersection_keys)
+            grid_totals[model]["excluded_incomplete_triplicate_pairs"] += len(
+                union_keys - intersection_keys
+            )
+            reference: dict[tuple[str, str], dict[str, Any]] = {}
+            for key in intersection_keys:
+                truth = records[model_sources[0]][key]
+                for source_index in model_sources[1:]:
+                    current = records[source_index][key]
+                    for field in ("scores", "lower", "true", "gap", "label_status"):
+                        if current[field] != truth[field]:
+                            raise RuntimeError("within-model truth mismatch")
+                reference[key] = truth
+            references[(model, task)] = reference
 
-    if base_pairs != summary["integrity"]["base_pairs"]:
+        for key in set(references[("deepseek", task)]) & set(references[("gpt", task)]):
+            deepseek_truth = references[("deepseek", task)][key]
+            gpt_truth = references[("gpt", task)][key]
+            for field in ("scores", "lower", "true", "gap", "label_status"):
+                if deepseek_truth[field] != gpt_truth[field]:
+                    raise RuntimeError("cross-model truth mismatch")
+
+    primary_rows = [
+        row
+        for task in task_sources
+        for row in references[("deepseek", task)].values()
+    ]
+    base_pairs = len(primary_rows)
+    ties = sum(row["label_status"] == "exact_tie" for row in primary_rows)
+    nonfinite = sum(row["label_status"] == "nonfinite_score" for row in primary_rows)
+    cross_model_common_pairs = sum(
+        len(set(references[("deepseek", task)]) & set(references[("gpt", task)]))
+        for task in task_sources
+    )
+    integrity = summary["integrity"]
+    if summary.get("schema_version") != 2:
+        raise RuntimeError("unexpected summary schema")
+    if base_pairs != integrity["primary_base_pairs"] or base_pairs != integrity["base_pairs"]:
         raise RuntimeError("base pair count mismatch")
-    if ties != summary["integrity"]["exact_score_ties"]:
+    if ties != integrity["exact_score_ties"]:
         raise RuntimeError("tie count mismatch")
-    if nonfinite != summary["integrity"]["nonfinite_score_pairs"]:
+    if nonfinite != integrity["nonfinite_score_pairs"]:
         raise RuntimeError("nonfinite count mismatch")
+    if grid_totals != integrity["model_grid_totals"]:
+        raise RuntimeError("model grid totals mismatch")
+    if cross_model_common_pairs != integrity["cross_model_common_pairs"]:
+        raise RuntimeError("cross-model common count mismatch")
+    for model in ("deepseek", "gpt"):
+        model_rows = [
+            row
+            for task in task_sources
+            for row in references[(model, task)].values()
+        ]
+        expected_counts = {
+            "exact_ties": sum(row["label_status"] == "exact_tie" for row in model_rows),
+            "nonfinite_score_pairs": sum(
+                row["label_status"] == "nonfinite_score" for row in model_rows
+            ),
+            "finite_directional_pairs": sum(
+                row["label_status"] == "finite_nontie" for row in model_rows
+            ),
+        }
+        if expected_counts != integrity["label_counts_by_model"][model]:
+            raise RuntimeError(f"{model} label counts mismatch")
 
     pair_accuracy: dict[tuple[str, str, tuple[str, str]], float] = {}
-    quartiles: dict[str, dict[tuple[str, str], int]] = {}
-    for task, reference in references.items():
-        quartiles[task] = quartile_map(
-            {
-                key: row["gap"]
-                for key, row in reference.items()
-                if row["label_status"] == "finite_nontie"
-            }
-        )
-        for model in ("deepseek", "gpt"):
-            model_sources = [
-                source_index
-                for source_index in task_sources[task]
-                if sources[source_index]["model_family"] == model
-            ]
+    quartiles: dict[tuple[str, str], dict[tuple[str, str], int]] = {}
+    for model in ("deepseek", "gpt"):
+        for task in task_sources:
+            reference = references[(model, task)]
+            quartiles[(model, task)] = quartile_map(
+                {
+                    key: row["gap"]
+                    for key, row in reference.items()
+                    if row["label_status"] == "finite_nontie"
+                }
+            )
+            model_sources = model_sources_by_task[(model, task)]
             for key, truth in reference.items():
-                if truth["true"] is None:
+                if truth["label_status"] != "finite_nontie":
                     continue
                 correctness = [records[source_index][key]["correct"] for source_index in model_sources]
-                valid = [value for value in correctness if value is not None]
-                if valid:
-                    pair_accuracy[(model, task, key)] = sum(valid) / len(valid)
+                if any(value is None for value in correctness):
+                    raise RuntimeError("missing directional correctness")
+                pair_accuracy[(model, task, key)] = sum(correctness) / 3.0
 
     task_accuracy: dict[str, list[float]] = {"deepseek": [], "gpt": []}
     low_by_model: dict[str, dict[str, float]] = {"deepseek": {}, "gpt": {}}
     high_by_model: dict[str, dict[str, float]] = {"deepseek": {}, "gpt": {}}
     for model in ("deepseek", "gpt"):
-        for task in sorted(references):
+        for task in sorted(task_sources):
             values = [
                 value
                 for (row_model, row_task, _), value in pair_accuracy.items()
@@ -202,12 +262,12 @@ def main() -> None:
             low = [
                 value
                 for (row_model, row_task, key), value in pair_accuracy.items()
-                if row_model == model and row_task == task and quartiles[task][key] == 0
+                if row_model == model and row_task == task and quartiles[(model, task)][key] == 0
             ]
             high = [
                 value
                 for (row_model, row_task, key), value in pair_accuracy.items()
-                if row_model == model and row_task == task and quartiles[task][key] == 3
+                if row_model == model and row_task == task and quartiles[(model, task)][key] == 3
             ]
             low_by_model[model][task] = sum(low) / len(low)
             high_by_model[model][task] = sum(high) / len(high)
@@ -245,10 +305,12 @@ def main() -> None:
     print(
         "FOREAGENT_ALIGNMENT_INDEPENDENT_VERIFY_PASS",
         f"sources={len(sources)}",
-        f"tasks={len(references)}",
-        f"pairs={base_pairs}",
+        f"tasks={len(task_sources)}",
+        f"primary_pairs={base_pairs}",
         f"ties={ties}",
         f"nonfinite={nonfinite}",
+        f"gpt_intersection={grid_totals['gpt']['intersection_pairs']}",
+        f"gpt_excluded={grid_totals['gpt']['excluded_incomplete_triplicate_pairs']}",
         f"deepseek={summary['overall']['deepseek']['task_macro']:.6f}",
         f"deepseek_q1={summary['primary_gate']['lowest_quartile']['task_macro']:.6f}",
         f"deepseek_q4_minus_q1={summary['primary_gate']['highest_minus_lowest']['mean']:.6f}",

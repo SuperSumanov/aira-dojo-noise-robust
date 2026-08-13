@@ -48,6 +48,7 @@ class ParsedRecord:
     prediction_path: str | None
     prediction_index: int | None
     confidence: float | None
+    prediction_valid: bool
     correct: float | None
     release_correct: Any
 
@@ -142,8 +143,12 @@ def parse_record(raw: dict[str, Any], source: dict[str, Any]) -> ParsedRecord:
         confidence = None
     if confidence is not None and (not math.isfinite(confidence) or not 0.0 <= confidence <= 1.0):
         confidence = None
-    valid = prediction_path is not None and confidence is not None and true_path is not None
-    correct = float(prediction_path == true_path) if valid else None
+    prediction_valid = prediction_path is not None and confidence is not None
+    correct = (
+        float(prediction_path == true_path)
+        if true_path is not None and prediction_path is not None
+        else (0.0 if true_path is not None else None)
+    )
 
     pair_key = tuple(sorted(paths))
     def canonical_score(value: float) -> Any:
@@ -174,6 +179,7 @@ def parse_record(raw: dict[str, Any], source: dict[str, Any]) -> ParsedRecord:
         prediction_path=prediction_path,
         prediction_index=prediction_index,
         confidence=confidence,
+        prediction_valid=prediction_valid,
         correct=correct,
         release_correct=raw.get("release_correct"),
     )
@@ -258,7 +264,7 @@ def summarize_paired_differences(values: dict[str, float], label: str) -> dict[s
 def ece10(records: Iterable[ParsedRecord]) -> float | None:
     bins: list[list[tuple[float, float]]] = [[] for _ in range(10)]
     for record in records:
-        if record.correct is None or record.confidence is None:
+        if record.correct is None or record.confidence is None or record.prediction_path is None:
             continue
         index = min(9, int(record.confidence * 10.0))
         bins[index].append((record.confidence, record.correct))
@@ -310,6 +316,7 @@ def main() -> None:
         out_dir / "per_run.csv",
         out_dir / "per_task.csv",
         out_dir / "stratified.csv",
+        out_dir / "grid.csv",
     ]
     if any(path.exists() for path in expected_outputs):
         raise RuntimeError("refusing to overwrite alignment audit outputs")
@@ -358,31 +365,82 @@ def main() -> None:
     if len(task_sources) != 26 or any(len(indices) != 6 for indices in task_sources.values()):
         raise RuntimeError("expected 26 tasks with 6 source files each")
 
-    reference_by_task: dict[str, dict[tuple[str, str], ParsedRecord]] = {}
+    reference_by_model_task: dict[tuple[str, str], dict[tuple[str, str], ParsedRecord]] = {}
+    grid_rows: list[dict[str, Any]] = []
     for task, indices in sorted(task_sources.items()):
-        reference = by_source[indices[0]]
-        reference_keys = set(reference)
-        for source_index in indices[1:]:
-            current = by_source[source_index]
-            if set(current) != reference_keys:
-                raise RuntimeError(f"GRID-MISMATCH task={task} source={source_index}")
-            for pair_key, ref in reference.items():
-                row = current[pair_key]
-                if (
-                    row.score_by_path != ref.score_by_path
-                    or row.is_lower_better != ref.is_lower_better
-                    or row.true_path != ref.true_path
-                ):
-                    raise RuntimeError(f"GROUNDTRUTH-MISMATCH task={task} pair={pair_key}")
-        reference_by_task[task] = reference
+        for model in ("deepseek", "gpt"):
+            model_indices = sorted(
+                [index for index in indices if sources[index]["model_family"] == model],
+                key=lambda index: sources[index]["release_run"],
+            )
+            if len(model_indices) != 3:
+                raise RuntimeError(f"expected 3 {model} sources for {task}")
+            key_sets = [set(by_source[index]) for index in model_indices]
+            union_keys = set().union(*key_sets)
+            intersection_keys = set.intersection(*key_sets)
+            intersection_ratio = len(intersection_keys) / len(union_keys) if union_keys else 0.0
+            if model == "deepseek" and any(keys != key_sets[0] for keys in key_sets[1:]):
+                raise RuntimeError(f"PRIMARY-GRID-MISMATCH task={task}")
+            if model == "gpt" and intersection_ratio < 0.99:
+                raise RuntimeError(
+                    f"GPT-GRID-SUPPORT task={task} intersection={len(intersection_keys)} "
+                    f"union={len(union_keys)} ratio={intersection_ratio}"
+                )
+            reference: dict[tuple[str, str], ParsedRecord] = {}
+            for pair_key in sorted(intersection_keys):
+                ref = by_source[model_indices[0]][pair_key]
+                for source_index in model_indices[1:]:
+                    row = by_source[source_index][pair_key]
+                    if (
+                        row.score_by_path != ref.score_by_path
+                        or row.is_lower_better != ref.is_lower_better
+                        or row.true_path != ref.true_path
+                    ):
+                        raise RuntimeError(
+                            f"GROUNDTRUTH-MISMATCH model={model} task={task} pair={pair_key}"
+                        )
+                reference[pair_key] = ref
+            reference_by_model_task[(model, task)] = reference
+            grid_rows.append(
+                {
+                    "task": task,
+                    "model_family": model,
+                    "release_run_1_pairs": len(key_sets[0]),
+                    "release_run_2_pairs": len(key_sets[1]),
+                    "release_run_3_pairs": len(key_sets[2]),
+                    "union_pairs": len(union_keys),
+                    "intersection_pairs": len(intersection_keys),
+                    "excluded_incomplete_triplicate_pairs": len(union_keys - intersection_keys),
+                    "intersection_ratio": intersection_ratio,
+                    "exact_triplicate_grid": all(keys == key_sets[0] for keys in key_sets[1:]),
+                }
+            )
 
-    total_base_pairs = sum(len(rows) for rows in reference_by_task.values())
+        deepseek_reference = reference_by_model_task[("deepseek", task)]
+        gpt_reference = reference_by_model_task[("gpt", task)]
+        for pair_key in set(deepseek_reference) & set(gpt_reference):
+            ref = deepseek_reference[pair_key]
+            row = gpt_reference[pair_key]
+            if (
+                row.score_by_path != ref.score_by_path
+                or row.is_lower_better != ref.is_lower_better
+                or row.true_path != ref.true_path
+            ):
+                raise RuntimeError(f"CROSS-MODEL-GROUNDTRUTH-MISMATCH task={task} pair={pair_key}")
+
+    primary_reference_by_task = {
+        task: reference_by_model_task[("deepseek", task)] for task in sorted(task_sources)
+    }
+    total_base_pairs = sum(len(rows) for rows in primary_reference_by_task.values())
     total_ties = sum(
-        1 for rows in reference_by_task.values() for record in rows.values() if record.label_status == "exact_tie"
+        1
+        for rows in primary_reference_by_task.values()
+        for record in rows.values()
+        if record.label_status == "exact_tie"
     )
     total_nonfinite = sum(
         1
-        for rows in reference_by_task.values()
+        for rows in primary_reference_by_task.values()
         for record in rows.values()
         if record.label_status == "nonfinite_score"
     )
@@ -398,20 +456,55 @@ def main() -> None:
         if len(nonnull) != len(set(nonnull)):
             log_index_duplicate_nonnull_sources += 1
 
+    model_grid_totals: dict[str, dict[str, int]] = {}
+    for model in ("deepseek", "gpt"):
+        selected_grid_rows = [row for row in grid_rows if row["model_family"] == model]
+        model_grid_totals[model] = {
+            "union_pairs": sum(row["union_pairs"] for row in selected_grid_rows),
+            "intersection_pairs": sum(row["intersection_pairs"] for row in selected_grid_rows),
+            "excluded_incomplete_triplicate_pairs": sum(
+                row["excluded_incomplete_triplicate_pairs"] for row in selected_grid_rows
+            ),
+        }
+    cross_model_common_pairs = sum(
+        len(
+            set(reference_by_model_task[("deepseek", task)])
+            & set(reference_by_model_task[("gpt", task)])
+        )
+        for task in task_sources
+    )
+    label_counts_by_model: dict[str, dict[str, int]] = {}
+    for model in ("deepseek", "gpt"):
+        model_records = [
+            record
+            for task in task_sources
+            for record in reference_by_model_task[(model, task)].values()
+        ]
+        label_counts_by_model[model] = {
+            "exact_ties": sum(record.label_status == "exact_tie" for record in model_records),
+            "nonfinite_score_pairs": sum(
+                record.label_status == "nonfinite_score" for record in model_records
+            ),
+            "finite_directional_pairs": sum(
+                record.label_status == "finite_nontie" for record in model_records
+            ),
+        }
+
     per_run_rows: list[dict[str, Any]] = []
-    min_valid_coverage = 1.0
-    release_correct_mismatches = 0
+    min_valid_coverage_by_model = {"deepseek": 1.0, "gpt": 1.0}
+    release_correct_mismatches_by_model = {"deepseek": 0, "gpt": 0}
     for source in sources:
         records = list(by_source[source["source_index"]].values())
         nonties = [record for record in records if record.label_status == "finite_nontie"]
-        valid = [record for record in nonties if record.correct is not None]
+        valid = [record for record in nonties if record.prediction_valid]
         coverage = len(valid) / len(nonties) if nonties else 0.0
-        min_valid_coverage = min(min_valid_coverage, coverage)
-        for record in valid:
+        model = source["model_family"]
+        min_valid_coverage_by_model[model] = min(min_valid_coverage_by_model[model], coverage)
+        for record in nonties:
             normalized_release = str(record.release_correct).strip().lower()
             release_value = normalized_release in {"correct", "true", "1"}
             if release_value != bool(record.correct):
-                release_correct_mismatches += 1
+                release_correct_mismatches_by_model[model] += 1
         per_run_rows.append(
             {
                 "task": source["task"],
@@ -428,7 +521,7 @@ def main() -> None:
                 ),
                 "valid_nontie_predictions": len(valid),
                 "valid_coverage": coverage,
-                "accuracy": sum(record.correct for record in valid) / len(valid) if valid else None,
+                "accuracy": sum(record.correct for record in nonties) / len(nonties) if nonties else None,
                 "pick_index0_rate": (
                     sum(record.prediction_index == 0 for record in valid) / len(valid) if valid else None
                 ),
@@ -437,7 +530,7 @@ def main() -> None:
                     if valid
                     else None
                 ),
-                "ece10": ece10(valid),
+                "ece10": ece10(nonties),
             }
         )
 
@@ -448,41 +541,50 @@ def main() -> None:
             model_indices = [index for index in indices if sources[index]["model_family"] == model]
             if len(model_indices) != 3:
                 raise RuntimeError(f"expected 3 {model} files for {task}")
-            for pair_key, reference in reference_by_task[task].items():
-                if reference.true_path is None:
+            for pair_key, reference in reference_by_model_task[(model, task)].items():
+                if reference.label_status != "finite_nontie":
                     continue
                 records = [by_source[index][pair_key] for index in model_indices]
-                valid = [record for record in records if record.correct is not None]
-                if not valid:
-                    continue
-                predictions = [record.prediction_path for record in valid]
+                if len(records) != 3 or any(record.correct is None for record in records):
+                    raise RuntimeError(f"missing directional record model={model} task={task}")
+                predictions = [record.prediction_path for record in records]
+                valid_confidences = [
+                    record.confidence for record in records if record.prediction_valid
+                ]
                 pair = PairAverage(
                     task=task,
                     model=model,
                     pair_key=pair_key,
                     gap=reference.gap,
-                    accuracy=sum(record.correct for record in valid) / len(valid),
-                    confidence=sum(record.confidence for record in valid if record.confidence is not None) / len(valid),
-                    unanimous=len(valid) == 3 and len(set(predictions)) == 1,
+                    accuracy=sum(record.correct for record in records) / 3.0,
+                    confidence=(
+                        sum(valid_confidences) / len(valid_confidences)
+                        if valid_confidences
+                        else math.nan
+                    ),
+                    unanimous=all(prediction is not None for prediction in predictions)
+                    and len(set(predictions)) == 1,
                 )
                 pair_averages.append(pair)
                 per_task_pair_map[(model, task)].append(pair)
 
-    quartiles: dict[str, dict[tuple[str, str], int]] = {}
-    deciles: dict[str, dict[tuple[str, str], int]] = {}
-    support_tasks: list[str] = []
-    for task, reference in sorted(reference_by_task.items()):
-        gaps = {
-            key: record.gap
-            for key, record in reference.items()
-            if record.label_status == "finite_nontie"
-        }
-        quartiles[task] = within_task_bins(gaps, 4)
-        deciles[task] = within_task_bins(gaps, 10)
-        low_count = sum(value == 0 for value in quartiles[task].values())
-        high_count = sum(value == 3 for value in quartiles[task].values())
-        if low_count >= 20 and high_count >= 20:
-            support_tasks.append(task)
+    quartiles: dict[tuple[str, str], dict[tuple[str, str], int]] = {}
+    deciles: dict[tuple[str, str], dict[tuple[str, str], int]] = {}
+    support_tasks: dict[str, list[str]] = {"deepseek": [], "gpt": []}
+    for model in ("deepseek", "gpt"):
+        for task in sorted(task_sources):
+            reference = reference_by_model_task[(model, task)]
+            gaps = {
+                key: record.gap
+                for key, record in reference.items()
+                if record.label_status == "finite_nontie"
+            }
+            quartiles[(model, task)] = within_task_bins(gaps, 4)
+            deciles[(model, task)] = within_task_bins(gaps, 10)
+            low_count = sum(value == 0 for value in quartiles[(model, task)].values())
+            high_count = sum(value == 3 for value in quartiles[(model, task)].values())
+            if low_count >= 20 and high_count >= 20:
+                support_tasks[model].append(task)
 
     overall: dict[str, Any] = {}
     stratified_rows: list[dict[str, Any]] = []
@@ -499,13 +601,21 @@ def main() -> None:
             stratified_rows.append(output)
             stratified_lookup[(model, "raw_gap", bin_index)] = summary
         for bin_index in range(4):
-            selected = [row for row in model_rows if quartiles[row.task][row.pair_key] == bin_index]
+            selected = [
+                row
+                for row in model_rows
+                if quartiles[(model, row.task)][row.pair_key] == bin_index
+            ]
             summary = summarize_pairs(selected, f"quartile:{model}:{bin_index}")
             output = {"group_type": "within_task_quartile", "model_family": model, "bin_index": bin_index, "bin": f"Q{bin_index + 1}", **summary}
             stratified_rows.append(output)
             stratified_lookup[(model, "within_task_quartile", bin_index)] = summary
         for bin_index in range(10):
-            selected = [row for row in model_rows if deciles[row.task][row.pair_key] == bin_index]
+            selected = [
+                row
+                for row in model_rows
+                if deciles[(model, row.task)][row.pair_key] == bin_index
+            ]
             summary = summarize_pairs(selected, f"decile:{model}:{bin_index}")
             output = {"group_type": "within_task_decile", "model_family": model, "bin_index": bin_index, "bin": f"D{bin_index + 1}", **summary}
             stratified_rows.append(output)
@@ -514,10 +624,19 @@ def main() -> None:
     per_task_rows: list[dict[str, Any]] = []
     paired_differences: dict[str, dict[str, float]] = {"deepseek": {}, "gpt": {}}
     for model in ("deepseek", "gpt"):
-        for task in sorted(reference_by_task):
+        for task in sorted(task_sources):
+            reference = reference_by_model_task[(model, task)]
             rows = per_task_pair_map[(model, task)]
-            low = [row.accuracy for row in rows if quartiles[task][row.pair_key] == 0]
-            high = [row.accuracy for row in rows if quartiles[task][row.pair_key] == 3]
+            low = [
+                row.accuracy
+                for row in rows
+                if quartiles[(model, task)][row.pair_key] == 0
+            ]
+            high = [
+                row.accuracy
+                for row in rows
+                if quartiles[(model, task)][row.pair_key] == 3
+            ]
             low_acc = sum(low) / len(low) if low else None
             high_acc = sum(high) / len(high) if high else None
             if low_acc is not None and high_acc is not None:
@@ -530,13 +649,13 @@ def main() -> None:
                 {
                     "task": task,
                     "model_family": model,
-                    "pairs": len(reference_by_task[task]),
+                    "pairs": len(reference),
                     "exact_ties": sum(
-                        record.label_status == "exact_tie" for record in reference_by_task[task].values()
+                        record.label_status == "exact_tie" for record in reference.values()
                     ),
                     "nonfinite_score_pairs": sum(
                         record.label_status == "nonfinite_score"
-                        for record in reference_by_task[task].values()
+                        for record in reference.values()
                     ),
                     "nontie_pair_averages": len(rows),
                     "task_accuracy": sum(row.accuracy for row in rows) / len(rows) if rows else None,
@@ -558,18 +677,22 @@ def main() -> None:
         for model, values in paired_differences.items()
     }
 
-    integrity_support = (
-        min_valid_coverage >= 0.99
-        and len(support_tasks) >= 24
+    primary_integrity_support = (
+        min_valid_coverage_by_model["deepseek"] >= 0.99
+        and len(support_tasks["deepseek"]) >= 24
         and all(
             len([index for index in indices if sources[index]["model_family"] == model]) == 3
             for indices in task_sources.values()
             for model in ("deepseek", "gpt")
         )
     )
+    gpt_replication_support = (
+        min_valid_coverage_by_model["gpt"] >= 0.99
+        and len(support_tasks["gpt"]) >= 24
+    )
     primary_low = stratified_lookup[("deepseek", "within_task_quartile", 0)]
     primary_difference = difference_summary["deepseek"]
-    if not integrity_support:
+    if not primary_integrity_support:
         decision = "INSUFFICIENT-SUPPORT"
     elif (
         primary_low["task_macro"] <= 0.55
@@ -583,7 +706,7 @@ def main() -> None:
         decision = "INCONCLUSIVE"
 
     summary = {
-        "schema_version": 1,
+        "schema_version": 2,
         "source": {
             "repo_id": manifest["source"]["repo_id"],
             "revision": manifest["source"]["revision"],
@@ -598,10 +721,29 @@ def main() -> None:
             "primary_cluster": "task",
         },
         "integrity": {
-            "grid_consistent": True,
+            "grid_policy": "deepseek_exact__gpt_three_run_intersection",
+            "primary_grid_exact": all(
+                row["exact_triplicate_grid"]
+                for row in grid_rows
+                if row["model_family"] == "deepseek"
+            ),
+            "gpt_all_intersection_ratio_ge_0p99": all(
+                row["intersection_ratio"] >= 0.99
+                for row in grid_rows
+                if row["model_family"] == "gpt"
+            ),
+            "gpt_min_intersection_ratio": min(
+                row["intersection_ratio"]
+                for row in grid_rows
+                if row["model_family"] == "gpt"
+            ),
             "groundtruth_consistent": True,
-            "tasks": len(reference_by_task),
+            "tasks": len(task_sources),
+            "primary_base_pairs": total_base_pairs,
             "base_pairs": total_base_pairs,
+            "model_grid_totals": model_grid_totals,
+            "cross_model_common_pairs": cross_model_common_pairs,
+            "label_counts_by_model": label_counts_by_model,
             "exact_score_ties": total_ties,
             "nonfinite_score_pairs": total_nonfinite,
             "finite_directional_pairs": total_base_pairs - total_ties - total_nonfinite,
@@ -612,13 +754,17 @@ def main() -> None:
             "difference_equals_ties_plus_nonfinite": (
                 total_ties + total_nonfinite == 18438 - 18361
             ),
-            "min_valid_prediction_coverage": min_valid_coverage,
-            "tasks_with_quartile_support": len(support_tasks),
-            "release_correct_mismatches": release_correct_mismatches,
+            "min_valid_prediction_coverage_by_model": min_valid_coverage_by_model,
+            "tasks_with_quartile_support_by_model": {
+                model: len(tasks) for model, tasks in support_tasks.items()
+            },
+            "release_correct_mismatches_by_model": release_correct_mismatches_by_model,
+            "release_correct_mismatches": sum(release_correct_mismatches_by_model.values()),
             "log_index_all_null_sources": log_index_all_null_sources,
             "log_index_null_records": log_index_null_records,
             "log_index_duplicate_nonnull_sources": log_index_duplicate_nonnull_sources,
-            "support_gate_pass": integrity_support,
+            "primary_support_gate_pass": primary_integrity_support,
+            "gpt_replication_support_gate_pass": gpt_replication_support,
         },
         "overall": overall,
         "highest_minus_lowest_quartile": difference_summary,
@@ -629,11 +775,18 @@ def main() -> None:
             "decision": decision,
         },
         "gpt_replication": {
+            "support_gate_pass": gpt_replication_support,
+            "grid_policy": "within_task_three_run_intersection",
             "lowest_quartile": stratified_lookup[("gpt", "within_task_quartile", 0)],
             "highest_minus_lowest": difference_summary["gpt"],
         },
     }
 
+    write_csv(
+        out_dir / "grid.csv",
+        grid_rows,
+        list(grid_rows[0]),
+    )
     write_csv(
         out_dir / "per_run.csv",
         per_run_rows,
@@ -667,10 +820,12 @@ def main() -> None:
     print(
         "FOREAGENT_ALIGNMENT_AUDIT_PASS",
         f"files={len(sources)}",
-        f"tasks={len(reference_by_task)}",
-        f"pairs={total_base_pairs}",
+        f"tasks={len(task_sources)}",
+        f"primary_pairs={total_base_pairs}",
         f"ties={total_ties}",
         f"nonfinite={total_nonfinite}",
+        f"gpt_intersection={model_grid_totals['gpt']['intersection_pairs']}",
+        f"gpt_excluded={model_grid_totals['gpt']['excluded_incomplete_triplicate_pairs']}",
         f"deepseek={overall['deepseek']['task_macro']:.6f}",
         f"deepseek_q1={primary_low['task_macro']:.6f}",
         f"deepseek_q4_minus_q1={primary_difference['mean']:.6f}",

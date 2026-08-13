@@ -220,6 +220,21 @@ common tasks 的 pair-weighted 与 task-macro 描述。
 官方 executed reports 覆盖旧 300-pair 样本中的 211 pairs / 14 tasks；官方还公开 DeepSeek/GPT 三次逐
 pair alignments，优先冻结并直接重算原模型的 gap 曲线，无需先花 API 重跑 Qwen。
 
+### 3.10 FOREAGENT 官方 alignment v1 结构中止与 v2 冻结
+
+已锁定官方 26 tasks × 2 models × 3 releases 共 156 文件的固定 manifest；compact primitive-field
+JSONL 共 110,620 records，SHA256=`480616317ddebb249084dbc8b36b4060fac4b77353fce16b436351eab9c235fe`。
+v1 在写任何 accuracy/gap summary 前按完整网格门中止：DeepSeek 三次运行在 26/26 tasks 内 pair grid
+完全一致；GPT run 1 在 6 tasks 合计少 8 pairs，而 run 2/3 完整。另确认 26 个 DeepSeek run-1 文件的
+`log_index` 全 null，但 pair key/ordinal 唯一；Google QUEST 有 49 个含 NaN score 的 pairs，在六个文件
+中对称存在。v1 结果目录为空，不允许补述任何性能结论。
+
+v2 已在读取真实性能汇总前另立预注册：DeepSeek 完整三轮网格继续作 primary；GPT 仅在每 task 三轮
+固定交集上作 replication，逐 task 报 union/intersection/排除数且比例必须 `>=0.99`；不计算跨模型
+paired accuracy difference。非法 prediction 对 finite non-tie 按错误计入，禁止 complete-case 删除；
+ties/nonfinite 对称隔离。raw-gap、task-internal quartile/decile、task bootstrap 与原 primary 裁决门不变。
+在主实现、独立 verifier 和显式含 GPT 缺行的合成测试全部通过并提交前，不得运行真实 v2 outcome。
+
 ## 4. 已关闭或仅历史的方向
 
 - **旧 HCE 三臂**：50/25/25 + 标签子采样 proxy，不符合当前 80/10/10、time-fidelity、

@@ -28,6 +28,7 @@
 - `phase1/实验记录/2026-08-13/anytime_oracle_headroom_探索性上界.md`；
 - `phase1/实验记录/2026-08-13/FOREAGENT官方pair图_外部审计预注册.md`；
 - `phase1/实验记录/2026-08-13/FOREAGENT官方pair图_外部审计裁决.md`；
+- `phase1/实验记录/2026-08-13/FOREAGENT官方alignment全量审计_预注册.md`；
 - `phase1/实验记录/2026-08-13/late-artifact连续轨迹_pilot裁决.md`；
 - `phase1/实验记录/2026-08-13/连续fidelity轨迹_watcher_smoke冻结说明.md`；
 - 学长分支 `src/mle_critic/docs/outcomes/0812/DECISION_MODEL_SIZE_EXPERIMENTS.md`。

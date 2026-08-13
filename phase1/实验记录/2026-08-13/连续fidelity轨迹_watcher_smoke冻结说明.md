@@ -49,7 +49,8 @@
 
 1. CPU self-test、`py_compile` 与 locked manifest builder 通过；
 2. 两个 card 各有且仅有 3 个 checkpoint records，事务目录与物化 JSONL 一致；
-3. `snapshot_elapsed_s - cap_s` 每条在 [0,0.5] 秒内；capture completion lag 每条≤1.0 秒；
+3. process 在 checkpoint 仍存活时，`snapshot_elapsed_s - cap_s` 在 [0,0.5] 秒内；若进程已自然退出，
+   允许 snapshot 早于 cap，但必须有非空 `process_rc_at_snapshot`。capture completion lag 每条≤1.0 秒；
 4. 所有 `sub_copied=true` 的 snapshot 文件 size/hash 与 record 一致；racy/symlink/copy-error snapshot 的
    `sub_score` 必须为 null；
 5. 至少一个 stable snapshot 成功经过 pristine grader，得到 finite score；若旧 usable card 因随机性未

@@ -1,0 +1,13 @@
+{
+  "activated_at_utc": "2026-08-13T22:19:17.348021Z",
+  "eligible_generation_start": "strictly_after_activated_at_utc",
+  "fixed_scorer_sha256": "c4b9713d5a994c90ac8e24674154ae78d39f7c7961473078c1c7d61ce1c15d23",
+  "frozen_pair_files_read": false,
+  "git_commit": "41d638b1c8154415d523d8f22bbd10b7ae5b48be",
+  "independent_verify_sha256": "e01ea94a91fbb845e865817e262afea11fed71d018fe8eb666cfe2fe6b2eeddf",
+  "precutoff_runs": 667,
+  "precutoff_runs_sha256": "94c39feda828ed19e4a543b2abd7ad07bfb1e7266883bf49d0193cf48cbf012a",
+  "producer_summary_sha256": "975f0a6d5c24c6f515c2e4662072822be2e7f02736b6afd1ee24cb7419f0ee04",
+  "protocol": "prospective_decision_v1",
+  "status": "PROSPECTIVE_SCORER_ACTIVE"
+}

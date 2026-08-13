@@ -1,0 +1,167 @@
+{
+  "built_at_utc": "2026-08-13T22:14:30.567800Z",
+  "card_audit": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "corpus_rows_scanned": 16012,
+    "label_fields_retained": 0,
+    "post_execution_fields_retained": 0,
+    "retained_keys": [
+      "code",
+      "id",
+      "lineage",
+      "run",
+      "task"
+    ],
+    "selected_endpoints": 5499
+  },
+  "configuration": {
+    "arms": [
+      "static_lr",
+      "char_tfidf_lr"
+    ],
+    "char_tfidf_lr": {
+      "analyzer": "char_wb",
+      "c": 0.5,
+      "code_view": "all_if_le_20000_else_head5000_tail15000",
+      "fit_intercept": false,
+      "max_features": 30000,
+      "min_df": 3,
+      "ngram_range": [
+        3,
+        5
+      ],
+      "solver": "liblinear",
+      "sublinear_tf": true
+    },
+    "seed": 887,
+    "static_lr": {
+      "c": 1.0,
+      "fit_intercept": false,
+      "solver": "liblinear"
+    }
+  },
+  "diagnostics": {
+    "elapsed_s": 278.74028774676844,
+    "static": {
+      "coefficient_norm": 0.4501755331901826,
+      "features": 38,
+      "iterations": 6,
+      "scale_max": 3485.935533336159,
+      "scale_min": 0.11254837102261933,
+      "training_rows_symmetric": 8526
+    },
+    "tfidf": {
+      "coefficient_norm": 19.876390187309568,
+      "idf_sha256": "2ca1b021858515185baeb3c44b4fdda9b62db36753b7403d31950087c2e2ee6a",
+      "iterations": 6,
+      "training_matrix_nnz": 58424184,
+      "training_rows_symmetric": 8526,
+      "truncated_codes": 1505,
+      "vocabulary": 30000,
+      "vocabulary_sha256": "edcd0e3b3bc46ad433747d56136c858bdaea3e0319e8ee52dccb661d38be4d55"
+    }
+  },
+  "frozen_read": false,
+  "git_commit": "41d638b1c8154415d523d8f22bbd10b7ae5b48be",
+  "inputs": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "manifest_sha256": "8c9621dd9d863d5640c54d1eefee42f5c170bbaf5d7bceceda7aa372ac1afc19",
+    "manifest_summary_sha256": "cc2a0ecc2b96ce66c4e01d7f734cb73d3363a88ce6ad5f1567937761a72272dc",
+    "pairs_sha256": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+    "run_map_sha256": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+  },
+  "integrity": {
+    "expected_inventory_exact": true,
+    "frozen_read_false": true,
+    "label_fields_retained_zero": true,
+    "post_execution_fields_retained_zero": true,
+    "precutoff_runs_eq_667": true,
+    "roundtrip_max_abs_le_1e_12": true,
+    "wall_cap_pass": true
+  },
+  "inventory": {
+    "endpoints": 5499,
+    "pairs": 4263,
+    "parents": 2293,
+    "precutoff_runs": 667,
+    "tasks": 23,
+    "train_runs": 333
+  },
+  "manifest_summary": {
+    "dominant_task": "spooky-author-identification",
+    "dominant_task_share": 0.19858156028368795,
+    "endpoints": 5499,
+    "expected_split": "train",
+    "inputs": {
+      "cards": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/cards_current_v11.jsonl",
+      "cards_rows": 16012,
+      "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+      "pairs": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/v11_decision/decision_train_v11_b0.jsonl",
+      "pairs_sha256": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+      "run_map": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/card_run_map.json",
+      "run_map_sha256": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+    },
+    "num_shards": 4,
+    "outputs": {
+      "manifest": "/research/d7/spc/yzyang4/experiments/frozen_embed_v11_20260814_f339eb971c6d/manifest/train_endpoints.jsonl",
+      "manifest_sha256": "8c9621dd9d863d5640c54d1eefee42f5c170bbaf5d7bceceda7aa372ac1afc19"
+    },
+    "pairs": 4263,
+    "per_shard": {
+      "0": 1390,
+      "1": 1388,
+      "2": 1331,
+      "3": 1390
+    },
+    "per_task": {
+      "aptos2019-blindness-detection": 68,
+      "chaii-hindi-and-tamil-question-answering": 345,
+      "denoising-dirty-documents": 212,
+      "dog-breed-identification": 123,
+      "dogs-vs-cats-redux-kernels-edition": 22,
+      "google-quest-challenge": 90,
+      "histopathologic-cancer-detection": 92,
+      "kuzushiji-recognition": 18,
+      "leaf-classification": 393,
+      "learning-agency-lab-automated-essay-scoring-2": 67,
+      "mlsp-2013-birds": 241,
+      "nomad2018-predict-transparent-conductors": 171,
+      "petfinder-pawpularity-score": 541,
+      "random-acts-of-pizza": 619,
+      "spaceship-titanic": 73,
+      "spooky-author-identification": 1092,
+      "tabular-playground-series-dec-2021": 52,
+      "tabular-playground-series-may-2022": 153,
+      "text-normalization-challenge-english-language": 34,
+      "text-normalization-challenge-russian-language": 192,
+      "tweet-sentiment-extraction": 80,
+      "us-patent-phrase-to-phrase-matching": 672,
+      "whale-categorization-playground": 149
+    },
+    "protocol": "frozen_embed_v11_discovery_v1",
+    "runs": 333,
+    "seed": 887,
+    "status": "MANIFEST_COMPLETE",
+    "tasks": 23
+  },
+  "model_format": "fixed_decision_scorer_npz_v1",
+  "model_key": "b5481457d73eb6f0edd66b7dcfd8faa86ca86522a596f5ceb6394b84cee29bf1",
+  "outputs": {
+    "fixed_scorer": "/research/d7/spc/yzyang4/experiments/fixed_decision_scorer_v11_20260814_41d638b1c815/result/fixed_scorer.npz",
+    "fixed_scorer_sha256": "c4b9713d5a994c90ac8e24674154ae78d39f7c7961473078c1c7d61ce1c15d23",
+    "precutoff_runs": "/research/d7/spc/yzyang4/experiments/fixed_decision_scorer_v11_20260814_41d638b1c815/result/precutoff_runs.txt",
+    "precutoff_runs_sha256": "94c39feda828ed19e4a543b2abd7ad07bfb1e7266883bf49d0193cf48cbf012a",
+    "train_reference_scores": "/research/d7/spc/yzyang4/experiments/fixed_decision_scorer_v11_20260814_41d638b1c815/result/train_reference_scores.csv",
+    "train_reference_scores_sha256": "ed52fcc66979e394a0acf27f1b1ebce48eb2ae364994c6067d1bf5ca1a4d474a"
+  },
+  "protocol": "prospective_decision_v1",
+  "runtime_s": 527.9715677574277,
+  "software": {
+    "numpy": "2.5.0",
+    "platform": "Linux-6.8.0-100-generic-x86_64-with-glibc2.39",
+    "python": "3.12.13 (main, Jun 23 2026, 15:18:55) [Clang 22.1.3 ]"
+  },
+  "source_sha256": "2fdebdc047212731406717080d8c1731f2bbe24a2c1b4cea4111ffcada636ac6",
+  "status": "SCORER_FREEZE_COMPLETE",
+  "wall_cap_s": 3600.0
+}

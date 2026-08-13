@@ -1,0 +1,40 @@
+{
+  "array_max_abs": {
+    "format": 0.0,
+    "protocol": 0.0,
+    "seed": 0.0,
+    "static_coef": 0.0,
+    "static_feature_names": 0.0,
+    "static_scale": 0.0,
+    "tfidf_coef": 0.0,
+    "tfidf_idf": 0.0,
+    "tfidf_terms": 0.0
+  },
+  "fixed_scorer_sha256": "c4b9713d5a994c90ac8e24674154ae78d39f7c7961473078c1c7d61ce1c15d23",
+  "frozen_read": false,
+  "integrity": {
+    "array_refit_match": true,
+    "frozen_read_false": true,
+    "input_hashes_exact": true,
+    "inventory_exact": true,
+    "label_fields_retained_zero": true,
+    "post_execution_fields_retained_zero": true,
+    "precutoff_denylist_exact": true,
+    "producer_output_hashes_exact": true,
+    "reference_scores_match": true
+  },
+  "inventory": {
+    "endpoints": 5499,
+    "pairs": 4263,
+    "parents": 2293,
+    "precutoff_runs": 667,
+    "tasks": 23,
+    "train_runs": 333
+  },
+  "precutoff_runs_sha256": "94c39feda828ed19e4a543b2abd7ad07bfb1e7266883bf49d0193cf48cbf012a",
+  "producer_summary_sha256": "975f0a6d5c24c6f515c2e4662072822be2e7f02736b6afd1ee24cb7419f0ee04",
+  "protocol": "prospective_decision_v1",
+  "reference_score_max_abs": 0.0,
+  "status": "VERIFIED_SCORER_FREEZE_COMPLETE",
+  "train_reference_scores_sha256": "ed52fcc66979e394a0acf27f1b1ebce48eb2ae364994c6067d1bf5ca1a4d474a"
+}

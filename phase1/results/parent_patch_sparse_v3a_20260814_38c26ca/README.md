@@ -45,9 +45,17 @@ rerun or changed. Corrected verifier source SHA-256 is
 metrics and gates from the immutable CSV and passed with `DISCOVERY_NO_UNLOCK`, 3,948 rows and
 `frozen_verified=false`.
 
-## Artifact hashes
+## Canonical Git/remote artifact hashes
 
 - `summary.json`: `50819a7eea19e6bd4522468ab329ad6f51508512df5b2abd736bc4972acbbd12`
-- `oof_predictions.csv`: `0432c3449772e3b7d7ef692cca91d4d29c52b68282de7eba420e653cfa41cc9f`
+- Git-viewable LF-normalized `oof_predictions.csv`:
+  `21e107fbfcd59460c0ef6ef91e81d4f4da745da8402b5b7d65583d77a3b5ba1e`
+- Source-byte `oof_predictions.original.csv.gz`:
+  `03176a9d8d6e9bf335eb74b5df5b69706e794e30ff84e8d4eb62814ad206ebd1`;
+  decompressed SHA-256 (the value recorded by `summary.json`):
+  `0432c3449772e3b7d7ef692cca91d4d29c52b68282de7eba420e653cfa41cc9f`
 - `launcher.log`: `585ead872358ab0488b2e003a3b452b9813d9297e83daecd79f1b53bd255ae5b`
-- `independent_verify.json`: `76e15dfc6d1efdcf3ab3b267cbbb955ee7e785e0fd37b4b477346a6af00bbcb3`
+- `independent_verify.json`: `997e891cd18b02a24b2a214a3b903e424dd72317bb0fc1573b74a5a01bd26e01`
+
+The experiment CSV uses RFC-style CRLF. GitHub's viewable copy is deliberately LF-normalized; the deterministic
+gzip stores the exact source bytes and round-trips to the immutable SHA in `summary.json`.

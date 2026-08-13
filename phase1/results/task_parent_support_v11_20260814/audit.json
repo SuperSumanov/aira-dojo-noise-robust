@@ -1,0 +1,1594 @@
+{
+  "frozen_read": false,
+  "global": {
+    "candidate_count_histogram": {
+      "2": 1520,
+      "3": 676,
+      "4": 61,
+      "5": 34,
+      "6": 1,
+      "11": 1
+    },
+    "complete_parent_share": 0.9851722634103794,
+    "complete_parents": 2259,
+    "declared_size_match_parents": 2293,
+    "endpoints": 5499,
+    "multiway_pair_share": 0.6434435843302838,
+    "multiway_pairs": 2743,
+    "multiway_parent_share": 0.33711295246402095,
+    "multiway_parents": 773,
+    "outer_folds": 5,
+    "pairs": 4263,
+    "parents": 2293,
+    "physical_run_fold_overlap": 0,
+    "runs": 333,
+    "strict_total_order_parents": 2259,
+    "tasks": 23,
+    "unique_winner_parents": 2275
+  },
+  "inputs": {
+    "baseline_oof": "oof_predictions.csv",
+    "baseline_oof_sha256": "083f4daa23ab3f8b1d9e412184fbe9ee06d891385e8f66e0bbbb29b3e3055a96",
+    "train_pairs": "phase1/v11_decision/decision_train_v11_b0.jsonl",
+    "train_pairs_sha256": "6110488201163832f9ae4f95af7de3682152aed9d77e413ca72538b203691c59"
+  },
+  "per_fold": [
+    {
+      "fold": 0,
+      "pairs": 853,
+      "parents": 470,
+      "runs": 66,
+      "tasks": 21
+    },
+    {
+      "fold": 1,
+      "pairs": 853,
+      "parents": 389,
+      "runs": 66,
+      "tasks": 18
+    },
+    {
+      "fold": 2,
+      "pairs": 853,
+      "parents": 410,
+      "runs": 67,
+      "tasks": 18
+    },
+    {
+      "fold": 3,
+      "pairs": 852,
+      "parents": 475,
+      "runs": 67,
+      "tasks": 21
+    },
+    {
+      "fold": 4,
+      "pairs": 852,
+      "parents": 549,
+      "runs": 67,
+      "tasks": 18
+    }
+  ],
+  "per_task": [
+    {
+      "complete_parents": 34,
+      "endpoints": 68,
+      "fold_support": [
+        {
+          "fit_pairs": 34,
+          "fit_parents": 34,
+          "fit_runs": 2,
+          "fold": 0,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 17,
+          "fit_parents": 17,
+          "fit_runs": 1,
+          "fold": 1,
+          "valid_pairs": 17,
+          "valid_parents": 17,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 34,
+          "fit_parents": 34,
+          "fit_runs": 2,
+          "fold": 2,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 34,
+          "fit_parents": 34,
+          "fit_runs": 2,
+          "fold": 3,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 17,
+          "fit_parents": 17,
+          "fit_runs": 1,
+          "fold": 4,
+          "valid_pairs": 17,
+          "valid_parents": 17,
+          "valid_runs": 1
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": false,
+      "multiway_parent_share": 0.0,
+      "multiway_parents": 0,
+      "outer_active_folds": 2,
+      "outer_min_fit_parents_when_active": 17,
+      "outer_min_fit_runs_when_active": 1,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 17,
+      "pair_count_per_run_median": 17.0,
+      "pair_count_per_run_min": 17,
+      "pairs": 34,
+      "parents": 34,
+      "runs": 2,
+      "strict_total_order_parents": 34,
+      "task": "aptos2019-blindness-detection"
+    },
+    {
+      "complete_parents": 119,
+      "endpoints": 345,
+      "fold_support": [
+        {
+          "fit_pairs": 368,
+          "fit_parents": 117,
+          "fit_runs": 10,
+          "fold": 0,
+          "valid_pairs": 4,
+          "valid_parents": 2,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 212,
+          "fit_parents": 72,
+          "fit_runs": 8,
+          "fold": 1,
+          "valid_pairs": 160,
+          "valid_parents": 47,
+          "valid_runs": 3
+        },
+        {
+          "fit_pairs": 324,
+          "fit_parents": 97,
+          "fit_runs": 9,
+          "fold": 2,
+          "valid_pairs": 48,
+          "valid_parents": 22,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 216,
+          "fit_parents": 73,
+          "fit_runs": 7,
+          "fold": 3,
+          "valid_pairs": 156,
+          "valid_parents": 46,
+          "valid_runs": 4
+        },
+        {
+          "fit_pairs": 368,
+          "fit_parents": 117,
+          "fit_runs": 10,
+          "fold": 4,
+          "valid_pairs": 4,
+          "valid_parents": 2,
+          "valid_runs": 1
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.6554621848739496,
+      "multiway_parents": 78,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 72,
+      "outer_min_fit_runs_when_active": 7,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 98,
+      "pair_count_per_run_median": 26.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 372,
+      "parents": 119,
+      "runs": 11,
+      "strict_total_order_parents": 119,
+      "task": "chaii-hindi-and-tamil-question-answering"
+    },
+    {
+      "complete_parents": 86,
+      "endpoints": 212,
+      "fold_support": [
+        {
+          "fit_pairs": 187,
+          "fit_parents": 79,
+          "fit_runs": 16,
+          "fold": 0,
+          "valid_pairs": 7,
+          "valid_parents": 7,
+          "valid_runs": 3
+        },
+        {
+          "fit_pairs": 189,
+          "fit_parents": 81,
+          "fit_runs": 17,
+          "fold": 1,
+          "valid_pairs": 5,
+          "valid_parents": 5,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 176,
+          "fit_parents": 68,
+          "fit_runs": 15,
+          "fold": 2,
+          "valid_pairs": 18,
+          "valid_parents": 18,
+          "valid_runs": 4
+        },
+        {
+          "fit_pairs": 62,
+          "fit_parents": 62,
+          "fit_runs": 16,
+          "fold": 3,
+          "valid_pairs": 132,
+          "valid_parents": 24,
+          "valid_runs": 3
+        },
+        {
+          "fit_pairs": 162,
+          "fit_parents": 54,
+          "fit_runs": 12,
+          "fold": 4,
+          "valid_pairs": 32,
+          "valid_parents": 32,
+          "valid_runs": 7
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.20930232558139536,
+      "multiway_parents": 18,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 54,
+      "outer_min_fit_runs_when_active": 12,
+      "outer_min_valid_runs_when_active": 2,
+      "pair_count_per_run_max": 82,
+      "pair_count_per_run_median": 3.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 194,
+      "parents": 86,
+      "runs": 19,
+      "strict_total_order_parents": 86,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "complete_parents": 56,
+      "endpoints": 123,
+      "fold_support": [
+        {
+          "fit_pairs": 47,
+          "fit_parents": 27,
+          "fit_runs": 8,
+          "fold": 0,
+          "valid_pairs": 36,
+          "valid_parents": 29,
+          "valid_runs": 5
+        },
+        {
+          "fit_pairs": 69,
+          "fit_parents": 53,
+          "fit_runs": 11,
+          "fold": 1,
+          "valid_pairs": 14,
+          "valid_parents": 3,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 83,
+          "fit_parents": 56,
+          "fit_runs": 13,
+          "fold": 2,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 74,
+          "fit_parents": 51,
+          "fit_runs": 11,
+          "fold": 3,
+          "valid_pairs": 9,
+          "valid_parents": 5,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 59,
+          "fit_parents": 37,
+          "fit_runs": 9,
+          "fold": 4,
+          "valid_pairs": 24,
+          "valid_parents": 19,
+          "valid_runs": 4
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.125,
+      "multiway_parents": 7,
+      "outer_active_folds": 4,
+      "outer_min_fit_parents_when_active": 27,
+      "outer_min_fit_runs_when_active": 8,
+      "outer_min_valid_runs_when_active": 2,
+      "pair_count_per_run_max": 16,
+      "pair_count_per_run_median": 6.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 83,
+      "parents": 56,
+      "runs": 13,
+      "strict_total_order_parents": 56,
+      "task": "dog-breed-identification"
+    },
+    {
+      "complete_parents": 11,
+      "endpoints": 22,
+      "fold_support": [
+        {
+          "fit_pairs": 9,
+          "fit_parents": 9,
+          "fit_runs": 2,
+          "fold": 0,
+          "valid_pairs": 2,
+          "valid_parents": 2,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 11,
+          "fit_parents": 11,
+          "fit_runs": 3,
+          "fold": 1,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 7,
+          "fit_parents": 7,
+          "fit_runs": 2,
+          "fold": 2,
+          "valid_pairs": 4,
+          "valid_parents": 4,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 6,
+          "fit_parents": 6,
+          "fit_runs": 2,
+          "fold": 3,
+          "valid_pairs": 5,
+          "valid_parents": 5,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 11,
+          "fit_parents": 11,
+          "fit_runs": 3,
+          "fold": 4,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": false,
+      "multiway_parent_share": 0.0,
+      "multiway_parents": 0,
+      "outer_active_folds": 3,
+      "outer_min_fit_parents_when_active": 6,
+      "outer_min_fit_runs_when_active": 2,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 5,
+      "pair_count_per_run_median": 4.0,
+      "pair_count_per_run_min": 2,
+      "pairs": 11,
+      "parents": 11,
+      "runs": 3,
+      "strict_total_order_parents": 11,
+      "task": "dogs-vs-cats-redux-kernels-edition"
+    },
+    {
+      "complete_parents": 45,
+      "endpoints": 90,
+      "fold_support": [
+        {
+          "fit_pairs": 38,
+          "fit_parents": 38,
+          "fit_runs": 9,
+          "fold": 0,
+          "valid_pairs": 7,
+          "valid_parents": 7,
+          "valid_runs": 3
+        },
+        {
+          "fit_pairs": 36,
+          "fit_parents": 36,
+          "fit_runs": 9,
+          "fold": 1,
+          "valid_pairs": 9,
+          "valid_parents": 9,
+          "valid_runs": 3
+        },
+        {
+          "fit_pairs": 45,
+          "fit_parents": 45,
+          "fit_runs": 12,
+          "fold": 2,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 38,
+          "fit_parents": 38,
+          "fit_runs": 10,
+          "fold": 3,
+          "valid_pairs": 7,
+          "valid_parents": 7,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 23,
+          "fit_parents": 23,
+          "fit_runs": 8,
+          "fold": 4,
+          "valid_pairs": 22,
+          "valid_parents": 22,
+          "valid_runs": 4
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.0,
+      "multiway_parents": 0,
+      "outer_active_folds": 4,
+      "outer_min_fit_parents_when_active": 23,
+      "outer_min_fit_runs_when_active": 8,
+      "outer_min_valid_runs_when_active": 2,
+      "pair_count_per_run_max": 10,
+      "pair_count_per_run_median": 3.5,
+      "pair_count_per_run_min": 1,
+      "pairs": 45,
+      "parents": 45,
+      "runs": 12,
+      "strict_total_order_parents": 45,
+      "task": "google-quest-challenge"
+    },
+    {
+      "complete_parents": 46,
+      "endpoints": 92,
+      "fold_support": [
+        {
+          "fit_pairs": 41,
+          "fit_parents": 41,
+          "fit_runs": 7,
+          "fold": 0,
+          "valid_pairs": 5,
+          "valid_parents": 5,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 15,
+          "fit_parents": 15,
+          "fit_runs": 2,
+          "fold": 1,
+          "valid_pairs": 31,
+          "valid_parents": 31,
+          "valid_runs": 6
+        },
+        {
+          "fit_pairs": 46,
+          "fit_parents": 46,
+          "fit_runs": 8,
+          "fold": 2,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 36,
+          "fit_parents": 36,
+          "fit_runs": 7,
+          "fold": 3,
+          "valid_pairs": 10,
+          "valid_parents": 10,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 46,
+          "fit_parents": 46,
+          "fit_runs": 8,
+          "fold": 4,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": false,
+      "multiway_parent_share": 0.0,
+      "multiway_parents": 0,
+      "outer_active_folds": 3,
+      "outer_min_fit_parents_when_active": 15,
+      "outer_min_fit_runs_when_active": 2,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 10,
+      "pair_count_per_run_median": 5.0,
+      "pair_count_per_run_min": 2,
+      "pairs": 46,
+      "parents": 46,
+      "runs": 8,
+      "strict_total_order_parents": 46,
+      "task": "histopathologic-cancer-detection"
+    },
+    {
+      "complete_parents": 9,
+      "endpoints": 18,
+      "fold_support": [
+        {
+          "fit_pairs": 7,
+          "fit_parents": 7,
+          "fit_runs": 2,
+          "fold": 0,
+          "valid_pairs": 2,
+          "valid_parents": 2,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 9,
+          "fit_parents": 9,
+          "fit_runs": 3,
+          "fold": 1,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 5,
+          "fit_parents": 5,
+          "fit_runs": 2,
+          "fold": 2,
+          "valid_pairs": 4,
+          "valid_parents": 4,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 6,
+          "fit_parents": 6,
+          "fit_runs": 2,
+          "fold": 3,
+          "valid_pairs": 3,
+          "valid_parents": 3,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 9,
+          "fit_parents": 9,
+          "fit_runs": 3,
+          "fold": 4,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": false,
+      "multiway_parent_share": 0.0,
+      "multiway_parents": 0,
+      "outer_active_folds": 3,
+      "outer_min_fit_parents_when_active": 5,
+      "outer_min_fit_runs_when_active": 2,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 4,
+      "pair_count_per_run_median": 3.0,
+      "pair_count_per_run_min": 2,
+      "pairs": 9,
+      "parents": 9,
+      "runs": 3,
+      "strict_total_order_parents": 9,
+      "task": "kuzushiji-recognition"
+    },
+    {
+      "complete_parents": 146,
+      "endpoints": 393,
+      "fold_support": [
+        {
+          "fit_pairs": 218,
+          "fit_parents": 92,
+          "fit_runs": 17,
+          "fold": 0,
+          "valid_pairs": 135,
+          "valid_parents": 55,
+          "valid_runs": 7
+        },
+        {
+          "fit_pairs": 329,
+          "fit_parents": 140,
+          "fit_runs": 20,
+          "fold": 1,
+          "valid_pairs": 24,
+          "valid_parents": 7,
+          "valid_runs": 4
+        },
+        {
+          "fit_pairs": 304,
+          "fit_parents": 124,
+          "fit_runs": 18,
+          "fold": 2,
+          "valid_pairs": 49,
+          "valid_parents": 23,
+          "valid_runs": 6
+        },
+        {
+          "fit_pairs": 349,
+          "fit_parents": 145,
+          "fit_runs": 23,
+          "fold": 3,
+          "valid_pairs": 4,
+          "valid_parents": 2,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 212,
+          "fit_parents": 87,
+          "fit_runs": 18,
+          "fold": 4,
+          "valid_pairs": 141,
+          "valid_parents": 60,
+          "valid_runs": 6
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.6258503401360545,
+      "multiway_parents": 92,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 87,
+      "outer_min_fit_runs_when_active": 17,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 61,
+      "pair_count_per_run_median": 7.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 353,
+      "parents": 147,
+      "runs": 24,
+      "strict_total_order_parents": 146,
+      "task": "leaf-classification"
+    },
+    {
+      "complete_parents": 28,
+      "endpoints": 67,
+      "fold_support": [
+        {
+          "fit_pairs": 40,
+          "fit_parents": 22,
+          "fit_runs": 9,
+          "fold": 0,
+          "valid_pairs": 10,
+          "valid_parents": 6,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 48,
+          "fit_parents": 26,
+          "fit_runs": 10,
+          "fold": 1,
+          "valid_pairs": 2,
+          "valid_parents": 2,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 44,
+          "fit_parents": 24,
+          "fit_runs": 9,
+          "fold": 2,
+          "valid_pairs": 6,
+          "valid_parents": 4,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 38,
+          "fit_parents": 22,
+          "fit_runs": 8,
+          "fold": 3,
+          "valid_pairs": 12,
+          "valid_parents": 6,
+          "valid_runs": 3
+        },
+        {
+          "fit_pairs": 30,
+          "fit_parents": 18,
+          "fit_runs": 8,
+          "fold": 4,
+          "valid_pairs": 20,
+          "valid_parents": 10,
+          "valid_runs": 3
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.39285714285714285,
+      "multiway_parents": 11,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 18,
+      "outer_min_fit_runs_when_active": 8,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 13,
+      "pair_count_per_run_median": 2.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 50,
+      "parents": 28,
+      "runs": 11,
+      "strict_total_order_parents": 28,
+      "task": "learning-agency-lab-automated-essay-scoring-2"
+    },
+    {
+      "complete_parents": 86,
+      "endpoints": 241,
+      "fold_support": [
+        {
+          "fit_pairs": 238,
+          "fit_parents": 79,
+          "fit_runs": 18,
+          "fold": 0,
+          "valid_pairs": 19,
+          "valid_parents": 7,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 225,
+          "fit_parents": 71,
+          "fit_runs": 15,
+          "fold": 1,
+          "valid_pairs": 32,
+          "valid_parents": 15,
+          "valid_runs": 5
+        },
+        {
+          "fit_pairs": 168,
+          "fit_parents": 61,
+          "fit_runs": 15,
+          "fold": 2,
+          "valid_pairs": 89,
+          "valid_parents": 25,
+          "valid_runs": 5
+        },
+        {
+          "fit_pairs": 183,
+          "fit_parents": 58,
+          "fit_runs": 14,
+          "fold": 3,
+          "valid_pairs": 74,
+          "valid_parents": 28,
+          "valid_runs": 6
+        },
+        {
+          "fit_pairs": 214,
+          "fit_parents": 75,
+          "fit_runs": 18,
+          "fold": 4,
+          "valid_pairs": 43,
+          "valid_parents": 11,
+          "valid_runs": 2
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.4883720930232558,
+      "multiway_parents": 42,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 58,
+      "outer_min_fit_runs_when_active": 14,
+      "outer_min_valid_runs_when_active": 2,
+      "pair_count_per_run_max": 45,
+      "pair_count_per_run_median": 9.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 257,
+      "parents": 86,
+      "runs": 20,
+      "strict_total_order_parents": 86,
+      "task": "mlsp-2013-birds"
+    },
+    {
+      "complete_parents": 55,
+      "endpoints": 171,
+      "fold_support": [
+        {
+          "fit_pairs": 123,
+          "fit_parents": 33,
+          "fit_runs": 12,
+          "fold": 0,
+          "valid_pairs": 72,
+          "valid_parents": 24,
+          "valid_runs": 5
+        },
+        {
+          "fit_pairs": 170,
+          "fit_parents": 49,
+          "fit_runs": 15,
+          "fold": 1,
+          "valid_pairs": 25,
+          "valid_parents": 8,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 187,
+          "fit_parents": 54,
+          "fit_runs": 14,
+          "fold": 2,
+          "valid_pairs": 8,
+          "valid_parents": 3,
+          "valid_runs": 3
+        },
+        {
+          "fit_pairs": 127,
+          "fit_parents": 42,
+          "fit_runs": 13,
+          "fold": 3,
+          "valid_pairs": 68,
+          "valid_parents": 15,
+          "valid_runs": 4
+        },
+        {
+          "fit_pairs": 173,
+          "fit_parents": 50,
+          "fit_runs": 14,
+          "fold": 4,
+          "valid_pairs": 22,
+          "valid_parents": 7,
+          "valid_runs": 3
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.631578947368421,
+      "multiway_parents": 36,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 33,
+      "outer_min_fit_runs_when_active": 12,
+      "outer_min_valid_runs_when_active": 2,
+      "pair_count_per_run_max": 58,
+      "pair_count_per_run_median": 7.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 195,
+      "parents": 57,
+      "runs": 17,
+      "strict_total_order_parents": 55,
+      "task": "nomad2018-predict-transparent-conductors"
+    },
+    {
+      "complete_parents": 211,
+      "endpoints": 541,
+      "fold_support": [
+        {
+          "fit_pairs": 432,
+          "fit_parents": 199,
+          "fit_runs": 28,
+          "fold": 0,
+          "valid_pairs": 17,
+          "valid_parents": 13,
+          "valid_runs": 4
+        },
+        {
+          "fit_pairs": 291,
+          "fit_parents": 142,
+          "fit_runs": 23,
+          "fold": 1,
+          "valid_pairs": 158,
+          "valid_parents": 70,
+          "valid_runs": 9
+        },
+        {
+          "fit_pairs": 235,
+          "fit_parents": 117,
+          "fit_runs": 26,
+          "fold": 2,
+          "valid_pairs": 214,
+          "valid_parents": 95,
+          "valid_runs": 6
+        },
+        {
+          "fit_pairs": 400,
+          "fit_parents": 185,
+          "fit_runs": 24,
+          "fold": 3,
+          "valid_pairs": 49,
+          "valid_parents": 27,
+          "valid_runs": 8
+        },
+        {
+          "fit_pairs": 438,
+          "fit_parents": 205,
+          "fit_runs": 27,
+          "fold": 4,
+          "valid_pairs": 11,
+          "valid_parents": 7,
+          "valid_runs": 5
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.5377358490566038,
+      "multiway_parents": 114,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 117,
+      "outer_min_fit_runs_when_active": 23,
+      "outer_min_valid_runs_when_active": 4,
+      "pair_count_per_run_max": 179,
+      "pair_count_per_run_median": 4.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 449,
+      "parents": 212,
+      "runs": 32,
+      "strict_total_order_parents": 211,
+      "task": "petfinder-pawpularity-score"
+    },
+    {
+      "complete_parents": 261,
+      "endpoints": 619,
+      "fold_support": [
+        {
+          "fit_pairs": 385,
+          "fit_parents": 187,
+          "fit_runs": 18,
+          "fold": 0,
+          "valid_pairs": 76,
+          "valid_parents": 74,
+          "valid_runs": 5
+        },
+        {
+          "fit_pairs": 454,
+          "fit_parents": 256,
+          "fit_runs": 19,
+          "fold": 1,
+          "valid_pairs": 7,
+          "valid_parents": 5,
+          "valid_runs": 4
+        },
+        {
+          "fit_pairs": 264,
+          "fit_parents": 180,
+          "fit_runs": 15,
+          "fold": 2,
+          "valid_pairs": 197,
+          "valid_parents": 81,
+          "valid_runs": 8
+        },
+        {
+          "fit_pairs": 451,
+          "fit_parents": 251,
+          "fit_runs": 21,
+          "fold": 3,
+          "valid_pairs": 10,
+          "valid_parents": 10,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 290,
+          "fit_parents": 170,
+          "fit_runs": 19,
+          "fold": 4,
+          "valid_pairs": 171,
+          "valid_parents": 91,
+          "valid_runs": 4
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.3524904214559387,
+      "multiway_parents": 92,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 170,
+      "outer_min_fit_runs_when_active": 15,
+      "outer_min_valid_runs_when_active": 2,
+      "pair_count_per_run_max": 92,
+      "pair_count_per_run_median": 9.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 461,
+      "parents": 261,
+      "runs": 23,
+      "strict_total_order_parents": 261,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete_parents": 23,
+      "endpoints": 73,
+      "fold_support": [
+        {
+          "fit_pairs": 78,
+          "fit_parents": 19,
+          "fit_runs": 11,
+          "fold": 0,
+          "valid_pairs": 8,
+          "valid_parents": 6,
+          "valid_runs": 4
+        },
+        {
+          "fit_pairs": 41,
+          "fit_parents": 19,
+          "fit_runs": 12,
+          "fold": 1,
+          "valid_pairs": 45,
+          "valid_parents": 6,
+          "valid_runs": 3
+        },
+        {
+          "fit_pairs": 82,
+          "fit_parents": 23,
+          "fit_runs": 14,
+          "fold": 2,
+          "valid_pairs": 4,
+          "valid_parents": 2,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 61,
+          "fit_parents": 16,
+          "fit_runs": 10,
+          "fold": 3,
+          "valid_pairs": 25,
+          "valid_parents": 9,
+          "valid_runs": 5
+        },
+        {
+          "fit_pairs": 82,
+          "fit_parents": 23,
+          "fit_runs": 13,
+          "fold": 4,
+          "valid_pairs": 4,
+          "valid_parents": 2,
+          "valid_runs": 2
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.4,
+      "multiway_parents": 10,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 16,
+      "outer_min_fit_runs_when_active": 10,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 42,
+      "pair_count_per_run_median": 3.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 86,
+      "parents": 25,
+      "runs": 15,
+      "strict_total_order_parents": 23,
+      "task": "spaceship-titanic"
+    },
+    {
+      "complete_parents": 391,
+      "endpoints": 1092,
+      "fold_support": [
+        {
+          "fit_pairs": 518,
+          "fit_parents": 255,
+          "fit_runs": 25,
+          "fold": 0,
+          "valid_pairs": 382,
+          "valid_parents": 164,
+          "valid_runs": 7
+        },
+        {
+          "fit_pairs": 645,
+          "fit_parents": 302,
+          "fit_runs": 25,
+          "fold": 1,
+          "valid_pairs": 255,
+          "valid_parents": 117,
+          "valid_runs": 7
+        },
+        {
+          "fit_pairs": 781,
+          "fit_parents": 358,
+          "fit_runs": 25,
+          "fold": 2,
+          "valid_pairs": 119,
+          "valid_parents": 61,
+          "valid_runs": 7
+        },
+        {
+          "fit_pairs": 883,
+          "fit_parents": 408,
+          "fit_runs": 27,
+          "fold": 3,
+          "valid_pairs": 17,
+          "valid_parents": 11,
+          "valid_runs": 5
+        },
+        {
+          "fit_pairs": 773,
+          "fit_parents": 353,
+          "fit_runs": 26,
+          "fold": 4,
+          "valid_pairs": 127,
+          "valid_parents": 66,
+          "valid_runs": 6
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.60381861575179,
+      "multiway_parents": 253,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 255,
+      "outer_min_fit_runs_when_active": 25,
+      "outer_min_valid_runs_when_active": 5,
+      "pair_count_per_run_max": 290,
+      "pair_count_per_run_median": 3.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 900,
+      "parents": 419,
+      "runs": 32,
+      "strict_total_order_parents": 391,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete_parents": 25,
+      "endpoints": 52,
+      "fold_support": [
+        {
+          "fit_pairs": 27,
+          "fit_parents": 23,
+          "fit_runs": 15,
+          "fold": 0,
+          "valid_pairs": 2,
+          "valid_parents": 2,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 27,
+          "fit_parents": 23,
+          "fit_runs": 15,
+          "fold": 1,
+          "valid_pairs": 2,
+          "valid_parents": 2,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 19,
+          "fit_parents": 17,
+          "fit_runs": 12,
+          "fold": 2,
+          "valid_pairs": 10,
+          "valid_parents": 8,
+          "valid_runs": 5
+        },
+        {
+          "fit_pairs": 19,
+          "fit_parents": 17,
+          "fit_runs": 12,
+          "fold": 3,
+          "valid_pairs": 10,
+          "valid_parents": 8,
+          "valid_runs": 5
+        },
+        {
+          "fit_pairs": 24,
+          "fit_parents": 20,
+          "fit_runs": 14,
+          "fold": 4,
+          "valid_pairs": 5,
+          "valid_parents": 5,
+          "valid_runs": 3
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.08,
+      "multiway_parents": 2,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 17,
+      "outer_min_fit_runs_when_active": 12,
+      "outer_min_valid_runs_when_active": 2,
+      "pair_count_per_run_max": 5,
+      "pair_count_per_run_median": 1.0,
+      "pair_count_per_run_min": 1,
+      "pairs": 29,
+      "parents": 25,
+      "runs": 17,
+      "strict_total_order_parents": 25,
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "complete_parents": 64,
+      "endpoints": 153,
+      "fold_support": [
+        {
+          "fit_pairs": 115,
+          "fit_parents": 59,
+          "fit_runs": 31,
+          "fold": 0,
+          "valid_pairs": 9,
+          "valid_parents": 5,
+          "valid_runs": 5
+        },
+        {
+          "fit_pairs": 76,
+          "fit_parents": 38,
+          "fit_runs": 27,
+          "fold": 1,
+          "valid_pairs": 48,
+          "valid_parents": 26,
+          "valid_runs": 9
+        },
+        {
+          "fit_pairs": 87,
+          "fit_parents": 50,
+          "fit_runs": 27,
+          "fold": 2,
+          "valid_pairs": 37,
+          "valid_parents": 14,
+          "valid_runs": 9
+        },
+        {
+          "fit_pairs": 115,
+          "fit_parents": 57,
+          "fit_runs": 31,
+          "fold": 3,
+          "valid_pairs": 9,
+          "valid_parents": 7,
+          "valid_runs": 5
+        },
+        {
+          "fit_pairs": 103,
+          "fit_parents": 52,
+          "fit_runs": 28,
+          "fold": 4,
+          "valid_pairs": 21,
+          "valid_parents": 12,
+          "valid_runs": 8
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.265625,
+      "multiway_parents": 17,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 38,
+      "outer_min_fit_runs_when_active": 27,
+      "outer_min_valid_runs_when_active": 5,
+      "pair_count_per_run_max": 23,
+      "pair_count_per_run_median": 1.5,
+      "pair_count_per_run_min": 1,
+      "pairs": 124,
+      "parents": 64,
+      "runs": 36,
+      "strict_total_order_parents": 64,
+      "task": "tabular-playground-series-may-2022"
+    },
+    {
+      "complete_parents": 17,
+      "endpoints": 34,
+      "fold_support": [
+        {
+          "fit_pairs": 0,
+          "fit_parents": 0,
+          "fit_runs": 0,
+          "fold": 0,
+          "valid_pairs": 17,
+          "valid_parents": 17,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 17,
+          "fit_parents": 17,
+          "fit_runs": 2,
+          "fold": 1,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 17,
+          "fit_parents": 17,
+          "fit_runs": 2,
+          "fold": 2,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 17,
+          "fit_parents": 17,
+          "fit_runs": 2,
+          "fold": 3,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 17,
+          "fit_parents": 17,
+          "fit_runs": 2,
+          "fold": 4,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": false,
+      "multiway_parent_share": 0.0,
+      "multiway_parents": 0,
+      "outer_active_folds": 1,
+      "outer_min_fit_parents_when_active": 0,
+      "outer_min_fit_runs_when_active": 0,
+      "outer_min_valid_runs_when_active": 2,
+      "pair_count_per_run_max": 10,
+      "pair_count_per_run_median": 8.5,
+      "pair_count_per_run_min": 7,
+      "pairs": 17,
+      "parents": 17,
+      "runs": 2,
+      "strict_total_order_parents": 17,
+      "task": "text-normalization-challenge-english-language"
+    },
+    {
+      "complete_parents": 96,
+      "endpoints": 192,
+      "fold_support": [
+        {
+          "fit_pairs": 90,
+          "fit_parents": 90,
+          "fit_runs": 6,
+          "fold": 0,
+          "valid_pairs": 6,
+          "valid_parents": 6,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 84,
+          "fit_parents": 84,
+          "fit_runs": 7,
+          "fold": 1,
+          "valid_pairs": 12,
+          "valid_parents": 12,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 84,
+          "fit_parents": 84,
+          "fit_runs": 6,
+          "fold": 2,
+          "valid_pairs": 12,
+          "valid_parents": 12,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 66,
+          "fit_parents": 66,
+          "fit_runs": 7,
+          "fold": 3,
+          "valid_pairs": 30,
+          "valid_parents": 30,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 60,
+          "fit_parents": 60,
+          "fit_runs": 6,
+          "fold": 4,
+          "valid_pairs": 36,
+          "valid_parents": 36,
+          "valid_runs": 2
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.0,
+      "multiway_parents": 0,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 60,
+      "outer_min_fit_runs_when_active": 6,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 30,
+      "pair_count_per_run_median": 10.5,
+      "pair_count_per_run_min": 1,
+      "pairs": 96,
+      "parents": 96,
+      "runs": 8,
+      "strict_total_order_parents": 96,
+      "task": "text-normalization-challenge-russian-language"
+    },
+    {
+      "complete_parents": 40,
+      "endpoints": 80,
+      "fold_support": [
+        {
+          "fit_pairs": 40,
+          "fit_parents": 40,
+          "fit_runs": 3,
+          "fold": 0,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 40,
+          "fit_parents": 40,
+          "fit_runs": 3,
+          "fold": 1,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 20,
+          "fit_parents": 20,
+          "fit_runs": 1,
+          "fold": 2,
+          "valid_pairs": 20,
+          "valid_parents": 20,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 20,
+          "fit_parents": 20,
+          "fit_runs": 2,
+          "fold": 3,
+          "valid_pairs": 20,
+          "valid_parents": 20,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 40,
+          "fit_parents": 40,
+          "fit_runs": 3,
+          "fold": 4,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": false,
+      "multiway_parent_share": 0.0,
+      "multiway_parents": 0,
+      "outer_active_folds": 2,
+      "outer_min_fit_parents_when_active": 20,
+      "outer_min_fit_runs_when_active": 1,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 20,
+      "pair_count_per_run_median": 18.0,
+      "pair_count_per_run_min": 2,
+      "pairs": 40,
+      "parents": 40,
+      "runs": 3,
+      "strict_total_order_parents": 40,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "complete_parents": 336,
+      "endpoints": 672,
+      "fold_support": [
+        {
+          "fit_pairs": 331,
+          "fit_parents": 331,
+          "fit_runs": 9,
+          "fold": 0,
+          "valid_pairs": 5,
+          "valid_parents": 5,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 336,
+          "fit_parents": 336,
+          "fit_runs": 10,
+          "fold": 1,
+          "valid_pairs": 0,
+          "valid_parents": 0,
+          "valid_runs": 0
+        },
+        {
+          "fit_pairs": 333,
+          "fit_parents": 333,
+          "fit_runs": 8,
+          "fold": 2,
+          "valid_pairs": 3,
+          "valid_parents": 3,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 155,
+          "fit_parents": 155,
+          "fit_runs": 7,
+          "fold": 3,
+          "valid_pairs": 181,
+          "valid_parents": 181,
+          "valid_runs": 3
+        },
+        {
+          "fit_pairs": 189,
+          "fit_parents": 189,
+          "fit_runs": 6,
+          "fold": 4,
+          "valid_pairs": 147,
+          "valid_parents": 147,
+          "valid_runs": 4
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.0,
+      "multiway_parents": 0,
+      "outer_active_folds": 4,
+      "outer_min_fit_parents_when_active": 155,
+      "outer_min_fit_runs_when_active": 6,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 168,
+      "pair_count_per_run_median": 5.5,
+      "pair_count_per_run_min": 1,
+      "pairs": 336,
+      "parents": 336,
+      "runs": 10,
+      "strict_total_order_parents": 336,
+      "task": "us-patent-phrase-to-phrase-matching"
+    },
+    {
+      "complete_parents": 74,
+      "endpoints": 149,
+      "fold_support": [
+        {
+          "fit_pairs": 44,
+          "fit_parents": 42,
+          "fit_runs": 9,
+          "fold": 0,
+          "valid_pairs": 32,
+          "valid_parents": 32,
+          "valid_runs": 3
+        },
+        {
+          "fit_pairs": 69,
+          "fit_parents": 67,
+          "fit_runs": 10,
+          "fold": 1,
+          "valid_pairs": 7,
+          "valid_parents": 7,
+          "valid_runs": 2
+        },
+        {
+          "fit_pairs": 65,
+          "fit_parents": 63,
+          "fit_runs": 11,
+          "fold": 2,
+          "valid_pairs": 11,
+          "valid_parents": 11,
+          "valid_runs": 1
+        },
+        {
+          "fit_pairs": 55,
+          "fit_parents": 53,
+          "fit_runs": 8,
+          "fold": 3,
+          "valid_pairs": 21,
+          "valid_parents": 21,
+          "valid_runs": 4
+        },
+        {
+          "fit_pairs": 71,
+          "fit_parents": 71,
+          "fit_runs": 10,
+          "fold": 4,
+          "valid_pairs": 5,
+          "valid_parents": 3,
+          "valid_runs": 2
+        }
+      ],
+      "inner_3fold_run_feasible_in_every_active_outer_fold": true,
+      "multiway_parent_share": 0.013513513513513514,
+      "multiway_parents": 1,
+      "outer_active_folds": 5,
+      "outer_min_fit_parents_when_active": 42,
+      "outer_min_fit_runs_when_active": 8,
+      "outer_min_valid_runs_when_active": 1,
+      "pair_count_per_run_max": 25,
+      "pair_count_per_run_median": 3.5,
+      "pair_count_per_run_min": 2,
+      "pairs": 76,
+      "parents": 74,
+      "runs": 12,
+      "strict_total_order_parents": 74,
+      "task": "whale-categorization-playground"
+    }
+  ],
+  "protocol": "task_parent_support_audit_v1",
+  "status": "AUDIT_COMPLETE"
+}

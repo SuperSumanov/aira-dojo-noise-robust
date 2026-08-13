@@ -35,7 +35,7 @@ outcome，也不改变下面的规则。
 | `fidelity_runtime_v9.jsonl` | `dff8eb88a1db8d63bab17851c1dce2c1bd389a4744a811d65a5ce1fe5a1f55e7` | 230 cards |
 | `card_run_map.json` | `3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30` | 52 physical runs |
 | `task_orientation.json` | `e11111a3538c54eb91048b54380466b4dc0f041c2f511a78a85573cbc92b121a` | 19-task orientation |
-| `cards_current_v9.jsonl` | `daeb29fc07ad670b5ca7a10cd2d84f1fa9a27dfa9d22510533417f1a8ad9407f` | 12,383 cards；88/100 parent finite |
+| `cards_current_v9.jsonl` | `daeb29fc07ad670b5ca7a10cd2d84f1fa9a27dfa9d22510533417f1a8ad9407f` | 14,323 cards；88/100 parent finite |
 
 总体必须仍为 100 sets / 230 children / 52 runs / 19 tasks / 50 hard + 50 easy。任一 SHA、计数、
 parent task/orientation、120 秒覆盖或 anchor 不符即 fail closed。
@@ -104,3 +104,12 @@ headline 是全部 100 sets 上
 阈值未写入预注册（本节此前已明确写出）；把 run-level sign test误称为“未聚类的 set test”（代码先
 聚合为 run effect）；把 oracle 正控解释成有效性证据（它只用于代码一致性）。模型审查只作为
 preflight，不是论文证据。
+
+## 首次 clean-run 的 outcome 前计数修正
+
+预注册提交后第一次 clean worktree 执行在 `corpus card count` fail-closed 门立即退出：已锁定 SHA
+对应的 `cards_current_v9.jsonl` 实际为 **14,323** cards，文档/代码中的 12,383 来自更早语料的
+stale 计数。退出发生在 parent 分数抽取、certificate 构造、policy evaluation、bootstrap 和任何
+结果目录写入之前；唯一可见信息是异常中的实际行数，没有点估计或支持度被计算/查看。此次修正
+只把 corpus 行数 12,383 改为 14,323；六个输入 SHA、100/230/52/19 主体计数、规则、比较、阈值、
+seed 与输出均不变。失败 worktree/log 保留，修正后必须另起全新 clean worktree。

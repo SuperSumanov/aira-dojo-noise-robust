@@ -37,7 +37,7 @@ EXPECTED_COUNTS = {
     "tasks": 19,
     "hard": 50,
     "easy": 50,
-    "corpus_cards": 12383,
+    "corpus_cards": 14323,
     "parent_available": 88,
     "parent_missing": 12,
 }

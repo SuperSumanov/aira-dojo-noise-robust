@@ -161,7 +161,7 @@ def main() -> None:
     summary = json.loads(Path(args.summary).read_text(encoding="utf-8"))
 
     corpus = {str(row["id"]): row for row in corpus_rows}
-    if len(corpus) != len(corpus_rows) or len(corpus) != 12383:
+    if len(corpus) != len(corpus_rows) or len(corpus) != 14323:
         raise RuntimeError("corpus uniqueness/count check failed")
     at_120 = {
         str(row["card_id"]): row for row in results if int(row["cap"]) == 120

@@ -1,0 +1,57 @@
+{
+  "dominant_task": "spooky-author-identification",
+  "dominant_task_share": 0.19858156028368795,
+  "endpoints": 5499,
+  "expected_split": "train",
+  "inputs": {
+    "cards": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/cards_current_v11.jsonl",
+    "cards_rows": 16012,
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "pairs": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/v11_decision/decision_train_v11_b0.jsonl",
+    "pairs_sha256": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+    "run_map": "/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813/phase1/card_run_map.json",
+    "run_map_sha256": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+  },
+  "num_shards": 4,
+  "outputs": {
+    "manifest": "/research/d7/spc/yzyang4/experiments/frozen_embed_v11_20260814_f339eb971c6d/manifest/train_endpoints.jsonl",
+    "manifest_sha256": "8c9621dd9d863d5640c54d1eefee42f5c170bbaf5d7bceceda7aa372ac1afc19"
+  },
+  "pairs": 4263,
+  "per_shard": {
+    "0": 1390,
+    "1": 1388,
+    "2": 1331,
+    "3": 1390
+  },
+  "per_task": {
+    "aptos2019-blindness-detection": 68,
+    "chaii-hindi-and-tamil-question-answering": 345,
+    "denoising-dirty-documents": 212,
+    "dog-breed-identification": 123,
+    "dogs-vs-cats-redux-kernels-edition": 22,
+    "google-quest-challenge": 90,
+    "histopathologic-cancer-detection": 92,
+    "kuzushiji-recognition": 18,
+    "leaf-classification": 393,
+    "learning-agency-lab-automated-essay-scoring-2": 67,
+    "mlsp-2013-birds": 241,
+    "nomad2018-predict-transparent-conductors": 171,
+    "petfinder-pawpularity-score": 541,
+    "random-acts-of-pizza": 619,
+    "spaceship-titanic": 73,
+    "spooky-author-identification": 1092,
+    "tabular-playground-series-dec-2021": 52,
+    "tabular-playground-series-may-2022": 153,
+    "text-normalization-challenge-english-language": 34,
+    "text-normalization-challenge-russian-language": 192,
+    "tweet-sentiment-extraction": 80,
+    "us-patent-phrase-to-phrase-matching": 672,
+    "whale-categorization-playground": 149
+  },
+  "protocol": "frozen_embed_v11_discovery_v1",
+  "runs": 333,
+  "seed": 887,
+  "status": "MANIFEST_COMPLETE",
+  "tasks": 23
+}

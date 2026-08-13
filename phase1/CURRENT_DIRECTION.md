@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0B. 2026-08-14 最新覆盖：global frozen head 关闭，转 task-conditioned parent objective
+
+本节晚于 0A 并覆盖其中“Parent-Conditioned Patch / Action Critic 是当前首选方法候选”的下一步措辞；
+稳定论文伞仍不变。
+
+1. Sparse parent patch discovery 已正式 `NO_UNLOCK`：patch 相对 whole-code pair accuracy 为负，关闭固定
+   line-diff 实现，不读 frozen。
+2. 随后按学长“0.5B 多卡换长 context”的建议完成正式训练期 gate：Qwen2.5-0.5B、8,192 tokens、
+   5,499 endpoints、4×RTX3090 frozen extraction、5-fold physical-run OOF、单一 global linear head。
+   独立 verifier 裁决 `VERIFIED_DISCOVERY_NO_UNLOCK`：pair=0.5038705、complete-parent top-1=0.4471005、
+   parent-equal gap utility=0.5105066；run/task CI 都包含 0.5；`frozen_read=false`。
+3. 这只关闭 fixed `mean+last + global linear`，不关闭 embedding 资产。描述性 per-task accuracy 高度异质，
+   下一候选是 outcome 后另立协议的 **task-conditioned parent-level top-centered/listwise head**；正则和混合只能在
+   inner physical-run folds 选择，outer run OOF 裁决，不得按已见任务结果手工翻转或挑任务。
+4. 若 same-pool OOF 证明 frozen/char-TFIDF/static predictor errors 互补，再做严格 nested ensemble；不允许在
+   同一 OOF 行上训练并报告 meta-head。listwise/top-centered losses 与异构 predictor ensemble 在 NAS 已有先例，
+   所以它们是正方法 baseline，不是单独 novelty。
+5. 新协议通过前继续封存 `decision_frozen_v11_b*`。完整可共享结果（含 174 embedding chunks）在
+   `phase1/results/frozen_embed_v11_20260814_f339eb9/`；Git LFS 归档 SHA-256 为
+   `096a3581bfce48c83019f3440e88089d4b8a4dd0a768224493f892941a3d64f7`。
+
+直接依据：
+
+- `phase1/实验记录/2026-08-14/Frozen05B8192_RunOOF_裁决.md`；
+- `phase1/results/frozen_embed_v11_20260814_f339eb9/independent_verify.json`。
+
 ## 0A. 2026-08-14 覆盖裁决：回到真实决策 benchmark，Probe Contract 降为支线
 
 本节晚于下方所有 08-13 裁决并覆盖其中“当前唯一主实验/活跃方法主线”的措辞。

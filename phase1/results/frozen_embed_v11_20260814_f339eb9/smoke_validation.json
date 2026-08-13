@@ -1,0 +1,35 @@
+{
+  "checks": {
+    "all": true,
+    "cards_exact": true,
+    "chunk_dimension_exact": true,
+    "chunk_finite": true,
+    "chunk_inventory_exact": true,
+    "chunk_rows_exact": true,
+    "commit_exact": true,
+    "config_exact": true,
+    "elapsed_finite_positive": true,
+    "extrapolated_within_cap": true,
+    "feature_exact": true,
+    "manifest_exact": true,
+    "model_exact": true,
+    "protocol_exact": true,
+    "status_complete": true,
+    "tokens_valid": true,
+    "worker_source_exact": true
+  },
+  "conservative_extrapolated_max_shard_s": 6176.069343835115,
+  "elapsed_s": 71.09144568443298,
+  "feature_dimension": [
+    1792
+  ],
+  "hard_extrapolation_cap_s": 12600.0,
+  "manifest_summary_sha256": "cc2a0ecc2b96ce66c4e01d7f734cb73d3363a88ce6ad5f1567937761a72272dc",
+  "maximum_full_shard_cards": 1390,
+  "metadata_sha256": "a132a886c935d9ea5c18e30651be5810fd44fc72bcfdbd163b27b97035c62c33",
+  "rows": 16,
+  "status": "SMOKE_PASS",
+  "token_maximum": 4731,
+  "token_median": 3512.0,
+  "token_minimum": 2722
+}

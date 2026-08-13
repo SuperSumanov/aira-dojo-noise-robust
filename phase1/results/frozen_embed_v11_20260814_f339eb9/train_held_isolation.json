@@ -1,0 +1,20 @@
+{
+  "all_runs": 667,
+  "cards": 16012,
+  "frozen_pair_file_opened": false,
+  "held_cards": 4347,
+  "hold_runs": 156,
+  "inputs": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "manifest_sha256": "8c9621dd9d863d5640c54d1eefee42f5c170bbaf5d7bceceda7aa372ac1afc19",
+    "split_sha256": "b31bd70a4483ac1ca207eae47ae39d7b00ced1b02c81583d0b0447fdd3d8489b"
+  },
+  "node_overlap": 0,
+  "prior_hold_runs": 145,
+  "prior_hold_survived": 145,
+  "raw_code_hash_overlap": 0,
+  "run_overlap": 0,
+  "status": "TRAIN_HELD_ISOLATION_PASS",
+  "train_endpoint_runs": 333,
+  "train_endpoints": 5499
+}

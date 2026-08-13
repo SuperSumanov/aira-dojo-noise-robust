@@ -7,6 +7,7 @@ set -u
 
 repo=/research/d7/spc/yzyang4/worktrees/codex_trajectory_20260813
 py=/research/d7/spc/yzyang4/venvs/critic/bin/python
+test_py=/research/d7/spc/yzyang4/venvs/exp/bin/python
 expected_ref=fork/codex-frozen-embed-v11-20260814
 cards="$repo/phase1/cards_current_v11.jsonl"
 pairs="$repo/phase1/v11_decision/decision_train_v11_b0.jsonl"
@@ -59,7 +60,7 @@ printf 'PREFLIGHT_02_CHEAP_TESTS\n'
   phase1/verify_frozen_embed_discovery.py \
   phase1/frozen_embed_split_audit.py \
   phase1/check_frozen_embed_smoke.py
-"$py" -m pytest -q phase1/tests/test_frozen_embed_pipeline.py
+"$test_py" -m pytest -q phase1/tests/test_frozen_embed_pipeline.py
 
 printf 'PREFLIGHT_03_TRAIN_PAIR_DEDUP_AND_MANIFEST\n'
 printf '%s  %s\n' \

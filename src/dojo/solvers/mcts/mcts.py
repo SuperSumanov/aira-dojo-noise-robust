@@ -229,6 +229,10 @@ class MCTS(Solver):
             self.logger.info(f"Step {self.state.current_step}: Saving checkpoint")
             self.save_checkpoint()
 
+            if self.cfg.stop_after_first_valid and self.journal.get_best_node() is not None:
+                self.logger.info("First valid solution reached; stopping as configured")
+                break
+
             if self.state.running_time >= self.cfg.time_limit_secs:
                 self.logger.info("Maximum runtime reached, stopping search")
                 break

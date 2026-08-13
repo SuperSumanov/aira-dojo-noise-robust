@@ -40,7 +40,7 @@ def test_root_consumes_one_journal_step_without_empty_iteration(
     expected_expansions: int,
 ) -> None:
     solver = object.__new__(mcts_module.MCTS)
-    solver.cfg = SimpleNamespace(step_limit=step_limit, time_limit_secs=1200)
+    solver.cfg = SimpleNamespace(step_limit=step_limit, time_limit_secs=1200, stop_after_first_valid=False)
     solver.state = SimpleNamespace(current_step=0, running_time=0.0)
     solver.logger = _Logger()
     solver.journal = SimpleNamespace(get_best_node=lambda: None)
@@ -74,3 +74,36 @@ def test_schema_generation_manifest_accepts_exactly_one_candidate_budget() -> No
     """Keep the post-generation audit aligned with root-plus-candidate accounting."""
     assert EXPECTED_STEP_LIMIT == 2
     assert EXPECTED_CODE_NODES == 1
+
+
+def test_stop_after_first_valid_uses_one_expansion(monkeypatch: pytest.MonkeyPatch) -> None:
+    solver = object.__new__(mcts_module.MCTS)
+    solver.cfg = SimpleNamespace(step_limit=4, time_limit_secs=1200, stop_after_first_valid=True)
+    solver.state = SimpleNamespace(current_step=0, running_time=0.0)
+    solver.logger = _Logger()
+    best = {"node": None}
+    solver.journal = SimpleNamespace(get_best_node=lambda: best["node"])
+    calls: list[int] = []
+
+    def create_root_node() -> None:
+        solver.state.current_step = 1
+
+    def step(_task: object, state: object) -> object:
+        calls.append(solver.state.current_step)
+        solver.state.current_step += 1
+        best["node"] = SimpleNamespace(code="valid-code")
+        return state
+
+    monkeypatch.setattr(solver, "create_root_node", create_root_node)
+    monkeypatch.setattr(solver, "step", step)
+    monkeypatch.setattr(solver, "save_checkpoint", lambda: None)
+    monkeypatch.setattr(mcts_module, "export_search_results", lambda *_args, **_kwargs: None)
+
+    state = object()
+    returned_state, code, node = mcts_module.MCTS.__call__(solver, object(), state)
+
+    assert returned_state is state
+    assert code == "valid-code"
+    assert node is best["node"]
+    assert calls == [1]
+    assert solver.state.current_step == 2

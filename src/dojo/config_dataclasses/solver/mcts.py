@@ -24,6 +24,12 @@ class MCTSSolverConfig(SolverConfig):
     max_debug_time: float = field(
         default=MISSING, metadata={"description": "Maximum time allowed for debugging analysis"}
     )
+    stop_after_first_valid: bool = field(
+        default=False,
+        metadata={
+            "description": "Stop after the first externally valid solution; failed drafts may still use the fixed debug budget"
+        },
+    )
     # --- Agent Configuration ---
     data_preview: bool = field(
         default=MISSING,

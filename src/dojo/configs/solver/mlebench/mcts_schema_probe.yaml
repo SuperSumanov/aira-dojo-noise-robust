@@ -20,6 +20,7 @@ uct_c: 0.25
 max_debug_depth: 20
 data_preview: True
 max_debug_time: 1e9 # disabled
+stop_after_first_valid: false
 
 use_test_score: False
 use_complexity: False

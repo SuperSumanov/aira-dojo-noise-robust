@@ -218,7 +218,7 @@ class MCTS(Solver):
         self.create_root_node()
 
         # Run the search
-        while self.state.current_step <= self.cfg.step_limit:
+        while self.state.current_step < self.cfg.step_limit:
             start_time = time.monotonic()
             state = self.step(task, state)
             self.state.running_time += time.monotonic() - start_time
@@ -513,7 +513,7 @@ class MCTS(Solver):
                     self.set_global_q_values(fixed_metric)
 
             # If we have used up all the steps we break
-            if self.state.current_step > self.cfg.step_limit:
+            if self.state.current_step >= self.cfg.step_limit:
                 self.logger.info(f"Step limit reached: {self.state.current_step} steps")
                 break
 
@@ -539,7 +539,7 @@ class MCTS(Solver):
             if buggy_node.metric.value is not None:
                 fixed_metric = buggy_node.metric.value
                 break
-            elif self.state.current_step > self.cfg.step_limit:
+            elif self.state.current_step >= self.cfg.step_limit:
                 self.logger.info(f"Step limit reached: {self.state.current_step} steps")
                 break
             # or if the debug depth is reached we break

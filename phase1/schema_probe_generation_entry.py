@@ -61,7 +61,9 @@ def main() -> None:
         "solver/client@solver.operators.debug.llm.client=litellm_deepseek_flash",
         "solver/client@solver.operators.draft.llm.client=litellm_deepseek_flash",
         "solver/client@solver.operators.improve.llm.client=litellm_deepseek_flash",
-        "solver.step_limit=1",
+        # MCTS counts its immutable blank root as journal step 1. A budget of 2
+        # therefore means exactly one generated/evaluated candidate.
+        "solver.step_limit=2",
         "solver.execution_timeout=600",
         "solver.time_limit_secs=1200",
         f"metadata.git_issue_id={args.issue}",

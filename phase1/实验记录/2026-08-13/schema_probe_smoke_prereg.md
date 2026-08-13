@@ -26,7 +26,7 @@ arm，也不比较分数优劣；它只判断 contract 能否被生成并由独�
 
 | 阶段 | 任务 | seed | 方法 | 单候选上限 | 并行 GPU |
 |---|---|---:|---|---:|---:|
-| A：agent 生成 | `tabular-playground-series-may-2022` | 861 | schema/probe draft, DeepSeek flash | `step_limit=1`, `execution_timeout=600`, `time_limit_secs=1200` | 2 |
+| A：agent 生成 | `tabular-playground-series-may-2022` | 861 | schema/probe draft, DeepSeek flash | `journal step_limit=2`（空 root + 1 候选）, `execution_timeout=600`, `time_limit_secs=1200` | 2 |
 | A：agent 生成 | `spooky-author-identification` | 861 | 同上 | 同上 | 同上 |
 | B：连续重放 | 上述两个生成节点 | 861 | 一次启动，不重启 | checkpoints=`30,60,120,240,360,600` 秒 | 2 |
 
@@ -41,6 +41,18 @@ arm，也不比较分数优劣；它只判断 contract 能否被生成并由独�
 
 任务在生成前按“一个结构化表格、一个文本分类且公共数据/样例均完整”选定，而不是按结果选定。
 若任一生成失败或静态门禁失败，不替换 task/seed、不偷偷二次生成；保留失败证据并停止 replay。
+
+### 冻结后的实现映射修订（候选生成前）
+
+原冻结表把“生成 1 个候选”误写成 `step_limit=1`。代码审计与作业 `10619` 的日志证明 MCTS 在进入
+搜索前已把 immutable blank root 计为 `current_step=1`；旧映射因而生成 0 个候选，并因主循环使用
+`current_step <= step_limit` 在零剩余预算下空转。`10619` 在 2 个任务都只完成 public data preview、
+没有调用 draft LLM、没有候选 code 或 replay manifest 时被取消，全部日志保留。
+
+修订只把技术映射改为 `journal step_limit=2 = 1 blank root + 1 generated candidate`，并把 MCTS 的主循环
+终止条件从 `<=` 改为 `<`；内部到达预算时的判断同步从 `>` 改为 `>=`。这不增加预注册的候选数、任务、
+seed、模型、prompt、执行时限或裁决门。新增回归测试必须证明 limit=1 时 0 次 expansion、limit=2 时
+恰好 1 次 expansion 且不会再进入空迭代，才能再次提交。
 
 ## 3. 冻结假设、指标与裁决
 
@@ -73,7 +85,7 @@ PASS/PARTIAL 仍不等于质量提升。只有 PASS 才允许设计后续原 pro
 
 1. **旋钮落盘核验**：新 operator 由原 `draft.yaml` 仅增加四条 contract；新 MCTS 配置只替换
    draft 路径。提交前保存 `git diff --no-index`，并用 Hydra `--cfg job`/compose 确认实际解析为
-   `mcts_schema_probe`、`step_limit=1`、600/1200 秒及四个 DeepSeek client。
+   `mcts_schema_probe`、`journal step_limit=2`（空 root + 恰好 1 个候选）、600/1200 秒及四个 DeepSeek client。
 2. **便宜路径测试**：生成前运行 Python compile、worker/validator self-test、静态 extractor fixture、
    Hydra compose 和 `--dry-count`。任何一项失败均不提交 GPU。
 3. **去重**：冻结两个互异 task、单一 seed；extractor 要求 task/card ID 唯一、每 task 恰一个 code

@@ -90,12 +90,19 @@ def main() -> None:
             if key in records[source_index]:
                 raise RuntimeError("duplicate pair")
             lower = row["is_lower_better"]
-            if scores[0] == scores[1]:
+            scores_finite = all(math.isfinite(value) for value in scores)
+            if not scores_finite:
                 true_path = None
+                label_status = "nonfinite_score"
+            elif scores[0] == scores[1]:
+                true_path = None
+                label_status = "exact_tie"
             elif lower:
                 true_path = paths[0] if scores[0] < scores[1] else paths[1]
+                label_status = "finite_nontie"
             else:
                 true_path = paths[0] if scores[0] > scores[1] else paths[1]
+                label_status = "finite_nontie"
             predicted_index = index(row["prediction_best_index"])
             predicted_path = paths[predicted_index] if predicted_index is not None else None
             confidence = row["confidence"]
@@ -111,10 +118,18 @@ def main() -> None:
                 "task": source["task"],
                 "model": source["model_family"],
                 "run": source["release_run"],
-                "scores": tuple(sorted(((paths[0], scores[0]), (paths[1], scores[1])))),
+                "scores": tuple(
+                    sorted(
+                        (
+                            (paths[0], "nan" if math.isnan(scores[0]) else scores[0]),
+                            (paths[1], "nan" if math.isnan(scores[1]) else scores[1]),
+                        )
+                    )
+                ),
                 "lower": lower,
                 "true": true_path,
-                "gap": abs(scores[0] - scores[1]),
+                "gap": abs(scores[0] - scores[1]) if scores_finite else None,
+                "label_status": label_status,
                 "correct": float(predicted_path == true_path) if valid else None,
             }
 
@@ -123,13 +138,15 @@ def main() -> None:
         task_sources[source["task"]].append(source_index)
     base_pairs = 0
     ties = 0
+    nonfinite = 0
     references: dict[str, dict[tuple[str, str], dict[str, Any]]] = {}
     for task, indices in task_sources.items():
         if len(indices) != 6:
             raise RuntimeError("source count mismatch")
         reference = records[indices[0]]
         base_pairs += len(reference)
-        ties += sum(row["true"] is None for row in reference.values())
+        ties += sum(row["label_status"] == "exact_tie" for row in reference.values())
+        nonfinite += sum(row["label_status"] == "nonfinite_score" for row in reference.values())
         for source_index in indices[1:]:
             current = records[source_index]
             if set(current) != set(reference):
@@ -144,12 +161,18 @@ def main() -> None:
         raise RuntimeError("base pair count mismatch")
     if ties != summary["integrity"]["exact_score_ties"]:
         raise RuntimeError("tie count mismatch")
+    if nonfinite != summary["integrity"]["nonfinite_score_pairs"]:
+        raise RuntimeError("nonfinite count mismatch")
 
     pair_accuracy: dict[tuple[str, str, tuple[str, str]], float] = {}
     quartiles: dict[str, dict[tuple[str, str], int]] = {}
     for task, reference in references.items():
         quartiles[task] = quartile_map(
-            {key: row["gap"] for key, row in reference.items() if row["true"] is not None}
+            {
+                key: row["gap"]
+                for key, row in reference.items()
+                if row["label_status"] == "finite_nontie"
+            }
         )
         for model in ("deepseek", "gpt"):
             model_sources = [
@@ -225,6 +248,7 @@ def main() -> None:
         f"tasks={len(references)}",
         f"pairs={base_pairs}",
         f"ties={ties}",
+        f"nonfinite={nonfinite}",
         f"deepseek={summary['overall']['deepseek']['task_macro']:.6f}",
         f"deepseek_q1={summary['primary_gate']['lowest_quartile']['task_macro']:.6f}",
         f"deepseek_q4_minus_q1={summary['primary_gate']['highest_minus_lowest']['mean']:.6f}",

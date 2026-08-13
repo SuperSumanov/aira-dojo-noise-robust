@@ -39,8 +39,9 @@ class ParsedRecord:
     release_run: int
     pair_key: tuple[str, str]
     paths: tuple[str, str]
-    score_by_path: tuple[tuple[str, float], tuple[str, float]]
+    score_by_path: tuple[tuple[str, Any], tuple[str, Any]]
     gap: float
+    label_status: str
     is_lower_better: bool
     true_path: str | None
     groundtruth_path: str
@@ -103,20 +104,27 @@ def parse_record(raw: dict[str, Any], source: dict[str, Any]) -> ParsedRecord:
         scores = (float(scores_raw[0]), float(scores_raw[1]))
     except (TypeError, ValueError) as error:
         raise RuntimeError(f"non-numeric scores at source {source_index}") from error
-    if not all(math.isfinite(score) for score in scores):
-        raise RuntimeError(f"non-finite scores at source {source_index}")
     is_lower_better = raw.get("is_lower_better")
     if not isinstance(is_lower_better, bool):
         raise RuntimeError(f"invalid is_lower_better at source {source_index}")
 
     paths = (paths_raw[0], paths_raw[1])
-    gap = abs(scores[0] - scores[1])
-    if scores[0] == scores[1]:
+    scores_finite = all(math.isfinite(score) for score in scores)
+    if not scores_finite:
+        gap = math.nan
+        label_status = "nonfinite_score"
         true_path = None
-    elif is_lower_better:
-        true_path = paths[0] if scores[0] < scores[1] else paths[1]
+    elif scores[0] == scores[1]:
+        gap = 0.0
+        label_status = "exact_tie"
+        true_path = None
     else:
-        true_path = paths[0] if scores[0] > scores[1] else paths[1]
+        gap = abs(scores[0] - scores[1])
+        label_status = "finite_nontie"
+        if is_lower_better:
+            true_path = paths[0] if scores[0] < scores[1] else paths[1]
+        else:
+            true_path = paths[0] if scores[0] > scores[1] else paths[1]
 
     groundtruth_index = parse_index(raw.get("groundtruth_best_index"))
     if groundtruth_index is None:
@@ -138,7 +146,18 @@ def parse_record(raw: dict[str, Any], source: dict[str, Any]) -> ParsedRecord:
     correct = float(prediction_path == true_path) if valid else None
 
     pair_key = tuple(sorted(paths))
-    score_by_path = tuple(sorted(((paths[0], scores[0]), (paths[1], scores[1]))))
+    def canonical_score(value: float) -> Any:
+        if math.isnan(value):
+            return "nan"
+        if value == math.inf:
+            return "+inf"
+        if value == -math.inf:
+            return "-inf"
+        return value
+
+    score_by_path = tuple(
+        sorted(((paths[0], canonical_score(scores[0])), (paths[1], canonical_score(scores[1]))))
+    )
     return ParsedRecord(
         source_index=source_index,
         task=task,
@@ -148,6 +167,7 @@ def parse_record(raw: dict[str, Any], source: dict[str, Any]) -> ParsedRecord:
         paths=paths,
         score_by_path=score_by_path,
         gap=gap,
+        label_status=label_status,
         is_lower_better=is_lower_better,
         true_path=true_path,
         groundtruth_path=groundtruth_path,
@@ -358,7 +378,13 @@ def main() -> None:
 
     total_base_pairs = sum(len(rows) for rows in reference_by_task.values())
     total_ties = sum(
-        1 for rows in reference_by_task.values() for record in rows.values() if record.true_path is None
+        1 for rows in reference_by_task.values() for record in rows.values() if record.label_status == "exact_tie"
+    )
+    total_nonfinite = sum(
+        1
+        for rows in reference_by_task.values()
+        for record in rows.values()
+        if record.label_status == "nonfinite_score"
     )
     log_index_all_null_sources = sum(
         all(value is None for value in log_index_values[source_index]) for source_index in range(156)
@@ -377,7 +403,7 @@ def main() -> None:
     release_correct_mismatches = 0
     for source in sources:
         records = list(by_source[source["source_index"]].values())
-        nonties = [record for record in records if record.true_path is not None]
+        nonties = [record for record in records if record.label_status == "finite_nontie"]
         valid = [record for record in nonties if record.correct is not None]
         coverage = len(valid) / len(nonties) if nonties else 0.0
         min_valid_coverage = min(min_valid_coverage, coverage)
@@ -396,7 +422,10 @@ def main() -> None:
                 "timestamp": source["timestamp"],
                 "source_path": source["path"],
                 "pairs": len(records),
-                "exact_ties": len(records) - len(nonties),
+                "exact_ties": sum(record.label_status == "exact_tie" for record in records),
+                "nonfinite_score_pairs": sum(
+                    record.label_status == "nonfinite_score" for record in records
+                ),
                 "valid_nontie_predictions": len(valid),
                 "valid_coverage": coverage,
                 "accuracy": sum(record.correct for record in valid) / len(valid) if valid else None,
@@ -443,7 +472,11 @@ def main() -> None:
     deciles: dict[str, dict[tuple[str, str], int]] = {}
     support_tasks: list[str] = []
     for task, reference in sorted(reference_by_task.items()):
-        gaps = {key: record.gap for key, record in reference.items() if record.true_path is not None}
+        gaps = {
+            key: record.gap
+            for key, record in reference.items()
+            if record.label_status == "finite_nontie"
+        }
         quartiles[task] = within_task_bins(gaps, 4)
         deciles[task] = within_task_bins(gaps, 10)
         low_count = sum(value == 0 for value in quartiles[task].values())
@@ -499,7 +532,11 @@ def main() -> None:
                     "model_family": model,
                     "pairs": len(reference_by_task[task]),
                     "exact_ties": sum(
-                        record.true_path is None for record in reference_by_task[task].values()
+                        record.label_status == "exact_tie" for record in reference_by_task[task].values()
+                    ),
+                    "nonfinite_score_pairs": sum(
+                        record.label_status == "nonfinite_score"
+                        for record in reference_by_task[task].values()
                     ),
                     "nontie_pair_averages": len(rows),
                     "task_accuracy": sum(row.accuracy for row in rows) / len(rows) if rows else None,
@@ -566,11 +603,15 @@ def main() -> None:
             "tasks": len(reference_by_task),
             "base_pairs": total_base_pairs,
             "exact_score_ties": total_ties,
-            "nontie_pairs": total_base_pairs - total_ties,
+            "nonfinite_score_pairs": total_nonfinite,
+            "finite_directional_pairs": total_base_pairs - total_ties - total_nonfinite,
             "paper_pair_count": 18438,
             "auto_parquet_pair_count": 18361,
             "paper_minus_parquet": 18438 - 18361,
             "difference_equals_exact_ties": total_ties == 18438 - 18361,
+            "difference_equals_ties_plus_nonfinite": (
+                total_ties + total_nonfinite == 18438 - 18361
+            ),
             "min_valid_prediction_coverage": min_valid_coverage,
             "tasks_with_quartile_support": len(support_tasks),
             "release_correct_mismatches": release_correct_mismatches,
@@ -629,6 +670,7 @@ def main() -> None:
         f"tasks={len(reference_by_task)}",
         f"pairs={total_base_pairs}",
         f"ties={total_ties}",
+        f"nonfinite={total_nonfinite}",
         f"deepseek={overall['deepseek']['task_macro']:.6f}",
         f"deepseek_q1={primary_low['task_macro']:.6f}",
         f"deepseek_q4_minus_q1={primary_difference['mean']:.6f}",

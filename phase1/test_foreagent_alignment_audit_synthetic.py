@@ -50,7 +50,7 @@ def main() -> None:
         master_path = root / "master.jsonl"
         with master_path.open("w", encoding="utf-8") as handle:
             for source_index, source in enumerate(files):
-                for pair_index in range(80):
+                for pair_index in range(82):
                     gap = (pair_index + 1) / 1000.0
                     paths = [f"solution-{pair_index:03d}-a.py", f"solution-{pair_index:03d}-b.py"]
                     if pair_index % 2 == 0:
@@ -58,6 +58,12 @@ def main() -> None:
                         true_index = 0
                     else:
                         scores = [0.5, 0.5 + gap]
+                        true_index = 1
+                    if pair_index == 80:
+                        scores = [0.5, 0.5]
+                        true_index = 0
+                    elif pair_index == 81:
+                        scores = [float("nan"), 0.5]
                         true_index = 1
                     quartile = pair_index // 20
                     if quartile == 0:

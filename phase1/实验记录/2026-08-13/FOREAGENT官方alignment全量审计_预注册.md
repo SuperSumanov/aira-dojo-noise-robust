@@ -54,6 +54,13 @@ correctness，不信任发布物的 `correct` 字符串。
 exact-score ties 单独计数，不进入方向准确率、gap quantile 或 gate。官方论文的 18,438 与自动 parquet 的
 18,361 相差 77；本审计事先**不假定**这 77 都是 ties，只在全量核对后描述。
 
+第二次全量分析同样在 summary/CSV 写盘前 fail-closed：Google QUEST 有一个 solution `e5fd.py` 的 score
+为 NaN，形成 49 个无序 pairs；它们在 6/6 发布文件中完整出现，共 294 records，其他 pair endpoint 为
+finite，且没有 pair/ordinal 重复。因为这些 pair 无法从 score 独立定义 winner 或 gap，冻结处理是把完整
+49 pairs 从两个模型、三次运行的所有方向准确率和 gap 指标中对称隔离，同时报告
+`nonfinite_score_pairs=49`；不得依据 prediction 或发布 `groundtruth` 恢复标签。该规则仍在任何准确率/gap
+aggregate 产生之前确定。18,438−18,361 是否恰等于 nonfinite pairs 加 exact ties 留给一次性结果核对。
+
 ## 3. outcome 前固定指标
 
 三次发布运行不是独立 pairs。先对每个 `model × task × pair` 的三次 recomputed correctness 取平均，再算：

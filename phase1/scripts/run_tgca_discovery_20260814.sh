@@ -48,7 +48,19 @@ cp phase1/实验记录/2026-08-14/TGCA_预注册.md "$root/prereg/"
 cp phase1/实验记录/2026-08-14/TGCA_长实验预检.md "$root/prereg/"
 cp phase1/scripts/run_tgca_discovery_20260814.sh "$root/prereg/"
 sha256sum "$root"/prereg/* > "$root/prereg/source_files.sha256"
-"$python" -m pip freeze > "$root/prereg/python_environment.txt"
+"$python" - "$root/prereg/python_environment.json" <<'PY'
+import json,platform,sys
+import numpy,scipy,sklearn
+payload={
+    'executable':sys.executable,
+    'python':platform.python_version(),
+    'numpy':numpy.__version__,
+    'scipy':scipy.__version__,
+    'scikit_learn':sklearn.__version__,
+}
+open(sys.argv[1],'w',encoding='utf-8').write(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+print('ENVIRONMENT_RECORDED',payload)
+PY
 uname -a > "$root/prereg/system.txt"
 lscpu >> "$root/prereg/system.txt"
 

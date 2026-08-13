@@ -1,0 +1,41 @@
+{
+  "issue": "schema_probe_smoke_v1",
+  "manifest": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_smoke_v1_runtimefix2/generation_manifest.json",
+  "manifest_sha256": "c66630737f5a056b068502fa5d3fa234f707dc6ded53206b9a7304e61de0006d",
+  "rows": [
+    {
+      "code_nodes": 1,
+      "current_step": 2,
+      "dojo_config_sha256": "a5b6daf2107bca5dfc233ed0210908f5bf9dfce7ce58a67d4b1bb7cec75e1cad",
+      "experiment_dir": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_smoke_v1_runtimefix2/runs/aira-dojo/user_yzyang4_issue_schema_probe_smoke_v1/user_yzyang4_issue_schema_probe_smoke_v1_seed_861_id_d0c49d7cbba4abf132b836f58614521cc8ffaf379c4e2ebfd8453a0e",
+      "journal_lines": 2,
+      "journal_sha256": "08b1277c0e879d28bda366de6845107859a0b611b963d74fcd43c2523e6e7eb2",
+      "search_export_sha256": "8dcd216443607ec841f945d3940056f57db61e171f051071af7b6a46fc71846d",
+      "seed": 861,
+      "state_sha256": "7f236bdef81cfc047f0d13d4f1a072cfd22ee18e180785a312fb446b5a4f931e",
+      "status_sha256": "c34567cd5889ce4d9574f5d0a1aa66382b8f4f8daf0b512a7841db78e867ef2a",
+      "task": "spooky-author-identification",
+      "task_id": "user_yzyang4_issue_schema_probe_smoke_v1_seed_861_id_d0c49d7cbba4abf132b836f58614521cc8ffaf379c4e2ebfd8453a0e"
+    },
+    {
+      "code_nodes": 1,
+      "current_step": 2,
+      "dojo_config_sha256": "370be858411290435a592a9783f09b2aff0cebef41beb940efc43f194dc9a27c",
+      "experiment_dir": "/research/d7/spc/yzyang4/schema_probe_ops/schema_probe_smoke_v1_runtimefix2/runs/aira-dojo/user_yzyang4_issue_schema_probe_smoke_v1/user_yzyang4_issue_schema_probe_smoke_v1_seed_861_id_73e065d7fd6e9361c4b6f4cd7b17f326b3c8b20f4f55d4648873cf17",
+      "journal_lines": 2,
+      "journal_sha256": "ae4667fcc78961f0b53f2fec2364472e744ea745977807e1603f851a96667320",
+      "search_export_sha256": "554af08e2a6d572f04cff89acb6175d923958208f414b92d7d95e3ea9e9f76d1",
+      "seed": 861,
+      "state_sha256": "8af25db47282d73b2bdda954e57fed1806e043e0442c9e7e7a71bcbcbbc1e255",
+      "status_sha256": "47d91bf858cebdd340a7f2b71e60dede0a2de5eb0f5068eb13789e7b95b99c60",
+      "task": "tabular-playground-series-may-2022",
+      "task_id": "user_yzyang4_issue_schema_probe_smoke_v1_seed_861_id_73e065d7fd6e9361c4b6f4cd7b17f326b3c8b20f4f55d4648873cf17"
+    }
+  ],
+  "schema_version": 1,
+  "seed": 861,
+  "tasks": [
+    "spooky-author-identification",
+    "tabular-playground-series-may-2022"
+  ]
+}

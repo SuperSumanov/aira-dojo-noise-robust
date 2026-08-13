@@ -3,6 +3,44 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0. 8 月 13 日晚间覆盖裁决（优先级最高）
+
+本节发生在本文后续各节之后，**覆盖**后文“当前唯一主实验”和后续顺序中的旧措辞。论文伞形定位仍是
+NAS-Bench-style 的 MLE-agent 搜索树 benchmark；当前方法主线已经进一步收敛为：
+**Anytime MLE Search under Selectively Observable Execution Feedback**，首个主动干预是
+schema/probe-first artifact contract。旧 HCE、TD/RL、多保真三臂和继续扩大静态 critic 均不是当前路线。
+
+变化来自同日已经冻结的证据链，而不是按文件名回退：
+
+1. late-artifact pilot 中 6 个预先冻结的 fresh-120-silent 候选到 600 秒仍为 0 个 stable artifact；
+2. 冻结 100 sibling sets 的完美 120 秒 hindsight oracle 有 0.512644 的理论 headroom，但现有
+   censor-aware race 的 optimistic avoidable tail 只有 0.026163；瓶颈不是继续调 observed selector，
+   而是高价值候选在决策时刻不可评分；
+3. schema/probe V1 对两个预先冻结任务一次生成、一次连续 replay，最终只有 1/2 probes 和
+   1/2 full transitions 通过，按预注册规则正式为 **FAIL**；成功任务证明基础 contract 可实现，失败任务
+   在任何 artifact 前触发通用 sklearn API 错误，因此不能宣称跨任务稳定可行；
+4. KompeteAI 已覆盖 reduced-epoch logs 预测和 MLE pipeline 加速，delayed-feedback BAI、failure-aware
+   BO 与 early termination 也已有先例；SandMLE 还使用了 valid-output milestone。因此 novelty 不能写成
+   “首个 early metric/valid artifact/early stop”，而必须落在真实自由形态 MLE sibling、候选特异且不可变
+   的 artifact contract、host/pristine provenance、选择性可观测 regret 分解及固定预算搜索因果收益。
+
+V1 结果不得回填或同任务修补。预先冻结的唯一一次修复门是：在**新任务、新 seed**上给 original 与未来
+schema 臂都可公平获得的固定 conditional-debug 预算；draft 失败时最多 debug 一步，首次 externally valid
+候选出现即停止。V2 仍沿用 host 120 秒双任务 probe 与至少一个 600 秒 full transition 门：
+
+- V2 PASS：只授权设计新的、小规模、独立因果 A/B；仍不等于质量或搜索收益已成立；
+- V2 PARTIAL/FAIL：关闭 prompt-only schema 路线，不再通过改 prompt 追结果，只允许评估
+  runtime-owned probe API；
+- 150-run 评分通道确认保持 `NOT SUBMITTED`，保留为 benchmark 机制确认资产，但不再阻塞上述低成本
+  operator feasibility gate，也不得用旧数据替代前瞻确认。
+
+最新直接证据：
+
+- `phase1/实验记录/2026-08-13/schema_probe_smoke_v1裁决.md`；
+- `phase1/实验记录/2026-08-13/Anytime可观测性主张_20260813.md`；
+- `phase1/实验记录/2026-08-13/late-artifact连续轨迹_pilot裁决.md`；
+- `phase1/实验记录/2026-08-13/anytime_oracle_headroom_探索性上界.md`。
+
 ## 1. 审计截面
 
 - 我方分析基线：`fork/phase1-value-critic@96b7b01a3563db10dec82d2aff1becfad2eab1db`

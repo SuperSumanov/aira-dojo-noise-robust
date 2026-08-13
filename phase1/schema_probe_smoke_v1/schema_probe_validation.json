@@ -1,0 +1,108 @@
+{
+  "decision": "FAIL",
+  "full_transition_count": 1,
+  "gate": {
+    "fail": "either probe fails validity, provenance, candidate-specificity, immutability, or 120s deadline",
+    "partial": "both probes pass by 120s but no valid full transition by 600s",
+    "pass": "both candidate-specific probes pass by host 120s and at least one valid full transition by 600s"
+  },
+  "manifest_sha256": "46446dd330baea1bdd00de38a0f4ba6d6becc889ed11b7b6cffd2f6080ba0636",
+  "probe_pass_count": 1,
+  "rows": [
+    {
+      "card_id": "schema_probe|spooky-author-identification|seed=861|node=fe6b66aee53e42d19bb846f6ced60153",
+      "checks": {
+        "at_most_one_full_marker": true,
+        "checkpoint_grid": true,
+        "code_hash": true,
+        "continuous_execution": true,
+        "first_submission_by_120": false,
+        "first_submission_is_probe": false,
+        "identity": true,
+        "manifest_hash": true,
+        "no_common_fallback": true,
+        "one_probe_marker": false,
+        "probe_candidate_specific": false,
+        "probe_finite_grade": false,
+        "probe_host_by_120": false,
+        "probe_marker_hash": false,
+        "probe_persists": false,
+        "probe_unmutated": false,
+        "source_export_hash": true,
+        "valid_full_transition_if_marked": true,
+        "workdir_solution_hash": true
+      },
+      "competition": "spooky-author-identification",
+      "final_rc": 1,
+      "full_event_index": null,
+      "full_markers": [],
+      "index": 0,
+      "probe_host_capture_s": null,
+      "probe_markers": [],
+      "probe_pass": false,
+      "probe_score": null,
+      "sample_comparison": {},
+      "seed": 861,
+      "submission_event_count": 0,
+      "valid_full_transition": false,
+      "wall_s": 5.124624
+    },
+    {
+      "card_id": "schema_probe|tabular-playground-series-may-2022|seed=861|node=e7cdfb140d014228ae69b7b081858d2e",
+      "checks": {
+        "at_most_one_full_marker": true,
+        "checkpoint_grid": true,
+        "code_hash": true,
+        "continuous_execution": true,
+        "first_submission_by_120": true,
+        "first_submission_is_probe": true,
+        "identity": true,
+        "manifest_hash": true,
+        "no_common_fallback": true,
+        "one_probe_marker": true,
+        "probe_candidate_specific": true,
+        "probe_finite_grade": true,
+        "probe_host_by_120": true,
+        "probe_marker_hash": true,
+        "probe_persists": true,
+        "probe_unmutated": true,
+        "source_export_hash": true,
+        "valid_full_transition_if_marked": true,
+        "workdir_solution_hash": true
+      },
+      "competition": "tabular-playground-series-may-2022",
+      "final_rc": 0,
+      "full_event_index": 1,
+      "full_markers": [
+        {
+          "elapsed_s": 397.8,
+          "sha256": "398070db24c5927c2f19ae1d7e6f9ecf62ccc93eb0828e8acdd35a781c2505d8"
+        }
+      ],
+      "index": 1,
+      "probe_host_capture_s": 15.762469,
+      "probe_markers": [
+        {
+          "elapsed_s": 10.2,
+          "sha256": "e18ac6d324bbd75fd4688e81a79365746dedb2272bbc04725425f9c2e3b75767"
+        }
+      ],
+      "probe_pass": true,
+      "probe_score": 0.94006,
+      "sample_comparison": {
+        "any_prediction_nonconstant": true,
+        "byte_hash_differs": true,
+        "candidate_specific": true,
+        "prediction_diff_rows": 100000,
+        "rows": 100000,
+        "same_header": true,
+        "same_row_count": true
+      },
+      "seed": 861,
+      "submission_event_count": 2,
+      "valid_full_transition": true,
+      "wall_s": 403.838195
+    }
+  ],
+  "schema_version": 1
+}

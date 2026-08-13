@@ -1,0 +1,7 @@
+card_id,task,historical_runtime_s,state,first_finite_checkpoint_s,first_finite_snapshot_elapsed_s,first_finite_process_alive,finite_checkpoint_count,stable_by_120_hash_count,final_rc,wall_s
+chaii-hindi-and-tamil-question-answering__57ce82f9247a4cc8b626b575d3f2c979,chaii-hindi-and-tamil-question-answering,2520.884269952774,never_finite_by_600,,,,0,0,1,7.758951
+google-quest-challenge__9c121e84fa5a451e87b48f608b215dd4,google-quest-challenge,6466.060486272996,never_finite_by_600,,,,0,0,-9,600.40476
+learning-agency-lab-automated-essay-scoring-2__ec12b99e12db4b4fa87adb2a6ce1a191,learning-agency-lab-automated-essay-scoring-2,2937.7804205417633,never_finite_by_600,,,,0,0,1,36.006209
+mlsp-2013-birds__83676ff46373471d9a13d595e5dfabd9,mlsp-2013-birds,976.8917811363935,never_finite_by_600,,,,0,0,1,91.798368
+tabular-playground-series-may-2022__d75dd58e0bff47e9bd665df475ee1470,tabular-playground-series-may-2022,7935.750172865111,never_finite_by_600,,,,0,0,-9,600.504777
+text-normalization-challenge-russian-language__12df4ee4a31c43728bf318e397db833e,text-normalization-challenge-russian-language,1254.5514597319998,never_finite_by_600,,,,0,0,1,5.005363

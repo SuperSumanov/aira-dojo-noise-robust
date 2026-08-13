@@ -28,6 +28,7 @@
 - `phase1/实验记录/2026-08-13/anytime_oracle_headroom_探索性上界.md`；
 - `phase1/实验记录/2026-08-13/FOREAGENT官方pair图_外部审计预注册.md`；
 - `phase1/实验记录/2026-08-13/FOREAGENT官方pair图_外部审计裁决.md`；
+- `phase1/实验记录/2026-08-13/late-artifact连续轨迹_pilot裁决.md`；
 - `phase1/实验记录/2026-08-13/连续fidelity轨迹_watcher_smoke冻结说明.md`；
 - 学长分支 `src/mle_critic/docs/outcomes/0812/DECISION_MODEL_SIZE_EXPERIMENTS.md`。
 
@@ -164,7 +165,7 @@ cards，却只覆盖 3.36% 历史 full runtime；optimistic avoidable tail=2.62%
 相对 observed-only 仅 +0.0900、5 informative runs、双侧 p=0.0625。故统一 120 秒 censor-aware race
 没有实用成本杠杆，关闭旧 100 sets 上全部后续调参。
 
-### 3.7 冻结待跑的 late-artifact 路线裁决 pilot（不是论文效果实验）
+### 3.7 已完成的 late-artifact 路线裁决 pilot（不是论文效果实验）
 
 只回答昂贵 fresh-120-silent 候选在同一进程继续到 600 秒时，是否会转为 finite pristine score。冻结
 选择规则从 115 个“fresh 120 秒无分数且历史 full runtime≥600 秒”的候选中按固定 SHA 顺序贪心选择
@@ -176,6 +177,13 @@ inputs 独立重建并逐字节一致。validator 在 GPU outcome 前冻结，�
 仅在后续 grader recovery；≥2 个不同任务 late conversion 才保留 `TaskHazard`，0 个才转向
 `schema-first operator`，1 个或 grader-recovery ambiguity 为 `INCONCLUSIVE`。完整性门失败则 INVALID。
 
+job `10592` 已在 1×RTX3090 上完成，42 records、原 validator、fresh-directory 重验证和不 import 主
+validator 的 raw verifier 均一致：stable artifacts=0、finite grades=0、late conversions=0、grader
+recoveries=0，裁决为 **SCHEMA-FIRST-CANDIDATE**。其中只有 2/6 候选实际存活到 600 秒并被预算终止，
+另外 4/6 在约 5.0/7.8/36.0/91.8 秒自然以 `rc=1` 退出；故允许关闭“统一晚等”作为近期方法投资，
+但不允许宣称总体 late-conversion rate 为 0。`TaskHazard` 路线按冻结门关闭，转向候选特异的
+schema/probe-first artifact contract。
+
 ### 3.8 已完成的 hindsight oracle headroom（探索性上界，不是 speedup）
 
 冻结 v9 的 100 sets / 230 cards 上，120 秒 observed/missing 分别为 86/144；历史完整 runtime median
@@ -186,7 +194,8 @@ race 的 optimistic avoidable tail 仅 0.026163；偷看最终 `graded` 的不�
 该结果只证明改善早期 score coverage 有理论成本空间，并把方法优先级从“继续调 120 秒 selector”转向
 “让昂贵候选更早产生候选特异的 pristine-scoreable artifact”。禁止声称已节省 51.26% GPU，禁止据此
 在旧 100 sets 上选时间阈值或策略。当前科学问题可概括为 **Anytime MLE Search under Selectively
-Observable Execution Feedback**；late-artifact pilot 的 outcome 前 gate 仍是下一步唯一裁决器。
+Observable Execution Feedback**。late-artifact pilot 已把实现路线裁决到 schema/probe-first；oracle 仍只是
+不可实现上界，不是效果基线或已实现的加速。
 
 ### 3.9 已完成的 FOREAGENT 官方 pair 图外部审计（CPU 描述，不是模型对决）
 

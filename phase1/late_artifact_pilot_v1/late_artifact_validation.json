@@ -1,0 +1,392 @@
+{
+  "cards": 6,
+  "continuous_by_120_cards": 0,
+  "decision": "SCHEMA-FIRST-CANDIDATE",
+  "finite_graded_snapshots": 0,
+  "grader_recovery_not_conversion_cards": 0,
+  "grader_sha256": "2464182bedf7a3e2bddb3f94b30ff8434e5cd5f64eb84f795308a2e667629002",
+  "image_sha256": "801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda",
+  "late_conversion_cards": 0,
+  "late_conversion_tasks": 0,
+  "manifest_sha256": "f535116e51dc7a03a65aa6df4b4621812367eea201f16aeb8d83d21bc398bbe1",
+  "never_finite_by_600_cards": 6,
+  "per_card": [
+    {
+      "card_id": "chaii-hindi-and-tamil-question-answering__57ce82f9247a4cc8b626b575d3f2c979",
+      "final_rc": 1,
+      "finite_checkpoint_count": 0,
+      "first_finite_checkpoint_s": null,
+      "first_finite_process_alive": null,
+      "first_finite_snapshot_elapsed_s": null,
+      "historical_runtime_s": 2520.884269952774,
+      "stable_by_120_hash_count": 0,
+      "state": "never_finite_by_600",
+      "task": "chaii-hindi-and-tamil-question-answering",
+      "wall_s": 7.758951
+    },
+    {
+      "card_id": "google-quest-challenge__9c121e84fa5a451e87b48f608b215dd4",
+      "final_rc": -9,
+      "finite_checkpoint_count": 0,
+      "first_finite_checkpoint_s": null,
+      "first_finite_process_alive": null,
+      "first_finite_snapshot_elapsed_s": null,
+      "historical_runtime_s": 6466.060486272996,
+      "stable_by_120_hash_count": 0,
+      "state": "never_finite_by_600",
+      "task": "google-quest-challenge",
+      "wall_s": 600.40476
+    },
+    {
+      "card_id": "learning-agency-lab-automated-essay-scoring-2__ec12b99e12db4b4fa87adb2a6ce1a191",
+      "final_rc": 1,
+      "finite_checkpoint_count": 0,
+      "first_finite_checkpoint_s": null,
+      "first_finite_process_alive": null,
+      "first_finite_snapshot_elapsed_s": null,
+      "historical_runtime_s": 2937.7804205417633,
+      "stable_by_120_hash_count": 0,
+      "state": "never_finite_by_600",
+      "task": "learning-agency-lab-automated-essay-scoring-2",
+      "wall_s": 36.006209
+    },
+    {
+      "card_id": "mlsp-2013-birds__83676ff46373471d9a13d595e5dfabd9",
+      "final_rc": 1,
+      "finite_checkpoint_count": 0,
+      "first_finite_checkpoint_s": null,
+      "first_finite_process_alive": null,
+      "first_finite_snapshot_elapsed_s": null,
+      "historical_runtime_s": 976.8917811363935,
+      "stable_by_120_hash_count": 0,
+      "state": "never_finite_by_600",
+      "task": "mlsp-2013-birds",
+      "wall_s": 91.798368
+    },
+    {
+      "card_id": "tabular-playground-series-may-2022__d75dd58e0bff47e9bd665df475ee1470",
+      "final_rc": -9,
+      "finite_checkpoint_count": 0,
+      "first_finite_checkpoint_s": null,
+      "first_finite_process_alive": null,
+      "first_finite_snapshot_elapsed_s": null,
+      "historical_runtime_s": 7935.750172865111,
+      "stable_by_120_hash_count": 0,
+      "state": "never_finite_by_600",
+      "task": "tabular-playground-series-may-2022",
+      "wall_s": 600.504777
+    },
+    {
+      "card_id": "text-normalization-challenge-russian-language__12df4ee4a31c43728bf318e397db833e",
+      "final_rc": 1,
+      "finite_checkpoint_count": 0,
+      "first_finite_checkpoint_s": null,
+      "first_finite_process_alive": null,
+      "first_finite_snapshot_elapsed_s": null,
+      "historical_runtime_s": 1254.5514597319998,
+      "stable_by_120_hash_count": 0,
+      "state": "never_finite_by_600",
+      "task": "text-normalization-challenge-russian-language",
+      "wall_s": 5.005363
+    }
+  ],
+  "racy_copied_snapshots": 0,
+  "records": 42,
+  "stable_copied_snapshots": 0,
+  "timing": [
+    {
+      "cap_s": 30.0,
+      "capture_lag_s": 0.0003910000000004743,
+      "card_id": "text-normalization-challenge-russian-language__12df4ee4a31c43728bf318e397db833e",
+      "process_alive": false,
+      "snapshot_elapsed_s": 5.003405
+    },
+    {
+      "cap_s": 60.0,
+      "capture_lag_s": 0.00014599999999997948,
+      "card_id": "text-normalization-challenge-russian-language__12df4ee4a31c43728bf318e397db833e",
+      "process_alive": false,
+      "snapshot_elapsed_s": 5.003808
+    },
+    {
+      "cap_s": 120.0,
+      "capture_lag_s": 0.00013500000000021828,
+      "card_id": "text-normalization-challenge-russian-language__12df4ee4a31c43728bf318e397db833e",
+      "process_alive": false,
+      "snapshot_elapsed_s": 5.003958
+    },
+    {
+      "cap_s": 240.0,
+      "capture_lag_s": 0.00015199999999992997,
+      "card_id": "text-normalization-challenge-russian-language__12df4ee4a31c43728bf318e397db833e",
+      "process_alive": false,
+      "snapshot_elapsed_s": 5.004096
+    },
+    {
+      "cap_s": 360.0,
+      "capture_lag_s": 0.000344000000000122,
+      "card_id": "text-normalization-challenge-russian-language__12df4ee4a31c43728bf318e397db833e",
+      "process_alive": false,
+      "snapshot_elapsed_s": 5.004252
+    },
+    {
+      "cap_s": 480.0,
+      "capture_lag_s": 0.0003500000000000725,
+      "card_id": "text-normalization-challenge-russian-language__12df4ee4a31c43728bf318e397db833e",
+      "process_alive": false,
+      "snapshot_elapsed_s": 5.004606
+    },
+    {
+      "cap_s": 600.0,
+      "capture_lag_s": 0.0003609999999998337,
+      "card_id": "text-normalization-challenge-russian-language__12df4ee4a31c43728bf318e397db833e",
+      "process_alive": false,
+      "snapshot_elapsed_s": 5.004964
+    },
+    {
+      "cap_s": 30.0,
+      "capture_lag_s": 0.00041300000000177306,
+      "card_id": "learning-agency-lab-automated-essay-scoring-2__ec12b99e12db4b4fa87adb2a6ce1a191",
+      "process_alive": true,
+      "snapshot_elapsed_s": 30.000155
+    },
+    {
+      "cap_s": 60.0,
+      "capture_lag_s": 0.00026400000000137425,
+      "card_id": "learning-agency-lab-automated-essay-scoring-2__ec12b99e12db4b4fa87adb2a6ce1a191",
+      "process_alive": false,
+      "snapshot_elapsed_s": 36.00381
+    },
+    {
+      "cap_s": 120.0,
+      "capture_lag_s": 0.00012699999999910005,
+      "card_id": "learning-agency-lab-automated-essay-scoring-2__ec12b99e12db4b4fa87adb2a6ce1a191",
+      "process_alive": false,
+      "snapshot_elapsed_s": 36.004085
+    },
+    {
+      "cap_s": 240.0,
+      "capture_lag_s": 0.0003740000000007626,
+      "card_id": "learning-agency-lab-automated-essay-scoring-2__ec12b99e12db4b4fa87adb2a6ce1a191",
+      "process_alive": false,
+      "snapshot_elapsed_s": 36.004215
+    },
+    {
+      "cap_s": 360.0,
+      "capture_lag_s": 0.0005390000000033979,
+      "card_id": "learning-agency-lab-automated-essay-scoring-2__ec12b99e12db4b4fa87adb2a6ce1a191",
+      "process_alive": false,
+      "snapshot_elapsed_s": 36.004597
+    },
+    {
+      "cap_s": 480.0,
+      "capture_lag_s": 0.000506999999998925,
+      "card_id": "learning-agency-lab-automated-essay-scoring-2__ec12b99e12db4b4fa87adb2a6ce1a191",
+      "process_alive": false,
+      "snapshot_elapsed_s": 36.005147
+    },
+    {
+      "cap_s": 600.0,
+      "capture_lag_s": 0.0004989999999978068,
+      "card_id": "learning-agency-lab-automated-essay-scoring-2__ec12b99e12db4b4fa87adb2a6ce1a191",
+      "process_alive": false,
+      "snapshot_elapsed_s": 36.005664
+    },
+    {
+      "cap_s": 30.0,
+      "capture_lag_s": 0.0006099999999982231,
+      "card_id": "google-quest-challenge__9c121e84fa5a451e87b48f608b215dd4",
+      "process_alive": true,
+      "snapshot_elapsed_s": 30.000132
+    },
+    {
+      "cap_s": 60.0,
+      "capture_lag_s": 0.0005649999999945976,
+      "card_id": "google-quest-challenge__9c121e84fa5a451e87b48f608b215dd4",
+      "process_alive": true,
+      "snapshot_elapsed_s": 60.000154
+    },
+    {
+      "cap_s": 120.0,
+      "capture_lag_s": 0.0005570000000005848,
+      "card_id": "google-quest-challenge__9c121e84fa5a451e87b48f608b215dd4",
+      "process_alive": true,
+      "snapshot_elapsed_s": 120.000151
+    },
+    {
+      "cap_s": 240.0,
+      "capture_lag_s": 0.000591000000014219,
+      "card_id": "google-quest-challenge__9c121e84fa5a451e87b48f608b215dd4",
+      "process_alive": true,
+      "snapshot_elapsed_s": 240.000151
+    },
+    {
+      "cap_s": 360.0,
+      "capture_lag_s": 0.000559999999950378,
+      "card_id": "google-quest-challenge__9c121e84fa5a451e87b48f608b215dd4",
+      "process_alive": true,
+      "snapshot_elapsed_s": 360.000147
+    },
+    {
+      "cap_s": 480.0,
+      "capture_lag_s": 0.0006129999999870961,
+      "card_id": "google-quest-challenge__9c121e84fa5a451e87b48f608b215dd4",
+      "process_alive": true,
+      "snapshot_elapsed_s": 480.000147
+    },
+    {
+      "cap_s": 600.0,
+      "capture_lag_s": 0.0005760000000236687,
+      "card_id": "google-quest-challenge__9c121e84fa5a451e87b48f608b215dd4",
+      "process_alive": true,
+      "snapshot_elapsed_s": 600.000155
+    },
+    {
+      "cap_s": 30.0,
+      "capture_lag_s": 0.0003359999999972274,
+      "card_id": "tabular-playground-series-may-2022__d75dd58e0bff47e9bd665df475ee1470",
+      "process_alive": true,
+      "snapshot_elapsed_s": 30.000098
+    },
+    {
+      "cap_s": 60.0,
+      "capture_lag_s": 0.00024499999999960664,
+      "card_id": "tabular-playground-series-may-2022__d75dd58e0bff47e9bd665df475ee1470",
+      "process_alive": true,
+      "snapshot_elapsed_s": 60.000087
+    },
+    {
+      "cap_s": 120.0,
+      "capture_lag_s": 0.0002420000000000755,
+      "card_id": "tabular-playground-series-may-2022__d75dd58e0bff47e9bd665df475ee1470",
+      "process_alive": true,
+      "snapshot_elapsed_s": 120.000094
+    },
+    {
+      "cap_s": 240.0,
+      "capture_lag_s": 0.00024899999999661304,
+      "card_id": "tabular-playground-series-may-2022__d75dd58e0bff47e9bd665df475ee1470",
+      "process_alive": true,
+      "snapshot_elapsed_s": 240.000085
+    },
+    {
+      "cap_s": 360.0,
+      "capture_lag_s": 0.00038000000000693035,
+      "card_id": "tabular-playground-series-may-2022__d75dd58e0bff47e9bd665df475ee1470",
+      "process_alive": true,
+      "snapshot_elapsed_s": 360.000099
+    },
+    {
+      "cap_s": 480.0,
+      "capture_lag_s": 0.0002920000000017353,
+      "card_id": "tabular-playground-series-may-2022__d75dd58e0bff47e9bd665df475ee1470",
+      "process_alive": true,
+      "snapshot_elapsed_s": 480.000089
+    },
+    {
+      "cap_s": 600.0,
+      "capture_lag_s": 0.0004059999999981301,
+      "card_id": "tabular-playground-series-may-2022__d75dd58e0bff47e9bd665df475ee1470",
+      "process_alive": true,
+      "snapshot_elapsed_s": 600.000108
+    },
+    {
+      "cap_s": 30.0,
+      "capture_lag_s": 0.0009899999999998244,
+      "card_id": "chaii-hindi-and-tamil-question-answering__57ce82f9247a4cc8b626b575d3f2c979",
+      "process_alive": false,
+      "snapshot_elapsed_s": 7.753779
+    },
+    {
+      "cap_s": 60.0,
+      "capture_lag_s": 0.0007279999999996178,
+      "card_id": "chaii-hindi-and-tamil-question-answering__57ce82f9247a4cc8b626b575d3f2c979",
+      "process_alive": false,
+      "snapshot_elapsed_s": 7.754793
+    },
+    {
+      "cap_s": 120.0,
+      "capture_lag_s": 0.000674999999999315,
+      "card_id": "chaii-hindi-and-tamil-question-answering__57ce82f9247a4cc8b626b575d3f2c979",
+      "process_alive": false,
+      "snapshot_elapsed_s": 7.755531
+    },
+    {
+      "cap_s": 240.0,
+      "capture_lag_s": 0.0006719999999997839,
+      "card_id": "chaii-hindi-and-tamil-question-answering__57ce82f9247a4cc8b626b575d3f2c979",
+      "process_alive": false,
+      "snapshot_elapsed_s": 7.756214
+    },
+    {
+      "cap_s": 360.0,
+      "capture_lag_s": 0.000676000000000343,
+      "card_id": "chaii-hindi-and-tamil-question-answering__57ce82f9247a4cc8b626b575d3f2c979",
+      "process_alive": false,
+      "snapshot_elapsed_s": 7.756895
+    },
+    {
+      "cap_s": 480.0,
+      "capture_lag_s": 0.0006599999999998829,
+      "card_id": "chaii-hindi-and-tamil-question-answering__57ce82f9247a4cc8b626b575d3f2c979",
+      "process_alive": false,
+      "snapshot_elapsed_s": 7.75758
+    },
+    {
+      "cap_s": 600.0,
+      "capture_lag_s": 0.0006629999999994141,
+      "card_id": "chaii-hindi-and-tamil-question-answering__57ce82f9247a4cc8b626b575d3f2c979",
+      "process_alive": false,
+      "snapshot_elapsed_s": 7.758249
+    },
+    {
+      "cap_s": 30.0,
+      "capture_lag_s": 0.00023300000000148202,
+      "card_id": "mlsp-2013-birds__83676ff46373471d9a13d595e5dfabd9",
+      "process_alive": true,
+      "snapshot_elapsed_s": 30.000107
+    },
+    {
+      "cap_s": 60.0,
+      "capture_lag_s": 0.0002500000000011937,
+      "card_id": "mlsp-2013-birds__83676ff46373471d9a13d595e5dfabd9",
+      "process_alive": true,
+      "snapshot_elapsed_s": 60.00013
+    },
+    {
+      "cap_s": 120.0,
+      "capture_lag_s": 0.0011690000000044165,
+      "card_id": "mlsp-2013-birds__83676ff46373471d9a13d595e5dfabd9",
+      "process_alive": false,
+      "snapshot_elapsed_s": 91.793548
+    },
+    {
+      "cap_s": 240.0,
+      "capture_lag_s": 0.0009289999999992915,
+      "card_id": "mlsp-2013-birds__83676ff46373471d9a13d595e5dfabd9",
+      "process_alive": false,
+      "snapshot_elapsed_s": 91.794742
+    },
+    {
+      "cap_s": 360.0,
+      "capture_lag_s": 0.0008789999999976317,
+      "card_id": "mlsp-2013-birds__83676ff46373471d9a13d595e5dfabd9",
+      "process_alive": false,
+      "snapshot_elapsed_s": 91.795682
+    },
+    {
+      "cap_s": 480.0,
+      "capture_lag_s": 0.0008770000000026812,
+      "card_id": "mlsp-2013-birds__83676ff46373471d9a13d595e5dfabd9",
+      "process_alive": false,
+      "snapshot_elapsed_s": 91.796571
+    },
+    {
+      "cap_s": 600.0,
+      "capture_lag_s": 0.0008629999999953952,
+      "card_id": "mlsp-2013-birds__83676ff46373471d9a13d595e5dfabd9",
+      "process_alive": false,
+      "snapshot_elapsed_s": 91.797458
+    }
+  ]
+}

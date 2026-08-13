@@ -5,8 +5,9 @@
 
 ## 1. 审计截面
 
-- 我方分析基线：`fork/phase1-value-critic@53ab345e04f271bcc5086752fbeba0da8c91706c`
-- 学长分支：`fork/dojo-reproduce@8c57b7580e22fdbb2cbab350bc34475d084fe5ee`
+- 我方分析基线：`fork/phase1-value-critic@96b7b01a3563db10dec82d2aff1becfad2eab1db`
+  （本轮 Qwen/K2 验收与 schema-first 预检开始前的干净截面）
+- 学长分支：`fork/dojo-reproduce@2cb6f0c57790407cae84070d3eb475da3cbe9597`
 - 最新发布语料：v11，16,012 cards / 667 physical runs / 25 tasks；15,991 finite，21 quarantine。
 - 论文冻结决策集：b0/b1/b2 分别 1,498 / 323 / 265 对；v10 与 v11 逐字相同。
 - 扩展评测集：b0/b1/b2 分别 136 / 39 / 30 对，必须与 headline 分开报告。
@@ -31,6 +32,7 @@
 - `phase1/实验记录/2026-08-13/FOREAGENT官方alignment全量审计_预注册.md`；
 - `phase1/实验记录/2026-08-13/late-artifact连续轨迹_pilot裁决.md`；
 - `phase1/实验记录/2026-08-13/连续fidelity轨迹_watcher_smoke冻结说明.md`；
+- `phase1/实验记录/2026-08-13/学长checkpoint方向与QwenK2语料验收.md`；
 - 学长分支 `src/mle_critic/docs/outcomes/0812/DECISION_MODEL_SIZE_EXPERIMENTS.md`。
 
 ## 2. 最近两周的路线更替
@@ -245,6 +247,24 @@ confidence 仅覆盖 89.3614%，冻结的 joint-coverage 门也失败。该结�
 pairs，alignment-only=168、parquet-only=91，而不是同一网格简单少 77 行；共同网格的 score 也来自不同
 重评分版本，18,221 个双方均可定 winner 的 pairs 中有 5,068 个 winner 不同。因此 3.9 的结果只描述
 锁定 parquet 的 pairing distribution，不能当作本节 alignment predictions 的精确 label/gap 网格。
+
+### 3.11 Qwen/K2 exploratory 扩展与学长 checkpoint 配置审计
+
+未进入 v11 的 Q01–Q08、K2a/K2b 共 40 个 manifest runs 已通过物理完整性与标签可用性双门：36 个
+物理完整，4 个失败/取消；36 个完整 run 中 7 个没有任何 finite 外部分，最终只有 29 runs / 91 cards /
+7 tasks 进入隔离的 exploratory extension。v11 保持不动；内部合并版为 16,103 cards / 696 runs，v11
+是逐字节前缀，扩展与 v11 ID 交集为 0。独立 verifier 和第二次全量确定性重建均 PASS。
+
+沿用原冻结 hold 与 v11 split universe 后，新语料只新增 1 个 b0 training pair，b1/b2 与 extension 均
+新增 0；三份 frozen 文件和 v11 逐字节一致，冻结节点进入训练为 0。因此这批数据不授权 RM 重训或
+“监督量显著增长”的结论；它揭示 run/card 数不能替代 clean sibling decision 支持数。
+
+学长最新分支把 `metric_for_best_model` 从 `eval_loss` 改成 `eval_pair_accuracy`，但保留
+`greater_is_better=False` 与 `save_strategy=best`。Transformers 4.49.0 官方实现会用 `np.less`，即把
+更低的 accuracy 当成更优并保存。最新配置启动的 run 必须先修复再解释；0812 outcome 使用较早的
+`eval_loss + greater_is_better=false`，不能事后把旧约 0.55 结果也归因于该新 bug。
+
+这批 Qwen/K2 数据均早于评分通道机制冻结，角色只能是 exploratory/train，不能进入 3.1 的前瞻确认。
 
 ## 4. 已关闭或仅历史的方向
 

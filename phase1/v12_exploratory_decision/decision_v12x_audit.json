@@ -1,0 +1,90 @@
+{
+  "budgets": {
+    "0": {
+      "append_only_base_train": 4263,
+      "append_only_new_train": 1,
+      "extension": 136,
+      "extension_existing": 136,
+      "extension_new": 0,
+      "frozen_quarantined": 0,
+      "frozen_sha256": "f57f3dd100afe1ea67ca4ef6a29592ca9b0ee709910530484167a572147178c5",
+      "frozen_source_rows": 1498,
+      "frozen_valid": 1498,
+      "train": 4264,
+      "train_new": 1,
+      "train_old_only": 4263
+    },
+    "1": {
+      "append_only_base_train": 861,
+      "append_only_new_train": 0,
+      "extension": 39,
+      "extension_existing": 39,
+      "extension_new": 0,
+      "frozen_quarantined": 0,
+      "frozen_sha256": "91a63ad37d56a60c562fe438720c386ef8be1e0393cf4d34e0ae259ca3d13622",
+      "frozen_source_rows": 323,
+      "frozen_valid": 323,
+      "train": 861,
+      "train_new": 0,
+      "train_old_only": 861
+    },
+    "2": {
+      "append_only_base_train": 692,
+      "append_only_new_train": 0,
+      "extension": 30,
+      "extension_existing": 30,
+      "extension_new": 0,
+      "frozen_quarantined": 0,
+      "frozen_sha256": "5a8d91a263c6c0c3619afa204c3a274340d3f87c1ad396b5b34d097fd7594ea3",
+      "frozen_source_rows": 265,
+      "frozen_valid": 265,
+      "train": 692,
+      "train_new": 0,
+      "train_old_only": 692
+    }
+  },
+  "corpus": {
+    "cards": 16103,
+    "new_hold_runs": 9,
+    "new_runs": 29,
+    "old_cards": 16012,
+    "prior_hold_runs": 156,
+    "prior_runs": 667,
+    "quarantined_cards": 21,
+    "runs": 696,
+    "valid_cards": 16082
+  },
+  "frozen_test_nodes_in_train": 0,
+  "inputs": {
+    "base_dir": "phase1/v11_decision",
+    "base_version": "v11",
+    "cards": "/research/d7/spc/yzyang4/large_data/cards_exploratory_v12.jsonl",
+    "cards_sha256": "96983abcfc06c16d7b5f63db09aa70c6f5adce3be3d58b01144e73704447259d",
+    "frozen_hold": "phase1/runsplit_holdruns.json",
+    "old_cards": "phase1/cards_current_v11.jsonl",
+    "old_cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "prior_hold": "phase1/v11_decision/runsplit_holdruns_v11.json",
+    "run_map": "/research/d7/spc/yzyang4/large_data/card_run_map_exploratory_v12.json",
+    "run_map_sha256": "53a83d3705e781d5373ec4370b45db766dd976bd1bc91c044f05e73589e7c352",
+    "seed": 7,
+    "version": "v12x"
+  },
+  "new_hold_by_task": {
+    "chaii-hindi-and-tamil-question-answering": 1,
+    "leaf-classification": 1,
+    "nomad2018-predict-transparent-conductors": 1,
+    "spooky-author-identification": 2,
+    "tabular-playground-series-dec-2021": 1,
+    "tabular-playground-series-may-2022": 2,
+    "tweet-sentiment-extraction": 1
+  },
+  "new_runs_by_task": {
+    "chaii-hindi-and-tamil-question-answering": 2,
+    "leaf-classification": 1,
+    "nomad2018-predict-transparent-conductors": 5,
+    "spooky-author-identification": 9,
+    "tabular-playground-series-dec-2021": 3,
+    "tabular-playground-series-may-2022": 8,
+    "tweet-sentiment-extraction": 1
+  }
+}

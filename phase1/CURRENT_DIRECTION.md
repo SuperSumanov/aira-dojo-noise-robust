@@ -5,7 +5,7 @@
 
 ## 1. 审计截面
 
-- 我方分析基线：`fork/phase1-value-critic@9a465244466ce23476f1001b4609a0e93ae09132`
+- 我方分析基线：`fork/phase1-value-critic@1b317eccc7e7c23754962248ad3548d35b8efd90`
 - 学长分支：`fork/dojo-reproduce@8c57b7580e22fdbb2cbab350bc34475d084fe5ee`
 - 最新发布语料：v11，16,012 cards / 667 physical runs / 25 tasks；15,991 finite，21 quarantine。
 - 论文冻结决策集：b0/b1/b2 分别 1,498 / 323 / 265 对；v10 与 v11 逐字相同。
@@ -22,6 +22,7 @@
 - `phase1/实验记录/2026-08-13/artifact_first_cascade_探索性裁决.md`；
 - `phase1/实验记录/2026-08-13/parent_certified_improvement_回顾性预注册.md`；
 - `phase1/实验记录/2026-08-13/parent_certified_improvement_探索性裁决.md`；
+- `phase1/实验记录/2026-08-13/120秒评分可观测性_机制预注册.md`；
 - 学长分支 `src/mle_critic/docs/outcomes/0812/DECISION_MODEL_SIZE_EXPERIMENTS.md`。
 
 ## 2. 最近两周的路线更替
@@ -114,6 +115,14 @@ parent-certified top-1=0.5683，stdout-only=0.5383，差 +0.0300；run-CI
 为 -0.0400；尽管 run/task bootstrap CI 均低于 0，只有 4 个 informative runs，run sign p=0.125，
 不能宣称独立确认更差。该规则未过 +0.08、双聚类 CI 与 run sign 门，裁决为
 **BORDERLINE**。因此此候选关闭，不进入前瞻确认，也不得在旧 100 sets 上改 margin、阈值或回退规则。
+
+### 3.4 冻结待跑的机制可行性审计（不是 selector）
+
+只用执行前代码与任务身份预测“120 秒时是否有 finite pristine 外部分”，不把最终质量、stdout、
+artifact 分数或 parent 比较用作特征。主模型使用 physical-run 分组的五折 OOF，task/run 双聚类
+推断，另做五个 split-seed 敏感性与 whole-task leave-one-out。它只回答可观测性 propensity 是否
+可建模；即使达到 GO-FEASIBLE，也不能声称搜索收益，只允许在新的 discovery/validation split
+开发显式删失模型。旧 100-set selector 规则仍保持关闭。
 
 ## 4. 已关闭或仅历史的方向
 

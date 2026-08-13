@@ -155,7 +155,7 @@ test ! -e "$ops/runs/aira-dojo/user_yzyang4_issue_probe_contract_ab_safety_v2_co
 test ! -e "$ops/status"
 
 echo 'HYDRA_RESOLVED_CONFIG_AND_PUBLIC_DATA_AUDIT'
-"$hydra"
+bash "$hydra"
 
 cp "$prereg_doc" "$ops/prereg/"
 cp "$launcher" "$generation_sbatch" "$replay_sbatch" "$watcher" "$hydra" "$independent" "$ops/prereg/"
@@ -199,7 +199,7 @@ printf '%s\n' "$generation_job" > "$ops/generation_job_id.txt"
 monitor_out="$logs/probe_contract_ab_v2_monitor_20260813.out"
 nohup env -i \
   HOME="$HOME" USER="$USER" PATH="$PATH" LANG="${LANG:-C.UTF-8}" \
-  "$watcher" "$generation_job" > "$monitor_out" 2>&1 < /dev/null &
+  bash "$watcher" "$generation_job" > "$monitor_out" 2>&1 < /dev/null &
 monitor_pid=$!
 printf '%s\n' "$monitor_pid" > "$ops/monitor_pid.txt"
 kill -0 "$monitor_pid"

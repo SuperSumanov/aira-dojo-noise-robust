@@ -1,0 +1,18 @@
+{
+  "selection_only_for_infrastructure_path_coverage": true,
+  "input_manifest_sha256": "77f696828010e2d6ae10a9b9de2d9ec05d44975b1285ea763d9850a7f30ca4ef",
+  "input_results_sha256": "b1266d04912596b1e37e13f79ce2387a962f5510cfa264aa1a97b7a1c443180d",
+  "output_manifest_sha256": "e03af45e351ab552fbea311e6af2b30a84cb9e24d2f0e3d875a833c6958cb725",
+  "cards": [
+    {
+      "card_id": "chaii-hindi-and-tamil-question-answering__4f53d7ec0a9a4cf493e0b830f2ea81f1",
+      "competition": "chaii-hindi-and-tamil-question-answering",
+      "prior_fresh_cap120_state": "silent"
+    },
+    {
+      "card_id": "leaf-classification__60b488f9620146388be7609e453aee44",
+      "competition": "leaf-classification",
+      "prior_fresh_cap120_state": "usable"
+    }
+  ]
+}

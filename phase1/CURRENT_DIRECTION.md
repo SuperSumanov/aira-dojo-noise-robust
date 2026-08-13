@@ -134,13 +134,17 @@ whole-task LOTO AUC=0.6676，task-bootstrap CI=[0.4554,0.8388]。因此可观测
 但没有证据证明代码模型优于任务先验或能可靠迁移到新任务。该结果不授权直接开发通用 propensity
 selector；若继续，只能在新 split 上做 task-conditional 模型，对未见任务 abstain，并独立认证。
 
-### 3.5 冻结待跑的连续轨迹 watcher smoke（基础设施，不是科学实验）
+### 3.5 已完成的连续轨迹 watcher smoke（基础设施，不是科学实验）
 
-被动 watcher 对每个候选只连续执行一次，在 30/60/120 秒从容器外复制当时 regular artifact 的固定
-字节前缀，终止整个进程组后再用 pristine grader 评分。2 个 path-coverage cards、1×3090、总执行
-上限 240 GPU·秒≈0.067 GPU·h；验收只看时间误差、文件竞态、原子事务、grader 隔离与无残留进程。
-两个 card 的 coverage/score 不得作为论文结果。通过后也只授权把 watcher 用作新语料仪器，扩大采集
-仍需冻结新 run 分区与总预算。
+冻结 validator 已一次性给出 **PASS**：job `10591` 在 1×RTX3090 上完成 2 cards × 30/60/120 秒，
+共 6 条 records、1 个 stable artifact、0 个 racy copies、1 个 finite pristine grade。存活进程 checkpoint
+的最大定时偏差为 0.000156 秒，最大 capture lag 为 0.000506 秒；另一个候选在 83.510392 秒自然退出，
+按协议在 120 秒档记录真实退出时刻。worker/validator/job 均 rc=0，原子事务、hash/size、grader 隔离、
+process-group 清理与无残留进程门全部通过。两个 card 的 coverage/score 不得作为论文结果；该 PASS
+只授权把 watcher 用作机制冻结后新语料的被动仪器，扩大采集仍需冻结新 run/task 分区与总预算。
+
+失败历史保留：job `10590` 因把登录节点本地 `/tmp` 工作树误当作 compute-shared 路径，在候选启动前
+1 秒失败；另一次登录节点 compute-only NVIDIA 文件检查在提交前停止。二者均无科学结果、未进入样本。
 
 ## 4. 已关闭或仅历史的方向
 
@@ -160,8 +164,10 @@ selector；若继续，只能在新 split 上做 task-conditional 模型，对�
 1. **近期最稳**：前瞻确认评分通道机制；这是数据论文可引用的正结果。
 2. **近期方法化候选**：parent-certified 与执行前可观测性预测均以 **BORDERLINE** 关闭。新数据上
    若继续，必须显式记录 time-to-artifact 的删失过程和条件分数；现有结果只支持 task-conditional
-   propensity，并要求对未见任务 abstain。采用 cross-fitting、独立 validation/certification；不能把
-   “是否及时产物”直接当质量，也不能在旧 100 sets 上继续搜索 selector、margin 或阈值。
+   propensity，并要求对未见任务 abstain。连续 watcher smoke 已 PASS；首个低容量候选固定为
+   `TaskHazard × ScoreValue`：任务级生存曲线决定等待时间，artifact 出现后才使用 pristine 分数。
+   采用 cross-fitting、独立 validation/certification；不能把“是否及时产物”直接当质量，也不能在旧
+   100 sets 上继续搜索 selector、margin 或阈值。
 3. **更强但改 operator 的候选**：让 agent 在固定早期预算内优先产 schema-valid cheap submission，
    再继续优化。这可能提高 120 秒 artifact 覆盖，直接攻击 144/230 silent 的瓶颈；但它改变
    operator/prompt，必须另立三臂公平实验，不能冒充只改评估旋钮。

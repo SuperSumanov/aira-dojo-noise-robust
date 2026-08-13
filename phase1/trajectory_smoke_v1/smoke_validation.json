@@ -1,0 +1,55 @@
+{
+  "cards": 2,
+  "decision": "PASS",
+  "finite_graded_snapshots": 1,
+  "grader_sha256": "2464182bedf7a3e2bddb3f94b30ff8434e5cd5f64eb84f795308a2e667629002",
+  "image_sha256": "801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda",
+  "manifest_sha256": "e03af45e351ab552fbea311e6af2b30a84cb9e24d2f0e3d875a833c6958cb725",
+  "racy_copied_snapshots": 0,
+  "records": 6,
+  "stable_copied_snapshots": 1,
+  "timing": [
+    {
+      "cap_s": 30.0,
+      "capture_lag_s": 0.0005000000000023874,
+      "card_id": "chaii-hindi-and-tamil-question-answering__4f53d7ec0a9a4cf493e0b830f2ea81f1",
+      "process_alive": true,
+      "snapshot_elapsed_s": 30.000151
+    },
+    {
+      "cap_s": 60.0,
+      "capture_lag_s": 0.0005060000000014497,
+      "card_id": "chaii-hindi-and-tamil-question-answering__4f53d7ec0a9a4cf493e0b830f2ea81f1",
+      "process_alive": true,
+      "snapshot_elapsed_s": 60.000156
+    },
+    {
+      "cap_s": 120.0,
+      "capture_lag_s": 0.00026099999999473766,
+      "card_id": "chaii-hindi-and-tamil-question-answering__4f53d7ec0a9a4cf493e0b830f2ea81f1",
+      "process_alive": true,
+      "snapshot_elapsed_s": 120.000111
+    },
+    {
+      "cap_s": 30.0,
+      "capture_lag_s": 0.00029500000000126647,
+      "card_id": "leaf-classification__60b488f9620146388be7609e453aee44",
+      "process_alive": true,
+      "snapshot_elapsed_s": 30.000106
+    },
+    {
+      "cap_s": 60.0,
+      "capture_lag_s": 0.00027100000000501723,
+      "card_id": "leaf-classification__60b488f9620146388be7609e453aee44",
+      "process_alive": true,
+      "snapshot_elapsed_s": 60.000105
+    },
+    {
+      "cap_s": 120.0,
+      "capture_lag_s": 0.01742300000000796,
+      "card_id": "leaf-classification__60b488f9620146388be7609e453aee44",
+      "process_alive": false,
+      "snapshot_elapsed_s": 83.510392
+    }
+  ]
+}

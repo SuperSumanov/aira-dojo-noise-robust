@@ -5,7 +5,7 @@
 
 ## 1. 审计截面
 
-- 我方分析基线：`fork/phase1-value-critic@383e75b616215d29782e4829ebbfde49f03f37bc`
+- 我方分析基线：`fork/phase1-value-critic@53ab345e04f271bcc5086752fbeba0da8c91706c`
 - 学长分支：`fork/dojo-reproduce@8c57b7580e22fdbb2cbab350bc34475d084fe5ee`
 - 最新发布语料：v11，16,012 cards / 667 physical runs / 25 tasks；15,991 finite，21 quarantine。
 - 论文冻结决策集：b0/b1/b2 分别 1,498 / 323 / 265 对；v10 与 v11 逐字相同。
@@ -25,6 +25,7 @@
 - `phase1/实验记录/2026-08-13/120秒评分可观测性_机制预注册.md`；
 - `phase1/实验记录/2026-08-13/120秒评分可观测性_探索性裁决.md`；
 - `phase1/实验记录/2026-08-13/选择性可观测反馈_正面突破路线.md`；
+- `phase1/实验记录/2026-08-13/连续fidelity轨迹_watcher_smoke冻结说明.md`；
 - 学长分支 `src/mle_critic/docs/outcomes/0812/DECISION_MODEL_SIZE_EXPERIMENTS.md`。
 
 ## 2. 最近两周的路线更替
@@ -132,6 +133,14 @@ CI=[0.7602,0.9483]/[0.6951,0.9606]，5 个 split seeds 的 median/min AUC=0.8572
 whole-task LOTO AUC=0.6676，task-bootstrap CI=[0.4554,0.8388]。因此可观测性在现有任务内高度稳定，
 但没有证据证明代码模型优于任务先验或能可靠迁移到新任务。该结果不授权直接开发通用 propensity
 selector；若继续，只能在新 split 上做 task-conditional 模型，对未见任务 abstain，并独立认证。
+
+### 3.5 冻结待跑的连续轨迹 watcher smoke（基础设施，不是科学实验）
+
+被动 watcher 对每个候选只连续执行一次，在 30/60/120 秒从容器外复制当时 regular artifact 的固定
+字节前缀，终止整个进程组后再用 pristine grader 评分。2 个 path-coverage cards、1×3090、总执行
+上限 240 GPU·秒≈0.067 GPU·h；验收只看时间误差、文件竞态、原子事务、grader 隔离与无残留进程。
+两个 card 的 coverage/score 不得作为论文结果。通过后也只授权把 watcher 用作新语料仪器，扩大采集
+仍需冻结新 run 分区与总预算。
 
 ## 4. 已关闭或仅历史的方向
 

@@ -13,12 +13,17 @@ import json, os, sys, urllib.request
 provider = sys.argv[1] if len(sys.argv) > 1 else "deepseek"
 floor = float(sys.argv[2]) if len(sys.argv) > 2 else 25.0
 
-key = None
-want = "PRIMARY_KEY_DEEPSEEK_V4_FLASH=" if provider == "deepseek" else "PRIMARY_KEY_QWEN3_CODER_FLASH="
-for line in open("/research/d7/spc/yzyang4/aira-dojo/.env"):
-    if line.strip().startswith(want):
-        key = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
-        break
+name = "PRIMARY_KEY_DEEPSEEK_V4_FLASH" if provider == "deepseek" else "PRIMARY_KEY_QWEN3_CODER_FLASH"
+key = os.environ.get(name)
+env_file = os.environ.get("AIRA_ENV_FILE", "/research/d7/spc/yzyang4/aira-dojo/.env")
+if not key:
+    try:
+        for line in open(env_file):
+            if line.strip().startswith(name + "="):
+                key = line.strip().split("=", 1)[1].strip().strip('"').strip("'")
+                break
+    except OSError:
+        pass
 if not key:
     print("balance_guard: key missing, holding")
     sys.exit(1)

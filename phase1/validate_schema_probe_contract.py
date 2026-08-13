@@ -74,6 +74,7 @@ def compare_to_sample(probe_path: Path, sample_path: Path) -> dict:
             return {
                 "same_header": probe_header == sample_header,
                 "same_row_count": False,
+                "ids_match": False,
                 "prediction_diff_rows": 0,
                 "any_prediction_nonconstant": False,
                 "candidate_specific": False,
@@ -82,6 +83,7 @@ def compare_to_sample(probe_path: Path, sample_path: Path) -> dict:
         diff_rows = 0
         row_count = 0
         same_count = True
+        ids_match = True
         for probe_row, sample_row in itertools.zip_longest(probe_reader, sample_reader):
             if probe_row is None or sample_row is None:
                 same_count = False
@@ -90,6 +92,8 @@ def compare_to_sample(probe_path: Path, sample_path: Path) -> dict:
             if len(probe_row) != len(probe_header) or len(sample_row) != len(sample_header):
                 same_count = False
                 continue
+            if probe_row[0] != sample_row[0]:
+                ids_match = False
             if probe_row[1:] != sample_row[1:]:
                 diff_rows += 1
             for values, item in zip(unique_values, probe_row[1:]):
@@ -99,10 +103,13 @@ def compare_to_sample(probe_path: Path, sample_path: Path) -> dict:
         return {
             "same_header": True,
             "same_row_count": same_count,
+            "ids_match": ids_match,
             "rows": row_count,
             "prediction_diff_rows": diff_rows,
             "any_prediction_nonconstant": nonconstant,
-            "candidate_specific": same_count and row_count > 0 and diff_rows > 0 and nonconstant,
+            "candidate_specific": (
+                same_count and ids_match and row_count > 0 and diff_rows > 0 and nonconstant
+            ),
         }
 
 

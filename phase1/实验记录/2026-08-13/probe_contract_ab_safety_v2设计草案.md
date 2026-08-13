@@ -1,5 +1,9 @@
 # Probe-First Contract Safety/Discovery V2：设计草案
 
+> **已作废且从未启动。** 最终冻结矩阵、seed、门槛与预算见
+> `probe_contract_ab_safety_v2预注册.md`。草案中的 Petfinder/Random Acts/US Patent 因已进入 SPT
+> runtime outcome 而在 API POST 前排除；两个 `prepared/public` 为空的备选任务也被 fail-closed 排除。
+
 日期：2026-08-13
 状态：**设计与预算预览；尚未预注册、未调用 API、未提交 GPU**
 

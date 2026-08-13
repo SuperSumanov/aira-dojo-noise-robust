@@ -6,10 +6,13 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import shutil
 import statistics
+import tempfile
+import zipfile
 from pathlib import Path
 
-from phase1.probe_contract_ab_common import MATRIX, ORIENTATION, SEED, TASKS, atomic_json, sha256_file
+from phase1.probe_contract_ab_common import atomic_json, sha256_file, spec_for_version
 from phase1.validate_schema_probe_contract import (
     compare_to_sample,
     finite_grade,
@@ -18,6 +21,27 @@ from phase1.validate_schema_probe_contract import (
 
 
 CHECKPOINTS = [30.0, 60.0, 120.0, 240.0, 360.0, 600.0]
+
+
+def materialize_sample(task: str, data_dir: Path, cache_dir: Path, version: str) -> Path:
+    spec = spec_for_version(version)
+    relative, member = spec.sample_submission[task]
+    source = data_dir / task / "prepared" / "public" / relative
+    if not source.is_file():
+        raise RuntimeError(f"sample submission source missing: {source}")
+    if member is None:
+        return source
+    if source.suffix.lower() != ".zip":
+        raise RuntimeError(f"unsupported sample archive: {source}")
+    destination = cache_dir / f"{task}.sample.csv"
+    with zipfile.ZipFile(source) as archive:
+        if archive.namelist().count(member) != 1:
+            raise RuntimeError(f"sample archive member mismatch: {source}/{member}")
+        with archive.open(member) as reader, destination.open("xb") as writer:
+            shutil.copyfileobj(reader, writer)
+    if destination.stat().st_size <= 0:
+        raise RuntimeError(f"empty sample archive member: {source}/{member}")
+    return destination
 
 
 def load_jsonl(path: Path) -> list[dict]:
@@ -56,15 +80,17 @@ def summarize_one(
     manifest_row: dict,
     extraction_row: dict,
     replay_dir: Path,
-    data_dir: Path,
+    sample: Path,
     manifest_sha: str,
+    version: str,
 ) -> dict:
-    expected = MATRIX[index]
+    spec = spec_for_version(version)
+    expected = spec.matrix[index]
     if (
         manifest_row.get("index") != index
         or manifest_row.get("task") != expected["task"]
         or manifest_row.get("arm") != expected["arm"]
-        or manifest_row.get("seed") != SEED
+        or manifest_row.get("seed") != spec.seed
         or manifest_row.get("competition") != expected["task"]
     ):
         raise RuntimeError(f"manifest row differs from frozen matrix: {index}")
@@ -77,7 +103,7 @@ def summarize_one(
         "identity": result.get("index") == index
         and result.get("card_id") == manifest_row.get("card_id")
         and result.get("competition") == expected["task"]
-        and result.get("seed") == SEED,
+        and result.get("seed") == spec.seed,
         "manifest_hash": result.get("manifest_sha256") == manifest_sha,
         "code_hash": result.get("code_sha256") == manifest_row.get("code_sha256"),
         "source_hash": result.get("source_export_sha256") == manifest_row.get("source_export_sha256"),
@@ -92,12 +118,7 @@ def summarize_one(
     if failed_integrity:
         raise RuntimeError(f"integrity failure index={index}: {failed_integrity}")
 
-    sample_paths = sorted(
-        (data_dir / expected["task"] / "prepared" / "public").rglob("sample_submission.csv")
-    )
-    if len(sample_paths) != 1:
-        raise RuntimeError(f"expected one lowercase sample submission: {expected['task']}")
-    events = [event_record(index_dir, event, sample_paths[0]) for event in result["submission_events"]]
+    events = [event_record(index_dir, event, sample) for event in result["submission_events"]]
     if any(event["event_index"] != position for position, event in enumerate(events)):
         raise RuntimeError(f"non-contiguous event order: {index}")
     scoreable = [event for event in events if event["scoreable"]]
@@ -109,7 +130,7 @@ def summarize_one(
     probe = result.get("probe")
     if isinstance(probe, dict):
         probe_path = resolve_snapshot(index_dir, probe)
-        probe_comparison = compare_to_sample(probe_path, sample_paths[0])
+        probe_comparison = compare_to_sample(probe_path, sample)
         probe_valid = bool(
             finite_grade(probe)
             and probe_comparison.get("candidate_specific") is True
@@ -139,7 +160,7 @@ def summarize_one(
         "index": index,
         "task": expected["task"],
         "arm": expected["arm"],
-        "seed": SEED,
+        "seed": spec.seed,
         "integrity": integrity,
         "topology_mode": manifest_row.get("generation_topology_mode"),
         "generation_node_is_buggy": manifest_row.get("generation_node_is_buggy"),
@@ -159,11 +180,15 @@ def summarize_one(
     }
 
 
-def classify(summary: dict) -> tuple[str, dict]:
-    k0 = summary["contract_probe_valid"] >= 4
-    k1 = summary["contract_coverage_120"] >= 4 and summary["coverage_gain"] >= 2
+def classify(summary: dict, version: str = "v1") -> tuple[str, dict]:
+    spec = spec_for_version(version)
+    k0 = summary["contract_probe_valid"] >= spec.compliance_min
+    k1 = (
+        summary["contract_coverage_120"] >= spec.coverage_min
+        and summary["coverage_gain"] >= spec.coverage_gain_min
+    )
     k2 = summary["contract_full_valid"] >= summary["original_full_valid"] - 1
-    enough_quality = summary["paired_full_scores"] >= 3
+    enough_quality = summary["paired_full_scores"] >= spec.quality_pairs_min
     k3 = bool(
         enough_quality
         and summary["median_relative_oriented_full_delta"] is not None
@@ -171,8 +196,13 @@ def classify(summary: dict) -> tuple[str, dict]:
         and summary["catastrophic_harm_count"] <= 1
     )
     gates = {
-        "K0_contract_compliance_at_least_4_of_6": k0,
-        "K1_coverage_at_least_4_and_gain_at_least_2": k1,
+        (
+            f"K0_contract_compliance_at_least_{spec.compliance_min}_of_{len(spec.tasks)}"
+        ): k0,
+        (
+            f"K1_coverage_at_least_{spec.coverage_min}_and_gain_at_least_"
+            f"{spec.coverage_gain_min}"
+        ): k1,
         "K2_full_validity_not_worse_by_more_than_1": k2,
         "K3_quality_safety": k3,
         "quality_pairs_at_least_3": enough_quality,
@@ -192,6 +222,7 @@ def classify(summary: dict) -> tuple[str, dict]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--version", choices=("v1", "v2"), default="v1")
     parser.add_argument("--manifest", type=Path)
     parser.add_argument("--extraction-audit", type=Path)
     parser.add_argument("--generation-manifest", type=Path)
@@ -200,6 +231,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path)
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
+    spec = spec_for_version(args.version)
     if args.self_test:
         promising, gates = classify(
             {
@@ -227,6 +259,20 @@ def main() -> None:
             }
         )
         assert killed == "QUALITY_KILL"
+        promising_v2, gates_v2 = classify(
+            {
+                "contract_probe_valid": 6,
+                "contract_coverage_120": 6,
+                "coverage_gain": 3,
+                "contract_full_valid": 7,
+                "original_full_valid": 8,
+                "paired_full_scores": 4,
+                "median_relative_oriented_full_delta": -0.01,
+                "catastrophic_harm_count": 1,
+            },
+            "v2",
+        )
+        assert promising_v2 == "PROMISING" and all(gates_v2.values())
         print("PROBE_CONTRACT_AB_VALIDATOR_SELF_TEST_PASS")
         return
     if None in (
@@ -249,33 +295,45 @@ def main() -> None:
     extraction = json.loads(args.extraction_audit.read_text(encoding="utf-8"))
     generation = json.loads(args.generation_manifest.read_text(encoding="utf-8"))
     if (
-        len(manifest) != len(MATRIX)
+        len(manifest) != len(spec.matrix)
         or extraction.get("replay_manifest_sha256") != manifest_hash
-        or generation.get("experiment") != "probe_contract_ab_safety_v1"
+        or extraction.get("experiment") != spec.experiment
+        or extraction.get("seed") != spec.seed
+        or generation.get("experiment") != spec.experiment
+        or generation.get("seed") != spec.seed
     ):
         raise RuntimeError("A/B manifest/audit identity mismatch")
     extraction_by_index = {row["index"]: row for row in extraction["rows"]}
-    rows = [
-        summarize_one(
-            index,
-            manifest[index],
-            extraction_by_index[index],
-            args.replay_dir,
-            args.data_dir,
-            manifest_hash,
-        )
-        for index in range(len(MATRIX))
-    ]
+    if set(extraction_by_index) != set(range(len(spec.matrix))):
+        raise RuntimeError("A/B extraction index grid mismatch")
+    with tempfile.TemporaryDirectory(prefix="probe-ab-samples-") as sample_temp:
+        sample_cache = Path(sample_temp)
+        samples = {
+            task: materialize_sample(task, args.data_dir, sample_cache, args.version)
+            for task in spec.tasks
+        }
+        rows = [
+            summarize_one(
+                index,
+                manifest[index],
+                extraction_by_index[index],
+                args.replay_dir,
+                samples[spec.matrix[index]["task"]],
+                manifest_hash,
+                args.version,
+            )
+            for index in range(len(spec.matrix))
+        ]
 
     pairs = []
-    for task in TASKS:
+    for task in spec.tasks:
         arms = {row["arm"]: row for row in rows if row["task"] == task}
         if set(arms) != {"original", "contract"}:
             raise RuntimeError(f"incomplete paired block: {task}")
         original, contract = arms["original"], arms["contract"]
         pair = {
             "task": task,
-            "orientation": ORIENTATION[task],
+            "orientation": spec.orientation[task],
             "original_index": original["index"],
             "contract_index": contract["index"],
             "coverage_delta": int(contract["coverage_120"]) - int(original["coverage_120"]),
@@ -292,7 +350,7 @@ def main() -> None:
         }
         if original["full_score"] is not None and contract["full_score"] is not None:
             raw = float(contract["full_score"]) - float(original["full_score"])
-            oriented = ORIENTATION[task] * raw
+            oriented = spec.orientation[task] * raw
             pair["raw_full_delta"] = raw
             pair["oriented_full_delta"] = oriented
             pair["relative_oriented_full_delta"] = oriented / max(abs(float(original["full_score"])), 1e-8)
@@ -304,7 +362,7 @@ def main() -> None:
         if pair["relative_oriented_full_delta"] is not None
     ]
     summary = {
-        "blocks": len(TASKS),
+        "blocks": len(spec.tasks),
         "original_coverage_120": sum(row["coverage_120"] for row in rows if row["arm"] == "original"),
         "contract_coverage_120": sum(row["coverage_120"] for row in rows if row["arm"] == "contract"),
         "coverage_gain": sum(pair["coverage_delta"] for pair in pairs),
@@ -333,11 +391,12 @@ def main() -> None:
             "total_tokens": sum(row["llm_usage"]["total_tokens"] for row in arm_rows),
             "llm_latency_s_sum": sum(float(row["llm_usage"]["latency_s"]) for row in arm_rows),
         }
-    verdict, gates = classify(summary)
+    verdict, gates = classify(summary, args.version)
     payload = {
-        "schema_version": 1,
-        "experiment": "probe_contract_ab_safety_v1",
-        "seed": SEED,
+        "schema_version": spec.schema_version,
+        "experiment": spec.experiment,
+        "version": spec.version,
+        "seed": spec.seed,
         "verdict": verdict,
         "gates": gates,
         "gate_scope": "safety/discovery only; no significance or venue-level effect claim",
@@ -352,7 +411,7 @@ def main() -> None:
         "PROBE_CONTRACT_AB_VERDICT "
         f"verdict={verdict} coverage={summary['original_coverage_120']}->"
         f"{summary['contract_coverage_120']} gain={summary['coverage_gain']} "
-        f"probe={summary['contract_probe_valid']}/6 full="
+        f"probe={summary['contract_probe_valid']}/{len(spec.tasks)} full="
         f"{summary['original_full_valid']}->{summary['contract_full_valid']} "
         f"quality_pairs={summary['paired_full_scores']}",
         flush=True,

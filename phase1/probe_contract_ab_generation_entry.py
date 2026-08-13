@@ -10,11 +10,12 @@ import subprocess
 import time
 from pathlib import Path
 
-from phase1.probe_contract_ab_common import atomic_json, row_for_index
+from phase1.probe_contract_ab_common import atomic_json, row_for_index, spec_for_version
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--version", choices=("v1", "v2"), default="v1")
     parser.add_argument("--index", type=int, required=True)
     parser.add_argument("--task", required=True)
     parser.add_argument("--arm", required=True)
@@ -22,7 +23,8 @@ def main() -> None:
     parser.add_argument("--issue", required=True)
     parser.add_argument("--status-dir", type=Path, required=True)
     args = parser.parse_args()
-    expected = row_for_index(args.index)
+    spec = spec_for_version(args.version)
+    expected = row_for_index(args.index, args.version)
     supplied = {
         "index": args.index,
         "task": args.task,
@@ -68,7 +70,9 @@ def main() -> None:
     started = time.monotonic()
     completed = subprocess.run(command, check=False)
     payload = {
-        "schema_version": 1,
+        "schema_version": spec.schema_version,
+        "experiment": spec.experiment,
+        "version": spec.version,
         **expected,
         "return_code": completed.returncode,
         "started_wall_ns": started_wall_ns,

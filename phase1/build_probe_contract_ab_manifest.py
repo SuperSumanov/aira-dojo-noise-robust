@@ -11,15 +11,11 @@ from pathlib import Path
 from phase1.build_schema_probe_generation_manifest import nested
 from phase1.build_schema_probe_repair_manifest import validate_topology
 from phase1.probe_contract_ab_common import (
-    ARMS,
-    ISSUE_BY_ARM,
-    MATRIX,
-    SEED,
-    TASKS,
     atomic_json,
     row_for_index,
     sha256_file,
     sha256_text,
+    spec_for_version,
 )
 
 
@@ -85,46 +81,54 @@ def normalize_solver(solver: dict) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--version", choices=("v1", "v2"), default="v1")
     parser.add_argument("--run-root", type=Path, required=True)
     parser.add_argument("--status-dir", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
+    spec = spec_for_version(args.version)
     if args.out.exists():
         raise RuntimeError(f"refusing existing generation manifest: {args.out}")
 
     status_paths = sorted(args.status_dir.glob("index_*.json"))
-    if len(status_paths) != len(MATRIX):
-        raise RuntimeError(f"expected {len(MATRIX)} status records, got {len(status_paths)}")
+    if len(status_paths) != len(spec.matrix):
+        raise RuntimeError(f"expected {len(spec.matrix)} status records, got {len(status_paths)}")
     statuses: dict[int, tuple[dict, Path]] = {}
     for path in status_paths:
         row = json.loads(path.read_text(encoding="utf-8"))
         index = int(row.get("index", -1))
-        expected = row_for_index(index)
+        expected = row_for_index(index, args.version)
         if any(row.get(key) != value for key, value in expected.items()):
             raise RuntimeError(f"status identity mismatch: {path}")
+        if args.version == "v2" and (
+            row.get("schema_version") != spec.schema_version
+            or row.get("experiment") != spec.experiment
+            or row.get("version") != spec.version
+        ):
+            raise RuntimeError(f"status experiment mismatch: {path}")
         if row.get("return_code") != 0 or not isinstance(row.get("command_sha256"), str):
             raise RuntimeError(f"generation infrastructure failed: {path}")
         if index in statuses:
             raise RuntimeError(f"duplicate status index: {index}")
         statuses[index] = (row, path)
-    if set(statuses) != set(range(len(MATRIX))):
+    if set(statuses) != set(range(len(spec.matrix))):
         raise RuntimeError("status index grid mismatch")
 
     config_records: list[tuple[str, Path]] = []
-    for arm, issue in ISSUE_BY_ARM.items():
+    for arm, issue in spec.issue_by_arm.items():
         issue_root = args.run_root / f"user_yzyang4_issue_{issue}"
         paths = sorted(issue_root.glob("*/dojo_config.json"))
-        if len(paths) != len(TASKS):
-            raise RuntimeError(f"expected {len(TASKS)} configs for {arm}, got {len(paths)}")
+        if len(paths) != len(spec.tasks):
+            raise RuntimeError(f"expected {len(spec.tasks)} configs for {arm}, got {len(paths)}")
         config_records.extend((arm, path) for path in paths)
-    if len(config_records) != len(MATRIX):
+    if len(config_records) != len(spec.matrix):
         raise RuntimeError("total config count mismatch")
 
     rows: list[dict] = []
     prompts: dict[tuple[str, str], str] = {}
     normalized_solvers: dict[tuple[str, str], dict] = {}
     seen: set[tuple[str, str]] = set()
-    matrix_index = {(row["task"], row["arm"]): row["index"] for row in MATRIX}
+    matrix_index = {(row["task"], row["arm"]): row["index"] for row in spec.matrix}
     for arm, config_path in config_records:
         config = json.loads(config_path.read_text(encoding="utf-8"))
         task = str(nested(config, "task", "name"))
@@ -133,8 +137,8 @@ def main() -> None:
             raise RuntimeError(f"unexpected/duplicate generated block: {key}")
         seen.add(key)
         index = matrix_index[key]
-        expected = row_for_index(index)
-        if int(nested(config, "metadata", "seed")) != SEED:
+        expected = row_for_index(index, args.version)
+        if int(nested(config, "metadata", "seed")) != spec.seed:
             raise RuntimeError(f"seed mismatch: {key}")
         if str(nested(config, "metadata", "git_issue_id")) != expected["issue"]:
             raise RuntimeError(f"issue mismatch: {key}")
@@ -184,6 +188,10 @@ def main() -> None:
         task_id = str(config.get("id", ""))
         if not task_id or experiment_dir.name != task_id:
             raise RuntimeError(f"task id mismatch: {key}")
+        if solver.get("exp_name") != task_id or Path(solver.get("checkpoint_path", "")) != (
+            experiment_dir / "checkpoint"
+        ):
+            raise RuntimeError(f"solver run-identity path mismatch: {key}")
         status, status_path = statuses[index]
         rows.append(
             {
@@ -213,7 +221,7 @@ def main() -> None:
     if seen != set(matrix_index):
         raise RuntimeError("generated block grid incomplete")
     prompt_audits = []
-    for task in TASKS:
+    for task in spec.tasks:
         original = prompts[(task, "original")]
         contract = prompts[(task, "contract")]
         stripped, removed = strip_contract(contract)
@@ -232,17 +240,19 @@ def main() -> None:
         )
 
     payload = {
-        "schema_version": 1,
-        "experiment": "probe_contract_ab_safety_v1",
-        "seed": SEED,
-        "tasks": list(TASKS),
-        "arms": list(ARMS),
+        "schema_version": spec.schema_version,
+        "experiment": spec.experiment,
+        "version": spec.version,
+        "seed": spec.seed,
+        "tasks": list(spec.tasks),
+        "arms": list(spec.issue_by_arm),
         "rows": sorted(rows, key=lambda row: row["index"]),
         "prompt_audits": prompt_audits,
     }
     atomic_json(args.out, payload)
     print(
-        f"PROBE_CONTRACT_AB_GENERATION_PASS rows={len(rows)} pairs={len(TASKS)}",
+        f"PROBE_CONTRACT_AB_GENERATION_PASS version={spec.version} "
+        f"rows={len(rows)} pairs={len(spec.tasks)}",
         flush=True,
     )
 

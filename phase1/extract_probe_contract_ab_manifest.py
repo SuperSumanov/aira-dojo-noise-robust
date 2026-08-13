@@ -12,7 +12,13 @@ from pathlib import Path
 
 from phase1.build_schema_probe_repair_manifest import validate_topology
 from phase1.extract_schema_probe_manifest import static_contract
-from phase1.probe_contract_ab_common import MATRIX, SEED, atomic_json, row_for_index, sha256_file, sha256_text
+from phase1.probe_contract_ab_common import (
+    atomic_json,
+    row_for_index,
+    sha256_file,
+    sha256_text,
+    spec_for_version,
+)
 
 
 def atomic_jsonl(path: Path, rows: list[dict]) -> None:
@@ -32,19 +38,21 @@ def atomic_jsonl(path: Path, rows: list[dict]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--version", choices=("v1", "v2"), default="v1")
     parser.add_argument("--generation-manifest", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--audit", type=Path, required=True)
     args = parser.parse_args()
+    spec = spec_for_version(args.version)
     if args.out.exists() or args.audit.exists():
         raise RuntimeError("refusing existing A/B extraction outputs")
     generation = json.loads(args.generation_manifest.read_text(encoding="utf-8"))
     source_rows = generation.get("rows")
     if (
-        generation.get("experiment") != "probe_contract_ab_safety_v1"
-        or generation.get("seed") != SEED
+        generation.get("experiment") != spec.experiment
+        or generation.get("seed") != spec.seed
         or not isinstance(source_rows, list)
-        or len(source_rows) != len(MATRIX)
+        or len(source_rows) != len(spec.matrix)
     ):
         raise RuntimeError("generation manifest identity/grid mismatch")
 
@@ -52,7 +60,7 @@ def main() -> None:
     audit_rows: list[dict] = []
     for source in sorted(source_rows, key=lambda row: row.get("index", -1)):
         index = int(source.get("index", -1))
-        expected = row_for_index(index)
+        expected = row_for_index(index, args.version)
         if any(source.get(key) != value for key, value in expected.items()):
             raise RuntimeError(f"generation row differs from frozen matrix: {index}")
         export_path = Path(source["source_export"])
@@ -98,10 +106,10 @@ def main() -> None:
         )
         replay_rows.append(
             {
-                "schema_version": 1,
+                "schema_version": spec.schema_version,
                 "card_id": (
-                    f"probe_contract_ab|{expected['task']}|{expected['arm']}|"
-                    f"seed={SEED}|node={source['selected_node_id']}"
+                    f"{spec.experiment}|{expected['task']}|{expected['arm']}|"
+                    f"seed={spec.seed}|node={source['selected_node_id']}"
                 ),
                 **expected,
                 "competition": expected["task"],
@@ -117,13 +125,14 @@ def main() -> None:
             }
         )
 
-    if [row["index"] for row in replay_rows] != list(range(len(MATRIX))):
+    if [row["index"] for row in replay_rows] != list(range(len(spec.matrix))):
         raise RuntimeError("replay row ordering mismatch")
     atomic_jsonl(args.out, replay_rows)
     audit = {
-        "schema_version": 1,
-        "experiment": "probe_contract_ab_safety_v1",
-        "seed": SEED,
+        "schema_version": spec.schema_version,
+        "experiment": spec.experiment,
+        "version": spec.version,
+        "seed": spec.seed,
         "source_generation_manifest": str(args.generation_manifest),
         "source_generation_manifest_sha256": sha256_file(args.generation_manifest),
         "rows": audit_rows,
@@ -139,7 +148,7 @@ def main() -> None:
     print(
         "PROBE_CONTRACT_AB_EXTRACTION_PASS "
         f"rows={len(replay_rows)} ast={audit['python_ast_parse_rows']} "
-        f"contract_static={audit['contract_static_pass_rows']}/{len(MATRIX) // 2} "
+        f"contract_static={audit['contract_static_pass_rows']}/{len(spec.matrix) // 2} "
         f"manifest_sha256={audit['replay_manifest_sha256']}",
         flush=True,
     )

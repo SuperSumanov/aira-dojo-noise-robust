@@ -40,7 +40,7 @@ def test_parent_top1_uses_pair_graph_and_tie_aware_prediction() -> None:
 def test_discovery_gate_fails_closed_on_one_missing_condition() -> None:
     audit = {
         "parent_coverage": 0.95,
-        "runs": 333,
+        "runs": 280,
         "tasks": 23,
         "dominant_task_share": 0.21,
     }
@@ -55,7 +55,14 @@ def test_discovery_gate_fails_closed_on_one_missing_condition() -> None:
         "task_consistency": {"supported_tasks": 12, "nonnegative_share": 0.75},
         "oracle_pair_accuracy": 1.0,
     }
-    assert MODULE.discovery_gate(audit, comparison, 400.0, True)["all"] is True
+    passing_gate = MODULE.discovery_gate(audit, comparison, 400.0, True)
+    assert passing_gate["runs_ge_250"] is True
+    assert passing_gate["all"] is True
+    audit["runs"] = 249
+    low_support_gate = MODULE.discovery_gate(audit, comparison, 400.0, True)
+    assert low_support_gate["runs_ge_250"] is False
+    assert low_support_gate["all"] is False
+    audit["runs"] = 280
     comparison["pair_difference"]["overall"] = 0.019
     gate = MODULE.discovery_gate(audit, comparison, 400.0, True)
     assert gate["pair_gain_ge_002"] is False

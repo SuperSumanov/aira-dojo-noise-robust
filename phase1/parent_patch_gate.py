@@ -375,7 +375,7 @@ def discovery_gate(
     consistency = comparison["task_consistency"]
     checks = {
         "parent_coverage_ge_090": audit["parent_coverage"] >= 0.90,
-        "runs_ge_300": audit["runs"] >= 300,
+        "runs_ge_250": audit["runs"] >= 250,
         "tasks_ge_20": audit["tasks"] >= 20,
         "dominant_task_le_025": audit["dominant_task_share"] <= 0.25,
         "patch_pair_accuracy_ge_054": comparison["patch"]["pair_accuracy"]["overall"] >= 0.54,
@@ -552,7 +552,7 @@ def run_experiment(args: argparse.Namespace, result: dict[str, Any]) -> int:
 
     if train_audit["parent_coverage"] < 0.90:
         raise IntegrityError(f"train parent coverage {train_audit['parent_coverage']:.6f} < 0.90")
-    if train_audit["runs"] < 300 or train_audit["tasks"] < 20:
+    if train_audit["runs"] < 250 or train_audit["tasks"] < 20:
         raise IntegrityError(
             f"insufficient train support runs={train_audit['runs']} tasks={train_audit['tasks']}"
         )

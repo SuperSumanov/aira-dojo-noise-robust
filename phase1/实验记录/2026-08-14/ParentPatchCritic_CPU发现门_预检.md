@@ -12,9 +12,11 @@
    `1e-5`；所有 gate 指标仍从 CSV 严格重算。
 3. **测试集/重复检查**：v11 b0 train/frozen 的 oriented duplicate=0、reverse conflict=0；主脚本
    再次 fail closed。`intask_split==test` 只在 discovery 全闸通过后读取，绝不进 fit。
-4. **先看分布**：train 4,263 pairs / 333 runs / 23 tasks，dominant task 21.11%；frozen
-   1,498 / 92 / 22，dominant 40.72%。parent-present coverage 分别 3,948/4,263 与
-   1,424/1,498。parent top-1 仅在完整 pair graph 上报，不完整集合单列。
+4. **先看分布**：raw train 4,263 pairs / 333 runs / 23 tasks，dominant task 21.11%；仅保留
+   parent-present common support 后是 3,948 pairs / 280 runs / 23 tasks，dominant 21.88%。raw frozen
+   1,498 / 92 / 22，dominant 40.72%；parent-present support 是 1,424 / 83 / 21，dominant 42.56%。
+   parent top-1 仅在完整 pair graph 上报，不完整集合单列。此前把 raw train 的 333 runs 写成了
+   可建模共同支持，已在 outcome 前 V3a amendment 中透明更正。
 5. **评估配平**：两臂严格同 pair/common-parent support、同 run folds、同 classifier；训练按 parent
    等权；主推断同时报 pair、parent、run-macro、task-macro 与双聚类 CI，不以单任务汇总替代。
 6. **保存可复算产物**：该 CPU gate 不需要保存大模型 checkpoint；逐 pair margin、两端 score、hit、
@@ -28,8 +30,9 @@
    `git diff --cached --name-only | grep -icE 'env|key|token|secret'`，并做内容扫描；两者必须为 0。
 10. **墙钟**：V2 重复 fit 超过 10 分钟；V3 一次 hash、每折仅 fit IDF/head，目标 4--8 分钟，
     内外双重 900 秒 cap，单进程且 BLAS threads=1。超时=`ENGINEERING_TIMEOUT`，不得解释科学结果。
-11. **训练侧功效**：train parent coverage 92.61%、333 independent runs、23 tasks；unlock 还要求
-    ≥10 个 n≥20 tasks 且 ≥60% 非负，防止只靠 pair 数或 spooky 单任务。
+11. **训练侧功效**：train parent coverage 92.61%、280 个 common-support independent runs、23 tasks；
+    完整性下限在任何预测 outcome 前由误设的 300 修订为 250；unlock 仍要求 ≥10 个 n≥20 tasks 且
+    ≥60% 非负，防止只靠 pair 数或单一任务。
 12. **真实 rc**：launcher 对 gate/verifier 都先保存 `$?` 到 `gate_rc`/`verify_rc` 再打印；任一非零
     立即停止，不允许坏产物进入下游。
 13. **冻结/append-only**：输入远端 SHA 在 launcher 中固定核验；实验目录由 commit 前缀唯一命名，

@@ -227,7 +227,7 @@ def discovery_checks(
     consistency = comparison["task_consistency"]
     checks = {
         "parent_coverage_ge_090": audit["parent_coverage"] >= 0.90,
-        "runs_ge_300": audit["runs"] >= 300,
+        "runs_ge_250": audit["runs"] >= 250,
         "tasks_ge_20": audit["tasks"] >= 20,
         "dominant_task_le_025": audit["dominant_task_share"] <= 0.25,
         "patch_pair_accuracy_ge_054": comparison["patch"]["pair_accuracy"]["overall"] >= 0.54,

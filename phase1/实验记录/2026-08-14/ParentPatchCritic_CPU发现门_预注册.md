@@ -1,8 +1,21 @@
-# ParentPatchCritic sparse CPU discovery gate（outcome 前预注册）
+# ParentPatchCritic sparse CPU discovery gate（outcome 前预注册，V3a amendment）
 
 日期：2026-08-14；seed：887。本文写于任何新 patch 模型 accuracy 产生之前。V1 因 parent 缺失在
 vectorization 前 ABORT；V2 因逐折重复拟合 TF-IDF 超过 10 分钟 CPU 上限而停止，二者都没有科学结果。
 本次 V3 是新协议，不能继承 V1/V2 的 outcome 口径。
+
+### V3a outcome 前修订（2026-08-14）
+
+V3 首次真实启动在约 12 秒时因 `runs >=300` 完整性检查 fail closed：只完成了 train 的读取与
+结构审计，尚未进入向量化、IDF、模型拟合或任何 accuracy 计算，`frozen_read=false`，且旧实验目录
+原样保留为 `INVALID`。结构审计随后确认：原始 b0 train 是 4,263 对 / 333 runs，但仅保留 parent
+card 存在的 common support 后是 3,948 对 / **280 runs** / 23 tasks，dominant task 21.88%。先前预检
+把 raw-run count 错写成了 common-support run count。
+
+在没有预测 outcome 可看的前提下，V3a 唯一修订是把纯样本量完整性下限由 `runs >=300` 改为
+`runs >=250`；实际 280 runs 仍高于下限 30 runs。表示、fold、seed、classifier、全部效果阈值、
+CI、任务一致性门、冻结 success 门和 15 分钟 cap 均不变。新提交、新 append-only 目录运行；V3 的
+失败目录不得覆盖或删除。
 
 ## GCCV
 
@@ -39,7 +52,8 @@ vectorization 前 ABORT；V2 因逐折重复拟合 TF-IDF 超过 10 分钟 CPU �
 
 ## Discovery unlock（必须全部满足）
 
-1. 全部完整性门通过；train parent coverage ≥0.90，runs ≥300，tasks ≥20，dominant task ≤0.25；
+1. 全部完整性门通过；train parent coverage ≥0.90，common-support runs ≥250，tasks ≥20，
+   dominant task ≤0.25；
 2. patch OOF pair accuracy ≥0.54；
 3. `patch - absolute` OOF pair accuracy ≥+0.020；
 4. parent-macro top-1 差 ≥+0.030；

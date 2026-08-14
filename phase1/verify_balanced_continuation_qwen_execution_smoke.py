@@ -274,10 +274,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
             or intent.get("retry_count") != 0
             or not isinstance(command, list)
             or intent.get("command_sha256")
-            != digest(json.dumps(
-                command, sort_keys=True, separators=(",", ":"), ensure_ascii=False,
-                allow_nan=False,
-            ).encode("utf-8"))
+            != digest("\0".join(command).encode("utf-8"))
             or "--containall" not in command
             or "--cleanenv" not in command
             or "--network" not in command

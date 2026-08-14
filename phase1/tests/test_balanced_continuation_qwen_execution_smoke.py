@@ -207,7 +207,7 @@ def test_two_index_smoke_and_independent_verifier(
                 "process_kind": "candidate",
                 "process_will_start": True,
                 "command": command,
-                "command_sha256": smoke.sha256_bytes(smoke.canonical_json(command)),
+                "command_sha256": smoke.sha256_bytes("\0".join(command).encode()),
                 "created_utc": "2026-08-14T00:00:00Z",
                 "retry_count": 0,
             },

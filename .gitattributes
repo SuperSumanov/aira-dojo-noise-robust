@@ -6,3 +6,5 @@ phase1/perpair_decision.json filter=lfs diff=lfs merge=lfs -text
 phase1/results/*/full_artifacts.tar.gz filter=lfs diff=lfs merge=lfs -text
 phase1/results/fixed_decision_scorer_v11_20260814/precutoff_endpoint_* text eol=lf
 phase1/results/prospective_intake_shadow_0812_v3_20260814/* text eol=lf
+phase1/results/prospective_intake_shadow_0812_v4_20260814/* text eol=lf
+phase1/results/prospective_accumulator_shadow_0812_v1_20260814/* text eol=lf

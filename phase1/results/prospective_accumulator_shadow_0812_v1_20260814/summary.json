@@ -1,0 +1,114 @@
+{
+  "closure": {
+    "all_scheduled_runs_uploaded": null,
+    "outcomes_read": null,
+    "provided": false
+  },
+  "git_commit": "ca86739ed992d11a11d652dcbcb2e85394308532",
+  "inputs": {
+    "closure_receipt_sha256": null,
+    "freeze_receipt_sha256": "cfab01a80536a50ef21c47ac269c7ce54a11a3b1f0b6daa5700873cbb02ce178",
+    "intake_git_commits": {
+      "0812-shadow": "ca86739ed992d11a11d652dcbcb2e85394308532"
+    },
+    "intake_source_sha256": {
+      "0812-shadow": "0f02e0933687248fff3bcefdfc2825ddf40557fc5964b8a7476fed430fa6c5e3"
+    },
+    "intake_summaries": {
+      "0812-shadow": "9e3e9b3df34e07d792baf77401c2cf9292b0aaacdabd59c64feb22b4b1e0bdc6"
+    },
+    "precutoff_endpoint_denylist_sha256": "2f0cc4f3dc203801c569237716ba82cbc2bde2f854b67eee6efa9452e92447e6",
+    "registry_sha256": "c6039630ffbac8a47b43b86358b8a41b6d6df215bb366f3078fae12e73380b9e"
+  },
+  "inventory": {
+    "all_physical_runs": 57,
+    "drops": 1,
+    "eligible_endpoints": 0,
+    "eligible_runs": 0,
+    "eligible_structural_pairs": 0,
+    "eligible_tasks": 0,
+    "exact_code_duplicate_endpoints": 0,
+    "frozen_endpoints": null,
+    "frozen_runs": null,
+    "frozen_structural_pairs": null,
+    "provisional_first240_endpoints": 0,
+    "provisional_first240_runs": 0,
+    "provisional_first240_structural_pairs": 0,
+    "provisional_first960_endpoints": 0,
+    "provisional_first960_runs": 0,
+    "provisional_first960_structural_pairs": 0,
+    "unique_exact_code_sha256": 0
+  },
+  "outputs": {
+    "provisional_first240_runs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "provisional_first960_runs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "provisional_runs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sealed_vault_registry_sha256": "6c12fb26d822b48139c3a53d3d1ae8df77625f5d3d376f42b3c24f9b49028cfa"
+  },
+  "protocol": "prospective_accumulator_v1",
+  "security": {
+    "label_vault_opened": false,
+    "opened_basenames": [
+      "all_blind_views.jsonl",
+      "archive_audits.json",
+      "archive_manifest.tsv",
+      "eligible_blind_manifest.jsonl",
+      "eligible_structural_pairs.jsonl",
+      "freeze_receipt.json",
+      "precutoff_endpoint_denylist.csv",
+      "prospective_accumulator_shadow_0812_v1_registry.jsonl",
+      "source_provenance.json",
+      "structural_pairs.jsonl",
+      "summary.json"
+    ],
+    "outcome_files_opened": [],
+    "precutoff_code_sha256_checked": 15912,
+    "precutoff_endpoint_ids_checked": 16012,
+    "scorer_prediction_files_opened": []
+  },
+  "software": {
+    "platform": "Linux-6.8.0-100-generic-x86_64-with-glibc2.39",
+    "python": "3.12.13"
+  },
+  "source_sha256": "6fc749ece36dcda1ae0b82a9b2f1bcc5511f841543fddd942dc1a953b71c1755",
+  "status": "PROSPECTIVE_COHORT_COLLECTING",
+  "task_support": {
+    "all_eligible": {
+      "dominant_endpoint_task_share": null,
+      "dominant_run_task_share": null,
+      "dominant_structural_pair_task_share": null,
+      "endpoint_counts": {},
+      "endpoints": 0,
+      "run_counts": {},
+      "runs": 0,
+      "structural_pair_counts": {},
+      "structural_pairs": 0,
+      "tasks": 0
+    },
+    "frozen": null,
+    "provisional_first240": {
+      "dominant_endpoint_task_share": null,
+      "dominant_run_task_share": null,
+      "dominant_structural_pair_task_share": null,
+      "endpoint_counts": {},
+      "endpoints": 0,
+      "run_counts": {},
+      "runs": 0,
+      "structural_pair_counts": {},
+      "structural_pairs": 0,
+      "tasks": 0
+    },
+    "provisional_first960": {
+      "dominant_endpoint_task_share": null,
+      "dominant_run_task_share": null,
+      "dominant_structural_pair_task_share": null,
+      "endpoint_counts": {},
+      "endpoints": 0,
+      "run_counts": {},
+      "runs": 0,
+      "structural_pair_counts": {},
+      "structural_pairs": 0,
+      "tasks": 0
+    }
+  }
+}

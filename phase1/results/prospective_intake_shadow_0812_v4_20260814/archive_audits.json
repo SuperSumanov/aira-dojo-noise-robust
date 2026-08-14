@@ -1,0 +1,102 @@
+[
+  {
+    "archive_name": "dogs-vs-cats-redux-kernels-edition-4seeds.tar.gz",
+    "checkpoint_runs": 4,
+    "checkpoint_with_live_event_log": 4,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 43448007,
+    "discovered_run_roots": 4,
+    "live_only_runs_excluded": 0,
+    "members": 68
+  },
+  {
+    "archive_name": "learning-agency-lab-automated-essay-scoring-2-4seeds.tar.gz",
+    "checkpoint_runs": 4,
+    "checkpoint_with_live_event_log": 4,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 39838654,
+    "discovered_run_roots": 4,
+    "live_only_runs_excluded": 0,
+    "members": 72
+  },
+  {
+    "archive_name": "learning-agency-lab-automated-essay-scoring-2-8seeds.tar.gz",
+    "checkpoint_runs": 8,
+    "checkpoint_with_live_event_log": 8,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 228490624,
+    "discovered_run_roots": 8,
+    "live_only_runs_excluded": 0,
+    "members": 128
+  },
+  {
+    "archive_name": "new-york-city-taxi-fare-prediction-8seeds.tar.gz",
+    "checkpoint_runs": 6,
+    "checkpoint_with_live_event_log": 6,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 82354941,
+    "discovered_run_roots": 8,
+    "live_only_runs_excluded": 2,
+    "members": 134
+  },
+  {
+    "archive_name": "random-acts-of-pizza-4seeds.tar.gz",
+    "checkpoint_runs": 4,
+    "checkpoint_with_live_event_log": 4,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 161311931,
+    "discovered_run_roots": 4,
+    "live_only_runs_excluded": 0,
+    "members": 69
+  },
+  {
+    "archive_name": "ranzcr-clip-catheter-line-classification-8seeds.tar.gz",
+    "checkpoint_runs": 8,
+    "checkpoint_with_live_event_log": 8,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 77581798,
+    "discovered_run_roots": 8,
+    "live_only_runs_excluded": 0,
+    "members": 131
+  },
+  {
+    "archive_name": "tabular-playground-series-dec-2021-4seeds.tar.gz",
+    "checkpoint_runs": 3,
+    "checkpoint_with_live_event_log": 3,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 46722439,
+    "discovered_run_roots": 4,
+    "live_only_runs_excluded": 1,
+    "members": 66
+  },
+  {
+    "archive_name": "text-normalization-challenge-russian-language-8seeds.tar.gz",
+    "checkpoint_runs": 8,
+    "checkpoint_with_live_event_log": 8,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 160448603,
+    "discovered_run_roots": 8,
+    "live_only_runs_excluded": 0,
+    "members": 131
+  },
+  {
+    "archive_name": "tweet-sentiment-extraction-4seeds.tar.gz",
+    "checkpoint_runs": 4,
+    "checkpoint_with_live_event_log": 4,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 83259368,
+    "discovered_run_roots": 4,
+    "live_only_runs_excluded": 0,
+    "members": 72
+  },
+  {
+    "archive_name": "us-patent-phrase-to-phrase-matching-8seeds.tar.gz",
+    "checkpoint_runs": 8,
+    "checkpoint_with_live_event_log": 8,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 143522864,
+    "discovered_run_roots": 8,
+    "live_only_runs_excluded": 0,
+    "members": 131
+  }
+]

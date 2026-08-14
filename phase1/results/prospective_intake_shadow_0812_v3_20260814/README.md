@@ -1,5 +1,8 @@
 # Prospective intake：0812 全量影子回放
 
+> 本目录保留首次真实 schema 安全回放证据；最终、带完整代码元数据并与 accumulator 串联的回放见
+> `../prospective_intake_shadow_0812_v4_20260814/`。本结果未被删除或改写，但不再是当前入口。
+
 日期：2026-08-14。协议：`prospective_drop_intake_v1`。代码 commit：
 `e8d0ba26791acdc7ebae7b485eca6c5b63d32a25`。
 

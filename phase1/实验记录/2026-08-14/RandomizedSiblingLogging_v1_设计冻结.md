@@ -92,3 +92,35 @@ variation；K=2 winner/test--retest 不稳定；实际失败率或 wall cost 使
 positive/tamper tests 与文档。真实部署前仍须：双方确认 production opportunity cost；给出任务/parent 矩阵、
 总 slots/API/GPU·h 上限；逐项完成长实验 preflight；使用新 artifact root。E1 批准不自动授权本协议的真实执行，
 E2/E3 仍关闭。
+
+## 8. scheduler receipt consistency verifier（仍不是 production gate）
+
+commit `234cdd5` 后新增的 `verify_randomized_sibling_production_receipts.py` 只补内部闭环检查，且不 import
+assignment producer：
+
+1. 对每个 scheduler 声明的完整 eligible set，按固定 `sha256-top-m-without-replacement` 规则重新排序，要求
+   重建出的 selected parents 与 frozen assignment parents 精确相等；逐 parent 重算 `m/n` propensity，并要求
+   parent input 绑定该 canonical receipt 的 SHA-256。
+2. 对 committed budget receipt，要求 assignment manifest/summary hash 精确绑定；每个 assignment ID 恰好映射
+   一个唯一的 displaced standard slot 和一个唯一 randomized slot；若 `A` 为 rollout assignments 数，则强制
+   `B_standard_after=B_before-|A|`、`B_randomized_after=|A|`、`B_total_after=B_before`。
+3. selection/budget receipt 任意层级若出现 outcome-bearing key、凭据形状、非 canonical JSON、重复 parent/slot、
+   时间逆序、policy/hash 漂移，均在写 verification receipt 前失败。
+
+该 verifier 即使通过，也只能写：
+
+- `upstream_selection_probability_reconstructed_from_declared_eligible_sets=true`；
+- `committed_budget_decrement_internally_consistent=true`；
+- `budget_conserved_within_receipt=true`。
+
+它必须同时保留：
+
+- `eligible_stream_completeness_verified=false`；
+- `external_scheduler_receipt_authenticity_verified=false`；
+- `upstream_selection_probability_verified_by_assignment=false`；
+- `actual_production_budget_decrement_verified=false`；
+- `production_activation_authorized=false` 与 `causal_claim_allowed=false`。
+
+原因是 scheduler 自报 eligible set 仍可能漏事件，receipt 文件本身的来源/预提交时间也尚未由独立 production
+provenance 证明。下一门不是再做一个 synthetic true flag，而是先取得学长 scheduler 的只读事件流格式，设计
+append-only sequence/窗口完整性和 pre-outcome sealing；在此之前不得把本模块接到日常约 60 runs/day 的生产。

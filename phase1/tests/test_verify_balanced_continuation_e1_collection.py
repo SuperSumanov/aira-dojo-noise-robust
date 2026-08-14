@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 
 import phase1.verify_balanced_continuation_e1_collection as collection
+import phase1.verify_balanced_continuation_e1_archive as archive_verifier
 
 
 def write_json(path: Path, value: object) -> None:
@@ -173,6 +174,29 @@ def test_complete_coverage_opens_exactly_sixteen_sealed_receipts(tmp_path: Path)
     assert summary["task_replicate_ranking_agreements"] == 2
     assert summary["primary_gate_claim_allowed"] is False
     assert summary["e2_e3_unlocked"] is False
+    receipt = archive_verifier.verify(
+        Path(args.output), tmp_path / "archive.verify.json"
+    )
+    assert receipt["status"] == "VERIFIED_INDEPENDENT_E1_ARCHIVE_ANALYSIS"
+    assert receipt["producer_imported"] is False
+
+
+def test_independent_archive_verifier_rejects_aggregate_tampering(tmp_path: Path) -> None:
+    args = fixture(tmp_path)
+    collection.verify(args)
+    sibling_path = Path(args.output) / "sibling_labels.jsonl"
+    rows = [json.loads(line) for line in sibling_path.read_text(encoding="utf-8").splitlines()]
+    rows[0]["balanced_vh_mean"] += 0.1
+    sibling_path.write_text(
+        "".join(json.dumps(row, sort_keys=True) + "\n" for row in rows),
+        encoding="utf-8",
+    )
+    manifest_path = Path(args.output) / "sha256_manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["sibling_labels.jsonl"] = hashlib.sha256(sibling_path.read_bytes()).hexdigest()
+    write_json(manifest_path, manifest)
+    with pytest.raises(archive_verifier.ArchiveVerificationError, match="numeric mismatch"):
+        archive_verifier.verify(Path(args.output), tmp_path / "archive.verify.json")
 
 
 def test_missing_rollout_fails_before_any_sealed_json_is_parsed(

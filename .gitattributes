@@ -1,4 +1,16 @@
-phase1/cards_*.jsonl filter=lfs diff=lfs merge=lfs -text
+# Corpus LFS paths are intentionally narrow.  The old cards_*.jsonl glob also
+# matched 16 historical ordinary Git blobs and made fresh worktrees emit false
+# "should have been pointers" warnings.  Add each new immutable batch family here.
+phase1/cards_current_v*.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/cards_deepA.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/cards_deepB2.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/cards_extension_*.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/cards_gen2[A-D].jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/cards_gen2VAL*.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/cards_gen3A.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/cards_ours_*.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/cards_senior_*.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/cards_t3era_missing.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/*_runsplit.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/value_pairs_v4.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/v10_decision/*.jsonl filter=lfs diff=lfs merge=lfs -text

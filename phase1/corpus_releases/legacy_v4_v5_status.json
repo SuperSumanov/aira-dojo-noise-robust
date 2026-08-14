@@ -1,0 +1,17 @@
+{
+  "schema_version": "aira-dojo-corpus-legacy-status-v1",
+  "releases": {
+    "v4": {
+      "status": "UNRECOVERABLE_FROM_PUBLISHED_BATCHES",
+      "historical_rows": 8607,
+      "current_prefix_rows": 8579,
+      "reason": "The named batch payloads changed before the first Git LFS publication; no byte-exact historical merged artifact was found."
+    },
+    "v5": {
+      "status": "UNRECOVERABLE_FROM_PUBLISHED_BATCHES",
+      "historical_rows": 9323,
+      "current_prefix_rows": 9433,
+      "reason": "The 0805 sequential batch was replaced before the first Git LFS publication; the historical 716-row payload was not preserved."
+    }
+  }
+}

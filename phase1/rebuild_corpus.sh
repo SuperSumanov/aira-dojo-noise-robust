@@ -1,27 +1,51 @@
 #!/usr/bin/env bash
-# Rebuild the merged corpus from per-batch card files (kept out of git except via LFS).
-# Batch order and membership live in phase1/corpus_manifest.txt -- ONE list, read here and
-# by run_segment.py, so the two can no longer drift apart (they did: this script was also
-# the file an inline patch once mangled).
+# Rebuild a byte-exact release from immutable Git LFS batches.
 #
-# Steps: concatenate -> reconstruct physical runs -> inject run_id (release schema v6).
-# Usage: bash phase1/rebuild_corpus.sh [out.jsonl]
-set -e
-OUT="${1:-phase1/cards_merged_current.jsonl}"
+# Preferred usage:
+#   bash phase1/rebuild_corpus.sh [v6..v11] [output.jsonl] [--overwrite]
+# Compatibility usage (latest release):
+#   bash phase1/rebuild_corpus.sh output.jsonl
+set -euo pipefail
+
 cd "$(dirname "$0")/.."
-PY="${PY:-/research/d7/spc/yzyang4/venvs/critic/bin/python3}"
-MAN=phase1/corpus_manifest.txt
+LATEST=$(tr -d '[:space:]' < phase1/corpus_releases/LATEST)
+FIRST="${1:-$LATEST}"
+if [[ "$FIRST" == *.jsonl || "$FIRST" == */* ]]; then
+  VERSION="$LATEST"
+  OUT="$FIRST"
+  OVERWRITE="${2:-}"
+  echo "NOTICE: treating the first path argument as latest release $LATEST" >&2
+else
+  VERSION="$FIRST"
+  OUT="${2:-phase1/rebuilt/cards_current_${VERSION}.jsonl}"
+  OVERWRITE="${3:-}"
+fi
 
-: > "$OUT.raw"
-while read -r f; do
-  [ -z "$f" ] && continue
-  [ -f "phase1/$f" ] || { echo "MISSING batch file: phase1/$f" >&2; exit 1; }
-  cat "phase1/$f" >> "$OUT.raw"
-done < "$MAN"
-echo "concatenated: $(wc -l < "$OUT.raw") cards from $(grep -cve '^$' "$MAN") batch files"
+RELEASE="phase1/corpus_releases/${VERSION}.json"
+[[ -f "$RELEASE" ]] || {
+  echo "UNKNOWN or unreproducible corpus release: $VERSION" >&2
+  exit 1
+}
+if [[ -n "$OVERWRITE" && "$OVERWRITE" != "--overwrite" ]]; then
+  echo "third argument must be --overwrite when supplied" >&2
+  exit 1
+fi
 
-# run reconstruction reads the same manifest; it writes phase1/card_run_map.json
-"$PY" -m phase1.run_segment >/dev/null || { echo "run segmentation REJECTED -- corpus left at $OUT.raw" >&2; exit 1; }
-"$PY" -m phase1.add_run_id "$OUT.raw" "$OUT"
-rm -f "$OUT.raw"
-echo "rebuilt: $OUT ($(wc -l < "$OUT") cards, run_id injected)"
+if [[ -n "${PY:-}" ]]; then
+  PYTHON="$PY"
+elif command -v python3 >/dev/null 2>&1; then
+  PYTHON=python3
+else
+  PYTHON=python
+fi
+
+ARGS=(
+  -m phase1.corpus_release build
+  --release "$RELEASE"
+  --output "$OUT"
+  --receipt "${OUT}.receipt.json"
+)
+if [[ "$OVERWRITE" == "--overwrite" ]]; then
+  ARGS+=(--overwrite)
+fi
+"$PYTHON" "${ARGS[@]}"

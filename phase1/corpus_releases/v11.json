@@ -1,0 +1,14 @@
+{
+  "schema_version": "aira-dojo-corpus-release-v1",
+  "version": "v11",
+  "release_commit": "306bfa25633e713edd98d0a49675bfa2c1e6281c",
+  "rebuild_protocol": "legacy-run-id-v6-sanitized",
+  "batch_count": 29,
+  "batch_lock_sha256": "e5d971d422d07e08a7ba8cd7785d21c10cb19ccda8ae5fe5c75ffa1f249fb0e2",
+  "output": {
+    "file": "cards_current_v11.jsonl",
+    "rows": 16012,
+    "bytes": 305750663,
+    "sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75"
+  }
+}

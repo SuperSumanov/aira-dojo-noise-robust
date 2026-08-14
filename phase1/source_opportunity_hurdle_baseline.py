@@ -706,7 +706,7 @@ def comparison(
         "task_macro": float(np.mean([np.mean(values) for values in by_task.values()])),
         "supported_tasks": len(supported),
         "supported_task_nonnegative_share": (
-            sum(np.mean(values) >= 0.0 for values in supported.values()) / len(supported)
+            float(sum(np.mean(values) >= 0.0 for values in supported.values()) / len(supported))
             if supported else None
         ),
         "per_task": {

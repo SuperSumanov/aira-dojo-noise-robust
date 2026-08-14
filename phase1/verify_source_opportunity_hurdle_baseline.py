@@ -260,7 +260,10 @@ def comparison(rows: Sequence[dict[str, Any]], left: str, right: str, metric: st
         "task_macro": sum(sum(values) / len(values) for values in by_task.values()) / len(by_task),
         "supported_tasks": len(supported),
         "supported_task_nonnegative_share": (
-            sum((sum(values) / len(values)) >= 0.0 for values in supported.values()) / len(supported)
+            float(
+                sum((sum(values) / len(values)) >= 0.0 for values in supported.values())
+                / len(supported)
+            )
             if supported else None
         ),
         "per_task": {

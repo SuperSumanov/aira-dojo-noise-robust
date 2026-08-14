@@ -1,4 +1,5 @@
 import copy
+import json
 
 from phase1.verify_source_opportunity_hurdle_baseline import (
     ARMS,
@@ -51,3 +52,4 @@ def test_reconstructed_gate_uses_frozen_headline_not_static_swap():
     result, _ = reconstruct_results(copy.deepcopy(rows))
     assert result["method_positive_claim_allowed"] is True
     assert result["status"] == "VERIFIED_POSITIVE_HURDLE_METHOD"
+    json.dumps(result)

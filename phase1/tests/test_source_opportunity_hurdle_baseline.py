@@ -1,4 +1,5 @@
 import copy
+import json
 
 import pytest
 
@@ -6,6 +7,7 @@ from phase1.source_opportunity_hurdle_baseline import (
     ARMS,
     BaselineError,
     classify_node,
+    comparison,
     fit_and_score,
     parent_metrics,
     scan_file,
@@ -112,6 +114,19 @@ def test_identical_scores_make_permuted_labels_equal_random_expectation():
     for row in metrics:
         assert row["hurdle_tfidf_scoreability"] == row["random_expected_scoreability"]
         assert row["hurdle_tfidf_utility"] == row["random_expected_utility"]
+
+
+def test_comparison_is_standard_json_serializable():
+    rows = [
+        {
+            "parent": f"p{index}", "task": "task", "run_id": f"r{index}",
+            "hurdle_tfidf_utility": 1.0, "quality_tfidf_utility": 0.0,
+        }
+        for index in range(5)
+    ]
+    result = comparison(rows, "hurdle_tfidf", "quality_tfidf", "utility")
+    assert type(result["supported_task_nonnegative_share"]) is float
+    json.dumps(result)
 
 
 def test_scan_file_refuses_credential_shape(tmp_path):

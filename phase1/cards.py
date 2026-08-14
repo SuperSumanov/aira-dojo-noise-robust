@@ -225,14 +225,8 @@ def card_from_node_data(nd: Dict[str, Any], task: TaskInfo) -> Optional[Card]:
     )
 
 
-def parse_journal(path: str, task: TaskInfo) -> List[Card]:
-    """Offline: read a run's checkpoint/journal.jsonl -> list[Card] (skips root & label-less nodes)."""
-    nodes = []
-    with open(path) as f:
-        for line in f:
-            line = line.strip()
-            if line:
-                nodes.append(json.loads(line))
+def parse_journal_nodes(nodes: List[Dict[str, Any]], task: TaskInfo) -> List[Card]:
+    """Convert already-decoded journal nodes to cards without requiring a filesystem copy."""
     by_step = {n.get("step"): n for n in nodes}
 
     def _cid(step):
@@ -276,6 +270,17 @@ def parse_journal(path: str, task: TaskInfo) -> List[Card]:
         c.lineage.children_ids = [x for x in (_cid(k) for k in kids_of.get(step, [])) if x]
         cards.append(c)
     return cards
+
+
+def parse_journal(path: str, task: TaskInfo) -> List[Card]:
+    """Offline: read a run's checkpoint/journal.jsonl -> list[Card] (skips root)."""
+    nodes = []
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                nodes.append(json.loads(line))
+    return parse_journal_nodes(nodes, task)
 
 
 def save_cards(cards: List[Card], path: str) -> None:

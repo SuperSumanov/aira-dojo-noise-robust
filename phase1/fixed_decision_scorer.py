@@ -27,6 +27,8 @@ from typing import Any, Sequence
 
 import numpy as np
 
+from .endpoint_denylist import load_endpoint_denylist
+
 
 SEED = 887
 PROTOCOL = "prospective_decision_v1"
@@ -780,6 +782,8 @@ def load_blind_manifest(
     expected_sha: str,
     denylist: set[str],
     activated_at: datetime,
+    precutoff_card_ids: set[str] | None = None,
+    precutoff_code_shas: set[str] | None = None,
 ) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
     if sha256(path) != expected_sha.lower():
         raise IntegrityError("blind-manifest SHA mismatch")
@@ -796,28 +800,57 @@ def load_blind_manifest(
         lineage = raw["lineage"]
         if not isinstance(lineage, dict) or set(lineage) != BLIND_LINEAGE_KEYS:
             raise IntegrityError(f"blind lineage schema mismatch at line {line_number}")
-        card_id, run = str(raw["card_id"]), str(raw["run_id"])
+        if not isinstance(raw["card_id"], str) or not isinstance(raw["run_id"], str):
+            raise IntegrityError(f"blind endpoint/run ID type mismatch at line {line_number}")
+        card_id, run = raw["card_id"], raw["run_id"]
         if not card_id or (previous_id is not None and card_id <= previous_id):
             raise IntegrityError("blind manifest IDs must be unique and strictly sorted")
+        if any(character in card_id for character in "\r\n\t"):
+            raise IntegrityError(f"blind endpoint ID contains control whitespace at line {line_number}")
         previous_id = card_id
         if run in denylist:
             raise IntegrityError(f"pre-cutoff run in blind manifest: {run}")
+        if precutoff_card_ids is not None and card_id in precutoff_card_ids:
+            raise IntegrityError(f"pre-cutoff endpoint ID in blind manifest at line {line_number}")
         generation_started = parse_utc(str(raw["generation_started_at_utc"]))
         if generation_started <= activated_at:
             raise IntegrityError(f"non-prospective generation time at line {line_number}")
-        code = str(raw["code"])
-        if not code or hashlib.sha256(code.encode("utf-8")).hexdigest() != str(raw["code_sha256"]):
+        if not isinstance(raw["code"], str):
+            raise IntegrityError(f"blind code must be a string at line {line_number}")
+        code = raw["code"]
+        code_sha = hashlib.sha256(code.encode("utf-8")).hexdigest()
+        if not code or code_sha != str(raw["code_sha256"]):
             raise IntegrityError(f"blind code SHA mismatch at line {line_number}")
+        if precutoff_code_shas is not None and code_sha in precutoff_code_shas:
+            raise IntegrityError(f"pre-cutoff exact code in blind manifest at line {line_number}")
         source_sha = str(raw["source_sha256"]).lower()
         if not re.fullmatch(r"[0-9a-f]{64}", source_sha):
             raise IntegrityError(f"invalid source SHA at line {line_number}")
+        if run != f"journal:{source_sha}":
+            raise IntegrityError(f"physical run/source identity mismatch at line {line_number}")
+        if not isinstance(raw["task"], str) or not raw["task"] or any(
+            character in raw["task"] for character in "\r\n\t"
+        ):
+            raise IntegrityError(f"invalid task at line {line_number}")
+        for key in ("depth", "step", "n_siblings"):
+            value = lineage[key]
+            if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+                raise IntegrityError(f"invalid blind lineage {key} at line {line_number}")
+        if lineage["depth"] < 1 or lineage["step"] < 1:
+            raise IntegrityError(f"blind endpoint lineage must be non-root at line {line_number}")
+        if not isinstance(lineage["parent"], str) or not lineage["parent"]:
+            raise IntegrityError(f"blind endpoint parent must be non-empty at line {line_number}")
+        if not isinstance(lineage["op"], str) or any(
+            character in lineage["op"] for character in "\r\n\t"
+        ):
+            raise IntegrityError(f"invalid blind lineage op at line {line_number}")
         cards[card_id] = {
             "id": card_id,
-            "task": str(raw["task"]),
+            "task": raw["task"],
             "run": run,
             "code": code,
             "lineage": {key: lineage[key] for key in ("depth", "step", "n_siblings", "op")},
-            "parent": str(lineage["parent"]),
+            "parent": lineage["parent"],
             "generation_started_at_utc": str(raw["generation_started_at_utc"]),
             "source_sha256": source_sha,
         }
@@ -833,13 +866,14 @@ def load_blind_manifest(
         "retained_keys": sorted({key for card in cards.values() for key in card}),
         "labels_read": False,
         "post_execution_fields_read": False,
+        "precutoff_endpoint_id_overlap": 0,
+        "precutoff_code_sha256_overlap": 0,
     }
 
 
 def score(args: argparse.Namespace) -> int:
     if args.out_dir.exists():
         raise FileExistsError(f"refusing to overwrite score output: {args.out_dir}")
-    args.out_dir.mkdir(parents=True)
     summary_path = args.scorer_dir / "summary.json"
     receipt_path = args.scorer_dir / "freeze_receipt.json"
     bundle_path = args.scorer_dir / "fixed_scorer.npz"
@@ -860,15 +894,28 @@ def score(args: argparse.Namespace) -> int:
     denylist = set(denylist_lines)
     if len(denylist_lines) != EXPECTED["precutoff_runs"] or len(denylist) != len(denylist_lines):
         raise IntegrityError("active pre-cutoff denylist inventory mismatch")
+    precutoff_card_ids, precutoff_code_shas, endpoint_denylist_audit = load_endpoint_denylist(
+        args.precutoff_endpoint_denylist,
+        args.expect_precutoff_endpoint_denylist_sha256,
+        args.expect_precutoff_endpoints,
+    )
     cards, audit = load_blind_manifest(
         args.blind_manifest,
         args.expect_blind_manifest_sha256,
         denylist,
         parse_utc(str(receipt["activated_at_utc"])),
+        precutoff_card_ids,
+        precutoff_code_shas,
     )
+    audit["precutoff_endpoint_ids_checked"] = endpoint_denylist_audit["endpoint_ids"]
+    audit["precutoff_code_sha256_checked"] = endpoint_denylist_audit["unique_code_sha256"]
     arrays = load_bundle(bundle_path)
     scores = score_cards(cards, arrays)
-    score_path = args.out_dir / "blind_scores.csv"
+    temporary_dir = args.out_dir.with_name(f"{args.out_dir.name}.tmp.{os.getpid()}")
+    if temporary_dir.exists():
+        raise FileExistsError(f"temporary score output already exists: {temporary_dir}")
+    temporary_dir.mkdir(parents=True)
+    score_path = temporary_dir / "blind_scores.csv"
     temporary = score_path.with_suffix(".tmp.csv")
     with temporary.open("w", encoding="utf-8", newline="") as handle:
         fields = (
@@ -908,11 +955,16 @@ def score(args: argparse.Namespace) -> int:
             "freeze_receipt_sha256": sha256(receipt_path),
             "fixed_scorer_sha256": sha256(bundle_path),
             "precutoff_runs_sha256": sha256(denylist_path),
+            "precutoff_endpoint_denylist_sha256": sha256(args.precutoff_endpoint_denylist),
         },
         "audit": audit,
-        "outputs": {"blind_scores": str(score_path), "blind_scores_sha256": sha256(score_path)},
+        "outputs": {
+            "blind_scores": str(args.out_dir / "blind_scores.csv"),
+            "blind_scores_sha256": sha256(score_path),
+        },
     }
-    atomic_json(args.out_dir / "summary.json", output)
+    atomic_json(temporary_dir / "summary.json", output)
+    os.replace(temporary_dir, args.out_dir)
     print(
         "BLIND_SCORING_COMPLETE",
         f"endpoints={audit['endpoints']}",
@@ -951,9 +1003,12 @@ def arguments() -> argparse.Namespace:
     score_parser = subparsers.add_parser("score")
     score_parser.add_argument("--scorer-dir", required=True, type=Path)
     score_parser.add_argument("--blind-manifest", required=True, type=Path)
+    score_parser.add_argument("--precutoff-endpoint-denylist", required=True, type=Path)
     score_parser.add_argument("--out-dir", required=True, type=Path)
     score_parser.add_argument("--expect-receipt-sha256", required=True)
     score_parser.add_argument("--expect-blind-manifest-sha256", required=True)
+    score_parser.add_argument("--expect-precutoff-endpoint-denylist-sha256", required=True)
+    score_parser.add_argument("--expect-precutoff-endpoints", required=True, type=int)
     score_parser.set_defaults(function=score)
     return parser.parse_args()
 

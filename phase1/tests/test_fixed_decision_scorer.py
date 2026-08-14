@@ -49,7 +49,11 @@ def test_forbidden_train_inputs_fail_closed():
     scorer.reject_forbidden_path(Path("decision_train.jsonl"), "input")
 
 
-def blind_row(card_id: str = "a", run: str = "fresh:0", started: str = "2026-08-14T01:00:01Z") -> dict:
+def blind_row(
+    card_id: str = "a",
+    run: str = "journal:" + "a" * 64,
+    started: str = "2026-08-14T01:00:01Z",
+) -> dict:
     code = "print('blind')"
     return {
         "card_id": card_id,
@@ -103,6 +107,32 @@ def test_blind_manifest_rejects_old_run_and_nonfuture_time(tmp_path: Path):
         scorer.load_blind_manifest(
             path, digest, set(), datetime(2026, 8, 14, 1, 0, tzinfo=timezone.utc)
         )
+
+
+def test_blind_manifest_rejects_precutoff_endpoint_and_exact_code(tmp_path: Path):
+    path = tmp_path / "blind.jsonl"
+    row = blind_row()
+    digest = write_manifest(path, [row])
+    activated = datetime(2026, 8, 14, 1, 0, 0, tzinfo=timezone.utc)
+    with pytest.raises(scorer.IntegrityError, match="endpoint ID"):
+        scorer.load_blind_manifest(path, digest, set(), activated, {row["card_id"]}, set())
+    with pytest.raises(scorer.IntegrityError, match="exact code"):
+        scorer.load_blind_manifest(path, digest, set(), activated, set(), {row["code_sha256"]})
+
+
+def test_blind_manifest_rejects_spoofed_run_identity_and_lineage_types(tmp_path: Path):
+    path = tmp_path / "blind.jsonl"
+    activated = datetime(2026, 8, 14, 1, 0, 0, tzinfo=timezone.utc)
+    row = blind_row(run="journal:" + "b" * 64)
+    digest = write_manifest(path, [row])
+    with pytest.raises(scorer.IntegrityError, match="run/source identity"):
+        scorer.load_blind_manifest(path, digest, set(), activated)
+
+    row = blind_row()
+    row["lineage"]["depth"] = "1"
+    digest = write_manifest(path, [row])
+    with pytest.raises(scorer.IntegrityError, match="lineage depth"):
+        scorer.load_blind_manifest(path, digest, set(), activated)
 
 
 def test_bundle_roundtrip_matches_fitted_endpoint_scores(tmp_path: Path):

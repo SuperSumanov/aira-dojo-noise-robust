@@ -952,6 +952,8 @@ def score(args: argparse.Namespace) -> int:
     output = {
         "status": "BLIND_SCORING_COMPLETE",
         "protocol": PROTOCOL,
+        "git_commit": git_commit(args.repo_root),
+        "source_sha256": sha256(Path(__file__)),
         "labels_read": False,
         "post_execution_fields_read": False,
         "inputs": {
@@ -965,6 +967,11 @@ def score(args: argparse.Namespace) -> int:
         "outputs": {
             "blind_scores": str(args.out_dir / "blind_scores.csv"),
             "blind_scores_sha256": sha256(score_path),
+        },
+        "software": {
+            "python": sys.version,
+            "numpy": np.__version__,
+            "platform": platform.platform(),
         },
     }
     atomic_json(temporary_dir / "summary.json", output)
@@ -1009,6 +1016,7 @@ def arguments() -> argparse.Namespace:
     score_parser.add_argument("--blind-manifest", required=True, type=Path)
     score_parser.add_argument("--precutoff-endpoint-denylist", required=True, type=Path)
     score_parser.add_argument("--out-dir", required=True, type=Path)
+    score_parser.add_argument("--repo-root", required=True, type=Path)
     score_parser.add_argument("--expect-receipt-sha256", required=True)
     score_parser.add_argument("--expect-blind-manifest-sha256", required=True)
     score_parser.set_defaults(function=score)

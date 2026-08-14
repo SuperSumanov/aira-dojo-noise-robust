@@ -3,6 +3,34 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0I. 2026-08-14 最新覆盖：prospective intake 与双层防泄漏链通过影子回放
+
+本节晚于 0H；主线没有变成旧多保真/HCE/probe，仍是 run-clean、decision-local 数据集/benchmark 与
+first-960 前瞻确认。
+
+1. v11 的 16,012 个历史 endpoints 已生成 `(card_id, exact-code SHA-256)` denylist；唯一 code SHA 为
+   15,912 个，producer SHA 为
+   `2f0cc4f3dc203801c569237716ba82cbc2bde2f854b67eee6efa9452e92447e6`。不 import producer 的 verifier
+   从 hash-locked cards 逐行重建完全一致；正式远端 23 项测试通过。
+2. denylist SHA/行数现为 intake 与 scorer 的源码常量，公开 CLI 不能自报覆盖；旧 667-run denylist 继续保留。
+   新 manifest 还必须满足 `run_id == journal:<source_sha256>`，endpoint ID 与 exact code 两层 overlap 均为 0。
+3. 0812 全量影子回放在 commit `e8d0ba26791acdc7ebae7b485eca6c5b63d32a25` 通过：60 roots 中 57 个
+   checkpoint runs、3 个 live-only、1,304 endpoints、286 structural pairs、9 tasks。它们全部早于激活，
+   eligible=0；env/live-event 未读、raw journal 未落盘、源 archive 前后 SHA 一致、两层历史 overlap=0。
+4. 该回放只证明工程链适配真实 tar schema，不是 prospective 正结果，未计算任何 scorer-vs-grade metric，
+   label vault 未复制或打开。目前 senior 目录最新仍为 0812；metadata-only monitor 继续运行。
+5. 语料版本发布固定为：Git LFS 只存不可变分批文件，每个上传一次；在有 LFS 的环境 pull 后由统一 manifest
+   驱动 `rebuild_corpus.sh`，再核对行数与 SHA。不得把每版合并语料重复上传，也不得绕开 manifest 手拼版本。
+6. 下一项工程是 label-blind append-only accumulator：跨 drop 去重并按
+   `(generation_started_at_utc, source_sha256, physical_run_id)` 固定 first-240/first-960 identity；到 960 前仍不读
+   outcome。没有新 drop 时不启动新的追参/GPU 方法实验。
+
+直接依据：
+
+- `phase1/results/fixed_decision_scorer_v11_20260814/precutoff_endpoint_independent_verify.json`；
+- `phase1/results/prospective_intake_shadow_0812_v3_20260814/README.md`；
+- `phase1/实验记录/2026-08-14/ProspectiveIntake_预注册.md`。
+
 ## 0H. 2026-08-14 最新覆盖：TGCA 经独立复核关闭，盲测继续封存
 
 本节晚于 0G；稳定主线仍是 run-clean、decision-local 的 MLE-agent 搜索树数据集/benchmark 与前瞻复核。

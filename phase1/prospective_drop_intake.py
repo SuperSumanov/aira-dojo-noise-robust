@@ -16,7 +16,9 @@ import itertools
 import json
 import math
 import os
+import platform
 import re
+import subprocess
 import tarfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
@@ -63,6 +65,12 @@ def sha256(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def git_commit(repo_root: Path) -> str:
+    return subprocess.check_output(
+        ["git", "-C", str(repo_root), "rev-parse", "HEAD"], text=True
+    ).strip()
 
 
 def parse_utc(value: str) -> dt.datetime:
@@ -518,6 +526,8 @@ def build(args: argparse.Namespace) -> int:
     summary = {
         "status": "PROSPECTIVE_DROP_INTAKE_COMPLETE",
         "protocol": PROTOCOL,
+        "git_commit": git_commit(args.repo_root),
+        "source_sha256": sha256(Path(__file__)),
         "activated_at_utc": receipt["activated_at_utc"],
         "selection_rule": "physical run root creation_time strictly after scorer activation",
         "inputs": {
@@ -570,6 +580,16 @@ def build(args: argparse.Namespace) -> int:
             "label_values_printed": False,
             "metrics_computed": [],
         },
+        "configuration": {
+            "max_archives": args.max_archives,
+            "max_archive_bytes": args.max_archive_bytes,
+            "max_total_archive_bytes": args.max_total_archive_bytes,
+            "max_member_bytes": args.max_member_bytes,
+            "max_members_per_archive": args.max_members_per_archive,
+            "max_total_member_bytes_per_archive": args.max_total_member_bytes_per_archive,
+            "max_total_journal_bytes": args.max_total_journal_bytes,
+        },
+        "software": {"python": platform.python_version(), "platform": platform.platform()},
     }
     atomic_json(temporary / "summary.json", summary)
     os.replace(temporary, out_dir)
@@ -591,6 +611,7 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--freeze-receipt", required=True, type=Path)
     parser.add_argument("--precutoff-endpoint-denylist", required=True, type=Path)
     parser.add_argument("--out-dir", required=True, type=Path)
+    parser.add_argument("--repo-root", required=True, type=Path)
     parser.add_argument("--expect-freeze-receipt-sha256", required=True)
     parser.add_argument("--max-archive-bytes", type=int, default=64 * 1024 * 1024 * 1024)
     parser.add_argument("--max-total-archive-bytes", type=int, default=512 * 1024 * 1024 * 1024)

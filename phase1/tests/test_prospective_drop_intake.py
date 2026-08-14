@@ -122,6 +122,7 @@ def args_for(drop: Path, receipt: Path, output: Path, receipt_sha: str) -> argpa
         freeze_receipt=receipt,
         precutoff_endpoint_denylist=denylist,
         out_dir=output,
+        repo_root=Path(__file__).parents[2],
         expect_freeze_receipt_sha256=receipt_sha,
         _expect_precutoff_endpoint_denylist_sha256=denylist_sha,
         _expect_precutoff_endpoints=1,

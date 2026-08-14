@@ -31,6 +31,7 @@ done
 
 mkdir -p "$staging_root/prereg"
 cp "$prereg" "$preflight_doc" "$staging_root/prereg/"
+exec 3>&1 4>&2
 exec > >(tee "$staging_root/run.log") 2>&1
 
 echo "PREFLIGHT_START protocol=selective_execution_v11_retrospective_discovery_v1"
@@ -164,6 +165,10 @@ post_content_hits="$( { grep -I -R -n -E \
 echo "postrun_high_confidence_secret_hits=$post_content_hits"
 test "$post_content_hits" -eq 0
 
+# Stop writing run.log before hashing it.  Otherwise sha256sum -c output would
+# mutate the very log represented in the manifest.
+exec 1>&3 2>&4
+wait
 find "$staging_root" -type f ! -name SHA256SUMS -print0 \
   | LC_ALL=C sort -z | xargs -0 sha256sum > "$staging_root/SHA256SUMS"
 (cd / && sha256sum -c "${staging_root#/}/SHA256SUMS")

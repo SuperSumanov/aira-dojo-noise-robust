@@ -55,6 +55,18 @@ threshold 的概率。绝不以历史 subtree max 直接当 ground truth，因�
 - [OCBA-MCTS](https://arxiv.org/abs/2009.12407) 与
   [fixed-budget BAI](https://proceedings.mlr.press/v216/lalitha23a.html) 已覆盖有限预算下的非均匀采样和 best-arm
   identification；equal allocation 或方差感知 allocation 不能单独当 novelty。
+- [EET (ACL Findings 2026)](https://aclanthology.org/2026.findings-acl.1652/) 已用历史软件修复经验做 agent
+  early termination，并在 SWE-bench 报告成本下降；“根据历史轨迹提前停止 agent”本身不是空白。
+- [Semantic Early-Stopping (2026)](https://arxiv.org/abs/2606.27009) 已用语义变化与质量停滞停止迭代 LLM loop，
+  并把“选哪个历史 round 最好”明确留作更难的问题；token-loop stopping 或 replay 相同 trajectory 也不能作本项目
+  的独立 novelty。
+- [KompeteAI (2025)](https://arxiv.org/abs/2508.10177) 已在 MLE pipeline generation 中用 early-stage metric
+  预测 solution potential、避免完整代码执行；廉价低保真试跑/early metric 加速因此已有最接近的 AutoML 先例。
+
+所以 value-of-computation/early stopping 只能作为下游应用与强基线，不能另起一个“新早停算法”的主张。当前可防守
+边界仍是：对**已经完整执行**的真实 MLE program-search 节点，用 matched equal-K fresh-workspace 干预估计未来
+continuation value，并在相同真实执行预算下检验分支选择；这与按 token 收敛停 loop、按 early metric 取消单次
+执行，以及按历史经验终止整个 issue 都不是同一个 estimand。
 
 可防守的差异只能是组合证据，而不是新发明 MCTS/Q/BAI：
 

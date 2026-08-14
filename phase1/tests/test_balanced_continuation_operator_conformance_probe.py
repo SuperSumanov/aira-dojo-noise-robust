@@ -86,3 +86,19 @@ def test_two_call_probe_is_execution_free_and_fail_closed_to_method_claim(tmp_pa
     assert all(record["gate_pass"] for record in summary["records"])
     assert (output / "call_00.raw.json").is_file()
     assert (output / "call_01.raw.json").is_file()
+
+
+def test_launcher_pins_clean_source_and_never_prints_credentials() -> None:
+    launcher = (
+        Path(__file__).resolve().parents[1]
+        / "scripts"
+        / "launch_balanced_continuation_operator_probe_20260814.sh"
+    ).read_text(encoding="utf-8")
+    assert "rev-parse HEAD" in launcher
+    assert "status --porcelain" in launcher
+    assert "stat -c %a" in launcher
+    assert "api_calls_cap=2" in launcher
+    assert "gpu_jobs_cap=0" in launcher
+    assert "rc=$?" in launcher
+    assert "exit \"$rc\"" in launcher
+    assert "PRIMARY_KEY_QWEN3_CODER_FLASH=" not in launcher

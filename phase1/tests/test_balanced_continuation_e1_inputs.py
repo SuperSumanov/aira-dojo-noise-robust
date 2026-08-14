@@ -67,6 +67,10 @@ def fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
             card(right, task, run, parent, f"print('right-{task_index}')\n"),
         ])
         decisions.append(decision(task, run, parent, left, right))
+    rows.extend([
+        card("frozen-left", producer.TARGET_TASKS[0], "frozen-run", None, "print('frozen-left')\n"),
+        card("frozen-right", producer.TARGET_TASKS[0], "frozen-run", None, "print('frozen-right')\n"),
+    ])
     write_jsonl(cards, rows)
     write_json(hold, {
         "all": ["run-0", "run-1", "frozen-run"],
@@ -79,9 +83,8 @@ def fixture(tmp_path: Path) -> tuple[dict[str, Path], dict[str, str]]:
     write_jsonl(train, decisions)
     for index, path in enumerate(frozen):
         write_jsonl(path, [{
-            "better": f"frozen-left-{index}",
-            "worse": f"frozen-right-{index}",
-            "run_id": "frozen-run",
+            "better": "frozen-left",
+            "worse": "frozen-right",
         }])
     paths = {
         "cards": cards,
@@ -114,9 +117,9 @@ def verify_args(paths: dict[str, Path], result: Path, receipt: Path) -> argparse
 def test_end_to_end_independent_reconstruction(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     paths, hashes = fixture(tmp_path)
     monkeypatch.setattr(producer, "EXPECTED_SHA256", hashes)
-    monkeypatch.setattr(producer, "EXPECTED_CARD_ROWS", 6)
+    monkeypatch.setattr(producer, "EXPECTED_CARD_ROWS", 8)
     monkeypatch.setattr(verifier, "HASHES", hashes)
-    monkeypatch.setattr(verifier, "EXPECTED_CARD_ROWS", 6)
+    monkeypatch.setattr(verifier, "EXPECTED_CARD_ROWS", 8)
     output = tmp_path / "result"
     summary = producer.build(build_args(paths, output))
     receipt = verifier.verify(verify_args(paths, output, tmp_path / "verified.json"))
@@ -141,11 +144,11 @@ def test_parent_whitelist_ignores_winner_orientation_and_gap(tmp_path: Path) -> 
 def test_frozen_endpoint_overlap_fails_closed(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     paths, _ = fixture(tmp_path)
     write_jsonl(paths["frozen_b0"], [{
-        "better": "left-0", "worse": "unrelated", "run_id": "other-run"
+        "better": "left-0", "worse": "frozen-right"
     }])
     hashes = {role: sha(path) for role, path in paths.items()}
     monkeypatch.setattr(producer, "EXPECTED_SHA256", hashes)
-    monkeypatch.setattr(producer, "EXPECTED_CARD_ROWS", 6)
+    monkeypatch.setattr(producer, "EXPECTED_CARD_ROWS", 8)
     with pytest.raises(producer.E1InputError, match="overlaps frozen evaluation"):
         producer.build(build_args(paths, tmp_path / "result"))
 
@@ -159,7 +162,7 @@ def test_selected_task_credential_shape_fails_before_output(
     write_jsonl(paths["cards"], rows)
     hashes = {role: sha(path) for role, path in paths.items()}
     monkeypatch.setattr(producer, "EXPECTED_SHA256", hashes)
-    monkeypatch.setattr(producer, "EXPECTED_CARD_ROWS", 6)
+    monkeypatch.setattr(producer, "EXPECTED_CARD_ROWS", 8)
     with pytest.raises(producer.E1InputError, match="credential-shaped"):
         producer.build(build_args(paths, tmp_path / "result"))
 
@@ -168,6 +171,6 @@ def test_source_hash_mismatch_fails_closed(tmp_path: Path, monkeypatch: pytest.M
     paths, hashes = fixture(tmp_path)
     hashes["cards"] = "0" * 64
     monkeypatch.setattr(producer, "EXPECTED_SHA256", hashes)
-    monkeypatch.setattr(producer, "EXPECTED_CARD_ROWS", 6)
+    monkeypatch.setattr(producer, "EXPECTED_CARD_ROWS", 8)
     with pytest.raises(producer.E1InputError, match="cards SHA differs"):
         producer.build(build_args(paths, tmp_path / "result"))

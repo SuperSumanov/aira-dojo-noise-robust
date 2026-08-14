@@ -147,21 +147,24 @@ def load_training_parent_whitelist(path: pathlib.Path) -> dict[str, set[tuple[st
     return by_task
 
 
-def load_frozen_identity(path: pathlib.Path) -> tuple[set[str], set[str]]:
+def load_frozen_endpoints(path: pathlib.Path) -> set[str]:
+    """Load endpoint identities only; v11 frozen rows intentionally omit run_id.
+
+    The physical run is reconstructed later from the hash-locked v11 card table.  The
+    better/worse labels are treated as an unordered pair and no outcome field is kept.
+    """
     endpoints: set[str] = set()
-    runs: set[str] = set()
     with path.open("r", encoding="utf-8") as handle:
         for line_number, line in enumerate(handle, 1):
             row = json.loads(line)
             if not isinstance(row, dict):
                 raise E1InputError(f"frozen identity row is not an object: {line_number}")
             # Identity-only leakage audit.  No gap, score, or orientation is retained.
-            for key in ("better", "worse", "run_id"):
+            for key in ("better", "worse"):
                 if not isinstance(row.get(key), str) or not row[key]:
                     raise E1InputError(f"invalid frozen {key} at line {line_number}")
             endpoints.update((row["better"], row["worse"]))
-            runs.add(row["run_id"])
-    return endpoints, runs
+    return endpoints
 
 
 def scan_cards(
@@ -274,11 +277,16 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
         }
 
     frozen_endpoints: set[str] = set()
-    frozen_runs: set[str] = set()
     for role in ("frozen_b0", "frozen_b1", "frozen_b2"):
-        endpoints, runs = load_frozen_identity(inputs[role])
-        frozen_endpoints.update(endpoints)
-        frozen_runs.update(runs)
+        frozen_endpoints.update(load_frozen_endpoints(inputs[role]))
+    unknown_frozen_endpoints = frozen_endpoints - cards.keys()
+    if unknown_frozen_endpoints:
+        raise E1InputError(
+            f"frozen endpoint absent from v11 cards: {len(unknown_frozen_endpoints)}"
+        )
+    frozen_runs = {cards[card_id].get("run_id") for card_id in frozen_endpoints}
+    if None in frozen_runs or any(not isinstance(value, str) or not value for value in frozen_runs):
+        raise E1InputError("frozen endpoint lacks a resolvable v11 run_id")
 
     anchors: list[dict[str, str]] = []
     vault: list[dict[str, str]] = []
@@ -362,6 +370,8 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "winner_orientation_read": False,
             "gap_read": False,
             "first960_or_prospective_read": False,
+            "frozen_run_id_source": "v11-card-endpoint-lookup",
+            "frozen_rows_run_id_required": False,
             "tasks": list(TARGET_TASKS),
             "task_count": 2,
             "anchor_count": 2,

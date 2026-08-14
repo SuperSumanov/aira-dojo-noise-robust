@@ -138,7 +138,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
                 raise VerifyError("duplicate card id")
             task = row["task"]["name"]
             if task not in TASKS:
-                cards[card_id] = {"task": task}
+                cards[card_id] = {"task": task, "run_id": row.get("run_id")}
                 continue
             target_seen += 1
             run_id = row["run_id"]
@@ -236,11 +236,19 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         raise VerifyError("public selection receipt differs")
 
     frozen_ids: set[str] = set()
-    frozen_runs: set[str] = set()
     for role in ("frozen_b0", "frozen_b1", "frozen_b2"):
         for row in read_jsonl(sources[role]):
-            frozen_ids.update((row["better"], row["worse"]))
-            frozen_runs.add(row["run_id"])
+            if not isinstance(row, dict):
+                raise VerifyError("frozen identity row is not an object")
+            endpoints = (row.get("better"), row.get("worse"))
+            if not all(isinstance(item, str) and item for item in endpoints):
+                raise VerifyError("frozen endpoint identity differs")
+            frozen_ids.update(endpoints)
+    if frozen_ids - cards.keys():
+        raise VerifyError("frozen endpoint is absent from v11 cards")
+    frozen_runs = {cards[item].get("run_id") for item in frozen_ids}
+    if any(not isinstance(item, str) or not item for item in frozen_runs):
+        raise VerifyError("frozen endpoint run cannot be reconstructed")
     if selected_ids & frozen_ids or selected_runs & frozen_runs:
         raise VerifyError("selected input overlaps frozen evaluation identity")
 
@@ -253,6 +261,8 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         "winner_orientation_read": False,
         "gap_read": False,
         "first960_or_prospective_read": False,
+        "frozen_run_id_source": "v11-card-endpoint-lookup",
+        "frozen_rows_run_id_required": False,
         "tasks": list(TASKS),
         "task_count": 2,
         "anchor_count": 2,

@@ -1,0 +1,39 @@
+{
+  "drop_id": "0812-shadow",
+  "git_commit": "4b12c8f80abee4fafcacf8bc8268f9344ead7b61",
+  "inputs": {
+    "archive_manifest_sha256": "0ec5086f1fb331128371bb3caf21605489d0249473af079850efc4b22ce6dc91",
+    "eligible_blind_manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fixed_scorer_sha256": "c4b9713d5a994c90ac8e24674154ae78d39f7c7961473078c1c7d61ce1c15d23",
+    "freeze_receipt_sha256": "cfab01a80536a50ef21c47ac269c7ce54a11a3b1f0b6daa5700873cbb02ce178",
+    "intake_source_sha256": "0f02e0933687248fff3bcefdfc2825ddf40557fc5964b8a7476fed430fa6c5e3",
+    "intake_summary_sha256": "209bb4e9d352e081b88d91bb477ebb88068636b343b3bdf09815498781bd40e6",
+    "label_vault_sha256_opaque": "85ce7322a7424e7a815d4652e9c4b91c843319b116b5e66737821c0d93479bd7",
+    "precutoff_endpoint_denylist_sha256": "2f0cc4f3dc203801c569237716ba82cbc2bde2f854b67eee6efa9452e92447e6",
+    "precutoff_runs_sha256": "94c39feda828ed19e4a543b2abd7ad07bfb1e7266883bf49d0193cf48cbf012a"
+  },
+  "inventory": {
+    "eligible_endpoints": 0,
+    "scoreable_runs": 0,
+    "scoreable_tasks": 0
+  },
+  "outputs": {
+    "blind_scores": null,
+    "blind_scores_sha256": null,
+    "nested_scorer_summary": null,
+    "nested_scorer_summary_sha256": null
+  },
+  "protocol": "prospective_drop_scoring_v1",
+  "security": {
+    "label_vault_opened": false,
+    "labels_read": false,
+    "outcome_files_opened": [],
+    "post_execution_fields_read": false
+  },
+  "software": {
+    "platform": "Linux-6.8.0-100-generic-x86_64-with-glibc2.39",
+    "python": "3.11.15 (main, Jun 11 2026, 04:03:40) [Clang 22.1.3 ]"
+  },
+  "source_sha256": "f7fc2aa8f03ed52e5b9431b925581741ce3a17867fb0a25577deae805bd0ba01",
+  "status": "NO_ELIGIBLE_ENDPOINTS"
+}

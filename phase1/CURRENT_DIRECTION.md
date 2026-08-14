@@ -3,7 +3,7 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0I. 2026-08-14 最新覆盖：prospective intake 与盲态跨批 accumulator 通过影子回放
+## 0I. 2026-08-14 最新覆盖：prospective 收样、累积与原子评分完整盲链通过影子回放
 
 本节晚于 0H；主线没有变成旧多保真/HCE/probe，仍是 run-clean、decision-local 数据集/benchmark 与
 first-960 前瞻确认。
@@ -32,16 +32,26 @@ first-960 前瞻确认。
    label vault 未复制或打开。目前 senior 目录最新仍为 0812；metadata-only monitor 继续运行。
 7. 语料版本发布固定为：Git LFS 只存不可变分批文件，每个上传一次；在有 LFS 的环境 pull 后由统一 manifest
    驱动 `rebuild_corpus.sh`，再核对行数与 SHA。不得把每版合并语料重复上传，也不得绕开 manifest 手拼版本。
-8. 下一项工程是新 drop 到达后的固定 scorer 原子编排与跨批 score registry；没有新 drop 时不读取标签、不启动
-   同一 OOF 上的新一轮追参/GPU 方法实验。
+8. 固定 scorer 原子编排与跨批 score registry 已在 commit
+   `4b12c8f80abee4fafcacf8bc8268f9344ead7b61` 完成。远端 33/33 相关测试通过，其中包含真实冻结 bundle 对
+   synthetic 非空 prospective manifest 的端到端推理；随后 0812 最终 shadow 得到
+   `NO_ELIGIBLE_ENDPOINTS` 与 `PROSPECTIVE_SCORE_REGISTRY_VERIFIED`。单批事务和 registry 的 `strace` 中
+   `label_vault.jsonl` 文件系统调用都为 0。score transaction summary SHA 为
+   `237313bc7a9a015b0dcfcbda1c70546d4572024b3a04cd2d9a3f1fe407f5ff5f`，registry validation summary SHA 为
+   `4a74e0fb6ad85a39581d4d62e4cad4ca3ca7ec5772b565eab7ebf84558049722`。
+9. 第一次远端工程预检因 `critic` venv 没有 pytest 而在 intake 前 fail-closed；无正式 artifact。重跑改用同时含
+   pytest/sklearn 的 `exp` venv，失败日志与成功日志均保留。至此新 drop 到达后的固定评分链没有人工补步骤；
+   没有新 drop 时仍不读标签、不在同一 OOF 上启动新一轮追参/GPU 方法实验。
 
 直接依据：
 
 - `phase1/results/fixed_decision_scorer_v11_20260814/precutoff_endpoint_independent_verify.json`；
 - `phase1/results/prospective_intake_shadow_0812_v4_20260814/README.md`；
 - `phase1/results/prospective_accumulator_shadow_0812_v1_20260814/README.md`；
+- `phase1/results/prospective_score_pipeline_shadow_0812_v1_20260814/README.md`；
 - `phase1/实验记录/2026-08-14/ProspectiveIntake_预注册.md`；
-- `phase1/实验记录/2026-08-14/ProspectiveAccumulator_预注册.md`。
+- `phase1/实验记录/2026-08-14/ProspectiveAccumulator_预注册.md`；
+- `phase1/实验记录/2026-08-14/ProspectiveScoringRegistry_预注册.md`。
 
 ## 0H. 2026-08-14 最新覆盖：TGCA 经独立复核关闭，盲测继续封存
 

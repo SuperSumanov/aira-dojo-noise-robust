@@ -1,0 +1,36 @@
+PREFLIGHT_01_GOAL=freeze and replay atomic drop scoring plus cross-drop score registry
+PREFLIGHT_02_GIT_COMMIT=4b12c8f80abee4fafcacf8bc8268f9344ead7b61
+PREFLIGHT_03_INPUT=hash-locked active scorer and curated ten-archive 0812 shadow source
+PREFLIGHT_04_ESTIMAND=no metric and no scorer-vs-grade comparison
+PREFLIGHT_05_TEST=full relevant suite including real frozen-bundle synthetic nonempty roundtrip
+PREFLIGHT_06_EXPECTED_INTAKE=57 checkpoint runs; 3 live-only; 1304 endpoints; eligible=0
+PREFLIGHT_07_EXPECTED_SCORE=NO_ELIGIBLE_ENDPOINTS with no nested prediction file
+PREFLIGHT_08_EXPECTED_REGISTRY=one drop; 57 physical runs; zero eligible endpoints
+PREFLIGHT_09_SECURITY=strace score and registry; label_vault path must have zero file syscalls
+PREFLIGHT_10_LEAKAGE=hardcoded run endpoint and exact-code denylist hashes
+PREFLIGHT_11_REPRO=exact commit commands input and output SHA recorded
+PREFLIGHT_12_RESOURCES=CPU only; GPU=0; API=0; base-LLM-update=0
+PREFLIGHT_13_RUNTIME=under 20 minutes; every formal output refuses overwrite
+From /tmp/codex_score_pipeline_4b12c8f.bundle
+ * branch            codex-prospective-decision-v1-20260814 -> FETCH_HEAD
+Preparing worktree (detached HEAD 4b12c8f)
+Updating files:   8% (104/1290)Updating files:   8% (112/1290)Updating files:   8% (113/1290)Updating files:   9% (117/1290)Updating files:   9% (126/1290)Updating files:  10% (129/1290)Updating files:  11% (142/1290)Updating files:  11% (144/1290)Updating files:  11% (146/1290)Updating files:  12% (155/1290)Updating files:  13% (168/1290)Updating files:  13% (170/1290)Updating files:  14% (181/1290)Updating files:  15% (194/1290)Updating files:  16% (207/1290)Updating files:  17% (220/1290)Updating files:  18% (233/1290)Updating files:  19% (246/1290)Updating files:  20% (258/1290)Updating files:  21% (271/1290)Updating files:  22% (284/1290)Updating files:  23% (297/1290)Updating files:  24% (310/1290)Updating files:  25% (323/1290)Updating files:  25% (330/1290)Updating files:  26% (336/1290)Updating files:  27% (349/1290)Updating files:  28% (362/1290)Updating files:  29% (375/1290)Updating files:  30% (387/1290)Updating files:  31% (400/1290)Updating files:  32% (413/1290)Updating files:  33% (426/1290)Updating files:  34% (439/1290)Updating files:  35% (452/1290)Updating files:  36% (465/1290)Updating files:  37% (478/1290)Updating files:  38% (491/1290)Updating files:  39% (504/1290)Updating files:  40% (516/1290)Updating files:  40% (523/1290)Updating files:  41% (529/1290)Updating files:  42% (542/1290)Updating files:  43% (555/1290)Updating files:  44% (568/1290)Updating files:  45% (581/1290)Updating files:  46% (594/1290)Updating files:  47% (607/1290)Updating files:  47% (611/1290)Updating files:  47% (613/1290)Updating files:  47% (615/1290)Updating files:  47% (618/1290)Updating files:  47% (619/1290)Updating files:  48% (620/1290)Updating files:  49% (633/1290)Updating files:  50% (645/1290)Updating files:  51% (658/1290)Updating files:  52% (671/1290)Updating files:  53% (684/1290)Updating files:  54% (697/1290)Updating files:  55% (710/1290)Updating files:  56% (723/1290)Updating files:  57% (736/1290)Updating files:  57% (742/1290)Updating files:  58% (749/1290)Updating files:  59% (762/1290)Updating files:  60% (774/1290)Updating files:  61% (787/1290)Updating files:  62% (800/1290)Updating files:  63% (813/1290)Updating files:  64% (826/1290)Updating files:  65% (839/1290)Updating files:  66% (852/1290)Updating files:  67% (865/1290)Updating files:  68% (878/1290)Updating files:  69% (891/1290)Updating files:  70% (903/1290)Updating files:  71% (916/1290)Updating files:  71% (917/1290)Updating files:  71% (926/1290)Updating files:  72% (929/1290)Updating files:  72% (937/1290)Updating files:  73% (942/1290)Updating files:  74% (955/1290)Updating files:  75% (968/1290)Updating files:  76% (981/1290)Updating files:  77% (994/1290)Updating files:  78% (1007/1290)Updating files:  79% (1020/1290)Updating files:  80% (1032/1290)Updating files:  81% (1045/1290)Updating files:  82% (1058/1290)Updating files:  83% (1071/1290)Updating files:  84% (1084/1290)Updating files:  85% (1097/1290)Updating files:  86% (1110/1290)Updating files:  87% (1123/1290)Updating files:  88% (1136/1290)Updating files:  89% (1149/1290)Updating files:  90% (1161/1290)Updating files:  91% (1174/1290)Updating files:  92% (1187/1290)Updating files:  92% (1188/1290)Updating files:  93% (1200/1290)Updating files:  94% (1213/1290)Updating files:  95% (1226/1290)Updating files:  96% (1239/1290)Updating files:  97% (1252/1290)Updating files:  98% (1265/1290)Updating files:  99% (1278/1290)Updating files: 100% (1290/1290)Updating files: 100% (1290/1290), done.
+Encountered 16 files that should have been pointers, but weren't:
+	phase1/cards_ablate.jsonl
+	phase1/cards_cur.jsonl
+	phase1/cards_cur_mm.jsonl
+	phase1/cards_for_crossgen.jsonl
+	phase1/cards_for_crossgen_NORM.jsonl
+	phase1/cards_gen2_all.jsonl
+	phase1/cards_real.jsonl
+	phase1/cards_real_mm.jsonl
+	phase1/cards_real_mm_148bak.jsonl
+	phase1/cards_real_v2.jsonl
+	phase1/cards_t1_all.jsonl
+	phase1/cards_t1_labeled.jsonl
+	phase1/cards_t1_labeled_raw.jsonl
+	phase1/cards_wave1_20260726.jsonl
+	phase1/hits_l1_runsplit.jsonl
+	phase1/hits_l2_runsplit.jsonl
+HEAD is now at 4b12c8f Add atomic prospective scoring
+/research/d7/spc/yzyang4/venvs/critic/bin/python: No module named pytest

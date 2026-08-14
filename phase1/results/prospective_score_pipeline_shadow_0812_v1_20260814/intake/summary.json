@@ -1,0 +1,69 @@
+{
+  "activated_at_utc": "2026-08-13T22:19:17.348021Z",
+  "blindness": {
+    "label_values_printed": false,
+    "labels_used_for_endpoint_selection": false,
+    "labels_used_for_run_selection": false,
+    "metrics_computed": []
+  },
+  "configuration": {
+    "max_archive_bytes": 68719476736,
+    "max_archives": 512,
+    "max_member_bytes": 536870912,
+    "max_members_per_archive": 1000000,
+    "max_total_archive_bytes": 549755813888,
+    "max_total_journal_bytes": 4294967296,
+    "max_total_member_bytes_per_archive": 274877906944
+  },
+  "git_commit": "4b12c8f80abee4fafcacf8bc8268f9344ead7b61",
+  "inputs": {
+    "archive_manifest_sha256": "0ec5086f1fb331128371bb3caf21605489d0249473af079850efc4b22ce6dc91",
+    "drop_dir": "/research/d7/spc/yzyang4/experiments/prospective_intake_shadow_0812_sources_v3_20260814",
+    "freeze_receipt_sha256": "cfab01a80536a50ef21c47ac269c7ce54a11a3b1f0b6daa5700873cbb02ce178",
+    "precutoff_endpoint_denylist_sha256": "2f0cc4f3dc203801c569237716ba82cbc2bde2f854b67eee6efa9452e92447e6"
+  },
+  "inventory": {
+    "archives": 10,
+    "discovered_run_roots": 60,
+    "eligible_endpoints": 0,
+    "eligible_runs": 0,
+    "eligible_structural_pairs": 0,
+    "eligible_tasks": 0,
+    "empty_code_nodes_excluded": 0,
+    "endpoints": 1304,
+    "live_only_runs_excluded": 3,
+    "no_scoreable_code_runs": 0,
+    "runs": 57,
+    "structural_pairs": 286,
+    "tasks": 9
+  },
+  "outputs": {
+    "all_blind_views_sha256": "4172aca4634bee11c33f78bb45a45d15c549b9244f06ce57c664af1a557e3c1b",
+    "archive_audits_sha256": "54727df401645d5a769754ced412d3173ec073bcfa2be3b9556f6db735a59b13",
+    "eligible_blind_manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "eligible_structural_pairs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "label_vault_sha256": "85ce7322a7424e7a815d4652e9c4b91c843319b116b5e66737821c0d93479bd7",
+    "source_provenance_sha256": "c1e75e5ab072c544f7e268b99ae0205cb1b24e321018fd7b0c93f79b54cb9f8a",
+    "structural_pairs_sha256": "72b2ea0b37ba2677bc4a7f1e15d5206d0c421ce1449bb239168d962a833b9a12"
+  },
+  "protocol": "prospective_drop_intake_v1",
+  "security": {
+    "credential_shaped_journals": 0,
+    "env_members_extracted": false,
+    "env_members_read": false,
+    "journal_scanned_before_json": true,
+    "live_event_journal_members_read": false,
+    "precutoff_code_sha256_checked": 15912,
+    "precutoff_code_sha256_overlap": 0,
+    "precutoff_endpoint_id_overlap": 0,
+    "precutoff_endpoint_ids_checked": 16012,
+    "raw_journals_written": false
+  },
+  "selection_rule": "physical run root creation_time strictly after scorer activation",
+  "software": {
+    "platform": "Linux-6.8.0-100-generic-x86_64-with-glibc2.39",
+    "python": "3.11.15"
+  },
+  "source_sha256": "0f02e0933687248fff3bcefdfc2825ddf40557fc5964b8a7476fed430fa6c5e3",
+  "status": "PROSPECTIVE_DROP_INTAKE_COMPLETE"
+}

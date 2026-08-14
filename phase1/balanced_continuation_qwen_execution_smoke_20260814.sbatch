@@ -13,16 +13,13 @@
 
 set -eo pipefail
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
-if [[ -f "${HOME}/env_setup.sh" ]]; then
-  source "${HOME}/env_setup.sh"
-fi
-set -u
-umask 077
 
 : "${QES_SOURCE_ROOT:?}"
 : "${QES_SOURCE_COMMIT:?}"
 : "${QES_RUN_ROOT:?}"
 : "${SLURM_ARRAY_TASK_ID:?}"
+set -u
+umask 077
 
 index="${SLURM_ARRAY_TASK_ID}"
 python_bin=/research/d7/spc/yzyang4/venvs/aira/bin/python
@@ -36,6 +33,7 @@ nvfix="${QES_RUN_ROOT}/nvfix/${index}"
 log_root="${QES_RUN_ROOT}/logs"
 rc_root="${QES_RUN_ROOT}/job_rc"
 source_nvvm=/usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4
+printf 'QES_BOOTSTRAP utc=%s host=%s job=%s index=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$(hostname)" "$SLURM_JOB_ID" "$index" >"${QES_RUN_ROOT}/logs/bootstrap_${index}.txt"
 
 for required in "$python_bin" "$source_run" "$probe_root" "$container" "$hf_cache" "$output_root" "$workspace_root" "$log_root" "$rc_root"; do
   if [[ ! -e "$required" ]]; then

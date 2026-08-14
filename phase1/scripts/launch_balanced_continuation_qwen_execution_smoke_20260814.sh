@@ -62,7 +62,7 @@ fi
 export QES_SOURCE_ROOT="$source_root"
 export QES_SOURCE_COMMIT="$commit"
 export QES_RUN_ROOT="$run_root"
-job_id="$(sbatch --parsable --array=0-1%2 "$source_root/phase1/balanced_continuation_qwen_execution_smoke_20260814.sbatch")"
+job_id="$(sbatch --parsable --array=0-1%2 --output="${run_root}/slurm-%A_%a.out" --error="${run_root}/slurm-%A_%a.out" --export="ALL,QES_SOURCE_ROOT=${source_root},QES_SOURCE_COMMIT=${commit},QES_RUN_ROOT=${run_root}" "$source_root/phase1/balanced_continuation_qwen_execution_smoke_20260814.sbatch")"
 printf '%s\n' "$job_id" >"$run_root/job_id.txt"
 chmod 600 "$run_root/job_id.txt"
 printf 'QES_SUBMITTED commit=%s run_root=%s job=%s\n' "$commit" "$run_root" "$job_id"

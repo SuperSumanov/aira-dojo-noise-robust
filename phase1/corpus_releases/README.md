@@ -31,3 +31,11 @@ must not be presented as reproducible releases.
 For a new release, append one immutable batch record, never edit an existing one,
 then add a new version descriptor after an independent fresh-clone rebuild matches
 the frozen target exactly.
+
+`withheld_batches.json` binds byte-level metadata for sanitized payloads that are
+not yet publishable. A withheld file must be absent from both `batch_registry.json`
+and `corpus_manifest.txt` while `release_eligible` is false. In particular, the
+0812 payload contains the still-sealed temporal-blind labels: uploading its LFS
+object now would disclose the holdout even though the raw senior archives were
+already redacted safely. It can become an immutable public batch only after a
+separate outcome-independent release decision explicitly retires that holdout.

@@ -257,3 +257,42 @@ def test_checked_in_release_descriptors_have_valid_prefix_locks() -> None:
         assert len(selected) == count
         assert sum(record["rows"] for record in selected) == rows
         assert release["rebuild_protocol"] == protocol
+
+
+def test_withheld_batches_cannot_enter_public_registry_or_manifest() -> None:
+    phase1 = Path(__file__).resolve().parents[1]
+    releases = phase1 / "corpus_releases"
+    withheld = json.loads((releases / "withheld_batches.json").read_text(encoding="utf-8"))
+    assert set(withheld) == {"schema_version", "batches"}
+    assert withheld["schema_version"] == "aira-dojo-corpus-withheld-batches-v1"
+    assert withheld["batches"]
+
+    registry = json.loads((releases / "batch_registry.json").read_text(encoding="utf-8"))
+    public_files = {record["file"] for record in registry["batches"]}
+    manifest_files = {
+        line.strip()
+        for line in (phase1 / "corpus_manifest.txt").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    }
+    required_keys = {
+        "file",
+        "sha256",
+        "bytes",
+        "rows",
+        "source_runs",
+        "status",
+        "release_eligible",
+        "reason",
+    }
+    for record in withheld["batches"]:
+        assert set(record) == required_keys
+        assert record["release_eligible"] is False
+        assert record["status"] == "WITHHELD_TEMPORAL_BLIND_LABEL_VAULT"
+        assert record["file"] not in public_files
+        assert record["file"] not in manifest_files
+        assert not (phase1 / record["file"]).exists()
+        assert len(record["sha256"]) == 64
+        int(record["sha256"], 16)
+        assert record["bytes"] > 0
+        assert record["rows"] > 0
+        assert record["source_runs"] > 0

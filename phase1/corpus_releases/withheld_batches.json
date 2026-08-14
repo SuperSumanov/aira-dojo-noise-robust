@@ -1,0 +1,15 @@
+{
+  "schema_version": "aira-dojo-corpus-withheld-batches-v1",
+  "batches": [
+    {
+      "file": "cards_senior_0812.jsonl",
+      "sha256": "ff10af92c6601ae24f4210685cdc0b1035af848819c029ff3222605376c80a36",
+      "bytes": 13925656,
+      "rows": 805,
+      "source_runs": 57,
+      "status": "WITHHELD_TEMPORAL_BLIND_LABEL_VAULT",
+      "release_eligible": false,
+      "reason": "The sanitized immutable payload carries the still-sealed 0812 temporal-blind labels; publishing its LFS object would irreversibly unblind that holdout."
+    }
+  ]
+}

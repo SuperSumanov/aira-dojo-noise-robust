@@ -1,0 +1,8 @@
+2026-08-14T05:39:59Z MONITOR_START qos_aware=true stage1_indices=0,1,6,7 stage2_indices=2,3,4,5 sealed_values_opened=false
+2026-08-14T05:39:59Z stage1_SUBMITTED job=10820 indices=0,1,6,7 dependency=none attempts=1
+2026-08-14T05:54:30Z STAGE1_TERMINAL job=10820 states=COMPLETED,COMPLETED,COMPLETED,COMPLETED
+2026-08-14T05:54:30Z STAGE1_ENGINEERING_GATE_PASS sealed_values_opened=false
+2026-08-14T05:54:30Z stage2_SUBMITTED job=10826 indices=2,3,4,5 dependency=afterok:10820 attempts=1
+2026-08-14T06:08:01Z STAGE2_TERMINAL job=10826 states=COMPLETED,COMPLETED,COMPLETED,COMPLETED
+2026-08-14T06:08:01Z COMPLETE_COVERAGE_ENGINEERING_GATE_PASS rollouts=8 sealed_values_opened=false
+2026-08-14T06:08:02Z E1_COMPLETE summary_sha=576c897a17220b02f9ff1ed5ded38685bcd1da6b009e90ba0eeca73648af3adf primary_gate_claim_allowed=false e2_e3_unlocked=false

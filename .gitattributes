@@ -16,7 +16,12 @@ phase1/cards_gen3A.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/cards_ours_*.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/cards_senior_*.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/cards_t3era_missing.jsonl filter=lfs diff=lfs merge=lfs -text
-phase1/*_runsplit.jsonl filter=lfs diff=lfs merge=lfs -text
+# These three derived run-split artifacts were historically published through
+# LFS.  Keep exact paths: the old glob also matched two ordinary Git blobs and
+# made every clean worktree report false "should have been pointers" warnings.
+phase1/budget_pairs_v3_runsplit.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/decision_pairs_runsplit.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/value_pairs_runsplit.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/value_pairs_v4.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/v10_decision/*.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/perpair_decision.json filter=lfs diff=lfs merge=lfs -text

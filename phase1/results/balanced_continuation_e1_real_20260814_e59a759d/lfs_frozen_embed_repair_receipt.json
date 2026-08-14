@@ -1,0 +1,18 @@
+{
+  "schema_version": "lfs-object-repair-receipt-v1",
+  "status": "VERIFIED_REMOTE_FETCH_AFTER_SINGLE_OBJECT_REPAIR",
+  "trigger": "clean_worktree_smudge_returned_http_404",
+  "git_path": "phase1/results/frozen_embed_v11_20260814_f339eb9/full_artifacts.tar.gz",
+  "lfs_oid_sha256": "096a3581bfce48c83019f3440e88089d4b8a4dd0a768224493f892941a3d64f7",
+  "object_bytes": 17145534,
+  "tar_entries": 228,
+  "tar_regular_files": 217,
+  "tar_link_entries": 0,
+  "unsafe_tar_path_hits": 0,
+  "filename_secret_hits": 0,
+  "content_credential_hits": 0,
+  "objects_uploaded": 1,
+  "remote_fetch_ref": "1a21f49acb2a286d23dc8cbd48f13d25c5d85552",
+  "remote_fetch_sha256": "096a3581bfce48c83019f3440e88089d4b8a4dd0a768224493f892941a3d64f7",
+  "corpus_release_contract_changed": false
+}

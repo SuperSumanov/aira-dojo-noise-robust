@@ -33,11 +33,12 @@ first-960 前瞻确认；balanced continuation 仍是 gated 支线，**没有得
 6. 因此 `primary_gate_claim_allowed=false`、`e2_e3_unlocked=false`。原 E1 已消耗预算不能被 probe 覆盖；
    任何真实 rerun 都是新的 GPU/API 实验。若换 Qwen，还同时改变 operator policy；必须使用新 run root、
    新预注册和未被本轮 D_val 揭盲影响的 fresh scientific anchors，不能沿用旧批准自动启动。
-7. 复现审计还发现一个既有 681,687-byte LFS 结果对象曾只有 pointer、GitHub 返回 404。对 tar 的 24 个
-   regular files 完成路径与凭据扫描（unsafe/name/content hits 均为 0）后，仅补传该既有对象；集群端按 commit
-   重新 fetch 后 SHA-256 为 `80a21f8d05d52fd602edd61c0e2538c3b18910ca92cefb24ca6040ad4937d379`。
-   语料契约不变：未来只上传不可变 batch 一次，merged corpus 仍由 release descriptor +
-   `rebuild_corpus.sh` 逐字节重建。
+7. 复现审计发现两个既有 LFS 结果对象曾只有 pointer、GitHub 返回 404：681687-byte fixed-scorer tar 与
+   17145534-byte frozen-embedding tar。两者在补传前分别完成 tar 路径、链接、文件名与内容凭据扫描，
+   unsafe/name/content hits 均为 0；只补传这两个既有对象后，集群端按 commit 重新 fetch 的 SHA-256 分别为
+   `80a21f8d05d52fd602edd61c0e2538c3b18910ca92cefb24ca6040ad4937d379` 与
+   `096a3581bfce48c83019f3440e88089d4b8a4dd0a768224493f892941a3d64f7`。语料契约不变：未来只上传
+   不可变 batch 一次，merged corpus 仍由 release descriptor + `rebuild_corpus.sh` 逐字节重建。
 
 直接证据：
 

@@ -41,3 +41,9 @@ Key hashes:
 Raw API responses, private labels, candidate workspaces, and credentials are intentionally absent.
 The remote raw probe files remain mode 0600 and are represented here only by hashes in the compact
 summaries.
+
+Clean-checkout verification also repaired two pre-existing missing LFS result objects. The second
+receipt, `lfs_frozen_embed_repair_receipt.json`, records the 17,145,534-byte frozen-embedding tar's
+path/link/credential scan and byte-identical remote refetch. These repairs do not change the corpus
+release contract: corpus releases still publish immutable batches once and rebuild merged versions
+from a release descriptor.

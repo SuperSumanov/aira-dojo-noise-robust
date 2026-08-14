@@ -112,5 +112,8 @@ mode-0600 目录；Git 中仅保存 compact summaries 与 hash binding。
 构建干净诊断 worktree 时发现既有 `fixed_decision_scorer` tar 的 LFS object 在 GitHub 缺失。该 tar 为
 681687 bytes；内含 24 个 regular files，tar path unsafe hits=0、filename secret hits=0、content credential
 hits=0。只补传既有 object 后，集群端按当前 commit fetch 并重算 SHA-256 为
-`80a21f8d05d52fd602edd61c0e2538c3b18910ca92cefb24ca6040ad4937d379`。这不改变 corpus 发布协议：
+`80a21f8d05d52fd602edd61c0e2538c3b18910ca92cefb24ca6040ad4937d379`。归档 commit 的干净检出又发现
+17145534-byte `frozen_embed_v11` tar 缺失；其 228 个 tar entries、217 个 regular files、0 个链接经同样
+扫描后 unsafe/name/content hits 均为 0，只补传该对象并在集群端重取，SHA-256 为
+`096a3581bfce48c83019f3440e88089d4b8a4dd0a768224493f892941a3d64f7`。这不改变 corpus 发布协议：
 未来 corpus 只上传不可变 batch，一次一个对象，由 release descriptor 与 `rebuild_corpus.sh` 重建 merged 版本。

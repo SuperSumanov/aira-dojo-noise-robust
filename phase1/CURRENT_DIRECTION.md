@@ -3,6 +3,33 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0V. 2026-08-15 最新覆盖：82.87% source-incomplete parents 可恢复完整 sibling 身份
+
+本节晚于 0U。稳定主线现为 physical-run-clean、decision-local 的 MLE-agent **labeled-fragment benchmark +
+显式 source-opportunity identity registry** 与 first-960 prospective confirmation；完整 labeled choice-set 主张仍撤回，
+旧 HCE、多保真、probe、TD/RL 与已关闭 critic 变体均不恢复。
+
+1. 结果前冻结的 `source-opportunity-identity-recovery-v1` 在精确 commit
+   `3faf0013ff34f8a6f4c33ac99b0431b5ef394580` 上运行。producer 与不 import producer 的独立 verifier
+   一致裁决 `VERIFIED_HIGH_COVERAGE_SOURCE_IDENTITY_RECOVERY`；远端聚焦测试 `6 passed in 0.13s`，完整
+   `phase1/tests` 为 `292 passed in 36.39s`，产物高置信凭据命中为 0。
+2. 870 个 source-incomplete parents 中，721 个能由 parent `children_ids` 精确恢复全部缺失 sibling 身份，
+   parent-equal recovery=`0.828735632183908`；train=`0.8180451127819549`、
+   frozen=`0.8556701030927835`、extension=`1.0`，均通过预注册门。共恢复 996 个 missing child IDs。
+3. 2,328 个 source-complete、非 orphan 正控全部精确对齐。149 个不可恢复 incomplete parents 恰好全部是
+   orphan parent cards；非 orphan 不可恢复数为 0。这把边界从不透明过滤收缩为一个明确、可机读的 orphan
+   provenance 缺口。
+4. 允许的新资产仅是 identity registry：对可恢复 parent 发布 source sibling IDs、retained/missing 标志与
+   `missing_status=UNKNOWN`、`missing_outcome=UNKNOWN`。它不证明 missing-at-random，不恢复执行/评分/剪枝原因，
+   也不允许把 fragment 内 predictor utility 写成完整 choice-set utility。
+5. 下一门是 journal-level status recovery：在读取任何 tar member 前先做路径 allowlist、流式凭据红删与 archive
+   hash 固定，再判断 996 个 missing identities 中有多少能绑定 generation/execution/evaluation receipts。没有该证据，
+   不训练 censor-aware 模型，也不猜缺失机制。
+
+直接证据：
+- `phase1/results/source_opportunity_identity_recovery_v11_20260815_3faf001/README.md`；
+- `phase1/实验记录/2026-08-15/SourceOpportunityIdentityRecovery_预注册与执行前检查.md`。
+
 ## 0U. 2026-08-15 最新覆盖：撤回完整 choice-set 主张，发布单位改为 labeled sibling fragment
 
 本节晚于 0T。稳定主线仍是 physical-run-clean、decision-local 的 MLE-agent 决策数据/benchmark 与

@@ -1,0 +1,47 @@
+{
+  "api_calls": 0,
+  "complete_labeled_choice_set_claim_allowed": false,
+  "complete_parent_positive_control_rate": 1.0,
+  "complete_parent_positive_controls": 2328,
+  "complete_parent_positive_controls_passed": 2328,
+  "exact_identity_recoverable_parents": 721,
+  "exact_identity_recovery_rate": 0.828735632183908,
+  "gpu": 0,
+  "imports_producer": false,
+  "nonorphan_unrecoverable_incomplete_parents": 0,
+  "opportunity_identity_registry_claim_allowed": true,
+  "orphan_incomplete_parents": 149,
+  "parent_rows": 3252,
+  "producer_per_parent_sha256": "b4261a4f042e92acca4a53630efe3e33ea1f2847d1a8148e9c8f18c35b447cd2",
+  "producer_status": "VERIFIED_HIGH_COVERAGE_SOURCE_IDENTITY_RECOVERY",
+  "producer_summary_sha256": "f9873bc539df9719897d562eaab909f9eab60c3f96e28ca18a65af4aae0b5226",
+  "reads_first960": false,
+  "reads_numeric_outcomes": false,
+  "recovered_missing_identities": 996,
+  "roles": {
+    "extension": {
+      "exact_identity_recoverable_parents": 11,
+      "exact_identity_recovery_rate": 1.0,
+      "orphan_incomplete_parents": 0,
+      "recovered_missing_identities": 11,
+      "source_incomplete_parents": 11
+    },
+    "frozen": {
+      "exact_identity_recoverable_parents": 166,
+      "exact_identity_recovery_rate": 0.8556701030927835,
+      "orphan_incomplete_parents": 28,
+      "recovered_missing_identities": 216,
+      "source_incomplete_parents": 194
+    },
+    "train": {
+      "exact_identity_recoverable_parents": 544,
+      "exact_identity_recovery_rate": 0.8180451127819549,
+      "orphan_incomplete_parents": 121,
+      "recovered_missing_identities": 769,
+      "source_incomplete_parents": 665
+    }
+  },
+  "source_commit": "3faf0013ff34f8a6f4c33ac99b0431b5ef394580",
+  "source_incomplete_parents": 870,
+  "status": "VERIFIED_SOURCE_OPPORTUNITY_IDENTITY_RECOVERY"
+}

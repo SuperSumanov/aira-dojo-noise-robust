@@ -24,7 +24,8 @@ NAS 侧也已有 [How Powerful are Performance Predictors in Neural Architecture
 数据契约：
 
 1. sampling unit 是 flatten 前的 physical run，而不是被剪枝后的 fragment；
-2. query unit 是真实 parent 下由当时 operator 实际产生的 sibling choice set，而不是任务内任意配对；
+2. query unit 是真实 parent 下发布的 labeled sibling fragment；对 lineage 可恢复部分另发完整 source sibling
+   identity registry，而不是把有限标签 fragment 冒充当时 operator 的完整 choice set；
 3. endpoint reuse、orphan parent、set completeness、gap、task/run 支持与四层 split isolation 都机读；
 4. predictor 同时报 pair-micro、parent-equal top-1/utility、run/task clustered uncertainty 与 init/query cost；
 5. label repeatability 是独立 attestation，明确区分直接 agreement 与模型反演；
@@ -35,8 +36,9 @@ candidate-set bias。
 
 ## 3. 冻结 estimands
 
-令 `u` 为 physical run，`d=(u,parent,budget,operator_contract)` 为决策点，`C_d` 为真实 siblings，`E_d` 为
-发布的比较边。部署目标必须写成 parent-equal risk：
+令 `u` 为 physical run，`d=(u,parent,budget,operator_contract)` 为决策点，`C_d` 为 source sibling identities，
+`L_d\subseteq C_d` 为 retained finite labeled siblings，`E_d` 为 `L_d` 内发布的比较边。当前可估的是 labeled-fragment
+parent-equal risk，而不是完整 `C_d` utility：
 
 \[
 R_{decision}(f)=\mathbb E_d\left[|E_d|^{-1}\sum_{(i,j)\in E_d}

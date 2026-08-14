@@ -37,7 +37,7 @@ for target in "$worktree" "$run_root" "$log_root" "$archive"; do
 done
 
 mkdir -p "$log_root"
-git -C "$base_repo" fetch myfork codex-prospective-decision-v1-20260814 \
+git -C "$base_repo" fetch fork codex-prospective-decision-v1-20260814 \
   >"${log_root}/fetch.stdout" 2>"${log_root}/fetch.stderr"
 git -C "$base_repo" cat-file -e "${source_commit}^{commit}"
 git -C "$base_repo" worktree add --detach "$worktree" "$source_commit" \

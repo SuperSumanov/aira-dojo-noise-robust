@@ -1,0 +1,1 @@
+{"stage_one":[0,1,6,7],"stage_two":[2,3,4,5],"verified":{"candidate_executions":16,"candidate_timeout_seconds":600,"e2_e3_authorized":false,"expected_gpu_hours":3.24,"gpus_per_job":1,"operator_api_calls":8,"rollout_jobs":8,"slurm_array_concurrency":4}}

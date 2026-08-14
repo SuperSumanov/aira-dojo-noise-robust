@@ -1,0 +1,10 @@
+status=PASS
+source_commit=9146d824cc7ecf7072c574999589ac43c370b7f3
+source_clean=true
+production_profile=deepseek-v4-flash,temp0.6,top_p0.95,max8192,timeout180
+credential_mode=600
+api_calls_cap=2
+gpu_jobs_cap=0
+candidate_executions_cap=0
+sdk_retries=0
+semantic_retries=0

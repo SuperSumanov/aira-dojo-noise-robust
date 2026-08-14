@@ -1,0 +1,17 @@
+{
+  "schema_version": "lfs-object-repair-receipt-v1",
+  "status": "VERIFIED_REMOTE_FETCH_AFTER_SINGLE_OBJECT_REPAIR",
+  "trigger": "clean_worktree_smudge_returned_http_404",
+  "git_path": "phase1/results/fixed_decision_scorer_v11_20260814/full_artifacts.tar.gz",
+  "lfs_oid_sha256": "80a21f8d05d52fd602edd61c0e2538c3b18910ca92cefb24ca6040ad4937d379",
+  "object_bytes": 681687,
+  "tar_entries": 28,
+  "tar_regular_files": 24,
+  "unsafe_tar_path_hits": 0,
+  "filename_secret_hits": 0,
+  "content_credential_hits": 0,
+  "objects_uploaded": 1,
+  "remote_fetch_ref": "f352b013c67fb1b98b17391ba32711faaa780367",
+  "remote_fetch_sha256": "80a21f8d05d52fd602edd61c0e2538c3b18910ca92cefb24ca6040ad4937d379",
+  "corpus_release_contract_changed": false
+}

@@ -1,0 +1,13 @@
+{
+  "collection_sha256_manifest_verified": true,
+  "collection_summary_sha256": "576c897a17220b02f9ff1ed5ded38685bcd1da6b009e90ba0eeca73648af3adf",
+  "e2_e3_unlocked": false,
+  "primary_gate_claim_allowed": false,
+  "producer_imported": false,
+  "rollout_rows_recomputed": 8,
+  "sibling_rows_recomputed": 4,
+  "source_commit": "e59a759d99dd490b6f8a0011c66dd7c772307b28",
+  "status": "VERIFIED_INDEPENDENT_E1_ARCHIVE_ANALYSIS",
+  "summary_recomputed": true,
+  "task_rows_recomputed": 2
+}

@@ -1,0 +1,2 @@
+{"mean_gain_over_warm":0.0,"positive_gain_rollouts":0,"practical_gain_rollouts":0,"replicate_ranking_agreement":true,"replicate_winners":["tie","tie"],"rollouts":4,"schema_version":"balanced-continuation-e1-collection-v1","task":"spaceship-titanic"}
+{"mean_gain_over_warm":0.0,"positive_gain_rollouts":0,"practical_gain_rollouts":0,"replicate_ranking_agreement":true,"replicate_winners":["tie","tie"],"rollouts":4,"schema_version":"balanced-continuation-e1-collection-v1","task":"tabular-playground-series-may-2022"}

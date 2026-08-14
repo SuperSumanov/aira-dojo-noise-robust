@@ -3,6 +3,50 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0P. 2026-08-14 最新覆盖：真实 E1 方法结果作废；Qwen 备选过门但 production DeepSeek 仍关闭
+
+本节晚于 0O。稳定主线仍是 run-clean、decision-local 的 MLE-agent 搜索树数据集/benchmark 与
+first-960 前瞻确认；balanced continuation 仍是 gated 支线，**没有得到正方法结论，也不是负方法结论**。
+
+1. 冻结 E1 在 source commit `e59a759d99dd490b6f8a0011c66dd7c772307b28` 完成 8 个 rollout、
+   16 次 candidate attempt、14 次实际 candidate process、8 次 operator API 调用；retry/analyze/D_test
+   读取均为 0。候选累计墙钟为 `2047.6709687478572` 秒，即 `0.5687974913188492` GPU·时；537 条顶层
+   manifest 记录逐一重算均匹配。collection 的独立 verifier 不 import producer，重建了 8 rollout、
+   4 sibling、2 task 行。
+2. 该 collection 的零分、tie 和 `0/8` positive gain **全部撤回为不可解释**。首个确定根因是 scorer
+   接口不一致：public `sample_submission.csv` 覆盖 `D_search ∪ D_val`，而 v1 scorer 错误要求提交 ID
+   恰好等于其中一个 private 10% 子集。干净 commit `f352b013c67fb1b98b17391ba32711faaa780367` 的
+   零执行重放把有效提交从 `0/16` 修正到 `6/16`，但这 6 个全是 warm artifact；continuation 仍为
+   `0/8`，因此可配对 rollout 为 0。
+3. 第二个确定根因是 operator 完整脚本失败：8 个 continuation 调用全部恰好达到 8192 completion-token
+   上限；失败谱系为 2 个 `invalid_format`、2 个 `SyntaxError`、4 个 `NameError`。旧 extractor 可能从
+   截断响应中取最后一个短代码块，且旧 run 只保留 response SHA、没有可恢复的原始响应，故不能事后补算。
+4. scorer 与完整脚本 gate 已修复，并以 mode-0600 raw response 做 hash binding。先验 Qwen 备选探针恰好
+   调用 2 次、0 GPU、0 candidate execution：两任务均 `finish_reason=stop`，分别输出 172/104 行、
+   1579/1014 completion tokens，状态 `PASS_OPERATOR_ONLY_GATE`。但冻结 E1 的 production operator 是
+   DeepSeek，不能用 Qwen 结果宣称原路径已修好。
+5. 因此另立 production-matched 两调用门，精确复用 `deepseek-v4-flash`、temperature=0.6、top_p=0.95、
+   max=8192、system role 与 180 秒 timeout。spaceship 返回 178 行完整代码并通过；tabular 再次达到
+   8192 tokens、`finish_reason=length`，只在 `reasoning_content` 留下未闭合输出，最终状态为
+   `FAIL_PRODUCTION_MODEL_OPERATOR_GATE`。原 production path 保持关闭；Qwen 只能作为未来**新 operator
+   contract** 的候选，不能追认旧 E1。
+6. 因此 `primary_gate_claim_allowed=false`、`e2_e3_unlocked=false`。原 E1 已消耗预算不能被 probe 覆盖；
+   任何真实 rerun 都是新的 GPU/API 实验。若换 Qwen，还同时改变 operator policy；必须使用新 run root、
+   新预注册和未被本轮 D_val 揭盲影响的 fresh scientific anchors，不能沿用旧批准自动启动。
+7. 复现审计还发现一个既有 681,687-byte LFS 结果对象曾只有 pointer、GitHub 返回 404。对 tar 的 24 个
+   regular files 完成路径与凭据扫描（unsafe/name/content hits 均为 0）后，仅补传该既有对象；集群端按 commit
+   重新 fetch 后 SHA-256 为 `80a21f8d05d52fd602edd61c0e2538c3b18910ca92cefb24ca6040ad4937d379`。
+   语料契约不变：未来只上传不可变 batch 一次，merged corpus 仍由 release descriptor +
+   `rebuild_corpus.sh` 逐字节重建。
+
+直接证据：
+
+- `phase1/results/balanced_continuation_e1_real_20260814_e59a759d/README.md`；
+- `phase1/results/balanced_continuation_e1_real_20260814_e59a759d/adapter_replay_f352b01.json`；
+- `phase1/results/balanced_continuation_e1_real_20260814_e59a759d/operator_probe_summary_1fc6031.json`；
+- `phase1/results/balanced_continuation_e1_real_20260814_e59a759d/deepseek_production_probe_summary_9146d82.json`；
+- `phase1/实验记录/2026-08-14/BalancedContinuation_E1_裁决.md`。
+
 ## 0O. 2026-08-14 最新覆盖：Linux real-adapter mock 关门，E1 获批但仍受 preflight 约束
 
 本节晚于 0N；稳定主线和 balanced-continuation 的 gated 地位不变。

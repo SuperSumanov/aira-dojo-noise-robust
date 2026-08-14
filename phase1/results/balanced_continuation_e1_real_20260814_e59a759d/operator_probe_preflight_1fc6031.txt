@@ -1,0 +1,10 @@
+status=PASS
+source_commit=1fc603166322c49f539ed843450d4d48873b689b
+source_root=/research/d7/spc/yzyang4/aira-dojo-verify-1fc6031
+source_clean=true
+credential_mode=600
+api_calls_cap=2
+gpu_jobs_cap=0
+candidate_executions_cap=0
+sdk_retries=0
+semantic_retries=0

@@ -1,0 +1,26 @@
+{
+  "schema_version": "balanced-continuation-e1-scientific-decision-v1",
+  "status": "INVALID_FOR_METHOD_CLAIM_ENGINEERING_FAILURE_REPAIRED_NOT_RERUN",
+  "frozen_collection_engineering_complete": true,
+  "collection_rollouts": 8,
+  "collection_candidate_attempts": 16,
+  "collection_operator_calls": 8,
+  "collection_realized_candidate_gpu_hours": 0.5687974913188492,
+  "zero_execution_replay_valid_warm_artifacts": 6,
+  "zero_execution_replay_valid_continuations": 0,
+  "zero_execution_replay_paired_rollouts": 0,
+  "original_continuation_failure_classes": {
+    "invalid_format": 2,
+    "python_syntax_error": 2,
+    "python_name_error": 4
+  },
+  "original_operator_calls_at_8192_token_cap": 8,
+  "qwen_alternative_operator_gate": "PASS_2_OF_2_ENGINEERING_ONLY",
+  "deepseek_production_operator_gate": "FAIL_1_OF_2",
+  "deepseek_failed_task": "tabular-playground-series-may-2022",
+  "deepseek_failure_reason": "finish_reason_length_at_8192_no_complete_python_block",
+  "primary_gate_claim_allowed": false,
+  "e2_e3_unlocked": false,
+  "old_approval_reusable_for_new_rerun": false,
+  "fresh_scientific_anchors_required_after_operator_change": true
+}

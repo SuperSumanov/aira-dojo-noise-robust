@@ -3,6 +3,33 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0W. 2026-08-15 最新覆盖：90.56% missing identities 找回 node，99.00% 为 execution error
+
+本节晚于 0V。稳定主线进一步收敛为 physical-run-clean、decision-local 的 MLE-agent **failure-censored
+source-opportunity benchmark** 与 first-960 prospective confirmation；完整 labeled choice-set、missing-at-random
+和通用 critic 方法收益仍不允许，旧 HCE、多保真、probe、TD/RL 与已关闭变体均不恢复。
+
+1. 结果前冻结的 `source-opportunity-journal-status-v1` 在精确 commit
+   `42cb6b1ac0575f26350b72519b3d558aab5a084a` 上扫描八个预定 allowlisted roots；不读 tar 其他 member、env、
+   numeric grade、code/stdout、pair orientation 或 first-960。producer 与不 import producer 的 verifier 一致裁决
+   `VERIFIED_HIGH_COVERAGE_MISSING_STATUS_REGISTRY`。
+2. 996 个已恢复 missing sibling identities 中，902 个唯一绑定 source journal node，recovery=
+   `0.9056224899598394`，source collision=0、journal parent mismatch=0。train/frozen/extension coverage 分别为
+   `0.9089726918075423/0.8888888888888888/1.0`。
+3. 902 个 recovered nodes 中，893 个为 `EXECUTION_ERROR`，9 个为 exit-0 但 `OFFICIAL_GRADE_ABSENT`；execution
+   error share=`0.9900221729490022`。因此有限 labeled fragment 的主导缺口不是任意抽样，而是执行失败引起的
+   informative censoring；剩余 94 个 targets 保持 `SOURCE_JOURNAL_NOT_FOUND`，不得外推类别。
+4. 远端聚焦测试 `7 passed in 0.16s`，完整 `phase1/tests` 为 `299 passed in 26.21s`；producer/verifier 分别
+   311.49/274.61 秒，产物高置信凭据命中 0。首次 `a1` 在结果前因 byte-identical journal copies 的路径 hash
+   被误判为冲突而 fail-closed；新增回归测试后，`a2` 按 source SHA 折叠副本。
+5. 正面论文主张改为：发布真实 MLE-agent source opportunity、retained label 与 failure-censor status 的分层数据契约，
+   并证明只在成功候选内做 pair ranking 改变了部署 estimand。下一方法门只能是预注册的 feasibility→quality 两阶段
+   baseline 与同预算 prospective utility；hurdle 原语本身不申新，方法收益未验证前仍以数据/benchmark 贡献为主。
+
+直接证据：
+- `phase1/results/source_opportunity_journal_status_v11_20260815_42cb6b1/README.md`；
+- `phase1/实验记录/2026-08-15/SourceOpportunityJournalStatus_预注册与执行前检查.md`。
+
 ## 0V. 2026-08-15 最新覆盖：82.87% source-incomplete parents 可恢复完整 sibling 身份
 
 本节晚于 0U。稳定主线现为 physical-run-clean、decision-local 的 MLE-agent **labeled-fragment benchmark +

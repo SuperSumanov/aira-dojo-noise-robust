@@ -1,0 +1,54 @@
+{
+  "api_calls": 0,
+  "categories": {
+    "EXECUTION_ERROR": 893,
+    "OFFICIAL_GRADE_ABSENT": 9
+  },
+  "complete_labeled_choice_set_claim_allowed": false,
+  "gpu": 0,
+  "imports_producer": false,
+  "journal_parent_mismatches": 0,
+  "missing_at_random_claim_allowed": false,
+  "missing_status_registry_claim_allowed": true,
+  "node_recovery_rate": 0.9056224899598394,
+  "producer_per_child_sha256": "bfb9870d83c50ef2d06bf2d374fc9f9213f41665f4cebeab7ab31837bcfde0d2",
+  "producer_status": "VERIFIED_HIGH_COVERAGE_MISSING_STATUS_REGISTRY",
+  "producer_summary_sha256": "9920ca85c740c0ff7912417ef1141f53ad331034f0b5d72f6b6efad9192440b9",
+  "reads_first960": false,
+  "reads_numeric_grade": false,
+  "roles": {
+    "extension": {
+      "categories": {
+        "EXECUTION_ERROR": 10,
+        "OFFICIAL_GRADE_ABSENT": 1
+      },
+      "node_recovery_rate": 1.0,
+      "target_missing_identities": 11,
+      "unique_nodes_recovered": 11
+    },
+    "frozen": {
+      "categories": {
+        "EXECUTION_ERROR": 192
+      },
+      "node_recovery_rate": 0.8888888888888888,
+      "target_missing_identities": 216,
+      "unique_nodes_recovered": 192
+    },
+    "train": {
+      "categories": {
+        "EXECUTION_ERROR": 691,
+        "OFFICIAL_GRADE_ABSENT": 8
+      },
+      "node_recovery_rate": 0.9089726918075423,
+      "target_missing_identities": 769,
+      "unique_nodes_recovered": 699
+    }
+  },
+  "source_commit": "42cb6b1ac0575f26350b72519b3d558aab5a084a",
+  "source_journal_collisions": 0,
+  "status": "VERIFIED_SOURCE_OPPORTUNITY_JOURNAL_STATUS",
+  "target_missing_identities": 996,
+  "target_parents": 721,
+  "unique_nodes_recovered": 902,
+  "unrecovered_target_identities": 94
+}

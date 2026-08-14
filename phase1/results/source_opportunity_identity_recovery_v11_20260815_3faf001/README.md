@@ -57,6 +57,7 @@ utility。
 
 ## 下一门
 
-只有在 senior source journals 上完成 archive allowlist、流式凭据红删与 receipt-level hash binding 后，才检查
-996 个 missing IDs 的 generation/execution/evaluation status coverage。该 journal audit 必须在结果前另行冻结；
-身份恢复正结果不自动授权训练模型或改变 first-960 scorer。
+后续已按结果前冻结的协议完成 journal status audit：996 个 missing IDs 中 902 个唯一恢复，893 个是 execution
+error、9 个是 official grade absent，详见
+`phase1/results/source_opportunity_journal_status_v11_20260815_42cb6b1/README.md`。该结果把 unknown identity 缺口
+推进到 failure-censored registry，但仍不自动授权训练模型或改变 first-960 scorer。

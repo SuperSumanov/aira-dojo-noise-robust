@@ -1,0 +1,1 @@
+POSTFLIGHT PASS: 24 rollouts, 72 candidate attempts, 48 operator calls, 24 fresh unique workspaces, 0 retry/replacement, 0 GPU/API, no scientific claim

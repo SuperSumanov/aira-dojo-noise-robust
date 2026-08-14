@@ -1,0 +1,6 @@
+Status: FAILED_BEFORE_WORKTREE_OR_EXPERIMENT_DIRECTORY_CREATION
+Error: /uac/y24/yzyang4/env_setup.sh: line 48: LD_LIBRARY_PATH: unbound variable
+Cause: the first launcher enabled Bash nounset before sourcing the shared environment setup.
+Fix: source env_setup.sh before enabling nounset. The corrected launcher SHA-256 was
+40ef9a87b92d3c13912e262dd49130ac28bd30bbdc603318fb3b662966f709bf.
+No test, assignment, rollout, GPU, API, or Slurm work occurred in the failed attempt.

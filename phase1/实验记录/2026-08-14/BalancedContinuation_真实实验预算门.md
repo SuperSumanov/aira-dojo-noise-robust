@@ -3,6 +3,11 @@
 日期：2026-08-14。以下矩阵在任何真实 GPU/API run 前给出。当前只批准并执行 0-GPU synthetic 工程测试；
 真实矩阵尚未启动。
 
+执行更新（同日）：完整 synthetic worker E0 已在 commit `f7b75a5b7d353116a0ecb0ca94ed3e7ca9870585`
+通过 22 项聚焦测试、143 项全量 phase1 测试、13/13 preflight、24 rollout/72 candidate attempts/
+48 operator calls/24 unique fresh workspaces；retry/replacement/GPU/API 均为 0。该更新只关闭 E0 工程门，
+不改变下表的真实 E1/E2 预算、批准状态或科学结论门。
+
 历史执行中位数按 561 秒/候选执行做 planning point estimate，并额外加 30% 作为 workspace、grading、LLM 和调度
 开销。实际每行都必须保存逐 job wall/GPU/API cost，最终不能用估算替代实测。
 

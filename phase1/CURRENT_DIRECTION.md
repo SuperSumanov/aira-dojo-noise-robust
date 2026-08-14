@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0M. 2026-08-14 最新覆盖：balanced-continuation 完整 synthetic worker E0 关门
+
+本节晚于 0L。稳定主线仍是 run-clean、decision-local 的 MLE-agent 搜索树数据集/benchmark 与
+first-960 前瞻确认；balanced continuation 仍只是 gated 方法扩展，没有变成论文已证实正结果。
+
+1. 在精确 commit `f7b75a5b7d353116a0ecb0ca94ed3e7ca9870585` 的干净远端 worktree，22 项聚焦测试、
+   全部 143 项 `phase1/tests` 和 13/13 preflight 均通过。正式 E0 随后完成 24 个 rollout、72 次 synthetic
+   candidate attempts、48 次 continuation operator calls；24 个 workspace 路径和 token 均唯一，retry 与
+   replacement 均为 0。
+2. assignment 由不 import producer 的 verifier 独立重建；每个 rollout 又由独立 worker verifier 重验代码链、
+   operator、outcome、backend receipt 与 workspace；collection verifier 验 exact-K、完整 block、总执行数和
+   workspace 唯一性；最后 452 个文件逐一重算 SHA，mismatch=0。
+3. checkpoint/resume 现为 fail-closed：PENDING 没有完整 durable receipt 时禁止自动重跑；有 receipt 时也必须在
+   继续花费前重验全部既往代码/receipt/workspace 链。回归测试覆盖 durable promotion、ambiguous pending、语义篡改、
+   workspace collision、NaN/Inf、timeout/invalid 与 duplicate token。
+4. 本轮 GPU=0、API=0、没有读 frozen cohort、label vault 或科学 outcome。synthetic utility 只用于工程分支覆盖，
+   其均值不得进入论文结果或方法收益叙事。当前 production worker 仍未实现真实 aira-dojo backend 与 pristine
+   evaluator adapter，因此真实 E1/E2 仍未启动，原预算审批门不变。
+5. 第一次远端启动在创建 worktree/实验目录之前因 `env_setup.sh` 与 Bash nounset 不兼容而失败；修复为先 source
+   再启用 nounset 后重跑。该失败已与成功证据一并归档，没有被从记录中删除。
+
+直接证据：
+- `phase1/results/balanced_worker_e0_20260814_f7b75a5/README.md`；
+- `phase1/results/balanced_worker_e0_20260814_f7b75a5/verification_summary.json`；
+- `phase1/实验记录/2026-08-14/BalancedContinuation_E0Worker_裁决.md`。
+
 ## 0L. 2026-08-14 最新覆盖：版本化 corpus 契约与 equal-K E0 已独立复核
 
 本节晚于 0K。稳定主线仍是 run-clean、decision-local 的 MLE-agent 搜索树数据集/benchmark 与

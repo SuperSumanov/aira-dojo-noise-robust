@@ -1,0 +1,13 @@
+PASS 1: direction=run-clean decision-local benchmark; E0 is gated synthetic engineering only
+PASS 2: producer, independent verifiers, worker, resume, workspace and full phase1 tests passed
+PASS 3: outcome-blind fixture has 2 tasks, 4 anchors, 3 siblings/anchor, 0 exact-code duplicates
+PASS 4: frozen E0 resource matrix printed; no Slurm/GPU/API request
+PASS 5: synthetic gate has no training, frozen cohort, label vault, or held-out path access
+PASS 6: atomic checkpoint/resume tests prove durable promotion and reject ambiguous/tampered pending state
+PASS 7: one frozen execution contract fixes operator, evaluator, workspace, B/K/H and failure handling
+PASS 8: assignment seed is fixed; NaN/Inf, timeout, invalid, improve and debug paths are tested
+PASS 9: range filename/content credential scans are both zero; no environment dump is produced
+PASS 10: every synthetic subprocess has a fixed 120-second wall cap; E1 remains unlaunched
+PASS 11: E0 cannot unlock or claim method gain; E1/E2/E3 gates remain frozen
+PASS 12: launcher records each child rc before branching and aborts on any nonzero code
+PASS 13: all roots are new; assignment, worker, receipt, collection and top-level hashes are append-only

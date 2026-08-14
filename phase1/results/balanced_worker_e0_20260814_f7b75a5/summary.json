@@ -1,0 +1,33 @@
+{
+  "all_workspaces_fresh_and_unique": true,
+  "anchor_count": 4,
+  "api_used": false,
+  "assignment_manifest_sha256": "76d72eb8ce6484850264024cc21c967b307f409bc996efff897c56907efdbb41",
+  "assignment_verification_receipt_sha256": "82e30ced65906de3c3632d34d0525bcc30f1564b95b7bdfcd692e04262ad2fd6",
+  "candidate_execution_attempts": 72,
+  "collection_verification_sha256": "44651fdebc5c535b61dc23a3466bf92b888fb8d73e93167a47aca64a7c835370",
+  "command_processes": 51,
+  "completed_utc": "2026-08-14T03:21:16.624681Z",
+  "continuation_horizon": 2,
+  "created_utc": "2026-08-14T03:21:05Z",
+  "credential_shape_hits": 0,
+  "every_block_contains_all_siblings": true,
+  "every_sibling_exactly_k": true,
+  "gpu_used": false,
+  "operator_calls": 48,
+  "replacement_count": 0,
+  "replicates_per_sibling": 2,
+  "retry_count": 0,
+  "rollout_jobs": 24,
+  "scientific_outcome_claimed": false,
+  "siblings_per_anchor": 3,
+  "source_commit": "f7b75a5b7d353116a0ecb0ca94ed3e7ca9870585",
+  "status": "VERIFIED_FULL_SYNTHETIC_BALANCED_CONTINUATION_E0",
+  "task_count": 2,
+  "task_rollout_counts": {
+    "synthetic-task-0": 12,
+    "synthetic-task-1": 12
+  },
+  "unique_workspace_paths": 24,
+  "unique_workspace_tokens": 24
+}

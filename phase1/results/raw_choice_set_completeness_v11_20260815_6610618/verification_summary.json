@@ -1,0 +1,40 @@
+{
+  "api_calls": 0,
+  "card_rows": 16012,
+  "choice_set_faithful_claim_allowed": false,
+  "credential_file_hits_input": 0,
+  "credential_file_hits_output": 0,
+  "gpu": 0,
+  "imports_producer": false,
+  "labeled_sibling_fragment_claim_allowed": true,
+  "pair_rows": 5897,
+  "parents": 3252,
+  "producer_per_parent_sha256": "75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03",
+  "producer_status": "VERIFIED_LABELED_SIBLING_FRAGMENT_BOUNDARY",
+  "producer_summary_sha256": "a9925bdb8be7a9ef49858a77ccbd81c6fc1f03839dd66eecef62ca5770c9af8f",
+  "reads_first960": false,
+  "reads_pair_orientation": false,
+  "roles": {
+    "extension": {
+      "mean_source_retention": 0.9678362573099415,
+      "parents": 114,
+      "source_complete_parents": 103,
+      "source_size_gt_five_parents": 0
+    },
+    "frozen": {
+      "mean_source_retention": 0.9140433925049315,
+      "parents": 845,
+      "source_complete_parents": 651,
+      "source_size_gt_five_parents": 0
+    },
+    "train": {
+      "mean_source_retention": 0.8885485280818947,
+      "parents": 2293,
+      "source_complete_parents": 1628,
+      "source_size_gt_five_parents": 10
+    }
+  },
+  "source_commit": "6610618a89c91bd2dbea2ea5be05e8acaac11e94",
+  "status": "VERIFIED_RAW_CHOICE_SET_COMPLETENESS_AUDIT",
+  "uses_numeric_outcome_magnitude": false
+}

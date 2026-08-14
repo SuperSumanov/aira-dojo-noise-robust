@@ -3,6 +3,36 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0U. 2026-08-15 最新覆盖：撤回完整 choice-set 主张，发布单位改为 labeled sibling fragment
+
+本节晚于 0T。稳定主线仍是 physical-run-clean、decision-local 的 MLE-agent 决策数据/benchmark 与
+first-960 prospective confirmation，但 **`choice-set-faithful` / 完整 source choice set 主张已撤回**；旧 HCE、
+多保真、probe、TD/RL 与已关闭的 critic 变体均不恢复。
+
+1. 结果前冻结的 `raw-choice-set-completeness-v1` 在精确 commit
+   `6610618a89c91bd2dbea2ea5be05e8acaac11e94` 上审计 v11 的 16,012 cards、5,897 b0 pairs 与
+   3,252 parents。producer 与不 import producer 的独立 verifier 一致裁决
+   `VERIFIED_LABELED_SIBLING_FRAGMENT_BOUNDARY`；远端聚焦测试 `11 passed in 0.21s`，完整
+   `phase1/tests` 为 `286 passed in 24.95s`，输入与产物高置信凭据命中均为 0。
+2. 结构完整性没有失败：所有 parent 的发布端点均为同 run/task/parent 的 finite retained direct children；发布
+   `set_size` 均等于 finite retained child 数；有 parent card 时其 `children_ids` 均包含所有 retained children。
+   因此 b0 可称 **结构有效的带标签兄弟片段**，但不可称完整 source opportunity set。
+3. source retention 未全过：train 仅 1,628/2,293 parents 保留完整 source set，frozen 为 651/845，extension
+   为 103/114；对应 parent-equal mean retention 为
+   `0.8885485280818947/0.9140433925049315/0.9678362573099415`。train 另有 10 个 source size>5 parents，
+   不能用旧生成上限作默认解释。
+4. 当前 pair/top-1 结果的 estimand 统一改写为 **published labeled fragment 内的决策风险**。在恢复 source
+   identities、缺失状态与可识别的 missingness 证据前，不得把它外推成 agent 当时面对的完整候选集效用；first-960
+   scorer 保持冻结，但最终解释也必须遵守这一边界。
+5. 下一正面突破门改为 outcome-blind source-opportunity recovery：只用 lineage/source journal provenance
+   衡量能否恢复完整 sibling identities、失败/未评分状态与 inclusion mechanism。它若通过，将形成比当前 pair
+   文件更强的 censor-aware MLE decision resource；若不通过，诚实保留 fragment benchmark，不再使用完整候选集措辞。
+
+直接证据：
+- `phase1/results/raw_choice_set_completeness_v11_20260815_6610618/README.md`；
+- `phase1/实验记录/2026-08-14/RawChoiceSetCompleteness_预注册.md`；
+- `phase1/实验记录/2026-08-15/RawChoiceSetCompleteness_执行前检查.md`。
+
 ## 0T. 2026-08-14 最新覆盖：scheduler receipt 内部闭环通过，生产真实性门仍关闭
 
 本节晚于 0S。稳定主线仍是 physical-run-clean、choice-set-faithful 的 MLE-agent 决策数据/benchmark 与

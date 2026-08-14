@@ -965,7 +965,9 @@ def score(args: argparse.Namespace) -> int:
         },
         "audit": audit,
         "outputs": {
-            "blind_scores": str(args.out_dir / "blind_scores.csv"),
+            # Keep the recorded path relocatable so a higher-level transaction can
+            # stage this directory and atomically rename its parent.
+            "blind_scores": "blind_scores.csv",
             "blind_scores_sha256": sha256(score_path),
         },
         "software": {

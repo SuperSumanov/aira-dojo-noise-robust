@@ -1,0 +1,39 @@
+START_UTC=2026-08-14T02:44:10Z
+/research/d7/spc/yzyang4/incoming/codex_corpus_efe383b_incremental.bundle is okay
+The bundle contains this ref:
+efe383bf4bd7803197f43648c8505a5bf8ad5a5c refs/heads/codex-prospective-decision-v1-20260814
+The bundle requires this ref:
+4ff44dd99ba4848db1b039cc2383c2114793a379
+The bundle uses this hash algorithm: sha1
+PREFLIGHT_PASS_01_EXACT_BUNDLE
+From /research/d7/spc/yzyang4/incoming/codex_corpus_efe383b_incremental.bundle
+ * branch            codex-prospective-decision-v1-20260814 -> FETCH_HEAD
+PREFLIGHT_PASS_02_CLEAN_EXACT_WORKTREE
+Updated Git hooks.
+Git LFS initialized.
+PREFLIGHT_PASS_03_FORK_LFS_MATERIALIZED
+.............................................                            [100%]
+45 passed in 4.66s
+PREFLIGHT_PASS_04_RELEVANT_TESTS
+PREFLIGHT_PASS_05_RELEASE_DESCRIPTORS_HASH_LOCKED
+PREFLIGHT_PASS_06_BATCH_SHA_BYTES_ROWS_LOCKED
+PREFLIGHT_PASS_07_OUTPUT_SHA_BYTES_ROWS_LOCKED
+PREFLIGHT_PASS_08_HISTORICAL_PROTOCOL_IDS_FROZEN
+PREFLIGHT_PASS_09_ATOMIC_NEW_OUTPUTS
+PREFLIGHT_PASS_10_ZERO_GPU_ZERO_API
+PREFLIGHT_PASS_11_NO_OUTCOME_OR_LABEL_ANALYSIS
+PREFLIGHT_PASS_12_EXIT_CODES_CAPTURED_IMMEDIATELY
+PREFLIGHT_PASS_13_ORIGINAL_TARGET_CMP
+ALL_13_PREFLIGHT_PASS
+REBUILD_RC version=v6 rc=0
+BYTE_EXACT_REBUILD_PASS version=v6
+REBUILD_RC version=v7 rc=0
+BYTE_EXACT_REBUILD_PASS version=v7
+REBUILD_RC version=v8 rc=0
+BYTE_EXACT_REBUILD_PASS version=v8
+REBUILD_RC version=v9 rc=0
+BYTE_EXACT_REBUILD_PASS version=v9
+REBUILD_RC version=v10 rc=0
+BYTE_EXACT_REBUILD_PASS version=v10
+CORPUS_RELEASE_REJECTED: unknown frozen-v10 task type: dogs-vs-cats-redux-kernels-edition
+REBUILD_RC version=v11 rc=1

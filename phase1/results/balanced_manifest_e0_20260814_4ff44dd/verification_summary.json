@@ -1,0 +1,21 @@
+{
+  "status": "VERIFIED_OUTCOME_BLIND_BALANCED_ASSIGNMENT",
+  "commit": "4ff44dd99ba4848db1b039cc2383c2114793a379",
+  "tests_passed": 34,
+  "preflight_passed": 13,
+  "anchor_count": 4,
+  "task_count": 2,
+  "siblings_per_anchor": 3,
+  "replicates_per_sibling": 2,
+  "continuation_horizon": 2,
+  "rollout_jobs": 24,
+  "planned_warm_start_executions": 24,
+  "planned_continuation_executions": 48,
+  "planned_total_candidate_executions": 72,
+  "assignment_manifest_sha256": "122628cc49f92a22aeb9acbdacee3ea18828b10edabc665d655c8aa930e5a726",
+  "producer_replay_assignment_cmp": true,
+  "independent_reconstruction_exact": true,
+  "contains_outcomes": false,
+  "gpu_used": false,
+  "api_used": false
+}

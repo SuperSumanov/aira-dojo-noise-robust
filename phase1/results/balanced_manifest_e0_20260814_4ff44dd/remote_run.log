@@ -1,0 +1,59 @@
+START_UTC=2026-08-14T02:23:44Z
+COMMIT=4ff44dd99ba4848db1b039cc2383c2114793a379
+/research/d7/spc/yzyang4/incoming/codex_balanced_4ff44dd_incremental.bundle is okay
+The bundle contains this ref:
+4ff44dd99ba4848db1b039cc2383c2114793a379 refs/heads/codex-prospective-decision-v1-20260814
+The bundle requires this ref:
+d6b1e388e79ada7f5045a56235844902d2431357
+The bundle uses this hash algorithm: sha1
+PREFLIGHT_PASS_01_EXACT_BUNDLE
+From /research/d7/spc/yzyang4/incoming/codex_balanced_4ff44dd_incremental.bundle
+ * branch            codex-prospective-decision-v1-20260814 -> FETCH_HEAD
+Preparing worktree (detached HEAD 4ff44dd)
+Updating files:   6% (86/1317)Updating files:   7% (93/1317)Updating files:   8% (106/1317)Updating files:   8% (113/1317)Updating files:   8% (114/1317)Updating files:   9% (119/1317)Updating files:   9% (127/1317)Updating files:  10% (132/1317)Updating files:  11% (145/1317)Updating files:  11% (146/1317)Updating files:  11% (148/1317)Updating files:  12% (159/1317)Updating files:  13% (172/1317)Updating files:  14% (185/1317)Updating files:  15% (198/1317)Updating files:  16% (211/1317)Updating files:  17% (224/1317)Updating files:  18% (238/1317)Updating files:  18% (250/1317)Updating files:  19% (251/1317)Updating files:  20% (264/1317)Updating files:  21% (277/1317)Updating files:  22% (290/1317)Updating files:  23% (303/1317)Updating files:  24% (317/1317)Updating files:  25% (330/1317)Updating files:  26% (343/1317)Updating files:  27% (356/1317)Updating files:  28% (369/1317)Updating files:  29% (382/1317)Updating files:  30% (396/1317)Updating files:  31% (409/1317)Updating files:  32% (422/1317)Updating files:  33% (435/1317)Updating files:  34% (448/1317)Updating files:  35% (461/1317)Updating files:  36% (475/1317)Updating files:  37% (488/1317)Updating files:  37% (500/1317)Updating files:  38% (501/1317)Updating files:  39% (514/1317)Updating files:  40% (527/1317)Updating files:  41% (540/1317)Updating files:  42% (554/1317)Updating files:  43% (567/1317)Updating files:  44% (580/1317)Updating files:  45% (593/1317)Updating files:  46% (606/1317)Updating files:  47% (619/1317)Updating files:  47% (623/1317)Updating files:  47% (628/1317)Updating files:  47% (630/1317)Updating files:  47% (632/1317)Updating files:  48% (633/1317)Updating files:  48% (634/1317)Updating files:  48% (636/1317)Updating files:  49% (646/1317)Updating files:  50% (659/1317)Updating files:  51% (672/1317)Updating files:  52% (685/1317)Updating files:  53% (699/1317)Updating files:  54% (712/1317)Updating files:  55% (725/1317)Updating files:  56% (738/1317)Updating files:  57% (751/1317)Updating files:  58% (764/1317)Updating files:  59% (778/1317)Updating files:  60% (791/1317)Updating files:  61% (804/1317)Updating files:  62% (817/1317)Updating files:  63% (830/1317)Updating files:  64% (843/1317)Updating files:  64% (850/1317)Updating files:  65% (857/1317)Updating files:  66% (870/1317)Updating files:  67% (883/1317)Updating files:  68% (896/1317)Updating files:  69% (909/1317)Updating files:  70% (922/1317)Updating files:  71% (936/1317)Updating files:  71% (940/1317)Updating files:  71% (946/1317)Updating files:  72% (949/1317)Updating files:  73% (962/1317)Updating files:  73% (966/1317)Updating files:  74% (975/1317)Updating files:  75% (988/1317)Updating files:  76% (1001/1317)Updating files:  77% (1015/1317)Updating files:  78% (1028/1317)Updating files:  79% (1041/1317)Updating files:  80% (1054/1317)Updating files:  81% (1067/1317)Updating files:  82% (1080/1317)Updating files:  83% (1094/1317)Updating files:  84% (1107/1317)Updating files:  85% (1120/1317)Updating files:  86% (1133/1317)Updating files:  87% (1146/1317)Updating files:  88% (1159/1317)Updating files:  89% (1173/1317)Updating files:  90% (1186/1317)Updating files:  91% (1199/1317)Updating files:  92% (1212/1317)Updating files:  93% (1225/1317)Updating files:  94% (1238/1317)Updating files:  95% (1252/1317)Updating files:  96% (1265/1317)Updating files:  97% (1278/1317)Updating files:  97% (1290/1317)Updating files:  98% (1291/1317)Updating files:  99% (1304/1317)Updating files: 100% (1317/1317)Updating files: 100% (1317/1317), done.
+Encountered 16 files that should have been pointers, but weren't:
+	phase1/cards_ablate.jsonl
+	phase1/cards_cur.jsonl
+	phase1/cards_cur_mm.jsonl
+	phase1/cards_for_crossgen.jsonl
+	phase1/cards_for_crossgen_NORM.jsonl
+	phase1/cards_gen2_all.jsonl
+	phase1/cards_real.jsonl
+	phase1/cards_real_mm.jsonl
+	phase1/cards_real_mm_148bak.jsonl
+	phase1/cards_real_v2.jsonl
+	phase1/cards_t1_all.jsonl
+	phase1/cards_t1_labeled.jsonl
+	phase1/cards_t1_labeled_raw.jsonl
+	phase1/cards_wave1_20260726.jsonl
+	phase1/hits_l1_runsplit.jsonl
+	phase1/hits_l2_runsplit.jsonl
+HEAD is now at 4ff44dd Add outcome-blind balanced continuation assignments
+PREFLIGHT_PASS_02_CLEAN_EXACT_WORKTREE
+..................................                                       [100%]
+34 passed in 5.09s
+PREFLIGHT_PASS_03_CHEAP_TESTS
+PREFLIGHT_PASS_04_SYNTHETIC_INPUT_FROZEN
+PREFLIGHT_PASS_05_SUPPORT_MATRIX_4x3
+PREFLIGHT_PASS_06_NO_OUTCOME_FIELDS
+PREFLIGHT_PASS_07_SECRET_SCAN
+PREFLIGHT_PASS_08_FIXED_SEED_20260814
+PREFLIGHT_PASS_09_ATOMIC_NEW_OUTPUTS
+PREFLIGHT_PASS_10_ZERO_GPU_ZERO_API
+PREFLIGHT_PASS_11_NO_ADAPTIVE_STOPPING
+PREFLIGHT_PASS_12_EXIT_CODES_CAPTURED_IMMEDIATELY
+PREFLIGHT_PASS_13_INDEPENDENT_HASH_VERIFIER
+ALL_13_PREFLIGHT_PASS
+{"adaptive_allocation_allowed":false,"anchor_count":4,"anchors_input_sha256":"e314fb7f1e2dc145b652a3da289253d26b0fedde1ac1becf4280a14e34215ca3","contains_outcomes":false,"continuation_horizon":2,"created_utc":"2026-08-14T02:24:17Z","every_block_contains_all_siblings":true,"every_sibling_exactly_k":true,"execution_contract_sha256":"58cf1b6a7b4b8970802c376f727ce3b8a1bd14ecdd645737b558bdedee35a526","fresh_workspace_required":true,"planned_continuation_executions":48,"planned_total_candidate_executions":72,"planned_warm_start_executions":24,"protocol":"balanced-continuation-v1","replicates_per_sibling":2,"rollout_jobs":24,"seed":20260814,"siblings_per_anchor":3,"source_commit":"4ff44dd99ba4848db1b039cc2383c2114793a379","status":"READY_FOR_OUTCOME_BLIND_BALANCED_COLLECTION","task_count":2}
+PRODUCER_RC=0
+{"anchor_count":4,"contains_outcomes":false,"continuation_horizon":2,"independent_reconstruction_exact":true,"replicates_per_sibling":2,"result_sha256_manifest":"016ba24994cca38495a9a510ebc31a934ab97cd26c38e408c00e65aea9c6f48c","rollout_jobs":24,"siblings_per_anchor":3,"status":"VERIFIED_OUTCOME_BLIND_BALANCED_ASSIGNMENT","task_count":2}
+VERIFY_RC=0
+{"adaptive_allocation_allowed":false,"anchor_count":4,"anchors_input_sha256":"e314fb7f1e2dc145b652a3da289253d26b0fedde1ac1becf4280a14e34215ca3","contains_outcomes":false,"continuation_horizon":2,"created_utc":"2026-08-14T02:24:17Z","every_block_contains_all_siblings":true,"every_sibling_exactly_k":true,"execution_contract_sha256":"58cf1b6a7b4b8970802c376f727ce3b8a1bd14ecdd645737b558bdedee35a526","fresh_workspace_required":true,"planned_continuation_executions":48,"planned_total_candidate_executions":72,"planned_warm_start_executions":24,"protocol":"balanced-continuation-v1","replicates_per_sibling":2,"rollout_jobs":24,"seed":20260814,"siblings_per_anchor":3,"source_commit":"4ff44dd99ba4848db1b039cc2383c2114793a379","status":"READY_FOR_OUTCOME_BLIND_BALANCED_COLLECTION","task_count":2}
+REPLAY_RC=0
+{"anchor_count":4,"contains_outcomes":false,"continuation_horizon":2,"independent_reconstruction_exact":true,"replicates_per_sibling":2,"result_sha256_manifest":"e5eb38791315cd6c46eb85be1368daf4d941b46db78fd11ac52ca6aa610f1e34","rollout_jobs":24,"siblings_per_anchor":3,"status":"VERIFIED_OUTCOME_BLIND_BALANCED_ASSIGNMENT","task_count":2}
+REPLAY_VERIFY_RC=0
+WALL_SECONDS=1
+250bcde1cda0e10f5b342a87d42eef187921a8a7817f940f1c1bc71cfe071abd  /research/d7/spc/yzyang4/experiments/balanced_manifest_e0_4ff44dd/summary.json
+122628cc49f92a22aeb9acbdacee3ea18828b10edabc665d655c8aa930e5a726  /research/d7/spc/yzyang4/experiments/balanced_manifest_e0_4ff44dd/assignment_manifest.jsonl
+ebb194cfb71bdf5dc2ba49c6061af54eecca6a5d45b0450a55a3d6cb06745885  /research/d7/spc/yzyang4/experiments/balanced_manifest_e0_4ff44dd.verify.json
+E0_BALANCED_MANIFEST_VERIFIED

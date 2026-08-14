@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L. 2026-08-14 最新覆盖：版本化 corpus 契约与 equal-K E0 已独立复核
+
+本节晚于 0K。稳定主线仍是 run-clean、decision-local 的 MLE-agent 搜索树数据集/benchmark 与
+first-960 前瞻确认；没有切回旧 HCE、多保真或 probe，也没有把工程通过写成方法正结果。
+
+1. 学长确认的 LFS 契约已实现为 append-only batch registry + release-specific prefix lock +
+   release-specific serialization protocol + 输出 rows/bytes/SHA 三元门。v6–v11 已在远端从 fork
+   LFS materialize，并与保留的原始 merged files 逐字节 `cmp` 全部通过；最终实现 commit 为
+   `73fd5f6a927e8deeb07d84372e1ba87fb7d2b3c5`。
+2. v4/v5 继续标记不可恢复：历史 8,607/9,323 行与现存 prefix 8,579/9,433 行不符，首次 LFS
+   发布前同名 batch 已被替换，且没有原 merged 备份。不得制造假 release 或声称任意旧版均已复现。
+3. 直接用最新 transformer 重放 v9 虽仍为 14,323 行，却改变 744,500 bytes；因此后续版本发布
+   必须同时冻结 batch、顺序、变换协议和输出 hash，不能只看行数。
+4. equal-K outcome-blind E0 已在精确 commit `4ff44dd` 通过 34 项测试、13/13 preflight、producer、
+   不 import producer 的独立 verifier 与确定性 replay：4 anchors、3 siblings、K=2、H=2、24 jobs，
+   assignment manifest SHA=`122628cc49f92a22aeb9acbdacee3ea18828b10edabc665d655c8aa930e5a726`。
+   这是 0-GPU/0-API 工程证据，不是方法收益；真实 E1/E2 仍受已记录预算门约束，尚未启动。
+5. LFS pull 错 remote、当前协议漂移、临时目录缺失、v11 taxonomy 漏项和 v10 helper 漏 `cd` 等失败
+   均已保留日志；只有修复后通过 exact hash/`cmp` 的结果进入裁决。
+
+直接证据：
+
+- `phase1/实验记录/2026-08-14/CorpusLFS_版本化逐字节重建_裁决.md`
+- `phase1/results/corpus_release_contract_20260814_73fd5f6/summary.json`
+- `phase1/results/balanced_manifest_e0_20260814_4ff44dd/README.md`
+
 ## 0K. 2026-08-14 最新覆盖：equal-K continuation 正方法转为 outcome-blind 工程实现
 
 本节晚于 0J；稳定主线不变，balanced continuation 是 gated 方法扩展，真实 GPU/API 长跑尚未启动。

@@ -1,0 +1,12 @@
+{
+  "anchor_count": 4,
+  "contains_outcomes": false,
+  "continuation_horizon": 2,
+  "independent_reconstruction_exact": true,
+  "replicates_per_sibling": 2,
+  "result_sha256_manifest": "016ba24994cca38495a9a510ebc31a934ab97cd26c38e408c00e65aea9c6f48c",
+  "rollout_jobs": 24,
+  "siblings_per_anchor": 3,
+  "status": "VERIFIED_OUTCOME_BLIND_BALANCED_ASSIGNMENT",
+  "task_count": 2
+}

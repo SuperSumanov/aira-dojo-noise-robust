@@ -1,0 +1,38 @@
+START_UTC=2026-08-14T02:47:18Z
+/research/d7/spc/yzyang4/incoming/codex_corpus_73fd5f6_incremental.bundle is okay
+The bundle contains this ref:
+73fd5f6a927e8deeb07d84372e1ba87fb7d2b3c5 refs/heads/codex-prospective-decision-v1-20260814
+The bundle requires this ref:
+efe383bf4bd7803197f43648c8505a5bf8ad5a5c
+The bundle uses this hash algorithm: sha1
+PREFLIGHT_PASS_01_EXACT_BUNDLE
+From /research/d7/spc/yzyang4/incoming/codex_corpus_73fd5f6_incremental.bundle
+ * branch            codex-prospective-decision-v1-20260814 -> FETCH_HEAD
+Preparing worktree (detached HEAD 73fd5f6)
+Updating files:   6% (86/1329)Updating files:   7% (94/1329)Updating files:   8% (107/1329)Updating files:   8% (113/1329)Updating files:   9% (120/1329)Updating files:   9% (125/1329)Updating files:  10% (133/1329)Updating files:  11% (147/1329)Updating files:  11% (148/1329)Updating files:  12% (160/1329)Updating files:  13% (173/1329)Updating files:  14% (187/1329)Updating files:  15% (200/1329)Updating files:  16% (213/1329)Updating files:  17% (226/1329)Updating files:  18% (240/1329)Updating files:  19% (253/1329)Updating files:  20% (266/1329)Updating files:  21% (280/1329)Updating files:  22% (293/1329)Updating files:  22% (299/1329)Updating files:  23% (306/1329)Updating files:  24% (319/1329)Updating files:  25% (333/1329)Updating files:  26% (346/1329)Updating files:  27% (359/1329)Updating files:  28% (373/1329)Updating files:  29% (386/1329)Updating files:  30% (399/1329)Updating files:  31% (412/1329)Updating files:  32% (426/1329)Updating files:  33% (439/1329)Updating files:  34% (452/1329)Updating files:  35% (466/1329)Updating files:  36% (479/1329)Updating files:  36% (486/1329)Updating files:  37% (492/1329)Updating files:  38% (506/1329)Updating files:  39% (519/1329)Updating files:  40% (532/1329)Updating files:  41% (545/1329)Updating files:  42% (559/1329)Updating files:  43% (572/1329)Updating files:  44% (585/1329)Updating files:  45% (599/1329)Updating files:  46% (612/1329)Updating files:  47% (625/1329)Updating files:  47% (634/1329)Updating files:  48% (638/1329)Updating files:  48% (639/1329)Updating files:  48% (640/1329)Updating files:  48% (642/1329)Updating files:  48% (644/1329)Updating files:  48% (647/1329)Updating files:  49% (652/1329)Updating files:  50% (665/1329)Updating files:  51% (678/1329)Updating files:  52% (692/1329)Updating files:  53% (705/1329)Updating files:  54% (718/1329)Updating files:  55% (731/1329)Updating files:  56% (745/1329)Updating files:  57% (758/1329)Updating files:  58% (771/1329)Updating files:  59% (785/1329)Updating files:  60% (798/1329)Updating files:  61% (811/1329)Updating files:  62% (824/1329)Updating files:  62% (828/1329)Updating files:  63% (838/1329)Updating files:  64% (851/1329)Updating files:  65% (864/1329)Updating files:  66% (878/1329)Updating files:  67% (891/1329)Updating files:  68% (904/1329)Updating files:  69% (918/1329)Updating files:  70% (931/1329)Updating files:  71% (944/1329)Updating files:  71% (950/1329)Updating files:  72% (957/1329)Updating files:  72% (958/1329)Updating files:  72% (959/1329)Updating files:  73% (971/1329)Updating files:  74% (984/1329)Updating files:  75% (997/1329)Updating files:  76% (1011/1329)Updating files:  77% (1024/1329)Updating files:  78% (1037/1329)Updating files:  79% (1050/1329)Updating files:  80% (1064/1329)Updating files:  81% (1077/1329)Updating files:  82% (1090/1329)Updating files:  83% (1104/1329)Updating files:  84% (1117/1329)Updating files:  85% (1130/1329)Updating files:  86% (1143/1329)Updating files:  87% (1157/1329)Updating files:  88% (1170/1329)Updating files:  89% (1183/1329)Updating files:  90% (1197/1329)Updating files:  91% (1210/1329)Updating files:  92% (1223/1329)Updating files:  93% (1236/1329)Updating files:  94% (1250/1329)Updating files:  95% (1263/1329)Updating files:  96% (1276/1329)Updating files:  97% (1290/1329)Updating files:  98% (1303/1329)Updating files:  99% (1316/1329)Updating files: 100% (1329/1329)Updating files: 100% (1329/1329), done.
+Encountered 2 files that should have been pointers, but weren't:
+	phase1/hits_l1_runsplit.jsonl
+	phase1/hits_l2_runsplit.jsonl
+HEAD is now at 73fd5f6 Freeze the release-specific corpus taxonomy
+PREFLIGHT_PASS_02_CLEAN_EXACT_WORKTREE
+Updated Git hooks.
+Git LFS initialized.
+PREFLIGHT_PASS_03_FORK_LFS_MATERIALIZED
+..............................................                           [100%]
+46 passed in 5.71s
+PREFLIGHT_PASS_04_RELEVANT_TESTS
+PREFLIGHT_PASS_05_RELEASE_DESCRIPTOR_HASH_LOCKED
+PREFLIGHT_PASS_06_BATCH_SHA_BYTES_ROWS_LOCKED
+PREFLIGHT_PASS_07_OUTPUT_SHA_BYTES_ROWS_LOCKED
+PREFLIGHT_PASS_08_V11_TAXONOMY_FROZEN
+PREFLIGHT_PASS_09_ATOMIC_NEW_OUTPUT
+PREFLIGHT_PASS_10_ZERO_GPU_ZERO_API
+PREFLIGHT_PASS_11_NO_OUTCOME_OR_LABEL_ANALYSIS
+PREFLIGHT_PASS_12_EXIT_CODE_CAPTURED_IMMEDIATELY
+PREFLIGHT_PASS_13_ORIGINAL_TARGET_CMP
+ALL_13_PREFLIGHT_PASS
+REBUILD_RC version=v11 rc=0
+{"api_used":false,"batch_count":29,"bytes":305750663,"commit":"73fd5f6a927e8deeb07d84372e1ba87fb7d2b3c5","gpu_used":false,"original_target_cmp":true,"rebuild_protocol":"legacy-run-id-v6-sanitized-v11","rows":16012,"sha256":"6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75","status":"VERIFIED_BYTE_EXACT_CORPUS_RELEASE_V11","version":"v11"}
+81c3a5fd3577177a6223eb43869b282db07937b94d064b1b0e261b7290440b7c  /research/d7/spc/yzyang4/experiments/corpus_release_v11_verify_73fd5f6/summary.json
+d04688cadd6a5d6f53d7bcdeda01e8f894f53cac880efe5e2dcc1d43dd7e3e4c  /research/d7/spc/yzyang4/experiments/corpus_release_v11_verify_73fd5f6/v11.receipt.json
+CORPUS_RELEASE_V11_REMOTE_VERIFICATION_COMPLETE

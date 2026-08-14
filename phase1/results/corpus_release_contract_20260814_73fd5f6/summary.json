@@ -1,0 +1,19 @@
+{
+  "status": "VERIFIED_BYTE_EXACT_CORPUS_RELEASES_V6_THROUGH_V11",
+  "final_implementation_commit": "73fd5f6a927e8deeb07d84372e1ba87fb7d2b3c5",
+  "gpu_used": false,
+  "api_used": false,
+  "original_target_cmp": true,
+  "versions": [
+    {"version": "v6", "batch_count": 23, "rows": 9433, "bytes": 160043881, "runs": 457, "sha256": "f535df76d9e870d7ef5f6a3dd471d94286fde059606e16b267072abaf0359aa2", "rebuild_protocol": "legacy-run-id-v6-basic"},
+    {"version": "v7", "batch_count": 25, "rows": 10755, "bytes": 184329618, "runs": 515, "sha256": "32d0ebff2c1abc65f28f9c26e8e3e0ef678d8cbbf01a65cde4c1ba68fb4f93d0", "rebuild_protocol": "legacy-run-id-v6-basic"},
+    {"version": "v8", "batch_count": 26, "rows": 12383, "bytes": 214866914, "runs": 553, "sha256": "d0cd34eaefdd69e1120d8b814f156b826375d359d7764a9498c4be154339b4f2", "rebuild_protocol": "legacy-run-id-v6-basic"},
+    {"version": "v9", "batch_count": 27, "rows": 14323, "bytes": 271496136, "runs": 586, "sha256": "daeb29fc07ad670b5ca7a10cd2d84f1fa9a27dfa9d22510533417f1a8ad9407f", "rebuild_protocol": "legacy-run-id-v6-basic"},
+    {"version": "v10", "batch_count": 28, "rows": 15158, "bytes": 287373736, "runs": 624, "sha256": "836c2acec3cd8603225c767ebcb29333cfaf81153d8bae51350df6706f860d74", "rebuild_protocol": "legacy-run-id-v6-sanitized-v10"},
+    {"version": "v11", "batch_count": 29, "rows": 16012, "bytes": 305750663, "runs": 667, "sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75", "rebuild_protocol": "legacy-run-id-v6-sanitized-v11"}
+  ],
+  "legacy_unavailable": {
+    "v4": {"historical_rows": 8607, "published_prefix_rows": 8579},
+    "v5": {"historical_rows": 9323, "published_prefix_rows": 9433}
+  }
+}

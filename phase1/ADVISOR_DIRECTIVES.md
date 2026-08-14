@@ -84,6 +84,10 @@ checkpoint-180(仅约 6% 训练量)accuracy **0.8143** / macro 0.7956,「加长 
   merged corpus。2026-08-14 审计同时确认：该契约直到 `da27852` 才实际落地，legacy v4/v5 的提交不含后来引用的
   LFS batch；用现存 batch 重放分别为 8,579/9,433 行而非历史 8,607/9,323。因此旧版本在找回原始 payload/hash
   前必须标注不可逐字节复现，不能让正确的设计描述覆盖当前 provenance 缺口。
+  2026-08-14 后续落实：v6–v11 已用 append-only registry、prefix lock、release-specific protocol 与
+  输出 rows/bytes/SHA 三元门逐字节复核；v10/v11 必须分开冻结 taxonomy。新增 batch 只能 append 新记录并新增
+  version descriptor，严禁改旧记录或只凭行数宣布复现。直接证据见
+  `phase1/实验记录/2026-08-14/CorpusLFS_版本化逐字节重建_裁决.md`。
 - **配置审计提醒**：学长最新 `2cb6f0c` 把 best metric 改为 `eval_pair_accuracy` 却保留
   `greater_is_better=False`。逐 checkpoint 日志不受影响，但 best-only 保存方向会反；修复后先用人为递增 metric
   做最小保存测试。旧 0812 结果使用较早的 eval-loss 配置，不能把旧 0.55 事后归因于这个新 bug。

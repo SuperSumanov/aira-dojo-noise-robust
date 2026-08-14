@@ -1,0 +1,23 @@
+{
+  "adaptive_allocation_allowed": false,
+  "anchor_count": 4,
+  "anchors_input_sha256": "e314fb7f1e2dc145b652a3da289253d26b0fedde1ac1becf4280a14e34215ca3",
+  "contains_outcomes": false,
+  "continuation_horizon": 2,
+  "created_utc": "2026-08-14T02:24:17Z",
+  "every_block_contains_all_siblings": true,
+  "every_sibling_exactly_k": true,
+  "execution_contract_sha256": "58cf1b6a7b4b8970802c376f727ce3b8a1bd14ecdd645737b558bdedee35a526",
+  "fresh_workspace_required": true,
+  "planned_continuation_executions": 48,
+  "planned_total_candidate_executions": 72,
+  "planned_warm_start_executions": 24,
+  "protocol": "balanced-continuation-v1",
+  "replicates_per_sibling": 2,
+  "rollout_jobs": 24,
+  "seed": 20260814,
+  "siblings_per_anchor": 3,
+  "source_commit": "4ff44dd99ba4848db1b039cc2383c2114793a379",
+  "status": "READY_FOR_OUTCOME_BLIND_BALANCED_COLLECTION",
+  "task_count": 2
+}

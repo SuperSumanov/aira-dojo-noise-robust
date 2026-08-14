@@ -2,7 +2,7 @@
   "schema_version": "aira-dojo-corpus-release-v1",
   "version": "v10",
   "release_commit": "4ebc495a219e26f5c3f957c2222f5e1e5fc2898c",
-  "rebuild_protocol": "legacy-run-id-v6-sanitized",
+  "rebuild_protocol": "legacy-run-id-v6-sanitized-v10",
   "batch_count": 28,
   "batch_lock_sha256": "51e92428edc550b9371795fd876b5c26f57fcd085b018898f1c1aeb5813ba96b",
   "output": {

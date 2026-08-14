@@ -9,6 +9,7 @@ from phase1.corpus_release import (
     CorpusReleaseError,
     PROTOCOL_BASIC,
     PROTOCOL_SANITIZED,
+    PROTOCOL_SANITIZED_V11,
     build_release,
     load_contracts,
 )
@@ -131,6 +132,31 @@ def test_sanitized_protocol_freezes_task_type_and_nonfinite_quarantine(
     assert output.read_bytes() == expected
 
 
+def test_v11_protocol_includes_the_new_dogs_vs_cats_task(tmp_path: Path) -> None:
+    row = {
+        "id": "dog1",
+        "task": {"name": "dogs-vs-cats-redux-kernels-edition", "type": "wrong"},
+        "lineage": {"step": 1, "parent_id": None},
+    }
+    expected_row = copy.deepcopy(row)
+    expected_row["task"]["type"] = "image-cls"
+    expected_row["run_id"] = "cards_batch_dog.jsonl:0"
+    expected_row["provenance"] = {
+        "run_id_source": "reconstructed:file-contiguity",
+        "task_type_source": "phase1.build_cards:TASK_TYPE",
+    }
+    expected = jsonl([expected_row])
+    release, phase1 = make_contract(
+        tmp_path,
+        [("cards_batch_dog.jsonl", jsonl([row]))],
+        expected,
+        protocol=PROTOCOL_SANITIZED_V11,
+    )
+    output = tmp_path / "v11.jsonl"
+    build_release(release, output, phase1_dir=phase1)
+    assert output.read_bytes() == expected
+
+
 def test_unsmudged_lfs_pointer_fails_before_hash_acceptance(tmp_path: Path) -> None:
     pointer = (
         b"version https://git-lfs.github.com/spec/v1\n"
@@ -224,7 +250,7 @@ def test_checked_in_release_descriptors_have_valid_prefix_locks() -> None:
         "v8": (26, 12383, PROTOCOL_BASIC),
         "v9": (27, 14323, PROTOCOL_BASIC),
         "v10": (28, 15158, PROTOCOL_SANITIZED),
-        "v11": (29, 16012, PROTOCOL_SANITIZED),
+        "v11": (29, 16012, PROTOCOL_SANITIZED_V11),
     }
     for version, (count, rows, protocol) in expected.items():
         release, selected, _ = load_contracts(releases / f"{version}.json")

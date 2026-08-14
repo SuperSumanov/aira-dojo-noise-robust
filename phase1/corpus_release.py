@@ -29,8 +29,11 @@ from typing import Any, Iterable
 REGISTRY_SCHEMA = "aira-dojo-corpus-batch-registry-v1"
 RELEASE_SCHEMA = "aira-dojo-corpus-release-v1"
 PROTOCOL_BASIC = "legacy-run-id-v6-basic"
-PROTOCOL_SANITIZED = "legacy-run-id-v6-sanitized"
-PROTOCOLS = {PROTOCOL_BASIC, PROTOCOL_SANITIZED}
+PROTOCOL_SANITIZED_V10 = "legacy-run-id-v6-sanitized-v10"
+PROTOCOL_SANITIZED_V11 = "legacy-run-id-v6-sanitized-v11"
+# Compatibility name for callers/tests that construct a synthetic v10-style release.
+PROTOCOL_SANITIZED = PROTOCOL_SANITIZED_V10
+PROTOCOLS = {PROTOCOL_BASIC, PROTOCOL_SANITIZED_V10, PROTOCOL_SANITIZED_V11}
 HEX64 = re.compile(r"[0-9a-f]{64}\Z")
 HEX40 = re.compile(r"[0-9a-f]{40}\Z")
 VERSION = re.compile(r"v[0-9]+\Z")
@@ -65,6 +68,7 @@ TASK_TYPE_V10 = {
     "whale-categorization-playground": "image-cls",
     "mlsp-2013-birds": "image-cls",
 }
+TASK_TYPE_V11 = {**TASK_TYPE_V10, "dogs-vs-cats-redux-kernels-edition": "image-cls"}
 
 
 class CorpusReleaseError(RuntimeError):
@@ -302,11 +306,13 @@ def _transform_basic(row: dict[str, Any], run_id: str) -> bytes:
     return (json.dumps(row) + "\n").encode("utf-8")
 
 
-def _transform_sanitized(row: dict[str, Any], run_id: str) -> bytes:
+def _transform_sanitized(
+    row: dict[str, Any], run_id: str, task_types: dict[str, str]
+) -> bytes:
     task_name = row["task"]["name"]
-    if task_name not in TASK_TYPE_V10:
-        raise CorpusReleaseError(f"unknown frozen-v10 task type: {task_name}")
-    row["task"]["type"] = TASK_TYPE_V10[task_name]
+    if task_name not in task_types:
+        raise CorpusReleaseError(f"unknown task in frozen taxonomy: {task_name}")
+    row["task"]["type"] = task_types[task_name]
     label = row.get("label") or {}
     label_values = [label.get("graded"), label.get("y_norm")]
     if any(
@@ -368,11 +374,17 @@ def build_release(
         raise CorpusReleaseError(
             f"segmentation row count mismatch: {segmentation['cards']} != {expected['rows']}"
         )
-    transform = (
-        _transform_basic
-        if release["rebuild_protocol"] == PROTOCOL_BASIC
-        else _transform_sanitized
-    )
+    if release["rebuild_protocol"] == PROTOCOL_BASIC:
+        transform = _transform_basic
+    else:
+        task_types = (
+            TASK_TYPE_V10
+            if release["rebuild_protocol"] == PROTOCOL_SANITIZED_V10
+            else TASK_TYPE_V11
+        )
+
+        def transform(row: dict[str, Any], run_id: str) -> bytes:
+            return _transform_sanitized(row, run_id, task_types)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fd, temp_name = tempfile.mkstemp(
         prefix=f".{output_path.name}.", suffix=".tmp", dir=output_path.parent

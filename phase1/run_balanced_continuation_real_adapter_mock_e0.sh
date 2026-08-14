@@ -79,11 +79,11 @@ PASS 12: all seven child return codes are durably recorded and any nonzero code 
 PASS 13: exact clean worktree and new output roots are required; receipts and hashes are append-only
 EOF
 
-"$python_bin" phase1/balanced_continuation_real_adapter_mock.py run \
+"$python_bin" -m phase1.balanced_continuation_real_adapter_mock run \
   --output "$run_root" \
   --source-commit "$source_commit" \
   >"${log_root}/worker.stdout" 2>"${log_root}/worker.stderr"
-"$python_bin" phase1/verify_balanced_continuation_real_adapter_mock.py \
+"$python_bin" -m phase1.verify_balanced_continuation_real_adapter_mock \
   --input "$run_root" \
   --output "${log_root}/independent_verification.json" \
   >"${log_root}/verifier.stdout" 2>"${log_root}/verifier.stderr"

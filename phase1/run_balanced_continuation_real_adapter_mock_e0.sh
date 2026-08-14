@@ -91,7 +91,7 @@ EOF
 filename_hits="$(find "$run_root" -type f -printf '%f\n' | grep -icE 'env|key|token|secret' || true)"
 content_hits="$(grep -RIlE --binary-files=without-match \
   'sk-[A-Za-z0-9._-]{20,}|hf_[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|Bearer[[:space:]]+[A-Za-z0-9._-]{24,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----' \
-  "$run_root" | wc -l)"
+  "$run_root" | wc -l || true)"
 if [[ "$filename_hits" != "0" || "$content_hits" != "0" ]]; then
   echo "artifact secret scan failed: filename=${filename_hits} content=${content_hits}" >&2
   exit 7

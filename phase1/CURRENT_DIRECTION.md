@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0J. 2026-08-14 最新覆盖：历史 policy 自然实验失效；LFS 发布真源纠偏
+
+本节晚于 0I；稳定主线仍是 run-clean、decision-local 数据集/benchmark 与 first-960 前瞻确认，未切回
+HCE、多保真或 probe。
+
+1. 0802–0804 MCTS 对 0805 “sequential/no-selection” 的历史自然实验正式判
+   **`HISTORICAL_POLICY_AUDIT_INVALID_NO_CAUSAL_CLAIM`**。冻结实现通过 28 项测试和全部 13 项预检后，
+   因一个非 root 节点 `parents=[]` fail closed；另有 archive 超过预注册 member byte cap。正式结果未产生，
+   grade/outcome 未读。
+2. 两臂在正式结果前已知底座、timeout、children、总时限和 commit 不同；提交历史也没有可追溯的
+   sequential selection 实现。因此旧 fragment 两任务“0.73 对 0.56”撤回为 confounded exploratory，
+   不进论文主张。下一可识别实验必须是显式 matched fixed-sibling/equal-K continuation 新采集。
+3. 学长确认的语料发布真源是 Git LFS 中每批只上传一次的不可变 card batch，由对应版本 manifest/
+   `rebuild_corpus.sh` 重建；合并语料不得继续作为反复上传的真源。审计发现该设计直到 commit `da27852`
+   才实际落地：v4/v5 提交本身没有对应 LFS objects，现存分批按旧顺序分别得到 8,579/9,433 行，与历史
+   记录 8,607/9,323 不同。因此不得宣称当前 Git 可逐字节复原 legacy v4/v5。
+4. 当前 manifest 引用的 `cards_senior_0809.jsonl` 在远端是 1,940 行、1,940 个唯一 ID、0 credential shape，
+   SHA-256=`133500c0fd731201bde35f44598ada17430684ed2b762326ae006101722a3094`，但此前未被 Git 跟踪。
+   本轮只补这个 immutable batch 的 LFS pointer/object，不新增合并 corpus object；legacy 缺口明确保留。
+
+直接证据：
+- `phase1/实验记录/2026-08-14/SearchPolicyEndogeneity_历史协议审计_裁决.md`；
+- `phase1/results/search_policy_contract_audit_invalid_20260814/diagnostic_summary.json`；
+- `phase1/实验记录/2026-08-14/CorpusLFS_发布契约审计.md`；
+- `phase1/results/corpus_lfs_audit_20260814/summary.json`。
+
 ## 0I. 2026-08-14 最新覆盖：prospective 收样、累积与原子评分完整盲链通过影子回放
 
 本节晚于 0H；主线没有变成旧多保真/HCE/probe，仍是 run-clean、decision-local 数据集/benchmark 与

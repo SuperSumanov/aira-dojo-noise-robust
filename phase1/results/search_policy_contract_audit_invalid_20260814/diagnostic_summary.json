@@ -1,0 +1,36 @@
+{
+  "protocol": "search_policy_contract_audit_v1",
+  "status": "HISTORICAL_POLICY_AUDIT_INVALID_NO_CAUSAL_CLAIM",
+  "implementation_commit": "d6b1e388e79ada7f5045a56235844902d2431357",
+  "formal_start_utc": "2026-08-14T01:47:16Z",
+  "formal_log_sha256": "f0ce2cff9bb70d7bfaeec11b0a23a0844961e4a44bc3614048296afe83c273ee",
+  "tests_passed": 28,
+  "preflight_items_passed": 13,
+  "producer_rc": 1,
+  "formal_result_created": false,
+  "outcomes_read": false,
+  "grades_read": false,
+  "first_failure": "non-root parent contract violated",
+  "first_anomaly": {
+    "arm": "mcts",
+    "batch": "0802",
+    "task": "denoising-dirty-documents",
+    "seed": 4,
+    "journal_sha256": "70a6b991754274f477aa52fb27659a3197696c8642beffd30ec6e899084d9266",
+    "step": 21,
+    "parents": [],
+    "nonroot_nodes_in_archive_six_runs": 180,
+    "malformed_nonroot_nodes": 1
+  },
+  "additional_integrity_failure": "later allowlisted member exceeded preregistered 64 MiB cap",
+  "known_contract_confounds": {
+    "model": ["deepseek-v4-flash", "qwen3.5-397b-a17b"],
+    "execution_timeout_seconds": [14400, 4800],
+    "num_children": [5, 2],
+    "time_limit_seconds": [86400, 82800],
+    "source_commit_equal": false
+  },
+  "committed_policy_intervention_traceable": false,
+  "retracted_exploratory_claim": "fragment-level variance share 0.73 versus 0.56",
+  "next_identifiable_design": "matched fixed-sibling equal-K continuation collection"
+}

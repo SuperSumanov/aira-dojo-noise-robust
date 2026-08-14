@@ -1,0 +1,36 @@
+{
+  "status": "LEGACY_V4_V5_NOT_BYTE_REPRODUCIBLE_CURRENT_BATCHES",
+  "audit_utc": "2026-08-14T01:58:23Z",
+  "remote_repo_head": "226985947b80b371c19650a9dd05c8ff0bcab1ad",
+  "remote_repo_branch": "phase1-value-critic",
+  "lfs_contract_first_commit": "da27852041c131ce9ca609078559ee48482f547a",
+  "legacy": {
+    "v4": {
+      "historical_commit": "05f9eb5d343ebb6739728274673d2b19b9eb5460",
+      "ordered_batch_count": 22,
+      "historical_reported_rows": 8607,
+      "current_payload_replay_rows": 8579,
+      "current_payload_replay_sha256": "72505ac667161ae9516ae75d47501fabfc01f767aecd1a909a242fa23ce1b3d6",
+      "byte_reproducible": false
+    },
+    "v5": {
+      "historical_commit": "a61932418318654ad3ba3e41ceca1daa382a47b1",
+      "ordered_batch_count": 23,
+      "historical_reported_rows": 9323,
+      "current_payload_replay_rows": 9433,
+      "current_payload_replay_sha256": "4f97dce56d388068664d89683133943d62d3eac47108f194906d89e283299fd5",
+      "byte_reproducible": false
+    }
+  },
+  "legacy_merged_backup_found": false,
+  "missing_tracked_batch_repair": {
+    "path": "phase1/cards_senior_0809.jsonl",
+    "bytes": 56424624,
+    "rows": 1940,
+    "unique_ids": 1940,
+    "duplicate_ids": 0,
+    "invalid_rows": 0,
+    "credential_shape_hits": 0,
+    "sha256": "133500c0fd731201bde35f44598ada17430684ed2b762326ae006101722a3094"
+  }
+}

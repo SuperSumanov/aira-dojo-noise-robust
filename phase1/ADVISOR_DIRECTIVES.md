@@ -79,6 +79,11 @@ checkpoint-180(仅约 6% 训练量)accuracy **0.8143** / macro 0.7956,「加长 
 - **共享可访问性**：学长无法访问我方 big-data storage 时，README 引用的必要小型 manifest/eval/result 必须随 Git
   或正确的 Git LFS object 推送；大型 raw corpus 保留可重建 manifest、SHA、远端共享路径。不能写一个学长打不开的路径
   就声称已交付数据。
+- **语料 LFS 发布契约**：Git LFS 只放一次写入的不可变分批文件，每批只上传一次；版本由该版本固定的 manifest
+  和 `rebuild_corpus.sh` 组合，pull 后必须以行数与 SHA 验证逐字节重建。不要为每次 v4/v5/vN 重建反复上传一份
+  merged corpus。2026-08-14 审计同时确认：该契约直到 `da27852` 才实际落地，legacy v4/v5 的提交不含后来引用的
+  LFS batch；用现存 batch 重放分别为 8,579/9,433 行而非历史 8,607/9,323。因此旧版本在找回原始 payload/hash
+  前必须标注不可逐字节复现，不能让正确的设计描述覆盖当前 provenance 缺口。
 - **配置审计提醒**：学长最新 `2cb6f0c` 把 best metric 改为 `eval_pair_accuracy` 却保留
   `greater_is_better=False`。逐 checkpoint 日志不受影响，但 best-only 保存方向会反；修复后先用人为递增 metric
   做最小保存测试。旧 0812 结果使用较早的 eval-loss 配置，不能把旧 0.55 事后归因于这个新 bug。

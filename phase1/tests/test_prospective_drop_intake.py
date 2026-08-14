@@ -119,6 +119,7 @@ def args_for(drop: Path, receipt: Path, output: Path, receipt_sha: str) -> argpa
     denylist_sha = hashlib.sha256(denylist.read_bytes()).hexdigest()
     return argparse.Namespace(
         drop_dir=drop,
+        archive_name=None,
         freeze_receipt=receipt,
         precutoff_endpoint_denylist=denylist,
         out_dir=output,
@@ -311,6 +312,58 @@ def test_live_only_incomplete_run_is_audited_and_excluded(tmp_path: Path):
     assert summary["inventory"]["discovered_run_roots"] == 2
     assert summary["inventory"]["runs"] == 1
     assert summary["inventory"]["live_only_runs_excluded"] == 1
+
+
+def test_explicit_archive_selection_is_exact_and_auditable(tmp_path: Path):
+    drop = tmp_path / "drop"
+    drop.mkdir()
+    make_archive(drop / "selected.tar.gz")
+    make_archive(
+        drop / "late.tar.gz",
+        journal=journal_blob(journal_nodes(code_suffix="late")),
+    )
+    receipt = tmp_path / "receipt.json"
+    receipt_sha = make_receipt(receipt, "2026-01-01T00:00:00Z")
+    arguments = args_for(drop, receipt, tmp_path / "intake", receipt_sha)
+    arguments.archive_name = ["selected.tar.gz"]
+
+    build(arguments)
+    summary = json.loads((arguments.out_dir / "summary.json").read_text(encoding="utf-8"))
+    with (arguments.out_dir / "archive_manifest.tsv").open(
+        "r", encoding="utf-8", newline=""
+    ) as handle:
+        manifest = list(csv.DictReader(handle, delimiter="\t"))
+    assert summary["inventory"]["archives"] == 1
+    assert summary["configuration"]["archive_selection"] == "explicit_names"
+    assert summary["configuration"]["selected_archive_names"] == ["selected.tar.gz"]
+    assert [row["name"] for row in manifest] == ["selected.tar.gz"]
+    assert all("late" not in row["code"] for row in read_jsonl(
+        arguments.out_dir / "all_blind_views.jsonl"
+    ))
+
+
+@pytest.mark.parametrize(
+    "names,match",
+    [
+        (["selected.tar.gz", "selected.tar.gz"], "must be unique"),
+        (["../selected.tar.gz"], "safe tar.gz basename"),
+        (["missing.tar.gz"], "is missing"),
+    ],
+)
+def test_explicit_archive_selection_fails_closed(
+    tmp_path: Path, names: list[str], match: str
+):
+    drop = tmp_path / "drop"
+    drop.mkdir()
+    make_archive(drop / "selected.tar.gz")
+    receipt = tmp_path / "receipt.json"
+    receipt_sha = make_receipt(receipt, "2026-01-01T00:00:00Z")
+    arguments = args_for(drop, receipt, tmp_path / "intake", receipt_sha)
+    arguments.archive_name = names
+
+    with pytest.raises(IntakeError, match=match):
+        build(arguments)
+    assert not arguments.out_dir.exists()
 
 
 def test_credential_in_journal_fails_before_json_parse(tmp_path: Path):

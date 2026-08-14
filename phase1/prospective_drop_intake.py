@@ -366,6 +366,33 @@ def structural_pairs(blind_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return output
 
 
+def select_archives(drop_dir: Path, requested_names: list[str] | None) -> list[Path]:
+    """Resolve either the whole flat drop or an explicit immutable archive subset."""
+    if requested_names is None:
+        return sorted(drop_dir.glob("*.tar.gz"), key=lambda path: path.name)
+    if not requested_names:
+        raise IntakeError("explicit archive selection must be non-empty")
+    if len(set(requested_names)) != len(requested_names):
+        raise IntakeError("explicit archive names must be unique")
+    archives: list[Path] = []
+    for name in sorted(requested_names):
+        if (
+            not isinstance(name, str)
+            or not name.endswith(".tar.gz")
+            or name in {".tar.gz", "..tar.gz"}
+            or "/" in name
+            or "\\" in name
+            or "\x00" in name
+            or any(character in name for character in "\t\r\n")
+        ):
+            raise IntakeError("explicit archive name must be a safe tar.gz basename")
+        path = drop_dir / name
+        if not path.exists():
+            raise IntakeError(f"explicit archive is missing: {name}")
+        archives.append(path)
+    return archives
+
+
 def build(args: argparse.Namespace) -> int:
     drop_dir = args.drop_dir.resolve()
     out_dir = args.out_dir.resolve()
@@ -407,7 +434,8 @@ def build(args: argparse.Namespace) -> int:
         getattr(args, "_expect_precutoff_endpoints", PRECUTOFF_ENDPOINTS),
     )
 
-    archives = sorted(drop_dir.glob("*.tar.gz"), key=lambda path: path.name)
+    requested_names = getattr(args, "archive_name", None)
+    archives = select_archives(drop_dir, requested_names)
     if not archives:
         raise IntakeError("drop has no tar.gz archives")
     if len(archives) > args.max_archives:
@@ -581,6 +609,8 @@ def build(args: argparse.Namespace) -> int:
             "metrics_computed": [],
         },
         "configuration": {
+            "archive_selection": "all_in_drop_dir" if requested_names is None else "explicit_names",
+            "selected_archive_names": [path.name for path in archives],
             "max_archives": args.max_archives,
             "max_archive_bytes": args.max_archive_bytes,
             "max_total_archive_bytes": args.max_total_archive_bytes,
@@ -608,6 +638,11 @@ def build(args: argparse.Namespace) -> int:
 def arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--drop-dir", required=True, type=Path)
+    parser.add_argument(
+        "--archive-name",
+        action="append",
+        help="safe tar.gz basename to ingest; repeat for an explicit immutable subset",
+    )
     parser.add_argument("--freeze-receipt", required=True, type=Path)
     parser.add_argument("--precutoff-endpoint-denylist", required=True, type=Path)
     parser.add_argument("--out-dir", required=True, type=Path)

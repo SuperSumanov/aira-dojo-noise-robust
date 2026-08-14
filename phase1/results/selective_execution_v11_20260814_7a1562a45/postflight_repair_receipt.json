@@ -1,0 +1,15 @@
+{
+  "failed_manifest_sha256": "ff9db68b17b1e0626fa31eb8e314f62e0bdd234ddf32a749a24be2cd344ae2e9",
+  "frozen_or_first960_read": false,
+  "independent_verification": "INDEPENDENT_SELECTIVE_EXECUTION_VERIFY_PASS",
+  "independent_verify_sha256": "582fdf5908773e53e7bf62967f4912adb8559ae35a43c68b89301d41c226c0c9",
+  "operation": "postflight_manifest_repair_only_no_scientific_recompute",
+  "producer_rerun": false,
+  "producer_verdict": "SELECTIVE_EXECUTION_DISCOVERY_NO_UNLOCK",
+  "protocol": "selective_execution_v11_retrospective_discovery_v1",
+  "reason": "run.log was still open while the original manifest was verified",
+  "repair_commit": "98065c85c1900c6b1ba1e0632204ab8ad63d44db",
+  "scientific_commit": "7a1562a4506f17d713467956c797fb0d3226a8c5",
+  "summary_sha256": "f12e5bbf7b1b97aca4ea05a01946882977c5bd5c1a98c17ae7736bccab18748b",
+  "verifier_rerun": false
+}

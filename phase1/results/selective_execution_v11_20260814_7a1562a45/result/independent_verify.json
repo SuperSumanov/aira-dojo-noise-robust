@@ -1,0 +1,16 @@
+{
+  "candidate_saving_fraction": 0.09638157894736842,
+  "frozen_or_first960_read": false,
+  "input_sha256": "fc57c03a1c96ce7be19a4db764a539082258fe4c69a2ec8653b41ff85626cb45",
+  "margin_enrichment_verdict": "MARGIN_ENRICHMENT_NOT_SUPPORTED",
+  "per_task_sha256": "f2203f0b7bcd860fa5795e7685d4053c948825cd1484968bda60262827699c37",
+  "producer_verdict": "SELECTIVE_EXECUTION_DISCOVERY_NO_UNLOCK",
+  "protocol": "selective_execution_v11_retrospective_discovery_v1",
+  "risk_coverage_sha256": "7b02d042afa9e5691dbffa096d08ff192dc37c8f9c8bdc636ca833dc5d81400e",
+  "selected": 293,
+  "selected_parent_sha256": "676aaef235e03fe79aa256786616b684c3969ee13f5eec2f2be83ab93eb32787",
+  "selected_table_sha256": "c75c4b3a44b5fa27c427037562bfe6fc91b6d3954c63e09d000a2024b6eebf4d",
+  "summary_sha256": "f12e5bbf7b1b97aca4ea05a01946882977c5bd5c1a98c17ae7736bccab18748b",
+  "task_macro_accuracy": 0.5575913930507589,
+  "verification": "INDEPENDENT_SELECTIVE_EXECUTION_VERIFY_PASS"
+}

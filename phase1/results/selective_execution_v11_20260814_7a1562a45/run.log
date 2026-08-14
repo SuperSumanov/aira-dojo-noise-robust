@@ -1,0 +1,44 @@
+PREFLIGHT_START protocol=selective_execution_v11_retrospective_discovery_v1
+commit=7a1562a4506f17d713467956c797fb0d3226a8c5
+python=Python 3.13.4
+input_sha256=fc57c03a1c96ce7be19a4db764a539082258fe4c69a2ec8653b41ff85626cb45
+.......                                                                  [100%]
+7 passed in 0.12s
+CLI_GUARD_PASS source=phase1\selective_execution_audit.py options=['--input', '--out-dir']
+CLI_GUARD_PASS source=phase1\verify_selective_execution_audit.py options=['--input', '--result-dir', '--receipt']
+STRUCTURE_PASS rows=4263 parents=2293 exact_two=1520 runs=294 tasks=23 quota=295
+staged_filename_secret_hits=0
+high_confidence_content_secret_hits=0
+01 artifact_knobs PASS commit=7a1562a4506f17d713467956c797fb0d3226a8c5
+02 cheap_tests PASS focused=7
+03 forbidden_inputs PASS
+04 distribution PASS rows=4263 parents=2293 exact_two=1520 runs=294 tasks=23
+05 balance PASS dominant=336 quota=295
+06 overwrite_atomicity PASS
+07 leakage_contract PASS frozen_or_first960_read=false
+08 rng_numerics PASS task_seed=20260814 run_seed=20260815
+09 secrets PASS filename=0 content=0
+10 wall_smoke PASS synthetic_focused_tests_only formal_cap_s=1200
+11 power_utility PASS preregistered_support_and_dual_cluster_gates
+12 true_rc PASS launcher_capture_enabled
+13 append_only_hashes PASS pending_postrun_manifest
+PREFLIGHT_ALL_13_PASS
+SELECTIVE_EXECUTION_DISCOVERY_NO_UNLOCK selected=293 task_macro=0.557591 saving=0.096382
+producer_rc=0
+INDEPENDENT_SELECTIVE_EXECUTION_VERIFY_PASS verdict=SELECTIVE_EXECUTION_DISCOVERY_NO_UNLOCK selected=293 task_macro=0.557591
+verifier_rc=0
+postrun_high_confidence_secret_hits=0
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/focused_tests.txt: OK
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/preflight_matrix.txt: OK
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/prereg/SelectiveExecution_文献边界与回顾性发现预注册.md: OK
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/prereg/SelectiveExecution_长实验预检.md: OK
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/producer_help.txt: OK
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/result/independent_verify.json: OK
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/result/per_task.csv: OK
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/result/risk_coverage.csv: OK
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/result/selected_parents.csv: OK
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/result/summary.json: OK
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/run.log: FAILED
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/run_metadata.json: OK
+/c/Research/New/my_project/MLEvolve/formal-experiments/selective_execution_v11_20260814_7a1562a45.staging/verifier_help.txt: OK
+sha256sum: WARNING: 1 computed checksum did NOT match

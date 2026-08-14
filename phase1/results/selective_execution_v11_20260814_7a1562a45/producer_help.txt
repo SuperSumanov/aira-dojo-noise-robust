@@ -1,0 +1,11 @@
+usage: selective_execution_audit.py [-h] --input INPUT --out-dir OUT_DIR
+
+Retrospective, registered selective-execution audit on v11 run-OOF scores. The
+policy reads only endpoint identities and pre-execution OOF scores when it
+selects parents. Ground-truth orientation and score gap are attached only when
+metrics are evaluated. This analysis never opens frozen/test/first-960 files.
+
+options:
+  -h, --help         show this help message and exit
+  --input INPUT
+  --out-dir OUT_DIR

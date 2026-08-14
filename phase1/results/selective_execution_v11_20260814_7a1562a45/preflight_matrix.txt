@@ -1,0 +1,14 @@
+01 artifact_knobs PASS commit=7a1562a4506f17d713467956c797fb0d3226a8c5
+02 cheap_tests PASS focused=7
+03 forbidden_inputs PASS
+04 distribution PASS rows=4263 parents=2293 exact_two=1520 runs=294 tasks=23
+05 balance PASS dominant=336 quota=295
+06 overwrite_atomicity PASS
+07 leakage_contract PASS frozen_or_first960_read=false
+08 rng_numerics PASS task_seed=20260814 run_seed=20260815
+09 secrets PASS filename=0 content=0
+10 wall_smoke PASS synthetic_focused_tests_only formal_cap_s=1200
+11 power_utility PASS preregistered_support_and_dual_cluster_gates
+12 true_rc PASS launcher_capture_enabled
+13 append_only_hashes PASS pending_postrun_manifest
+PREFLIGHT_ALL_13_PASS

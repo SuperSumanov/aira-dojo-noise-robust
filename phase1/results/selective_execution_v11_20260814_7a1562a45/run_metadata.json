@@ -1,0 +1,8 @@
+{
+  "commit": "7a1562a4506f17d713467956c797fb0d3226a8c5",
+  "frozen_or_first960_read": false,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "protocol": "selective_execution_v11_retrospective_discovery_v1",
+  "python": "3.13.4",
+  "verdict": "SELECTIVE_EXECUTION_DISCOVERY_NO_UNLOCK"
+}

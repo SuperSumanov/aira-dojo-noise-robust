@@ -1,0 +1,14 @@
+usage: verify_selective_execution_audit.py [-h] --input INPUT
+                                           --result-dir RESULT_DIR
+                                           --receipt RECEIPT
+
+Independent verifier for the v11 selective-execution audit. This module
+deliberately does not import ``selective_execution_audit``. It reconstructs
+the exact-two pool, votes, confidence ranks, policies, bootstrap intervals,
+gates, and output tables from the locked OOF CSV.
+
+options:
+  -h, --help            show this help message and exit
+  --input INPUT
+  --result-dir RESULT_DIR
+  --receipt RECEIPT

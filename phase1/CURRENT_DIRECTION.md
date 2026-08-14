@@ -3,6 +3,40 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0Q. 2026-08-14 最新覆盖：Qwen 执行门与 selective-execution 二次路线均关闭
+
+本节晚于 0P。稳定主线仍是 run-clean、decision-local 的 MLE-agent 搜索树数据集/benchmark 与
+first-960 前瞻确认；没有切回旧 HCE、多保真或 probe。
+
+1. fresh-anchor Qwen execution-only smoke 在 commit `d89311a` 的新 root 上完成 2 个真实候选执行、0 次
+   operator API 调用、0 次 frozen/first-960 读取。tabular 通过 public submission shape；spaceship 虽进程
+   rc=0，但 boolean prediction 无法按 float 解析。冻结门要求 2/2，正式状态为
+   `VERIFIED_QWEN_EXECUTION_SMOKE_FAIL`，因此 Qwen E1-Q 不得启动、不得换 prompt/model/cap 或补样本追认。
+2. 随后冻结 `selective_execution_v11_retrospective_discovery_v1`，只在既有 v11 train-run OOF 的 1,520 个
+   exact-two parents 上问：char-TFIDF、static LR 与 frozen head 三者一致且高置信时只执行共同 winner，
+   其余执行两个，能否形成安全 cost--risk 点。协议明确承认 FOREAGENT、CIPHER、AgentSwift、CORA 与
+   selective-code literature 已覆盖原语；本轮即使为正也只能是 benchmark operating point。
+3. 科学 commit `7a1562a4506f17d713467956c797fb0d3226a8c5` 的 producer 与不 import producer 的 verifier 一致裁决
+   `SELECTIVE_EXECUTION_DISCOVERY_NO_UNLOCK`：selected=293 / runs=129 / tasks=22；候选数节省
+   `0.09638157894736842`，但 micro/run/task accuracy 仅
+   `0.5494880546075085/0.5572152868664496/0.5575913930507589`，run/task CI 均跨 0.5；相对 matched
+   char-margin 的 task delta `+0.03502779307071244`，CI=`[-0.05286426757718625,0.13190540852024105]`。
+4. q=0.05 的 65-parent/18-task 描述点不满足冻结 support/节省门；margin 在 unanimous pool 内相对 CRC
+   subset 也没有富集，故禁止改 q、删 task 或换 vote 集合救活。本路线关闭，不进入 first-960 sidecar。
+5. 首次 postflight 因仍在追加的 `run.log` 被放进 manifest 而哈希失败；坏 manifest 原样保留。commit
+   `98065c85c1900c6b1ba1e0632204ab8ad63d44db` 只修日志关闭顺序；postflight repair 没有重跑 producer/
+   verifier，独立科学裁决不变。
+6. 学长 branch 最新 `2cb6f0c` 把 best metric 改成 `eval_pair_accuracy`，却保留
+   `greater_is_better=False` 与 `save_strategy="best"`；这会反向选择后续 checkpoint。该 bug 晚于 0812 日志，
+   不能追溯解释既有 1.7B--8B 结果；下一轮训练前应单独修成 `True` 并做 best-checkpoint smoke。
+
+直接证据：
+
+- `phase1/results/balanced_continuation_qwen_execution_smoke_20260814_d89311a_a2/VERDICT.md`；
+- `phase1/results/selective_execution_v11_20260814_7a1562a45/README.md`；
+- `phase1/实验记录/2026-08-14/SelectiveExecution_回顾性发现裁决.md`；
+- `phase1/实验记录/2026-08-14/学长DecisionTrainer_checkpoint方向审计.md`。
+
 ## 0P. 2026-08-14 最新覆盖：真实 E1 方法结果作废；Qwen 备选过门但 production DeepSeek 仍关闭
 
 本节晚于 0O。稳定主线仍是 run-clean、decision-local 的 MLE-agent 搜索树数据集/benchmark 与

@@ -21,3 +21,9 @@ score visibility 与 E1 撤回边界均不变；只把调度改为 QOS-aware 顺
 - 绝不读取 D_search/D_val 后决定是否提交 stage2；完整 8-rollout coverage 关闭后才揭开 D_val。
 
 因此本修订只修正集群调度可行性，不改变实验问题、样本、预算矩阵或统计口径。
+
+随后 stage1 job `10813` 的四个元素均在 1 秒内发现 `exp` venv 的 Python 是指向 GPU 节点不可见 home/UAC
+目标的符号链接，统一在 capability/candidate/API 前 `exit 3`；stage2 未提交、sealed outcome 未打开。独立的
+0-API/0-candidate 工程探针 job `10817` 在同一 `gpu27` 上用共享 `/research` 内的 `aira` Python 完成全部 E1
+host-module import 与 NVVM/ICD 文件检查，12 秒、exit 0（约 0.0033 GPU·时）。因此正式 job 改用该共享解释器，
+并把解释器 path 与 SHA-256 加入 run plan、在每个 job 中复核；其余实验契约仍不变。

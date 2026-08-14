@@ -48,6 +48,7 @@ EXECUTION_TIMEOUT_SECONDS = 600
 OPERATOR_TIMEOUT_SECONDS = 240
 EVALUATOR_TIMEOUT_SECONDS = 120
 EXPECTED_GPU_HOURS = 3.24
+WORKER_PYTHON = pathlib.Path("/research/d7/spc/yzyang4/venvs/aira/bin/python")
 
 
 class PrepareError(RuntimeError):
@@ -129,6 +130,8 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
         raise PrepareError("verified data-gate root is missing or symlinked")
     if not container.is_file() or container.is_symlink():
         raise PrepareError("container image is missing or symlinked")
+    if not WORKER_PYTHON.is_file():
+        raise PrepareError("shared worker Python is missing")
     if file_sha256(container) != EXPECTED_CONTAINER_SHA256:
         raise PrepareError("container SHA-256 differs")
     input_root = data_gate / "e1_inputs"
@@ -267,6 +270,8 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "candidate_executions": 16,
             "operator_api_calls": 8,
             "expected_gpu_hours": EXPECTED_GPU_HOURS,
+            "worker_python_path": WORKER_PYTHON.as_posix(),
+            "worker_python_sha256": file_sha256(WORKER_PYTHON),
             "candidate_timeout_seconds": EXECUTION_TIMEOUT_SECONDS,
             "candidate_timeout_upper_bound_gpu_hours": 16 * EXECUTION_TIMEOUT_SECONDS / 3600,
             "slurm_array_concurrency": 4,
@@ -297,6 +302,8 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "execution_contract_sha256": file_sha256(legacy_path),
             "container_path": container.as_posix(),
             "container_sha256": EXPECTED_CONTAINER_SHA256,
+            "worker_python_path": run_plan["worker_python_path"],
+            "worker_python_sha256": run_plan["worker_python_sha256"],
             "contains_outcomes": False,
             "first960_or_prospective_read": False,
             "dtest_rows_read": 0,

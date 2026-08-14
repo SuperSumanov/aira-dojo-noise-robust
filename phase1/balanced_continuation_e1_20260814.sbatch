@@ -33,7 +33,7 @@ set +a
 : "${SLURM_ARRAY_TASK_ID:?}"
 
 index="${SLURM_ARRAY_TASK_ID}"
-python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
+python_bin=/research/d7/spc/yzyang4/venvs/aira/bin/python
 container=/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif
 hf_cache=/research/d7/spc/yzyang4/scratch/hf_cache
 prep="${E1_RUN_ROOT}/preparation"
@@ -70,6 +70,10 @@ cd "$E1_SOURCE_ROOT"
 expected_commit="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["source_commit"])' "$real_contract")"
 test "$(git rev-parse HEAD)" = "$expected_commit"
 test -z "$(git status --porcelain)"
+expected_python_path="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["worker_python_path"])' "$prep/run_plan.json")"
+expected_python_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["worker_python_sha256"])' "$prep/run_plan.json")"
+test "$python_bin" = "$expected_python_path"
+test "$(sha256sum "$python_bin" | awk '{print $1}')" = "$expected_python_sha"
 
 worker_stdout="${job_log_root}/worker_${index}.stdout"
 worker_stderr="${job_log_root}/worker_${index}.stderr"

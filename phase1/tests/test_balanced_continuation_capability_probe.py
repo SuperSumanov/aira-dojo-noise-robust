@@ -31,6 +31,8 @@ def test_node_local_nvidia_fix_and_capability_precede_paid_worker() -> None:
     )
     assert "cp /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4" not in launcher
     assert "source_nvvm=/usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4" in job
+    assert "python_bin=/research/d7/spc/yzyang4/venvs/aira/bin/python" in job
+    assert 'sha256sum "$python_bin"' in job
     assert job.index('cp "$source_nvvm"') < job.index("singularity exec")
     assert job.index("singularity exec") < job.index(
         "phase1.balanced_continuation_real_worker"

@@ -140,6 +140,13 @@ if any(plan.get(key) != value for key, value in required.items()):
     raise SystemExit("E1 run-plan resource matrix differs")
 if len(plan["stage_one_engineering_gate_indices"]) != 4 or len(plan["stage_two_remaining_indices"]) != 4:
     raise SystemExit("E1 stage sizes differ")
+if (
+    plan.get("worker_python_path")
+    != "/research/d7/spc/yzyang4/venvs/aira/bin/python"
+    or not isinstance(plan.get("worker_python_sha256"), str)
+    or len(plan["worker_python_sha256"]) != 64
+):
+    raise SystemExit("E1 worker Python contract differs")
 pathlib.Path(sys.argv[2]).write_text(json.dumps({"verified": required, "stage_one": plan["stage_one_engineering_gate_indices"], "stage_two": plan["stage_two_remaining_indices"]}, sort_keys=True, separators=(",", ":")) + "\n")
 print(json.dumps(plan, sort_keys=True, separators=(",", ":")))
 PY
@@ -151,7 +158,7 @@ PASS 3: two tasks, one anchor/task, two exact-code-distinct siblings and pre-out
 PASS 4: actual plan prints 8 jobs, 16 candidate attempts, 8 API calls, expected 3.24 GPU-hours, one GPU/job and array concurrency four
 PASS 5: selected physical runs have zero frozen endpoint/run overlap; first-960/prospective/D_test are not read
 PASS 6: durable intent precedes paid action; incomplete PENDING is ambiguous and cannot retry or receive a replacement
-PASS 7: source/container/operator/prompt/data/split/evaluator/timeout/workspace contracts are hash-bound and identical across all assignments
+PASS 7: source/container/worker-Python/operator/prompt/data/split/evaluator/timeout/workspace contracts are path/hash-bound and identical across all assignments
 PASS 8: blocked assignment and request seeds are recorded; finite-number, direction, invalid-format and timeout paths have regression coverage
 PASS 9: credentials come only from the remote environment; candidate env is allowlisted and filename/content scans are mandatory per job
 PENDING 10: stage one is exactly one complete block per task; every rollout starts with a node-local isolation/NVIDIA capability gate; stage two has an afterok dependency and cannot start until all four capability/worker/verifier receipts pass

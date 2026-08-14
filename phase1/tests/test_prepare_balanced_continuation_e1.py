@@ -75,7 +75,10 @@ def test_prepare_freezes_eight_rollouts_and_two_score_blind_stages(
     (data_gate / "top_manifest.sha256").write_text("manifest\n", encoding="ascii")
     container = tmp_path / "image.sif"
     container.write_bytes(b"container")
+    worker_python = tmp_path / "shared-python"
+    worker_python.write_bytes(b"python-binary")
     monkeypatch.setattr(prepare, "EXPECTED_CONTAINER_SHA256", sha(container.read_bytes()))
+    monkeypatch.setattr(prepare, "WORKER_PYTHON", worker_python)
     monkeypatch.setattr(prepare, "exact_source_commit", lambda: "1" * 40)
     monkeypatch.setattr(prepare, "validate_worker_contract", lambda value: value)
 
@@ -89,6 +92,8 @@ def test_prepare_freezes_eight_rollouts_and_two_score_blind_stages(
     assert plan["rollout_jobs"] == 8
     assert plan["candidate_executions"] == 16
     assert plan["operator_api_calls"] == 8
+    assert plan["worker_python_path"] == worker_python.as_posix()
+    assert plan["worker_python_sha256"] == sha(worker_python.read_bytes())
     assert len(plan["stage_one_engineering_gate_indices"]) == 4
     assert len(plan["stage_two_remaining_indices"]) == 4
     rows = prepare.read_jsonl(output / "assignment" / "assignment_manifest.jsonl")

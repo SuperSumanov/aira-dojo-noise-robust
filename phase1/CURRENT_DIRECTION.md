@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0N. 2026-08-14 最新覆盖：真实 adapter 边界已冻结，执行实现仍待完成
+
+本节晚于 0M。稳定主线与 balanced-continuation 的 gated 地位均不变；本轮是 0-GPU/0-API 接口审计，
+不是方法正结果。
+
+1. 当前 MCTS 路径会生成多个 child、自动 debug、调用 analyze，并在抽取失败时重试；它不能满足每个
+   transition 恰好一次 operator call、一次执行、零重试的 equal-K 干预，真实 adapter 必须绕开该路径。
+2. 当前 `MLEBenchTask.step_task` 默认在进程内读取完整 private answers；旧 HCE 又是 50/25/25，且把
+   `dval_score` 放入 orchestrator 可见的 `AUX_EVAL_INFO`。它不能通过改 config 变成当前 80/10/10、
+   D_search-only visible、D_val mode-0600 sealed、D_test never-read 的 full-locked 契约。
+3. `balanced_continuation_real_contract.py` 已冻结 worker、public execution、D_search、sealed D_val、visible
+   step 与 operator request/response 的 exact-key schema、SHA identity、finite-number、POSIX path、
+   one-call/no-retry 和 credential fail-closed 规则。新增 12 项接口测试；连同 assignment/worker 测试共
+   34 项通过。
+4. 当前尚未实现真实 public-only executor、80/10/10 split、隔离的 D_search scorer/D_val sealer 与独立
+   collection verifier。下一步仅做 0-GPU mock adapter 端到端烟测；E1 的 8 jobs/16 real executions/
+   预计 3.24 GPU·时仍需明确批准，不得因 schema 测试通过而自动启动。
+
+直接证据：
+- `phase1/balanced_continuation_real_contract.py`；
+- `phase1/tests/test_balanced_continuation_real_contract.py`；
+- `phase1/实验记录/2026-08-14/BalancedContinuation_RealAdapter_接口审计.md`。
+
 ## 0M. 2026-08-14 最新覆盖：balanced-continuation 完整 synthetic worker E0 关门
 
 本节晚于 0L。稳定主线仍是 run-clean、decision-local 的 MLE-agent 搜索树数据集/benchmark 与

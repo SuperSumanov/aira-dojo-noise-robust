@@ -6,7 +6,7 @@ source "$(dirname "$0")/../../experiment_env.sh"
 SEED=${1:-7}
 
 accelerate launch \
---config_file "$ACCELERATE_ZERO3_CONFIG" \
+--config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
 --train_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
 --test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
@@ -25,7 +25,7 @@ accelerate launch \
 --seed "$SEED" > "$LOG_DIR/Qwen3-1.7B-Base_critic_decision_seed${SEED}.log" 2>&1
 
 accelerate launch \
---config_file "$ACCELERATE_ZERO3_CONFIG" \
+--config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
 --train_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
 --test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
@@ -44,7 +44,7 @@ accelerate launch \
 --seed "$SEED" > "$LOG_DIR/Qwen3-4B-Base_critic_decision_seed${SEED}.log" 2>&1
 
 accelerate launch \
---config_file "$ACCELERATE_ZERO3_CONFIG" \
+--config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
 --train_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
 --test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
@@ -63,7 +63,7 @@ accelerate launch \
 --seed "$SEED" > "$LOG_DIR/Qwen3-8B-Base_critic_decision_seed${SEED}.log" 2>&1
 
 accelerate launch \
---config_file "$ACCELERATE_ZERO3_CONFIG" \
+--config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
 --train_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
 --test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
@@ -82,7 +82,7 @@ accelerate launch \
 --seed "$SEED" > "$LOG_DIR/Qwen3-14B-Base_critic_decision_seed${SEED}.log" 2>&1
 
 accelerate launch \
---config_file "$ACCELERATE_ZERO3_CONFIG" \
+--config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
 --train_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
 --test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
@@ -101,7 +101,7 @@ accelerate launch \
 --seed "$SEED" > "$LOG_DIR/Qwen2.5-1.5B_critic_decision_seed${SEED}.log" 2>&1
 
 accelerate launch \
---config_file "$ACCELERATE_ZERO3_CONFIG" \
+--config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
 --train_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
 --test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
@@ -120,7 +120,7 @@ accelerate launch \
 --seed "$SEED" > "$LOG_DIR/Qwen2.5-3B_critic_decision_seed${SEED}.log" 2>&1
 
 accelerate launch \
---config_file "$ACCELERATE_ZERO3_CONFIG" \
+--config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
 --train_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
 --test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
@@ -139,7 +139,7 @@ accelerate launch \
 --seed "$SEED" > "$LOG_DIR/Qwen2.5-7B_critic_decision_seed${SEED}.log" 2>&1
 
 accelerate launch \
---config_file "$ACCELERATE_ZERO3_CONFIG" \
+--config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
 --train_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
 --test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \

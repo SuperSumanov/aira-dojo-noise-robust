@@ -372,7 +372,7 @@ def save_cards(cards_by_run_id: Dict[str, List[Card]], path: str) -> None:
         for run_id, cards in cards_by_run_id.items()
     }
     with open(path, "w") as output_file:
-        json.dump(serialized_runs, output_file)
+        json.dump(serialized_runs, output_file, indent=2)
 
 
 def load_cards(path: str) -> Dict[str, List[Card]]:

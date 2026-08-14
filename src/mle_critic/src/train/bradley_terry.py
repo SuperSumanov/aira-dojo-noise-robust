@@ -115,8 +115,12 @@ def main() -> None:
     if len(training_pool) < 2:
         raise ValueError("training pool has fewer than two records; cannot create validation data")
 
+    rng = random.Random(config.seed)
+    rng.shuffle(training_pool)
+    rng.shuffle(testing_pool)
     training_records = training_pool
     validation_records = testing_pool
+
     print(
         f"[rm-hf] split={split_name} total={len(training_pool)} "
         f"train={len(training_records)} validation={len(validation_records)}",

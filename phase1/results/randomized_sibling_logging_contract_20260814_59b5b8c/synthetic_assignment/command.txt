@@ -1,0 +1,1 @@
+phase1/randomized_sibling_logging_manifest.py --parents /research/d7/spc/yzyang4/randomized-sibling-contract-59b5b8c-a2/synthetic_fixture/parents.jsonl --config /research/d7/spc/yzyang4/randomized-sibling-contract-59b5b8c-a2/synthetic_fixture/config.json --output /research/d7/spc/yzyang4/randomized-sibling-contract-59b5b8c-a2/synthetic_assignment

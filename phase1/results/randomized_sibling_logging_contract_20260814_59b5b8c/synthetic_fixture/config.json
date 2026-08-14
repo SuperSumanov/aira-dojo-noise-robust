@@ -1,0 +1,18 @@
+{
+  "adaptive_allocation_allowed": false,
+  "calibration_parents_per_task": {
+    "task-a": 1,
+    "task-b": 1
+  },
+  "continuation_horizon": 1,
+  "created_utc": "2026-08-14T12:00:00Z",
+  "evaluator_contract_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "execution_timeout_seconds": 600,
+  "operator_contract_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "policy_contract_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "retry_count": 0,
+  "schema_version": "randomized-sibling-config-v1",
+  "seed": 20260814,
+  "source_commit": "59b5b8c698c6d687510cc184034d887619324243",
+  "workspace_policy": "fresh_per_rollout"
+}

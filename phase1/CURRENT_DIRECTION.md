@@ -3,6 +3,40 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0S. 2026-08-14 最新覆盖：随机兄弟日志契约通过合成验收，生产接入仍未授权
+
+本节晚于 0R。稳定主线仍是 physical-run-clean、choice-set-faithful 的 MLE-agent 决策数据/benchmark 与
+first-960 prospective confirmation；E1-Q 仍只是标签可行性支线，E2/E3 仍关闭，也没有切回旧 HCE、多保真或 probe。
+
+1. 近期防 scoop 审计进一步确认：AgentRM、ReLoc、DataPRM、CePRM、PRO-Step 与 UATS 已覆盖 MCTS/agent
+   状态价值、同 parent revision/sibling 监督、环境感知过程奖励和不确定性预算分配等原语。因此 tree critic、
+   sibling pair、listwise、hurdle 或 uncertainty 本身均不申新。可防守的正面资产收缩为真实 MLE 场景下
+   physical provenance + exact choice set + outcome-blind randomized intervention + cost/propensity 审计。
+2. commit `59b5b8c698c6d687510cc184034d887619324243` 冻结 Randomized Sibling Logging v1：输入只允许
+   parent/sibling 身份与哈希、上游选择概率声明、receipt hash 和 displaced-slot 声明；禁止 code、score、label、
+   execution status 等 outcome-bearing 字段。Broad 层每 sibling K=1；task-fixed calibration 层 K=2；兄弟顺序与
+   rollout seed 独立哈希随机化，并写出严格 propensity。
+3. 精确 commit 的全新 Linux worktree 中，聚焦测试 `25 passed in 1.04s`，全部 `phase1/tests` 为
+   `263 passed in 27.85s`。独立 verifier 不导入 producer，逐项重建 6 parents、2 tasks、16 rollout jobs 与
+   16 candidate-execution slots，裁决 `VERIFIED_OUTCOME_BLIND_RANDOMIZED_SIBLING_ASSIGNMENT`；产物 outcome=0，
+   远端可疑文件名与高置信凭据命中均为 0，下载后 16 个文件 hash mismatch=0。
+4. 该验收明确不是生产闭环：`actual_production_budget_decrement_verified=false`、
+   `upstream_selection_probability_verified_by_assignment=false`。只有生产 scheduler 独立签名真实被替换 slot、
+   真正扣减日常预算并记录上游 propensity 后，才可称 budget-neutral interventional logging。未经与学长共同确认，
+   不得接入其约 60 runs/day 的生产，也不得宣称因果效果或方法收益。
+5. 第一轮远端验收在测试前暴露既有 LFS 404；坏 run 保留。对应 1,119,807-byte 对象经 43-member tar 流式扫描
+   （可疑名 0、高置信凭据 0）、OID 校验后仅补传既有对象；集群对精确 commit/path 重新 fetch 并重算完整 SHA，
+   状态 `VERIFIED_REMOTE_LFS_OBJECT`。这修复仓库可获取性，不改变任何科学结果。
+6. prospective monitor 截至 `2026-08-14T11:09:48Z` 仍为 128 baseline、0 ready transaction、0 outcome read；
+   学长 `dojo-reproduce` 仍为 `2cb6f0c57790407cae84070d3eb475da3cbe9597`。在新 archive 到达前不读取或调参。
+
+直接证据：
+
+- `phase1/results/randomized_sibling_logging_contract_20260814_59b5b8c/README.md`；
+- `phase1/实验记录/2026-08-14/RandomizedSiblingLogging_v1_设计冻结.md`；
+- `phase1/实验记录/2026-08-14/最新直接竞品与正面突破_防scoop审计.md`；
+- `phase1/实验记录/2026-08-14/LFS对象_a96e41b_补传审计.md`。
+
 ## 0R. 2026-08-14 最新覆盖：E1-Q 标签可行、label repeatability v2 入主线，方法收益仍未解锁
 
 本节晚于 0Q。稳定主线仍是 physical-run-clean、choice-set-faithful 的 MLE-agent 决策数据/benchmark 与

@@ -1,0 +1,44 @@
+{
+  "actual_production_budget_decrement_verified": false,
+  "adaptive_allocation_allowed": false,
+  "budget_conservation_basis": "input-declared-displaced-slots-equal-planned-slots",
+  "calibration_parent_count": 2,
+  "config_input_sha256": "65563aac66c1117eb1b146010be8f77ed2761ecb9d1dbdf7a4f83050b0c53aa8",
+  "contains_outcomes": false,
+  "continuation_horizon": 1,
+  "created_utc": "2026-08-14T12:00:00Z",
+  "declared_slot_ledger_matches_plan": true,
+  "displaced_candidate_execution_slots": 16,
+  "evaluator_contract_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "fresh_workspace_required": true,
+  "operator_contract_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "outcomes_read": false,
+  "parent_count": 6,
+  "parents_input_sha256": "cff19c9da62c471f2ed8f58f56135bb9da364771532a70b73f243840d3287e39",
+  "planned_candidate_execution_slots": 16,
+  "policy_contract_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "protocol": "randomized-sibling-logging-v1",
+  "retry_count": 0,
+  "rollout_jobs": 16,
+  "seed": 20260814,
+  "sibling_count": 12,
+  "source_commit": "59b5b8c698c6d687510cc184034d887619324243",
+  "status": "OUTCOME_BLIND_RANDOMIZED_ASSIGNMENT_FROZEN",
+  "task_count": 2,
+  "task_support": {
+    "task-a": {
+      "calibration_parent_count": 1,
+      "calibration_probability": 0.3333333333333333,
+      "parent_count": 3,
+      "planned_candidate_execution_slots": 8
+    },
+    "task-b": {
+      "calibration_parent_count": 1,
+      "calibration_probability": 0.3333333333333333,
+      "parent_count": 3,
+      "planned_candidate_execution_slots": 8
+    }
+  },
+  "unique_sibling_code_sha256_count": 12,
+  "upstream_selection_probability_verified_by_assignment": false
+}

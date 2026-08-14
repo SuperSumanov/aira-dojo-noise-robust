@@ -1,0 +1,3 @@
+files_scanned_before_audit=14
+suspicious_filename_hits=0
+high_confidence_credential_file_hits=0

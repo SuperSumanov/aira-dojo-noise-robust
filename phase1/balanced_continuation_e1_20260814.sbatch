@@ -62,14 +62,29 @@ for required in \
     exit 3
   fi
 done
-if [[ -z "${PRIMARY_KEY_DEEPSEEK_V4_FLASH:-}" && -z "${PRIMARY_KEY:-}" ]]; then
-  printf 'E1_JOB_OPERATOR_CREDENTIAL_UNAVAILABLE\n' >&2
-  exit 5
-fi
 cd "$E1_SOURCE_ROOT"
 expected_commit="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["source_commit"])' "$real_contract")"
 test "$(git rev-parse HEAD)" = "$expected_commit"
 test -z "$(git status --porcelain)"
+operator_profile="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["operator_profile"])' "$prep/run_plan.json")"
+case "$operator_profile" in
+  deepseek)
+    if [[ -z "${PRIMARY_KEY_DEEPSEEK_V4_FLASH:-}" && -z "${PRIMARY_KEY:-}" ]]; then
+      printf 'E1_JOB_DEEPSEEK_CREDENTIAL_UNAVAILABLE\n' >&2
+      exit 5
+    fi
+    ;;
+  qwen)
+    if [[ -z "${PRIMARY_KEY_QWEN3_CODER_FLASH:-}" ]]; then
+      printf 'E1_JOB_QWEN_CREDENTIAL_UNAVAILABLE\n' >&2
+      exit 5
+    fi
+    ;;
+  *)
+    printf 'E1_JOB_OPERATOR_PROFILE_UNSUPPORTED=%s\n' "$operator_profile" >&2
+    exit 5
+    ;;
+esac
 expected_python_path="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["worker_python_path"])' "$prep/run_plan.json")"
 expected_python_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["worker_python_sha256"])' "$prep/run_plan.json")"
 test "$python_bin" = "$expected_python_path"

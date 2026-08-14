@@ -8,30 +8,71 @@ fi
 set -u
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 
-if [[ $# -ne 1 || ! "$1" =~ ^[0-9a-f]{40}$ ]]; then
-  echo "usage: $0 SOURCE_COMMIT" >&2
+if [[ $# -lt 1 || $# -gt 2 || ! "$1" =~ ^[0-9a-f]{40}$ ]]; then
+  echo "usage: $0 SOURCE_COMMIT [deepseek|qwen]" >&2
   exit 2
 fi
 source_commit="$1"
+operator_profile="${2:-deepseek}"
 short_commit="${source_commit:0:8}"
 base_repo=/research/d7/spc/yzyang4/aira-dojo
 credential_env="${base_repo}/.env"
-source_root="/research/d7/spc/yzyang4/aira-dojo-e1-real-${short_commit}"
-run_root="/research/d7/spc/yzyang4/balanced-e1-real-${short_commit}-a1"
-external_log_root="/research/d7/spc/yzyang4/logs/balanced-e1-real-${short_commit}-a1"
-data_gate=/research/d7/spc/yzyang4/balanced-e1-data-acd215a9-a1
+declare -a prepare_profile_args=()
+declare -a verify_selection_args=()
+declare -a profile_required_paths=()
+case "$operator_profile" in
+  deepseek)
+    source_root="/research/d7/spc/yzyang4/aira-dojo-e1-real-${short_commit}"
+    run_root="/research/d7/spc/yzyang4/balanced-e1-real-${short_commit}-a1"
+    external_log_root="/research/d7/spc/yzyang4/logs/balanced-e1-real-${short_commit}-a1"
+    data_gate=/research/d7/spc/yzyang4/balanced-e1-data-acd215a9-a1
+    preflight_test_scope="selected-operator"
+    preflight_anchor_scope="one anchor/task and pre-outcome eligible-parent/run support are printed in the verified data gate"
+    preflight_claim_scope="E1 is engineering/descriptive only"
+    ;;
+  qwen)
+    source_root="/research/d7/spc/yzyang4/aira-dojo-e1q-real-${short_commit}"
+    run_root="/research/d7/spc/yzyang4/balanced-e1q-real-${short_commit}-a1"
+    external_log_root="/research/d7/spc/yzyang4/logs/balanced-e1q-real-${short_commit}-a1"
+    data_gate="/research/d7/spc/yzyang4/balanced-e1q-data-${short_commit}-a1"
+    qwen_receipt="$source_root/phase1/results/balanced_continuation_qwen_execution_smoke_20260814_d89311a_a2/verification.task_type_repair.047420c.json"
+    prior_selection=/research/d7/spc/yzyang4/balanced-e1-data-acd215a9-a1/e1_inputs/selected_public.json
+    prior_selection_sha256=26d018455fb1a9fe2037f4ad96a6a3d7bfa4299ae3a82236eb48e24e89f795af
+    prepare_profile_args=(
+      --operator-profile qwen
+      --qwen-execution-smoke-receipt "$qwen_receipt"
+    )
+    verify_selection_args=(
+      --exclude-selected-public "$prior_selection"
+      --exclude-selected-public-sha256 "$prior_selection_sha256"
+    )
+    profile_required_paths=("$prior_selection")
+    preflight_test_scope="Qwen task-type repair"
+    preflight_anchor_scope="one fresh anchor/task and pre-outcome eligible-parent/run support are printed in the verified data gate; both prior physical runs are excluded"
+    preflight_claim_scope="E1-Q is a fresh-anchor feasibility/descriptive pilot only"
+    ;;
+  *)
+    echo "unsupported E1 operator profile: $operator_profile" >&2
+    exit 2
+    ;;
+esac
 cards="${base_repo}/phase1/cards_current_v11.jsonl"
 data_source=/research/d7/spc/yzyang4/mle-bench-data
 python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
 container="${base_repo}/build/superimage/superimage.root.2026-07-macos-v1.sif"
 hf_cache=/research/d7/spc/yzyang4/scratch/hf_cache
 
-for required in "$base_repo" "$data_gate" "$cards" "$data_source" "$python_bin" "$container" "$hf_cache"; do
+for required in "$base_repo" "$data_gate" "$cards" "$data_source" "$python_bin" "$container" "$hf_cache" "${profile_required_paths[@]}"; do
   if [[ ! -e "$required" ]]; then
     echo "required E1 preflight path absent: $required" >&2
     exit 3
   fi
 done
+if [[ "$operator_profile" = qwen ]] && \
+  [[ "$(sha256sum "$prior_selection" | awk '{print $1}')" != "$prior_selection_sha256" ]]; then
+  echo "E1-Q prior-selection identity SHA-256 differs" >&2
+  exit 3
+fi
 if [[ ! -f "$credential_env" || -L "$credential_env" || "$(stat -c %a "$credential_env")" != 600 ]]; then
   echo "remote E1 credential file is absent, symlinked, or not mode 600" >&2
   exit 5
@@ -45,10 +86,20 @@ for target in "$source_root" "$run_root" "$external_log_root"; do
     exit 4
   fi
 done
-if [[ -z "${PRIMARY_KEY_DEEPSEEK_V4_FLASH:-}" && -z "${PRIMARY_KEY:-}" ]]; then
-  echo "E1 operator credential unavailable in remote environment" >&2
-  exit 6
-fi
+case "$operator_profile" in
+  deepseek)
+    if [[ -z "${PRIMARY_KEY_DEEPSEEK_V4_FLASH:-}" && -z "${PRIMARY_KEY:-}" ]]; then
+      echo "E1 DeepSeek credential unavailable in remote environment" >&2
+      exit 6
+    fi
+    ;;
+  qwen)
+    if [[ -z "${PRIMARY_KEY_QWEN3_CODER_FLASH:-}" ]]; then
+      echo "E1 Qwen credential unavailable in remote environment" >&2
+      exit 6
+    fi
+    ;;
+esac
 
 mkdir -p "$external_log_root"
 git -C "$base_repo" fetch fork codex-prospective-decision-v1-20260814 \
@@ -68,12 +119,20 @@ cp "$0" "$run_root/launcher.sh"
 cp "$source_root/phase1/scripts/monitor_balanced_continuation_e1_20260814.sh" \
   "$run_root/monitor.sh"
 cp "$source_root/phase1/balanced_continuation_e1_20260814.sbatch" "$run_root/job.sbatch"
-cp "$source_root/phase1/实验记录/2026-08-14/BalancedContinuation_E1_真实预注册.md" \
-  "$run_root/frozen_prereg.md"
+if [[ "$operator_profile" = qwen ]]; then
+  cp "$source_root/phase1/实验记录/2026-08-14/BalancedContinuation_E1Q_FreshAnchor_预注册.md" \
+    "$run_root/frozen_prereg.md"
+  cp "$source_root/phase1/实验记录/2026-08-14/BalancedContinuation_QwenExecutionSmoke_任务类型纠错附录.md" \
+    "$run_root/qwen_task_type_repair.md"
+else
+  cp "$source_root/phase1/实验记录/2026-08-14/BalancedContinuation_E1_真实预注册.md" \
+    "$run_root/frozen_prereg.md"
+fi
 cp "$source_root/phase1/实验记录/2026-08-14/BalancedContinuation_E1_QOS_Amendment.md" \
   "$run_root/frozen_qos_amendment.md"
 printf '%s\n' "$source_commit" >"$run_root/source_commit.txt"
 printf '%s\n' "$data_gate" >"$run_root/data_gate_root.txt"
+printf '%s\n' "$operator_profile" >"$run_root/operator_profile.txt"
 
 cd "$source_root"
 "$python_bin" -m pytest -q \
@@ -84,6 +143,8 @@ cd "$source_root"
   phase1/tests/test_balanced_continuation_worker.py \
   phase1/tests/test_balanced_continuation_real_contract.py \
   phase1/tests/test_balanced_continuation_operator_entry.py \
+  phase1/tests/test_balanced_continuation_qwen_operator_entry.py \
+  phase1/tests/test_balanced_continuation_qwen_execution_smoke.py \
   phase1/tests/test_balanced_continuation_real_worker.py \
   phase1/tests/test_prepare_balanced_continuation_e1.py \
   phase1/tests/test_verify_balanced_continuation_real_worker.py \
@@ -102,6 +163,7 @@ cd "$source_root"
   --frozen-b0 "$source_root/phase1/v11_decision/decision_frozen_v11_b0.jsonl" \
   --frozen-b1 "$source_root/phase1/v11_decision/decision_frozen_v11_b1.jsonl" \
   --frozen-b2 "$source_root/phase1/v11_decision/decision_frozen_v11_b2.jsonl" \
+  "${verify_selection_args[@]}" \
   --result "$data_gate/e1_inputs" \
   --receipt "$run_root/preflight_receipts/e1_inputs.verify.json" \
   >"${external_log_root}/input_verify.stdout" 2>"${external_log_root}/input_verify.stderr"
@@ -115,6 +177,7 @@ cd "$source_root"
   --data-gate "$data_gate" \
   --container "$container" \
   --output "$run_root/preparation" \
+  "${prepare_profile_args[@]}" \
   --created-utc "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
   >"${external_log_root}/prepare.stdout" 2>"${external_log_root}/prepare.stderr"
 "$python_bin" -m phase1.verify_balanced_continuation_manifest \
@@ -123,9 +186,11 @@ cd "$source_root"
   >"${external_log_root}/assignment_verify.stdout" \
   2>"${external_log_root}/assignment_verify.stderr"
 
-"$python_bin" - "$run_root/preparation/run_plan.json" "$run_root/preflight_matrix.json" <<'PY'
+"$python_bin" - "$run_root/preparation/run_plan.json" "$run_root/preflight_matrix.json" \
+  "$operator_profile" <<'PY'
 import json, pathlib, sys
 plan = json.load(open(sys.argv[1]))
+operator_profile = sys.argv[3]
 required = {
     "rollout_jobs": 8,
     "candidate_executions": 16,
@@ -138,6 +203,15 @@ required = {
 }
 if any(plan.get(key) != value for key, value in required.items()):
     raise SystemExit("E1 run-plan resource matrix differs")
+if plan.get("operator_profile") != operator_profile:
+    raise SystemExit("E1 run-plan operator profile differs")
+if operator_profile == "qwen":
+    if (
+        plan.get("operator_model_id") != "qwen3-coder-flash"
+        or plan.get("qwen_execution_smoke_receipt_sha256")
+        != "40a7f793a70d30b12ace25a8b929caf6c009df98ce045b7b50ff4bac1df05ecf"
+    ):
+        raise SystemExit("E1-Q repaired execution gate differs")
 if len(plan["stage_one_engineering_gate_indices"]) != 4 or len(plan["stage_two_remaining_indices"]) != 4:
     raise SystemExit("E1 stage sizes differ")
 if (
@@ -147,33 +221,48 @@ if (
     or len(plan["worker_python_sha256"]) != 64
 ):
     raise SystemExit("E1 worker Python contract differs")
-pathlib.Path(sys.argv[2]).write_text(json.dumps({"verified": required, "stage_one": plan["stage_one_engineering_gate_indices"], "stage_two": plan["stage_two_remaining_indices"]}, sort_keys=True, separators=(",", ":")) + "\n")
+pathlib.Path(sys.argv[2]).write_text(json.dumps({
+    "verified": required,
+    "operator_profile": operator_profile,
+    "operator_model_id": plan.get("operator_model_id"),
+    "qwen_execution_smoke_receipt_sha256": plan.get(
+        "qwen_execution_smoke_receipt_sha256"
+    ),
+    "stage_one": plan["stage_one_engineering_gate_indices"],
+    "stage_two": plan["stage_two_remaining_indices"],
+}, sort_keys=True, separators=(",", ":")) + "\n")
 print(json.dumps(plan, sort_keys=True, separators=(",", ":")))
 PY
 
-cat >"$run_root/preflight_before_stage1.txt" <<'EOF'
+cat >"$run_root/preflight_before_stage1.txt" <<EOF
 PASS 1: stable mainline remains run-clean decision-local benchmark; V_H estimand, three later primary gates and E1 retraction boundary are frozen
-PASS 2: producer, independent input/split/assignment/worker/collection verifiers, state machine, evaluator and capability unit tests passed; each GPU job must pass a live node-local capability gate before any candidate/API action
-PASS 3: two tasks, one anchor/task, two exact-code-distinct siblings and pre-outcome eligible-parent/run support are printed in the verified data gate
+PASS 2: producer, independent input/split/assignment/worker/collection verifiers, ${preflight_test_scope}, state machine, evaluator and capability unit tests passed; each GPU job must pass a live node-local capability gate before any candidate/API action
+PASS 3: two tasks, ${preflight_anchor_scope}; each anchor has two exact-code-distinct siblings
 PASS 4: actual plan prints 8 jobs, 16 candidate attempts, 8 API calls, expected 3.24 GPU-hours, one GPU/job and array concurrency four
 PASS 5: selected physical runs have zero frozen endpoint/run overlap; first-960/prospective/D_test are not read
 PASS 6: durable intent precedes paid action; incomplete PENDING is ambiguous and cannot retry or receive a replacement
-PASS 7: source/container/worker-Python/operator/prompt/data/split/evaluator/timeout/workspace contracts are path/hash-bound and identical across all assignments
+PASS 7: source/container/worker-Python/operator/prompt/profile-gate/data/split/evaluator/timeout/workspace contracts are path/hash-bound and identical across all assignments
 PASS 8: blocked assignment and request seeds are recorded; finite-number, direction, invalid-format and timeout paths have regression coverage
 PASS 9: credentials come only from the remote environment; candidate env is allowlisted and filename/content scans are mandatory per job
 PENDING 10: stage one is exactly one complete block per task; every rollout starts with a node-local isolation/NVIDIA capability gate; stage two has an afterok dependency and cannot start until all four capability/worker/verifier receipts pass
-PASS 11: E1 is engineering/descriptive only, cannot claim a primary gate or unlock E2/E3, and forbids outcome-driven retuning
+PASS 11: ${preflight_claim_scope}, cannot claim a primary method gate or unlock E2/E3, and forbids outcome-driven retuning
 PASS 12: capability/worker/verifier/safety rc are written per array index; dependency failure stops the remaining chain
 PASS 13: exact clean source, new run roots, atomic per-rollout artifacts and recursive SHA manifests are required
 EOF
 
-filename_hits="$(find "$run_root/preparation" "$run_root/preflight_receipts" \
-  "$run_root/frozen_prereg.md" "$run_root/frozen_qos_amendment.md" \
+scan_paths=(
+  "$run_root/preparation" "$run_root/preflight_receipts"
+  "$run_root/frozen_prereg.md" "$run_root/frozen_qos_amendment.md"
+  "$run_root/operator_profile.txt"
+)
+if [[ -f "$run_root/qwen_task_type_repair.md" ]]; then
+  scan_paths+=("$run_root/qwen_task_type_repair.md")
+fi
+filename_hits="$(find "${scan_paths[@]}" \
   -type f -printf '%f\n' | grep -icE 'env|key|token|secret' || true)"
 content_hits="$(grep -RIlE --binary-files=without-match \
   'sk-[A-Za-z0-9._-]{20,}|hf_[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|Bearer[[:space:]]+[A-Za-z0-9._-]{24,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----' \
-  "$run_root/preparation" "$run_root/preflight_receipts" \
-  "$run_root/frozen_prereg.md" "$run_root/frozen_qos_amendment.md" | wc -l || true)"
+  "${scan_paths[@]}" | wc -l || true)"
 if [[ "$filename_hits" != 0 || "$content_hits" != 0 ]]; then
   echo "E1 preflight artifact safety scan failed: filename=$filename_hits content=$content_hits" >&2
   exit 7
@@ -199,6 +288,7 @@ printf '%s\n' "$monitor_pid" >"$run_root/monitor.pid"
 
 printf '%s\n' \
   "STATUS=E1_QOS_AWARE_MONITOR_STARTED" \
+  "OPERATOR_PROFILE=${operator_profile}" \
   "SOURCE_COMMIT=${source_commit}" \
   "SOURCE_ROOT=${source_root}" \
   "RUN_ROOT=${run_root}" \

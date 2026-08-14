@@ -27,10 +27,25 @@ fi
 set -a
 source "$credential_env"
 set +a
-if [[ -z "${PRIMARY_KEY_DEEPSEEK_V4_FLASH:-}" && -z "${PRIMARY_KEY:-}" ]]; then
-  echo "E1 monitor operator credential unavailable" >&2
-  exit 2
-fi
+operator_profile="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["operator_profile"])' "$run_root/preparation/run_plan.json")"
+case "$operator_profile" in
+  deepseek)
+    if [[ -z "${PRIMARY_KEY_DEEPSEEK_V4_FLASH:-}" && -z "${PRIMARY_KEY:-}" ]]; then
+      echo "E1 monitor DeepSeek credential unavailable" >&2
+      exit 2
+    fi
+    ;;
+  qwen)
+    if [[ -z "${PRIMARY_KEY_QWEN3_CODER_FLASH:-}" ]]; then
+      echo "E1 monitor Qwen credential unavailable" >&2
+      exit 2
+    fi
+    ;;
+  *)
+    echo "E1 monitor operator profile unsupported: $operator_profile" >&2
+    exit 2
+    ;;
+esac
 stage_one="$($python_bin -c 'import json,sys;print(",".join(map(str,json.load(open(sys.argv[1]))["stage_one_engineering_gate_indices"])))' "$run_root/preparation/run_plan.json")"
 stage_two="$($python_bin -c 'import json,sys;print(",".join(map(str,json.load(open(sys.argv[1]))["stage_two_remaining_indices"])))' "$run_root/preparation/run_plan.json")"
 export_spec="ALL,E1_RUN_ROOT=${run_root},E1_SOURCE_ROOT=${source_root},E1_DATA_GATE_ROOT=${data_gate}"
@@ -172,7 +187,7 @@ print(json.dumps({"indices": indices, "all_rc_zero": True}, sort_keys=True, sepa
 PY
 }
 
-event "MONITOR_START qos_aware=true stage1_indices=${stage_one} stage2_indices=${stage_two} sealed_values_opened=false"
+event "MONITOR_START operator_profile=${operator_profile} qos_aware=true stage1_indices=${stage_one} stage2_indices=${stage_two} sealed_values_opened=false"
 if ! submit_stage stage1 "$stage_one" none; then
   printf '{"status":"E1_STAGE1_SUBMISSION_FAILED","sealed_values_opened":false}\n' \
     >"$run_root/final_status.json"
@@ -250,21 +265,23 @@ if [[ "$collection_rc" != 0 ]]; then
   exit "$collection_rc"
 fi
 
-filename_hits="$(find "$run_root/preparation" "$run_root/preflight_receipts" \
-  "$run_root/worker_outputs" "$run_root/worker_receipts" "$run_root/sealed" \
-  "$run_root/collection" "$run_root/capability" "$run_root/job_logs" "$run_root/slurm" \
-  "$run_root/frozen_prereg.md" "$run_root/frozen_qos_amendment.md" \
-  "$run_root/submission.json" "$run_root/stage1_submission.json" \
-  "$run_root/stage2_submission.json" "$run_root/monitor_events.log" \
+scan_paths=(
+  "$run_root/preparation" "$run_root/preflight_receipts"
+  "$run_root/worker_outputs" "$run_root/worker_receipts" "$run_root/sealed"
+  "$run_root/collection" "$run_root/capability" "$run_root/job_logs" "$run_root/slurm"
+  "$run_root/frozen_prereg.md" "$run_root/frozen_qos_amendment.md"
+  "$run_root/operator_profile.txt" "$run_root/submission.json"
+  "$run_root/stage1_submission.json" "$run_root/stage2_submission.json"
+  "$run_root/monitor_events.log"
+)
+if [[ -f "$run_root/qwen_task_type_repair.md" ]]; then
+  scan_paths+=("$run_root/qwen_task_type_repair.md")
+fi
+filename_hits="$(find "${scan_paths[@]}" \
   -type f -printf '%f\n' | grep -icE 'env|key|token|secret' || true)"
 content_hits="$(grep -RIlE --binary-files=without-match \
   'sk-[A-Za-z0-9._-]{20,}|hf_[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|Bearer[[:space:]]+[A-Za-z0-9._-]{24,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----' \
-  "$run_root/preparation" "$run_root/preflight_receipts" "$run_root/worker_outputs" \
-  "$run_root/worker_receipts" "$run_root/sealed" "$run_root/collection" \
-  "$run_root/capability" "$run_root/job_logs" "$run_root/slurm" \
-  "$run_root/frozen_prereg.md" "$run_root/frozen_qos_amendment.md" \
-  "$run_root/submission.json" "$run_root/stage1_submission.json" \
-  "$run_root/stage2_submission.json" "$run_root/monitor_events.log" | wc -l || true)"
+  "${scan_paths[@]}" | wc -l || true)"
 if [[ "$filename_hits" != 0 || "$content_hits" != 0 ]]; then
   event "FINAL_SECRET_SCAN_FAILED filename=${filename_hits} content=${content_hits}"
   exit 7
@@ -283,16 +300,21 @@ find \
   -type f -print0 | sort -z | xargs -0 sha256sum >"$run_root/top_manifest.sha256"
 find "$run_root/workspaces" -name workspace_marker.json -type f -print0 | sort -z | \
   xargs -0 sha256sum >>"$run_root/top_manifest.sha256"
-sha256sum \
-  "$run_root/source_commit.txt" "$run_root/data_gate_root.txt" \
-  "$run_root/launcher.sh" "$run_root/monitor.sh" "$run_root/job.sbatch" \
-  "$run_root/frozen_prereg.md" "$run_root/frozen_qos_amendment.md" \
-  "$run_root/submission.json" "$run_root/stage1_submission.json" \
-  "$run_root/stage2_submission.json" "$run_root/monitor.pid" \
-  "$run_root/monitor_events.log" "$run_root/collection.rc" \
-  "$run_root/preflight_stage1_gate.json" "$run_root/preflight_stage2_gate.json" \
-  "$run_root/slurm_accounting.txt" \
-  "$run_root/preflight_before_stage1.txt" "$run_root/preflight_item10_pass.txt" \
-  "$run_root/preflight_matrix.json" "$run_root/preflight_safety_scan.txt" \
-  "$run_root/final_safety_scan.txt" "$run_root/final_status.json" \
-  >>"$run_root/top_manifest.sha256"
+identity_files=(
+  "$run_root/source_commit.txt" "$run_root/data_gate_root.txt"
+  "$run_root/operator_profile.txt"
+  "$run_root/launcher.sh" "$run_root/monitor.sh" "$run_root/job.sbatch"
+  "$run_root/frozen_prereg.md" "$run_root/frozen_qos_amendment.md"
+  "$run_root/submission.json" "$run_root/stage1_submission.json"
+  "$run_root/stage2_submission.json" "$run_root/monitor.pid"
+  "$run_root/monitor_events.log" "$run_root/collection.rc"
+  "$run_root/preflight_stage1_gate.json" "$run_root/preflight_stage2_gate.json"
+  "$run_root/slurm_accounting.txt"
+  "$run_root/preflight_before_stage1.txt" "$run_root/preflight_item10_pass.txt"
+  "$run_root/preflight_matrix.json" "$run_root/preflight_safety_scan.txt"
+  "$run_root/final_safety_scan.txt" "$run_root/final_status.json"
+)
+if [[ -f "$run_root/qwen_task_type_repair.md" ]]; then
+  identity_files+=("$run_root/qwen_task_type_repair.md")
+fi
+sha256sum "${identity_files[@]}" >>"$run_root/top_manifest.sha256"

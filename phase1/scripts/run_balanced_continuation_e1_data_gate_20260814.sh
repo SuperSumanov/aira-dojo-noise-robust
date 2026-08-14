@@ -8,17 +8,40 @@ fi
 set -u
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 
-if [[ $# -ne 1 || ! "$1" =~ ^[0-9a-f]{40}$ ]]; then
-  echo "usage: $0 SOURCE_COMMIT" >&2
+if [[ $# -lt 1 || $# -gt 2 || ! "$1" =~ ^[0-9a-f]{40}$ ]]; then
+  echo "usage: $0 SOURCE_COMMIT [deepseek|qwen]" >&2
   exit 2
 fi
 
 source_commit="$1"
+operator_profile="${2:-deepseek}"
 short_commit="${source_commit:0:8}"
 base_repo=/research/d7/spc/yzyang4/aira-dojo
-worktree="/research/d7/spc/yzyang4/aira-dojo-e1-data-${short_commit}"
-run_root="/research/d7/spc/yzyang4/balanced-e1-data-${short_commit}-a1"
-log_root="/research/d7/spc/yzyang4/logs/balanced-e1-data-${short_commit}-a1"
+prior_selection=/research/d7/spc/yzyang4/balanced-e1-data-acd215a9-a1/e1_inputs/selected_public.json
+prior_selection_sha256=26d018455fb1a9fe2037f4ad96a6a3d7bfa4299ae3a82236eb48e24e89f795af
+declare -a selection_args=()
+case "$operator_profile" in
+  deepseek)
+    worktree="/research/d7/spc/yzyang4/aira-dojo-e1-data-${short_commit}"
+    run_root="/research/d7/spc/yzyang4/balanced-e1-data-${short_commit}-a1"
+    log_root="/research/d7/spc/yzyang4/logs/balanced-e1-data-${short_commit}-a1"
+    ;;
+  qwen)
+    worktree="/research/d7/spc/yzyang4/aira-dojo-e1q-data-${short_commit}"
+    run_root="/research/d7/spc/yzyang4/balanced-e1q-data-${short_commit}-a1"
+    log_root="/research/d7/spc/yzyang4/logs/balanced-e1q-data-${short_commit}-a1"
+    test -f "$prior_selection"
+    test "$(sha256sum "$prior_selection" | awk '{print $1}')" = "$prior_selection_sha256"
+    selection_args=(
+      --exclude-selected-public "$prior_selection"
+      --exclude-selected-public-sha256 "$prior_selection_sha256"
+    )
+    ;;
+  *)
+    echo "unsupported E1 operator profile: $operator_profile" >&2
+    exit 2
+    ;;
+esac
 python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
 cards="${base_repo}/phase1/cards_current_v11.jsonl"
 data_root=/research/d7/spc/yzyang4/mle-bench-data
@@ -66,6 +89,7 @@ cd "$worktree"
 mkdir "$run_root"
 cp "$0" "${run_root}/launcher.sh"
 printf '%s\n' "$source_commit" >"${run_root}/source_commit.txt"
+printf '%s\n' "$operator_profile" >"${run_root}/operator_profile.txt"
 cat >"${run_root}/preflight.txt" <<'EOF'
 PASS 1: stable mainline remains run-clean decision-local benchmark; E1 is a gated extension
 PASS 2: input/split/scorer/contract/manifest/worker tests pass before real-data construction
@@ -89,6 +113,7 @@ EOF
   --frozen-b0 "$worktree/phase1/v11_decision/decision_frozen_v11_b0.jsonl" \
   --frozen-b1 "$worktree/phase1/v11_decision/decision_frozen_v11_b1.jsonl" \
   --frozen-b2 "$worktree/phase1/v11_decision/decision_frozen_v11_b2.jsonl" \
+  "${selection_args[@]}" \
   --output "$run_root/e1_inputs" \
   >"${log_root}/input_builder.stdout" 2>"${log_root}/input_builder.stderr"
 "$python_bin" -m phase1.verify_balanced_continuation_e1_inputs \
@@ -98,6 +123,7 @@ EOF
   --frozen-b0 "$worktree/phase1/v11_decision/decision_frozen_v11_b0.jsonl" \
   --frozen-b1 "$worktree/phase1/v11_decision/decision_frozen_v11_b1.jsonl" \
   --frozen-b2 "$worktree/phase1/v11_decision/decision_frozen_v11_b2.jsonl" \
+  "${selection_args[@]}" \
   --result "$run_root/e1_inputs" \
   --receipt "$run_root/e1_inputs.verify.json" \
   >"${log_root}/input_verifier.stdout" 2>"${log_root}/input_verifier.stderr"
@@ -127,6 +153,7 @@ find "$run_root" -type f ! -name top_manifest.sha256 -print0 | sort -z | xargs -
 
 printf '%s\n' \
   "STATUS=VERIFIED_E1_REAL_INPUT_AND_SPLIT_GATE" \
+  "OPERATOR_PROFILE=${operator_profile}" \
   "SOURCE_COMMIT=${source_commit}" \
   "WORKTREE=${worktree}" \
   "RUN_ROOT=${run_root}" \

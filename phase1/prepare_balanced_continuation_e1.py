@@ -45,6 +45,16 @@ OPERATOR_TIMEOUT_SECONDS = 240
 EVALUATOR_TIMEOUT_SECONDS = 120
 EXPECTED_GPU_HOURS = 3.24
 WORKER_PYTHON = pathlib.Path("/research/d7/spc/yzyang4/venvs/aira/bin/python")
+QWEN_REPAIRED_EXECUTION_GATE_SHA256 = (
+    "40a7f793a70d30b12ace25a8b929caf6c009df98ce045b7b50ff4bac1df05ecf"
+)
+QWEN_REPAIRED_ARTIFACT_SHA256 = (
+    "78328281553d3dc5b756bb2017fb0770aae5bf5818027c785df103b225f2691f",
+    "8e23326b67a367f9382d7185b9621805bdabda179ef17b23ce99c47823ef299b",
+)
+QWEN_PRIOR_SELECTION_SHA256 = (
+    "26d018455fb1a9fe2037f4ad96a6a3d7bfa4299ae3a82236eb48e24e89f795af"
+)
 
 
 class PrepareError(RuntimeError):
@@ -78,27 +88,37 @@ def validate_qwen_execution_gate(path_text: str | None) -> tuple[pathlib.Path, s
     if not path.is_file() or path.is_symlink():
         raise PrepareError("Qwen execution-smoke receipt is missing or symlinked")
     value = checked_json(path)
+    actual_sha256 = file_sha256(path)
     expected_keys = {
         "schema_version", "status", "producer_imported", "results", "tasks",
-        "candidate_executions", "api_calls", "dsearch_rows_read", "dval_rows_read",
-        "dtest_rows_read", "external_score_or_gain_reported", "all_gate_pass",
-        "summary_sha256",
+        "candidate_executions", "new_candidate_executions", "api_calls",
+        "dsearch_rows_read", "dval_rows_read", "dtest_rows_read",
+        "external_score_or_gain_reported", "labels_opened", "outcomes_read",
+        "legacy_shape_repair", "all_gate_pass", "corrected_results", "summary_sha256",
     }
     if (
         set(value) != expected_keys
+        or actual_sha256 != QWEN_REPAIRED_EXECUTION_GATE_SHA256
         or value["schema_version"]
-        != "balanced-continuation-qwen-execution-smoke-verification-v1"
-        or value["status"] != "VERIFIED_QWEN_EXECUTION_SMOKE_PASS"
+        != "balanced-continuation-qwen-execution-smoke-verification-v2"
+        or value["status"]
+        != "VERIFIED_QWEN_EXECUTION_SMOKE_PASS_TASK_TYPE_REPAIR"
         or value["producer_imported"] is not False
         or value["results"] != 2
         or value["tasks"] != list(TASKS)
         or value["candidate_executions"] != 2
+        or value["new_candidate_executions"] != 0
         or value["api_calls"] != 0
         or value["dsearch_rows_read"] != 0
         or value["dval_rows_read"] != 0
         or value["dtest_rows_read"] != 0
         or value["external_score_or_gain_reported"] is not False
+        or value["labels_opened"] is not False
+        or value["outcomes_read"] is not False
+        or value["legacy_shape_repair"] is not True
         or value["all_gate_pass"] is not True
+        or not isinstance(value["corrected_results"], list)
+        or len(value["corrected_results"]) != 2
         or not isinstance(value["summary_sha256"], list)
         or len(value["summary_sha256"]) != 2
         or any(
@@ -107,7 +127,25 @@ def validate_qwen_execution_gate(path_text: str | None) -> tuple[pathlib.Path, s
         )
     ):
         raise PrepareError("Qwen execution-smoke receipt is not a passing frozen gate")
-    return path, file_sha256(path)
+    for index, (result, task, artifact_sha) in enumerate(zip(
+        value["corrected_results"], TASKS, QWEN_REPAIRED_ARTIFACT_SHA256
+    )):
+        if (
+            not isinstance(result, dict)
+            or result.get("index") != index
+            or result.get("task") != task
+            or result.get("artifact_sha256") != artifact_sha
+            or result.get("corrected_status") != "PASS_EXECUTION_ONLY"
+            or result.get("corrected_gate_pass") is not True
+            or result.get("submission_shape", {}).get("valid") is not True
+        ):
+            raise PrepareError("Qwen repaired execution result differs")
+    if (
+        value["corrected_results"][0].get("legacy_shape_contract_repaired") is not True
+        or value["corrected_results"][1].get("legacy_shape_contract_repaired") is not False
+    ):
+        raise PrepareError("Qwen task-type repair provenance differs")
+    return path, actual_sha256
 
 
 def utc_now() -> str:
@@ -214,6 +252,23 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
         or input_summary.get("tasks") != list(TASKS)
     ):
         raise PrepareError("E1 outcome-blind input summary differs")
+    if operator_profile["name"] == "qwen":
+        profile_path = data_gate / "operator_profile.txt"
+        if (
+            not profile_path.is_file()
+            or profile_path.is_symlink()
+            or profile_path.read_text(encoding="utf-8").strip() != "qwen"
+            or input_summary.get("prior_selection_identity_only_read") is not True
+            or input_summary.get("prior_selection_sha256")
+            != QWEN_PRIOR_SELECTION_SHA256
+            or input_summary.get("excluded_prior_run_count") != 2
+            or input_summary.get("excluded_prior_anchor_count") != 2
+            or input_summary.get("selected_prior_run_overlap") != 0
+            or input_receipt.get("prior_selection_sha256")
+            != QWEN_PRIOR_SELECTION_SHA256
+            or input_receipt.get("selected_prior_run_overlap") != 0
+        ):
+            raise PrepareError("E1-Q fresh-anchor data-gate contract differs")
     if (
         split_summary.get("tasks") != list(TASKS)
         or split_summary.get("dtest_rows_read") != 0

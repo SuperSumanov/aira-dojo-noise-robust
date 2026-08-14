@@ -9,11 +9,13 @@ launcher 只有逐项 PASS 才可开始正式 producer；任何 preflight 失败
 2. **cheap tests**：producer/verifier `py_compile`；tar path/type、credential-before-parse、config contract、
    parent/children graph、balanced/concentrated metric、incomplete-root coverage 与 contract matching 单测全过；
    prospective intake/accumulator/scorer 回归测试同时通过。
-3. **入口/allowlist**：正式命令只接受两个显式 arm 目录和新 output root；代码只对
+3. **入口/allowlist**：正式命令只接受显式 `(arm,batch,dir)` 清单和新 output root；MCTS 固定为
+   0802/0803/0804 三个 batch，sequential 固定为 0805 一个 batch。代码只对
    `dojo_config.json`、`checkpoint/journal.jsonl` 调用 `extractfile`，禁止 env/log/HTML/workspace/submission/
    grading/frozen/test/held 输入。
-4. **输入分布**：运行前 metadata inventory 必须恰为 MCTS 14 个 tar、sequential 8 个 tar；每个 tar 先固定
-   bytes + SHA-256，重复字节 fail closed。physical-run 数不在 outcome 前猜测，按 checkpoint-journal SHA
+4. **输入分布**：运行前 metadata inventory 必须恰为 MCTS 14 个 tar、sequential 8 个 tar；身份固定为
+   `(arm,batch,archive basename,SHA-256)`，避免跨日期同名 tar 碰撞。每个 tar 先固定 bytes + SHA-256，
+   重复字节 fail closed。physical-run 数不在 outcome 前猜测，按 checkpoint-journal SHA
    唯一计数并完整报告。
 5. **平衡/前瞻规则**：只比较共有任务；结构支持门固定为每臂至少 20 physical runs、每臂 journal coverage
    至少 80%、至少 2 个共有任务、至少一个共有任务每臂 4 runs。任务不因结构方向或区间删除。

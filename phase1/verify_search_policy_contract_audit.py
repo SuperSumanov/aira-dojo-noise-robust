@@ -29,6 +29,7 @@ CREDENTIAL = re.compile(
 )
 RUN_COLUMNS = (
     "arm",
+    "batch",
     "archive",
     "archive_sha256",
     "journal_sha256",
@@ -87,14 +88,19 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def parse_arm(value: str) -> tuple[str, Path]:
-    if "=" not in value:
-        raise argparse.ArgumentTypeError("arm must be NAME=DIR")
-    name, raw_path = value.split("=", 1)
+def parse_batch(value: str) -> tuple[str, str, Path]:
+    if "=" not in value or ":" not in value.split("=", 1)[0]:
+        raise argparse.ArgumentTypeError("batch must be ARM:BATCH=DIR")
+    identity, raw_path = value.split("=", 1)
+    name, batch = identity.split(":", 1)
     path = Path(raw_path).resolve()
-    if name not in ARMS or not path.is_dir():
-        raise argparse.ArgumentTypeError("invalid arm name or directory")
-    return name, path
+    if (
+        name not in ARMS
+        or not re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,31}", batch)
+        or not path.is_dir()
+    ):
+        raise argparse.ArgumentTypeError("invalid arm/batch name or directory")
+    return name, batch, path
 
 
 def quantile(values: list[float], probability: float) -> float:
@@ -145,21 +151,24 @@ def verify_artifact_manifest(result: Path) -> None:
         raise VerifyError("artifact manifest coverage mismatch")
 
 
-def verify_input_manifest(result: Path, arm_roots: dict[str, Path]) -> list[dict[str, Any]]:
+def verify_input_manifest(
+    result: Path, batch_roots: dict[tuple[str, str], Path]
+) -> list[dict[str, Any]]:
     with (result / "input_manifest.tsv").open(encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle, delimiter="\t")
-        if tuple(reader.fieldnames or ()) != ("arm", "archive", "bytes", "sha256"):
+        if tuple(reader.fieldnames or ()) != ("arm", "batch", "archive", "bytes", "sha256"):
             raise VerifyError("input manifest schema mismatch")
         rows = list(reader)
     identities = set()
     hashes = set()
     for row in rows:
         arm = row["arm"]
+        batch = row["batch"]
         archive = row["archive"]
-        if arm not in arm_roots or Path(archive).name != archive:
+        if (arm, batch) not in batch_roots or Path(archive).name != archive:
             raise VerifyError("input manifest arm/path mismatch")
-        path = arm_roots[arm] / archive
-        identity = (arm, archive)
+        path = batch_roots[(arm, batch)] / archive
+        identity = (arm, batch, archive)
         if identity in identities or row["sha256"] in hashes:
             raise VerifyError("duplicate input archive identity or bytes")
         identities.add(identity)
@@ -333,25 +342,39 @@ def verify(args: argparse.Namespace) -> int:
     result = args.result_dir.resolve()
     if not result.is_dir():
         raise VerifyError("result directory missing")
-    arms = dict(args.arm)
-    if set(arms) != set(ARMS) or len(args.arm) != 2:
-        raise VerifyError("exact mcts and sequential arm roots required")
+    batch_roots = {(arm, batch): path for arm, batch, path in args.batch}
+    if (
+        {arm for arm, _, _ in args.batch} != set(ARMS)
+        or len(batch_roots) != len(args.batch)
+    ):
+        raise VerifyError("unique mcts and sequential batch roots required")
     verify_artifact_manifest(result)
     for path in result.iterdir():
         if path.is_file() and CREDENTIAL.search(path.read_bytes()):
             raise VerifyError("credential shape found in result artifact")
-    input_rows = verify_input_manifest(result, arms)
+    input_rows = verify_input_manifest(result, batch_roots)
     rows = load_runs(result)
     catalog = verify_contract_catalog(result, rows)
     del catalog
-    archive_identity = {(row["arm"], row["archive"]): row for row in input_rows}
+    archive_identity = {
+        (row["arm"], row["batch"], row["archive"]): row for row in input_rows
+    }
     for row in rows:
-        key = (row["arm"], row["archive"])
+        key = (row["arm"], row["batch"], row["archive"])
         if key not in archive_identity or row["archive_sha256"] != archive_identity[key]["sha256"]:
             raise VerifyError("run row archive identity mismatch")
     archive_audits = json.loads((result / "archive_audits.json").read_text(encoding="utf-8"))
     if len(archive_audits) != len(input_rows):
         raise VerifyError("archive audit count mismatch")
+    input_identities = {
+        (row["arm"], row["batch"], row["archive"]): row["sha256"] for row in input_rows
+    }
+    audit_identities = {
+        (row["arm"], row["batch"], row["archive"]): row["archive_sha256"]
+        for row in archive_audits
+    }
+    if audit_identities != input_identities or len(audit_identities) != len(archive_audits):
+        raise VerifyError("archive audit identity/hash mismatch")
     contract = recompute_contract(rows)
     structure = recompute_structure(rows)
     per_arm = {}
@@ -414,7 +437,7 @@ def verify(args: argparse.Namespace) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--result-dir", required=True, type=Path)
-    parser.add_argument("--arm", action="append", required=True, type=parse_arm)
+    parser.add_argument("--batch", action="append", required=True, type=parse_batch)
     return verify(parser.parse_args())
 
 

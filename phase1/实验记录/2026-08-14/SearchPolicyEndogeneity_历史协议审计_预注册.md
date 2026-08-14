@@ -20,9 +20,9 @@ policy？若不是，就禁止把两者的差异归因于 selection。
 - 每个归档只读取每个 run root 的 `dojo_config.json` 与 `checkpoint/journal.jsonl`；
 - 不读取 `env_variables.json`、日志、HTML、workspace、submission、grading report 或任何 frozen/test pair。
 
-运行前先写出每个 tar 的相对路径、字节数与 SHA-256；相同字节的重复归档不重复计 run。physical run ID
-固定为 checkpoint journal 原始字节的 SHA-256。policy 标签来自冻结的日期/采集协议清单，不从 outcome
-反推。
+运行前先写出每个 tar 的 `(arm,batch,basename)`、字节数与 SHA-256；跨日期同名 tar 由 batch 消歧，
+相同字节的重复归档不得静默重复计 run。physical run ID 固定为 checkpoint journal 原始字节的 SHA-256。
+policy 标签来自冻结的日期/采集协议清单，不从 outcome 反推。
 
 ## 2. 安全与完整性门
 

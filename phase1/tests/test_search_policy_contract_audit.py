@@ -194,23 +194,35 @@ def test_unsafe_tar_member_rejected() -> None:
 
 def test_end_to_end_artifact_verifier(tmp_path: Path) -> None:
     mcts = tmp_path / "mcts"
+    mcts_second = tmp_path / "mcts-second"
     sequential = tmp_path / "sequential"
     mcts.mkdir()
+    mcts_second.mkdir()
     sequential.mkdir()
     left_nodes = make_nodes()
     right_nodes = make_nodes()
     for node in right_nodes:
         node["creation_time"] += 10.0
     write_run_archive(mcts / "left.tar.gz", make_config(model="left"), left_nodes)
+    second_left_nodes = make_nodes()
+    for node in second_left_nodes:
+        node["creation_time"] += 20.0
+    write_run_archive(
+        mcts_second / "left.tar.gz", make_config(model="left-second"), second_left_nodes
+    )
     write_run_archive(
         sequential / "right.tar.gz", make_config(model="right", children=5), right_nodes
     )
     result = tmp_path / "result"
     producer_args = argparse.Namespace(
-        arm=[("mcts", mcts.resolve()), ("sequential", sequential.resolve())],
+        batch=[
+            ("mcts", "mcts-a", mcts.resolve()),
+            ("mcts", "mcts-b", mcts_second.resolve()),
+            ("sequential", "seq-a", sequential.resolve()),
+        ],
         out_dir=result,
         repo_root=Path.cwd(),
-        max_archives_per_arm=10,
+        max_archives_per_batch=10,
         max_archive_bytes=10_000_000,
         max_member_bytes=1_000_000,
         max_members_per_archive=100,
@@ -219,7 +231,11 @@ def test_end_to_end_artifact_verifier(tmp_path: Path) -> None:
     assert producer_build(producer_args) == 0
     verify_args = argparse.Namespace(
         result_dir=result,
-        arm=[("mcts", mcts.resolve()), ("sequential", sequential.resolve())],
+        batch=[
+            ("mcts", "mcts-a", mcts.resolve()),
+            ("mcts", "mcts-b", mcts_second.resolve()),
+            ("sequential", "seq-a", sequential.resolve()),
+        ],
     )
     assert artifact_verify(verify_args) == 0
     summary = json.loads((result / "summary.json").read_text(encoding="utf-8"))

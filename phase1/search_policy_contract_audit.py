@@ -60,6 +60,7 @@ PROMPT_FIELDS = (
 )
 RUN_COLUMNS = (
     "arm",
+    "batch",
     "archive",
     "archive_sha256",
     "journal_sha256",
@@ -111,16 +112,19 @@ def git_commit(repo_root: Path) -> str:
     ).strip()
 
 
-def parse_arm(value: str) -> tuple[str, Path]:
-    if "=" not in value:
-        raise argparse.ArgumentTypeError("arm must be NAME=DIR")
-    name, raw_path = value.split("=", 1)
+def parse_batch(value: str) -> tuple[str, str, Path]:
+    if "=" not in value or ":" not in value.split("=", 1)[0]:
+        raise argparse.ArgumentTypeError("batch must be ARM:BATCH=DIR")
+    identity, raw_path = value.split("=", 1)
+    name, batch = identity.split(":", 1)
     if not re.fullmatch(r"[a-z][a-z0-9_]{0,31}", name):
         raise argparse.ArgumentTypeError("arm name must be a lowercase identifier")
+    if not re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,31}", batch):
+        raise argparse.ArgumentTypeError("batch name must be a lowercase identifier")
     path = Path(raw_path).resolve()
     if not path.is_dir():
-        raise argparse.ArgumentTypeError(f"arm directory not found: {raw_path}")
-    return name, path
+        raise argparse.ArgumentTypeError(f"batch directory not found: {raw_path}")
+    return name, batch, path
 
 
 def safe_member_path(member: tarfile.TarInfo) -> PurePosixPath:
@@ -472,11 +476,15 @@ def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
 
 
 def inventory_arms(
-    arms: list[tuple[str, Path]], max_archives: int, max_archive_bytes: int
+    batches: list[tuple[str, str, Path]], max_archives: int, max_archive_bytes: int
 ) -> list[dict[str, Any]]:
     records = []
     seen_paths = set()
-    for arm, directory in arms:
+    seen_batches = set()
+    for arm, batch, directory in batches:
+        if (arm, batch) in seen_batches:
+            raise AuditError("duplicate arm/batch identity")
+        seen_batches.add((arm, batch))
         archives = sorted(directory.glob("*.tar.gz"), key=lambda path: path.name)
         if not archives or len(archives) > max_archives:
             raise AuditError(f"arm {arm} archive count outside cap")
@@ -491,6 +499,7 @@ def inventory_arms(
             records.append(
                 {
                     "arm": arm,
+                    "batch": batch,
                     "archive": archive.name,
                     "path": archive,
                     "bytes": size,
@@ -530,24 +539,25 @@ def contract_comparison(rows: list[dict[str, Any]], arm_names: tuple[str, str]) 
 
 
 def build(args: argparse.Namespace) -> int:
-    arms = list(args.arm)
-    if len(arms) != 2 or len({name for name, _ in arms}) != 2:
-        raise AuditError("exactly two uniquely named arms are required")
-    arm_names = (arms[0][0], arms[1][0])
-    if arm_names != ("mcts", "sequential"):
-        raise AuditError("v1 requires arms in order mcts, sequential")
+    batches = list(args.batch)
+    if {name for name, _, _ in batches} != {"mcts", "sequential"}:
+        raise AuditError("v1 requires mcts and sequential batches")
+    arm_names = ("mcts", "sequential")
     out_dir = args.out_dir.resolve()
     temporary = out_dir.with_name(out_dir.name + ".tmp")
     if out_dir.exists() or temporary.exists():
         raise FileExistsError("refusing to overwrite audit output")
-    records = inventory_arms(arms, args.max_archives_per_arm, args.max_archive_bytes)
+    records = inventory_arms(batches, args.max_archives_per_batch, args.max_archive_bytes)
     temporary.mkdir(parents=True)
     with (temporary / "input_manifest.tsv").open("x", encoding="utf-8", newline="") as handle:
         writer = csv.writer(handle, delimiter="\t", lineterminator="\n")
-        writer.writerow(("arm", "archive", "bytes", "sha256"))
+        writer.writerow(("arm", "batch", "archive", "bytes", "sha256"))
         for record in records:
             writer.writerow(
-                (record["arm"], record["archive"], record["bytes"], record["sha256"])
+                (
+                    record["arm"], record["batch"], record["archive"],
+                    record["bytes"], record["sha256"]
+                )
             )
     rows: list[dict[str, Any]] = []
     archive_audits = []
@@ -574,6 +584,7 @@ def build(args: argparse.Namespace) -> int:
             rows.append(
                 {
                     "arm": record["arm"],
+                    "batch": record["batch"],
                     "archive": record["archive"],
                     "archive_sha256": record["sha256"],
                     "journal_sha256": journal_sha,
@@ -587,12 +598,16 @@ def build(args: argparse.Namespace) -> int:
         archive_audits.append(
             {
                 "arm": record["arm"],
+                "batch": record["batch"],
                 "archive": record["archive"],
                 "archive_sha256": record["sha256"],
                 **archive_audit,
             }
         )
-    rows.sort(key=lambda row: (str(row["arm"]), str(row["task"]), int(row["seed"]), str(row["journal_sha256"])))
+    rows.sort(key=lambda row: (
+        str(row["arm"]), str(row["batch"]), str(row["task"]),
+        int(row["seed"]), str(row["journal_sha256"])
+    ))
     write_csv(temporary / "run_structure.csv", rows)
     contract = contract_comparison(rows, arm_names)
     structure = task_summary(rows, arm_names)
@@ -694,10 +709,10 @@ def build(args: argparse.Namespace) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--arm", action="append", required=True, type=parse_arm)
+    parser.add_argument("--batch", action="append", required=True, type=parse_batch)
     parser.add_argument("--out-dir", required=True, type=Path)
     parser.add_argument("--repo-root", required=True, type=Path)
-    parser.add_argument("--max-archives-per-arm", type=int, default=128)
+    parser.add_argument("--max-archives-per-batch", type=int, default=128)
     parser.add_argument("--max-archive-bytes", type=int, default=64 * 1024 * 1024 * 1024)
     parser.add_argument("--max-member-bytes", type=int, default=64 * 1024 * 1024)
     parser.add_argument("--max-members-per-archive", type=int, default=1_000_000)
@@ -706,7 +721,7 @@ def main() -> int:
     )
     args = parser.parse_args()
     caps = (
-        args.max_archives_per_arm,
+        args.max_archives_per_batch,
         args.max_archive_bytes,
         args.max_member_bytes,
         args.max_members_per_archive,

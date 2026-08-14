@@ -97,4 +97,3 @@ random expected、parent/task/run 数、source-size 分布、每 task 方向和�
 11. **复现**：固定 commit、输入 SHA、Python/sklearn 版本、seed、命令、模型参数和输出 manifest。
 12. **资源与安全**：CPU-only、GPU=0、API=0、底座 LLM 更新=0；journal scan-before-parse，产物再次凭据扫描。
 13. **停止与失败**：一次正式 frozen 执行；不按结果换 headline/阈值/模型。失败实现和修复均保留。
-

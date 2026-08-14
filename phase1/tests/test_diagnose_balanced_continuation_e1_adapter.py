@@ -87,6 +87,8 @@ def test_post_gate_replay_proves_union_adapter_bug_without_method_claim(tmp_path
         "steps": 2,
         "candidate_processes_started": 1,
         "operator_invalid_format": 1,
+        "operator_calls_at_output_token_cap": 0,
+        "continuation_failure_classes": {"invalid_format": 1},
         "artifacts_present": 1,
         "legacy_dsearch_valid": 0,
         "legacy_dval_valid": 0,

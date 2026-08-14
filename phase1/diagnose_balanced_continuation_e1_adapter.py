@@ -8,6 +8,7 @@ receipts.  Its output is diagnostic evidence, not an E1 method result.
 from __future__ import annotations
 
 import argparse
+import collections
 import csv
 import pathlib
 from typing import Any
@@ -47,6 +48,20 @@ def csv_row_count(path: pathlib.Path) -> int | None:
     except (UnicodeDecodeError, csv.Error) as exc:
         raise DiagnosticError(f"CSV parse failed: {path}") from exc
     return max(len(rows) - 1, 0)
+
+
+def failure_class(execution: dict[str, Any]) -> str:
+    status = execution.get("execution_status")
+    if status in {"ok", "timeout", "invalid_format"}:
+        return str(status)
+    terminal = execution.get("terminal_output")
+    if not isinstance(terminal, str):
+        return "execution_error_unclassified"
+    if "SyntaxError" in terminal:
+        return "python_syntax_error"
+    if "NameError" in terminal:
+        return "python_name_error"
+    return "execution_error_other"
 
 
 def split_proof(split_root: pathlib.Path, task: str) -> dict[str, Any]:
@@ -146,6 +161,15 @@ def diagnose(args: argparse.Namespace) -> dict[str, Any]:
                 if not isinstance(raw_status, str):
                     raise DiagnosticError("operator extraction status is malformed")
                 operator_extraction_status = raw_status
+            else:
+                usage = {}
+            code_path = step / "code.py"
+            extracted_code_chars: int | None = None
+            if ordinal > 0 and code_path.is_file():
+                code_raw = code_path.read_bytes()
+                if CREDENTIAL.search(code_raw):
+                    raise DiagnosticError("credential-shaped bytes refused in extracted code")
+                extracted_code_chars = len(code_raw.decode("utf-8"))
             artifact_rows = csv_row_count(artifact)
             records.append({
                 "rollout_id": rollout_id,
@@ -156,11 +180,18 @@ def diagnose(args: argparse.Namespace) -> dict[str, Any]:
                 "process_started": execution.get("process_started"),
                 "timed_out": execution.get("timed_out"),
                 "exit_code": execution.get("exit_code"),
+                "wall_time_seconds": execution.get("wall_time_seconds"),
+                "failure_class": failure_class(execution),
                 "artifact_present": artifact.is_file(),
                 "artifact_bytes": artifact.stat().st_size if artifact.is_file() else None,
                 "artifact_rows": artifact_rows,
                 "artifact_sha256": file_sha256(artifact) if artifact.is_file() else None,
                 "operator_extraction_status": operator_extraction_status,
+                "operator_prompt_tokens": usage.get("prompt_tokens"),
+                "operator_completion_tokens": usage.get("completion_tokens"),
+                "operator_total_tokens": usage.get("total_tokens"),
+                "operator_at_output_token_cap": usage.get("completion_tokens") == 8192,
+                "operator_extracted_code_chars": extracted_code_chars,
                 "legacy_dsearch_valid": legacy_search.get("submission_valid"),
                 "legacy_dsearch_grade_return_code": legacy_search.get("grade_return_code"),
                 "legacy_dval_valid": legacy_val.get("submission_valid"),
@@ -200,6 +231,12 @@ def diagnose(args: argparse.Namespace) -> dict[str, Any]:
         "operator_invalid_format": sum(
             record["operator_extraction_status"] == "invalid_format" for record in records
         ),
+        "operator_calls_at_output_token_cap": sum(
+            record["operator_at_output_token_cap"] is True for record in records
+        ),
+        "continuation_failure_classes": dict(sorted(collections.Counter(
+            record["failure_class"] for record in records if record["ordinal"] > 0
+        ).items())),
         "artifacts_present": sum(record["artifact_present"] is True for record in records),
         "legacy_dsearch_valid": sum(record["legacy_dsearch_valid"] is True for record in records),
         "legacy_dval_valid": sum(record["legacy_dval_valid"] is True for record in records),

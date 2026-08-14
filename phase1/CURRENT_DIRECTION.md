@@ -3,6 +3,53 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0R. 2026-08-14 最新覆盖：E1-Q 标签可行、label repeatability v2 入主线，方法收益仍未解锁
+
+本节晚于 0Q。稳定主线仍是 physical-run-clean、choice-set-faithful 的 MLE-agent 决策数据/benchmark 与
+first-960 prospective confirmation；没有切回旧 HCE、多保真或 probe。Balanced continuation 只是 gated 支线。
+
+1. 0Q 的 Qwen smoke fail 后来被定位为 task-type validator bug：accuracy 任务的 boolean submission 被错误强制
+   为 float。immutable artifacts 在 0 新执行/API/GPU 下重验为 2/2 合规。随后另立 fresh-anchor E1-Q，固定
+   `qwen3-coder-flash`、one-shot/0 retry、两任务各一新 anchor、两 sibling、K=2、H=1，并排除旧 E1 runs 与
+   frozen b0/b1/b2 overlap；这改变 operator policy，不能追认旧 DeepSeek E1。
+2. E1-Q 在 source commit `0d1ca6fd948d24f23d4abecc3298d8ff6ef53974` 完成两阶段 8/8 rollout、
+   16/16 candidate processes、8/8 operator calls，retry/analyze/D_test read 均为 0。complete-coverage 前
+   `sealed_values_opened=false`，之后一次性打开 16 receipts；独立 archive verifier 重算 8 rollout、4 sibling、
+   2 task 和 summary，summary SHA=`f98ee3d663fab2d1085ec9cefcf14c36d17e15b966ba45eb90ef538f49f92d11`。
+3. 两任务的 sibling winner 在两次 replicate 中均一致（2/2），四个 balanced `V_1` labels 非退化，按预注册裁决
+   为 `E1Q_LABEL_FEASIBILITY_OBSERVED`。但只有 2/8 positive gains、0/8 达 `0.01` practical delta；实际
+   candidate 成本 `1.3663852174544364 GPU·h`。因此这是 label-design feasibility 正结果，不是 continuation
+   方法收益。
+4. compact collection 漏了预注册要求的 execution-status 明细，未改写原 collection；status-only reporting
+   repair 从已过独立 worker verifier 的 receipts 导出：warm=6 ok+2 execution_error，continuation=6 ok+
+   1 execution_error+1 timeout，两阶段均 6/8 artifact 被 D_search/D_val 评分。它支持未来把 validity 与
+   conditional gain 分开设计，但不证明 hurdle critic 有效。`primary_gate_claim_allowed=false`、
+   `e2_e3_unlocked=false` 不变。
+5. 旧 `noise_ceiling.py` 的 node bootstrap 实际没使用 resampled nodes；original single 与 repeat mean 也不可交换，
+   所以旧 `0.9923/0.9578` 不再作 release-grade ceiling headline。预先冻结的 v2 在 commit `4e3bebe` 通过
+   4 项聚焦和全部 256 项远端测试；独立 verifier 重建三种 retry sensitivity、PAVA、九个 v11 transport 与
+   2,000 次 task bootstrap。
+6. v2 在 207 cards/10 tasks/3,017 pairs 上的 original-vs-first-regrade raw agreement=
+   `0.9658601259529334`，task-cluster CI=`[0.9438143714671886,0.9913402891372938]`。frozen b0 transported
+   repeat agreement=`0.9134305309964227`，CI=`[0.8353851659068688,0.9494041168867747]`；对称独立误差
+   模型量=`0.9488254145489123`，CI=`[0.8571329199113228,0.9682215874512448]`。但 measured-task pair
+   coverage 只有 `0.732977303070761`，必须写明 10→22 task extrapolation，不能称全任务 empirical ceiling。
+7. 相邻领域已明确覆盖 candidate-set sampling 导致 metric/模型排名反转（推荐系统）和 NAS predictor 的
+   rank/search-utility/query-cost 比较；因此统计原理本身不申新。可防守核心收缩为真实 MLE-agent 的 physical run、
+   parent choice set、effective support、gap/noise/cost 与 prospective boundary 的可执行审计标准。v11 audit 已验证
+   九个 pair sets；frozen b0 为 1,498 pairs/845 parents/92 runs/22 tasks，train--frozen 四层 overlap 全为 0。
+8. prospective monitor 仍健康但没有 activation 后新 archive：128 baseline、0 ready transaction、outcomes
+   unread。学长 `dojo-reproduce` 最新仍为 `2cb6f0c`；其 checkpoint direction bug 尚需在下一轮训练前修复。
+
+直接证据：
+
+- `phase1/results/balanced_continuation_e1q_20260814_0d1ca6f/README.md`；
+- `phase1/results/label_repeatability_v2_20260814_4e3bebe/README.md`；
+- `phase1/results/decision_corpus_audit_v11_20260814/README.md`；
+- `phase1/实验记录/2026-08-14/ChoiceSetFidelity_当前主张边界.md`；
+- `phase1/实验记录/2026-08-14/BalancedContinuation_E1Q_裁决.md`；
+- `phase1/实验记录/2026-08-14/LabelRepeatabilityAttestation_v2_裁决.md`。
+
 ## 0Q. 2026-08-14 最新覆盖：Qwen 执行门与 selective-execution 二次路线均关闭
 
 本节晚于 0P。稳定主线仍是 run-clean、decision-local 的 MLE-agent 搜索树数据集/benchmark 与

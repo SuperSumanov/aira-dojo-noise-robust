@@ -94,3 +94,23 @@ D&B 资产化方向。
   学长修正 checkpoint direction 后在冻结 b0/b1/b2 上做一次容量防守性复核。
 - 新的付费方法实验：E1-Q 完成前不提出；E2 只能由 E1 的有效率、方差、task support 和成本重新做 power
   calculation，不能沿用旧 43.76 GPU·h 机械启动。
+
+## 6. 2026-08-14 晚间增补：相邻领域边界与新证据
+
+进一步查重确认，candidate-set sampling 改变 metric 与模型相对排序在推荐系统中已有直接理论/实证先例：
+[Rendle 2019](https://arxiv.org/abs/1912.02263) 证明 sampled metrics 不保留完整指标的模型排序，甚至期望上也
+不保留；[Ihemelandu & Ekstrand 2023](https://arxiv.org/abs/2309.11723) 研究 candidate strategy/size 与
+popularity bias；[Dallmann et al. 2021](https://arxiv.org/abs/2107.13045) 比较 uniform/popularity sampling 的
+模型排名不一致。NAS 的 [White et al. 2021](https://openreview.net/forum?id=6RB77-6-_oI) 也已系统比较 predictor
+rank、search utility、init/query cost。因此 choice-set bias 或 ranking reversal 的统计原理本身不新，我方只能申
+真实 MLE-agent physical-run/parent-choice-set 的数据契约、实证与 prospective confirmation。
+
+label-quality 证据也已纠偏：旧 `noise_ceiling.py` 的 bootstrap 无效，single-vs-repeat-mean 反演不可交换。
+预注册 v2 改为 original-vs-first-regrade 两个单次测量，3,017 pairs raw agreement=
+`0.9658601259529334`，task CI=`[0.9438143714671886,0.9913402891372938]`。frozen b0 的 transported
+repeat agreement=`0.9134305309964227`；模型反演量=`0.9488254145489123`，但 measured-task pair share
+只有 `0.732977303070761`，必须显式标注任务外推。
+
+E1-Q 随后完整通过：两任务 replicate winner agreement=2/2，故 matched label feasibility 为正；但 2/8
+positive gain、0/8 practical gain，warm/continuation 均只有 6/8 scored artifacts。它只让 policy-indexed
+continuation label 与 hurdle data design 保持开放，`primary_gate_claim_allowed=false`、`e2_e3_unlocked=false`。

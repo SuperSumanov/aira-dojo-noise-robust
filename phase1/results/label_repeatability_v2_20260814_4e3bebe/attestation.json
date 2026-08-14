@@ -1,0 +1,1526 @@
+{
+  "estimand": {
+    "gap_definition": "absolute_difference_between_means_of_successful_regrades_after_excluding_the_first_label_measurement",
+    "gap_edges": [
+      0.0,
+      0.0001,
+      0.0003,
+      0.001,
+      0.003,
+      0.01,
+      0.03,
+      0.1,
+      0.3,
+      null
+    ],
+    "is_empirical_predictor_ceiling": false,
+    "model_assumption": "conditional_on_gap_two_label_errors_are_independent_exchangeable_and_symmetric_about_the_latent_pair_order",
+    "model_inferred_quantity": "single_label_accuracy_against_latent_pair_order",
+    "observed": "pair_order_agreement_between_original_grade_and_first_successful_independent_regrade",
+    "pava": "trial_weighted_nondecreasing_repeat_agreement; empty bins carry previous; leading empty bins=0.5; fitted values floored at 0.5",
+    "transport_assumption": "reference_gap_repeatability_curve_applies_to_target_observed_gap_distribution"
+  },
+  "primary_mode": "all_successful_records",
+  "protocol": "label_repeatability_attestation_v2",
+  "provenance": {
+    "decision_audit_card": {
+      "hash_mode": "normalized_utf8_lf_v1",
+      "path": "phase1/results/decision_corpus_audit_v11_20260814/audit_card.json",
+      "protocol": "decision_corpus_audit_v1",
+      "sha256_normalized_lf": "a3b5e12cbe280909300d83d54a326c06c736cfb59f2f6762cb5518720393b399",
+      "status": "VERIFIED_DECISION_CORPUS_AUDIT"
+    },
+    "producer_script": {
+      "hash_mode": "normalized_utf8_lf_v1",
+      "path": "phase1/label_repeatability_attestation.py",
+      "sha256_normalized_lf": "8abe9e8fb918dccc3e585fba015cc130fe50167af4891903de843127e7add47b"
+    },
+    "python": "3.11.15",
+    "regrades": [
+      {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/regrade_results.jsonl",
+        "sha256_normalized_lf": "87892900ef7f08e2b9134c6c33d629e7a6c02ba1b2a23220c3a1b0f9fd8e7e30"
+      },
+      {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/regrade_results_b.jsonl",
+        "sha256_normalized_lf": "029b6dca095b1e642b64d0e3c60f4244a3aceeda044559e240b9afc18ec3a086"
+      },
+      {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/regrade_results_b_attempt1.jsonl",
+        "sha256_normalized_lf": "ff8f3883e22fa78d72708460c54118fa96f8baf3a181f3736c845f6291e68674"
+      },
+      {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/regrade_results_c.jsonl",
+        "sha256_normalized_lf": "2f37591daa06a1b0336bff3eba2cd8a98f5e4b03cda5478126d5ba37677e5ad7"
+      },
+      {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/regrade_results_c_diskfail.jsonl",
+        "sha256_normalized_lf": "d4c21ef6b008641dafc48f38499570a81c1b78f01eb885c017a4a2e650099d73"
+      },
+      {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/regrade_results_c_nosingularity.jsonl",
+        "sha256_normalized_lf": "ff315a4bc8f1c457ddaa2da2bae06b856d54e499c4500a02c4100648281347fc"
+      },
+      {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/regrade_results_c_oom2080.jsonl",
+        "sha256_normalized_lf": "f83eb91d6b373264040983210bcead452d2bc3f721f8fb5b3ac8f9a2af12041b"
+      }
+    ],
+    "target_pair_sets": {
+      "extension:b0": {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/v11_decision/decision_extension_v11_b0.jsonl",
+        "rows": 136,
+        "sha256_normalized_lf": "2facb5a1cb192640229395b9befe4a824bd1e5f1477a2da61eb653d3a6c1ca9c"
+      },
+      "extension:b1": {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/v11_decision/decision_extension_v11_b1.jsonl",
+        "rows": 39,
+        "sha256_normalized_lf": "f74b4f04b8e2ac07fee86fae5f552cc6125b71c29e181d928d1077d2479898c2"
+      },
+      "extension:b2": {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/v11_decision/decision_extension_v11_b2.jsonl",
+        "rows": 30,
+        "sha256_normalized_lf": "3ee35f5e79cb2169f105ed8b0480f274d68a24c15bf409b3bea020e2a839519c"
+      },
+      "frozen:b0": {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/v11_decision/decision_frozen_v11_b0.jsonl",
+        "rows": 1498,
+        "sha256_normalized_lf": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8"
+      },
+      "frozen:b1": {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/v11_decision/decision_frozen_v11_b1.jsonl",
+        "rows": 323,
+        "sha256_normalized_lf": "a56f6c7bd6aad141fdaa45f3f30f944062e8dea922eefc03e75bc8b415e7bc90"
+      },
+      "frozen:b2": {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/v11_decision/decision_frozen_v11_b2.jsonl",
+        "rows": 265,
+        "sha256_normalized_lf": "79d4694d4cea5a81a04c9d463b5c6599a559bbf867f34205fa5715b054f10bc7"
+      },
+      "train:b0": {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/v11_decision/decision_train_v11_b0.jsonl",
+        "rows": 4263,
+        "sha256_normalized_lf": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca"
+      },
+      "train:b1": {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/v11_decision/decision_train_v11_b1.jsonl",
+        "rows": 861,
+        "sha256_normalized_lf": "5053bb3825c5d6a420491cdb056594b306b4850c2b3c179361031becade5d528"
+      },
+      "train:b2": {
+        "hash_mode": "normalized_utf8_lf_v1",
+        "path": "phase1/v11_decision/decision_train_v11_b2.jsonl",
+        "rows": 692,
+        "sha256_normalized_lf": "f0cb83c41b1e45d198384726194b3a2bd013132957d71aa2d81aea318dd7c881"
+      }
+    }
+  },
+  "regrade_log_audit": {
+    "cards_with_any_success": 207,
+    "conflicting_duplicate_card_rep_groups": 9,
+    "duplicate_card_rep_groups": 9,
+    "finite_successful_records": 638,
+    "parsed_rows": 1217
+  },
+  "scope": {
+    "api_calls": 0,
+    "gpu": 0,
+    "reads_endpoint_code": false,
+    "reads_endpoint_observation": false,
+    "reads_pair_winner_orientation": false,
+    "reads_task_orientation": false,
+    "trains_predictor": false
+  },
+  "sensitivity_modes": {
+    "all_successful_records": {
+      "first_repeat_vs_second_repeat": {
+        "bins": [
+          {
+            "bucket": "[0,0.0001)",
+            "model_inferred_single_label_accuracy": 0.936232171512701,
+            "pava_repeat_agreement": 0.8805970149253731,
+            "raw_agreement": 0.9,
+            "successes": 18,
+            "trials": 20
+          },
+          {
+            "bucket": "[0.0001,0.0003)",
+            "model_inferred_single_label_accuracy": 0.936232171512701,
+            "pava_repeat_agreement": 0.8805970149253731,
+            "raw_agreement": 0.88,
+            "successes": 22,
+            "trials": 25
+          },
+          {
+            "bucket": "[0.0003,0.001)",
+            "model_inferred_single_label_accuracy": 0.936232171512701,
+            "pava_repeat_agreement": 0.8805970149253731,
+            "raw_agreement": 0.8764044943820225,
+            "successes": 78,
+            "trials": 89
+          },
+          {
+            "bucket": "[0.001,0.003)",
+            "model_inferred_single_label_accuracy": 0.9912427551063165,
+            "pava_repeat_agreement": 0.9826388888888888,
+            "raw_agreement": 0.9826388888888888,
+            "successes": 283,
+            "trials": 288
+          },
+          {
+            "bucket": "[0.003,0.01)",
+            "model_inferred_single_label_accuracy": 0.9945253824648401,
+            "pava_repeat_agreement": 0.9891107078039928,
+            "raw_agreement": 0.9891107078039928,
+            "successes": 545,
+            "trials": 551
+          },
+          {
+            "bucket": "[0.01,0.03)",
+            "model_inferred_single_label_accuracy": 0.9951533589450828,
+            "pava_repeat_agreement": 0.9903536977491961,
+            "raw_agreement": 0.9903536977491961,
+            "successes": 616,
+            "trials": 622
+          },
+          {
+            "bucket": "[0.03,0.1)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 560,
+            "trials": 560
+          },
+          {
+            "bucket": "[0.1,0.3)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 407,
+            "trials": 407
+          },
+          {
+            "bucket": "[0.3,inf)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 468,
+            "trials": 468
+          }
+        ],
+        "raw_agreement": 0.9891089108910891,
+        "successes": 2997,
+        "tasks": 10,
+        "trials": 3030
+      },
+      "measured_tasks": [
+        "google-quest-challenge",
+        "leaf-classification",
+        "mlsp-2013-birds",
+        "nomad2018-predict-transparent-conductors",
+        "petfinder-pawpularity-score",
+        "random-acts-of-pizza",
+        "spaceship-titanic",
+        "spooky-author-identification",
+        "tabular-playground-series-dec-2021",
+        "tabular-playground-series-may-2022"
+      ],
+      "original_vs_first_repeat": {
+        "bins": [
+          {
+            "bucket": "[0,0.0001)",
+            "model_inferred_single_label_accuracy": 0.7357022603955159,
+            "pava_repeat_agreement": 0.6111111111111112,
+            "raw_agreement": 0.6111111111111112,
+            "successes": 11,
+            "trials": 18
+          },
+          {
+            "bucket": "[0.0001,0.0003)",
+            "model_inferred_single_label_accuracy": 0.8488286340442877,
+            "pava_repeat_agreement": 0.7433628318584071,
+            "raw_agreement": 0.84,
+            "successes": 21,
+            "trials": 25
+          },
+          {
+            "bucket": "[0.0003,0.001)",
+            "model_inferred_single_label_accuracy": 0.8488286340442877,
+            "pava_repeat_agreement": 0.7433628318584071,
+            "raw_agreement": 0.7159090909090909,
+            "successes": 63,
+            "trials": 88
+          },
+          {
+            "bucket": "[0.001,0.003)",
+            "model_inferred_single_label_accuracy": 0.9370036867375631,
+            "pava_repeat_agreement": 0.8819444444444444,
+            "raw_agreement": 0.8819444444444444,
+            "successes": 254,
+            "trials": 288
+          },
+          {
+            "bucket": "[0.003,0.01)",
+            "model_inferred_single_label_accuracy": 0.9755489343809169,
+            "pava_repeat_agreement": 0.9522935779816514,
+            "raw_agreement": 0.9522935779816514,
+            "successes": 519,
+            "trials": 545
+          },
+          {
+            "bucket": "[0.01,0.03)",
+            "model_inferred_single_label_accuracy": 0.9943041266055626,
+            "pava_repeat_agreement": 0.988673139158576,
+            "raw_agreement": 0.988673139158576,
+            "successes": 611,
+            "trials": 618
+          },
+          {
+            "bucket": "[0.03,0.1)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 560,
+            "trials": 560
+          },
+          {
+            "bucket": "[0.1,0.3)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 407,
+            "trials": 407
+          },
+          {
+            "bucket": "[0.3,inf)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 468,
+            "trials": 468
+          }
+        ],
+        "per_task_agreement": {
+          "google-quest-challenge": 1.0,
+          "leaf-classification": 0.9891304347826086,
+          "mlsp-2013-birds": 1.0,
+          "nomad2018-predict-transparent-conductors": 0.9822616407982262,
+          "petfinder-pawpularity-score": 1.0,
+          "random-acts-of-pizza": 1.0,
+          "spaceship-titanic": 0.9332659251769464,
+          "spooky-author-identification": 0.9523809523809523,
+          "tabular-playground-series-dec-2021": 0.9506172839506173,
+          "tabular-playground-series-may-2022": 0.9941520467836257
+        },
+        "raw_agreement": 0.9658601259529334,
+        "successes": 2914,
+        "task_macro_agreement": 0.9801808283872976,
+        "tasks": 10,
+        "trials": 3017
+      },
+      "original_vs_repeat_mean": {
+        "bins": [
+          {
+            "bucket": "[0,0.0001)",
+            "pava_repeat_agreement": 0.6842105263157895,
+            "raw_agreement": 0.6842105263157895,
+            "successes": 13,
+            "trials": 19
+          },
+          {
+            "bucket": "[0.0001,0.0003)",
+            "pava_repeat_agreement": 0.7636363636363637,
+            "raw_agreement": 0.8,
+            "successes": 20,
+            "trials": 25
+          },
+          {
+            "bucket": "[0.0003,0.001)",
+            "pava_repeat_agreement": 0.7636363636363637,
+            "raw_agreement": 0.7529411764705882,
+            "successes": 64,
+            "trials": 85
+          },
+          {
+            "bucket": "[0.001,0.003)",
+            "pava_repeat_agreement": 0.8865979381443299,
+            "raw_agreement": 0.8865979381443299,
+            "successes": 258,
+            "trials": 291
+          },
+          {
+            "bucket": "[0.003,0.01)",
+            "pava_repeat_agreement": 0.9451553930530164,
+            "raw_agreement": 0.9451553930530164,
+            "successes": 517,
+            "trials": 547
+          },
+          {
+            "bucket": "[0.01,0.03)",
+            "pava_repeat_agreement": 0.9854368932038835,
+            "raw_agreement": 0.9854368932038835,
+            "successes": 609,
+            "trials": 618
+          },
+          {
+            "bucket": "[0.03,0.1)",
+            "pava_repeat_agreement": 0.9986062717770035,
+            "raw_agreement": 1.0,
+            "successes": 560,
+            "trials": 560
+          },
+          {
+            "bucket": "[0.1,0.3)",
+            "pava_repeat_agreement": 0.9986062717770035,
+            "raw_agreement": 1.0,
+            "successes": 407,
+            "trials": 407
+          },
+          {
+            "bucket": "[0.3,inf)",
+            "pava_repeat_agreement": 0.9986062717770035,
+            "raw_agreement": 0.9957264957264957,
+            "successes": 466,
+            "trials": 468
+          }
+        ],
+        "raw_agreement": 0.9649006622516556,
+        "successes": 2914,
+        "tasks": 10,
+        "trials": 3020
+      },
+      "selected_successful_records": 638,
+      "targets": {
+        "extension:b0": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9599137195667043,
+            "transported_repeat_agreement": 0.9298769828782493
+          },
+          "measured_task_pair_share": 0.7573529411764706,
+          "measured_task_pairs": 103,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9670913240110058,
+            "transported_repeat_agreement": 0.9415067562502412
+          },
+          "pairs": 136,
+          "task_extrapolation": true,
+          "tasks": 10
+        },
+        "extension:b1": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9512413714548182,
+            "transported_repeat_agreement": 0.913705965994105
+          },
+          "measured_task_pair_share": 0.8461538461538461,
+          "measured_task_pairs": 33,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9534249957000006,
+            "transported_repeat_agreement": 0.9179709978968699
+          },
+          "pairs": 39,
+          "task_extrapolation": true,
+          "tasks": 7
+        },
+        "extension:b2": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9575446091163446,
+            "transported_repeat_agreement": 0.9267808647400533
+          },
+          "measured_task_pair_share": 0.9,
+          "measured_task_pairs": 27,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9602374729883043,
+            "transported_repeat_agreement": 0.9316842946066625
+          },
+          "pairs": 30,
+          "task_extrapolation": true,
+          "tasks": 4
+        },
+        "frozen:b0": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9488254145489123,
+            "transported_repeat_agreement": 0.9134305309964227
+          },
+          "measured_task_pair_share": 0.732977303070761,
+          "measured_task_pairs": 1098,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9436065940641354,
+            "transported_repeat_agreement": 0.9053834921625754
+          },
+          "pairs": 1498,
+          "task_extrapolation": true,
+          "tasks": 22
+        },
+        "frozen:b1": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9361851433192768,
+            "transported_repeat_agreement": 0.8916941736230527
+          },
+          "measured_task_pair_share": 0.628482972136223,
+          "measured_task_pairs": 203,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9275156307046919,
+            "transported_repeat_agreement": 0.8782358845005863
+          },
+          "pairs": 323,
+          "task_extrapolation": true,
+          "tasks": 20
+        },
+        "frozen:b2": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9314651721448394,
+            "transported_repeat_agreement": 0.8824732483674982
+          },
+          "measured_task_pair_share": 0.6566037735849056,
+          "measured_task_pairs": 174,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9213115961361751,
+            "transported_repeat_agreement": 0.8661054342033665
+          },
+          "pairs": 265,
+          "task_extrapolation": true,
+          "tasks": 17
+        },
+        "train:b0": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9655153415774262,
+            "transported_repeat_agreement": 0.9400360984596953
+          },
+          "measured_task_pair_share": 0.680037532254281,
+          "measured_task_pairs": 2899,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9699764181223486,
+            "transported_repeat_agreement": 0.9472369532570191
+          },
+          "pairs": 4263,
+          "task_extrapolation": true,
+          "tasks": 23
+        },
+        "train:b1": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9586827002417571,
+            "transported_repeat_agreement": 0.9277785042755705
+          },
+          "measured_task_pair_share": 0.5958188153310104,
+          "measured_task_pairs": 513,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9683353684172213,
+            "transported_repeat_agreement": 0.9435875118764456
+          },
+          "pairs": 861,
+          "task_extrapolation": true,
+          "tasks": 22
+        },
+        "train:b2": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9569994913994613,
+            "transported_repeat_agreement": 0.924660768569644
+          },
+          "measured_task_pair_share": 0.6242774566473989,
+          "measured_task_pairs": 432,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9640215217003383,
+            "transported_repeat_agreement": 0.9358424843529846
+          },
+          "pairs": 692,
+          "task_extrapolation": true,
+          "tasks": 21
+        }
+      },
+      "task_cluster_bootstrap": {
+        "raw_original_vs_first_repeat_agreement_ci95": [
+          0.9438143714671886,
+          0.9913402891372938
+        ],
+        "repetitions": 2000,
+        "seed": 20260814,
+        "targets": {
+          "extension:b0": {
+            "all_pairs": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.8867061492874124,
+                0.979734508925457
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8569623631558555,
+                0.968421479640307
+              ]
+            },
+            "measured_task_pairs_only": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.905017515369331,
+                0.986086136805254
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8766399872430672,
+                0.9774579829761622
+              ]
+            }
+          },
+          "extension:b1": {
+            "all_pairs": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.8486181796266394,
+                0.9826025401798166
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8161630644297382,
+                0.9673531307627206
+              ]
+            },
+            "measured_task_pairs_only": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.8553620175824708,
+                0.9825956258342953
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8289955529638201,
+                0.967383195718215
+              ]
+            }
+          },
+          "extension:b2": {
+            "all_pairs": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.8866282343105996,
+                0.9761234225679549
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8629739087111045,
+                0.9620674621294724
+              ]
+            },
+            "measured_task_pairs_only": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.8959225210822048,
+                0.9771449953728528
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8729859676862655,
+                0.9632823071483991
+              ]
+            }
+          },
+          "frozen:b0": {
+            "all_pairs": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.8571329199113228,
+                0.9682215874512448
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8353851659068688,
+                0.9494041168867747
+              ]
+            },
+            "measured_task_pairs_only": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.8425068726562862,
+                0.9635159677149602
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8222626085748247,
+                0.9416119061941004
+              ]
+            }
+          },
+          "frozen:b1": {
+            "all_pairs": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.8211034446900434,
+                0.9611155025210438
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.7924580822980414,
+                0.9382365626506495
+              ]
+            },
+            "measured_task_pairs_only": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.7946767110279442,
+                0.9534652148164745
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.7690751681009619,
+                0.9257708044647555
+              ]
+            }
+          },
+          "frozen:b2": {
+            "all_pairs": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.7981120604636813,
+                0.9611414516818688
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.7674114569612687,
+                0.9392978659043105
+              ]
+            },
+            "measured_task_pairs_only": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.7658582328231652,
+                0.9534190774985039
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.7380258180724113,
+                0.9270861977550083
+              ]
+            }
+          },
+          "train:b0": {
+            "all_pairs": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.9051551179720404,
+                0.9816944505586116
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8815758586566425,
+                0.9712762507585104
+              ]
+            },
+            "measured_task_pairs_only": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.917016939278248,
+                0.985154035665248
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8944652645569666,
+                0.9768658101909999
+              ]
+            }
+          },
+          "train:b1": {
+            "all_pairs": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.886546062389223,
+                0.9788664753983716
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8542465489293913,
+                0.9669773441145287
+              ]
+            },
+            "measured_task_pairs_only": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.9131776628160466,
+                0.9860392302464401
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8841147693911363,
+                0.9782713173527602
+              ]
+            }
+          },
+          "train:b2": {
+            "all_pairs": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.8821331489767307,
+                0.9783089366362322
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8480679382692456,
+                0.9661272146712996
+              ]
+            },
+            "measured_task_pairs_only": {
+              "model_inferred_single_label_accuracy_ci95": [
+                0.900685664150161,
+                0.9844946621351313
+              ],
+              "transported_repeat_agreement_ci95": [
+                0.8677632453448246,
+                0.9755491766970549
+              ]
+            }
+          }
+        },
+        "unit": "task"
+      },
+      "usable_cards": 207
+    },
+    "first_success_per_card_rep": {
+      "first_repeat_vs_second_repeat": {
+        "bins": [
+          {
+            "bucket": "[0,0.0001)",
+            "model_inferred_single_label_accuracy": 0.9225771273642582,
+            "pava_repeat_agreement": 0.8571428571428571,
+            "raw_agreement": 0.875,
+            "successes": 14,
+            "trials": 16
+          },
+          {
+            "bucket": "[0.0001,0.0003)",
+            "model_inferred_single_label_accuracy": 0.9225771273642582,
+            "pava_repeat_agreement": 0.8571428571428571,
+            "raw_agreement": 0.8461538461538461,
+            "successes": 22,
+            "trials": 26
+          },
+          {
+            "bucket": "[0.0003,0.001)",
+            "model_inferred_single_label_accuracy": 0.9281744192888377,
+            "pava_repeat_agreement": 0.8666666666666667,
+            "raw_agreement": 0.8666666666666667,
+            "successes": 78,
+            "trials": 90
+          },
+          {
+            "bucket": "[0.001,0.003)",
+            "model_inferred_single_label_accuracy": 0.9912733261320608,
+            "pava_repeat_agreement": 0.9826989619377162,
+            "raw_agreement": 0.9826989619377162,
+            "successes": 284,
+            "trials": 289
+          },
+          {
+            "bucket": "[0.003,0.01)",
+            "model_inferred_single_label_accuracy": 0.9945253824648401,
+            "pava_repeat_agreement": 0.9891107078039928,
+            "raw_agreement": 0.9891107078039928,
+            "successes": 545,
+            "trials": 551
+          },
+          {
+            "bucket": "[0.01,0.03)",
+            "model_inferred_single_label_accuracy": 0.9951533589450828,
+            "pava_repeat_agreement": 0.9903536977491961,
+            "raw_agreement": 0.9903536977491961,
+            "successes": 616,
+            "trials": 622
+          },
+          {
+            "bucket": "[0.03,0.1)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 560,
+            "trials": 560
+          },
+          {
+            "bucket": "[0.1,0.3)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 407,
+            "trials": 407
+          },
+          {
+            "bucket": "[0.3,inf)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 468,
+            "trials": 468
+          }
+        ],
+        "raw_agreement": 0.9884450313634863,
+        "successes": 2994,
+        "tasks": 10,
+        "trials": 3029
+      },
+      "measured_tasks": [
+        "google-quest-challenge",
+        "leaf-classification",
+        "mlsp-2013-birds",
+        "nomad2018-predict-transparent-conductors",
+        "petfinder-pawpularity-score",
+        "random-acts-of-pizza",
+        "spaceship-titanic",
+        "spooky-author-identification",
+        "tabular-playground-series-dec-2021",
+        "tabular-playground-series-may-2022"
+      ],
+      "original_vs_first_repeat": {
+        "bins": [
+          {
+            "bucket": "[0,0.0001)",
+            "model_inferred_single_label_accuracy": 0.7672612419124245,
+            "pava_repeat_agreement": 0.6428571428571429,
+            "raw_agreement": 0.6428571428571429,
+            "successes": 9,
+            "trials": 14
+          },
+          {
+            "bucket": "[0.0001,0.0003)",
+            "model_inferred_single_label_accuracy": 0.8411441196105065,
+            "pava_repeat_agreement": 0.7327586206896551,
+            "raw_agreement": 0.8846153846153846,
+            "successes": 23,
+            "trials": 26
+          },
+          {
+            "bucket": "[0.0003,0.001)",
+            "model_inferred_single_label_accuracy": 0.8411441196105065,
+            "pava_repeat_agreement": 0.7327586206896551,
+            "raw_agreement": 0.6888888888888889,
+            "successes": 62,
+            "trials": 90
+          },
+          {
+            "bucket": "[0.001,0.003)",
+            "model_inferred_single_label_accuracy": 0.9372373160976031,
+            "pava_repeat_agreement": 0.8823529411764706,
+            "raw_agreement": 0.8823529411764706,
+            "successes": 255,
+            "trials": 289
+          },
+          {
+            "bucket": "[0.003,0.01)",
+            "model_inferred_single_label_accuracy": 0.9755489343809169,
+            "pava_repeat_agreement": 0.9522935779816514,
+            "raw_agreement": 0.9522935779816514,
+            "successes": 519,
+            "trials": 545
+          },
+          {
+            "bucket": "[0.01,0.03)",
+            "model_inferred_single_label_accuracy": 0.9943041266055626,
+            "pava_repeat_agreement": 0.988673139158576,
+            "raw_agreement": 0.988673139158576,
+            "successes": 611,
+            "trials": 618
+          },
+          {
+            "bucket": "[0.03,0.1)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 560,
+            "trials": 560
+          },
+          {
+            "bucket": "[0.1,0.3)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 407,
+            "trials": 407
+          },
+          {
+            "bucket": "[0.3,inf)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 468,
+            "trials": 468
+          }
+        ],
+        "raw_agreement": 0.9658601259529334,
+        "successes": 2914,
+        "tasks": 10,
+        "trials": 3017
+      },
+      "original_vs_repeat_mean": {
+        "bins": [
+          {
+            "bucket": "[0,0.0001)",
+            "pava_repeat_agreement": 0.6666666666666666,
+            "raw_agreement": 0.6666666666666666,
+            "successes": 10,
+            "trials": 15
+          },
+          {
+            "bucket": "[0.0001,0.0003)",
+            "pava_repeat_agreement": 0.7876106194690266,
+            "raw_agreement": 0.8846153846153846,
+            "successes": 23,
+            "trials": 26
+          },
+          {
+            "bucket": "[0.0003,0.001)",
+            "pava_repeat_agreement": 0.7876106194690266,
+            "raw_agreement": 0.7586206896551724,
+            "successes": 66,
+            "trials": 87
+          },
+          {
+            "bucket": "[0.001,0.003)",
+            "pava_repeat_agreement": 0.886986301369863,
+            "raw_agreement": 0.886986301369863,
+            "successes": 259,
+            "trials": 292
+          },
+          {
+            "bucket": "[0.003,0.01)",
+            "pava_repeat_agreement": 0.9451553930530164,
+            "raw_agreement": 0.9451553930530164,
+            "successes": 517,
+            "trials": 547
+          },
+          {
+            "bucket": "[0.01,0.03)",
+            "pava_repeat_agreement": 0.9854368932038835,
+            "raw_agreement": 0.9854368932038835,
+            "successes": 609,
+            "trials": 618
+          },
+          {
+            "bucket": "[0.03,0.1)",
+            "pava_repeat_agreement": 0.9986062717770035,
+            "raw_agreement": 1.0,
+            "successes": 560,
+            "trials": 560
+          },
+          {
+            "bucket": "[0.1,0.3)",
+            "pava_repeat_agreement": 0.9986062717770035,
+            "raw_agreement": 1.0,
+            "successes": 407,
+            "trials": 407
+          },
+          {
+            "bucket": "[0.3,inf)",
+            "pava_repeat_agreement": 0.9986062717770035,
+            "raw_agreement": 0.9957264957264957,
+            "successes": 466,
+            "trials": 468
+          }
+        ],
+        "raw_agreement": 0.9658940397350994,
+        "successes": 2917,
+        "tasks": 10,
+        "trials": 3020
+      },
+      "selected_successful_records": 629,
+      "targets": {
+        "extension:b0": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9597453238967864,
+            "transported_repeat_agreement": 0.9293987927412983
+          },
+          "measured_task_pair_share": 0.7573529411764706,
+          "measured_task_pairs": 103,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9666902127129454,
+            "transported_repeat_agreement": 0.9408528568764835
+          },
+          "pairs": 136,
+          "task_extrapolation": true,
+          "tasks": 10
+        },
+        "extension:b1": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9497129847730252,
+            "transported_repeat_agreement": 0.9116145373916998
+          },
+          "measured_task_pair_share": 0.8461538461538461,
+          "measured_task_pairs": 33,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9518303455716288,
+            "transported_repeat_agreement": 0.9157835132144113
+          },
+          "pairs": 39,
+          "task_extrapolation": true,
+          "tasks": 7
+        },
+        "extension:b2": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9575875485330734,
+            "transported_repeat_agreement": 0.9264524040912224
+          },
+          "measured_task_pair_share": 0.9,
+          "measured_task_pairs": 27,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9605697950970319,
+            "transported_repeat_agreement": 0.9317120868919895
+          },
+          "pairs": 30,
+          "task_extrapolation": true,
+          "tasks": 4
+        },
+        "frozen:b0": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9489994994347488,
+            "transported_repeat_agreement": 0.9131214229466382
+          },
+          "measured_task_pair_share": 0.732977303070761,
+          "measured_task_pairs": 1098,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9439184601737584,
+            "transported_repeat_agreement": 0.9051464726301959
+          },
+          "pairs": 1498,
+          "task_extrapolation": true,
+          "tasks": 22
+        },
+        "frozen:b1": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9362901246850596,
+            "transported_repeat_agreement": 0.8911943157850233
+          },
+          "measured_task_pair_share": 0.628482972136223,
+          "measured_task_pairs": 203,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9276836330296859,
+            "transported_repeat_agreement": 0.8776668226287867
+          },
+          "pairs": 323,
+          "task_extrapolation": true,
+          "tasks": 20
+        },
+        "frozen:b2": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9305815286383676,
+            "transported_repeat_agreement": 0.8808240436327007
+          },
+          "measured_task_pair_share": 0.6566037735849056,
+          "measured_task_pairs": 174,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.920197196028953,
+            "transported_repeat_agreement": 0.8640397715422898
+          },
+          "pairs": 265,
+          "task_extrapolation": true,
+          "tasks": 17
+        },
+        "train:b0": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9655168257291113,
+            "transported_repeat_agreement": 0.9397713189148753
+          },
+          "measured_task_pair_share": 0.680037532254281,
+          "measured_task_pairs": 2899,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9698120423168795,
+            "transported_repeat_agreement": 0.9468358699118802
+          },
+          "pairs": 4263,
+          "task_extrapolation": true,
+          "tasks": 23
+        },
+        "train:b1": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9587911819796174,
+            "transported_repeat_agreement": 0.9276142819202676
+          },
+          "measured_task_pair_share": 0.5958188153310104,
+          "measured_task_pairs": 513,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9682005163039856,
+            "transported_repeat_agreement": 0.9432527799732139
+          },
+          "pairs": 861,
+          "task_extrapolation": true,
+          "tasks": 22
+        },
+        "train:b2": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9570521154158559,
+            "transported_repeat_agreement": 0.9244244780269965
+          },
+          "measured_task_pair_share": 0.6242774566473989,
+          "measured_task_pairs": 432,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9637856275743961,
+            "transported_repeat_agreement": 0.935366776061864
+          },
+          "pairs": 692,
+          "task_extrapolation": true,
+          "tasks": 21
+        }
+      },
+      "usable_cards": 207
+    },
+    "last_success_per_card_rep": {
+      "first_repeat_vs_second_repeat": {
+        "bins": [
+          {
+            "bucket": "[0,0.0001)",
+            "model_inferred_single_label_accuracy": 0.936232171512701,
+            "pava_repeat_agreement": 0.8805970149253731,
+            "raw_agreement": 0.9444444444444444,
+            "successes": 17,
+            "trials": 18
+          },
+          {
+            "bucket": "[0.0001,0.0003)",
+            "model_inferred_single_label_accuracy": 0.936232171512701,
+            "pava_repeat_agreement": 0.8805970149253731,
+            "raw_agreement": 0.8846153846153846,
+            "successes": 23,
+            "trials": 26
+          },
+          {
+            "bucket": "[0.0003,0.001)",
+            "model_inferred_single_label_accuracy": 0.936232171512701,
+            "pava_repeat_agreement": 0.8805970149253731,
+            "raw_agreement": 0.8666666666666667,
+            "successes": 78,
+            "trials": 90
+          },
+          {
+            "bucket": "[0.001,0.003)",
+            "model_inferred_single_label_accuracy": 0.9911809658962176,
+            "pava_repeat_agreement": 0.9825174825174825,
+            "raw_agreement": 0.9825174825174825,
+            "successes": 281,
+            "trials": 286
+          },
+          {
+            "bucket": "[0.003,0.01)",
+            "model_inferred_single_label_accuracy": 0.9945353550468402,
+            "pava_repeat_agreement": 0.9891304347826086,
+            "raw_agreement": 0.9891304347826086,
+            "successes": 546,
+            "trials": 552
+          },
+          {
+            "bucket": "[0.01,0.03)",
+            "model_inferred_single_label_accuracy": 0.9951611764771231,
+            "pava_repeat_agreement": 0.9903691813804173,
+            "raw_agreement": 0.9903691813804173,
+            "successes": 617,
+            "trials": 623
+          },
+          {
+            "bucket": "[0.03,0.1)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 560,
+            "trials": 560
+          },
+          {
+            "bucket": "[0.1,0.3)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 407,
+            "trials": 407
+          },
+          {
+            "bucket": "[0.3,inf)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 468,
+            "trials": 468
+          }
+        ],
+        "raw_agreement": 0.9891089108910891,
+        "successes": 2997,
+        "tasks": 10,
+        "trials": 3030
+      },
+      "measured_tasks": [
+        "google-quest-challenge",
+        "leaf-classification",
+        "mlsp-2013-birds",
+        "nomad2018-predict-transparent-conductors",
+        "petfinder-pawpularity-score",
+        "random-acts-of-pizza",
+        "spaceship-titanic",
+        "spooky-author-identification",
+        "tabular-playground-series-dec-2021",
+        "tabular-playground-series-may-2022"
+      ],
+      "original_vs_first_repeat": {
+        "bins": [
+          {
+            "bucket": "[0,0.0001)",
+            "model_inferred_single_label_accuracy": 0.75,
+            "pava_repeat_agreement": 0.625,
+            "raw_agreement": 0.625,
+            "successes": 10,
+            "trials": 16
+          },
+          {
+            "bucket": "[0.0001,0.0003)",
+            "model_inferred_single_label_accuracy": 0.8457820374040623,
+            "pava_repeat_agreement": 0.7391304347826086,
+            "raw_agreement": 0.8076923076923077,
+            "successes": 21,
+            "trials": 26
+          },
+          {
+            "bucket": "[0.0003,0.001)",
+            "model_inferred_single_label_accuracy": 0.8457820374040623,
+            "pava_repeat_agreement": 0.7391304347826086,
+            "raw_agreement": 0.7191011235955056,
+            "successes": 64,
+            "trials": 89
+          },
+          {
+            "bucket": "[0.001,0.003)",
+            "model_inferred_single_label_accuracy": 0.9365311450050735,
+            "pava_repeat_agreement": 0.8811188811188811,
+            "raw_agreement": 0.8811188811188811,
+            "successes": 252,
+            "trials": 286
+          },
+          {
+            "bucket": "[0.003,0.01)",
+            "model_inferred_single_label_accuracy": 0.9755948656056709,
+            "pava_repeat_agreement": 0.9523809523809523,
+            "raw_agreement": 0.9523809523809523,
+            "successes": 520,
+            "trials": 546
+          },
+          {
+            "bucket": "[0.01,0.03)",
+            "model_inferred_single_label_accuracy": 0.9943133812688606,
+            "pava_repeat_agreement": 0.9886914378029079,
+            "raw_agreement": 0.9886914378029079,
+            "successes": 612,
+            "trials": 619
+          },
+          {
+            "bucket": "[0.03,0.1)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 560,
+            "trials": 560
+          },
+          {
+            "bucket": "[0.1,0.3)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 407,
+            "trials": 407
+          },
+          {
+            "bucket": "[0.3,inf)",
+            "model_inferred_single_label_accuracy": 1.0,
+            "pava_repeat_agreement": 1.0,
+            "raw_agreement": 1.0,
+            "successes": 468,
+            "trials": 468
+          }
+        ],
+        "raw_agreement": 0.9658601259529334,
+        "successes": 2914,
+        "tasks": 10,
+        "trials": 3017
+      },
+      "original_vs_repeat_mean": {
+        "bins": [
+          {
+            "bucket": "[0,0.0001)",
+            "pava_repeat_agreement": 0.6470588235294118,
+            "raw_agreement": 0.6470588235294118,
+            "successes": 11,
+            "trials": 17
+          },
+          {
+            "bucket": "[0.0001,0.0003)",
+            "pava_repeat_agreement": 0.75,
+            "raw_agreement": 0.7692307692307693,
+            "successes": 20,
+            "trials": 26
+          },
+          {
+            "bucket": "[0.0003,0.001)",
+            "pava_repeat_agreement": 0.75,
+            "raw_agreement": 0.7441860465116279,
+            "successes": 64,
+            "trials": 86
+          },
+          {
+            "bucket": "[0.001,0.003)",
+            "pava_repeat_agreement": 0.8858131487889274,
+            "raw_agreement": 0.8858131487889274,
+            "successes": 256,
+            "trials": 289
+          },
+          {
+            "bucket": "[0.003,0.01)",
+            "pava_repeat_agreement": 0.9452554744525548,
+            "raw_agreement": 0.9452554744525548,
+            "successes": 518,
+            "trials": 548
+          },
+          {
+            "bucket": "[0.01,0.03)",
+            "pava_repeat_agreement": 0.9854604200323102,
+            "raw_agreement": 0.9854604200323102,
+            "successes": 610,
+            "trials": 619
+          },
+          {
+            "bucket": "[0.03,0.1)",
+            "pava_repeat_agreement": 0.9986062717770035,
+            "raw_agreement": 1.0,
+            "successes": 560,
+            "trials": 560
+          },
+          {
+            "bucket": "[0.1,0.3)",
+            "pava_repeat_agreement": 0.9986062717770035,
+            "raw_agreement": 1.0,
+            "successes": 407,
+            "trials": 407
+          },
+          {
+            "bucket": "[0.3,inf)",
+            "pava_repeat_agreement": 0.9986062717770035,
+            "raw_agreement": 0.9957264957264957,
+            "successes": 466,
+            "trials": 468
+          }
+        ],
+        "raw_agreement": 0.9642384105960264,
+        "successes": 2912,
+        "tasks": 10,
+        "trials": 3020
+      },
+      "selected_successful_records": 629,
+      "targets": {
+        "extension:b0": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9598014564273427,
+            "transported_repeat_agreement": 0.9295662500441809
+          },
+          "measured_task_pair_share": 0.7573529411764706,
+          "measured_task_pairs": 103,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9668660027462955,
+            "transported_repeat_agreement": 0.9411128966034615
+          },
+          "pairs": 136,
+          "task_extrapolation": true,
+          "tasks": 10
+        },
+        "extension:b1": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9505284528799837,
+            "transported_repeat_agreement": 0.9126855258278798
+          },
+          "measured_task_pair_share": 0.8461538461538461,
+          "measured_task_pairs": 33,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9527163431604367,
+            "transported_repeat_agreement": 0.9169656811141547
+          },
+          "pairs": 39,
+          "task_extrapolation": true,
+          "tasks": 7
+        },
+        "extension:b2": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9576006461098757,
+            "transported_repeat_agreement": 0.9266572550665055
+          },
+          "measured_task_pair_share": 0.9,
+          "measured_task_pairs": 27,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.960409170914106,
+            "transported_repeat_agreement": 0.9316972337944688
+          },
+          "pairs": 30,
+          "task_extrapolation": true,
+          "tasks": 4
+        },
+        "frozen:b0": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9489213193369204,
+            "transported_repeat_agreement": 0.9132652862633839
+          },
+          "measured_task_pair_share": 0.732977303070761,
+          "measured_task_pairs": 1098,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9437751623343557,
+            "transported_repeat_agreement": 0.9052593406045132
+          },
+          "pairs": 1498,
+          "task_extrapolation": true,
+          "tasks": 22
+        },
+        "frozen:b1": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9362522457161073,
+            "transported_repeat_agreement": 0.8914349009202257
+          },
+          "measured_task_pair_share": 0.628482972136223,
+          "measured_task_pairs": 203,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9276272915284017,
+            "transported_repeat_agreement": 0.8779574543170647
+          },
+          "pairs": 323,
+          "task_extrapolation": true,
+          "tasks": 20
+        },
+        "frozen:b2": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9310900312607825,
+            "transported_repeat_agreement": 0.8817013396382725
+          },
+          "measured_task_pair_share": 0.6566037735849056,
+          "measured_task_pairs": 174,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9208625871980077,
+            "transported_repeat_agreement": 0.865182098380927
+          },
+          "pairs": 265,
+          "task_extrapolation": true,
+          "tasks": 17
+        },
+        "train:b0": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9655025150927291,
+            "transported_repeat_agreement": 0.9398640268003071
+          },
+          "measured_task_pair_share": 0.680037532254281,
+          "measured_task_pairs": 2899,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9698911047464763,
+            "transported_repeat_agreement": 0.9470138712858202
+          },
+          "pairs": 4263,
+          "task_extrapolation": true,
+          "tasks": 23
+        },
+        "train:b1": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9586890930082089,
+            "transported_repeat_agreement": 0.9275978754520091
+          },
+          "measured_task_pair_share": 0.5958188153310104,
+          "measured_task_pairs": 513,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9682379085127288,
+            "transported_repeat_agreement": 0.9433531244356816
+          },
+          "pairs": 861,
+          "task_extrapolation": true,
+          "tasks": 22
+        },
+        "train:b2": {
+          "all_pairs": {
+            "model_inferred_single_label_accuracy": 0.9569841533610355,
+            "transported_repeat_agreement": 0.9244531511455708
+          },
+          "measured_task_pair_share": 0.6242774566473989,
+          "measured_task_pairs": 432,
+          "measured_task_pairs_only": {
+            "model_inferred_single_label_accuracy": 0.9638777306369214,
+            "transported_repeat_agreement": 0.9355406879643171
+          },
+          "pairs": 692,
+          "task_extrapolation": true,
+          "tasks": 21
+        }
+      },
+      "usable_cards": 207
+    }
+  },
+  "status": "VERIFIED_LABEL_REPEATABILITY_ATTESTATION_V2"
+}

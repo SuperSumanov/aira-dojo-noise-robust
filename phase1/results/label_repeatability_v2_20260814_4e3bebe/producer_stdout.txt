@@ -1,0 +1,11 @@
+VERIFIED_LABEL_REPEATABILITY_ATTESTATION_V2
+cards=207 tasks=10 pairs=3017 raw_agreement=0.965860125953
+extension:b0 pairs=136 measured_task_share=0.757352941176 repeat=0.929876982878 inferred=0.959913719567
+extension:b1 pairs=39 measured_task_share=0.846153846154 repeat=0.913705965994 inferred=0.951241371455
+extension:b2 pairs=30 measured_task_share=0.900000000000 repeat=0.926780864740 inferred=0.957544609116
+frozen:b0 pairs=1498 measured_task_share=0.732977303071 repeat=0.913430530996 inferred=0.948825414549
+frozen:b1 pairs=323 measured_task_share=0.628482972136 repeat=0.891694173623 inferred=0.936185143319
+frozen:b2 pairs=265 measured_task_share=0.656603773585 repeat=0.882473248367 inferred=0.931465172145
+train:b0 pairs=4263 measured_task_share=0.680037532254 repeat=0.940036098460 inferred=0.965515341577
+train:b1 pairs=861 measured_task_share=0.595818815331 repeat=0.927778504276 inferred=0.958682700242
+train:b2 pairs=692 measured_task_share=0.624277456647 repeat=0.924660768570 inferred=0.956999491399

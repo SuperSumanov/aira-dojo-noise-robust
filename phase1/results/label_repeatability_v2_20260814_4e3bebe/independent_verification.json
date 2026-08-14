@@ -1,0 +1,13 @@
+{
+  "imports_producer": false,
+  "protocol": "independent_label_repeatability_attestation_verifier_v2",
+  "source_attestation": {
+    "hash_mode": "normalized_utf8_lf_v1",
+    "path": "/research/d7/spc/yzyang4/label-repeatability-v2-4e3bebe-a2/attestation.json",
+    "sha256_normalized_lf": "eba5e2b3ce01d3cbf80bb81d9854d1e08c6bd73a045d97fe1a20b1e264c8cf8b"
+  },
+  "status": "INDEPENDENTLY_VERIFIED_LABEL_REPEATABILITY_ATTESTATION_V2",
+  "verified_modes": 3,
+  "verified_pair_sets": 9,
+  "verified_regrade_files": 7
+}

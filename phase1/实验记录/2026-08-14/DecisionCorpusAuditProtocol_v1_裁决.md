@@ -74,3 +74,13 @@ attestation，不能合并成一个“全都验证”的模糊主张。
    audit-card schema，而不复制或偷换它们的 estimand；
 2. 等 E1-Q 完整结束后，把 paired continuation label feasibility 作为可选扩展卡，不冒充主方法收益；
 3. first-960 有新 physical runs 时按已冻结机制积累，不按 outcome 停止。
+
+## 6. 后续 attestation 状态（2026-08-14）
+
+label-quality 外部证据已由 `label_repeatability_attestation_v2` 完成，路径为
+`phase1/results/label_repeatability_v2_20260814_4e3bebe/`。它不改写本 card 的 scope：
+`recomputes_label_noise=false` 仍为真；二者是 hash 分离、estimand 分离的证据。v2 直接报告 repeat agreement，
+只有在显式独立/可交换/对称误差模型下才给 inferred single-label quantity，并保留 10→22 task extrapolation。
+
+deployment-cost 与 prospective boundary 仍是独立 attestation；前者尚未并入 release index，后者仍处于
+`PROSPECTIVE_COHORT_COLLECTING`。不得因为 label-quality 已完成而把三项都写成“统一 card 已验证”。

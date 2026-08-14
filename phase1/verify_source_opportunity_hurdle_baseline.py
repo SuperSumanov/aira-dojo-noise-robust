@@ -396,9 +396,9 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
     if blind_sha != summary.get("blind_scores_sha256_before_frozen_evaluation"):
         raise VerificationError("blind score seal mismatch")
     rebuilt = rebuild_parent_rows(candidates)
+    reconstructed, _ = reconstruct_results(rebuilt)
     reported = load_reported_parent_rows(producer / "frozen_per_parent.csv")
     compare_parent_rows(rebuilt, reported)
-    reconstructed, _ = reconstruct_results(rebuilt)
     close(summary.get("results"), reconstructed, "results")
     if summary.get("status") != reconstructed["status"]:
         raise VerificationError("top-level status mismatch")

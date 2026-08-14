@@ -3,6 +3,38 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0T. 2026-08-14 最新覆盖：scheduler receipt 内部闭环通过，生产真实性门仍关闭
+
+本节晚于 0S。稳定主线仍是 physical-run-clean、choice-set-faithful 的 MLE-agent 决策数据/benchmark 与
+first-960 prospective confirmation；随机兄弟日志仍是未接入生产的 gated interventional resource。
+
+1. commit `6a68c7dd7cdcf2fe5faf25017b3ef8bcb3a1d4b5` 新增不 import assignment producer 的
+   scheduler receipt verifier。它先通过独立 assignment verifier 重建 frozen assignment，再从 canonical eligible-set
+   receipts 重做 SHA-256 top-m 无放回随机化，要求 selected parent 集合、receipt hash 与 `m/n` propensity 全部精确。
+2. committed budget receipt 必须绑定 assignment manifest/summary；每个 assignment ID 一对一替换一个唯一标准
+   production slot 并占用一个唯一 randomized slot。若 assignment 数为 `|A|`，强制
+   `B_standard_after=B_before-|A|`、`B_randomized_after=|A|`、`B_total_after=B_before`；任何重复、漂移、
+   outcome-bearing key、凭据形状、非 canonical JSON 或时间逆序均 fail-closed。
+3. 精确 commit 的全新 Linux worktree 中，相关测试 `19 passed in 0.39s`，完整 `phase1/tests` 为
+   `275 passed in 25.48s`；安全扫描可疑文件名 0、高置信凭据 0，下载后 5 文件 hash mismatch=0。Windows 本地
+   完整套件的两项失败均来自既有测试缺 SciPy，Linux 全套通过排除了本轮回归。
+4. 本轮没有伪造生产 true flag。通过只允许写
+   `upstream_selection_probability_reconstructed_from_declared_eligible_sets=true`、
+   `committed_budget_decrement_internally_consistent=true` 与 `budget_conserved_within_receipt=true`；同时强制
+   `eligible_stream_completeness_verified=false`、`external_scheduler_receipt_authenticity_verified=false`、
+   `upstream_selection_probability_verified_by_assignment=false`、`actual_production_budget_decrement_verified=false`、
+   `production_activation_authorized=false`、`causal_claim_allowed=false`。
+5. 下一门必须来自真实 scheduler：只读 append-only eligible-event stream、连续 sequence/window 完整性、实际预算
+   transaction 与 pre-outcome sealing。未经与学长共同确认生产接口和机会成本，不得接入其日常语料生产；E1 批准
+   不自动授权该 sidecar，E2/E3 仍关闭。
+
+直接证据：
+
+- `phase1/results/scheduler_receipt_verifier_20260814_6a68c7d/README.md`；
+- `phase1/verify_randomized_sibling_production_receipts.py`；
+- `phase1/tests/test_randomized_sibling_production_receipts.py`；
+- `phase1/实验记录/2026-08-14/RandomizedSiblingLogging_v1_设计冻结.md`。
+
 ## 0S. 2026-08-14 最新覆盖：随机兄弟日志契约通过合成验收，生产接入仍未授权
 
 本节晚于 0R。稳定主线仍是 physical-run-clean、choice-set-faithful 的 MLE-agent 决策数据/benchmark 与

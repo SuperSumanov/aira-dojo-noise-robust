@@ -34,16 +34,19 @@ verify_fixed_worktree() {
 }
 
 runner() {
-  "$PYTHON" -m phase1.prospective_production_runner \
-    --source-root "$SOURCE_ROOT" \
-    --state-root "$STATE_ROOT" \
-    --repo-root "$repo_root" \
-    --expected-commit "$expected_commit" \
-    --minimum-age-seconds 21600 \
-    --minimum-observations 3 \
-    --minimum-observation-interval-seconds 300 \
-    --minimum-stable-span-seconds 600 \
-    "$@"
+  (
+    cd "$repo_root"
+    "$PYTHON" -m phase1.prospective_production_runner \
+      --source-root "$SOURCE_ROOT" \
+      --state-root "$STATE_ROOT" \
+      --repo-root "$repo_root" \
+      --expected-commit "$expected_commit" \
+      --minimum-age-seconds 21600 \
+      --minimum-observations 3 \
+      --minimum-observation-interval-seconds 300 \
+      --minimum-stable-span-seconds 600 \
+      "$@"
+  )
 }
 
 if [[ "$mode" == --initialize ]]; then
@@ -120,7 +123,7 @@ test ! -e "$STATE_ROOT/BASELINE_INVALID"
 for ((poll=0; poll<MAX_POLLS; poll++)); do
   printf '%s poll_start=%d\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$poll"
   set +e
-  (cd "$repo_root" && runner --require-strace)
+  runner --require-strace
   runner_rc=$?
   set -e
   printf '%s poll_end=%d rc=%d\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$poll" "$runner_rc"

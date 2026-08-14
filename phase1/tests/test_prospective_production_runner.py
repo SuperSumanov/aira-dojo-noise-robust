@@ -176,3 +176,13 @@ def test_parse_transactions_rejects_blank_lines(tmp_path: Path):
     blob = canonical_jsonl([transaction(tmp_path)]) + b"\n"
     with pytest.raises(ProductionError, match="blank transaction registry line"):
         parse_transactions(blob)
+
+
+def test_monitor_runner_enters_the_frozen_repo_for_every_invocation():
+    script = (
+        Path(__file__).parents[1]
+        / "scripts"
+        / "run_prospective_production_monitor_20260814.sh"
+    ).read_text(encoding="utf-8")
+    assert 'runner() {\n  (\n    cd "$repo_root"' in script
+    assert '(cd "$repo_root" && runner' not in script

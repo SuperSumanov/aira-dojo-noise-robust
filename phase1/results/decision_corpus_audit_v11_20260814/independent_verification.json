@@ -2,8 +2,9 @@
   "imports_producer": false,
   "protocol": "independent_decision_corpus_audit_verifier_v1",
   "source_card": {
+    "hash_mode": "normalized_utf8_lf_v1",
     "path": "phase1/results/decision_corpus_audit_v11_20260814/audit_card.json",
-    "sha256": "623c6abedb2135297dec6130337486bca097ca6434cd6aed708d9723de9287bb"
+    "sha256_normalized_lf": "a3b5e12cbe280909300d83d54a326c06c736cfb59f2f6762cb5518720393b399"
   },
   "status": "INDEPENDENTLY_VERIFIED_DECISION_CORPUS_AUDIT",
   "verified_input_hashes": 10,
@@ -32,7 +33,8 @@
     }
   },
   "verifier_script": {
+    "hash_mode": "normalized_utf8_lf_v1",
     "path": "phase1/verify_decision_corpus_audit.py",
-    "sha256": "c25cd7ca53f4ec3faad8c84227c53bddc5d571ad813d9d1b35ad3d8ad48e8a5a"
+    "sha256_normalized_lf": "cc7284332a5442e9f25769c60d37a5dc0158d697e601d3d3cd824553dba3be59"
   }
 }

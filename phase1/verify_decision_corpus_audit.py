@@ -36,6 +36,16 @@ def digest(path: Path) -> str:
     return result.hexdigest()
 
 
+def normalized_lf_digest(path: Path) -> str:
+    raw = path.read_bytes()
+    try:
+        raw.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise VerificationError(f"expected UTF-8 text input: {path}") from exc
+    normalized = raw.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return hashlib.sha256(normalized).hexdigest()
+
+
 def portable_path(path: Path) -> str:
     resolved = path.resolve()
     try:
@@ -235,7 +245,12 @@ def verify(card_path: Path, root: Path) -> dict[str, Any]:
         raise VerificationError("scope declaration is missing or altered")
     producer = card.get("provenance", {}).get("producer_script", {})
     producer_path = locate(root, str(producer.get("path", "")))
-    if not producer_path.is_file() or digest(producer_path) != producer.get("sha256"):
+    if (
+        producer.get("hash_mode") != "normalized_utf8_lf_v1"
+        or not producer_path.is_file()
+        or normalized_lf_digest(producer_path)
+        != producer.get("sha256_normalized_lf")
+    ):
         raise VerificationError("producer script provenance mismatch")
     inputs = card.get("inputs")
     if not isinstance(inputs, dict) or "run_map" not in inputs:
@@ -243,7 +258,9 @@ def verify(card_path: Path, root: Path) -> dict[str, Any]:
     resolved: dict[str, Path] = {}
     for name, record in inputs.items():
         path = locate(root, str(record["path"]))
-        if digest(path) != str(record["sha256"]):
+        if record.get("hash_mode") != "normalized_utf8_lf_v1":
+            raise VerificationError(f"unsupported input hash mode: {name}")
+        if normalized_lf_digest(path) != str(record["sha256_normalized_lf"]):
             raise VerificationError(f"input hash mismatch: {name}")
         resolved[name] = path
     run_of_raw = json.loads(resolved["run_map"].read_text(encoding="utf-8"))
@@ -293,10 +310,15 @@ def verify(card_path: Path, root: Path) -> dict[str, Any]:
     return {
         "protocol": "independent_decision_corpus_audit_verifier_v1",
         "status": "INDEPENDENTLY_VERIFIED_DECISION_CORPUS_AUDIT",
-        "source_card": {"path": card_path.as_posix(), "sha256": digest(card_path)},
+        "source_card": {
+            "path": card_path.as_posix(),
+            "hash_mode": "normalized_utf8_lf_v1",
+            "sha256_normalized_lf": normalized_lf_digest(card_path),
+        },
         "verifier_script": {
             "path": portable_path(Path(__file__)),
-            "sha256": digest(Path(__file__)),
+            "hash_mode": "normalized_utf8_lf_v1",
+            "sha256_normalized_lf": normalized_lf_digest(Path(__file__)),
         },
         "verified_pair_sets": len(recomputed_sets),
         "verified_input_hashes": len(resolved),

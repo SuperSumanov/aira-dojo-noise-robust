@@ -56,6 +56,17 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def normalized_lf_sha256(path: Path) -> str:
+    """Hash UTF-8 text after CRLF/CR canonicalization, preserving final-EOL state."""
+    raw = path.read_bytes()
+    try:
+        raw.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise IntegrityError(f"expected UTF-8 text input: {path}") from exc
+    normalized = raw.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return hashlib.sha256(normalized).hexdigest()
+
+
 def portable_path(path: Path) -> str:
     resolved = path.resolve()
     try:
@@ -334,14 +345,19 @@ def audit(
     run_map = load_run_map(run_map_path)
     rows_by_key: dict[tuple[str, int], list[dict[str, Any]]] = {}
     inputs: dict[str, Any] = {
-        "run_map": {"path": run_map_path.as_posix(), "sha256": sha256(run_map_path)}
+        "run_map": {
+            "path": run_map_path.as_posix(),
+            "hash_mode": "normalized_utf8_lf_v1",
+            "sha256_normalized_lf": normalized_lf_sha256(run_map_path),
+        }
     }
     for partition, budget, path in specifications:
         key = (partition, budget)
         rows_by_key[key] = load_pair_set(partition, budget, path, run_map)
         inputs[f"{partition}:b{budget}"] = {
             "path": path.as_posix(),
-            "sha256": sha256(path),
+            "hash_mode": "normalized_utf8_lf_v1",
+            "sha256_normalized_lf": normalized_lf_sha256(path),
         }
 
     all_rows = [row for rows in rows_by_key.values() for row in rows]
@@ -381,7 +397,8 @@ def audit(
         "provenance": {
             "producer_script": {
                 "path": portable_path(Path(__file__)),
-                "sha256": sha256(Path(__file__)),
+                "hash_mode": "normalized_utf8_lf_v1",
+                "sha256_normalized_lf": normalized_lf_sha256(Path(__file__)),
             },
             "python": platform.python_version(),
         },

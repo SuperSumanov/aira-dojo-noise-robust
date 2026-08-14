@@ -1,44 +1,54 @@
 {
   "inputs": {
     "extension:b0": {
+      "hash_mode": "normalized_utf8_lf_v1",
       "path": "phase1/v11_decision/decision_extension_v11_b0.jsonl",
-      "sha256": "ddebb127ec322fae45db0995fb16c2726dc4057946452901a4b360ca7c501009"
+      "sha256_normalized_lf": "2facb5a1cb192640229395b9befe4a824bd1e5f1477a2da61eb653d3a6c1ca9c"
     },
     "extension:b1": {
+      "hash_mode": "normalized_utf8_lf_v1",
       "path": "phase1/v11_decision/decision_extension_v11_b1.jsonl",
-      "sha256": "b067fd1ef13f453fdbfd7204985019857da6224ff427f6ff3cdd947b3100ff90"
+      "sha256_normalized_lf": "f74b4f04b8e2ac07fee86fae5f552cc6125b71c29e181d928d1077d2479898c2"
     },
     "extension:b2": {
+      "hash_mode": "normalized_utf8_lf_v1",
       "path": "phase1/v11_decision/decision_extension_v11_b2.jsonl",
-      "sha256": "f5934b8a881d1a4fdfec12aaf421662ab478790bcd6bbb558985e2be9c600fd9"
+      "sha256_normalized_lf": "3ee35f5e79cb2169f105ed8b0480f274d68a24c15bf409b3bea020e2a839519c"
     },
     "frozen:b0": {
+      "hash_mode": "normalized_utf8_lf_v1",
       "path": "phase1/v11_decision/decision_frozen_v11_b0.jsonl",
-      "sha256": "a82320294af0af9a1c41b2d4bb9392686c48fb4402858ca0a5ed6bf70661f1aa"
+      "sha256_normalized_lf": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8"
     },
     "frozen:b1": {
+      "hash_mode": "normalized_utf8_lf_v1",
       "path": "phase1/v11_decision/decision_frozen_v11_b1.jsonl",
-      "sha256": "9d1d1cfc882ee864bce78d19b8947472aa6f66ccf0a81a2a344e036631434209"
+      "sha256_normalized_lf": "a56f6c7bd6aad141fdaa45f3f30f944062e8dea922eefc03e75bc8b415e7bc90"
     },
     "frozen:b2": {
+      "hash_mode": "normalized_utf8_lf_v1",
       "path": "phase1/v11_decision/decision_frozen_v11_b2.jsonl",
-      "sha256": "a6b33d6e4f3b2555149db6979ead056ae78e9fd9955ba20545158bab7f209fb5"
+      "sha256_normalized_lf": "79d4694d4cea5a81a04c9d463b5c6599a559bbf867f34205fa5715b054f10bc7"
     },
     "run_map": {
+      "hash_mode": "normalized_utf8_lf_v1",
       "path": "phase1/card_run_map.json",
-      "sha256": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+      "sha256_normalized_lf": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
     },
     "train:b0": {
+      "hash_mode": "normalized_utf8_lf_v1",
       "path": "phase1/v11_decision/decision_train_v11_b0.jsonl",
-      "sha256": "6110488201163832f9ae4f95af7de3682152aed9d77e413ca72538b203691c59"
+      "sha256_normalized_lf": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca"
     },
     "train:b1": {
+      "hash_mode": "normalized_utf8_lf_v1",
       "path": "phase1/v11_decision/decision_train_v11_b1.jsonl",
-      "sha256": "0eca0dac81712e44d9f6cc3204f2ca81dc487d6d18c141e6f77dd63ba7d202a8"
+      "sha256_normalized_lf": "5053bb3825c5d6a420491cdb056594b306b4850c2b3c179361031becade5d528"
     },
     "train:b2": {
+      "hash_mode": "normalized_utf8_lf_v1",
       "path": "phase1/v11_decision/decision_train_v11_b2.jsonl",
-      "sha256": "43e2d26a200e87f0382ab8c5b3c3a3afb1e0340846dff5871dc693ffb331fe23"
+      "sha256_normalized_lf": "f0cb83c41b1e45d198384726194b3a2bd013132957d71aa2d81aea318dd7c881"
     }
   },
   "integrity": {
@@ -50,8 +60,9 @@
   "protocol": "decision_corpus_audit_v1",
   "provenance": {
     "producer_script": {
+      "hash_mode": "normalized_utf8_lf_v1",
       "path": "phase1/decision_corpus_audit.py",
-      "sha256": "c42c9177e937488841f47bbc9f9f04ee808219746b41e4adadf43804caa6f063"
+      "sha256_normalized_lf": "53117eaf27773f78e07073a3cd4b7aa85610881805ce77b5fe62432be1212dda"
     },
     "python": "3.13.4"
   },

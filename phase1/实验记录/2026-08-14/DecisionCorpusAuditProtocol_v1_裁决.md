@@ -29,6 +29,11 @@ choice set、有效支持、gap 分布和 prospective boundary 做成第三方�
 - 对每个共同 budget，train/frozen 的 unordered pair、endpoint、parent、run 任一交集非零，正式状态即失败；
 - verifier 不 import producer，独立重读十个输入、核对 SHA-256 并重算所有发布 aggregate；篡改测试会失败。
 
+跨平台复核附录：第一版卡片在 Windows `core.autocrlf=true` 工作树上记录了 raw-byte SHA，Linux
+干净检出的 LF 文件因此会在进入统计前正确地 hash fail。统计结果没有变化，但该 hash contract 不可发布。
+修正版冻结 `normalized_utf8_lf_v1`：只把 CRLF/CR 规范成 LF，同时保留文件是否有末尾换行；producer、
+独立 verifier 与测试均按此规则重算。旧 raw-byte 卡片不再是正式 artifact。
+
 聚焦测试结果为 `8 passed`。
 
 ## 3. v11 正式结果

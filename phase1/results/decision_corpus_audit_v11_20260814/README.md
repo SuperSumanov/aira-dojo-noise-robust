@@ -28,12 +28,16 @@ stdout, runtime, labels beyond the already released pair orientation/gap, or any
 - `DATASHEET.md`: compact human-readable table.
 - `independent_verification.json`: independent recomputation receipt.
 
-SHA-256:
+All hashes below use the explicit `normalized_utf8_lf_v1` text-hash contract (CRLF and bare CR are
+converted to LF; final-EOL presence is preserved). This avoids `core.autocrlf` changing an otherwise
+identical release card between Windows and Linux.
 
-- audit card: `623c6abedb2135297dec6130337486bca097ca6434cd6aed708d9723de9287bb`
-- independent verification: `fa73be3d6404a58084f57741588e566aa846a948698ee9bdb05690d518a991d3`
-- producer script: `c42c9177e937488841f47bbc9f9f04ee808219746b41e4adadf43804caa6f063`
-- verifier script: `c25cd7ca53f4ec3faad8c84227c53bddc5d571ad813d9d1b35ad3d8ad48e8a5a`
+SHA-256 (values regenerated after the hash-contract correction):
+
+- audit card: `a3b5e12cbe280909300d83d54a326c06c736cfb59f2f6762cb5518720393b399`
+- independent verification: `63497b5faccc6657cbf58be885a12548c6b16ec15a19cb598c02bb2192ef4a92`
+- producer script: `53117eaf27773f78e07073a3cd4b7aa85610881805ce77b5fe62432be1212dda`
+- verifier script: `cc7284332a5442e9f25769c60d37a5dc0158d697e601d3d3cd824553dba3be59`
 
 ## Interpretation boundary
 

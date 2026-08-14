@@ -296,3 +296,12 @@ def test_withheld_batches_cannot_enter_public_registry_or_manifest() -> None:
         assert record["bytes"] > 0
         assert record["rows"] > 0
         assert record["source_runs"] > 0
+
+
+def test_future_merged_corpora_are_not_automatically_added_to_lfs() -> None:
+    root = Path(__file__).resolve().parents[2]
+    attributes = (root / ".gitattributes").read_text(encoding="utf-8")
+    assert "phase1/cards_current_v*.jsonl" not in attributes
+    for version in ("v9", "v10", "v11"):
+        assert f"phase1/cards_current_{version}.jsonl filter=lfs" in attributes
+    assert "phase1/rebuilt/" in (root / ".gitignore").read_text(encoding="utf-8")

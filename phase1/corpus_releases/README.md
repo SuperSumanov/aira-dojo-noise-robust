@@ -1,6 +1,6 @@
 # Immutable corpus releases
 
-Git LFS stores only immutable per-batch JSONL payloads. `batch_registry.json` is
+New corpus releases store only immutable per-batch JSONL payloads in Git LFS. `batch_registry.json` is
 append-only, and every release descriptor pins three independent contracts:
 
 1. the ordered batch prefix via `batch_count` plus `batch_lock_sha256`;
@@ -30,7 +30,11 @@ must not be presented as reproducible releases.
 
 For a new release, append one immutable batch record, never edit an existing one,
 then add a new version descriptor after an independent fresh-clone rebuild matches
-the frozen target exactly.
+the frozen target exactly. Do not add the rebuilt `cards_current_vN.jsonl` output to
+Git or LFS; `phase1/rebuilt/` is ignored deliberately. Historical merged v9-v11
+objects had already been published before this rule was hardened, so their exact
+paths remain in `.gitattributes` only to keep old clones smudgeable. The wildcard
+for future merged versions is intentionally absent.
 
 `withheld_batches.json` binds byte-level metadata for sanitized payloads that are
 not yet publishable. A withheld file must be absent from both `batch_registry.json`

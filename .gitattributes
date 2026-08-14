@@ -1,7 +1,12 @@
 # Corpus LFS paths are intentionally narrow.  The old cards_*.jsonl glob also
 # matched 16 historical ordinary Git blobs and made fresh worktrees emit false
 # "should have been pointers" warnings.  Add each new immutable batch family here.
-phase1/cards_current_v*.jsonl filter=lfs diff=lfs merge=lfs -text
+# Historical merged v9-v11 payloads were already published through LFS.  Keep
+# their exact paths smudgeable, but do not auto-track future merged releases:
+# new corpus versions must be rebuilt from immutable per-batch files.
+phase1/cards_current_v9.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/cards_current_v10.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/cards_current_v11.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/cards_deepA.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/cards_deepB2.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/cards_extension_*.jsonl filter=lfs diff=lfs merge=lfs -text

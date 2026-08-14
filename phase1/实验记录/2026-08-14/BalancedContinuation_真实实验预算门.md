@@ -3,6 +3,10 @@
 日期：2026-08-14。以下矩阵在任何真实 GPU/API run 前给出。当前只批准并执行 0-GPU synthetic 工程测试；
 真实矩阵尚未启动。
 
+授权更新（同日、晚于下述初始状态）：用户已明确批准表中 **E1 real smoke** 的固定矩阵，即 8 rollout
+jobs、16 次真实 candidate executions、预计 3.24 GPU·时。E2/E3 未批准。E1 授权不豁免本文件的 13 项
+preflight；production adapter、真实 split/evaluator 和输入审计任一项未通过时不得提交。
+
 执行更新（同日）：完整 synthetic worker E0 已在 commit `f7b75a5b7d353116a0ecb0ca94ed3e7ca9870585`
 通过 22 项聚焦测试、143 项全量 phase1 测试、13/13 preflight、24 rollout/72 candidate attempts/
 48 operator calls/24 unique fresh workspaces；retry/replacement/GPU/API 均为 0。该更新只关闭 E0 工程门，

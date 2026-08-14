@@ -93,3 +93,19 @@ invalid-format、POSIX 路径以及 receipt/operator request 篡改。
 所以当前只证明“所需边界已被明确且能在 schema 层 fail closed”，没有证明真实 adapter 已实现，更没有证明
 balanced continuation 的 label reliability、predictability 或 D_val utility 增益。下一步先完成 0-GPU mock
 adapter；E1 仍保留显式批准门。
+
+## 5. 后续执行更新：Linux mock 正式关门
+
+精确 commit `eb2e693b2e1cca931148c504c68239b203b82731` 已在远端干净 worktree 正式通过：focused
+tests 36 项、完整 `phase1/tests` 157 项、13/13 preflight；1 个 fresh rollout 产生 2 个 candidate、2 个
+D_search scorer、2 个 D_val sealer 与 1 个 one-shot operator 子进程。独立 verifier 报告
+`VERIFIED_ZERO_GPU_REAL_ADAPTER_MOCK`，retries=0、visible D_val fields=0、D_test rows read=0，Linux 实际
+sealed mode=0600，GPU/API/Slurm=0/0/0。归档 SHA-256 为
+`a58c86a10540b40daecebc118fe8179db9c6dde6b2e516c20ef67ceab56836a5`。
+
+正式通过前四次失败均保留：错误 remote 名、无关历史 LFS object smudge、Linux module root 未加入 import path、
+以及零命中 `grep` 在 `pipefail` 下被误判。前三次未创建 run root；第四次 worker/verifier 已通过但未完成最终
+secret scan/tar，因此不冒充正式关门。修复均是 launcher/环境边界，没有更改 receipt 语义或 synthetic outcome。
+
+用户随后明确批准既有 E1 矩阵，但批准不豁免 13 项 preflight。生产 public-only executor、真实 80/10/10
+split、隔离 scorer/sealer 和真实 assignment 仍须全部实现、打印并独立验收后才能提交 8-job E1。

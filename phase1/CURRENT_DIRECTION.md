@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0O. 2026-08-14 最新覆盖：Linux real-adapter mock 关门，E1 获批但仍受 preflight 约束
+
+本节晚于 0N；稳定主线和 balanced-continuation 的 gated 地位不变。
+
+1. 精确 commit `eb2e693b2e1cca931148c504c68239b203b82731` 在干净 Linux worktree 通过 36 项聚焦测试、
+   157 项完整 `phase1/tests` 和 13/13 preflight。正式 0-GPU mock 为 1 rollout、2 candidate、2 D_search、
+   2 D_val sealer、1 operator process，retry/analyze/API/GPU/Slurm 均为 0。
+2. 不 import mock producer 的 verifier 报告 `VERIFIED_ZERO_GPU_REAL_ADAPTER_MOCK`：visible D_val fields=0、
+   D_test rows read=0、实际 sealed mode=0600；archive SHA-256 为
+   `a58c86a10540b40daecebc118fe8179db9c6dde6b2e516c20ef67ceab56836a5`。
+3. 该结果只关闭 synthetic process/receipt boundary，不证明 production container capability isolation，也不证明
+   balanced label 或 search utility。此前四次 remote/env/LFS/import/post-scan 失败全部保留，未被成功 run 覆盖。
+4. 用户已明确批准既有 E1：2 tasks × 1 anchor/task × B=2 × K=2 × H=1 = 8 rollout jobs、16 real
+   candidate executions、预计 3.24 GPU·时。批准不等于立即提交：真实 80/10/10 split、public-only executor、
+   D_search/D_val 隔离、真实 assignment 与 13 项 preflight 必须先全部 PASS；E2/E3 未获批准。
+
+直接证据：
+- `phase1/results/balanced_real_adapter_mock_20260814_eb2e693/`；
+- `phase1/实验记录/2026-08-14/BalancedContinuation_RealAdapter_接口审计.md`。
+
 ## 0N. 2026-08-14 最新覆盖：真实 adapter 边界已冻结，执行实现仍待完成
 
 本节晚于 0M。稳定主线与 balanced-continuation 的 gated 地位均不变；本轮是 0-GPU/0-API 接口审计，

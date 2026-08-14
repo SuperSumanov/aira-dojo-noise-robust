@@ -1,0 +1,13 @@
+PASS 1: direction is the run-clean decision-local benchmark; adapter smoke is gated engineering only
+PASS 2: contract, mock adapter, independent verifier, assignment and worker tests passed before execution
+PASS 3: one synthetic rollout and fixed H=1 fixture are declared; no scientific distribution is sampled
+PASS 4: resource matrix is 1 rollout, 2 candidate processes, 0 Slurm/GPU/API requests
+PASS 5: no training, frozen cohort, prospective vault or historical outcome is read
+PASS 6: existing worker resume gate remains unchanged; this short smoke has no paid execution to resume
+PASS 7: source, evaluator, split, operator, workspace and visibility hashes are frozen in one contract
+PASS 8: fixed operator seed is recorded; finite-number and contradictory-state rejection are tested
+PASS 9: child environment is allowlisted; credential scans are required before archive or push
+PASS 10: every sidecar has a fixed 30-second wall cap; no E1 job is launched
+PASS 11: smoke cannot unlock a method claim or E1/E2/E3
+PASS 12: all seven child return codes are durably recorded and any nonzero code aborts
+PASS 13: exact clean worktree and new output roots are required; receipts and hashes are append-only

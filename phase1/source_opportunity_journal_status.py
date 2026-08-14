@@ -215,7 +215,6 @@ def scan_roots(
                 category, grade_present, thresholds_present = classify(node)
                 record = {
                     "source_journal_sha256": journal_sha,
-                    "journal_path_sha256": path_hash,
                     "parent_id": parent_id,
                     "category": category,
                     "official_grade_present": grade_present,

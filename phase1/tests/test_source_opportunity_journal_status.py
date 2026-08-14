@@ -146,6 +146,19 @@ def test_distinct_source_collision_fails_closed(tmp_path: Path) -> None:
     assert verifier.verify(verifier_args(paths)) == 0
 
 
+def test_byte_identical_journal_copy_collapses_by_source_sha(tmp_path: Path) -> None:
+    paths = fixture(tmp_path)
+    original = paths["root"] / "run-a" / "checkpoint" / "journal.jsonl"
+    duplicate = paths["root"] / "run-copy" / "checkpoint" / "journal.jsonl"
+    duplicate.parent.mkdir(parents=True, exist_ok=True)
+    duplicate.write_bytes(original.read_bytes())
+    assert producer.run(producer_args(paths)) == 0
+    value = summary(paths)
+    assert value["status"] == producer.STATUS_HIGH
+    assert value["source_journal_collisions"] == 0
+    assert verifier.verify(verifier_args(paths)) == 0
+
+
 def test_credential_journal_is_skipped_before_json_parse(tmp_path: Path) -> None:
     paths = fixture(tmp_path)
     journal = paths["root"] / "run-a" / "checkpoint" / "journal.jsonl"

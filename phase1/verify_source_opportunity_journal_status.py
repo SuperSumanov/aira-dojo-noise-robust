@@ -200,7 +200,6 @@ def rescan(
                 label, grade, threshold = category(node)
                 record = {
                     "source_journal_sha256": source_sha,
-                    "journal_path_sha256": path_hash,
                     "parent_id": parent,
                     "category": label,
                     "official_grade_present": grade,

@@ -22,6 +22,10 @@ PROBE_SCHEMA = "balanced-continuation-operator-conformance-probe-v1"
 PROBE_SHA256 = "a30aa463a75ead9fa48fcd53a37921749425ac4a8ee696b18c2d0be33413ed1d"
 MODEL_ID = "qwen3-coder-flash"
 TASKS = ("spaceship-titanic", "tabular-playground-series-may-2022")
+TASK_METRICS = {
+    "spaceship-titanic": "accuracy",
+    "tabular-playground-series-may-2022": "roc_auc",
+}
 HEX64 = re.compile(r"[0-9a-f]{64}")
 CREDENTIAL = re.compile(
     rb"(?:^|[^A-Za-z0-9])(?:sk-[A-Za-z0-9._-]{16,}|hf_[A-Za-z0-9]{16,}|"
@@ -107,8 +111,24 @@ def extract_code(raw_response: str, previous_code: str) -> str:
     return code
 
 
-def inspect_shape(sample: pathlib.Path, candidate: pathlib.Path) -> dict[str, Any]:
-    """Reconstruct both passing and failing public submission-shape outcomes."""
+def parse_strict_boolean(value: str) -> bool:
+    normalized = value.strip().lower()
+    if normalized in {"true", "1"}:
+        return True
+    if normalized in {"false", "0"}:
+        return False
+    raise ValueError("not a strict boolean")
+
+
+def inspect_shape(
+    sample: pathlib.Path,
+    candidate: pathlib.Path,
+    task: str,
+) -> dict[str, Any]:
+    """Independently reconstruct the task-specific public submission contract."""
+    if task not in TASK_METRICS:
+        raise VerifyError("unsupported task for submission-shape validation")
+    metric = TASK_METRICS[task]
     if not candidate.is_file() or candidate.is_symlink():
         return {"valid": False, "reason": "submission_missing", "rows": 0, "columns": []}
     try:
@@ -150,8 +170,12 @@ def inspect_shape(sample: pathlib.Path, candidate: pathlib.Path) -> dict[str, An
                             "columns": actual_header,
                         }
                     for value in actual[1:]:
-                        if not math.isfinite(float(value)):
-                            raise ValueError("non-finite prediction")
+                        if metric == "accuracy":
+                            parse_strict_boolean(value)
+                        else:
+                            parsed = float(value)
+                            if not math.isfinite(parsed) or not 0.0 <= parsed <= 1.0:
+                                raise ValueError("invalid probability prediction")
                     rows += 1
     except (OSError, UnicodeError, csv.Error, ValueError):
         return {"valid": False, "reason": "unparseable_prediction", "rows": 0, "columns": []}
@@ -159,6 +183,7 @@ def inspect_shape(sample: pathlib.Path, candidate: pathlib.Path) -> dict[str, An
 
 
 def verify(args: argparse.Namespace) -> dict[str, Any]:
+    legacy_shape_repair = bool(getattr(args, "legacy_shape_repair", False))
     source_root = pathlib.Path(args.source_root).resolve()
     source_run = pathlib.Path(args.source_run_root).resolve()
     probe = pathlib.Path(args.probe_root).resolve()
@@ -195,6 +220,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         raise VerifyError("probe summary differs")
 
     summaries: list[dict[str, Any]] = []
+    corrected_results: list[dict[str, Any]] = []
     for index, task in enumerate(TASKS):
         job_rc = read_json(job_rc_root / f"{index}.json")
         if (
@@ -295,19 +321,32 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         sample = pathlib.Path(
             read_json(source / "real_contract.json")["public_data_root"]
         ) / task / "sample_submission.csv"
-        shape = inspect_shape(sample, artifact)
+        shape = inspect_shape(sample, artifact, task)
         expected_pass = execution.get("execution_status") == "ok" and shape["valid"] is True
-        if (
-            summary.get("gate_pass") is not expected_pass
-            or summary.get("status")
-            != ("PASS_EXECUTION_ONLY" if expected_pass else "FAIL_EXECUTION_ONLY")
-            or summary.get("submission_shape") != shape
-            or (
-                artifact.is_file()
-                and summary.get("artifact_sha256") != file_digest(artifact)
-            )
-        ):
+        legacy_matches = (
+            summary.get("gate_pass") is expected_pass
+            and summary.get("status")
+            == ("PASS_EXECUTION_ONLY" if expected_pass else "FAIL_EXECUTION_ONLY")
+            and summary.get("submission_shape") == shape
+        )
+        repaired_legacy_boolean = (
+            legacy_shape_repair
+            and task == "spaceship-titanic"
+            and expected_pass is True
+            and summary.get("gate_pass") is False
+            and summary.get("status") == "FAIL_EXECUTION_ONLY"
+            and summary.get("submission_shape")
+            == {
+                "valid": False,
+                "reason": "unparseable_prediction",
+                "rows": 0,
+                "columns": [],
+            }
+        )
+        if not (legacy_matches or repaired_legacy_boolean):
             raise VerifyError("candidate gate reconstruction differs")
+        if artifact.is_file() and summary.get("artifact_sha256") != file_digest(artifact):
+            raise VerifyError("candidate artifact hash differs")
         forbidden = [
             path for path in root.rglob("*")
             if path.is_file() and re.search(r"(?i)(dsearch|dval|dtest|score|gain|utility)", path.name)
@@ -315,12 +354,31 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         if forbidden:
             raise VerifyError("score-bearing artifact found in execution-only output")
         summaries.append(summary)
+        corrected_results.append({
+            "index": index,
+            "task": task,
+            "legacy_status": summary.get("status"),
+            "legacy_gate_pass": summary.get("gate_pass"),
+            "corrected_status": (
+                "PASS_EXECUTION_ONLY" if expected_pass else "FAIL_EXECUTION_ONLY"
+            ),
+            "corrected_gate_pass": expected_pass,
+            "submission_shape": shape,
+            "artifact_sha256": file_digest(artifact) if artifact.is_file() else None,
+            "legacy_shape_contract_repaired": repaired_legacy_boolean,
+        })
 
-    passed = all(summary["gate_pass"] for summary in summaries)
+    passed = all(item["corrected_gate_pass"] for item in corrected_results)
     result = {
-        "schema_version": "balanced-continuation-qwen-execution-smoke-verification-v1",
+        "schema_version": (
+            "balanced-continuation-qwen-execution-smoke-verification-v2"
+            if legacy_shape_repair
+            else "balanced-continuation-qwen-execution-smoke-verification-v1"
+        ),
         "status": (
-            "VERIFIED_QWEN_EXECUTION_SMOKE_PASS"
+            "VERIFIED_QWEN_EXECUTION_SMOKE_PASS_TASK_TYPE_REPAIR"
+            if passed and legacy_shape_repair
+            else "VERIFIED_QWEN_EXECUTION_SMOKE_PASS"
             if passed
             else "VERIFIED_QWEN_EXECUTION_SMOKE_FAIL"
         ),
@@ -328,12 +386,17 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         "results": 2,
         "tasks": list(TASKS),
         "candidate_executions": 2,
+        "new_candidate_executions": 0 if legacy_shape_repair else 2,
         "api_calls": 0,
         "dsearch_rows_read": 0,
         "dval_rows_read": 0,
         "dtest_rows_read": 0,
         "external_score_or_gain_reported": False,
+        "labels_opened": False,
+        "outcomes_read": False,
+        "legacy_shape_repair": legacy_shape_repair,
         "all_gate_pass": passed,
+        "corrected_results": corrected_results,
         "summary_sha256": [
             file_digest(output / f"index_{index}" / "summary.json")
             for index in range(2)
@@ -353,6 +416,11 @@ def parser() -> argparse.ArgumentParser:
     ap.add_argument("--workspace-root", required=True)
     ap.add_argument("--job-rc-root", required=True)
     ap.add_argument("--receipt", required=True)
+    ap.add_argument(
+        "--legacy-shape-repair",
+        action="store_true",
+        help="Reverify immutable legacy outputs under the task-specific scorer contract.",
+    )
     return ap
 
 

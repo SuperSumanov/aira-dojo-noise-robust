@@ -103,9 +103,12 @@ def build_fixture(tmp_path: pathlib.Path) -> dict[str, pathlib.Path]:
         )
         task_root = public / task
         task_root.mkdir()
-        (task_root / "sample_submission.csv").write_text(
-            "id,prediction\na,0\nb,0\n", encoding="utf-8"
+        sample_text = (
+            "PassengerId,Transported\na,False\nb,False\n"
+            if task == "spaceship-titanic"
+            else "id,target\na,0\nb,0\n"
         )
+        (task_root / "sample_submission.csv").write_text(sample_text, encoding="utf-8")
         write_json(
             probe / f"call_{index:02d}.raw.json",
             {
@@ -174,9 +177,18 @@ def test_two_index_smoke_and_independent_verifier(
         (step / "code.py").write_bytes(code.encode("utf-8"))
         submission = step / "submission.csv"
         if bad_index is not None and task == smoke.EXPECTED_TASKS[bad_index]:
-            submission.write_text("id,prediction\na,False\nb,True\n", encoding="utf-8")
+            submission_text = (
+                "PassengerId,Transported\na,0.4\nb,0.6\n"
+                if task == "spaceship-titanic"
+                else "id,target\na,False\nb,True\n"
+            )
         else:
-            submission.write_text("id,prediction\na,0.4\nb,0.6\n", encoding="utf-8")
+            submission_text = (
+                "PassengerId,Transported\na,False\nb,True\n"
+                if task == "spaceship-titanic"
+                else "id,target\na,0.4\nb,0.6\n"
+            )
+        submission.write_text(submission_text, encoding="utf-8")
         execution = {
             "rollout_id": kwargs["assignment"]["rollout_id"],
             "task": task,
@@ -283,6 +295,194 @@ def test_submission_shape_rejects_reordered_ids(tmp_path: pathlib.Path) -> None:
     candidate = tmp_path / "candidate.csv"
     sample.write_text("id,pred\na,0\nb,0\n", encoding="utf-8")
     candidate.write_text("id,pred\nb,0.4\na,0.6\n", encoding="utf-8")
-    result = smoke.validate_submission_shape(sample, candidate)
+    result = smoke.validate_submission_shape(
+        sample, candidate, "tabular-playground-series-may-2022"
+    )
     assert result["valid"] is False
     assert result["reason"] == "id_or_width_mismatch"
+
+
+@pytest.mark.parametrize(
+    ("task", "sample_text", "candidate_text", "expected"),
+    [
+        (
+            "spaceship-titanic",
+            "PassengerId,Transported\na,False\nb,False\n",
+            "PassengerId,Transported\na,True\nb,False\n",
+            True,
+        ),
+        (
+            "spaceship-titanic",
+            "PassengerId,Transported\na,False\nb,False\n",
+            "PassengerId,Transported\na,0.4\nb,0.6\n",
+            False,
+        ),
+        (
+            "tabular-playground-series-may-2022",
+            "id,target\na,0\nb,0\n",
+            "id,target\na,0.4\nb,0.6\n",
+            True,
+        ),
+        (
+            "tabular-playground-series-may-2022",
+            "id,target\na,0\nb,0\n",
+            "id,target\na,False\nb,True\n",
+            False,
+        ),
+        (
+            "tabular-playground-series-may-2022",
+            "id,target\na,0\nb,0\n",
+            "id,target\na,-0.1\nb,1.1\n",
+            False,
+        ),
+    ],
+)
+def test_submission_shape_follows_task_metric(
+    tmp_path: pathlib.Path,
+    task: str,
+    sample_text: str,
+    candidate_text: str,
+    expected: bool,
+) -> None:
+    sample = tmp_path / "sample.csv"
+    candidate = tmp_path / "candidate.csv"
+    sample.write_text(sample_text, encoding="utf-8")
+    candidate.write_text(candidate_text, encoding="utf-8")
+    producer = smoke.validate_submission_shape(sample, candidate, task)
+    independent = verifier.inspect_shape(sample, candidate, task)
+    assert producer == independent
+    assert producer["valid"] is expected
+
+
+def test_legacy_boolean_failure_can_only_be_repaired_explicitly(
+    tmp_path: pathlib.Path, monkeypatch
+) -> None:
+    paths = build_fixture(tmp_path)
+    probe_sha = smoke.file_sha256(paths["probe"] / "summary.json")
+    monkeypatch.setattr(smoke, "EXPECTED_PROBE_SUMMARY_SHA256", probe_sha)
+    monkeypatch.setattr(verifier, "PROBE_SHA256", probe_sha)
+    monkeypatch.setattr(smoke, "EXPECTED_CONTAINER_SHA256", smoke.file_sha256(paths["container"]))
+    monkeypatch.setattr(smoke, "validate_worker_contract", lambda value: value)
+    monkeypatch.setattr(
+        smoke.subprocess,
+        "run",
+        lambda *args, **kwargs: SimpleNamespace(stdout="f" * 40 + "\n"),
+    )
+
+    def fake_execute_candidate(**kwargs):
+        step = kwargs["step_dir"]
+        code = kwargs["code"]
+        task = kwargs["assignment"]["task"]
+        code_sha = smoke.sha256_bytes(code.encode())
+        (step / "code.py").write_bytes(code.encode("utf-8"))
+        submission = step / "submission.csv"
+        submission.write_text(
+            "PassengerId,Transported\na,False\nb,True\n"
+            if task == "spaceship-titanic"
+            else "id,target\na,0.4\nb,0.6\n",
+            encoding="utf-8",
+        )
+        command = [
+            "singularity", "exec", "--containall", "--cleanenv",
+            "--network", "none", "container", "python", "solution.py",
+        ]
+        execution = {
+            "rollout_id": kwargs["assignment"]["rollout_id"],
+            "task": task,
+            "execution_ordinal": 1,
+            "code_sha256": code_sha,
+            "execution_status": "ok",
+            "process_started": True,
+            "candidate_execution_attempted": True,
+            "exit_code": 0,
+            "timed_out": False,
+            "retry_count": 0,
+            "public_data_read_only": True,
+            "private_paths_mounted": False,
+            "wall_time_seconds": 1.25,
+            "artifact_sha256": smoke.file_sha256(submission),
+        }
+        write_json(step / "execution.json", execution)
+        write_json(
+            step / "candidate_intent.json",
+            {
+                "schema_version": "balanced-continuation-real-process-intent-v1",
+                "rollout_id": kwargs["assignment"]["rollout_id"],
+                "execution_ordinal": 1,
+                "process_kind": "candidate",
+                "process_will_start": True,
+                "command": command,
+                "command_sha256": smoke.sha256_bytes("\0".join(command).encode()),
+                "created_utc": "2026-08-14T00:00:00Z",
+                "retry_count": 0,
+            },
+        )
+        (step / "candidate.stdout").write_bytes(b"")
+        (step / "candidate.stderr").write_bytes(b"")
+        write_json(
+            step / "candidate_process.json",
+            {
+                "return_code": 0,
+                "timed_out": False,
+                "wall_time_seconds": 1.25,
+                "stdout_sha256": smoke.sha256_bytes(b""),
+                "stderr_sha256": smoke.sha256_bytes(b""),
+            },
+        )
+        return execution
+
+    monkeypatch.setattr(smoke, "execute_candidate", fake_execute_candidate)
+    for index in range(2):
+        smoke.run(
+            argparse.Namespace(
+                source_root=str(paths["source_root"]),
+                source_commit="f" * 40,
+                source_run_root=str(paths["source_run"]),
+                probe_root=str(paths["probe"]),
+                container=str(paths["container"]),
+                hf_cache=str(paths["hf_cache"]),
+                nvfix_dir=str(paths["nvfix"]),
+                output_root=str(paths["output"]),
+                workspace_root=str(paths["workspace"]),
+                index=index,
+            )
+        )
+        write_json(
+            paths["job_rc"] / f"{index}.json",
+            {"index": index, "slurm_job_id": f"123_{index}", "producer_rc": 0, "safety_rc": 0},
+        )
+
+    legacy_path = paths["output"] / "index_0" / "summary.json"
+    legacy = json.loads(legacy_path.read_text(encoding="utf-8"))
+    legacy["gate_pass"] = False
+    legacy["status"] = "FAIL_EXECUTION_ONLY"
+    legacy["submission_shape"] = {
+        "valid": False,
+        "reason": "unparseable_prediction",
+        "rows": 0,
+        "columns": [],
+    }
+    legacy_path.write_text(
+        json.dumps(legacy, sort_keys=True, separators=(",", ":")) + "\n",
+        encoding="utf-8",
+    )
+
+    common = dict(
+        source_root=str(paths["source_root"]),
+        source_run_root=str(paths["source_run"]),
+        probe_root=str(paths["probe"]),
+        output_root=str(paths["output"]),
+        workspace_root=str(paths["workspace"]),
+        job_rc_root=str(paths["job_rc"]),
+    )
+    with pytest.raises(verifier.VerifyError):
+        verifier.verify(
+            argparse.Namespace(**common, receipt=str(tmp_path / "strict.json"), legacy_shape_repair=False)
+        )
+    repaired = verifier.verify(
+        argparse.Namespace(**common, receipt=str(tmp_path / "repair.json"), legacy_shape_repair=True)
+    )
+    assert repaired["status"] == "VERIFIED_QWEN_EXECUTION_SMOKE_PASS_TASK_TYPE_REPAIR"
+    assert repaired["all_gate_pass"] is True
+    assert repaired["new_candidate_executions"] == 0
+    assert repaired["labels_opened"] is False

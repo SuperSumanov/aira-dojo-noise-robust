@@ -21,10 +21,12 @@ from typing import Any
 
 from phase1.balanced_continuation_e1_scoring import (
     CREDENTIAL,
+    TASK_SPECS,
     atomic_json,
     canonical_json,
     checked_json,
     file_sha256,
+    parse_boolean,
     sha256_bytes,
 )
 from phase1.balanced_continuation_operator_entry import (
@@ -181,7 +183,11 @@ def reconstruct_code(
 def validate_submission_shape(
     sample_path: pathlib.Path,
     candidate_path: pathlib.Path,
+    task: str,
 ) -> dict[str, Any]:
+    if task not in TASK_SPECS:
+        raise SmokeError("unsupported task for submission-shape validation")
+    metric = TASK_SPECS[task]["metric"]
     if not candidate_path.is_file() or candidate_path.is_symlink():
         return {"valid": False, "reason": "submission_missing", "rows": 0, "columns": []}
     try:
@@ -223,9 +229,12 @@ def validate_submission_shape(
                             "columns": actual_header,
                         }
                     for value in actual[1:]:
-                        parsed = float(value)
-                        if not math.isfinite(parsed):
-                            raise ValueError("non-finite prediction")
+                        if metric == "accuracy":
+                            parse_boolean(value)
+                        else:
+                            parsed = float(value)
+                            if not math.isfinite(parsed) or not 0.0 <= parsed <= 1.0:
+                                raise ValueError("invalid probability prediction")
                     rows += 1
     except (OSError, UnicodeError, csv.Error, ValueError):
         return {"valid": False, "reason": "unparseable_prediction", "rows": 0, "columns": []}
@@ -312,7 +321,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         hf_cache=hf_cache,
         nvfix_dir=nvfix_dir,
     )
-    shape = validate_submission_shape(sample, step_dir / "submission.csv")
+    shape = validate_submission_shape(sample, step_dir / "submission.csv", task)
     gate_pass = execution["execution_status"] == "ok" and shape["valid"] is True
     summary = {
         "schema_version": SCHEMA,

@@ -5,6 +5,8 @@ import hashlib
 import json
 from pathlib import Path
 
+import pytest
+
 import phase1.prepare_balanced_continuation_e1 as prepare
 
 
@@ -105,3 +107,26 @@ def test_prepare_freezes_eight_rollouts_and_two_score_blind_stages(
         assert len({row["block_id"] for row in task_rows}) == 1
     assert plan["stage_one_outcomes_must_remain_sealed"] is True
     assert plan["stage_two_gate_uses_scores"] is False
+
+
+def test_qwen_profile_requires_a_passing_execution_smoke_receipt(tmp_path: Path) -> None:
+    with pytest.raises(prepare.PrepareError, match="requires an explicit passing"):
+        prepare.validate_qwen_execution_gate(None)
+    receipt = tmp_path / "failed-smoke.json"
+    write_json(receipt, {
+        "schema_version": "balanced-continuation-qwen-execution-smoke-verification-v1",
+        "status": "VERIFIED_QWEN_EXECUTION_SMOKE_FAIL",
+        "producer_imported": False,
+        "results": 2,
+        "tasks": list(prepare.TASKS),
+        "candidate_executions": 2,
+        "api_calls": 0,
+        "dsearch_rows_read": 0,
+        "dval_rows_read": 0,
+        "dtest_rows_read": 0,
+        "external_score_or_gain_reported": False,
+        "all_gate_pass": False,
+        "summary_sha256": ["a" * 64, "b" * 64],
+    })
+    with pytest.raises(prepare.PrepareError, match="not a passing frozen gate"):
+        prepare.validate_qwen_execution_gate(str(receipt))

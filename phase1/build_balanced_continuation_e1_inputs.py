@@ -22,6 +22,9 @@ from typing import Any
 
 SCHEMA = "balanced-continuation-e1-inputs-v1"
 SELECTION_RULE = "v11-b0-train-exact-two-sort-run-parent-first-v1"
+FRESH_SELECTION_RULE = (
+    "v11-b0-train-exact-two-exclude-prior-runs-sort-run-parent-first-v1"
+)
 TARGET_TASKS = (
     "spaceship-titanic",
     "tabular-playground-series-may-2022",
@@ -167,6 +170,64 @@ def load_frozen_endpoints(path: pathlib.Path) -> set[str]:
     return endpoints
 
 
+def load_prior_selection(
+    path: pathlib.Path, expected_sha256: str
+) -> tuple[set[str], set[tuple[str, str, str]], str]:
+    """Read only the strict public identity receipt from the prior invalid pilot."""
+    if not path.is_file() or path.is_symlink():
+        raise E1InputError("prior selected-public identity receipt is missing or symlinked")
+    if not re.fullmatch(r"[0-9a-f]{64}", expected_sha256 or ""):
+        raise E1InputError("prior selected-public expected SHA-256 is invalid")
+    raw = path.read_bytes()
+    if CREDENTIAL.search(raw):
+        raise E1InputError("credential-shaped bytes in prior selection receipt")
+    actual = sha256_bytes(raw)
+    if actual != expected_sha256:
+        raise E1InputError(
+            f"prior selected-public SHA differs: expected={expected_sha256} actual={actual}"
+        )
+    rows = json.loads(raw)
+    expected_keys = {
+        "schema_version", "selection_rule", "cards_sha256", "hold_sha256",
+        "decision_train_b0_sha256", "task", "source_run_id", "parent_id",
+        "sibling_ids", "anchor_id", "anchor_contract_sha256",
+    }
+    if not isinstance(rows, list) or len(rows) != len(TARGET_TASKS):
+        raise E1InputError("prior selection receipt must contain one row per task")
+    runs: set[str] = set()
+    anchors: set[tuple[str, str, str]] = set()
+    tasks: set[str] = set()
+    for row in rows:
+        if not isinstance(row, dict) or set(row) != expected_keys:
+            raise E1InputError("prior selection receipt schema differs")
+        task, run_id, parent = row["task"], row["source_run_id"], row["parent_id"]
+        if (
+            task not in TARGET_TASKS
+            or task in tasks
+            or not isinstance(run_id, str)
+            or not run_id
+            or not isinstance(parent, str)
+            or not parent
+            or row["selection_rule"] != SELECTION_RULE
+            or row["cards_sha256"] != EXPECTED_SHA256["cards"]
+        ):
+            raise E1InputError("prior selection identity differs")
+        sibling_ids = row["sibling_ids"]
+        if (
+            not isinstance(sibling_ids, list)
+            or len(sibling_ids) != 2
+            or len(set(sibling_ids)) != 2
+            or not all(isinstance(value, str) and value for value in sibling_ids)
+        ):
+            raise E1InputError("prior selection sibling identities differ")
+        tasks.add(task)
+        runs.add(run_id)
+        anchors.add((task, run_id, parent))
+    if tasks != set(TARGET_TASKS):
+        raise E1InputError("prior selection task set differs")
+    return runs, anchors, actual
+
+
 def scan_cards(
     path: pathlib.Path,
     held_runs: set[str],
@@ -258,6 +319,19 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
     whitelist = load_training_parent_whitelist(inputs["decision_train_b0"])
     cards, eligible, card_counts = scan_cards(inputs["cards"], held_runs, whitelist)
 
+    prior_path_text = getattr(args, "exclude_selected_public", None)
+    expected_prior_sha = getattr(args, "exclude_selected_public_sha256", None)
+    prior_runs: set[str] = set()
+    prior_anchors: set[tuple[str, str, str]] = set()
+    prior_sha: str | None = None
+    if prior_path_text:
+        prior_runs, prior_anchors, prior_sha = load_prior_selection(
+            pathlib.Path(prior_path_text).resolve(), expected_prior_sha
+        )
+    elif expected_prior_sha:
+        raise E1InputError("prior selection SHA supplied without its identity receipt")
+    selection_rule = FRESH_SELECTION_RULE if prior_sha else SELECTION_RULE
+
     selected: list[tuple[str, str, list[str]]] = []
     support: dict[str, Any] = {}
     for task in TARGET_TASKS:
@@ -267,14 +341,23 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             if first["task"] == task:
                 candidates.append((first["run_id"], parent, child_ids))
         candidates.sort(key=lambda item: (item[0], item[1]))
-        if not candidates:
+        fresh_candidates = [
+            item for item in candidates
+            if item[0] not in prior_runs and (task, item[0], item[1]) not in prior_anchors
+        ]
+        if not fresh_candidates:
             raise E1InputError(f"no eligible anchor for {task}")
-        selected.append((task, candidates[0][1], candidates[0][2]))
+        selected.append((task, fresh_candidates[0][1], fresh_candidates[0][2]))
         support[task] = {
             "eligible_exact_two_parents": len(candidates),
             "eligible_physical_runs": len({item[0] for item in candidates}),
             "selection_rank": 0,
         }
+        if prior_sha:
+            support[task].update({
+                "eligible_after_prior_run_exclusion": len(fresh_candidates),
+                "excluded_prior_eligible_parents": len(candidates) - len(fresh_candidates),
+            })
 
     frozen_endpoints: set[str] = set()
     for role in ("frozen_b0", "frozen_b1", "frozen_b2"):
@@ -297,11 +380,11 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
     for task, parent, child_ids in selected:
         run_id = cards[child_ids[0]]["run_id"]
         anchor_id = sha256_bytes(
-            f"{SCHEMA}|{SELECTION_RULE}|{task}|{run_id}|{parent}".encode("utf-8")
+            f"{SCHEMA}|{selection_rule}|{task}|{run_id}|{parent}".encode("utf-8")
         )
         anchor_context = {
             "schema_version": SCHEMA,
-            "selection_rule": SELECTION_RULE,
+            "selection_rule": selection_rule,
             "cards_sha256": hashes["cards"],
             "hold_sha256": hashes["hold"],
             "decision_train_b0_sha256": hashes["decision_train_b0"],
@@ -365,7 +448,7 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
         summary = {
             "schema_version": SCHEMA,
             "status": "E1_INPUTS_FROZEN_OUTCOME_BLIND",
-            "selection_rule": SELECTION_RULE,
+            "selection_rule": selection_rule,
             "contains_outcomes": False,
             "winner_orientation_read": False,
             "gap_read": False,
@@ -384,6 +467,14 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "card_counts": card_counts,
             "support": support,
         }
+        if prior_sha:
+            summary.update({
+                "prior_selection_identity_only_read": True,
+                "prior_selection_sha256": prior_sha,
+                "excluded_prior_run_count": len(prior_runs),
+                "excluded_prior_anchor_count": len(prior_anchors),
+                "selected_prior_run_overlap": len(selected_runs & prior_runs),
+            })
         write_json(staging / "summary.json", summary)
         manifest = {
             path.name: file_sha256(path)
@@ -409,6 +500,8 @@ def parser() -> argparse.ArgumentParser:
     ap.add_argument("--frozen-b1", required=True)
     ap.add_argument("--frozen-b2", required=True)
     ap.add_argument("--output", required=True)
+    ap.add_argument("--exclude-selected-public")
+    ap.add_argument("--exclude-selected-public-sha256")
     return ap
 
 

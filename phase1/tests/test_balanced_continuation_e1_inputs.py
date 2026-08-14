@@ -130,6 +130,57 @@ def test_end_to_end_independent_reconstruction(tmp_path: Path, monkeypatch: pyte
     assert {row["sibling_id"] for row in anchors} == {"left-0", "right-0", "left-1", "right-1"}
 
 
+def test_fresh_selection_excludes_prior_physical_runs(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = fixture(tmp_path)
+    cards = [json.loads(line) for line in paths["cards"].read_text().splitlines()]
+    decisions = [json.loads(line) for line in paths["decision_train_b0"].read_text().splitlines()]
+    hold = json.loads(paths["hold"].read_text())
+    expected_fresh_runs = set()
+    for task_index, task in enumerate(producer.TARGET_TASKS):
+        run = f"run-z-{task_index}"
+        parent = f"parent-z-{task_index}"
+        left, right = f"left-z-{task_index}", f"right-z-{task_index}"
+        cards.extend([
+            card(parent, task, run, None, f"print('parent-z-{task_index}')\n"),
+            card(left, task, run, parent, f"print('left-z-{task_index}')\n"),
+            card(right, task, run, parent, f"print('right-z-{task_index}')\n"),
+        ])
+        decisions.append(decision(task, run, parent, left, right))
+        hold["all"].append(run)
+        hold["prior_all"].append(run)
+        expected_fresh_runs.add(run)
+    write_jsonl(paths["cards"], cards)
+    write_jsonl(paths["decision_train_b0"], decisions)
+    write_json(paths["hold"], hold)
+    hashes = {role: sha(path) for role, path in paths.items()}
+    monkeypatch.setattr(producer, "EXPECTED_SHA256", hashes)
+    monkeypatch.setattr(producer, "EXPECTED_CARD_ROWS", 14)
+    monkeypatch.setattr(verifier, "HASHES", hashes)
+    monkeypatch.setattr(verifier, "EXPECTED_CARD_ROWS", 14)
+
+    prior = tmp_path / "prior"
+    producer.build(build_args(paths, prior))
+    prior_selection = prior / "selected_public.json"
+    prior_sha = sha(prior_selection)
+    fresh_args = build_args(paths, tmp_path / "fresh")
+    fresh_args.exclude_selected_public = str(prior_selection)
+    fresh_args.exclude_selected_public_sha256 = prior_sha
+    summary = producer.build(fresh_args)
+    verify_fresh = verify_args(
+        paths, tmp_path / "fresh", tmp_path / "fresh.verify.json"
+    )
+    verify_fresh.exclude_selected_public = str(prior_selection)
+    verify_fresh.exclude_selected_public_sha256 = prior_sha
+    receipt = verifier.verify(verify_fresh)
+
+    selected = verifier.read_json(tmp_path / "fresh" / "selected_public.json")
+    assert {row["source_run_id"] for row in selected} == expected_fresh_runs
+    assert summary["selected_prior_run_overlap"] == 0
+    assert receipt["selected_prior_run_overlap"] == 0
+
+
 def test_parent_whitelist_ignores_winner_orientation_and_gap(tmp_path: Path) -> None:
     task = producer.TARGET_TASKS[0]
     other = producer.TARGET_TASKS[1]

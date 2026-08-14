@@ -107,25 +107,55 @@ def extract_code(raw_response: str, previous_code: str) -> str:
     return code
 
 
-def validate_shape(sample: pathlib.Path, candidate: pathlib.Path) -> dict[str, Any]:
-    with sample.open("r", encoding="utf-8-sig", newline="") as expected_handle:
-        with candidate.open("r", encoding="utf-8-sig", newline="") as actual_handle:
-            expected_reader = csv.reader(expected_handle)
-            actual_reader = csv.reader(actual_handle)
-            header = next(expected_reader, None)
-            if not header or next(actual_reader, None) != header or len(header) < 2:
-                raise VerifyError("submission header differs")
-            rows = 0
-            for expected, actual in zip_longest(expected_reader, actual_reader):
-                if expected is None or actual is None:
-                    raise VerifyError("submission row count differs")
-                if len(actual) != len(header) or not expected or actual[0] != expected[0]:
-                    raise VerifyError("submission ID sequence differs")
-                for value in actual[1:]:
-                    if not math.isfinite(float(value)):
-                        raise VerifyError("submission prediction is non-finite")
-                rows += 1
-    return {"valid": True, "reason": "ok", "rows": rows, "columns": header}
+def inspect_shape(sample: pathlib.Path, candidate: pathlib.Path) -> dict[str, Any]:
+    """Reconstruct both passing and failing public submission-shape outcomes."""
+    if not candidate.is_file() or candidate.is_symlink():
+        return {"valid": False, "reason": "submission_missing", "rows": 0, "columns": []}
+    try:
+        with sample.open("r", encoding="utf-8-sig", newline="") as expected_handle:
+            with candidate.open("r", encoding="utf-8-sig", newline="") as actual_handle:
+                expected_reader = csv.reader(expected_handle)
+                actual_reader = csv.reader(actual_handle)
+                expected_header = next(expected_reader, None)
+                actual_header = next(actual_reader, None)
+                if (
+                    not expected_header
+                    or actual_header != expected_header
+                    or len(expected_header) < 2
+                ):
+                    return {
+                        "valid": False,
+                        "reason": "header_mismatch",
+                        "rows": 0,
+                        "columns": actual_header or [],
+                    }
+                rows = 0
+                for expected, actual in zip_longest(expected_reader, actual_reader):
+                    if expected is None or actual is None:
+                        return {
+                            "valid": False,
+                            "reason": "row_count_mismatch",
+                            "rows": rows,
+                            "columns": actual_header,
+                        }
+                    if (
+                        len(actual) != len(expected_header)
+                        or not expected
+                        or actual[0] != expected[0]
+                    ):
+                        return {
+                            "valid": False,
+                            "reason": "id_or_width_mismatch",
+                            "rows": rows,
+                            "columns": actual_header,
+                        }
+                    for value in actual[1:]:
+                        if not math.isfinite(float(value)):
+                            raise ValueError("non-finite prediction")
+                    rows += 1
+    except (OSError, UnicodeError, csv.Error, ValueError):
+        return {"valid": False, "reason": "unparseable_prediction", "rows": 0, "columns": []}
+    return {"valid": True, "reason": "ok", "rows": rows, "columns": actual_header}
 
 
 def verify(args: argparse.Namespace) -> dict[str, Any]:
@@ -221,8 +251,9 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         ):
             raise VerifyError("executed code differs")
         execution = read_json(step / "execution.json")
+        intent = read_json(step / "candidate_intent.json")
         process = read_json(step / "candidate_process.json")
-        command = process.get("command")
+        command = intent.get("command")
         if (
             execution.get("rollout_id") != summary.get("smoke_rollout_id")
             or execution.get("task") != task
@@ -234,29 +265,52 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
             or execution.get("retry_count") != 0
             or execution.get("public_data_read_only") is not True
             or execution.get("private_paths_mounted") is not False
+            or intent.get("schema_version")
+            != "balanced-continuation-real-process-intent-v1"
+            or intent.get("rollout_id") != summary.get("smoke_rollout_id")
+            or intent.get("execution_ordinal") != 1
+            or intent.get("process_kind") != "candidate"
+            or intent.get("process_will_start") is not True
+            or intent.get("retry_count") != 0
             or not isinstance(command, list)
+            or intent.get("command_sha256")
+            != digest(json.dumps(
+                command, sort_keys=True, separators=(",", ":"), ensure_ascii=False,
+                allow_nan=False,
+            ).encode("utf-8"))
             or "--containall" not in command
             or "--cleanenv" not in command
             or "--network" not in command
             or "none" not in command
         ):
             raise VerifyError("candidate execution receipt differs")
-        passed = summary.get("gate_pass") is True
-        if passed:
-            artifact = step / "submission.csv"
-            sample = pathlib.Path(
-                read_json(source / "real_contract.json")["public_data_root"]
-            ) / task / "sample_submission.csv"
-            shape = validate_shape(sample, artifact)
-            if (
-                summary.get("status") != "PASS_EXECUTION_ONLY"
-                or summary.get("execution_status") != "ok"
-                or summary.get("artifact_sha256") != file_digest(artifact)
-                or summary.get("submission_shape") != shape
-            ):
-                raise VerifyError("passing candidate artifact differs")
-        elif summary.get("status") != "FAIL_EXECUTION_ONLY":
-            raise VerifyError("failed candidate status differs")
+        stdout = step / "candidate.stdout"
+        stderr = step / "candidate.stderr"
+        if (
+            process.get("return_code") != execution.get("exit_code")
+            or process.get("timed_out") != execution.get("timed_out")
+            or process.get("wall_time_seconds") != execution.get("wall_time_seconds")
+            or process.get("stdout_sha256") != file_digest(stdout)
+            or process.get("stderr_sha256") != file_digest(stderr)
+        ):
+            raise VerifyError("candidate process receipt differs")
+        artifact = step / "submission.csv"
+        sample = pathlib.Path(
+            read_json(source / "real_contract.json")["public_data_root"]
+        ) / task / "sample_submission.csv"
+        shape = inspect_shape(sample, artifact)
+        expected_pass = execution.get("execution_status") == "ok" and shape["valid"] is True
+        if (
+            summary.get("gate_pass") is not expected_pass
+            or summary.get("status")
+            != ("PASS_EXECUTION_ONLY" if expected_pass else "FAIL_EXECUTION_ONLY")
+            or summary.get("submission_shape") != shape
+            or (
+                artifact.is_file()
+                and summary.get("artifact_sha256") != file_digest(artifact)
+            )
+        ):
+            raise VerifyError("candidate gate reconstruction differs")
         forbidden = [
             path for path in root.rglob("*")
             if path.is_file() and re.search(r"(?i)(dsearch|dval|dtest|score|gain|utility)", path.name)

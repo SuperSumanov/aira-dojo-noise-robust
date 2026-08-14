@@ -21,7 +21,8 @@ import tempfile
 from typing import Any
 
 from phase1.balanced_continuation_e1_scoring import CREDENTIAL, file_sha256
-from phase1.balanced_continuation_operator_entry import MODEL_ID, RAW_RESPONSE_SCHEMA
+from phase1 import balanced_continuation_operator_entry as deepseek_operator
+from phase1 import balanced_continuation_qwen_operator_entry as qwen_operator
 from phase1.balanced_continuation_real_contract import (
     RealContractError,
     bind_visible_step,
@@ -91,6 +92,36 @@ USAGE_KEYS = {
 
 class VerifyError(RuntimeError):
     pass
+
+
+def operator_profile(real_contract: dict[str, Any]) -> dict[str, Any]:
+    """Independently resolve an allow-listed operator from both frozen hashes."""
+    candidates = (
+        {
+            "module": deepseek_operator,
+            "model_id": deepseek_operator.MODEL_ID,
+            "provider": "deepseek",
+            "temperature": deepseek_operator.TEMPERATURE,
+            "raw_response_schema": deepseek_operator.RAW_RESPONSE_SCHEMA,
+        },
+        {
+            "module": qwen_operator,
+            "model_id": qwen_operator.MODEL_ID,
+            "provider": qwen_operator.PROVIDER,
+            "temperature": qwen_operator.TEMPERATURE,
+            "raw_response_schema": qwen_operator.RAW_RESPONSE_SCHEMA,
+        },
+    )
+    matches = [
+        profile for profile in candidates
+        if real_contract["operator_config_sha256"]
+        == profile["module"].operator_config_sha256()
+        and real_contract["prompt_sha256"]
+        == profile["module"].prompt_bundle_sha256()
+    ]
+    if len(matches) != 1:
+        raise VerifyError("unsupported or mixed operator-profile hashes")
+    return matches[0]
 
 
 def checked(path: pathlib.Path) -> dict[str, Any]:
@@ -219,10 +250,11 @@ def load_initial_code(path: pathlib.Path, assignment: dict[str, Any]) -> tuple[s
 def validate_contract_pair(
     legacy: dict[str, Any], real: dict[str, Any], split_root: pathlib.Path
 ) -> None:
+    profile = operator_profile(real)
     expected = {
         "schema_version": "balanced-continuation-contract-v1",
-        "model_id": MODEL_ID,
-        "provider": "deepseek",
+        "model_id": profile["model_id"],
+        "provider": profile["provider"],
         "operator_config_sha256": real["operator_config_sha256"],
         "prompt_sha256": real["prompt_sha256"],
         "source_commit": real["source_commit"],
@@ -233,7 +265,7 @@ def validate_contract_pair(
         "continuation_horizon": real["continuation_horizon"],
         "debug_policy": "fixed_one_operator_per_step",
         "workspace_policy": "fresh_per_rollout",
-        "temperature": 0.6,
+        "temperature": profile["temperature"],
     }
     if legacy != expected:
         raise VerifyError("legacy and real contracts differ in meaning")
@@ -331,12 +363,14 @@ def validate_sidecar_process(path: pathlib.Path, stdout: pathlib.Path, stderr: p
 
 
 def validate_usage(
-    value: dict[str, Any], request: dict[str, Any], response: dict[str, Any]
+    value: dict[str, Any], request: dict[str, Any], response: dict[str, Any],
+    real_contract: dict[str, Any],
 ) -> None:
+    profile = operator_profile(real_contract)
     exact_keys(value, USAGE_KEYS, "operator usage")
     if (
         value["schema_version"] != OPERATOR_USAGE_SCHEMA
-        or value["model_id"] != MODEL_ID
+        or value["model_id"] != profile["model_id"]
         or value["provider_request_id"] != response["provider_request_id"]
         or value["api_calls"] != 1
         or value["retry_count"] != 0
@@ -408,6 +442,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
     if source_head != real["source_commit"] or source_dirty:
         raise VerifyError("source root is not the exact clean contract commit")
     validate_contract_pair(legacy, real, split_root)
+    profile = operator_profile(real)
     if file_sha256(container) != real["container_sha256"]:
         raise VerifyError("container hash differs")
     if not hf_cache.is_dir() or not nvfix.is_dir():
@@ -654,7 +689,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
                 set(raw_document) != {
                     "schema_version", "request_sha256", "raw_response_sha256", "raw_response"
                 }
-                or raw_document["schema_version"] != RAW_RESPONSE_SCHEMA
+                or raw_document["schema_version"] != profile["raw_response_schema"]
                 or raw_document["request_sha256"] != response["request_sha256"]
                 or raw_document["raw_response_sha256"] != response["raw_response_sha256"]
                 or not isinstance(raw_document["raw_response"], str)
@@ -669,7 +704,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
                 step / "operator.stderr",
             )
             usage = checked(step / "operator_usage.json")
-            validate_usage(usage, request, response)
+            validate_usage(usage, request, response, real)
             usages.append(usage)
             operator = response["operator"]
         visible = validate_visible_step(checked(step / "visible.json"), real)

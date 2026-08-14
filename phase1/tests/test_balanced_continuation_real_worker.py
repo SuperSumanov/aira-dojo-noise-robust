@@ -126,6 +126,9 @@ def test_completed_progress_reconstructs_counts_from_durable_manifests(
     )
     monkeypatch.setattr(worker, "validate_operator_response", lambda value, *_: value)
     monkeypatch.setattr(worker, "validate_operator_usage", lambda *args: None)
+    monkeypatch.setattr(worker, "operator_profile", lambda _: {
+        "raw_response_schema": worker.deepseek_operator.RAW_RESPONSE_SCHEMA,
+    })
     monkeypatch.setattr(
         worker, "bind_visible_step", lambda *args, **kwargs: {"code": kwargs["code"]}
     )
@@ -169,7 +172,7 @@ def test_completed_progress_reconstructs_counts_from_durable_manifests(
         "raw_response_sha256": raw_sha,
     })
     write_json(second / "operator_raw_response.json", {
-        "schema_version": worker.RAW_RESPONSE_SCHEMA,
+        "schema_version": worker.deepseek_operator.RAW_RESPONSE_SCHEMA,
         "request_sha256": "f" * 64,
         "raw_response_sha256": raw_sha,
         "raw_response": raw_response,
@@ -188,3 +191,19 @@ def test_completed_progress_reconstructs_counts_from_durable_manifests(
     (second / "code-after-manifest.txt").write_text("tamper", encoding="utf-8")
     with pytest.raises(worker.RealWorkerError, match="durable step manifest differs"):
         worker.completed_progress(tmp_path, assignment, contract, "description", 2)
+
+
+def test_operator_sidecar_receives_only_selected_provider_credential(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("PRIMARY_KEY_DEEPSEEK_V4_FLASH", "deepseek-placeholder")
+    monkeypatch.setenv("PRIMARY_KEY_QWEN3_CODER_FLASH", "qwen-placeholder")
+    qwen = worker.clean_sidecar_env(True, ("PRIMARY_KEY_QWEN3_CODER_FLASH",))
+    deepseek = worker.clean_sidecar_env(True, ("PRIMARY_KEY_DEEPSEEK_V4_FLASH",))
+    candidate = worker.clean_sidecar_env(False)
+    assert qwen["PRIMARY_KEY_QWEN3_CODER_FLASH"] == "qwen-placeholder"
+    assert "PRIMARY_KEY_DEEPSEEK_V4_FLASH" not in qwen
+    assert deepseek["PRIMARY_KEY_DEEPSEEK_V4_FLASH"] == "deepseek-placeholder"
+    assert "PRIMARY_KEY_QWEN3_CODER_FLASH" not in deepseek
+    assert "PRIMARY_KEY_DEEPSEEK_V4_FLASH" not in candidate
+    assert "PRIMARY_KEY_QWEN3_CODER_FLASH" not in candidate

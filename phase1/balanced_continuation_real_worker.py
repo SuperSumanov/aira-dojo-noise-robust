@@ -31,7 +31,8 @@ from phase1.balanced_continuation_e1_scoring import (
     checked_json,
     file_sha256,
 )
-from phase1.balanced_continuation_operator_entry import MODEL_ID, RAW_RESPONSE_SCHEMA
+from phase1 import balanced_continuation_operator_entry as deepseek_operator
+from phase1 import balanced_continuation_qwen_operator_entry as qwen_operator
 from phase1.balanced_continuation_real_contract import (
     EXECUTION_RECEIPT_SCHEMA,
     RealContractError,
@@ -74,6 +75,42 @@ RESULT_KEYS = {
 
 class RealWorkerError(RuntimeError):
     pass
+
+
+def operator_profile(real_contract: dict[str, Any]) -> dict[str, Any]:
+    """Resolve the only supported one-shot operator from its frozen hashes."""
+    candidates = (
+        {
+            "name": "deepseek",
+            "module": deepseek_operator,
+            "module_name": "phase1.balanced_continuation_operator_entry",
+            "model_id": deepseek_operator.MODEL_ID,
+            "provider": "deepseek",
+            "temperature": deepseek_operator.TEMPERATURE,
+            "raw_response_schema": deepseek_operator.RAW_RESPONSE_SCHEMA,
+            "credential_env_keys": ("PRIMARY_KEY_DEEPSEEK_V4_FLASH", "PRIMARY_KEY"),
+        },
+        {
+            "name": "qwen",
+            "module": qwen_operator,
+            "module_name": "phase1.balanced_continuation_qwen_operator_entry",
+            "model_id": qwen_operator.MODEL_ID,
+            "provider": qwen_operator.PROVIDER,
+            "temperature": qwen_operator.TEMPERATURE,
+            "raw_response_schema": qwen_operator.RAW_RESPONSE_SCHEMA,
+            "credential_env_keys": ("PRIMARY_KEY_QWEN3_CODER_FLASH",),
+        },
+    )
+    matches = [
+        profile for profile in candidates
+        if real_contract["operator_config_sha256"]
+        == profile["module"].operator_config_sha256()
+        and real_contract["prompt_sha256"]
+        == profile["module"].prompt_bundle_sha256()
+    ]
+    if len(matches) != 1:
+        raise RealWorkerError("unsupported or mixed operator-profile hashes")
+    return matches[0]
 
 
 def utc_now() -> str:
@@ -164,9 +201,10 @@ def evaluator_contract_sha(real_contract: dict[str, Any]) -> str:
 def validate_contract_pair(
     legacy: dict[str, Any], real: dict[str, Any], split_root: pathlib.Path
 ) -> None:
+    profile = operator_profile(real)
     expected = {
-        "model_id": MODEL_ID,
-        "provider": "deepseek",
+        "model_id": profile["model_id"],
+        "provider": profile["provider"],
         "operator_config_sha256": real["operator_config_sha256"],
         "prompt_sha256": real["prompt_sha256"],
         "source_commit": real["source_commit"],
@@ -177,7 +215,7 @@ def validate_contract_pair(
         "continuation_horizon": real["continuation_horizon"],
         "debug_policy": "fixed_one_operator_per_step",
         "workspace_policy": "fresh_per_rollout",
-        "temperature": 0.6,
+        "temperature": profile["temperature"],
     }
     if legacy != {"schema_version": "balanced-continuation-contract-v1", **expected}:
         raise RealWorkerError("assignment and real worker contracts are not identical in meaning")
@@ -206,14 +244,19 @@ def task_description(repo: pathlib.Path, split_root: pathlib.Path, task: str) ->
     return value
 
 
-def clean_sidecar_env(include_operator_credential: bool) -> dict[str, str]:
+def clean_sidecar_env(
+    include_operator_credential: bool,
+    operator_credential_keys: tuple[str, ...] = (),
+) -> dict[str, str]:
     allowed = {
         "PATH", "LANG", "LC_ALL", "LD_LIBRARY_PATH", "SSL_CERT_FILE", "SSL_CERT_DIR",
         "HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy", "NO_PROXY", "no_proxy",
     }
     env = {key: value for key, value in os.environ.items() if key in allowed}
     if include_operator_credential:
-        for key in ("PRIMARY_KEY_DEEPSEEK_V4_FLASH", "PRIMARY_KEY"):
+        if not operator_credential_keys:
+            raise RealWorkerError("operator credential allowlist is empty")
+        for key in operator_credential_keys:
             if key in os.environ:
                 env[key] = os.environ[key]
     env["PYTHONPATH"] = str(pathlib.Path(__file__).resolve().parents[1])
@@ -526,6 +569,7 @@ def run_sidecar(
     ordinal: int,
     timeout_seconds: int,
     include_operator_credential: bool = False,
+    operator_credential_keys: tuple[str, ...] = (),
 ) -> subprocess.CompletedProcess[bytes]:
     process_intent(
         step_dir / f"{label}_intent.json", rollout_id=rollout_id, ordinal=ordinal,
@@ -535,7 +579,7 @@ def run_sidecar(
     try:
         completed = subprocess.run(
             command, cwd=pathlib.Path(__file__).resolve().parents[1],
-            env=clean_sidecar_env(include_operator_credential),
+            env=clean_sidecar_env(include_operator_credential, operator_credential_keys),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout_seconds,
             check=False,
         )
@@ -758,8 +802,10 @@ def validate_state(
 
 
 def validate_operator_usage(
-    value: dict[str, Any], request: dict[str, Any], response: dict[str, Any]
+    value: dict[str, Any], request: dict[str, Any], response: dict[str, Any],
+    real_contract: dict[str, Any],
 ) -> None:
+    profile = operator_profile(real_contract)
     expected_keys = {
         "schema_version", "model_id", "provider_request_id", "api_calls", "retry_count",
         "latency_seconds", "prompt_tokens", "completion_tokens", "total_tokens",
@@ -770,7 +816,7 @@ def validate_operator_usage(
         raise RealWorkerError("operator usage schema differs")
     if (
         value["schema_version"] != OPERATOR_USAGE_SCHEMA
-        or value["model_id"] != MODEL_ID
+        or value["model_id"] != profile["model_id"]
         or value["provider_request_id"] != response["provider_request_id"]
         or value["api_calls"] != 1
         or value["retry_count"] != 0
@@ -807,6 +853,7 @@ def completed_progress(
     description: str,
     count: int,
 ) -> tuple[list[str], int, int]:
+    profile = operator_profile(real_contract)
     manifests: list[str] = []
     operator_calls = 0
     previous: dict[str, Any] | None = None
@@ -859,7 +906,7 @@ def completed_progress(
                 set(raw_document) != {
                     "schema_version", "request_sha256", "raw_response_sha256", "raw_response"
                 }
-                or raw_document["schema_version"] != RAW_RESPONSE_SCHEMA
+                or raw_document["schema_version"] != profile["raw_response_schema"]
                 or raw_document["request_sha256"] != response["request_sha256"]
                 or raw_document["raw_response_sha256"] != response["raw_response_sha256"]
                 or not isinstance(raw_document["raw_response"], str)
@@ -868,7 +915,7 @@ def completed_progress(
             ):
                 raise RealWorkerError("completed-step raw operator response binding differs")
             usage = checked_json(step_dir / "operator_usage.json")
-            validate_operator_usage(usage, request, response)
+            validate_operator_usage(usage, request, response, real_contract)
             operator_calls += response["operator_calls"]
             operator = response["operator"]
             code = response["code"]
@@ -1206,6 +1253,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         raise RealWorkerError("worker checkpoint counters differ from durable completed steps")
 
     horizon = real_contract["continuation_horizon"]
+    profile = operator_profile(real_contract)
     while state["next_execution_ordinal"] <= horizon:
         ordinal = state["next_execution_ordinal"]
         step_dir = inflight / "steps" / f"step_{ordinal:03d}"
@@ -1241,7 +1289,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             run_sidecar(
                 step_dir, "operator",
                 [
-                    sys.executable, "-m", "phase1.balanced_continuation_operator_entry",
+                    sys.executable, "-m", profile["module_name"],
                     "--contract", str(inflight / "real_contract.json"),
                     "--request", str(request_path), "--response", str(response_path),
                     "--raw-response", str(step_dir / "operator_raw_response.json"),
@@ -1250,6 +1298,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 rollout_id=assignment["rollout_id"], ordinal=ordinal,
                 timeout_seconds=real_contract["operator_timeout_seconds"],
                 include_operator_credential=True,
+                operator_credential_keys=profile["credential_env_keys"],
             )
             response = validate_operator_response(
                 checked_json(response_path), request, real_contract

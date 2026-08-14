@@ -20,6 +20,7 @@ from typing import Any
 
 SCHEMA = "balanced-continuation-e1-inputs-v1"
 RULE = "v11-b0-train-exact-two-sort-run-parent-first-v1"
+FRESH_RULE = "v11-b0-train-exact-two-exclude-prior-runs-sort-run-parent-first-v1"
 TASKS = ("spaceship-titanic", "tabular-playground-series-may-2022")
 EXPECTED_CARD_ROWS = 16012
 HASHES = {
@@ -89,6 +90,55 @@ def atomic_json(path: pathlib.Path, value: Any) -> None:
     finally:
         if temporary.exists():
             temporary.unlink()
+
+
+def load_prior_selection(
+    path: pathlib.Path, expected_sha256: str
+) -> tuple[set[str], set[tuple[str, str, str]], str]:
+    if not path.is_file() or path.is_symlink():
+        raise VerifyError("prior selected-public identity receipt is missing or symlinked")
+    if not re.fullmatch(r"[0-9a-f]{64}", expected_sha256 or ""):
+        raise VerifyError("prior selected-public expected SHA-256 differs")
+    actual = file_digest(path)
+    if actual != expected_sha256:
+        raise VerifyError("prior selected-public source hash differs")
+    rows = read_json(path)
+    keys = {
+        "schema_version", "selection_rule", "cards_sha256", "hold_sha256",
+        "decision_train_b0_sha256", "task", "source_run_id", "parent_id",
+        "sibling_ids", "anchor_id", "anchor_contract_sha256",
+    }
+    if not isinstance(rows, list) or len(rows) != len(TASKS):
+        raise VerifyError("prior selection row count differs")
+    runs: set[str] = set()
+    anchors: set[tuple[str, str, str]] = set()
+    tasks: set[str] = set()
+    for row in rows:
+        if not isinstance(row, dict) or set(row) != keys:
+            raise VerifyError("prior selection schema differs")
+        task, run_id, parent = row["task"], row["source_run_id"], row["parent_id"]
+        siblings = row["sibling_ids"]
+        if (
+            task not in TASKS
+            or task in tasks
+            or not isinstance(run_id, str)
+            or not run_id
+            or not isinstance(parent, str)
+            or not parent
+            or row["selection_rule"] != RULE
+            or row["cards_sha256"] != HASHES["cards"]
+            or not isinstance(siblings, list)
+            or len(siblings) != 2
+            or len(set(siblings)) != 2
+            or not all(isinstance(value, str) and value for value in siblings)
+        ):
+            raise VerifyError("prior selection identity differs")
+        tasks.add(task)
+        runs.add(run_id)
+        anchors.add((task, run_id, parent))
+    if tasks != set(TASKS):
+        raise VerifyError("prior selection task set differs")
+    return runs, anchors, actual
 
 
 def verify(args: argparse.Namespace) -> dict[str, Any]:
@@ -185,17 +235,36 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         if not eligible_by_task[task]:
             raise VerifyError(f"no independently reconstructed anchor: {task}")
 
+    prior_path_text = getattr(args, "exclude_selected_public", None)
+    expected_prior_sha = getattr(args, "exclude_selected_public_sha256", None)
+    prior_runs: set[str] = set()
+    prior_anchors: set[tuple[str, str, str]] = set()
+    prior_sha: str | None = None
+    if prior_path_text:
+        prior_runs, prior_anchors, prior_sha = load_prior_selection(
+            pathlib.Path(prior_path_text).resolve(), expected_prior_sha
+        )
+    elif expected_prior_sha:
+        raise VerifyError("prior selection SHA supplied without identity receipt")
+    rule = FRESH_RULE if prior_sha else RULE
+
     expected_anchors: list[dict[str, Any]] = []
     expected_vault: list[dict[str, Any]] = []
     expected_public: list[dict[str, Any]] = []
     selected_ids: set[str] = set()
     selected_runs: set[str] = set()
     for task in TASKS:
-        run_id, parent, sibling_ids = eligible_by_task[task][0]
-        anchor_id = digest(f"{SCHEMA}|{RULE}|{task}|{run_id}|{parent}".encode("utf-8"))
+        fresh = [
+            item for item in eligible_by_task[task]
+            if item[0] not in prior_runs and (task, item[0], item[1]) not in prior_anchors
+        ]
+        if not fresh:
+            raise VerifyError(f"no anchor remains after prior-run exclusion: {task}")
+        run_id, parent, sibling_ids = fresh[0]
+        anchor_id = digest(f"{SCHEMA}|{rule}|{task}|{run_id}|{parent}".encode("utf-8"))
         context = {
             "schema_version": SCHEMA,
-            "selection_rule": RULE,
+            "selection_rule": rule,
             "cards_sha256": HASHES["cards"],
             "hold_sha256": HASHES["hold"],
             "decision_train_b0_sha256": HASHES["decision_train_b0"],
@@ -256,7 +325,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
     required_summary = {
         "schema_version": SCHEMA,
         "status": "E1_INPUTS_FROZEN_OUTCOME_BLIND",
-        "selection_rule": RULE,
+        "selection_rule": rule,
         "contains_outcomes": False,
         "winner_orientation_read": False,
         "gap_read": False,
@@ -282,13 +351,32 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
     if summary.get("card_counts", {}).get("target_rows") != target_seen:
         raise VerifyError("summary target-card count differs")
     for task in TASKS:
+        fresh = [
+            item for item in eligible_by_task[task]
+            if item[0] not in prior_runs and (task, item[0], item[1]) not in prior_anchors
+        ]
         expected_support = {
             "eligible_exact_two_parents": len(eligible_by_task[task]),
             "eligible_physical_runs": len({item[0] for item in eligible_by_task[task]}),
             "selection_rank": 0,
         }
+        if prior_sha:
+            expected_support.update({
+                "eligible_after_prior_run_exclusion": len(fresh),
+                "excluded_prior_eligible_parents": len(eligible_by_task[task]) - len(fresh),
+            })
         if summary["support"][task] != expected_support:
             raise VerifyError(f"support summary differs for {task}")
+    if prior_sha:
+        expected_prior_summary = {
+            "prior_selection_identity_only_read": True,
+            "prior_selection_sha256": prior_sha,
+            "excluded_prior_run_count": len(prior_runs),
+            "excluded_prior_anchor_count": len(prior_anchors),
+            "selected_prior_run_overlap": 0,
+        }
+        if any(summary.get(key) != value for key, value in expected_prior_summary.items()):
+            raise VerifyError("prior-run exclusion summary differs")
 
     manifest = read_json(result / "sha256_manifest.json")
     expected_manifest_keys = expected_files - {"sha256_manifest.json"}
@@ -313,6 +401,11 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
             name: file_digest(result / name) for name in sorted(expected_files)
         },
     }
+    if prior_sha:
+        receipt.update({
+            "prior_selection_sha256": prior_sha,
+            "selected_prior_run_overlap": 0,
+        })
     receipt_path = pathlib.Path(args.receipt).resolve()
     if receipt_path.exists() or receipt_path.is_symlink():
         raise VerifyError("verification receipt must not pre-exist")
@@ -331,6 +424,8 @@ def parser() -> argparse.ArgumentParser:
     ap.add_argument("--frozen-b2", required=True)
     ap.add_argument("--result", required=True)
     ap.add_argument("--receipt", required=True)
+    ap.add_argument("--exclude-selected-public")
+    ap.add_argument("--exclude-selected-public-sha256")
     return ap
 
 

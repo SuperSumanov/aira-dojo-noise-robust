@@ -5,6 +5,8 @@ import json
 import pathlib
 from types import SimpleNamespace
 
+import pytest
+
 from phase1 import balanced_continuation_qwen_execution_smoke as smoke
 from phase1 import verify_balanced_continuation_qwen_execution_smoke as verifier
 
@@ -148,8 +150,9 @@ def build_fixture(tmp_path: pathlib.Path) -> dict[str, pathlib.Path]:
     }
 
 
+@pytest.mark.parametrize("bad_index", [None, 0])
 def test_two_index_smoke_and_independent_verifier(
-    tmp_path: pathlib.Path, monkeypatch
+    tmp_path: pathlib.Path, monkeypatch, bad_index: int | None
 ) -> None:
     paths = build_fixture(tmp_path)
     probe_sha = smoke.file_sha256(paths["probe"] / "summary.json")
@@ -170,7 +173,10 @@ def test_two_index_smoke_and_independent_verifier(
         code_sha = smoke.sha256_bytes(code.encode())
         (step / "code.py").write_bytes(code.encode("utf-8"))
         submission = step / "submission.csv"
-        submission.write_text("id,prediction\na,0.4\nb,0.6\n", encoding="utf-8")
+        if bad_index is not None and task == smoke.EXPECTED_TASKS[bad_index]:
+            submission.write_text("id,prediction\na,False\nb,True\n", encoding="utf-8")
+        else:
+            submission.write_text("id,prediction\na,0.4\nb,0.6\n", encoding="utf-8")
         execution = {
             "rollout_id": kwargs["assignment"]["rollout_id"],
             "task": task,
@@ -179,6 +185,8 @@ def test_two_index_smoke_and_independent_verifier(
             "execution_status": "ok",
             "process_started": True,
             "candidate_execution_attempted": True,
+            "exit_code": 0,
+            "timed_out": False,
             "retry_count": 0,
             "public_data_read_only": True,
             "private_paths_mounted": False,
@@ -186,13 +194,34 @@ def test_two_index_smoke_and_independent_verifier(
             "artifact_sha256": smoke.file_sha256(submission),
         }
         write_json(step / "execution.json", execution)
+        command = [
+            "singularity", "exec", "--containall", "--cleanenv",
+            "--network", "none", "container", "python", "solution.py",
+        ]
+        write_json(
+            step / "candidate_intent.json",
+            {
+                "schema_version": "balanced-continuation-real-process-intent-v1",
+                "rollout_id": kwargs["assignment"]["rollout_id"],
+                "execution_ordinal": 1,
+                "process_kind": "candidate",
+                "process_will_start": True,
+                "command": command,
+                "command_sha256": smoke.sha256_bytes(smoke.canonical_json(command)),
+                "created_utc": "2026-08-14T00:00:00Z",
+                "retry_count": 0,
+            },
+        )
+        (step / "candidate.stdout").write_bytes(b"")
+        (step / "candidate.stderr").write_bytes(b"")
         write_json(
             step / "candidate_process.json",
             {
-                "command": [
-                    "singularity", "exec", "--containall", "--cleanenv",
-                    "--network", "none", "container", "python", "solution.py",
-                ]
+                "return_code": 0,
+                "timed_out": False,
+                "wall_time_seconds": 1.25,
+                "stdout_sha256": smoke.sha256_bytes(b""),
+                "stderr_sha256": smoke.sha256_bytes(b""),
             },
         )
         return execution
@@ -213,7 +242,10 @@ def test_two_index_smoke_and_independent_verifier(
                 index=index,
             )
         )
-        assert result["status"] == "PASS_EXECUTION_ONLY"
+        expected_status = (
+            "FAIL_EXECUTION_ONLY" if index == bad_index else "PASS_EXECUTION_ONLY"
+        )
+        assert result["status"] == expected_status
         assert result["external_score_or_gain_reported"] is False
         write_json(
             paths["job_rc"] / f"{index}.json",
@@ -237,7 +269,11 @@ def test_two_index_smoke_and_independent_verifier(
             receipt=str(receipt),
         )
     )
-    assert result["status"] == "VERIFIED_QWEN_EXECUTION_SMOKE_PASS"
+    assert result["status"] == (
+        "VERIFIED_QWEN_EXECUTION_SMOKE_FAIL"
+        if bad_index is not None
+        else "VERIFIED_QWEN_EXECUTION_SMOKE_PASS"
+    )
     assert result["candidate_executions"] == 2
     assert result["api_calls"] == 0
 

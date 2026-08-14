@@ -22,12 +22,8 @@ from phase1.balanced_continuation_e1_scoring import (
     sha256_bytes,
 )
 from phase1.balanced_continuation_manifest import ManifestError, build as build_assignment
-from phase1.balanced_continuation_operator_entry import (
-    MODEL_ID,
-    TEMPERATURE,
-    operator_config_sha256,
-    prompt_bundle_sha256,
-)
+from phase1 import balanced_continuation_operator_entry as deepseek_operator
+from phase1 import balanced_continuation_qwen_operator_entry as qwen_operator
 from phase1.balanced_continuation_real_contract import (
     REAL_BACKEND,
     WORKER_CONTRACT_SCHEMA,
@@ -53,6 +49,65 @@ WORKER_PYTHON = pathlib.Path("/research/d7/spc/yzyang4/venvs/aira/bin/python")
 
 class PrepareError(RuntimeError):
     pass
+
+
+def select_operator_profile(name: str) -> dict[str, Any]:
+    if name == "deepseek":
+        return {
+            "name": name,
+            "module": deepseek_operator,
+            "model_id": deepseek_operator.MODEL_ID,
+            "provider": "deepseek",
+            "temperature": deepseek_operator.TEMPERATURE,
+        }
+    if name == "qwen":
+        return {
+            "name": name,
+            "module": qwen_operator,
+            "model_id": qwen_operator.MODEL_ID,
+            "provider": qwen_operator.PROVIDER,
+            "temperature": qwen_operator.TEMPERATURE,
+        }
+    raise PrepareError(f"unsupported operator profile: {name}")
+
+
+def validate_qwen_execution_gate(path_text: str | None) -> tuple[pathlib.Path, str]:
+    if not path_text:
+        raise PrepareError("Qwen preparation requires an explicit passing execution-smoke receipt")
+    path = pathlib.Path(path_text).resolve()
+    if not path.is_file() or path.is_symlink():
+        raise PrepareError("Qwen execution-smoke receipt is missing or symlinked")
+    value = checked_json(path)
+    expected_keys = {
+        "schema_version", "status", "producer_imported", "results", "tasks",
+        "candidate_executions", "api_calls", "dsearch_rows_read", "dval_rows_read",
+        "dtest_rows_read", "external_score_or_gain_reported", "all_gate_pass",
+        "summary_sha256",
+    }
+    if (
+        set(value) != expected_keys
+        or value["schema_version"]
+        != "balanced-continuation-qwen-execution-smoke-verification-v1"
+        or value["status"] != "VERIFIED_QWEN_EXECUTION_SMOKE_PASS"
+        or value["producer_imported"] is not False
+        or value["results"] != 2
+        or value["tasks"] != list(TASKS)
+        or value["candidate_executions"] != 2
+        or value["api_calls"] != 0
+        or value["dsearch_rows_read"] != 0
+        or value["dval_rows_read"] != 0
+        or value["dtest_rows_read"] != 0
+        or value["external_score_or_gain_reported"] is not False
+        or value["all_gate_pass"] is not True
+        or not isinstance(value["summary_sha256"], list)
+        or len(value["summary_sha256"]) != 2
+        or any(
+            not isinstance(item, str) or len(item) != 64
+            for item in value["summary_sha256"]
+        )
+    ):
+        raise PrepareError("Qwen execution-smoke receipt is not a passing frozen gate")
+    return path, file_sha256(path)
 
 
 def utc_now() -> str:
@@ -121,6 +176,13 @@ def read_jsonl(path: pathlib.Path) -> list[dict[str, Any]]:
 
 def build(args: argparse.Namespace) -> dict[str, Any]:
     source_commit = exact_source_commit()
+    operator_profile = select_operator_profile(getattr(args, "operator_profile", "deepseek"))
+    operator_module = operator_profile["module"]
+    qwen_gate: tuple[pathlib.Path, str] | None = None
+    if operator_profile["name"] == "qwen":
+        qwen_gate = validate_qwen_execution_gate(
+            getattr(args, "qwen_execution_smoke_receipt", None)
+        )
     data_gate = pathlib.Path(args.data_gate).resolve()
     container = pathlib.Path(args.container).resolve()
     output = pathlib.Path(args.output).resolve()
@@ -172,8 +234,8 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "backend": REAL_BACKEND,
             "source_commit": source_commit,
             "container_sha256": EXPECTED_CONTAINER_SHA256,
-            "operator_config_sha256": operator_config_sha256(),
-            "prompt_sha256": prompt_bundle_sha256(),
+            "operator_config_sha256": operator_module.operator_config_sha256(),
+            "prompt_sha256": operator_module.prompt_bundle_sha256(),
             "public_dataset_contract_sha256": split_summary[
                 "public_dataset_contract_sha256"
             ],
@@ -206,8 +268,8 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
         validate_worker_contract(real_contract)
         legacy_contract = {
             "schema_version": "balanced-continuation-contract-v1",
-            "model_id": MODEL_ID,
-            "provider": "deepseek",
+            "model_id": operator_profile["model_id"],
+            "provider": operator_profile["provider"],
             "operator_config_sha256": real_contract["operator_config_sha256"],
             "prompt_sha256": real_contract["prompt_sha256"],
             "source_commit": source_commit,
@@ -218,7 +280,7 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "continuation_horizon": HORIZON,
             "debug_policy": "fixed_one_operator_per_step",
             "workspace_policy": "fresh_per_rollout",
-            "temperature": TEMPERATURE,
+            "temperature": operator_profile["temperature"],
         }
         real_path = root / "real_contract.json"
         legacy_path = root / "execution_contract.json"
@@ -269,6 +331,9 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "rollout_jobs": 8,
             "candidate_executions": 16,
             "operator_api_calls": 8,
+            "operator_profile": operator_profile["name"],
+            "operator_model_id": operator_profile["model_id"],
+            "qwen_execution_smoke_receipt_sha256": qwen_gate[1] if qwen_gate else None,
             "expected_gpu_hours": EXPECTED_GPU_HOURS,
             "worker_python_path": WORKER_PYTHON.as_posix(),
             "worker_python_sha256": file_sha256(WORKER_PYTHON),
@@ -304,6 +369,10 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "container_sha256": EXPECTED_CONTAINER_SHA256,
             "worker_python_path": run_plan["worker_python_path"],
             "worker_python_sha256": run_plan["worker_python_sha256"],
+            "operator_profile": operator_profile["name"],
+            "operator_model_id": operator_profile["model_id"],
+            "qwen_execution_smoke_receipt_path": qwen_gate[0].as_posix() if qwen_gate else None,
+            "qwen_execution_smoke_receipt_sha256": qwen_gate[1] if qwen_gate else None,
             "contains_outcomes": False,
             "first960_or_prospective_read": False,
             "dtest_rows_read": 0,
@@ -332,6 +401,8 @@ def parser() -> argparse.ArgumentParser:
     ap.add_argument("--container", required=True)
     ap.add_argument("--output", required=True)
     ap.add_argument("--created-utc", default=utc_now())
+    ap.add_argument("--operator-profile", choices=("deepseek", "qwen"), default="deepseek")
+    ap.add_argument("--qwen-execution-smoke-receipt")
     return ap
 
 

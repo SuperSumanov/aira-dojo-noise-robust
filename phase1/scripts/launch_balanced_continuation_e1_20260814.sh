@@ -15,6 +15,7 @@ fi
 source_commit="$1"
 short_commit="${source_commit:0:8}"
 base_repo=/research/d7/spc/yzyang4/aira-dojo
+credential_env="${base_repo}/.env"
 source_root="/research/d7/spc/yzyang4/aira-dojo-e1-real-${short_commit}"
 run_root="/research/d7/spc/yzyang4/balanced-e1-real-${short_commit}-a1"
 external_log_root="/research/d7/spc/yzyang4/logs/balanced-e1-real-${short_commit}-a1"
@@ -31,6 +32,13 @@ for required in "$base_repo" "$data_gate" "$cards" "$data_source" "$python_bin" 
     exit 3
   fi
 done
+if [[ ! -f "$credential_env" || -L "$credential_env" || "$(stat -c %a "$credential_env")" != 600 ]]; then
+  echo "remote E1 credential file is absent, symlinked, or not mode 600" >&2
+  exit 5
+fi
+set -a
+source "$credential_env"
+set +a
 for target in "$source_root" "$run_root" "$external_log_root"; do
   if [[ -e "$target" || -L "$target" ]]; then
     echo "formal E1 target already exists: $target" >&2
@@ -39,7 +47,7 @@ for target in "$source_root" "$run_root" "$external_log_root"; do
 done
 if [[ -z "${PRIMARY_KEY_DEEPSEEK_V4_FLASH:-}" && -z "${PRIMARY_KEY:-}" ]]; then
   echo "E1 operator credential unavailable in remote environment" >&2
-  exit 5
+  exit 6
 fi
 
 mkdir -p "$external_log_root"

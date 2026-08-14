@@ -18,6 +18,15 @@ if [[ -f "${HOME}/env_setup.sh" ]]; then
 fi
 set -u
 
+credential_env=/research/d7/spc/yzyang4/aira-dojo/.env
+if [[ ! -f "$credential_env" || -L "$credential_env" || "$(stat -c %a "$credential_env")" != 600 ]]; then
+  printf 'E1_JOB_CREDENTIAL_FILE_UNSAFE\n' >&2
+  exit 3
+fi
+set -a
+source "$credential_env"
+set +a
+
 : "${E1_RUN_ROOT:?}"
 : "${E1_SOURCE_ROOT:?}"
 : "${E1_DATA_GATE_ROOT:?}"
@@ -51,7 +60,7 @@ for required in \
 done
 if [[ -z "${PRIMARY_KEY_DEEPSEEK_V4_FLASH:-}" && -z "${PRIMARY_KEY:-}" ]]; then
   printf 'E1_JOB_OPERATOR_CREDENTIAL_UNAVAILABLE\n' >&2
-  exit 4
+  exit 5
 fi
 cd "$E1_SOURCE_ROOT"
 expected_commit="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["source_commit"])' "$real_contract")"

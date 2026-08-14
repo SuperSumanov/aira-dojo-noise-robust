@@ -140,7 +140,9 @@ def read_structure(
     return cards, children, count
 
 
-def read_groups(pair_paths: dict[str, Path]) -> tuple[dict[tuple[str, str], dict[str, Any]], int]:
+def read_groups(
+    pair_paths: dict[str, Path], cards: dict[str, dict[str, Any]]
+) -> tuple[dict[tuple[str, str], dict[str, Any]], int]:
     groups: dict[tuple[str, str], dict[str, Any]] = {}
     endpoint_role: dict[str, str] = {}
     total = 0
@@ -160,7 +162,20 @@ def read_groups(pair_paths: dict[str, Path]) -> tuple[dict[tuple[str, str], dict
                 left = text_field(row, "better", f"{role}:{line_number}")
                 right = text_field(row, "worse", f"{role}:{line_number}")
                 task = text_field(row, "task", f"{role}:{line_number}")
-                run_id = text_field(row, "run_id", f"{role}:{line_number}")
+                run_id = row.get("run_id")
+                if run_id is None:
+                    endpoint_runs = {
+                        cards[endpoint]["run"]
+                        for endpoint in (left, right)
+                        if endpoint in cards
+                    }
+                    if len(endpoint_runs) != 1:
+                        raise VerificationError(
+                            f"cannot derive run_id in {role}:{line_number}"
+                        )
+                    run_id = next(iter(endpoint_runs))
+                elif not isinstance(run_id, str) or not run_id:
+                    raise VerificationError(f"bad run_id in {role}:{line_number}")
                 declared = row.get("set_size")
                 if left == right or isinstance(declared, bool) or not isinstance(declared, int):
                     raise VerificationError(f"bad pair row in {role}:{line_number}")
@@ -458,7 +473,7 @@ def verify(args: argparse.Namespace) -> int:
             raise VerificationError(f"producer manifest mismatch for {path.name}")
 
     cards, children, card_count = read_structure(cards_path, run_map_path)
-    groups, pair_count = read_groups(pair_paths)
+    groups, pair_count = read_groups(pair_paths, cards)
     rows = [
         parent_row(role, parent, group, cards, children)
         for (role, parent), group in sorted(groups.items())

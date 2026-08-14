@@ -200,6 +200,24 @@ def test_complete_source_set_allows_claim(tmp_path: Path) -> None:
     assert verifier.verify(verifier_args(paths)) == 0
 
 
+def test_release_schema_without_pair_run_id_derives_it_from_endpoints(
+    tmp_path: Path,
+) -> None:
+    paths = fixture(tmp_path)
+    for role in ("train", "frozen", "extension"):
+        rows = [
+            json.loads(line)
+            for line in paths[role].read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        for row in rows:
+            row.pop("run_id")
+        write_jsonl(paths[role], rows)
+    assert producer.run(producer_args(paths)) == 0
+    assert summary(paths)["status"] == producer.STATUS_FRAGMENT
+    assert verifier.verify(verifier_args(paths)) == 0
+
+
 def test_complete_source_set_above_five_stays_on_provenance_hold(tmp_path: Path) -> None:
     paths = fixture(tmp_path, include_fragment=False, complete_size=6)
     assert producer.run(producer_args(paths)) == 0

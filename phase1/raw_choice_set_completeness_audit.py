@@ -175,7 +175,9 @@ def load_card_structure(
     return cards, children, rows
 
 
-def load_pair_groups(paths: dict[str, Path]) -> tuple[dict[tuple[str, str], dict[str, Any]], int]:
+def load_pair_groups(
+    paths: dict[str, Path], cards: dict[str, dict[str, Any]]
+) -> tuple[dict[tuple[str, str], dict[str, Any]], int]:
     groups: dict[tuple[str, str], dict[str, Any]] = {}
     total_rows = 0
     endpoint_roles: dict[str, str] = {}
@@ -196,7 +198,20 @@ def load_pair_groups(paths: dict[str, Path]) -> tuple[dict[tuple[str, str], dict
                 better = required_text(value, "better", f"{role} line {line_no}")
                 worse = required_text(value, "worse", f"{role} line {line_no}")
                 task = required_text(value, "task", f"{role} line {line_no}")
-                run_id = required_text(value, "run_id", f"{role} line {line_no}")
+                run_id = value.get("run_id")
+                if run_id is None:
+                    endpoint_runs = {
+                        cards[endpoint]["run_id"]
+                        for endpoint in (better, worse)
+                        if endpoint in cards
+                    }
+                    if len(endpoint_runs) != 1:
+                        raise AuditError(
+                            f"cannot infer run_id from endpoints in {role} line {line_no}"
+                        )
+                    run_id = next(iter(endpoint_runs))
+                elif not isinstance(run_id, str) or not run_id:
+                    raise AuditError(f"invalid run_id in {role} line {line_no}")
                 if better == worse:
                     raise AuditError(f"self pair in {role} line {line_no}")
                 declared = value.get("set_size")
@@ -414,7 +429,7 @@ def run(args: argparse.Namespace) -> int:
 
     run_map = load_run_map(run_map_path)
     cards, children, card_rows = load_card_structure(cards_path, run_map)
-    groups, pair_rows = load_pair_groups(pair_paths)
+    groups, pair_rows = load_pair_groups(pair_paths, cards)
     per_parent = [audit_parent(group, cards, children) for _, group in sorted(groups.items())]
     by_role = {
         role: summarize_role([row for row in per_parent if row["role"] == role])

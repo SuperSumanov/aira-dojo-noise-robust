@@ -3,6 +3,36 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0K. 2026-08-14 最新覆盖：equal-K continuation 正方法转为 outcome-blind 工程实现
+
+本节晚于 0J；稳定主线不变，balanced continuation 是 gated 方法扩展，真实 GPU/API 长跑尚未启动。
+
+1. 最新原始论文查重确认：rollout-tree return/Q 聚合（RTMC）、adaptive branch rollout（PaTR/TRACE）、
+   off-policy tree-search correction、OCBA-MCTS 与 fixed-budget BAI 均已有直接先例。不能把 equal sampling、
+   future return 或 budget allocation 单独写成 novelty。
+2. 可防守组合收缩为：真实 MLE program-search 节点 + physical-run provenance + historical behavior-policy label
+   对 matched equal-K interventional label + fresh workspace/pristine evaluator + 不微调底座的轻量 continuation
+   critic + 相同真实执行预算下的 D_val utility。
+3. `V_H^π` 明确定义为已执行节点在固定 continuation policy/horizon 下的 future best utility 期望；这是
+   post-execution expansion decision，不与“尚未执行 sibling 先跑谁”的 pre-execution benchmark 混称。
+4. 直接 FIFO/BFS 被否决：它不保证 sibling 获得 equal compute；当前 Python interpreter 只重启 process、不清空
+   working directory，候选可留下 cache/model/temp 文件，必须每个 rollout 独立 fresh workspace。
+5. outcome-blind assignment producer 与不 import producer 的 verifier 已实现；blocked schedule 保证每个 sibling
+   exactly K、每个 replicate block 含全部 siblings、inclusion probability=1、order probability=1/B，并在 JSON
+   parse 前拒绝 credential shape。当前 synthetic tests 通过，尚未证明真实方法有效。
+6. 真实矩阵已先给预算：E1 为 8 jobs/16 candidate executions/预计 3.24 GPU·时；E2 为 72/216/43.76；
+   E3 候选为 384/768/155.58。按硬门，先完成 worker/workspace/evaluator smoke；没有新批准不启动 E1/E2 长跑，
+   E3 更不预授权。
+7. 0809 LFS object 已从全新集群 clone 端到端 pull：commit `8b38d9a`、1,940 行、56,424,624 bytes、SHA
+   `133500c0fd731201bde35f44598ada17430684ed2b762326ae006101722a3094`，不依赖 big-data-storage。
+
+直接证据：
+- `phase1/实验记录/2026-08-14/BalancedContinuation_可识别正方法与查重.md`；
+- `phase1/实验记录/2026-08-14/BalancedContinuation_真实实验预算门.md`；
+- `phase1/balanced_continuation_manifest.py`；
+- `phase1/verify_balanced_continuation_manifest.py`；
+- `phase1/results/corpus_lfs_audit_20260814/fresh_pull_receipt.json`。
+
 ## 0J. 2026-08-14 最新覆盖：历史 policy 自然实验失效；LFS 发布真源纠偏
 
 本节晚于 0I；稳定主线仍是 run-clean、decision-local 数据集/benchmark 与 first-960 前瞻确认，未切回

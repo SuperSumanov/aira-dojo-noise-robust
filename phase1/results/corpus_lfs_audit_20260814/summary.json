@@ -31,6 +31,8 @@
     "duplicate_ids": 0,
     "invalid_rows": 0,
     "credential_shape_hits": 0,
-    "sha256": "133500c0fd731201bde35f44598ada17430684ed2b762326ae006101722a3094"
+    "sha256": "133500c0fd731201bde35f44598ada17430684ed2b762326ae006101722a3094",
+    "pushed_commit": "8b38d9acbe68bb2c66825b8f4dce99496f23aedf",
+    "fresh_cluster_lfs_pull_verified": true
   }
 }

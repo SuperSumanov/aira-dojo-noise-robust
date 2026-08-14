@@ -1,0 +1,26 @@
+{
+  "status": "FRESH_CLUSTER_LFS_PULL_VERIFIED",
+  "verified_commit": "8b38d9acbe68bb2c66825b8f4dce99496f23aedf",
+  "git_lfs_version": "git-lfs/3.5.1",
+  "path": "phase1/cards_senior_0809.jsonl",
+  "rows": 1940,
+  "bytes": 56424624,
+  "sha256": "133500c0fd731201bde35f44598ada17430684ed2b762326ae006101722a3094",
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "ENGINEERING_FAIL_BEFORE_CLONE",
+      "reason": "env_setup sourced while shell nounset was active"
+    },
+    {
+      "attempt": 2,
+      "status": "ENGINEERING_FAIL_BEFORE_PULL",
+      "reason": "fresh clone lacked per-repository git lfs install"
+    },
+    {
+      "attempt": 3,
+      "status": "VERIFIED",
+      "reason": "fresh clone plus git lfs install --local and path-scoped pull"
+    }
+  ]
+}

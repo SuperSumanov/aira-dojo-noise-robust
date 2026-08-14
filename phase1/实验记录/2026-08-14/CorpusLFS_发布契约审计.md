@@ -27,6 +27,9 @@
    56,424,624 bytes、1,940 行、1,940 个唯一 ID、0 invalid/duplicate、0 高置信 credential shape，SHA-256
    `133500c0fd731201bde35f44598ada17430684ed2b762326ae006101722a3094`。本轮把它作为单个 immutable
    LFS object 补入，不上传新的 merged corpus。
+6. commit `8b38d9acbe68bb2c66825b8f4dce99496f23aedf` 推送后，在集群全新 clone 中执行
+   `git lfs install --local` 与 path-scoped pull，得到同一 1,940 行、56,424,624 bytes 和 SHA，证明学长不依赖
+   我方 big-data-storage 即可获取。此前两次因 `set -u`/未 local-install 失败的尝试也保留在 receipt，未隐藏。
 
 ## 从现在起的发布门
 

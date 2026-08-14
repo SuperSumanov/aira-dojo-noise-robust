@@ -114,3 +114,31 @@ repeat agreement=`0.9134305309964227`；模型反演量=`0.9488254145489123`，�
 E1-Q 随后完整通过：两任务 replicate winner agreement=2/2，故 matched label feasibility 为正；但 2/8
 positive gain、0/8 practical gain，warm/continuation 均只有 6/8 scored artifacts。它只让 policy-indexed
 continuation label 与 hurdle data design 保持开放，`primary_gate_claim_allowed=false`、`e2_e3_unlocked=false`。
+
+## 7. 2026-08-14 夜间增补：tree-derived reward 与 data-analysis PRM 已更拥挤
+
+继续按一手论文检索后，方法侧边界还要再收紧：
+
+- [AgentRM](https://openreview.net/forum?id=xCXRs4WtHC) 已从 MCTS-style environment search tree 的
+  Monte-Carlo future value构造 state-level reward targets，并在 held-out agent tasks 上用 Best-of-5 与 step-level
+  beam search报告正向下游结果。因此“从真实树节点估计未来价值”“reward model 比 policy finetuning 更易跨任务”
+  都不能作为我方新颖性。
+- [ReLoc](https://arxiv.org/abs/2508.07434) 已在可执行代码局部搜索中，对每个 parent 生成多个 revision
+  children，以到正确代码的 revision distance 构造局部 preference，训练 pairwise revision reward model，并在
+  固定 token budget 下报告 downstream search 改善。它不是 MLE hidden-score search，但已直接封闭“代码 sibling
+  tree + 局部 pair critic + 同预算 search utility”这一宽方法主张。
+- [DataPRM](https://arxiv.org/abs/2604.24198) 已把 environment-aware generative PRM 用到 agentic data
+  analysis，显式区分可修复错误与不可恢复错误，并在 Best-of-N 与 RL 中报告正增益。故 validity/conditional-quality
+  两阶段或 ternary hurdle 本身也不是新点；我方若继续，只能把它当真实 MLE decision resource 的强 baseline。
+- [CePRM](https://openreview.net/forum?id=HDvaj62oH1) 已利用 rollout tree 的 value cliff、same-prefix repair 与
+  sibling advantage 构造过程监督；[PRO-Step](https://openreview.net/forum?id=pEszQIHqVy) 也按同一 parent 的
+  child value 建 sibling preferences。两者领域不同，但进一步说明“保留树结构而非 flatten”“同 prefix sibling
+  supervision”不是独立 novelty。
+- [UATS](https://openreview.net/forum?id=t64dINhGri) 已直接测试用 uncertainty model 给 PRM-guided search
+  动态分配分支预算，并发现 held-out uncertainty 表现不能保证 downstream search 改善，搜索诱导分布漂移下甚至
+  退化。因此不把“再加 uncertainty head”当低风险突破口。
+
+据此，支线最值得保留的不是新 loss/head 名称，而是 **outcome-blind、预算守恒、propensity 可核验的 MLE sibling
+随机化采集**。统计原语仍不申新；可发布增量是把真实 MLE program-search 的 operator/evaluator/policy contract、
+physical provenance、equal exposure、失败状态与新 run 验证共同落成 interventional decision resource。若不能
+改变生产 logging policy，则停止追逐 hurdle/listwise/uncertainty 变体，资源回到 first-960 与 benchmark release。

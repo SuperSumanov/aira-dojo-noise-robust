@@ -1,0 +1,13 @@
+PASS 1: engineering-only estimand and no-score boundary frozen
+PASS 2: focused producer/verifier tests passed
+PASS 3: exactly two hash-bound Qwen responses selected before execution
+PASS 4: jobs=2 candidate_executions=2 api_calls=0 hard_cap_seconds=600 gpu_hour_upper_bound=0.333333333333333
+PASS 5: old revealed anchors used only for execution engineering; first-960/frozen/D_test not read
+PASS 6: fresh immutable per-index outputs; no retry or replacement
+PASS 7: only operator script executability is tested; no method comparison
+PASS 8: call order and response hashes frozen; no stochastic generation
+PASS 9: raw response modes=0600 and Git credential scans required
+PASS 10: both tasks must complete a full-public submission under fixed wall cap
+PASS 11: both-pass kill gate frozen before execution
+PASS 12: Slurm and producer exit codes atomically retained
+PASS 13: exact commit=d89311a8bf49b787bcd8c712554d010b49131f5c and independent verifier required

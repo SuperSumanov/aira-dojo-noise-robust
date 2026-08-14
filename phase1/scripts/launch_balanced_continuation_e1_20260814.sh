@@ -121,23 +121,6 @@ cd "$source_root"
   >"${external_log_root}/assignment_verify.stdout" \
   2>"${external_log_root}/assignment_verify.stderr"
 
-cp /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4 "$run_root/nvfix/libnvidia-nvvm.so.4"
-chmod 0555 "$run_root/nvfix"
-chmod 0444 "$run_root/nvfix/libnvidia-nvvm.so.4"
-
-cp "$source_root/phase1/balanced_continuation_capability_probe.py" \
-  "$run_root/capability/solution.py"
-cap_public="$data_gate/e1_split/public/spaceship-titanic"
-cap_binds="$run_root/capability:/workspace,$cap_public:/workspace/data:ro,$hf_cache:/hf:ro"
-env -i PATH="$PATH" HOME=/tmp USER="$(id -un)" \
-  singularity exec --containall --cleanenv --net --network none \
-  --no-home --no-mount bind-paths --no-eval --pwd /workspace \
-  --bind "$cap_binds" \
-  "$container" env PYTHONUNBUFFERED=1 HOME=/tmp HF_HOME=/hf HF_HUB_OFFLINE=1 \
-  python solution.py \
-  >"${external_log_root}/capability.stdout" 2>"${external_log_root}/capability.stderr"
-grep -q 'E1_CONTAINER_CAPABILITY_PASS' "${external_log_root}/capability.stdout"
-
 "$python_bin" - "$run_root/preparation/run_plan.json" "$run_root/preflight_matrix.json" <<'PY'
 import json, pathlib, sys
 plan = json.load(open(sys.argv[1]))
@@ -161,7 +144,7 @@ PY
 
 cat >"$run_root/preflight_before_stage1.txt" <<'EOF'
 PASS 1: stable mainline remains run-clean decision-local benchmark; V_H estimand, three later primary gates and E1 retraction boundary are frozen
-PASS 2: producer, independent input/split/assignment/worker/collection verifiers, state machine, evaluator and capability tests passed
+PASS 2: producer, independent input/split/assignment/worker/collection verifiers, state machine, evaluator and capability unit tests passed; each GPU job must pass a live node-local capability gate before any candidate/API action
 PASS 3: two tasks, one anchor/task, two exact-code-distinct siblings and pre-outcome eligible-parent/run support are printed in the verified data gate
 PASS 4: actual plan prints 8 jobs, 16 candidate attempts, 8 API calls, expected 3.24 GPU-hours, one GPU/job and array concurrency four
 PASS 5: selected physical runs have zero frozen endpoint/run overlap; first-960/prospective/D_test are not read
@@ -169,7 +152,7 @@ PASS 6: durable intent precedes paid action; incomplete PENDING is ambiguous and
 PASS 7: source/container/operator/prompt/data/split/evaluator/timeout/workspace contracts are hash-bound and identical across all assignments
 PASS 8: blocked assignment and request seeds are recorded; finite-number, direction, invalid-format and timeout paths have regression coverage
 PASS 9: credentials come only from the remote environment; candidate env is allowlisted and filename/content scans are mandatory per job
-PENDING 10: stage one is exactly one complete block per task; stage two has an afterok dependency and cannot start until all four commitment-only verifiers pass
+PENDING 10: stage one is exactly one complete block per task; every rollout starts with a node-local isolation/NVIDIA capability gate; stage two has an afterok dependency and cannot start until all four capability/worker/verifier receipts pass
 PASS 11: E1 is engineering/descriptive only, cannot claim a primary gate or unlock E2/E3, and forbids outcome-driven retuning
 PASS 12: worker/verifier/safety rc are written per array index; dependency failure stops the remaining chain
 PASS 13: exact clean source, new run roots, atomic per-rollout artifacts and recursive SHA manifests are required

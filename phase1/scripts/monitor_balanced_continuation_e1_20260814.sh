@@ -55,6 +55,7 @@ for index in indices:
     if value != {
         "index": index,
         "slurm_job_id": value.get("slurm_job_id"),
+        "capability_rc": 0,
         "worker_rc": 0,
         "verifier_rc": 0,
         "safety_rc": 0,
@@ -83,7 +84,7 @@ if [[ "$stage_one_gate_rc" != 0 ]]; then
   exit "$stage_one_gate_rc"
 fi
 cat >"$run_root/preflight_item10_pass.txt" <<'EOF'
-PASS 10: both tasks completed one entire frozen replicate block; all four worker/verifier/safety receipts are zero; stage two was gated only by Slurm afterok and these engineering receipts, never by D_search or D_val values
+PASS 10: both tasks completed one entire frozen replicate block; all four capability/worker/verifier/safety receipts are zero; stage two was gated only by Slurm afterok and these engineering receipts, never by D_search or D_val values
 EOF
 event "STAGE1_ENGINEERING_GATE_PASS sealed_values_opened=false"
 
@@ -132,11 +133,13 @@ fi
 
 filename_hits="$(find "$run_root/preparation" "$run_root/preflight_receipts" \
   "$run_root/worker_outputs" "$run_root/worker_receipts" "$run_root/sealed" \
-  "$run_root/collection" -type f -printf '%f\n' | grep -icE 'env|key|token|secret' || true)"
+  "$run_root/collection" "$run_root/capability" "$run_root/job_logs" "$run_root/slurm" \
+  -type f -printf '%f\n' | grep -icE 'env|key|token|secret' || true)"
 content_hits="$(grep -RIlE --binary-files=without-match \
   'sk-[A-Za-z0-9._-]{20,}|hf_[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|Bearer[[:space:]]+[A-Za-z0-9._-]{24,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----' \
   "$run_root/preparation" "$run_root/preflight_receipts" "$run_root/worker_outputs" \
-  "$run_root/worker_receipts" "$run_root/sealed" "$run_root/collection" | wc -l || true)"
+  "$run_root/worker_receipts" "$run_root/sealed" "$run_root/collection" \
+  "$run_root/capability" "$run_root/job_logs" "$run_root/slurm" | wc -l || true)"
 if [[ "$filename_hits" != 0 || "$content_hits" != 0 ]]; then
   event "FINAL_SECRET_SCAN_FAILED filename=${filename_hits} content=${content_hits}"
   exit 7
@@ -150,7 +153,7 @@ printf '{"status":"VERIFIED_COMPLETE_REAL_E1_COLLECTION","collection_rc":0,"coll
 find \
   "$run_root/preparation" "$run_root/preflight_receipts" "$run_root/worker_outputs" \
   "$run_root/worker_receipts" "$run_root/sealed" "$run_root/job_rc" \
-  "$run_root/collection" "$run_root/capability" \
+  "$run_root/collection" "$run_root/capability" "$run_root/job_logs" "$run_root/slurm" \
   -type f -print0 | sort -z | xargs -0 sha256sum >"$run_root/top_manifest.sha256"
 find "$run_root/workspaces" -name workspace_marker.json -type f -print0 | sort -z | \
   xargs -0 sha256sum >>"$run_root/top_manifest.sha256"

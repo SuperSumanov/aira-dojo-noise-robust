@@ -70,6 +70,8 @@ cp "$source_root/phase1/scripts/monitor_balanced_continuation_e1_20260814.sh" \
 cp "$source_root/phase1/balanced_continuation_e1_20260814.sbatch" "$run_root/job.sbatch"
 cp "$source_root/phase1/实验记录/2026-08-14/BalancedContinuation_E1_真实预注册.md" \
   "$run_root/frozen_prereg.md"
+cp "$source_root/phase1/实验记录/2026-08-14/BalancedContinuation_E1_QOS_Amendment.md" \
+  "$run_root/frozen_qos_amendment.md"
 printf '%s\n' "$source_commit" >"$run_root/source_commit.txt"
 printf '%s\n' "$data_gate" >"$run_root/data_gate_root.txt"
 
@@ -154,15 +156,17 @@ PASS 8: blocked assignment and request seeds are recorded; finite-number, direct
 PASS 9: credentials come only from the remote environment; candidate env is allowlisted and filename/content scans are mandatory per job
 PENDING 10: stage one is exactly one complete block per task; every rollout starts with a node-local isolation/NVIDIA capability gate; stage two has an afterok dependency and cannot start until all four capability/worker/verifier receipts pass
 PASS 11: E1 is engineering/descriptive only, cannot claim a primary gate or unlock E2/E3, and forbids outcome-driven retuning
-PASS 12: worker/verifier/safety rc are written per array index; dependency failure stops the remaining chain
+PASS 12: capability/worker/verifier/safety rc are written per array index; dependency failure stops the remaining chain
 PASS 13: exact clean source, new run roots, atomic per-rollout artifacts and recursive SHA manifests are required
 EOF
 
-filename_hits="$(find "$run_root/preparation" "$run_root/preflight_receipts" "$run_root/frozen_prereg.md" \
+filename_hits="$(find "$run_root/preparation" "$run_root/preflight_receipts" \
+  "$run_root/frozen_prereg.md" "$run_root/frozen_qos_amendment.md" \
   -type f -printf '%f\n' | grep -icE 'env|key|token|secret' || true)"
 content_hits="$(grep -RIlE --binary-files=without-match \
   'sk-[A-Za-z0-9._-]{20,}|hf_[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|Bearer[[:space:]]+[A-Za-z0-9._-]{24,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----' \
-  "$run_root/preparation" "$run_root/preflight_receipts" "$run_root/frozen_prereg.md" | wc -l || true)"
+  "$run_root/preparation" "$run_root/preflight_receipts" \
+  "$run_root/frozen_prereg.md" "$run_root/frozen_qos_amendment.md" | wc -l || true)"
 if [[ "$filename_hits" != 0 || "$content_hits" != 0 ]]; then
   echo "E1 preflight artifact safety scan failed: filename=$filename_hits content=$content_hits" >&2
   exit 7
@@ -172,42 +176,28 @@ printf 'FILENAME_SECRET_HITS=%s\nCONTENT_SECRET_HITS=%s\n' "$filename_hits" "$co
 
 stage_one="$($python_bin -c 'import json,sys;print(",".join(map(str,json.load(open(sys.argv[1]))["stage_one_engineering_gate_indices"])))' "$run_root/preparation/run_plan.json")"
 stage_two="$($python_bin -c 'import json,sys;print(",".join(map(str,json.load(open(sys.argv[1]))["stage_two_remaining_indices"])))' "$run_root/preparation/run_plan.json")"
-export_spec="ALL,E1_RUN_ROOT=${run_root},E1_SOURCE_ROOT=${source_root},E1_DATA_GATE_ROOT=${data_gate}"
-stage_one_submit="$(sbatch --parsable --array="${stage_one}%4" \
-  --export="$export_spec" \
-  --output="$run_root/slurm/stage1_%A_%a.out" \
-  --error="$run_root/slurm/stage1_%A_%a.err" \
-  "$run_root/job.sbatch")"
-stage_one_job="${stage_one_submit%%;*}"
-stage_two_submit="$(sbatch --parsable --dependency="afterok:${stage_one_job}" \
-  --array="${stage_two}%4" \
-  --export="$export_spec" \
-  --output="$run_root/slurm/stage2_%A_%a.out" \
-  --error="$run_root/slurm/stage2_%A_%a.err" \
-  "$run_root/job.sbatch")"
-stage_two_job="${stage_two_submit%%;*}"
-printf '{"stage_one_job":"%s","stage_two_job":"%s","stage_one_indices":"%s","stage_two_indices":"%s"}\n' \
-  "$stage_one_job" "$stage_two_job" "$stage_one" "$stage_two" >"$run_root/submission.json"
+printf '{"status":"E1_QOS_AWARE_MONITOR_PENDING","stage_one_job":null,"stage_two_job":null,"stage_one_indices":"%s","stage_two_indices":"%s","scheduler_retry_policy":"qos-only-before-parsable-job-id"}\n' \
+  "$stage_one" "$stage_two" >"$run_root/submission.json"
 
 # Start the score-blind monitor from the hash-bound run copy so the phased gate
 # survives the invoking SSH session.  Its stdout/stderr live outside the
 # immutable result tree; all decisions and terminal status are also appended
 # inside run_root by monitor.sh.
 nohup bash "$run_root/monitor.sh" \
-  "$run_root" "$source_root" "$data_gate" "$stage_one_job" "$stage_two_job" \
+  "$run_root" "$source_root" "$data_gate" \
   >"${external_log_root}/monitor.stdout" \
   2>"${external_log_root}/monitor.stderr" </dev/null &
 monitor_pid="$!"
 printf '%s\n' "$monitor_pid" >"$run_root/monitor.pid"
 
 printf '%s\n' \
-  "STATUS=E1_PHASED_SUBMITTED" \
+  "STATUS=E1_QOS_AWARE_MONITOR_STARTED" \
   "SOURCE_COMMIT=${source_commit}" \
   "SOURCE_ROOT=${source_root}" \
   "RUN_ROOT=${run_root}" \
   "EXTERNAL_LOG_ROOT=${external_log_root}" \
-  "STAGE_ONE_JOB=${stage_one_job}" \
-  "STAGE_TWO_JOB=${stage_two_job}" \
+  "STAGE_ONE_JOB=deferred-to-monitor" \
+  "STAGE_TWO_JOB=deferred-until-stage1-engineering-pass" \
   "MONITOR_PID=${monitor_pid}" \
   "STAGE_ONE_INDICES=${stage_one}" \
   "STAGE_TWO_INDICES=${stage_two}" \

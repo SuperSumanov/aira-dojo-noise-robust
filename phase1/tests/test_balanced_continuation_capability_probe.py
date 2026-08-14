@@ -49,3 +49,35 @@ def test_stage_gate_requires_capability_receipts() -> None:
     assert '"capability_rc":%s' in job
     assert '"capability_rc": 0' in monitor
     assert "capability/worker/verifier/safety receipts are zero" in monitor
+
+
+def test_qos_aware_monitor_submits_stages_sequentially() -> None:
+    phase1 = Path(__file__).resolve().parents[1]
+    launcher = (
+        phase1 / "scripts" / "launch_balanced_continuation_e1_20260814.sh"
+    ).read_text(encoding="utf-8")
+    monitor = (
+        phase1 / "scripts" / "monitor_balanced_continuation_e1_20260814.sh"
+    ).read_text(encoding="utf-8")
+    assert not any(
+        line.lstrip().startswith("sbatch ") or "$(sbatch " in line
+        for line in launcher.splitlines()
+    )
+    stage_one = monitor.index('submit_stage stage1 "$stage_one" none')
+    engineering_gate = monitor.index("STAGE1_ENGINEERING_GATE_PASS")
+    stage_two = monitor.index(
+        'submit_stage stage2 "$stage_two" "afterok:${stage_one_job}"'
+    )
+    assert stage_one < engineering_gate < stage_two
+    assert "QOSMaxSubmitJobPerUserLimit" in monitor
+    assert "no_job_id_observed=true" in monitor
+
+
+def test_monitor_recovers_fast_jobs_from_slurm_accounting() -> None:
+    monitor = (
+        Path(__file__).resolve().parents[1]
+        / "scripts"
+        / "monitor_balanced_continuation_e1_20260814.sh"
+    ).read_text(encoding="utf-8")
+    assert 'sacct -X -n -P -j "$job_id" -o State' in monitor
+    assert "_TERMINAL job=${job_id}" in monitor

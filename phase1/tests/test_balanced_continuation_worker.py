@@ -1,6 +1,7 @@
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 
 import pytest
@@ -342,6 +343,17 @@ def test_backend_outcome_count_must_equal_one_plus_horizon(tmp_path: Path) -> No
         run_worker(worker_args(fixture, 0))
 
 
+def test_backend_nonfinite_utility_fails_before_execution(tmp_path: Path) -> None:
+    fixture = prepare(tmp_path)
+    spec = json.loads(fixture["backend_spec"].read_text())
+    rollout_id = fixture["assignments"][0]["rollout_id"]
+    spec["rollouts"][rollout_id][0]["utility"] = math.nan
+    write_json(fixture["backend_spec"], spec)
+    with pytest.raises(WorkerError, match="utility 0 must be finite numeric"):
+        run_worker(worker_args(fixture, 0))
+    assert not (fixture["workspace_root"] / rollout_id).exists()
+
+
 def test_output_and_workspace_roots_must_be_disjoint(tmp_path: Path) -> None:
     fixture = prepare(tmp_path)
     args = worker_args(fixture, 0)
@@ -378,6 +390,25 @@ def test_collection_verifier_rejects_missing_receipt(tmp_path: Path) -> None:
     first_id = fixture["assignments"][0]["rollout_id"]
     (receipt_root / f"{first_id}.verify.json").unlink()
     with pytest.raises(CollectionVerifyError, match="receipt coverage"):
+        verify_collection(
+            collection_args(
+                fixture,
+                assignment_receipt,
+                receipt_root,
+                tmp_path / "collection.verify.json",
+            )
+        )
+
+
+def test_collection_verifier_requires_exact_independent_assignment_receipt(
+    tmp_path: Path,
+) -> None:
+    fixture = prepare(tmp_path)
+    assignment_receipt, receipt_root = complete_collection(fixture, tmp_path)
+    tampered = json.loads(assignment_receipt.read_text(encoding="utf-8"))
+    tampered["independent_reconstruction_exact"] = False
+    write_json(assignment_receipt, tampered)
+    with pytest.raises(CollectionVerifyError, match="assignment independent-verification receipt"):
         verify_collection(
             collection_args(
                 fixture,

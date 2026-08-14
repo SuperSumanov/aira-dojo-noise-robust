@@ -23,7 +23,11 @@ from typing import Any, Iterable
 
 from .build_cards import TASK_TYPE
 from .cards import TaskInfo, parse_journal_nodes
-from .endpoint_denylist import load_endpoint_denylist
+from .endpoint_denylist import (
+    PRECUTOFF_ENDPOINT_DENYLIST_SHA256,
+    PRECUTOFF_ENDPOINTS,
+    load_endpoint_denylist,
+)
 
 
 PROTOCOL = "prospective_drop_intake_v1"
@@ -371,7 +375,7 @@ def build(args: argparse.Namespace) -> int:
         args.max_total_member_bytes_per_archive,
         args.max_total_journal_bytes,
         args.max_archives,
-        args.expect_precutoff_endpoints,
+        getattr(args, "_expect_precutoff_endpoints", PRECUTOFF_ENDPOINTS),
     )
     if any(value <= 0 for value in caps):
         raise IntakeError("resource caps must be positive")
@@ -387,8 +391,12 @@ def build(args: argparse.Namespace) -> int:
     activated_at = parse_utc(str(receipt["activated_at_utc"]))
     precutoff_ids, precutoff_code_shas, precutoff_audit = load_endpoint_denylist(
         args.precutoff_endpoint_denylist,
-        args.expect_precutoff_endpoint_denylist_sha256,
-        args.expect_precutoff_endpoints,
+        getattr(
+            args,
+            "_expect_precutoff_endpoint_denylist_sha256",
+            PRECUTOFF_ENDPOINT_DENYLIST_SHA256,
+        ),
+        getattr(args, "_expect_precutoff_endpoints", PRECUTOFF_ENDPOINTS),
     )
 
     archives = sorted(drop_dir.glob("*.tar.gz"), key=lambda path: path.name)
@@ -584,8 +592,6 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--precutoff-endpoint-denylist", required=True, type=Path)
     parser.add_argument("--out-dir", required=True, type=Path)
     parser.add_argument("--expect-freeze-receipt-sha256", required=True)
-    parser.add_argument("--expect-precutoff-endpoint-denylist-sha256", required=True)
-    parser.add_argument("--expect-precutoff-endpoints", required=True, type=int)
     parser.add_argument("--max-archive-bytes", type=int, default=64 * 1024 * 1024 * 1024)
     parser.add_argument("--max-total-archive-bytes", type=int, default=512 * 1024 * 1024 * 1024)
     parser.add_argument("--max-member-bytes", type=int, default=512 * 1024 * 1024)

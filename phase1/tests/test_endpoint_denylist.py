@@ -7,7 +7,13 @@ from pathlib import Path
 
 import pytest
 
-from phase1.endpoint_denylist import DenylistError, build, load_endpoint_denylist
+from phase1.endpoint_denylist import (
+    PRECUTOFF_ENDPOINT_DENYLIST_SHA256,
+    PRECUTOFF_ENDPOINTS,
+    DenylistError,
+    build,
+    load_endpoint_denylist,
+)
 from phase1 import verify_endpoint_denylist
 
 
@@ -107,3 +113,20 @@ def test_loader_rejects_inventory_mismatch(tmp_path: Path):
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
     with pytest.raises(DenylistError, match="inventory mismatch"):
         load_endpoint_denylist(path, digest, expected_endpoints=2)
+
+
+def test_committed_precutoff_contract_matches_frozen_constants():
+    path = (
+        Path(__file__).parents[1]
+        / "results"
+        / "fixed_decision_scorer_v11_20260814"
+        / "precutoff_endpoint_denylist.csv"
+    )
+    card_ids, code_shas, audit = load_endpoint_denylist(
+        path,
+        PRECUTOFF_ENDPOINT_DENYLIST_SHA256,
+        PRECUTOFF_ENDPOINTS,
+    )
+    assert len(card_ids) == PRECUTOFF_ENDPOINTS
+    assert len(code_shas) == 15_912
+    assert audit == {"endpoint_ids": 16_012, "unique_code_sha256": 15_912}

@@ -1,0 +1,16 @@
+{
+  "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+  "endpoint_denylist_sha256": "2f0cc4f3dc203801c569237716ba82cbc2bde2f854b67eee6efa9452e92447e6",
+  "endpoints": 16012,
+  "exact_rows": true,
+  "label_values_printed": false,
+  "labels_used": false,
+  "protocol": "precutoff_endpoint_denylist_v1",
+  "selected_source_keys": [
+    "id",
+    "code"
+  ],
+  "source_contains_label_fields": true,
+  "status": "VERIFIED_PRECUTOFF_ENDPOINT_DENYLIST_COMPLETE",
+  "unique_code_sha256": 15912
+}

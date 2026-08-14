@@ -14,6 +14,10 @@ from typing import Any
 PROTOCOL = "precutoff_endpoint_denylist_v1"
 FIELDS = ("card_id", "code_sha256")
 SHA256_RX = re.compile(r"[0-9a-f]{64}")
+PRECUTOFF_ENDPOINTS = 16_012
+PRECUTOFF_ENDPOINT_DENYLIST_SHA256 = (
+    "2f0cc4f3dc203801c569237716ba82cbc2bde2f854b67eee6efa9452e92447e6"
+)
 
 
 class DenylistError(RuntimeError):

@@ -123,8 +123,8 @@ def args_for(drop: Path, receipt: Path, output: Path, receipt_sha: str) -> argpa
         precutoff_endpoint_denylist=denylist,
         out_dir=output,
         expect_freeze_receipt_sha256=receipt_sha,
-        expect_precutoff_endpoint_denylist_sha256=denylist_sha,
-        expect_precutoff_endpoints=1,
+        _expect_precutoff_endpoint_denylist_sha256=denylist_sha,
+        _expect_precutoff_endpoints=1,
         max_archive_bytes=8 * 1024 * 1024,
         max_total_archive_bytes=16 * 1024 * 1024,
         max_member_bytes=1024 * 1024,
@@ -352,7 +352,7 @@ def test_precutoff_endpoint_or_code_overlap_fails_closed(tmp_path: Path):
         writer = csv.DictWriter(handle, fieldnames=("card_id", "code_sha256"), lineterminator="\n")
         writer.writeheader()
         writer.writerow({"card_id": "spaceship-titanic__left", "code_sha256": code_sha})
-    arguments.expect_precutoff_endpoint_denylist_sha256 = hashlib.sha256(
+    arguments._expect_precutoff_endpoint_denylist_sha256 = hashlib.sha256(
         arguments.precutoff_endpoint_denylist.read_bytes()
     ).hexdigest()
 

@@ -25,13 +25,16 @@ physical runs 另有显式 denylist。激活前已上传但尚未入库的 0812 
 - model key：`b5481457d73eb6f0edd66b7dcfd8faa86ca86522a596f5ceb6394b84cee29bf1`；
 - 667-run denylist SHA-256：
   `94c39feda828ed19e4a543b2abd7ad07bfb1e7266883bf49d0193cf48cbf012a`；
+- v11 的 16,012-endpoint ID/exact-code denylist SHA-256：
+  `2f0cc4f3dc203801c569237716ba82cbc2bde2f854b67eee6efa9452e92447e6`；其中唯一 exact-code SHA 为
+  15,912 个。该 SHA 与行数已固化进 intake/scorer 源码，公开 CLI 不能覆盖；
 - producer runtime：527.9715677574277 秒；保存—重载最大误差 `1.11e-14`。
 
 ## 前瞻裁决保持冻结
 
-first-240 按 `(generation_started_at_utc, source_sha256, physical_run_id)` 排序；不能按 outcome 提前停止。
-支持门为至少 15 tasks、dominant task share `<=0.25`、至少 150 finite-decision runs 和 1,500 sibling pairs。
-primary 是：
+first-240 保留为只报盲态结构支持的 pilot；唯一确认 cohort 是相同排序规则下的 first-960，240/480/720
+均不得打开 outcome，不能按结果提前停止。first-960 支持门为至少 15 tasks、dominant task share `<=0.25`、
+至少 150 finite-decision runs 和 1,500 sibling pairs。primary 是：
 
 `I = (char_uniform - static_uniform) - (char_sibling - static_sibling)`。
 
@@ -47,10 +50,15 @@ complete-parent top-1 与 parent-equal grade utility 双重门裁决；pair-grap
   `e01ea94a91fbb845e865817e262afea11fed71d018fe8eb666cfe2fe6b2eeddf`；
 - `summary.json`：producer summary，SHA-256
   `975f0a6d5c24c6f515c2e4662072822be2e7f02736b6afd1ee24cb7419f0ee04`；
+- `precutoff_endpoint_denylist.csv`：16,012 行历史 endpoint ID 与 exact-code SHA，不含 code/label；
+- `precutoff_endpoint_summary.json` 与 `precutoff_endpoint_independent_verify.json`：producer 与不 import producer
+  的逐行重建审计；
 - `train_reference_scores.csv`：固定训练参考分数，SHA-256
   `ed52fcc66979e394a0acf27f1b1ebce48eb2ae364994c6067d1bf5ca1a4d474a`；
 - `full_artifacts.tar.gz`：28 members、681,687 bytes，SHA-256
   `80a21f8d05d52fd602edd61c0e2538c3b18910ca92cefb24ca6040ad4937d379`。
 
-正式归档前，manifest 22/22 文件逐项通过；可疑文件名与高置信 secret 文件均为 0。全过程 0 GPU、0 API、
-0 底座更新，且没有读取论文 frozen pair files。
+原正式 scorer 归档前，manifest 22/22 文件逐项通过；后加的 endpoint 防泄漏 artifact 在 commit
+`1db9b4b6a95a61528ef1715a15f5075194d56ec8` 上由 23 项远端测试与独立逐行重建通过。两次冻结均为
+可疑文件名与高置信 secret 文件 0、0 GPU、0 API、0 底座更新，且没有读取论文 frozen pair files。旧
+`full_artifacts.tar.gz` 保持不可变，不声称包含后加 artifact。

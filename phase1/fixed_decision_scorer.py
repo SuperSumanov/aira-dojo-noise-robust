@@ -27,7 +27,11 @@ from typing import Any, Sequence
 
 import numpy as np
 
-from .endpoint_denylist import load_endpoint_denylist
+from .endpoint_denylist import (
+    PRECUTOFF_ENDPOINT_DENYLIST_SHA256,
+    PRECUTOFF_ENDPOINTS,
+    load_endpoint_denylist,
+)
 
 
 SEED = 887
@@ -896,8 +900,8 @@ def score(args: argparse.Namespace) -> int:
         raise IntegrityError("active pre-cutoff denylist inventory mismatch")
     precutoff_card_ids, precutoff_code_shas, endpoint_denylist_audit = load_endpoint_denylist(
         args.precutoff_endpoint_denylist,
-        args.expect_precutoff_endpoint_denylist_sha256,
-        args.expect_precutoff_endpoints,
+        PRECUTOFF_ENDPOINT_DENYLIST_SHA256,
+        PRECUTOFF_ENDPOINTS,
     )
     cards, audit = load_blind_manifest(
         args.blind_manifest,
@@ -1007,8 +1011,6 @@ def arguments() -> argparse.Namespace:
     score_parser.add_argument("--out-dir", required=True, type=Path)
     score_parser.add_argument("--expect-receipt-sha256", required=True)
     score_parser.add_argument("--expect-blind-manifest-sha256", required=True)
-    score_parser.add_argument("--expect-precutoff-endpoint-denylist-sha256", required=True)
-    score_parser.add_argument("--expect-precutoff-endpoints", required=True, type=int)
     score_parser.set_defaults(function=score)
     return parser.parse_args()
 

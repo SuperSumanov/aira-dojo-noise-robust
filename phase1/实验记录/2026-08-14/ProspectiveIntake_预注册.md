@@ -55,8 +55,9 @@ checkpoint 无独有 step，而 live event log 不是相同 node schema。因此
   `id/code` 两个键，不以 label 做筛选、不打印 label，并从原 cards 独立重建每一行；
 - intake 在写盘前要求 future endpoint ID 与 exact-code SHA 两层交集均为 0；
 - active scorer 在读取 blind manifest 时再次独立执行同样两层拒绝，同时保留原 667-run denylist；
-- intake 与 scorer 命令均须显式声明并核对 `expect-precutoff-endpoints=16012`；任一 ID/code overlap、denylist
-  SHA/行数/schema/排序异常均为 `INVALID`，不能通过改 run 名绕过。
+- 正式 artifact 生成后，把 `16,012` 和其打印 SHA 固化为 intake/scorer 源码常量；公开 CLI 只允许提供文件路径，
+  不允许调用者自报 expected SHA/行数。任一 ID/code overlap、denylist SHA/行数/schema/排序异常均为
+  `INVALID`，不能通过改 run 名绕过。
 
 ## 5. cohort 与失败语义
 

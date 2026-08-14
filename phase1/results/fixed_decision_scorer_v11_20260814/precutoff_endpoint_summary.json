@@ -1,0 +1,22 @@
+{
+  "inputs": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75"
+  },
+  "inventory": {
+    "endpoint_ids": 16012,
+    "unique_code_sha256": 15912
+  },
+  "label_values_printed": false,
+  "labels_used": false,
+  "outputs": {
+    "endpoint_denylist": "/research/d7/spc/yzyang4/experiments/precutoff_endpoint_denylist_v11_20260814_1db9b4b6_r2/precutoff_endpoint_denylist.csv",
+    "endpoint_denylist_sha256": "2f0cc4f3dc203801c569237716ba82cbc2bde2f854b67eee6efa9452e92447e6"
+  },
+  "protocol": "precutoff_endpoint_denylist_v1",
+  "selected_source_keys": [
+    "id",
+    "code"
+  ],
+  "source_contains_label_fields": true,
+  "status": "PRECUTOFF_ENDPOINT_DENYLIST_COMPLETE"
+}

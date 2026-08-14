@@ -29,11 +29,13 @@ TARGET_TASKS = (
 EXPECTED_CARD_ROWS = 16012
 EXPECTED_SHA256 = {
     "cards": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
-    "hold": "7e89a0b59d54b5d7615eef0f4f8e965fb613b6d20e78cde42fb481b0f3e8bcf7",
-    "decision_train_b0": "6110488201163832f9ae4f95af7de3682152aed9d77e413ca72538b203691c59",
-    "frozen_b0": "a82320294af0af9a1c41b2d4bb9392686c48fb4402858ca0a5ed6bf70661f1aa",
-    "frozen_b1": "9d1d1cfc882ee864bce78d19b8947472aa6f66ccf0a81a2a344e036631434209",
-    "frozen_b2": "a6b33d6e4f3b2555149db6979ead056ae78e9fd9955ba20545158bab7f209fb5",
+    # These are the LF bytes in the exact Git worktree used on Linux.  Hashing a
+    # Windows checkout would instead bind CRLF materialization, not the experiment.
+    "hold": "b31bd70a4483ac1ca207eae47ae39d7b00ced1b02c81583d0b0447fdd3d8489b",
+    "decision_train_b0": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+    "frozen_b0": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8",
+    "frozen_b1": "a56f6c7bd6aad141fdaa45f3f30f944062e8dea922eefc03e75bc8b415e7bc90",
+    "frozen_b2": "79d4694d4cea5a81a04c9d463b5c6599a559bbf867f34205fa5715b054f10bc7",
 }
 LFS_POINTER = b"version https://git-lfs.github.com/spec/v1\n"
 CREDENTIAL = re.compile(

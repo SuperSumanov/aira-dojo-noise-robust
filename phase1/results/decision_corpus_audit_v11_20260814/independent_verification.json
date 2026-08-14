@@ -1,0 +1,38 @@
+{
+  "imports_producer": false,
+  "protocol": "independent_decision_corpus_audit_verifier_v1",
+  "source_card": {
+    "path": "phase1/results/decision_corpus_audit_v11_20260814/audit_card.json",
+    "sha256": "623c6abedb2135297dec6130337486bca097ca6434cd6aed708d9723de9287bb"
+  },
+  "status": "INDEPENDENTLY_VERIFIED_DECISION_CORPUS_AUDIT",
+  "verified_input_hashes": 10,
+  "verified_pair_sets": 9,
+  "verified_same_budget_isolation": {
+    "b0": {
+      "endpoints": 0,
+      "pairs": 0,
+      "parents": 0,
+      "passed": true,
+      "runs": 0
+    },
+    "b1": {
+      "endpoints": 0,
+      "pairs": 0,
+      "parents": 0,
+      "passed": true,
+      "runs": 0
+    },
+    "b2": {
+      "endpoints": 0,
+      "pairs": 0,
+      "parents": 0,
+      "passed": true,
+      "runs": 0
+    }
+  },
+  "verifier_script": {
+    "path": "phase1/verify_decision_corpus_audit.py",
+    "sha256": "c25cd7ca53f4ec3faad8c84227c53bddc5d571ad813d9d1b35ad3d8ad48e8a5a"
+  }
+}

@@ -21,7 +21,7 @@ import tempfile
 from typing import Any
 
 from phase1.balanced_continuation_e1_scoring import CREDENTIAL, file_sha256
-from phase1.balanced_continuation_operator_entry import MODEL_ID
+from phase1.balanced_continuation_operator_entry import MODEL_ID, RAW_RESPONSE_SCHEMA
 from phase1.balanced_continuation_real_contract import (
     RealContractError,
     bind_visible_step,
@@ -620,6 +620,11 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         if ordinal == 0:
             if code != initial_code:
                 raise VerifyError("warm-start code differs from the frozen code vault")
+            if any((step / name).exists() for name in (
+                "operator_request.json", "operator_response.json", "operator_raw_response.json",
+                "operator_usage.json",
+            )):
+                raise VerifyError("warm-start unexpectedly contains operator artifacts")
             operator = "none"
         else:
             if previous is None:
@@ -644,6 +649,19 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
             response = validate_operator_response(checked(step / "operator_response.json"), request, real)
             if response["code"] != code:
                 raise VerifyError("operator response code differs from executed code")
+            raw_document = checked(step / "operator_raw_response.json")
+            if (
+                set(raw_document) != {
+                    "schema_version", "request_sha256", "raw_response_sha256", "raw_response"
+                }
+                or raw_document["schema_version"] != RAW_RESPONSE_SCHEMA
+                or raw_document["request_sha256"] != response["request_sha256"]
+                or raw_document["raw_response_sha256"] != response["raw_response_sha256"]
+                or not isinstance(raw_document["raw_response"], str)
+                or sha256_bytes(raw_document["raw_response"].encode("utf-8"))
+                != response["raw_response_sha256"]
+            ):
+                raise VerifyError("raw operator response binding differs")
             validate_intent(step / "operator_intent.json", assignment, ordinal, "operator", True)
             validate_sidecar_process(
                 step / "operator_process.json",

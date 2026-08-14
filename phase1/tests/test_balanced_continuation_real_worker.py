@@ -159,10 +159,20 @@ def test_completed_progress_reconstructs_counts_from_durable_manifests(
         "sealed_label_receipt_sha256": "e" * 64,
     })
     write_json(second / "operator_request.json", {"expected": 41})
+    raw_response = "```python\ncontinued\n```"
+    raw_sha = worker.sha256_bytes(raw_response.encode("utf-8"))
     write_json(second / "operator_response.json", {
         "operator_calls": 1,
         "operator": "improve",
         "code": "continued",
+        "request_sha256": "f" * 64,
+        "raw_response_sha256": raw_sha,
+    })
+    write_json(second / "operator_raw_response.json", {
+        "schema_version": worker.RAW_RESPONSE_SCHEMA,
+        "request_sha256": "f" * 64,
+        "raw_response_sha256": raw_sha,
+        "raw_response": raw_response,
     })
     write_json(second / "operator_usage.json", {})
     write_json(second / "visible.json", {"code": "continued"})

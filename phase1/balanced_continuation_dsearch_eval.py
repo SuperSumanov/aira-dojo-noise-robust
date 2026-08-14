@@ -35,8 +35,17 @@ def run(args: argparse.Namespace) -> dict:
         raise ScoreError("D_search label path differs")
     if os.name == "posix" and stat.S_IMODE(labels.stat().st_mode) != 0o600:
         raise ScoreError("D_search labels are not mode 0600")
+    public_sample = pathlib.Path(args.public_sample).resolve()
+    expected_public_sample = pathlib.Path(contract["public_data_root"]) / args.task / "sample_submission.csv"
+    if not public_sample.is_file():
+        raise ScoreError("public sample submission path differs")
+    if os.name == "posix":
+        if public_sample != expected_public_sample.resolve():
+            raise ScoreError("public sample submission path differs")
+        if stat.S_IMODE(public_sample.stat().st_mode) != 0o444:
+            raise ScoreError("public sample submission is not mode 0444")
     artifact = pathlib.Path(args.artifact).resolve()
-    scored = score_submission(artifact, labels, args.task)
+    scored = score_submission(artifact, labels, public_sample, args.task)
     artifact_sha = file_sha256(artifact) if artifact.is_file() else None
     score = scored["score"]
     orientation = int(TASK_SPECS[args.task]["orientation"])
@@ -71,6 +80,7 @@ def parser() -> argparse.ArgumentParser:
     ap.add_argument("--ordinal", required=True, type=int)
     ap.add_argument("--artifact", required=True)
     ap.add_argument("--labels", required=True)
+    ap.add_argument("--public-sample", required=True)
     ap.add_argument("--receipt", required=True)
     return ap
 

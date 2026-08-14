@@ -31,7 +31,7 @@ from phase1.balanced_continuation_e1_scoring import (
     checked_json,
     file_sha256,
 )
-from phase1.balanced_continuation_operator_entry import MODEL_ID
+from phase1.balanced_continuation_operator_entry import MODEL_ID, RAW_RESPONSE_SCHEMA
 from phase1.balanced_continuation_real_contract import (
     EXECUTION_RECEIPT_SCHEMA,
     RealContractError,
@@ -583,6 +583,9 @@ def score_step(
         "--task", assignment["task"], "--rollout-id", assignment["rollout_id"],
         "--workspace-token", workspace_token, "--ordinal", str(ordinal),
         "--artifact", str(artifact),
+        "--public-sample", str(
+            split_root / "public" / assignment["task"] / "sample_submission.csv"
+        ),
     ]
     run_sidecar(
         step_dir, "dsearch",
@@ -831,7 +834,8 @@ def completed_progress(
             operator = "none"
             code = (step_dir / "code.py").read_text(encoding="utf-8")
             if any((step_dir / name).exists() for name in (
-                "operator_request.json", "operator_response.json", "operator_usage.json"
+                "operator_request.json", "operator_response.json", "operator_raw_response.json",
+                "operator_usage.json",
             )):
                 raise RealWorkerError("warm-start step unexpectedly contains an operator call")
         else:
@@ -850,6 +854,19 @@ def completed_progress(
             response = validate_operator_response(
                 checked_json(step_dir / "operator_response.json"), request, real_contract
             )
+            raw_document = checked_json(step_dir / "operator_raw_response.json")
+            if (
+                set(raw_document) != {
+                    "schema_version", "request_sha256", "raw_response_sha256", "raw_response"
+                }
+                or raw_document["schema_version"] != RAW_RESPONSE_SCHEMA
+                or raw_document["request_sha256"] != response["request_sha256"]
+                or raw_document["raw_response_sha256"] != response["raw_response_sha256"]
+                or not isinstance(raw_document["raw_response"], str)
+                or sha256_bytes(raw_document["raw_response"].encode("utf-8"))
+                != response["raw_response_sha256"]
+            ):
+                raise RealWorkerError("completed-step raw operator response binding differs")
             usage = checked_json(step_dir / "operator_usage.json")
             validate_operator_usage(usage, request, response)
             operator_calls += response["operator_calls"]
@@ -1227,6 +1244,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                     sys.executable, "-m", "phase1.balanced_continuation_operator_entry",
                     "--contract", str(inflight / "real_contract.json"),
                     "--request", str(request_path), "--response", str(response_path),
+                    "--raw-response", str(step_dir / "operator_raw_response.json"),
                     "--usage-receipt", str(usage_path),
                 ],
                 rollout_id=assignment["rollout_id"], ordinal=ordinal,

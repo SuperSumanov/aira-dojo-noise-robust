@@ -114,8 +114,26 @@ def args(tmp_path: Path, value: dict, req: dict) -> argparse.Namespace:
     write_json(request_path, req)
     return argparse.Namespace(
         contract=str(contract_path), request=str(request_path),
-        response=str(tmp_path / "response.json"), usage_receipt=str(tmp_path / "usage.json"),
+        response=str(tmp_path / "response.json"),
+        raw_response=str(tmp_path / "raw_response.json"),
+        usage_receipt=str(tmp_path / "usage.json"),
     )
+
+
+def complete_script() -> str:
+    padding = "\n".join(f"feature_{index} = {index}" for index in range(24))
+    return f"""```python
+import pandas as pd
+from sklearn.model_selection import KFold
+
+train = pd.read_csv("./data/train.csv")
+test = pd.read_csv("./data/test.csv")
+{padding}
+score = 0.75
+submission = pd.DataFrame({{"PassengerId": test["PassengerId"], "Transported": False}})
+submission.to_csv("submission.csv", index=False)
+print(f"FINAL_VALIDATION_SCORE: {{score}}")
+```"""
 
 
 def test_one_mocked_call_and_exact_response(tmp_path: Path) -> None:
@@ -125,7 +143,7 @@ def test_one_mocked_call_and_exact_response(tmp_path: Path) -> None:
 
     def caller(prompt: str):
         calls.append(prompt)
-        return "plan\n```python\nprint('improved')\n```", "provider-1", {
+        return complete_script(), "provider-1", {
             "schema_version": "balanced-continuation-operator-usage-v1",
             "model_id": entry.MODEL_ID,
             "provider_request_id": "provider-1",
@@ -140,11 +158,14 @@ def test_one_mocked_call_and_exact_response(tmp_path: Path) -> None:
     result = entry.run(args(tmp_path, value, req), caller=caller)
     assert len(calls) == 1
     assert result["extraction_status"] == "ok"
-    assert result["code"] == "print('improved')\n"
+    assert result["code"].startswith("import pandas as pd\n")
     assert "Public task description only." in calls[0]
     assert "dval" not in calls[0].lower()
     usage = json.loads((tmp_path / "usage.json").read_text())
     assert usage["api_calls"] == 1 and usage["retry_count"] == 0
+    raw = json.loads((tmp_path / "raw_response.json").read_text())
+    assert raw["raw_response"] == complete_script()
+    assert raw["raw_response_sha256"] == result["raw_response_sha256"]
 
 
 def test_invalid_format_is_not_retried_or_filled(tmp_path: Path) -> None:
@@ -171,6 +192,18 @@ def test_invalid_format_is_not_retried_or_filled(tmp_path: Path) -> None:
     assert calls == 1
     assert result["extraction_status"] == "invalid_format"
     assert result["code"] == ""
+
+
+@pytest.mark.parametrize("raw,reason", [
+    ("plan\n" + complete_script(), "not_exactly_one_python_block"),
+    ("```python\nprint('tiny')\n```", "replacement_too_short"),
+    (complete_script() + "\n```python\nprint('second')\n```", "not_exactly_one_python_block"),
+    (complete_script()[:-3], "not_exactly_one_python_block"),
+])
+def test_complete_script_gate_rejects_fragments(raw: str, reason: str) -> None:
+    code, observed = entry.assess_single_complete_code(raw, "x" * 2000)
+    assert code == ""
+    assert observed == reason
 
 
 def test_operator_config_tamper_fails_before_call(tmp_path: Path) -> None:

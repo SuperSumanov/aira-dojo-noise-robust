@@ -137,8 +137,47 @@ def load_labels(path: pathlib.Path, task: str) -> tuple[list[str], list[bool | i
     return ids, labels
 
 
+def load_public_ids(path: pathlib.Path, task: str) -> list[str]:
+    """Load the complete candidate-visible submission universe.
+
+    E1 exposes one public test table containing both held-out partitions.  Each
+    private label file is therefore only a subset of a valid submission.  The
+    public sample, rather than either private subset, defines the exact set of
+    IDs that a candidate must submit.
+    """
+    if not path.is_file():
+        raise ScoreError("public sample submission is missing")
+    raw = path.read_bytes()
+    if CREDENTIAL.search(raw):
+        raise ScoreError("credential shape in public sample submission")
+    spec = TASK_SPECS[task]
+    expected_header = [spec["id_column"], spec["target_column"]]
+    try:
+        text = raw.decode("utf-8-sig")
+        reader = csv.DictReader(text.splitlines())
+        rows = list(reader)
+    except (UnicodeDecodeError, csv.Error) as exc:
+        raise ScoreError("public sample submission is not valid CSV") from exc
+    if list(reader.fieldnames or []) != expected_header:
+        raise ScoreError("public sample submission header differs")
+    ids: list[str] = []
+    seen: set[str] = set()
+    for row in rows:
+        row_id = row.get(spec["id_column"], "")
+        if not row_id or row_id in seen or set(row) != set(expected_header):
+            raise ScoreError("public sample submission ids/schema are invalid")
+        seen.add(row_id)
+        ids.append(row_id)
+    if not ids:
+        raise ScoreError("public sample submission is empty")
+    return ids
+
+
 def load_predictions(
-    path: pathlib.Path, task: str, expected_ids: list[str]
+    path: pathlib.Path,
+    task: str,
+    evaluation_ids: list[str],
+    public_ids: list[str],
 ) -> tuple[list[bool | float] | None, str | None]:
     if not path.is_file():
         return None, "submission_missing"
@@ -149,13 +188,13 @@ def load_predictions(
     expected_header = [spec["id_column"], spec["target_column"]]
     try:
         text = raw.decode("utf-8-sig")
-        rows = list(csv.DictReader(text.splitlines()))
         reader = csv.DictReader(text.splitlines())
+        rows = list(reader)
     except (UnicodeDecodeError, csv.Error):
         return None, "submission_csv_parse_error"
     if list(reader.fieldnames or []) != expected_header:
         return None, "submission_header_mismatch"
-    if len(rows) != len(expected_ids):
+    if len(rows) != len(public_ids):
         return None, "submission_row_count_mismatch"
     by_id: dict[str, str] = {}
     for row in rows:
@@ -163,11 +202,13 @@ def load_predictions(
         if not row_id or row_id in by_id or set(row) != set(expected_header):
             return None, "submission_id_or_schema_invalid"
         by_id[row_id] = row[spec["target_column"]]
-    if set(by_id) != set(expected_ids):
+    if set(by_id) != set(public_ids):
         return None, "submission_id_set_mismatch"
+    if not set(evaluation_ids).issubset(by_id):
+        raise ScoreError("private evaluation ids escape the public submission universe")
     predictions: list[bool | float] = []
     try:
-        for row_id in expected_ids:
+        for row_id in evaluation_ids:
             raw_value = by_id[row_id]
             if spec["metric"] == "accuracy":
                 predictions.append(parse_boolean(raw_value))
@@ -200,11 +241,19 @@ def rank_auc(labels: list[int], predictions: list[float]) -> float:
     return (rank_sum_positive - positive * (positive + 1) / 2.0) / (positive * negative)
 
 
-def score_submission(artifact: pathlib.Path, labels_path: pathlib.Path, task: str) -> dict[str, Any]:
+def score_submission(
+    artifact: pathlib.Path,
+    labels_path: pathlib.Path,
+    public_sample_path: pathlib.Path,
+    task: str,
+) -> dict[str, Any]:
     if task not in TASK_SPECS:
         raise ScoreError("unsupported E1 task")
     ids, labels = load_labels(labels_path, task)
-    predictions, failure = load_predictions(artifact, task, ids)
+    public_ids = load_public_ids(public_sample_path, task)
+    if not set(ids).issubset(public_ids):
+        raise ScoreError("private labels escape the public submission universe")
+    predictions, failure = load_predictions(artifact, task, ids, public_ids)
     if predictions is None:
         return {
             "submission_valid": False,

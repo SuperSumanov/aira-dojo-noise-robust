@@ -58,6 +58,17 @@ TASK_KEYS = {
     "replicate_ranking_agreement", "mean_gain_over_warm",
     "positive_gain_rollouts", "practical_gain_rollouts",
 }
+SUMMARY_KEYS = {
+    "schema_version", "status", "coverage_gate", "source_commit", "tasks",
+    "rollout_jobs", "candidate_execution_attempts", "candidate_processes_started",
+    "operator_api_calls", "operator_retry_count", "candidate_retry_count",
+    "analyze_operator_calls", "dtest_rows_read", "sealed_values_opened",
+    "sealed_files_opened_after_coverage_gate", "failure_utility", "practical_delta",
+    "total_candidate_wall_seconds", "realized_candidate_gpu_hours",
+    "rollouts_with_positive_dval_gain", "rollouts_with_practical_dval_gain",
+    "task_replicate_ranking_agreements", "primary_gate_claim_allowed",
+    "e2_e3_unlocked", "interpretation",
+}
 
 
 class ArchiveVerificationError(RuntimeError):
@@ -171,6 +182,8 @@ def verify(result_dir: pathlib.Path, output: pathlib.Path) -> dict[str, Any]:
         raise ArchiveVerificationError("sibling schema differs")
     if any(set(row) != TASK_KEYS or row["schema_version"] != SCHEMA for row in task_rows):
         raise ArchiveVerificationError("task schema differs")
+    if set(summary) != SUMMARY_KEYS:
+        raise ArchiveVerificationError("summary schema differs")
 
     if sorted(row["global_order"] for row in rollouts) != list(range(8)):
         raise ArchiveVerificationError("global order differs")

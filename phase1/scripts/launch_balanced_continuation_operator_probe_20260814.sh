@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Launch the frozen two-call operator conformance probe from a clean pinned worktree.
-set -euo pipefail
+set -eo pipefail
 
 if [[ $# -ne 1 || ! "$1" =~ ^[0-9a-f]{40}$ ]]; then
   echo "usage: $0 SOURCE_COMMIT" >&2
@@ -18,6 +18,7 @@ python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
 if [[ -f "${HOME}/env_setup.sh" ]]; then
   source "${HOME}/env_setup.sh"
 fi
+set -u
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 
 for required in "$source_root" "$run_root" "$python_bin" "$credential_file"; do

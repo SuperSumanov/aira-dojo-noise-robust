@@ -102,3 +102,4 @@ def test_launcher_pins_clean_source_and_never_prints_credentials() -> None:
     assert "rc=$?" in launcher
     assert "exit \"$rc\"" in launcher
     assert "PRIMARY_KEY_QWEN3_CODER_FLASH=" not in launcher
+    assert launcher.index('source "${HOME}/env_setup.sh"') < launcher.index("set -u")

@@ -9,6 +9,7 @@ from phase1.score_channel_eligibility_registry import (
     RegistryError,
     load_registry_rows,
     parse_utc,
+    repository_head,
     summarize,
 )
 
@@ -156,3 +157,8 @@ def test_parse_utc_requires_timezone() -> None:
     )
     with pytest.raises(RegistryError, match="no timezone"):
         parse_utc("2026-08-13T00:00:00")
+
+
+def test_repository_head_fails_closed_outside_git(tmp_path: Path) -> None:
+    with pytest.raises(RegistryError, match="source commit"):
+        repository_head(tmp_path)

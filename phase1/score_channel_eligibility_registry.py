@@ -12,6 +12,7 @@ import collections
 import hashlib
 import json
 import os
+import platform
 import subprocess
 import tempfile
 from datetime import datetime, timezone
@@ -65,6 +66,19 @@ def mechanism_cutoff(repo: Path, commit: str) -> tuple[str, str]:
         raise RegistryError(f"cannot resolve mechanism commit: {commit}")
     resolved, timestamp = lines
     return resolved, canonical_utc(parse_utc(timestamp))
+
+
+def repository_head(repo: Path) -> str:
+    result = subprocess.run(
+        ["git", "-C", str(repo), "rev-parse", "HEAD"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    value = result.stdout.strip()
+    if result.returncode != 0 or len(value) != 40:
+        raise RegistryError("cannot resolve registry source commit")
+    return value
 
 
 def verify_intake_summary(summary: dict[str, Any], intake_name: str) -> None:
@@ -250,10 +264,19 @@ def produce(
         all_rows, eligible_rows, manifests, resolved_commit, cutoff_utc,
         min_runs, max_dominant_share,
     )
+    summary["implementation"] = {
+        "python": platform.python_version(),
+        "registry_source_commit": repository_head(repo),
+        "script_sha256": sha256(Path(__file__)),
+    }
     out_dir.parent.mkdir(parents=True, exist_ok=True)
     temporary = Path(tempfile.mkdtemp(prefix=f".{out_dir.name}.", dir=out_dir.parent))
     try:
-        write_jsonl(temporary / "eligible_runs.jsonl", eligible_rows)
+        eligible_path = temporary / "eligible_runs.jsonl"
+        write_jsonl(eligible_path, eligible_rows)
+        summary["outputs"] = {
+            "eligible_runs_sha256": sha256(eligible_path),
+        }
         (temporary / "summary.json").write_text(
             json.dumps(summary, indent=2, sort_keys=True, allow_nan=False) + "\n",
             encoding="utf-8",

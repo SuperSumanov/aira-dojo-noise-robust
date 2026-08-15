@@ -1,0 +1,85 @@
+{
+  "archive_mtime_ns": 1786802831000000000,
+  "archive_relative_path": "0814/tweet-sentiment-extraction-8seeds.tar.gz",
+  "archive_sha256": "b63d223a5efacffaf0797a257d2197315292b5433c9c3d05c2ea71cf02c386ec",
+  "archive_size": 184009348,
+  "credential_first_archive_audit": {
+    "checkpoint_runs": 8,
+    "checkpoint_with_live_event_log": 8,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 899710822,
+    "discovered_run_roots": 8,
+    "live_only_runs_excluded": 0,
+    "members": 111
+  },
+  "generated_at_utc": "2026-08-15T22:03:46.837408Z",
+  "journals": [
+    {
+      "competition_ids": [],
+      "journal_sha256": "b2edd3bc372c39601a5d271dbefa9d9a4e9f6d3d14a056c200e94b7f94272c1a",
+      "root_has_competition": false,
+      "rows": 157,
+      "rows_with_competition": 0,
+      "run_path_sha256": "d5ba0046d30c5b47f16dcfcada4535062d5ea19239209fb8656bcfdcc3dff9ff"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "e73b606e7d624195c788233224b79ac6914491394867b068e07829efb3ad4269",
+      "root_has_competition": false,
+      "rows": 157,
+      "rows_with_competition": 0,
+      "run_path_sha256": "f5bd99160ff95af5f2bdd76af9f06082bb934af5145241e01fea63f02309a728"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "8e1bbfdde2fadbf801cbda4c0f52c836c89de8692cc317a241ac34af878ecd5c",
+      "root_has_competition": false,
+      "rows": 161,
+      "rows_with_competition": 0,
+      "run_path_sha256": "279f5677bf1748d7ddfedc03411e61f7e66b35eae4112e3f4fd9b1bc1c0ff17c"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "b44e850016ddef01d9e193d857f5aa870b7c294b7aa0cfeb9af9d3799390a0c9",
+      "root_has_competition": false,
+      "rows": 157,
+      "rows_with_competition": 0,
+      "run_path_sha256": "3780a4ce41e417586baa8d17b5f4a2089e9f26a55b412dd24725cc1ca259414f"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "97b83681e7194c805f57af1e1de78a5b819a32fd9255d35aebbc5e7f713d3eeb",
+      "root_has_competition": false,
+      "rows": 125,
+      "rows_with_competition": 0,
+      "run_path_sha256": "820d6f7c220b209ed5e855d33f766a1b36730f7d004b599da61a2aa438db20b6"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "16d04f1226e5c645437ba67ee90627115ee07bb160cda378e1322d9889d6f790",
+      "root_has_competition": false,
+      "rows": 125,
+      "rows_with_competition": 0,
+      "run_path_sha256": "de09c38939eb7099c478efcd89c3f1347d0c3d25bb8e35c56e82077ef1971b11"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "3f1f2bee3da848c2cfaed2836cad85eb35875cf67ac21970d0a6015445f6a261",
+      "root_has_competition": false,
+      "rows": 125,
+      "rows_with_competition": 0,
+      "run_path_sha256": "b1196965ad3657e7abbb43a90cc418cdc23f795efd35d7fd7407af0f283041c4"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "cc0cb23300ff4194b80bb0a8a7106fd6c63ebd409a758d455981b30a9dc0ce8e",
+      "root_has_competition": false,
+      "rows": 125,
+      "rows_with_competition": 0,
+      "run_path_sha256": "e315f72a9968fd4a0df57d9d086df99431ffeccbabd05526915aa1218cc78492"
+    }
+  ],
+  "labels_or_outcomes_read": false,
+  "protocol": "prospective_structural_diagnostic_v1",
+  "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS"
+}

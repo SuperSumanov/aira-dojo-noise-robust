@@ -27,6 +27,7 @@ from typing import Any, Iterable
 
 PROTOCOL = "prospective_production_runner_v1"
 OBSERVER_PROTOCOL = "prospective_archive_observer_v1"
+REJECTION_PROTOCOL = "prospective_structural_rejection_v1"
 ACTIVE_RECEIPT_SHA256 = "cfab01a80536a50ef21c47ac269c7ce54a11a3b1f0b6daa5700873cbb02ce178"
 FIXED_SCORER_DIR = "fixed_decision_scorer_v11_20260814"
 SHA_RX = re.compile(r"[0-9a-f]{64}")
@@ -41,6 +42,18 @@ TRANSACTION_KEYS = {
     "intake_summary_sha256",
     "score_dir",
     "score_summary_sha256",
+}
+REJECTION_KEYS = {
+    "archive_mtime_ns",
+    "archive_relative_path",
+    "archive_sha256",
+    "archive_size",
+    "diagnostic_receipt_file",
+    "diagnostic_receipt_sha256",
+    "reason_code",
+}
+REJECTION_REASON_CODES = {
+    "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
 }
 FORBIDDEN_TRACE_MARKERS = (
     b"label_vault.jsonl",
@@ -213,11 +226,16 @@ def update_observations(
         )
         committed_sha = old.get("committed_archive_sha256") if isinstance(old, dict) else None
         committed_snapshot = old.get("committed_snapshot_sha256") if isinstance(old, dict) else None
+        rejected_sha = old.get("rejected_archive_sha256") if isinstance(old, dict) else None
+        rejection_reason = old.get("rejection_reason_code") if isinstance(old, dict) else None
+        rejection_registry = old.get("rejection_registry_sha256") if isinstance(old, dict) else None
         baseline = bool(old.get("baseline")) if isinstance(old, dict) else sealing_baseline
         if isinstance(old, dict) and baseline and not same:
             raise ProductionError(f"baseline source archive metadata changed: {relative}")
         if committed_sha is not None and not same:
             raise ProductionError(f"committed source archive metadata changed: {relative}")
+        if rejected_sha is not None and not same:
+            raise ProductionError(f"rejected source archive metadata changed: {relative}")
         if same:
             first_stable = float(old["first_stable_at_epoch"])
             last_observed = float(old["last_observed_at_epoch"])
@@ -238,6 +256,9 @@ def update_observations(
             "mtime_ns": current["mtime_ns"],
             "path": current["path"],
             "present": True,
+            "rejected_archive_sha256": rejected_sha,
+            "rejection_reason_code": rejection_reason,
+            "rejection_registry_sha256": rejection_registry,
             "size": current["size"],
             "stable_observations": observations,
         }
@@ -245,7 +266,9 @@ def update_observations(
         if relative in entries:
             continue
         if isinstance(old, dict) and (
-            old.get("committed_archive_sha256") or old.get("baseline") is True
+            old.get("committed_archive_sha256")
+            or old.get("rejected_archive_sha256")
+            or old.get("baseline") is True
         ):
             raise ProductionError(f"protected source archive disappeared: {relative}")
         missing = dict(old)
@@ -276,6 +299,7 @@ def ready_archives(
             not entry.get("present")
             or entry.get("baseline") is True
             or entry.get("committed_archive_sha256") is not None
+            or entry.get("rejected_archive_sha256") is not None
             or now_epoch - int(entry["mtime_ns"]) / 1_000_000_000 < minimum_age_seconds
             or int(entry["stable_observations"]) < minimum_observations
             or float(entry["last_observed_at_epoch"])
@@ -285,6 +309,108 @@ def ready_archives(
             continue
         ready.append((int(entry["mtime_ns"]), relative))
     return [relative for _, relative in sorted(ready)]
+
+
+def load_structural_rejections(
+    path: Path, expected_sha256: str
+) -> tuple[list[dict[str, Any]], str]:
+    if not SHA_RX.fullmatch(expected_sha256):
+        raise ProductionError("expected rejection registry SHA must be lowercase SHA-256")
+    blob = path.read_bytes()
+    actual_sha256 = sha256_bytes(blob)
+    if actual_sha256 != expected_sha256:
+        raise ProductionError("structural rejection registry SHA mismatch")
+    try:
+        value = json.loads(blob.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ProductionError("cannot parse structural rejection registry") from error
+    if (
+        not isinstance(value, dict)
+        or set(value) != {"protocol", "outcomes_read", "entries"}
+        or value.get("protocol") != REJECTION_PROTOCOL
+        or value.get("outcomes_read") is not False
+        or not isinstance(value.get("entries"), list)
+    ):
+        raise ProductionError("structural rejection registry contract mismatch")
+    rows: list[dict[str, Any]] = []
+    seen_relative: set[str] = set()
+    seen_archive: set[str] = set()
+    for index, row in enumerate(value["entries"], 1):
+        if not isinstance(row, dict) or set(row) != REJECTION_KEYS:
+            raise ProductionError(f"structural rejection schema mismatch at entry {index}")
+        relative = row["archive_relative_path"]
+        if (
+            not isinstance(relative, str)
+            or relative.count("/") != 1
+            or not relative.endswith(".tar.gz")
+            or any(character in relative for character in "\r\n\t")
+        ):
+            raise ProductionError(f"invalid rejected archive path at entry {index}")
+        if relative in seen_relative or row["archive_sha256"] in seen_archive:
+            raise ProductionError(f"duplicate structural rejection identity at entry {index}")
+        if not isinstance(row["archive_sha256"], str) or not SHA_RX.fullmatch(
+            row["archive_sha256"]
+        ):
+            raise ProductionError(f"invalid rejected archive SHA at entry {index}")
+        if (
+            not isinstance(row["diagnostic_receipt_sha256"], str)
+            or not SHA_RX.fullmatch(row["diagnostic_receipt_sha256"])
+        ):
+            raise ProductionError(f"invalid diagnostic receipt SHA at entry {index}")
+        receipt_file = row["diagnostic_receipt_file"]
+        if (
+            not isinstance(receipt_file, str)
+            or Path(receipt_file).name != receipt_file
+            or not receipt_file.endswith(".json")
+        ):
+            raise ProductionError(f"invalid diagnostic receipt file at entry {index}")
+        receipt_path = path.parent / receipt_file
+        if not receipt_path.is_file() or sha256(receipt_path) != row[
+            "diagnostic_receipt_sha256"
+        ]:
+            raise ProductionError(f"diagnostic receipt binding mismatch at entry {index}")
+        if row["reason_code"] not in REJECTION_REASON_CODES:
+            raise ProductionError(f"unapproved structural rejection reason at entry {index}")
+        for key in ("archive_size", "archive_mtime_ns"):
+            if isinstance(row[key], bool) or not isinstance(row[key], int) or row[key] < 0:
+                raise ProductionError(f"invalid {key} at entry {index}")
+        seen_relative.add(relative)
+        seen_archive.add(row["archive_sha256"])
+        rows.append(row)
+    return rows, actual_sha256
+
+
+def apply_structural_rejections(
+    observations: dict[str, Any],
+    rows: list[dict[str, Any]],
+    registry_sha256: str,
+) -> None:
+    for row in rows:
+        relative = row["archive_relative_path"]
+        entry = observations["entries"].get(relative)
+        if entry is None or entry.get("present") is not True:
+            raise ProductionError(f"rejected source archive is absent: {relative}")
+        if entry.get("baseline") is True:
+            raise ProductionError(f"baseline archive cannot be structurally rejected: {relative}")
+        if entry.get("committed_archive_sha256") is not None:
+            raise ProductionError(f"committed archive cannot be structurally rejected: {relative}")
+        if int(entry["size"]) != row["archive_size"] or int(entry["mtime_ns"]) != row[
+            "archive_mtime_ns"
+        ]:
+            raise ProductionError(f"rejected source archive metadata mismatch: {relative}")
+        if sha256(Path(entry["path"])) != row["archive_sha256"]:
+            raise ProductionError(f"rejected source archive content hash mismatch: {relative}")
+        existing = (
+            entry.get("rejected_archive_sha256"),
+            entry.get("rejection_reason_code"),
+            entry.get("rejection_registry_sha256"),
+        )
+        expected = (row["archive_sha256"], row["reason_code"], registry_sha256)
+        if any(value is not None for value in existing) and existing != expected:
+            raise ProductionError(f"structural rejection binding changed: {relative}")
+        entry["rejected_archive_sha256"] = row["archive_sha256"]
+        entry["rejection_reason_code"] = row["reason_code"]
+        entry["rejection_registry_sha256"] = registry_sha256
 
 
 def safe_drop_id(relative: str, archive_sha: str) -> str:
@@ -773,6 +899,21 @@ def run_once(args: argparse.Namespace) -> int:
                     raise ProductionError("committed transaction source is absent from observation ledger")
                 entry["committed_archive_sha256"] = row["archive_sha256"]
                 entry["committed_snapshot_sha256"] = latest_sha
+            rejection_path = getattr(args, "structural_rejection_registry", None)
+            rejection_sha = getattr(
+                args, "expect_structural_rejection_registry_sha256", None
+            )
+            if (rejection_path is None) != (rejection_sha is None):
+                raise ProductionError(
+                    "structural rejection registry path and SHA must be supplied together"
+                )
+            if rejection_path is not None:
+                rejection_rows, rejection_registry_sha = load_structural_rejections(
+                    rejection_path.resolve(), rejection_sha
+                )
+                apply_structural_rejections(
+                    observations, rejection_rows, rejection_registry_sha
+                )
             atomic_bytes(observations_path, canonical_json(observations))
             now_epoch = args.now_epoch if args.now_epoch is not None else dt.datetime.now(
                 dt.timezone.utc
@@ -790,6 +931,7 @@ def run_once(args: argparse.Namespace) -> int:
                     f"archives={sum(entry.get('present') is True for entry in observations['entries'].values())}",
                     f"baseline={sum(entry.get('present') is True and entry.get('baseline') is True for entry in observations['entries'].values())}",
                     f"ready={len(ready)}",
+                    f"rejected={sum(entry.get('rejected_archive_sha256') is not None for entry in observations['entries'].values())}",
                     f"transactions={len(transactions)}",
                     "outcomes_read=false",
                     flush=True,
@@ -817,6 +959,8 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--state-root", required=True, type=Path)
     parser.add_argument("--repo-root", required=True, type=Path)
     parser.add_argument("--expected-commit", required=True)
+    parser.add_argument("--structural-rejection-registry", type=Path)
+    parser.add_argument("--expect-structural-rejection-registry-sha256")
     parser.add_argument("--minimum-age-seconds", type=int, default=6 * 60 * 60)
     parser.add_argument("--minimum-observations", type=int, default=3)
     parser.add_argument("--minimum-observation-interval-seconds", type=int, default=5 * 60)

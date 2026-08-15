@@ -7,10 +7,12 @@ import pytest
 
 from phase1.prospective_production_runner import (
     ProductionError,
+    apply_structural_rejections,
     canonical_jsonl,
     empty_observations,
     intake_registry_bytes,
     load_latest,
+    load_structural_rejections,
     parse_transactions,
     ready_archives,
     safe_drop_id,
@@ -80,6 +82,99 @@ def test_archive_change_resets_observation_and_committed_change_fails(tmp_path: 
     entry["committed_archive_sha256"] = ARCHIVE_SHA
     with pytest.raises(ProductionError, match="committed source archive metadata changed"):
         update_observations(observed, first, 900.0, 300)
+
+
+def test_exact_structural_rejection_is_bound_and_skipped(tmp_path: Path):
+    archive = tmp_path / "0814" / "task.tar.gz"
+    archive.parent.mkdir()
+    archive.write_bytes(b"structural-only")
+    stat = archive.stat()
+    current = {
+        "0814/task.tar.gz": {
+            "path": str(archive.resolve()),
+            "size": stat.st_size,
+            "mtime_ns": stat.st_mtime_ns,
+        }
+    }
+    observed = update_observations(empty_observations(tmp_path), current, 300.0, 300)
+    entry = observed["entries"]["0814/task.tar.gz"]
+    entry["baseline"] = False
+    row = {
+        "archive_mtime_ns": stat.st_mtime_ns,
+        "archive_relative_path": "0814/task.tar.gz",
+        "archive_sha256": sha256_bytes(b"structural-only"),
+        "archive_size": stat.st_size,
+        "diagnostic_receipt_file": "diagnostic_receipt.json",
+        "diagnostic_receipt_sha256": "d" * 64,
+        "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
+    }
+    apply_structural_rejections(observed, [row], "e" * 64)
+    assert entry["rejected_archive_sha256"] == row["archive_sha256"]
+    assert ready_archives(observed, 1000.0, 1, 1, 1) == []
+
+    preserved = update_observations(observed, current, 1000.0, 300)
+    assert (
+        preserved["entries"]["0814/task.tar.gz"]["rejection_registry_sha256"]
+        == "e" * 64
+    )
+
+    entry["committed_archive_sha256"] = row["archive_sha256"]
+    with pytest.raises(ProductionError, match="committed archive cannot be"):
+        apply_structural_rejections(observed, [row], "e" * 64)
+
+
+def test_rejected_archive_change_or_disappearance_fails_closed(tmp_path: Path):
+    observed = update_observations(
+        empty_observations(tmp_path),
+        inventory(tmp_path / "0814" / "task.tar.gz"),
+        300.0,
+        300,
+    )
+    entry = observed["entries"]["0814/task.tar.gz"]
+    entry["baseline"] = False
+    entry["rejected_archive_sha256"] = ARCHIVE_SHA
+    entry["rejection_reason_code"] = "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS"
+    entry["rejection_registry_sha256"] = "e" * 64
+    with pytest.raises(ProductionError, match="rejected source archive metadata changed"):
+        update_observations(
+            observed,
+            inventory(tmp_path / "0814" / "task.tar.gz", size=11),
+            600.0,
+            300,
+        )
+    with pytest.raises(ProductionError, match="protected source archive disappeared"):
+        update_observations(observed, {}, 600.0, 300)
+
+
+def test_structural_rejection_registry_is_hash_bound_and_strict(tmp_path: Path):
+    row = {
+        "archive_mtime_ns": 123,
+        "archive_relative_path": "0814/task.tar.gz",
+        "archive_sha256": "a" * 64,
+        "archive_size": 10,
+        "diagnostic_receipt_file": "diagnostic_receipt.json",
+        "diagnostic_receipt_sha256": sha256_bytes(b"receipt"),
+        "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
+    }
+    payload = {
+        "protocol": "prospective_structural_rejection_v1",
+        "outcomes_read": False,
+        "entries": [row],
+    }
+    path = tmp_path / "rejections.json"
+    (tmp_path / "diagnostic_receipt.json").write_bytes(b"receipt")
+    blob = json.dumps(payload, sort_keys=True).encode("utf-8")
+    path.write_bytes(blob)
+    rows, actual = load_structural_rejections(path, sha256_bytes(blob))
+    assert rows == [row]
+    assert actual == sha256_bytes(blob)
+    with pytest.raises(ProductionError, match="registry SHA mismatch"):
+        load_structural_rejections(path, "f" * 64)
+    payload["outcomes_read"] = True
+    tampered = json.dumps(payload, sort_keys=True).encode("utf-8")
+    path.write_bytes(tampered)
+    with pytest.raises(ProductionError, match="registry contract mismatch"):
+        load_structural_rejections(path, sha256_bytes(tampered))
 
 
 def test_baseline_change_or_disappearance_fails_closed(tmp_path: Path):

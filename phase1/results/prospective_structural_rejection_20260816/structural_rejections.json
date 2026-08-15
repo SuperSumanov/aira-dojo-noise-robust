@@ -1,0 +1,15 @@
+{
+  "entries": [
+    {
+      "archive_mtime_ns": 1786802831000000000,
+      "archive_relative_path": "0814/tweet-sentiment-extraction-8seeds.tar.gz",
+      "archive_sha256": "b63d223a5efacffaf0797a257d2197315292b5433c9c3d05c2ea71cf02c386ec",
+      "archive_size": 184009348,
+      "diagnostic_receipt_file": "diagnostic_receipt.json",
+      "diagnostic_receipt_sha256": "d69cf9922318aa95142c596a15ea95d232f3f05e192e4e2fc5dc1c38bf2cac8f",
+      "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS"
+    }
+  ],
+  "outcomes_read": false,
+  "protocol": "prospective_structural_rejection_v1"
+}

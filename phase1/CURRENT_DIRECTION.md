@@ -13,6 +13,8 @@ MLE-agent 搜索树的 NAS-Bench-style 数据集与系统性 predictor study；�
 1. **唯一主实验**仍是机制 commit 后至少 150 个新 physical runs 的前瞻 score-channel 复现：同一 120 秒、
    共同候选上的 `sub_score - stdout_val` tie-aware top-1；约 690 replays、17--23 GPU·h。它必须同时满足
    预注册资格门、任务占比门和用户对确切矩阵/预算的批准；当前保持 `NOT SUBMITTED`，禁止 optional stopping。
+   outcome-blind 元数据台账现有 8 个 0813 新归档，文件名声明合计 52 seeds、单任务最多 8（`8/52=0.153846`）；
+   这只是 physical-run 资格上界，尚差至少 98 个且未核验 archive 内 generation time/run receipt，不能提前开跑。
 2. **立即支持实验**只允许复用学长在旧 validation 上事先锁定的 Qwen3-4B/8B checkpoint，对 v11 frozen
    b0/b1/b2 各一次评分。不得重训、不得看 frozen 后挑 checkpoint；extension 单列。当前 evaluator 已就绪，
    但仓库尚缺两条 checkpoint 的绝对路径、训练配置与锁定收据，因此不得猜路径开 GPU。
@@ -30,6 +32,7 @@ MLE-agent 搜索树的 NAS-Bench-style 数据集与系统性 predictor study；�
 直接证据：
 
 - `phase1/results/source_opportunity_hurdle_v11_20260815_c89c5bd/README.md`；
+- `phase1/results/score_channel_prospective_eligibility_20260815/README.md`；
 - `phase1/实验记录/2026-08-15/SourceOpportunityHurdleBaseline_预注册与执行前检查.md`；
 - `phase1/实验记录/2026-08-13/评分通道前瞻复现_预算与预注册草案.md`；
 - `phase1/README_8B.md`。

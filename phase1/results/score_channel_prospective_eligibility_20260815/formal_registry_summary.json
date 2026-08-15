@@ -1,0 +1,105 @@
+{
+  "blindness": {
+    "code_opened": false,
+    "label_vault_opened": false,
+    "labels_used_for_run_selection": false,
+    "raw_journal_opened": false,
+    "score_or_outcome_opened": false
+  },
+  "counts": {
+    "eligible_post_mechanism_runs": 47,
+    "excluded_pre_or_equal_cutoff_runs": 0,
+    "intakes": 8,
+    "observed_runs": 47,
+    "remaining_to_min_runs": 103,
+    "tasks": 8
+  },
+  "gates": {
+    "enough_runs": false,
+    "parent_gate_pending": true,
+    "replay_submission_authorized": false,
+    "run_gate_pass": false,
+    "task_balance": true
+  },
+  "implementation": {
+    "python": "3.12.13",
+    "registry_source_commit": "6e4d9ddf5c53650f11f926db0f662598ba127e46",
+    "script_sha256": "9e5c08d377b075b63a7cfe5a7158d5202f2a26e255940584b9715227e2855a00"
+  },
+  "input_manifest": [
+    {
+      "intake": "0813-dog-breed-identification-8seeds-7a5169e34e1c6ec4",
+      "runs": 8,
+      "source_provenance_sha256": "3eb81a23b2ade572df88408c81846251b4a180f9fe8e85b4fabc5a382c11b71d",
+      "summary_sha256": "e8ca7f541629582310108b1c002a0d63bf2d45a86cf1aff797ec5996edc5e6e7"
+    },
+    {
+      "intake": "0813-dogs-vs-cats-redux-kernels-edition-8seeds-9585d47f209d5359",
+      "runs": 8,
+      "source_provenance_sha256": "e8fb59499be8902e11b9733c9711dd8cabe48810464a12f6279e7386ccf898d9",
+      "summary_sha256": "7aea7f619bed4380c8baa5d467b832a939e193fcd1b870d6f52df07b90e76ac8"
+    },
+    {
+      "intake": "0813-learning-agency-lab-automated-essay-scoring-2-4seeds-5216bf4b0b13310a",
+      "runs": 4,
+      "source_provenance_sha256": "e1c0c836bc4bbfd94fdcb245f300964c23ef235134d507c423eaf192b1f1d2e2",
+      "summary_sha256": "a2cb71dc1d9af48c0090caaaab39847984feef433e462d517a477293dfc48da5"
+    },
+    {
+      "intake": "0813-random-acts-of-pizza-4seeds-a11523c1909d117b",
+      "runs": 4,
+      "source_provenance_sha256": "0de1abfe26747cbe9b730841466d6e41a58b1bd23982e22e18e2de9aa731756c",
+      "summary_sha256": "0050057083a77eb7a3caeedea4c3c9c54ea6179c42db0104075144705e5deabb"
+    },
+    {
+      "intake": "0813-ranzcr-clip-catheter-line-classification-8seeds-78f98338d3164f83",
+      "runs": 4,
+      "source_provenance_sha256": "51a45927c39c6c8ffc4755670de0127d65cbb8ca8aaed0e8912c29237996b0a6",
+      "summary_sha256": "385f6a1d20a5a2e48c4d9e7d85765606626a76cf6ad33f86c610d6f16f99bc9c"
+    },
+    {
+      "intake": "0813-tweet-sentiment-extraction-4seeds-845ce54212b32c11",
+      "runs": 3,
+      "source_provenance_sha256": "b6ab618ef06fe6ee56b45c8abece1aa2e7e1f3c6758130600a286abd468a878c",
+      "summary_sha256": "74af04ab06b5f60862ba2ffaab316d04f1636f97ea91235cd0bbdd5b04d4eb38"
+    },
+    {
+      "intake": "0813-ventilator-pressure-prediction-8seeds-161b32161451e4d7",
+      "runs": 8,
+      "source_provenance_sha256": "39ad2c8bbc0c7552d3315de4277cb3a280fd77cf42947ee06388342f2f6c2366",
+      "summary_sha256": "0539ca772d083d068b6acac6325f9bfb9d5a3a2e8b2efd495e8266b6124ca9f2"
+    },
+    {
+      "intake": "0813-whale-categorization-playground-8seeds-cb7c2a72fbfe99e3",
+      "runs": 8,
+      "source_provenance_sha256": "5b8cb2c8d2417b398e1a8c626913452e3a5d4c7cc19d998453f9779848258cee",
+      "summary_sha256": "4f5ca8537ab535a2757cdb1a572ecefeca51984a1e1374f5bfd31916295f6da1"
+    }
+  ],
+  "mechanism_commit": "4c964f8691b00af2f5ecb98f7a60dcd272bfb8cc",
+  "mechanism_cutoff_utc": "2026-08-12T21:31:21Z",
+  "outputs": {
+    "eligible_runs_sha256": "dde0e808430fe106a15f5c7fc20e6b1afce52a9b27bd23802bf4befcd4814de6"
+  },
+  "protocol": "score-channel-run-eligibility-registry-v1",
+  "status": "RUN_GATE_WAIT",
+  "task_balance": {
+    "dominant_runs": 8,
+    "dominant_share": 0.1702127659574468,
+    "dominant_task": "ventilator-pressure-prediction",
+    "per_task": {
+      "dog-breed-identification": 8,
+      "dogs-vs-cats-redux-kernels-edition": 8,
+      "learning-agency-lab-automated-essay-scoring-2": 4,
+      "random-acts-of-pizza": 4,
+      "ranzcr-clip-catheter-line-classification": 4,
+      "tweet-sentiment-extraction": 3,
+      "ventilator-pressure-prediction": 8,
+      "whale-categorization-playground": 8
+    }
+  },
+  "thresholds": {
+    "max_dominant_task_share": 0.25,
+    "min_runs": 150
+  }
+}

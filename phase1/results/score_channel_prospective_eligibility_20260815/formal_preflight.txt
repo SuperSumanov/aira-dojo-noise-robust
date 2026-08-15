@@ -1,0 +1,16 @@
+protocol=score-channel-run-eligibility-formal-preflight-v1
+timestamp_utc=2026-08-15T01:59:03Z
+host=linux5
+source_commit=6e4d9ddf5c53650f11f926db0f662598ba127e46
+mechanism_commit=4c964f8691b00af2f5ecb98f7a60dcd272bfb8cc
+intake_root=/research/d7/spc/yzyang4/prospective_decision_v1/intakes
+input_source_provenance_files=8
+min_runs=150
+max_dominant_share=0.25
+input_contract=safe_summary_and_source_provenance_only
+forbidden_inputs=label_vault,raw_journal,code,score,outcome
+replay_submission_authorized=false
+gpu_requested=0
+seed=not_applicable_deterministic_registry
+overwrite_policy=refuse_nonempty_output
+repeat_policy=two_independent_output_directories_and_byte_compare

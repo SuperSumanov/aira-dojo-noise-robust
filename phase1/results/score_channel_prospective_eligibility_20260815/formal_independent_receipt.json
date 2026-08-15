@@ -1,0 +1,28 @@
+{
+  "code_or_outcome_opened": false,
+  "dominant_runs": 8,
+  "dominant_share": 0.1702127659574468,
+  "eligible_runs": 47,
+  "eligible_runs_sha256": "dde0e808430fe106a15f5c7fc20e6b1afce52a9b27bd23802bf4befcd4814de6",
+  "implementation_independent_of_producer": true,
+  "intakes": 8,
+  "label_vault_opened": false,
+  "per_task": {
+    "dog-breed-identification": 8,
+    "dogs-vs-cats-redux-kernels-edition": 8,
+    "learning-agency-lab-automated-essay-scoring-2": 4,
+    "random-acts-of-pizza": 4,
+    "ranzcr-clip-catheter-line-classification": 4,
+    "tweet-sentiment-extraction": 3,
+    "ventilator-pressure-prediction": 8,
+    "whale-categorization-playground": 8
+  },
+  "producer_module_imported": false,
+  "producer_summary_sha256": "b1487c4325ded75e7ee0d2fb6029a41cd7919e858a1fbf48d9e99c64a8a3a828",
+  "protocol": "score-channel-run-eligibility-independent-verifier-v1",
+  "raw_journal_opened": false,
+  "remaining_to_150": 103,
+  "safe_inputs_only": true,
+  "status": "PASS_RUN_GATE_WAIT",
+  "tasks": 8
+}

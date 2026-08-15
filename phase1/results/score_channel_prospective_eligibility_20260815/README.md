@@ -51,3 +51,28 @@ written=false、precutoff endpoint/code overlap=0、label values printed=false�
 
 现有远端 metadata monitor PID `4087890` 继续每 300 秒 outcome-blind 轮询；新增 archive 必须先完成稳定性、
 archive SHA 与 snapshot transaction，再进入相同台账。
+
+## 2026-08-15 正式资格表复核
+
+随后在干净远端 worktree、精确 source commit
+`6e4d9ddf5c53650f11f926db0f662598ba127e46` 上正式运行
+`score-channel-run-eligibility-registry-v1`。producer 只接收八份安全 intake 的 `summary.json` 与
+`source_provenance.json`，固定机制 commit=`4c964f8691b00af2f5ecb98f7a60dcd272bfb8cc`、
+`min_runs=150`、`max_dominant_task_share=0.25`；GPU 请求为 0，label vault、raw journal、代码、分数与
+outcome 均未打开。
+
+两次独立输出目录得到逐字节相同的 `eligible_runs.jsonl` 与 `summary.json`：前者 SHA-256 为
+`dde0e808430fe106a15f5c7fc20e6b1afce52a9b27bd23802bf4befcd4814de6`，后者为
+`b1487c4325ded75e7ee0d2fb6029a41cd7919e858a1fbf48d9e99c64a8a3a828`。不导入 producer 的第二实现再次从
+安全 provenance 重建 47 个 run、8 个 task、dominant=8、remaining=103，并核对逐行输出、task counts、门状态和
+输出 SHA；裁决为 `PASS_RUN_GATE_WAIT`。正式 registry 因此保持：`enough_runs=false`、
+`task_balance=true`、`run_gate_pass=false`、`parent_gate_pending=true`、
+`replay_submission_authorized=false`。
+
+第一次完整测试调用从 worktree 外用绝对测试路径运行，因 Python import root 缺失而在 collection 阶段出现 48 个错误、
+执行 0 项测试；此坏调用保留，不计为测试结果。切换到精确 worktree 根目录后，完整套件为
+`324 passed, 14 warnings in 30.21s`，stderr 为空；独立 verifier 的 stderr 也为空。
+
+随本目录保存正式 `formal_registry_summary.json`、`formal_independent_receipt.json`、`formal_preflight.txt`、
+`formal_output.sha256` 与 `formal_repeat_receipt.txt`。完整远端产物位于
+`/research/d7/spc/yzyang4/score-channel-eligibility-6e4d9dd-a1/`。

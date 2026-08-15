@@ -15,7 +15,9 @@ MLE-agent 搜索树的 NAS-Bench-style 数据集与系统性 predictor study；�
    预注册资格门、任务占比门和用户对确切矩阵/预算的批准；当前保持 `NOT SUBMITTED`，禁止 optional stopping。
    8 个 0813 新归档经 credential-first intake 得到 47 个唯一 physical journals；47/47 的 root creation time
    都严格晚于机制 commit，覆盖 8 tasks，dominant task=`8/47=0.170213`。因此时间与任务占比门暂时满足，
-   但距 150-run 固定门仍差 103；label vault 未读，finite-sibling parent 资格尚未冻结，不能提前开跑。
+   但距 150-run 固定门仍差 103；label vault 未读，finite-sibling parent 资格尚未冻结，不能提前开跑。精确
+   commit `6e4d9ddf5c53650f11f926db0f662598ba127e46` 上的正式 registry 双跑逐字节一致，不导入 producer 的
+   verifier 独立重建相同 47-run 台账；完整测试为 324 passed。门状态仍为 `RUN_GATE_WAIT`，replay 未获授权。
 2. **立即支持实验**只允许复用学长在旧 validation 上事先锁定的 Qwen3-4B/8B checkpoint，对 v11 frozen
    b0/b1/b2 各一次评分。不得重训、不得看 frozen 后挑 checkpoint；extension 单列。当前 evaluator 已就绪，
    但仓库尚缺两条 checkpoint 的绝对路径、训练配置与锁定收据，因此不得猜路径开 GPU。

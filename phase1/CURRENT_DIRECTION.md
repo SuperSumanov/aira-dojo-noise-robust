@@ -1,7 +1,38 @@
-# 当前研究方向唯一入口（2026-08-14）
+# 当前研究方向唯一入口（2026-08-15）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0X. 2026-08-15 项目级纠偏：评分通道是唯一主实验，failure-censored 结果降为 benchmark 支线
+
+本节晚于 0W，并按项目级方向决定覆盖 0W 及更早小节中关于“当前主线/下一实验”的措辞。论文容器保持为
+MLE-agent 搜索树的 NAS-Bench-style 数据集与系统性 predictor study；当前活跃科学问题是 execution cliff 与
+评分通道。冻结发现集上，pristine 外部 `submission.csv` 分数相对 stdout self-report 的正效应仍只是机制候选，
+不能写成已确认、已加速或可外推到 silent candidates。
+
+1. **唯一主实验**仍是机制 commit 后至少 150 个新 physical runs 的前瞻 score-channel 复现：同一 120 秒、
+   共同候选上的 `sub_score - stdout_val` tie-aware top-1；约 690 replays、17--23 GPU·h。它必须同时满足
+   预注册资格门、任务占比门和用户对确切矩阵/预算的批准；当前保持 `NOT SUBMITTED`，禁止 optional stopping。
+2. **立即支持实验**只允许复用学长在旧 validation 上事先锁定的 Qwen3-4B/8B checkpoint，对 v11 frozen
+   b0/b1/b2 各一次评分。不得重训、不得看 frozen 后挑 checkpoint；extension 单列。当前 evaluator 已就绪，
+   但仓库尚缺两条 checkpoint 的绝对路径、训练配置与锁定收据，因此不得猜路径开 GPU。
+3. 0U--0W 建立的 labeled-fragment、source-opportunity identity 与 failure-status registry 保留为重要数据资产：
+   721/870 incomplete parents 可恢复 sibling identity，902/996 missing identities 可恢复 journal status，其中
+   893/902 为 execution error。这些结果限定 benchmark estimand，但不取代评分通道确认。
+4. 预注册 hurdle baseline 已完成确定性复跑与独立复核，裁决为
+   `VERIFIED_FAILURE_CENSORED_MECHANISM_ONLY`。构造门通过，但 frozen 上 hurdle TF-IDF 相对 quality-only 的
+   scoreability 增量仅 `+0.0200`，task-CI `[-0.0505,+0.0884]`；utility 增量 `-0.00135`，task-CI
+   `[-0.01527,+0.01785]`。`method_positive_claim_allowed=false`，不得把它升级成方法主线。
+5. first-960 critic confirmation、Probe-First/E1 continuation、随机日志接入、旧 HCE/TD/RL、多保真三臂和已关闭
+   critic 变体均不是当前主实验；只有新的明确预注册、资格门与预算批准才能重开。已经 outcome-blind 运行的语料
+   intake monitor 可继续记录元数据，但不得读取 outcome 或据其改方法。
+
+直接证据：
+
+- `phase1/results/source_opportunity_hurdle_v11_20260815_c89c5bd/README.md`；
+- `phase1/实验记录/2026-08-15/SourceOpportunityHurdleBaseline_预注册与执行前检查.md`；
+- `phase1/实验记录/2026-08-13/评分通道前瞻复现_预算与预注册草案.md`；
+- `phase1/README_8B.md`。
 
 ## 0W. 2026-08-15 最新覆盖：90.56% missing identities 找回 node，99.00% 为 execution error
 

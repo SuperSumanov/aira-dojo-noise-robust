@@ -68,6 +68,15 @@ headline 结果只报 `decision_frozen_v11_b*.jsonl`。因为 frozen 与 v10 完
 每个 budget 单独报告 accuracy，并保留逐 pair 结果供 task/run 聚类 bootstrap。8B/16k 的作用是
 检验现有约 0.55 的结果是否受容量或上下文限制，而不是只报最佳单次 seed。
 
+2026-08-15 readiness audit：evaluator 新增 6 个契约测试，Linux 全套为 `315 passed in 32.29s`。
+但当前仓库/学长 outcome 文档尚未同时公开两条冻结 checkpoint 的可访问绝对路径与配置收据，
+因此状态仍是 `READY_EXCEPT_LOCKED_CHECKPOINT_RECEIPTS`，不能猜 checkpoint 开跑。每个 4B/8B 收据至少固定：
+
+- checkpoint 绝对路径与完整权重 SHA-256；
+- base model、`max_len`、`head_frac`、task/budget conditioning 与 seed；
+- 用哪个旧 validation 指标、在何时选定该 checkpoint，以及选定时间早于任何 frozen scoring 的证明；
+- 4B/8B 各只允许一个 primary checkpoint；若另有 extension，必须在看 frozen 前登记并单列。
+
 推荐输出（单个 pair set 时可用下列扁平格式；仓库 evaluator 为防止 b0/b1/b2
 同端点碰撞，会在最外层再按 pair-set 名分组）：
 

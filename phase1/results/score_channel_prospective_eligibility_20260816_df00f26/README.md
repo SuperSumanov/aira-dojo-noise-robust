@@ -70,6 +70,26 @@ Per-task physical-run counts are:
 | ventilator-pressure-prediction | 8 |
 | whale-categorization-playground | 8 |
 
+The frozen accumulator, which was separately audited under `strace` and reports
+`label_vault_opened=false` and an empty `outcome_files_opened` list, also gives the
+following pre-label inventory:
+
+| structural quantity | value |
+|---|---:|
+| eligible endpoints | 1,490 |
+| unique exact-code endpoint hashes | 1,481 |
+| exact-code duplicate endpoints | 9 |
+| runs with at least one structural pair | 74 |
+| structural pairs | 467 |
+| structural-pair dominant-task share | 0.25267665952890794 |
+
+Its summary SHA-256 is
+`5fdc9bf095156e309c5c07a68d1e790a02a6fad11cf0846298bc8d35496f5665`.
+These are opportunity counts, not finite-grade parent eligibility. In particular, the
+pair-level task concentration is slightly above 25% even though the preregistered
+physical-run balance gate is 16%; the trusted selector's fixed per-run parent cap must
+remain in place rather than treating all 467 pairs as the replay cohort.
+
 Artifact hashes:
 
 - safe-sidecar snapshot receipt:

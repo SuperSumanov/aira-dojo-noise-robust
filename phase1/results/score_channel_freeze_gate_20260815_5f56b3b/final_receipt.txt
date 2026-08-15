@@ -1,0 +1,13 @@
+protocol=score-channel-freeze-infrastructure-gate-final-v1
+status=VERIFIED_INFRASTRUCTURE_ONLY_REPLAY_NOT_AUTHORIZED
+source_commit=5f56b3b64594c6128adfed57fcb9981caf4951b6
+focused_tests=11 passed in 1.97s
+full_tests=335 passed in 27.81s
+current_real_gate_runs=47
+current_real_gate_refused_before_intake_access=true
+real_label_vault_opened=false
+replay_manifest_generated=false
+gpu_jobs_submitted=0
+api_calls=0
+replay_submission_authorized=false
+bad_calls_preserved=a1 lfs404; a2 wrong python; a3 initial registry parent path

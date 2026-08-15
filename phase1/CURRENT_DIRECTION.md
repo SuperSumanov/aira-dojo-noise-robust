@@ -18,6 +18,10 @@ MLE-agent 搜索树的 NAS-Bench-style 数据集与系统性 predictor study；�
    但距 150-run 固定门仍差 103；label vault 未读，finite-sibling parent 资格尚未冻结，不能提前开跑。精确
    commit `6e4d9ddf5c53650f11f926db0f662598ba127e46` 上的正式 registry 双跑逐字节一致，不导入 producer 的
    verifier 独立重建相同 47-run 台账；完整测试为 324 passed。门状态仍为 `RUN_GATE_WAIT`，replay 未获授权。
+   commit `5f56b3b64594c6128adfed57fcb9981caf4951b6` 又提前冻结了 150-run 门后的 trusted parent selector、
+   不导入 producer 的独立 selector verifier、label-free replay materializer 与第二个独立 verifier；远端完整
+   `phase1/tests` 为 335 passed。当前 47-run registry 在刻意不存在的 intake root 前先行拒绝，真实 vault 未读、
+   GPU/API 均为 0。这只关闭未来手工挑 parent/shard 的审计缺口，不改变 47/150 或授权状态。
 2. **立即支持实验**只允许复用学长在旧 validation 上事先锁定的 Qwen3-4B/8B checkpoint，对 v11 frozen
    b0/b1/b2 各一次评分。不得重训、不得看 frozen 后挑 checkpoint；extension 单列。当前 evaluator 已就绪，
    但仓库尚缺两条 checkpoint 的绝对路径、训练配置与锁定收据，因此不得猜路径开 GPU。
@@ -36,6 +40,7 @@ MLE-agent 搜索树的 NAS-Bench-style 数据集与系统性 predictor study；�
 
 - `phase1/results/source_opportunity_hurdle_v11_20260815_c89c5bd/README.md`；
 - `phase1/results/score_channel_prospective_eligibility_20260815/README.md`；
+- `phase1/results/score_channel_freeze_gate_20260815_5f56b3b/README.md`；
 - `phase1/实验记录/2026-08-15/ScoreChannel_正面主张与防scoop审计.md`；
 - `phase1/实验记录/2026-08-15/SourceOpportunityHurdleBaseline_预注册与执行前检查.md`；
 - `phase1/实验记录/2026-08-13/评分通道前瞻复现_预算与预注册草案.md`；

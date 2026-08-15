@@ -1,0 +1,16 @@
+protocol=score-channel-freeze-infrastructure-gate-v1
+source_commit=5f56b3b64594c6128adfed57fcb9981caf4951b6
+gpu_requested=0
+api_calls=0
+real_label_vault_opened=false
+replay_submitted=false
+focused_test=phase1/tests/test_score_channel_parent_selection.py
+full_test=phase1/tests
+local_full_test_blocked_by_missing_sklearn_and_scipy=true
+current_47_run_gate_must_refuse_before_intake_access=true
+prior_a1_checkout_failed_before_tests_due_existing_lfs_404=true
+prior_a2_focused_test_failed_before_collection_due_wrong_python_without_pytest=true
+python=3.11.15
+pytest=7.4.3
+sklearn=1.6.1
+scipy=1.16.2

@@ -1,9 +1,9 @@
-# 当前研究方向唯一入口（2026-08-15）
+# 当前研究方向唯一入口（2026-08-16）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0X. 2026-08-15 项目级纠偏：评分通道是唯一主实验，failure-censored 结果降为 benchmark 支线
+## 0X. 2026-08-16 最新状态：评分通道仍是唯一主实验，前瞻 run gate 达到 100/150
 
 本节晚于 0W，并按项目级方向决定覆盖 0W 及更早小节中关于“当前主线/下一实验”的措辞。论文容器保持为
 MLE-agent 搜索树的 NAS-Bench-style 数据集与系统性 predictor study；当前活跃科学问题是 execution cliff 与
@@ -13,15 +13,17 @@ MLE-agent 搜索树的 NAS-Bench-style 数据集与系统性 predictor study；�
 1. **唯一主实验**仍是机制 commit 后至少 150 个新 physical runs 的前瞻 score-channel 复现：同一 120 秒、
    共同候选上的 `sub_score - stdout_val` tie-aware top-1；约 690 replays、17--23 GPU·h。它必须同时满足
    预注册资格门、任务占比门和用户对确切矩阵/预算的批准；当前保持 `NOT SUBMITTED`，禁止 optional stopping。
-   8 个 0813 新归档经 credential-first intake 得到 47 个唯一 physical journals；47/47 的 root creation time
-   都严格晚于机制 commit，覆盖 8 tasks，dominant task=`8/47=0.170213`。因此时间与任务占比门暂时满足，
-   但距 150-run 固定门仍差 103；label vault 未读，finite-sibling parent 资格尚未冻结，不能提前开跑。精确
-   commit `6e4d9ddf5c53650f11f926db0f662598ba127e46` 上的正式 registry 双跑逐字节一致，不导入 producer 的
-   verifier 独立重建相同 47-run 台账；完整测试为 324 passed。门状态仍为 `RUN_GATE_WAIT`，replay 未获授权。
+   0813--0814 的 16 个安全 intake 已得到 100 个唯一 physical journals；100/100 的 root creation time
+   都严格晚于机制 commit，覆盖 13 tasks，dominant task=`16/100=0.16`。因此时间与任务占比门满足，
+   但距 150-run 固定门仍差 50；label vault 未读，finite-sibling parent 资格尚未冻结，不能提前开跑。最新
+   commit `df00f2655af9d5d47b72ca4fd2c247222f2ac1d4` 上的正式 registry 双跑逐字节一致，不导入 producer 的
+   verifier 独立重建相同 100-run 台账；完整测试为 338 passed。一个缺失 task identity 的 0814 tweet 包
+   已按完整 SHA 和不可变收据结构性拒收，不从文件名猜 task，也没有生成科学 transaction。门状态仍为
+   `RUN_GATE_WAIT`，replay 未获授权。
    commit `5f56b3b64594c6128adfed57fcb9981caf4951b6` 又提前冻结了 150-run 门后的 trusted parent selector、
    不导入 producer 的独立 selector verifier、label-free replay materializer 与第二个独立 verifier；远端完整
-   `phase1/tests` 为 335 passed。当前 47-run registry 在刻意不存在的 intake root 前先行拒绝，真实 vault 未读、
-   GPU/API 均为 0。这只关闭未来手工挑 parent/shard 的审计缺口，不改变 47/150 或授权状态。
+   `phase1/tests` 为 335 passed。该合成验收中的拒绝路径在刻意不存在的 intake root 前先行拒绝，真实 vault 未读、
+   GPU/API 均为 0。这只关闭未来手工挑 parent/shard 的审计缺口，不改变 100/150 或授权状态。
 2. **立即支持实验**只允许复用学长在旧 validation 上事先锁定的 Qwen3-4B/8B checkpoint，对 v11 frozen
    b0/b1/b2 各一次评分。不得重训、不得看 frozen 后挑 checkpoint；extension 单列。当前 evaluator 已就绪，
    但仓库尚缺两条 checkpoint 的绝对路径、训练配置与锁定收据，因此不得猜路径开 GPU。
@@ -40,6 +42,7 @@ MLE-agent 搜索树的 NAS-Bench-style 数据集与系统性 predictor study；�
 
 - `phase1/results/source_opportunity_hurdle_v11_20260815_c89c5bd/README.md`；
 - `phase1/results/score_channel_prospective_eligibility_20260815/README.md`；
+- `phase1/results/score_channel_prospective_eligibility_20260816_df00f26/README.md`；
 - `phase1/results/score_channel_freeze_gate_20260815_5f56b3b/README.md`；
 - `phase1/实验记录/2026-08-15/ScoreChannel_正面主张与防scoop审计.md`；
 - `phase1/实验记录/2026-08-15/SourceOpportunityHurdleBaseline_预注册与执行前检查.md`；

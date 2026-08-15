@@ -1,0 +1,29 @@
+{
+  "dominant_runs": 16,
+  "dominant_share": 0.16,
+  "dominant_task": "dogs-vs-cats-redux-kernels-edition",
+  "eligible_runs": 100,
+  "eligible_runs_sha256": "71b8f3f0710e5a6018c7db3a845a19e285b408473d61542fb5c6086da9cc9f66",
+  "intakes": 16,
+  "labels_or_outcomes_read": false,
+  "per_task": {
+    "aptos2019-blindness-detection": 3,
+    "dog-breed-identification": 8,
+    "dogs-vs-cats-redux-kernels-edition": 16,
+    "learning-agency-lab-automated-essay-scoring-2": 8,
+    "new-york-city-taxi-fare-prediction": 6,
+    "random-acts-of-pizza": 4,
+    "ranzcr-clip-catheter-line-classification": 12,
+    "text-normalization-challenge-russian-language": 8,
+    "tgs-salt-identification-challenge": 8,
+    "tweet-sentiment-extraction": 3,
+    "us-patent-phrase-to-phrase-matching": 8,
+    "ventilator-pressure-prediction": 8,
+    "whale-categorization-playground": 8
+  },
+  "producer_summary_sha256": "5f713940fac313ad69f0731c421d60cee51155c06b60f0d68b0d89e89fff2efd",
+  "protocol": "score_channel_eligibility_independent_verify_v1",
+  "remaining_to_150": 50,
+  "run_gate_pass": false,
+  "tasks": 13
+}

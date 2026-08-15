@@ -36,6 +36,7 @@ MLE-agent 搜索树的 NAS-Bench-style 数据集与系统性 predictor study；�
 
 - `phase1/results/source_opportunity_hurdle_v11_20260815_c89c5bd/README.md`；
 - `phase1/results/score_channel_prospective_eligibility_20260815/README.md`；
+- `phase1/实验记录/2026-08-15/ScoreChannel_正面主张与防scoop审计.md`；
 - `phase1/实验记录/2026-08-15/SourceOpportunityHurdleBaseline_预注册与执行前检查.md`；
 - `phase1/实验记录/2026-08-13/评分通道前瞻复现_预算与预注册草案.md`；
 - `phase1/README_8B.md`。

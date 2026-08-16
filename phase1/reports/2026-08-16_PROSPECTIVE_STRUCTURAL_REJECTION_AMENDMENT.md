@@ -11,6 +11,11 @@ The frozen production runner stopped fail-closed on
 identify exactly one competition. This archive sorted before five later, structurally
 valid archives and therefore blocked append-only intake progress.
 
+The same outcome-blind structural precheck later found that
+`0815/text-normalization-challenge-russian-language-8seeds.tar.gz` has the identical
+failure mode. It would otherwise become a second fail-closed blocker when its fixed
+six-hour stability gate elapsed.
+
 ## Credential-first diagnosis
 
 Only checkpoint journals selected by the existing credential-first archive reader were
@@ -27,6 +32,12 @@ The receipt is
 `phase1/results/prospective_structural_rejection_20260816/diagnostic_receipt.json`,
 SHA-256 `d69cf9922318aa95142c596a15ea95d232f3f05e192e4e2fc5dc1c38bf2cac8f`.
 
+The second bound receipt records archive SHA-256
+`1de64423a081a13688f2413938be30b64b64d8ea77b1cf5a0a3b41237180da49`, 8 checkpoint
+journals, and zero competition IDs in all 8. It is
+`phase1/results/prospective_structural_rejection_20260816/diagnostic_receipt_text_normalization_0815.json`,
+SHA-256 `39ab9eebc926059137890ccd22ab5ed62c5809c7a30b46491c6878fef83cfa35`.
+
 ## Amendment
 
 The control runner may skip only an archive listed in an immutable rejection registry
@@ -39,9 +50,11 @@ No task is inferred from the filename. The malformed archive creates no intake, 
 accumulator, or scientific transaction. It remains available for a separately declared
 schema-repair extension or a corrected export from the data producer.
 
-The registry is
+The initial one-entry registry was
 `phase1/results/prospective_structural_rejection_20260816/structural_rejections.json`,
 SHA-256 `d32cd70b7c755a8ad340cf376fd88f54ca1bea0a50cffbc5fa4cb58bc97ffb01`.
+The current two-entry registry at the same path has SHA-256
+`b853927a108f4d9d37ca5c2b06c90b6b686ee7b5b640fd085d56ceb1b8c4c152`.
 
 ## Frozen scientific path
 

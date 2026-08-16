@@ -1,0 +1,85 @@
+{
+  "archive_mtime_ns": 1786887449000000000,
+  "archive_relative_path": "0815/text-normalization-challenge-russian-language-8seeds.tar.gz",
+  "archive_sha256": "1de64423a081a13688f2413938be30b64b64d8ea77b1cf5a0a3b41237180da49",
+  "archive_size": 175512106,
+  "credential_first_archive_audit": {
+    "checkpoint_runs": 8,
+    "checkpoint_with_live_event_log": 8,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 948807855,
+    "discovered_run_roots": 8,
+    "live_only_runs_excluded": 0,
+    "members": 111
+  },
+  "generated_at_utc": "2026-08-16T15:55:49.622206Z",
+  "journals": [
+    {
+      "competition_ids": [],
+      "journal_sha256": "b469b0627e5a694ef5ac6cd142abcf9b77b23a950de109f7be27f2529a1d1cba",
+      "root_has_competition": false,
+      "rows": 165,
+      "rows_with_competition": 0,
+      "run_path_sha256": "e658a930dc2a13f70d03286b1f0cec620b63d69add72a33a0566f15572f8b791"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "79af60bd05c629fbec593348ee6c4172b2c9e98e35df4cdddce33efa8d313374",
+      "root_has_competition": false,
+      "rows": 169,
+      "rows_with_competition": 0,
+      "run_path_sha256": "143a4a1810d9a7761f3e5ce787420e5b0b8e1c337fff266ecb2892d8769cd215"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "d20e014fbd57168afc5427401c2aa4408a572ffa54114bb0213fa2f19b9bd148",
+      "root_has_competition": false,
+      "rows": 169,
+      "rows_with_competition": 0,
+      "run_path_sha256": "ab046af875efba949f5c717bf963d7136595933ca9d40412347ad5b6de2e8f27"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "1811129dc3b56a961079abb2e3247964ce8ef99dce0080b4d53dd8651d7a7372",
+      "root_has_competition": false,
+      "rows": 169,
+      "rows_with_competition": 0,
+      "run_path_sha256": "e36972adffb74131634b639d4159f9b1100b37f4fa20aefce156fb4936400578"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "eda7e95d68658df6705ffb10ebdbd4c22c7d707d3c6ec43aafbdc74ffd30dafe",
+      "root_has_competition": false,
+      "rows": 153,
+      "rows_with_competition": 0,
+      "run_path_sha256": "28b2660e0ee3eaa9cbdbd1287e8ce560b376a6f2da59e38d19b6c05d5d863570"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "d7f7df4c4c3edf3993bbebaba6b252aebc03d98273505ead9ca6d16e146b379d",
+      "root_has_competition": false,
+      "rows": 153,
+      "rows_with_competition": 0,
+      "run_path_sha256": "f780cb3d02cbbccb371bacdaf913c0142ff7ec865f90b704b7598da0c3c14bcd"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "3373406d8c301a44f39af241f8bf92b5bf767262c520d37703e17c24ee12dff6",
+      "root_has_competition": false,
+      "rows": 153,
+      "rows_with_competition": 0,
+      "run_path_sha256": "268c7c536e188ce7913b9c8cea25d33bfac9f13c3f53339e724655d96299136e"
+    },
+    {
+      "competition_ids": [],
+      "journal_sha256": "33f9a2398268ccea701ce4099cacddf3288f55f7988369cc3bf43245555fb206",
+      "root_has_competition": false,
+      "rows": 149,
+      "rows_with_competition": 0,
+      "run_path_sha256": "9f3e5f9381659b15e57e648057cd79be5c26961144178e8a2b98bc5b9467d3d8"
+    }
+  ],
+  "labels_or_outcomes_read": false,
+  "protocol": "prospective_structural_diagnostic_v1",
+  "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS"
+}

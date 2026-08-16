@@ -8,7 +8,7 @@ SCIENTIFIC_REPO=/research/d7/spc/yzyang4/worktrees/prospective_production_90842c
 SCIENTIFIC_COMMIT=90842c49dbd73d41d405a5ecdad2224ee447b375
 PYTHON=/research/d7/spc/yzyang4/venvs/exp/bin/python
 REGISTRY_REL=phase1/results/prospective_structural_rejection_20260816/structural_rejections.json
-REGISTRY_SHA=d32cd70b7c755a8ad340cf376fd88f54ca1bea0a50cffbc5fa4cb58bc97ffb01
+REGISTRY_SHA=b853927a108f4d9d37ca5c2b06c90b6b686ee7b5b640fd085d56ceb1b8c4c152
 POLL_SECONDS=60
 MAX_POLLS=481
 
@@ -65,7 +65,7 @@ if [[ "$mode" == --initialize ]]; then
   echo "PREFLIGHT_04_REJECTION_REGISTRY_SHA256=$REGISTRY_SHA"
   echo 'PREFLIGHT_05_INPUT=stable append-only senior archives; exact path size mtime and SHA binding'
   echo 'PREFLIGHT_06_ESTIMAND=unchanged; malformed archive creates no scientific transaction'
-  echo 'PREFLIGHT_07_EXPECTED=one exact malformed tweet archive skipped; valid later archives processed'
+  echo 'PREFLIGHT_07_EXPECTED=two exact malformed archives skipped; valid later archives processed'
   echo 'PREFLIGHT_08_SECURITY=credential-first journal audit; env member never read; umask077'
   echo 'PREFLIGHT_09_LEAKAGE=outcomes and label vault closed; scorer and accumulator under strace'
   echo 'PREFLIGHT_10_REPRO=clean control and frozen scientific commits; immutable registry and snapshots'

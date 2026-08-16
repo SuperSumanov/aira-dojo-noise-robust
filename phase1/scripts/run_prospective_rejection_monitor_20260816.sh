@@ -8,7 +8,9 @@ SCIENTIFIC_REPO=/research/d7/spc/yzyang4/worktrees/prospective_production_90842c
 SCIENTIFIC_COMMIT=90842c49dbd73d41d405a5ecdad2224ee447b375
 PYTHON=/research/d7/spc/yzyang4/venvs/exp/bin/python
 REGISTRY_REL=phase1/results/prospective_structural_rejection_20260816/structural_rejections.json
-REGISTRY_SHA=b853927a108f4d9d37ca5c2b06c90b6b686ee7b5b640fd085d56ceb1b8c4c152
+REGISTRY_SHA=d32cd70b7c755a8ad340cf376fd88f54ca1bea0a50cffbc5fa4cb58bc97ffb01
+ADDITIONAL_REGISTRY_REL=phase1/results/prospective_structural_rejection_20260816/structural_rejections_0815.json
+ADDITIONAL_REGISTRY_SHA=64e009d3ff1460101b84ff269e12d437ae95a4b0df27fe5a904dc259e09555c2
 POLL_SECONDS=60
 MAX_POLLS=481
 
@@ -20,6 +22,7 @@ if [[ -z "$control_repo" || ! "$control_commit" =~ ^[0-9a-f]{40}$ ]]; then
   exit 64
 fi
 registry="$control_repo/$REGISTRY_REL"
+additional_registry="$control_repo/$ADDITIONAL_REGISTRY_REL"
 log_root="$STATE_ROOT/logs"
 monitor_log="$log_root/monitor_rejection_20260816.log"
 pid_file="$STATE_ROOT/rejection_monitor.pid"
@@ -32,6 +35,7 @@ verify_contracts() {
   test "$(git -C "$SCIENTIFIC_REPO" rev-parse HEAD)" = "$SCIENTIFIC_COMMIT"
   test -z "$(git -C "$SCIENTIFIC_REPO" status --porcelain --untracked-files=all)"
   test "$(sha256sum "$registry" | awk '{print $1}')" = "$REGISTRY_SHA"
+  test "$(sha256sum "$additional_registry" | awk '{print $1}')" = "$ADDITIONAL_REGISTRY_SHA"
   test "$(tr -d '\r\n' < "$STATE_ROOT/production_commit.txt")" = "$SCIENTIFIC_COMMIT"
   test ! -e "$STATE_ROOT/BASELINE_INVALID"
 }
@@ -46,6 +50,8 @@ runner() {
       --expected-commit "$SCIENTIFIC_COMMIT" \
       --structural-rejection-registry "$registry" \
       --expect-structural-rejection-registry-sha256 "$REGISTRY_SHA" \
+      --additional-structural-rejection-registry "$additional_registry" \
+      --expect-additional-structural-rejection-registry-sha256 "$ADDITIONAL_REGISTRY_SHA" \
       --minimum-age-seconds 21600 \
       --minimum-observations 3 \
       --minimum-observation-interval-seconds 300 \
@@ -63,6 +69,7 @@ if [[ "$mode" == --initialize ]]; then
   echo "PREFLIGHT_02_CONTROL_COMMIT=$control_commit"
   echo "PREFLIGHT_03_SCIENTIFIC_COMMIT=$SCIENTIFIC_COMMIT"
   echo "PREFLIGHT_04_REJECTION_REGISTRY_SHA256=$REGISTRY_SHA"
+  echo "PREFLIGHT_04B_ADDITIONAL_REJECTION_REGISTRY_SHA256=$ADDITIONAL_REGISTRY_SHA"
   echo 'PREFLIGHT_05_INPUT=stable append-only senior archives; exact path size mtime and SHA binding'
   echo 'PREFLIGHT_06_ESTIMAND=unchanged; malformed archive creates no scientific transaction'
   echo 'PREFLIGHT_07_EXPECTED=two exact malformed archives skipped; valid later archives processed'

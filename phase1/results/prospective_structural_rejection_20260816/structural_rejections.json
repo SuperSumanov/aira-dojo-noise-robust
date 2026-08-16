@@ -8,15 +8,6 @@
       "diagnostic_receipt_file": "diagnostic_receipt.json",
       "diagnostic_receipt_sha256": "d69cf9922318aa95142c596a15ea95d232f3f05e192e4e2fc5dc1c38bf2cac8f",
       "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS"
-    },
-    {
-      "archive_mtime_ns": 1786887449000000000,
-      "archive_relative_path": "0815/text-normalization-challenge-russian-language-8seeds.tar.gz",
-      "archive_sha256": "1de64423a081a13688f2413938be30b64b64d8ea77b1cf5a0a3b41237180da49",
-      "archive_size": 175512106,
-      "diagnostic_receipt_file": "diagnostic_receipt_text_normalization_0815.json",
-      "diagnostic_receipt_sha256": "39ab9eebc926059137890ccd22ab5ed62c5809c7a30b46491c6878fef83cfa35",
-      "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS"
     }
   ],
   "outcomes_read": false,

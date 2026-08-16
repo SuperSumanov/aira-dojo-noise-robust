@@ -123,6 +123,48 @@ def test_exact_structural_rejection_is_bound_and_skipped(tmp_path: Path):
         apply_structural_rejections(observed, [row], "e" * 64)
 
 
+def test_sequential_immutable_rejection_registries_preserve_each_binding(tmp_path: Path):
+    first = tmp_path / "0814" / "first.tar.gz"
+    second = tmp_path / "0815" / "second.tar.gz"
+    first.parent.mkdir()
+    second.parent.mkdir()
+    first.write_bytes(b"first-structural-only")
+    second.write_bytes(b"second-structural-only")
+    current = {}
+    for relative, archive in (("0814/first.tar.gz", first), ("0815/second.tar.gz", second)):
+        stat = archive.stat()
+        current[relative] = {
+            "path": str(archive.resolve()),
+            "size": stat.st_size,
+            "mtime_ns": stat.st_mtime_ns,
+        }
+    observed = update_observations(empty_observations(tmp_path), current, 300.0, 300)
+    for entry in observed["entries"].values():
+        entry["baseline"] = False
+
+    def rejection(relative: str, archive: Path) -> dict:
+        stat = archive.stat()
+        return {
+            "archive_mtime_ns": stat.st_mtime_ns,
+            "archive_relative_path": relative,
+            "archive_sha256": sha256_bytes(archive.read_bytes()),
+            "archive_size": stat.st_size,
+            "diagnostic_receipt_file": "diagnostic_receipt.json",
+            "diagnostic_receipt_sha256": "d" * 64,
+            "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
+        }
+
+    apply_structural_rejections(
+        observed, [rejection("0814/first.tar.gz", first)], "a" * 64
+    )
+    apply_structural_rejections(
+        observed, [rejection("0815/second.tar.gz", second)], "b" * 64
+    )
+    assert observed["entries"]["0814/first.tar.gz"]["rejection_registry_sha256"] == "a" * 64
+    assert observed["entries"]["0815/second.tar.gz"]["rejection_registry_sha256"] == "b" * 64
+    assert ready_archives(observed, 1000.0, 1, 1, 1) == []
+
+
 def test_rejected_archive_change_or_disappearance_fails_closed(tmp_path: Path):
     observed = update_observations(
         empty_observations(tmp_path),

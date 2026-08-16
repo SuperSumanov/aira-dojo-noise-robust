@@ -899,15 +899,27 @@ def run_once(args: argparse.Namespace) -> int:
                     raise ProductionError("committed transaction source is absent from observation ledger")
                 entry["committed_archive_sha256"] = row["archive_sha256"]
                 entry["committed_snapshot_sha256"] = latest_sha
-            rejection_path = getattr(args, "structural_rejection_registry", None)
-            rejection_sha = getattr(
-                args, "expect_structural_rejection_registry_sha256", None
+            rejection_specs = (
+                (
+                    getattr(args, "structural_rejection_registry", None),
+                    getattr(args, "expect_structural_rejection_registry_sha256", None),
+                ),
+                (
+                    getattr(args, "additional_structural_rejection_registry", None),
+                    getattr(
+                        args,
+                        "expect_additional_structural_rejection_registry_sha256",
+                        None,
+                    ),
+                ),
             )
-            if (rejection_path is None) != (rejection_sha is None):
-                raise ProductionError(
-                    "structural rejection registry path and SHA must be supplied together"
-                )
-            if rejection_path is not None:
+            for rejection_path, rejection_sha in rejection_specs:
+                if (rejection_path is None) != (rejection_sha is None):
+                    raise ProductionError(
+                        "structural rejection registry path and SHA must be supplied together"
+                    )
+                if rejection_path is None:
+                    continue
                 rejection_rows, rejection_registry_sha = load_structural_rejections(
                     rejection_path.resolve(), rejection_sha
                 )
@@ -961,6 +973,8 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--expected-commit", required=True)
     parser.add_argument("--structural-rejection-registry", type=Path)
     parser.add_argument("--expect-structural-rejection-registry-sha256")
+    parser.add_argument("--additional-structural-rejection-registry", type=Path)
+    parser.add_argument("--expect-additional-structural-rejection-registry-sha256")
     parser.add_argument("--minimum-age-seconds", type=int, default=6 * 60 * 60)
     parser.add_argument("--minimum-observations", type=int, default=3)
     parser.add_argument("--minimum-observation-interval-seconds", type=int, default=5 * 60)

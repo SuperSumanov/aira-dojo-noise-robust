@@ -50,11 +50,14 @@ No task is inferred from the filename. The malformed archive creates no intake, 
 accumulator, or scientific transaction. It remains available for a separately declared
 schema-repair extension or a corrected export from the data producer.
 
-The initial one-entry registry was
+The initial one-entry registry remains immutable at
 `phase1/results/prospective_structural_rejection_20260816/structural_rejections.json`,
 SHA-256 `d32cd70b7c755a8ad340cf376fd88f54ca1bea0a50cffbc5fa4cb58bc97ffb01`.
-The current two-entry registry at the same path has SHA-256
-`b853927a108f4d9d37ca5c2b06c90b6b686ee7b5b640fd085d56ceb1b8c4c152`.
+The second rejection is held in a separate immutable append registry at
+`phase1/results/prospective_structural_rejection_20260816/structural_rejections_0815.json`,
+SHA-256 `64e009d3ff1460101b84ff269e12d437ae95a4b0df27fe5a904dc259e09555c2`.
+The control runner verifies and applies both registries in order, preserving the
+original registry binding on the first rejected archive instead of mutating it.
 
 ## Frozen scientific path
 

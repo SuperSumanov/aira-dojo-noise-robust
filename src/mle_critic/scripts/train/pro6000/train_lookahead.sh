@@ -9,7 +9,7 @@ SEED=${1:-7}
 #--config_file "$ACCELERATE_CONFIG" \
 #--num_processes 2 "$TRAIN_SCRIPT" \
 #--train_pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
-#--test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
+#--test_pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
 #--cards "$DATA_DIR/cards_current.jsonl" \
 #--model Qwen/Qwen3-0.6B-Base \
 #--max-len 16384 \
@@ -27,7 +27,7 @@ SEED=${1:-7}
 #--config_file "$ACCELERATE_CONFIG" \
 #--num_processes 2 "$TRAIN_SCRIPT" \
 #--train_pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
-#--test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
+#--test_pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
 #--cards "$DATA_DIR/cards_current.jsonl" \
 #--model Qwen/Qwen3-1.7B-Base \
 #--max-len 16384 \
@@ -45,7 +45,7 @@ SEED=${1:-7}
 #--config_file "$ACCELERATE_CONFIG" \
 #--num_processes 2 "$TRAIN_SCRIPT" \
 #--train_pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
-#--test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
+#--test_pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
 #--cards "$DATA_DIR/cards_current.jsonl" \
 #--model Qwen/Qwen3-4B-Base \
 #--max-len 16384 \
@@ -63,7 +63,7 @@ accelerate launch \
 --config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
 --train_pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
---test_pairs "$DATA_DIR/decision_pairs_runsplit.jsonl" \
+--test_pairs "$DATA_DIR/value_pairs_runsplit.jsonl" \
 --cards "$DATA_DIR/cards_current.jsonl" \
 --model Qwen/Qwen3-8B-Base \
 --max-len 16384 \

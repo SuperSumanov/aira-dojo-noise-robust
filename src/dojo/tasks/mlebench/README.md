@@ -20,6 +20,13 @@ Replace line 29 in `src/dojo/tasks/mlebench/mle-bench/mlebench/data.py` with:
     ```
     so that a temporary directory is created for the cache.
 
+**Important:**
+Replace line 117 in `src/dojo/tasks/mlebench/mle-bench/mlebench/grade.py` with:
+    ```
+    competition.grader.grade_fn(read_csv(submission), load_answers(competition.answers))
+    ```
+    so that the `tensorflow2-question-answering` will not failed.
+
 4. Install mle-bench.
     ```
     pip install -e .

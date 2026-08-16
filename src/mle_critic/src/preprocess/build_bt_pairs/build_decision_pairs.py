@@ -24,6 +24,7 @@ from pathlib import Path
 from typing import Mapping, Sequence
 
 from ..download_and_resolve.cards import Card, load_cards
+from .pair_filters import filter_pair_cards
 
 
 def index_cards(
@@ -160,6 +161,11 @@ def lookahead_value(
 def build_decision_pairs(
     cards_by_run_id: Mapping[str, Sequence[Card]],
     budgets: Sequence[int],
+    time_limit: tuple[int, int] | None = None,
+    execution_timeout: tuple[int, int] | None = None,
+    client: str | None = None,
+    hardware: str | None = None,
+    date: tuple[str, str] | None = None,
 ) -> tuple[list[dict], dict[str, int]]:
     """Build all unequal sibling pairs for each requested lookahead budget."""
     if not budgets:
@@ -169,7 +175,15 @@ def build_decision_pairs(
     if len(set(budgets)) != len(budgets):
         raise ValueError("Budgets must not contain duplicates")
 
-    cards_by_id, _ = index_cards(cards_by_run_id)
+    filtered_cards_by_run_id = filter_pair_cards(
+        cards_by_run_id,
+        time_limit=time_limit,
+        execution_timeout=execution_timeout,
+        client=client,
+        hardware=hardware,
+        date=date,
+    )
+    cards_by_id, _ = index_cards(filtered_cards_by_run_id)
     children_by_parent_id = build_children_index(cards_by_id)
     higher_is_better_by_task = resolve_task_directions(cards_by_id)
 
@@ -290,13 +304,51 @@ def parse_args() -> argparse.Namespace:
         default=parse_budgets("0,1,2"),
         help="comma-separated descendant expansion budgets",
     )
+    parser.add_argument(
+        "--time-limit",
+        type=int,
+        nargs=2,
+        metavar=("MIN", "MAX"),
+        help="keep Cards whose time_limit is in the inclusive range",
+    )
+    parser.add_argument(
+        "--execution-timeout",
+        type=int,
+        nargs=2,
+        metavar=("MIN", "MAX"),
+        help="keep Cards whose execution_timeout is in the inclusive range",
+    )
+    parser.add_argument("--client", help="keep Cards whose client contains this string")
+    parser.add_argument(
+        "--hardware", help="keep Cards whose hardware contains this string"
+    )
+    parser.add_argument(
+        "--date",
+        "--date-range",
+        dest="date",
+        nargs=2,
+        metavar=("START", "END"),
+        help="keep runs in the inclusive YYYY-MM-DD date range",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     arguments = parse_args()
     cards_by_run_id = load_cards(str(arguments.cards))
-    records, summary = build_decision_pairs(cards_by_run_id, arguments.budgets)
+    records, summary = build_decision_pairs(
+        cards_by_run_id,
+        arguments.budgets,
+        time_limit=tuple(arguments.time_limit) if arguments.time_limit else None,
+        execution_timeout=(
+            tuple(arguments.execution_timeout)
+            if arguments.execution_timeout
+            else None
+        ),
+        client=arguments.client,
+        hardware=arguments.hardware,
+        date=tuple(arguments.date) if arguments.date else None,
+    )
 
     arguments.out.parent.mkdir(parents=True, exist_ok=True)
     with arguments.out.open("w", encoding="utf-8") as output_file:

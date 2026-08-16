@@ -18,6 +18,7 @@ src/mle_critic/src/preprocess/download_and_resolve/build_cards.py
 ```text
 <run_dir>/
 ├── dojo_config.json
+├── env_variables.json
 └── checkpoint/journal.jsonl
 ```
 
@@ -43,6 +44,19 @@ journal_path.parent.parent / "dojo_config.json"
 grade、因此 journal 中完全没有 competition ID，则回退到 `dojo_config.json["task"]["name"]`，
 保证这种 run 也不会因为缺少评分记录而被跳过。
 
+每个 run 还会读取以下采样和运行环境信息，并写入该 run 的每一张 Card：
+
+| Card 字段 | 来源 |
+| --- | --- |
+| `time_limit` | `dojo_config.json["solver"]["time_limit_secs"]` |
+| `execution_timeout` | `dojo_config.json["solver"]["execution_timeout"]` |
+| `client` | `dojo_config.json["solver"]["operators"]["draft"]["llm"]["client"]["model_id"]` |
+| `hardware` | `env_variables.json["HARDWARE"]` |
+
+这里的 `client` 字段实际保存的是 draft LLM client 的 `model_id`。`env_variables.json` 和
+`dojo_config.json` 位于同一个 `<run_dir>`。四个字段是当前 Card 格式的必需信息；构建时文件
+不存在、字段缺失或类型非法都会直接报错，不会生成缺少采样条件的 Card。
+
 ## Journal 节点到 Card
 
 journal 中每一行都生成一张 Card，包括：
@@ -58,6 +72,10 @@ Card 保存以下主要信息：
 {
   "id": "spaceship-titanic__node_uuid",
   "task": {"name": "spaceship-titanic"},
+  "time_limit": 7200,
+  "execution_timeout": 1200,
+  "client": "openai/gpt-5",
+  "hardware": "slurm/a100",
   "plan": "候选方案的自然语言计划",
   "code": "候选方案代码",
   "obs": {
@@ -86,6 +104,10 @@ Card 保存以下主要信息：
 medal thresholds 都存在时才会生成 `label.y_norm`。没有 grade 的 Card 仍然保留，此时
 `label` 为 `null`；只有 grade 但不能归一化时，`label.y_norm` 为 `null`。
 
+这四个 run 级字段也包含在 `Card.view()` 和 `Card.hidden()` 中，因此后续可以分析采样配置和
+硬件对 Card 分布、执行结果及 critic 表现的影响。`Card.from_json()` 会直接读取这四个字段；
+输入 JSON 缺少任意一个字段时直接报错，不兼容更早的不含这些字段的 Card 文件。
+
 ## 输出格式
 
 输出不再是把所有 Card 打平的 JSONL，而是一个 JSON 大字典：
@@ -93,11 +115,24 @@ medal thresholds 都存在时才会生成 `label.y_norm`。没有 grade 的 Card
 ```json
 {
   "run_id_1__2026-07-28": [
-    {"id": "task__root", "plan": "", "code": "", "label": null},
-    {"id": "task__node_1", "plan": "...", "code": "...", "label": {}}
+    {
+      "id": "task__root",
+      "time_limit": 7200,
+      "execution_timeout": 1200,
+      "client": "openai/gpt-5",
+      "hardware": "slurm/a100",
+      "label": null
+    }
   ],
   "run_id_2__2026-07-29": [
-    {"id": "task__root", "plan": "", "code": "", "label": null}
+    {
+      "id": "task__root",
+      "time_limit": 3600,
+      "execution_timeout": 600,
+      "client": "openai/gpt-4.1",
+      "hardware": "slurm/h100",
+      "label": null
+    }
   ]
 }
 ```
@@ -120,6 +155,16 @@ PYTHONPATH=src/mle_critic python \
 写入和读取分别使用 `save_cards()` 与 `load_cards()`；两者都只处理当前的
 `run_id -> list[Card]` JSON 大字典格式，不兼容旧的扁平 JSONL Card 文件。
 
+构建结束时除总 Card 数和 run 数外，还会按 `competition_id` 排序输出每个 competition 的
+Card 数和 run 数。`--tasks` 排除的 journal 不进入输出，也不进入这些统计。例如：
+
+```text
+[build_cards] 12000 cards from 100 runs -> OUTPUT.json
+[build_cards] counts by competition_id:
+[build_cards]   competition-a: 7000 cards from 60 runs
+[build_cards]   competition-b: 5000 cards from 40 runs
+```
+
 ## Bradley-Terry Pair 构建总览
 
 新版 pair 流程全部位于：
@@ -128,6 +173,7 @@ PYTHONPATH=src/mle_critic python \
 src/mle_critic/src/preprocess/build_bt_pairs/
 ├── build_subtree_pairs.py   # value pair：比较哪个节点最终通向更好的结果
 ├── build_decision_pairs.py  # decision pair：比较同一父节点下应该选择哪个孩子
+├── pair_filters.py          # 两种 pair builder 共用的 run/Card 元数据过滤
 └── build_runsplit.py        # 将 frozen physical-run split 应用到 raw pair
 ```
 
@@ -137,7 +183,7 @@ run split 的维护和 pair split 的应用是两个不同步骤：
 download_and_resolve/build_runsplit.py
     更新 runsplit_holdruns.json，只给新 run 分配 train/test 身份
 
-build_bt_pairs/appply_runsplit.py
+build_bt_pairs/apply_runsplit.py
     读取已经冻结的 runsplit_holdruns.json，把 raw pair 标成 train/test
 ```
 
@@ -172,6 +218,47 @@ src/mle_critic/src/preprocess/download_and_resolve/build_runsplit.py
 
 这里的“约 20%”是针对本次需要分配的 run。比如某个任务当天只新增一个 run，当前切片规则
 会把这个 run 放进 hold。这样做优先保证旧身份完全不变，而不是强行维持累计数据精确 80/20。
+
+## Pair 构建前的采样条件过滤
+
+`build_decision_pairs()` 和 `build_value_pairs()` 都接受以下五个可选参数：
+
+```python
+time_limit: tuple[int, int] | None = None
+execution_timeout: tuple[int, int] | None = None
+client: str | None = None
+hardware: str | None = None
+date: tuple[str, str] | None = None
+```
+
+过滤规则如下：
+
+- `time_limit=(lower, upper)`：只保留 `lower <= card.time_limit <= upper` 的 Card；
+- `execution_timeout=(lower, upper)`：同样使用包含上下界的整数范围；
+- `client=substring`：只保留 `card.client` 中包含该字符串的 Card，不要求完全相等；
+- `hardware=substring`：对子串做与 `client` 相同的匹配；
+- `date=(start, end)`：从 run key 的 `__YYYY-MM-DD` 后缀读取日期，只保留包含起止日期的 run。
+
+字符串匹配区分大小写。所有参数默认是 `None`，即不施加对应过滤。范围长度不为 2、下界大于
+上界、日期不是 `YYYY-MM-DD`，或者启用日期过滤后遇到不符合 `<id>__YYYY-MM-DD` 格式的 run
+key，都会直接报错。
+
+过滤发生在建立 children index、遍历后代和计算 value 之前。因此被过滤掉的 Card 不仅不会
+成为 pair 端点，也不会作为隐藏的后代继续影响保留节点的 lookahead/subtree value。当前这四
+项 Card 元数据在一个 physical run 内通常相同，所以实际使用时多数情况会整批保留或排除一个
+run；实现仍按 Card 字段逐张判断。
+
+两种命令行入口使用相同参数：
+
+```text
+--time-limit MIN MAX
+--execution-timeout MIN MAX
+--client SUBSTRING
+--hardware SUBSTRING
+--date START END
+```
+
+`--date-range START END` 是 `--date` 的同义写法。
 
 ## Value pair
 
@@ -356,6 +443,21 @@ PYTHONPATH=src/mle_critic python \
   data/augmented_mle_critic/decision_pairs_raw.jsonl \
   data/augmented_mle_critic/augmented_cards_current.json \
   --budgets 0,1,2
+```
+
+例如，只基于指定采样预算、模型、硬件和日期窗口构建 pair：
+
+```bash
+PYTHONPATH=src/mle_critic python \
+  -m src.preprocess.build_bt_pairs.build_subtree_pairs \
+  data/augmented_mle_critic/value_pairs_filtered.jsonl \
+  data/augmented_mle_critic/augmented_cards_current.json \
+  --cap 20000 --seed 7 \
+  --time-limit 3600 7200 \
+  --execution-timeout 600 1200 \
+  --client gpt-5 \
+  --hardware a100 \
+  --date 2026-01-01 2026-06-30
 ```
 
 每日应该从当前完整 Cards 重建 raw pair，而不是把当天 pair 直接追加到旧 pair 文件。原因是新

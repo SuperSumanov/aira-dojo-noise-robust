@@ -81,6 +81,49 @@ def _read_run_config(journal_path: str) -> dict:
     return config
 
 
+def _read_hardware(journal_path: str) -> str:
+    """Read ``HARDWARE`` from the env_variables.json beside dojo_config.json."""
+    run_directory = os.path.dirname(os.path.dirname(journal_path))
+    env_variables_path = os.path.join(run_directory, "env_variables.json")
+    try:
+        with open(env_variables_path) as env_variables_file:
+            env_variables = json.load(env_variables_file)
+    except (OSError, json.JSONDecodeError) as error:
+        raise ValueError(
+            f"Cannot read environment variables for journal {journal_path}: "
+            f"{env_variables_path}"
+        ) from error
+
+    hardware = env_variables.get("HARDWARE")
+    if not isinstance(hardware, str) or not hardware:
+        raise ValueError(f"Missing non-empty string 'HARDWARE' in {env_variables_path}")
+    return hardware
+
+
+def _read_solver_metadata(run_config: dict, journal_path: str) -> tuple:
+    """Extract the Card-level solver metadata required for one run."""
+    try:
+        solver = run_config["solver"]
+        time_limit = solver["time_limit_secs"]
+        execution_timeout = solver["execution_timeout"]
+        client = solver["operators"]["draft"]["llm"]["client"]["model_id"]
+    except (KeyError, TypeError) as error:
+        raise ValueError(
+            f"Missing required solver metadata in dojo_config.json for journal "
+            f"{journal_path}: {error}"
+        ) from error
+
+    if not isinstance(time_limit, (int, float)) or isinstance(time_limit, bool):
+        raise ValueError(f"Invalid solver.time_limit_secs for journal {journal_path}")
+    if not isinstance(execution_timeout, (int, float)) or isinstance(execution_timeout, bool):
+        raise ValueError(f"Invalid solver.execution_timeout for journal {journal_path}")
+    if not isinstance(client, str) or not client:
+        raise ValueError(
+            f"Invalid solver.operators.draft.llm.client.model_id for journal {journal_path}"
+        )
+    return time_limit, execution_timeout, client
+
+
 def _make_run_key(run_config: dict) -> str:
     """Build ``<id>__<YYYY-MM-DD>`` from the run config."""
     launch_time = (run_config.get("metadata") or {}).get("launch_time")
@@ -108,6 +151,7 @@ def build(runs_root: str, out_path: str, tasks=None):
     )
 
     cards_by_run_id = {}
+    counts_by_competition = {}
     scanned_journal_count = 0
     total_card_count = 0
     for journal_path in journal_paths:
@@ -122,6 +166,10 @@ def build(runs_root: str, out_path: str, tasks=None):
             )
         if tasks and competition_id not in tasks:
             continue
+        time_limit, execution_timeout, client = _read_solver_metadata(
+            run_config, journal_path
+        )
+        hardware = _read_hardware(journal_path)
         scanned_journal_count += 1
         if run_key in cards_by_run_id:
             raise ValueError(
@@ -133,14 +181,34 @@ def build(runs_root: str, out_path: str, tasks=None):
             metric="",
             desc=competition_id,
         )
-        run_cards = parse_journal(journal_path, task)
+        run_cards = parse_journal(
+            journal_path,
+            task,
+            time_limit=time_limit,
+            execution_timeout=execution_timeout,
+            client=client,
+            hardware=hardware,
+        )
         cards_by_run_id[run_key] = run_cards
-        total_card_count += len(run_cards)
+        card_count = len(run_cards)
+        total_card_count += card_count
+        competition_counts = counts_by_competition.setdefault(
+            competition_id, {"cards": 0, "runs": 0}
+        )
+        competition_counts["cards"] += card_count
+        competition_counts["runs"] += 1
 
     save_cards(cards_by_run_id, out_path)
     print(
         f"[build_cards] {total_card_count} cards from {scanned_journal_count} runs -> {out_path}"
     )
+    print("[build_cards] counts by competition_id:")
+    for competition_id in sorted(counts_by_competition):
+        competition_counts = counts_by_competition[competition_id]
+        print(
+            f"[build_cards]   {competition_id}: "
+            f"{competition_counts['cards']} cards from {competition_counts['runs']} runs"
+        )
     return cards_by_run_id
 
 

@@ -64,6 +64,10 @@ class Label:
 class Card:
     id: str
     task: TaskInfo
+    time_limit: Optional[float] = None
+    execution_timeout: Optional[float] = None
+    client: Optional[str] = None
+    hardware: Optional[str] = None
     plan: str = ""
     code: str = ""
     obs: Obs = field(default_factory=Obs)
@@ -76,6 +80,10 @@ class Card:
         return {
             "id": self.id,
             "task": asdict(self.task),
+            "time_limit": self.time_limit,
+            "execution_timeout": self.execution_timeout,
+            "client": self.client,
+            "hardware": self.hardware,
             "plan": self.plan,
             "code": self.code,
             "obs": asdict(self.obs),
@@ -87,6 +95,10 @@ class Card:
         return Card(
             id=self.id,
             task=self.task,
+            time_limit=self.time_limit,
+            execution_timeout=self.execution_timeout,
+            client=self.client,
+            hardware=self.hardware,
             plan=self.plan,
             code=self.code,
             obs=self.obs,
@@ -102,6 +114,10 @@ class Card:
         d = {
             "id": self.id,
             "task": asdict(self.task),
+            "time_limit": self.time_limit,
+            "execution_timeout": self.execution_timeout,
+            "client": self.client,
+            "hardware": self.hardware,
             "plan": self.plan,
             "code": self.code,
             "obs": asdict(self.obs),
@@ -113,7 +129,9 @@ class Card:
     @classmethod
     def from_json(cls, d: Dict[str, Any]) -> "Card":
         return cls(
-            id=d["id"], task=TaskInfo(**d["task"]), plan=d.get("plan", ""),
+            id=d["id"], task=TaskInfo(**d["task"]),
+            time_limit=d["time_limit"], execution_timeout=d["execution_timeout"],
+            client=d["client"], hardware=d["hardware"], plan=d.get("plan", ""),
             code=d.get("code", ""),
             obs=Obs(**d.get("obs", {})), lineage=Lineage(**d.get("lineage", {})),
             label=Label(**d["label"]) if d.get("label") is not None else None,
@@ -229,7 +247,15 @@ def normalize_graded(
 # Build cards from an aira-dojo journal.jsonl  (offline post-parse; best-effort).
 # Live-hook variant: call card_from_node_data(get_node_data(i), task_meta) inside a solver callback.
 # ---------------------------------------------------------------------------
-def card_from_node_data(node_data: Dict[str, Any], task: TaskInfo) -> Card:
+def card_from_node_data(
+    node_data: Dict[str, Any],
+    task: TaskInfo,
+    *,
+    time_limit: float,
+    execution_timeout: float,
+    client: str,
+    hardware: str,
+) -> Card:
     """Convert one aira-dojo journal node to a Card, including empty and unlabeled nodes."""
     metric_info = node_data.get("metric_info") or {}
 
@@ -276,6 +302,10 @@ def card_from_node_data(node_data: Dict[str, Any], task: TaskInfo) -> Card:
     return Card(
         id=f"{resolved_task.name}__{node_data.get('id', node_data.get('step'))}",
         task=resolved_task,
+        time_limit=time_limit,
+        execution_timeout=execution_timeout,
+        client=client,
+        hardware=hardware,
         plan=node_data.get("plan") or "",
         code=node_data.get("code") or "",
         # TODO(aira-dojo has no native fidelity/val-curve): epochs/data_frac/val_curve unknown ->
@@ -303,7 +333,15 @@ def card_from_node_data(node_data: Dict[str, Any], task: TaskInfo) -> Card:
     )
 
 
-def parse_journal(path: str, task: TaskInfo) -> List[Card]:
+def parse_journal(
+    path: str,
+    task: TaskInfo,
+    *,
+    time_limit: float,
+    execution_timeout: float,
+    client: str,
+    hardware: str,
+) -> List[Card]:
     """Read one journal and convert every node to a Card, including its root."""
     journal_nodes = []
     with open(path) as journal_file:
@@ -338,7 +376,14 @@ def parse_journal(path: str, task: TaskInfo) -> List[Card]:
 
     cards = []
     for node in journal_nodes:
-        card = card_from_node_data(node, task)
+        card = card_from_node_data(
+            node,
+            task,
+            time_limit=time_limit,
+            execution_timeout=execution_timeout,
+            client=client,
+            hardware=hardware,
+        )
         step = node.get("step")
         parent_steps = node.get("parents") or []
         if parent_steps and parent_steps[0] in node_by_step:

@@ -18,7 +18,10 @@ class BradleyTerryConfig(TrainingArguments):
 
     train_pairs: str = field(default="", metadata={"help": "pair JSONL file for training"})
     test_pairs: str = field(default="", metadata={"help": "pair JSONL file for testing"})
-    cards: str = field(default="", metadata={"help": "cards JSONL file"})
+    cards: str = field(
+        default="",
+        metadata={"help": "run-grouped Card JSON file"},
+    )
     model: str = field(
         default_factory=lambda: os.environ.get("MLE_CRITIC_MODEL", "Qwen/Qwen2.5-1.5B-Instruct"),
         metadata={"help": "backbone model"},

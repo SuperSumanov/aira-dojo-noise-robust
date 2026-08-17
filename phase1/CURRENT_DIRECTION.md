@@ -26,6 +26,10 @@
 4. 当前正面论文资产因此是：run-clean 搜索树 corpus + source opportunity/retention/status contracts + 691-node
    安全 failure taxonomy + 494-pair parent-matched failure-risk benchmark。方法层仍以 score-channel 前瞻复现为
    唯一主实验；纯结构 LOTO、Qwen frozen checkpoint、TF-IDF failure controller 均已诚实关闭。
+5. commit `990be2a5bbdd40b203d802ae2a0273a7b14c957b` 已在任何新 cohort outcome 被读取前冻结 length-only
+   前瞻确认：必须先封存 score-channel 150-run cohort，再按时间取之后最早的 150 个 eligible unique parents；
+   规则固定为 UTF-8 code bytes 较长者预测 retained-success。它是 CPU-only 的 informative-censoring 支持审计，
+   当前状态 `FROZEN_NOT_STARTED`，不替代主实验；未满固定样本不看中间 accuracy，失败后不换长度定义重试。
 
 直接证据：
 
@@ -33,6 +37,7 @@
 - `phase1/results/failure_risk_controller_loto_20260817/README.md`；
 - `phase1/实验记录/2026-08-17/FailureRiskPairSupport_v1_预注册与执行前检查.md`；
 - `phase1/实验记录/2026-08-17/FailureRiskController_LOTO_v1_裁决.md`。
+- `phase1/实验记录/2026-08-17/FailureCensor_LengthRule_前瞻确认预注册.md`。
 
 ## 0Z. 2026-08-17 最新覆盖：failure memory 通过；纯结构 LOTO 与学长 frozen checkpoint 关闭
 

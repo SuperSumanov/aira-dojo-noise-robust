@@ -22,8 +22,10 @@
    候选集上，两个通道各自 tie-aware top-1 预测 frozen `y_norm` 的逐 parent credit 差。primary 为 run-clustered
    CI，secondary 为 task-clustered；另有 run-level exact sign 与 task LOTO。点估计不正即 KILL；只有正点估计、
    run-sign `p<0.05`、run-CI 下界大于 0、所有 task LOTO 大于 -0.10 才 GO。
-5. 当前 CPU 聚焦测试为 11 passed；完整远端 suite 与合成端到端双跑仍须在精确冻结 commit 上通过后，才允许把
-   该 commit 写入未来 approval。旧 HCE、多保真、probe、Qwen checkpoint 或 failure-length 支线均不因此恢复。
+5. 精确冻结 commit `ca3bb7315078f2c4bed99fa4c33d93c2f353d670` 已在 detached remote worktree 通过
+   `py_compile`、连续两次 11/11 聚焦测试和完整 `373 passed in 37.33s`；worktree clean，日志 SHA 为
+   `f912026...`。因此只允许把该 commit 写入未来 approval 的 `worker_source_commit`。旧 HCE、多保真、probe、
+   Qwen checkpoint 或 failure-length 支线均不因此恢复。
 
 直接证据：
 
@@ -32,6 +34,7 @@
 - `phase1/score_channel_replay_worker.py`；
 - `phase1/score_channel_prospective_analysis.py`；
 - `phase1/verify_score_channel_prospective_analysis.py`。
+- `phase1/results/score_channel_execution_freeze_20260818/README.md`。
 
 ## 0AB. 2026-08-18 最新覆盖：0816 新语料 fail-closed；failure-length 异质性关闭
 

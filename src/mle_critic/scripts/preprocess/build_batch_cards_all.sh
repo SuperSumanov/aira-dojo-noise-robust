@@ -1,0 +1,22 @@
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0726/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0727/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0728/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0729/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0730/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0731/
+
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0801/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0802/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0803/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0804/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0805/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0806/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0807/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0808/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0809/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0810/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0811/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0812/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0813/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0814/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0815/

@@ -3,7 +3,7 @@
 # Usage: bash src/mle_critic/scripts/train/pro6000/train_l1_lookahead.sh [seed]
 set -euo pipefail
 source "$(dirname "$0")/../../experiment_env.sh"
-SEED=${1:-7}
+SEED=${1:-6}
 
 #accelerate launch \
 #--config_file "$ACCELERATE_CONFIG" \

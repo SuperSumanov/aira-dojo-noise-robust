@@ -1,0 +1,578 @@
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0726/user_hcyang_issue_spooky-author-identification-8seeds
+[build_cards] 159 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0726/user_hcyang_issue_spooky-author-identification-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   spooky-author-identification: 159 cards from 6 runs, medal_rate=10.06% (16/159), gold_rate=0.00% (0/159)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0726/user_s1155173938_issue_google-quest-challenge-2seeds
+[build_cards] 77 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0726/user_s1155173938_issue_google-quest-challenge-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   google-quest-challenge: 77 cards from 2 runs, medal_rate=29.87% (23/77), gold_rate=2.60% (2/77)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0726/user_zjchen_issue_nomad2018-predict-transparent-conductors-6seeds
+[build_cards] 610 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0726/user_zjchen_issue_nomad2018-predict-transparent-conductors-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   nomad2018-predict-transparent-conductors: 610 cards from 4 runs, medal_rate=10.00% (61/610), gold_rate=0.16% (1/610)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0726/user_zzchen2_issue_mlsp-2013-birds-6seeds
+[build_cards] 1489 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0726/user_zzchen2_issue_mlsp-2013-birds-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   mlsp-2013-birds: 1489 cards from 6 runs, medal_rate=9.34% (139/1489), gold_rate=1.28% (19/1489)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0727/user_hcyang_issue_petfinder-pawpularity-score-4seeds
+[build_cards] 108 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0727/user_hcyang_issue_petfinder-pawpularity-score-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   petfinder-pawpularity-score: 108 cards from 4 runs, medal_rate=0.00% (0/108), gold_rate=0.00% (0/108)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0727/user_hcyang_issue_spooky-author-identification-4seeds
+[build_cards] 44 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0727/user_hcyang_issue_spooky-author-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   spooky-author-identification: 44 cards from 4 runs, medal_rate=4.55% (2/44), gold_rate=0.00% (0/44)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0727/user_zjchen_issue_tabular-playground-series-may-2022-6seeds
+[build_cards] 112 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0727/user_zjchen_issue_tabular-playground-series-may-2022-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-may-2022: 112 cards from 4 runs, medal_rate=0.00% (0/112), gold_rate=0.00% (0/112)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0727/user_zzchen2_issue_denoising-dirty-documents-6seeds
+[build_cards] 202 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0727/user_zzchen2_issue_denoising-dirty-documents-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   denoising-dirty-documents: 202 cards from 6 runs, medal_rate=21.29% (43/202), gold_rate=8.42% (17/202)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0728/user_hcyang_issue_petfinder-pawpularity-score-4seeds
+[build_cards] 123 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0728/user_hcyang_issue_petfinder-pawpularity-score-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   petfinder-pawpularity-score: 123 cards from 4 runs, medal_rate=0.00% (0/123), gold_rate=0.00% (0/123)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0728/user_hcyang_issue_spooky-author-identification-4seeds
+[build_cards] 70 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0728/user_hcyang_issue_spooky-author-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   spooky-author-identification: 70 cards from 4 runs, medal_rate=0.00% (0/70), gold_rate=0.00% (0/70)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0728/user_s1155173938_issue_kuzushiji-recognition-2seeds
+[build_cards] 48 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0728/user_s1155173938_issue_kuzushiji-recognition-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   kuzushiji-recognition: 48 cards from 2 runs, medal_rate=2.08% (1/48), gold_rate=0.00% (0/48)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0728/user_zjchen_issue_chaii-hindi-and-tamil-question-answering-4seeds
+[build_cards] 155 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0728/user_zjchen_issue_chaii-hindi-and-tamil-question-answering-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   chaii-hindi-and-tamil-question-answering: 155 cards from 4 runs, medal_rate=0.00% (0/155), gold_rate=0.00% (0/155)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0728/user_zjchen_issue_nomad2018-predict-transparent-conductors-4seeds
+[build_cards] 667 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0728/user_zjchen_issue_nomad2018-predict-transparent-conductors-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   nomad2018-predict-transparent-conductors: 667 cards from 4 runs, medal_rate=18.74% (125/667), gold_rate=0.45% (3/667)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0728/user_zzchen2_issue_mlsp-2013-birds-6seeds
+[build_cards] 863 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0728/user_zzchen2_issue_mlsp-2013-birds-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   mlsp-2013-birds: 863 cards from 6 runs, medal_rate=4.98% (43/863), gold_rate=0.23% (2/863)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0729/user_hcyang_issue_petfinder-pawpularity-score-4seeds
+[build_cards] 144 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0729/user_hcyang_issue_petfinder-pawpularity-score-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   petfinder-pawpularity-score: 144 cards from 4 runs, medal_rate=0.00% (0/144), gold_rate=0.00% (0/144)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0729/user_hcyang_issue_spooky-author-identification-4seeds
+[build_cards] 76 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0729/user_hcyang_issue_spooky-author-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   spooky-author-identification: 76 cards from 4 runs, medal_rate=0.00% (0/76), gold_rate=0.00% (0/76)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0729/user_s1155173938_issue_text-normalization-challenge-english-language-2seeds
+[build_cards] 56 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0729/user_s1155173938_issue_text-normalization-challenge-english-language-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   text-normalization-challenge-english-language: 56 cards from 2 runs, medal_rate=0.00% (0/56), gold_rate=0.00% (0/56)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0729/user_zjchen_issue_chaii-hindi-and-tamil-question-answering-4seeds
+[build_cards] 26 cards from 1 runs -> data/augmented_mle_critic/raw_journal/0729/user_zjchen_issue_chaii-hindi-and-tamil-question-answering-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   chaii-hindi-and-tamil-question-answering: 26 cards from 1 runs, medal_rate=0.00% (0/26), gold_rate=0.00% (0/26)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0729/user_zjchen_issue_tabular-playground-series-may-2022-4seeds
+[build_cards] 39 cards from 3 runs -> data/augmented_mle_critic/raw_journal/0729/user_zjchen_issue_tabular-playground-series-may-2022-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-may-2022: 39 cards from 3 runs, medal_rate=0.00% (0/39), gold_rate=0.00% (0/39)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0729/user_zzchen2_issue_denoising-dirty-documents-6seeds
+[build_cards] 212 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0729/user_zzchen2_issue_denoising-dirty-documents-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   denoising-dirty-documents: 212 cards from 6 runs, medal_rate=40.09% (85/212), gold_rate=28.77% (61/212)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0730/user_hcyang_issue_petfinder-pawpularity-score-4seeds
+[build_cards] 266 cards from 5 runs -> data/augmented_mle_critic/raw_journal/0730/user_hcyang_issue_petfinder-pawpularity-score-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   petfinder-pawpularity-score: 266 cards from 5 runs, medal_rate=0.00% (0/266), gold_rate=0.00% (0/266)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0730/user_hcyang_issue_spooky-author-identification-4seeds
+[build_cards] 727 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0730/user_hcyang_issue_spooky-author-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   spooky-author-identification: 727 cards from 4 runs, medal_rate=16.23% (118/727), gold_rate=0.00% (0/727)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0730/user_zjchen_issue_nomad2018-predict-transparent-conductors-4seeds
+[build_cards] 259 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0730/user_zjchen_issue_nomad2018-predict-transparent-conductors-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   nomad2018-predict-transparent-conductors: 259 cards from 4 runs, medal_rate=13.51% (35/259), gold_rate=3.47% (9/259)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0730/user_zjchen_issue_tabular-playground-series-dec-2021-4seeds
+[build_cards] 0 cards from 0 runs -> data/augmented_mle_critic/raw_journal/0730/user_zjchen_issue_tabular-playground-series-dec-2021-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0730/user_zzchen2_issue_mlsp-2013-birds-6seeds
+[build_cards] 693 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0730/user_zzchen2_issue_mlsp-2013-birds-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   mlsp-2013-birds: 693 cards from 6 runs, medal_rate=8.95% (62/693), gold_rate=0.43% (3/693)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0731/user_hcyang_issue_petfinder-pawpularity-score-4seeds
+[build_cards] 101 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0731/user_hcyang_issue_petfinder-pawpularity-score-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   petfinder-pawpularity-score: 101 cards from 4 runs, medal_rate=4.95% (5/101), gold_rate=1.98% (2/101)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0731/user_hcyang_issue_spooky-author-identification-4seeds
+[build_cards] 179 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0731/user_hcyang_issue_spooky-author-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   spooky-author-identification: 179 cards from 4 runs, medal_rate=33.52% (60/179), gold_rate=0.00% (0/179)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0731/user_s1155173938_issue_google-quest-challenge-2seeds
+[build_cards] 72 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0731/user_s1155173938_issue_google-quest-challenge-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   google-quest-challenge: 72 cards from 2 runs, medal_rate=56.94% (41/72), gold_rate=25.00% (18/72)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0731/user_zzchen2_issue_denoising-dirty-documents-6seeds
+[build_cards] 205 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0731/user_zzchen2_issue_denoising-dirty-documents-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   denoising-dirty-documents: 205 cards from 6 runs, medal_rate=62.44% (128/205), gold_rate=37.07% (76/205)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0801/user_hcyang_issue_petfinder-pawpularity-score-4seeds
+[build_cards] 444 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0801/user_hcyang_issue_petfinder-pawpularity-score-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   petfinder-pawpularity-score: 444 cards from 4 runs, medal_rate=0.00% (0/444), gold_rate=0.00% (0/444)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0801/user_hcyang_issue_spooky-author-identification-4seeds
+[build_cards] 1650 cards from 7 runs -> data/augmented_mle_critic/raw_journal/0801/user_hcyang_issue_spooky-author-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   spooky-author-identification: 1650 cards from 7 runs, medal_rate=0.00% (0/1650), gold_rate=0.00% (0/1650)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0801/user_root_issue_chaii-hindi-and-tamil-question-answering-8seeds
+[build_cards] 499 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0801/user_root_issue_chaii-hindi-and-tamil-question-answering-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   chaii-hindi-and-tamil-question-answering: 499 cards from 8 runs, medal_rate=0.40% (2/499), gold_rate=0.00% (0/499)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0801/user_root_issue_dog-breed-identification-8seeds
+[build_cards] 27 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0801/user_root_issue_dog-breed-identification-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dog-breed-identification: 27 cards from 4 runs, medal_rate=0.00% (0/27), gold_rate=0.00% (0/27)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0801/user_s1155173938_issue_histopathologic-cancer-detection-2seeds
+[build_cards] 43 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0801/user_s1155173938_issue_histopathologic-cancer-detection-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   histopathologic-cancer-detection: 43 cards from 2 runs, medal_rate=76.74% (33/43), gold_rate=76.74% (33/43)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0801/user_zjchen_issue_dog-breed-identification-4seeds
+[build_cards] 87 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0801/user_zjchen_issue_dog-breed-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dog-breed-identification: 87 cards from 4 runs, medal_rate=0.00% (0/87), gold_rate=0.00% (0/87)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0801/user_zjchen_issue_tabular-playground-series-may-2022-4seeds
+[build_cards] 127 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0801/user_zjchen_issue_tabular-playground-series-may-2022-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-may-2022: 127 cards from 4 runs, medal_rate=0.00% (0/127), gold_rate=0.00% (0/127)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0801/user_zzchen2_issue_tabular-playground-series-dec-2021-6seeds
+[build_cards] 121 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0801/user_zzchen2_issue_tabular-playground-series-dec-2021-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-dec-2021: 121 cards from 6 runs, medal_rate=28.10% (34/121), gold_rate=28.10% (34/121)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0802/user_s1155173938_issue_kuzushiji-recognition-2seeds
+[build_cards] 28 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0802/user_s1155173938_issue_kuzushiji-recognition-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   kuzushiji-recognition: 28 cards from 2 runs, medal_rate=28.57% (8/28), gold_rate=0.00% (0/28)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0802/user_zjchen_issue_mlsp-2013-birds-4seeds
+[build_cards] 303 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0802/user_zjchen_issue_mlsp-2013-birds-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   mlsp-2013-birds: 303 cards from 4 runs, medal_rate=45.54% (138/303), gold_rate=0.00% (0/303)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0802/user_zjchen_issue_nomad2018-predict-transparent-conductors-4seeds
+[build_cards] 147 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0802/user_zjchen_issue_nomad2018-predict-transparent-conductors-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   nomad2018-predict-transparent-conductors: 147 cards from 4 runs, medal_rate=39.46% (58/147), gold_rate=14.29% (21/147)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0802/user_zzchen2_issue_denoising-dirty-documents-6seeds
+[build_cards] 186 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0802/user_zzchen2_issue_denoising-dirty-documents-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   denoising-dirty-documents: 186 cards from 6 runs, medal_rate=3.76% (7/186), gold_rate=0.54% (1/186)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0803/user_root_issue_learning-agency-lab-automated-essay-scoring-2-8seeds
+[build_cards] 149 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0803/user_root_issue_learning-agency-lab-automated-essay-scoring-2-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   learning-agency-lab-automated-essay-scoring-2: 149 cards from 8 runs, medal_rate=24.83% (37/149), gold_rate=23.49% (35/149)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0803/user_zjchen_issue_dog-breed-identification-4seeds
+[build_cards] 83 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0803/user_zjchen_issue_dog-breed-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dog-breed-identification: 83 cards from 4 runs, medal_rate=0.00% (0/83), gold_rate=0.00% (0/83)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0803/user_zjchen_issue_tabular-playground-series-may-2022-4seeds
+[build_cards] 80 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0803/user_zjchen_issue_tabular-playground-series-may-2022-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-may-2022: 80 cards from 4 runs, medal_rate=0.00% (0/80), gold_rate=0.00% (0/80)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0803/user_zzchen2_issue_tabular-playground-series-dec-2021-6seeds
+[build_cards] 188 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0803/user_zzchen2_issue_tabular-playground-series-dec-2021-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-dec-2021: 188 cards from 6 runs, medal_rate=14.36% (27/188), gold_rate=14.36% (27/188)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0804/user_hcyang_issue_petfinder-pawpularity-score-4seeds
+[build_cards] 84 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0804/user_hcyang_issue_petfinder-pawpularity-score-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   petfinder-pawpularity-score: 84 cards from 4 runs, medal_rate=0.00% (0/84), gold_rate=0.00% (0/84)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0804/user_hcyang_issue_spooky-author-identification-4seeds
+[build_cards] 104 cards from 5 runs -> data/augmented_mle_critic/raw_journal/0804/user_hcyang_issue_spooky-author-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   spooky-author-identification: 104 cards from 5 runs, medal_rate=33.65% (35/104), gold_rate=0.00% (0/104)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0804/user_s1155173938_issue_kuzushiji-recognition-2seeds
+[build_cards] 52 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0804/user_s1155173938_issue_kuzushiji-recognition-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   kuzushiji-recognition: 52 cards from 2 runs, medal_rate=13.46% (7/52), gold_rate=0.00% (0/52)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0804/user_zjchen_issue_dog-breed-identification-4seeds
+[build_cards] 147 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0804/user_zjchen_issue_dog-breed-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dog-breed-identification: 147 cards from 4 runs, medal_rate=0.00% (0/147), gold_rate=0.00% (0/147)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0804/user_zjchen_issue_tabular-playground-series-may-2022-4seeds
+[build_cards] 117 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0804/user_zjchen_issue_tabular-playground-series-may-2022-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-may-2022: 117 cards from 4 runs, medal_rate=0.00% (0/117), gold_rate=0.00% (0/117)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0804/user_zzchen2_issue_denoising-dirty-documents-6seeds
+[build_cards] 177 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0804/user_zzchen2_issue_denoising-dirty-documents-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   denoising-dirty-documents: 177 cards from 6 runs, medal_rate=31.64% (56/177), gold_rate=22.03% (39/177)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0805/user_hcyang_issue_petfinder-pawpularity-score-4seeds
+[build_cards] 247 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0805/user_hcyang_issue_petfinder-pawpularity-score-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   petfinder-pawpularity-score: 247 cards from 4 runs, medal_rate=0.00% (0/247), gold_rate=0.00% (0/247)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0805/user_hcyang_issue_spooky-author-identification-4seeds
+[build_cards] 117 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0805/user_hcyang_issue_spooky-author-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   spooky-author-identification: 117 cards from 2 runs, medal_rate=21.37% (25/117), gold_rate=0.00% (0/117)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0805/user_hcyang_issue_us-patent-phrase-to-phrase-matching-4seeds
+[build_cards] 119 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0805/user_hcyang_issue_us-patent-phrase-to-phrase-matching-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   us-patent-phrase-to-phrase-matching: 119 cards from 2 runs, medal_rate=0.84% (1/119), gold_rate=0.00% (0/119)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0805/user_s1155173938_issue_histopathologic-cancer-detection-2seeds
+[build_cards] 87 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0805/user_s1155173938_issue_histopathologic-cancer-detection-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   histopathologic-cancer-detection: 87 cards from 2 runs, medal_rate=73.56% (64/87), gold_rate=72.41% (63/87)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0805/user_s1155173938_issue_kuzushiji-recognition-2seeds
+[build_cards] 136 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0805/user_s1155173938_issue_kuzushiji-recognition-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   kuzushiji-recognition: 136 cards from 2 runs, medal_rate=0.00% (0/136), gold_rate=0.00% (0/136)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0805/user_zjchen_issue_mlsp-2013-birds-4seeds
+[build_cards] 161 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0805/user_zjchen_issue_mlsp-2013-birds-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   mlsp-2013-birds: 161 cards from 4 runs, medal_rate=1.24% (2/161), gold_rate=0.00% (0/161)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0805/user_zjchen_issue_nomad2018-predict-transparent-conductors-4seeds
+[build_cards] 587 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0805/user_zjchen_issue_nomad2018-predict-transparent-conductors-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   nomad2018-predict-transparent-conductors: 587 cards from 4 runs, medal_rate=24.02% (141/587), gold_rate=2.04% (12/587)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0805/user_zzchen2_issue_tabular-playground-series-dec-2021-6seeds
+[build_cards] 214 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0805/user_zzchen2_issue_tabular-playground-series-dec-2021-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-dec-2021: 214 cards from 6 runs, medal_rate=50.00% (107/214), gold_rate=50.00% (107/214)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0806/user_hcyang_issue_petfinder-pawpularity-score-4seeds
+[build_cards] 100 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0806/user_hcyang_issue_petfinder-pawpularity-score-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   petfinder-pawpularity-score: 100 cards from 2 runs, medal_rate=0.00% (0/100), gold_rate=0.00% (0/100)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0806/user_hcyang_issue_spooky-author-identification-4seeds
+[build_cards] 66 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0806/user_hcyang_issue_spooky-author-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   spooky-author-identification: 66 cards from 4 runs, medal_rate=3.03% (2/66), gold_rate=0.00% (0/66)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0806/user_hcyang_issue_us-patent-phrase-to-phrase-matching-4seeds
+[build_cards] 113 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0806/user_hcyang_issue_us-patent-phrase-to-phrase-matching-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   us-patent-phrase-to-phrase-matching: 113 cards from 2 runs, medal_rate=0.88% (1/113), gold_rate=0.00% (0/113)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0806/user_s1155173938_issue_google-quest-challenge-2seeds
+[build_cards] 236 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0806/user_s1155173938_issue_google-quest-challenge-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   google-quest-challenge: 236 cards from 2 runs, medal_rate=25.42% (60/236), gold_rate=3.39% (8/236)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0806/user_s1155173938_issue_histopathologic-cancer-detection-2seeds
+[build_cards] 96 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0806/user_s1155173938_issue_histopathologic-cancer-detection-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   histopathologic-cancer-detection: 96 cards from 2 runs, medal_rate=69.79% (67/96), gold_rate=64.58% (62/96)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0806/user_s1155173938_issue_kuzushiji-recognition-2seeds
+[build_cards] 72 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0806/user_s1155173938_issue_kuzushiji-recognition-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   kuzushiji-recognition: 72 cards from 2 runs, medal_rate=16.67% (12/72), gold_rate=0.00% (0/72)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0806/user_zjchen_issue_dog-breed-identification-4seeds
+[build_cards] 104 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0806/user_zjchen_issue_dog-breed-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dog-breed-identification: 104 cards from 4 runs, medal_rate=0.00% (0/104), gold_rate=0.00% (0/104)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0806/user_zjchen_issue_tabular-playground-series-may-2022-4seeds
+[build_cards] 80 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0806/user_zjchen_issue_tabular-playground-series-may-2022-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-may-2022: 80 cards from 4 runs, medal_rate=0.00% (0/80), gold_rate=0.00% (0/80)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0806/user_zjdai25_issue_dog-breed-identification-4seeds
+[build_cards] 288 cards from 5 runs -> data/augmented_mle_critic/raw_journal/0806/user_zjdai25_issue_dog-breed-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dog-breed-identification: 288 cards from 5 runs, medal_rate=0.00% (0/288), gold_rate=0.00% (0/288)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0806/user_zjdai25_issue_tweet-sentiment-extraction-5seeds
+[build_cards] 261 cards from 3 runs -> data/augmented_mle_critic/raw_journal/0806/user_zjdai25_issue_tweet-sentiment-extraction-5seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tweet-sentiment-extraction: 261 cards from 3 runs, medal_rate=0.00% (0/261), gold_rate=0.00% (0/261)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0806/user_zzchen2_issue_denoising-dirty-documents-6seeds
+[build_cards] 165 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0806/user_zzchen2_issue_denoising-dirty-documents-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   denoising-dirty-documents: 165 cards from 6 runs, medal_rate=25.45% (42/165), gold_rate=1.21% (2/165)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0807/user_hcyang_issue_google-quest-challenge-4seeds
+[build_cards] 256 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0807/user_hcyang_issue_google-quest-challenge-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   google-quest-challenge: 256 cards from 4 runs, medal_rate=28.12% (72/256), gold_rate=4.69% (12/256)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0807/user_hcyang_issue_us-patent-phrase-to-phrase-matching-4seeds
+[build_cards] 69 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0807/user_hcyang_issue_us-patent-phrase-to-phrase-matching-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   us-patent-phrase-to-phrase-matching: 69 cards from 2 runs, medal_rate=0.00% (0/69), gold_rate=0.00% (0/69)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0807/user_hcyang_issue_whale-categorization-playground-4seeds
+[build_cards] 105 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0807/user_hcyang_issue_whale-categorization-playground-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   whale-categorization-playground: 105 cards from 2 runs, medal_rate=24.76% (26/105), gold_rate=0.00% (0/105)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0807/user_zjchen_issue_tabular-playground-series-may-2022-4seeds
+[build_cards] 136 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0807/user_zjchen_issue_tabular-playground-series-may-2022-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-may-2022: 136 cards from 4 runs, medal_rate=0.00% (0/136), gold_rate=0.00% (0/136)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0807/user_zjdai25_issue_dog-breed-identification-4seeds
+[build_cards] 106 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0807/user_zjdai25_issue_dog-breed-identification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dog-breed-identification: 106 cards from 4 runs, medal_rate=0.00% (0/106), gold_rate=0.00% (0/106)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0807/user_zjdai25_issue_tweet-sentiment-extraction-4seeds
+[build_cards] 88 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0807/user_zjdai25_issue_tweet-sentiment-extraction-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tweet-sentiment-extraction: 88 cards from 4 runs, medal_rate=0.00% (0/88), gold_rate=0.00% (0/88)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0807/user_zzchen2_issue_tabular-playground-series-dec-2021-6seeds
+[build_cards] 223 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0807/user_zzchen2_issue_tabular-playground-series-dec-2021-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-dec-2021: 223 cards from 6 runs, medal_rate=37.22% (83/223), gold_rate=37.22% (83/223)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0808/user_hcyang_issue_google-quest-challenge-4seeds
+[build_cards] 169 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0808/user_hcyang_issue_google-quest-challenge-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   google-quest-challenge: 169 cards from 4 runs, medal_rate=2.96% (5/169), gold_rate=0.00% (0/169)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0808/user_hcyang_issue_whale-categorization-playground-4seeds
+[build_cards] 732 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0808/user_hcyang_issue_whale-categorization-playground-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   whale-categorization-playground: 732 cards from 4 runs, medal_rate=0.14% (1/732), gold_rate=0.00% (0/732)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0808/user_root_issue_learning-agency-lab-automated-essay-scoring-2-8seeds
+[build_cards] 64 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0808/user_root_issue_learning-agency-lab-automated-essay-scoring-2-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   learning-agency-lab-automated-essay-scoring-2: 64 cards from 6 runs, medal_rate=0.00% (0/64), gold_rate=0.00% (0/64)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0808/user_s1155173938_issue_aptos2019-blindness-detection-2seeds
+[build_cards] 109 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0808/user_s1155173938_issue_aptos2019-blindness-detection-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   aptos2019-blindness-detection: 109 cards from 2 runs, medal_rate=55.96% (61/109), gold_rate=19.27% (21/109)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0808/user_zjchen_issue_tabular-playground-series-dec-2021-4seeds
+[build_cards] 117 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0808/user_zjchen_issue_tabular-playground-series-dec-2021-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-dec-2021: 117 cards from 4 runs, medal_rate=27.35% (32/117), gold_rate=27.35% (32/117)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0808/user_zjchen_issue_text-normalization-challenge-english-language-4seeds
+[build_cards] 198 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0808/user_zjchen_issue_text-normalization-challenge-english-language-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   text-normalization-challenge-english-language: 198 cards from 4 runs, medal_rate=47.47% (94/198), gold_rate=0.00% (0/198)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0808/user_zjdai25_issue_dog-breed-identification-6seeds
+[build_cards] 137 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0808/user_zjdai25_issue_dog-breed-identification-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dog-breed-identification: 137 cards from 6 runs, medal_rate=0.00% (0/137), gold_rate=0.00% (0/137)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0808/user_zjdai25_issue_tweet-sentiment-extraction-4seeds
+[build_cards] 84 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0808/user_zjdai25_issue_tweet-sentiment-extraction-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tweet-sentiment-extraction: 84 cards from 2 runs, medal_rate=2.38% (2/84), gold_rate=0.00% (0/84)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0808/user_zzchen2_issue_leaf-classification-6seeds
+[build_cards] 702 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0808/user_zzchen2_issue_leaf-classification-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   leaf-classification: 702 cards from 6 runs, medal_rate=5.70% (40/702), gold_rate=0.43% (3/702)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0809/user_hcyang_issue_us-patent-phrase-to-phrase-matching-4seeds
+[build_cards] 1188 cards from 5 runs -> data/augmented_mle_critic/raw_journal/0809/user_hcyang_issue_us-patent-phrase-to-phrase-matching-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   us-patent-phrase-to-phrase-matching: 1188 cards from 5 runs, medal_rate=0.00% (0/1188), gold_rate=0.00% (0/1188)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0809/user_hcyang_issue_whale-categorization-playground-4seeds
+[build_cards] 159 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0809/user_hcyang_issue_whale-categorization-playground-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   whale-categorization-playground: 159 cards from 4 runs, medal_rate=10.06% (16/159), gold_rate=0.00% (0/159)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0809/user_s1155173938_issue_histopathologic-cancer-detection-2seeds
+[build_cards] 66 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0809/user_s1155173938_issue_histopathologic-cancer-detection-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   histopathologic-cancer-detection: 66 cards from 2 runs, medal_rate=28.79% (19/66), gold_rate=16.67% (11/66)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0809/user_s1155173938_issue_kuzushiji-recognition-2seeds
+[build_cards] 59 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0809/user_s1155173938_issue_kuzushiji-recognition-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   kuzushiji-recognition: 59 cards from 2 runs, medal_rate=0.00% (0/59), gold_rate=0.00% (0/59)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0809/user_zjchen_issue_tabular-playground-series-dec-2021-4seeds
+[build_cards] 0 cards from 0 runs -> data/augmented_mle_critic/raw_journal/0809/user_zjchen_issue_tabular-playground-series-dec-2021-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0809/user_zjchen_issue_text-normalization-challenge-english-language-4seeds
+[build_cards] 86 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0809/user_zjchen_issue_text-normalization-challenge-english-language-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   text-normalization-challenge-english-language: 86 cards from 4 runs, medal_rate=2.33% (2/86), gold_rate=0.00% (0/86)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0809/user_zjdai25_issue_random-acts-of-pizza-4seeds
+[build_cards] 366 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0809/user_zjdai25_issue_random-acts-of-pizza-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   random-acts-of-pizza: 366 cards from 4 runs, medal_rate=35.52% (130/366), gold_rate=0.00% (0/366)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0809/user_zjdai25_issue_text-normalization-challenge-russian-language-6seeds
+[build_cards] 508 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0809/user_zjdai25_issue_text-normalization-challenge-russian-language-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   text-normalization-challenge-russian-language: 508 cards from 6 runs, medal_rate=62.99% (320/508), gold_rate=0.00% (0/508)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0809/user_zzchen2_issue_leaf-classification-6seeds
+[build_cards] 247 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0809/user_zzchen2_issue_leaf-classification-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   leaf-classification: 247 cards from 6 runs, medal_rate=9.72% (24/247), gold_rate=0.81% (2/247)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0810/user_hcyang_issue_ranzcr-clip-catheter-line-classification-4seeds
+[build_cards] 78 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0810/user_hcyang_issue_ranzcr-clip-catheter-line-classification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   ranzcr-clip-catheter-line-classification: 78 cards from 4 runs, medal_rate=0.00% (0/78), gold_rate=0.00% (0/78)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0810/user_hcyang_issue_us-patent-phrase-to-phrase-matching-4seeds
+[build_cards] 149 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0810/user_hcyang_issue_us-patent-phrase-to-phrase-matching-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   us-patent-phrase-to-phrase-matching: 149 cards from 4 runs, medal_rate=0.67% (1/149), gold_rate=0.00% (0/149)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0810/user_root_issue_learning-agency-lab-automated-essay-scoring-2-8seeds
+[build_cards] 132 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0810/user_root_issue_learning-agency-lab-automated-essay-scoring-2-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   learning-agency-lab-automated-essay-scoring-2: 132 cards from 8 runs, medal_rate=0.00% (0/132), gold_rate=0.00% (0/132)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0810/user_s1155173938_issue_aptos2019-blindness-detection-2seeds
+[build_cards] 86 cards from 2 runs -> data/augmented_mle_critic/raw_journal/0810/user_s1155173938_issue_aptos2019-blindness-detection-2seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   aptos2019-blindness-detection: 86 cards from 2 runs, medal_rate=0.00% (0/86), gold_rate=0.00% (0/86)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0810/user_zjchen_issue_tabular-playground-series-may-2022-4seeds
+[build_cards] 166 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0810/user_zjchen_issue_tabular-playground-series-may-2022-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-may-2022: 166 cards from 4 runs, medal_rate=0.00% (0/166), gold_rate=0.00% (0/166)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0810/user_zjdai25_issue_random-acts-of-pizza-4seeds
+[build_cards] 185 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0810/user_zjdai25_issue_random-acts-of-pizza-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   random-acts-of-pizza: 185 cards from 4 runs, medal_rate=54.59% (101/185), gold_rate=0.00% (0/185)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0810/user_zjdai25_issue_text-normalization-challenge-russian-language-6seeds
+[build_cards] 236 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0810/user_zjdai25_issue_text-normalization-challenge-russian-language-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   text-normalization-challenge-russian-language: 236 cards from 6 runs, medal_rate=26.27% (62/236), gold_rate=0.00% (0/236)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0810/user_zzchen2_issue_leaf-classification-6seeds
+[build_cards] 222 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0810/user_zzchen2_issue_leaf-classification-6seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   leaf-classification: 222 cards from 6 runs, medal_rate=7.21% (16/222), gold_rate=0.00% (0/222)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0811/user_hcyang_issue_google-quest-challenge-8seeds
+[build_cards] 176 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0811/user_hcyang_issue_google-quest-challenge-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   google-quest-challenge: 176 cards from 8 runs, medal_rate=15.34% (27/176), gold_rate=0.00% (0/176)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0811/user_hcyang_issue_whale-categorization-playground-8seeds
+[build_cards] 199 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0811/user_hcyang_issue_whale-categorization-playground-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   whale-categorization-playground: 199 cards from 8 runs, medal_rate=6.03% (12/199), gold_rate=0.00% (0/199)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0811/user_s1155173938_issue_histopathologic-cancer-detection-4seeds
+[build_cards] 73 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0811/user_s1155173938_issue_histopathologic-cancer-detection-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   histopathologic-cancer-detection: 73 cards from 4 runs, medal_rate=61.64% (45/73), gold_rate=53.42% (39/73)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0811/user_zjchen_issue_dogs-vs-cats-redux-kernels-edition-4seeds
+[build_cards] 60 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0811/user_zjchen_issue_dogs-vs-cats-redux-kernels-edition-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dogs-vs-cats-redux-kernels-edition: 60 cards from 4 runs, medal_rate=73.33% (44/60), gold_rate=70.00% (42/60)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0811/user_zjchen_issue_text-normalization-challenge-english-language-8seeds
+[build_cards] 121 cards from 7 runs -> data/augmented_mle_critic/raw_journal/0811/user_zjchen_issue_text-normalization-challenge-english-language-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   text-normalization-challenge-english-language: 121 cards from 7 runs, medal_rate=19.83% (24/121), gold_rate=0.00% (0/121)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0811/user_zjdai25_issue_random-acts-of-pizza-8seeds
+[build_cards] 581 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0811/user_zjdai25_issue_random-acts-of-pizza-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   random-acts-of-pizza: 581 cards from 8 runs, medal_rate=28.74% (167/581), gold_rate=0.00% (0/581)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0811/user_zzchen2_issue_leaf-classification-8seeds
+[build_cards] 369 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0811/user_zzchen2_issue_leaf-classification-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   leaf-classification: 369 cards from 8 runs, medal_rate=0.81% (3/369), gold_rate=0.00% (0/369)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0811/user_zzchen2_issue_tabular-playground-series-dec-2021-4seeds
+[build_cards] 107 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0811/user_zzchen2_issue_tabular-playground-series-dec-2021-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-dec-2021: 107 cards from 4 runs, medal_rate=14.02% (15/107), gold_rate=14.02% (15/107)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0812/user_hcyang_issue_ranzcr-clip-catheter-line-classification-8seeds
+[build_cards] 91 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0812/user_hcyang_issue_ranzcr-clip-catheter-line-classification-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   ranzcr-clip-catheter-line-classification: 91 cards from 8 runs, medal_rate=0.00% (0/91), gold_rate=0.00% (0/91)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0812/user_hcyang_issue_us-patent-phrase-to-phrase-matching-8seeds
+[build_cards] 211 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0812/user_hcyang_issue_us-patent-phrase-to-phrase-matching-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   us-patent-phrase-to-phrase-matching: 211 cards from 8 runs, medal_rate=0.00% (0/211), gold_rate=0.00% (0/211)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0812/user_root_issue_learning-agency-lab-automated-essay-scoring-2-8seeds
+[build_cards] 297 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0812/user_root_issue_learning-agency-lab-automated-essay-scoring-2-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   learning-agency-lab-automated-essay-scoring-2: 297 cards from 8 runs, medal_rate=0.00% (0/297), gold_rate=0.00% (0/297)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0812/user_s1155173938_issue_learning-agency-lab-automated-essay-scoring-2-4seeds
+[build_cards] 50 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0812/user_s1155173938_issue_learning-agency-lab-automated-essay-scoring-2-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   learning-agency-lab-automated-essay-scoring-2: 50 cards from 4 runs, medal_rate=18.00% (9/50), gold_rate=14.00% (7/50)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0812/user_zjchen_issue_dogs-vs-cats-redux-kernels-edition-4seeds
+[build_cards] 80 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0812/user_zjchen_issue_dogs-vs-cats-redux-kernels-edition-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dogs-vs-cats-redux-kernels-edition: 80 cards from 4 runs, medal_rate=58.75% (47/80), gold_rate=55.00% (44/80)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0812/user_zjchen_issue_new-york-city-taxi-fare-prediction-8seeds
+[build_cards] 82 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0812/user_zjchen_issue_new-york-city-taxi-fare-prediction-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   new-york-city-taxi-fare-prediction: 82 cards from 6 runs, medal_rate=0.00% (0/82), gold_rate=0.00% (0/82)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0812/user_zjdai25_issue_random-acts-of-pizza-4seeds
+[build_cards] 190 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0812/user_zjdai25_issue_random-acts-of-pizza-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   random-acts-of-pizza: 190 cards from 4 runs, medal_rate=55.26% (105/190), gold_rate=0.00% (0/190)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0812/user_zjdai25_issue_text-normalization-challenge-russian-language-8seeds
+[build_cards] 184 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0812/user_zjdai25_issue_text-normalization-challenge-russian-language-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   text-normalization-challenge-russian-language: 184 cards from 8 runs, medal_rate=9.78% (18/184), gold_rate=0.00% (0/184)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0812/user_zjdai25_issue_tweet-sentiment-extraction-4seeds
+[build_cards] 86 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0812/user_zjdai25_issue_tweet-sentiment-extraction-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tweet-sentiment-extraction: 86 cards from 4 runs, medal_rate=1.16% (1/86), gold_rate=0.00% (0/86)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0812/user_zzchen2_issue_tabular-playground-series-dec-2021-4seeds
+[build_cards] 90 cards from 3 runs -> data/augmented_mle_critic/raw_journal/0812/user_zzchen2_issue_tabular-playground-series-dec-2021-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tabular-playground-series-dec-2021: 90 cards from 3 runs, medal_rate=25.56% (23/90), gold_rate=25.56% (23/90)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0813/user_hcyang_issue_ranzcr-clip-catheter-line-classification-8seeds
+[build_cards] 48 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0813/user_hcyang_issue_ranzcr-clip-catheter-line-classification-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   ranzcr-clip-catheter-line-classification: 48 cards from 4 runs, medal_rate=0.00% (0/48), gold_rate=0.00% (0/48)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0813/user_hcyang_issue_whale-categorization-playground-8seeds
+[build_cards] 179 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0813/user_hcyang_issue_whale-categorization-playground-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   whale-categorization-playground: 179 cards from 8 runs, medal_rate=0.56% (1/179), gold_rate=0.00% (0/179)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0813/user_zjchen_issue_dogs-vs-cats-redux-kernels-edition-8seeds
+[build_cards] 335 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0813/user_zjchen_issue_dogs-vs-cats-redux-kernels-edition-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dogs-vs-cats-redux-kernels-edition: 335 cards from 8 runs, medal_rate=81.49% (273/335), gold_rate=80.60% (270/335)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0813/user_zjdai25_issue_dog-breed-identification-8seeds
+[build_cards] 170 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0813/user_zjdai25_issue_dog-breed-identification-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dog-breed-identification: 170 cards from 8 runs, medal_rate=0.00% (0/170), gold_rate=0.00% (0/170)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0813/user_zjdai25_issue_random-acts-of-pizza-4seeds
+[build_cards] 132 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0813/user_zjdai25_issue_random-acts-of-pizza-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   random-acts-of-pizza: 132 cards from 4 runs, medal_rate=6.06% (8/132), gold_rate=0.00% (0/132)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0813/user_zjdai25_issue_tweet-sentiment-extraction-4seeds
+[build_cards] 49 cards from 3 runs -> data/augmented_mle_critic/raw_journal/0813/user_zjdai25_issue_tweet-sentiment-extraction-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tweet-sentiment-extraction: 49 cards from 3 runs, medal_rate=0.00% (0/49), gold_rate=0.00% (0/49)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0813/user_zzchen2_issue_learning-agency-lab-automated-essay-scoring-2-4seeds
+[build_cards] 119 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0813/user_zzchen2_issue_learning-agency-lab-automated-essay-scoring-2-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   learning-agency-lab-automated-essay-scoring-2: 119 cards from 4 runs, medal_rate=0.00% (0/119), gold_rate=0.00% (0/119)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0813/user_zzchen2_issue_ventilator-pressure-prediction-8seeds
+[build_cards] 219 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0813/user_zzchen2_issue_ventilator-pressure-prediction-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   ventilator-pressure-prediction: 219 cards from 8 runs, medal_rate=0.00% (0/219), gold_rate=0.00% (0/219)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0814/user_hcyang_issue_ranzcr-clip-catheter-line-classification-8seeds
+[build_cards] 78 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0814/user_hcyang_issue_ranzcr-clip-catheter-line-classification-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   ranzcr-clip-catheter-line-classification: 78 cards from 8 runs, medal_rate=0.00% (0/78), gold_rate=0.00% (0/78)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0814/user_hcyang_issue_us-patent-phrase-to-phrase-matching-8seeds
+[build_cards] 187 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0814/user_hcyang_issue_us-patent-phrase-to-phrase-matching-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   us-patent-phrase-to-phrase-matching: 187 cards from 8 runs, medal_rate=0.00% (0/187), gold_rate=0.00% (0/187)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0814/user_s1155173938_issue_aptos2019-blindness-detection-4seeds
+[build_cards] 50 cards from 3 runs -> data/augmented_mle_critic/raw_journal/0814/user_s1155173938_issue_aptos2019-blindness-detection-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   aptos2019-blindness-detection: 50 cards from 3 runs, medal_rate=10.00% (5/50), gold_rate=2.00% (1/50)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0814/user_zjchen_issue_dogs-vs-cats-redux-kernels-edition-8seeds
+[build_cards] 120 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0814/user_zjchen_issue_dogs-vs-cats-redux-kernels-edition-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dogs-vs-cats-redux-kernels-edition: 120 cards from 8 runs, medal_rate=55.83% (67/120), gold_rate=54.17% (65/120)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0814/user_zjchen_issue_new-york-city-taxi-fare-prediction-8seeds
+[build_cards] 109 cards from 6 runs -> data/augmented_mle_critic/raw_journal/0814/user_zjchen_issue_new-york-city-taxi-fare-prediction-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   new-york-city-taxi-fare-prediction: 109 cards from 6 runs, medal_rate=0.00% (0/109), gold_rate=0.00% (0/109)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0814/user_zjdai25_issue_text-normalization-challenge-russian-language-8seeds
+[build_cards] 196 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0814/user_zjdai25_issue_text-normalization-challenge-russian-language-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   text-normalization-challenge-russian-language: 196 cards from 8 runs, medal_rate=13.78% (27/196), gold_rate=0.00% (0/196)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0814/user_zjdai25_issue_tweet-sentiment-extraction-8seeds
+[build_cards] 1132 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0814/user_zjdai25_issue_tweet-sentiment-extraction-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tweet-sentiment-extraction: 1132 cards from 8 runs, medal_rate=0.00% (0/1132), gold_rate=0.00% (0/1132)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0814/user_zzchen2_issue_learning-agency-lab-automated-essay-scoring-2-4seeds
+[build_cards] 88 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0814/user_zzchen2_issue_learning-agency-lab-automated-essay-scoring-2-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   learning-agency-lab-automated-essay-scoring-2: 88 cards from 4 runs, medal_rate=2.27% (2/88), gold_rate=0.00% (0/88)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0814/user_zzchen2_issue_tgs-salt-identification-challenge-8seeds
+[build_cards] 224 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0814/user_zzchen2_issue_tgs-salt-identification-challenge-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   tgs-salt-identification-challenge: 224 cards from 8 runs, medal_rate=0.00% (0/224), gold_rate=0.00% (0/224)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0815/user_hcyang_issue_google-quest-challenge-8seeds
+[build_cards] 256 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0815/user_hcyang_issue_google-quest-challenge-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   google-quest-challenge: 256 cards from 8 runs, medal_rate=7.42% (19/256), gold_rate=0.00% (0/256)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0815/user_hcyang_issue_ranzcr-clip-catheter-line-classification-8seeds
+[build_cards] 90 cards from 7 runs -> data/augmented_mle_critic/raw_journal/0815/user_hcyang_issue_ranzcr-clip-catheter-line-classification-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   ranzcr-clip-catheter-line-classification: 90 cards from 7 runs, medal_rate=0.00% (0/90), gold_rate=0.00% (0/90)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0815/user_s1155173938_issue_facebook-recruiting-iii-keyword-extraction-4seeds
+[build_cards] 100 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0815/user_s1155173938_issue_facebook-recruiting-iii-keyword-extraction-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   facebook-recruiting-iii-keyword-extraction: 100 cards from 4 runs, medal_rate=0.00% (0/100), gold_rate=0.00% (0/100)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0815/user_zjchen_issue_cassava-leaf-disease-classification-4seeds
+[build_cards] 101 cards from 4 runs -> data/augmented_mle_critic/raw_journal/0815/user_zjchen_issue_cassava-leaf-disease-classification-4seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   cassava-leaf-disease-classification: 101 cards from 4 runs, medal_rate=0.00% (0/101), gold_rate=0.00% (0/101)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0815/user_zjdai25_issue_dog-breed-identification-8seeds
+[build_cards] 182 cards from 7 runs -> data/augmented_mle_critic/raw_journal/0815/user_zjdai25_issue_dog-breed-identification-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   dog-breed-identification: 182 cards from 7 runs, medal_rate=0.00% (0/182), gold_rate=0.00% (0/182)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0815/user_zjdai25_issue_text-normalization-challenge-russian-language-8seeds
+[build_cards] 1280 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0815/user_zjdai25_issue_text-normalization-challenge-russian-language-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   text-normalization-challenge-russian-language: 1280 cards from 8 runs, medal_rate=0.00% (0/1280), gold_rate=0.00% (0/1280)
+[build_batch_cards] processing data/augmented_mle_critic/raw_journal/0815/user_zzchen2_issue_ventilator-pressure-prediction-8seeds
+[build_cards] 149 cards from 8 runs -> data/augmented_mle_critic/raw_journal/0815/user_zzchen2_issue_ventilator-pressure-prediction-8seeds/batch_cards.json
+[build_cards] statistics by competition_id:
+[build_cards]   ventilator-pressure-prediction: 149 cards from 8 runs, medal_rate=0.00% (0/149), gold_rate=0.00% (0/149)

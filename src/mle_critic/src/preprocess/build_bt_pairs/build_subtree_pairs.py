@@ -170,8 +170,7 @@ def compute_node_values(
 ) -> dict[str, NodeValue]:
     """Compute the best reachable grade for every eligible Card.
 
-    An eligible Card needs its own grade and at least one graded descendant
-    within budget.  Requiring a descendant excludes leaves, whose "future
+    An eligible Card needs at least its own grade.  Requiring a descendant excludes leaves, whose "future
     value" would otherwise be identical to their current grade by definition.
     """
     values_by_card_id: dict[str, NodeValue] = {}
@@ -193,9 +192,6 @@ def compute_node_values(
             descendant_grade = graded_score(cards_by_id[descendant.card_id])
             if descendant_grade is not None:
                 reachable_graded_descendants.append((descendant, descendant_grade))
-
-        if not reachable_graded_descendants:
-            continue
 
         choose_best = min if not card.task.higher_is_better else max
         best_subtree_grade = choose_best(
@@ -374,8 +370,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--seed", type=int, default=7)
     arguments = parser.parse_args()
-    if arguments.budget_steps < 0:
-        parser.error("--budget-steps must be non-negative")
+    if arguments.budget_steps < -1:
+        parser.error("--budget-steps must be -1 (only itself), 0 (unlimited), or a non-negative integer")
     if arguments.budget_secs < 0:
         parser.error("--budget-secs must be non-negative")
     if arguments.cap < 1:

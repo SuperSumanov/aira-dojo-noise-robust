@@ -15,6 +15,18 @@
 | [DHRCL (2026)](https://arxiv.org/abs/2607.26457) | 将 syntax、execution、unit-test、structure 组成分层 dense reward/curriculum，训练 Code LLM | “executability 是层级 reward”不新，且其目标是底座 RL；不能把两阶段 feasibility→quality 当作原语创新 |
 | [Verifiable Process Rewards (2026)](https://arxiv.org/abs/2605.10325) | 用 symbolic/algorithmic oracle 构造 dense turn-level verifiable rewards，并分析 verifier reliability | “verified process supervision”大类已很拥挤；MLE 开放数据任务缺少 step oracle，正是我们不能直接套用它的原因 |
 
+### Benchmark-level 补充
+
+- [AgentRx (2026)](https://arxiv.org/abs/2602.02475) 已发布 115 条跨域失败 trajectory、critical-step 与 failure
+  category 标注，并做自动诊断；“带 taxonomy 的 agent failure benchmark”不是空白。
+- [StateMAS / MARS (2026)](https://arxiv.org/abs/2607.29055) 已发布 1,310 条可 replay 的 multi-agent failure
+  trajectories，并用 diagnosis-guided MCTS repair；“failure dataset + MCTS repair”也不是我们的 novelty。
+- [Detecting Silent Failures (2025)](https://arxiv.org/abs/2511.04032) 已构建 4,275/894 条 multi-agent
+  trajectory benchmark 并比较 supervised/semi-supervised detector；不能用数据规模或 failure classifier 泛称首创。
+- [AgentSearchBench (2026)](https://arxiv.org/abs/2604.22436) 已以近 10,000 个现实 agents 研究
+  execution-grounded retrieval/reranking，并显示 description similarity 与真实 execution performance 有缺口；这也
+  佐证我们 contract LOTO 的负结果应保留，而不是靠 semantic retrieval 叙事跳过 execution confirmation。
+
 ## 裁决
 
 以下 novelty 表述关闭：

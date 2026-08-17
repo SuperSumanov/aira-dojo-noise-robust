@@ -31,7 +31,8 @@
    dog-breed 与 ventilator 为 lower-is-better，其余 8 个为 higher-is-better；与旧 registry 重叠的 3 个任务方向
    全部一致。独立验证双跑逐字节一致，receipt SHA=`f1e5c614...` 且 `outcomes_read=false`。正式 orientation
    receipt 只能由冻结 producer 从旧 registry 与该补充表合并，再由不导入 producer 的 verifier 重建；缺失任务、
-   source 冲突、selection SHA 改变或 receipt SHA 不符均 fail-closed。
+   source 冲突、selection SHA 改变或 receipt SHA 不符均 fail-closed。实现 commit `2f264757...` 已通过连续两次
+   3/3 聚焦测试和完整 `376 passed in 30.33s`；post-freeze CPU chain 已等待固定窗口收口，不生成 approval。
 
 直接证据：
 

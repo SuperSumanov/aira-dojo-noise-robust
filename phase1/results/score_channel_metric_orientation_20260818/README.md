@@ -17,3 +17,14 @@
 正式 selection 收口后，只允许将旧 `task_orientation.json` 与
 `score_channel_metric_orientation_supplement_20260818.json` 合并；任一 selected task 缺失或重叠方向不一致即
 fail-closed。
+
+## Selection 后自动收口实现
+
+- producer/no-import verifier commit：`2f2647575edd63c60bf1e76ba4a5cbc9176c56c0`；
+- detached remote worktree：`/research/d7/spc/yzyang4/wt_scorechannel_orientation_2f26475_nosmudge`；
+- 聚焦测试连续两次均为 `3 passed`；完整 suite 为 `376 passed in 30.33s`；worktree clean；
+- 测试日志 SHA-256：`d417bdfd8c671ef64621a45f5035ebf39da6bdc59ff36eabc97bd22f4f859ab0`；
+- post-freeze CPU chain PID：`341067`；它先等待 run/parent/replay 双冻结，不生成 approval、不提交 GPU。
+
+该 commit 只作为 orientation receipt 的 source commit；正式 replay worker 仍固定使用已单独验证的
+`ca3bb7315078f2c4bed99fa4c33d93c2f353d670`。

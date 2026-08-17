@@ -1,0 +1,39 @@
+{
+  "criteria": {
+    "at_least_6_of_8_large_tasks_above_0_50": false,
+    "pairs_eq_494": true,
+    "task_clustered_difference_ci_lower_gt_0": false,
+    "task_clustered_tfidf_ci_lower_gt_0_50": false,
+    "tasks_eq_13": true,
+    "tfidf_micro_accuracy_ge_0_60": false
+  },
+  "failure_risk_signal_claim_allowed": false,
+  "length_micro_accuracy": 0.5688259109311741,
+  "length_task_clustered_ci": [
+    0.5209636505871054,
+    0.6253654998528029
+  ],
+  "output_sha256": "ee2364ebfa5499e03b322f34c636970e9a8554a8e56af62d471adefea59f164c",
+  "pairs": 494,
+  "physical_runs": 126,
+  "protocol": "failure-risk-controller-loto-v1",
+  "source_commit": "11a866bd8e734afd977b9acfef4d1c1d5115e043",
+  "status": "INSUFFICIENT_TASK_HELDOUT_FAILURE_RISK_SIGNAL",
+  "support_summary_sha256": "77b81f8d4356d74f14647c8a12281af201fe34c75da04ed077febdac17b400f1",
+  "tasks": 13,
+  "tfidf_micro_accuracy": 0.5242914979757085,
+  "tfidf_minus_length": -0.04453441295546556,
+  "tfidf_minus_length_task_clustered_ci": [
+    -0.0976442470927765,
+    0.024710381648629962
+  ],
+  "tfidf_run_clustered_ci": [
+    0.47368421052631576,
+    0.5774357721067435
+  ],
+  "tfidf_task_clustered_ci": [
+    0.48885059790758445,
+    0.5851563704084254
+  ],
+  "tfidf_task_macro_accuracy": 0.6192417628932918
+}

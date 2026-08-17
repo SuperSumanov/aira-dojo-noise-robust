@@ -3,6 +3,37 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AA. 2026-08-17 最新覆盖：494 对 failure-risk benchmark 通过，静态 learned controller 关闭
+
+本节晚于 0Z；唯一主实验仍是 138/150 的前瞻 score-channel 复现，正式 replay 未授权、outcome 未读。
+
+1. 在 560/691 structured failure-memory 基础上，结果前 commit
+   `526e3ad6c0d444f22d3fee99f9ab5506d7a06c39` 冻结 parent-matched 支持审计。691/691 failure code 均在
+   full-journal credential scan 后找回；每 parent 只保留一个 failure，并匹配同 parent、同 physical run、不同
+   code SHA 的 retained success sibling，得到 494/494 unique-parent pairs / 13 tasks / 126 runs。8 tasks 各至少
+   20 pairs，dominant=134/494=`0.27125506072874495`，frozen-run overlap=0、identical-code-only=0、credential=0。
+   双跑 SHA=`77b81f8d...`，完整测试 354 passed。因此允许发布 train-only evaluator-verified failure-risk
+   benchmark，这是新增的正面数据资产。
+2. 结果前 commit `11a866bd8e734afd977b9acfef4d1c1d5115e043` 冻结不调参的 char-TFIDF+LR，对 13 tasks
+   做 LOTO；只输入 code，不输入 task/diagnostic/failure category/grade/frozen code。正式双跑一致，完整测试
+   356 passed。TF-IDF micro=`0.5242914979757085`，task-CI `[0.48885059790758445,0.5851563704084254]`；
+   相对 length LR 差 `-0.04453441295546556`，CI 跨 0，所有正门失败。因此 learned static-code controller v1
+   关闭，不换 n-gram/截断/阈值追正数，不做 search utility 实验。
+3. 预指定 length-only LR 得到 `0.5688259109311741`、task-CI
+   `[0.5209636505871054,0.6253654998528029]`。这只是探索性、低容量 execution-risk association；当前协议没有
+   给它独立确认门。可在未来全新 cohort 到达前冻结 length-only scorer 再确认，但不得打开现有 frozen b0/b1/b2
+   追认，也不得把它写成已提高搜索 utility。
+4. 当前正面论文资产因此是：run-clean 搜索树 corpus + source opportunity/retention/status contracts + 691-node
+   安全 failure taxonomy + 494-pair parent-matched failure-risk benchmark。方法层仍以 score-channel 前瞻复现为
+   唯一主实验；纯结构 LOTO、Qwen frozen checkpoint、TF-IDF failure controller 均已诚实关闭。
+
+直接证据：
+
+- `phase1/results/failure_risk_pair_support_20260817/README.md`；
+- `phase1/results/failure_risk_controller_loto_20260817/README.md`；
+- `phase1/实验记录/2026-08-17/FailureRiskPairSupport_v1_预注册与执行前检查.md`；
+- `phase1/实验记录/2026-08-17/FailureRiskController_LOTO_v1_裁决.md`。
+
 ## 0Z. 2026-08-17 最新覆盖：failure memory 通过；纯结构 LOTO 与学长 frozen checkpoint 关闭
 
 本节晚于 0Y，并覆盖 0Y 的“下一资格门”以及 0X 第 2 项的 Qwen 4B/8B 支持实验。唯一主实验仍是

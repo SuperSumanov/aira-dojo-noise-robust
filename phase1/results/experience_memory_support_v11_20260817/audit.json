@@ -1,0 +1,133 @@
+{
+  "decision": {
+    "allowed_next_step": "train-only data-asset construction and preregistration",
+    "paid_experiment_authorized": false,
+    "support_audit_passed": true
+  },
+  "frozen_exclusion": {
+    "endpoint_cards": 2030,
+    "memory_endpoint_card_overlap": 0,
+    "memory_physical_run_overlap": 0,
+    "nonempty_exact_code_hash_overlap": 0,
+    "pair_rows": 2087,
+    "pair_split_rows": {
+      "test": 2087
+    },
+    "physical_runs": 92,
+    "referenced_parent_ids": 849,
+    "referenced_parent_ids_present_in_v11": 810,
+    "tasks": 22
+  },
+  "generalization_support": {
+    "cards_with_nontrivial_task_description": 0,
+    "frozen_tasks": 22,
+    "frozen_tasks_with_any_same_task_success_memory": 22,
+    "frozen_tasks_with_at_least_5_best_episodes": 21,
+    "frozen_tasks_with_at_least_5_writer_marked_best_episodes": 21,
+    "frozen_tasks_without_any_same_task_memory": [],
+    "supports_causal_method_claim": false,
+    "supports_seen_task_memory_baseline": true,
+    "supports_unseen_task_generalization_claim": false
+  },
+  "inputs": {
+    "cards": {
+      "path": "phase1/cards_current_v11.jsonl",
+      "sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75"
+    },
+    "pairs": [
+      {
+        "path": "phase1/decision_clean_b0.jsonl",
+        "sha256": "a04b5b805d0bc59b068cbb4df52bcbf23ea429f1b552022829671483eb6d1909"
+      },
+      {
+        "path": "phase1/decision_clean_b1.jsonl",
+        "sha256": "c2e38643cf2bb78e207964252af4f665961ab81416a762def04226b07c0d9258"
+      },
+      {
+        "path": "phase1/decision_clean_b2.jsonl",
+        "sha256": "10cbcc86ea8e5861eea3ad6da183e3dac5579533ee8be9890277be98f5de0903"
+      }
+    ],
+    "train_failure_status_summary": {
+      "path": "phase1/results/source_opportunity_journal_status_v11_20260815_42cb6b1/verification_summary.json",
+      "sha256": "4d094aa119c25c2f0639fc4315e70e85b297f3d9afd808b0a39d15726b17fedc"
+    }
+  },
+  "per_task_best_episodes": {
+    "aerial-cactus-identification": 1,
+    "aptos2019-blindness-detection": 3,
+    "chaii-hindi-and-tamil-question-answering": 12,
+    "denoising-dirty-documents": 31,
+    "dog-breed-identification": 22,
+    "dogs-vs-cats-redux-kernels-edition": 4,
+    "google-quest-challenge": 21,
+    "histopathologic-cancer-detection": 10,
+    "kuzushiji-recognition": 10,
+    "leaf-classification": 28,
+    "learning-agency-lab-automated-essay-scoring-2": 21,
+    "mlsp-2013-birds": 22,
+    "nomad2018-predict-transparent-conductors": 31,
+    "petfinder-pawpularity-score": 38,
+    "random-acts-of-pizza": 29,
+    "ranzcr-clip-catheter-line-classification": 4,
+    "spaceship-titanic": 23,
+    "spooky-author-identification": 48,
+    "tabular-playground-series-dec-2021": 77,
+    "tabular-playground-series-may-2022": 71,
+    "text-normalization-challenge-english-language": 17,
+    "text-normalization-challenge-russian-language": 12,
+    "tweet-sentiment-extraction": 8,
+    "us-patent-phrase-to-phrase-matching": 14,
+    "whale-categorization-playground": 18
+  },
+  "per_task_writer_marked_best_episodes": {
+    "aerial-cactus-identification": 1,
+    "aptos2019-blindness-detection": 3,
+    "chaii-hindi-and-tamil-question-answering": 11,
+    "denoising-dirty-documents": 29,
+    "dog-breed-identification": 22,
+    "dogs-vs-cats-redux-kernels-edition": 4,
+    "google-quest-challenge": 21,
+    "histopathologic-cancer-detection": 10,
+    "kuzushiji-recognition": 8,
+    "leaf-classification": 28,
+    "learning-agency-lab-automated-essay-scoring-2": 21,
+    "mlsp-2013-birds": 20,
+    "nomad2018-predict-transparent-conductors": 31,
+    "petfinder-pawpularity-score": 38,
+    "random-acts-of-pizza": 29,
+    "ranzcr-clip-catheter-line-classification": 4,
+    "spaceship-titanic": 23,
+    "spooky-author-identification": 48,
+    "tabular-playground-series-dec-2021": 77,
+    "tabular-playground-series-may-2022": 71,
+    "text-normalization-challenge-english-language": 17,
+    "text-normalization-challenge-russian-language": 12,
+    "tweet-sentiment-extraction": 7,
+    "us-patent-phrase-to-phrase-matching": 14,
+    "whale-categorization-playground": 18
+  },
+  "protocol": "experience_memory_support_audit_v1",
+  "train_failure_status_memory": {
+    "categories": {
+      "EXECUTION_ERROR": 691,
+      "OFFICIAL_GRADE_ABSENT": 8
+    },
+    "contains_actionable_diagnostics": false,
+    "reads_raw_journals_or_exception_text": false,
+    "recovered_status_nodes": 699,
+    "target_missing_sibling_identities": 769,
+    "unrecovered_status_nodes": 70
+  },
+  "verified_success_memory": {
+    "best_episode_per_physical_run": 575,
+    "best_episodes_with_static_artifact_writer_marker": 567,
+    "cards_after_run_exclusion": 12316,
+    "finite_y_norm_cards": 12309,
+    "physical_runs": 575,
+    "static_marker_is_execution_verification": false,
+    "tasks": 25,
+    "tasks_with_at_least_5_best_episodes": 21,
+    "tasks_with_at_least_5_writer_marked_best_episodes": 21
+  }
+}

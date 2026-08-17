@@ -1,0 +1,1468 @@
+{
+  "decision": {
+    "artifact_contract_is_nontrivial": true,
+    "method_effect_claim_allowed": false,
+    "paid_experiment_authorized": false
+  },
+  "input_contract": {
+    "official_labels_or_outcomes_read": false,
+    "private_paths_allowed": false,
+    "raw_sample_values_emitted": false,
+    "task_manifest_name": "public_artifact_contract_tasks.tsv",
+    "task_manifest_sha256": "c6eb42622f76a5bde5bf44f27d8928b4bbc6e93b67cd8b633ed3eff2b93c2e2b",
+    "train_or_test_feature_files_read": false
+  },
+  "protocol": "public_artifact_contract_support_v1",
+  "summary": {
+    "contracts_found": 20,
+    "coverage_by_task_type": {
+      "image-cls": {
+        "contracts": 7,
+        "tasks": 12
+      },
+      "nlp": {
+        "contracts": 9,
+        "tasks": 9
+      },
+      "tabular": {
+        "contracts": 4,
+        "tasks": 4
+      }
+    },
+    "coverage_is_confirmatory": false,
+    "coverage_was_seen_during_exploratory_path_inventory": true,
+    "descriptions_found": 20,
+    "header_heterogeneity_gate": {
+      "maximum_dominant_schema_share": 0.5,
+      "minimum_unique_schema_signatures": 8,
+      "minimum_width_buckets": 3,
+      "observed_dominant_schema_share": 0.1,
+      "observed_unique_schema_signatures": 19,
+      "observed_width_buckets": [
+        "1-2",
+        "3-10",
+        ">10"
+      ],
+      "passed": true
+    },
+    "tasks": 25
+  },
+  "tasks": [
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "id",
+        "has_cactus"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "1c85c903c5dd02909cc561bd2ba1db9071104bebdf49237c05a11494dd6b9462",
+      "description_bytes": 3111,
+      "description_present": true,
+      "description_sha256": "4d89ec66b6f100519a552c5be47b128b21d4b857ba076576970606d29e25c778",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "string"
+        ],
+        [
+          "float"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 3325,
+      "sample_submission_path": "aerial-cactus-identification/prepared/public/sample_submission.csv",
+      "schema_signature": "a4b133087fcf28d661389c082b208b8dc5d5d8d29329c66a8e0befd3a2a884f6",
+      "source_bytes": 136339,
+      "source_sha256": "1c85c903c5dd02909cc561bd2ba1db9071104bebdf49237c05a11494dd6b9462",
+      "task": "aerial-cactus-identification",
+      "task_type": "image-cls",
+      "width_bucket": "1-2"
+    },
+    {
+      "contract_present": false,
+      "description_bytes": null,
+      "description_present": false,
+      "description_sha256": null,
+      "public_dir_present": false,
+      "task": "aptos2019-blindness-detection",
+      "task_type": "image-cls"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "id",
+        "PredictionString"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "3a8b8707cd5c6d0493ec99820dbc82e36106013b99f380300a765d3c09b8e551",
+      "description_bytes": 11703,
+      "description_present": true,
+      "description_sha256": "744515f9f04e76873bb828c5da5ba5b494d0c118e59aed28e8fec19fe81c8a3b",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "int",
+          "nonfinite",
+          "string"
+        ],
+        [
+          "string"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 112,
+      "sample_submission_path": "chaii-hindi-and-tamil-question-answering/prepared/public/sample_submission.csv",
+      "schema_signature": "5b718dee6100235c8a939497ff0896de61cb1b7a9cd3cbff203da5486392f8e4",
+      "source_bytes": 2372,
+      "source_sha256": "3a8b8707cd5c6d0493ec99820dbc82e36106013b99f380300a765d3c09b8e551",
+      "task": "chaii-hindi-and-tamil-question-answering",
+      "task_type": "nlp",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "id",
+        "value"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "0e858abe524f97f565ce004472feca3c6c36a61f0dd72f649671cc01cbc9c76f",
+      "description_bytes": 3396,
+      "description_present": true,
+      "description_sha256": "13082763ab3efc7e7b7702c8b0b83758ee897e0d51dc43758e405416644d5845",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "float"
+        ],
+        [
+          "int"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 5789880,
+      "sample_submission_path": "denoising-dirty-documents/prepared/public/sampleSubmission.csv",
+      "schema_signature": "bc7fc025fa1407e6d7c584985042da86bc6ed511ea131f1bdeed8b9c189550cc",
+      "source_bytes": 75769353,
+      "source_sha256": "0e858abe524f97f565ce004472feca3c6c36a61f0dd72f649671cc01cbc9c76f",
+      "task": "denoising-dirty-documents",
+      "task_type": "image-cls",
+      "width_bucket": "1-2"
+    },
+    {
+      "contract_present": false,
+      "description_bytes": null,
+      "description_present": false,
+      "description_sha256": null,
+      "public_dir_present": false,
+      "task": "dog-breed-identification",
+      "task_type": "image-cls"
+    },
+    {
+      "contract_present": false,
+      "description_bytes": null,
+      "description_present": false,
+      "description_sha256": null,
+      "public_dir_present": false,
+      "task": "dogs-vs-cats-redux-kernels-edition",
+      "task_type": "image-cls"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 31,
+      "columns": [
+        "qa_id",
+        "question_asker_intent_understanding",
+        "question_body_critical",
+        "question_conversational",
+        "question_expect_short_answer",
+        "question_fact_seeking",
+        "question_has_commonly_accepted_answer",
+        "question_interestingness_others",
+        "question_interestingness_self",
+        "question_multi_intent",
+        "question_not_really_a_question",
+        "question_opinion_seeking",
+        "question_type_choice",
+        "question_type_compare",
+        "question_type_consequence",
+        "question_type_definition",
+        "question_type_entity",
+        "question_type_instructions",
+        "question_type_procedure",
+        "question_type_reason_explanation",
+        "question_type_spelling",
+        "question_well_written",
+        "answer_helpful",
+        "answer_level_of_information",
+        "answer_plausible",
+        "answer_relevance",
+        "answer_satisfaction",
+        "answer_type_instructions",
+        "answer_type_procedure",
+        "answer_type_reason_explanation",
+        "answer_well_written"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "04df9d2b58bd06b960f6f7dbd6b5fe48e7f6e7c67a14795a531031b6dd93de1e",
+      "description_bytes": 6191,
+      "description_present": true,
+      "description_sha256": "ffacc1b6f2d10a072ad110d378848d81dba2e175bf7d5464df8298e061e830d3",
+      "empty_value_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "int"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 608,
+      "sample_submission_path": "google-quest-challenge/prepared/public/sample_submission.csv",
+      "schema_signature": "bf5b92e101a95d345b7c914391e8ce5d7630db480cb93562b79d65ec718820e1",
+      "source_bytes": 354484,
+      "source_sha256": "04df9d2b58bd06b960f6f7dbd6b5fe48e7f6e7c67a14795a531031b6dd93de1e",
+      "task": "google-quest-challenge",
+      "task_type": "nlp",
+      "width_bucket": ">10"
+    },
+    {
+      "contract_present": false,
+      "description_bytes": null,
+      "description_present": false,
+      "description_sha256": null,
+      "public_dir_present": false,
+      "task": "histopathologic-cancer-detection",
+      "task_type": "image-cls"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "image_id",
+        "labels"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "98b4d969858211b0ed834fd5fb72ec7d8b9103c2a917182c18ee5150445d9d93",
+      "description_bytes": 10914,
+      "description_present": true,
+      "description_sha256": "c8fa1a92aba3cab42c18d4db5399437a8bbd4c015f8a6d619935b149c9c48869",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "float",
+          "string"
+        ],
+        [
+          "string"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 361,
+      "sample_submission_path": "kuzushiji-recognition/prepared/public/sample_submission.csv",
+      "schema_signature": "a0b324f359967c56ec8c8445ddcf258aee68269c7a7cd4f846140a5bbab39af4",
+      "source_bytes": 13700,
+      "source_sha256": "98b4d969858211b0ed834fd5fb72ec7d8b9103c2a917182c18ee5150445d9d93",
+      "task": "kuzushiji-recognition",
+      "task_type": "image-cls",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 100,
+      "columns": [
+        "id",
+        "Acer_Capillipes",
+        "Acer_Circinatum",
+        "Acer_Mono",
+        "Acer_Opalus",
+        "Acer_Palmatum",
+        "Acer_Pictum",
+        "Acer_Platanoids",
+        "Acer_Rubrum",
+        "Acer_Rufinerve",
+        "Acer_Saccharinum",
+        "Alnus_Cordata",
+        "Alnus_Maximowiczii",
+        "Alnus_Rubra",
+        "Alnus_Sieboldiana",
+        "Alnus_Viridis",
+        "Arundinaria_Simonii",
+        "Betula_Austrosinensis",
+        "Betula_Pendula",
+        "Callicarpa_Bodinieri",
+        "Castanea_Sativa",
+        "Celtis_Koraiensis",
+        "Cercis_Siliquastrum",
+        "Cornus_Chinensis",
+        "Cornus_Controversa",
+        "Cornus_Macrophylla",
+        "Cotinus_Coggygria",
+        "Crataegus_Monogyna",
+        "Cytisus_Battandieri",
+        "Eucalyptus_Glaucescens",
+        "Eucalyptus_Neglecta",
+        "Eucalyptus_Urnigera",
+        "Fagus_Sylvatica",
+        "Ginkgo_Biloba",
+        "Ilex_Aquifolium",
+        "Ilex_Cornuta",
+        "Liquidambar_Styraciflua",
+        "Liriodendron_Tulipifera",
+        "Lithocarpus_Cleistocarpus",
+        "Lithocarpus_Edulis",
+        "Magnolia_Heptapeta",
+        "Magnolia_Salicifolia",
+        "Morus_Nigra",
+        "Olea_Europaea",
+        "Phildelphus",
+        "Populus_Adenopoda",
+        "Populus_Grandidentata",
+        "Populus_Nigra",
+        "Prunus_Avium",
+        "Prunus_X_Shmittii",
+        "Pterocarya_Stenoptera",
+        "Quercus_Afares",
+        "Quercus_Agrifolia",
+        "Quercus_Alnifolia",
+        "Quercus_Brantii",
+        "Quercus_Canariensis",
+        "Quercus_Castaneifolia",
+        "Quercus_Cerris",
+        "Quercus_Chrysolepis",
+        "Quercus_Coccifera",
+        "Quercus_Coccinea",
+        "Quercus_Crassifolia",
+        "Quercus_Crassipes",
+        "Quercus_Dolicholepis",
+        "Quercus_Ellipsoidalis",
+        "Quercus_Greggii",
+        "Quercus_Hartwissiana",
+        "Quercus_Ilex",
+        "Quercus_Imbricaria",
+        "Quercus_Infectoria_sub",
+        "Quercus_Kewensis",
+        "Quercus_Nigra",
+        "Quercus_Palustris",
+        "Quercus_Phellos",
+        "Quercus_Phillyraeoides",
+        "Quercus_Pontica",
+        "Quercus_Pubescens",
+        "Quercus_Pyrenaica",
+        "Quercus_Rhysophylla",
+        "Quercus_Rubra",
+        "Quercus_Semecarpifolia",
+        "Quercus_Shumardii",
+        "Quercus_Suber",
+        "Quercus_Texana",
+        "Quercus_Trojana",
+        "Quercus_Variabilis",
+        "Quercus_Vulcanica",
+        "Quercus_x_Hispanica",
+        "Quercus_x_Turneri",
+        "Rhododendron_x_Russellianum",
+        "Salix_Fragilis",
+        "Salix_Intergra",
+        "Sorbus_Aria",
+        "Tilia_Oliveri",
+        "Tilia_Platyphyllos",
+        "Tilia_Tomentosa",
+        "Ulmus_Bergmanniana",
+        "Viburnum_Tinus",
+        "Viburnum_x_Rhytidophylloides",
+        "Zelkova_Serrata"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "eda4dbc07a075c2bc5441e151e20927a7a06a16bdc03abe0d95a031e4f19079c",
+      "description_bytes": 4424,
+      "description_present": true,
+      "description_sha256": "7b57af084dd30eb953dc8aacdf48372b2c190f5118fb2217a2390b82c98092b7",
+      "empty_value_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "int"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 99,
+      "sample_submission_path": "leaf-classification/prepared/public/sample_submission.csv",
+      "schema_signature": "cb2813d8779edd2af5c84edc155ff003e1a1cc3bf034ad4ac9a4e4361eaee7dd",
+      "source_bytes": 208005,
+      "source_sha256": "eda4dbc07a075c2bc5441e151e20927a7a06a16bdc03abe0d95a031e4f19079c",
+      "task": "leaf-classification",
+      "task_type": "image-cls",
+      "width_bucket": ">10"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "essay_id",
+        "score"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "6b1be3ce5bdaf0253d0c4fc11b34879a5e9106345aded38b32cb0e20eac70c44",
+      "description_bytes": 11104,
+      "description_present": true,
+      "description_sha256": "c11986179a042c909be5ab23275650f66160d7916ad229e133ca3f2af493cbed",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "float",
+          "int",
+          "nonfinite",
+          "string"
+        ],
+        [
+          "int"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 1731,
+      "sample_submission_path": "learning-agency-lab-automated-essay-scoring-2/prepared/public/sample_submission.csv",
+      "schema_signature": "86050640cc8811579462ac594021da91f775b17eb1f8bbb0d3bf66e696b37423",
+      "source_bytes": 17325,
+      "source_sha256": "6b1be3ce5bdaf0253d0c4fc11b34879a5e9106345aded38b32cb0e20eac70c44",
+      "task": "learning-agency-lab-automated-essay-scoring-2",
+      "task_type": "nlp",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "Id",
+        "Probability"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "c6a0270502cbbb4389b02950e01c75edc2da4e6d03b6537682ea4aeff80ac7fb",
+      "description_bytes": 15444,
+      "description_present": true,
+      "description_sha256": "73e2510bd4f663e2bc448fa20c30e424bb805dab5b53121d6b2a810ccd12235c",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "int"
+        ],
+        [
+          "int"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 1216,
+      "sample_submission_path": "mlsp-2013-birds/prepared/public/sample_submission.csv",
+      "schema_signature": "e6e1107176fc641eae0aca5fec163d14ea45a6c87ff5373ecbc4065d0128e280",
+      "source_bytes": 9211,
+      "source_sha256": "c6a0270502cbbb4389b02950e01c75edc2da4e6d03b6537682ea4aeff80ac7fb",
+      "task": "mlsp-2013-birds",
+      "task_type": "image-cls",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 3,
+      "columns": [
+        "id",
+        "formation_energy_ev_natom",
+        "bandgap_energy_ev"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "ac544665f7e066febfc1f49a4ba10f26d2b25221694c4710c42ac4941ac40acd",
+      "description_bytes": 7681,
+      "description_present": true,
+      "description_sha256": "d70aa4ad5bd3c2d460b750ae26b7f3572271dcab50499f4c8de66f7d6c45e1ad",
+      "empty_value_counts": [
+        0,
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "int"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 240,
+      "sample_submission_path": "nomad2018-predict-transparent-conductors/prepared/public/sample_submission.csv",
+      "schema_signature": "7a547ed56afd4799ed03312c95ebb0a9be3d11affe56554fff32ce6e2d389ad7",
+      "source_bytes": 4259,
+      "source_sha256": "ac544665f7e066febfc1f49a4ba10f26d2b25221694c4710c42ac4941ac40acd",
+      "task": "nomad2018-predict-transparent-conductors",
+      "task_type": "tabular",
+      "width_bucket": "3-10"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "Id",
+        "Pawpularity"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "fbd738dcf7845c2f2a925c3bd5744528dfe7cdd3955649f4653a2e19d6f02887",
+      "description_bytes": 8994,
+      "description_present": true,
+      "description_sha256": "7276f65742c36492e0fe4a8c5065ae95ac75e3f38718091c1d236229da93c35b",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "string"
+        ],
+        [
+          "float"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 992,
+      "sample_submission_path": "petfinder-pawpularity-score/prepared/public/sample_submission.csv",
+      "schema_signature": "ac67236da9f85afe22520498397fceca6cf48fac51ba95340796afbd1cd1435f",
+      "source_bytes": 38500,
+      "source_sha256": "fbd738dcf7845c2f2a925c3bd5744528dfe7cdd3955649f4653a2e19d6f02887",
+      "task": "petfinder-pawpularity-score",
+      "task_type": "image-cls",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "request_id",
+        "requester_received_pizza"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "96ff56bbfe255213f8a241d43dc8a2473c513edc39f0e89a23df35495a8f0366",
+      "description_bytes": 7182,
+      "description_present": true,
+      "description_sha256": "0534f4d657a2fdff3c9ce68cc6625565cd7f7d092a92eff94745b930c6dc47ce",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "string"
+        ],
+        [
+          "int"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 1162,
+      "sample_submission_path": "random-acts-of-pizza/prepared/public/sampleSubmission.csv",
+      "schema_signature": "0f1d6c7969019be4e2f6d87f28fc54ffc02b8cd7116d7f2f84782d326de1c115",
+      "source_bytes": 13315,
+      "source_sha256": "96ff56bbfe255213f8a241d43dc8a2473c513edc39f0e89a23df35495a8f0366",
+      "task": "random-acts-of-pizza",
+      "task_type": "nlp",
+      "width_bucket": "1-2"
+    },
+    {
+      "contract_present": false,
+      "description_bytes": null,
+      "description_present": false,
+      "description_sha256": null,
+      "public_dir_present": false,
+      "task": "ranzcr-clip-catheter-line-classification",
+      "task_type": "image-cls"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "PassengerId",
+        "Transported"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "879640352922a43fafe213dc620f68db6299035b5d7d3d54a97e33440ed1406e",
+      "description_bytes": 7620,
+      "description_present": true,
+      "description_sha256": "ee35380587404b263ef8b38d9a2fff4196563abb2e12bc086b02c9808b7f37cb",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "float"
+        ],
+        [
+          "bool"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 870,
+      "sample_submission_path": "spaceship-titanic/prepared/public/sample_submission.csv",
+      "schema_signature": "490e90f1553902ea7a3ff58b7e2a985af27f30d13942699d5c7da4951a9beb5b",
+      "source_bytes": 12204,
+      "source_sha256": "879640352922a43fafe213dc620f68db6299035b5d7d3d54a97e33440ed1406e",
+      "task": "spaceship-titanic",
+      "task_type": "tabular",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 4,
+      "columns": [
+        "id",
+        "EAP",
+        "HPL",
+        "MWS"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "5a9d701524a2659476f62e30fa4e61ecfbeb754e0e9c11a8528a7486992ad1f6",
+      "description_bytes": 6281,
+      "description_present": true,
+      "description_sha256": "35d7de46d74377f997bdc7f5859e36ca3311fb4ae2e37ab63491a9d7c72661bd",
+      "empty_value_counts": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "string"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ],
+        [
+          "float"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 1958,
+      "sample_submission_path": "spooky-author-identification/prepared/public/sample_submission.csv",
+      "schema_signature": "a39ff7a2f23ce43c4f0b251db6a8d6703736493b01e4f08d45e572142fcc410f",
+      "source_bytes": 121411,
+      "source_sha256": "5a9d701524a2659476f62e30fa4e61ecfbeb754e0e9c11a8528a7486992ad1f6",
+      "task": "spooky-author-identification",
+      "task_type": "nlp",
+      "width_bucket": "3-10"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "Id",
+        "Cover_Type"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "3499d8d28fbdc19984916a54c80c3357e2f9876ddc9328f5a91b5abf8835cee9",
+      "description_bytes": 3903,
+      "description_present": true,
+      "description_sha256": "2e71be7051c006b63ae8bae4e1b0e6a620914d8cd9bf580d1f10871f95d043f6",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "int"
+        ],
+        [
+          "int"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 400000,
+      "sample_submission_path": "tabular-playground-series-dec-2021/prepared/public/sample_submission.csv",
+      "schema_signature": "764e3753eca1386c7df3a758f02bd1d4c6e844eea89ae2781965ab6fb32d783b",
+      "source_bytes": 3889096,
+      "source_sha256": "3499d8d28fbdc19984916a54c80c3357e2f9876ddc9328f5a91b5abf8835cee9",
+      "task": "tabular-playground-series-dec-2021",
+      "task_type": "tabular",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "id",
+        "target"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "9f557b7177f5983dedabfc538aea050561bb4e4a362bfe4a35040959c26a6f6a",
+      "description_bytes": 4335,
+      "description_present": true,
+      "description_sha256": "a64340a1c829f6e2c3ee8411cfa3089a4418571fee7186c91b5be2ef241bfcff",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "int"
+        ],
+        [
+          "float"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 100000,
+      "sample_submission_path": "tabular-playground-series-may-2022/prepared/public/sample_submission.csv",
+      "schema_signature": "5ab756cd521e9c4423c4e10ba20b43bd055058f5c6a22e7a4aa3246d6d18d55c",
+      "source_bytes": 1100010,
+      "source_sha256": "9f557b7177f5983dedabfc538aea050561bb4e4a362bfe4a35040959c26a6f6a",
+      "task": "tabular-playground-series-may-2022",
+      "task_type": "tabular",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": "en_sample_submission_2.csv",
+      "archive_member_uncompressed_bytes": 17447129,
+      "column_count": 2,
+      "columns": [
+        "id",
+        "after"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "bb72dd0dcf217bd2fccbc9dbbc6e5f9f2d5026d6c612dcce0655af93298c656a",
+      "description_bytes": 4511,
+      "description_present": true,
+      "description_sha256": "3877defc16e7a8c586d9a3e4166ca7e0591799302aea6e24d38b932654142e59",
+      "empty_value_counts": [
+        0,
+        17
+      ],
+      "observed_types": [
+        [
+          "float"
+        ],
+        [
+          "bool",
+          "empty",
+          "float",
+          "int",
+          "nonfinite",
+          "string"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 993465,
+      "sample_submission_path": "text-normalization-challenge-english-language/prepared/public/en_sample_submission_2.csv.zip",
+      "schema_signature": "9f848bb034c23157a17ad8fbadbb8f583af7b0d72b0aa8502d9bab2e7f413b61",
+      "source_bytes": 17447279,
+      "source_sha256": "22da4f7826a9d0691f6e0468cb08d3c5cf75d5ca4e4a9abd30ffafee2854a055",
+      "task": "text-normalization-challenge-english-language",
+      "task_type": "nlp",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": "ru_sample_submission_2.csv",
+      "archive_member_uncompressed_bytes": 23892801,
+      "column_count": 2,
+      "columns": [
+        "id",
+        "after"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "e7de66155848a6a9d67d0508e77f3c06362acb27f4944231709d4759d11e8ad7",
+      "description_bytes": 5295,
+      "description_present": true,
+      "description_sha256": "fb6eff07eae86287a6bf6d76bf7d79f3b3d2db4f2d1d6a2579bcaf1fbc602710",
+      "empty_value_counts": [
+        0,
+        3
+      ],
+      "observed_types": [
+        [
+          "float"
+        ],
+        [
+          "bool",
+          "empty",
+          "float",
+          "int",
+          "nonfinite",
+          "string"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 1059191,
+      "sample_submission_path": "text-normalization-challenge-russian-language/prepared/public/ru_sample_submission_2.csv.zip",
+      "schema_signature": "9f848bb034c23157a17ad8fbadbb8f583af7b0d72b0aa8502d9bab2e7f413b61",
+      "source_bytes": 23892951,
+      "source_sha256": "bafce877a5c5d9995966437fc981f76fed34b364d7505807a3f7d8247833e15d",
+      "task": "text-normalization-challenge-russian-language",
+      "task_type": "nlp",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "textID",
+        "selected_text"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "206b6c8eec85774e47c7ecef0d9fc80c092b9dceed939723b99a2c3bef8b6f98",
+      "description_bytes": 5511,
+      "description_present": true,
+      "description_sha256": "8f415244b57ea9517a6ef676293c1b32335f351f886a23983e17a49f30895c15",
+      "empty_value_counts": [
+        0,
+        2749
+      ],
+      "observed_types": [
+        [
+          "float",
+          "int",
+          "nonfinite",
+          "string"
+        ],
+        [
+          "empty"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 2749,
+      "sample_submission_path": "tweet-sentiment-extraction/prepared/public/sample_submission.csv",
+      "schema_signature": "18868efa0b3ebc904d44f501476368f84a74ea70e752058e41a762d543308a90",
+      "source_bytes": 33009,
+      "source_sha256": "206b6c8eec85774e47c7ecef0d9fc80c092b9dceed939723b99a2c3bef8b6f98",
+      "task": "tweet-sentiment-extraction",
+      "task_type": "nlp",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "id",
+        "score"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "9c83ddc170b19a59cd05e66b65b0fe06178ca340949a0b3b4f5de264f9108597",
+      "description_bytes": 8822,
+      "description_present": true,
+      "description_sha256": "c2cc3682177d64f12e3c4d651389d7d6ef50852eaf97ccbcee55f62ebe957f53",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "float",
+          "nonfinite",
+          "string"
+        ],
+        [
+          "int"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 3648,
+      "sample_submission_path": "us-patent-phrase-to-phrase-matching/prepared/public/sample_submission.csv",
+      "schema_signature": "114980c3db4ac13b0fbb549ee8e5dcfbcdc12fb9b07ab69e7a0c722f92869d43",
+      "source_bytes": 69321,
+      "source_sha256": "9c83ddc170b19a59cd05e66b65b0fe06178ca340949a0b3b4f5de264f9108597",
+      "task": "us-patent-phrase-to-phrase-matching",
+      "task_type": "nlp",
+      "width_bucket": "1-2"
+    },
+    {
+      "archive_member": null,
+      "archive_member_uncompressed_bytes": null,
+      "column_count": 2,
+      "columns": [
+        "Image",
+        "Id"
+      ],
+      "contract_present": true,
+      "csv_content_sha256": "b2d45c38490c1413687dc01568482be2234de7f72a1c515c71a988e71d6247aa",
+      "description_bytes": 3063,
+      "description_present": true,
+      "description_sha256": "52092294af74a25f38d8f959ece451b0a906a3a32cc993d938232086d2e28aaf",
+      "empty_value_counts": [
+        0,
+        0
+      ],
+      "observed_types": [
+        [
+          "string"
+        ],
+        [
+          "string"
+        ]
+      ],
+      "public_dir_present": true,
+      "row_count": 2610,
+      "sample_submission_path": "whale-categorization-playground/prepared/public/sample_submission.csv",
+      "schema_signature": "358782ff3ff8e1581c1218baba85e0132ed705441b5087112080b72a662a03aa",
+      "source_bytes": 164439,
+      "source_sha256": "b2d45c38490c1413687dc01568482be2234de7f72a1c515c71a988e71d6247aa",
+      "task": "whale-categorization-playground",
+      "task_type": "image-cls",
+      "width_bucket": "1-2"
+    }
+  ]
+}

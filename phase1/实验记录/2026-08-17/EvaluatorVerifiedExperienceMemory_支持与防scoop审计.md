@@ -80,6 +80,12 @@ outcome-blind artifact contract 和安全失败类别，再决定是否做三臂
 这三层可以成为“有成功也有失败”的搜索树发布资产，比只发布 12,309 个有限分数卡片更完整；但资产构建本身
 仍不证明方法有效。
 
+2026-08-17 的 public artifact-contract 资格审计已经补上第三层的可用性证据：25 个任务中 20 个有 public
+contract/description；结果前冻结的 header/type 异质性门以 19 个 signatures、dominant share=0.10 和三类
+width buckets 全部出现而通过。结果后去列名压力检查仍有 17 个 signatures，但 16/20 为两列，因此只允许
+“列语义/类型非平凡”的窄主张。直接证据见
+`phase1/results/public_artifact_contract_support_20260817/README.md`。
+
 ### P2：三臂因果 A/B（只在资格门全过后，暂不提交）
 
 未来候选矩阵应为：

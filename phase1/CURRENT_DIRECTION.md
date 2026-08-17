@@ -3,6 +3,35 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0Y. 2026-08-17 并行正面资产：经验支持与 public artifact contract 通过资格审计
+
+本节晚于 0X，但**不改变**唯一主实验、138/150 gate、冻结 replay 或预算授权。它只更新在等待新 physical
+runs 时允许做的 CPU 数据资产路线。
+
+1. 整 run 排除 2,087 个 frozen decision rows 涉及的 92 physical runs 后，历史池仍有 12,316 cards / 575
+   runs / 25 tasks；frozen endpoint、physical run、非空代码 SHA overlap 均为 0。每 run 有 575 个最优 finite
+   `y_norm` success episodes；22/22 frozen tasks 有同任务 memory，21/22 至少 5 个。因此只支持 seen-task
+   baseline，不支持 unseen-task 或因果收益。
+2. 训练侧 769 个 missing sibling identities 恢复 699 个状态，其中 691 execution errors、8 grade absent；
+   当前 registry 没有可行动诊断。广义 fixed-weight learned/self-evolving harness novelty 因 Argus、Gome 和
+   retrieval-agent 直接邻近工作而关闭；可防守边界只剩 MLE pristine evaluator + selective missingness +
+   source-opportunity provenance 的组合。
+3. 结果前 commit `1dac61cf71c58e89dd084380165e48b4f1438a43` 冻结 public artifact-contract 审计。
+   25 tasks 中 20 个有 public contract/description；coverage 在预检时已见，只作描述。尚未看的门以 19 个
+   schema signatures、dominant share=0.10、三类 width buckets 全出现而通过；双跑 SHA 一致，完整测试
+   `342 passed in 46.47s`。结果后去列名仍有 17 signatures，但 16/20 为两列，故只允许“列语义/类型非平凡”，
+   不允许“所有任务宽结构不同”。缺失 5 个 image tasks 不得从 private 补齐。
+4. 当前允许的下一步只有 outcome-blind contract fingerprint、task-held-out retrieval support 与凭据安全的
+   train-only failure taxonomy。`标准 / contract / contract+memory` 三臂仍未授权；必须先等 score-channel
+   主实验确认、支持门与功效分析，再给用户确切矩阵/run 数/GPU·时审批。
+
+直接证据：
+
+- `phase1/results/experience_memory_support_v11_20260817/README.md`；
+- `phase1/results/public_artifact_contract_support_20260817/README.md`；
+- `phase1/实验记录/2026-08-17/EvaluatorVerifiedExperienceMemory_支持与防scoop审计.md`；
+- `phase1/实验记录/2026-08-17/PublicArtifactContractSupport_裁决.md`。
+
 ## 0X. 2026-08-17 最新状态：评分通道仍是唯一主实验，前瞻 run gate 达到 138/150
 
 本节晚于 0W，并按项目级方向决定覆盖 0W 及更早小节中关于“当前主线/下一实验”的措辞。论文容器保持为

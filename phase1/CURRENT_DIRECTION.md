@@ -29,7 +29,8 @@
 6. 0815/0816 新任务不能在结果后手工猜 metric 方向。已在 outcome/replay 前用 MLE-bench commit
    `507f92e1138bb6e40dac5c6ee7a6758e6424bf97` 的公开 leaderboard 顺序核对 10 个近期任务并冻结逐文件 SHA：
    dog-breed 与 ventilator 为 lower-is-better，其余 8 个为 higher-is-better；与旧 registry 重叠的 3 个任务方向
-   全部一致。正式 orientation receipt 只能从旧 registry 与该补充表合并，缺失任务即 fail-closed。
+   全部一致。独立验证双跑逐字节一致，receipt SHA=`f1e5c614...` 且 `outcomes_read=false`。正式 orientation
+   receipt 只能从旧 registry 与该补充表合并，缺失任务即 fail-closed。
 
 直接证据：
 
@@ -40,6 +41,7 @@
 - `phase1/verify_score_channel_prospective_analysis.py`。
 - `phase1/results/score_channel_execution_freeze_20260818/README.md`。
 - `phase1/score_channel_metric_orientation_supplement_20260818.json`。
+- `phase1/results/score_channel_metric_orientation_20260818/README.md`。
 
 ## 0AB. 2026-08-18 最新覆盖：0816 新语料 fail-closed；failure-length 异质性关闭
 

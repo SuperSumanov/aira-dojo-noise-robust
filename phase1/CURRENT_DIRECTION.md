@@ -3,6 +3,36 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AC. 2026-08-18 最新覆盖：前瞻门已具余量；正式 replay 执行与确认分析结果前冻结
+
+本节晚于 0AB。唯一主实验仍是 score-channel 的时间前瞻复现；固定窗口尚未结束，正式 GPU replay
+仍未获授权，任何 replay outcome 尚未产生。
+
+1. 0816 除已精确拒收的 plant archive 外，其余 6 个 archive 均由固定 intake 合约提交为不可变 transaction，
+   archive 标称合计 40 个 seed journals；当前 registry 共 28 个 intakes。监控日志持续声明
+   `outcomes_read=false`，并固定在 `2026-08-18T09:56:30Z` 收口，不因已超过 150-run 门而提前停止。
+2. 窗口结束后的自动链只做 CPU 双冻结：先独立重建 run eligibility，通过 150-run 与任务占比门后，再双重生成并
+   验证 parent selection、120 秒 replay manifest、四个确定性 shard 和精确 GPU·时上界。它在
+   `REPLAY_MANIFEST_FROZEN_APPROVAL_PENDING` 停止，不生成批准收据、不提交 GPU。
+3. 正式 worker、confirmatory analyzer 与不导入 producer 的独立 verifier 已在 outcome 前实现并冻结。worker
+   要求用户批准收据精确绑定四 shard、replay 数/GPU 上界、worker commit、container size/mtime、pristine
+   grader SHA、data root、online-HF、API=0 与底座更新=false；每 candidate fresh workspace、120 秒固定 cap、
+   append+fsync 可恢复，基础设施重试等待计入总 wall。结果不保存 raw code/stdout/stderr/grader 文本。
+4. 唯一 headline 预注册为同 parent、同 120 秒、同时有 finite pristine `sub_score` 与 keyed `stdout_val` 的共同
+   候选集上，两个通道各自 tie-aware top-1 预测 frozen `y_norm` 的逐 parent credit 差。primary 为 run-clustered
+   CI，secondary 为 task-clustered；另有 run-level exact sign 与 task LOTO。点估计不正即 KILL；只有正点估计、
+   run-sign `p<0.05`、run-CI 下界大于 0、所有 task LOTO 大于 -0.10 才 GO。
+5. 当前 CPU 聚焦测试为 11 passed；完整远端 suite 与合成端到端双跑仍须在精确冻结 commit 上通过后，才允许把
+   该 commit 写入未来 approval。旧 HCE、多保真、probe、Qwen checkpoint 或 failure-length 支线均不因此恢复。
+
+直接证据：
+
+- `phase1/实验记录/2026-08-18/ScoreChannel_ReplayWorker_v1_执行前冻结.md`；
+- `phase1/实验记录/2026-08-18/ScoreChannel_ProspectiveAnalysis_v1_预注册.md`；
+- `phase1/score_channel_replay_worker.py`；
+- `phase1/score_channel_prospective_analysis.py`；
+- `phase1/verify_score_channel_prospective_analysis.py`。
+
 ## 0AB. 2026-08-18 最新覆盖：0816 新语料 fail-closed；failure-length 异质性关闭
 
 本节晚于 0AA。唯一主实验仍是前瞻 score-channel 复现；正式 replay 未授权，outcome/label vault 未读。

@@ -54,6 +54,7 @@ REJECTION_KEYS = {
 }
 REJECTION_REASON_CODES = {
     "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
+    "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
 }
 FORBIDDEN_TRACE_MARKERS = (
     b"label_vault.jsonl",
@@ -411,6 +412,27 @@ def apply_structural_rejections(
         entry["rejected_archive_sha256"] = row["archive_sha256"]
         entry["rejection_reason_code"] = row["reason_code"]
         entry["rejection_registry_sha256"] = registry_sha256
+
+
+def structural_rejection_specs(args: argparse.Namespace) -> list[tuple[Path | None, str | None]]:
+    specs: list[tuple[Path | None, str | None]] = [
+        (
+            getattr(args, "structural_rejection_registry", None),
+            getattr(args, "expect_structural_rejection_registry_sha256", None),
+        ),
+        (
+            getattr(args, "additional_structural_rejection_registry", None),
+            getattr(args, "expect_additional_structural_rejection_registry_sha256", None),
+        ),
+    ]
+    extra_paths = list(getattr(args, "extra_structural_rejection_registry", None) or [])
+    extra_shas = list(
+        getattr(args, "expect_extra_structural_rejection_registry_sha256", None) or []
+    )
+    if len(extra_paths) != len(extra_shas):
+        raise ProductionError("extra structural rejection registry path/SHA count mismatch")
+    specs.extend(zip(extra_paths, extra_shas, strict=True))
+    return specs
 
 
 def safe_drop_id(relative: str, archive_sha: str) -> str:
@@ -899,21 +921,7 @@ def run_once(args: argparse.Namespace) -> int:
                     raise ProductionError("committed transaction source is absent from observation ledger")
                 entry["committed_archive_sha256"] = row["archive_sha256"]
                 entry["committed_snapshot_sha256"] = latest_sha
-            rejection_specs = (
-                (
-                    getattr(args, "structural_rejection_registry", None),
-                    getattr(args, "expect_structural_rejection_registry_sha256", None),
-                ),
-                (
-                    getattr(args, "additional_structural_rejection_registry", None),
-                    getattr(
-                        args,
-                        "expect_additional_structural_rejection_registry_sha256",
-                        None,
-                    ),
-                ),
-            )
-            for rejection_path, rejection_sha in rejection_specs:
+            for rejection_path, rejection_sha in structural_rejection_specs(args):
                 if (rejection_path is None) != (rejection_sha is None):
                     raise ProductionError(
                         "structural rejection registry path and SHA must be supplied together"
@@ -975,6 +983,10 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--expect-structural-rejection-registry-sha256")
     parser.add_argument("--additional-structural-rejection-registry", type=Path)
     parser.add_argument("--expect-additional-structural-rejection-registry-sha256")
+    parser.add_argument("--extra-structural-rejection-registry", action="append", type=Path)
+    parser.add_argument(
+        "--expect-extra-structural-rejection-registry-sha256", action="append"
+    )
     parser.add_argument("--minimum-age-seconds", type=int, default=6 * 60 * 60)
     parser.add_argument("--minimum-observations", type=int, default=3)
     parser.add_argument("--minimum-observation-interval-seconds", type=int, default=5 * 60)

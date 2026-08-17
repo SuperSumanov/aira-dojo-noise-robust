@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from argparse import Namespace
 from pathlib import Path
 
 import pytest
@@ -18,6 +19,7 @@ from phase1.prospective_production_runner import (
     safe_drop_id,
     score_registry_bytes,
     sha256_bytes,
+    structural_rejection_specs,
     update_observations,
     write_payload_manifest,
 )
@@ -163,6 +165,26 @@ def test_sequential_immutable_rejection_registries_preserve_each_binding(tmp_pat
     assert observed["entries"]["0814/first.tar.gz"]["rejection_registry_sha256"] == "a" * 64
     assert observed["entries"]["0815/second.tar.gz"]["rejection_registry_sha256"] == "b" * 64
     assert ready_archives(observed, 1000.0, 1, 1, 1) == []
+
+
+def test_extra_rejection_registry_lists_are_paired_and_append_only(tmp_path: Path):
+    first, second, third = (tmp_path / name for name in ("first.json", "second.json", "third.json"))
+    args = Namespace(
+        structural_rejection_registry=first,
+        expect_structural_rejection_registry_sha256="a" * 64,
+        additional_structural_rejection_registry=second,
+        expect_additional_structural_rejection_registry_sha256="b" * 64,
+        extra_structural_rejection_registry=[third],
+        expect_extra_structural_rejection_registry_sha256=["c" * 64],
+    )
+    assert structural_rejection_specs(args) == [
+        (first, "a" * 64),
+        (second, "b" * 64),
+        (third, "c" * 64),
+    ]
+    args.expect_extra_structural_rejection_registry_sha256 = []
+    with pytest.raises(ProductionError, match="path/SHA count mismatch"):
+        structural_rejection_specs(args)
 
 
 def test_rejected_archive_change_or_disappearance_fails_closed(tmp_path: Path):

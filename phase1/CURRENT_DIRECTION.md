@@ -30,6 +30,10 @@
    前瞻确认：必须先封存 score-channel 150-run cohort，再按时间取之后最早的 150 个 eligible unique parents；
    规则固定为 UTF-8 code bytes 较长者预测 retained-success。它是 CPU-only 的 informative-censoring 支持审计，
    当前状态 `FROZEN_NOT_STARTED`，不替代主实验；未满固定样本不看中间 accuracy，失败后不换长度定义重试。
+6. commit `486e245927ac717e589ff7c9923e029c177d8b26` 已把同一 494 对发布成 code-free registry。正式双跑
+   SHA=`ee7c878c9b3390c08d309229ac6380bf86e6934b92aab269e42ce7c2ffd57747`，完整测试 358 passed，
+   structural verifier 通过；每行只含 parent/run/task、endpoint identity、failure category 与 SHA，不含 raw code、
+   diagnostic 或 grade。它增强 benchmark 的可下载/可审计性，但不新增方法效果主张。
 
 直接证据：
 
@@ -38,6 +42,7 @@
 - `phase1/实验记录/2026-08-17/FailureRiskPairSupport_v1_预注册与执行前检查.md`；
 - `phase1/实验记录/2026-08-17/FailureRiskController_LOTO_v1_裁决.md`。
 - `phase1/实验记录/2026-08-17/FailureCensor_LengthRule_前瞻确认预注册.md`。
+- `phase1/results/failure_risk_pair_registry_20260817/README.md`。
 
 ## 0Z. 2026-08-17 最新覆盖：failure memory 通过；纯结构 LOTO 与学长 frozen checkpoint 关闭
 

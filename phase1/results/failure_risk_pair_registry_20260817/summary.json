@@ -1,0 +1,48 @@
+{
+  "credential_target_journal_shas": 0,
+  "failure_categories": {
+    "ARTIFACT_OUTPUT_CONTRACT": 6,
+    "DATA_SCHEMA_SHAPE_TYPE": 229,
+    "DEPENDENCY_IMPORT": 24,
+    "FILESYSTEM_INPUT_PATH": 7,
+    "LIBRARY_API_ATTRIBUTE": 80,
+    "OTHER_TRACEBACK": 83,
+    "RESOURCE_TIMEOUT": 65
+  },
+  "frozen_code_used": false,
+  "inputs": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "pair_sha256": [
+      "a04b5b805d0bc59b068cbb4df52bcbf23ea429f1b552022829671483eb6d1909",
+      "c2e38643cf2bb78e207964252af4f665961ab81416a762def04226b07c0d9258",
+      "10cbcc86ea8e5861eea3ad6da183e3dac5579533ee8be9890277be98f5de0903"
+    ],
+    "status_per_child_sha256": "bfb9870d83c50ef2d06bf2d374fc9f9213f41665f4cebeab7ab31837bcfde0d2",
+    "taxonomy_per_child_sha256": "a5f46021d61d1415d49476728fa988feda5cd9d97e80697099f6af467eca2087"
+  },
+  "numeric_grade_read": false,
+  "pairs": 494,
+  "per_task_pairs": {
+    "chaii-hindi-and-tamil-question-answering": 55,
+    "denoising-dirty-documents": 12,
+    "dog-breed-identification": 3,
+    "leaf-classification": 53,
+    "learning-agency-lab-automated-essay-scoring-2": 2,
+    "mlsp-2013-birds": 57,
+    "nomad2018-predict-transparent-conductors": 40,
+    "petfinder-pawpularity-score": 54,
+    "random-acts-of-pizza": 46,
+    "spaceship-titanic": 10,
+    "spooky-author-identification": 134,
+    "tabular-playground-series-dec-2021": 8,
+    "tabular-playground-series-may-2022": 20
+  },
+  "physical_runs": 126,
+  "protocol": "failure-risk-pair-registry-v1",
+  "raw_code_emitted": false,
+  "registry_sha256": "ee7c878c9b3390c08d309229ac6380bf86e6934b92aab269e42ce7c2ffd57747",
+  "source_commit": "486e245927ac717e589ff7c9923e029c177d8b26",
+  "status": "VERIFIED_CODE_FREE_FAILURE_RISK_PAIR_REGISTRY",
+  "support_summary_sha256": "77b81f8d4356d74f14647c8a12281af201fe34c75da04ed077febdac17b400f1",
+  "tasks": 13
+}

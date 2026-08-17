@@ -91,38 +91,6 @@ def test_non_finite_grades_do_not_enter_decision_values():
     assert records == []
 
 
-def test_pair_filters_apply_before_building_decision_values():
-    cards = decision_cards()
-    cards["run-a__2026-01-01"] = cards.pop("run-a")
-    for card in cards["run-a__2026-01-01"]:
-        card.time_limit = 100
-        card.execution_timeout = 10
-        card.client = "openai/gpt-5"
-        card.hardware = "slurm/a100"
-
-    records, _ = build_decision_pairs(
-        cards,
-        budgets=[0, 1, 2],
-        time_limit=(100, 100),
-        execution_timeout=(10, 10),
-        client="gpt-5",
-        hardware="a100",
-        date=("2026-01-01", "2026-01-01"),
-    )
-    assert len(records) == 3
-
-    excluding_filters = [
-        {"time_limit": (101, 200)},
-        {"execution_timeout": (11, 20)},
-        {"client": "claude"},
-        {"hardware": "h100"},
-        {"date": ("2026-01-02", "2026-01-31")},
-    ]
-    for filters in excluding_filters:
-        filtered_records, _ = build_decision_pairs(cards, budgets=[0], **filters)
-        assert filtered_records == []
-
-
 def test_main_reads_grouped_cards_and_writes_raw_pairs(tmp_path, monkeypatch):
     cards_path = tmp_path / "cards.json"
     pairs_path = tmp_path / "decision_raw.jsonl"

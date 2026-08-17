@@ -7,9 +7,7 @@ import random
 from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any
-
-if TYPE_CHECKING:
-    import torch
+import torch
 
 
 def read_cards(path: str) -> tuple[dict[str, str], dict[str, str]]:
@@ -171,7 +169,6 @@ class PairDataset:
 
 def pair_collate(batch: Sequence[dict[str, list[int]]], pad_token_id: int) -> dict[str, torch.Tensor]:
     """Pack all better sequences followed by all worse sequences."""
-    import torch
 
     sequences = [item["b"] for item in batch] + [item["w"] for item in batch]
     width = max(len(sequence) for sequence in sequences)

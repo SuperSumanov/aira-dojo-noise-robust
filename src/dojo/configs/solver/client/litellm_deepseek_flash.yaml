@@ -1,6 +1,6 @@
 _target_: dojo.config_dataclasses.client.base.ClientConfig
 api: litellm
-model_id: "deepseek-v4-flash"
-base_url: "https://api.deepseek.com"
+model_id: "deepseek/deepseek-v4-flash-0731"
+base_url: "https://openrouter.ai/api/v1"
 use_azure_client: false
 provider: openai

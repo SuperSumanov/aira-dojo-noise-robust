@@ -28,7 +28,6 @@ from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 
 from ..download_and_resolve.cards import Card, load_cards
-from .pair_filters import filter_pair_cards
 
 
 @dataclass(frozen=True)
@@ -301,22 +300,9 @@ def build_value_pairs(
     seed: int = 7,
     budget_steps: int = 0,
     budget_seconds: float = 0.0,
-    time_limit: tuple[int, int] | None = None,
-    execution_timeout: tuple[int, int] | None = None,
-    client: str | None = None,
-    hardware: str | None = None,
-    date: tuple[str, str] | None = None,
 ) -> tuple[list[dict], dict[str, dict[str, int]]]:
     """Build capped, same-task raw value pairs and summary counts."""
-    filtered_cards_by_run_id = filter_pair_cards(
-        cards_by_run_id,
-        time_limit=time_limit,
-        execution_timeout=execution_timeout,
-        client=client,
-        hardware=hardware,
-        date=date,
-    )
-    cards_by_id, _ = flatten_runs(filtered_cards_by_run_id)
+    cards_by_id, _ = flatten_runs(cards_by_run_id)
     children_by_parent_id = build_children_index(cards_by_id)
     node_values_by_id = compute_node_values(
         cards_by_id,
@@ -387,32 +373,6 @@ def parse_args() -> argparse.Namespace:
         help="maximum sampled candidate pairs per task before split filtering",
     )
     parser.add_argument("--seed", type=int, default=7)
-    parser.add_argument(
-        "--time-limit",
-        type=int,
-        nargs=2,
-        metavar=("MIN", "MAX"),
-        help="keep Cards whose time_limit is in the inclusive range",
-    )
-    parser.add_argument(
-        "--execution-timeout",
-        type=int,
-        nargs=2,
-        metavar=("MIN", "MAX"),
-        help="keep Cards whose execution_timeout is in the inclusive range",
-    )
-    parser.add_argument("--client", help="keep Cards whose client contains this string")
-    parser.add_argument(
-        "--hardware", help="keep Cards whose hardware contains this string"
-    )
-    parser.add_argument(
-        "--date",
-        "--date-range",
-        dest="date",
-        nargs=2,
-        metavar=("START", "END"),
-        help="keep runs in the inclusive YYYY-MM-DD date range",
-    )
     arguments = parser.parse_args()
     if arguments.budget_steps < 0:
         parser.error("--budget-steps must be non-negative")
@@ -432,15 +392,6 @@ def main() -> None:
         seed=arguments.seed,
         budget_steps=arguments.budget_steps,
         budget_seconds=arguments.budget_secs,
-        time_limit=tuple(arguments.time_limit) if arguments.time_limit else None,
-        execution_timeout=(
-            tuple(arguments.execution_timeout)
-            if arguments.execution_timeout
-            else None
-        ),
-        client=arguments.client,
-        hardware=arguments.hardware,
-        date=tuple(arguments.date) if arguments.date else None,
     )
 
     arguments.out.parent.mkdir(parents=True, exist_ok=True)

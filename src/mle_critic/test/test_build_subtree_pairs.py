@@ -129,43 +129,6 @@ def test_lower_score_is_oriented_as_better_when_task_says_so():
     assert (records[0]["better"], records[0]["worse"]) == ("a", "b")
 
 
-def test_pair_filters_apply_before_computing_subtree_values():
-    cards = {
-        "run-a__2026-01-01": [
-            make_card("a", 0.1),
-            make_card("a-child", 0.9, "a"),
-            make_card("b", 0.8),
-            make_card("b-child", 0.8, "b"),
-        ]
-    }
-    for card in cards["run-a__2026-01-01"]:
-        card.time_limit = 100
-        card.execution_timeout = 10
-        card.client = "openai/gpt-5"
-        card.hardware = "slurm/a100"
-
-    records, _ = build_value_pairs(
-        cards,
-        time_limit=(100, 100),
-        execution_timeout=(10, 10),
-        client="gpt-5",
-        hardware="a100",
-        date=("2026-01-01", "2026-01-01"),
-    )
-    assert len(records) == 1
-
-    excluding_filters = [
-        {"time_limit": (101, 200)},
-        {"execution_timeout": (11, 20)},
-        {"client": "claude"},
-        {"hardware": "h100"},
-        {"date": ("2026-01-02", "2026-01-31")},
-    ]
-    for filters in excluding_filters:
-        filtered_records, _ = build_value_pairs(cards, **filters)
-        assert filtered_records == []
-
-
 def test_main_reads_run_grouped_cards_and_writes_jsonl(tmp_path, monkeypatch):
     cards_path = tmp_path / "cards.json"
     output_path = tmp_path / "pairs.jsonl"

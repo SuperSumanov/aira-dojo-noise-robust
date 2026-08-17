@@ -1,7 +1,37 @@
-# 当前研究方向唯一入口（2026-08-17）
+# 当前研究方向唯一入口（2026-08-18）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0AB. 2026-08-18 最新覆盖：0816 新语料 fail-closed；failure-length 异质性关闭
+
+本节晚于 0AA。唯一主实验仍是前瞻 score-channel 复现；正式 replay 未授权，outcome/label vault 未读。
+
+1. 0816 新到 7 个 archives、最多 48 个 seed-runs。第一个
+   `plant-pathology-2021-fgvc8-8seeds.tar.gz` 在生产 intake 的唯一 task identity 门 fail-closed，未提交
+   transaction。结果前 commit `5ee342f549311ece7bc111ddd0cb7ff08b740210` 冻结只读结构诊断：raw journal
+   先做 credential scan，不读 env/live-event，不输出 task identity、代码、stdout 或 grade。正式双跑 SHA
+   `a0a86696...` 一致、完整测试 362 passed；16 个 checkpoint journals 中 8 个 cardinality=1、8 个=0。
+   因而按 archive SHA `859f6ca0...` 整包结构性拒收，不从文件名猜 task、不部分 salvage。第三份 append-only
+   registry 只增加这一精确绑定；其余归档继续按固定 12 小时窗口入库。
+2. failure-mechanism × length 异质性按结果前 commit
+   `acf63075237e1e2f9ceb925a81fde6d95f295ccd` 正式双跑逐字节一致，结果 SHA `d85ec8a4...`，完整测试
+   360 passed。494 pairs 上整体 raw-byte longer-success credit=`0.4493927125506073`；四个合格类别 range
+   `0.11340275445078934<0.15`，task-stratified permutation `p=0.4312956870431296>0.01`。裁决为
+   **INSUFFICIENT_FAILURE_MECHANISM_LENGTH_HETEROGENEITY**；不翻转方向、不重组类别、不进入 utility。
+3. 0AA 第 5 项 prospective length v1 在任何新 cohort outcome 被读取前标记为
+   **VOID_SPECIFICATION_ERROR**：旧 LOTO 的 length-only LR 使用截断后字符数、`log1p` 和训练侧拟合系数，
+   commit `990be2a` 却冻结成 raw UTF-8 bytes 固定“更长为成功”，不是同一 scorer。若继续必须另立 v2，先用旧
+   494 对冻结完整模型收据，再对时间上更晚的新 cohort 一次性确认。
+4. 正面资产没有回退：run-clean corpus、691-node evaluator-verified failure taxonomy、494-pair code-free
+   parent-matched failure-risk benchmark 与安全 append-only intake 都保留。当前最有价值的正结论机会仍是：先让
+   新语料补足 150-run gate，再 outcome-blind 冻结 parent/replay 清单，最后向用户报告精确 replay/GPU·时申请。
+
+直接证据：
+
+- `phase1/results/prospective_structural_rejection_20260818/README.md`；
+- `phase1/results/failure_mechanism_length_heterogeneity_20260818/README.md`；
+- `phase1/实验记录/2026-08-18/FailureMechanism_LengthHeterogeneity_v1_裁决.md`。
 
 ## 0AA. 2026-08-17 最新覆盖：494 对 failure-risk benchmark 通过，静态 learned controller 关闭
 

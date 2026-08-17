@@ -1,0 +1,23 @@
+{
+  "category_credit_range": 0.11340275445078934,
+  "eligible_categories": 4,
+  "failure_mechanism_heterogeneity_claim_allowed": false,
+  "formal_result_sha256": "d85ec8a42a09160e19c71961f419b59108034f293f02a0722b839a24d9915377",
+  "hash_negative_control_p": 0.34448655513444865,
+  "highest_category": "DATA_SCHEMA_SHAPE_TYPE",
+  "highest_category_length_credit": 0.4672489082969432,
+  "lowest_category": "RESOURCE_TIMEOUT",
+  "lowest_category_length_credit": 0.35384615384615387,
+  "method_effect_claim_allowed": false,
+  "outcomes_read_before_preregistration": false,
+  "overall_length_credit": 0.4493927125506073,
+  "pairs": 494,
+  "physical_runs": 126,
+  "protocol": "failure-mechanism-length-heterogeneity-v1-result-receipt",
+  "registry_sha256": "ee7c878c9b3390c08d309229ac6380bf86e6934b92aab269e42ce7c2ffd57747",
+  "search_utility_claim_allowed": false,
+  "source_commit": "acf63075237e1e2f9ceb925a81fde6d95f295ccd",
+  "status": "INSUFFICIENT_FAILURE_MECHANISM_LENGTH_HETEROGENEITY",
+  "task_stratified_permutation_p": 0.4312956870431296,
+  "tasks": 13
+}

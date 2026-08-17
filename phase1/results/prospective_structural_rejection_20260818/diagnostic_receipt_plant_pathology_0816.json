@@ -1,0 +1,118 @@
+{
+  "archive": {
+    "mtime_ns": 1786977664000000000,
+    "relative_basename": "plant-pathology-2021-fgvc8-8seeds.tar.gz",
+    "sha256": "859f6ca0a54664c74ea2ae31fa005f24e846c99f764dd729bd251b3de9924776",
+    "size": 285154068
+  },
+  "archive_audit": {
+    "checkpoint_runs": 16,
+    "checkpoint_with_live_event_log": 16,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 1443783873,
+    "discovered_run_roots": 16,
+    "live_only_runs_excluded": 0,
+    "members": 240
+  },
+  "invalid_journals": 8,
+  "journals": 16,
+  "outcomes_read": false,
+  "per_journal": [
+    {
+      "journal_sha256": "1817fec4199355d71651c9c98afad6b4f0706b5c4a2e10abc2b77e0fc45318d7",
+      "nodes": 193,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "2444ea8d071a958382c2c61c4aa164f0d6e3e1dc255b4318ea03814696757593",
+      "nodes": 10,
+      "task_identity_cardinality": 1
+    },
+    {
+      "journal_sha256": "420458a0e3b3bf2568bc2f6415bcc71fada5b51afbc6a2aa5ad099358ce79231",
+      "nodes": 8,
+      "task_identity_cardinality": 1
+    },
+    {
+      "journal_sha256": "56e81ea580d44c067650cd2ebf54487cdefa5b31d8dcf0e1efbd970b79f15917",
+      "nodes": 181,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "5e3f61664af91a3b2798ec62a9e6f56a652be29a25a54cbc2c32046397d48f2e",
+      "nodes": 20,
+      "task_identity_cardinality": 1
+    },
+    {
+      "journal_sha256": "654c923076bdb8ed39e6fbd2e56338368ee987fba229caf81c1324b4c9752957",
+      "nodes": 177,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "66d1963745c49598b13b6fed5560490904784f82e0014f29c983dab307f88d39",
+      "nodes": 11,
+      "task_identity_cardinality": 1
+    },
+    {
+      "journal_sha256": "67d51a40df50804d64f420b9ef35b5847c220cd6c8f3fb84cf210246e46222a4",
+      "nodes": 193,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "6811c7d994f3f58349c46a31f5d7b9b3512aa5393bc566b879569bcf80ea9bd9",
+      "nodes": 14,
+      "task_identity_cardinality": 1
+    },
+    {
+      "journal_sha256": "69be15220eb0f9aeaf8cc608fee622636b12ecf8643485fd083b8af0dc0b0f8b",
+      "nodes": 197,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "b82e312008e22589e5e8c560c0059d813adbd87a1581946497e4352eb09a89c1",
+      "nodes": 20,
+      "task_identity_cardinality": 1
+    },
+    {
+      "journal_sha256": "bdcb2f91cc6e9d1da4ff4754386eb21c1da28c6fd9d4a89b959025d793a52e33",
+      "nodes": 177,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "dc91e780f93fba52e3f2daa4966c3580a2da1a019b92ee0d4976a43c813c6b9a",
+      "nodes": 193,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "e478a659984ba0e607edca9ab1d899cc52454b1dc536d3c32a34fb7f07af9e44",
+      "nodes": 19,
+      "task_identity_cardinality": 1
+    },
+    {
+      "journal_sha256": "eb894757afc838969c095fd24d70c174dd2d754babc8fe7f981b19bcfc059385",
+      "nodes": 15,
+      "task_identity_cardinality": 1
+    },
+    {
+      "journal_sha256": "f8853003a3a712f9694dd7418923f18934863af65a1c85b1e981e4c56902952c",
+      "nodes": 181,
+      "task_identity_cardinality": 0
+    }
+  ],
+  "protocol": "prospective_archive_task_identity_audit_v1",
+  "recommended_reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+  "security": {
+    "code_stdout_grade_or_metric_values_emitted": false,
+    "env_members_read": false,
+    "journal_scanned_before_json": true,
+    "live_event_journal_members_read": false,
+    "task_identity_values_emitted": false
+  },
+  "source_commit": "5ee342f549311ece7bc111ddd0cb7ff08b740210",
+  "status": "STRUCTURAL_TASK_IDENTITY_REJECTION_SUPPORTED",
+  "task_identity_cardinality_counts": {
+    "multiple": 0,
+    "one": 8,
+    "zero": 8
+  }
+}

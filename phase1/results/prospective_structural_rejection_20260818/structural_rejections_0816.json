@@ -1,0 +1,15 @@
+{
+  "entries": [
+    {
+      "archive_mtime_ns": 1786977664000000000,
+      "archive_relative_path": "0816/plant-pathology-2021-fgvc8-8seeds.tar.gz",
+      "archive_sha256": "859f6ca0a54664c74ea2ae31fa005f24e846c99f764dd729bd251b3de9924776",
+      "archive_size": 285154068,
+      "diagnostic_receipt_file": "diagnostic_receipt_plant_pathology_0816.json",
+      "diagnostic_receipt_sha256": "a0a8669681926d3bfa971a904e3ead3263b2f2f2fd64f64fdfbcccd79a36b59c",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+    }
+  ],
+  "outcomes_read": false,
+  "protocol": "prospective_structural_rejection_v1"
+}

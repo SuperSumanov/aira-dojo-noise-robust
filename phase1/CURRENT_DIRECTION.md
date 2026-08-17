@@ -30,7 +30,8 @@
    `507f92e1138bb6e40dac5c6ee7a6758e6424bf97` 的公开 leaderboard 顺序核对 10 个近期任务并冻结逐文件 SHA：
    dog-breed 与 ventilator 为 lower-is-better，其余 8 个为 higher-is-better；与旧 registry 重叠的 3 个任务方向
    全部一致。独立验证双跑逐字节一致，receipt SHA=`f1e5c614...` 且 `outcomes_read=false`。正式 orientation
-   receipt 只能从旧 registry 与该补充表合并，缺失任务即 fail-closed。
+   receipt 只能由冻结 producer 从旧 registry 与该补充表合并，再由不导入 producer 的 verifier 重建；缺失任务、
+   source 冲突、selection SHA 改变或 receipt SHA 不符均 fail-closed。
 
 直接证据：
 
@@ -42,6 +43,8 @@
 - `phase1/results/score_channel_execution_freeze_20260818/README.md`。
 - `phase1/score_channel_metric_orientation_supplement_20260818.json`。
 - `phase1/results/score_channel_metric_orientation_20260818/README.md`。
+- `phase1/score_channel_orientation_receipt.py`；
+- `phase1/verify_score_channel_orientation_receipt.py`。
 
 ## 0AB. 2026-08-18 最新覆盖：0816 新语料 fail-closed；failure-length 异质性关闭
 

@@ -1,0 +1,73 @@
+{
+  "protocol": "score-channel-metric-orientation-source-v1",
+  "created_before_replay_outcomes": true,
+  "outcomes_read": false,
+  "method": "mlebench Grader.is_lower_better on the public competition leaderboard ordering",
+  "source": {
+    "mlebench_commit": "507f92e1138bb6e40dac5c6ee7a6758e6424bf97",
+    "grade_helpers_sha256": "7d55512a893699b2e17041f3cd3bd0c2aba955c73f50872b3c69238546b87005",
+    "data_py_sha256": "67a410da17e2b650f8fe7a7a3ee778312c7547627457776cbe07863da5e087ee"
+  },
+  "tasks": {
+    "AI4Code": {
+      "lower_is_better": false,
+      "orientation": 1,
+      "leaderboard_rows": 1025,
+      "leaderboard_sha256": "086ebfd7d2bc3093587b134109f7e98aedde0301813485f64d0414d7947970b9"
+    },
+    "cassava-leaf-disease-classification": {
+      "lower_is_better": false,
+      "orientation": 1,
+      "leaderboard_rows": 3901,
+      "leaderboard_sha256": "140a49c0cbacc8b1858fb7903bdcc9ded486889617899359c00169ebd543b625"
+    },
+    "dog-breed-identification": {
+      "lower_is_better": true,
+      "orientation": -1,
+      "leaderboard_rows": 1281,
+      "leaderboard_sha256": "819d5a5551355c6bbb1288988d4a4219e0d1c1e563867997cca5e27f04a26758"
+    },
+    "facebook-recruiting-iii-keyword-extraction": {
+      "lower_is_better": false,
+      "orientation": 1,
+      "leaderboard_rows": 371,
+      "leaderboard_sha256": "cb9f48a977b44b14ebaccd7380fd82e140c8ca48b56b4271bcc3ad45f992c92f"
+    },
+    "google-quest-challenge": {
+      "lower_is_better": false,
+      "orientation": 1,
+      "leaderboard_rows": 1572,
+      "leaderboard_sha256": "87795e3f621dd8408f89fc55609cfd6263f5aa1ea9133ab4f39a3ce57811345f"
+    },
+    "osic-pulmonary-fibrosis-progression": {
+      "lower_is_better": false,
+      "orientation": 1,
+      "leaderboard_rows": 2097,
+      "leaderboard_sha256": "4a7849dbd657a2a1c86a11026a563f55e1d7c87de44fb040de7dadd9bb718481"
+    },
+    "ranzcr-clip-catheter-line-classification": {
+      "lower_is_better": false,
+      "orientation": 1,
+      "leaderboard_rows": 1547,
+      "leaderboard_sha256": "5ffa7a1161f71c4418a8496136853864e1a71d76fbbb6e895df493a4bae736e6"
+    },
+    "tensorflow-speech-recognition-challenge": {
+      "lower_is_better": false,
+      "orientation": 1,
+      "leaderboard_rows": 1314,
+      "leaderboard_sha256": "5f0d198ca31e37837574b6185c30557cc60c353048a875d7a25f5aa11d135898"
+    },
+    "tgs-salt-identification-challenge": {
+      "lower_is_better": false,
+      "orientation": 1,
+      "leaderboard_rows": 3219,
+      "leaderboard_sha256": "5f42ce100d4e6051c84bf1270d9e480e97501aef96b23eed146f06691e40c9b8"
+    },
+    "ventilator-pressure-prediction": {
+      "lower_is_better": true,
+      "orientation": -1,
+      "leaderboard_rows": 2605,
+      "leaderboard_sha256": "aa45b4c1c8eb82d0f8b0bd58e2ccea7d7981623fcf171a5158782ee4d3cc3e4a"
+    }
+  }
+}

@@ -9,6 +9,7 @@
 |---|---|---|
 | [CompCoder (2022)](https://arxiv.org/abs/2203.05132) | 用 compiler feedback 联合训练 code generator 与 compilability discriminator，并以 RL 提升可编译率 | “训练执行/编译判别器并用于筛选”早已不是新原语；而且它会更新 generator，违反我们不微调底座的边界 |
 | [RethinkMCTS (2024)](https://arxiv.org/abs/2409.09584) | 在 code MCTS 中执行候选，把细粒度 execution feedback 转成 verbal feedback，再 rethink/refine | “MCTS + 执行反馈 + 错误修复”不新；我们的区别只能是运行前成本/缺失机制与真实 MLE sibling 数据契约 |
+| [RPM-MCTS (2025)](https://arxiv.org/abs/2511.19895) | 用检索式 process reward、sandbox execution feedback 与 similarity filtering 改进 code MCTS，并报告 token 节省 | “不训练 PRM 的检索 + 执行反馈 + 节点过滤”也已有；不能把轻量筛选或负反馈利用本身写成 novelty |
 | [Agent-RLVR (2025)](https://arxiv.org/abs/2506.11425) | 单元测试验证 trajectory、错误 guidance、RLVR，并训练 test-time reward model | “verified failure trajectory memory / guidance / RM”不新；且其底座 RL 不在本项目范围 |
 | [Strained Coherence (2026)](https://arxiv.org/abs/2606.07889) | 用大模型 judge 读取完整 coding-agent trajectory，检测行动前已意识到的风险，并预测失败 | “pre-failure signal”表述已被占用；其 substrate 是 think trajectory、检测很晚，我们不能泛称首个 pre-failure detector |
 | [Failure as a Process (2026)](https://arxiv.org/abs/2607.09510) | 1,794 条完整 CLI agent trajectories / 63k steps 的人工 failure onset、演化与恢复 taxonomy | 大规模 agent failure taxonomy 已有；我们的 691-node 机械 taxonomy 只能按 MLE search/source-opportunity 粒度定位 |
@@ -43,6 +44,11 @@
 3. 同一 parent / physical run 内的 494 个 retained-success vs execution-failure 对，且 frozen run overlap=0；
 4. 691-node credential-safe 机械 failure family 与完整撤回链；
 5. 不更新底座 LLM，并诚实显示跨任务静态 TF-IDF 只有 0.524、不能泛化为可用 controller。
+
+2026-08-17 又以 `survivorship/selection bias`、`censoring`、`failed candidates` 与 `search tree/code agent`
+组合做了窄检索；没有找到直接把 **source opportunity → retained labeled fragment → execution-censored missing
+node** 做成 MLE-agent benchmark estimand 的论文。这只是“本次检索未找到”，不是首创证明；投稿前仍需系统化
+related-work 更新，正文也应描述具体数据契约，而不是写宽泛的 `first failure-aware agent benchmark`。
 
 这最适合作为 NAS-Bench-style MLE search data/benchmark 的一章：现有 benchmark 只发布成功候选或 terminal
 score 时，会把真实 choice set 变成 failure-censored fragment；我们的数据契约允许研究者明确选择 estimand。

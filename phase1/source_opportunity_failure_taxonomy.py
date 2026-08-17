@@ -359,7 +359,9 @@ def write_json(path: Path, value: Any) -> None:
 
 def canonical_command(args: argparse.Namespace) -> str:
     parts = [
-        "phase1/source_opportunity_failure_taxonomy.py",
+        "python",
+        "-m",
+        "phase1.source_opportunity_failure_taxonomy",
         "--status-per-child",
         str(args.status_per_child),
         "--expect-status-sha256",

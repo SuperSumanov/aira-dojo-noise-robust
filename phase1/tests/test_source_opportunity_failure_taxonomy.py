@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 from phase1 import source_opportunity_failure_taxonomy as module
@@ -133,3 +135,35 @@ def test_outputs_are_byte_identical_across_output_roots(tmp_path: Path) -> None:
     assert {path.name: path.read_bytes() for path in first.iterdir()} == {
         path.name: path.read_bytes() for path in second.iterdir()
     }
+
+
+def test_module_cli_entrypoint(tmp_path: Path) -> None:
+    root, status = make_fixture(tmp_path, [(1, "ValueError: shape mismatch")])
+    output = tmp_path / "cli-out"
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "phase1.source_opportunity_failure_taxonomy",
+            "--status-per-child",
+            str(status),
+            "--expect-status-sha256",
+            hashlib.sha256(status.read_bytes()).hexdigest(),
+            "--expect-targets",
+            "1",
+            "--root",
+            f"synthetic={root}",
+            "--source-commit",
+            "a" * 40,
+            "--output",
+            str(output),
+        ],
+        cwd=Path(__file__).resolve().parents[2],
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
+    assert (output / "command.txt").read_text().startswith(
+        "python -m phase1.source_opportunity_failure_taxonomy "
+    )

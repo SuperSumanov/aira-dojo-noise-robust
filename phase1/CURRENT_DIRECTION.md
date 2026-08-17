@@ -31,7 +31,13 @@
 
 - `phase1/results/prospective_structural_rejection_20260818/README.md`；
 - `phase1/results/failure_mechanism_length_heterogeneity_20260818/README.md`；
-- `phase1/实验记录/2026-08-18/FailureMechanism_LengthHeterogeneity_v1_裁决.md`。
+- `phase1/实验记录/2026-08-18/FailureMechanism_LengthHeterogeneity_v1_裁决.md`；
+- `phase1/实验记录/2026-08-18/ScoreChannel_近期防Scoop更新.md`。
+
+近期防 scoop 更新没有发现覆盖“真实 sibling + 同时可见两通道 + run-clean 聚类 + 时间前瞻复现”的直接工作；
+AIRA_2 是最近底座，Critic Experience Bank（2607.12397）和 Failure as a Process（2607.09510）分别覆盖
+经验 critic 与时间性 failure。故 novelty 必须写成选择性可观测执行反馈下的评分通道 benchmark/机制，而不能
+泛称首次 external evaluation、failure process、experience critic 或 missing-feedback optimization。
 
 ## 0AA. 2026-08-17 最新覆盖：494 对 failure-risk benchmark 通过，静态 learned controller 关闭
 

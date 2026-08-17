@@ -1,0 +1,44 @@
+{
+  "criteria": {
+    "at_least_two_task_types_credit_ge_0_50": true,
+    "distinct_retrieved_tasks_ge_5": true,
+    "max_retrieved_task_mass_share_le_0_25": true,
+    "mean_same_type_credit_ge_0_55": false,
+    "permutation_p_le_0_05": false,
+    "queries_with_at_least_5_episodes_ge_0_90": true,
+    "supported_queries_eq_20": true,
+    "unsupported_abstentions_eq_5": true
+  },
+  "input_sha256": {
+    "contract_audit": "166eaa6770b4abd6118f0168abc2b6e8afb5633847af48628f3f637ad9b56bdb",
+    "experience_memory_audit": "769acc3d198dadb5643e3557f57c738967806546e212c258d0de51ad794a53f0"
+  },
+  "memory_availability": {
+    "queries_with_at_least_5_writer_marked_best_episodes": 18,
+    "query_share_with_at_least_5_writer_marked_best_episodes": 0.9
+  },
+  "method_effect_claim_allowed": false,
+  "output_sha256": "fa41c1b01d72445486fefaa82f60b89f4b835b12ca645e799d389b2468b9586b",
+  "per_task_type_same_type_credit": {
+    "image-cls": 0.5714285714285714,
+    "nlp": 0.6666666666666666,
+    "tabular": 0.0
+  },
+  "permutation_test": {
+    "null_mean": 0.332117,
+    "null_q95": 0.55,
+    "observed_mean_same_type_credit": 0.5,
+    "one_sided_p": 0.13867861321386787,
+    "permutations": 100000,
+    "seed": 20260817
+  },
+  "protocol": "contract-loto-retrieval-support-v1",
+  "retrieval_diversity": {
+    "distinct_retrieved_tasks": 14,
+    "max_retrieved_task_mass_share": 0.15
+  },
+  "source_commit": "456ba1991217cc1e65339974ae1f0d58cf6e071f",
+  "status": "INSUFFICIENT_TASK_HELDOUT_RETRIEVAL_SUPPORT",
+  "supported_queries": 20,
+  "unsupported_abstentions": 5
+}

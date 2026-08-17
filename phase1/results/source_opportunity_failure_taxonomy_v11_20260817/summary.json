@@ -1,0 +1,48 @@
+{
+  "categories": {
+    "ARTIFACT_OUTPUT_CONTRACT": 6,
+    "DATA_SCHEMA_SHAPE_TYPE": 318,
+    "DEPENDENCY_IMPORT": 36,
+    "FILESYSTEM_INPUT_PATH": 13,
+    "LIBRARY_API_ATTRIBUTE": 104,
+    "NON_TRACEBACK_TEXT": 1,
+    "OTHER_TRACEBACK": 130,
+    "RESOURCE_OOM": 2,
+    "RESOURCE_TIMEOUT": 81
+  },
+  "contract_method_effect_claim_allowed": false,
+  "contract_related_nodes": 324,
+  "contract_related_share": 0.46888567293777134,
+  "criteria": {
+    "credential_target_journal_shas_eq_0": true,
+    "diagnostic_text_share_ge_0_50": true,
+    "dominant_structured_task_share_le_0_50": true,
+    "structured_category_share_ge_0_50": true,
+    "structured_tasks_ge_10": true,
+    "target_refind_rate_ge_0_95": true
+  },
+  "diagnostic_text_present": 691,
+  "diagnostic_text_share": 1.0,
+  "dominant_structured_task_share": 0.22857142857142856,
+  "failure_memory_support_claim_allowed": true,
+  "independent_verification": {
+    "artifact_sha256": "785d94d9043be6d6f938b306b40658868df5ce2ad4ef8841076fa8a7a8a58215",
+    "producer_imported": false,
+    "raw_diagnostic_field_present": false,
+    "status": "INDEPENDENT_FAILURE_TAXONOMY_VERIFIED",
+    "verifier_commit": "c1016b7343a5158ff74e6b2c333c1a517e31f10d"
+  },
+  "per_child_sha256": "a5f46021d61d1415d49476728fa988feda5cd9d97e80697099f6af467eca2087",
+  "producer_commit": "a70cc689bbb88497f14c4358fc899599cd0e15fc",
+  "producer_summary_sha256": "adf630c63986f2aabaff064f68a00bb512c0b767a0b263e45b4297c395ba0c0a",
+  "protocol": "source-opportunity-failure-taxonomy-v1",
+  "status": "VERIFIED_STRUCTURED_FAILURE_MEMORY_SUPPORT",
+  "status_per_child_sha256": "bfb9870d83c50ef2d06bf2d374fc9f9213f41665f4cebeab7ab31837bcfde0d2",
+  "structured_category_nodes": 560,
+  "structured_category_share": 0.8104196816208393,
+  "structured_tasks": 12,
+  "target_nodes_refound": 691,
+  "target_refind_rate": 1.0,
+  "targets": 691,
+  "tasks": 13
+}

@@ -3,6 +3,42 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0Z. 2026-08-17 最新覆盖：failure memory 通过；纯结构 LOTO 与学长 frozen checkpoint 关闭
+
+本节晚于 0Y，并覆盖 0Y 的“下一资格门”以及 0X 第 2 项的 Qwen 4B/8B 支持实验。唯一主实验仍是
+150 个新 physical runs 的前瞻 score-channel 复现；当前 138/150、正式 replay 未授权、outcome 未读。
+
+1. 结果前冻结的 train-only failure taxonomy 在 691 个 execution-error nodes 上得到 691/691 refind、
+   691/691 非空 diagnostic、560/691=`0.8104196816208393` structured failures，覆盖 12 tasks；dominant
+   structured task=128/560=`0.22857142857142856`，credential target SHA=0。主要类别为 schema/shape 318、
+   library API/attribute 104、timeout 81、dependency/import 36；contract-related 两类为
+   324/691=`0.46888567293777134`。producer 双跑逐字节一致；不 import producer 的 verifier 在完整
+   `349 passed in 29.35s` 后独立复核通过。因此允许“evaluator-verified failure-memory 数据资产”主张，
+   不允许 contract/controller 方法收益主张。
+2. 去任务名、列名、description 与 score 的 20-task contract LOTO 没有过冻结门：same-type nearest credit=0.50
+   （阈值 0.55），100,000 次标签置换 `p=0.13867861321386787`；image=0.5714、NLP=0.6667、tabular=0。
+   虽有 14 个不同邻居、最大 retrieval mass=0.15，且 18/20 query 能连到至少 5 条成功经验，仍必须裁决为
+   `INSUFFICIENT_TASK_HELDOUT_RETRIEVAL_SUPPORT`。不得结果后加列名/description 救 v1，也不得启动 S/C/M 三臂。
+3. 学长 `dojo-reproduce` commit `7372b4eddc7dcadd84bf72edcce1daabb81d575c` 的 16K Qwen 报告保留为探索性
+   证据：decision→decision final mean=50.97%，value→decision=51.35%，value→value seed-7=59.48%，无稳定
+   scale effect。但其 `decision_pairs_runsplit` test 2,087 行与我们的 frozen b0/b1/b2 2,087 行逐行 multiset
+   完全相同，并在训练中每 10 steps 被评估；配置还把 `eval_pair_accuracy` 与 `greater_is_better=False` 组合。
+   因而 0X 曾允许的 4B/8B one-shot frozen scoring 正式撤回，checkpoint 不具备冻结确认资格。
+4. 学长新 `build_cards.py` 直接解析 `env_variables.json` 取 HARDWARE，不符合 tarball scan/redact-before-parse
+   安全规则，不得进入我们的 ingestion。学长提出的 RL 也不自动恢复：底座 LLM 不做微调/RL-finetune，旧
+   TD/RL/HCE/多保真仍关闭。
+5. 等待前瞻 12 runs 时，唯一可继续的正方法资格路线是新的 **train-only learned failure-risk controller**：
+   先冻结 credential-safe code 提取、run/task-heldout split、成功负例、AUROC/AP/calibration 与固定预算 utility
+   estimand；它必须是轻量控制器，不改底座、operator、任务或预算。没有预注册与支持门前不提交 GPU。
+
+直接证据：
+
+- `phase1/results/source_opportunity_failure_taxonomy_v11_20260817/README.md`；
+- `phase1/results/contract_loto_retrieval_support_20260817/README.md`；
+- `phase1/实验记录/2026-08-17/TrainOnlyFailureTaxonomy_v1_裁决.md`；
+- `phase1/实验记录/2026-08-17/ContractLOTO_RetrievalSupport_v1_裁决.md`；
+- `phase1/实验记录/2026-08-17/SeniorQwenCheckpoint_冻结测试污染与方向裁决.md`。
+
 ## 0Y. 2026-08-17 并行正面资产：经验支持与 public artifact contract 通过资格审计
 
 本节晚于 0X，但**不改变**唯一主实验、138/150 gate、冻结 replay 或预算授权。它只更新在等待新 physical

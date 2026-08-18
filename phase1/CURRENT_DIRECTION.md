@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AH. 2026-08-18 最新覆盖：17/17 数据门与执行前预检通过；尚未提交 GPU
+
+本节晚于 0AG。用户接受 9 个 Kaggle 规则后，官方 prepare 全部 rc=0；完整数据覆盖 verifier 双跑逐字节
+一致，17/17 tasks、320/320 candidates、0 missing，receipt SHA=
+`dd986c78a2f7f411ce16a1f1b757b7b8a77140aff99a36c9a311f7b81eeb8181`。因此 0AE 的数据阻塞已解除，但
+available-case 74-candidate 结果仍从未运行，也不得回补为 headline。
+
+旧 approval 继续作废；新 approval SHA=
+`b107075810e5af0da084be087cfa70740cd846d198a155116a061599e3057e09`，绑定 frozen replay、worker commit
+`ca3bb7315078f2c4bed99fa4c33d93c2f353d670`、完整 data root、container 与 pristine grader。四片 dry-count
+双跑一致为 100/85/78/57，Slurm `test-only` 4/4 通过，结果行仍为 0。此前 fail-closed 共用 20 GPU 秒；本轮
+四片墙钟固定 38,380 秒，二者合计恰为 38,400 秒原批准上限。RTX3090 兼容性由同容器 jobs 10850/10851
+在 gpu27 的 rc=0 历史实证支持；仍排除 `projgpu7,projgpu8,projgpu33,gpu36,gpu38`。
+
+当前状态严格为 `PRECHECK_PASS_NO_SUBMISSION`，真实 GPU job=0、outcome/label value 未读。13 项长实验预检、
+job script SHA 与“test-only 编号不是提交”说明见
+`phase1/results/score_channel_replay_resume_preflight_20260818/README.md`。只有该报告冻结并再次通过同一预检后，
+才允许以显式 submit 模式提交四片；任一 SHA、覆盖、预算、队列或 secret 门改变均停止。
+
 ## 0AG. 2026-08-18 最新覆盖：第二轮防 scoop 收窄 novelty；设计门可达但不保证 GO
 
 本节晚于 0AF。检索到 2026-07 的 *Progress Mirage*（arXiv:2607.25152）已经在固定 agent/tool 的 54 个

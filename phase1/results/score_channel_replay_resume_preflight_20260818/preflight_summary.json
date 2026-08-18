@@ -1,0 +1,87 @@
+{
+  "approval": {
+    "previous_approval_status": "VOID_INCOMPLETE_PREPARED_DATA_ROOT",
+    "sha256": "b107075810e5af0da084be087cfa70740cd846d198a155116a061599e3057e09",
+    "status": "APPROVED_DATA_COMPLETE"
+  },
+  "budget": {
+    "combined_hard_cap_gpu_seconds": 38400,
+    "original_cap_upper_bound_gpu_hours": 10.666666666666666,
+    "previous_failed_gpu_seconds": 20,
+    "remaining_slurm_gpu_seconds": 38380
+  },
+  "counts": {
+    "candidate_replays": 320,
+    "complete_candidate_replays": 320,
+    "complete_tasks": 17,
+    "missing_candidate_replays": 0,
+    "missing_tasks": 0,
+    "physical_runs": 94,
+    "selected_parents": 158,
+    "tasks": 17
+  },
+  "data_coverage": {
+    "double_receipts_byte_identical": true,
+    "labels_read": false,
+    "outcomes_read": false,
+    "sha256": "dd986c78a2f7f411ce16a1f1b757b7b8a77140aff99a36c9a311f7b81eeb8181",
+    "status": "PASS_REPLAY_DATA_COVERAGE"
+  },
+  "dry_count": {
+    "double_runs_byte_identical": true,
+    "done_by_shard": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0
+    },
+    "todo_by_shard": {
+      "0": 100,
+      "1": 85,
+      "2": 78,
+      "3": 57
+    }
+  },
+  "jobs_submitted": 0,
+  "orientation_sha256": "81c9684741cb166bf1b4e2d7cb91ed0c8742c5040945b44d22f1c61f18baf85a",
+  "outcomes_read": false,
+  "protocol": "score-channel-replay-resume-preflight-v1",
+  "replay_manifest_sha256": "e20b43b9eee55395380def2772bfdab21f261eb3d850fc9a67ff0ccb4bc5fe58",
+  "security": {
+    "credential_content_hits": 0,
+    "secret_filename_hits": 0
+  },
+  "slurm": {
+    "constraint": "rtx3090",
+    "excluded_nodes": [
+      "projgpu7",
+      "projgpu8",
+      "projgpu33",
+      "gpu36",
+      "gpu38"
+    ],
+    "gpus_per_shard": 1,
+    "job_script_sha256": {
+      "0": "5f6ed7b3434297b8d6bdbe55ce24ffbf40adb5a8a18f58c9178184c4511142b7",
+      "1": "5c3a4762f47fa6de366884dd685b175924d302f26cf2bb28148295bccfe768e9",
+      "2": "185a7f7f7d654e5e8f430aefdac0a673087162285b9e927d6f26b88037fe8d0a",
+      "3": "de897c44fbd22d6a8dd9b9097a188663eef65b2fb5582664c5b1e33f4408c025"
+    },
+    "plan_sha256": "1ed3f89e20ce64cf15cfbf91aa46675d964a2688774ef31a3d60b2688068f9be",
+    "shard_time": {
+      "0": "03:20:00",
+      "1": "02:50:00",
+      "2": "02:36:00",
+      "3": "01:53:40"
+    },
+    "test_only_all_passed": true,
+    "test_only_projected_ids_are_not_submissions": [
+      11119,
+      11120,
+      11121,
+      11122
+    ]
+  },
+  "status": "PRECHECK_PASS_NO_SUBMISSION",
+  "worker_source_commit": "ca3bb7315078f2c4bed99fa4c33d93c2f353d670"
+}

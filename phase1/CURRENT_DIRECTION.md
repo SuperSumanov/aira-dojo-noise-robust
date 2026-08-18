@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AE. 2026-08-18 最新覆盖：正式 replay 被完整数据门阻塞；没有科学 outcome
+
+本节晚于 0AD。用户批准的 320×120s×4-shard 矩阵尚未产生任何候选结果。五个 fail-closed GPU jobs
+`11105–11108,11111` 分别在 module import 或逐任务 public-data 门失败，结果总行数=0；Slurm 实际耗时
+5+4+4+4+3=20 秒=`0.005555555555555556 GPU·h`。approval SHA=`d34354dd...` 已因数据根不完整明确作废，
+不得复用；未来预算必须从 38,400 秒扣除这 20 秒。
+
+17 个 selected tasks 的 public/private 双门审计表明：dog-breed 自动 prepare 成功后，当前完整覆盖仅
+8 tasks / 74 candidates；其余 9 tasks / 246 candidates 全部被 Kaggle“账号尚未接受竞赛规则”阻塞，
+无其他失败类别。因此禁止把可运行的 74-candidate 子集替代确认性 headline。需要账号所有者接受 9 个规则，
+或由学长提供同版本 prepared 数据，之后重新做全内容冻结、签发新 approval，再恢复 replay。
+
+新的 outcome-blind 数据覆盖 verifier commit=`6c287d4d73758da03fd3f00e5cbc0aea6635e9b0`，要求 frozen
+manifest 每个 task 的 public/private 均非空；远端完整 `381 passed in 31.28s`，真实双 receipt 逐字节一致，
+SHA=`31545ae2ee318a9c0466c517a0a96d332fd0d0e0bd2f6577ccf09d04216b9774`。Kaggle traceback 中 9 条
+cookie-bearing headers 已整行脱敏，cookie/credential 残留文件均为 0，原日志不发布。直接证据：
+
+- `phase1/results/score_channel_replay_preflight_20260818/README.md`；
+- `phase1/results/score_channel_replay_preflight_20260818/data_coverage_summary.json`；
+- `phase1/verify_score_channel_replay_data_coverage.py`。
+
 ## 0AD. 2026-08-18 最新覆盖：前瞻 run/parent/replay/orientation 已冻结，等待精确 GPU 批准
 
 本节晚于 0AC。用户结果盲要求立即冻结，将固定终点从 `2026-08-18T09:56:30Z` 修订为

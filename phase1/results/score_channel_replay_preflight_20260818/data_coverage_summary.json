@@ -1,0 +1,60 @@
+{
+  "protocol": "score-channel-replay-preflight-summary-v1",
+  "status": "BLOCKED_KAGGLE_RULES_NO_SCIENTIFIC_OUTCOME",
+  "outcomes_read": false,
+  "candidate_result_rows": 0,
+  "void_approval_sha256": "d34354dd3034792fb301b2f96d5e9269091d20c74c1cfc0426bb58600792c69b",
+  "gpu_attempts": {
+    "jobs": [11105, 11106, 11107, 11108, 11111],
+    "elapsed_seconds_by_job": {
+      "11105": 5,
+      "11106": 4,
+      "11107": 4,
+      "11108": 4,
+      "11111": 3
+    },
+    "total_elapsed_seconds": 20,
+    "total_elapsed_gpu_hours": 0.005555555555555556,
+    "remaining_approved_hard_cap_seconds": 38380
+  },
+  "data_coverage": {
+    "tasks": 17,
+    "candidate_replays": 320,
+    "complete_tasks": 8,
+    "complete_candidate_replays": 74,
+    "missing_tasks": 9,
+    "missing_candidate_replays": 246,
+    "receipt_sha256": "31545ae2ee318a9c0466c517a0a96d332fd0d0e0bd2f6577ccf09d04216b9774",
+    "verifier_commit": "6c287d4d73758da03fd3f00e5cbc0aea6635e9b0"
+  },
+  "newly_prepared_tasks": [
+    "dog-breed-identification"
+  ],
+  "rules_blocked_tasks": [
+    "cassava-leaf-disease-classification",
+    "dogs-vs-cats-redux-kernels-edition",
+    "facebook-recruiting-iii-keyword-extraction",
+    "new-york-city-taxi-fare-prediction",
+    "osic-pulmonary-fibrosis-progression",
+    "ranzcr-clip-catheter-line-classification",
+    "tensorflow-speech-recognition-challenge",
+    "tgs-salt-identification-challenge",
+    "ventilator-pressure-prediction"
+  ],
+  "security": {
+    "cookie_bearing_log_lines_redacted": 9,
+    "cookie_residual_files": 0,
+    "credential_residual_files": 0,
+    "raw_logs_publishable": false
+  },
+  "verification": {
+    "focused_tests": "3 passed twice",
+    "full_tests": "381 passed in 31.28s",
+    "double_real_receipts_byte_identical": true
+  },
+  "remote_roots": {
+    "replay_attempt": "/research/d7/spc/yzyang4/score-channel-replay-20260818-approved",
+    "data_prepare": "/research/d7/spc/yzyang4/score-channel-data-prep-20260818",
+    "coverage_verification": "/research/d7/spc/yzyang4/score-channel-data-coverage-20260818-6c287d4-v2"
+  }
+}

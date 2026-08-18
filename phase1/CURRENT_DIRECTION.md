@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AI. 2026-08-18 最新覆盖：confirmatory replay 已启动；仍保持结果盲
+
+本节晚于 0AH。结果盲 preflight 报告 commit
+`b1797dea6003d4790319d873133c97357297b36b` 已推到共享分支，远端完整依赖环境为
+`384 passed in 33.84s`、rc=0；随后同一 dry-count/test-only/secret/active-job 门再次通过。正式 jobs
+11127/11128/11129/11130 已在 gpu27 启动，对应 frozen 100/85/78/57 candidates，worker/approval/coverage SHA
+均未改变。
+
+首次状态检查在结果行=0 时发现 Slurm 把 shard 3 的 `01:53:40` 向上取整为 `01:54:00`。为不超过批准硬上限，
+job 11130 未取消、未重启，TimeLimit 原地**降低**为 `01:53:00`。因此四片当前理论上限为 38,340 秒，加历史
+20 秒共 38,360 秒，较 38,400 秒上限留 40 秒；不得再沿用 preflight 的 38,380 秒作为实际 Slurm 上限。
+amendment SHA=`ba02fd171469b8b185754dcddfd17bd8fcfd4bc2bcfad69af68d6b4f7ee92147`。
+
+当前状态严格为 `RUNNING_CONFIRMATORY_REPLAY_NO_OUTCOME_READ`：监控只看 state/rc/行数，不读取通道分数、
+label value 或科学效果。四片完整后才运行 frozen analyzer；若墙钟内不完整，则报告预算内不完整，不扩预算、
+不改 analyzer。直接证据：`phase1/results/score_channel_replay_execution_20260818/README.md`。
+
 ## 0AH. 2026-08-18 最新覆盖：17/17 数据门与执行前预检通过；尚未提交 GPU
 
 本节晚于 0AG。用户接受 9 个 Kaggle 规则后，官方 prepare 全部 rc=0；完整数据覆盖 verifier 双跑逐字节

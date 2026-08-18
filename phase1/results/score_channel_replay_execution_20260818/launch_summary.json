@@ -1,0 +1,45 @@
+{
+  "approval_sha256": "b107075810e5af0da084be087cfa70740cd846d198a155116a061599e3057e09",
+  "budget": {
+    "actual_current_job_timelimit_seconds": 38340,
+    "combined_hard_cap_gpu_seconds": 38360,
+    "headroom_gpu_seconds": 40,
+    "original_approved_hard_cap_gpu_seconds": 38400,
+    "previous_failed_gpu_seconds": 20,
+    "preflight_requested_job_seconds": 38380
+  },
+  "coverage_sha256": "dd986c78a2f7f411ce16a1f1b757b7b8a77140aff99a36c9a311f7b81eeb8181",
+  "jobs": {
+    "0": 11127,
+    "1": 11128,
+    "2": 11129,
+    "3": 11130
+  },
+  "jobs_submitted": 4,
+  "outcomes_read": false,
+  "protocol": "score-channel-replay-launch-audit-v1",
+  "remote_full_tests": {
+    "commit": "b1797dea6003d4790319d873133c97357297b36b",
+    "elapsed_seconds": 33.84,
+    "passed": 384,
+    "rc": 0
+  },
+  "result_rows_at_timelimit_amendment": 0,
+  "slurm": {
+    "actual_timelimit": {
+      "11127": "03:20:00",
+      "11128": "02:50:00",
+      "11129": "02:36:00",
+      "11130": "01:53:00"
+    },
+    "amendment_receipt_sha256": "ba02fd171469b8b185754dcddfd17bd8fcfd4bc2bcfad69af68d6b4f7ee92147",
+    "amendment_type": "REDUCE_RUNNING_JOB_TIMELIMIT_BEFORE_FIRST_RESULT",
+    "constraint": "rtx3090",
+    "host_at_launch": "gpu27",
+    "requested_shard_3_timelimit": "01:53:40",
+    "rounded_shard_3_timelimit_observed": "01:54:00"
+  },
+  "started_at_utc": "2026-08-18T13:39:18Z",
+  "status": "RUNNING_CONFIRMATORY_REPLAY_NO_OUTCOME_READ",
+  "worker_source_commit": "ca3bb7315078f2c4bed99fa4c33d93c2f353d670"
+}

@@ -1,0 +1,17 @@
+{
+  "candidate_replay_gpu_hours_hard_cap": 2.666666666667,
+  "combined_generation_and_replay_gpu_hours_hard_cap": 11.757777777778,
+  "frozen_generation_commit": "a013eaa124a17c183e58f28494d4908f96389941",
+  "generation_actual_gpu_hours": 6.424444444444,
+  "generation_job": 10686,
+  "generation_manifest_sha256": "096afbf6b1ca5779c7adf6dafea69a6e9ba431697c79245398d2a6a0d8babfe1",
+  "jobs": [11160, 11161, 11162, 11163],
+  "llm_api_calls_on_resume": 0,
+  "original_approved_gpu_hours": 12.0,
+  "outcomes_read_at_launch": false,
+  "replay_manifest_rows": 16,
+  "replay_manifest_sha256": "83b57794db2f7205801db217b260175736d108d7cb92d1c29a3bc6dd8d42e3fb",
+  "scheduler_replay_gpu_hours_hard_cap": 5.333333333333,
+  "status": "RUNNING_FROZEN_PROBE_AB_REPLAY_NO_OUTCOME_READ",
+  "test_only_receipts": [11156, 11157, 11158, 11159]
+}

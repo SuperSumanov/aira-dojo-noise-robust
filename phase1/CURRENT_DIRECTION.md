@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AK. 2026-08-19 最新覆盖：恢复已冻结 Probe-First A/B；16 个 generation 不重跑
+
+本节晚于 0AJ。score-channel 预注册 KILL 后，当前正方法重新限定为全新 task×seed 的 original-vs-contract
+因果 A/B。审计发现 8 月 13 日冻结的 V2 并非“尚未执行”：generation job 10686 已在 commit
+`a013eaa124a17c183e58f28494d4908f96389941` 完成 16/16 entries、`COMPLETED 0:0`，但 detached watcher
+在 generation 完成前消失，故从未提交 replay、从未产生 grader outcome。禁止重新调用 API 或重新生成候选。
+
+在新的 clean detached worktree 上，冻结 source SHA 全部匹配；Linux 聚焦测试 12 passed，worker、主 validator、
+独立 verifier self-test 全 PASS。generation manifest 双重重建与原文件逐字节一致，SHA=
+`096afbf6b1ca5779c7adf6dafea69a6e9ba431697c79245398d2a6a0d8babfe1`；固定同一 input path 后 replay manifest
+双重重建逐字节一致，16 rows、SHA=
+`83b57794db2f7205801db217b260175736d108d7cb92d1c29a3bc6dd8d42e3fb`。16/16 AST 通过，contract static
+为 7/8；第八个失败仍进入冻结分母，不换 task/prompt/code。
+
+首次 16-element `%4` array 在 Slurm `test-only` 被 QOSMaxSubmitJobPerUserLimit 拒绝，GPU jobs=0、outcome=0。
+只修正 scheduler topology 为四个顺序 shard jobs 11160/11161/11162/11163，每 job 固定四个 index、1×RTX3090、
+`01:20:00`，总 scheduler hard cap 19,200 GPU 秒=`5.333333333333` GPU·h，API=0。连同 generation 实际
+23,128 GPU 秒，总上限 42,328 秒=`11.757777777778` GPU·h，仍低于原批准 12 GPU·h 872 秒。四 job 已启动，
+双验证 watcher 活跃；当前状态 `RUNNING_FROZEN_PROBE_AB_REPLAY_NO_OUTCOME_READ`。直接证据：
+`phase1/实验记录/2026-08-19/ProbeContractAB_V2恢复预检与启动.md`。
+
 ## 0AJ. 2026-08-19 最新覆盖：320/320 confirmatory replay 完整，但评分通道优越性预注册 KILL
 
 本节晚于 0AI。四个 frozen shards 均在批准 TimeLimit 内 `COMPLETED 0:0`，320/320 replay 完整；执行后

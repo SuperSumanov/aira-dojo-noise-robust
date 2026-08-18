@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AG. 2026-08-18 最新覆盖：第二轮防 scoop 收窄 novelty；设计门可达但不保证 GO
+
+本节晚于 0AF。检索到 2026-07 的 *Progress Mirage*（arXiv:2607.25152）已经在固定 agent/tool 的 54 个
+long-running cycles 中直接比较 self-verdict 与外部 world-state oracle；因此“首次证明外部 grounded evaluator
+优于 self-evaluation”以及“更大 judge 不能代替外部评估”均已被覆盖，禁止再作为本项目的宽泛 novelty。
+2026-05 的 *Auto Research with Specialist Agents*（2605.05724）进一步证明 evaluator-owned outcome 可以驱动
+自动研究闭环；CCTS（2602.03132）则用 external fitness 学 concept-guided parent selection。它们分别占据外部测量
+闭环与正向 parent-selection method 的邻近位置。
+
+当前仍可守、但必须精确写的边界是：**真实 MLE-agent 搜索树内，同一 parent 的真实 sibling 在同一 120 秒
+执行下，同时产生 in-band keyed stdout self-report 与 out-of-band pristine `submission.csv` 分数时，两通道对
+frozen true quality 的 tie-aware top-1 决策价值、选择性缺失和 execution-cliff 结构**；再加 run-clean 聚类、
+query/init 成本、噪声与覆盖审计、时间前瞻复现。不得把贡献泛化成一般 self-evaluation bias。withdrawn 的
+AuditRepairBench（2605.04624）曾使用“evaluator-channel ranking instability”近似措辞，但作者已明确因重大实验
+设计/评估问题撤稿；它只能作为措辞重叠警示，不作为有效实证基线。
+
+outcome-blind sign sensitivity 也已核对：冻结 analyzer 使用 run 内 parent delta 均值的双侧 exact sign test。
+发现集 5 个 informative runs 全正仍只有 `p=0.0625`；6/6 全正才有 `p=0.03125`。在 31/47/63/94 个
+informative runs 时，最少正 run 分别为 22/31/40/57，对应 analyzer exact p 分别为
+`0.029449373483657837/0.03998605682605216/0.04295654552438921/0.04945006525317994`。因此 94-run
+结构使 sign 门可达，但实际 common coverage、tie 数与 run-bootstrap CI 未知，不能写成已具备 80% power 或 GO
+保证。直接证据：`phase1/实验记录/2026-08-18/ScoreChannel_第二轮防Scoop与设计敏感性.md`。
+
 ## 0AF. 2026-08-18 最新覆盖：冻结 replay cohort 的结构支持通过；不解除数据阻塞
 
 本节晚于 0AE。等待 9 个 Kaggle 规则解锁期间，对 `selection_a` 做了完全 outcome-blind 的结构支持审计；

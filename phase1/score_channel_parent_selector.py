@@ -201,6 +201,7 @@ def load_selection_inputs(
     allowed_runs = {row["run_id"]: row["task"] for row in run_rows}
     run_intake: dict[str, str] = {}
     vault: dict[str, dict[str, Any]] = {}
+    seen_vault_cards: set[str] = set()
     sibling_sets: dict[tuple[str, str, str], set[str]] = collections.defaultdict(set)
     pair_edges: dict[tuple[str, str, str], set[tuple[str, str]]] = collections.defaultdict(set)
     intake_summary_shas: dict[str, str] = {}
@@ -272,8 +273,14 @@ def load_selection_inputs(
                 continue
             if task != allowed_runs[run_id] or not isinstance(card_id, str) or not card_id:
                 raise SelectionError(f"{name}: invalid label-vault identity")
-            if row.get("eligible_by_start_time") is not True or card_id in vault:
-                raise SelectionError("label-vault eligibility mismatch or duplicate card")
+            eligible = row.get("eligible_by_start_time")
+            if not isinstance(eligible, bool):
+                raise SelectionError("label-vault eligibility flag is not boolean")
+            if card_id in seen_vault_cards:
+                raise SelectionError("duplicate card in label vault")
+            seen_vault_cards.add(card_id)
+            if not eligible:
+                continue
             for label_key in ("graded", "y_norm"):
                 value = row.get(label_key)
                 if value is not None and (

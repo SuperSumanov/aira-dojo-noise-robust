@@ -256,6 +256,42 @@ def test_nonfinite_grade_fails_closed_even_if_hashes_are_resigned(tmp_path: Path
         run_selector(registry, intakes, tmp_path / "selection")
 
 
+def test_irrelevant_ineligible_vault_row_is_ignored_by_both_implementations(tmp_path: Path) -> None:
+    registry, intakes = build_fixture(tmp_path)
+    first_run = json.loads(
+        (registry / "eligible_runs.jsonl").read_text(encoding="utf-8").splitlines()[0]
+    )
+    vault_path = intakes / "drop-a" / "label_vault.jsonl"
+    rows = [json.loads(line) for line in vault_path.read_text(encoding="utf-8").splitlines()]
+    rows.append({
+        "card_id": "irrelevant-precutoff-card",
+        "task": first_run["task"],
+        "run_id": first_run["run_id"],
+        "graded": 0.1,
+        "y_norm": 0.1,
+        "eligible_by_start_time": False,
+    })
+    write_rows(vault_path, rows)
+    resign_intake_and_registry(registry, intakes)
+
+    selection = tmp_path / "selection"
+    summary = run_selector(registry, intakes, selection)
+    assert summary["counts"]["selected_candidates"] == 900
+    receipt = verifier.verify(registry, intakes, selection, tmp_path / "receipt.json")
+    assert receipt["status"] == "PASS_PARENT_SELECTION_REPLAY_APPROVAL_PENDING"
+
+
+def test_ineligible_structural_child_still_fails_closed(tmp_path: Path) -> None:
+    registry, intakes = build_fixture(tmp_path)
+    vault_path = intakes / "drop-a" / "label_vault.jsonl"
+    rows = [json.loads(line) for line in vault_path.read_text(encoding="utf-8").splitlines()]
+    rows[0]["eligible_by_start_time"] = False
+    write_rows(vault_path, rows)
+    resign_intake_and_registry(registry, intakes)
+    with pytest.raises(selector.SelectionError, match="structural child is missing"):
+        run_selector(registry, intakes, tmp_path / "selection")
+
+
 def test_scoreless_physical_run_is_retained_with_zero_parent(tmp_path: Path) -> None:
     registry, intakes = build_fixture(tmp_path)
     pair_path = intakes / "drop-a" / "eligible_structural_pairs.jsonl"

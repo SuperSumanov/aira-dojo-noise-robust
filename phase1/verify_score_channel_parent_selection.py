@@ -139,6 +139,7 @@ def independent_expected_rows(
     run_intake: dict[str, str] = {}
     summary_shas: dict[str, str] = {}
     labels: dict[str, dict[str, Any]] = {}
+    seen_vault_cards: set[str] = set()
     children: dict[tuple[str, str, str], set[str]] = collections.defaultdict(set)
     edges: dict[tuple[str, str, str], set[tuple[str, str]]] = collections.defaultdict(set)
     manifests = registry_summary.get("input_manifest")
@@ -218,8 +219,16 @@ def independent_expected_rows(
             run_id, task, card = row.get("run_id"), row.get("task"), row.get("card_id")
             if run_id not in run_task:
                 continue
-            if task != run_task[run_id] or not isinstance(card, str) or not card or row.get("eligible_by_start_time") is not True or card in labels:
-                raise VerificationError("invalid or duplicate eligible vault row")
+            if task != run_task[run_id] or not isinstance(card, str) or not card:
+                raise VerificationError("invalid vault identity")
+            eligible = row.get("eligible_by_start_time")
+            if not isinstance(eligible, bool):
+                raise VerificationError("vault eligibility flag is not boolean")
+            if card in seen_vault_cards:
+                raise VerificationError("duplicate card in label vault")
+            seen_vault_cards.add(card)
+            if not eligible:
+                continue
             for key in ("graded", "y_norm"):
                 value = row.get(key)
                 if value is not None and (

@@ -4,5 +4,6 @@ transformers==4.49.0
 accelerate>=1.2
 deepspeed>=0.16
 numpy>=1.26
+scikit-learn>=1.6
 
 # flash-attn is optional. bradley_terry.py falls back to the standard attention backend.

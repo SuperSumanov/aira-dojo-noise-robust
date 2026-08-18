@@ -9,17 +9,48 @@ from dataclasses import dataclass
 from typing import Any
 
 import torch
-from torch.utils.data import Dataset
 
 
 def read_cards(path: str) -> tuple[dict[str, str], dict[str, str]]:
-    """Read card code and task-name lookup tables."""
+    """Read lookup tables from the current ``run_id -> list[Card]`` JSON format."""
+    with open(path, encoding="utf-8") as input_file:
+        cards_by_run_id = json.load(input_file)
+    if not isinstance(cards_by_run_id, dict):
+        raise ValueError(
+            f"Expected a JSON object mapping run IDs to Card lists: {path}"
+        )
+
     code: dict[str, str] = {}
     tasks: dict[str, str] = {}
-    for line in open(path):
-        card = json.loads(line)
-        code[card["id"]] = card.get("code") or ""
-        tasks[card["id"]] = (card.get("task") or {}).get("name", "")
+    run_id_by_card_id: dict[str, str] = {}
+    for run_id, run_cards in cards_by_run_id.items():
+        if not isinstance(run_id, str) or not run_id:
+            raise ValueError(f"Invalid run ID in {path}: {run_id!r}")
+        if not isinstance(run_cards, list):
+            raise ValueError(f"Run {run_id!r} does not contain a Card list")
+
+        for card in run_cards:
+            if not isinstance(card, dict):
+                raise ValueError(f"Run {run_id!r} contains a non-object Card")
+            card_id = card["id"]
+            if not isinstance(card_id, str) or not card_id:
+                raise ValueError(f"Run {run_id!r} contains an invalid Card ID")
+            if card_id in code:
+                raise ValueError(
+                    f"Duplicate Card ID {card_id!r} in runs "
+                    f"{run_id_by_card_id[card_id]!r} and {run_id!r}"
+                )
+
+            card_code = card["code"]
+            task_name = card["task"]["name"]
+            if not isinstance(card_code, str):
+                raise ValueError(f"Card {card_id!r} has a non-string code field")
+            if not isinstance(task_name, str) or not task_name:
+                raise ValueError(f"Card {card_id!r} has an invalid task.name field")
+
+            code[card_id] = card_code
+            tasks[card_id] = task_name
+            run_id_by_card_id[card_id] = run_id
     return code, tasks
 
 
@@ -119,7 +150,7 @@ class CardEncoder:
         return self.encode(card_id, budget)
 
 
-class PairDataset(Dataset):
+class PairDataset:
     """Dataset returning tokenized better/worse sequences for one pair."""
 
     def __init__(self, pairs: Sequence[dict[str, Any]], encoder: CardEncoder):

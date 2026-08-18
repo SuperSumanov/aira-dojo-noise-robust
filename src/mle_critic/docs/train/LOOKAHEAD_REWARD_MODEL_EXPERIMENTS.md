@@ -1,182 +1,227 @@
-# Lookahead reward model 实验运行说明
+# Augmented reward model：当前训练流程
 
-这套代码来自学生分支 `origin/phase1-value-critic` 的 `b5aa5fe`，但已经改成当前仓库目录和可配置路径。原调查见 `tmp/student/Lookahead与预算实验详细调查.md`；数据来源和不能精确复原的部分见 [数据说明](LOOKAHEAD_DATA_PROVENANCE.md)。以下命令均从仓库根目录执行。
+本文记录当前仓库里实际使用的 augmented reward 数据和训练入口。旧的学生版 L1/L2、
+rescue、多预算 flip 实验不再是当前主线，相关旧命令不应拿来复现实验。LOTO 仍由当前
+Bradley-Terry trainer 原生支持，但不是 augmented launcher 的默认训练臂。
 
-## 环境和硬件
+## 1. 当前主线
 
-项目环境：
-
-```bash
-source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
-```
-
-训练依赖见 `src/mle_critic/src/train/requirements.txt`。训练通过 `accelerate launch` 启动，DeepSpeed ZeRO-3 配置统一位于 `src/mle_critic/recipes/zero3.yaml`。当前项目的 `aira-dojo` conda 环境没有安装 `torch`，需要在训练节点为该环境补装依赖：
-
-```bash
-python -m pip install -r src/mle_critic/src/train/requirements.txt
-```
-
-正式配置是 Qwen2.5-1.5B-Instruct 全参数微调、bf16、ZeRO-3、optimizer CPU offload、pair batch 1、gradient accumulation 16。单张 RTX 3090 可以运行，但 CPU 内存、磁盘临时空间和接近一天的 wall time 都要预留。可用 `MLE_CRITIC_MODEL=/本地模型路径` 避免从 Hugging Face 下载模型。
-
-## `bradley_terry.py` 到底做了什么
-
-学生原脚本同时塞了数据切分、tokenize、模型定义、训练、普通评估、预算翻转评估、checkpoint 保存和 CSV 追加。当前版本的训练逻辑在 `src/mle_critic/src/train/bradley_terry.py`，数据处理在 `src/mle_critic/src/train/dataset/`，普通评估和预算翻转评估在 `src/mle_critic/src/evaluation/bradley_terry_evaluation.py`，HTTP server 在 `bradley_terry_server.py`。评估模块同时提供独立 CLI，详见 [`docs/evaluation/BRADLEY_TERRY_EVALUATION.md`](../evaluation/BRADLEY_TERRY_EVALUATION.md)。
-
-训练参数集中在 `src/mle_critic/src/train/config/bradley_terry_config.py` 的 `BradleyTerryConfig(TrainingArguments)`；训练脚本通过 `HfArgumentParser` 解析，因此 batch size、gradient accumulation、learning rate 和 epoch 等参数使用 Hugging Face 的标准命名。launcher 统一使用 `accelerate launch` 和 `src/mle_critic/recipes/zero3.yaml`。
-
-整体流程是：
+数据处理和训练顺序是：
 
 ```text
-读取 cards 和 pair
-  -> 构造 train_pool
-  -> 固定 seed 后 shuffle train_pool
-  -> 将整个 train_pool 按 90/10 切成 train/validation
-  -> 加载一份 pretrained backbone 和新 scalar head
-  -> 每 20 个 optimizer step 在 validation 上评估
-  -> 保存 validation Bradley–Terry loss 最低的 checkpoint
-  -> 训练脚本结束；test/length/flip 评估由独立 evaluator 执行
+raw journal
+  -> 每个搜索 batch 的 batch_cards.json
+  -> batch_value_pairs.jsonl
+  -> gap_filter
+  -> frozen physical-run split
+  -> context length 预检查
+  -> Bradley-Terry reward model
+  -> light predictor 对照
 ```
 
-### 1. cards 和 pair 如何读入
-
-`--cards` 文件建立两个内存字典：
+完整操作清单在 tmp/reminder_train。核心产物是：
 
 ```text
-card ID -> 当前节点的完整 code
-card ID -> MLEBench task name
+data/augmented_mle_critic/augmented_cards_current.json
+data/augmented_mle_critic/raw_journal/batch_value_pairs.jsonl
+data/augmented_mle_critic/raw_journal/batch_value_pairs_filtered.jsonl
+data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl
 ```
 
-`--pairs` 的每条记录只保存 card ID，不重复保存代码。读入后先丢掉 better 或 worse 无法在 cards 中解析的记录。
+数据构建细节见[数据说明](../data/OVERVIEW_MINE.md)。
 
-这里模型从 card 读取的监督输入只有任务名、代码和可选 budget。`label.graded`、self-report、parent score 等字段不会送进 reward model；它们只在上游 pair 生成阶段决定 better/worse。
+## 2. 环境和 launcher
 
-### 2. 训练数据如何划分
+训练通过 accelerate 和 src/mle_critic/recipes/zero3.yaml 启动。augmented launcher 的共享
+配置在：
 
-普通 in-task 模式：
+```text
+src/mle_critic/scripts/experiment_env_augmented_data.sh
+```
+
+它把 DATA_DIR、OUTPUT_DIR、LOG_DIR 分别设为
+data/augmented_mle_critic、outputs/augmented_mle_critic、logs/augmented_mle_critic，并
+导出仓库根目录 PYTHONPATH。这三个目录可以用
+MLE_CRITIC_DATA_DIR、MLE_CRITIC_OUTPUT_DIR、MLE_CRITIC_LOG_DIR 覆盖。
+
+## 3. 训练入口和当前激活配置
+
+当前 augmented reward launcher：
+
+```text
+src/mle_critic/scripts/train/pro6000/train_aug_reward.sh
+```
+
+运行：
+
+```bash
+bash src/mle_critic/scripts/train/pro6000/train_aug_reward.sh
+```
+
+可以用第一个位置参数覆盖 seed，例如：
+
+```bash
+bash src/mle_critic/scripts/train/pro6000/train_aug_reward.sh 7
+```
+
+脚本当前真正执行的只有 Qwen3-8B-Base 这一臂；0.6B、1.7B、4B 的命令保留为注释，没有
+执行。实际参数是：
+
+```text
+accelerate processes       2
+model                      Qwen/Qwen3-8B-Base
+train/test pairs           data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl
+cards                      data/augmented_mle_critic/augmented_cards_current.json
+max_len                    16384
+task_cond                  true
+per-device train batch     2
+per-device eval batch      2
+gradient accumulation      32
+eval_steps                 10
+learning rate              1e-5
+epochs                     1
+seed                       6
+```
+
+日志写到 logs/augmented_mle_critic，checkpoint 写到
+outputs/augmented_mle_critic/Qwen3-8B_reward_seed6。
+
+不要把旧文档中 Qwen2.5-1.5B、N=24000、2048 context 或 train_l1_lookahead.sh 的参数当成
+当前 augmented 配置；它们属于旧实验或已经停用的 launcher。
+
+## 4. bradley_terry.py 的真实数据流程
+
+入口是 src/mle_critic/src/train/bradley_terry.py，数据部分在
+src/mle_critic/src/train/dataset/pairs.py，训练配置在
+src/mle_critic/src/train/config/bradley_terry_config.py。
+
+### Cards 和 pairs
+
+当前 read_cards 接受 run-grouped JSON：
+
+```text
+run_id -> [Card, Card, ...]
+```
+
+它建立两个 lookup：
+
+```text
+card_id -> code
+card_id -> task name
+```
+
+read_pairs 读取 JSONL，只保留 better 和 worse 两个 Card ID 都存在的记录。监督所需的
+gap_raw、grade、采样配置等字段不会直接送入模型；模型输入来自 Card 的 task name、code
+以及可选 budget 条件。
+
+### train/test pool
+
+launcher 将同一个 split-assigned pair 文件同时传给 --train-pairs 和 --test-pairs。在
+trainer 内部：
 
 ```python
-train_pool = [p for p in pairs if p["intask_split"] == "train"]
+training_pool = [p for p in pairs if p["intask_split"] == "train"]
+testing_pool  = [p for p in pairs if p["intask_split"] == "test"]
 ```
 
-脚本本身不重新做树切分，只信任 pair 文件已经写好的 `intask_split`。因此 L1 是否端点泄漏、L2 是否严格双端留树，取决于上游 pair 生成器，不取决于 trainer。
+随后两个 pool 各自按 seed shuffle。training_pool 的全部记录作为 train_dataset，
+testing_pool 的全部记录作为 eval_dataset。当前代码没有再从 training pool 切 80/20
+validation，也没有单独的 test-only evaluator 阶段；训练中的 eval 实际上直接看 frozen
+holdout test pool。
 
-LOTO 模式则完全忽略 `intask_split`：
+这点要明确：当前 eval pool 并不是训练集内部 validation。若用 eval loss/accuracy 选择
+checkpoint，就已经使用了 holdout split，不能再把同一个 split 当完全未触碰的最终测试集。
 
-```python
-train_pool = [p for p in pairs if p["task"] != target]
-```
+rescue 和旧的预算实验 launcher 已删除；LOTO 不是独立 launcher，而是
+bradley_terry.py 的当前可用参数。
 
-也就是说，其他任务原来的 train/test 记录都会进入 LOTO 训练池；目标任务完全不进入训练。训练脚本本身不读取目标任务 test pool，测试评估由独立 evaluator 按需执行。
+### LOTO
 
-训练脚本只 shuffle 训练池，并不截取或平衡测试池。测试 split、`eval-cap` 和任务分组策略由独立 evaluator 的命令行负责。
+传入 --loto TASK 后，当前 trainer 会忽略 pair 的 intask_split：
 
-### 4. 模型输入和截断
+~~~python
+training_pool = [p for p in pairs if p["task"] != TASK]
+testing_pool  = [p for p in pairs if p["task"] == TASK]
+~~~
 
-默认输入是：
+因此其他任务的 train/test 记录都会进入训练池，目标任务的记录进入 eval pool。直接启动示例：
+
+~~~bash
+accelerate launch \
+  --config_file src/mle_critic/recipes/zero3.yaml \
+  --num_processes 2 src/mle_critic/src/train/bradley_terry.py \
+  --train-pairs data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl \
+  --test-pairs data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl \
+  --cards data/augmented_mle_critic/augmented_cards_current.json \
+  --model Qwen/Qwen3-8B-Base \
+  --loto nomad2018-predict-transparent-conductors \
+  --max-len 16384 \
+  --per-device-train-batch-size 2 \
+  --per-device-eval-batch-size 2 \
+  --gradient-accumulation-steps 32 \
+  --eval-steps 10 \
+  --learning-rate 1e-5 \
+  --num-train-epochs 1 \
+  --output-dir outputs/augmented_mle_critic/loto_nomad_seed7 \
+  --seed 7
+~~~
+
+## 5. 模型输入和截断
+
+默认 task_cond=true，每个 Card 的输入文本是：
 
 ```text
 # MLE-bench task: <task name>
 <current node code>
 ```
 
-预算条件化时，再加入：
+CardEncoder 对文本 tokenize 后，在 max_len 超限时保留头部 head_frac（默认 25%）和尾部
+75%。pair_collate 只在 batch 内右侧 padding，不改变 attention mask 中的真实长度。
+
+单个 pair 的 PairDataset 返回：
 
 ```text
-# remaining budget: K steps
+{"b": better_tokens, "w": worse_tokens}
 ```
 
-`--budget-pos=head` 把预算放在代码前，`tail` 则先给代码 tokenize，预留预算 suffix 的 token 空间，截断代码后再追加 suffix。超长输入保留开头 `head_frac`，默认 25%，以及末尾剩余 75%。tail 模式的目的就是保证预算文本不会被长代码截掉，并让它靠近 scalar head 使用的最后 token。
-
-`--task-cond` 的 argparse 写法是 `store_true, default=True`，因此当前 CLI 实际上无法关闭 task conditioning；不传参数也永远是 true。这是接口写法问题，不应把它理解成学生认真跑过 task-conditioned/无 task-conditioned 两个臂。
-
-### 5. pair batch 和 Bradley–Terry loss
-
-`src/mle_critic/src/train/dataset/PairDataset` 对每条记录返回 better 和 worse 两段 token；`pair_collate` 把一个 batch 排成：
+pair_collate 将一个 batch 排成：
 
 ```text
 [所有 better 序列, 所有 worse 序列]
 ```
 
-因此 `--per-device-train-batch-size=1` 表示每张 GPU 每步一个 pair，但 backbone 实际前向两条 code 序列。有效 pair batch 约为：
-
-```text
-per-device pair batch * gradient accumulation * GPU 数
-```
-
-模型结构为：
-
-```text
-Qwen AutoModel
-  -> 最后一个非 padding token 的 hidden state
-  -> Linear(hidden_size, 1)
-  -> scalar reward
-```
-
-一个 batch 的 loss 是：
+因此 per-device batch size 2 实际每次 backbone 前向 4 条序列。Bradley-Terry loss 是：
 
 ```text
 -mean(log sigmoid(score(better) - score(worse)))
 ```
 
-当前只支持全参数微调；backbone 使用 bf16、gradient checkpointing，优先尝试 Flash Attention 2，失败后回退普通 attention。
+当前 augmented batch value pair 的记录字段是 budget_steps，不是训练数据集读取的
+budget 字段；而当前 launcher 不传 --budget-cond。所以这条主线实际是 budget-blind 的
+静态 reward model。不要把 budget_steps 元数据误解为模型已经看到了预算。
 
-### 6. 当前 validation 和 best checkpoint 逻辑
+## 6. validation、eval 和 checkpoint
 
-学生原版确实没有训练期 validation。当前版本对 shuffle 后的完整训练池做一次 record-level 80/20 切分：
+bradley_terry.py 每隔 --eval-steps 调用 Trainer 的 eval dataset；当前 launcher 设置为每
+10 个 optimizer step。一个 optimizer step 已经包含 gradient accumulation，不能把它理解成
+每个 micro-batch。
 
-```python
-validation_count = max(1, int(len(training_pool) * 0.2))
-training_records = training_pool[:-validation_count]
-validation_records = training_pool[-validation_count:]
-```
-
-随后给 Trainer 同时传入：
-
-```python
-train_dataset=PairDataset(training_records, card_encoder)
-eval_dataset=PairDataset(validation_records, card_encoder)
-```
-
-默认每 20 个 optimizer step 计算一次 validation Bradley–Terry loss 和 `eval_pair_accuracy`。这里的 step 是 gradient accumulation 完成后的 optimizer/global step，不是每个 micro-batch；可以用 `--eval-steps` 修改间隔。Trainer 配置为：
+训练配置的默认值来自 BradleyTerryConfig：
 
 ```text
-eval_strategy=steps
-eval_steps=20
-save_strategy=best
-metric_for_best_model=eval_loss
-greater_is_better=false
-load_best_model_at_end=false
-save_total_limit=1
+eval_strategy             steps
+save_strategy             best
+metric_for_best_model     eval_pair_accuracy
+greater_is_better         false
+load_best_model_at_end    false
+save_total_limit          1
 ```
 
-项目锁定的 Transformers 4.49 已原生支持 `save_strategy="best"`。因此每 20 个 optimizer step 验证一次，但只有 `eval_loss` 创下新低时才保存 checkpoint。训练脚本不再执行 test-side evaluation；普通 test、length-control 和 flip/control 评估通过独立 evaluator 执行。`eval_pair_accuracy` 仍作为 validation 观察指标报告，但不参与模型选择。
+因此当前代码会保留 Trainer 认定的 best checkpoint，但 greater_is_better=false 与
+eval_pair_accuracy 的语义并不匹配；如果要按准确率选最好模型，应显式修正配置，而不是
+根据旧文档假设它已经按最高准确率选择。
 
-这里采用简单 record-level validation，而不是 tree-level validation。对带 flip boost 的 L2 数据，相同记录副本可能分别落入 train 和 validation；因此它能用于训练期选 checkpoint，但不是严格的无泄漏 validation。后续若需要严谨比较超参数，应该在 pair 生成阶段按 tree root 单独生成 validation split。
-
-### 7. 单次训练入口
-
-当前脚本不再提供 `--sizes`，也不在一个进程内循环训练多个数据规模。输入 pair 文件筛选出的整个 training pool 会被使用一次。如果要做 data scaling，应当先生成不同规模的 pair 文件，再为每个文件启动独立训练进程并使用不同的 `--output-dir`。
-
-### 8. 训练后的三类评估
-
-这些评估不再由 `bradley_terry.py` 执行。请使用 `src/mle_critic/src/evaluation/bradley_terry_evaluation.py` 的独立 CLI，见[评估文档](../evaluation/BRADLEY_TERRY_EVALUATION.md)。
-
-普通 accuracy 比较 `score(better) > score(worse)`，并打印 task、budget 和 `flips_vs_b1` breakdown。
-
-`--eval-len-control=0.15` 会另外保留两个代码字符长度差不超过较长代码 15% 的 pair。它只是报告一个控制子集，不参与训练或模型选择；少于 100 条时跳过。
-
-`--flip-eval` 会对同一个 x/y 在 K=1 和 K_hi 下分别打分，报告：
-
-- `acc_lo`、`acc_hi` 和二者平均；
-- `model_switched`/`moved`：模型是否随预算改变 winner；
-- `switch_acc`：发生改变时是否两端都改对；
-- `selectivity`：flip pair 改判率除以 control pair 改判率。
-
-预算盲模型会把 budget 置为 None，所以同一代码在不同 K 下的 token 完全一致。它在真正 flip pair 上的平均正确率解析上应为 0.5。
-
-### 9. checkpoint
-
-Trainer 默认每 20 个 optimizer step 验证一次，只有 `eval_loss` 创下新低时才保存。训练脚本保留原始 Hugging Face checkpoint，独立 evaluator 直接读取它：
+checkpoint 是 Hugging Face/Trainer 原生目录，通常包含：
 
 ```text
 <output-dir>/checkpoint-<step>/
@@ -184,79 +229,83 @@ Trainer 默认每 20 个 optimizer step 验证一次，只有 `eval_loss` 创下
   trainer_state.json
 ```
 
-训练脚本不再写评估 CSV；评估结果由 evaluator 通过 `--output` 写 JSON。
+训练脚本不会生成一份独立的最终 accuracy CSV。当前增强流程的主要训练输出是日志和
+checkpoint；数据规模、context 长度等比较应在实验记录中显式保存。
 
-### 10. 对当前结果应该怎么读
+## 7. 训练前 context 预检查
 
-训练脚本本身不产出 test accuracy；独立 evaluator 产出的 accuracy 是指定 checkpoint 在指定 split 上的排序准确率。相比学生原版，训练和 test evaluation 已经解耦；validation 仍是训练记录的简单 record split，不是 tree-level split。
-
-当前仍值得补的工程项是 tree-level validation。不要根据 test accuracy 回头选择数据规模或超参数。
-
-## L1：整个可见子树的最好分数
-
-L1 标签比较当前节点及全部可见后代中的最佳外部得分。模型输入只有任务名和当前代码，不含预算。
+不要直接用字符长度估算 context。使用与训练相同的 tokenizer、CardEncoder、PairDataset、
+pair_collate 和 DataLoader：
 
 ```bash
-bash src/mle_critic/scripts/train/pro6000/train_l1_lookahead.sh 7
+python -m src.mle_critic.src.postprocess.measure_context \
+  --model Qwen/Qwen3-0.6B-Base \
+  --pairs data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl \
+  --cards data/augmented_mle_critic/augmented_cards_current.json \
+  --context-length 16384
 ```
 
-学生报告的原配置是 Qwen2.5-1.5B-Instruct、`N=24000`、`max_len=2048`、2 epochs、`lr=1e-5`、seed 7。当前 `pro6000` launcher 已改成 Qwen3-0.6B-Base、16,384 context、2 GPU 和 accumulation 32，并直接使用输入文件中的完整 training pool，是后续本地配置，不会直接复现学生的 `0.8183`。原结果还使用旧的非对称树切分，测试 pair 中约 87.3% 至少有一个端点代码在训练 pair 中出现过，不能解释成严格的未见树泛化。
+脚本会分别报告 train/test/all 的平均 token 数、最大 token 数、超 context 的 sequence 比例，
+以及任一侧超 context 的 pair 比例。测量时暂时把 CardEncoder max_len 提高到很大的值；如果
+真的碰到这个临时上限，脚本会报错，避免把截断后的长度当成真实长度。
 
-## L2：count-matched 预算标签
+已在当前数据和 Qwen3-0.6B tokenizer 上测得：
 
-L2 的 `K` 是 cards 图中按历史 `lineage.step` 排序的前 K 个带分后代，不是墙钟时间、GPU 小时或完整 MCTS step。先跑预算盲臂，再跑预算条件化臂：
+```text
+all pairs                  6976
+average sequence length    3787.07
+maximum sequence length    27603
+sequences > 16384          9/13952 = 0.06%
+pairs with either > 16384  7/6976   = 0.10%
+```
+
+这个统计是数据检查，不代表 Qwen3-8B 训练已经完成。
+
+## 8. 轻量模型对照
+
+为了判断收益是否来自代码字符表面特征，当前流程另外提供 sklearn baseline：
 
 ```bash
-bash src/mle_critic/scripts/train/train_l2_budget.sh blind 7
-bash src/mle_critic/scripts/train/train_l2_budget.sh conditioned 7
+PYTHONPATH=. python -m src.mle_critic.src.train.light_predictor.train \
+  --pairs data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl \
+  --cards data/augmented_mle_critic/augmented_cards_current.json \
+  --output tmp/light_predictor_results.json
 ```
 
-Conditioned 模型把 `# remaining budget: K steps` 放在 token 序列尾部。scalar head 读取最后一个非 padding token，因此不能随意把预算文本移回头部。两个脚本默认使用仓库中的 `_rebuilt` 数据；它们可运行和审计，但并非学生缺失的原始 v2 文件。
+支持三个模型：
 
-要从 cards 重新构造 L1/L2 pair：
+| 模型 | 输入 |
+| --- | --- |
+| tfidf_lr | train-only 字符 3--5 gram TF-IDF + logistic regression |
+| static_lr | 34 个 handcrafted features + scaled logistic regression |
+| static_gbm | 同一组 34 个 features + histogram gradient boosting |
 
-```bash
-bash src/mle_critic/scripts/build_lookahead_datasets.sh
-python -m src.mle_critic.src.preprocess.audit_budget_pairs \
-  data/mle_critic/budget_pairs_v2_local.jsonl data/mle_critic/cards_current.jsonl
-python -m src.mle_critic.src.preprocess.audit_budget_pairs_details \
-  data/mle_critic/budget_pairs_v2_local.jsonl data/mle_critic/cards_current.jsonl 2400
+三个模型都使用 feature(better)-feature(worse)，并把每个 train pair 的反向顺序也加入训练。
+默认随机 seed 为 7，train/test cap 分别为 24,000/6,000，可用 --models、--train-cap、
+--test-cap 覆盖。cards reader 同时支持 grouped JSON 和 flat JSONL，并只读取 pair 需要的
+Card。
+
+## 9. 复现实验时应保存什么
+
+至少保存以下版本化产物：
+
+```text
+augmented_cards_current.json
+runsplit_holdruns.json
+batch_value_pairs_filtered.jsonl
+batch_value_pairs_filtered_runsplit.jsonl
+训练命令和 git commit
+模型 tokenizer 名称
+context length、seed、batch size、gradient accumulation
 ```
 
-## LOTO 和 rescue
+raw pair 必须从当前 Cards 重建，不能每天直接 append：新后代会改变祖先的 reward/value，
+新 batch 也会改变 cap 采样池。run split 可以增量更新，但已有 physical run 的 train/test
+身份不能漂移。
 
-LOTO 按任务留一，但不传 `--budget-cond`。它训练的是混合预算记录上的平均排序，不是在测试预算条件化的跨任务迁移。
+## 10. 已删掉的旧说明
 
-```bash
-bash src/mle_critic/scripts/train/train_loto.sh nomad2018-predict-transparent-conductors 7
-```
-
-Rescue 先混入目标任务训练树中的有序 pair key，再在目标任务留出树评估。`K=500` 表示 500 个有序 pair key，不等于 500 条记录或 500 个节点。
-
-```bash
-bash src/mle_critic/scripts/build_rescue_datasets.sh
-bash src/mle_critic/scripts/train/train_rescue.sh nomad 500 7
-bash src/mle_critic/scripts/train/train_rescue.sh petfinder 2000 13
-```
-
-## checkpoint 和在线 sidecar
-
-启动 L1 checkpoint sidecar：
-
-```bash
-bash src/mle_critic/scripts/serve_lookahead_rm.sh \
-  outputs/mle_critic/ckpt_lookahead_v3_seed7/N24000 8765
-curl -sS http://127.0.0.1:8765/score \
-  -H 'Content-Type: application/json' \
-  -d '{"task":"spooky-author-identification","code":"print(1)"}'
-```
-
-sidecar 只接收 `task + code`，适用于学生 T3v2 计划中的静态 L1 bias。在线 MCTS consumer 位于 `origin/dojo-reproduce-collect`，不属于训练代码，也没有合入当前 `dojo-reproduce` 分支。T3v2 截至调查时没有正式结果；不要把 sidecar 启动成功当作在线实验已经复现。L2 checkpoint 的 `rm_meta.json` 虽记录 `budget_cond`，当前 sidecar 协议却没有预算字段，因此不能用它验证动态 `score(code, K)`。
-
-## 常见问题
-
-- `cards_current.jsonl` 只包含带外部分数并保留在 cards 图中的节点；断链或无分后代不会进入 lookahead 标签。
-- reward model 对超长代码保留头部 25% 和尾部 75%；L2 tail budget 会在截断后追加，确保预算不被裁掉。
-- 训练日志和 Hugging Face checkpoint 是训练脚本的主要输出；评估结果由独立 evaluator 写入 JSON。
-- pair 文件中的 flip boost 和同一节点对的多个预算会造成重复，记录数不能直接当作独立程序数。
-- 多臂并行时每个 Accelerate 任务必须绑定不同 GPU 和 master port；调度层并发应由 Slurm 或外部 launcher 管理。
+以下内容不再写入当前实验文档：学生版 L1/L2 数据生成、按预算 K 的 decision/flip 训练、
+rescue launcher、旧 minimal_gap.json、训练脚本内的 80/20 validation、训练脚本内的
+CSV/普通测试评估，以及旧的 sidecar 复现实验结论。它们可能仍存在于历史提交或未合并分支，
+但不属于当前 augmented reward pipeline。

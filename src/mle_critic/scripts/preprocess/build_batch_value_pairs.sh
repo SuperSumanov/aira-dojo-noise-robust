@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Build batch_value_pairs.jsonl beside every batch_cards.json under DIRECTORY.
+# Build per-batch value pairs, then concatenate them under DIRECTORY.
 # Usage: bash src/mle_critic/scripts/preprocess/build_batch_value_pairs.sh DIRECTORY [--cap N] [--seed N] [--budget-steps N]
 set -euo pipefail
 
 DIRECTORY=${1:?expected a directory containing batch_cards.json files}
 shift
 
-CAP=100
+CAP=200
 SEED=7
 BUDGET_STEPS=-1
 while (( $# )); do
@@ -37,6 +37,13 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT=$(cd "$SCRIPT_DIR/../../../.." && pwd)
 export PYTHONPATH="$REPO_ROOT/src/mle_critic${PYTHONPATH:+:$PYTHONPATH}"
 
+aggregate_path="$DIRECTORY/batch_value_pairs.jsonl"
+aggregate_tmp=$(mktemp "$DIRECTORY/.batch_value_pairs.jsonl.tmp.XXXXXX")
+cleanup() {
+    rm -f "$aggregate_tmp"
+}
+trap cleanup EXIT INT TERM
+
 found=0
 while IFS= read -r -d '' cards_path; do
     found=1
@@ -48,8 +55,13 @@ while IFS= read -r -d '' cards_path; do
         --cap "$CAP" \
         --seed "$SEED" \
         --budget-steps "$BUDGET_STEPS"
+    cat "$output_path" >> "$aggregate_tmp"
 done < <(find "$DIRECTORY" -type f -name batch_cards.json -print0 | sort -z)
 
 if (( ! found )); then
     echo "[build_batch_value_pairs] no batch_cards.json files found under $DIRECTORY" >&2
 fi
+
+mv "$aggregate_tmp" "$aggregate_path"
+trap - EXIT INT TERM
+echo "[build_batch_value_pairs] combined output -> $aggregate_path"

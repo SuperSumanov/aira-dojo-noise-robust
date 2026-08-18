@@ -1,6 +1,6 @@
 # Probe-First Artifact Contract A/B V2：恢复预检与启动
 
-日期：2026-08-19  
+日期：2026-08-19
 当前状态：`RUNNING_FROZEN_PROBE_AB_REPLAY_NO_OUTCOME_READ`
 
 ## 1. 恢复边界

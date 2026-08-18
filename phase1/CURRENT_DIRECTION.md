@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AF. 2026-08-18 最新覆盖：冻结 replay cohort 的结构支持通过；不解除数据阻塞
+
+本节晚于 0AE。等待 9 个 Kaggle 规则解锁期间，对 `selection_a` 做了完全 outcome-blind 的结构支持审计；
+它不打开 label vault、candidate code、replay manifest 或 replay outcome，也不计算科学效果指标。真实冻结 cohort
+覆盖 17 tasks / 94 physical runs / 158 selected parents / 320 candidates，320/320 candidate IDs 唯一、跨 parent
+重复 membership=0。最大候选任务为 tgs-salt 48/320=`0.15`，最大 parent 任务 24/158=
+`0.1518987341772152`，最大 run 任务 12/94=`0.1276595744680851`；候选任务 HHI effective number=
+`11.015490533562822`。因此未来结果不是预先由单一任务结构性支配，这是新增的正面 cohort-quality 资产。
+
+边界必须同时保留：support 不均匀，cassava 与 google-quest 各只有 1 run/2 candidates，whale 只有 2 runs/4
+candidates；所以不得声称 17 个任务都能单独稳定估计，也不得取消预注册的 run-cluster primary、task-cluster
+secondary 和 task LOTO。该审计更不替代科学 replay：0AE 的 9 tasks / 246 candidates 数据门仍然阻塞，74-candidate
+available-case 子集仍禁止作为确认结果。
+
+实现 commit=`e0c5bcd6f9813afa7ced410d8f6b8d19da9edba5`；producer 双跑、独立 verifier 双跑均逐字节一致，
+完整 suite=`384 passed in 32.19s`。audit SHA=`82613e1cca4ce1f5b7370a8d5dc7e4d6ab3dbdbdb74ee137c9b9da728ec81b0a`，
+independent receipt SHA=`657b94eb51664aa8236622d1e932007b0de319f4b52802763c36bdf67d997528`。直接证据：
+
+- `phase1/results/score_channel_cohort_support_20260818/README.md`；
+- `phase1/results/score_channel_cohort_support_20260818/support_summary.json`；
+- `phase1/score_channel_cohort_support.py`；
+- `phase1/verify_score_channel_cohort_support.py`。
+
 ## 0AE. 2026-08-18 最新覆盖：正式 replay 被完整数据门阻塞；没有科学 outcome
 
 本节晚于 0AD。用户批准的 320×120s×4-shard 矩阵尚未产生任何候选结果。五个 fail-closed GPU jobs

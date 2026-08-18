@@ -1,0 +1,56 @@
+{
+  "protocol": "score-channel-cohort-support-published-summary-v1",
+  "status": "VERIFIED_OUTCOME_BLIND_COHORT_SUPPORT",
+  "outcomes_read": false,
+  "scientific_metrics_computed": [],
+  "counts": {
+    "selected_tasks": 17,
+    "physical_runs": 94,
+    "selected_parents": 158,
+    "selected_candidates": 320,
+    "unique_candidate_ids": 320,
+    "duplicate_candidate_memberships": 0
+  },
+  "dominant_support": {
+    "candidates": {
+      "task": "tgs-salt-identification-challenge",
+      "count": 48,
+      "denominator": 320,
+      "share": 0.15
+    },
+    "parents": {
+      "task": "tgs-salt-identification-challenge",
+      "count": 24,
+      "denominator": 158,
+      "share": 0.1518987341772152
+    },
+    "runs": {
+      "task": "dogs-vs-cats-redux-kernels-edition",
+      "count": 12,
+      "denominator": 94,
+      "share": 0.1276595744680851
+    }
+  },
+  "candidate_task_effective_number_hhi": {
+    "numerator": 102400,
+    "denominator": 9296,
+    "value": 11.015490533562822
+  },
+  "support_limits": {
+    "one_run_tasks": [
+      "cassava-leaf-disease-classification",
+      "google-quest-challenge"
+    ],
+    "available_case_replay_is_confirmatory": false,
+    "kaggle_data_gate_still_blocked": true
+  },
+  "verification": {
+    "producer_commit": "e0c5bcd6f9813afa7ced410d8f6b8d19da9edba5",
+    "selected_parents_sha256": "49e808747532034ae653e0fdb45a3144f5fe4545ae5b8d1755d79545d4c64b81",
+    "audit_sha256": "82613e1cca4ce1f5b7370a8d5dc7e4d6ab3dbdbdb74ee137c9b9da728ec81b0a",
+    "independent_receipt_sha256": "657b94eb51664aa8236622d1e932007b0de319f4b52802763c36bdf67d997528",
+    "full_tests": "384 passed in 32.19s",
+    "producer_double_run_byte_identical": true,
+    "verifier_double_run_byte_identical": true
+  }
+}

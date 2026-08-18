@@ -19,9 +19,11 @@ regrade，与 primary 的 verdict、gates 和 summary 全部一致，仍为 `QUA
 遮住正结果：naive prompt-only artifact contract 不提高 120 秒 coverage，且 full validity 更差。该方法线关闭，
 不得调 prompt/任务/阈值救活；论文只保留其固定分母失败与工程审计记录。
 
-0817 新语料是 post-freeze corpus extension。前四个合法 archives 已提交为 transactions 29--32（标称 28 runs）；
-第五个 LMSYS 包因 8/8 journals 均无 task identity fail-closed。credential-safe auditor 双跑逐字节一致，整包按
-精确 path/size/mtime/SHA 拒收，不从文件名补 task；剩余 3 个 archive 只能在新 registry 与 clean commit 上续跑。
+0817 新语料是 post-freeze corpus extension。7 个合法 archives 已提交，标称 52 runs；LMSYS 包因 8/8 journals
+均无 task identity fail-closed。credential-safe auditor 双跑逐字节一致，整包按精确 path/size/mtime/SHA 拒收，
+不从文件名补 task。当前 registry=35 transactions，outcome-blind inventory 为 197 eligible physical runs、23 tasks、
+4,424 endpoints、1,216 structural sibling pairs，最大 run/pair task share 分别为
+`0.1116751269035533/0.15789473684210525`。旧 first-960 确认门要求 1,500 pairs，仍差 284；不得提前开 vault。
 
 当前不再有已解锁的正方法实验。近期最可守路线回到 D&B 数据/benchmark 主线：完成 0817 安全扩展、版本化 corpus，
 再对既有冻结而未读 outcome 的 benchmark 资格门做 CPU 审计；任何新的 GPU/API 方法矩阵仍需另行给出预算并批准。
@@ -29,8 +31,10 @@ regrade，与 primary 的 verdict、gates 和 summary 全部一致，仍为 `QUA
 
 - `phase1/results/probe_contract_ab_v2_result_20260819/README.md`；
 - `phase1/results/prospective_structural_rejection_20260819/README.md`；
+- `phase1/results/prospective_structural_rejection_20260819/intake_completion_summary.json`；
 - `phase1/实验记录/2026-08-19/ProbeContractAB_V2正式无效与事后诊断.md`；
-- `phase1/实验记录/2026-08-19/Prospective0817_LMSYS_TaskIdentityFailClosed.md`。
+- `phase1/实验记录/2026-08-19/Prospective0817_LMSYS_TaskIdentityFailClosed.md`；
+- `phase1/实验记录/2026-08-19/夜间正面突破路线与防Scoop_20260819.md`。
 
 ## 0AK. 2026-08-19 最新覆盖：恢复已冻结 Probe-First A/B；16 个 generation 不重跑
 

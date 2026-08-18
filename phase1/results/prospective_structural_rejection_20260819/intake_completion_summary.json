@@ -1,0 +1,43 @@
+{
+  "accumulator_summary_sha256": "c2b10b6cbf7f5e18dc04b448a4601fef65e4d1656b88297cbf63f2cb0893edd7",
+  "control_commit": "1cf55e8fa51a24002a35410b6174b06bda5c1ae0",
+  "current_status": "PROSPECTIVE_COHORT_COLLECTING",
+  "first960_existing_gate": {
+    "minimum_structural_pairs": 1500,
+    "observed_structural_pairs": 1216,
+    "remaining_to_gate": 284,
+    "vault_open_allowed": false
+  },
+  "inventory": {
+    "all_physical_runs": 223,
+    "dominant_endpoint_task_share": 0.11053345388788427,
+    "dominant_run_task_share": 0.1116751269035533,
+    "dominant_structural_pair_task_share": 0.15789473684210525,
+    "eligible_endpoints": 4424,
+    "eligible_physical_runs": 197,
+    "eligible_structural_pairs": 1216,
+    "eligible_tasks": 23,
+    "exact_code_duplicate_endpoints": 10,
+    "unique_exact_code_sha256": 4414
+  },
+  "latest_snapshot_sha256": "b3ef1f75b7a111327c3dbad03aee6f03098de01307573ce520f04fa2339314b4",
+  "monitor": {
+    "gpu_jobs": 0,
+    "llm_api_calls": 0,
+    "max_polls": 361,
+    "pid_at_launch": 558512,
+    "poll_seconds": 60
+  },
+  "outcomes_read": false,
+  "runner_summary_sha256": "37bb107b69217a7855eb00c57e0e90bb9e59fadc6f6e7d9f02abca7b00674ba4",
+  "security": {
+    "label_vault_opened": false,
+    "outcome_files_opened": [],
+    "scorer_prediction_files_opened": []
+  },
+  "transaction_registry_sha256": "6db342bc711ef4b0445171db796a3efb52b7989524120a17795a1480a7fd1408",
+  "transactions": 35,
+  "valid_0817_archives": 7,
+  "valid_0817_nominal_runs": 52,
+  "structurally_rejected_0817_archives": 1
+}

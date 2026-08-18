@@ -1,9 +1,30 @@
-# Score-channel confirmatory replay 启动审计（2026-08-18）
+# Score-channel confirmatory replay 完成审计（2026-08-19）
 
-状态：`RUNNING_CONFIRMATORY_REPLAY_NO_OUTCOME_READ`。正式 jobs 为 11127/11128/11129/11130，对应 frozen
+最终状态：`SCORE_CHANNEL_MECHANISM_KILL`；冻结 analyzer 与不导入 producer 的独立 verifier 均 rc=0，
+postprocess 状态为 `COMPLETE_RESULTS_ANALYSIS_AND_INDEPENDENT_VERIFY_PASS`。正式 jobs 为
+11127/11128/11129/11130，对应 frozen
 shards 0/1/2/3 与 100/85/78/57 candidates；均在 gpu27、RTX3090 上于
 `2026-08-18T13:39:18Z` 启动。worker source、approval、coverage 和 replay SHA 均沿用执行前冻结；没有重选
 parent、改 cap、改 candidate code、调用 LLM API 或更新底座模型。
+
+## 预注册 headline 裁决
+
+320/320 planned replays 完整结束。320 个候选中 finite external score 为 15，keyed stdout self-report 为 92，
+两通道同时存在为 7；严格同 parent common support 最终只有 6 cards / 3 parents / 3 physical runs / 3 tasks。
+在这三个 parent 上，external 与 stdout 的 tie-aware top-1 credit 均为 1.0，差值为 0.0；run/task clustered
+95% CI 均为 `[0.0, 0.0]`，run sign informative=0、双侧 p=1.0。预注册的正方向、run-CI 与 sign-test 三道门
+均失败，因此不得提出“external score 通道优于 stdout self-report”的正方法主张。
+
+这不是 replay 或 verifier 失败：完整性链全部通过。诚实的描述性发现是 120 秒下 external score 覆盖极低，
+导致通道优劣估计几乎没有共同支持；它可作为 execution-cliff/selection-observability 的基准诊断，但不能
+事后替换预注册 headline 或声称确认了外部分数优势。
+
+直接证据保存在远端：
+
+- `/research/d7/spc/yzyang4/score-channel-replay-20260818-approved-v2/postprocess/analysis/summary.json`；
+- `/research/d7/spc/yzyang4/score-channel-replay-20260818-approved-v2/postprocess/independent_verification.json`；
+- primary summary SHA=`3dc99bc8266cbe6abe33c89597b4c118c2ce211f3225c33df8c0d70f308178a5`；
+- independent status=`VERIFIED_SCORE_CHANNEL_PROSPECTIVE_ANALYSIS`。
 
 ## Slurm 秒级取整修正
 
@@ -25,6 +46,6 @@ parent、改 cap、改 candidate code、调用 LLM API 或更新底座模型。
   `384 passed in 33.84s`、rc=0；
 - 第二次显式 submit 前 dry-count/test-only/secret/active-job 门全部重跑通过。
 
-当前监控只读取 Slurm state、job rc 与 JSONL 行数，不读取 `sub_score`、`stdout_val`、frozen labels 或任何科学
-效果。只有四片终止、结果 SHA 固定且 completeness 门通过后，才允许 frozen analyzer 一次性打开结果与 label
-vault；否则诚实报告预算内不完整，不扩预算、不改 analyzer。
+结果盲监控只在四片均终止、结果 SHA 固定、320/320 completeness 与执行后 17/17 数据覆盖双重验证通过后，
+才一次性运行 frozen analyzer。四个 top-level jobs 全部 `COMPLETED 0:0`，实际 elapsed 分别为
+`03:17:08`、`02:47:01`、`01:55:17`、`01:45:11`，均未触及各自 TimeLimit。

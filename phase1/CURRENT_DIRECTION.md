@@ -1,7 +1,29 @@
-# 当前研究方向唯一入口（2026-08-18）
+# 当前研究方向唯一入口（2026-08-19）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0AJ. 2026-08-19 最新覆盖：320/320 confirmatory replay 完整，但评分通道优越性预注册 KILL
+
+本节晚于 0AI。四个 frozen shards 均在批准 TimeLimit 内 `COMPLETED 0:0`，320/320 replay 完整；执行后
+17/17 数据覆盖、approval/orientation/selection/replay/result SHA、frozen analyzer 与不导入 producer 的
+独立 verifier 全部通过。故这是有效的确认性负裁决，不是基础设施失败或预算内不完整。
+
+120 秒下 finite external score 只有 15/320，keyed stdout self-report 为 92/320，两通道同时存在 7/320；
+严格同 parent common support 最终只有 6 cards / 3 parents / 3 physical runs / 3 tasks。三个 parent 上两通道
+tie-aware top-1 credit 均为 1.0，delta=0.0，run/task clustered 95% CI 均为 `[0.0,0.0]`，run sign
+informative=0、双侧 p=1.0。预注册的方向、run-CI 下界和 sign-test 门均失败，状态必须写为
+`SCORE_CHANNEL_MECHANISM_KILL`，`method_positive_claim_allowed=false`。禁止重开 cap/parser/subset 后把
+available-case 结果包装为确认性正结论。
+
+保留下来的新科学资产是描述性的 **execution cliff / selective observability**：在固定 120 秒真实 sibling
+replay 上，external evaluator 通道并非质量差，而是极少产生可观测分数，使“比较两个 evaluator 谁更会排序”
+本身缺乏支持。它可以进入数据集/benchmark 的 coverage 与 missingness 诊断，但不能声称确认了 external
+score 优于 self-report。直接证据：
+`phase1/results/score_channel_replay_execution_20260818/README.md` 与 `completion_summary.json`。
+
+学长 0817 的 8 个新 archive 在本结果冻结后到达，只能作为 post-freeze corpus extension；不得回填上述
+cohort。摄取必须继续使用 credential-first、env-member-never-read、append-only 的冻结 intake，并独立标记。
 
 ## 0AI. 2026-08-18 最新覆盖：confirmatory replay 已启动；仍保持结果盲
 

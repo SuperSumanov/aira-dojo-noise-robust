@@ -1,0 +1,28 @@
+{
+  "counts": {
+    "both_channels_cards": 7,
+    "common_cards": 6,
+    "common_parents": 3,
+    "common_runs": 3,
+    "common_tasks": 3,
+    "finite_external_cards": 15,
+    "keyed_stdout_cards": 92,
+    "planned_replays": 320,
+    "selected_parents": 158
+  },
+  "headline": {
+    "delta": 0.0,
+    "external_top1": 1.0,
+    "run_clustered_ci95": [0.0, 0.0],
+    "run_sign_exact_p_two_sided": 1.0,
+    "run_sign_informative": 0,
+    "stdout_top1": 1.0,
+    "task_clustered_ci95": [0.0, 0.0]
+  },
+  "independent_status": "VERIFIED_SCORE_CHANNEL_PROSPECTIVE_ANALYSIS",
+  "method_positive_claim_allowed": false,
+  "primary_summary_sha256": "3dc99bc8266cbe6abe33c89597b4c118c2ce211f3225c33df8c0d70f308178a5",
+  "protocol": "score-channel-prospective-analysis-v1",
+  "source_commit": "ca3bb7315078f2c4bed99fa4c33d93c2f353d670",
+  "status": "SCORE_CHANNEL_MECHANISM_KILL"
+}

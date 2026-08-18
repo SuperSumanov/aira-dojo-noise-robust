@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AD. 2026-08-18 最新覆盖：前瞻 run/parent/replay/orientation 已冻结，等待精确 GPU 批准
+
+本节晚于 0AC。用户结果盲要求立即冻结，将固定终点从 `2026-08-18T09:56:30Z` 修订为
+`2026-08-18T04:35:35Z`；amendment SHA=`f3a808cee873d78e70d4fca0ebac9c745c157cc63511a12a0263522f988a5d43`，
+明确记录 28 intakes、outcomes 未读、GPU/API=0。不得把本 cohort 描述为原 12 小时窗口自然结束。
+
+双重 run gate 与独立 verifier 一致：177 个 post-mechanism physical runs、19 tasks，最大任务
+26/177=`0.14689265536723164`，门通过。固定 SHA lottery 从 486 个合格 parent 选出 158 个 parent、320 个候选；
+replay manifest 固定 120 秒、4 shard、同 physical run 不跨 shard，总上限
+`10.666666666666666 GPU·h`。run/parent/replay 均双生成逐字节一致且由独立实现重建。
+
+orientation 首次因缺少 NYC taxi 任务正确 fail-closed；在任何 replay outcome 产生前，以固定公开 MLE-bench
+leaderboard 补入 lower-is-better 方向并双重独立验证。最终 17 selected tasks 的 orientation receipt SHA=
+`81c9684741cb166bf1b4e2d7cb91ed0c8742c5040945b44d22f1c61f18baf85a`。当前总状态严格停在
+`SCORE_CHANNEL_FREEZE_COMPLETE_APPROVAL_PENDING`：GPU job=0、`replay_submission_authorized=false`。
+
+下一步只允许用户明确批准精确矩阵 `320 candidates × 120s × 4 shards`、上限
+`10.666666666666666 GPU·h` 后签发 approval receipt，并使用已冻结 worker commit
+`ca3bb7315078f2c4bed99fa4c33d93c2f353d670`。未经批准不得提交。直接证据：
+
+- `phase1/results/score_channel_freeze_20260818/README.md`；
+- `phase1/results/score_channel_freeze_20260818/freeze_receipt.json`。
+
 ## 0AC. 2026-08-18 最新覆盖：前瞻门已具余量；正式 replay 执行与确认分析结果前冻结
 
 本节晚于 0AB。唯一主实验仍是 score-channel 的时间前瞻复现；固定窗口尚未结束，正式 GPU replay

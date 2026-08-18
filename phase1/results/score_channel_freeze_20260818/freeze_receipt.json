@@ -1,0 +1,61 @@
+{
+  "protocol": "score-channel-prospective-freeze-receipt-v1",
+  "status": "SCORE_CHANNEL_FREEZE_COMPLETE_APPROVAL_PENDING",
+  "outcomes_read": false,
+  "replay_submission_authorized": false,
+  "gpu_jobs_submitted": 0,
+  "api_calls": 0,
+  "base_llm_updated": false,
+  "window_amendment": {
+    "original_fixed_end_utc": "2026-08-18T09:56:30Z",
+    "amended_fixed_end_utc": "2026-08-18T04:35:35Z",
+    "reason": "explicit_user_request_to_freeze_now",
+    "sha256": "f3a808cee873d78e70d4fca0ebac9c745c157cc63511a12a0263522f988a5d43"
+  },
+  "implementation": {
+    "selection_source_commit": "ba809ac0c524ed5f1e488695eab339c0bdd1ec6d",
+    "orientation_source_commit": "e6ed7860fa8fce9faea414d94e526f0aa0c96432",
+    "mechanism_commit": "4c964f8691b00af2f5ecb98f7a60dcd272bfb8cc",
+    "frozen_worker_source_commit": "ca3bb7315078f2c4bed99fa4c33d93c2f353d670"
+  },
+  "run_gate": {
+    "eligible_runs": 177,
+    "tasks": 19,
+    "dominant_task": "ranzcr-clip-catheter-line-classification",
+    "dominant_runs": 26,
+    "dominant_share": 0.14689265536723164,
+    "eligible_runs_sha256": "787c0f1ae490600a90112dd94e8edb884f598da29c32dd49f414eb399966747d",
+    "summary_sha256": "ead08e8c7bc6e992a9f41219254b8dd68adc2951f26f23c94ae3776368a914f7",
+    "independent_verifier_sha256": "430401eb95120ade2586c762ad787605a7cf71c493a8d1e2c55d7510adc7348a"
+  },
+  "parent_selection": {
+    "eligible_parents": 486,
+    "selected_parents": 158,
+    "selected_candidates": 320,
+    "selected_parents_sha256": "49e808747532034ae653e0fdb45a3144f5fe4545ae5b8d1755d79545d4c64b81",
+    "summary_sha256": "f168a90043769d0d80257ec0af7f71c57d18b098f7390f615d66b1617ddd9441",
+    "independent_verifier_sha256": "c65fe91dbb958259e76cf507422a69efdf4ec7067ce0590bcdededceab528976"
+  },
+  "replay_manifest": {
+    "planned_candidate_replays": 320,
+    "cap_seconds_per_candidate": 120,
+    "shards": 4,
+    "cap_upper_bound_gpu_hours": 10.666666666666666,
+    "replay_manifest_sha256": "e20b43b9eee55395380def2772bfdab21f261eb3d850fc9a67ff0ccb4bc5fe58",
+    "summary_sha256": "0ea4766bd464248a91b95c10d4be720862ca2b631d2b849d78b4189deff580bf",
+    "independent_verifier_sha256": "4f1f47e46bc01a68e53ee266ab1593c7e14a7154b4c484706d7054a1d80bbdc9"
+  },
+  "orientation": {
+    "selected_tasks": 17,
+    "source_verifier_sha256": "2ab029daf7d074a9e96fb93b5d8a07bc3736146fb7f6e901459a44cb80986346",
+    "receipt_sha256": "81c9684741cb166bf1b4e2d7cb91ed0c8742c5040945b44d22f1c61f18baf85a",
+    "independent_verifier_sha256": "70f8e35f4245830ffbe114f44207039dd6433dabfb061313e977bdc5325fae86"
+  },
+  "verification": {
+    "selection_source_full_tests": "378 passed in 32.71s",
+    "orientation_source_full_tests": "378 passed in 31.54s",
+    "double_producers_byte_identical": true,
+    "double_independent_verifiers_byte_identical": true
+  },
+  "remote_result_root": "/research/d7/spc/yzyang4/score-channel-freeze-20260818-amended-f3a808"
+}

@@ -205,7 +205,7 @@ def classify(summary: dict, version: str = "v1") -> tuple[str, dict]:
         ): k1,
         "K2_full_validity_not_worse_by_more_than_1": k2,
         "K3_quality_safety": k3,
-        "quality_pairs_at_least_3": enough_quality,
+        f"quality_pairs_at_least_{spec.quality_pairs_min}": enough_quality,
     }
     if all((k0, k1, k2, k3)):
         verdict = "PROMISING"

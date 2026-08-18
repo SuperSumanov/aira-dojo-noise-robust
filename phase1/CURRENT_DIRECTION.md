@@ -3,6 +3,35 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AL. 2026-08-19 最新覆盖：Probe-First 正方法关闭；正式为 INVALID，事后诊断亦为 QUALITY_KILL
+
+本节晚于 0AK。四个 replay shards 11160/11161/11162/11163 全部 `COMPLETED 0:0`，16/16 固定 index
+完整；实际 replay allocation 为 2,603 GPU 秒=`0.723055555555556` GPU·h，连同 generation 共
+25,731 GPU 秒=`7.1475` GPU·h，低于批准 12 GPU·h。冻结 primary validator 给出 coverage `4->4`、gain=0、
+contract probe=4/8、full-valid `6->4`、paired quality=4，K0/K1/K2 失败、K3 通过，点裁决为
+`QUALITY_KILL`。
+
+但冻结 primary 的 V2 数值门虽正确使用 `paired_full_scores>=4`，输出键名仍硬编码成
+`quality_pairs_at_least_3`；独立 verifier 正确写 `...at_least_4`，因此按预注册在比较 gates 时 fail-closed。
+正式状态必须保持 **`INVALID_INDEPENDENT_VERIFIER`**，不得把事后修复追认为确认性结果。单列的 schema-only
+post-outcome diagnostic 不改任何科学 scalar，只重命名该键；冻结独立 verifier 随后完成 30 次唯一 artifact
+regrade，与 primary 的 verdict、gates 和 summary 全部一致，仍为 `QUALITY_KILL`。这只说明 verifier bug 没有
+遮住正结果：naive prompt-only artifact contract 不提高 120 秒 coverage，且 full validity 更差。该方法线关闭，
+不得调 prompt/任务/阈值救活；论文只保留其固定分母失败与工程审计记录。
+
+0817 新语料是 post-freeze corpus extension。前四个合法 archives 已提交为 transactions 29--32（标称 28 runs）；
+第五个 LMSYS 包因 8/8 journals 均无 task identity fail-closed。credential-safe auditor 双跑逐字节一致，整包按
+精确 path/size/mtime/SHA 拒收，不从文件名补 task；剩余 3 个 archive 只能在新 registry 与 clean commit 上续跑。
+
+当前不再有已解锁的正方法实验。近期最可守路线回到 D&B 数据/benchmark 主线：完成 0817 安全扩展、版本化 corpus，
+再对既有冻结而未读 outcome 的 benchmark 资格门做 CPU 审计；任何新的 GPU/API 方法矩阵仍需另行给出预算并批准。
+直接证据：
+
+- `phase1/results/probe_contract_ab_v2_result_20260819/README.md`；
+- `phase1/results/prospective_structural_rejection_20260819/README.md`；
+- `phase1/实验记录/2026-08-19/ProbeContractAB_V2正式无效与事后诊断.md`；
+- `phase1/实验记录/2026-08-19/Prospective0817_LMSYS_TaskIdentityFailClosed.md`。
+
 ## 0AK. 2026-08-19 最新覆盖：恢复已冻结 Probe-First A/B；16 个 generation 不重跑
 
 本节晚于 0AJ。score-channel 预注册 KILL 后，当前正方法重新限定为全新 task×seed 的 original-vs-contract

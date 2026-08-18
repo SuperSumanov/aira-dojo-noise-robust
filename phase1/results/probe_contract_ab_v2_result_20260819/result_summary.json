@@ -1,0 +1,43 @@
+{
+  "actual_budget": {
+    "combined_generation_and_replay_gpu_hours": 7.1475,
+    "combined_gpu_seconds": 25731,
+    "generation_gpu_hours": 6.42444444444444,
+    "generation_gpu_seconds": 23128,
+    "replay_gpu_hours": 0.723055555555556,
+    "replay_gpu_seconds": 2603,
+    "under_approved_12_gpu_hours": 4.8525
+  },
+  "diagnostic": {
+    "corrected_primary_sha256": "df9c0cfb8e58709cb07e8dcdbe22069c8254cfe4fd477f9405494c3683367064",
+    "formal_experiment_status": "INVALID_INDEPENDENT_VERIFIER",
+    "independent_regrades": 30,
+    "independent_result_sha256": "d9fbac4003745d93b6c571d8f207f05995f2268cf51808d83c1c334e612a3326",
+    "independent_verdict_after_schema_only_rename": "QUALITY_KILL",
+    "schema_diagnostic_receipt_sha256": "f7ccb7348d09039f7c2a8fc9af823fd1e1b89424d553f85b613e242544acd5ce",
+    "scientific_scalars_changed": false,
+    "source_primary_sha256": "1459de4c2bbe4ef77a0540669379aa70c907cc6b6dd3e3ed95492e98ed20b34a"
+  },
+  "formal_status": "INVALID_INDEPENDENT_VERIFIER",
+  "jobs": {
+    "11160": {"elapsed_seconds": 719, "exit_code": "0:0", "state": "COMPLETED"},
+    "11161": {"elapsed_seconds": 737, "exit_code": "0:0", "state": "COMPLETED"},
+    "11162": {"elapsed_seconds": 547, "exit_code": "0:0", "state": "COMPLETED"},
+    "11163": {"elapsed_seconds": 600, "exit_code": "0:0", "state": "COMPLETED"}
+  },
+  "primary": {
+    "catastrophic_harm_count": 1,
+    "contract_coverage_120": 4,
+    "contract_full_valid": 4,
+    "contract_probe_valid": 4,
+    "coverage_gain": 0,
+    "gates": {"K0": false, "K1": false, "K2": false, "K3": true},
+    "median_relative_oriented_full_delta": -0.0014093470316371487,
+    "original_coverage_120": 4,
+    "original_full_valid": 6,
+    "paired_full_scores": 4,
+    "verdict_before_independent_schema_failure": "QUALITY_KILL"
+  },
+  "replay_indices": 16,
+  "scientific_claim_allowed": false
+}

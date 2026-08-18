@@ -1,0 +1,78 @@
+{
+  "archive": {
+    "mtime_ns": 1787065985000000000,
+    "relative_basename": "lmsys-chatbot-arena-8seeds.tar.gz",
+    "sha256": "c73582b32c98cb2ba2731dd867515a8624163998a3b3335a0f21e846ce4a3ffe",
+    "size": 87323463
+  },
+  "archive_audit": {
+    "checkpoint_runs": 8,
+    "checkpoint_with_live_event_log": 8,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 482619334,
+    "discovered_run_roots": 8,
+    "live_only_runs_excluded": 0,
+    "members": 111
+  },
+  "invalid_journals": 8,
+  "journals": 8,
+  "outcomes_read": false,
+  "per_journal": [
+    {
+      "journal_sha256": "146c784dc950aac45282f500d7d6a61053b4e74fde84d0d127ba2f709612d48b",
+      "nodes": 93,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "6a0744725288ed588536bd6ab4a2645aaa71241a9d09fabd95e72a355bcfe5e3",
+      "nodes": 101,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "930e2e2b4e8502c4b42ca27987ed02855af7b1fca23f2982b705450b645e4298",
+      "nodes": 97,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "a2019f5c1a6e629c5ca79c6472fa097ead9732d2fe9f3f26962e519e2c4fac65",
+      "nodes": 93,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "a53cac85dbde09eec0289d06be65fe7f836a67d362e03e04365967ea603c53de",
+      "nodes": 81,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "d05a8c32690d99bbb35dcee1c7b5047947d04e598f13053660219ddd6397da9c",
+      "nodes": 73,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "e3f3741039329f280d4cc8d6547625e47d5a7a3667c7cb6b12035c1dae9ac6fd",
+      "nodes": 77,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "e861b0cadf962cee0835ae21a2c8852de8b29964fc2028ade1165ac8f730c62b",
+      "nodes": 81,
+      "task_identity_cardinality": 0
+    }
+  ],
+  "protocol": "prospective_archive_task_identity_audit_v1",
+  "recommended_reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+  "security": {
+    "code_stdout_grade_or_metric_values_emitted": false,
+    "env_members_read": false,
+    "journal_scanned_before_json": true,
+    "live_event_journal_members_read": false,
+    "task_identity_values_emitted": false
+  },
+  "source_commit": "5ee342f549311ece7bc111ddd0cb7ff08b740210",
+  "status": "STRUCTURAL_TASK_IDENTITY_REJECTION_SUPPORTED",
+  "task_identity_cardinality_counts": {
+    "multiple": 0,
+    "one": 0,
+    "zero": 8
+  }
+}

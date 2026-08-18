@@ -16,7 +16,7 @@ def test_score_channel_orientation_supplement_is_result_blind_and_consistent():
     assert supplement["protocol"] == "score-channel-metric-orientation-source-v1"
     assert supplement["created_before_replay_outcomes"] is True
     assert supplement["outcomes_read"] is False
-    assert len(supplement["tasks"]) == 10
+    assert len(supplement["tasks"]) == 11
     for task, row in supplement["tasks"].items():
         assert set(row) == {
             "lower_is_better", "orientation", "leaderboard_rows", "leaderboard_sha256"

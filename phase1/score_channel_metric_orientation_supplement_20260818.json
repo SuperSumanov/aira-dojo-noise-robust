@@ -39,6 +39,12 @@
       "leaderboard_rows": 1572,
       "leaderboard_sha256": "87795e3f621dd8408f89fc55609cfd6263f5aa1ea9133ab4f39a3ce57811345f"
     },
+    "new-york-city-taxi-fare-prediction": {
+      "lower_is_better": true,
+      "orientation": -1,
+      "leaderboard_rows": 1485,
+      "leaderboard_sha256": "54c294495d43f0ed48992fe6412862f334cfe3b2cced9b978b40639bdc5ba072"
+    },
     "osic-pulmonary-fibrosis-progression": {
       "lower_is_better": false,
       "orientation": 1,

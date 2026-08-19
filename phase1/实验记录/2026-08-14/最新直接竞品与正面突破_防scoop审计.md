@@ -3,6 +3,11 @@
 日期：2026-08-14。检索使用公开的一手论文页、官方代码仓库与官方数据卡；它不是“无人做过”的证明，
 而是截至本日对可见直接竞品的可复核边界。本文晚于仓库中更早的宽泛 novelty 表述。
 
+> **2026-08-20 增补：** FLORA-Bench、ICLR 2026 Agentic Predictor、GLOW 与 AgentSwift 进一步关闭了
+> “agent performance predictor / GNN / multi-view / value-guided MCTS”方法宽主张。当前只保留 MLE true-sibling
+> decision resource 与 physical/prospective audit contract 的窄边界；详见
+> `phase1/实验记录/2026-08-20/FLORA_AgenticPredictor_GLOW_防scoop增补.md`。
+
 ## 1. 裁决
 
 论文不能再主张“首个 MLE trajectory dataset”“最大 MLE trajectory dataset”“首次分析 agent search

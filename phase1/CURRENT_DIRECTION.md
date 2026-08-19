@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BN. 2026-08-20 防 scoop 纠偏：predictor/GNN/multi-view 已非 novelty，决策资源窄边界仍开放
+
+新增一手文献核查确认，FLORA-Bench 已发布 600k workflow-task pairs 并用 GNN 预测 agent workflow binary
+performance；ICLR 2026 Agentic Predictor 已联合 graph/code/prompt 与跨域无监督预训练；GLOW 已融合 graph-LLM
+与 GNN；AgentSwift 已把 value model、uncertainty-guided MCTS 用于 agent design search。因此“NAS 式 agent
+predictor”“graph/multi-view encoder”“用 predictor 省执行”均正式关闭为 novelty，只能作 baseline。
+
+这些工作预测的是 agent workflow/configuration × task，不是一次 MLE program-search physical run 中同 parent
+候选代码的连续 hidden-score 次序。当前可守边界收窄为：choice-set-faithful MLE sibling decision resource，绑定
+physical run/operator/evaluator，显式审计 endpoint reuse、pair graph、gap/noise/query-init cost，并在结果盲
+first-960 + closure 上 prospective confirmation。不得写 first/only，只能逐项列可核差异。
+
+最终 benchmark 需要补 FLORA-style graph/multi-view family baseline，或给出不能等价迁移的可复核理由；但不得
+偷加进已激活的 first-960 primary scorer。任何实现只能作为 outcome-unread 的单列 extension 或新 future cohort，
+且 TGCA 已失败，禁止在同一 OOF 继续换 graph heuristic 追正结果。直接审计：
+
+- `phase1/实验记录/2026-08-20/FLORA_AgenticPredictor_GLOW_防scoop增补.md`。
+
 ## 0BM. 2026-08-20 AST 缺口诊断：失败并非简单包装；150/155 的 token 指纹仍全唯一
 
 0BL 的 aggregate AST coverage 失败后、读取任何失败代码/身份/类别前，commit `31aee5a...` 固定 outcome-blind

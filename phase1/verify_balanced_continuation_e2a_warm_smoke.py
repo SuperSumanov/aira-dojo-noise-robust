@@ -27,7 +27,10 @@ from phase1.balanced_continuation_real_contract import (
     validate_execution_receipt,
     validate_worker_contract,
 )
-from phase1.e2a_hf_cache import CacheError, verify_contract_cache
+from phase1.verify_e2a_hf_cache import (
+    IndependentCacheError,
+    verify_contract_cache_independent,
+)
 from phase1.balanced_continuation_worker import load_assignment, load_code_vault
 
 
@@ -129,8 +132,8 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
     if file_sha256(container) != real["container_sha256"]:
         raise VerifyError("container hash differs")
     try:
-        verify_contract_cache(hf_cache, real, full=False)
-    except CacheError as exc:
+        verify_contract_cache_independent(hf_cache, real, full=False)
+    except IndependentCacheError as exc:
         raise VerifyError(f"HF cache contract differs: {exc}") from exc
     indices = plan.get("warm_smoke_assignment_indices")
     slot = int(args.slot)

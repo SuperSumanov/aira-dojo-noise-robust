@@ -21,7 +21,7 @@ def test_warm_smoke_uses_two_qos_safe_chunks_and_monitor_owned_submission() -> N
     assert '--array="$indices"' in monitor
     assert "%4" not in monitor
     assert 'export_spec="ALL' not in monitor
-    assert "-m phase1.e2a_hf_cache verify" in launcher
+    assert "-m phase1.verify_e2a_hf_cache" in launcher
     assert "--expected-manifest-sha256" in launcher
     assert "--expected-payload-sha256" in launcher
 
@@ -36,7 +36,7 @@ def test_formal_monitor_chunks_every_frozen_wave_without_dependency_or_all_env()
     assert 'export_spec="ALL' not in monitor
     assert "sealed_values_opened=false" in monitor
     launcher = script("launch_balanced_continuation_e2a_20260819.sh")
-    assert "-m phase1.e2a_hf_cache verify" in launcher
+    assert "-m phase1.verify_e2a_hf_cache" in launcher
 
 
 def test_workers_read_hash_bound_cache_path_from_v2_contract() -> None:

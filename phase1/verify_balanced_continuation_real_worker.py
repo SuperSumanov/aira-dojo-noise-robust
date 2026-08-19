@@ -39,7 +39,10 @@ from phase1.balanced_continuation_real_contract import (
     validate_visible_step,
     validate_worker_contract,
 )
-from phase1.e2a_hf_cache import CacheError, verify_contract_cache
+from phase1.verify_e2a_hf_cache import (
+    IndependentCacheError,
+    verify_contract_cache_independent,
+)
 
 
 STATE_SCHEMA = "balanced-continuation-real-worker-state-v1"
@@ -493,8 +496,8 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
     if not hf_cache.is_dir() or not nvfix.is_dir():
         raise VerifyError("HF/NVIDIA helper root differs")
     try:
-        verify_contract_cache(hf_cache, real, full=False)
-    except CacheError as exc:
+        verify_contract_cache_independent(hf_cache, real, full=False)
+    except IndependentCacheError as exc:
         raise VerifyError(f"HF cache contract differs: {exc}") from exc
     if artifact.name != assignment["rollout_id"] or artifact.parent.name == "":
         raise VerifyError("rollout artifact identity differs")

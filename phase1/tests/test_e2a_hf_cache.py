@@ -9,6 +9,7 @@ import pytest
 
 from phase1 import e2a_hf_cache as cache
 from phase1 import verify_safetensors_equivalence as equivalence
+from phase1 import verify_e2a_hf_cache as independent
 
 
 def sha(path: Path) -> str:
@@ -91,6 +92,14 @@ def test_materialize_replaces_unsafe_snapshot_with_verified_safe_weights(
             expected_manifest_sha256=result["manifest_sha256"],
             expected_payload_sha256=result["payload_sha256"],
         )["read_only_verified"] is True
+        independently = independent.verify(
+            output,
+            result["manifest_sha256"],
+            result["payload_sha256"],
+            full=True,
+        )
+        assert independently["status"] == independent.STATUS
+        assert independently["materializer_imported"] is False
     finally:
         make_writable(output)
 

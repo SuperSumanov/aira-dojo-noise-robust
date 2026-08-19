@@ -42,11 +42,11 @@ printf '%s\n' "$data_gate" >"$run_root/data_gate_root.txt"
 hf_cache="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_path"])' "$run_root/preparation/real_contract.json")"
 hf_manifest_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_manifest_sha256"])' "$run_root/preparation/real_contract.json")"
 hf_payload_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_payload_sha256"])' "$run_root/preparation/real_contract.json")"
-"$python_bin" -m phase1.e2a_hf_cache verify \
+"$python_bin" -m phase1.verify_e2a_hf_cache \
   --cache "$hf_cache" \
   --expected-manifest-sha256 "$hf_manifest_sha" \
   --expected-payload-sha256 "$hf_payload_sha" \
-  --receipt "$run_root/preflight_receipts/hf_cache.verify.json" \
+  --receipt "$run_root/preflight_receipts/hf_cache.independent.verify.json" \
   >"$run_root/logs/hf_cache_verify.stdout" \
   2>"$run_root/logs/hf_cache_verify.stderr"
 

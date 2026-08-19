@@ -45,11 +45,11 @@ printf '%s\n' "$preparation" >"$run_root/preparation_root.txt"
 hf_cache="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_path"])' "$preparation/real_contract.json")"
 hf_manifest_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_manifest_sha256"])' "$preparation/real_contract.json")"
 hf_payload_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_payload_sha256"])' "$preparation/real_contract.json")"
-"$python_bin" -m phase1.e2a_hf_cache verify \
+"$python_bin" -m phase1.verify_e2a_hf_cache \
   --cache "$hf_cache" \
   --expected-manifest-sha256 "$hf_manifest_sha" \
   --expected-payload-sha256 "$hf_payload_sha" \
-  --receipt "$run_root/hf_cache.verify.json" \
+  --receipt "$run_root/hf_cache.independent.verify.json" \
   >"$run_root/logs/hf_cache_verify.stdout" \
   2>"$run_root/logs/hf_cache_verify.stderr"
 
@@ -93,13 +93,13 @@ printf '%s\n' \
 
 filename_hits="$(find "$preparation" "$run_root/assignment.verify.json" \
   "$run_root/resource_matrix.verify.json" "$run_root/preflight_13_of_13.txt" \
-  "$run_root/hf_cache.verify.json" \
+  "$run_root/hf_cache.independent.verify.json" \
   -type f -printf '%f\n' | grep -icE 'env|key|token|secret' || true)"
 content_hits="$(grep -RIlE --binary-files=without-match \
   'sk-[A-Za-z0-9._-]{20,}|hf_[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|Bearer[[:space:]]+[A-Za-z0-9._-]{24,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----' \
   "$preparation" "$run_root/assignment.verify.json" \
   "$run_root/resource_matrix.verify.json" "$run_root/preflight_13_of_13.txt" \
-  "$run_root/hf_cache.verify.json" | wc -l || true)"
+  "$run_root/hf_cache.independent.verify.json" | wc -l || true)"
 printf 'FILENAME_SECRET_HITS=%s\nCONTENT_SECRET_HITS=%s\n' \
   "$filename_hits" "$content_hits" >"$run_root/preflight_secret_scan.txt"
 if [[ "$filename_hits" != 0 || "$content_hits" != 0 ]]; then

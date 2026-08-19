@@ -185,8 +185,8 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
         raise PrepareError("container image is missing or symlinked")
     if file_sha256(container) != EXPECTED_CONTAINER_SHA256:
         raise PrepareError("container SHA-256 differs")
-    if not WORKER_PYTHON.is_file() or WORKER_PYTHON.is_symlink():
-        raise PrepareError("shared worker Python is missing or symlinked")
+    if not WORKER_PYTHON.is_file():
+        raise PrepareError("shared worker Python does not resolve to a regular file")
     qwen_gate_path, qwen_gate_sha = validate_qwen_execution_gate(
         getattr(args, "qwen_execution_smoke_receipt", None)
     )

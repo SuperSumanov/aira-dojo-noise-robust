@@ -34,4 +34,13 @@ def test_production_client_configs_match_probe_matrix() -> None:
 def test_launcher_uses_one_commit_for_control_and_production() -> None:
     launcher = Path("phase1/scripts/launch_balanced_client_smoke_20260819.sh").read_text(encoding="utf-8")
     assert 'SOURCE_COMMIT="$CONTROL_COMMIT"' in launcher
-    assert 'RUN_ROOT="/research/d7/spc/yzyang4/balanced-client-smoke-${CONTROL_COMMIT:0:7}-a2"' in launcher
+    assert 'RUN_ROOT="/research/d7/spc/yzyang4/balanced-client-smoke-${CONTROL_COMMIT:0:7}-a3"' in launcher
+
+
+def test_smoke_uses_plain_slurm_jobs_not_native_array() -> None:
+    launcher = Path("phase1/scripts/launch_balanced_client_smoke_20260819.sh").read_text(encoding="utf-8")
+    worker = Path("phase1/scripts/balanced_client_smoke_20260819.sbatch").read_text(encoding="utf-8")
+    assert "--array" not in launcher
+    assert "SLURM_ARRAY_" not in worker
+    assert 'BALANCED_CLIENT_INDEX="$client_index"' in launcher
+    assert '${BALANCED_CLIENT_INDEX}' in worker

@@ -25,6 +25,18 @@ a2 不修改 client/task/seed/operator/budget/hardware 矩阵；只把 source �
 client YAML 的同一 immutable commit，并新增 production YAML 对 probe matrix 的测试。a1/a2 不拼接，
 a2 仍须三行独立通过下述全部成功门才可扩展。
 
+## a2 fail-closed 与 a3 调度修复（solver 实例化前）
+
+a2 的同 commit 门、Linux 全套 `402 passed in 40.13s`、三家 one-token probe，以及三行 resolved config
+的四 operator 核验全部通过。随后三个 worker 均在 solver/operator 实例化前失败：AIRA 的
+`get_slurm_id()` 在看到 `SLURM_ARRAY_JOB_ID` 时调用 submitit `JobEnvironment()`，但本实验由原生
+`sbatch --array` 提交，不存在 submitit 上下文。三行均 `FAILED 1:0`；日志只有 LiteLLM model-price GET，
+没有生成调用或效果读取。
+
+a3 的唯一变化是把 native array 改为三个普通 Slurm jobs，并以显式 `BALANCED_CLIENT_INDEX=0/1/2`
+固定映射；这样 AIRA 走既有 `SLURM_JOB_ID` 分支，不修改实验代码、模型、任务、seed 或预算。新增测试禁止
+launcher/worker 再使用 array。a1/a2/a3 不拼接，a3 仍须通过原始全部成功门。
+
 ## 成功门
 
 三行必须全部满足：Slurm `COMPLETED 0:0`、worker rc=0；结果前 resolved config 的 analyze/debug/draft/

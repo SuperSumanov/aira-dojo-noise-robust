@@ -10,7 +10,7 @@
 #SBATCH --exclude=projgpu7,projgpu8,projgpu33,gpu36,gpu38
 #SBATCH --time=00:30:00
 #SBATCH --signal=TERM@120
-#SBATCH --output=/research/d7/spc/yzyang4/logs/balanced_client_smoke_%A_%a.out
+#SBATCH --output=/research/d7/spc/yzyang4/logs/balanced_client_smoke_%j.out
 
 set -eo pipefail
 source "$HOME/env_setup.sh"
@@ -20,6 +20,7 @@ export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 : "${BALANCED_SOURCE_ROOT:?}"
 : "${BALANCED_RUN_ROOT:?}"
 : "${BALANCED_SOURCE_COMMIT:?}"
+: "${BALANCED_CLIENT_INDEX:?}"
 ENV_FILE=/research/d7/spc/yzyang4/aira-dojo-reproduce/.env
 PYTHON=/research/d7/spc/yzyang4/venvs/aira/bin/python
 
@@ -34,7 +35,7 @@ export LOGGING_DIR="$BALANCED_RUN_ROOT/outputs"
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
-case "${SLURM_ARRAY_TASK_ID}" in
+case "${BALANCED_CLIENT_INDEX}" in
   0)
     client=litellm_deepseek_flash
     model=deepseek-v4-flash
@@ -51,15 +52,15 @@ case "${SLURM_ARRAY_TASK_ID}" in
     base_url=https://dashscope.aliyuncs.com/compatible-mode/v1
     ;;
   *)
-    echo "INVALID_ARRAY_INDEX=${SLURM_ARRAY_TASK_ID}" >&2
+    echo "INVALID_CLIENT_INDEX=${BALANCED_CLIENT_INDEX}" >&2
     exit 64
     ;;
 esac
 
 issue="balanced_client_smoke_20260819_${model}"
-resolved="$BALANCED_RUN_ROOT/resolved_${SLURM_ARRAY_TASK_ID}.yaml"
-resolved_err="$BALANCED_RUN_ROOT/resolved_${SLURM_ARRAY_TASK_ID}.stderr"
-rc_file="$BALANCED_RUN_ROOT/rc_${SLURM_ARRAY_TASK_ID}.json"
+resolved="$BALANCED_RUN_ROOT/resolved_${BALANCED_CLIENT_INDEX}.yaml"
+resolved_err="$BALANCED_RUN_ROOT/resolved_${BALANCED_CLIENT_INDEX}.stderr"
+rc_file="$BALANCED_RUN_ROOT/rc_${BALANCED_CLIENT_INDEX}.json"
 
 common=(
   task=mlebench/spooky-author-identification
@@ -103,7 +104,7 @@ set +e
 run_rc=$?
 set -e
 printf '{"array_index":%s,"model":"%s","rc":%s,"source_commit":"%s"}\n' \
-  "$SLURM_ARRAY_TASK_ID" "$model" "$run_rc" "$BALANCED_SOURCE_COMMIT" >"$rc_file.tmp"
+  "$BALANCED_CLIENT_INDEX" "$model" "$run_rc" "$BALANCED_SOURCE_COMMIT" >"$rc_file.tmp"
 mv "$rc_file.tmp" "$rc_file"
 echo "BALANCED_CLIENT_SMOKE_WORKER_DONE model=$model rc=$run_rc"
 exit "$run_rc"

@@ -3,7 +3,18 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0BA. 2026-08-19 最新执行：三 client smoke a1 fail-closed，a2 固定同一 source/control commit
+## 0BB. 2026-08-19 最新执行：a2 暴露原生 Slurm array/submitit 不兼容，a3 改普通作业
+
+a2 的 Linux 全套 `402 passed`、三家 provider probe、同一 source/control commit、三行 resolved-config 四
+operator 核验均通过；但三个 worker 都在 solver/operator 实例化前由 `get_slurm_id()` 失败：代码在检测到
+`SLURM_ARRAY_JOB_ID` 后调用 submitit `JobEnvironment()`，而这些是原生 `sbatch --array` 作业，不带 submitit
+上下文。三行均 `FAILED 1:0`，没有生成调用或效果读数，a2 只作工程失败记录。
+
+a3 保持全部科学矩阵与硬预算不变，仅把一个 3-row native array 改为三个普通 Slurm jobs，显式传固定 client
+index，使 AIRA 使用已有的 `SLURM_JOB_ID` 分支；不修改 AIRA 实验逻辑。新增测试禁止 array 环境变量重新进入
+worker。a3 仍须三行全部通过 0AZ 原门，a1/a2/a3 不拼接。
+
+## 0BA. 2026-08-19 已关闭执行：三 client smoke a1 fail-closed，a2 固定同一 source/control commit
 
 a1 的 provider probes 与 Linux 全套 `400 passed` 均通过，但正式 worker 的 resolved-config 门在任何 Qwen
 生成调用前发现：预注册目标为 `qwen3-coder-flash`，旧 source pin `4029f626...` 的 `litellm_gen2` 实际仍为

@@ -10,13 +10,13 @@ MODE="${2:---preflight-only}"
 [[ "$MODE" == --preflight-only || "$MODE" == --submit ]]
 
 REPO=/research/d7/spc/yzyang4/aira-dojo
-CONTROL_ROOT="/research/d7/spc/yzyang4/worktrees/balanced_client_control_${CONTROL_COMMIT:0:7}_a2_nosmudge"
+CONTROL_ROOT="/research/d7/spc/yzyang4/worktrees/balanced_client_control_${CONTROL_COMMIT:0:7}_a3_nosmudge"
 # The first attempt pinned an older source commit whose Qwen client still resolved
 # to qwen-max-latest.  Use one immutable commit for both control and production so
 # the three client rows cannot silently differ from the preregistered config.
 SOURCE_COMMIT="$CONTROL_COMMIT"
 SOURCE_ROOT="$CONTROL_ROOT"
-RUN_ROOT="/research/d7/spc/yzyang4/balanced-client-smoke-${CONTROL_COMMIT:0:7}-a2"
+RUN_ROOT="/research/d7/spc/yzyang4/balanced-client-smoke-${CONTROL_COMMIT:0:7}-a3"
 PYTHON=/research/d7/spc/yzyang4/venvs/exp/bin/python
 ENV_FILE=/research/d7/spc/yzyang4/aira-dojo-reproduce/.env
 
@@ -66,11 +66,16 @@ echo "PREFLIGHT_13_EXPANSION=no 12-run pilot until all three smoke rows independ
 export BALANCED_SOURCE_ROOT="$SOURCE_ROOT"
 export BALANCED_RUN_ROOT="$RUN_ROOT"
 export BALANCED_SOURCE_COMMIT="$SOURCE_COMMIT"
-sbatch --test-only --array=0-2%3 "$RUN_ROOT/worker.sbatch"
+for client_index in 0 1 2; do
+  sbatch --test-only --export=ALL,BALANCED_CLIENT_INDEX="$client_index" "$RUN_ROOT/worker.sbatch"
+done
 if [[ "$MODE" == --preflight-only ]]; then
   echo "BALANCED_CLIENT_SMOKE_PREFLIGHT_PASS_NOT_SUBMITTED"
   exit 0
 fi
-submission="$(sbatch --parsable --array=0-2%3 --export=ALL "$RUN_ROOT/worker.sbatch")"
-printf '%s\n' "$submission" >"$RUN_ROOT/submission.txt"
-echo "BALANCED_CLIENT_SMOKE_SUBMITTED job=$submission run_root=$RUN_ROOT"
+: >"$RUN_ROOT/submission.txt"
+for client_index in 0 1 2; do
+  submission="$(sbatch --parsable --export=ALL,BALANCED_CLIENT_INDEX="$client_index" "$RUN_ROOT/worker.sbatch")"
+  printf '%s\n' "$submission" >>"$RUN_ROOT/submission.txt"
+  echo "BALANCED_CLIENT_SMOKE_SUBMITTED index=$client_index job=$submission run_root=$RUN_ROOT"
+done

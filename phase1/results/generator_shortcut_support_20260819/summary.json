@@ -1,0 +1,440 @@
+{
+  "configuration": {
+    "fold_domain": "generator-shortcut-run-oof-v1|20260819",
+    "folds": 5
+  },
+  "criteria": {
+    "eligible_loso_clients_ge_2": true,
+    "known_client_train_pairs_ge_4000": true,
+    "oof_cross_client_same_environment_pairs_ge_400": false,
+    "oof_cross_client_same_environment_tasks_ge_6": false,
+    "oof_same_client_pairs_ge_400": true,
+    "oof_same_client_tasks_ge_6": true
+  },
+  "eligible_loso_clients": [
+    "deepseek-v4-flash",
+    "deepseek-v4-pro",
+    "gpt-5.4-nano",
+    "gpt-5.6-luna",
+    "minimax/minimax-m3",
+    "moonshotai/kimi-k2.5",
+    "qwen3.5-397b-a17b",
+    "tencent/hy3-preview",
+    "xiaomi/mimo-v2.5",
+    "z-ai/glm-5"
+  ],
+  "inputs": {
+    "cards_sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb",
+    "pairs_sha256": "c669d672d0a2aeee6da97393e3e832a312295aa5aebd7cd457ff297a27d4d9d2"
+  },
+  "inventory": {
+    "cards": 31742,
+    "clients": 11,
+    "missing_client_runs": 0,
+    "runs": 676,
+    "tasks": 28,
+    "train_pairs": 11946
+  },
+  "pools": {
+    "all_train": {
+      "dominant_task_share": 0.09509459233216139,
+      "pairs": 11946,
+      "pairs_per_task": {
+        "aptos2019-blindness-detection": 144,
+        "cassava-leaf-disease-classification": 57,
+        "chaii-hindi-and-tamil-question-answering": 255,
+        "denoising-dirty-documents": 459,
+        "dog-breed-identification": 1136,
+        "dogs-vs-cats-redux-kernels-edition": 350,
+        "facebook-recruiting-iii-keyword-extraction": 76,
+        "google-quest-challenge": 799,
+        "histopathologic-cancer-detection": 226,
+        "kuzushiji-recognition": 495,
+        "leaf-classification": 390,
+        "learning-agency-lab-automated-essay-scoring-2": 687,
+        "mlsp-2013-birds": 415,
+        "new-york-city-taxi-fare-prediction": 158,
+        "nomad2018-predict-transparent-conductors": 441,
+        "petfinder-pawpularity-score": 860,
+        "random-acts-of-pizza": 333,
+        "ranzcr-clip-catheter-line-classification": 379,
+        "spooky-author-identification": 859,
+        "tabular-playground-series-dec-2021": 459,
+        "tabular-playground-series-may-2022": 517,
+        "text-normalization-challenge-english-language": 317,
+        "text-normalization-challenge-russian-language": 166,
+        "tgs-salt-identification-challenge": 85,
+        "tweet-sentiment-extraction": 402,
+        "us-patent-phrase-to-phrase-matching": 747,
+        "ventilator-pressure-prediction": 258,
+        "whale-categorization-playground": 476
+      },
+      "tasks": 28
+    },
+    "cross_client": {
+      "dominant_task_share": null,
+      "pairs": 0,
+      "pairs_per_task": {},
+      "tasks": 0
+    },
+    "cross_client_same_environment": {
+      "dominant_task_share": null,
+      "pairs": 0,
+      "pairs_per_task": {},
+      "tasks": 0
+    },
+    "known_client": {
+      "dominant_task_share": 0.09509459233216139,
+      "pairs": 11946,
+      "pairs_per_task": {
+        "aptos2019-blindness-detection": 144,
+        "cassava-leaf-disease-classification": 57,
+        "chaii-hindi-and-tamil-question-answering": 255,
+        "denoising-dirty-documents": 459,
+        "dog-breed-identification": 1136,
+        "dogs-vs-cats-redux-kernels-edition": 350,
+        "facebook-recruiting-iii-keyword-extraction": 76,
+        "google-quest-challenge": 799,
+        "histopathologic-cancer-detection": 226,
+        "kuzushiji-recognition": 495,
+        "leaf-classification": 390,
+        "learning-agency-lab-automated-essay-scoring-2": 687,
+        "mlsp-2013-birds": 415,
+        "new-york-city-taxi-fare-prediction": 158,
+        "nomad2018-predict-transparent-conductors": 441,
+        "petfinder-pawpularity-score": 860,
+        "random-acts-of-pizza": 333,
+        "ranzcr-clip-catheter-line-classification": 379,
+        "spooky-author-identification": 859,
+        "tabular-playground-series-dec-2021": 459,
+        "tabular-playground-series-may-2022": 517,
+        "text-normalization-challenge-english-language": 317,
+        "text-normalization-challenge-russian-language": 166,
+        "tgs-salt-identification-challenge": 85,
+        "tweet-sentiment-extraction": 402,
+        "us-patent-phrase-to-phrase-matching": 747,
+        "ventilator-pressure-prediction": 258,
+        "whale-categorization-playground": 476
+      },
+      "tasks": 28
+    },
+    "oof_all": {
+      "dominant_task_share": 0.10172997367431365,
+      "pairs": 5318,
+      "pairs_per_task": {
+        "aptos2019-blindness-detection": 44,
+        "cassava-leaf-disease-classification": 44,
+        "chaii-hindi-and-tamil-question-answering": 158,
+        "denoising-dirty-documents": 127,
+        "dog-breed-identification": 541,
+        "dogs-vs-cats-redux-kernels-edition": 145,
+        "facebook-recruiting-iii-keyword-extraction": 39,
+        "google-quest-challenge": 434,
+        "histopathologic-cancer-detection": 117,
+        "kuzushiji-recognition": 359,
+        "leaf-classification": 128,
+        "learning-agency-lab-automated-essay-scoring-2": 235,
+        "mlsp-2013-birds": 190,
+        "new-york-city-taxi-fare-prediction": 60,
+        "nomad2018-predict-transparent-conductors": 193,
+        "petfinder-pawpularity-score": 391,
+        "random-acts-of-pizza": 122,
+        "ranzcr-clip-catheter-line-classification": 144,
+        "spooky-author-identification": 380,
+        "tabular-playground-series-dec-2021": 169,
+        "tabular-playground-series-may-2022": 277,
+        "text-normalization-challenge-english-language": 178,
+        "text-normalization-challenge-russian-language": 47,
+        "tgs-salt-identification-challenge": 11,
+        "tweet-sentiment-extraction": 168,
+        "us-patent-phrase-to-phrase-matching": 302,
+        "ventilator-pressure-prediction": 77,
+        "whale-categorization-playground": 238
+      },
+      "tasks": 28
+    },
+    "oof_cross_client_same_environment": {
+      "dominant_task_share": null,
+      "pairs": 0,
+      "pairs_per_task": {},
+      "tasks": 0
+    },
+    "oof_same_client": {
+      "dominant_task_share": 0.10172997367431365,
+      "pairs": 5318,
+      "pairs_per_task": {
+        "aptos2019-blindness-detection": 44,
+        "cassava-leaf-disease-classification": 44,
+        "chaii-hindi-and-tamil-question-answering": 158,
+        "denoising-dirty-documents": 127,
+        "dog-breed-identification": 541,
+        "dogs-vs-cats-redux-kernels-edition": 145,
+        "facebook-recruiting-iii-keyword-extraction": 39,
+        "google-quest-challenge": 434,
+        "histopathologic-cancer-detection": 117,
+        "kuzushiji-recognition": 359,
+        "leaf-classification": 128,
+        "learning-agency-lab-automated-essay-scoring-2": 235,
+        "mlsp-2013-birds": 190,
+        "new-york-city-taxi-fare-prediction": 60,
+        "nomad2018-predict-transparent-conductors": 193,
+        "petfinder-pawpularity-score": 391,
+        "random-acts-of-pizza": 122,
+        "ranzcr-clip-catheter-line-classification": 144,
+        "spooky-author-identification": 380,
+        "tabular-playground-series-dec-2021": 169,
+        "tabular-playground-series-may-2022": 277,
+        "text-normalization-challenge-english-language": 178,
+        "text-normalization-challenge-russian-language": 47,
+        "tgs-salt-identification-challenge": 11,
+        "tweet-sentiment-extraction": 168,
+        "us-patent-phrase-to-phrase-matching": 302,
+        "ventilator-pressure-prediction": 77,
+        "whale-categorization-playground": 238
+      },
+      "tasks": 28
+    },
+    "same_client": {
+      "dominant_task_share": 0.09509459233216139,
+      "pairs": 11946,
+      "pairs_per_task": {
+        "aptos2019-blindness-detection": 144,
+        "cassava-leaf-disease-classification": 57,
+        "chaii-hindi-and-tamil-question-answering": 255,
+        "denoising-dirty-documents": 459,
+        "dog-breed-identification": 1136,
+        "dogs-vs-cats-redux-kernels-edition": 350,
+        "facebook-recruiting-iii-keyword-extraction": 76,
+        "google-quest-challenge": 799,
+        "histopathologic-cancer-detection": 226,
+        "kuzushiji-recognition": 495,
+        "leaf-classification": 390,
+        "learning-agency-lab-automated-essay-scoring-2": 687,
+        "mlsp-2013-birds": 415,
+        "new-york-city-taxi-fare-prediction": 158,
+        "nomad2018-predict-transparent-conductors": 441,
+        "petfinder-pawpularity-score": 860,
+        "random-acts-of-pizza": 333,
+        "ranzcr-clip-catheter-line-classification": 379,
+        "spooky-author-identification": 859,
+        "tabular-playground-series-dec-2021": 459,
+        "tabular-playground-series-may-2022": 517,
+        "text-normalization-challenge-english-language": 317,
+        "text-normalization-challenge-russian-language": 166,
+        "tgs-salt-identification-challenge": 85,
+        "tweet-sentiment-extraction": 402,
+        "us-patent-phrase-to-phrase-matching": 747,
+        "ventilator-pressure-prediction": 258,
+        "whale-categorization-playground": 476
+      },
+      "tasks": 28
+    }
+  },
+  "protocol": "generator-shortcut-support-v1",
+  "runs_per_client": {
+    "deepseek-v4-flash": 182,
+    "deepseek-v4-pro": 28,
+    "gpt-5.4-nano": 54,
+    "gpt-5.6-luna": 39,
+    "minimax/minimax-m3": 85,
+    "moonshotai/kimi-k2.5": 35,
+    "qwen/qwen3.7-flash": 31,
+    "qwen3.5-397b-a17b": 78,
+    "tencent/hy3-preview": 41,
+    "xiaomi/mimo-v2.5": 35,
+    "z-ai/glm-5": 68
+  },
+  "same_client_oof_support_by_client": {
+    "deepseek-v4-flash": {
+      "oof_pairs": 1437,
+      "pairs_per_task": {
+        "chaii-hindi-and-tamil-question-answering": 76,
+        "denoising-dirty-documents": 21,
+        "dog-breed-identification": 180,
+        "dogs-vs-cats-redux-kernels-edition": 30,
+        "facebook-recruiting-iii-keyword-extraction": 39,
+        "google-quest-challenge": 137,
+        "histopathologic-cancer-detection": 5,
+        "kuzushiji-recognition": 118,
+        "leaf-classification": 85,
+        "learning-agency-lab-automated-essay-scoring-2": 18,
+        "mlsp-2013-birds": 95,
+        "new-york-city-taxi-fare-prediction": 35,
+        "nomad2018-predict-transparent-conductors": 115,
+        "petfinder-pawpularity-score": 48,
+        "ranzcr-clip-catheter-line-classification": 23,
+        "spooky-author-identification": 135,
+        "tabular-playground-series-dec-2021": 33,
+        "tabular-playground-series-may-2022": 62,
+        "text-normalization-challenge-english-language": 118,
+        "text-normalization-challenge-russian-language": 5,
+        "tgs-salt-identification-challenge": 11,
+        "tweet-sentiment-extraction": 20,
+        "ventilator-pressure-prediction": 28
+      },
+      "tasks": 23
+    },
+    "deepseek-v4-pro": {
+      "oof_pairs": 292,
+      "pairs_per_task": {
+        "chaii-hindi-and-tamil-question-answering": 82,
+        "denoising-dirty-documents": 27,
+        "mlsp-2013-birds": 47,
+        "nomad2018-predict-transparent-conductors": 21,
+        "petfinder-pawpularity-score": 42,
+        "spooky-author-identification": 47,
+        "tabular-playground-series-may-2022": 26
+      },
+      "tasks": 7
+    },
+    "gpt-5.4-nano": {
+      "oof_pairs": 421,
+      "pairs_per_task": {
+        "aptos2019-blindness-detection": 6,
+        "cassava-leaf-disease-classification": 44,
+        "dogs-vs-cats-redux-kernels-edition": 23,
+        "google-quest-challenge": 58,
+        "histopathologic-cancer-detection": 70,
+        "kuzushiji-recognition": 36,
+        "petfinder-pawpularity-score": 2,
+        "ranzcr-clip-catheter-line-classification": 3,
+        "spooky-author-identification": 5,
+        "us-patent-phrase-to-phrase-matching": 54,
+        "ventilator-pressure-prediction": 49,
+        "whale-categorization-playground": 71
+      },
+      "tasks": 12
+    },
+    "gpt-5.6-luna": {
+      "oof_pairs": 329,
+      "pairs_per_task": {
+        "aptos2019-blindness-detection": 12,
+        "dogs-vs-cats-redux-kernels-edition": 5,
+        "histopathologic-cancer-detection": 30,
+        "kuzushiji-recognition": 171,
+        "new-york-city-taxi-fare-prediction": 25,
+        "petfinder-pawpularity-score": 9,
+        "ranzcr-clip-catheter-line-classification": 60,
+        "spooky-author-identification": 17
+      },
+      "tasks": 8
+    },
+    "minimax/minimax-m3": {
+      "oof_pairs": 667,
+      "pairs_per_task": {
+        "denoising-dirty-documents": 17,
+        "dog-breed-identification": 62,
+        "dogs-vs-cats-redux-kernels-edition": 87,
+        "google-quest-challenge": 74,
+        "histopathologic-cancer-detection": 12,
+        "leaf-classification": 9,
+        "learning-agency-lab-automated-essay-scoring-2": 20,
+        "petfinder-pawpularity-score": 20,
+        "random-acts-of-pizza": 61,
+        "ranzcr-clip-catheter-line-classification": 24,
+        "spooky-author-identification": 20,
+        "tabular-playground-series-dec-2021": 1,
+        "tabular-playground-series-may-2022": 8,
+        "text-normalization-challenge-english-language": 23,
+        "text-normalization-challenge-russian-language": 19,
+        "tweet-sentiment-extraction": 70,
+        "us-patent-phrase-to-phrase-matching": 113,
+        "whale-categorization-playground": 27
+      },
+      "tasks": 18
+    },
+    "moonshotai/kimi-k2.5": {
+      "oof_pairs": 231,
+      "pairs_per_task": {
+        "google-quest-challenge": 11,
+        "ranzcr-clip-catheter-line-classification": 34,
+        "tabular-playground-series-dec-2021": 48,
+        "tabular-playground-series-may-2022": 95,
+        "text-normalization-challenge-english-language": 7,
+        "whale-categorization-playground": 36
+      },
+      "tasks": 6
+    },
+    "qwen/qwen3.7-flash": {
+      "oof_pairs": 57,
+      "pairs_per_task": {
+        "dog-breed-identification": 35,
+        "google-quest-challenge": 22
+      },
+      "tasks": 2
+    },
+    "qwen3.5-397b-a17b": {
+      "oof_pairs": 845,
+      "pairs_per_task": {
+        "denoising-dirty-documents": 35,
+        "dog-breed-identification": 209,
+        "google-quest-challenge": 132,
+        "kuzushiji-recognition": 34,
+        "learning-agency-lab-automated-essay-scoring-2": 114,
+        "mlsp-2013-birds": 48,
+        "nomad2018-predict-transparent-conductors": 57,
+        "petfinder-pawpularity-score": 45,
+        "spooky-author-identification": 43,
+        "tabular-playground-series-dec-2021": 58,
+        "tabular-playground-series-may-2022": 45,
+        "tweet-sentiment-extraction": 25
+      },
+      "tasks": 12
+    },
+    "tencent/hy3-preview": {
+      "oof_pairs": 275,
+      "pairs_per_task": {
+        "aptos2019-blindness-detection": 26,
+        "learning-agency-lab-automated-essay-scoring-2": 34,
+        "random-acts-of-pizza": 9,
+        "tabular-playground-series-dec-2021": 13,
+        "text-normalization-challenge-english-language": 30,
+        "tweet-sentiment-extraction": 39,
+        "us-patent-phrase-to-phrase-matching": 49,
+        "whale-categorization-playground": 75
+      },
+      "tasks": 8
+    },
+    "xiaomi/mimo-v2.5": {
+      "oof_pairs": 161,
+      "pairs_per_task": {
+        "dog-breed-identification": 17,
+        "learning-agency-lab-automated-essay-scoring-2": 49,
+        "random-acts-of-pizza": 44,
+        "text-normalization-challenge-russian-language": 7,
+        "tweet-sentiment-extraction": 14,
+        "us-patent-phrase-to-phrase-matching": 30
+      },
+      "tasks": 6
+    },
+    "z-ai/glm-5": {
+      "oof_pairs": 603,
+      "pairs_per_task": {
+        "denoising-dirty-documents": 27,
+        "dog-breed-identification": 38,
+        "leaf-classification": 34,
+        "petfinder-pawpularity-score": 225,
+        "random-acts-of-pizza": 8,
+        "spooky-author-identification": 113,
+        "tabular-playground-series-dec-2021": 16,
+        "tabular-playground-series-may-2022": 41,
+        "text-normalization-challenge-russian-language": 16,
+        "us-patent-phrase-to-phrase-matching": 56,
+        "whale-categorization-playground": 29
+      },
+      "tasks": 11
+    }
+  },
+  "scope": {
+    "api_calls": 0,
+    "frozen_test_used": false,
+    "gpu": 0,
+    "model_trained": false,
+    "numeric_grade_used": false,
+    "pair_orientation_used_for_effect": false,
+    "raw_code_used": false
+  },
+  "senior_source_commit": "92a9651f2e13a9e43623235b82c07c19721bc2ee",
+  "source_commit": "3048d2236031e3f9b11305d98996c69f7cc053fd",
+  "status": "INSUFFICIENT_GENERATOR_SHORTCUT_SUPPORT"
+}

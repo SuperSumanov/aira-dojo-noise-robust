@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AU. 2026-08-19 最新覆盖：value pairs 全部同 client，generator-identity 强解释关闭
+
+结果前 commit `3048d2236031e3f9b11305d98996c69f7cc053fd` 固定了 5-fold physical-run OOF 与六个
+支持门；Linux 全套 `393 passed in 35.10s`，producer 双跑逐字节一致，独立 verifier 两次重建一致。summary
+SHA=`59e607e5f62973d515780d8f5881cb69aa47011b5b569242df04292b0bf11cfe`。
+
+augmented train 数据含 31,742 cards / 676 runs / 28 tasks / 11 clients / 11,946 pairs，client 缺失 run=0；
+11,946/11,946 pairs 均为 same-client，cross-client 和 cross-client/same-environment 都是 0。OOF same-client
+虽有 5,318 pairs / 28 tasks，但两个强制 cross-client 门失败，状态为
+`INSUFFICIENT_GENERATOR_SHORTCUT_SUPPORT`；不启动 client-prior/TF-IDF/static 效果实验。
+
+这排除“pair 两端 generator identity 直接给出标签”的强解释，不排除同-client run style、搜索阶段或模板捷径。
+下一步仍是 future exact-stratum cohort；0812 temporal vault 继续封存，只允许先冻结 prediction escrow，不因
+当前支持门失败而打开标签。直接证据：
+
+- `phase1/results/generator_shortcut_support_20260819/README.md`；
+- `phase1/实验记录/2026-08-19/GeneratorShortcutSupport_v1_裁决.md`。
+
 ## 0AT. 2026-08-19 活跃支持门：generator/client shortcut 结果盲审计
 
 future exact-stratum clean-scaling 仍是确认性模型路线；在等待时间更晚新 cohort 时，新增长实验前的 0-GPU

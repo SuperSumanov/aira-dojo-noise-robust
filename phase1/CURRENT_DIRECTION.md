@@ -3,6 +3,28 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BE. 2026-08-19 活跃正方法资格门：E2-A 六任务 matched continuation 支持通过
+
+在 0BD 的三-client 生产支持门失败后，不降低原矩阵门槛，也不恢复已关闭的多保真/early-trace 路线。
+E1-Q 的两任务 label-feasibility 正结果被扩展为 outcome-blind 六任务资格审计：固定任务为 spaceship、
+TPS-May、spooky、US-patent、Nomad 和 learning-agency；按 seed `20260819` 对 train-only exact-two parent
+作 SHA 排序，每 run 至多一个 parent，每任务冻结四个。
+
+producer 与不 import producer 的 verifier 各自重扫 16,012 cards、三份 frozen endpoint identity、hold、两份
+E1/E1-Q selection receipt 和六份 public train/description。结果为 24 parents / 24 distinct physical runs /
+48 unique siblings；逐任务 eligible run=`10/27/29/10/12/10`，frozen endpoint/run 与 prior-run overlap 均为 0。
+verifier 双跑逐字节一致。support SHA=`7ffb23a7577640ef61730d214f7cccd6b3c202b07356a864885b41b46ec98ac0`，
+verification SHA=`c6bab92ef381c73b77c184e273eed1b444e701c9b3cf67b5cefccb72bfd65ea0`。
+
+TPS-Dec 因极小类别未通过结果前的每层至少 20 行资格门，未降门；Nomad 以纯 CSV、12-run 支持和可独立实现的
+双列 mean-RMSLE 替代。下一步只允许完成六任务 split/scorer/worker 工程门和 13 项 preflight。冻结正式矩阵为
+48 broad K=1 + 12 calibration repeat = 60 rollouts / 120 candidate executions / 60 Qwen API calls；E1-Q
+实测折算 `10.247889130908273 GPU·h`，hard cap `20 GPU·h`。任何 GPU/API 动作前必须双实现评分器与 public-only
+smoke 全过；E2-A 本身不训练 critic、不构成方法收益。直接证据：
+
+- `phase1/实验记录/2026-08-19/BalancedContinuation_E2A_六任务支持门预注册.md`；
+- `phase1/results/balanced_continuation_e2a_support_20260819_733d25e/README.md`。
+
 ## 0BD. 2026-08-19 最新结果：12-run 三 client 平衡生产支持门失败，禁止原矩阵放大
 
 0BC 只证明单一 task/seed 生产链可运行。下一步固定 3 clients×2 tasks×2 seeds=12 physical runs，任务为

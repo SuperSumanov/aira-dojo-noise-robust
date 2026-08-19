@@ -35,7 +35,9 @@ mkdir -m 0700 \
   "$run_root/capability" "$run_root/slurm"
 cp "$source_root/phase1/balanced_continuation_e2a_warm_smoke_20260819.sbatch" \
   "$run_root/job.sbatch"
-chmod 0500 "$run_root/job.sbatch"
+cp "$source_root/phase1/scripts/monitor_balanced_continuation_e2a_warm_smoke_20260819.sh" \
+  "$run_root/monitor.sh"
+chmod 0500 "$run_root/job.sbatch" "$run_root/monitor.sh"
 printf '%s\n' "$expected_commit" >"$run_root/source_commit.txt"
 printf '%s\n' "$data_gate" >"$run_root/data_gate_root.txt"
 printf '%s\n' "$preparation" >"$run_root/preparation_root.txt"
@@ -59,7 +61,7 @@ fi
   >"$run_root/logs/assignment_verify.stdout" \
   2>"$run_root/logs/assignment_verify.stderr"
 
-"$python_bin" -c 'import json,sys; p=json.load(open(sys.argv[1])); req={"rollout_jobs":60,"candidate_executions":120,"operator_api_calls":60,"expected_gpu_hours":10.247889130908273,"candidate_timeout_upper_bound_gpu_hours":20.0,"warm_smoke_candidate_executions":6,"warm_smoke_operator_api_calls":0,"warm_smoke_hard_gpu_hours":1.0,"slurm_array_concurrency":4,"gpus_per_job":1,"formal_submission_requires_passing_warm_smoke":True}; assert all(p.get(k)==v for k,v in req.items()); assert len(p["warm_smoke_assignment_indices"])==len(set(p["warm_smoke_assignment_indices"]))==6; json.dump({"status":"E2A_WARM_SMOKE_MATRIX_VERIFIED","matrix":req,"indices":p["warm_smoke_assignment_indices"]},open(sys.argv[2],"w"),sort_keys=True,separators=(",",":")); open(sys.argv[2],"a").write("\n")' \
+"$python_bin" -c 'import json,sys; p=json.load(open(sys.argv[1])); req={"rollout_jobs":60,"candidate_executions":120,"operator_api_calls":60,"expected_gpu_hours":10.247889130908273,"candidate_timeout_upper_bound_gpu_hours":20.0,"warm_smoke_candidate_executions":6,"warm_smoke_operator_api_calls":0,"warm_smoke_hard_gpu_hours":1.0,"slurm_array_concurrency":4,"slurm_max_submitted_tasks":4,"warm_smoke_submission_chunks":2,"formal_submission_chunks":15,"qos_chunk_policy":"sequential_nonadaptive_max4","gpus_per_job":1,"formal_submission_requires_passing_warm_smoke":True}; assert all(p.get(k)==v for k,v in req.items()); assert len(p["warm_smoke_assignment_indices"])==len(set(p["warm_smoke_assignment_indices"]))==6; json.dump({"status":"E2A_WARM_SMOKE_MATRIX_VERIFIED","matrix":req,"indices":p["warm_smoke_assignment_indices"]},open(sys.argv[2],"w"),sort_keys=True,separators=(",",":")); open(sys.argv[2],"a").write("\n")' \
   "$preparation/run_plan.json" "$run_root/resource_matrix.verify.json"
 
 printf '%s\n' \
@@ -92,13 +94,11 @@ if [[ "$filename_hits" != 0 || "$content_hits" != 0 ]]; then
   exit 7
 fi
 
-export_spec="ALL,E2S_RUN_ROOT=${run_root},E2S_SOURCE_ROOT=${source_root},E2S_DATA_GATE_ROOT=${data_gate},E2S_PREPARATION=${preparation}"
-job_out="$(sbatch --parsable --array='0-5%4' --export="$export_spec" \
-  --output="$run_root/slurm/%A_%a.out" --error="$run_root/slurm/%A_%a.err" \
-  "$run_root/job.sbatch")"
-job_id="${job_out%%;*}"
-if [[ ! "$job_id" =~ ^[0-9]+$ ]]; then echo "invalid Slurm job id" >&2; exit 3; fi
-printf '{"status":"E2A_WARM_SMOKE_SUBMITTED","job_id":"%s","array":"0-5%%4","candidate_executions":6,"api_calls":0,"candidate_hard_gpu_hours":1.0}\n' \
-  "$job_id" >"$run_root/submission.json"
-printf 'STATUS=E2A_WARM_SMOKE_SUBMITTED\nJOB_ID=%s\nRUN_ROOT=%s\n' \
-  "$job_id" "$run_root"
+printf '{"status":"E2A_WARM_SMOKE_QOS_MONITOR_PENDING","chunks":["0,1,2,3","4,5"],"max_submitted_tasks":4,"candidate_executions":6,"api_calls":0,"candidate_hard_gpu_hours":1.0}\n' \
+  >"$run_root/submission.pending.json"
+nohup bash "$run_root/monitor.sh" "$source_root" "$preparation" "$run_root" \
+  >"$run_root/logs/monitor.stdout" 2>"$run_root/logs/monitor.stderr" </dev/null &
+monitor_pid="$!"
+printf '%s\n' "$monitor_pid" >"$run_root/monitor.pid"
+printf 'STATUS=E2A_WARM_SMOKE_QOS_MONITOR_STARTED\nMONITOR_PID=%s\nRUN_ROOT=%s\n' \
+  "$monitor_pid" "$run_root"

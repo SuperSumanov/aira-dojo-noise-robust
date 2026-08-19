@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 
 source "$HOME/env_setup.sh"
+set -u
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 
 COMMIT="${1:?usage: run_operator_support_remote_20260819.sh SOURCE_COMMIT}"

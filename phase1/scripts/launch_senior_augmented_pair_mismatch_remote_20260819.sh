@@ -2,9 +2,9 @@
 set -eo pipefail
 
 base=/research/d7/spc/yzyang4/aira-dojo
-worktree=/research/d7/spc/yzyang4/worktrees/pair_mismatch_a40c777
-result=/research/d7/spc/yzyang4/prospective_decision_v1/formal_pair_mismatch_a40c777
-source_commit=a40c777749ecd24572ba626479edf3cf61792936
+worktree=/research/d7/spc/yzyang4/worktrees/pair_mismatch_5b9f285
+result=/research/d7/spc/yzyang4/prospective_decision_v1/formal_pair_mismatch_5b9f285
+source_commit=5b9f285c2f1a62bf82a2820346da26be96e3570c
 
 source ~/env_setup.sh
 set -u

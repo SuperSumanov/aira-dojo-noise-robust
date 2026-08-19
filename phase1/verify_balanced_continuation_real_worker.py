@@ -52,6 +52,10 @@ ASSIGNMENT_PROTOCOL = "balanced-continuation-v1"
 HEX32 = re.compile(r"[0-9a-f]{32}\Z")
 HEX40 = re.compile(r"[0-9a-f]{40}\Z")
 HEX64 = re.compile(r"[0-9a-f]{64}\Z")
+GIT_NO_LFS = [
+    "-c", "filter.lfs.smudge=", "-c", "filter.lfs.process=",
+    "-c", "filter.lfs.required=false",
+]
 ASSIGNMENT_KEYS = {
     "protocol", "rollout_id", "global_order", "block_id", "block_replicate",
     "position_within_block", "inclusion_probability", "order_probability", "anchor_id",
@@ -471,11 +475,11 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
     if not source_root.is_dir() or source_root.is_symlink():
         raise VerifyError("exact source root differs")
     source_head = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=source_root, check=True,
+        ["git", *GIT_NO_LFS, "rev-parse", "HEAD"], cwd=source_root, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout.decode("ascii").strip()
     source_dirty = subprocess.run(
-        ["git", "status", "--porcelain"], cwd=source_root, check=True,
+        ["git", *GIT_NO_LFS, "status", "--porcelain"], cwd=source_root, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout
     if source_head != real["source_commit"] or source_dirty:

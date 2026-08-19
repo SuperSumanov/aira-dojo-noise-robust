@@ -55,6 +55,10 @@ EXPECTED_GPU_HOURS = 10.247889130908273
 HARD_GPU_HOURS = 20.0
 WARM_SMOKE_CANDIDATE_EXECUTIONS = 6
 WARM_SMOKE_HARD_GPU_HOURS = 1.0
+GIT_NO_LFS = [
+    "-c", "filter.lfs.smudge=", "-c", "filter.lfs.process=",
+    "-c", "filter.lfs.required=false",
+]
 
 
 class PrepareError(RuntimeError):
@@ -74,11 +78,11 @@ def repo_root() -> pathlib.Path:
 def exact_source_commit() -> str:
     root = repo_root()
     head = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=root, check=True,
+        ["git", *GIT_NO_LFS, "rev-parse", "HEAD"], cwd=root, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout.decode("ascii").strip()
     dirty = subprocess.run(
-        ["git", "status", "--porcelain"], cwd=root, check=True,
+        ["git", *GIT_NO_LFS, "status", "--porcelain"], cwd=root, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout
     if dirty:

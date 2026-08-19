@@ -33,6 +33,10 @@ from phase1.balanced_continuation_worker import load_assignment, load_code_vault
 SCHEMA = "balanced-continuation-e2a-warm-smoke-v1"
 INTENT_SCHEMA = "balanced-continuation-real-process-intent-v1"
 HEX32 = re.compile(r"^[0-9a-f]{32}$")
+GIT_NO_LFS = [
+    "-c", "filter.lfs.smudge=", "-c", "filter.lfs.process=",
+    "-c", "filter.lfs.required=false",
+]
 
 
 class VerifyError(RuntimeError):
@@ -112,11 +116,11 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         raise VerifyError("credential-shaped bytes in real contract")
     real = validate_worker_contract(json.loads(real_raw))
     source_head = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=source_root, check=True,
+        ["git", *GIT_NO_LFS, "rev-parse", "HEAD"], cwd=source_root, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout.decode("ascii").strip()
     source_dirty = subprocess.run(
-        ["git", "status", "--porcelain"], cwd=source_root, check=True,
+        ["git", *GIT_NO_LFS, "status", "--porcelain"], cwd=source_root, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout
     if source_head != real["source_commit"] or source_dirty:

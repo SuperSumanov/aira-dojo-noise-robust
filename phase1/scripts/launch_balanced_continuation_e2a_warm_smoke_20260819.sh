@@ -23,8 +23,10 @@ for path in "$source_root" "$data_gate" "$preparation" "$python_bin" "$container
   if [[ ! -e "$path" ]]; then echo "missing required path: $path" >&2; exit 2; fi
 done
 expected_commit="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["source_commit"])' "$preparation/real_contract.json")"
-test "$(git -C "$source_root" rev-parse HEAD)" = "$expected_commit"
-test -z "$(git -C "$source_root" status --porcelain)"
+test "$(git -C "$source_root" -c filter.lfs.smudge= -c filter.lfs.process= \
+  -c filter.lfs.required=false rev-parse HEAD)" = "$expected_commit"
+test -z "$(git -C "$source_root" -c filter.lfs.smudge= -c filter.lfs.process= \
+  -c filter.lfs.required=false status --porcelain)"
 
 mkdir -m 0700 "$run_root"
 mkdir -m 0700 \

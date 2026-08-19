@@ -20,14 +20,20 @@ class GateError(RuntimeError):
     pass
 
 
+GIT_NO_LFS = [
+    "-c", "filter.lfs.smudge=", "-c", "filter.lfs.process=",
+    "-c", "filter.lfs.required=false",
+]
+
+
 def exact_source_commit() -> str:
     root = pathlib.Path(__file__).resolve().parents[1]
     commit = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=root, check=True,
+        ["git", *GIT_NO_LFS, "rev-parse", "HEAD"], cwd=root, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout.decode("ascii").strip()
     dirty = subprocess.run(
-        ["git", "status", "--porcelain"], cwd=root, check=True,
+        ["git", *GIT_NO_LFS, "status", "--porcelain"], cwd=root, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout
     if dirty or not re.fullmatch(r"[0-9a-f]{40}", commit):

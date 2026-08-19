@@ -50,8 +50,10 @@ for required in \
 done
 cd "$E2S_SOURCE_ROOT"
 expected_commit="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["source_commit"])' "$E2S_PREPARATION/real_contract.json")"
-test "$(git rev-parse HEAD)" = "$expected_commit"
-test -z "$(git status --porcelain)"
+test "$(git -c filter.lfs.smudge= -c filter.lfs.process= \
+  -c filter.lfs.required=false rev-parse HEAD)" = "$expected_commit"
+test -z "$(git -c filter.lfs.smudge= -c filter.lfs.process= \
+  -c filter.lfs.required=false status --porcelain)"
 assignment_index="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["warm_smoke_assignment_indices"][int(sys.argv[2])])' "$E2S_PREPARATION/run_plan.json" "$slot")"
 task="$($python_bin -c 'import json,sys;rows=open(sys.argv[1]).read().splitlines();print(json.loads(rows[int(sys.argv[2])])["task"])' "$E2S_PREPARATION/assignment/assignment_manifest.jsonl" "$assignment_index")"
 public_task="${E2S_DATA_GATE_ROOT}/e2a_split/public/${task}"

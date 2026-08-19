@@ -59,6 +59,10 @@ COMMITMENT_SCHEMA = "balanced-continuation-sealed-commitment-v1"
 OPERATOR_USAGE_SCHEMA = "balanced-continuation-operator-usage-v1"
 LOG_HEAD_BYTES = 32768
 LOG_TAIL_BYTES = 32768
+GIT_NO_LFS = [
+    "-c", "filter.lfs.smudge=", "-c", "filter.lfs.process=",
+    "-c", "filter.lfs.required=false",
+]
 HEX64 = re.compile(r"[0-9a-f]{64}\Z")
 HEX32 = re.compile(r"[0-9a-f]{32}\Z")
 RESULT_KEYS = {
@@ -209,13 +213,13 @@ def require_disjoint_roots(roots: dict[str, pathlib.Path]) -> None:
 def exact_git_source(expected_commit: str) -> pathlib.Path:
     repo = pathlib.Path(__file__).resolve().parents[1]
     head = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=repo, check=True,
+        ["git", *GIT_NO_LFS, "rev-parse", "HEAD"], cwd=repo, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout.decode("ascii").strip()
     if head != expected_commit:
         raise RealWorkerError(f"source commit differs: expected={expected_commit} actual={head}")
     if subprocess.run(
-        ["git", "status", "--porcelain"], cwd=repo, check=True,
+        ["git", *GIT_NO_LFS, "status", "--porcelain"], cwd=repo, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout:
         raise RealWorkerError("real worker requires an exact clean worktree")

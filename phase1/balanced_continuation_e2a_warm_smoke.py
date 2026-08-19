@@ -28,6 +28,10 @@ from phase1.balanced_continuation_worker import load_assignment, load_code_vault
 
 
 SCHEMA = "balanced-continuation-e2a-warm-smoke-v1"
+GIT_NO_LFS = [
+    "-c", "filter.lfs.smudge=", "-c", "filter.lfs.process=",
+    "-c", "filter.lfs.required=false",
+]
 
 
 class SmokeError(RuntimeError):
@@ -77,11 +81,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         raise SmokeError("credential-shaped bytes in real contract")
     real = validate_worker_contract(json.loads(real_raw))
     commit = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=source_root, check=True,
+        ["git", *GIT_NO_LFS, "rev-parse", "HEAD"], cwd=source_root, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout.decode("ascii").strip()
     dirty = subprocess.run(
-        ["git", "status", "--porcelain"], cwd=source_root, check=True,
+        ["git", *GIT_NO_LFS, "status", "--porcelain"], cwd=source_root, check=True,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
     ).stdout
     if commit != real["source_commit"] or dirty:

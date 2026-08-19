@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AX. 2026-08-19 活跃支持门：critic 跨 generator/client 的迁移支持
+
+在 future exact-stratum cohort 尚未新增时，允许一次 outcome-blind LOSO 结构支持审计。它只使用 augmented
+`intask_split=train`，不区分 pair 胜负，不读 frozen test/vault。pair 必须同 client 且 exact
+`(task, hardware, time_limit, execution_timeout)`；每个 held-out client 的 test stratum 必须在其他 client 中有
+≥50 pairs/≥2 clients，client 级还须满足 test≥200 pairs/4 tasks/15 runs、train≥1,000 pairs/3 clients、
+dominant task≤0.50；全局≥6 clients/3,000 test pairs 才解锁另立的 char-TFIDF/static LOSO 效果预注册。
+
+该问题不同于 0AU 已关闭的“pair 两端 client identity 直接泄漏标签”：这里检验的是从其他 generator 学到的代码
+质量信号能否迁移到完全未见的 generator。若支持门失败则不训练、不降门；若通过也不恢复 0AP 的旧 scaling
+claim。直接预注册：
+
+- `phase1/实验记录/2026-08-19/CrossClientTransferSupport_v1_预注册与执行前检查.md`。
+
 ## 0AW. 2026-08-19 最新覆盖：0812 temporal predictions 已冻结，标签继续封存
 
 结果前 commit `37fa0f0d12bbee09772b5b051038810bca540f8a` 固定输入、scorer、denylist 与成功门；

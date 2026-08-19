@@ -1,0 +1,72 @@
+{
+  "schema_version": "balanced-continuation-e2a-warm-timeout-audit-v1",
+  "status": "E2A_WARM_TIMEOUT_BOUNDARY_INSTABILITY",
+  "scientific_outcomes_opened": false,
+  "scores_opened": false,
+  "labels_opened": false,
+  "api_calls": 0,
+  "candidate_retries": 0,
+  "current": {
+    "source_commit": "0ee657a14a9bba0ddf58670f177e9e103c33720a",
+    "run_root": "/research/d7/spc/yzyang4/balanced-e2a-warm-smoke-0ee657a-a1",
+    "array_job_id": "11232",
+    "node": "gpu27",
+    "allocated_cpus_per_element": 6,
+    "allocated_gpus_per_element": 1,
+    "candidate_executions": 4,
+    "passed_candidates": 3,
+    "timed_out_candidates": 1,
+    "candidate_wall_seconds": 1300.9511277429992,
+    "slurm_allocated_gpu_seconds": 1808,
+    "later_chunk_submitted": false,
+    "formal_launched": false,
+    "final_status_sha256": "295098fbe9d9e03cbeb8729b6dc2db2872601cc50d463959d7fb5853f2c6b238",
+    "monitor_events_sha256": "e783f1d63641648a28305702efc0101462d680265af66c75edc22069c69d4ebc",
+    "job_rc_sha256": {
+      "0": "ae927bf25f3e0fc4cb7ee0fc25ac77e3d92797a089ca546a9d880147116c8465",
+      "1": "c065ea65d2cdb832d74440962144e4fd7776932deb0a3d0e6f0d95db7fb6e86b",
+      "2": "b57f42e44ac8f30b692346243de629b9cd3f8028d0456d0a0134b2f346f6c792",
+      "3": "a592fbcd7dcb21495092c5a17acfd309def5e2853911aa46ea9197cc3cb9a4f3"
+    }
+  },
+  "tps_comparison": {
+    "task": "tabular-playground-series-may-2022",
+    "assignment_index": 8,
+    "candidate_code_sha256": "b3e02d2f3e2452395a08e2df53f64cad1ed0242a280e200dfee8d9a821f4163f",
+    "same_candidate_code": true,
+    "same_public_data_gate": true,
+    "same_container": true,
+    "same_node": true,
+    "same_cpu_gpu_allocation": true,
+    "old": {
+      "source_commit": "81e05352b0d6d77eec289f59a38243a92ded92fe",
+      "run_root": "/research/d7/spc/yzyang4/balanced-e2a-warm-smoke-81e0535-a1",
+      "execution_status": "ok",
+      "timed_out": false,
+      "wall_time_seconds": 1119.5009202449583,
+      "artifact_present": true,
+      "candidate_process_sha256": "7ff1e40d804264107636c5549c9590ee704593d645b404f5403caade95ccb013",
+      "execution_sha256": "4640a2f5fc94c67b11605bc9279063e0fa2323f8b2edff768f265a3f3435bf65"
+    },
+    "current": {
+      "source_commit": "0ee657a14a9bba0ddf58670f177e9e103c33720a",
+      "run_root": "/research/d7/spc/yzyang4/balanced-e2a-warm-smoke-0ee657a-a1",
+      "slurm_element_job_id": "11234",
+      "execution_status": "timeout",
+      "timed_out": true,
+      "return_code": 143,
+      "wall_time_seconds": 1200.2556150490418,
+      "artifact_present": false,
+      "candidate_process_sha256": "c9ba65688702eac69ff14915b692df2b7ce10342999c4232c8328bf7ccdc5a33",
+      "execution_sha256": "65f5d3afbf5faed604ee73d3db8912b2b880e319f1ac193d75c2139dd77eda83"
+    }
+  },
+  "decision": {
+    "warm_gate_passed": false,
+    "partial_supplement_allowed": false,
+    "automatic_retry_allowed": false,
+    "formal_submission_allowed": false,
+    "verdict": "STOP_NO_RETRY_NO_FORMAL",
+    "method_effect_claim_allowed": false
+  }
+}

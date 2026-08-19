@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BH. 2026-08-19 E2-A 六任务 warm 资格门失败；1200 秒边界不稳定，formal 关闭
+
+安全 cache 修复后的新 root `balanced-e2a-warm-smoke-0ee657a-a1` 在 source commit
+`0ee657a14a9bba0ddf58670f177e9e103c33720a` 完成完整 Linux/preflight/cache 双哈希门后，按冻结的
+4+2 chunks 提交首批四个任务（array job `11232`）。spaceship、spooky、US-patent 的
+capability/producer/verifier/safety rc 全零；TPS-May 在固定 1200 秒处返回 timeout，producer rc=3。
+monitor 随即 fail closed，第二批 Nomad/Essay 未提交；实际为 4 candidate executions、0 API、0 retry，
+D_search/D_val/D_test、label、score 和 scientific outcome 均未打开。follow-up 明确记录
+`formal_not_launched=true`，formal root 不存在。
+
+该 TPS 候选与 0BG 中成功运行逐字节相同，code SHA 均为
+`b3e02d2f3e2452395a08e2df53f64cad1ed0242a280e200dfee8d9a821f4163f`；两次还使用同一不可变 public
+data gate、同一 container、同一 `gpu27`、6 CPU/1 GPU 和四任务并发。第一次 candidate wall 为
+`1119.5009202449583` 秒并产生 artifact；本次为 `1200.2556150490418` 秒、return code 143、无 artifact。
+代码只固定了 sklearn split seed，LightGBM GPU 参数未显式设置其 seed/deterministic 选项；两次 early-stop
+轨迹也不同。因而“1200 秒工程边界对该冻结候选不可重复”是直接证据；具体漂移来自 GPU 数值非确定性、
+早停随机性还是瞬时负载则未被单独识别，不得把推断写成已证明根因。
+
+预注册要求新 warm 六任务从零 6/6 且 0 retry，任一失败不得只补失败 task、不得自动 formal。因此本次
+E2-A formal **关闭且不补跑**；既不把 3/4 工程通过解释成正结果，也不把 TPS timeout 解释成方法负结果。
+若未来重开，必须另立预注册并重新批准 timeout/算力矩阵或改成显式 runtime-censoring estimand，不能沿用
+本次授权悄然提高 timeout。当前工作返回评分通道的前瞻主线与已冻结 checkpoint 支持实验。直接证据：
+
+- `phase1/实验记录/2026-08-19/BalancedContinuation_E2A_1200秒边界不稳定_执行审计.md`；
+- `phase1/results/balanced_continuation_e2a_warm_timeout_20260819_0ee657a/README.md`。
+
 ## 0BG. 2026-08-19 E2-A warm 第二次工程失败；安全等价缓存修复已结果前冻结
 
 commit `81e05352...` 的统一 1200 秒六任务 warm 已按 4+2 QOS chunks 完成。前五个固定任务的

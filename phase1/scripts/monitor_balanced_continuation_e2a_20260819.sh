@@ -21,7 +21,7 @@ if ! (
 ); then exit 2; fi
 engineering="$($python_bin -c 'import json,sys;print(",".join(map(str,json.load(open(sys.argv[1]))["engineering_wave_indices"])))' "$run_root/preparation/run_plan.json")"
 remaining="$($python_bin -c 'import json,sys;print(",".join(map(str,json.load(open(sys.argv[1]))["remaining_wave_indices"])))' "$run_root/preparation/run_plan.json")"
-export_spec="E2A_RUN_ROOT=${run_root},E2A_SOURCE_ROOT=${source_root},E2A_DATA_GATE_ROOT=${data_gate}"
+export_spec="HOME=/uac/y24/yzyang4,E2A_RUN_ROOT=${run_root},E2A_SOURCE_ROOT=${source_root},E2A_DATA_GATE_ROOT=${data_gate}"
 submission_deadline=$(( $(date +%s) + 28800 ))
 submitted_job=""
 event() { printf '%s %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*" | tee -a "$events"; }

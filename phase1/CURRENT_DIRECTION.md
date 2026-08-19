@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BD. 2026-08-19 活跃实验：12-run 三 client 平衡生产 pilot
+
+0BC 只证明单一 task/seed 生产链可运行。下一步固定 3 clients×2 tasks×2 seeds=12 physical runs，任务为
+spooky/spaceship，seeds=1402/1403；每 run step=4、execution timeout=300 秒、run cap=1800 秒。
+按 task×seed 分成 4 个 stratum shard jobs，每个在同一 3090 上按冻结轮换顺序跑三 client；每 shard
+2.25 小时，Slurm 硬上限 9 GPU·h。成功路径 72 次 operator calls，抽取重试协议上限 144，另加三次
+one-token probe。
+
+本 pilot 不比较 client score、不训练 critic、不计算 winner。完整性必须 12/12；支持 GO 还要求每 client
+至少 2 个 run 有 valid 非根节点、总 valid 节点≥18、真实 finite sibling pairs≥6、每 client≥1 pair 且
+最大 client pair share≤0.60。失败不降门；通过也只授权另立更大平衡 acquisition。直接预注册：
+
+- `phase1/实验记录/2026-08-19/BalancedClientPilot_v1_预注册与长实验预检.md`。
+
 ## 0BC. 2026-08-19 最新结果：三 client 平衡生产 smoke a3 工程门通过
 
 a3 在 source/control `f989b622...` 上 Linux 全套 `403 passed in 36.10s`；DeepSeek/Qwen/GLM 三个普通

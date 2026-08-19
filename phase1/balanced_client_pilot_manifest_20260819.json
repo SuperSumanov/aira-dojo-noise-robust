@@ -1,0 +1,24 @@
+{
+  "schema_version": "balanced-client-pilot-manifest-v1",
+  "tasks": ["spooky-author-identification", "spaceship-titanic"],
+  "seeds": [1402, 1403],
+  "step_limit": 4,
+  "execution_timeout": 300,
+  "run_time_limit_secs": 1800,
+  "slurm_time_limit": "02:15:00",
+  "shards": [[0, 4, 8], [5, 9, 1], [10, 2, 6], [3, 7, 11]],
+  "rows": [
+    {"index": 0, "client_config": "litellm_deepseek_flash", "model_id": "deepseek-v4-flash", "base_url": "https://api.deepseek.com", "task": "spooky-author-identification", "seed": 1402},
+    {"index": 1, "client_config": "litellm_deepseek_flash", "model_id": "deepseek-v4-flash", "base_url": "https://api.deepseek.com", "task": "spooky-author-identification", "seed": 1403},
+    {"index": 2, "client_config": "litellm_deepseek_flash", "model_id": "deepseek-v4-flash", "base_url": "https://api.deepseek.com", "task": "spaceship-titanic", "seed": 1402},
+    {"index": 3, "client_config": "litellm_deepseek_flash", "model_id": "deepseek-v4-flash", "base_url": "https://api.deepseek.com", "task": "spaceship-titanic", "seed": 1403},
+    {"index": 4, "client_config": "litellm_gen2", "model_id": "qwen3-coder-flash", "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1", "task": "spooky-author-identification", "seed": 1402},
+    {"index": 5, "client_config": "litellm_gen2", "model_id": "qwen3-coder-flash", "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1", "task": "spooky-author-identification", "seed": 1403},
+    {"index": 6, "client_config": "litellm_gen2", "model_id": "qwen3-coder-flash", "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1", "task": "spaceship-titanic", "seed": 1402},
+    {"index": 7, "client_config": "litellm_gen2", "model_id": "qwen3-coder-flash", "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1", "task": "spaceship-titanic", "seed": 1403},
+    {"index": 8, "client_config": "litellm_gen3", "model_id": "glm-5", "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1", "task": "spooky-author-identification", "seed": 1402},
+    {"index": 9, "client_config": "litellm_gen3", "model_id": "glm-5", "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1", "task": "spooky-author-identification", "seed": 1403},
+    {"index": 10, "client_config": "litellm_gen3", "model_id": "glm-5", "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1", "task": "spaceship-titanic", "seed": 1402},
+    {"index": 11, "client_config": "litellm_gen3", "model_id": "glm-5", "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1", "task": "spaceship-titanic", "seed": 1403}
+  ]
+}

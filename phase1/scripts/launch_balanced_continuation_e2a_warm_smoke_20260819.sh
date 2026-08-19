@@ -61,7 +61,7 @@ fi
   >"$run_root/logs/assignment_verify.stdout" \
   2>"$run_root/logs/assignment_verify.stderr"
 
-"$python_bin" -c 'import json,sys; p=json.load(open(sys.argv[1])); req={"rollout_jobs":60,"candidate_executions":120,"operator_api_calls":60,"expected_gpu_hours":10.247889130908273,"candidate_timeout_upper_bound_gpu_hours":20.0,"warm_smoke_candidate_executions":6,"warm_smoke_operator_api_calls":0,"warm_smoke_hard_gpu_hours":1.0,"slurm_array_concurrency":4,"slurm_max_submitted_tasks":4,"warm_smoke_submission_chunks":2,"formal_submission_chunks":15,"qos_chunk_policy":"sequential_nonadaptive_max4","gpus_per_job":1,"formal_submission_requires_passing_warm_smoke":True}; assert all(p.get(k)==v for k,v in req.items()); assert len(p["warm_smoke_assignment_indices"])==len(set(p["warm_smoke_assignment_indices"]))==6; json.dump({"status":"E2A_WARM_SMOKE_MATRIX_VERIFIED","matrix":req,"indices":p["warm_smoke_assignment_indices"]},open(sys.argv[2],"w"),sort_keys=True,separators=(",",":")); open(sys.argv[2],"a").write("\n")' \
+"$python_bin" -c 'import json,sys; p=json.load(open(sys.argv[1])); req={"rollout_jobs":60,"candidate_executions":120,"operator_api_calls":60,"expected_gpu_hours":13.581222464241607,"candidate_timeout_upper_bound_gpu_hours":40.0,"warm_smoke_candidate_executions":6,"warm_smoke_operator_api_calls":0,"warm_smoke_hard_gpu_hours":2.0,"slurm_array_concurrency":4,"slurm_max_submitted_tasks":4,"warm_smoke_submission_chunks":2,"formal_submission_chunks":15,"qos_chunk_policy":"sequential_nonadaptive_max4","gpus_per_job":1,"formal_submission_requires_passing_warm_smoke":True}; assert all(p.get(k)==v for k,v in req.items()); assert len(p["warm_smoke_assignment_indices"])==len(set(p["warm_smoke_assignment_indices"]))==6; json.dump({"status":"E2A_WARM_SMOKE_MATRIX_VERIFIED","matrix":req,"indices":p["warm_smoke_assignment_indices"]},open(sys.argv[2],"w"),sort_keys=True,separators=(",",":")); open(sys.argv[2],"a").write("\n")' \
   "$preparation/run_plan.json" "$run_root/resource_matrix.verify.json"
 
 printf '%s\n' \
@@ -74,7 +74,7 @@ printf '%s\n' \
   'PASS 7: selected anchors already passed pair/node/code-hash zero-overlap gates against frozen and prior runs.' \
   'PASS 8: the six smoke indices and all formal assignment seeds are hash-derived and frozen.' \
   'PASS 9: no credential file is sourced; candidate env is allowlisted; filename/content scans are per job.' \
-  'PASS 10: 6 candidate executions x 600 seconds gives a 1 GPU-hour candidate hard cap; Slurm wall is 25 minutes/job.' \
+  'PASS 10: 6 candidate executions x 1200 seconds gives a 2 GPU-hour candidate hard cap; Slurm wall is 35 minutes/job.' \
   'PASS 11: this is an engineering gate with zero scientific power claim and zero API calls.' \
   'PASS 12: every capability/producer/verifier/safety rc is stored before exit; any nonzero rc stops formal launch.' \
   'PASS 13: source, task, anchor, sibling, code and split are frozen; corpus growth cannot change this assignment.' \
@@ -94,7 +94,7 @@ if [[ "$filename_hits" != 0 || "$content_hits" != 0 ]]; then
   exit 7
 fi
 
-printf '{"status":"E2A_WARM_SMOKE_QOS_MONITOR_PENDING","chunks":["0,1,2,3","4,5"],"max_submitted_tasks":4,"candidate_executions":6,"api_calls":0,"candidate_hard_gpu_hours":1.0}\n' \
+printf '{"status":"E2A_WARM_SMOKE_QOS_MONITOR_PENDING","chunks":["0,1,2,3","4,5"],"max_submitted_tasks":4,"candidate_executions":6,"api_calls":0,"candidate_hard_gpu_hours":2.0}\n' \
   >"$run_root/submission.pending.json"
 nohup bash "$run_root/monitor.sh" "$source_root" "$preparation" "$run_root" \
   >"$run_root/logs/monitor.stdout" 2>"$run_root/logs/monitor.stderr" </dev/null &

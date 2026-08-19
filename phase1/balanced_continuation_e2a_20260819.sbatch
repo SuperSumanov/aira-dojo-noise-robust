@@ -8,7 +8,7 @@
 #SBATCH --cpus-per-task=6
 #SBATCH --gres=gpu:1
 #SBATCH --constraint=rtx3090
-#SBATCH --time=00:45:00
+#SBATCH --time=01:15:00
 #SBATCH --exclude=projgpu7,projgpu8,projgpu33,gpu36,gpu38
 
 set -eo pipefail

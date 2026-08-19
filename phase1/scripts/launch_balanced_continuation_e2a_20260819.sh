@@ -53,7 +53,7 @@ if [[ "$tests_rc" != 0 ]]; then echo "E2-A full Linux test gate failed" >&2; exi
   --receipt "$run_root/preflight_receipts/assignment.verify.json" \
   >"$run_root/logs/assignment_verify.stdout" \
   2>"$run_root/logs/assignment_verify.stderr"
-"$python_bin" -c 'import json,sys;p=json.load(open(sys.argv[1])); req={"rollout_jobs":60,"candidate_executions":120,"operator_api_calls":60,"expected_gpu_hours":10.247889130908273,"candidate_timeout_upper_bound_gpu_hours":20.0,"candidate_timeout_seconds":600,"operator_timeout_seconds":240,"slurm_array_concurrency":4,"slurm_max_submitted_tasks":4,"warm_smoke_submission_chunks":2,"formal_submission_chunks":15,"qos_chunk_policy":"sequential_nonadaptive_max4","gpus_per_job":1,"adaptive_allocation_allowed":False,"post_outcome_replacement_allowed":False}; assert all(p.get(k)==v for k,v in req.items()); assert len(p["engineering_wave_indices"])==12 and len(p["remaining_wave_indices"])==48 and set(p["engineering_wave_indices"]).isdisjoint(p["remaining_wave_indices"]); json.dump({"status":"E2A_FORMAL_MATRIX_VERIFIED","matrix":req,"engineering":p["engineering_wave_indices"],"remaining":p["remaining_wave_indices"]},open(sys.argv[2],"w"),sort_keys=True,separators=(",",":"));open(sys.argv[2],"a").write("\n")' \
+"$python_bin" -c 'import json,sys;p=json.load(open(sys.argv[1])); req={"rollout_jobs":60,"candidate_executions":120,"operator_api_calls":60,"expected_gpu_hours":13.581222464241607,"candidate_timeout_upper_bound_gpu_hours":40.0,"candidate_timeout_seconds":1200,"operator_timeout_seconds":240,"slurm_array_concurrency":4,"slurm_max_submitted_tasks":4,"warm_smoke_submission_chunks":2,"formal_submission_chunks":15,"qos_chunk_policy":"sequential_nonadaptive_max4","gpus_per_job":1,"adaptive_allocation_allowed":False,"post_outcome_replacement_allowed":False}; assert all(p.get(k)==v for k,v in req.items()); assert len(p["engineering_wave_indices"])==12 and len(p["remaining_wave_indices"])==48 and set(p["engineering_wave_indices"]).isdisjoint(p["remaining_wave_indices"]); json.dump({"status":"E2A_FORMAL_MATRIX_VERIFIED","matrix":req,"engineering":p["engineering_wave_indices"],"remaining":p["remaining_wave_indices"]},open(sys.argv[2],"w"),sort_keys=True,separators=(",",":"));open(sys.argv[2],"a").write("\n")' \
   "$run_root/preparation/run_plan.json" "$run_root/preflight_matrix.verify.json"
 
 printf '%s\n' \
@@ -66,7 +66,7 @@ printf '%s\n' \
   'PASS 7: pair/node/code hash overlaps against frozen and prior selections are zero by the frozen support receipt.' \
   'PASS 8: seed 20260819, variable-K blocks, rollout seeds and wave indices are frozen before outcomes.' \
   'PASS 9: API credential comes only from remote mode-600 .env; candidate env is allowlisted; per-job scans are mandatory.' \
-  'PASS 10: E1-Q estimate 10.247889130908273 GPU-hours; candidate hard cap 20 GPU-hours; each job wall 45 minutes.' \
+  'PASS 10: conservative estimate 13.581222464241607 GPU-hours; candidate hard cap 40 GPU-hours; each job wall 75 minutes.' \
   'PASS 11: fixed support gates use 24 independent parents and six tasks; E2-A itself cannot claim a method win.' \
   'PASS 12: capability/worker/verifier/safety rc are stored before exit; no retry/replacement after paid intent.' \
   'PASS 13: source/data/container/Python/operator/evaluator/assignment hashes are immutable; corpus growth cannot reassign.' \

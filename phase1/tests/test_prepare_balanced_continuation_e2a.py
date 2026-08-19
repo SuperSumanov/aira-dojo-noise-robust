@@ -143,7 +143,9 @@ def test_prepare_freezes_sixty_variable_k_rollouts(tmp_path: Path, monkeypatch) 
     assert plan["candidate_executions"] == 120
     assert plan["operator_api_calls"] == 60
     assert plan["expected_gpu_hours"] == prepare.EXPECTED_GPU_HOURS
-    assert plan["candidate_timeout_upper_bound_gpu_hours"] == 20.0
+    assert plan["candidate_timeout_seconds"] == 1200
+    assert plan["candidate_timeout_upper_bound_gpu_hours"] == 40.0
+    assert plan["warm_smoke_hard_gpu_hours"] == 2.0
     assert plan["slurm_max_submitted_tasks"] == 4
     assert plan["warm_smoke_submission_chunks"] == 2
     assert plan["formal_submission_chunks"] == 15

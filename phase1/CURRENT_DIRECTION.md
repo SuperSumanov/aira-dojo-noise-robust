@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BF. 2026-08-19 E2-A warm 工程门一次失败；统一 1200 秒修复已结果前冻结
+
+commit `e86fe8e...` 的首个 QOS-safe warm chunk 在 job `11212` 上提交四个任务；spaceship、spooky、
+US-patent 三项 rc 全零，TPS-May 的冻结代码在 600.2500644080574 秒统一上限处终止，producer rc=3，
+未生成 submission。monitor 按协议停止，第二个 2-task chunk 未提交；D_search/D_val/标签与 scientific
+outcome 均未打开，正式 60-rollout 实验未启动。失败 run 保留，不拼接进后续修复 run。
+
+诊断仅查看 public candidate stdout：该冻结程序是 5-fold LightGBM 后再做一次全量训练，600 秒完成前三折
+并进入第四折，因此 900 秒仍有较大再次截断风险。允许的唯一协议修复是把**所有六个任务**的 execution
+timeout 统一改为 1200 秒，不删 TPS、不换 parent/sibling、不做 task-specific timeout。warm 仍为固定六项、
+0 API、4+2 顺序 QOS chunks，hard cap=2 GPU·h；正式矩阵仍为 60 rollouts / 120 candidate executions /
+60 Qwen calls、3+12 顺序 chunks，保守预计 `13.581222464241607 GPU·h`，candidate hard cap=40 GPU·h，
+Slurm wall=75 分钟。只有新的六任务 warm 6/6 rc 全零才允许正式提交。直接审计：
+
+- `phase1/实验记录/2026-08-19/BalancedContinuation_E2A_warm_timeout修复预注册.md`。
+
 ## 0BE. 2026-08-19 活跃正方法资格门：E2-A 六任务 matched continuation 支持通过
 
 在 0BD 的三-client 生产支持门失败后，不降低原矩阵门槛，也不恢复已关闭的多保真/early-trace 路线。
@@ -18,8 +34,9 @@ verification SHA=`c6bab92ef381c73b77c184e273eed1b444e701c9b3cf67b5cefccb72bfd65e
 
 TPS-Dec 因极小类别未通过结果前的每层至少 20 行资格门，未降门；Nomad 以纯 CSV、12-run 支持和可独立实现的
 双列 mean-RMSLE 替代。下一步只允许完成六任务 split/scorer/worker 工程门和 13 项 preflight。冻结正式矩阵为
-48 broad K=1 + 12 calibration repeat = 60 rollouts / 120 candidate executions / 60 Qwen API calls；E1-Q
-实测折算 `10.247889130908273 GPU·h`，hard cap `20 GPU·h`。任何 GPU/API 动作前必须双实现评分器与 public-only
+48 broad K=1 + 12 calibration repeat = 60 rollouts / 120 candidate executions / 60 Qwen API calls；原始 E1-Q
+折算 `10.247889130908273 GPU·h`、600 秒 hard cap `20 GPU·h` 已被 0BF 的无分数 warm timeout 工程修复覆盖。
+任何 GPU/API 动作前必须双实现评分器与 public-only
 smoke 全过；E2-A 本身不训练 critic、不构成方法收益。直接证据：
 
 - `phase1/实验记录/2026-08-19/BalancedContinuation_E2A_六任务支持门预注册.md`；

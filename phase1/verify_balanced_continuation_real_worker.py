@@ -20,7 +20,11 @@ import sys
 import tempfile
 from typing import Any
 
-from phase1.balanced_continuation_e1_scoring import CREDENTIAL, file_sha256
+from phase1.balanced_continuation_e1_scoring import (
+    CREDENTIAL,
+    evaluator_bundle_sha256 as e1_evaluator_bundle_sha256,
+    file_sha256,
+)
 from phase1 import balanced_continuation_operator_entry as deepseek_operator
 from phase1 import balanced_continuation_qwen_operator_entry as qwen_operator
 from phase1.balanced_continuation_real_contract import (
@@ -121,6 +125,41 @@ def operator_profile(real_contract: dict[str, Any]) -> dict[str, Any]:
     ]
     if len(matches) != 1:
         raise VerifyError("unsupported or mixed operator-profile hashes")
+    return matches[0]
+
+
+def evaluator_module_names(real_contract: dict[str, Any]) -> tuple[str, str]:
+    """Independently allow-list one exact scorer/sealer bundle pair."""
+    from phase1 import balanced_continuation_dsearch_eval as e1_search
+    from phase1 import balanced_continuation_dval_sealer as e1_val
+    from phase1 import balanced_continuation_e2a_dsearch_eval as e2a_search
+    from phase1 import balanced_continuation_e2a_dval_sealer as e2a_val
+    from phase1.balanced_continuation_e2a_scoring import (
+        evaluator_bundle_sha256 as e2a_evaluator_bundle_sha256,
+    )
+
+    candidates = (
+        (
+            "phase1.balanced_continuation_dsearch_eval",
+            "phase1.balanced_continuation_dval_sealer",
+            e1_evaluator_bundle_sha256(pathlib.Path(e1_search.__file__)),
+            e1_evaluator_bundle_sha256(pathlib.Path(e1_val.__file__)),
+        ),
+        (
+            "phase1.balanced_continuation_e2a_dsearch_eval",
+            "phase1.balanced_continuation_e2a_dval_sealer",
+            e2a_evaluator_bundle_sha256(pathlib.Path(e2a_search.__file__)),
+            e2a_evaluator_bundle_sha256(pathlib.Path(e2a_val.__file__)),
+        ),
+    )
+    matches = [
+        (search_name, val_name)
+        for search_name, val_name, search_sha, val_sha in candidates
+        if real_contract["search_evaluator_executable_sha256"] == search_sha
+        and real_contract["sealed_label_evaluator_executable_sha256"] == val_sha
+    ]
+    if len(matches) != 1:
+        raise VerifyError("unsupported or mixed evaluator-profile hashes")
     return matches[0]
 
 
@@ -443,6 +482,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         raise VerifyError("source root is not the exact clean contract commit")
     validate_contract_pair(legacy, real, split_root)
     profile = operator_profile(real)
+    dsearch_module, dval_module = evaluator_module_names(real)
     if file_sha256(container) != real["container_sha256"]:
         raise VerifyError("container hash differs")
     if not hf_cache.is_dir() or not nvfix.is_dir():
@@ -614,8 +654,18 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         ) != execution["artifact_sha256"]:
             raise VerifyError("candidate submission artifact differs")
 
-        for label in ("dsearch", "dval_sealer"):
-            validate_intent(step / f"{label}_intent.json", assignment, ordinal, label, True)
+        for label, expected_module in (
+            ("dsearch", dsearch_module), ("dval_sealer", dval_module)
+        ):
+            sidecar_command = validate_intent(
+                step / f"{label}_intent.json", assignment, ordinal, label, True
+            )
+            if (
+                len(sidecar_command) < 3
+                or sidecar_command[0] != sys.executable
+                or sidecar_command[1:3] != ["-m", expected_module]
+            ):
+                raise VerifyError(f"{label} evaluator module command differs")
             validate_sidecar_process(
                 step / f"{label}_process.json",
                 step / f"{label}.stdout",

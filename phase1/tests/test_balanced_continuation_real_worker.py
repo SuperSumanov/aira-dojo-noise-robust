@@ -9,10 +9,48 @@ from pathlib import Path
 import pytest
 
 import phase1.balanced_continuation_real_worker as worker
+import phase1.verify_balanced_continuation_real_worker as independent_verifier
 
 
 def write_json(path: Path, value: object) -> None:
     path.write_text(json.dumps(value, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def test_worker_and_independent_verifier_allow_exact_e2a_evaluator_pair() -> None:
+    from phase1 import balanced_continuation_e2a_dsearch_eval as search
+    from phase1 import balanced_continuation_e2a_dval_sealer as val
+    from phase1.balanced_continuation_e2a_scoring import evaluator_bundle_sha256
+
+    contract = {
+        "search_evaluator_executable_sha256": evaluator_bundle_sha256(Path(search.__file__)),
+        "sealed_label_evaluator_executable_sha256": evaluator_bundle_sha256(Path(val.__file__)),
+    }
+    expected = (
+        "phase1.balanced_continuation_e2a_dsearch_eval",
+        "phase1.balanced_continuation_e2a_dval_sealer",
+    )
+    assert worker.evaluator_module_names(contract) == expected
+    assert independent_verifier.evaluator_module_names(contract) == expected
+
+
+def test_mixed_evaluator_pair_fails_in_worker_and_independent_verifier() -> None:
+    from phase1 import balanced_continuation_dsearch_eval as e1_search
+    from phase1 import balanced_continuation_e2a_dval_sealer as e2_val
+    from phase1.balanced_continuation_e1_scoring import (
+        evaluator_bundle_sha256 as e1_bundle,
+    )
+    from phase1.balanced_continuation_e2a_scoring import (
+        evaluator_bundle_sha256 as e2_bundle,
+    )
+
+    contract = {
+        "search_evaluator_executable_sha256": e1_bundle(Path(e1_search.__file__)),
+        "sealed_label_evaluator_executable_sha256": e2_bundle(Path(e2_val.__file__)),
+    }
+    with pytest.raises(worker.RealWorkerError, match="mixed evaluator"):
+        worker.evaluator_module_names(contract)
+    with pytest.raises(independent_verifier.VerifyError, match="mixed evaluator"):
+        independent_verifier.evaluator_module_names(contract)
 
 
 def test_atomic_state_replacement_and_new_output_guard(tmp_path: Path) -> None:

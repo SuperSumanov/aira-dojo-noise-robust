@@ -227,14 +227,15 @@ def validate_nonnegative_int(value: Any, where: str) -> int:
 def validate_artifact_manifest(result_dir: pathlib.Path) -> None:
     manifest_path = result_dir / "sha256_manifest.json"
     manifest = parse_json(checked_bytes(manifest_path), "assignment sha256_manifest")
-    expected_names = {
+    e1_names = {
         "anchors.input.jsonl",
         "assignment_manifest.jsonl",
         "command.txt",
         "execution_contract.input.json",
         "summary.json",
     }
-    if set(manifest) != expected_names:
+    e2a_names = e1_names | {"calibration_anchor_ids.input.json"}
+    if set(manifest) not in (e1_names, e2a_names):
         raise WorkerError("assignment sha256_manifest has unexpected membership")
     for name, expected in manifest.items():
         validate_sha(expected, f"assignment manifest {name}")

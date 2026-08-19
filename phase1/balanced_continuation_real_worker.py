@@ -29,6 +29,7 @@ from phase1.balanced_continuation_e1_scoring import (
     CREDENTIAL,
     ScoreError,
     checked_json,
+    evaluator_bundle_sha256 as e1_evaluator_bundle_sha256,
     file_sha256,
 )
 from phase1 import balanced_continuation_operator_entry as deepseek_operator
@@ -75,6 +76,41 @@ RESULT_KEYS = {
 
 class RealWorkerError(RuntimeError):
     pass
+
+
+def evaluator_module_names(real_contract: dict[str, Any]) -> tuple[str, str]:
+    """Resolve an exact evaluator pair from its two bundle hashes."""
+    from phase1 import balanced_continuation_dsearch_eval as e1_search
+    from phase1 import balanced_continuation_dval_sealer as e1_val
+    from phase1 import balanced_continuation_e2a_dsearch_eval as e2a_search
+    from phase1 import balanced_continuation_e2a_dval_sealer as e2a_val
+    from phase1.balanced_continuation_e2a_scoring import (
+        evaluator_bundle_sha256 as e2a_evaluator_bundle_sha256,
+    )
+
+    candidates = (
+        (
+            "phase1.balanced_continuation_dsearch_eval",
+            "phase1.balanced_continuation_dval_sealer",
+            e1_evaluator_bundle_sha256(pathlib.Path(e1_search.__file__)),
+            e1_evaluator_bundle_sha256(pathlib.Path(e1_val.__file__)),
+        ),
+        (
+            "phase1.balanced_continuation_e2a_dsearch_eval",
+            "phase1.balanced_continuation_e2a_dval_sealer",
+            e2a_evaluator_bundle_sha256(pathlib.Path(e2a_search.__file__)),
+            e2a_evaluator_bundle_sha256(pathlib.Path(e2a_val.__file__)),
+        ),
+    )
+    matches = [
+        (search_name, val_name)
+        for search_name, val_name, search_sha, val_sha in candidates
+        if real_contract["search_evaluator_executable_sha256"] == search_sha
+        and real_contract["sealed_label_evaluator_executable_sha256"] == val_sha
+    ]
+    if len(matches) != 1:
+        raise RealWorkerError("unsupported or mixed evaluator-profile hashes")
+    return matches[0]
 
 
 def operator_profile(real_contract: dict[str, Any]) -> dict[str, Any]:
@@ -620,6 +656,7 @@ def score_step(
     split_root: pathlib.Path,
     sealed_rollout_root: pathlib.Path,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
+    dsearch_module, dval_module = evaluator_module_names(real_contract)
     artifact = step_dir / "submission.csv"
     dsearch_path = step_dir / "dsearch.json"
     base = [
@@ -634,7 +671,7 @@ def score_step(
     run_sidecar(
         step_dir, "dsearch",
         [
-            sys.executable, "-m", "phase1.balanced_continuation_dsearch_eval",
+            sys.executable, "-m", dsearch_module,
             *base,
             "--labels", str(split_root / "private" / "dsearch" / f"{assignment['task']}.csv"),
             "--receipt", str(dsearch_path),
@@ -647,7 +684,7 @@ def score_step(
     completed = run_sidecar(
         step_dir, "dval_sealer",
         [
-            sys.executable, "-m", "phase1.balanced_continuation_dval_sealer",
+            sys.executable, "-m", dval_module,
             *base,
             "--labels", str(split_root / "private" / "dval" / f"{assignment['task']}.csv"),
             "--sealed-receipt", str(sealed_path),

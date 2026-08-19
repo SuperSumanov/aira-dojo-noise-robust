@@ -10,6 +10,8 @@
 - patch SHA256=`9f1445ae331846a4748cf82a41bebec7fd19fc28d28b4d8821c9f9333fa20f0a`；
 - 在未修改 base worktree 上 `git apply --check` 通过；
 - 6 个新增 focused producer/verifier/security tests：`6 passed in 0.15s`。
+- 远端 Linux 独立重做 apply/py_compile/focused tests：`6 passed in 0.23s`；日志 SHA256=
+  `06af079da5b3c0b1f9aa5cf142acd46ad661205debc9b6d4a8454e4004164327`。
 
 ## 精确改动
 
@@ -42,3 +44,7 @@ git am 0001-Enforce-exact-experiment-strata-6-focused-tests-pass.patch
 
 补丁只授权 future-only 数据生产。不得用它过滤已经查看过结果的 708 条 mismatch 后追认旧 scaling；新 cohort 必须
 重建 pairs、保存 receipts、重新冻结 train-only dev，checkpoint 只按 dev 选择，最后一次性触碰 frozen test。
+
+远端验证未读取 corpus、未使用 GPU/API；no-smudge checkout 的三个历史 LFS attribute mismatch 仅在 data 路径，
+source/test paths 在 apply 前保持 clean。验证后的临时 worktree 已删除，完整日志见
+`phase1/results/senior_exact_stratum_patch_verify_20260819/`。

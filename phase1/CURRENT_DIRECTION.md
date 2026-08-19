@@ -28,7 +28,8 @@ pair accuracy + 真实 sibling selection utility + init/query cost。若 clean s
 `92a9651f2e13a9e43623235b82c07c19721bc2ee` 上形成未推送到对方分支的可 cherry-pick 补丁。detached
 implementation commit=`50b37a355931351c1d8a57b615ff20c44d445b2e`，patch SHA256=
 `9f1445ae331846a4748cf82a41bebec7fd19fc28d28b4d8821c9f9333fa20f0a`，在零改动 base 上
-`git apply --check` 通过，6 个新增 focused tests=`6 passed in 0.15s`。
+`git apply --check` 通过，6 个新增 focused tests=`6 passed in 0.15s`。远端 Linux 又独立完成 apply、py_compile 与
+同一组测试=`6 passed in 0.23s`，日志 SHA=`06af079da5b3c0b1f9aa5cf142acd46ad661205debc9b6d4a8454e4004164327`。
 
 补丁在 shuffle/cap 前按 exact task+execution config 分层，保留 per-task cap；run 内混配 fail closed；每条 pair
 携带 stratum 与 batch-content receipt；producer 解析前 credential scan，concat 前由不 import producer 的 verifier
@@ -38,6 +39,7 @@ implementation commit=`50b37a355931351c1d8a57b615ff20c44d445b2e`，patch SHA256=
 该补丁只服务时间更晚新 cohort。0AP/0AQ 的旧 scaling 裁决不变，708 条旧 mismatch 不可过滤后追认。直接证据：
 
 - `phase1/upstream_patches/0001-Enforce-exact-experiment-strata-6-focused-tests-pass.patch`；
+- `phase1/results/senior_exact_stratum_patch_verify_20260819/README.md`；
 - `phase1/实验记录/2026-08-19/SeniorExactExperimentStratumPatch_交付.md`。
 
 ## 0AQ. 2026-08-19 最新覆盖：708 个跨配置 pair 定位为 batch-content mixing

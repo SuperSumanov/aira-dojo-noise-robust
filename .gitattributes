@@ -32,6 +32,7 @@ phase1/results/prospective_intake_shadow_0812_v4_20260814/* text eol=lf
 phase1/results/prospective_accumulator_shadow_0812_v1_20260814/* text eol=lf
 phase1/results/prospective_score_pipeline_shadow_0812_v1_20260814/** text eol=lf
 phase1/results/failure_risk_pair_registry_20260817/* text eol=lf
+phase1/upstream_patches/*.patch -text -diff
 # This result carries a byte-level postflight manifest.  Preserve payload bytes
 # and suppress text whitespace checks; keep the human README renderable.
 phase1/results/selective_execution_v11_20260814_7a1562a45/** -text -diff

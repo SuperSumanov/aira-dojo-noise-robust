@@ -1,0 +1,640 @@
+From 50b37a355931351c1d8a57b615ff20c44d445b2e Mon Sep 17 00:00:00 2001
+From: Supersumanov <yanzeyang39@gmail.com>
+Date: Wed, 19 Aug 2026 13:29:30 +0800
+Subject: [PATCH] Enforce exact experiment strata (6 focused tests pass)
+
+---
+ .../data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md |  39 ++++
+ .../preprocess/build_batch_value_pairs.sh     |   7 +
+ .../build_bt_pairs/build_subtree_pairs.py     |  82 ++++++++-
+ .../verify_experiment_strata.py               | 171 ++++++++++++++++++
+ .../test/test_build_subtree_pairs.py          |  70 ++++++-
+ .../test/test_verify_experiment_strata.py     |  63 +++++++
+ 6 files changed, 419 insertions(+), 13 deletions(-)
+ create mode 100644 src/mle_critic/docs/data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md
+ create mode 100644 src/mle_critic/src/preprocess/build_bt_pairs/verify_experiment_strata.py
+ create mode 100644 src/mle_critic/test/test_verify_experiment_strata.py
+
+diff --git a/src/mle_critic/docs/data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md b/src/mle_critic/docs/data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md
+new file mode 100644
+index 0000000..bee2973
+--- /dev/null
++++ b/src/mle_critic/docs/data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md
+@@ -0,0 +1,39 @@
++# Exact experiment-stratum pair contract
++
++This contract prevents reward-model pairs from comparing candidates produced under different
++execution configurations. A structure-only audit of the 2026-08-18 augmented snapshot found 708
++such pairs among 9,001 full-train pairs. All 708 shared the same parsed run family and date, which
++is consistent with mixed configurations inside directories assumed to be homogeneous.
++
++## Contract v1
++
++Before shuffling or applying the per-task cap, candidate nodes are partitioned by the exact tuple:
++
++```text
++(task.name, client, hardware, time_limit, execution_timeout)
++```
++
++Only nodes in the same partition may form a pair. The existing cap remains per task, so this patch
++does not increase the number of sampled pairs merely because a task has multiple strata. A physical
++run containing more than one tuple fails closed.
++
++Every emitted pair carries two receipts:
++
++- `experiment_stratum_sha256`: SHA256 of the canonical JSON tuple above;
++- `batch_cards_sha256`: byte-level SHA256 of the `batch_cards.json` input.
++
++`build_batch_value_pairs.sh` invokes an independent verifier before concatenation. The verifier
++recomputes both hashes without importing the pair producer, rejects unknown/duplicate endpoints and
++cross-stratum pairs, scans inputs for credential-shaped bytes before JSON parsing, and writes a
++per-batch `batch_value_pairs_receipt.json`.
++
++## Migration boundary
++
++This patch is future-only. Rebuilding or filtering an already inspected pair file does not convert
++old scaling results into a confirmatory evaluation. A new cohort should be built under this contract,
++receive a train-only physical-run dev split, select checkpoints on dev, and touch frozen test once.
++
++The six new focused contract/verifier tests pass. At source commit
++`92a9651f2e13a9e43623235b82c07c19721bc2ee`, the pre-existing subtree-pair test file already has five
++failures and one pass; the same five legacy failures remain after this patch and concern node-value
++eligibility expectations outside the experiment-stratum change.
+diff --git a/src/mle_critic/scripts/preprocess/build_batch_value_pairs.sh b/src/mle_critic/scripts/preprocess/build_batch_value_pairs.sh
+index ffb93fd..15d8753 100755
+--- a/src/mle_critic/scripts/preprocess/build_batch_value_pairs.sh
++++ b/src/mle_critic/scripts/preprocess/build_batch_value_pairs.sh
+@@ -49,12 +49,19 @@ while IFS= read -r -d '' cards_path; do
+     found=1
+     output_path=$(dirname "$cards_path")/batch_value_pairs.jsonl
+     echo "[build_batch_value_pairs] processing $cards_path"
++    python -m src.preprocess.build_bt_pairs.verify_experiment_strata \
++        scan "$cards_path"
+     python -m src.preprocess.build_bt_pairs.build_subtree_pairs \
+         "$output_path" \
+         "$cards_path" \
+         --cap "$CAP" \
+         --seed "$SEED" \
+         --budget-steps "$BUDGET_STEPS"
++    python -m src.preprocess.build_bt_pairs.verify_experiment_strata \
++        verify \
++        "$(dirname "$cards_path")/batch_value_pairs_receipt.json" \
++        "$cards_path" \
++        "$output_path"
+     cat "$output_path" >> "$aggregate_tmp"
+ done < <(find "$DIRECTORY" -type f -name batch_cards.json -print0 | sort -z)
+ 
+diff --git a/src/mle_critic/src/preprocess/build_bt_pairs/build_subtree_pairs.py b/src/mle_critic/src/preprocess/build_bt_pairs/build_subtree_pairs.py
+index 8f459c6..bb3af97 100644
+--- a/src/mle_critic/src/preprocess/build_bt_pairs/build_subtree_pairs.py
++++ b/src/mle_critic/src/preprocess/build_bt_pairs/build_subtree_pairs.py
+@@ -18,10 +18,12 @@ Usage:
+ from __future__ import annotations
+ 
+ import argparse
++import hashlib
+ import itertools
+ import json
+ import math
+ import random
++import re
+ from collections import defaultdict
+ from dataclasses import dataclass
+ from pathlib import Path
+@@ -49,6 +51,34 @@ class NodeValue:
+     best_subtree_grade: float
+     reachable_descendant_count: int
+     steps_to_best: int
++    experiment_stratum_sha256: str
++
++
++def experiment_config(card: Card) -> tuple:
++    """Return the exact execution configuration under which a Card was produced."""
++    return (
++        card.task.name,
++        card.client,
++        card.hardware,
++        card.time_limit,
++        card.execution_timeout,
++    )
++
++
++def experiment_stratum_sha256(card: Card) -> str:
++    """Hash an exact task/execution stratum without exposing raw configuration values."""
++    payload = json.dumps(
++        experiment_config(card), ensure_ascii=False, separators=(",", ":"), allow_nan=False
++    )
++    return hashlib.sha256(payload.encode()).hexdigest()
++
++
++def sha256_file(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as input_file:
++        for chunk in iter(lambda: input_file.read(1 << 20), b""):
++            digest.update(chunk)
++    return digest.hexdigest()
+ 
+ 
+ def flatten_runs(
+@@ -59,6 +89,11 @@ def flatten_runs(
+     run_id_by_card_id: dict[str, str] = {}
+ 
+     for run_id, run_cards in cards_by_run_id.items():
++        run_configs = {experiment_config(card) for card in run_cards}
++        if len(run_configs) != 1:
++            raise ValueError(
++                f"Physical run {run_id!r} mixes task or execution configurations"
++            )
+         for card in run_cards:
+             if card.id in cards_by_id:
+                 previous_run = run_id_by_card_id[card.id]
+@@ -217,6 +252,7 @@ def compute_node_values(
+             best_subtree_grade=best_subtree_grade,
+             reachable_descendant_count=len(reachable_descendants),
+             steps_to_best=steps_to_best,
++            experiment_stratum_sha256=experiment_stratum_sha256(card),
+         )
+ 
+     return values_by_card_id
+@@ -256,8 +292,11 @@ def make_pair_record(
+     higher_is_better: bool,
+     budget_steps: int,
+     budget_seconds: float,
++    batch_cards_sha256: str,
+ ) -> dict:
+     """Orient two unequal node values and serialize their training metadata."""
++    if left.experiment_stratum_sha256 != right.experiment_stratum_sha256:
++        raise ValueError("Pair endpoints must share an exact experiment stratum")
+     left_is_better = (
+         left.best_subtree_grade > right.best_subtree_grade
+         if higher_is_better
+@@ -287,6 +326,8 @@ def make_pair_record(
+         "loto_fold": better.task_name,
+         "clears_tau": None,
+         "src": "value",
++        "experiment_stratum_sha256": left.experiment_stratum_sha256,
++        "batch_cards_sha256": batch_cards_sha256,
+     }
+ 
+ 
+@@ -296,8 +337,12 @@ def build_value_pairs(
+     seed: int = 7,
+     budget_steps: int = 0,
+     budget_seconds: float = 0.0,
++    *,
++    batch_cards_sha256: str,
+ ) -> tuple[list[dict], dict[str, dict[str, int]]]:
+     """Build capped, same-task raw value pairs and summary counts."""
++    if not re.fullmatch(r"[0-9a-f]{64}", batch_cards_sha256):
++        raise ValueError("batch_cards_sha256 must be a lowercase SHA256 digest")
+     cards_by_id, _ = flatten_runs(cards_by_run_id)
+     children_by_parent_id = build_children_index(cards_by_id)
+     node_values_by_id = compute_node_values(
+@@ -308,21 +353,33 @@ def build_value_pairs(
+     )
+     directions = validate_task_directions(node_values_by_id.values(), cards_by_id)
+ 
+-    node_values_by_task: dict[str, list[NodeValue]] = defaultdict(list)
++    node_values_by_task_stratum: dict[tuple[str, str], list[NodeValue]] = defaultdict(list)
+     for node_value in node_values_by_id.values():
+-        node_values_by_task[node_value.task_name].append(node_value)
++        node_values_by_task_stratum[
++            (node_value.task_name, node_value.experiment_stratum_sha256)
++        ].append(node_value)
+ 
+     random_generator = random.Random(seed)
+     records: list[dict] = []
+     summaries: dict[str, dict[str, int]] = {}
+ 
+-    for task_name in sorted(node_values_by_task):
+-        task_node_values = node_values_by_task[task_name]
+-        candidate_pairs = [
+-            pair
+-            for pair in itertools.combinations(task_node_values, 2)
+-            if pair[0].best_subtree_grade != pair[1].best_subtree_grade
+-        ]
++    task_names = sorted({task_name for task_name, _ in node_values_by_task_stratum})
++    for task_name in task_names:
++        task_strata = sorted(
++            stratum
++            for candidate_task, stratum in node_values_by_task_stratum
++            if candidate_task == task_name
++        )
++        task_node_count = 0
++        candidate_pairs = []
++        for stratum in task_strata:
++            stratum_values = node_values_by_task_stratum[(task_name, stratum)]
++            task_node_count += len(stratum_values)
++            candidate_pairs.extend(
++                pair
++                for pair in itertools.combinations(stratum_values, 2)
++                if pair[0].best_subtree_grade != pair[1].best_subtree_grade
++            )
+         random_generator.shuffle(candidate_pairs)
+         candidate_pairs = candidate_pairs[:cap_per_task]
+ 
+@@ -334,11 +391,13 @@ def build_value_pairs(
+                     directions[task_name],
+                     budget_steps,
+                     budget_seconds,
++                    batch_cards_sha256,
+                 )
+             )
+ 
+         summaries[task_name] = {
+-            "eligible_nodes": len(task_node_values),
++            "eligible_nodes": task_node_count,
++            "experiment_strata": len(task_strata),
+             "candidate_pairs": len(candidate_pairs),
+             "written_pairs": len(candidate_pairs),
+         }
+@@ -381,6 +440,7 @@ def parse_args() -> argparse.Namespace:
+ 
+ def main() -> None:
+     arguments = parse_args()
++    batch_cards_sha256 = sha256_file(arguments.cards)
+     cards_by_run_id = load_cards(str(arguments.cards))
+     records, summaries = build_value_pairs(
+         cards_by_run_id,
+@@ -388,6 +448,7 @@ def main() -> None:
+         seed=arguments.seed,
+         budget_steps=arguments.budget_steps,
+         budget_seconds=arguments.budget_secs,
++        batch_cards_sha256=batch_cards_sha256,
+     )
+ 
+     arguments.out.parent.mkdir(parents=True, exist_ok=True)
+@@ -399,6 +460,7 @@ def main() -> None:
+         print(
+             f"{task_name[:38]:38s} "
+             f"nodes={summary['eligible_nodes']:5d} "
++            f"strata={summary['experiment_strata']:3d} "
+             f"candidates={summary['candidate_pairs']:5d} "
+             f"written={summary['written_pairs']:5d}"
+         )
+diff --git a/src/mle_critic/src/preprocess/build_bt_pairs/verify_experiment_strata.py b/src/mle_critic/src/preprocess/build_bt_pairs/verify_experiment_strata.py
+new file mode 100644
+index 0000000..7716d10
+--- /dev/null
++++ b/src/mle_critic/src/preprocess/build_bt_pairs/verify_experiment_strata.py
+@@ -0,0 +1,171 @@
++"""Independently verify exact experiment-stratum receipts for one batch."""
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++import os
++import re
++import tempfile
++from pathlib import Path
++from typing import Any
++
++
++CREDENTIAL = re.compile(
++    rb"(?:^|[^A-Za-z0-9])(?:sk-[A-Za-z0-9._-]{16,}|hf_[A-Za-z0-9]{16,}|"
++    rb"gh[pousr]_[A-Za-z0-9]{16,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|"
++    rb"Bearer[ \t]+[A-Za-z0-9._-]{20,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----)"
++)
++SHA256 = re.compile(r"[0-9a-f]{64}")
++
++
++def sha256_file(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as input_file:
++        for chunk in iter(lambda: input_file.read(1 << 20), b""):
++            digest.update(chunk)
++    return digest.hexdigest()
++
++
++def credential_free(path: Path) -> bool:
++    overlap = b""
++    with path.open("rb") as input_file:
++        for chunk in iter(lambda: input_file.read(1 << 20), b""):
++            window = overlap + chunk
++            if CREDENTIAL.search(window):
++                return False
++            overlap = window[-512:]
++    return True
++
++
++def config(card: dict[str, Any]) -> tuple[Any, ...]:
++    task = card.get("task")
++    if not isinstance(task, dict) or not isinstance(task.get("name"), str):
++        raise ValueError("Card task identity missing")
++    return (
++        task["name"],
++        card.get("client"),
++        card.get("hardware"),
++        card.get("time_limit"),
++        card.get("execution_timeout"),
++    )
++
++
++def stratum_sha256(card: dict[str, Any]) -> str:
++    payload = json.dumps(
++        config(card), ensure_ascii=False, separators=(",", ":"), allow_nan=False
++    )
++    return hashlib.sha256(payload.encode()).hexdigest()
++
++
++def verify(cards_path: Path, pairs_path: Path) -> dict[str, Any]:
++    if not credential_free(cards_path) or not credential_free(pairs_path):
++        raise ValueError("credential-shaped bytes refused before JSON parsing")
++    cards_payload = json.loads(cards_path.read_text(encoding="utf-8"))
++    if not isinstance(cards_payload, dict) or not cards_payload:
++        raise ValueError("Cards must be a nonempty run-grouped JSON object")
++    card_map: dict[str, dict[str, Any]] = {}
++    strata = set()
++    tasks = set()
++    for run_id, cards in cards_payload.items():
++        if not isinstance(run_id, str) or not isinstance(cards, list) or not cards:
++            raise ValueError("Physical run is invalid or empty")
++        run_configs = {config(card) for card in cards}
++        if len(run_configs) != 1:
++            raise ValueError(f"Physical run {run_id!r} mixes experiment configurations")
++        for card in cards:
++            card_id = card.get("id")
++            if not isinstance(card_id, str) or not card_id or card_id in card_map:
++                raise ValueError("Card identity missing or duplicated")
++            card_map[card_id] = card
++            strata.add(stratum_sha256(card))
++            tasks.add(config(card)[0])
++
++    cards_sha = sha256_file(cards_path)
++    pair_count = 0
++    pair_keys = set()
++    with pairs_path.open(encoding="utf-8") as input_file:
++        for line_number, line in enumerate(input_file, 1):
++            if not line.strip():
++                raise ValueError(f"Blank pair line {line_number}")
++            pair = json.loads(line)
++            endpoints = (pair.get("better"), pair.get("worse"))
++            if not all(isinstance(value, str) and value in card_map for value in endpoints):
++                raise ValueError(f"Unknown pair endpoint at line {line_number}")
++            if endpoints[0] == endpoints[1]:
++                raise ValueError(f"Self-pair at line {line_number}")
++            pair_key = tuple(sorted(endpoints))
++            if pair_key in pair_keys:
++                raise ValueError(f"Duplicate unordered pair at line {line_number}")
++            pair_keys.add(pair_key)
++            endpoint_strata = {stratum_sha256(card_map[value]) for value in endpoints}
++            if len(endpoint_strata) != 1:
++                raise ValueError(f"Cross-stratum pair at line {line_number}")
++            expected_stratum = endpoint_strata.pop()
++            if pair.get("experiment_stratum_sha256") != expected_stratum:
++                raise ValueError(f"Experiment-stratum receipt mismatch at line {line_number}")
++            if pair.get("batch_cards_sha256") != cards_sha:
++                raise ValueError(f"Batch provenance receipt mismatch at line {line_number}")
++            expected_task = config(card_map[endpoints[0]])[0]
++            if pair.get("task") != expected_task:
++                raise ValueError(f"Pair task mismatch at line {line_number}")
++            pair_count += 1
++
++    return {
++        "protocol": "exact-experiment-stratum-verifier-v1",
++        "status": "EXACT_EXPERIMENT_STRATUM_VERIFIED",
++        "cards_sha256": cards_sha,
++        "pairs_sha256": sha256_file(pairs_path),
++        "physical_runs": len(cards_payload),
++        "cards": len(card_map),
++        "pairs": pair_count,
++        "tasks": len(tasks),
++        "experiment_strata": len(strata),
++        "numeric_grade_used": False,
++        "raw_config_emitted": False,
++    }
++
++
++def write_receipt(path: Path, receipt: dict[str, Any]) -> None:
++    path.parent.mkdir(parents=True, exist_ok=True)
++    temporary_path = None
++    try:
++        with tempfile.NamedTemporaryFile(
++            mode="w", encoding="utf-8", dir=path.parent,
++            prefix=f".{path.name}.", suffix=".tmp", delete=False,
++        ) as output_file:
++            temporary_path = Path(output_file.name)
++            json.dump(receipt, output_file, indent=2, sort_keys=True)
++            output_file.write("\n")
++        os.replace(temporary_path, path)
++    finally:
++        if temporary_path is not None and temporary_path.exists():
++            temporary_path.unlink()
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    commands = parser.add_subparsers(dest="command", required=True)
++    scan_parser = commands.add_parser(
++        "scan", help="credential-scan Cards before producer parsing"
++    )
++    scan_parser.add_argument("cards", type=Path)
++    verify_parser = commands.add_parser(
++        "verify", help="verify one batch and write its receipt"
++    )
++    verify_parser.add_argument("receipt", type=Path)
++    verify_parser.add_argument("cards", type=Path)
++    verify_parser.add_argument("pairs", type=Path)
++    arguments = parser.parse_args()
++    if arguments.command == "scan":
++        if not credential_free(arguments.cards):
++            raise ValueError("credential-shaped bytes refused before producer parsing")
++        print("EXPERIMENT_STRATUM_CREDENTIAL_SCAN_PASS")
++        return
++    receipt = verify(arguments.cards, arguments.pairs)
++    write_receipt(arguments.receipt, receipt)
++    print(json.dumps(receipt, sort_keys=True, separators=(",", ":")))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/src/mle_critic/test/test_build_subtree_pairs.py b/src/mle_critic/test/test_build_subtree_pairs.py
+index 73d3b09..e103e34 100644
+--- a/src/mle_critic/test/test_build_subtree_pairs.py
++++ b/src/mle_critic/test/test_build_subtree_pairs.py
+@@ -1,10 +1,14 @@
++import hashlib
+ import json
+ import sys
+ 
++import pytest
++
+ from src.mle_critic.src.preprocess.build_bt_pairs.build_subtree_pairs import (
+     build_children_index,
+     build_value_pairs,
+     compute_node_values,
++    experiment_stratum_sha256,
+     flatten_runs,
+     main,
+ )
+@@ -18,6 +22,9 @@ from src.mle_critic.src.preprocess.download_and_resolve.cards import (
+ )
+ 
+ 
++BATCH_SHA256 = "0" * 64
++
++
+ def make_card(
+     card_id,
+     grade,
+@@ -85,7 +92,9 @@ def test_pair_metadata_is_ordered_as_better_then_worse():
+         ]
+     }
+ 
+-    records, _ = build_value_pairs(cards_by_run, seed=7)
++    records, _ = build_value_pairs(
++        cards_by_run, seed=7, batch_cards_sha256=BATCH_SHA256
++    )
+ 
+     assert len(records) == 1
+     record = records[0]
+@@ -107,7 +116,9 @@ def test_raw_pair_keeps_endpoints_from_different_runs_unassigned():
+         ],
+     }
+ 
+-    records, _ = build_value_pairs(cards_by_run, seed=7)
++    records, _ = build_value_pairs(
++        cards_by_run, seed=7, batch_cards_sha256=BATCH_SHA256
++    )
+ 
+     assert len(records) == 1
+     assert records[0]["intask_split"] == "unassigned"
+@@ -123,7 +134,9 @@ def test_lower_score_is_oriented_as_better_when_task_says_so():
+         ]
+     }
+ 
+-    records, _ = build_value_pairs(cards_by_run)
++    records, _ = build_value_pairs(
++        cards_by_run, batch_cards_sha256=BATCH_SHA256
++    )
+ 
+     assert len(records) == 1
+     assert (records[0]["better"], records[0]["worse"]) == ("a", "b")
+@@ -154,3 +167,54 @@ def test_main_reads_run_grouped_cards_and_writes_jsonl(tmp_path, monkeypatch):
+     records = [json.loads(line) for line in output_path.read_text().splitlines()]
+     assert len(records) == 1
+     assert (records[0]["better"], records[0]["worse"]) == ("a", "b")
++    assert records[0]["batch_cards_sha256"] == hashlib.sha256(
++        cards_path.read_bytes()
++    ).hexdigest()
++    assert records[0]["experiment_stratum_sha256"] == experiment_stratum_sha256(
++        make_card("expected", 0.0)
++    )
++
++
++def test_cross_config_nodes_are_never_paired():
++    left = [make_card("a", 0.1), make_card("a-child", 0.9, "a")]
++    right = [make_card("b", 0.8), make_card("b-child", 0.8, "b")]
++    for card in right:
++        card.hardware = "different-gpu"
++
++    records, summary = build_value_pairs(
++        {"run-a": left, "run-b": right},
++        seed=7,
++        batch_cards_sha256=BATCH_SHA256,
++    )
++
++    assert records == []
++    assert summary["task"]["experiment_strata"] == 2
++
++
++def test_same_config_cross_run_pair_carries_contract_receipts():
++    left = [make_card("a", 0.1), make_card("a-child", 0.9, "a")]
++    right = [make_card("b", 0.8), make_card("b-child", 0.8, "b")]
++
++    records, summary = build_value_pairs(
++        {"run-a": left, "run-b": right},
++        seed=7,
++        batch_cards_sha256=BATCH_SHA256,
++    )
++
++    assert records
++    assert all(record["batch_cards_sha256"] == BATCH_SHA256 for record in records)
++    assert all(
++        record["experiment_stratum_sha256"] == experiment_stratum_sha256(left[0])
++        for record in records
++    )
++    assert summary["task"]["experiment_strata"] == 1
++
++
++def test_mixed_config_within_physical_run_fails_closed():
++    cards = [make_card("a", 0.1), make_card("a-child", 0.9, "a")]
++    cards[1].client = "different-client"
++
++    with pytest.raises(ValueError, match="mixes task or execution configurations"):
++        build_value_pairs(
++            {"run-a": cards}, batch_cards_sha256=BATCH_SHA256
++        )
+diff --git a/src/mle_critic/test/test_verify_experiment_strata.py b/src/mle_critic/test/test_verify_experiment_strata.py
+new file mode 100644
+index 0000000..3ff7e8f
+--- /dev/null
++++ b/src/mle_critic/test/test_verify_experiment_strata.py
+@@ -0,0 +1,63 @@
++import json
++from pathlib import Path
++
++import pytest
++
++from src.mle_critic.src.preprocess.build_bt_pairs.build_subtree_pairs import (
++    build_value_pairs,
++)
++from src.mle_critic.src.preprocess.build_bt_pairs.verify_experiment_strata import (
++    sha256_file,
++    verify,
++)
++from src.mle_critic.src.preprocess.download_and_resolve.cards import save_cards
++from src.mle_critic.test.test_build_subtree_pairs import make_card
++
++
++def build_fixture(tmp_path: Path):
++    cards_path = tmp_path / "batch_cards.json"
++    pairs_path = tmp_path / "batch_value_pairs.jsonl"
++    cards_by_run = {
++        "run-a": [make_card("a", 0.1), make_card("a-child", 0.9, "a")],
++        "run-b": [make_card("b", 0.8), make_card("b-child", 0.8, "b")],
++    }
++    save_cards(cards_by_run, str(cards_path))
++    pairs, _ = build_value_pairs(
++        cards_by_run, batch_cards_sha256=sha256_file(cards_path)
++    )
++    pairs_path.write_text(
++        "".join(json.dumps(pair) + "\n" for pair in pairs), encoding="utf-8"
++    )
++    return cards_path, pairs_path
++
++
++def test_independent_stratum_verifier_accepts_receipts(tmp_path: Path):
++    cards_path, pairs_path = build_fixture(tmp_path)
++
++    receipt = verify(cards_path, pairs_path)
++
++    assert receipt["status"] == "EXACT_EXPERIMENT_STRATUM_VERIFIED"
++    assert receipt["pairs"] > 0
++    assert receipt["experiment_strata"] == 1
++
++
++def test_independent_stratum_verifier_rejects_tampered_receipt(tmp_path: Path):
++    cards_path, pairs_path = build_fixture(tmp_path)
++    rows = [json.loads(line) for line in pairs_path.read_text().splitlines()]
++    rows[0]["experiment_stratum_sha256"] = "f" * 64
++    pairs_path.write_text(
++        "".join(json.dumps(pair) + "\n" for pair in rows), encoding="utf-8"
++    )
++
++    with pytest.raises(ValueError, match="receipt mismatch"):
++        verify(cards_path, pairs_path)
++
++
++def test_credential_scan_refuses_before_json_parsing(tmp_path: Path):
++    cards_path = tmp_path / "unsafe_cards.json"
++    pairs_path = tmp_path / "pairs.jsonl"
++    cards_path.write_text("sk-" + "A" * 32, encoding="utf-8")
++    pairs_path.write_text("not-json\n", encoding="utf-8")
++
++    with pytest.raises(ValueError, match="credential-shaped bytes refused"):
++        verify(cards_path, pairs_path)
+-- 
+2.47.1.windows.1
+

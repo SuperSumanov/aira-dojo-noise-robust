@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AR. 2026-08-19 最新覆盖：future-only exact-stratum producer/verifier 补丁完成
+
+针对 0AQ 的 batch-content mixing，已在学长精确 base
+`92a9651f2e13a9e43623235b82c07c19721bc2ee` 上形成未推送到对方分支的可 cherry-pick 补丁。detached
+implementation commit=`50b37a355931351c1d8a57b615ff20c44d445b2e`，patch SHA256=
+`9f1445ae331846a4748cf82a41bebec7fd19fc28d28b4d8821c9f9333fa20f0a`，在零改动 base 上
+`git apply --check` 通过，6 个新增 focused tests=`6 passed in 0.15s`。
+
+补丁在 shuffle/cap 前按 exact task+execution config 分层，保留 per-task cap；run 内混配 fail closed；每条 pair
+携带 stratum 与 batch-content receipt；producer 解析前 credential scan，concat 前由不 import producer 的 verifier
+逐条验收。学长 base 自带 legacy subtree test 已有 `5 failed, 1 passed in 0.18s`，补丁没有新增这类失败，也没有
+借机修改 node-value eligibility 这个额外旋钮。
+
+该补丁只服务时间更晚新 cohort。0AP/0AQ 的旧 scaling 裁决不变，708 条旧 mismatch 不可过滤后追认。直接证据：
+
+- `phase1/upstream_patches/0001-Enforce-exact-experiment-strata-6-focused-tests-pass.patch`；
+- `phase1/实验记录/2026-08-19/SeniorExactExperimentStratumPatch_交付.md`。
+
 ## 0AQ. 2026-08-19 最新覆盖：708 个跨配置 pair 定位为 batch-content mixing
 
 结果前 commit `5b9f285c2f1a62bf82a2820346da26be96e3570c` 固定了匿名结构诊断。远端

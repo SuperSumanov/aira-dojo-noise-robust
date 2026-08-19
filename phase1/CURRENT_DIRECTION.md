@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AO. 2026-08-19 最新覆盖：学长 augmented scaling 仅为探索性，frozen test 已被反复 eval
+
+`myfork/dojo-reproduce` 最新 commit `92a9651f2e13a9e43623235b82c07c19721bc2ee` 标题称
+`exp level split shows scaling effect`，但提交内没有新增 outcome 文档、逐 run/seed CSV、日志/checkpoint receipt
+或 one-shot test receipt。代码确认 `intask_split=="test"` 没有进入梯度 training pool；然而它被直接设为 Trainer
+`eval_dataset`，augmented launcher 每 10 optimizer steps 读取一次，因此不再是未触碰 final test。
+
+另一个确定 bug 是 `metric_for_best_model="eval_pair_accuracy"` 配合 `greater_is_better=False` 与
+`save_strategy="best"`：磁盘“best”语义方向反了；`load_best_model_at_end=False` 又使 final 内存权重与唯一保留
+checkpoint 可能不一致。当前 launcher 实际只激活 8B，不能从该 commit 本身复核 model-size scaling matrix。
+
+裁决为 `EXPLORATORY_SCALING_CLAIM_AWAITING_ARTIFACTS_AND_CLEAN_EVAL`。这不是“test 进了梯度”的指控，但现有
+test-touched checkpoint/曲线不能作为确认性 frozen-test 结果。修复路线固定为：train runs 内另建 physical-run-clean
+dev、周期 eval 只读 dev、accuracy 方向改正、dev 固定 checkpoint 后单独一次 test-only evaluator；任何 0.6B--8B
+GPU 矩阵仍需另报预算并批准。GPU 前可先做 0 成本的 train-only dev support/light-predictor scaling 审计。直接证据：
+
+- `phase1/实验记录/2026-08-19/SeniorAugmentedScaling_接入审计与无泄漏修复协议.md`；
+- senior commit `92a9651f2e13a9e43623235b82c07c19721bc2ee` 的 `bradley_terry.py`、
+  `bradley_terry_config.py` 与 `train_aug_reward.sh`。
+
 ## 0AN. 2026-08-19 最新覆盖：确定性 failure precheck 无净收益，静态 contract 路线关闭
 
 结果前 commit `863a3b0c33784a00da7e6cc3614e5b8d65df5a1e` 固定了无学习 AST/artifact-writer rule 与

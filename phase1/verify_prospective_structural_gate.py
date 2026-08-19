@@ -13,7 +13,9 @@ import hashlib
 import itertools
 import json
 import math
+import platform
 import statistics
+import sys
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -75,6 +77,7 @@ def verify(
     minimum_decision_runs: int,
     minimum_tasks: int,
     maximum_dominant_task_share: float,
+    source_commit: str,
 ) -> dict[str, Any]:
     state_root = state_root.resolve()
     snapshot_root = snapshot_root.resolve()
@@ -82,6 +85,8 @@ def verify(
         raise VerificationError("snapshot is outside the prospective state root")
     if len(snapshot_root.name) != 64 or any(c not in "0123456789abcdef" for c in snapshot_root.name):
         raise VerificationError("snapshot directory name is not a lowercase SHA-256")
+    if len(source_commit) != 40 or any(c not in "0123456789abcdef" for c in source_commit):
+        raise VerificationError("source commit is not a lowercase full Git SHA")
 
     registry_path = snapshot_root / "intake_registry.jsonl"
     accumulator_dir = snapshot_root / "accumulator"
@@ -297,9 +302,21 @@ def verify(
     gate_pass = all(checks.values())
     return {
         "status": "STRUCTURAL_GATE_MET" if gate_pass else "STRUCTURAL_GATE_NOT_YET_MET",
-        "protocol": "prospective_structural_gate_independent_verifier_v2",
+        "protocol": "prospective_structural_gate_independent_verifier_v3",
         "source_sha256": sha256(Path(__file__)),
         "snapshot_sha256": snapshot_root.name,
+        "reproducibility": {
+            "source_commit": source_commit,
+            "python_executable": str(Path(sys.executable).resolve()),
+            "python_version": platform.python_version(),
+            "randomness_used": False,
+            "thresholds": {
+                "minimum_structural_pairs": minimum_pairs,
+                "minimum_finite_decision_runs": minimum_decision_runs,
+                "minimum_tasks": minimum_tasks,
+                "maximum_dominant_pair_task_share": maximum_dominant_task_share,
+            },
+        },
         "inputs": {
             "intake_registry_sha256": sha256(registry_path),
             "accumulator_summary_sha256": sha256(accumulator_summary_path),
@@ -382,6 +399,7 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--minimum-decision-runs", required=True, type=int)
     parser.add_argument("--minimum-tasks", required=True, type=int)
     parser.add_argument("--maximum-dominant-task-share", required=True, type=float)
+    parser.add_argument("--source-commit", required=True)
     parser.add_argument("--output", required=True, type=Path)
     return parser.parse_args()
 
@@ -404,6 +422,7 @@ def main() -> int:
         args.minimum_decision_runs,
         args.minimum_tasks,
         args.maximum_dominant_task_share,
+        args.source_commit,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(

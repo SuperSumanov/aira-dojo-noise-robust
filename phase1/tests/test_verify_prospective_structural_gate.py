@@ -129,7 +129,7 @@ def test_independent_structural_gate_rebuilds_pairs(tmp_path: Path) -> None:
         },
     )
 
-    receipt = verify(state, snapshot, 4, 1, 2, 1.0)
+    receipt = verify(state, snapshot, 4, 1, 2, 1.0, "b" * 40)
 
     assert receipt["status"] == "STRUCTURAL_GATE_NOT_YET_MET"
     assert receipt["independent_inventory"] == {
@@ -153,7 +153,15 @@ def test_independent_structural_gate_rebuilds_pairs(tmp_path: Path) -> None:
         "dominant_pair_task_share": True,
     }
     assert all(receipt["cross_checks_against_accumulator"].values())
-    assert receipt["protocol"] == "prospective_structural_gate_independent_verifier_v2"
+    assert receipt["protocol"] == "prospective_structural_gate_independent_verifier_v3"
+    assert receipt["reproducibility"]["source_commit"] == "b" * 40
+    assert receipt["reproducibility"]["randomness_used"] is False
+    assert receipt["reproducibility"]["thresholds"] == {
+        "minimum_structural_pairs": 4,
+        "minimum_finite_decision_runs": 1,
+        "minimum_tasks": 2,
+        "maximum_dominant_pair_task_share": 1.0,
+    }
     assert receipt["asset_quality"]["decision_support"] == {
         "runs_with_finite_decision": 1,
         "run_pair_coverage": 0.5,

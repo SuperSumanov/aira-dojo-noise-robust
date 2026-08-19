@@ -38,7 +38,7 @@ cd "$WORKTREE"
 "$PYTHON" -m pytest phase1/tests -q
 
 common_args=(
-  --support-summary "$WORKTREE/phase1/results/failure_risk_pair_support_20260817/summary.json"
+  --support-summary /research/d7/spc/yzyang4/failure-risk-pair-support-v1-526e3ad/run1.json
   --pair-registry "$WORKTREE/phase1/results/failure_risk_pair_registry_20260817/registry.jsonl"
   --expect-pair-registry-sha256 ee7c878c9b3390c08d309229ac6380bf86e6934b92aab269e42ce7c2ffd57747
   --cards "$CARDS"

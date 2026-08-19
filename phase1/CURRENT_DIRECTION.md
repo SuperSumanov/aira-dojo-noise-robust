@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BO. 2026-08-20 部署成本证明已结果前冻结；旧“七百万倍”正式撤回
+
+Decision-Corpus Audit 仍缺一份单独的 deployment cost attestation。当前只允许在 v11 b0 run-clean train 和
+orientation-free frozen endpoint manifest 上，对 static-LR、static-GBM、TF-IDF-LR 做 CPU 单线程重复计时；
+不算 frozen accuracy，不读 prospective vault，不把 hard-coded LLM/RM latency 混入。固定 5 次初始化、5 次
+warmup、30 次 batch 与 128 个逐对查询，并做 A/B 独立执行和不 import producer 的复核。正成本门为三个模型
+各自 single-query p95≤理想并行 pair-execution p50 的 1%，且 init p50≤10 个该执行中位数。
+
+旧 `REVIEW_PACKET.md` 的 `561077ms / 4.8ms = 七百万倍` 是算术错误；程序打印为
+`116891.041666666671517`。后续 `suite_v9.csv` 单次值之比为 `103153.864310954057146`，也缺重复和硬件绑定。
+两者均不得正式引用或与旧 accuracy 拼成联合收益。直接协议：
+
+- `phase1/实验记录/2026-08-20/DeploymentCostAttestation_v1_预注册与执行前检查.md`。
+
 ## 0BN. 2026-08-20 防 scoop 纠偏：predictor/GNN/multi-view 已非 novelty，决策资源窄边界仍开放
 
 新增一手文献核查确认，FLORA-Bench 已发布 600k workflow-task pairs 并用 GNN 预测 agent workflow binary

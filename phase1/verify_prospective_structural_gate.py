@@ -220,7 +220,9 @@ def verify(
     cross_task_duplicate_groups = sum(
         len(code_tasks[code_sha]) > 1 for code_sha in duplicate_code_shas
     )
-    pair_probabilities = [count / pair_count for count in pair_task_counts.values()]
+    pair_probabilities = [
+        pair_task_counts[task] / pair_count for task in sorted(pair_task_counts)
+    ]
     pair_task_hhi = sum(probability**2 for probability in pair_probabilities)
     effective_pair_tasks = 1 / pair_task_hhi if pair_task_hhi else None
     normalized_pair_task_entropy = (

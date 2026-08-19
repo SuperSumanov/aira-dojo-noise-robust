@@ -1,0 +1,11 @@
+{
+  "artifact_summary_sha256": "c8f9d06dc3df8ca01b9e9bc65383fc14a0469163d93f1b87d5ccae79dd222c0b",
+  "endpoints": 805,
+  "label_vault_read": false,
+  "max_abs_score_difference": {
+    "char_tfidf_lr": 0.0,
+    "static_lr": 0.0
+  },
+  "pairs": 103,
+  "status": "VERIFIED_TEMPORAL_PREDICTION_ESCROW"
+}

@@ -1,0 +1,36 @@
+{
+  "inputs": {
+    "blind_views_sha256": "c0d6d207f39ea8d113a90c73e75c982ca9e77356d061ac8bffd8caa53e201dc9",
+    "bundle_sha256": "c4b9713d5a994c90ac8e24674154ae78d39f7c7961473078c1c7d61ce1c15d23",
+    "denylist_sha256": "2f0cc4f3dc203801c569237716ba82cbc2bde2f854b67eee6efa9452e92447e6",
+    "freeze_receipt_sha256": "cfab01a80536a50ef21c47ac269c7ce54a11a3b1f0b6daa5700873cbb02ce178",
+    "structure_sha256": "2c67ab3dae40c34b3eea233ae049afa2462d88e689b737b21421a7a1862c993b"
+  },
+  "inventory": {
+    "endpoints": 805,
+    "pairs": 103,
+    "precutoff_code_sha256_overlap": 0,
+    "precutoff_endpoint_id_overlap": 0,
+    "runs": 57,
+    "tasks": 9,
+    "ties": {
+      "char_tfidf_lr": 0,
+      "static_lr": 0
+    }
+  },
+  "outputs": {
+    "endpoint_scores_sha256": "753ccabc54d787bba875bef7e161a6f48e0c2752236c6c0c95f332bd0349fc72",
+    "pair_predictions_sha256": "656bc5547a1e066f7c2b39f163fc49a40304518d4e3c24dfe8731a58ceacdf64"
+  },
+  "protocol": "temporal-prediction-escrow-v1",
+  "scope": {
+    "accuracy_computed": false,
+    "api_calls": 0,
+    "gpu": 0,
+    "label_vault_path_accepted": false,
+    "label_vault_read": false,
+    "numeric_grade_used": false
+  },
+  "source_commit": "37fa0f0d12bbee09772b5b051038810bca540f8a",
+  "status": "TEMPORAL_PREDICTION_ESCROW_COMPLETE"
+}

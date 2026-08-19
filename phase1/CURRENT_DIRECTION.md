@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AW. 2026-08-19 最新覆盖：0812 temporal predictions 已冻结，标签继续封存
+
+结果前 commit `37fa0f0d12bbee09772b5b051038810bca540f8a` 固定输入、scorer、denylist 与成功门；
+远端 Linux `396 passed in 38.32s`，producer 双跑逐字节一致，独立数值 verifier 双跑一致。正式冻结
+805 endpoints / 57 runs / 9 tasks / 103 sibling pairs；pre-cutoff endpoint ID 与 exact-code overlap 均为 0，
+两个 arm 均全覆盖且无 ties。独立实现对 `static_lr`/`char_tfidf_lr` 的最大绝对分数差均为 0.0。
+
+summary SHA=`c8f9d06dc3df8ca01b9e9bc65383fc14a0469163d93f1b87d5ccae79dd222c0b`，endpoint scores
+SHA=`753ccabc54d787bba875bef7e161a6f48e0c2752236c6c0c95f332bd0349fc72`，pair predictions
+SHA=`656bc5547a1e066f7c2b39f163fc49a40304518d4e3c24dfe8731a58ceacdf64`。程序不接受 vault 参数，
+系统调用 trace 的 `label_vault.jsonl` open=0，`label_vault_read=false`、`accuracy_computed=false`。
+
+因此这是可审计的预测资产，不是效果结果。0812 label vault 继续封存；只有未来 clean checkpoints 也在未知
+标签下冻结预测后，才允许另立 one-shot unseal 协议。当前不得打开标签、挑 checkpoint 或把 103 pairs 当作
+论文独立确认集。直接证据：
+
+- `phase1/results/temporal_prediction_escrow_20260819/README.md`；
+- `phase1/实验记录/2026-08-19/TemporalPredictionEscrow_v1_完成与独立验证.md`。
+
 ## 0AV. 2026-08-19 活跃工程实验：0812 temporal prediction escrow
 
 在不消耗标签资产的前提下，允许已于 2026-08-13 22:19 UTC 激活固定的 `static_lr`/`char_tfidf_lr`，对

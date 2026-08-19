@@ -1,0 +1,203 @@
+{
+  "asset_quality": {
+    "code_redundancy": {
+      "cross_run_duplicate_code_groups": 0,
+      "cross_task_duplicate_code_groups": 0,
+      "duplicate_code_groups": 8,
+      "duplicate_endpoints_beyond_first": 12,
+      "exact_code_unique_fraction": 0.9978734715576821
+    },
+    "decision_support": {
+      "decision_parent_groups": 1431,
+      "maximum_pairs_per_supported_task": 278,
+      "median_pairs_per_decision_run": 5.0,
+      "minimum_pairs_per_supported_task": 1,
+      "run_pair_coverage": 0.9955156950672646,
+      "runs_with_finite_decision": 222,
+      "task_pair_coverage": 1.0,
+      "tasks_with_finite_decision": 25
+    },
+    "task_balance": {
+      "dominant_pair_task_count": 278,
+      "dominant_pair_task_share": 0.1887304820095044,
+      "effective_pair_tasks": 11.095236634194983,
+      "normalized_pair_task_entropy": 0.8467037228668219,
+      "pair_task_hhi": 0.09012876723314295
+    },
+    "temporal_support": {
+      "collection_days": 6,
+      "per_day": {
+        "0813": {
+          "eligible_endpoints": 498,
+          "eligible_runs": 21,
+          "eligible_structural_pairs": 161,
+          "eligible_tasks": 7,
+          "finite_decision_runs": 21,
+          "pair_tasks": 7,
+          "transactions": 8
+        },
+        "0814": {
+          "eligible_endpoints": 992,
+          "eligible_runs": 53,
+          "eligible_structural_pairs": 306,
+          "eligible_tasks": 8,
+          "finite_decision_runs": 53,
+          "pair_tasks": 8,
+          "transactions": 8
+        },
+        "0815": {
+          "eligible_endpoints": 840,
+          "eligible_runs": 38,
+          "eligible_structural_pairs": 145,
+          "eligible_tasks": 6,
+          "finite_decision_runs": 38,
+          "pair_tasks": 6,
+          "transactions": 6
+        },
+        "0816": {
+          "eligible_endpoints": 1198,
+          "eligible_runs": 39,
+          "eligible_structural_pairs": 400,
+          "eligible_tasks": 6,
+          "finite_decision_runs": 39,
+          "pair_tasks": 6,
+          "transactions": 6
+        },
+        "0817": {
+          "eligible_endpoints": 896,
+          "eligible_runs": 46,
+          "eligible_structural_pairs": 204,
+          "eligible_tasks": 7,
+          "finite_decision_runs": 45,
+          "pair_tasks": 7,
+          "transactions": 7
+        },
+        "0818": {
+          "eligible_endpoints": 1219,
+          "eligible_runs": 26,
+          "eligible_structural_pairs": 257,
+          "eligible_tasks": 7,
+          "finite_decision_runs": 26,
+          "pair_tasks": 7,
+          "transactions": 7
+        }
+      }
+    }
+  },
+  "cross_checks_against_accumulator": {
+    "eligible_endpoints": true,
+    "eligible_runs": true,
+    "eligible_structural_pairs": true,
+    "eligible_tasks": true,
+    "exact_code_duplicate_endpoints": true,
+    "task_pair_counts": true,
+    "transactions": true,
+    "unique_exact_code_sha256": true
+  },
+  "gate": {
+    "all_pass": false,
+    "checks": {
+      "dominant_pair_task_share": true,
+      "finite_decision_runs": true,
+      "structural_pairs": false,
+      "tasks": true
+    },
+    "maximum_dominant_pair_task_share": 0.25,
+    "minimum_finite_decision_runs": 150,
+    "minimum_structural_pairs": 1500,
+    "minimum_tasks": 15,
+    "remaining_structural_pairs": 27,
+    "vault_open_allowed": false
+  },
+  "independent_inventory": {
+    "dominant_pair_task_count": 278,
+    "dominant_pair_task_share": 0.1887304820095044,
+    "eligible_endpoints": 5643,
+    "eligible_runs": 223,
+    "eligible_structural_pairs": 1473,
+    "eligible_tasks": 25,
+    "exact_code_duplicate_endpoints": 12,
+    "finite_decision_runs": 222,
+    "pair_tasks": 25,
+    "transactions": 42,
+    "unique_exact_code_sha256": 5631
+  },
+  "inputs": {
+    "accumulator_summary_sha256": "e06adc342121df2425f2a70c8c2c1e777a200509872e2e042cd4d3e0faac79c0",
+    "intake_registry_sha256": "f88ea6c1c848c8fb231676c9a3f18c898ac8fdd61f9a6285fda8fb0761c01e83",
+    "intake_summary_sha256": {
+      "0813-dog-breed-identification-8seeds-7a5169e34e1c6ec4": "e8ca7f541629582310108b1c002a0d63bf2d45a86cf1aff797ec5996edc5e6e7",
+      "0813-dogs-vs-cats-redux-kernels-edition-8seeds-9585d47f209d5359": "7aea7f619bed4380c8baa5d467b832a939e193fcd1b870d6f52df07b90e76ac8",
+      "0813-learning-agency-lab-automated-essay-scoring-2-4seeds-5216bf4b0b13310a": "a2cb71dc1d9af48c0090caaaab39847984feef433e462d517a477293dfc48da5",
+      "0813-random-acts-of-pizza-4seeds-a11523c1909d117b": "0050057083a77eb7a3caeedea4c3c9c54ea6179c42db0104075144705e5deabb",
+      "0813-ranzcr-clip-catheter-line-classification-8seeds-78f98338d3164f83": "385f6a1d20a5a2e48c4d9e7d85765606626a76cf6ad33f86c610d6f16f99bc9c",
+      "0813-tweet-sentiment-extraction-4seeds-845ce54212b32c11": "74af04ab06b5f60862ba2ffaab316d04f1636f97ea91235cd0bbdd5b04d4eb38",
+      "0813-ventilator-pressure-prediction-8seeds-161b32161451e4d7": "0539ca772d083d068b6acac6325f9bfb9d5a3a2e8b2efd495e8266b6124ca9f2",
+      "0813-whale-categorization-playground-8seeds-cb7c2a72fbfe99e3": "4f5ca8537ab535a2757cdb1a572ecefeca51984a1e1374f5bfd31916295f6da1",
+      "0814-aptos2019-blindness-detection-4seeds-f86f018e7a687f91": "33375db94926c75c3ac2a0b2d4e81c908bf5619934fde5b976a16bd6c1434003",
+      "0814-dogs-vs-cats-redux-kernels-edition-8seeds-68638d0628837b62": "29b7ee71f6ced5a81af7275c280a4ef96d87d0dc822f2e187986f4a73eb6b69f",
+      "0814-learning-agency-lab-automated-essay-scoring-2-4seeds-5f163e761acf09cd": "10a11437f8574f3dc8d099ae0b36d75ea607398d69411cc34967c015b54df819",
+      "0814-new-york-city-taxi-fare-prediction-8seeds-cd3d8503bcccdfd5": "0da0431a42576fdb116ab9cc5216442fa0995d2ebe22281258d99b5147677b42",
+      "0814-ranzcr-clip-catheter-line-classification-8seeds-4d6cd699417d7e6e": "77883edb3cd3d95a291a5b8a5ad7b8889bc85a709ad6e357ea73ca9b2fb46ad4",
+      "0814-text-normalization-challenge-russian-language-8seeds-e8f95c39c48e5c93": "8243c11ede552cd1c0ac0e7c17e544b77007fe379f517b4ba798cad7bc0d55bb",
+      "0814-tgs-salt-identification-challenge-8seeds-8cda2edb1c55df91": "1ab60393e8a7056ef6e5489da0dbd500afbd65626a74459f8a82f5bf56e76e1a",
+      "0814-us-patent-phrase-to-phrase-matching-8seeds-32a5ed6de015b6cb": "c269ff46cd50af30abca4d2c2a85b3752dea7e0efedf419b5d18481e555eeb89",
+      "0815-cassava-leaf-disease-classification-4seeds-ce188bec50864994": "bb189d3b8fbd44e44df43368874888fc45f6f60a171b46a6cf75748cb54516b9",
+      "0815-dog-breed-identification-8seeds-a8e2b7892a7ea698": "41017a8690b21c770fafc5181d6dd6886b072cd85abee32e2b94e22d8d9ad434",
+      "0815-facebook-recruiting-iii-keyword-extraction-4seeds-e5cca2e640a0ad78": "b10ea2fb5c8fd8e8db90aa519296b536844d1697466b47c1ee3fcafdbc8aaeda",
+      "0815-google-quest-challenge-8seeds-d31a4f411deaec46": "d46d910b3576a4d542952e0e4d42aad067b3e89f8d31a6fd92a652e6a2ae2f40",
+      "0815-ranzcr-clip-catheter-line-classification-8seeds-533f67332122197a": "71bca01a47dc76fb07205635bc3ad647263c2d63a4f0e83732aed1209135341a",
+      "0815-ventilator-pressure-prediction-8seeds-e0e5c160f5ddb16a": "5735b259d2f170b2f700f94193c61328c21691724213d7a7995b8c83e4becc6a",
+      "0816-AI4Code-8seeds-c93b374b36371b4e": "989febbfa1e1f95aa2bef74130c89386e730a08c77f05775abdf84c7f64554d5",
+      "0816-cassava-leaf-disease-classification-4seeds-0cbdca844293f3ff": "80a888312b1d577a10126933c0db229883481dcc00354777a02bd60439bd5121",
+      "0816-osic-pulmonary-fibrosis-progression-8seeds-bfc713bdeeeaac9a": "d8b36b5f7518ad3beda10067bf76d524f9ae0aa149b5cdd2d87e936898ed46d1",
+      "0816-ranzcr-clip-catheter-line-classification-8seeds-d9955e8b7ae626ea": "7c0ff452a5db3908e9687694c3e8f3f41db37bf969819b988fa7e1c2603dafca",
+      "0816-tensorflow-speech-recognition-challenge-8seeds-c52b8aada76252ea": "4f859090e33af90d5be7c7f1a906b24ea316264258f31e5b148e2f7a25042ac8",
+      "0816-tgs-salt-identification-challenge-4seeds-a5d49d93917af987": "09779ecc0bfa3df5c13bba96c98843940235d00eeb56459a4e661a783efb28ff",
+      "0817-AI4Code-8seeds-1aa55cd889a620f8": "ea5a0cd65bf166eceed3d4b1efda4426361263d61fa4565f796cf28107f9d841",
+      "0817-alaska2-image-steganalysis-4seeds-1f49ca08fe46cf7b": "29da36a9f0eb7874517c87f222483916e3e163e78fd300f5020eae23924d81f9",
+      "0817-hubmap-kidney-segmentation-8seeds-0e6d42570dfd37bd": "8b60a08a0c37a8eeb03bb856bc619d1123bd75851c36b76eb6b6f8517ecd9353",
+      "0817-multi-modal-gesture-recognition-8seeds-d322395184d9a42c": "6f7ec4869cf32ee6ca3e0bf9483f6b101ec415ec01cb2a884abce556dca36349",
+      "0817-new-york-city-taxi-fare-prediction-8seeds-e75cfe484cfab783": "ab830bc88609af5521a7a06d6855ccd4110eb1b456b1c7a0f9f6deeeaacbfa3b",
+      "0817-tensorflow-speech-recognition-challenge-8seeds-7aa7a853bcd24bd0": "8d80f30c1c31997b9ea63368bfdf0fad6f980966cf2cd16dc589f0259ab6aaec",
+      "0817-uw-madison-gi-tract-image-segmentation-8seeds-bcb544adfae80b24": "4cd16e18b7db068d41628660c17605ac9bd501d5915681a090d11458cb0f7ba8",
+      "0818-cassava-leaf-disease-classification-4seeds-5cc71e7fb0d67544": "0d0dfe6921fd5c9091ba5ee8ab082a3dfea0dc6247a3a311dd571c394dc972ff",
+      "0818-cdiscount-image-classification-challenge-8seeds-5dde7db0e56ba183": "e693a767b3c16bd5c70ebae3194f33458aa4f6d027a82abfd0c1de6ab3e53cdc",
+      "0818-lmsys-chatbot-arena-8seeds-1b16ada7e14af4e2": "43861168ea6e48868354b1a918902998062c8320753afb2f0c98bd706bd085dc",
+      "0818-osic-pulmonary-fibrosis-progression-8seeds-4f379574c2a64b7c": "e80e25d5b1f971da02c2c042e6833f643c677da369792669bf27aee3e71de385",
+      "0818-tensorflow-speech-recognition-challenge-8seeds-6ebf711ee2e79bc1": "a27027ab8408005645290c0507a219fa6f9a40a74ffca33c27c9acc8db4e7143",
+      "0818-tgs-salt-identification-challenge-4seeds-183fd3018b598104": "4f48b299485774ce05a09a01a650122ed9058cc7428ac7e3bb9bce9cd79b9837",
+      "0818-ventilator-pressure-prediction-8seeds-16d4d7c610d381d1": "800afea4d894211463b0466adaf7dc79941fa65ac0a28ce99df067c48f659939"
+    },
+    "provisional_runs_sha256": "23791ea105cddd83dbfc9a7c06c092a426390c328058cb16b93f1cb55b2b0cfa"
+  },
+  "protocol": "prospective_structural_gate_independent_verifier_v3",
+  "reproducibility": {
+    "python_executable": "/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/bin/python3.11",
+    "python_version": "3.11.15",
+    "randomness_used": false,
+    "source_commit": "98956a8e963324591f7b5fd95e02fec29c93c731",
+    "thresholds": {
+      "maximum_dominant_pair_task_share": 0.25,
+      "minimum_finite_decision_runs": 150,
+      "minimum_structural_pairs": 1500,
+      "minimum_tasks": 15
+    }
+  },
+  "security": {
+    "allowed_basenames_read": [
+      "eligible_blind_manifest.jsonl",
+      "eligible_structural_pairs.jsonl",
+      "intake_registry.jsonl",
+      "provisional_runs.jsonl",
+      "summary.json"
+    ],
+    "code_or_task_values_emitted": false,
+    "label_vault_opened": false,
+    "outcome_files_opened": [],
+    "scorer_prediction_files_opened": []
+  },
+  "snapshot_sha256": "88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8",
+  "source_sha256": "e006ad97bef2d9021d1b16ce01d7e2122268bbfa28d613e823d45f8c684b725b",
+  "status": "STRUCTURAL_GATE_NOT_YET_MET"
+}

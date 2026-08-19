@@ -1,0 +1,22 @@
+{
+  "cross_checks_against_accumulator_all_pass": true,
+  "file_access_forbidden_pattern_matches": 0,
+  "full_test": {
+    "result": "435 passed in 35.57s",
+    "sha256": "beda135cfae1ae879306b508f461a0f173ee8aee26ac0e1576b65738feac8484"
+  },
+  "protocol": "prospective_structural_gate_independent_verifier_v3",
+  "receipt_repeat_byte_identical": true,
+  "receipt_sha256": "82bd8747f85b78c7e17429dcf20695fd0e85a9ec213edaa1787b6e035b7b51f9",
+  "remote_artifact_root": "/research/d7/spc/yzyang4/prospective_decision_v1/diagnostics/structural_asset_20260820_98956a8",
+  "secret_shape_matches": 0,
+  "snapshot_sha256": "88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8",
+  "source_commit": "98956a8e963324591f7b5fd95e02fec29c93c731",
+  "strace_a_sha256": "800968773a7c8ee0e5ba30225ff151ce2b12dea1cc0e782c89e99248e101858b",
+  "strace_b_sha256": "a4b6080f9ee1077a9f7a1e22fd86de5044aeb6008b0037f88758d59d9aad507a",
+  "targeted_test": {
+    "result": "1 passed in 0.08s",
+    "sha256": "99a24796443a1d07f66a424f8116a06a2079063af758e7d3c87801c191ad2ecd"
+  },
+  "vault_open_allowed": false
+}

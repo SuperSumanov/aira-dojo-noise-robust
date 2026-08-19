@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BJ. 2026-08-20 最新正资产结果：前瞻 cohort 高决策覆盖、低逐字节冗余，仍不揭盲
+
+在 0BI 的 frozen snapshot 上，commit `98956a8...` 的 outcome-blind verifier v3 不 import 生产 accumulator，
+从 42 份登记后的 blind manifests 独立重建 sibling pairs；两次 clean run 收据逐字节一致，SHA=
+`82bd8747f85b78c7e17429dcf20695fd0e85a9ec213edaa1787b6e035b7b51f9`，八项 accumulator 交叉核验全过。
+收据绑定完整 Git commit、Python 3.11.15、四项门槛和 `randomness_used=false`；两份 strace 禁读模式命中 0，
+credential shape 命中 0，Linux 全套 `435 passed in 35.57s`。
+
+当前 223 eligible runs 中 222 个有 finite sibling decision（coverage=`0.9955156950672646`），25/25 tasks 有
+pair support；最大任务 share=`0.1887304820095044`，effective pair tasks=`11.095236634194983`。5,643 endpoints
+中 5,631 个 exact-code SHA 唯一（fraction=`0.9978734715576821`）；8 个重复组全部限制在同一 physical run/
+同一 task，跨 run=0、跨 task=0。该结果支持 D&B 数据资产“不是无决策 run、跨 run 逐字节复制或单任务堆量”
+的正面主张，但不构成 critic 效果；最稀疏任务仅 1 pair，exact SHA 也不排除语义近重复，必须同步披露。
+
+结构门仍只有 pair 数未过：`1473 < 1500`，差 27；`vault_open_allowed=false`。继续等待 append-only 新归档；
+跨门后只先冻结 exact cohort 与版本收据，不得自动揭盲。v2 的浮点非确定性和缺少 commit/environment 绑定两次
+自审失败均已撤回，只有 v3 为当前正式证据。直接证据：
+
+- `phase1/results/prospective_structural_asset_quality_20260820_98956a8/README.md`；
+- `phase1/实验记录/2026-08-20/Prospective结构资产质量审计_v3.md`。
+
 ## 0BI. 2026-08-20 0818 安全摄取完成；结构门仅 pair 数未过，仍差 27
 
 0818 新增 8 个 append-only 归档，在固定 6 小时稳定窗后逐包处理；7 包形成不可变 transaction。

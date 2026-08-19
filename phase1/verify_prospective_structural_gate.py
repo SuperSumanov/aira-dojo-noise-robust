@@ -12,6 +12,8 @@ import collections
 import hashlib
 import itertools
 import json
+import math
+import statistics
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -90,6 +92,8 @@ def verify(
         raise VerificationError("empty intake registry")
 
     cards: dict[str, tuple[str, str, str, str]] = {}
+    drop_for_run: dict[str, str] = {}
+    day_for_drop: dict[str, str] = {}
     registered_pairs: set[tuple[str, str, str, str, str]] = set()
     pair_rows_seen = 0
     intake_summary_shas: dict[str, str] = {}
@@ -109,6 +113,7 @@ def verify(
         if not isinstance(drop_id, str) or drop_id in seen_drops:
             raise VerificationError("duplicate or invalid drop ID")
         seen_drops.add(drop_id)
+        day_for_drop[drop_id] = drop_id.split("-", 1)[0]
         intake_dir = Path(entry["intake_dir"]).resolve()
         if intake_dir.parent != state_root / "intakes" or intake_dir.name != drop_id:
             raise VerificationError("intake path binding mismatch")
@@ -149,6 +154,9 @@ def verify(
                 raise VerificationError("blind endpoint identity type mismatch")
             if card_id in cards:
                 raise VerificationError("eligible endpoint appears in multiple drops")
+            run_owner = drop_for_run.setdefault(run_id, drop_id)
+            if run_owner != drop_id:
+                raise VerificationError("eligible run appears in multiple drops")
             cards[card_id] = (task, run_id, parent, code_sha)
         for row in read_jsonl(pair_path):
             pair_rows_seen += 1
@@ -176,6 +184,8 @@ def verify(
             raise VerificationError("duplicate or invalid provisional run")
         if not isinstance(row.get("task"), str) or row.get("flow_status") != "scoreable":
             raise VerificationError("provisional run schema or flow mismatch")
+        if row.get("drop_id") != drop_for_run.get(run_id):
+            raise VerificationError("provisional run drop binding mismatch")
         run_rows[run_id] = row
     endpoint_run_ids = {identity[1] for identity in cards.values()}
     if endpoint_run_ids != set(run_rows):
@@ -190,9 +200,65 @@ def verify(
     decision_run_ids = {pair[1] for pair in rebuilt_pairs}
     tasks = {str(row["task"]) for row in runs}
     code_counts = collections.Counter(identity[3] for identity in cards.values())
+    code_runs: dict[str, set[str]] = collections.defaultdict(set)
+    code_tasks: dict[str, set[str]] = collections.defaultdict(set)
+    for task, run_id, _parent, code_sha in cards.values():
+        code_runs[code_sha].add(run_id)
+        code_tasks[code_sha].add(task)
     dominant_pair_count = max(pair_task_counts.values(), default=0)
     pair_count = len(rebuilt_pairs)
     dominant_share = dominant_pair_count / pair_count if pair_count else None
+    pair_run_counts = collections.Counter(pair[1] for pair in rebuilt_pairs)
+    decision_parent_groups = {(pair[0], pair[1], pair[2]) for pair in rebuilt_pairs}
+    task_pair_coverage = len(pair_task_counts) / len(tasks) if tasks else None
+    run_pair_coverage = len(decision_run_ids) / len(runs) if runs else None
+    code_unique_fraction = len(code_counts) / len(cards) if cards else None
+    duplicate_code_shas = {code_sha for code_sha, count in code_counts.items() if count > 1}
+    cross_run_duplicate_groups = sum(
+        len(code_runs[code_sha]) > 1 for code_sha in duplicate_code_shas
+    )
+    cross_task_duplicate_groups = sum(
+        len(code_tasks[code_sha]) > 1 for code_sha in duplicate_code_shas
+    )
+    pair_probabilities = [count / pair_count for count in pair_task_counts.values()]
+    pair_task_hhi = sum(probability**2 for probability in pair_probabilities)
+    effective_pair_tasks = 1 / pair_task_hhi if pair_task_hhi else None
+    normalized_pair_task_entropy = (
+        -sum(probability * math.log(probability) for probability in pair_probabilities)
+        / math.log(len(pair_probabilities))
+        if len(pair_probabilities) > 1
+        else None
+    )
+
+    day_transactions = collections.Counter(day_for_drop.values())
+    day_runs: dict[str, set[str]] = collections.defaultdict(set)
+    day_decision_runs: dict[str, set[str]] = collections.defaultdict(set)
+    day_tasks: dict[str, set[str]] = collections.defaultdict(set)
+    day_pair_tasks: dict[str, set[str]] = collections.defaultdict(set)
+    day_endpoints = collections.Counter()
+    day_pairs = collections.Counter()
+    for task, run_id, _parent, _code_sha in cards.values():
+        day = day_for_drop[drop_for_run[run_id]]
+        day_runs[day].add(run_id)
+        day_tasks[day].add(task)
+        day_endpoints[day] += 1
+    for task, run_id, _parent, _left, _right in rebuilt_pairs:
+        day = day_for_drop[drop_for_run[run_id]]
+        day_decision_runs[day].add(run_id)
+        day_pair_tasks[day].add(task)
+        day_pairs[day] += 1
+    per_day_support = {
+        day: {
+            "transactions": day_transactions[day],
+            "eligible_runs": len(day_runs[day]),
+            "finite_decision_runs": len(day_decision_runs[day]),
+            "eligible_tasks": len(day_tasks[day]),
+            "pair_tasks": len(day_pair_tasks[day]),
+            "eligible_endpoints": day_endpoints[day],
+            "eligible_structural_pairs": day_pairs[day],
+        }
+        for day in sorted(day_transactions)
+    }
     remaining_pairs = max(0, minimum_pairs - pair_count)
     checks = {
         "structural_pairs": pair_count >= minimum_pairs,
@@ -229,7 +295,7 @@ def verify(
     gate_pass = all(checks.values())
     return {
         "status": "STRUCTURAL_GATE_MET" if gate_pass else "STRUCTURAL_GATE_NOT_YET_MET",
-        "protocol": "prospective_structural_gate_independent_verifier_v1",
+        "protocol": "prospective_structural_gate_independent_verifier_v2",
         "source_sha256": sha256(Path(__file__)),
         "snapshot_sha256": snapshot_root.name,
         "inputs": {
@@ -260,6 +326,40 @@ def verify(
             "checks": checks,
             "all_pass": gate_pass,
             "vault_open_allowed": gate_pass,
+        },
+        "asset_quality": {
+            "decision_support": {
+                "runs_with_finite_decision": len(decision_run_ids),
+                "run_pair_coverage": run_pair_coverage,
+                "tasks_with_finite_decision": len(pair_task_counts),
+                "task_pair_coverage": task_pair_coverage,
+                "decision_parent_groups": len(decision_parent_groups),
+                "median_pairs_per_decision_run": statistics.median(pair_run_counts.values())
+                if pair_run_counts
+                else None,
+                "minimum_pairs_per_supported_task": min(pair_task_counts.values(), default=0),
+                "maximum_pairs_per_supported_task": max(pair_task_counts.values(), default=0),
+            },
+            "code_redundancy": {
+                "exact_code_unique_fraction": code_unique_fraction,
+                "duplicate_code_groups": len(duplicate_code_shas),
+                "duplicate_endpoints_beyond_first": sum(
+                    count - 1 for count in code_counts.values()
+                ),
+                "cross_run_duplicate_code_groups": cross_run_duplicate_groups,
+                "cross_task_duplicate_code_groups": cross_task_duplicate_groups,
+            },
+            "task_balance": {
+                "dominant_pair_task_count": dominant_pair_count,
+                "dominant_pair_task_share": dominant_share,
+                "pair_task_hhi": pair_task_hhi,
+                "effective_pair_tasks": effective_pair_tasks,
+                "normalized_pair_task_entropy": normalized_pair_task_entropy,
+            },
+            "temporal_support": {
+                "collection_days": len(per_day_support),
+                "per_day": per_day_support,
+            },
         },
         "cross_checks_against_accumulator": cross_checks,
         "security": {

@@ -97,8 +97,20 @@ def test_independent_structural_gate_rebuilds_pairs(tmp_path: Path) -> None:
     _write_jsonl(
         snapshot / "accumulator" / "provisional_runs.jsonl",
         [
-            {"run_id": "run-a", "task": "task-a", "flow_status": "scoreable", "endpoints": 3},
-            {"run_id": "run-b", "task": "task-b", "flow_status": "scoreable", "endpoints": 1},
+            {
+                "run_id": "run-a",
+                "task": "task-a",
+                "drop_id": "drop-a",
+                "flow_status": "scoreable",
+                "endpoints": 3,
+            },
+            {
+                "run_id": "run-b",
+                "task": "task-b",
+                "drop_id": "drop-a",
+                "flow_status": "scoreable",
+                "endpoints": 1,
+            },
         ],
     )
     _write_json(
@@ -141,3 +153,21 @@ def test_independent_structural_gate_rebuilds_pairs(tmp_path: Path) -> None:
         "dominant_pair_task_share": True,
     }
     assert all(receipt["cross_checks_against_accumulator"].values())
+    assert receipt["protocol"] == "prospective_structural_gate_independent_verifier_v2"
+    assert receipt["asset_quality"]["decision_support"] == {
+        "runs_with_finite_decision": 1,
+        "run_pair_coverage": 0.5,
+        "tasks_with_finite_decision": 1,
+        "task_pair_coverage": 0.5,
+        "decision_parent_groups": 1,
+        "median_pairs_per_decision_run": 3,
+        "minimum_pairs_per_supported_task": 3,
+        "maximum_pairs_per_supported_task": 3,
+    }
+    assert receipt["asset_quality"]["code_redundancy"] == {
+        "exact_code_unique_fraction": 0.75,
+        "duplicate_code_groups": 1,
+        "duplicate_endpoints_beyond_first": 1,
+        "cross_run_duplicate_code_groups": 0,
+        "cross_task_duplicate_code_groups": 0,
+    }

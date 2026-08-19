@@ -3,7 +3,7 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0BD. 2026-08-19 活跃实验：12-run 三 client 平衡生产 pilot
+## 0BD. 2026-08-19 最新结果：12-run 三 client 平衡生产支持门失败，禁止原矩阵放大
 
 0BC 只证明单一 task/seed 生产链可运行。下一步固定 3 clients×2 tasks×2 seeds=12 physical runs，任务为
 spooky/spaceship，seeds=1402/1403；每 run step=4、execution timeout=300 秒、run cap=1800 秒。
@@ -13,9 +13,25 @@ one-token probe。
 
 本 pilot 不比较 client score、不训练 critic、不计算 winner。完整性必须 12/12；支持 GO 还要求每 client
 至少 2 个 run 有 valid 非根节点、总 valid 节点≥18、真实 finite sibling pairs≥6、每 client≥1 pair 且
-最大 client pair share≤0.60。失败不降门；通过也只授权另立更大平衡 acquisition。直接预注册：
+最大 client pair share≤0.60。失败不降门；通过也只授权另立更大平衡 acquisition。
+
+四个 shard jobs `11198/11199/11200/11201` 均 `COMPLETED 0:0`，12/12 physical runs、48/48 journal
+rows、12/12 rc=0，resolved/final config、checkpoint、search/journal、env dump=0 等完整性检查全部通过；
+总计 9,373 GPU 秒（2.6036111111111113 GPU·h）。但冻结支持门为 **0/5 通过**：
+
+- valid-run 数 DeepSeek/Qwen/GLM=`4/0/3`；
+- valid 非根节点=`7/0/4`，总数 11<18；
+- finite same-parent sibling pairs=`3/0/0`，总数 3<6；
+- Qwen 与 GLM 均无 pair，DeepSeek pair share=1.0>0.60。
+
+因此裁决为 `INSUFFICIENT_BALANCED_PILOT_SUPPORT`：不得直接放大该三 client 矩阵，也不得把 12 个工程
+完成当成 12 个有效解。Qwen 的 4 个 run 均结构完成但 valid 节点为 0；这是生产支持瓶颈，不是 client
+score 排名。独立 verifier 双跑逐字节一致，SHA=
+`7527ef2dec44aff2c4bebeca8a9f4749f11532f3c9b40f20314f3b33809dbd04`；未读取分数、未计算 winner。
+直接证据：
 
 - `phase1/实验记录/2026-08-19/BalancedClientPilot_v1_预注册与长实验预检.md`。
+- `phase1/results/balanced_client_pilot_20260819_79bc2bb/README.md`。
 
 ## 0BC. 2026-08-19 最新结果：三 client 平衡生产 smoke a3 工程门通过
 

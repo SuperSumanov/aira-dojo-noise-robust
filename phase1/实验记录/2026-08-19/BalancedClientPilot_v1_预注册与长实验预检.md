@@ -1,6 +1,6 @@
 # BalancedClientPilot v1：预注册与长实验预检
 
-日期：2026-08-19。状态：`PREREGISTERED_NOT_SUBMITTED`。
+日期：2026-08-19。状态：`INSUFFICIENT_BALANCED_PILOT_SUPPORT`。
 
 ## 目的与冻结矩阵
 
@@ -43,3 +43,20 @@ verifier 只报告 finite/valid 布尔支持计数，不输出数值成绩，不
 11. 四个 stratum shard 各 1 GPU×2.25 小时，Slurm 硬上限 9 GPU·h；API 成功路径 72、上限 144。
 12. 逐 client/task 报支持与失败，不用 pooled completion 掩盖。
 13. pilot 不作 effect；更大生产必须另立预算、manifest 与门。
+
+## 结果与冻结裁决
+
+source/control commit=`79bc2bb6e5bb86b7cc60c61bed5cdcf6cdd7c692`。四个 shard jobs
+`11198/11199/11200/11201` 均 `COMPLETED 0:0`；12/12 physical runs、48/48 journal rows、12/12
+worker rc=0，完整性检查通过，env dump=0。四个一 GPU作业合计 9,373 秒，即
+2.6036111111111113 GPU·h。
+
+冻结支持计数为：valid-run DeepSeek/Qwen/GLM=`4/0/3`，valid 非根节点=`7/0/4`，finite
+same-parent sibling pairs=`3/0/0`。因此总 valid 节点 11<18、总 pair 3<6，Qwen/GLM 没有 pair，
+最大 client pair share=1.0>0.60，五项支持 predicate 全部失败。按预注册裁决为
+`INSUFFICIENT_BALANCED_PILOT_SUPPORT`，不降门、不放大原三 client 矩阵、不报告 client score。
+
+独立 verifier 连跑两次逐字节一致，SHA=
+`7527ef2dec44aff2c4bebeca8a9f4749f11532f3c9b40f20314f3b33809dbd04`；
+`score_values_reported=false`，`winner_labels_computed=false`。直接证据见
+`phase1/results/balanced_client_pilot_20260819_79bc2bb/`。

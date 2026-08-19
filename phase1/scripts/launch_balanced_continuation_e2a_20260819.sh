@@ -39,6 +39,7 @@ chmod 0500 "$run_root/job.sbatch" "$run_root/monitor.sh"
 printf '%s\n' "$expected_commit" >"$run_root/source_commit.txt"
 printf '%s\n' "$data_gate" >"$run_root/data_gate_root.txt"
 
+cd "$source_root"
 hf_cache="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_path"])' "$run_root/preparation/real_contract.json")"
 hf_manifest_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_manifest_sha256"])' "$run_root/preparation/real_contract.json")"
 hf_payload_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_payload_sha256"])' "$run_root/preparation/real_contract.json")"
@@ -50,7 +51,6 @@ hf_payload_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[
   >"$run_root/logs/hf_cache_verify.stdout" \
   2>"$run_root/logs/hf_cache_verify.stderr"
 
-cd "$source_root"
 set +e
 "$python_bin" -m pytest -q phase1/tests \
   >"$run_root/logs/linux_phase1_tests.stdout" \

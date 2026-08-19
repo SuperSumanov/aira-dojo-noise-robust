@@ -24,6 +24,9 @@ cache path、manifest SHA 和 payload SHA 写入 v2 real contract。提交前必
 verifier 再核验路径与双 SHA。任务、parent/sibling、代码、split、scorer、operator、1200 秒 timeout、矩阵与
 GPU/API 预算全部不变。新的 warm 必须六任务从零全跑 6/6，不能只补 Essay；通过后才允许 formal。直接审计：
 
+首次修复 launcher `...5b78119-a1` 在任何 Slurm submission 前因 cache verifier 早于 `cd source_root`
+而 import 失败；0 GPU/API/execution，失败 root 保留。只允许调整 launcher 工作目录顺序后另立新 root。
+
 - `phase1/实验记录/2026-08-19/BalancedContinuation_E2A_HF缓存安全修复预注册.md`。
 
 ## 0BF. 2026-08-19 E2-A warm 工程门一次失败；统一 1200 秒修复已结果前冻结

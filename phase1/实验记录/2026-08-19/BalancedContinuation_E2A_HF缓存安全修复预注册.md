@@ -70,3 +70,10 @@ Qwen operator、H=1、fresh workspace、1200 秒 timeout、Slurm wall 与所有�
 DeBERTa offline load probe、13/13 preflight、assignment 重建、secret filename/content scan=0。新的 warm 必须
 六任务全部 capability/producer/verifier/safety rc=0、artifact shape 合法、0 API、0 private mount、0
 score/label/outcome read。任一失败立即停止；不得只补失败 task，也不得自动继续 formal。
+
+## 6. pre-submit 失败记录
+
+首次新 launcher root `balanced-e2a-warm-smoke-5b78119-a1` 在任何 Slurm submission 前失败：独立 cache
+verifier 在 `cd source_root` 之前以 `python -m` 启动，因而无法 import `phase1`。该 root 只有 launcher
+静态文件和错误日志，0 GPU / 0 API / 0 candidate execution，不允许复用。唯一修复是把已有的
+`cd "$source_root"` 移到 cache verifier 之前；cache、contract、assignment、timeout、矩阵和全部科学门不变。

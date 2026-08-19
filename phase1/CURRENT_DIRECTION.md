@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BL. 2026-08-20 最新正资产结果：浅层规范化后仍无跨 run/跨任务 clone；强门因 AST 覆盖未过
+
+结果前 commit `e121452...` 固定 raw、token-literal、AST-literal 与 diagnostic AST-skeleton 四个口径，并把
+两种主规范化 coverage≥0.99、跨 run/跨任务重复端点比例和大模板组写入强门。基于 0BK 同一 frozen snapshot
+的双跑 receipt 逐字节一致，SHA=`9d85a642928385bac099b46ce36d24f5d8e24434a7b5076dc6b83ea8810656be`；五项
+accumulator 交叉核验全过，禁读路径/credential shape 均为 0，Linux 全套 `437 passed in 35.58s`。
+
+5,638/5,643 端点通过 tokenizer；去注释/换行并归一化数字和字符串后 unique=5,573/5,638，跨 physical run
+重复端点=0、跨 task=0。5,488/5,643 可由 Python 3.11 AST 解析；归一化 literal/位置属性后
+unique=5,423/5,488，跨 run=0、跨 task=0；更激进 skeleton 的跨 run/跨 task 也均为 0。由此可将 0BJ 的
+“无跨 run 逐字节复制”加强为：在 99.91% tokenizer 覆盖上，没有只靠注释、格式或字面量变化形成的跨 run/
+跨任务 exact clone；在 97.25% 可解析子集上 AST 证据一致。
+
+预注册强门仍判 **失败**，因为 AST coverage=`0.9725323409533936 < 0.99`（155 个失败端点），不得事后降门或
+宣称全语料无规范化 clone。该结果是 D&B 数据资产正证据，不是 critic/method 效果，也不排除 fuzzy/语义近重复。
+后续只允许将失败原因做 outcome-blind post-hoc sensitivity；0BK 的 223/960 与 closure 约束完全不变。
+直接证据：
+
+- `phase1/results/prospective_code_clone_audit_20260820_e121452/README.md`；
+- `phase1/实验记录/2026-08-20/ProspectiveCodeCloneAudit_v1_预注册.md`。
+
 ## 0BK. 2026-08-20 协议纠偏：确认 cohort 仍是 first-960 + closure；撤回“只差 27 pairs”
 
 结果前功效附录明确把 first-240 保留为 pilot、唯一确认 cohort 固定为按预注册全序排列的 first-960，并要求

@@ -1,0 +1,21 @@
+{
+  "source_commit": "e121452788d22722a7b69cedf007cc07064f9cfa",
+  "snapshot_sha256": "88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8",
+  "remote_output_dir": "/research/d7/spc/yzyang4/prospective_decision_v1/diagnostics/code_clone_audit_20260820_e121452",
+  "receipt_a_sha256": "9d85a642928385bac099b46ce36d24f5d8e24434a7b5076dc6b83ea8810656be",
+  "receipt_b_sha256": "9d85a642928385bac099b46ce36d24f5d8e24434a7b5076dc6b83ea8810656be",
+  "receipt_byte_identical": true,
+  "strace_a_sha256": "d0fd90c418456d5f48c0a9b0413f374b44caccf9e315082050a70a90e075ea9b",
+  "strace_b_sha256": "f9e5439fbfa753cb12d8f3aa755f89155e3b01e17222b136e53c634f1167a575",
+  "forbidden_file_access_matches": 0,
+  "credential_shape_matches": 0,
+  "targeted_test": "2 passed in 0.08s",
+  "targeted_test_sha256": "19e95f03931508bcb63d5f1f276741db94fd3f8f0399d2690ed306a73c3ba6c7",
+  "full_test": "437 passed in 35.58s",
+  "full_test_sha256": "5e9d86696fdba9d575eae20afe52a6c70b9ab75c8a74a1310c79fb376f716226",
+  "outcomes_read": false,
+  "label_vault_opened": false,
+  "gpu_hours": 0,
+  "api_calls": 0
+}
+

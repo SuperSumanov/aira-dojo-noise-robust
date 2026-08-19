@@ -45,3 +45,17 @@ prefix 的 exact clone 冗余较低”，不能升级为语义唯一、无训练
 - 两次文件访问 trace 的 label/grade/outcome/scorer/frozen-test 禁读模式必须为 0；
 - source commit、verifier blob、Python、所有输入 SHA 写入 receipt；
 - 定向测试与 Linux 全套测试必须通过，任何 schema/SHA/trace/rc 失败均 fail closed。
+
+## 执行结果（预注册后追加）
+
+source commit `e121452788d22722a7b69cedf007cc07064f9cfa` 在 frozen snapshot
+`88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8` 上双跑逐字节一致，receipt SHA=
+`9d85a642928385bac099b46ce36d24f5d8e24434a7b5076dc6b83ea8810656be`。禁读路径和 credential shape 均为 0；
+定向测试 `2 passed in 0.08s`，Linux 全套 `437 passed in 35.58s`。
+
+raw、token literal norm、AST literal norm、AST skeleton 的跨 run 与跨任务重复端点均为 0；token 主口径覆盖
+`0.9991139464823675`。但 AST 主口径只有 `5488/5643=0.9725323409533936`，低于预注册 0.99，因此固定强门
+判定为 **失败**，不改阈值。正结论只限定为 tokenizer 99.91% 覆盖上的零跨 run/跨任务 exact clone，以及 AST
+97.25% 可解析子集上的相同结果；不外推到 155 个失败端点或 fuzzy/语义 clones。
+
+完整证据：`phase1/results/prospective_code_clone_audit_20260820_e121452/README.md`。

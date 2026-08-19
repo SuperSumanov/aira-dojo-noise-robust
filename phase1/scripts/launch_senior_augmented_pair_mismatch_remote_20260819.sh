@@ -6,6 +6,7 @@ worktree=/research/d7/spc/yzyang4/worktrees/pair_mismatch_be51a27
 result=/research/d7/spc/yzyang4/prospective_decision_v1/formal_pair_mismatch_be51a27
 source_commit=be51a278ed02c03f3b277789684174bb449662db
 
+source ~/env_setup.sh
 git -C "$base" cat-file -e "$source_commit^{commit}"
 test ! -e "$worktree"
 test ! -e "$result"

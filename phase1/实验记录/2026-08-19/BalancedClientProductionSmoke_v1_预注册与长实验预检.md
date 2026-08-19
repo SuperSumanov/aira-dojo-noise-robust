@@ -12,8 +12,18 @@ smoke，防止重演历史上 `PC_CLIENT` 传入但四个 operator 没有实际�
 run time limit=900 秒全部相同。3×1 GPU array，Slurm `00:30:00`，硬上限 1.5 GPU·h。正式 smoke 预计
 6–12 次 API 生成；另有 3 次 max_tokens=1 的 fail-closed provider probe。
 
-source 固定为 aira-dojo commit `4029f62688b28f2bb979b5dc18a500cc6d669a79`，它是既有 Qwen/K2 生产
-链使用、且修复 client override 后的版本。remote `.env` 只 source、不复制；`logger.write_env_vars=false`。
+remote `.env` 只 source、不复制；`logger.write_env_vars=false`。
+
+## a1 fail-closed 与 a2 修复（结果读取前）
+
+a1 的三家 one-token probe 和 Linux 全套 `400 passed in 33.83s` 均通过；job `11178` 的 Qwen worker
+随后在真正生成调用前被 resolved-config 门拦截：旧 source pin 的 `litellm_gen2` 实际解析为
+`qwen-max-latest`，与预注册的 `qwen3-coder-flash` 不符。Qwen 为 `FAILED 1:0`，其余两行立即取消。
+a1 不读取或报告任何 score，只记作 source-pin 工程失败。
+
+a2 不修改 client/task/seed/operator/budget/hardware 矩阵；只把 source 与 control 统一锁到包含正确三个
+client YAML 的同一 immutable commit，并新增 production YAML 对 probe matrix 的测试。a1/a2 不拼接，
+a2 仍须三行独立通过下述全部成功门才可扩展。
 
 ## 成功门
 

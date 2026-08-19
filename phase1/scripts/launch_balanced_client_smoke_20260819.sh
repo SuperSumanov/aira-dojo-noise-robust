@@ -10,10 +10,13 @@ MODE="${2:---preflight-only}"
 [[ "$MODE" == --preflight-only || "$MODE" == --submit ]]
 
 REPO=/research/d7/spc/yzyang4/aira-dojo
-CONTROL_ROOT="/research/d7/spc/yzyang4/worktrees/balanced_client_control_${CONTROL_COMMIT:0:7}_nosmudge"
-SOURCE_COMMIT=4029f62688b28f2bb979b5dc18a500cc6d669a79
-SOURCE_ROOT="/research/d7/spc/yzyang4/worktrees/balanced_client_source_${SOURCE_COMMIT:0:7}_nosmudge"
-RUN_ROOT="/research/d7/spc/yzyang4/balanced-client-smoke-${CONTROL_COMMIT:0:7}-a1"
+CONTROL_ROOT="/research/d7/spc/yzyang4/worktrees/balanced_client_control_${CONTROL_COMMIT:0:7}_a2_nosmudge"
+# The first attempt pinned an older source commit whose Qwen client still resolved
+# to qwen-max-latest.  Use one immutable commit for both control and production so
+# the three client rows cannot silently differ from the preregistered config.
+SOURCE_COMMIT="$CONTROL_COMMIT"
+SOURCE_ROOT="$CONTROL_ROOT"
+RUN_ROOT="/research/d7/spc/yzyang4/balanced-client-smoke-${CONTROL_COMMIT:0:7}-a2"
 PYTHON=/research/d7/spc/yzyang4/venvs/exp/bin/python
 ENV_FILE=/research/d7/spc/yzyang4/aira-dojo-reproduce/.env
 
@@ -25,12 +28,8 @@ test "$(git -C "$REPO" rev-parse FETCH_HEAD)" = "$CONTROL_COMMIT"
 GIT_LFS_SKIP_SMUDGE=1 git -C "$REPO" worktree add --detach "$CONTROL_ROOT" "$CONTROL_COMMIT"
 test -z "$(git -C "$CONTROL_ROOT" status --porcelain --untracked-files=all)"
 
-if [[ -e "$SOURCE_ROOT" ]]; then
-  test "$(git -C "$SOURCE_ROOT" rev-parse HEAD)" = "$SOURCE_COMMIT"
-  test -z "$(git -C "$SOURCE_ROOT" status --porcelain --untracked-files=all)"
-else
-  GIT_LFS_SKIP_SMUDGE=1 git -C "$REPO" worktree add --detach "$SOURCE_ROOT" "$SOURCE_COMMIT"
-fi
+test "$(git -C "$SOURCE_ROOT" rev-parse HEAD)" = "$SOURCE_COMMIT"
+test -z "$(git -C "$SOURCE_ROOT" status --porcelain --untracked-files=all)"
 test -f "$ENV_FILE"
 mkdir -p "$RUN_ROOT/outputs"
 cp "$CONTROL_ROOT/phase1/balanced_client_smoke_manifest_20260819.json" "$RUN_ROOT/manifest.json"

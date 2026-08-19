@@ -3,6 +3,17 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BA. 2026-08-19 最新执行：三 client smoke a1 fail-closed，a2 固定同一 source/control commit
+
+a1 的 provider probes 与 Linux 全套 `400 passed` 均通过，但正式 worker 的 resolved-config 门在任何 Qwen
+生成调用前发现：预注册目标为 `qwen3-coder-flash`，旧 source pin `4029f626...` 的 `litellm_gen2` 实际仍为
+`qwen-max-latest`。Qwen 行因此 `FAILED 1:0`；DeepSeek/GLM 行在发现三行 source contract 不一致后被取消。
+a1 只保留为工程失败记录，不读、不报告 score，不进入任何效果或生产支持计数。
+
+a2 保持 0AZ 的 3 clients×1 task×1 seed、step=2、timeout 与资源预算完全不变；唯一修复是 source 与
+control 都锁到同一个新的 immutable commit，并新增测试把三个生产 client YAML 与 probe matrix 逐项绑定。
+仍须三行全部通过原成功门，才允许另立 12-run pilot；不得把 a1/a2 拼接。
+
 ## 0AZ. 2026-08-19 活跃工程门：三 client 平衡生产 smoke
 
 0AY 后不从旧数据降门，改为 outcome 前显式平衡 client。第一阶段仅提交 3 clients×1 task×1 seed 的 2-step
@@ -10,8 +21,8 @@
 完全固定。3×1 GPU、Slurm 硬上限 1.5 GPU·h，预计 6–12 次正式 API 调用；先各做一次 one-token probe。
 
 三行都必须由 resolved config 与最终产物证明四个 operator 确实切到目标 client，journal 恰有 2 steps，且
-无 env dump，才允许另立 12-run 平衡 pilot。任一失败停止，不把 smoke 的 grade/score 当效果。source 固定
-aira-dojo `4029f62688b28f2bb979b5dc18a500cc6d669a79`。直接预注册：
+无 env dump，才允许另立 12-run 平衡 pilot。任一失败停止，不把 smoke 的 grade/score 当效果。a1 的旧
+source pin 已被 0BA 的 resolved-config 门否决；a2 强制 source/control 同一 commit。直接预注册：
 
 - `phase1/实验记录/2026-08-19/BalancedClientProductionSmoke_v1_预注册与长实验预检.md`。
 

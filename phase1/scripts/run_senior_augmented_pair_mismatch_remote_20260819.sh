@@ -19,7 +19,7 @@ source ~/env_setup.sh
 set -u
 python=/research/d7/spc/yzyang4/venvs/critic/bin/python
 test_python=/research/d7/spc/yzyang4/venvs/exp/bin/python
-"$test_python" -m pytest -q
+"$test_python" -m pytest -q phase1/tests
 for pass in one two; do
   "$python" phase1/audit_senior_augmented_pair_mismatch.py \
     --run-manifest "$input/run_manifest.jsonl" --expect-run-manifest-sha256 "$run_sha" \

@@ -9,3 +9,6 @@ worktree 中先后通过 `git apply --check`、实际 apply、`git diff --check`
 本轮不读取 corpus，不调用 API/GPU，不训练模型。临时 worktree 在验证后已删除；日志保留。no-smudge checkout 报告
 三个历史 ordinary-Git/LFS attribute mismatch 文件，但 source/test paths 在 apply 前经 `git diff --quiet` 验证未改，
 不影响补丁或测试结论。
+
+完整日志保存在远端：
+`/research/d7/spc/yzyang4/prospective_decision_v1/stratum_patch_remote_verify_20260819.log`。

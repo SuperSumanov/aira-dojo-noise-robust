@@ -47,4 +47,5 @@ git am 0001-Enforce-exact-experiment-strata-6-focused-tests-pass.patch
 
 远端验证未读取 corpus、未使用 GPU/API；no-smudge checkout 的三个历史 LFS attribute mismatch 仅在 data 路径，
 source/test paths 在 apply 前保持 clean。验证后的临时 worktree 已删除，完整日志见
-`phase1/results/senior_exact_stratum_patch_verify_20260819/`。
+`/research/d7/spc/yzyang4/prospective_decision_v1/stratum_patch_remote_verify_20260819.log`；本地结果目录保存其
+SHA 与复现说明，不把 ignored `.log` 冒充已上传资产。

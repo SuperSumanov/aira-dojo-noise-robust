@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+from phase1 import compare_deployment_cost_runs as comparator
 from phase1 import deployment_cost_attestation as producer
 from phase1 import verify_deployment_cost_attestation as verifier
 
@@ -185,3 +186,28 @@ def test_independent_sample_manifest_reconstruction(tmp_path: Path):
     result = verifier.verify_sample_manifest(query, manifest, seed=7, sample_size=3)
     assert result["passed"]
     assert result["sample_pairs"] == 3
+
+
+def test_cross_run_environment_gate_requires_same_host_and_one_cpu():
+    config = {
+        "thread_contract": {
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_NUM_THREADS": "1",
+            "MKL_NUM_THREADS": "1",
+            "NUMEXPR_NUM_THREADS": "1",
+        }
+    }
+    hardware = {
+        "hostname": "host-a",
+        "platform": "linux-x",
+        "python": "3.11",
+        "numpy": "1",
+        "scipy": "2",
+        "sklearn": "3",
+        "cpu_affinity": [0],
+    }
+    assert all(comparator.environment_checks(config, hardware, dict(hardware)).values())
+    other = dict(hardware, hostname="host-b", cpu_affinity=[0, 1])
+    checks = comparator.environment_checks(config, hardware, other)
+    assert not checks["same_hostname"]
+    assert not checks["same_single_cpu_affinity"]

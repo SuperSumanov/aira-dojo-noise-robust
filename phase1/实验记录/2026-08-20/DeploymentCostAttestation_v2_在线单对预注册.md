@@ -49,7 +49,9 @@ throughput 从 v2 删除，因为它不是部署在线路径；所有正门和�
 3. 无 `ConvergenceWarning`，sample-batch 与逐对 decision 完全一致，反向 exact antisymmetry=`1.0`；
 4. 同一 run 内每模型 trial-query p50 最大/最小≤2，init 最大/最小≤3；
 5. A/B decision digest 相同；A/B query p50 最大/最小≤2，init p50 最大/最小≤3；
-6. 输入/source SHA、命令、seed、环境、CPU affinity、每行 CSV 与 receipt 均随产物保存；目标存在拒绝覆盖，完整
+6. comparator 必须确认 A/B hostname/platform/Python/package 相同、CPU affinity 相同且恰为一个 core、四项线程
+   环境变量均为 `1`；
+7. 输入/source SHA、命令、seed、环境、CPU affinity、每行 CSV 与 receipt 均随产物保存；目标存在拒绝覆盖，完整
    trial receipt 才可 resume。
 
 正成本门仅在完整性全过后判断，且与 v1 完全相同：
@@ -66,4 +68,3 @@ CPU only，GPU=0，API=0，不微调底座。根据 v1 partial 的 init 与逐�
 仍为 2 小时，超时即工程停止并保留 partial。主要风险是 init 波动、TF-IDF transform 尾延迟与系统负载；因此
 报告 min/p25/p50/p75/p95/max、逐 trial p50 和 A/B 比值，不只报一个均值。历史 execution runtime 是既有
 post-execution reference，不与 query latency 混成 accuracy-adjusted speedup。
-

@@ -820,6 +820,7 @@ def main() -> None:
 
     summary = summarize(config, measurements, receipts, runtime_summary)
     hardware = {
+        "hostname": platform.node(),
         "platform": platform.platform(),
         "python": platform.python_version(),
         "numpy": np.__version__,

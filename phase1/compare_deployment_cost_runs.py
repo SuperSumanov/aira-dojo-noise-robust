@@ -40,6 +40,26 @@ def ratio(left: float, right: float) -> float:
     return max(left, right) / max(min(left, right), 1e-15)
 
 
+def environment_checks(
+    config: dict[str, Any], hardware_a: dict[str, Any], hardware_b: dict[str, Any]
+) -> dict[str, bool]:
+    return {
+        "same_hostname": hardware_a["hostname"] == hardware_b["hostname"],
+        "same_platform": hardware_a["platform"] == hardware_b["platform"],
+        "same_python": hardware_a["python"] == hardware_b["python"],
+        "same_packages": all(
+            hardware_a[name] == hardware_b[name] for name in ("numpy", "scipy", "sklearn")
+        ),
+        "same_single_cpu_affinity": (
+            hardware_a["cpu_affinity"] == hardware_b["cpu_affinity"]
+            and len(hardware_a["cpu_affinity"]) == 1
+        ),
+        "thread_contract_is_one": all(
+            value == "1" for value in config["thread_contract"].values()
+        ),
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-a", required=True)
@@ -72,11 +92,7 @@ def main() -> None:
         raise ComparisonError("run B is not independently verified")
     if summary_a["status"] != summary_b["status"]:
         raise ComparisonError("scientific statuses differ")
-    same_platform = hardware_a["platform"] == hardware_b["platform"]
-    same_python = hardware_a["python"] == hardware_b["python"]
-    same_packages = all(
-        hardware_a[name] == hardware_b[name] for name in ("numpy", "scipy", "sklearn")
-    )
+    environment = environment_checks(config_a, hardware_a, hardware_b)
     model_checks: dict[str, Any] = {}
     for model in MODELS:
         query_ratio = ratio(
@@ -99,9 +115,7 @@ def main() -> None:
             "init_ratio_at_most_3": init_ratio <= 3.0,
         }
     checks = {
-        "same_platform": same_platform,
-        "same_python": same_python,
-        "same_packages": same_packages,
+        **environment,
         "same_result_status": summary_a["status"] == summary_b["status"],
         "all_models_same_decisions": all(item["same_decisions"] for item in model_checks.values()),
         "all_query_p50_ratios_at_most_2": all(

@@ -1,7 +1,36 @@
-# 当前研究方向唯一入口（2026-08-19）
+# 当前研究方向唯一入口（2026-08-20）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0BI. 2026-08-20 0818 安全摄取完成；结构门仅 pair 数未过，仍差 27
+
+0818 新增 8 个 append-only 归档，在固定 6 小时稳定窗后逐包处理；7 包形成不可变 transaction。
+`multi-modal-gesture-recognition-8seeds.tar.gz` 在生产 intake fail-closed。credential-first 独立 auditor
+双跑逐字节一致，4/4 checkpoint journals 的 task identity cardinality 均为 0；因此按精确
+path/size/mtime/SHA 整包结构拒收，未按文件名补 task、未打开 env/live-event journal 或 outcome。
+
+最终快照 `88cb791...170c8` 累计 42 transactions、249 physical runs / 223 eligible runs、25 tasks、
+5,643 eligible endpoints 与 1,473 structural sibling pairs。相对 0817 完成快照，精确增量为
++7 transactions、+26 eligible runs、+2 tasks、+1,219 endpoints、+257 pairs。最大 pair-task share=
+`0.1887304820095044`，exact-code unique=5,631/5,643。
+
+commit `ea438c50...` 的独立 verifier 不 import 生产 accumulator，从 42 份登记后的 blind manifest 自行按
+`(task, run, parent)` 重建 sibling 组合；真实快照双跑逐字节一致，收据 SHA=
+`af494085faded657d3486f75c6b7ce7b39ae25d00e69a7d5cd405a2a769894b7`。它得到 222 finite-decision runs、
+25 tasks、1,473 pairs，八项交叉计数均与 accumulator 一致；两份 strace 的 label/outcome/frozen/score
+禁读路径命中均为 0。
+
+旧 first-960 结构门要求至少 1,500 pairs、150 finite-decision runs、15 tasks、最大 pair-task share≤0.25。
+当前后三项通过，只有 `1473 < 1500`，程序复算仍差 27。因此状态保持
+`STRUCTURAL_GATE_NOT_YET_MET` / `PROSPECTIVE_COHORT_COLLECTING`，`vault_open_allowed=false`；不得为抢先看
+正结果提前开 label vault。6 小时监控继续处理未来新归档；跨门后先冻结精确 cohort 与版本收据，再按既有
+一次性协议评估。0BH 的 E2-A 关闭裁决和当前 D&B benchmark / future-only exact-stratum 主线均不变。
+直接证据：
+
+- `phase1/results/prospective_structural_rejection_20260820/README.md`；
+- `phase1/results/prospective_structural_rejection_20260820/intake_completion_summary.json`；
+- `phase1/实验记录/2026-08-20/Prospective0818_安全摄取与结构门复核.md`。
 
 ## 0BH. 2026-08-19 E2-A 六任务 warm 资格门失败；1200 秒边界不稳定，formal 关闭
 

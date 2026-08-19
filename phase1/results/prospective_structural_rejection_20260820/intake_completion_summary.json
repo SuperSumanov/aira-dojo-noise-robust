@@ -1,0 +1,73 @@
+{
+  "accepted_0818_archives": 7,
+  "accumulator_summary_sha256": "e06adc342121df2425f2a70c8c2c1e777a200509872e2e042cd4d3e0faac79c0",
+  "control_commit_for_independent_verifier": "ea438c50ebe9ed0bfb32a8349e605c93b2fc7f6a",
+  "current_status": "PROSPECTIVE_COHORT_COLLECTING",
+  "delta_from_0817_completion": {
+    "all_physical_runs": 26,
+    "eligible_endpoints": 1219,
+    "eligible_physical_runs": 26,
+    "eligible_structural_pairs": 257,
+    "eligible_tasks": 2,
+    "exact_code_duplicate_endpoints": 2,
+    "transactions": 7,
+    "unique_exact_code_sha256": 1217
+  },
+  "independent_gate_verification": {
+    "cross_checks_against_accumulator_all_pass": true,
+    "full_receipt_sha256": "af494085faded657d3486f75c6b7ce7b39ae25d00e69a7d5cd405a2a769894b7",
+    "protocol": "prospective_structural_gate_independent_verifier_v1",
+    "source_sha256": "11212ed28168a352cdd77489153bb824d2892412d4d7e6e5be35de30c9efb0db",
+    "strace_forbidden_path_hits_run_a": 0,
+    "strace_forbidden_path_hits_run_b": 0,
+    "two_runs_byte_identical": true
+  },
+  "inventory": {
+    "all_physical_runs": 249,
+    "dominant_endpoint_task_share": 0.18678008151692363,
+    "dominant_run_task_share": 0.09865470852017937,
+    "dominant_structural_pair_task_count": 278,
+    "dominant_structural_pair_task_share": 0.1887304820095044,
+    "eligible_endpoints": 5643,
+    "eligible_finite_decision_runs": 222,
+    "eligible_physical_runs": 223,
+    "eligible_structural_pairs": 1473,
+    "eligible_tasks": 25,
+    "exact_code_duplicate_endpoints": 12,
+    "unique_exact_code_sha256": 5631
+  },
+  "latest_snapshot_sha256": "88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8",
+  "monitor": {
+    "active_at_utc": "2026-08-19T21:22:44Z",
+    "archives_observed": 175,
+    "gpu_jobs": 0,
+    "llm_api_calls": 0,
+    "ready_archives": 0,
+    "structurally_rejected_archives_total": 5
+  },
+  "outcomes_read": false,
+  "rejected_0818_archives": 1,
+  "runner_summary_sha256": "0d479533f391bf2e1af4845595ef0ff3c7fe2457e90552689230a989e7a6e593",
+  "security": {
+    "label_vault_opened": false,
+    "outcome_files_opened": [],
+    "scorer_prediction_files_opened": []
+  },
+  "structural_gate": {
+    "all_pass": false,
+    "checks": {
+      "dominant_pair_task_share_at_most_0_25": true,
+      "finite_decision_runs_at_least_150": true,
+      "structural_pairs_at_least_1500": false,
+      "tasks_at_least_15": true
+    },
+    "minimum_finite_decision_runs": 150,
+    "minimum_structural_pairs": 1500,
+    "minimum_tasks": 15,
+    "maximum_dominant_pair_task_share": 0.25,
+    "remaining_structural_pairs": 27,
+    "vault_open_allowed": false
+  },
+  "transaction_registry_sha256": "6ef8a31f6ff2c385540cbab3b6fdb0291b0586079c086bb9d660c018c195b3cd",
+  "transactions": 42
+}

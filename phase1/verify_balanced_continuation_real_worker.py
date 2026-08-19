@@ -820,9 +820,14 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
     raw_result = canonical_json(result)
     if b"dval_score" in raw_result or b"dval_utility" in raw_result:
         raise VerifyError("D_val value leaked into worker result")
+    receipt_status = (
+        "VERIFIED_REAL_E2A_ROLLOUT_COMMITMENT_ONLY"
+        if dsearch_module == "phase1.balanced_continuation_e2a_dsearch_eval"
+        else "VERIFIED_REAL_E1_ROLLOUT_COMMITMENT_ONLY"
+    )
     receipt = {
         "schema_version": "balanced-continuation-real-worker-verification-v1",
-        "status": "VERIFIED_REAL_E1_ROLLOUT_COMMITMENT_ONLY",
+        "status": receipt_status,
         "worker_imported": False,
         "sealed_values_opened": False,
         "rollout_id": assignment["rollout_id"],

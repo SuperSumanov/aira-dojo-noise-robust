@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BM. 2026-08-20 AST 缺口诊断：失败并非简单包装；150/155 的 token 指纹仍全唯一
+
+0BL 的 aggregate AST coverage 失败后、读取任何失败代码/身份/类别前，commit `31aee5a...` 固定 outcome-blind
+post-hoc 诊断，且声明不得补救原 strong gate。双跑 receipt 逐字节一致，SHA=
+`cde16b78f5df01dde4ec579a6111d97610699d4d52e93b2a388dc7b39cb7a744`；禁读路径/credential shape 均为 0，
+Linux 全套 `439 passed in 38.16s`。
+
+155 个直接 AST 失败分布在 19 runs/8 anonymous tasks，匿名 task counts=`[82,62,3,3,2,1,1,1]`，说明缺失集中。
+仅 dedent、删 Markdown fence、删 `%`/`!` cell-command、固定组合与 union 均恢复 0/155，不能把缺口归因于这些
+表面包装。正面上，失败子集中的 150 个仍可 tokenizer fingerprint，且 150/150 唯一、跨 physical run=0、跨
+task=0；另外 5 个 tokenizer 也失败，保持未知。
+
+因此 0BL 的 token 主结论得到失败子集审计支持，但原 AST coverage 强门仍为 **false**，不得改阈值。可写主张
+仍是 99.91% tokenizer 覆盖上的零跨 run/跨任务浅层 clone，以及 97.25% 可解析子集上的 AST 一致证据；不能
+升级为全语料或语义唯一。0BK 的 first-960 + closure 门不变。直接证据：
+
+- `phase1/results/prospective_ast_failure_diagnostic_20260820_31aee5a/README.md`；
+- `phase1/实验记录/2026-08-20/ProspectiveAST失败诊断_v1_固定协议.md`。
+
 ## 0BL. 2026-08-20 最新正资产结果：浅层规范化后仍无跨 run/跨任务 clone；强门因 AST 覆盖未过
 
 结果前 commit `e121452...` 固定 raw、token-literal、AST-literal 与 diagnostic AST-skeleton 四个口径，并把

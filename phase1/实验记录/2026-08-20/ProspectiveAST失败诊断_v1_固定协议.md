@@ -26,3 +26,14 @@ fingerprint，也不进入任何 predictor。即使全部可恢复，也只能�
 - source commit/blob、snapshot 与输入 SHA 写入 receipt，双跑逐字节一致；
 - 两次 file trace 禁读模式 0、credential shape 0、定向与全套测试通过；
 - deterministic，0 GPU、0 API、0 LLM update；任何 binding/schema/trace/测试失败均 fail closed。
+
+## 执行结果（固定协议提交后追加）
+
+commit `31aee5a41fcb349b4defd0d8ce807bb680c49ac3` 双跑 receipt 逐字节一致，SHA=
+`cde16b78f5df01dde4ec579a6111d97610699d4d52e93b2a388dc7b39cb7a744`；禁读路径与 credential shape 均为 0，
+Linux 全套 `439 passed in 38.16s`。
+
+155 个失败分布在 19 runs/8 anonymous tasks，task counts=`[82,62,3,3,2,1,1,1]`；固定四种表面清理及其 union
+均恢复 0。失败子集中 tokenizer 成功 150 个，150/150 fingerprints 唯一、跨 run=0、跨 task=0；另 5 个保持
+未知。原 clone strong gate 仍为 false，不修改。完整证据：
+`phase1/results/prospective_ast_failure_diagnostic_20260820_31aee5a/README.md`。

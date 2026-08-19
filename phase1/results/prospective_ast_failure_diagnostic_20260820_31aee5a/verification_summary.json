@@ -1,0 +1,21 @@
+{
+  "source_commit": "31aee5a41fcb349b4defd0d8ce807bb680c49ac3",
+  "snapshot_sha256": "88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8",
+  "remote_output_dir": "/research/d7/spc/yzyang4/prospective_decision_v1/diagnostics/ast_failure_diagnostic_20260820_31aee5a",
+  "receipt_a_sha256": "cde16b78f5df01dde4ec579a6111d97610699d4d52e93b2a388dc7b39cb7a744",
+  "receipt_b_sha256": "cde16b78f5df01dde4ec579a6111d97610699d4d52e93b2a388dc7b39cb7a744",
+  "receipt_byte_identical": true,
+  "strace_a_sha256": "4d6d97bc1ae4cdcb1a10b521c5fa1e0eac54ca62c9e985a63187ac81b81e85c0",
+  "strace_b_sha256": "9b1d26bdf2542be774cd724488acbd9398bd29e5797169f5e71a6bb8d032652d",
+  "forbidden_file_access_matches": 0,
+  "credential_shape_matches": 0,
+  "targeted_test": "2 passed in 0.11s",
+  "targeted_test_sha256": "449f48faab28952069f2e297454c2a3b0f42069bcbc27c7b2b56439fc80297ed",
+  "full_test": "439 passed in 38.16s",
+  "full_test_sha256": "165b9410dd46c4710e2f58ca247dca258fcbb4b0504f9f623d0348ded97a45f2",
+  "outcomes_read": false,
+  "label_vault_opened": false,
+  "gpu_hours": 0,
+  "api_calls": 0
+}
+

@@ -208,7 +208,7 @@ def test_independent_structural_gate_rebuilds_pairs(tmp_path: Path) -> None:
         "dominant_pair_task_share": True,
     }
     assert all(receipt["cross_checks_against_accumulator"].values())
-    assert receipt["protocol"] == "prospective_structural_gate_independent_verifier_v4"
+    assert receipt["protocol"] == "prospective_structural_gate_independent_verifier_v5"
     assert receipt["reproducibility"]["source_commit"] == "b" * 40
     assert receipt["reproducibility"]["randomness_used"] is False
     assert receipt["reproducibility"]["thresholds"] == {

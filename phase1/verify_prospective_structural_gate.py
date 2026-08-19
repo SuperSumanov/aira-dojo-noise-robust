@@ -297,7 +297,7 @@ def verify(
         day_pairs[day] += 1
     per_day_support = {
         day: {
-            "transactions": day_transactions[day],
+            "transactions_with_cohort_runs": day_transactions[day],
             "eligible_runs": len(day_runs[day]),
             "finite_decision_runs": len(day_decision_runs[day]),
             "eligible_tasks": len(day_tasks[day]),
@@ -383,7 +383,7 @@ def verify(
         status = "CONFIRMATORY_COHORT_INSUFFICIENT_SUPPORT"
     return {
         "status": status,
-        "protocol": "prospective_structural_gate_independent_verifier_v4",
+        "protocol": "prospective_structural_gate_independent_verifier_v5",
         "source_sha256": sha256(Path(__file__)),
         "snapshot_sha256": snapshot_root.name,
         "reproducibility": {
@@ -536,11 +536,16 @@ def main() -> int:
     actual_commit = subprocess.check_output(
         ["git", "-C", str(repo_root), "rev-parse", "HEAD"], text=True
     ).strip()
-    tracked_status = subprocess.check_output(
-        ["git", "-C", str(repo_root), "status", "--porcelain", "--untracked-files=no"],
+    source_relative = Path(__file__).resolve().relative_to(repo_root).as_posix()
+    committed_blob = subprocess.check_output(
+        ["git", "-C", str(repo_root), "rev-parse", f"{actual_commit}:{source_relative}"],
         text=True,
     ).strip()
-    if actual_commit != args.source_commit or tracked_status:
+    worktree_blob = subprocess.check_output(
+        ["git", "-C", str(repo_root), "hash-object", str(Path(__file__).resolve())],
+        text=True,
+    ).strip()
+    if actual_commit != args.source_commit or committed_blob != worktree_blob:
         raise VerificationError("source commit binding or tracked worktree cleanliness failed")
     receipt = verify(
         args.state_root,

@@ -1,0 +1,10 @@
+{
+  "failure_caught": 1,
+  "pairs": 494,
+  "producer_imported": false,
+  "producer_status": "INSUFFICIENT_DETERMINISTIC_PRECHECK_FEASIBILITY",
+  "protocol": "independent-deterministic-failure-precheck-verifier-v1",
+  "status": "INDEPENDENT_DETERMINISTIC_PRECHECK_ARTIFACT_VERIFIED",
+  "success_false_rejected": 1,
+  "summary_sha256": "3b738ea56f11b80cc40375bd669cd4fd78310f1baade3679ec75bb1c73547b54"
+}

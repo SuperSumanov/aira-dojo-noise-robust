@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AN. 2026-08-19 最新覆盖：确定性 failure precheck 无净收益，静态 contract 路线关闭
+
+结果前 commit `863a3b0c33784a00da7e6cc3614e5b8d65df5a1e` 固定了无学习 AST/artifact-writer rule 与
+494 unique-parent train-only pairs。远端完整测试 `389 passed in 36.84s`，producer 双跑逐字节一致，
+summary SHA=`3b738ea56f11b80cc40375bd669cd4fd78310f1baade3679ec75bb1c73547b54`；独立 verifier 两次通过。
+
+规则仅 catch 1/494 failures=`0.0020242914979757085`，同时 false-reject 1/494 successes=
+`0.0020242914979757085`，paired net=0.0，task/run-clustered paired-net CI 都为 `[0.0,0.0]`，且只覆盖
+一个 12-pair 小任务。failure catch、任务覆盖、paired-net 三个冻结门失败，状态为
+`INSUFFICIENT_DETERMINISTIC_PRECHECK_FEASIBILITY`。旧 494 对上不得增加 sink、改规则或筛任务救活。
+
+正面但非方法性的机制边界是：真实 execution failures 几乎都已通过语法和表面 submission-writer contract，难点是
+execution-semantic，而不是可由廉价静态 lint 消除。当前仍没有解锁的新方法实验；继续以安全 corpus extension、
+decision-faithful benchmark 和明确的 missingness/failure-memory 数据资产为主。直接证据：
+
+- `phase1/results/deterministic_failure_precheck_20260819/README.md`；
+- `phase1/实验记录/2026-08-19/DeterministicFailurePrecheck_v1_裁决.md`。
+
 ## 0AM. 2026-08-19 最新覆盖：现有语料无 sibling 内 operator 支持，随机化自然实验路线关闭
 
 对 35 个 append-only transactions 的 outcome-blind 结构审计已经完成。结果前 commit

@@ -1,0 +1,207 @@
+{
+  "balanced_pair_rejection_precision": 0.5,
+  "caught_failure_tasks": 1,
+  "configuration": {
+    "bootstraps": 10000,
+    "required_literal_suffix": "submission.csv",
+    "seed": 20260819,
+    "submission_writers": [
+      "copy",
+      "copyfile",
+      "move",
+      "open",
+      "rename",
+      "replace",
+      "write_bytes",
+      "write_text"
+    ],
+    "unconditional_writers": [
+      "savetxt",
+      "to_csv",
+      "write_csv"
+    ]
+  },
+  "criteria": {
+    "all_8_large_tasks_false_reject_rate_le_0_05": true,
+    "caught_failure_tasks_ge_6": false,
+    "failure_catch_rate_ge_0_05": false,
+    "locked_support_eq_494_pairs_13_tasks_126_runs": true,
+    "success_false_reject_rate_le_0_01": true,
+    "task_clustered_paired_net_ci_lower_gt_0": false
+  },
+  "failure_catch_rate": 0.0020242914979757085,
+  "failure_caught": 1,
+  "failure_rejection_reasons": {
+    "REJECT_NO_ARTIFACT_WRITER": 1
+  },
+  "inputs": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "pair_registry_sha256": "ee7c878c9b3390c08d309229ac6380bf86e6934b92aab269e42ce7c2ffd57747",
+    "pair_sha256": [
+      "a04b5b805d0bc59b068cbb4df52bcbf23ea429f1b552022829671483eb6d1909",
+      "c2e38643cf2bb78e207964252af4f665961ab81416a762def04226b07c0d9258",
+      "10cbcc86ea8e5861eea3ad6da183e3dac5579533ee8be9890277be98f5de0903"
+    ],
+    "status_per_child_sha256": "bfb9870d83c50ef2d06bf2d374fc9f9213f41665f4cebeab7ab31837bcfde0d2",
+    "support_summary_sha256": "77b81f8d4356d74f14647c8a12281af201fe34c75da04ed077febdac17b400f1",
+    "taxonomy_per_child_sha256": "a5f46021d61d1415d49476728fa988feda5cd9d97e80697099f6af467eca2087"
+  },
+  "paired_net": 0.0,
+  "pairs": 494,
+  "per_task": {
+    "chaii-hindi-and-tamil-question-answering": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 55,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    },
+    "denoising-dirty-documents": {
+      "failure_catch_rate": 0.08333333333333333,
+      "failure_caught": 1,
+      "paired_net": 0.0,
+      "pairs": 12,
+      "success_false_reject_rate": 0.08333333333333333,
+      "success_false_rejected": 1
+    },
+    "dog-breed-identification": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 3,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    },
+    "leaf-classification": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 53,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    },
+    "learning-agency-lab-automated-essay-scoring-2": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 2,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    },
+    "mlsp-2013-birds": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 57,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    },
+    "nomad2018-predict-transparent-conductors": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 40,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    },
+    "petfinder-pawpularity-score": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 54,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    },
+    "random-acts-of-pizza": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 46,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    },
+    "spaceship-titanic": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 10,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    },
+    "spooky-author-identification": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 134,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    },
+    "tabular-playground-series-dec-2021": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 8,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    },
+    "tabular-playground-series-may-2022": {
+      "failure_catch_rate": 0.0,
+      "failure_caught": 0,
+      "paired_net": 0.0,
+      "pairs": 20,
+      "success_false_reject_rate": 0.0,
+      "success_false_rejected": 0
+    }
+  },
+  "physical_runs": 126,
+  "protocol": "deterministic-failure-precheck-v1",
+  "run_clustered_ci": {
+    "failure_catch": [
+      0.0,
+      0.006976845651203375
+    ],
+    "paired_net": [
+      0.0,
+      0.0
+    ],
+    "success_false_reject": [
+      0.0,
+      0.006976845651203375
+    ]
+  },
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updated": false,
+    "cross_agent_generalization_claim_allowed": false,
+    "frozen_code_used": false,
+    "gpu": 0,
+    "numeric_grade_read": false,
+    "prospective_confirmation_required": true,
+    "raw_code_emitted": false,
+    "retrospective_only": true,
+    "search_utility_claim_allowed": false
+  },
+  "source_commit": "863a3b0c33784a00da7e6cc3614e5b8d65df5a1e",
+  "status": "INSUFFICIENT_DETERMINISTIC_PRECHECK_FEASIBILITY",
+  "success_false_reject_rate": 0.0020242914979757085,
+  "success_false_rejected": 1,
+  "success_rejection_reasons": {
+    "REJECT_NO_ARTIFACT_WRITER": 1
+  },
+  "task_clustered_ci": {
+    "failure_catch": [
+      0.0,
+      0.008849557522123894
+    ],
+    "paired_net": [
+      0.0,
+      0.0
+    ],
+    "success_false_reject": [
+      0.0,
+      0.008849557522123894
+    ]
+  },
+  "tasks": 13
+}

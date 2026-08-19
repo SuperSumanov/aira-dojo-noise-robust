@@ -18,4 +18,3 @@ label vault，未读取 numeric grade/outcome，未输出 raw code，GPU/API 均
 这说明现有生成数据中的 operator 多样性发生在 parent 之间，而不是同 parent siblings 内。当前语料不能支持
 parent-matched operator effect、随机化自然实验或因果主张。未来若主动把 operator assignment 改为 child 级，
 那是新的生产干预，需要独立 scheduler event stream、预算 ledger、预注册和用户批准；本结果不授权它。
-

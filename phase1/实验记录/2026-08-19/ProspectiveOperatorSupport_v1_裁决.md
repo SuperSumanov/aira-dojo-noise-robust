@@ -30,4 +30,3 @@ effect 或随机化自然实验。
 这不证明主动 child-level operator 随机化永远不可行；它证明该方案必须被视为一个新的生产干预，而不是对当前
 语料的免费重分析。任何此类干预仍需真实 append-only scheduler event stream、displaced-slot budget ledger、
 单独预注册与预算批准。本轮不激活 production，也不产生因果或 search-utility 主张。
-

@@ -3,6 +3,18 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AV. 2026-08-19 活跃工程实验：0812 temporal prediction escrow
+
+在不消耗标签资产的前提下，允许已于 2026-08-13 22:19 UTC 激活固定的 `static_lr`/`char_tfidf_lr`，对
+0812 temporal blind 的 805 endpoints / 103 sibling pairs 生成 prediction escrow。固定矩阵为 1 bundle ×
+2 arms，0 GPU/API；只写 endpoint score、左右 margin/selection 和 SHA，不计算 accuracy，不打开 label vault。
+
+成功门是 805/57/9/103 全覆盖、pre-cutoff endpoint ID 与 exact-code overlap=0、全 finite、producer 双跑一致、
+独立 scorer 重算差≤1e-12、系统调用 trace 的 vault open=0。它只为未来 clean checkpoints 的共同一次性评测
+保留可审计基线，不是新的效果主张。直接预注册：
+
+- `phase1/实验记录/2026-08-19/TemporalPredictionEscrow_v1_预注册与执行前检查.md`。
+
 ## 0AU. 2026-08-19 最新覆盖：value pairs 全部同 client，generator-identity 强解释关闭
 
 结果前 commit `3048d2236031e3f9b11305d98996c69f7cc053fd` 固定了 5-fold physical-run OOF 与六个

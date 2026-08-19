@@ -1,0 +1,305 @@
+{
+  "configuration": {
+    "exact_stratum_fields": [
+      "task",
+      "hardware",
+      "time_limit",
+      "execution_timeout"
+    ],
+    "min_other_clients_per_stratum": 2,
+    "min_other_pairs_per_stratum": 50
+  },
+  "criteria": {
+    "eligible_clients_ge_6": false,
+    "total_eligible_test_pairs_ge_3000": false
+  },
+  "inputs": {
+    "cards_sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb",
+    "pairs_sha256": "c669d672d0a2aeee6da97393e3e832a312295aa5aebd7cd457ff297a27d4d9d2"
+  },
+  "inventory": {
+    "cards": 31742,
+    "clients": 11,
+    "eligible_client_names": [],
+    "eligible_client_task_cells": 0,
+    "eligible_clients": 0,
+    "runs": 676,
+    "same_client_same_environment_pairs": 11030,
+    "tasks": 28,
+    "total_eligible_test_pairs": 0,
+    "train_pairs": 11946
+  },
+  "per_client": {
+    "deepseek-v4-flash": {
+      "criteria": {
+        "dominant_task_share_le_0_50": true,
+        "test_pairs_ge_200": false,
+        "test_runs_ge_15": false,
+        "test_tasks_ge_4": false,
+        "train_clients_ge_3": true,
+        "train_pairs_ge_1000": true
+      },
+      "cross_client_exact_code_overlap_pairs_excluded": 0,
+      "dominant_test_task_share": 0.39375,
+      "eligible": false,
+      "prefilter_exact_pairs": 2995,
+      "supported_test_pairs": 160,
+      "supported_test_runs": 9,
+      "supported_test_tasks": 3,
+      "supported_train_clients": 5,
+      "supported_train_pairs": 1096,
+      "supported_train_runs": 43,
+      "test_pairs_per_task": {
+        "denoising-dirty-documents": 54,
+        "petfinder-pawpularity-score": 43,
+        "spooky-author-identification": 63
+      }
+    },
+    "deepseek-v4-pro": {
+      "criteria": {
+        "dominant_task_share_le_0_50": true,
+        "test_pairs_ge_200": true,
+        "test_runs_ge_15": false,
+        "test_tasks_ge_4": true,
+        "train_clients_ge_3": true,
+        "train_pairs_ge_1000": false
+      },
+      "cross_client_exact_code_overlap_pairs_excluded": 0,
+      "dominant_test_task_share": 0.41445783132530123,
+      "eligible": false,
+      "prefilter_exact_pairs": 648,
+      "supported_test_pairs": 415,
+      "supported_test_runs": 14,
+      "supported_test_tasks": 4,
+      "supported_train_clients": 5,
+      "supported_train_pairs": 922,
+      "supported_train_runs": 44,
+      "test_pairs_per_task": {
+        "denoising-dirty-documents": 77,
+        "petfinder-pawpularity-score": 172,
+        "spooky-author-identification": 157,
+        "tabular-playground-series-may-2022": 9
+      }
+    },
+    "gpt-5.4-nano": {
+      "criteria": {
+        "dominant_task_share_le_0_50": false,
+        "test_pairs_ge_200": false,
+        "test_runs_ge_15": false,
+        "test_tasks_ge_4": false,
+        "train_clients_ge_3": true,
+        "train_pairs_ge_1000": true
+      },
+      "cross_client_exact_code_overlap_pairs_excluded": 0,
+      "dominant_test_task_share": 0.8808290155440415,
+      "eligible": false,
+      "prefilter_exact_pairs": 910,
+      "supported_test_pairs": 193,
+      "supported_test_runs": 8,
+      "supported_test_tasks": 3,
+      "supported_train_clients": 6,
+      "supported_train_pairs": 1098,
+      "supported_train_runs": 34,
+      "test_pairs_per_task": {
+        "petfinder-pawpularity-score": 2,
+        "spooky-author-identification": 21,
+        "us-patent-phrase-to-phrase-matching": 170
+      }
+    },
+    "gpt-5.6-luna": {
+      "criteria": {
+        "dominant_task_share_le_0_50": false,
+        "test_pairs_ge_200": false,
+        "test_runs_ge_15": false,
+        "test_tasks_ge_4": false,
+        "train_clients_ge_3": true,
+        "train_pairs_ge_1000": false
+      },
+      "cross_client_exact_code_overlap_pairs_excluded": 0,
+      "dominant_test_task_share": 0.5078125,
+      "eligible": false,
+      "prefilter_exact_pairs": 534,
+      "supported_test_pairs": 128,
+      "supported_test_runs": 7,
+      "supported_test_tasks": 2,
+      "supported_train_clients": 5,
+      "supported_train_pairs": 813,
+      "supported_train_runs": 26,
+      "test_pairs_per_task": {
+        "petfinder-pawpularity-score": 65,
+        "spooky-author-identification": 63
+      }
+    },
+    "minimax/minimax-m3": {
+      "criteria": {
+        "dominant_task_share_le_0_50": true,
+        "test_pairs_ge_200": false,
+        "test_runs_ge_15": false,
+        "test_tasks_ge_4": false,
+        "train_clients_ge_3": true,
+        "train_pairs_ge_1000": false
+      },
+      "cross_client_exact_code_overlap_pairs_excluded": 0,
+      "dominant_test_task_share": 0.45294117647058824,
+      "eligible": false,
+      "prefilter_exact_pairs": 1266,
+      "supported_test_pairs": 170,
+      "supported_test_runs": 8,
+      "supported_test_tasks": 3,
+      "supported_train_clients": 6,
+      "supported_train_pairs": 992,
+      "supported_train_runs": 38,
+      "test_pairs_per_task": {
+        "denoising-dirty-documents": 49,
+        "petfinder-pawpularity-score": 77,
+        "us-patent-phrase-to-phrase-matching": 44
+      }
+    },
+    "moonshotai/kimi-k2.5": {
+      "criteria": {
+        "dominant_task_share_le_0_50": false,
+        "test_pairs_ge_200": false,
+        "test_runs_ge_15": false,
+        "test_tasks_ge_4": false,
+        "train_clients_ge_3": false,
+        "train_pairs_ge_1000": false
+      },
+      "cross_client_exact_code_overlap_pairs_excluded": 0,
+      "dominant_test_task_share": null,
+      "eligible": false,
+      "prefilter_exact_pairs": 484,
+      "supported_test_pairs": 0,
+      "supported_test_runs": 0,
+      "supported_test_tasks": 0,
+      "supported_train_clients": 0,
+      "supported_train_pairs": 0,
+      "supported_train_runs": 0,
+      "test_pairs_per_task": {}
+    },
+    "qwen/qwen3.7-flash": {
+      "criteria": {
+        "dominant_task_share_le_0_50": false,
+        "test_pairs_ge_200": false,
+        "test_runs_ge_15": false,
+        "test_tasks_ge_4": false,
+        "train_clients_ge_3": false,
+        "train_pairs_ge_1000": false
+      },
+      "cross_client_exact_code_overlap_pairs_excluded": 0,
+      "dominant_test_task_share": null,
+      "eligible": false,
+      "prefilter_exact_pairs": 172,
+      "supported_test_pairs": 0,
+      "supported_test_runs": 0,
+      "supported_test_tasks": 0,
+      "supported_train_clients": 0,
+      "supported_train_pairs": 0,
+      "supported_train_runs": 0,
+      "test_pairs_per_task": {}
+    },
+    "qwen3.5-397b-a17b": {
+      "criteria": {
+        "dominant_task_share_le_0_50": true,
+        "test_pairs_ge_200": true,
+        "test_runs_ge_15": false,
+        "test_tasks_ge_4": true,
+        "train_clients_ge_3": true,
+        "train_pairs_ge_1000": false
+      },
+      "cross_client_exact_code_overlap_pairs_excluded": 0,
+      "dominant_test_task_share": 0.3167420814479638,
+      "eligible": false,
+      "prefilter_exact_pairs": 1657,
+      "supported_test_pairs": 442,
+      "supported_test_runs": 14,
+      "supported_test_tasks": 4,
+      "supported_train_clients": 5,
+      "supported_train_pairs": 895,
+      "supported_train_runs": 44,
+      "test_pairs_per_task": {
+        "denoising-dirty-documents": 135,
+        "petfinder-pawpularity-score": 138,
+        "spooky-author-identification": 140,
+        "tabular-playground-series-may-2022": 29
+      }
+    },
+    "tencent/hy3-preview": {
+      "criteria": {
+        "dominant_task_share_le_0_50": false,
+        "test_pairs_ge_200": false,
+        "test_runs_ge_15": false,
+        "test_tasks_ge_4": false,
+        "train_clients_ge_3": false,
+        "train_pairs_ge_1000": false
+      },
+      "cross_client_exact_code_overlap_pairs_excluded": 0,
+      "dominant_test_task_share": null,
+      "eligible": false,
+      "prefilter_exact_pairs": 849,
+      "supported_test_pairs": 0,
+      "supported_test_runs": 0,
+      "supported_test_tasks": 0,
+      "supported_train_clients": 0,
+      "supported_train_pairs": 0,
+      "supported_train_runs": 0,
+      "test_pairs_per_task": {}
+    },
+    "xiaomi/mimo-v2.5": {
+      "criteria": {
+        "dominant_task_share_le_0_50": false,
+        "test_pairs_ge_200": false,
+        "test_runs_ge_15": false,
+        "test_tasks_ge_4": false,
+        "train_clients_ge_3": false,
+        "train_pairs_ge_1000": false
+      },
+      "cross_client_exact_code_overlap_pairs_excluded": 0,
+      "dominant_test_task_share": null,
+      "eligible": false,
+      "prefilter_exact_pairs": 380,
+      "supported_test_pairs": 0,
+      "supported_test_runs": 0,
+      "supported_test_tasks": 0,
+      "supported_train_clients": 0,
+      "supported_train_pairs": 0,
+      "supported_train_runs": 0,
+      "test_pairs_per_task": {}
+    },
+    "z-ai/glm-5": {
+      "criteria": {
+        "dominant_task_share_le_0_50": false,
+        "test_pairs_ge_200": false,
+        "test_runs_ge_15": false,
+        "test_tasks_ge_4": false,
+        "train_clients_ge_3": false,
+        "train_pairs_ge_1000": false
+      },
+      "cross_client_exact_code_overlap_pairs_excluded": 0,
+      "dominant_test_task_share": 1.0,
+      "eligible": false,
+      "prefilter_exact_pairs": 1135,
+      "supported_test_pairs": 136,
+      "supported_test_runs": 4,
+      "supported_test_tasks": 1,
+      "supported_train_clients": 2,
+      "supported_train_pairs": 214,
+      "supported_train_runs": 5,
+      "test_pairs_per_task": {
+        "us-patent-phrase-to-phrase-matching": 136
+      }
+    }
+  },
+  "protocol": "cross-client-transfer-support-v1",
+  "scope": {
+    "api_calls": 0,
+    "frozen_test_used": false,
+    "gpu": 0,
+    "model_trained": false,
+    "numeric_grade_used": false,
+    "pair_orientation_used_for_effect": false,
+    "raw_code_emitted": false
+  },
+  "senior_source_commit": "92a9651f2e13a9e43623235b82c07c19721bc2ee",
+  "source_commit": "2e7ea07fc7ff5dfe476e6b6d8bfcf8877ff91adb",
+  "status": "INSUFFICIENT_CROSS_CLIENT_TRANSFER_SUPPORT"
+}

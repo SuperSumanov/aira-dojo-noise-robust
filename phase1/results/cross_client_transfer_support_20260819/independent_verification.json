@@ -1,0 +1,7 @@
+{
+  "eligible_clients": 0,
+  "eligible_pool_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "eligible_test_pairs": 0,
+  "status": "VERIFIED_CROSS_CLIENT_TRANSFER_SUPPORT",
+  "summary_sha256": "43405484450ffea994ba69ef06b45c7c8e9db9962a8bda5e84327cf10513bb94"
+}

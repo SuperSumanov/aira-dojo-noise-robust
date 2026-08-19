@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AY. 2026-08-19 最新覆盖：cross-client transfer 被共享 support 阻塞，效果不运行
+
+结果前 commit `2e7ea07fc7ff5dfe476e6b6d8bfcf8877ff91adb` 固定 exact-stratum 与支持门；远端
+Linux `399 passed in 35.11s`，producer 双跑和独立 verifier 双跑一致。11,946 train pairs 中有 11,030
+个同 client、同 exact `(task, hardware, time_limit, execution_timeout)` pairs；所有 client 的跨 client
+exact-code overlap pair 均为 0。
+
+但每个 held-out test stratum 要求其他 client 提供≥50 pairs/≥2 clients 后，0 个 client 同时通过预注册的
+test≥200 pairs/4 tasks/15 runs、train≥1,000 pairs/3 clients、dominant task≤0.50。最接近的
+`deepseek-v4-pro` 是 415 test pairs/4 tasks/14 runs/922 train pairs，`qwen3.5-397b-a17b` 是
+442/4/14/895；正式 eligible pool 为空。按协议不运行 LOSO 效果、不降门或挑 client。
+
+这不证明 critic 无法跨 generator 泛化，而是证明现有 generator×task×environment 联合覆盖不可识别该命题。
+未来数据生产应显式平衡共享 task×environment×client 矩阵；这同时服务 future exact-stratum clean scaling 与
+cross-generator OOD benchmark。summary SHA=`43405484450ffea994ba69ef06b45c7c8e9db9962a8bda5e84327cf10513bb94`。
+直接证据：
+
+- `phase1/results/cross_client_transfer_support_20260819/README.md`；
+- `phase1/实验记录/2026-08-19/CrossClientTransferSupport_v1_裁决.md`。
+
 ## 0AX. 2026-08-19 活跃支持门：critic 跨 generator/client 的迁移支持
 
 在 future exact-stratum cohort 尚未新增时，允许一次 outcome-blind LOSO 结构支持审计。它只使用 augmented

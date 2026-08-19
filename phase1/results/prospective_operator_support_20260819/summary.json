@@ -1,0 +1,199 @@
+{
+  "criteria": {
+    "debug_and_improve_each_ge_1000_endpoints": true,
+    "debug_and_improve_each_ge_15_tasks": true,
+    "dominant_mixed_operator_task_share_le_0_25": false,
+    "eligible_endpoints_ge_3000": true,
+    "eligible_runs_ge_150": true,
+    "eligible_tasks_ge_15": true,
+    "exact_two_mixed_operator_parents_ge_60": false,
+    "mixed_operator_parents_ge_100": false,
+    "mixed_operator_tasks_ge_10": false,
+    "transactions_eq_expected": true
+  },
+  "endpoint_op_counts": {
+    "Debug": 2034,
+    "Draft": 392,
+    "Improve": 1998
+  },
+  "inputs": {
+    "eligible_manifest_shas": [
+      {
+        "drop_id": "0813-random-acts-of-pizza-4seeds-a11523c1909d117b",
+        "sha256": "a7a42315ce0af131522ec804bed9e4d87edd53bd0cc8fef18fd8b2d3ce61c12f"
+      },
+      {
+        "drop_id": "0813-ranzcr-clip-catheter-line-classification-8seeds-78f98338d3164f83",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "drop_id": "0813-whale-categorization-playground-8seeds-cb7c2a72fbfe99e3",
+        "sha256": "ed09e13b1c0ccdd2c8ddaf701ba79d0182932244cd88af23dba02bef61d06bd1"
+      },
+      {
+        "drop_id": "0813-ventilator-pressure-prediction-8seeds-161b32161451e4d7",
+        "sha256": "866658f6ec926ac71a48afc02d714eab113cd6c74e76fe9f71f18b85b7fa257d"
+      },
+      {
+        "drop_id": "0813-dog-breed-identification-8seeds-7a5169e34e1c6ec4",
+        "sha256": "80642c73132dd4e1c782a3269de54113f2462a791019a64a949ff968ad9c1b6e"
+      },
+      {
+        "drop_id": "0813-learning-agency-lab-automated-essay-scoring-2-4seeds-5216bf4b0b13310a",
+        "sha256": "416dd4db53fef4b3d23010d423be7144658141fc5431a620a29bb1e909c5dbfd"
+      },
+      {
+        "drop_id": "0813-tweet-sentiment-extraction-4seeds-845ce54212b32c11",
+        "sha256": "2c41d33e31bd4adbb445873c4cc0e9767bc668a97f31b914d11ec99eff5648e3"
+      },
+      {
+        "drop_id": "0813-dogs-vs-cats-redux-kernels-edition-8seeds-9585d47f209d5359",
+        "sha256": "f889edb28c2168eacea71d8e18b6c1b457e2c72e05059c9a99193da6f421a5bb"
+      },
+      {
+        "drop_id": "0814-us-patent-phrase-to-phrase-matching-8seeds-32a5ed6de015b6cb",
+        "sha256": "7b63058a38823060d9dd59e843b122c89fc7e03cc8e147ba67a832600b8f2530"
+      },
+      {
+        "drop_id": "0814-tgs-salt-identification-challenge-8seeds-8cda2edb1c55df91",
+        "sha256": "8186d616dcb91b8e073fa69b7a0675eb8430ae038bc95d12330d2843d468b320"
+      },
+      {
+        "drop_id": "0814-learning-agency-lab-automated-essay-scoring-2-4seeds-5f163e761acf09cd",
+        "sha256": "e0404f6a92a53c0114fce8e39bb3f0b27c3dbccbcb15c321c2789d400c7957c3"
+      },
+      {
+        "drop_id": "0814-ranzcr-clip-catheter-line-classification-8seeds-4d6cd699417d7e6e",
+        "sha256": "32eee0a18535963a715e1e6fcc563334267d8058788b715330c48204923402d5"
+      },
+      {
+        "drop_id": "0814-text-normalization-challenge-russian-language-8seeds-e8f95c39c48e5c93",
+        "sha256": "ce27a737d329d5da338485d1a9cea888af187d453159ef7f233eda689165451c"
+      },
+      {
+        "drop_id": "0814-dogs-vs-cats-redux-kernels-edition-8seeds-68638d0628837b62",
+        "sha256": "95eff74301840a427d3f369e75c1713f61ff69366b2fda0dc072353a5425c2b7"
+      },
+      {
+        "drop_id": "0814-new-york-city-taxi-fare-prediction-8seeds-cd3d8503bcccdfd5",
+        "sha256": "5b89efa81e00e023e5af61bc0f2e83085c588e00cff77a76e70b31020d4a8a68"
+      },
+      {
+        "drop_id": "0814-aptos2019-blindness-detection-4seeds-f86f018e7a687f91",
+        "sha256": "4edb5c72800d20a2a6c60cc5fc76e41d3be49387f21a772de0eca9de7cd962f5"
+      },
+      {
+        "drop_id": "0815-ranzcr-clip-catheter-line-classification-8seeds-533f67332122197a",
+        "sha256": "d1a2a1c95d87c064d62080b854c6d50325d4338339543d23db84c19f29cb735c"
+      },
+      {
+        "drop_id": "0815-ventilator-pressure-prediction-8seeds-e0e5c160f5ddb16a",
+        "sha256": "e5b7521ae4fb3a77582e417d1654643c075a6e42f1e60026e0ff28f3542ad1d0"
+      },
+      {
+        "drop_id": "0815-google-quest-challenge-8seeds-d31a4f411deaec46",
+        "sha256": "8c3485c68474cce00f8fb26823ecd572e845cb78d96781e48ab3fdd66ba89f72"
+      },
+      {
+        "drop_id": "0815-dog-breed-identification-8seeds-a8e2b7892a7ea698",
+        "sha256": "d28171efc5cf915b9eb39a1558b87e3323bc202115fdaa5c38c5da36703dad5e"
+      },
+      {
+        "drop_id": "0815-facebook-recruiting-iii-keyword-extraction-4seeds-e5cca2e640a0ad78",
+        "sha256": "936d30250916b16e914a1f3d76594a2b7ae22d98e2e522a58ccbcbc7cb86ca36"
+      },
+      {
+        "drop_id": "0815-cassava-leaf-disease-classification-4seeds-ce188bec50864994",
+        "sha256": "17bd516f2b2c7788d420a548cd847c79e3c1b958099af306ec0ec9995f54e731"
+      },
+      {
+        "drop_id": "0816-AI4Code-8seeds-c93b374b36371b4e",
+        "sha256": "06c34c4d96783a4b99da3e3edfd3e719cb33726516ac0c4779bcb7de06a9e707"
+      },
+      {
+        "drop_id": "0816-tgs-salt-identification-challenge-4seeds-a5d49d93917af987",
+        "sha256": "90e6b9c566c0e0613c40309506044c11db37fa48a1c8b52b7fb7db4a595ba727"
+      },
+      {
+        "drop_id": "0816-tensorflow-speech-recognition-challenge-8seeds-c52b8aada76252ea",
+        "sha256": "a5b2c3cbf20831463d9db431a6e443088be958feecc96cd4bb1f301227692a0e"
+      },
+      {
+        "drop_id": "0816-ranzcr-clip-catheter-line-classification-8seeds-d9955e8b7ae626ea",
+        "sha256": "9b9df5b35323e73672d7ae0338320f89c8ac3291607aa83f5a007627ca9ed8b4"
+      },
+      {
+        "drop_id": "0816-osic-pulmonary-fibrosis-progression-8seeds-bfc713bdeeeaac9a",
+        "sha256": "c5d53e918f30abedfb99c6b78c961e688a7c509d2b33ea6b4ef181d5ea1f92d9"
+      },
+      {
+        "drop_id": "0816-cassava-leaf-disease-classification-4seeds-0cbdca844293f3ff",
+        "sha256": "6069b5aea9d9aa0dcf10c0aa48d22fcbbe83b846d99d26c04343f3540da143e9"
+      },
+      {
+        "drop_id": "0817-uw-madison-gi-tract-image-segmentation-8seeds-bcb544adfae80b24",
+        "sha256": "8c0474283b32242eb5c5d4e5846eb6d05f1278c9dceaca42ae752783992e24b4"
+      },
+      {
+        "drop_id": "0817-tensorflow-speech-recognition-challenge-8seeds-7aa7a853bcd24bd0",
+        "sha256": "7c1a57d1c38833248980b4dabd97d8710a10b3aad62e6b3a809742fa8ae78d56"
+      },
+      {
+        "drop_id": "0817-AI4Code-8seeds-1aa55cd889a620f8",
+        "sha256": "20faf147c2bd799ed477fb4045133e14633834838cfb01d6525d405fb0e224ee"
+      },
+      {
+        "drop_id": "0817-alaska2-image-steganalysis-4seeds-1f49ca08fe46cf7b",
+        "sha256": "382ce5a47284ed3076e956330cd848af4554542b2a8d81fa2138cbd85f138080"
+      },
+      {
+        "drop_id": "0817-multi-modal-gesture-recognition-8seeds-d322395184d9a42c",
+        "sha256": "b0d4e559a20f70db0ba8bad8e9fb4bbc516f9e7aacd54699c9629d4b50eea526"
+      },
+      {
+        "drop_id": "0817-new-york-city-taxi-fare-prediction-8seeds-e75cfe484cfab783",
+        "sha256": "cfaadec9578a8c3fd0acc309dd6248e2c45dd6f917dd2d9a443ec4b5afc765a6"
+      },
+      {
+        "drop_id": "0817-hubmap-kidney-segmentation-8seeds-0e6d42570dfd37bd",
+        "sha256": "20dc26209f9ce70974de1faffe19babb05933a7e9a721ba178a8c0b66a3c8d52"
+      }
+    ],
+    "transactions_sha256": "6db342bc711ef4b0445171db796a3efb52b7989524120a17795a1480a7fd1408"
+  },
+  "inventory": {
+    "dominant_mixed_operator_task_share": null,
+    "eligible_endpoints": 4424,
+    "eligible_runs": 197,
+    "eligible_tasks": 23,
+    "exact_two_mixed_operator_parents": 0,
+    "mixed_operator_parents": 0,
+    "mixed_operator_tasks": 0,
+    "nonroot_parents": 3229,
+    "transactions": 35
+  },
+  "mixed_parent_per_task": {},
+  "op_run_support": {
+    "Debug": 196,
+    "Draft": 197,
+    "Improve": 177
+  },
+  "op_task_support": {
+    "Debug": 23,
+    "Draft": 23,
+    "Improve": 22
+  },
+  "protocol": "prospective-operator-support-v1",
+  "scope": {
+    "api_calls": 0,
+    "causal_claim_allowed": false,
+    "gpu": 0,
+    "label_vault_opened": false,
+    "numeric_grade_read": false,
+    "outcomes_read": false,
+    "production_activation_authorized": false,
+    "raw_code_emitted": false
+  },
+  "source_commit": "1740d513b7ea2fc497c3906ca80771b52bdef91c",
+  "status": "INSUFFICIENT_OPERATOR_RANDOMIZATION_SUPPORT"
+}

@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AM. 2026-08-19 最新覆盖：现有语料无 sibling 内 operator 支持，随机化自然实验路线关闭
+
+对 35 个 append-only transactions 的 outcome-blind 结构审计已经完成。结果前 commit
+`1740d513b7ea2fc497c3906ca80771b52bdef91c`；远端完整测试 `387 passed in 31.57s`，producer 双跑
+逐字节一致，summary SHA=`ce611700a9afa5a9f543f57992ef3b1033bbfa20198d8e78dc4d2759561ca0d5`，不 import
+producer 的 verifier 两次均通过。
+
+197 runs / 23 tasks / 4,424 endpoints 的边际 operator 覆盖很广：Debug=2,034、Improve=1,998、Draft=392；
+但 3,229 个 nonroot parents 中 mixed-operator parent 恰为 0，mixed tasks=0、exact-two mixed parent=0。
+因此冻结的 parent-support 门失败，状态为 `INSUFFICIENT_OPERATOR_RANDOMIZATION_SUPPORT`。这意味着现有自然语料
+不能识别 parent-matched operator effect；不得用跨 parent 的边际差异冒充 sibling 因果比较。
+
+主动 child-level operator assignment 仍可能作为未来新生产干预，但它不是当前数据的免费扩展，且没有获得本轮
+授权。它必须另有真实 scheduler event stream、displaced-slot ledger、预注册和预算批准。当前继续 D&B
+data/benchmark 主线，并只在既有 train-only failure benchmark 上做明确标为 retrospective 的确定性预检
+feasibility；任何正结果仍需时间更晚的新 cohort 一次性确认。直接证据：
+
+- `phase1/results/prospective_operator_support_20260819/README.md`；
+- `phase1/实验记录/2026-08-19/ProspectiveOperatorSupport_v1_裁决.md`。
+
 ## 0AL. 2026-08-19 最新覆盖：Probe-First 正方法关闭；正式为 INVALID，事后诊断亦为 QUALITY_KILL
 
 本节晚于 0AK。四个 replay shards 11160/11161/11162/11163 全部 `COMPLETED 0:0`，16/16 固定 index

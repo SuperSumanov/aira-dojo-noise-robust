@@ -1,0 +1,11 @@
+{
+  "exact_two_mixed_operator_parents": 0,
+  "mixed_operator_parents": 0,
+  "mixed_operator_tasks": 0,
+  "parents": 3229,
+  "producer_imported": false,
+  "producer_status": "INSUFFICIENT_OPERATOR_RANDOMIZATION_SUPPORT",
+  "protocol": "independent-prospective-operator-support-verifier-v1",
+  "status": "INDEPENDENT_OPERATOR_SUPPORT_ARTIFACT_VERIFIED",
+  "summary_sha256": "ce611700a9afa5a9f543f57992ef3b1033bbfa20198d8e78dc4d2759561ca0d5"
+}

@@ -15,6 +15,8 @@ EXTRA_0816_REGISTRY_REL=phase1/results/prospective_structural_rejection_20260818
 EXTRA_0816_REGISTRY_SHA=02f51081e6cdbc6451a3ffdc3d4f14761e627c28bf9c646529fcfb5755b219a6
 EXTRA_0817_REGISTRY_REL=phase1/results/prospective_structural_rejection_20260819/structural_rejections_0817.json
 EXTRA_0817_REGISTRY_SHA=f4758f9dbb634607b65c128cd03430e0d9494c09d674293912275bd0941da545
+EXTRA_0818_REGISTRY_REL=phase1/results/prospective_structural_rejection_20260820/structural_rejections_0818.json
+EXTRA_0818_REGISTRY_SHA=91369ba5cc571f607907d1bf209b4bc77a370137110bf167226173a664e324c6
 POLL_SECONDS=60
 MAX_POLLS=361
 
@@ -29,6 +31,7 @@ registry="${control_repo}/${REGISTRY_REL}"
 additional_registry="${control_repo}/${ADDITIONAL_REGISTRY_REL}"
 extra_0816_registry="${control_repo}/${EXTRA_0816_REGISTRY_REL}"
 extra_0817_registry="${control_repo}/${EXTRA_0817_REGISTRY_REL}"
+extra_0818_registry="${control_repo}/${EXTRA_0818_REGISTRY_REL}"
 log_root="${STATE_ROOT}/logs"
 monitor_log="${log_root}/monitor_rejection_20260819.log"
 pid_file="${STATE_ROOT}/rejection_monitor_20260819.pid"
@@ -44,6 +47,7 @@ verify_contracts() {
   test "$(sha256sum "${additional_registry}" | awk '{print $1}')" = "${ADDITIONAL_REGISTRY_SHA}"
   test "$(sha256sum "${extra_0816_registry}" | awk '{print $1}')" = "${EXTRA_0816_REGISTRY_SHA}"
   test "$(sha256sum "${extra_0817_registry}" | awk '{print $1}')" = "${EXTRA_0817_REGISTRY_SHA}"
+  test "$(sha256sum "${extra_0818_registry}" | awk '{print $1}')" = "${EXTRA_0818_REGISTRY_SHA}"
   test "$(tr -d '\r\n' < "${STATE_ROOT}/production_commit.txt")" = "${SCIENTIFIC_COMMIT}"
   test ! -e "${STATE_ROOT}/BASELINE_INVALID"
 }
@@ -64,6 +68,8 @@ runner() {
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0816_REGISTRY_SHA}" \
       --extra-structural-rejection-registry "${extra_0817_registry}" \
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0817_REGISTRY_SHA}" \
+      --extra-structural-rejection-registry "${extra_0818_registry}" \
+      --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0818_REGISTRY_SHA}" \
       --minimum-age-seconds 21600 \
       --minimum-observations 3 \
       --minimum-observation-interval-seconds 300 \
@@ -84,9 +90,10 @@ if [[ "${mode}" == --initialize ]]; then
   echo "PREFLIGHT_04B_ADDITIONAL_REJECTION_REGISTRY_SHA256=${ADDITIONAL_REGISTRY_SHA}"
   echo "PREFLIGHT_04C_EXTRA_0816_REJECTION_REGISTRY_SHA256=${EXTRA_0816_REGISTRY_SHA}"
   echo "PREFLIGHT_04D_EXTRA_0817_REJECTION_REGISTRY_SHA256=${EXTRA_0817_REGISTRY_SHA}"
+  echo "PREFLIGHT_04E_EXTRA_0818_REJECTION_REGISTRY_SHA256=${EXTRA_0818_REGISTRY_SHA}"
   echo 'PREFLIGHT_05_INPUT=stable append-only senior archives; exact path size mtime and SHA binding'
   echo 'PREFLIGHT_06_ESTIMAND=unchanged; this extension cannot backfill frozen experiments'
-  echo 'PREFLIGHT_07_EXPECTED=four exact malformed archives skipped; valid later archives processed'
+  echo 'PREFLIGHT_07_EXPECTED=five exact malformed archives skipped; valid later archives processed'
   echo 'PREFLIGHT_08_SECURITY=credential-first journal audit; env member never read; umask077'
   echo 'PREFLIGHT_09_LEAKAGE=outcomes and label vault closed; scorer and accumulator under strace'
   echo 'PREFLIGHT_10_REPRO=clean control and frozen scientific commits; immutable registries and snapshots'

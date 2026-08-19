@@ -1,0 +1,58 @@
+{
+  "archive": {
+    "mtime_ns": 1787151247000000000,
+    "relative_basename": "multi-modal-gesture-recognition-8seeds.tar.gz",
+    "sha256": "300e602a694075d05b1634d0126a660b0c2f44508cb7ae618732b95f39843d74",
+    "size": 379465731
+  },
+  "archive_audit": {
+    "checkpoint_runs": 4,
+    "checkpoint_with_live_event_log": 4,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 1589747446,
+    "discovered_run_roots": 4,
+    "live_only_runs_excluded": 0,
+    "members": 59
+  },
+  "invalid_journals": 4,
+  "journals": 4,
+  "outcomes_read": false,
+  "per_journal": [
+    {
+      "journal_sha256": "725af47c4372adcbf7239750a0057e8168a46725924b991d9a187380daab6810",
+      "nodes": 345,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "7dac5d6761b5f5429dd7bdd3363f078ffe907fc971a292403de4e61495b7a454",
+      "nodes": 349,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "ad88c6a4767b9f9ebd94b0c9dd7ffb6e627f77680f593aa2a74615eddb439b07",
+      "nodes": 353,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "b99b8fcba8790e1a06dd32b2af76bef987a1f0d94bea30b6cc480923f37bd9de",
+      "nodes": 341,
+      "task_identity_cardinality": 0
+    }
+  ],
+  "protocol": "prospective_archive_task_identity_audit_v1",
+  "recommended_reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+  "security": {
+    "code_stdout_grade_or_metric_values_emitted": false,
+    "env_members_read": false,
+    "journal_scanned_before_json": true,
+    "live_event_journal_members_read": false,
+    "task_identity_values_emitted": false
+  },
+  "source_commit": "5ee342f549311ece7bc111ddd0cb7ff08b740210",
+  "status": "STRUCTURAL_TASK_IDENTITY_REJECTION_SUPPORTED",
+  "task_identity_cardinality_counts": {
+    "multiple": 0,
+    "one": 0,
+    "zero": 4
+  }
+}

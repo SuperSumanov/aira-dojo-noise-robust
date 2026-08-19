@@ -18,6 +18,7 @@ from typing import Any
 
 
 WORKER_CONTRACT_SCHEMA = "balanced-continuation-real-worker-contract-v1"
+E2A_WORKER_CONTRACT_SCHEMA = "balanced-continuation-real-worker-contract-v2"
 OPERATOR_REQUEST_SCHEMA = "balanced-continuation-operator-request-v1"
 OPERATOR_RESPONSE_SCHEMA = "balanced-continuation-operator-response-v1"
 EXECUTION_RECEIPT_SCHEMA = "balanced-continuation-public-execution-receipt-v1"
@@ -61,6 +62,11 @@ WORKER_CONTRACT_KEYS = {
     "sealed_label_policy",
     "split_policy",
     "dtest_policy",
+}
+E2A_WORKER_CONTRACT_KEYS = WORKER_CONTRACT_KEYS | {
+    "hf_cache_path",
+    "hf_cache_manifest_sha256",
+    "hf_cache_payload_sha256",
 }
 VISIBLE_STEP_KEYS = {
     "schema_version",
@@ -264,9 +270,19 @@ def reject_credential_shape(value: Any, where: str) -> None:
 
 
 def validate_worker_contract(value: Any) -> dict[str, Any]:
-    contract = exact_keys(value, WORKER_CONTRACT_KEYS, "real worker contract")
+    if not isinstance(value, dict):
+        raise RealContractError("real worker contract must be an object")
+    schema = value.get("schema_version")
+    keys = (
+        E2A_WORKER_CONTRACT_KEYS
+        if schema == E2A_WORKER_CONTRACT_SCHEMA
+        else WORKER_CONTRACT_KEYS
+    )
+    contract = exact_keys(value, keys, "real worker contract")
     reject_credential_shape(contract, "real worker contract")
-    if contract["schema_version"] != WORKER_CONTRACT_SCHEMA or contract["backend"] != REAL_BACKEND:
+    if schema not in {WORKER_CONTRACT_SCHEMA, E2A_WORKER_CONTRACT_SCHEMA} or contract[
+        "backend"
+    ] != REAL_BACKEND:
         raise RealContractError("unsupported real worker contract schema/backend")
     if not isinstance(contract["source_commit"], str) or not HEX40.fullmatch(contract["source_commit"]):
         raise RealContractError("source_commit must be a 40-character lowercase Git SHA")
@@ -280,6 +296,10 @@ def validate_worker_contract(value: Any) -> dict[str, Any]:
         "sealed_label_evaluator_executable_sha256",
     ):
         require_sha(contract[key], key)
+    if schema == E2A_WORKER_CONTRACT_SCHEMA:
+        require_posix_absolute_path(contract["hf_cache_path"], "hf_cache_path")
+        require_sha(contract["hf_cache_manifest_sha256"], "hf_cache_manifest_sha256")
+        require_sha(contract["hf_cache_payload_sha256"], "hf_cache_payload_sha256")
     require_posix_absolute_path(contract["public_data_root"], "public_data_root")
     horizon = require_nonnegative_int(contract["continuation_horizon"], "continuation_horizon")
     if horizon < 1:

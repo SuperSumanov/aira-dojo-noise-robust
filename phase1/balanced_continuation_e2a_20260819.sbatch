@@ -38,11 +38,11 @@ fi
 index="${SLURM_ARRAY_TASK_ID}"
 python_bin=/research/d7/spc/yzyang4/venvs/aira/bin/python
 container=/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif
-hf_cache=/research/d7/spc/yzyang4/scratch/hf_cache
 source_nvvm=/usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4
 prep="${E2A_RUN_ROOT}/preparation"
 assignment="${prep}/assignment"
 real_contract="${prep}/real_contract.json"
+hf_cache="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_path"])' "$real_contract")"
 code_vault="${E2A_DATA_GATE_ROOT}/e2a_inputs/code_vault.jsonl"
 split_root="${E2A_DATA_GATE_ROOT}/e2a_split"
 worker_root="${E2A_RUN_ROOT}/worker_outputs"

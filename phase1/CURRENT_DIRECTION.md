@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BG. 2026-08-19 E2-A warm 第二次工程失败；安全等价缓存修复已结果前冻结
+
+commit `81e05352...` 的统一 1200 秒六任务 warm 已按 4+2 QOS chunks 完成。前五个固定任务的
+capability/producer/verifier/safety rc 全零；TPS-May 用时 `1119.5009202449583` 秒并生成合法 artifact，
+因此 0BF 的统一 timeout 修复达到其工程目的。第六个 Essay 候选在 `11.917737385025248` 秒退出：冻结代码
+调用 `microsoft/deberta-v3-base`，镜像内 PyTorch `2.5.1+cu124` 与 Transformers `4.57.6` 的组合因
+CVE-2025-32434 安全门拒绝读取旧 `pytorch_model.bin`。这不是候选质量、评分或方法失败。monitor 和自动
+接力均 fail closed；正式实验未提交，D_search/D_val/标签/outcome 均未打开，失败 run 不与修复 run 拼接。
+
+共享 HF cache 已含另一 revision 的 `model.safetensors`。在 PyTorch `2.11.0+cu128` 下以
+`weights_only=True` 安全加载原 bin，并逐 tensor 对照 safetensors：210/210 keys、shape、dtype 与 bitwise
+value 全部相同，共 `185537893` elements / `371075786` tensor bytes；bin/safe SHA 分别为
+`691d48a...b5e33` / `57cbd0c...c34e`。等价 receipt SHA=
+`2156d53785303a4f203682e7c0eba7c9123ae63fe6f397d5473eee4444d25c01`。
+
+结果前允许的唯一修复是：复制共享 cache 到新的 E2 专用根，在 main snapshot 删除旧 bin link、接入上述
+逐位等价 safetensors；对整个 cache 的每个文件、目录和相对 symlink 建 SHA manifest，全部设为只读，并把
+cache path、manifest SHA 和 payload SHA 写入 v2 real contract。提交前必须全量重哈希；每个 worker/独立
+verifier 再核验路径与双 SHA。任务、parent/sibling、代码、split、scorer、operator、1200 秒 timeout、矩阵与
+GPU/API 预算全部不变。新的 warm 必须六任务从零全跑 6/6，不能只补 Essay；通过后才允许 formal。直接审计：
+
+- `phase1/实验记录/2026-08-19/BalancedContinuation_E2A_HF缓存安全修复预注册.md`。
+
 ## 0BF. 2026-08-19 E2-A warm 工程门一次失败；统一 1200 秒修复已结果前冻结
 
 commit `e86fe8e...` 的首个 QOS-safe warm chunk 在 job `11212` 上提交四个任务；spaceship、spooky、

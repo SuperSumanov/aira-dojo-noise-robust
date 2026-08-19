@@ -11,6 +11,7 @@ from phase1.balanced_continuation_real_contract import (
     OPERATOR_RESPONSE_SCHEMA,
     SEARCH_RECEIPT_SCHEMA,
     SEALED_LABEL_SCHEMA,
+    E2A_WORKER_CONTRACT_SCHEMA,
     WORKER_CONTRACT_SCHEMA,
     RealContractError,
     bind_visible_step,
@@ -65,6 +66,17 @@ def contract() -> dict:
         "split_policy": "80/10/10_D_train_D_search_D_val",
         "dtest_policy": "never_read",
     }
+
+
+def e2a_contract() -> dict:
+    value = contract()
+    value.update({
+        "schema_version": E2A_WORKER_CONTRACT_SCHEMA,
+        "hf_cache_path": "/frozen/e2a-hf-cache",
+        "hf_cache_manifest_sha256": "9" * 64,
+        "hf_cache_payload_sha256": "a" * 64,
+    })
+    return value
 
 
 def execution(
@@ -173,6 +185,18 @@ def test_happy_path_exposes_search_only_and_selects_improve() -> None:
     assert request["operator"] == "improve"
     assert request["previous_dsearch_score"] == 0.8
     assert not any("dval" in key.lower() for key in request)
+
+
+def test_e2a_v2_contract_requires_exact_cache_binding() -> None:
+    validate_worker_contract(e2a_contract())
+    missing = e2a_contract()
+    del missing["hf_cache_manifest_sha256"]
+    with pytest.raises(RealContractError, match="missing=.*hf_cache_manifest_sha256"):
+        validate_worker_contract(missing)
+    bad_path = e2a_contract()
+    bad_path["hf_cache_path"] = "relative/cache"
+    with pytest.raises(RealContractError, match="absolute POSIX"):
+        validate_worker_contract(bad_path)
 
 
 def test_failed_warm_start_selects_debug_without_private_label() -> None:

@@ -27,11 +27,12 @@ from phase1.balanced_continuation_e2a_scoring import (
     sha256_bytes,
 )
 from phase1.balanced_continuation_real_contract import (
+    E2A_WORKER_CONTRACT_SCHEMA,
     REAL_BACKEND,
-    WORKER_CONTRACT_SCHEMA,
     RealContractError,
     validate_worker_contract,
 )
+from phase1.e2a_hf_cache import CacheError, verify_cache
 from phase1.prepare_balanced_continuation_e1 import (
     EXPECTED_CONTAINER_SHA256,
     QWEN_REPAIRED_EXECUTION_GATE_SHA256,
@@ -178,6 +179,7 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
     source_commit = exact_source_commit()
     data_gate = pathlib.Path(args.data_gate).resolve()
     container = pathlib.Path(args.container).resolve()
+    hf_cache = pathlib.Path(args.hf_cache).resolve()
     output = pathlib.Path(args.output).resolve()
     if output.exists() or output.is_symlink():
         raise PrepareError("E2-A preparation output must be new")
@@ -185,6 +187,7 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
         raise PrepareError("container image is missing or symlinked")
     if file_sha256(container) != EXPECTED_CONTAINER_SHA256:
         raise PrepareError("container SHA-256 differs")
+    cache_receipt = verify_cache(hf_cache, full=True)
     if not WORKER_PYTHON.is_file():
         raise PrepareError("shared worker Python does not resolve to a regular file")
     qwen_gate_path, qwen_gate_sha = validate_qwen_execution_gate(
@@ -203,10 +206,13 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
         from phase1 import balanced_continuation_e2a_dval_sealer as dval_module
 
         real_contract = {
-            "schema_version": WORKER_CONTRACT_SCHEMA,
+            "schema_version": E2A_WORKER_CONTRACT_SCHEMA,
             "backend": REAL_BACKEND,
             "source_commit": source_commit,
             "container_sha256": EXPECTED_CONTAINER_SHA256,
+            "hf_cache_path": hf_cache.as_posix(),
+            "hf_cache_manifest_sha256": cache_receipt["manifest_sha256"],
+            "hf_cache_payload_sha256": cache_receipt["payload_sha256"],
             "operator_config_sha256": qwen_operator.operator_config_sha256(),
             "prompt_sha256": qwen_operator.prompt_bundle_sha256(),
             "public_dataset_contract_sha256": split_summary[
@@ -336,6 +342,9 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "candidate_timeout_upper_bound_gpu_hours": HARD_GPU_HOURS,
             "worker_python_path": WORKER_PYTHON.as_posix(),
             "worker_python_sha256": file_sha256(WORKER_PYTHON),
+            "hf_cache_path": hf_cache.as_posix(),
+            "hf_cache_manifest_sha256": cache_receipt["manifest_sha256"],
+            "hf_cache_payload_sha256": cache_receipt["payload_sha256"],
             "candidate_timeout_seconds": EXECUTION_TIMEOUT_SECONDS,
             "operator_timeout_seconds": OPERATOR_TIMEOUT_SECONDS,
             "slurm_array_concurrency": 4,
@@ -380,6 +389,9 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "execution_contract_sha256": file_sha256(legacy_path),
             "container_path": container.as_posix(),
             "container_sha256": EXPECTED_CONTAINER_SHA256,
+            "hf_cache_path": hf_cache.as_posix(),
+            "hf_cache_manifest_sha256": cache_receipt["manifest_sha256"],
+            "hf_cache_payload_sha256": cache_receipt["payload_sha256"],
             "worker_python_path": run_plan["worker_python_path"],
             "worker_python_sha256": run_plan["worker_python_sha256"],
             "operator_profile": "qwen",
@@ -414,6 +426,7 @@ def parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--data-gate", required=True)
     ap.add_argument("--container", required=True)
+    ap.add_argument("--hf-cache", required=True)
     ap.add_argument("--output", required=True)
     ap.add_argument("--qwen-execution-smoke-receipt", required=True)
     ap.add_argument("--created-utc", default=utc_now())
@@ -424,7 +437,7 @@ def main() -> int:
     try:
         build(parser().parse_args())
     except (
-        PrepareError, ManifestError, RealContractError, OSError, UnicodeError,
+        PrepareError, ManifestError, RealContractError, CacheError, OSError, UnicodeError,
         ValueError, json.JSONDecodeError, subprocess.SubprocessError,
     ) as exc:
         print(f"PREPARE_BALANCED_E2A_ERROR: {exc}", file=sys.stderr)

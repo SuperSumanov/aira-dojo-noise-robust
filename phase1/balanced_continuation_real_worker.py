@@ -47,6 +47,7 @@ from phase1.balanced_continuation_real_contract import (
     validate_visible_step,
     validate_worker_contract,
 )
+from phase1.e2a_hf_cache import CacheError, verify_contract_cache
 from phase1.balanced_continuation_worker import WorkerError, load_assignment, load_code_vault
 
 
@@ -1197,6 +1198,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         raise RealWorkerError("container hash differs from real contract")
     if not hf_cache.is_dir() or not nvfix_dir.is_dir():
         raise RealWorkerError("HF cache or NVIDIA compatibility directory is missing")
+    try:
+        verify_contract_cache(hf_cache, real_contract, full=False)
+    except CacheError as exc:
+        raise RealWorkerError(f"HF cache contract differs: {exc}") from exc
     if not (nvfix_dir / "libnvidia-nvvm.so.4").is_file():
         raise RealWorkerError("NVIDIA compatibility library is missing")
     public_task = split_root / "public" / assignment["task"]

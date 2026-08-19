@@ -24,6 +24,7 @@ from phase1.balanced_continuation_e2a_scoring import (
 )
 from phase1.balanced_continuation_real_contract import validate_worker_contract
 from phase1.balanced_continuation_real_worker import execute_candidate
+from phase1.e2a_hf_cache import CacheError, verify_contract_cache
 from phase1.balanced_continuation_worker import load_assignment, load_code_vault
 
 
@@ -92,6 +93,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         raise SmokeError("source checkout is not the exact clean contract commit")
     if file_sha256(container) != real["container_sha256"]:
         raise SmokeError("container hash differs")
+    try:
+        verify_contract_cache(hf_cache, real, full=False)
+    except CacheError as exc:
+        raise SmokeError(f"HF cache contract differs: {exc}") from exc
     indices = plan.get("warm_smoke_assignment_indices")
     slot = int(args.slot)
     if (

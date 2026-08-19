@@ -124,10 +124,16 @@ def test_prepare_freezes_sixty_variable_k_rollouts(tmp_path: Path, monkeypatch) 
     worker_python.write_bytes(b"python")
     qwen_receipt = tmp_path / "qwen-gate.json"
     write_json(qwen_receipt, {"status": "test"})
+    hf_cache = tmp_path / "hf-cache"
+    hf_cache.mkdir()
     monkeypatch.setattr(prepare, "EXPECTED_CONTAINER_SHA256", sha(container.read_bytes()))
     monkeypatch.setattr(prepare, "WORKER_PYTHON", worker_python)
     monkeypatch.setattr(prepare, "exact_source_commit", lambda: "1" * 40)
     monkeypatch.setattr(prepare, "validate_worker_contract", lambda value: value)
+    monkeypatch.setattr(prepare, "verify_cache", lambda path, full: {
+        "manifest_sha256": "c" * 64,
+        "payload_sha256": "d" * 64,
+    })
     monkeypatch.setattr(
         prepare,
         "validate_qwen_execution_gate",
@@ -135,7 +141,8 @@ def test_prepare_freezes_sixty_variable_k_rollouts(tmp_path: Path, monkeypatch) 
     )
     output = tmp_path / "prepared"
     plan = prepare.build(argparse.Namespace(
-        data_gate=str(data_gate), container=str(container), output=str(output),
+        data_gate=str(data_gate), container=str(container), hf_cache=str(hf_cache),
+        output=str(output),
         qwen_execution_smoke_receipt=str(qwen_receipt),
         created_utc="2026-08-19T00:00:00Z",
     ))
@@ -154,6 +161,13 @@ def test_prepare_freezes_sixty_variable_k_rollouts(tmp_path: Path, monkeypatch) 
     assert len(plan["remaining_wave_indices"]) == 48
     assert len(plan["warm_smoke_assignment_indices"]) == 6
     assert plan["formal_submission_requires_passing_warm_smoke"] is True
+    assert plan["hf_cache_path"] == hf_cache.resolve().as_posix()
+    assert plan["hf_cache_manifest_sha256"] == "c" * 64
+    assert plan["hf_cache_payload_sha256"] == "d" * 64
+    contract = json.loads((output / "real_contract.json").read_text(encoding="utf-8"))
+    assert contract["hf_cache_path"] == hf_cache.resolve().as_posix()
+    assert contract["hf_cache_manifest_sha256"] == "c" * 64
+    assert contract["hf_cache_payload_sha256"] == "d" * 64
     rows = prepare.read_jsonl(output / "assignment" / "assignment_manifest.jsonl")
     first = [rows[index] for index in plan["engineering_wave_indices"]]
     assert {row["task"] for row in first} == set(prepare.TASKS)

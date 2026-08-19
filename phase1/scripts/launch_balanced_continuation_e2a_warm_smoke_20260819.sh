@@ -42,6 +42,17 @@ printf '%s\n' "$expected_commit" >"$run_root/source_commit.txt"
 printf '%s\n' "$data_gate" >"$run_root/data_gate_root.txt"
 printf '%s\n' "$preparation" >"$run_root/preparation_root.txt"
 
+hf_cache="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_path"])' "$preparation/real_contract.json")"
+hf_manifest_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_manifest_sha256"])' "$preparation/real_contract.json")"
+hf_payload_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_payload_sha256"])' "$preparation/real_contract.json")"
+"$python_bin" -m phase1.e2a_hf_cache verify \
+  --cache "$hf_cache" \
+  --expected-manifest-sha256 "$hf_manifest_sha" \
+  --expected-payload-sha256 "$hf_payload_sha" \
+  --receipt "$run_root/hf_cache.verify.json" \
+  >"$run_root/logs/hf_cache_verify.stdout" \
+  2>"$run_root/logs/hf_cache_verify.stderr"
+
 cd "$source_root"
 set +e
 "$python_bin" -m pytest -q phase1/tests \
@@ -77,16 +88,18 @@ printf '%s\n' \
   'PASS 10: 6 candidate executions x 1200 seconds gives a 2 GPU-hour candidate hard cap; Slurm wall is 35 minutes/job.' \
   'PASS 11: this is an engineering gate with zero scientific power claim and zero API calls.' \
   'PASS 12: every capability/producer/verifier/safety rc is stored before exit; any nonzero rc stops formal launch.' \
-  'PASS 13: source, task, anchor, sibling, code and split are frozen; corpus growth cannot change this assignment.' \
+  'PASS 13: source, task, anchor, sibling, code, split and full read-only HF cache payload are hash-frozen.' \
   >"$run_root/preflight_13_of_13.txt"
 
 filename_hits="$(find "$preparation" "$run_root/assignment.verify.json" \
   "$run_root/resource_matrix.verify.json" "$run_root/preflight_13_of_13.txt" \
+  "$run_root/hf_cache.verify.json" \
   -type f -printf '%f\n' | grep -icE 'env|key|token|secret' || true)"
 content_hits="$(grep -RIlE --binary-files=without-match \
   'sk-[A-Za-z0-9._-]{20,}|hf_[A-Za-z0-9]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|Bearer[[:space:]]+[A-Za-z0-9._-]{24,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----' \
   "$preparation" "$run_root/assignment.verify.json" \
-  "$run_root/resource_matrix.verify.json" "$run_root/preflight_13_of_13.txt" | wc -l || true)"
+  "$run_root/resource_matrix.verify.json" "$run_root/preflight_13_of_13.txt" \
+  "$run_root/hf_cache.verify.json" | wc -l || true)"
 printf 'FILENAME_SECRET_HITS=%s\nCONTENT_SECRET_HITS=%s\n' \
   "$filename_hits" "$content_hits" >"$run_root/preflight_secret_scan.txt"
 if [[ "$filename_hits" != 0 || "$content_hits" != 0 ]]; then

@@ -39,6 +39,17 @@ chmod 0500 "$run_root/job.sbatch" "$run_root/monitor.sh"
 printf '%s\n' "$expected_commit" >"$run_root/source_commit.txt"
 printf '%s\n' "$data_gate" >"$run_root/data_gate_root.txt"
 
+hf_cache="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_path"])' "$run_root/preparation/real_contract.json")"
+hf_manifest_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_manifest_sha256"])' "$run_root/preparation/real_contract.json")"
+hf_payload_sha="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_payload_sha256"])' "$run_root/preparation/real_contract.json")"
+"$python_bin" -m phase1.e2a_hf_cache verify \
+  --cache "$hf_cache" \
+  --expected-manifest-sha256 "$hf_manifest_sha" \
+  --expected-payload-sha256 "$hf_payload_sha" \
+  --receipt "$run_root/preflight_receipts/hf_cache.verify.json" \
+  >"$run_root/logs/hf_cache_verify.stdout" \
+  2>"$run_root/logs/hf_cache_verify.stderr"
+
 cd "$source_root"
 set +e
 "$python_bin" -m pytest -q phase1/tests \
@@ -69,7 +80,7 @@ printf '%s\n' \
   'PASS 10: conservative estimate 13.581222464241607 GPU-hours; candidate hard cap 40 GPU-hours; each job wall 75 minutes.' \
   'PASS 11: fixed support gates use 24 independent parents and six tasks; E2-A itself cannot claim a method win.' \
   'PASS 12: capability/worker/verifier/safety rc are stored before exit; no retry/replacement after paid intent.' \
-  'PASS 13: source/data/container/Python/operator/evaluator/assignment hashes are immutable; corpus growth cannot reassign.' \
+  'PASS 13: source/data/container/Python/operator/evaluator/assignment and full read-only HF cache hashes are immutable.' \
   >"$run_root/preflight_13_of_13.txt"
 
 filename_hits="$(find "$run_root/preparation" "$run_root/preflight_receipts" \

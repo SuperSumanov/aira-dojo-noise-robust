@@ -28,7 +28,7 @@ umask 077
 slot="${SLURM_ARRAY_TASK_ID}"
 python_bin=/research/d7/spc/yzyang4/venvs/aira/bin/python
 container=/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif
-hf_cache=/research/d7/spc/yzyang4/scratch/hf_cache
+hf_cache="$($python_bin -c 'import json,sys;print(json.load(open(sys.argv[1]))["hf_cache_path"])' "$E2S_PREPARATION/real_contract.json")"
 source_nvvm=/usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4
 nvfix="${E2S_RUN_ROOT}/nvfix/${slot}"
 capability="${E2S_RUN_ROOT}/capability/${slot}"

@@ -3,6 +3,19 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AT. 2026-08-19 活跃支持门：generator/client shortcut 结果盲审计
+
+future exact-stratum clean-scaling 仍是确认性模型路线；在等待时间更晚新 cohort 时，新增长实验前的 0-GPU
+结构资格门，检验学长提出的 value-pair 可学习性是否有足够 client 支持可被严格审计。它只读 augmented
+`intask_split==train` 的 endpoint identity 与配置元数据，不读 test/frozen/0812 temporal vault，不计算 accuracy。
+
+固定 5-fold physical-run OOF，分别数 same-client、cross-client 及 cross-client/same-environment pool；只有
+known-client≥4,000、两个主 OOF pool 各≥400/6 tasks、且至少两个 client 有≥80 pairs/2 tasks 时，才允许后续
+client-prior/char-TFIDF/static 效果实验。后续效果门也已在结果前冻结；失败不换 pool、client、fold 或阈值。
+直接预注册：
+
+- `phase1/实验记录/2026-08-19/GeneratorShortcutSupport_v1_预注册与执行前检查.md`。
+
 ## 0AS. 2026-08-19 最新覆盖：FML-Bench 关闭 adaptive-switch/跨 agent 策略 novelty
 
 2026-05 的 [FML-Bench](https://arxiv.org/abs/2605.17373) 已在 18 个 ML research tasks 上统一 execution

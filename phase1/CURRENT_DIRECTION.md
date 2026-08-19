@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AS. 2026-08-19 最新覆盖：FML-Bench 关闭 adaptive-switch/跨 agent 策略 novelty
+
+2026-05 的 [FML-Bench](https://arxiv.org/abs/2605.17373) 已在 18 个 ML research tasks 上统一 execution
+infrastructure，比较六类 agent strategy、定义 12 个 process metrics，并用 validation stagnation 触发
+greedy→multi-branch 的 AdaptiveSearch 得到正结果；[官方仓库](https://github.com/qrzou/FML-bench) 已公开七个
+agent 与 runner。因此“首个 strategy/infrastructure 解耦 benchmark”“复杂树不一定优于 greedy”“process dynamics
+解释表现”及 stagnation-triggered adaptive switching 均不得作为我们的 novelty，旧相关方法线关闭。
+
+尚未被其直接覆盖、也更符合现有资产的是 NAS-Bench-style 的大规模真实 MLE-agent search-tree **数据集与 predictor
+benchmark**：physical-run-clean split、真实 sibling decision、init/query cost、noise ceiling、coverage/missingness、
+版本化 provenance 与 exact execution-stratum receipts。QLASS 已覆盖一般 stepwise Q/PRM，Stratified GRPO 已使用
+cross-stratum bias 叙事；我们也不得泛称首创 tree critic 或 stratification。
+
+正路线进一步收窄为：future exact-stratum cohort → train-only dev 选 checkpoint → frozen test 一次性评分 →
+pair accuracy + 真实 sibling selection utility + init/query cost。若 clean scaling 仍约 0.55，则只把 capability boundary
+作为 D&B 结果，不改门救正。直接证据：
+
+- `phase1/实验记录/2026-08-19/RelatedWork_FMLBench与StratifiedSearch_防Scoop裁决.md`。
+
 ## 0AR. 2026-08-19 最新覆盖：future-only exact-stratum producer/verifier 补丁完成
 
 针对 0AQ 的 batch-content mixing，已在学长精确 base

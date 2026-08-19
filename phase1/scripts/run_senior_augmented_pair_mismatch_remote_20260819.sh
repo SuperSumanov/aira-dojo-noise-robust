@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 
 repo=${1:?repo worktree required}
 source_commit=${2:?source commit required}
@@ -16,9 +16,12 @@ tmp=$(mktemp -d /tmp/pair_mismatch.XXXXXX)
 trap 'rm -rf -- "$tmp"' EXIT
 
 source ~/env_setup.sh
-pytest -q
+set -u
+python=/research/d7/spc/yzyang4/venvs/critic/bin/python
+test_python=/research/d7/spc/yzyang4/venvs/exp/bin/python
+"$test_python" -m pytest -q
 for pass in one two; do
-  python phase1/audit_senior_augmented_pair_mismatch.py \
+  "$python" phase1/audit_senior_augmented_pair_mismatch.py \
     --run-manifest "$input/run_manifest.jsonl" --expect-run-manifest-sha256 "$run_sha" \
     --pair-structure "$input/pair_structure.jsonl" --expect-pair-structure-sha256 "$pair_sha" \
     --support-summary "$input/summary.json" --expect-support-summary-sha256 "$support_sha" \
@@ -26,7 +29,7 @@ for pass in one two; do
 done
 diff -ru "$tmp/one" "$tmp/two"
 for pass in one two; do
-  python phase1/verify_senior_augmented_pair_mismatch.py \
+  "$python" phase1/verify_senior_augmented_pair_mismatch.py \
     --artifact "$tmp/one" --run-manifest "$input/run_manifest.jsonl" \
     --pair-structure "$input/pair_structure.jsonl" --support-summary "$input/summary.json" \
     --output "$tmp/verify_$pass.json"

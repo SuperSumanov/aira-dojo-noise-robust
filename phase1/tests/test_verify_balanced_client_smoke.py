@@ -38,7 +38,7 @@ def make_root(tmp_path: Path) -> Path:
         encoding="utf-8",
     )
     journal = [
-        {"step": 0, "code": "print(0)", "parents": [], "children": [1]},
+        {"step": 0, "code": "", "parents": [], "children": [1]},
         {"step": 1, "code": "print(1)", "parents": [0], "children": []},
     ]
     for index, (model, base_url) in verifier.CLIENTS.items():

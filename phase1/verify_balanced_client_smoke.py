@@ -114,8 +114,10 @@ def parse_journal(path: Path) -> list[dict[str, Any]]:
         rows.append(row)
     if [row.get("step") for row in rows] != [0, 1]:
         raise VerificationError("journal must contain exactly steps 0 and 1")
-    if any(not isinstance(row.get("code"), str) or not row["code"].strip() for row in rows):
-        raise VerificationError("journal contains empty code")
+    if rows[0].get("code") not in (None, ""):
+        raise VerificationError("MCTS root must have blank code")
+    if not isinstance(rows[1].get("code"), str) or not rows[1]["code"].strip():
+        raise VerificationError("non-root candidate contains empty code")
     if rows[0].get("parents") not in (None, []):
         raise VerificationError("root has a parent")
     if rows[1].get("parents") != [0]:

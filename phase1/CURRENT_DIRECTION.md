@@ -24,7 +24,8 @@ data gate、同一 container、同一 `gpu27`、6 CPU/1 GPU 和四任务并发�
 预注册要求新 warm 六任务从零 6/6 且 0 retry，任一失败不得只补失败 task、不得自动 formal。因此本次
 E2-A formal **关闭且不补跑**；既不把 3/4 工程通过解释成正结果，也不把 TPS timeout 解释成方法负结果。
 若未来重开，必须另立预注册并重新批准 timeout/算力矩阵或改成显式 runtime-censoring estimand，不能沿用
-本次授权悄然提高 timeout。当前工作返回评分通道的前瞻主线与已冻结 checkpoint 支持实验。直接证据：
+本次授权悄然提高 timeout。0AJ 的评分通道确认性 KILL 与 0AO 的旧 frozen-checkpoint 污染裁决均保持不变，
+不得重开；当前工作返回 NAS-Bench-style 数据/benchmark 主线与 future-only exact-stratum 时间外推。直接证据：
 
 - `phase1/实验记录/2026-08-19/BalancedContinuation_E2A_1200秒边界不稳定_执行审计.md`；
 - `phase1/results/balanced_continuation_e2a_warm_timeout_20260819_0ee657a/README.md`。

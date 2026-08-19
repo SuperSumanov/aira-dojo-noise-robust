@@ -67,8 +67,9 @@ GPU histogram 数值非确定性、LightGBM 内部随机路径还是瞬时系统
 4. E2-A formal 在本协议下关闭。本结果是**资格/测量可重复性失败**，既非正方法结果，也非负方法结果。
 
 未来若要重开，只能新预注册以下二选一并重新做预算授权：一是把 runtime timeout 明确纳入 censoring/terminal
-hurdle estimand；二是改用与最坏运行时间有充分余量的统一 timeout，同时重新计算 candidate hard cap。当前
-优先级返回评分通道的前瞻主线，不继续消耗 E2-A API/GPU。
+hurdle estimand；二是改用与最坏运行时间有充分余量的统一 timeout，同时重新计算 candidate hard cap。0AJ
+的评分通道确认性 KILL 和 0AO 的旧 frozen-checkpoint 污染裁决不重开；当前优先级返回 NAS-Bench-style
+数据/benchmark 与 future-only exact-stratum 时间外推，不继续消耗 E2-A API/GPU。
 
 ## 5. 可审计回执
 

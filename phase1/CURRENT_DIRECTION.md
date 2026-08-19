@@ -3,6 +3,18 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AZ. 2026-08-19 活跃工程门：三 client 平衡生产 smoke
+
+0AY 后不从旧数据降门，改为 outcome 前显式平衡 client。第一阶段仅提交 3 clients×1 task×1 seed 的 2-step
+生产 smoke：DeepSeek v4 Flash、Qwen3 Coder Flash、GLM-5；其余 MCTS/operator/task/seed/硬件/timeout
+完全固定。3×1 GPU、Slurm 硬上限 1.5 GPU·h，预计 6–12 次正式 API 调用；先各做一次 one-token probe。
+
+三行都必须由 resolved config 与最终产物证明四个 operator 确实切到目标 client，journal 恰有 2 steps，且
+无 env dump，才允许另立 12-run 平衡 pilot。任一失败停止，不把 smoke 的 grade/score 当效果。source 固定
+aira-dojo `4029f62688b28f2bb979b5dc18a500cc6d669a79`。直接预注册：
+
+- `phase1/实验记录/2026-08-19/BalancedClientProductionSmoke_v1_预注册与长实验预检.md`。
+
 ## 0AY. 2026-08-19 最新覆盖：cross-client transfer 被共享 support 阻塞，效果不运行
 
 结果前 commit `2e7ea07fc7ff5dfe476e6b6d8bfcf8877ff91adb` 固定 exact-stratum 与支持门；远端

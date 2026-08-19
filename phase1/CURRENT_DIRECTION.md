@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AQ. 2026-08-19 最新覆盖：708 个跨配置 pair 定位为 batch-content mixing
+
+结果前 commit `5b9f285c2f1a62bf82a2820346da26be96e3570c` 固定了匿名结构诊断。远端
+`391 passed in 34.88s`，producer 双跑逐字节一致，独立 verifier 两次一致；summary SHA=
+`7c141bd6b74ee1f3aa6e60459d272da34edb99a1f6734508510d8d75c04ccc76`。
+
+9,001 full-train pairs 中有 708 个跨 config，share=`0.07865792689701144`，覆盖 8 tasks / 71 runs /
+16 config transitions。708/708 均处于同一固定正则解析的 run-family 与同一天，0 个 run ID 解析失败；最大任务只占
+`0.269774011299435`，最大 transition 只占 `0.1384180790960452`。按冻结规则归因为
+`BATCH_CONTENT_MIXING_LIKELY`，并与学长 builder“batch 内按 task 组合、未按 config 分层”的代码相符。旧 pair
+没有 batch-path 字段，因此不得把 `LIKELY` 升级为直接观察到的 batch identity。
+
+0AP 的 `INSUFFICIENT_TRAIN_ONLY_DEV_SUPPORT` 保持不变；不得过滤 708 条后追认当前 scaling。下一步只实现
+future-only exact `(task, client, hardware, time_limit, execution_timeout)` stratum producer/verifier contract，
+并等待时间更晚新 cohort 重新冻结 learning curve。直接证据：
+
+- `phase1/results/senior_augmented_pair_mismatch_20260819/README.md`；
+- `phase1/实验记录/2026-08-19/SeniorAugmentedPairMismatchProvenance_v1_裁决.md`。
+
 ## 0AP. 2026-08-19 最新覆盖：train-only dev 支持充足，但跨配置配对触发冻结 KILL
 
 结果前 commit `af51c8cefae81faeeafa34a673282949e99ad042` 固定 physical-run-clean train/dev、四层

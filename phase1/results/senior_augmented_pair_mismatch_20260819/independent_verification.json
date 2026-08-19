@@ -1,0 +1,9 @@
+{
+  "attribution": "BATCH_CONTENT_MIXING_LIKELY",
+  "full_train_pairs": 9001,
+  "mismatch_pairs": 708,
+  "producer_imported": false,
+  "protocol": "independent-senior-augmented-pair-mismatch-verifier-v1",
+  "status": "INDEPENDENT_PAIR_MISMATCH_ARTIFACT_VERIFIED",
+  "summary_sha256": "7c141bd6b74ee1f3aa6e60459d272da34edb99a1f6734508510d8d75c04ccc76"
+}

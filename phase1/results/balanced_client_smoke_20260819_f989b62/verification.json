@@ -1,0 +1,51 @@
+{
+  "control_commit": "f989b622def3c66dfa7aac6e1ccd1bc8b2a5b416",
+  "elapsed_seconds": {
+    "11189": 513,
+    "11190": 432,
+    "11191": 165
+  },
+  "environment_dumps": 0,
+  "job_ids": [
+    "11189",
+    "11190",
+    "11191"
+  ],
+  "journal_rows_total": 6,
+  "physical_runs": 3,
+  "rows": [
+    {
+      "config_sha256": "fd6a987eda7b40bd5918e4ef637f9b014eea1d73f7415ad11ca0ac8cb3b12fb1",
+      "index": 0,
+      "journal_rows": 2,
+      "journal_sha256": "17f7b501bfdf6419c8d46b96d61833c1d3bc0bf94eda50f1d2bec9626151fdea",
+      "model": "deepseek-v4-flash",
+      "search_sha256": "0f3338b3dcfee2311638afdaa060e365e51b60eb3c4675fec6dd97e4f6ea66ce",
+      "state_sha256": "25f13dbe745e82940cfe46c9102fbe7331858105b6f43ac08c90df0bdfaa00d3"
+    },
+    {
+      "config_sha256": "8858b0a1c2462f03648fb32f295d4e26834ec9726cc53e37b9effbf20783022e",
+      "index": 1,
+      "journal_rows": 2,
+      "journal_sha256": "ee5af10dc4e3598aaa2d1c5cac5dfe8ab2c3f778caecbd6c00553a9b19d81e53",
+      "model": "qwen3-coder-flash",
+      "search_sha256": "625fe5280732be45b67b0d177559649d121c4fb1f7737ebac1146f0327d30ea3",
+      "state_sha256": "ccbbb416fd80a675dd4162c94776e7da309e7885dcfd618d5229cfd77cc9e374"
+    },
+    {
+      "config_sha256": "5d6fd224643af4b41030a4c45108de5e4ef612374973d85d994f01cc17b88877",
+      "index": 2,
+      "journal_rows": 2,
+      "journal_sha256": "9548614f090a7331c7a44dea741ddad08e5f44a9a1d23652469e1e25d9130b3e",
+      "model": "glm-5",
+      "search_sha256": "8fcc1bd7f0a0512678ae4a1b7e5496ecf9413a44af1b542b4942deceb0a05fce",
+      "state_sha256": "7790660d7ba3bc2a48e7dc7205bc5f047948460ad8a2682a5c1eccde6b0e4fc2"
+    }
+  ],
+  "schema_version": "balanced-client-smoke-independent-verification-v1",
+  "score_fields_read": false,
+  "seed": 1401,
+  "source_commit": "f989b622def3c66dfa7aac6e1ccd1bc8b2a5b416",
+  "status": "PASS_BALANCED_CLIENT_SMOKE",
+  "task": "spooky-author-identification"
+}

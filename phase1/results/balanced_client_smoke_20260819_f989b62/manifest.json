@@ -1,0 +1,29 @@
+{
+  "protocol": "balanced-client-production-smoke-v1",
+  "source_commit": "4029f62688b28f2bb979b5dc18a500cc6d669a79",
+  "task": "spooky-author-identification",
+  "seed": 1401,
+  "step_limit": 2,
+  "execution_timeout_seconds": 300,
+  "run_time_limit_seconds": 900,
+  "rows": [
+    {
+      "array_index": 0,
+      "client_config": "litellm_deepseek_flash",
+      "model_id": "deepseek-v4-flash",
+      "base_url": "https://api.deepseek.com"
+    },
+    {
+      "array_index": 1,
+      "client_config": "litellm_gen2",
+      "model_id": "qwen3-coder-flash",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    },
+    {
+      "array_index": 2,
+      "client_config": "litellm_gen3",
+      "model_id": "glm-5",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    }
+  ]
+}

@@ -52,7 +52,7 @@ test "$(sha256sum "$RUN_ROOT/worker.sbatch" | awk '{print $1}')" = \
 echo "PREFLIGHT_01_DIRECTION=balanced future exact-stratum client production smoke"
 echo "PREFLIGHT_02_MATRIX=3 clients x 1 task x 1 seed = 3 physical runs"
 echo "PREFLIGHT_03_BUDGET=step2 execution_timeout300 run_cap900"
-echo "PREFLIGHT_04_RESOURCES=3x1 GPU array; Slurm hard cap 1.5 GPU-hours; API approximately 6-12 calls"
+echo "PREFLIGHT_04_RESOURCES=3x1 GPU plain jobs; Slurm hard cap 1.5 GPU-hours; API approximately 6-12 calls"
 echo "PREFLIGHT_05_CLIENTS=deepseek-v4-flash,qwen3-coder-flash,glm-5"
 echo "PREFLIGHT_06_TASK=spooky-author-identification seed=1401"
 echo "PREFLIGHT_07_FAIRNESS=only client config differs; task seed solver operator budgets fixed"

@@ -37,6 +37,18 @@ a3 的唯一变化是把 native array 改为三个普通 Slurm jobs，并以显�
 固定映射；这样 AIRA 走既有 `SLURM_JOB_ID` 分支，不修改实验代码、模型、任务、seed 或预算。新增测试禁止
 launcher/worker 再使用 array。a1/a2/a3 不拼接，a3 仍须通过原始全部成功门。
 
+## a3 最终裁决
+
+a3 source/control=`f989b622def3c66dfa7aac6e1ccd1bc8b2a5b416`，Linux 全套
+`403 passed in 36.10s`。job `11189/11190/11191` 均 `COMPLETED 0:0`，elapsed=`513/432/165`
+秒。独立 verifier 连跑两次逐字节一致：3 runs / 6 journal rows、resolved/final 四 operator client 精确、
+checkpoint state 与 search export/journal 一致、env dump=0、`score_fields_read=false`；verification SHA=
+`1fbe1464ad47346bf1a8e5e086c62053f70d21c5c07a701069d777610340c658`。裁决为
+`PASS_BALANCED_CLIENT_SMOKE`。
+
+限定：这是生产链工程 PASS，不是效果。Qwen 行虽然 rc=0 且结构完整，但日志显示最终没有 valid solution；
+后续 pilot 必须逐 client 报 valid-submission/failure rate，不能用 Slurm completion 代替解题成功。
+
 ## 成功门
 
 三行必须全部满足：Slurm `COMPLETED 0:0`、worker rc=0；结果前 resolved config 的 analyze/debug/draft/

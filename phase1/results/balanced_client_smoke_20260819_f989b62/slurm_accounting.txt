@@ -1,0 +1,9 @@
+11189|COMPLETED|0:0|513|billing=6,cpu=6,gres/gpu=1,node=1
+11189.batch|COMPLETED|0:0|513|cpu=6,mem=0,node=1
+11189.extern|COMPLETED|0:0|513|billing=6,cpu=6,gres/gpu=1,node=1
+11190|COMPLETED|0:0|432|billing=6,cpu=6,gres/gpu=1,node=1
+11190.batch|COMPLETED|0:0|432|cpu=6,mem=0,node=1
+11190.extern|COMPLETED|0:0|432|billing=6,cpu=6,gres/gpu=1,node=1
+11191|COMPLETED|0:0|165|billing=6,cpu=6,gres/gpu=1,node=1
+11191.batch|COMPLETED|0:0|165|cpu=6,mem=0,node=1
+11191.extern|COMPLETED|0:0|165|billing=6,cpu=6,gres/gpu=1,node=1

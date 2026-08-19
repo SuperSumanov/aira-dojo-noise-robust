@@ -3,7 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0BB. 2026-08-19 最新执行：a2 暴露原生 Slurm array/submitit 不兼容，a3 改普通作业
+## 0BC. 2026-08-19 最新结果：三 client 平衡生产 smoke a3 工程门通过
+
+a3 在 source/control `f989b622...` 上 Linux 全套 `403 passed in 36.10s`；DeepSeek/Qwen/GLM 三个普通
+Slurm jobs `11189/11190/11191` 均 `COMPLETED 0:0`，elapsed 依次 513/432/165 秒。独立 verifier 连跑
+两次逐字节一致：3 physical runs、6 journal rows，resolved 与 final config 的四 operator client 均精确，
+checkpoint state 与 search export/journal 一致，env dump=0，`score_fields_read=false`。verification SHA=
+`1fbe1464ad47346bf1a8e5e086c62053f70d21c5c07a701069d777610340c658`。
+
+这是首个真实三 generator、同 task/seed/budget 的可用生产单元，但不是效果结论。Qwen 行结构上通过且 rc=0，
+日志却显示最终没有 valid solution；因此后续 12-run pilot 必须逐 client 报 valid-submission/failure rate，
+不能把 job completion 当解题成功。直接证据：
+
+- `phase1/results/balanced_client_smoke_20260819_f989b62/README.md`。
+
+## 0BB. 2026-08-19 已关闭执行：a2 暴露原生 Slurm array/submitit 不兼容，a3 改普通作业
 
 a2 的 Linux 全套 `402 passed`、三家 provider probe、同一 source/control commit、三行 resolved-config 四
 operator 核验均通过；但三个 worker 都在 solver/operator 实例化前由 `get_slurm_id()` 失败：代码在检测到

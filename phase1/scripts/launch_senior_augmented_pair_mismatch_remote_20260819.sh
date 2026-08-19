@@ -11,7 +11,7 @@ set -u
 git -C "$base" cat-file -e "$source_commit^{commit}"
 test ! -e "$worktree"
 test ! -e "$result"
-git -C "$base" worktree add --detach "$worktree" "$source_commit"
+GIT_LFS_SKIP_SMUDGE=1 git -C "$base" worktree add --detach "$worktree" "$source_commit"
 test -z "$(git -C "$worktree" status --porcelain)"
 bash "$worktree/phase1/scripts/run_senior_augmented_pair_mismatch_remote_20260819.sh" \
   "$worktree" "$source_commit" "$result"

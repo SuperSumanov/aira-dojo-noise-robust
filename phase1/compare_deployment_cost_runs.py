@@ -88,8 +88,8 @@ def main() -> None:
             summary_b["models"][model]["initialization_s"]["p50"],
         )
         same_decisions = (
-            summary_a["models"][model]["full_decision_sha256_values"]
-            == summary_b["models"][model]["full_decision_sha256_values"]
+            summary_a["models"][model]["sample_decision_sha256_values"]
+            == summary_b["models"][model]["sample_decision_sha256_values"]
         )
         model_checks[model] = {
             "single_query_p50_max_min_ratio": query_ratio,
@@ -113,7 +113,7 @@ def main() -> None:
     }
     status = "CROSS_RUN_STABILITY_VERIFIED" if all(checks.values()) else "CROSS_RUN_STABILITY_FAILED"
     payload = {
-        "protocol": "deployment_cost_cross_run_verification_v1",
+        "protocol": "deployment_cost_cross_run_verification_v2",
         "status": status,
         "source_commit": config_a["expected_git_commit"],
         "result_status": summary_a["status"],

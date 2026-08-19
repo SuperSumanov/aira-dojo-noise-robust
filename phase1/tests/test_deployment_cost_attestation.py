@@ -1,5 +1,7 @@
 import csv
+import hashlib
 import json
+import random
 from pathlib import Path
 
 import numpy as np
@@ -99,13 +101,13 @@ def test_execution_reference_reports_three_cost_semantics():
 def test_summary_positive_gate_and_independent_reconstruction_match():
     config = {
         "init_trials": 2,
-        "query_repeats": 1,
+        "single_query_warmup": 1,
         "single_pair_sample": 2,
     }
     measurements = []
     receipts = []
-    for model_index, model in enumerate(producer.MODELS):
-        digest = f"digest-{model_index}"
+    for model in producer.MODELS:
+        digest = hashlib.sha256(bytes([2, 2])).hexdigest()
         for trial in range(2):
             measurements.append(
                 {
@@ -119,20 +121,6 @@ def test_summary_positive_gate_and_independent_reconstruction_match():
                     "per_pair_ms": "",
                     "decision": "",
                     "decision_sha256": "",
-                }
-            )
-            measurements.append(
-                {
-                    "model": model,
-                    "trial": str(trial),
-                    "phase": "batch_query",
-                    "repeat": "0",
-                    "item_index": "",
-                    "n_items": "2",
-                    "elapsed_s": "0.002",
-                    "per_pair_ms": "1.0",
-                    "decision": "",
-                    "decision_sha256": digest,
                 }
             )
             for item in range(2):
@@ -155,7 +143,7 @@ def test_summary_positive_gate_and_independent_reconstruction_match():
                     "model": model,
                     "trial": trial,
                     "fit_warnings": [],
-                    "full_decision_sha256": digest,
+                    "sample_decision_sha256": digest,
                     "tie_count": 0,
                     "antisymmetry_fraction": 1.0,
                 }
@@ -177,3 +165,23 @@ def test_normalized_hash_ignores_crlf_only(tmp_path: Path):
     right.write_bytes(b"a\nb\n")
     assert producer.normalized_lf_sha256(left) == producer.normalized_lf_sha256(right)
     assert producer.sha256(left) != producer.sha256(right)
+
+
+def test_independent_sample_manifest_reconstruction(tmp_path: Path):
+    query = tmp_path / "query.jsonl"
+    rows = [
+        {"better": f"z-{index}", "worse": f"a-{index}", "budget": 0, "intask_split": "test"}
+        for index in range(5)
+    ]
+    query.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8")
+    indices = sorted(random.Random(7).sample(range(5), 3))
+    pairs = [(f"a-{index}", f"z-{index}") for index in indices]
+    pair_sha = hashlib.sha256("\n".join(f"{a}|{z}" for a, z in pairs).encode()).hexdigest()
+    manifest = tmp_path / "single_pair_sample.json"
+    manifest.write_text(
+        json.dumps({"seed": 7, "indices": indices, "pair_manifest_sha256": pair_sha}),
+        encoding="utf-8",
+    )
+    result = verifier.verify_sample_manifest(query, manifest, seed=7, sample_size=3)
+    assert result["passed"]
+    assert result["sample_pairs"] == 3

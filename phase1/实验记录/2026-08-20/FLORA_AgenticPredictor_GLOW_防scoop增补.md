@@ -25,6 +25,11 @@ GNN/predictor 省 agent execution、首次同时报告 accuracy 与 ranking util
 novelty。其对象仍是固定 workflow configuration × task 的成功，而不是一次 MLE program-search run 内同 parent
 候选的局部选择。
 
+该论文还已单列 resource-cost 表，报告训练时间、memory、每 sample inference latency，并对比 LLM judge 的秒级
+延迟；NAS predictor 综述也早已把 initialization time 与 query time 作为独立轴。因此“把 init/query 成本入表”
+本身也不是 novelty。2026-08-20 DeploymentCostAttestation 的作用只能是补齐我方 benchmark 的可复核证据，且须
+把 feature extraction 算入端到端 query；不能把这张成本表写成方法创新。
+
 ### GLOW 与 AgentSwift
 
 [GLOW](https://arxiv.org/abs/2512.15751) 已把 graph-oriented LLM 语义特征与 GNN 结构表示融合，在
@@ -60,6 +65,10 @@ GNN、graph-language encoder、uncertainty head 或 value-guided MCTS 都只能�
    同时说明不能在同一 OOF 上继续换启发式追正结果。
 6. 目前最低风险正贡献仍是 Decision-Corpus Audit Protocol 与前瞻确认；方法正结果若重开，必须先写与 FLORA
    family 的非重复 estimand、固定 baseline 矩阵和独立未来评测，不因“GNN 可能有效”直接启动长训练。
+7. [FOREAGENT](https://arxiv.org/abs/2601.05930) 已把 MLE solution preference 接入 Predict-then-Verify，并报告
+   `6×` convergence acceleration 与只用 `1/6` execution time；所以“执行前预测可以加速 MLE agent”也已被直接
+   主张。我方只能审计其与真实 sibling pairing、report provenance、run-clean split 和精确成本口径的差异，不能
+   把一般 acceleration 叙事当新贡献。
 
 ## 当前 scoop 裁决
 
@@ -68,4 +77,3 @@ GNN、graph-language encoder、uncertainty head 或 value-guided MCTS 都只能�
 没有找到公开工作同时满足：真实 MLE program-search physical runs、同-parent sibling choice sets、连续 pristine
 hidden scores、run-clean/时间外 prospective split、gap/noise/cost/endpoint-reuse 联合审计。但这只是本次可见
 文献边界，不是“全球首个”的证明；正文应使用可逐项核验的差异，不使用 first/only 声称。
-

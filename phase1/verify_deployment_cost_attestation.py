@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent verifier for deployment_cost_attestation_v1 artifacts.
+"""Independent verifier for deployment_cost_attestation_v2 artifacts.
 
 The verifier deliberately does not import the producer.
 """
@@ -11,12 +11,13 @@ import csv
 import hashlib
 import json
 import math
+import random
 import subprocess
 from pathlib import Path
 from typing import Any, Sequence
 
 
-PROTOCOL = "deployment_cost_attestation_v1"
+PROTOCOL = "deployment_cost_attestation_v2"
 MODELS = ("static_lr", "static_gbm", "tfidf_lr")
 
 
@@ -71,6 +72,51 @@ def load_csv(path: Path) -> list[dict[str, str]]:
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
+
+
+def verify_sample_manifest(
+    query_path: Path,
+    sample_path: Path,
+    seed: int,
+    sample_size: int,
+) -> dict[str, Any]:
+    pairs: list[tuple[str, str]] = []
+    seen: set[tuple[str, str]] = set()
+    for line_number, line in enumerate(query_path.read_text(encoding="utf-8").splitlines(), start=1):
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        if row.get("intask_split") != "test" or int(row.get("budget", -1)) != 0:
+            raise VerificationError(f"unexpected query split/budget at line {line_number}")
+        better, worse = str(row.get("better", "")), str(row.get("worse", ""))
+        if not better or not worse or better == worse:
+            raise VerificationError(f"degenerate query pair at line {line_number}")
+        pair = tuple(sorted((better, worse)))
+        if pair in seen:
+            raise VerificationError(f"duplicate/reversed query pair at line {line_number}")
+        seen.add(pair)
+        pairs.append(pair)
+    if sample_size <= 0 or sample_size > len(pairs):
+        raise VerificationError("invalid sample size")
+    expected_indices = sorted(random.Random(seed).sample(range(len(pairs)), sample_size))
+    sampled = [pairs[index] for index in expected_indices]
+    expected_pair_sha = hashlib.sha256(
+        "\n".join(f"{left}|{right}" for left, right in sampled).encode()
+    ).hexdigest()
+    published = json.loads(sample_path.read_text(encoding="utf-8"))
+    expected = {
+        "seed": seed,
+        "indices": expected_indices,
+        "pair_manifest_sha256": expected_pair_sha,
+    }
+    if published != expected:
+        raise VerificationError("single-pair sample manifest mismatch")
+    return {
+        "query_pairs": len(pairs),
+        "sample_pairs": len(expected_indices),
+        "pair_manifest_sha256": expected_pair_sha,
+        "passed": True,
+    }
 
 
 def atomic_json(path: Path, payload: Any) -> None:
@@ -162,42 +208,58 @@ def reconstruct_summary(
     receipts: Sequence[dict[str, Any]],
     runtime: dict[str, Any],
 ) -> dict[str, Any]:
+    unknown_models = sorted({row["model"] for row in measurements} - set(MODELS))
+    unknown_phases = sorted({row["phase"] for row in measurements} - {"init", "single_query"})
+    if unknown_models or unknown_phases:
+        raise VerificationError(
+            f"unexpected measurement model/phase: models={unknown_models}, phases={unknown_phases}"
+        )
     models: dict[str, Any] = {}
     for model in MODELS:
         rows = [row for row in measurements if row["model"] == model]
         init_values = [float(row["elapsed_s"]) for row in rows if row["phase"] == "init"]
-        batch_values = [float(row["per_pair_ms"]) for row in rows if row["phase"] == "batch_query"]
         single_values = [float(row["per_pair_ms"]) for row in rows if row["phase"] == "single_query"]
         model_receipts = [row for row in receipts if row["model"] == model]
         expected = config["init_trials"]
         if len(init_values) != expected:
             raise VerificationError(f"{model} init row count mismatch")
-        if len(batch_values) != expected * config["query_repeats"]:
-            raise VerificationError(f"{model} batch row count mismatch")
         if len(single_values) != expected * config["single_pair_sample"]:
             raise VerificationError(f"{model} single row count mismatch")
         if len(model_receipts) != expected:
             raise VerificationError(f"{model} receipt count mismatch")
+        init_trials = sorted(
+            int(row["trial"]) for row in rows if row["phase"] == "init"
+        )
+        if init_trials != list(range(expected)):
+            raise VerificationError(f"{model} init trial indices mismatch")
         trial_single_p50 = []
         for trial in range(expected):
             trial_rows = [
                 row for row in rows if row["phase"] == "single_query" and int(row["trial"]) == trial
             ]
+            if len(trial_rows) != config["single_pair_sample"]:
+                raise VerificationError(f"{model} trial {trial} single row count mismatch")
+            item_indices = sorted(int(row["item_index"]) for row in trial_rows)
+            if item_indices != list(range(config["single_pair_sample"])):
+                raise VerificationError(f"{model} trial {trial} item indices mismatch")
             trial_single_p50.append(quantile([float(row["per_pair_ms"]) for row in trial_rows], 0.5))
-            batch_digests = {
-                row["decision_sha256"]
-                for row in rows
-                if row["phase"] == "batch_query" and int(row["trial"]) == trial
-            }
-            receipt = next(row for row in model_receipts if int(row["trial"]) == trial)
-            if batch_digests != {receipt["full_decision_sha256"]}:
-                raise VerificationError(f"{model} trial {trial} decision digest mismatch")
+            trial_receipts = [row for row in model_receipts if int(row["trial"]) == trial]
+            if len(trial_receipts) != 1:
+                raise VerificationError(f"{model} trial {trial} receipt cardinality mismatch")
+            receipt = trial_receipts[0]
+            ordered = sorted(trial_rows, key=lambda row: int(row["item_index"]))
+            decision_values = [int(row["decision"]) for row in ordered]
+            if any(value not in (-1, 0, 1) for value in decision_values):
+                raise VerificationError(f"{model} trial {trial} invalid decision value")
+            encoded = bytes(value + 1 for value in decision_values)
+            sample_digest = hashlib.sha256(encoded).hexdigest()
+            if sample_digest != receipt["sample_decision_sha256"]:
+                raise VerificationError(f"{model} trial {trial} sample decision digest mismatch")
         query_stability = max(trial_single_p50) / max(min(trial_single_p50), 1e-15)
         init_stability = max(init_values) / max(min(init_values), 1e-15)
-        full_digests = sorted({str(row["full_decision_sha256"]) for row in model_receipts})
+        sample_digests = sorted({str(row["sample_decision_sha256"]) for row in model_receipts})
         warning_count = sum(len(row["fit_warnings"]) for row in model_receipts)
         init_stats = distribution(init_values)
-        batch_stats = distribution(batch_values)
         single_stats = distribution(single_values)
         parallel_p50 = runtime["pair_ideal_parallel_runtime_s"]["p50"]
         serial_p50 = runtime["pair_serial_runtime_s"]["p50"]
@@ -206,12 +268,11 @@ def reconstruct_summary(
         denominator = max(parallel_p50 - single_p50_s, 1e-15)
         models[model] = {
             "initialization_s": init_stats,
-            "batch_query_per_pair_ms": batch_stats,
             "single_pair_query_ms": single_stats,
             "trial_single_query_p50_ms": trial_single_p50,
             "query_trial_max_min_ratio": query_stability,
             "init_trial_max_min_ratio": init_stability,
-            "full_decision_sha256_values": full_digests,
+            "sample_decision_sha256_values": sample_digests,
             "fit_warning_count": warning_count,
             "tie_counts": sorted({int(row["tie_count"]) for row in model_receipts}),
             "antisymmetry_min": min(float(row["antisymmetry_fraction"]) for row in model_receipts),
@@ -224,7 +285,7 @@ def reconstruct_summary(
         "all_models_complete": len(receipts) == len(MODELS) * config["init_trials"],
         "runtime_pair_coverage_at_least_0_95": runtime["pair_coverage"] >= 0.95,
         "all_decision_digests_stable": all(
-            len(models[model]["full_decision_sha256_values"]) == 1 for model in MODELS
+            len(models[model]["sample_decision_sha256_values"]) == 1 for model in MODELS
         ),
         "all_antisymmetry_exact": all(models[model]["antisymmetry_min"] == 1.0 for model in MODELS),
         "no_fit_warnings": all(models[model]["fit_warning_count"] == 0 for model in MODELS),
@@ -319,6 +380,12 @@ def main() -> None:
         }
         if not passed:
             raise VerificationError(f"input hash mismatch: {name}")
+    sample_check = verify_sample_manifest(
+        Path(config["input_manifest"]["query_pairs"]["path"]),
+        result_dir / "single_pair_sample.json",
+        int(config["seed"]),
+        int(config["single_pair_sample"]),
+    )
     runtime = runtime_summary(runtime_rows)
     published_runtime = json.loads(
         (result_dir / "runtime_reference_summary.json").read_text(encoding="utf-8")
@@ -333,6 +400,7 @@ def main() -> None:
         "run_label": config["run_label"],
         "source_commit": config["expected_git_commit"],
         "input_checks": input_checks,
+        "sample_check": sample_check,
         "measurement_rows": len(measurements),
         "trial_receipts": len(receipts),
         "runtime_rows": len(runtime_rows),

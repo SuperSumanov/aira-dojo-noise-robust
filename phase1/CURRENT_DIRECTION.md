@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BP. 2026-08-20 v1 因 16.161918904708 小时投影工程停止；v2 在线单对协议已结果前冻结
+
+v1 只完成 A/static-LR 的 1/15 trials，首个 trial 显示 30 次 full-cohort 端到端 batch 会把 A/B 投影推至
+`16.161918904708` 小时，超过事前 2 小时停止门；已 fail closed，partial 不可作论文成本数字。这不是正成本门
+失败，而是辅助 batch estimand 与资源估计错误。旧 suite 缓存式毫秒值仍不得替代端到端部署计时。
+
+v2 保持同一 v11 b0 输入、三个模型、单核 CPU、execution 分母、A/B、独立 verifier 与全部正门，只删除并不对应
+在线 selector 的 30 次 1,498-pair batch 重复。每个 A/B × model 固定 3 次初始化、10 次 single warmup、同一
+seed 事前抽取的 256 个 canonical pairs；共 18 fits / 4,608 measured online queries。query 必须包含 feature/
+TF-IDF transform；sample batch 仅核对逐对 digest 与 exact antisymmetry，不计时。GPU=0、API=0、hard wall=2h。
+直接证据：
+
+- `phase1/实验记录/2026-08-20/DeploymentCostAttestation_v1_工程停止.md`；
+- `phase1/实验记录/2026-08-20/DeploymentCostAttestation_v2_在线单对预注册.md`。
+
 ## 0BO. 2026-08-20 部署成本证明已结果前冻结；旧“七百万倍”正式撤回
 
 Decision-Corpus Audit 仍缺一份单独的 deployment cost attestation。当前只允许在 v11 b0 run-clean train 和

@@ -49,7 +49,7 @@ from sklearn.preprocessing import StandardScaler
 from threadpoolctl import threadpool_info, threadpool_limits
 
 
-PROTOCOL = "deployment_cost_attestation_v1"
+PROTOCOL = "deployment_cost_attestation_v2"
 MODELS = ("static_lr", "static_gbm", "tfidf_lr")
 MEASUREMENT_FIELDS = (
     "model",
@@ -467,14 +467,11 @@ def summarize(
     for model in MODELS:
         model_rows = [row for row in measurements if row["model"] == model]
         init_values = [float(row["elapsed_s"]) for row in model_rows if row["phase"] == "init"]
-        batch_values = [
-            float(row["per_pair_ms"]) for row in model_rows if row["phase"] == "batch_query"
-        ]
         single_values = [
             float(row["per_pair_ms"]) for row in model_rows if row["phase"] == "single_query"
         ]
         model_receipts = [row for row in receipts if row["model"] == model]
-        if not init_values or not batch_values or not single_values:
+        if not init_values or not single_values:
             raise IntegrityError(f"incomplete measurements for {model}")
         trial_single_p50 = [
             quantile(
@@ -489,10 +486,9 @@ def summarize(
         ]
         query_stability = max(trial_single_p50) / max(min(trial_single_p50), 1e-15)
         init_stability = max(init_values) / max(min(init_values), 1e-15)
-        full_digests = sorted({str(row["full_decision_sha256"]) for row in model_receipts})
+        sample_digests = sorted({str(row["sample_decision_sha256"]) for row in model_receipts})
         warning_count = sum(len(row["fit_warnings"]) for row in model_receipts)
         init_stats = distribution(init_values)
-        batch_stats = distribution(batch_values)
         single_stats = distribution(single_values)
         execution_parallel_p50 = runtime["pair_ideal_parallel_runtime_s"]["p50"]
         execution_serial_p50 = runtime["pair_serial_runtime_s"]["p50"]
@@ -501,12 +497,11 @@ def summarize(
         denominator = max(execution_parallel_p50 - single_p50_s, 1e-15)
         models[model] = {
             "initialization_s": init_stats,
-            "batch_query_per_pair_ms": batch_stats,
             "single_pair_query_ms": single_stats,
             "trial_single_query_p50_ms": trial_single_p50,
             "query_trial_max_min_ratio": query_stability,
             "init_trial_max_min_ratio": init_stability,
-            "full_decision_sha256_values": full_digests,
+            "sample_decision_sha256_values": sample_digests,
             "fit_warning_count": warning_count,
             "tie_counts": sorted({int(row["tie_count"]) for row in model_receipts}),
             "antisymmetry_min": min(float(row["antisymmetry_fraction"]) for row in model_receipts),
@@ -519,7 +514,7 @@ def summarize(
         "all_models_complete": len(receipts) == len(MODELS) * config["init_trials"],
         "runtime_pair_coverage_at_least_0_95": runtime["pair_coverage"] >= 0.95,
         "all_decision_digests_stable": all(
-            len(models[model]["full_decision_sha256_values"]) == 1 for model in MODELS
+            len(models[model]["sample_decision_sha256_values"]) == 1 for model in MODELS
         ),
         "all_antisymmetry_exact": all(models[model]["antisymmetry_min"] == 1.0 for model in MODELS),
         "no_fit_warnings": all(models[model]["fit_warning_count"] == 0 for model in MODELS),
@@ -589,10 +584,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--expected-query-sha256-normalized-lf", required=True)
     parser.add_argument("--run-label", choices=("A", "B"), required=True)
     parser.add_argument("--seed", type=int, default=20260820)
-    parser.add_argument("--init-trials", type=int, default=5)
-    parser.add_argument("--query-warmup", type=int, default=5)
-    parser.add_argument("--query-repeats", type=int, default=30)
-    parser.add_argument("--single-pair-sample", type=int, default=128)
+    parser.add_argument("--init-trials", type=int, default=3)
+    parser.add_argument("--single-query-warmup", type=int, default=10)
+    parser.add_argument("--single-pair-sample", type=int, default=256)
     parser.add_argument("--resume", action="store_true")
     return parser.parse_args()
 
@@ -639,6 +633,16 @@ def main() -> None:
             raise IntegrityError(f"normalized input hash mismatch for {name}")
     train_pairs = load_pairs(train_path, "train", canonical=False)
     query_pairs = load_pairs(query_path, "test", canonical=True)
+    if arguments.init_trials <= 0:
+        raise IntegrityError("init-trials must be positive")
+    if arguments.single_query_warmup < 0:
+        raise IntegrityError("single-query-warmup must be non-negative")
+    if arguments.single_pair_sample <= 0:
+        raise IntegrityError("single-pair-sample must be positive")
+    if arguments.single_pair_sample > len(query_pairs):
+        raise IntegrityError(
+            "single-pair-sample exceeds the frozen orientation-free query manifest"
+        )
     train_endpoints = {identifier for pair in train_pairs for identifier in pair}
     query_endpoints = {identifier for pair in query_pairs for identifier in pair}
     overlap = train_endpoints & query_endpoints
@@ -657,8 +661,7 @@ def main() -> None:
         "seed": arguments.seed,
         "models": list(MODELS),
         "init_trials": arguments.init_trials,
-        "query_warmup": arguments.query_warmup,
-        "query_repeats": arguments.query_repeats,
+        "single_query_warmup": arguments.single_query_warmup,
         "single_pair_sample": arguments.single_pair_sample,
         "train_pairs": len(train_pairs),
         "query_pairs": len(query_pairs),
@@ -713,7 +716,7 @@ def main() -> None:
     measurements = read_csv(measurements_path)
     receipts = read_jsonl(receipts_path)
     done = completed_trials(receipts)
-    sample_size = min(arguments.single_pair_sample, len(query_pairs))
+    sample_size = arguments.single_pair_sample
     sample_rng = random.Random(arguments.seed)
     sample_indices = sorted(sample_rng.sample(range(len(query_pairs)), sample_size))
     single_pairs = [query_pairs[index] for index in sample_indices]
@@ -756,44 +759,15 @@ def main() -> None:
                         "decision_sha256": "",
                     }
                 ]
-                for _ in range(arguments.query_warmup):
-                    query_scores(fitted, cards, query_pairs)
-                full_decisions: np.ndarray | None = None
-                for repeat in range(arguments.query_repeats):
-                    started = time.perf_counter_ns()
-                    scores = query_scores(fitted, cards, query_pairs)
-                    elapsed = (time.perf_counter_ns() - started) / 1e9
-                    current = decisions(scores)
-                    if full_decisions is None:
-                        full_decisions = current
-                    elif not np.array_equal(full_decisions, current):
-                        raise IntegrityError(f"query decisions drifted within {model} trial {trial}")
-                    trial_rows.append(
-                        {
-                            "model": model,
-                            "trial": trial,
-                            "phase": "batch_query",
-                            "repeat": repeat,
-                            "item_index": "",
-                            "n_items": len(query_pairs),
-                            "elapsed_s": f"{elapsed:.12f}",
-                            "per_pair_ms": f"{elapsed * 1000.0 / len(query_pairs):.12f}",
-                            "decision": "",
-                            "decision_sha256": decision_sha(current),
-                        }
-                    )
-                if full_decisions is None:  # pragma: no cover
-                    raise IntegrityError("no batch query measurements")
-                for warm_index in range(arguments.query_warmup):
+                for warm_index in range(arguments.single_query_warmup):
                     query_scores(fitted, cards, [single_pairs[warm_index % len(single_pairs)]])
+                sample_decisions: list[int] = []
                 for item_index, pair in enumerate(single_pairs):
                     started = time.perf_counter_ns()
                     score = query_scores(fitted, cards, [pair])
                     elapsed = (time.perf_counter_ns() - started) / 1e9
                     current = decisions(score)
-                    expected = full_decisions[sample_indices[item_index]]
-                    if current[0] != expected:
-                        raise IntegrityError(f"batch/single decision mismatch for {model}")
+                    sample_decisions.append(int(current[0]))
                     trial_rows.append(
                         {
                             "model": model,
@@ -808,21 +782,24 @@ def main() -> None:
                             "decision_sha256": decision_sha(current),
                         }
                     )
-                reverse_scores = query_scores(
-                    fitted, cards, [(right, left) for left, right in query_pairs]
+                forward_scores = query_scores(fitted, cards, single_pairs)
+                reverse_scores = query_scores(fitted, cards, [(right, left) for left, right in single_pairs])
+                antisymmetry = float(
+                    np.mean(np.isclose(reverse_scores, -forward_scores, rtol=0, atol=1e-12))
                 )
-                antisymmetry = float(np.mean(np.isclose(reverse_scores, -scores, rtol=0, atol=1e-12)))
                 if antisymmetry != 1.0:
                     raise IntegrityError(f"antisymmetry failed for {model} trial {trial}")
+                sample_array = np.asarray(sample_decisions, dtype=np.int8)
+                if not np.array_equal(sample_array, decisions(forward_scores)):
+                    raise IntegrityError(f"single/sample-batch decision mismatch for {model}")
                 receipt = {
                     "model": model,
                     "trial": trial,
                     "fit_warnings": fit_warnings,
-                    "full_decision_sha256": decision_sha(full_decisions),
-                    "tie_count": int(np.sum(full_decisions == 0)),
+                    "sample_decision_sha256": decision_sha(sample_array),
+                    "tie_count": int(np.sum(sample_array == 0)),
                     "antisymmetry_fraction": antisymmetry,
                     "init_s": init_s,
-                    "batch_measurements": arguments.query_repeats,
                     "single_measurements": len(single_pairs),
                 }
                 measurements.extend(trial_rows)
@@ -837,7 +814,7 @@ def main() -> None:
                 )
                 print(
                     f"TRIAL_DONE model={model} trial={trial} init_s={init_s:.6f} "
-                    f"decision_sha256={receipt['full_decision_sha256']}",
+                    f"decision_sha256={receipt['sample_decision_sha256']}",
                     flush=True,
                 )
 

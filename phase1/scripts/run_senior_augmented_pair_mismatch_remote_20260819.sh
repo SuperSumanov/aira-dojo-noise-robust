@@ -12,7 +12,7 @@ run_sha=bd707dd992a131d03dc20bdc981626826325f461e086a945b2f85fc41c2c171b
 pair_sha=52ffcdc0b7cc4486b61de0c664c7c057c26171a520372ca2071d55f2fb7a127b
 support_sha=7745dd157e41dc96a00ac76979afa6369f06395b0aa8ad67756de4d84e7297e8
 test ! -e "$result_root"
-tmp=$(mktemp -d /research/d7/spc/yzyang4/tmp/pair_mismatch.XXXXXX)
+tmp=$(mktemp -d /tmp/pair_mismatch.XXXXXX)
 trap 'rm -rf -- "$tmp"' EXIT
 
 source ~/env_setup.sh

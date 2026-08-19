@@ -1,0 +1,11 @@
+{
+  "dev_pairs": 626,
+  "full_train_pairs": 9001,
+  "pairs": 13520,
+  "producer_imported": false,
+  "producer_status": "INSUFFICIENT_TRAIN_ONLY_DEV_SUPPORT",
+  "protocol": "independent-senior-augmented-train-dev-support-verifier-v1",
+  "runs": 676,
+  "status": "INDEPENDENT_TRAIN_DEV_SUPPORT_ARTIFACT_VERIFIED",
+  "summary_sha256": "7745dd157e41dc96a00ac76979afa6369f06395b0aa8ad67756de4d84e7297e8"
+}

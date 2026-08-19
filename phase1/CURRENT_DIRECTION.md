@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0AP. 2026-08-19 最新覆盖：train-only dev 支持充足，但跨配置配对触发冻结 KILL
+
+结果前 commit `af51c8cefae81faeeafa34a673282949e99ad042` 固定 physical-run-clean train/dev、四层
+nested curve 和 11 个资格门。远端完整测试 `390 passed in 35.43s`，producer 双跑逐字节一致，summary SHA=
+`7745dd157e41dc96a00ac76979afa6369f06395b0aa8ad67756de4d84e7297e8`；独立 verifier 两次通过。
+
+学长 augmented 数据的原始结构为 11,946 train pairs / 1,574 test pairs，split inconsistency=0；148 个 frozen-test
+runs 均未进入 train/dev。固定哈希划分得到 626 dev pairs / 23 tasks 与 9,001 full-train pairs / 26 tasks；四层
+训练规模 1,118 / 3,061 / 5,798 / 9,001 严格递增，dev 最大任务占比仅
+`0.16932907348242812`。样本量、任务覆盖与 test 隔离门均通过。
+
+但 dev same-experiment share=`0.9808306709265175`，full-train share 仅
+`0.9213420731029885`，后者低于结果前固定的 0.95。正式状态因此为
+`INSUFFICIENT_TRAIN_ONLY_DEV_SUPPORT`；不启动确认性 TF-IDF curve，不事后降门或筛 pair。下一步只做
+outcome-blind mismatch 来源定位，并把 exact experiment-stratum pairing 写成未来新 cohort 的 producer/verifier
+契约。当前数据最多作探索性诊断，不能修补后追认为 scaling 确认。直接证据：
+
+- `phase1/results/senior_augmented_train_dev_support_20260819/README.md`；
+- `phase1/实验记录/2026-08-19/SeniorAugmentedTrainDevSupport_v1_裁决.md`。
+
 ## 0AO. 2026-08-19 最新覆盖：学长 augmented scaling 仅为探索性，frozen test 已被反复 eval
 
 `myfork/dojo-reproduce` 最新 commit `92a9651f2e13a9e43623235b82c07c19721bc2ee` 标题称

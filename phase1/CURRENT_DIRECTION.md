@@ -3,6 +3,31 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BK. 2026-08-20 协议纠偏：确认 cohort 仍是 first-960 + closure；撤回“只差 27 pairs”
+
+结果前功效附录明确把 first-240 保留为 pilot、唯一确认 cohort 固定为按预注册全序排列的 first-960，并要求
+独立于 outcome 的 accrual-closure receipt；近期没有正式预注册 supersede。0BI/0BJ 的结构计数正确，但把
+1,500-pair 支持门误当成停止门，因此“只差 27 pairs 即可揭盲”正式撤回。纠偏时 label/outcome/scorer
+prediction 均未打开。
+
+commit `757ced0...` 的独立 verifier v5 在 CLI 锁死 first-960 与 1,500/150/15/0.25 阈值，按
+`(generation_started_at_utc, source_sha256, run_id)` 自行排序并区分 all-eligible/provisional-first960；closure
+还必须 provided、all scheduled archives uploaded、outcomes unread 且 accumulator identity frozen。真实 snapshot
+双跑逐字节一致，receipt SHA=`9d12e2a8cac555a9eef6743169d0b922c2840b1e6d9c20996662e1910b65e875`；
+禁读路径和 credential shape 均为 0，Linux 全套 `435 passed in 36.26s`。
+
+准确状态：223/960 confirmatory runs（差 737），1,473/1,500 structural pairs（差 27），222 finite-decision
+runs、25 pair tasks、dominant share=`0.1887304820095044`；closure 未提供。因此状态为
+`CONFIRMATORY_COHORT_COLLECTING`、`vault_open_allowed=false`。0BJ 的高决策覆盖、低 exact-code 冗余等正资产
+结论继续有效，但作用域是当前 `provisional_first960_prefix`，不是完成的确认集。
+
+v4 虽纠正了 run stop，却因 verifier 内全仓库 `git status` 对 forbidden path 产生 54 次 metadata stat；未读
+内容仍按零接触标准作废。v5 改为只核对 verifier 自身 Git blob 后全新重跑。继续 append-only 摄取；first-960
+与 closure 之前不得自动冻结或揭盲。直接证据：
+
+- `phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/README.md`；
+- `phase1/实验记录/2026-08-20/Prospective确认门_first960与closure纠偏_v5.md`。
+
 ## 0BJ. 2026-08-20 最新正资产结果：前瞻 cohort 高决策覆盖、低逐字节冗余，仍不揭盲
 
 在 0BI 的 frozen snapshot 上，commit `98956a8...` 的 outcome-blind verifier v3 不 import 生产 accumulator，

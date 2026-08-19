@@ -1,4 +1,6 @@
 {
+  "confirmatory_gate_interpretation_superseded": true,
+  "confirmatory_gate_superseded_by_receipt_sha256": "9d12e2a8cac555a9eef6743169d0b922c2840b1e6d9c20996662e1910b65e875",
   "cross_checks_against_accumulator_all_pass": true,
   "file_access_forbidden_pattern_matches": 0,
   "full_test": {
@@ -10,6 +12,7 @@
   "receipt_sha256": "82bd8747f85b78c7e17429dcf20695fd0e85a9ec213edaa1787b6e035b7b51f9",
   "remote_artifact_root": "/research/d7/spc/yzyang4/prospective_decision_v1/diagnostics/structural_asset_20260820_98956a8",
   "secret_shape_matches": 0,
+  "scientific_scope": "provisional_first960_prefix_asset_quality_only",
   "snapshot_sha256": "88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8",
   "source_commit": "98956a8e963324591f7b5fd95e02fec29c93c731",
   "strace_a_sha256": "800968773a7c8ee0e5ba30225ff151ce2b12dea1cc0e782c89e99248e101858b",

@@ -1,5 +1,9 @@
 # Prospective 0818 安全摄取与结构门复核（2026-08-20）
 
+> **后续纠偏：** 本记录的 1,473-pair 结构计数有效；“仅 pair 门未过”遗漏了已预注册的 first-960 与 accrual
+> closure。正式状态为 223/960、closure 未提供；以
+> `Prospective确认门_first960与closure纠偏_v5.md` 为准。
+
 ## 裁决
 
 0818 新增 8 个归档。生产流程在固定 6 小时稳定窗后逐包处理：7 包形成不可变 transaction；`multi-modal-gesture-recognition-8seeds.tar.gz` 在 intake 处 fail-closed。credential-first 独立 auditor 对后者双跑逐字节一致，4/4 checkpoint journals 的 task identity cardinality 均为 0，因此按精确 path/size/mtime/SHA 整包结构拒收，未按文件名补 task。

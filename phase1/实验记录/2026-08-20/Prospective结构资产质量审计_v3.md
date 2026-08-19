@@ -1,5 +1,9 @@
 # Prospective 结构资产质量审计 v3：高决策覆盖、低逐字节冗余，标签继续封存
 
+> **后续协议纠偏：** 本文资产质量数字保留；confirmatory unlock 解释由
+> `Prospective确认门_first960与closure纠偏_v5.md` 覆盖。当前是 223/960 runs，closure 未提供，并非只差
+> 27 pairs。
+
 ## 问题与边界
 
 在等待 first-1500-pair 前瞻门的同时，对当前 frozen snapshot 做一次 outcome-blind 数据资产审计。目标是验证
@@ -36,7 +40,8 @@ source/environment/threshold binding 后从全新 worktree 与输出目录重跑
 
 ## 裁决
 
-当前结构资产质量证据成立；first-1500 门仍因 `1473 < 1500` 未过，`vault_open_allowed=false`。继续等待
-append-only 新归档；门槛跨越后只先冻结 exact cohort 和收据，揭盲仍需一次性预检与用户确认。
+当前结构资产质量证据成立；确认 cohort 为 223/960，pair 支持为 `1473 < 1500`，closure 未提供，
+`vault_open_allowed=false`。继续等待 append-only 新归档；first-960 和 closure 均满足后才能冻结 exact cohort，
+揭盲仍需一次性预检与用户确认。
 
 完整证据入口：`phase1/results/prospective_structural_asset_quality_20260820_98956a8/README.md`。

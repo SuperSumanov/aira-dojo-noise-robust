@@ -1,5 +1,10 @@
 # Prospective corpus outcome-blind 结构资产审计（v3）
 
+> **后续协议纠偏（2026-08-20）：** 本页的结构资产数字有效，但“只差 27 pairs”遗漏了结果前固定的
+> first-960 停止规则与 accrual closure。正式状态为 223/960、尚差 737 runs，详见
+> `phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/README.md`。本页 v3 receipt 仅作为
+> provisional-prefix 资产质量证据，不再作为 confirmatory unlock gate。
+
 本审计只回答“当前前瞻 cohort 是否已经形成一个可用、非明显重复、非单任务主导的决策语料资产”。它不读取
 label、grade、outcome、scorer prediction 或 endpoint code，也不构成 critic/方法效果结论。
 
@@ -29,10 +34,10 @@ label、grade、outcome、scorer prediction 或 endpoint code，也不构成 cri
 这组结果支持一个正面但边界清楚的主张：当前资产不是由无决策 run、跨 run 逐字节复制或单一任务堆量造成的；
 它已经具有很高的真实 run 决策覆盖和较广的任务支持。这是数据集/benchmark 贡献，不是“critic 已经有效”。
 
-## 仍未通过的门与限制
+## 仍未通过的门与限制（本节的旧 gate 解释已被上述纠偏覆盖）
 
-- 冻结结构门仍为 `1473 < 1500`，只差 27 pairs；run、task、dominant-share 三项已过。
-  `vault_open_allowed=false`，本次没有打开标签仓。
+- 当前前缀为 223/960 runs 与 `1473 < 1500` pairs；确认 run stop 尚差 737，且 closure 未提供。
+  支持门中的 finite-decision run、task、dominant-share 三项已过；`vault_open_allowed=false`。
 - 任务覆盖不等于每任务都足够做推断：支持最少的任务仅 1 pair。论文必须同时报告 per-task support，不能只报
   25/25 coverage 或 effective-task 数。
 - exact-code SHA 只能排除逐字节复制，不能排除语义近重复；后续 near-duplicate 审计需另立不看 outcome 的协议。

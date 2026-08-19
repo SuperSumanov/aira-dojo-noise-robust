@@ -1,0 +1,28 @@
+{
+  "accrual_closure_provided": false,
+  "confirmatory_runs": 223,
+  "confirmatory_target_runs": 960,
+  "file_access_forbidden_pattern_matches": 0,
+  "full_test": {
+    "result": "435 passed in 36.26s",
+    "sha256": "78502f8ed3c5ffe65901c3b19616a7aa69404ba891928120759bf8da1e37028a"
+  },
+  "prior_v4_invalid_file_metadata_access_matches": 54,
+  "protocol": "prospective_structural_gate_independent_verifier_v5",
+  "receipt_repeat_byte_identical": true,
+  "receipt_sha256": "9d12e2a8cac555a9eef6743169d0b922c2840b1e6d9c20996662e1910b65e875",
+  "remaining_confirmatory_runs": 737,
+  "remaining_structural_pairs": 27,
+  "remote_artifact_root": "/research/d7/spc/yzyang4/prospective_decision_v1/diagnostics/confirmatory_gate_20260820_757ced0",
+  "secret_shape_matches": 0,
+  "snapshot_sha256": "88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8",
+  "source_commit": "757ced0b2d36d8b105b5d25f23df577ac2bc07e6",
+  "status": "CONFIRMATORY_COHORT_COLLECTING",
+  "strace_a_sha256": "ec9d6aae1d15a1f12ed7d93b0ca8358d9eb884708218a8b7732a4364a3379c0a",
+  "strace_b_sha256": "c64e51d61473c9229c7d46bb18bd1c928db6bd1229e00ab2c5a4338e2bf386d5",
+  "targeted_test": {
+    "result": "1 passed in 0.09s",
+    "sha256": "59907462a8d5fd93406cdf4c7d1eb2f7b7a96664ae85c4ec202693d419cd019e"
+  },
+  "vault_open_allowed": false
+}

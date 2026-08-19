@@ -1,5 +1,9 @@
 # 0818 Multi-modal Gesture archive 结构性拒收
 
+> **后续协议纠偏：** 下文“只差 27”只描述 1,500-pair 支持门，不是确认 cohort 的停止门。正式预注册仍要求
+> first-960 + outcome-blind accrual closure；当前为 223/960，详见
+> `phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/README.md`。
+
 - 精确归档：`0818/multi-modal-gesture-recognition-8seeds.tar.gz`
 - SHA256：`300e602a694075d05b1634d0126a660b0c2f44508cb7ae618732b95f39843d74`
 - 诊断收据 SHA256：`a5c2a0d832ef6923664c6caeffde71d5f3950fe2fd2870edc942bc54f4ca6f93`

@@ -132,6 +132,26 @@ def split_inventory(rows: list[dict[str, Any]]) -> dict[str, int]:
     return {"train": train, "test": test, "total": len(rows)}
 
 
+def structural_support(
+    rows: list[dict[str, Any]],
+    configs: dict[str, tuple[Any, ...]],
+    runs: dict[str, str],
+) -> dict[str, dict[str, int]]:
+    result: dict[str, dict[str, int]] = {}
+    for split in ("all", "train", "test"):
+        chosen = rows if split == "all" else [row for row in rows if row["intask_split"] == split]
+        cards = {row[side] for row in chosen for side in ("better", "worse")}
+        result[split] = {
+            "pairs": len(chosen),
+            "endpoints": len(cards),
+            "physical_runs": len({runs[identifier] for identifier in cards}),
+            "tasks": len({row["task"] for row in chosen}),
+            "task_parent_keys": len({(row["task"], row["parent"]) for row in chosen}),
+            "exact_config_strata": len({configs[row["better"]] for row in chosen}),
+        }
+    return result
+
+
 def independent_summary(
     merged: list[dict[str, Any]],
     draft: list[dict[str, Any]],
@@ -180,6 +200,9 @@ def independent_summary(
             cells[(semantics, row["intask_split"])] += not exact(row, configs)
     raw_inventory = {name: split_inventory(rows_) for name, rows_ in raw.items()}
     eligible_inventory = {name: split_inventory(rows_) for name, rows_ in eligible.items()}
+    eligible_support = {
+        name: structural_support(rows_, configs, runs) for name, rows_ in eligible.items()
+    }
     task_counts = Counter(row["task"] for row in test)
     supported = sum(value >= 10 for value in task_counts.values())
     dominant = max(task_counts.values(), default=0) / len(test) if test else None
@@ -213,6 +236,7 @@ def independent_summary(
     return {
         "protocol": PROTOCOL, "raw_integrity": raw_integrity, "filtered_integrity": filtered_integrity,
         "raw_inventory": raw_inventory, "eligible_inventory": eligible_inventory,
+        "eligible_support": eligible_support,
         "mismatch": {
             "pairs": len(merged) - len(eligible["merged"]),
             "share": (len(merged) - len(eligible["merged"])) / len(merged),
@@ -291,7 +315,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         "card_inventory": summary.get("card_inventory") == inventory,
         "scientific_summary": all(summary.get(name) == rebuilt[name] for name in (
             "protocol", "raw_integrity", "filtered_integrity", "raw_inventory", "eligible_inventory",
-            "mismatch", "eligible_test_support", "gates", "status", "scope",
+            "eligible_support", "mismatch", "eligible_test_support", "gates", "status", "scope",
         )),
         "eligible_merged": (artifact / "eligible_merged.jsonl").read_bytes() == canonical_lines(eligible["merged"]),
         "eligible_draft": (artifact / "eligible_draft.jsonl").read_bytes() == canonical_lines(eligible["draft"]),

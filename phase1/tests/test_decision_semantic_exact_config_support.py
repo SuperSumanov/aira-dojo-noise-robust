@@ -93,6 +93,14 @@ def test_support_summary_filters_only_exact_config_and_matches_independent_rebui
     assert produced["mismatch"]["by_field"] == {"client": 1}
     assert produced["mismatch"]["by_semantics_split"]["draft_test"] == 1
     assert produced["eligible_inventory"]["merged"] == {"train": 2, "test": 1, "total": 3}
+    assert produced["eligible_support"]["merged"]["all"] == {
+        "pairs": 3,
+        "endpoints": 6,
+        "physical_runs": 3,
+        "tasks": 2,
+        "task_parent_keys": 3,
+        "exact_config_strata": 2,
+    }
     assert produced["status"] == "V2_INSUFFICIENT_EXACT_CONFIG_SUPPORT"
 
 

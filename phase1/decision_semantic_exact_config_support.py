@@ -157,6 +157,26 @@ def split_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
     return {name: sum(row["intask_split"] == name for row in rows) for name in ("train", "test")}
 
 
+def support_inventory(
+    rows: list[dict[str, Any]],
+    configs: dict[str, tuple[Any, ...]],
+    run_of: dict[str, str],
+) -> dict[str, dict[str, int]]:
+    output: dict[str, dict[str, int]] = {}
+    for split in ("all", "train", "test"):
+        selected = rows if split == "all" else [row for row in rows if row["intask_split"] == split]
+        endpoints = {row[role] for row in selected for role in ("better", "worse")}
+        output[split] = {
+            "pairs": len(selected),
+            "endpoints": len(endpoints),
+            "physical_runs": len({run_of[identifier] for identifier in endpoints}),
+            "tasks": len({row["task"] for row in selected}),
+            "task_parent_keys": len({(row["task"], row["parent"]) for row in selected}),
+            "exact_config_strata": len({configs[row["better"]] for row in selected}),
+        }
+    return output
+
+
 def summarize(
     merged: list[dict[str, Any]],
     draft: list[dict[str, Any]],
@@ -217,6 +237,9 @@ def summarize(
     eligible_inventory = {
         name: {**split_counts(rows), "total": len(rows)} for name, rows in eligible.items()
     }
+    eligible_support = {
+        name: support_inventory(rows, configs, run_of) for name, rows in eligible.items()
+    }
     test_task_counts = Counter(row["task"] for row in test)
     supported_tasks = sum(count >= 10 for count in test_task_counts.values())
     dominant = max(test_task_counts.values(), default=0) / len(test) if test else None
@@ -255,6 +278,7 @@ def summarize(
         },
         "raw_inventory": raw_inventory,
         "eligible_inventory": eligible_inventory,
+        "eligible_support": eligible_support,
         "mismatch": {
             "pairs": len(merged) - len(eligible["merged"]),
             "share": (len(merged) - len(eligible["merged"])) / len(merged),

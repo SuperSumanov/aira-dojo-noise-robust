@@ -2,17 +2,17 @@
 
 The input is the run-grouped Card JSON produced by ``build_cards``.  For every
 parent with at least two visible children, the children form one decision set.
-With lookahead disabled, a child's value is its current external grade.  With
-lookahead enabled, its value is the best external grade among the child and
-all visible descendants in journal expansion order.
+At budget zero, a child's value is its current external grade.  At a positive
+budget, its value is the best external grade among the child and up to that
+many visible descendants in journal expansion order.
 
 This command only constructs raw pairs.  It writes
 ``intask_split="unassigned"``; apply the frozen physical-run split afterwards
 with ``build_bt_pairs.build_runsplit``.
 
 Usage:
-    python -m src.preprocess.build_bt_pairs.build_decision_pairs \
-        OUT.jsonl CARDS.json [--lookahead]
+    python -m src.preprocess.build_bt_pairs.build_augmented_decision_pairs \
+        OUT.jsonl CARDS.json [--cap N] [--seed N] [--budget N] [--draft_pairs]
 """
 from __future__ import annotations
 

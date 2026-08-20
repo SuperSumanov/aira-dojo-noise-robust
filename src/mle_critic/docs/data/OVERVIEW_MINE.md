@@ -159,29 +159,33 @@ grade。默认 `budget_steps=0`、`budget_secs=0` 表示使用完整子树。设
 入口：
 
 ```text
-src/mle_critic/src/preprocess/build_bt_pairs/build_decision_pairs.py
+src/mle_critic/src/preprocess/build_bt_pairs/build_augmented_decision_pairs.py
 ```
 
-一个 decision set 是同一父节点的全部直接孩子。只有至少有两个孩子时才可能生成 pair。
-对于预算 `K`，先将某个孩子的全部后代按 journal `lineage.step` 排序，然后定义：
+当前构建器按两种模式工作，不再使用旧的 `K=0,1,2` 多档 lookahead：
+
+- 普通 improve pair：每个有 grade 且没有执行错误的节点，沿 lineage 向上追溯；如果中间经过
+  一个或多个 error 节点，就把它挂到最近的无 error ancestor 下。这样 debug/error 节点不会
+  把原本属于同一决策分支的孩子截断。
+- draft pair：每个 batch 内各 physical run 的 root 具有相同输入，因此把这些 root 的第一批
+  children 合并成一个 decision set，允许跨 run 比较 draft。该模式只处理 root decision set，
+  不把后续 improve children 混进来。
+
+对每个 decision set，只有至少两个 sibling 且双方 value 都是有限 graded score 时才生成 pair。
+budget 是二值语义：
 
 ```text
-V_K(child) = child 自己和最早 K 个可见后代中的最佳有限 graded score
+budget = 0       当前节点 value，只看 child 自己
+budget = 1000    lookahead value，看 child 和所有可见未来 descendants
 ```
 
-这里 `K` 表示实际记录到的 descendant expansion 数量：
+`1000` 是命令行中代表“完整未来”的足够大上限；它不是“恰好扩展 1000 次”的旧语义。
+后代按 journal `lineage.step` 排序，higher-is-better 任务取最大有限 grade，
+lower-is-better 任务取最小有限 grade，NaN/Inf 不参与比较。指标方向直接来自 Card 的
+`task.higher_is_better`。
 
-- `K=0` 只看 child 自己；
-- 后代没有 grade 时仍消耗一次 expansion；
-- 少于 K 个可见后代时，这个 child 在该 K 下的 value 未定义；
-- child 和前 K 个后代全部没有有限 grade 时，value 也未定义。
-
-在每个 decision set 和每个 K 下，对所有 value 已定义且不相等的 sibling 组合生成 pair。
-指标方向直接来自 graded Card 的 `task.higher_is_better`，不再维护额外的
-`task_orientation.json`。
-
-Decision siblings 一定属于同一个 physical run，因此应用 run split 后不会出现跨界 pair；
-但仍统一经过 `build_bt_pairs/apply_runsplit.py`，保证所有 pair 文件只信任同一份 frozen split。
+每条 raw pair 的 `intask_split` 都是 `unassigned`。多个 batch 的 pair 手动合并后，再统一
+经过 gap filter 和 frozen physical-run split；不要在各 batch 内单独随机切分。
 
 主要输出字段：
 
@@ -190,7 +194,7 @@ Decision siblings 一定属于同一个 physical run，因此应用 run split �
   "task": "task-name",
   "better": "better-child-id",
   "worse": "worse-child-id",
-  "budget": 2,
+  "budget": 0,
   "parent": "parent-card-id",
   "set_size": 3,
   "gap_raw": 0.08,
@@ -244,6 +248,72 @@ data/augmented_mle_critic/raw_journal/batch_value_pairs.jsonl
 子树，应显式使用 --budget-steps 0。pair builder 的一般规则是按任务比较节点及其可达 graded 后代的最佳
 grade，higher_is_better 决定取最大还是最小，NaN/Inf grade 不参与比较。输出中的
 loto_fold 保存任务名，gap_raw 保存两个节点的 value 差，初始 intask_split 为 unassigned。
+
+### 5.1 Batch decision pairs
+
+Decision pair 也按 batch 单独构建，使用以下两个 wrapper：
+
+```text
+src/mle_critic/scripts/preprocess/build_batch_draft_decision_pairs.sh
+src/mle_critic/scripts/preprocess/build_batch_improve_decision_pairs.sh
+```
+
+两个脚本都会递归查找 `batch_cards.json`，在每个 batch 目录写出对应的
+`batch_draft_decision_pairs.jsonl` 或 `batch_improve_decision_pairs.jsonl`，并在输入目录下
+生成聚合文件：
+
+```text
+<directory>/batch_draft_decision_pairs.jsonl
+<directory>/batch_improve_decision_pairs.jsonl
+```
+
+典型调用：
+
+```bash
+bash src/mle_critic/scripts/preprocess/build_batch_draft_decision_pairs.sh \
+  data/augmented_mle_critic/raw_journal \
+  --cap 100 --seed 7 --budget 0
+
+bash src/mle_critic/scripts/preprocess/build_batch_improve_decision_pairs.sh \
+  data/augmented_mle_critic/raw_journal \
+  --cap 100 --seed 7 --budget 0
+```
+
+`--budget 0` 只按当前节点 grade 构造 pair；需要 lookahead 时使用 `--budget 1000`。
+`--cap` 在单个 batch 产生过多 pair 时随机下采样，`--seed` 固定该抽样结果。draft wrapper
+固定传入 `--draft_pairs`，improve wrapper 不传该开关。
+
+draft 和 improve 两个聚合文件确认无误后，按行手动拼接成一个 raw decision-pair 文件：
+
+```bash
+cat \
+  data/augmented_mle_critic/raw_journal/batch_draft_decision_pairs.jsonl \
+  data/augmented_mle_critic/raw_journal/batch_improve_decision_pairs.jsonl \
+  > data/augmented_mle_critic/merged_decision_pairs.jsonl
+```
+
+然后和 value pair 相同，先做 gap filter，再应用 frozen physical-run split：
+
+```bash
+PYTHONPATH=src/mle_critic python \
+  -m src.postprocess.gap_filter \
+  --value-pairs data/augmented_mle_critic/merged_decision_pairs.jsonl \
+  --gap-filter data/augmented_mle_critic/gap_filter.json \
+  --output data/augmented_mle_critic/merged_decision_pairs_gap_filtered.jsonl
+
+PYTHONPATH=src/mle_critic python \
+  -m src.preprocess.build_bt_pairs.apply_runsplit \
+  data/augmented_mle_critic/augmented_cards_current.json \
+  data/augmented_mle_critic/runsplit_holdruns.json \
+  data/augmented_mle_critic/merged_decision_pairs_gap_filtered.jsonl \
+  data/augmented_mle_critic/merged_decision_pairs_filtered_runsplit.jsonl
+```
+
+最终产物是：
+
+```text
+data/augmented_mle_critic/merged_decision_pairs_filtered_runsplit.jsonl
+```
 
 ## 6. Gap filter
 
@@ -315,6 +385,10 @@ raw journal
   -> raw_journal/batch_value_pairs.jsonl       # 聚合
   -> raw_journal/batch_value_pairs_filtered.jsonl
   -> batch_value_pairs_filtered_runsplit.jsonl # train/test
+  -> batch draft/improve decision pairs        # 另一路 batch 构建
+  -> merged_decision_pairs.jsonl               # 手动合并
+  -> merged_decision_pairs_gap_filtered.jsonl
+  -> merged_decision_pairs_filtered_runsplit.jsonl
   -> context length 检查
   -> augmented reward model / light predictor
 ```

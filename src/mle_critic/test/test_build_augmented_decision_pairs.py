@@ -103,27 +103,34 @@ def decision_cards(higher_is_better=True):
 
 
 def test_improve_decision_pair_supports_current_and_full_lookahead_values():
-    records, summary = build_decision_pairs(decision_cards(), budgets=[0, 1000])
+    current_records, current_summary = build_decision_pairs(decision_cards(), budget=0)
+    lookahead_records, lookahead_summary = build_decision_pairs(
+        decision_cards(), budget=1000
+    )
 
-    assert summary["pairs"] == 8
-    assert [(record["budget"], record["better"], record["worse"]) for record in records] == [
+    assert current_summary["pairs"] == 4
+    assert lookahead_summary["pairs"] == 4
+    assert [(record["budget"], record["better"], record["worse"]) for record in current_records] == [
         (0, "b-child-4", "b-child-1"),
         (0, "b-child-4", "b-child-2"),
-        (1000, "b-child-4", "b-child-1"),
-        (1000, "b-child-4", "b-child-2"),
         (0, "d-child-4", "d-child-1"),
         (0, "d-child-4", "d-child-2"),
+    ]
+    assert [(record["budget"], record["better"], record["worse"]) for record in lookahead_records] == [
+        (1000, "b-child-4", "b-child-1"),
+        (1000, "b-child-4", "b-child-2"),
         (1000, "d-child-4", "d-child-1"),
         (1000, "d-child-4", "d-child-2"),
     ]
-    assert summary["pairs_at_budget_0"] == 4
-    assert summary["pairs_at_budget_1000"] == 4
-    assert all(record["intask_split"] == "unassigned" for record in records)
+    assert current_summary["pairs_at_budget_0"] == 4
+    assert lookahead_summary["pairs_at_budget_1000"] == 4
+    assert all(record["intask_split"] == "unassigned" for record in current_records)
+    assert all(record["intask_split"] == "unassigned" for record in lookahead_records)
 
 
 def test_lower_is_better_direction_comes_from_cards():
     records, _ = build_decision_pairs(
-        decision_cards(higher_is_better=False), budgets=[1000], draft_pairs=True
+        decision_cards(higher_is_better=False), budget=1000, draft_pairs=True
     )
 
     assert len(records) == 6
@@ -136,7 +143,7 @@ def test_error_nodes_do_not_enter_decision_values():
     cards["run-a"][1].obs = Obs(error="exec_error")
     cards["run-c"][1].obs = Obs(error="exec_error")
 
-    records, _ = build_decision_pairs(cards, budgets=[0], draft_pairs=True)
+    records, _ = build_decision_pairs(cards, budget=0, draft_pairs=True)
 
     assert len(records) == 5
     # It should be like (c-best, a-best), (c-best, d), (c-best, b), (a-best, b) and (d, b)
@@ -144,7 +151,7 @@ def test_error_nodes_do_not_enter_decision_values():
     assert all(record["worse"] in ["a-best", "b", "d"] for record in records)
 
 
-def test_main_supports_lookahead_mode(tmp_path, monkeypatch):
+def test_main_supports_seed_budget_and_cap(tmp_path, monkeypatch):
     cards_path = tmp_path / "cards.json"
     pairs_path = tmp_path / "decision_raw.jsonl"
     save_cards(decision_cards(), str(cards_path))
@@ -155,12 +162,17 @@ def test_main_supports_lookahead_mode(tmp_path, monkeypatch):
             "build_augmented_decision_pairs",
             str(pairs_path),
             str(cards_path),
-            "--lookahead",
+            "--seed",
+            "11",
+            "--budget",
+            "1000",
+            "--cap",
+            "2",
         ],
     )
 
     main()
 
     records = [json.loads(line) for line in pairs_path.read_text().splitlines()]
-    assert records
+    assert len(records) == 2
     assert {record["budget"] for record in records} == {1000}

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Build per-batch improve decision pairs, then concatenate them under DIRECTORY.
-# Usage: bash src/mle_critic/scripts/preprocess/build_batch_improve_decision_pairs.sh DIRECTORY [--cap N] [--seed N] [--budget-steps N]
+# Build per-batch draft decision pairs, then concatenate them under DIRECTORY.
+# Usage: bash src/mle_critic/scripts/preprocess/build_batch_draft_decision_pairs.sh DIRECTORY [--cap N] [--seed N] [--budget N]
 set -euo pipefail
 
 DIRECTORY=${1:?expected a directory containing batch_cards.json files}
@@ -8,7 +8,7 @@ shift
 
 CAP=100
 SEED=7
-BUDGET_STEPS=0
+BUDGET=0
 while (( $# )); do
     case $1 in
         --cap)
@@ -19,13 +19,13 @@ while (( $# )); do
             SEED=${2:?expected a value after --seed}
             shift 2
             ;;
-        --budget-steps)
-            BUDGET_STEPS=${2:?expected a value after --budget-steps}
+        --budget)
+            BUDGET=${2:?expected a value after --budget}
             shift 2
             ;;
         *)
             echo "unknown argument: $1" >&2
-            echo "usage: $0 DIRECTORY [--cap N] [--seed N] [--budget-steps N]" >&2
+            echo "usage: $0 DIRECTORY [--cap N] [--seed N] [--budget N]" >&2
             exit 2
             ;;
     esac
@@ -54,7 +54,7 @@ while IFS= read -r -d '' cards_path; do
         "$cards_path" \
         --cap "$CAP" \
         --seed "$SEED" \
-        --budget "$BUDGET_STEPS" \
+        --budget "$BUDGET" \
         --draft_pairs
     cat "$output_path" >> "$aggregate_tmp"
 done < <(find "$DIRECTORY" -type f -name batch_cards.json -print0 | sort -z)

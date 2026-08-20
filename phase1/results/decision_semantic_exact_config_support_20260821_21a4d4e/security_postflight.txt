@@ -1,0 +1,2 @@
+artifact_sensitive_filename_matches=0
+artifact_credential_shape_file_matches=0

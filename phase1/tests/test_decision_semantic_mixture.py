@@ -164,3 +164,21 @@ def test_pair_json_schema_is_exact(tmp_path: Path) -> None:
     path.write_text(json.dumps(row) + "\n", encoding="utf-8")
     with pytest.raises(producer.DiscoveryError, match="schema mismatch"):
         producer.read_pairs(path)
+
+
+def test_v2_inputs_are_bound_to_verified_exact_config_support() -> None:
+    assert producer.PROTOCOL == verifier.PROTOCOL == "decision-semantic-mixture-discovery-v2-exact-config"
+    assert producer.EXPECTED == verifier.IDENTITIES
+    assert producer.EXPECTED_COUNTS == {
+        "card_run_groups": 676,
+        "cards": 31742,
+        "merged_train": 5240,
+        "merged_test": 931,
+        "draft_train": 3196,
+        "draft_test": 314,
+        "improve_train": 2044,
+        "improve_test": 617,
+    }
+    assert producer.SUPPORT_GATE == verifier.SUPPORT_GATE
+    assert producer.SUPPORT_GATE["source_commit"] == "21a4d4e4e81e780259fbf300112b561ae0fc1116"
+    assert producer.SUPPORT_GATE["status"] == "V2_EXACT_CONFIG_SUPPORT_ELIGIBLE"

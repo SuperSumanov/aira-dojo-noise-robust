@@ -1,0 +1,245 @@
+{
+  "card_inventory": {
+    "cards": 31742,
+    "duplicate_card_ids": 0,
+    "needed_cards": 6094,
+    "run_groups": 676
+  },
+  "eligible_inventory": {
+    "draft": {
+      "test": 314,
+      "total": 3510,
+      "train": 3196
+    },
+    "improve": {
+      "test": 617,
+      "total": 2661,
+      "train": 2044
+    },
+    "merged": {
+      "test": 931,
+      "total": 6171,
+      "train": 5240
+    }
+  },
+  "eligible_support": {
+    "draft": {
+      "all": {
+        "endpoints": 1497,
+        "exact_config_strata": 153,
+        "pairs": 3510,
+        "physical_runs": 622,
+        "task_parent_keys": 138,
+        "tasks": 28
+      },
+      "test": {
+        "endpoints": 301,
+        "exact_config_strata": 87,
+        "pairs": 314,
+        "physical_runs": 128,
+        "task_parent_keys": 83,
+        "tasks": 28
+      },
+      "train": {
+        "endpoints": 1196,
+        "exact_config_strata": 143,
+        "pairs": 3196,
+        "physical_runs": 494,
+        "task_parent_keys": 135,
+        "tasks": 28
+      }
+    },
+    "improve": {
+      "all": {
+        "endpoints": 4570,
+        "exact_config_strata": 152,
+        "pairs": 2661,
+        "physical_runs": 528,
+        "task_parent_keys": 2043,
+        "tasks": 28
+      },
+      "test": {
+        "endpoints": 1045,
+        "exact_config_strata": 82,
+        "pairs": 617,
+        "physical_runs": 112,
+        "task_parent_keys": 467,
+        "tasks": 26
+      },
+      "train": {
+        "endpoints": 3525,
+        "exact_config_strata": 146,
+        "pairs": 2044,
+        "physical_runs": 416,
+        "task_parent_keys": 1576,
+        "tasks": 28
+      }
+    },
+    "merged": {
+      "all": {
+        "endpoints": 6067,
+        "exact_config_strata": 160,
+        "pairs": 6171,
+        "physical_runs": 651,
+        "task_parent_keys": 2181,
+        "tasks": 28
+      },
+      "test": {
+        "endpoints": 1346,
+        "exact_config_strata": 99,
+        "pairs": 931,
+        "physical_runs": 140,
+        "task_parent_keys": 550,
+        "tasks": 28
+      },
+      "train": {
+        "endpoints": 4721,
+        "exact_config_strata": 154,
+        "pairs": 5240,
+        "physical_runs": 511,
+        "task_parent_keys": 1711,
+        "tasks": 28
+      }
+    }
+  },
+  "eligible_test_support": {
+    "dominant_task_pairs": 100,
+    "dominant_task_share": 0.10741138560687433,
+    "pairs_per_task": {
+      "aptos2019-blindness-detection": 10,
+      "cassava-leaf-disease-classification": 1,
+      "chaii-hindi-and-tamil-question-answering": 42,
+      "denoising-dirty-documents": 48,
+      "dog-breed-identification": 60,
+      "dogs-vs-cats-redux-kernels-edition": 21,
+      "facebook-recruiting-iii-keyword-extraction": 8,
+      "google-quest-challenge": 20,
+      "histopathologic-cancer-detection": 6,
+      "kuzushiji-recognition": 7,
+      "leaf-classification": 100,
+      "learning-agency-lab-automated-essay-scoring-2": 35,
+      "mlsp-2013-birds": 88,
+      "new-york-city-taxi-fare-prediction": 32,
+      "nomad2018-predict-transparent-conductors": 48,
+      "petfinder-pawpularity-score": 57,
+      "random-acts-of-pizza": 15,
+      "ranzcr-clip-catheter-line-classification": 26,
+      "spooky-author-identification": 82,
+      "tabular-playground-series-dec-2021": 16,
+      "tabular-playground-series-may-2022": 48,
+      "text-normalization-challenge-english-language": 19,
+      "text-normalization-challenge-russian-language": 25,
+      "tgs-salt-identification-challenge": 11,
+      "tweet-sentiment-extraction": 5,
+      "us-patent-phrase-to-phrase-matching": 39,
+      "ventilator-pressure-prediction": 30,
+      "whale-categorization-playground": 32
+    },
+    "tasks": 28,
+    "tasks_with_at_least_10_pairs": 23
+  },
+  "filtered_integrity": {
+    "all_pairs_exact_config": true,
+    "draft_improve_pair_ids_disjoint": true,
+    "merged_is_exact_component_union": true,
+    "pair_task_matches_config": true,
+    "test_endpoints": 1346,
+    "test_runs": 140,
+    "train_endpoints": 4721,
+    "train_runs": 511,
+    "train_test_endpoint_disjoint": true,
+    "train_test_endpoint_overlap": 0,
+    "train_test_physical_run_disjoint": true,
+    "train_test_run_overlap": 0
+  },
+  "gates": {
+    "all_integrity_checks": true,
+    "dominant_test_task_share_le_0_25": true,
+    "draft_test_ge_200": true,
+    "draft_train_ge_2000": true,
+    "improve_test_ge_400": true,
+    "improve_train_ge_1500": true,
+    "merged_test_ge_750": true,
+    "merged_train_ge_4000": true,
+    "supported_test_tasks_ge_15": true,
+    "test_tasks_ge_20": true
+  },
+  "inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "draft": {
+      "bytes": 1714459,
+      "sha256": "84adc361226899d4fd7b1a17cef3bf27884e76ec591566c7a4470fd525a94de7"
+    },
+    "improve": {
+      "bytes": 1143702,
+      "sha256": "c2a062a81b7aa12457d4cb6a66aa102f8623bdfbb2961dd7d443c2c3e16ab516"
+    },
+    "merged": {
+      "bytes": 2858161,
+      "sha256": "c62dae814f7834b9beb3457d63fb60963636a31a811b216616e6912681bba2f4"
+    }
+  },
+  "mismatch": {
+    "by_field": {
+      "hardware": 385
+    },
+    "by_pattern": {
+      "hardware": 385
+    },
+    "by_semantics_split": {
+      "draft_test": 29,
+      "draft_train": 356,
+      "improve_test": 0,
+      "improve_train": 0
+    },
+    "pairs": 385,
+    "share": 0.0587248322147651
+  },
+  "protocol": "decision-semantic-exact-config-support-v2",
+  "raw_integrity": {
+    "card_inventory_exact": true,
+    "draft_improve_pair_ids_disjoint": true,
+    "merged_is_exact_component_union": true,
+    "pair_ids_unique": true
+  },
+  "raw_inventory": {
+    "draft": {
+      "test": 343,
+      "total": 3895,
+      "train": 3552
+    },
+    "improve": {
+      "test": 617,
+      "total": 2661,
+      "train": 2044
+    },
+    "merged": {
+      "test": 960,
+      "total": 6556,
+      "train": 5596
+    }
+  },
+  "reproducibility": {
+    "python": "3.11.15",
+    "runtime_recorded_externally": true,
+    "source_sha256": "c30856e32aeea346848fefcaf4eefb4a3579fec90cf91c93155fb47f2bb1ab0b"
+  },
+  "scope": {
+    "api_calls": 0,
+    "card_label_used_for_selection": false,
+    "checkpoint_read": false,
+    "code_field_used_for_selection": false,
+    "credential_shape_matches": 0,
+    "gap_raw_used_for_selection": false,
+    "gpu_hours": 0,
+    "model_fit": false,
+    "pair_orientation_used_for_selection": false,
+    "prospective_vault_read": false
+  },
+  "senior_source_commit": "baf6bddefe62b769b2fab699ff5805dd627dc69f",
+  "source_commit": "21a4d4e4e81e780259fbf300112b561ae0fc1116",
+  "status": "V2_EXACT_CONFIG_SUPPORT_ELIGIBLE"
+}

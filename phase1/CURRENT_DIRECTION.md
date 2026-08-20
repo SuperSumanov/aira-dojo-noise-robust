@@ -3,6 +3,28 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CC. 2026-08-21 Decision Semantic Mixture 通过 exact-config 支持门；只作非首创 discovery baseline
+
+v1 在任何模型拟合前因 pair 内 execution config 不一致而 INVALID。结果盲 v2 support gate 随后按事前固定的
+`(task,client,hardware,time_limit,execution_timeout)` 精确过滤并通过全部 10 个门：merged 保留 5,240 train /
+931 test，Draft 3,196/314，Improve 2,044/617；test 覆盖 28 tasks，23 个任务至少 10 pairs，dominant=
+100/931=`0.10741138560687433`。剔除的 385/6,556=`0.0587248322147651` 全部是 Draft hardware mismatch；
+Improve 不变。eligible train/test endpoint 与 physical-run overlap 均为 0，filtered union/config/task 完整性全过。
+
+producer×2 与独立 verifier×2 逐字节相同，11/11 focused tests、安全扫描和 SHA manifest 均通过；GPU/API/model
+fit/checkpoint/prospective outcome read 全为 0。三个 filtered 文件的 SHA、bytes 与精确计数已绑定进 v2 source；
+按原预注册只允许运行不变的 char-TFIDF、pooled/Draft/Improve 三 heads、固定 0.5 mix 和 20k 双 bootstrap，不能
+改权重、任务或子集。当前状态是 `V2_MODEL_INPUTS_BOUND_NOT_RUN`，仍为已见旧 test 的 retrospective discovery。
+
+防 scoop 核查同时确认 domain/task/context router、specialist/MoE reward model 与异质 preference mixture 已有
+直接先例（Domain Robust RM、DMoERM、ArmoRM、MiCRo、PrefMoE 等）。所以即使 v2 过效果门，也只能作为
+MLE-agent Draft/Improve construction semantics 的 benchmark diagnostic 和 future exact-stratum 候选 baseline，
+不得申方法首创或替代 first-960+closure。直接证据：
+
+- `phase1/results/decision_semantic_exact_config_support_20260821_21a4d4e/README.md`；
+- `phase1/实验记录/2026-08-21/DecisionSemanticMixture_v2支持门裁决与输入绑定.md`；
+- `phase1/实验记录/2026-08-21/DecisionSemanticRouting_防Scoop边界.md`。
+
 ## 0CB. 2026-08-21 TraceML 公开 paired 表不能通过 direct-sibling 外部资格门
 
 固定 TraceML revision `61faec6...17e96` 与 source commit `517c95c...2fe2` 的 outcome-free 审计完成。

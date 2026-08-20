@@ -1,4 +1,4 @@
-"""Independent full-refit verifier for Decision Semantic Mixture v1.
+"""Independent full-refit verifier for Decision Semantic Mixture v2.
 
 This module intentionally does not import the producer.  It independently
 loads the fixed inputs, refits all three heads, reconstructs every reported
@@ -27,15 +27,22 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
 
-PROTOCOL = "decision-semantic-mixture-discovery-v1"
-VERIFY_PROTOCOL = "independent-decision-semantic-mixture-discovery-v1"
-STATUS = "INDEPENDENT_DECISION_SEMANTIC_MIXTURE_VERIFIED"
+PROTOCOL = "decision-semantic-mixture-discovery-v2-exact-config"
+VERIFY_PROTOCOL = "independent-decision-semantic-mixture-discovery-v2-exact-config"
+STATUS = "INDEPENDENT_DECISION_SEMANTIC_MIXTURE_V2_VERIFIED"
 SENIOR = "baf6bddefe62b769b2fab699ff5805dd627dc69f"
 IDENTITIES = {
     "cards": ("5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb", 604190866),
-    "merged": ("c62dae814f7834b9beb3457d63fb60963636a31a811b216616e6912681bba2f4", 2858161),
-    "draft": ("84adc361226899d4fd7b1a17cef3bf27884e76ec591566c7a4470fd525a94de7", 1714459),
-    "improve": ("c2a062a81b7aa12457d4cb6a66aa102f8623bdfbb2961dd7d443c2c3e16ab516", 1143702),
+    "merged": ("bd6551dfce85d83f9f59716a31a9d7ab88605d6a21f51b41eb28177a952f47d0", 2552829),
+    "draft": ("3ca77a18e224cacbb7f52121d6e8c2b66f17298c68dd06fbc42a14a238ad05b9", 1465008),
+    "improve": ("7aca481afda5317fe78a0ad52fc7488fceff7fde6531c74ebb718df9e3b6926e", 1087821),
+}
+SUPPORT_GATE = {
+    "protocol": "decision-semantic-exact-config-support-v2",
+    "source_commit": "21a4d4e4e81e780259fbf300112b561ae0fc1116",
+    "summary_sha256": "fa838d852d0be10caeb5f64905e43ac170aa317d4727e66a03680fa5ee472b0a",
+    "verifier_sha256": "98dd01681b4fac444b14ff76fd835e4897a2da20897e817bdf6d83830e2c278a",
+    "status": "V2_EXACT_CONFIG_SUPPORT_ELIGIBLE",
 }
 PAIR_KEYS = {
     "better", "budget", "clears_tau", "gap_raw", "intask_split", "loto_fold",
@@ -192,8 +199,8 @@ def independent_integrity(
         "improve_train": len(selected(improve, "train")), "improve_test": len(selected(improve, "test")),
     }
     expected_counts = {
-        "card_run_groups": 676, "cards": 31742, "merged_train": 5596, "merged_test": 960,
-        "draft_train": 3552, "draft_test": 343, "improve_train": 2044, "improve_test": 617,
+        "card_run_groups": 676, "cards": 31742, "merged_train": 5240, "merged_test": 931,
+        "draft_train": 3196, "draft_test": 314, "improve_train": 2044, "improve_test": 617,
     }
     checks = {
         "expected_pair_counts": count_map == expected_counts,
@@ -466,6 +473,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         "protocol": summary.get("protocol") == PROTOCOL,
         "source_commit": summary.get("source_commit") == commit,
         "senior_commit": summary.get("senior_source_commit") == SENIOR,
+        "support_gate": summary.get("support_gate") == SUPPORT_GATE,
         "inputs": summary.get("inputs") == {
             name: {"sha256": IDENTITIES[name][0], "bytes": IDENTITIES[name][1]}
             for name in sorted(IDENTITIES)

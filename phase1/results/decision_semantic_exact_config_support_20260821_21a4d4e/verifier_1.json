@@ -1,0 +1,32 @@
+{
+  "all_pass": true,
+  "observed": {
+    "eligible_test": 931,
+    "eligible_train": 5240,
+    "mismatch_pairs": 385,
+    "passed_gates": 10,
+    "total_gates": 10
+  },
+  "protocol": "independent-decision-semantic-exact-config-support-v2",
+  "scientific_status": "V2_EXACT_CONFIG_SUPPORT_ELIGIBLE",
+  "scope": {
+    "model_fit": false,
+    "producer_imported": false,
+    "prospective_vault_read": false
+  },
+  "source_commit": "21a4d4e4e81e780259fbf300112b561ae0fc1116",
+  "status": "INDEPENDENT_DECISION_EXACT_CONFIG_SUPPORT_VERIFIED",
+  "verification": {
+    "card_inventory": true,
+    "eligible_draft": true,
+    "eligible_improve": true,
+    "eligible_merged": true,
+    "inputs": true,
+    "per_task": true,
+    "producer_source": true,
+    "protocol": true,
+    "scientific_summary": true,
+    "senior_commit": true,
+    "source_commit": true
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "content_open_syscalls": [
+    "creat",
+    "open",
+    "openat",
+    "openat2"
+  ],
+  "method": "syscall-name-aware-v1",
+  "status": "FORBIDDEN_CONTENT_OPEN_SCAN_PASS",
+  "total_forbidden_path_content_open_calls": 0,
+  "total_forbidden_path_metadata_calls": 4,
+  "traces": {
+    "producer_a.trace": {
+      "forbidden_path_content_open_calls": 0,
+      "forbidden_path_metadata_calls": 1,
+      "matching_syscalls": {
+        "newfstatat": 1
+      },
+      "sha256": "d99eac8b959a6caaca1434fc16aaf52ce09f5775875497ecb16e6a6dba883aad"
+    },
+    "producer_b.trace": {
+      "forbidden_path_content_open_calls": 0,
+      "forbidden_path_metadata_calls": 1,
+      "matching_syscalls": {
+        "newfstatat": 1
+      },
+      "sha256": "9699444957d117683a37522d4ae628b7a721bd983f3b151ac0832b62f9c4f1e3"
+    },
+    "verifier_a.trace": {
+      "forbidden_path_content_open_calls": 0,
+      "forbidden_path_metadata_calls": 1,
+      "matching_syscalls": {
+        "newfstatat": 1
+      },
+      "sha256": "119a633d2990f79360d8fab7e7cc1b39b5faa40a58f38f2e703624b337419526"
+    },
+    "verifier_b.trace": {
+      "forbidden_path_content_open_calls": 0,
+      "forbidden_path_metadata_calls": 1,
+      "matching_syscalls": {
+        "newfstatat": 1
+      },
+      "sha256": "6987c8ac89c4d5443182d27cbae5de32ae8d9bfb52102899523aa15ca5ed70bc"
+    }
+  }
+}

@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BS. 2026-08-20 FLORA 原版不可等价搬运，但 lineage 省略理由失败；适配 extension 需预冻结
+
+commit `fa7468f...` 在任何前瞻结构重算前固定官方源码 commit/SHA、七项 literal semantic mapping 和无可调阈值的
+pair non-degeneracy 判据。producer/verifier 各双跑逐字节一致；Linux focused `7 passed`、全套 `462 passed`，
+四份 trace 对禁读路径有 4 次 `newfstatat` metadata observation、0 次 content open，first-960 outcome 保持封存。
+
+原版 FLORA/Agentic Predictor workflow DAG 在 v11 7,760 endpoints 和前瞻 5,643 endpoints 上 literal-equivalent
+fraction 均为 0：candidate program 与 search lineage 不能冒充 internal agent-call graph、node prompt/operator
+implementation/global workflow code。另一方面，v11 5,897/5,897 pairs 与前瞻 1,473/1,473 pairs 的
+`op/depth/n_siblings` 相同、`step` 全部不同，exact candidate code 也全部不同。因此“lineage 全恒定，所以可省略
+graph family”的强理由失败；但这不证明 step/graph 有预测力，step 可能只是顺序偏差，且当前 `static_lr` 已包含它。
+
+下一步只能把 candidate-code AST/token graph + global code + lineage 做成单列 outcome-unread extension，固定
+`step-only` 负控和 view ablations 后再到 future cohort 检验；不得用 v11 frozen/current first-960 outcome 调结构。
+原 primary、first-960 + closure 和五项正资产索引均不变。直接证据：
+
+- `phase1/results/flora_transfer_invariance_v1_20260820_fa7468f/README.md`；
+- `phase1/实验记录/2026-08-20/FLORA迁移不变性审计_v1_固定协议.md`；
+- `phase1/实验记录/2026-08-20/FLORA迁移不变性审计_v1_裁决.md`。
+
 ## 0BR. 2026-08-20 五项正资产证据索引已独立复核；release 仍等 first-960
 
 新增 `decision_corpus_evidence_index_v1`，不制造联合总分，而把五个互异 estimands 分开绑定：decision corpus

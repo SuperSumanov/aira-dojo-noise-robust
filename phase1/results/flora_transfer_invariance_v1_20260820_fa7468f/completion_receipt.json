@@ -1,0 +1,37 @@
+{
+  "cohorts": {
+    "prospective_first960_prefix": {
+      "endpoints": 5643,
+      "exact_code_distinct_fraction": 1.0,
+      "literal_equivalent_fraction": 0.0,
+      "noncode_pair_invariant_fraction": 0.0,
+      "pairs": 1473,
+      "step_differences": 1473
+    },
+    "v11_published_b0": {
+      "endpoints": 7760,
+      "exact_code_distinct_fraction": 1.0,
+      "literal_equivalent_fraction": 0.0,
+      "noncode_pair_invariant_fraction": 0.0,
+      "pairs": 5897,
+      "step_differences": 5897
+    }
+  },
+  "decision": {
+    "adapted_code_graph_is_new_representation": true,
+    "baseline_omission_rationale_supported": false,
+    "future_outcome_unread_extension_required_for_effect_test": true,
+    "literal_transfer_supported": false,
+    "performance_claim_allowed": false,
+    "prospective_lineage_only_nondegenerate": true
+  },
+  "forbidden_content_open_calls": 0,
+  "forbidden_content_open_scan_status": "FORBIDDEN_CONTENT_OPEN_SCAN_PASS",
+  "forbidden_path_metadata_calls": 4,
+  "independent_verifier_status": "INDEPENDENT_FLORA_TRANSFER_AUDIT_VERIFIED",
+  "producer_replicas_byte_identical": true,
+  "scientific_status": "FLORA_TRANSFER_REQUIRES_FURTHER_ADJUDICATION",
+  "source_commit": "fa7468fac6038b8391a31a6dd161f6138255aa60",
+  "status": "FLORA_TRANSFER_REMOTE_CHAIN_COMPLETE",
+  "verifier_replicas_byte_identical": true
+}

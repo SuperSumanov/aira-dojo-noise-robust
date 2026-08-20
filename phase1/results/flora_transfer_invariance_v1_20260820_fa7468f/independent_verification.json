@@ -1,0 +1,21 @@
+{
+  "all_pass": true,
+  "artifact_summary_sha256": "c8916ed84e7d2d661f3c5670f562725344935242d92a1e8379ed8896770baf2a",
+  "assertions": {
+    "cohorts": true,
+    "literal_decision": true,
+    "no_performance_claim": true,
+    "prospective_inputs": true,
+    "prospective_lineage_decision": true,
+    "protocol": true,
+    "protocol_sha256": true,
+    "security_contract": true,
+    "source_commit": true,
+    "v11_inputs": true
+  },
+  "producer_imported": false,
+  "prospective_outcomes_opened": false,
+  "protocol": "flora-transfer-invariance-v1",
+  "source_commit": "fa7468fac6038b8391a31a6dd161f6138255aa60",
+  "status": "INDEPENDENT_FLORA_TRANSFER_AUDIT_VERIFIED"
+}

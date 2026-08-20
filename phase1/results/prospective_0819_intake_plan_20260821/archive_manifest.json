@@ -1,0 +1,54 @@
+{
+  "entries": [
+    {
+      "archive_mtime_ns": 1787238800000000000,
+      "archive_relative_path": "0819/AI4Code-8seeds.tar.gz",
+      "archive_sha256": "5ec7b1eb457a6ccb7811fa99e4fd74a2f7e8ac6be8153bee314887ffc6e90ac7",
+      "archive_size": 17280615
+    },
+    {
+      "archive_mtime_ns": 1787238791000000000,
+      "archive_relative_path": "0819/alaska2-image-steganalysis-4seeds.tar.gz",
+      "archive_sha256": "6c692a6a4855419bed6e3934d9f2d356817b418bfcafe265737416679063ffff",
+      "archive_size": 5204398
+    },
+    {
+      "archive_mtime_ns": 1787239695000000000,
+      "archive_relative_path": "0819/imet-2020-fgvc7-8seeds.tar.gz",
+      "archive_sha256": "4ead366a99920284c5fc3601480e09511831615026ded640011f30117082e371",
+      "archive_size": 8158019
+    },
+    {
+      "archive_mtime_ns": 1787238788000000000,
+      "archive_relative_path": "0819/multi-modal-gesture-recognition-8seeds.tar.gz",
+      "archive_sha256": "c0eee1bcae61ca314618802715e88c22e097e07f4f99ccf7ed3ce0c258d05a1d",
+      "archive_size": 86260883
+    },
+    {
+      "archive_mtime_ns": 1787239698000000000,
+      "archive_relative_path": "0819/new-york-city-taxi-fare-prediction-8seeds.tar.gz",
+      "archive_sha256": "a435a64aadf473da431c6208f031b1890ca362cad2ded3dd1251f9b7393752f7",
+      "archive_size": 17352748
+    },
+    {
+      "archive_mtime_ns": 1787238813000000000,
+      "archive_relative_path": "0819/plant-pathology-2021-fgvc8-8seeds.tar.gz",
+      "archive_sha256": "f583a74a3e828d45a22de11158d79ab5ed33c51dd58933b076b48dc191e7ed4d",
+      "archive_size": 109828866
+    },
+    {
+      "archive_mtime_ns": 1787238777000000000,
+      "archive_relative_path": "0819/ranzcr-clip-catheter-line-classification-8seeds.tar.gz",
+      "archive_sha256": "11f9a984df3804d2d75cd688724bd285e9300b937968bc8e78339b36c03a1410",
+      "archive_size": 8024687
+    },
+    {
+      "archive_mtime_ns": 1787238796000000000,
+      "archive_relative_path": "0819/uw-madison-gi-tract-image-segmentation-8seeds.tar.gz",
+      "archive_sha256": "9422b05b52cbdb3f7022ea6770f58addc3e5afcf47a21f2f621c872916199c50",
+      "archive_size": 21818843
+    }
+  ],
+  "outcomes_read": false,
+  "protocol": "prospective_archive_batch_manifest_v1"
+}

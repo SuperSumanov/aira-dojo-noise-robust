@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BT. 2026-08-20 更直接防 scoop：graph binary predictor 引导 ML program search 已有工作
+
+一手核查发现 Co-Reyes et al. 的 Guided Evolution 已把多类 ML program 编成统一 DAG，在线训练二元
+better/worse graph predictor，并用 PAM/PAM-RT 比较 mutated child 与 parent、拒绝预测较差候选；论文还报告
+Hero/AutoRL 搜索加速与 noisy-oracle/GNN 消融。ICML 2024 GRAF 也已证明便宜 graph features 可成为强 NAS
+predictor。因此“graph program critic”“binary predictor 跳过执行”“predictor-guided mutation”全部关闭为算法
+novelty；当前 WL/AST extension 无论效果如何都只是 benchmark baseline completeness。
+
+仍可守边界是 LLM MLE-agent 完整 Python solution 的真实 physical-run sibling 决策资源，以及 run-clean、连续
+external score、gap/noise/cost/missingness 和 outcome-unread first-960 confirmation。若未来做 end-to-end search，
+PAM-RT 必须作为已知 baseline；可问的是它能否迁移到长代码、LLM operator 与强近平局，而非重命名 heuristic。
+当前四臂、primary、first-960+closure 均不变，不新增 arm。直接记录：
+
+- `phase1/实验记录/2026-08-20/GuidedEvolution_GraphPredictor_防scoop增补.md`。
+
 ## 0BS. 2026-08-20 FLORA 原版不可等价搬运，但 lineage 省略理由失败；适配 extension 需预冻结
 
 commit `fa7468f...` 在任何前瞻结构重算前固定官方源码 commit/SHA、七项 literal semantic mapping 和无可调阈值的

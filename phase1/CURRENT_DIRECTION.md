@@ -3,6 +3,50 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CA. 2026-08-21 0819 安全摄取闭合；结构支持增强但 WL 严格未来样本仍为零
+
+固定 0819 八包最终为 7 committed / 1 rejected。Plant 包不是按文件名猜任务后勉强 salvage：credential-first
+双审计发现 4/4 checkpoint journals 的 task-identity cardinality 均为 0，env 与 live-event journal 未读，故按
+精确 archive SHA 结构性拒收。其余七包闭合后 snapshot=`83ab1d6...d5c047`；独立结构门得到 49 transactions、
+249 eligible physical runs、6,471 endpoints、1,665 canonical sibling pairs、26 tasks。248 runs 有 finite
+decision，dominant pair task=278/1,665=`0.16696696696696697`；精确代码 unique fraction=
+`0.9979910369340133`，9 个重复组均不跨 run/task。0819 本身增加 26 runs / 828 endpoints / 192 pairs /
+7 tasks。pair/run/task/balance 门已过，但 first-960 尚差 711 runs，accrual 未闭合，vault 仍不允许打开。
+
+同一 snapshot 的冻结 WL 四臂增量托管完成。producer 与不 import producer 的 verifier 分别对 6,471 endpoints /
+1,665 pairs 计算和独立重建，四臂最大绝对差全部为 0.0；旧 5,643 endpoints / 223 runs / 1,473 pairs 的每行
+逐字段不变，新增量精确为 828 / 26 / 192。两份 syscall trace 共 18,094 行，禁读路径命中 0；9 个目标文件共
+7,484,849 bytes 的 credential-shape matches=0。
+
+必须保留的勘误：0819 是 activation 后才完成投递/摄取的批次，但 physical runs 的
+`generation_started_at_utc` 早于 `2026-08-20T05:20:27.656860Z`。因此 249 runs / 1,665 pairs 全部仍是
+`outcome_unread_support_only`，strict post-activation=0。原预注册文档“activation 后首批候选 physical runs”
+若被理解为生成时间则错误；时间规则不改、不回填、不借上传时间追认。当前仍无 accuracy、CI、search utility 或
+方法效果正结论，只有更强的结构/复现资产。直接证据：
+
+- `phase1/results/prospective_0819_intake_wl_escrow_20260821/README.md`；
+- `phase1/实验记录/2026-08-21/Prospective0819_安全摄取结构门与WL增量托管_裁决.md`。
+
+## 0BZ. 2026-08-21 TraceML 是直接 D&B 竞品；宽轨迹数据 novelty 关闭
+
+新发现的公开 `MLE-Traj-v1` / `TraceML` 是 NeurIPS 2026 E&D double-blind 直接竞品。前者在 7 个 Kaggle
+tasks 上发布 422 human trajectories、11 Codex runs、13 MLEvolve physical runs（线性化为 189 branches）、
+15,572 code versions 与逐版本 grader score；后者扩到 134 tasks，但新增 127 tasks 为 humans-only，agent
+paired split 仍来自上述 7 tasks，并另有 7 个 planning-skill Codex runs。因此“首个 MLE trajectory/per-node
+score/tree dataset”“首次比较 human 与 MLE agent planning”全部关闭。
+
+当前可守边界不是和它比总 version 数，而是 agent search-time 的真实同-parent sibling decision：physical-run
+clean、canonical choice fragment、source missing/failure、gap/regrade、endpoint reuse、query/init/execution cost，
+以及 outcome-blind first-960 + closure。公开 card 尚不能证明其 predictor split 或我方这些契约缺失，正式论文
+必须等其终稿后逐项复核，不能写未证实的负面比较。
+
+它同时提供一个有价值但未启动的外部 replication 机会：只有获得 gated raw MLEvolve code 的正常授权，且按
+13 个 physical runs 而非 189 paths 去重后达到预固定的 8 runs / 4 tasks / 150 finite sibling pairs / dominant
+share<=0.50、并确认与我方 code/run 零 overlap，才一次性运行既有冻结 scorer；否则只做结构描述。当前 primary、
+WL extension、first-960/closure 与 outcome vault 均不变。直接记录：
+
+- `phase1/实验记录/2026-08-21/TraceML与MLE-Traj-v1_直接竞品边界.md`。
+
 ## 0BY. 2026-08-21 pair-construction 的泛化理论 novelty 关闭；改为 CPRD 的 MLE 实证化
 
 进一步一手核查发现，ICML 2026 的 *What Does Preference Learning Recover from Pairwise Comparison Data?*

@@ -1,0 +1,23 @@
+	Command being timed: "timeout --signal=TERM 2h strace -f -e trace=file -o /research/d7/spc/yzyang4/wl-graph-escrow-post0819/83ab1d681ed863d2374a6648df4801e6dbd6fb80d89f4f20cec8d46de1d5c047-031edb3-v1.staging.1072171/verifier.strace /research/d7/spc/yzyang4/venvs/exp/bin/python -m phase1.verify_prospective_wl_graph_escrow --state-root /research/d7/spc/yzyang4/prospective_decision_v1 --snapshot-root /research/d7/spc/yzyang4/prospective_decision_v1/snapshots/83ab1d681ed863d2374a6648df4801e6dbd6fb80d89f4f20cec8d46de1d5c047 --expect-snapshot-sha256 83ab1d681ed863d2374a6648df4801e6dbd6fb80d89f4f20cec8d46de1d5c047 --bundle /research/d7/spc/yzyang4/wl-graph-multiview-f67157a-v1/result/wl_graph_multiview_scorer.npz --expect-bundle-sha256 df02cd1f5ba74be6b171ee9c377eeb58cf209a310a470b2ade671f2db03ee19e --activation-receipt /research/d7/spc/yzyang4/wl-graph-activation-031edb3-v1/activation_receipt.json --expect-activation-receipt-sha256 0139670acc49c961e38e6851d0416d1e5bfa1c318024b50330c15d51823112fb --artifact /research/d7/spc/yzyang4/wl-graph-escrow-post0819/83ab1d681ed863d2374a6648df4801e6dbd6fb80d89f4f20cec8d46de1d5c047-031edb3-v1.staging.1072171/artifact --output /research/d7/spc/yzyang4/wl-graph-escrow-post0819/83ab1d681ed863d2374a6648df4801e6dbd6fb80d89f4f20cec8d46de1d5c047-031edb3-v1.staging.1072171/independent_verification.json"
+	User time (seconds): 634.56
+	System time (seconds): 19.04
+	Percent of CPU this job got: 100%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 10:51.10
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 3374472
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 883726
+	Voluntary context switches: 218337
+	Involuntary context switches: 1934
+	Swaps: 0
+	File system inputs: 152
+	File system outputs: 2128
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

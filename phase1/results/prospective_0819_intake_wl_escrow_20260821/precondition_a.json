@@ -1,0 +1,13 @@
+{
+  "archive_mtime_ns": 1787238813000000000,
+  "archive_relative_path": "0819/plant-pathology-2021-fgvc8-8seeds.tar.gz",
+  "archive_sha256": "f583a74a3e828d45a22de11158d79ab5ed33c51dd58933b076b48dc191e7ed4d",
+  "archive_size": 109828866,
+  "minimum_age_seconds": 21600,
+  "minimum_observations": 3,
+  "minimum_stable_span_seconds": 600,
+  "outcomes_read": false,
+  "protocol": "prospective_structural_recovery_precondition_v1",
+  "ready_archives": 3,
+  "status": "EXACT_ARCHIVE_IS_FIRST_READY"
+}

@@ -1,0 +1,25 @@
+{
+  "artifact_summary_sha256": "14910d4db549df5dd12e9af510ed142d2a74bae176d0293cb9edc938a1a250e0",
+  "effect_metrics_computed": [],
+  "endpoints": 6471,
+  "independent_graph_diagnostics": {
+    "mode_counts": {
+      "python_ast": 6274,
+      "python_token_sequence_graph": 192,
+      "raw_line_sequence_graph": 5
+    },
+    "truncated_endpoints": 159
+  },
+  "maximum_absolute_score_difference": {
+    "step_only_lr": 0.0,
+    "wl_graph_lr": 0.0,
+    "wl_graph_static_lr": 0.0,
+    "wl_graph_static_tfidf_lr": 0.0
+  },
+  "pairs": 1665,
+  "producer_imported": false,
+  "prospective_outcomes_read": false,
+  "shared_pure_graph_feature_spec_only": "phase1.wl_code_graph_features",
+  "snapshot_sha256": "83ab1d681ed863d2374a6648df4801e6dbd6fb80d89f4f20cec8d46de1d5c047",
+  "status": "INDEPENDENT_PROSPECTIVE_WL_GRAPH_ESCROW_VERIFIED"
+}

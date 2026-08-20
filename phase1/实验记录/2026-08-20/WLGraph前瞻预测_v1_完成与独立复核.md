@@ -37,5 +37,4 @@ activation 的唯一严格关系是 `generation_started_at_utc > activated_at_ut
 继续 append-only 摄取 senior archives。每个新 snapshot 可在 outcome 仍封存时重复运行同一固定 scorer；只有
 post-activation strict cohort 同时达到 1,500 finite non-tie pairs、150 finite-decision runs、15 tasks、最大任务
 share≤0.25，才按预注册一次性比较完整多视图臂与既有 char-TFIDF。当前不加第五臂、不看 support prediction
-share≤0.25，才按预注册一次性比较完整多视图臂与既有 char-TFIDF。当前不加第五臂、不看 support prediction
 margin 挑模型，也不因 Guided Evolution 的直接先例把 WL baseline 改写成方法 novelty。

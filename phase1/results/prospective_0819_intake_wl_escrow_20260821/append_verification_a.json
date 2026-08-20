@@ -1,0 +1,99 @@
+{
+  "added": {
+    "endpoints": 828,
+    "pairs": 192,
+    "runs": 26
+  },
+  "api_calls": 0,
+  "append_invariants": {
+    "prior_endpoint_keys_subset": true,
+    "prior_endpoint_rows_exactly_unchanged": true,
+    "prior_pair_keys_subset": true,
+    "prior_pair_rows_exactly_unchanged": true
+  },
+  "base_llm_updates": 0,
+  "credential_audit": {
+    "bytes_scanned": 7484849,
+    "files_scanned": 9,
+    "matches": 0,
+    "method": "high-confidence-credential-shapes-v1"
+  },
+  "current": {
+    "endpoints": 6471,
+    "pairs": 1665,
+    "runs": 249,
+    "snapshot_sha256": "83ab1d681ed863d2374a6648df4801e6dbd6fb80d89f4f20cec8d46de1d5c047",
+    "summary_sha256": "14910d4db549df5dd12e9af510ed142d2a74bae176d0293cb9edc938a1a250e0"
+  },
+  "effect_metrics_computed": [],
+  "fixed_effect_eligibility_gate": {
+    "maximum_dominant_pair_task_share": 0.25,
+    "minimum_pairs": 1500,
+    "minimum_runs": 150,
+    "minimum_tasks": 15,
+    "passed": false
+  },
+  "frozen_identity": {
+    "activation": {
+      "activated_at_utc": "2026-08-20T05:20:27.656860Z",
+      "receipt_sha256": "0139670acc49c961e38e6851d0416d1e5bfa1c318024b50330c15d51823112fb"
+    },
+    "bundle_sha256": "df02cd1f5ba74be6b171ee9c377eeb58cf209a310a470b2ade671f2db03ee19e",
+    "bundle_summary_sha256": "d8d1b57172e4b63f391a0ca93b1213c0f040adf9592637c38d057ad6576622f5",
+    "bundle_verification_sha256": "9918e6797b8f48fa9bb72e8cb740d1d5fab0ef81c0a961809fef40250b3e6b6e",
+    "protocol_sha256": "e3d299863eacf3655d17de378e7838bbebecfc347d751f33d19249b6b9f0bda3"
+  },
+  "gpu": 0,
+  "independent_maximum_absolute_score_difference": {
+    "step_only_lr": 0.0,
+    "wl_graph_lr": 0.0,
+    "wl_graph_static_lr": 0.0,
+    "wl_graph_static_tfidf_lr": 0.0
+  },
+  "prior": {
+    "endpoints": 5643,
+    "pairs": 1473,
+    "runs": 223,
+    "snapshot_sha256": "88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8",
+    "summary_sha256": "ff49cee419a2cc90230fb0dad44058b9e61bb73fd90c38b77509b91b512c13be"
+  },
+  "prospective_outcomes_read": false,
+  "scorer_commit": "031edb34400781ca026bc9833ac7f850312ffb1c",
+  "status": "WL_GRAPH_ESCROW_APPEND_INDEPENDENTLY_VERIFIED",
+  "strict_post_activation_inventory": {
+    "dominant_pair_task_share": null,
+    "endpoints": 0,
+    "pair_task_counts": {},
+    "pairs": 0,
+    "runs": 0,
+    "tasks": 0
+  },
+  "trace_audit": {
+    "forbidden_fragments": [
+      "/prospective_decision_v1/label",
+      "/prospective_decision_v1/outcome",
+      "/prospective_decision_v1/scorer",
+      "/prospective_decision_v1/score_index",
+      "decision_frozen_v11",
+      "decision_extension_v11",
+      "temporal_blind_0812_v1",
+      "label_vault",
+      "outcome_vault"
+    ],
+    "method": "strict-any-syscall-path-fragment-v1",
+    "total_forbidden_path_hits": 0,
+    "total_lines": 18094,
+    "traces": {
+      "producer.strace": {
+        "forbidden_path_hits": 0,
+        "lines": 11187,
+        "sha256": "6958d61c2624804c707ca5f3e17643924b820e9a7c0e3f51763e36feca24f493"
+      },
+      "verifier.strace": {
+        "forbidden_path_hits": 0,
+        "lines": 6907,
+        "sha256": "dab19519058fff851efb1225bba83fc40d5776b60dff7de6a747313b60119b3b"
+      }
+    }
+  }
+}

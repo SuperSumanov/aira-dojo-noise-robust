@@ -42,6 +42,10 @@ phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/*.json 
 phase1/results/deployment_cost_attestation_v2_20260820_c800345/** text eol=lf
 phase1/results/decision_corpus_evidence_index_v1_20260820/* text eol=lf
 phase1/upstream_patches/*.patch -text -diff
+# Preserve the byte-exact remote receipts and inner SHA manifest for the 0819
+# intake/WL append.  Keep only its human README as normalized text.
+phase1/results/prospective_0819_intake_wl_escrow_20260821/** -text -diff
+phase1/results/prospective_0819_intake_wl_escrow_20260821/README.md text eol=lf diff
 # This result carries a byte-level postflight manifest.  Preserve payload bytes
 # and suppress text whitespace checks; keep the human README renderable.
 phase1/results/selective_execution_v11_20260814_7a1562a45/** -text -diff

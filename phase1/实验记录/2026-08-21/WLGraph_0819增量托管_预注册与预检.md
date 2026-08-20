@@ -1,10 +1,11 @@
 # WLGraph 0819 增量托管：预注册与预检
 
-日期：2026-08-21。状态：`PREREGISTERED_PLANT_RECOVERY_IN_PROGRESS`。
+日期：2026-08-21。状态：`COMPLETED_SUPPORT_ONLY_INDEPENDENTLY_VERIFIED`。
 
 ## 目的与边界
 
-0819 是自动 activation receipt（`2026-08-20T05:20:27.656860Z`）后首批候选 physical runs。待固定八包
+0819 是自动 activation receipt（`2026-08-20T05:20:27.656860Z`）后首批完成投递/摄取的候选
+physical runs；结果后核对证明这些 runs 的实际生成开始时间仍早于 activation，见末尾勘误。待固定八包
 通过冻结 intake、批次闭合和双重 structural gate 后，对该不可变 snapshot 续写既有 WL graph prediction escrow。
 这一步只封存预测，不读取 prospective outcome，不计算 accuracy、regret 或任何效果指标。
 
@@ -63,3 +64,15 @@ mtime_ns=1,787,238,813,000,000,000；旧 monitor log SHA256=
 该恢复仍为 0 GPU·h、0 API、0 base-LLM update；预计 5--15 分钟，hard wait 30 分钟。WL producer 与
 verifier 维持各 10--15 分钟。任一日志、archive、first-ready、凭据、审计、registry、batch、`LATEST`、
 双跑一致性或 trace 门不符即 fail-closed。
+
+## 结果后勘误与完成状态
+
+固定八包最终为 7 committed / 1 rejected；Plant 的 4/4 checkpoint journals 均没有唯一 task identity，
+所以精确结构性拒收。最终 snapshot=`83ab1d681ed863d2374a6648df4801e6dbd6fb80d89f4f20cec8d46de1d5c047`，
+结构门与 WL append 均独立复核通过。
+
+本文件开头“activation 后首批候选 physical runs”只能指投递/摄取顺序，不能指预注册的生成时间口径。固定
+scorer 按 `generation_started_at_utc > activated_at_utc` 分类后，新增 26 runs / 192 pairs 与累计 249 runs /
+1,665 pairs 全部仍为 `outcome_unread_support_only`；strict post-activation runs/pairs 均为 0。该零值不能通过
+改用上传时间、移动 activation 或放宽严格大于来修补。producer/verifier 最大绝对差均为 0.0，旧行逐字段不变，
+禁读路径命中与 credential-shape matches 均为 0；没有计算任何效果指标。

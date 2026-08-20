@@ -1,0 +1,54 @@
+{
+  "activation_receipt_sha256": "0139670acc49c961e38e6851d0416d1e5bfa1c318024b50330c15d51823112fb",
+  "completed_at_utc": "2026-08-20T05:42:24.613500Z",
+  "credential_shape_matches": 0,
+  "effect_metrics_computed": [],
+  "files": {
+    "SHA256SUMS": "7b47490d683d785aa550d3c2721aff15acf73cd8645d194d19e7784ce06d0f17",
+    "artifact/endpoint_scores.csv": "544e1b9ef499592d69f690a1ae411998ffead3d292be369666633e4ab4d246da",
+    "artifact/pair_predictions.jsonl": "81def1b43a8dc14dbd724f6906bc5a3b7d056788d8d0c004f8176ba018498dc1",
+    "artifact/sha256_manifest.json": "a4cb87c3cd51f8a27f6a16b063c8c0ffab1f8e8f65553be4306f6f783fcdbe04",
+    "artifact/summary.json": "ff49cee419a2cc90230fb0dad44058b9e61bb73fd90c38b77509b91b512c13be",
+    "credential_scan.json": "cc1f75daec4ea3e5b2e32f6e9798ba467fa9df6cf3ce6f997d88aa39823bfebb",
+    "forbidden_content_open_scan.json": "ef6e590f12a286c07c3b2c5f02b76be139dca1528708d0bdd2eef504ba2e1740",
+    "independent_verification.json": "40193ce983294a78c7de554639d07093fad277f1a4fec170ad013d624e3aa5d5",
+    "producer.log": "41a336cf8bc56e6f90328404a9cdde9a82a037e40c975246196c2337ab9fd079",
+    "producer.rc": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "producer.strace": "0ae6335cf88414e8c2cd8aee30043b13a09542bd625def87df7d1dd37ad729aa",
+    "producer_forbidden_content_open_scan.json": "f3764b86af38f9dad8d34f3b381449103807b18e259dc6ba56bf70d4ca1f3e24",
+    "status.txt": "bbe7858d99d92a5e1d193f35d9c5f2105850a7995931654d3db96cfc75cae07e",
+    "verifier.log": "89c9fbaa0fef4f66c090821e4884cc4206a5baf4a040fc4d63aec9d19759d250",
+    "verifier.rc": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "verifier.strace": "da532cf1569b33d2b1f427acd341dd98e9c4c4b0d047925e8b508670013f3060"
+  },
+  "forbidden_content_open_calls": 0,
+  "inventory": {
+    "endpoints": 5643,
+    "pair_strata": {
+      "outcome_unread_support_only": 1473
+    },
+    "pairs": 1473,
+    "run_strata": {
+      "outcome_unread_support_only": 223
+    },
+    "runs": 223,
+    "tasks": 25,
+    "ties": {
+      "step_only_lr": 0,
+      "wl_graph_lr": 0,
+      "wl_graph_static_lr": 0,
+      "wl_graph_static_tfidf_lr": 0
+    }
+  },
+  "maximum_absolute_score_difference": {
+    "step_only_lr": 0.0,
+    "wl_graph_lr": 0.0,
+    "wl_graph_static_lr": 0.0,
+    "wl_graph_static_tfidf_lr": 0.0
+  },
+  "prospective_outcomes_read": false,
+  "protocol_sha256": "e3d299863eacf3655d17de378e7838bbebecfc347d751f33d19249b6b9f0bda3",
+  "snapshot_sha256": "88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8",
+  "source_commit": "031edb34400781ca026bc9833ac7f850312ffb1c",
+  "status": "INDEPENDENT_PROSPECTIVE_WL_GRAPH_ESCROW_VERIFIED"
+}

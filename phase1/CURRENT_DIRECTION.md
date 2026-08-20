@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BU. 2026-08-20 WL graph 前瞻预测托管已独立复核；当前 1,473 pairs 全为支持集
+
+自动 activation receipt 已在 `2026-08-20T05:20:27.656860Z` 绑定 commit `031edb3...`、协议、独立验证
+bundle 与 source blobs。固定 snapshot `88cb791...170c8` 上，producer 完成 5,643 endpoints / 223 runs /
+25 tasks / 1,473 canonical sibling pairs 的四臂预测；不 import producer 的 verifier 独立重建并复算，四臂最大
+绝对分数差均为 0.0。四臂全覆盖且 ties=0；AST/token/raw graph 路径分别覆盖 5,488/150/5 endpoints，
+159 个触发预固定 node cap。
+
+当前所有 run 都早于 activation，因此 223 runs / 1,473 pairs 全部为 `outcome_unread_support_only`，strict
+post-activation pairs=0；本轮没有 accuracy、CI、search utility 或任何效果结论。producer/verifier syscall
+禁读 content opens=0、metadata observations=0，credential-shape matches=0，GPU/API/base-LLM update 均为 0。
+
+这完成 graph/multi-view baseline 的可审计预测基础设施，不改变其 baseline-only 定位。继续 append-only 摄取；
+只有真正 activation 后生成的 cohort 达到预注册 1,500 pairs / 150 decision runs / 15 tasks / dominant≤0.25，
+才一次性比较完整多视图 arm 与既有 char-TFIDF。直接证据：
+
+- `phase1/results/prospective_wl_graph_escrow_20260820_031edb3/README.md`；
+- `phase1/实验记录/2026-08-20/WLGraph前瞻预测_v1_完成与独立复核.md`。
+
 ## 0BT. 2026-08-20 更直接防 scoop：graph binary predictor 引导 ML program search 已有工作
 
 一手核查发现 Co-Reyes et al. 的 Guided Evolution 已把多类 ML program 编成统一 DAG，在线训练二元

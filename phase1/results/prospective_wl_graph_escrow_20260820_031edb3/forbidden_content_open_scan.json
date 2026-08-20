@@ -1,0 +1,41 @@
+{
+  "content_open_syscalls": [
+    "creat",
+    "open",
+    "openat",
+    "openat2"
+  ],
+  "forbidden_fragments": [
+    "/prospective_decision_v1/label",
+    "/prospective_decision_v1/outcome",
+    "/prospective_decision_v1/scorer",
+    "/prospective_decision_v1/score_index",
+    "decision_frozen_v11",
+    "decision_extension_v11",
+    "temporal_blind_0812_v1",
+    "label_vault",
+    "outcome_vault"
+  ],
+  "method": "syscall-name-aware-v1",
+  "status": "FORBIDDEN_CONTENT_OPEN_SCAN_PASS",
+  "total_forbidden_path_content_open_calls": 0,
+  "total_forbidden_path_metadata_calls": 0,
+  "traces": {
+    "producer.strace": {
+      "content_open_records": [],
+      "forbidden_path_content_open_calls": 0,
+      "forbidden_path_metadata_calls": 0,
+      "matching_syscalls": {},
+      "metadata_records": [],
+      "sha256": "0ae6335cf88414e8c2cd8aee30043b13a09542bd625def87df7d1dd37ad729aa"
+    },
+    "verifier.strace": {
+      "content_open_records": [],
+      "forbidden_path_content_open_calls": 0,
+      "forbidden_path_metadata_calls": 0,
+      "matching_syscalls": {},
+      "metadata_records": [],
+      "sha256": "da532cf1569b33d2b1f427acd341dd98e9c4c4b0d047925e8b508670013f3060"
+    }
+  }
+}

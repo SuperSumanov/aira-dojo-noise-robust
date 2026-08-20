@@ -19,9 +19,10 @@ synthetic/contracted pair semantics 分栏、outer-train→physical-run-disjoint
 Windows 的无 torch 协议测试 24/24；远端 Python 3.11.15、PyTorch 2.11.0、Transformers 4.57.1 下 33/33，
 TrainingArguments 契约与 clean worktree 均通过。补丁只服务 future exact-stratum 数据；未启动 GPU/API。
 
-该支持线不改变当前论文中心：Decision Corpus + Predictor Benchmark + first-960/closure 时间外确认。立即可做的
-防守性实验仍仅限已锁定 checkpoint 在预先冻结 b0/b1/b2 canonical test 上的一次性评分；它不能洗白旧 test-touched
-checkpoint，也不得替代 future clean scaling。任何重训矩阵仍须先给总 runs/GPU·时并获批。直接证据：
+该支持线不改变当前论文中心：Decision Corpus + Predictor Benchmark + first-960/closure 时间外确认。0Z 已证明
+旧 decision test 与 b0/b1/b2 是同一 2,087-row multiset，故旧 4B/8B checkpoint 的 frozen scoring 继续正式关闭；
+不得再定位或运行，也不能以“只推理”洗白 test-touched checkpoint。补丁只允许用于 future exact-stratum 数据和
+全新未触碰 frozen cohort。任何重训矩阵仍须先给总 runs/GPU·时并获批。直接证据：
 
 - `phase1/upstream_patches/0001-Harden-critic-confirmation-protocol.patch`；
 - `phase1/results/senior_critic_confirmation_protocol_20260821/README.md`；

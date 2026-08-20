@@ -1,11 +1,11 @@
-From d69676c3b313efc1196209cd9826ce5d4d75796d Mon Sep 17 00:00:00 2001
+From 9f25145e4b34b5e9e2914e949243d4ca30bf356b Mon Sep 17 00:00:00 2001
 From: Supersumanov <yanzeyang39@gmail.com>
 Date: Fri, 21 Aug 2026 03:16:06 +0800
 Subject: [PATCH] Harden critic confirmation protocol
 
 ---
  .../data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md |  39 ++
- .../CRITIC_SCALING_CONFIRMATION_PROTOCOL.md   |  57 ++
+ .../CRITIC_SCALING_CONFIRMATION_PROTOCOL.md   |  65 +++
  .../preprocess/build_batch_value_pairs.sh     |   7 +
  .../pro6000/train_rm_confirmatory_one.sh      |  97 ++++
  .../evaluation/bradley_terry_evaluation.py    | 489 ++++++++++++++++--
@@ -26,7 +26,7 @@ Subject: [PATCH] Harden critic confirmation protocol
  .../test/test_train_dev_split_contract.py     | 147 ++++++
  .../test/test_train_pair_dataset.py           |  36 +-
  .../test/test_verify_experiment_strata.py     |  63 +++
- 22 files changed, 2279 insertions(+), 117 deletions(-)
+ 22 files changed, 2287 insertions(+), 117 deletions(-)
  create mode 100644 src/mle_critic/docs/data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md
  create mode 100644 src/mle_critic/docs/outcomes/0821/CRITIC_SCALING_CONFIRMATION_PROTOCOL.md
  create mode 100644 src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh
@@ -84,10 +84,10 @@ index 0000000..bee2973
 +eligibility expectations outside the experiment-stratum change.
 diff --git a/src/mle_critic/docs/outcomes/0821/CRITIC_SCALING_CONFIRMATION_PROTOCOL.md b/src/mle_critic/docs/outcomes/0821/CRITIC_SCALING_CONFIRMATION_PROTOCOL.md
 new file mode 100644
-index 0000000..44fbb66
+index 0000000..afdd96a
 --- /dev/null
 +++ b/src/mle_critic/docs/outcomes/0821/CRITIC_SCALING_CONFIRMATION_PROTOCOL.md
-@@ -0,0 +1,57 @@
+@@ -0,0 +1,65 @@
 +# Critic scaling：确认性协议与探索性结果边界
 +
 +## 定位
@@ -100,10 +100,18 @@ index 0000000..44fbb66
 +作为确认性 headline，原因包括：test 被每 10 step 查看、旧 checkpoint 选择方向曾设反、部分
 +训练没有正常结束、pair 共享 endpoint，以及 value 和 decision 的 checkpoint/目标不匹配。
 +
-+## 立即实验（不重训）
++## 历史冻结集裁决
 +
-+1. 只使用学长已经锁定的 Qwen3-4B/8B checkpoint；冻结后不得按 test 结果更换 checkpoint。
-+2. v11 的 b0/b1/b2 各自生成独立、test-only、不可覆盖的 JSONL；训练进程不可挂载这些路径。
++旧 `decision_pairs_runsplit` 的 2,087 条 test rows 与 v11 b0/b1/b2 的 2,087 条 frozen rows 逐行 multiset
++相同，且旧 checkpoint 在训练期间每 10 step 读取该 test。因此旧 Qwen3-4B/8B checkpoint 的 b0/b1/b2
++one-shot 评分已经由较新的 0Z 裁决正式撤回；不得再定位或运行这些 checkpoint，也不能以“只推理、不重训”
++绕过污染事实。
++
++以下一次性协议只适用于**未来 exact-stratum 数据上、仅用 train-run dev 选出且尚未接触相应 frozen test 的
++新 checkpoint**：
++
++1. checkpoint 与 frozen cohort 必须在任何 test access 前分别锁定；不得按 test 结果更换 checkpoint。
++2. 每个未来 frozen stratum 各自生成独立、test-only、不可覆盖的 JSONL；训练进程不可挂载这些路径。
 +3. 主表只使用 `pair_semantics=canonical_raw_sibling`。`synthetic_cross_run_draft` 和
 +   `error_contracted_improve` 分开列为 extension，不得混入主指标。
 +4. 每个 checkpoint×stratum 只允许一次 test 调用。调用前校验 Cards、pairs、
@@ -116,7 +124,7 @@ index 0000000..44fbb66
 +同一 parent/run 高度复用时同时报告 parent/run cluster 和 task macro。单独模型相对 0.5 的区间、
 +TF-IDF 对照和 0.6B/1.7B 只作辅助，不用独立 pair 的二项式区间冒充有效样本量。
 +
-+在看到任何 b0/b1/b2 test 结果前，先冻结：checkpoint 哈希、数据哈希、三层聚合方式、缺失
++在看到任何 future frozen test 结果前，先冻结：checkpoint 哈希、数据哈希、三层聚合方式、缺失
 +checkpoint 的处理，以及所有 extension 的标签。三个 stratum 必须全部报告，不能只挑有利层。
 +
 +## 后续匹配确认（需单独预算批准后才可训练）

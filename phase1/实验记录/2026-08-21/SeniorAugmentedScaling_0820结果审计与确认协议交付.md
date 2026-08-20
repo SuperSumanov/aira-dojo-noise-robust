@@ -54,6 +54,7 @@ TF-IDF 为 61.18%；8B 两 seed 分别为 66.01% 与 63.34%，都高于该基线
 Transformers 4.57.1 下 TrainingArguments 契约通过，聚焦测试 33/33，worktree clean。机器回执见
 `phase1/results/senior_critic_confirmation_protocol_20260821/verification_receipt.json`。
 
-下一步不是立即重跑完整 0.6B—8B 矩阵。先在不重训前提下，对已锁定 4B/8B checkpoint 和预冻结的 b0/b1/b2
-canonical test 定义精确 one-shot 评分矩阵与聚类推断；它只作防守性复核，不能升级旧 checkpoint 为 clean
-confirmation。若结果保留正信号，再给 future exact-stratum 重训的模型×seed、总 runs 与 GPU·时预算，获批后启动。
+0Z 的较新裁决已证明旧 decision test 与 b0/b1/b2 的 2,087 行逐行 multiset 相同，并在训练期间被反复读取；所以
+旧 4B/8B checkpoint 的 one-shot frozen scoring 仍正式关闭，本次不得定位或运行。下一步只等待/构建 future
+exact-stratum 数据和新的未触碰 frozen cohort；在此基础上先给训练规模、模型×seed、总 runs 与 GPU·时预算，
+获批后训练新 checkpoint，再使用本次 one-shot 协议确认。

@@ -1,0 +1,67 @@
+{
+  "cohorts": {
+    "prospective": "frozen first-960 ordering, current outcome-blind prefix only",
+    "v11": "published b0 train, frozen, and extension sibling pairs"
+  },
+  "frozen_at_utc": "2026-08-20T04:00:32Z",
+  "known_before_freeze": {
+    "prospective_ast_parse_coverage": 0.9725323409533936,
+    "prospective_mixed_operator_parents": 0,
+    "prospective_observed_endpoints": 5643,
+    "prospective_observed_runs": 223,
+    "prospective_token_parse_coverage": 0.9991139464823675
+  },
+  "lineage_nondegeneracy_rule": "A cohort is non-degenerate only if at least one scoped sibling pair differs in op, depth, step, or n_siblings. Task, physical run, and parent are fixed by the sibling estimand.",
+  "lineage_pair_views": [
+    "task",
+    "run_id",
+    "parent",
+    "op",
+    "depth",
+    "step",
+    "n_siblings"
+  ],
+  "literal_required_semantics": [
+    "workflow_internal_nodes_with_prompts",
+    "workflow_internal_edges",
+    "per_node_operator_implementation",
+    "per_node_implementation_code",
+    "global_workflow_prompt",
+    "global_workflow_code",
+    "natural_language_task_description"
+  ],
+  "literal_transfer_rule": "Literal FLORA/Agentic-Predictor transfer requires every required semantic to be directly represented for every scoped endpoint; a search-lineage edge, operator name, task slug, or monolithic candidate program is not silently relabeled as an internal workflow DAG, operator implementation, natural-language task, or workflow implementation.",
+  "literal_semantic_mappings": {
+    "global_workflow_code": ["workflow_code"],
+    "global_workflow_prompt": ["full_prompts"],
+    "natural_language_task_description": ["task_description", "task.desc"],
+    "per_node_implementation_code": ["code_nodes"],
+    "per_node_operator_implementation": ["operator_nodes"],
+    "workflow_internal_edges": ["edge_index"],
+    "workflow_internal_nodes_with_prompts": ["nodes"]
+  },
+  "official_references": {
+    "agentic_predictor": {
+      "commit": "4d6b2774b22919fe998c4a089f89554017834e2e",
+      "pgy_dataset_sha256": "7bc54809d266064c7f5167615c91c89c1d0165b9eca020abdbb736716f48affa",
+      "predictor_sha256": "5f7a80f083c2adbfa6fdd47f21457310011eeac2977ac6ca22fad92b02f2c649",
+      "repository": "https://github.com/DeepAuto-AI/agentic-predictor"
+    },
+    "flora_bench": {
+      "commit": "47810805fd41101a1ef6b563c0cd27a0116a0ee8",
+      "converter_sha256": "d2dac5abe664f4812f72c1d0067044d68df257a674db978a19174e6749278b81",
+      "repository": "https://github.com/youngsoul0731/Flora-Bench"
+    }
+  },
+  "outcome_contract": {
+    "effect_metric_computed": false,
+    "first960_outcomes_may_be_opened": false,
+    "model_may_be_fit": false,
+    "same_oof_method_selection_allowed": false
+  },
+  "protocol": "flora-transfer-invariance-v1",
+  "status_rules": {
+    "baseline_omission_rationale_supported": "literal transfer is unsupported and the prospective lineage-only adaptation is pair-invariant",
+    "future_adapted_baseline": "Any AST/token graph plus search-context multi-view scorer is a new representation and may only be frozen for an outcome-unread extension or a future cohort"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "integrity_checks": {
+    "all_antisymmetry_exact": true,
+    "all_decision_digests_stable": true,
+    "all_models_complete": true,
+    "no_fit_warnings": true,
+    "runtime_pair_coverage_at_least_0_95": true,
+    "within_run_init_stability_at_most_3": true,
+    "within_run_query_stability_at_most_2": true
+  },
+  "models": {
+    "static_gbm": {
+      "antisymmetry_min": 1.0,
+      "execution_parallel_p50_over_query_p50": 4048.4579396764457,
+      "execution_serial_p50_over_query_p50": 6579.385378161238,
+      "fit_warning_count": 0,
+      "init_trial_max_min_ratio": 1.0038039870752937,
+      "initialization_break_even_parallel_pairs": 1,
+      "initialization_s": {
+        "max": 155.218266345,
+        "min": 154.630055612,
+        "n": 3,
+        "p25": 154.70968148650002,
+        "p50": 154.789307361,
+        "p75": 155.003786853,
+        "p95": 155.1753704466
+      },
+      "query_p95_fraction_of_execution_parallel_p50": 0.000579524228216629,
+      "query_trial_max_min_ratio": 1.0049854267759435,
+      "sample_decision_sha256_values": [
+        "c2fb1f5ff93d34839bda8934935d3f58b24dd3b8dbf54ba74b923cc2e71d480a"
+      ],
+      "single_pair_query_ms": {
+        "max": 238.499667,
+        "min": 22.275756,
+        "n": 768,
+        "p25": 37.034200750000004,
+        "p50": 49.3092785,
+        "p75": 72.45127275,
+        "p95": 115.68841654999993
+      },
+      "tie_counts": [
+        0
+      ],
+      "trial_single_query_p50_ms": [
+        49.275095,
+        49.408897499999995,
+        49.163795
+      ]
+    },
+    "static_lr": {
+      "antisymmetry_min": 1.0,
+      "execution_parallel_p50_over_query_p50": 4879.75568197282,
+      "execution_serial_p50_over_query_p50": 7930.375876780654,
+      "fit_warning_count": 0,
+      "init_trial_max_min_ratio": 1.0103113713396679,
+      "initialization_break_even_parallel_pairs": 1,
+      "initialization_s": {
+        "max": 154.805838216,
+        "min": 153.225869378,
+        "n": 3,
+        "p25": 153.38433936500002,
+        "p50": 153.542809352,
+        "p75": 154.17432378400002,
+        "p95": 154.67953532960001
+      },
+      "query_p95_fraction_of_execution_parallel_p50": 0.0005437071039081162,
+      "query_trial_max_min_ratio": 1.003226057096859,
+      "sample_decision_sha256_values": [
+        "0cbe43986fdfac7931bcf649c450f24ac0c7631be04ab300cec67da0551a54e2"
+      ],
+      "single_pair_query_ms": {
+        "max": 234.309619,
+        "min": 14.25318,
+        "n": 768,
+        "p25": 28.777402749999997,
+        "p50": 40.909126,
+        "p75": 64.28478275,
+        "p95": 108.53836794999998
+      },
+      "tie_counts": [
+        0
+      ],
+      "trial_single_query_p50_ms": [
+        40.968278,
+        40.836537,
+        40.9647735
+      ]
+    },
+    "tfidf_lr": {
+      "antisymmetry_min": 1.0,
+      "execution_parallel_p50_over_query_p50": 5884.250487509658,
+      "execution_serial_p50_over_query_p50": 9562.839035460815,
+      "fit_warning_count": 0,
+      "init_trial_max_min_ratio": 1.249131246871295,
+      "initialization_break_even_parallel_pairs": 1,
+      "initialization_s": {
+        "max": 122.778404285,
+        "min": 98.291035944,
+        "n": 3,
+        "p25": 102.8812297135,
+        "p50": 107.471423483,
+        "p75": 115.124913884,
+        "p95": 121.24770620479998
+      },
+      "query_p95_fraction_of_execution_parallel_p50": 0.0002555625884664437,
+      "query_trial_max_min_ratio": 1.0945318081716093,
+      "sample_decision_sha256_values": [
+        "69f6d8609840718b4c20e414a070db90c661c0fce7ef0250c72d465c6cec7099"
+      ],
+      "single_pair_query_ms": {
+        "max": 55.966151,
+        "min": 13.261479,
+        "n": 768,
+        "p25": 24.2117485,
+        "p50": 33.925568,
+        "p75": 46.207605,
+        "p95": 51.0170753
+      },
+      "tie_counts": [
+        0
+      ],
+      "trial_single_query_p50_ms": [
+        36.071034,
+        33.303403,
+        32.9556745
+      ]
+    }
+  },
+  "positive_checks": {
+    "all_init_p50_below_10_parallel_execution_p50": true,
+    "all_query_p95_below_1pct_parallel_execution_p50": true
+  },
+  "protocol": "deployment_cost_attestation_v2",
+  "runtime_reference": {
+    "complete_pairs": 1498,
+    "endpoint_coverage": 1.0,
+    "finite_unique_endpoints": 2022,
+    "pair_coverage": 1.0,
+    "pair_ideal_parallel_runtime_s": {
+      "max": 13972.517608286347,
+      "min": 14.944131158990785,
+      "n": 1498,
+      "p25": 101.66514021903276,
+      "p50": 199.62654004304204,
+      "p75": 980.0851648545358,
+      "p95": 4318.263901881873
+    },
+    "pair_serial_runtime_s": {
+      "max": 19291.880297292955,
+      "min": 25.281899329973385,
+      "n": 1498,
+      "p25": 180.60439832099655,
+      "p50": 324.42474597058026,
+      "p75": 1474.3132827673107,
+      "p95": 6904.718420324451
+    },
+    "pairs": 1498,
+    "unique_endpoint_runtime_s": {
+      "max": 13972.517608286347,
+      "min": 1.7062013149261475,
+      "n": 2022,
+      "p25": 83.30742160673253,
+      "p50": 153.0488602463156,
+      "p75": 803.3257846273482,
+      "p95": 3454.611456453799
+    },
+    "unique_endpoints": 2022
+  },
+  "scope": {
+    "accuracy_computed": false,
+    "api_used": false,
+    "gpu_used": false,
+    "prospective_vault_opened": false,
+    "query_manifest_orientation_free": true
+  },
+  "status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED"
+}

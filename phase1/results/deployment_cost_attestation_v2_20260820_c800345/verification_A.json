@@ -1,0 +1,38 @@
+{
+  "execution_reference_sha256": "cd35b6062d997b4cf56404ab6d95354d1ae5409335c64ca852d0017275db538d",
+  "input_checks": {
+    "cards": {
+      "passed": true,
+      "sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+      "sha256_normalized_lf": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75"
+    },
+    "query_pairs": {
+      "passed": true,
+      "sha256": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8",
+      "sha256_normalized_lf": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8"
+    },
+    "train_pairs": {
+      "passed": true,
+      "sha256": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+      "sha256_normalized_lf": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca"
+    }
+  },
+  "measurement_rows": 2313,
+  "measurements_sha256": "a1779f562767850abc5136cccde90593fde447a18c5d876683ce4d04d2b3507c",
+  "producer_imported": false,
+  "protocol": "deployment_cost_attestation_v2",
+  "result_status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+  "run_label": "A",
+  "runtime_rows": 1498,
+  "sample_check": {
+    "pair_manifest_sha256": "298c22c4e9743f708295805f9d97156915af537153bd4bea72359e888f5d4ddb",
+    "passed": true,
+    "query_pairs": 1498,
+    "sample_pairs": 256
+  },
+  "source_commit": "c800345d281b4a15edb90b6c1593ee1b14337327",
+  "status": "INDEPENDENTLY_VERIFIED_DEPLOYMENT_COST_ATTESTATION",
+  "summary_sha256": "27996594f37bb0c327d7d90e7ba6f49a66b3ce1fb42dbb4e79899f3e4cf458bc",
+  "trial_receipts": 9,
+  "trial_receipts_sha256": "16d6ec19ea498fa0f0e0302179e40d3a0a7e130c18b33086166e234eb778e031"
+}

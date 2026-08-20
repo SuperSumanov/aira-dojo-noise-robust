@@ -1,0 +1,13 @@
+1 PASS knobs recorded in config and receipts; A/B is the only run label change
+2 PASS patched path passed 9 focused tests before formal
+3 PASS no accuracy evaluation; train/query endpoint overlap is a producer hard gate
+4 PASS output preserves every model/trial and latency distribution
+5 N/A no evaluation accuracy or task-stratified metric is computed
+6 N/A fitted CPU predictors are reproducible from locked train input; no expensive adapter
+7 PASS pair/node endpoint overlap and input hashes are hard gates; code is train-only fitted
+8 PASS seed 20260820 and orientation-free 256-pair sample are independently reconstructed
+9 PASS staged filename and content credential-shape scans both printed 0
+10 PASS 18 fits plus 4608 queries; two-hour timeout is enforced after v1 wall audit
+11 N/A timing-only estimand; no model-quality or training-power claim
+12 PASS every producer/verifier/comparator return code is captured before logging and failure exits
+13 N/A corpus and frozen manifests are immutable; no expansion or reshuffle

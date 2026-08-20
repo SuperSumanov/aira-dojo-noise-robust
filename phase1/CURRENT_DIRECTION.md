@@ -3,6 +3,46 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BR. 2026-08-20 五项正资产证据索引已独立复核；release 仍等 first-960
+
+新增 `decision_corpus_evidence_index_v1`，不制造联合总分，而把五个互异 estimands 分开绑定：decision corpus
+结构、label repeatability、normalized clone、deployment cost、prospective gate。真实 index 含 5 entries/
+15 个无重复 artifact paths，SHA=`cfbe749f84114a633d902a358f8ef8243c4c4fe71433961c94e18494ca93769d`；
+不 import producer 的 verifier 逐文件核 SHA 和 106 项 JSON 断言。本地/Linux 输出逐字节一致；Linux 定向 7/7、
+phase1 全套 455/455。
+
+这形成当前最强的正面 D&B 叙事骨架：真实 sibling/run-clean 资源、0.96586 次序复测一致性、token/AST 覆盖内
+零跨 run 浅层 clone、约 4,048–6,037× execution/query 成本分离，以及仍 outcome-blind 的 223/960 前瞻门。
+但索引状态固定为 `PROVISIONAL_EVIDENCE_STACK_AWAITING_FIRST960`；五项 estimand 不合并，AST 强门失败、
+成本不等于准确率、prospective outcome 未知均由机器断言保留。`release_complete=false`，first-960 + closure
+前不得升级为完成的 benchmark release。直接证据：
+
+- `phase1/results/decision_corpus_evidence_index_v1_20260820/README.md`；
+- `phase1/实验记录/2026-08-20/DecisionCorpusEvidenceIndex_v1_裁决.md`。
+
+## 0BQ. 2026-08-20 部署成本正门双跑通过：在线查询相对执行便宜约 4,048–6,037 倍
+
+结果前 commit `c800345...` 冻结的 v2 已正式完成：A/B 各 3 models×3 fits×256 measured pairs，共 18 fits/
+4,608 online queries；两份 producer 均为 `DEPLOYMENT_COST_ADVANTAGE_SUPPORTED`，两份不 import producer
+的 verifier 均通过，跨运行 comparator 为 `CROSS_RUN_STABILITY_VERIFIED`。clean preflight 为定向 9/9、
+phase1 全套 448/448；正式用时 51 分 31 秒，未触发 2 小时停止门。
+
+1,498 个 frozen b0 pairs 的 execution coverage=`1.0`，ideal-parallel p50=`199.62654004304204` 秒。
+static-LR、static-GBM、TF-IDF-LR 的 A/B query p50 依次为 `40.909126/41.00444`、
+`49.3092785/49.0379345`、`33.925568/33.0667115` ms；execution/query-p50 比值覆盖
+`4048.4579396764457`–`6037.084759488165`。最坏 query p95 只占 execution p50
+`0.05797248618597878%`，通过≤1% 门；init p50=`98.586651793`–`155.037595478` 秒，六格 break-even
+均为 1 pair，并通过≤10×execution p50 门。最大 A/B query/init ratio 分别为
+`1.025973447646888`/`1.0901214467517888`；0 warning、0 tie、antisymmetry=1，decision digest 跨 trial/A-B
+一致。
+
+这是数据/benchmark 的正成本资产，不是 accuracy 或方法 novelty：未算 frozen accuracy，未打开 prospective
+vault，GPU/API=0；不得与旧 accuracy 事后拼成联合收益，也不证明实际搜索 wall-clock 或最终分数一定提升。
+完整收据与裁决：
+
+- `phase1/results/deployment_cost_attestation_v2_20260820_c800345/README.md`；
+- `phase1/实验记录/2026-08-20/DeploymentCostAttestation_v2_裁决.md`。
+
 ## 0BP. 2026-08-20 v1 因 16.161918904708 小时投影工程停止；v2 在线单对协议已结果前冻结
 
 v1 只完成 A/static-LR 的 1/15 trials，首个 trial 显示 30 次 full-cohort 端到端 batch 会把 A/B 投影推至

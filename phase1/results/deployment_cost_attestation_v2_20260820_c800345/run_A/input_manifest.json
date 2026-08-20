@@ -1,0 +1,23 @@
+{
+  "cards": {
+    "bytes": 305750663,
+    "expected_sha256_normalized_lf": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "path": "/research/d7/spc/yzyang4/aira-dojo/phase1/cards_current_v11.jsonl",
+    "sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "sha256_normalized_lf": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75"
+  },
+  "query_pairs": {
+    "bytes": 630583,
+    "expected_sha256_normalized_lf": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8",
+    "path": "/research/d7/spc/yzyang4/worktrees/deployment_cost_v2_c800345_nosmudge/phase1/v11_decision/decision_frozen_v11_b0.jsonl",
+    "sha256": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8",
+    "sha256_normalized_lf": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8"
+  },
+  "train_pairs": {
+    "bytes": 1996475,
+    "expected_sha256_normalized_lf": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+    "path": "/research/d7/spc/yzyang4/worktrees/deployment_cost_v2_c800345_nosmudge/phase1/v11_decision/decision_train_v11_b0.jsonl",
+    "sha256": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+    "sha256_normalized_lf": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca"
+  }
+}

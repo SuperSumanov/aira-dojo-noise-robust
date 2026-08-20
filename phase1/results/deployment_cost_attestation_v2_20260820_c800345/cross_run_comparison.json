@@ -1,0 +1,47 @@
+{
+  "artifacts": {
+    "run_a_summary_sha256": "27996594f37bb0c327d7d90e7ba6f49a66b3ce1fb42dbb4e79899f3e4cf458bc",
+    "run_b_summary_sha256": "009b00e49216400370a82ffb9d2c91126aa203423f073d77efa6eb4d88076a4f",
+    "verification_a_sha256": "4005e7a787d8212b1c0a6d560e85117f0c13c9039baa8789db23e4b8b903f2bf",
+    "verification_b_sha256": "ec5d87874337b3171b07da03846838fdefaa4ccfcba3261b6deab263c4c06ef0"
+  },
+  "checks": {
+    "all_init_p50_ratios_at_most_3": true,
+    "all_models_same_decisions": true,
+    "all_query_p50_ratios_at_most_2": true,
+    "same_hostname": true,
+    "same_packages": true,
+    "same_platform": true,
+    "same_python": true,
+    "same_result_status": true,
+    "same_single_cpu_affinity": true,
+    "thread_contract_is_one": true
+  },
+  "models": {
+    "static_gbm": {
+      "init_p50_max_min_ratio": 1.0016040392016285,
+      "init_ratio_at_most_3": true,
+      "query_ratio_at_most_2": true,
+      "same_decisions": true,
+      "single_query_p50_max_min_ratio": 1.0055333488811604
+    },
+    "static_lr": {
+      "init_p50_max_min_ratio": 1.0029410999643482,
+      "init_ratio_at_most_3": true,
+      "query_ratio_at_most_2": true,
+      "same_decisions": true,
+      "single_query_p50_max_min_ratio": 1.002329895779245
+    },
+    "tfidf_lr": {
+      "init_p50_max_min_ratio": 1.0901214467517888,
+      "init_ratio_at_most_3": true,
+      "query_ratio_at_most_2": true,
+      "same_decisions": true,
+      "single_query_p50_max_min_ratio": 1.025973447646888
+    }
+  },
+  "protocol": "deployment_cost_cross_run_verification_v2",
+  "result_status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+  "source_commit": "c800345d281b4a15edb90b6c1593ee1b14337327",
+  "status": "CROSS_RUN_STABILITY_VERIFIED"
+}

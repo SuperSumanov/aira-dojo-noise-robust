@@ -1,0 +1,47 @@
+{
+  "cpu_affinity": [
+    0
+  ],
+  "hostname": "linux5",
+  "load_average_end": [
+    9.17041015625,
+    9.22705078125,
+    9.3154296875
+  ],
+  "logical_cpu_count": 40,
+  "numpy": "1.26.4",
+  "platform": "Linux-6.8.0-100-generic-x86_64-with-glibc2.39",
+  "python": "3.11.15",
+  "scipy": "1.16.2",
+  "sklearn": "1.6.1",
+  "threadpools": [
+    {
+      "architecture": "SkylakeX",
+      "filepath": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so",
+      "internal_api": "openblas",
+      "num_threads": 1,
+      "prefix": "libopenblas",
+      "threading_layer": "pthreads",
+      "user_api": "blas",
+      "version": "0.3.23.dev"
+    },
+    {
+      "architecture": "SkylakeX",
+      "filepath": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/scipy.libs/libscipy_openblas-b75cc656.so",
+      "internal_api": "openblas",
+      "num_threads": 1,
+      "prefix": "libscipy_openblas",
+      "threading_layer": "pthreads",
+      "user_api": "blas",
+      "version": "0.3.29.dev"
+    },
+    {
+      "filepath": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/scikit_learn.libs/libgomp-a34b3233.so.1.0.0",
+      "internal_api": "openmp",
+      "num_threads": 1,
+      "prefix": "libgomp",
+      "user_api": "openmp",
+      "version": null
+    }
+  ]
+}

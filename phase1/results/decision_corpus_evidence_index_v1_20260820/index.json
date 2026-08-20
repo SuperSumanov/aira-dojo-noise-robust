@@ -1,0 +1,244 @@
+{
+  "protocol": "decision_corpus_evidence_index_v1",
+  "status": "PROVISIONAL_EVIDENCE_STACK_AWAITING_FIRST960",
+  "scope": {
+    "estimands_merged": false,
+    "prospective_outcomes_read": false,
+    "prospective_vault_open_allowed": false,
+    "frozen_accuracy_computed_by_deployment_cost": false,
+    "release_complete": false
+  },
+  "entries": [
+    {
+      "name": "decision_corpus",
+      "estimand": "choice-set structure, physical-run integrity, and split isolation of the v11 decision resources",
+      "does_not_prove": "This structural audit does not establish predictor accuracy, deployment utility, label reliability, or prospective generalization.",
+      "artifacts": [
+        {
+          "path": "phase1/results/decision_corpus_audit_v11_20260814/audit_card.json",
+          "sha256": "a3b5e12cbe280909300d83d54a326c06c736cfb59f2f6762cb5518720393b399",
+          "json_assertions": {
+            "protocol": "decision_corpus_audit_v1",
+            "status": "VERIFIED_DECISION_CORPUS_AUDIT",
+            "integrity.all_choice_sets_context_consistent": true,
+            "integrity.all_rows_true_physical_siblings": true,
+            "integrity.same_budget_train_frozen_isolated": true,
+            "sets.frozen:b0.pairs": 1498,
+            "sets.frozen:b0.runs": 92
+          }
+        },
+        {
+          "path": "phase1/results/decision_corpus_audit_v11_20260814/independent_verification.json",
+          "sha256": "63497b5faccc6657cbf58be885a12548c6b16ec15a19cb598c02bb2192ef4a92",
+          "json_assertions": {
+            "protocol": "independent_decision_corpus_audit_verifier_v1",
+            "status": "INDEPENDENTLY_VERIFIED_DECISION_CORPUS_AUDIT",
+            "imports_producer": false,
+            "verified_pair_sets": 9
+          }
+        }
+      ]
+    },
+    {
+      "name": "label_repeatability",
+      "estimand": "repeatability of pair ordering under independent regrades and model-based transport over score-gap distributions",
+      "does_not_prove": "Repeatability is not empirical predictor accuracy and the transported quantity depends on the explicitly recorded exchangeability and symmetry assumptions.",
+      "artifacts": [
+        {
+          "path": "phase1/results/label_repeatability_v2_20260814_4e3bebe/attestation.json",
+          "sha256": "eba5e2b3ce01d3cbf80bb81d9854d1e08c6bd73a045d97fe1a20b1e264c8cf8b",
+          "json_assertions": {
+            "protocol": "label_repeatability_attestation_v2",
+            "status": "VERIFIED_LABEL_REPEATABILITY_ATTESTATION_V2",
+            "primary_mode": "all_successful_records",
+            "scope.trains_predictor": false,
+            "scope.reads_endpoint_code": false,
+            "sensitivity_modes.all_successful_records.original_vs_first_repeat.raw_agreement": 0.9658601259529334,
+            "sensitivity_modes.all_successful_records.original_vs_first_repeat.tasks": 10
+          }
+        },
+        {
+          "path": "phase1/results/label_repeatability_v2_20260814_4e3bebe/independent_verification.json",
+          "sha256": "6a167a31498ea2ad11781978949f1aac12b2c9cc001d03fa4d43ef3c4b91fbf3",
+          "json_assertions": {
+            "protocol": "independent_label_repeatability_attestation_verifier_v2",
+            "status": "INDEPENDENTLY_VERIFIED_LABEL_REPEATABILITY_ATTESTATION_V2",
+            "imports_producer": false,
+            "verified_regrade_files": 7
+          }
+        }
+      ]
+    },
+    {
+      "name": "normalized_clone",
+      "estimand": "cross-run and cross-task shallow code-clone incidence under preregistered tokenizer and AST normalizations",
+      "does_not_prove": "The token result covers 99.91 percent and the AST result 97.25 percent; neither excludes fuzzy, semantic, or training-data duplication, and the preregistered aggregate strong gate failed on AST coverage.",
+      "artifacts": [
+        {
+          "path": "phase1/results/prospective_code_clone_audit_20260820_e121452/receipt.json",
+          "sha256": "9d85a642928385bac099b46ce36d24f5d8e24434a7b5076dc6b83ea8810656be",
+          "json_assertions": {
+            "protocol": "prospective_code_clone_audit_v1",
+            "status": "PROVISIONAL_CODE_CLONE_AUDIT_COMPLETE",
+            "pre_registered_gate.strong_low_normalized_clone_support": false,
+            "pre_registered_gate.primary_checks.token_literal_norm.coverage": true,
+            "pre_registered_gate.primary_checks.ast_literal_norm.coverage": false,
+            "pre_registered_gate.semantic_equivalence_or_fuzzy_clone_absence_proven": false,
+            "normalizations.token_literal_norm.fingerprinted_endpoints": 5638,
+            "normalizations.token_literal_norm.cross_run_duplicate_endpoints": 0,
+            "normalizations.token_literal_norm.cross_task_duplicate_endpoints": 0,
+            "normalizations.ast_literal_norm.fingerprinted_endpoints": 5488,
+            "normalizations.ast_literal_norm.cross_run_duplicate_endpoints": 0,
+            "normalizations.ast_literal_norm.cross_task_duplicate_endpoints": 0
+          }
+        },
+        {
+          "path": "phase1/results/prospective_code_clone_audit_20260820_e121452/verification_summary.json",
+          "sha256": "d27b2bc8df58d60400c5dd30b39d1ea1eeddb499320f28631b710bcc5c32639b",
+          "json_assertions": {
+            "receipt_byte_identical": true,
+            "forbidden_file_access_matches": 0,
+            "credential_shape_matches": 0,
+            "outcomes_read": false,
+            "label_vault_opened": false
+          }
+        },
+        {
+          "path": "phase1/results/prospective_ast_failure_diagnostic_20260820_31aee5a/receipt.json",
+          "sha256": "cde16b78f5df01dde4ec579a6111d97610699d4d52e93b2a388dc7b39cb7a744",
+          "json_assertions": {
+            "protocol": "prospective_ast_failure_diagnostic_v1",
+            "status": "POST_HOC_AST_FAILURE_DIAGNOSTIC_COMPLETE",
+            "diagnostic.direct_ast.failure_endpoints": 155,
+            "diagnostic.failed_subset_token_literal_norm.fingerprinted_endpoints": 150,
+            "diagnostic.failed_subset_token_literal_norm.unique_fingerprints": 150,
+            "interpretation_contract.preregistered_clone_gate_rescued": false,
+            "interpretation_contract.semantic_or_fuzzy_clone_absence_proven": false
+          }
+        },
+        {
+          "path": "phase1/results/prospective_ast_failure_diagnostic_20260820_31aee5a/verification_summary.json",
+          "sha256": "cbf62924db57de277ffac5a3d1fc2298fbaab60e7ddc8714204a9c834484e2e0",
+          "json_assertions": {
+            "receipt_byte_identical": true,
+            "forbidden_file_access_matches": 0,
+            "credential_shape_matches": 0,
+            "outcomes_read": false,
+            "label_vault_opened": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "deployment_cost",
+      "estimand": "single-pair online query latency and initialization cost relative to recorded pair execution runtime",
+      "does_not_prove": "This experiment does not compute frozen accuracy or show that a particular selector improves search score or wall-clock time.",
+      "artifacts": [
+        {
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/run_A/summary.json",
+          "sha256": "27996594f37bb0c327d7d90e7ba6f49a66b3ce1fb42dbb4e79899f3e4cf458bc",
+          "json_assertions": {
+            "protocol": "deployment_cost_attestation_v2",
+            "status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "positive_checks.all_query_p95_below_1pct_parallel_execution_p50": true,
+            "positive_checks.all_init_p50_below_10_parallel_execution_p50": true,
+            "scope.accuracy_computed": false,
+            "scope.gpu_used": false,
+            "scope.api_used": false,
+            "scope.prospective_vault_opened": false,
+            "models.static_lr.initialization_break_even_parallel_pairs": 1,
+            "models.static_gbm.initialization_break_even_parallel_pairs": 1,
+            "models.tfidf_lr.initialization_break_even_parallel_pairs": 1
+          }
+        },
+        {
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/run_B/summary.json",
+          "sha256": "009b00e49216400370a82ffb9d2c91126aa203423f073d77efa6eb4d88076a4f",
+          "json_assertions": {
+            "protocol": "deployment_cost_attestation_v2",
+            "status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "positive_checks.all_query_p95_below_1pct_parallel_execution_p50": true,
+            "positive_checks.all_init_p50_below_10_parallel_execution_p50": true,
+            "scope.accuracy_computed": false,
+            "scope.gpu_used": false,
+            "scope.api_used": false,
+            "scope.prospective_vault_opened": false,
+            "models.static_lr.initialization_break_even_parallel_pairs": 1,
+            "models.static_gbm.initialization_break_even_parallel_pairs": 1,
+            "models.tfidf_lr.initialization_break_even_parallel_pairs": 1
+          }
+        },
+        {
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/verification_A.json",
+          "sha256": "4005e7a787d8212b1c0a6d560e85117f0c13c9039baa8789db23e4b8b903f2bf",
+          "json_assertions": {
+            "status": "INDEPENDENTLY_VERIFIED_DEPLOYMENT_COST_ATTESTATION",
+            "result_status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "producer_imported": false,
+            "trial_receipts": 9,
+            "measurement_rows": 2313
+          }
+        },
+        {
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/verification_B.json",
+          "sha256": "ec5d87874337b3171b07da03846838fdefaa4ccfcba3261b6deab263c4c06ef0",
+          "json_assertions": {
+            "status": "INDEPENDENTLY_VERIFIED_DEPLOYMENT_COST_ATTESTATION",
+            "result_status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "producer_imported": false,
+            "trial_receipts": 9,
+            "measurement_rows": 2313
+          }
+        },
+        {
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/cross_run_comparison.json",
+          "sha256": "d124c5b664bf2a0d878eb02cfaa071a3fae45fd1525da30d82ea8a229571c784",
+          "json_assertions": {
+            "protocol": "deployment_cost_cross_run_verification_v2",
+            "status": "CROSS_RUN_STABILITY_VERIFIED",
+            "result_status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "checks.all_models_same_decisions": true,
+            "checks.all_query_p50_ratios_at_most_2": true,
+            "checks.all_init_p50_ratios_at_most_3": true,
+            "checks.same_single_cpu_affinity": true,
+            "checks.thread_contract_is_one": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "prospective_gate",
+      "estimand": "outcome-blind accrual and structural eligibility state of the preregistered first-960 confirmatory cohort",
+      "does_not_prove": "The cohort is incomplete and outcomes remain sealed; this entry is not a prospective accuracy or mechanism result.",
+      "artifacts": [
+        {
+          "path": "phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/receipt.json",
+          "sha256": "9d12e2a8cac555a9eef6743169d0b922c2840b1e6d9c20996662e1910b65e875",
+          "json_assertions": {
+            "protocol": "prospective_structural_gate_independent_verifier_v5",
+            "status": "CONFIRMATORY_COHORT_COLLECTING",
+            "gate.vault_open_allowed": false,
+            "gate.remaining_confirmatory_runs": 737,
+            "independent_inventory.all_eligible.runs": 223,
+            "independent_inventory.all_eligible.structural_pairs": 1473,
+            "security.label_vault_opened": false
+          }
+        },
+        {
+          "path": "phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/verification_summary.json",
+          "sha256": "88dc19ceb7e2017179dec4c08d7741180559971dbdef57f67c46b143ffc4dca5",
+          "json_assertions": {
+            "status": "CONFIRMATORY_COHORT_COLLECTING",
+            "confirmatory_runs": 223,
+            "confirmatory_target_runs": 960,
+            "remaining_confirmatory_runs": 737,
+            "accrual_closure_provided": false,
+            "vault_open_allowed": false,
+            "file_access_forbidden_pattern_matches": 0,
+            "secret_shape_matches": 0
+          }
+        }
+      ]
+    }
+  ]
+}

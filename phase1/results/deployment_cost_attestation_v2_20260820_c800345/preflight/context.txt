@@ -1,0 +1,12 @@
+timestamp_utc=2026-08-19T23:58:16Z
+source_commit=c800345d281b4a15edb90b6c1593ee1b14337327
+worktree=/research/d7/spc/yzyang4/worktrees/deployment_cost_v2_c800345_nosmudge
+python=Python 3.11.15
+hostname=linux5
+cpu=Intel(R) Xeon(R) Silver 4114 CPU @ 2.20GHz
+gpu_used=0
+api_used=0
+prospective_vault_opened=false
+matrix=2_runs_x_3_models_x_3_init_trials_x_256_queries
+measured_online_queries=4608
+hard_wall_hours=2

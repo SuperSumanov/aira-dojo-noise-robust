@@ -1,0 +1,124 @@
+{
+  "artifact_count": 15,
+  "entry_count": 5,
+  "index_sha256": "cfbe749f84114a633d902a358f8ef8243c4c4fe71433961c94e18494ca93769d",
+  "producer_imported": false,
+  "protocol": "decision_corpus_evidence_index_v1",
+  "required_entries": [
+    "decision_corpus",
+    "deployment_cost",
+    "label_repeatability",
+    "normalized_clone",
+    "prospective_gate"
+  ],
+  "scope": {
+    "estimands_merged": false,
+    "frozen_accuracy_computed_by_deployment_cost": false,
+    "prospective_outcomes_read": false,
+    "prospective_vault_open_allowed": false,
+    "release_complete": false
+  },
+  "status": "INDEPENDENTLY_VERIFIED_DECISION_CORPUS_EVIDENCE_INDEX",
+  "verified_entries": [
+    {
+      "artifacts": [
+        {
+          "json_assertions": 7,
+          "path": "phase1/results/decision_corpus_audit_v11_20260814/audit_card.json",
+          "sha256": "a3b5e12cbe280909300d83d54a326c06c736cfb59f2f6762cb5518720393b399"
+        },
+        {
+          "json_assertions": 4,
+          "path": "phase1/results/decision_corpus_audit_v11_20260814/independent_verification.json",
+          "sha256": "63497b5faccc6657cbf58be885a12548c6b16ec15a19cb598c02bb2192ef4a92"
+        }
+      ],
+      "name": "decision_corpus"
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": 7,
+          "path": "phase1/results/label_repeatability_v2_20260814_4e3bebe/attestation.json",
+          "sha256": "eba5e2b3ce01d3cbf80bb81d9854d1e08c6bd73a045d97fe1a20b1e264c8cf8b"
+        },
+        {
+          "json_assertions": 4,
+          "path": "phase1/results/label_repeatability_v2_20260814_4e3bebe/independent_verification.json",
+          "sha256": "6a167a31498ea2ad11781978949f1aac12b2c9cc001d03fa4d43ef3c4b91fbf3"
+        }
+      ],
+      "name": "label_repeatability"
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": 12,
+          "path": "phase1/results/prospective_code_clone_audit_20260820_e121452/receipt.json",
+          "sha256": "9d85a642928385bac099b46ce36d24f5d8e24434a7b5076dc6b83ea8810656be"
+        },
+        {
+          "json_assertions": 5,
+          "path": "phase1/results/prospective_code_clone_audit_20260820_e121452/verification_summary.json",
+          "sha256": "d27b2bc8df58d60400c5dd30b39d1ea1eeddb499320f28631b710bcc5c32639b"
+        },
+        {
+          "json_assertions": 7,
+          "path": "phase1/results/prospective_ast_failure_diagnostic_20260820_31aee5a/receipt.json",
+          "sha256": "cde16b78f5df01dde4ec579a6111d97610699d4d52e93b2a388dc7b39cb7a744"
+        },
+        {
+          "json_assertions": 5,
+          "path": "phase1/results/prospective_ast_failure_diagnostic_20260820_31aee5a/verification_summary.json",
+          "sha256": "cbf62924db57de277ffac5a3d1fc2298fbaab60e7ddc8714204a9c834484e2e0"
+        }
+      ],
+      "name": "normalized_clone"
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": 11,
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/run_A/summary.json",
+          "sha256": "27996594f37bb0c327d7d90e7ba6f49a66b3ce1fb42dbb4e79899f3e4cf458bc"
+        },
+        {
+          "json_assertions": 11,
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/run_B/summary.json",
+          "sha256": "009b00e49216400370a82ffb9d2c91126aa203423f073d77efa6eb4d88076a4f"
+        },
+        {
+          "json_assertions": 5,
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/verification_A.json",
+          "sha256": "4005e7a787d8212b1c0a6d560e85117f0c13c9039baa8789db23e4b8b903f2bf"
+        },
+        {
+          "json_assertions": 5,
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/verification_B.json",
+          "sha256": "ec5d87874337b3171b07da03846838fdefaa4ccfcba3261b6deab263c4c06ef0"
+        },
+        {
+          "json_assertions": 8,
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/cross_run_comparison.json",
+          "sha256": "d124c5b664bf2a0d878eb02cfaa071a3fae45fd1525da30d82ea8a229571c784"
+        }
+      ],
+      "name": "deployment_cost"
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": 7,
+          "path": "phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/receipt.json",
+          "sha256": "9d12e2a8cac555a9eef6743169d0b922c2840b1e6d9c20996662e1910b65e875"
+        },
+        {
+          "json_assertions": 8,
+          "path": "phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/verification_summary.json",
+          "sha256": "88dc19ceb7e2017179dec4c08d7741180559971dbdef57f67c46b143ffc4dca5"
+        }
+      ],
+      "name": "prospective_gate"
+    }
+  ]
+}

@@ -23,7 +23,7 @@ def test_identifier_semantics_are_retained_inside_hashed_labels() -> None:
 
 
 def test_invalid_python_uses_token_graph_before_raw_lines() -> None:
-    features, diagnostics = wl_feature_dict("x = )\n")
+    features, diagnostics = wl_feature_dict("if True print(1)\n")
     assert diagnostics.mode == "python_token_sequence_graph"
     assert features
 

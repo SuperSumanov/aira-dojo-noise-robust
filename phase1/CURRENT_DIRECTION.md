@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BV. 2026-08-20 直接竞品再收紧：AutoML pre-rollout value 与 ML-agent RM benchmark 已有
+
+一手核查补入三个直接边界。I-MCTS 已在 agentic AutoML 的 MCTS 中分析 parent/sibling results、用 LLM value
+model 在完整 rollout 前评分节点，并把估计 reward 过渡到真实 performance；ML-Tool-Bench 已用 61 tools /
+15 Kaggle tabular tasks 建立 ML-agent planning benchmark，并报告 LLM state scoring 不一致会拖累 tree search；
+CUARewardBench 已在 10 software categories / 7 agent architectures 上系统评估 step/trajectory ORM/PRM。
+
+因此“首次在 MLE 树中执行前 value guidance”“首次发现 ML-agent tree evaluator 不稳定”“首个 agent RM
+benchmark”全部禁止。仍未被这些公开设定等价替代的窄边界，是完整 Python MLE candidate 的真实同-parent
+choice set、physical-run-clean split、连续 hidden-score gap/noise、query/init/execution 成本与结果盲时间外确认。
+这不是无人做过的证明，论文不得用 first/only，只能逐项列出可复核差异。当前 WL 配置、primary 与未来门均不变，
+不增加 arm 或启动新实验。直接记录：
+
+- `phase1/实验记录/2026-08-20/IMCTS_MLToolBench_CUARewardBench_防scoop补充.md`。
+
 ## 0BU. 2026-08-20 WL graph 前瞻预测托管已独立复核；当前 1,473 pairs 全为支持集
 
 自动 activation receipt 已在 `2026-08-20T05:20:27.656860Z` 绑定 commit `031edb3...`、协议、独立验证

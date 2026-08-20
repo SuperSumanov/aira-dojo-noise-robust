@@ -1,5 +1,9 @@
 # WL candidate-code graph / multi-view extension v1：预注册与预检
 
+> **时间字段勘误：** 协议内手填的 `frozen_at_utc` 后经远端时钟核验为未来时间戳，永久作废；不得用于建立
+> temporal precedence。模型配置和输入哈希不变，严格前瞻效果只从后续自动生成的 activation receipt 之后计。
+> 详见 `WLGraphMultiViewExtension_v1_时间字段勘误.md`。
+
 ## 目标与非目标
 
 目标是补齐 0BS 暴露的 graph-family baseline 缺口，而不是申报 GNN/WL novelty。该 extension 只用 v11 train b0

@@ -1,0 +1,22 @@
+{
+  "consequences": {
+    "bundle_configuration_and_input_hashes_unchanged": true,
+    "declared_frozen_at_utc_may_be_used_as_temporal_boundary": false,
+    "future_effect_claim_requires_later_activation_receipt": true,
+    "pre_activation_predictions_are_outcome_unread_support_only": true
+  },
+  "evidence": {
+    "clock_receipt_sha256": "03a9eb776bc8e9b7d08aa3eb5eafa6e64beda27ef6dc044ddab9cd7449d87ec3",
+    "clock_receipt_remote_path": "/research/d7/spc/yzyang4/wl-time-audit-f67157a-v1/clock_receipt.txt",
+    "declared_frozen_at_utc": "2026-08-20T05:13:00Z",
+    "head_observed_present": "f67157ad35385019f11a79291a1df8cdf4311806",
+    "observed_remote_utc": "2026-08-20T04:47:52Z",
+    "protocol_commit": "efbcc8f76244dda1c8e0c7a0c715fcb232665754",
+    "protocol_commit_iso": "2026-08-20T12:24:54+08:00",
+    "protocol_sha256": "daff83665df811e6d30c196cfb0323478caaa31f9c9322b01a396cce0ee99af1"
+  },
+  "invalidated_field": "frozen_at_utc",
+  "protocol": "wl-graph-multiview-extension-v1",
+  "reason": "The committed protocol was already present on the remote host at an observed UTC time earlier than its declared freeze timestamp, so the hand-entered field is future-dated and cannot establish temporal ordering.",
+  "status": "DECLARED_FREEZE_TIMESTAMP_INVALIDATED"
+}

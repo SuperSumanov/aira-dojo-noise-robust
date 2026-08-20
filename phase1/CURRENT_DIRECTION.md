@@ -1,7 +1,27 @@
-# 当前研究方向唯一入口（2026-08-20）
+# 当前研究方向唯一入口（2026-08-21）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0BX. 2026-08-21 agent RM 与 AutoML ranking 直接先例补齐；核心改写为 deployment-estimand benchmark
+
+新增一手核查覆盖 Plan-RewardBench、AgentRewardBench、ExeVRM/ExeVR-53K 与 AutoML Ranking Trick。通用
+trajectory preference benchmark、专家标注的 web-agent evaluator benchmark、execution-grounded 大规模 RM
+语料/模型，以及 rank target + NDCG/MRR + MCTS 集成均已有直接先例。因此“首个 agent RM benchmark”、
+“首次用执行轨迹训练 evaluator”、“首次把 AutoML 选择写成排序”与“首次用 listwise/rank metric”全部禁止。
+
+这些工作仍未等价覆盖：MLE program-search physical run 中自然发生的同-parent **labeled sibling fragment**、
+连续 pristine Kaggle score、run-clean 隔离、gap/noise/cost/missingness，以及结果盲时间外确认。论文中心进一步
+收窄为 **benchmark construction determines the deployment estimand**：全局/合成 preference pair 上的准确率，
+不能自动外推到 agent 当时面对的局部 sibling 分布。FOREAGENT 与我方已锁定的 gap、pair graph 与复用差异是
+这条主张的直接实证，不再把“训练出最强 RM”当唯一成败标准。
+
+当前 first-960 primary、WL 单列 extension、960-run + accrual closure 和 outcome vault 均不变。NDCG/MRR、
+parent-macro top-1 等只作为 choice-fragment secondary reporting，不申方法 novelty；Ranking Trick 若要成为新
+baseline，必须先做 train-only 资格门并另立严格 post-activation future cohort，禁止事后加入当前 cohort。
+直接记录：
+
+- `phase1/实验记录/2026-08-21/AgentRM与AutoMLRanking_防Scoop及主张收紧.md`。
 
 ## 0BW. 2026-08-21 学长 0820 scaling 是更强探索信号；确认协议补丁已在最新 base 通过
 
@@ -36,8 +56,9 @@ model 在完整 rollout 前评分节点，并把估计 reward 过渡到真实 pe
 CUARewardBench 已在 10 software categories / 7 agent architectures 上系统评估 step/trajectory ORM/PRM。
 
 因此“首次在 MLE 树中执行前 value guidance”“首次发现 ML-agent tree evaluator 不稳定”“首个 agent RM
-benchmark”全部禁止。仍未被这些公开设定等价替代的窄边界，是完整 Python MLE candidate 的真实同-parent
-choice set、physical-run-clean split、连续 hidden-score gap/noise、query/init/execution 成本与结果盲时间外确认。
+benchmark”全部禁止。仍未被这些公开设定等价替代的窄边界，是完整 Python MLE candidate 的结构有效同-parent
+**labeled sibling fragment**、physical-run-clean split、连续 hidden-score gap/noise、query/init/execution 成本与
+结果盲时间外确认。
 这不是无人做过的证明，论文不得用 first/only，只能逐项列出可复核差异。当前 WL 配置、primary 与未来门均不变，
 不增加 arm 或启动新实验。直接记录：
 
@@ -174,8 +195,9 @@ performance；ICLR 2026 Agentic Predictor 已联合 graph/code/prompt 与跨域�
 predictor”“graph/multi-view encoder”“用 predictor 省执行”均正式关闭为 novelty，只能作 baseline。
 
 这些工作预测的是 agent workflow/configuration × task，不是一次 MLE program-search physical run 中同 parent
-候选代码的连续 hidden-score 次序。当前可守边界收窄为：choice-set-faithful MLE sibling decision resource，绑定
-physical run/operator/evaluator，显式审计 endpoint reuse、pair graph、gap/noise/query-init cost，并在结果盲
+候选代码的连续 hidden-score 次序。当前可守边界收窄为：带 missing registry 的 MLE labeled sibling-fragment
+decision resource，绑定 physical run/operator/evaluator，显式审计 endpoint reuse、pair graph、gap/noise/
+query-init cost，并在结果盲
 first-960 + closure 上 prospective confirmation。不得写 first/only，只能逐项列可核差异。
 
 最终 benchmark 需要补 FLORA-style graph/multi-view family baseline，或给出不能等价迁移的可复核理由；但不得

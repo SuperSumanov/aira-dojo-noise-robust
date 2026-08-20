@@ -1,0 +1,79 @@
+{
+  "arms": {
+    "step_only_lr": ["step"],
+    "wl_graph_lr": ["candidate_code_wl_graph"],
+    "wl_graph_static_lr": ["candidate_code_wl_graph", "decision_time_static"],
+    "wl_graph_static_tfidf_lr": [
+      "candidate_code_wl_graph",
+      "decision_time_static",
+      "global_code_char_tfidf"
+    ]
+  },
+  "effect_lock": {
+    "first960_outcomes_may_be_opened": false,
+    "model_selection_metric_may_be_computed": false,
+    "train_fit_accuracy_may_be_computed": false,
+    "v11_frozen_or_extension_may_be_read": false
+  },
+  "frozen_at_utc": "2026-08-20T05:13:00Z",
+  "graph": {
+    "ast_edge_labels": "bidirectional parent-child with ast field name and list position erased",
+    "ast_initial_labels": "AST class plus normalized identifier/attribute/import/keyword name; constants retain type only",
+    "fallback_order": ["python_ast", "python_token_sequence_graph", "raw_line_sequence_graph"],
+    "feature_hasher": {
+      "alternate_sign": true,
+      "dtype": "float64",
+      "n_features": 65536
+    },
+    "maximum_nodes": 8192,
+    "normalization": "per-endpoint l2",
+    "wl_iterations": 2
+  },
+  "known_before_freeze": {
+    "existing_static_scorer_already_contains_step_depth_n_siblings_op": true,
+    "prospective_ast_parse_coverage": 0.9725323409533936,
+    "prospective_pairs_with_step_difference": 1473,
+    "prospective_token_parse_coverage": 0.9991139464823675,
+    "v11_pairs_with_step_difference": 5897
+  },
+  "linear_models": {
+    "C": 1.0,
+    "fit_intercept": false,
+    "max_iter": 2000,
+    "random_state": 20260820,
+    "solver": "liblinear",
+    "symmetric_pair_design": true,
+    "tol": 1e-06
+  },
+  "protocol": "wl-graph-multiview-extension-v1",
+  "resource_gate": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_hours": 0,
+    "maximum_build_wall_seconds": 7200,
+    "maximum_peak_rss_gib": 32,
+    "threads": 1,
+    "verifier_refit_required": true
+  },
+  "scope": {
+    "comparison_to_primary": "future paired extension only; primary protocol unchanged",
+    "prospective_target": "frozen first-960 ordering, outcome-unread predictions sealed before reveal",
+    "training": "v11 train b0 only: 4263 pairs, 5499 endpoints, 333 physical runs, 23 tasks"
+  },
+  "static_view": "exact fixed_decision_scorer.static_feature_dict feature names and scaling contract",
+  "tfidf_view": {
+    "analyzer": "char_wb",
+    "code_view": "all_if_le_20000_else_head5000_tail15000",
+    "max_features": 30000,
+    "min_df": 3,
+    "ngram_range": [3, 5],
+    "sublinear_tf": true
+  },
+  "training_inputs_sha256": {
+    "cards": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "manifest": "8c9621dd9d863d5640c54d1eefee42f5c170bbaf5d7bceceda7aa372ac1afc19",
+    "manifest_summary": "cc2a0ecc2b96ce66c4e01d7f734cb73d3363a88ce6ad5f1567937761a72272dc",
+    "pairs": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+    "run_map": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30"
+  }
+}

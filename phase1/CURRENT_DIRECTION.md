@@ -3,6 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BW. 2026-08-21 学长 0820 scaling 是更强探索信号；确认协议补丁已在最新 base 通过
+
+学长 `dojo-reproduce@baf6bdd...` 已补齐 outcome 文档。experiment 内 value pair 的两 seed final mean 随
+Qwen3 0.6B/1.7B/4B/8B 为 58.64%/60.67%/62.01%/64.68%，final loss 同时单调下降；8B 两 seed 均超过
+同数据 TF-IDF=61.18%，均值优势 3.50 pp。这是目前最清楚的 critic capacity/scaling 探索信号，优于一周前的
+“各规模约 0.55”状态。但 decision zero-shot transfer 只有单 seed 的 56.25%/56.25%/59.06%/59.38%，8B 仍低于
+TF-IDF=59.90%。旧结果还使用周期性 outer-test eval、含 708 条跨 exact config 的 full-train pairs、共享 endpoint，
+部分大模型未正常结束；`92a9651` 时 checkpoint 方向设置错误。因此不得把旧 checkpoint/test 曲线升级为确认性结果。
+
+已在精确 base `baf6bdd...` 形成新的 cherry-pick 补丁：exact-stratum/batch provenance、canonical raw sibling 与
+synthetic/contracted pair semantics 分栏、outer-train→physical-run-disjoint dev、dedicated immutable frozen test、
+训练期拒绝 test、dev accuracy 正向 checkpoint 选择，以及哈希锁定的 one-shot test ledger/逐 pair margin 回执。
+旧 combined pair 迁移时必须同时产出 frozen-test 文件，且 Card/physical-run train-test overlap=0；不允许静默丢弃。
+Windows 的无 torch 协议测试 24/24；远端 Python 3.11.15、PyTorch 2.11.0、Transformers 4.57.1 下 33/33，
+TrainingArguments 契约与 clean worktree 均通过。补丁只服务 future exact-stratum 数据；未启动 GPU/API。
+
+该支持线不改变当前论文中心：Decision Corpus + Predictor Benchmark + first-960/closure 时间外确认。立即可做的
+防守性实验仍仅限已锁定 checkpoint 在预先冻结 b0/b1/b2 canonical test 上的一次性评分；它不能洗白旧 test-touched
+checkpoint，也不得替代 future clean scaling。任何重训矩阵仍须先给总 runs/GPU·时并获批。直接证据：
+
+- `phase1/upstream_patches/0001-Harden-critic-confirmation-protocol.patch`；
+- `phase1/results/senior_critic_confirmation_protocol_20260821/README.md`；
+- `phase1/实验记录/2026-08-21/SeniorAugmentedScaling_0820结果审计与确认协议交付.md`。
+
 ## 0BV. 2026-08-20 直接竞品再收紧：AutoML pre-rollout value 与 ML-agent RM benchmark 已有
 
 一手核查补入三个直接边界。I-MCTS 已在 agentic AutoML 的 MCTS 中分析 parent/sibling results、用 LLM value

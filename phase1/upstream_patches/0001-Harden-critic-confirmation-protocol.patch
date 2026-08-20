@@ -1,0 +1,2992 @@
+From d69676c3b313efc1196209cd9826ce5d4d75796d Mon Sep 17 00:00:00 2001
+From: Supersumanov <yanzeyang39@gmail.com>
+Date: Fri, 21 Aug 2026 03:16:06 +0800
+Subject: [PATCH] Harden critic confirmation protocol
+
+---
+ .../data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md |  39 ++
+ .../CRITIC_SCALING_CONFIRMATION_PROTOCOL.md   |  57 ++
+ .../preprocess/build_batch_value_pairs.sh     |   7 +
+ .../pro6000/train_rm_confirmatory_one.sh      |  97 ++++
+ .../evaluation/bradley_terry_evaluation.py    | 489 ++++++++++++++++--
+ .../build_augmented_decision_pairs.py         |  21 +-
+ .../build_bt_pairs/build_decision_pairs.py    |   8 +-
+ .../build_bt_pairs/build_subtree_pairs.py     |  96 +++-
+ .../build_bt_pairs/build_train_dev_split.py   | 368 +++++++++++++
+ .../verify_experiment_strata.py               | 171 ++++++
+ .../build_bt_pairs/verify_train_dev_split.py  | 282 ++++++++++
+ src/mle_critic/src/train/bradley_terry.py     | 106 +++-
+ .../src/train/config/bradley_terry_config.py  |  19 +-
+ src/mle_critic/src/train/dataset/__init__.py  |  16 +-
+ src/mle_critic/src/train/dataset/pairs.py     | 112 +++-
+ .../test_build_augmented_decision_pairs.py    |   6 +
+ .../test/test_build_decision_pairs.py         |   3 +
+ .../test/test_build_subtree_pairs.py          | 120 ++++-
+ .../test/test_one_shot_evaluation_contract.py | 133 +++++
+ .../test/test_train_dev_split_contract.py     | 147 ++++++
+ .../test/test_train_pair_dataset.py           |  36 +-
+ .../test/test_verify_experiment_strata.py     |  63 +++
+ 22 files changed, 2279 insertions(+), 117 deletions(-)
+ create mode 100644 src/mle_critic/docs/data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md
+ create mode 100644 src/mle_critic/docs/outcomes/0821/CRITIC_SCALING_CONFIRMATION_PROTOCOL.md
+ create mode 100644 src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh
+ create mode 100644 src/mle_critic/src/preprocess/build_bt_pairs/build_train_dev_split.py
+ create mode 100644 src/mle_critic/src/preprocess/build_bt_pairs/verify_experiment_strata.py
+ create mode 100644 src/mle_critic/src/preprocess/build_bt_pairs/verify_train_dev_split.py
+ create mode 100644 src/mle_critic/test/test_one_shot_evaluation_contract.py
+ create mode 100644 src/mle_critic/test/test_train_dev_split_contract.py
+ create mode 100644 src/mle_critic/test/test_verify_experiment_strata.py
+
+diff --git a/src/mle_critic/docs/data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md b/src/mle_critic/docs/data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md
+new file mode 100644
+index 0000000..bee2973
+--- /dev/null
++++ b/src/mle_critic/docs/data/EXACT_EXPERIMENT_STRATUM_CONTRACT.md
+@@ -0,0 +1,39 @@
++# Exact experiment-stratum pair contract
++
++This contract prevents reward-model pairs from comparing candidates produced under different
++execution configurations. A structure-only audit of the 2026-08-18 augmented snapshot found 708
++such pairs among 9,001 full-train pairs. All 708 shared the same parsed run family and date, which
++is consistent with mixed configurations inside directories assumed to be homogeneous.
++
++## Contract v1
++
++Before shuffling or applying the per-task cap, candidate nodes are partitioned by the exact tuple:
++
++```text
++(task.name, client, hardware, time_limit, execution_timeout)
++```
++
++Only nodes in the same partition may form a pair. The existing cap remains per task, so this patch
++does not increase the number of sampled pairs merely because a task has multiple strata. A physical
++run containing more than one tuple fails closed.
++
++Every emitted pair carries two receipts:
++
++- `experiment_stratum_sha256`: SHA256 of the canonical JSON tuple above;
++- `batch_cards_sha256`: byte-level SHA256 of the `batch_cards.json` input.
++
++`build_batch_value_pairs.sh` invokes an independent verifier before concatenation. The verifier
++recomputes both hashes without importing the pair producer, rejects unknown/duplicate endpoints and
++cross-stratum pairs, scans inputs for credential-shaped bytes before JSON parsing, and writes a
++per-batch `batch_value_pairs_receipt.json`.
++
++## Migration boundary
++
++This patch is future-only. Rebuilding or filtering an already inspected pair file does not convert
++old scaling results into a confirmatory evaluation. A new cohort should be built under this contract,
++receive a train-only physical-run dev split, select checkpoints on dev, and touch frozen test once.
++
++The six new focused contract/verifier tests pass. At source commit
++`92a9651f2e13a9e43623235b82c07c19721bc2ee`, the pre-existing subtree-pair test file already has five
++failures and one pass; the same five legacy failures remain after this patch and concern node-value
++eligibility expectations outside the experiment-stratum change.
+diff --git a/src/mle_critic/docs/outcomes/0821/CRITIC_SCALING_CONFIRMATION_PROTOCOL.md b/src/mle_critic/docs/outcomes/0821/CRITIC_SCALING_CONFIRMATION_PROTOCOL.md
+new file mode 100644
+index 0000000..44fbb66
+--- /dev/null
++++ b/src/mle_critic/docs/outcomes/0821/CRITIC_SCALING_CONFIRMATION_PROTOCOL.md
+@@ -0,0 +1,57 @@
++# Critic scaling：确认性协议与探索性结果边界
++
++## 定位
++
++这是当前 score-channel 主线的**支持实验**，不是替代主线。它检验学长在
++experiment 内 value pairs 上观察到的 0.6B→8B scaling，是否能迁移到冻结的真实
++decision sibling，并修复旧训练流程把 outer test 当作周期性 validation 的问题。
++
++`0820/AUGMENTED_PAIRWISE_REWARD_EXPERIMENTS.md` 中的结果继续保留为探索性证据，不能直接
++作为确认性 headline，原因包括：test 被每 10 step 查看、旧 checkpoint 选择方向曾设反、部分
++训练没有正常结束、pair 共享 endpoint，以及 value 和 decision 的 checkpoint/目标不匹配。
++
++## 立即实验（不重训）
++
++1. 只使用学长已经锁定的 Qwen3-4B/8B checkpoint；冻结后不得按 test 结果更换 checkpoint。
++2. v11 的 b0/b1/b2 各自生成独立、test-only、不可覆盖的 JSONL；训练进程不可挂载这些路径。
++3. 主表只使用 `pair_semantics=canonical_raw_sibling`。`synthetic_cross_run_draft` 和
++   `error_contracted_improve` 分开列为 extension，不得混入主指标。
++4. 每个 checkpoint×stratum 只允许一次 test 调用。调用前校验 Cards、pairs、
++   `model.safetensors`，以及实际存在的 `head.pt`、`rm_meta.json`、`config.json`；排他 ledger
++   在解析 test pairs 前写入 `STARTED`。崩溃或哈希错误同样消耗这次尝试。
++5. 输出必须保留逐 pair margin、task、两个 physical run、parent 和 pair semantics，供同 pair
++   比较与 cluster-robust inference 使用。
++
++主 estimand 是同一冻结 pair 上 `accuracy(8B)-accuracy(4B)`。主不确定性按 task cluster；
++同一 parent/run 高度复用时同时报告 parent/run cluster 和 task macro。单独模型相对 0.5 的区间、
++TF-IDF 对照和 0.6B/1.7B 只作辅助，不用独立 pair 的二项式区间冒充有效样本量。
++
++在看到任何 b0/b1/b2 test 结果前，先冻结：checkpoint 哈希、数据哈希、三层聚合方式、缺失
++checkpoint 的处理，以及所有 extension 的标签。三个 stratum 必须全部报告，不能只挑有利层。
++
++## 后续匹配确认（需单独预算批准后才可训练）
++
++若立即实验保留正信号，再在同一批 Cards 上做 matched comparison：仅改变 pairing scope
++（global-task 对 exact-experiment-stratum），其他 gap、pair 数、run split、seed、模型、batch、
++epoch 和 checkpoint 选择规则完全相同。outer train 只用于确定性地切出 train-run dev；outer test
++不能进入 Trainer。checkpoint 仅按 dev pair accuracy 选择，且 `greater_is_better=true`。
++
++训练入口为 `scripts/train/pro6000/train_rm_confirmatory_one.sh`，每次只接受一个模型和一个 seed，
++要求显式输入 train/dev/Cards SHA-256，并在有效 pair batch 不等于预注册值时 fail closed。该入口
++不接受 test 路径。具体模型×seed 矩阵、总 GPU·时与退出门在提交前另行冻结并获批。
++
++## 代码契约
++
++- `build_train_dev_split.py`：只从 outer-train physical runs 产生 run-disjoint train/dev；默认遇到
++  test row 即失败。
++- `verify_train_dev_split.py`：不导入 producer，独立重算 run assignment 和所有哈希。
++- `bradley_terry.py`：只读取 dedicated train/dev 文件；发现 split、Card 或 run 重叠即失败。
++- `bradley_terry_evaluation.py`：test 必须提供排他 ledger、不可覆盖 output 和已承诺哈希；不允许
++  `eval_cap`，不静默跳过未知 Card 或重复 pair。
++
++## 解释边界
++
++通过该协议只能支持“更大 critic 在冻结局部决策上有可复现的排序增益”。它本身不能证明搜索
++最终分数提高，也不能替代 score-channel 的前瞻 150-run 复现。只有随后在固定 agent、算子、任务
++和预算下改变 critic selection，并在外部 pristine evaluator 上改善最终结果，才能升级为系统
++收益主张。
+diff --git a/src/mle_critic/scripts/preprocess/build_batch_value_pairs.sh b/src/mle_critic/scripts/preprocess/build_batch_value_pairs.sh
+index ffb93fd..15d8753 100755
+--- a/src/mle_critic/scripts/preprocess/build_batch_value_pairs.sh
++++ b/src/mle_critic/scripts/preprocess/build_batch_value_pairs.sh
+@@ -49,12 +49,19 @@ while IFS= read -r -d '' cards_path; do
+     found=1
+     output_path=$(dirname "$cards_path")/batch_value_pairs.jsonl
+     echo "[build_batch_value_pairs] processing $cards_path"
++    python -m src.preprocess.build_bt_pairs.verify_experiment_strata \
++        scan "$cards_path"
+     python -m src.preprocess.build_bt_pairs.build_subtree_pairs \
+         "$output_path" \
+         "$cards_path" \
+         --cap "$CAP" \
+         --seed "$SEED" \
+         --budget-steps "$BUDGET_STEPS"
++    python -m src.preprocess.build_bt_pairs.verify_experiment_strata \
++        verify \
++        "$(dirname "$cards_path")/batch_value_pairs_receipt.json" \
++        "$cards_path" \
++        "$output_path"
+     cat "$output_path" >> "$aggregate_tmp"
+ done < <(find "$DIRECTORY" -type f -name batch_cards.json -print0 | sort -z)
+ 
+diff --git a/src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh b/src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh
+new file mode 100644
+index 0000000..da999ff
+--- /dev/null
++++ b/src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh
+@@ -0,0 +1,97 @@
++#!/usr/bin/env bash
++# Launch exactly one dev-selected critic fit. This script never reads a test pair file.
++set -euo pipefail
++
++source "$(dirname "$0")/../../experiment_env_augmented_data.sh"
++
++: "${CONFIRM_TRAIN_PAIRS:?set a dedicated train-only JSONL}"
++: "${CONFIRM_DEV_PAIRS:?set a dedicated train-run-derived dev-only JSONL}"
++: "${CONFIRM_CARDS:?set the immutable grouped Cards JSON}"
++: "${CONFIRM_MODEL:?set one pinned local model snapshot or model revision}"
++: "${CONFIRM_OUTPUT_DIR:?set a new output directory}"
++: "${CONFIRM_LOG_PATH:?set a new log path}"
++: "${CONFIRM_SEED:?set the preregistered seed}"
++: "${CONFIRM_PER_DEVICE_TRAIN_BATCH:?set the per-device pair batch}"
++: "${CONFIRM_PER_DEVICE_EVAL_BATCH:?set the per-device eval pair batch}"
++: "${CONFIRM_GRAD_ACCUM:?set gradient accumulation}"
++: "${CONFIRM_EXPECTED_TRAIN_SHA256:?lock the train JSONL digest}"
++: "${CONFIRM_EXPECTED_DEV_SHA256:?lock the dev JSONL digest}"
++: "${CONFIRM_EXPECTED_CARDS_SHA256:?lock the Cards digest}"
++
++CONFIRM_NUM_PROCESSES=${CONFIRM_NUM_PROCESSES:-2}
++CONFIRM_MAX_LEN=${CONFIRM_MAX_LEN:-16384}
++CONFIRM_EVAL_STEPS=${CONFIRM_EVAL_STEPS:-10}
++CONFIRM_EPOCHS=${CONFIRM_EPOCHS:-1}
++CONFIRM_LEARNING_RATE=${CONFIRM_LEARNING_RATE:-1e-5}
++CONFIRM_EFFECTIVE_PAIR_BATCH=${CONFIRM_EFFECTIVE_PAIR_BATCH:-128}
++
++[[ ! -e $CONFIRM_OUTPUT_DIR ]] || {
++    echo "refusing to reuse output directory: $CONFIRM_OUTPUT_DIR" >&2
++    exit 2
++}
++[[ ! -e $CONFIRM_LOG_PATH ]] || {
++    echo "refusing to overwrite log: $CONFIRM_LOG_PATH" >&2
++    exit 2
++}
++
++verify_sha256() {
++    local path=$1
++    local expected=$2
++    local label=$3
++    [[ -f $path ]] || { echo "$label is missing: $path" >&2; exit 2; }
++    local observed
++    observed=$(sha256sum "$path" | awk '{print $1}')
++    [[ $observed == "$expected" ]] || {
++        echo "$label SHA-256 mismatch: expected=$expected observed=$observed" >&2
++        exit 2
++    }
++}
++
++verify_sha256 "$CONFIRM_TRAIN_PAIRS" "$CONFIRM_EXPECTED_TRAIN_SHA256" train
++verify_sha256 "$CONFIRM_DEV_PAIRS" "$CONFIRM_EXPECTED_DEV_SHA256" dev
++verify_sha256 "$CONFIRM_CARDS" "$CONFIRM_EXPECTED_CARDS_SHA256" cards
++
++actual_effective_batch=$((
++    CONFIRM_NUM_PROCESSES
++    * CONFIRM_PER_DEVICE_TRAIN_BATCH
++    * CONFIRM_GRAD_ACCUM
++))
++[[ $actual_effective_batch -eq $CONFIRM_EFFECTIVE_PAIR_BATCH ]] || {
++    echo "effective pair batch mismatch: expected=$CONFIRM_EFFECTIVE_PAIR_BATCH observed=$actual_effective_batch" >&2
++    exit 2
++}
++
++mkdir -p "$(dirname "$CONFIRM_LOG_PATH")"
++export AIRA_DOJO_GIT_COMMIT
++AIRA_DOJO_GIT_COMMIT=$(git rev-parse HEAD)
++export PYTHONHASHSEED=$CONFIRM_SEED
++
++echo "[confirmatory-rm] commit=$AIRA_DOJO_GIT_COMMIT model=$CONFIRM_MODEL seed=$CONFIRM_SEED"
++echo "[confirmatory-rm] train_sha256=$CONFIRM_EXPECTED_TRAIN_SHA256 dev_sha256=$CONFIRM_EXPECTED_DEV_SHA256 cards_sha256=$CONFIRM_EXPECTED_CARDS_SHA256"
++echo "[confirmatory-rm] processes=$CONFIRM_NUM_PROCESSES effective_pair_batch=$actual_effective_batch max_len=$CONFIRM_MAX_LEN epochs=$CONFIRM_EPOCHS"
++
++accelerate launch \
++    --config_file "$ACCELERATE_CONFIG" \
++    --num_processes "$CONFIRM_NUM_PROCESSES" "$TRAIN_SCRIPT" \
++    --train_pairs "$CONFIRM_TRAIN_PAIRS" \
++    --dev_pairs "$CONFIRM_DEV_PAIRS" \
++    --cards "$CONFIRM_CARDS" \
++    --model "$CONFIRM_MODEL" \
++    --max_len "$CONFIRM_MAX_LEN" \
++    --task_cond true \
++    --budget_cond false \
++    --per_device_train_batch_size "$CONFIRM_PER_DEVICE_TRAIN_BATCH" \
++    --per_device_eval_batch_size "$CONFIRM_PER_DEVICE_EVAL_BATCH" \
++    --gradient_accumulation_steps "$CONFIRM_GRAD_ACCUM" \
++    --eval_steps "$CONFIRM_EVAL_STEPS" \
++    --learning_rate "$CONFIRM_LEARNING_RATE" \
++    --num_train_epochs "$CONFIRM_EPOCHS" \
++    --output_dir "$CONFIRM_OUTPUT_DIR" \
++    --seed "$CONFIRM_SEED" \
++    --report_to none \
++    --dataloader_num_workers 0 \
++    --save_strategy best \
++    --load_best_model_at_end true \
++    --metric_for_best_model eval_pair_accuracy \
++    --greater_is_better true \
++    2>&1 | tee "$CONFIRM_LOG_PATH"
+diff --git a/src/mle_critic/src/evaluation/bradley_terry_evaluation.py b/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
+index f522563..853f391 100644
+--- a/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
++++ b/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
+@@ -4,8 +4,15 @@ from __future__ import annotations
+ 
+ import collections
+ import argparse
++import datetime as dt
++import hashlib
+ import json
++import math
++import os
+ import random
++import re
++import socket
++import tempfile
+ from collections.abc import Callable, Iterable, Sequence
+ from pathlib import Path
+ from typing import Any
+@@ -15,6 +22,91 @@ import torch
+ 
+ EncodeCard = Callable[[str, int | None], list[int]]
+ 
++ONE_SHOT_PROTOCOL = "rm-one-shot-test-v1"
++_SHA256_PATTERN = re.compile(r"[0-9a-f]{64}")
++
++
++def sha256_file(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as input_file:
++        for chunk in iter(lambda: input_file.read(1 << 20), b""):
++            digest.update(chunk)
++    return digest.hexdigest()
++
++
++def _write_json_exclusive(path: Path, payload: dict[str, Any]) -> None:
++    rendered = json.dumps(
++        payload, indent=2, sort_keys=True, allow_nan=False
++    ) + "\n"
++    path.parent.mkdir(parents=True, exist_ok=True)
++    with path.open("x", encoding="utf-8") as output_file:
++        output_file.write(rendered)
++
++
++def _replace_json(path: Path, payload: dict[str, Any]) -> None:
++    rendered = json.dumps(
++        payload, indent=2, sort_keys=True, allow_nan=False
++    ) + "\n"
++    temporary_path: Path | None = None
++    try:
++        with tempfile.NamedTemporaryFile(
++            mode="w", encoding="utf-8", dir=path.parent,
++            prefix=f".{path.name}.", suffix=".tmp", delete=False,
++        ) as output_file:
++            temporary_path = Path(output_file.name)
++            output_file.write(rendered)
++        os.replace(temporary_path, path)
++    finally:
++        if temporary_path is not None and temporary_path.exists():
++            temporary_path.unlink()
++
++
++def normalize_expected_sha256(value: str, label: str) -> str:
++    """Validate an externally committed SHA-256 before touching frozen data."""
++    normalized = value.strip().lower()
++    if not _SHA256_PATTERN.fullmatch(normalized):
++        raise ValueError(f"{label} must be exactly 64 hexadecimal characters")
++    return normalized
++
++
++def verify_expected_sha256(path: Path, expected: str, label: str) -> str:
++    """Fail closed when an immutable input is absent or differs from its receipt."""
++    if not path.is_file():
++        raise FileNotFoundError(f"{label} is missing: {path}")
++    expected = normalize_expected_sha256(expected, label)
++    actual = sha256_file(path)
++    if actual != expected:
++        raise ValueError(
++            f"{label} SHA-256 mismatch: expected {expected}, observed {actual}"
++        )
++    return actual
++
++
++def claim_one_shot_test(
++    ledger_path: Path,
++    *,
++    output_path: Path,
++    expected_artifacts: dict[str, str],
++    invocation: dict[str, Any],
++) -> dict[str, Any]:
++    """Exclusively consume a frozen-test attempt before the pair file is opened."""
++    if ledger_path.resolve() == output_path.resolve():
++        raise ValueError("one-shot ledger and evaluation output must be different files")
++    if output_path.exists():
++        raise FileExistsError(f"refusing to overwrite evaluation output: {output_path}")
++    payload: dict[str, Any] = {
++        "protocol": ONE_SHOT_PROTOCOL,
++        "status": "STARTED",
++        "started_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
++        "host": socket.gethostname(),
++        "pid": os.getpid(),
++        "output": str(output_path.resolve()),
++        "expected_artifacts": expected_artifacts,
++        "invocation": invocation,
++    }
++    _write_json_exclusive(ledger_path, payload)
++    return payload
++
+ 
+ class _RewardModel(torch.nn.Module):
+     """Backbone plus the scalar head used by bradley_terry.py."""
+@@ -81,13 +173,17 @@ def load_checkpoint(checkpoint: str, *, base_model: str | None = None):
+ def _make_encoder(cards_path: str, tokenizer, meta: dict[str, Any]):
+     cards = {}
+     tasks = {}
+-    with open(cards_path) as f:
++    runs = {}
++    with open(cards_path, encoding="utf-8") as f:
+         card_by_run_id = json.load(f)
+         for run_id, run_cards in card_by_run_id.items():
+             for card in run_cards:
+                 card_id = card["id"]
++                if card_id in cards:
++                    raise ValueError(f"duplicate Card ID in cards file: {card_id}")
+                 cards[card_id] = card["code"]
+                 tasks[card_id] = card["task"]["name"]
++                runs[card_id] = run_id
+     
+     max_len = int(meta.get("max_len", 8192))
+     head_frac = float(meta.get("head_frac", 0.25))
+@@ -113,7 +209,113 @@ def _make_encoder(cards_path: str, tokenizer, meta: dict[str, Any]):
+             ids = ids[:head] + ids[-(room - head):]
+         return ids + (suffix or [])
+ 
+-    return cards, encode
++    return cards, tasks, runs, encode
++
++
++def read_evaluation_pairs(
++    path: Path,
++    *,
++    expected_split: str,
++    cards: dict[str, str],
++    card_tasks: dict[str, str],
++    card_runs: dict[str, str],
++) -> list[dict[str, Any]]:
++    """Read an evaluation pool without silently skipping malformed observations."""
++    if expected_split not in {"all", "train", "dev", "test"}:
++        raise ValueError(f"unsupported evaluation split: {expected_split!r}")
++
++    pairs: list[dict[str, Any]] = []
++    unordered_pairs: set[tuple[str, str, Any]] = set()
++    with path.open(encoding="utf-8") as input_file:
++        for line_number, line in enumerate(input_file, 1):
++            if not line.strip():
++                raise ValueError(f"blank pair line at {path}:{line_number}")
++            try:
++                pair = json.loads(line)
++            except json.JSONDecodeError as error:
++                raise ValueError(f"invalid JSON at {path}:{line_number}") from error
++            if not isinstance(pair, dict):
++                raise ValueError(f"pair is not an object at {path}:{line_number}")
++            if expected_split != "all" and pair.get("intask_split") != expected_split:
++                raise ValueError(
++                    f"expected a dedicated {expected_split!r} file at {path}:{line_number}; "
++                    f"found {pair.get('intask_split')!r}"
++                )
++
++            better = pair.get("better")
++            worse = pair.get("worse")
++            if not isinstance(better, str) or not isinstance(worse, str):
++                raise ValueError(f"invalid pair endpoints at {path}:{line_number}")
++            if better == worse:
++                raise ValueError(f"self-pair at {path}:{line_number}")
++            missing = [card_id for card_id in (better, worse) if card_id not in cards]
++            if missing:
++                raise ValueError(
++                    f"unknown Card IDs at {path}:{line_number}: {sorted(missing)}"
++                )
++            endpoint_tasks = {card_tasks[better], card_tasks[worse]}
++            if len(endpoint_tasks) != 1:
++                raise ValueError(f"cross-task pair at {path}:{line_number}")
++            endpoint_task = next(iter(endpoint_tasks))
++            if pair.get("task") != endpoint_task:
++                raise ValueError(
++                    f"pair task disagrees with Card metadata at {path}:{line_number}"
++                )
++
++            expected_runs = [card_runs[better], card_runs[worse]]
++            declared_runs = pair.get("endpoint_run_ids")
++            if declared_runs is not None and declared_runs != expected_runs:
++                raise ValueError(
++                    f"endpoint_run_ids disagree with cards at {path}:{line_number}"
++                )
++            pair_key = (*sorted((better, worse)), pair.get("budget"))
++            if pair_key in unordered_pairs:
++                raise ValueError(f"duplicate unordered pair at {path}:{line_number}")
++            unordered_pairs.add(pair_key)
++            pairs.append(pair)
++
++    if not pairs:
++        raise ValueError(f"no pairs found in {path}")
++    return pairs
++
++
++def pair_prediction_records(
++    pairs: Sequence[dict[str, Any]],
++    margins: Sequence[float],
++    card_runs: dict[str, str],
++) -> list[dict[str, Any]]:
++    """Materialize pair-level receipts for paired and cluster-robust inference."""
++    if len(pairs) != len(margins):
++        raise ValueError("pair and margin counts differ")
++    records: list[dict[str, Any]] = []
++    for index, (pair, margin) in enumerate(zip(pairs, margins)):
++        if not math.isfinite(float(margin)):
++            raise ValueError(f"non-finite score margin at pair index {index}")
++        better = pair["better"]
++        worse = pair["worse"]
++        record: dict[str, Any] = {
++            "pair_index": index,
++            "task": pair["task"],
++            "better": better,
++            "worse": worse,
++            "endpoint_run_ids": [card_runs[better], card_runs[worse]],
++            "margin": float(margin),
++            "correct": bool(margin > 0),
++        }
++        for key in (
++            "parent",
++            "parent_run_id",
++            "pair_semantics",
++            "budget",
++            "score_gap",
++            "grade_gap",
++            "lineage_contracted",
++            "parent_is_synthetic",
++        ):
++            if key in pair:
++                record[key] = pair[key]
++        records.append(record)
++    return records
+ 
+ 
+ def pair_accuracy_metrics(eval_prediction) -> dict[str, float]:
+@@ -143,25 +345,54 @@ def _score_sequences(model, sequences: Sequence[list[int]], pad_token_id: int) -
+ 
+ 
+ @torch.no_grad()
+-def evaluate_pairs(
++def score_pair_margins(
+     model,
+     pairs: Sequence[dict[str, Any]],
+     batch_size: int,
+     encode_card: EncodeCard,
+     pad_token_id: int,
+-    *,
+-    breakdown: bool = True,
+-) -> float:
+-    """Evaluate better-vs-worse pair accuracy after training."""
++) -> list[float]:
++    """Return one better-minus-worse margin for every pair."""
+     model.eval()
+-    hits: list[bool] = []
++    margins: list[float] = []
+     for start in range(0, len(pairs), batch_size):
+         chunk = pairs[start : start + batch_size]
+         sequences = [encode_card(pair["better"], pair.get("budget")) for pair in chunk]
+         sequences += [encode_card(pair["worse"], pair.get("budget")) for pair in chunk]
+         logits = _score_sequences(model, sequences, pad_token_id)
+         count = len(chunk)
+-        hits.extend(better > worse for better, worse in zip(logits[:count], logits[count:]))
++        margins.extend(
++            better - worse for better, worse in zip(logits[:count], logits[count:])
++        )
++    return margins
++
++
++def evaluate_pairs(
++    model,
++    pairs: Sequence[dict[str, Any]],
++    batch_size: int,
++    encode_card: EncodeCard,
++    pad_token_id: int,
++    *,
++    breakdown: bool = True,
++) -> float:
++    """Evaluate better-vs-worse pair accuracy after training."""
++    margins = score_pair_margins(
++        model, pairs, batch_size, encode_card, pad_token_id
++    )
++    return pair_accuracy_from_margins(pairs, margins, breakdown=breakdown)
++
++
++def pair_accuracy_from_margins(
++    pairs: Sequence[dict[str, Any]],
++    margins: Sequence[float],
++    *,
++    breakdown: bool = True,
++) -> float:
++    """Report deterministic aggregate accuracy from already-computed margins."""
++    if len(pairs) != len(margins):
++        raise ValueError("pair and margin counts differ")
++    hits = [margin > 0 for margin in margins]
+ 
+     if breakdown:
+         aggregates = collections.defaultdict(lambda: [0, 0])
+@@ -187,7 +418,7 @@ def main() -> None:
+     parser.add_argument("--base-model", help="base model for a raw checkpoint without rm_meta.json")
+     parser.add_argument("--pairs", required=True, help="pair JSONL used for evaluation")
+     parser.add_argument("--cards", required=True, help="cards JSONL used to render model inputs")
+-    parser.add_argument("--split", choices=("all", "train", "test"), default="test")
++    parser.add_argument("--split", choices=("all", "train", "dev", "test"), default="dev")
+     parser.add_argument("--eval-cap", type=int, default=0, help="maximum pairs; 0 means all")
+     parser.add_argument("--seed", type=int, default=7, help="pair shuffle seed")
+     parser.add_argument("--batch-size", type=int, default=8)
+@@ -199,57 +430,217 @@ def main() -> None:
+                         help="override budget conditioning from rm_meta.json")
+     parser.add_argument("--budget-pos", choices=("head", "tail"),
+                         help="override budget position from rm_meta.json")
+-    parser.add_argument("--output", default="", help="optional JSON output path")
++    parser.add_argument("--output", default="", help="JSON output path; required for frozen test")
++    parser.add_argument(
++        "--one-shot-ledger",
++        default="",
++        help="exclusive attempt ledger; required for frozen test and forbidden otherwise",
++    )
++    parser.add_argument("--expected-pairs-sha256", default="")
++    parser.add_argument("--expected-cards-sha256", default="")
++    parser.add_argument("--expected-model-sha256", default="")
++    parser.add_argument("--expected-head-sha256", default="")
++    parser.add_argument("--expected-meta-sha256", default="")
++    parser.add_argument("--expected-config-sha256", default="")
+     args = parser.parse_args()
+     if args.batch_size < 1:
+         parser.error("--batch-size must be positive")
++    if args.eval_cap < 0:
++        parser.error("--eval-cap cannot be negative")
++
++    checkpoint_path = Path(args.checkpoint)
++    pairs_path = Path(args.pairs)
++    cards_path = Path(args.cards)
++    output_path = Path(args.output) if args.output else None
++    ledger_path = Path(args.one_shot_ledger) if args.one_shot_ledger else None
++    expected_flag_names = (
++        "expected_pairs_sha256",
++        "expected_cards_sha256",
++        "expected_model_sha256",
++        "expected_head_sha256",
++        "expected_meta_sha256",
++        "expected_config_sha256",
++    )
++    expected_artifacts: dict[str, str] = {}
++    observed_artifacts: dict[str, str] = {}
++
++    if args.split == "test":
++        if args.eval_cap:
++            parser.error("--eval-cap is forbidden for one-shot frozen-test evaluation")
++        if output_path is None:
++            parser.error("--output is required for one-shot frozen-test evaluation")
++        if ledger_path is None:
++            parser.error("--one-shot-ledger is required for frozen-test evaluation")
++        for required_name in (
++            "expected_pairs_sha256",
++            "expected_cards_sha256",
++            "expected_model_sha256",
++        ):
++            if not getattr(args, required_name):
++                parser.error("--" + required_name.replace("_", "-") + " is required")
++        try:
++            expected_artifacts = {
++                "pairs": normalize_expected_sha256(
++                    args.expected_pairs_sha256, "frozen pairs"
++                ),
++                "cards": normalize_expected_sha256(
++                    args.expected_cards_sha256, "frozen cards"
++                ),
++                "model.safetensors": normalize_expected_sha256(
++                    args.expected_model_sha256, "checkpoint model.safetensors"
++                ),
++            }
++        except ValueError as error:
++            parser.error(str(error))
++
++        optional_checkpoint_artifacts = (
++            ("head.pt", "expected_head_sha256", "checkpoint head.pt"),
++            ("rm_meta.json", "expected_meta_sha256", "checkpoint rm_meta.json"),
++            ("config.json", "expected_config_sha256", "checkpoint config.json"),
++        )
++        for filename, argument_name, label in optional_checkpoint_artifacts:
++            artifact_path = checkpoint_path / filename
++            expected_value = getattr(args, argument_name)
++            if artifact_path.exists() and not expected_value:
++                parser.error(
++                    f"--{argument_name.replace('_', '-')} is required because {artifact_path} exists"
++                )
++            if not artifact_path.exists() and expected_value:
++                parser.error(
++                    f"--{argument_name.replace('_', '-')} was supplied but {artifact_path} is absent"
++                )
++            if expected_value:
++                try:
++                    expected_artifacts[filename] = normalize_expected_sha256(
++                        expected_value, label
++                    )
++                except ValueError as error:
++                    parser.error(str(error))
++
++        # Verify every non-label artifact before model construction.  The pair
++        # file is deliberately not opened until the exclusive ledger is claimed.
++        try:
++            observed_artifacts["cards"] = verify_expected_sha256(
++                cards_path, expected_artifacts["cards"], "frozen cards"
++            )
++            observed_artifacts["model.safetensors"] = verify_expected_sha256(
++                checkpoint_path / "model.safetensors",
++                expected_artifacts["model.safetensors"],
++                "checkpoint model.safetensors",
++            )
++            for filename, _, label in optional_checkpoint_artifacts:
++                if filename in expected_artifacts:
++                    observed_artifacts[filename] = verify_expected_sha256(
++                        checkpoint_path / filename,
++                        expected_artifacts[filename],
++                        label,
++                    )
++        except (FileNotFoundError, ValueError) as error:
++            parser.error(str(error))
++    else:
++        if ledger_path is not None:
++            parser.error("--one-shot-ledger is only valid with --split test")
++        if any(getattr(args, name) for name in expected_flag_names):
++            parser.error("expected SHA-256 arguments are only valid with --split test")
+ 
+     model, tokenizer, meta = load_checkpoint(args.checkpoint, base_model=args.base_model)
+     for key in ("max_len", "head_frac", "task_cond", "budget_cond", "budget_pos"):
+         value = getattr(args, key)
+         if value is not None:
+             meta[key] = value
+-    cards, encode_card = _make_encoder(args.cards, tokenizer, meta)
+-    all_pairs = []
+-    for line in open(args.pairs):
+-        pair = json.loads(line)
+-        if pair["better"] not in cards or pair["worse"] not in cards:
+-            continue
+-        all_pairs.append(pair)
+-    rng = random.Random(args.seed)
+-    if args.split == "all":
+-        pairs = all_pairs
+-        rng.shuffle(pairs)
+-    else:
+-        train_pairs = [pair for pair in all_pairs if pair.get("intask_split") == "train"]
+-        test_pairs = [pair for pair in all_pairs if pair.get("intask_split") == "test"]
+-        # Match bradley_terry.py: both pools consume the same RNG in this order.
+-        rng.shuffle(train_pairs)
+-        rng.shuffle(test_pairs)
+-        pairs = train_pairs if args.split == "train" else test_pairs
+-    if args.split == "test":
+-        seen = set()
+-        unique_pairs = []
+-        for pair in pairs:
+-            key = (pair["better"], pair["worse"], pair.get("budget"))
+-            if key not in seen:
+-                seen.add(key)
+-                unique_pairs.append(pair)
+-        pairs = unique_pairs
+-    if args.eval_cap:
+-        pairs = pairs[:args.eval_cap]
+-    print(f"[rm-eval] checkpoint={args.checkpoint} split={args.split} n_pairs={len(pairs)}", flush=True)
+-    result: dict[str, Any] = {
+-        "checkpoint": args.checkpoint,
++
++    invocation = {
++        "checkpoint": str(checkpoint_path.resolve()),
++        "pairs": str(pairs_path.resolve()),
++        "cards": str(cards_path.resolve()),
+         "split": args.split,
+-        "n_pairs": len(pairs),
+-        "accuracy": evaluate_pairs(model, pairs, args.batch_size, encode_card, tokenizer.pad_token_id),
++        "base_model": args.base_model,
++        "batch_size": args.batch_size,
++        "seed": args.seed,
++        "preprocessing": {
++            key: meta.get(key)
++            for key in ("max_len", "head_frac", "task_cond", "budget_cond", "budget_pos")
++        },
+     }
++    ledger: dict[str, Any] | None = None
++    if args.split == "test":
++        assert output_path is not None and ledger_path is not None
++        try:
++            ledger = claim_one_shot_test(
++                ledger_path,
++                output_path=output_path,
++                expected_artifacts=expected_artifacts,
++                invocation=invocation,
++            )
++            observed_artifacts["pairs"] = verify_expected_sha256(
++                pairs_path, expected_artifacts["pairs"], "frozen pairs"
++            )
++        except (FileExistsError, FileNotFoundError, ValueError) as error:
++            if ledger is not None:
++                ledger["status"] = "FAILED"
++                ledger["finished_at_utc"] = dt.datetime.now(dt.timezone.utc).isoformat()
++                ledger["failure"] = f"{type(error).__name__}: {error}"
++                _replace_json(ledger_path, ledger)
++            parser.error(str(error))
++
++    try:
++        cards, card_tasks, card_runs, encode_card = _make_encoder(
++            args.cards, tokenizer, meta
++        )
++        pairs = read_evaluation_pairs(
++            pairs_path,
++            expected_split=args.split,
++            cards=cards,
++            card_tasks=card_tasks,
++            card_runs=card_runs,
++        )
++        if args.split != "test":
++            random.Random(args.seed).shuffle(pairs)
++            if args.eval_cap:
++                pairs = pairs[:args.eval_cap]
++
++        print(
++            f"[rm-eval] checkpoint={args.checkpoint} split={args.split} "
++            f"n_pairs={len(pairs)}",
++            flush=True,
++        )
++        margins = score_pair_margins(
++            model, pairs, args.batch_size, encode_card, tokenizer.pad_token_id
++        )
++        accuracy = pair_accuracy_from_margins(pairs, margins)
++        result: dict[str, Any] = {
++            "protocol": ONE_SHOT_PROTOCOL if args.split == "test" else "rm-eval-v1",
++            "checkpoint": str(checkpoint_path.resolve()),
++            "split": args.split,
++            "n_pairs": len(pairs),
++            "accuracy": accuracy,
++            "invocation": invocation,
++            "artifacts": observed_artifacts,
++            "pair_predictions": pair_prediction_records(pairs, margins, card_runs),
++        }
+ 
+-    print(json.dumps(result, indent=2, sort_keys=True))
+-    if args.output:
+-        Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+-        Path(args.output).write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
++        print(json.dumps({key: value for key, value in result.items()
++                          if key != "pair_predictions"}, indent=2, sort_keys=True))
++        if output_path is not None:
++            _write_json_exclusive(output_path, result)
++        if ledger is not None:
++            assert ledger_path is not None and output_path is not None
++            ledger["status"] = "COMPLETE"
++            ledger["finished_at_utc"] = dt.datetime.now(dt.timezone.utc).isoformat()
++            ledger["observed_artifacts"] = observed_artifacts
++            ledger["result"] = {
++                "n_pairs": len(pairs),
++                "accuracy": accuracy,
++                "output_sha256": sha256_file(output_path),
++            }
++            _replace_json(ledger_path, ledger)
++    except BaseException as error:
++        if ledger is not None and ledger_path is not None:
++            ledger["status"] = "FAILED"
++            ledger["finished_at_utc"] = dt.datetime.now(dt.timezone.utc).isoformat()
++            ledger["failure"] = f"{type(error).__name__}: {error}"
++            _replace_json(ledger_path, ledger)
++        raise
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/src/mle_critic/src/preprocess/build_bt_pairs/build_augmented_decision_pairs.py b/src/mle_critic/src/preprocess/build_bt_pairs/build_augmented_decision_pairs.py
+index 619f4fc..1f9322e 100644
+--- a/src/mle_critic/src/preprocess/build_bt_pairs/build_augmented_decision_pairs.py
++++ b/src/mle_critic/src/preprocess/build_bt_pairs/build_augmented_decision_pairs.py
+@@ -180,7 +180,7 @@ def build_decision_pairs(
+     cap: int = 9999,
+ ) -> tuple[list[dict], dict[str, int]]:
+     """Build all unequal sibling pairs for each requested lookahead budget."""
+-    cards_by_id, _ = index_cards(cards_by_run_id)
++    cards_by_id, run_id_by_card_id = index_cards(cards_by_run_id)
+     children_by_parent_id = build_children_index(cards_by_id, cards_by_run_id, draft_pairs=draft_pairs)
+     higher_is_better_by_task = resolve_task_directions(cards_by_id)
+ 
+@@ -208,6 +208,8 @@ def build_decision_pairs(
+             continue
+ 
+         task_name = cards_by_id[sibling_ids[0]].task.name
++        if any(cards_by_id[card_id].task.name != task_name for card_id in sibling_ids):
++            raise ValueError(f"Decision set {parent_id!r} spans multiple tasks")
+         decision_set_counts[task_name] += 1
+         higher_is_better = higher_is_better_by_task[task_name]
+         value_by_card_id = {
+@@ -238,6 +240,16 @@ def build_decision_pairs(
+             better_id, worse_id = (
+                 (left_id, right_id) if left_is_better else (right_id, left_id)
+             )
++            lineage_contracted = any(
++                cards_by_id[card_id].lineage.parent_id != parent_id
++                for card_id in (better_id, worse_id)
++            )
++            if draft_pairs:
++                pair_semantics = "synthetic_cross_run_draft"
++            elif lineage_contracted:
++                pair_semantics = "error_contracted_improve"
++            else:
++                pair_semantics = "canonical_raw_improve_sibling"
+             records.append(
+                 {
+                     "task": task_name,
+@@ -251,6 +263,13 @@ def build_decision_pairs(
+                     "loto_fold": task_name,
+                     "clears_tau": None,
+                     "src": "decision",
++                    "pair_semantics": pair_semantics,
++                    "endpoint_run_ids": [
++                        run_id_by_card_id[better_id],
++                        run_id_by_card_id[worse_id],
++                    ],
++                    "parent_is_synthetic": draft_pairs,
++                    "lineage_contracted": lineage_contracted,
+                 }
+             )
+             pair_counts[(budget, task_name)] += 1
+diff --git a/src/mle_critic/src/preprocess/build_bt_pairs/build_decision_pairs.py b/src/mle_critic/src/preprocess/build_bt_pairs/build_decision_pairs.py
+index 1affd1e..596346e 100644
+--- a/src/mle_critic/src/preprocess/build_bt_pairs/build_decision_pairs.py
++++ b/src/mle_critic/src/preprocess/build_bt_pairs/build_decision_pairs.py
+@@ -169,7 +169,7 @@ def build_decision_pairs(
+     if len(set(budgets)) != len(budgets):
+         raise ValueError("Budgets must not contain duplicates")
+ 
+-    cards_by_id, _ = index_cards(cards_by_run_id)
++    cards_by_id, run_id_by_card_id = index_cards(cards_by_run_id)
+     children_by_parent_id = build_children_index(cards_by_id)
+     higher_is_better_by_task = resolve_task_directions(cards_by_id)
+ 
+@@ -247,6 +247,12 @@ def build_decision_pairs(
+                         "loto_fold": task_name,
+                         "clears_tau": None,
+                         "src": "decision",
++                        "pair_semantics": "canonical_raw_sibling",
++                        "endpoint_run_ids": [
++                            run_id_by_card_id[better_id],
++                            run_id_by_card_id[worse_id],
++                        ],
++                        "parent_run_id": run_id_by_card_id[parent_id],
+                     }
+                 )
+                 pair_counts[(budget, task_name)] += 1
+diff --git a/src/mle_critic/src/preprocess/build_bt_pairs/build_subtree_pairs.py b/src/mle_critic/src/preprocess/build_bt_pairs/build_subtree_pairs.py
+index 8f459c6..c9902a6 100644
+--- a/src/mle_critic/src/preprocess/build_bt_pairs/build_subtree_pairs.py
++++ b/src/mle_critic/src/preprocess/build_bt_pairs/build_subtree_pairs.py
+@@ -1,8 +1,9 @@
+-"""Build preference pairs from the best grade reachable below each Card.
++"""Build quality or reachable-value preference pairs from Cards.
+ 
+-For a Card ``c``, its value is the best external grade among ``c`` and its
+-graded descendants.  A pair therefore asks "which node eventually leads to a
+-better result?", rather than "which node has the better grade right now?".
++For a Card ``c``, its target is the best external grade among ``c`` and its
++graded descendants that fit the requested budget.  ``--budget-steps=-1``
++admits no descendants and therefore produces direct solution-quality pairs;
++``0`` means unlimited descendants and produces reachable-value pairs.
+ 
+ The input is the run-grouped JSON file produced by ``build_cards``.  Unlabelled
+ Cards remain part of the tree and can connect a Card to a labelled descendant,
+@@ -18,10 +19,12 @@ Usage:
+ from __future__ import annotations
+ 
+ import argparse
++import hashlib
+ import itertools
+ import json
+ import math
+ import random
++import re
+ from collections import defaultdict
+ from dataclasses import dataclass
+ from pathlib import Path
+@@ -49,6 +52,34 @@ class NodeValue:
+     best_subtree_grade: float
+     reachable_descendant_count: int
+     steps_to_best: int
++    experiment_stratum_sha256: str
++
++
++def experiment_config(card: Card) -> tuple:
++    """Return the exact execution configuration under which a Card was produced."""
++    return (
++        card.task.name,
++        card.client,
++        card.hardware,
++        card.time_limit,
++        card.execution_timeout,
++    )
++
++
++def experiment_stratum_sha256(card: Card) -> str:
++    """Hash an exact task/execution stratum without exposing raw configuration values."""
++    payload = json.dumps(
++        experiment_config(card), ensure_ascii=False, separators=(",", ":"), allow_nan=False
++    )
++    return hashlib.sha256(payload.encode()).hexdigest()
++
++
++def sha256_file(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as input_file:
++        for chunk in iter(lambda: input_file.read(1 << 20), b""):
++            digest.update(chunk)
++    return digest.hexdigest()
+ 
+ 
+ def flatten_runs(
+@@ -59,6 +90,11 @@ def flatten_runs(
+     run_id_by_card_id: dict[str, str] = {}
+ 
+     for run_id, run_cards in cards_by_run_id.items():
++        run_configs = {experiment_config(card) for card in run_cards}
++        if len(run_configs) != 1:
++            raise ValueError(
++                f"Physical run {run_id!r} mixes task or execution configurations"
++            )
+         for card in run_cards:
+             if card.id in cards_by_id:
+                 previous_run = run_id_by_card_id[card.id]
+@@ -170,8 +206,9 @@ def compute_node_values(
+ ) -> dict[str, NodeValue]:
+     """Compute the best reachable grade for every eligible Card.
+ 
+-    An eligible Card needs at least its own grade.  Requiring a descendant excludes leaves, whose "future
+-    value" would otherwise be identical to their current grade by definition.
++    An eligible Card needs its own grade.  A graded descendant is optional so
++    ``budget_steps=-1`` can intentionally construct direct-quality pairs and
++    leaves remain valid examples under that estimand.
+     """
+     values_by_card_id: dict[str, NodeValue] = {}
+ 
+@@ -217,6 +254,7 @@ def compute_node_values(
+             best_subtree_grade=best_subtree_grade,
+             reachable_descendant_count=len(reachable_descendants),
+             steps_to_best=steps_to_best,
++            experiment_stratum_sha256=experiment_stratum_sha256(card),
+         )
+ 
+     return values_by_card_id
+@@ -256,8 +294,11 @@ def make_pair_record(
+     higher_is_better: bool,
+     budget_steps: int,
+     budget_seconds: float,
++    batch_cards_sha256: str,
+ ) -> dict:
+     """Orient two unequal node values and serialize their training metadata."""
++    if left.experiment_stratum_sha256 != right.experiment_stratum_sha256:
++        raise ValueError("Pair endpoints must share an exact experiment stratum")
+     left_is_better = (
+         left.best_subtree_grade > right.best_subtree_grade
+         if higher_is_better
+@@ -287,6 +328,8 @@ def make_pair_record(
+         "loto_fold": better.task_name,
+         "clears_tau": None,
+         "src": "value",
++        "experiment_stratum_sha256": left.experiment_stratum_sha256,
++        "batch_cards_sha256": batch_cards_sha256,
+     }
+ 
+ 
+@@ -296,8 +339,12 @@ def build_value_pairs(
+     seed: int = 7,
+     budget_steps: int = 0,
+     budget_seconds: float = 0.0,
++    *,
++    batch_cards_sha256: str,
+ ) -> tuple[list[dict], dict[str, dict[str, int]]]:
+     """Build capped, same-task raw value pairs and summary counts."""
++    if not re.fullmatch(r"[0-9a-f]{64}", batch_cards_sha256):
++        raise ValueError("batch_cards_sha256 must be a lowercase SHA256 digest")
+     cards_by_id, _ = flatten_runs(cards_by_run_id)
+     children_by_parent_id = build_children_index(cards_by_id)
+     node_values_by_id = compute_node_values(
+@@ -308,21 +355,33 @@ def build_value_pairs(
+     )
+     directions = validate_task_directions(node_values_by_id.values(), cards_by_id)
+ 
+-    node_values_by_task: dict[str, list[NodeValue]] = defaultdict(list)
++    node_values_by_task_stratum: dict[tuple[str, str], list[NodeValue]] = defaultdict(list)
+     for node_value in node_values_by_id.values():
+-        node_values_by_task[node_value.task_name].append(node_value)
++        node_values_by_task_stratum[
++            (node_value.task_name, node_value.experiment_stratum_sha256)
++        ].append(node_value)
+ 
+     random_generator = random.Random(seed)
+     records: list[dict] = []
+     summaries: dict[str, dict[str, int]] = {}
+ 
+-    for task_name in sorted(node_values_by_task):
+-        task_node_values = node_values_by_task[task_name]
+-        candidate_pairs = [
+-            pair
+-            for pair in itertools.combinations(task_node_values, 2)
+-            if pair[0].best_subtree_grade != pair[1].best_subtree_grade
+-        ]
++    task_names = sorted({task_name for task_name, _ in node_values_by_task_stratum})
++    for task_name in task_names:
++        task_strata = sorted(
++            stratum
++            for candidate_task, stratum in node_values_by_task_stratum
++            if candidate_task == task_name
++        )
++        task_node_count = 0
++        candidate_pairs = []
++        for stratum in task_strata:
++            stratum_values = node_values_by_task_stratum[(task_name, stratum)]
++            task_node_count += len(stratum_values)
++            candidate_pairs.extend(
++                pair
++                for pair in itertools.combinations(stratum_values, 2)
++                if pair[0].best_subtree_grade != pair[1].best_subtree_grade
++            )
+         random_generator.shuffle(candidate_pairs)
+         candidate_pairs = candidate_pairs[:cap_per_task]
+ 
+@@ -334,11 +393,13 @@ def build_value_pairs(
+                     directions[task_name],
+                     budget_steps,
+                     budget_seconds,
++                    batch_cards_sha256,
+                 )
+             )
+ 
+         summaries[task_name] = {
+-            "eligible_nodes": len(task_node_values),
++            "eligible_nodes": task_node_count,
++            "experiment_strata": len(task_strata),
+             "candidate_pairs": len(candidate_pairs),
+             "written_pairs": len(candidate_pairs),
+         }
+@@ -381,6 +442,7 @@ def parse_args() -> argparse.Namespace:
+ 
+ def main() -> None:
+     arguments = parse_args()
++    batch_cards_sha256 = sha256_file(arguments.cards)
+     cards_by_run_id = load_cards(str(arguments.cards))
+     records, summaries = build_value_pairs(
+         cards_by_run_id,
+@@ -388,6 +450,7 @@ def main() -> None:
+         seed=arguments.seed,
+         budget_steps=arguments.budget_steps,
+         budget_seconds=arguments.budget_secs,
++        batch_cards_sha256=batch_cards_sha256,
+     )
+ 
+     arguments.out.parent.mkdir(parents=True, exist_ok=True)
+@@ -399,6 +462,7 @@ def main() -> None:
+         print(
+             f"{task_name[:38]:38s} "
+             f"nodes={summary['eligible_nodes']:5d} "
++            f"strata={summary['experiment_strata']:3d} "
+             f"candidates={summary['candidate_pairs']:5d} "
+             f"written={summary['written_pairs']:5d}"
+         )
+diff --git a/src/mle_critic/src/preprocess/build_bt_pairs/build_train_dev_split.py b/src/mle_critic/src/preprocess/build_bt_pairs/build_train_dev_split.py
+new file mode 100644
+index 0000000..500c23c
+--- /dev/null
++++ b/src/mle_critic/src/preprocess/build_bt_pairs/build_train_dev_split.py
+@@ -0,0 +1,368 @@
++"""Derive a physical-run-disjoint dev split from the outer training runs only.
++
++The normal mode refuses any non-train row in the input pair file. A trusted data
++curator may explicitly pass ``--curator-allow-filter-outer-test`` when migrating a
++legacy combined train/test file, but must then materialize a dedicated immutable
++frozen-test file. Training receives only the two outer-train-derived outputs.
++"""
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++import os
++import tempfile
++from collections import Counter, defaultdict
++from pathlib import Path
++from typing import Any, Iterable
++
++from .verify_experiment_strata import credential_free, sha256_file
++
++
++PROTOCOL = "physical-run-train-dev-split-v1"
++
++
++def canonical_json(value: Any) -> str:
++    return json.dumps(
++        value, ensure_ascii=False, sort_keys=True, separators=(",", ":"),
++        allow_nan=False,
++    )
++
++
++def _card_config(card: dict[str, Any]) -> tuple[Any, ...]:
++    task = card.get("task")
++    if not isinstance(task, dict) or not isinstance(task.get("name"), str):
++        raise ValueError("Card task identity missing")
++    return (
++        task["name"],
++        card.get("client"),
++        card.get("hardware"),
++        card.get("time_limit"),
++        card.get("execution_timeout"),
++    )
++
++
++def index_cards(
++    cards_path: Path,
++) -> tuple[dict[str, str], dict[str, str], dict[str, tuple[Any, ...]]]:
++    if not credential_free(cards_path):
++        raise ValueError("credential-shaped bytes refused before Cards parsing")
++    payload = json.loads(cards_path.read_text(encoding="utf-8"))
++    if not isinstance(payload, dict) or not payload:
++        raise ValueError("Cards must be a nonempty run-grouped JSON object")
++
++    run_by_card: dict[str, str] = {}
++    task_by_run: dict[str, str] = {}
++    config_by_card: dict[str, tuple[Any, ...]] = {}
++    for run_id, run_cards in payload.items():
++        if not isinstance(run_id, str) or not run_id:
++            raise ValueError("Invalid physical run ID")
++        if not isinstance(run_cards, list) or not run_cards:
++            raise ValueError(f"Physical run {run_id!r} has no Cards")
++        run_configs = {_card_config(card) for card in run_cards}
++        if len(run_configs) != 1:
++            raise ValueError(f"Physical run {run_id!r} mixes experiment strata")
++        task_name = next(iter(run_configs))[0]
++        task_by_run[run_id] = task_name
++        for card in run_cards:
++            card_id = card.get("id")
++            if not isinstance(card_id, str) or not card_id or card_id in run_by_card:
++                raise ValueError("Card identity is missing or duplicated")
++            run_by_card[card_id] = run_id
++            config_by_card[card_id] = _card_config(card)
++    return run_by_card, task_by_run, config_by_card
++
++
++def _pair_key(pair: dict[str, Any]) -> tuple[str, str, Any]:
++    return (*sorted((pair["better"], pair["worse"])), pair.get("budget"))
++
++
++def read_outer_train_pairs(
++    pairs_path: Path,
++    run_by_card: dict[str, str],
++    task_by_run: dict[str, str],
++    config_by_card: dict[str, tuple[Any, ...]],
++    *,
++    curator_allow_filter_outer_test: bool,
++) -> tuple[list[dict[str, Any]], list[dict[str, Any]], Counter[str]]:
++    if not credential_free(pairs_path):
++        raise ValueError("credential-shaped bytes refused before pair parsing")
++    records: list[dict[str, Any]] = []
++    frozen_test_records: list[dict[str, Any]] = []
++    counts: Counter[str] = Counter()
++    seen: set[tuple[str, str, Any]] = set()
++    with pairs_path.open(encoding="utf-8") as input_file:
++        for line_number, line in enumerate(input_file, 1):
++            if not line.strip():
++                raise ValueError(f"Blank pair line {line_number}")
++            pair = json.loads(line)
++            if not isinstance(pair, dict):
++                raise ValueError(f"Pair line {line_number} is not an object")
++            outer_split = pair.get("intask_split")
++            better = pair.get("better")
++            worse = pair.get("worse")
++            if not isinstance(better, str) or not isinstance(worse, str) or better == worse:
++                raise ValueError(f"Invalid pair endpoints at line {line_number}")
++            missing = [value for value in (better, worse) if value not in run_by_card]
++            if missing:
++                raise ValueError(f"Unknown Card IDs at line {line_number}: {missing}")
++            endpoint_runs = (run_by_card[better], run_by_card[worse])
++            endpoint_tasks = {task_by_run[run_id] for run_id in endpoint_runs}
++            if len(endpoint_tasks) != 1 or pair.get("task") not in endpoint_tasks:
++                raise ValueError(f"Pair task mismatch at line {line_number}")
++            if config_by_card[better] != config_by_card[worse]:
++                raise ValueError(f"Cross-experiment-stratum pair at line {line_number}")
++            key = _pair_key(pair)
++            if key in seen:
++                raise ValueError(f"Duplicate unordered pair at line {line_number}")
++            seen.add(key)
++            if outer_split == "train":
++                records.append(pair)
++                counts["outer_train"] += 1
++            elif outer_split == "test":
++                counts["outer_test"] += 1
++                if not curator_allow_filter_outer_test:
++                    raise ValueError(
++                        "Input must contain only outer-train rows; a trusted migration "
++                        "must explicitly pass --curator-allow-filter-outer-test"
++                    )
++                frozen_test_records.append(pair)
++            else:
++                raise ValueError(f"Unsupported outer split at line {line_number}")
++    if not records:
++        raise ValueError("No outer-train pairs available")
++    return records, frozen_test_records, counts
++
++
++def choose_dev_runs(
++    records: Iterable[dict[str, Any]],
++    run_by_card: dict[str, str],
++    task_by_run: dict[str, str],
++    *,
++    seed: int,
++    dev_fraction: float,
++) -> set[str]:
++    if not 0.0 < dev_fraction < 0.5:
++        raise ValueError("dev_fraction must be strictly between 0 and 0.5")
++    runs_by_task: dict[str, set[str]] = defaultdict(set)
++    for pair in records:
++        for endpoint in (pair["better"], pair["worse"]):
++            run_id = run_by_card[endpoint]
++            runs_by_task[task_by_run[run_id]].add(run_id)
++
++    dev_runs: set[str] = set()
++    for task_name in sorted(runs_by_task):
++        task_runs = sorted(
++            runs_by_task[task_name],
++            key=lambda run_id: (
++                hashlib.sha256(
++                    canonical_json([seed, task_name, run_id]).encode()
++                ).hexdigest(),
++                run_id,
++            ),
++        )
++        if len(task_runs) < 2:
++            continue
++        dev_count = min(
++            len(task_runs) - 1,
++            max(1, round(len(task_runs) * dev_fraction)),
++        )
++        dev_runs.update(task_runs[:dev_count])
++    return dev_runs
++
++
++def partition_pairs(
++    records: Iterable[dict[str, Any]],
++    run_by_card: dict[str, str],
++    dev_runs: set[str],
++    *,
++    seed: int,
++) -> tuple[list[dict[str, Any]], list[dict[str, Any]], int]:
++    train_records: list[dict[str, Any]] = []
++    dev_records: list[dict[str, Any]] = []
++    dropped = 0
++    for source_pair in records:
++        pair = dict(source_pair)
++        endpoint_runs = {
++            run_by_card[pair["better"]],
++            run_by_card[pair["worse"]],
++        }
++        endpoint_is_dev = {run_id in dev_runs for run_id in endpoint_runs}
++        if len(endpoint_is_dev) != 1:
++            dropped += 1
++            continue
++        split = "dev" if endpoint_is_dev.pop() else "train"
++        pair["outer_intask_split"] = "train"
++        pair["intask_split"] = split
++        pair["train_dev_protocol"] = PROTOCOL
++        pair["train_dev_seed"] = seed
++        (dev_records if split == "dev" else train_records).append(pair)
++    if not train_records or not dev_records:
++        raise ValueError("Run split produced an empty train or dev pair pool")
++    return train_records, dev_records, dropped
++
++
++def _jsonl_bytes(records: Iterable[dict[str, Any]]) -> bytes:
++    return "".join(canonical_json(record) + "\n" for record in records).encode()
++
++
++def write_immutable(path: Path, payload: bytes) -> None:
++    path.parent.mkdir(parents=True, exist_ok=True)
++    if path.exists():
++        if path.read_bytes() == payload:
++            return
++        raise FileExistsError(f"Immutable output already exists with other bytes: {path}")
++    temporary_path: Path | None = None
++    try:
++        with tempfile.NamedTemporaryFile(
++            mode="wb", dir=path.parent, prefix=f".{path.name}.",
++            suffix=".tmp", delete=False,
++        ) as output_file:
++            temporary_path = Path(output_file.name)
++            output_file.write(payload)
++        os.replace(temporary_path, path)
++    finally:
++        if temporary_path is not None and temporary_path.exists():
++            temporary_path.unlink()
++
++
++def build_split(
++    cards_path: Path,
++    pairs_path: Path,
++    train_output: Path,
++    dev_output: Path,
++    manifest_output: Path,
++    frozen_test_output: Path | None = None,
++    *,
++    seed: int,
++    dev_fraction: float,
++    curator_allow_filter_outer_test: bool,
++) -> dict[str, Any]:
++    run_by_card, task_by_run, config_by_card = index_cards(cards_path)
++    records, frozen_test_records, source_counts = read_outer_train_pairs(
++        pairs_path,
++        run_by_card,
++        task_by_run,
++        config_by_card,
++        curator_allow_filter_outer_test=curator_allow_filter_outer_test,
++    )
++    if curator_allow_filter_outer_test and not frozen_test_records:
++        raise ValueError("Curator mode requested but the source has no outer-test rows")
++    if curator_allow_filter_outer_test and frozen_test_output is None:
++        raise ValueError("Curator mode requires a dedicated frozen_test_output")
++    if not curator_allow_filter_outer_test and frozen_test_output is not None:
++        raise ValueError("frozen_test_output is only valid in curator mode")
++
++    outer_train_endpoints = {
++        endpoint
++        for pair in records
++        for endpoint in (pair["better"], pair["worse"])
++    }
++    outer_test_endpoints = {
++        endpoint
++        for pair in frozen_test_records
++        for endpoint in (pair["better"], pair["worse"])
++    }
++    endpoint_overlap = outer_train_endpoints & outer_test_endpoints
++    if endpoint_overlap:
++        raise ValueError(
++            f"Outer train/test Card overlap is forbidden: {len(endpoint_overlap)}"
++        )
++    outer_train_runs = {run_by_card[card_id] for card_id in outer_train_endpoints}
++    outer_test_runs = {run_by_card[card_id] for card_id in outer_test_endpoints}
++    outer_run_overlap = outer_train_runs & outer_test_runs
++    if outer_run_overlap:
++        raise ValueError(
++            f"Outer train/test physical-run overlap is forbidden: {len(outer_run_overlap)}"
++        )
++    dev_runs = choose_dev_runs(
++        records, run_by_card, task_by_run, seed=seed, dev_fraction=dev_fraction
++    )
++    train_records, dev_records, dropped = partition_pairs(
++        records, run_by_card, dev_runs, seed=seed
++    )
++
++    train_bytes = _jsonl_bytes(train_records)
++    dev_bytes = _jsonl_bytes(dev_records)
++    frozen_test_bytes = _jsonl_bytes(frozen_test_records)
++    train_runs = {
++        run_by_card[endpoint]
++        for pair in train_records
++        for endpoint in (pair["better"], pair["worse"])
++    }
++    actual_dev_runs = {
++        run_by_card[endpoint]
++        for pair in dev_records
++        for endpoint in (pair["better"], pair["worse"])
++    }
++    if train_runs & actual_dev_runs:
++        raise AssertionError("Producer generated overlapping train/dev runs")
++
++    manifest = {
++        "protocol": PROTOCOL,
++        "status": "TRAIN_DEV_SPLIT_VERIFIED_BY_PRODUCER",
++        "seed": seed,
++        "dev_fraction": dev_fraction,
++        "cards_sha256": sha256_file(cards_path),
++        "source_pairs_sha256": sha256_file(pairs_path),
++        "train_pairs_sha256": hashlib.sha256(train_bytes).hexdigest(),
++        "dev_pairs_sha256": hashlib.sha256(dev_bytes).hexdigest(),
++        "source_counts": dict(sorted(source_counts.items())),
++        "train_pairs": len(train_records),
++        "dev_pairs": len(dev_records),
++        "dropped_cross_split_pairs": dropped,
++        "train_runs": len(train_runs),
++        "dev_runs": len(actual_dev_runs),
++        "run_overlap": 0,
++        "outer_test_rows_emitted": 0,
++        "frozen_test_pairs": len(frozen_test_records),
++        "frozen_test_pairs_sha256": (
++            hashlib.sha256(frozen_test_bytes).hexdigest()
++            if frozen_test_records else None
++        ),
++        "outer_train_test_card_overlap": 0,
++        "outer_train_test_run_overlap": 0,
++        "train_run_ids_sha256": hashlib.sha256(
++            canonical_json(sorted(train_runs)).encode()
++        ).hexdigest(),
++        "dev_run_ids_sha256": hashlib.sha256(
++            canonical_json(sorted(actual_dev_runs)).encode()
++        ).hexdigest(),
++    }
++    manifest_bytes = (canonical_json(manifest) + "\n").encode()
++    write_immutable(train_output, train_bytes)
++    write_immutable(dev_output, dev_bytes)
++    if frozen_test_output is not None:
++        write_immutable(frozen_test_output, frozen_test_bytes)
++    write_immutable(manifest_output, manifest_bytes)
++    return manifest
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("cards", type=Path)
++    parser.add_argument("pairs", type=Path)
++    parser.add_argument("train_out", type=Path)
++    parser.add_argument("dev_out", type=Path)
++    parser.add_argument("manifest_out", type=Path)
++    parser.add_argument("--frozen-test-out", type=Path)
++    parser.add_argument("--seed", type=int, default=7)
++    parser.add_argument("--dev-fraction", type=float, default=0.1)
++    parser.add_argument("--curator-allow-filter-outer-test", action="store_true")
++    arguments = parser.parse_args()
++    manifest = build_split(
++        arguments.cards,
++        arguments.pairs,
++        arguments.train_out,
++        arguments.dev_out,
++        arguments.manifest_out,
++        arguments.frozen_test_out,
++        seed=arguments.seed,
++        dev_fraction=arguments.dev_fraction,
++        curator_allow_filter_outer_test=arguments.curator_allow_filter_outer_test,
++    )
++    print(canonical_json(manifest))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/src/mle_critic/src/preprocess/build_bt_pairs/verify_experiment_strata.py b/src/mle_critic/src/preprocess/build_bt_pairs/verify_experiment_strata.py
+new file mode 100644
+index 0000000..7716d10
+--- /dev/null
++++ b/src/mle_critic/src/preprocess/build_bt_pairs/verify_experiment_strata.py
+@@ -0,0 +1,171 @@
++"""Independently verify exact experiment-stratum receipts for one batch."""
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++import os
++import re
++import tempfile
++from pathlib import Path
++from typing import Any
++
++
++CREDENTIAL = re.compile(
++    rb"(?:^|[^A-Za-z0-9])(?:sk-[A-Za-z0-9._-]{16,}|hf_[A-Za-z0-9]{16,}|"
++    rb"gh[pousr]_[A-Za-z0-9]{16,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|"
++    rb"Bearer[ \t]+[A-Za-z0-9._-]{20,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----)"
++)
++SHA256 = re.compile(r"[0-9a-f]{64}")
++
++
++def sha256_file(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as input_file:
++        for chunk in iter(lambda: input_file.read(1 << 20), b""):
++            digest.update(chunk)
++    return digest.hexdigest()
++
++
++def credential_free(path: Path) -> bool:
++    overlap = b""
++    with path.open("rb") as input_file:
++        for chunk in iter(lambda: input_file.read(1 << 20), b""):
++            window = overlap + chunk
++            if CREDENTIAL.search(window):
++                return False
++            overlap = window[-512:]
++    return True
++
++
++def config(card: dict[str, Any]) -> tuple[Any, ...]:
++    task = card.get("task")
++    if not isinstance(task, dict) or not isinstance(task.get("name"), str):
++        raise ValueError("Card task identity missing")
++    return (
++        task["name"],
++        card.get("client"),
++        card.get("hardware"),
++        card.get("time_limit"),
++        card.get("execution_timeout"),
++    )
++
++
++def stratum_sha256(card: dict[str, Any]) -> str:
++    payload = json.dumps(
++        config(card), ensure_ascii=False, separators=(",", ":"), allow_nan=False
++    )
++    return hashlib.sha256(payload.encode()).hexdigest()
++
++
++def verify(cards_path: Path, pairs_path: Path) -> dict[str, Any]:
++    if not credential_free(cards_path) or not credential_free(pairs_path):
++        raise ValueError("credential-shaped bytes refused before JSON parsing")
++    cards_payload = json.loads(cards_path.read_text(encoding="utf-8"))
++    if not isinstance(cards_payload, dict) or not cards_payload:
++        raise ValueError("Cards must be a nonempty run-grouped JSON object")
++    card_map: dict[str, dict[str, Any]] = {}
++    strata = set()
++    tasks = set()
++    for run_id, cards in cards_payload.items():
++        if not isinstance(run_id, str) or not isinstance(cards, list) or not cards:
++            raise ValueError("Physical run is invalid or empty")
++        run_configs = {config(card) for card in cards}
++        if len(run_configs) != 1:
++            raise ValueError(f"Physical run {run_id!r} mixes experiment configurations")
++        for card in cards:
++            card_id = card.get("id")
++            if not isinstance(card_id, str) or not card_id or card_id in card_map:
++                raise ValueError("Card identity missing or duplicated")
++            card_map[card_id] = card
++            strata.add(stratum_sha256(card))
++            tasks.add(config(card)[0])
++
++    cards_sha = sha256_file(cards_path)
++    pair_count = 0
++    pair_keys = set()
++    with pairs_path.open(encoding="utf-8") as input_file:
++        for line_number, line in enumerate(input_file, 1):
++            if not line.strip():
++                raise ValueError(f"Blank pair line {line_number}")
++            pair = json.loads(line)
++            endpoints = (pair.get("better"), pair.get("worse"))
++            if not all(isinstance(value, str) and value in card_map for value in endpoints):
++                raise ValueError(f"Unknown pair endpoint at line {line_number}")
++            if endpoints[0] == endpoints[1]:
++                raise ValueError(f"Self-pair at line {line_number}")
++            pair_key = tuple(sorted(endpoints))
++            if pair_key in pair_keys:
++                raise ValueError(f"Duplicate unordered pair at line {line_number}")
++            pair_keys.add(pair_key)
++            endpoint_strata = {stratum_sha256(card_map[value]) for value in endpoints}
++            if len(endpoint_strata) != 1:
++                raise ValueError(f"Cross-stratum pair at line {line_number}")
++            expected_stratum = endpoint_strata.pop()
++            if pair.get("experiment_stratum_sha256") != expected_stratum:
++                raise ValueError(f"Experiment-stratum receipt mismatch at line {line_number}")
++            if pair.get("batch_cards_sha256") != cards_sha:
++                raise ValueError(f"Batch provenance receipt mismatch at line {line_number}")
++            expected_task = config(card_map[endpoints[0]])[0]
++            if pair.get("task") != expected_task:
++                raise ValueError(f"Pair task mismatch at line {line_number}")
++            pair_count += 1
++
++    return {
++        "protocol": "exact-experiment-stratum-verifier-v1",
++        "status": "EXACT_EXPERIMENT_STRATUM_VERIFIED",
++        "cards_sha256": cards_sha,
++        "pairs_sha256": sha256_file(pairs_path),
++        "physical_runs": len(cards_payload),
++        "cards": len(card_map),
++        "pairs": pair_count,
++        "tasks": len(tasks),
++        "experiment_strata": len(strata),
++        "numeric_grade_used": False,
++        "raw_config_emitted": False,
++    }
++
++
++def write_receipt(path: Path, receipt: dict[str, Any]) -> None:
++    path.parent.mkdir(parents=True, exist_ok=True)
++    temporary_path = None
++    try:
++        with tempfile.NamedTemporaryFile(
++            mode="w", encoding="utf-8", dir=path.parent,
++            prefix=f".{path.name}.", suffix=".tmp", delete=False,
++        ) as output_file:
++            temporary_path = Path(output_file.name)
++            json.dump(receipt, output_file, indent=2, sort_keys=True)
++            output_file.write("\n")
++        os.replace(temporary_path, path)
++    finally:
++        if temporary_path is not None and temporary_path.exists():
++            temporary_path.unlink()
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    commands = parser.add_subparsers(dest="command", required=True)
++    scan_parser = commands.add_parser(
++        "scan", help="credential-scan Cards before producer parsing"
++    )
++    scan_parser.add_argument("cards", type=Path)
++    verify_parser = commands.add_parser(
++        "verify", help="verify one batch and write its receipt"
++    )
++    verify_parser.add_argument("receipt", type=Path)
++    verify_parser.add_argument("cards", type=Path)
++    verify_parser.add_argument("pairs", type=Path)
++    arguments = parser.parse_args()
++    if arguments.command == "scan":
++        if not credential_free(arguments.cards):
++            raise ValueError("credential-shaped bytes refused before producer parsing")
++        print("EXPERIMENT_STRATUM_CREDENTIAL_SCAN_PASS")
++        return
++    receipt = verify(arguments.cards, arguments.pairs)
++    write_receipt(arguments.receipt, receipt)
++    print(json.dumps(receipt, sort_keys=True, separators=(",", ":")))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/src/mle_critic/src/preprocess/build_bt_pairs/verify_train_dev_split.py b/src/mle_critic/src/preprocess/build_bt_pairs/verify_train_dev_split.py
+new file mode 100644
+index 0000000..7ab4901
+--- /dev/null
++++ b/src/mle_critic/src/preprocess/build_bt_pairs/verify_train_dev_split.py
+@@ -0,0 +1,282 @@
++"""Independently verify a physical-run train/dev split and its immutable manifest."""
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++from collections import Counter, defaultdict
++from pathlib import Path
++from typing import Any
++
++from .verify_experiment_strata import credential_free, sha256_file
++
++
++PROTOCOL = "physical-run-train-dev-split-v1"
++
++
++def _canonical(value: Any) -> str:
++    return json.dumps(
++        value, ensure_ascii=False, sort_keys=True, separators=(",", ":"),
++        allow_nan=False,
++    )
++
++
++def _config(card: dict[str, Any]) -> tuple[Any, ...]:
++    task = card.get("task")
++    if not isinstance(task, dict) or not isinstance(task.get("name"), str):
++        raise ValueError("Card task identity missing")
++    return (
++        task["name"], card.get("client"), card.get("hardware"),
++        card.get("time_limit"), card.get("execution_timeout"),
++    )
++
++
++def _key(pair: dict[str, Any]) -> tuple[str, str, Any]:
++    better = pair.get("better")
++    worse = pair.get("worse")
++    if not isinstance(better, str) or not isinstance(worse, str) or better == worse:
++        raise ValueError("Pair endpoints are invalid")
++    return (*sorted((better, worse)), pair.get("budget"))
++
++
++def _read_jsonl(path: Path) -> list[dict[str, Any]]:
++    if not credential_free(path):
++        raise ValueError(f"credential-shaped bytes refused before parsing {path}")
++    records = []
++    with path.open(encoding="utf-8") as input_file:
++        for line_number, line in enumerate(input_file, 1):
++            if not line.strip():
++                raise ValueError(f"Blank line at {path}:{line_number}")
++            record = json.loads(line)
++            if not isinstance(record, dict):
++                raise ValueError(f"Non-object record at {path}:{line_number}")
++            records.append(record)
++    return records
++
++
++def verify(
++    cards_path: Path,
++    source_pairs_path: Path,
++    train_path: Path,
++    dev_path: Path,
++    manifest_path: Path,
++    frozen_test_path: Path | None = None,
++) -> dict[str, Any]:
++    checked_paths = [cards_path, source_pairs_path, train_path, dev_path, manifest_path]
++    if frozen_test_path is not None:
++        checked_paths.append(frozen_test_path)
++    for path in checked_paths:
++        if not credential_free(path):
++            raise ValueError(f"credential-shaped bytes refused before parsing {path}")
++
++    cards_payload = json.loads(cards_path.read_text(encoding="utf-8"))
++    if not isinstance(cards_payload, dict) or not cards_payload:
++        raise ValueError("Cards must be a nonempty grouped object")
++    run_by_card: dict[str, str] = {}
++    task_by_run: dict[str, str] = {}
++    config_by_card: dict[str, tuple[Any, ...]] = {}
++    for run_id, cards in cards_payload.items():
++        if not isinstance(run_id, str) or not isinstance(cards, list) or not cards:
++            raise ValueError("Invalid physical run")
++        configs = {_config(card) for card in cards}
++        if len(configs) != 1:
++            raise ValueError(f"Run {run_id!r} mixes experiment strata")
++        task_by_run[run_id] = next(iter(configs))[0]
++        for card in cards:
++            card_id = card.get("id")
++            if not isinstance(card_id, str) or not card_id or card_id in run_by_card:
++                raise ValueError("Card identity missing or duplicated")
++            run_by_card[card_id] = run_id
++            config_by_card[card_id] = _config(card)
++
++    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
++    if manifest.get("protocol") != PROTOCOL:
++        raise ValueError("Manifest protocol mismatch")
++    seed = manifest.get("seed")
++    dev_fraction = manifest.get("dev_fraction")
++    if not isinstance(seed, int) or not isinstance(dev_fraction, (int, float)):
++        raise ValueError("Manifest split parameters are invalid")
++    if not 0.0 < float(dev_fraction) < 0.5:
++        raise ValueError("Manifest dev fraction is invalid")
++
++    source_records = _read_jsonl(source_pairs_path)
++    source_train: dict[tuple[str, str, Any], dict[str, Any]] = {}
++    source_test: dict[tuple[str, str, Any], dict[str, Any]] = {}
++    source_seen: set[tuple[str, str, Any]] = set()
++    source_counts: Counter[str] = Counter()
++    runs_by_task: dict[str, set[str]] = defaultdict(set)
++    for pair in source_records:
++        split = pair.get("intask_split")
++        source_counts[f"outer_{split}"] += 1
++        if split not in {"train", "test"}:
++            raise ValueError(f"Unsupported outer split {split!r}")
++        key = _key(pair)
++        if key in source_seen:
++            raise ValueError("Duplicate source unordered pair")
++        source_seen.add(key)
++        endpoints = (pair["better"], pair["worse"])
++        if any(endpoint not in run_by_card for endpoint in endpoints):
++            raise ValueError("Source pair references an unknown Card")
++        if config_by_card[endpoints[0]] != config_by_card[endpoints[1]]:
++            raise ValueError("Source train pair crosses experiment strata")
++        endpoint_runs = [run_by_card[endpoint] for endpoint in endpoints]
++        tasks = {task_by_run[run_id] for run_id in endpoint_runs}
++        if len(tasks) != 1 or pair.get("task") not in tasks:
++            raise ValueError("Source pair task mismatch")
++        if split == "train":
++            source_train[key] = pair
++            for run_id in endpoint_runs:
++                runs_by_task[task_by_run[run_id]].add(run_id)
++        else:
++            source_test[key] = pair
++
++    if source_test and frozen_test_path is None:
++        raise ValueError("Combined source requires a dedicated frozen-test file")
++    if not source_test and frozen_test_path is not None:
++        raise ValueError("Frozen-test file supplied but source contains no test rows")
++
++    selected_dev_runs: set[str] = set()
++    for task_name in sorted(runs_by_task):
++        task_runs = sorted(
++            runs_by_task[task_name],
++            key=lambda run_id: (
++                hashlib.sha256(_canonical([seed, task_name, run_id]).encode()).hexdigest(),
++                run_id,
++            ),
++        )
++        if len(task_runs) < 2:
++            continue
++        count = min(len(task_runs) - 1, max(1, round(len(task_runs) * float(dev_fraction))))
++        selected_dev_runs.update(task_runs[:count])
++
++    outputs: dict[str, dict[tuple[str, str, Any], dict[str, Any]]] = {}
++    for split, path in (("train", train_path), ("dev", dev_path)):
++        split_records: dict[tuple[str, str, Any], dict[str, Any]] = {}
++        for pair in _read_jsonl(path):
++            if pair.get("intask_split") != split:
++                raise ValueError(f"{split} output contains another split")
++            if pair.get("outer_intask_split") != "train":
++                raise ValueError("Output contains a non-train outer identity")
++            if pair.get("train_dev_protocol") != PROTOCOL or pair.get("train_dev_seed") != seed:
++                raise ValueError("Output train/dev receipt mismatch")
++            key = _key(pair)
++            if key in split_records:
++                raise ValueError(f"Duplicate pair in {split} output")
++            split_records[key] = pair
++        outputs[split] = split_records
++
++    expected: dict[str, set[tuple[str, str, Any]]] = {"train": set(), "dev": set()}
++    dropped = 0
++    for key, pair in source_train.items():
++        endpoint_runs = {run_by_card[pair["better"]], run_by_card[pair["worse"]]}
++        endpoint_is_dev = {run_id in selected_dev_runs for run_id in endpoint_runs}
++        if len(endpoint_is_dev) != 1:
++            dropped += 1
++            continue
++        split = "dev" if endpoint_is_dev.pop() else "train"
++        expected[split].add(key)
++    for split in ("train", "dev"):
++        if set(outputs[split]) != expected[split]:
++            raise ValueError(f"{split} output does not equal deterministic assignment")
++        for key, output_pair in outputs[split].items():
++            recovered = dict(output_pair)
++            recovered.pop("outer_intask_split")
++            recovered.pop("train_dev_protocol")
++            recovered.pop("train_dev_seed")
++            recovered["intask_split"] = "train"
++            if recovered != source_train[key]:
++                raise ValueError(f"{split} output changed source pair content")
++
++    train_runs = {
++        run_by_card[endpoint]
++        for pair in outputs["train"].values()
++        for endpoint in (pair["better"], pair["worse"])
++    }
++    dev_runs = {
++        run_by_card[endpoint]
++        for pair in outputs["dev"].values()
++        for endpoint in (pair["better"], pair["worse"])
++    }
++    if train_runs & dev_runs:
++        raise ValueError("Train/dev physical-run overlap")
++
++    frozen_test_records: dict[tuple[str, str, Any], dict[str, Any]] = {}
++    if frozen_test_path is not None:
++        for pair in _read_jsonl(frozen_test_path):
++            if pair.get("intask_split") != "test":
++                raise ValueError("Frozen-test output contains another split")
++            key = _key(pair)
++            if key in frozen_test_records:
++                raise ValueError("Duplicate pair in frozen-test output")
++            frozen_test_records[key] = pair
++        if frozen_test_records != source_test:
++            raise ValueError("Frozen-test output differs from source test rows")
++
++    outer_train_endpoints = {
++        endpoint
++        for pair in source_train.values()
++        for endpoint in (pair["better"], pair["worse"])
++    }
++    outer_test_endpoints = {
++        endpoint
++        for pair in frozen_test_records.values()
++        for endpoint in (pair["better"], pair["worse"])
++    }
++    if outer_train_endpoints & outer_test_endpoints:
++        raise ValueError("Outer train/test Card overlap")
++    outer_train_runs = {run_by_card[card_id] for card_id in outer_train_endpoints}
++    outer_test_runs = {run_by_card[card_id] for card_id in outer_test_endpoints}
++    if outer_train_runs & outer_test_runs:
++        raise ValueError("Outer train/test physical-run overlap")
++
++    expected_manifest = {
++        "cards_sha256": sha256_file(cards_path),
++        "source_pairs_sha256": sha256_file(source_pairs_path),
++        "train_pairs_sha256": sha256_file(train_path),
++        "dev_pairs_sha256": sha256_file(dev_path),
++        "source_counts": dict(sorted(source_counts.items())),
++        "train_pairs": len(outputs["train"]),
++        "dev_pairs": len(outputs["dev"]),
++        "dropped_cross_split_pairs": dropped,
++        "train_runs": len(train_runs),
++        "dev_runs": len(dev_runs),
++        "run_overlap": 0,
++        "outer_test_rows_emitted": 0,
++        "frozen_test_pairs": len(frozen_test_records),
++        "frozen_test_pairs_sha256": (
++            sha256_file(frozen_test_path) if frozen_test_path is not None else None
++        ),
++        "outer_train_test_card_overlap": 0,
++        "outer_train_test_run_overlap": 0,
++        "train_run_ids_sha256": hashlib.sha256(_canonical(sorted(train_runs)).encode()).hexdigest(),
++        "dev_run_ids_sha256": hashlib.sha256(_canonical(sorted(dev_runs)).encode()).hexdigest(),
++    }
++    for field, value in expected_manifest.items():
++        if manifest.get(field) != value:
++            raise ValueError(f"Manifest mismatch for {field}")
++
++    return {
++        "protocol": "physical-run-train-dev-verifier-v1",
++        "status": "TRAIN_DEV_SPLIT_INDEPENDENTLY_VERIFIED",
++        **expected_manifest,
++    }
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("cards", type=Path)
++    parser.add_argument("source_pairs", type=Path)
++    parser.add_argument("train_pairs", type=Path)
++    parser.add_argument("dev_pairs", type=Path)
++    parser.add_argument("manifest", type=Path)
++    parser.add_argument("--frozen-test", type=Path)
++    arguments = parser.parse_args()
++    receipt = verify(
++        arguments.cards, arguments.source_pairs, arguments.train_pairs,
++        arguments.dev_pairs, arguments.manifest, arguments.frozen_test,
++    )
++    print(_canonical(receipt))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/src/mle_critic/src/train/bradley_terry.py b/src/mle_critic/src/train/bradley_terry.py
+index 06db36c..d0d28d6 100644
+--- a/src/mle_critic/src/train/bradley_terry.py
++++ b/src/mle_critic/src/train/bradley_terry.py
+@@ -17,6 +17,9 @@ Multi-GPU ZeRO-3 training:
+ from __future__ import annotations
+ 
+ from functools import partial
++import json
++import os
++from pathlib import Path
+ import random
+ 
+ import numpy as np
+@@ -24,16 +27,18 @@ import torch
+ import torch.nn as nn
+ from transformers import AutoModel, AutoTokenizer, HfArgumentParser, Trainer
+ 
+-from src.mle_critic.src.evaluation.bradley_terry_evaluation import pair_accuracy_metrics
++from src.mle_critic.src.evaluation.bradley_terry_evaluation import (
++    pair_accuracy_metrics,
++    sha256_file,
++)
+ from src.mle_critic.src.train.config import BradleyTerryConfig
+ from src.mle_critic.src.train.dataset import (
+     CardEncoder,
+     PairDataset,
+-    load_training_pool,
+-    load_testing_pool,
+     pair_collate,
+-    read_cards,
+-    read_pairs,
++    read_cards_with_runs,
++    read_pairs_for_split,
++    validate_disjoint_pair_pools,
+ )
+ 
+ 
+@@ -91,6 +96,21 @@ class BradleyTerryTrainer(Trainer):
+         return loss.detach(), margins.detach(), labels
+ 
+ 
++def write_checkpoint_metadata(path: Path, payload: dict) -> None:
++    """Attach immutable inference/training receipts to the selected checkpoint."""
++    rendered = json.dumps(
++        payload, indent=2, sort_keys=True, allow_nan=False
++    ) + "\n"
++    metadata_path = path / "rm_meta.json"
++    if metadata_path.exists():
++        if metadata_path.read_text(encoding="utf-8") == rendered:
++            return
++        raise FileExistsError(
++            f"refusing to replace existing checkpoint metadata: {metadata_path}"
++        )
++    metadata_path.write_text(rendered, encoding="utf-8")
++
++
+ def main() -> None:
+     parser = HfArgumentParser(BradleyTerryConfig)
+     (config,) = parser.parse_args_into_dataclasses()
+@@ -99,31 +119,38 @@ def main() -> None:
+     np.random.seed(config.seed)
+     torch.manual_seed(config.seed)
+ 
+-    card_codes, card_tasks = read_cards(config.cards)
+-    train_pair_records = read_pairs(config.train_pairs, card_codes)
+-    test_pair_records = read_pairs(config.test_pairs, card_codes)
+-    training_pool, split_name = load_training_pool(
+-        train_pair_records,
+-        loto=config.loto,
+-        seed=config.seed,
++    card_codes, card_tasks, run_id_by_card_id = read_cards_with_runs(config.cards)
++    training_records = read_pairs_for_split(
++        config.train_pairs, card_codes, expected_split="train"
+     )
+-    testing_pool, _ = load_testing_pool(
+-        test_pair_records,
+-        loto=config.loto,
+-        seed=config.seed,
++    validation_records = read_pairs_for_split(
++        config.dev_pairs, card_codes, expected_split="dev"
++    )
++    split_name = "in-task-train-run-dev"
++    if config.loto:
++        training_records = [
++            pair for pair in training_records if pair["task"] != config.loto
++        ]
++        validation_records = [
++            pair for pair in validation_records if pair["task"] == config.loto
++        ]
++        split_name = "loto-train-run-dev:" + config.loto
++    if not training_records:
++        raise ValueError("training pool is empty")
++    if not validation_records:
++        raise ValueError("development pool is empty")
++
++    separation = validate_disjoint_pair_pools(
++        training_records, validation_records, run_id_by_card_id
+     )
+-    if len(training_pool) < 2:
+-        raise ValueError("training pool has fewer than two records; cannot create validation data")
+ 
+     rng = random.Random(config.seed)
+-    rng.shuffle(training_pool)
+-    rng.shuffle(testing_pool)
+-    training_records = training_pool
+-    validation_records = testing_pool
++    rng.shuffle(training_records)
++    rng.shuffle(validation_records)
+ 
+     print(
+-        f"[rm-hf] split={split_name} total={len(training_pool)} "
+-        f"train={len(training_records)} validation={len(validation_records)}",
++        f"[rm-hf] split={split_name} train={len(training_records)} "
++        f"dev={len(validation_records)} separation={separation}",
+         flush=True,
+     )
+ 
+@@ -153,8 +180,37 @@ def main() -> None:
+     )
+     trainer.train()
+     if trainer.is_world_process_zero():
++        if trainer.state.best_model_checkpoint is None:
++            raise RuntimeError("training completed without a selected dev checkpoint")
++        selected_checkpoint = Path(trainer.state.best_model_checkpoint)
++        write_checkpoint_metadata(
++            selected_checkpoint,
++            {
++                "protocol": "rm-dev-selected-checkpoint-v1",
++                "base_model": config.model,
++                "max_len": config.max_len,
++                "head_frac": config.head_frac,
++                "task_cond": config.task_cond,
++                "budget_cond": config.budget_cond,
++                "budget_pos": config.budget_pos,
++                "seed": config.seed,
++                "train_pairs_sha256": sha256_file(Path(config.train_pairs)),
++                "dev_pairs_sha256": sha256_file(Path(config.dev_pairs)),
++                "cards_sha256": sha256_file(Path(config.cards)),
++                "train_pairs": len(training_records),
++                "dev_pairs": len(validation_records),
++                "split_name": split_name,
++                "separation": separation,
++                "metric_for_best_model": config.metric_for_best_model,
++                "greater_is_better": config.greater_is_better,
++                "best_dev_pair_accuracy": float(trainer.state.best_metric),
++                "training_code_git_commit": os.environ.get(
++                    "AIRA_DOJO_GIT_COMMIT", "UNRECORDED"
++                ),
++            },
++        )
+         print(
+-            f"[rm-hf] training complete; best_validation_loss={trainer.state.best_metric} "
++            f"[rm-hf] training complete; best_dev_pair_accuracy={trainer.state.best_metric} "
+             f"best_checkpoint={trainer.state.best_model_checkpoint}",
+             flush=True,
+         )
+diff --git a/src/mle_critic/src/train/config/bradley_terry_config.py b/src/mle_critic/src/train/config/bradley_terry_config.py
+index 13cb390..05dfdf2 100644
+--- a/src/mle_critic/src/train/config/bradley_terry_config.py
++++ b/src/mle_critic/src/train/config/bradley_terry_config.py
+@@ -17,7 +17,14 @@ class BradleyTerryConfig(TrainingArguments):
+     """
+ 
+     train_pairs: str = field(default="", metadata={"help": "pair JSONL file for training"})
+-    test_pairs: str = field(default="", metadata={"help": "pair JSONL file for testing"})
++    dev_pairs: str = field(
++        default="",
++        metadata={"help": "train-run-derived dev JSONL; must contain only dev rows"},
++    )
++    test_pairs: str = field(
++        default="",
++        metadata={"help": "forbidden legacy option; use the one-shot evaluator"},
++    )
+     cards: str = field(
+         default="",
+         metadata={"help": "run-grouped Card JSON file"},
+@@ -48,7 +55,7 @@ class BradleyTerryConfig(TrainingArguments):
+     logging_steps: float = field(default=1)
+     eval_strategy: str = field(default="steps")
+     save_strategy: str = field(default="best")
+-    load_best_model_at_end: bool = field(default=False)
++    load_best_model_at_end: bool = field(default=True)
+     metric_for_best_model: str = field(default="eval_pair_accuracy")
+     greater_is_better: bool = field(default=True)
+     save_total_limit: int = field(default=1)
+@@ -61,8 +68,12 @@ class BradleyTerryConfig(TrainingArguments):
+         super().__post_init__()
+         if not self.train_pairs:
+             raise ValueError("--train-pairs is required")
+-        if not self.test_pairs:
+-            raise ValueError("--test-pairs is required")
++        if not self.dev_pairs:
++            raise ValueError("--dev-pairs is required and must be derived only from train runs")
++        if self.test_pairs:
++            raise ValueError(
++                "--test-pairs is forbidden during training; use the one-shot evaluator"
++            )
+         if not self.cards:
+             raise ValueError("--cards is required")
+         if self.budget_pos not in {"head", "tail"}:
+diff --git a/src/mle_critic/src/train/dataset/__init__.py b/src/mle_critic/src/train/dataset/__init__.py
+index 85556a2..7e39c14 100644
+--- a/src/mle_critic/src/train/dataset/__init__.py
++++ b/src/mle_critic/src/train/dataset/__init__.py
+@@ -1,6 +1,17 @@
+ """Input construction and pair datasets for Bradley–Terry training."""
+ 
+-from .pairs import CardEncoder, PairDataset, load_training_pool, load_testing_pool, pair_collate, read_cards, read_pairs
++from .pairs import (
++    CardEncoder,
++    PairDataset,
++    load_testing_pool,
++    load_training_pool,
++    pair_collate,
++    read_cards,
++    read_cards_with_runs,
++    read_pairs,
++    read_pairs_for_split,
++    validate_disjoint_pair_pools,
++)
+ 
+ __all__ = [
+     "CardEncoder",
+@@ -9,5 +20,8 @@ __all__ = [
+     "load_testing_pool",
+     "pair_collate",
+     "read_cards",
++    "read_cards_with_runs",
+     "read_pairs",
++    "read_pairs_for_split",
++    "validate_disjoint_pair_pools",
+ ]
+diff --git a/src/mle_critic/src/train/dataset/pairs.py b/src/mle_critic/src/train/dataset/pairs.py
+index 8884a3b..e6da724 100644
+--- a/src/mle_critic/src/train/dataset/pairs.py
++++ b/src/mle_critic/src/train/dataset/pairs.py
+@@ -6,13 +6,16 @@ import json
+ import random
+ from collections.abc import Sequence
+ from dataclasses import dataclass
++from pathlib import Path
+ from typing import Any
+ 
+ import torch
+ 
+ 
+-def read_cards(path: str) -> tuple[dict[str, str], dict[str, str]]:
+-    """Read lookup tables from the current ``run_id -> list[Card]`` JSON format."""
++def read_cards_with_runs(
++    path: str,
++) -> tuple[dict[str, str], dict[str, str], dict[str, str]]:
++    """Read code, task, and physical-run lookup tables from grouped Cards."""
+     with open(path, encoding="utf-8") as input_file:
+         cards_by_run_id = json.load(input_file)
+     if not isinstance(cards_by_run_id, dict):
+@@ -51,6 +54,12 @@ def read_cards(path: str) -> tuple[dict[str, str], dict[str, str]]:
+             code[card_id] = card_code
+             tasks[card_id] = task_name
+             run_id_by_card_id[card_id] = run_id
++    return code, tasks, run_id_by_card_id
++
++
++def read_cards(path: str) -> tuple[dict[str, str], dict[str, str]]:
++    """Read code/task lookup tables while preserving the legacy two-value API."""
++    code, tasks, _ = read_cards_with_runs(path)
+     return code, tasks
+ 
+ 
+@@ -64,6 +73,105 @@ def read_pairs(path: str, code: dict[str, str]) -> list[dict[str, Any]]:
+     ]
+ 
+ 
++def read_pairs_for_split(
++    path: str,
++    code: dict[str, str],
++    expected_split: str,
++) -> list[dict[str, Any]]:
++    """Strictly read one split without silently dropping or accepting other rows."""
++    if expected_split not in {"train", "dev", "test"}:
++        raise ValueError(f"Unsupported expected split: {expected_split!r}")
++
++    records: list[dict[str, Any]] = []
++    unordered_pairs: set[tuple[str, str, Any]] = set()
++    with Path(path).open(encoding="utf-8") as input_file:
++        for line_number, line in enumerate(input_file, 1):
++            if not line.strip():
++                raise ValueError(f"Blank pair line at {path}:{line_number}")
++            try:
++                pair = json.loads(line)
++            except json.JSONDecodeError as error:
++                raise ValueError(f"Invalid JSON at {path}:{line_number}") from error
++            if not isinstance(pair, dict):
++                raise ValueError(f"Pair is not an object at {path}:{line_number}")
++            if pair.get("intask_split") != expected_split:
++                raise ValueError(
++                    f"Expected only {expected_split!r} rows at {path}:{line_number}; "
++                    f"found {pair.get('intask_split')!r}"
++                )
++            better = pair.get("better")
++            worse = pair.get("worse")
++            if not isinstance(better, str) or not isinstance(worse, str):
++                raise ValueError(f"Pair endpoints are invalid at {path}:{line_number}")
++            if better == worse:
++                raise ValueError(f"Self-pair at {path}:{line_number}")
++            missing = [card_id for card_id in (better, worse) if card_id not in code]
++            if missing:
++                raise ValueError(
++                    f"Unknown Card IDs at {path}:{line_number}: {sorted(missing)}"
++                )
++            pair_key = (*sorted((better, worse)), pair.get("budget"))
++            if pair_key in unordered_pairs:
++                raise ValueError(f"Duplicate unordered pair at {path}:{line_number}")
++            unordered_pairs.add(pair_key)
++            records.append(pair)
++    if not records:
++        raise ValueError(f"No {expected_split!r} pairs found in {path}")
++    return records
++
++
++def validate_disjoint_pair_pools(
++    training_records: Sequence[dict[str, Any]],
++    validation_records: Sequence[dict[str, Any]],
++    run_id_by_card_id: dict[str, str],
++) -> dict[str, int]:
++    """Fail closed unless train and dev are disjoint by pair, Card, and run."""
++
++    def endpoints(records: Sequence[dict[str, Any]]) -> set[str]:
++        return {
++            card_id
++            for pair in records
++            for card_id in (pair["better"], pair["worse"])
++        }
++
++    def pair_keys(records: Sequence[dict[str, Any]]) -> set[tuple[str, str, Any]]:
++        return {
++            (*sorted((pair["better"], pair["worse"])), pair.get("budget"))
++            for pair in records
++        }
++
++    train_endpoints = endpoints(training_records)
++    dev_endpoints = endpoints(validation_records)
++    endpoint_overlap = train_endpoints & dev_endpoints
++    if endpoint_overlap:
++        raise ValueError(
++            f"Train/dev Card overlap is forbidden: {len(endpoint_overlap)} endpoints"
++        )
++
++    train_runs = {run_id_by_card_id[card_id] for card_id in train_endpoints}
++    dev_runs = {run_id_by_card_id[card_id] for card_id in dev_endpoints}
++    run_overlap = train_runs & dev_runs
++    if run_overlap:
++        raise ValueError(
++            f"Train/dev physical-run overlap is forbidden: {len(run_overlap)} runs"
++        )
++
++    duplicate_pairs = pair_keys(training_records) & pair_keys(validation_records)
++    if duplicate_pairs:
++        raise ValueError(
++            f"Train/dev unordered-pair overlap is forbidden: {len(duplicate_pairs)} pairs"
++        )
++
++    return {
++        "train_pairs": len(training_records),
++        "dev_pairs": len(validation_records),
++        "train_endpoints": len(train_endpoints),
++        "dev_endpoints": len(dev_endpoints),
++        "train_runs": len(train_runs),
++        "dev_runs": len(dev_runs),
++    }
++
++
+ def load_training_pool(
+     pairs: Sequence[dict[str, Any]],
+     *,
+diff --git a/src/mle_critic/test/test_build_augmented_decision_pairs.py b/src/mle_critic/test/test_build_augmented_decision_pairs.py
+index 43160c8..72fbb63 100644
+--- a/src/mle_critic/test/test_build_augmented_decision_pairs.py
++++ b/src/mle_critic/test/test_build_augmented_decision_pairs.py
+@@ -126,6 +126,9 @@ def test_improve_decision_pair_supports_current_and_full_lookahead_values():
+     assert lookahead_summary["pairs_at_budget_1000"] == 4
+     assert all(record["intask_split"] == "unassigned" for record in current_records)
+     assert all(record["intask_split"] == "unassigned" for record in lookahead_records)
++    assert all(record["pair_semantics"] == "error_contracted_improve" for record in current_records)
++    assert all(record["lineage_contracted"] for record in current_records)
++    assert all(not record["parent_is_synthetic"] for record in current_records)
+ 
+ 
+ def test_lower_is_better_direction_comes_from_cards():
+@@ -136,6 +139,9 @@ def test_lower_is_better_direction_comes_from_cards():
+     assert len(records) == 6
+     assert all(record["budget"] == 1000 for record in records)
+     assert ("b", "d") in {(record["better"], record["worse"]) for record in records}
++    assert all(record["pair_semantics"] == "synthetic_cross_run_draft" for record in records)
++    assert all(record["parent_is_synthetic"] for record in records)
++    assert any(len(set(record["endpoint_run_ids"])) == 2 for record in records)
+ 
+ 
+ def test_error_nodes_do_not_enter_decision_values():
+diff --git a/src/mle_critic/test/test_build_decision_pairs.py b/src/mle_critic/test/test_build_decision_pairs.py
+index 6ad6641..064c73a 100644
+--- a/src/mle_critic/test/test_build_decision_pairs.py
++++ b/src/mle_critic/test/test_build_decision_pairs.py
+@@ -71,6 +71,9 @@ def test_decision_pair_value_uses_first_k_expansions_including_ungraded_nodes():
+     ]
+     assert all(record["intask_split"] == "unassigned" for record in records)
+     assert all(record["set_size"] == 2 for record in records)
++    assert all(record["pair_semantics"] == "canonical_raw_sibling" for record in records)
++    assert all(record["endpoint_run_ids"] == ["run-a", "run-a"] for record in records)
++    assert all(record["parent_run_id"] == "run-a" for record in records)
+ 
+ 
+ def test_lower_is_better_direction_comes_from_cards():
+diff --git a/src/mle_critic/test/test_build_subtree_pairs.py b/src/mle_critic/test/test_build_subtree_pairs.py
+index 73d3b09..459a0e4 100644
+--- a/src/mle_critic/test/test_build_subtree_pairs.py
++++ b/src/mle_critic/test/test_build_subtree_pairs.py
+@@ -1,10 +1,14 @@
++import hashlib
+ import json
+ import sys
+ 
++import pytest
++
+ from src.mle_critic.src.preprocess.build_bt_pairs.build_subtree_pairs import (
+     build_children_index,
+     build_value_pairs,
+     compute_node_values,
++    experiment_stratum_sha256,
+     flatten_runs,
+     main,
+ )
+@@ -18,6 +22,9 @@ from src.mle_critic.src.preprocess.download_and_resolve.cards import (
+ )
+ 
+ 
++BATCH_SHA256 = "0" * 64
++
++
+ def make_card(
+     card_id,
+     grade,
+@@ -51,12 +58,12 @@ def test_node_value_traverses_unlabelled_cards_and_applies_budgets():
+     assert unlimited["root"].reachable_descendant_count == 2
+     assert unlimited["root"].steps_to_best == 2
+ 
+-    assert "root" not in compute_node_values(
+-        cards_by_id, children, budget_steps=1
+-    )
+-    assert "root" not in compute_node_values(
+-        cards_by_id, children, budget_seconds=6.0
+-    )
++    one_step = compute_node_values(cards_by_id, children, budget_steps=1)
++    assert one_step["root"].best_subtree_grade == 0.2
++    assert one_step["root"].reachable_descendant_count == 1
++    six_seconds = compute_node_values(cards_by_id, children, budget_seconds=6.0)
++    assert six_seconds["root"].best_subtree_grade == 0.2
++    assert six_seconds["root"].reachable_descendant_count == 1
+ 
+ 
+ def test_non_finite_grades_are_treated_as_missing():
+@@ -85,10 +92,16 @@ def test_pair_metadata_is_ordered_as_better_then_worse():
+         ]
+     }
+ 
+-    records, _ = build_value_pairs(cards_by_run, seed=7)
++    records, _ = build_value_pairs(
++        cards_by_run, seed=7, batch_cards_sha256=BATCH_SHA256
++    )
+ 
+-    assert len(records) == 1
+-    record = records[0]
++    assert len(records) == 6
++    record = next(
++        record
++        for record in records
++        if {record["better"], record["worse"]} == {"a", "b"}
++    )
+     assert (record["better"], record["worse"]) == ("a", "b")
+     assert record["agrees_with_quality"] is False
+     assert record["subtree_sizes"] == [1, 2]
+@@ -107,10 +120,16 @@ def test_raw_pair_keeps_endpoints_from_different_runs_unassigned():
+         ],
+     }
+ 
+-    records, _ = build_value_pairs(cards_by_run, seed=7)
++    records, _ = build_value_pairs(
++        cards_by_run, seed=7, batch_cards_sha256=BATCH_SHA256
++    )
+ 
+-    assert len(records) == 1
+-    assert records[0]["intask_split"] == "unassigned"
++    assert len(records) == 4
++    assert all(record["intask_split"] == "unassigned" for record in records)
++    assert any(
++        {record["better"], record["worse"]} == {"a", "b"}
++        for record in records
++    )
+ 
+ 
+ def test_lower_score_is_oriented_as_better_when_task_says_so():
+@@ -123,10 +142,17 @@ def test_lower_score_is_oriented_as_better_when_task_says_so():
+         ]
+     }
+ 
+-    records, _ = build_value_pairs(cards_by_run)
++    records, _ = build_value_pairs(
++        cards_by_run, batch_cards_sha256=BATCH_SHA256
++    )
+ 
+-    assert len(records) == 1
+-    assert (records[0]["better"], records[0]["worse"]) == ("a", "b")
++    assert len(records) == 4
++    record = next(
++        record
++        for record in records
++        if {record["better"], record["worse"]} == {"a", "b"}
++    )
++    assert (record["better"], record["worse"]) == ("a", "b")
+ 
+ 
+ def test_main_reads_run_grouped_cards_and_writes_jsonl(tmp_path, monkeypatch):
+@@ -152,5 +178,65 @@ def test_main_reads_run_grouped_cards_and_writes_jsonl(tmp_path, monkeypatch):
+     main()
+ 
+     records = [json.loads(line) for line in output_path.read_text().splitlines()]
+-    assert len(records) == 1
+-    assert (records[0]["better"], records[0]["worse"]) == ("a", "b")
++    assert len(records) == 4
++    record = next(
++        record
++        for record in records
++        if {record["better"], record["worse"]} == {"a", "b"}
++    )
++    assert (record["better"], record["worse"]) == ("a", "b")
++    assert all(
++        item["batch_cards_sha256"]
++        == hashlib.sha256(cards_path.read_bytes()).hexdigest()
++        for item in records
++    )
++    assert all(
++        item["experiment_stratum_sha256"]
++        == experiment_stratum_sha256(make_card("expected", 0.0))
++        for item in records
++    )
++
++
++def test_cross_config_nodes_are_never_paired():
++    left = [make_card("a", 0.1), make_card("a-child", 0.9, "a")]
++    right = [make_card("b", 0.8), make_card("b-child", 0.8, "b")]
++    for card in right:
++        card.hardware = "different-gpu"
++
++    records, summary = build_value_pairs(
++        {"run-a": left, "run-b": right},
++        seed=7,
++        batch_cards_sha256=BATCH_SHA256,
++    )
++
++    assert records == []
++    assert summary["task"]["experiment_strata"] == 2
++
++
++def test_same_config_cross_run_pair_carries_contract_receipts():
++    left = [make_card("a", 0.1), make_card("a-child", 0.9, "a")]
++    right = [make_card("b", 0.8), make_card("b-child", 0.8, "b")]
++
++    records, summary = build_value_pairs(
++        {"run-a": left, "run-b": right},
++        seed=7,
++        batch_cards_sha256=BATCH_SHA256,
++    )
++
++    assert records
++    assert all(record["batch_cards_sha256"] == BATCH_SHA256 for record in records)
++    assert all(
++        record["experiment_stratum_sha256"] == experiment_stratum_sha256(left[0])
++        for record in records
++    )
++    assert summary["task"]["experiment_strata"] == 1
++
++
++def test_mixed_config_within_physical_run_fails_closed():
++    cards = [make_card("a", 0.1), make_card("a-child", 0.9, "a")]
++    cards[1].client = "different-client"
++
++    with pytest.raises(ValueError, match="mixes task or execution configurations"):
++        build_value_pairs(
++            {"run-a": cards}, batch_cards_sha256=BATCH_SHA256
++        )
+diff --git a/src/mle_critic/test/test_one_shot_evaluation_contract.py b/src/mle_critic/test/test_one_shot_evaluation_contract.py
+new file mode 100644
+index 0000000..0fc4a40
+--- /dev/null
++++ b/src/mle_critic/test/test_one_shot_evaluation_contract.py
+@@ -0,0 +1,133 @@
++import hashlib
++import json
++
++import pytest
++
++from src.mle_critic.src.evaluation.bradley_terry_evaluation import (
++    ONE_SHOT_PROTOCOL,
++    claim_one_shot_test,
++    normalize_expected_sha256,
++    pair_prediction_records,
++    read_evaluation_pairs,
++    verify_expected_sha256,
++)
++
++
++def test_sha256_receipt_is_strict(tmp_path):
++    artifact = tmp_path / "artifact.bin"
++    artifact.write_bytes(b"frozen")
++    expected = hashlib.sha256(b"frozen").hexdigest()
++
++    assert normalize_expected_sha256(expected.upper(), "artifact") == expected
++    assert verify_expected_sha256(artifact, expected, "artifact") == expected
++    with pytest.raises(ValueError, match="mismatch"):
++        verify_expected_sha256(artifact, "0" * 64, "artifact")
++    with pytest.raises(ValueError, match="64 hexadecimal"):
++        normalize_expected_sha256("not-a-hash", "artifact")
++
++
++def test_one_shot_ledger_is_exclusive_and_does_not_overwrite_output(tmp_path):
++    ledger_path = tmp_path / "attempt.json"
++    output_path = tmp_path / "result.json"
++    payload = claim_one_shot_test(
++        ledger_path,
++        output_path=output_path,
++        expected_artifacts={"pairs": "a" * 64},
++        invocation={"split": "test"},
++    )
++
++    assert payload["protocol"] == ONE_SHOT_PROTOCOL
++    assert payload["status"] == "STARTED"
++    assert json.loads(ledger_path.read_text())["status"] == "STARTED"
++    with pytest.raises(FileExistsError):
++        claim_one_shot_test(
++            ledger_path,
++            output_path=output_path,
++            expected_artifacts={"pairs": "a" * 64},
++            invocation={"split": "test"},
++        )
++
++    second_ledger = tmp_path / "attempt-2.json"
++    output_path.write_text("already exists")
++    with pytest.raises(FileExistsError, match="overwrite"):
++        claim_one_shot_test(
++            second_ledger,
++            output_path=output_path,
++            expected_artifacts={"pairs": "a" * 64},
++            invocation={"split": "test"},
++        )
++    assert not second_ledger.exists()
++
++
++def test_dedicated_test_pool_and_pair_level_receipt(tmp_path):
++    pairs_path = tmp_path / "test.jsonl"
++    pair = {
++        "better": "a",
++        "worse": "b",
++        "task": "task-a",
++        "intask_split": "test",
++        "parent": "p",
++        "pair_semantics": "canonical_raw_sibling",
++        "endpoint_run_ids": ["run-1", "run-1"],
++    }
++    pairs_path.write_text(json.dumps(pair) + "\n")
++    cards = {"a": "code-a", "b": "code-b"}
++    tasks = {"a": "task-a", "b": "task-a"}
++    runs = {"a": "run-1", "b": "run-1"}
++
++    pairs = read_evaluation_pairs(
++        pairs_path,
++        expected_split="test",
++        cards=cards,
++        card_tasks=tasks,
++        card_runs=runs,
++    )
++    receipts = pair_prediction_records(pairs, [0.25], runs)
++
++    assert receipts == [
++        {
++            "pair_index": 0,
++            "task": "task-a",
++            "better": "a",
++            "worse": "b",
++            "endpoint_run_ids": ["run-1", "run-1"],
++            "margin": 0.25,
++            "correct": True,
++            "parent": "p",
++            "pair_semantics": "canonical_raw_sibling",
++        }
++    ]
++
++
++def test_test_reader_rejects_mixed_split_and_bad_run_receipt(tmp_path):
++    pairs_path = tmp_path / "mixed.jsonl"
++    cards = {"a": "code-a", "b": "code-b"}
++    tasks = {"a": "task-a", "b": "task-a"}
++    runs = {"a": "run-1", "b": "run-2"}
++    pair = {
++        "better": "a",
++        "worse": "b",
++        "task": "task-a",
++        "intask_split": "train",
++    }
++    pairs_path.write_text(json.dumps(pair) + "\n")
++    with pytest.raises(ValueError, match="dedicated 'test' file"):
++        read_evaluation_pairs(
++            pairs_path,
++            expected_split="test",
++            cards=cards,
++            card_tasks=tasks,
++            card_runs=runs,
++        )
++
++    pair["intask_split"] = "test"
++    pair["endpoint_run_ids"] = ["run-wrong", "run-2"]
++    pairs_path.write_text(json.dumps(pair) + "\n")
++    with pytest.raises(ValueError, match="endpoint_run_ids"):
++        read_evaluation_pairs(
++            pairs_path,
++            expected_split="test",
++            cards=cards,
++            card_tasks=tasks,
++            card_runs=runs,
++        )
+diff --git a/src/mle_critic/test/test_train_dev_split_contract.py b/src/mle_critic/test/test_train_dev_split_contract.py
+new file mode 100644
+index 0000000..f27ffd8
+--- /dev/null
++++ b/src/mle_critic/test/test_train_dev_split_contract.py
+@@ -0,0 +1,147 @@
++import json
++
++import pytest
++
++from src.mle_critic.src.preprocess.build_bt_pairs.build_train_dev_split import (
++    build_split,
++)
++from src.mle_critic.src.preprocess.build_bt_pairs.verify_train_dev_split import (
++    verify,
++)
++
++
++def _card(card_id, task="task"):
++    return {
++        "id": card_id,
++        "task": {"name": task},
++        "client": "qwen",
++        "hardware": "pro6000",
++        "time_limit": 7200,
++        "execution_timeout": 1200,
++        "code": f"print({card_id!r})",
++    }
++
++
++def _fixture(tmp_path):
++    cards_path = tmp_path / "cards.json"
++    pairs_path = tmp_path / "pairs.jsonl"
++    train_path = tmp_path / "train.jsonl"
++    dev_path = tmp_path / "dev.jsonl"
++    manifest_path = tmp_path / "manifest.json"
++    frozen_test_path = tmp_path / "frozen-test.jsonl"
++    cards = {}
++    pairs = []
++    for index in range(4):
++        run_id = f"run-{index}"
++        left, right = f"c{index}a", f"c{index}b"
++        cards[run_id] = [_card(left), _card(right)]
++        pairs.append(
++            {
++                "task": "task",
++                "better": left,
++                "worse": right,
++                "gap_raw": 0.1 + index,
++                "intask_split": "train",
++            }
++        )
++    cards["outer-test"] = [_card("test-a"), _card("test-b")]
++    pairs.append(
++        {
++            "task": "task",
++            "better": "test-a",
++            "worse": "test-b",
++            "gap_raw": 1.0,
++            "intask_split": "test",
++        }
++    )
++    cards_path.write_text(json.dumps(cards), encoding="utf-8")
++    pairs_path.write_text(
++        "".join(json.dumps(pair) + "\n" for pair in pairs), encoding="utf-8"
++    )
++    return (
++        cards_path,
++        pairs_path,
++        train_path,
++        dev_path,
++        manifest_path,
++        frozen_test_path,
++    )
++
++
++def test_train_dev_split_is_run_disjoint_and_independently_verified(tmp_path):
++    paths = _fixture(tmp_path)
++    manifest = build_split(
++        *paths,
++        seed=7,
++        dev_fraction=0.25,
++        curator_allow_filter_outer_test=True,
++    )
++
++    assert manifest["train_pairs"] == 3
++    assert manifest["dev_pairs"] == 1
++    assert manifest["source_counts"] == {"outer_test": 1, "outer_train": 4}
++    assert manifest["outer_test_rows_emitted"] == 0
++    assert manifest["frozen_test_pairs"] == 1
++    assert all(
++        json.loads(line)["intask_split"] == "train"
++        for line in paths[2].read_text().splitlines()
++    )
++    assert all(
++        json.loads(line)["intask_split"] == "dev"
++        for line in paths[3].read_text().splitlines()
++    )
++
++    assert [
++        json.loads(line)["intask_split"]
++        for line in paths[5].read_text().splitlines()
++    ] == ["test"]
++
++    receipt = verify(*paths)
++    assert receipt["status"] == "TRAIN_DEV_SPLIT_INDEPENDENTLY_VERIFIED"
++    assert receipt["run_overlap"] == 0
++
++
++def test_combined_outer_file_requires_explicit_curator_mode(tmp_path):
++    paths = _fixture(tmp_path)
++    with pytest.raises(ValueError, match="trusted migration"):
++        build_split(
++            *paths[:5],
++            seed=7,
++            dev_fraction=0.25,
++            curator_allow_filter_outer_test=False,
++        )
++
++
++def test_verifier_rejects_tampered_dev_receipt(tmp_path):
++    paths = _fixture(tmp_path)
++    build_split(
++        *paths,
++        seed=7,
++        dev_fraction=0.25,
++        curator_allow_filter_outer_test=True,
++    )
++    records = [json.loads(line) for line in paths[3].read_text().splitlines()]
++    records[0]["train_dev_seed"] = 8
++    paths[3].write_text(
++        "".join(json.dumps(record, sort_keys=True) + "\n" for record in records),
++        encoding="utf-8",
++    )
++
++    with pytest.raises(ValueError, match="receipt mismatch"):
++        verify(*paths)
++
++
++def test_verifier_rejects_tampered_frozen_test(tmp_path):
++    paths = _fixture(tmp_path)
++    build_split(
++        *paths,
++        seed=7,
++        dev_fraction=0.25,
++        curator_allow_filter_outer_test=True,
++    )
++    record = json.loads(paths[5].read_text().strip())
++    record["gap_raw"] = 999.0
++    paths[5].write_text(json.dumps(record) + "\n", encoding="utf-8")
++
++    with pytest.raises(ValueError, match="Frozen-test output"):
++        verify(*paths)
+diff --git a/src/mle_critic/test/test_train_pair_dataset.py b/src/mle_critic/test/test_train_pair_dataset.py
+index 9a19436..04cddbc 100644
+--- a/src/mle_critic/test/test_train_pair_dataset.py
++++ b/src/mle_critic/test/test_train_pair_dataset.py
+@@ -2,7 +2,13 @@ import json
+ 
+ import pytest
+ 
+-from src.mle_critic.src.train.dataset.pairs import read_cards, read_pairs
++from src.mle_critic.src.train.dataset.pairs import (
++    read_cards,
++    read_cards_with_runs,
++    read_pairs,
++    read_pairs_for_split,
++    validate_disjoint_pair_pools,
++)
+ 
+ 
+ def card(card_id, task_name, code):
+@@ -48,6 +54,12 @@ def test_read_cards_flattens_current_run_grouped_format(tmp_path):
+     assert tasks == {"a": "task-a", "b": "task-b"}
+     assert pairs == [{"better": "a", "worse": "b"}]
+ 
++    _, _, run_by_card = read_cards_with_runs(str(cards_path))
++    assert run_by_card == {
++        "a": "run-a__2026-08-01",
++        "b": "run-b__2026-08-02",
++    }
++
+ 
+ def test_read_cards_rejects_old_flat_jsonl_format(tmp_path):
+     cards_path = tmp_path / "cards.jsonl"
+@@ -77,3 +89,25 @@ def test_read_cards_rejects_duplicate_card_ids_across_runs(tmp_path):
+ 
+     with pytest.raises(ValueError, match="Duplicate Card ID"):
+         read_cards(str(cards_path))
++
++
++def test_strict_split_reader_refuses_test_rows_in_training_input(tmp_path):
++    pairs_path = tmp_path / "pairs.jsonl"
++    pairs_path.write_text(
++        json.dumps(
++            {"better": "a", "worse": "b", "intask_split": "test"}
++        )
++        + "\n"
++    )
++
++    with pytest.raises(ValueError, match="Expected only 'train' rows"):
++        read_pairs_for_split(str(pairs_path), {"a": "a", "b": "b"}, "train")
++
++
++def test_train_dev_validator_rejects_shared_physical_run():
++    train = [{"better": "a", "worse": "b", "intask_split": "train"}]
++    dev = [{"better": "c", "worse": "d", "intask_split": "dev"}]
++    run_by_card = {"a": "run-1", "b": "run-1", "c": "run-1", "d": "run-2"}
++
++    with pytest.raises(ValueError, match="physical-run overlap"):
++        validate_disjoint_pair_pools(train, dev, run_by_card)
+diff --git a/src/mle_critic/test/test_verify_experiment_strata.py b/src/mle_critic/test/test_verify_experiment_strata.py
+new file mode 100644
+index 0000000..3ff7e8f
+--- /dev/null
++++ b/src/mle_critic/test/test_verify_experiment_strata.py
+@@ -0,0 +1,63 @@
++import json
++from pathlib import Path
++
++import pytest
++
++from src.mle_critic.src.preprocess.build_bt_pairs.build_subtree_pairs import (
++    build_value_pairs,
++)
++from src.mle_critic.src.preprocess.build_bt_pairs.verify_experiment_strata import (
++    sha256_file,
++    verify,
++)
++from src.mle_critic.src.preprocess.download_and_resolve.cards import save_cards
++from src.mle_critic.test.test_build_subtree_pairs import make_card
++
++
++def build_fixture(tmp_path: Path):
++    cards_path = tmp_path / "batch_cards.json"
++    pairs_path = tmp_path / "batch_value_pairs.jsonl"
++    cards_by_run = {
++        "run-a": [make_card("a", 0.1), make_card("a-child", 0.9, "a")],
++        "run-b": [make_card("b", 0.8), make_card("b-child", 0.8, "b")],
++    }
++    save_cards(cards_by_run, str(cards_path))
++    pairs, _ = build_value_pairs(
++        cards_by_run, batch_cards_sha256=sha256_file(cards_path)
++    )
++    pairs_path.write_text(
++        "".join(json.dumps(pair) + "\n" for pair in pairs), encoding="utf-8"
++    )
++    return cards_path, pairs_path
++
++
++def test_independent_stratum_verifier_accepts_receipts(tmp_path: Path):
++    cards_path, pairs_path = build_fixture(tmp_path)
++
++    receipt = verify(cards_path, pairs_path)
++
++    assert receipt["status"] == "EXACT_EXPERIMENT_STRATUM_VERIFIED"
++    assert receipt["pairs"] > 0
++    assert receipt["experiment_strata"] == 1
++
++
++def test_independent_stratum_verifier_rejects_tampered_receipt(tmp_path: Path):
++    cards_path, pairs_path = build_fixture(tmp_path)
++    rows = [json.loads(line) for line in pairs_path.read_text().splitlines()]
++    rows[0]["experiment_stratum_sha256"] = "f" * 64
++    pairs_path.write_text(
++        "".join(json.dumps(pair) + "\n" for pair in rows), encoding="utf-8"
++    )
++
++    with pytest.raises(ValueError, match="receipt mismatch"):
++        verify(cards_path, pairs_path)
++
++
++def test_credential_scan_refuses_before_json_parsing(tmp_path: Path):
++    cards_path = tmp_path / "unsafe_cards.json"
++    pairs_path = tmp_path / "pairs.jsonl"
++    cards_path.write_text("sk-" + "A" * 32, encoding="utf-8")
++    pairs_path.write_text("not-json\n", encoding="utf-8")
++
++    with pytest.raises(ValueError, match="credential-shaped bytes refused"):
++        verify(cards_path, pairs_path)
+-- 
+2.47.1.windows.1
+

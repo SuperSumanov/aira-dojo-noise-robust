@@ -21,8 +21,6 @@ EXTRA_0818_REGISTRY_REL=phase1/results/prospective_structural_rejection_20260820
 EXTRA_0818_REGISTRY_SHA=91369ba5cc571f607907d1bf209b4bc77a370137110bf167226173a664e324c6
 BATCH_MANIFEST_REL=phase1/results/prospective_0819_intake_plan_20260821/archive_manifest.json
 BATCH_MANIFEST_SHA=d0c0ac148d4277cb11df4a13e5a23f29f57a043772d83423aa606ee1f996f017
-DYNAMIC_ROOT=${STATE_ROOT}/diagnostics/multi_modal_0819_task_identity_20260821
-DYNAMIC_REGISTRY=${DYNAMIC_ROOT}/structural_rejections_0819.json
 POLL_SECONDS=60
 MAX_POLLS=181
 
@@ -30,11 +28,16 @@ mode="${1:-}"
 control_repo="${2:-}"
 control_commit="${3:-}"
 dynamic_registry_sha="${4:-}"
+dynamic_registry_tag="${5:-multi_modal_0819_task_identity_20260821}"
 if [[ -z "${control_repo}" || ! "${control_commit}" =~ ^[0-9a-f]{40}$ \
-  || ! "${dynamic_registry_sha}" =~ ^[0-9a-f]{64}$ ]]; then
-  echo 'usage: monitor (--initialize|--run) CONTROL_REPO FULL_CONTROL_COMMIT DYNAMIC_REGISTRY_SHA' >&2
+  || ! "${dynamic_registry_sha}" =~ ^[0-9a-f]{64}$ \
+  || ! "${dynamic_registry_tag}" =~ ^[a-z0-9_]+$ ]]; then
+  echo 'usage: monitor (--initialize|--run) CONTROL_REPO FULL_CONTROL_COMMIT DYNAMIC_REGISTRY_SHA [DYNAMIC_REGISTRY_TAG]' >&2
   exit 64
 fi
+
+dynamic_root=${STATE_ROOT}/diagnostics/${dynamic_registry_tag}
+dynamic_registry=${dynamic_root}/structural_rejections_0819.json
 
 registry="${control_repo}/${REGISTRY_REL}"
 additional_registry="${control_repo}/${ADDITIONAL_REGISTRY_REL}"
@@ -59,7 +62,7 @@ verify_contracts() {
   test "$(sha256sum "${extra_0817_registry}" | awk '{print $1}')" = "${EXTRA_0817_REGISTRY_SHA}"
   test "$(sha256sum "${extra_0818_registry}" | awk '{print $1}')" = "${EXTRA_0818_REGISTRY_SHA}"
   test "$(sha256sum "${batch_manifest}" | awk '{print $1}')" = "${BATCH_MANIFEST_SHA}"
-  test "$(sha256sum "${DYNAMIC_REGISTRY}" | awk '{print $1}')" = "${dynamic_registry_sha}"
+  test "$(sha256sum "${dynamic_registry}" | awk '{print $1}')" = "${dynamic_registry_sha}"
   test "$(tr -d '\r\n' < "${STATE_ROOT}/production_commit.txt")" = "${SCIENTIFIC_COMMIT}"
   test ! -e "${STATE_ROOT}/BASELINE_INVALID"
 }
@@ -82,7 +85,7 @@ runner() {
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0817_REGISTRY_SHA}" \
       --extra-structural-rejection-registry "${extra_0818_registry}" \
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0818_REGISTRY_SHA}" \
-      --extra-structural-rejection-registry "${DYNAMIC_REGISTRY}" \
+      --extra-structural-rejection-registry "${dynamic_registry}" \
       --expect-extra-structural-rejection-registry-sha256 "${dynamic_registry_sha}" \
       --minimum-age-seconds 21600 \
       --minimum-observations 3 \
@@ -115,6 +118,7 @@ if [[ "${mode}" == --initialize ]]; then
   echo "PREFLIGHT_03_SCIENTIFIC_COMMIT=${SCIENTIFIC_COMMIT}"
   echo "PREFLIGHT_04_BATCH_MANIFEST_SHA256=${BATCH_MANIFEST_SHA}"
   echo "PREFLIGHT_05_DYNAMIC_REJECTION_REGISTRY_SHA256=${dynamic_registry_sha}"
+  echo "PREFLIGHT_05B_DYNAMIC_REJECTION_REGISTRY_TAG=${dynamic_registry_tag}"
   echo 'PREFLIGHT_06_INPUT=8 exact 0819 archives bound by path size mtime and SHA256'
   echo 'PREFLIGHT_07_ESTIMAND=unchanged first-960 structural prefix; no label estimand'
   echo 'PREFLIGHT_08_EXPECTED=7 valid commits plus 1 exact structural rejection if audit supports it'
@@ -138,7 +142,7 @@ if [[ "${mode}" == --initialize ]]; then
     fi
   fi
   nohup bash "${control_repo}/phase1/scripts/run_prospective_rejection_monitor_20260821.sh" \
-    --run "${control_repo}" "${control_commit}" "${dynamic_registry_sha}" \
+    --run "${control_repo}" "${control_commit}" "${dynamic_registry_sha}" "${dynamic_registry_tag}" \
     >> "${monitor_log}" 2>&1 </dev/null &
   monitor_pid=$!
   printf '%s\n' "${monitor_pid}" > "${pid_file}"

@@ -25,11 +25,11 @@ PRIOR_ARTIFACT=${PRIOR_ROOT}/artifact
 PRIOR_SUMMARY_SHA=ff49cee419a2cc90230fb0dad44058b9e61bb73fd90c38b77509b91b512c13be
 PRIOR_SNAPSHOT=88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8
 RECOVERY_LOG=${STATE_ROOT}/logs/structural_recovery_supervisor_20260821.log
-DIRECT_HANDOFF_LOG=${STATE_ROOT}/logs/direct_0819_batch_handoff_20260821.log
+PLANT_RECOVERY_LOG=${STATE_ROOT}/logs/plant_structural_recovery_supervisor_20260821.log
 SUPERVISOR_LOG=${STATE_ROOT}/logs/post_0819_wl_graph_escrow_supervisor_20260821.log
 SUPERVISOR_PID_FILE=${STATE_ROOT}/post_0819_wl_graph_escrow_supervisor_20260821.pid
-DIRECT_SUPERVISOR_LOG=${STATE_ROOT}/logs/post_0819_wl_graph_escrow_direct_supervisor_20260821.log
-DIRECT_SUPERVISOR_PID_FILE=${STATE_ROOT}/post_0819_wl_graph_escrow_direct_supervisor_20260821.pid
+PLANT_SUPERVISOR_LOG=${STATE_ROOT}/logs/post_0819_wl_graph_escrow_plant_supervisor_20260821.log
+PLANT_SUPERVISOR_PID_FILE=${STATE_ROOT}/post_0819_wl_graph_escrow_plant_supervisor_20260821.pid
 OUT_PARENT=/research/d7/spc/yzyang4/wl-graph-escrow-post0819
 MAX_WAIT_POLLS=361
 POLL_SECONDS=60
@@ -41,18 +41,18 @@ control_commit="${4:-}"
 upstream_start_line="${5:-}"
 if [[ ! "${upstream_pid}" =~ ^[0-9]+$ || -z "${control_repo}" \
   || ! "${control_commit}" =~ ^[0-9a-f]{40}$ ]]; then
-  echo 'usage: supervisor (--initialize|--run|--direct-initialize|--direct-run) UPSTREAM_PID CONTROL_REPO FULL_CONTROL_COMMIT [UPSTREAM_START_LINE]' >&2
+  echo 'usage: supervisor (--initialize|--run|--plant-initialize|--plant-run) UPSTREAM_PID CONTROL_REPO FULL_CONTROL_COMMIT [UPSTREAM_START_LINE]' >&2
   exit 64
 fi
 
-if [[ "${mode}" == --direct-initialize || "${mode}" == --direct-run ]]; then
-  upstream_log="${DIRECT_HANDOFF_LOG}"
-  upstream_identity=run_0819_direct_batch_handoff_20260821.sh
-  completion_marker=DIRECT_0819_BATCH_HANDOFF_VERIFIED
-  active_supervisor_log="${DIRECT_SUPERVISOR_LOG}"
-  active_supervisor_pid_file="${DIRECT_SUPERVISOR_PID_FILE}"
-  child_mode=--direct-run
-  upstream_label=direct_handoff
+if [[ "${mode}" == --plant-initialize || "${mode}" == --plant-run ]]; then
+  upstream_log="${PLANT_RECOVERY_LOG}"
+  upstream_identity=run_0819_plant_structural_recovery_supervisor_20260821.sh
+  completion_marker=PLANT_RECOVERY_AND_0819_BATCH_VERIFIED
+  active_supervisor_log="${PLANT_SUPERVISOR_LOG}"
+  active_supervisor_pid_file="${PLANT_SUPERVISOR_PID_FILE}"
+  child_mode=--plant-run
+  upstream_label=plant_recovery
 else
   upstream_log="${RECOVERY_LOG}"
   upstream_identity=run_0819_structural_recovery_supervisor_20260821.sh
@@ -80,7 +80,7 @@ verify_fixed_inputs() {
   test ! -e "${STATE_ROOT}/BASELINE_INVALID"
 }
 
-if [[ "${mode}" == --initialize || "${mode}" == --direct-initialize ]]; then
+if [[ "${mode}" == --initialize || "${mode}" == --plant-initialize ]]; then
   verify_fixed_inputs
   if ! kill -0 "${upstream_pid}" 2>/dev/null; then
     echo "${upstream_label} supervisor is not live at initialization" >&2
@@ -133,7 +133,7 @@ if [[ "${mode}" == --initialize || "${mode}" == --direct-initialize ]]; then
   exit 0
 fi
 
-if [[ ( "${mode}" != --run && "${mode}" != --direct-run ) \
+if [[ ( "${mode}" != --run && "${mode}" != --plant-run ) \
   || ! "${upstream_start_line}" =~ ^[0-9]+$ ]]; then
   echo 'invalid --run invocation' >&2
   exit 64

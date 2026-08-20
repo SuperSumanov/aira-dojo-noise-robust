@@ -1,6 +1,6 @@
 # WLGraph 0819 增量托管：预注册与预检
 
-日期：2026-08-21。状态：`PREREGISTERED_INTAKE_IN_PROGRESS`。
+日期：2026-08-21。状态：`PREREGISTERED_PLANT_RECOVERY_IN_PROGRESS`。
 
 ## 目的与边界
 
@@ -34,27 +34,32 @@ checkpoint 或打开 outcome。
 25--40 分钟，分别 hard timeout 2 小时。既有旧 escrow 为 5,643 endpoints / 223 runs / 1,473 pairs，旧
 artifact summary SHA256=`ff49cee419a2cc90230fb0dad44058b9e61bb73fd90c38b77509b91b512c13be`。
 
-## Intake 实际路径与直接接力补充预注册
+## Intake 实际路径、一次控制方案撤回与 Plant 恢复预注册
 
-冻结旧 intake 已正常提交 `ranzcr`、`multi-modal`、`alaska2` 与 `uw-madison`；其中此前只作为
-fail-closed 备用分支准备的 `multi-modal` 结构恢复并未触发。旧 monitor 的控制循环没有“固定批次全部
-resolved 后提前退出”的条件，即使八包全部持久化也会继续空轮询约四小时；原恢复监督器在“旧 monitor
-正常结束且无需恢复”分支又不会发出 WL 下游要求的 marker。该问题只属于控制流，不改变 archive、
-observer ledger、snapshot、scorer 或资格门。
+冻结旧 intake 依次正常提交 `ranzcr`、`multi-modal`、`alaska2`、`uw-madison` 与 `AI4Code`；其中此前
+只作为 fail-closed 备用分支准备的 `multi-modal` 结构恢复并未触发。此时 ledger 为 5 committed、
+3 pending、0 rejected。曾据此预备“八包正常完成后安全终止空轮询 monitor”的 direct handoff，但它在
+部署前已被新证据否定，未在远端启动：下一包 `plant-pathology-2021-fgvc8-8seeds.tar.gz` 的冻结 intake
+实际以 `journal must identify exactly one competition` fail-closed。直接接力脚本随即撤回，不得用于这批
+数据，也没有产生或读取任何效果结果。
 
-因此在读取任何效果 outcome 前固定直接接力：
+实际失败已绑定到：archive SHA256=
+`f583a74a3e828d45a22de11158d79ab5ed33c51dd58933b076b48dc191e7ed4d`、size=109,828,866、
+mtime_ns=1,787,238,813,000,000,000；旧 monitor log SHA256=
+`0327c63cf454ae800a03136b4d1a9c3a6ee7b50b8824daabfe03ed0126f3cf3f`，失败 attempt log SHA256=
+`e8aa85bbd981efd3b789787520bde22022b6273b0bf77e9601f31c158ef1b6e6`。在读取任何效果 outcome 前，
+改为固定 Plant 专用恢复：
 
-1. 对 SHA256=`d0c0ac148d4277cb11df4a13e5a23f29f57a043772d83423aa606ee1f996f017` 的精确八包
-   manifest 轮询 `--require-resolved`；等待阶段不解释 archive payload；
-2. 仅在八包全部已有 committed/rejected disposition 后，非阻塞取得同一个 `runner.lock`，锁内再次做
-   全源 archive SHA256 校验并绑定 `LATEST`；
-3. 锁内复核旧 monitor PID 的脚本与 commit 身份，只向该 PID 发送 `SIGTERM`，等待确认退出后释放锁；
-   不使用强杀，不停止任何 intake transaction；
-4. 对同一 snapshot 用固定门槛运行 structural gate 两次，JSON 必须逐字节相同；门返回
-   `COLLECTING` 是合法结构结果，不等于效果失败；
-5. 只有新的 `DIRECT_0819_BATCH_HANDOFF_VERIFIED ... outcomes_read=false` marker 可触发冻结 WL
-   producer、独立 verifier 和 append verifier。旧 recovery 路径保持兼容，但两条路径不得共同提升产物。
+1. 先证明该精确 Plant archive 仍是 observer ledger 中第一个 ready 且 unresolved 的对象；
+2. 用既有 credential-first 审计独立运行两次：只读 checkpoint journal，原始字节先做 credential-shape
+   扫描，永不读 `env_variables.json` 或 live event journal，不输出 competition 值、代码、stdout、分数；
+3. 只有至少一个 journal 的 competition cardinality 不等于 1 时，才能生成绑定该 archive 与审计 receipt
+   的单条 structural-rejection registry；审计/registry 两次必须逐字节一致；
+4. continuation 仍用冻结 scientific commit `90842c49...`，仅追加这一个不可变 rejection registry，
+   处理剩余 archive，并要求固定八包 manifest 全部 resolved 且源 archive 全量哈希一致；
+5. structural gate 对同一 `LATEST` 运行两次、逐字节一致；只有新的
+   `PLANT_RECOVERY_AND_0819_BATCH_VERIFIED ... outcomes_read=false` marker 才能触发 WL escrow。
 
-该补充仍为 0 GPU·h、0 API、0 base-LLM update；预计接力本身少于 5 分钟，WL producer 与 verifier
-维持各 10--15 分钟。任一 PID、锁、manifest/hash、ledger、`LATEST`、双跑一致性或 trace 门不符即
-fail-closed。
+该恢复仍为 0 GPU·h、0 API、0 base-LLM update；预计 5--15 分钟，hard wait 30 分钟。WL producer 与
+verifier 维持各 10--15 分钟。任一日志、archive、first-ready、凭据、审计、registry、batch、`LATEST`、
+双跑一致性或 trace 门不符即 fail-closed。

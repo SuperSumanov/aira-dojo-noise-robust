@@ -1,0 +1,70 @@
+{
+  "activation": {
+    "boundary_operator": "generation_started_at_utc > activated_at_utc",
+    "receipt_generated_by": "phase1.activate_wl_graph_extension",
+    "timestamp_source": "remote UTC clock at receipt creation",
+    "timestamp_written_by_hand": false
+  },
+  "arms": {
+    "step_only_lr": "position/order negative control",
+    "wl_graph_lr": "candidate-code WL graph supporting ablation",
+    "wl_graph_static_lr": "WL graph plus decision-time static supporting ablation",
+    "wl_graph_static_tfidf_lr": "fixed primary extension arm"
+  },
+  "bundle": {
+    "build_source_commit": "f67157ad35385019f11a79291a1df8cdf4311806",
+    "build_summary_sha256": "d8d1b57172e4b63f391a0ca93b1213c0f040adf9592637c38d057ad6576622f5",
+    "bundle_sha256": "df02cd1f5ba74be6b171ee9c377eeb58cf209a310a470b2ade671f2db03ee19e",
+    "independent_verification_sha256": "9918e6797b8f48fa9bb72e8cb740d1d5fab0ef81c0a961809fef40250b3e6b6e"
+  },
+  "cohort_run_target": 960,
+  "effect_analysis_lock": {
+    "claim_levels": {
+      "not_supported": "primary paired delta is nonpositive or its run-clustered interval includes zero",
+      "supportive_only": "primary paired delta is positive but either interval gate fails",
+      "strong_positive": "primary paired delta run-clustered 95% lower bound is above zero and primary-arm accuracy run-clustered 95% lower bound is above 0.5"
+    },
+    "cluster_inference": {
+      "bootstrap_draws": 20000,
+      "primary_cluster": "physical_run",
+      "random_seed": 20260820,
+      "secondary_cluster": "task",
+      "secondary_run_level_sign_test": true
+    },
+    "comparison": "wl_graph_static_tfidf_lr minus the already-active char_tfidf_lr on identical pairs",
+    "deduplication": "one canonical unordered sibling pair",
+    "eligibility": "finite non-tie external outcome under the unchanged first-960 analysis contract; no arm-specific complete-case deletion",
+    "minimum_strict_post_activation_support": {
+      "maximum_dominant_pair_task_share": 0.25,
+      "minimum_finite_decision_runs": 150,
+      "minimum_pairs": 1500,
+      "minimum_tasks": 15
+    },
+    "multiplicity": "one primary extension arm and comparator; other three arms are diagnostic only",
+    "primary_arm": "wl_graph_static_tfidf_lr",
+    "primary_comparator": {
+      "arm": "char_tfidf_lr",
+      "fixed_scorer_sha256": "c4b9713d5a994c90ac8e24674154ae78d39f7c7961473078c1c7d61ce1c15d23"
+    },
+    "primary_metric": "paired sibling accuracy difference",
+    "search_utility_inferred_from_accuracy": false
+  },
+  "protocol": "prospective-wl-graph-escrow-v1",
+  "scope": {
+    "pre_activation_runs": "outcome-unread support only; no method-effect claim",
+    "strict_post_activation_runs": "only eligible stratum for the fixed primary extension effect",
+    "temporal_0812": "pre-activation support only; label vault remains sealed",
+    "v11_frozen_or_extension": "never read by build, activation, or scoring"
+  },
+  "source_paths": [
+    "phase1/activate_wl_graph_extension.py",
+    "phase1/fixed_decision_scorer.py",
+    "phase1/prospective_wl_graph_escrow.py",
+    "phase1/verify_fixed_decision_scorer.py",
+    "phase1/verify_prospective_wl_graph_escrow.py",
+    "phase1/wl_code_graph_features.py",
+    "phase1/wl_graph_multiview_extension.py",
+    "phase1/wl_graph_multiview_protocol_v1_erratum.json",
+    "phase1/wl_graph_prediction_protocol_v1.json"
+  ]
+}

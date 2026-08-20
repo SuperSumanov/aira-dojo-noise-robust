@@ -1,0 +1,6 @@
+remote_path=/research/d7/spc/yzyang4/decision-semantic-mixture/c5d2cf7-baf6bdd-v2-exact.tar.gz
+bytes=10535
+sha256=d96e747fcbd12c8e200b06eda644401cec0e18a1033e8ad0f2afee56aa591ed3
+construction=sorted_tar_mtime_epoch_owner_group_zero_piped_to_gzip_n
+independent_deterministic_rebuild_cmp=PASS
+scientific_artifact_root_sha256_manifest=de87ff5a442c60c86aa9cbd5f35b1f00abc7fa24a662ea1a9b199e2ff1389ce8

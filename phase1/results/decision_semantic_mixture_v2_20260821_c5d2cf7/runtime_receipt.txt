@@ -1,0 +1,7 @@
+producer_1 wall=5:56.21 max_rss_kbytes=3565284 user_seconds=275.01 system_seconds=80.94
+producer_2 wall=4:45.34 max_rss_kbytes=3567940 user_seconds=274.95 system_seconds=8.73
+verifier_1 wall=4:30.58 max_rss_kbytes=3566792 user_seconds=256.29 system_seconds=13.09
+verifier_2 wall=4:32.33 max_rss_kbytes=3567912 user_seconds=257.59 system_seconds=13.29
+total_sequential_wall_seconds=1184.46
+total_sequential_wall_minutes=19.741
+maximum_rss_kbytes=3567940

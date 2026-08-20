@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CD. 2026-08-21 Semantic Mixture 点估计为正但稳定性门失败；路线正式关闭
+
+exact-config v2 在固定 5,240 train / 931 test 上完成 producer×2 与独立 full-refit verifier×2。fixed
+semantic mix 相对 pooled 的 merged micro 从 `0.5832438238453276` 升至 `0.6004296455424275`，delta=
+`+0.017185821697099923`；task macro 从 `0.5743054636618959` 升至 `0.5845981187534576`，delta=
+`+0.010292655091561631`。Draft/Improve micro delta 也分别为 `+0.019108280254777066` / `+0.01620745542949753`。
+
+但 task-clustered 95% CI=`[-0.020432976223223577,+0.04351597259972664]`、parent-clustered micro-delta
+CI=`[-0.003174687247780468,+0.037353489626701986]` 均跨零；23 个 supported tasks 仅 10 positive / 9 zero /
+4 negative，positive fraction=`0.43478260869565216`。六个固定效果门只过 4 个，正式状态为
+`DISCOVERY_NO_UNLOCK`。不得改 0.5 权重、任务、子集或单追 Draft/Improve，也不解锁 future arm。
+
+结果揭晓前已由 commit `9a5b163...` 冻结 parent-multiplicity 条件消歧：Draft/Improve 训练平均 pairs/parent 相差
+`18.253591360440673` 倍；只有 v2 unlock 才运行。当前触发失败，故状态为
+`NOT_RUN_PARENT_WEIGHT_DISAMBIGUATION_NOT_TRIGGERED`，不以 parent-equal 追救。APLOT、PaTaRM、correlated RM
+与 Themis 又关闭了 adaptive-margin、pairwise→pointwise、setwise context 和 code-RM scaling 的宽方法首创。
+
+semantic routing 当前路线关闭；这不削弱 exact-config 数据修复与可复现资产。论文中心仍是 Decision Corpus +
+Predictor Benchmark + first-960/closure。下一模型支持候选是 clean direct-decision Qwen scaling，但必须使用 0BW
+的 dev/frozen 补丁，并在精确矩阵和总 GPU·时获批前不提交。直接证据：
+
+- `phase1/results/decision_semantic_mixture_v2_20260821_c5d2cf7/README.md`；
+- `phase1/实验记录/2026-08-21/DecisionSemanticMixture_v2正式裁决.md`；
+- `phase1/实验记录/2026-08-21/DecisionSemanticMixture_parent权重机制消歧_条件预注册.md`；
+- `phase1/实验记录/2026-08-21/RewardObjective与ChoiceContext_防Scoop增补.md`。
+
 ## 0CC. 2026-08-21 Decision Semantic Mixture 通过 exact-config 支持门；只作非首创 discovery baseline
 
 v1 在任何模型拟合前因 pair 内 execution config 不一致而 INVALID。结果盲 v2 support gate 随后按事前固定的

@@ -1,0 +1,49 @@
+{
+  "all_pass": true,
+  "artifact_summary_sha256": "1de81c7116d3db14216fe50b8fcce7504d2a896798b63ea2c1bcb40c81ff049d",
+  "observed": {
+    "merged_task_macro_delta": 0.010292655091561631,
+    "passed_gates": 4,
+    "scientific_status": "DISCOVERY_NO_UNLOCK",
+    "task_ci95": [
+      -0.020432976223223577,
+      0.04351597259972664
+    ],
+    "total_gates": 6
+  },
+  "protocol": "independent-decision-semantic-mixture-discovery-v2-exact-config",
+  "reproducibility": {
+    "python": "3.11.15",
+    "sklearn": "1.6.1",
+    "verifier_source_sha256": "f252d90ea45622d8e20935c629a5cccdeb1a0cb62dcd27bed8d752ee6696f295"
+  },
+  "scope": {
+    "api_calls": 0,
+    "gpu_hours": 0,
+    "producer_imported": false,
+    "prospective_vault_read": false
+  },
+  "source_commit": "c5d2cf72a9e0e7aae2aa394532aca16279ad9047",
+  "status": "INDEPENDENT_DECISION_SEMANTIC_MIXTURE_V2_VERIFIED",
+  "verification": {
+    "card_inventory": true,
+    "effects": true,
+    "gates": true,
+    "heads": true,
+    "inputs": true,
+    "integrity": true,
+    "metrics": true,
+    "per_task": true,
+    "primary_inference": true,
+    "producer_source": true,
+    "protocol": true,
+    "representation": true,
+    "scope": true,
+    "secondary_parent_inference": true,
+    "senior_commit": true,
+    "source_commit": true,
+    "status": true,
+    "support_gate": true,
+    "task_consistency": true
+  }
+}

@@ -1,0 +1,10 @@
+POSTFLIGHT DOCUMENTATION CORRECTION
+
+preflight_13.txt line 06 says "atomic_new_outputs". The scientific producer actually refuses an existing output path,
+creates a fresh directory, and then writes per_task.csv, summary.json, and artifact_manifest.json sequentially; it does
+not stage and atomically rename the complete directory.
+
+This is an inaccurate preflight description, not a scientific-result failure: both producer directories are complete,
+their three files are byte-identical, both manifests verify, both independent full refits match every metric/gate, and
+the launcher would have stopped on any missing/failed step. The original preflight receipt remains unedited. Future
+implementations must either use staging plus rename or describe the fresh-directory fail-closed behavior accurately.

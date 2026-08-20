@@ -151,6 +151,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--train-cap", type=int, default=24_000)
     parser.add_argument("--test-cap", type=int, default=6_000)
+    parser.add_argument("--loto", type=str, default="")
     parser.add_argument("--output", default="")
     return parser.parse_args(argv)
 
@@ -162,6 +163,7 @@ def main(argv: list[str] | None = None) -> list[dict[str, Any]]:
         seed=args.seed,
         train_cap=args.train_cap,
         test_cap=args.test_cap,
+        loto=args.loto
     )
     if not train_pairs or not test_pairs:
         raise ValueError("Both train and test pair splits must be non-empty")

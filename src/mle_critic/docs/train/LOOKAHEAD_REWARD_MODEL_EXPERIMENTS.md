@@ -139,14 +139,14 @@ bradley_terry.py 的当前可用参数。
 
 传入 --loto TASK 后，当前 trainer 会忽略 pair 的 intask_split：
 
-~~~python
+```python
 training_pool = [p for p in pairs if p["task"] != TASK]
 testing_pool  = [p for p in pairs if p["task"] == TASK]
-~~~
+```
 
 因此其他任务的 train/test 记录都会进入训练池，目标任务的记录进入 eval pool。直接启动示例：
 
-~~~bash
+```bash
 accelerate launch \
   --config_file src/mle_critic/recipes/zero3.yaml \
   --num_processes 2 src/mle_critic/src/train/bradley_terry.py \
@@ -164,7 +164,7 @@ accelerate launch \
   --num-train-epochs 1 \
   --output-dir outputs/augmented_mle_critic/loto_nomad_seed7 \
   --seed 7
-~~~
+```
 
 ## 5. 模型输入和截断
 

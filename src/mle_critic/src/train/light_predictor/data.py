@@ -19,6 +19,7 @@ def read_pair_splits(
     seed: int = 7,
     train_cap: int | None = 24_000,
     test_cap: int | None = 6_000,
+    loto: str = ""
 ) -> tuple[list[Pair], list[Pair]]:
     """Read, deterministically shuffle, and cap the in-task train/test splits."""
     train: list[Pair] = []
@@ -29,14 +30,20 @@ def read_pair_splits(
                 continue
             pair = json.loads(line)
             split = pair.get("intask_split")
-            if split == "train":
-                train.append(pair)
-            elif split == "test":
-                test.append(pair)
+            if loto:
+                if pair.get("loto_fold") != loto:
+                    train.append(pair)
+                elif pair.get("loto_fold") == loto:
+                    test.append(pair)
             else:
-                raise ValueError(
-                    f"Unsupported intask_split={split!r} at {path}:{line_number}"
-                )
+                if split == "train":
+                    train.append(pair)
+                elif split == "test":
+                    test.append(pair)
+                else:
+                    raise ValueError(
+                        f"Unsupported intask_split={split!r} at {path}:{line_number}"
+                    )
 
     rng = random.Random(seed)
     rng.shuffle(train)

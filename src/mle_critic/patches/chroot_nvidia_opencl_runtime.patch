@@ -1,15 +1,20 @@
 diff --git a/src/dojo/core/interpreters/chroot_python.py b/src/dojo/core/interpreters/chroot_python.py
 --- a/src/dojo/core/interpreters/chroot_python.py
 +++ b/src/dojo/core/interpreters/chroot_python.py
-@@ -118,6 +118,7 @@ def _namespace_init(
+@@ -129,11 +129,12 @@ def _namespace_init(
                  ),
                  "CONDA_PKGS_DIRS": f"{workspace_text}/.conda/pkgs",
                  "CONDA_ENVS_PATH": f"{workspace_text}/.conda/envs",
 +                "OCL_ICD_VENDORS": f"{workspace_text}/.runtime/opencl",
+                 # Hugging Face tokenizers uses a Rayon thread pool. Agent code
+                 # commonly tokenizes at module scope and later starts PyTorch
+                 # DataLoader workers; disable that pool before tokenizers is
+                 # imported so a subsequent fork cannot inherit its threads.
+                 "TOKENIZERS_PARALLELISM": "false",
              }
          )
          if python_user_site not in sys.path:
-@@ -376,8 +377,13 @@ class ChrootPythonInterpreter(PythonInterpreter):
+@@ -469,6 +470,11 @@ class ChrootPythonInterpreter(PythonInterpreter):
                  ".local/share",
                  ".conda/pkgs",
                  ".conda/envs",
@@ -21,8 +26,6 @@ diff --git a/src/dojo/core/interpreters/chroot_python.py b/src/dojo/core/interpr
 +                encoding="utf-8",
 +            )
              chown_tree_no_follow(self.working_dir, self._uid_lease.uid, self._uid_lease.gid)
- 
-             # Start from a fresh interpreter process. This avoids forking the
 diff --git a/tests/test_chroot_python_interpreter.py b/tests/test_chroot_python_interpreter.py
 --- a/tests/test_chroot_python_interpreter.py
 +++ b/tests/test_chroot_python_interpreter.py

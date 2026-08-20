@@ -81,10 +81,14 @@ def load_checkpoint(checkpoint: str, *, base_model: str | None = None):
 def _make_encoder(cards_path: str, tokenizer, meta: dict[str, Any]):
     cards = {}
     tasks = {}
-    for line in open(cards_path):
-        card = json.loads(line)
-        cards[card["id"]] = card.get("code") or ""
-        tasks[card["id"]] = (card.get("task") or {}).get("name", "")
+    with open(cards_path) as f:
+        card_by_run_id = json.load(f)
+        for run_id, run_cards in card_by_run_id.items():
+            for card in run_cards:
+                card_id = card["id"]
+                cards[card_id] = card["code"]
+                tasks[card_id] = card["task"]["name"]
+    
     max_len = int(meta.get("max_len", 8192))
     head_frac = float(meta.get("head_frac", 0.25))
     task_cond = bool(meta.get("task_cond", True))
@@ -176,121 +180,6 @@ def evaluate_pairs(
     return sum(hits) / max(len(hits), 1)
 
 
-@torch.no_grad()
-def evaluate_budget_flips(
-    model,
-    path: str,
-    batch_size: int,
-    encode_card: EncodeCard,
-    pad_token_id: int,
-    valid_card_ids: Iterable[str],
-    *,
-    verbose: bool = True,
-) -> dict[str, dict[str, Any]]:
-    """Evaluate the same card pair under low/high budgets."""
-    valid_card_ids = set(valid_card_ids)
-    records = [json.loads(line) for line in open(path)]
-    records = [record for record in records if record["x"] in valid_card_ids and record["y"] in valid_card_ids]
-    if not records:
-        return {}
-
-    model.eval()
-    wanted = sorted(
-        {
-            (record[card_key], record[budget_key])
-            for record in records
-            for card_key in ("x", "y")
-            for budget_key in ("budget_lo", "budget_hi")
-        }
-    )
-    scores: dict[tuple[str, int], float] = {}
-    for start in range(0, len(wanted), batch_size):
-        chunk = wanted[start : start + batch_size]
-        values = _score_sequences(
-            model,
-            [encode_card(card_id, budget) for card_id, budget in chunk],
-            pad_token_id,
-        )
-        scores.update(zip(chunk, values))
-
-    aggregates: dict[str, dict[str, Any]] = {}
-    high_budgets = sorted({record["budget_hi"] for record in records})
-    for kind in ("flip", "control"):
-        for high_budget in high_budgets:
-            subset = [
-                record
-                for record in records
-                if record["kind"] == kind and record["budget_hi"] == high_budget
-            ]
-            if not subset:
-                continue
-            low_correct = high_correct = switched = switched_correctly = 0
-            per_task = collections.defaultdict(lambda: [0, 0])
-            for record in subset:
-                low_pick = (
-                    record["x"]
-                    if scores[(record["x"], record["budget_lo"])]
-                    > scores[(record["y"], record["budget_lo"])]
-                    else record["y"]
-                )
-                high_pick = (
-                    record["x"]
-                    if scores[(record["x"], record["budget_hi"])]
-                    > scores[(record["y"], record["budget_hi"])]
-                    else record["y"]
-                )
-                low_hit = low_pick == record["better_lo"]
-                high_hit = high_pick == record["better_hi"]
-                low_correct += low_hit
-                high_correct += high_hit
-                per_task[record["task"]][0] += low_hit + high_hit
-                per_task[record["task"]][1] += 2
-                if low_pick != high_pick:
-                    switched += 1
-                    switched_correctly += low_hit and high_hit
-
-            count = len(subset)
-            key = kind + str(high_budget)
-            aggregates[key] = {
-                "n": count,
-                "acc_lo": low_correct / count,
-                "acc_hi": high_correct / count,
-                "acc_mean": (low_correct + high_correct) / (2 * count),
-                "moved": switched / count,
-                "n_switch": switched,
-                "switch_acc": switched_correctly / switched if switched else None,
-            }
-            if verbose:
-                for task, (correct, total) in sorted(per_task.items()):
-                    print(
-                        f"[flip-task] {kind} K{high_budget} {task[:40]} "
-                        f"{correct}/{total} = {correct / max(total, 1):.3f}",
-                        flush=True,
-                    )
-                print(
-                    f"[flip-eval] {kind} K1->K{high_budget} n={count} "
-                    f"acc@lo={low_correct / count:.4f} acc@hi={high_correct / count:.4f} "
-                    f"mean={(low_correct + high_correct) / (2 * count):.4f} "
-                    f"model_switched={switched / count:.4f}"
-                    + (f" switch_acc={switched_correctly / switched:.3f} of {switched}" if switched else ""),
-                    flush=True,
-                )
-
-    for high_budget in high_budgets:
-        flip = aggregates.get("flip" + str(high_budget))
-        control = aggregates.get("control" + str(high_budget))
-        if flip and control and control["moved"] > 0:
-            selectivity = flip["moved"] / control["moved"]
-            flip["selectivity"] = selectivity
-            if verbose:
-                print(
-                    f"[flip-sel] K1->K{high_budget} switches on flip pairs vs controls: "
-                    f"{flip['n_switch']} vs {control['n_switch']} = {selectivity:.2f}x",
-                    flush=True,
-                )
-    return aggregates
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluate any Hugging Face reward-model checkpoint.")
     parser.add_argument("--checkpoint", required=True,
@@ -302,8 +191,6 @@ def main() -> None:
     parser.add_argument("--eval-cap", type=int, default=0, help="maximum pairs; 0 means all")
     parser.add_argument("--seed", type=int, default=7, help="pair shuffle seed")
     parser.add_argument("--batch-size", type=int, default=8)
-    parser.add_argument("--flip-eval", default="", help="optional budget flip/control JSONL")
-    parser.add_argument("--eval-len-control", type=float, default=0.0)
     parser.add_argument("--max-len", type=int, help="override rm_meta.json max_len")
     parser.add_argument("--head-frac", type=float, help="override rm_meta.json head_frac")
     parser.add_argument("--task-cond", action=argparse.BooleanOptionalAction, default=None,
@@ -359,23 +246,6 @@ def main() -> None:
         "accuracy": evaluate_pairs(model, pairs, args.batch_size, encode_card, tokenizer.pad_token_id),
     }
 
-    if args.eval_len_control > 0:
-        def close_pair(pair):
-            left = len(cards[pair["better"]])
-            right = len(cards[pair["worse"]])
-            width = max(left, right)
-            return width > 0 and abs(left - right) / width <= args.eval_len_control
-        controlled = [pair for pair in pairs if close_pair(pair)]
-        result["length_control"] = {
-            "n_pairs": len(controlled),
-            "accuracy": evaluate_pairs(model, controlled, args.batch_size, encode_card,
-                                        tokenizer.pad_token_id, breakdown=False),
-        }
-
-    if args.flip_eval:
-        result["budget_flips"] = evaluate_budget_flips(
-            model, args.flip_eval, args.batch_size, encode_card, tokenizer.pad_token_id, cards
-        )
     print(json.dumps(result, indent=2, sort_keys=True))
     if args.output:
         Path(args.output).parent.mkdir(parents=True, exist_ok=True)

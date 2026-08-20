@@ -103,7 +103,104 @@ bash src/mle_critic/scripts/preprocess/build_batch_cards_all.sh
 这一步不是把 Card 打平，也不是删除无 grade 节点；它只是把同一 batch 的 run 单独保存，供
 下一步在 batch 内计算 pair。
 
-## 3. 构建 batch value/reward pairs
+## 3. Value pair 构建流程概述
+
+入口：
+
+```text
+src/mle_critic/src/preprocess/build_bt_pairs/build_subtree_pairs.py
+```
+
+对于节点 `n`，在 Cards 中沿 `parent_id -> children` 遍历完整可见子树。默认 value 是：
+
+```text
+V(n) = n 自己和所有可见后代中的最佳有限 graded score
+```
+
+higher-is-better 任务取最大值，lower-is-better 任务取最小值。`NaN` 和 `Inf` 被当作缺失
+grade，不参与比较。当前 augmented corpus 中确实存在少量 `NaN` grade，因此不能直接把所有
+非 null label 都送入 `min/max`。
+
+一个节点只有在以下条件都满足时才能参加 value pair：
+
+- 节点自己有有限 grade；
+- budget 范围内至少有一个带有限 grade 的后代。
+
+无 grade 节点仍保留在树中，也计入路径距离、累计 runtime 和子树展开量；它只是不贡献
+grade。默认 `budget_steps=0`、`budget_secs=0` 表示使用完整子树。设置 budget 时，后代必须
+同时满足最大边数和路径累计执行时间限制。
+
+候选节点按任务分组，同一任务中所有 `V(n)` 不相等的节点都可以组成 pair，不要求同父，也
+不要求来自同一个 run。每个任务随机打乱后最多保留 `--cap` 条。raw 输出中的
+`intask_split` 固定为 `unassigned`，随后统一应用 frozen run split。
+
+主要输出字段：
+
+```json
+{
+  "task": "task-name",
+  "better": "按 V(n) 判断更好的 Card ID",
+  "worse": "按 V(n) 判断更差的 Card ID",
+  "agrees_with_quality": false,
+  "gap_raw": 0.12,
+  "subtree_sizes": [12, 7],
+  "steps_to_best": [3, 0],
+  "intask_split": "unassigned",
+  "src": "value"
+}
+```
+
+`subtree_sizes` 和 `steps_to_best` 均严格按 `[better, worse]` 排列。
+`agrees_with_quality` 比较的是节点当前 grade 排序与子树 value 排序；当前 grade 打平时为
+`null`。
+
+## 4. Decision pair 构建流程概述
+
+入口：
+
+```text
+src/mle_critic/src/preprocess/build_bt_pairs/build_decision_pairs.py
+```
+
+一个 decision set 是同一父节点的全部直接孩子。只有至少有两个孩子时才可能生成 pair。
+对于预算 `K`，先将某个孩子的全部后代按 journal `lineage.step` 排序，然后定义：
+
+```text
+V_K(child) = child 自己和最早 K 个可见后代中的最佳有限 graded score
+```
+
+这里 `K` 表示实际记录到的 descendant expansion 数量：
+
+- `K=0` 只看 child 自己；
+- 后代没有 grade 时仍消耗一次 expansion；
+- 少于 K 个可见后代时，这个 child 在该 K 下的 value 未定义；
+- child 和前 K 个后代全部没有有限 grade 时，value 也未定义。
+
+在每个 decision set 和每个 K 下，对所有 value 已定义且不相等的 sibling 组合生成 pair。
+指标方向直接来自 graded Card 的 `task.higher_is_better`，不再维护额外的
+`task_orientation.json`。
+
+Decision siblings 一定属于同一个 physical run，因此应用 run split 后不会出现跨界 pair；
+但仍统一经过 `build_bt_pairs/apply_runsplit.py`，保证所有 pair 文件只信任同一份 frozen split。
+
+主要输出字段：
+
+```json
+{
+  "task": "task-name",
+  "better": "better-child-id",
+  "worse": "worse-child-id",
+  "budget": 2,
+  "parent": "parent-card-id",
+  "set_size": 3,
+  "gap_raw": 0.08,
+  "intask_split": "unassigned",
+  "src": "decision"
+}
+```
+
+
+## 5. 构建 batch value/reward pairs
 
 脚本：
 
@@ -148,7 +245,7 @@ data/augmented_mle_critic/raw_journal/batch_value_pairs.jsonl
 grade，higher_is_better 决定取最大还是最小，NaN/Inf grade 不参与比较。输出中的
 loto_fold 保存任务名，gap_raw 保存两个节点的 value 差，初始 intask_split 为 unassigned。
 
-## 4. Gap filter
+## 6. Gap filter
 
 gap_filter.json 给每个任务一个最小可分辨 grade gap。过滤脚本按 pair 的 loto_fold 查表，
 丢弃：
@@ -170,7 +267,7 @@ PYTHONPATH=src/mle_critic python \
 脚本会校验每条记录的 loto_fold 和有限数值 gap_raw，缺少任务阈值时直接失败，不会默默
 放行。输出仍是 JSONL，字段不改。
 
-## 5. Frozen physical-run split
+## 7. Frozen physical-run split
 
 split 文件格式：
 
@@ -208,7 +305,7 @@ PYTHONPATH=src/mle_critic python \
 只有两端都在非 hold run 的 pair 才标为 train，两端都在 hold run 的 pair 才标为 test；
 跨边界 pair 丢弃。未知 Card、未分配 run、重复 Card ID 和非法 split 都直接报错。
 
-## 6. 当前推荐的完整顺序
+## 8. 当前推荐的完整顺序
 
 ```text
 raw journal
@@ -225,7 +322,7 @@ raw journal
 完整命令可直接参考 tmp/reminder_train。增量更新时不要把新 pair 直接 append 到旧 raw
 pair：新 Cards 可能改变祖先的 value，应该从当前 batch/cards 重建，再重新过滤和应用 split。
 
-## 7. 训练前长度检查和轻量基线
+## 9. 训练前长度检查和轻量基线
 
 训练前用 tokenizer 走 Bradley-Terry 的 CardEncoder -> PairDataset -> pair_collate 流程：
 
@@ -252,7 +349,7 @@ PYTHONPATH=. python -m src.mle_critic.src.train.light_predictor.train \
 它支持 tfidf_lr、static_lr、static_gbm 三个 sklearn pairwise predictor，并默认将 train/test
 分别限制为 24,000/6,000 条。
 
-## 8. 不再作为当前主线的内容
+## 10. 不再作为当前主线的内容
 
 旧文档中关于学生版 L1/L2 混合数据、train_l2_budget.sh、rescue、旧 minimal_gap.json、
 扁平 cards_current.jsonl 和在 pair builder 内随机切分的说明不适用于当前 augmented reward

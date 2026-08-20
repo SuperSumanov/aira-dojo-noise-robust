@@ -3,6 +3,28 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CB. 2026-08-21 TraceML 公开 paired 表不能通过 direct-sibling 外部资格门
+
+固定 TraceML revision `61faec6...17e96` 与 source commit `517c95c...2fe2` 的 outcome-free 审计完成。
+189/189 branch keys 可归并为官方声明的 13 个 physical runs；1,026 state / 837 action rows 无 identity/join
+缺失。但 837 条 path-edge rows 中只有 537 条 depth `+1`，其余 **300** 条跳过 1--4 层；去重后的 583 条
+path adjacency 因而不能唯一解释为 direct parent-child edge。按事前规则，mapping=
+`IDENTITY_OR_JOIN_AMBIGUOUS`、`canonical_direct_sibling_pairs=null`，score 与 overlap 阶段均未读，冻结 scorer
+不允许运行。
+
+即使违规放宽为 path adjacency，诊断出的 167 pairs 也只覆盖 3 tasks，dominant task=117/167=
+`0.7005988023952096`，且公开 `raw_code_path` 覆盖 0/643 original nodes；会独立失败固定的 4-task、≤0.50 与
+code-coverage 门。producer/verifier 各双跑逐字节一致，独立验证全部通过，聚焦测试 12/12；GPU/API/LLM
+update 均为 0。
+
+这只支持窄主张：固定公开 TraceML paired tables 不能实例化我方 physical-run-clean direct same-parent sibling
+协议，我方 249 runs / 1,665 canonical pairs / 26 tasks 的结构 benchmark 不被其公开表直接替代。它不证明 gated
+MLE-Traj-v1 raw tree 无 sibling，也不恢复任何“首个轨迹/树数据集”宽主张。当前 primary、first-960/closure、
+WL extension 与 outcome vault 均不变。直接证据：
+
+- `phase1/results/traceml_external_structure_eligibility_20260821_517c95c/README.md`；
+- `phase1/实验记录/2026-08-21/TraceML外部结构资格审计_v1_裁决.md`。
+
 ## 0CA. 2026-08-21 0819 安全摄取闭合；结构支持增强但 WL 严格未来样本仍为零
 
 固定 0819 八包最终为 7 committed / 1 rejected。Plant 包不是按文件名猜任务后勉强 salvage：credential-first

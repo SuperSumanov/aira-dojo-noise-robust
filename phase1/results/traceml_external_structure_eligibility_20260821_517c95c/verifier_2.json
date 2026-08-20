@@ -1,0 +1,46 @@
+{
+  "inputs": {
+    "action_sha256": "d23a471ab1dcfbda16836827a763f829c9de12071b32bfcc88f69d4411a8d2e4",
+    "producer_result_sha256": "907fe014d864d45acd13c6919ead90ae0518526dd42bdc460252b5554fcb0f59",
+    "producer_source_sha256": "e7524654648d6d706c24c0df24f7df30d79f8fcc5cf2489b65689abccb4d914b",
+    "state_sha256": "b7fb37b040258bbb958c5ba1bc78952729fb69daabc75797974ef2cf19b74e02"
+  },
+  "observed": {
+    "branch_keys": 189,
+    "deduplicated_path_adjacency_edges": 583,
+    "external_replication_gate_passed": false,
+    "mapping_passed": false,
+    "physical_runs": 13,
+    "provisional_path_adjacency_pairs": 167,
+    "skipped_depth_adjacencies": 300
+  },
+  "protocol": "independent-traceml-external-structure-eligibility-v1",
+  "reproducibility": {
+    "python_version": "3.11.15",
+    "randomness_used": false,
+    "verifier_source_sha256": "f6a1e57c746477ce7b9a029d5009b8197ed8106e6a46627e28e65c704a2dac8d"
+  },
+  "revision": "61faec615b179f186dbe9c82ee59d17e14817e96",
+  "scope": {
+    "code_content_read": false,
+    "identity_values_emitted": false,
+    "producer_imported": false,
+    "prospective_outcomes_read": false,
+    "score_columns_read": false
+  },
+  "source_commit": "517c95c87edceb9d5841696982a34638db9d2fe2",
+  "status": "INDEPENDENT_TRACEML_EXTERNAL_STRUCTURE_AUDIT_VERIFIED",
+  "verification": {
+    "external_replication_gate": true,
+    "identity": true,
+    "inputs": true,
+    "mapping_gate": true,
+    "producer_source_sha256": true,
+    "protocol": true,
+    "provisional_path_graph": true,
+    "randomness_unused": true,
+    "revision": true,
+    "scope": true,
+    "source_commit": true
+  }
+}

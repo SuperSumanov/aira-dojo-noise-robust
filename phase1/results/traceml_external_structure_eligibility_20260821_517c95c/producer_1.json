@@ -1,0 +1,119 @@
+{
+  "external_replication_gate": {
+    "checks": {
+      "complete_unique_code_join": false,
+      "mapping_passed": false,
+      "maximum_dominant_pair_task_share": false,
+      "minimum_finite_non_tie_pairs": false,
+      "minimum_pair_tasks": false,
+      "minimum_physical_runs": true,
+      "zero_overlap_with_local_corpora": false
+    },
+    "frozen_scorer_allowed": false,
+    "overlap_audit_not_run": true,
+    "passed": false,
+    "s1_score_support_not_run": true,
+    "status": "NOT_ELIGIBLE_S0_FAIL_CLOSED",
+    "thresholds": {
+      "complete_unique_code_join_required": true,
+      "maximum_dominant_pair_task_share": 0.5,
+      "minimum_finite_non_tie_pairs": 150,
+      "minimum_pair_tasks": 4,
+      "minimum_physical_runs": 8,
+      "zero_overlap_required": true
+    }
+  },
+  "identity": {
+    "action_branch_keys": 189,
+    "action_branch_keys_matching_fixed_regex": 189,
+    "branch_keys": 189,
+    "branch_keys_matching_fixed_regex": 189,
+    "branches_per_physical_run": {
+      "maximum": 80,
+      "median": 6,
+      "minimum": 3
+    },
+    "duplicate_action_rows": 0,
+    "duplicate_state_keys": 0,
+    "key_comp_cardinality_not_one": 0,
+    "missing_depth_rows": 0,
+    "missing_orig_version_rows": 0,
+    "missing_version_rows": 0,
+    "mlevolve_action_rows": 837,
+    "mlevolve_state_rows": 1026,
+    "original_node_metadata_conflicts": 0,
+    "original_nodes": 643,
+    "original_nodes_with_raw_code_path": 0,
+    "physical_runs": 13,
+    "raw_code_path_conflicts": 0,
+    "tasks": 7
+  },
+  "inputs": {
+    "action_sha256": "d23a471ab1dcfbda16836827a763f829c9de12071b32bfcc88f69d4411a8d2e4",
+    "state_sha256": "b7fb37b040258bbb958c5ba1bc78952729fb69daabc75797974ef2cf19b74e02"
+  },
+  "mapping_gate": {
+    "checks": {
+      "action_endpoint_identity_consistent": true,
+      "action_endpoint_join_complete": true,
+      "action_identity_unique": true,
+      "all_action_branch_keys_match": true,
+      "all_physical_run_graphs_acyclic": true,
+      "all_state_branch_keys_match": true,
+      "branch_numbers_unique_within_run": true,
+      "direct_depth_increment_exactly_one": false,
+      "each_child_has_at_most_one_parent": true,
+      "one_task_per_branch": true,
+      "original_node_metadata_consistent_across_branches": true,
+      "physical_run_count_matches_official_13": true,
+      "state_identity_unique": true,
+      "state_original_node_complete": true
+    },
+    "passed": false,
+    "status": "IDENTITY_OR_JOIN_AMBIGUOUS"
+  },
+  "protocol": "traceml-external-structure-eligibility-v1",
+  "provisional_path_graph": {
+    "action_edge_rows_joined": 837,
+    "action_endpoint_identity_mismatches": 0,
+    "action_endpoint_join_failures": 0,
+    "all_physical_run_graphs_acyclic": true,
+    "canonical_direct_sibling_pairs": null,
+    "children_with_multiple_parents": 0,
+    "deduplicated_path_adjacency_edges": 583,
+    "duplicate_branch_edge_rows": 254,
+    "edge_depth_delta_counts": {
+      "1": 537,
+      "2": 178,
+      "3": 99,
+      "4": 22,
+      "5": 1
+    },
+    "provisional_dominant_pair_task_share": 0.7005988023952096,
+    "provisional_pair_task_counts": {
+      "google-quest-challenge": 117,
+      "learning-agency-lab-automated-essay-scoring-2": 46,
+      "ranzcr-clip-catheter-line-classification": 4
+    },
+    "provisional_path_adjacency_pairs": 167,
+    "provisional_sibling_children": 174,
+    "provisional_sibling_parents": 67
+  },
+  "reproducibility": {
+    "pyarrow_version": "21.0.0",
+    "python_version": "3.11.15",
+    "randomness_used": false,
+    "source_commit": "517c95c87edceb9d5841696982a34638db9d2fe2",
+    "source_sha256": "e7524654648d6d706c24c0df24f7df30d79f8fcc5cf2489b65689abccb4d914b"
+  },
+  "revision": "61faec615b179f186dbe9c82ee59d17e14817e96",
+  "scope": {
+    "code_content_read": false,
+    "credential_shaped_identity_values": 0,
+    "finite_non_tie_outcomes_counted": false,
+    "identity_values_emitted": false,
+    "prospective_outcomes_read": false,
+    "raw_code_values_emitted": false,
+    "score_columns_read": false
+  }
+}

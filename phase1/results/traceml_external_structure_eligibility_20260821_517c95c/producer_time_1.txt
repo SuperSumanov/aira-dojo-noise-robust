@@ -1,0 +1,23 @@
+	Command being timed: "/research/d7/spc/yzyang4/venvs/exp/bin/python /research/d7/spc/yzyang4/worktrees/traceml-audit-517c95c-nosmudge2/phase1/traceml_external_structure_audit.py --state /research/d7/spc/yzyang4/external/traceml-61faec615b179f186dbe9c82ee59d17e14817e96/data/paired/state.parquet --expect-state-sha256 b7fb37b040258bbb958c5ba1bc78952729fb69daabc75797974ef2cf19b74e02 --action /research/d7/spc/yzyang4/external/traceml-61faec615b179f186dbe9c82ee59d17e14817e96/data/paired/action.parquet --expect-action-sha256 d23a471ab1dcfbda16836827a763f829c9de12071b32bfcc88f69d4411a8d2e4 --revision 61faec615b179f186dbe9c82ee59d17e14817e96 --source-commit 517c95c87edceb9d5841696982a34638db9d2fe2 --output /research/d7/spc/yzyang4/traceml-external-structure-audit/517c95c-61faec6-v2/producer_1.json"
+	User time (seconds): 2.38
+	System time (seconds): 2.66
+	Percent of CPU this job got: 365%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.38
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 186712
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 3
+	Minor (reclaiming a frame) page faults: 22495
+	Voluntary context switches: 1258
+	Involuntary context switches: 181132
+	Swaps: 0
+	File system inputs: 344
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

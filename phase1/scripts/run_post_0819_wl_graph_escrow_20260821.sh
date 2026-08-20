@@ -25,21 +25,42 @@ PRIOR_ARTIFACT=${PRIOR_ROOT}/artifact
 PRIOR_SUMMARY_SHA=ff49cee419a2cc90230fb0dad44058b9e61bb73fd90c38b77509b91b512c13be
 PRIOR_SNAPSHOT=88cb79191b23738c1813a131abe2d5dbba48c31cb8c8095d047902afa29170c8
 RECOVERY_LOG=${STATE_ROOT}/logs/structural_recovery_supervisor_20260821.log
+DIRECT_HANDOFF_LOG=${STATE_ROOT}/logs/direct_0819_batch_handoff_20260821.log
 SUPERVISOR_LOG=${STATE_ROOT}/logs/post_0819_wl_graph_escrow_supervisor_20260821.log
 SUPERVISOR_PID_FILE=${STATE_ROOT}/post_0819_wl_graph_escrow_supervisor_20260821.pid
+DIRECT_SUPERVISOR_LOG=${STATE_ROOT}/logs/post_0819_wl_graph_escrow_direct_supervisor_20260821.log
+DIRECT_SUPERVISOR_PID_FILE=${STATE_ROOT}/post_0819_wl_graph_escrow_direct_supervisor_20260821.pid
 OUT_PARENT=/research/d7/spc/yzyang4/wl-graph-escrow-post0819
 MAX_WAIT_POLLS=361
 POLL_SECONDS=60
 
 mode="${1:-}"
-recovery_pid="${2:-}"
+upstream_pid="${2:-}"
 control_repo="${3:-}"
 control_commit="${4:-}"
-recovery_start_line="${5:-}"
-if [[ ! "${recovery_pid}" =~ ^[0-9]+$ || -z "${control_repo}" \
+upstream_start_line="${5:-}"
+if [[ ! "${upstream_pid}" =~ ^[0-9]+$ || -z "${control_repo}" \
   || ! "${control_commit}" =~ ^[0-9a-f]{40}$ ]]; then
-  echo 'usage: supervisor (--initialize|--run) RECOVERY_PID CONTROL_REPO FULL_CONTROL_COMMIT [RECOVERY_START_LINE]' >&2
+  echo 'usage: supervisor (--initialize|--run|--direct-initialize|--direct-run) UPSTREAM_PID CONTROL_REPO FULL_CONTROL_COMMIT [UPSTREAM_START_LINE]' >&2
   exit 64
+fi
+
+if [[ "${mode}" == --direct-initialize || "${mode}" == --direct-run ]]; then
+  upstream_log="${DIRECT_HANDOFF_LOG}"
+  upstream_identity=run_0819_direct_batch_handoff_20260821.sh
+  completion_marker=DIRECT_0819_BATCH_HANDOFF_VERIFIED
+  active_supervisor_log="${DIRECT_SUPERVISOR_LOG}"
+  active_supervisor_pid_file="${DIRECT_SUPERVISOR_PID_FILE}"
+  child_mode=--direct-run
+  upstream_label=direct_handoff
+else
+  upstream_log="${RECOVERY_LOG}"
+  upstream_identity=run_0819_structural_recovery_supervisor_20260821.sh
+  completion_marker=STRUCTURAL_RECOVERY_AND_0819_BATCH_VERIFIED
+  active_supervisor_log="${SUPERVISOR_LOG}"
+  active_supervisor_pid_file="${SUPERVISOR_PID_FILE}"
+  child_mode=--run
+  upstream_label=recovery
 fi
 
 verify_fixed_inputs() {
@@ -59,19 +80,19 @@ verify_fixed_inputs() {
   test ! -e "${STATE_ROOT}/BASELINE_INVALID"
 }
 
-if [[ "${mode}" == --initialize ]]; then
+if [[ "${mode}" == --initialize || "${mode}" == --direct-initialize ]]; then
   verify_fixed_inputs
-  if ! kill -0 "${recovery_pid}" 2>/dev/null; then
-    echo 'recovery supervisor is not live at initialization' >&2
+  if ! kill -0 "${upstream_pid}" 2>/dev/null; then
+    echo "${upstream_label} supervisor is not live at initialization" >&2
     exit 2
   fi
-  recovery_cmdline="$(tr '\0' ' ' < "/proc/${recovery_pid}/cmdline" 2>/dev/null || true)"
-  if [[ "${recovery_cmdline}" != *run_0819_structural_recovery_supervisor_20260821.sh* ]]; then
-    echo 'recovery supervisor PID identity mismatch' >&2
+  upstream_cmdline="$(tr '\0' ' ' < "/proc/${upstream_pid}/cmdline" 2>/dev/null || true)"
+  if [[ "${upstream_cmdline}" != *"${upstream_identity}"* ]]; then
+    echo "${upstream_label} supervisor PID identity mismatch" >&2
     exit 2
   fi
   mkdir -p "${STATE_ROOT}/logs" "${OUT_PARENT}"
-  recovery_start_line="$(wc -l < "${RECOVERY_LOG}")"
+  upstream_start_line="$(wc -l < "${upstream_log}")"
 
   echo 'PREFLIGHT_01_DIRECTION=current decision-corpus mainline; frozen WL escrow append only'
   echo "PREFLIGHT_02_CONTROL_COMMIT=${control_commit}"
@@ -90,12 +111,12 @@ if [[ "${mode}" == --initialize ]]; then
   echo 'PREFLIGHT_15_ESTIMATE=producer 10-15m; verifier 10-15m; total 25-40m after intake closes'
   echo 'PREFLIGHT_16_FAILURE=any nonzero rc/hash/schema/subset/trace mismatch stops before promotion'
 
-  if [[ -s "${SUPERVISOR_PID_FILE}" ]]; then
-    old_pid="$(cat "${SUPERVISOR_PID_FILE}")"
+  if [[ -s "${active_supervisor_pid_file}" ]]; then
+    old_pid="$(cat "${active_supervisor_pid_file}")"
     if [[ "${old_pid}" =~ ^[0-9]+$ ]] && kill -0 "${old_pid}" 2>/dev/null; then
       old_cmdline="$(tr '\0' ' ' < "/proc/${old_pid}/cmdline" 2>/dev/null || true)"
       if [[ "${old_cmdline}" == *run_post_0819_wl_graph_escrow_20260821.sh* ]]; then
-        printf 'ALREADY_RUNNING pid=%s log=%s\n' "${old_pid}" "${SUPERVISOR_LOG}"
+        printf 'ALREADY_RUNNING pid=%s log=%s\n' "${old_pid}" "${active_supervisor_log}"
         exit 0
       fi
       echo 'post-0819 supervisor PID file points to a different live process' >&2
@@ -103,47 +124,48 @@ if [[ "${mode}" == --initialize ]]; then
     fi
   fi
   nohup bash "${control_repo}/phase1/scripts/run_post_0819_wl_graph_escrow_20260821.sh" \
-    --run "${recovery_pid}" "${control_repo}" "${control_commit}" "${recovery_start_line}" \
-    >> "${SUPERVISOR_LOG}" 2>&1 </dev/null &
+    "${child_mode}" "${upstream_pid}" "${control_repo}" "${control_commit}" "${upstream_start_line}" \
+    >> "${active_supervisor_log}" 2>&1 </dev/null &
   supervisor_pid=$!
-  printf '%s\n' "${supervisor_pid}" > "${SUPERVISOR_PID_FILE}"
+  printf '%s\n' "${supervisor_pid}" > "${active_supervisor_pid_file}"
   printf 'POST_0819_WL_ESCROW_SUPERVISOR_STARTED pid=%s log=%s\n' \
-    "${supervisor_pid}" "${SUPERVISOR_LOG}"
+    "${supervisor_pid}" "${active_supervisor_log}"
   exit 0
 fi
 
-if [[ "${mode}" != --run || ! "${recovery_start_line}" =~ ^[0-9]+$ ]]; then
+if [[ ( "${mode}" != --run && "${mode}" != --direct-run ) \
+  || ! "${upstream_start_line}" =~ ^[0-9]+$ ]]; then
   echo 'invalid --run invocation' >&2
   exit 64
 fi
 
 verify_fixed_inputs
-printf '%s waiting_for_recovery_pid=%s start_line=%s outcomes_read=false\n' \
-  "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "${recovery_pid}" "${recovery_start_line}"
-recovery_exited=false
+printf '%s waiting_for_%s_pid=%s start_line=%s outcomes_read=false\n' \
+  "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "${upstream_label}" "${upstream_pid}" "${upstream_start_line}"
+upstream_exited=false
 for ((poll=0; poll<MAX_WAIT_POLLS; poll++)); do
-  if ! kill -0 "${recovery_pid}" 2>/dev/null; then
-    recovery_exited=true
+  if ! kill -0 "${upstream_pid}" 2>/dev/null; then
+    upstream_exited=true
     break
   fi
-  recovery_cmdline="$(tr '\0' ' ' < "/proc/${recovery_pid}/cmdline" 2>/dev/null || true)"
-  if [[ "${recovery_cmdline}" != *run_0819_structural_recovery_supervisor_20260821.sh* ]]; then
-    echo 'recovery supervisor PID identity changed while waiting' >&2
+  upstream_cmdline="$(tr '\0' ' ' < "/proc/${upstream_pid}/cmdline" 2>/dev/null || true)"
+  if [[ "${upstream_cmdline}" != *"${upstream_identity}"* ]]; then
+    echo "${upstream_label} supervisor PID identity changed while waiting" >&2
     exit 2
   fi
   sleep "${POLL_SECONDS}"
 done
-if [[ "${recovery_exited}" != true ]]; then
-  echo 'recovery supervisor did not exit within wait window' >&2
+if [[ "${upstream_exited}" != true ]]; then
+  echo "${upstream_label} supervisor did not exit within wait window" >&2
   exit 4
 fi
 
-recovery_segment="$(mktemp)"
-trap 'rm -f "${recovery_segment}"' EXIT
-tail -n "+$((recovery_start_line + 1))" "${RECOVERY_LOG}" > "${recovery_segment}"
-completion_line="$(grep 'STRUCTURAL_RECOVERY_AND_0819_BATCH_VERIFIED snapshot=' "${recovery_segment}" | tail -n 1 || true)"
+upstream_segment="$(mktemp)"
+trap 'rm -f "${upstream_segment}"' EXIT
+tail -n "+$((upstream_start_line + 1))" "${upstream_log}" > "${upstream_segment}"
+completion_line="$(grep "${completion_marker} snapshot=" "${upstream_segment}" | tail -n 1 || true)"
 if [[ ! "${completion_line}" =~ snapshot=([0-9a-f]{64})[[:space:]]outcomes_read=false$ ]]; then
-  echo 'recovery supervisor lacks a fresh verified completion marker' >&2
+  echo "${upstream_label} supervisor lacks a fresh verified completion marker" >&2
   exit 2
 fi
 snapshot_sha="${BASH_REMATCH[1]}"
@@ -159,7 +181,7 @@ staging="${out_root}.staging.$$"
 test ! -e "${out_root}"
 test ! -e "${staging}"
 mkdir -p "${staging}"
-trap 'rm -f "${recovery_segment}"; if [[ -d "${staging:-}" ]]; then echo "FAILED_STAGING_PRESERVED=${staging}"; fi' EXIT
+trap 'rm -f "${upstream_segment}"; if [[ -d "${staging:-}" ]]; then echo "FAILED_STAGING_PRESERVED=${staging}"; fi' EXIT
 
 producer_args=(
   --repo-root "${SCORER_REPO}"
@@ -253,6 +275,6 @@ cmp "${staging}/append_verification_a.json" "${staging}/append_verification_b.js
   find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS
 )
 mv "${staging}" "${out_root}"
-trap 'rm -f "${recovery_segment}"' EXIT
+trap 'rm -f "${upstream_segment}"' EXIT
 printf '%s POST_0819_WL_ESCROW_VERIFIED snapshot=%s artifact=%s outcomes_read=false effect_metrics=0\n' \
   "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "${snapshot_sha}" "${out_root}"

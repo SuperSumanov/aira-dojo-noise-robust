@@ -30,12 +30,17 @@ pairwise judge、graph predictor、rank target、selective execution 都不能�
 
 这仍不是“无人做过”的证明，正文不得写 first/only；应把差异做成 comparison table 和 machine-readable audit card。
 
-## 3. 当前最强的正面概念主张
+## 3. 可用的实证组织命题（不申理论 novelty）
 
 最值得完善的不是“我们训练了最强 critic”，而是：
 
 > **Benchmark pair construction defines the deployment estimand.** 在全局/合成 preference pair 分布上测得的
 > reward-model accuracy，不能未经 transport 审计就解释为 agent 在线 sibling selection 能力。
+
+后续核查发现，[What Does Preference Learning Recover from Pairwise Comparison Data?](https://arxiv.org/abs/2602.10286)
+已经以 CPRD、comparison distribution、margin 和 connectivity 形式给出这一原则的一般理论；
+[Reward Learning from Best-of-N Preference Data](https://arxiv.org/abs/2605.30619) 进一步把候选集/base distribution
+与任意 target test distribution 联系起来。因此上句只能作为组织我方 MLE 实证的原则，不能申概念首创。
 
 现有直接证据已经互补：FOREAGENT 官方 parquet 的 `gap<1e-2` share 为 0.096400，我方真实 sibling b0 为
 0.501335；限制同名任务后差异仍在；官方 solution 组合复用中位数为 49，而我方单位绑定 physical run/parent；
@@ -43,9 +48,9 @@ pairwise judge、graph predictor、rank target、selective execution 都不能�
 采样影响”这一统计常识，而在真实 MLE-agent 数据上把 deployment distribution、泄漏、gap/noise、成本和时间外
 确认做成同一个可执行 benchmark contract。
 
-这是一条正面 D&B 主张：即使所有 predictor 都没有巨大绝对提升，资源仍能揭示哪些公开 headline 不对应线上
-决策，并给后续 critic 提供正确训练/测试单位。但最终必须依赖 first-960 + closure 的 outcome-blind confirmation，
-不能用当前支持前缀提前宣称。
+这仍是一条可正面书写的 D&B **领域实证**：即使所有 predictor 都没有巨大绝对提升，资源仍能揭示哪些公开
+headline 不对应 MLE 线上决策，并给后续 critic 提供正确训练/测试单位；理论归属必须明确引用 CPRD 工作。
+最终仍依赖 first-960 + closure 的 outcome-blind confirmation，不能用当前支持前缀提前宣称。
 
 ## 4. 对实验路线的约束
 

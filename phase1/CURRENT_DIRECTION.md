@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0BY. 2026-08-21 pair-construction 的泛化理论 novelty 关闭；改为 CPRD 的 MLE 实证化
+
+进一步一手核查发现，ICML 2026 的 *What Does Preference Learning Recover from Pairwise Comparison Data?*
+已经从 triplet distribution 定义 conditional preference distribution（CPRD）与 comparison distribution，证明
+BT 目标在后者上的投影含义，并把有限样本可学性归结为 margin 与 connectivity。其 2026-05 follow-up
+*Reward Learning from Best-of-N Preference Data* 又把候选集大小、base distribution、margin/connectivity tradeoff
+和任意 target test distribution 明确联系起来。RewardBench 2 也已实证比较 benchmark accuracy 与下游 BoN/PPO
+的相关性及 on/off-policy 依赖。
+
+因此 0BX 的 **benchmark construction determines the deployment estimand** 只能作为论文组织原则和待复核实证命题，
+不能申理论/概念首创；“首次指出 pair 分布影响 RM”“首次连接 benchmark 与部署”“首次研究 comparison graph”均关闭。
+当前可守的正面贡献进一步收窄为：把 CPRD/margin/connectivity 的一般理论落到真实 MLE-agent physical-run sibling
+上，并同时发布连续 pristine execution score、source missing registry、run-clean split、gap/regrade、endpoint reuse、
+query/init/execution cost 和结果盲 first-960+closure。PairGraphIntervention 作为早期领域实证但 universal-inflation
+确认门失败，必须诚实报告；不得因理论先例改写为已确认正效果。
+
+正向机会不是再造一个 rank loss，而是用该理论组织现有资产：自然 sibling 是 deployment comparison distribution，
+FOREAGENT/global pair 是不同的 comparison distribution；gap 对应 margin，pair graph/reuse 对应 connectivity，未来
+first-960 检验同一冻结 scorer 在时间外 deployment distribution 上是否可 transport。当前 primary、WL 单列
+extension、outcome vault 与停止门均不变，不新增 arm。直接记录：
+
+- `phase1/实验记录/2026-08-21/CPRD_PairDistribution_防Scoop与主张二次收紧.md`。
+
 ## 0BX. 2026-08-21 agent RM 与 AutoML ranking 直接先例补齐；核心改写为 deployment-estimand benchmark
 
 新增一手核查覆盖 Plan-RewardBench、AgentRewardBench、ExeVRM/ExeVR-53K 与 AutoML Ranking Trick。通用
@@ -13,8 +36,8 @@ trajectory preference benchmark、专家标注的 web-agent evaluator benchmark�
 这些工作仍未等价覆盖：MLE program-search physical run 中自然发生的同-parent **labeled sibling fragment**、
 连续 pristine Kaggle score、run-clean 隔离、gap/noise/cost/missingness，以及结果盲时间外确认。论文中心进一步
 收窄为 **benchmark construction determines the deployment estimand**：全局/合成 preference pair 上的准确率，
-不能自动外推到 agent 当时面对的局部 sibling 分布。FOREAGENT 与我方已锁定的 gap、pair graph 与复用差异是
-这条主张的直接实证，不再把“训练出最强 RM”当唯一成败标准。
+不能自动外推到 agent 当时面对的局部 sibling 分布。0BY 已确认这不是新的泛化理论主张；FOREAGENT 与我方已
+锁定的 gap、pair graph 与复用差异只能作为 MLE 领域实证，不再把“训练出最强 RM”当唯一成败标准。
 
 当前 first-960 primary、WL 单列 extension、960-run + accrual closure 和 outcome vault 均不变。NDCG/MRR、
 parent-macro top-1 等只作为 choice-fragment secondary reporting，不申方法 novelty；Ranking Trick 若要成为新

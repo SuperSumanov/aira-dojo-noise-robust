@@ -17,9 +17,9 @@ from typing import Any, Sequence
 from phase1 import source_decision_answerability as upstream
 
 
-PROTOCOL = "source-choice-benchmark-materialization-v1"
-GROUP_SCHEMA = "source-choice-group-v1"
-LABEL_SCHEMA = "source-choice-label-vault-v1"
+PROTOCOL = "source-choice-benchmark-materialization-v2"
+GROUP_SCHEMA = "source-choice-group-v2"
+LABEL_SCHEMA = "source-choice-label-vault-v2"
 ROLES = ("train", "frozen", "extension")
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 SECRET = re.compile(
@@ -126,6 +126,10 @@ def protocol_json(path: Path) -> dict[str, Any]:
         raise VerificationError("protocol expected block absent")
     if value.get("candidate_order") != "ascending_sha256_of_raw_candidate_id":
         raise VerificationError("candidate order mismatch")
+    if value.get("choice_context") != "task_run_parent_hash_plus_candidate_code_only":
+        raise VerificationError("choice context mismatch")
+    if value.get("parent_code_included") is not False or value.get("parent_card_required") is not False:
+        raise VerificationError("parent context was reintroduced")
     if value.get("frozen_label_policy") != "separate_opaque_read_only_vault":
         raise VerificationError("vault policy mismatch")
     return value
@@ -496,26 +500,14 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
     expected_labels: dict[str, list[dict[str, Any]]] = {"frozen": [], "extension": []}
     expected_manifest: list[dict[str, Any]] = []
     provenance = collections.Counter()
+    parent_card_available_by_role = collections.Counter()
     candidate_hashes: set[str] = set()
     for row in sorted(selected, key=lambda value: (value["role"], value["task"], value["parent_sha256"])):
         role = row["role"]
         parent = row["raw_parent"]
-        parent_card = cards.get(parent)
-        if parent_card is None:
-            raise VerificationError("parent card absent")
-        task, run, lineage = card_parts(parent_card, parent)
-        children = lineage.get("children_ids")
-        if (
-            task != row["task"]
-            or run != row["run_id"]
-            or not isinstance(children, list)
-            or len(children) != len(set(children))
-            or set(children) != row["source_nodes"]
-        ):
-            raise VerificationError("parent card context/lineage mismatch")
-        parent_code = parent_card.get("code")
-        if not isinstance(parent_code, str) or not parent_code:
-            raise VerificationError("parent code absent")
+        task = row["task"]
+        run = row["run_id"]
+        parent_card_available_by_role[role] += int(parent in cards)
         candidates = [
             expected_card_candidate(cards, child, task, run, parent)
             if child in cards
@@ -542,8 +534,6 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
             "task": task,
             "run_id_sha256": row["run_id_sha256"],
             "parent_id_sha256": row["parent_sha256"],
-            "parent_code": parent_code,
-            "parent_code_sha256": digest_bytes(parent_code.encode("utf-8")),
             "source_size": row["source_children"],
             "candidates": candidates,
         }
@@ -567,7 +557,6 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
                 "task": task,
                 "run_id_sha256": row["run_id_sha256"],
                 "parent_id_sha256": row["parent_sha256"],
-                "parent_code_sha256": group["parent_code_sha256"],
                 "source_size": row["source_children"],
                 "candidate_id_sha256": [value["candidate_id_sha256"] for value in candidates],
                 "candidate_code_sha256": [value["code_sha256"] for value in candidates],
@@ -619,6 +608,13 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
         "variable_arity_groups": sum(role_variable.values()),
         "variable_arity_groups_by_role": role_variable,
         "candidate_provenance": dict(sorted(provenance.items())),
+        "choice_context": protocol["choice_context"],
+        "parent_code_included": False,
+        "parent_card_required": False,
+        "parent_card_available_groups": sum(parent_card_available_by_role.values()),
+        "parent_card_available_groups_by_role": {
+            role: parent_card_available_by_role[role] for role in ROLES
+        },
         "journal_inventory": inventory,
         "missing_candidates_materialized": len(recovered),
         "train_frozen_parent_overlap": 0,
@@ -668,7 +664,7 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
     ):
         raise VerificationError("materialized exact count contract failed")
     return {
-        "protocol": "independent-source-choice-benchmark-materialization-verifier-v1",
+        "protocol": "independent-source-choice-benchmark-materialization-verifier-v2",
         "status": "INDEPENDENT_SOURCE_CHOICE_BENCHMARK_MATERIALIZATION_VERIFIED",
         "source_commit": arguments.source_commit,
         "producer_imported": "phase1.source_choice_benchmark_materializer" in sys.modules,

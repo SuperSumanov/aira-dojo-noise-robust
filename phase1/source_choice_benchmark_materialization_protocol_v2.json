@@ -1,0 +1,84 @@
+{
+  "protocol": "source-choice-benchmark-materialization-v2",
+  "inputs": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "answerability_module_sha256": "9825f1da2788000ce1cf2ad03f395d293735b20f2f2ef187e57772b4b17e7eba",
+    "answerability_protocol_sha256": "651d491de451838d6ebd60bd95c3ec2e39fe5ad16a4b15fa2fedd9556057005f",
+    "per_parent_sha256": "75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03",
+    "identity_registry_sha256": "b4261a4f042e92acca4a53630efe3e33ea1f2847d1a8148e9c8f18c35b447cd2",
+    "status_edges_sha256": "dda9f121dc32a1ef309992b0bec61934864e35ec337385bb2f5c0c548b258a3d",
+    "status_registry_sha256": "bfb9870d83c50ef2d06bf2d374fc9f9213f41665f4cebeab7ab31837bcfde0d2",
+    "construction_sha256": "846da509373ee0d6bbb072f7fcc9f21dbcbda0ad5ced0355dabffa5e61975f67",
+    "answerability_summary_sha256": "048f18cc2769df4c9cc4836c491c2917b2e8b051a847da20bdce454dd6592326",
+    "support_summary_sha256": "5ab474bd061f7f8845a19d1cefd5023fc9e2a0e5a1b45d4d93842fb62759c303"
+  },
+  "expected": {
+    "cards": 16012,
+    "parents": 3252,
+    "status_winners": 3001,
+    "materializable_groups": 3000,
+    "candidate_slots": 8027,
+    "unique_candidate_identity_hashes": 8027,
+    "tasks": 23,
+    "variable_arity_groups": 1521,
+    "status_registry_rows": 996,
+    "construction_rows": 721,
+    "eligible_construction_rows": 657,
+    "groups_by_role": {
+      "train": 2109,
+      "frozen": 778,
+      "extension": 113
+    },
+    "candidate_slots_by_role": {
+      "train": 5739,
+      "frozen": 2041,
+      "extension": 247
+    },
+    "variable_arity_groups_by_role": {
+      "train": 1095,
+      "frozen": 405,
+      "extension": 21
+    },
+    "construction_rows_by_role": {
+      "train": 544,
+      "frozen": 166,
+      "extension": 11
+    },
+    "eligible_construction_rows_by_role": {
+      "train": 497,
+      "frozen": 150,
+      "extension": 10
+    }
+  },
+  "journal_root_aliases": [
+    "ours",
+    "senior_older",
+    "senior_0806",
+    "senior_0807",
+    "senior_0808",
+    "senior_0809",
+    "senior_0810",
+    "senior_0811"
+  ],
+  "choice_context": "task_run_parent_hash_plus_candidate_code_only",
+  "parent_code_included": false,
+  "parent_card_required": false,
+  "candidate_order": "ascending_sha256_of_raw_candidate_id",
+  "frozen_label_policy": "separate_opaque_read_only_vault",
+  "allow_result_rescue": false,
+  "scope": {
+    "candidate_code_bytes_used": true,
+    "parent_code_used_or_emitted": false,
+    "raw_journal_bytes_read_after_credential_gate": true,
+    "pair_orientation_used_for_winner_label": true,
+    "pair_gap_used": false,
+    "numeric_grade_used": false,
+    "old_hurdle_model_result_used": false,
+    "prospective_outcome_used": false,
+    "first960_used": false,
+    "frozen_label_used_for_model_or_scoring": false,
+    "gpu": 0,
+    "api_calls": 0,
+    "base_llm_updated": false
+  }
+}

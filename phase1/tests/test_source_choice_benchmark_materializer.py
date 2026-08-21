@@ -43,10 +43,11 @@ def install_journal(root: Path, blob: bytes) -> Path:
 def test_checked_in_protocol_is_strictly_valid():
     root = Path(__file__).resolve().parents[2]
     protocol = materializer.load_protocol(
-        root / "phase1" / "source_choice_benchmark_materialization_protocol_v1.json"
+        root / "phase1" / "source_choice_benchmark_materialization_protocol_v2.json"
     )
     assert protocol["expected"]["materializable_groups"] == 3000
     assert protocol["scope"] == materializer.EXPECTED_SCOPE
+    assert protocol["parent_card_required"] is False
 
 
 def test_collects_only_needed_credential_safe_journal(tmp_path: Path):
@@ -152,8 +153,6 @@ def evaluator_fixture(tmp_path: Path, leak_winner: bool = False):
         "task": "task-a",
         "run_id_sha256": materializer.hash_identity("run-a"),
         "parent_id_sha256": materializer.hash_identity("parent-a"),
-        "parent_code": "print('parent')",
-        "parent_code_sha256": materializer.sha256_bytes(b"print('parent')"),
         "source_size": 2,
         "candidates": [
             {"candidate_id_sha256": value} for value in sorted((candidate_a, candidate_b))

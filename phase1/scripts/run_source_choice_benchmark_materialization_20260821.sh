@@ -15,10 +15,10 @@ repo=/research/d7/spc/yzyang4/aira-dojo
 worktree=/research/d7/spc/yzyang4/worktrees/source_choice_benchmark_${short}_nosmudge
 result_root=/research/d7/spc/yzyang4/source-choice-benchmark-materialization
 vault_root=/research/d7/spc/yzyang4/source-choice-benchmark-vault
-final=${result_root}/${short}-v1
-vault_final=${vault_root}/${short}-v1
-staging=${result_root}/.${short}-v1.tmp.$$
-vault_staging=${vault_root}/.${short}-v1.tmp.$$
+final=${result_root}/${short}-v2
+vault_final=${vault_root}/${short}-v2
+staging=${result_root}/.${short}-v2.tmp.$$
+vault_staging=${vault_root}/.${short}-v2.tmp.$$
 python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
 per_parent=/research/d7/spc/yzyang4/raw-choice-audit-v11-6610618-a2/producer/per_parent.csv
 identity=/research/d7/spc/yzyang4/source-identity-recovery-v11-3faf001-a1/producer/per_parent.jsonl
@@ -64,7 +64,7 @@ git -C "${worktree}" lfs pull --include=phase1/cards_current_v11.jsonl --exclude
 git -C "${worktree}" status --porcelain --untracked-files=all > "${staging}/worktree_status_before.txt"
 [[ ! -s ${staging}/worktree_status_before.txt ]]
 
-protocol=${worktree}/phase1/source_choice_benchmark_materialization_protocol_v1.json
+protocol=${worktree}/phase1/source_choice_benchmark_materialization_protocol_v2.json
 answer_protocol=${worktree}/phase1/source_decision_answerability_protocol_v1.json
 cards=${worktree}/phase1/cards_current_v11.jsonl
 pair_train=${worktree}/phase1/v11_decision/decision_train_v11_b0.jsonl
@@ -110,8 +110,8 @@ PREFLIGHT_06_ORDER=ascending candidate raw-ID SHA independent of winner outcome 
 PREFLIGHT_07_CODE=full UTF-8 code bytes nonempty exact SHA no truncation normalization or dedup merging
 PREFLIGHT_08_JOURNAL=credential-first and only status-bound needed journal SHAs parsed
 PREFLIGHT_09_ISOLATION=train label public; frozen and extension inputs label-free with separate opaque vault
-PREFLIGHT_10_REPRO=producer x2 independent verifier x2 exact commit byte comparison and manifests
-PREFLIGHT_11_INTEGRITY=parent task run lineage candidate code winner and train-frozen overlaps fail closed
+PREFLIGHT_10_CONTEXT=candidate-only task run parent-hash context; parent code unused/unemitted and parent card not required
+PREFLIGHT_11_REPRO=producer x2 independent verifier x2 exact commit byte comparison and manifests
 PREFLIGHT_12_RESOURCES=CPU only GPU 0 API 0 base-LLM update 0
 PREFLIGHT_13_SCOPE=artifact readiness only; no complete-v11 predictor utility search novelty or prospective claim
 EOF

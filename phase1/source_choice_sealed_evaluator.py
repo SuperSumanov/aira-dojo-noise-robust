@@ -15,8 +15,8 @@ from pathlib import Path
 from typing import Any
 
 
-GROUP_SCHEMA = "source-choice-group-v1"
-LABEL_SCHEMA = "source-choice-label-vault-v1"
+GROUP_SCHEMA = "source-choice-group-v2"
+LABEL_SCHEMA = "source-choice-label-vault-v2"
 PREDICTION_SCHEMA = "source-choice-selection-v1"
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -160,7 +160,7 @@ def evaluate(arguments: argparse.Namespace) -> dict[str, Any]:
     if not math.isfinite(task_macro) or any(not math.isfinite(value) for value in run_accuracies):
         raise EvaluationError("non-finite aggregate")
     return {
-        "protocol": "source-choice-sealed-evaluator-v1",
+        "protocol": "source-choice-sealed-evaluator-v2",
         "status": "SOURCE_CHOICE_SEALED_EVALUATION_COMPLETE",
         "input_sha256": expected_input,
         "prediction_sha256": sha256(prediction_path),

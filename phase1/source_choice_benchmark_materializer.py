@@ -17,9 +17,9 @@ from typing import Any, Iterable, Sequence
 from phase1 import source_decision_answerability as answerability
 
 
-PROTOCOL = "source-choice-benchmark-materialization-v1"
-SCHEMA = "source-choice-group-v1"
-VAULT_SCHEMA = "source-choice-label-vault-v1"
+PROTOCOL = "source-choice-benchmark-materialization-v2"
+SCHEMA = "source-choice-group-v2"
+VAULT_SCHEMA = "source-choice-label-vault-v2"
 ROLES = ("train", "frozen", "extension")
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 CREDENTIAL = re.compile(
@@ -33,7 +33,8 @@ CONSTRUCTION_FIELDS = (
     "role", "parent", "task", "run_id", "source_size", "eligible", "exclusion_reasons",
 )
 EXPECTED_SCOPE = {
-    "code_bytes_read": True,
+    "candidate_code_bytes_used": True,
+    "parent_code_used_or_emitted": False,
     "raw_journal_bytes_read_after_credential_gate": True,
     "pair_orientation_used_for_winner_label": True,
     "pair_gap_used": False,
@@ -175,6 +176,10 @@ def load_protocol(path: Path) -> dict[str, Any]:
         raise MaterializationError("invalid journal aliases")
     if value.get("candidate_order") != "ascending_sha256_of_raw_candidate_id":
         raise MaterializationError("candidate order contract drifted")
+    if value.get("choice_context") != "task_run_parent_hash_plus_candidate_code_only":
+        raise MaterializationError("choice context contract drifted")
+    if value.get("parent_code_included") is not False or value.get("parent_card_required") is not False:
+        raise MaterializationError("parent context was reintroduced")
     if value.get("frozen_label_policy") != "separate_opaque_read_only_vault":
         raise MaterializationError("frozen label policy drifted")
     if value.get("allow_result_rescue") is not False or value.get("scope") != EXPECTED_SCOPE:
@@ -599,24 +604,14 @@ def build(arguments: argparse.Namespace) -> dict[str, Any]:
     vaults: dict[str, list[dict[str, Any]]] = {"frozen": [], "extension": []}
     manifest_rows: list[dict[str, Any]] = []
     provenance_counts: collections.Counter[str] = collections.Counter()
+    parent_card_available_by_role: collections.Counter[str] = collections.Counter()
     seen_group_ids: set[str] = set()
     all_candidate_ids: set[str] = set()
 
     for row in sorted(selected, key=lambda item: (item["role"], item["task"], item["parent_sha256"])):
         role = row["role"]
         raw_parent = row["raw_parent"]
-        parent_card = cards.get(raw_parent)
-        if parent_card is None:
-            raise MaterializationError("selected parent card absent")
-        parent_task, parent_run, parent_lineage = card_context(parent_card, raw_parent)
-        if parent_task != row["task"] or parent_run != row["run_id"]:
-            raise MaterializationError("selected parent card context mismatch")
-        children = parent_lineage.get("children_ids")
-        if not isinstance(children, list) or len(children) != len(set(children)) or set(children) != row["source_nodes"]:
-            raise MaterializationError("selected parent lineage children mismatch")
-        parent_code = parent_card.get("code")
-        if not isinstance(parent_code, str) or not parent_code:
-            raise MaterializationError("selected parent code absent")
+        parent_card_available_by_role[role] += int(raw_parent in cards)
 
         candidates: list[dict[str, Any]] = []
         raw_by_hash: dict[str, str] = {}
@@ -653,8 +648,6 @@ def build(arguments: argparse.Namespace) -> dict[str, Any]:
             "task": row["task"],
             "run_id_sha256": row["run_id_sha256"],
             "parent_id_sha256": row["parent_sha256"],
-            "parent_code": parent_code,
-            "parent_code_sha256": sha256_bytes(parent_code.encode("utf-8")),
             "source_size": row["source_children"],
             "candidates": candidates,
         }
@@ -678,7 +671,6 @@ def build(arguments: argparse.Namespace) -> dict[str, Any]:
                 "task": row["task"],
                 "run_id_sha256": row["run_id_sha256"],
                 "parent_id_sha256": row["parent_sha256"],
-                "parent_code_sha256": group["parent_code_sha256"],
                 "source_size": row["source_children"],
                 "candidate_id_sha256": [item["candidate_id_sha256"] for item in candidates],
                 "candidate_code_sha256": [item["code_sha256"] for item in candidates],
@@ -741,6 +733,13 @@ def build(arguments: argparse.Namespace) -> dict[str, Any]:
         "variable_arity_groups": sum(variable_by_role.values()),
         "variable_arity_groups_by_role": variable_by_role,
         "candidate_provenance": dict(sorted(provenance_counts.items())),
+        "choice_context": protocol["choice_context"],
+        "parent_code_included": False,
+        "parent_card_required": False,
+        "parent_card_available_groups": sum(parent_card_available_by_role.values()),
+        "parent_card_available_groups_by_role": {
+            role: parent_card_available_by_role[role] for role in ROLES
+        },
         "journal_inventory": journal_inventory,
         "missing_candidates_materialized": len(recovered),
         "train_frozen_parent_overlap": 0,

@@ -1,0 +1,34 @@
+{
+  "base_llm_updated": false,
+  "credential_content_hits_before_lfs_staging": 0,
+  "credential_filename_hits_before_lfs_staging": 0,
+  "files": {
+    "cluster_manifest.jsonl": {
+      "bytes": 1116480,
+      "rows": 3000,
+      "sha256": "a8f328a3972708e52126157774204647698d2f8b00cc5f7ad06fd8b1d38b4035"
+    },
+    "extension_model.jsonl": {
+      "bytes": 4668637,
+      "rows": 113,
+      "sha256": "206974ea5efd0ca3d65b3d96d9fae725d033ec66213a8dc60f9771edf5c5b050"
+    },
+    "frozen_model.jsonl": {
+      "bytes": 33559335,
+      "rows": 778,
+      "sha256": "62ffced17d045c979a29e972c16a7bfe53d7f47467a6d9728305b4b7dee84005"
+    },
+    "train_model.jsonl": {
+      "bytes": 106476372,
+      "rows": 2109,
+      "sha256": "9d0ea764de59b3d0e9f2723d2663ecfb23e80c968078f0ed32425f35d31d77e3"
+    }
+  },
+  "frozen_or_extension_label_vault_included": false,
+  "gpu": 0,
+  "historical_lfs_fsck_note": "partial checkout lacks unrelated historical LFS objects; all four new local media objects were separately SHA-256 and size verified",
+  "lfs_pointer_oids_match_formal_sha256": true,
+  "protocol": "source-choice-decision-view-lfs-publish-v1",
+  "source_control_commit": "fd5c3ee0fdfffe399088e2e3a4394598264239a6",
+  "source_formal_status": "SOURCE_CHOICE_DECISION_VIEW_READY"
+}

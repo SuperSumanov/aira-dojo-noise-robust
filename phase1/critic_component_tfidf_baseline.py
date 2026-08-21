@@ -319,12 +319,13 @@ def analyze(
     all_task_rows = []
     all_metrics = {}
     anti_symmetry = 0.0
+    pair_weights = np.asarray(model.coef_, dtype=np.float64).reshape(-1)
     for split in ("dev", "test"):
         rows = pools[split]
         better, worse = matrix_indices(rows, positions)
         difference = matrix[better] - matrix[worse]
-        margins = np.asarray(model.decision_function(difference), dtype=np.float64)
-        reverse = np.asarray(model.decision_function(-difference), dtype=np.float64)
+        margins = np.asarray(difference.dot(pair_weights), dtype=np.float64).reshape(-1)
+        reverse = np.asarray((-difference).dot(pair_weights), dtype=np.float64).reshape(-1)
         anti_symmetry = max(anti_symmetry, float(np.max(np.abs(margins + reverse))))
         if margins.shape != (len(rows),) or not np.isfinite(margins).all():
             raise BaselineError("invalid margins")
@@ -364,6 +365,7 @@ def analyze(
             "code_prefix_chars": 20000,
             "vectorizer": {"analyzer": "char_wb", "ngram_range": [3, 5], "max_features": 30000, "min_df": 3, "sublinear_tf": True, "dtype": "float64"},
             "logistic_regression": {"C": 0.5, "max_iter": 1500, "solver": "lbfgs", "random_state": 0, "n_iter": int(model.n_iter_[0])},
+            "pair_margin_uses_classifier_intercept": False,
             "train_endpoints": len(train_ids),
             "all_endpoints": len(card_ids),
             "vocabulary_size": len(vocabulary),

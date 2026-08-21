@@ -1,0 +1,24 @@
+{
+  "expected_card_rows": 16012,
+  "expected_parent_rows": 3252,
+  "expected_role_parent_counts": {
+    "extension": 114,
+    "frozen": 845,
+    "train": 2293
+  },
+  "input_cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+  "input_per_parent_sha256": "75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03",
+  "maximum_dominant_frozen_parent_share": 0.25,
+  "minimum_frozen_parents_per_cell": 10,
+  "minimum_frozen_runs_per_cell": 3,
+  "minimum_parent_join_coverage": 0.9,
+  "minimum_supported_task_op_cells": 16,
+  "minimum_supported_tasks": 8,
+  "minimum_train_parents_per_cell": 20,
+  "minimum_train_runs_per_cell": 5,
+  "protocol": "operator-conditioned-retention-support-v1",
+  "target_ops": [
+    "Debug",
+    "Improve"
+  ]
+}

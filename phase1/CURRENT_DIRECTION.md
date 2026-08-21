@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CR. 2026-08-21 真实 batch 身份恢复 S0 已结果前冻结，尚未运行
+
+为判断学长 augmented scaling 是否能接受真正的 experiment-closed train-only 复核，新增一个 outcome-blind S0：
+从学长固定 commit 的 21 个 source 日期目录中只流式读取 tar header path，不提取、不读取任何 member payload，
+把匿名 run ID 精确连接到原 producer 使用的 `(source-date, batch-directory)`。旧 pair 文件没有 batch path，过去的
+same-family/date 只能支持 `LIKELY`；本轮禁止继续用它或 config 代理。
+
+S0 必须同时满足所有 run 唯一命中、所有 pair 同真实 batch、archive/path 错误为 0、原始 test 不参与角色分配，
+并由固定 task-stratified 20% batch dev 规则获得 dev≥400、≥8 tasks、dominant≤0.35、≥6 个 task 各有 20 pairs、
+train≥2,000 与 train/dev experiment 零交集，才允许另立 train-only CPU 效果预注册。否则按身份或支持失败关闭，
+不得修改来源目录、batch 定义、hash domain、切分比例或阈值追救。当前未读取 grade/orientation/code/frozen-test
+效果，GPU/API/model fit=0。直接协议：
+
+- `phase1/实验记录/2026-08-21/SeniorAugmented真实Batch身份恢复_S0预注册.md`。
+
 ## 0CQ. 2026-08-21 TraceML human-fork S1 identity 门失败；该外部路线关闭
 
 在不改变 0CP AIRA strict-future 主线的前提下，新增一个外部 extension：只用 TraceML 固定 revision 的 human

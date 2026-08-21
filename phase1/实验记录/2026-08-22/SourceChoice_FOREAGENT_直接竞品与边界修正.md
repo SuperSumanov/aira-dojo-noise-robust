@@ -42,7 +42,14 @@ cross-trajectory 定义合并“不同 run session **或不同 task**”，不�
 4. 过滤 `submission_exists=false`、`valid_submission=false`、缺 score 与近似同分组合；论文附录同时说明 syntax/
    runtime crash 被过滤。
 
-因此 18,438 是派生 comparison rows，不是 18,438 个独立 agent 决策或独立 execution units。官方
+因此 18,438 是派生 comparison rows，不是 18,438 个独立 agent 决策或独立 execution units。对 Hugging Face
+自动转换 Parquet（8,456,690 bytes，SHA-256=
+`79363b7ef0b6154061f18e81f6c6fdf380e71ae3f1d7b9a262cc79acb08f0b5f`）的只读结构复核得到：18,361 rows、
+18,361 unique canonical pairs、895 unique solution paths、26 connected components；solution degree median=49、
+mean=`41.03016759776536`、max=49。26 个 component 中 7 个为完整 clique，按各 component 节点数计算的潜在边比
+release 多 425 条。该复核不读取 solution code，只读取 `paths/best_index` 两列。
+
+官方
 `grade/util/report.py` 同时输出 record-level micro mean 与 per-task mean；当前 release 未在该实现中提供按候选身份、
 trajectory/run 聚类的区间或检验。Hugging Face viewer 当前只暴露一个 `train` split，并显示 18,361 rows，与论文
 18,438 的口径有 77-row 差异；本审计没有下载 158 GB release 去判断差异来源，因此只记录、不解释。这里不据此
@@ -55,6 +62,7 @@ trajectory/run 聚类的区间或检验。Hugging Face viewer 当前只暴露一
 - https://github.com/zjunlp/predict-before-execute
 - https://raw.githubusercontent.com/zjunlp/predict-before-execute/main/prepare_bench_subset/group.py
 - https://huggingface.co/datasets/zjunlp/PredictBeforeExecute
+- https://huggingface.co/datasets/zjunlp/PredictBeforeExecute/resolve/refs%2Fconvert%2Fparquet/default/train/0000.parquet
 
 ## 与当前资产的精确差异
 

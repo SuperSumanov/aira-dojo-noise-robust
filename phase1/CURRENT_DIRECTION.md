@@ -15,7 +15,9 @@ Data-centric Solution Preference，发布 26 tasks / 895 solutions / 18,438 pair
 `itertools.combinations` 枚举所有组合，并过滤 invalid submission/缺 score；论文也说明 syntax/runtime crash 被过滤。
 同一 solution 因而反复进入多个 pair，18,438 不是独立决策数。其 within/cross-trajectory 分析把“不同 run 或不同
 task”合为 cross；公开 report 实现给出 record/task point means，未实现 candidate/run-cluster uncertainty。该差异不
-否定 FOREAGENT，而是把我们的可防守贡献收紧为：真实 parent/source choice set、candidate/run/task dependency、
+否定 FOREAGENT。其公开 Parquet 的只读结构复核进一步得到 18,361 unique pairs 只由 895 solution paths 构成，
+solution pair-degree median/max=49/49。该证据把我们的可防守贡献收紧为：真实 parent/source choice set、
+candidate/run/task dependency、
 execution-cliff/unknown-preserving 标签、run-clean + temporal frozen、query/init 成本和前瞻 utility bridge。
 
 当前固定 TF-IDF OOF 继续运行，因为它问的是上述真实 source unit 上的 task-LOTO/run-OOF 廉价信号；其结果仍须按

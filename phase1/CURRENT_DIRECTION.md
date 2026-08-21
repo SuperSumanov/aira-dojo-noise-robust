@@ -3,6 +3,49 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CH. 2026-08-21 G0 输入与运行包静态全过；当前账号无 Pro6000 QoS，未提交
+
+component-split critic G0 的工程歧义已在任何 GPU 结果前消除。旧 confirmatory launcher 虽写了 dev-only
+契约，却没有把预注册的固定 10 optimizer steps 传给 Trainer；补丁
+`0002-Allow-fixed-step-critic-budget-calibration.patch` 已加入 fail-closed `max_steps`、cosine 与 warmup 入口；
+`0003-Record-critic-wall-clock-receipts.patch` 再加入不改变优化的五事件 timing callback。在 senior
+`baf6bdd...` + 三补丁 detached overlay 上形成干净 commit `51c7f48...`，聚焦测试 15/15。同时把此前隐含在
+固定源码默认值中的 `head_frac=0.25`、`eval_on_start=false` 显式冻结；结果出来后不得改。
+
+Qwen3-1.7B-Base 已锁定 revision `ea980cb0a6c2ae4b936e82123acc929f1cec04c1`。CPU-only 独立预检重新哈希
+train/dev/Cards 与模型 10 个文件共 3,452,692,285 bytes，离线 config/tokenizer 加载和训练源码哈希全部通过；
+状态为 `G0_STATIC_ASSETS_PASS`。固定运行包要求 2 张可见 Pro6000、96GB 级显存、bf16 ZeRO-3、16384 context、
+seed 6、有效 pair batch 128、10 steps、仅 step 10 一次完整 dev eval；验收器要求唯一 `checkpoint-10`、唯一
+dev eval、`launch/step1/step10/dev/end` 单调墙钟事件、有限指标、两张不同 GPU UUID、完整遥测和零 test-path
+痕迹。它不接受 test 参数，也不自提交。
+
+当前用户 `yzyang4` 只有 account/QoS=`gpu/gpu`。2026-08-21T01:28:59Z 对 `zliang_gpu` 显式与默认
+`sbatch --test-only` 均返回 `Invalid qos specification`，队列为 0；因此没有 GPU job，也没有 dev accuracy。
+当前状态是 `G0_ENGINEERING_READY_BUT_NOT_SUBMITTABLE_BY_CURRENT_ACCOUNT`，不是模型正结果。只有同时满足
+“精确 1 run、2×Pro6000、2h hard cap=最多 4 GPU·h 获明确批准”和“学长授权账号提交或管理员授予 QoS”后
+才能运行；G1 仍须看 G0 实测吞吐后另报预算、另行批准。直接证据：
+
+- `phase1/results/critic_component_g0_static_preflight_20260821/`；
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_G0静态预检与调度阻塞.md`；
+- `phase1/scripts/critic_component_g0_worker_20260821.sh`；
+- `phase1/verify_critic_component_g0.py`。
+
+## 0CG. 2026-08-21 Component split 的方法 novelty 关闭；仅保留 MLE-specific 协议证据
+
+防 scoop 复核发现，connected-component 作为关系数据的不可分 split unit 已有直接先例。2026-06 的 Refnd
+明确从 proximity graph 的 connected components 出发，要求每个 component 整体进入 train 或 evaluation；更早的
+graph-benchmark leakage 工作也已指出随机切 edge 会把 component 路径留在 train，从而泄露 held-out edge label。
+通用工具中的 non-overlapping group split 亦早已标准化。因此不得把 pair-component split、transitive grouping、
+零跨组 overlap 或“关系决定 split unit”申作方法首创。
+
+可保留的贡献是窄而实证的：真实 MLE-agent Draft pair 跨 physical run，使普通 run sampler 删除 485/5,240 个
+outer-train pairs，且 485 个全为 Draft，导致 dev Draft 仅 74；固定 component split 在不改 seed/fraction/支持门的
+条件下做到零删 pair、零 Card/run/pair overlap，并恢复 294/257 的 Draft/Improve dev。这是 Decision Corpus 的
+data-integrity failure case、可复现协议和审计资产，不是主方法。G0/G1 仍只能贡献 critic capacity 轴；论文主线、
+first-960/closure 和 outcome vault 均不变。直接边界记录：
+
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_component拆分_防Scoop边界.md`。
+
 ## 0CF. 2026-08-21 Component 同池 TF-IDF 固定 Qwen 门槛；廉价信号仍显著但不强
 
 component train/dev/test=`4689/551/931` 上的固定 train-only char-TFIDF 已完成 producer×2 与不 import

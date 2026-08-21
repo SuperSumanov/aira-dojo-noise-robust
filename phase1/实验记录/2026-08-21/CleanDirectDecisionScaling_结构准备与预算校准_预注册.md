@@ -1,6 +1,6 @@
 # Clean Direct-Decision Qwen Scaling：结构准备与预算校准预注册
 
-日期：2026-08-21。状态：`PREREGISTERED_NOT_RUN`。本文件在生成 train/dev 结构统计、训练任何
+日期：2026-08-21。状态：`STRUCTURAL_PASS_G0_NOT_RUN`。本文件在生成 train/dev 结构统计、训练任何
 checkpoint 或读取任何新 Qwen 结果前冻结。它服从 `phase1/CURRENT_DIRECTION.md` 的 0CD/0BW；不恢复旧
 HCE、多保真、probe、lookahead 或 RL 路线。
 
@@ -43,7 +43,8 @@ checkpoint 只按 outer-train physical runs 内切出的 dev 选择。旧 checkp
 
 ### G0：纯工程预算校准（尚未获 GPU 提交授权）
 
-一项 run：Qwen3-1.7B-Base、seed 6、2×96GB Pro6000、bf16、ZeRO-3、`max_len=16384`、task
+一项 run：Qwen3-1.7B-Base、seed 6、2×96GB Pro6000、bf16、ZeRO-3、`max_len=16384`、
+`head_frac=0.25`、task
 conditioning 开、budget conditioning 关、LR `1e-5`、cosine、warmup `0.03`、每卡 pair batch 8、
 gradient accumulation 8（有效 pair batch 128）。只运行固定 10 optimizer steps，在 dev 上执行一次完整评估；
 不得打开 held-out test，不作科学结论。硬 wall cap 2 小时，即最多 4 GPU·h。记录启动/首步/十步/dev 的
@@ -90,3 +91,29 @@ train/dev/test 和 train-only fit 重算，不能沿用不同行集的 59.90%。
 11. PASS：结论限定为 retrospective model support，不宣称 prospective 或搜索收益。
 12. PASS：每一步保存命令、环境、返回码；失败不覆盖、不续写成成功。
 13. PASS：输入与 held-out 行集不可扩展/重排；结构门失败不得换 seed 或阈值追救。
+
+## 5. GPU 结果前的工程补充冻结（2026-08-21）
+
+本节在 GPU job=0、dev accuracy=未产生、held-out test read=0 时追加，只消除执行歧义，不改变效果门：
+
+- component split 已按另立预注册通过，固定 train/dev/test=`4689/551/931`；train/dev SHA-256 分别为
+  `0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e` /
+  `3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4`；
+- 原 confirmatory launcher 漏传固定 10 steps，必须再应用
+  `0002-Allow-fixed-step-critic-budget-calibration.patch`（SHA-256=
+  `89d7af494e436c4d5a7ed5c4a06e43c4d012cb26c3efd3c1e9f52bf00b3bd641`）；当前验证 overlay commit=
+  `e740bab3524248f8175ec27dcd7e034515ef5bc5`；
+- 还必须应用 timing-only 补丁 `0003-Record-critic-wall-clock-receipts.patch`（SHA-256=
+  `a4146bdc6ef3123e3b88a3b909352dd40db3cff992503919d4207c1756313f67`），最终训练 source commit=
+  `51c7f480a844364a91cf1ee4ebd9dac18f6bb832`；五个事件固定为 train begin、optimizer step 1、optimizer
+  step 10、dev complete、train end，非 world-process-zero 不输出；
+- `head_frac=0.25` 原是该精确源码的默认值，现显式冻结；`eval_on_start=false`，故只允许 step 10 一次 dev
+  eval。其他未单列 TrainingArguments 继承上述 pinned source，并由 checkpoint metadata/state 留据；
+- 模型固定为 `Qwen/Qwen3-1.7B-Base` revision
+  `ea980cb0a6c2ae4b936e82123acc929f1cec04c1`；仓库相对文件 manifest SHA-256=
+  `ceb388235719297e3647478ad2d96486a41d1f84e4c3fd8301c4772d6840e148`；只允许本地离线快照，不得在 job
+  内浮动下载 `main`；
+- 运行包必须把 Triton/Torch extension cache 放在 node-local scratch，记录两个 GPU UUID、5 秒遥测、GNU time、
+  全部软件版本，并由独立 postflight 强制唯一 `checkpoint-10`、唯一 step-10 dev eval 和有限指标；
+- 当前账号缺少 `zliang_gpu` QoS，两个 `sbatch --test-only` 均失败；这不是训练失败，且没有提交任何 job。
+  只有精确 4 GPU·h 上限获批且授权提交者可用后才允许运行。

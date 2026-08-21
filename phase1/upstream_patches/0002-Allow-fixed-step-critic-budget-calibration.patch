@@ -1,0 +1,61 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Supersumanov <yanzeyang39@gmail.com>
+Date: Fri, 21 Aug 2026 09:12:00 +0800
+Subject: [PATCH] Allow fixed-step critic budget calibration
+
+Keep the one-run confirmation launcher epoch-based by default, but permit an
+explicit positive max-step cap for the preregistered engineering calibration.
+The default -1 preserves the confirmatory training behavior.
+---
+ .../scripts/train/pro6000/train_rm_confirmatory_one.sh  | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh b/src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh
+--- a/src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh
++++ b/src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh
+@@ -24,8 +24,11 @@ CONFIRM_NUM_PROCESSES=${CONFIRM_NUM_PROCESSES:-2}
+ CONFIRM_MAX_LEN=${CONFIRM_MAX_LEN:-16384}
+ CONFIRM_EVAL_STEPS=${CONFIRM_EVAL_STEPS:-10}
+ CONFIRM_EPOCHS=${CONFIRM_EPOCHS:-1}
++CONFIRM_MAX_STEPS=${CONFIRM_MAX_STEPS:--1}
+ CONFIRM_LEARNING_RATE=${CONFIRM_LEARNING_RATE:-1e-5}
+ CONFIRM_EFFECTIVE_PAIR_BATCH=${CONFIRM_EFFECTIVE_PAIR_BATCH:-128}
++CONFIRM_LR_SCHEDULER_TYPE=${CONFIRM_LR_SCHEDULER_TYPE:-cosine}
++CONFIRM_WARMUP_RATIO=${CONFIRM_WARMUP_RATIO:-0.03}
+ 
+ [[ ! -e $CONFIRM_OUTPUT_DIR ]] || {
+     echo "refusing to reuse output directory: $CONFIRM_OUTPUT_DIR" >&2
+@@ -35,6 +38,13 @@ CONFIRM_EFFECTIVE_PAIR_BATCH=${CONFIRM_EFFECTIVE_PAIR_BATCH:-128}
+     echo "refusing to overwrite log: $CONFIRM_LOG_PATH" >&2
+     exit 2
+ }
++if ! [[ $CONFIRM_MAX_STEPS =~ ^-?[0-9]+$ ]] \
++    || (( CONFIRM_MAX_STEPS == 0 || CONFIRM_MAX_STEPS < -1 )); then
++    echo "CONFIRM_MAX_STEPS must be -1 or a positive integer" >&2
++    exit 2
++fi
++[[ $CONFIRM_LR_SCHEDULER_TYPE == cosine ]] \
++    || { echo "only the preregistered cosine scheduler is allowed" >&2; exit 2; }
+ 
+ verify_sha256() {
+     local path=$1
+@@ -70,6 +80,7 @@ export PYTHONHASHSEED=$CONFIRM_SEED
+ echo "[confirmatory-rm] commit=$AIRA_DOJO_GIT_COMMIT model=$CONFIRM_MODEL seed=$CONFIRM_SEED"
+ echo "[confirmatory-rm] train_sha256=$CONFIRM_EXPECTED_TRAIN_SHA256 dev_sha256=$CONFIRM_EXPECTED_DEV_SHA256 cards_sha256=$CONFIRM_EXPECTED_CARDS_SHA256"
+ echo "[confirmatory-rm] processes=$CONFIRM_NUM_PROCESSES effective_pair_batch=$actual_effective_batch max_len=$CONFIRM_MAX_LEN epochs=$CONFIRM_EPOCHS"
++echo "[confirmatory-rm] max_steps=$CONFIRM_MAX_STEPS scheduler=$CONFIRM_LR_SCHEDULER_TYPE warmup_ratio=$CONFIRM_WARMUP_RATIO"
+ 
+ accelerate launch \
+     --config_file "$ACCELERATE_CONFIG" \
+@@ -90,6 +101,9 @@ accelerate launch \
+     --eval_steps "$CONFIRM_EVAL_STEPS" \
+     --learning_rate "$CONFIRM_LEARNING_RATE" \
+     --num_train_epochs "$CONFIRM_EPOCHS" \
++    --max_steps "$CONFIRM_MAX_STEPS" \
++    --lr_scheduler_type "$CONFIRM_LR_SCHEDULER_TYPE" \
++    --warmup_ratio "$CONFIRM_WARMUP_RATIO" \
+     --output_dir "$CONFIRM_OUTPUT_DIR" \
+     --seed "$CONFIRM_SEED" \
+     --report_to none \
+-- 
+2.47.1.windows.1

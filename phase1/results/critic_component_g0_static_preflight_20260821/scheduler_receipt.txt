@@ -1,0 +1,10 @@
+utc=2026-08-21T01:28:59Z
+user=yzyang4
+association=yzyang4|gpu||gpu|gpu
+node=projgpu39 partition=gpu_24h state=mix gres=gpu:pro6000:2
+node=projgpu39 partition=zliang_gpu state=mix gres=gpu:pro6000:2
+explicit_qos_rc=1
+explicit_qos_output=allocation failure: Invalid qos specification
+default_qos_rc=1
+default_qos_output=allocation failure: Invalid qos specification
+queue_rows=0

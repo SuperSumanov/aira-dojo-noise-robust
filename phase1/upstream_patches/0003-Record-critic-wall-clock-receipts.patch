@@ -1,0 +1,144 @@
+From 51c7f480a844364a91cf1ee4ebd9dac18f6bb832 Mon Sep 17 00:00:00 2001
+From: YANG Yanze <yzyang4@cse.cuhk.edu.hk>
+Date: Fri, 21 Aug 2026 09:42:48 +0800
+Subject: [PATCH] Record critic wall-clock receipts
+
+---
+ src/mle_critic/src/train/bradley_terry.py     | 37 +++++++++++++-
+ .../test/test_wall_clock_receipt_callback.py  | 51 +++++++++++++++++++
+ 2 files changed, 87 insertions(+), 1 deletion(-)
+ create mode 100644 src/mle_critic/test/test_wall_clock_receipt_callback.py
+
+diff --git a/src/mle_critic/src/train/bradley_terry.py b/src/mle_critic/src/train/bradley_terry.py
+index d0d28d6..e2bab09 100644
+--- a/src/mle_critic/src/train/bradley_terry.py
++++ b/src/mle_critic/src/train/bradley_terry.py
+@@ -16,16 +16,18 @@ Multi-GPU ZeRO-3 training:
+ 
+ from __future__ import annotations
+ 
++import datetime as dt
+ from functools import partial
+ import json
+ import os
+ from pathlib import Path
+ import random
++import time
+ 
+ import numpy as np
+ import torch
+ import torch.nn as nn
+-from transformers import AutoModel, AutoTokenizer, HfArgumentParser, Trainer
++from transformers import AutoModel, AutoTokenizer, HfArgumentParser, Trainer, TrainerCallback
+ 
+ from src.mle_critic.src.evaluation.bradley_terry_evaluation import (
+     pair_accuracy_metrics,
+@@ -42,6 +44,38 @@ from src.mle_critic.src.train.dataset import (
+ )
+ 
+ 
++class WallClockReceiptCallback(TrainerCallback):
++    """Emit machine-readable timing markers without changing optimization."""
++
++    @staticmethod
++    def _emit(event: str, state) -> None:
++        if not state.is_world_process_zero:
++            return
++        receipt = {
++            "event": event,
++            "global_step": int(state.global_step),
++            "max_steps": int(state.max_steps),
++            "monotonic_ns": time.monotonic_ns(),
++            "utc": dt.datetime.now(dt.timezone.utc).isoformat(),
++        }
++        print("[rm-timing] " + json.dumps(receipt, sort_keys=True), flush=True)
++
++    def on_train_begin(self, args, state, control, **kwargs):
++        self._emit("train_begin", state)
++
++    def on_step_end(self, args, state, control, **kwargs):
++        if state.global_step == 1:
++            self._emit("optimizer_step_1", state)
++        if state.global_step == state.max_steps:
++            self._emit("optimizer_step_final", state)
++
++    def on_evaluate(self, args, state, control, **kwargs):
++        self._emit("dev_evaluate_complete", state)
++
++    def on_train_end(self, args, state, control, **kwargs):
++        self._emit("train_end", state)
++
++
+ class BradleyTerryRewardModel(nn.Module):
+     def __init__(self, model_name: str):
+         super().__init__()
+@@ -177,6 +211,7 @@ def main() -> None:
+         eval_dataset=PairDataset(validation_records, card_encoder),
+         data_collator=partial(pair_collate, pad_token_id=tokenizer.pad_token_id),
+         compute_metrics=pair_accuracy_metrics,
++        callbacks=[WallClockReceiptCallback()],
+     )
+     trainer.train()
+     if trainer.is_world_process_zero():
+diff --git a/src/mle_critic/test/test_wall_clock_receipt_callback.py b/src/mle_critic/test/test_wall_clock_receipt_callback.py
+new file mode 100644
+index 0000000..178e8f4
+--- /dev/null
++++ b/src/mle_critic/test/test_wall_clock_receipt_callback.py
+@@ -0,0 +1,51 @@
++"""Focused tests for machine-readable G0 timing receipts."""
++
++from __future__ import annotations
++
++import json
++from types import SimpleNamespace
++
++from src.mle_critic.src.train.bradley_terry import WallClockReceiptCallback
++
++
++def make_state(*, world_process_zero: bool = True):
++    return SimpleNamespace(
++        is_world_process_zero=world_process_zero,
++        global_step=0,
++        max_steps=10,
++    )
++
++
++def test_callback_emits_only_frozen_wall_clock_events(capsys):
++    callback = WallClockReceiptCallback()
++    state = make_state()
++    callback.on_train_begin(None, state, None)
++    state.global_step = 1
++    callback.on_step_end(None, state, None)
++    state.global_step = 2
++    callback.on_step_end(None, state, None)
++    state.global_step = 10
++    callback.on_step_end(None, state, None)
++    callback.on_evaluate(None, state, None)
++    callback.on_train_end(None, state, None)
++
++    rows = []
++    for line in capsys.readouterr().out.splitlines():
++        prefix = "[rm-timing] "
++        assert line.startswith(prefix)
++        rows.append(json.loads(line[len(prefix) :]))
++    assert [row["event"] for row in rows] == [
++        "train_begin",
++        "optimizer_step_1",
++        "optimizer_step_final",
++        "dev_evaluate_complete",
++        "train_end",
++    ]
++    assert [row["global_step"] for row in rows] == [0, 1, 10, 10, 10]
++    assert all(row["max_steps"] == 10 for row in rows)
++    assert all(row["monotonic_ns"] > 0 for row in rows)
++    assert all(row["utc"].endswith("+00:00") for row in rows)
++
++
++def test_non_world_process_zero_emits_nothing(capsys):
++    callback = WallClockReceiptCallback()
++    callback.on_train_begin(None, make_state(world_process_zero=False), None)
++    assert capsys.readouterr().out == ""
+-- 
+2.43.0
+

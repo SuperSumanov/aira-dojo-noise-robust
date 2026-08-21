@@ -1,0 +1,13 @@
+PASS 1: CURRENT_DIRECTION 0CS and the exact-parent protocol are the current dated extension.
+PASS 2: S0b reads only four identity/status CSVs and has no outcome-table or notebook-content input.
+PASS 3: official daily listing, six CSV hashes, metadata, and required headers are S0a-bound.
+PASS 4: units are exact parent version, child Kernel, one pair per parent, and competition.
+PASS 5: TraceML join failure and the public missing-join warning are disclosed before this run.
+PASS 6: no code, grade, public/private outcome, user text, runtime, or predictor feature is read.
+PASS 7: the downloaded outcome table remains unopened beyond its S0a header.
+PASS 8: credentials remain in the remote environment and are not printed or copied.
+PASS 9: S0b reports exact identity/support counts only and computes no predictor effect.
+PASS 10: producer x2, non-importing verifier x2, global exact uniqueness, and SHA manifests are fixed.
+PASS 11: CPU-only, single-thread pools, GPU=0, paid API=0, expected 20-90 minutes.
+PASS 12: source/input/schema/join/identity/support discrepancies fail closed.
+PASS 13: one-shot S0b; S1 must be separately frozen before any outcome data row is opened.

@@ -1,0 +1,96 @@
+{
+  "identity_criteria": {
+    "direct_parent_field_agreement_rate_ge_0_95": false,
+    "kernel_ids_globally_unique": true,
+    "kernel_ids_well_formed": true,
+    "kernel_version_ids_globally_unique": true,
+    "kernel_version_ids_well_formed": true,
+    "relevant_competition_ids_unique": true,
+    "selected_graph_acyclic": true,
+    "selected_pair_identity_complete": true
+  },
+  "input_sha256": {
+    "competition_links": "abaaee73c7ef464d2c708e82b707d2b3b5ded4938f42bca0a84d3834a0630a35",
+    "competitions": "a77249dfddc92d1c3d781ac567f876966391c5befb92c81ae52c3e214fbbd0c9",
+    "kernel_versions": "d8a6a7a4081be92373438b4b9342420e8c8dc775255e42ec54478f6610a98725",
+    "kernels": "dccccbad40efc018e37b1393d939c20062142a8f28dd19b336d1e186d2983680",
+    "protocol": "451293fdbe13a6563f1c982743d5eaa163f69d0691fdaf4610b5d6c8639a42ad"
+  },
+  "inventory": {
+    "base_valid_fork_edges": 0,
+    "canonical_pairs": 0,
+    "competition_links": {
+      "relevant_versions_with_links": 171756,
+      "rows": 5526938
+    },
+    "competitions": {
+      "required_ids": 1782,
+      "required_ids_found": 1782,
+      "required_ids_missing": 0,
+      "rows": 12066
+    },
+    "completed_competitions_in_pairs": 0,
+    "direct_parent_field_agreement_rate": 0.0,
+    "direct_parent_field_matches": 0,
+    "dominant_competition_share": null,
+    "edge_failures": {
+      "child_first_version_missing": 1,
+      "child_not_version_one": 362922,
+      "creation_time_missing": 50607,
+      "cycle_nodes": 0,
+      "direct_parent_field_mismatch": 390427,
+      "parent_child_time_order_invalid": 4,
+      "parent_version_missing": 50606
+    },
+    "eligible_closed_competition_children": 0,
+    "eligible_parent_groups": 0,
+    "kernel_versions": {
+      "duplicate_id": 0,
+      "required_ids": 580333,
+      "required_ids_found": 537972,
+      "required_ids_missing": 42361,
+      "rows": 18979184
+    },
+    "kernels": {
+      "duplicate_id": 0,
+      "explicit_fork_rows": 391175,
+      "malformed_explicit_fork": 748,
+      "rows": 1946556
+    },
+    "pairs_per_competition": {},
+    "parsed_explicit_fork_edges": 390427
+  },
+  "protocol": "meta-kaggle-exact-parent-human-fork-s0b-v1",
+  "scope": {
+    "api_calls": 0,
+    "gpu": 0,
+    "model_trained": false,
+    "notebook_content_used": false,
+    "outcome_table_rows_used": 0,
+    "predictor_effect_computed": false
+  },
+  "snapshot_cutoff_utc": "2026-08-21T09:13:44Z",
+  "source_commit": "64ec81945b19f232968391a0b10d0772b9895641",
+  "source_sha256": {
+    "phase1/meta_kaggle_exact_parent_s0_protocol_v1.json": "451293fdbe13a6563f1c982743d5eaa163f69d0691fdaf4610b5d6c8639a42ad",
+    "phase1/meta_kaggle_exact_parent_s0a_input_manifest.json": "21141fe7d390f1d778c6631069c4961b346965410f8754a580763b6afb55b375",
+    "phase1/meta_kaggle_exact_parent_s0b.py": "6723babe918f7148b7ae3eec0fc5505166ab81dd2a29156375d9f6b99eeb7365",
+    "phase1/scripts/run_meta_kaggle_exact_parent_s0b_20260821.sh": "3711c76cd1cc1c9913305d449dcc10ae5fe28c0e146a5e027ed45e86493fe66c",
+    "phase1/tests/test_meta_kaggle_exact_parent_s0b.py": "a575ce8406ffafd26ed490dad0c31929459a34010f413a1b8608dbed36e2d8f0",
+    "phase1/verify_meta_kaggle_exact_parent_s0b.py": "a2fec7a06cbb101a6b5f3e02e014ea202cadc3d50332ee48fc449ca4065364b8"
+  },
+  "status": "IDENTITY_UNAVAILABLE",
+  "support_criteria": {
+    "canonical_pairs_ge_500": false,
+    "completed_competitions_ge_20": false,
+    "distinct_parents_ge_100": false,
+    "dominant_competition_share_le_0_20": false
+  },
+  "thresholds": {
+    "canonical_pairs_ge": 500,
+    "completed_competitions_ge": 20,
+    "direct_parent_agreement_rate_ge": 0.95,
+    "distinct_parents_ge": 100,
+    "dominant_competition_share_le": 0.2
+  }
+}

@@ -3,7 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0CS. 2026-08-21 Meta Kaggle exact-parent human-fork S0a 已通过；S0b 实现待正式运行
+## 0CT. 2026-08-21 strict-future 连续安全摄取 monitor 已激活
+
+为避免新 senior archives 到达后只被 metadata monitor 发现而没有进入前瞻快照，commit
+`c06222fc00a3af898c5637fdb74cff85505a6505` 新增连续摄取 monitor。它不改变 scientific runner：仍精确使用
+`90842c49dbd73d41d405a5ecdad2224ee447b375`，绑定 0814--0819 全部结构拒收 registry，含 Plant 0819
+registry SHA=`0dc58a4f2b2770f615b4ebf6d077c25ec7866d0f0ad72a2cc2f312d8d4f1d503`。固定每 300 秒观察、145 polls；
+archive 至少 21,600 秒 age、三次 observation、间隔至少 300 秒且 stable span 至少 600 秒才可进入
+credential-first intake。未知结构/身份异常立即 fail closed；env/live-event member、outcome 与 label vault 不读。
+
+本地/集群脚本 SHA-256 都是 `79f7f40ab5a2a030e103bc374f368efe64498fb1b96dd0a790dc66c6d9c34138`，相关
+测试 19/19 通过。正式首轮为 `archives=183, baseline=128, ready=0, rejected=6, transactions=49,
+outcomes_read=false`；PID=`1271112`，日志为
+`/research/d7/spc/yzyang4/prospective_decision_v1/logs/continuous_intake_monitor_20260821.log`。它只做 CPU
+append-only 摄取，GPU/API/base-LLM update=0；已有 transition escrow monitor 会在 `LATEST` 变化后追加冻结预测。
+
+直接回执：`phase1/results/prospective_continuous_intake_monitor_20260821_c06222f/README.md`。
+
+## 0CS. 2026-08-21 Meta Kaggle exact-parent human-fork S0b 身份门失败；路线关闭
 
 0CQ 的 TraceML join 失败不否定 human-fork estimand，但公开 TraceML 已经覆盖 human trajectory/fork graph，故新路线
 不能再主张“首个 human fork 数据集”。保留的窄突破候选是：从官方每日 Meta Kaggle snapshot 直接用
@@ -25,9 +42,18 @@ S1。新增下载约 7.3GB，CPU/network-only、GPU/API=0。直接协议：
 
 修正后 S0a 正式通过：下载前后 raw/normalized listing 分别 byte-identical，六张 CSV 共 8,216,765,816 bytes 与
 metadata 全部 SHA 绑定，required headers 完整；receipt 两类秘密扫描为 0。outcome table 仍只读 header、data rows=0。
-S0b producer 与独立 verifier 已实现 bounded-memory exact uniqueness、direct-parent/time/acyclic/singleton-comp 和
-fixed one-pair-per-parent 重建，7 个合成/反例测试通过；尚未读取任何 S0b data row，必须从精确 implementation commit
-完成 producer×2/verifier×2 后才有支持裁决。直接证据：
+
+commit `64ec81945b19f232968391a0b10d0772b9895641` 的 S0b producer×2 与不 import producer 的 verifier×2
+已经完成，双方各自 byte-identical；focused=`7 passed`、全部 phase tests=`611 passed, 25 warnings`，formal
+manifest、只读、forbidden-path、network 与秘密扫描全过。正式状态是 `IDENTITY_UNAVAILABLE`：1,946,556 条
+Kernels 中有 391,175 explicit-fork rows，748 malformed 后的 390,427 条 parsed edges 全部无法让 child
+`FirstKernelVersionId` row 的 `ParentScriptVersionId` 与 `ForkParentKernelVersionId` 一致，agreement=`0.0`；
+362,922 条 child first-version 也不是 VersionNumber 1，580,333 个所需 version IDs 中缺 42,361 个。因此
+base-valid edges、parents 与 canonical pairs 都是 0，S1/S2 按原门禁止执行。
+
+这只说明公开、过滤后的 Meta Kaggle snapshot 不能识别冻结的 dual-field exact-parent estimand；不说明 human-fork
+future potential 不存在。不得结果后删除一致性门、使用 dependency table 代理 fork、筛联结成功子集或打开 private
+score/code 追救。S0b outcome rows/code/model fit/GPU/API 仍全为 0。直接证据：
 
 第一次 S0b formal attempt 在 worktree materialization 阶段因无关历史 LFS pointer 的 server object 404 停止；
 tests 和真实 CSV rows 均未开始。重试只按既有正式 runner 增加 `GIT_LFS_SKIP_SMUDGE=1`，不改 source blobs、输入、
@@ -36,6 +62,9 @@ tests 和真实 CSV rows 均未开始。重试只按既有正式 runner 增加 `
 - `phase1/meta_kaggle_exact_parent_s0a_input_manifest.json`；
 - `phase1/results/meta_kaggle_exact_parent_s0a_20260821_1211700/README.md`；
 - `phase1/实验记录/2026-08-21/MetaKaggleHumanForkExactParent_S0a正式裁决与S0b实现预检.md`。
+
+- `phase1/results/meta_kaggle_exact_parent_s0b_20260821_64ec819/README.md`；
+- `phase1/实验记录/2026-08-21/MetaKaggleHumanForkExactParent_S0b正式裁决与路线关闭.md`。
 
 - `phase1/meta_kaggle_exact_parent_s0_protocol_v1.json`；
 - `phase1/实验记录/2026-08-21/MetaKaggleHumanForkExactParent_S0预注册与输入绑定.md`。

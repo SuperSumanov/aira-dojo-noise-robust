@@ -1,0 +1,11 @@
+{
+  "canonical_pairs_rebuilt": 0,
+  "competition_links_rescanned": 5526938,
+  "competitions_rescanned": 12066,
+  "kernel_versions_rescanned": 18979184,
+  "kernels_rescanned": 1946556,
+  "producer_manifest_sha256": "3ad16e36fd9a242cb4f8877b3a0bc806c9c9da403d95dc09c49cbf66424c903b",
+  "protocol": "independent-meta-kaggle-exact-parent-human-fork-s0b-v1",
+  "verified": true,
+  "verified_status": "IDENTITY_UNAVAILABLE"
+}

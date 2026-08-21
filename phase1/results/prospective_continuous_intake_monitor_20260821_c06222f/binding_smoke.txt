@@ -1,0 +1,1 @@
+PROSPECTIVE_ARCHIVE_OBSERVATION_COMPLETE archives=183 baseline=128 ready=0 rejected=6 transactions=49 outcomes_read=false

@@ -3,6 +3,28 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DN. 2026-08-22 FOREAGENT 关闭“首次执行前 preference”，但强化严格 benchmark 边界
+
+结果前防 scoop 审计发现 ACL 2026 Highlight 的 FOREAGENT（arXiv:2601.05930）是直接竞品：它已经定义
+Data-centric Solution Preference，发布 26 tasks / 895 solutions / 18,438 pairs，并把 LLM pairwise prediction
+接入 Predict-then-Verify，报告 61.5% accuracy、5 tasks x 3 runs 的 6x acceleration 与 +6% Beat Ratio。因此“首次
+执行前比较两个 MLE 解”“首次用预测减少执行”“首次 MLE preference corpus”全部关闭；只做离线 predictor accuracy
+也不构成方法 novelty。
+
+但官方 commit `c4d52cf99bd870d830b456ac7c0684aec1aef375` 的 `group.py` 明确对每任务 solution pool 使用
+`itertools.combinations` 枚举所有组合，并过滤 invalid submission/缺 score；论文也说明 syntax/runtime crash 被过滤。
+同一 solution 因而反复进入多个 pair，18,438 不是独立决策数。其 within/cross-trajectory 分析把“不同 run 或不同
+task”合为 cross；公开 report 实现给出 record/task point means，未实现 candidate/run-cluster uncertainty。该差异不
+否定 FOREAGENT，而是把我们的可防守贡献收紧为：真实 parent/source choice set、candidate/run/task dependency、
+execution-cliff/unknown-preserving 标签、run-clean + temporal frozen、query/init 成本和前瞻 utility bridge。
+
+当前固定 TF-IDF OOF 继续运行，因为它问的是上述真实 source unit 上的 task-LOTO/run-OOF 廉价信号；其结果仍须按
+原 gate 裁决。GO 后先过 recovery-provenance sensitivity，再生成 label-free frozen/extension escrow；NO 后不得改模型/
+追子集。即使 GO，FOREAGENT 已有系统收益，故最终方法主张仍必须补预算等价的真实 source-selection replay，离线
+accuracy 不能替代。证据与逐轴对照：
+
+- `phase1/实验记录/2026-08-22/SourceChoice_FOREAGENT_直接竞品与边界修正.md`。
+
 ## 0DM. 2026-08-22 source-choice S2 v2 operator-proxy 修复正式通过
 
 控制 commit `3ceb99f8030fb196d2abc388e277b11dbd1bc571` 按 0DL 的唯一允许 diff，把 raw operator

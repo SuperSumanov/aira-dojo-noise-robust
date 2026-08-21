@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DD. 2026-08-21 status-certified partial order 已导出为 2,079 条显式边
+
+控制 commit `c9bfc21c1e8428787caf4e70db404a18990910bc` 已把 0DC 的 aggregate relation audit 补全为可分发的
+child-ID edge manifest：902 个 certified invalid children 与同 parent finite endpoints 构成 2,079 条唯一
+`VALIDITY_DOMINANCE` edges，覆盖 1,498 个 valid children、658 parents 和 14 tasks。三份 v11 b0 pair 文件只用于
+endpoint identity union；orientation direction、gap、numeric score、code 和 prospective outcome 均不用于边生成。
+独立 verifier 从固定输入逐条重构，差为 0。
+
+更窄的 `EXECUTION_ERROR`-only 压力测试删除全部 `OFFICIAL_GRADE_ABSENT` 后仍保留 2,060 edges；coverage=
+`0.815684264479754`、gain=`0.21117375704766786`、gap recovery=`0.5339554173146708`，train/frozen gain=
+`0.22004357298474944/0.18819351975144252`。14 个支持任务中 11 个为正，dominant share=
+`0.1883495145631068`，原全部材料门仍通过。因此 headline 不依赖 grade-absent 类别。
+
+这仍只是 provenance-bound validity partial order，不是 numeric-quality total order，也不证明 complete choice set、MAR、
+predictor/search utility 或算法 novelty。producer×2/verifier×2 逐字节一致；focused=`5 passed`，完整 phase tests=
+`654 passed, 25 warnings`，forbidden path、秘密与 worktree 审计为 0。直接证据：
+
+- `phase1/results/status_certified_edge_manifest_v1_20260821_c9bfc21/README.md`；
+- `phase1/实验记录/2026-08-21/StatusCertifiedEdgeManifest_v1_正式裁决.md`。
+
 ## 0DC. 2026-08-21 status-certified partial order 恢复 53.9% 的关系缺口
 
 控制 commit `82e1be5839506556e0edde5cd240e1918e2eed66` 在结果前固定两份 metadata SHA、关系定义和九个

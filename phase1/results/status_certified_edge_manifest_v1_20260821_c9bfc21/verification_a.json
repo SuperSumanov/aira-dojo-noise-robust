@@ -1,0 +1,13 @@
+{
+  "artifact_manifest_sha256": "e843720791e51501e07e556acaa05cd8624c1334d74879e4a6df8a61e1780323",
+  "artifact_summary_sha256": "5dd53823ca6e432e4ab593a1267c9a73bce954be977deceb6de63c4ed90ea84b",
+  "edge_count": 2079,
+  "execution_error_only_preserves_all_original_material_gates": true,
+  "imports_producer": false,
+  "maximum_reconstruction_difference": 0,
+  "pair_orientation_direction_used": false,
+  "producer_status": "VERIFIED_STATUS_CERTIFIED_EDGE_MANIFEST",
+  "prospective_outcome_read": false,
+  "status": "INDEPENDENT_STATUS_CERTIFIED_EDGE_MANIFEST_VERIFIED",
+  "unique_invalid_children": 902
+}

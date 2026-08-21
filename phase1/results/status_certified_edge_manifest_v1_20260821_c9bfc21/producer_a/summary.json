@@ -1,0 +1,133 @@
+{
+  "by_category": {
+    "EXECUTION_ERROR": 2060,
+    "OFFICIAL_GRADE_ABSENT": 19
+  },
+  "by_role": {
+    "extension": 22,
+    "frozen": 424,
+    "train": 1633
+  },
+  "by_task": {
+    "chaii-hindi-and-tamil-question-answering": 198,
+    "denoising-dirty-documents": 54,
+    "dog-breed-identification": 28,
+    "leaf-classification": 236,
+    "learning-agency-lab-automated-essay-scoring-2": 4,
+    "mlsp-2013-birds": 358,
+    "nomad2018-predict-transparent-conductors": 230,
+    "petfinder-pawpularity-score": 174,
+    "random-acts-of-pizza": 128,
+    "spaceship-titanic": 82,
+    "spooky-author-identification": 390,
+    "tabular-playground-series-dec-2021": 16,
+    "tabular-playground-series-may-2022": 177,
+    "tweet-sentiment-extraction": 4
+  },
+  "edge_count": 2079,
+  "execution_error_only_sensitivity": {
+    "criteria": {
+      "added_relations_ge_material_minimum": true,
+      "dominant_task_share_le_maximum": true,
+      "frozen_coverage_gain_ge_material_minimum": true,
+      "gap_recovery_ge_material_minimum": true,
+      "overall_coverage_gain_ge_material_minimum": true,
+      "relation_accounting_exact": true,
+      "supported_tasks_ge_minimum": true,
+      "tasks_with_positive_gain_ge_minimum": true,
+      "train_coverage_gain_ge_material_minimum": true,
+      "unknown_status_not_promoted": true
+    },
+    "overall": {
+      "certified_coverage": 0.815684264479754,
+      "certified_relations": 7957,
+      "coverage_gain": 0.21117375704766786,
+      "lost_relation_recovery": 0.5339554173146708,
+      "published_unique_edges": 5897,
+      "source_pair_capacity": 9755,
+      "validity_dominance_edges": 2060
+    },
+    "preserves_all_original_material_gates": true,
+    "roles": {
+      "extension": {
+        "certified_coverage": 0.9873417721518988,
+        "certified_relations": 156,
+        "coverage_gain": 0.12658227848101267,
+        "lost_relation_recovery": 0.9090909090909091,
+        "published_unique_edges": 136,
+        "source_pair_capacity": 158,
+        "validity_dominance_edges": 20
+      },
+      "frozen": {
+        "certified_coverage": 0.8530847758544163,
+        "certified_relations": 1922,
+        "coverage_gain": 0.18819351975144252,
+        "lost_relation_recovery": 0.56158940397351,
+        "published_unique_edges": 1498,
+        "source_pair_capacity": 2253,
+        "validity_dominance_edges": 424
+      },
+      "train": {
+        "certified_coverage": 0.8005174291938998,
+        "certified_relations": 5879,
+        "coverage_gain": 0.22004357298474944,
+        "lost_relation_recovery": 0.5245050308341448,
+        "published_unique_edges": 4263,
+        "source_pair_capacity": 7344,
+        "validity_dominance_edges": 1616
+      }
+    },
+    "support": {
+      "dominant_added_relation_task": "spooky-author-identification",
+      "dominant_added_relation_task_share": 0.1883495145631068,
+      "supported_task_ids": [
+        "chaii-hindi-and-tamil-question-answering",
+        "denoising-dirty-documents",
+        "dog-breed-identification",
+        "leaf-classification",
+        "mlsp-2013-birds",
+        "nomad2018-predict-transparent-conductors",
+        "petfinder-pawpularity-score",
+        "random-acts-of-pizza",
+        "spaceship-titanic",
+        "spooky-author-identification",
+        "tabular-playground-series-may-2022",
+        "text-normalization-challenge-russian-language",
+        "us-patent-phrase-to-phrase-matching",
+        "whale-categorization-playground"
+      ],
+      "supported_tasks": 14,
+      "task_ids_with_positive_gain": [
+        "chaii-hindi-and-tamil-question-answering",
+        "denoising-dirty-documents",
+        "dog-breed-identification",
+        "leaf-classification",
+        "mlsp-2013-birds",
+        "nomad2018-predict-transparent-conductors",
+        "petfinder-pawpularity-score",
+        "random-acts-of-pizza",
+        "spaceship-titanic",
+        "spooky-author-identification",
+        "tabular-playground-series-may-2022"
+      ],
+      "tasks_with_positive_gain": 11
+    }
+  },
+  "parents": 658,
+  "protocol": "status-certified-edge-export-v1",
+  "scope": {
+    "candidate_code_read": false,
+    "complete_choice_set_claim": false,
+    "gap_or_numeric_score_used": false,
+    "numeric_quality_order_claim": false,
+    "post_result_release_export": true,
+    "prospective_outcome_read": false,
+    "published_pair_files_read_for_endpoint_identity": true,
+    "published_pair_orientation_direction_used": false
+  },
+  "source_commit": "c9bfc21c1e8428787caf4e70db404a18990910bc",
+  "status": "VERIFIED_STATUS_CERTIFIED_EDGE_MANIFEST",
+  "tasks": 14,
+  "unique_invalid_children": 902,
+  "unique_valid_children": 1498
+}

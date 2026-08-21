@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=status-certified source partial order explicit edge release
+PREFLIGHT_02_QUESTION=can every audited aggregate relation be released as a reproducible child-ID edge
+PREFLIGHT_03_INPUT=three pinned v11 b0 pair identity sets plus parent SHA 75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03 and status SHA bfb9870d83c50ef2d06bf2d374fc9f9213f41665f4cebeab7ab31837bcfde0d2
+PREFLIGHT_04_UNIT=one explicit finite-child validity-dominates certified-invalid-child edge within a fixed source parent
+PREFLIGHT_05_PRIMARY=exact edge reconstruction equality and complete original-gate sensitivity after excluding grade-absent edges
+PREFLIGHT_06_DENOMINATOR=source pair capacity from the frozen 3252-parent census
+PREFLIGHT_07_INFERENCE=finite-population identity export; no IID interval
+PREFLIGHT_08_LEAKAGE=pair orientation gap score code and prospective outcomes forbidden as decision inputs
+PREFLIGHT_09_REPRO=producer x2 independent verifier x2 exact commit and pinned hashes
+PREFLIGHT_10_FAILURE=edge count mismatch duplicate identity endpoint overlap artifact drift or any original sensitivity gate failure
+PREFLIGHT_11_SCOPE=post-result release engineering not a second confirmatory result
+PREFLIGHT_12_RESOURCES=single-thread CPU GPU 0 API 0 base-LLM update 0
+PREFLIGHT_13_EXPECTED_WALL=under 30 minutes including complete phase1 regression

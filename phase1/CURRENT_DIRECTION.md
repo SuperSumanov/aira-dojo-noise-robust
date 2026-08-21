@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CW. 2026-08-21 source-aware 六项证据索引正式通过
+
+commit `8da197b89ebe513df0516cf71186c068078bf67b` 的 v2 evidence index 已完成双 builder、双独立 verifier 与
+全套测试，正式状态为 `INDEPENDENTLY_VERIFIED_SOURCE_AWARE_EVIDENCE_INDEX`。它把 v1 五项扩为六个互异
+estimands：decision corpus、source opportunity、label repeatability、normalized clone、deployment cost、
+prospective gate；共绑定 18 份 artifact 与 136 个 JSON assertions。index normalized SHA-256=
+`fdb77b4458c4342a0fa62c860ed7141478e38a1dc5c26ac369e70ba961ff5c02`。
+
+新增正资产是 source-aware release contract：870 个 source-incomplete parents 中 721 个可精确恢复 missing
+identity（rate=`0.828735632183908`）；996 个 missing identities 中 902 个恢复 journal status
+（rate=`0.9056224899598394`），其中 893 个 execution error、9 个 official grade absent，94 个仍 unknown。
+因此允许主张 labeled sibling fragment + high-coverage parent-linked missing identity/status registry；完整 source
+choice set、MAR、missing numeric outcome 与 censor-aware utility 仍明确禁止。全套测试=`620 passed, 1 skipped,
+25 warnings`，秘密扫描 0，prospective outcome read=0；本地与 Linux verifier 逐字节一致。
+
+该结果强化 D&B 数据/审计容器，不是 predictor 方法或 prospective effect。first-960/closure、strict-future
+transition escrow 与 clean Qwen G0/G1 预算门均不改变。直接证据：
+
+- `phase1/results/decision_corpus_evidence_index_v2_20260821/README.md`；
+- `phase1/实验记录/2026-08-21/DecisionCorpusEvidenceIndex_v2_正式裁决.md`。
+
 ## 0CV. 2026-08-21 G0 共享 Pro6000 调度资格通过；容量与精确预算仍待
 
 0CH 的“当前账号无 Pro6000 QoS”已被更精确的只读审计取代：`projgpu39` 同时属于共享 `gpu_24h`，该

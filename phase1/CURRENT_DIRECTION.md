@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DH. 2026-08-21 source-answerability 九项证据索引正式通过
+
+控制 commit `fff9e9fb937390142b059818dde3c593ece144a8` 的 evidence index v5 逐项继承 v4 八项，并把
+0DG 作为第九个独立 `source_decision_answerability` estimand 接入。新增合同直接绑定 3,252-row parent CSV、
+23-row task CSV、summary、独立 verifier 与 producer manifest；CSV 的 normalized hash、精确 header、行数和
+等宽性都由独立实现核验。
+
+正式 index 含 9 entries、26 个 JSON artifacts、3 个 bound files 与 305 条 assertions；normalized SHA-256=
+`4bff2b9fa48f2b530de886ab6b799011e8c4aa48ed378cdee0959c8b087a1627`。机器可核验的新正资产是
+published/status-aware unique-winner answerability=2,344/3,252 与 3,001/3,252，新增 657，最终 rate=
+`0.9228167281672817`。
+
+builder×2 与独立 verifier×2 逐字节一致；正式 focused=`7 passed, 1 skipped`，完整 phase tests=
+`678 passed, 1 skipped, 25 warnings`，回传产物后 checked-output gate=`8 passed`。秘密、worktree drift 与正式
+可写文件均为 0。
+
+该项仍只是 release answerability，不是 predictor accuracy、search utility、完整 numeric total order 或 prospective
+effect；传递关系不是 logged comparisons，identity-unavailable parents 未插补。v5 仍为 `AWAITING_FIRST960`，
+不改变 0CP strict-future、first-960/closure 或 GPU 批准门。直接证据：
+
+- `phase1/results/decision_corpus_evidence_index_v5_20260821/README.md`；
+- `phase1/实验记录/2026-08-21/DecisionCorpusEvidenceIndex_v5_正式裁决.md`。
+
 ## 0DG. 2026-08-21 failure-aware partial order 把 source-winner answerability 提升至 92.28%
 
 控制 commit `e9f6f69ebb1364e14bd97ce0a140be6579977f33` 对固定 3,252 个真实 source choice sets

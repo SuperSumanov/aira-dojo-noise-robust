@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus source-answerability evidence release; no predictor or controller tuning
+PREFLIGHT_02_QUESTION=can source-winner answerability be bound as a ninth non-merged estimand
+PREFLIGHT_03_INPUT=frozen v4 index plus pinned answerability parent/task CSV summary verifier and hash manifest
+PREFLIGHT_04_UNIT=one evidence entry with two bound CSV files and three asserted JSON artifacts
+PREFLIGHT_05_OUTPUT=v5 index with nine separately bounded estimands
+PREFLIGHT_06_GATE=exact source and artifact hashes, CSV headers and rows, schema reconstruction, every assertion
+PREFLIGHT_07_INFERENCE=none; post-result deterministic evidence packaging only
+PREFLIGHT_08_LEAKAGE=no code score gap raw archive checkpoint prospective outcome or first960
+PREFLIGHT_09_CONTROLS=claim drift CSV-binding drift CSV-header drift exact manifest keys source order and checked output
+PREFLIGHT_10_REPRO=builder x2 independent verifier x2 full commit and hashes embedded
+PREFLIGHT_11_FAILURE=no old-entry drift boundary deletion hash line assertion or secret mismatch
+PREFLIGHT_12_RESOURCES=single-thread CPU GPU 0 API 0 base-LLM update 0
+PREFLIGHT_13_EXPECTED_WALL=under 30 minutes including complete phase1 regression

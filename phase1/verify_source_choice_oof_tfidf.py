@@ -335,9 +335,26 @@ def verify(protocol_path: Path, train_path: Path, cluster_path: Path, result: Pa
             need(math.isclose(float(raw[key]), expected[key], rel_tol=0, abs_tol=1e-12), "per-task float")
 
     folds = object_json(result / "fold_receipts.json")["model_fits"]
-    need(len(folds) == 28 and summary.get("models_fitted") == 28, "model fit count")
+    expected_fits = (
+        protocol["splits"]["primary"]["folds"]
+        + protocol["splits"]["secondary"]["folds"]
+    )
+    max_features = protocol["model"]["vectorizer"]["max_features"]
+    max_iterations = protocol["model"]["logistic_regression"]["max_iter"]
+    need(
+        len(folds) == expected_fits and summary.get("models_fitted") == expected_fits,
+        "model fit count",
+    )
     need(all(item["run_overlap"] == 0 and item["candidate_overlap"] == 0 and item["code_hash_overlap"] == 0 for item in folds), "fold overlap")
-    need(all(0 < item["vocabulary_size"] <= 30000 and item["lr_iterations"] < 1500 and HEX64.fullmatch(item["coefficient_sha256"]) for item in folds), "model receipt")
+    need(
+        all(
+            0 < item["vocabulary_size"] <= max_features
+            and item["lr_iterations"] < max_iterations
+            and HEX64.fullmatch(item["coefficient_sha256"])
+            for item in folds
+        ),
+        "model receipt",
+    )
 
     gate = protocol["gate"]
     cross = reconstructed["task_loto"]["tfidf_pairwise_lr"]

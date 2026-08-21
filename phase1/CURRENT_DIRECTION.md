@@ -3,6 +3,31 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DA. 2026-08-21 decision observability funnel 正式通过：14.6% child loss 放大为 38.5% pair-capacity loss
+
+结果前 commit `1b8a7b94f7175823763ef866e0dde2ce202828b7` 对固定 3,252-parent source 表完成完整 release census。
+source-declared child slots=9,088，raw/finite=7,760，child loss=`0.14612676056338025`；对应的 undirected
+`C(n,2)` pair capacity 从 9,755 降至 5,998，loss=`0.3851358277806253`，比 child loss多
+`0.23900906721724502`，组合放大=`2.6356283154144×`。finite capacity 中实际发布 5,897 unique edges，
+coverage=`0.9831610536845615`；三段 loss 为 source→raw 3,757、raw→finite 0、finite→published 101。
+
+全部六个冻结门通过，状态=`VERIFIED_MATERIAL_COMBINATORIAL_DECISION_ATTRITION`：14 个 tasks 达到 source
+pair capacity≥100，12 个显示 pair loss>child loss，train/frozen roles 也都通过。producer×2/verifier×2 逐字节
+一致，独立重建差=0；focused=`6 passed`，完整 phase tests=`638 passed, 25 warnings`，forbidden path、秘密扫描
+与 writable files 均为 0。
+
+允许的正主张是：在当前 release 中，source-level candidate-slot censoring 会非线性压缩可观察 sibling comparison
+resolution；只报 retained pairs 会掩盖真实 decision denominator。必须同时保留两个限制：全部 3,252 parents 仍有
+至少两个 finite candidates 与一条 published edge，所以不是“38.5% 决策点消失”；9,755 是 declared structural
+capacity，不是真实 agent comparisons，也不恢复完整 labeled choice set。1,328 parent-level missing slots 与先前
+996 distinct target identities 分母不同，不得混算。
+
+该结果把 0CX 的 task-conditioned retention 和 0CW 的 identity/status registry 连接成可成图的 D&B 正资产，
+但不是 predictor/search utility，不改变 strict-future、first-960/closure 或 Qwen 预算门。直接证据：
+
+- `phase1/results/decision_observability_funnel_v1_20260821_1b8a7b9/README.md`；
+- `phase1/实验记录/2026-08-21/DecisionObservabilityFunnel_v1_正式裁决.md`。
+
 ## 0CZ. 2026-08-21 CEB 已覆盖流式无未来反馈；temporal escrow 只作完整性贡献
 
 一手原文复核发现，[Critic Experience Bank](https://arxiv.org/abs/2607.12397) 已明确在 action 执行前输出

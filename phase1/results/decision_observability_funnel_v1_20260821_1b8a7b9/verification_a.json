@@ -1,0 +1,13 @@
+{
+  "artifact_manifest_sha256": "a74f33df91bfb12b12f2a5ca3ccbbad0f5796625472096d8f4e42e8bd84ce9f3",
+  "artifact_summary_sha256": "e2bf11bc557ff147a11040821a6d3aa5a0650023ba585bbbf7f5e730fcf07ceb",
+  "claim_allowed": true,
+  "finite_pair_capacity": 5998,
+  "imports_producer": false,
+  "maximum_reconstruction_difference": 0.0,
+  "parent_rows": 3252,
+  "producer_status": "VERIFIED_MATERIAL_COMBINATORIAL_DECISION_ATTRITION",
+  "prospective_outcome_read": false,
+  "source_pair_capacity": 9755,
+  "status": "INDEPENDENT_DECISION_OBSERVABILITY_FUNNEL_VERIFIED"
+}

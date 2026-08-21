@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus outcome-free observability funnel
+PREFLIGHT_02_QUESTION=does child availability loss materially amplify into sibling pair-capacity loss
+PREFLIGHT_03_INPUT=immutable 3252-parent table SHA 75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03
+PREFLIGHT_04_UNIT=full release census by parent with role and task strata
+PREFLIGHT_05_FUNNEL=source children to raw cards to finite candidates to published unique edges
+PREFLIGHT_06_DENOMINATORS=integer child counts and choose-n-2 pair capacities at every stage
+PREFLIGHT_07_GATE=pair loss at least 0.15 and pair-minus-child loss at least 0.03 with task and role support
+PREFLIGHT_08_INFERENCE=no IID interval; exact finite-population counts only
+PREFLIGHT_09_LEAKAGE=no code numeric outcome orientation prediction prospective vault or raw archive
+PREFLIGHT_10_REPRO=producer x2 independent verifier x2 exact commit protocol and input SHA
+PREFLIGHT_11_FAILURE=no threshold task subset weighting or stage relabel rescue
+PREFLIGHT_12_RESOURCES=single-thread CPU GPU 0 API 0 base-LLM update 0
+PREFLIGHT_13_EXPECTED_WALL=under 20 minutes including complete phase1 regression

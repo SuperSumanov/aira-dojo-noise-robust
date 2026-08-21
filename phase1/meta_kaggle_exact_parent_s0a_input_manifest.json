@@ -1,0 +1,67 @@
+{
+  "protocol": "meta-kaggle-exact-parent-human-fork-s0a-input-v1",
+  "dataset_id": 9,
+  "dataset_owner_slug": "kaggle/meta-kaggle",
+  "snapshot_date": "2026-08-21",
+  "listing": {
+    "raw_before_sha256": "5a31028180a705b4a9e79e25db180d6269f6128ac05aa988f2a7215ef87181ab",
+    "raw_after_sha256": "5a31028180a705b4a9e79e25db180d6269f6128ac05aa988f2a7215ef87181ab",
+    "normalized_before_sha256": "965de66d8c2f277e45583e2cba0f27c7869b365a586b72c06e076a29f7d00f35",
+    "normalized_after_sha256": "965de66d8c2f277e45583e2cba0f27c7869b365a586b72c06e076a29f7d00f35"
+  },
+  "files": {
+    "Competitions.csv": {
+      "bytes": 159492977,
+      "sha256": "a77249dfddc92d1c3d781ac567f876966391c5befb92c81ae52c3e214fbbd0c9",
+      "header_sha256": "c5a2ff14d56b9b3b1066779570d194d6046846bb003bce51143554e829f51928"
+    },
+    "KernelVersionCompetitionSources.csv": {
+      "bytes": 170903903,
+      "sha256": "abaaee73c7ef464d2c708e82b707d2b3b5ded4938f42bca0a84d3834a0630a35",
+      "header_sha256": "042ffda1a78af85ce455a5d1e83936afce81f4dc2d6f16217351ae583ee78e5a"
+    },
+    "KernelVersionKernelSources.csv": {
+      "bytes": 53335812,
+      "sha256": "13c890df4dabd7768947f0853b5330da9454af9b804e76b90eb732283515eafd",
+      "header_sha256": "38efa19514c9ce0bb6272745da94a6a6ebcb292ede1cce78dbdbe6d95536c72c"
+    },
+    "Kernels.csv": {
+      "bytes": 307652726,
+      "sha256": "dccccbad40efc018e37b1393d939c20062142a8f28dd19b336d1e186d2983680",
+      "header_sha256": "24501efd811369f3851081d77554bd10ac982be96091aba8437a456e1a2df4c6"
+    },
+    "KernelVersions.csv": {
+      "bytes": 4927636096,
+      "sha256": "d8a6a7a4081be92373438b4b9342420e8c8dc775255e42ec54478f6610a98725",
+      "header_sha256": "bf52f26ec0271e45d413bd6c651e874e86cb9cea79a782886c8e5d62add999d4"
+    },
+    "Submissions.csv": {
+      "bytes": 2597744302,
+      "sha256": "6185b27edef64d328d75fb7c5728d569dc136456f8ca1af7719054030ceea63d",
+      "header_sha256": "a4fd80d43f56a4d37cea8eba65c1a7bf650f76d86bd9609875e6d505b4b4d6bf",
+      "data_rows_opened_in_s0a": 0
+    },
+    "dataset-metadata.json": {
+      "bytes": 4930,
+      "sha256": "5595e5d41ef4e114d9654fd054a9755a907c4840c175fdc336a2ffda3a275e5a"
+    }
+  },
+  "total_csv_bytes": 8216765816,
+  "s0b_allowed_files": [
+    "Competitions.csv",
+    "KernelVersionCompetitionSources.csv",
+    "Kernels.csv",
+    "KernelVersions.csv"
+  ],
+  "s0b_forbidden_files": [
+    "KernelVersionKernelSources.csv",
+    "Submissions.csv"
+  ],
+  "receipt": {
+    "complete_marker_sha256": "fcfb8ede1ce7ab9eb177a15f02bbae2164470313ef05705266362482fe203aa0",
+    "filename_secret_hits": 0,
+    "content_secret_hits": 0,
+    "remote_path": "/research/d7/spc/yzyang4/external-audits/meta-kaggle-s0a-20260821/receipts/s0a-crlf-v2"
+  },
+  "status": "S0A_PASS"
+}

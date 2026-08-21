@@ -60,7 +60,7 @@ verified。这样不会因大 fork group 产生组合爆炸，也不在 outcome 
 S0a 通过后才允许流式读取 `Kernels`、`KernelVersions`、competition source link 和 `Competitions` 的身份/时间/状态；
 仍不打开 `Submissions.csv` data rows。全部门为：
 
-1. Kernel Id 与 KernelVersion Id 唯一，required columns 完整；
+1. Kernel Id、KernelVersion Id 与所有被引用 Competition Id 唯一，required columns 完整；
 2. selected child first-version 与 parent-version join 均完整，child/parent scripts 不同，时间严格有序，图无环；
 3. `ForkParentKernelVersionId` 与 child first row 的 `ParentScriptVersionId` 全部 selected edges 一致，且全体 explicit
    fork 的一致率≥0.95；

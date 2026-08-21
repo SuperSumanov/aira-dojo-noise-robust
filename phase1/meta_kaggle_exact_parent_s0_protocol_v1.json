@@ -1,7 +1,7 @@
 {
   "protocol": "meta-kaggle-exact-parent-human-fork-s0-v1",
   "frozen_at_utc": "2026-08-21T09:13:44Z",
-  "status": "S0A_CRLF_ENGINEERING_RETRY_FROZEN_NOT_RUN",
+  "status": "S0A_PASS_S0B_IMPLEMENTATION_FROZEN_NOT_RUN",
   "role": "external_cross_domain_extension_only",
   "mainline_unchanged": "transition-future-escrow-7458f09",
   "dataset": {
@@ -23,6 +23,16 @@
     "KernelVersionCompetitionSources.csv": "abaaee73c7ef464d2c708e82b707d2b3b5ded4938f42bca0a84d3834a0630a35",
     "KernelVersionKernelSources.csv": "13c890df4dabd7768947f0853b5330da9454af9b804e76b90eb732283515eafd",
     "dataset-metadata.json": "5595e5d41ef4e114d9654fd054a9755a907c4840c175fdc336a2ffda3a275e5a"
+  },
+  "s0a_formal_result": {
+    "status": "S0A_PASS",
+    "input_manifest": "phase1/meta_kaggle_exact_parent_s0a_input_manifest.json",
+    "before_after_raw_listing_identical": true,
+    "before_after_normalized_listing_identical": true,
+    "submission_data_rows_opened": 0,
+    "notebook_code_opened": 0,
+    "gpu_hours": 0,
+    "paid_api_calls": 0
   },
   "new_downloads": [
     "Kernels.csv",
@@ -57,6 +67,7 @@
     "required_columns_present": true,
     "kernel_id_unique": true,
     "kernel_version_id_unique": true,
+    "relevant_competition_id_unique": true,
     "selected_parent_child_time_order_valid": true,
     "selected_graph_acyclic": true,
     "selected_first_version_join_complete": true,

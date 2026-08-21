@@ -3,7 +3,7 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0CS. 2026-08-21 Meta Kaggle exact-parent human-fork S0 已结果盲冻结
+## 0CS. 2026-08-21 Meta Kaggle exact-parent human-fork S0a 已通过；S0b 实现待正式运行
 
 0CQ 的 TraceML join 失败不否定 human-fork estimand，但公开 TraceML 已经覆盖 human trajectory/fork graph，故新路线
 不能再主张“首个 human fork 数据集”。保留的窄突破候选是：从官方每日 Meta Kaggle snapshot 直接用
@@ -22,6 +22,16 @@ S1。新增下载约 7.3GB，CPU/network-only、GPU/API=0。直接协议：
 第一次 acquisition attempt 在新表下载前因 Kaggle CLI 清单 CRLF 与逐字节 metadata guard 不兼容而 fail closed；
 只产生公开 listing/metadata receipt，CSV data rows=0。重试只保留 raw 清单并生成去 `\r` 的 normalized 副本做
 固定行与 before/after 比较，所有科学输入、关系定义、门槛和 snapshot 不变；新 receipt 目录与旧 attempt 分离。
+
+修正后 S0a 正式通过：下载前后 raw/normalized listing 分别 byte-identical，六张 CSV 共 8,216,765,816 bytes 与
+metadata 全部 SHA 绑定，required headers 完整；receipt 两类秘密扫描为 0。outcome table 仍只读 header、data rows=0。
+S0b producer 与独立 verifier 已实现 bounded-memory exact uniqueness、direct-parent/time/acyclic/singleton-comp 和
+fixed one-pair-per-parent 重建，7 个合成/反例测试通过；尚未读取任何 S0b data row，必须从精确 implementation commit
+完成 producer×2/verifier×2 后才有支持裁决。直接证据：
+
+- `phase1/meta_kaggle_exact_parent_s0a_input_manifest.json`；
+- `phase1/results/meta_kaggle_exact_parent_s0a_20260821_1211700/README.md`；
+- `phase1/实验记录/2026-08-21/MetaKaggleHumanForkExactParent_S0a正式裁决与S0b实现预检.md`。
 
 - `phase1/meta_kaggle_exact_parent_s0_protocol_v1.json`；
 - `phase1/实验记录/2026-08-21/MetaKaggleHumanForkExactParent_S0预注册与输入绑定.md`。

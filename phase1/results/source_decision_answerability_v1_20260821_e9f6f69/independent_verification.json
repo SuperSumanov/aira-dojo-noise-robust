@@ -1,0 +1,11 @@
+{
+  "newly_identified_by_status": 657,
+  "parents": 3252,
+  "producer_imported": false,
+  "producer_status": "VERIFIED_MATERIAL_SOURCE_WINNER_ANSWERABILITY_RECOVERY",
+  "protocol": "independent-source-decision-answerability-verifier-v1",
+  "published_winners": 2344,
+  "status": "INDEPENDENT_SOURCE_DECISION_ANSWERABILITY_VERIFIED",
+  "status_winners": 3001,
+  "summary_sha256": "048f18cc2769df4c9cc4836c491c2917b2e8b051a847da20bdce454dd6592326"
+}

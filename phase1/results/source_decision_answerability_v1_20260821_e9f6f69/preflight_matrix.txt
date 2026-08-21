@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=source winner answerability for the current failure-aware Decision Corpus release
+PREFLIGHT_02_QUESTION=does status-certified validity recover a material number of unique source winners beyond published finite orientations
+PREFLIGHT_03_INPUT=3252 parent table identity registry three b0 pair files and 2079 explicit validity edges all SHA pinned
+PREFLIGHT_04_UNIT=all 3252 parents; unavailable source identity remains unanswered
+PREFLIGHT_05_GRAPH=better-to-worse plus valid-to-invalid DAG; unique winner reaches every source candidate by transitive closure
+PREFLIGHT_06_GATES=added winners 400 overall gain 0.10 train and frozen 0.08 status rate 0.80 task breadth and concentration
+PREFLIGHT_07_SENSITIVITY=execution-error-only must independently pass every material gate
+PREFLIGHT_08_ACCESS=no cards code obs grade gap regrade score-channel prospective outcome or first960
+PREFLIGHT_09_REPRO=producer x2 verifier x2 exact commit immutable protocol and all input hashes
+PREFLIGHT_10_RESOURCES=CPU only GPU 0 API 0 base-LLM update 0
+PREFLIGHT_11_FAILURE=cycle identity endpoint context duplicate or material gate failure is fail-closed with no rescue
+PREFLIGHT_12_SCOPE=no total order MAR predictor accuracy search utility algorithm novelty or first-only claim
+PREFLIGHT_13_EXPECTED_WALL=under 30 minutes including full phase1 regression

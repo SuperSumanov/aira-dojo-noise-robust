@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DG. 2026-08-21 failure-aware partial order 把 source-winner answerability 提升至 92.28%
+
+控制 commit `e9f6f69ebb1364e14bd97ce0a140be6579977f33` 对固定 3,252 个真实 source choice sets
+做了结果前冻结审计。只组合已发布的 finite-finite orientation 与 provenance-bound validity edges；仅当一个
+candidate 在 DAG 传递闭包中可达 source set 的所有其他 candidate，才记唯一 source winner 可认证。没有读取
+code/obs、numeric grade、gap、prospective outcome 或 first-960。
+
+published graph 单独认证 2,344/3,252=`0.7207872078720787` 个 source winners；status-aware graph
+认证 3,001/3,252=`0.9228167281672817`，新增 657 个、绝对 gain=
+`0.20202952029520296`，恢复原未回答缺口的 `0.723568281938326`。train/frozen gain=
+`0.21631051024858264/0.17751479289940827`；14 个支持任务中 11 个为正，dominant added-winner task
+share=`0.2800608828006088`。八项预注册材料门全部通过。
+
+只保留 `EXECUTION_ERROR` 的强敏感性仍新增 649 个，winner rate=`0.9203567035670357`、gain=
+`0.19956949569495694`，train/frozen 与 task breadth/concentration 的全部门也通过。producer×2 与独立
+verifier×2 均逐字节一致；focused=`5 passed`，完整 phase tests=`671 passed, 25 warnings`，forbidden path、
+秘密、worktree 漂移与正式可写文件均为 0。
+
+允许主张的是当前 release 的 source-level answerability 正资产，不是 critic 准确率、search utility、完整数值
+total order 或算法 novelty；传递推断关系绝不能写成 logged comparisons。最终仍有 251 个 parent 未回答，其中
+149 个 source identity 不可恢复。下一步只把它作为独立 estimand 接入 machine-verifiable evidence index；不改变
+0CP strict-future、first-960/closure 或 GPU 批准门。直接证据：
+
+- `phase1/results/source_decision_answerability_v1_20260821_e9f6f69/README.md`；
+- `phase1/实验记录/2026-08-21/SourceDecisionAnswerability_v1正式裁决.md`。
+
 ## 0DF. 2026-08-21 operator-conditioned retention 的支持门失败；S1 不执行
 
 控制 commit `bfdadfade59b69a2c93af0a86e074b13792824c4` 对固定 3,252-parent source-opportunity 表与

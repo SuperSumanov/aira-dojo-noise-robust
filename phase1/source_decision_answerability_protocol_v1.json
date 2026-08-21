@@ -1,0 +1,52 @@
+{
+  "certifiable_categories": [
+    "EXECUTION_ERROR",
+    "OFFICIAL_GRADE_ABSENT"
+  ],
+  "expected_certified_invalid_children": 902,
+  "expected_identity_rows": 3252,
+  "expected_parent_rows": 3252,
+  "expected_published_edges": 5897,
+  "expected_role_pair_counts": {
+    "extension": 136,
+    "frozen": 1498,
+    "train": 4263
+  },
+  "expected_role_parent_counts": {
+    "extension": 114,
+    "frozen": 845,
+    "train": 2293
+  },
+  "expected_validity_edge_categories": {
+    "EXECUTION_ERROR": 2060,
+    "OFFICIAL_GRADE_ABSENT": 19
+  },
+  "expected_validity_edges": 2079,
+  "input_identity_sha256": "b4261a4f042e92acca4a53630efe3e33ea1f2847d1a8148e9c8f18c35b447cd2",
+  "input_per_parent_sha256": "75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03",
+  "input_status_edges_sha256": "dda9f121dc32a1ef309992b0bec61934864e35ec337385bb2f5c0c548b258a3d",
+  "material_min_frozen_winner_rate_gain": 0.08,
+  "material_min_newly_identified_parents": 400,
+  "material_min_overall_winner_rate_gain": 0.1,
+  "material_min_status_winner_rate": 0.8,
+  "material_min_train_winner_rate_gain": 0.08,
+  "maximum_dominant_added_winner_task_share": 0.35,
+  "minimum_supported_tasks": 10,
+  "minimum_task_source_pair_capacity": 100,
+  "minimum_tasks_with_positive_gain": 8,
+  "pair_inputs": {
+    "extension": {
+      "path": "phase1/v11_decision/decision_extension_v11_b0.jsonl",
+      "sha256_normalized_lf": "2facb5a1cb192640229395b9befe4a824bd1e5f1477a2da61eb653d3a6c1ca9c"
+    },
+    "frozen": {
+      "path": "phase1/v11_decision/decision_frozen_v11_b0.jsonl",
+      "sha256_normalized_lf": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8"
+    },
+    "train": {
+      "path": "phase1/v11_decision/decision_train_v11_b0.jsonl",
+      "sha256_normalized_lf": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca"
+    }
+  },
+  "protocol": "source-decision-answerability-v1"
+}

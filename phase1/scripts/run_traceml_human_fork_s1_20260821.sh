@@ -4,6 +4,16 @@ set -eo pipefail
 source /uac/y24/yzyang4/env_setup.sh
 set -u
 
+# Keep the complete regression suite and both scientific implementations on the
+# same deterministic CPU contract used by prior formal phase1 audits.
+export BLIS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export PYTHONHASHSEED=0
+export VECLIB_MAXIMUM_THREADS=1
+
 COMMIT=${1:?usage: run_traceml_human_fork_s1_20260821.sh SOURCE_COMMIT [OUTPUT]}
 SHORT=${COMMIT:0:7}
 REPO=/research/d7/spc/yzyang4/aira-dojo

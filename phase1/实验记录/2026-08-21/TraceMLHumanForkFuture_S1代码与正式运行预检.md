@@ -25,3 +25,11 @@ column values、fork/support/outcome 聚合数只允许在该 commit 的干净�
 kernel、task overlap/dominance、tie/nonfinite、missing raw path、credential shape。Windows focused=9/9；本机全量收集因
 缺少 scipy/sklearn 而不能代表目标环境，正式 launcher 强制在既有远端实验 venv 中先跑 focused 与全部 `phase1/tests`，
 任一失败即在读取真实 graph values 前停止。
+
+## 预读 attempt erratum
+
+commit `878e719...` 的 launcher 先通过 focused tests，随后在 full suite 24% 后暴露 CPU 线程合同遗漏：一个仅
+60-row 的既有合成 HGB 测试启用了约 30 核，持续高 CPU 而没有失败。该 attempt 在 producer command 生成前被
+中止；远端不存在 `summary_1.json`，所以 graph column values、score columns、support 与 effect 读取均为 0。
+旧目录原样标记 `ABORTED_BEFORE_GRAPH_READ_THREAD_OVERSUBSCRIPTION`。正式重跑在新 commit 中显式固定
+OpenBLAS/OMP/MKL/NumExpr/BLIS/vecLib=1 与 `PYTHONHASHSEED=0`，阈值、数据、模型和统计均不改变。

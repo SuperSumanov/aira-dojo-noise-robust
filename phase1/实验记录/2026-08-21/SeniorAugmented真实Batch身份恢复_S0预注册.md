@@ -1,6 +1,26 @@
 # Senior Augmented 真实 Batch 身份恢复 S0：执行前冻结
 
-日期：2026-08-21。状态：`FROZEN_NOT_RUN`。
+日期：2026-08-21。状态：`V2_ENGINEERING_CORRECTION_FROZEN_NOT_RUN`。
+
+## V1 结果前工程纠错（不改变科学门槛）
+
+commit `7f01946a163b3897d6c19fb2f8bba7a5c13ae8ea` 的第一次正式尝试在 producer 1 后停止，目录为
+`senior-true-batch-identity-support/7f01946-v1`。当时尚未运行 verifier，也未读取任何效果；producer 只给出
+全零支持。原因是实现把正则第一组写成 `_seed_...` 之前的 batch 前缀，却把该组当作完整 source run basename，
+导致 tar header 明明存在仍然 676/676 未匹配。
+
+V2 在再次读取有效支持结果前冻结两项纯工程纠正：
+
+1. 正则改为 `^(.+_seed_[0-9]+_id_[0-9a-f]+)__(YYYY-MM-DD)$`，第一组逐字对应 tar 中 run-directory
+   basename；producer 与独立 verifier 都新增真实形状回归测试。
+2. V1 的 producer 会把被拒绝归档写成确定性错误行，但 verifier 遇到同一错误会立即退出，无法独立确认
+   fail-closed 结论。V2 让 verifier 用同一规范错误码重建错误行；错误仍触发原身份门，不会被忽略。
+
+V1 同时暴露了两个 source archive scan errors；header 复核显示其中存在原协议明确拒绝的 link 类成员。V2 不把它们
+重解释为无害旧格式，也不缩小 archive inventory：link/device/fifo、缺少权威 journal 与其他真实扫描错误继续按原门
+fail closed。
+
+日期集合、输入 SHA、batch 定义、split domain、20% 规则以及全部身份/支持阈值均不变；协议标识升级为 v2。
 
 ## 问题与边界
 
@@ -30,7 +50,7 @@ runtime 或 frozen-test 效果。即使通过，也只允许进入下一份结�
 ## 固定身份规则
 
 1. run manifest 的 run ID 必须唯一匹配正则
-   `^(.*)_seed_[0-9]+_id_[0-9a-f]+__(YYYY-MM-DD)$`；捕获的前缀是 source run-directory basename。
+   `^(.+_seed_[0-9]+_id_[0-9a-f]+)__(YYYY-MM-DD)$`；第一组是完整 source run-directory basename。
 2. 每个 source 文件先绑定 path/size/mtime/SHA256；tar 仅流式读取 header，禁止调用 `extractfile`、禁止提取，
    禁止读取任何 member payload。所有路径必须相对、无 `..`、无反斜线/NUL，link/device/fifo 均拒绝。
 3. 只认 `<batch>/<run>/checkpoint/journal.jsonl` 的 header；真实 batch 键固定为

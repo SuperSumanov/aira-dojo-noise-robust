@@ -20,13 +20,13 @@ from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
 
-PROTOCOL = "senior-augmented-true-batch-identity-support-v1"
+PROTOCOL = "senior-augmented-true-batch-identity-support-v2"
 SPLIT_DOMAIN = "senior-experiment-closed-dev-v1|20260821"
 SENIOR_COMMIT = "92a9651f2e13a9e43623235b82c07c19721bc2ee"
 RUN_MANIFEST_SHA256 = "bd707dd992a131d03dc20bdc981626826325f461e086a945b2f85fc41c2c171b"
 PAIR_STRUCTURE_SHA256 = "52ffcdc0b7cc4486b61de0c664c7c057c26171a520372ca2071d55f2fb7a127b"
 SUPPORT_SUMMARY_SHA256 = "7745dd157e41dc96a00ac76979afa6369f06395b0aa8ad67756de4d84e7297e8"
-RUN_RE = re.compile(r"^(.*)_seed_[0-9]+_id_[0-9a-f]+__(\d{4}-\d{2}-\d{2})$")
+RUN_RE = re.compile(r"^(.+_seed_[0-9]+_id_[0-9a-f]+)__(\d{4}-\d{2}-\d{2})$")
 SHA_RE = re.compile(r"[0-9a-f]{64}")
 CREDENTIAL = re.compile(
     rb"(?:^|[^A-Za-z0-9])(?:sk-[A-Za-z0-9._-]{16,}|hf_[A-Za-z0-9]{16,}|"

@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 import phase1.audit_senior_augmented_batch_identity_support as audit
+import phase1.verify_senior_augmented_batch_identity_support as verifier
 
 
 def add_file(archive: tarfile.TarFile, name: str, payload: bytes = b"opaque") -> None:
@@ -32,6 +33,44 @@ def test_scan_archive_uses_header_identity(tmp_path: Path) -> None:
     assert result["run_batches"] == {"run-a": "batch-a", "run-b": "batch-a"}
     assert result["env_member_headers_seen"] == 2
     assert result["checkpoint_journal_headers"] == 2
+
+
+def test_validate_runs_keeps_full_source_run_basename() -> None:
+    run_id = "family_seed_7_id_abcd1234__2026-08-08"
+    rows = [
+        {
+            "cards": 1,
+            "config_sha256": "a" * 64,
+            "curve_order_sha256": "b" * 64,
+            "dev_order_sha256": "c" * 64,
+            "original_hold": False,
+            "role": "train",
+            "run_id": run_id,
+            "task": "task",
+        }
+    ]
+    parsed = audit.validate_runs(rows)
+    assert parsed[run_id]["source_run_name"] == "family_seed_7_id_abcd1234"
+    assert parsed[run_id]["launch_date"] == "2026-08-08"
+
+
+def test_independent_verifier_uses_same_published_identity_contract() -> None:
+    run_id = "family_seed_7_id_abcd1234__2026-08-08"
+    parsed = verifier.RUN_RE.fullmatch(run_id)
+    assert parsed is not None
+    assert parsed.group(1) == "family_seed_7_id_abcd1234"
+
+
+def test_independent_verifier_reproduces_fail_closed_archive_row(tmp_path: Path) -> None:
+    day = tmp_path / "0730"
+    day.mkdir()
+    path = day / "unsafe.tar.gz"
+    with tarfile.open(path, "w:gz") as archive:
+        info = tarfile.TarInfo("batch/run/checkpoint/journal.jsonl")
+        info.type = tarfile.SYMTYPE
+        info.linkname = "../../outside"
+        archive.addfile(info)
+    assert verifier.scan_all([path], tmp_path, 1) == audit.scan_archives([path], tmp_path, 1)
 
 
 def test_scan_archive_rejects_link_member(tmp_path: Path) -> None:

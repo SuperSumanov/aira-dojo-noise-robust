@@ -3,7 +3,7 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0CR. 2026-08-21 真实 batch 身份恢复 S0 已结果前冻结，尚未运行
+## 0CR. 2026-08-21 真实 batch 身份恢复 S0 V1 工程失败；V2 纠错已结果前冻结
 
 为判断学长 augmented scaling 是否能接受真正的 experiment-closed train-only 复核，新增一个 outcome-blind S0：
 从学长固定 commit 的 21 个 source 日期目录中只流式读取 tar header path，不提取、不读取任何 member payload，
@@ -15,6 +15,13 @@ S0 必须同时满足所有 run 唯一命中、所有 pair 同真实 batch、arc
 train≥2,000 与 train/dev experiment 零交集，才允许另立 train-only CPU 效果预注册。否则按身份或支持失败关闭，
 不得修改来源目录、batch 定义、hash domain、切分比例或阈值追救。当前未读取 grade/orientation/code/frozen-test
 效果，GPU/API/model fit=0。直接协议：
+
+第一次正式尝试 `7f01946...` 在 producer 1 后因解析缺陷停止，未运行 verifier、未进入效果：正则第一组实际只
+捕获 `_seed_...` 之前的 batch 前缀，却被实现当成完整 source run basename，因而产生伪造的 676/676 missing。
+V1 同时暴露两个 source archive scan errors；header 复核存在原协议明确拒绝的 link 类成员，因此 V2 不放宽 archive
+门、不缩小 inventory。V2 在任何有效支持结果前只把第一组纠正为完整 `..._seed_N_id_HASH` basename，并新增
+producer/verifier 真实路径反例。日期、输入、batch 定义、split/hash/20% 规则和所有阈值均未改变。
+同时让独立 verifier 对被拒绝归档重建规范错误行，而不是先于身份裁决退出；错误仍计入原门且绝不忽略。
 
 - `phase1/实验记录/2026-08-21/SeniorAugmented真实Batch身份恢复_S0预注册.md`。
 

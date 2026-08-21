@@ -21,13 +21,13 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 
 
-PROTOCOL = "senior-augmented-true-batch-identity-support-v1"
-VERIFY_PROTOCOL = "senior-augmented-true-batch-identity-support-verifier-v1"
+PROTOCOL = "senior-augmented-true-batch-identity-support-v2"
+VERIFY_PROTOCOL = "senior-augmented-true-batch-identity-support-verifier-v2"
 SPLIT_DOMAIN = "senior-experiment-closed-dev-v1|20260821"
 RUN_SHA = "bd707dd992a131d03dc20bdc981626826325f461e086a945b2f85fc41c2c171b"
 PAIR_SHA = "52ffcdc0b7cc4486b61de0c664c7c057c26171a520372ca2071d55f2fb7a127b"
 UPSTREAM_SHA = "7745dd157e41dc96a00ac76979afa6369f06395b0aa8ad67756de4d84e7297e8"
-RUN_RE = re.compile(r"^(.*)_seed_[0-9]+_id_[0-9a-f]+__(\d{4}-\d{2}-\d{2})$")
+RUN_RE = re.compile(r"^(.+_seed_[0-9]+_id_[0-9a-f]+)__(\d{4}-\d{2}-\d{2})$")
 SOURCE_DAYS = (
     "0726",
     "0727",
@@ -97,13 +97,13 @@ def verify_locked(path: Path, expected: str) -> None:
 
 def normalized_parts(value: str) -> tuple[str, ...]:
     if not value or "\\" in value or "\x00" in value:
-        raise VerifyError("unsafe member spelling")
+        raise VerifyError("unsafe tar member spelling")
     path = PurePosixPath(value)
     if path.is_absolute() or ".." in path.parts:
-        raise VerifyError("unsafe member path")
+        raise VerifyError("unsafe tar member path")
     parts = tuple(part for part in path.parts if part not in {"", "."})
     if not parts:
-        raise VerifyError("empty member path")
+        raise VerifyError("empty tar member path")
     return parts
 
 
@@ -111,7 +111,7 @@ def verify_archive(path: Path, root: Path) -> dict[str, Any]:
     relative = path.relative_to(root).as_posix()
     before = path.stat()
     if path.is_symlink() or not stat.S_ISREG(before.st_mode):
-        raise VerifyError("non-regular archive")
+        raise VerifyError("source archive is not a regular file")
     members = declared = env_headers = journal_headers = 0
     run_batches: dict[str, str] = {}
     with tarfile.open(path, "r|*") as handle:
@@ -119,18 +119,18 @@ def verify_archive(path: Path, root: Path) -> dict[str, Any]:
             members += 1
             declared += max(0, int(member.size))
             if members > 1_000_000 or declared > 256 * 1024**3:
-                raise VerifyError("archive cap exceeded")
+                raise VerifyError("archive resource cap exceeded")
             parts = normalized_parts(member.name)
             if member.issym() or member.islnk() or member.isdev() or member.isfifo():
-                raise VerifyError("unsupported member type")
+                raise VerifyError("unsupported tar member type")
             env_headers += parts[-1] == "env_variables.json"
             if len(parts) >= 3 and parts[-2:] == ("checkpoint", "journal.jsonl"):
                 if not member.isfile():
-                    raise VerifyError("journal header is not a file")
+                    raise VerifyError("checkpoint journal header is not a regular file")
                 journal_headers += 1
                 prior = run_batches.setdefault(parts[-3], parts[0])
                 if prior != parts[0]:
-                    raise VerifyError("run appears below multiple batches")
+                    raise VerifyError("one run directory appears under multiple batches in one archive")
             # No extractfile()/extract() call is permitted here.
     sha = digest_file(path)
     after = path.stat()
@@ -140,9 +140,9 @@ def verify_archive(path: Path, root: Path) -> dict[str, Any]:
         after.st_size,
         after.st_mtime_ns,
     ):
-        raise VerifyError("archive changed during verification")
+        raise VerifyError("source archive changed during scan")
     if not journal_headers:
-        raise VerifyError("no checkpoint journal headers")
+        raise VerifyError("archive has no checkpoint journal headers")
     return {
         "relative_path": relative,
         "size": before.st_size,
@@ -191,7 +191,18 @@ def scan_all(paths: list[Path], root: Path, workers: int) -> list[dict[str, Any]
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
         future_paths = {pool.submit(verify_archive, path, root): path for path in paths}
         for future in concurrent.futures.as_completed(future_paths):
-            rows.append(future.result())
+            path = future_paths[future]
+            try:
+                rows.append(future.result())
+            except (VerifyError, OSError, tarfile.TarError, EOFError) as exc:
+                rows.append(
+                    {
+                        "relative_path": path.relative_to(root).as_posix(),
+                        "status": "error",
+                        "error_type": "AuditError" if isinstance(exc, VerifyError) else type(exc).__name__,
+                        "error_sha256": hashlib.sha256(str(exc).encode("utf-8")).hexdigest(),
+                    }
+                )
     return sorted(rows, key=lambda row: row["relative_path"])
 
 

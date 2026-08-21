@@ -50,3 +50,7 @@ phase1/results/prospective_0819_intake_wl_escrow_20260821/README.md text eol=lf 
 # and suppress text whitespace checks; keep the human README renderable.
 phase1/results/selective_execution_v11_20260814_7a1562a45/** -text -diff
 phase1/results/selective_execution_v11_20260814_7a1562a45/README.md text eol=lf diff
+# Preserve the byte-exact producer/verifier receipts for the component-split
+# TF-IDF baseline; keep only its human README normalized and diffable.
+phase1/results/critic_component_tfidf_20260821_a6075d1/** -text -diff
+phase1/results/critic_component_tfidf_20260821_a6075d1/README.md text eol=lf diff

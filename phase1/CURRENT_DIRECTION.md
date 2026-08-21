@@ -3,6 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CF. 2026-08-21 Component 同池 TF-IDF 固定 Qwen 门槛；廉价信号仍显著但不强
+
+component train/dev/test=`4689/551/931` 上的固定 train-only char-TFIDF 已完成 producer×2 与不 import
+producer 的 full-refit verifier×2；逐对 margin、模型 receipt 和全部统计最大差均为 0.0。正式 retrospective test
+为 532/931=`0.5714285714285714`，task macro=`0.5757982662586206`；task-clustered 95% CI=
+`[0.5066135214563272,0.6409030224715225]`、parent-clustered CI=
+`[0.5322425162766734,0.6111639404566828]`，均高于 0.5。Draft/Improve micro=
+`0.5796178343949044` / `0.5672609400324149`，没有单一语义崩塌。
+
+这说明同池便宜文本信号真实但只到约 57%；它把未来 Qwen 的对照从错位的旧 59.90% 固定为逐对可配对的
+57.1429%。同时 dev micro=`0.604355716878403`，比 test 高 `0.03292714544983155`，所以 dev 只能选 checkpoint，
+不得当 test 代理；G1 仍须一次性 test、task/parent clustered paired delta 和两 seed。相对用全部 5,240 outer-train
+pairs 拟合的旧 pooled 0.58324，本次低 `0.011815252416756183`，不能解释为算法退化或进步，因为 551 dev pairs
+被严格留出。
+
+第一次正式 baseline 在任何 accuracy 输出前被反对称门截停：分类器 `decision_function` 错把截距放进 pair
+margin。v2 按 Bradley--Terry 定义改为 `coef·(x_better-x_worse)`，阈值不放宽；拟合截距保留审计但不进入
+margin。该工程失败与修复均留档。当前状态仍只是 `G0_PROPOSAL_READY_NOT_SUBMITTED`；明确批准前无 GPU job。
+论文主线、first-960/closure 与未来 outcome vault 均不变。直接证据：
+
+- `phase1/results/critic_component_tfidf_20260821_a6075d1/README.md`；
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_component同池TFIDF_v2正式裁决.md`；
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_component同池TFIDF_v1失败与v2修正.md`。
+
 ## 0CE. 2026-08-21 Pair-component split 修复跨-run Draft 的 dev 塌缩；只解锁 GPU 校准提案
 
 clean direct-decision scaling 的第一版 physical-run sampler 按预注册失败：train/dev/test=`4532/223/931`，

@@ -1,0 +1,341 @@
+{
+  "bootstrap": {
+    "parent_seed": 20260822,
+    "replicates": 20000,
+    "task_seed": 20260821
+  },
+  "card_inventory": {
+    "cards": 31742,
+    "needed_cards": 6067,
+    "run_groups": 676
+  },
+  "evidence_level": "retrospective_same_pool_baseline",
+  "inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "dev": {
+      "bytes": 376635,
+      "sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4"
+    },
+    "draft": {
+      "bytes": 1465008,
+      "sha256": "3ca77a18e224cacbb7f52121d6e8c2b66f17298c68dd06fbc42a14a238ad05b9"
+    },
+    "improve": {
+      "bytes": 1087821,
+      "sha256": "7aca481afda5317fe78a0ad52fc7488fceff7fde6531c74ebb718df9e3b6926e"
+    },
+    "test": {
+      "bytes": 381803,
+      "sha256": "cb84d78d578e6a3f5378b3396a355fa83880739b4f9af8459d2b960c7ae005da"
+    },
+    "train": {
+      "bytes": 3208089,
+      "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+    }
+  },
+  "integrity": {
+    "components": 168,
+    "endpoints": {
+      "dev": 626,
+      "test": 1346,
+      "train": 4095
+    },
+    "overlap": {
+      "dev_test_endpoints": 0,
+      "dev_test_pairs": 0,
+      "dev_test_runs": 0,
+      "train_dev_endpoints": 0,
+      "train_dev_pairs": 0,
+      "train_dev_runs": 0,
+      "train_test_endpoints": 0,
+      "train_test_pairs": 0,
+      "train_test_runs": 0
+    },
+    "pairs": {
+      "dev": 551,
+      "test": 931,
+      "train": 4689
+    },
+    "runs": {
+      "dev": 81,
+      "test": 140,
+      "train": 430
+    }
+  },
+  "metrics": {
+    "dev": {
+      "Draft": {
+        "margin_quantiles": {
+          "q00": -1.1203588972810958,
+          "q10": -0.41826088773608894,
+          "q100": 1.6900931058429765,
+          "q25": -0.08567901869926275,
+          "q50": 0.20672965113494868,
+          "q75": 0.5006331317434762,
+          "q90": 0.8025161422400927
+        },
+        "micro_accuracy": 0.6802721088435374,
+        "pairs": 294,
+        "parent_clustered": {
+          "ci95": [
+            0.6031730591069112,
+            0.7421609592770034
+          ],
+          "clusters": 34,
+          "estimand": "pair_micro_accuracy_parent_clustered",
+          "point": 0.6802721088435374,
+          "replicates": 20000,
+          "seed": 20260822
+        },
+        "parents": 34,
+        "task_clustered": {
+          "ci95": [
+            0.49587771484373816,
+            0.7228784779237365
+          ],
+          "clusters": 25,
+          "estimand": "task_macro_accuracy",
+          "point": 0.6136152049128061,
+          "replicates": 20000,
+          "seed": 20260821
+        },
+        "task_macro_accuracy": 0.6136152049128061,
+        "tasks": 25,
+        "ties": 0
+      },
+      "Improve": {
+        "margin_quantiles": {
+          "q00": -1.1864151418872786,
+          "q10": -0.4210084590633794,
+          "q100": 1.5011844644987413,
+          "q25": -0.18795507798592356,
+          "q50": 0.024863567342112654,
+          "q75": 0.25984120629951557,
+          "q90": 0.5860671852776111
+        },
+        "micro_accuracy": 0.5175097276264592,
+        "pairs": 257,
+        "parent_clustered": {
+          "ci95": [
+            0.45454545454545453,
+            0.5806451612903226
+          ],
+          "clusters": 212,
+          "estimand": "pair_micro_accuracy_parent_clustered",
+          "point": 0.5175097276264592,
+          "replicates": 20000,
+          "seed": 20260822
+        },
+        "parents": 212,
+        "task_clustered": {
+          "ci95": [
+            0.3668528025277703,
+            0.5699417513542584
+          ],
+          "clusters": 24,
+          "estimand": "task_macro_accuracy",
+          "point": 0.46953958539341834,
+          "replicates": 20000,
+          "seed": 20260821
+        },
+        "task_macro_accuracy": 0.46953958539341834,
+        "tasks": 24,
+        "ties": 0
+      },
+      "merged": {
+        "margin_quantiles": {
+          "q00": -1.1864151418872786,
+          "q10": -0.42408085542442514,
+          "q100": 1.6900931058429765,
+          "q25": -0.14984541856901354,
+          "q50": 0.11800123441007238,
+          "q75": 0.39420252192223815,
+          "q90": 0.7337833548730109
+        },
+        "micro_accuracy": 0.604355716878403,
+        "pairs": 551,
+        "parent_clustered": {
+          "ci95": [
+            0.5445134575569358,
+            0.6534954407294833
+          ],
+          "clusters": 246,
+          "estimand": "pair_micro_accuracy_parent_clustered",
+          "point": 0.604355716878403,
+          "replicates": 20000,
+          "seed": 20260822
+        },
+        "parents": 246,
+        "task_clustered": {
+          "ci95": [
+            0.48453914211874166,
+            0.6400960498179192
+          ],
+          "clusters": 25,
+          "estimand": "task_macro_accuracy",
+          "point": 0.5643959081886237,
+          "replicates": 20000,
+          "seed": 20260821
+        },
+        "task_macro_accuracy": 0.5643959081886237,
+        "tasks": 25,
+        "ties": 0
+      }
+    },
+    "test": {
+      "Draft": {
+        "margin_quantiles": {
+          "q00": -1.6930915772729762,
+          "q10": -0.6812450121294863,
+          "q100": 2.178438076010448,
+          "q25": -0.3184924666627833,
+          "q50": 0.09791705395160366,
+          "q75": 0.5936689534326881,
+          "q90": 0.9322574889913399
+        },
+        "micro_accuracy": 0.5796178343949044,
+        "pairs": 314,
+        "parent_clustered": {
+          "ci95": [
+            0.4950486826091247,
+            0.660001240694789
+          ],
+          "clusters": 83,
+          "estimand": "pair_micro_accuracy_parent_clustered",
+          "point": 0.5796178343949044,
+          "replicates": 20000,
+          "seed": 20260822
+        },
+        "parents": 83,
+        "task_clustered": {
+          "ci95": [
+            0.46515226960539463,
+            0.6866530798070976
+          ],
+          "clusters": 28,
+          "estimand": "task_macro_accuracy",
+          "point": 0.5782137604459034,
+          "replicates": 20000,
+          "seed": 20260821
+        },
+        "task_macro_accuracy": 0.5782137604459034,
+        "tasks": 28,
+        "ties": 0
+      },
+      "Improve": {
+        "margin_quantiles": {
+          "q00": -1.03494293187268,
+          "q10": -0.40592458070833565,
+          "q100": 1.7457075482043911,
+          "q25": -0.17835550054751823,
+          "q50": 0.05498353247871894,
+          "q75": 0.3124971791833355,
+          "q90": 0.6991698146419324
+        },
+        "micro_accuracy": 0.5672609400324149,
+        "pairs": 617,
+        "parent_clustered": {
+          "ci95": [
+            0.5257899205791036,
+            0.6103059581320451
+          ],
+          "clusters": 467,
+          "estimand": "pair_micro_accuracy_parent_clustered",
+          "point": 0.5672609400324149,
+          "replicates": 20000,
+          "seed": 20260822
+        },
+        "parents": 467,
+        "task_clustered": {
+          "ci95": [
+            0.5365270978210426,
+            0.6441683589249306
+          ],
+          "clusters": 26,
+          "estimand": "task_macro_accuracy",
+          "point": 0.588373953515658,
+          "replicates": 20000,
+          "seed": 20260821
+        },
+        "task_macro_accuracy": 0.588373953515658,
+        "tasks": 26,
+        "ties": 0
+      },
+      "merged": {
+        "margin_quantiles": {
+          "q00": -1.6930915772729762,
+          "q10": -0.5035486382122736,
+          "q100": 2.178438076010448,
+          "q25": -0.19854057384895155,
+          "q50": 0.06875828673492192,
+          "q75": 0.40128783919313826,
+          "q90": 0.7848850917432239
+        },
+        "micro_accuracy": 0.5714285714285714,
+        "pairs": 931,
+        "parent_clustered": {
+          "ci95": [
+            0.5322425162766734,
+            0.6111639404566828
+          ],
+          "clusters": 550,
+          "estimand": "pair_micro_accuracy_parent_clustered",
+          "point": 0.5714285714285714,
+          "replicates": 20000,
+          "seed": 20260822
+        },
+        "parents": 550,
+        "task_clustered": {
+          "ci95": [
+            0.5066135214563272,
+            0.6409030224715225
+          ],
+          "clusters": 28,
+          "estimand": "task_macro_accuracy",
+          "point": 0.5757982662586206,
+          "replicates": 20000,
+          "seed": 20260821
+        },
+        "task_macro_accuracy": 0.5757982662586206,
+        "tasks": 28,
+        "ties": 0
+      }
+    }
+  },
+  "model": {
+    "all_endpoints": 6067,
+    "anti_symmetry_max_abs": 0.0,
+    "code_prefix_chars": 20000,
+    "coefficient_sha256": "ea4a109917a27493c5492fea6ee66631083443ea268ae72bf2fe3a2737c18523",
+    "idf_sha256": "c7822963e85d304c6b944f501379b9144a505f67b0dd86a2ac64f08a203f29ae",
+    "intercept": 3.832909363655752e-06,
+    "intercept_sha256": "e4366e1dafe4d8678ca7546a5f6dc57eb862e9b7762f02a3ccd570ee55b5c953",
+    "logistic_regression": {
+      "C": 0.5,
+      "max_iter": 1500,
+      "n_iter": 5,
+      "random_state": 0,
+      "solver": "lbfgs"
+    },
+    "pair_margin_uses_classifier_intercept": false,
+    "train_endpoints": 4095,
+    "vectorizer": {
+      "analyzer": "char_wb",
+      "dtype": "float64",
+      "max_features": 30000,
+      "min_df": 3,
+      "ngram_range": [
+        3,
+        5
+      ],
+      "sublinear_tf": true
+    },
+    "vocabulary_sha256": "7cd6c092ce6d73bb343b82dd98ba7579b8c30a5008f6c8979e98be7246435fd1",
+    "vocabulary_size": 30000
+  },
+  "protocol": "critic-component-char-tfidf-baseline-v1",
+  "status": "BASELINE_VALID"
+}

@@ -1,0 +1,11 @@
+...                                                                      [100%]
+=============================== warnings summary ===============================
+phase1/tests/test_critic_component_tfidf_baseline.py::test_producer_and_independent_full_refit_agree
+phase1/tests/test_critic_component_tfidf_baseline.py::test_producer_and_independent_full_refit_agree
+phase1/tests/test_critic_component_tfidf_baseline.py::test_verifier_rejects_tampered_margin
+phase1/tests/test_critic_component_tfidf_baseline.py::test_verifier_rejects_tampered_margin
+  /research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:451: DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+    opt_res = optimize.minimize(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+3 passed, 4 warnings in 2.00s

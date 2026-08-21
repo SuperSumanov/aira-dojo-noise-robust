@@ -1,0 +1,17 @@
+{
+  "full_refit": true,
+  "max_abs_margin_difference": 0.0,
+  "max_abs_metric_difference": 0.0,
+  "max_abs_model_receipt_difference": 0.0,
+  "max_abs_task_accuracy_difference": 0.0,
+  "pairs": {
+    "dev": 551,
+    "test": 931,
+    "train": 4689
+  },
+  "producer_artifact_manifest_sha256": "1a12f18a13b258d628fa3ccc4ac6151b484e8dbc28ef69c6159a211f30f1c33f",
+  "producer_imported": false,
+  "producer_summary_sha256": "41e1f0c3c03f8b784473f770d517752ca452434f877d6fda514d4dd5b280bac9",
+  "protocol": "independent-critic-component-char-tfidf-verifier-v1",
+  "status": "BASELINE_INDEPENDENTLY_VERIFIED"
+}

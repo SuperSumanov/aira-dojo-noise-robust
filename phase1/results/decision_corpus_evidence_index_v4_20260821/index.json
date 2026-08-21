@@ -1,0 +1,487 @@
+{
+  "protocol": "decision_corpus_evidence_index_v4",
+  "status": "PROVISIONAL_FAILURE_AWARE_EVIDENCE_STACK_AWAITING_FIRST960",
+  "source_v3_index": {
+    "path": "phase1/results/decision_corpus_evidence_index_v3_20260821/index.json",
+    "sha256_normalized_lf": "424f06b161086972fedf55d5e8e06e22d92c21e1558a04b2dd6c55e3cb637b49"
+  },
+  "scope": {
+    "estimands_merged": false,
+    "source_choice_set_complete": false,
+    "missing_at_random_assumed": false,
+    "prospective_outcomes_read": false,
+    "prospective_vault_open_allowed": false,
+    "frozen_accuracy_computed_by_deployment_cost": false,
+    "release_complete": false,
+    "observability_is_actual_agent_comparison_log": false,
+    "observability_establishes_predictor_or_search_utility": false,
+    "status_partial_order_is_numeric_quality_order": false,
+    "status_partial_order_is_complete_choice_set": false,
+    "status_partial_order_establishes_predictor_or_search_utility": false,
+    "status_unknown_imputed": false,
+    "grade_absent_required_for_materiality": false
+  },
+  "reporting_contract": {
+    "first_or_only_claim_allowed": false,
+    "complete_choice_set_language_allowed": false,
+    "missing_at_random_language_allowed": false,
+    "self_report_classification": "post_execution_signal",
+    "prospective_effect_claim_allowed": false,
+    "decision_point_disappearance_language_allowed": false,
+    "actual_agent_comparison_count_language_allowed": false,
+    "numeric_quality_total_order_language_allowed": false,
+    "explicit_validity_edge_count_language_allowed": true
+  },
+  "entries": [
+    {
+      "name": "decision_corpus",
+      "estimand": "choice-set structure, physical-run integrity, and split isolation of the v11 decision resources",
+      "does_not_prove": "This structural audit does not establish predictor accuracy, deployment utility, label reliability, or prospective generalization.",
+      "artifacts": [
+        {
+          "path": "phase1/results/decision_corpus_audit_v11_20260814/audit_card.json",
+          "json_assertions": {
+            "protocol": "decision_corpus_audit_v1",
+            "status": "VERIFIED_DECISION_CORPUS_AUDIT",
+            "integrity.all_choice_sets_context_consistent": true,
+            "integrity.all_rows_true_physical_siblings": true,
+            "integrity.same_budget_train_frozen_isolated": true,
+            "sets.frozen:b0.pairs": 1498,
+            "sets.frozen:b0.runs": 92
+          },
+          "sha256_normalized_lf": "a3b5e12cbe280909300d83d54a326c06c736cfb59f2f6762cb5518720393b399"
+        },
+        {
+          "path": "phase1/results/decision_corpus_audit_v11_20260814/independent_verification.json",
+          "json_assertions": {
+            "protocol": "independent_decision_corpus_audit_verifier_v1",
+            "status": "INDEPENDENTLY_VERIFIED_DECISION_CORPUS_AUDIT",
+            "imports_producer": false,
+            "verified_pair_sets": 9
+          },
+          "sha256_normalized_lf": "63497b5faccc6657cbf58be885a12548c6b16ec15a19cb598c02bb2192ef4a92"
+        }
+      ],
+      "supported_claim": "Published pairs are context-consistent physical-run siblings with same-budget train/frozen isolation inside the audited release."
+    },
+    {
+      "name": "source_opportunity",
+      "estimand": "retention boundary plus parent-linked identity and journal-status coverage for generated siblings absent from the labeled release",
+      "supported_claim": "The release is a labeled sibling fragment with a high-coverage, parent-linked registry of missing generated identities and statuses.",
+      "does_not_prove": "The registry does not recover missing numeric outcomes, establish missing-at-random, make the labeled fragment a complete choice set, or demonstrate a censor-aware selector's utility.",
+      "artifacts": [
+        {
+          "path": "phase1/results/raw_choice_set_completeness_v11_20260815_6610618/verification_summary.json",
+          "json_assertions": {
+            "status": "VERIFIED_RAW_CHOICE_SET_COMPLETENESS_AUDIT",
+            "labeled_sibling_fragment_claim_allowed": true,
+            "choice_set_faithful_claim_allowed": false,
+            "parents": 3252,
+            "reads_first960": false,
+            "reads_pair_orientation": false,
+            "uses_numeric_outcome_magnitude": false
+          },
+          "sha256_normalized_lf": "52e0e4c77de6f85adc2690cc541664299be3700f069a07f51b5ec7879161c833"
+        },
+        {
+          "path": "phase1/results/source_opportunity_identity_recovery_v11_20260815_3faf001/verification_summary.json",
+          "json_assertions": {
+            "status": "VERIFIED_SOURCE_OPPORTUNITY_IDENTITY_RECOVERY",
+            "opportunity_identity_registry_claim_allowed": true,
+            "complete_labeled_choice_set_claim_allowed": false,
+            "source_incomplete_parents": 870,
+            "exact_identity_recoverable_parents": 721,
+            "exact_identity_recovery_rate": 0.828735632183908,
+            "recovered_missing_identities": 996,
+            "nonorphan_unrecoverable_incomplete_parents": 0,
+            "reads_first960": false,
+            "reads_numeric_outcomes": false
+          },
+          "sha256_normalized_lf": "297d4cf0c6ee72d180208738e0b51c3c3a27d3792b32b3a1dce3bf8172b2c422"
+        },
+        {
+          "path": "phase1/results/source_opportunity_journal_status_v11_20260815_42cb6b1/verification_summary.json",
+          "json_assertions": {
+            "status": "VERIFIED_SOURCE_OPPORTUNITY_JOURNAL_STATUS",
+            "missing_status_registry_claim_allowed": true,
+            "complete_labeled_choice_set_claim_allowed": false,
+            "missing_at_random_claim_allowed": false,
+            "target_missing_identities": 996,
+            "unique_nodes_recovered": 902,
+            "node_recovery_rate": 0.9056224899598394,
+            "categories.EXECUTION_ERROR": 893,
+            "categories.OFFICIAL_GRADE_ABSENT": 9,
+            "source_journal_collisions": 0,
+            "journal_parent_mismatches": 0,
+            "reads_first960": false,
+            "reads_numeric_grade": false
+          },
+          "sha256_normalized_lf": "4d094aa119c25c2f0639fc4315e70e85b297f3d9afd808b0a39d15726b17fedc"
+        }
+      ]
+    },
+    {
+      "name": "decision_observability",
+      "estimand": "finite-population child-slot and declared undirected sibling-pair capacity through source, raw, finite, and published release stages",
+      "supported_claim": "In the audited 3,252-parent release, 14.61 percent source child-slot loss corresponds to 38.51 percent declared pair-capacity loss; the comparison-resolution loss is material in both train and frozen roles.",
+      "does_not_prove": "Declared C(n,2) capacity is not a log of comparisons made by the agent, all audited parents retain a finite published decision, and the census does not recover a complete labeled choice set or establish predictor accuracy, search utility, missing-at-random, or causality.",
+      "artifacts": [
+        {
+          "path": "phase1/results/decision_observability_funnel_v1_20260821_1b8a7b9/formal_summary.json",
+          "sha256_normalized_lf": "e2bf11bc557ff147a11040821a6d3aa5a0650023ba585bbbf7f5e730fcf07ceb",
+          "json_assertions": {
+            "protocol": "decision-observability-funnel-v1",
+            "status": "VERIFIED_MATERIAL_COMBINATORIAL_DECISION_ATTRITION",
+            "claim_allowed": true,
+            "inputs.parent_rows": 3252,
+            "overall.source_children": 9088,
+            "overall.finite_children": 7760,
+            "overall.source_pair_capacity": 9755,
+            "overall.finite_pair_capacity": 5998,
+            "overall.published_unique_edges": 5897,
+            "overall.source_to_finite_child_loss_share": 0.14612676056338025,
+            "overall.source_to_finite_pair_loss_share": 0.3851358277806253,
+            "overall.pair_minus_child_loss_share": 0.23900906721724502,
+            "overall.pair_attrition_amplification": 2.6356283154144,
+            "overall.source_to_raw_pair_loss": 3757,
+            "overall.raw_to_finite_pair_loss": 0,
+            "overall.finite_to_published_pair_loss": 101,
+            "overall.decision_parent_survival": 1.0,
+            "roles.train.source_to_finite_pair_loss_share": 0.4112200435729847,
+            "roles.frozen.source_to_finite_pair_loss_share": 0.3173546382600977,
+            "support.supported_tasks": 14,
+            "support.tasks_with_pair_loss_gt_child_loss": 12,
+            "criteria.finite_pair_loss_share_ge_material_minimum": true,
+            "criteria.loss_stages_add_exactly": true,
+            "criteria.pair_minus_child_loss_share_ge_material_minimum": true,
+            "criteria.supported_tasks_ge_minimum": true,
+            "criteria.tasks_with_pair_loss_gt_child_loss_ge_minimum": true,
+            "criteria.train_and_frozen_pair_loss_gt_child_loss": true,
+            "scope.complete_choice_set_claim": false,
+            "scope.missing_at_random_claim": false,
+            "scope.numeric_outcome_read": false,
+            "scope.pair_orientation_read": false,
+            "scope.prospective_outcome_read": false,
+            "scope.gpu_hours": 0,
+            "scope.api_calls": 0,
+            "scope.base_llm_updates": 0
+          }
+        },
+        {
+          "path": "phase1/results/decision_observability_funnel_v1_20260821_1b8a7b9/verification_a.json",
+          "sha256_normalized_lf": "d83f2128ccc1d0309a31b3aa5f518b453514181dc1d858445b23facbcbe4feb1",
+          "json_assertions": {
+            "status": "INDEPENDENT_DECISION_OBSERVABILITY_FUNNEL_VERIFIED",
+            "producer_status": "VERIFIED_MATERIAL_COMBINATORIAL_DECISION_ATTRITION",
+            "imports_producer": false,
+            "claim_allowed": true,
+            "maximum_reconstruction_difference": 0.0,
+            "parent_rows": 3252,
+            "source_pair_capacity": 9755,
+            "finite_pair_capacity": 5998,
+            "artifact_summary_sha256": "e2bf11bc557ff147a11040821a6d3aa5a0650023ba585bbbf7f5e730fcf07ceb",
+            "prospective_outcome_read": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "status_certified_partial_order",
+      "estimand": "provenance-certified validity-dominance relation coverage among natural same-parent MLE-agent source candidates",
+      "supported_claim": "The release contains 2,079 explicit status-certified validity edges; the stricter execution-error-only subset retains 2,060 edges and passes every original material and support gate.",
+      "does_not_prove": "Validity dominance is not a numeric-quality total order, unresolved relations remain unknown, and the release does not establish a complete choice set, missing-at-random, predictor accuracy, search utility, or algorithmic novelty.",
+      "bound_files": [
+        {
+          "path": "phase1/results/status_certified_edge_manifest_v1_20260821_c9bfc21/producer_a/edges.jsonl",
+          "sha256_normalized_lf": "dda9f121dc32a1ef309992b0bec61934864e35ec337385bb2f5c0c548b258a3d",
+          "format": "jsonl",
+          "line_count": 2079
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "phase1/results/status_certified_edge_manifest_v1_20260821_c9bfc21/producer_a/summary.json",
+          "sha256_normalized_lf": "5dd53823ca6e432e4ab593a1267c9a73bce954be977deceb6de63c4ed90ea84b",
+          "json_assertions": {
+            "protocol": "status-certified-edge-export-v1",
+            "status": "VERIFIED_STATUS_CERTIFIED_EDGE_MANIFEST",
+            "source_commit": "c9bfc21c1e8428787caf4e70db404a18990910bc",
+            "edge_count": 2079,
+            "unique_invalid_children": 902,
+            "unique_valid_children": 1498,
+            "parents": 658,
+            "tasks": 14,
+            "by_category.EXECUTION_ERROR": 2060,
+            "by_category.OFFICIAL_GRADE_ABSENT": 19,
+            "by_role.train": 1633,
+            "by_role.frozen": 424,
+            "by_role.extension": 22,
+            "execution_error_only_sensitivity.overall.validity_dominance_edges": 2060,
+            "execution_error_only_sensitivity.overall.source_pair_capacity": 9755,
+            "execution_error_only_sensitivity.overall.published_unique_edges": 5897,
+            "execution_error_only_sensitivity.overall.certified_relations": 7957,
+            "execution_error_only_sensitivity.overall.certified_coverage": 0.815684264479754,
+            "execution_error_only_sensitivity.overall.coverage_gain": 0.21117375704766786,
+            "execution_error_only_sensitivity.overall.lost_relation_recovery": 0.5339554173146708,
+            "execution_error_only_sensitivity.roles.train.coverage_gain": 0.22004357298474944,
+            "execution_error_only_sensitivity.roles.frozen.coverage_gain": 0.18819351975144252,
+            "execution_error_only_sensitivity.roles.extension.coverage_gain": 0.12658227848101267,
+            "execution_error_only_sensitivity.support.supported_tasks": 14,
+            "execution_error_only_sensitivity.support.tasks_with_positive_gain": 11,
+            "execution_error_only_sensitivity.support.dominant_added_relation_task": "spooky-author-identification",
+            "execution_error_only_sensitivity.support.dominant_added_relation_task_share": 0.1883495145631068,
+            "execution_error_only_sensitivity.preserves_all_original_material_gates": true,
+            "execution_error_only_sensitivity.criteria.added_relations_ge_material_minimum": true,
+            "execution_error_only_sensitivity.criteria.overall_coverage_gain_ge_material_minimum": true,
+            "execution_error_only_sensitivity.criteria.gap_recovery_ge_material_minimum": true,
+            "execution_error_only_sensitivity.criteria.train_coverage_gain_ge_material_minimum": true,
+            "execution_error_only_sensitivity.criteria.frozen_coverage_gain_ge_material_minimum": true,
+            "execution_error_only_sensitivity.criteria.supported_tasks_ge_minimum": true,
+            "execution_error_only_sensitivity.criteria.tasks_with_positive_gain_ge_minimum": true,
+            "execution_error_only_sensitivity.criteria.dominant_task_share_le_maximum": true,
+            "execution_error_only_sensitivity.criteria.relation_accounting_exact": true,
+            "execution_error_only_sensitivity.criteria.unknown_status_not_promoted": true,
+            "scope.post_result_release_export": true,
+            "scope.published_pair_files_read_for_endpoint_identity": true,
+            "scope.published_pair_orientation_direction_used": false,
+            "scope.gap_or_numeric_score_used": false,
+            "scope.candidate_code_read": false,
+            "scope.prospective_outcome_read": false,
+            "scope.complete_choice_set_claim": false,
+            "scope.numeric_quality_order_claim": false
+          }
+        },
+        {
+          "path": "phase1/results/status_certified_edge_manifest_v1_20260821_c9bfc21/verification_a.json",
+          "sha256_normalized_lf": "ae280675707b38fad4da3042296b90c7a2fd3c744f484ba482703c542d0e5abf",
+          "json_assertions": {
+            "status": "INDEPENDENT_STATUS_CERTIFIED_EDGE_MANIFEST_VERIFIED",
+            "producer_status": "VERIFIED_STATUS_CERTIFIED_EDGE_MANIFEST",
+            "imports_producer": false,
+            "edge_count": 2079,
+            "unique_invalid_children": 902,
+            "execution_error_only_preserves_all_original_material_gates": true,
+            "maximum_reconstruction_difference": 0,
+            "pair_orientation_direction_used": false,
+            "prospective_outcome_read": false,
+            "artifact_summary_sha256": "5dd53823ca6e432e4ab593a1267c9a73bce954be977deceb6de63c4ed90ea84b",
+            "artifact_manifest_sha256": "e843720791e51501e07e556acaa05cd8624c1334d74879e4a6df8a61e1780323"
+          }
+        },
+        {
+          "path": "phase1/results/status_certified_edge_manifest_v1_20260821_c9bfc21/producer_a/sha256_manifest.json",
+          "sha256_normalized_lf": "e843720791e51501e07e556acaa05cd8624c1334d74879e4a6df8a61e1780323",
+          "json_assertions": {
+            "edges.jsonl": "dda9f121dc32a1ef309992b0bec61934864e35ec337385bb2f5c0c548b258a3d",
+            "summary.json": "5dd53823ca6e432e4ab593a1267c9a73bce954be977deceb6de63c4ed90ea84b"
+          }
+        }
+      ]
+    },
+    {
+      "name": "label_repeatability",
+      "estimand": "repeatability of pair ordering under independent regrades and model-based transport over score-gap distributions",
+      "does_not_prove": "Repeatability is not empirical predictor accuracy and the transported quantity depends on the explicitly recorded exchangeability and symmetry assumptions.",
+      "artifacts": [
+        {
+          "path": "phase1/results/label_repeatability_v2_20260814_4e3bebe/attestation.json",
+          "json_assertions": {
+            "protocol": "label_repeatability_attestation_v2",
+            "status": "VERIFIED_LABEL_REPEATABILITY_ATTESTATION_V2",
+            "primary_mode": "all_successful_records",
+            "scope.trains_predictor": false,
+            "scope.reads_endpoint_code": false,
+            "sensitivity_modes.all_successful_records.original_vs_first_repeat.raw_agreement": 0.9658601259529334,
+            "sensitivity_modes.all_successful_records.original_vs_first_repeat.tasks": 10
+          },
+          "sha256_normalized_lf": "eba5e2b3ce01d3cbf80bb81d9854d1e08c6bd73a045d97fe1a20b1e264c8cf8b"
+        },
+        {
+          "path": "phase1/results/label_repeatability_v2_20260814_4e3bebe/independent_verification.json",
+          "json_assertions": {
+            "protocol": "independent_label_repeatability_attestation_verifier_v2",
+            "status": "INDEPENDENTLY_VERIFIED_LABEL_REPEATABILITY_ATTESTATION_V2",
+            "imports_producer": false,
+            "verified_regrade_files": 7
+          },
+          "sha256_normalized_lf": "6a167a31498ea2ad11781978949f1aac12b2c9cc001d03fa4d43ef3c4b91fbf3"
+        }
+      ],
+      "supported_claim": "Pair ordering is highly repeatable on the independently regraded ten-task subset under the recorded regrade protocol."
+    },
+    {
+      "name": "normalized_clone",
+      "estimand": "cross-run and cross-task shallow code-clone incidence under preregistered tokenizer and AST normalizations",
+      "does_not_prove": "The token result covers 99.91 percent and the AST result 97.25 percent; neither excludes fuzzy, semantic, or training-data duplication, and the preregistered aggregate strong gate failed on AST coverage.",
+      "artifacts": [
+        {
+          "path": "phase1/results/prospective_code_clone_audit_20260820_e121452/receipt.json",
+          "json_assertions": {
+            "protocol": "prospective_code_clone_audit_v1",
+            "status": "PROVISIONAL_CODE_CLONE_AUDIT_COMPLETE",
+            "pre_registered_gate.strong_low_normalized_clone_support": false,
+            "pre_registered_gate.primary_checks.token_literal_norm.coverage": true,
+            "pre_registered_gate.primary_checks.ast_literal_norm.coverage": false,
+            "pre_registered_gate.semantic_equivalence_or_fuzzy_clone_absence_proven": false,
+            "normalizations.token_literal_norm.fingerprinted_endpoints": 5638,
+            "normalizations.token_literal_norm.cross_run_duplicate_endpoints": 0,
+            "normalizations.token_literal_norm.cross_task_duplicate_endpoints": 0,
+            "normalizations.ast_literal_norm.fingerprinted_endpoints": 5488,
+            "normalizations.ast_literal_norm.cross_run_duplicate_endpoints": 0,
+            "normalizations.ast_literal_norm.cross_task_duplicate_endpoints": 0
+          },
+          "sha256_normalized_lf": "9d85a642928385bac099b46ce36d24f5d8e24434a7b5076dc6b83ea8810656be"
+        },
+        {
+          "path": "phase1/results/prospective_code_clone_audit_20260820_e121452/verification_summary.json",
+          "json_assertions": {
+            "receipt_byte_identical": true,
+            "forbidden_file_access_matches": 0,
+            "credential_shape_matches": 0,
+            "outcomes_read": false,
+            "label_vault_opened": false
+          },
+          "sha256_normalized_lf": "d27b2bc8df58d60400c5dd30b39d1ea1eeddb499320f28631b710bcc5c32639b"
+        },
+        {
+          "path": "phase1/results/prospective_ast_failure_diagnostic_20260820_31aee5a/receipt.json",
+          "json_assertions": {
+            "protocol": "prospective_ast_failure_diagnostic_v1",
+            "status": "POST_HOC_AST_FAILURE_DIAGNOSTIC_COMPLETE",
+            "diagnostic.direct_ast.failure_endpoints": 155,
+            "diagnostic.failed_subset_token_literal_norm.fingerprinted_endpoints": 150,
+            "diagnostic.failed_subset_token_literal_norm.unique_fingerprints": 150,
+            "interpretation_contract.preregistered_clone_gate_rescued": false,
+            "interpretation_contract.semantic_or_fuzzy_clone_absence_proven": false
+          },
+          "sha256_normalized_lf": "cde16b78f5df01dde4ec579a6111d97610699d4d52e93b2a388dc7b39cb7a744"
+        },
+        {
+          "path": "phase1/results/prospective_ast_failure_diagnostic_20260820_31aee5a/verification_summary.json",
+          "json_assertions": {
+            "receipt_byte_identical": true,
+            "forbidden_file_access_matches": 0,
+            "credential_shape_matches": 0,
+            "outcomes_read": false,
+            "label_vault_opened": false
+          },
+          "sha256_normalized_lf": "cbf62924db57de277ffac5a3d1fc2298fbaab60e7ddc8714204a9c834484e2e0"
+        }
+      ],
+      "supported_claim": "No cross-run or cross-task duplicates were observed among endpoints covered by the preregistered token and AST normalizations."
+    },
+    {
+      "name": "deployment_cost",
+      "estimand": "single-pair online query latency and initialization cost relative to recorded pair execution runtime",
+      "does_not_prove": "This experiment does not compute frozen accuracy or show that a particular selector improves search score or wall-clock time.",
+      "artifacts": [
+        {
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/run_A/summary.json",
+          "json_assertions": {
+            "protocol": "deployment_cost_attestation_v2",
+            "status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "positive_checks.all_query_p95_below_1pct_parallel_execution_p50": true,
+            "positive_checks.all_init_p50_below_10_parallel_execution_p50": true,
+            "scope.accuracy_computed": false,
+            "scope.gpu_used": false,
+            "scope.api_used": false,
+            "scope.prospective_vault_opened": false,
+            "models.static_lr.initialization_break_even_parallel_pairs": 1,
+            "models.static_gbm.initialization_break_even_parallel_pairs": 1,
+            "models.tfidf_lr.initialization_break_even_parallel_pairs": 1
+          },
+          "sha256_normalized_lf": "27996594f37bb0c327d7d90e7ba6f49a66b3ce1fb42dbb4e79899f3e4cf458bc"
+        },
+        {
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/run_B/summary.json",
+          "json_assertions": {
+            "protocol": "deployment_cost_attestation_v2",
+            "status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "positive_checks.all_query_p95_below_1pct_parallel_execution_p50": true,
+            "positive_checks.all_init_p50_below_10_parallel_execution_p50": true,
+            "scope.accuracy_computed": false,
+            "scope.gpu_used": false,
+            "scope.api_used": false,
+            "scope.prospective_vault_opened": false,
+            "models.static_lr.initialization_break_even_parallel_pairs": 1,
+            "models.static_gbm.initialization_break_even_parallel_pairs": 1,
+            "models.tfidf_lr.initialization_break_even_parallel_pairs": 1
+          },
+          "sha256_normalized_lf": "009b00e49216400370a82ffb9d2c91126aa203423f073d77efa6eb4d88076a4f"
+        },
+        {
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/verification_A.json",
+          "json_assertions": {
+            "status": "INDEPENDENTLY_VERIFIED_DEPLOYMENT_COST_ATTESTATION",
+            "result_status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "producer_imported": false,
+            "trial_receipts": 9,
+            "measurement_rows": 2313
+          },
+          "sha256_normalized_lf": "4005e7a787d8212b1c0a6d560e85117f0c13c9039baa8789db23e4b8b903f2bf"
+        },
+        {
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/verification_B.json",
+          "json_assertions": {
+            "status": "INDEPENDENTLY_VERIFIED_DEPLOYMENT_COST_ATTESTATION",
+            "result_status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "producer_imported": false,
+            "trial_receipts": 9,
+            "measurement_rows": 2313
+          },
+          "sha256_normalized_lf": "ec5d87874337b3171b07da03846838fdefaa4ccfcba3261b6deab263c4c06ef0"
+        },
+        {
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/cross_run_comparison.json",
+          "json_assertions": {
+            "protocol": "deployment_cost_cross_run_verification_v2",
+            "status": "CROSS_RUN_STABILITY_VERIFIED",
+            "result_status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "checks.all_models_same_decisions": true,
+            "checks.all_query_p50_ratios_at_most_2": true,
+            "checks.all_init_p50_ratios_at_most_3": true,
+            "checks.same_single_cpu_affinity": true,
+            "checks.thread_contract_is_one": true
+          },
+          "sha256_normalized_lf": "d124c5b664bf2a0d878eb02cfaa071a3fae45fd1525da30d82ea8a229571c784"
+        }
+      ],
+      "supported_claim": "The audited lightweight predictors have online query latency far below recorded candidate execution time under the pinned CPU protocol."
+    },
+    {
+      "name": "prospective_gate",
+      "estimand": "outcome-blind accrual and structural eligibility state of the preregistered first-960 confirmatory cohort",
+      "does_not_prove": "The cohort is incomplete and outcomes remain sealed; this entry is not a prospective accuracy or mechanism result.",
+      "artifacts": [
+        {
+          "path": "phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/receipt.json",
+          "json_assertions": {
+            "protocol": "prospective_structural_gate_independent_verifier_v5",
+            "status": "CONFIRMATORY_COHORT_COLLECTING",
+            "gate.vault_open_allowed": false,
+            "gate.remaining_confirmatory_runs": 737,
+            "independent_inventory.all_eligible.runs": 223,
+            "independent_inventory.all_eligible.structural_pairs": 1473,
+            "security.label_vault_opened": false
+          },
+          "sha256_normalized_lf": "9d12e2a8cac555a9eef6743169d0b922c2840b1e6d9c20996662e1910b65e875"
+        },
+        {
+          "path": "phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/verification_summary.json",
+          "json_assertions": {
+            "status": "CONFIRMATORY_COHORT_COLLECTING",
+            "confirmatory_runs": 223,
+            "confirmatory_target_runs": 960,
+            "remaining_confirmatory_runs": 737,
+            "accrual_closure_provided": false,
+            "vault_open_allowed": false,
+            "file_access_forbidden_pattern_matches": 0,
+            "secret_shape_matches": 0
+          },
+          "sha256_normalized_lf": "88dc19ceb7e2017179dec4c08d7741180559971dbdef57f67c46b143ffc4dca5"
+        }
+      ],
+      "supported_claim": "The preregistered confirmatory cohort is accruing outcome-blind and remains sealed until its run target and independent closure are met."
+    }
+  ]
+}

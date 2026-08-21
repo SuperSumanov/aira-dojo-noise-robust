@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DE. 2026-08-21 failure-aware 八项证据索引正式通过
+
+控制 commit `832947a6d7bf43da57dcb3702bb713a3b226e47e` 的 evidence index v4 已逐项继承 v3 七项，并把
+0DD 显式偏序作为第八个独立 estimand 接入。正式 index 含 8 entries、23 个 JSON artifacts、1 个直接绑定的
+2,079-line edge JSONL 与 240 条 assertions；normalized SHA-256=
+`80450de3528fcaf2dc5edb5f54109ba30189f81e66c5715fbe755012d5de391b`。
+
+新增合同同时验证 edge hash、line count、逐行 JSON、formal manifest、summary 与独立 verifier，因此“2,079 条显式
+validity edges”不再只是报告数字。旧七项的顺序、artifact、assertion、claim 和边界均未修改。允许主张 failure-aware
+partial order 已作为可机器核验资产发布；仍禁止 numeric-quality total order、complete choice set、MAR、
+predictor/search utility、prospective effect、算法 novelty 与 first/only。整体状态继续 `AWAITING_FIRST960`。
+
+builder×2/verifier×2 逐字节一致；focused=`6 passed, 1 skipped`，完整 phase tests=
+`660 passed, 1 skipped, 25 warnings`；skip 仅因控制 commit 运行时 formal v4 尚未回传。worktree 与秘密扫描均为 0，
+正式目录只读。直接证据：
+
+- `phase1/results/decision_corpus_evidence_index_v4_20260821/README.md`；
+- `phase1/实验记录/2026-08-21/DecisionCorpusEvidenceIndex_v4_正式裁决.md`。
+
 ## 0DD. 2026-08-21 status-certified partial order 已导出为 2,079 条显式边
 
 控制 commit `c9bfc21c1e8428787caf4e70db404a18990910bc` 已把 0DC 的 aggregate relation audit 补全为可分发的

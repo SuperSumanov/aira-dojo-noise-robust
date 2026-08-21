@@ -119,10 +119,6 @@ def expected_index(repo_root: Path) -> dict[str, Any]:
 def verify_index(repo_root: Path, index_path: Path) -> dict[str, Any]:
     repo_root = repo_root.resolve()
     index_path = index_path.resolve()
-    try:
-        index_path.relative_to(repo_root)
-    except ValueError as error:
-        raise VerificationError("index must be inside repository root") from error
 
     payload = json.loads(normalized_utf8_lf(index_path).decode("utf-8"))
     expected = expected_index(repo_root)

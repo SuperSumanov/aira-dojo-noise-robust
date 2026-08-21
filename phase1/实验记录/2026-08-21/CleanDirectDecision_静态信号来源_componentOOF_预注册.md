@@ -1,6 +1,6 @@
 # Clean Direct-Decision 静态信号来源：component-OOF 预注册与预检
 
-日期：2026-08-21。状态：`PREREGISTERED_NOT_RUN`。本文件在产生任何新 OOF margin、accuracy、CI 或
+日期：2026-08-21。状态：`SUPERSEDED_BEFORE_MODEL_OUTCOME`。本文件在产生任何新 OOF margin、accuracy、CI 或
 feature-group 比较前冻结。实验只做 0CJ 静态 suite 的结果盲来源审计：判断已观察到的 pooled static-GBM
 信号是否可由候选代码特征单独恢复，还是主要来自 `depth/step/n_siblings` 搜索位置捷径。它不是新模型搜索、
 不读取 frozen test、first-960 或 prospective outcome vault，也不改变当前论文主线和 G0/G1 资格门。
@@ -19,6 +19,11 @@ OOF 时，`code-only` GBM 是否稳定高于 chance 和 `lineage-only` GBM，并
 不得写“模型理解代码”、因果机制、task-unseen 泛化、frozen-test 提升、prospective confirmation、search
 utility 或方法 novelty。代码 token、库选择、长度和任务风格仍可能是 shortcut；本实验只排除三个明确 lineage
 特征是主要来源。
+
+> 结果盲结构勘验随后发现 16 个 `(task,parent)` 跨既有 pair component；尚未拟合模型或产生 prediction。
+> 因此本 v1 在执行前关闭，改用 parent-closed supercomponent 的 v2。效果门、feature arms、模型和统计阈值
+> 均未改变。修订与时间线见
+> `CleanDirectDecision_静态信号来源_componentOOF_v1结构失败与v2修订.md`。
 
 ## 2. 固定输入与禁止读取
 

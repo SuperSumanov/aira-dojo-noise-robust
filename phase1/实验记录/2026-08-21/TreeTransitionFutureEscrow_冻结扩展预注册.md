@@ -12,9 +12,12 @@ task CI 下界为 −0.000012814366133543737；canonical Improve delta 为 +0.03
 所以唯一合法的确认出口是新的、结果盲的物理 run，而不是在同一 5,240 pairs 上改特征、模型或统计门。
 
 当前 snapshot=`83ab1d6...d5c047` 的单实现、outcome-blind 结构投影仅作设计依据：249 runs / 6,471 cards /
-1,665 pairs 中 1,412 pairs 可找到同 run/task parent source，coverage=0.848048048048048；但 2,330 card IDs
-和 2,321 code SHA 与本模型训练 Cards 重合，虽 physical-run ID overlap=0。故整个当前前缀只能是工程支持集，
-绝不能作为 transition 独立效果验证。上述计数必须在激活前由不 import 主实现的 verifier 重建；不一致即停止。
+1,665 pairs 中 1,412 pairs 可找到同 run/task parent source，coverage=0.848048048048048。第一次投影把整个
+31,742-card 输入文件都算作“训练可见”，得到 2,330 ID / 2,321 code-SHA overlaps；这不是模型实际 feature
+支持集。按 train+dev rows 精确闭包到模型真正使用的 5,612 个 endpoint/parent 后，正确 overlap 是 579 IDs /
+579 code SHA，physical-run ID overlap=0。数量口径虽被纠正，当前前缀仍不是 source-independent validation，
+只能作工程支持集，绝不能作为 transition 效果验证。上述计数必须在激活前由不 import 主实现的 verifier 重建；
+不一致即停止。
 
 ## 2. 唯一冻结模型
 

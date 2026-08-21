@@ -1,0 +1,68 @@
+{
+  "claim_boundaries": {
+    "operator_assignment_randomized": false,
+    "operator_effect_identified": false,
+    "transport_support_only": true,
+    "within_parent_operator_contrast_available": false
+  },
+  "criteria": {
+    "dominant_frozen_parent_share_le_maximum": false,
+    "parent_context_mismatches_eq_0": true,
+    "parent_join_coverage_ge_minimum": true,
+    "parent_presence_mismatches_eq_0": true,
+    "supported_task_op_cells_ge_minimum": false,
+    "supported_tasks_ge_minimum": false,
+    "train_frozen_parent_overlap_eq_0": true,
+    "train_frozen_run_overlap_eq_0": true
+  },
+  "inputs": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "per_parent_sha256": "75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03"
+  },
+  "inventory": {
+    "card_rows": 16012,
+    "dominant_frozen_parent_share": 0.6814404432132964,
+    "eligible_task_op_cells_before_complete_contrast": 9,
+    "joined_parent_cards": 3049,
+    "missing_parent_cards": 203,
+    "observed_parent_op_counts": {
+      "Debug": 842,
+      "Draft": 176,
+      "Improve": 2031
+    },
+    "parent_context_mismatches": 0,
+    "parent_join_coverage": 0.9375768757687577,
+    "parent_presence_mismatches": 0,
+    "parent_rows": 3252,
+    "role_distinct_runs": {
+      "extension": 15,
+      "frozen": 92,
+      "train": 333
+    },
+    "support_cells": 68,
+    "supported_frozen_parents": 361,
+    "supported_task_op_cells": 6,
+    "supported_tasks": [
+      "leaf-classification",
+      "petfinder-pawpularity-score",
+      "spooky-author-identification"
+    ],
+    "train_frozen_parent_overlap": 0,
+    "train_frozen_run_overlap": 0
+  },
+  "protocol": "operator-conditioned-retention-support-v1",
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updated": false,
+    "causal_operator_effect_claim_allowed": false,
+    "code_fields_used_or_emitted": false,
+    "gpu": 0,
+    "numeric_grade_used": false,
+    "pair_orientation_used": false,
+    "prospective_outcomes_read": false,
+    "retention_values_used": false,
+    "s1_effect_analysis_authorized": false
+  },
+  "source_commit": "bfdadfade59b69a2c93af0a86e074b13792824c4",
+  "status": "INSUFFICIENT_OPERATOR_CONDITIONED_RETENTION_SUPPORT"
+}

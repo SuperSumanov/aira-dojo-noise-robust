@@ -3,6 +3,31 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DF. 2026-08-21 operator-conditioned retention 的支持门失败；S1 不执行
+
+控制 commit `bfdadfade59b69a2c93af0a86e074b13792824c4` 对固定 3,252-parent source-opportunity 表与
+16,012-card v11 做了结果盲身份/支持审计。parent-card join=3,049/3,252=
+`0.9375768757687577`，presence/context mismatch 均为 0；train/frozen physical-run 与 parent overlap 也均为
+0。分析没有使用 retention 值、child count、pair orientation、numeric grade、code/obs 或 prospective outcome。
+
+68 个 task×operator 单元中，只有 9 个单元分别达到冻结的 train parents≥20、frozen parents≥10、train
+runs≥5、frozen runs≥3。进一步要求同一任务的 `Debug` 与 `Improve` 都合格后，只剩 3 个任务、6 个单元，低于
+预注册的 8 tasks/16 cells；支持 frozen parents 的 dominant-task share=`0.6814404432132964`，也高于 0.25。
+正式状态为 `INSUFFICIENT_OPERATOR_CONDITIONED_RETENTION_SUPPORT`，
+`s1_effect_analysis_authorized=false`。不得降低 run/parent/task 门、筛任务或读取这 3 个任务的分层 retention 追救。
+
+这不是 operator 方法效果为负，而是当前 v11 无法支撑该非因果 transport estimand。更早 0AM 已因同 parent
+mixed operators=0 关闭因果 operator effect；本轮又关闭了“跨 parent 但 run-robust”的免费重分析。后续若需要该轴，
+只能等待自然新增 frozen runs 或另立有预算 ledger 的前瞻生产干预，不能占用 0CP strict-future 主线。
+
+producer×2 与不 import producer 的 verifier×2 均逐字节一致；focused=`5 passed`，完整 phase tests=
+`666 passed, 25 warnings`，forbidden scientific path、秘密扫描、worktree 漂移与正式可写文件均为 0。首次 commit
+`60a4f61...` 在第一张 card 因把 canonical `task` 对象误当字符串而于任何 cell 统计前 fail-closed；只修正为
+`task.name` 并增加 schema 反例，协议、输入与阈值不变，旧失败目录保留。直接证据：
+
+- `phase1/results/operator_conditioned_retention_support_s0_20260821_bfdadfa/README.md`；
+- `phase1/实验记录/2026-08-21/OperatorConditionedRetention_S0正式裁决.md`。
+
 ## 0DE. 2026-08-21 failure-aware 八项证据索引正式通过
 
 控制 commit `832947a6d7bf43da57dcb3702bb713a3b226e47e` 的 evidence index v4 已逐项继承 v3 七项，并把

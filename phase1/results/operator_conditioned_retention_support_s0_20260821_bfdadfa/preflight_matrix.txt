@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=noncausal operator-conditioned retention support for the current failure-censored Decision Corpus line
+PREFLIGHT_02_QUESTION=are Debug and Improve each supported across disjoint train and frozen physical runs in at least eight tasks
+PREFLIGHT_03_INPUT=immutable 3252-parent table SHA 75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03 and 16012-card v11 SHA 6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75
+PREFLIGHT_04_UNIT=parent support plus distinct physical runs; no child or edge iid claim
+PREFLIGHT_05_SUPPORT=per task-op train parents 20 frozen parents 10 train runs 5 frozen runs 3; both target ops required
+PREFLIGHT_06_GATES=at least 8 tasks 16 cells join coverage 0.90 context exact overlap zero dominant frozen share 0.25
+PREFLIGHT_07_ACCESS=identity role task run parent and lineage op only; no retention value count grade orientation code or outcome use
+PREFLIGHT_08_LEAKAGE=no prospective label-vault regrade score-channel or outcome-registry path
+PREFLIGHT_09_REPRO=producer x2 verifier x2 exact commit immutable protocol and input hashes
+PREFLIGHT_10_RESOURCES=CPU only GPU 0 API 0 base-LLM update 0
+PREFLIGHT_11_FAILURE=any support gate failure closes S1 without threshold task or operator rescue
+PREFLIGHT_12_SCOPE=no randomized assignment within-parent contrast causal effect predictor utility or search-utility claim
+PREFLIGHT_13_EXPECTED_WALL=under 30 minutes including full phase1 regression

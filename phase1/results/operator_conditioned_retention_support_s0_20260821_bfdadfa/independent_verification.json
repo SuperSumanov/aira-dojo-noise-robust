@@ -1,0 +1,9 @@
+{
+  "producer_imported": false,
+  "producer_status": "INSUFFICIENT_OPERATOR_CONDITIONED_RETENTION_SUPPORT",
+  "protocol": "independent-operator-conditioned-retention-support-verifier-v1",
+  "status": "INDEPENDENT_OPERATOR_CONDITIONED_SUPPORT_VERIFIED",
+  "summary_sha256": "6840622d2f4454c0d85b0cbdbdadb30fb8bd59d4b75882bcd45ffbfd3f30b3ee",
+  "supported_task_op_cells": 6,
+  "supported_tasks": 3
+}

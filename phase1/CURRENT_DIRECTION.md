@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CU. 2026-08-21 M-DESIGN 关闭 edit-gain 方法 novelty；开放式决策资源边界保留
+
+新增的一手查重发现，[M-DESIGN](https://arxiv.org/abs/2507.15336) 已被 ICML 2026 接收，并在 22 个图数据集、
+67,760 个 GNN 模型上构造 modification-gain graph，用一跳 edit-effect、动态任务相似度与 predictive planner
+指导后续模型修改；官方实现和知识库均已发布。因此不得再声称首次提出修改--增益图、父子 edit predictor、
+跨任务修改收益复用或用预测 gain 指导 AutoML 搜索；当前 68 维 transition arm 即使 strict-future 为正，也只是
+已知 edit-effect 思路在自然 MLE-agent 决策上的迁移检验，不是方法首创。
+
+仍可守的正面差异是测量与资源：我方单位为开放式 Python code、真实 physical run 中自然同-parent sibling、
+pristine execution score、source/failure/missing registry、run/exact-config/component closure、gap/regrade noise、
+query/init/execution cost 与 outcome-before-prediction 的严格时间外托管；M-DESIGN 则是固定结构化 GNN design
+space 与可重复查询模型库。这个直接先例强化 NAS-Bench-style 叙事，但把贡献严格限定为开放式 MLE deployment
+distribution 的可审计数据实例与压力测试。不得在已见 5,240 pairs 上修改 transition 特征/模型追救；下一效果线
+仍只有 clean Qwen scaling 和已冻结 strict-future transport。直接记录：
+
+- `phase1/实验记录/2026-08-21/M-DESIGN修改增益图_防Scoop与正面边界.md`。
+
 ## 0CT. 2026-08-21 strict-future 连续安全摄取 monitor 已激活
 
 为避免新 senior archives 到达后只被 metadata monitor 发现而没有进入前瞻快照，commit

@@ -25,6 +25,17 @@ PROTOCOL = "critic-component-g0-engineering-calibration-v1"
 MODEL_REPO = "Qwen/Qwen3-1.7B-Base"
 MODEL_REVISION = "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
 
+SCHEDULER_CONTRACTS = {
+    ("zliang_gpu", "zliang_gpu"): {
+        "cpus_per_task": 16,
+        "min_memory_node": "128G",
+    },
+    ("gpu_24h", "gpu"): {
+        "cpus_per_task": 12,
+        "min_memory_node": "0",
+    },
+}
+
 EXPECTED_INPUTS = {
     "train": {
         "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e",
@@ -188,12 +199,50 @@ def validate_model_snapshot(snapshot: Path, manifest: Path) -> dict[str, Any]:
     }
 
 
+def _scontrol_fields(job_line: str) -> dict[str, str]:
+    fields: dict[str, str] = {}
+    for token in job_line.split():
+        if "=" not in token:
+            continue
+        key, value = token.split("=", 1)
+        fields[key] = value
+    return fields
+
+
+def validate_scheduler_allocation(environment: dict[str, str], job_line: str) -> dict[str, Any]:
+    job_id = environment.get("SLURM_JOB_ID", "")
+    partition = environment.get("SLURM_JOB_PARTITION", "")
+    fields = _scontrol_fields(job_line)
+    require(job_id.isdigit(), "G0 must run inside a Slurm job")
+    require(fields.get("JobId") == job_id, "scontrol job ID mismatch")
+    require(fields.get("Partition") == partition, "scontrol partition mismatch")
+    qos = fields.get("QOS", "")
+    contract = SCHEDULER_CONTRACTS.get((partition, qos))
+    require(contract is not None, f"unexpected partition/QoS pair: {(partition, qos)!r}")
+    cpus_per_task = int(environment.get("SLURM_CPUS_PER_TASK", "0"))
+    require(cpus_per_task == contract["cpus_per_task"], "unexpected CPUs per task")
+    require(fields.get("NumCPUs") == str(cpus_per_task), "scontrol CPU count mismatch")
+    require(fields.get("CPUs/Task") == str(cpus_per_task), "scontrol CPUs/task mismatch")
+    require(fields.get("MinMemoryNode") == contract["min_memory_node"], "unexpected memory request")
+    require(fields.get("TimeLimit") == "02:00:00", "unexpected Slurm time limit")
+    require(environment.get("SLURM_JOB_NODELIST") == "projgpu39", "unexpected Slurm node")
+    require(fields.get("NodeList") == "projgpu39", "scontrol node mismatch")
+    require("gres/gpu=2" in fields.get("TRES", "").split(","), "unexpected GPU allocation")
+    return {
+        "job_id": job_id,
+        "partition": partition,
+        "qos": qos,
+        "node_list": "projgpu39",
+        "cpus_per_task": cpus_per_task,
+        "min_memory_node": fields["MinMemoryNode"],
+        "time_limit": fields["TimeLimit"],
+    }
+
+
 def collect_cluster_receipt() -> dict[str, Any]:
     job_id = os.environ.get("SLURM_JOB_ID", "")
-    partition = os.environ.get("SLURM_JOB_PARTITION", "")
     visible = [item.strip() for item in os.environ.get("CUDA_VISIBLE_DEVICES", "").split(",") if item.strip()]
     require(job_id.isdigit(), "G0 must run inside a Slurm job")
-    require(partition == "zliang_gpu", f"unexpected partition: {partition!r}")
     require(len(visible) == 2 and len(set(visible)) == 2, "exactly two visible GPUs are required")
 
     job_line = subprocess.run(
@@ -202,7 +251,7 @@ def collect_cluster_receipt() -> dict[str, Any]:
         capture_output=True,
         text=True,
     ).stdout.strip()
-    require("QOS=zliang_gpu" in job_line, "Slurm job does not use zliang_gpu QoS")
+    scheduler = validate_scheduler_allocation(dict(os.environ), job_line)
 
     gpus = []
     for visible_id in visible:
@@ -229,10 +278,7 @@ def collect_cluster_receipt() -> dict[str, Any]:
         )
     require(len({gpu["uuid"] for gpu in gpus}) == 2, "GPU UUIDs are not unique")
     return {
-        "job_id": job_id,
-        "partition": partition,
-        "qos": "zliang_gpu",
-        "node_list": os.environ.get("SLURM_JOB_NODELIST", ""),
+        **scheduler,
         "visible_devices": visible,
         "gpus": gpus,
         "scontrol_sha256": hashlib.sha256(job_line.encode()).hexdigest(),

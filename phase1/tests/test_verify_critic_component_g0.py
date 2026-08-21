@@ -162,13 +162,69 @@ def test_missing_wall_clock_event_fails_closed(tmp_path: Path) -> None:
 def test_worker_and_scheduler_cannot_self_submit() -> None:
     root = Path(__file__).resolve().parents[1]
     worker = (root / "scripts/critic_component_g0_worker_20260821.sh").read_text(encoding="utf-8")
-    scheduler = (root / "scripts/critic_component_g0_pro6000_20260821.sbatch").read_text(
-        encoding="utf-8"
-    )
+    schedulers = {
+        "authorized": (root / "scripts/critic_component_g0_pro6000_20260821.sbatch").read_text(
+            encoding="utf-8"
+        ),
+        "shared": (root / "scripts/critic_component_g0_shared_pro6000_20260821.sbatch").read_text(
+            encoding="utf-8"
+        ),
+    }
     assert "heldout_test" not in worker.lower()
     assert "test_pairs" not in worker.lower()
     assert not any(line.lstrip().startswith("sbatch ") for line in worker.splitlines())
-    assert not any(line.lstrip().startswith("sbatch ") for line in scheduler.splitlines())
-    assert "#SBATCH --gres=gpu:pro6000:2" in scheduler
-    assert "#SBATCH --time=02:00:00" in scheduler
-    assert "#SBATCH --qos=zliang_gpu" in scheduler
+    for scheduler in schedulers.values():
+        assert not any(line.lstrip().startswith("sbatch ") for line in scheduler.splitlines())
+        assert "#SBATCH --gres=gpu:pro6000:2" in scheduler
+        assert "#SBATCH --time=02:00:00" in scheduler
+    assert "#SBATCH --qos=zliang_gpu" in schedulers["authorized"]
+    assert "#SBATCH --partition=gpu_24h" in schedulers["shared"]
+    assert "#SBATCH --qos=gpu" in schedulers["shared"]
+    assert "#SBATCH --cpus-per-task=12" in schedulers["shared"]
+    assert "#SBATCH --mem=0" in schedulers["shared"]
+
+
+def test_shared_scheduler_allocation_contract() -> None:
+    environment = {
+        "SLURM_JOB_ID": "11318",
+        "SLURM_JOB_PARTITION": "gpu_24h",
+        "SLURM_CPUS_PER_TASK": "12",
+        "SLURM_JOB_NODELIST": "projgpu39",
+    }
+    job_line = (
+        "JobId=11318 Partition=gpu_24h QOS=gpu NumCPUs=12 CPUs/Task=12 "
+        "MinMemoryNode=0 TimeLimit=02:00:00 NodeList=projgpu39 "
+        "TRES=cpu=12,node=1,billing=12,gres/gpu=2"
+    )
+    receipt = g0.validate_scheduler_allocation(environment, job_line)
+    assert receipt["partition"] == "gpu_24h"
+    assert receipt["qos"] == "gpu"
+    assert receipt["cpus_per_task"] == 12
+    assert receipt["min_memory_node"] == "0"
+
+
+@pytest.mark.parametrize(
+    ("field", "replacement", "message"),
+    [
+        ("QOS=gpu", "QOS=zliang_gpu", "partition/QoS"),
+        ("MinMemoryNode=0", "MinMemoryNode=128G", "memory"),
+        ("TimeLimit=02:00:00", "TimeLimit=04:00:00", "time limit"),
+        ("NodeList=projgpu39", "NodeList=projgpu35", "node"),
+    ],
+)
+def test_shared_scheduler_allocation_rejects_resource_drift(
+    field: str, replacement: str, message: str
+) -> None:
+    environment = {
+        "SLURM_JOB_ID": "11318",
+        "SLURM_JOB_PARTITION": "gpu_24h",
+        "SLURM_CPUS_PER_TASK": "12",
+        "SLURM_JOB_NODELIST": "projgpu39",
+    }
+    job_line = (
+        "JobId=11318 Partition=gpu_24h QOS=gpu NumCPUs=12 CPUs/Task=12 "
+        "MinMemoryNode=0 TimeLimit=02:00:00 NodeList=projgpu39 "
+        "TRES=cpu=12,node=1,billing=12,gres/gpu=2"
+    ).replace(field, replacement)
+    with pytest.raises(g0.ContractError, match=message):
+        g0.validate_scheduler_allocation(environment, job_line)

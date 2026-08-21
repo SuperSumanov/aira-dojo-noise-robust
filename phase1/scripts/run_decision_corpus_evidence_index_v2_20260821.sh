@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 
 if [[ $# -ne 1 || ! $1 =~ ^[0-9a-f]{40}$ ]]; then
     echo "usage: $0 CONTROL_COMMIT" >&2
@@ -31,6 +31,7 @@ cleanup() {
 trap cleanup EXIT
 
 source /uac/y24/yzyang4/env_setup.sh
+set -u
 export PYTHONDONTWRITEBYTECODE=1
 export OMP_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1

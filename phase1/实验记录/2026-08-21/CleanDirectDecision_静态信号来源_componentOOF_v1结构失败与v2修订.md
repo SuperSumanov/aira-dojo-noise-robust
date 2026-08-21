@@ -57,3 +57,11 @@ v2 仍只允许窄主张“code-derived frozen features 的 OOF 信号不由三�
 
 裁决：v1 不运行；v2 状态为 `PARENT_CLOSED_COMPONENT_OOF_PREREGISTERED_NOT_RUN`。实现与聚焦测试通过后，
 方可执行原定 15 fits/producer ×2 + 15 fits/independent verifier ×2 的 CPU 矩阵。
+
+## 5. 首次正式 runner 的结果前工程截停
+
+commit `66aaecb...` 的首次正式 runner 在 focused-test collection 阶段以 rc=2 截停，producer 输出目录尚未
+创建，故 OOF prediction/accuracy/CI 均为 0 个。原因是 runner 未先 `cd` 到 detached worktree；启动目录中另一份
+旧 `phase1` package 优先于显式 `PYTHONPATH`，导致新模块无法 import。失败输出
+`/research/d7/spc/yzyang4/critic-static-source-oof/66aaecb-v2` 原样保留，不覆盖。修复只在任何 model fit 前加入
+`cd "$repo"`，不碰输入、fold、feature、模型、seed、统计或效果门；后续须用新 commit、新 worktree、新输出根。

@@ -37,6 +37,7 @@ esac
   echo "clean-worktree is dirty" >&2
   exit 5
 }
+cd "$repo"
 for input in "$cards" "$train" "$dev"; do
   [[ -f "$input" ]] || { echo "missing input: $input" >&2; exit 6; }
 done

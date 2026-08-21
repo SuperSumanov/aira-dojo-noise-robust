@@ -93,9 +93,15 @@ git -C "$worktree" status --short > "$staging/worktree_status_after.txt"
 find "$staging" -type f -printf '%P\n' | LC_ALL=C sort > "$staging/file_manifest.txt"
 name_hits=$(grep -icE 'env|key|token|secret' "$staging/file_manifest.txt" || true)
 printf '%s\n' "$name_hits" > "$staging/credential_filename_hits.txt"
-content_hits=$(find "$staging" -type f -print0 | xargs -0 grep -IhE \
-    '(^|[^A-Za-z0-9])sk-[A-Za-z0-9._-]{10,}|api[_-]?key[[:space:]]*[:=]|gh[pousr]_[A-Za-z0-9]{20,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----' \
-    | wc -l)
+content_hits=0
+while IFS= read -r -d '' artifact; do
+    grep_rc=0
+    artifact_hits=$(grep -IicE \
+        '(^|[^A-Za-z0-9])sk-[A-Za-z0-9._-]{10,}|api[_-]?key[[:space:]]*[:=]|gh[pousr]_[A-Za-z0-9]{20,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----' \
+        "$artifact") || grep_rc=$?
+    [[ $grep_rc == 0 || $grep_rc == 1 ]] || { echo "credential scanner error" >&2; exit 6; }
+    content_hits=$((content_hits + artifact_hits))
+done < <(find "$staging" -type f -print0)
 printf '%s\n' "$content_hits" > "$staging/credential_content_hits.txt"
 [[ $name_hits == 0 && $content_hits == 0 ]] || { echo "credential scan failed" >&2; exit 6; }
 

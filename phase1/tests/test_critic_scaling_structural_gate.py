@@ -36,6 +36,19 @@ def test_source_form_requires_outer_train_receipt():
     assert gate.source_form(row)["intask_split"] == "train"
 
 
+def test_source_form_accepts_and_strips_component_receipt():
+    row = pair("task", "parent", "a", "b", "dev")
+    row |= {
+        "outer_intask_split": "train",
+        "train_dev_protocol": "pair-graph-component-train-dev-split-v1",
+        "train_dev_seed": 20260821,
+        "train_dev_target_numerator": 1,
+        "train_dev_target_denominator": 10,
+        "pair_component_id": "a" * 64,
+    }
+    assert gate.source_form(row) == pair("task", "parent", "a", "b", "train")
+
+
 def test_keyed_rejects_reversed_duplicate(tmp_path):
     rows = [
         pair("task", "parent", "a", "b", "train"),

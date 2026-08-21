@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -81,8 +82,19 @@ def source_form(row: dict[str, Any]) -> dict[str, Any]:
     normalized = dict(row)
     if normalized.pop("outer_intask_split", None) != "train":
         raise GateError("derived train/dev row lacks outer-train receipt")
-    normalized.pop("train_dev_protocol", None)
-    normalized.pop("train_dev_seed", None)
+    protocol = normalized.pop("train_dev_protocol", None)
+    if normalized.pop("train_dev_seed", None) != 20260821:
+        raise GateError("derived train/dev row has wrong split seed")
+    if protocol == "pair-graph-component-train-dev-split-v1":
+        if normalized.pop("train_dev_target_numerator", None) != 1:
+            raise GateError("component row has wrong target numerator")
+        if normalized.pop("train_dev_target_denominator", None) != 10:
+            raise GateError("component row has wrong target denominator")
+        component_id = normalized.pop("pair_component_id", None)
+        if not isinstance(component_id, str) or re.fullmatch(r"[0-9a-f]{64}", component_id) is None:
+            raise GateError("component row has invalid component receipt")
+    elif protocol != "physical-run-train-dev-split-v1":
+        raise GateError("derived train/dev row has unknown split protocol")
     normalized["intask_split"] = "train"
     return normalized
 
@@ -211,17 +223,32 @@ def evaluate(
 
     dropped = set(source_train) - set(train) - set(dev)
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    expected_manifest = {
+    common_manifest = {
         "train_pairs": len(train),
         "dev_pairs": len(dev),
-        "frozen_test_pairs": len(test),
-        "dropped_cross_split_pairs": len(dropped),
         "train_pairs_sha256": sha256_file(train_path),
         "dev_pairs_sha256": sha256_file(dev_path),
-        "frozen_test_pairs_sha256": sha256_file(test_path),
         "seed": 20260821,
-        "dev_fraction": 0.1,
     }
+    component_protocol = manifest.get("protocol") == "pair-graph-component-train-dev-split-v1"
+    if component_protocol:
+        protocol_manifest = {
+            "heldout_test_pairs": len(test),
+            "dropped_source_train_pairs": len(dropped),
+            "heldout_test_pairs_sha256": sha256_file(test_path),
+            "target_numerator": 1,
+            "target_denominator": 10,
+        }
+    elif manifest.get("protocol") == "physical-run-train-dev-split-v1":
+        protocol_manifest = {
+            "frozen_test_pairs": len(test),
+            "dropped_cross_split_pairs": len(dropped),
+            "frozen_test_pairs_sha256": sha256_file(test_path),
+            "dev_fraction": 0.1,
+        }
+    else:
+        raise GateError("unknown split manifest protocol")
+    expected_manifest = common_manifest | protocol_manifest
     if any(manifest.get(key) != value for key, value in expected_manifest.items()):
         raise GateError("split manifest mismatch")
 
@@ -241,9 +268,19 @@ def evaluate(
         "dev_draft_at_least_100": inventories["dev"]["semantics"].get("Draft", 0) >= 100,
         "dev_improve_at_least_100": inventories["dev"]["semantics"].get("Improve", 0) >= 100,
     }
+    if component_protocol:
+        gates["component_zero_pair_drop"] = len(dropped) == 0
+    if component_protocol:
+        status = (
+            "COMPONENT_SPLIT_ELIGIBLE_FOR_G0_PROPOSAL"
+            if all(gates.values()) else "COMPONENT_SPLIT_INELIGIBLE"
+        )
+    else:
+        status = "STRUCTURAL_PREP_ELIGIBLE" if all(gates.values()) else "STRUCTURAL_PREP_INELIGIBLE"
     return {
         "protocol": PROTOCOL,
-        "status": "STRUCTURAL_PREP_ELIGIBLE" if all(gates.values()) else "STRUCTURAL_PREP_INELIGIBLE",
+        "status": status,
+        "split_protocol": manifest["protocol"],
         "input_identity": {
             role: {"sha256": EXPECTED[role][0], "bytes": EXPECTED[role][1]}
             for role in ("cards", "merged", "draft", "improve")

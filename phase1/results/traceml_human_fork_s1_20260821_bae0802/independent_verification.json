@@ -1,0 +1,35 @@
+{
+  "checks": {
+    "gates_exact": true,
+    "identity_exact": true,
+    "input_hashes": true,
+    "producer_protocol": true,
+    "producer_source_commit": true,
+    "producer_source_hash": true,
+    "revision": true,
+    "scope": true,
+    "status_exact": true,
+    "support_exact": true
+  },
+  "inputs": {
+    "producer_summary_sha256": "df469bbdc93df1f7130fa9a336c1f45e3f3338f881ef5f5313b6470b9aac78c2",
+    "verifier_source_sha256": "fe32d733da71b154458e493f9890dc5820b377858f5eac4e3c21b9bf63185bb8"
+  },
+  "observed": {
+    "identity_pass": false,
+    "s1_status": "IDENTITY_OR_JOIN_AMBIGUOUS",
+    "support_gates_pass": false
+  },
+  "producer_imported": false,
+  "protocol": "independent-traceml-human-fork-future-s1-support-v1",
+  "scope": {
+    "api_calls": 0,
+    "effect_metrics_computed": [],
+    "gpu": 0,
+    "notebook_content_read": false,
+    "predictor_scores_computed": false,
+    "row_level_scores_emitted": false
+  },
+  "source_commit": "bae0802895214851983fa99eee784e651648d384",
+  "status": "INDEPENDENT_TRACEML_HUMAN_FORK_S1_VERIFIED"
+}

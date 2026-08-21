@@ -1,0 +1,79 @@
+{
+  "gates": {
+    "identity_and_direction": false
+  },
+  "identity": {
+    "counts": {
+      "canonical_fork_nodes": 409,
+      "duplicate_kernel_id": 0,
+      "duplicate_node_id": 0,
+      "duplicate_tree_id": 0,
+      "fork_child_kernel_duplicate_global": 0,
+      "fork_child_kernel_duplicate_within_parent": 0,
+      "fork_edge_table_multiplicity_mismatch": 0,
+      "fork_parent_tree_comp_mismatch": 6,
+      "missing_kernel_id": 0,
+      "missing_node_id": 0,
+      "missing_tree_id": 0,
+      "node_kernel_join_mismatch": 4674,
+      "node_tree_join_mismatch": 906
+    },
+    "graph_competitions": 134,
+    "identity_pass": false,
+    "malformed_manifest_entries": 0,
+    "manifest_entries": 141,
+    "missing_manifest_entries": 0,
+    "selected_canonical_fork_children": 403,
+    "selected_edge_triples": 403,
+    "unused_manifest_entries": [
+      "ai4code",
+      "google-gemma-3n-hackathon",
+      "landmark-recognition-2019",
+      "leash-belka",
+      "med-gemma-impact-challenge",
+      "openai-to-z-challenge",
+      "youtube8m-2018"
+    ]
+  },
+  "inputs": {
+    "dev_sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4",
+    "file_sha256": {
+      "LICENSE": "03363f4372252d335bb87dcbb41aa19d4918ba863e0e5b7256722388ded4cdcb",
+      "README.md": "ce8d9d43d95861610e0feafcb9313c1764ae27e431b6ff081a018399d9360b4d",
+      "code/02_parent/build_forest.py": "8527c436769f467a511f9e61001c2db6deb7714ed4fd6fd45895e966a617bf77",
+      "code/02_parent/build_graph_tables.py": "bbc0e258f84ea77ade8d3b97fc7084ea5972927e0f747d94e7cd6f8578ab8d76",
+      "extras/edges.parquet": "7996605cc525f52ae3fb7deba6e5907e683ec04a98924624af1f9a18d06da169",
+      "extras/kernels.parquet": "ae53a786b3c93da4b4dd0b34bbfd444f059cef6b29834b341de89c735fbea9ec",
+      "extras/nodes.parquet": "771c77f4da2e9c328621be6e4504cf424d643bb429b3b819b443eff4cb1505c1",
+      "extras/trees.parquet": "fcecb84842fa212a7eb4f20aad4e2a7220fd5cbce5d8f626c906773e5596c9f8",
+      "manifests/competitions.json": "d64a62e58dbcf4cb6d1709343e39d1ac58c10918fd12ccc7895d01c760329206"
+    },
+    "input_manifest_sha256": "e19141d2e5910ef18f8c6fe1392493f34167d70ef7c5b1d39442bfa872cff90f",
+    "protocol_sha256": "572f51f836c02ffad686e8c79355fd8cfff66a3cbc5a290a89401e4e18354bb2",
+    "train_sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+  },
+  "protocol": "traceml-human-fork-future-s1-support-v1",
+  "reproducibility": {
+    "randomness_used": false,
+    "source_file_sha256": {
+      "phase1/scripts/run_traceml_human_fork_s1_20260821.sh": "c4bf9d6c53511d5e119769545d6104272a112db36cb970d6ab236e513f982b23",
+      "phase1/traceml_human_fork_future_protocol_v1.json": "572f51f836c02ffad686e8c79355fd8cfff66a3cbc5a290a89401e4e18354bb2",
+      "phase1/traceml_human_fork_s0_input_manifest.json": "e19141d2e5910ef18f8c6fe1392493f34167d70ef7c5b1d39442bfa872cff90f",
+      "phase1/traceml_human_fork_s1_support.py": "4fc764441d073e2842154e89e0bdfa2d465845b69966d7278274f790210dd7a9",
+      "phase1/verify_traceml_human_fork_s1_support.py": "fe32d733da71b154458e493f9890dc5820b377858f5eac4e3c21b9bf63185bb8"
+    }
+  },
+  "revision": "61faec615b179f186dbe9c82ee59d17e14817e96",
+  "scope": {
+    "api_calls": 0,
+    "effect_metrics_computed": [],
+    "gpu": 0,
+    "notebook_content_read": false,
+    "predictor_scores_computed": false,
+    "row_level_scores_emitted": false,
+    "score_columns_read_after_identity_pass": false
+  },
+  "source_commit": "bae0802895214851983fa99eee784e651648d384",
+  "status": "IDENTITY_OR_JOIN_AMBIGUOUS",
+  "support": {}
+}

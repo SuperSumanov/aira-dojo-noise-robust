@@ -3,7 +3,7 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0CQ. 2026-08-21 TraceML human-fork future transfer 已结果前冻结
+## 0CQ. 2026-08-21 TraceML human-fork S1 identity 门失败；该外部路线关闭
 
 在不改变 0CP AIRA strict-future 主线的前提下，新增一个外部 extension：只用 TraceML 固定 revision 的 human
 canonical `fork` siblings，测试冻结 transition scorer 能否从 fork 起点判断哪个 child kernel 最终取得更好的
@@ -21,9 +21,24 @@ fork/support 数。发现 card 的 134 competitions 与固定 manifest 的 141 e
 direction join 并报告 unused entries，不能按 card 猜测裁剪。S0 状态为
 `S0_PASS_WITH_MANIFEST_CARD_COUNT_DISCREPANCY_REQUIRING_S1_CHECK`。
 
+S1 已从精确 commit=`bae0802895214851983fa99eee784e651648d384` 正式运行并由不 import producer 的实现独立
+重建。两次 producer 与两次 verifier 分别 byte-identical，focused=9 passed、全部 phase tests=591 passed / 25
+warnings，52-entry manifest、forbidden-path、credential、权限门均通过。正式状态是
+`IDENTITY_OR_JOIN_AMBIGUOUS`：134 个 graph competitions 都能唯一匹配 141-entry manifest（7 个 unused entries
+精确列出），但 174,558 nodes 中有 4,674 个 node→kernel same-comp join mismatch、906 个 node→tree same-comp
+join mismatch；409 个 canonical fork 中另有 6 个 parent/child tree-comp mismatch，只有 403 个通过局部结构。
+因此 `identity_and_direction=false`，按预注册没有打开 `best_private_score`/`score_public`，support/effect 均为空，
+2.9GB raw archive 未下载，S2/S3 永久不执行。不得事后过滤 6 个 fork、忽略全图 join 或改 gate 追救。
+
+官方固定 builder 本身没有在 materialization 时断言 node/kernel comp 一致，并把 weak component 的 tree comp 取自
+primary root；这能解释错误为何可进入公开 parquet，但不能把 join 变成可识别 estimand。此结果只作为外部数据审计
+失败案例保留，不构成方法负结论，也不回填 0CP AIRA strict-future 托管。正式 producer RSS=455,716KB，高于预估
+<100MB，实际仍为只读 CPU、GPU/API=0；该资源估计偏差已如实记录。
+
 - `phase1/traceml_human_fork_future_protocol_v1.json`；
 - `phase1/traceml_human_fork_s0_input_manifest.json`；
-- `phase1/实验记录/2026-08-21/TraceMLHumanForkFuture_跨域前瞻资格与效果预注册.md`。
+- `phase1/results/traceml_human_fork_s1_20260821_bae0802/README.md`；
+- `phase1/实验记录/2026-08-21/TraceMLHumanForkFuture_S1正式裁决.md`。
 
 ## 0CP. 2026-08-21 transition future escrow 已正式激活；只等待严格未来新 runs
 

@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CN. 2026-08-21 parent-relative transition OOF：方向良好但正式 no-unlock
+
+结果前冻结的 68 维 child+transition arm 已完成 5,240-pair、28-task、152-parent-closed-supercomponent OOF。
+merged task-macro 从 0.529716 到 0.546841，paired delta=+0.017125，task CI=
+[-0.000013,+0.035410]；pair delta=+0.011832，parent CI=[-0.003403,+0.027366]。canonical Improve
+task delta=+0.036159，task CI=[+0.003552,+0.069032]，但 parent delta=+0.023973 的 CI=
+[-0.001487,+0.049611]；Draft delta 较小且两类 CI 均跨 0。merged 28 个 LOTO 点估计全正且 combined
+chance gate 全过，但冻结的 paired task+parent 双门未全过，正式状态为
+`NO_ROBUST_TRANSITION_GAIN_VERIFIED`，`positive_claim_allowed=false`。
+
+四次 full refit 逐字段一致，51-entry manifest、11 个空 diff/stderr、568 个 phase tests、权限与安全门全过。
+因此可以诚实称“父相对 edit-shape 给出接近门槛、跨任务方向一致的 future-validation candidate”，不能称稳健方法
+突破。禁止在同一 5,240 pairs 上改 features/model/门追救。唯一可保留的正向动作是另立结果盲协议，把当前 arm
+原样锁定为 future scorer escrow extension；不得改变 first-960 primary 或回填本次正式裁决。直接证据：
+
+- `phase1/results/critic_transition_static_oof_20260821_e8eb25c/README.md`；
+- `phase1/实验记录/2026-08-21/TreeTransitionStatic_父相对编辑表征_正式裁决.md`。
+
 ## 0CM. 2026-08-21 静态信号来源 parent-closed OOF 正式裁决
 
 0CK 的 5,240-pair / 28-task / 152-supercomponent 正式运行已完成。producer×2 与不 import producer 的

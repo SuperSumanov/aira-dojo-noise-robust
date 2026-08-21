@@ -1,0 +1,31 @@
+{
+  "all_fields_exact": true,
+  "artifact_manifest_sha256": "7e784c375fd09fa3bc372e913b3b74aa09ff1df32cc47c0d6708cbe10f20617b",
+  "full_refit": true,
+  "per_pair_sha256": "1a15ec61353de8d79cd39b2fac941166c00a20392a4e3c895d86eb0ac899889e",
+  "positive_claim_allowed": false,
+  "producer_imported": false,
+  "producer_status": "NO_ROBUST_TRANSITION_GAIN_PENDING_INDEPENDENT_VERIFICATION",
+  "protocol": "critic-parent-relative-transition-independent-verifier-v1",
+  "status": "NO_ROBUST_TRANSITION_GAIN_VERIFIED",
+  "summary_sha256": "b832e7b5429aac81214d1b7d48496ce497945ce7fb26055fb217e35ce75b1234",
+  "verified_controls": {
+    "all_antisymmetric": true,
+    "all_fold_isolation_zero": true,
+    "learned_full_coverage": true,
+    "learned_no_ties": true,
+    "orientation_all_subsets_exact": true,
+    "random_all_subset_task_parent_cis_contain_half": true
+  },
+  "verified_effect_gates": {
+    "draft_paired_task_parent_ci_above_zero": false,
+    "draft_task_macro_delta_ge_minus_half_point": true,
+    "draft_task_macro_delta_ge_minus_one_point": true,
+    "improve_combined_task_parent_chance_ci_above_half": true,
+    "improve_paired_task_parent_ci_above_zero": false,
+    "improve_task_macro_delta_ge_minus_half_point": true,
+    "merged_all_loto_positive": true,
+    "merged_combined_task_parent_chance_ci_above_half": true,
+    "merged_paired_task_parent_ci_above_zero": false
+  }
+}

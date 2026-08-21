@@ -1,0 +1,12 @@
+seal_status=VERIFIED
+manifest_entries=51
+manifest_failures=0
+diff_stderr_receipts=11
+nonempty_diff_stderr=0
+writable_files=0
+commit=e8eb25cf2540303c9fddd53bebfb23b2c5a0f3a5
+focused_tests=13 passed in 9.82s
+full_phase_tests=568 passed, 25 warnings in 49.79s
+commit_filename_credential_shape_hits=0
+commit_content_credential_shape_hits=0
+output_content_credential_shape_files=0

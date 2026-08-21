@@ -1,0 +1,26 @@
+{
+  "commit": "e8eb25cf2540303c9fddd53bebfb23b2c5a0f3a5",
+  "controls_all_pass": true,
+  "metrics": {
+    "child_code": {
+      "Draft": {"micro_accuracy": 0.5284730913642053, "parent_ci95": [0.504048069350893, 0.5532827538471319], "task_ci95": [0.48992737861362284, 0.5833174148702865], "task_macro_accuracy": 0.5337680720168272},
+      "Improve": {"micro_accuracy": 0.5078277886497065, "parent_ci95": [0.4854220308237358, 0.5299518025935888], "task_ci95": [0.4760103140535344, 0.5315709202143148], "task_macro_accuracy": 0.5035401176736477},
+      "merged": {"micro_accuracy": 0.5204198473282443, "parent_ci95": [0.5030722826450712, 0.5375784754552106], "task_ci95": [0.4977625570989619, 0.5652128931850406], "task_macro_accuracy": 0.5297159996433801}
+    },
+    "child_plus_transition": {
+      "Draft": {"micro_accuracy": 0.532540675844806, "parent_ci95": [0.5072361943738204, 0.5584694684588097], "task_ci95": [0.49271292617888296, 0.5914187235635372], "task_macro_accuracy": 0.5401884733028672},
+      "Improve": {"micro_accuracy": 0.5318003913894325, "parent_ci95": [0.5088516867941152, 0.5543640147902734], "task_ci95": [0.5139640625103544, 0.5662995749669005], "task_macro_accuracy": 0.5396990686712707},
+      "merged": {"micro_accuracy": 0.5322519083969466, "parent_ci95": [0.5142199810279984, 0.5502992343399303], "task_ci95": [0.520397555285111, 0.5756950856088979], "task_macro_accuracy": 0.5468405536894794}
+    }
+  },
+  "output_manifest_sha256": "f2945f22c5bdd1741275d3468756727a78d6d48922b9e2cfa1f866df50193639",
+  "paired_deltas": {
+    "child_plus_transition_minus_child_code": {
+      "Draft": {"minimum_leave_one_task_out_task_macro_delta": 0.0009601882282580498, "pair_micro_delta": 0.004067584480600751, "parent_ci95": [-0.014907793855423722, 0.023025321029061102], "task_ci95": [-0.011727559686302165, 0.025303735883251428], "task_macro_delta": 0.006420401286040042},
+      "Improve": {"minimum_leave_one_task_out_task_macro_delta": 0.02842787662036194, "pair_micro_delta": 0.023972602739726026, "parent_ci95": [-0.0014866388423867886, 0.04961089494163424], "task_ci95": [0.0035516498662925295, 0.06903213099815476], "task_macro_delta": 0.03615895099762306},
+      "merged": {"minimum_leave_one_task_out_task_macro_delta": 0.012467791497542069, "pair_micro_delta": 0.01183206106870229, "parent_ci95": [-0.0034027753421578726, 0.02736561310852155], "task_ci95": [-0.000012814366133543737, 0.03541011447273055], "task_macro_delta": 0.01712455404609924}
+    }
+  },
+  "positive_claim_allowed": false,
+  "status": "NO_ROBUST_TRANSITION_GAIN_VERIFIED"
+}

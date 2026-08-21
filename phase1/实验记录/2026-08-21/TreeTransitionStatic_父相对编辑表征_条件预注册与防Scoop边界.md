@@ -1,6 +1,6 @@
 # TreeTransitionStatic：父相对编辑表征的条件预注册与防 Scoop 边界
 
-日期：2026-08-21。状态：`PREREGISTERED_BEFORE_STATIC_SOURCE_OOF_OUTCOME_READ`。本设计在
+日期：2026-08-21。状态：`COMPLETED_NO_ROBUST_TRANSITION_GAIN_VERIFIED`。本设计在
 `208e381...` 的 parent-closed static-source OOF 完全封存、读取任何 accuracy/margin/gate 之前冻结。它不改变该
 在途实验；只有在其完整性、双重确定性和独立 full-refit verifier 全通过后，才允许读取该结果并启动本实验。
 
@@ -120,3 +120,6 @@ parent-closed fold assignment SHA=`a02acd586f5ba4433090e7e03234e0d3c813c6170949c
 15.145763 秒；这只是工程可行性，不是 query-time benchmark 的最终测量。合成 producer/full-refit verifier 测试
 5/5 通过，覆盖 edit-shape exactness、pair swap 反对称、双实现全字段/逐 pair 一致、artifact tamper 和 CLI
 forbidden-input 边界。正式运行仍须从干净精确 commit 执行四次并重新封存，不能把本节视为模型结果。
+
+正式运行、独立复核与停止边界见同目录
+`TreeTransitionStatic_父相对编辑表征_正式裁决.md`；本文件保留为不可改写的结果前协议。

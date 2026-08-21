@@ -66,3 +66,11 @@ accuracy、search utility、算法 novelty 或 first/only。
 11. 安全：所有输入 parse 前 credential scan；输出 parent/run 只保留 SHA-256，不输出 endpoint ID。
 12. 资源：CPU-only，预计含全测试小于 30 分钟。
 13. 停止：失败不追救；通过也不接入 scorer/搜索，strict-future 0CP 与 GPU 批准门完全不变。
+
+## 首次 formal attempt 的结果前 runner 失败
+
+commit `f34024c0631e895b0e202b4dc5d9b4fc19ad9b1a` 的 runner 在 fetch/worktree/artifact 创建之前退出：
+cluster 的 base checkout 是稀疏工作树，不含 `phase1/v11_decision`，但 runner 错把三份 pair path 指向 base，而
+既有 edge exporter 从 detached worktree 读取这些 tracked files。此次没有 output directory、producer、graph row
+或 scientific summary。允许的唯一修复是把三份 pair path 与 normalized-LF SHA precheck 移到新 detached
+worktree 创建之后；协议、五个 material gates、输入 blobs、分析/验证代码与停止规则均不变。

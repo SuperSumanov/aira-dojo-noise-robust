@@ -17,9 +17,9 @@ output=/research/d7/spc/yzyang4/source-decision-answerability/${short}-v1
 per_parent=/research/d7/spc/yzyang4/raw-choice-audit-v11-6610618-a2/producer/per_parent.csv
 identity=/research/d7/spc/yzyang4/source-identity-recovery-v11-3faf001-a1/producer/per_parent.jsonl
 status_edges=/research/d7/spc/yzyang4/status-certified-edge-manifest/c9bfc21-v1/producer_a/edges.jsonl
-pair_train=${base_repo}/phase1/v11_decision/decision_train_v11_b0.jsonl
-pair_frozen=${base_repo}/phase1/v11_decision/decision_frozen_v11_b0.jsonl
-pair_extension=${base_repo}/phase1/v11_decision/decision_extension_v11_b0.jsonl
+pair_train=${worktree}/phase1/v11_decision/decision_train_v11_b0.jsonl
+pair_frozen=${worktree}/phase1/v11_decision/decision_frozen_v11_b0.jsonl
+pair_extension=${worktree}/phase1/v11_decision/decision_extension_v11_b0.jsonl
 python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
 protocol_rel=phase1/source_decision_answerability_protocol_v1.json
 expected_parent_sha=75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03
@@ -47,16 +47,13 @@ print(hashlib.sha256(text.replace("\r\n", "\n").replace("\r", "\n").encode()).he
 PY
 }
 
-for input in "${per_parent}" "${identity}" "${status_edges}" "${pair_train}" "${pair_frozen}" "${pair_extension}"; do
+for input in "${per_parent}" "${identity}" "${status_edges}"; do
   test -f "${input}"
 done
 test -x "${python_bin}"
 test "$(sha256sum "${per_parent}" | awk '{print $1}')" = "${expected_parent_sha}"
 test "$(sha256sum "${identity}" | awk '{print $1}')" = "${expected_identity_sha}"
 test "$(sha256sum "${status_edges}" | awk '{print $1}')" = "${expected_status_sha}"
-test "$(normalized_sha "${pair_train}")" = "${expected_train_sha}"
-test "$(normalized_sha "${pair_frozen}")" = "${expected_frozen_sha}"
-test "$(normalized_sha "${pair_extension}")" = "${expected_extension_sha}"
 test ! -e "${worktree}"
 test ! -e "${output}"
 
@@ -72,6 +69,12 @@ test -z "$(git -C "${worktree}" status --porcelain --untracked-files=all)"
 export PYTHONPATH=${worktree}
 protocol=${worktree}/${protocol_rel}
 test -f "${protocol}"
+for input in "${pair_train}" "${pair_frozen}" "${pair_extension}"; do
+  test -f "${input}"
+done
+test "$(normalized_sha "${pair_train}")" = "${expected_train_sha}"
+test "$(normalized_sha "${pair_frozen}")" = "${expected_frozen_sha}"
+test "$(normalized_sha "${pair_extension}")" = "${expected_extension_sha}"
 
 mkdir -p "${output}"
 cp /tmp/source_answerability_fetch_${short}.stdout "${output}/fetch.stdout"

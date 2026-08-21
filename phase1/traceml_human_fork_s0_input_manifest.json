@@ -1,0 +1,66 @@
+{
+  "dataset": "TraceML-HF/TraceML",
+  "files": {
+    "LICENSE": {
+      "bytes": 6620,
+      "sha256": "03363f4372252d335bb87dcbb41aa19d4918ba863e0e5b7256722388ded4cdcb"
+    },
+    "README.md": {
+      "bytes": 7963,
+      "sha256": "ce8d9d43d95861610e0feafcb9313c1764ae27e431b6ff081a018399d9360b4d"
+    },
+    "code/02_parent/build_forest.py": {
+      "bytes": 8765,
+      "sha256": "8527c436769f467a511f9e61001c2db6deb7714ed4fd6fd45895e966a617bf77"
+    },
+    "code/02_parent/build_graph_tables.py": {
+      "bytes": 3445,
+      "sha256": "bbc0e258f84ea77ade8d3b97fc7084ea5972927e0f747d94e7cd6f8578ab8d76"
+    },
+    "extras/edges.parquet": {
+      "bytes": 13378312,
+      "sha256": "7996605cc525f52ae3fb7deba6e5907e683ec04a98924624af1f9a18d06da169"
+    },
+    "extras/kernels.parquet": {
+      "bytes": 597068,
+      "sha256": "ae53a786b3c93da4b4dd0b34bbfd444f059cef6b29834b341de89c735fbea9ec"
+    },
+    "extras/nodes.parquet": {
+      "bytes": 38045424,
+      "sha256": "771c77f4da2e9c328621be6e4504cf424d643bb429b3b819b443eff4cb1505c1"
+    },
+    "extras/trees.parquet": {
+      "bytes": 92613,
+      "sha256": "fcecb84842fa212a7eb4f20aad4e2a7220fd5cbce5d8f626c906773e5596c9f8"
+    },
+    "manifests/competitions.json": {
+      "bytes": 53090,
+      "sha256": "d64a62e58dbcf4cb6d1709343e39d1ac58c10918fd12ccc7895d01c760329206"
+    }
+  },
+  "fixed_revision": "61faec615b179f186dbe9c82ee59d17e14817e96",
+  "footer_metadata": {
+    "competition_manifest_entries": 141,
+    "edges_rows": 3995719,
+    "kernels_rows": 4847,
+    "nodes_rows": 174558,
+    "trees_rows": 2721
+  },
+  "official_head_observed": "61faec615b179f186dbe9c82ee59d17e14817e96",
+  "raw_notebook_archive_downloaded": false,
+  "required_s1_checks": {
+    "all_graph_competitions_have_exactly_one_manifest_direction": true,
+    "canonical_child_edge_kind_is_fork": true,
+    "child_depth_equals_parent_depth_plus_one": true,
+    "node_and_kernel_score_direction_agree_with_manifest": true,
+    "unused_manifest_entries_reported_not_silently_dropped": true
+  },
+  "schema_reader_sha256": "9817eae5f1377cab7f6f2696c42fa20b49af026db1be7f1c487a680db3d84506",
+  "schema_receipt_sha256": "64859cea7fbb33df1031be41f898be17fed08870b03555d23626a8e0ef8631cb",
+  "scope": {
+    "parquet_column_values_read": [],
+    "score_values_read": false,
+    "support_aggregates_computed": false
+  },
+  "status": "TRACEML_HUMAN_FORK_S0_INPUT_AND_SCHEMA_BOUND"
+}

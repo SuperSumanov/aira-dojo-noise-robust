@@ -15,7 +15,14 @@ task-unseen≥20、parents≥100、finite non-tie eventual pairs≥500、dominan
 2.9GB raw code。S2 才做 credential 隔离、code-cell-only 转换和三套 exact-code overlap；S3 才用 `7458f09...`
 scorer 一次性评分。禁止重训、调参、改标签/子集或把外部结果回填 0CP。GPU/API=0。直接协议：
 
+S0 已在预注册后完成：固定 revision HEAD 与 9 个文件 SHA 绑定，Parquet 仅读 schema/footer，required fields 全部
+存在，raw archive 未下载。footer 为 174,558 nodes / 3,995,719 edges / 2,721 trees / 4,847 kernels；尚未计算
+fork/support 数。发现 card 的 134 competitions 与固定 manifest 的 141 entries 不一致；S1 必须逐 graph comp 做唯一
+direction join 并报告 unused entries，不能按 card 猜测裁剪。S0 状态为
+`S0_PASS_WITH_MANIFEST_CARD_COUNT_DISCREPANCY_REQUIRING_S1_CHECK`。
+
 - `phase1/traceml_human_fork_future_protocol_v1.json`；
+- `phase1/traceml_human_fork_s0_input_manifest.json`；
 - `phase1/实验记录/2026-08-21/TraceMLHumanForkFuture_跨域前瞻资格与效果预注册.md`。
 
 ## 0CP. 2026-08-21 transition future escrow 已正式激活；只等待严格未来新 runs

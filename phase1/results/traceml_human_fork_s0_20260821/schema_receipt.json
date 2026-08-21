@@ -1,0 +1,390 @@
+{
+  "dataset": "TraceML-HF/TraceML",
+  "files": {
+    "LICENSE": "03363f4372252d335bb87dcbb41aa19d4918ba863e0e5b7256722388ded4cdcb",
+    "README.md": "ce8d9d43d95861610e0feafcb9313c1764ae27e431b6ff081a018399d9360b4d",
+    "code/02_parent/build_forest.py": "8527c436769f467a511f9e61001c2db6deb7714ed4fd6fd45895e966a617bf77",
+    "code/02_parent/build_graph_tables.py": "bbc0e258f84ea77ade8d3b97fc7084ea5972927e0f747d94e7cd6f8578ab8d76",
+    "extras/edges.parquet": "7996605cc525f52ae3fb7deba6e5907e683ec04a98924624af1f9a18d06da169",
+    "extras/kernels.parquet": "ae53a786b3c93da4b4dd0b34bbfd444f059cef6b29834b341de89c735fbea9ec",
+    "extras/nodes.parquet": "771c77f4da2e9c328621be6e4504cf424d643bb429b3b819b443eff4cb1505c1",
+    "extras/trees.parquet": "fcecb84842fa212a7eb4f20aad4e2a7220fd5cbce5d8f626c906773e5596c9f8",
+    "manifests/competitions.json": "d64a62e58dbcf4cb6d1709343e39d1ac58c10918fd12ccc7895d01c760329206"
+  },
+  "fixed_revision": "61faec615b179f186dbe9c82ee59d17e14817e96",
+  "manifest_schema": {
+    "direction_field": "score_direction",
+    "direction_values": [
+      "higher",
+      "lower"
+    ],
+    "keys": [
+      "bronze_threshold",
+      "deadline",
+      "gold_threshold",
+      "launch",
+      "median_threshold",
+      "metric",
+      "name",
+      "score_direction",
+      "silver_threshold",
+      "task_type",
+      "year"
+    ],
+    "rows": 141,
+    "top_level_kind": "mapping"
+  },
+  "official_code_checks": {
+    "canonical_priority_literal_present": true,
+    "graph_table_raw_code_path_present": true,
+    "nodes_canonical_parent_fields_present": true
+  },
+  "parquet_schema": {
+    "extras/edges.parquet": {
+      "columns": [
+        {
+          "name": "parent_id",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "child_id",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "edge_kind",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "sim",
+          "nullable": true,
+          "type": "double"
+        }
+      ],
+      "num_row_groups": 4,
+      "num_rows": 3995719
+    },
+    "extras/kernels.parquet": {
+      "columns": [
+        {
+          "name": "kernel_id",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "kernel_slug",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "comp",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "author_user_id",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "author_username",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "author_tier",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "score_is_max",
+          "nullable": true,
+          "type": "bool"
+        },
+        {
+          "name": "best_public_score",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "best_private_score",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "private_rank",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "percentile",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "medal",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "version_count",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "raw_dir",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "n_versions",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "span_days",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "chain_n_versions",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "chain_span_days",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "n_scored",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "score_range",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "n_substantive",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "line_range",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "is_rich_iter",
+          "nullable": true,
+          "type": "bool"
+        },
+        {
+          "name": "license",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "license_verified_via",
+          "nullable": true,
+          "type": "large_string"
+        }
+      ],
+      "num_row_groups": 1,
+      "num_rows": 4847
+    },
+    "extras/nodes.parquet": {
+      "columns": [
+        {
+          "name": "node_id",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "tree_id",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "comp",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "kernel_id",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "version_id",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "version_in_kernel",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "ctime",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "date",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "depth",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "branch_id",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "parent_id",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "edge_kind",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "score_public",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "score_private",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "is_valid_submission",
+          "nullable": true,
+          "type": "bool"
+        },
+        {
+          "name": "score_kind",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "submission_id",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "submission_date",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "author_tier",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "author_username",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "best_private_score",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "score_is_max",
+          "nullable": true,
+          "type": "bool"
+        },
+        {
+          "name": "medal",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "total_lines",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "name": "raw_code_path",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "alt_parents_json",
+          "nullable": true,
+          "type": "large_string"
+        }
+      ],
+      "num_row_groups": 1,
+      "num_rows": 174558
+    },
+    "extras/trees.parquet": {
+      "columns": [
+        {
+          "name": "tree_id",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "comp",
+          "nullable": true,
+          "type": "large_string"
+        },
+        {
+          "name": "n_nodes",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "n_kernels",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "n_branches",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "max_depth",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "n_roots",
+          "nullable": true,
+          "type": "int64"
+        },
+        {
+          "name": "roots_json",
+          "nullable": true,
+          "type": "large_string"
+        }
+      ],
+      "num_row_groups": 1,
+      "num_rows": 2721
+    }
+  },
+  "raw_notebook_archive_downloaded": false,
+  "scope": {
+    "parquet_column_values_read": [],
+    "score_values_read": false,
+    "support_aggregates_computed": false
+  },
+  "status": "TRACEML_HUMAN_FORK_S0_SCHEMA_BOUND"
+}

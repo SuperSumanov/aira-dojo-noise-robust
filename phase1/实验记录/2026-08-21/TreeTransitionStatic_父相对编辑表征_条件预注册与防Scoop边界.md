@@ -55,6 +55,7 @@ pair amortized query time。
 每臂完整报告 merged/Draft/Improve 的 pair micro、task macro、ties/coverage、task-clustered 与 parent-clustered
 20,000 次 bootstrap（seeds=`20260825/20260826`）。`child_plus_transition-child_code` 与
 `transition_only-child_code` 用同 pair 配对差；merged 另报 leave-one-task-out，不能删 task、parent、tie 或小 margin。
+下文所有未特别注明的 `point delta` 固定指 task-macro paired delta，不得在看到结果后改用 pair-micro。
 
 状态按以下互斥顺序裁决：
 
@@ -104,3 +105,18 @@ pair amortized query time。
 若结果为正，允许的贡献只是：在真实 MLE-agent decision corpus、parent-closed OOF 和 execution-free query
 契约下，父相对编辑形状是对 child-only 静态表征的可复现增量 baseline。论文新意仍来自数据、estimand、隔离与
 系统性 benchmark，而不是 37 维手工特征本身。
+
+## 7. Outcome-blind 实现预检
+
+在任何模型 fit/accuracy/margin 前，两套独立实现分别从五个锁定输入重建结构与 feature matrices，得到完全一致的
+结果：5,240 rows、4,721 唯一 child-parent relations、5,612 needed cards、parent/endpoint task mismatch 均为 0；
+parent-closed fold assignment SHA=`a02acd586f5ba4433090e7e03234e0d3c813c6170949c8789a541466e2c06f0e`，
+所有隔离交集为 0。三矩阵为 `5240×31 / 5240×37 / 5240×68`，SHA 分别为
+`5f572cb6253245ea16e9fabb8528d2b2ed55f80237ede5766281566d43c71069`、
+`d4ea601a2c5b8307b4b0c297b9c0e5ce24cb4a37172577fce02c36cbac6ec98e`、
+`07ae1a6ff3828f81b43dbd36e6a290cd987f1f1703e013c5fe461261228bbeb9`。
+
+全量 Cards 加载与六个 line-edit features 计算的独立 wall-time 为 19.813675 秒，其中 feature computation
+15.145763 秒；这只是工程可行性，不是 query-time benchmark 的最终测量。合成 producer/full-refit verifier 测试
+5/5 通过，覆盖 edit-shape exactness、pair swap 反对称、双实现全字段/逐 pair 一致、artifact tamper 和 CLI
+forbidden-input 边界。正式运行仍须从干净精确 commit 执行四次并重新封存，不能把本节视为模型结果。

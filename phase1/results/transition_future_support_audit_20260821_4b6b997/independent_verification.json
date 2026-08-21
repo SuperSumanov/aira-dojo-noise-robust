@@ -1,0 +1,16 @@
+{
+  "all_fields_exact": true,
+  "blindness": {
+    "effect_metrics_computed": [],
+    "label_vault_opened": false,
+    "outcome_paths_accepted_by_cli": false,
+    "score_registry_opened": false
+  },
+  "independent_summary_sha256": "820c4e1df9dc8d711dd2114e3cfac9c8eaac27d5d059be0632e784be9e54f57a",
+  "producer_imported": false,
+  "producer_sha256": "820c4e1df9dc8d711dd2114e3cfac9c8eaac27d5d059be0632e784be9e54f57a",
+  "protocol": "transition-future-escrow-support-independent-verifier-v1",
+  "raw_snapshot_and_training_closure_recomputed": true,
+  "status": "INDEPENDENT_TRANSITION_FUTURE_ESCROW_SUPPORT_VERIFIED",
+  "support_status": "CURRENT_SUPPORT_NOT_SOURCE_INDEPENDENT"
+}

@@ -3,20 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0CO. 2026-08-21 transition future escrow 已条件预注册，当前无可揭盲 future 样本
+## 0CO. 2026-08-21 transition future escrow 支持审计完成，当前无可揭盲 future 样本
 
-0CN 的接近门槛信号只允许原样冻结为 outcome-blind extension。当前 249-run support snapshot 的初步结构投影显示
-parent-source pair coverage=0.848048。对整个 31,742-card 文件的初始投影为 2,330 ID / 2,321 code-SHA
-overlaps；按 train+dev 闭包到模型实际使用的 5,612 cards 后，正确口径为 579/579，physical-run overlap=0。
-该数量修正不改变裁决：current support 仍不足以作 source-independent validation，永久只作工程 smoke，效果分析为 0。
+0CN 的接近门槛信号只允许原样冻结为 outcome-blind extension。commit `4b6b997...` 的 producer×2 与不 import
+producer 的 verifier×2 已在 frozen snapshot `83ab1d6...d5c047` 上逐字段一致。249 runs / 6,471 cards /
+1,665 sibling pairs 中，1,412 pairs 有同 run 父代码，coverage=`0.848048048048048`；其中 1,134 pairs 对实际
+train+dev 模型闭包满足 endpoint ID、physical run、三张代码 SHA 均无重叠。最大 covered-pair task share=
+`0.18838526912181303`。这证明结构与任务分布足以支持未来设计，但不是未来效果样本。
+
+整个 current support 仍有 579 card IDs / 579 code SHAs 落入模型实际使用的 5,612-card 闭包，run overlap=0，
+因此正式状态为 `CURRENT_SUPPORT_NOT_SOURCE_INDEPENDENT`。早先把当前 6,471 cards 对整个 31,742-card 容器比较
+得到的 2,330/2,321 不是模型使用口径，已被正式审计取代。当前 snapshot 全部早于未来 activation，strict future
+inventory 仍为 0；effect metrics、vault/score registry 读取与 API/GPU 均为 0，current support 永久只作工程
+支持，不得混入 future effect validation。
 
 已冻结的未来协议要求：实现 commit 后自动 activation；只接收 generation-start 严格晚于 activation 的 run；
 full-fit 三臂和全部参数沿用 `e8eb25c...`，primary 仅 combined−child；先锁 predictions，再等既有 first-960+
 closure。严格支持门为 1,500 parent-covered/source-novel pairs、150 runs、15 tasks、dominant≤0.25、parent
-coverage≥0.80；训练/future endpoint/run overlap 必须为 0。未来只有 paired run/task/parent 三类 CI 全部>0、
-combined chance CI 全部>0.5 与 LOTO 全正才允许 positive。当前尚未实现/激活，outcome vault 未读，GPU/API=0。
-直接协议：
+coverage≥0.80；训练/future endpoint/run/code overlap 必须逐 pair 为 0。未来只有 paired run/task/parent 三类 CI
+全部>0、combined chance CI 全部>0.5 与 LOTO 全正才允许 positive。当前尚未激活，outcome vault 未读，
+GPU/API=0。支持审计 10 个 focused tests 与 574 个 phase tests 通过，syscall 禁止路径与凭据扫描均为 0；封存
+wrapper 的零匹配 `grep`/`pipefail` erratum 已原样保留，发生于四次科学计算结束后且未重跑结果。直接证据：
 
+- `phase1/results/transition_future_support_audit_20260821_4b6b997/README.md`；
+- `phase1/实验记录/2026-08-21/TreeTransitionFutureEscrow_当前支持独立性正式审计.md`；
 - `phase1/实验记录/2026-08-21/TreeTransitionFutureEscrow_冻结扩展预注册.md`。
 
 ## 0CN. 2026-08-21 parent-relative transition OOF：方向良好但正式 no-unlock

@@ -1,0 +1,36 @@
+{
+  "blindness": {
+    "effect_metrics_computed": [],
+    "label_vault_opened": false,
+    "outcome_paths_accepted_by_cli": false,
+    "score_registry_opened": false
+  },
+  "independent_verification": "INDEPENDENT_TRANSITION_FUTURE_ESCROW_SUPPORT_VERIFIED",
+  "inventory": {
+    "blind_cards": 6471,
+    "blind_runs": 249,
+    "blind_tasks": 26,
+    "covered_pair_tasks": 24,
+    "dominant_covered_pair_task_share": 0.18838526912181303,
+    "dominant_pair_task_share": 0.16696696696696697,
+    "pair_parent_source_coverage": 0.848048048048048,
+    "pairs": 1665,
+    "pairs_with_parent_source": 1412,
+    "parent_groups": 1623,
+    "parent_groups_with_source": 1382,
+    "source_novel_parent_covered_pairs": 1134,
+    "training_needed_cards": 5612,
+    "training_pair_rows": 5240
+  },
+  "overlap": {
+    "blind_card_ids_in_training_support": 579,
+    "blind_code_sha_in_training_support": 579,
+    "blind_run_ids_in_training_support": 0,
+    "zero_run_overlap": true
+  },
+  "producer_reproducible": true,
+  "runner_erratum_recorded": true,
+  "source_commit": "4b6b997bdd08e48494ab68497a6f48f28e5a5032",
+  "status": "CURRENT_SUPPORT_NOT_SOURCE_INDEPENDENT",
+  "verifier_reproducible": true
+}

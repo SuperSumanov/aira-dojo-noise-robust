@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CQ. 2026-08-21 TraceML human-fork future transfer 已结果前冻结
+
+在不改变 0CP AIRA strict-future 主线的前提下，新增一个外部 extension：只用 TraceML 固定 revision 的 human
+canonical `fork` siblings，测试冻结 transition scorer 能否从 fork 起点判断哪个 child kernel 最终取得更好的
+best-private score。它对应“node may lead to a better solution”，但 human forks 不是 agent search candidates；即使
+为正也只能称 cross-domain human-fork future-potential transfer。
+
+协议在 graph support、score 值和 raw notebook 内容读取前冻结。S0 先绑定 graph SHA/schema；S1 必须通过
+task-unseen≥20、parents≥100、finite non-tie eventual pairs≥500、dominant≤0.20 与 identity/depth 门；不过门则不下载
+2.9GB raw code。S2 才做 credential 隔离、code-cell-only 转换和三套 exact-code overlap；S3 才用 `7458f09...`
+scorer 一次性评分。禁止重训、调参、改标签/子集或把外部结果回填 0CP。GPU/API=0。直接协议：
+
+- `phase1/traceml_human_fork_future_protocol_v1.json`；
+- `phase1/实验记录/2026-08-21/TraceMLHumanForkFuture_跨域前瞻资格与效果预注册.md`。
+
 ## 0CP. 2026-08-21 transition future escrow 已正式激活；只等待严格未来新 runs
 
 冻结 scorer 已从 source commit `7458f0969b92a258ea0e495bbbee282aa12b748e` 正式激活，自动远端时间边界为

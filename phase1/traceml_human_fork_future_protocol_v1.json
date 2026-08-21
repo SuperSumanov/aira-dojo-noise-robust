@@ -1,0 +1,69 @@
+{
+  "effect_protocol": {
+    "chance_gate": "task-clustered and parent-clustered 95% CI lower bounds for child_plus_transition accuracy must both exceed 0.5",
+    "comparison": "child_plus_transition minus child_code on identical pairs",
+    "comparison_gate": "task-clustered and parent-clustered paired 95% CI lower bounds must both exceed 0",
+    "leave_one_task_out_gate": "all task-macro delta point estimates must exceed 0",
+    "primary_metric": "task-macro pairwise accuracy",
+    "secondary_outcome": "immediate child score_public when both endpoints are finite and non-tied"
+  },
+  "estimand": {
+    "candidate": "first version of a distinct child kernel whose canonical parent edge_kind is fork",
+    "label": "which fork child's kernel eventually attains the better finite best_private_score after applying score_is_max",
+    "pair": "all unordered pairs of canonical fork children sharing the same exact parent node",
+    "scope_name": "cross-domain human-fork future-potential transfer",
+    "task_unseen_primary": "exclude every competition slug present in the frozen scorer train+dev pairs"
+  },
+  "fixed_scorer": {
+    "activation_sha256": "dd3aeb4afce7ff64423f9539beadba133cfeb3310a74169eb18ea27f7ba487d3",
+    "arms": [
+      "child_code",
+      "transition_only",
+      "child_plus_transition"
+    ],
+    "model_spec_sha256": "11465b4ea842d79ce8e9bdcd60d219a02be7f35bac9bab029a6d38f77120ca59",
+    "model_summary_sha256": "7b32ddc85217245d65c767445439072e4dd08f4da88523ce5c52fc3156122bf3",
+    "model_verification_sha256": "33a117fb60577b96420cafff1cff274e3c029f20525d3a9996cdf0fe7ee933eb",
+    "source_commit": "7458f0969b92a258ea0e495bbbee282aa12b748e",
+    "train_reference_sha256": "3cb1bec50fdfc9f9affaacb65fe9c75618d979f48097233ae0ad06cb1f856b0f"
+  },
+  "integrity": {
+    "code_conversion": "for each ipynb, concatenate code-cell source in notebook order with two newlines; do not use outputs or markdown",
+    "credential_shaped_raw_files": "identify by a non-printing path-only scanner and exclude whole files before any scientific parser reads them",
+    "effect_values_before_gate": false,
+    "exact_code_sha_overlap": "exclude any parent or child whose converted code SHA overlaps scorer train, v11 frozen/extension, or prospective inventories",
+    "raw_code_download_before_structure_gate": false,
+    "scorer_refit_or_selection_on_external_data": false
+  },
+  "protocol": "traceml-human-fork-future-transfer-v1",
+  "release": {
+    "dataset": "TraceML-HF/TraceML",
+    "graph_files": [
+      "extras/nodes.parquet",
+      "extras/edges.parquet",
+      "extras/trees.parquet",
+      "extras/kernels.parquet",
+      "manifests/competitions.json"
+    ],
+    "license": "CC-BY-4.0 plus per-kernel licenses for raw notebooks",
+    "raw_code_file": "trajectories_human.tar.gz",
+    "revision": "61faec615b179f186dbe9c82ee59d17e14817e96",
+    "sha256_binding": "record in a separate input manifest after download and before support aggregation"
+  },
+  "stages": [
+    "S0 bind release SHA and schema without reading score values",
+    "S1 aggregate task-unseen canonical-fork structural and finite-outcome support",
+    "S2 only if S1 passes, download and sanitize raw notebooks, verify joins and exact-code overlap",
+    "S3 only if S2 passes, run the frozen scorer once and independent verification once"
+  ],
+  "support_gates": {
+    "dominant_pair_task_share_at_most": 0.2,
+    "finite_nontie_eventual_pairs_at_least": 500,
+    "fork_child_kernel_identity_unique": true,
+    "fork_depth_delta_exactly_one": true,
+    "parent_groups_at_least": 100,
+    "raw_code_parent_child_coverage": 1.0,
+    "task_unseen_competitions_at_least": 20,
+    "tree_and_parent_join_unambiguous": true
+  }
+}

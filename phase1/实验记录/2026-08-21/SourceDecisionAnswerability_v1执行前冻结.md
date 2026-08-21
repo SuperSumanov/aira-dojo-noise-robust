@@ -74,3 +74,10 @@ cluster 的 base checkout 是稀疏工作树，不含 `phase1/v11_decision`，�
 既有 edge exporter 从 detached worktree 读取这些 tracked files。此次没有 output directory、producer、graph row
 或 scientific summary。允许的唯一修复是把三份 pair path 与 normalized-LF SHA precheck 移到新 detached
 worktree 创建之后；协议、五个 material gates、输入 blobs、分析/验证代码与停止规则均不变。
+
+第二个 commit `e6b508e...` 已通过路径、SHA、worktree 与 5 个 focused tests，但 producer 在第一条 frozen pair
+于构图前拒绝 `run_id=null`。检查固定 schema 后确认 train/extension 的 null-run 数为 0/0，而全部 1,498 条
+frozen b0 rows 的 run_id 均为 null；其 physical run 已在 SHA 绑定的 per-parent 表中唯一给出。这是已有冻结输入的
+schema 映射，不是 outcome。修复把 role-wise null-run 精确计数 `train=0/frozen=1498/extension=0` 写入协议；
+pair run 非空时仍须与 per-parent 一致，null 时只使用 per-parent run。输入、图定义、材料门与停止规则不变，旧
+`/research/d7/spc/yzyang4/source-decision-answerability/e6b508e-v1` 保留且无 producer artifact/summary。

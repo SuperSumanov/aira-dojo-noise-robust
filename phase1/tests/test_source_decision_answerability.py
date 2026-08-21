@@ -102,7 +102,7 @@ def make_inputs(tmp_path: Path) -> dict[str, object]:
             {"task": "task-a", "run_id": "run-2", "parent": "parent-2", "better": "d", "worse": "e"},
         ],
         "frozen": [
-            {"task": "task-b", "run_id": "run-3", "parent": "parent-3", "better": "g", "worse": "h"}
+            {"task": "task-b", "run_id": None, "parent": "parent-3", "better": "g", "worse": "h"}
         ],
         "extension": [],
     }
@@ -142,6 +142,7 @@ def make_inputs(tmp_path: Path) -> dict[str, object]:
         "expected_published_edges": 4,
         "expected_role_parent_counts": {"train": 2, "frozen": 1, "extension": 0},
         "expected_role_pair_counts": {"train": 3, "frozen": 1, "extension": 0},
+        "expected_role_pair_null_run_counts": {"train": 0, "frozen": 1, "extension": 0},
         "expected_validity_edges": 2,
         "expected_certified_invalid_children": 1,
         "expected_validity_edge_categories": {"EXECUTION_ERROR": 2},

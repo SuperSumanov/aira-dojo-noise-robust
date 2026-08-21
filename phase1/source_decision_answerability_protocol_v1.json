@@ -12,6 +12,11 @@
     "frozen": 1498,
     "train": 4263
   },
+  "expected_role_pair_null_run_counts": {
+    "extension": 0,
+    "frozen": 1498,
+    "train": 0
+  },
   "expected_role_parent_counts": {
     "extension": 114,
     "frozen": 845,

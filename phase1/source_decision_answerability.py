@@ -237,6 +237,7 @@ def load_protocol(path: Path) -> dict[str, Any]:
             raise AnswerabilityError(f"invalid protocol fraction: {field}")
     roles = value.get("expected_role_parent_counts")
     pair_roles = value.get("expected_role_pair_counts")
+    pair_null_runs = value.get("expected_role_pair_null_run_counts")
     if (
         not isinstance(roles, dict)
         or set(roles) != set(ROLES)
@@ -251,6 +252,16 @@ def load_protocol(path: Path) -> dict[str, Any]:
         or sum(pair_roles.values()) != value["expected_published_edges"]
     ):
         raise AnswerabilityError("invalid role pair counts")
+    if (
+        not isinstance(pair_null_runs, dict)
+        or set(pair_null_runs) != set(ROLES)
+        or any(
+            isinstance(count, bool) or not isinstance(count, int) or count < 0
+            for count in pair_null_runs.values()
+        )
+        or any(pair_null_runs[role] > pair_roles[role] for role in ROLES)
+    ):
+        raise AnswerabilityError("invalid role pair null-run counts")
     if value.get("certifiable_categories") != ["EXECUTION_ERROR", "OFFICIAL_GRADE_ABSENT"]:
         raise AnswerabilityError("certifiable category contract changed")
     return value
@@ -390,6 +401,7 @@ def load_pairs(
     }
     global_unordered: set[tuple[str, str, str, str]] = set()
     role_counts: collections.Counter[str] = collections.Counter()
+    null_run_counts: collections.Counter[str] = collections.Counter()
     for role in ROLES:
         path = paths[role]
         expected = protocol["pair_inputs"][role]["sha256_normalized_lf"]
@@ -405,7 +417,12 @@ def load_pairs(
                 if not isinstance(raw, dict):
                     raise AnswerabilityError(f"pair row is not an object {role}:{line_number}")
                 task = required_text(raw.get("task"), f"pair {role}:{line_number}:task")
-                run_id = required_text(raw.get("run_id"), f"pair {role}:{line_number}:run")
+                raw_run_id = raw.get("run_id")
+                if raw_run_id is None:
+                    null_run_counts[role] += 1
+                    run_id = None
+                else:
+                    run_id = required_text(raw_run_id, f"pair {role}:{line_number}:run")
                 parent = required_text(raw.get("parent"), f"pair {role}:{line_number}:parent")
                 better = required_text(raw.get("better"), f"pair {role}:{line_number}:better")
                 worse = required_text(raw.get("worse"), f"pair {role}:{line_number}:worse")
@@ -415,7 +432,9 @@ def load_pairs(
                 if key not in parents:
                     raise AnswerabilityError(f"pair parent absent at {role}:{line_number}")
                 parent_row = parents[key]
-                if task != parent_row["task"] or run_id != parent_row["run_id"]:
+                if task != parent_row["task"] or (
+                    run_id is not None and run_id != parent_row["run_id"]
+                ):
                     raise AnswerabilityError(f"pair context mismatch at {role}:{line_number}")
                 undirected = tuple(sorted((better, worse)))
                 global_key = (role, parent, undirected[0], undirected[1])
@@ -428,6 +447,10 @@ def load_pairs(
                 role_counts[role] += 1
     if {role: role_counts[role] for role in ROLES} != protocol["expected_role_pair_counts"]:
         raise AnswerabilityError("pair role counts mismatch")
+    if {role: null_run_counts[role] for role in ROLES} != protocol[
+        "expected_role_pair_null_run_counts"
+    ]:
+        raise AnswerabilityError("pair null-run schema mismatch")
     if sum(role_counts.values()) != protocol["expected_published_edges"]:
         raise AnswerabilityError("published edge count mismatch")
     for key, parent in parents.items():

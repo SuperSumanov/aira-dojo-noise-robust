@@ -230,6 +230,7 @@ def rebuild(args: argparse.Namespace) -> tuple[list[dict[str, Any]], list[dict[s
         key: {"nodes": set(), "edges": set(), "undirected": set()} for key in parents
     }
     pair_role_counts = collections.Counter()
+    pair_null_runs = collections.Counter()
     for role in ROLES:
         path = pair_paths[role]
         if normalized_lf_sha(path) != protocol["pair_inputs"][role]["sha256_normalized_lf"]:
@@ -241,7 +242,14 @@ def rebuild(args: argparse.Namespace) -> tuple[list[dict[str, Any]], list[dict[s
                 key = (role, parent)
                 if key not in parents:
                     raise VerificationError("pair parent absent")
-                if raw.get("task") != parents[key]["task"] or raw.get("run_id") != parents[key]["run_id"]:
+                raw_run_id = raw.get("run_id")
+                if raw_run_id is None:
+                    pair_null_runs[role] += 1
+                elif not isinstance(raw_run_id, str) or not raw_run_id:
+                    raise VerificationError("pair run identity invalid")
+                if raw.get("task") != parents[key]["task"] or (
+                    raw_run_id is not None and raw_run_id != parents[key]["run_id"]
+                ):
                     raise VerificationError("pair context mismatch")
                 better = text(raw.get("better"), f"pair:{role}:{line_number}:better")
                 worse = text(raw.get("worse"), f"pair:{role}:{line_number}:worse")
@@ -254,6 +262,10 @@ def rebuild(args: argparse.Namespace) -> tuple[list[dict[str, Any]], list[dict[s
                 pair_role_counts[role] += 1
     if {role: pair_role_counts[role] for role in ROLES} != protocol.get("expected_role_pair_counts"):
         raise VerificationError("pair role accounting mismatch")
+    if {role: pair_null_runs[role] for role in ROLES} != protocol.get(
+        "expected_role_pair_null_run_counts"
+    ):
+        raise VerificationError("pair null-run schema mismatch")
     for key, parent in parents.items():
         if len(pair_groups[key]["nodes"]) != parent["finite"]:
             raise VerificationError("pair endpoint closure mismatch")

@@ -3,6 +3,28 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DB. 2026-08-21 observability-aware 七项证据索引正式通过
+
+控制 commit `ce5c558509b1f481f9e9df1212d9f00c3cf00bce` 的 evidence index v3 已把 0DA 漏斗作为独立
+`decision_observability` estimand 接入统一 release contract，同时逐项继承且不改写 v2 六项。正式 index 共 7 个
+entries、20 份哈希绑定 JSON artifact、181 项 dotted assertions；index normalized SHA-256=
+`424f06b161086972fedf55d5e8e06e22d92c21e1558a04b2dd6c55e3cb637b49`。
+
+机器可核验的正结论是：3,252-parent census 的 child-slot loss=`0.14612676056338025`，declared pair-capacity
+loss=`0.3851358277806253`，组合放大=`2.6356283154144×`；source/finite/published pair capacity 或 edge 数为
+9,755/5,998/5,897。该条目把 source opportunity、task-conditioned retention 与 observability denominator 连接成
+可发布的数据合同，而不是散落在报告中的手工数字。
+
+全部边界同时进入 schema：`C(n,2)` 不是真实 agent comparison log；全部 parents 仍有 finite/published decision，
+禁止“决策点消失”；不恢复完整 choice set、不假定 MAR、不证明 predictor/search utility 或 prospective effect。
+builder×2/verifier×2 逐字节一致；完整 phase tests=`643 passed, 1 skipped, 25 warnings`，秘密扫描、worktree 漂移、
+prospective outcome read 与正式可写文件均为 0。回传的 30 个 payload 文件全部通过远端 `SHA256SUMS`。
+
+直接证据：
+
+- `phase1/results/decision_corpus_evidence_index_v3_20260821/README.md`；
+- `phase1/实验记录/2026-08-21/DecisionCorpusEvidenceIndex_v3_正式裁决.md`。
+
 ## 0DA. 2026-08-21 decision observability funnel 正式通过：14.6% child loss 放大为 38.5% pair-capacity loss
 
 结果前 commit `1b8a7b94f7175823763ef866e0dde2ce202828b7` 对固定 3,252-parent source 表完成完整 release census。

@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus evidence release; no predictor or controller tuning
+PREFLIGHT_02_QUESTION=can the verified observability funnel be bound as a seventh non-merged evidence estimand
+PREFLIGHT_03_INPUT=frozen v2 index plus remote-manifest-pinned funnel summary and independent verification
+PREFLIGHT_04_UNIT=one evidence entry with two JSON artifacts and dotted assertions
+PREFLIGHT_05_OUTPUT=v3 index with seven separately bounded estimands
+PREFLIGHT_06_GATE=exact source hash, artifact hashes, schema reconstruction, and every JSON assertion
+PREFLIGHT_07_INFERENCE=none; deterministic evidence packaging only
+PREFLIGHT_08_LEAKAGE=no code outcome orientation prediction prospective vault archive or checkpoint
+PREFLIGHT_09_CONTROLS=claim drift, hash drift, artifact pin, and source-order tests
+PREFLIGHT_10_REPRO=builder x2, independent verifier x2, full commit and hashes embedded
+PREFLIGHT_11_FAILURE=no source reordering, threshold change, boundary deletion, or artifact substitution
+PREFLIGHT_12_RESOURCES=single-thread CPU, GPU 0, API 0, base-LLM update 0
+PREFLIGHT_13_EXPECTED_WALL=under 30 minutes including complete phase1 regression

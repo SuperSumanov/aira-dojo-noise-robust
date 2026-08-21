@@ -41,6 +41,10 @@ phase1/results/prospective_ast_failure_diagnostic_20260820_31aee5a/*.json text e
 phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/*.json text eol=lf
 phase1/results/deployment_cost_attestation_v2_20260820_c800345/** text eol=lf
 phase1/results/decision_corpus_evidence_index_v1_20260820/* text eol=lf
+phase1/results/decision_corpus_evidence_index_v2_20260821/* text eol=lf
+phase1/results/raw_choice_set_completeness_v11_20260815_6610618/*.json text eol=lf
+phase1/results/source_opportunity_identity_recovery_v11_20260815_3faf001/*.json text eol=lf
+phase1/results/source_opportunity_journal_status_v11_20260815_42cb6b1/*.json text eol=lf
 phase1/upstream_patches/*.patch -text -diff
 phase1/manifests/*.sha256 text eol=lf
 phase1/scripts/critic_component_g0_* text eol=lf

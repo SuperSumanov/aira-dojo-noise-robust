@@ -1,0 +1,15 @@
+{
+  "components": 168,
+  "dev_components": 41,
+  "dev_pairs": 551,
+  "dev_sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4",
+  "heldout_test_pairs": 931,
+  "heldout_test_sha256": "cb84d78d578e6a3f5378b3396a355fa83880739b4f9af8459d2b960c7ae005da",
+  "manifest_sha256": "da48cbe67d7228082e27e40ca9fba093d4eeed219e83bb1576c2a3ed97587b2a",
+  "producer_protocol": "pair-graph-component-train-dev-split-v1",
+  "protocol": "independent-pair-graph-component-split-verifier-v1",
+  "source_pairs": 6171,
+  "status": "PAIR_COMPONENT_SPLIT_INDEPENDENTLY_VERIFIED",
+  "train_pairs": 4689,
+  "train_sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+}

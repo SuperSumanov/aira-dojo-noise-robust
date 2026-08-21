@@ -1,0 +1,734 @@
+{
+  "card_inventory": {
+    "cards": 31742,
+    "needed_cards": 6067,
+    "run_groups": 676
+  },
+  "cards_sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb",
+  "components": 168,
+  "dev_components": 41,
+  "dev_pairs": 551,
+  "dev_pairs_sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4",
+  "dev_runs": 81,
+  "dropped_source_train_pairs": 0,
+  "heldout_test_pairs": 931,
+  "heldout_test_pairs_sha256": "cb84d78d578e6a3f5378b3396a355fa83880739b4f9af8459d2b960c7ae005da",
+  "heldout_test_runs": 140,
+  "outer_test_card_overlap": 0,
+  "outer_test_run_overlap": 0,
+  "protocol": "pair-graph-component-train-dev-split-v1",
+  "seed": 20260821,
+  "source_pairs_sha256": "bd6551dfce85d83f9f59716a31a9d7ab88605d6a21f51b41eb28177a952f47d0",
+  "source_test_pairs": 931,
+  "source_train_pairs": 5240,
+  "status": "PAIR_COMPONENT_SPLIT_VERIFIED_BY_PRODUCER",
+  "target_denominator": 10,
+  "target_numerator": 1,
+  "task_receipts": {
+    "aptos2019-blindness-detection": {
+      "component_ids_sha256": "2869a251c6f85b2570ec149b3e1069809bfd09814a824feeab2ad48ca1a85b43",
+      "component_pair_weights": [
+        3,
+        9,
+        2
+      ],
+      "component_run_counts": [
+        1,
+        3,
+        1
+      ],
+      "components": 3,
+      "dev_component_ids_sha256": "3fd387a313d4ae23caca04f3d7c143369c8da8e3a0e08742ae246193e51afc41",
+      "dev_components": 1,
+      "dev_pairs": 2,
+      "pairs": 14,
+      "train_components": 2
+    },
+    "cassava-leaf-disease-classification": {
+      "component_ids_sha256": "2ff1a9f5eae5ed1a768136aeb8b0b3880d329d4d2060ee5ab92ec1f0dfca687f",
+      "component_pair_weights": [
+        15
+      ],
+      "component_run_counts": [
+        3
+      ],
+      "components": 1,
+      "dev_component_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "dev_components": 0,
+      "dev_pairs": 0,
+      "pairs": 15,
+      "train_components": 1
+    },
+    "chaii-hindi-and-tamil-question-answering": {
+      "component_ids_sha256": "a9bf9cc1fb9802eeea646c39c5220d3a3701b9f1b8c22225f9c432542c4f27dd",
+      "component_pair_weights": [
+        115,
+        68,
+        6
+      ],
+      "component_run_counts": [
+        6,
+        3,
+        1
+      ],
+      "components": 3,
+      "dev_component_ids_sha256": "9fbb0696651c914f266dd118287e699036c89d23bab89c723d8e87e25340958e",
+      "dev_components": 1,
+      "dev_pairs": 6,
+      "pairs": 189,
+      "train_components": 2
+    },
+    "denoising-dirty-documents": {
+      "component_ids_sha256": "2d40633dc275b15bd6b1002cca087932b5da45875afa7edad1e3bf4304212b2d",
+      "component_pair_weights": [
+        16,
+        3,
+        67,
+        36,
+        22,
+        31,
+        24
+      ],
+      "component_run_counts": [
+        3,
+        1,
+        6,
+        5,
+        4,
+        5,
+        4
+      ],
+      "components": 7,
+      "dev_component_ids_sha256": "e37d1db57d961c29fb147157d1239dcea4f615194ccb19f59956b9c03872b9a2",
+      "dev_components": 2,
+      "dev_pairs": 19,
+      "pairs": 199,
+      "train_components": 5
+    },
+    "dog-breed-identification": {
+      "component_ids_sha256": "53142e776e88ab296bf3bacc12c791e5aaa0bcced629d7feff3e8fa840686f46",
+      "component_pair_weights": [
+        48,
+        75,
+        26,
+        54,
+        9,
+        2,
+        3,
+        32,
+        24,
+        20,
+        40,
+        9,
+        108,
+        12
+      ],
+      "component_run_counts": [
+        6,
+        3,
+        4,
+        4,
+        1,
+        1,
+        1,
+        3,
+        4,
+        3,
+        3,
+        1,
+        4,
+        2
+      ],
+      "components": 14,
+      "dev_component_ids_sha256": "b39c8554ce68abf5b614444f49acf786b4ca77b611c1f7370cb87d1cf54db111",
+      "dev_components": 4,
+      "dev_pairs": 46,
+      "pairs": 462,
+      "train_components": 10
+    },
+    "dogs-vs-cats-redux-kernels-edition": {
+      "component_ids_sha256": "71592429e3e72f0a54fb0d3efc02fd5886b7da4f084eccbf8281f32d3bc27339",
+      "component_pair_weights": [
+        16,
+        14,
+        27,
+        24,
+        29,
+        12
+      ],
+      "component_run_counts": [
+        3,
+        3,
+        4,
+        3,
+        4,
+        2
+      ],
+      "components": 6,
+      "dev_component_ids_sha256": "708c3e4d36c62e9624dfaec2ee60cbeee23fdfda5cdda94db35201df653a3a35",
+      "dev_components": 1,
+      "dev_pairs": 12,
+      "pairs": 122,
+      "train_components": 5
+    },
+    "facebook-recruiting-iii-keyword-extraction": {
+      "component_ids_sha256": "77f7dde526d3529a86e22e546a600511b05509ae9fbf2777c51c5b233613a575",
+      "component_pair_weights": [
+        28
+      ],
+      "component_run_counts": [
+        3
+      ],
+      "components": 1,
+      "dev_component_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "dev_components": 0,
+      "dev_pairs": 0,
+      "pairs": 28,
+      "train_components": 1
+    },
+    "google-quest-challenge": {
+      "component_ids_sha256": "bd29ff37fe8f66eb12b0f67c21da812f64830cb6f934a2f2d6201bf0f7f77129",
+      "component_pair_weights": [
+        29,
+        12,
+        49,
+        6,
+        40,
+        27,
+        4,
+        19
+      ],
+      "component_run_counts": [
+        3,
+        2,
+        6,
+        1,
+        5,
+        4,
+        1,
+        2
+      ],
+      "components": 8,
+      "dev_component_ids_sha256": "8cb342a7a22b17b6a1f3d4018b0fb136a545150c75d0a62bb483d4f8f0785263",
+      "dev_components": 1,
+      "dev_pairs": 19,
+      "pairs": 186,
+      "train_components": 7
+    },
+    "histopathologic-cancer-detection": {
+      "component_ids_sha256": "9905cf8d21605c202beac8a733d44cf2a06c471b4c49af62e1b2c7c95c64b66e",
+      "component_pair_weights": [
+        3,
+        3,
+        13,
+        5,
+        1,
+        2
+      ],
+      "component_run_counts": [
+        1,
+        2,
+        2,
+        1,
+        1,
+        2
+      ],
+      "components": 6,
+      "dev_component_ids_sha256": "9a001d3f5658dde1b774de31ff4a607cb6cf627ead38c3799f035793be2dd143",
+      "dev_components": 1,
+      "dev_pairs": 3,
+      "pairs": 27,
+      "train_components": 5
+    },
+    "kuzushiji-recognition": {
+      "component_ids_sha256": "627e626f09941c2ae5cf61eec6e3c7da89d28b4d1aa70f2d0bd3319b9cebbe6d",
+      "component_pair_weights": [
+        12,
+        6,
+        4,
+        2,
+        1,
+        19
+      ],
+      "component_run_counts": [
+        2,
+        1,
+        2,
+        1,
+        1,
+        2
+      ],
+      "components": 6,
+      "dev_component_ids_sha256": "11b3a7729d63925f71b86a0b0cbce28de9d882082dd01cb28f6167b779249f5f",
+      "dev_components": 1,
+      "dev_pairs": 4,
+      "pairs": 44,
+      "train_components": 5
+    },
+    "leaf-classification": {
+      "component_ids_sha256": "f458d7071f75f7e538a4d3cf186d28fa3162298b2ed180f9fb75db7314099794",
+      "component_pair_weights": [
+        27,
+        69,
+        103,
+        116,
+        90
+      ],
+      "component_run_counts": [
+        1,
+        4,
+        6,
+        5,
+        4
+      ],
+      "components": 5,
+      "dev_component_ids_sha256": "eeb9f747053830b6ac4fe2c2baecb4840d4e52d1c1eb7610dcddc029ebb2407e",
+      "dev_components": 1,
+      "dev_pairs": 27,
+      "pairs": 405,
+      "train_components": 4
+    },
+    "learning-agency-lab-automated-essay-scoring-2": {
+      "component_ids_sha256": "933b35c85d1a46c0abab733618c344eb861250bfb25130ca5b26f08fa2329bd6",
+      "component_pair_weights": [
+        6,
+        23,
+        41,
+        132,
+        63,
+        19,
+        76
+      ],
+      "component_run_counts": [
+        2,
+        3,
+        5,
+        8,
+        5,
+        3,
+        7
+      ],
+      "components": 7,
+      "dev_component_ids_sha256": "3b4b0a735b1b628fbf2b8c384cadf1995b599db6183b19fcdc18058554db1976",
+      "dev_components": 1,
+      "dev_pairs": 41,
+      "pairs": 360,
+      "train_components": 6
+    },
+    "mlsp-2013-birds": {
+      "component_ids_sha256": "c79a8b4b46d090e9da746ddf34de676081d08e7fadd9c91bb6b9eabf2980eb2e",
+      "component_pair_weights": [
+        90,
+        106,
+        125,
+        70,
+        31
+      ],
+      "component_run_counts": [
+        4,
+        5,
+        5,
+        4,
+        2
+      ],
+      "components": 5,
+      "dev_component_ids_sha256": "c353fecb59e20a43951ac61b4967839c1bfabaed56d8e45c852f4fc176709f28",
+      "dev_components": 1,
+      "dev_pairs": 31,
+      "pairs": 422,
+      "train_components": 4
+    },
+    "new-york-city-taxi-fare-prediction": {
+      "component_ids_sha256": "b6e2c3514e459a030689ea9fe5a8127436135eceb58e9b7b67d2722f0882e2bc",
+      "component_pair_weights": [
+        57,
+        20,
+        9
+      ],
+      "component_run_counts": [
+        4,
+        3,
+        2
+      ],
+      "components": 3,
+      "dev_component_ids_sha256": "8be42bcd27a95bf20111b8a4b6ffadb00fca4b321322ca1f09c12474f43f0a64",
+      "dev_components": 1,
+      "dev_pairs": 9,
+      "pairs": 86,
+      "train_components": 2
+    },
+    "nomad2018-predict-transparent-conductors": {
+      "component_ids_sha256": "0bec4884be29a0b0e3700cbd7453be86ef6db1208d71ac0f7a401d7192077ce4",
+      "component_pair_weights": [
+        34,
+        33,
+        16,
+        13,
+        23,
+        24,
+        36,
+        17,
+        18,
+        39
+      ],
+      "component_run_counts": [
+        2,
+        2,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        1,
+        2
+      ],
+      "components": 10,
+      "dev_component_ids_sha256": "e5d997add57250d162480ca11d861f93139fc6adc130ffe9ae80f1e55c5a7729",
+      "dev_components": 1,
+      "dev_pairs": 24,
+      "pairs": 253,
+      "train_components": 9
+    },
+    "petfinder-pawpularity-score": {
+      "component_ids_sha256": "f8d04d8020f70f18018b6d48a330b67c11e8d0fdc23a95bba2ed8e7d74573572",
+      "component_pair_weights": [
+        17,
+        20,
+        60,
+        40,
+        33,
+        15,
+        31,
+        43,
+        31
+      ],
+      "component_run_counts": [
+        2,
+        3,
+        4,
+        4,
+        3,
+        2,
+        2,
+        4,
+        4
+      ],
+      "components": 9,
+      "dev_component_ids_sha256": "d718f059ca4c7328e8da7e38cef1c156864b74456f72fc8e4bce4aac650cecba",
+      "dev_components": 1,
+      "dev_pairs": 31,
+      "pairs": 290,
+      "train_components": 8
+    },
+    "random-acts-of-pizza": {
+      "component_ids_sha256": "fcaf33be50be4046afa47677d95fa95677b38a2c8b7ae95ea54b6c35bc52fb14",
+      "component_pair_weights": [
+        41,
+        18,
+        5,
+        62,
+        11
+      ],
+      "component_run_counts": [
+        7,
+        3,
+        2,
+        4,
+        3
+      ],
+      "components": 5,
+      "dev_component_ids_sha256": "3a1a05f68c13d66edf37f2cdb5b457595f6b5c9943ec9ca828a5e9fde055b56a",
+      "dev_components": 2,
+      "dev_pairs": 16,
+      "pairs": 137,
+      "train_components": 3
+    },
+    "ranzcr-clip-catheter-line-classification": {
+      "component_ids_sha256": "339aac3db872a296986c43f5cfe6e74cff012c3aceb46caf0295198211b3f3f3",
+      "component_pair_weights": [
+        52,
+        11,
+        71,
+        11,
+        64
+      ],
+      "component_run_counts": [
+        6,
+        3,
+        7,
+        2,
+        6
+      ],
+      "components": 5,
+      "dev_component_ids_sha256": "91f706b3eebfb4fb8804e32c17bddfd550193f95364a648bc15067d7b3d7da46",
+      "dev_components": 2,
+      "dev_pairs": 22,
+      "pairs": 209,
+      "train_components": 3
+    },
+    "spooky-author-identification": {
+      "component_ids_sha256": "5d249efb9bb494068a7a31f0b18d2182e6493803a73a5b139abf63170a876a3e",
+      "component_pair_weights": [
+        9,
+        1,
+        57,
+        30,
+        19,
+        30,
+        35,
+        22,
+        4,
+        63,
+        41,
+        60
+      ],
+      "component_run_counts": [
+        1,
+        1,
+        3,
+        4,
+        3,
+        4,
+        3,
+        4,
+        1,
+        4,
+        2,
+        5
+      ],
+      "components": 12,
+      "dev_component_ids_sha256": "e600be2811d965d2e631357f4218ce4afa03ce67728ae8a17eab64909f21c4ae",
+      "dev_components": 4,
+      "dev_pairs": 36,
+      "pairs": 371,
+      "train_components": 8
+    },
+    "tabular-playground-series-dec-2021": {
+      "component_ids_sha256": "83f2f76d9277c3537699deab180342f43d1bdbd21b6914a41fc7f4880c619e28",
+      "component_pair_weights": [
+        14,
+        58,
+        3,
+        62,
+        17,
+        5,
+        48,
+        1
+      ],
+      "component_run_counts": [
+        5,
+        6,
+        1,
+        5,
+        3,
+        2,
+        4,
+        1
+      ],
+      "components": 8,
+      "dev_component_ids_sha256": "46a14671b8337ad767092defe0f624d02d9a94435527ab0badf95e98f37c1899",
+      "dev_components": 3,
+      "dev_pairs": 21,
+      "pairs": 208,
+      "train_components": 5
+    },
+    "tabular-playground-series-may-2022": {
+      "component_ids_sha256": "369b45ccf210192c801fa06e0dd667774001efed713b2c749e914b3ef80b0339",
+      "component_pair_weights": [
+        6,
+        1,
+        13,
+        29,
+        20,
+        20,
+        11,
+        9,
+        32,
+        6,
+        2,
+        8,
+        31
+      ],
+      "component_run_counts": [
+        1,
+        1,
+        2,
+        1,
+        2,
+        3,
+        2,
+        1,
+        2,
+        2,
+        1,
+        1,
+        2
+      ],
+      "components": 13,
+      "dev_component_ids_sha256": "5febe92ea9ffc2a536592d60a4363ab43eeb3789ce28de0cc684486e63176ee4",
+      "dev_components": 2,
+      "dev_pairs": 19,
+      "pairs": 188,
+      "train_components": 11
+    },
+    "text-normalization-challenge-english-language": {
+      "component_ids_sha256": "b4aba09224454d45c4d340c54b8ed01d29ada8fe24b40d6b5ad4a85be3b31de4",
+      "component_pair_weights": [
+        5,
+        17,
+        14,
+        1,
+        10,
+        21
+      ],
+      "component_run_counts": [
+        1,
+        3,
+        2,
+        1,
+        2,
+        4
+      ],
+      "components": 6,
+      "dev_component_ids_sha256": "c76e87d47890067c2ab55abac8a46f0618bd53b5fc23de5caae95a0b9ece6eec",
+      "dev_components": 2,
+      "dev_pairs": 6,
+      "pairs": 68,
+      "train_components": 4
+    },
+    "text-normalization-challenge-russian-language": {
+      "component_ids_sha256": "3ef9f18e1c1a2d7f79a2b81b1f9be52ee05ae4269f120f558718205f15f42d01",
+      "component_pair_weights": [
+        59,
+        1,
+        3,
+        34,
+        13,
+        29
+      ],
+      "component_run_counts": [
+        7,
+        1,
+        1,
+        5,
+        4,
+        4
+      ],
+      "components": 6,
+      "dev_component_ids_sha256": "18f7567df1612f397524060dc953b3394b243f588834bbe2c448d59fd62cc9b1",
+      "dev_components": 2,
+      "dev_pairs": 14,
+      "pairs": 139,
+      "train_components": 4
+    },
+    "tgs-salt-identification-challenge": {
+      "component_ids_sha256": "0fc56fc3e7bd857273d4b2db2bcb72114299b76e6045ff7f4da0c40849ae52b9",
+      "component_pair_weights": [
+        67
+      ],
+      "component_run_counts": [
+        6
+      ],
+      "components": 1,
+      "dev_component_ids_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "dev_components": 0,
+      "dev_pairs": 0,
+      "pairs": 67,
+      "train_components": 1
+    },
+    "tweet-sentiment-extraction": {
+      "component_ids_sha256": "cddeb2a150d27830ddfa7a6041604a65bdc1a5bb1628b21b138483d56bf36942",
+      "component_pair_weights": [
+        2,
+        23,
+        30,
+        6,
+        16
+      ],
+      "component_run_counts": [
+        1,
+        4,
+        3,
+        2,
+        2
+      ],
+      "components": 5,
+      "dev_component_ids_sha256": "158e18687085f840a4acd4def8353b98f7c2113d5852f6c1faca6921be77f0a1",
+      "dev_components": 2,
+      "dev_pairs": 8,
+      "pairs": 77,
+      "train_components": 3
+    },
+    "us-patent-phrase-to-phrase-matching": {
+      "component_ids_sha256": "177e83d9c8dd079811291e5b86435731ae9b4be0a6a126a870ebc3afed8a8043",
+      "component_pair_weights": [
+        18,
+        90,
+        66,
+        54,
+        3,
+        34
+      ],
+      "component_run_counts": [
+        2,
+        7,
+        4,
+        6,
+        1,
+        4
+      ],
+      "components": 6,
+      "dev_component_ids_sha256": "64bfd66f8e2776aa04da02094a9f0da78d8fd757f12b82a99c892eddb0ba6288",
+      "dev_components": 2,
+      "dev_pairs": 21,
+      "pairs": 265,
+      "train_components": 4
+    },
+    "ventilator-pressure-prediction": {
+      "component_ids_sha256": "3d66c59b0714eca0c56bb0d25b3aebe5b8777add854a2219417a031cf174d965",
+      "component_pair_weights": [
+        91,
+        81
+      ],
+      "component_run_counts": [
+        6,
+        6
+      ],
+      "components": 2,
+      "dev_component_ids_sha256": "590ea486ab0705e001982d01eacfd9197c76ced64514897acaf1da7d0ee85e6e",
+      "dev_components": 1,
+      "dev_pairs": 81,
+      "pairs": 172,
+      "train_components": 1
+    },
+    "whale-categorization-playground": {
+      "component_ids_sha256": "0008a56ceb23a48649a6f3150a31136017d8c33808caaf406e7bf0e9b74e4b20",
+      "component_pair_weights": [
+        67,
+        33,
+        64,
+        6,
+        67
+      ],
+      "component_run_counts": [
+        4,
+        3,
+        6,
+        1,
+        6
+      ],
+      "components": 5,
+      "dev_component_ids_sha256": "33e170b7d6ac95a4354664e31434452fc9c3cdab6ecb08d5434943e8bff3e7bd",
+      "dev_components": 1,
+      "dev_pairs": 33,
+      "pairs": 237,
+      "train_components": 4
+    }
+  },
+  "train_dev_card_overlap": 0,
+  "train_dev_run_overlap": 0,
+  "train_pairs": 4689,
+  "train_pairs_sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e",
+  "train_runs": 430
+}

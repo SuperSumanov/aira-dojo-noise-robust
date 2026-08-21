@@ -1,0 +1,4 @@
+status=COMPONENT_SPLIT_ELIGIBLE_FOR_G0_PROPOSAL
+gpu_jobs=0
+api_calls=0
+model_fits=0

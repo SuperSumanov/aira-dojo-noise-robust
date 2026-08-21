@@ -1,0 +1,198 @@
+{
+  "card_inventory": {
+    "cards": 31742,
+    "needed_cards": 6067,
+    "run_groups": 676
+  },
+  "dropped_cross_split_fraction": 0.0,
+  "dropped_cross_split_pairs": 0,
+  "dropped_semantics": {},
+  "gates": {
+    "component_zero_pair_drop": true,
+    "cross_split_drop_at_most_25pct": true,
+    "dev_at_least_20_tasks": true,
+    "dev_at_least_300": true,
+    "dev_dominant_at_most_20pct": true,
+    "dev_draft_at_least_100": true,
+    "dev_improve_at_least_100": true,
+    "test_exact_931": true,
+    "train_at_least_3800": true,
+    "zero_pair_endpoint_run_overlap": true
+  },
+  "input_identity": {
+    "cards": {
+      "bytes": 604190866,
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "draft": {
+      "bytes": 1465008,
+      "sha256": "3ca77a18e224cacbb7f52121d6e8c2b66f17298c68dd06fbc42a14a238ad05b9"
+    },
+    "improve": {
+      "bytes": 1087821,
+      "sha256": "7aca481afda5317fe78a0ad52fc7488fceff7fde6531c74ebb718df9e3b6926e"
+    },
+    "merged": {
+      "bytes": 2552829,
+      "sha256": "bd6551dfce85d83f9f59716a31a9d7ab88605d6a21f51b41eb28177a952f47d0"
+    }
+  },
+  "inventory": {
+    "dev": {
+      "dominant_task_pairs": 81,
+      "dominant_task_share": 0.147005444646098,
+      "endpoints": 626,
+      "pairs": 551,
+      "parents": 246,
+      "runs": 81,
+      "semantics": {
+        "Draft": 294,
+        "Improve": 257
+      },
+      "task_counts": {
+        "aptos2019-blindness-detection": 2,
+        "chaii-hindi-and-tamil-question-answering": 6,
+        "denoising-dirty-documents": 19,
+        "dog-breed-identification": 46,
+        "dogs-vs-cats-redux-kernels-edition": 12,
+        "google-quest-challenge": 19,
+        "histopathologic-cancer-detection": 3,
+        "kuzushiji-recognition": 4,
+        "leaf-classification": 27,
+        "learning-agency-lab-automated-essay-scoring-2": 41,
+        "mlsp-2013-birds": 31,
+        "new-york-city-taxi-fare-prediction": 9,
+        "nomad2018-predict-transparent-conductors": 24,
+        "petfinder-pawpularity-score": 31,
+        "random-acts-of-pizza": 16,
+        "ranzcr-clip-catheter-line-classification": 22,
+        "spooky-author-identification": 36,
+        "tabular-playground-series-dec-2021": 21,
+        "tabular-playground-series-may-2022": 19,
+        "text-normalization-challenge-english-language": 6,
+        "text-normalization-challenge-russian-language": 14,
+        "tweet-sentiment-extraction": 8,
+        "us-patent-phrase-to-phrase-matching": 21,
+        "ventilator-pressure-prediction": 81,
+        "whale-categorization-playground": 33
+      },
+      "tasks": 25
+    },
+    "test": {
+      "dominant_task_pairs": 100,
+      "dominant_task_share": 0.10741138560687433,
+      "endpoints": 1346,
+      "pairs": 931,
+      "parents": 550,
+      "runs": 140,
+      "semantics": {
+        "Draft": 314,
+        "Improve": 617
+      },
+      "task_counts": {
+        "aptos2019-blindness-detection": 10,
+        "cassava-leaf-disease-classification": 1,
+        "chaii-hindi-and-tamil-question-answering": 42,
+        "denoising-dirty-documents": 48,
+        "dog-breed-identification": 60,
+        "dogs-vs-cats-redux-kernels-edition": 21,
+        "facebook-recruiting-iii-keyword-extraction": 8,
+        "google-quest-challenge": 20,
+        "histopathologic-cancer-detection": 6,
+        "kuzushiji-recognition": 7,
+        "leaf-classification": 100,
+        "learning-agency-lab-automated-essay-scoring-2": 35,
+        "mlsp-2013-birds": 88,
+        "new-york-city-taxi-fare-prediction": 32,
+        "nomad2018-predict-transparent-conductors": 48,
+        "petfinder-pawpularity-score": 57,
+        "random-acts-of-pizza": 15,
+        "ranzcr-clip-catheter-line-classification": 26,
+        "spooky-author-identification": 82,
+        "tabular-playground-series-dec-2021": 16,
+        "tabular-playground-series-may-2022": 48,
+        "text-normalization-challenge-english-language": 19,
+        "text-normalization-challenge-russian-language": 25,
+        "tgs-salt-identification-challenge": 11,
+        "tweet-sentiment-extraction": 5,
+        "us-patent-phrase-to-phrase-matching": 39,
+        "ventilator-pressure-prediction": 30,
+        "whale-categorization-playground": 32
+      },
+      "tasks": 28
+    },
+    "train": {
+      "dominant_task_pairs": 416,
+      "dominant_task_share": 0.08871827681808488,
+      "endpoints": 4095,
+      "pairs": 4689,
+      "parents": 1473,
+      "runs": 430,
+      "semantics": {
+        "Draft": 2902,
+        "Improve": 1787
+      },
+      "task_counts": {
+        "aptos2019-blindness-detection": 12,
+        "cassava-leaf-disease-classification": 15,
+        "chaii-hindi-and-tamil-question-answering": 183,
+        "denoising-dirty-documents": 180,
+        "dog-breed-identification": 416,
+        "dogs-vs-cats-redux-kernels-edition": 110,
+        "facebook-recruiting-iii-keyword-extraction": 28,
+        "google-quest-challenge": 167,
+        "histopathologic-cancer-detection": 24,
+        "kuzushiji-recognition": 40,
+        "leaf-classification": 378,
+        "learning-agency-lab-automated-essay-scoring-2": 319,
+        "mlsp-2013-birds": 391,
+        "new-york-city-taxi-fare-prediction": 77,
+        "nomad2018-predict-transparent-conductors": 229,
+        "petfinder-pawpularity-score": 259,
+        "random-acts-of-pizza": 121,
+        "ranzcr-clip-catheter-line-classification": 187,
+        "spooky-author-identification": 335,
+        "tabular-playground-series-dec-2021": 187,
+        "tabular-playground-series-may-2022": 169,
+        "text-normalization-challenge-english-language": 62,
+        "text-normalization-challenge-russian-language": 125,
+        "tgs-salt-identification-challenge": 67,
+        "tweet-sentiment-extraction": 69,
+        "us-patent-phrase-to-phrase-matching": 244,
+        "ventilator-pressure-prediction": 91,
+        "whale-categorization-playground": 204
+      },
+      "tasks": 28
+    }
+  },
+  "manifest_checks": {
+    "dev_pairs": 551,
+    "dev_pairs_sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4",
+    "dropped_source_train_pairs": 0,
+    "heldout_test_pairs": 931,
+    "heldout_test_pairs_sha256": "cb84d78d578e6a3f5378b3396a355fa83880739b4f9af8459d2b960c7ae005da",
+    "seed": 20260821,
+    "target_denominator": 10,
+    "target_numerator": 1,
+    "train_pairs": 4689,
+    "train_pairs_sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+  },
+  "overlap": {
+    "dev_test_endpoints": 0,
+    "dev_test_pairs": 0,
+    "dev_test_runs": 0,
+    "train_dev_endpoints": 0,
+    "train_dev_pairs": 0,
+    "train_dev_runs": 0,
+    "train_test_endpoints": 0,
+    "train_test_pairs": 0,
+    "train_test_runs": 0
+  },
+  "protocol": "critic-scaling-structural-gate-v1",
+  "split_parameters": {
+    "dev_fraction": 0.1,
+    "seed": 20260821
+  },
+  "split_protocol": "pair-graph-component-train-dev-split-v1",
+  "status": "COMPONENT_SPLIT_ELIGIBLE_FOR_G0_PROPOSAL"
+}

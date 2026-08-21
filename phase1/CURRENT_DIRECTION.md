@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CE. 2026-08-21 Pair-component split 修复跨-run Draft 的 dev 塌缩；只解锁 GPU 校准提案
+
+clean direct-decision scaling 的第一版 physical-run sampler 按预注册失败：train/dev/test=`4532/223/931`，
+dev 虽覆盖 28 tasks 且零泄漏，但 Draft 仅 74；总 dev `<300`、Draft `<100` 两门失败，485 个跨界 pair 全为
+Draft。原因不是模型 outcome，而是跨-run Draft edge 在独立 run 抽样下以约 `p^2` 进入 dev，并以约
+`2p(1-p)` 跨界删除。原 split 正式关闭，未放宽 seed、fraction 或阈值。
+
+结果揭晓后另立的 pair-graph connected-component v2 保持 seed=`20260821`、target=`1/10` 和所有旧门不变；
+以 outer-train pair graph 的 168 个不可分 components 为 split unit，动态规划按 task 选择 41 个 dev components。
+producer×2、非 import verifier×2 与结构 gate×2 全部 byte-identical，10/10 tests；得到 train/dev/test=
+`4689/551/931`，outer-train 5240 对零丢失。dev 为 Draft/Improve=`294/257`、25 tasks、dominant=
+81/551=`0.147005444646098`；train/dev/test Card、physical-run、unordered-pair overlap 全为 0，十个固定门全过。
+
+该结果是明确的数据协议正进展：普通 group split 在跨-run preference graph 上会改变语义 mixture，而 component
+split 同时保住 pair 和零泄漏。但它不含模型 accuracy，不证明 Qwen scaling 或 search utility。状态仅为
+`COMPONENT_SPLIT_ELIGIBLE_FOR_G0_PROPOSAL`：G0 仍是 1 个 Qwen3-1.7B、seed 6、2×96GB Pro6000、固定 10 steps、
+hard cap 4 GPU·h、绝不读 held-out test；在明确 GPU 批准前不得提交。论文中心仍是 Decision Corpus + Predictor
+Benchmark + first-960/closure。直接证据：
+
+- `phase1/results/critic_decision_component_split_20260821_305355e/README.md`；
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_component拆分_v2正式裁决.md`；
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_component拆分_v1失败裁决与v2预注册.md`。
+
 ## 0CD. 2026-08-21 Semantic Mixture 点估计为正但稳定性门失败；路线正式关闭
 
 exact-config v2 在固定 5,240 train / 931 test 上完成 producer×2 与独立 full-refit verifier×2。fixed

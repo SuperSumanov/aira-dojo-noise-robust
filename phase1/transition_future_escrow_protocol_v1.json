@@ -1,0 +1,71 @@
+{
+  "arms": [
+    "child_code",
+    "transition_only",
+    "child_plus_transition"
+  ],
+  "estimator": {
+    "class": "sklearn.ensemble.HistGradientBoostingClassifier",
+    "early_stopping": false,
+    "l2_regularization": 0.0,
+    "learning_rate": 0.08,
+    "loss": "log_loss",
+    "max_depth": null,
+    "max_iter": 300,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 20,
+    "random_state": 7
+  },
+  "feature_dimensions": {
+    "child_code": 31,
+    "child_plus_transition": 68,
+    "transition_only": 37
+  },
+  "future_support_gate": {
+    "dominant_pair_task_share_at_most": 0.25,
+    "minimum_parent_source_pair_coverage": 0.8,
+    "minimum_physical_runs": 150,
+    "minimum_source_novel_parent_covered_finite_nontie_pairs": 1500,
+    "minimum_tasks": 15,
+    "nontie_required_for_all_three_arms": true,
+    "strict_generation_start_after_activation": true,
+    "training_future_code_sha_overlap_excluded": true,
+    "training_future_endpoint_overlap_required_zero": true,
+    "training_future_run_overlap_required_zero": true
+  },
+  "inputs": {
+    "cards_sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb",
+    "dev_sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4",
+    "pairs": 5240,
+    "train_sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+  },
+  "orientation": {
+    "fit_augmentation": "stack(d,-d) with labels (1,0)",
+    "future_pair_order": "lexicographic card_id left,right",
+    "margin": "0.5*(decision(d)-decision(-d)); positive favors left"
+  },
+  "primary_delta": "child_plus_transition_minus_child_code",
+  "protocol": "transition-future-escrow-v1",
+  "source_paths": [
+    "phase1/transition_future_escrow_protocol_v1.json",
+    "phase1/transition_future_fullfit.py",
+    "phase1/verify_transition_future_fullfit.py",
+    "phase1/activate_transition_future_escrow.py",
+    "phase1/verify_transition_future_activation.py",
+    "phase1/prospective_transition_future_escrow.py",
+    "phase1/verify_prospective_transition_future_escrow.py",
+    "phase1/critic_transition_static_component_oof.py",
+    "phase1/critic_static_source_component_oof.py",
+    "phase1/verify_critic_transition_static_component_oof.py",
+    "phase1/verify_critic_static_source_component_oof.py",
+    "phase1/verify_critic_component_static_suite.py",
+    "phase1/prospective_wl_graph_escrow.py",
+    "phase1/verify_prospective_wl_graph_escrow.py"
+  ],
+  "training": {
+    "dev_split": "dev",
+    "full_fit": true,
+    "pair_sort": "task,parent,unordered endpoints",
+    "train_split": "train"
+  }
+}

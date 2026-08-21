@@ -1,0 +1,19 @@
+........................................................................ [ 10%]
+........................................................................ [ 20%]
+........................................................................ [ 31%]
+........................................................................ [ 41%]
+........................................................................ [ 52%]
+........................................................................ [ 62%]
+........................................................................ [ 73%]
+........................................................................ [ 83%]
+........................................................................ [ 94%]
+......................................                                   [100%]
+=============================== warnings summary ===============================
+phase1/tests/test_critic_component_static_suite.py: 9 warnings
+phase1/tests/test_critic_component_tfidf_baseline.py: 4 warnings
+phase1/tests/test_decision_semantic_mixture.py: 12 warnings
+  /research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:451: DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+    opt_res = optimize.minimize(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+686 passed, 25 warnings in 54.06s

@@ -3,6 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DI. 2026-08-21 source-choice benchmark 物化支持正式通过
+
+控制 commit `efbda542e69484bc93b0b36fcda10d37712cc674` 把 0DG 的 answerability census 与旧正式
+construction census 做 SHA/role/task/run/parent/source-size 闭合，只问 certified winner 是否同时具备完整的
+candidate-code 引用。没有重新读取 raw archive/journal、code bytes、numeric grade、gap、旧模型结果、prospective
+outcome 或 first-960。
+
+3,001 个 status-certified winners 中 3,000 个可物化，coverage=`0.9996667777407531`；相对全部 3,252 parents
+的 rate=`0.922509225092251`。train 2,109/2,109、frozen 778/778 均完整，extension 为 113/114；唯一缺口不插补。
+共 8,027 candidate slots，1,521/3,000 groups 的 source size≥3，share=`0.507`。23 个任务均有覆盖，20 个任务
+至少 20 groups；dominant-task share=`0.20066666666666666`。train/frozen parent 与 physical-run overlap 均为 0。
+
+13 个冻结材料门全部通过，`materialization_s1_authorized=true`。producer×2、独立 verifier×2 逐字节一致；
+focused=`7 passed`，完整 phase tests=`686 passed, 25 warnings`；forbidden path、秘密、worktree drift 与正式可写
+文件均为 0。
+
+这只授权 S1 生成 **answerability-conditioned** train inputs 与 sealed frozen evaluator。当前措辞必须是
+`candidate_code_reference_complete`：S1 仍须逐条重验 code hash 与 context；不得声称整个 v11 是 complete
+choice-set dataset，也不得称为 listwise 方法、predictor/search utility、prospective effect 或算法 novelty。0CP
+strict-future/first-960 与 GPU 批准门均不改变。直接证据：
+
+- `phase1/results/source_choice_materialization_support_v1_20260821_efbda54/README.md`；
+- `phase1/实验记录/2026-08-21/SourceChoiceMaterialization_S0正式裁决.md`。
+
 ## 0DH. 2026-08-21 source-answerability 九项证据索引正式通过
 
 控制 commit `fff9e9fb937390142b059818dde3c593ece144a8` 的 evidence index v5 逐项继承 v4 八项，并把

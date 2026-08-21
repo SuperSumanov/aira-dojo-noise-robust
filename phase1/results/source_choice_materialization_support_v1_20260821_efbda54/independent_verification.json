@@ -1,0 +1,12 @@
+{
+  "code_complete_share_of_status_winners": 0.9996667777407531,
+  "criteria_all_pass": true,
+  "materializable_status_winners": 3000,
+  "per_task_sha256": "85468fe45550a2542f6e848dcff1c7cccc3aa303e35c4ddcbb87dc69f62d5697",
+  "producer_imported": false,
+  "producer_status": "SOURCE_CHOICE_MATERIALIZATION_SUPPORT_FEASIBLE",
+  "protocol": "independent-source-choice-materialization-support-verifier-v1",
+  "source_commit": "efbda542e69484bc93b0b36fcda10d37712cc674",
+  "status": "INDEPENDENT_SOURCE_CHOICE_MATERIALIZATION_SUPPORT_VERIFIED",
+  "summary_sha256": "5ab474bd061f7f8845a19d1cefd5023fc9e2a0e5a1b45d4d93842fb62759c303"
+}

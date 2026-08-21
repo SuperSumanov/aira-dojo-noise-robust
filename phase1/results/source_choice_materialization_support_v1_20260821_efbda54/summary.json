@@ -1,0 +1,111 @@
+{
+  "complete_v11_choice_set_claim_allowed": false,
+  "criteria": {
+    "code_complete_share_of_status_winners_ge_minimum": true,
+    "dominant_task_share_le_maximum": true,
+    "frozen_code_complete_share_of_status_winners_ge_minimum": true,
+    "frozen_materializable_status_winners_ge_minimum": true,
+    "materializable_status_winner_rate_all_parents_ge_minimum": true,
+    "materializable_status_winners_ge_minimum": true,
+    "tasks_with_at_least_20_materializable_status_winners_ge_minimum": true,
+    "tasks_with_materializable_status_winner_ge_minimum": true,
+    "train_code_complete_share_of_status_winners_ge_minimum": true,
+    "train_frozen_parent_overlap_eq_required": true,
+    "train_frozen_run_overlap_eq_required": true,
+    "train_materializable_status_winners_ge_minimum": true,
+    "variable_arity_share_ge_minimum": true
+  },
+  "inputs": {
+    "answerability_per_parent_sha256": "b2488d059ce4fafacc321e98fb4f4e82b5f0b4d4abc86a413d9e6f80da0cb4d4",
+    "hurdle_construction_sha256": "846da509373ee0d6bbb072f7fcc9f21dbcbda0ad5ced0355dabffa5e61975f67"
+  },
+  "materialization_s1_authorized": true,
+  "overall": {
+    "candidate_slots": 8027,
+    "code_complete_share_of_status_winners": 0.9996667777407531,
+    "materializable_status_winner_rate_all_parents": 0.922509225092251,
+    "materializable_status_winners": 3000,
+    "parents": 3252,
+    "runs": 440,
+    "status_winners": 3001,
+    "stratum": "all",
+    "tasks": 23,
+    "variable_arity_materializable_winners": 1521,
+    "variable_arity_share": 0.507
+  },
+  "predictor_or_search_utility_claim_allowed": false,
+  "protocol": "source-choice-materialization-support-v1",
+  "roles": {
+    "extension": {
+      "candidate_slots": 247,
+      "code_complete_share_of_status_winners": 0.9912280701754386,
+      "materializable_status_winner_rate_all_parents": 0.9912280701754386,
+      "materializable_status_winners": 113,
+      "parents": 114,
+      "runs": 15,
+      "status_winners": 114,
+      "stratum": "extension",
+      "tasks": 10,
+      "variable_arity_materializable_winners": 21,
+      "variable_arity_share": 0.18584070796460178
+    },
+    "frozen": {
+      "candidate_slots": 2041,
+      "code_complete_share_of_status_winners": 1.0,
+      "materializable_status_winner_rate_all_parents": 0.9207100591715977,
+      "materializable_status_winners": 778,
+      "parents": 845,
+      "runs": 92,
+      "status_winners": 778,
+      "stratum": "frozen",
+      "tasks": 22,
+      "variable_arity_materializable_winners": 405,
+      "variable_arity_share": 0.5205655526992288
+    },
+    "train": {
+      "candidate_slots": 5739,
+      "code_complete_share_of_status_winners": 1.0,
+      "materializable_status_winner_rate_all_parents": 0.919755778456171,
+      "materializable_status_winners": 2109,
+      "parents": 2293,
+      "runs": 333,
+      "status_winners": 2109,
+      "stratum": "train",
+      "tasks": 23,
+      "variable_arity_materializable_winners": 1095,
+      "variable_arity_share": 0.519203413940256
+    }
+  },
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updated": false,
+    "candidate_identity_emitted": false,
+    "code_bytes_read": false,
+    "gap_read": false,
+    "gpu": 0,
+    "hurdle_model_result_read": false,
+    "numeric_grade_read": false,
+    "prospective_outcome_read": false,
+    "raw_archive_or_journal_read": false
+  },
+  "source_commit": "efbda542e69484bc93b0b36fcda10d37712cc674",
+  "status": "SOURCE_CHOICE_MATERIALIZATION_SUPPORT_FEASIBLE",
+  "support": {
+    "code_reference_complete_by_source_kind": {
+      "identity_recovered_incomplete": 657,
+      "published_complete": 2382
+    },
+    "dominant_task": "spooky-author-identification",
+    "dominant_task_count": 602,
+    "dominant_task_share": 0.20066666666666666,
+    "source_kinds": {
+      "identity_recovered_incomplete": 721,
+      "identity_unavailable_incomplete": 149,
+      "published_complete": 2382
+    },
+    "tasks_with_at_least_20_materializable_status_winners": 20,
+    "tasks_with_materializable_status_winner": 23,
+    "train_frozen_parent_overlap": 0,
+    "train_frozen_run_overlap": 0
+  }
+}

@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=failure-aware Decision Corpus source-choice release support; no retired HCE TD probe or multifidelity route
+PREFLIGHT_02_QUESTION=how many certified source winners have a complete already-audited candidate-code reference set
+PREFLIGHT_03_INPUT=SHA-pinned 3252-row answerability census plus 721-row structural construction census
+PREFLIGHT_04_UNIT=source parent group with all-parent and all-certified-winner denominators retained
+PREFLIGHT_05_JOIN=SHA256 parent and run identity plus exact role task source-size and row-count closure
+PREFLIGHT_06_GATES=2800 groups 0.85 all-parent 0.90 certified coverage role breadth arity concentration and split isolation
+PREFLIGHT_07_LABEL=winner-identification boolean only; no winner candidate identity numeric grade gap score or outcome
+PREFLIGHT_08_ACCESS=no raw archive journal card code bytes model result prospective outcome or first960
+PREFLIGHT_09_REPRO=producer x2 independent verifier x2 exact commit immutable protocol and input hashes
+PREFLIGHT_10_INFERENCE=exact frozen-corpus census without iid confidence interval
+PREFLIGHT_11_RESOURCES=single-thread CPU GPU 0 API 0 base-LLM update 0
+PREFLIGHT_12_FAILURE=hash schema join count or any material gate failure closes S1 with no rescue
+PREFLIGHT_13_SCOPE=pass authorizes only answerability-conditioned S1 construction; no complete-v11 utility novelty or predictor claim

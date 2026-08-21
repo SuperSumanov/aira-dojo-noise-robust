@@ -3,6 +3,31 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CP. 2026-08-21 transition future escrow 已正式激活；只等待严格未来新 runs
+
+冻结 scorer 已从 source commit `7458f0969b92a258ea0e495bbbee282aa12b748e` 正式激活，自动远端时间边界为
+`2026-08-21T07:05:03.916471Z`。model producer×2/verifier×2、activation×1/verifier×2、initial escrow
+producer×2/verifier×2 与 prior append replay producer/verifier 全部通过；17 个阶段 rc 均为 0，训练 reference 与
+future margin 的独立复算最大差均为 0.0，1,665 个既有 pair 在 append replay 中逐字段完全存活。23 个 focused
+tests 与 582 个 phase tests 通过；prospective forbidden-path syscall hits=0，三类 credential scan=0，226-entry
+manifest 全验，正式目录 writable files=0。
+
+初始 snapshot=`83ab1d6...d5c047` 的 1,665 pairs 全部早于 activation，因此 support-only=1,665、strict=0、
+eligible=0，状态按协议为 `TRANSITION_ESCROW_INSUFFICIENT_FUTURE_SUPPORT`。这是正确的初始状态，不是效果失败；
+本轮读取 prospective outcome=0、effect metrics=0、GPU/API=0。只有 generation start **严格晚于**上述时间边界的
+新 physical runs 才能进入 future cohort，且仍须通过 1,500 pairs / 150 runs / 15 tasks / dominant≤0.25 /
+parent coverage≥0.80 与三类 source-overlap 零门后才可揭盲。
+
+更早 source commit `921769f...` 的 attempt 永久标记为
+`INVALID_FORBIDDEN_METADATA_CONTACT_NOT_PROMOTED`：其科学复算虽返回 0，但五处 source binding 的全仓库
+`git status` 在 trace 中产生 80 次 `.env`/regrade/score 路径元数据接触；没有读取文件内容或效果值，但已违反零接触
+契约，故无 conclusion、无 COMPLETE、旧 activation 不使用。新 commit 只核对协议登记 source blobs，并由新增
+反例测试与正式 trace=0 共同验证。直接证据：
+
+- `phase1/results/transition_future_escrow_20260821_7458f09/README.md`；
+- `phase1/实验记录/2026-08-21/TreeTransitionFutureEscrow_正式激活与初始托管.md`；
+- 远端只读全量产物 `/research/d7/spc/yzyang4/transition-future-escrow/7458f09-v1`。
+
 ## 0CO. 2026-08-21 transition future escrow 支持审计完成，当前无可揭盲 future 样本
 
 0CN 的接近门槛信号只允许原样冻结为 outcome-blind extension。commit `4b6b997...` 的 producer×2 与不 import

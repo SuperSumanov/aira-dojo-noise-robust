@@ -1,0 +1,50 @@
+{
+  "activated_at_utc": "2026-08-21T07:05:03.916471Z",
+  "activation_wall_clock_unix_ns": 1787295903916471310,
+  "current_support_at_activation": {
+    "maximum_generation_started_at_utc": "2026-08-19T15:01:48.261018Z",
+    "provisional_runs": 249,
+    "provisional_runs_sha256": "47716add13bf15d2dd15bdfe6b810f56e8bda3f874493a71c73ba254d6b40045",
+    "snapshot_sha256": "83ab1d681ed863d2374a6648df4801e6dbd6fb80d89f4f20cec8d46de1d5c047",
+    "strict_post_activation_runs": 0
+  },
+  "host": "linux5",
+  "inputs": {
+    "model_spec_sha256": "11465b4ea842d79ce8e9bdcd60d219a02be7f35bac9bab029a6d38f77120ca59",
+    "model_summary_sha256": "7b32ddc85217245d65c767445439072e4dd08f4da88523ce5c52fc3156122bf3",
+    "model_verification_sha256": "33a117fb60577b96420cafff1cff274e3c029f20525d3a9996cdf0fe7ee933eb",
+    "protocol_sha256": "ea8912e19f1bcc83eefe19737a12a9f7cbfc0476179f1e87535ccff11eddd23f",
+    "train_reference_sha256": "3cb1bec50fdfc9f9affaacb65fe9c75618d979f48097233ae0ad06cb1f856b0f"
+  },
+  "protocol": "transition-future-escrow-v1",
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "effect_metrics_computed": [],
+    "gpu": 0,
+    "hand_entered_activation_timestamp_used": false,
+    "prospective_outcomes_read": false
+  },
+  "source_commit": "7458f0969b92a258ea0e495bbbee282aa12b748e",
+  "source_file_sha256": {
+    "phase1/activate_transition_future_escrow.py": "419c998c85fac3fe527981ff0771f20d0ce330cca7703e108d626b01b8d16c63",
+    "phase1/critic_static_source_component_oof.py": "f87887404beec0d3e39dbfc1451fc4fa5961b1aa0715050a9c08bfca6a57ed4c",
+    "phase1/critic_transition_static_component_oof.py": "68d1b478b3ee05e2bbd8ea864d9e4212b1f756ac717f6ef65e8db2927f2663b4",
+    "phase1/prospective_transition_future_escrow.py": "6d32a6e0e660e5f6b3d6e2802fe5bafaabb4324219c81cf514a70c48ee3a36aa",
+    "phase1/prospective_wl_graph_escrow.py": "fef28831e22c26ddcaf8872a8cd21f35fdab46e4e525111c537e6caae430e777",
+    "phase1/transition_future_escrow_protocol_v1.json": "ea8912e19f1bcc83eefe19737a12a9f7cbfc0476179f1e87535ccff11eddd23f",
+    "phase1/transition_future_fullfit.py": "ab445c923e1c3f436f28e738e1cfba473231b5fe7aee0663920c284c2e87d351",
+    "phase1/verify_critic_component_static_suite.py": "ae2b766d6285e75b0a85199405cc8ad4f747c5de2b66f3a4391851891a76a85c",
+    "phase1/verify_critic_static_source_component_oof.py": "b4f81233807fe5fc6515a185831fb204925ebf1ac06886bf901b50a445641ef6",
+    "phase1/verify_critic_transition_static_component_oof.py": "a235397a21a9cfbe6dde5ef8305bb4c3d1eec4e7b92b870a04fb8118790844bd",
+    "phase1/verify_prospective_transition_future_escrow.py": "2e96eb0610a94d58c01127e1850e60d6905a87a7870d0f9d692d28d4bd010787",
+    "phase1/verify_prospective_wl_graph_escrow.py": "d7f2113a45ffe37f0a44bdabfc76068b3d83da635aea7409b713fd9a53baef60",
+    "phase1/verify_transition_future_activation.py": "7a773406824a617ef8c3594a4e38010cbbc3629b8ff145101cd77d9986c897c9",
+    "phase1/verify_transition_future_fullfit.py": "569d6730ececce25b1c4ce46d869bc132634737c2ee0ca1d70ae951e61b34e8a"
+  },
+  "status": "TRANSITION_FUTURE_ESCROW_ACTIVE",
+  "temporal_contract": {
+    "generation_start_at_or_before_activation": "support_only",
+    "generation_start_strictly_after_activation": "strict_future"
+  }
+}

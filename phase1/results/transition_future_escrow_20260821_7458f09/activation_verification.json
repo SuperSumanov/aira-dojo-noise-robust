@@ -1,0 +1,10 @@
+{
+  "activated_at_utc": "2026-08-21T07:05:03.916471Z",
+  "activation_sha256": "dd3aeb4afce7ff64423f9539beadba133cfeb3310a74169eb18ea27f7ba487d3",
+  "all_fields_verified": true,
+  "current_support_strict_runs": 0,
+  "producer_imported": false,
+  "protocol": "transition-future-activation-independent-verifier-v1",
+  "source_commit": "7458f0969b92a258ea0e495bbbee282aa12b748e",
+  "status": "INDEPENDENT_TRANSITION_FUTURE_ACTIVATION_VERIFIED"
+}

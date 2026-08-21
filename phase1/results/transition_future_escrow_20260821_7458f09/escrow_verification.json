@@ -1,0 +1,18 @@
+{
+  "all_summary_fields_exact": true,
+  "artifact_summary_sha256": "a3a2977ea2efb7c439e9669ffa24ffe7d6e9e2a5ce7f16a7e40ab8bca5649b50",
+  "maximum_future_margin_difference": 0.0,
+  "maximum_training_reference_difference": 0.0,
+  "pairs": 1665,
+  "producer_imported": false,
+  "protocol": "prospective-transition-future-independent-verifier-v1",
+  "scope": {
+    "api_calls": 0,
+    "effect_metrics_computed": [],
+    "gpu": 0,
+    "prospective_outcomes_read": false
+  },
+  "source_commit": "7458f0969b92a258ea0e495bbbee282aa12b748e",
+  "status": "INDEPENDENT_PROSPECTIVE_TRANSITION_FUTURE_ESCROW_VERIFIED",
+  "support_status": "TRANSITION_ESCROW_INSUFFICIENT_FUTURE_SUPPORT"
+}

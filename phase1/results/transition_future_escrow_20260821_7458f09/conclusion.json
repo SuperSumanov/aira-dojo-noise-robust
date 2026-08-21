@@ -1,0 +1,38 @@
+{
+  "activated_at_utc": "2026-08-21T07:05:03.916471Z",
+  "activation_status": "INDEPENDENT_TRANSITION_FUTURE_ACTIVATION_VERIFIED",
+  "append_prior_pairs": 1665,
+  "append_survival_exact": true,
+  "effect_metrics_computed": [],
+  "escrow_status": "TRANSITION_ESCROW_INSUFFICIENT_FUTURE_SUPPORT",
+  "future_maximum_margin_difference": 0.0,
+  "model_maximum_reference_margin_difference": 0.0,
+  "snapshot_sha256": "83ab1d681ed863d2374a6648df4801e6dbd6fb80d89f4f20cec8d46de1d5c047",
+  "source_commit": "7458f0969b92a258ea0e495bbbee282aa12b748e",
+  "support": {
+    "gates": {
+      "dominant_pair_task_share_at_most_0_25": false,
+      "eligible_training_code_overlap_zero_after_exclusion": true,
+      "minimum_1500_eligible_pairs": false,
+      "minimum_150_physical_runs": false,
+      "minimum_15_tasks": false,
+      "parent_source_coverage_at_least_0_80": false,
+      "strict_training_endpoint_overlap_zero": true,
+      "strict_training_run_overlap_zero": true
+    },
+    "inventory": {
+      "all_pairs": 1665,
+      "eligible_pairs": 0,
+      "eligible_runs": 0,
+      "eligible_tasks": 0,
+      "strict_pairs": 0,
+      "strict_pairs_with_parent_source": 0,
+      "strict_pairs_with_training_code_overlap": 0,
+      "strict_pairs_with_training_endpoint_overlap": 0,
+      "strict_pairs_with_training_run_overlap": 0,
+      "strict_parent_source_coverage": 0.0,
+      "support_only_pairs": 1665
+    },
+    "status": "TRANSITION_ESCROW_INSUFFICIENT_FUTURE_SUPPORT"
+  }
+}

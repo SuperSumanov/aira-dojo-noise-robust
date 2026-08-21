@@ -1,0 +1,3 @@
+commit_filename_credential_shape_hits=0
+commit_content_credential_shape_hits=0
+artifact_files_with_credential_shape_hits=0

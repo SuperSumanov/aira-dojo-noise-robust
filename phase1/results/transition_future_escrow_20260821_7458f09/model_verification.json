@@ -1,0 +1,26 @@
+{
+  "all_model_spec_fields_exact": true,
+  "inputs": {
+    "cards_sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb",
+    "dev_sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4",
+    "protocol_sha256": "ea8912e19f1bcc83eefe19737a12a9f7cbfc0476179f1e87535ccff11eddd23f",
+    "train_sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+  },
+  "maximum_reference_margin_difference": 0.0,
+  "model_spec_sha256": "11465b4ea842d79ce8e9bdcd60d219a02be7f35bac9bab029a6d38f77120ca59",
+  "producer_imported": false,
+  "producer_summary_sha256": "7b32ddc85217245d65c767445439072e4dd08f4da88523ce5c52fc3156122bf3",
+  "protocol": "transition-future-fullfit-independent-verifier-v1",
+  "reference_rows": 5240,
+  "scope": {
+    "api_calls": 0,
+    "effect_metrics_computed": [],
+    "gpu": 0,
+    "prospective_outcomes_read": false,
+    "prospective_state_read": false,
+    "test_split_read": false
+  },
+  "source_commit": "7458f0969b92a258ea0e495bbbee282aa12b748e",
+  "status": "INDEPENDENT_TRANSITION_FUTURE_FULLFIT_VERIFIED",
+  "train_reference_sha256": "3cb1bec50fdfc9f9affaacb65fe9c75618d979f48097233ae0ad06cb1f856b0f"
+}

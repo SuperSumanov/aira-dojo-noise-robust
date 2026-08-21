@@ -3,6 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DP. 2026-08-22 固定 TF-IDF source-choice OOF 正式关闭；step control 留作机制审计线索
+
+控制 commit `11b7f23d2d91bc412c3a2e0c8cd7d6a23fbb5baf` 的固定 char-TFIDF 已在 2,109 groups、
+5,739 candidates、23 tasks、275 physical runs 上完成 task-LOTO 与 run-grouped 5-fold。task-LOTO 的
+task-macro delta=`0.04882368496193506`，但 task-cluster CI=
+`[-0.002818580653200905, 0.10637780689695644]`，exact sign=`12+/11-/0`、`p=0.5`；micro
+delta=`0.0014341238025448724`，run-cluster CI 也跨 0。run-OOF 的 task-macro delta=
+`0.051900194601970095`、task CI 为正，但 micro delta=`0.014236399762715573` 的 run-cluster CI=
+`[-0.010765587398163913, 0.042475689286202156]`。故冻结的 cross-task 与 run-only gates 均失败，正式
+verdict=`NO_NARROW_POSITIVE`。
+
+producer×2、独立 verifier×2 与有理数 exact-sign audit×2 均逐字节复现；summary SHA-256=
+`4e5da9a357f7675f34928713604d82abf73d41bdcd348297a802ac68c3bf8fcf`。exact audit 保持 verdict 不变；
+forbidden frozen/vault path、credential、worktree drift 与正式 stderr 均为 0，产物只读。按结果前合同，不激活
+recovery-provenance sensitivity 或 frozen/extension escrow；不得换模型、阈值、任务或子集 rescue。
+
+预注册的 `max_step_then_min_sha` control 单独呈现跨任务正关联：task-macro delta=
+`0.03755268823459413`，task CI=`[0.003178139904469143, 0.07802102179810541]`，sign=
+`17+/5-/1`、`p=0.00845026969909668`；但 micro/run-cluster CI 跨 0，且完整 parent children 的
+decision-time simultaneous availability 尚未证明。它只作为 D&B/integrity 的 temporal/logging-mechanism 线索，
+不得称为 deployable selector。活跃正方向仍是 0DO 的严格前瞻 score-channel 与 benchmark/integrity 容器。证据：
+
+- `phase1/实验记录/2026-08-22/SourceChoiceOOF_TFIDF_v1正式裁决.md`。
+
 ## 0DO. 2026-08-22 RPM 关闭 child-selection / future-potential 首创，主线收缩到严格 D&B 与评分通道
 
 正式 OOF 裁决前的防 scoop 审计发现 *AI Research Preference Models*（arXiv:2608.13940v1，2026-08-14）比

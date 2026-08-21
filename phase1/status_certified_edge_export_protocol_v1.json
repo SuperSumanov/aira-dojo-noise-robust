@@ -1,0 +1,40 @@
+{
+  "expected_certified_invalid_children": 902,
+  "expected_parent_rows": 3252,
+  "expected_published_edges": 5897,
+  "expected_role_pair_rows": {
+    "extension": 136,
+    "frozen": 1498,
+    "train": 4263
+  },
+  "expected_source_pair_capacity": 9755,
+  "expected_validity_edges": 2079,
+  "formal_summary_path": "phase1/results/status_certified_partial_order_v1_20260821_82e1be5/producer_a/summary.json",
+  "formal_summary_sha256_normalized_lf": "fb6bbf07c9be7b119e301718d1e78121d2e566b93decdec6b6b0fbaf011e9af4",
+  "input_per_parent_sha256": "75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03",
+  "input_status_sha256": "bfb9870d83c50ef2d06bf2d374fc9f9213f41665f4cebeab7ab31837bcfde0d2",
+  "material_min_added_relations": 1000,
+  "material_min_frozen_coverage_gain": 0.08,
+  "material_min_gap_recovery_share": 0.25,
+  "material_min_overall_coverage_gain": 0.1,
+  "material_min_train_coverage_gain": 0.08,
+  "maximum_dominant_added_relation_task_share": 0.35,
+  "minimum_supported_tasks": 10,
+  "minimum_task_source_pair_capacity": 100,
+  "minimum_tasks_with_positive_gain": 8,
+  "pair_inputs": {
+    "extension": {
+      "path": "phase1/v11_decision/decision_extension_v11_b0.jsonl",
+      "sha256_normalized_lf": "2facb5a1cb192640229395b9befe4a824bd1e5f1477a2da61eb653d3a6c1ca9c"
+    },
+    "frozen": {
+      "path": "phase1/v11_decision/decision_frozen_v11_b0.jsonl",
+      "sha256_normalized_lf": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8"
+    },
+    "train": {
+      "path": "phase1/v11_decision/decision_train_v11_b0.jsonl",
+      "sha256_normalized_lf": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca"
+    }
+  },
+  "protocol": "status-certified-edge-export-v1"
+}

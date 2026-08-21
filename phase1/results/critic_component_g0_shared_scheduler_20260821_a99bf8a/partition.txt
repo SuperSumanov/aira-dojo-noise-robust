@@ -1,0 +1,12 @@
+PartitionName=gpu_24h
+   AllowGroups=ALL AllowAccounts=ALL AllowQos=gpu,special
+   AllocNodes=ALL Default=NO QoS=N/A
+   DefaultTime=1-00:00:00 DisableRootJobs=NO ExclusiveUser=NO GraceTime=0 Hidden=NO
+   MaxNodes=4 MaxTime=1-00:00:00 MinNodes=0 LLN=NO MaxCPUsPerNode=UNLIMITED
+   Nodes=gpu[7-9,27-28,35-39,48-51],projgpu[3-6,7,8-9,12-14,35-36,39]
+   PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=NO
+   OverTimeLimit=NONE PreemptMode=OFF
+   State=UP TotalCPUs=1616 TotalNodes=27 SelectTypeParameters=NONE
+   JobDefaults=(null)
+   DefMemPerNode=UNLIMITED MaxMemPerNode=UNLIMITED
+

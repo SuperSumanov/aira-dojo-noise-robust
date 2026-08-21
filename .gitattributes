@@ -44,6 +44,7 @@ phase1/results/decision_corpus_evidence_index_v1_20260820/* text eol=lf
 phase1/upstream_patches/*.patch -text -diff
 phase1/manifests/*.sha256 text eol=lf
 phase1/scripts/critic_component_g0_* text eol=lf
+phase1/scripts/audit_critic_component_g0_shared_scheduler_20260821.sh text eol=lf
 phase1/verify_critic_component_g0.py text eol=lf
 # Preserve the byte-exact remote receipts and inner SHA manifest for the 0819
 # intake/WL append.  Keep only its human README as normalized text.
@@ -58,3 +59,7 @@ phase1/results/selective_execution_v11_20260814_7a1562a45/README.md text eol=lf 
 phase1/results/critic_component_tfidf_20260821_a6075d1/** -text -diff
 phase1/results/critic_component_tfidf_20260821_a6075d1/README.md text eol=lf diff
 phase1/results/critic_component_g0_static_preflight_20260821/** text eol=lf
+# Preserve the byte-exact shared-scheduler audit receipts and inner manifest;
+# keep only the human README normalized and diffable.
+phase1/results/critic_component_g0_shared_scheduler_20260821_a99bf8a/** -text -diff
+phase1/results/critic_component_g0_shared_scheduler_20260821_a99bf8a/README.md text eol=lf diff

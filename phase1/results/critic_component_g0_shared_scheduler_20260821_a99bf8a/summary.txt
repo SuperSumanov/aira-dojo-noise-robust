@@ -1,0 +1,7 @@
+status=G0_SHARED_SCHEDULER_TEST_ONLY_PASS
+real_jobs_submitted=0
+gpu_jobs_started=0
+api_calls=0
+test_pair_reads=0
+scientific_outcomes=0
+approval_to_submit=false

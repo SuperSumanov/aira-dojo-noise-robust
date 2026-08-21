@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CV. 2026-08-21 G0 共享 Pro6000 调度资格通过；容量与精确预算仍待
+
+0CH 的“当前账号无 Pro6000 QoS”已被更精确的只读审计取代：`projgpu39` 同时属于共享 `gpu_24h`，该
+partition 允许当前账号已有的 `gpu` QoS。原失败还混入节点 Slurm memory=`1M` 与模板 `--mem=128G` 的资源
+不相容。共享模板固定 `gpu_24h/gpu`、12 CPU、`mem=0`，其余 Qwen3-1.7B/2×PRO6000/16K/seed6/10-step/
+train-dev-only 科学矩阵和全部输入哈希不变。
+
+commit `a99bf8a...` 的正式隔离审计为 focused 11 passed、全部 phase 616 passed / 25 warnings；
+`sbatch --test-only` 返回虚拟 job `11321`，随后 ID 查询失败且当前用户 queue before/after/diff 都为空，故真实
+jobs/GPU/API/test reads/outcomes 仍全为 0。共享 association 与资源白名单已写进 preflight，漂移即拒绝。当前
+两张卡被另一用户占用到调度器估计的 `2026-08-22T18:22:07`；更重要的是，实际 G0 的精确上限仍未获用户批准：
+1 run、2 GPUs、2 小时、最多 4 GPU·h。因此状态是
+`SHARED_SCHEDULER_ELIGIBLE_CAPACITY_AND_BUDGET_PENDING`，不得把资格检查当提交授权。直接证据：
+
+- `phase1/results/critic_component_g0_shared_scheduler_20260821_a99bf8a/README.md`；
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_G0共享调度资格与预算门.md`。
+
 ## 0CU. 2026-08-21 M-DESIGN 关闭 edit-gain 方法 novelty；开放式决策资源边界保留
 
 新增的一手查重发现，[M-DESIGN](https://arxiv.org/abs/2507.15336) 已被 ICML 2026 接收，并在 22 个图数据集、

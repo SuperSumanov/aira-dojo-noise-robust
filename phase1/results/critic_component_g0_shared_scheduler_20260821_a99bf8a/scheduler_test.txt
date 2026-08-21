@@ -1,0 +1,1 @@
+sbatch: Job 11321 to start at 2026-08-22T18:22:07 using 12 processors on nodes projgpu39 in partition gpu_24h

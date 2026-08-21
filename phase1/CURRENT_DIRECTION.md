@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CI. 2026-08-21 Component 同池静态 suite 结果前冻结；只补 benchmark completeness
+
+在任何新 static prediction/test metric 前，已冻结 component train/dev/test=`4689/551/931` 的 CPU-only suite：
+六个单特征负载、pooled static-LR/GBM，以及只对已见 task 有效的 task-interaction LR/conditioned GBM。所有特征
+只来自候选 code 与 decision-time lineage `depth/step/n_siblings`；明确禁止 `obs`、grade、gap、self-report、
+runtime、stdout、`parent_val` 和 held-out fit。线性 margin 丢弃截距；GBM 固定用
+`0.5*(decision(d,task)-decision(-d,task))`，先天保证 order antisymmetry。
+
+四个 learned arms 全部报告；唯一 dev champion 按 dev task-macro 选择，精确平局按 pooled-LR→pooled-GBM→
+task-LR→task-GBM。test 上预先固定 task/parent clustered CI、Draft/Improve、paired TF-IDF delta、LOTO 和 tie/
+coverage；只有 champion 的 task/parent CI 都高于 0.5，且相对已锁定 TF-IDF 的两类 paired CI 下界都>0、两语义
+delta≥-0.01、所有 leave-one-task-out 不翻负，才允许写“可解释静态特征稳定强于字符文本”。否则只作诚实 baseline
+表。该测试已是 retrospective，不改变 G0/G1 gate、first-960 primary/WL extension 或论文 novelty。状态：
+`COMPONENT_STATIC_SUITE_PREREGISTERED_NOT_RUN`。直接协议：
+
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_component同池静态suite_预注册.md`。
+
 ## 0CH. 2026-08-21 G0 输入与运行包静态全过；当前账号无 Pro6000 QoS，未提交
 
 component-split critic G0 的工程歧义已在任何 GPU 结果前消除。旧 confirmatory launcher 虽写了 dev-only

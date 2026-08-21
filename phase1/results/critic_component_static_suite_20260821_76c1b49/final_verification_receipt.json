@@ -1,0 +1,28 @@
+{
+  "champion": "static_gbm_task",
+  "full_refit": true,
+  "max_abs_pair_difference": 0.0,
+  "max_abs_parent_accuracy_difference": 0.0,
+  "max_abs_summary_difference": 0.0,
+  "max_abs_task_accuracy_difference": 0.0,
+  "pairs": {
+    "dev": 551,
+    "test": 931,
+    "train": 4689
+  },
+  "producer_artifact_manifest_sha256": "294b6794c379e70f5d9ad948a55fdf0c4ad942aa6b578ef2943ba0cd7b5d1411",
+  "producer_effect_gates_pass": false,
+  "producer_imported": false,
+  "producer_summary_sha256": "b5937956761c1dab26e7db7bda49439fd8d354566cefb2a639cd99f27b680f24",
+  "protocol": "independent-critic-component-static-suite-verifier-v1",
+  "status": "STATIC_SUITE_INDEPENDENTLY_VERIFIED_NO_STRONG_ADVANTAGE",
+  "strong_positive_claim_allowed": false,
+  "verification_gates": {
+    "all_pair_rows_exact": true,
+    "all_parent_rows_exact": true,
+    "all_task_rows_exact": true,
+    "artifact_manifest_valid": true,
+    "full_refit_summary_exact": true,
+    "producer_not_imported": true
+  }
+}

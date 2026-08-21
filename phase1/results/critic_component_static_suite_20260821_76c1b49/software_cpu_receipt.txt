@@ -1,0 +1,12 @@
+Python 3.11.15
+numpy=1.26.4
+scipy=1.16.2
+sklearn=1.6.1
+Linux linux5 6.8.0-100-generic #100-Ubuntu SMP PREEMPT_DYNAMIC Tue Jan 13 16:40:06 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+Architecture:                            x86_64
+CPU(s):                                  40
+Model name:                              Intel(R) Xeon(R) Silver 4114 CPU @ 2.20GHz
+Thread(s) per core:                      2
+Core(s) per socket:                      10
+Socket(s):                               2
+CPU(s) scaling MHz:                      44%

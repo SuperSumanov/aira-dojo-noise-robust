@@ -1,0 +1,38 @@
+{
+  "protocol": "critic-component-static-suite-postvalidation-v1",
+  "source_commit": "76c1b49422ed444ac2aaa43612e80e6261584acd",
+  "scientific_artifact_already_sealed": true,
+  "first_attempt": {
+    "status": "INTENTIONALLY_TERMINATED_RESOURCE_HYGIENE",
+    "reason": "BLAS auto-expanded a nominally single pytest process to approximately 30 CPU threads on the login node",
+    "pytest_rc": 143,
+    "scientific_artifact_modified": false
+  },
+  "single_thread_rerun": {
+    "thread_caps": [
+      "OMP_NUM_THREADS=1",
+      "OPENBLAS_NUM_THREADS=1",
+      "MKL_NUM_THREADS=1",
+      "NUMEXPR_NUM_THREADS=1",
+      "VECLIB_MAXIMUM_THREADS=1",
+      "BLIS_NUM_THREADS=1",
+      "LOKY_MAX_CPU_COUNT=1",
+      "CUDA_VISIBLE_DEVICES="
+    ],
+    "started_utc": "2026-08-21T03:51:34Z",
+    "finished_utc": "2026-08-21T03:52:22Z",
+    "pytest_rc": 0,
+    "tests_passed": 550,
+    "warnings": 25,
+    "pytest_seconds": 39.83,
+    "wall_clock": "0:47.98",
+    "maximum_rss_kib": 327616,
+    "sha256_check": true,
+    "files": {
+      "preflight.txt": "285ba93205df18f1c7a67e7781565f02fbd12de75bd6e84ce179f582f43ea409",
+      "full_phase1_tests.txt": "0eb61dcbe99631f554bf0284b7bff96a6c33f91acaa7a84f04a81bd22d34894e",
+      "full_phase1_tests.stderr": "c052c97420a54ff31dac618f59bc87e324826664d2b0ac9f7af044cb092b764a",
+      "COMPLETE": "b054788e5194c23cb2101ef4c1db533e556b7aa8b38bd602a355f657e2f6d1aa"
+    }
+  }
+}

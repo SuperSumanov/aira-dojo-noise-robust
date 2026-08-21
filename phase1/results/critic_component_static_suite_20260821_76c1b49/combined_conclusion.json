@@ -1,0 +1,8 @@
+{
+  "champion": "static_gbm_task",
+  "independent_verification_status": "STATIC_SUITE_INDEPENDENTLY_VERIFIED_NO_STRONG_ADVANTAGE",
+  "producer_effect_gates_pass": false,
+  "protocol": "critic-component-static-suite-final-combined-v1",
+  "status": "STATIC_SUITE_INDEPENDENTLY_VERIFIED_NO_STRONG_ADVANTAGE",
+  "strong_positive_claim_allowed": false
+}

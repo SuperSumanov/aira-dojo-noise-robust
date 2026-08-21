@@ -3,7 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0CI. 2026-08-21 Component 同池静态 suite 结果前冻结；只补 benchmark completeness
+## 0CJ. 2026-08-21 Component 同池静态 suite：便宜结构信号可学，但不强于 TF-IDF
+
+结果前冻结的 component train/dev/test=`4689/551/931` CPU-only suite 已完成 producer×2 与不 import
+producer 的 full-refit verifier×2。dev task-macro 唯一选择 `static_gbm_task`；其 retrospective test micro=
+`0.560687432867884`、task macro=`0.5585685275472433`，task-clustered 95% CI=
+`[0.500809682553181,0.6176416031350442]`、parent-clustered CI=
+`[0.5228966986155484,0.5984075062159282]`，覆盖 931/931、ties=0。pooled GBM 也同时通过两个 chance gate；
+这支持“冻结同池中存在可由廉价 code/lineage 特征学到的信号”，但它是 retrospective benchmark baseline，
+不证明 task-unseen 泛化、时间外确认、search utility 或方法 novelty。
+
+预注册的强主张门失败。champion 相对固定同池 TF-IDF 的 pair-micro delta=
+`-0.010741138560687433`，parent-clustered CI=`[-0.06271933251042952,0.04004332013926007]`；task-macro
+delta=`-0.01722973871137726`，task-clustered CI=`[-0.11177361183157879,0.09201062529949726]`。Draft
+delta=`+0.050955414012738856`，Improve delta=`-0.04213938411669368`，且每个 leave-one-task-out 点估计
+都为负。因此禁止写“静态可解释特征稳定强于字符文本”，也不得在已见 test 上追调；正式状态为
+`STATIC_SUITE_INDEPENDENTLY_VERIFIED_NO_STRONG_ADVANTAGE`。
+
+独立 verifier 的逐 pair、task、parent 与 summary 最大绝对差均为 0.0；两次 producer、两次 verifier
+均 byte-identical。封存清单 35/35 哈希通过且文件集合精确，六个 diff/stderr 均为 0 bytes，目录 mode=555、
+可写文件=0、安全扫描=0；显式单线程后验全回归为 550 passed / 25 warnings。该结果只补齐 Predictor Benchmark
+的 cheap structured baseline；first-960/closure、WL extension、outcome vault 与 G0/G1 资格门均不变。直接证据：
+
+- `phase1/results/critic_component_static_suite_20260821_76c1b49/README.md`；
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_component同池静态suite_正式裁决.md`。
+
+## 0CI. 2026-08-21 Component 同池静态 suite 结果前冻结（已由 0CJ 裁决）
 
 在任何新 static prediction/test metric 前，已冻结 component train/dev/test=`4689/551/931` 的 CPU-only suite：
 六个单特征负载、pooled static-LR/GBM，以及只对已见 task 有效的 task-interaction LR/conditioned GBM。所有特征
@@ -15,8 +40,8 @@ runtime、stdout、`parent_val` 和 held-out fit。线性 margin 丢弃截距；
 task-LR→task-GBM。test 上预先固定 task/parent clustered CI、Draft/Improve、paired TF-IDF delta、LOTO 和 tie/
 coverage；只有 champion 的 task/parent CI 都高于 0.5，且相对已锁定 TF-IDF 的两类 paired CI 下界都>0、两语义
 delta≥-0.01、所有 leave-one-task-out 不翻负，才允许写“可解释静态特征稳定强于字符文本”。否则只作诚实 baseline
-表。该测试已是 retrospective，不改变 G0/G1 gate、first-960 primary/WL extension 或论文 novelty。状态：
-`COMPONENT_STATIC_SUITE_PREREGISTERED_NOT_RUN`。直接协议：
+表。该测试已是 retrospective，不改变 G0/G1 gate、first-960 primary/WL extension 或论文 novelty。结果前状态为
+`COMPONENT_STATIC_SUITE_PREREGISTERED_NOT_RUN`；正式结果与边界已由 0CJ 覆盖。直接协议：
 
 - `phase1/实验记录/2026-08-21/CleanDirectDecision_component同池静态suite_预注册.md`。
 

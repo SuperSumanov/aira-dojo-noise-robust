@@ -1,0 +1,15 @@
+protocol=critic-component-static-suite-execution-v1
+commit=76c1b49422ed444ac2aaa43612e80e6261584acd
+matrix=producer_1,producer_2,verifier_1,verifier_2
+total_computations=4
+cpu_threads_each=1
+gpu_runs=0
+gpu_hours=0
+api_calls=0
+warmup=focused_tests
+measurement=producer_and_verifier_wall_clock_separately
+task_bootstrap_seed=20260821
+parent_bootstrap_seed=20260822
+bootstrap_replicates=20000
+test_is_prediction_only=true
+test_used_for_selection=false

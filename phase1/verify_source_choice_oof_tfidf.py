@@ -80,7 +80,12 @@ def tie(seed: int, *values: Any) -> str:
     return hashlib.sha256((str(seed) + "|" + "|".join(map(str, values))).encode()).hexdigest()
 
 
-def run_assignment(groups: dict[str, dict[str, Any]], clusters: dict[str, dict[str, Any]], seed: int) -> dict[str, int]:
+def run_assignment(
+    groups: dict[str, dict[str, Any]],
+    clusters: dict[str, dict[str, Any]],
+    folds: int,
+    seed: int,
+) -> dict[str, int]:
     group_ids_by_run: dict[str, list[str]] = collections.defaultdict(list)
     task_by_run: dict[str, str] = {}
     for group_id, group in groups.items():
@@ -91,16 +96,16 @@ def run_assignment(groups: dict[str, dict[str, Any]], clusters: dict[str, dict[s
     runs_by_task: dict[str, list[str]] = collections.defaultdict(list)
     for run, task in task_by_run.items():
         runs_by_task[task].append(run)
-    loads_all = [0] * 5
+    loads_all = [0] * folds
     by_run: dict[str, int] = {}
     for task in sorted(runs_by_task):
-        loads_task = [0] * 5
+        loads_task = [0] * folds
         ordered = sorted(
             runs_by_task[task], key=lambda run: (-len(group_ids_by_run[run]), tie(seed, task, run))
         )
         for run in ordered:
             fold = min(
-                range(5),
+                range(folds),
                 key=lambda item: (loads_task[item], loads_all[item], tie(seed, task, run, item)),
             )
             by_run[run] = fold
@@ -261,7 +266,8 @@ def verify(protocol_path: Path, train_path: Path, cluster_path: Path, result: Pa
         groups[group_id] = row
 
     task_map = {group_id: row["task"] for group_id, row in groups.items()}
-    run_map = run_assignment(groups, clusters, protocol["splits"]["secondary"]["assignment_seed"])
+    secondary = protocol["splits"]["secondary"]
+    run_map = run_assignment(groups, clusters, secondary["folds"], secondary["assignment_seed"])
     assignments = {"task_loto": task_map, "run_grouped_5fold": run_map}
 
     manifest = object_json(result / "sha256_manifest.json")

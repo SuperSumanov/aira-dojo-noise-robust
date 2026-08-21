@@ -1,0 +1,39 @@
+{
+  "bootstrap_repetitions": 20000,
+  "bootstrap_seed": 20260823,
+  "expected_parent_rows": 3252,
+  "expected_role_parent_counts": {
+    "extension": 114,
+    "frozen": 845,
+    "train": 2293
+  },
+  "input_per_parent_sha256": "75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03",
+  "metric": "run_equal_finite_source_retention",
+  "minimum_bootstrap_valid_fraction": 0.9,
+  "minimum_frozen_runs_per_task": 3,
+  "minimum_loto_rho": 0.0,
+  "minimum_primary_rho": 0.5,
+  "minimum_robust_tasks": 10,
+  "minimum_train_runs_per_task": 5,
+  "permutation_repetitions": 100000,
+  "permutation_seed": 20260824,
+  "primary_task_ids": [
+    "aptos2019-blindness-detection",
+    "chaii-hindi-and-tamil-question-answering",
+    "denoising-dirty-documents",
+    "dog-breed-identification",
+    "histopathologic-cancer-detection",
+    "leaf-classification",
+    "mlsp-2013-birds",
+    "nomad2018-predict-transparent-conductors",
+    "petfinder-pawpularity-score",
+    "spooky-author-identification",
+    "tabular-playground-series-may-2022",
+    "text-normalization-challenge-russian-language",
+    "tweet-sentiment-extraction",
+    "us-patent-phrase-to-phrase-matching",
+    "whale-categorization-playground"
+  ],
+  "protocol": "source-retention-run-cluster-robustness-v1",
+  "significance_alpha": 0.05
+}

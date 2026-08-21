@@ -37,7 +37,7 @@ export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 
-git -C "$repo" fetch myfork phase1-value-critic > "$staging/fetch.stdout" 2> "$staging/fetch.stderr"
+git -C "$repo" fetch fork phase1-value-critic > "$staging/fetch.stdout" 2> "$staging/fetch.stderr"
 git -C "$repo" cat-file -e "$control_commit^{commit}"
 if [[ ! -d $worktree ]]; then
     GIT_LFS_SKIP_SMUDGE=1 git -C "$repo" worktree add --detach "$worktree" "$control_commit" \

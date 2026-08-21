@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DJ. 2026-08-21 source-choice S1v2 物化通过，但原始模型视图因 provenance 泄漏封锁
+
+控制 commit `5d6de6eddad30cef46c5803d8810f835c3f58c4f` 的 v2 已正式物化并封存 3,000 个
+answerability-conditioned source groups、8,027 个 candidate slots；train/frozen/extension=
+2,109/778/113 groups，899 个候选从 169 个 credential-safe 且 status-bound journals 恢复。frozen/extension
+公开 winner 字段均为 0，train/frozen parent/run overlap 均为 0。producer x2、独立 verifier x2 均逐字节一致；
+focused=`14 passed`，完整 phase tests=`695 passed, 25 warnings`，forbidden path/credential/worktree drift 均为 0。
+
+但 materialization success 不等于 release readiness。任何模型或 frozen score 之前的 train-only 后验字段审计发现，
+5,042 个 `card` candidates 含全部 2,109 个 winners，而 697 个 `journal_recovered` candidates 的 wins=0；496 个
+groups 混合两类。仅用 provenance 过滤就把 uniform expected top-1 人为提高
+`0.039746120009281544`，固定 min-hash control 也提高 `0.034613560929350404`。这是 post-selection
+observability 泄漏，不能作为 decision-time signal。
+
+因此原始 v2 只作为内部、provenance-rich 审计原料，状态为
+`SOURCE_CHOICE_RAW_MATERIALIZATION_VERIFIED_MODEL_VIEW_BLOCKED`；不得训练、评分或通过 LFS 发布。下一步只授权
+CPU-only exact-field decision-time projection，结构化删除 `provenance/source_journal_sha256`，分离模型输入与聚类
+metadata，并让独立 verifier/sealed evaluator 拒绝 extra fields。投影通过前 frozen/extension vault 继续未读，GPU/API
+均为 0；score-channel prospective gate、first-960/strict-future 与 Qwen checkpoint 约束不变。直接证据：
+
+- `phase1/results/source_choice_benchmark_materialization_v2_20260821_5d6de6e/README.md`；
+- `phase1/实验记录/2026-08-21/SourceChoiceBenchmark_S1v2正式裁决与输入泄漏封锁.md`。
+
 ## 0DI. 2026-08-21 source-choice benchmark 物化支持正式通过
 
 控制 commit `efbda542e69484bc93b0b36fcda10d37712cc674` 把 0DG 的 answerability census 与旧正式

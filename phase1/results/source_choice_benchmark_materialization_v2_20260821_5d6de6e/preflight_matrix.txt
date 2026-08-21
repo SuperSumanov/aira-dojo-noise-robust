@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=0DI source-choice release materialization; no HCE TD probe or multifidelity revival
+PREFLIGHT_02_QUESTION=materialize exactly the 3000 certified and code-reference-complete source groups
+PREFLIGHT_03_INPUT=SHA-pinned cards graph identity status construction and 0DG/0DI summaries
+PREFLIGHT_04_UNIT=source parent with 3000 groups and 8027 candidate slots retained exactly
+PREFLIGHT_05_LABEL=status-aware unique winner; pair gap and numeric grade unused
+PREFLIGHT_06_ORDER=ascending candidate raw-ID SHA independent of winner outcome status and generation order
+PREFLIGHT_07_CODE=full UTF-8 code bytes nonempty exact SHA no truncation normalization or dedup merging
+PREFLIGHT_08_JOURNAL=credential-first and only status-bound needed journal SHAs parsed
+PREFLIGHT_09_ISOLATION=train label public; frozen and extension inputs label-free with separate opaque vault
+PREFLIGHT_10_CONTEXT=candidate-only task run parent-hash context; parent code unused/unemitted and parent card not required
+PREFLIGHT_11_REPRO=producer x2 independent verifier x2 exact commit byte comparison and manifests
+PREFLIGHT_12_RESOURCES=CPU only GPU 0 API 0 base-LLM update 0
+PREFLIGHT_13_SCOPE=artifact readiness only; no complete-v11 predictor utility search novelty or prospective claim

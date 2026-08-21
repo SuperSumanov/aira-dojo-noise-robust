@@ -1,0 +1,23 @@
+	Command being timed: "strace -ff -e trace=file -o /research/d7/spc/yzyang4/source-choice-benchmark-materialization/.5d6de6e-v2.tmp.1364471/verifier_a.strace /research/d7/spc/yzyang4/venvs/exp/bin/python -m phase1.verify_source_choice_benchmark_materialization --protocol /research/d7/spc/yzyang4/worktrees/source_choice_benchmark_5d6de6e_nosmudge/phase1/source_choice_benchmark_materialization_protocol_v2.json --cards /research/d7/spc/yzyang4/worktrees/source_choice_benchmark_5d6de6e_nosmudge/phase1/cards_current_v11.jsonl --answerability-protocol /research/d7/spc/yzyang4/worktrees/source_choice_benchmark_5d6de6e_nosmudge/phase1/source_decision_answerability_protocol_v1.json --per-parent /research/d7/spc/yzyang4/raw-choice-audit-v11-6610618-a2/producer/per_parent.csv --identity-registry /research/d7/spc/yzyang4/source-identity-recovery-v11-3faf001-a1/producer/per_parent.jsonl --status-edges /research/d7/spc/yzyang4/status-certified-edge-manifest/c9bfc21-v1/producer_a/edges.jsonl --status-registry /research/d7/spc/yzyang4/source-journal-status-v11-42cb6b1-a2/producer/per_child.jsonl --construction /research/d7/spc/yzyang4/source-hurdle-v11-c89c5bd-a2/producer/construction_per_parent.csv --answerability-summary /research/d7/spc/yzyang4/source-decision-answerability/e9f6f69-v1/producer_a/summary.json --support-summary /research/d7/spc/yzyang4/source-choice-materialization-support/efbda54-v1/producer_a/summary.json --pair train=/research/d7/spc/yzyang4/worktrees/source_choice_benchmark_5d6de6e_nosmudge/phase1/v11_decision/decision_train_v11_b0.jsonl --pair frozen=/research/d7/spc/yzyang4/worktrees/source_choice_benchmark_5d6de6e_nosmudge/phase1/v11_decision/decision_frozen_v11_b0.jsonl --pair extension=/research/d7/spc/yzyang4/worktrees/source_choice_benchmark_5d6de6e_nosmudge/phase1/v11_decision/decision_extension_v11_b0.jsonl --root ours=/research/d7/spc/yzyang4/aira-dojo-runs/aira-dojo --root senior_older=/research/d7/spc/yzyang4/external/senior_runs --root senior_0806=/research/d7/spc/yzyang4/external/senior_data/extract_0806 --root senior_0807=/research/d7/spc/yzyang4/external/senior_data/extract_0807 --root senior_0808=/research/d7/spc/yzyang4/external/senior_data/extract_0808 --root senior_0809=/research/d7/spc/yzyang4/external/senior_data/extract_0809 --root senior_0810=/research/d7/spc/yzyang4/external/senior_data/extract_0810_codex_20260813 --root senior_0811=/research/d7/spc/yzyang4/external/senior_data/extract_0811_codex_20260813_v2 --source-commit 5d6de6eddad30cef46c5803d8810f835c3f58c4f --public-output /research/d7/spc/yzyang4/source-choice-benchmark-materialization/.5d6de6e-v2.tmp.1364471/public_a --vault-output /research/d7/spc/yzyang4/source-choice-benchmark-vault/.5d6de6e-v2.tmp.1364471/vault_a --output /research/d7/spc/yzyang4/source-choice-benchmark-materialization/.5d6de6e-v2.tmp.1364471/verification_a.json"
+	User time (seconds): 368.74
+	System time (seconds): 24.81
+	Percent of CPU this job got: 94%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 6:56.99
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 3346848
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 1684743
+	Voluntary context switches: 1107346
+	Involuntary context switches: 869
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 33720
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

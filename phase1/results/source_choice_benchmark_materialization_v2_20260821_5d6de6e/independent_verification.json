@@ -1,0 +1,14 @@
+{
+  "candidate_slots": 8027,
+  "extension_public_winner_fields": 0,
+  "frozen_public_winner_fields": 0,
+  "groups": 3000,
+  "missing_candidates_materialized": 899,
+  "producer_imported": false,
+  "protocol": "independent-source-choice-benchmark-materialization-verifier-v2",
+  "public_manifest_sha256": "04973efd6708593208171eac36bb40c946bd21378ae9cf3ad43c2fccec2a8a92",
+  "public_summary_sha256": "dc5a7af25cef3cb967b76cbe3262473b42011bd6f8758caec4e4a1a198ceec1f",
+  "source_commit": "5d6de6eddad30cef46c5803d8810f835c3f58c4f",
+  "status": "INDEPENDENT_SOURCE_CHOICE_BENCHMARK_MATERIALIZATION_VERIFIED",
+  "vault_manifest_sha256_opaque": "ab2f23003bf77ea703c9abc2f2c43185560288fdfafe7f5826fd694bf8ccd144"
+}

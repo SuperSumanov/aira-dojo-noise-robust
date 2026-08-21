@@ -1,0 +1,43 @@
+{
+  "candidate_counts": {
+    "card": 5042,
+    "journal_recovered": 697
+  },
+  "candidate_win_rates": {
+    "card": 0.418286394287981,
+    "journal_recovered": 0.0
+  },
+  "candidate_wins": {
+    "card": 2109
+  },
+  "deterministic_min_hash": {
+    "all_candidates_accuracy": 0.39023233760075865,
+    "all_candidates_hits": 823,
+    "card_only_accuracy": 0.42484589853010907,
+    "card_only_hits": 896,
+    "delta": 0.034613560929350404
+  },
+  "group_provenance_mix": {
+    "all_card_groups": 1613,
+    "mixed_groups": 496
+  },
+  "groups": 2109,
+  "uniform_expected": {
+    "all_candidates_accuracy": 0.4001780146516962,
+    "card_only_accuracy": 0.4399241346609778,
+    "delta": 0.039746120009281544
+  },
+  "unique_card_heuristic": {
+    "conditional_accuracy": null,
+    "eligible_groups": 0,
+    "hits": 0
+  },
+  "unique_journal_heuristic": {
+    "conditional_accuracy": 0.0,
+    "eligible_groups": 365,
+    "hits": 0
+  },
+  "winner_provenance": {
+    "card": 2109
+  }
+}

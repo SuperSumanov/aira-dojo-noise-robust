@@ -1,0 +1,23 @@
+{
+  "api_calls": 0,
+  "base_llm_updated": false,
+  "frozen_or_extension_label_vault_opened_for_release_decision": false,
+  "gpu": 0,
+  "independent_materialization_status": "INDEPENDENT_SOURCE_CHOICE_BENCHMARK_MATERIALIZATION_VERIFIED",
+  "materialization_control_commit": "5d6de6eddad30cef46c5803d8810f835c3f58c4f",
+  "materialization_status": "SOURCE_CHOICE_BENCHMARK_MATERIALIZED_AND_SEALED",
+  "next_authorized_step": "exact-field decision-time projection that removes provenance and source_journal_sha256 before any model use",
+  "protocol": "source-choice-benchmark-release-decision-v1",
+  "raw_model_view_release_allowed": false,
+  "release_status": "SOURCE_CHOICE_RAW_MATERIALIZATION_VERIFIED_MODEL_VIEW_BLOCKED",
+  "train_only_posthoc_provenance_audit": {
+    "all_winners_with_card_provenance": 2109,
+    "card_candidate_slots": 5042,
+    "card_candidate_wins": 2109,
+    "deterministic_card_filter_accuracy_delta": 0.034613560929350404,
+    "journal_recovered_candidate_slots": 697,
+    "journal_recovered_candidate_wins": 0,
+    "mixed_provenance_groups": 496,
+    "uniform_card_filter_expected_accuracy_delta": 0.039746120009281544
+  }
+}

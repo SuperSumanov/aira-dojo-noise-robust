@@ -1,0 +1,87 @@
+{
+  "candidate_provenance": {
+    "card": 7128,
+    "journal_recovered": 899
+  },
+  "candidate_slots": 8027,
+  "candidate_slots_by_role": {
+    "extension": 247,
+    "frozen": 2041,
+    "train": 5739
+  },
+  "choice_context": "task_run_parent_hash_plus_candidate_code_only",
+  "complete_v11_choice_set_claim_allowed": false,
+  "extension_public_winner_fields": 0,
+  "frozen_labels_used_for_model_or_scoring": false,
+  "frozen_public_winner_fields": 0,
+  "groups": 3000,
+  "groups_by_role": {
+    "extension": 113,
+    "frozen": 778,
+    "train": 2109
+  },
+  "journal_inventory": {
+    "canonical_journals_by_root": {
+      "ours": 384,
+      "senior_0806": 32,
+      "senior_0807": 29,
+      "senior_0808": 40,
+      "senior_0809": 40,
+      "senior_0810": 38,
+      "senior_0811": 48,
+      "senior_older": 189
+    },
+    "credential_shape_journals_skipped": 1,
+    "journal_files_scanned": 800,
+    "needed_journal_shas": 169,
+    "needed_journal_shas_found": 169
+  },
+  "missing_candidates_materialized": 899,
+  "parent_card_available_groups": 2946,
+  "parent_card_available_groups_by_role": {
+    "extension": 108,
+    "frozen": 767,
+    "train": 2071
+  },
+  "parent_card_required": false,
+  "parent_code_included": false,
+  "predictor_or_search_utility_claim_allowed": false,
+  "protocol": "source-choice-benchmark-materialization-v2",
+  "public_outputs": {
+    "extension_inputs.jsonl": "c5c9fc83fb9dcabe010165e3ad421a7a6c66401d389d9a8db44726eb813c0811",
+    "frozen_inputs.jsonl": "1ebe8d64c7f248b9b53e37a8c5413c6a986d9c66a2552f240a997db0810c45a9",
+    "structure_manifest.jsonl": "78777aad2d58139ef561841bf002bfa8f16e6f7f9b4adf2c4d50b946c9100fa3",
+    "train_groups.jsonl": "48bc52e7f05c79d504c785a6249fb727a522b4eed42945c2bad221ad6012c435"
+  },
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updated": false,
+    "candidate_code_bytes_used": true,
+    "first960_used": false,
+    "frozen_label_used_for_model_or_scoring": false,
+    "gpu": 0,
+    "numeric_grade_used": false,
+    "old_hurdle_model_result_used": false,
+    "pair_gap_used": false,
+    "pair_orientation_used_for_winner_label": true,
+    "parent_code_used_or_emitted": false,
+    "prospective_outcome_used": false,
+    "raw_journal_bytes_read_after_credential_gate": true
+  },
+  "sealed_vault_outputs_opaque": {
+    "extension_labels.jsonl": "d0ab25ff522317a1239853434676851ffcbe15da5f0a63e9462d3da938c1f999",
+    "frozen_labels.jsonl": "6b71f5dc511c63a9207bd87094f0fcd903c72a7f5d6fef1936e5bdba8a0f3bc8"
+  },
+  "source_commit": "5d6de6eddad30cef46c5803d8810f835c3f58c4f",
+  "status": "SOURCE_CHOICE_BENCHMARK_MATERIALIZED_AND_SEALED",
+  "tasks": 23,
+  "train_frozen_parent_overlap": 0,
+  "train_frozen_run_overlap": 0,
+  "unique_candidate_identity_hashes": 8027,
+  "variable_arity_groups": 1521,
+  "variable_arity_groups_by_role": {
+    "extension": 21,
+    "frozen": 405,
+    "train": 1095
+  }
+}

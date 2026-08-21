@@ -162,6 +162,9 @@ def test_missing_wall_clock_event_fails_closed(tmp_path: Path) -> None:
 def test_worker_and_scheduler_cannot_self_submit() -> None:
     root = Path(__file__).resolve().parents[1]
     worker = (root / "scripts/critic_component_g0_worker_20260821.sh").read_text(encoding="utf-8")
+    audit = (root / "scripts/audit_critic_component_g0_shared_scheduler_20260821.sh").read_text(
+        encoding="utf-8"
+    )
     schedulers = {
         "authorized": (root / "scripts/critic_component_g0_pro6000_20260821.sbatch").read_text(
             encoding="utf-8"
@@ -182,6 +185,13 @@ def test_worker_and_scheduler_cannot_self_submit() -> None:
     assert "#SBATCH --qos=gpu" in schedulers["shared"]
     assert "#SBATCH --cpus-per-task=12" in schedulers["shared"]
     assert "#SBATCH --mem=0" in schedulers["shared"]
+    for variable in (
+        "OMP_NUM_THREADS=1",
+        "OPENBLAS_NUM_THREADS=1",
+        "MKL_NUM_THREADS=1",
+        "NUMEXPR_NUM_THREADS=1",
+    ):
+        assert variable in audit
 
 
 def test_shared_scheduler_allocation_contract() -> None:

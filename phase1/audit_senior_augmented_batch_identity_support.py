@@ -20,7 +20,7 @@ from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
 
-PROTOCOL = "senior-augmented-true-batch-identity-support-v2"
+PROTOCOL = "senior-augmented-true-batch-identity-support-v3"
 SPLIT_DOMAIN = "senior-experiment-closed-dev-v1|20260821"
 SENIOR_COMMIT = "92a9651f2e13a9e43623235b82c07c19721bc2ee"
 RUN_MANIFEST_SHA256 = "bd707dd992a131d03dc20bdc981626826325f461e086a945b2f85fc41c2c171b"

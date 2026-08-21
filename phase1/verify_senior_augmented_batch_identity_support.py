@@ -21,9 +21,10 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 
 
-PROTOCOL = "senior-augmented-true-batch-identity-support-v2"
-VERIFY_PROTOCOL = "senior-augmented-true-batch-identity-support-verifier-v2"
+PROTOCOL = "senior-augmented-true-batch-identity-support-v3"
+VERIFY_PROTOCOL = "senior-augmented-true-batch-identity-support-verifier-v3"
 SPLIT_DOMAIN = "senior-experiment-closed-dev-v1|20260821"
+SENIOR_COMMIT = "92a9651f2e13a9e43623235b82c07c19721bc2ee"
 RUN_SHA = "bd707dd992a131d03dc20bdc981626826325f461e086a945b2f85fc41c2c171b"
 PAIR_SHA = "52ffcdc0b7cc4486b61de0c664c7c057c26171a520372ca2071d55f2fb7a127b"
 UPSTREAM_SHA = "7745dd157e41dc96a00ac76979afa6369f06395b0aa8ad67756de4d84e7297e8"
@@ -211,6 +212,8 @@ def rebuild_run_batches(
 ) -> tuple[list[dict[str, Any]], dict[str, str]]:
     candidates: dict[str, set[tuple[str, str]]] = collections.defaultdict(set)
     for archive in archives:
+        if archive["status"] != "ok":
+            continue
         day = archive["relative_path"].split("/", 1)[0]
         for run_name, batch in archive["run_batches"].items():
             candidates[run_name].add((day, batch))
@@ -342,6 +345,120 @@ def rebuild_split(pair_rows: list[dict[str, Any]]) -> tuple[list[dict[str, Any]]
     return split_rows, support
 
 
+def rebuild_summary(
+    run_input: list[dict[str, Any]],
+    pair_rows: list[dict[str, Any]],
+    run_rows: list[dict[str, Any]],
+    mapping: dict[str, str],
+    archives: list[dict[str, Any]],
+    support: dict[str, Any],
+    upstream: dict[str, Any],
+    source_inventory_sha: str,
+    source_commit: str,
+    workers: int,
+) -> dict[str, Any]:
+    archive_errors = sum(row["status"] != "ok" for row in archives)
+    missing_runs = sum(row["source_match_status"] == "missing" for row in run_rows)
+    ambiguous_runs = sum(row["source_match_status"] == "ambiguous" for row in run_rows)
+    original_train = sum(row["original_split"] == "train" for row in pair_rows)
+    original_test = sum(row["original_split"] == "test" for row in pair_rows)
+    incomplete = sum(not row["identity_complete"] for row in pair_rows)
+    cross_batch = sum(row["identity_complete"] and not row["same_true_batch"] for row in pair_rows)
+    task_mismatch = sum(not row["task_match"] for row in pair_rows)
+    upstream_inventory = upstream.get("inventory", {})
+    count_reproduction = {
+        "original_train_pairs": original_train == upstream_inventory.get("original_train_pairs"),
+        "original_test_pairs_structure_only": original_test
+        == upstream_inventory.get("original_test_pairs_structure_only"),
+        "current_runs": len(run_input) == upstream_inventory.get("current_runs"),
+    }
+    identity_criteria = {
+        "input_counts_reproduce_upstream": all(count_reproduction.values()),
+        "archive_scan_errors_eq_0": archive_errors == 0,
+        "run_source_missing_eq_0": missing_runs == 0,
+        "run_source_ambiguous_eq_0": ambiguous_runs == 0,
+        "pair_identity_incomplete_eq_0": incomplete == 0,
+        "pair_cross_true_batch_eq_0": cross_batch == 0,
+        "pair_task_mismatch_eq_0": task_mismatch == 0,
+    }
+    support_criteria = {
+        "train_dev_experiment_overlap_eq_0": support["train_dev_experiment_overlap"] == 0,
+        "test_only_experiments_used_for_role_allocation_eq_0": support[
+            "test_only_experiments_used_for_role_allocation"
+        ]
+        == 0,
+        "dev_pairs_ge_400": support["experiment_closed_dev_pairs"] >= 400,
+        "dev_tasks_ge_8": support["dev_tasks"] >= 8,
+        "dominant_dev_task_share_le_0_35": support["dominant_dev_task_share"] is not None
+        and support["dominant_dev_task_share"] <= 0.35,
+        "dev_tasks_with_ge_20_pairs_ge_6": support["dev_tasks_with_ge_20_pairs"] >= 6,
+        "train_pairs_ge_2000": support["experiment_closed_train_pairs"] >= 2000,
+        "train_experiments_ge_5": support["train_experiments"] >= 5,
+        "dev_experiments_ge_5": support["dev_experiments"] >= 5,
+    }
+    if not all(identity_criteria.values()):
+        status = "IDENTITY_UNAVAILABLE"
+    elif not all(support_criteria.values()):
+        status = "INSUFFICIENT_EXPERIMENT_CLOSED_SUPPORT"
+    else:
+        status = "EXPERIMENT_CLOSED_TRAIN_DEV_SUPPORT_FEASIBLE"
+    return {
+        "protocol": PROTOCOL,
+        "status": status,
+        "source_commit": source_commit,
+        "senior_source_commit": SENIOR_COMMIT,
+        "inputs": {
+            "run_manifest_sha256": RUN_SHA,
+            "pair_structure_sha256": PAIR_SHA,
+            "support_summary_sha256": UPSTREAM_SHA,
+            "source_inventory_sha256": source_inventory_sha,
+            "source_days": list(SOURCE_DAYS),
+        },
+        "inventory": {
+            "archives": len(archives),
+            "archive_scan_errors": archive_errors,
+            "archive_member_headers": sum(row.get("members", 0) for row in archives),
+            "env_member_headers_seen": sum(row.get("env_member_headers_seen", 0) for row in archives),
+            "checkpoint_journal_headers": sum(
+                row.get("checkpoint_journal_headers", 0) for row in archives
+            ),
+            "anonymous_runs": len(run_input),
+            "unique_run_batch_matches": len(mapping),
+            "missing_runs": missing_runs,
+            "ambiguous_runs": ambiguous_runs,
+            "true_batches": len(set(mapping.values())),
+            "original_train_pairs": original_train,
+            "original_test_pairs_structure_only": original_test,
+            "pair_identity_incomplete": incomplete,
+            "pair_cross_true_batch": cross_batch,
+            "pair_task_mismatch": task_mismatch,
+        },
+        "experiment_closed_support": support,
+        "count_reproduction": count_reproduction,
+        "identity_criteria": identity_criteria,
+        "support_criteria": support_criteria,
+        "configuration": {
+            "split_domain": SPLIT_DOMAIN,
+            "minimum_experiments_per_task": 5,
+            "dev_fraction": 0.2,
+            "dev_rounding": "max(1,floor(0.2*n))",
+            "workers": workers,
+        },
+        "scope": {
+            "numeric_grade_used": False,
+            "pair_orientation_used": False,
+            "raw_code_used": False,
+            "frozen_test_effect_used": False,
+            "model_trained": False,
+            "gpu": 0,
+            "api_calls": 0,
+            "archive_member_payload_reads": 0,
+            "env_member_payload_reads": 0,
+            "archives_extracted": 0,
+        },
+    }
+
+
 def write_new(path: Path, value: dict[str, Any]) -> None:
     if path.exists():
         raise VerifyError("verification output exists")
@@ -378,6 +495,7 @@ def run(args: argparse.Namespace) -> int:
         raise VerifyError("summary protocol mismatch")
     run_input = read_jsonl(run_path)
     pair_input = read_jsonl(pair_path)
+    upstream = json.loads(upstream_path.read_text(encoding="utf-8"))
     root = Path(args.source_root).resolve()
     paths, source_inventory_sha = source_paths(root)
     archives = scan_all(paths, root, args.workers)
@@ -398,6 +516,20 @@ def run(args: argparse.Namespace) -> int:
         raise VerifyError("support metrics do not independently reproduce")
     if source_inventory_sha != summary.get("inputs", {}).get("source_inventory_sha256"):
         raise VerifyError("source inventory digest mismatch")
+    expected_summary = rebuild_summary(
+        run_input,
+        pair_rows,
+        run_rows,
+        mapping,
+        archives,
+        support,
+        upstream,
+        source_inventory_sha,
+        args.expect_source_commit,
+        args.workers,
+    )
+    if expected_summary != summary:
+        raise VerifyError("summary does not independently reproduce")
 
     verification = {
         "protocol": VERIFY_PROTOCOL,
@@ -434,6 +566,7 @@ def main() -> int:
     parser.add_argument("--source-root", required=True)
     parser.add_argument("--result-dir", required=True)
     parser.add_argument("--expect-result-manifest-sha256", required=True)
+    parser.add_argument("--expect-source-commit", required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--workers", type=int, default=2, choices=(1, 2, 3, 4))
     args = parser.parse_args()

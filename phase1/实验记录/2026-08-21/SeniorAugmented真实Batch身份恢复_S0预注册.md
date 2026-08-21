@@ -1,6 +1,6 @@
 # Senior Augmented 真实 Batch 身份恢复 S0：执行前冻结
 
-日期：2026-08-21。状态：`V2_ENGINEERING_CORRECTION_FROZEN_NOT_RUN`。
+日期：2026-08-21。状态：`V3_VERIFIER_CORRECTION_FROZEN_NOT_RUN`。
 
 ## V1 结果前工程纠错（不改变科学门槛）
 
@@ -21,6 +21,22 @@ V1 同时暴露了两个 source archive scan errors；header 复核显示其中�
 fail closed。
 
 日期集合、输入 SHA、batch 定义、split domain、20% 规则以及全部身份/支持阈值均不变；协议标识升级为 v2。
+
+## V2 verifier 工程失败与 V3 纠正
+
+commit `a70232af40b7f6e45e87997a1d193835cd9ce863` 的 producer×2 已 byte-identical，并首次产生非零结构支持；
+但第一次 verifier 在独立重建两个规范错误行后，错误地对 rejected archive 访问 `run_batches`，以 `KeyError`
+退出。因此 `a70232a-v2` 没有完成独立验证、没有正式科学裁决，也未读取效果。
+
+在再次正式运行前，V3 冻结以下 verifier-only 加固：
+
+1. rejected archive 保留在 inventory/error gate 中，但不进入 run→batch join，与 producer 行为一致；
+2. verifier 不再只比较 manifests 与 support，而是独立重算整份 summary 的 inventory、identity criteria、support
+   criteria、status、输入绑定、配置和 scope，并要求逐字段相等；
+3. verifier 显式绑定 expected source commit；新增 rejected-row join 反例测试。
+
+已看到并披露 V2 的 outcome-blind 结构数，但 V3 不修改日期、输入、身份规则、batch key、split、阈值或停止规则；
+协议标识升级为 v3。V2 的描述性数字不得替代 V3 正式结论。
 
 ## 问题与边界
 

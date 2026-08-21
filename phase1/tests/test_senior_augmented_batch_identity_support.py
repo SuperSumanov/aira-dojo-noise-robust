@@ -73,6 +73,27 @@ def test_independent_verifier_reproduces_fail_closed_archive_row(tmp_path: Path)
     assert verifier.scan_all([path], tmp_path, 1) == audit.scan_archives([path], tmp_path, 1)
 
 
+def test_independent_verifier_skips_rejected_archives_during_join() -> None:
+    run_id = "family_seed_1_id_abcd__2026-08-08"
+    runs = [{"run_id": run_id, "task": "task", "original_hold": False}]
+    archives = [
+        {
+            "relative_path": "0730/rejected.tar.gz",
+            "status": "error",
+            "error_type": "AuditError",
+            "error_sha256": "a" * 64,
+        },
+        {
+            "relative_path": "0808/valid.tar.gz",
+            "status": "ok",
+            "run_batches": {"family_seed_1_id_abcd": "family"},
+        },
+    ]
+    rows, mapping = verifier.rebuild_run_batches(runs, archives)
+    assert rows[0]["source_match_status"] == "unique"
+    assert mapping[run_id] == verifier.domain_hash("senior-true-batch-v1", "0808", "family")
+
+
 def test_scan_archive_rejects_link_member(tmp_path: Path) -> None:
     day = tmp_path / "0726"
     day.mkdir()

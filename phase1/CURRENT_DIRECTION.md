@@ -3,7 +3,7 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0CR. 2026-08-21 真实 batch 身份恢复 S0 V1 工程失败；V2 纠错已结果前冻结
+## 0CR. 2026-08-21 真实 batch 身份恢复 S0 V1/V2 工程失败；V3 verifier 加固已冻结
 
 为判断学长 augmented scaling 是否能接受真正的 experiment-closed train-only 复核，新增一个 outcome-blind S0：
 从学长固定 commit 的 21 个 source 日期目录中只流式读取 tar header path，不提取、不读取任何 member payload，
@@ -22,6 +22,12 @@ V1 同时暴露两个 source archive scan errors；header 复核存在原协议�
 门、不缩小 inventory。V2 在任何有效支持结果前只把第一组纠正为完整 `..._seed_N_id_HASH` basename，并新增
 producer/verifier 真实路径反例。日期、输入、batch 定义、split/hash/20% 规则和所有阈值均未改变。
 同时让独立 verifier 对被拒绝归档重建规范错误行，而不是先于身份裁决退出；错误仍计入原门且绝不忽略。
+
+`a70232a...` 的 V2 producer 两遍已一致并产生非零结构支持，但 verifier 在成功重建 rejected archive 错误行后，
+仍对该错误行访问 `run_batches`，以 `KeyError` 退出；故 V2 没有正式科学裁决、未进入效果。V3 在再次正式运行前
+只加固 verifier：rejected rows 留在 error gate 但不进入 join；独立逐字段重建整份 summary；显式绑定 source
+commit，并加入失败注入。已看到的 V2 outcome-blind 结构数已披露，但 V3 不改变任何日期、输入、identity/batch/
+split/阈值规则；正式结论必须等 V3 双 verifier 完整通过。
 
 - `phase1/实验记录/2026-08-21/SeniorAugmented真实Batch身份恢复_S0预注册.md`。
 

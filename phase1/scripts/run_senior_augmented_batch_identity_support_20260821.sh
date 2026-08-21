@@ -23,7 +23,7 @@ umask 077
 
 commit=$(git -C "$repo" rev-parse HEAD)
 short=${commit:0:7}
-output=${result_parent}/${short}-v2
+output=${result_parent}/${short}-v3
 [[ ! -e "$output" ]] || { echo "output exists: $output" >&2; exit 2; }
 mkdir -p "$output"
 cp "$repo/phase1/scripts/run_senior_augmented_batch_identity_support_20260821.sh" "$output/runner_source.sh"
@@ -86,6 +86,7 @@ verifier=(
   --source-root "$source_root"
   --result-dir "$output/producer_1"
   --expect-result-manifest-sha256 "$result_manifest_sha"
+  --expect-source-commit "$commit"
   --workers 2
 )
 printf '%q ' "${verifier[@]}" > "$output/verifier_command.txt"

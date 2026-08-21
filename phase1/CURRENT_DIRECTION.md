@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CM. 2026-08-21 静态信号来源 parent-closed OOF 正式裁决
+
+0CK 的 5,240-pair / 28-task / 152-supercomponent 正式运行已完成。producer×2 与不 import producer 的
+full-refit verifier×2 精确一致，40-entry manifest 全过、7 个 diff/stderr 为空、目录不可写；focused/phase
+tests 为 8/558 passed，安全扫描为 0。正式状态是
+`STATIC_SOURCE_OOF_INDEPENDENTLY_VERIFIED_NO_NARROW_POSITIVE`。
+
+code-only task-macro=0.529716，task CI=[0.497905,0.566335]；parent point=0.520420，parent
+CI=[0.503049,0.537910]。code−lineage 的 task/parent paired delta 为 +0.008391/+0.014790，CI 分别
+[-0.031204,+0.047777]/[-0.008262,+0.037835]，LOTO 最小点估计 −0.003203。code−all 的 task/parent
+delta 为 −0.004693/−0.008015，CI 分别 [-0.018386,+0.011119]/[-0.020497,+0.004262]；冻结的非劣门也失败。
+因此不能声称 code-only 信号独立于 lineage shortcut，也不得把旧同池静态结果解释成代码理解。
+
+all-static 的 task/parent chance CI 下界仍高于 0.5，只支持“parent closure 后仍有弱联合静态信号”的描述，
+不识别其来源。该审计作为 Predictor Benchmark 的诚实 ablation 保留，并关闭同一语料上的 code/lineage 追调。
+读取结果前已冻结的 `TreeTransitionStatic` 仍可按其独立 Draft/Improve 门执行一次；失败即关闭手工 transition
+特征。直接证据：
+
+- `phase1/results/critic_static_source_oof_20260821_208e381/README.md`；
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_静态信号来源_componentOOF_v2正式裁决.md`。
+
 ## 0CL. 2026-08-21 Draft 父上下文重叠已独立确认
 
 结果盲结构预检发现的 split-unit 问题已经从 commit=`ecb81cdf730961bd01799faeeb0bd60281537984`
@@ -22,7 +43,7 @@ can defeat an endpoint-run split by reusing ancestor context**。不得笼统称
 - `phase1/results/component_parent_context_audit_20260821_ecb81cd/README.md`；
 - `phase1/实验记录/2026-08-21/CleanDirectDecision_Draft父上下文重叠_发现与复核计划.md`。
 
-## 0CK. 2026-08-21 静态信号来源 component-OOF 审计已冻结，正式运行中
+## 0CK. 2026-08-21 静态信号来源 component-OOF 审计已冻结（已由 0CM 裁决）
 
 0CJ 只证明 code+lineage 的 pooled/task-conditioned GBM 在已见 component test 上略高于 chance；尚不能排除
 该信号主要来自 `depth/step/n_siblings` 搜索位置捷径。为避免再次查看 frozen test，已在任何新 OOF margin 前
@@ -37,9 +58,9 @@ task ID、不调参、不选 champion、不读 test/TF-IDF/semantic/prospective 
 code−all 两类 CI 下界≥−0.01、任一 task 删除后 code−lineage task-macro delta 仍>0，以及 random/orientation、
 component isolation、反对称和 producer×2/verifier×2 全过。即使通过，也只能说明已观察 static signal 不可由
 三个 lineage 特征解释，不得申“理解代码”、因果机制、frozen/prospective/search gain 或方法 novelty。正式运行从
-精确 commit=`208e38135c0dc10d8430095a41c8008c063ff8a0` 启动；当前状态为
-`STATIC_SOURCE_PARENT_CLOSED_OOF_FORMAL_RUN_IN_PROGRESS_NO_OUTCOME_READ`，producer×2 已逐字节一致，独立
-full-refit verifier 尚未全部封存，因此不得提前读取/报告模型指标。CPU-only、0 GPU·h、0 API。直接协议：
+精确 commit=`208e38135c0dc10d8430095a41c8008c063ff8a0` 启动；结果前状态曾为
+`STATIC_SOURCE_PARENT_CLOSED_OOF_FORMAL_RUN_IN_PROGRESS_NO_OUTCOME_READ`。正式结果与边界已由 0CM 覆盖。
+CPU-only、0 GPU·h、0 API。直接协议：
 
 - `phase1/实验记录/2026-08-21/CleanDirectDecision_静态信号来源_componentOOF_预注册.md`。
 - `phase1/实验记录/2026-08-21/CleanDirectDecision_静态信号来源_componentOOF_v1结构失败与v2修订.md`。

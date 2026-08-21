@@ -1,0 +1,48 @@
+{
+  "commit": "208e38135c0dc10d8430095a41c8008c063ff8a0",
+  "evidence_level": "retrospective_outer_train_parent_closed_component_oof_robustness",
+  "folds": 5,
+  "metrics": {
+    "gbm_all": {
+      "micro_accuracy": 0.5284351145038167,
+      "parent_ci95": [0.5112466471113537, 0.5456223907754466],
+      "task_ci95": [0.5071480788951547, 0.5637074630653839],
+      "task_macro_accuracy": 0.5344090648596057
+    },
+    "gbm_code": {
+      "micro_accuracy": 0.5204198473282443,
+      "parent_ci95": [0.503049405632069, 0.5379103997815599],
+      "task_ci95": [0.4979049059396424, 0.5663349955446556],
+      "task_macro_accuracy": 0.5297159996433801
+    },
+    "gbm_lineage": {
+      "micro_accuracy": 0.5056297709923664,
+      "parent_ci95": [0.49085532082483463, 0.5206322636779269],
+      "task_ci95": [0.49994833787161824, 0.545014025631116],
+      "task_macro_accuracy": 0.5213253456558214
+    }
+  },
+  "output_manifest_sha256": "27257d96bdcc32417333e8786237be38d6a84fa68e145db1ecc0f8a2067acff4",
+  "paired_deltas": {
+    "code_minus_all": {
+      "minimum_leave_one_task_out_task_macro_delta": -0.010157887737461438,
+      "pair_micro_delta": -0.00801526717557252,
+      "parent_ci95": [-0.02049726194846122, 0.004262325656940043],
+      "task_ci95": [-0.018385803603160028, 0.011119045261039727],
+      "task_macro_delta": -0.004693065216225569
+    },
+    "code_minus_lineage": {
+      "minimum_leave_one_task_out_task_macro_delta": -0.003203342954701013,
+      "pair_micro_delta": 0.014790076335877863,
+      "parent_ci95": [-0.008261810539072496, 0.03783516604274553],
+      "task_ci95": [-0.031203840554406476, 0.04777650990981048],
+      "task_macro_delta": 0.008390653987558717
+    }
+  },
+  "pairs": 5240,
+  "parents": 1711,
+  "producer_effect_gates_pass": false,
+  "status": "STATIC_SOURCE_OOF_INDEPENDENTLY_VERIFIED_NO_NARROW_POSITIVE",
+  "supercomponents": 152,
+  "tasks": 28
+}

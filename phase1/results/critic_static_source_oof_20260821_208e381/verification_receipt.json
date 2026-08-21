@@ -1,0 +1,25 @@
+{
+  "full_refit": true,
+  "max_abs_fold_accuracy_difference": 0.0,
+  "max_abs_pair_difference": 0.0,
+  "max_abs_parent_accuracy_difference": 0.0,
+  "max_abs_summary_difference": 0.0,
+  "max_abs_task_accuracy_difference": 0.0,
+  "narrow_positive_claim_allowed": false,
+  "pairs": 5240,
+  "producer_artifact_manifest_sha256": "b8ffa0e8bbe8d647534bc3c6a9bf3a475ec13c084eed68c9663dbad0b03b2cbc",
+  "producer_effect_gates_pass": false,
+  "producer_imported": false,
+  "producer_summary_sha256": "f10023ae4e764c16fb479d47c5dacb8226b9a67ce9fa1c61f93ecbeba9bda47d",
+  "protocol": "independent-critic-static-source-parent-closed-component-oof-verifier-v2",
+  "status": "STATIC_SOURCE_OOF_INDEPENDENTLY_VERIFIED_NO_NARROW_POSITIVE",
+  "verification_gates": {
+    "all_fold_rows_exact": true,
+    "all_pair_rows_exact": true,
+    "all_parent_rows_exact": true,
+    "all_task_rows_exact": true,
+    "artifact_manifest_valid": true,
+    "full_refit_summary_exact": true,
+    "producer_not_imported": true
+  }
+}

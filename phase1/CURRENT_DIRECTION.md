@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CZ. 2026-08-21 CEB 已覆盖流式无未来反馈；temporal escrow 只作完整性贡献
+
+一手原文复核发现，[Critic Experience Bank](https://arxiv.org/abs/2607.12397) 已明确在 action 执行前输出
+confidence，按 stream order 处理 frozen actions，并在整条 trajectory 评分后才把反馈加入 bank，以阻断 future
+feedback；还做了 selective execution。其累计曲线平均 5 个 random stream orders。因此“执行前 critic”“流式无
+未来反馈”“冻结 critic + 历史执行经验”“选择性执行”均不得再申方法 novelty。
+
+我方仍保留的窄差异是验证合同而非算法首创：scorer 在远端 activation 前冻结；只接收真实
+`generation_started_at_utc` 严格晚于 activation 的新 physical runs；单位为自然 same-parent MLE programs；连续
+标签来自 pristine evaluator；prediction 先 append-only 托管，再等 outcome vault；同时强制 parent coverage、
+endpoint/run/code closure、source novelty、syscall 零接触和独立重建。CEB 则在已收集 action substrate 上按随机
+stream orders 回放，并让 retrieval bank 随轨迹增长。
+
+所以 0CP future escrow 继续，因它仍是 0CN retrospective candidate 的唯一可信 out-of-time 检验；但即使未来
+positive，也只能写 prospectively escrowed MLE-domain evidence / benchmark integrity，不能写 novel temporal
+critic protocol。AIRA_2 的 HCE 又进一步关闭“外部隐藏评估”宽 novelty。当前不向已激活 cohort 偷加 CEB memory
+arm。直接记录：
+
+- `phase1/实验记录/2026-08-21/TemporalEscrow_CEB直接先例与Novelty边界.md`。
+
 ## 0CY. 2026-08-21 source retention 的 run-cluster 压力测试支持不足
 
 commit `fa5d65507bd6bab76b7bfaeda04584fae21b78c9` 对 0CX 做了结果后、明确标注的 cluster 强度攻击：

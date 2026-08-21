@@ -19,6 +19,10 @@ direct-parent 一致率≥0.95，并在 fixed one-pair-per-parent 后有 pairs�
 dominant competition≤0.20。任一门失败即关闭；过门也必须在读取 `Submissions` 任何 data row 或 notebook code 前另立
 S1。新增下载约 7.3GB，CPU/network-only、GPU/API=0。直接协议：
 
+第一次 acquisition attempt 在新表下载前因 Kaggle CLI 清单 CRLF 与逐字节 metadata guard 不兼容而 fail closed；
+只产生公开 listing/metadata receipt，CSV data rows=0。重试只保留 raw 清单并生成去 `\r` 的 normalized 副本做
+固定行与 before/after 比较，所有科学输入、关系定义、门槛和 snapshot 不变；新 receipt 目录与旧 attempt 分离。
+
 - `phase1/meta_kaggle_exact_parent_s0_protocol_v1.json`；
 - `phase1/实验记录/2026-08-21/MetaKaggleHumanForkExactParent_S0预注册与输入绑定.md`。
 

@@ -7,21 +7,24 @@ umask 077
 export PYTHONHASHSEED=0
 
 AUDIT_ROOT=/research/d7/spc/yzyang4/external-audits/meta-kaggle-s0a-20260821
+RECEIPT_ROOT="$AUDIT_ROOT/receipts/s0a-crlf-v2"
 KAGGLE_BIN=/research/d7/spc/yzyang4/venvs/exp/bin/kaggle
-mkdir -p "$AUDIT_ROOT/metadata"
+mkdir -p "$RECEIPT_ROOT/metadata"
 
-"$KAGGLE_BIN" --version > "$AUDIT_ROOT/kaggle_cli_version.txt"
+"$KAGGLE_BIN" --version > "$RECEIPT_ROOT/kaggle_cli_version.txt"
 "$KAGGLE_BIN" datasets files kaggle/meta-kaggle --page-size 200 --csv \
-  > "$AUDIT_ROOT/dataset_files_before.csv"
-"$KAGGLE_BIN" datasets metadata kaggle/meta-kaggle -p "$AUDIT_ROOT/metadata" \
-  > "$AUDIT_ROOT/metadata_download.stdout.txt"
+  > "$RECEIPT_ROOT/dataset_files_before.raw.txt"
+tr -d '\r' < "$RECEIPT_ROOT/dataset_files_before.raw.txt" \
+  > "$RECEIPT_ROOT/dataset_files_before.csv"
+"$KAGGLE_BIN" datasets metadata kaggle/meta-kaggle -p "$RECEIPT_ROOT/metadata" \
+  > "$RECEIPT_ROOT/metadata_download.stdout.txt"
 
-grep -Fx 'Competitions.csv,152MB,2026-08-21 05:23:20' "$AUDIT_ROOT/dataset_files_before.csv"
-grep -Fx 'KernelVersionCompetitionSources.csv,163MB,2026-08-21 05:27:29' "$AUDIT_ROOT/dataset_files_before.csv"
-grep -Fx 'KernelVersionKernelSources.csv,51MB,2026-08-21 05:27:26' "$AUDIT_ROOT/dataset_files_before.csv"
-grep -Fx 'Kernels.csv,293MB,2026-08-21 05:27:34' "$AUDIT_ROOT/dataset_files_before.csv"
-grep -Fx 'KernelVersions.csv,5GB,2026-08-21 05:28:49' "$AUDIT_ROOT/dataset_files_before.csv"
-grep -Fx 'Submissions.csv,2GB,2026-08-21 05:28:12' "$AUDIT_ROOT/dataset_files_before.csv"
+grep -Fx 'Competitions.csv,152MB,2026-08-21 05:23:20' "$RECEIPT_ROOT/dataset_files_before.csv"
+grep -Fx 'KernelVersionCompetitionSources.csv,163MB,2026-08-21 05:27:29' "$RECEIPT_ROOT/dataset_files_before.csv"
+grep -Fx 'KernelVersionKernelSources.csv,51MB,2026-08-21 05:27:26' "$RECEIPT_ROOT/dataset_files_before.csv"
+grep -Fx 'Kernels.csv,293MB,2026-08-21 05:27:34' "$RECEIPT_ROOT/dataset_files_before.csv"
+grep -Fx 'KernelVersions.csv,5GB,2026-08-21 05:28:49' "$RECEIPT_ROOT/dataset_files_before.csv"
+grep -Fx 'Submissions.csv,2GB,2026-08-21 05:28:12' "$RECEIPT_ROOT/dataset_files_before.csv"
 
 if [[ ! -s "$AUDIT_ROOT/Kernels.csv" ]]; then
   "$KAGGLE_BIN" datasets download kaggle/meta-kaggle -f Kernels.csv \
@@ -44,8 +47,10 @@ test -s "$AUDIT_ROOT/KernelVersions.csv"
 test -s "$AUDIT_ROOT/Submissions.csv"
 
 "$KAGGLE_BIN" datasets files kaggle/meta-kaggle --page-size 200 --csv \
-  > "$AUDIT_ROOT/dataset_files_after.csv"
-cmp "$AUDIT_ROOT/dataset_files_before.csv" "$AUDIT_ROOT/dataset_files_after.csv"
+  > "$RECEIPT_ROOT/dataset_files_after.raw.txt"
+tr -d '\r' < "$RECEIPT_ROOT/dataset_files_after.raw.txt" \
+  > "$RECEIPT_ROOT/dataset_files_after.csv"
+cmp "$RECEIPT_ROOT/dataset_files_before.csv" "$RECEIPT_ROOT/dataset_files_after.csv"
 
 sha256sum \
   "$AUDIT_ROOT/Competitions.csv" \
@@ -54,8 +59,8 @@ sha256sum \
   "$AUDIT_ROOT/Kernels.csv" \
   "$AUDIT_ROOT/KernelVersions.csv" \
   "$AUDIT_ROOT/Submissions.csv" \
-  "$AUDIT_ROOT/metadata/dataset-metadata.json" \
-  > "$AUDIT_ROOT/input_sha256.txt"
+  "$RECEIPT_ROOT/metadata/dataset-metadata.json" \
+  > "$RECEIPT_ROOT/input_sha256.txt"
 
 wc -c \
   "$AUDIT_ROOT/Competitions.csv" \
@@ -64,15 +69,15 @@ wc -c \
   "$AUDIT_ROOT/Kernels.csv" \
   "$AUDIT_ROOT/KernelVersions.csv" \
   "$AUDIT_ROOT/Submissions.csv" \
-  > "$AUDIT_ROOT/input_bytes.txt"
+  > "$RECEIPT_ROOT/input_bytes.txt"
 
-head -n 1 "$AUDIT_ROOT/Competitions.csv" > "$AUDIT_ROOT/header_Competitions.txt"
-head -n 1 "$AUDIT_ROOT/KernelVersionCompetitionSources.csv" > "$AUDIT_ROOT/header_KernelVersionCompetitionSources.txt"
-head -n 1 "$AUDIT_ROOT/KernelVersionKernelSources.csv" > "$AUDIT_ROOT/header_KernelVersionKernelSources.txt"
-head -n 1 "$AUDIT_ROOT/Kernels.csv" > "$AUDIT_ROOT/header_Kernels.txt"
-head -n 1 "$AUDIT_ROOT/KernelVersions.csv" > "$AUDIT_ROOT/header_KernelVersions.txt"
-head -n 1 "$AUDIT_ROOT/Submissions.csv" > "$AUDIT_ROOT/header_Submissions.txt"
+head -n 1 "$AUDIT_ROOT/Competitions.csv" > "$RECEIPT_ROOT/header_Competitions.txt"
+head -n 1 "$AUDIT_ROOT/KernelVersionCompetitionSources.csv" > "$RECEIPT_ROOT/header_KernelVersionCompetitionSources.txt"
+head -n 1 "$AUDIT_ROOT/KernelVersionKernelSources.csv" > "$RECEIPT_ROOT/header_KernelVersionKernelSources.txt"
+head -n 1 "$AUDIT_ROOT/Kernels.csv" > "$RECEIPT_ROOT/header_Kernels.txt"
+head -n 1 "$AUDIT_ROOT/KernelVersions.csv" > "$RECEIPT_ROOT/header_KernelVersions.txt"
+head -n 1 "$AUDIT_ROOT/Submissions.csv" > "$RECEIPT_ROOT/header_Submissions.txt"
 
 printf '%s\n' 'META_KAGGLE_EXACT_PARENT_S0A_COMPLETE_NO_DATA_ROWS_OPENED' \
-  > "$AUDIT_ROOT/COMPLETE_S0A"
+  > "$RECEIPT_ROOT/COMPLETE_S0A"
 chmod -R go-rwx "$AUDIT_ROOT"

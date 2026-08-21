@@ -1,7 +1,13 @@
 # Meta Kaggle Human Fork Exact Parent：S0 预注册与输入绑定
 
-日期：2026-08-21。状态：`S0A_PREREGISTERED_NOT_RUN`。本路线是 0CP AIRA strict-future 主线之外的
+日期：2026-08-21。状态：`S0A_CRLF_ENGINEERING_RETRY_FROZEN_NOT_RUN`。本路线是 0CP AIRA strict-future 主线之外的
 cross-domain extension，不恢复 HCE/TD/多保真，也不改变 first-960/closure 或 transition escrow。
+
+工程纠错记录：commit `d5d93bc...` 的第一次 acquisition attempt 在任何新表下载前 fail closed。Kaggle CLI 的
+`--csv` 输出使用 CRLF；逐字节 `grep -Fx` 因尾部 `\r` 拒绝第一条固定 metadata 行。该 attempt 只写了公开 dataset
+listing/metadata receipt，没有打开任何 CSV data row。重试只把 raw listing 原样保留后复制一份去除 `\r` 的
+normalized listing，用它做固定行检查和 before/after diff；输入文件、snapshot 时间、身份定义、支持门和停机规则
+均不变。正式 receipt 改写到新目录 `receipts/s0a-crlf-v2`，旧 attempt 不删除、不晋升。
 
 ## 1. 假设与 novelty 边界
 

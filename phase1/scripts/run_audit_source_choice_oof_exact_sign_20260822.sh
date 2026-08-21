@@ -72,11 +72,14 @@ sha256sum "${summary}" "${predictions}" "${verification}/verification_a.json" \
 )
 
 for replica in a b; do
-  strace -ff -e trace=file -o "${staging}/audit_${replica}.strace" \
-    "${python_bin}" -m phase1.audit_source_choice_oof_exact_sign \
-      --summary "${summary}" --predictions "${predictions}" \
-      --output "${staging}/audit_${replica}.json" \
-      > "${staging}/audit_${replica}.stdout" 2> "${staging}/audit_${replica}.stderr"
+  (
+    cd "${worktree}"
+    strace -ff -e trace=file -o "${staging}/audit_${replica}.strace" \
+      "${python_bin}" -m phase1.audit_source_choice_oof_exact_sign \
+        --summary "${summary}" --predictions "${predictions}" \
+        --output "${staging}/audit_${replica}.json" \
+        > "${staging}/audit_${replica}.stdout" 2> "${staging}/audit_${replica}.stderr"
+  )
 done
 diff "${staging}/audit_a.json" "${staging}/audit_b.json" > "${staging}/audit_reproducibility.diff"
 

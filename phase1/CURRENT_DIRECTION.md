@@ -3,7 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0CK. 2026-08-21 静态信号来源 component-OOF 审计已冻结，尚未运行
+## 0CL. 2026-08-21 Draft 父上下文重叠已独立确认
+
+结果盲结构预检发现的 split-unit 问题已经从 commit=`ecb81cdf730961bd01799faeeb0bd60281537984`
+完成 producer×2 与不 import producer 的 verifier×2。四次重建确定性一致，5 个合成/反例测试通过，封存
+manifest 31/31 通过且目录不可写。固定 component split 的 outer-train/test **endpoint-run overlap=0**，但有
+80 个共享 `(task,parent)` 上下文，影响 outer-train 1,917 rows 与 test 305 rows；把 parent card run 计入上下文
+后 run overlap=80，受影响 endpoints 的 exact-code overlap 仍为 0。
+
+该问题严格局限于 synthetic cross-run Draft：305 个受影响 test rows 全为 Draft，占 Draft test 305/314；
+Improve/canonical raw sibling 的 shared parents=0。由此允许的正面 D&B 结论是：**cross-run pair construction
+can defeat an endpoint-run split by reusing ancestor context**。不得笼统称整个 sibling test 泄漏，也不得由结构
+重叠推断 static champion 高分的因果来源。旧 Draft 数字改标 parent-context-overlap extension；Improve 不撤回；
+未来 parent-novel Draft 必须按 relational parent closure 切分，parent-reuse deployment 必须单列 estimand。
+
+直接证据：
+
+- `phase1/results/component_parent_context_audit_20260821_ecb81cd/README.md`；
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_Draft父上下文重叠_发现与复核计划.md`。
+
+## 0CK. 2026-08-21 静态信号来源 component-OOF 审计已冻结，正式运行中
 
 0CJ 只证明 code+lineage 的 pooled/task-conditioned GBM 在已见 component test 上略高于 chance；尚不能排除
 该信号主要来自 `depth/step/n_siblings` 搜索位置捷径。为避免再次查看 frozen test，已在任何新 OOF margin 前
@@ -17,8 +36,10 @@ task ID、不调参、不选 champion、不读 test/TF-IDF/semantic/prospective 
 窄正面门同时要求 code arm 的 task/parent chance CI 下界>0.5、code−lineage 两类 paired CI 下界>0、
 code−all 两类 CI 下界≥−0.01、任一 task 删除后 code−lineage task-macro delta 仍>0，以及 random/orientation、
 component isolation、反对称和 producer×2/verifier×2 全过。即使通过，也只能说明已观察 static signal 不可由
-三个 lineage 特征解释，不得申“理解代码”、因果机制、frozen/prospective/search gain 或方法 novelty。当前状态为
-`STATIC_SOURCE_PARENT_CLOSED_OOF_PREREGISTERED_NOT_RUN`；CPU-only、0 GPU·h、0 API。直接协议：
+三个 lineage 特征解释，不得申“理解代码”、因果机制、frozen/prospective/search gain 或方法 novelty。正式运行从
+精确 commit=`208e38135c0dc10d8430095a41c8008c063ff8a0` 启动；当前状态为
+`STATIC_SOURCE_PARENT_CLOSED_OOF_FORMAL_RUN_IN_PROGRESS_NO_OUTCOME_READ`，producer×2 已逐字节一致，独立
+full-refit verifier 尚未全部封存，因此不得提前读取/报告模型指标。CPU-only、0 GPU·h、0 API。直接协议：
 
 - `phase1/实验记录/2026-08-21/CleanDirectDecision_静态信号来源_componentOOF_预注册.md`。
 - `phase1/实验记录/2026-08-21/CleanDirectDecision_静态信号来源_componentOOF_v1结构失败与v2修订.md`。

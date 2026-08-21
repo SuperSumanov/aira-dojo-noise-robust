@@ -1,0 +1,147 @@
+{
+  "card_inventory": {
+    "cards": 31742,
+    "needed_cards": 7160,
+    "run_groups": 676
+  },
+  "context_overlap_claim_allowed": false,
+  "gates": {
+    "all_shared_parents_resolve_to_cards": true,
+    "all_shared_rows_are_draft": true,
+    "draft_parent_overlap_nonzero": true,
+    "endpoint_run_overlap_zero": true,
+    "improve_parent_overlap_zero": true,
+    "outcome_aggregates_computed_false": true,
+    "outer_test_parent_overlap_nonzero": true,
+    "shared_endpoint_exact_code_overlap_zero": true
+  },
+  "inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "dev": {
+      "bytes": 376635,
+      "sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4"
+    },
+    "draft": {
+      "bytes": 1465008,
+      "sha256": "3ca77a18e224cacbb7f52121d6e8c2b66f17298c68dd06fbc42a14a238ad05b9"
+    },
+    "improve": {
+      "bytes": 1087821,
+      "sha256": "7aca481afda5317fe78a0ad52fc7488fceff7fde6531c74ebb718df9e3b6926e"
+    },
+    "test": {
+      "bytes": 381803,
+      "sha256": "cb84d78d578e6a3f5378b3396a355fa83880739b4f9af8459d2b960c7ae005da"
+    },
+    "train": {
+      "bytes": 3208089,
+      "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+    }
+  },
+  "outcome_fields_used": false,
+  "parent_overlaps": {
+    "dev_test": {
+      "dev_rows": 233,
+      "identity_digest": "45fdf9cd06e16b29e4468e003b3b70e54e6deab3cb5927aaa0bc437b76149b79",
+      "parents": 23,
+      "test_rows": 115
+    },
+    "outer_train_test": {
+      "identity_digest": "b041c6bd1d2561832a59e7b8e3725abe1f1afa325e0f0e4b484be2e9a73f3c45",
+      "outer_train_rows": 1917,
+      "parents": 80,
+      "test_rows": 305
+    },
+    "train_dev": {
+      "dev_rows": 29,
+      "identity_digest": "a0fb386003766eb77fed48ffec19309044ab6f704d6fbfbe74c48b6efa832924",
+      "parents": 8,
+      "train_rows": 139
+    },
+    "train_test": {
+      "identity_digest": "2d8270a76642eee5f6b1c4cbeaec2f3793c034ef2cef3952311533ff943571b3",
+      "parents": 62,
+      "test_rows": 208,
+      "train_rows": 1684
+    }
+  },
+  "pending_independent_verification": true,
+  "protocol": "component-split-parent-context-audit-v1",
+  "run_overlap": {
+    "endpoint_only_outer_train_test": 0,
+    "endpoint_plus_parent_context_outer_train_test": 80,
+    "parent_only_outer_train_test": 80
+  },
+  "same_semantic_parent_overlap": {
+    "Draft": {
+      "identity_digest": "b041c6bd1d2561832a59e7b8e3725abe1f1afa325e0f0e4b484be2e9a73f3c45",
+      "parents": 80
+    },
+    "Improve": {
+      "identity_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "parents": 0
+    }
+  },
+  "shared_parent_characterization": {
+    "exact_endpoint_code_hash_overlap": 0,
+    "outer_train_rows": {
+      "both_lineage_parent_match": 8,
+      "cross_endpoint_run": 1570,
+      "no_lineage_parent_match": 1707,
+      "one_lineage_parent_match": 202,
+      "parent_is_card": 1917,
+      "parent_run_equals_endpoint_run": 591,
+      "rows": 1917,
+      "same_endpoint_run": 347,
+      "src_decision": 1917
+    },
+    "shared_parent_card_presence": 80,
+    "shared_parents": 80,
+    "test_rows": {
+      "both_lineage_parent_match": 4,
+      "cross_endpoint_run": 138,
+      "no_lineage_parent_match": 261,
+      "one_lineage_parent_match": 40,
+      "parent_is_card": 305,
+      "parent_run_equals_endpoint_run": 94,
+      "rows": 305,
+      "same_endpoint_run": 167,
+      "src_decision": 305
+    }
+  },
+  "shared_parent_rows_by_semantic": {
+    "dev": {
+      "Draft": 233,
+      "rows": 233
+    },
+    "test": {
+      "Draft": 305,
+      "rows": 305
+    },
+    "train": {
+      "Draft": 1684,
+      "rows": 1684
+    }
+  },
+  "split_semantic_counts": {
+    "dev": {
+      "Draft": 294,
+      "Improve": 257,
+      "rows": 551
+    },
+    "test": {
+      "Draft": 314,
+      "Improve": 617,
+      "rows": 931
+    },
+    "train": {
+      "Draft": 2902,
+      "Improve": 1787,
+      "rows": 4689
+    }
+  },
+  "status": "PARENT_CONTEXT_OVERLAP_CONFINED_TO_SYNTHETIC_DRAFT_PENDING_INDEPENDENT_VERIFICATION"
+}

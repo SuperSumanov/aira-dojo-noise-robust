@@ -1,8 +1,11 @@
-# Clean Direct-Decision：Draft 父上下文重叠的结果盲发现与复核计划
+# Clean Direct-Decision：Draft 父上下文重叠的正式独立复核裁决
 
-日期：2026-08-21。状态：`STRUCTURAL_DISCOVERY_PENDING_FORMAL_INDEPENDENT_REPRODUCTION`。本记录来自静态
-信号 component-OOF 的模型运行前结构预检；发现与语义分层均未聚合 accuracy、margin、gap、score 或任何
-prospective outcome。正在运行的 parent-closed OOF commit=`208e381...` 的 feature/model/统计门未因此改变。
+日期：2026-08-21。正式状态：
+`VERIFIED_PARENT_CONTEXT_OVERLAP_CONFINED_TO_SYNTHETIC_DRAFT`。本记录最初来自静态信号
+component-OOF 的模型运行前结构预检；发现与语义分层均未聚合 accuracy、margin、gap、score 或任何
+prospective outcome。随后从 commit=`ecb81cdf730961bd01799faeeb0bd60281537984` 完成 producer×2 与不
+import producer 的独立 verifier×2，逐字段完全一致。正在运行的 parent-closed OOF commit=`208e381...` 的
+feature/model/统计门未因此改变。
 
 ## 1. 确定性结构发现
 
@@ -58,13 +61,25 @@ parent-closed OOF，才能判断严格 parent isolation 后 code-derived signal 
 5. 可正面写的 D&B 领域实证是：**cross-run pair construction can defeat an endpoint-run split by reusing ancestor
    context**。connected-component/group split 本身已有先例，不能申通用方法首创。
 
-## 5. 正式复核要求
+## 5. 正式复核结果与证据
 
-在更新 `CURRENT_DIRECTION.md` 或撤回任何结论前，须把当前临时双脚本改成仓库内 producer/verifier：
+结果前固定的六个 SHA/bytes 均通过。producer 两遍与 verifier 两遍分别逐字节一致；独立 verifier 从六个 raw
+inputs 重新投影 Cards、重建 pair identity 与 semantic identity，不 import producer，最终与 producer 的全部字段
+精确一致。八个结构门全部通过：outer-train/test endpoint-run overlap=0、shared parents>0、受影响 rows 全部为
+Draft、Draft overlap>0、Improve overlap=0、shared parents 全部能解析为 card、受影响 endpoint exact-code overlap=0，
+且没有计算 outcome aggregate。
 
-- 固定 Cards/train/dev/test/Draft/Improve 六个 SHA 与 bytes；
-- producer×2、不得 import producer 的 verifier×2；
-- 逐项复算 parent sets、semantic confinement、endpoint/context run overlap、parent-card presence 与 exact-code overlap；
-- synthetic fixture 覆盖 parent reuse、semantic mix、row-order invariance 和 tamper；
-- 不计算任何 score/accuracy/gap，GPU/API=0；
-- 四次结果与 manifests 一致后，才把状态升级为 independently verified，并把 0CF/0CJ/G0 边界写入唯一入口。
+合成测试 5/5 通过，覆盖独立重建、row/card 顺序不变性、输入中的伪 `grade/gap` 不影响结果、producer artifact
+篡改拒绝，以及 Improve parent reuse / endpoint code reuse 两类反例必须 fail-closed。producer/verifier 四个 diff
+均为 0 bytes，所有 stderr 为 0 bytes，前后 credential-shape 扫描均为 0。
+
+远端封存目录为 `/research/d7/spc/yzyang4/component-parent-context-audit/ecb81cd-v1`；31-entry manifest 的
+SHA-256=`48489935f14dcec34829cae92f23cc0b144513ac41bc69a119e958471e6c2bd5`，逐项复验全部通过，
+可写文件数为 0。Git 内 compact evidence：
+
+- `phase1/results/component_parent_context_audit_20260821_ecb81cd/README.md`；
+- `phase1/results/component_parent_context_audit_20260821_ecb81cd/summary.json`；
+- `phase1/results/component_parent_context_audit_20260821_ecb81cd/final_verification_receipt.json`。
+
+因此第 1、2、4 节的结构边界现在允许作为数据集/评测协议结论；第 3 节关于模型高分成因仍须等待结果前冻结的
+parent-closed OOF，不能由本结构审计单独升级为因果解释。

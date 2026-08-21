@@ -1,0 +1,11 @@
+{
+  "affected_test_rows": 305,
+  "all_structural_gates_pass": true,
+  "context_overlap_claim_allowed": true,
+  "endpoint_run_overlap": 0,
+  "improve_shared_parents": 0,
+  "independent_exact_match": true,
+  "protocol": "component-split-parent-context-final-combined-v1",
+  "shared_parents": 80,
+  "status": "VERIFIED_PARENT_CONTEXT_OVERLAP_CONFINED_TO_SYNTHETIC_DRAFT"
+}

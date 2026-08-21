@@ -1,0 +1,21 @@
+{
+  "all_fields_exact_match": true,
+  "context_overlap_claim_allowed": true,
+  "gates": {
+    "all_shared_parents_resolve_to_cards": true,
+    "all_shared_rows_are_draft": true,
+    "draft_parent_overlap_nonzero": true,
+    "endpoint_run_overlap_zero": true,
+    "improve_parent_overlap_zero": true,
+    "outcome_aggregates_computed_false": true,
+    "outer_test_parent_overlap_nonzero": true,
+    "shared_endpoint_exact_code_overlap_zero": true
+  },
+  "independent_summary_sha256": "89f9d9c4c963d258916c9236ad6080248a15cbb71bd2d5bdebd35b870704c2af",
+  "outcome_fields_used": false,
+  "producer_imported": false,
+  "producer_sha256": "89f9d9c4c963d258916c9236ad6080248a15cbb71bd2d5bdebd35b870704c2af",
+  "protocol": "component-split-parent-context-independent-verifier-v1",
+  "raw_inputs_recomputed": true,
+  "status": "VERIFIED_PARENT_CONTEXT_OVERLAP_CONFINED_TO_SYNTHETIC_DRAFT"
+}

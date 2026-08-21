@@ -26,6 +26,9 @@ phase1/value_pairs_v4.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/source_choice_decision_view_v1_fd5c3ee/*.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/source_choice_decision_view_v1_fd5c3ee/README.md text eol=lf
 phase1/source_choice_decision_view_v1_fd5c3ee/SHA256SUMS text eol=lf
+phase1/source_choice_decision_view_v2_3ceb99f/*.jsonl filter=lfs diff=lfs merge=lfs -text
+phase1/source_choice_decision_view_v2_3ceb99f/README.md text eol=lf
+phase1/source_choice_decision_view_v2_3ceb99f/SHA256SUMS text eol=lf
 phase1/v10_decision/*.jsonl filter=lfs diff=lfs merge=lfs -text
 phase1/perpair_decision.json filter=lfs diff=lfs merge=lfs -text
 phase1/results/*/full_artifacts.tar.gz filter=lfs diff=lfs merge=lfs -text

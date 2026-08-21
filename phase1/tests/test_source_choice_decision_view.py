@@ -27,7 +27,7 @@ def candidate(name: str, provenance: str = "card"):
         "candidate_id_sha256": identity(name),
         "code": code,
         "code_sha256": identity(code),
-        "operator": "Improve",
+        "operator": "improve" if provenance == "journal_recovered" else "Improve",
         "step": 2,
         "depth": 1,
         "provenance": provenance,
@@ -91,7 +91,7 @@ def fixture(tmp_path: Path):
     verification_path = tmp_path / "source_verification.json"
     write_json(verification_path, source_verification)
     protocol = {
-        "protocol": "source-choice-decision-view-v1",
+        "protocol": "source-choice-decision-view-v2",
         "source": {
             "materialization_commit": "a" * 40,
             "summary_sha256": producer.sha256_file(summary_path),
@@ -120,6 +120,17 @@ def fixture(tmp_path: Path):
         "model_candidate_fields": sorted(producer.MODEL_CANDIDATE_FIELDS),
         "cluster_manifest_fields": sorted(producer.CLUSTER_FIELDS),
         "blocked_model_fields": sorted(producer.BLOCKED_MODEL_FIELDS),
+        "operator_projection": {
+            "mode": "casefold-fixed-enum-v1",
+            "mapping": producer.OPERATOR_MAP,
+            "expected_input_counts_by_role": {
+                role: {"Improve": 1, "improve": 1} for role in producer.ROLES
+            },
+            "expected_output_counts_by_role": {
+                role: {"Improve": 2} for role in producer.ROLES
+            },
+            "expected_canonicalized_by_role": {role: 1 for role in producer.ROLES},
+        },
         "scope": producer.EXPECTED_SCOPE,
     }
     protocol_path = tmp_path / "protocol.json"
@@ -138,7 +149,7 @@ def fixture(tmp_path: Path):
 
 def test_checked_in_protocol_has_exact_decision_time_surface():
     root = Path(__file__).resolve().parents[2]
-    protocol = producer.load_protocol(root / "phase1" / "source_choice_decision_view_protocol_v1.json")
+    protocol = producer.load_protocol(root / "phase1" / "source_choice_decision_view_protocol_v2.json")
     assert protocol["expected"]["groups"] == 3000
     assert set(protocol["blocked_model_fields"]) == producer.BLOCKED_MODEL_FIELDS
     assert protocol["scope"] == producer.EXPECTED_SCOPE
@@ -147,16 +158,20 @@ def test_checked_in_protocol_has_exact_decision_time_surface():
 def test_projection_strips_provenance_and_separates_cluster_metadata(tmp_path: Path):
     arguments, _, output = fixture(tmp_path)
     result = producer.build(arguments)
-    assert result["status"] == "SOURCE_CHOICE_DECISION_VIEW_READY"
+    assert result["status"] == "SOURCE_CHOICE_DECISION_VIEW_V2_READY"
     train = json.loads((output / "train_model.jsonl").read_text(encoding="utf-8"))
     assert set(train) == producer.MODEL_BASE_FIELDS | {"winner_candidate_sha256"}
     assert all(set(value) == producer.MODEL_CANDIDATE_FIELDS for value in train["candidates"])
     assert "provenance" not in json.dumps(train)
+    assert {value["operator"] for value in train["candidates"]} == {"Improve"}
     cluster = json.loads((output / "cluster_manifest.jsonl").read_text(encoding="utf-8").splitlines()[0])
     assert set(cluster) == producer.CLUSTER_FIELDS
     assert result["blocked_candidate_fields_removed"] == {
         "provenance": 6,
         "source_journal_sha256": 6,
+    }
+    assert result["operator_canonicalized_by_role"] == {
+        role: 1 for role in producer.ROLES
     }
 
 
@@ -172,7 +187,7 @@ def test_independent_verifier_reconstructs_projection(tmp_path: Path):
         view=str(output),
     )
     result = verifier.verify(verify_arguments)
-    assert result["status"] == "INDEPENDENT_SOURCE_CHOICE_DECISION_VIEW_VERIFIED"
+    assert result["status"] == "INDEPENDENT_SOURCE_CHOICE_DECISION_VIEW_V2_VERIFIED"
     assert result["producer_imported"] is False
     assert result["blocked_fields_present_in_model_objects"] == 0
 
@@ -198,6 +213,18 @@ def test_projection_rejects_code_hash_drift(tmp_path: Path):
     protocol["source"]["extension_inputs_sha256"] = producer.sha256_file(extension_path)
     write_json(Path(arguments.protocol), protocol)
     with pytest.raises(producer.DecisionViewError, match="candidate closure"):
+        producer.build(arguments)
+
+
+def test_projection_rejects_operator_outside_fixed_enum(tmp_path: Path):
+    arguments, groups, _ = fixture(tmp_path)
+    groups["extension"][0]["candidates"][0]["operator"] = "Debug"
+    extension_path = Path(arguments.source[2].split("=", 1)[1])
+    write_jsonl(extension_path, groups["extension"])
+    protocol = json.loads(Path(arguments.protocol).read_text(encoding="utf-8"))
+    protocol["source"]["extension_inputs_sha256"] = producer.sha256_file(extension_path)
+    write_json(Path(arguments.protocol), protocol)
+    with pytest.raises(producer.DecisionViewError, match="outside fixed enum"):
         producer.build(arguments)
 
 
@@ -262,6 +289,18 @@ def test_sealed_evaluator_rejects_provenance_extra_field(tmp_path: Path):
     arguments.inputs = str(contaminated)
     arguments.expected_input_sha256 = producer.sha256_file(contaminated)
     with pytest.raises(evaluator.EvaluationError, match="exact fields"):
+        evaluator.evaluate(arguments)
+
+
+def test_sealed_evaluator_rejects_lowercase_operator(tmp_path: Path):
+    arguments, output = evaluator_arguments(tmp_path)
+    group = json.loads((output / "frozen_model.jsonl").read_text(encoding="utf-8"))
+    group["candidates"][0]["operator"] = "improve"
+    contaminated = tmp_path / "lowercase_operator.jsonl"
+    write_jsonl(contaminated, [group])
+    arguments.inputs = str(contaminated)
+    arguments.expected_input_sha256 = producer.sha256_file(contaminated)
+    with pytest.raises(evaluator.EvaluationError, match="code invalid"):
         evaluator.evaluate(arguments)
 
 

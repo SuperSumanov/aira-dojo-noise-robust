@@ -17,8 +17,9 @@ from typing import Any, Iterator
 
 ROLES = ("train", "frozen", "extension")
 RAW_SCHEMA = "source-choice-group-v2"
-MODEL_SCHEMA = "source-choice-decision-group-v1"
+MODEL_SCHEMA = "source-choice-decision-group-v2"
 CLUSTER_SCHEMA = "source-choice-cluster-manifest-v1"
+OPERATOR_MAP = {"draft": "Draft", "improve": "Improve"}
 RAW_BASE_FIELDS = {
     "schema_version",
     "group_id",
@@ -153,7 +154,7 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
     sources = source_map(arguments.source)
     protocol = json_object(protocol_path, "protocol")
     if (
-        protocol.get("protocol") != "source-choice-decision-view-v1"
+        protocol.get("protocol") != "source-choice-decision-view-v2"
         or set(protocol.get("model_group_fields", [])) != MODEL_BASE_FIELDS
         or set(protocol.get("train_only_group_fields", [])) != {"winner_candidate_sha256"}
         or set(protocol.get("model_candidate_fields", [])) != MODEL_CANDIDATE_FIELDS
@@ -162,6 +163,23 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
         or protocol.get("scope", {}).get("frozen_or_extension_label_vault_read") is not False
     ):
         raise VerificationError("protocol contract differs")
+    operator_projection = protocol.get("operator_projection")
+    if (
+        not isinstance(operator_projection, dict)
+        or set(operator_projection) != {
+            "mode",
+            "mapping",
+            "expected_input_counts_by_role",
+            "expected_output_counts_by_role",
+            "expected_canonicalized_by_role",
+        }
+        or operator_projection.get("mode") != "casefold-fixed-enum-v1"
+        or operator_projection.get("mapping") != OPERATOR_MAP
+        or set(operator_projection.get("expected_input_counts_by_role", {})) != set(ROLES)
+        or set(operator_projection.get("expected_output_counts_by_role", {})) != set(ROLES)
+        or set(operator_projection.get("expected_canonicalized_by_role", {})) != set(ROLES)
+    ):
+        raise VerificationError("operator projection contract differs")
     source = protocol["source"]
     receipt_bindings = {
         source_summary_path: source["summary_sha256"],
@@ -202,6 +220,9 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
     group_counts: collections.Counter[str] = collections.Counter()
     candidate_counts: collections.Counter[str] = collections.Counter()
     removed_counts: collections.Counter[str] = collections.Counter()
+    operator_input_counts = {role: collections.Counter() for role in ROLES}
+    operator_output_counts = {role: collections.Counter() for role in ROLES}
+    operator_canonicalized_counts: collections.Counter[str] = collections.Counter()
     winner_counts: collections.Counter[str] = collections.Counter()
     groups_seen: set[str] = set()
     candidates_seen: set[str] = set()
@@ -264,8 +285,15 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
                     raise VerificationError(
                         f"candidate fields differ: {role}:{number}:{candidate_number}"
                     )
+                raw_operator = valid_text(raw_candidate.get("operator"), "operator")
+                projected_operator = OPERATOR_MAP.get(raw_operator.casefold())
+                if projected_operator is None:
+                    raise VerificationError("operator is outside fixed enum")
                 expected_candidate = {
-                    key: raw_candidate[key] for key in MODEL_CANDIDATE_FIELDS
+                    key: (
+                        projected_operator if key == "operator" else raw_candidate[key]
+                    )
+                    for key in MODEL_CANDIDATE_FIELDS
                 }
                 if model_candidate != expected_candidate:
                     raise VerificationError(
@@ -281,6 +309,9 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
                     raise VerificationError("candidate identity/code closure differs")
                 candidates_seen.add(candidate_id)
                 current_ids.append(candidate_id)
+                operator_input_counts[role][raw_operator] += 1
+                operator_output_counts[role][projected_operator] += 1
+                operator_canonicalized_counts[role] += int(raw_operator != projected_operator)
                 removed_counts["provenance"] += 1
                 removed_counts["source_journal_sha256"] += 1
             if current_ids != sorted(current_ids) or len(current_ids) != len(set(current_ids)):
@@ -308,6 +339,15 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
         raise VerificationError("cluster manifest has extra rows")
 
     expected = protocol["expected"]
+    input_operator_counts = {
+        role: dict(sorted(operator_input_counts[role].items())) for role in ROLES
+    }
+    output_operator_counts = {
+        role: dict(sorted(operator_output_counts[role].items())) for role in ROLES
+    }
+    canonicalized_operator_counts = {
+        role: operator_canonicalized_counts[role] for role in ROLES
+    }
     if (
         sum(group_counts.values()) != expected["groups"]
         or sum(candidate_counts.values()) != expected["candidate_slots"]
@@ -320,6 +360,12 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
         or winner_counts["frozen"] != expected["frozen_winner_fields"]
         or winner_counts["extension"] != expected["extension_winner_fields"]
         or dict(removed_counts) != expected["blocked_candidate_fields_removed"]
+        or input_operator_counts
+        != operator_projection["expected_input_counts_by_role"]
+        or output_operator_counts
+        != operator_projection["expected_output_counts_by_role"]
+        or canonicalized_operator_counts
+        != operator_projection["expected_canonicalized_by_role"]
     ):
         raise VerificationError("verified census differs")
 
@@ -332,7 +378,7 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
     summary = json_object(view / "summary.json", "view summary")
     if (
         manifest != output_hashes
-        or summary.get("status") != "SOURCE_CHOICE_DECISION_VIEW_READY"
+        or summary.get("status") != "SOURCE_CHOICE_DECISION_VIEW_V2_READY"
         or summary.get("outputs") != output_hashes
         or summary.get("groups") != expected["groups"]
         or summary.get("candidate_slots") != expected["candidate_slots"]
@@ -341,17 +387,26 @@ def verify(arguments: argparse.Namespace) -> dict[str, Any]:
         != expected["blocked_candidate_fields_removed"]
         or summary.get("frozen_or_extension_label_vault_read") is not False
         or summary.get("cluster_metadata_exposed_to_model") is not False
+        or summary.get("operator_input_counts_by_role") != input_operator_counts
+        or summary.get("operator_output_counts_by_role") != output_operator_counts
+        or summary.get("operator_canonicalized_by_role")
+        != canonicalized_operator_counts
+        or summary.get("operator_values_outside_fixed_enum") != 0
     ):
         raise VerificationError("summary/manifest differs")
     return {
-        "protocol": "independent-source-choice-decision-view-verifier-v1",
-        "status": "INDEPENDENT_SOURCE_CHOICE_DECISION_VIEW_VERIFIED",
+        "protocol": "independent-source-choice-decision-view-verifier-v2",
+        "status": "INDEPENDENT_SOURCE_CHOICE_DECISION_VIEW_V2_VERIFIED",
         "producer_imported": False,
         "source_materialization_commit": source["materialization_commit"],
         "groups": expected["groups"],
         "candidate_slots": expected["candidate_slots"],
         "blocked_candidate_fields_removed": dict(removed_counts),
         "blocked_fields_present_in_model_objects": 0,
+        "operator_input_counts_by_role": input_operator_counts,
+        "operator_output_counts_by_role": output_operator_counts,
+        "operator_canonicalized_by_role": canonicalized_operator_counts,
+        "operator_values_outside_fixed_enum": 0,
         "frozen_or_extension_label_vault_read": False,
         "view_summary_sha256": digest(view / "summary.json"),
         "view_manifest_sha256": digest(view / "sha256_manifest.json"),

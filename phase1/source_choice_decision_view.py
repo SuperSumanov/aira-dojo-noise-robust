@@ -16,8 +16,9 @@ from typing import Any, Iterator
 
 ROLES = ("train", "frozen", "extension")
 RAW_SCHEMA = "source-choice-group-v2"
-MODEL_SCHEMA = "source-choice-decision-group-v1"
+MODEL_SCHEMA = "source-choice-decision-group-v2"
 CLUSTER_SCHEMA = "source-choice-cluster-manifest-v1"
+OPERATOR_MAP = {"draft": "Draft", "improve": "Improve"}
 RAW_BASE_FIELDS = {
     "schema_version",
     "group_id",
@@ -139,10 +140,11 @@ def load_protocol(path: Path) -> dict[str, Any]:
         "model_candidate_fields",
         "cluster_manifest_fields",
         "blocked_model_fields",
+        "operator_projection",
         "scope",
     }:
         raise DecisionViewError("protocol top-level fields differ")
-    if value["protocol"] != "source-choice-decision-view-v1":
+    if value["protocol"] != "source-choice-decision-view-v2":
         raise DecisionViewError("protocol name differs")
     if value["scope"] != EXPECTED_SCOPE:
         raise DecisionViewError("protocol scope differs")
@@ -156,7 +158,32 @@ def load_protocol(path: Path) -> dict[str, Any]:
         raise DecisionViewError("cluster allowlist differs")
     if set(value["blocked_model_fields"]) != BLOCKED_MODEL_FIELDS:
         raise DecisionViewError("blocked-field list differs")
+    projection = value["operator_projection"]
+    if (
+        not isinstance(projection, dict)
+        or set(projection) != {
+            "mode",
+            "mapping",
+            "expected_input_counts_by_role",
+            "expected_output_counts_by_role",
+            "expected_canonicalized_by_role",
+        }
+        or projection.get("mode") != "casefold-fixed-enum-v1"
+        or projection.get("mapping") != OPERATOR_MAP
+        or set(projection.get("expected_input_counts_by_role", {})) != set(ROLES)
+        or set(projection.get("expected_output_counts_by_role", {})) != set(ROLES)
+        or set(projection.get("expected_canonicalized_by_role", {})) != set(ROLES)
+    ):
+        raise DecisionViewError("operator projection contract differs")
     return value
+
+
+def canonical_operator(value: Any) -> str:
+    operator = require_text(value, "operator")
+    projected = OPERATOR_MAP.get(operator.casefold())
+    if projected is None:
+        raise DecisionViewError("operator is outside fixed enum")
+    return projected
 
 
 def canonical_rows(path: Path, where: str) -> Iterator[dict[str, Any]]:
@@ -261,6 +288,9 @@ def build(arguments: argparse.Namespace) -> dict[str, Any]:
     candidate_counts: collections.Counter[str] = collections.Counter()
     winner_counts: collections.Counter[str] = collections.Counter()
     removed_counts: collections.Counter[str] = collections.Counter()
+    operator_input_counts = {role: collections.Counter() for role in ROLES}
+    operator_output_counts = {role: collections.Counter() for role in ROLES}
+    operator_canonicalized_counts: collections.Counter[str] = collections.Counter()
     task_names: set[str] = set()
     group_ids: set[str] = set()
     candidate_ids: set[str] = set()
@@ -303,7 +333,8 @@ def build(arguments: argparse.Namespace) -> dict[str, Any]:
                         candidate_id = require_hash(candidate.get("candidate_id_sha256"), "candidate")
                         code = require_text(candidate.get("code"), "code")
                         code_hash = require_hash(candidate.get("code_sha256"), "code")
-                        operator = require_text(candidate.get("operator"), "operator")
+                        raw_operator = require_text(candidate.get("operator"), "operator")
+                        operator = canonical_operator(raw_operator)
                         step = require_int(candidate.get("step"), "step")
                         depth = require_int(candidate.get("depth"), "depth")
                         provenance = candidate.get("provenance")
@@ -323,6 +354,9 @@ def build(arguments: argparse.Namespace) -> dict[str, Any]:
                             )
                         candidate_ids.add(candidate_id)
                         current_ids.append(candidate_id)
+                        operator_input_counts[role][raw_operator] += 1
+                        operator_output_counts[role][operator] += 1
+                        operator_canonicalized_counts[role] += int(raw_operator != operator)
                         projected = {
                             "candidate_id_sha256": candidate_id,
                             "code": code,
@@ -372,6 +406,16 @@ def build(arguments: argparse.Namespace) -> dict[str, Any]:
                     candidate_counts[role] += source_size
 
     expected = protocol["expected"]
+    input_operator_counts = {
+        role: dict(sorted(operator_input_counts[role].items())) for role in ROLES
+    }
+    output_operator_counts = {
+        role: dict(sorted(operator_output_counts[role].items())) for role in ROLES
+    }
+    canonicalized_operator_counts = {
+        role: operator_canonicalized_counts[role] for role in ROLES
+    }
+    operator_projection = protocol["operator_projection"]
     if (
         sum(group_counts.values()) != expected["groups"]
         or sum(candidate_counts.values()) != expected["candidate_slots"]
@@ -384,13 +428,17 @@ def build(arguments: argparse.Namespace) -> dict[str, Any]:
         or winner_counts["frozen"] != expected["frozen_winner_fields"]
         or winner_counts["extension"] != expected["extension_winner_fields"]
         or dict(removed_counts) != expected["blocked_candidate_fields_removed"]
+        or input_operator_counts != operator_projection["expected_input_counts_by_role"]
+        or output_operator_counts != operator_projection["expected_output_counts_by_role"]
+        or canonicalized_operator_counts
+        != operator_projection["expected_canonicalized_by_role"]
     ):
         raise DecisionViewError("projected census differs from protocol")
 
     output_hashes = {path.name: sha256_file(path) for path in (*model_paths.values(), cluster_path)}
     summary = {
         "protocol": protocol["protocol"],
-        "status": "SOURCE_CHOICE_DECISION_VIEW_READY",
+        "status": "SOURCE_CHOICE_DECISION_VIEW_V2_READY",
         "source_materialization_commit": protocol["source"]["materialization_commit"],
         "source_summary_sha256": protocol["source"]["summary_sha256"],
         "groups": sum(group_counts.values()),
@@ -400,6 +448,10 @@ def build(arguments: argparse.Namespace) -> dict[str, Any]:
         "candidate_slots_by_role": dict(candidate_counts),
         "winner_fields_by_role": {role: winner_counts[role] for role in ROLES},
         "blocked_candidate_fields_removed": dict(removed_counts),
+        "operator_input_counts_by_role": input_operator_counts,
+        "operator_output_counts_by_role": output_operator_counts,
+        "operator_canonicalized_by_role": canonicalized_operator_counts,
+        "operator_values_outside_fixed_enum": 0,
         "blocked_fields_present_in_model_objects": 0,
         "model_group_fields": protocol["model_group_fields"],
         "train_only_group_fields": protocol["train_only_group_fields"],

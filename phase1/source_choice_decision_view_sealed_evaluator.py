@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any
 
 
-MODEL_SCHEMA = "source-choice-decision-group-v1"
+MODEL_SCHEMA = "source-choice-decision-group-v2"
 CLUSTER_SCHEMA = "source-choice-cluster-manifest-v1"
 LABEL_SCHEMA = "source-choice-label-vault-v2"
 PREDICTION_SCHEMA = "source-choice-selection-v1"
@@ -137,8 +137,7 @@ def evaluate(arguments: argparse.Namespace) -> dict[str, Any]:
                 not isinstance(code, str)
                 or not code
                 or hashlib.sha256(code.encode("utf-8")).hexdigest() != code_hash
-                or not isinstance(operator, str)
-                or not operator
+                or operator not in {"Draft", "Improve"}
                 or isinstance(step, bool)
                 or not isinstance(step, int)
                 or isinstance(depth, bool)

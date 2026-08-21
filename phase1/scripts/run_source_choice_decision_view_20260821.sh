@@ -12,11 +12,11 @@ fi
 commit=$1
 short=${commit:0:7}
 repo=/research/d7/spc/yzyang4/aira-dojo
-worktree=/research/d7/spc/yzyang4/worktrees/source_choice_decision_view_${short}
+worktree=/research/d7/spc/yzyang4/worktrees/source_choice_decision_view_v2_${short}
 source_root=/research/d7/spc/yzyang4/source-choice-benchmark-materialization/5d6de6e-v2
 result_root=/research/d7/spc/yzyang4/source-choice-decision-view
-final=${result_root}/${short}-v1
-staging=${result_root}/.${short}-v1.tmp.$$
+final=${result_root}/${short}-v2
+staging=${result_root}/.${short}-v2.tmp.$$
 python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
 
 export PYTHONDONTWRITEBYTECODE=1
@@ -52,7 +52,7 @@ GIT_LFS_SKIP_SMUDGE=1 git -C "${repo}" worktree add --detach "${worktree}" "${co
 git -C "${worktree}" status --porcelain --untracked-files=all > "${staging}/worktree_status_before.txt"
 [[ ! -s ${staging}/worktree_status_before.txt ]]
 
-protocol=${worktree}/phase1/source_choice_decision_view_protocol_v1.json
+protocol=${worktree}/phase1/source_choice_decision_view_protocol_v2.json
 source_summary=${source_root}/public_a/summary.json
 source_manifest=${source_root}/public_a/sha256_manifest.json
 source_verification=${source_root}/verification_a.json
@@ -86,13 +86,13 @@ sha256sum "${source_summary}" "${source_manifest}" "${source_verification}" \
   > "${staging}/input_sha256.txt"
 
 cat > "${staging}/preflight_matrix.txt" <<'EOF'
-PREFLIGHT_01_DIRECTION=0DJ decision-time input projection; no HCE TD probe or multifidelity revival
-PREFLIGHT_02_QUESTION=remove post-selection provenance without changing 3000 groups or 8027 candidates
+PREFLIGHT_01_DIRECTION=0DL operator-proxy correction only; no HCE TD probe or multifidelity revival
+PREFLIGHT_02_QUESTION=canonicalize operator case proxy without changing 3000 groups or 8027 candidates
 PREFLIGHT_03_INPUT=SHA-pinned S1v2 public materialization summary manifest verification and three role files
 PREFLIGHT_04_UNIT=all groups candidates labels ordering and code bytes retained exactly
 PREFLIGHT_05_LABEL=train winner copied; frozen extension vault path and labels never read
-PREFLIGHT_06_MODEL_FIELDS=exact group and candidate allowlists; extra or missing field fails
-PREFLIGHT_07_BLOCKED=provenance source_journal_sha256 absent from every model candidate
+PREFLIGHT_06_MODEL_FIELDS=exact group and candidate allowlists; fixed Draft Improve enum; unknown value fails
+PREFLIGHT_07_BLOCKED=provenance source_journal_sha256 absent and lowercase operator count zero
 PREFLIGHT_08_METADATA=role run parent separated into exact-field cluster manifest
 PREFLIGHT_09_CODE=full UTF-8 code and SHA revalidated without normalization truncation or dedup merging
 PREFLIGHT_10_EVALUATOR=aggregate-only sealed evaluator rejects extra fields and uses cluster manifest closure
@@ -172,7 +172,7 @@ done < <(find "${staging}" -type f -print0)
 printf '%s\n' "${content_hits}" > "${staging}/credential_content_hits.txt"
 [[ ${name_hits} == 0 && ${content_hits} == 0 ]]
 
-printf 'SOURCE_CHOICE_DECISION_VIEW_FORMAL_COMPLETE\n' > "${staging}/COMPLETE"
+printf 'SOURCE_CHOICE_DECISION_VIEW_V2_FORMAL_COMPLETE\n' > "${staging}/COMPLETE"
 date -u +%Y-%m-%dT%H:%M:%SZ > "${staging}/completed_at_utc.txt"
 (
   cd "${staging}"
@@ -184,4 +184,4 @@ chmod -R a-w "${staging}"
 mv "${staging}" "${final}"
 trap - EXIT
 status=$("${python_bin}" -c 'import json,sys; print(json.load(open(sys.argv[1]))["status"])' "${final}/view_a/summary.json")
-printf 'SOURCE_CHOICE_DECISION_VIEW_RUNNER_DONE status=%s result=%s\n' "${status}" "${final}"
+printf 'SOURCE_CHOICE_DECISION_VIEW_V2_RUNNER_DONE status=%s result=%s\n' "${status}" "${final}"

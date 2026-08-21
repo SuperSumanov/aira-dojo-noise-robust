@@ -1,0 +1,69 @@
+{
+  "protocol": "source-choice-provenance-sensitivity-v1",
+  "activation": {
+    "required_formal_result_commit": "11b7f23d2d91bc412c3a2e0c8cd7d6a23fbb5baf",
+    "required_independent_verification_status": "INDEPENDENT_SOURCE_CHOICE_OOF_TFIDF_VERIFIED",
+    "allowed_verdicts": [
+      "GO_CROSS_TASK",
+      "GO_RUN_ONLY"
+    ],
+    "blocked_verdict": "NO_NARROW_POSITIVE"
+  },
+  "inputs": {
+    "raw_train_groups_sha256": "48bc52e7f05c79d504c785a6249fb727a522b4eed42945c2bad221ad6012c435",
+    "decision_view_train_sha256": "e5ca6dc94f59d54fe31d4b1c4e796deef0006f489fd76a05663410d4911aa6e1",
+    "expected_oof_protocol": "source-choice-oof-tfidf-v1",
+    "expected_oof_split": "task_loto",
+    "expected_oof_arm": "tfidf_pairwise_lr"
+  },
+  "support": {
+    "train_groups": 2109,
+    "card_candidates": 5042,
+    "journal_recovered_candidates": 697,
+    "all_card_groups": 1613,
+    "mixed_groups": 496,
+    "all_winners_have_card_provenance": true,
+    "minimum_all_card_groups": 1000,
+    "minimum_all_card_tasks": 15
+  },
+  "analysis": {
+    "model_refit": false,
+    "predictions_reused_without_change": true,
+    "primary_subset": "all candidates have provenance card",
+    "primary_estimand": "task_macro_top1_delta_over_exact_subset_uniform",
+    "primary_bootstrap_unit": "task",
+    "bootstrap_replicates": 20000,
+    "bootstrap_seed": 20260824,
+    "task_sign_test": "one_sided_exact_positive_ignoring_exact_zero",
+    "secondary": [
+      "mixed_group_model_top1_delta_over_exact_uniform",
+      "mixed_group_card_only_uniform_baseline",
+      "model_selected_provenance_rate",
+      "per_task_and_source_size_strata"
+    ]
+  },
+  "gate": {
+    "minimum_absolute_all_card_task_macro_delta": 0.03,
+    "maximum_one_sided_task_sign_p": 0.05,
+    "pass": "support_pass_and_delta_at_least_minimum_and_task_ci_low_above_zero_and_sign_p_below_maximum",
+    "outcomes": [
+      "ROBUST_BEYOND_RECOVERY_MIX",
+      "RECOVERY_MIX_SENSITIVE",
+      "ABORT_SUPPORT_OR_BINDING"
+    ]
+  },
+  "interpretation": {
+    "pass_allows": "OOF source-choice predictability is not confined to mixed recovery groups",
+    "fail_requires": "downgrade any broad branch-intelligence claim and report recovery-mixture sensitivity",
+    "pass_does_not_allow": "semantic understanding causality final quality search speedup or new-task deployment claim"
+  },
+  "scope": {
+    "train_only": true,
+    "frozen_or_extension_model_read": false,
+    "frozen_or_extension_label_vault_read": false,
+    "new_model_or_hyperparameter": false,
+    "gpu": 0,
+    "api_calls": 0,
+    "base_llm_updated": false
+  }
+}

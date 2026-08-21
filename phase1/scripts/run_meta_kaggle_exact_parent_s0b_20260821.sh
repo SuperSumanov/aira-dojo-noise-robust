@@ -21,7 +21,7 @@ INPUT_ROOT=/research/d7/spc/yzyang4/external-audits/meta-kaggle-s0a-20260821
 SCRATCH_ROOT=/research/d7/spc/yzyang4/scratch/meta-kaggle-exact-parent-s0b-${SHORT}
 PYTHON=/research/d7/spc/yzyang4/venvs/exp/bin/python
 
-PROTOCOL_SHA=2fc4f41f0da2f9c078946a515c1a5d9c15729ed322a339bae05f0864fdfaa1ed
+PROTOCOL_SHA=451293fdbe13a6563f1c982743d5eaa163f69d0691fdaf4610b5d6c8639a42ad
 INPUT_MANIFEST_SHA=21141fe7d390f1d778c6631069c4961b346965410f8754a580763b6afb55b375
 KERNELS_SHA=dccccbad40efc018e37b1393d939c20062142a8f28dd19b336d1e186d2983680
 VERSIONS_SHA=d8a6a7a4081be92373438b4b9342420e8c8dc775255e42ec54478f6610a98725
@@ -37,7 +37,7 @@ test -f "$INPUT_ROOT/KernelVersions.csv"
 test -f "$INPUT_ROOT/KernelVersionCompetitionSources.csv"
 test -f "$INPUT_ROOT/Competitions.csv"
 mkdir -p "$(dirname "$WORKTREE")" "$(dirname "$OUTPUT")" "$SCRATCH_ROOT"
-git -C "$REPO" worktree add --detach "$WORKTREE" "$COMMIT"
+GIT_LFS_SKIP_SMUDGE=1 git -C "$REPO" worktree add --detach "$WORKTREE" "$COMMIT"
 mkdir "$OUTPUT"
 
 cd "$WORKTREE"

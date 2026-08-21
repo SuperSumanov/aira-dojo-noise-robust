@@ -29,6 +29,10 @@ S0b producer 与独立 verifier 已实现 bounded-memory exact uniqueness、dire
 fixed one-pair-per-parent 重建，7 个合成/反例测试通过；尚未读取任何 S0b data row，必须从精确 implementation commit
 完成 producer×2/verifier×2 后才有支持裁决。直接证据：
 
+第一次 S0b formal attempt 在 worktree materialization 阶段因无关历史 LFS pointer 的 server object 404 停止；
+tests 和真实 CSV rows 均未开始。重试只按既有正式 runner 增加 `GIT_LFS_SKIP_SMUDGE=1`，不改 source blobs、输入、
+关系定义、门槛或输出协议，旧 partial worktree 不复用。
+
 - `phase1/meta_kaggle_exact_parent_s0a_input_manifest.json`；
 - `phase1/results/meta_kaggle_exact_parent_s0a_20260821_1211700/README.md`；
 - `phase1/实验记录/2026-08-21/MetaKaggleHumanForkExactParent_S0a正式裁决与S0b实现预检.md`。

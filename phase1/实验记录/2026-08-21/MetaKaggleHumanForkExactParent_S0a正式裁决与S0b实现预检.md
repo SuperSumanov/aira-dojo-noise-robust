@@ -43,3 +43,9 @@ forbidden input source scan 和缺 header fail closed。
 
 正式运行前还需把 input/protocol SHA 写入 runner、跑全部 phase tests、从精确 commit 建立隔离 worktree，并执行
 producer×2/verifier×2。S0b 只会输出 identity/support counts；即使过门，也先冻结 S1 才能打开 outcome rows。
+
+工程纠错：commit `6c4bcd2...` 的第一次 formal attempt 在隔离 worktree materialization 时停止。Git 默认 LFS
+smudge 试图获取一个与本实验无关的历史 `full_artifacts.tar.gz`，但该 61KB pointer 对应的 server object 为 404；
+因此 focused/full tests 与真实 CSV data rows 均未开始。重试只给 `git worktree add` 增加项目正式 runner 已采用的
+`GIT_LFS_SKIP_SMUDGE=1`，所有登记 source files 都是普通 Git blobs；输入 SHA、协议、算法和门槛不变。旧 partial
+worktree 不复用、不晋升。

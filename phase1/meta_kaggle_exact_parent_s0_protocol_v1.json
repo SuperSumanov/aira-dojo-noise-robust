@@ -1,7 +1,7 @@
 {
   "protocol": "meta-kaggle-exact-parent-human-fork-s0-v1",
   "frozen_at_utc": "2026-08-21T09:13:44Z",
-  "status": "S0A_PASS_S0B_IMPLEMENTATION_FROZEN_NOT_RUN",
+  "status": "S0A_PASS_S0B_LFS_ENGINEERING_RETRY_FROZEN_NOT_RUN",
   "role": "external_cross_domain_extension_only",
   "mainline_unchanged": "transition-future-escrow-7458f09",
   "dataset": {

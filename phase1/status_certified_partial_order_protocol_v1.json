@@ -1,0 +1,35 @@
+{
+  "certifiable_categories": [
+    "EXECUTION_ERROR",
+    "OFFICIAL_GRADE_ABSENT"
+  ],
+  "expected_parent_rows": 3252,
+  "expected_role_parent_counts": {
+    "extension": 114,
+    "frozen": 845,
+    "train": 2293
+  },
+  "expected_status_category_counts": {
+    "EXECUTION_ERROR": 893,
+    "OFFICIAL_GRADE_ABSENT": 9,
+    "UNKNOWN": 94
+  },
+  "expected_status_counts": {
+    "SOURCE_JOURNAL_NOT_FOUND": 94,
+    "UNIQUE_NODE_RECOVERED": 902
+  },
+  "expected_status_rows": 996,
+  "input_per_parent_sha256": "75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03",
+  "input_status_sha256": "bfb9870d83c50ef2d06bf2d374fc9f9213f41665f4cebeab7ab31837bcfde0d2",
+  "material_min_added_relations": 1000,
+  "material_min_frozen_coverage_gain": 0.08,
+  "material_min_gap_recovery_share": 0.25,
+  "material_min_overall_coverage_gain": 0.1,
+  "material_min_train_coverage_gain": 0.08,
+  "maximum_dominant_added_relation_task_share": 0.35,
+  "minimum_supported_tasks": 10,
+  "minimum_task_source_pair_capacity": 100,
+  "minimum_tasks_with_positive_gain": 8,
+  "protocol": "status-certified-partial-order-v1"
+}
+

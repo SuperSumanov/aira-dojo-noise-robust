@@ -1,0 +1,7 @@
+{
+  "input_sha256.txt": "0586be84e170dc072eebe07363c978d38a063c848aba6c0a0980fb2bd2b268d1",
+  "per_task_run.csv": "206d3f5a08d0f75557c4ff345dff6263899ccc78f995765339e7ee23be1abb23",
+  "protocol.json": "486da3bf4238e18ded861e17a7efdee3b99ab2d527bf3b5c192f05c90ac229b0",
+  "source_commit.txt": "326cb4ada19ceb4df48db072ff2370468f2ded18a957dbe6b8598246b2942b41",
+  "summary.json": "3a25ced1a63e97ae3e10b22dcc808c299a1c175ac30e04e55fd724ee5a4cfb25"
+}

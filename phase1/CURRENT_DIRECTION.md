@@ -3,6 +3,28 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CY. 2026-08-21 source retention 的 run-cluster 压力测试支持不足
+
+commit `fa5d65507bd6bab76b7bfaeda04584fae21b78c9` 对 0CX 做了结果后、明确标注的 cluster 强度攻击：
+先在 `(role,task,physical-run)` 内平均 parents，再让 runs 等权；推断原定为 task×run hierarchical bootstrap。
+固定的 v1 15-task universe 中只有 9 个任务达到 train≥5、frozen≥3 distinct runs，低于预注册至少 10 个任务，
+故正式状态为 `INSUFFICIENT_RUN_CLUSTER_TASK_SUPPORT`，不能宣称 run-cluster robust，也不得结果后降门追救。
+
+支持合格的九任务 run-equal train→frozen Spearman rho=`0.7`，train-defined tertile 的 frozen
+high-minus-low=`0.1973544973544974`，方向没有反转；但这两项只作描述性证据。冻结程序在支持门失败后没有运行
+permutation、hierarchical bootstrap 或 LOTO，因此不能声称显著。6 个未过门任务中 5 个只有 1–2 个 frozen
+physical runs，另一个 train 只有 3 个 runs；瓶颈是 frozen run 支持而非 parent 行数。
+
+因此 0CX 的 parent-equal task-conditioned transport 仍按原结果前协议成立，但正文必须附上本轮 limitation，不能
+升级为 cluster-robust。唯一干净解锁方式是等待自然新增、outcome-blind 的 frozen-role physical runs，在新 temporal
+escrow 中独立确认；不得按本轮数值挑任务或改门。producer×2/verifier×2 一致，focused=`5 passed`，完整
+phase tests=`632 passed, 25 warnings`，独立重建差、forbidden path 与秘密扫描均为 0，正式产物只读。
+
+直接证据：
+
+- `phase1/results/source_retention_run_cluster_v1_20260821_fa5d655/README.md`；
+- `phase1/实验记录/2026-08-21/SourceRetention_RunClusterRobustness_v1_正式裁决.md`。
+
 ## 0CX. 2026-08-21 source retention 的任务结构跨 disjoint-run roles 正式复现
 
 commit `d21166fb344c0645ed1e31ea6bc7e7487e441e6f` 在既有 3,252-parent source completeness 表上完成

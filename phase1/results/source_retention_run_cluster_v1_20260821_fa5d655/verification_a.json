@@ -1,0 +1,12 @@
+{
+  "artifact_manifest_sha256": "5c1db479a39312390911fea594f47411eae6c632b40e32f5cc383e3ab487dc58",
+  "artifact_summary_sha256": "3a25ced1a63e97ae3e10b22dcc808c299a1c175ac30e04e55fd724ee5a4cfb25",
+  "imports_producer": false,
+  "maximum_reconstruction_difference": 0.0,
+  "parent_rows": 3252,
+  "primary_spearman_rho": 0.7,
+  "producer_status": "INSUFFICIENT_RUN_CLUSTER_TASK_SUPPORT",
+  "prospective_outcome_read": false,
+  "run_robust_tasks": 9,
+  "status": "INDEPENDENT_RUN_CLUSTER_ROBUSTNESS_VERIFIED"
+}

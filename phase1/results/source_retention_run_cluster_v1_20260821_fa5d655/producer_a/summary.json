@@ -1,0 +1,94 @@
+{
+  "claim_allowed": false,
+  "criteria": {
+    "all_loto_rho_gt_minimum": false,
+    "hierarchical_bootstrap_lower_gt_zero": false,
+    "hierarchical_bootstrap_valid_fraction_ge_minimum": false,
+    "permutation_p_lt_alpha": false,
+    "primary_rho_ge_minimum": true,
+    "robust_tasks_ge_minimum": false
+  },
+  "inputs": {
+    "frozen_v1_task_universe": [
+      "aptos2019-blindness-detection",
+      "chaii-hindi-and-tamil-question-answering",
+      "denoising-dirty-documents",
+      "dog-breed-identification",
+      "histopathologic-cancer-detection",
+      "leaf-classification",
+      "mlsp-2013-birds",
+      "nomad2018-predict-transparent-conductors",
+      "petfinder-pawpularity-score",
+      "spooky-author-identification",
+      "tabular-playground-series-may-2022",
+      "text-normalization-challenge-russian-language",
+      "tweet-sentiment-extraction",
+      "us-patent-phrase-to-phrase-matching",
+      "whale-categorization-playground"
+    ],
+    "parent_rows": 3252,
+    "per_parent_sha256": "75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03",
+    "role_parent_counts": {
+      "extension": 114,
+      "frozen": 845,
+      "train": 2293
+    }
+  },
+  "primary": {
+    "leave_one_task_out_rho": {},
+    "metric": "run_equal_finite_source_retention",
+    "minimum_leave_one_task_out_rho": null,
+    "permutation_two_sided_p": null,
+    "spearman_rho": 0.7,
+    "task_run_hierarchical_bootstrap_95_ci": null
+  },
+  "protocol": "source-retention-run-cluster-robustness-v1",
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "candidate_code_read": false,
+    "causal_task_effect_claim": false,
+    "gpu_hours": 0,
+    "missing_at_random_claim": false,
+    "numeric_outcome_read": false,
+    "pair_orientation_read": false,
+    "post_result_robustness_not_new_confirmation": true,
+    "predictor_or_search_utility_claim": false,
+    "prospective_outcome_read": false
+  },
+  "source_commit": "fa5d65507bd6bab76b7bfaeda04584fae21b78c9",
+  "status": "INSUFFICIENT_RUN_CLUSTER_TASK_SUPPORT",
+  "support": {
+    "frozen_v1_tasks": 15,
+    "minimum_frozen_runs_per_task": 3,
+    "minimum_train_runs_per_task": 5,
+    "run_robust_task_ids": [
+      "chaii-hindi-and-tamil-question-answering",
+      "denoising-dirty-documents",
+      "dog-breed-identification",
+      "leaf-classification",
+      "mlsp-2013-birds",
+      "nomad2018-predict-transparent-conductors",
+      "petfinder-pawpularity-score",
+      "spooky-author-identification",
+      "tabular-playground-series-may-2022"
+    ],
+    "run_robust_tasks": 9
+  },
+  "train_defined_tertile_contrast": {
+    "frozen_high_minus_low": 0.1973544973544974,
+    "frozen_high_run_equal_mean": 0.898888888888889,
+    "frozen_low_run_equal_mean": 0.7015343915343916,
+    "tertile_width": 3,
+    "train_defined_high_tasks": [
+      "petfinder-pawpularity-score",
+      "dog-breed-identification",
+      "denoising-dirty-documents"
+    ],
+    "train_defined_low_tasks": [
+      "tabular-playground-series-may-2022",
+      "mlsp-2013-birds",
+      "nomad2018-predict-transparent-conductors"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=post-result cluster robustness attack on verified source-retention transport
+PREFLIGHT_02_QUESTION=does the frozen 15-task profile survive run-equal weighting and task-by-run uncertainty
+PREFLIGHT_03_INPUT=immutable 3252-parent table SHA 75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03
+PREFLIGHT_04_TASKS=exact v1 eligible 15-task universe; no additions or deletions after result
+PREFLIGHT_05_SUPPORT=train at least 5 runs frozen at least 3 runs and at least 10 tasks
+PREFLIGHT_06_METRIC=run-equal finite retention Spearman
+PREFLIGHT_07_INFERENCE=100000 task permutations and 20000 hierarchical task-by-run bootstraps
+PREFLIGHT_08_LEAKAGE=no code numeric outcome orientation prediction or prospective path
+PREFLIGHT_09_REPRO=producer x2 verifier x2 exact commit and immutable protocol
+PREFLIGHT_10_RESOURCES=CPU only GPU 0 API 0 base-LLM update 0
+PREFLIGHT_11_FAILURE=failed robustness lowers claim; no threshold task metric or weighting rescue
+PREFLIGHT_12_SCOPE=no MAR causal task effect missing quality predictor utility or first-only claim
+PREFLIGHT_13_EXPECTED_WALL=under 30 minutes including full phase1 regression

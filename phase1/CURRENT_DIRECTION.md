@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DL. 2026-08-21 source-choice S2 v1 因 operator 大小写代理泄漏撤回
+
+S2 v1 在任何模型拟合、frozen label 打开或 frozen score 之前的 train-only 模型预检中发现第二层重建代理：
+候选 `operator` 同时出现 `Improve` 与 `improve`。全 3,000 groups / 8,027 candidates 中，小写
+`improve` 恰有 899 个，与 S1v2 的 899 个 `journal_recovered` candidates 总数完全相等；train 中小写
+`improve`=697 slots / 0 winners，而大写 `Improve`=4,949 slots / 2,071 winners。故删除显式
+`provenance/source_journal_sha256` 后，大小写仍可无损恢复同一 post-selection provenance proxy。
+
+该发现不是 predictor 结果：模型拟合=0、GPU/API=0、frozen/extension winner vault 未读。数组顺序另经审计为
+candidate SHA 字典序；first/last/min-SHA/max-SHA accuracy=0.390232337601/0.411095305832/
+0.390232337601/0.411095305832，接近 exact uniform expected=0.400178014652，未见同类位置捷径。
+
+因此 0DK 的四份 immutable v1 JSONL 保留为可复核失败产物，但状态改为
+`SOURCE_CHOICE_DECISION_VIEW_V1_MODEL_BLOCKED`，不得训练、评分或作为 benchmark release。下一步只允许新协议/新目录
+生成 v2：将 case-insensitive `draft/improve` 规范化到固定枚举 `Draft/Improve`，其他 operator fail closed；除该字段外
+group、candidate、winner、顺序与 code bytes 必须逐项不变。v2 还必须显式验证小写值为 0、operator/provenance
+contingency 被消除、producer/verifier 独立一致，之后才能重开 train-only OOF。直接证据：
+
+- `phase1/results/source_choice_decision_view_operator_proxy_audit_20260821/README.md`；
+- `phase1/实验记录/2026-08-21/SourceChoiceDecisionView_S2v1_operator代理泄漏与撤回.md`。
+
 ## 0DK. 2026-08-21 source-choice decision-time view 正式通过
 
 控制 commit `fd5c3ee0fdfffe399088e2e3a4394598264239a6` 在不改 0DJ 的 3,000 groups、8,027 candidates、

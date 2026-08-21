@@ -1,0 +1,38 @@
+{
+  "all_candidate_slots": 8027,
+  "all_groups": 3000,
+  "array_order": "candidate_id_sha256_lexicographic",
+  "extension_operator_slots": {
+    "Draft": 12,
+    "Improve": 225,
+    "improve": 10
+  },
+  "frozen_or_extension_winner_vault_read": false,
+  "frozen_operator_slots": {
+    "Draft": 29,
+    "Improve": 1820,
+    "improve": 192
+  },
+  "gpu_jobs": 0,
+  "lowercase_improve_all_roles": 899,
+  "matches_s1v2_journal_recovered_total": true,
+  "model_fits": 0,
+  "protocol": "source-choice-decision-view-v1-operator-proxy-pre-model-audit",
+  "status": "SOURCE_CHOICE_DECISION_VIEW_V1_MODEL_BLOCKED",
+  "train_groups": 2109,
+  "train_operator_slots": {
+    "Draft": 93,
+    "Improve": 4949,
+    "improve": 697
+  },
+  "train_operator_winners": {
+    "Draft": 38,
+    "Improve": 2071,
+    "improve": 0
+  },
+  "train_position_controls": {
+    "first_or_min_sha_accuracy": 0.390232337601,
+    "last_or_max_sha_accuracy": 0.411095305832,
+    "uniform_expected_accuracy": 0.400178014652
+  }
+}

@@ -1,5 +1,10 @@
 # Immutable Source Choice Decision View v1
 
+> **MODEL USE BLOCKED (2026-08-21).** A train-only pre-model audit found that lowercase `improve`
+> identifies all 899 journal-recovered candidates; the 697 train instances have zero winners. The four
+> immutable payloads remain available only as an auditable failed release and must not be used for training,
+> scoring, or benchmark claims. See `phase1/results/source_choice_decision_view_operator_proxy_audit_20260821/`.
+
 This directory is the Git LFS distribution of the formally verified S2 decision-time view controlled by
 commit `fd5c3ee0fdfffe399088e2e3a4394598264239a6`. The formal receipts are in
 `phase1/results/source_choice_decision_view_v1_20260821_fd5c3ee/`.

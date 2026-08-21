@@ -1,7 +1,34 @@
-# 当前研究方向唯一入口（2026-08-21）
+# 当前研究方向唯一入口（2026-08-22）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0DO. 2026-08-22 RPM 关闭 child-selection / future-potential 首创，主线收缩到严格 D&B 与评分通道
+
+正式 OOF 裁决前的防 scoop 审计发现 *AI Research Preference Models*（arXiv:2608.13940v1，2026-08-14）比
+FOREAGENT 更
+直接：它在 AIRA-dojo 中每步从同一 parent 生成 `N=15` 个未执行 child，再由 inference-only 或 agentic RPM 选择一个
+执行。20 个公开 AIRS-Bench 文本/表格任务、10 seeds、24h H200 的端到端结果从 No-RPM `0.684` 提高到
+`0.711/0.729`；达到基线 24h 分数只需 `14.88/15.50` 小时。task-stratified improvement-probability CI 下界也严格
+高于 0.5。其离线 1,000 sibling pairs 直接以“节点子树最高 test score”为标签，并报告强 LLM、context、reasoning、
+ensemble 与 pilot 的正趋势。因此以下首创全部关闭：AIRA-dojo 未执行 child preference、candidate preference 带来系统
+加速、用 subtree-best/future-potential 作为新标签、以及简单加大 judge/context/pilot 的方法 novelty。
+
+论文同时承认离线数据来自旧 greedy runs、存在 off-policy 与 subtree-max 机会偏差；删除 gap<0.01 near-ties；主结果
+只覆盖 child creation，final-node selection 未可靠超过 highest-validation，并明确把 parent selection 留作 future work。
+这不授权我方自动重开 parent/lookahead：当前 source-choice 标签是 status-certified selection outcome、不是最终任务质量；
+正在运行的固定 TF-IDF OOF 仍按原门完成，NO 即关闭，不换模型/子集 rescue。即使 GO，也必须依次通过 exact-sign、
+recovery-provenance、sealed frozen/temporal replication 和预算等价 utility bridge 才能讨论方法增量。
+
+当前可防守主线进一步收缩为：（1）真实 logged decision topology、failure/unknown-preserving、candidate/run/task 依赖、
+run-clean+temporal frozen、噪声/覆盖/query-init 成本与撤回链构成的 D&B/integrity benchmark；（2）机制 commit 后新
+physical runs 上的 score-channel 前瞻复现，研究同一短时执行预算内 pristine 外部分、stdout 与选择性可观测性。
+RPM/FOREAGENT 证明 candidate preference 有用；我们的贡献必须回答这些结论在更严格 estimand 与审计契约下还能保留
+多少，而不能再声称发明 preference mechanism。时间线限定：审计开始时第一生产者 stdout 已出现暂定 NO，但第二
+复算、独立 verifier 和 exact-sign audit 均未完成；因此不能称为完全结果盲，且没有据此修改任何运行中协议。详细一手
+核查：
+
+- `phase1/实验记录/2026-08-22/AIResearchPreferenceModels_直接竞品与路线重裁决.md`。
 
 ## 0DN. 2026-08-22 FOREAGENT 关闭“首次执行前 preference”，但强化严格 benchmark 边界
 

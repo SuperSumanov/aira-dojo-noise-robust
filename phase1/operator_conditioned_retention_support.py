@@ -221,11 +221,14 @@ def load_card_identity(path: Path, protocol: dict[str, Any]) -> dict[str, dict[s
             card_id = required_text(row.get("id"), f"card line {line_number}:id")
             if card_id in cards:
                 raise SupportError(f"duplicate card id at line {line_number}")
+            task = row.get("task")
+            if not isinstance(task, dict):
+                raise SupportError(f"invalid task object at card line {line_number}")
             lineage = row.get("lineage")
             if not isinstance(lineage, dict):
                 raise SupportError(f"invalid lineage at card line {line_number}")
             cards[card_id] = {
-                "task": required_text(row.get("task"), f"card line {line_number}:task"),
+                "task": required_text(task.get("name"), f"card line {line_number}:task.name"),
                 "run_id": required_text(row.get("run_id"), f"card line {line_number}:run"),
                 "op": required_text(lineage.get("op"), f"card line {line_number}:op"),
             }

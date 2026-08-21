@@ -46,7 +46,7 @@ def make_inputs(tmp_path: Path) -> tuple[Path, Path, list[dict[str, object]]]:
                     cards.append(
                         {
                             "id": parent,
-                            "task": task,
+                            "task": {"name": task},
                             "run_id": run_id,
                             "lineage": {"op": op},
                             "code": "unused",
@@ -169,4 +169,16 @@ def test_credential_shaped_card_is_refused_before_parse(tmp_path: Path) -> None:
     )
     protocol = make_protocol(tmp_path, parent_path, cards_path)
     with pytest.raises(SupportError, match="credential-shaped"):
+        load_card_identity(cards_path, json.loads(protocol.read_text(encoding="utf-8")))
+
+
+def test_flat_task_string_is_rejected_as_schema_drift(tmp_path: Path) -> None:
+    parent_path, cards_path, cards = make_inputs(tmp_path)
+    cards[0]["task"] = "task-a"
+    cards_path.write_text(
+        "".join(json.dumps(card, sort_keys=True) + "\n" for card in cards),
+        encoding="utf-8",
+    )
+    protocol = make_protocol(tmp_path, parent_path, cards_path)
+    with pytest.raises(SupportError, match="task object"):
         load_card_identity(cards_path, json.loads(protocol.read_text(encoding="utf-8")))

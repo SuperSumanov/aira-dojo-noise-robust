@@ -53,3 +53,12 @@ parent-matched operator effect；该因果路线保持关闭。本轮问题更�
 11. 资源：CPU-only，GPU=0、API=0、底座更新=0；预计含全测试小于 30 分钟。
 12. 失败：SHA/schema/context/秘密/路径任一异常 fail closed，旧产物不覆盖。
 13. 停止：支持失败永久关闭该 v11 S1；支持通过也先冻结 S1 的 contrast、推断与 kill gates 后才读值。
+
+## 首次 formal attempt 的结果前工程失败
+
+commit `60a4f61cc74cb15759ac0006e18c85289e433861` 的 focused tests 为 4 passed，但 producer 在第一张 card
+就拒绝输入：实现把 canonical v11 的 task 对象误当成字符串；真实任务 ID 位于冻结 schema 的 `task.name`。
+此时 producer 没有生成 artifact/summary，task×op cell 统计与任何支持门均未计算，故没有科学结果。旧目录
+`/research/d7/spc/yzyang4/operator-conditioned-retention-support/60a4f61-v1` 原样保留。允许的唯一修复是
+producer/verifier 同步要求 task 为对象并读取 `task.name`，增加真实 schema 反例；协议、输入 SHA、阈值、
+目标 operators 与停止规则均不变，重试使用新 commit 和新目录。

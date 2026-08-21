@@ -88,10 +88,14 @@ def reconstruct(
             if not line.strip():
                 continue
             row = json.loads(line)
-            if not isinstance(row, dict) or not isinstance(row.get("lineage"), dict):
+            if (
+                not isinstance(row, dict)
+                or not isinstance(row.get("task"), dict)
+                or not isinstance(row.get("lineage"), dict)
+            ):
                 raise VerificationError(f"invalid card at line {line_number}")
             card_id = row.get("id")
-            task = row.get("task")
+            task = row["task"].get("name")
             run_id = row.get("run_id")
             op = row["lineage"].get("op")
             if not all(isinstance(value, str) and value for value in (card_id, task, run_id, op)):

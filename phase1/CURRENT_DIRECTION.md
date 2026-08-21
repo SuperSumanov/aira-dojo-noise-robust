@@ -3,6 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DC. 2026-08-21 status-certified partial order 恢复 53.9% 的关系缺口
+
+控制 commit `82e1be5839506556e0edde5cd240e1918e2eed66` 在结果前固定两份 metadata SHA、关系定义和九个
+材料门。只将同 parent finite child 对精确恢复的 `EXECUTION_ERROR`/`OFFICIAL_GRADE_ABSENT` child 组成
+validity-dominance relation；unknown、未注册 missing slot、invalid-invalid 和未发布 finite-finite 关系保持 unresolved。
+
+正式状态=`VERIFIED_MATERIAL_STATUS_CERTIFIED_RELATION_RECOVERY`：902 个 certified invalid children 新增 2,079 条
+关系，使 source-level certified coverage 从 5,897/9,755=`0.6045105074320861` 提升到 7,976/9,755=
+`0.8176319835981548`，绝对 gain=`0.2131214761660687`，恢复原关系缺口的
+`0.5388802488335925`。train/frozen gain=`0.22235838779956427/0.18819351975144252`；14 个支持任务中 11 个
+为正，dominant task share=`0.18759018759018758`。全部预注册门通过。
+
+这是强 D&B 数据资产但不是算法 novelty：NAS-Bench-101 已把 invalid architecture 记最差，constrained BO 已有
+feasibility/objective 分解。允许主张的是 natural MLE-agent sibling 上 provenance-bound、unknown-preserving 的
+failure-aware partial-order release。禁止把 `C(n,2)` 写成实际 comparison log、把 validity 写成 missing numeric score，
+也禁止 complete choice set、MAR、predictor/search utility 或 first/only；仍有 1,779 relations unresolved。
+
+producer×2/verifier×2 逐字节一致，独立重建差=0；focused=`5 passed`，完整 phase tests=`649 passed,
+25 warnings`，forbidden path、秘密扫描、worktree 漂移和可写文件均为 0。回传的 54 个 manifest payload 全部匹配。
+直接证据：
+
+- `phase1/results/status_certified_partial_order_v1_20260821_82e1be5/README.md`；
+- `phase1/实验记录/2026-08-21/StatusCertifiedPartialOrder_v1_正式裁决.md`。
+
 ## 0DB. 2026-08-21 observability-aware 七项证据索引正式通过
 
 控制 commit `ce5c558509b1f481f9e9df1212d9f00c3cf00bce` 的 evidence index v3 已把 0DA 漏斗作为独立

@@ -1,0 +1,15 @@
+{
+  "artifact_manifest_sha256": "e687e5b69e0c34e6571261e60d5795b8d52f7376d8ca9db24a0f7d4bea03de63",
+  "artifact_summary_sha256": "fb6bbf07c9be7b119e301718d1e78121d2e566b93decdec6b6b0fbaf011e9af4",
+  "certified_coverage": 0.8176319835981548,
+  "claim_allowed": true,
+  "coverage_gain": 0.2131214761660687,
+  "imports_producer": false,
+  "lost_relation_recovery": 0.5388802488335925,
+  "maximum_reconstruction_difference": 0.0,
+  "parent_rows": 3252,
+  "producer_status": "VERIFIED_MATERIAL_STATUS_CERTIFIED_RELATION_RECOVERY",
+  "prospective_outcome_read": false,
+  "status": "INDEPENDENT_STATUS_CERTIFIED_PARTIAL_ORDER_VERIFIED",
+  "validity_dominance_edges": 2079
+}

@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus status-certified source partial order
+PREFLIGHT_02_QUESTION=can exact failure statuses materially recover source-level certified relation coverage
+PREFLIGHT_03_INPUT=parent SHA 75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03 and status SHA bfb9870d83c50ef2d06bf2d374fc9f9213f41665f4cebeab7ab31837bcfde0d2
+PREFLIGHT_04_UNIT=full 3252-parent census with fixed role and task strata
+PREFLIGHT_05_RELATION=finite candidate validity-dominates exact recovered execution-error or grade-absent child
+PREFLIGHT_06_DENOMINATOR=per-parent choose-source-size-2 declared capacity, not actual agent comparisons
+PREFLIGHT_07_GATE=at least 1000 edges, 0.10 overall gain, 0.25 gap recovery, role and task support
+PREFLIGHT_08_INFERENCE=no IID interval; exact finite-population counts only
+PREFLIGHT_09_LEAKAGE=no code numeric outcome orientation prediction prospective vault archive or checkpoint
+PREFLIGHT_10_REPRO=producer x2 independent verifier x2 exact commit protocol and two input SHAs
+PREFLIGHT_11_FAILURE=no category threshold task subset or unknown-status rescue after result
+PREFLIGHT_12_RESOURCES=single-thread CPU GPU 0 API 0 base-LLM update 0
+PREFLIGHT_13_EXPECTED_WALL=under 30 minutes including complete phase1 regression

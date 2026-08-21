@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=0DJ decision-time input projection; no HCE TD probe or multifidelity revival
+PREFLIGHT_02_QUESTION=remove post-selection provenance without changing 3000 groups or 8027 candidates
+PREFLIGHT_03_INPUT=SHA-pinned S1v2 public materialization summary manifest verification and three role files
+PREFLIGHT_04_UNIT=all groups candidates labels ordering and code bytes retained exactly
+PREFLIGHT_05_LABEL=train winner copied; frozen extension vault path and labels never read
+PREFLIGHT_06_MODEL_FIELDS=exact group and candidate allowlists; extra or missing field fails
+PREFLIGHT_07_BLOCKED=provenance source_journal_sha256 absent from every model candidate
+PREFLIGHT_08_METADATA=role run parent separated into exact-field cluster manifest
+PREFLIGHT_09_CODE=full UTF-8 code and SHA revalidated without normalization truncation or dedup merging
+PREFLIGHT_10_EVALUATOR=aggregate-only sealed evaluator rejects extra fields and uses cluster manifest closure
+PREFLIGHT_11_REPRO=producer x2 independent verifier x2 byte-identical and no producer import
+PREFLIGHT_12_RESOURCES=CPU only GPU 0 API 0 base-LLM update 0 expected under 10 minutes
+PREFLIGHT_13_SCOPE=input integrity only; no predictor accuracy search utility prospective or novelty claim

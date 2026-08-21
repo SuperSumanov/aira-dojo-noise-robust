@@ -1,0 +1,6 @@
+{
+  "cluster_manifest.jsonl": "a8f328a3972708e52126157774204647698d2f8b00cc5f7ad06fd8b1d38b4035",
+  "extension_model.jsonl": "206974ea5efd0ca3d65b3d96d9fae725d033ec66213a8dc60f9771edf5c5b050",
+  "frozen_model.jsonl": "62ffced17d045c979a29e972c16a7bfe53d7f47467a6d9728305b4b7dee84005",
+  "train_model.jsonl": "9d0ea764de59b3d0e9f2723d2663ecfb23e80c968078f0ed32425f35d31d77e3"
+}

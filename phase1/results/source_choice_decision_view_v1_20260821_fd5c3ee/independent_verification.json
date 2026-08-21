@@ -1,0 +1,16 @@
+{
+  "blocked_candidate_fields_removed": {
+    "provenance": 8027,
+    "source_journal_sha256": 8027
+  },
+  "blocked_fields_present_in_model_objects": 0,
+  "candidate_slots": 8027,
+  "frozen_or_extension_label_vault_read": false,
+  "groups": 3000,
+  "producer_imported": false,
+  "protocol": "independent-source-choice-decision-view-verifier-v1",
+  "source_materialization_commit": "5d6de6eddad30cef46c5803d8810f835c3f58c4f",
+  "status": "INDEPENDENT_SOURCE_CHOICE_DECISION_VIEW_VERIFIED",
+  "view_manifest_sha256": "5b24423079d09889e3e809cb866b9b2615e8d3023bcbf5d5ab80d588d008f820",
+  "view_summary_sha256": "295c31a88b17e8b98b798cd2792ca54ac9ee8bdd2b93f86592f9c44c1a84da39"
+}

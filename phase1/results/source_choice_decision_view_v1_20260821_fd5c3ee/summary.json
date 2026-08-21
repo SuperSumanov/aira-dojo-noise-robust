@@ -1,0 +1,81 @@
+{
+  "blocked_candidate_fields_removed": {
+    "provenance": 8027,
+    "source_journal_sha256": 8027
+  },
+  "blocked_fields_present_in_model_objects": 0,
+  "candidate_slots": 8027,
+  "candidate_slots_by_role": {
+    "extension": 247,
+    "frozen": 2041,
+    "train": 5739
+  },
+  "cluster_manifest_fields": [
+    "schema_version",
+    "group_id",
+    "role",
+    "task",
+    "run_id_sha256",
+    "parent_id_sha256",
+    "source_size"
+  ],
+  "cluster_metadata_exposed_to_model": false,
+  "frozen_or_extension_label_vault_read": false,
+  "groups": 3000,
+  "groups_by_role": {
+    "extension": 113,
+    "frozen": 778,
+    "train": 2109
+  },
+  "model_candidate_fields": [
+    "candidate_id_sha256",
+    "code",
+    "code_sha256",
+    "operator",
+    "step",
+    "depth"
+  ],
+  "model_group_fields": [
+    "schema_version",
+    "group_id",
+    "task",
+    "source_size",
+    "candidates"
+  ],
+  "outputs": {
+    "cluster_manifest.jsonl": "a8f328a3972708e52126157774204647698d2f8b00cc5f7ad06fd8b1d38b4035",
+    "extension_model.jsonl": "206974ea5efd0ca3d65b3d96d9fae725d033ec66213a8dc60f9771edf5c5b050",
+    "frozen_model.jsonl": "62ffced17d045c979a29e972c16a7bfe53d7f47467a6d9728305b4b7dee84005",
+    "train_model.jsonl": "9d0ea764de59b3d0e9f2723d2663ecfb23e80c968078f0ed32425f35d31d77e3"
+  },
+  "predictor_or_search_utility_claim_allowed": false,
+  "protocol": "source-choice-decision-view-v1",
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updated": false,
+    "first960_used": false,
+    "frozen_or_extension_label_vault_read": false,
+    "gpu": 0,
+    "model_training_or_scoring": false,
+    "prospective_outcome_used": false,
+    "raw_materialization_bytes_read": true,
+    "train_labels_preserved": true,
+    "winner_or_group_membership_changed": false
+  },
+  "sealed_vault_sha256_opaque": {
+    "extension_labels.jsonl": "d0ab25ff522317a1239853434676851ffcbe15da5f0a63e9462d3da938c1f999",
+    "frozen_labels.jsonl": "6b71f5dc511c63a9207bd87094f0fcd903c72a7f5d6fef1936e5bdba8a0f3bc8"
+  },
+  "source_materialization_commit": "5d6de6eddad30cef46c5803d8810f835c3f58c4f",
+  "source_summary_sha256": "dc5a7af25cef3cb967b76cbe3262473b42011bd6f8758caec4e4a1a198ceec1f",
+  "status": "SOURCE_CHOICE_DECISION_VIEW_READY",
+  "tasks": 23,
+  "train_only_group_fields": [
+    "winner_candidate_sha256"
+  ],
+  "winner_fields_by_role": {
+    "extension": 0,
+    "frozen": 0,
+    "train": 2109
+  }
+}

@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DK. 2026-08-21 source-choice decision-time view 正式通过
+
+控制 commit `fd5c3ee0fdfffe399088e2e3a4394598264239a6` 在不改 0DJ 的 3,000 groups、8,027 candidates、
+winner、顺序与 code bytes 的条件下，完成 exact-field decision-time projection。每个 candidate 的
+`provenance/source_journal_sha256` 均被结构化删除，removed count 各为 8,027，模型对象 blocked fields=0；
+`role/run_id_sha256/parent_id_sha256` 分离到 cluster manifest。train winner fields=2,109，frozen/extension=0/0，
+真实 vault 未读。
+
+producer x2 与不 import producer 的 verifier x2 逐字节一致；focused=`18 passed`，完整 phase tests=
+`704 passed, 25 warnings`。forbidden scientific/vault path、credential filename/content、worktree drift 与正式可写
+文件均为 0。正式状态 `SOURCE_CHOICE_DECISION_VIEW_READY`，0DJ 的 release blocker 已在 schema 层解决，而不是靠
+文档要求用户忽略泄漏字段。
+
+该结果只授权两类后续：（1）秘密/hash 复核后的 immutable S2 role files + cluster manifest Git LFS 发布；（2）另立
+结果前协议的 train-only OOF baseline。它不含 predictor accuracy、frozen score、search utility 或算法 novelty；原始
+S1v2 provenance-rich view 仍不得训练/分发，frozen/extension vault 在模型族与选择规则冻结前继续不读。score-channel
+prospective gate、first-960/strict-future 与 Qwen checkpoint 约束不变。直接证据：
+
+- `phase1/results/source_choice_decision_view_v1_20260821_fd5c3ee/README.md`；
+- `phase1/实验记录/2026-08-21/SourceChoiceDecisionView_S2正式裁决.md`。
+
 ## 0DJ. 2026-08-21 source-choice S1v2 物化通过，但原始模型视图因 provenance 泄漏封锁
 
 控制 commit `5d6de6eddad30cef46c5803d8810f835c3f58c4f` 的 v2 已正式物化并封存 3,000 个

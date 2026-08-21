@@ -23,7 +23,7 @@ umask 077
 
 commit=$(git -C "$repo" rev-parse HEAD)
 short=${commit:0:7}
-output=${result_parent}/${short}-v1
+output=${result_parent}/${short}-v2
 [[ ! -e "$output" ]] || { echo "output exists: $output" >&2; exit 2; }
 mkdir -p "$output"
 cp "$repo/phase1/scripts/run_senior_augmented_batch_identity_support_20260821.sh" "$output/runner_source.sh"

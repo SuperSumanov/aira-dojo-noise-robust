@@ -130,7 +130,7 @@ diff "${output}/verification_a.json" "${output}/verification_b.json" > "${output
 
 forbidden_hits=$(
   { grep -hEi '/(prospective_decision_v1|temporal_blind|score-channel|label_vault|outcome_registry|regrade|cards_current|decision_clean)' "${output}"/*.strace* || true; } \
-    | grep -vE 'phase1/v11_decision/decision_(train|frozen|extension)_v11_b0.jsonl' \
+    | { grep -vE 'phase1/v11_decision/decision_(train|frozen|extension)_v11_b0.jsonl' || true; } \
     | wc -l
 )
 printf 'forbidden_scientific_path_hits=%s\n' "${forbidden_hits}" > "${output}/trace_audit.txt"

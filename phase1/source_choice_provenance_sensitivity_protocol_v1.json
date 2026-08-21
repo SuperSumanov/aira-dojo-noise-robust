@@ -21,7 +21,22 @@
     "card_candidates": 5042,
     "journal_recovered_candidates": 697,
     "all_card_groups": 1613,
+    "all_card_tasks": 23,
+    "all_card_source_size_counts": {
+      "2": 1014,
+      "3": 565,
+      "5": 34
+    },
     "mixed_groups": 496,
+    "mixed_tasks": 13,
+    "mixed_source_size_counts": {
+      "3": 319,
+      "4": 7,
+      "5": 167,
+      "7": 1,
+      "8": 1,
+      "11": 1
+    },
     "all_winners_have_card_provenance": true,
     "minimum_all_card_groups": 1000,
     "minimum_all_card_tasks": 15

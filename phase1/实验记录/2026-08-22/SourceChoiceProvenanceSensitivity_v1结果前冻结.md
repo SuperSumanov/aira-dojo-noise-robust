@@ -13,11 +13,12 @@ decision-time 输入，却仍可能编码两类不同机制：可部署的静态
 ## 冻结分析与门
 
 只在独立 OOF verifier 返回 `GO_CROSS_TASK` 或 `GO_RUN_ONLY` 时激活；NO verdict 不做 rescue。复用已经写出的
-task-LOTO `tfidf_pairwise_lr` 逐组预测，不重新拟合、不改排名。primary 固定为 1,613 个 all-card groups，逐组基线仍是
+task-LOTO `tfidf_pairwise_lr` 逐组预测，不重新拟合、不改排名。结果盲结构预检确认 all-card 1,613 groups 覆盖全部
+23 tasks，arity 2/3/5 分别为 1,014/565/34；mixed 496 groups 覆盖 13 tasks。primary 固定为 all-card groups，逐组基线仍是
 其真实 arity 下的 `1/source_size`；先组内 delta，再 task 内平均，最后 task-macro。20,000 次 task bootstrap
 seed=20260824，并做忽略 exact zero 的单侧 exact task sign test。
 
-结构支持须同时满足 all-card groups≥1,000、tasks≥15。效果门与原 OOF 相同：task-macro delta≥0.03、task CI 下界>0、
+结构支持因此已满足 all-card groups≥1,000、tasks≥15。效果门与原 OOF 相同：task-macro delta≥0.03、task CI 下界>0、
 sign p<0.05。通过记 `ROBUST_BEYOND_RECOVERY_MIX`；否则记 `RECOVERY_MIX_SENSITIVE`，必须降格广义 branch
 intelligence 主张。mixed 496 groups 仅作次级归因：报告模型相对 exact uniform、card-only uniform、模型选择 provenance
 比例，以及 task/arity strata。

@@ -1,0 +1,85 @@
+{
+  "protocol": "meta-kaggle-exact-parent-human-fork-s0-v1",
+  "frozen_at_utc": "2026-08-21T09:13:44Z",
+  "status": "S0A_PREREGISTERED_NOT_RUN",
+  "role": "external_cross_domain_extension_only",
+  "mainline_unchanged": "transition-future-escrow-7458f09",
+  "dataset": {
+    "owner_slug": "kaggle/meta-kaggle",
+    "dataset_id": 9,
+    "license": "Apache-2.0",
+    "expected_update_frequency": "daily",
+    "snapshot_file_metadata": {
+      "Competitions.csv": ["152MB", "2026-08-21 05:23:20"],
+      "KernelVersionCompetitionSources.csv": ["163MB", "2026-08-21 05:27:29"],
+      "KernelVersionKernelSources.csv": ["51MB", "2026-08-21 05:27:26"],
+      "Kernels.csv": ["293MB", "2026-08-21 05:27:34"],
+      "KernelVersions.csv": ["5GB", "2026-08-21 05:28:49"],
+      "Submissions.csv": ["2GB", "2026-08-21 05:28:12"]
+    }
+  },
+  "already_bound_inputs": {
+    "Competitions.csv": "a77249dfddc92d1c3d781ac567f876966391c5befb92c81ae52c3e214fbbd0c9",
+    "KernelVersionCompetitionSources.csv": "abaaee73c7ef464d2c708e82b707d2b3b5ded4938f42bca0a84d3834a0630a35",
+    "KernelVersionKernelSources.csv": "13c890df4dabd7768947f0853b5330da9454af9b804e76b90eb732283515eafd",
+    "dataset-metadata.json": "5595e5d41ef4e114d9654fd054a9755a907c4840c175fdc336a2ffda3a275e5a"
+  },
+  "new_downloads": [
+    "Kernels.csv",
+    "KernelVersions.csv",
+    "Submissions.csv"
+  ],
+  "relationship_contract": {
+    "authoritative_fork_parent": "Kernels.ForkParentKernelVersionId",
+    "required_consistency_field": "KernelVersions.ParentScriptVersionId on the child FirstKernelVersionId row",
+    "forbidden_parent_proxy": "KernelVersionKernelSources.SourceKernelVersionId",
+    "canonical_child": "Kernels.FirstKernelVersionId joined uniquely to KernelVersions.Id",
+    "canonical_siblings": "distinct child Kernel Id values with the same exact ForkParentKernelVersionId",
+    "task_identity": "one identical singleton SourceCompetitionId on parent version and both child first versions",
+    "pair_sampling": "one unordered child pair per parent, selected by ascending SHA256(parent_version_id|child_kernel_id); orientation by a separate SHA256 domain",
+    "closed_competition_only": true
+  },
+  "s0a_contract": {
+    "allowed_reads": [
+      "dataset metadata",
+      "file listing",
+      "whole-file SHA256",
+      "first CSV header record"
+    ],
+    "forbidden_reads": [
+      "Submissions.csv data records",
+      "notebook code",
+      "public or private score values"
+    ],
+    "pre_and_post_file_listing_must_match": true
+  },
+  "s0b_identity_support_gates": {
+    "required_columns_present": true,
+    "kernel_id_unique": true,
+    "kernel_version_id_unique": true,
+    "selected_parent_child_time_order_valid": true,
+    "selected_graph_acyclic": true,
+    "selected_first_version_join_complete": true,
+    "selected_parent_version_join_complete": true,
+    "selected_parent_script_differs_from_child_script": true,
+    "direct_parent_field_agreement_rate_ge": 0.95,
+    "selected_pair_identity_complete": true,
+    "canonical_pairs_ge": 500,
+    "distinct_parents_ge": 100,
+    "completed_competitions_ge": 20,
+    "dominant_competition_share_le": 0.2
+  },
+  "stop_rules": {
+    "s0a_failure": "close without opening any CSV data record",
+    "s0b_failure": "close without opening Submissions.csv data records or notebook code",
+    "s0b_pass": "freeze a separate S1 score-support/effect protocol before opening Submissions.csv data records",
+    "post_result_threshold_or_population_changes_forbidden": true
+  },
+  "scope": {
+    "gpu_hours": 0,
+    "paid_api_calls": 0,
+    "base_llm_updates": 0,
+    "expected_new_download_gb": 7.3,
+    "expected_s0a_minutes": [10, 40]
+  }
+}

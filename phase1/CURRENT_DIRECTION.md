@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CS. 2026-08-21 Meta Kaggle exact-parent human-fork S0 已结果盲冻结
+
+0CQ 的 TraceML join 失败不否定 human-fork estimand，但公开 TraceML 已经覆盖 human trajectory/fork graph，故新路线
+不能再主张“首个 human fork 数据集”。保留的窄突破候选是：从官方每日 Meta Kaggle snapshot 直接用
+`Kernels.ForkParentKernelVersionId` 恢复精确 fork parent，并要求 child first-version 的
+`KernelVersions.ParentScriptVersionId` 一致；`KernelVersionKernelSources` 只代表 notebook input dependency，明确禁止
+把它当 fork edge。若 exact-parent sibling 支持过门，再另立结果盲 S1，测试冻结 AIRA transition scorer 或轻量
+human-fork scorer 能否预测外部 hidden private outcome；即使为正也只是 cross-domain transfer extension，不替代
+0CP strict-future AIRA 主线。
+
+S0a 只下载并 SHA 绑定 `Kernels.csv`、`KernelVersions.csv`、`Submissions.csv`，连同已绑定的 Competitions 与两个
+source-link tables；只读 header，不打开 submission score rows。S0b 只读 fork/version/competition identity，要求
+direct-parent 一致率≥0.95，并在 fixed one-pair-per-parent 后有 pairs≥500、parents≥100、completed competitions≥20、
+dominant competition≤0.20。任一门失败即关闭；过门也必须在读取 `Submissions` 任何 data row 或 notebook code 前另立
+S1。新增下载约 7.3GB，CPU/network-only、GPU/API=0。直接协议：
+
+- `phase1/meta_kaggle_exact_parent_s0_protocol_v1.json`；
+- `phase1/实验记录/2026-08-21/MetaKaggleHumanForkExactParent_S0预注册与输入绑定.md`。
+
 ## 0CR. 2026-08-21 真实 batch 身份恢复 S0 正式裁决：支持规模通过，provenance 身份不可用
 
 commit `a466888246ec606816486c164fbf24b7e4da7114` 的 V3 producer×2 与不 import producer 的 verifier×2

@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CO. 2026-08-21 transition future escrow 已条件预注册，当前无可揭盲 future 样本
+
+0CN 的接近门槛信号只允许原样冻结为 outcome-blind extension。当前 249-run support snapshot 的初步结构投影显示
+parent-source pair coverage=0.848048，但与本模型训练 Cards 有 2,330 Card-ID / 2,321 code-SHA overlaps；
+physical-run overlap 虽为 0，仍不足以作独立验证。因此 current support 永久只作工程 smoke，效果分析为 0。
+
+已冻结的未来协议要求：实现 commit 后自动 activation；只接收 generation-start 严格晚于 activation 的 run；
+full-fit 三臂和全部参数沿用 `e8eb25c...`，primary 仅 combined−child；先锁 predictions，再等既有 first-960+
+closure。严格支持门为 1,500 parent-covered/source-novel pairs、150 runs、15 tasks、dominant≤0.25、parent
+coverage≥0.80；训练/future endpoint/run overlap 必须为 0。未来只有 paired run/task/parent 三类 CI 全部>0、
+combined chance CI 全部>0.5 与 LOTO 全正才允许 positive。当前尚未实现/激活，outcome vault 未读，GPU/API=0。
+直接协议：
+
+- `phase1/实验记录/2026-08-21/TreeTransitionFutureEscrow_冻结扩展预注册.md`。
+
 ## 0CN. 2026-08-21 parent-relative transition OOF：方向良好但正式 no-unlock
 
 结果前冻结的 68 维 child+transition arm 已完成 5,240-pair、28-task、152-parent-closed-supercomponent OOF。

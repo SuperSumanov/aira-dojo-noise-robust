@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CK. 2026-08-21 静态信号来源 component-OOF 审计已冻结，尚未运行
+
+0CJ 只证明 code+lineage 的 pooled/task-conditioned GBM 在已见 component test 上略高于 chance；尚不能排除
+该信号主要来自 `depth/step/n_siblings` 搜索位置捷径。为避免再次查看 frozen test，已在任何新 OOF margin 前
+冻结一个只用 outer-train train+dev=5,240 pairs、168 pair-graph components、28 tasks 的 5-fold component-OOF
+来源审计。固定比较相同 pooled GBM 的 `code-only` 31 维、`lineage-only` 3 维和 `all-static` 34 维；不输入
+task ID、不调参、不选 champion、不读 test/TF-IDF/semantic/prospective outcome。
+
+窄正面门同时要求 code arm 的 task/parent chance CI 下界>0.5、code−lineage 两类 paired CI 下界>0、
+code−all 两类 CI 下界≥−0.01、任一 task 删除后 code−lineage task-macro delta 仍>0，以及 random/orientation、
+component isolation、反对称和 producer×2/verifier×2 全过。即使通过，也只能说明已观察 static signal 不可由
+三个 lineage 特征解释，不得申“理解代码”、因果机制、frozen/prospective/search gain 或方法 novelty。当前状态为
+`STATIC_SOURCE_COMPONENT_OOF_PREREGISTERED_NOT_RUN`；CPU-only、0 GPU·h、0 API。直接协议：
+
+- `phase1/实验记录/2026-08-21/CleanDirectDecision_静态信号来源_componentOOF_预注册.md`。
+
 ## 0CJ. 2026-08-21 Component 同池静态 suite：便宜结构信号可学，但不强于 TF-IDF
 
 结果前冻结的 component train/dev/test=`4689/551/931` CPU-only suite 已完成 producer×2 与不 import

@@ -3,13 +3,13 @@ set -eo pipefail
 source /uac/y24/yzyang4/env_setup.sh
 set -u
 
-repo=/research/d7/spc/yzyang4/aira-dojo
+repo=${REPO:-/research/d7/spc/yzyang4/aira-dojo}
 python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
 source_root=/research/d7/spc/yzyang4/external/senior_data/mle
 run_manifest=${repo}/phase1/results/senior_augmented_train_dev_support_20260819/run_manifest.jsonl
 pair_structure=${repo}/phase1/results/senior_augmented_train_dev_support_20260819/pair_structure.jsonl
 support_summary=${repo}/phase1/results/senior_augmented_train_dev_support_20260819/summary.json
-result_parent=/research/d7/spc/yzyang4/senior-true-batch-identity-support
+result_parent=${RESULT_PARENT:-/research/d7/spc/yzyang4/senior-true-batch-identity-support}
 expected_global_inventory=3f23943b81f8d39367a4e503dfbf5de2d78b65fc36a1918499a722e689dbb5b3
 
 export BLIS_NUM_THREADS=1

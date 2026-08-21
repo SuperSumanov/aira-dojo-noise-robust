@@ -50,6 +50,7 @@ git -C "$worktree" status --short > "$staging/worktree_status_before.txt"
 [[ ! -s $staging/worktree_status_before.txt ]] || { echo "worktree is dirty" >&2; exit 4; }
 
 cd "$worktree"
+export PYTHONPATH="$worktree${PYTHONPATH:+:$PYTHONPATH}"
 source_index=phase1/results/decision_corpus_evidence_index_v1_20260820/index.json
 builder=phase1/build_decision_corpus_evidence_index_v2.py
 verifier=phase1/verify_decision_corpus_evidence_index_v2.py

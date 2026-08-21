@@ -1,0 +1,22 @@
+{
+  "bootstrap_repetitions": 20000,
+  "bootstrap_seed": 20260822,
+  "expected_parent_rows": 3252,
+  "expected_role_parent_counts": {
+    "extension": 114,
+    "frozen": 845,
+    "train": 2293
+  },
+  "input_per_parent_sha256": "75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03",
+  "metric": "finite_source_retention",
+  "minimum_bootstrap_valid_fraction": 0.9,
+  "minimum_common_tasks": 10,
+  "minimum_frozen_parents_per_task": 15,
+  "minimum_loto_rho": 0.0,
+  "minimum_primary_rho": 0.5,
+  "minimum_train_parents_per_task": 30,
+  "permutation_repetitions": 100000,
+  "permutation_seed": 20260821,
+  "protocol": "source-retention-transport-v1",
+  "significance_alpha": 0.05
+}

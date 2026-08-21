@@ -1,0 +1,44 @@
+{
+  "protocol": "source-choice-materialization-support-v1",
+  "input_answerability_per_parent_sha256": "b2488d059ce4fafacc321e98fb4f4e82b5f0b4d4abc86a413d9e6f80da0cb4d4",
+  "input_hurdle_construction_sha256": "846da509373ee0d6bbb072f7fcc9f21dbcbda0ad5ced0355dabffa5e61975f67",
+  "expected_answerability_rows": 3252,
+  "expected_status_winners": 3001,
+  "expected_identity_available_incomplete_rows": 721,
+  "expected_construction_rows_by_role": {
+    "train": 544,
+    "frozen": 166,
+    "extension": 11
+  },
+  "expected_eligible_construction_rows_by_role": {
+    "train": 497,
+    "frozen": 150,
+    "extension": 10
+  },
+  "minimum_materializable_status_winners": 2800,
+  "minimum_materializable_status_winner_rate_all_parents": 0.85,
+  "minimum_code_complete_share_of_status_winners": 0.90,
+  "minimum_train_materializable_status_winners": 1900,
+  "minimum_frozen_materializable_status_winners": 700,
+  "minimum_train_code_complete_share_of_status_winners": 0.90,
+  "minimum_frozen_code_complete_share_of_status_winners": 0.90,
+  "minimum_tasks_with_materializable_status_winner": 20,
+  "minimum_tasks_with_at_least_20_materializable_status_winners": 15,
+  "minimum_variable_arity_share": 0.50,
+  "maximum_dominant_task_share": 0.25,
+  "require_train_frozen_parent_overlap": 0,
+  "require_train_frozen_run_overlap": 0,
+  "allow_result_rescue": false,
+  "scope": {
+    "code_bytes_read": false,
+    "numeric_grade_read": false,
+    "gap_read": false,
+    "prospective_outcome_read": false,
+    "hurdle_model_result_read": false,
+    "raw_archive_or_journal_read": false,
+    "candidate_identity_emitted": false,
+    "gpu": 0,
+    "api_calls": 0,
+    "base_llm_updated": false
+  }
+}

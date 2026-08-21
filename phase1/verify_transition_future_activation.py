@@ -66,11 +66,7 @@ def parse_utc(value: Any) -> dt.datetime:
 
 def source_hashes(repo: Path, commit: str, paths: list[Any]) -> dict[str, str]:
     head = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
-    dirty = subprocess.check_output(
-        ["git", "-C", str(repo), "status", "--porcelain", "--untracked-files=all"],
-        text=True,
-    ).strip()
-    check(head == commit and not dirty, "source commit/clean worktree differs")
+    check(head == commit, "source commit differs")
     result = {}
     for relative in paths:
         check(isinstance(relative, str), "non-string source path")

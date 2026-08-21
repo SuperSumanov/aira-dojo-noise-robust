@@ -58,11 +58,7 @@ def canonical_json(value: Any) -> bytes:
 
 def bind_source(repo: Path, commit: str, protocol_path: Path) -> tuple[str, dict[str, str]]:
     head = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
-    dirty = subprocess.check_output(
-        ["git", "-C", str(repo), "status", "--porcelain", "--untracked-files=all"],
-        text=True,
-    ).strip()
-    require(head == commit and not dirty, "source commit/clean worktree mismatch")
+    require(head == commit, "source commit mismatch")
     protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
     require(protocol.get("protocol") == ESCROW_PROTOCOL, "escrow protocol identity mismatch")
     paths = protocol.get("source_paths")

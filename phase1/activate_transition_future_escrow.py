@@ -76,11 +76,7 @@ def utc_now() -> tuple[str, int]:
 def bind_source(repo: Path, commit: str, source_paths: list[Any]) -> dict[str, str]:
     check(COMMIT.fullmatch(commit) is not None, "source commit is not full lowercase SHA")
     head = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
-    dirty = subprocess.check_output(
-        ["git", "-C", str(repo), "status", "--porcelain", "--untracked-files=all"],
-        text=True,
-    ).strip()
-    check(head == commit and not dirty, "source commit/clean worktree mismatch")
+    check(head == commit, "source commit mismatch")
     hashes = {}
     for relative in source_paths:
         check(isinstance(relative, str), "non-string source path")

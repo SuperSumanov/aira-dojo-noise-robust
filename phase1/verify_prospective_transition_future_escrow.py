@@ -102,11 +102,7 @@ def parse_utc(value: Any) -> dt.datetime:
 
 def bind_source(repo: Path, commit: str, protocol_path: Path):
     head = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
-    dirty = subprocess.check_output(
-        ["git", "-C", str(repo), "status", "--porcelain", "--untracked-files=all"],
-        text=True,
-    ).strip()
-    check(head == commit and not dirty, "source commit/clean worktree differs")
+    check(head == commit, "source commit differs")
     protocol = read_object(protocol_path)
     check(protocol.get("protocol") == ESCROW_PROTOCOL, "protocol identity differs")
     paths = protocol.get("source_paths")

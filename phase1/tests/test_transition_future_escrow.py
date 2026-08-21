@@ -1,6 +1,7 @@
 import datetime as dt
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 import numpy as np
@@ -10,6 +11,8 @@ from phase1 import prospective_transition_future_escrow as escrow
 from phase1 import transition_future_fullfit as fullfit
 from phase1 import activate_transition_future_escrow as activation
 from phase1 import verify_transition_future_activation as activation_verifier
+from phase1 import verify_transition_future_fullfit as fullfit_verifier
+from phase1 import verify_prospective_transition_future_escrow as escrow_verifier
 
 
 class FirstCoordinateModel:
@@ -194,3 +197,47 @@ def test_activation_uses_parsed_timestamp_not_lexicographic_max(tmp_path: Path) 
     verified = activation_verifier.snapshot_receipt(state, snapshot_sha)
     assert produced["maximum_generation_started_at_utc"] == "2026-08-21T00:00:00.500000Z"
     assert verified["maximum_generation_started_at_utc"] == "2026-08-21T00:00:00.500000Z"
+
+
+def test_source_binding_checks_only_registered_blobs(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    subprocess.run(["git", "init", "-q", str(repo)], check=True)
+    subprocess.run(["git", "-C", str(repo), "config", "user.email", "test@example.invalid"], check=True)
+    subprocess.run(["git", "-C", str(repo), "config", "user.name", "test"], check=True)
+    protocol = repo / "protocol.json"
+    source = repo / "source.py"
+    protocol.write_text(
+        json.dumps(
+            {
+                "protocol": fullfit.ESCROW_PROTOCOL,
+                "source_paths": ["protocol.json", "source.py"],
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    source.write_text("VALUE = 1\n", encoding="utf-8")
+    subprocess.run(["git", "-C", str(repo), "add", "protocol.json", "source.py"], check=True)
+    subprocess.run(["git", "-C", str(repo), "commit", "-qm", "fixture"], check=True)
+    commit = subprocess.check_output(
+        ["git", "-C", str(repo), "rev-parse", "HEAD"], text=True
+    ).strip()
+
+    # A forbidden-name file elsewhere in the worktree is deliberately untracked.
+    # Source binding must neither enumerate nor require cleanliness of unrelated paths.
+    (repo / ".env_default").write_text("metadata sentinel\n", encoding="utf-8")
+    paths = ["protocol.json", "source.py"]
+    assert fullfit.bind_source(repo, commit, protocol)[1].keys() == set(paths)
+    assert fullfit_verifier.bind_source(repo, commit, protocol)[1].keys() == set(paths)
+    assert activation.bind_source(repo, commit, paths).keys() == set(paths)
+    assert activation_verifier.source_hashes(repo, commit, paths).keys() == set(paths)
+    assert escrow_verifier.bind_source(repo, commit, protocol)[1].keys() == set(paths)
+
+    modules = (fullfit, fullfit_verifier, activation, activation_verifier, escrow_verifier)
+    for module in modules:
+        assert '"status", "--porcelain"' not in Path(module.__file__).read_text(encoding="utf-8")
+
+    source.write_text("VALUE = 2\n", encoding="utf-8")
+    with pytest.raises(fullfit.FullFitError, match="bound source differs"):
+        fullfit.bind_source(repo, commit, protocol)

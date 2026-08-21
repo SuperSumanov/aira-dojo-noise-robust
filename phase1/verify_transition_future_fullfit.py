@@ -62,11 +62,7 @@ def read_object(path: Path) -> dict[str, Any]:
 
 def bind_source(repo: Path, commit: str, protocol_path: Path) -> tuple[str, dict[str, str]]:
     head = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
-    dirty = subprocess.check_output(
-        ["git", "-C", str(repo), "status", "--porcelain", "--untracked-files=all"],
-        text=True,
-    ).strip()
-    check(head == commit and not dirty, "source commit/clean worktree mismatch")
+    check(head == commit, "source commit mismatch")
     protocol = read_object(protocol_path)
     check(protocol.get("protocol") == ESCROW_PROTOCOL, "escrow protocol identity mismatch")
     paths = protocol.get("source_paths")

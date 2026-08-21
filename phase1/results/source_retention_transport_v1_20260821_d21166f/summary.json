@@ -1,0 +1,135 @@
+{
+  "claim_allowed": true,
+  "criteria": {
+    "all_loto_rho_gt_minimum": true,
+    "bootstrap_lower_gt_zero": true,
+    "bootstrap_valid_fraction_ge_minimum": true,
+    "eligible_common_tasks_ge_minimum": true,
+    "permutation_p_lt_alpha": true,
+    "primary_rho_ge_minimum": true
+  },
+  "inputs": {
+    "parent_rows": 3252,
+    "per_parent_sha256": "75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03",
+    "role_parent_counts": {
+      "extension": 114,
+      "frozen": 845,
+      "train": 2293
+    },
+    "role_run_counts": {
+      "extension": 15,
+      "frozen": 92,
+      "train": 333
+    }
+  },
+  "primary": {
+    "bootstrap_95_ci": {
+      "lower": 0.5368038356525456,
+      "upper": 0.9594112875401973,
+      "valid_fraction": 1.0,
+      "valid_replicates": 20000
+    },
+    "leave_one_task_out_rho": {
+      "aptos2019-blindness-detection": 0.8000516578956404,
+      "chaii-hindi-and-tamil-question-answering": 0.7977836018772212,
+      "denoising-dirty-documents": 0.8390804597701149,
+      "dog-breed-identification": 0.8235185567764864,
+      "histopathologic-cancer-detection": 0.8000516578956404,
+      "leaf-classification": 0.8071417672951359,
+      "mlsp-2013-birds": 0.779067271041392,
+      "nomad2018-predict-transparent-conductors": 0.8773280079294955,
+      "petfinder-pawpularity-score": 0.8118208500040931,
+      "spooky-author-identification": 0.8071417672951359,
+      "tabular-playground-series-may-2022": 0.8071417672951359,
+      "text-normalization-challenge-russian-language": 0.8000516578956404,
+      "tweet-sentiment-extraction": 0.8304046986963088,
+      "us-patent-phrase-to-phrase-matching": 0.8000516578956404,
+      "whale-categorization-playground": 0.8160919540229885
+    },
+    "metric": "finite_source_retention",
+    "minimum_leave_one_task_out_rho": 0.779067271041392,
+    "permutation_two_sided_p": 0.0005999940000599994,
+    "spearman_rho": 0.8151043256715026
+  },
+  "protocol": "source-retention-transport-v1",
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "candidate_code_read": false,
+    "causal_task_effect_claim": false,
+    "complete_choice_set_claim": false,
+    "first_or_only_claim": false,
+    "gpu_hours": 0,
+    "missing_at_random_claim": false,
+    "numeric_outcome_read": false,
+    "pair_orientation_read": false,
+    "predictor_or_search_utility_claim": false,
+    "prospective_outcome_read": false
+  },
+  "sensitivities": {
+    "parent_present_only_finite_retention_spearman_rho": 0.8295238095238096,
+    "parent_present_only_tasks": [
+      "aptos2019-blindness-detection",
+      "chaii-hindi-and-tamil-question-answering",
+      "denoising-dirty-documents",
+      "dog-breed-identification",
+      "histopathologic-cancer-detection",
+      "leaf-classification",
+      "mlsp-2013-birds",
+      "nomad2018-predict-transparent-conductors",
+      "petfinder-pawpularity-score",
+      "spooky-author-identification",
+      "tabular-playground-series-may-2022",
+      "text-normalization-challenge-russian-language",
+      "tweet-sentiment-extraction",
+      "us-patent-phrase-to-phrase-matching",
+      "whale-categorization-playground"
+    ],
+    "raw_source_retention_spearman_rho": 0.8151043256715026
+  },
+  "source_commit": "d21166fb344c0645ed1e31ea6bc7e7487e441e6f",
+  "status": "VERIFIED_TASK_CONDITIONED_SOURCE_RETENTION_TRANSPORT",
+  "support": {
+    "all_tasks": 23,
+    "eligible_common_tasks": 15,
+    "eligible_task_ids": [
+      "aptos2019-blindness-detection",
+      "chaii-hindi-and-tamil-question-answering",
+      "denoising-dirty-documents",
+      "dog-breed-identification",
+      "histopathologic-cancer-detection",
+      "leaf-classification",
+      "mlsp-2013-birds",
+      "nomad2018-predict-transparent-conductors",
+      "petfinder-pawpularity-score",
+      "spooky-author-identification",
+      "tabular-playground-series-may-2022",
+      "text-normalization-challenge-russian-language",
+      "tweet-sentiment-extraction",
+      "us-patent-phrase-to-phrase-matching",
+      "whale-categorization-playground"
+    ],
+    "minimum_frozen_parents_per_task": 15,
+    "minimum_train_parents_per_task": 30
+  },
+  "train_defined_tertile_contrast": {
+    "frozen_high_minus_low": 0.21714885427161656,
+    "frozen_high_task_equal_mean": 0.9970588235294118,
+    "frozen_low_task_equal_mean": 0.7799099692577952,
+    "tertile_width": 5,
+    "train_defined_high_tasks": [
+      "aptos2019-blindness-detection",
+      "histopathologic-cancer-detection",
+      "text-normalization-challenge-russian-language",
+      "tweet-sentiment-extraction",
+      "us-patent-phrase-to-phrase-matching"
+    ],
+    "train_defined_low_tasks": [
+      "mlsp-2013-birds",
+      "nomad2018-predict-transparent-conductors",
+      "tabular-playground-series-may-2022",
+      "chaii-hindi-and-tamil-question-answering",
+      "leaf-classification"
+    ]
+  }
+}

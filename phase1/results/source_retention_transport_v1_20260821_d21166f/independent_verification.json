@@ -1,0 +1,12 @@
+{
+  "artifact_manifest_sha256": "6eafca0883d1cad943907679fbb01e6bcbabb9c47f8439bda63ceacbe52366dc",
+  "artifact_summary_sha256": "1342681eea0d33925bdd018b4c42cb93df6a3b0449d4652d687f46a50a187879",
+  "eligible_common_tasks": 15,
+  "imports_producer": false,
+  "maximum_reconstruction_difference": 0.0,
+  "parent_rows": 3252,
+  "primary_spearman_rho": 0.8151043256715026,
+  "producer_status": "VERIFIED_TASK_CONDITIONED_SOURCE_RETENTION_TRANSPORT",
+  "prospective_outcome_read": false,
+  "status": "INDEPENDENT_SOURCE_RETENTION_TRANSPORT_VERIFIED"
+}

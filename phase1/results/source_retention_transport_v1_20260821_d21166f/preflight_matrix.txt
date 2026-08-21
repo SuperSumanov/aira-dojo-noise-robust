@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus failure-censor measurement; no predictor tuning
+PREFLIGHT_02_QUESTION=train task retention profile transports to disjoint frozen physical runs
+PREFLIGHT_03_INPUT=one immutable 3252-parent metadata table SHA 75c02200d1f9b8d87614762a9f2b71ba3c678d598ff28bc237c8a46a4bc36d03
+PREFLIGHT_04_UNIT=parent then task-equal; train defines profile and frozen verifies once
+PREFLIGHT_05_METRIC=finite_source_retention Spearman plus frozen task contrast
+PREFLIGHT_06_INFERENCE=100000 task permutations; 20000 paired-task bootstraps; fixed seeds
+PREFLIGHT_07_LEAKAGE=no code numeric outcome orientation gap prediction or prospective path
+PREFLIGHT_08_CONTROLS=synthetic positive reverse negative tamper and credential tests
+PREFLIGHT_09_REPRO=producer x2 verifier x2 full commit and hashes embedded
+PREFLIGHT_10_RESOURCES=CPU only GPU 0 API 0 base-LLM update 0
+PREFLIGHT_11_FAILURE=no threshold task metric role or unit change after result
+PREFLIGHT_12_SCOPE=no MAR causal task effect complete choice set utility or first-only claim
+PREFLIGHT_13_EXPECTED_WALL=under 30 minutes including full phase1 regression

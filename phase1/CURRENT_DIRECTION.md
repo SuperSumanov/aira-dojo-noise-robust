@@ -3,6 +3,35 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0CX. 2026-08-21 source retention 的任务结构跨 disjoint-run roles 正式复现
+
+commit `d21166fb344c0645ed1e31ea6bc7e7487e441e6f` 在既有 3,252-parent source completeness 表上完成
+结果前冻结的 train→frozen transport audit。15 个事前支持合格任务（train parents≥30、frozen parents≥15）
+中，task-equal finite source-retention profile 的 Spearman rho=`0.8151043256715026`，100,000 次双侧置换
+`p=0.0005999940000599994`，20,000 次 paired-task bootstrap 95% CI=
+`[0.5368038356525456,0.9594112875401973]`。15 个 leave-one-task-out rho 全正，最小=
+`0.779067271041392`；parent-present-only sensitivity rho=`0.8295238095238096`。train 定义的 top/bottom
+tertiles 在 frozen 上 task-equal retention 相差 `+0.21714885427161656`。全部六个预注册门通过，正式状态为
+`VERIFIED_TASK_CONDITIONED_SOURCE_RETENTION_TRANSPORT`。
+
+因此可新增一个严格正面的数据结论：当前发布管线的 source retention 不是跨任务可交换的单一缺失率，而是能在
+物理 run 无交集的 train/frozen roles 间复现的 task-conditioned profile。结合 902 个已恢复 missing statuses 中
+893 个为 execution error，可把论文资源主张收紧为 **failure-censored、task-stratified MLE decision corpus**，并要求
+benchmark 按任务同时报告 retention/coverage；这不是 predictor 方法收益。
+
+producer×2 与不 import producer 的 verifier×2 逐字节一致，独立重建差为 0；focused=`6 passed`，完整
+phase tests=`627 passed, 25 warnings`，forbidden scientific path、文件名/内容秘密扫描均为 0，正式产物只读。
+首次 commit `6739948...` 只因 `/tmp` runner 未设置 worktree `PYTHONPATH` 在 module import 前失败，没有
+summary 或科学结果；失败目录保留。正式运行不读取 code、分数大小、pair orientation、prospective outcome，
+GPU/API/base-LLM update 均为 0。
+
+仍禁止 missing-at-random、task 因果效应、完整 choice set、缺失数值 outcome、predictor/search utility、跨 agent
+迁移及 first/only。该结果强化 Decision Corpus / D&B 主线，不改变 strict-future transition escrow、first-960/
+closure 或 clean Qwen G0/G1 预算门。直接证据：
+
+- `phase1/results/source_retention_transport_v1_20260821_d21166f/README.md`；
+- `phase1/实验记录/2026-08-21/SourceRetentionTransport_v1_正式裁决.md`。
+
 ## 0CW. 2026-08-21 source-aware 六项证据索引正式通过
 
 commit `8da197b89ebe513df0516cf71186c068078bf67b` 的 v2 evidence index 已完成双 builder、双独立 verifier 与

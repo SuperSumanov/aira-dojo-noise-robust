@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 from phase1 import source_choice_oof_tfidf as oof
+from phase1 import verify_source_choice_oof_tfidf as verifier
 
 
 def identity(value: str) -> str:
@@ -150,3 +151,7 @@ def test_synthetic_oof_recovers_cross_task_signal(tmp_path: Path):
     assert result["metrics"]["task_loto"]["tfidf_pairwise_lr"]["micro_accuracy"] == 1.0
     assert result["metrics"]["run_grouped_5fold"]["winner_oracle"]["micro_accuracy"] == 1.0
     assert sum(1 for _ in (output / "predictions.csv").open(encoding="utf-8")) == 101
+    checked = verifier.verify(protocol, train, cluster, output)
+    assert checked["status"] == "INDEPENDENT_SOURCE_CHOICE_OOF_TFIDF_VERIFIED"
+    assert checked["producer_imported"] is False
+    assert checked["verdict"] == "GO_CROSS_TASK"

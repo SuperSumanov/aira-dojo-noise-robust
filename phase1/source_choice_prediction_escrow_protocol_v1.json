@@ -1,0 +1,108 @@
+{
+  "protocol": "source-choice-prediction-escrow-v1",
+  "activation": {
+    "required_formal_result_commit": "11b7f23d2d91bc412c3a2e0c8cd7d6a23fbb5baf",
+    "required_independent_verification_status": "INDEPENDENT_SOURCE_CHOICE_OOF_TFIDF_VERIFIED",
+    "allowed_verdicts": [
+      "GO_CROSS_TASK",
+      "GO_RUN_ONLY"
+    ],
+    "blocked_verdict": "NO_NARROW_POSITIVE",
+    "fail_closed_if_receipt_or_binding_differs": true
+  },
+  "inputs": {
+    "train_model": {
+      "sha256": "e5ca6dc94f59d54fe31d4b1c4e796deef0006f489fd76a05663410d4911aa6e1",
+      "bytes": 106476372,
+      "rows": 2109,
+      "winner_labels_present": true
+    },
+    "frozen_model": {
+      "sha256": "2e8371c1890bee9c7a33cb04238f94aa130e5114b307a233e21ca5d1af2152df",
+      "bytes": 33559335,
+      "rows": 778,
+      "winner_labels_present": false
+    },
+    "extension_model": {
+      "sha256": "2a6d7c4bf5157e00e5fe59dd6100db23bb7771bfce32f55b93573d1b5d4fdd0b",
+      "bytes": 4668637,
+      "rows": 113,
+      "winner_labels_present": false
+    },
+    "cluster_manifest": {
+      "sha256": "a8f328a3972708e52126157774204647698d2f8b00cc5f7ad06fd8b1d38b4035",
+      "bytes": 1116480,
+      "rows": 3000
+    }
+  },
+  "expected": {
+    "train_groups": 2109,
+    "train_candidates": 5739,
+    "frozen_groups": 778,
+    "frozen_candidates": 2041,
+    "extension_groups": 113,
+    "extension_candidates": 247,
+    "tasks": 23,
+    "train_frozen_run_overlap": 0,
+    "train_frozen_parent_overlap": 0
+  },
+  "model": {
+    "name": "tfidf_pairwise_lr",
+    "must_equal_oof_protocol_model_byte_for_byte": true,
+    "oof_protocol": "phase1/source_choice_oof_tfidf_protocol_v1.json",
+    "code_prefix_chars": 20000,
+    "vectorizer": {
+      "analyzer": "char_wb",
+      "ngram_min": 3,
+      "ngram_max": 5,
+      "max_features": 30000,
+      "min_df": 3,
+      "sublinear_tf": true,
+      "dtype": "float64"
+    },
+    "pair_construction": "winner_minus_each_loser_plus_exact_negative_orientation",
+    "group_weight": "each_choice_set_total_weight_one",
+    "logistic_regression": {
+      "C": 0.5,
+      "solver": "lbfgs",
+      "max_iter": 1500,
+      "random_state": 0
+    },
+    "hyperparameter_search": false
+  },
+  "outputs": {
+    "roles": [
+      "frozen",
+      "extension"
+    ],
+    "arms": [
+      "min_candidate_sha",
+      "max_step_then_min_sha",
+      "max_code_length_then_min_sha",
+      "tfidf_pairwise_lr"
+    ],
+    "one_row_per_role_arm_group": true,
+    "include_full_candidate_ranking": true,
+    "include_raw_model_scores": true,
+    "include_winner_or_outcome": false,
+    "producer_replicas": 2,
+    "producer_outputs_must_be_byte_identical": true,
+    "independent_structural_verifier_replicas": 2,
+    "read_only_immutable_seal": true
+  },
+  "claim_boundary": {
+    "prediction_only": true,
+    "frozen_or_extension_label_vault_read": false,
+    "frozen_or_extension_metric_computed": false,
+    "search_or_quality_utility_claimed": false,
+    "causal_claimed": false,
+    "new_task_transfer_claimed": false,
+    "unblinding_requires_separate_result_blind_protocol_and_user_decision": true
+  },
+  "resources": {
+    "cpu_model_fits_per_producer": 1,
+    "gpu": 0,
+    "api_calls": 0,
+    "base_llm_updated": false
+  }
+}

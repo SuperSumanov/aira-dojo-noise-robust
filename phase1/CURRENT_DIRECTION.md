@@ -3,7 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0CR. 2026-08-21 真实 batch 身份恢复 S0 V1/V2 工程失败；V3 verifier 加固已冻结
+## 0CR. 2026-08-21 真实 batch 身份恢复 S0 正式裁决：支持规模通过，provenance 身份不可用
+
+commit `a466888246ec606816486c164fbf24b7e4da7114` 的 V3 producer×2 与不 import producer 的 verifier×2
+均完成并 byte-identical；13 个 focused tests、604 个 phase tests、完整 manifest、只读与秘密扫描全部通过。
+正式状态是 `IDENTITY_UNAVAILABLE`，因此 S1 train-only 效果阶段禁止执行；没有读取 grade、pair orientation、code
+或 frozen-test 效果，GPU/API/model fit=0。
+
+146 个固定归档含 675 个 checkpoint journal headers。676 个匿名 runs 中 636 个唯一连接、32 个多 batch 歧义、
+8 个缺失；13,520 个 pair 中 1,058 个因 endpoint 身份不完整而不可识别。身份完整部分 cross-true-batch=0、task
+mismatch=0，但协议禁止结果后过滤。两个 source archive 也被原门拒绝。8 个 missing runs 全属 leaf；0811/0812
+的 leaf tar 分别与同日 tabular tar 逐字节相同，header 实际也是 tabular runs。32 个 ambiguous runs 来自完整 run
+basename 跨归档/日期复用，launch date 不能唯一恢复 source batch。解锁必须由学长发布不可变的
+`run_id -> source-date,batch-id` provenance manifest、修正 leaf tar，并给出两个异常 tabular tar 的规范替代；不得
+用 config/date/family 代理猜测。
+
+正面结构事实是九项**支持规模门全部通过**：描述性 experiment-closed train=6,885 pairs/80 experiments，dev=
+1,429 pairs/17 experiments，15 tasks，dominant dev share=0.135759，12 个 dev tasks 各有至少 20 pairs，train/dev
+experiment overlap=0。原始 test 的 87 个 experiments 中 49 个与 train role、11 个与 dev role 重叠，说明旧 run
+split 不等于 experiment-closed split；这不是标签泄漏指控，也不能替代身份门。直接证据：
+
+- `phase1/results/senior_augmented_true_batch_identity_support_20260821_a466888/README.md`；
+- `phase1/实验记录/2026-08-21/SeniorAugmented真实Batch身份恢复_S0正式裁决与Source修复清单.md`。
+
+### 工程纠错链（保留）
 
 为判断学长 augmented scaling 是否能接受真正的 experiment-closed train-only 复核，新增一个 outcome-blind S0：
 从学长固定 commit 的 21 个 source 日期目录中只流式读取 tar header path，不提取、不读取任何 member payload，
@@ -27,7 +50,7 @@ producer/verifier 真实路径反例。日期、输入、batch 定义、split/ha
 仍对该错误行访问 `run_batches`，以 `KeyError` 退出；故 V2 没有正式科学裁决、未进入效果。V3 在再次正式运行前
 只加固 verifier：rejected rows 留在 error gate 但不进入 join；独立逐字段重建整份 summary；显式绑定 source
 commit，并加入失败注入。已看到的 V2 outcome-blind 结构数已披露，但 V3 不改变任何日期、输入、identity/batch/
-split/阈值规则；正式结论必须等 V3 双 verifier 完整通过。
+split/阈值规则；V3 双 verifier 已完成，正式裁决以上述结果为准。
 
 - `phase1/实验记录/2026-08-21/SeniorAugmented真实Batch身份恢复_S0预注册.md`。
 

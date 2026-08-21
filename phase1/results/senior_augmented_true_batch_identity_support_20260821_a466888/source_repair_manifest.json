@@ -1,0 +1,44 @@
+{
+  "protocol": "senior-augmented-true-batch-source-repair-v1",
+  "formal_status": "IDENTITY_UNAVAILABLE",
+  "source_commit": "a466888246ec606816486c164fbf24b7e4da7114",
+  "missing_runs_by_task": {
+    "leaf-classification": 8
+  },
+  "ambiguous_runs_by_task": {
+    "learning-agency-lab-automated-essay-scoring-2": 16,
+    "nomad2018-predict-transparent-conductors": 8,
+    "petfinder-pawpularity-score": 4,
+    "us-patent-phrase-to-phrase-matching": 4
+  },
+  "byte_identical_mislabeled_archives": [
+    {
+      "day": "0811",
+      "leaf_path": "0811/leaf-classification-8seeds.tar.gz",
+      "tabular_path": "0811/tabular-playground-series-dec-2021-4seeds.tar.gz",
+      "sha256": "95c3ae8267c39662d2e2231539339b64b3c5d2194c14ae8f6a15ac8b48c93f28"
+    },
+    {
+      "day": "0812",
+      "leaf_path": "0812/leaf-classification-8seeds.tar.gz",
+      "tabular_path": "0812/tabular-playground-series-dec-2021-4seeds.tar.gz",
+      "sha256": "4da282f301dc75e50e8536a3d06e88b7261e9ab680ebc866020c119a5a8ed1d5"
+    }
+  ],
+  "rejected_archives": [
+    {
+      "path": "0730/tabular-playground-series-dec-2021-4seeds.tar.gz",
+      "reason": "contains_absolute_target_workspace_symlinks"
+    },
+    {
+      "path": "0809/tabular-playground-series-dec-2021-4seeds.tar.gz",
+      "reason": "zero_checkpoint_journal_headers"
+    }
+  ],
+  "required_new_source_artifacts": [
+    "immutable run_id-to-source-date-and-batch-id provenance manifest",
+    "correct 0811 and 0812 leaf-classification archives or a new corpus revision",
+    "canonical replacements or explicit provenance for the two rejected tabular archives"
+  ],
+  "effect_stage_allowed": false
+}

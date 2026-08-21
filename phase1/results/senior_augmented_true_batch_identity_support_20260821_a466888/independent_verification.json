@@ -1,0 +1,22 @@
+{
+  "archives_rescanned": 146,
+  "experiments_reassigned": 132,
+  "pairs_rejoined": 13520,
+  "protocol": "senior-augmented-true-batch-identity-support-verifier-v3",
+  "result_manifest_sha256": "e313c794d772a5ef058df6afe55f1aed35c695ac236960a9e3dd2a2701989e92",
+  "runs_rejoined": 676,
+  "scope": {
+    "api_calls": 0,
+    "archive_member_payload_reads": 0,
+    "env_member_payload_reads": 0,
+    "frozen_test_effect_used": false,
+    "gpu": 0,
+    "model_trained": false,
+    "numeric_grade_used": false,
+    "pair_orientation_used": false,
+    "raw_code_used": false
+  },
+  "source_inventory_sha256": "f33bef1606b4fd2b7c45872145872b85a4e7eb78d0301e2aad20d41b4b23035e",
+  "verified": true,
+  "verified_status": "IDENTITY_UNAVAILABLE"
+}

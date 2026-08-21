@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DQ. 2026-08-22 max-step 正关联是 sequential-feedback 线索，不是新 selector
+
+0DP 后的 post-result、label-unused 结构审计绑定 S2 v2 train SHA
+`e5ca6dc94f59d54fe31d4b1c4e796deef0006f489fd76a05663410d4911aa6e1`：2,109/2,109 source groups
+内 candidate step 均唯一，且全部同 depth、同 operator；1,662 组 step 连续、447 组不连续。聚焦测试 2/2；Linux
+正式只读输入双跑逐字节一致，output SHA-256=
+`74df0fe8bf3fbeeb38f0fda3d3a406c46c1df0fea9fd8c9826bf888d263e2b17`。统计没有使用 winner 值，且不新增任何
+outcome slicing。
+
+AIRA canonical MCTS 在同 leaf 的 child loop 中逐个执行 `generate -> task.step_task -> parse -> journal append`，
+之后才生成下一个；默认 `simple_memory` 又把已有 valid node 的 analysis/validation metric 给后续 operator。因此
+0DP 的 max-step 正关联与 within-expansion sequential feedback 一致，但 run-level exact collector commit/config 未绑定，
+不能作因果归因；它也不是从同时存在的 unexecuted batch 中免费选择。
+
+更直接地，arXiv:2605.28224 已把该机制形式化为 cross-sibling within-expansion memory / Raw Sibling，并在 beam、
+MCTS 与多个 tool-use tasks 上实验；效果高度异质。故 memory/MCTS 方法首创关闭。该发现只保留为 D&B 的
+sequential-feedback confound 与未来 MLE-domain randomized replication 候选；本轮不提交 GPU/API，不改变严格前瞻
+score-channel 主线。证据：
+
+- `phase1/实验记录/2026-08-22/SourceChoiceMaxStep_时序语义与Memory防Scoop审计.md`。
+
 ## 0DP. 2026-08-22 固定 TF-IDF source-choice OOF 正式关闭；step control 留作机制审计线索
 
 控制 commit `11b7f23d2d91bc412c3a2e0c8cd7d6a23fbb5baf` 的固定 char-TFIDF 已在 2,109 groups、

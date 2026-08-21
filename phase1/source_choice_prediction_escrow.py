@@ -112,12 +112,15 @@ def load_target_role(
     oof.require(len(rows) == receipt["rows"], f"{role} row count differs")
     groups: list[dict[str, Any]] = []
     candidates: dict[str, dict[str, Any]] = {}
+    group_ids: set[str] = set()
     for number, row in enumerate(rows, 1):
         oof.require(
             set(row) == TARGET_GROUP_FIELDS and row.get("schema_version") == oof.MODEL_SCHEMA,
             f"{role} group schema {number}",
         )
         group_id = oof.valid_hash(row.get("group_id"), f"{role} group")
+        oof.require(group_id not in group_ids, f"duplicate {role} group")
+        group_ids.add(group_id)
         cluster = clusters.get(group_id)
         oof.require(cluster is not None and cluster["role"] == role, f"{role} cluster closure")
         task = row.get("task")
@@ -248,6 +251,15 @@ def predict(
     cluster_rows = oof.read_canonical_jsonl(cluster_path, "cluster manifest")
     clusters = {row["group_id"]: row for row in cluster_rows}
     oof.require(len(clusters) == len(cluster_rows), "duplicate cluster group")
+    for role, expected_groups in (
+        ("train", protocol["expected"]["train_groups"]),
+        ("frozen", protocol["expected"]["frozen_groups"]),
+        ("extension", protocol["expected"]["extension_groups"]),
+    ):
+        oof.require(
+            sum(row["role"] == role for row in cluster_rows) == expected_groups,
+            f"cluster role count differs: {role}",
+        )
     seen = set(train_candidates)
     frozen_groups, frozen_candidates = load_target_role(
         frozen_path, "frozen", protocol["inputs"]["frozen_model"], clusters, seen

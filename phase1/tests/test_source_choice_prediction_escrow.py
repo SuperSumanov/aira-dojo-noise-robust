@@ -7,6 +7,7 @@ import pytest
 
 from phase1 import source_choice_oof_tfidf as oof
 from phase1 import source_choice_prediction_escrow as escrow
+from phase1 import verify_source_choice_prediction_escrow as verifier
 
 
 def identity(value: str) -> str:
@@ -230,6 +231,10 @@ def test_prediction_escrow_seals_label_free_rankings(tmp_path: Path):
     assert all(len(json.loads(row["ranking_candidate_sha256_json"])) == 2 for row in learned)
     assert all(len(json.loads(row["raw_model_scores_json"])) == 2 for row in learned)
     assert "winner" not in (output / "predictions.csv").read_text(encoding="utf-8")
+    checked = verifier.verify(args[0], args[2], args[3], args[4], args[5], args[6], args[7], output)
+    assert checked["status"] == "INDEPENDENT_SOURCE_CHOICE_PREDICTION_ESCROW_VERIFIED"
+    assert checked["producer_imported"] is False
+    assert checked["model_refit_by_verifier"] is False
 
 
 def test_prediction_escrow_blocks_no_positive_verdict(tmp_path: Path):

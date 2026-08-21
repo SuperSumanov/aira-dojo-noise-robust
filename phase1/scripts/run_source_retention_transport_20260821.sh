@@ -39,6 +39,7 @@ GIT_LFS_SKIP_SMUDGE=1 git -C "${base_repo}" worktree add --detach "${worktree}" 
   > /tmp/source_retention_worktree_${short}.stdout 2> /tmp/source_retention_worktree_${short}.stderr
 test "$(git -C "${worktree}" rev-parse HEAD)" = "${commit}"
 test -z "$(git -C "${worktree}" status --porcelain --untracked-files=all)"
+export PYTHONPATH=${worktree}
 
 protocol=${worktree}/${protocol_rel}
 test -f "${protocol}"

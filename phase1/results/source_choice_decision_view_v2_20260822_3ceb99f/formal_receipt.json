@@ -1,0 +1,32 @@
+{
+  "candidate_slots": 8027,
+  "cluster_manifest_sha256": "a8f328a3972708e52126157774204647698d2f8b00cc5f7ad06fd8b1d38b4035",
+  "completed_at_utc": "2026-08-21T16:00:32Z",
+  "control_commit": "3ceb99f8030fb196d2abc388e277b11dbd1bc571",
+  "credential_content_hits": 0,
+  "credential_filename_hits": 0,
+  "extension_model_sha256": "2a6d7c4bf5157e00e5fe59dd6100db23bb7771bfce32f55b93573d1b5d4fdd0b",
+  "forbidden_scientific_or_vault_path_hits": 0,
+  "formal_sha256_manifest_sha256": "c1d2a79ae6366f6eb21e9da664c2834768397a710937ea3f3df991dbf89b4a48",
+  "frozen_model_sha256": "2e8371c1890bee9c7a33cb04238f94aa130e5114b307a233e21ca5d1af2152df",
+  "full_tests": {
+    "passed": 706,
+    "warnings": 25
+  },
+  "groups": 3000,
+  "independent_verification_sha256": "49bf4333844faa9f9fa6a3dcef591102acce082b8509d1d4b838fa69721cca6a",
+  "operator_canonicalized_by_role": {
+    "extension": 10,
+    "frozen": 192,
+    "train": 697
+  },
+  "operator_values_outside_fixed_enum": 0,
+  "producer_replicas_byte_identical": true,
+  "status": "SOURCE_CHOICE_DECISION_VIEW_V2_READY",
+  "tasks": 23,
+  "train_model_sha256": "e5ca6dc94f59d54fe31d4b1c4e796deef0006f489fd76a05663410d4911aa6e1",
+  "verifier_replicas_byte_identical": true,
+  "view_manifest_sha256": "6ad5a5625e728830e1db6be1aa82580030c48a5baf38f2f213e7c43929521c03",
+  "view_summary_sha256": "3471868051397de128f1a02d43b9762c7ca0034f3753b230aeff0bbaf1bbea1d",
+  "writable_formal_files": 0
+}

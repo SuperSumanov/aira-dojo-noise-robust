@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DM. 2026-08-22 source-choice S2 v2 operator-proxy 修复正式通过
+
+控制 commit `3ceb99f8030fb196d2abc388e277b11dbd1bc571` 按 0DL 的唯一允许 diff，把 raw operator
+case-insensitive 地规范化为固定 `Draft/Improve` 枚举。3,000 groups / 8,027 candidates、winner、candidate
+SHA 字典序、完整 code bytes、step/depth、role 与 cluster metadata 全部不变；train/frozen/extension 分别规范化
+697/192/10 个小写值，输出未知或小写 operator=0。`provenance/source_journal_sha256` 各删除 8,027 次，model
+blocked fields=0；frozen/extension winner fields=0/0，vault 未读。
+
+producer×2 和不 import producer 的 verifier×2 逐字节一致；focused=`20 passed`，完整 phase1 tests=
+`706 passed, 25 warnings`。forbidden scientific/vault path、credential filename/content、worktree drift、repro diff、
+正式可写文件均为 0。正式状态 `SOURCE_CHOICE_DECISION_VIEW_V2_READY`，只读目录：
+`/research/d7/spc/yzyang4/source-choice-decision-view/3ceb99f-v2`。
+
+这只恢复 model-view integrity，不含 predictor accuracy 或 search utility。0DL 的 v1 四份 LFS 文件继续封锁，不得因
+v2 通过而使用。下一步只允许：（1）以 v2 train SHA
+`e5ca6dc94f59d54fe31d4b1c4e796deef0006f489fd76a05663410d4911aa6e1` 另立 train-only task-LOTO/run-OOF
+协议；（2）把 v2 作为新 immutable LFS 目录发布。frozen/extension vault 在模型族和选择规则冻结前继续不读。证据：
+
+- `phase1/results/source_choice_decision_view_v2_20260822_3ceb99f/README.md`；
+- `phase1/实验记录/2026-08-22/SourceChoiceDecisionView_S2v2正式裁决.md`。
+
 ## 0DL. 2026-08-21 source-choice S2 v1 因 operator 大小写代理泄漏撤回
 
 S2 v1 在任何模型拟合、frozen label 打开或 frozen score 之前的 train-only 模型预检中发现第二层重建代理：

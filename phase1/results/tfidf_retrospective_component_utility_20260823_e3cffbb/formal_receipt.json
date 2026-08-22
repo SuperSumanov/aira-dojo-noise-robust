@@ -1,0 +1,72 @@
+{
+  "access": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "future_or_prospective_vault_opened": false,
+    "gpu_jobs": 0,
+    "historical_released_cards_opened": true,
+    "model_fits": 0
+  },
+  "commit": "e3cffbb6ec041e9de73efe6e112f1bd9859f6e69",
+  "determinism": {
+    "independent_verifier_receipts_byte_identical": true,
+    "producer_artifacts_byte_identical": true
+  },
+  "gates": {
+    "integrity_and_cost_gates_pass": true,
+    "test_component_gain_capture_task_ci_lower_gt_0": false,
+    "test_decision_components_at_least_300": true,
+    "test_pair_gap_weighted_accuracy_task_ci_lower_gt_0_5": false,
+    "test_tasks_at_least_20": true
+  },
+  "postpush_tests": {
+    "credential_content_hits": 0,
+    "credential_filename_hits": 0,
+    "focused_passed": 14,
+    "full_passed": 823,
+    "warnings": 33
+  },
+  "protocol": "tfidf-retrospective-component-utility-formal-receipt-v2",
+  "status": "VALID_NO_STRONG_COMPONENT_COST_UTILITY_POSITIVE",
+  "test": {
+    "component_gain_capture": {
+      "ci95": [
+        -0.21575761078478997,
+        0.31604557521269605
+      ],
+      "point": 0.07315959014998666
+    },
+    "component_top1_accuracy": {
+      "ci95": [
+        0.433768152581631,
+        0.5925650841558566
+      ],
+      "point": 0.5150856085082018
+    },
+    "decision_components": 559,
+    "pair_gap_weighted_accuracy": {
+      "ci95": [
+        0.4949686656930697,
+        0.6693520122240301
+      ],
+      "point": 0.5834551030090183
+    },
+    "pair_gap_weighted_minus_unweighted": {
+      "ci95": [
+        -0.05766129409784135,
+        0.0672026866373468
+      ],
+      "point": 0.007656836750397718
+    },
+    "pair_unweighted_accuracy": {
+      "ci95": [
+        0.5079348813388992,
+        0.6404919021264853
+      ],
+      "point": 0.5757982662586206
+    },
+    "pairs": 931,
+    "parent_groups": 550,
+    "tasks": 28
+  }
+}

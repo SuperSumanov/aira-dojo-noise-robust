@@ -1,0 +1,18 @@
+{
+  "artifact_manifest_sha256": "2ba9ac23db4f0ad9306690c07eff4a0eb17cc307913d0b78b1977bee725d365c",
+  "future_or_prospective_vault_opened": false,
+  "gpu_api_model_fit": [
+    0,
+    0,
+    0
+  ],
+  "primary_positive_gates_pass": false,
+  "producer_imported": false,
+  "protocol": "independent-tfidf-retrospective-component-utility-verifier-v2",
+  "source_pairs": 1482,
+  "status": "TFIDF_RETROSPECTIVE_COMPONENT_UTILITY_INDEPENDENTLY_VERIFIED",
+  "summary_sha256": "f740fb03bb5743b5cba381940ec64407c789aef15dbfe8c71ece4c16967b6e91",
+  "task_csv_rows": 156,
+  "utility_components": 806,
+  "utility_pairs": 1482
+}

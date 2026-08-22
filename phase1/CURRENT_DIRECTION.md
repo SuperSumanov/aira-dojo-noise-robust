@@ -3,7 +3,33 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0EN. 2026-08-23 V2 首次正式运行复现门失败；排序修复已锁定但尚未重跑
+## 0EO. 2026-08-23 comparison-component cost--utility 正式复核完成；强正主张关闭
+
+确定性修复 commit `e3cffbb6ec041e9de73efe6e112f1bd9859f6e69` 的 fresh exact-commit 聚焦/完整测试为
+14/14、823/823（33 warnings），凭据扫描 0/0；formal producer A/B 与独立 verifier A/B 均逐字节一致。verifier
+重建 1,482 pairs、806 comparison components、156 task/subset rows；summary/receipt SHA-256 分别为
+`f740fb03bb5743b5cba381940ec64407c789aef15dbfe8c71ece4c16967b6e91` /
+`517e08fd2473f3db74ccd84b41d3ccc62a3fe4cb40648e14486e9c1c4eeb7005`。GPU/API/model fit/future truth open=
+0/0/0/false。
+
+冻结 test 支持=931 pairs、550 parent groups、559 components、28 tasks。task-macro unweighted accuracy=
+`0.5757982662586206`、CI=`[0.5079348813388992,0.6404919021264853]`；raw-gap-weighted accuracy=
+`0.5834551030090183`、CI=`[0.4949686656930697,0.6693520122240301]`；加权减普通=
+`+0.007656836750397718`、CI=`[-0.05766129409784135,0.0672026866373468]`。component gain capture=
+`0.07315959014998666`、CI=`[-0.21575761078478997,0.31604557521269605]`，top-1=
+`0.5150856085082018`、CI=`[0.433768152581631,0.5925650841558566]`。支持两门通过，两个 primary effect 门均失败，
+正式状态为 `VALID_NO_STRONG_COMPONENT_COST_UTILITY_POSITIVE`。
+
+Improve secondary 的 gap-weighted CI 下界虽略高于 0.5，但 component gain 跨 0；Draft 与 merged primary 不支持，
+不得以 subgroup 替换 primary。query p95 48.958ms vs execution p50 199.627s 的成本优势仍成立，但“弱 accuracy
+隐藏强高价值决策能力”在该冻结 baseline/test 上关闭；同池不得改权重、筛 task/component 或调阈值。该结果保留为
+D&B 的 accuracy≠utility 机制证据，正资源回到新 physical runs 的前瞻 score-channel 与 clean scaling/calibration。
+证据：
+
+- `phase1/results/tfidf_retrospective_component_utility_20260823_e3cffbb/`；
+- `phase1/实验记录/2026-08-23/TFIDF_ComponentCostUtility_正式裁决.md`。
+
+## 0EN. 2026-08-23 V2 首次正式运行复现门失败（随后由 0EO 修复并重跑）
 
 V2 commit `db7069db570523ac740b920202e37abb6493bc02` 已通过 13/13 聚焦与 822/822 全测试。初始 launcher
 因用文件路径启动导致 `phase1` import 失败，0.22s 时退出、Cards 未开；改成 `python -m` 的新目录后两个 producer

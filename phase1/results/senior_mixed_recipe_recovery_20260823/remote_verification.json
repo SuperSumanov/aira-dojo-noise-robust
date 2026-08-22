@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source_commit": "ac008af8b907d319b694f26b0ba9cf4053b3bf69",
+  "original_builder_linux_reproduction": {
+    "builder_normalized_lf_sha256": "e7302d5fe7b914682b3327ea23022d2560fb54c348ed80e6fe40a5a065e71e63",
+    "replicates": 2,
+    "replicates_byte_identical": true,
+    "each_output_rows": 15875,
+    "each_output_bytes": 6625497,
+    "each_output_sha256": "7792a7da4119bb607cf76628fcdde19923898651ac734ff6afffb0732883cf6e",
+    "target_byte_exact": true
+  },
+  "independent_recovery_auditor_linux": {
+    "script_sha256": "2a118f682e3fc554ad8e39be5e144d73f497fdf90d8204170a016c971e292211",
+    "python_version": "3.11.15",
+    "os_name": "posix",
+    "replicates": 2,
+    "replicate_receipts_byte_identical": true,
+    "remote_receipt_file_sha256": "45c7f0c80be06849d0d1a59b4c536d93d87637873dcb5ddcdfd7906cf47a2284",
+    "scientific_core_sha256": "3a7ef3ade0dc98ff16e00527e36ddae32a8e6274f11343d6dc2fcfb2fa91bdb5",
+    "formal_status": "UNIQUE_IN_FROZEN_GRID_AND_BYTE_EXACT"
+  },
+  "cross_platform_comparison": {
+    "desktop_python_version": "3.13.4",
+    "desktop_os_name": "nt",
+    "desktop_receipt_file_sha256": "fd08ab3796a9977b363cac968e8e9cb88718b5b15e5da5a30a6228faaa0df7da",
+    "scientific_core_sha256_equal": true,
+    "scientific_core_sha256": "3a7ef3ade0dc98ff16e00527e36ddae32a8e6274f11343d6dc2fcfb2fa91bdb5"
+  },
+  "fail_closed_history": {
+    "first_linux_auditor_attempt_passed": false,
+    "reason": "raw Windows CRLF worktree SHA was not portable to the same LF Git blob",
+    "correction": "lock source_commit, git_blob_sha1, and normalized_lf_sha256; reject lone CR bytes",
+    "scientific_recipe_changed": false
+  },
+  "access_attestation": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "prospective_outcome_vault_opened": false,
+    "checkpoints_or_model_predictions_opened": false
+  }
+}

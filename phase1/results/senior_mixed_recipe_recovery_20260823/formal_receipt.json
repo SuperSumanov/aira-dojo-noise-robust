@@ -1,0 +1,202 @@
+{
+  "access_attestation": {
+    "api_calls": 0,
+    "cards_or_solution_code_opened": false,
+    "checkpoints_or_model_predictions_opened": false,
+    "gpu_jobs": 0,
+    "historical_pair_jsonl_objects_read_in_full": true,
+    "model_fits": 0,
+    "pair_construction_metadata_including_gap_raw_read": true,
+    "prospective_outcome_vault_opened": false,
+    "raw_grades_opened": false
+  },
+  "builder": {
+    "git_blob_sha1": "2b92e447065fdd6948d916882ed08b8910bc352f",
+    "normalized_lf_bytes": 5712,
+    "normalized_lf_sha256": "e7302d5fe7b914682b3327ea23022d2560fb54c348ed80e6fe40a5a065e71e63",
+    "relative_path": "src/mle_critic/src/postprocess/build_decision_augment_pairs.py"
+  },
+  "formal_status": "UNIQUE_IN_FROZEN_GRID_AND_BYTE_EXACT",
+  "locks": {
+    "decision": {
+      "bytes": 3337808,
+      "field_names": [
+        "better",
+        "budget",
+        "clears_tau",
+        "gap_raw",
+        "intask_split",
+        "loto_fold",
+        "parent",
+        "set_size",
+        "src",
+        "task",
+        "worse"
+      ],
+      "filename": "merged_decision_pairs_filtered_runsplit.jsonl",
+      "rows": 7644,
+      "sha256": "1a01d3a1202b35f21b9cd6c87237b29c50b1c293138b407cc453674108411442",
+      "test_rows": 1160,
+      "train_rows": 6484
+    },
+    "global_hardware_time_value": {
+      "bytes": 3807175,
+      "field_names": [
+        "agrees_with_quality",
+        "better",
+        "budget_secs",
+        "budget_steps",
+        "clears_tau",
+        "gap_raw",
+        "intask_split",
+        "loto_fold",
+        "src",
+        "steps_to_best",
+        "subtree_sizes",
+        "task",
+        "worse"
+      ],
+      "filename": "value_pairs_hardware_timelimit_gap_filtered_runsplit.jsonl",
+      "rows": 8598,
+      "sha256": "60e9bbfba56ef94dfd70bb717694fa5b3b400f9458a13b92321bb1cb2ecdf3d9",
+      "test_rows": 895,
+      "train_rows": 7703
+    },
+    "local_batch_value": {
+      "bytes": 7223244,
+      "field_names": [
+        "agrees_with_quality",
+        "better",
+        "budget_secs",
+        "budget_steps",
+        "clears_tau",
+        "gap_raw",
+        "intask_split",
+        "loto_fold",
+        "src",
+        "steps_to_best",
+        "subtree_sizes",
+        "task",
+        "worse"
+      ],
+      "filename": "batch_value_pairs_filtered_runsplit.jsonl",
+      "rows": 16204,
+      "sha256": "8a01dfb90c2c3d8498174ebe78df43ee21d6d0eac9f4ff81f63700b315473405",
+      "test_rows": 1998,
+      "train_rows": 14206
+    },
+    "target": {
+      "bytes": 6625497,
+      "field_names": [
+        "agrees_with_quality",
+        "better",
+        "budget",
+        "budget_secs",
+        "budget_steps",
+        "clears_tau",
+        "gap_raw",
+        "intask_split",
+        "loto_fold",
+        "parent",
+        "set_size",
+        "src",
+        "steps_to_best",
+        "subtree_sizes",
+        "task",
+        "worse"
+      ],
+      "filename": "decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl",
+      "rows": 15875,
+      "sha256": "7792a7da4119bb607cf76628fcdde19923898651ac734ff6afffb0732883cf6e",
+      "test_rows": 1160,
+      "train_rows": 14715
+    }
+  },
+  "output": {
+    "bytes": 6625497,
+    "canonical_rows_sha256": "936518eead660916ac2ae2ab0b88bd2a005c2d807b46c1b2a53b313a0e93cc54",
+    "filename": "decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl",
+    "parsed_sequence_equal": true,
+    "requested_sampled": 15000,
+    "retained_test": 1160,
+    "rows": 15875,
+    "serialized_bytes_equal": true,
+    "sha256": "7792a7da4119bb607cf76628fcdde19923898651ac734ff6afffb0732883cf6e",
+    "source_counts": {
+      "decision": 2563,
+      "value": 13312
+    },
+    "split_counts": {
+      "test": 1160,
+      "train": 14715
+    },
+    "unique_sampled": 14715
+  },
+  "protocol": "senior-mixed-recipe-recovery-v1",
+  "recovered_recipe": {
+    "command_argv": [
+      "python",
+      "src/mle_critic/src/postprocess/build_decision_augment_pairs.py",
+      "--datasets",
+      "batch_value_pairs_filtered_runsplit.jsonl",
+      "merged_decision_pairs_filtered_runsplit.jsonl",
+      "value_pairs_hardware_timelimit_gap_filtered_runsplit.jsonl",
+      "--weights",
+      "8",
+      "1",
+      "1",
+      "--n-samples",
+      "15000",
+      "--output-path",
+      "decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl",
+      "--use-test-split",
+      "merged_decision_pairs_filtered_runsplit.jsonl",
+      "--seed",
+      "7"
+    ],
+    "dataset_order": [
+      "batch_value_pairs_filtered_runsplit.jsonl",
+      "merged_decision_pairs_filtered_runsplit.jsonl",
+      "value_pairs_hardware_timelimit_gap_filtered_runsplit.jsonl"
+    ],
+    "n_samples": 15000,
+    "sample_counts": [
+      12000,
+      1500,
+      1500
+    ],
+    "seed": 7,
+    "use_test_split": "merged_decision_pairs_filtered_runsplit.jsonl",
+    "weights": [
+      8,
+      1,
+      1
+    ]
+  },
+  "runtime": {
+    "os_name": "nt",
+    "python_version": "3.13.4"
+  },
+  "schema_version": 1,
+  "scientific_core_sha256": "3a7ef3ade0dc98ff16e00527e36ddae32a8e6274f11343d6dc2fcfb2fa91bdb5",
+  "search": {
+    "candidate_count": 66,
+    "claim_boundary": "unique only within this frozen 66-candidate grid",
+    "definition": "all 6 dataset orders; seed=7; n_samples=15000; decision=1500; global=0..7500 step 750; local=13500-global",
+    "global_count_grid": [
+      0,
+      750,
+      1500,
+      2250,
+      3000,
+      3750,
+      4500,
+      5250,
+      6000,
+      6750,
+      7500
+    ],
+    "parsed_sequence_exact_matches": 1
+  },
+  "source_commit": "ac008af8b907d319b694f26b0ba9cf4053b3bf69"
+}

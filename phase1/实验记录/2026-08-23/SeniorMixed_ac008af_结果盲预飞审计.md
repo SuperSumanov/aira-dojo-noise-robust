@@ -4,6 +4,11 @@
 的四份 pair LFS 对象、mixed launcher 与训练源代码。审计只读 pair metadata 和代码；没有打开 Cards/code/grade、
 prospective outcome 或模型输出，GPU job/API/model fit 均为 0。
 
+更正链（同日 0DV）：本报告确认“提交时没有固定 generation command/receipt”仍正确，但第 2.4 节据此写出的“配方
+不可恢复”已被后续证据撤回。冻结 66-candidate grid 中存在唯一 parsed-sequence match，且 recovered command 用
+senior 原 builder 在 Linux 双跑后逐字节命中 target。更正只解除 recipe-reconstruction 阻断，不改变本报告的 test、
+identity、LFS、launcher 与单旋钮裁决。
+
 正式裁决：`EXPLORATORY_ONLY_PROTOCOL_AND_REPRODUCIBILITY_BLOCKED`。学长已报告的 value scaling 仍是有价值的
 探索信号；本裁决只说明当前 mixed commit 不能直接升级为确认性长实验。
 
@@ -22,8 +27,8 @@ Mixed 的 test 最大任务是 leaf-classification，105/1,160、share=`0.090517
 endpoint train/test overlap、重复 pair、自比较或单任务支配这一类显眼错误。
 
 Mixed train 由 13,312 value rows 与 1,403 decision rows 构成，value share=
-`0.9046551138294258`；整个文件另保留 1,160 条 decision test。这个配比可以作为探索 arm，但不能在没有固定
-builder command/weights 的情况下解释为“mixed objective 本身”的可复现实验。
+`0.9046551138294258`；整个文件另保留 1,160 条 decision test。本审计提交时尚无固定 builder receipt；0DV 后已知
+配比来自 weights=`8/1/1` 的后验逐字节恢复，但仍不能把既有 test-touched 曲线解释为确认性 mixed effect。
 
 ## 2. 四个阻断项
 
@@ -50,10 +55,12 @@ pair endpoint overlap=0 不等于 experiment-closed。0CR 的结果盲审计已�
 2 个 archive errors，正式状态为 `IDENTITY_UNAVAILABLE`。不能通过结果后过滤、日期/config 代理或只保留可 join 子集
 追认现有曲线。
 
-### 2.4 生成与 checkout 都未完全可复现
+### 2.4 生成收据在提交时缺失；配方后验恢复，但 checkout 仍不完整
 
 仓库 `src/` 与 `docs/` 中没有出现真实 mixed 输出文件名，因此没有固定的 builder command、seed、输入 SHA、sample
-weights 或 dedup receipt。当前物化文件显示 train 的 90.47% 是 value，但为什么是这一比例无法从提交重建。
+weights 或 dedup receipt。0DV 后续审计已从四个锁定 LFS objects 在冻结 66-grid 内唯一恢复 weights=`8/1/1`、
+sample counts=`12000/1500/1500`、decision test retention 与 seed=7，并用 `ac008af` 原 builder Linux 双跑逐字节确认。
+因此“配方不能重建”撤回；“生成时没有不可变 receipt”保留。
 
 完整 fresh checkout 还会在 Cards 对象
 `5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343`（779,146,574 bytes）处收到
@@ -74,7 +81,7 @@ GitHub LFS 404。四份小 pair 对象可单独拉取，但没有 Cards 仍不�
 
 1. 学长 producer 侧发布不可变 `run_id -> source-date,batch-id,task,archive-sha256` manifest，并替换 0CR 指出的
    0811/0812 leaf 和 0730/0809 异常 archive；先让所有身份与 archive 门全过。
-2. 固定 mixed builder command、输入 SHA、seed、抽样权重与 dedup receipt；train/dev/frozen 三个 role 必须由
+2. 把 0DV 的后验恢复配方升级为新的不可变 generation receipt；train/dev/frozen 三个 role 必须由
    experiment identity 分组，不能复用旧 test。
 3. 训练期间只读 dev；先冻结 checkpoint，再由独立 one-shot evaluator 打开全新的 frozen test。逐 pair receipt 必须
    带 task/run/experiment cluster，统计以 task/experiment clustered CI 为主。
@@ -89,3 +96,4 @@ GitHub LFS 404。四份小 pair 对象可单独拉取，但没有 Cards 仍不�
 - `phase1/audit_senior_mixed_dataset.py`；
 - `phase1/tests/test_audit_senior_mixed_dataset.py`；
 - `phase1/results/senior_mixed_ac008af_audit_20260823/formal_receipt.json`。
+- 更正证据：`phase1/实验记录/2026-08-23/SeniorMixed_ac008af_生成配方逐字节恢复.md`。

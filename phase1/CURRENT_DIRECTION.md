@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DV. 2026-08-23 学长 mixed `ac008af` 生成配方已后验逐字节恢复；其余 GPU 门不变
+
+0DS 的“提交时无生成命令/收据”仍成立，但“配方不可恢复”已撤回。对三份输入全部 6 种顺序、固定 seed=7、
+`n_samples=15000`、decision=1,500、global=0..7,500 step 750、local=`13,500-global` 冻结 66-candidate grid；恰有
+一个候选与 target 的 15,875 条 parsed records 全顺序相等：输入依次为 batch value / decision / hardware-time
+global value，weights=`8/1/1`，sample counts=`12,000/1,500/1,500`，保留完整 decision test。独立重放得到
+6,625,497 bytes 与 target SHA-256
+`7792a7da4119bb607cf76628fcdde19923898651ac734ff6afffb0732883cf6e`。随后在 Linux 精确 senior `ac008af8...`
+worktree 直接调用原 builder 两次，两次 rows/bytes/SHA 都与 target 相同，且彼此 byte-identical。
+
+唯一性只对冻结 66-grid 成立；原 builder 双跑提供命令到 artifact 的直接验证。本次完整读取历史 pair records（包括
+`gap_raw` 等 pair-construction metadata），但未开 Cards/code/raw grade/prospective outcome/model output；GPU/API/model
+fit 均为 0。该正面资产只解除 recipe-reconstruction 阻断；test-touched、physical-experiment identity、Cards LFS 404、
+launcher typo 与 prompt/mixture/offload 多旋钮混杂仍在，因此 mixed GPU 门和当前 score-channel 主线均不变。证据：
+
+- `phase1/results/senior_mixed_recipe_recovery_20260823/README.md`；
+- `phase1/实验记录/2026-08-23/SeniorMixed_ac008af_生成配方逐字节恢复.md`。
+
 ## 0DU. 2026-08-23 global value→local decision 的方法首创关闭；保留计算量匹配的 MLE 机制确认
 
 一手反 scoop 审计确认：SP-PRM/Free Process Rewards 已覆盖 outcome→process，ReST-MCTS*/AgentRM 已从树或最终
@@ -48,7 +66,8 @@ unordered duplicate/self-pair 均为 0，test 最大任务 share=`0.090517241379
 直接作为每 10 steps 的 eval dataset，并按 `eval_pair_accuracy` 记录 best checkpoint。它没有进入梯度，但已经
 test-touched，不能作 one-shot frozen confirmation。当前 launcher 还引用不存在的
 `decision_value_mixed_pairs_filtered_runsplit.jsonl`；真实文件名不同，直接运行会失败。真实 mixed 输出名在 `src/`
-与 `docs/` 中零引用，builder command/seed/weights/receipt 不可恢复；train 的 13,312/14,715=
+与 `docs/` 中零引用，builder command/seed/weights/receipt 在提交时未记录；0DV 已在冻结网格中后验唯一恢复配方并用
+原 builder 逐字节验证，但生成时 receipt 仍缺失。train 的 13,312/14,715=
 `0.9046551138294258` 为 value rows。Cards LFS 对象 `5e0f380...`（779,146,574 bytes）从 fresh checkout 拉取返回
 GitHub LFS 404。该 commit 还同时改变 prompt、mixture 与 ZeRO offload，无法隔离科学旋钮。
 

@@ -2,6 +2,13 @@
 
 Verdict: `EXPLORATORY_ONLY_PROTOCOL_AND_REPRODUCIBILITY_BLOCKED`.
 
+Correction chain (2026-08-23, 0DV): the audit remains correct that no generation command or immutable receipt was
+committed with the artifact.  A later frozen-grid audit recovered weights `8 1 1`, sample counts
+`12000 1500 1500`, decision-test retention, and seed 7, then reproduced the target byte-for-byte twice with the
+original Linux builder.  Therefore only the earlier “recipe cannot be reconstructed” interpretation is withdrawn;
+the frozen-test, experiment-identity, Cards-LFS, launcher, and single-knob blockers remain.  See
+`phase1/results/senior_mixed_recipe_recovery_20260823/README.md`.
+
 This receipt audits only pair metadata and committed training source. It does not open Cards/code/grades,
 prospective outcomes, or model outputs; GPU jobs, API calls, and model fits are all zero.
 

@@ -7,6 +7,22 @@ AIRA-Dojo journal 生成 run-preserving Cards，再生成 value/reward pairs，�
 当前主线不再使用旧的扁平 Card JSONL、学生版 L1/L2 混合构建脚本，也不在 pair builder 内部
 重新随机切 train/test。
 
+## 0. journal下载和解压缩
+
+下载某一天的journal到对应的文件夹
+
+```bash
+python src/mle_critic/src/preprocess/download_and_resolve/download_journals.py \
+  --url https://drive.google.com/drive/folders/1Df0qkQDZnJsi6gD_foMmA0LUVyrwwNuV?usp=drive_link \
+  --output-dir data/augmented_mle_critic/raw_journal/0817
+```
+
+解压缩
+
+```bash
+python src/mle_critic/src/preprocess/download_and_resolve/unzip.py data/augmented_mle_critic/raw_journal/0817
+```
+
 ## 1. 原始 journal 和 Card
 
 每个 run 的输入结构是：
@@ -204,7 +220,20 @@ lower-is-better 任务取最小有限 grade，NaN/Inf 不参与比较。指标�
 ```
 
 
-## 5. 构建 batch value/reward pairs
+## 5. 构建 value/reward pairs
+
+## 5.1 global value pairs
+
+```bash
+PYTHONPATH=src/mle_critic python -m src.preprocess.build_bt_pairs.build_subtree_pairs \
+  data/augmented_mle_critic/raw_journal/value_pairs.jsonl \
+  data/augmented_mle_critic/augmented_cards_current.json \
+  --cap 1000 \
+  --seed 7 \
+  --budget-steps -1
+```
+
+## 5.2 batched value pairs
 
 脚本：
 
@@ -249,7 +278,7 @@ data/augmented_mle_critic/raw_journal/batch_value_pairs.jsonl
 grade，higher_is_better 决定取最大还是最小，NaN/Inf grade 不参与比较。输出中的
 loto_fold 保存任务名，gap_raw 保存两个节点的 value 差，初始 intask_split 为 unassigned。
 
-### 5.1 Batch decision pairs
+### 5.3 Batch decision pairs
 
 Decision pair 也按 batch 单独构建，使用以下两个 wrapper：
 

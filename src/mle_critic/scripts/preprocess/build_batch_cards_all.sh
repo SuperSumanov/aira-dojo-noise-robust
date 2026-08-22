@@ -20,3 +20,7 @@ bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_c
 bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0813/
 bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0814/
 bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0815/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0816/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0817/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0818/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0819/

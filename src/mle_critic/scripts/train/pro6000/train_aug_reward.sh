@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Full-FT L1 run-clean RM. Requires two 96 GB GPU.
-# Usage: bash src/mle_critic/scripts/train/pro6000/train_l1_lookahead.sh [seed]
+# Usage: bash src/mle_critic/scripts/train/pro6000/train_aug_reward.sh [seed]
 set -euo pipefail
 source "$(dirname "$0")/../../experiment_env_augmented_data.sh"
 SEED=${1:-7}

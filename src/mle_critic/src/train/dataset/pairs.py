@@ -24,17 +24,9 @@ def read_cards(path: str) -> tuple[dict[str, str], dict[str, str]]:
     tasks: dict[str, str] = {}
     run_id_by_card_id: dict[str, str] = {}
     for run_id, run_cards in cards_by_run_id.items():
-        if not isinstance(run_id, str) or not run_id:
-            raise ValueError(f"Invalid run ID in {path}: {run_id!r}")
-        if not isinstance(run_cards, list):
-            raise ValueError(f"Run {run_id!r} does not contain a Card list")
 
         for card in run_cards:
-            if not isinstance(card, dict):
-                raise ValueError(f"Run {run_id!r} contains a non-object Card")
             card_id = card["id"]
-            if not isinstance(card_id, str) or not card_id:
-                raise ValueError(f"Run {run_id!r} contains an invalid Card ID")
             if card_id in code:
                 raise ValueError(
                     f"Duplicate Card ID {card_id!r} in runs "
@@ -43,10 +35,6 @@ def read_cards(path: str) -> tuple[dict[str, str], dict[str, str]]:
 
             card_code = card["code"]
             task_name = card["task"]["name"]
-            if not isinstance(card_code, str):
-                raise ValueError(f"Card {card_id!r} has a non-string code field")
-            if not isinstance(task_name, str) or not task_name:
-                raise ValueError(f"Card {card_id!r} has an invalid task.name field")
 
             code[card_id] = card_code
             tasks[card_id] = task_name
@@ -120,7 +108,7 @@ class CardEncoder:
         )
 
     def render(self, card_id: str, budget: int | None = None) -> str:
-        prefix = ""
+        prefix = "# Please predict whether the following code will be a better solution to this MLE task.\n"
         if self.task_cond:
             prefix += f"# MLE-bench task: {self.tasks.get(card_id, '')}\n"
         if budget is not None and self.budget_pos == "head":

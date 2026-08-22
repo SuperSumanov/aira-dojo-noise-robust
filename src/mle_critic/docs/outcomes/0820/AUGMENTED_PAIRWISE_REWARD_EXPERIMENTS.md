@@ -1,9 +1,10 @@
-# Augmented Pairwise Reward：实验内配对、LOTO 与 Decision 迁移评估
+# Augmented Pairwise Reward：实验内配对、LOTO 与 Decision 实验
 
 ## 结论摘要
 
 这批实验第一次在当前 augmented 数据上观察到比较清楚的模型规模效应，但这个结论只成立于
-in-task value-pair 排序任务，还没有转化成同样清楚的 decision 能力。
+in-task value-pair 排序任务。14B 延续了这个趋势，并让 value→decision 迁移第一次超过
+TF-IDF；但直接在 decision pairs 上训练仍没有稳定的规模效应。
 
 1. Value pair 从“同一 task 的全部可用节点互相配对”改成“只在同一个 experiment 内配对”。
    这样至少控制了策略模型、硬件、时间预算和采集批次等 experiment 级差异，减少 critic 仅靠
@@ -12,25 +13,31 @@ in-task value-pair 排序任务，还没有转化成同样清楚的 decision 能
    输入这一点跨 run 配对；improve 保留局部决策的语义，并跨过中间 error/debug 节点寻找最近的
    正常 parent。经过 gap filter 和 run split 后，两部分分别贡献 3,895 和 2,661 条 pair。
 3. 当前所有训练目标都统一为“给定两个 solution，判断哪个最终 grade 更高”。模型只学习标量
-   score 的相对次序，不回归绝对 value。现阶段优先确认任务是否可学，暂时放弃 value 数值预测。
-4. In-task value pair 上，Qwen3 0.6B--8B 的两个 seed 平均 final accuracy 依次为 **58.64%、
-   60.67%、62.01%、64.68%**，平均 final eval loss 依次为 **0.7096、0.6954、0.6770、
-   0.6607**。模型越大总体越好，训练前半程 accuracy 也明显上升。这是目前最明确的一次 scaling
-   结果。
+   score 的相对次序，不预测value（大V），现阶段优先确认任务是否可学。
+4. In-task value pair 上，Qwen3 0.6B--14B 的两个 seed 平均 final accuracy 依次为 **58.64%、
+   60.67%、62.01%、64.68%、65.76%**，平均 final eval loss 依次为 **0.7096、0.6954、
+   0.6770、0.6607、0.6324**。14B 相对 8B 的 accuracy 增益缩小到 1.08 个百分点，但 loss
+   继续明显下降，整体 scaling 仍成立。
 5. 便宜基线并没有失效。Value pair 上 TF-IDF logistic regression 为 **61.18%**：0.6B 明显
    落后，1.7B 平均仍略低；4B 平均超过约 0.83 个百分点，但 seed 6 的 final 仍略低；8B 两个
-   seed 都超过基线，平均领先约 3.50 个百分点。
+   seed 都超过基线，平均领先约 3.50 个百分点；14B 两个 seed 的 final 都是 65.76%，领先约
+   4.57 个百分点。
 6. Spooky Author 的 leave-one-task-out 没有稳定、单调的 scaling。4B/8B 的结果明显高于随机，
    但 1.7B 比 0.6B 更差，8B 又低于 4B，而且各模型后半程 eval loss 明显恶化。这个设置测的是
    完全没有目标任务训练样本的跨任务 zero-shot 排序，与 agent 已经接触目标数据和运行环境后的
    MLE 决策不是同一个问题。
-7. Decision 评估使用的是 value-pair 训练得到的 seed 7 checkpoint，而不是直接在 decision
-   train split 上训练。Filtered decision accuracy 从 0.6B 到 8B 为 **56.25%、56.25%、
-   59.06%、59.38%**，规模效应较弱。8B 仍略低于 TF-IDF 的 **59.90%**。
+7. Value→decision 迁移使用 seed 7 value checkpoint。Filtered decision accuracy 从 0.6B
+   到 14B 为 **56.25%、56.25%、59.06%、59.38%、60.63%**。14B 首次超过 TF-IDF 的
+   **59.90%**，但只高 0.73 个百分点，而且 decision 侧只有一个 seed。
+8. 直接用 5,596 条 decision train pairs 训练 2 epochs 后，0.6B/1.7B/4B/8B 的 best accuracy
+   为 **56.56%、55.73%、59.38%、55.83%**，没有模型规模效应，也没有稳定优于
+   value→decision。所有模型的 eval loss 都在训练早期达到最低点，随后明显恶化；第二个 epoch
+   基本是在增加置信度和过拟合，而不是改善排序。
 
-因此当前最稳妥的判断是：**experiment 内 value 排序具备 learnability 和模型规模效应，但其
-信号只能部分迁移到真实 decision pair。** 下一步应直接训练 decision pairs，并把规模扩到
-14B/27B；同时继续推进以更多算力换performance的 RL 实验。
+因此当前最稳妥的判断是：**experiment 内 value 排序具备 learnability 和模型规模效应；增大到
+14B 能继续改善 value，并小幅改善 decision 迁移，但直接 decision supervision 本身仍不稳定。**
+下一步应优先补直接 decision 的多 seed、14B/27B 和更短训练/更强正则，同时继续推进以更多算力
+换 performance 的 RL 实验。
 
 ## 可复现版本与实验口径
 
@@ -46,12 +53,17 @@ pair 构建对应当前 HEAD。
 - `logs/augmented_mle_critic/reward_0815/seed7/`
 - `logs/augmented_mle_critic/loto_spooky_author/`
 - `logs/augmented_mle_critic/decision/`
+- `logs/augmented_mle_critic/decision_0815/`
 - `logs/augmented_mle_critic/light_predictor/light_predictor_results_augdata.json`
 - `logs/augmented_mle_critic/light_predictor/light_predictor_results_filtered_decision.json`
 
+直接 decision 训练入口是
+`src/mle_critic/scripts/train/pro6000/train_aug_reward_decision.sh`。本文更新时该脚本仍是 worktree
+中的未提交文件，不包含在上述 HEAD；复现时不能只 checkout commit 而忽略它。
+
 Value 和 LOTO 训练的共同配置为：
 
-- Qwen3 Base 0.6B、1.7B、4B、8B，全参数微调；
+- Qwen3 Base 0.6B、1.7B、4B、8B 全参数微调；value 另包含 14B；
 - 2 张 96 GB GPU，bf16，DeepSpeed ZeRO-3；
 - `max_len=16384`，task conditioning 开启，budget conditioning 关闭；
 - learning rate `1e-5`，cosine scheduler，warmup ratio `0.03`；
@@ -61,7 +73,11 @@ Value 和 LOTO 训练的共同配置为：
 本文同时报告 Best 和 Final record。Best 是日志内所有 validation checkpoint 的最高 accuracy，
 存在多次查看 validation 后的选择偏差；Final 是最后一次记录，不一定正好对应完整训练结束。
 Seed 6/7 的 4B 和 seed 6 的 8B 没有正常结束标记，但都记录到约 epoch 0.96，因此保留最后一次
-validation。LOTO 的 8B 同样没有正常结束标记。
+validation。新增的 14B value 两个 seed 都完整训练到 1 epoch。LOTO 的 8B 没有正常结束标记。
+
+直接 decision 实验使用同样的模型输入和有效 batch 128，但训练 2 epochs、每 9 个 optimizer
+step 评估一次；目前只有 seed 7 的 0.6B、1.7B、4B、8B。1.7B 和 8B 完整结束，0.6B 和 4B
+记录到 epoch 1.85 后被中断。
 
 ## 1. 数据构建改动
 
@@ -143,26 +159,29 @@ L = -log sigmoid(s(better) - s(worse))
 | Qwen3-1.7B-Base | 59.40% | 61.94% | **60.67%** | 60.67% | 0.6954 |
 | Qwen3-4B-Base | 60.67% | 63.34% | **62.01%** | 62.80% | 0.6770 |
 | Qwen3-8B-Base | 66.01% | 63.34% | **64.68%** | 64.96% | 0.6607 |
+| Qwen3-14B-Base | 65.76% | 65.76% | **65.76%** | 66.14% | 0.6324 |
 
-从两个 seed 的平均看，accuracy 随模型规模单调上升，0.6B 到 8B 提升 **6.04 个百分点**；
-final eval loss 也随规模单调下降。Seed 间仍有约 1.1--2.7 个百分点波动，但没有改变平均排序。
-这比此前全 task 混合 value pairs 上“增大模型没有明显作用”的结果更像正常的 scaling。
+从两个 seed 的平均看，accuracy 随模型规模单调上升，0.6B 到 14B 提升 **7.12 个百分点**；
+final eval loss 也随规模单调下降。14B 相对 8B 的 final accuracy 只增加 **1.08 个百分点**，
+低于此前相邻规模约 1.3--2.7 个百分点的增益，说明 accuracy scaling 已开始变缓；但 final loss
+从 0.6607 降到 0.6324，模型的 pair margin 质量仍在改善。Seed 间波动没有改变平均规模排序。
+不过 14B 的两个 seed 虽然 final accuracy 恰好相同，第一次 validation 分别为 57.69% 和
+63.53%，相差 5.84 个百分点；它们只是最终收敛到同一点，不能据此认为训练方差已经消失。
 
 ### 3.2 随训练步数的变化
 
-把 4 个模型、2 个 seed 在相同 validation 时刻做宏平均：
+把 5 个模型、2 个 seed 在相同 validation 时刻做宏平均：
 
 | 平均 epoch | Eval accuracy | Eval loss |
 | ---: | ---: | ---: |
-| 0.11 | 53.26% | 0.6905 |
-| 0.43 | 59.70% | 0.6769 |
-| 0.64 | 61.07% | 0.6857 |
-| 0.86 | 61.54% | 0.6849 |
-| 0.96 | 61.50% | 0.6857 |
+| 0.11 | 54.73% | 0.6858 |
+| 0.43 | 60.22% | 0.6717 |
+| 0.64 | 61.70% | 0.6777 |
+| 0.86 | 62.43% | 0.6748 |
+| 0.96 | 62.35% | 0.6750 |
 
-Accuracy 的训练步数 scaling 很明确，但主要发生在前 0.6 epoch，之后基本进入平台，而不是一直
-随 step 增长。Eval loss 在约 0.43 epoch 最低，之后略有回升。因此“训练越久越好”对 accuracy
-大体成立到平台期，对 loss 则不成立。
+Accuracy 的训练步数 scaling 很明确，但主要发生在前 0.6--0.8 epoch，之后进入平台。Eval
+loss 在约 0.43 epoch 最低，后期略有回升。因此“训练越久越好”只大体成立到平台期。
 
 小模型尤其存在 accuracy 和 loss 不同步的问题。0.6B 的两-seed final accuracy 达到 58.64%，
 但 final loss 0.7096 比随机 margin 对应的 `log(2)=0.6931` 更差，说明它虽然排对了更多 pair，
@@ -182,7 +201,8 @@ margin 分布诊断。
 0.6B 打不过 TF-IDF 和 static LR；1.7B 两-seed平均比 TF-IDF 低 0.51 个百分点。4B 平均比
 TF-IDF 高 0.83 个百分点，但 seed 6 的 final 60.67% 仍低于 TF-IDF，因此还不能称为每个 run
 都稳定领先。8B 的两个 seed 分别为 66.01% 和 63.34%，都超过 TF-IDF，平均优势为 3.50 个
-百分点。
+百分点。14B 的两个 seed final 都是 65.76%，比 TF-IDF 高 4.57 个百分点；其 seed 6 best
+达到 66.52%。
 
 这组结果支持“需要一定模型容量才能超过文本统计捷径”，但两个 seed 仍不足以做严格显著性
 结论。TF-IDF 已达到 61.18% 也说明 experiment 内配对没有消除所有浅层可学信号。
@@ -218,7 +238,7 @@ final accuracy 比 best 低 1.5--2.9 个百分点，final loss 则上升到约 0
 
 `logs/augmented_mle_critic/decision/` 评估的是 seed 7 value-pair 模型在 decision pairs 上的
 zero-shot transfer。每个规模使用其 value validation 上保留下来的 checkpoint，因此 checkpoint
-步数并不一致；另一组 seed 的 checkpoint 没有保存，不能估计 seed 方差。
+步数并不一致；另一组 seed 的 checkpoint 没有保存，不能估计 decision 迁移的 seed 方差。
 
 | 模型 | Checkpoint | Filtered decision（960） | Unfiltered decision（1,708） | Filter 收益 |
 | --- | --- | ---: | ---: | ---: |
@@ -226,11 +246,13 @@ zero-shot transfer。每个规模使用其 value validation 上保留下来的 c
 | Qwen3-1.7B-Base | checkpoint-90 | 56.25% | 55.39% | +0.86 pp |
 | Qwen3-4B-Base | checkpoint-80 | 59.06% | 57.90% | +1.16 pp |
 | Qwen3-8B-Base | checkpoint-60 | 59.38% | 57.38% | +2.00 pp |
+| Qwen3-14B-Base | checkpoint-90 | **60.63%** | **58.02%** | +2.60 pp |
 
-规模从 0.6B 增加到 4B 有约 2.8 个百分点收益，但 8B 相对 4B 只增加 0.31 个百分点，且没有
-第二个 seed。因此只能说存在较弱的规模信号，不能复现 value test 上清楚的 scaling。
+14B 把 filtered accuracy 再提高 1.25 个百分点，并首次超过 TF-IDF。不过整个序列并不平滑：
+0.6B 和 1.7B 打平，4B 和 8B 也几乎打平，主要是 4B 和 14B 两次台阶式提升。Decision 侧又
+只有 seed 7，因此它仍弱于 value test 上跨两个 seed 的单调 scaling 证据。
 
-Gap filter 对四个模型都带来正收益，幅度为 0.86--2.15 个百分点，说明去掉外部 grade 分差太小
+Gap filter 对五个模型都带来正收益，幅度为 0.86--2.60 个百分点，说明去掉外部 grade 分差太小
 的 pair 确实提高了标签可辨识度。但 filtered test 只剩 960 条，而且包含大量共享 endpoint；
 这项提升仍应在新的 seed/checkpoint 上复核。
 
@@ -242,32 +264,66 @@ Filtered decision 的 light predictor 为：
 | Static features + gradient boosting | 54.58% |
 | Static features + logistic regression | 51.88% |
 
-8B 的 59.38% 距 TF-IDF 仍差 0.52 个百分点，4B 差 0.83 个百分点。也就是说，大模型已经明显
-超过手工静态特征，但在真正关心的 decision 迁移上仍只能勉强接近字符级文本基线。
+14B 的 60.63% 比 TF-IDF 高 0.73 个百分点，是目前唯一超过 TF-IDF 的 decision 结果；8B 和
+4B 仍分别低 0.52 和 0.83 个百分点。这个优势还小于单个 seed 常见波动，不能单独视为稳定胜出。
 
 与各模型 seed 7 的 value Best 相比，迁移到 filtered decision 后分别下降约 2.96、5.69、
-4.98 和 4.54 个百分点。这比“完全不能迁移”稍好，但清楚表明 experiment 内全局 solution
-排序和局部 decision 仍不是同一个任务。
+4.98、4.54 和 5.13 个百分点。这比“完全不能迁移”稍好，但清楚表明 experiment 内全局
+solution 排序和局部 decision 仍不是同一个任务。
 
-## 6. 总体判断与下一步
+## 6. 直接在 Decision pairs 上训练
+
+`logs/augmented_mle_critic/decision_0815/` 使用 5,596 条 merged filtered decision train
+pairs 训练，并在同一数据文件的 960 条 test pairs 上评估。训练配置与 value 实验基本一致，
+但从 1 epoch 增加到 2 epochs。目前只有 seed 7，尚未训练 14B。
+
+| 模型 | Best accuracy | Best epoch | Final accuracy | Final loss | 最低 eval loss（epoch） | 状态 |
+| --- | ---: | ---: | ---: | ---: | --- | --- |
+| Qwen3-0.6B-Base | 56.56% | 1.43 | 56.35% | 0.7563 | 0.6866（0.82） | epoch 1.85 后中断 |
+| Qwen3-1.7B-Base | 55.73% | 1.43 | 55.21% | 0.8603 | 0.6863（0.41） | 完成 |
+| Qwen3-4B-Base | **59.38%** | 1.23 | 58.33% | 0.8645 | 0.6963（0.41） | epoch 1.85 后中断 |
+| Qwen3-8B-Base | 55.83% | 0.62 | 55.31% | 0.8883 | 0.7030（0.21） | 完成 |
+
+结果没有模型规模效应：4B 最好，8B 反而退回 0.6B/1.7B 水平。最佳的 4B 也只有 59.38%，
+比 TF-IDF 的 59.90% 低 0.52 个百分点。相比同规模 value→decision 迁移，直接训练的 Best
+分别变化 **+0.31、-0.52、+0.31、-3.54 个百分点**；没有证据表明换成更贴近目标的数据后就
+自然学得更好，8B 甚至明显更差。但这里每个规模只有一个 seed，更准确的解释是当前训练设置对
+8B 不稳定，而不是“大模型一定更差”。
+
+更清楚的问题是过拟合。四个模型的最低 eval loss 都出现在 epoch 0.21--0.82，而 Best accuracy
+除 8B 外出现在 epoch 1.23--1.43。到 epoch 1.85，eval loss 已升到 0.76--0.89，远高于训练
+早期和 `log(2)=0.6931`。Accuracy 还能维持在 55%--58%，说明模型大体保留了一些排序方向，
+但在错误 pair 上给出了越来越极端的 margin。第二个 epoch 没有带来可靠收益，后续不应继续照搬
+当前 2-epoch 配置。
+
+这里还有两个未拆开的变量：merged test 中 draft 只有 343 条、improve 有 617 条，而两类 pair
+的语义不同；同时训练集只有 5,596 条，明显小于 value 的 11,946 条。下一轮应分别报告
+draft/improve accuracy，并尝试 0.5--1 epoch、降低 learning rate、weight decay 或更早停止。
+
+## 7. 总体判断与下一步
 
 Experiment 内配对后出现清楚的 value scaling，是一个有意义的进展。它支持此前无 scaling
 至少部分来自数据异质性和环境 shortcut。不过本轮同时改变了 pair 范围、数据量、gap filter 和
 采样方式，不能把改善严格归因于单一因素；要做因果确认，需要在同一批 Cards 上构造 global-task
 和 within-experiment 两个 matched 数据集直接比较。
 
+新增结果说明，扩大模型和换成直接 decision supervision 是两条不同轴：14B 能延续 value scaling
+并稍微改善迁移，但 0.6B--8B 的直接 decision 训练没有 scaling，而且严重过拟合。
+
 接下来的优先级：
 
-1. 直接使用 5,596 条 decision train pairs 训练，在固定的 960 条 filtered decision test 上
-   评估，不再只测 value checkpoint 的迁移。
-2. Decision 训练至少跑两个 seed，并分别报告 draft test（343 条）和 improve test（617 条），
+1. Decision 训练至少再跑一个 seed，并分别报告 draft test（343 条）和 improve test（617 条），
    同时保留 merged 指标。
-3. 扩展 Qwen3 14B 和 27B。所有规模应使用相同有效 batch、epoch 和 checkpoint 选择规则，避免
-   当前 checkpoint-60/80/90 不一致带来的混杂。
-4. 保留 TF-IDF、static LR/GBM 作为每版数据的最低基线。大模型如果不能稳定超过 TF-IDF，就不应
-   仅凭高于随机认为 critic 已经解决问题。
-5. 继续尝试 RL，把目标接到真实搜索收益。Pairwise RM 可以作为初始化、proposal reranker 或
+2. 把直接 decision 训练缩短到最多 1 epoch，并基于 validation loss/accuracy 明确 early-stop
+   规则；当前 2 epochs 已证明过长。
+3. 补直接 decision 的 14B，并扩展到 27B。但所有规模应使用相同有效 batch、epoch 和 checkpoint
+   选择规则，不能只比较各自挑出的 Best。
+4. 保留 TF-IDF、static LR/GBM 作为每版数据的最低基线。14B 迁移只领先 TF-IDF 0.73 个百分点，
+   如果不能跨 seed 保持，就不应视为已经稳定胜出。
+5. 构造 global-task 与 within-experiment 的 matched 对照，隔离数据范围、gap filter 和采样变化，
+   确认 value scaling 到底来自哪项改动。
+6. 继续尝试 RL，把目标接到真实搜索收益。Pairwise RM 可以作为初始化、proposal reranker 或
    auxiliary loss，但最终应以固定计算预算下的 MLEBench agent 表现判断价值。
 
-当前证据足以说明 pairwise ranking 不是完全不可学，也出现了预期的容量 scaling；但距离“critic
-能够稳定改善 AIRA 的真实分支决策”仍有明显差距。
+当前证据足以说明 value pairwise ranking 不是完全不可学，也出现了预期的容量 scaling；但直接
+decision 训练仍不稳定，距离“critic 能够稳定改善 AIRA 的真实分支决策”还有明显差距。

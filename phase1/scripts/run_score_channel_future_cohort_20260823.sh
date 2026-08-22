@@ -159,9 +159,11 @@ else
   printf 'true\n' > "${staging}/production_state_advanced_after_verification.txt"
 fi
 
-forbidden_open_count=$(grep -hEic \
-  'open(at|at2)?\(.*(\.tar\.gz|label_vault\.jsonl|all_blind_views\.jsonl|eligible_blind_manifest\.jsonl|/scores/)' \
-  "${staging}"/*.strace* || true)
+forbidden_open_count=$( {
+  grep -hEi \
+    'open(at|at2)?\(.*(\.tar\.gz|label_vault\.jsonl|all_blind_views\.jsonl|eligible_blind_manifest\.jsonl|/scores/)' \
+    "${staging}"/*.strace* || true
+} | wc -l )
 printf '%s\n' "${forbidden_open_count}" > "${staging}/forbidden_open_count.txt"
 test "${forbidden_open_count}" -eq 0
 

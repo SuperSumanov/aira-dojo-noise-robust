@@ -1,0 +1,78 @@
+{
+  "protocol": "score-channel-truth-aliasing-protocol-v1",
+  "status": "FROZEN_POST_HOC_RAW_GRADE_NOT_READ",
+  "frozen_at_utc": "2026-08-22T20:49:03Z",
+  "question": "did clipped y_norm erase within-parent ordering support that remains in the official rounded raw grade",
+  "timing_and_evidence": {
+    "old_primary_outcomes_already_known": true,
+    "confirmatory_effect_test": false,
+    "known_y_norm_tied_parents": 148,
+    "known_y_norm_nontied_parents": 10,
+    "known_common_comparative_parents": 3,
+    "known_common_y_norm_nontied_parents": 0,
+    "raw_graded_alias_counts_read_before_freeze": false,
+    "raw_graded_channel_credits_read_before_freeze": false,
+    "formal_primary_status_may_change": false
+  },
+  "locked_inputs": {
+    "selection_summary_sha256": "f168a90043769d0d80257ec0af7f71c57d18b098f7390f615d66b1617ddd9441",
+    "selected_parents_sha256": "49e808747532034ae653e0fdb45a3144f5fe4545ae5b8d1755d79545d4c64b81",
+    "selected_parents": 158,
+    "selected_candidates": 320,
+    "replay_summary_sha256": "0ea4766bd464248a91b95c10d4be720862ca2b631d2b849d78b4189deff580bf",
+    "replay_manifest_sha256": "e20b43b9eee55395380def2772bfdab21f261eb3d850fc9a67ff0ccb4bc5fe58",
+    "approval_sha256": "b107075810e5af0da084be087cfa70740cd846d198a155116a061599e3057e09",
+    "orientation_sha256": "81c9684741cb166bf1b4e2d7cb91ed0c8742c5040945b44d22f1c61f18baf85a",
+    "result_sha256_by_shard": {
+      "0": "6c19f364b82918a6d21a7ec4c7c78313c126a68374b8b25678e9c39986d39efd",
+      "1": "ede275d8104362025998fc27d13af602f66d04295847de387ed570baecced99d",
+      "2": "e3a627be45ea5081ecccc95977969edfad02ca94b703a2997b17b18dc8f909c4",
+      "3": "447cffe6380dcff770c303d70390335e9cdcc07cd74d9e6e18504758ad5e4ab6"
+    }
+  },
+  "grader_contract": {
+    "mlebench_git_commit": "507f92e1138bb6e40dac5c6ee7a6758e6424bf97",
+    "grade_helpers_sha256": "7d55512a893699b2e17041f3cd3bd0c2aba955c73f50872b3c69238546b87005",
+    "official_score_operation": "round(score, 5)",
+    "raw_grade_in_this_audit_means": "the official five-decimal score stored as graded, before medal-threshold normalization and clipping",
+    "unrounded_score_recovery_claim_allowed": false
+  },
+  "estimands": {
+    "tie_absolute_tolerance": 1e-12,
+    "raw_informative": "max(graded)-min(graded)>1e-12 within the selected sibling set",
+    "normalized_informative": "max(y_norm)-min(y_norm)>1e-12 within the same set",
+    "alias_parent": "normalized tied but raw informative",
+    "impossible_direction": "raw tied but normalized informative",
+    "normalized_tie_boundaries": [
+      "all_zero",
+      "all_one",
+      "interior"
+    ],
+    "common_channel_rule": "at least two siblings have finite external score and keyed finite stdout",
+    "common_credit_truth": "task-oriented official rounded raw grade; tie-aware expected top-1 credit",
+    "task_subsets_allowed": false,
+    "raw_label_values_written": false
+  },
+  "material_aliasing_gate": {
+    "alias_parents_minimum": 16,
+    "alias_tasks_minimum": 4,
+    "all_must_pass": true,
+    "pass_status": "MATERIAL_Y_NORM_ALIASING",
+    "fail_status": "LIMITED_Y_NORM_ALIASING",
+    "pass_implication": "preserve the frozen y_norm gate but add a separately named raw-grade truth-support estimand before opening future truth; no replay or effect claim is authorized",
+    "fail_implication": "retain the frozen future y_norm gate without a raw-grade primary amendment"
+  },
+  "interpretation_limits": {
+    "post_hoc_old_cohort": true,
+    "may_reverse_old_machine_verdict": false,
+    "method_positive_claim_allowed": false,
+    "future_vault_may_be_opened_by_this_protocol": false,
+    "gpu_or_api_authorized": false
+  },
+  "scope": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_update": false
+  }
+}

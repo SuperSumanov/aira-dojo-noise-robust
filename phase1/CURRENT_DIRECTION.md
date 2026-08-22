@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EE. 2026-08-23 `y_norm` 可能额外裁平 truth ordering；raw-grade alias 审计已结果前冻结
+
+固定 MLE-bench commit `507f92e1138bb6e40dac5c6ee7a6758e6424bf97` 的 `Grader.__call__` 会先执行
+`round(score, 5)`；我方 `normalize_graded` 又按 medal thresholds 变换并裁到 `[0,1]`。因此旧 cohort 的 148/158
+`y_norm`-tied parents 可能混合官方五位小数同分与我方 clipping alias。冻结前只知道旧 aggregate，不知道 raw
+`graded` informative/alias/common-credit 结果；当前 future truth vault 未开。
+
+新 post-hoc 协议在完全相同 158 parents / 320 candidates 上固定比较 raw `graded` 与 `y_norm` ordering support，
+并把 normalized ties 分为 all-zero/all-one/interior。material gate 固定为 alias parents≥16 且 tasks≥4；通过只允许
+在 future vault 打开前另名追加 raw-grade truth-support estimand，同时保留原 `y_norm` gate，不授权 replay 或 effect
+主张。旧 machine verdict 永不反转，unrounded score 不声称可恢复。协议 SHA-256=
+`b917182570fd3484b87457b9185d5220eef3bc5fdda5030e847897a3c7f052cd`；producer/verifier 双实现与 5 个合成测试已完成，
+必须先 commit+push 并经 fresh exact-commit 测试，之后才能读旧 raw `graded` 聚合。证据：
+
+- `phase1/score_channel_truth_aliasing_protocol_v1.json`；
+- `phase1/score_channel_truth_aliasing.py`；
+- `phase1/verify_score_channel_truth_aliasing.py`；
+- `phase1/实验记录/2026-08-23/ScoreChannel_TruthAliasing_结果前冻结.md`。
+
 ## 0ED. 2026-08-23 0821 Plant 精确结构拒收已冻结；前两笔 cohort transaction 不变
 
 连续 intake 已先提交 `ranzcr` 与 `tgs` 共 8 个 accepted physical runs；随后 0821 Plant archive 在 task-identity

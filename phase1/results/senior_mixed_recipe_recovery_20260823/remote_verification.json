@@ -27,6 +27,16 @@
     "scientific_core_sha256_equal": true,
     "scientific_core_sha256": "3a7ef3ade0dc98ff16e00527e36ddae32a8e6274f11343d6dc2fcfb2fa91bdb5"
   },
+  "pushed_commit_fresh_checkout": {
+    "commit": "b1c18b60fbb29007a74a8616542411f80c21c741",
+    "auditor_git_blob_sha1": "c5113c246de9a30b58630689496708acb7f2aa6b",
+    "auditor_raw_sha256": "2a118f682e3fc554ad8e39be5e144d73f497fdf90d8204170a016c971e292211",
+    "focused_tests_passed": 23,
+    "focused_tests_failed": 0,
+    "receipt_file_sha256": "45c7f0c80be06849d0d1a59b4c536d93d87637873dcb5ddcdfd7906cf47a2284",
+    "scientific_core_sha256": "3a7ef3ade0dc98ff16e00527e36ddae32a8e6274f11343d6dc2fcfb2fa91bdb5",
+    "worktree_clean_after_verification": true
+  },
   "fail_closed_history": {
     "first_linux_auditor_attempt_passed": false,
     "reason": "raw Windows CRLF worktree SHA was not portable to the same LF Git blob",

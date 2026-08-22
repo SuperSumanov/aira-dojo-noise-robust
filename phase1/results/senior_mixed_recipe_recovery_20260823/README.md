@@ -27,3 +27,5 @@ The machine-readable evidence is `formal_receipt.json`; `remote_verification.jso
 builder double run and a second two-run audit under Python 3.11.15.  The Windows 3.13.4 and Linux receipts have the
 same scientific-core SHA-256 even though their runtime fields differ.  Reproduce the search with
 `phase1/recover_senior_mixed_recipe.py` and the four locked LFS objects plus the locked upstream builder source.
+The exact pushed commit was then fetched into a fresh no-smudge Linux worktree: 23 focused related tests passed,
+the receipt core remained identical, and the worktree remained clean.

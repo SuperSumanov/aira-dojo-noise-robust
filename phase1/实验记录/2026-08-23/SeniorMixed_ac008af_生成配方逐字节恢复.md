@@ -62,6 +62,10 @@ Windows/Python 3.13.4 receipt 同为
 `3a7ef3ade0dc98ff16e00527e36ddae32a8e6274f11343d6dc2fcfb2fa91bdb5`。运行环境字段不同，因此不要求完整 receipt
 文件 SHA 跨平台相同。
 
+最后从 GitHub 重新 fetch 已推送的精确 `b1c18b60fbb29007a74a8616542411f80c21c741`，在 fresh no-smudge
+Linux worktree 运行 recovery、旧 mixed audit 与 provenance contract 三组相关测试，打印 23 passed / 0 failed；正式
+receipt core 不变，验证后 worktree clean。
+
 聚焦 synthetic tests 覆盖冻结 grid cardinality、权重分配、dedup/test retention、候选区分、UTF-8/LF 序列化、输入
 SHA/size fail-closed、credential-shaped bytes 拒绝，以及同一 Git blob 的 CRLF/LF worktree 等价验收。远端首次验收
 曾按预期拒绝 Windows checkout 的 raw CRLF SHA；这不是配方失败。修正后的门同时锁定 senior commit 的 Git blob

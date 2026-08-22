@@ -1,0 +1,15 @@
+{
+  "entries": [
+    {
+      "archive_mtime_ns": 1787326291000000000,
+      "archive_relative_path": "0820/lmsys-chatbot-arena-8seeds.tar.gz",
+      "archive_sha256": "88cda8b980ee3b03fb2a19b6fdbddf35e4330e9e2adbc678c83cf20e3510f5b3",
+      "archive_size": 29102615,
+      "diagnostic_receipt_file": "diagnostic_receipt_lmsys_0820.json",
+      "diagnostic_receipt_sha256": "c71a3a7e952e693fb715d34dd82bc71c7a53ccb0285f2bfa06680d5dbbc09728",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+    }
+  ],
+  "outcomes_read": false,
+  "protocol": "prospective_structural_rejection_v1"
+}

@@ -1,0 +1,58 @@
+{
+  "archive": {
+    "mtime_ns": 1787326291000000000,
+    "relative_basename": "lmsys-chatbot-arena-8seeds.tar.gz",
+    "sha256": "88cda8b980ee3b03fb2a19b6fdbddf35e4330e9e2adbc678c83cf20e3510f5b3",
+    "size": 29102615
+  },
+  "archive_audit": {
+    "checkpoint_runs": 4,
+    "checkpoint_with_live_event_log": 4,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 157997696,
+    "discovered_run_roots": 4,
+    "live_only_runs_excluded": 0,
+    "members": 59
+  },
+  "invalid_journals": 4,
+  "journals": 4,
+  "outcomes_read": false,
+  "per_journal": [
+    {
+      "journal_sha256": "332d007407c7086d173a4bd79e4a44e37ce1cbafeddeb03090b8a78b37ff2c7a",
+      "nodes": 77,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "6868233ee6d68b1f1b1798c5d10ba254aea67e03763caae38b109bb46fe8401c",
+      "nodes": 85,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "95fa061483cffbe1e2f061896c52d58409e62686661564ffbaf2fcbb9a2cb797",
+      "nodes": 81,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "be21f0bd35bfd6bfa70405be34c2d921a64b13c5336af656847d71c7c7ba25f9",
+      "nodes": 85,
+      "task_identity_cardinality": 0
+    }
+  ],
+  "protocol": "prospective_archive_task_identity_audit_v1",
+  "recommended_reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+  "security": {
+    "code_stdout_grade_or_metric_values_emitted": false,
+    "env_members_read": false,
+    "journal_scanned_before_json": true,
+    "live_event_journal_members_read": false,
+    "task_identity_values_emitted": false
+  },
+  "source_commit": "5ee342f549311ece7bc111ddd0cb7ff08b740210",
+  "status": "STRUCTURAL_TASK_IDENTITY_REJECTION_SUPPORTED",
+  "task_identity_cardinality_counts": {
+    "multiple": 0,
+    "one": 0,
+    "zero": 4
+  }
+}

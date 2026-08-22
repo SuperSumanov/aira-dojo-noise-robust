@@ -21,6 +21,8 @@ EXTRA_0818_REGISTRY_REL=phase1/results/prospective_structural_rejection_20260820
 EXTRA_0818_REGISTRY_SHA=91369ba5cc571f607907d1bf209b4bc77a370137110bf167226173a664e324c6
 EXTRA_0819_REGISTRY=/research/d7/spc/yzyang4/prospective_decision_v1/diagnostics/plant_0819_task_identity_20260821/structural_rejections_0819.json
 EXTRA_0819_REGISTRY_SHA=0dc58a4f2b2770f615b4ebf6d077c25ec7866d0f0ad72a2cc2f312d8d4f1d503
+EXTRA_0820_REGISTRY_REL=phase1/results/prospective_structural_rejection_20260822/structural_rejections_0820.json
+EXTRA_0820_REGISTRY_SHA=766a4fa678a4cb9ae55fdb460ae94b5f1be93ce2040b64ed7e48c13260f9aebd
 POLL_SECONDS=300
 MAX_POLLS=145
 
@@ -37,6 +39,7 @@ additional_registry="${control_repo}/${ADDITIONAL_REGISTRY_REL}"
 extra_0816_registry="${control_repo}/${EXTRA_0816_REGISTRY_REL}"
 extra_0817_registry="${control_repo}/${EXTRA_0817_REGISTRY_REL}"
 extra_0818_registry="${control_repo}/${EXTRA_0818_REGISTRY_REL}"
+extra_0820_registry="${control_repo}/${EXTRA_0820_REGISTRY_REL}"
 log_root="${STATE_ROOT}/logs"
 monitor_log="${log_root}/continuous_intake_monitor_20260821.log"
 pid_file="${STATE_ROOT}/continuous_intake_monitor_20260821.pid"
@@ -55,6 +58,7 @@ verify_contracts() {
   test "$(sha256sum "${extra_0817_registry}" | awk '{print $1}')" = "${EXTRA_0817_REGISTRY_SHA}"
   test "$(sha256sum "${extra_0818_registry}" | awk '{print $1}')" = "${EXTRA_0818_REGISTRY_SHA}"
   test "$(sha256sum "${EXTRA_0819_REGISTRY}" | awk '{print $1}')" = "${EXTRA_0819_REGISTRY_SHA}"
+  test "$(sha256sum "${extra_0820_registry}" | awk '{print $1}')" = "${EXTRA_0820_REGISTRY_SHA}"
   test "$(tr -d '\r\n' < "${STATE_ROOT}/production_commit.txt")" = "${SCIENTIFIC_COMMIT}"
   test ! -e "${STATE_ROOT}/BASELINE_INVALID"
 }
@@ -79,6 +83,8 @@ runner() {
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0818_REGISTRY_SHA}" \
       --extra-structural-rejection-registry "${EXTRA_0819_REGISTRY}" \
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0819_REGISTRY_SHA}" \
+      --extra-structural-rejection-registry "${extra_0820_registry}" \
+      --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0820_REGISTRY_SHA}" \
       --minimum-age-seconds 21600 \
       --minimum-observations 3 \
       --minimum-observation-interval-seconds 300 \
@@ -96,6 +102,7 @@ if [[ "${mode}" == --initialize ]]; then
   echo "PREFLIGHT_02_CONTROL_COMMIT=${control_commit}"
   echo "PREFLIGHT_03_SCIENTIFIC_COMMIT=${SCIENTIFIC_COMMIT}"
   echo "PREFLIGHT_04_0819_REJECTION_SHA256=${EXTRA_0819_REGISTRY_SHA}"
+  echo "PREFLIGHT_04B_0820_REJECTION_SHA256=${EXTRA_0820_REGISTRY_SHA}"
   echo 'PREFLIGHT_05_INPUT=stable append-only senior archives bound by exact path size mtime and SHA256'
   echo 'PREFLIGHT_06_ESTIMAND=unchanged; no outcome metric and no historical backfill'
   echo 'PREFLIGHT_07_SECURITY=credential-first journal audit; env and live-event members never read; umask077'

@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DR. 2026-08-22 0820 首包已摄取；LMSYS task identity 结构失败已精确拒收
+
+`0820` 首个 `cdiscount` archive 已在固定 scientific commit 下提交，实际新增 4 个 eligible physical runs、
+71 endpoints 与 19 structural pairs；累计为 253 runs、6,542 endpoints、1,684 pairs、26 tasks，dominant
+run-task/pair-task share 分别为 `0.10276679841897234`/`0.16508313539192399`。outcome、label vault 与 scorer
+prediction 均未被 accumulator 打开。
+
+随后精确 archive `0820/lmsys-chatbot-arena-8seeds.tar.gz` 两次 intake 均在 task identity 门 fail closed。冻结 auditor
+双跑逐字节一致：4/4 checkpoint journals 的 competition identity cardinality 都为 0；raw journal 先过凭据扫描，
+env/live-event member、identity 值、代码、stdout、grade、metric 与 outcome 均未读/未输出。故整包按固定 reason
+code 拒收，不从文件名补 task、不部分 salvage。diagnostic/registry SHA-256 分别为
+`c71a3a7e952e693fb715d34dd82bc71c7a53ccb0285f2bfa06680d5dbbc09728` /
+`766a4fa678a4cb9ae55fdb460ae94b5f1be93ce2040b64ed7e48c13260f9aebd`。
+
+下一步只允许在 clean control commit 上绑定全部旧 registry 与本 registry，恢复 0820 剩余 archive 的 CPU-only
+连续摄取及 label-free transition escrow append。scientific commit、activation、estimand、稳定性门与 frozen scorer
+不变；transaction 未真正提交前不得把剩余 archive 算作入库。证据：
+
+- `phase1/results/prospective_structural_rejection_20260822/README.md`；
+- `phase1/实验记录/2026-08-22/Prospective0820_LMSYS结构拒收与摄取恢复.md`。
+
 ## 0DQ. 2026-08-22 max-step 正关联是 sequential-feedback 线索，不是新 selector
 
 0DP 后的 post-result、label-unused 结构审计绑定 S2 v2 train SHA

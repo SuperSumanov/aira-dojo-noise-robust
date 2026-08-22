@@ -60,3 +60,30 @@ credit。合成测试覆盖 alias、共同覆盖正控制、反向不可能状�
 11. known aggregate、grader commit/SHA、五位小数语句任一不符即 fail closed；
 12. producer×2、verifier×2 必须逐字节一致；
 13. 只有 protocol/code/tests/report commit+push 并经 fresh exact-commit 测试后才允许真实旧输入运行。
+
+## 6. 结果后追加：正式审计
+
+结果前代码与协议先以 commit `5e3ebcd571676cd55188bf22ad7265b34b7dc1b8` push，并在 fresh no-smudge
+exact-commit worktree 通过聚焦 5/5、完整 791/791（33 warnings）后，才打开旧 cohort 的 raw `graded` 聚合。
+producer×2、独立 verifier×2 均逐字节一致；future truth forbidden-open、文件名与高置信内容凭据扫描均为 0。
+
+正式结果：
+
+- selected parents/candidates/tasks=`158/320/17`；
+- official five-decimal raw `graded`：non-tied=`157`、tied=`1`；
+- `y_norm`：non-tied=`10`、tied=`148`；
+- normalized tied 但 raw non-tied 的 alias parents=`147`，涉及 tasks=`16`；
+- normalized non-tied 但 raw tied 的反向不可能状态=`0`；
+- 148 个 normalized ties 中 all-zero=`128`、all-one=`20`、interior=`0`；
+- 五位小数网格违规=`0`；
+- common comparative parents=`3`，三者在 raw truth 下均 non-tied；external/stdout 描述性 top-1 credit
+  均为 `1.0`，delta=`0.0`。
+
+冻结 material gate 的 parent/task 两项均通过，状态=`MATERIAL_Y_NORM_ALIASING`。这证明旧“148/158 truth ties”
+主要是我方 medal-threshold clipping 的 measurement alias，而非官方 grade 本身缺乏分辨率；但 common support 仍仅
+3 parents，不能据此声称 external 优于 stdout，也不能反转旧 primary/KILL。下一步严格按冻结权限，只在 future
+vault 打开前追加另名 raw-grade support estimand，并保留原 `y_norm` gate 原样。
+
+正式 analysis SHA-256=`38788c89ca8231428482d9bea1a43e5a641eda7a6efa26dec89eb6499e594ba5`；独立 verification
+SHA-256=`4b56b9e2e3cb9c52f390dd92b3877f818ef7b2edecc27cde919c06a09fb22789`。聚合证据保存于
+`phase1/results/score_channel_truth_aliasing_audit_20260823/`。

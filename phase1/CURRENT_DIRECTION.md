@@ -3,7 +3,45 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0EE. 2026-08-23 `y_norm` 可能额外裁平 truth ordering；raw-grade alias 审计已结果前冻结
+## 0EG. 2026-08-23 future raw-grade support extension 已结果前冻结；仍未打开 future truth
+
+0EF 的 material alias gate 通过后，已在 current future identity cohort 闭合和 label-vault open 前冻结并行 extension。
+它必须逐字节复用原 `score-channel-future-truth-support-v1` selected parents，同时独立重建 cohort/clique/SHA lottery；
+只在完全相同 sibling sets 上聚合 official five-decimal `graded` support。原 `y_norm` status 原样保留，不得覆盖或反转。
+
+raw support 沿用原四门：non-tied parents≥80、tasks≥8、dominant task share≤0.25、selected physical runs≥60；raw
+metric 跨 task 不同量纲，禁止跨任务 gap bins。PASS 只允许准备另名 replay matrix/orientation/power/GPU-hour request，
+仍需用户批准且不能自动 launch；KILL 则停止 raw-grade replay 请求。extension 协议 SHA-256=
+`4b13814ad53758d21e7f7b531ede5b9a63fd244c7e305833d0513eb77195c8c0`。producer 与不导入任一 producer 的 verifier
+均已实现；7 个聚焦/攻击测试覆盖 base-KILL/raw-PASS、字节确定性、off-grid、candidate reuse、结果篡改、实现独立与
+协议 bytes。只有 protocol/code/tests/report 先 commit+push 并经 fresh exact-commit 全测，才可随原 gate 一起读取
+future aggregate。证据：
+
+- `phase1/score_channel_future_raw_grade_support_protocol_v1.json`；
+- `phase1/score_channel_future_raw_grade_support.py`；
+- `phase1/verify_score_channel_future_raw_grade_support.py`；
+- `phase1/实验记录/2026-08-23/ScoreChannel_FutureRawGradeSupport_结果前冻结.md`。
+
+## 0EF. 2026-08-23 `y_norm` 大规模裁平 truth ordering；future raw-grade 并行支持估计量必须结果前追加
+
+结果前 commit `5e3ebcd571676cd55188bf22ad7265b34b7dc1b8` 之后，旧 158-parent cohort 的正式双实现审计确认：
+官方五位小数 `graded` 为 157 non-tied / 1 tied，而 `y_norm` 为 10 non-tied / 148 tied；147 个 parent、16 个任务
+属于“raw 可区分但 `y_norm` 并列”，反向不可能情形为 0。148 个 normalized ties 中 128 个全为 0、20 个全为 1、
+0 个 interior；320 个 grade 全部落在官方五位小数网格。冻结的 material gate（alias parents≥16 且 tasks≥4）两项
+均通过，独立 verifier 状态为 `VERIFIED_TRUTH_ALIASING_AUDIT`。
+
+三个旧 common-channel parents 在 raw truth 下全部可区分，但 external/stdout 的描述性 top-1 credit 都为 1.0，
+delta=0；样本只有 3，不能写通道效果结论。旧 primary/KILL 不反转，unrounded score 仍不可恢复。该结果只授权在
+current future vault 打开前冻结一个**另名、并行**的 official raw-grade truth-support estimand；原 `y_norm` gate 必须
+原样计算和报告，raw extension 不自动授权 replay/GPU/effect claim。正式 analysis/verification SHA-256 分别为
+`38788c89ca8231428482d9bea1a43e5a641eda7a6efa26dec89eb6499e594ba5` /
+`4b56b9e2e3cb9c52f390dd92b3877f818ef7b2edecc27cde919c06a09fb22789`；future truth forbidden-open、文件名与内容
+凭据扫描均为 0。证据：
+
+- `phase1/results/score_channel_truth_aliasing_audit_20260823/`；
+- `phase1/实验记录/2026-08-23/ScoreChannel_TruthAliasing_结果前冻结.md`。
+
+## 0EE. 2026-08-23 raw-grade alias 审计的结果前冻结（由 0EF 更新）
 
 固定 MLE-bench commit `507f92e1138bb6e40dac5c6ee7a6758e6424bf97` 的 `Grader.__call__` 会先执行
 `round(score, 5)`；我方 `normalize_graded` 又按 medal thresholds 变换并裁到 `[0,1]`。因此旧 cohort 的 148/158
@@ -15,7 +53,7 @@
 在 future vault 打开前另名追加 raw-grade truth-support estimand，同时保留原 `y_norm` gate，不授权 replay 或 effect
 主张。旧 machine verdict 永不反转，unrounded score 不声称可恢复。协议 SHA-256=
 `b917182570fd3484b87457b9185d5220eef3bc5fdda5030e847897a3c7f052cd`；producer/verifier 双实现与 5 个合成测试已完成，
-必须先 commit+push 并经 fresh exact-commit 测试，之后才能读旧 raw `graded` 聚合。证据：
+结果前 commit+push 与 fresh exact-commit 测试已完成；正式结果见 0EF。冻结证据：
 
 - `phase1/score_channel_truth_aliasing_protocol_v1.json`；
 - `phase1/score_channel_truth_aliasing.py`；

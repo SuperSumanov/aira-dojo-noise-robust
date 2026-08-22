@@ -1,0 +1,71 @@
+{
+  "protocol": "score-channel-future-raw-grade-support-extension-v1",
+  "status": "FROZEN_FUTURE_OUTCOME_UNREAD_WAITING_BASE_TRUTH",
+  "frozen_at_utc": "2026-08-22T21:02:12Z",
+  "question": "does the official five-decimal raw grade retain decision support erased by medal-threshold y_norm clipping in the closed future cohort",
+  "activation_evidence": {
+    "alias_protocol_sha256": "b917182570fd3484b87457b9185d5220eef3bc5fdda5030e847897a3c7f052cd",
+    "formal_analysis_sha256": "38788c89ca8231428482d9bea1a43e5a641eda7a6efa26dec89eb6499e594ba5",
+    "independent_verification_sha256": "4b56b9e2e3cb9c52f390dd92b3877f818ef7b2edecc27cde919c06a09fb22789",
+    "material_aliasing_status": "MATERIAL_Y_NORM_ALIASING",
+    "alias_parents": 147,
+    "alias_tasks": 16,
+    "impossible_direction_parents": 0
+  },
+  "base_contract": {
+    "protocol_sha256": "54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d",
+    "producer_sha256": "7df41993d978ae4942d9d8a5dac7ff0a06ae9564edfba30e2d420c7e4a24aa60",
+    "independent_verifier_sha256": "090bcf603aecac3181705206690fe29da7012c20c92d0fe832be65f11503ea4f",
+    "base_output_protocol": "score-channel-future-truth-support-v1",
+    "base_selected_parent_schema": "score-channel-future-selected-parent-v1",
+    "base_y_norm_status_must_remain_unchanged": true,
+    "base_selected_parent_rows_must_be_reused_byte_exactly": true,
+    "outcome_dependent_reselection_allowed": false
+  },
+  "grader_contract": {
+    "mlebench_git_commit": "507f92e1138bb6e40dac5c6ee7a6758e6424bf97",
+    "grade_helpers_sha256": "7d55512a893699b2e17041f3cd3bd0c2aba955c73f50872b3c69238546b87005",
+    "official_score_operation": "round(score, 5)",
+    "raw_grade_definition": "official five-decimal score stored as graded before medal-threshold normalization and clipping",
+    "unrounded_score_recovery_claim_allowed": false
+  },
+  "parallel_estimand": {
+    "selected_sibling_sets": "the exact base selected_parents.jsonl rows",
+    "raw_informative_definition": "max(graded)-min(graded) > 1e-12",
+    "normalized_reference_definition": "max(y_norm)-min(y_norm) > 1e-12 on the same sibling set",
+    "absolute_tolerance": 1e-12,
+    "official_five_decimal_grid_required": true,
+    "alias_parent": "normalized tied but raw informative",
+    "impossible_direction": "raw tied but normalized informative",
+    "all_tasks_reported": true,
+    "cross_task_raw_gap_bins_allowed": false,
+    "task_orientation_required_for_support_counts": false,
+    "raw_label_values_written": false
+  },
+  "raw_support_gates_for_separate_design_request": {
+    "nontied_selected_parents_minimum": 80,
+    "tasks_with_nontied_parent_minimum": 8,
+    "dominant_nontied_task_share_maximum": 0.25,
+    "selected_physical_runs_minimum": 60,
+    "threshold_source": "copied unchanged from the frozen base y_norm gate",
+    "all_must_pass": true,
+    "pass_action": "prepare a separately named raw-grade replay matrix, orientation receipt, power analysis, and GPU-hour request; no automatic launch",
+    "failure_action": "do not request or submit a raw-grade score-channel replay"
+  },
+  "interpretation_limits": {
+    "base_y_norm_gate_is_still_primary_for_its_original_estimand": true,
+    "raw_gate_may_overwrite_or_reverse_base_y_norm_status": false,
+    "raw_gate_is_a_separately_named_measurement_amendment": true,
+    "raw_gate_pass_is_an_effect_result": false,
+    "replay_submission_authorized": false,
+    "gpu_jobs_authorized": 0,
+    "future_replay_outcomes_may_be_opened": false,
+    "method_positive_claim_allowed": false
+  },
+  "scope": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_update": false
+  }
+}

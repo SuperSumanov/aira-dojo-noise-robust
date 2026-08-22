@@ -1,0 +1,205 @@
+{
+  "access_attestation": {
+    "api_calls": 0,
+    "future_truth_vault_opened": false,
+    "gpu_jobs": 0,
+    "model_fits": 0,
+    "raw_labels_or_channel_values_written": false
+  },
+  "common_channel_support": {
+    "comparative_parents": 3,
+    "normalized_nontied_parents": 0,
+    "raw_nontied_parents": 3,
+    "raw_truth_descriptive_credit": {
+      "delta": 0.0,
+      "external_top1_credit": 1.0,
+      "parents": 3,
+      "stdout_top1_credit": 1.0
+    }
+  },
+  "counts": {
+    "selected_candidates": 320,
+    "selected_parents": 158,
+    "tasks": 17
+  },
+  "implementation": {
+    "script_sha256": "3aa738c5c83025e4d8c0befc6e18080415bb9de6a8ae58ed3b88addd4f6decc1",
+    "source_commit": "5e3ebcd571676cd55188bf22ad7265b34b7dc1b8"
+  },
+  "inputs": {
+    "approval_sha256": "b107075810e5af0da084be087cfa70740cd846d198a155116a061599e3057e09",
+    "grade_helpers_sha256": "7d55512a893699b2e17041f3cd3bd0c2aba955c73f50872b3c69238546b87005",
+    "mlebench_git_commit": "507f92e1138bb6e40dac5c6ee7a6758e6424bf97",
+    "orientation_sha256": "81c9684741cb166bf1b4e2d7cb91ed0c8742c5040945b44d22f1c61f18baf85a",
+    "protocol_sha256": "b917182570fd3484b87457b9185d5220eef3bc5fdda5030e847897a3c7f052cd",
+    "replay_manifest_sha256": "e20b43b9eee55395380def2772bfdab21f261eb3d850fc9a67ff0ccb4bc5fe58",
+    "replay_summary_sha256": "0ea4766bd464248a91b95c10d4be720862ca2b631d2b849d78b4189deff580bf",
+    "result_sha256_by_shard": {
+      "0": "6c19f364b82918a6d21a7ec4c7c78313c126a68374b8b25678e9c39986d39efd",
+      "1": "ede275d8104362025998fc27d13af602f66d04295847de387ed570baecced99d",
+      "2": "e3a627be45ea5081ecccc95977969edfad02ca94b703a2997b17b18dc8f909c4",
+      "3": "447cffe6380dcff770c303d70390335e9cdcc07cd74d9e6e18504758ad5e4ab6"
+    },
+    "selected_parents_sha256": "49e808747532034ae653e0fdb45a3144f5fe4545ae5b8d1755d79545d4c64b81",
+    "selection_summary_sha256": "f168a90043769d0d80257ec0af7f71c57d18b098f7390f615d66b1617ddd9441"
+  },
+  "interpretation": {
+    "formal_primary_status_changed": false,
+    "method_positive_claim_allowed": false,
+    "old_machine_verdict_may_be_reversed": false,
+    "post_hoc_old_cohort": true,
+    "unrounded_score_recovered": false
+  },
+  "material_aliasing_gate": {
+    "alias_parent_gate_pass": true,
+    "alias_parents_minimum": 16,
+    "alias_task_gate_pass": true,
+    "alias_tasks_minimum": 4,
+    "status": "MATERIAL_Y_NORM_ALIASING"
+  },
+  "per_task": {
+    "AI4Code": {
+      "alias_parents": 9,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 9,
+      "parents": 9,
+      "raw_nontied": 9
+    },
+    "cassava-leaf-disease-classification": {
+      "alias_parents": 1,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 1,
+      "parents": 1,
+      "raw_nontied": 1
+    },
+    "dog-breed-identification": {
+      "alias_parents": 4,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 4,
+      "parents": 4,
+      "raw_nontied": 4
+    },
+    "dogs-vs-cats-redux-kernels-edition": {
+      "alias_parents": 20,
+      "common_comparative_parents": 1,
+      "common_normalized_nontied_parents": 0,
+      "common_raw_nontied_parents": 1,
+      "normalized_nontied": 2,
+      "normalized_tied_all_one": 20,
+      "parents": 22,
+      "raw_nontied": 22
+    },
+    "facebook-recruiting-iii-keyword-extraction": {
+      "alias_parents": 8,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 8,
+      "parents": 8,
+      "raw_nontied": 8
+    },
+    "google-quest-challenge": {
+      "alias_parents": 1,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 1,
+      "parents": 1,
+      "raw_nontied": 1
+    },
+    "learning-agency-lab-automated-essay-scoring-2": {
+      "alias_parents": 5,
+      "common_comparative_parents": 1,
+      "common_normalized_nontied_parents": 0,
+      "common_raw_nontied_parents": 1,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 5,
+      "parents": 5,
+      "raw_nontied": 5
+    },
+    "new-york-city-taxi-fare-prediction": {
+      "alias_parents": 7,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 7,
+      "parents": 7,
+      "raw_nontied": 7
+    },
+    "osic-pulmonary-fibrosis-progression": {
+      "alias_parents": 16,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 16,
+      "parents": 16,
+      "raw_nontied": 16
+    },
+    "random-acts-of-pizza": {
+      "normalized_nontied": 4,
+      "parents": 4,
+      "raw_nontied": 4
+    },
+    "ranzcr-clip-catheter-line-classification": {
+      "alias_parents": 10,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 10,
+      "parents": 10,
+      "raw_nontied": 10
+    },
+    "tensorflow-speech-recognition-challenge": {
+      "alias_parents": 16,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 16,
+      "parents": 16,
+      "raw_nontied": 16
+    },
+    "text-normalization-challenge-russian-language": {
+      "alias_parents": 2,
+      "normalized_nontied": 3,
+      "normalized_tied_all_zero": 2,
+      "parents": 5,
+      "raw_nontied": 5
+    },
+    "tgs-salt-identification-challenge": {
+      "alias_parents": 23,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 24,
+      "parents": 24,
+      "raw_nontied": 23
+    },
+    "us-patent-phrase-to-phrase-matching": {
+      "alias_parents": 7,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 7,
+      "parents": 7,
+      "raw_nontied": 7
+    },
+    "ventilator-pressure-prediction": {
+      "alias_parents": 17,
+      "common_comparative_parents": 1,
+      "common_normalized_nontied_parents": 0,
+      "common_raw_nontied_parents": 1,
+      "normalized_nontied": 0,
+      "normalized_tied_all_zero": 17,
+      "parents": 17,
+      "raw_nontied": 17
+    },
+    "whale-categorization-playground": {
+      "alias_parents": 1,
+      "normalized_nontied": 1,
+      "normalized_tied_all_zero": 1,
+      "parents": 2,
+      "raw_nontied": 2
+    }
+  },
+  "protocol": "score-channel-truth-aliasing-audit-v1",
+  "status": "TRUTH_ALIASING_AUDIT_COMPLETE",
+  "truth_support": {
+    "alias_parents": 147,
+    "alias_tasks": 16,
+    "impossible_direction_parents": 0,
+    "normalized_nontied_parents": 10,
+    "normalized_tied_boundary_counts": {
+      "all_one": 20,
+      "all_zero": 128,
+      "interior": 0
+    },
+    "normalized_tied_parents": 148,
+    "official_five_decimal_grid_violations": 0,
+    "raw_nontied_parents": 157,
+    "raw_tied_parents": 1
+  }
+}

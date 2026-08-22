@@ -24,5 +24,11 @@ non-tie 与固定 gap bins，以及 80 parents / 8 tasks / dominant≤0.25 / 60 
   open、文件名密钥扫描、内容密钥扫描都为 0。当前机器状态为 observed future archives=12、future transactions=0、
   settled=0、selected runs=0/300，首个 pending archive=ranzcr。`SHA256SUMS` 文件自身 SHA-256=
   `fefb6a767ebe77ce9232c1423212d8fe062340b6753ad4493f97301d62e3febe`。
+- `formal_identity_cohort_74ffb87_first_0821/`：首批稳定 intake 后的 append-only formal 回执。固定 commit
+  `74ffb87cb39e90062db6a4ace4e13cf1a12041f2`，纳入 2 个完整 archive / 8 个 unique physical runs / 2 tasks，
+  remaining=292；旧 0-run 前缀精确存活，truth/outcome 仍未打开。focused=11/11、完整 phase1=766/766，
+  forbidden-open 与两类凭据扫描均为 0；成功包 `SHA256SUMS` 文件 SHA-256=
+  `355d7964858a815e0d46661307e971c8193e2d414dc694eebd668e06962aebd8`。第一次 previous-dir 层级错误的 rc=2
+  及失败后 production state 自然从 1 笔追加到 2 笔也完整记录，不能隐藏。
 
-`0/300` 只表示归档尚未跨过预先固定的 6 小时稳定门，不是 effect 估计，也不授权 replay。
+`8/300` 只是 append-only collection 过程状态，不是 effect 估计，也不授权 replay。

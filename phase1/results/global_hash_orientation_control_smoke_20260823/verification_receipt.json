@@ -1,0 +1,37 @@
+{
+  "api_calls": 0,
+  "candidate_protocol_sha256": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9",
+  "credential_shape_hits": 0,
+  "effect_submission_authorized": false,
+  "focused_tests": {
+    "passed": 15,
+    "seconds": 0.1
+  },
+  "gpu_jobs": 0,
+  "historical_source": {
+    "branch_commit": "ac008af8b907d319b694f26b0ba9cf4053b3bf69",
+    "full_rows": 16204,
+    "lfs_oid": "8a01dfb90c2c3d8498174ebe78df43ee21d6d0eac9f4ff81f63700b315473405",
+    "test_rows": 1998,
+    "train_rows": 14206
+  },
+  "model_fits": 0,
+  "historical_outcome_rows_opened_for_schema_smoke": true,
+  "orientation_overlay_sha256": "55ced63f9ea41adcd57c2067cb70fcfa3d430ba7171d89ae6f697e79396a2849",
+  "output_outcome_field_hits": 0,
+  "output_grade_derived_commitments": 0,
+  "producer_runs_byte_identical": true,
+  "protocol": "global-hash-orientation-historical-smoke-v2",
+  "retracted_precommit_overlay_sha256": "3f80cd031e8532cf955ab90d42c9723461b8ee07fcf8b3f3a5527ea68e786cf0",
+  "status": "HISTORICAL_SCHEMA_SMOKE_PASS_EFFECT_BLOCKED",
+  "train_only": {
+    "rows": 14206,
+    "sha256": "d9163bbcde70d8fe1f6f2ead9db266eca7ced932682cdaed9d3a9ece6fa43010",
+    "tasks": 39
+  },
+  "true_grade_used_for_hash_orientation": false,
+  "true_orientation_or_outcome_metadata_changes_overlay": false,
+  "verifier_runs_byte_identical": true,
+  "verifier_receipt_sha256": "4bc29185f1eeae88ad05618fdd7a121ae8e13e21951cd90c8ef66a0ec2de2168",
+  "verifier_summary_sha256": "c5d0b93c07ccec37def9ec7d35037c6acee62af2ee307a14e791c82b37f3b32a"
+}

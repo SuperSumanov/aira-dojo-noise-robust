@@ -1,0 +1,65 @@
+{
+  "curves": {
+    "value_seed6_final": {
+      "endpoint_delta_pp": 7.69,
+      "exact_one_sided_order_hits": 5,
+      "exact_permutations": 120,
+      "ols_slope_pp_per_log10_b": 6.3195328757616505,
+      "spearman_rho": 0.9,
+      "strict_inversions": 1
+    },
+    "value_seed7_final": {
+      "endpoint_delta_pp": 6.55,
+      "exact_one_sided_order_hits": 2,
+      "exact_permutations": 120,
+      "ols_slope_pp_per_log10_b": 4.25930598851272,
+      "spearman_rho": 0.9746794344808964,
+      "strict_inversions": 0
+    },
+    "value_to_filtered_decision_seed7": {
+      "endpoint_delta_pp": 4.38,
+      "exact_one_sided_order_hits": 2,
+      "exact_permutations": 120,
+      "ols_slope_pp_per_log10_b": 3.433880728163706,
+      "spearman_rho": 0.9746794344808964,
+      "strict_inversions": 0
+    },
+    "value_two_seed_mean_final": {
+      "endpoint_delta_pp": 7.12,
+      "exact_one_sided_order_hits": 1,
+      "exact_permutations": 120,
+      "ols_slope_pp_per_log10_b": 5.291290519040779,
+      "spearman_rho": 1.0,
+      "strict_inversions": 0
+    }
+  },
+  "direct_curves": {
+    "direct_decision_seed7_best": {
+      "endpoint_delta_pp": -0.73,
+      "exact_one_sided_order_hits": 13,
+      "exact_permutations": 24,
+      "ols_slope_pp_per_log10_b": 0.5235951759863768,
+      "spearman_rho": 0.0,
+      "strict_inversions": 3
+    },
+    "direct_decision_seed7_final": {
+      "endpoint_delta_pp": -1.04,
+      "exact_one_sided_order_hits": 13,
+      "exact_permutations": 24,
+      "ols_slope_pp_per_log10_b": 0.09305988382275258,
+      "spearman_rho": 0.0,
+      "strict_inversions": 3
+    }
+  },
+  "independent_scipy_verification": "INDEPENDENT_SCIPY_SCALING_SHAPE_PASS",
+  "limitations": [
+    "post-hoc table reanalysis",
+    "only two value seeds and one local-transfer seed",
+    "outer test was periodically evaluated and checkpoints were test-touched",
+    "shared endpoints invalidate pair-iid inference",
+    "exact permutation counts describe curve ordering, not confirmatory generalization"
+  ],
+  "source_branch_commit": "ac008af8b907d319b694f26b0ba9cf4053b3bf69",
+  "source_document_git_blob": "b41ab437395df034104624afbb678a1c0f987343",
+  "status": "POST_HOC_DESCRIPTIVE_ONLY_TEST_TOUCHED"
+}

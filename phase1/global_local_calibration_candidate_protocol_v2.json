@@ -1,0 +1,179 @@
+{
+  "protocol": "global-local-calibration-candidate-v2",
+  "status": "ARMS_FROZEN_IDENTITY_G0_BUDGET_EFFECT_BLOCKED",
+  "frozen_at_utc": "2026-08-22T19:15:34Z",
+  "supersedes": "four-arm candidate in 2026-08-23 GlobalValue-to-LocalDecision report",
+  "evidence_timing": {
+    "new_frozen_or_prospective_outcome_opened": false,
+    "new_model_output_opened": false,
+    "historical_0820_aggregate_table_known": true,
+    "historical_outer_test_touched": true,
+    "protocol_is_confirmatory_effect_result": false
+  },
+  "question": "does true global quality supervision provide local-decision value beyond repeated local optimization, extra unique code exposure, and global-only zero-shot transfer",
+  "claim_scope": {
+    "method_novelty_allowed": false,
+    "db_mechanism_ablation_only": true,
+    "single_pivot_effect_stage_confirms_capacity_scaling": false,
+    "first_or_only_claim_allowed": false
+  },
+  "common_contract_pending": {
+    "exact_producer_provenance_required": true,
+    "experiment_closed_train_dev_frozen_required": true,
+    "train_dev_frozen_pair_card_run_overlap_required": 0,
+    "cards_lfs_fresh_clone_required": true,
+    "g0_walltime_required": true,
+    "pivot_model_chosen_by_walltime_not_accuracy": true,
+    "exact_model_checkpoint": null,
+    "exact_optimizer_token_budget": null,
+    "exact_gpu_hours": null,
+    "user_budget_approval_required": true
+  },
+  "fixed_across_arms": [
+    "Qwen3 Base checkpoint",
+    "prompt and serialization",
+    "tokenizer and context length",
+    "optimizer learning rate scheduler warmup and weight decay",
+    "effective pair batch",
+    "random seeds",
+    "local and global row identities",
+    "final-step checkpoint evaluation",
+    "one-shot frozen evaluator"
+  ],
+  "arms": [
+    {
+      "id": "L1",
+      "role": "local overtraining diagnostic; not compute-matched headline",
+      "schedule": [
+        "each frozen-train local sibling row exactly once",
+        "stop after final local row without padding or cycling"
+      ],
+      "true_global_labels_used": false,
+      "true_local_labels_used": true,
+      "common_optimizer_token_budget": false
+    },
+    {
+      "id": "Lbudget",
+      "role": "compute-matched local-only baseline",
+      "schedule": [
+        "cycle frozen-train local sibling rows in deterministic order",
+        "terminal truncation at the G-to-L optimizer-token budget"
+      ],
+      "true_global_labels_used": false,
+      "true_local_labels_used": true,
+      "common_optimizer_token_budget": true
+    },
+    {
+      "id": "Gbudget",
+      "role": "compute-matched global-only zero-shot baseline",
+      "schedule": [
+        "cycle experiment-closed global rows in deterministic order",
+        "terminal truncation at the G-to-L optimizer-token budget"
+      ],
+      "true_global_labels_used": true,
+      "true_local_labels_used": false,
+      "common_optimizer_token_budget": true
+    },
+    {
+      "id": "G_to_L",
+      "role": "true global supervision followed by short local calibration",
+      "schedule": [
+        "each experiment-closed global row exactly once",
+        "then each frozen-train local sibling row exactly once"
+      ],
+      "true_global_labels_used": true,
+      "true_local_labels_used": true,
+      "common_optimizer_token_budget": true
+    },
+    {
+      "id": "Ghash_to_L",
+      "role": "quality-label-information negative control",
+      "schedule": [
+        "same global row identities and order as G_to_L with orientation replaced by endpoint hash utility",
+        "then byte-identical true-label local phase used by G_to_L"
+      ],
+      "true_global_labels_used": false,
+      "true_local_labels_used": true,
+      "common_optimizer_token_budget": true
+    }
+  ],
+  "hash_control": {
+    "seed": 20260823,
+    "endpoint_utility": "integer value of sha256('20260823|' + card_id)",
+    "orientation": "endpoint with larger hash utility is labeled better",
+    "pair_level_independent_flips": false,
+    "shared_endpoint_order_is_transitive": true,
+    "sha_collision_action": "fail closed",
+    "global_endpoint_rows_order_tokens_steps_match_G_to_L": true,
+    "local_phase_byte_identical_to_G_to_L": true,
+    "true_grade_may_affect_hash_orientation": false
+  },
+  "primary_evaluation": {
+    "metric": "local frozen sibling accuracy",
+    "headline_uncertainty": "task-clustered paired 95% CI",
+    "sensitivity_uncertainty": [
+      "parent-clustered paired 95% CI",
+      "physical-run-clustered paired 95% CI"
+    ],
+    "checkpoint_policy": "exact final optimizer step for every arm",
+    "all_checkpoint_hashes_locked_before_test": true,
+    "frozen_test_open_count_per_arm": 1,
+    "tfidf_same_pool_baseline_required": true,
+    "draft_improve_reported_separately": true,
+    "task_macro_and_seed_dispersion_reported": true
+  },
+  "hierarchical_gates": {
+    "deployment_gain": {
+      "G_to_L_minus_Lbudget_point_minimum": 0.02,
+      "G_to_L_minus_Lbudget_task_ci_lower_strictly_positive": true,
+      "G_to_L_minus_Lbudget_all_seed_signs_positive": true,
+      "G_to_L_minus_Gbudget_task_ci_lower_strictly_positive": true,
+      "G_to_L_minus_tfidf_task_ci_lower_strictly_positive": true
+    },
+    "quality_label_information": {
+      "tested_only_if_deployment_gain_passes": true,
+      "G_to_L_minus_Ghash_to_L_task_ci_lower_strictly_positive": true
+    },
+    "local_repeat_confound": {
+      "comparison": "L1 minus Lbudget",
+      "if_L1_strictly_better_require_G_to_L_minus_L1_task_ci_lower_strictly_positive_for_transfer_claim": true,
+      "if_G_to_L_not_better_than_L1_allowed_claim": "budget allocation avoids local overtraining",
+      "if_G_to_L_better_than_L1_and_Ghash_to_L_allowed_claim": "true global supervision adds deployment value beyond local-repeat avoidance"
+    },
+    "robustness": {
+      "G_to_L_minus_tfidf_draft_minimum": -0.01,
+      "G_to_L_minus_tfidf_improve_minimum": -0.01,
+      "leave_one_task_out_sign_must_not_flip": true,
+      "single_task_correct_difference_share_maximum": 0.35
+    }
+  },
+  "removed_arm": {
+    "id": "interleaved_global_local",
+    "reason": "schedule-method novelty is closed and this arm does not distinguish true global label information from unique-data regularization",
+    "may_be_added_after_results_on_same_frozen_test": false
+  },
+  "capacity_extension": {
+    "status": "NOT_FROZEN_NOT_AUTHORIZED",
+    "single_pivot_effect_stage_may_be_called_scaling_confirmation": false,
+    "same_frozen_test_may_be_reopened_for_post_result_size_extension": false,
+    "allowed_paths": [
+      "lock all size checkpoints before the one-shot frozen evaluation",
+      "use a separately frozen physical-run-disjoint extension cohort"
+    ]
+  },
+  "kill_conditions": [
+    "producer provenance incomplete",
+    "train dev frozen pair card or physical-run overlap nonzero",
+    "frozen or test path opened by training process",
+    "hash-control row token or schedule mismatch",
+    "NaN OOM or incomplete receipt",
+    "deployment_gain gate fails"
+  ],
+  "scope": {
+    "gpu_jobs_authorized": 0,
+    "api_calls": 0,
+    "model_fits_authorized": 0,
+    "base_llm_update": false,
+    "replay_or_effect_submission_authorized": false
+  }
+}

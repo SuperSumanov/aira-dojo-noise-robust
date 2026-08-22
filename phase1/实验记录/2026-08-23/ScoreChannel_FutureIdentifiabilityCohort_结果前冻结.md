@@ -108,3 +108,28 @@ per-file `grep -c` 返回多行零，shell 无法作单整数比较。失败回�
 `.641bdd7-1151aef9524a-e6edcf2da374.tmp.1573050` 和
 `.5b28dda-1151aef9524a-f3b1a47d7802.tmp.1574274`。修复只涉及回执绑定时点与计数汇总，没有改变 protocol、cohort
 membership、阈值或禁读正则。
+
+## 9. 首批 0821 append-only formal 更新
+
+最早 archive 精确跨过 6 小时稳定门后，连续 monitor 原子提交 ranzcr；随后 tgs 也按既有时序自然提交。固定 commit
+`74ffb87cb39e90062db6a4ace4e13cf1a12041f2` 的成功 formal run 在启动前绑定：
+
+- production `LATEST`=`1ba24a32f72bd5447a03854c4ab33d141ac98f221e377fa19de8a1b9ca521935`；
+- observations SHA-256=`cbded93bb9c740b8a11f07b348a25d83e5aea6ff13b6413b08b00f8c1591f9d8`；
+- selected archives=2、unique physical runs=8/300、tasks=2、remaining=292；
+- per-task runs：ranzcr=4、tgs=4；pending head=plant-pathology；
+- status=`FUTURE_COHORT_COLLECTING`，独立 verifier=`PASS_COLLECTING_TRUTH_UNREAD`。
+
+旧 0-run cohort 的 archive/run 前缀精确存活。producer×2、verifier×2 diff 均为空；focused=11/11、完整 phase1=
+766/766；forbidden-open、文件名凭据、内容凭据均为 0，验证前后 production SHA 不变。summary SHA-256=
+`a90b40236d67c41b4378f6ba6ada27defe1622c0f49534576fc2d492840976f9`，成功包 `SHA256SUMS` 文件 SHA-256=
+`355d7964858a815e0d46661307e971c8193e2d414dc694eebd668e06962aebd8`。
+
+第一次 formal wrapper 以 rc=2 失败：它把前一 formal 包装目录而非 `producer_a/` 科学产物目录传给
+`--previous-dir`。11 个 focused 与 766 个 full tests 已通过，但 producer 在寻找前一 `summary.json` 时立即停止，
+没有产物或 truth 读取。该次绑定一笔事务 `76b4d4...`；失败后 tgs 被生产 monitor 正常追加，所以 retry 输入自然前进为
+两笔 `1ba24a...`。retry 重新绑定两笔状态，只改 previous-dir 层级与 worktree 名；commit、协议、排序、门槛不变。
+失败暂存目录原样保留，不能误写成 scientific failure，也不能声称两次 transaction SHA 相同。
+
+本地安全回执：
+`phase1/results/score_channel_future_identifiability_freeze_20260823/formal_identity_cohort_74ffb87_first_0821/`。

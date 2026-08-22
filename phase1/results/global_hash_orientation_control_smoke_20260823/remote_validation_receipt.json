@@ -1,0 +1,39 @@
+{
+  "api_calls": 0,
+  "base_commit": "74ffb87cb39e90062db6a4ace4e13cf1a12041f2",
+  "effect_submission_authorized": false,
+  "failed_wrappers_before_test": [
+    {
+      "stage": "base_object_lookup",
+      "tests_started": false,
+      "reason": "remote main checkout had not fetched the pinned base commit"
+    },
+    {
+      "stage": "python_resolution",
+      "tests_started": false,
+      "reason": "env_setup resolved to system Python without pytest"
+    }
+  ],
+  "full_phase1_tests": {
+    "passed": 783,
+    "warnings": 33,
+    "seconds": 53.44
+  },
+  "gpu_jobs": 0,
+  "model_fits": 0,
+  "outcomes_read": false,
+  "overlay_archive_sha256": "6583c993ca2ebc99a2e834f2596c18c7194ea0fbf12f1280e5bedb21e5b5f152",
+  "python": "/research/d7/spc/yzyang4/venvs/exp/bin/python",
+  "remote_focused_tests": {
+    "passed": 25,
+    "seconds": 0.54
+  },
+  "status": "UNCOMMITTED_OVERLAY_REMOTE_VALIDATION_PASS",
+  "thread_limits": {
+    "MKL_NUM_THREADS": 1,
+    "NUMEXPR_NUM_THREADS": 1,
+    "OMP_NUM_THREADS": 1,
+    "OPENBLAS_NUM_THREADS": 1,
+    "VECLIB_MAXIMUM_THREADS": 1
+  }
+}

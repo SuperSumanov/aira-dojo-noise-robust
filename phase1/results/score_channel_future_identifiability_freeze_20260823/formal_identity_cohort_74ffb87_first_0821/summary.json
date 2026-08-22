@@ -1,0 +1,86 @@
+{
+  "blindness": {
+    "blind_code_view_opened": false,
+    "label_vault_opened": false,
+    "opened_basenames": [
+      "LATEST",
+      "SHA256SUMS",
+      "archive_manifest.tsv",
+      "observations.json",
+      "score_channel_future_identifiability_protocol_v1.json",
+      "source_provenance.json",
+      "summary.json",
+      "transactions.jsonl"
+    ],
+    "raw_archive_payload_opened": false,
+    "replay_submission_authorized": false,
+    "score_directory_opened": false,
+    "score_or_outcome_opened": false,
+    "truth_support_computed": false
+  },
+  "closure": {
+    "accepted_archives_in_cohort": 2,
+    "accepted_unique_physical_run_target": 300,
+    "append_only_previous": {
+      "exact_prefix_survived": true,
+      "previous_archives": 0,
+      "previous_runs": 0,
+      "previous_status": "FUTURE_COHORT_COLLECTING",
+      "previous_summary_sha256": "d10fc2300e2fcd2537ec2f08f7077064125d9d64f1ed80dd16d444b529b34bca"
+    },
+    "boundary_archive": null,
+    "complete_boundary_archive_included": false,
+    "pending_head": {
+      "archive_relative_path": "0821/plant-pathology-2021-fgvc8-8seeds.tar.gz",
+      "mtime_ns": 1787408006000000000
+    },
+    "remaining_runs_to_target": 292,
+    "settled_archive_prefix": 2,
+    "structurally_rejected_in_settled_prefix": 0
+  },
+  "implementation": {
+    "python": "3.11.15",
+    "script_sha256": "1867949c62718000564f770b32fc9735d35dd7d327baa152a60684f1028639de"
+  },
+  "inputs": {
+    "intake_summary_sha256": {
+      "0821-ranzcr-clip-catheter-line-classification-8seeds-a875557a143f261a": "1747154828c6f63cb7688c8887e0abce771b219b9041cff244296632864516ef",
+      "0821-tgs-salt-identification-challenge-4seeds-74228c81dfd61f4a": "03734502e2ee419d8a4eeab46b818f8f9b8b6ea141efc5b8a9e7896482972bda"
+    },
+    "latest_file_sha256": "1b90d4152e83cd877e30e01acc3f4a5bdae2cb6c109c901fc9016ade7828d305",
+    "latest_sha256": "1ba24a32f72bd5447a03854c4ab33d141ac98f221e377fa19de8a1b9ca521935",
+    "observations_sha256": "cbded93bb9c740b8a11f07b348a25d83e5aea6ff13b6413b08b00f8c1591f9d8",
+    "protocol_sha256": "54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d",
+    "snapshot_manifest_sha256": "1ba24a32f72bd5447a03854c4ab33d141ac98f221e377fa19de8a1b9ca521935",
+    "source_provenance_sha256": {
+      "0821-ranzcr-clip-catheter-line-classification-8seeds-a875557a143f261a": "3a118ea6389688f37bce9849a17a0926390e2d180e9ff6c87e2bdec4ef4d16ac",
+      "0821-tgs-salt-identification-challenge-4seeds-74228c81dfd61f4a": "a2f3bdf32adf90e7cad31e60d5a88d6da2ff06af1d5a63413d8f178972d713c0"
+    },
+    "transactions_sha256": "4ac3445c6266f82c5f490a05bf446270517d7083e49a641c3c72e5eee2a91c57"
+  },
+  "integrity": {
+    "archive_order": "mtime_ns_then_relative_path_utf8_bytes",
+    "initial_archive_bindings_pass": true,
+    "partial_archive_salvage": false,
+    "settled_prefix_only": true,
+    "unique_physical_runs": true
+  },
+  "inventory": {
+    "future_transactions": 2,
+    "observed_future_archives": 12,
+    "per_task_selected_runs": {
+      "ranzcr-clip-catheter-line-classification": 4,
+      "tgs-salt-identification-challenge": 4
+    },
+    "selected_archives": 2,
+    "selected_physical_runs": 8,
+    "selected_tasks": 2
+  },
+  "outputs": {
+    "cohort_archives_sha256": "fd399c862389dbcfd5fd170635e98f5e3d15f316cc28b40cef14db62b2c077be",
+    "cohort_runs_sha256": "a6e92217f63876eda412dabf1a6275b25f86057d11ca8c8b9720229d6f024c0a"
+  },
+  "protocol": "score-channel-future-identity-cohort-v1",
+  "source_commit": "74ffb87cb39e90062db6a4ace4e13cf1a12041f2",
+  "status": "FUTURE_COHORT_COLLECTING"
+}

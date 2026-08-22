@@ -1,0 +1,61 @@
+{
+  "api_calls": 0,
+  "append_only_previous_exact_prefix_survived": true,
+  "completed_at_utc": "2026-08-22T20:20:28Z",
+  "control_commit": "74ffb87cb39e90062db6a4ace4e13cf1a12041f2",
+  "effect_submission_authorized": false,
+  "first_attempt": {
+    "failed_rc": 2,
+    "focused_tests": "11 passed in 0.30s",
+    "full_tests": "766 passed, 33 warnings in 57.93s",
+    "latest_sha256": "76b4d4b2635ff4927c699beb0698f3de14a7697f4e021c874ce696706d5129d8",
+    "observations_sha256": "7e805c727cb9f100ddeded73f513f0e88fc9689a22a9549df9e8a71ca9581874",
+    "producer_output_created": false,
+    "reason": "wrapper passed the formal result container instead of its producer_a cohort directory as --previous-dir",
+    "remote_failure_dir": "/research/d7/spc/yzyang4/score-channel-future-identity-cohort/.74ffb87-76b4d4b2635f-7e805c727cb9.tmp.1592383",
+    "truth_opened": false
+  },
+  "gpu_jobs": 0,
+  "inventory": {
+    "future_transactions": 2,
+    "observed_future_archives": 12,
+    "per_task_selected_runs": {
+      "ranzcr-clip-catheter-line-classification": 4,
+      "tgs-salt-identification-challenge": 4
+    },
+    "remaining_runs_to_target": 292,
+    "selected_archives": 2,
+    "selected_physical_runs": 8,
+    "selected_tasks": 2
+  },
+  "model_fits": 0,
+  "production_state_advanced_between_attempts": true,
+  "protocol": "score-channel-future-first-intake-formal-receipt-v1",
+  "protocol_sha256": "54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d",
+  "remote_result": {
+    "directory": "/research/d7/spc/yzyang4/score-channel-future-identity-cohort/74ffb87-1ba24a32f72b-cbded93bb9c7",
+    "directory_mode": "500",
+    "forbidden_open_count": 0,
+    "filename_scan_count": 0,
+    "content_scan_count": 0,
+    "producer_reproducibility_diff_bytes": 0,
+    "verifier_reproducibility_diff_bytes": 0,
+    "sha256sums_file_sha256": "355d7964858a815e0d46661307e971c8193e2d414dc694eebd668e06962aebd8",
+    "summary_sha256": "a90b40236d67c41b4378f6ba6ada27defe1622c0f49534576fc2d492840976f9",
+    "verification_sha256": "00b3dc1d15d1ee0cfd834ba2b00ffd29fdb8696263198b4e9ddbbcd167c50ce6"
+  },
+  "retry": {
+    "focused_tests": "11 passed in 0.31s",
+    "full_tests": "766 passed, 33 warnings in 56.28s",
+    "latest_after_sha256": "1ba24a32f72bd5447a03854c4ab33d141ac98f221e377fa19de8a1b9ca521935",
+    "latest_before_sha256": "1ba24a32f72bd5447a03854c4ab33d141ac98f221e377fa19de8a1b9ca521935",
+    "observations_after_sha256": "cbded93bb9c740b8a11f07b348a25d83e5aea6ff13b6413b08b00f8c1591f9d8",
+    "observations_before_sha256": "cbded93bb9c740b8a11f07b348a25d83e5aea6ff13b6413b08b00f8c1591f9d8",
+    "previous_dir": "/research/d7/spc/yzyang4/score-channel-future-identity-cohort/53ce46f-1151aef9524a-5efabfb25364/producer_a",
+    "production_state_advanced_during_verification": false,
+    "scientific_contract_changed": false,
+    "worktree_name_changed_only_to_preserve_failure_state": true
+  },
+  "status": "PASS_COLLECTING_TRUTH_UNREAD",
+  "truth_support_computed": false
+}

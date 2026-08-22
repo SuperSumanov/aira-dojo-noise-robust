@@ -52,3 +52,16 @@ scientific input。它们不能被隐藏，也不能被计作 effect 失败或�
 这项工作消除了“先花 GPU 再发现 truth support 为零”的流程风险，但本身不是正方法结论。production cohort 仍在
 collecting；只有身份闭合后才能一次性运行本门。PASS 仍需另做 channel comparative-support 功效分析和精确 GPU
 预算申请；KILL 则直接停止 score-channel replay，不换阈值、任务、parent 或 cap 追救。
+
+## 闭合前独立 verifier 加固
+
+同日提交前复核发现 producer 已完整验证 cohort archive/order/boundary，但独立 truth verifier 只复核闭合状态与
+`cohort_runs`，并把 producer `script_sha256` 当作格式正确的自报值。这不改变抽样或现有门槛，但独立性不足。现已在
+任何 production truth 打开前补齐：独立重读并哈希 `cohort_archives`，重建 mtime/path 顺序、累计 run 数、完整
+boundary archive、drop/run membership、intake/provenance hash manifest、flow/endpoints 一致性，并把 summary 中的
+producer script SHA 与当前文件实际 SHA 比较。
+
+新增两项回归测试会拒绝“攻击者同步重算 archive 文件和 cohort summary 哈希后，把 boundary 300 runs 改成 299”及
+“把 producer script SHA 改成任意合法 64-hex”。加固后 truth-gate 聚焦为 10/10；与 Ghash 负控联合的远端隔离聚焦
+为 25/25，完整 `phase1/tests` 为 783/783（33 个既有 sklearn warning），覆盖包 SHA-256=
+`6583c993ca2ebc99a2e834f2596c18c7194ea0fbf12f1280e5bedb21e5b5f152`。仍未读取 production truth，未授权 replay。

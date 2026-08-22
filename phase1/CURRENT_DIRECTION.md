@@ -3,6 +3,76 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EC. 2026-08-23 evaluator-channel 宽泛首创已关闭；artifact-vs-self-report 前瞻 estimand 保留
+
+最新强相关检索发现 `AuditRepairBench`（arXiv:2605.04624v1）已经在 agent repair 中明确研究 evaluator-channel
+ranking instability，并以 paired execution、固定 final evaluator 和 selector-input channel blocking 为核心。因此
+“首个 evaluator-channel/coupling benchmark”及“首个 paired channel intervention”均不得再主张。该稿已于
+2026-07-24 因作者确认实验设计/评估重大有效性问题而撤回；其数值不能当可靠事实，但概念先例与风险不能忽略。
+
+它没有覆盖当前精确 estimand：同一 MLE candidate、同一短执行下，pristine evaluator 读取 `submission.csv` 的外部
+分数与 agent stdout self-report 的 paired discriminative support，也没有 physical-run/tree、coverage、cost/noise 和
+append-only temporal contract。同期 AutoResearchEval（arXiv:2608.14905v2）强调 process annotation 与 artifact
+visibility，但同样不做这组固定预算通道对照。因此 0DY/0DZ 主线不变，正面主张收缩为“MLE execution feedback
+并非同质 scalar；artifact-grounded channel 的 execution cliff 可被前瞻审计，并在只改变 selector-visible channel、
+保持 final evaluator 不变的 replay 中检验”。详情：
+
+- `phase1/实验记录/2026-08-23/ScoreChannel_直接竞品与撤稿边界.md`。
+
+## 0EB. 2026-08-23 Rehearse 关闭执行前 memory/controller 首创；score-channel 前瞻主线不变
+
+新核查的 Rehearse（arXiv:2607.27687v1，2026-07-30）直接覆盖 same-baseline autoresearch proposal 的执行前
+pairwise 判断、候选相关 outcome memory 和固定 training-run budget 下的端到端收益。其 296 个主 pair 是一边改善、
+另一边 crash/timeout/invalid/non-improvement；无记忆主 pair selective accuracy=79.5%，深层从 82.8% 降至
+56.9%，focused memory 恢复到 83.5%；三 loops、五 seed、合计 4,000 training runs 得到正 endpoint。它又明确以
+FOREAGENT 为 completed-solution 最近先例。因此 history retrieval、Predict-then-Execute 与 `confidence cliff`
+术语均不得再申方法 novelty；0EA global→local 仍只作 D&B mechanism ablation。
+
+这不覆盖 0DZ/0DO 的当前主线：Rehearse 没有研究同一短时执行后的 pristine submission artifact 与 stdout 自报通道，
+也没有我方 physical sibling/run-clean/noise/cost/append-only temporal contract。v11 的 16,012-card schema-only 审计
+又确认 release 中没有 authentic `analysis/plan/hypothesis/implementation` 字段；高置信 credential hits=0、
+parse errors=0、cards SHA-256=`6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75`。
+因此不为追随 Rehearse 事后生成 rationale 或启动 API。若未来做 failure→worked→viable-sibling 难度阶梯，必须先有
+结果前保存的真实 rationale 并另立同信息/同模型预注册。详情：
+
+- `phase1/实验记录/2026-08-23/Rehearse_直接竞品与主线边界.md`。
+
+## 0EA. 2026-08-23 global→local 正假设收紧：部分 scaling 可迁移，直接 local 训练才丢失；五臂语义已冻结、effect 阻断
+
+对学长 0820 已公开表做 post-hoc shape audit：value seed 6/7 的 0.6B→14B Final 分别 +7.69/+6.55 pp；
+seed-7 value checkpoint→filtered local 同样无严格反转、端点 +4.38 pp。直接 local-only 的 0.6B→8B Best/Final
+则为 -0.73/-1.04 pp，秩相关均为 0。故当前最积极且准确的候选机制是“global supervision 的 capacity signal
+可部分 zero-shot 迁移，但 naive local optimization 过拟合并擦除 scaling”，而不是“global 完全不迁移”。这些数值
+仍只有两/一 seed、outer-test touched、共享 endpoint，只能生成假设，不能作确认结果。
+
+同时 0DU 四臂有假正风险：local-only 为匹配 staged token budget 会重复小 local pool，旧结果已显示第二 epoch
+严重过拟合；staged 胜出可能只是 unique rows 替代重复 update。故 0DU 的四臂候选由本节覆盖，改为结果前五臂：
+`L1` 一遍 local、`Lbudget` 重复 local、`Gbudget` 重复 global、真实 `G→L`、以及 global pair orientation 按
+`sha256(20260823|card_id)` endpoint 全序替换的 `Ghash→L`。hash control 保持相同 endpoints/order/tokens/steps
+和传递一致性，但移除真实 quality label；原 interleaved schedule arm 删除，因为其方法 novelty 已关闭且不能排除
+上述混杂。
+
+要写“真实 global supervision 可迁移”，除原 `G→L−Lbudget`、`G→L−Gbudget`、TF-IDF 门外，还必须
+`G→L−Ghash→L` task-CI 下界>0；若 `L1>Lbudget`，还须 `G→L−L1` task-CI 下界>0。否则只能降格为
+unique-data regularization 或避免 local overtraining。当前这仍是
+`REVISED_CANDIDATE_PROTOCOL_IDENTITY_G0_BUDGET_BLOCKED`，0 GPU/API/model fit；五臂机器协议、具体模型与精确
+GPU·时尚未获批，不得提交。五臂语义机器合同 SHA-256=
+`3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9`；其中模型、token budget 与 GPU·时
+显式为 null，不能误作 effect 授权。hash orientation producer/非导入式 verifier 已通过 15 个合同测试；在学长旧
+global train 的 14,206 rows / 39 tasks 上双跑逐字节一致，overlay SHA-256=
+`55ced63f9ea41adcd57c2067cb70fcfa3d430ba7171d89ae6f697e79396a2849`，高置信凭据形状、输出 outcome 字段与
+grade-derived commitment 均为 0；交换真实 orientation 或改 outcome 元数据后仍逐字节不变。未提交 overlay 在远端
+`74ffb87...` 隔离克隆上又通过 25 个聚焦测试及完整 783 个 `phase1/tests`。首版曾写 outcome-sensitive 的完整源行
+承诺，旧 SHA `3f80cd...` 已在提交前撤回且从未进入 effect。该 smoke
+只证明真实 schema 可实现，旧数据 test-touched，仍无 effect。详情：
+
+- `phase1/global_local_calibration_candidate_protocol_v2.json`；
+- `phase1/global_pair_hash_orientation_control.py`；
+- `phase1/verify_global_pair_hash_orientation_control.py`；
+- `phase1/实验记录/2026-08-23/GlobalLocalScaling_趋势复核与负控修正.md`。
+- `phase1/results/senior_scaling_shape_audit_20260823/`。
+- `phase1/results/global_hash_orientation_control_smoke_20260823/`。
+
 ## 0DZ. 2026-08-23 future truth-support 资格门已实现并独立复核；仍等待身份 cohort 闭合
 
 0DY 冻结的结果后资格门现已实现，但没有提前打开生产 label。producer 先要求 identity cohort 精确状态为
@@ -17,7 +87,12 @@ balance 与四个固定 gate。精确门边界、差 1 即 KILL、缺失 truth �
 `9a4df02cd1f76cd6c62657d457ea5c4274ff1c38` 的远端 fresh no-smudge 验收为 `8 passed in 0.37s`，全量
 `766 passed, 33 warnings in 75.37s`；敏感文件名计数 0。三次只发生在验证包装层的失败（环境初始化顺序、误收集
 历史脚本、遗漏 BLAS 线程限制）均已记录，未运行 production truth analysis。当前仍是 0DY 的 collecting 状态；
-生产 label/outcome、GPU、API 与 scientific model fit 均为 0，绝不把工程 PASS 写成机制正结果。证据：
+生产 label/outcome、GPU、API 与 scientific model fit 均为 0，绝不把工程 PASS 写成机制正结果。
+
+闭合前再审计发现旧独立 verifier 没有自行重建 cohort archive/order/boundary，且 producer script SHA 只验格式。
+现已在 production truth 未读时补齐完整 archive、累计 run、boundary、drop membership、flow 和 manifest 复核，并
+把声明 SHA 对照实际 producer 文件；新增的 rehashed-boundary 与假 script-SHA 攻击测试均拒绝。加固后 truth 聚焦
+10/10，与 Ghash 联合远端聚焦 25/25、完整 `phase1/tests` 783/783；不改冻结协议、样本、门槛或 outcome。证据：
 
 - `phase1/score_channel_future_truth_support.py`；
 - `phase1/verify_score_channel_future_truth_support.py`；
@@ -47,9 +122,13 @@ identity-only 闭合状态机已在 commit `53ce46f0be18f725987e6d0ce4d72df54ca8
 `LATEST/SHA256SUMS/transactions/observations/intake summary/archive manifest/source provenance`，遇到首个未决
 archive 即停，拒绝包计 0 runs，跨 300 时才纳入完整 boundary archive；不打开 tar、blind code、label vault、score
 目录或 outcome。producer×2、非导入式 verifier×2 一致，文件访问审计 forbidden open=0，fresh no-smudge 回归为
-`758 passed, 33 warnings in 55.55s`。当前 12 个 0821 archive 均已观察但仍在 6 小时稳定门内，settled=0、accepted=0、
-selected physical runs=0/300；pending head 是 ranzcr。这个 `COLLECTING` 状态不是 effect 结果，不能解释成机制失败或成功。
-完整回执：`phase1/results/score_channel_future_identifiability_freeze_20260823/formal_identity_cohort_53ce46f/`。
+`758 passed, 33 warnings in 55.55s`。最早稳定门随后已精确跨过；固定 `74ffb87...` 的 append-only formal 更新纳入
+ranzcr+tgs 两个完整 archive，共 8 unique physical runs / 2 tasks，remaining=292，旧 0-run 前缀精确存活；producer×2、
+verifier×2 一致，forbidden open 与两类凭据扫描仍为 0，truth/outcome 未打开。第一次 wrapper 因把包装目录而非其
+`producer_a/` 传给 previous-dir 而 rc=2；失败时只有一笔事务，随后 tgs 正常追加，retry 重新封住两笔状态后成功，
+不得声称两次 transaction SHA 相同。这个 `COLLECTING` 状态不是 effect 结果，不能解释成机制失败或成功。完整回执：
+`phase1/results/score_channel_future_identifiability_freeze_20260823/formal_identity_cohort_53ce46f/` 与
+`phase1/results/score_channel_future_identifiability_freeze_20260823/formal_identity_cohort_74ffb87_first_0821/`。
 
 ## 0DX. 2026-08-23 score-channel 旧 cohort 的辨识支持为零；正方法路线关闭，保留 D&B 漏斗资产
 

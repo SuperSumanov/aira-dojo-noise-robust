@@ -29,6 +29,11 @@ RUN_KEYS = {
     "archive_relative_path", "archive_sha256", "drop_id", "endpoints",
     "flow_status", "generation_started_at_utc", "journal_sha256", "run_id", "task",
 }
+ARCHIVE_KEYS = {
+    "archive_relative_path", "archive_sha256", "archive_size",
+    "cumulative_unique_physical_runs", "drop_id", "intake_summary_sha256",
+    "mtime_ns", "physical_runs", "source_provenance_sha256",
+}
 PAIR_KEYS = {"task", "run_id", "parent", "left", "right"}
 VAULT_KEYS = {"card_id", "task", "run_id", "graded", "y_norm", "eligible_by_start_time"}
 SELECTED_KEYS = {
@@ -132,45 +137,138 @@ def closed_runs(
     expected_protocol_sha: str,
     expected_summary_sha: str,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    protocol_sha = check_sha(expected_protocol_sha, "protocol SHA")
     summary_path = cohort_dir / "summary.json"
     if digest(summary_path) != check_sha(expected_summary_sha, "cohort summary SHA"):
         raise VerificationError("cohort summary SHA mismatch")
     summary = object_at(summary_path, "cohort summary")
+    inputs, outputs = summary.get("inputs") or {}, summary.get("outputs") or {}
     closure, blindness = summary.get("closure") or {}, summary.get("blindness") or {}
+    inventory = summary.get("inventory") or {}
     if (
         summary.get("protocol") != COHORT_PROTOCOL
         or summary.get("status") != "FUTURE_COHORT_IDENTITY_CLOSED_TRUTH_UNREAD"
-        or (summary.get("inputs") or {}).get("protocol_sha256") != expected_protocol_sha
+        or inputs.get("protocol_sha256") != protocol_sha
+        or closure.get("accepted_unique_physical_run_target") != 300
         or closure.get("remaining_runs_to_target") != 0
         or closure.get("complete_boundary_archive_included") is not True
+        or not isinstance(closure.get("boundary_archive"), str)
         or blindness.get("label_vault_opened") is not False
+        or blindness.get("score_or_outcome_opened") is not False
         or blindness.get("truth_support_computed") is not False
         or blindness.get("replay_submission_authorized") is not False
     ):
         raise VerificationError("cohort closure/blindness mismatch")
     runs_path = cohort_dir / "cohort_runs.jsonl"
-    if digest(runs_path) != check_sha((summary.get("outputs") or {}).get("cohort_runs_sha256"), "cohort runs SHA"):
-        raise VerificationError("cohort runs SHA mismatch")
+    archives_path = cohort_dir / "cohort_archives.jsonl"
+    if (
+        digest(runs_path) != check_sha(outputs.get("cohort_runs_sha256"), "cohort runs SHA")
+        or digest(archives_path) != check_sha(outputs.get("cohort_archives_sha256"), "cohort archives SHA")
+    ):
+        raise VerificationError("cohort output SHA mismatch")
     runs = rows_at(runs_path, "cohort runs", RUN_KEYS)
-    if len(runs) < 300 or (summary.get("inventory") or {}).get("selected_physical_runs") != len(runs):
+    archives = rows_at(archives_path, "cohort archives", ARCHIVE_KEYS)
+    if len(runs) < 300 or inventory.get("selected_physical_runs") != len(runs):
         raise VerificationError("cohort run count mismatch")
+
+    archive_by_drop: dict[str, dict[str, Any]] = {}
+    archive_order: list[tuple[int, bytes]] = []
+    seen_relative: set[str] = set()
+    cumulative = 0
+    for row in archives:
+        drop, relative = row.get("drop_id"), row.get("archive_relative_path")
+        physical_runs = row.get("physical_runs")
+        archive_size, mtime_ns = row.get("archive_size"), row.get("mtime_ns")
+        if (
+            not isinstance(drop, str)
+            or not drop
+            or Path(drop).name != drop
+            or drop in archive_by_drop
+            or not isinstance(relative, str)
+            or relative.count("/") != 1
+            or not relative.endswith(".tar.gz")
+            or Path(relative).is_absolute()
+            or ".." in Path(relative).parts
+            or relative in seen_relative
+            or isinstance(physical_runs, bool)
+            or not isinstance(physical_runs, int)
+            or physical_runs < 0
+            or isinstance(archive_size, bool)
+            or not isinstance(archive_size, int)
+            or archive_size < 0
+            or isinstance(mtime_ns, bool)
+            or not isinstance(mtime_ns, int)
+            or mtime_ns < 0
+        ):
+            raise VerificationError("invalid cohort archive row")
+        cumulative += physical_runs
+        if row.get("cumulative_unique_physical_runs") != cumulative:
+            raise VerificationError("cohort archive cumulative mismatch")
+        check_sha(row.get("archive_sha256"), "archive SHA")
+        check_sha(row.get("intake_summary_sha256"), "intake summary SHA")
+        check_sha(row.get("source_provenance_sha256"), "source provenance SHA")
+        archive_by_drop[drop] = row
+        seen_relative.add(relative)
+        archive_order.append((mtime_ns, relative.encode("utf-8")))
+    if archive_order != sorted(archive_order):
+        raise VerificationError("cohort archive order mismatch")
+    if (
+        cumulative != len(runs)
+        or archives[-1]["archive_relative_path"] != closure["boundary_archive"]
+        or inventory.get("selected_archives") != len(archives)
+    ):
+        raise VerificationError("cohort archive boundary mismatch")
+
     seen: set[str] = set()
     tasks: Counter[str] = Counter()
+    runs_by_drop: Counter[str] = Counter()
     for row in runs:
         journal = check_sha(row.get("journal_sha256"), "journal SHA")
+        drop = row.get("drop_id")
+        archive = archive_by_drop.get(str(drop))
+        endpoints = row.get("endpoints")
+        flow_status = row.get("flow_status")
         if (
             row.get("run_id") != f"journal:{journal}"
             or row["run_id"] in seen
             or not isinstance(row.get("task"), str)
             or not row["task"]
-            or not isinstance(row.get("drop_id"), str)
-            or Path(row["drop_id"]).name != row["drop_id"]
+            or archive is None
+            or row.get("archive_relative_path") != archive["archive_relative_path"]
+            or row.get("archive_sha256") != archive["archive_sha256"]
+            or isinstance(endpoints, bool)
+            or not isinstance(endpoints, int)
+            or endpoints < 0
+            or flow_status not in {"scoreable", "no_scoreable_code"}
+            or flow_status != ("scoreable" if endpoints else "no_scoreable_code")
+            or not isinstance(row.get("generation_started_at_utc"), str)
+            or not row["generation_started_at_utc"]
         ):
             raise VerificationError("invalid cohort run row")
         seen.add(row["run_id"])
         tasks[row["task"]] += 1
-    if (summary.get("inventory") or {}).get("per_task_selected_runs") != dict(sorted(tasks.items())):
+        runs_by_drop[str(drop)] += 1
+    if any(runs_by_drop[drop] != row["physical_runs"] for drop, row in archive_by_drop.items()):
+        raise VerificationError("cohort archive/run membership mismatch")
+    if (
+        inventory.get("per_task_selected_runs") != dict(sorted(tasks.items()))
+        or inventory.get("selected_tasks") != len(tasks)
+    ):
         raise VerificationError("cohort task inventory mismatch")
+    intake_hashes = inputs.get("intake_summary_sha256")
+    provenance_hashes = inputs.get("source_provenance_sha256")
+    if (
+        not isinstance(intake_hashes, dict)
+        or not isinstance(provenance_hashes, dict)
+        or set(intake_hashes) != set(archive_by_drop)
+        or set(provenance_hashes) != set(archive_by_drop)
+        or any(
+            intake_hashes[drop] != row["intake_summary_sha256"]
+            or provenance_hashes[drop] != row["source_provenance_sha256"]
+            for drop, row in archive_by_drop.items()
+        )
+    ):
+        raise VerificationError("cohort archive/input hash manifest mismatch")
     return runs, summary
 
 
@@ -375,8 +473,10 @@ def verify(
     truth_dir: Path,
     receipt_path: Path,
 ) -> dict[str, Any]:
-    protocol = protocol_at(protocol_path, expected_protocol_sha)
-    runs, cohort_summary = closed_runs(cohort_dir, expected_protocol_sha, expected_cohort_summary_sha)
+    protocol_sha = check_sha(expected_protocol_sha, "protocol SHA")
+    cohort_summary_sha = check_sha(expected_cohort_summary_sha, "cohort summary SHA")
+    protocol = protocol_at(protocol_path, protocol_sha)
+    runs, cohort_summary = closed_runs(cohort_dir, protocol_sha, cohort_summary_sha)
     siblings, vault = read_truth_state(state_root, runs, cohort_summary)
     expected_rows, eligible, runs_with = reconstruct_selection(runs, siblings, vault)
     actual_path = truth_dir / "selected_parents.jsonl"
@@ -408,8 +508,8 @@ def verify(
     if (
         summary.get("protocol") != OUTPUT_PROTOCOL
         or summary.get("status") != expected_status
-        or inputs.get("protocol_sha256") != expected_protocol_sha
-        or inputs.get("cohort_summary_sha256") != expected_cohort_summary_sha
+        or inputs.get("protocol_sha256") != protocol_sha
+        or inputs.get("cohort_summary_sha256") != cohort_summary_sha
         or inputs.get("cohort_runs_sha256") != digest(cohort_dir / "cohort_runs.jsonl")
         or inputs.get("cohort_archives_sha256") != digest(cohort_dir / "cohort_archives.jsonl")
         or inputs.get("intake_summary_sha256")
@@ -449,9 +549,9 @@ def verify(
         or blindness.get("replay_outcomes_opened") is not False
         or outputs.get("selected_parents_sha256") != digest(actual_path)
         or not isinstance(implementation.get("source_commit"), str)
-        or len(implementation["source_commit"]) != 40
+        or re.fullmatch(r"[0-9a-f]{40}", implementation["source_commit"]) is None
         or check_sha(implementation.get("script_sha256"), "producer script SHA")
-        != implementation.get("script_sha256")
+        != digest(Path(__file__).with_name("score_channel_future_truth_support.py"))
     ):
         raise VerificationError("truth-support summary reconstruction mismatch")
 
@@ -459,8 +559,8 @@ def verify(
         "protocol": "score-channel-future-truth-support-independent-verification-v1",
         "status": "PASS_ELIGIBLE_REPLAY_DESIGN_REQUEST_ONLY" if all_pass else "PASS_KILL_NO_REPLAY_REQUEST",
         "producer_module_imported": False,
-        "protocol_sha256": expected_protocol_sha,
-        "cohort_summary_sha256": expected_cohort_summary_sha,
+        "protocol_sha256": protocol_sha,
+        "cohort_summary_sha256": cohort_summary_sha,
         "truth_support_summary_sha256": digest(summary_path),
         "selected_parents_sha256": digest(actual_path),
         "selected_parents": len(expected_rows),

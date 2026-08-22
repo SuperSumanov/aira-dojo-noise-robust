@@ -311,6 +311,43 @@ def test_independent_verifier_rejects_tampered_selection(tmp_path: Path) -> None
         )
 
 
+def test_independent_verifier_rejects_rehashed_archive_boundary_tampering(tmp_path: Path) -> None:
+    state, cohort, cohort_sha = build_fixture(tmp_path)
+    output, _ = run_producer(tmp_path, state, cohort, cohort_sha)
+    archives_path = cohort / "cohort_archives.jsonl"
+    archives = [json.loads(line) for line in archives_path.read_text(encoding="utf-8").splitlines()]
+    archives[0]["physical_runs"] = 299
+    archives[0]["cumulative_unique_physical_runs"] = 299
+    write_rows(archives_path, archives)
+    cohort_summary_path = cohort / "summary.json"
+    cohort_summary = json.loads(cohort_summary_path.read_text(encoding="utf-8"))
+    cohort_summary["outputs"]["cohort_archives_sha256"] = digest(archives_path)
+    write_json(cohort_summary_path, cohort_summary)
+    with pytest.raises(verifier.VerificationError, match="archive boundary mismatch"):
+        verifier.verify(
+            PROTOCOL,
+            PROTOCOL_SHA,
+            cohort,
+            digest(cohort_summary_path),
+            state,
+            output,
+            tmp_path / "receipt.json",
+        )
+
+
+def test_independent_verifier_rejects_false_producer_script_hash(tmp_path: Path) -> None:
+    state, cohort, cohort_sha = build_fixture(tmp_path)
+    output, _ = run_producer(tmp_path, state, cohort, cohort_sha)
+    summary_path = output / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary["implementation"]["script_sha256"] = "0" * 64
+    write_json(summary_path, summary)
+    with pytest.raises(verifier.VerificationError, match="summary reconstruction mismatch"):
+        verifier.verify(
+            PROTOCOL, PROTOCOL_SHA, cohort, cohort_sha, state, output, tmp_path / "receipt.json"
+        )
+
+
 def test_verifier_source_is_independent_of_producer_module() -> None:
     source = (REPO / "phase1" / "verify_score_channel_future_truth_support.py").read_text(encoding="utf-8")
     assert "from phase1 import score_channel_future_truth_support" not in source

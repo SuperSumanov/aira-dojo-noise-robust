@@ -1,7 +1,41 @@
-# 当前研究方向唯一入口（2026-08-22）
+# 当前研究方向唯一入口（2026-08-23）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0DU. 2026-08-23 global value→local decision 的方法首创关闭；保留计算量匹配的 MLE 机制确认
+
+一手反 scoop 审计确认：SP-PRM/Free Process Rewards 已覆盖 outcome→process，ReST-MCTS*/AgentRM 已从树或最终
+outcome 产生中间 value，HAF-RM 已做 hybrid granularity supervision，AgentPRM/DataPRM 已覆盖 agent/data-analysis
+PRM，FOREAGENT 与 AI Research Preference Models 已覆盖 MLE candidate preference 和执行加速。因此“先 global
+value、再 local decision 校准”不得申通用方法首创；简单 mixed/staged training 本身不足以撑方法论文。
+
+仍保留的窄正面命题是同一 Qwen critic 在精确 physical-experiment identity 下的 estimand transfer：global value
+scaling 是否能迁移到真实 logged sibling decision，若不能，固定 optimizer-token budget 的 local calibration 能否恢复。
+四臂候选协议固定为 local-only、global-only、global→local staged 和逐字节同池 interleaved control；按 H1 transfer、
+H2 schedule 的层级门裁决，不允许结果后改比例/模型/子集。该协议当前为
+`FROZEN_CANDIDATE_PROTOCOL_IDENTITY_AND_BUDGET_BLOCKED`：0 runs / 0 GPU·h；只有 provenance、全新
+experiment-closed split、G0 wall-time 和精确预算另行获批后才可申请。它只作 D&B mechanism ablation，不改变严格
+前瞻 score-channel 主线。详情：
+
+- `phase1/实验记录/2026-08-23/GlobalValue到LocalDecision_防Scoop与机制协议.md`。
+
+## 0DT. 2026-08-23 `ac008af` clean overlay 兼容；producer provenance 验收器就绪
+
+三份 clean-confirmation 补丁已在学长精确 `ac008af8...` fresh no-smudge worktree 顺序通过：三次
+`git apply --check`、Python/shell compile、`git diff --check` 和 8 个聚焦测试文件，打印
+`35 passed in 47.38s`。因此无需重写 harness；但该结果只证明工程兼容，不解除 mixed effect 门。
+
+新增 independent producer provenance contract，要求 frozen expected-run manifest 全覆盖并逐 run 精确绑定
+`task/source_date/batch_id/archive_path/archive_sha256/producer_commit`；校验器核对 schema、task/date、SHA、
+路径安全，并只扫 tar header 要求唯一匹配 journal。link/device/FIFO、重复/缺失 journal、symlink、额外/遗漏 run 均
+fail closed，不打开 member payload。新旧相关测试本地/远端均为 `23 passed`。当前尚无真实 producer manifest，
+0811/0812 leaf 与 0730/0809 异常 archive 也未替换，故状态是
+`OVERLAY_COMPATIBLE_PROVENANCE_CONTRACT_READY_EFFECT_BLOCKED`，GPU job 仍须为 0。证据：
+
+- `phase1/contracts/SENIOR_SOURCE_PROVENANCE_MANIFEST_V1.md`；
+- `phase1/results/senior_source_provenance_contract_20260823/README.md`；
+- `phase1/实验记录/2026-08-23/SeniorProvenance契约与ac008af_Overlay验收.md`。
 
 ## 0DS. 2026-08-23 学长 mixed `ac008af` 结果盲预飞：数据有正面结构，但训练协议与复现门阻断
 

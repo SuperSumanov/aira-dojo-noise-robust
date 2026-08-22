@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0ED. 2026-08-23 0821 Plant 精确结构拒收已冻结；前两笔 cohort transaction 不变
+
+连续 intake 已先提交 `ranzcr` 与 `tgs` 共 8 个 accepted physical runs；随后 0821 Plant archive 在 task-identity
+门 fail closed，未提交新 transaction、未读 outcome。精确绑定 size=`119572767`、mtime_ns=
+`1787408006000000000`、archive SHA-256=`5213f40cb0246d927b5e825943232a8f6e2bf0eba7c7d7005a13740ba0a67b20`。
+固定 auditor 双跑逐字节一致：4/4 checkpoint journals 的 competition identity cardinality 都为 0；raw journal
+先做 credential-shape scan，env/live-event、task 值、代码、stdout、grade、metric、prediction 与 outcome 均未读
+或未输出。只对这一个精确 archive bytes 整包拒收，不从文件名推断 task、不部分 salvage。
+
+audit/builder 聚焦测试分别 1/1、5/5，registry 双构建逐字节一致；diagnostic/registry SHA-256 分别为
+`8277d6dfe0651d88179735d8e2088d2de1cf329e9c2720272804833b65d226fc` /
+`7c16889eb5ec57b1ca391b4171a997ad0fcd35d076ad6b34fddb53b556e35e6e`。下一步只允许在 clean control commit
+同时绑定全部历史 registry 与本 registry 后恢复剩余 0821 CPU intake；scientific commit、稳定性门与 frozen
+truth/cohort 协议不变，GPU/API/model fit 仍为 0。证据：
+
+- `phase1/results/prospective_structural_rejection_20260823/`；
+- `phase1/实验记录/2026-08-23/Prospective0821_Plant结构拒收与摄取恢复.md`。
+
 ## 0EC. 2026-08-23 evaluator-channel 宽泛首创已关闭；artifact-vs-self-report 前瞻 estimand 保留
 
 最新强相关检索发现 `AuditRepairBench`（arXiv:2605.04624v1）已经在 agent repair 中明确研究 evaluator-channel

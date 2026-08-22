@@ -22,6 +22,14 @@ GPU 设计申请**；本协议本身不授权 replay。即使四门过，120s �
 - protocol SHA-256=`54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d`；
 - `phase1/实验记录/2026-08-23/ScoreChannel_FutureIdentifiabilityCohort_结果前冻结.md`。
 
+identity-only 闭合状态机已在 commit `53ce46f0be18f725987e6d0ce4d72df54ca8c0a9` formal 运行：它只开
+`LATEST/SHA256SUMS/transactions/observations/intake summary/archive manifest/source provenance`，遇到首个未决
+archive 即停，拒绝包计 0 runs，跨 300 时才纳入完整 boundary archive；不打开 tar、blind code、label vault、score
+目录或 outcome。producer×2、非导入式 verifier×2 一致，文件访问审计 forbidden open=0，fresh no-smudge 回归为
+`758 passed, 33 warnings in 55.55s`。当前 12 个 0821 archive 均已观察但仍在 6 小时稳定门内，settled=0、accepted=0、
+selected physical runs=0/300；pending head 是 ranzcr。这个 `COLLECTING` 状态不是 effect 结果，不能解释成机制失败或成功。
+完整回执：`phase1/results/score_channel_future_identifiability_freeze_20260823/formal_identity_cohort_53ce46f/`。
+
 ## 0DX. 2026-08-23 score-channel 旧 cohort 的辨识支持为零；正方法路线关闭，保留 D&B 漏斗资产
 
 0DW 的 post-hoc availability 分解已在冻结 commit `ab062e1a41c483a87f6d30213b35b8ba88689cb6`

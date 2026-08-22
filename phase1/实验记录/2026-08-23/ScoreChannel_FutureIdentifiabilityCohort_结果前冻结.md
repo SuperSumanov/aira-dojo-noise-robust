@@ -69,3 +69,42 @@ no-smudge worktree，未复用本地工作树。机器重新得到 protocol SHA-
 `phase1/results/score_channel_future_identifiability_freeze_20260823/remote_verification_74e4920/`；其中
 `SHA256SUMS` 文件自身 SHA-256=
 `b05583c1f85f6e8fade8612365f37ce1763c046e3b6a21c2783519a694a9f86a`。
+
+## 7. Outcome-blind 闭合状态机
+
+commit `53ce46f0be18f725987e6d0ce4d72df54ca8c0a9` 实现并 formal 验证了 archive→cohort 状态机。它从
+content-addressed `LATEST/SHA256SUMS/transactions.jsonl`、`observations.json` 和已验收 intake 的
+`summary.json/archive_manifest.tsv/source_provenance.json` 重建 cohort；不打开 tar payload、blind code、label vault、
+score 目录或 outcome。顺序固定为 `(mtime_ns, relative_path UTF-8 bytes)`；只消费首个 unresolved archive 之前的
+settled prefix，structural rejection 整包计 0 runs，累计首次≥300 时纳入完整 boundary archive。每次可选地绑定上一版
+输出，旧 archives/runs 必须逐行 exact-prefix survival；上一版一旦 closed，后续运行必须逐行完全相同。
+
+producer 与 verifier 没有互相 import；10 个新单元测试覆盖 collecting、完整 boundary、rejection、unresolved ordering
+gap、跨包重复 physical run、append-only survival、产物篡改与真实 file-open trace。连同 protocol 测试，formal focused
+为 `11 passed in 0.56s`；fresh no-smudge 完整 phase1 为 `758 passed, 33 warnings in 55.55s`。producer×2 与 verifier×2
+逐字节一致，strace 中 raw tar / label vault / blind-code sidecar / score directory 的 forbidden open=0，文件名与内容密钥
+扫描均为 0。
+
+## 8. 首次 formal collecting 状态
+
+UTC `2026-08-22T18:33:41Z` 的 hash-bound 状态为：
+
+- source commit=`53ce46f0be18f725987e6d0ce4d72df54ca8c0a9`；
+- production `LATEST`=`1151aef9524ac0730fb247256cc80fd7f5407d7c399f341e9524eebe784f7680`；
+- observations SHA-256=`5efabfb25364afa0b18015b80fdfa8cf120005906932340d26bb4978f6e0823f`；
+- observed future archives=12，future transactions=0，settled prefix=0；
+- selected archives=0，selected physical runs=0/300，remaining=300；
+- pending head=`0821/ranzcr-clip-catheter-line-classification-8seeds.tar.gz`；
+- status=`FUTURE_COHORT_COLLECTING` / independent verifier=`PASS_COLLECTING_TRUTH_UNREAD`。
+
+这里的 0 是 6 小时稳定门尚未到时的过程状态，不是 effect 的零值，不支持任何机制正/负结论。formal receipt 位于
+`phase1/results/score_channel_future_identifiability_freeze_20260823/formal_identity_cohort_53ce46f/`；其
+`SHA256SUMS` 文件自身 SHA-256=
+`fefb6a767ebe77ce9232c1423212d8fe062340b6753ad4493f97301d62e3febe`。
+
+诚实失败记录：前两次 wrapper 尝试均在科学 producer/verifier 成功后 fail-closed。`641bdd7` 因尾部要求外部可变
+observation ledger 在验证结束后仍不变化而误杀（`LATEST` 未变；仅稳定观测计数更新）；`5b28dda` 因多份 strace 的
+per-file `grep -c` 返回多行零，shell 无法作单整数比较。失败回执保留在远端只读目录
+`.641bdd7-1151aef9524a-e6edcf2da374.tmp.1573050` 和
+`.5b28dda-1151aef9524a-f3b1a47d7802.tmp.1574274`。修复只涉及回执绑定时点与计数汇总，没有改变 protocol、cohort
+membership、阈值或禁读正则。

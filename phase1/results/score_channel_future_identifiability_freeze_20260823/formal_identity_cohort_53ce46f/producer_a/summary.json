@@ -1,0 +1,68 @@
+{
+  "blindness": {
+    "blind_code_view_opened": false,
+    "label_vault_opened": false,
+    "opened_basenames": [
+      "LATEST",
+      "SHA256SUMS",
+      "observations.json",
+      "score_channel_future_identifiability_protocol_v1.json",
+      "transactions.jsonl"
+    ],
+    "raw_archive_payload_opened": false,
+    "replay_submission_authorized": false,
+    "score_directory_opened": false,
+    "score_or_outcome_opened": false,
+    "truth_support_computed": false
+  },
+  "closure": {
+    "accepted_archives_in_cohort": 0,
+    "accepted_unique_physical_run_target": 300,
+    "append_only_previous": null,
+    "boundary_archive": null,
+    "complete_boundary_archive_included": false,
+    "pending_head": {
+      "archive_relative_path": "0821/ranzcr-clip-catheter-line-classification-8seeds.tar.gz",
+      "mtime_ns": 1787407963000000000
+    },
+    "remaining_runs_to_target": 300,
+    "settled_archive_prefix": 0,
+    "structurally_rejected_in_settled_prefix": 0
+  },
+  "implementation": {
+    "python": "3.11.15",
+    "script_sha256": "1867949c62718000564f770b32fc9735d35dd7d327baa152a60684f1028639de"
+  },
+  "inputs": {
+    "intake_summary_sha256": {},
+    "latest_file_sha256": "aa5cd891193f4b6094a00701575050ae4f48343180c9f1b67b5abb0d2019c4f0",
+    "latest_sha256": "1151aef9524ac0730fb247256cc80fd7f5407d7c399f341e9524eebe784f7680",
+    "observations_sha256": "5efabfb25364afa0b18015b80fdfa8cf120005906932340d26bb4978f6e0823f",
+    "protocol_sha256": "54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d",
+    "snapshot_manifest_sha256": "1151aef9524ac0730fb247256cc80fd7f5407d7c399f341e9524eebe784f7680",
+    "source_provenance_sha256": {},
+    "transactions_sha256": "ecba09c5fc83a34c0f7a520661d844ca40c92a840cc65e27df608976049ea9c1"
+  },
+  "integrity": {
+    "archive_order": "mtime_ns_then_relative_path_utf8_bytes",
+    "initial_archive_bindings_pass": true,
+    "partial_archive_salvage": false,
+    "settled_prefix_only": true,
+    "unique_physical_runs": true
+  },
+  "inventory": {
+    "future_transactions": 0,
+    "observed_future_archives": 12,
+    "per_task_selected_runs": {},
+    "selected_archives": 0,
+    "selected_physical_runs": 0,
+    "selected_tasks": 0
+  },
+  "outputs": {
+    "cohort_archives_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cohort_runs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "protocol": "score-channel-future-identity-cohort-v1",
+  "source_commit": "53ce46f0be18f725987e6d0ce4d72df54ca8c0a9",
+  "status": "FUTURE_COHORT_COLLECTING"
+}

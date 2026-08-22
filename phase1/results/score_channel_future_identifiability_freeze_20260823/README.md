@@ -18,4 +18,11 @@ non-tie 与固定 gap bins，以及 80 parents / 8 tasks / dominant≤0.25 / 60 
   `74e492027b95cd1e44f205f7705c00736d9740b5` 建立的 fresh no-smudge worktree 回执。远端 Python 3.11 下
   focused=`1 passed in 0.03s`，完整 phase1=`748 passed, 33 warnings in 58.59s`，前后 worktree 均 clean，
   文件名/内容密钥扫描均为 0；`SHA256SUMS` 文件自身 SHA-256=
-  `b05583c1f85f6e8fade8612365f37ce1763c046e3b6a21c2783519a694a9f86a`。
+  `b05583c1f85f6e8fade8612365f37ce1763c046e3b6a21c2783519a694a9f86a`；
+- `formal_identity_cohort_53ce46f/`：identity-only closure producer×2 与非导入式 verifier×2 formal 回执。
+  fresh no-smudge focused=`11 passed in 0.56s`、完整 phase1=`758 passed, 33 warnings in 55.55s`；forbidden
+  open、文件名密钥扫描、内容密钥扫描都为 0。当前机器状态为 observed future archives=12、future transactions=0、
+  settled=0、selected runs=0/300，首个 pending archive=ranzcr。`SHA256SUMS` 文件自身 SHA-256=
+  `fefb6a767ebe77ce9232c1423212d8fe062340b6753ad4493f97301d62e3febe`。
+
+`0/300` 只表示归档尚未跨过预先固定的 6 小时稳定门，不是 effect 估计，也不授权 replay。

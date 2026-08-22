@@ -1,0 +1,130 @@
+openat(AT_FDCWD, "/proc/self/fd", O_RDONLY|O_CLOEXEC) = 4
+execve("/research/d7/spc/yzyang4/bin/git", ["git", "-C", "/research/d7/spc/yzyang4/worktre"..., "rev-parse", "HEAD"], 0x7ffd645c3248 /* 56 vars */) = -1 ENOENT (No such file or directory)
+execve("/uac/y24/yzyang4/bin/git", ["git", "-C", "/research/d7/spc/yzyang4/worktre"..., "rev-parse", "HEAD"], 0x7ffd645c3248 /* 56 vars */) = -1 ENOENT (No such file or directory)
+execve("/usr/local/sbin/git", ["git", "-C", "/research/d7/spc/yzyang4/worktre"..., "rev-parse", "HEAD"], 0x7ffd645c3248 /* 56 vars */) = -1 ENOENT (No such file or directory)
+execve("/usr/local/bin/git", ["git", "-C", "/research/d7/spc/yzyang4/worktre"..., "rev-parse", "HEAD"], 0x7ffd645c3248 /* 56 vars */) = -1 ENOENT (No such file or directory)
+execve("/usr/sbin/git", ["git", "-C", "/research/d7/spc/yzyang4/worktre"..., "rev-parse", "HEAD"], 0x7ffd645c3248 /* 56 vars */) = -1 ENOENT (No such file or directory)
+execve("/usr/bin/git", ["git", "-C", "/research/d7/spc/yzyang4/worktre"..., "rev-parse", "HEAD"], 0x7ffd645c3248 /* 56 vars */) = 0
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/glibc-hwcaps/x86-64-v4/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/glibc-hwcaps/x86-64-v4/", 0x7fffd75986b0, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/glibc-hwcaps/x86-64-v3/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/glibc-hwcaps/x86-64-v3/", 0x7fffd75986b0, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/glibc-hwcaps/x86-64-v2/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/glibc-hwcaps/x86-64-v2/", 0x7fffd75986b0, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/cuda-12.8/lib64/", 0x7fffd75986b0, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "glibc-hwcaps/x86-64-v4/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "glibc-hwcaps/x86-64-v4/libz.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libz.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libz.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "libz.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libz.so.1", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "glibc-hwcaps/x86-64-v4/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/dev/null", O_RDWR)   = 3
+openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 3
+newfstatat(AT_FDCWD, "/usr/share/locale", {st_mode=S_IFDIR|0755, st_size=4096, ...}, 0) = 0
+access("/etc/gitconfig", R_OK)          = -1 ENOENT (No such file or directory)
+access("/uac/y24/yzyang4/.config/git/config", R_OK) = -1 ENOENT (No such file or directory)
+access("/uac/y24/yzyang4/.gitconfig", R_OK) = 0
+openat(AT_FDCWD, "/uac/y24/yzyang4/.gitconfig", O_RDONLY) = 3
+getcwd("/research/d7/spc/yzyang4/worktrees/future_identity_cohort_53ce46f_nosmudge", 129) = 75
+chdir("/research/d7/spc/yzyang4/worktrees/future_identity_cohort_53ce46f_nosmudge") = 0
+getcwd("/research/d7/spc/yzyang4/worktrees/future_identity_cohort_53ce46f_nosmudge", 129) = 75
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/worktrees/future_identity_cohort_53ce46f_nosmudge", {st_mode=S_IFDIR|0700, st_size=4096, ...}, 0) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/worktrees/future_identity_cohort_53ce46f_nosmudge/.git", {st_mode=S_IFREG|0600, st_size=98, ...}, 0) = 0
+openat(AT_FDCWD, "/research/d7/spc/yzyang4/worktrees/future_identity_cohort_53ce46f_nosmudge/.git", O_RDONLY) = 3
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/HEAD", {st_mode=S_IFREG|0600, st_size=41, ...}, AT_SYMLINK_NOFOLLOW) = 0
+openat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/HEAD", O_RDONLY) = 3
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/commondir", {st_mode=S_IFREG|0600, st_size=6, ...}, AT_SYMLINK_NOFOLLOW) = 0
+openat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/commondir", O_RDONLY) = 3
+newfstatat(AT_FDCWD, "/research", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7", {st_mode=S_IFDIR|0755, st_size=238, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4", {st_mode=S_IFDIR|0700, st_size=16384, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees", {st_mode=S_IFDIR|0755, st_size=12288, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge", {st_mode=S_IFDIR|0700, st_size=119, ...}, AT_SYMLINK_NOFOLLOW) = 0
+access("/research/d7/spc/yzyang4/aira-dojo/.git/objects", X_OK) = 0
+access("/research/d7/spc/yzyang4/aira-dojo/.git/refs", X_OK) = 0
+newfstatat(AT_FDCWD, "/research", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7", {st_mode=S_IFDIR|0755, st_size=238, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4", {st_mode=S_IFDIR|0700, st_size=16384, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees", {st_mode=S_IFDIR|0755, st_size=12288, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge", {st_mode=S_IFDIR|0700, st_size=119, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/worktrees/future_identity_cohort_53ce46f_nosmudge/.git", {st_mode=S_IFREG|0600, st_size=98, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/worktrees/future_identity_cohort_53ce46f_nosmudge", {st_mode=S_IFDIR|0700, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge", {st_mode=S_IFDIR|0700, st_size=119, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/commondir", {st_mode=S_IFREG|0600, st_size=6, ...}, AT_SYMLINK_NOFOLLOW) = 0
+openat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/commondir", O_RDONLY) = 3
+newfstatat(AT_FDCWD, "/research", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7", {st_mode=S_IFDIR|0755, st_size=238, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4", {st_mode=S_IFDIR|0700, st_size=16384, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees", {st_mode=S_IFDIR|0755, st_size=12288, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge", {st_mode=S_IFDIR|0700, st_size=119, ...}, AT_SYMLINK_NOFOLLOW) = 0
+openat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/config", O_RDONLY) = 3
+openat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/config.worktree", O_RDONLY) = -1 ENOENT (No such file or directory)
+getcwd("/research/d7/spc/yzyang4/worktrees/future_identity_cohort_53ce46f_nosmudge", 129) = 75
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge", {st_mode=S_IFDIR|0700, st_size=119, ...}, 0) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/commondir", {st_mode=S_IFREG|0600, st_size=6, ...}, AT_SYMLINK_NOFOLLOW) = 0
+openat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/commondir", O_RDONLY) = 3
+newfstatat(AT_FDCWD, "/research", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7", {st_mode=S_IFDIR|0755, st_size=238, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4", {st_mode=S_IFDIR|0700, st_size=16384, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees", {st_mode=S_IFDIR|0755, st_size=12288, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge", {st_mode=S_IFDIR|0700, st_size=119, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7", {st_mode=S_IFDIR|0755, st_size=238, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4", {st_mode=S_IFDIR|0700, st_size=16384, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/worktrees", {st_mode=S_IFDIR|0755, st_size=8192, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/worktrees/future_identity_cohort_53ce46f_nosmudge", {st_mode=S_IFDIR|0700, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+access("/etc/gitconfig", R_OK)          = -1 ENOENT (No such file or directory)
+access("/uac/y24/yzyang4/.config/git/config", R_OK) = -1 ENOENT (No such file or directory)
+access("/uac/y24/yzyang4/.gitconfig", R_OK) = 0
+openat(AT_FDCWD, "/uac/y24/yzyang4/.gitconfig", O_RDONLY) = 3
+access("/research/d7/spc/yzyang4/aira-dojo/.git/config", R_OK) = 0
+openat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/config", O_RDONLY) = 3
+access("/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/config.worktree", R_OK) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/commondir", {st_mode=S_IFREG|0600, st_size=6, ...}, AT_SYMLINK_NOFOLLOW) = 0
+openat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/commondir", O_RDONLY) = 3
+newfstatat(AT_FDCWD, "/research", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7", {st_mode=S_IFDIR|0755, st_size=238, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4", {st_mode=S_IFDIR|0700, st_size=16384, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git", {st_mode=S_IFDIR|0755, st_size=4096, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees", {st_mode=S_IFDIR|0755, st_size=12288, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge", {st_mode=S_IFDIR|0700, st_size=119, ...}, AT_SYMLINK_NOFOLLOW) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/HEAD", {st_mode=S_IFREG|0600, st_size=41, ...}, AT_SYMLINK_NOFOLLOW) = 0
+openat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/worktrees/future_identity_cohort_53ce46f_nosmudge/HEAD", O_RDONLY) = 3
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/refs/HEAD", 0x7fffd7598760, AT_SYMLINK_NOFOLLOW) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/packed-refs", O_RDONLY) = 3
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/refs/tags/HEAD", 0x7fffd7598760, AT_SYMLINK_NOFOLLOW) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/packed-refs", {st_mode=S_IFREG|0644, st_size=1722, ...}, 0) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/refs/heads/HEAD", 0x7fffd7598760, AT_SYMLINK_NOFOLLOW) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/packed-refs", {st_mode=S_IFREG|0644, st_size=1722, ...}, 0) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/refs/remotes/HEAD", 0x7fffd7598760, AT_SYMLINK_NOFOLLOW) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/packed-refs", {st_mode=S_IFREG|0644, st_size=1722, ...}, 0) = 0
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/refs/remotes/HEAD/HEAD", 0x7fffd7598760, AT_SYMLINK_NOFOLLOW) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/research/d7/spc/yzyang4/aira-dojo/.git/packed-refs", {st_mode=S_IFREG|0644, st_size=1722, ...}, 0) = 0
++++ exited with 0 +++

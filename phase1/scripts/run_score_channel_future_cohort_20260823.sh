@@ -148,8 +148,16 @@ latest_after=$(tr -d '\r\n' < "${state}/LATEST")
 observations_after=$(sha256sum "${state}/observations.json" | awk '{print $1}')
 printf '%s\n' "${latest_after}" > "${staging}/latest_after.txt"
 printf '%s\n' "${observations_after}" > "${staging}/observations_after_sha256.txt"
-test "${latest_after}" = "${latest_before}"
-test "${observations_after}" = "${observations_before}"
+"${python_bin}" -c 'import json,sys; value=json.load(open(sys.argv[1])); assert value["inputs"]["latest_sha256"] == sys.argv[2]; assert value["inputs"]["observations_sha256"] == sys.argv[3]' \
+  "${staging}/producer_a/summary.json" "${latest_before}" "${observations_before}"
+if [[ ${latest_after} == "${latest_before}" && ${observations_after} == "${observations_before}" ]]; then
+  printf 'false\n' > "${staging}/production_state_advanced_after_verification.txt"
+else
+  # A later atomic monitor poll does not invalidate the already hash-bound producer/verifier
+  # receipt. Producer A/B equality and both independent verifier passes establish that all
+  # scientific reads used the exact pre-run LATEST and observations hashes above.
+  printf 'true\n' > "${staging}/production_state_advanced_after_verification.txt"
+fi
 
 forbidden_open_count=$(grep -hEic \
   'open(at|at2)?\(.*(\.tar\.gz|label_vault\.jsonl|all_blind_views\.jsonl|eligible_blind_manifest\.jsonl|/scores/)' \

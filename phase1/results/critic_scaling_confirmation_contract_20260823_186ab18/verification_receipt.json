@@ -1,0 +1,55 @@
+{
+  "access_attestation": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "future_truth_opened": false,
+    "gpu_jobs": 0,
+    "model_fits": 0
+  },
+  "contract_sha256": "579771ac1b90b1022bdded1182ce5c5a17780a741dc95d82a53f5f91d577a568",
+  "formal_status": "CONTRACT_READY_ASSETS_PENDING",
+  "infrastructure_attempts": [
+    {
+      "classification": "REMOTE_ALIAS_MISSING_PRE_TEST",
+      "scientific_tests_started": false
+    },
+    {
+      "classification": "PROXY_MISSING_PRE_TEST",
+      "scientific_tests_started": false
+    },
+    {
+      "classification": "ENV_SETUP_NOUNSET_PRE_TEST",
+      "scientific_tests_started": false
+    },
+    {
+      "classification": "HISTORICAL_LFS_404_PRE_TEST",
+      "scientific_tests_started": false
+    },
+    {
+      "classification": "LOGGED_TESTS_PASS_ZERO_MATCH_GREP_PIPEFAIL_POST_TEST",
+      "postflight_repaired_without_rerunning_tests": true,
+      "scientific_tests_started": true
+    }
+  ],
+  "protocol": "critic-scaling-confirmation-contract-verification-v1",
+  "remote_verification": {
+    "content_credential_hits": 0,
+    "durable_log": "/research/d7/spc/yzyang4/prospective_decision_v1/scaling_contract_verify_186ab18.log",
+    "filename_credential_hits": 0,
+    "focused_seconds": 2.02,
+    "focused_tests_passed": 7,
+    "full_seconds": 56.22,
+    "full_tests_passed": 830,
+    "full_warnings": 33,
+    "numeric_thread_caps": {
+      "MKL_NUM_THREADS": 1,
+      "NUMEXPR_NUM_THREADS": 1,
+      "OMP_NUM_THREADS": 1,
+      "OPENBLAS_NUM_THREADS": 1
+    },
+    "postflight_complete": true,
+    "worktree": "/research/d7/spc/yzyang4/aira-dojo-verify-186ab18-nosmudge",
+    "worktree_clean": true
+  },
+  "scientific_commit": "186ab1800973972b8066c7a706bd06f92c8d124a"
+}

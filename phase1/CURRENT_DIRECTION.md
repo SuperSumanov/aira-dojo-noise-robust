@@ -19,7 +19,10 @@ producer 与不 import producer 的 verifier 已实现 test 前 lock、完整训
 一次性 ledger、endpoint-score 一致、component 连通、task/run CI、LOTO 与逐 component gain 的 fail-closed 检查；
 冻结契约 SHA-256=`579771ac1b90b1022bdded1182ce5c5a17780a741dc95d82a53f5f91d577a568`。本地 7 个
 正控/负控/攻击/哈希种子/独立复核测试通过。当前仍是 `CONTRACT_READY_ASSETS_PENDING`，GPU/API/model fit/future
-truth=0/0/0/false；没有新 checkpoint/逐 pair bundle 前不得生成效果结论或提交训练。
+truth=0/0/0/false；没有新 checkpoint/逐 pair bundle 前不得生成效果结论或提交训练。scientific commit
+`186ab1800973972b8066c7a706bd06f92c8d124a` 的 fresh no-smudge worktree 已通过聚焦 7/7、完整
+830/830（33 warnings）、凭据扫描 0/0 且 clean；测试前的 remote alias/proxy/env/LFS 阻断与测试后的零命中
+`grep` pipefail 均在 receipt 中独立保留，未伪装成科学失败或静默删除。
 
 证据：
 
@@ -27,6 +30,7 @@ truth=0/0/0/false；没有新 checkpoint/逐 pair bundle 前不得生成效果�
 - `phase1/critic_scaling_confirmation_contract_v1.json`；
 - `phase1/critic_scaling_confirmation_analysis.py`；
 - `phase1/verify_critic_scaling_confirmation_analysis.py`；
+- `phase1/results/critic_scaling_confirmation_contract_20260823_186ab18/`；
 - `phase1/实验记录/2026-08-23/CleanCriticScaling_独立确认契约与checkpoint版本纠正.md`。
 
 ## 0EO. 2026-08-23 comparison-component cost--utility 正式复核完成；强正主张关闭

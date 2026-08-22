@@ -26,8 +26,10 @@ conversion 分三层独立裁决；支持门固定为至少 20 tasks/300 compone
 同池；验证 task/run CI、两 seed、LOTO 与 component gain。旧 test-touched checkpoint 被 schema 明确禁止。
 
 合成正控、负控与攻击测试覆盖：强 scaling 三层全过、有效负结果、margin 篡改、第二次 test attempt、缺失 matrix、
-cross-run primary、不同 `PYTHONHASHSEED` 字节一致、独立 verifier 重建与 summary 篡改拒绝。当前聚焦测试为 7/7；
-远端 exact-commit 全套验证仍须在提交后完成。
+cross-run primary、不同 `PYTHONHASHSEED` 字节一致、独立 verifier 重建与 summary 篡改拒绝。scientific commit
+`186ab1800973972b8066c7a706bd06f92c8d124a` 的 fresh no-smudge worktree 聚焦测试 7/7，完整
+`phase1/tests` 为 830/830（33 warnings），文件名/内容凭据扫描 0/0，worktree clean。持久日志位于
+`/research/d7/spc/yzyang4/prospective_decision_v1/scaling_contract_verify_186ab18.log`。
 
 ## 3. 科学边界与下一步
 
@@ -41,4 +43,5 @@ cross-run primary、不同 `PYTHONHASHSEED` 字节一致、独立 verifier 重�
 - `phase1/contracts/CRITIC_SCALING_CONFIRMATION_V1.md`；
 - `phase1/critic_scaling_confirmation_analysis.py`；
 - `phase1/verify_critic_scaling_confirmation_analysis.py`；
-- `phase1/tests/test_critic_scaling_confirmation_analysis.py`。
+- `phase1/tests/test_critic_scaling_confirmation_analysis.py`；
+- `phase1/results/critic_scaling_confirmation_contract_20260823_186ab18/`。

@@ -66,6 +66,10 @@ GitHub LFS 404。四份小 pair 对象可单独拉取，但没有 Cards 仍不�
 原子写入等保护也被削弱；新增 mixed/hardware-time 代码没有相应测试。桌面环境缺少 torch/scipy/jsonschema，无法把
 完整 upstream suite 的收集失败误报成代码测试失败；本审计脚本自己的 focused synthetic tests 为 3/3。
 
+推送后又在集群 fresh no-smudge worktree `c6a5f8e...` 复核：focused tests 仍为 3/3。历史全量 phase suite 在
+469.17 秒时为 156 passed、0 failures，随后因既有 HistGradientBoosting 测试持续占用约 28 个登录节点 CPU 核而按
+资源纪律主动中止；这记为 incomplete regression，不记为测试失败。中止后相关进程为 0，worktree clean。
+
 ## 4. 解锁顺序
 
 1. 学长 producer 侧发布不可变 `run_id -> source-date,batch-id,task,archive-sha256` manifest，并替换 0CR 指出的

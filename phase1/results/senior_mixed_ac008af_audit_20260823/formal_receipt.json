@@ -114,5 +114,17 @@
     "test_sha256": "e90c67e3cd5cf8271dcd9e5c5b618673c8d6a4924d916ef5adf5e26441c3e5e3",
     "desktop_full_suite": "NOT_COLLECTED_MISSING_SCIPY_AND_SKLEARN",
     "desktop_full_suite_is_scientific_failure": false
+  },
+  "remote_verification": {
+    "worktree_commit": "c6a5f8e322e364c25d19cb481069810020a1e69f",
+    "focused_passed": 3,
+    "focused_failed": 0,
+    "full_suite_passed_before_interrupt": 156,
+    "full_suite_failures_before_interrupt": 0,
+    "full_suite_elapsed_seconds": 469.17,
+    "full_suite_status": "INTERRUPTED_FOR_LOGIN_NODE_RESOURCE_DISCIPLINE",
+    "interrupt_location": "existing_hist_gradient_boosting_predictor",
+    "worktree_clean_after_interrupt": true,
+    "full_suite_interrupt_is_scientific_failure": false
   }
 }

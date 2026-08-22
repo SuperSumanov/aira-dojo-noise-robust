@@ -1,0 +1,98 @@
+{
+  "protocol": "score-channel-grounding-availability-protocol-v1",
+  "status": "FROZEN_POST_HOC_SECONDARY_NOT_RUN",
+  "frozen_at_utc": "2026-08-22T17:41:12Z",
+  "outcomes_read_before_freeze": true,
+  "known_aggregate_before_freeze": {
+    "source": "phase1/results/score_channel_replay_execution_20260818/README.md",
+    "primary_status": "SCORE_CHANNEL_MECHANISM_KILL",
+    "planned_and_completed_replays": 320,
+    "finite_external_cards": 15,
+    "keyed_stdout_cards": 92,
+    "both_channels_cards": 7,
+    "common_cards": 6,
+    "common_parents": 3,
+    "external_top1": 1.0,
+    "stdout_top1": 1.0,
+    "delta": 0.0
+  },
+  "raw_result_shards_opened_during_protocol_freeze": false,
+  "label_vault_opened_during_protocol_freeze": false,
+  "relation_to_primary": {
+    "primary_protocol": "score-channel-prospective-analysis-v1",
+    "primary_gate_changed": false,
+    "primary_headline_replaced": false,
+    "secondary_method_claim_allowed": false,
+    "secondary_confirmatory_claim_allowed": false,
+    "purpose": "post-hoc descriptive decomposition of short-budget grounded-feedback value into availability and ranking components"
+  },
+  "locked_cohort": {
+    "cap_seconds": 120,
+    "selected_parents": 158,
+    "selected_candidates": 320,
+    "selection_summary_sha256": "f168a90043769d0d80257ec0af7f71c57d18b098f7390f615d66b1617ddd9441",
+    "selected_parents_sha256": "49e808747532034ae653e0fdb45a3144f5fe4545ae5b8d1755d79545d4c64b81",
+    "replay_summary_sha256": "0ea4766bd464248a91b95c10d4be720862ca2b631d2b849d78b4189deff580bf",
+    "replay_manifest_sha256": "e20b43b9eee55395380def2772bfdab21f261eb3d850fc9a67ff0ccb4bc5fe58",
+    "orientation_sha256": "81c9684741cb166bf1b4e2d7cb91ed0c8742c5040945b44d22f1c61f18baf85a",
+    "frozen_worker_source_commit": "ca3bb7315078f2c4bed99fa4c33d93c2f353d670"
+  },
+  "availability": {
+    "external_available": "sub_exists is true and sub_score is finite",
+    "stdout_available": "val_how equals keyed and stdout_val is finite",
+    "bare_stdout_excluded": true,
+    "joint_states": [
+      "both",
+      "external_only",
+      "stdout_only",
+      "neither"
+    ],
+    "comparative_parent_threshold": 2
+  },
+  "policies": {
+    "uniform": "uniform expected truth over every candidate",
+    "external_then_uniform": "argmax oriented external score; if no external candidate, uniform over every candidate",
+    "stdout_then_uniform": "argmax oriented keyed stdout; if no keyed stdout candidate, uniform over every candidate",
+    "external_then_stdout_then_uniform": "argmax oriented external score when any exists; otherwise argmax keyed stdout; otherwise uniform"
+  },
+  "decomposition": {
+    "truth": "frozen y_norm, larger is better",
+    "full_oracle": "maximum y_norm over every candidate under the parent",
+    "restricted_oracle": "maximum y_norm over candidates available to the policy; uniform expected truth when none are available",
+    "availability_regret": "full_oracle minus restricted_oracle",
+    "ranking_regret": "restricted_oracle minus policy expected truth",
+    "total_regret": "availability_regret plus ranking_regret",
+    "tie_handling": "uniform expected truth across all signal maxima within absolute tolerance 1e-12",
+    "hybrid_available_set": "union of external-available and stdout-available candidates"
+  },
+  "inference": {
+    "unit": "selected parent",
+    "primary_cluster": "physical run",
+    "secondary_cluster": "task",
+    "bootstrap_draws": 10000,
+    "seed": 20260813,
+    "paired_contrasts": [
+      "external advantage over stdout = stdout total regret minus external total regret",
+      "hybrid advantage over stdout = stdout total regret minus hybrid total regret"
+    ],
+    "hypothesis_gate": null,
+    "task_subset_selection": false
+  },
+  "outputs": {
+    "candidate_availability_csv_contains_scores_or_labels": false,
+    "per_parent_csv_contains_raw_scores_or_labels": false,
+    "required_files": [
+      "candidate_availability.csv",
+      "per_parent.csv",
+      "summary.json"
+    ]
+  },
+  "scope": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "base_llm_update": false,
+    "cap_sweep": false,
+    "primary_results_were_already_hash_bound": true,
+    "detailed_secondary_results_may_be_computed_only_after_protocol_commit": true
+  }
+}

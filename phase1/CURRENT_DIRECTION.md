@@ -3,6 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DW. 2026-08-23 grounding-gap 直接竞品关闭 score-channel 宽首创；主线收窄为可用性×条件价值
+
+一手全文审计发现 arXiv:2607.25152v1（2026-07-27）已经在固定 agent/tool/task 下操纵 evaluator information
+channel：54 个 T1 cycles 中 agent 100% 自称改进、56% oracle delta≤0；强 in-band judge 仍未弥合差距，独立
+out-of-band world-state gate 与 sign-only 变体给出正面结果。因此“首次发现 self-report/ground truth gap”“首次
+out-of-band evaluator”“首次证明扩大 judge 不够”“external evaluator beats self-report”全部关闭，不能再作方法或
+概念 novelty。该稿虽是 single-task、3 repetitions/arm×6 cycles 的 preliminary pilot，公开时间戳仍必须尊重。
+
+可防守差异是对方三臂产生 independent rollouts、oracle 每轮可见且 out-of-band 只接受 positive delta；我方冻结实验在
+真实 MLE search 中比较同一 120 秒、同一 sibling candidates 的 keyed numeric stdout 与 pristine numeric score，并把
+scoreable artifact 的选择性缺失、silent candidates、run/task dependence、成本与 temporal freeze 一并作为 estimand。
+故 score-channel replay 不撤销，但只作 D&B 的 domain-specific external-validity measurement。headline 收窄为
+**grounding availability × conditional sibling-selection value**：grounded feedback 有价值却并非总可用。必须同时报告
+联合覆盖、共同覆盖 ranking、silent-candidate regret 分解和 cluster-robust uncertainty；只报共同覆盖准确率不合格。
+
+时间线纠正：旧 320-replay 的 primary aggregate KILL（finite external=15、keyed stdout=92、both=7、共同覆盖
+6 cards/3 parents、delta=0）在本 secondary protocol 冻结前已经公开于仓库报告。因此 availability×regret 分解只能是
+**post-hoc descriptive analysis**，不得称结果盲、前瞻确认或新 hypothesis test；它不改 primary KILL。协议冻结时未打开
+raw result shards/label vault，但这不消除既有 aggregate knowledge。GPU/API/model fit=0。详情：
+
+- `phase1/实验记录/2026-08-23/ScoreChannel_GroundingGap_直接竞品与边界重裁决.md`。
+- `phase1/score_channel_grounding_availability_protocol_v1.json`。
+- `phase1/实验记录/2026-08-23/ScoreChannel_GroundingAvailability_结果后冻结.md`。
+
 ## 0DV. 2026-08-23 学长 mixed `ac008af` 生成配方已后验逐字节恢复；其余 GPU 门不变
 
 0DS 的“提交时无生成命令/收据”仍成立，但“配方不可恢复”已撤回。对三份输入全部 6 种顺序、固定 seed=7、

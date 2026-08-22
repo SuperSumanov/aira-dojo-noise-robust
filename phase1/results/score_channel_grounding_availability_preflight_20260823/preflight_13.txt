@@ -1,0 +1,13 @@
+1 PASS artifact-side policy/state schema covered by focused synthetic tests
+2 PASS new path exercised on CPU synthetic inputs; real raw shards not opened
+3 PASS no training or resampling; frozen parent/card identities are SHA bound
+4 PASS joint state, per-task, parent, run-cluster and task-cluster outputs frozen
+5 PASS no eval sampler; all selected tasks retained and task subset selection false
+6 N/A no training and no checkpoint
+7 PASS no learning split; raw score/label/code excluded from outputs
+8 PASS seed 20260813 and deterministic CRC32 stream offsets frozen
+9 PASS staged filename secret-pattern count 0 and high-confidence content hit count 0
+10 PASS GPU 0 API 0 model fit 0; CPU-only secondary
+11 N/A no training; support fixed at 158 parents and 320 candidates
+12 PASS fail-closed rc=2 and no overwrite for output/receipt
+13 PASS five cohort SHA bindings and 158/320 counts frozen; no new-corpus resampling

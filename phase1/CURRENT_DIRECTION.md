@@ -3,6 +3,42 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EJ. 2026-08-23 pairwise/execution-free/trained code critic 宽首创关闭；MLE clean frontier 成为最窄正方向
+
+新核查的 [Reward-Free Evolving Agents via Pairwise Validator](https://arxiv.org/abs/2607.14408) 已把 frozen LLM
+pairwise validator 接入 GEPA、ADRS 与 ShinkaEvolve，在代码 substrate 上同时覆盖 accept/reject gate 与 parent
+selection，并报告 Qwen3-8B 代码演化结果。因此“首次用 pairwise critic/judge 引导代码搜索、gate 或 parent selection”
+全部关闭；0EA global→local 五臂继续只作 D&B 机制消融，不能升级为训练方法 novelty。
+
+不能把竞品总括成“仍须执行全部候选”：其 prompt 路径消费 parent/child train-minibatch outputs，prompt-side 普通
+validator/Elo 的分析调用量约为 full-reward baseline 的 1.7×/2.4×；但代码纯 `Direct` arm 不使用 reward，已经覆盖
+source-code pairwise judge。因此可防守缺口只能收紧为：以历史 pristine execution grade 离线监督、在 query time 不读
+stdout/submission/runtime/exit status 的 **learned critic**，相对同输入 training-free validator 是否形成随容量改善的
+calibration/cost–utility frontier，并迁移到时间更晚/不同 generator 候选。区别是 trained surrogate vs frozen judge，
+不是“首次 execution-free 比较”。
+
+进一步一手核查又确认 [Steer, Don't Solve](https://arxiv.org/abs/2606.21811) 已训练 8B critic 给 frozen code agent
+intra-trajectory feedback，报告跨 unseen agents 迁移、trained-vs-untrained 正结果与 30--92× teacher-cost reduction；
+[RewardCode](https://openreview.net/forum?id=zpsYG8fYc8) 已训练 execution-validated general code RM；
+[More Convincing, Not More Correct](https://arxiv.org/abs/2607.05904) 也在代码 best-of-N 复现 reference-free judge 的
+correctness 偏离。因此 trained critic、跨 agent transfer、code-RM scaling、cost Pareto 与 judge 不可靠性的宽首创均
+关闭。0EJ 只保留 MLE-agent physical sibling 上的 clean scaling/calibration/temporal transfer/noise/cost frontier，
+作为 D&B benchmark 机制证据，不作 critic 方法论文。
+
+对 current 11 份 accepted `source_provenance.json` 的结果盲 schema-only 双跑确认：33 records、0 parse errors、单一
+schema，但 client/model/generator/hardware/time-limit/execution-timeout 六类字段全部为 0/11；output SHA-256=
+`caa59456c864f07770e73fcb4a7fe5565c93bb7519b44b2faa873aafa1905589`。故 33/300 cohort 不能事后承担 capability×generator
+交互分析，仍只服务 score-channel；交互矩阵必须另冻 credential-safe config-provenance sidecar，不能回填当前协议。
+
+候选确认顺序固定为 S0 provenance/identity/cost 闭合（0 GPU）→S1 一次性 clean capability curve→S2 结果前锁定的
+tabular search utility→S3 单 pivot live A/B。frozen LLM judge 若读取 outputs，只能作 post-execution comparator；与
+critic 同列的 execution-free arm 必须使用相同执行前输入。旧 2,087-row test-touched checkpoint 继续禁用；当前
+33/300 future cohort、truth 封存、门槛与 intake monitor 均不变。exact 模型×seed 矩阵、G0 与 GPU·时未闭合，故
+GPU/API/model fit 仍为 0，不授权提交。详情：
+
+- `phase1/实验记录/2026-08-23/ExecutionFreeCritic_直接竞品与正方向重定位.md`。
+- `phase1/results/future_provenance_schema_only_20260823/`。
+
 ## 0EI. 2026-08-23 33-run receipt 已 push 并通过 exact-commit 验证；长期 intake 仍结果盲
 
 聚合收据、raw-grade 直接相关工作边界与方向更新已以 commit

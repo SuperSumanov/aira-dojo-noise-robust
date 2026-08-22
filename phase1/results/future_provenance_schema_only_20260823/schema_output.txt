@@ -1,0 +1,22 @@
+files=11 records=33 parse_errors=0 distinct_schemas=1
+schema_count=11
+field=[] type=dict
+field=[].archive_name type=str
+field=[].archive_sha256 type=str
+field=[].eligible type=bool
+field=[].empty_code_nodes_excluded type=int
+field=[].endpoints type=int
+field=[].flow_status type=str
+field=[].generation_started_at_utc type=str
+field=[].journal_member type=str
+field=[].journal_mtime type=int
+field=[].journal_sha256 type=str
+field=[].run_id type=str
+field=[].task type=str
+files_with_client_field=0
+files_with_model_field=0
+files_with_generator_field=0
+files_with_hardware_field=0
+files_with_time_limit_field=0
+files_with_execution_timeout_field=0
+PROVENANCE_SCHEMA_ONLY_COMPLETE

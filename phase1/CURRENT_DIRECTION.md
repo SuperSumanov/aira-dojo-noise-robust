@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DY. 2026-08-23 新 temporal truth-support cohort 已在 0821 intake 前冻结；只开 CPU 资格门
+
+0DX 证明旧 120s cohort 的 paired discriminative support=0 后，在 0821 任一 intake/label vault 产生前冻结新
+`score-channel-future-identifiability-cohort-v1`。冻结时连续监控为 archives=204、baseline=128、ready=0、
+transactions=57，`intakes/0821-*`=0；未打开 12 个 0821 archive payload、label、grade、code 或 stdout。初始 12 个
+archive 的 path/size/mtime 逐项绑定，之后按 `(mtime_ns, relative_path)` 只追加；cohort 在累计至少 300 个 accepted
+unique physical runs 时纳入完整 boundary archive 后关闭，structural rejection 不计入且不得部分 salvage。关闭条件只用
+identity/count，不看 label。
+
+每 run 仍按 outcome-independent SHA lottery 最多取 2 个、seed=20260813；parent eligibility 只要求至少两个 finite
+structural siblings，不用 score magnitude。冻结后才计算 exact non-tie (`range(y_norm)>1e-12`) 及固定 gap bins。只有
+non-tied parents≥80、覆盖≥8 tasks、dominant non-tied task≤25%、selected physical runs≥60 四门全过，才允许提交**新的
+GPU 设计申请**；本协议本身不授权 replay。即使四门过，120s 外部分历史支持太低，仍须先做功效/成本论证；若用 pilot
+选 cap，pilot 与 confirmation cohort 必须物理 run 隔离。当前 GPU/API/model fit=0。证据：
+
+- `phase1/score_channel_future_identifiability_protocol_v1.json`；
+- protocol SHA-256=`54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d`；
+- `phase1/实验记录/2026-08-23/ScoreChannel_FutureIdentifiabilityCohort_结果前冻结.md`。
+
 ## 0DX. 2026-08-23 score-channel 旧 cohort 的辨识支持为零；正方法路线关闭，保留 D&B 漏斗资产
 
 0DW 的 post-hoc availability 分解已在冻结 commit `ab062e1a41c483a87f6d30213b35b8ba88689cb6`

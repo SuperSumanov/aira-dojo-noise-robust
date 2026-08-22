@@ -1,0 +1,146 @@
+{
+  "protocol": "score-channel-future-identifiability-cohort-v1",
+  "status": "FROZEN_OUTCOME_UNREAD_WAITING_COHORT",
+  "frozen_at_utc": "2026-08-22T18:03:44Z",
+  "motivation": "measure truth-informative decision mass before considering another score-channel replay",
+  "temporal_attestation": {
+    "initial_source_inventory_sha256": "c8cf5f419e359c859329164b0910c34aad24dc8cd8259c28acbba31ceadfcd99",
+    "initial_scientific_snapshot_sha256": "1151aef9524ac0730fb247256cc80fd7f5407d7c399f341e9524eebe784f7680",
+    "monitor_observation_utc": "2026-08-22T18:01:18Z",
+    "archives_total": 204,
+    "baseline_archives": 128,
+    "ready_archives": 0,
+    "rejected_archives": 7,
+    "committed_transactions": 57,
+    "initial_0821_intake_directories": 0,
+    "initial_0821_archive_payloads_opened": false,
+    "initial_0821_labels_or_outcomes_read": false
+  },
+  "initial_archives": [
+    {
+      "relative_path": "0821/ranzcr-clip-catheter-line-classification-8seeds.tar.gz",
+      "size_bytes": 12469915,
+      "mtime_ns": 1787407963000000000
+    },
+    {
+      "relative_path": "0821/tgs-salt-identification-challenge-4seeds.tar.gz",
+      "size_bytes": 43604790,
+      "mtime_ns": 1787407992000000000
+    },
+    {
+      "relative_path": "0821/plant-pathology-2021-fgvc8-8seeds.tar.gz",
+      "size_bytes": 119572767,
+      "mtime_ns": 1787408006000000000
+    },
+    {
+      "relative_path": "0821/ventilator-pressure-prediction-8seeds.tar.gz",
+      "size_bytes": 5165436,
+      "mtime_ns": 1787408008000000000
+    },
+    {
+      "relative_path": "0821/tensorflow-speech-recognition-challenge-8seeds.tar.gz",
+      "size_bytes": 84526777,
+      "mtime_ns": 1787408020000000000
+    },
+    {
+      "relative_path": "0821/multi-modal-gesture-recognition-8seeds.tar.gz",
+      "size_bytes": 68949188,
+      "mtime_ns": 1787408030000000000
+    },
+    {
+      "relative_path": "0821/aptos2019-blindness-detection-4seeds.tar.gz",
+      "size_bytes": 6674461,
+      "mtime_ns": 1787408801000000000
+    },
+    {
+      "relative_path": "0821/facebook-recruiting-iii-keyword-extraction-4seeds.tar.gz",
+      "size_bytes": 6330203,
+      "mtime_ns": 1787408803000000000
+    },
+    {
+      "relative_path": "0821/tensorflow2-question-answering-4seeds.tar.gz",
+      "size_bytes": 5076488,
+      "mtime_ns": 1787408805000000000
+    },
+    {
+      "relative_path": "0821/billion-word-imputation-4seeds.tar.gz",
+      "size_bytes": 14801224,
+      "mtime_ns": 1787408808000000000
+    },
+    {
+      "relative_path": "0821/imet-2020-fgvc7-8seeds.tar.gz",
+      "size_bytes": 4342140,
+      "mtime_ns": 1787408811000000000
+    },
+    {
+      "relative_path": "0821/kuzushiji-recognition-4seeds.tar.gz",
+      "size_bytes": 8724935,
+      "mtime_ns": 1787408813000000000
+    }
+  ],
+  "cohort_closure": {
+    "start_after_archive_mtime_ns": 1787326374000000000,
+    "archive_order": [
+      "mtime_ns ascending",
+      "relative_path UTF-8 byte ascending"
+    ],
+    "accepted_unique_physical_run_target": 300,
+    "include_complete_boundary_archive": true,
+    "structurally_rejected_archive_counts_toward_target": false,
+    "partial_archive_salvage_allowed": false,
+    "label_or_score_may_affect_closure": false,
+    "append_only_survival_required": true
+  },
+  "parent_selection": {
+    "eligibility": "at least two finite-graded structural siblings",
+    "score_magnitude_used_for_eligibility_or_lottery": false,
+    "max_parents_per_physical_run": 2,
+    "ordering": "sha256(seed|run_id|parent_id)",
+    "seed": 20260813,
+    "candidate_count_minimum": 2,
+    "old_assignments_may_reshuffle": false
+  },
+  "truth_support": {
+    "primary_informative_definition": "max(y_norm)-min(y_norm) > 1e-12",
+    "absolute_tolerance": 1e-12,
+    "parent_gap": "max(y_norm)-min(y_norm)",
+    "fixed_gap_edges": [
+      0.0,
+      0.0001,
+      0.0003,
+      0.001,
+      0.003,
+      0.01,
+      0.03,
+      0.1,
+      0.3,
+      "infinity"
+    ],
+    "all_tasks_reported": true,
+    "raw_labels_written": false
+  },
+  "eligibility_gates_for_requesting_replay_design": {
+    "nontied_selected_parents_minimum": 80,
+    "tasks_with_nontied_parent_minimum": 8,
+    "dominant_nontied_task_share_maximum": 0.25,
+    "selected_physical_runs_minimum": 60,
+    "all_must_pass": true,
+    "failure_action": "do not request or submit score-channel replay GPU work",
+    "pass_action": "prepare a separate exact replay matrix, power analysis, and GPU-hour request; no automatic launch"
+  },
+  "future_replay_constraints": {
+    "same_120_second_replay_automatically_allowed": false,
+    "cap_selected_from_this_confirmation_cohort": false,
+    "pilot_and_confirmation_physical_runs_must_be_disjoint": true,
+    "effective_channel_comparative_support_power_analysis_required": true,
+    "user_approval_of_exact_matrix_and_gpu_hours_required": true
+  },
+  "scope": {
+    "gpu_jobs_authorized": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_update": false,
+    "method_novelty_claim_allowed": false,
+    "db_integrity_measurement_only": true
+  }
+}

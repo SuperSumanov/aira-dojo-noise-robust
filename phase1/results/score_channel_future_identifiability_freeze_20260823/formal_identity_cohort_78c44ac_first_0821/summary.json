@@ -1,0 +1,110 @@
+{
+  "blindness": {
+    "blind_code_view_opened": false,
+    "label_vault_opened": false,
+    "opened_basenames": [
+      "LATEST",
+      "SHA256SUMS",
+      "archive_manifest.tsv",
+      "observations.json",
+      "score_channel_future_identifiability_protocol_v1.json",
+      "source_provenance.json",
+      "summary.json",
+      "transactions.jsonl"
+    ],
+    "raw_archive_payload_opened": false,
+    "replay_submission_authorized": false,
+    "score_directory_opened": false,
+    "score_or_outcome_opened": false,
+    "truth_support_computed": false
+  },
+  "closure": {
+    "accepted_archives_in_cohort": 11,
+    "accepted_unique_physical_run_target": 300,
+    "append_only_previous": {
+      "exact_prefix_survived": true,
+      "previous_archives": 2,
+      "previous_runs": 8,
+      "previous_status": "FUTURE_COHORT_COLLECTING",
+      "previous_summary_sha256": "a90b40236d67c41b4378f6ba6ada27defe1622c0f49534576fc2d492840976f9"
+    },
+    "boundary_archive": null,
+    "complete_boundary_archive_included": false,
+    "pending_head": null,
+    "remaining_runs_to_target": 267,
+    "settled_archive_prefix": 12,
+    "structurally_rejected_in_settled_prefix": 1
+  },
+  "implementation": {
+    "python": "3.11.15",
+    "script_sha256": "1867949c62718000564f770b32fc9735d35dd7d327baa152a60684f1028639de"
+  },
+  "inputs": {
+    "intake_summary_sha256": {
+      "0821-aptos2019-blindness-detection-4seeds-105cba8d3e13a1a1": "ffe21d65e9c7d6eb25ba8045bbc39bf4b25a6c420290d95edbc02ca03992b3ab",
+      "0821-billion-word-imputation-4seeds-e9268b7366f1570f": "0dfb0914b01dac88a7673cfce651bf49806f869d8a47d06a155294f017d1f186",
+      "0821-facebook-recruiting-iii-keyword-extraction-4seeds-81e7dc0390552437": "8c8742096e5b6495a9c52e292d4c92977e0b95589998d0182c15075495ba520e",
+      "0821-imet-2020-fgvc7-8seeds-f34c488528e3c199": "ca05df0d00c01357aeb69e55ceaf0e5f1c1e3b72aaa50ee4354adb6c03943b6a",
+      "0821-kuzushiji-recognition-4seeds-482b66ac5e31154e": "6644d421a2af0b870ca463eb5bf7d1ad0530ba995e470bc9973c41849a48f027",
+      "0821-multi-modal-gesture-recognition-8seeds-509932f120f7c5de": "af4ec2affed69e26b730cd7c7d4f76505dd48308119c0b957aa47f7f684d6a44",
+      "0821-ranzcr-clip-catheter-line-classification-8seeds-a875557a143f261a": "1747154828c6f63cb7688c8887e0abce771b219b9041cff244296632864516ef",
+      "0821-tensorflow-speech-recognition-challenge-8seeds-bb08618dfa0d5d2d": "fe2a7d8f998f37f064aefc984d26500ba750cca6a179550f983a00813851ee3e",
+      "0821-tensorflow2-question-answering-4seeds-9b53db974e54c50f": "e97c7ade711bbd2800debb9933d023db067c2c3e924eaaf5ff153dc261f7dbf2",
+      "0821-tgs-salt-identification-challenge-4seeds-74228c81dfd61f4a": "03734502e2ee419d8a4eeab46b818f8f9b8b6ea141efc5b8a9e7896482972bda",
+      "0821-ventilator-pressure-prediction-8seeds-de502e7fafa7900e": "ead156adb23c4e579aac1b377fbbfef0333bf37484b09e88dfcf25763cb8e1f9"
+    },
+    "latest_file_sha256": "b4fd43edaf09502e65259d18ca223bad7afe97b5bc5facb411e09bed6759c928",
+    "latest_sha256": "79701f90db165be0ee886a10cdb96737df90266b2923cbc9a279198f6362029c",
+    "observations_sha256": "81819f6f27837425f6aa25f58dd292b0890cece6d9d548965557fc88c3bdcf30",
+    "protocol_sha256": "54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d",
+    "snapshot_manifest_sha256": "79701f90db165be0ee886a10cdb96737df90266b2923cbc9a279198f6362029c",
+    "source_provenance_sha256": {
+      "0821-aptos2019-blindness-detection-4seeds-105cba8d3e13a1a1": "17fa8b72d58dd7debb3d355341703e003f7f49276b851087fa5ffa633997f848",
+      "0821-billion-word-imputation-4seeds-e9268b7366f1570f": "ff10fb66c90c7758e3836060ab32cd5455b919b650f673e7a01b2634e5a45be2",
+      "0821-facebook-recruiting-iii-keyword-extraction-4seeds-81e7dc0390552437": "803da8981f9382ad4d030a4640d57a7f85fabb65892c0be732a6faecc1a7e462",
+      "0821-imet-2020-fgvc7-8seeds-f34c488528e3c199": "707bed69b7a714121bd67b1d011f04575d2b5575b91fcc06ea28e89104cb0a5e",
+      "0821-kuzushiji-recognition-4seeds-482b66ac5e31154e": "0bc487735d2d5989f4091116cb9b631d40483ae13464e9ca6e0bf5b07180b7dc",
+      "0821-multi-modal-gesture-recognition-8seeds-509932f120f7c5de": "b949d46492f2c62ee6513707ebbc8d02b5049d95605fd1b1ca30d743d059360d",
+      "0821-ranzcr-clip-catheter-line-classification-8seeds-a875557a143f261a": "3a118ea6389688f37bce9849a17a0926390e2d180e9ff6c87e2bdec4ef4d16ac",
+      "0821-tensorflow-speech-recognition-challenge-8seeds-bb08618dfa0d5d2d": "3d77cab5b5c960a5c4aa5dee393cf2c2d4341aed4f4fd4d6773bb1ddbcf4a8e5",
+      "0821-tensorflow2-question-answering-4seeds-9b53db974e54c50f": "863cf97f2d7cdb45ebf194513e7c54b7dd30c01486788ed0f2fb43365c3f70d5",
+      "0821-tgs-salt-identification-challenge-4seeds-74228c81dfd61f4a": "a2f3bdf32adf90e7cad31e60d5a88d6da2ff06af1d5a63413d8f178972d713c0",
+      "0821-ventilator-pressure-prediction-8seeds-de502e7fafa7900e": "609c7c5f8d9dcbb58769da2fb10ea005e3af0fe47d421fcaa6423f8fb43cde5e"
+    },
+    "transactions_sha256": "e254258529fbd4a6d1cb0ccbfb693088c4ddd595169ce3de47ffccbb51a17d8d"
+  },
+  "integrity": {
+    "archive_order": "mtime_ns_then_relative_path_utf8_bytes",
+    "initial_archive_bindings_pass": true,
+    "partial_archive_salvage": false,
+    "settled_prefix_only": true,
+    "unique_physical_runs": true
+  },
+  "inventory": {
+    "future_transactions": 11,
+    "observed_future_archives": 12,
+    "per_task_selected_runs": {
+      "aptos2019-blindness-detection": 2,
+      "billion-word-imputation": 4,
+      "facebook-recruiting-iii-keyword-extraction": 2,
+      "imet-2020-fgvc7": 4,
+      "kuzushiji-recognition": 2,
+      "multi-modal-gesture-recognition": 4,
+      "ranzcr-clip-catheter-line-classification": 4,
+      "tensorflow-speech-recognition-challenge": 3,
+      "tensorflow2-question-answering": 2,
+      "tgs-salt-identification-challenge": 4,
+      "ventilator-pressure-prediction": 2
+    },
+    "selected_archives": 11,
+    "selected_physical_runs": 33,
+    "selected_tasks": 11
+  },
+  "outputs": {
+    "cohort_archives_sha256": "8c3203c0615fe941dad4542a530c99f6b2c6c823082d141b6864bc5aacc2b0c1",
+    "cohort_runs_sha256": "c0bcbb4a0b1c49e4da74a41daa3c80699c976c173c4c8794c8550a03fc1bfc96"
+  },
+  "protocol": "score-channel-future-identity-cohort-v1",
+  "source_commit": "78c44ac841b22b8b0f0cf1eb32214a7a79187de5",
+  "status": "FUTURE_COHORT_COLLECTING"
+}

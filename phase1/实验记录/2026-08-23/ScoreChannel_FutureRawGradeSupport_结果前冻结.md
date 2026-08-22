@@ -72,3 +72,22 @@ producer 复用 base producer 的闭合/选择实现；独立 verifier 不导入
 11. 运行前后做 forbidden-open、文件名和高置信内容凭据扫描；
 12. CPU-only，GPU/API/model fit/base-LLM update 全为 0；
 13. 任一 SHA、base status、selection、grid 或独立重算不一致即保留失败目录并停止。
+
+## 6. Push 后 exact-commit 验证
+
+冻结代码、协议、测试和本报告以 commit `78c44ac841b22b8b0f0cf1eb32214a7a79187de5` push。fresh detached
+no-smudge worktree 上，联合聚焦测试 22/22、完整 `phase1/tests` 798/798（33 warnings）；commit 文件名/高置信内容
+凭据扫描为 0/0。整个验证 future truth open=false，GPU/API/model fit=0/0/0。不可变远端 `SHA256SUMS` manifest
+SHA-256=`6e8666d5f3dc61b27b526590a692b02e007151bebbb0500adb3ebf9bcfec75f3`，收据镜像在
+`phase1/results/score_channel_future_raw_grade_freeze_20260823/`。
+
+## 7. Truth 语义与噪声边界
+
+本 extension 的 exact raw non-tie 是**logged artifact-conditional support**：比较同一次已执行 candidate 产生的固定
+`submission.csv` 在 pristine grader 下的官方五位小数分数。对这一 estimand，task orientation 只影响 winner，不影响
+是否 non-tied；同一 artifact 的 grader 是确定的。
+
+它不等于“重跑代码后 ordering 必然稳定”，也不自动通过 test-retest noise gate。若 raw gate 最终 PASS，后续 power
+analysis 必须同时报告：原 exact artifact support，以及仅在既有 repeat-grade 资产可估计的 task 上做的 noise-margin
+sensitivity；缺失 task 不得从别的 task 池化填值。该 sensitivity 必须在 replay outcome 前冻结，不能用未来 gap 选阈值。
+因此当前 raw PASS 仍只会允许准备设计请求，不构成可靠性或效果结论。

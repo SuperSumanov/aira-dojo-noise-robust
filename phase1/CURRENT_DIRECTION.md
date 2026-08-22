@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EH. 2026-08-23 0821 初始 12 archive 已全 settle；future cohort 为 33/300，truth 继续封存
+
+结果盲连续 intake 已处理初始 12 archives：11 accepted、Plant 精确结构拒收 1，无 partial salvage。最新 commit
+`78c44ac841b22b8b0f0cf1eb32214a7a79187de5` 的 formal identity producer×2/verifier×2 逐字节一致：selected
+physical runs/tasks/accepted archives=`33/11/11`，remaining=`267`，status=`FUTURE_COHORT_COLLECTING`；此前 8-run
+prefix exact survived，settled prefix=12、pending head=null。聚焦/完整测试=11/11、798/798（33 warnings），forbidden
+open 与两类凭据扫描均为 0。summary/verification/remote-manifest SHA-256 分别为
+`780126c257ceae38a830c9d8215fbf7a7ce6776987ba683a967d774d13488600` /
+`1e9630e043b05f1c673885205d8060b883443eaa4276699cae7508c2811b3c77` /
+`92632f3599f920a6154ce5bf47fa6fee7414ffb7fb0502a852148727986760ce`。
+
+label vault/raw archive/code/score/replay outcome 仍未开，双 truth gate 不运行；连续 monitor 继续等待新 archive。按学长
+约 60 physical runs/day 的生产计划，单纯算术下界约 4.45 个生产日，但实际 accepted rate、上传节奏和结构拒收会延长，
+不得承诺日历完成时间。证据：
+
+- `phase1/results/score_channel_future_identifiability_freeze_20260823/formal_identity_cohort_78c44ac_first_0821/`；
+- `phase1/实验记录/2026-08-23/ScoreChannel_FutureIdentifiabilityCohort_结果前冻结.md`。
+
 ## 0EG. 2026-08-23 future raw-grade support extension 已结果前冻结；仍未打开 future truth
 
 0EF 的 material alias gate 通过后，已在 current future identity cohort 闭合和 label-vault open 前冻结并行 extension。
@@ -14,13 +32,22 @@ metric 跨 task 不同量纲，禁止跨任务 gap bins。PASS 只允许准备�
 仍需用户批准且不能自动 launch；KILL 则停止 raw-grade replay 请求。extension 协议 SHA-256=
 `4b13814ad53758d21e7f7b531ede5b9a63fd244c7e305833d0513eb77195c8c0`。producer 与不导入任一 producer 的 verifier
 均已实现；7 个聚焦/攻击测试覆盖 base-KILL/raw-PASS、字节确定性、off-grid、candidate reuse、结果篡改、实现独立与
-协议 bytes。只有 protocol/code/tests/report 先 commit+push 并经 fresh exact-commit 全测，才可随原 gate 一起读取
-future aggregate。证据：
+协议 bytes。冻结 commit `78c44ac841b22b8b0f0cf1eb32214a7a79187de5` 已 push；fresh detached no-smudge
+worktree 上联合聚焦 22/22、完整 `phase1/tests` 798/798（33 warnings），commit 文件名/内容凭据扫描 0/0，future
+truth open=false。不可变验证 manifest SHA-256=
+`6e8666d5f3dc61b27b526590a692b02e007151bebbb0500adb3ebf9bcfec75f3`。证据：
 
 - `phase1/score_channel_future_raw_grade_support_protocol_v1.json`；
 - `phase1/score_channel_future_raw_grade_support.py`；
 - `phase1/verify_score_channel_future_raw_grade_support.py`；
+- `phase1/results/score_channel_future_raw_grade_freeze_20260823/`；
+- `phase1/实验记录/2026-08-23/RawGrade_MeasurementContract_直接相关工作边界.md`；
 - `phase1/实验记录/2026-08-23/ScoreChannel_FutureRawGradeSupport_结果前冻结.md`。
+
+直接相关工作边界：NAS predictor suite 已以 raw validation performance 的 rank correlation 与下游 search 为标准，
+BRP-NAS 也早有 binary relation predictor；MLE-bench 官方则分别提供 raw score、thresholds 与 medal flags，并未定义
+我方连续 clipping。因此不得主张 pairwise/ranking 或 clipping 数学首创，也不得把 147-parent alias 归咎于官方 grader。
+可守住的是 MLE search-tree 上的实证 transform audit、可辨识漏斗与前瞻双 truth contract。
 
 ## 0EF. 2026-08-23 `y_norm` 大规模裁平 truth ordering；future raw-grade 并行支持估计量必须结果前追加
 

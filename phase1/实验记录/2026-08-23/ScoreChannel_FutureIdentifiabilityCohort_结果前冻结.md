@@ -133,3 +133,23 @@ membership、阈值或禁读正则。
 
 本地安全回执：
 `phase1/results/score_channel_future_identifiability_freeze_20260823/formal_identity_cohort_74ffb87_first_0821/`。
+
+## 10. 0821 初始 12 archive 全 settle 后的正式 receipt
+
+最新 result-blind extension 冻结 commit `78c44ac841b22b8b0f0cf1eb32214a7a79187de5` 上，12/12 初始 archive 已
+settle：11 accepted、Plant 精确结构拒收 1；没有 partial salvage。producer×2、independent verifier×2 均逐字节一致，
+focused/full tests=11/11、798/798（33 warnings），forbidden open/文件名凭据/内容凭据=0/0/0。
+
+正式 cohort 状态仍是 `FUTURE_COHORT_COLLECTING`：selected physical runs/tasks/accepted archives=`33/11/11`，
+target=`300`、remaining=`267`，settled prefix=`12`、pending head=`null`；先前 8-run prefix exact survived。label vault、
+raw archive payload、code、score 与 replay outcome 均未打开，truth-support 未计算、replay 未授权。
+
+summary/verification SHA-256：
+
+- `780126c257ceae38a830c9d8215fbf7a7ce6776987ba683a967d774d13488600`；
+- `1e9630e043b05f1c673885205d8060b883443eaa4276699cae7508c2811b3c77`。
+
+远端不可变 manifest SHA-256=
+`92632f3599f920a6154ce5bf47fa6fee7414ffb7fb0502a852148727986760ce`；镜像在
+`phase1/results/score_channel_future_identifiability_freeze_20260823/formal_identity_cohort_78c44ac_first_0821/`。
+因此双 truth runner 未执行，连续 intake monitor 继续等待后续 archive。

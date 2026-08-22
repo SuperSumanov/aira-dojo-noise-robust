@@ -1,0 +1,15 @@
+"phase1/\345\256\236\351\252\214\350\256\260\345\275\225/2026-08-23/ScoreChannel_FutureRawGradeSupport_\347\273\223\346\236\234\345\211\215\345\206\273\347\273\223.md"
+"phase1/\345\256\236\351\252\214\350\256\260\345\275\225/2026-08-23/ScoreChannel_TruthAliasing_\347\273\223\346\236\234\345\211\215\345\206\273\347\273\223.md"
+phase1/CURRENT_DIRECTION.md
+phase1/results/score_channel_truth_aliasing_audit_20260823/README.md
+phase1/results/score_channel_truth_aliasing_audit_20260823/analysis.json
+phase1/results/score_channel_truth_aliasing_audit_20260823/content_scan_count.txt
+phase1/results/score_channel_truth_aliasing_audit_20260823/filename_scan_count.txt
+phase1/results/score_channel_truth_aliasing_audit_20260823/focused_tests.stdout
+phase1/results/score_channel_truth_aliasing_audit_20260823/future_truth_open_count.txt
+phase1/results/score_channel_truth_aliasing_audit_20260823/resource_receipt.txt
+phase1/results/score_channel_truth_aliasing_audit_20260823/verification.json
+phase1/score_channel_future_raw_grade_support.py
+phase1/score_channel_future_raw_grade_support_protocol_v1.json
+phase1/tests/test_score_channel_future_raw_grade_support.py
+phase1/verify_score_channel_future_raw_grade_support.py

@@ -1,0 +1,29 @@
+{
+  "all_pairs_assigned_exactly_once_by_v2_partition": true,
+  "decision_components": 806,
+  "dev": {
+    "connected_parent_groups": 245,
+    "decision_components": 247,
+    "disconnected_parent_groups": 1,
+    "pairs": 551,
+    "parent_groups": 246
+  },
+  "disconnected_component_count_histogram": {
+    "2": 10
+  },
+  "disconnected_parent_groups": 10,
+  "mixed_semantics_parent_groups": 0,
+  "parent_groups": 796,
+  "protocol": "tfidf-parent-graph-structure-only-receipt-v1",
+  "source_pair_sha256": "021f8b3c74db89c6b770714edb879731799b145744af7b765005eed72f9ecde6",
+  "source_pairs": 1482,
+  "status": "STRUCTURAL_GRAPH_MISMATCH_IDENTIFIED",
+  "test": {
+    "connected_parent_groups": 541,
+    "decision_components": 559,
+    "disconnected_parent_groups": 9,
+    "pairs": 931,
+    "parent_groups": 550
+  },
+  "utility_or_grade_values_read_for_this_receipt": false
+}

@@ -7,7 +7,9 @@ from pathlib import Path
 import pytest
 
 import phase1.tfidf_retrospective_utility_audit as audit
+import phase1.tfidf_retrospective_component_utility_audit as component_audit
 import phase1.verify_tfidf_retrospective_utility_audit as verifier
+import phase1.verify_tfidf_retrospective_component_utility_audit as component_verifier
 
 
 def write_json(path: Path, value: object) -> dict[str, object]:
@@ -354,3 +356,160 @@ def test_independent_verifier_rejects_cost_scope_claim() -> None:
     }
     with pytest.raises(verifier.VerificationError, match="cost source summary"):
         verifier.validate_cost_summary(cost, protocol)
+
+
+def v2_fixture(tmp_path: Path) -> dict[str, Path]:
+    paths = valid_fixture(tmp_path)
+    cards_root = json.loads(paths["cards"].read_text())
+    rows = [json.loads(line) for line in paths["pairs"].read_text().splitlines()]
+    for split in ("dev", "test"):
+        prefix = f"{split}-a"
+        cards_root["run-all"].extend(
+            [
+                card(prefix + "4", "task-a", 0.15, True),
+                card(prefix + "5", "task-a", 0.05, True),
+            ]
+        )
+        rows.append(
+            pair(
+                split=split,
+                index=6,
+                task="task-a",
+                parent=f"{split}-pa",
+                semantics="Draft",
+                better=prefix + "4",
+                worse=prefix + "5",
+                margin=0.25,
+            )
+        )
+    cards_identity = write_json(paths["cards"], cards_root)
+    pairs_identity = write_jsonl(paths["pairs"], rows)
+    tfidf_summary = json.loads(paths["summary"].read_text())
+    for split in ("dev", "test"):
+        selected = [row for row in rows if row["split"] == split]
+        tfidf_summary["metrics"][split]["merged"] = {
+            "pairs": len(selected),
+            "micro_accuracy": sum(row["correct"] for row in selected)
+            / len(selected),
+        }
+    summary_identity = write_json(paths["summary"], tfidf_summary)
+    cost_identity = {
+        "bytes": paths["cost"].stat().st_size,
+        "sha256": hashlib.sha256(paths["cost"].read_bytes()).hexdigest(),
+    }
+    _, structure = component_audit.partition_components(rows)
+    protocol = {
+        "protocol": component_audit.PROTOCOL,
+        "status": component_audit.STATUS,
+        "bootstrap": {"replicates": 1000, "task_seed": 17},
+        "frozen_inputs": {
+            "cards": cards_identity,
+            "tfidf_per_pair": pairs_identity,
+            "tfidf_summary": summary_identity,
+            "cost_summary": cost_identity,
+        },
+        "cost_contract": {
+            "model": "tfidf_lr",
+            "require_query_p95_fraction_of_execution_parallel_p50_below": 0.01,
+            "require_initialization_break_even_parallel_pairs_at_most": 1,
+        },
+        "tolerances": {
+            "grade": 1e-12,
+            "margin_consistency": 1e-9,
+            "prediction_tie": 1e-12,
+        },
+        "expected_structure": structure,
+        "predecessor": {
+            "status": "V1_INVALID_STRUCTURAL_GRAPH_ASSUMPTION",
+            "aggregate_utility_output_emitted": False,
+        },
+        "primary_positive_gates": {
+            "test_tasks_at_least": 2,
+            "test_decision_components_at_least": 3,
+            "test_pair_gap_weighted_accuracy_task_cluster_ci95_lower_gt": 0.5,
+            "test_component_gain_capture_task_cluster_ci95_lower_gt": 0.0,
+        },
+        "claim_boundary": {
+            "confirmatory": False,
+            "utility_aggregate_observed_before_v2_freeze": False,
+        },
+    }
+    write_json(paths["protocol"], protocol)
+    return paths
+
+
+def run_component_analyze(paths: dict[str, Path]):
+    return component_audit.analyze(
+        paths["protocol"],
+        paths["cards"],
+        paths["pairs"],
+        paths["summary"],
+        paths["cost"],
+    )
+
+
+def test_v2_partitions_disconnected_parent_without_dropping_pairs(
+    tmp_path: Path,
+) -> None:
+    paths = v2_fixture(tmp_path)
+    summary, pairs, components = run_component_analyze(paths)
+    assert len(pairs) == 14
+    assert len(components) == 6
+    assert summary["structure"]["disconnected_parent_groups"] == 2
+    assert summary["structure"]["all_pairs_assigned_exactly_once"] is True
+    assert summary["metrics"]["test"]["merged"]["decision_components"] == 3
+    assert summary["primary_positive_gates_pass"] is True
+
+
+def test_v2_independent_verifier_recomputes_components(tmp_path: Path) -> None:
+    paths = v2_fixture(tmp_path)
+    summary, pairs, components = run_component_analyze(paths)
+    output = tmp_path / "v2-output"
+    component_audit.write_outputs(output, summary, pairs, components)
+    receipt = component_verifier.verify(
+        paths["protocol"],
+        paths["cards"],
+        paths["pairs"],
+        paths["summary"],
+        paths["cost"],
+        output,
+    )
+    assert receipt["producer_imported"] is False
+    assert receipt["utility_pairs"] == 14
+    assert receipt["utility_components"] == 6
+    assert receipt["primary_positive_gates_pass"] is True
+
+
+def test_v2_rejects_frozen_structure_mismatch(tmp_path: Path) -> None:
+    paths = v2_fixture(tmp_path)
+    protocol = json.loads(paths["protocol"].read_text())
+    protocol["expected_structure"]["decision_components"] += 1
+    write_json(paths["protocol"], protocol)
+    with pytest.raises(component_audit.ComponentAuditError, match="structural receipt"):
+        run_component_analyze(paths)
+
+
+def test_v2_verifier_rejects_manifest_consistent_component_tamper(
+    tmp_path: Path,
+) -> None:
+    paths = v2_fixture(tmp_path)
+    summary, pairs, components = run_component_analyze(paths)
+    output = tmp_path / "v2-output"
+    component_audit.write_outputs(output, summary, pairs, components)
+    component_path = output / "per_component_utility.jsonl"
+    rows = [json.loads(line) for line in component_path.read_text().splitlines()]
+    rows[0]["selected_minus_random"] += 0.125
+    identity = write_jsonl(component_path, rows)
+    manifest_path = output / "artifact_manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    manifest["per_component_utility.jsonl"] = identity["sha256"]
+    write_json(manifest_path, manifest)
+    with pytest.raises(component_verifier.ComponentVerificationError, match="component rows differ"):
+        component_verifier.verify(
+            paths["protocol"],
+            paths["cards"],
+            paths["pairs"],
+            paths["summary"],
+            paths["cost"],
+            output,
+        )

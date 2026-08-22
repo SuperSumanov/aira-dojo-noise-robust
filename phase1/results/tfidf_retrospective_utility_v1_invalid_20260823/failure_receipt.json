@@ -1,0 +1,29 @@
+{
+  "access": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "future_or_prospective_vault_opened": false,
+    "gpu_jobs": 0,
+    "historical_released_cards_opened": true,
+    "model_fits": 0,
+    "utility_aggregate_output_emitted": false
+  },
+  "commit": "cd8254567d5234fef215acb40acb0b569e44516e",
+  "failure": "parent margin graph is disconnected",
+  "inputs": {
+    "cards_sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb",
+    "cost_summary_sha256": "009b00e49216400370a82ffb9d2c91126aa203423f073d77efa6eb4d88076a4f",
+    "protocol_sha256": "acb4de66b0ef9e4a320eac3fbb73c10286a2c2d1028cb4e7c06f1599a41ed44a",
+    "tfidf_per_pair_sha256": "021f8b3c74db89c6b770714edb879731799b145744af7b765005eed72f9ecde6",
+    "tfidf_summary_sha256": "41e1f0c3c03f8b784473f770d517752ca452434f877d6fda514d4dd5b280bac9"
+  },
+  "producer_output_directory_created": false,
+  "protocol": "tfidf-retrospective-utility-audit-v1-failure-receipt",
+  "resources": {
+    "elapsed_seconds": 6.71,
+    "maximum_resident_kib": 1382116,
+    "system_seconds": 1.95,
+    "user_seconds": 4.72
+  },
+  "status": "V1_INVALID_STRUCTURAL_GRAPH_ASSUMPTION"
+}

@@ -3,7 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0EL. 2026-08-23 TF-IDF retrospective cost--utility 已结果前冻结；真实 gap/utility 尚未读取
+## 0EM. 2026-08-23 cost--utility V1 结构性 INVALID；V2 零丢弃 component 协议已在 aggregate 前冻结
+
+0EL 的 exact commit `cd8254567d5234fef215acb40acb0b569e44516e` 已先通过 fresh-worktree 聚焦/全套
+`9/9`、`818/818`（33 warnings）及凭据扫描 0/0。正式 producer 五个输入 SHA 全部正确，但在 6.71s、max RSS
+1,382,116 KiB 时因 `parent margin graph is disconnected` fail-closed；没有创建 producer artifact 目录，没有输出
+raw-gap/utility/gate aggregate，第二跑和 verifier 未启动。历史 released Cards bytes 已打开，故不能再称 outcome bytes
+unread；但研究者在 V2 冻结前没有看到任何 utility aggregate。future/prospective truth 仍未开，GPU/API/model fit=0。
+
+结构-only 诊断固定为 1,482 pairs、796 parent groups，其中 786 连通、10 个各有两个分量；test 为 550 groups、
+9 个断连。语义合并不改变结构，mixed-semantics parent=0。V1 的 no-partial-salvage 因而触发，永久记为
+`V1_INVALID_STRUCTURAL_GRAPH_ASSUMPTION`，禁止只报 786 个 complete parents。
+
+V2 唯一修复是零丢弃地把每个 parent graph 拆为最大连通 **logged comparison component**：全部 pair 恰好分配一次，
+共 806 components，test=559。它不填补断连组件间 score offset，也不冒充完整 physical parent choice set。两个
+primary 保持 task 内 raw-gap-weighted pair accuracy 与 component oracle-gain capture；正门固定为 test≥20 tasks、
+≥300 components、两者 task-bootstrap 95% CI 下界严格高于 0.5/0，并通过全部结构/方向/hash/cost 门。当前 V2
+双实现与 13 个合成/攻击测试已完成；正式 aggregate 必须先 commit/push，再在 fresh exact commit 全测。证据：
+
+- `phase1/results/tfidf_retrospective_utility_v1_invalid_20260823/`；
+- `phase1/tfidf_retrospective_component_utility_protocol_v2.json`；
+- `phase1/实验记录/2026-08-23/TFIDF_ComponentCostUtility_V1失败与V2冻结.md`。
+
+## 0EL. 2026-08-23 TF-IDF retrospective cost--utility 结果前冻结（随后由 0EM 裁决 V1 INVALID）
 
 为区分“57.14% 普通 pair accuracy”与真实搜索价值，固定复用 component-clean char-TFIDF 的 931-row test
 per-pair margin、released Cards raw grade 和已独立认证的 init/query cost，不重训、不换 pool、不筛 task。两个

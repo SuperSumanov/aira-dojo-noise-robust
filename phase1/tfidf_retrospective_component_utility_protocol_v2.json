@@ -1,0 +1,102 @@
+{
+  "bootstrap": {
+    "metric_seed_derivation": "(task_seed + crc32(metric_name_utf8)) mod 2^32",
+    "replicates": 50000,
+    "task_seed": 20260823
+  },
+  "claim_boundary": {
+    "confirmatory": false,
+    "future_or_prospective": false,
+    "historical_cards_bytes_opened_by_failed_v1": true,
+    "interpretation": "Retrospective D&B mechanism evidence on an already accuracy-touched component-clean test pool. V1 opened the released historical Cards file but emitted no grade-gap or utility aggregate before a structural graph exception. V2 was frozen after observing only that structural exception and graph counts.",
+    "utility_aggregate_observed_before_v2_freeze": false
+  },
+  "cost_contract": {
+    "model": "tfidf_lr",
+    "require_initialization_break_even_parallel_pairs_at_most": 1,
+    "require_query_p95_fraction_of_execution_parallel_p50_below": 0.01,
+    "require_scope_accuracy_computed_false": true,
+    "require_scope_prospective_vault_opened_false": true
+  },
+  "estimands": {
+    "component_primary": "Partition every logged parent comparison graph into maximal undirected connected components without dropping an edge. For each task, sum selected utility minus the uniform-candidate mean over components and divide by oracle utility minus that mean; macro-average task ratios.",
+    "pair_primary": "For each task, sum raw oriented grade gaps over correctly selected pairs and divide by the sum over all pairs; macro-average task values. Raw gaps are never pooled across tasks.",
+    "secondary": [
+      "task-macro unweighted pair accuracy",
+      "task-macro pair gap-capture equal to 2*gap-weighted-accuracy-1",
+      "task-macro exact component top-1 rate",
+      "task-macro component normalized regret",
+      "Draft and Improve strata",
+      "paired task-level gap-weighted minus unweighted accuracy"
+    ]
+  },
+  "expected_structure": {
+    "all_pairs_assigned_exactly_once": true,
+    "decision_components": 806,
+    "dev": {
+      "connected_parent_groups": 245,
+      "decision_components": 247,
+      "disconnected_parent_groups": 1,
+      "pairs": 551,
+      "parent_groups": 246
+    },
+    "disconnected_parent_groups": 10,
+    "mixed_semantics_parent_groups": 0,
+    "parent_groups": 796,
+    "test": {
+      "connected_parent_groups": 541,
+      "decision_components": 559,
+      "disconnected_parent_groups": 9,
+      "pairs": 931,
+      "parent_groups": 550
+    }
+  },
+  "frozen_inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "cost_summary": {
+      "bytes": 5333,
+      "sha256": "009b00e49216400370a82ffb9d2c91126aa203423f073d77efa6eb4d88076a4f"
+    },
+    "tfidf_per_pair": {
+      "bytes": 994731,
+      "sha256": "021f8b3c74db89c6b770714edb879731799b145744af7b765005eed72f9ecde6"
+    },
+    "tfidf_summary": {
+      "bytes": 9578,
+      "sha256": "41e1f0c3c03f8b784473f770d517752ca452434f877d6fda514d4dd5b280bac9"
+    }
+  },
+  "graph_contract": {
+    "component_id": "sha256(canonical_json({split,task,parent,semantics,endpoints_sorted}))",
+    "component_order": "lexicographic minimum endpoint within each parent group",
+    "component_unit": "maximal undirected connected component of logged pair edges within (split,task,parent,semantics)",
+    "do_not_impute_offsets_between_disconnected_components": true,
+    "no_edge_or_parent_group_dropped": true,
+    "why_v1_invalid": "Ten parent groups contain two disconnected comparison components, so a single parent-level winner is not identifiable from the frozen pair margins."
+  },
+  "predecessor": {
+    "aggregate_utility_output_emitted": false,
+    "commit": "cd8254567d5234fef215acb40acb0b569e44516e",
+    "failure": "parent margin graph is disconnected",
+    "maximum_resident_kib": 1382116,
+    "status": "V1_INVALID_STRUCTURAL_GRAPH_ASSUMPTION",
+    "wall_seconds": 6.71
+  },
+  "primary_positive_gates": {
+    "all_integrity_and_cost_gates_pass": true,
+    "test_component_gain_capture_task_cluster_ci95_lower_gt": 0.0,
+    "test_decision_components_at_least": 300,
+    "test_pair_gap_weighted_accuracy_task_cluster_ci95_lower_gt": 0.5,
+    "test_tasks_at_least": 20
+  },
+  "protocol": "tfidf-retrospective-component-utility-audit-v2",
+  "status": "FROZEN_AFTER_V1_STRUCTURAL_FAILURE_BEFORE_AGGREGATE_UTILITY_OBSERVATION",
+  "tolerances": {
+    "grade": 1e-12,
+    "margin_consistency": 1e-9,
+    "prediction_tie": 1e-12
+  }
+}

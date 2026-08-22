@@ -3,6 +3,28 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EI. 2026-08-23 33-run receipt 已 push 并通过 exact-commit 验证；长期 intake 仍结果盲
+
+聚合收据、raw-grade 直接相关工作边界与方向更新已以 commit
+`c2c0ed5ac49bcf467900332c89e7573664b1f6d6` push。fresh detached no-smudge worktree 对 committed receipts
+先逐项验 SHA，再运行聚焦/完整测试=`33/33`、`798/798`（33 warnings）；commit 文件名/高置信内容凭据扫描=`0/0`，
+future truth、raw archive payload、code view、score、replay outcome 均未打开，GPU/API/model fit/base-LLM update=
+`0/0/0/0`。不可变验证 manifest SHA-256=
+`5479593dfdd6a539a2547d139c054241f63f8a759dfa47e06e50385b0a19e318`；证据：
+
+- `phase1/results/score_channel_future_progress_20260823/`。
+
+连续 intake child 每 5 分钟轮询、单周期约 12 小时；另挂 fail-closed watchdog，只有 child 明确打印 normal
+`COMPLETE` 才可重启，未知结构、显式 FAIL_CLOSED、PID 漂移或异常死亡一律停止。watchdog 最多 20 次正常重启（约
+10 天），不自动运行 truth gate 或 replay。activation receipt manifest SHA-256=
+`4ffb5a2e4e242a776c0c2d44707d9c717e875698bc16dfa2cf379c9877535057`。首版 receipt 因 grep 返回逐文件计数而按整数门
+失败，失败目录保留并标记 `FAILED_RC=1`；v2 改成纯数字汇总后通过，未读科学数据。当前仍是 33/300；没有新 ready
+archive 时不得重复 formal receipt。
+
+Raw-grade 主张同时收紧：v11 predictor builder 原本直接使用 `label.graded`，所以 147-parent alias 不是整个 predictor
+benchmark 的标签污染，只属于 score-channel 自定义 `normalize_graded` truth-support 链。允许主张 score-channel
+可辨识性修复与双 truth release contract；禁止写成“修复全部 critic 训练标签”。
+
 ## 0EH. 2026-08-23 0821 初始 12 archive 已全 settle；future cohort 为 33/300，truth 继续封存
 
 结果盲连续 intake 已处理初始 12 archives：11 accepted、Plant 精确结构拒收 1，无 partial salvage。最新 commit

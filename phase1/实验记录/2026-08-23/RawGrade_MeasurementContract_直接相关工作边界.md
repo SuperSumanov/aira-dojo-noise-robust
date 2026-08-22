@@ -26,6 +26,11 @@ clipping；见[官方 benchmark 说明](https://github.com/openai/mle-bench#benc
 因此 147/158 alias 是**我方派生 label contract 的缺陷**，不能写成 MLE-bench grader 缺陷。官方 raw score 仍只有
 五位小数，未四舍五入 truth 不可恢复；本项目只是避免再用额外 clipping 抹掉已经存在的 within-task ordering。
 
+作用域也必须收紧：这不是整个 v11 predictor benchmark 的标签污染。`build_decision_v10.py::finite_label` 明确读取
+`label.graded`，b0 decision release 的 orientation/gap 审计也按 official raw grade 闭合；147-parent alias 发生在
+score-channel 机制实验另行使用的 `cards.py::normalize_graded` truth-support 链。因此不能把 raw extension 包装成
+“修复全部 critic 训练标签”，它只修复 score-channel 的可辨识性并提醒 release 同时保留两套 contract。
+
 ## 3. 防 scoop 裁决
 
 本轮定向检索没有找到一篇直接同时覆盖以下组合的工作：MLE-agent 真实 search-tree sibling sets、外部

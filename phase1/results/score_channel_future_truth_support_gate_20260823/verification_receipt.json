@@ -1,0 +1,51 @@
+{
+  "api_calls": 0,
+  "base_llm_updates": 0,
+  "fresh_no_smudge_checkout": true,
+  "gpu_jobs": 0,
+  "high_confidence_secret_count_before_source_push": 0,
+  "local_focused": {
+    "passed": 8,
+    "seconds": 0.69
+  },
+  "production_label_or_outcome_opened": false,
+  "production_scientific_model_fits": 0,
+  "protocol": "score-channel-future-truth-support-implementation-verification-v1",
+  "protocol_sha256": "54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d",
+  "remote_focused": {
+    "passed": 8,
+    "seconds": 0.37
+  },
+  "remote_full_phase1_tests": {
+    "passed": 766,
+    "seconds": 75.37,
+    "warnings": 33
+  },
+  "remote_sensitive_filename_count": 0,
+  "replay_submission_authorized": false,
+  "source_commit": "9a4df02cd1f76cd6c62657d457ea5c4274ff1c38",
+  "status": "IMPLEMENTATION_VERIFIED_PRODUCTION_TRUTH_UNREAD",
+  "verification_wrapper_events": [
+    {
+      "production_science_started": false,
+      "reason": "nounset enabled before cluster environment initialization",
+      "status": "FAIL_CLOSED_PACKAGING"
+    },
+    {
+      "focused_tests_passed": 8,
+      "production_science_started": false,
+      "reason": "pytest scope included two historical import-time analysis scripts outside phase1/tests",
+      "status": "FAIL_CLOSED_COLLECTION_SCOPE"
+    },
+    {
+      "focused_tests_passed": 8,
+      "production_science_started": false,
+      "reason": "formal BLAS and OpenMP single-thread limits omitted; verification stopped to avoid shared CPU waste",
+      "status": "STOPPED_PACKAGING_RESOURCE_DRIFT"
+    },
+    {
+      "production_science_started": false,
+      "status": "PASS_REMOTE_FRESH_VERIFICATION"
+    }
+  ]
+}

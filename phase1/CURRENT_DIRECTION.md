@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DZ. 2026-08-23 future truth-support 资格门已实现并独立复核；仍等待身份 cohort 闭合
+
+0DY 冻结的结果后资格门现已实现，但没有提前打开生产 label。producer 先要求 identity cohort 精确状态为
+`FUTURE_COHORT_IDENTITY_CLOSED_TRUTH_UNREAD` 且绑定 cohort summary SHA；未闭合时在访问 `label_vault.jsonl`
+之前 fail closed。闭合后 parent eligibility 只看至少两个 finite `graded` structural siblings，每 physical run 按
+`sha256(20260813|run_id|parent_id)` 最多取 2 个；之后才聚合 `y_norm` gap。缺失 `y_norm` 记 truth-unavailable，
+不删除 parent 后重选；selected-parent 文件不写 `graded/y_norm/gap/winner`。
+
+独立 verifier 不导入 producer，重新验证 intake hash/security、完整 sibling clique、SHA lottery、gap bins、task/run
+balance 与四个固定 gate。精确门边界、差 1 即 KILL、缺失 truth 不重选、三 parent 只取二、collecting 时不读 vault、
+双跑逐字节一致和篡改拒绝共 8 项聚焦测试通过。GitHub commit
+`9a4df02cd1f76cd6c62657d457ea5c4274ff1c38` 的远端 fresh no-smudge 验收为 `8 passed in 0.37s`，全量
+`766 passed, 33 warnings in 75.37s`；敏感文件名计数 0。三次只发生在验证包装层的失败（环境初始化顺序、误收集
+历史脚本、遗漏 BLAS 线程限制）均已记录，未运行 production truth analysis。当前仍是 0DY 的 collecting 状态；
+生产 label/outcome、GPU、API 与 scientific model fit 均为 0，绝不把工程 PASS 写成机制正结果。证据：
+
+- `phase1/score_channel_future_truth_support.py`；
+- `phase1/verify_score_channel_future_truth_support.py`；
+- `phase1/results/score_channel_future_truth_support_gate_20260823/`；
+- `phase1/实验记录/2026-08-23/ScoreChannel_FutureTruthSupportGate_实现与验证.md`。
+
 ## 0DY. 2026-08-23 新 temporal truth-support cohort 已在 0821 intake 前冻结；只开 CPU 资格门
 
 0DX 证明旧 120s cohort 的 paired discriminative support=0 后，在 0821 任一 intake/label vault 产生前冻结新

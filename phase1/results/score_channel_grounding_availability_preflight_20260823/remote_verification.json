@@ -1,0 +1,30 @@
+{
+  "protocol": "score-channel-grounding-availability-freeze-verification-v1",
+  "status": "FROZEN_POST_HOC_SECONDARY_READY_TO_RUN",
+  "source_commit": "ab062e1a41c483a87f6d30213b35b8ba88689cb6",
+  "python_version": "3.11.15",
+  "focused_tests": {
+    "passed": 7,
+    "failed": 0,
+    "seconds": 0.28
+  },
+  "full_phase1_tests": {
+    "passed": 746,
+    "failed": 0,
+    "warnings": 33,
+    "seconds": 60.72
+  },
+  "frozen_hash_manifest_all_ok": true,
+  "diff_check_passed": true,
+  "worktree_clean_before": true,
+  "worktree_clean_after": true,
+  "remote_receipt_directory": "/research/d7/spc/yzyang4/grounding-availability-freeze-verify/ab062e1",
+  "remote_receipt_manifest_sha256": "1d342937ed64fd14a5531c999fd68eefb5428b045bc5278f5ecd5868a5f9322b",
+  "access_attestation": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "raw_score_channel_result_shards_opened_by_verification": false,
+    "label_vault_opened_by_verification": false
+  }
+}

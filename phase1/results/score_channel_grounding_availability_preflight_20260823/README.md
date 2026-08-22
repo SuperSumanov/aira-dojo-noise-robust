@@ -1,6 +1,6 @@
 # Grounding-availability secondary preflight
 
-状态：`FROZEN_POST_HOC_SECONDARY_NOT_RUN`。
+状态：`FROZEN_POST_HOC_SECONDARY_READY_TO_RUN`。
 
 这是已知旧 primary aggregate KILL 后冻结的描述性分解，不是 outcome-blind confirmation。正式输入尚未运行；raw result
 shards 与 label vault 尚未为本 secondary 打开。GPU=0，API=0，model fit=0。
@@ -19,3 +19,8 @@ Python 3.13 环境未安装 `scipy`/`sklearn` 而 fail-before-tests，不能伪�
 
 首次冻结 push 前 staged secret scans：required filename pattern count=`0`，high-confidence content hit count=`0`；
 `git diff --cached --check` 通过。
+
+冻结 commit `ab062e1a41c483a87f6d30213b35b8ba88689cb6` 已推送并从远端 fresh no-smudge checkout 验证：
+Python 3.11.15，focused=`7 passed in 0.28s`，full phase1=`746 passed, 33 warnings in 60.72s`；四份冻结 SHA
+全部通过 `sha256sum -c`，worktree 前后 clean。远端 receipt manifest SHA-256=
+`1d342937ed64fd14a5531c999fd68eefb5428b045bc5278f5ecd5868a5f9322b`；结构化收据见 `remote_verification.json`。

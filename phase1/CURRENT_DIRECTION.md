@@ -3,6 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EK. 2026-08-23 source×config provenance 组合层完成；真实 manifest 与交互支持仍待未来数据
+
+0EJ 的 metadata 阻断已收窄为机器可执行接口：新增 future-only
+`senior-experiment-config-manifest-v1`，复用既有 source manifest 的 archive/batch/commit 身份绑定，并逐 run 追加
+公开 `client`、结果前 `generator_release`、`hardware`、`time_limit`、`execution_timeout` 与既有
+`experiment_stratum_sha256`。validator 独立重算 source mapping、强制已验证 source receipt 和两个 manifest
+精确覆盖同一 frozen-run 集，不读取 archive payload/Cards/pairs/outcome。`generator_release=unknown` 允许保存诚实
+provenance，但强制 `interaction_metadata_complete=false`，不得用于交互结论。
+
+远端 exact base `04b1be9fe88776be4531ce6c82130d4927b4cb45` 上，source+config 聚焦攻击测试=
+`21 passed in 0.18s`，完整 `phase1/tests`=`809 passed, 33 warnings in 51.65s`，文件名/内容凭据扫描=`0/0`。
+首次 full suite 因未固定数值线程而在登录节点展开约 30 线程，约 17% 时主动中止、此前 0 failure；失败日志保留且
+不算通过。固定 OMP/OpenBLAS/MKL/NumExpr=1 后从头重跑得到上述 809/809。GPU/API/model fit/base-LLM update/
+future-truth open=`0/0/0/0/false`。
+
+当前只有 contract，没有真实 producer config manifest，故正式状态为
+`CONTRACT_IMPLEMENTED_REAL_MANIFEST_PENDING`；不能写成 capability×generator 已可识别，更不能据此开 GPU。当前
+204 archives 没有 0822 新 drop，33/300 score-channel cohort、truth vault 与 intake monitor 均保持不变，禁止事后
+回填该 sidecar。证据：
+
+- `phase1/contracts/SENIOR_EXPERIMENT_CONFIG_MANIFEST_V1.md`；
+- `phase1/results/senior_experiment_config_contract_20260823/`；
+- `phase1/实验记录/2026-08-23/SeniorConfigProvenanceOverlay_交付.md`。
+
 ## 0EJ. 2026-08-23 pairwise/execution-free/trained code critic 宽首创关闭；MLE clean frontier 成为最窄正方向
 
 新核查的 [Reward-Free Evolving Agents via Pairwise Validator](https://arxiv.org/abs/2607.14408) 已把 frozen LLM

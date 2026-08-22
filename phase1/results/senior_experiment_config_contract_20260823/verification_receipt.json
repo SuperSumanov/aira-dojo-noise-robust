@@ -1,0 +1,42 @@
+{
+  "access_attestation": {
+    "api_calls": 0,
+    "archive_payloads_opened": 0,
+    "base_llm_updates": 0,
+    "cards_or_pairs_opened": 0,
+    "future_truth_opened": false,
+    "gpu_jobs": 0,
+    "model_fits": 0
+  },
+  "base_commit": "04b1be9fe88776be4531ce6c82130d4927b4cb45",
+  "failed_attempt": {
+    "classification": "ENVIRONMENT_THREAD_OVERSUBSCRIPTION_ABORTED",
+    "failures_observed_before_abort": 0,
+    "log": "/research/d7/spc/yzyang4/prospective_decision_v1/config_provenance_verify_20260823.log",
+    "reason": "The uncapped numeric environment expanded to approximately 30 threads on the login node; the run was interrupted and not counted as a pass."
+  },
+  "files": {
+    "phase1/contracts/SENIOR_EXPERIMENT_CONFIG_MANIFEST_V1.md": "81832acb1d9fece7b734ec283110e334e3f33e8ea14c01e0919dc7562ae4d5bd",
+    "phase1/tests/test_senior_experiment_config_manifest.py": "f072984cccc77af36eb17fb10c62a8e0aacda317031b9d78ec596565725dad69",
+    "phase1/validate_senior_experiment_config_manifest.py": "429e148e4d1a0f330eeb4769e0826a69622c5c5fe8a68f34065514556c443340"
+  },
+  "formal_status": "CONTRACT_IMPLEMENTED_REAL_MANIFEST_PENDING",
+  "protocol": "senior-experiment-config-manifest-v1",
+  "remote_verification": {
+    "content_credential_hits": 0,
+    "filename_credential_hits": 0,
+    "focused_seconds": 0.18,
+    "focused_tests_passed": 21,
+    "full_seconds": 51.65,
+    "full_tests_passed": 809,
+    "full_warnings": 33,
+    "log": "/research/d7/spc/yzyang4/prospective_decision_v1/config_provenance_verify_20260823_threadcapped.log",
+    "numeric_thread_caps": {
+      "MKL_NUM_THREADS": 1,
+      "NUMEXPR_NUM_THREADS": 1,
+      "OMP_NUM_THREADS": 1,
+      "OPENBLAS_NUM_THREADS": 1
+    },
+    "python": "/research/d7/spc/yzyang4/venvs/exp/bin/python"
+  }
+}

@@ -58,3 +58,14 @@ PASS 也不授权执行，只允许根据支持量做 effective channel coverage
 13. 扩语料冻结抽签：按 archive 顺序整包追加，旧 run/parent assignment 不重排。
 
 Selective labels/positivity 是已有统计学问题；本协议只构建 MLE-domain D&B integrity measurement，不申方法 novelty。
+
+## 6. 推送后独立复验
+
+commit `74e492027b95cd1e44f205f7705c00736d9740b5` 推送后，集群从 GitHub 精确 commit 建立 fresh
+no-smudge worktree，未复用本地工作树。机器重新得到 protocol SHA-256=
+`54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d`；focused test 为
+`1 passed in 0.03s`，完整 phase1 suite 为 `748 passed, 33 warnings in 58.59s`。测试前后 worktree 均 clean，
+回执文件名与高置信内容密钥扫描都为 0。只读回执已收入
+`phase1/results/score_channel_future_identifiability_freeze_20260823/remote_verification_74e4920/`；其中
+`SHA256SUMS` 文件自身 SHA-256=
+`b05583c1f85f6e8fade8612365f37ce1763c046e3b6a21c2783519a694a9f86a`。

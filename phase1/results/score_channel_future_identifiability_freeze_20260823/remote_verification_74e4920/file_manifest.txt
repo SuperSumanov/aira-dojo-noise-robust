@@ -1,0 +1,17 @@
+control_commit.txt
+fetch.stderr
+fetch.stdout
+file_manifest.txt
+focused_tests.stderr
+focused_tests.stdout
+focused_tests.time.txt
+git_version.txt
+phase1_tests.stderr
+phase1_tests.stdout
+phase1_tests.time.txt
+protocol_sha256.txt
+python_version.txt
+status_after.txt
+status_before.txt
+worktree.stderr
+worktree.stdout

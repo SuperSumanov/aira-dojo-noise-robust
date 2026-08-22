@@ -13,4 +13,9 @@ non-tie 与固定 gap bins，以及 80 parents / 8 tasks / dominant≤0.25 / 60 
 直接证据：
 
 - `phase1/score_channel_future_identifiability_protocol_v1.json`；
-- `phase1/实验记录/2026-08-23/ScoreChannel_FutureIdentifiabilityCohort_结果前冻结.md`。
+- `phase1/实验记录/2026-08-23/ScoreChannel_FutureIdentifiabilityCohort_结果前冻结.md`；
+- `remote_verification_74e4920/`：从 GitHub commit
+  `74e492027b95cd1e44f205f7705c00736d9740b5` 建立的 fresh no-smudge worktree 回执。远端 Python 3.11 下
+  focused=`1 passed in 0.03s`，完整 phase1=`748 passed, 33 warnings in 58.59s`，前后 worktree 均 clean，
+  文件名/内容密钥扫描均为 0；`SHA256SUMS` 文件自身 SHA-256=
+  `b05583c1f85f6e8fade8612365f37ce1763c046e3b6a21c2783519a694a9f86a`。

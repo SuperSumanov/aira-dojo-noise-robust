@@ -1,0 +1,34 @@
+{
+  "attempts": [
+    {
+      "cards_opened": false,
+      "elapsed_seconds": 0.22,
+      "failure": "ModuleNotFoundError: No module named phase1",
+      "maximum_resident_kib": 39360,
+      "producer_outputs": 0,
+      "stage": "launcher_import",
+      "status": "INVALID_LAUNCHER"
+    },
+    {
+      "cards_opened": true,
+      "maximum_absolute_numeric_difference": 3.552713678800501e-15,
+      "per_component_unequal_lines": 40,
+      "per_task_csv_unequal_lines": 37,
+      "producer_summary_numeric_differences": 82,
+      "producer_status_strings_equal_but_usable": false,
+      "stage": "double_producer_and_independent_verifier",
+      "status": "INVALID_NONDETERMINISTIC_OUTPUT",
+      "verifier_failure": "V2 component rows differ"
+    }
+  ],
+  "commit": "db7069db570523ac740b920202e37abb6493bc02",
+  "fix": {
+    "estimand_or_gate_changed": false,
+    "new_regression_test": "byte equality across PYTHONHASHSEED=11 and 29",
+    "operation": "sort component endpoints before utility mean",
+    "protocol_changed": false
+  },
+  "protocol": "tfidf-retrospective-component-v2-invalid-attempt-receipt",
+  "scientific_result_usable": false,
+  "status": "V2_FIRST_FORMAL_ATTEMPT_INVALID"
+}

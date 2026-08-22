@@ -45,3 +45,15 @@ component utility 篡改。
 - `phase1/tfidf_retrospective_component_utility_protocol_v2.json`；
 - `phase1/tfidf_retrospective_component_utility_audit.py`；
 - `phase1/verify_tfidf_retrospective_component_utility_audit.py`。
+
+## V2 首次执行的复现性中止
+
+V2 exact commit `db7069db570523ac740b920202e37abb6493bc02` 的首次 launcher 在 import 阶段因文件路径启动
+方式错误而退出，Cards 未开。改成 `python -m` 的全新目录后两个 producer 完成，但产物不逐字节一致，独立 verifier
+以 `V2 component rows differ` 拒绝。差异只在浮点末位：summary 82 个数值字段，max abs=
+`3.552713678800501e-15`；40 个 component rows、37 个 task CSV rows 不同。根因是通用 solver 对 endpoint `set`
+无排序求均值，受进程 hash seed 影响。
+
+因此两个 producer 即使打印相同状态也全部无效，不作结果。修复只在 producer/verifier 各自 solver 中把 endpoints
+排序，不改协议、输入、component 定义、估计量、bootstrap 或 gate；新增 `PYTHONHASHSEED=11/29` 两个独立进程
+逐字节一致测试。修复后本地聚焦测试 14/14；必须再次 commit/push 与 exact-commit 全测后才能重跑。

@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EN. 2026-08-23 V2 首次正式运行复现门失败；排序修复已锁定但尚未重跑
+
+V2 commit `db7069db570523ac740b920202e37abb6493bc02` 已通过 13/13 聚焦与 822/822 全测试。初始 launcher
+因用文件路径启动导致 `phase1` import 失败，0.22s 时退出、Cards 未开；改成 `python -m` 的新目录后两个 producer
+均完成，但产物不逐字节一致，独立 verifier 以 `V2 component rows differ` 拒绝。A/B summary 有 82 个末位数值差异，
+max abs=`3.552713678800501e-15`，40 个 component rows 与 37 个 task CSV rows 不同。虽然两个未认证 producer
+打印相同分类状态，该状态一律作废，不能作为科学结果。
+
+根因是 V1 通用 solver 从无序 endpoint `set` 构造 utility mean；不同 Python hash seed 改变浮点累加顺序。修复仅在
+producer/verifier 各自实现中显式排序 endpoint，不改 protocol、input、component partition、estimand、bootstrap、
+threshold 或 gate；新增两个独立 `PYTHONHASHSEED` 子进程逐字节一致回归，聚焦测试现为 14/14。再次正式运行必须
+先形成新 commit/push 并在 fresh exact commit 全测。证据：
+
+- `phase1/results/tfidf_retrospective_component_v2_invalid_attempt_20260823/`；
+- `phase1/实验记录/2026-08-23/TFIDF_ComponentCostUtility_V1失败与V2冻结.md`。
+
 ## 0EM. 2026-08-23 cost--utility V1 结构性 INVALID；V2 零丢弃 component 协议已在 aggregate 前冻结
 
 0EL 的 exact commit `cd8254567d5234fef215acb40acb0b569e44516e` 已先通过 fresh-worktree 聚焦/全套

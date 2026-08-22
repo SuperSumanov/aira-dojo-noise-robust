@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -513,3 +516,45 @@ def test_v2_verifier_rejects_manifest_consistent_component_tamper(
             paths["cost"],
             output,
         )
+
+
+def test_v2_outputs_are_byte_identical_across_python_hash_seeds(
+    tmp_path: Path,
+) -> None:
+    paths = v2_fixture(tmp_path)
+    outputs = []
+    for seed in ("11", "29"):
+        output = tmp_path / f"hash-seed-{seed}"
+        environment = dict(os.environ)
+        environment["PYTHONHASHSEED"] = seed
+        subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "phase1.tfidf_retrospective_component_utility_audit",
+                str(paths["protocol"]),
+                str(paths["cards"]),
+                str(paths["pairs"]),
+                str(paths["summary"]),
+                str(paths["cost"]),
+                str(output),
+            ],
+            check=True,
+            cwd=Path(__file__).resolve().parents[2],
+            env=environment,
+            capture_output=True,
+            text=True,
+        )
+        outputs.append(output)
+    names = {
+        "summary.json",
+        "per_pair_utility.jsonl",
+        "per_component_utility.jsonl",
+        "per_task.csv",
+        "artifact_manifest.json",
+    }
+    assert {
+        name: (outputs[0] / name).read_bytes() for name in names
+    } == {
+        name: (outputs[1] / name).read_bytes() for name in names
+    }

@@ -361,7 +361,9 @@ def parent_prediction(
     ]
     if len(predicted) != 1:
         raise AuditError("parent prediction winner is not unique")
-    utilities = {endpoint: truth[endpoint]["utility"] for endpoint in endpoints}
+    utilities = {
+        endpoint: truth[endpoint]["utility"] for endpoint in sorted(endpoints)
+    }
     oracle_utility = max(utilities.values())
     random_utility = float(np.mean(list(utilities.values())))
     potential = oracle_utility - random_utility

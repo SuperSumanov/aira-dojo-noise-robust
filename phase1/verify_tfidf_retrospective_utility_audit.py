@@ -322,7 +322,9 @@ def solve_parent(
     ]
     if len(predicted) != 1:
         raise VerificationError("parent predicted winner tie")
-    utilities = {endpoint: truth[endpoint]["utility"] for endpoint in endpoints}
+    utilities = {
+        endpoint: truth[endpoint]["utility"] for endpoint in sorted(endpoints)
+    }
     oracle = max(utilities.values())
     random_mean = float(np.mean(list(utilities.values())))
     denominator = oracle - random_mean

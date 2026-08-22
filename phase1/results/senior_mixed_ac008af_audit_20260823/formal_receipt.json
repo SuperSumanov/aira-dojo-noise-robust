@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "source_commit": "ac008af8b907d319b694f26b0ba9cf4053b3bf69",
+  "audit_base_commit": "567c3e31e41e6270f1a19e9a88e359b23a673441",
+  "audit_scope": "pair_metadata_and_training_protocol_only",
+  "verdict": "EXPLORATORY_ONLY_PROTOCOL_AND_REPRODUCIBILITY_BLOCKED",
+  "gpu_jobs": 0,
+  "api_calls": 0,
+  "model_fits": 0,
+  "prospective_outcomes_read": false,
+  "datasets": {
+    "mixed": {
+      "file": "decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl",
+      "sha256": "7792a7da4119bb607cf76628fcdde19923898651ac734ff6afffb0732883cf6e",
+      "rows": 15875,
+      "train_rows": 14715,
+      "test_rows": 1160,
+      "train_value_rows": 13312,
+      "train_decision_rows": 1403,
+      "tasks": 39,
+      "train_endpoints": 9620,
+      "test_endpoints": 1705,
+      "train_test_endpoint_overlap": 0,
+      "oriented_duplicate_excess": 0,
+      "unordered_duplicate_excess": 0,
+      "self_pairs": 0,
+      "dominant_test_task": "leaf-classification",
+      "dominant_test_task_rows": 105,
+      "dominant_test_task_share": 0.09051724137931035
+    },
+    "decision": {
+      "file": "merged_decision_pairs_filtered_runsplit.jsonl",
+      "sha256": "1a01d3a1202b35f21b9cd6c87237b29c50b1c293138b407cc453674108411442",
+      "rows": 7644,
+      "train_rows": 6484,
+      "test_rows": 1160,
+      "tasks": 39,
+      "train_endpoints": 5672,
+      "test_endpoints": 1705,
+      "train_test_endpoint_overlap": 0,
+      "oriented_duplicate_excess": 0,
+      "unordered_duplicate_excess": 0,
+      "self_pairs": 0
+    },
+    "value": {
+      "file": "value_pairs_hardware_timelimit_gap_filtered_runsplit.jsonl",
+      "sha256": "60e9bbfba56ef94dfd70bb717694fa5b3b400f9458a13b92321bb1cb2ecdf3d9",
+      "rows": 8598,
+      "train_rows": 7703,
+      "test_rows": 895,
+      "tasks": 39,
+      "train_endpoints": 6274,
+      "test_endpoints": 954,
+      "train_test_endpoint_overlap": 0,
+      "oriented_duplicate_excess": 0,
+      "unordered_duplicate_excess": 0,
+      "self_pairs": 0
+    },
+    "batch_value": {
+      "file": "batch_value_pairs_filtered_runsplit.jsonl",
+      "sha256": "8a01dfb90c2c3d8498174ebe78df43ee21d6d0eac9f4ff81f63700b315473405",
+      "rows": 16204,
+      "train_rows": 14206,
+      "test_rows": 1998,
+      "tasks": 39,
+      "train_endpoints": 9165,
+      "test_endpoints": 1884,
+      "train_test_endpoint_overlap": 0,
+      "oriented_duplicate_excess": 0,
+      "unordered_duplicate_excess": 0,
+      "self_pairs": 0
+    }
+  },
+  "mixed_test_vs_decision_test": {
+    "pairs": 1160,
+    "sequence_equal": true,
+    "multiset_equal": true
+  },
+  "launcher": {
+    "sha256": "5d5568070860123bddfa33cce790de3deadbd204ebe6ea296db42d33898a5177",
+    "referenced_pair_file": "decision_value_mixed_pairs_filtered_runsplit.jsonl",
+    "referenced_pair_file_exists": false,
+    "same_file_used_for_train_and_test": true,
+    "eval_steps": [10, 10, 10, 10]
+  },
+  "training_protocol": {
+    "train_script_sha256": "862370af1d38ba339afa68d7ed692c48ba627a2bd71de3149c2153c641dd3e15",
+    "config_sha256": "8818d6e39d2794d1839bb30b191e2e0f4811954f282ec1aaec6cff3207fb5fde",
+    "test_rows_used_as_periodic_eval": true,
+    "save_strategy": "best",
+    "metric_for_best_model": "eval_pair_accuracy",
+    "greater_is_better": true,
+    "load_best_model_at_end": false,
+    "test_guided_best_checkpoint_metadata": true
+  },
+  "generation_receipt": {
+    "exact_output_filename_references_under_src_or_docs": 0,
+    "builder_command_recorded": false,
+    "mixture_weights_recorded": false
+  },
+  "cards_lfs": {
+    "file": "augmented_cards_current.json",
+    "oid_sha256": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343",
+    "size_bytes": 779146574,
+    "fresh_fetch_status": "GITHUB_LFS_OBJECT_404"
+  },
+  "focused_tests": {
+    "command": "python -m pytest phase1/tests/test_audit_senior_mixed_dataset.py -q",
+    "passed": 3,
+    "failed": 0
+  },
+  "audit_implementation": {
+    "script_sha256": "adbc2d1dbf2a5cb218840aa9deb16ef0d501f0e387fb83a1a9c93dcca8e09d89",
+    "test_sha256": "e90c67e3cd5cf8271dcd9e5c5b618673c8d6a4924d916ef5adf5e26441c3e5e3",
+    "desktop_full_suite": "NOT_COLLECTED_MISSING_SCIPY_AND_SKLEARN",
+    "desktop_full_suite_is_scientific_failure": false
+  }
+}

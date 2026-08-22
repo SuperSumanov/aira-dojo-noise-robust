@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DS. 2026-08-23 学长 mixed `ac008af` 结果盲预飞：数据有正面结构，但训练协议与复现门阻断
+
+对学长 `dojo-reproduce@ac008af8b907d319b694f26b0ba9cf4053b3bf69` 的四份 pair LFS 对象、mixed launcher
+与训练源代码完成 outcome-blind 审计；没有打开 Cards/code/grade、prospective outcome 或模型输出，GPU/API/model
+fit 均为 0。Mixed 共 15,875 rows、39 tasks，train/test=`14,715/1,160`，endpoint=`9,620/1,705` 且 overlap=0；
+unordered duplicate/self-pair 均为 0，test 最大任务 share=`0.09051724137931035`。这些是可保留的正面结构事实。
+
+但 mixed test 与旧 merged-decision 的 1,160 条 test 在顺序和 multiset 上逐 pair 完全相同；训练代码又把 test pool
+直接作为每 10 steps 的 eval dataset，并按 `eval_pair_accuracy` 记录 best checkpoint。它没有进入梯度，但已经
+test-touched，不能作 one-shot frozen confirmation。当前 launcher 还引用不存在的
+`decision_value_mixed_pairs_filtered_runsplit.jsonl`；真实文件名不同，直接运行会失败。真实 mixed 输出名在 `src/`
+与 `docs/` 中零引用，builder command/seed/weights/receipt 不可恢复；train 的 13,312/14,715=
+`0.9046551138294258` 为 value rows。Cards LFS 对象 `5e0f380...`（779,146,574 bytes）从 fresh checkout 拉取返回
+GitHub LFS 404。该 commit 还同时改变 prompt、mixture 与 ZeRO offload，无法隔离科学旋钮。
+
+正式裁决=`EXPLORATORY_ONLY_PROTOCOL_AND_REPRODUCIBILITY_BLOCKED`。这不撤回 0BW 的 value scaling 探索信号，
+但当前 mixed launcher 不得提交 GPU。解锁必须先完成 0CR 的 producer-side immutable source-batch manifest 与异常
+archive 替换，再固定 mixed 生成收据、experiment-closed train/dev/全新 frozen、dev-only checkpoint 选择、one-shot
+test、单旋钮提交和 fresh-clone LFS 验证；随后先报 dev-only G0 与精确 GPU·时，获批后再跑。直接证据：
+
+- `phase1/results/senior_mixed_ac008af_audit_20260823/README.md`；
+- `phase1/实验记录/2026-08-23/SeniorMixed_ac008af_结果盲预飞审计.md`。
+
 ## 0DR. 2026-08-22 0820 首包已摄取；LMSYS task identity 结构失败已精确拒收
 
 `0820` 首个 `cdiscount` archive 已在固定 scientific commit 下提交，实际新增 4 个 eligible physical runs、

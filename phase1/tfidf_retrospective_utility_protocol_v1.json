@@ -1,0 +1,79 @@
+{
+  "bootstrap": {
+    "metric_seed_derivation": "(task_seed + crc32(metric_name_utf8)) mod 2^32",
+    "replicates": 50000,
+    "task_seed": 20260823
+  },
+  "claim_boundary": {
+    "confirmatory": false,
+    "future_or_prospective": false,
+    "interpretation": "Retrospective D&B mechanism evidence on an already accuracy-touched component-clean test pool; not a new frozen-test claim or live-search causal effect."
+  },
+  "cost_contract": {
+    "model": "tfidf_lr",
+    "require_initialization_break_even_parallel_pairs_at_most": 1,
+    "require_query_p95_fraction_of_execution_parallel_p50_below": 0.01,
+    "require_scope_accuracy_computed_false": true,
+    "require_scope_prospective_vault_opened_false": true
+  },
+  "estimands": {
+    "pair_primary": "For each task, sum raw oriented grade gaps over correctly selected pairs and divide by the sum over all pairs; macro-average task values. Raw gaps are never pooled across tasks.",
+    "parent_primary": "For each task, sum selected utility minus the uniform-random candidate mean over parents and divide by oracle utility minus that mean; macro-average task ratios.",
+    "secondary": [
+      "task-macro unweighted pair accuracy",
+      "task-macro pair gap-capture equal to 2*gap-weighted-accuracy-1",
+      "task-macro exact parent top-1 rate",
+      "task-macro parent normalized regret",
+      "Draft and Improve strata",
+      "paired task-level gap-weighted minus unweighted accuracy"
+    ]
+  },
+  "frozen_inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "cost_summary": {
+      "bytes": 5333,
+      "sha256": "009b00e49216400370a82ffb9d2c91126aa203423f073d77efa6eb4d88076a4f"
+    },
+    "tfidf_per_pair": {
+      "bytes": 994731,
+      "sha256": "021f8b3c74db89c6b770714edb879731799b145744af7b765005eed72f9ecde6"
+    },
+    "tfidf_summary": {
+      "bytes": 9578,
+      "sha256": "41e1f0c3c03f8b784473f770d517752ca452434f877d6fda514d4dd5b280bac9"
+    }
+  },
+  "integrity_contract": {
+    "allowed_splits": [
+      "dev",
+      "test"
+    ],
+    "allowed_semantics": [
+      "Draft",
+      "Improve"
+    ],
+    "all_pair_gaps_strictly_positive_after_task_orientation": true,
+    "all_parent_margin_graphs_connected_and_consistent": true,
+    "all_parent_prediction_winners_unique": true,
+    "cards_task_and_direction_must_match_pair_task": true,
+    "no_partial_parent_or_task_salvage": true,
+    "raw_grade_units_never_pooled_across_tasks": true
+  },
+  "primary_positive_gates": {
+    "all_integrity_and_cost_gates_pass": true,
+    "test_parent_gain_capture_task_cluster_ci95_lower_gt": 0.0,
+    "test_parents_at_least": 300,
+    "test_pair_gap_weighted_accuracy_task_cluster_ci95_lower_gt": 0.5,
+    "test_tasks_at_least": 20
+  },
+  "protocol": "tfidf-retrospective-utility-audit-v1",
+  "status": "FROZEN_BEFORE_GRADE_GAP_AND_PARENT_UTILITY_READ",
+  "tolerances": {
+    "grade": 1e-12,
+    "margin_consistency": 1e-9,
+    "prediction_tie": 1e-12
+  }
+}

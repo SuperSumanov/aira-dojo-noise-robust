@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EL. 2026-08-23 TF-IDF retrospective cost--utility 已结果前冻结；真实 gap/utility 尚未读取
+
+为区分“57.14% 普通 pair accuracy”与真实搜索价值，固定复用 component-clean char-TFIDF 的 931-row test
+per-pair margin、released Cards raw grade 和已独立认证的 init/query cost，不重训、不换 pool、不筛 task。两个
+primary estimand 是 task 内 raw-gap-weighted pair accuracy（随机基线 0.5）与 task 内 parent oracle-gain capture
+（uniform-random candidate 基线 0），均在 task 内先聚合再 task-macro，绝不跨 task 混合 raw-grade 单位。
+
+结果前主门固定为 test≥20 tasks、≥300 complete parents、两个 task-bootstrap 95% CI 下界分别严格高于 0.5/0，
+以及全部 identity/orientation/parent-graph/cost 门通过。test 普通 accuracy 已被看过，所以即使 PASS 也只能称
+`retrospective_accuracy_touched_component_clean_test` 机制证据，不能称 frozen confirmation 或 live-search causal
+speedup；失败后禁止换 gap transform、task/pair pool、阈值或聚类单位。当前只完成协议与双实现，真实 raw-gap/
+parent utility/gate 仍未读取，future/prospective truth 保持封存，GPU/API/model fit=0/0/0。9 个合成/攻击测试已在
+本地通过；正式运行必须先 commit/push 冻结并在 fresh exact commit 全测通过。直接协议：
+
+- `phase1/tfidf_retrospective_utility_protocol_v1.json`；
+- `phase1/实验记录/2026-08-23/TFIDF_RetrospectiveCostUtility_结果前冻结.md`。
+
 ## 0EK. 2026-08-23 source×config provenance 组合层完成；真实 manifest 与交互支持仍待未来数据
 
 0EJ 的 metadata 阻断已收窄为机器可执行接口：新增 future-only

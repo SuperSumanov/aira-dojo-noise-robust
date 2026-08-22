@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EP. 2026-08-23 clean critic scaling 独立确认接口冻结；checkpoint 方向版本边界纠正
+
+历史 `greater_is_better=false` bug 不再是学长最新代码的活跃阻断：Git history 显示 `d44f4b0`（0820）已把
+`eval_pair_accuracy` 的方向修为 `true`，`dojo-reproduce@ac008af8...` 仍正确。0813/0814 旧报告只描述当时 commit；
+0P/3.11 等更早“最新仍错误”的措辞已由本节覆盖。当前真实阻断是旧 outer test 被每 10 steps 当作 eval、缺
+dev-only one-shot test 链、历史训练完整性不一，以及没有逐 pair predictions/checkpoint manifests。
+
+为把 0BW/0820 的探索性 value scaling 变成可确认资产，已冻结 `critic-scaling-confirmation-contract-v1`：Qwen3-Base
+`{0.6,1.7,4,8}B × seeds {6,7}`、同池 train-only char-TFIDF、primary canonical sibling、10,000 次 task
+bootstrap。容量 scaling、8B 超基线、component utility conversion 三层分开；支持门为至少 20 tasks/300
+components、最大任务 pair share≤0.20。每个 seed 的 8B−0.6B 也必须为正，禁止仅靠两 seed 平均掩盖不稳定。
+
+producer 与不 import producer 的 verifier 已实现 test 前 lock、完整训练/dev-only checkpoint 选择、exact matrix、
+一次性 ledger、endpoint-score 一致、component 连通、task/run CI、LOTO 与逐 component gain 的 fail-closed 检查；
+冻结契约 SHA-256=`579771ac1b90b1022bdded1182ce5c5a17780a741dc95d82a53f5f91d577a568`。本地 7 个
+正控/负控/攻击/哈希种子/独立复核测试通过。当前仍是 `CONTRACT_READY_ASSETS_PENDING`，GPU/API/model fit/future
+truth=0/0/0/false；没有新 checkpoint/逐 pair bundle 前不得生成效果结论或提交训练。
+
+证据：
+
+- `phase1/contracts/CRITIC_SCALING_CONFIRMATION_V1.md`；
+- `phase1/critic_scaling_confirmation_contract_v1.json`；
+- `phase1/critic_scaling_confirmation_analysis.py`；
+- `phase1/verify_critic_scaling_confirmation_analysis.py`；
+- `phase1/实验记录/2026-08-23/CleanCriticScaling_独立确认契约与checkpoint版本纠正.md`。
+
 ## 0EO. 2026-08-23 comparison-component cost--utility 正式复核完成；强正主张关闭
 
 确定性修复 commit `e3cffbb6ec041e9de73efe6e112f1bd9859f6e69` 的 fresh exact-commit 聚焦/完整测试为

@@ -1,0 +1,131 @@
+{
+  "protocol": "critic-scaling-confirmation-contract-v1",
+  "status": "CONTRACT_READY_ASSETS_PENDING",
+  "scientific_scope": {
+    "claim": "future-only clean critic capacity scaling on logged sibling decisions",
+    "paper_role": "dataset-and-benchmark mechanism evidence",
+    "method_novelty_claimed": false,
+    "search_improvement_claimed": false,
+    "historical_test_touched_checkpoints_allowed": false,
+    "prospective_score_channel_truth_allowed": false
+  },
+  "matrix": {
+    "model_family": "Qwen3-Base",
+    "model_sizes_b": [
+      0.6,
+      1.7,
+      4.0,
+      8.0
+    ],
+    "seeds": [
+      6,
+      7
+    ],
+    "reference_low_size_b": 0.6,
+    "reference_high_size_b": 8.0,
+    "exact_model_revisions_required": true,
+    "exact_checkpoint_manifests_required": true,
+    "all_checkpoints_locked_before_test_access": true,
+    "missing_or_extra_run_action": "fail closed"
+  },
+  "cohort": {
+    "split": "test",
+    "primary_pair_semantics": "canonical_raw_sibling",
+    "same_pair_ids_required_for_every_predictor": true,
+    "minimum_primary_tasks": 20,
+    "minimum_primary_components": 300,
+    "maximum_dominant_task_pair_share": 0.2,
+    "pair_truth_locked_before_checkpoint_scoring": true,
+    "test_may_be_scored_once_per_checkpoint": true
+  },
+  "baseline": {
+    "id": "char_tfidf_lr",
+    "fit_scope": "train_only",
+    "analyzer": "word_boundary_char_ngrams_3_5_plus_logistic_regression",
+    "same_cohort_required": true,
+    "receipt_sha256_required": true
+  },
+  "prediction_schema": {
+    "truth_required_fields": [
+      "pair_id",
+      "split",
+      "task",
+      "pair_semantics",
+      "parent_id",
+      "parent_run_id",
+      "comparison_component_id",
+      "better_id",
+      "worse_id",
+      "better_run_id",
+      "worse_run_id",
+      "better_utility",
+      "worse_utility"
+    ],
+    "prediction_required_fields": [
+      "pair_id",
+      "better_score",
+      "worse_score",
+      "margin"
+    ],
+    "pair_id_canonical_payload": [
+      "task",
+      "pair_semantics",
+      "parent_id",
+      "comparison_component_id",
+      "better_id",
+      "worse_id"
+    ],
+    "margin_tolerance": 1e-09,
+    "endpoint_score_consistency_tolerance": 1e-09,
+    "endpoint_utility_consistency_tolerance": 1e-12,
+    "nonfinite_action": "fail closed",
+    "duplicate_or_reversed_pair_action": "fail closed",
+    "disconnected_component_action": "fail closed"
+  },
+  "inference": {
+    "primary_aggregation": "task_macro",
+    "secondary_aggregations": [
+      "micro",
+      "run_macro",
+      "component_task_macro"
+    ],
+    "bootstrap_unit_primary": "task",
+    "bootstrap_draws": 10000,
+    "bootstrap_seed": 20260823,
+    "confidence_level": 0.95,
+    "prediction_tie_credit": 0.5,
+    "component_tie_policy": "uniform_over_score_maximizers",
+    "pair_iid_interval_allowed": false
+  },
+  "hierarchical_gates": {
+    "support": {
+      "tasks_at_least": 20,
+      "components_at_least": 300,
+      "dominant_task_pair_share_at_most": 0.2
+    },
+    "capacity_scaling": {
+      "size_means_task_macro_monotonic_nondecreasing": true,
+      "high_minus_low_point_at_least": 0.02,
+      "each_seed_high_minus_low_strictly_positive": true,
+      "high_minus_low_task_bootstrap_ci_lower_strictly_positive": true
+    },
+    "high_size_beats_baseline": {
+      "each_high_size_seed_task_macro_strictly_above_baseline": true,
+      "seed_mean_high_minus_baseline_task_bootstrap_ci_lower_strictly_positive": true,
+      "leave_one_task_out_delta_strictly_positive": true
+    },
+    "utility_conversion": {
+      "high_minus_baseline_component_gain_task_bootstrap_ci_lower_strictly_positive": true,
+      "reported_separately_from_pair_accuracy": true
+    },
+    "claim_rule": "support AND capacity_scaling AND high_size_beats_baseline; utility_conversion is a separately named stronger claim"
+  },
+  "access_and_compute": {
+    "gpu_jobs_authorized": 0,
+    "api_calls_authorized": 0,
+    "model_fits_authorized": 0,
+    "base_llm_updates_authorized": 0,
+    "future_truth_reads_authorized": false,
+    "long_experiment_requires_new_budget_approval": true
+  }
+}

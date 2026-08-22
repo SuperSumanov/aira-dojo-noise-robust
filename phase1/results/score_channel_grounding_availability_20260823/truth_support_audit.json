@@ -1,0 +1,100 @@
+{
+  "access_attestation": {
+    "api_calls": 0,
+    "gpu_jobs": 0,
+    "model_fits": 0,
+    "raw_labels_or_channel_values_written": false,
+    "task_subset_selected": false
+  },
+  "channel_support": {
+    "external": {
+      "comparative_parents": 5,
+      "nontied_comparative": 0,
+      "nontied_with_any": 0,
+      "parents_with_any": 10
+    },
+    "stdout": {
+      "comparative_parents": 36,
+      "nontied_comparative": 1,
+      "nontied_with_any": 3,
+      "parents_with_any": 56
+    }
+  },
+  "counts": {
+    "candidate_count_distribution": {
+      "2": 154,
+      "3": 4
+    },
+    "runs": 94,
+    "selected_candidates": 320,
+    "selected_parents": 158,
+    "tasks": 17
+  },
+  "identifiability_funnel": {
+    "external_comparative_and_truth_informative": 0,
+    "paired_channels_comparative_and_truth_informative": 0,
+    "stdout_comparative_and_truth_informative": 1,
+    "structural_parents": 158,
+    "truth_informative_parents": 10
+  },
+  "implementation": {
+    "script_sha256": "7d326529c45f9dbdb34c1a8cdb17934405434aa47f7b76d0157c066240d59cbd",
+    "source_commit": "c1a19cf1b69ebdabf0c4d60b010c448c56210a02"
+  },
+  "inputs": {
+    "approval_sha256": "b107075810e5af0da084be087cfa70740cd846d198a155116a061599e3057e09",
+    "protocol_sha256": "c12fda3bbba2b730b9fe7084b5a4fb026aa41b0cea73308007f343aa8f94d558",
+    "replay_manifest_sha256": "e20b43b9eee55395380def2772bfdab21f261eb3d850fc9a67ff0ccb4bc5fe58",
+    "replay_summary_sha256": "0ea4766bd464248a91b95c10d4be720862ca2b631d2b849d78b4189deff580bf",
+    "result_sha256_by_shard": {
+      "0": "6c19f364b82918a6d21a7ec4c7c78313c126a68374b8b25678e9c39986d39efd",
+      "1": "ede275d8104362025998fc27d13af602f66d04295847de387ed570baecced99d",
+      "2": "e3a627be45ea5081ecccc95977969edfad02ca94b703a2997b17b18dc8f909c4",
+      "3": "447cffe6380dcff770c303d70390335e9cdcc07cd74d9e6e18504758ad5e4ab6"
+    },
+    "selected_parents_sha256": "49e808747532034ae653e0fdb45a3144f5fe4545ae5b8d1755d79545d4c64b81",
+    "selection_summary_sha256": "f168a90043769d0d80257ec0af7f71c57d18b098f7390f615d66b1617ddd9441"
+  },
+  "interpretation": {
+    "discriminative_common_support_zero": true,
+    "evidence_for_channel_equality_or_external_harm_allowed": false,
+    "formal_primary_status": "SCORE_CHANNEL_MECHANISM_KILL",
+    "formal_primary_status_changed": false,
+    "method_positive_claim_allowed": false
+  },
+  "primary_common_support": {
+    "cards": 6,
+    "comparative_parents": 3,
+    "truth_nontied_parents": 0,
+    "truth_tied_parents": 3
+  },
+  "producer_imported": false,
+  "protocol": "score-channel-truth-support-direct-audit-v1",
+  "status": "DIRECT_LABEL_SUPPORT_AUDIT_COMPLETE",
+  "truth_support": {
+    "all_tied_parents": 148,
+    "nontied_parents": 10,
+    "nontied_share": 0.06329113924050633,
+    "tasks_all_tied": [
+      "AI4Code",
+      "cassava-leaf-disease-classification",
+      "dog-breed-identification",
+      "facebook-recruiting-iii-keyword-extraction",
+      "google-quest-challenge",
+      "learning-agency-lab-automated-essay-scoring-2",
+      "new-york-city-taxi-fare-prediction",
+      "osic-pulmonary-fibrosis-progression",
+      "ranzcr-clip-catheter-line-classification",
+      "tensorflow-speech-recognition-challenge",
+      "tgs-salt-identification-challenge",
+      "us-patent-phrase-to-phrase-matching",
+      "ventilator-pressure-prediction"
+    ],
+    "tasks_with_nontied": [
+      "dogs-vs-cats-redux-kernels-edition",
+      "random-acts-of-pizza",
+      "text-normalization-challenge-russian-language",
+      "whale-categorization-playground"
+    ]
+  }
+}

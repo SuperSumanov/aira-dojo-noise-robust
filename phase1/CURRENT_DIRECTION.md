@@ -3,6 +3,35 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0DX. 2026-08-23 score-channel 旧 cohort 的辨识支持为零；正方法路线关闭，保留 D&B 漏斗资产
+
+0DW 的 post-hoc availability 分解已在冻结 commit `ab062e1a41c483a87f6d30213b35b8ba88689cb6`
+producer×2、非导入式 verifier×2 逐字节一致完成。320 candidates 的联合状态为 both=7、external-only=8、
+stdout-only=85、neither=220；external/stdout/hybrid mean ranking regret 全为 0，但这**不是通道完美**。直接从
+hash-bound label vault 重建的独立 truth-support audit（commit
+`c1a19cf1b69ebdabf0c4d60b010c448c56210a02`）证明：158 parents 中 148=`0.9367088607594937`
+真值全并列，只有 10 个可辨识；13/17 tasks 全部 parent 都并列。external 在 10 个 non-tied parent 上任意可用=0、
+comparative=0；stdout 任意可用=3、comparative=1。原 primary 的 6 common cards / 3 parents **3/3 真值全并列**，
+non-tied common parent=0，因此旧 `1.0 vs 1.0, delta=0` 是 vacuous tie credit。
+
+正式预注册机器状态 `SCORE_CHANNEL_MECHANISM_KILL` 不回写篡改；科学解释追加纠正为
+`DISCRIMINATIVE_COMMON_SUPPORT_ZERO`：它不能作为 external=stdout、external 有害或更强 evaluator 无效的证据。
+availability secondary 也不能救正结果：external−stdout total-regret mean=
+`-0.00006231927410509466`，run CI=`[-0.009615384615384616,0.00931010760618107]`、task CI=
+`[-0.00024212570430995738,0.0]`；hybrid−stdout 精确为 0。其 158→10→external 0 / stdout 1→paired 0 的
+**identifiability funnel** 是新的 D&B/integrity 资产，而不是方法收益。
+
+selection 只要求“至少两个 finite graded siblings”、未要求 truth variation，是原协议漏掉的辨识门。selective labels、
+positivity/overlap 和 missing-score ranking 都已有成熟文献，因此漏斗不得申统计方法首创；可防守贡献仅是把
+truth-informativeness 与 evaluator availability 的联合支持在真实 MLE sibling decisions 上物化并发布。旧 120s
+score-channel 不再作为正方法路线重跑；任何新 replay 必须先在全新 temporal cohort 结果前冻结 truth-informative
+定义、task/run balance 与最低有效 parent 数，再做功效/成本门并另行申请精确 GPU 预算。当前 GPU/API/model fit=0。
+证据：
+
+- `phase1/results/score_channel_grounding_availability_20260823/README.md`；
+- `phase1/实验记录/2026-08-23/ScoreChannel_GroundingAvailability_正式结果与真值支持纠正.md`；
+- `phase1/audit_score_channel_truth_support.py`。
+
 ## 0DW. 2026-08-23 grounding-gap 直接竞品关闭 score-channel 宽首创；主线收窄为可用性×条件价值
 
 一手全文审计发现 arXiv:2607.25152v1（2026-07-27）已经在固定 agent/tool/task 下操纵 evaluator information

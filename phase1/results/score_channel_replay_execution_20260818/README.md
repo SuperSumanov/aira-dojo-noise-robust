@@ -1,5 +1,12 @@
 # Score-channel confirmatory replay 完成审计（2026-08-19）
 
+> **2026-08-23 解释纠正（不改历史机器裁决）：** 后续直接 truth-support audit 发现，158 个 selected parents
+> 中 148 个 sibling `y_norm` 全并列；原 headline 的 6 common cards / 3 parents 中 3/3 的 truth 也全并列，
+> non-tied common parent=0。故下文 formal `SCORE_CHANNEL_MECHANISM_KILL` 仍是预注册代码的原始输出，但
+> `external=stdout=1.0` 是 vacuous tie credit，不能解释为两通道相等、external 失败或两者都能正确排序。
+> 科学状态应读作 `DISCRIMINATIVE_COMMON_SUPPORT_ZERO`。完整纠正见
+> `phase1/实验记录/2026-08-23/ScoreChannel_GroundingAvailability_正式结果与真值支持纠正.md`。
+
 最终状态：`SCORE_CHANNEL_MECHANISM_KILL`；冻结 analyzer 与不导入 producer 的独立 verifier 均 rc=0，
 postprocess 状态为 `COMPLETE_RESULTS_ANALYSIS_AND_INDEPENDENT_VERIFY_PASS`。正式 jobs 为
 11127/11128/11129/11130，对应 frozen

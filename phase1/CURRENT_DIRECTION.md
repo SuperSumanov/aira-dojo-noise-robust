@@ -3,6 +3,17 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0ES. 2026-08-23 source-binding 不再由 materializer 自证；独立 verifier 已就绪
+
+新增 `verify_critic_scaling_confirmation_materialization.py`，不 import producer，独立重建 pairs/Cards→truth 的
+component/pair identity、oriented utility 和 support，并从 upstream one-shot output/ledger + checkpoint manifest 逐 pair
+重建 normalized predictions。focused 18/18；其中对抗测试在篡改 prediction 后同步更新 derived hash，独立 verifier 仍能
+从 source 发现并拒绝。与 scaling analyzer/endpoint tests 联合为 28/28。当前只完成合成验证，real future truth/GPU/API/
+model fit=`false/0/0/0`；exact-commit 集群 full regression 需推送后另验，不能沿用 0ER 的 848 数字。证据：
+
+- `phase1/verify_critic_scaling_confirmation_materialization.py`；
+- `phase1/实验记录/2026-08-23/CleanScalingMaterializer_独立SourceBinding复核.md`。
+
 ## 0ER. 2026-08-23 clean scaling 的盲态交付链已补齐；真实效果仍为零访问
 
 新增 `critic_scaling_confirmation_materializer.py`，把未来 dedicated pairs/Cards、0004 endpoint receipts 和已规范化

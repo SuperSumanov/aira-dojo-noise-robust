@@ -16,6 +16,10 @@ truth 读取；截至本记录只在合成 Cards/pairs/receipts 上运行。
    predictions 与 ledgers 组装成 analyzer 接受的相对路径 bundle；路径逃逸、矩阵缺失/重复、hash/rows/ledger 不一致
    均 fail closed。
 
+`phase1/verify_critic_scaling_confirmation_materialization.py` 不 import 上述 adapter，以第二套 Cards/pairs parser、图连通
+算法、canonical IDs 与 one-shot 映射分别验证 truth source binding 和 model source binding。最终 bundle 还会再经过
+原有、同样不依赖 materializer 的 frozen analysis verifier；source 与 metric 两层错误不能靠同一实现自证。
+
 ## test 前 lock 的额外交付字段
 
 这些字段加固交付身份，不改变冻结 contract 的矩阵、estimand 或 gate：
@@ -42,13 +46,15 @@ checkpoint manifest 的 protocol/status 必须是
 
 ## 当前验证边界
 
-- materializer focused：15/15；
+- materializer + independent source verifier focused：18/18；
 - 与 analyzer/endpoint overlay 联合聚焦：另有 10/10；
 - 合成 bundle 已被冻结 analyzer 完整接受；
 - 本机 full phase1 collection 因环境缺 `scipy/sklearn` 阻断，不把它记作通过；集群 exact commit
   `81a09d53...` 的正式依赖环境完整回归为 848/848（33 warnings），focused 25/25，secret scan 0/0，证据见
   `phase1/results/critic_scaling_materializer_20260823_81a09d5/`；
 - real future truth/GPU/API/model fit：`false/0/0/0`。
+
+独立 verifier 新增后的 exact-commit 集群完整回归必须另行打印，不能用前一个 848-test receipt 代替。
 
 这项交付只消除“即使未来 scaling checkpoint 到了也无法严谨生成 component utility bundle”的工程阻断，不是模型
 效果，也不能抬高当前 scaling 结论等级。

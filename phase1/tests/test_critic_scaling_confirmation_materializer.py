@@ -9,6 +9,7 @@ import pytest
 
 from phase1 import critic_scaling_confirmation_analysis as analysis
 from phase1 import critic_scaling_confirmation_materializer as materializer
+from phase1 import verify_critic_scaling_confirmation_materialization as independent
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -543,3 +544,95 @@ def test_exact_commit_remote_receipt_preserves_truth_and_compute_boundary() -> N
         "gpu_jobs": 0,
         "model_fits": 0,
     }
+
+
+def independent_truth_args(
+    pairs: Path, cards: Path, truth: Path, receipt: Path, output: Path
+) -> argparse.Namespace:
+    return argparse.Namespace(
+        pairs=pairs,
+        cards=cards,
+        truth=truth,
+        receipt=receipt,
+        expected_pairs_sha256=independent.digest_file(pairs),
+        expected_cards_sha256=independent.digest_file(cards),
+        expected_truth_sha256=independent.digest_file(truth),
+        expected_receipt_sha256=independent.digest_file(receipt),
+        output=output,
+    )
+
+
+def independent_model_args(
+    source: argparse.Namespace, output: Path
+) -> argparse.Namespace:
+    return argparse.Namespace(
+        truth=source.truth,
+        expected_truth_sha256=independent.digest_file(source.truth),
+        lock=source.lock,
+        expected_lock_sha256=independent.digest_file(source.lock),
+        checkpoint_manifest=source.checkpoint_manifest,
+        expected_checkpoint_manifest_sha256=independent.digest_file(
+            source.checkpoint_manifest
+        ),
+        one_shot_output=source.one_shot_output,
+        expected_one_shot_output_sha256=independent.digest_file(source.one_shot_output),
+        one_shot_ledger=source.one_shot_ledger,
+        expected_one_shot_ledger_sha256=independent.digest_file(source.one_shot_ledger),
+        predictions=source.output,
+        expected_predictions_sha256=independent.digest_file(source.output),
+        derived_ledger=source.ledger,
+        expected_derived_ledger_sha256=independent.digest_file(source.ledger),
+        output=output,
+    )
+
+
+def test_independent_verifier_reconstructs_truth_and_model_source_bindings(
+    tmp_path: Path,
+) -> None:
+    truth, cards, pairs, _ = materialized_truth(tmp_path)
+    truth_receipt = tmp_path / "truth.receipt.json"
+    truth_verification = tmp_path / "truth.independent.json"
+    assert independent.verify_truth(
+        independent_truth_args(pairs, cards, truth, truth_receipt, truth_verification)
+    ) == 0
+    assert json.loads(truth_verification.read_text(encoding="utf-8"))[
+        "imports_producer"
+    ] is False
+
+    lock, assets = make_lock(tmp_path, truth, cards, pairs)
+    source_args, _ = one_shot_fixture(tmp_path, truth, lock, assets[(0.6, 6)])
+    assert materializer.normalize_model_prediction(source_args) == 0
+    model_verification = tmp_path / "model.independent.json"
+    assert independent.verify_model(
+        independent_model_args(source_args, model_verification)
+    ) == 0
+    model_receipt = json.loads(model_verification.read_text(encoding="utf-8"))
+    assert model_receipt["imports_producer"] is False
+    assert model_receipt["status"] == "VERIFIED_MODEL_SOURCE_BINDING"
+
+    verifier_source = (
+        REPO / "phase1" / "verify_critic_scaling_confirmation_materialization.py"
+    ).read_text(encoding="utf-8")
+    assert "import critic_scaling_confirmation_materializer" not in verifier_source
+
+
+def test_independent_verifier_rejects_self_consistent_but_source_changed_prediction(
+    tmp_path: Path,
+) -> None:
+    truth, cards, pairs, _ = materialized_truth(tmp_path)
+    lock, assets = make_lock(tmp_path, truth, cards, pairs)
+    source_args, _ = one_shot_fixture(tmp_path, truth, lock, assets[(0.6, 6)])
+    assert materializer.normalize_model_prediction(source_args) == 0
+    rows = materializer.read_jsonl(source_args.output, "normalized")
+    rows[0]["better_score"] += 0.125
+    rows[0]["margin"] = rows[0]["better_score"] - rows[0]["worse_score"]
+    write_jsonl(source_args.output, rows)
+    derived = json.loads(source_args.ledger.read_text(encoding="utf-8"))
+    derived["prediction_sha256"] = independent.digest_file(source_args.output)
+    write_json(source_args.ledger, derived)
+    verify_args = independent_model_args(
+        source_args, tmp_path / "should-not-exist.json"
+    )
+    with pytest.raises(independent.VerificationError, match="independent reconstruction"):
+        independent.verify_model(verify_args)
+    assert not verify_args.output.exists()

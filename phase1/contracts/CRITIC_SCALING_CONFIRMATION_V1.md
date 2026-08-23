@@ -90,6 +90,8 @@ gain capture 先在 component 内以 uniform 与 oracle 归一化，再 task-mac
   `237bbffe1130af74527d1a3febcfdcc3330b49a13b785c31039a79a1ac091242`；
 - outcome-blind delivery adapter：`phase1/critic_scaling_confirmation_materializer.py`；其 `truth` 子命令是唯一
   会打开标签的阶段，当前仍禁止在真实 future cohort 上运行；
+- 不 import adapter 的 source-binding verifier：
+  `phase1/verify_critic_scaling_confirmation_materialization.py`；
 - 冻结机器契约：`phase1/critic_scaling_confirmation_contract_v1.json`，SHA-256=
   `579771ac1b90b1022bdded1182ce5c5a17780a741dc95d82a53f5f91d577a568`。
 

@@ -1,0 +1,2 @@
+guard_rc=1
+label_vault_open_count=0

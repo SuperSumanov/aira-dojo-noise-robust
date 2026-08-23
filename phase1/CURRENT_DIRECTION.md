@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0FB. 2026-08-23 双 truth 闭合交付链已 exact-commit 验证；production truth 仍未打开
+
+为避免 300-run identity cohort 闭合后漏跑 raw-grade 并行估计量，新增**仅手动触发**的 CPU runner，固定执行：
+closed-identity guard → 原 `y_norm` producer×2/verifier×2 → official-five-decimal raw-grade producer×2/verifier×2 →
+双状态并列回执。raw extension 必须逐字节复用 base `selected_parents.jsonl` 并独立重建 SHA lottery；任何 cohort、
+protocol、producer/verifier、grader、selection、replica、grid、file-open 或凭据检查不一致均 fail closed。runner 不接入
+连续 intake watchdog，不含 `sbatch/srun/API`，无论两门结果如何都写死 replay unauthorized。
+
+控制 commit=`b108fb8d4d9c04d52ccae1d71d6e3d8d867820b6`。fresh no-smudge Linux 复验的聚焦/完整测试为
+23/23、880/880（33 warnings）；用当前 33-run collecting receipt 做真实负控时 rc=1，明确打印
+`CLOSED_COHORT_GUARD_FAIL_BEFORE_TRUTH_OPEN`，file trace 中 `label_vault` 打开数=0。commit 文件名/高置信内容
+凭据扫描=0/0，worktree 前后 clean；不可变远端 `SHA256SUMS` 自身 SHA-256=
+`5bf3b4dbd414e88d3696acb1a25ebb09924536a610ccbb1b236a05f2b0198b31`。
+
+第一次 overlay 验收的科学测试已通过、collecting guard 也已拒绝，但外层审计复现“多份 strace 的 `grep -c` 返回
+多行零”包装错误，故该目录保留为失败回执且不计正式证据；v2 改为合并命中后 `wc -l`，随后 overlay 与上述
+exact-commit 复验均通过。两次都未打开 production truth、GPU/API/model fit/base-LLM update 均为 0。
+
+这项结果只消除闭合时的执行歧义，不是正效果。当前动作仍是继续结果盲 intake；达到 300 runs 后先生成 closed
+identity receipt，再人工调用该 runner。只有某个 estimand 自己的冻结支持门通过，才可另备 replay matrix、orientation、
+power 与 GPU-hour 请求，并再次交用户批准；不得由另一门覆盖或反转。证据：
+
+- `phase1/scripts/run_score_channel_future_dual_truth_20260823.sh`；
+- `phase1/results/score_channel_future_dual_truth_runner_20260823_b108fb8/`；
+- `phase1/实验记录/2026-08-23/ScoreChannel_FutureDualTruthRunner_闭合交付链.md`。
+
 ## 0FA. 2026-08-23 等 pair 预算 breadth 正式裁决：有线索但未过门，NO_UNLOCK
 
 结果前冻结的 exact commit `21186e036b41b35c087fd3cb02e99a88b241a4ed` formal 已完成。聚焦/完整测试为

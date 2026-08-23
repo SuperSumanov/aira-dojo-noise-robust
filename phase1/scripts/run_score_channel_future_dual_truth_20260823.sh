@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 set -eo pipefail
-source /uac/y24/yzyang4/env_setup.sh
-set -u
 umask 077
 
-if [[ $# -ne 3 || ! $1 =~ ^[0-9a-f]{40}$ || ! $3 =~ ^[0-9a-f]{64}$ ]]; then
-  echo 'usage: run_score_channel_future_dual_truth_20260823.sh CONTROL_COMMIT CLOSED_COHORT_DIR EXPECTED_COHORT_SUMMARY_SHA256' >&2
+if [[ $# -ne 0 ]]; then
+  echo 'usage: run_score_channel_future_dual_truth_20260823.sh' >&2
   exit 64
 fi
 
-commit=$1
-cohort_dir=$2
-expected_cohort_sha=$3
+commit=0000000000000000000000000000000000000000
+if [[ ${commit} == 0000000000000000000000000000000000000000 ]]; then
+  echo 'truth runner is not release-bound to an approved scientific commit' >&2
+  exit 69
+fi
+set +u
+source /uac/y24/yzyang4/env_setup.sh
+set -u
 short=${commit:0:7}
 
 base_protocol_sha=54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d
@@ -27,6 +30,7 @@ base_repo=/research/d7/spc/yzyang4/aira-dojo
 worktree=/research/d7/spc/yzyang4/worktrees/future_dual_truth_${short}_nosmudge
 state_root=/research/d7/spc/yzyang4/prospective_decision_v1
 cohort_root=/research/d7/spc/yzyang4/score-channel-future-identity-cohort
+closure_anchor=${cohort_root}/FIRST_CLOSED_COHORT_ANCHOR.json
 result_root=/research/d7/spc/yzyang4/score-channel-future-dual-truth
 mlebench_repo=/research/d7/spc/yzyang4/mle-bench
 grade_helpers=${mlebench_repo}/mlebench/grade_helpers.py
@@ -46,13 +50,56 @@ test -d "${cohort_root}"
 test -d "${mlebench_repo}"
 test -f "${grade_helpers}"
 test ! -e "${worktree}"
-test ! -L "${cohort_dir}"
-
-cohort_dir=$(realpath -e "${cohort_dir}")
-case "${cohort_dir}/" in
-  "${cohort_root}/"*) ;;
-  *) echo 'closed cohort must be inside the immutable future identity-cohort root' >&2; exit 2 ;;
-esac
+test -f "${closure_anchor}"
+test ! -L "${closure_anchor}"
+clean_python=(
+  env -i
+  HOME="${HOME}"
+  PATH="${PATH}"
+  LANG=C.UTF-8
+  LC_ALL=C.UTF-8
+  PYTHONDONTWRITEBYTECODE=1
+  PYTHONHASHSEED=0
+  OMP_NUM_THREADS=1
+  OPENBLAS_NUM_THREADS=1
+  MKL_NUM_THREADS=1
+  NUMEXPR_NUM_THREADS=1
+  "${python_bin}"
+)
+mapfile -t anchor_values < <("${clean_python[@]}" - "${closure_anchor}" "${cohort_root}" <<'PY'
+import hashlib
+import json
+import pathlib
+import sys
+anchor = pathlib.Path(sys.argv[1])
+root = pathlib.Path(sys.argv[2]).resolve()
+value = json.loads(anchor.read_text(encoding="utf-8"))
+cohort = pathlib.Path(value.get("cohort_dir", ""))
+sha = value.get("cohort_summary_sha256")
+if (
+    value.get("protocol") != "score-channel-future-closure-anchor-v1"
+    or value.get("status") != "FUTURE_COHORT_FIRST_CLOSURE_ANCHORED_TRUTH_UNREAD"
+    or value.get("identity_selected_before_truth") is not True
+    or value.get("label_vault_opened") is not False
+    or value.get("score_or_outcome_opened") is not False
+    or not cohort.is_absolute()
+    or cohort.is_symlink()
+    or cohort.resolve().parent.parent != root
+    or not isinstance(sha, str)
+    or len(sha) != 64
+    or any(c not in "0123456789abcdef" for c in sha)
+    or hashlib.sha256((cohort / "summary.json").read_bytes()).hexdigest() != sha
+):
+    raise SystemExit("fixed first-closure anchor contract mismatch")
+print(cohort)
+print(sha)
+print(hashlib.sha256(anchor.read_bytes()).hexdigest())
+PY
+)
+test "${#anchor_values[@]}" -eq 3
+cohort_dir=${anchor_values[0]}
+expected_cohort_sha=${anchor_values[1]}
+closure_anchor_sha=${anchor_values[2]}
 test -f "${cohort_dir}/summary.json"
 test -f "${cohort_dir}/cohort_runs.jsonl"
 test -f "${cohort_dir}/cohort_archives.jsonl"
@@ -61,10 +108,50 @@ test ! -L "${cohort_dir}/cohort_runs.jsonl"
 test ! -L "${cohort_dir}/cohort_archives.jsonl"
 test "$(sha256sum "${cohort_dir}/summary.json" | awk '{print $1}')" = "${expected_cohort_sha}"
 
+# Prediction escrow is a hard predecessor of the first outcome-bearing read.
+prediction_root=/research/d7/spc/yzyang4/critic-component-breadth-future/${short}-${expected_cohort_sha:0:12}-v1
+test -d "${prediction_root}"
+test ! -L "${prediction_root}"
+test -f "${prediction_root}/COMPLETE"
+test -f "${prediction_root}/SHA256SUMS"
+test "$(cat "${prediction_root}/COMPLETE")" = \
+  FORMAL_FUTURE_COMPONENT_BREADTH_PREDICTION_ESCROW_COMPLETE_TRUTH_UNREAD
+test "$(cat "${prediction_root}/control_commit.txt")" = "${commit}"
+test "$(cat "${prediction_root}/cohort_summary_sha256.txt")" = "${expected_cohort_sha}"
+test "$(cat "${prediction_root}/closure_anchor_sha256.txt")" = "${closure_anchor_sha}"
+(
+  cd "${prediction_root}"
+  sha256sum -c SHA256SUMS > /dev/null
+)
+"${clean_python[@]}" - \
+  "${prediction_root}/producer_1/summary.json" \
+  "${prediction_root}/verification_1.json" \
+  "${expected_cohort_sha}" <<'PY'
+import json
+import sys
+summary = json.load(open(sys.argv[1], encoding="utf-8"))
+verification = json.load(open(sys.argv[2], encoding="utf-8"))
+scope = summary.get("scope") or {}
+if (
+    summary.get("protocol") != "critic-component-breadth-future-escrow-v1"
+    or summary.get("status") != "FUTURE_COMPONENT_BREADTH_PREDICTION_ESCROW_COMPLETE"
+    or (summary.get("inputs") or {}).get("cohort_summary_sha256") != sys.argv[3]
+    or scope.get("label_vault_read") is not False
+    or scope.get("raw_grade_read") is not False
+    or scope.get("y_norm_read") is not False
+    or scope.get("outcome_metric_computed") is not False
+    or verification.get("status") != "INDEPENDENT_SOURCE_REFIT_PASS"
+    or verification.get("cohort_summary_sha256") != sys.argv[3]
+    or verification.get("label_vault_read") is not False
+):
+    raise SystemExit("prediction escrow predecessor contract mismatch")
+print("PREDICTION_ESCROW_PREDECESSOR_PASS_TRUTH_STILL_UNREAD")
+PY
+
 # This guard is intentionally before checkout tests and every production truth module.
 # It reads only the aggregate identity summary and must reject a collecting cohort
 # before label_vault.jsonl can be opened.
-"${python_bin}" - "${cohort_dir}/summary.json" "${base_protocol_sha}" <<'PY'
+"${clean_python[@]}" - "${cohort_dir}/summary.json" "${base_protocol_sha}" <<'PY'
 import json
 import sys
 
@@ -115,7 +202,8 @@ trap failure_receipt EXIT
 
 git -C "${base_repo}" fetch fork phase1-value-critic \
   > "${staging}/fetch.stdout" 2> "${staging}/fetch.stderr"
-test "$(git -C "${base_repo}" rev-parse fork/phase1-value-critic)" = "${commit}"
+test "$(git -C "${base_repo}" rev-parse fork/phase1-value-critic)" != "${commit}"
+git -C "${base_repo}" merge-base --is-ancestor "${commit}" fork/phase1-value-critic
 GIT_LFS_SKIP_SMUDGE=1 git -C "${base_repo}" worktree add --detach "${worktree}" "${commit}" \
   > "${staging}/worktree.stdout" 2> "${staging}/worktree.stderr"
 test "$(git -C "${worktree}" rev-parse HEAD)" = "${commit}"
@@ -137,19 +225,19 @@ test "$(sha256sum "${raw_verifier}" | awk '{print $1}')" = "${raw_verifier_sha}"
 
 (
   cd "${worktree}"
-  "${python_bin}" -m pytest -p no:cacheprovider \
+  "${clean_python[@]}" -m pytest -p no:cacheprovider \
     phase1/tests/test_score_channel_future_truth_support.py \
     phase1/tests/test_score_channel_future_raw_grade_support.py \
     phase1/tests/test_score_channel_future_dual_truth_runner_contract.py -q \
     > "${staging}/focused_tests.stdout" 2> "${staging}/focused_tests.stderr"
-  "${python_bin}" -m pytest -p no:cacheprovider phase1/tests -q \
+  "${clean_python[@]}" -m pytest -p no:cacheprovider phase1/tests -q \
     > "${staging}/phase1_tests.stdout" 2> "${staging}/phase1_tests.stderr"
 )
 
 printf '%s\n' "${commit}" > "${staging}/control_commit.txt"
 printf '%s\n' "${expected_cohort_sha}" > "${staging}/cohort_summary_sha256.txt"
 printf '%s\n' "${cohort_dir}" > "${staging}/cohort_dir.txt"
-"${python_bin}" --version > "${staging}/python_version.txt" 2>&1
+"${clean_python[@]}" --version > "${staging}/python_version.txt" 2>&1
 git --version > "${staging}/git_version.txt"
 
 cat > "${staging}/preflight_matrix.txt" <<EOF
@@ -180,7 +268,7 @@ for replica in a b; do
   (
     cd "${worktree}"
     strace -ff -e trace=file -o "${staging}/base_producer_${replica}.strace" \
-      "${python_bin}" -m phase1.score_channel_future_truth_support \
+      "${clean_python[@]}" -m phase1.score_channel_future_truth_support \
         "${base_common[@]}" --out-dir "${staging}/base_truth_${replica}" \
         > "${staging}/base_producer_${replica}.stdout" \
         2> "${staging}/base_producer_${replica}.stderr"
@@ -193,7 +281,7 @@ for replica in a b; do
   (
     cd "${worktree}"
     strace -ff -e trace=file -o "${staging}/base_verifier_${replica}.strace" \
-      "${python_bin}" -m phase1.verify_score_channel_future_truth_support \
+      "${clean_python[@]}" -m phase1.verify_score_channel_future_truth_support \
         "${base_common[@]}" --truth-dir "${staging}/base_truth_a" \
         --receipt "${staging}/base_verification_${replica}.json" \
         > "${staging}/base_verifier_${replica}.stdout" \
@@ -228,7 +316,7 @@ for replica in a b; do
   (
     cd "${worktree}"
     strace -ff -e trace=file -o "${staging}/raw_producer_${replica}.strace" \
-      "${python_bin}" -m phase1.score_channel_future_raw_grade_support \
+      "${clean_python[@]}" -m phase1.score_channel_future_raw_grade_support \
         "${raw_common[@]}" --out-dir "${staging}/raw_truth_${replica}" \
         > "${staging}/raw_producer_${replica}.stdout" \
         2> "${staging}/raw_producer_${replica}.stderr"
@@ -241,7 +329,7 @@ for replica in a b; do
   (
     cd "${worktree}"
     strace -ff -e trace=file -o "${staging}/raw_verifier_${replica}.strace" \
-      "${python_bin}" -m phase1.verify_score_channel_future_raw_grade_support \
+      "${clean_python[@]}" -m phase1.verify_score_channel_future_raw_grade_support \
         "${raw_common[@]}" --extension-dir "${staging}/raw_truth_a" \
         --receipt "${staging}/raw_verification_${replica}.json" \
         > "${staging}/raw_verifier_${replica}.stdout" \
@@ -251,7 +339,7 @@ done
 diff "${staging}/raw_verification_a.json" "${staging}/raw_verification_b.json" \
   > "${staging}/raw_verifier_reproducibility.diff"
 
-"${python_bin}" - \
+"${clean_python[@]}" - \
   "${staging}/base_truth_a/summary.json" \
   "${staging}/base_verification_a.json" \
   "${staging}/raw_truth_a/summary.json" \

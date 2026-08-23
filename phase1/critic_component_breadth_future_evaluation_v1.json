@@ -1,0 +1,134 @@
+{
+  "protocol": "critic-component-breadth-future-evaluation-v1",
+  "status": "PREREGISTERED_OUTCOME_EVALUATOR_BEFORE_FUTURE_TRUTH_OPEN",
+  "parent_prediction_contract_sha256": "c52a71c36edb30a5dec965d6509387b386347acb50ac5e6a3ca789a778fd472b",
+  "entry_contract": {
+    "prediction_status": "FUTURE_COMPONENT_BREADTH_PREDICTION_ESCROW_COMPLETE",
+    "prediction_scope_must_assert": {
+      "accuracy_computed": false,
+      "label_vault_path_accepted": false,
+      "label_vault_read": false,
+      "outcome_metric_computed": false,
+      "raw_grade_read": false,
+      "score_directory_opened": false,
+      "y_norm_read": false
+    },
+    "prediction_artifact_manifest_must_verify_before_label_vault_open": true,
+    "cohort_summary_sha256_must_match_prediction": true,
+    "selected_parent_rows": "exact byte-hashed selected_parents.jsonl from the frozen score-channel SHA-256 parent lottery",
+    "selected_parent_reconstruction_before_metric": true,
+    "outcome_dependent_reselection_allowed": false,
+    "base_truth_protocol_sha256": "54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d"
+  },
+  "primary": {
+    "truth": "official-five-decimal raw graded",
+    "truth_tie_absolute_tolerance": 1e-12,
+    "official_five_decimal_grid_required": true,
+    "prediction_tie_credit": 0.5,
+    "pair_probability": "sigmoid(margin_left_minus_right); the fitted intercept is excluded exactly as in prediction escrow",
+    "pair_log_loss": "logaddexp(0, -truth_sign_times_margin) on raw non-tied pairs",
+    "aggregation_order": [
+      "average informative pair credits within each selected parent",
+      "average selected-parent metrics within each task",
+      "average the three frozen selection seeds within each task",
+      "average task metrics with equal task weight"
+    ],
+    "support_gates": {
+      "all_must_pass_before_any_primary_effect_is_computed": true,
+      "raw_nontied_selected_parents_minimum": 200,
+      "selected_physical_runs_with_raw_nontied_parent_minimum": 150,
+      "tasks_with_raw_nontied_selected_parent_minimum": 50,
+      "dominant_task_share_of_raw_nontied_selected_parents_maximum": 0.2
+    },
+    "task_inclusion": "every task with at least one raw-nontied contributing selected parent enters with equal task weight; tasks with one contributing parent remain included and their counts are reported",
+    "task_minimum_role": "minimum analyzability and breadth floor, not a power guarantee",
+    "paired_effect": "broad minus concentrated task-macro parent-macro pair accuracy",
+    "positive_rule": {
+      "point_estimate_gte": 0.02,
+      "every_seed_effect_gt": 0.0,
+      "task_cluster_bootstrap_ci95_low_gt": 0.0,
+      "every_leave_one_task_out_effect_gt": 0.0,
+      "all_conditions_required": true
+    }
+  },
+  "inference": {
+    "selection_seeds": [
+      20260823,
+      20260824,
+      20260825
+    ],
+    "selection_seed_role": "nuisance robustness choices, not independent experimental replications or effective sample-size units",
+    "arms": [
+      "broad",
+      "concentrated",
+      "random"
+    ],
+    "bootstrap": {
+      "cluster": "task",
+      "replicates": 20000,
+      "seed": 20260831,
+      "resample_index_algorithm": "uint64_big_endian_first8_sha256(seed\\0replicate\\0position)_mod_n_tasks",
+      "interval": "two-sided percentile",
+      "quantiles": [
+        0.025,
+        0.975
+      ],
+      "quantile_algorithm": "Hyndman-Fan type 7 linear interpolation"
+    },
+    "leave_one_task_out": "recompute the equal-task-weight mean effect after dropping each task",
+    "floating_output": "finite IEEE-754 binary64 encoded by canonical JSON",
+    "prediction_margin_exact_tie": 0.0
+  },
+  "secondary": {
+    "faithful_normalized_truth": {
+      "truth": "y_norm",
+      "tie_absolute_tolerance": 1e-12,
+      "same_parent_pair_task_seed_aggregation": true,
+      "may_rescue_primary": false
+    },
+    "log_loss": {
+      "same_raw_informative_pairs_and_parent_task_seed_aggregation": true,
+      "lower_is_better": true,
+      "may_rescue_primary": false
+    },
+    "random_arm": {
+      "role": "descriptive sanity baseline only",
+      "may_rescue_primary": false
+    }
+  },
+  "output_contract": {
+    "raw_card_level_labels_written": false,
+    "pair_level_truth_orientations_written": false,
+    "task_metrics_written_only_if_primary_support_passes": true,
+    "primary_effect_fields_written_only_if_primary_support_passes": true,
+    "insufficient_support_status": "FUTURE_COMPONENT_BREADTH_EVALUATION_INSUFFICIENT_RAW_SUPPORT",
+    "positive_status": "FUTURE_COMPONENT_BREADTH_EVALUATION_PRIMARY_POSITIVE",
+    "nonpositive_status": "FUTURE_COMPONENT_BREADTH_EVALUATION_PRIMARY_NOT_POSITIVE"
+  },
+  "claim_boundary": {
+    "allowed_only_if_positive": "At fixed per-task pair budgets, on a temporally later identity-closed MLE-agent cohort, the predeclared broad-support curation rule outperforms the predeclared concentrated-support rule for this fixed cheap critic on official-five-decimal raw-grade sibling ranking accuracy.",
+    "forbidden": [
+      "component_count_is_the_only_causal_variable",
+      "component_or_run_breadth_isolated_as_the_causal_mechanism",
+      "data_scaling_law",
+      "method_novelty",
+      "neural_reward_model_scaling",
+      "normalized_or_logloss_or_random_rescues_primary",
+      "search_utility",
+      "state_of_the_art_critic"
+    ]
+  },
+  "resources": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "new_model_fits": 0
+  },
+  "stop_rules": [
+    "Validate the complete prediction escrow and its artifact hashes before opening any label vault.",
+    "Fail closed on any cohort, selected-parent, prediction-pair, vault, raw-grid, or schema mismatch.",
+    "If any raw support gate fails, write support counts and status only; do not compute or characterize the primary effect.",
+    "Do not change the truth, population, gates, aggregation, bootstrap, effect floor, or claim after any future truth is read.",
+    "Normalized truth, log loss, random arm, subgroup, alternate threshold, or alternate aggregation cannot rescue the primary."
+  ]
+}

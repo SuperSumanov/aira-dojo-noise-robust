@@ -1,7 +1,68 @@
-# 当前研究方向唯一入口（2026-08-23）
+# 当前研究方向唯一入口（2026-08-24）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+> **2026-08-24 cohort authority clarification（覆盖下文所有“唯一主实验”旧措辞）**：当前没有已获批的
+> GPU effect 主实验。论文容器仍是 Decision Corpus + Predictor Benchmark。`first-960 + closure` 保留为较早冻结的
+> fixed-scorer critic 时间外确认人口；新的 target-300 identity cohort（保留 boundary-archive overshoot）则只授权 score-channel dual-truth 支持审计、
+> 结果前 prediction escrow 及其 revised raw-grade supporting hypothesis。两者 estimand 不同、互不 supersede、不得混池；
+> 300-run cohort 闭合或支持门通过也不会自动授权 replay/effect，仍需另做功效/成本矩阵并获用户 GPU 预算批准。
+> 因而下文 0BK 的 first-960 契约继续有效，而 0DX 的旧 120s `SCORE_CHANNEL_MECHANISM_KILL` 也不被新 300-run
+> 支持审计改写；所有更早“唯一主实验”“主线已确认”措辞均按本段降为历史状态。
+> 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
+> 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
+
+## 0FE. 2026-08-24 future component-breadth prediction/evaluation escrow 已通过 pre-commit Linux review；效果未知
+
+旧等 pair 预算 breadth 仍是 `RETROSPECTIVE_DEV_COMPONENT_BREADTH_NO_UNLOCK`：accuracy 点效应虽为
+`+0.0332204391514186` 且三 seed/全部 LOTO 同向，task-bootstrap CI 仍跨 0；不得同池追加 seed 或换 endpoint
+rescue。本轮只把该线索变成一次合法的独立 future hypothesis，并在任何 future truth 前冻结 prediction escrow。
+
+新机器合同已完成 pre-truth review、等待 exact-commit 冻结（最终 commit 以本节后续回执为准）：逐字节复用
+旧 component-clean train/Cards、`broad/concentrated/random × seeds 20260823/24/25`、每臂每 seed 2,353 pairs、
+固定 char-TFIDF/LR；9 份真实 unordered-pair selection SHA 已由 structure-only preflight 重建并写入合同。future
+population 锁为当前 score-channel identity-closed target-300 cohort 的 eligible physical siblings，prediction 必须先于
+truth，后续只 join 原 dual-truth SHA lottery 的 selected parents，不允许结果后重选。
+
+official-five-decimal raw grade 是 revised high-resolution primary；旧 `y_norm` 只作描述性 sensitivity，不能形成第二个
+confirmatory/replication 主张，log-loss/random 同样只作 non-rescuing diagnostics。primary effect 前必须满足 raw
+non-tied parents≥200、实际 contributing runs≥150、tasks≥50、dominant task share≤0.20；随后还需 point≥+0.02、
+三 nuisance seeds 全正、task-bootstrap CI low>0、LOTO 全正。tasks≥50 只是 analyzability floor，不是 power gate。
+
+prediction producer、独立 source-refit verifier、post-truth evaluator、不 import evaluator 的独立 outcome verifier 及
+三阶段手动 CPU runner 已实现。Linux 联合 focused=`61 passed, 2 warnings`；与 formal cwd/env 相同的完整 phase1=
+`935 passed, 35 warnings`。prediction/truth runner 当前仍以全零 commit inert，必须由 scientific commit 之后的 release-only
+commit 绑定；evaluation runner 还必须等 prediction/dual-truth 两个不可变 bundle 真实产生后再另行绑定。所有科学 Python
+子进程使用 `env -i` allowlist，不继承 provider credential。真实训练源 structure-only 为 4,689 pairs/28 tasks/127
+components/430 runs，9 臂 receipt 全过、model fit=0。当前 collecting 33-run receipt 真实负控 rc=2，training/vault/score
+forbidden open=0；故尚无 future accuracy 或正结果。该 supporting hypothesis 不取代 first-960 critic confirmation，也不把
+300-run support cohort 写成已获批的 mechanism-effect experiment；不申 diversity/sampling 方法 novelty。即使为正，
+estimand 也只是两个预声明 curation policy 的差异，不能归因于 component/run breadth 单独因果作用。证据：
+
+- `phase1/critic_component_breadth_future_escrow_v1.json`；
+- `phase1/critic_component_breadth_future_evaluation_v1.json`；
+- `phase1/scripts/run_critic_component_breadth_future_escrow_20260824.sh`；
+- `phase1/scripts/run_critic_component_breadth_future_evaluation_20260824.sh`；
+- `phase1/verify_critic_component_breadth_future_evaluation.py`；
+- `phase1/实验记录/2026-08-24/ComponentBreadth_FuturePredictionEscrow_预注册与实现.md`。
+
+## 0FD. 2026-08-24 H200 结果保全与 next-batch config sidecar handoff 就绪；均非效果
+
+学长已推送的 `dojo-reproduce@62964aa` 三份 H200 launcher 与当前 scheduler jobs 只能作 exploratory：三个 job
+实际 WorkDir 是学长 `/research/d2/gds/zzchen2/...`，逐 job commit/launcher 尚未绑定；已推送 trainer 又把 outer test
+周期性用于 checkpoint eval。新增 handoff 要求先内容盲保存完整 checkpoint/log/scheduler/data/code/environment，禁止
+事后补 prediction/ledger 或把 test-touched checkpoint 改称 frozen；clean confirmation 仍须另起 dev-only
+`Qwen3-Base {0.6,1.7,4,8}B × seeds {6,7}` 8-run matrix，并另获 GPU 预算批准。
+
+同时给学长准备了下一批 archive 的 `senior-experiment-config-manifest-v1` sidecar 交接与 synthetic schema example；
+Linux 现有攻击测试 11/11。sidecar 必须由 producer 在 outcome 前从启动 config 导出，当前 33-run cohort 禁止回填；
+真实 expected/source/config inputs 尚不存在，故状态只能是 `HANDOFF_READY_NOT_DEPLOYED`，不能称
+`CONFIG_PROVENANCE_VERIFIED` 或 interaction support。两项均 GPU/API/future truth=0/0/false。证据：
+
+- `phase1/实验记录/2026-08-24/H200_CleanConfirmation_结果保全Handoff.md`；
+- `phase1/实验记录/2026-08-24/SeniorConfigSidecar_下一批Handoff.md`；
+- `phase1/examples/senior_experiment_config_manifest_v1.example.jsonl`。
 
 ## 0FC. 2026-08-23 coarse-label/tie 直接先例关闭理论首创；MLE transform audit 仍是 D&B 正资产
 

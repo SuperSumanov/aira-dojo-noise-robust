@@ -190,6 +190,20 @@ printf 'SCORE_CHANNEL_FUTURE_IDENTITY_COHORT_FORMAL_COMPLETE\n' > "${staging}/CO
   find . -type f ! -name SHA256SUMS -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > SHA256SUMS
 )
 mv "${staging}" "${final}"
+staging=${final}
+cohort_status=$("${python_bin}" -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["status"])' \
+  "${final}/producer_a/summary.json")
+if [[ ${cohort_status} == FUTURE_COHORT_IDENTITY_CLOSED_TRUTH_UNREAD ]]; then
+  (
+    cd "${worktree}"
+    "${python_bin}" -m phase1.score_channel_future_closure_anchor \
+      --formal-result-dir "${final}" \
+      --result-root "${result_root}" \
+      --repo-root "${worktree}" \
+      --anchor "${result_root}/FIRST_CLOSED_COHORT_ANCHOR.json" \
+      > /dev/null
+  )
+fi
 chmod -R a-w "${final}"
 trap - EXIT
 

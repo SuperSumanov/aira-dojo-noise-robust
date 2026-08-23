@@ -1,0 +1,189 @@
+{
+  "claim_boundary": {
+    "allowed_if_primary_positive": "At fixed per-task pair budgets, on a temporally later identity-closed MLE-agent cohort, the predeclared broad-support curation rule outperforms the predeclared concentrated-support rule for this fixed cheap critic on official-five-decimal raw-grade sibling ranking accuracy.",
+    "forbidden": [
+      "component_count_is_the_only_causal_variable",
+      "component_or_run_breadth_isolated_as_the_causal_mechanism",
+      "data_scaling_law",
+      "method_novelty",
+      "neural_reward_model_scaling",
+      "normalized_truth_replication_if_only_raw_grade_passes",
+      "search_utility",
+      "state_of_the_art_critic"
+    ],
+    "known_before_freeze": {
+      "future_cohort_labels_or_scores_read": false,
+      "future_identity_cohort_physical_runs": 33,
+      "future_identity_cohort_tasks": 11,
+      "raw_vs_y_norm_alias_audit": {
+        "alias_parents": 147,
+        "alias_tasks": 16,
+        "formal_analysis_sha256": "38788c89ca8231428482d9bea1a43e5a641eda7a6efa26dec89eb6499e594ba5",
+        "independent_verification_sha256": "4b56b9e2e3cb9c52f390dd92b3877f818ef7b2edecc27cde919c06a09fb22789",
+        "impossible_direction_parents": 0,
+        "known_before_raw_endpoint_selection": true
+      },
+      "retrospective_broad_minus_concentrated_accuracy": 0.0332204391514186,
+      "retrospective_broad_minus_concentrated_accuracy_ci95": [
+        -0.010859355050261277,
+        0.07987928182598769
+      ],
+      "retrospective_broad_minus_concentrated_log_loss": -0.006769727559589795,
+      "retrospective_status": "RETROSPECTIVE_DEV_COMPONENT_BREADTH_NO_UNLOCK"
+    },
+    "random_arm_role": "descriptive sanity baseline only; random cannot rescue broad-versus-concentrated"
+  },
+  "cohort": {
+    "accepted_unique_physical_run_target": 300,
+    "closed_status": "FUTURE_COHORT_IDENTITY_CLOSED_TRUTH_UNREAD",
+    "cohort_protocol": "score-channel-future-identity-cohort-v1",
+    "complete_boundary_archive_required": true,
+    "first_closure_anchor_path": "/research/d7/spc/yzyang4/score-channel-future-identity-cohort/FIRST_CLOSED_COHORT_ANCHOR.json",
+    "first_closure_anchor_required": true,
+    "label_vault_must_be_unread": true,
+    "source_identity_protocol_sha256": "54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d",
+    "prediction_population": "all unordered pairs induced by every nonempty-parent endpoint in each hash-bound eligible_blind_manifest of the target-300 closed identity cohort (including complete boundary-archive overshoot); manifest endpoint totals must equal the pre-outcome intake inventory and every cohort run endpoint ledger, and evaluation later restricts to the already-frozen score-channel selected-parent receipt without reselection",
+    "raw_archive_completeness_claim_allowed": false
+  },
+  "evaluation_after_truth_open": {
+    "bootstrap": {
+      "cluster": "task",
+      "replicates": 20000,
+      "seed": 20260831
+    },
+    "faithful_normalized_secondary": {
+      "confirmatory_claim_allowed": false,
+      "may_rescue_primary": false,
+      "pair_population": "within the exact selected-parent population, pairs with both y_norm values available and absolute y_norm difference greater than 1e-12",
+      "role": "descriptive normalized-label sensitivity only; a positive result is not a second confirmatory claim or a replication claim",
+      "truth": "y_norm with absolute tie tolerance 1e-12"
+    },
+    "inference_order": [
+      "average pair credits within parent",
+      "average parent credits within task",
+      "average the three predeclared selection seeds",
+      "task-macro broad minus concentrated",
+      "task-cluster bootstrap and leave-one-task-out"
+    ],
+    "log_loss_definition": "on the same official-grade raw non-tied pairs, p(left better)=sigmoid(margin_left_minus_right), binary cross-entropy is averaged pair within parent, parent within task, then across the three nuisance seeds and tasks",
+    "log_loss_role": "secondary calibration diagnostic only; cannot rescue primary accuracy",
+    "parent_population": "exact outcome-available selected_parents.jsonl produced by the frozen score-channel dual-truth finite-grade-availability plus SHA-256 lottery; no post-label or post-prediction reselection and no extrapolation to all structural siblings",
+    "primary_decision_rule": {
+      "all_seed_broad_minus_concentrated_accuracy_gt": 0.0,
+      "bootstrap_ci95_low_broad_minus_concentrated_accuracy_gt": 0.0,
+      "leave_one_task_out_broad_minus_concentrated_accuracy_gt": 0.0,
+      "point_broad_minus_concentrated_accuracy_gte": 0.02
+    },
+    "primary_estimand": "Task-macro parent-macro pair accuracy of broad minus concentrated, after averaging three frozen nuisance selection seeds, on official-five-decimal raw-grade non-tied sibling pairs in the fixed selected-parent population; raw-truth-tied pairs are excluded and an exact zero prediction margin receives 0.5 credit.",
+    "primary_truth": "official-five-decimal raw graded; truth ties are absolute difference <=1e-12 and are excluded",
+    "random_arm_may_rescue": false,
+    "support_gates": {
+      "all_must_pass_before_primary_effect_is_computed": true,
+      "dominant_task_selected_parent_share_maximum": 0.2,
+      "raw_nontied_selected_parents_minimum": 200,
+      "raw_nontied_contributing_physical_runs_minimum": 150,
+      "tasks_with_raw_nontied_selected_parent_minimum": 50
+    },
+    "task_inclusion": "every task with at least one raw-nontied contributing selected parent enters with equal task weight; per-task contributing-parent counts must be reported",
+    "task_minimum_role": "minimum analyzability and breadth floor, not a power guarantee",
+    "tie_credit_for_exact_zero_prediction_margin": 0.5,
+    "truth_tied_pair_credit": null
+  },
+  "inputs": {
+    "component_clean_train": {
+      "bytes": 3208089,
+      "path": "/research/d7/spc/yzyang4/critic-decision-component-prep/305355e-baf6bdd-v1/producer_1/train.jsonl",
+      "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+    },
+    "training_cards": {
+      "bytes": 604190866,
+      "path": "/research/d7/spc/yzyang4/worktrees/senior_augmented_92a9651_nosmudge/data/augmented_mle_critic/augmented_cards_current.json",
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    }
+  },
+  "model": {
+    "code_prefix_chars": 20000,
+    "lr_C": 0.5,
+    "lr_max_iter": 1500,
+    "lr_random_state": 0,
+    "lr_solver": "lbfgs",
+    "margin_excludes_intercept": true,
+    "mirrored_pair_training": true,
+    "tfidf_analyzer": "char_wb",
+    "tfidf_dtype": "float64",
+    "tfidf_max_features": 30000,
+    "tfidf_min_df": 3,
+    "tfidf_ngram_range": [
+      3,
+      5
+    ],
+    "tfidf_sublinear_tf": true
+  },
+  "prediction_escrow": {
+    "accuracy_or_outcome_metric_computed": false,
+    "artifact_replication": "producer x2 byte-identical plus independent source-refit verifier x2",
+    "label_vault_path_accepted_by_cli": false,
+    "outputs": [
+      "endpoint_scores.csv",
+      "pair_predictions.jsonl",
+      "training_selection_receipts.jsonl",
+      "summary.json",
+      "artifact_manifest.json"
+    ],
+    "pair_orientation_uses_outcome": false,
+    "predictions_must_precede_truth_open": true
+  },
+  "protocol": "critic-component-breadth-future-escrow-v1",
+  "resources": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "maximum_unique_cpu_critic_fits_per_implementation": 9,
+    "threads_per_fit": 1
+  },
+  "selection": {
+    "arms": {
+      "broad": "Within each task, take one orientation-independent hash-ranked pair from every component up to the target, then hash-fill remaining pairs.",
+      "concentrated": "Within each task, order components by descending pair count with hash tie-breaks, then take pairs until the exact target.",
+      "random": "Within each task, take the orientation-independent hash prefix of all pairs to the exact target."
+    },
+    "expected_pairs_per_arm_seed": 2353,
+    "expected_broad_components_per_seed": 127,
+    "expected_concentrated_components_per_seed": 53,
+    "expected_broad_minus_concentrated_runs_by_seed": {
+      "20260823": 205,
+      "20260824": 206,
+      "20260825": 205
+    },
+    "expected_task_pair_budget_sha256": "e2181914f41949efb6333c4848ccaf74c30485545a1389671693b55fc5e3c966",
+    "expected_unordered_pairs_sha256": {
+      "broad_s20260823": "62ea9f35144501ddd415109f7412ec5fc13524690062a428d02c60bf682a8ac4",
+      "broad_s20260824": "6adbd5d32756b40af71c1d9d28cc606d4678ec4867dda549b7d58321af10f591",
+      "broad_s20260825": "82a1450373b268dacc99bd0eaaf2e8af835793764156621bc0a79a0baf4c7267",
+      "concentrated_s20260823": "7bd72d32b0aa5def3b602bbe99959dfac9bd9c0ea2c66c9daaee122a2364fd76",
+      "concentrated_s20260824": "6cc30d5ce57b70fcf3b4a3a18a170e6d14ff54d761ed4aa71f78d1e8c36ef0ad",
+      "concentrated_s20260825": "fc1c916980a9f702db0972f904df7ed8a20f914319006e22482b475b3decbdac",
+      "random_s20260823": "23e0d8849418ae8cbd2aacf7185fc167f4c925faa06412910fa86f1db334328e",
+      "random_s20260824": "b5a37712a306d9317480de10dc2de5040810435dd430e47672751306ff138733",
+      "random_s20260825": "405e51a10b621b92a215744441b0a2e247c5316f3e7c5e72fa91bd7ac08581f6"
+    },
+    "fraction_per_task": 0.5,
+    "pair_identity": "task|parent|lexicographically_sorted_endpoint_ids",
+    "pair_orientation_used_for_selection": false,
+    "seeds": [
+      20260823,
+      20260824,
+      20260825
+    ],
+    "source_contract_sha256": "1dc28d105922741d0c6a8263d9b2ebd2566d1a28de3dec1eb8f490116f7e6316",
+    "target_pairs_per_task": "ceil(0.5 * available component-clean train pairs for task)"
+  },
+  "status": "PREREGISTERED_PREDICTION_ESCROW_WAITING_CLOSED_COHORT",
+  "stop_rules": [
+    "Refuse unless the fixed one-time first-closure anchor binds the target-300 identity cohort (including complete boundary-archive overshoot) and its summary says truth unread; callers cannot supply an alternate cohort path or digest.",
+    "Write all endpoint scores and pair selections before any label vault may be opened.",
+    "Do not change arms, seeds, pair budget, model, parent population, truth precision, support gates, bootstrap, effect floor, or claim after any future truth is read.",
+    "If the primary support gate fails, report insufficient support and do not compute or characterize a primary effect.",
+    "A normalized, log-loss, random-arm, task-subgroup, or alternate-threshold result cannot rescue a failed raw-grade primary."
+  ]
+}

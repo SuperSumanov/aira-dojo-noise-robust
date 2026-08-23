@@ -46,8 +46,8 @@ def test_frozen_protocol_and_implementation_hashes_match_sources() -> None:
 def test_closed_cohort_guard_precedes_every_production_truth_invocation() -> None:
     text = SCRIPT.read_text(encoding="utf-8")
     guard = text.index("CLOSED_COHORT_GUARD_PASS_TRUTH_STILL_UNREAD")
-    first_base = text.index('"${python_bin}" -m phase1.score_channel_future_truth_support')
-    first_raw = text.index('"${python_bin}" -m phase1.score_channel_future_raw_grade_support')
+    first_base = text.index('"${clean_python[@]}" -m phase1.score_channel_future_truth_support')
+    first_raw = text.index('"${clean_python[@]}" -m phase1.score_channel_future_raw_grade_support')
     assert guard < first_base < first_raw
     assert "FUTURE_COHORT_IDENTITY_CLOSED_TRUTH_UNREAD" in text[:first_base]
     assert "remaining_runs_to_target\") != 0" in text[:first_base]

@@ -2,7 +2,7 @@
 
 日期：2026-08-24
 
-状态：`READY_FOR_EXACT_COMMIT_FREEZE / FUTURE_EFFECT_UNKNOWN`（只有 commit、push 与 fresh exact-commit 复验后才算冻结）
+状态：`FROZEN_PRETRUTH_SCIENTIFIC_COMMIT / RELEASE_BOUND_WAITING_COHORT / FUTURE_EFFECT_UNKNOWN`
 
 ## 1. 结论先行
 
@@ -168,6 +168,18 @@ fixture path 不存在而红；该无效调用在 15% 后停止，没有进入�
 935/935 通过。另一次未设置 BLAS 线程上限的诊断运行出现多核占用，已停止并用上述 exact allowlisted 环境重跑；不把
 这些 harness invocation 错误计为科学失败或成功。
 
+scientific commit 已固定为 `e1093d8007449954c4561611c2ff381c55f7abe8`。从 GitHub 重新 fetch 后建立 fresh
+no-smudge exact-commit worktree 的第二次验收为 focused `61 passed, 2 warnings in 6.41s`、完整 phase1
+`935 passed, 35 warnings in 67.04s`；worktree 前后 clean，GPU/API/model fit/future truth=`0/0/0/false`。不可变回执位于
+`/research/d7/spc/yzyang4/postpush-future-breadth/e1093d8-pretruth-v1/`，其 `SHA256SUMS` 自身 SHA-256 为
+`6011cbad9072cad8861aca95304906173b494db189118cba50050f6a026b9f30`。
+
+随后 release-only commit `d416c741dcfa8178699bd2027ab4bcc7154ef5f7` 只把 prediction 与 dual-truth runner 的
+control commit 绑定回上述 scientific commit；evaluation runner 继续保持全零 inert。fresh no-smudge Linux 对 release
+绑定的验收为 `26 passed in 0.36s`，回执位于
+`/research/d7/spc/yzyang4/postpush-future-breadth/d416c74-release-v1/`，其 `SHA256SUMS` 自身 SHA-256 为
+`8f2d18365239ef859232e12e51e5296d42c9fac006c3a832bcfcea3004ba83aa`。
+
 ### 6.2 真实训练源 structure-only preflight
 
 对真实 Cards/train 做 12 项 preflight，得到：31,742 Cards、4,095 needed endpoints、676 run groups；train=
@@ -181,6 +193,10 @@ fixture path 不存在而红；该无效调用在 15% 后停止，没有进入�
 `FUTURE_COHORT_COLLECTING`，33/300 runs、11 tasks、11 accepted archives。把不存在的 training paths 传给 formal producer，
 仍先以 rc=2 拒绝 collecting 状态；strace 中 training/vault/score forbidden open count=0，证明 gate 顺序不是文档承诺而是
 实际 fail-before-training 行为。
+
+连续 monitor 在 `2026-08-23T17:40Z` 将 metadata archive 总数从 204 更新为 212，但截至 `17:55Z` 仍为
+`ready=0, transactions=68, outcomes_read=false`。这 8 个新观察项尚未满足 6 小时稳定门，尚未 intake，也未改变上述
+33/300 formal cohort；本文不把 metadata observation 写成已入库数据。
 
 ## 7. Novelty 边界
 
@@ -197,8 +213,8 @@ scaling law 或 search acceleration。
 
 ## 8. 下一步
 
-先完成 scientific commit/push 与 fresh exact-commit 全套复验，再用单独 release commit 只绑定 prediction/dual-truth
-runner；evaluation runner 保持 inert，直到前两个 formal bundle 实际存在。之后继续 outcome-blind intake。只有 identity
+scientific commit/push、fresh exact-commit 复验与 prediction/dual-truth release binding 均已完成；evaluation runner
+保持 inert，直到前两个 formal bundle 实际存在。之后继续 outcome-blind intake。只有 identity
 cohort 达到 closed target-300（含 boundary overshoot）后，才先人工生成 predictions escrow，再运行 dual truth；随后再以
 新 release commit 固定两个 bundle 的 root/SHA 并运行 evaluator。任何一门结果都不能替另一门 rescue。当前不启动 GPU、
 不消费 API，也不提交额外同池实验。

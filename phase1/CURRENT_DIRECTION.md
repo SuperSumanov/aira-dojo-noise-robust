@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0FE. 2026-08-24 future component-breadth prediction/evaluation escrow 已通过 pre-commit Linux review；效果未知
+## 0FE. 2026-08-24 future component-breadth prediction/evaluation escrow 已 exact-commit 冻结；效果未知
 
 旧等 pair 预算 breadth 仍是 `RETROSPECTIVE_DEV_COMPONENT_BREADTH_NO_UNLOCK`：accuracy 点效应虽为
 `+0.0332204391514186` 且三 seed/全部 LOTO 同向，task-bootstrap CI 仍跨 0；不得同池追加 seed 或换 endpoint
@@ -31,14 +31,22 @@ non-tied parents≥200、实际 contributing runs≥150、tasks≥50、dominant 
 三 nuisance seeds 全正、task-bootstrap CI low>0、LOTO 全正。tasks≥50 只是 analyzability floor，不是 power gate。
 
 prediction producer、独立 source-refit verifier、post-truth evaluator、不 import evaluator 的独立 outcome verifier 及
-三阶段手动 CPU runner 已实现。Linux 联合 focused=`61 passed, 2 warnings`；与 formal cwd/env 相同的完整 phase1=
-`935 passed, 35 warnings`。prediction/truth runner 当前仍以全零 commit inert，必须由 scientific commit 之后的 release-only
-commit 绑定；evaluation runner 还必须等 prediction/dual-truth 两个不可变 bundle 真实产生后再另行绑定。所有科学 Python
+三阶段手动 CPU runner 已实现。scientific commit=`e1093d8007449954c4561611c2ff381c55f7abe8`；fresh no-smudge
+exact-commit 联合 focused=`61 passed, 2 warnings`，完整 phase1=`935 passed, 35 warnings`，不可变复验
+`SHA256SUMS` 自身 SHA-256=`6011cbad9072cad8861aca95304906173b494db189118cba50050f6a026b9f30`。
+release-only commit=`d416c741dcfa8178699bd2027ab4bcc7154ef5f7` 已只把 prediction/truth runner 绑定回 scientific commit；
+其 fresh Linux 静态验收=`26 passed`，回执 `SHA256SUMS` 自身 SHA-256=
+`8f2d18365239ef859232e12e51e5296d42c9fac006c3a832bcfcea3004ba83aa`。evaluation runner 仍以全零值 inert，必须等
+prediction/dual-truth 两个不可变 bundle 真实产生后再另行绑定。所有科学 Python
 子进程使用 `env -i` allowlist，不继承 provider credential。真实训练源 structure-only 为 4,689 pairs/28 tasks/127
 components/430 runs，9 臂 receipt 全过、model fit=0。当前 collecting 33-run receipt 真实负控 rc=2，training/vault/score
 forbidden open=0；故尚无 future accuracy 或正结果。该 supporting hypothesis 不取代 first-960 critic confirmation，也不把
 300-run support cohort 写成已获批的 mechanism-effect experiment；不申 diversity/sampling 方法 novelty。即使为正，
 estimand 也只是两个预声明 curation policy 的差异，不能归因于 component/run breadth 单独因果作用。证据：
+
+连续 intake monitor 仍健康。`2026-08-23T17:40Z` 只在 metadata 层观察到 archive 总数由 204 增至 212；截至
+`17:55Z` 仍为 `ready=0, transactions=68, outcomes_read=false`，所以这 8 个 archive 尚未过 6 小时稳定门、尚未入 intake，
+也没有改变 33/300 formal cohort。不得把“已观察到”写成“已入库”。
 
 - `phase1/critic_component_breadth_future_escrow_v1.json`；
 - `phase1/critic_component_breadth_future_evaluation_v1.json`；

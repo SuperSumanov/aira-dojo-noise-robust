@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0ER. 2026-08-23 clean scaling 的盲态交付链已补齐；真实效果仍为零访问
+
+新增 `critic_scaling_confirmation_materializer.py`，把未来 dedicated pairs/Cards、0004 endpoint receipts 和已规范化
+baseline 严格接到 0EP 的 frozen analyzer。truth 阶段以 raw sibling/run/lineage/单 budget 和任务 grade direction 做
+fail-closed，按 parent graph 的 maximal connected components 零丢弃生成 canonical component/pair IDs；model 阶段同时
+绑定 truth/lock、pairs/Cards、checkpoint artifact manifest、one-shot output/ledger 以及 test 前锁定的两条路径身份；bundle
+阶段拒绝 symlink/path escape、矩阵缺失和任一 hash/rows/ledger 不一致。
+
+纯合成 adversarial tests 15/15，既有 scaling+endpoint 联合测试 10/10，合成最终 bundle 可被 frozen analyzer 接受；
+本机 full phase1 因环境缺 `scipy/sklearn` 在 collection 阶段阻断，尚待集群 exact-commit full regression。正式状态为
+`MATERIALIZER_READY_SYNTHETIC_ONLY_REAL_TRUTH_FORBIDDEN`：real future truth/GPU/API/model fit=`false/0/0/0`，因此这只是
+把未来确认做成一次性、可审计交付，不是新的 scaling 效果。证据：
+
+- `phase1/contracts/CRITIC_SCALING_CONFIRMATION_MATERIALIZATION_V1.md`；
+- `phase1/实验记录/2026-08-23/CleanScalingMaterializer_盲态交付桥与一次性加固.md`。
+
 ## 0EQ. 2026-08-23 clean scaling 的 endpoint-score 交付缺口已闭合；效果资产仍待未来
 
 0EP 契约要求逐 pair better/worse scalar scores，原 one-shot evaluator 只保存 margin，无法认证共享 endpoint

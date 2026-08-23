@@ -45,6 +45,11 @@ task-macro pair accuracy 是否稳定改善；8B 是否在两个 seed 上都超�
 - 8 个模型的 size、seed、base model、model revision、checkpoint manifest SHA、training complete、
   dev-only selection、checkpoint step 与 dev metric。
 
+交付实现另作三项不改变 estimand 的加固：dataset 同时锁定原始 dedicated pairs/Cards SHA；每个 run 锁定唯一
+one-shot output/ledger 绝对路径的 SHA-256 身份；checkpoint manifest 使用
+`critic-scaling-checkpoint-manifest-v1`，逐一列出 evaluator 会读取的 `model.safetensors` 及实际存在的
+`head.pt/rm_meta.json/config.json` 哈希。这样换输入 Cards、换权重或换 ledger 路径重试都不能被 adapter 接受。
+
 lock 状态必须是 `LOCKED_BEFORE_TEST_ACCESS`。补 checkpoint、换 seed、按 test 选 step 都会使该轮作废。
 
 ### B. 一次性 bundle
@@ -83,6 +88,8 @@ gain capture 先在 component 内以 uniform 与 oracle 归一化，再 task-mac
 - model-side one-shot endpoint receipt overlay：
   `phase1/upstream_patches/0004-Emit-endpoint-score-receipts.patch`，SHA-256=
   `237bbffe1130af74527d1a3febcfdcc3330b49a13b785c31039a79a1ac091242`；
+- outcome-blind delivery adapter：`phase1/critic_scaling_confirmation_materializer.py`；其 `truth` 子命令是唯一
+  会打开标签的阶段，当前仍禁止在真实 future cohort 上运行；
 - 冻结机器契约：`phase1/critic_scaling_confirmation_contract_v1.json`，SHA-256=
   `579771ac1b90b1022bdded1182ce5c5a17780a741dc95d82a53f5f91d577a568`。
 
@@ -107,8 +114,9 @@ artifact manifest。只有 producer 与 verifier 同时通过，结果才可进�
 
 ## 6. 当前资产缺口
 
-model-side endpoint receipt overlay 已在 `ac008af + 0001/2/3` 上通过 36 项聚焦测试，但当前只有学长 0820
-聚合表的探索性 scaling；没有可用的逐 pair predictions、完整 checkpoint manifests 与
+model-side endpoint receipt overlay 已在 `ac008af + 0001/2/3` 上通过 36 项聚焦测试；delivery adapter 已用 15 项
+纯合成 adversarial tests 覆盖 truth/component、one-shot/path/checkpoint 绑定与 bundle assembly，但未读取任何真实
+future truth。当前仍只有学长 0820 聚合表的探索性 scaling；没有可用的逐 pair predictions、完整 checkpoint manifests 与
 one-shot ledgers，已知常见 checkpoint 目录也不存在。因此现在不能运行本分析，更不能把历史表升级为确认结果。
 学长下一轮只需在删除 checkpoint 前保留上述 lock/bundle 所需资产；无需把大模型权重推到 Git，权重只需在共享
 存储保留并把不可变 manifest/hash 入库。

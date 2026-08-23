@@ -12,4 +12,7 @@
 
 focused 合成测试现在为 materializer/verifier 18/18，包含一个“篡改 prediction 并同步更新 derived hash”的正面对抗：
 producer 自洽仍不够，verifier 必须从 upstream source 重建并拒绝。联合 scaling analyzer/endpoint tests 总计 28/28。
-真实 future truth/GPU/API/model fit 仍为 `false/0/0/0`；集群 exact-commit full regression 尚待本 commit 推送后执行。
+集群 fresh no-smudge exact code commit `2a49d4cf...` focused 28/28（2.96s）、full phase1 851/851（60.88s，
+33 warnings），secret scan 0/0、worktree clean。证据位于
+`phase1/results/critic_scaling_materialization_verifier_20260823_2a49d4c/`。真实 future truth/GPU/API/model fit 仍为
+`false/0/0/0`。

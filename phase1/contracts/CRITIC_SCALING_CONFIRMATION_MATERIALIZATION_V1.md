@@ -54,7 +54,9 @@ checkpoint manifest 的 protocol/status 必须是
   `phase1/results/critic_scaling_materializer_20260823_81a09d5/`；
 - real future truth/GPU/API/model fit：`false/0/0/0`。
 
-独立 verifier 新增后的 exact-commit 集群完整回归必须另行打印，不能用前一个 848-test receipt 代替。
+独立 verifier 的集群 exact code commit `2a49d4cf...` 已通过 focused 28/28、full phase1 851/851（33 warnings）、
+secret scan 0/0、worktree clean；证据见
+`phase1/results/critic_scaling_materialization_verifier_20260823_2a49d4c/`，没有沿用前一个 848-test receipt。
 
 这项交付只消除“即使未来 scaling checkpoint 到了也无法严谨生成 component utility bundle”的工程阻断，不是模型
 效果，也不能抬高当前 scaling 结论等级。

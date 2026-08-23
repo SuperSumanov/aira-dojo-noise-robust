@@ -8,10 +8,12 @@
 新增 `verify_critic_scaling_confirmation_materialization.py`，不 import producer，独立重建 pairs/Cards→truth 的
 component/pair identity、oriented utility 和 support，并从 upstream one-shot output/ledger + checkpoint manifest 逐 pair
 重建 normalized predictions。focused 18/18；其中对抗测试在篡改 prediction 后同步更新 derived hash，独立 verifier 仍能
-从 source 发现并拒绝。与 scaling analyzer/endpoint tests 联合为 28/28。当前只完成合成验证，real future truth/GPU/API/
-model fit=`false/0/0/0`；exact-commit 集群 full regression 需推送后另验，不能沿用 0ER 的 848 数字。证据：
+从 source 发现并拒绝。与 scaling analyzer/endpoint tests 联合为 28/28。集群 fresh no-smudge exact code commit
+`2a49d4cf...` 独立打印 full 851/851（33 warnings）、secret scan 0/0、worktree clean，没有复用 0ER 的 848 数字。
+当前仍只完成合成验证，real future truth/GPU/API/model fit=`false/0/0/0`。证据：
 
 - `phase1/verify_critic_scaling_confirmation_materialization.py`；
+- `phase1/results/critic_scaling_materialization_verifier_20260823_2a49d4c/`；
 - `phase1/实验记录/2026-08-23/CleanScalingMaterializer_独立SourceBinding复核.md`。
 
 ## 0ER. 2026-08-23 clean scaling 的盲态交付链已补齐；真实效果仍为零访问

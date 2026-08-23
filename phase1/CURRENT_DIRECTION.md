@@ -13,6 +13,29 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FF. 2026-08-24 task-relative raw-gap critic 仅冻结 train/dev 资格实验；尚未拟合
+
+为检验 official-five-decimal raw grade 除了 truth support 外能否改善 critic 训练，新增一个严格限定的
+retrospective dev-only 资格实验。固定 component-clean train/dev 为 4,689/551 pairs、28/25 tasks、127/41
+comparison components、1,473/246 released parent/groups；结果前 structure-only 审计确认 pair/endpoint overlap=0，
+每个 task 的 train gap Q75 严格为正，outer test/future truth/GPU/API/model fit=`未打开/未打开/0/0/0`。
+
+唯一 primary candidate 是 task-relative `gap_weighted_bt`：权重先按 train-only task Q75 标度并 clip 到 `[0.25,4]`，
+再 task 内均值归一为 1，避免把 task 总质量变化混入 gap 强度。除同特征同训练行 `binary_bt` 外，另设
+`gap_permuted_bt`：保留每 task 完全相同的权重 multiset，但按 outcome-independent hash 排序循环置换 pair↔weight，
+用来排除任意非均匀加权/正则化解释；`gap_ridge` 只作 non-rescuing diagnostic。primary 聚合固定为
+pair→released parent/group→task；只有 true-gap 对 binary 的 delta≥+0.015 且 CI/LOTO/正 task 门全过，并且对
+permuted control 的 delta>0 且 CI/LOTO/正 task 门也全过，才可申请另名 future prediction escrow。当前 dev baseline
+已经看过，故即使 PASS 也不称 frozen/future confirmation、方法首创、search utility 或 neural RM 改善；失败后禁止同池
+改 Q75/clip/阈值/超参。graded feedback、preference intensity、adaptive margins 与数据加权已有直接先例，本线不申
+“首次利用分差”。机器合同与结果前记录：
+
+置换本身的 fit 前审计确认 28-task 权重 multiset 全部精确不变，全局原/置换权重 Pearson=
+`0.0001798458547192397`、task median Pearson=`-0.031632580629732544`，model fit 仍为 0。
+
+- `phase1/critic_gap_aware_qualification_v1.json`；
+- `phase1/实验记录/2026-08-24/GapAwareCritic_TrainDev资格实验_结果前冻结.md`。
+
 ## 0FE. 2026-08-24 future component-breadth prediction/evaluation escrow 已 exact-commit 冻结；效果未知
 
 旧等 pair 预算 breadth 仍是 `RETROSPECTIVE_DEV_COMPONENT_BREADTH_NO_UNLOCK`：accuracy 点效应虽为

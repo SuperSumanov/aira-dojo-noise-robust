@@ -1,0 +1,159 @@
+{
+  "claim_boundary": {
+    "allowed_if_primary_passes": "On the fixed component-clean retrospective train/dev split, task-relative raw-gap weighting improves parent-then-task macro sibling-ranking accuracy over both the otherwise identical binary Bradley-Terry TF-IDF critic and an exact-within-task-weight-multiset hash-permuted control, qualifying a separately named future-only prediction escrow.",
+    "dev_metrics_known_before_freeze": true,
+    "evidence_level": "retrospective_dev_qualification_only",
+    "forbidden": [
+      "method_novelty",
+      "frozen_test_confirmation",
+      "future_confirmation",
+      "neural_reward_model_improvement",
+      "search_utility",
+      "live_search_speedup",
+      "state_of_the_art_critic",
+      "subgroup_rescue"
+    ],
+    "gap_ridge_may_rescue_primary": false,
+    "known_binary_dev_pair_micro_accuracy": 0.604355716878403,
+    "known_binary_dev_task_macro_pair_accuracy": 0.5643959081886237
+  },
+  "evaluation": {
+    "bootstrap": {
+      "cluster": "task",
+      "quantile_method": "linear_type7",
+      "replicates": 20000,
+      "seed": 20260901
+    },
+    "credit": {
+      "negative_margin": 0.0,
+      "positive_margin": 1.0,
+      "zero_margin": 0.5
+    },
+    "descriptive_secondary": [
+      "task_macro_parent_macro_task_relative_gap_weighted_accuracy",
+      "pair_micro_accuracy",
+      "per_task_delta",
+      "gap_ridge_metrics"
+    ],
+    "inference_order": [
+      "average pair credits within the logged decision parent/group",
+      "average logged decision-parent/group credits within task",
+      "average tasks equally",
+      "paired task bootstrap and leave-one-task-out"
+    ],
+    "primary_contrasts": [
+      "gap_weighted_bt_minus_binary_bt",
+      "gap_weighted_bt_minus_gap_permuted_bt"
+    ],
+    "primary_estimand": "dev task-macro logged-parent/group-macro unweighted pair accuracy differences; Improve parents are physical lineage parents, while cross-run Draft groups retain their released parent/group identity",
+    "primary_gap_information_control_gate": {
+      "bootstrap_ci95_low_gt": 0.0,
+      "leave_one_task_out_min_gt": 0.0,
+      "point_delta_gt": 0.0,
+      "tasks_with_positive_delta_fraction_gte": 0.6
+    },
+    "primary_positive_gate": {
+      "bootstrap_ci95_low_gt": 0.0,
+      "leave_one_task_out_min_gt": 0.0,
+      "point_delta_gte": 0.015,
+      "tasks_with_positive_delta_fraction_gte": 0.6
+    },
+    "support_gate": {
+      "dev_parents_minimum": 200,
+      "dev_tasks_minimum": 20,
+      "dominant_task_parent_share_maximum": 0.2,
+      "train_dev_endpoint_overlap": 0,
+      "train_dev_pair_overlap": 0
+    }
+  },
+  "inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "path": "/research/d7/spc/yzyang4/worktrees/senior_augmented_92a9651_nosmudge/data/augmented_mle_critic/augmented_cards_current.json",
+      "permitted_fields_for_needed_endpoints": [
+        "id",
+        "code",
+        "run_id",
+        "task.name",
+        "client",
+        "hardware",
+        "time_limit",
+        "execution_timeout"
+      ],
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "dev": {
+      "bytes": 376635,
+      "rows": 551,
+      "sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4"
+    },
+    "train": {
+      "bytes": 3208089,
+      "rows": 4689,
+      "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+    }
+  },
+  "models": {
+    "binary_bt": {
+      "fit": "mirrored logistic regression with hard labels",
+      "role": "fixed baseline"
+    },
+    "gap_ridge": {
+      "alpha": 1.0,
+      "fit": "mirrored sparse ridge without intercept",
+      "role": "non-rescuing mechanistic diagnostic",
+      "solver": "lsqr",
+      "target": "signed log1p(gap_raw / train-task-q75)"
+    },
+    "gap_permuted_bt": {
+      "fit": "mirrored logistic regression using the exact gap_weighted_bt weight multiset within each task after an orientation-independent hash-ordered cyclic shift by one row",
+      "permutation_seed": 20260902,
+      "role": "mandatory gap-information negative control; cannot be omitted or used as a rescue"
+    },
+    "gap_weighted_bt": {
+      "fit": "mirrored logistic regression with hard labels and task-mass-preserving sample weights",
+      "role": "sole primary candidate",
+      "sample_weight": "clip(gap_raw / train-task-q75, 0.25, 4.0), then divide by the mean clipped weight within each train task"
+    },
+    "shared": {
+      "code_prefix_chars": 20000,
+      "lr_C": 0.5,
+      "lr_max_iter": 1500,
+      "lr_random_state": 0,
+      "lr_solver": "lbfgs",
+      "margin_excludes_intercept": true,
+      "tfidf_analyzer": "char_wb",
+      "tfidf_dtype": "float64",
+      "tfidf_fit_population": "unique train endpoints only",
+      "tfidf_max_features": 30000,
+      "tfidf_min_df": 3,
+      "tfidf_ngram_range": [
+        3,
+        5
+      ],
+      "tfidf_sublinear_tf": true
+    }
+  },
+  "protocol": "critic-gap-aware-train-dev-qualification-v1",
+  "resources": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "maximum_unique_cpu_fits_per_implementation": 4,
+    "threads_per_fit": 1
+  },
+  "status": "PREREGISTERED_BEFORE_ANY_GAP_AWARE_MODEL_FIT",
+  "stop_rules": [
+    "Outer held-out test pair files and all prospective or score-channel truth paths are absent from every CLI and launcher.",
+    "No hyperparameter, transform, task pool, threshold, arm, metric, bootstrap unit, or claim may change after the first real model fit.",
+    "The true-gap arm must beat both binary_bt and gap_permuted_bt; gap_ridge, weighted secondary metric, Draft/Improve subgroup, or micro accuracy cannot rescue either failed contrast.",
+    "A pass only authorizes drafting a separately named pre-truth future prediction escrow; it does not alter any existing frozen future primary or authorize GPU replay.",
+    "A fail closes this exact gap-aware qualification on the current dev pool; no same-pool tuning or threshold search is allowed."
+  ],
+  "task_scale": {
+    "definition": "numpy linear/type-7 0.75 quantile of positive gap_raw within each train task",
+    "dev_only_task_policy": "fail closed",
+    "minimum": 0.0,
+    "source": "train rows only"
+  }
+}

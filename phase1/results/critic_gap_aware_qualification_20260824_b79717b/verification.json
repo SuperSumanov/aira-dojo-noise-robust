@@ -1,0 +1,44 @@
+{
+  "artifact_manifest_sha256": "f61505ab2058b400bf618d0debcf6420bcafb71bb02aaa906e1d78212670c3ea",
+  "contract_sha256": "f411c0f732df12158e8c683ddbb94cea107d7673b40b8305ee5b83c8219ef4f8",
+  "inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "dev": {
+      "bytes": 376635,
+      "sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4"
+    },
+    "train": {
+      "bytes": 3208089,
+      "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+    }
+  },
+  "maximum_numeric_difference": 0.0,
+  "primary_all_pass": false,
+  "primary_contrast_all_pass": {
+    "gap_weighted_minus_binary": false,
+    "gap_weighted_minus_gap_permuted": false
+  },
+  "primary_point_deltas": {
+    "gap_weighted_minus_binary": 0.01863809409732331,
+    "gap_weighted_minus_gap_permuted": -0.0035816185092047113
+  },
+  "protocol": "verify-critic-gap-aware-train-dev-qualification-v1-v1",
+  "rows": {
+    "arm_metrics": 4,
+    "per_pair": 551,
+    "task_metrics": 100,
+    "task_scales": 28
+  },
+  "source_open_attestation": {
+    "heldout_test_pairs": false,
+    "prospective_vault": false,
+    "score_channel_truth": false,
+    "test_predictions": false
+  },
+  "status": "INDEPENDENT_SOURCE_REFIT_PASS",
+  "summary_status": "RETROSPECTIVE_DEV_GAP_AWARE_NO_UNLOCK",
+  "unique_cpu_critic_refits": 4
+}

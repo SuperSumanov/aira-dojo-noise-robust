@@ -1,0 +1,84 @@
+{
+  "correction": "V1 incorrectly required every released pair/group to be a physical-run sibling. The frozen estimand explicitly treats Improve as physical lineage siblings and Draft as synthetic cross-run released groups; V2 audits those roles separately.",
+  "inputs": {
+    "/research/d7/spc/yzyang4/critic-decision-component-prep/305355e-baf6bdd-v1/producer_1/dev.jsonl": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4",
+    "/research/d7/spc/yzyang4/critic-decision-component-prep/305355e-baf6bdd-v1/producer_1/train.jsonl": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e",
+    "/research/d7/spc/yzyang4/decision-semantic-exact-config-support/21a4d4e-baf6bdd-v2/producer_1/eligible_draft.jsonl": "3ca77a18e224cacbb7f52121d6e8c2b66f17298c68dd06fbc42a14a238ad05b9",
+    "/research/d7/spc/yzyang4/decision-semantic-exact-config-support/21a4d4e-baf6bdd-v2/producer_1/eligible_improve.jsonl": "7aca481afda5317fe78a0ad52fc7488fceff7fde6531c74ebb718df9e3b6926e",
+    "/research/d7/spc/yzyang4/worktrees/senior_augmented_92a9651_nosmudge/data/augmented_mle_critic/augmented_cards_current.json": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+  },
+  "protocol": "gap-aware-semantic-structure-postaudit-v2",
+  "splits": {
+    "dev": {
+      "all_pass": true,
+      "by_semantic": {
+        "Draft": {
+          "endpoint_same_physical_run": 81,
+          "endpoint_task_match": 294,
+          "parent_cards_present": 294,
+          "present_parent_same_physical_run": 27,
+          "released_groups_spanning_multiple_physical_runs": 22,
+          "released_parent_groups": 34,
+          "rows": 294
+        },
+        "Improve": {
+          "endpoint_same_physical_run": 257,
+          "endpoint_task_match": 257,
+          "parent_cards_present": 257,
+          "present_parent_same_physical_run": 257,
+          "released_groups_spanning_multiple_physical_runs": 0,
+          "released_parent_groups": 212,
+          "rows": 257
+        }
+      },
+      "rows": 551,
+      "semantic_counts": {
+        "Draft": 294,
+        "Improve": 257
+      }
+    },
+    "train": {
+      "all_pass": true,
+      "by_semantic": {
+        "Draft": {
+          "endpoint_same_physical_run": 506,
+          "endpoint_task_match": 2902,
+          "parent_cards_present": 2902,
+          "present_parent_same_physical_run": 114,
+          "released_groups_spanning_multiple_physical_runs": 104,
+          "released_parent_groups": 109,
+          "rows": 2902
+        },
+        "Improve": {
+          "endpoint_same_physical_run": 1787,
+          "endpoint_task_match": 1787,
+          "parent_cards_present": 1787,
+          "present_parent_same_physical_run": 1787,
+          "released_groups_spanning_multiple_physical_runs": 0,
+          "released_parent_groups": 1364,
+          "rows": 1787
+        }
+      },
+      "rows": 4689,
+      "semantic_counts": {
+        "Draft": 2902,
+        "Improve": 1787
+      }
+    }
+  },
+  "status": "INDEPENDENT_SEMANTIC_STRUCTURE_PASS",
+  "train_dev_parent_context_overlap": {
+    "Draft": {
+      "dev_rows": 29,
+      "shared_parent_groups": 8,
+      "train_rows": 139
+    },
+    "Improve": {
+      "dev_rows": 0,
+      "shared_parent_groups": 0,
+      "train_rows": 0
+    },
+    "claim_boundary": "The dev estimand is component-clean but not Draft-parent-novel; the critic does not use parent identity as a feature. Improve remains parent-context-disjoint.",
+    "expected_known_structure_pass": true
+  }
+}

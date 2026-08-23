@@ -1,5 +1,9 @@
 # Gap-aware critic：train/dev 资格实验（结果前冻结）
 
+> 结果更新：固定协议已在工程修复 commit `b79717b3956a1b546943708a4c62e65841ffb663` 上正式完成，裁决为
+> `RETROSPECTIVE_DEV_GAP_AWARE_NO_UNLOCK`。本文件保留结果前合同；正式结果与完整失败链见
+> `GapAwareCritic_TrainDev资格实验_正式裁决.md`。
+
 ## 裁决边界
 
 本实验只回答一个窄问题：在完全相同的 component-clean train/dev、代码特征与线性 critic 下，

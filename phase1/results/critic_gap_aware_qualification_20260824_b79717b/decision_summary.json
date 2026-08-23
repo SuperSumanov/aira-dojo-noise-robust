@@ -1,0 +1,233 @@
+{
+  "arm_metrics": {
+    "binary_bt": {
+      "pair_micro_accuracy": 0.604355716878403,
+      "pairs": 551,
+      "parents": 246,
+      "prediction_ties": 0,
+      "task_macro_parent_macro_accuracy": 0.5102786098859761,
+      "task_macro_parent_macro_relative_gap_weighted_accuracy": 0.5136363672311228,
+      "tasks": 25
+    },
+    "gap_permuted_bt": {
+      "pair_micro_accuracy": 0.6206896551724138,
+      "pairs": 551,
+      "parents": 246,
+      "prediction_ties": 0,
+      "task_macro_parent_macro_accuracy": 0.5324983224925042,
+      "task_macro_parent_macro_relative_gap_weighted_accuracy": 0.535648330817269,
+      "tasks": 25
+    },
+    "gap_ridge": {
+      "pair_micro_accuracy": 0.5753176043557169,
+      "pairs": 551,
+      "parents": 246,
+      "prediction_ties": 0,
+      "task_macro_parent_macro_accuracy": 0.5345622370769056,
+      "task_macro_parent_macro_relative_gap_weighted_accuracy": 0.5351261048701828,
+      "tasks": 25
+    },
+    "gap_weighted_bt": {
+      "pair_micro_accuracy": 0.6188747731397459,
+      "pairs": 551,
+      "parents": 246,
+      "prediction_ties": 0,
+      "task_macro_parent_macro_accuracy": 0.5289167039832994,
+      "task_macro_parent_macro_relative_gap_weighted_accuracy": 0.5360874812396559,
+      "tasks": 25
+    }
+  },
+  "card_inventory": {
+    "cards": 31742,
+    "needed_cards": 4721,
+    "run_groups": 676
+  },
+  "claim_boundary": {
+    "allowed_if_primary_passes": "On the fixed component-clean retrospective train/dev split, task-relative raw-gap weighting improves parent-then-task macro sibling-ranking accuracy over both the otherwise identical binary Bradley-Terry TF-IDF critic and an exact-within-task-weight-multiset hash-permuted control, qualifying a separately named future-only prediction escrow.",
+    "dev_metrics_known_before_freeze": true,
+    "evidence_level": "retrospective_dev_qualification_only",
+    "forbidden": [
+      "method_novelty",
+      "frozen_test_confirmation",
+      "future_confirmation",
+      "neural_reward_model_improvement",
+      "search_utility",
+      "live_search_speedup",
+      "state_of_the_art_critic",
+      "subgroup_rescue"
+    ],
+    "gap_ridge_may_rescue_primary": false,
+    "known_binary_dev_pair_micro_accuracy": 0.604355716878403,
+    "known_binary_dev_task_macro_pair_accuracy": 0.5643959081886237
+  },
+  "contract_sha256": "f411c0f732df12158e8c683ddbb94cea107d7673b40b8305ee5b83c8219ef4f8",
+  "fit_diagnostics": {
+    "anti_symmetry_max_abs": {
+      "binary_bt": 0.0,
+      "gap_permuted_bt": 0.0,
+      "gap_ridge": 0.0,
+      "gap_weighted_bt": 0.0
+    },
+    "fits": 4,
+    "permuted_weight_equal_value_fraction": 0.10961825549157603,
+    "permuted_weight_multiset_exact": true,
+    "tfidf_features": 30000,
+    "tfidf_train_fit_endpoints": 4095,
+    "train_weight_max": 6.048546093061763,
+    "train_weight_mean": 1.0,
+    "train_weight_min": 0.2035844972289221,
+    "transformed_endpoints": 4721
+  },
+  "gap_ridge_may_rescue_primary": false,
+  "inputs": {
+    "cards_sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb",
+    "dev_sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4",
+    "train_sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+  },
+  "integrity": {
+    "components": {
+      "dev": 41,
+      "train": 127
+    },
+    "endpoints": {
+      "dev": 626,
+      "train": 4095
+    },
+    "overlap": {
+      "components": 0,
+      "endpoints": 0,
+      "pairs": 0,
+      "physical_runs": 0
+    },
+    "pairs": {
+      "dev": 551,
+      "train": 4689
+    },
+    "physical_runs": {
+      "dev": 81,
+      "train": 430
+    }
+  },
+  "primary": {
+    "all_pass": false,
+    "gap_weighted_minus_binary": {
+      "all_pass": false,
+      "candidate": "gap_weighted_bt",
+      "ci_gate_pass": false,
+      "comparator": "binary_bt",
+      "leave_one_task_out": {
+        "aptos2019-blindness-detection": 0.019414681351378447,
+        "chaii-hindi-and-tamil-question-answering": 0.019414681351378447,
+        "denoising-dirty-documents": 0.01575167768837479,
+        "dog-breed-identification": 0.015475287411984512,
+        "dogs-vs-cats-redux-kernels-edition": 0.018025792462489563,
+        "google-quest-challenge": 0.02186566174353532,
+        "histopathologic-cancer-detection": 0.019414681351378457,
+        "kuzushiji-recognition": 0.0263591257958229,
+        "leaf-classification": 0.01524801468471179,
+        "learning-agency-lab-automated-essay-scoring-2": 0.0263591257958229,
+        "mlsp-2013-birds": 0.024155600154797268,
+        "new-york-city-taxi-fare-prediction": 0.008998014684711786,
+        "nomad2018-predict-transparent-conductors": 0.015016533203230304,
+        "petfinder-pawpularity-score": 0.01983134801804512,
+        "random-acts-of-pizza": 0.018373014684711784,
+        "ranzcr-clip-catheter-line-classification": 0.015153317715014818,
+        "spooky-author-identification": 0.024222373659070758,
+        "tabular-playground-series-dec-2021": 0.01891864960534671,
+        "tabular-playground-series-may-2022": 0.0070690023390327685,
+        "text-normalization-challenge-english-language": 0.012470236906934004,
+        "text-normalization-challenge-russian-language": 0.023134919446616543,
+        "tweet-sentiment-extraction": 0.019414681351378447,
+        "us-patent-phrase-to-phrase-matching": 0.02635912579582289,
+        "ventilator-pressure-prediction": 0.01609212388011408,
+        "whale-categorization-playground": 0.019414681351378447
+      },
+      "leave_one_task_out_min": 0.0070690023390327685,
+      "loto_gate_pass": true,
+      "point_delta": 0.01863809409732331,
+      "point_gate_pass": true,
+      "positive_task_fraction_gate_pass": false,
+      "task_bootstrap_ci95": [
+        -0.02676049343489505,
+        0.066027790932867
+      ],
+      "tasks_with_negative_delta": 8,
+      "tasks_with_positive_delta": 12,
+      "tasks_with_positive_delta_fraction": 0.48,
+      "tasks_with_zero_delta": 5
+    },
+    "gap_weighted_minus_gap_permuted": {
+      "all_pass": false,
+      "candidate": "gap_weighted_bt",
+      "ci_gate_pass": false,
+      "comparator": "gap_permuted_bt",
+      "leave_one_task_out": {
+        "aptos2019-blindness-detection": -0.00373085261375491,
+        "chaii-hindi-and-tamil-question-answering": -0.010675297058199354,
+        "denoising-dirty-documents": -0.007393856276758569,
+        "dog-breed-identification": -0.007670246553148852,
+        "dogs-vs-cats-redux-kernels-edition": -0.0009530748359771352,
+        "google-quest-challenge": -0.003730852613754908,
+        "histopathologic-cancer-detection": -0.003730852613754908,
+        "kuzushiji-recognition": 0.003213591830689535,
+        "leaf-classification": 0.0004358140529117556,
+        "learning-agency-lab-automated-essay-scoring-2": 0.002750628867726574,
+        "mlsp-2013-birds": 0.0018113482409459504,
+        "new-york-city-taxi-fare-prediction": -0.003730852613754908,
+        "nomad2018-predict-transparent-conductors": -2.714891005120799e-05,
+        "petfinder-pawpularity-score": -0.00373085261375491,
+        "random-acts-of-pizza": -0.00373085261375491,
+        "ranzcr-clip-catheter-line-classification": -0.005908882916785212,
+        "spooky-author-identification": 8.46362556132981e-06,
+        "tabular-playground-series-dec-2021": -0.007533762666664959,
+        "tabular-playground-series-may-2022": -0.013761716811285777,
+        "text-normalization-challenge-english-language": -0.010675297058199355,
+        "text-normalization-challenge-russian-language": -0.0044749002328025285,
+        "tweet-sentiment-extraction": -0.005814185947088238,
+        "us-patent-phrase-to-phrase-matching": 0.004949702941800645,
+        "ventilator-pressure-prediction": -0.0034913890122223387,
+        "whale-categorization-playground": -0.001945138328040619
+      },
+      "leave_one_task_out_min": -0.013761716811285777,
+      "loto_gate_pass": false,
+      "point_delta": -0.0035816185092047113,
+      "point_gate_pass": false,
+      "positive_task_fraction_gate_pass": false,
+      "task_bootstrap_ci95": [
+        -0.04433344970163935,
+        0.0395666585234688
+      ],
+      "tasks_with_negative_delta": 10,
+      "tasks_with_positive_delta": 10,
+      "tasks_with_positive_delta_fraction": 0.4,
+      "tasks_with_zero_delta": 5
+    },
+    "support": {
+      "all_pass": true,
+      "dev_parents": 246,
+      "dev_parents_pass": true,
+      "dev_tasks": 25,
+      "dev_tasks_pass": true,
+      "dominant_task_parent_share": 0.0975609756097561,
+      "dominant_task_parent_share_pass": true,
+      "train_dev_endpoint_overlap_pass": true,
+      "train_dev_pair_overlap_pass": true
+    }
+  },
+  "protocol": "critic-gap-aware-train-dev-qualification-v1",
+  "resources": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "cpu_fits": 4,
+    "future_truth_path_accepted_by_cli": false,
+    "gpu_jobs": 0,
+    "outer_test_pair_path_accepted_by_cli": false
+  },
+  "status": "RETROSPECTIVE_DEV_GAP_AWARE_NO_UNLOCK",
+  "train_task_scale": {
+    "maximum": 3.06031,
+    "median": 0.18993,
+    "minimum": 0.037995,
+    "tasks": 28
+  }
+}

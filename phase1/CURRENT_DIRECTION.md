@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0FF. 2026-08-24 task-relative raw-gap critic 仅冻结 train/dev 资格实验；尚未拟合
+## 0FF. 2026-08-24 task-relative raw-gap critic 正式 NO_UNLOCK；同池方法线关闭
 
 为检验 official-five-decimal raw grade 除了 truth support 外能否改善 critic 训练，新增一个严格限定的
 retrospective dev-only 资格实验。固定 component-clean train/dev 为 4,689/551 pairs、28/25 tasks、127/41
@@ -41,6 +41,27 @@ formal 在任何真实 fit 前因 producer/verifier 把合法 dev `intask_split=
 失败 root `critic-gap-aware-qualification/959764b-v1` 原样保留；没有 producer artifact、Cards JSON parse、模型预测
 或 dev aggregate，真实 fit/GPU/API/future truth=`0/0/0/未打开`。只允许修正 role-specific schema 与 synthetic
 fixture，机器合同、输入、臂、门槛和 estimand 不变；新 commit/new root 必须从头运行。
+
+唯一工程修复 commit=`b79717b3956a1b546943708a4c62e65841ffb663` 已在 fresh no-smudge worktree 从头正式运行。
+focused/full=`20/955 passed`；producer×2 与不 import producer 的 source-refit verifier×2 均逐字节一致，最大数值差=0，
+正式 post-audit 全部 SHA 与 credential 门通过。支持门为 25 tasks、246 released parent/groups、dominant parent share=
+`0.0975609756097561`，全部通过。
+
+科学裁决为 **`RETROSPECTIVE_DEV_GAP_AWARE_NO_UNLOCK`**。headline parent→task macro accuracy 为 binary=
+`0.5102786098859761`、gap-weighted=`0.5289167039832994`、gap-permuted=`0.5324983224925042`。true-gap 相对
+binary 点差虽为 `+0.01863809409732331`，但 task-bootstrap CI=`[-0.02676049343489505,0.066027790932867]`，
+正任务仅 12/25=`0.48`；相对置换负控反而为 `-0.0035816185092047113`，CI=
+`[-0.04433344970163935,0.0395666585234688]`，LOTO 最小值也为负。因此不能把改善归因于 gap 信息，ridge、micro、
+gap-weighted utility 或 Draft/Improve subgroup 均不得 rescue；本 dev 上禁止再调 Q75/clip/阈值/超参，也不建立 future
+gap-aware escrow。
+
+postflight 还保留了一次错误假设审计：v1 错把所有 released groups 都要求为 physical siblings，按预期失败；语义分层
+v2 独立确认 Improve train/dev=`1787/257` 全部是同-run lineage siblings，而 Draft=`2902/294` 是既有 synthetic
+cross-run released groups。train/dev 共享 8 个 Draft parent groups（139/29 rows），Improve 共享为 0；因此本结果只能称
+component-clean mixed estimand，不能称 Draft-parent-novel。完整证据见：
+
+- `phase1/实验记录/2026-08-24/GapAwareCritic_TrainDev资格实验_正式裁决.md`；
+- `phase1/results/critic_gap_aware_qualification_20260824_b79717b/`。
 
 ## 0FE. 2026-08-24 future component-breadth prediction/evaluation escrow 已 exact-commit 冻结；效果未知
 

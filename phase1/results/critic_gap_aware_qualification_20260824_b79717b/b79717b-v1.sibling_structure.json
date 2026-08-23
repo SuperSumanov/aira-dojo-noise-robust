@@ -1,0 +1,33 @@
+{
+  "inputs": {
+    "cards_sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb",
+    "dev_sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4",
+    "train_sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+  },
+  "protocol": "gap-aware-sibling-structure-postaudit-v1",
+  "splits": {
+    "dev": {
+      "all_pass": false,
+      "endpoint_same_physical_run": 338,
+      "endpoint_task_match": 551,
+      "missing_endpoints": 0,
+      "parent_cards_present": 551,
+      "present_parent_same_physical_run": 284,
+      "released_groups_spanning_multiple_physical_runs": 22,
+      "released_parent_groups": 246,
+      "rows": 551
+    },
+    "train": {
+      "all_pass": false,
+      "endpoint_same_physical_run": 2293,
+      "endpoint_task_match": 4689,
+      "missing_endpoints": 0,
+      "parent_cards_present": 4689,
+      "present_parent_same_physical_run": 1901,
+      "released_groups_spanning_multiple_physical_runs": 104,
+      "released_parent_groups": 1473,
+      "rows": 4689
+    }
+  },
+  "status": "INDEPENDENT_SIBLING_STRUCTURE_FAIL"
+}

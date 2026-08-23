@@ -9,7 +9,7 @@ fi
 
 # Deliberately inert until a release-only follow-up commit binds the reviewed
 # scientific commit.  This prevents any pre-review execution.
-control_commit=0000000000000000000000000000000000000000
+control_commit=e1093d8007449954c4561611c2ff381c55f7abe8
 if [[ ${control_commit} == 0000000000000000000000000000000000000000 ]]; then
   echo 'runner is not release-bound to an approved scientific commit' >&2
   exit 69

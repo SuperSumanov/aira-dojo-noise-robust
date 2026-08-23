@@ -7,7 +7,7 @@ if [[ $# -ne 0 ]]; then
   exit 64
 fi
 
-commit=0000000000000000000000000000000000000000
+commit=e1093d8007449954c4561611c2ff381c55f7abe8
 if [[ ${commit} == 0000000000000000000000000000000000000000 ]]; then
   echo 'truth runner is not release-bound to an approved scientific commit' >&2
   exit 69

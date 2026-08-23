@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0FC. 2026-08-23 coarse-label/tie 直接先例关闭理论首创；MLE transform audit 仍是 D&B 正资产
+
+新增一手防 scoop 核查确认三条直接边界：ICML 2025 *Reward Modeling with Ordinal Feedback* 已从理论与实验说明
+粗粒度 binary feedback 会丢失 fine-grained/tie 信息；ACL 2023 *Ties Matter* 已系统证明 tie 处理会改变 metric
+meta-evaluation 并提出 tie-aware pairwise accuracy/calibration；ALT 2026 *Ranking Items from Discrete Ratings* 更直接把粗
+ratings 表述为有序 bins、bin 内 ordering 不可辨识。因此“clipping/离散化损失排序”“ties 影响 rank metric”“细反馈
+更有信息”都不能申理论、metric 或 RM 方法首创。
+
+可守住的正贡献收紧为 MLE-specific 实证与 release contract：旧真实 search-tree cohort 在结果前双实现审计中，
+official-five-decimal raw grade 为 157/158 non-tied，而我方 medal-threshold `y_norm` 仅 10/158 non-tied，形成
+147 parents / 16 tasks 的 transform-induced alias；这不是官方 grader 缺陷，也不是整个 v11 critic label 污染。
+future 双 truth 继续按同一 selected parents 并列报告 raw/normalized status，绝不以 raw 覆盖 normalized。当前定向检索
+仍未发现直接同时覆盖 MLE-agent physical siblings、external-vs-self-report channel、structural→truth→overlap 漏斗和
+temporal 双 truth closure 的工作；该交集可作 D&B 测量/完整性贡献，不作 first-ever 理论或算法主张。详情更新于：
+
+- `phase1/实验记录/2026-08-23/RawGrade_MeasurementContract_直接相关工作边界.md`。
+
 ## 0FB. 2026-08-23 双 truth 闭合交付链已 exact-commit 验证；production truth 仍未打开
 
 为避免 300-run identity cohort 闭合后漏跑 raw-grade 并行估计量，新增**仅手动触发**的 CPU runner，固定执行：

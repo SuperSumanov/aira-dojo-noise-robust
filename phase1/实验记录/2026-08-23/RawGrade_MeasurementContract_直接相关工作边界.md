@@ -33,6 +33,19 @@ score-channel 机制实验另行使用的 `cards.py::normalize_graded` truth-sup
 
 ## 3. 防 scoop 裁决
 
+三项更直接的一手先例进一步关闭宽主张：
+
+- [Reward Modeling with Ordinal Feedback, ICML 2025](https://openreview.net/forum?id=2JRrmzPQSc) 已把 binary/tie
+  feedback 视为粗粒度信息系统，并给出 fine-grained ordinal feedback 改善复杂度与 in-/out-of-distribution RM 学习的
+  理论和实验；因此“更细 label 更有信息”不是我方发现。
+- [Ties Matter, ACL 2023](https://arxiv.org/abs/2305.14324) 已系统说明 tie 处理会改变 metric meta-evaluation，提出
+  tie-aware pairwise accuracy 与 tie calibration；因此 tie-aware metric 或“tie 会扭曲排名评价”也不是新颖点。其目标
+  是公平比较会/不会预测 tie 的 metrics，而我方问题是 truth transform 无意抹掉已有 raw ordering，方向不同但足以关闭
+  宽泛首创。
+- [Ranking Items from Discrete Ratings, ALT 2026](https://proceedings.mlr.press/v313/villemaud26a.html) 已把 coarse
+  ratings 形式化为有序 bins、bin 内 item 仍不可排序，并分析恢复 fine-grained ranking 的额外样本复杂度；因此
+  “coarsening 产生不可辨识区间”的理论 novelty 同样关闭。
+
 本轮定向检索没有找到一篇直接同时覆盖以下组合的工作：MLE-agent 真实 search-tree sibling sets、外部
 `submission.csv` evaluator vs stdout self-report、先物化 structural/truth/channel-overlap 漏斗、并在 temporal closure 后
 用 raw-vs-clipped 双 truth contract 决定是否值得 replay。这个交集仍可作为数据集/测量协议贡献。

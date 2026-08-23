@@ -36,6 +36,12 @@ permuted control 的 delta>0 且 CI/LOTO/正 task 门也全过，才可申请另
 - `phase1/critic_gap_aware_qualification_v1.json`；
 - `phase1/实验记录/2026-08-24/GapAwareCritic_TrainDev资格实验_结果前冻结.md`。
 
+首次冻结 commit `959764b22880d797b08a48f70654ff320b2b7d54` 的 precommit focused/full 为 20/955；fresh
+formal 在任何真实 fit 前因 producer/verifier 把合法 dev `intask_split="dev"` 误断言成 `"train"` 而 fail-closed。
+失败 root `critic-gap-aware-qualification/959764b-v1` 原样保留；没有 producer artifact、Cards JSON parse、模型预测
+或 dev aggregate，真实 fit/GPU/API/future truth=`0/0/0/未打开`。只允许修正 role-specific schema 与 synthetic
+fixture，机器合同、输入、臂、门槛和 estimand 不变；新 commit/new root 必须从头运行。
+
 ## 0FE. 2026-08-24 future component-breadth prediction/evaluation escrow 已 exact-commit 冻结；效果未知
 
 旧等 pair 预算 breadth 仍是 `RETROSPECTIVE_DEV_COMPONENT_BREADTH_NO_UNLOCK`：accuracy 点效应虽为

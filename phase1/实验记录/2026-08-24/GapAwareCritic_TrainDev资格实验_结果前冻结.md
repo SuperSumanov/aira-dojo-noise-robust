@@ -67,3 +67,17 @@ Draft/Improve subgroup 或 `gap_ridge` 都不能 rescue。失败后禁止在同�
 
 机器合同：`phase1/critic_gap_aware_qualification_v1.json`。资源上限为每实现 4 个单线程 CPU fit，
 GPU/API/base-LLM update=`0/0/0`。
+
+## 首次 formal 工程失败（效果未读）
+
+结果前冻结 commit `959764b22880d797b08a48f70654ff320b2b7d54` 的隔离预提交测试为
+20/20 focused、955/955 full。fresh no-smudge formal 在 input hash 和 20/955 测试后、第一次 fit 前
+fail-closed：producer/verifier 都把 dev 的合法 `intask_split="dev"` 错写为必须等于 `"train"`，因此
+`read_pairs(dev)` 立即报 `invalid component-clean receipt in dev`。失败 root
+`/research/d7/spc/yzyang4/critic-gap-aware-qualification/959764b-v1` 原样保留。
+
+这次尝试没有创建 producer artifact，没有 Cards JSON parse、TF-IDF fit、四臂预测或 dev aggregate；runner 的
+输入身份步骤仅逐字节 hash 了固定 Cards/train/dev/contract。outer test/future truth/API/GPU/base-LLM update 均为
+`未打开/未打开/0/0/0`，真实 critic fit=0。唯一允许修复是让 train/dev 分别要求自身 role，并把 synthetic dev
+fixture 改为真实 schema；合同、输入、四臂、权重、阈值、聚合、bootstrap 和 claim 全部不变。修复后必须新
+commit、新 fresh worktree、新 output root 从头运行。

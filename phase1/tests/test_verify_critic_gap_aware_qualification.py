@@ -49,6 +49,7 @@ def pair_row(
     worse: str,
     gap: float,
     component_seed: str,
+    split: str = "train",
 ) -> dict[str, Any]:
     return {
         "task": task,
@@ -57,7 +58,7 @@ def pair_row(
         "worse": worse,
         "gap_raw": gap,
         "pair_component_id": hashlib.sha256(component_seed.encode("utf-8")).hexdigest(),
-        "intask_split": "train",
+        "intask_split": split,
         "outer_intask_split": "train",
         "train_dev_protocol": "pair-graph-component-train-dev-split-v1",
         "train_dev_seed": 20260821,
@@ -166,6 +167,7 @@ def synthetic_case(root: Path) -> dict[str, Any]:
                     worse,
                     float(1 + (pair_index % 4)),
                     f"dev-component-{task_index}-{pair_index}",
+                    split="dev",
                 )
             )
 

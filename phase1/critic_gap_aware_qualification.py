@@ -86,6 +86,8 @@ def pair_id(row: dict[str, Any]) -> str:
 
 def read_pairs(path: Path, expected: dict[str, Any], role: str) -> list[dict[str, Any]]:
     verify_file(path, expected, role)
+    if role not in {"train", "dev"}:
+        raise QualificationError("unknown pair-source role")
     rows: list[dict[str, Any]] = []
     keys: set[tuple[str, str, str, str]] = set()
     for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
@@ -104,7 +106,7 @@ def read_pairs(path: Path, expected: dict[str, Any], role: str) -> list[dict[str
         gap = row.get("gap_raw")
         component = row.get("pair_component_id")
         if (
-            row.get("intask_split") != "train"
+            row.get("intask_split") != role
             or row.get("outer_intask_split") != "train"
             or row.get("train_dev_protocol") != "pair-graph-component-train-dev-split-v1"
             or row.get("train_dev_seed") != 20260821

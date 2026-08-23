@@ -285,6 +285,8 @@ def read_pair_source(
     role: str,
     source: Mapping[str, Mapping[str, Any]],
 ) -> list[dict[str, Any]]:
+    if role not in {"train", "dev"}:
+        raise VerificationError("unknown pair-source role")
     attest_source(path, role, source)
     expected_rows = _source_receipt(source, role)["rows"]
     try:
@@ -309,7 +311,7 @@ def read_pair_source(
         gap = row.get("gap_raw")
         component = row.get("pair_component_id")
         if (
-            row.get("intask_split") != "train"
+            row.get("intask_split") != role
             or row.get("outer_intask_split") != "train"
             or row.get("train_dev_protocol") != "pair-graph-component-train-dev-split-v1"
             or row.get("train_dev_seed") != 20260821

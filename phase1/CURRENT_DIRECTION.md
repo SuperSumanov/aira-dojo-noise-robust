@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EQ. 2026-08-23 clean scaling 的 endpoint-score 交付缺口已闭合；效果资产仍待未来
+
+0EP 契约要求逐 pair better/worse scalar scores，原 one-shot evaluator 只保存 margin，无法认证共享 endpoint
+一致性或 component utility。新增 upstream patch `0004-Emit-endpoint-score-receipts.patch`，SHA-256=
+`237bbffe1130af74527d1a3febcfdcc3330b49a13b785c31039a79a1ac091242`；它只保留同一次前向已计算的两个
+endpoint scores，由二者计算 margin，并在写盘前检查 finite/count/difference，不改模型、输入、推理或 accuracy。
+
+在 senior `ac008af8...` fresh no-smudge worktree 上，0001/2/3/4 顺序 apply-check/apply 全过；新文件 5/5，
+既定 8 个 confirmation 文件 36/36（46.79s），compile/shell/diff 检查通过。整个 senior test 目录的扩大尝试在
+collection 阶段因环境缺 `dojo`/`litellm` 停止，0 tests failed，故不记作完整通过。当前正式状态仍为
+`ENDPOINT_RECEIPT_OVERLAY_READY_EFFECT_ASSETS_PENDING`：没有 future cohort、dev-only checkpoint matrix、逐 pair
+bundle/ledger 时不能生成效果或提交 GPU。证据：
+
+- `phase1/upstream_patches/0004-Emit-endpoint-score-receipts.patch`；
+- `phase1/results/senior_endpoint_score_overlay_20260823_ac008af/`；
+- `phase1/实验记录/2026-08-23/SeniorEndpointScoreOverlay_交付与边界.md`。
+
 ## 0EP. 2026-08-23 clean critic scaling 独立确认接口冻结；checkpoint 方向版本边界纠正
 
 历史 `greater_is_better=false` bug 不再是学长最新代码的活跃阻断：Git history 显示 `d44f4b0`（0820）已把

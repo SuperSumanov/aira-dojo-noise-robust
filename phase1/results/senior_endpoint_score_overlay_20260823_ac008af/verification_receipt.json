@@ -1,0 +1,34 @@
+{
+  "access_attestation": {
+    "api_calls": 0,
+    "future_truth_opened": false,
+    "gpu_jobs": 0,
+    "model_fits": 0
+  },
+  "base_commit": "ac008af8b907d319b694f26b0ba9cf4053b3bf69",
+  "formal_status": "ENDPOINT_RECEIPT_OVERLAY_READY_EFFECT_ASSETS_PENDING",
+  "patches": [
+    "2fd5ca7b38e4277b68c2eb90b42c0f0ce85b8ab0ef687802e68ceeb8f0fc1fe2",
+    "89d7af494e436c4d5a7ed5c4a06e43c4d012cb26c3efd3c1e9f52bf00b3bd641",
+    "a4146bdc6ef3123e3b88a3b909352dd40db3cff992503919d4207c1756313f67",
+    "237bbffe1130af74527d1a3febcfdcc3330b49a13b785c31039a79a1ac091242"
+  ],
+  "protocol": "senior-endpoint-score-overlay-verification-v1",
+  "remote_verification": {
+    "expanded_suite": {
+      "classification": "UNRELATED_ENV_DEPENDENCIES_MISSING_AT_COLLECTION",
+      "missing_modules": [
+        "dojo",
+        "litellm"
+      ],
+      "tests_failed": 0
+    },
+    "focused_files": 8,
+    "focused_seconds": 46.79,
+    "focused_tests_passed": 36,
+    "log": "/research/d7/spc/yzyang4/prospective_decision_v1/endpoint_overlay_ac008af_verify.log",
+    "new_file_seconds": 5.5,
+    "new_file_tests_passed": 5,
+    "worktree": "/research/d7/spc/yzyang4/worktrees/ac008af_endpoint_overlay_20260823"
+  }
+}

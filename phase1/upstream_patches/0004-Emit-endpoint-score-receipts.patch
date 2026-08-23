@@ -1,0 +1,167 @@
+diff --git a/src/mle_critic/src/evaluation/bradley_terry_evaluation.py b/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
+index 68abfbf..e41c92f 100644
+--- a/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
++++ b/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
+@@ -282,24 +282,35 @@ def read_evaluation_pairs(
+ def pair_prediction_records(
+     pairs: Sequence[dict[str, Any]],
+     margins: Sequence[float],
++    endpoint_scores: Sequence[tuple[float, float]],
+     card_runs: dict[str, str],
+ ) -> list[dict[str, Any]]:
+     """Materialize pair-level receipts for paired and cluster-robust inference."""
+-    if len(pairs) != len(margins):
+-        raise ValueError("pair and margin counts differ")
++    if len(pairs) != len(margins) or len(pairs) != len(endpoint_scores):
++        raise ValueError("pair, margin, and endpoint-score counts differ")
+     records: list[dict[str, Any]] = []
+-    for index, (pair, margin) in enumerate(zip(pairs, margins)):
+-        if not math.isfinite(float(margin)):
+-            raise ValueError(f"non-finite score margin at pair index {index}")
++    for index, (pair, margin, scores) in enumerate(
++        zip(pairs, margins, endpoint_scores)
++    ):
++        better_score, worse_score = map(float, scores)
++        margin = float(margin)
++        if not all(math.isfinite(value) for value in (better_score, worse_score, margin)):
++            raise ValueError(f"non-finite endpoint score or margin at pair index {index}")
++        if not math.isclose(
++            margin, better_score - worse_score, rel_tol=0.0, abs_tol=1e-9
++        ):
++            raise ValueError(f"margin disagrees with endpoint scores at pair index {index}")
+         better = pair["better"]
+         worse = pair["worse"]
+         record: dict[str, Any] = {
+             "pair_index": index,
+             "task": pair["task"],
+             "better": better,
+             "worse": worse,
+             "endpoint_run_ids": [card_runs[better], card_runs[worse]],
+-            "margin": float(margin),
++            "better_score": better_score,
++            "worse_score": worse_score,
++            "margin": margin,
+             "correct": bool(margin > 0),
+         }
+         for key in (
+@@ -345,26 +356,43 @@ def _score_sequences(model, sequences: Sequence[list[int]], pad_token_id: int) -
+ 
+ 
+ @torch.no_grad()
+-def score_pair_margins(
++def score_pair_endpoint_scores(
+     model,
+     pairs: Sequence[dict[str, Any]],
+     batch_size: int,
+     encode_card: EncodeCard,
+     pad_token_id: int,
+-) -> list[float]:
+-    """Return one better-minus-worse margin for every pair."""
++) -> list[tuple[float, float]]:
++    """Return the independently scored better/worse endpoints for every pair."""
+     model.eval()
+-    margins: list[float] = []
++    endpoint_scores: list[tuple[float, float]] = []
+     for start in range(0, len(pairs), batch_size):
+         chunk = pairs[start : start + batch_size]
+         sequences = [encode_card(pair["better"], pair.get("budget")) for pair in chunk]
+         sequences += [encode_card(pair["worse"], pair.get("budget")) for pair in chunk]
+         logits = _score_sequences(model, sequences, pad_token_id)
+         count = len(chunk)
+-        margins.extend(
+-            better - worse for better, worse in zip(logits[:count], logits[count:])
++        endpoint_scores.extend(
++            (float(better), float(worse))
++            for better, worse in zip(logits[:count], logits[count:])
+         )
+-    return margins
++    return endpoint_scores
++
++
++def score_pair_margins(
++    model,
++    pairs: Sequence[dict[str, Any]],
++    batch_size: int,
++    encode_card: EncodeCard,
++    pad_token_id: int,
++) -> list[float]:
++    """Return one better-minus-worse margin for every pair."""
++    return [
++        better - worse
++        for better, worse in score_pair_endpoint_scores(
++            model, pairs, batch_size, encode_card, pad_token_id
++        )
++    ]
+ 
+ 
+ def evaluate_pairs(
+@@ -604,9 +632,12 @@ def main() -> None:
+             f"n_pairs={len(pairs)}",
+             flush=True,
+         )
+-        margins = score_pair_margins(
++        endpoint_scores = score_pair_endpoint_scores(
+             model, pairs, args.batch_size, encode_card, tokenizer.pad_token_id
+         )
++        margins = [
++            better - worse for better, worse in endpoint_scores
++        ]
+         accuracy = pair_accuracy_from_margins(pairs, margins)
+         result: dict[str, Any] = {
+             "protocol": ONE_SHOT_PROTOCOL if args.split == "test" else "rm-eval-v1",
+@@ -616,7 +647,9 @@ def main() -> None:
+             "accuracy": accuracy,
+             "invocation": invocation,
+             "artifacts": observed_artifacts,
+-            "pair_predictions": pair_prediction_records(pairs, margins, card_runs),
++            "pair_predictions": pair_prediction_records(
++                pairs, margins, endpoint_scores, card_runs
++            ),
+         }
+ 
+         print(json.dumps({key: value for key, value in result.items()
+diff --git a/src/mle_critic/test/test_one_shot_evaluation_contract.py b/src/mle_critic/test/test_one_shot_evaluation_contract.py
+index c50712c..25ddb06 100644
+--- a/src/mle_critic/test/test_one_shot_evaluation_contract.py
++++ b/src/mle_critic/test/test_one_shot_evaluation_contract.py
+@@ -77,7 +77,7 @@ def test_dedicated_test_pool_and_pair_level_receipt(tmp_path):
+         card_tasks=tasks,
+         card_runs=runs,
+     )
+-    receipts = pair_prediction_records(pairs, [0.25], runs)
++    receipts = pair_prediction_records(pairs, [0.25], [(0.75, 0.5)], runs)
+ 
+     assert receipts == [
+         {
+@@ -87,6 +87,8 @@ def test_dedicated_test_pool_and_pair_level_receipt(tmp_path):
+             "better": "a",
+             "worse": "b",
+             "endpoint_run_ids": ["run-1", "run-1"],
++            "better_score": 0.75,
++            "worse_score": 0.5,
+             "margin": 0.25,
+             "correct": True,
+             "parent": "p",
+@@ -94,6 +96,22 @@ def test_dedicated_test_pool_and_pair_level_receipt(tmp_path):
+         }
+     ]
+ 
++
++def test_pair_receipt_rejects_score_margin_disagreement(tmp_path):
++    pair = {
++        "better": "a",
++        "worse": "b",
++        "task": "task-a",
++        "intask_split": "test",
++    }
++    runs = {"a": "run-1", "b": "run-1"}
++    with pytest.raises(ValueError, match="disagrees"):
++        pair_prediction_records([pair], [0.5], [(0.75, 0.5)], runs)
++    with pytest.raises(ValueError, match="counts differ"):
++        pair_prediction_records([pair], [0.25], [], runs)
++    with pytest.raises(ValueError, match="non-finite"):
++        pair_prediction_records([pair], [float("nan")], [(0.75, 0.5)], runs)
++
+ 
+ def test_test_reader_rejects_mixed_split_and_bad_run_receipt(tmp_path):
+     pairs_path = tmp_path / "mixed.jsonl"

@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0ET. 2026-08-23 clean scaling 的 confidence--cost 二级扩展已结果前冻结；不构成新效果
+
+一手防 scoop 审计确认 CAMEL 已覆盖低置信 preference 判断调用更贵 reflection，Calibrated Preference Learning 已把
+RM calibration 定义为独立于 top-1 的质量维度，GenRM scaling 又已系统覆盖 Qwen3 `0.6B--14B`。因此不申
+calibration/abstention/RM-scaling 方法 novelty；只保留 MLE physical sibling 上 proper score 与真实候选执行次数--
+regret 的 benchmark/deployment 证据。
+
+新增二级机器契约 SHA-256=`00ba64a222ae793c3f5d196ee754f0af9e2f01986ad85ed78c11b6f570da665b`，绑定
+0EP primary contract、同一 lock/test bundle/9-predictor matrix。dev-only 无截距 scalar temperature 在 test 前锁定；
+primary 为 task-macro log loss/Brier，selective headline 固定 50% target：高置信 pair 执行一个 endpoint、低置信执行
+两个，报告 realized saving、accepted error 与 task-normalized gap regret。secondary 永远不能 rescue primary FAIL，
+结果后不得换 coverage。
+
+producer/verifier 不互相 import；7/7 扩展合成/攻击测试、32/32 与 primary 联合测试通过，其中同步更新派生 manifest 的
+summary 篡改仍被 source reconstruction 拒绝。当前 real future truth/GPU/API/model fit=`false/0/0/0`，状态仅为
+`ANALYZER_READY_EFFECT_ASSETS_PENDING`；fresh exact-commit 全回归与凭据扫描待 commit 后写 receipt。证据：
+
+- `phase1/critic_scaling_confidence_cost_extension_v1.json`；
+- `phase1/contracts/CRITIC_SCALING_CONFIDENCE_COST_EXTENSION_V1.md`；
+- `phase1/实验记录/2026-08-23/CriticConfidenceCost_防Scoop与二级扩展冻结.md`。
+
 ## 0ES. 2026-08-23 source-binding 不再由 materializer 自证；独立 verifier 已就绪
 
 新增 `verify_critic_scaling_confirmation_materialization.py`，不 import producer，独立重建 pairs/Cards→truth 的

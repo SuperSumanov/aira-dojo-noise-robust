@@ -1,0 +1,132 @@
+{
+  "protocol": "critic-scaling-confidence-cost-extension-v1",
+  "status": "ANALYZER_READY_EFFECT_ASSETS_PENDING",
+  "binding": {
+    "primary_contract_protocol": "critic-scaling-confirmation-contract-v1",
+    "primary_contract_sha256": "579771ac1b90b1022bdded1182ce5c5a17780a741dc95d82a53f5f91d577a568",
+    "same_primary_lock_required": true,
+    "same_test_bundle_required": true,
+    "same_predictor_matrix_required": true,
+    "primary_decision_may_not_be_changed": true,
+    "secondary_result_may_not_rescue_failed_primary": true
+  },
+  "scientific_scope": {
+    "claim": "secondary proper-score and confidence-cost behavior on the clean sibling scaling cohort",
+    "paper_role": "MLE-agent benchmark and deployment-mechanism evidence",
+    "method_novelty_claimed": false,
+    "calibration_method_novelty_claimed": false,
+    "generic_abstention_novelty_claimed": false,
+    "online_causal_speedup_claimed": false,
+    "historical_test_touched_assets_allowed": false
+  },
+  "calibration_lock": {
+    "protocol": "critic-scaling-confidence-cost-lock-v1",
+    "required_status": "LOCKED_BEFORE_TEST_ACCESS",
+    "must_bind_primary_lock_sha256": true,
+    "must_bind_extension_contract_sha256": true,
+    "dev_truth_and_predictions_locked_before_test": true,
+    "test_labels_may_not_select_temperature_or_coverage": true,
+    "minimum_dev_pairs": 200,
+    "minimum_dev_tasks": 8,
+    "maximum_dominant_dev_task_pair_share": 0.35,
+    "dev_test_endpoint_overlap_required": 0,
+    "dev_test_physical_run_overlap_required": 0,
+    "dev_test_unordered_pair_overlap_required": 0
+  },
+  "probability_map": {
+    "family": "antisymmetric_scalar_temperature",
+    "correct_orientation_margin": "better_score_minus_worse_score",
+    "dev_scale": "median_nonzero_absolute_margin",
+    "zero_margin_scale_fallback": 1.0,
+    "inverse_temperature_min": 0.0,
+    "inverse_temperature_max": 100.0,
+    "optimizer": "deterministic_convex_derivative_bisection",
+    "optimizer_iterations": 100,
+    "intercept_allowed": false,
+    "probability_clip_epsilon": 1e-15,
+    "temperature_boundary_must_be_reported": true
+  },
+  "metrics": {
+    "primary_pair_semantics": "canonical_raw_sibling",
+    "primary_proper_scores": [
+      "task_macro_log_loss",
+      "task_macro_brier"
+    ],
+    "secondary_scores": [
+      "micro_log_loss",
+      "micro_brier",
+      "fixed_bin_ece",
+      "task_macro_accuracy"
+    ],
+    "ece_bins": 10,
+    "bootstrap_unit": "task",
+    "bootstrap_draws": 10000,
+    "bootstrap_seed": 2026082301,
+    "pair_iid_interval_allowed": false
+  },
+  "selective_execution": {
+    "interpretation": "execute one endpoint for accepted high-confidence pairs and both endpoints for deferred pairs",
+    "coverage_targets": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "primary_coverage_target": 0.5,
+    "selection_scope": "within_task",
+    "selection_count_rule": "max_1_round_half_up_target_times_task_pairs",
+    "selection_score": "absolute_calibrated_logit",
+    "tie_break": "sha256_of_task_parent_component_and_unordered_endpoints",
+    "tie_break_uses_outcome_orientation": false,
+    "accepted_pair_executions": 1,
+    "deferred_pair_executions": 2,
+    "reference_executions_per_pair": 2,
+    "reported_metrics": [
+      "realized_coverage",
+      "execution_saving_fraction",
+      "task_macro_accepted_error",
+      "task_macro_accepted_gap_weighted_error",
+      "task_macro_total_gap_regret",
+      "task_macro_excess_gap_regret_vs_random_acceptance"
+    ],
+    "raw_grade_may_only_be_mixed_within_task": true
+  },
+  "hierarchical_gates": {
+    "support": {
+      "reuse_primary_support_gate": true,
+      "dev_support_gate_required": true
+    },
+    "proper_score_scaling": {
+      "size_mean_log_loss_monotonic_nonincreasing": true,
+      "size_mean_brier_monotonic_nonincreasing": true,
+      "each_seed_high_minus_low_log_loss_strictly_negative": true,
+      "each_seed_high_minus_low_brier_strictly_negative": true,
+      "seed_mean_high_minus_low_log_loss_task_bootstrap_ci_upper_strictly_negative": true,
+      "seed_mean_high_minus_low_brier_task_bootstrap_ci_upper_strictly_negative": true
+    },
+    "high_size_beats_baseline": {
+      "each_high_seed_log_loss_below_baseline": true,
+      "each_high_seed_brier_below_baseline": true,
+      "seed_mean_high_minus_baseline_log_loss_task_bootstrap_ci_upper_strictly_negative": true,
+      "seed_mean_high_minus_baseline_brier_task_bootstrap_ci_upper_strictly_negative": true
+    },
+    "selective_confidence": {
+      "coverage_target": 0.5,
+      "realized_coverage_min": 0.45,
+      "realized_coverage_max": 0.55,
+      "each_high_seed_accepted_error_below_own_full_coverage_error": true,
+      "seed_mean_half_minus_full_error_task_bootstrap_ci_upper_strictly_negative": true,
+      "seed_mean_excess_gap_regret_vs_random_acceptance_task_bootstrap_ci_upper_strictly_negative": true
+    },
+    "claim_rule": "report each secondary layer separately; no layer changes the primary clean-scaling decision"
+  },
+  "access_and_compute": {
+    "gpu_jobs_authorized": 0,
+    "api_calls_authorized": 0,
+    "model_fits_authorized": 0,
+    "base_llm_updates_authorized": 0,
+    "future_truth_reads_authorized": false,
+    "real_effect_run_authorized": false,
+    "synthetic_tests_authorized": true
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "access_contract": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "cards_container_full_json_parsed": true,
+    "cards_retained_fields": [
+      "id",
+      "code",
+      "physical_run_id",
+      "task",
+      "client",
+      "hardware",
+      "time_limit",
+      "execution_timeout"
+    ],
+    "forbidden_inputs": [
+      "heldout_test_pairs",
+      "test_predictions",
+      "prospective_vault",
+      "score_channel_truth",
+      "stdout",
+      "self_report",
+      "runtime",
+      "raw_grade_as_feature_or_selection_signal"
+    ],
+    "gpu_jobs": 0,
+    "nonretained_card_fields_referenced": false,
+    "pair_inputs": [
+      "component_clean_train",
+      "component_clean_dev"
+    ]
+  },
+  "bootstrap": {
+    "cluster": "task",
+    "replicates": 20000,
+    "seed": 20260826
+  },
+  "claim_boundary": {
+    "allowed": "retrospective outer-train-only evidence about whether more independent component-clean support improves a fixed cheap critic",
+    "forbidden": [
+      "confirmatory frozen-test effect",
+      "future temporal generalization",
+      "live-search utility",
+      "data-scaling method novelty",
+      "neural critic scaling"
+    ],
+    "known_before_freeze": {
+      "full_dev_micro_accuracy": 0.604355716878403,
+      "full_dev_task_macro_accuracy": 0.5643959081886237,
+      "intermediate_fraction_effects_seen": false
+    }
+  },
+  "decision_rules": {
+    "proper_score_positive": {
+      "all_selection_seeds_full_minus_quarter_log_loss_lt": 0.0,
+      "bootstrap_ci95_high_full_minus_mean_quarter_log_loss_lt": 0.0,
+      "leave_one_task_out_full_minus_mean_quarter_log_loss_lt": 0.0,
+      "mean_curve_task_macro_log_loss_nonincreasing": true,
+      "point_full_minus_mean_quarter_log_loss_lte": -0.01
+    },
+    "top1_positive": {
+      "all_selection_seeds_full_minus_quarter_accuracy_gt": 0.0,
+      "bootstrap_ci95_low_full_minus_mean_quarter_accuracy_gt": 0.0,
+      "leave_one_task_out_full_minus_mean_quarter_accuracy_gt": 0.0,
+      "mean_curve_task_macro_accuracy_nondecreasing": true,
+      "point_full_minus_mean_quarter_accuracy_gte": 0.02
+    }
+  },
+  "evaluation": {
+    "accuracy_tie_credit": 0.5,
+    "estimands": [
+      "dev_task_macro_binary_log_loss",
+      "dev_task_macro_pair_accuracy",
+      "dev_pair_micro_binary_log_loss",
+      "dev_pair_micro_accuracy"
+    ],
+    "full_dev_anchor_tolerance": 1e-12,
+    "primary": "dev_task_macro_binary_log_loss",
+    "secondary": "dev_task_macro_pair_accuracy"
+  },
+  "evidence_level": "retrospective_dev_only_full_endpoint_previously_seen",
+  "inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "dev": {
+      "bytes": 376635,
+      "sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4"
+    },
+    "senior_data_commit": "baf6bddefe62b769b2fab699ff5805dd627dc69f",
+    "split_protocol": "pair-graph-component-train-dev-split-v1",
+    "train": {
+      "bytes": 3208089,
+      "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+    }
+  },
+  "model": {
+    "code_prefix_chars": 20000,
+    "logistic_regression": {
+      "C": 0.5,
+      "max_iter": 1500,
+      "pair_augmentation": "difference_and_negated_difference",
+      "pair_margin": "coef_dot_better_minus_worse_without_intercept",
+      "random_state": 0,
+      "solver": "lbfgs"
+    },
+    "tfidf": {
+      "analyzer": "char_wb",
+      "dtype": "float64",
+      "max_features": 30000,
+      "min_df": 3,
+      "ngram_range": [
+        3,
+        5
+      ],
+      "sublinear_tf": true
+    }
+  },
+  "outputs": {
+    "artifacts": [
+      "summary.json",
+      "curve.csv",
+      "per_task.csv",
+      "per_pair.jsonl",
+      "artifact_manifest.json"
+    ],
+    "overwrite": false
+  },
+  "protocol": "critic-component-data-learning-curve-v1",
+  "question": "Does adding independent pair-graph components within outer-train improve a fixed char-TFIDF critic on component-clean dev?",
+  "selection": {
+    "component_order": "sha256(seed|task|pair_component_id)",
+    "coverage_floor": "first component per train task under the same hash order",
+    "fractions": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "nesting": "coverage floor, then global hash order until ceil(fraction * 4689) train pairs",
+    "realized_fraction_max_overshoot": 0.05,
+    "seeds": [
+      20260823,
+      20260824,
+      20260825
+    ],
+    "unit": "pair_component_id"
+  },
+  "status": "PREREGISTERED_RETROSPECTIVE_DEV_ONLY_NOT_RUN",
+  "support_gates": {
+    "dev_dominant_task_share_lte": 0.2,
+    "dev_pairs_gte": 500,
+    "dev_tasks_gte": 20,
+    "train_components_gte": 100,
+    "train_dominant_task_share_lte": 0.1,
+    "train_tasks_gte": 20,
+    "zero_train_dev_endpoint_overlap": true,
+    "zero_train_dev_pair_overlap": true,
+    "zero_train_dev_physical_run_overlap": true
+  }
+}

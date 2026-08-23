@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EW. 2026-08-23 component-clean 数据学习曲线已结果前冻结；尚未运行
+
+为直接回答“学长继续增加独立 runs 是否可能提高 critic”，新增 outer-train-only CPU 诊断：固定复用
+component-clean train/dev 与同池 char-TFIDF，在 pair-component 单位按三种事前 hash 顺序构造 25/50/75/100%
+nested support curve。train=`4,689 pairs / 28 tasks / 127 components`，dev=`551 / 25 / 41`；test pair path、test
+prediction、prospective vault 与 score-channel truth 均不进入 CLI。Cards 整包会解析，但只引用
+id/code/run/task/config 投影，raw grade 不作特征或选择信号。
+
+primary 是 dev task-macro binary log loss，secondary 是 task-macro accuracy；strong proper-score/top-1 门分别冻结
+单调性、三 selection seeds 同方向、效应下限、task-bootstrap CI 与 LOTO。full-dev accuracy endpoint 已知，故无论结果
+如何都只算 retrospective dev evidence，不得称 frozen confirmation、search utility、neural scaling 或方法 novelty。
+机器协议 SHA-256=`a7c6bca3e430580c4a178d89694e90658a5496b8a1775a967221b7dc32d3c9da`；远端合成
+正/负控与攻击测试 8/8，real effects 尚未读取，GPU/API/base-LLM update=`0/0/0`。证据：
+
+- `phase1/critic_component_data_learning_curve_v1.json`；
+- `phase1/实验记录/2026-08-23/ComponentClean数据学习曲线_v1结果前冻结.md`。
+
 ## 0EV. 2026-08-23 confidence--cost exact-commit 回归通过；仍没有真实效果
 
 scientific commit `72129bb2a0ad98ae075bdea3f0ef2269c9ead345` 在 fresh no-smudge worktree 上通过 focused

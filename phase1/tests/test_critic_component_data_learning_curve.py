@@ -33,6 +33,7 @@ def test_launcher_has_no_test_pair_path_or_gpu_submission() -> None:
     assert "sbatch" not in source
     assert '"$cards" "$train" "$dev"' in source
     assert "OMP_NUM_THREADS=1" in source
+    assert 'cd "$repo"' in source
 
 
 def test_component_selection_is_nested_and_order_invariant() -> None:

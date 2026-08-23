@@ -63,3 +63,9 @@ nesting、正负控、数值篡改、独立 verifier 不 import producer、Pytho
 停止（0 tests executed）；第一版远端 wrapper 又因在 `env_setup.sh` 前开启 nounset 而退出。两次都发生在真实输入拟合
 前，不计 code PASS。新增 launcher 测试的第一次沙箱又因 wrapper 漏复制 launcher 文件得到 1 fail / 7 pass；补齐沙箱
 输入后从头得到 8/8。远端环境没有 Ruff，未把 lint 冒充为通过。
+
+scientific commit `18518fd54a0d9b2cde6fb951d0bf7c2fe4e1ae79` 的第一次 formal launcher 在 fresh worktree
+和 input SHA 后、任何模型 fit 前 fail closed：wrapper 没有 `cd` 到 repo，故相对路径 `py_compile` 报文件不存在。
+失败 root `critic-component-data-curve/18518fd-v1` 原样保留；其中不得有 producer/verification/decision artifact。
+唯一修复是在 tests/effect 前增加 `cd "$repo"`，不改 contract、input、fraction、seed、model、estimand 或 gate；必须
+新 commit、新输出 root 从头运行。

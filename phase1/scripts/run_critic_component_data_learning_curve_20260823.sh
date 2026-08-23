@@ -51,6 +51,7 @@ export VECLIB_MAXIMUM_THREADS=1
 export BLIS_NUM_THREADS=1
 mkdir -p "$output_root"
 exec > >(tee "$output_root/run.log") 2>&1
+cd "$repo"
 
 cat > "$output_root/preflight_13.txt" <<EOF
 PREFLIGHT_01_DIRECTION=current clean critic scaling support; old HCE/probe/multifidelity remain closed

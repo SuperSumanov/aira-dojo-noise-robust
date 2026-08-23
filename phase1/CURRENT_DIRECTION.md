@@ -3,6 +3,13 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EX. 2026-08-23 数据曲线首次 formal 启动在 fit 前失败；只修 launcher cwd
+
+exact commit `18518fd54a0d9b2cde6fb951d0bf7c2fe4e1ae79` 的 fresh worktree 与 input SHA 均完成，但 launcher
+没有切换到 repo cwd，随后相对路径 `py_compile` 找不到源码并 fail closed。失败发生在 focused/full tests 与任何
+TF-IDF/LR fit 前；失败 root 原样保留，禁止续跑或复用。唯一允许修复为在 scientific action 前增加 `cd "$repo"`；
+机器 contract SHA、数据、fractions、seeds、模型、estimands 与 gates 全不变，新 commit/新 root 从头运行。
+
 ## 0EW. 2026-08-23 component-clean 数据学习曲线已结果前冻结；尚未运行
 
 为直接回答“学长继续增加独立 runs 是否可能提高 critic”，新增 outer-train-only CPU 诊断：固定复用

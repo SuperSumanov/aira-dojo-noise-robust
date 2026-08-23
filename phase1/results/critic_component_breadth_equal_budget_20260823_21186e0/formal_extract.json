@@ -1,0 +1,155 @@
+{
+  "access_attestation": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "cards_container_full_json_parsed": true,
+    "gpu_jobs": 0,
+    "heldout_test_pairs_opened": false,
+    "nonretained_card_fields_referenced": false,
+    "pair_orientation_used_for_selection": false,
+    "prospective_vault_opened": false,
+    "raw_grade_as_feature_or_selection_signal": false,
+    "score_channel_truth_opened": false,
+    "test_predictions_opened": false,
+    "unique_cpu_critic_fits": 9
+  },
+  "contract_sha256": "1dc28d105922741d0c6a8263d9b2ebd2566d1a28de3dec1eb8f490116f7e6316",
+  "decision": {
+    "any_predeclared_positive": false,
+    "broad_minus_concentrated": {
+      "task_macro_accuracy": {
+        "ci95": [
+          -0.010859355050261277,
+          0.07987928182598769
+        ],
+        "loto_max": 0.041914565636528865,
+        "loto_min": 0.02245184633828326,
+        "point": 0.0332204391514186
+      },
+      "task_macro_log_loss": {
+        "ci95": [
+          -0.025437665186368662,
+          0.010856041904946215
+        ],
+        "loto_max": -0.0012116110917376282,
+        "loto_min": -0.010812454124275566,
+        "point": -0.006769727559589795
+      }
+    },
+    "mean_arms": [
+      {
+        "arm": "broad",
+        "task_macro_accuracy": 0.5624400862785816,
+        "task_macro_log_loss": 0.6773594555405009
+      },
+      {
+        "arm": "concentrated",
+        "task_macro_accuracy": 0.5292196471271629,
+        "task_macro_log_loss": 0.6841291831000907
+      },
+      {
+        "arm": "random",
+        "task_macro_accuracy": 0.5527886403630491,
+        "task_macro_log_loss": 0.6765865607703202
+      }
+    ],
+    "proper_score_checks": {
+      "all_seed_contrasts_negative": false,
+      "bootstrap_ci_high_below_zero": false,
+      "loto_all_negative": true,
+      "point_effect_floor": false
+    },
+    "proper_score_positive": false,
+    "random_arm_descriptive": {
+      "broad_minus_random_task_macro_accuracy": 0.00965144591553239,
+      "broad_minus_random_task_macro_log_loss": 0.000772894770180795,
+      "random_minus_concentrated_task_macro_accuracy": 0.0235689932358862,
+      "random_minus_concentrated_task_macro_log_loss": -0.007542622329770654
+    },
+    "seed_contrasts": [
+      {
+        "broad_minus_concentrated_accuracy": 0.022169066955282535,
+        "broad_minus_concentrated_log_loss": -0.00036404630189446063,
+        "seed": 20260823
+      },
+      {
+        "broad_minus_concentrated_accuracy": 0.015669956068959934,
+        "broad_minus_concentrated_log_loss": 0.000752789631084716,
+        "seed": 20260824
+      },
+      {
+        "broad_minus_concentrated_accuracy": 0.0618222944300133,
+        "broad_minus_concentrated_log_loss": -0.020697926007959833,
+        "seed": 20260825
+      }
+    ],
+    "top1_checks": {
+      "all_seed_contrasts_positive": true,
+      "bootstrap_ci_low_above_zero": false,
+      "loto_all_positive": true,
+      "point_effect_floor": true
+    },
+    "top1_positive": false
+  },
+  "decision_summary_sha256": "cf9d17a8651a6d3f91a65be8a96ba952dbb4c8366c61ea2b670b2041c403aee3",
+  "evidence_level": "retrospective_component_clean_dev_only",
+  "focused_test_tail": [
+    "........                                                                 [100%]",
+    "8 passed in 1.42s"
+  ],
+  "full_test_tail": [
+    "",
+    "-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html",
+    "874 passed, 33 warnings in 64.95s (0:01:04)"
+  ],
+  "integrity": {
+    "dev_components": 41,
+    "dev_pairs": 551,
+    "dev_runs": 81,
+    "dev_tasks": 25,
+    "train_components": 127,
+    "train_dev_endpoint_overlap": 0,
+    "train_dev_pair_overlap": 0,
+    "train_dev_physical_run_overlap": 0,
+    "train_pairs": 4689,
+    "train_runs": 430,
+    "train_tasks": 28
+  },
+  "producer_reproducibility_diff_bytes": 0,
+  "protocol": "critic-component-breadth-equal-pair-budget-v1",
+  "root": "/research/d7/spc/yzyang4/critic-component-breadth/21186e0-v1",
+  "security_postcheck": [
+    "output_content_credential_shape_hits=0"
+  ],
+  "security_precheck": [
+    "commit_filename_credential_shape_hits=0",
+    "commit_content_credential_shape_hits=0"
+  ],
+  "sha256sums_sha256": "8bb870c8ba2a6c97fbf3289a7a7774eca26118aff3992c0d6a39273d4fe82779",
+  "status": "RETROSPECTIVE_DEV_COMPONENT_BREADTH_NO_UNLOCK",
+  "verification": {
+    "artifact_manifest_sha256": "dcd5effa320f3beff21dd21e015e232acc00922906dbf2b8b4c3b6b9ad18e6b8",
+    "contract_sha256": "1dc28d105922741d0c6a8263d9b2ebd2566d1a28de3dec1eb8f490116f7e6316",
+    "maximum_numeric_difference": 0.0,
+    "proper_score_positive": false,
+    "protocol": "verify-critic-component-breadth-equal-pair-budget-v1-v1",
+    "rows": {
+      "arm_metrics": 9,
+      "per_pair": 4959,
+      "per_task": 225,
+      "selection_by_task": 84
+    },
+    "source_open_attestation": {
+      "heldout_test_pairs": false,
+      "prospective_vault": false,
+      "score_channel_truth": false,
+      "test_predictions": false
+    },
+    "status": "INDEPENDENT_SOURCE_REFIT_PASS",
+    "summary_status": "RETROSPECTIVE_DEV_COMPONENT_BREADTH_NO_UNLOCK",
+    "top1_positive": false,
+    "unique_cpu_critic_refits": 9
+  },
+  "verification_sha256": "96f310659448a1557c364c713b51b528a4f957e61be18d1575e1129c63abea7f",
+  "verifier_reproducibility_diff_bytes": 0
+}

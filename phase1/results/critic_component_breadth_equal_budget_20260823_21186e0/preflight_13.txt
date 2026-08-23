@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=current Decision Corpus and clean critic support; old HCE/probe/multifidelity remain closed
+PREFLIGHT_02_QUESTION=at identical per-task pair budgets does breadth across independent components/runs beat concentration
+PREFLIGHT_03_KNOWN=structure-only feasibility saw no arm outcome; 2353 pairs/arm, broad 127 vs concentrated 53 components
+PREFLIGHT_04_INPUTS=exact component-clean train/dev and Cards SHA/bytes; heldout test pair path absent from CLI/launcher
+PREFLIGHT_05_LEAKAGE=train/dev pair, endpoint, physical-run, and component overlap zero; test/prospective truth forbidden
+PREFLIGHT_06_MATRIX=broad,concentrated,random x seeds 20260823,20260824,20260825 at ceil(50 percent) pairs per task
+PREFLIGHT_07_INTERVENTION=task pair budgets identical; selection orientation-independent; breadth alone changes component/run diversity
+PREFLIGHT_08_MODEL=fixed char_wb 3-5 TFIDF 30k min_df3 plus symmetric LR C0.5; no intercept in pair margin
+PREFLIGHT_09_INFERENCE=all-25-task macro log-loss primary, accuracy secondary; 20000 task bootstraps seed 20260827 plus LOTO
+PREFLIGHT_10_RESOURCES=single-thread CPU; producer x2 plus independent source-refit verifier x2; 9 fits each; GPU/API/base-LLM 0/0/0
+PREFLIGHT_11_OUTPUT=summary, arm/task/pair/selection tables, manifests, exact logs/times, source-refit receipts, recursive hashes
+PREFLIGHT_12_DURATION=estimated 1.5-2.5 hours; fail/restart uses fresh commit and output root
+PREFLIGHT_13_STOP=fail closed on identity/support/budget/breadth/determinism/verifier/security/test failure; no arm/threshold/subgroup rescue

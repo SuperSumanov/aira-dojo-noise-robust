@@ -79,3 +79,12 @@ invariance、篡改拒绝、独立 import 与 overwrite fail-closed 为 8/8；fr
 component/run 广度改善固定廉价 critic。reward-model data scaling、group-aware splitting 与 data diversity 均已有
 先例，因此不得写成 data scaling law、方法首创、frozen/future confirmation 或 search utility。它的价值是为本语料
 生产和 D&B benchmark 提供可复核的采样设计证据。
+
+## 结果后附记（不回写冻结口径）
+
+exact commit `21186e036b41b35c087fd3cb02e99a88b241a4ed` formal 状态为
+`RETROSPECTIVE_DEV_COMPONENT_BREADTH_NO_UNLOCK`。accuracy 点差 `+0.0332204391514186`，三 seed 与全部
+LOTO 同向，但 95% CI=`[-0.010859355050261277,0.07987928182598769]`；log-loss 点差
+`-0.006769727559589795`，CI=`[-0.025437665186368662,0.010856041904946215]`，一 seed 反向。
+两个预注册正门都失败，random 也未显示 broad 的独特 proper-score 优势。完整裁决见同目录
+`等Pair预算_Component广度_v1正式裁决.md`。

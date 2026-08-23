@@ -77,3 +77,6 @@ phase1/results/critic_component_g0_shared_scheduler_20260821_a99bf8a/README.md t
 # are covered by inner SHA-256 manifests. Keep only the human README normalized.
 phase1/results/critic_component_data_learning_curve_20260823_eb1e1f5/** -text -diff
 phase1/results/critic_component_data_learning_curve_20260823_eb1e1f5/README.md text eol=lf diff
+# Preserve the byte-exact equal-budget breadth receipts and inner manifests.
+phase1/results/critic_component_breadth_equal_budget_20260823_21186e0/** -text -diff
+phase1/results/critic_component_breadth_equal_budget_20260823_21186e0/README.md text eol=lf diff

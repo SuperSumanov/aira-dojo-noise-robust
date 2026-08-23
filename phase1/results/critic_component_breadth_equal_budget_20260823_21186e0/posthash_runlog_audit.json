@@ -1,0 +1,21 @@
+{
+  "current_runlog_bytes": 170,
+  "current_runlog_sha256": "89039f0e0d4328e2daf5cb157cc715ed5f4374df6b5a3d9a97b8ac3b24281b8c",
+  "formal_protocol": "critic-component-breadth-equal-pair-budget-v1",
+  "formal_status": "RETROSPECTIVE_DEV_COMPONENT_BREADTH_NO_UNLOCK",
+  "launcher_hash_before_status": true,
+  "launcher_sha256": "342aca85896a4f877833c742643b0977199e1ba47132d5a10535df95cab328a4",
+  "mismatches": [
+    "run.log"
+  ],
+  "producer_reproducibility_diff_bytes": 0,
+  "protocol": "posthash-runlog-suffix-audit-v1",
+  "recorded_runlog_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "root": "/research/d7/spc/yzyang4/critic-component-breadth/21186e0-v1",
+  "root_modified_by_audit": false,
+  "runlog_exact_expected_suffix": true,
+  "sha256_entries": 40,
+  "status": "ALL_SCIENTIFIC_AND_PRECOMPLETION_ARTIFACT_HASHES_PASS_RUNLOG_SUFFIX_EXPLAINED",
+  "verified_non_runlog_entries": 39,
+  "verifier_reproducibility_diff_bytes": 0
+}

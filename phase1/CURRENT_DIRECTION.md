@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0FA. 2026-08-23 等 pair 预算 breadth 正式裁决：有线索但未过门，NO_UNLOCK
+
+结果前冻结的 exact commit `21186e036b41b35c087fd3cb02e99a88b241a4ed` formal 已完成。聚焦/完整测试为
+8/8、874/874（33 warnings）；producer×2 与独立 source-refit verifier×2 均逐字节一致，最大数值差为 0。
+held-out test/prospective/score-channel truth 均未打开，pair orientation 未参与选择，GPU/API/base-LLM update=
+`0/0/0`，每个实现 9 个唯一 CPU fits。
+
+固定每 task 50% pair 预算后，broad−concentrated 的 task-macro accuracy=`+0.0332204391514186`，三 seed
+均为正、全部 LOTO 为正且点效应过 `+0.02` 门，但 task-bootstrap 95% CI=
+`[-0.010859355050261277,0.07987928182598769]`，故 top-1 正门失败。log-loss 点差=
+`-0.006769727559589795`，CI=`[-0.025437665186368662,0.010856041904946215]`，三 seed 中一 seed
+反向且未达到 `-0.01`，proper-score 正门也失败。random 与 broad 的 log-loss 分别为
+`0.6765865607703202/0.6773594555405009`，说明结果不支持 broad 是独特最优策略；最多是“过度集中可能有害”的
+候选机制。正式状态为 `RETROSPECTIVE_DEV_COMPONENT_BREADTH_NO_UNLOCK`，不得追加同池 seeds、换 endpoint 或以
+accuracy 单独 rescue。下一次合法检验只能是结果前冻结的新独立 corpus/future cohort 复现。
+
+旧 exact launcher 同样有已解释的 live `run.log` completion-suffix packaging mismatch：40 项中其余 39 项全过，
+外层审计确认 root 未被改写。修正后的 launcher 已在上一节共享四文件 overlay 中通过 16/16 与 874/874；不重跑
+本次科学结果。证据：
+
+- `phase1/results/critic_component_breadth_equal_budget_20260823_21186e0/`；
+- `phase1/实验记录/2026-08-23/等Pair预算_Component广度_v1正式裁决.md`。
+
 ## 0EZ. 2026-08-23 component-clean 数据曲线正式裁决：同向但不足，NO_UNLOCK
 
 exact scientific commit `eb1e1f5847584106b8daba30b75ee5459520c6c4` 的 fresh no-smudge formal 已完成。

@@ -1,0 +1,23 @@
+{
+  "artifact_manifest_sha256": "dcd5effa320f3beff21dd21e015e232acc00922906dbf2b8b4c3b6b9ad18e6b8",
+  "contract_sha256": "1dc28d105922741d0c6a8263d9b2ebd2566d1a28de3dec1eb8f490116f7e6316",
+  "maximum_numeric_difference": 0.0,
+  "proper_score_positive": false,
+  "protocol": "verify-critic-component-breadth-equal-pair-budget-v1-v1",
+  "rows": {
+    "arm_metrics": 9,
+    "per_pair": 4959,
+    "per_task": 225,
+    "selection_by_task": 84
+  },
+  "source_open_attestation": {
+    "heldout_test_pairs": false,
+    "prospective_vault": false,
+    "score_channel_truth": false,
+    "test_predictions": false
+  },
+  "status": "INDEPENDENT_SOURCE_REFIT_PASS",
+  "summary_status": "RETROSPECTIVE_DEV_COMPONENT_BREADTH_NO_UNLOCK",
+  "top1_positive": false,
+  "unique_cpu_critic_refits": 9
+}

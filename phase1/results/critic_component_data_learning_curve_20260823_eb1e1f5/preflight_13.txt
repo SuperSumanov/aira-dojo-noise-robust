@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=current clean critic scaling support; old HCE/probe/multifidelity remain closed
+PREFLIGHT_02_QUESTION=does more independent pair-component-clean outer-train support improve fixed char-TFIDF on component-clean dev
+PREFLIGHT_03_KNOWN=full-dev accuracy endpoint seen; intermediate fractions, proper-score curve, and contrasts unseen before contract
+PREFLIGHT_04_INPUTS=cards/train/dev exact SHA and byte identities; heldout test pair path is absent from CLI and launcher
+PREFLIGHT_05_LEAKAGE=train/dev pair, endpoint, physical-run, and component overlap must all be zero; test/prospective truth forbidden
+PREFLIGHT_06_UNIT=pair_component_id; every task gets one deterministic coverage-floor component before global hash prefix
+PREFLIGHT_07_MATRIX=fractions 0.25,0.5,0.75,1.0 x selection seeds 20260823,20260824,20260825; full subset cached once
+PREFLIGHT_08_MODEL=fixed char_wb 3-5 TFIDF 30k min_df3 plus symmetric LR C0.5; no intercept in pair margin
+PREFLIGHT_09_INFERENCE=task-macro log-loss primary, accuracy secondary; 20000 task bootstraps seed 20260826 plus LOTO
+PREFLIGHT_10_RESOURCES=sequential single-thread CPU; producer x2 plus independent full-refit verifier x2; GPU/API/base-LLM update 0/0/0
+PREFLIGHT_11_OUTPUT=summary, curve, per-task, per-pair, manifests, exact logs/times, source-refit receipts, and recursive hashes
+PREFLIGHT_12_DURATION=estimated 1.5-2.5 hours; each fit is short and deterministic; a failed producer/verifier restarts from a fresh output root
+PREFLIGHT_13_STOP=fail closed on identity/support/overlap/nesting/anchor/determinism/verifier/security/test failure; no threshold or fraction rescue

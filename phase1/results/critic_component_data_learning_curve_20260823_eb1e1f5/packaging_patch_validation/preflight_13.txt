@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=packaging-only launcher correction; no scientific protocol change
+PREFLIGHT_02_QUESTION=exclude live run.log from pre-completion internal hashes
+PREFLIGHT_03_INPUT=two launchers and their two focused test files only
+PREFLIGHT_04_ESTIMAND=none
+PREFLIGHT_05_UNIT=test assertion and full phase1 regression
+PREFLIGHT_06_SECURITY=no credentials or external payloads
+PREFLIGHT_07_LEAKAGE=no data, labels, predictions, or vault opened
+PREFLIGHT_08_REPRO=detached base 21186e0 plus four explicit overlay files
+PREFLIGHT_09_RESOURCES=CPU only; GPU/API/model_fit/base_update=0/0/0/0
+PREFLIGHT_10_FAILURE=any syntax, focused, or full-suite failure rejects patch
+PREFLIGHT_11_OUTPUT=/tmp/packaging_patch_tests_20260823
+PREFLIGHT_12_DURATION=approximately 2 minutes
+PREFLIGHT_13_STOP=after full suite and credential-shape scan

@@ -1,0 +1,21 @@
+{
+  "current_runlog_bytes": 163,
+  "current_runlog_sha256": "ea75d87ddc8ef19769e2be48ef77fd4003da0e7c485dd2780fa582f147ccbc70",
+  "formal_protocol": "critic-component-data-learning-curve-v1",
+  "formal_status": "RETROSPECTIVE_DEV_DATA_SCALING_NO_UNLOCK",
+  "launcher_hash_before_status": true,
+  "launcher_sha256": "f35fa95362bd66569f26e8e56e0f73e6d3a875fbdb0de2fd0ed2d67ff96ff1a8",
+  "mismatches": [
+    "run.log"
+  ],
+  "producer_reproducibility_diff_bytes": 0,
+  "protocol": "posthash-runlog-suffix-audit-v1",
+  "recorded_runlog_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "root": "/research/d7/spc/yzyang4/critic-component-data-curve/eb1e1f5-v2",
+  "root_modified_by_audit": false,
+  "runlog_exact_expected_suffix": true,
+  "sha256_entries": 38,
+  "status": "ALL_SCIENTIFIC_AND_PRECOMPLETION_ARTIFACT_HASHES_PASS_RUNLOG_SUFFIX_EXPLAINED",
+  "verified_non_runlog_entries": 37,
+  "verifier_reproducibility_diff_bytes": 0
+}

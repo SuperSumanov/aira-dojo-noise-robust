@@ -1,0 +1,149 @@
+{
+  "access_attestation": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "cards_container_full_json_parsed": true,
+    "gpu_jobs": 0,
+    "heldout_test_pairs_opened": false,
+    "nonretained_card_fields_referenced": false,
+    "prospective_vault_opened": false,
+    "raw_grade_as_feature_or_selection_signal": false,
+    "score_channel_truth_opened": false,
+    "test_predictions_opened": false,
+    "unique_cpu_critic_fits": 10
+  },
+  "card_inventory": {
+    "cards": 31742,
+    "needed_cards": 4721,
+    "run_groups": 676
+  },
+  "contract_sha256": "a7c6bca3e430580c4a178d89694e90658a5496b8a1775a967221b7dc32d3c9da",
+  "decision": {
+    "any_predeclared_positive": false,
+    "full_minus_mean_quarter": {
+      "task_macro_accuracy": {
+        "ci95": [
+          -0.07052702433385415,
+          0.05604648899548043
+        ],
+        "loto_max": 0.00552839914991025,
+        "loto_min": -0.024564193442682344,
+        "point": -0.008026070149419494
+      },
+      "task_macro_log_loss": {
+        "ci95": [
+          -0.038109760581376086,
+          0.026746893869806762
+        ],
+        "loto_max": -0.0023493217535835212,
+        "loto_min": -0.019117321293433378,
+        "point": -0.007662535631333114
+      }
+    },
+    "mean_curve": [
+      {
+        "fraction": 0.25,
+        "task_macro_accuracy": 0.5724219783380433,
+        "task_macro_log_loss": 0.6816094159627339
+      },
+      {
+        "fraction": 0.5,
+        "task_macro_accuracy": 0.5298091977807858,
+        "task_macro_log_loss": 0.6826620147808903
+      },
+      {
+        "fraction": 0.75,
+        "task_macro_accuracy": 0.5652811276147386,
+        "task_macro_log_loss": 0.6755762240399482
+      },
+      {
+        "fraction": 1.0,
+        "task_macro_accuracy": 0.5643959081886237,
+        "task_macro_log_loss": 0.6739468803314009
+      }
+    ],
+    "proper_score_checks": {
+      "all_seed_contrasts_negative": true,
+      "bootstrap_ci_high_below_zero": false,
+      "loto_all_negative": true,
+      "mean_curve_nonincreasing": false,
+      "point_effect_floor": false
+    },
+    "proper_score_positive": false,
+    "seed_contrasts": [
+      {
+        "full_minus_quarter_accuracy": 0.01709740612260502,
+        "full_minus_quarter_log_loss": -0.005383092600273587,
+        "seed": 20260823
+      },
+      {
+        "full_minus_quarter_accuracy": -0.027058959660437254,
+        "full_minus_quarter_log_loss": -0.015283850000521904,
+        "seed": 20260824
+      },
+      {
+        "full_minus_quarter_accuracy": -0.014116656910426517,
+        "full_minus_quarter_log_loss": -0.002320664293203878,
+        "seed": 20260825
+      }
+    ],
+    "top1_checks": {
+      "all_seed_contrasts_positive": false,
+      "bootstrap_ci_low_above_zero": false,
+      "loto_all_positive": false,
+      "mean_curve_nondecreasing": false,
+      "point_effect_floor": false
+    },
+    "top1_positive": false
+  },
+  "evidence_level": "retrospective_dev_only_full_endpoint_previously_seen",
+  "inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "dev": {
+      "bytes": 376635,
+      "sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4"
+    },
+    "train": {
+      "bytes": 3208089,
+      "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+    }
+  },
+  "integrity": {
+    "support": {
+      "dev_components": 41,
+      "dev_dominant_task_share": 0.147005444646098,
+      "dev_pairs": 551,
+      "dev_runs": 81,
+      "dev_tasks": 25,
+      "train_components": 127,
+      "train_dev_endpoint_overlap": 0,
+      "train_dev_pair_overlap": 0,
+      "train_dev_physical_run_overlap": 0,
+      "train_dominant_task_share": 0.08871827681808488,
+      "train_pairs": 4689,
+      "train_runs": 430,
+      "train_tasks": 28
+    },
+    "support_gates": {
+      "dev_dominant_task_share": true,
+      "dev_pairs": true,
+      "dev_tasks": true,
+      "train_components": true,
+      "train_dominant_task_share": true,
+      "train_tasks": true,
+      "zero_train_dev_endpoint_overlap": true,
+      "zero_train_dev_pair_overlap": true,
+      "zero_train_dev_physical_run_overlap": true
+    }
+  },
+  "known_anchor_checks": {
+    "full_dev_micro_accuracy": true,
+    "full_dev_task_macro_accuracy": true,
+    "full_identical_across_selection_seeds": true
+  },
+  "protocol": "critic-component-data-learning-curve-v1",
+  "status": "RETROSPECTIVE_DEV_DATA_SCALING_NO_UNLOCK"
+}

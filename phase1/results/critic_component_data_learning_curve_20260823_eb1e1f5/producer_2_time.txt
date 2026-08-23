@@ -1,0 +1,23 @@
+	Command being timed: "/research/d7/spc/yzyang4/venvs/exp/bin/python -m phase1.critic_component_data_learning_curve /research/d7/spc/yzyang4/worktrees/senior_augmented_92a9651_nosmudge/data/augmented_mle_critic/augmented_cards_current.json /research/d7/spc/yzyang4/critic-decision-component-prep/305355e-baf6bdd-v1/producer_1/train.jsonl /research/d7/spc/yzyang4/critic-decision-component-prep/305355e-baf6bdd-v1/producer_1/dev.jsonl /research/d7/spc/yzyang4/critic-component-data-curve/eb1e1f5-v2/producer_2 --contract /research/d7/spc/yzyang4/worktrees/component_data_curve_eb1e1f5_nosmudge/phase1/critic_component_data_learning_curve_v1.json"
+	User time (seconds): 963.56
+	System time (seconds): 16.16
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 16:21.23
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 2984692
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3737934
+	Voluntary context switches: 3856
+	Involuntary context switches: 3628
+	Swaps: 0
+	File system inputs: 5832
+	File system outputs: 5928
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

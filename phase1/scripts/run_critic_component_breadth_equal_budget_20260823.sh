@@ -132,7 +132,10 @@ printf 'output_content_credential_shape_hits=%s\n' "$post_content_hits" > "$outp
 
 (
   cd "$output_root"
-  find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS
+  # run.log is the live tee target: the completion lines below are appended only
+  # after this manifest is written.  Hash all closed artifacts here and let the
+  # caller hash the final run.log after the launcher exits.
+  find . -type f ! -name SHA256SUMS ! -name run.log -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS
 )
 printf 'formal_status='
 "$python_bin" -c 'import json,sys; print(json.load(open(sys.argv[1]))["status"])' "$output_root/decision_summary.json"

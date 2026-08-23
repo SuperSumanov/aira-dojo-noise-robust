@@ -69,3 +69,12 @@ scientific commit `18518fd54a0d9b2cde6fb951d0bf7c2fe4e1ae79` 的第一次 formal
 失败 root `critic-component-data-curve/18518fd-v1` 原样保留；其中不得有 producer/verification/decision artifact。
 唯一修复是在 tests/effect 前增加 `cd "$repo"`，不改 contract、input、fraction、seed、model、estimand 或 gate；必须
 新 commit、新输出 root 从头运行。
+
+## 5. 结果后附记（不回写冻结口径）
+
+cwd-only 修复后的 exact commit `eb1e1f5847584106b8daba30b75ee5459520c6c4` 已从新 root 完整运行，正式状态为
+`RETROSPECTIVE_DEV_DATA_SCALING_NO_UNLOCK`。三 seed 的 full−quarter log-loss contrast 均为负，且 task LOTO
+全负；但 full−mean-quarter 只有 `-0.007662535631333114`，95% CI=
+`[-0.038109760581376086,0.026746893869806762]`，四点均值曲线不单调，预注册效应下限和 CI 门均失败。
+accuracy 点差为 `-0.008026070149419494`，CI=`[-0.07052702433385415,0.05604648899548043]`，不能 rescue。
+完整裁决及打包审计见同目录 `ComponentClean数据学习曲线_v1正式裁决.md`。

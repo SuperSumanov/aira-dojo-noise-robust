@@ -45,6 +45,8 @@ def test_launcher_has_no_test_path_gpu_or_api() -> None:
     assert '"$cards" "$train" "$dev"' in source
     assert "OMP_NUM_THREADS=1" in source
     assert 'cd "$repo"' in source
+    assert "! -name run.log" in source
+    assert source.index("! -name run.log") < source.index("COMPONENT_BREADTH_FORMAL_COMPLETE")
 
 
 def test_breadth_selection_is_exact_and_orientation_invariant() -> None:

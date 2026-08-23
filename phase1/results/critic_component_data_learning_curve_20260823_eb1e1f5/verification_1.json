@@ -1,0 +1,22 @@
+{
+  "artifact_manifest_sha256": "6f999e3fd591915e2a4d3be39a9fc0f7d0896c6bbb1511970b9d7153523e03e6",
+  "contract_sha256": "a7c6bca3e430580c4a178d89694e90658a5496b8a1775a967221b7dc32d3c9da",
+  "maximum_numeric_difference": 0.0,
+  "proper_score_positive": false,
+  "protocol": "verify-critic-component-data-learning-curve-v1-v1",
+  "rows": {
+    "curve": 12,
+    "per_pair": 6612,
+    "per_task": 300
+  },
+  "source_open_attestation": {
+    "heldout_test_pairs": false,
+    "prospective_vault": false,
+    "score_channel_truth": false,
+    "test_predictions": false
+  },
+  "status": "INDEPENDENT_SOURCE_REFIT_PASS",
+  "summary_status": "RETROSPECTIVE_DEV_DATA_SCALING_NO_UNLOCK",
+  "top1_positive": false,
+  "unique_cpu_critic_refits": 10
+}

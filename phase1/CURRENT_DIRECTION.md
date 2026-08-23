@@ -3,6 +3,31 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EZ. 2026-08-23 component-clean 数据曲线正式裁决：同向但不足，NO_UNLOCK
+
+exact scientific commit `eb1e1f5847584106b8daba30b75ee5459520c6c4` 的 fresh no-smudge formal 已完成。
+聚焦/完整测试为 8/8、866/866（33 warnings）；producer×2 与独立 source-refit verifier×2 均逐字节一致，
+source-refit 最大数值差为 0。访问声明为 held-out test/prospective/score-channel truth 均未打开，GPU/API/
+base-LLM update=`0/0/0`，producer 与 verifier 各 10 个唯一 CPU fits。
+
+25/50/75/100% 的 seed-mean task-macro log loss 分别为
+`0.6816094159627339/0.6826620147808903/0.6755762240399482/0.6739468803314009`；full−mean-quarter=
+`-0.007662535631333114`，task-bootstrap 95% CI=`[-0.038109760581376086,0.026746893869806762]`。
+三个 seed 的 proper-score contrast 均为负且全部 LOTO 为负，但曲线不单调、CI 跨 0、`-0.01` 效应门未过。
+accuracy 点差=`-0.008026070149419494`，CI=`[-0.07052702433385415,0.05604648899548043]`，top-1
+所有正门失败。因此正式状态为 `RETROSPECTIVE_DEV_DATA_SCALING_NO_UNLOCK`：只能说固定 cheap critic 上有小的
+同向 proper-score 信号，不能称稳定 data scaling、正突破或继续生产 runs 的充分因果依据，也不能以 accuracy rescue。
+
+原 launcher 在生成 `SHA256SUMS` 后才把四行 completion suffix 写入 live `run.log`，故内部校验 38 项中仅
+`run.log` 由空文件哈希变为最终 163 bytes；其余 37 项全过。独立 post-hash 审计确认精确 suffix、source 顺序、
+root 未被审计改写，状态为 `ALL_SCIENTIFIC_AND_PRECOMPLETION_ARTIFACT_HASHES_PASS_RUNLOG_SUFFIX_EXPLAINED`。
+该 packaging 缺陷如实保留；后续 launcher 排除 live `run.log`，待进程退出后由外层 receipt 单独哈希，不重跑科学
+结果。修正后的四文件 overlay 已通过聚焦 16/16、完整 874/874（33 warnings）及 credential shape scan 0/0。
+证据：
+
+- `phase1/results/critic_component_data_learning_curve_20260823_eb1e1f5/`；
+- `phase1/实验记录/2026-08-23/ComponentClean数据学习曲线_v1正式裁决.md`。
+
 ## 0EY. 2026-08-23 等 pair 预算的 component/run 广度实验已结果前冻结；尚未拟合
 
 为区分“更多 pair”与“更多独立 runs/components”，在任何 arm dev metric 前完成 structure-only feasibility：固定

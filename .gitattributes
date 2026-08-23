@@ -73,3 +73,7 @@ phase1/results/critic_component_g0_static_preflight_20260821/** text eol=lf
 # keep only the human README normalized and diffable.
 phase1/results/critic_component_g0_shared_scheduler_20260821_a99bf8a/** -text -diff
 phase1/results/critic_component_g0_shared_scheduler_20260821_a99bf8a/README.md text eol=lf diff
+# Preserve this formal CPU receipt byte-for-byte because its copied artifacts
+# are covered by inner SHA-256 manifests. Keep only the human README normalized.
+phase1/results/critic_component_data_learning_curve_20260823_eb1e1f5/** -text -diff
+phase1/results/critic_component_data_learning_curve_20260823_eb1e1f5/README.md text eol=lf diff

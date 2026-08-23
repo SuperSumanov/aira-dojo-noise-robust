@@ -1,0 +1,153 @@
+{
+  "access_contract": {
+    "cards_container_full_json_parsed": true,
+    "forbidden_inputs": [
+      "heldout_test_pairs",
+      "test_predictions",
+      "prospective_vault",
+      "score_channel_truth"
+    ],
+    "nonretained_card_fields_referenced": false,
+    "pair_inputs": [
+      "component_clean_train",
+      "component_clean_dev"
+    ],
+    "raw_grade_as_feature_or_selection_signal": false
+  },
+  "bootstrap": {
+    "cluster": "dev_task",
+    "replicates": 20000,
+    "seed": 20260827
+  },
+  "claim_boundary": {
+    "allowed_if_positive": "At exactly equal per-task training-pair budgets, spreading supervision over more independent logged comparison components and physical runs improves the fixed char-TFIDF critic on retrospective component-clean dev.",
+    "forbidden": [
+      "frozen_test_confirmation",
+      "future_or_temporal_confirmation",
+      "neural_scaling",
+      "data_scaling_law",
+      "method_novelty",
+      "search_utility",
+      "broad_beats_random_unless_that_separate_descriptive_contrast_is_positive"
+    ],
+    "known_before_freeze": {
+      "arm_effects_or_intermediate_dev_metrics_seen": false,
+      "cards_container_count": 31742,
+      "dev_pairs": 551,
+      "dev_tasks": 25,
+      "feasibility_sha256": "773db70feb0872039af326fc19121254db26d106bb44e5081fc4f54b99a608b6",
+      "informative_dev_tasks": 24,
+      "per_arm_pairs": 2353,
+      "per_seed_broad_components": 127,
+      "per_seed_broad_minus_concentrated_components": 74,
+      "per_seed_broad_minus_concentrated_runs": [
+        205,
+        206,
+        205
+      ],
+      "per_seed_concentrated_components": 53,
+      "train_components": 127,
+      "train_pairs": 4689,
+      "train_tasks": 28
+    },
+    "random_arm_role": "descriptive sanity baseline only; it is not required for the primary broad-versus-concentrated positive gate"
+  },
+  "decision_rules": {
+    "proper_score_positive": {
+      "all_seed_broad_minus_concentrated_log_loss_lt": 0.0,
+      "bootstrap_ci95_high_broad_minus_concentrated_log_loss_lt": 0.0,
+      "leave_one_task_out_broad_minus_concentrated_log_loss_lt": 0.0,
+      "point_broad_minus_concentrated_log_loss_lte": -0.01
+    },
+    "top1_positive": {
+      "all_seed_broad_minus_concentrated_accuracy_gt": 0.0,
+      "bootstrap_ci95_low_broad_minus_concentrated_accuracy_gt": 0.0,
+      "leave_one_task_out_broad_minus_concentrated_accuracy_gt": 0.0,
+      "point_broad_minus_concentrated_accuracy_gte": 0.02
+    }
+  },
+  "evidence_level": "retrospective_component_clean_dev_only",
+  "inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "dev": {
+      "bytes": 376635,
+      "sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4"
+    },
+    "train": {
+      "bytes": 3208089,
+      "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+    }
+  },
+  "model": {
+    "code_prefix_chars": 20000,
+    "lr_C": 0.5,
+    "lr_max_iter": 1500,
+    "lr_random_state": 0,
+    "lr_solver": "lbfgs",
+    "margin_excludes_intercept": true,
+    "mirrored_pair_training": true,
+    "tfidf_analyzer": "char_wb",
+    "tfidf_dtype": "float64",
+    "tfidf_max_features": 30000,
+    "tfidf_min_df": 3,
+    "tfidf_ngram_range": [
+      3,
+      5
+    ],
+    "tfidf_sublinear_tf": true
+  },
+  "primary_estimand": "Across all 25 component-clean dev tasks, task-macro binary log-loss of broad minus concentrated after averaging the three predeclared selection seeds.",
+  "protocol": "critic-component-breadth-equal-pair-budget-v1",
+  "resources": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "implementations": "producer x2 plus independent source-refit verifier x2",
+    "maximum_unique_cpu_critic_fits_per_implementation": 9,
+    "threads_per_fit": 1
+  },
+  "secondary_estimand": "Across all 25 component-clean dev tasks, task-macro tie-aware accuracy of broad minus concentrated after averaging the three predeclared selection seeds.",
+  "selection": {
+    "arms": {
+      "broad": "Within each task, take one orientation-independent hash-ranked pair from every component up to the target, then hash-fill remaining pairs; this maximizes represented components.",
+      "concentrated": "Within each task, order components by descending pair count with hash tie-breaks, then take pairs until the exact target; this minimizes represented components.",
+      "random": "Within each task, take the orientation-independent hash prefix of all pairs to the exact target."
+    },
+    "fraction_per_task": 0.5,
+    "pair_identity": "task|parent|lexicographically_sorted_endpoint_ids",
+    "pair_orientation_used_for_selection": false,
+    "seeds": [
+      20260823,
+      20260824,
+      20260825
+    ],
+    "target_pairs_per_task": "ceil(fraction_per_task * available_train_pairs_for_task)"
+  },
+  "status": "PREREGISTERED_RETROSPECTIVE_DEV_ONLY_NOT_RUN",
+  "stop_rules": [
+    "Close before model fitting if any input identity, component-clean overlap, exact per-task pair-budget equality, structural breadth, or informative-task gate fails.",
+    "Do not replace the all-dev-task primary with the 24-task informative subset after seeing effects.",
+    "Do not change fraction, arms, seeds, model, threshold, bootstrap unit, or LOTO rule after seeing effects.",
+    "A random-arm advantage or subgroup effect cannot rescue a failed broad-versus-concentrated primary gate."
+  ],
+  "structural_gates": {
+    "broad_components_per_seed_eq": 127,
+    "broad_minus_concentrated_components_per_seed_gte": 74,
+    "broad_minus_concentrated_runs_per_seed_gte": 205,
+    "concentrated_components_per_seed_eq": 53,
+    "dev_pairs_eq": 551,
+    "dev_tasks_eq": 25,
+    "exact_per_task_pair_budget_equality": true,
+    "informative_dev_tasks_gte": 24,
+    "per_arm_pairs_per_seed_eq": 2353,
+    "train_components_eq": 127,
+    "train_dev_endpoint_overlap_eq": 0,
+    "train_dev_pair_overlap_eq": 0,
+    "train_dev_physical_run_overlap_eq": 0,
+    "train_pairs_eq": 4689,
+    "train_tasks_eq": 28
+  }
+}

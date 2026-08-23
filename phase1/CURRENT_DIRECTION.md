@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EY. 2026-08-23 等 pair 预算的 component/run 广度实验已结果前冻结；尚未拟合
+
+为区分“更多 pair”与“更多独立 runs/components”，在任何 arm dev metric 前完成 structure-only feasibility：固定
+每 task 50% train pair 预算，`broad/concentrated/random × seeds 20260823/24/25` 每臂每 seed 均为 2,353
+pairs；broad=127 components/429 runs，concentrated=53 components/223--224 runs，差 +74 components 和
++205/+206/+205 runs，25 个 dev tasks 中 24 个三 seed 均 structurally informative。feasibility SHA-256=
+`773db70feb0872039af326fc19121254db26d106bb44e5081fc4f54b99a608b6`。
+
+固定同一 char-TFIDF/LR、全部 25-task dev primary、task bootstrap+LOTO；proper-score 门为三 seed 全负、point
+`≤-0.01`、CI high<0、LOTO 全负，top-1 门为三 seed 全正、point `≥+0.02`、CI low>0、LOTO 全正。
+random 仅 descriptive，不能 rescue。producer×2+独立 source-refit verifier×2，每实现 9 次单线程 CPU fit；
+GPU/API/base-LLM update=0/0/0。合同 SHA-256=
+`1dc28d105922741d0c6a8263d9b2ebd2566d1a28de3dec1eb8f490116f7e6316`。即使正面也只允许 MLE
+retrospective component-clean 数据采样结论，不称 scaling law、方法 novelty、frozen/future confirmation 或 search
+utility。producer/verifier 的真实输入 structure-only 输出逐字节一致（共同 SHA-256=
+`380a33b814527fd9bc3fdfc8f6f0bebba774076f7275850752e6e98e139f0c6b`），没有调用 fit/decision；隔离
+no-smudge overlay 的聚焦/完整测试为 8/8、874/874（33 warnings），凭据扫描 0/0。证据：
+
+- `phase1/critic_component_breadth_equal_budget_v1.json`；
+- `phase1/实验记录/2026-08-23/等Pair预算_Component广度_v1结果前冻结.md`。
+
 ## 0EX. 2026-08-23 数据曲线首次 formal 启动在 fit 前失败；只修 launcher cwd
 
 exact commit `18518fd54a0d9b2cde6fb951d0bf7c2fe4e1ae79` 的 fresh worktree 与 input SHA 均完成，但 launcher

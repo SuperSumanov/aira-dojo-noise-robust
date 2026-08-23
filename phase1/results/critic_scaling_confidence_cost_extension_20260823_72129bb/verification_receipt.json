@@ -1,0 +1,38 @@
+{
+  "access_attestation": {
+    "api_calls": 0,
+    "future_truth_opened": false,
+    "gpu_jobs": 0,
+    "model_fits": 0
+  },
+  "boundary_correction_commit": "56a32caf2099b0b3f0b14975cdf0bcee958cf069",
+  "code_commit": "72129bb2a0ad98ae075bdea3f0ef2269c9ead345",
+  "discarded_attempt": {
+    "counted_as_evidence": false,
+    "reason": "numeric-library thread limits were omitted; the CPU-oversubscribed full-suite run was interrupted and is not counted"
+  },
+  "extension_contract_sha256": "00ba64a222ae793c3f5d196ee754f0af9e2f01986ad85ed78c11b6f570da665b",
+  "formal_status": "ANALYZER_READY_EFFECT_ASSETS_PENDING",
+  "protocol": "critic-scaling-confidence-cost-extension-verification-receipt-v1",
+  "remote_verification": {
+    "changed_files": 7,
+    "content_credential_hits": 0,
+    "filename_credential_hits": 0,
+    "focused_seconds": 4.52,
+    "focused_tests_passed": 32,
+    "full_seconds": 86.31,
+    "full_tests_passed": 858,
+    "full_warnings": 33,
+    "log": "/research/d7/spc/yzyang4/prospective_decision_v1/postpush_confidence_cost_72129bb.log",
+    "log_bytes": 6309,
+    "log_sha256": "773c11ecb3cf7a111a44ef195f15f43df5efad29e487ed6b5ade5130f341952f",
+    "numeric_threads": {
+      "MKL_NUM_THREADS": 1,
+      "NUMEXPR_NUM_THREADS": 1,
+      "OMP_NUM_THREADS": 1,
+      "OPENBLAS_NUM_THREADS": 1
+    },
+    "worktree": "/research/d7/spc/yzyang4/aira-dojo-postpush-72129bb-nosmudge",
+    "worktree_clean": true
+  }
+}

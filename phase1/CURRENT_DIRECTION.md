@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EV. 2026-08-23 confidence--cost exact-commit 回归通过；仍没有真实效果
+
+scientific commit `72129bb2a0ad98ae075bdea3f0ef2269c9ead345` 在 fresh no-smudge worktree 上通过 focused
+32/32（4.52s）与完整 `phase1/tests` 858/858（86.31s，33 warnings）；changed-file credential filename/content
+hits 0/0，worktree clean。机器契约 SHA-256 仍为
+`00ba64a222ae793c3f5d196ee754f0af9e2f01986ad85ed78c11b6f570da665b`。第一次 full-suite 尝试因漏设数值库
+线程上限而约 31 核过度并行，已中断且不计证据；正式重跑固定 `OMP/OpenBLAS/MKL/NumExpr=1`，persistent log
+SHA-256=`773c11ecb3cf7a111a44ef195f15f43df5efad29e487ed6b5ade5130f341952f`。
+
+docs-only correction `56a32caf2099b0b3f0b14975cdf0bcee958cf069` 已补回项目内部 selective 负前身及 ICLR 2026
+proper-score claim boundary，不改机器协议或 scientific code。real future truth/GPU/API/model fit=`false/0/0/0`；
+正式状态仍是 `ANALYZER_READY_EFFECT_ASSETS_PENDING`。证据：
+
+- `phase1/results/critic_scaling_confidence_cost_extension_20260823_72129bb/`；
+- `phase1/实验记录/2026-08-23/CriticConfidenceCost_防Scoop与二级扩展冻结.md`。
+
 ## 0EU. 2026-08-23 confidence--cost 的内部前身已补回；selective 不得冒充新突破
 
 0ET 后的扩大历史搜索重新定位到 8 月 14 日 `selective_execution_v11_retrospective_discovery_v1`，它是当前

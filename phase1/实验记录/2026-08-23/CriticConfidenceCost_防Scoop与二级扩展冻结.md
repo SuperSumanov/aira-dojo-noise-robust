@@ -77,8 +77,14 @@ lock 重建温度、逐 pair scores、task/coverage metrics、bootstrap、gates 
 
 扩展聚焦合成测试 7/7；与 primary analyzer/materializer 联合为 32/32。覆盖：强正控、primary 不成立但 secondary 为正
 时禁止 rescue、dev/test endpoint overlap、晚锁、错 checkpoint、缺矩阵、两种 `PYTHONHASHSEED` 逐字节一致，以及
-篡改 summary 后同步更新 artifact manifest 仍被 source reconstruction 拒绝。本地尚未把 32/32 冒充完整 suite；完整
-fresh-checkout 集群回归与凭据扫描在 commit 后另记 receipt。
+篡改 summary 后同步更新 artifact manifest 仍被 source reconstruction 拒绝。
+
+scientific commit `72129bb2a0ad98ae075bdea3f0ef2269c9ead345` 的 fresh no-smudge 远端验证为 focused
+32/32（4.52s）、完整 `phase1/tests` 858/858（86.31s，33 warnings）、changed-file credential filename/content
+hits 0/0、worktree clean。第一次扩大回归漏设数值库线程上限，约 31 核过度并行后被主动中断，明确不计证据；正式
+重跑固定 `OMP/OpenBLAS/MKL/NumExpr=1`，persistent log SHA-256=
+`773c11ecb3cf7a111a44ef195f15f43df5efad29e487ed6b5ade5130f341952f`。receipt 位于
+`phase1/results/critic_scaling_confidence_cost_extension_20260823_72129bb/`。
 
 当前没有 real dev/test bundle、checkpoint manifest 或 one-shot ledgers，故正式效果状态仍是
 `ANALYZER_READY_EFFECT_ASSETS_PENDING`。它不授权训练，也不改变 score-channel future cohort 或 clean scaling 主实验。

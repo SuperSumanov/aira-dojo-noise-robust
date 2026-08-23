@@ -14,9 +14,18 @@ endpoint scores 可回答两个二级问题：
 2. critic confidence 能否把候选分成“只执行一个”和“两个都执行”，形成可审计的执行成本--regret 曲线。
 
 这不是新 calibration 或 abstention 方法。CAMEL 已用 verdict-token margin 对低置信 preference 判断调用更贵的
-reflection；Calibrated Preference Learning 已把 reward-model calibration 定义为独立于 top-1 accuracy 的质量维度。
-本项目只主张 MLE-agent physical sibling、pristine execution grade 与真实执行次数口径下的 benchmark/deployment
-证据，且不写 `first/only`。
+reflection；Calibrated Preference Learning 已把 reward-model calibration 定义为独立于 top-1 accuracy 的质量维度；
+ICLR 2026 的 *The Alignment Auditor* 也已比较 1B→8B reward model 的 accuracy、Brier、ECE 与 posterior
+identifiability。因此 proper-score scaling 本身也不是方法或 `first` 主张。本项目只保留 MLE-agent physical sibling、
+pristine execution grade 与真实执行次数口径下的 benchmark/deployment 证据。
+
+项目内部也已有直接前身：`selective_execution_v11_retrospective_discovery_v1` 曾在 1,520 个旧 exact-two parents 上
+用 TF-IDF/static/frozen-embedding committee 做 20% selective execution，正式 verdict 为
+`SELECTIVE_EXECUTION_DISCOVERY_NO_UNLOCK`；task-macro accuracy=`0.5575913930507589`，task CI=
+`[0.4780537058575693,0.6436459274377935]`。其 matched outcome-independent subset 反而更高，margin enrichment 也未获
+支持。因此本扩展的 selective 部分不是新提出的方向，而是只在 primary clean-scaling 本来就会产生的 future 8B
+one-shot scores 上，对“更强 critic 是否改变旧负结论”做零额外推理的确认性 secondary。proper-score scaling 才是
+旧 selective release 没有覆盖的新测量轴；两者都不能 rescue primary。
 
 最重要的禁止项：本扩展的任何 PASS 都不能把 primary FAIL 改写成 clean scaling PASS；它只能在 primary 结论旁边
 单独报告。历史 test-touched checkpoint、旧 b0/b1/b2 和 score-channel prospective vault 全部禁用。

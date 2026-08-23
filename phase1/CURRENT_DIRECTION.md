@@ -3,12 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0EU. 2026-08-23 confidence--cost 的内部前身已补回；selective 不得冒充新突破
+
+0ET 后的扩大历史搜索重新定位到 8 月 14 日 `selective_execution_v11_retrospective_discovery_v1`，它是当前
+cost--regret 子分析的直接内部前身，而非泛 related work。旧 exact-two 1,520-parent committee 在 20% policy 上
+task-macro=`0.5575913930507589`、CI=`[0.4780537058575693,0.6436459274377935]`，正式
+`SELECTIVE_EXECUTION_DISCOVERY_NO_UNLOCK`；相同 count 的 outcome-independent unanimous subset 反而更高，margin
+enrichment 未支持。
+
+因此 0ET 的 selective 部分降为：只在 primary clean scaling 本来就会生成的 future 8B one-shot scores 上，零额外
+推理确认更强 critic 是否改变旧负边界；它不是新方法、新方向或当前正结果。研究者已看过旧完整 risk--coverage curve，
+未来结果只能称新 cohort/new model confirmation，不能称相对全部历史 outcome blind。真正新增的测量轴是 dev-only
+proper-score scaling。此次补记不改机器 hash、50% target、coverage grid、estimand 或 gates，避免因旧结果重调协议；
+real effect 仍为零。
+
 ## 0ET. 2026-08-23 clean scaling 的 confidence--cost 二级扩展已结果前冻结；不构成新效果
 
 一手防 scoop 审计确认 CAMEL 已覆盖低置信 preference 判断调用更贵 reflection，Calibrated Preference Learning 已把
-RM calibration 定义为独立于 top-1 的质量维度，GenRM scaling 又已系统覆盖 Qwen3 `0.6B--14B`。因此不申
-calibration/abstention/RM-scaling 方法 novelty；只保留 MLE physical sibling 上 proper score 与真实候选执行次数--
-regret 的 benchmark/deployment 证据。
+RM calibration 定义为独立于 top-1 的质量维度，GenRM scaling 又已系统覆盖 Qwen3 `0.6B--14B`；ICLR 2026
+*The Alignment Auditor* 也已比较 1B→8B reward-model accuracy/Brier/ECE/identifiability。因此不申
+calibration/abstention/RM-scaling/proper-score-scaling 方法 novelty；只保留 MLE physical sibling 上 proper score 与
+真实候选执行次数--regret 的 benchmark/deployment 证据。
 
 新增二级机器契约 SHA-256=`00ba64a222ae793c3f5d196ee754f0af9e2f01986ad85ed78c11b6f570da665b`，绑定
 0EP primary contract、同一 lock/test bundle/9-predictor matrix。dev-only 无截距 scalar temperature 在 test 前锁定；

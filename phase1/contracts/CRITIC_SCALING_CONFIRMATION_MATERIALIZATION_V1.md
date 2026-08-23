@@ -45,8 +45,9 @@ checkpoint manifest 的 protocol/status 必须是
 - materializer focused：15/15；
 - 与 analyzer/endpoint overlay 联合聚焦：另有 10/10；
 - 合成 bundle 已被冻结 analyzer 完整接受；
-- 本机 full phase1 collection 因环境缺 `scipy/sklearn` 阻断，不把它记作通过；exact-commit 的集群完整回归必须在
-  推送后单列 receipt；
+- 本机 full phase1 collection 因环境缺 `scipy/sklearn` 阻断，不把它记作通过；集群 exact commit
+  `81a09d53...` 的正式依赖环境完整回归为 848/848（33 warnings），focused 25/25，secret scan 0/0，证据见
+  `phase1/results/critic_scaling_materializer_20260823_81a09d5/`；
 - real future truth/GPU/API/model fit：`false/0/0/0`。
 
 这项交付只消除“即使未来 scaling checkpoint 到了也无法严谨生成 component utility bundle”的工程阻断，不是模型

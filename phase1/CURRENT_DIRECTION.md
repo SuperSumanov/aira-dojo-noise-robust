@@ -12,11 +12,13 @@ fail-closed，按 parent graph 的 maximal connected components 零丢弃生成 
 阶段拒绝 symlink/path escape、矩阵缺失和任一 hash/rows/ledger 不一致。
 
 纯合成 adversarial tests 15/15，既有 scaling+endpoint 联合测试 10/10，合成最终 bundle 可被 frozen analyzer 接受；
-本机 full phase1 因环境缺 `scipy/sklearn` 在 collection 阶段阻断，尚待集群 exact-commit full regression。正式状态为
+集群 fresh no-smudge exact commit `81a09d53...` focused 25/25、full phase1 848/848（33 warnings），secret scan
+0/0、worktree clean；本机缺 `scipy/sklearn` 的 collection 失败未冒充通过。正式状态为
 `MATERIALIZER_READY_SYNTHETIC_ONLY_REAL_TRUTH_FORBIDDEN`：real future truth/GPU/API/model fit=`false/0/0/0`，因此这只是
 把未来确认做成一次性、可审计交付，不是新的 scaling 效果。证据：
 
 - `phase1/contracts/CRITIC_SCALING_CONFIRMATION_MATERIALIZATION_V1.md`；
+- `phase1/results/critic_scaling_materializer_20260823_81a09d5/`；
 - `phase1/实验记录/2026-08-23/CleanScalingMaterializer_盲态交付桥与一次性加固.md`。
 
 ## 0EQ. 2026-08-23 clean scaling 的 endpoint-score 交付缺口已闭合；效果资产仍待未来

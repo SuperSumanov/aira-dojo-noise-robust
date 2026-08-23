@@ -13,6 +13,13 @@ from phase1 import critic_scaling_confirmation_materializer as materializer
 
 REPO = Path(__file__).resolve().parents[2]
 CONTRACT = REPO / "phase1" / "critic_scaling_confirmation_contract_v1.json"
+REMOTE_RECEIPT = (
+    REPO
+    / "phase1"
+    / "results"
+    / "critic_scaling_materializer_20260823_81a09d5"
+    / "verification_receipt.json"
+)
 
 
 def write_json(path: Path, value: object) -> None:
@@ -520,3 +527,19 @@ def test_bundle_assembly_rejects_path_escape_and_incomplete_matrix(tmp_path: Pat
     args = bundle_args(lock, root, inputs)
     with pytest.raises(materializer.MaterializationError, match="incomplete"):
         materializer.assemble_bundle(args)
+
+
+def test_exact_commit_remote_receipt_preserves_truth_and_compute_boundary() -> None:
+    receipt = json.loads(REMOTE_RECEIPT.read_text(encoding="utf-8"))
+    assert receipt["code_commit"] == "81a09d53f3b935c019a0126365ce4e76fa3940a1"
+    assert receipt["remote_verification"]["focused_tests_passed"] == 25
+    assert receipt["remote_verification"]["full_tests_passed"] == 848
+    assert receipt["remote_verification"]["full_warnings"] == 33
+    assert receipt["remote_verification"]["filename_credential_hits"] == 0
+    assert receipt["remote_verification"]["content_credential_hits"] == 0
+    assert receipt["access_attestation"] == {
+        "api_calls": 0,
+        "future_truth_opened": False,
+        "gpu_jobs": 0,
+        "model_fits": 0,
+    }

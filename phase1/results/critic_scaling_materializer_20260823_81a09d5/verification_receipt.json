@@ -1,0 +1,28 @@
+{
+  "access_attestation": {
+    "api_calls": 0,
+    "future_truth_opened": false,
+    "gpu_jobs": 0,
+    "model_fits": 0
+  },
+  "code_commit": "81a09d53f3b935c019a0126365ce4e76fa3940a1",
+  "formal_status": "MATERIALIZER_READY_SYNTHETIC_ONLY_REAL_TRUTH_FORBIDDEN",
+  "local_full_suite": {
+    "classification": "COLLECTION_BLOCKED_MISSING_SCIPY_SKLEARN",
+    "counted_as_pass": false
+  },
+  "protocol": "critic-scaling-materializer-verification-v1",
+  "remote_verification": {
+    "changed_files": 6,
+    "content_credential_hits": 0,
+    "filename_credential_hits": 0,
+    "focused_seconds": 3.1,
+    "focused_tests_passed": 25,
+    "full_seconds": 62.75,
+    "full_tests_passed": 848,
+    "full_warnings": 33,
+    "log": "/research/d7/spc/yzyang4/prospective_decision_v1/postpush_materializer_81a09d5.log",
+    "worktree": "/research/d7/spc/yzyang4/aira-dojo-postpush-81a09d5-nosmudge",
+    "worktree_clean": true
+  }
+}

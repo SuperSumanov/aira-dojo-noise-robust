@@ -24,4 +24,8 @@ direction/budget/credential 破坏、endpoint inconsistency、hash/orientation s
 substitution、path traversal 与 matrix omission。冻结 analyzer 接受合成最终 bundle。另 10 项既有 scaling/endpoint
 联合测试通过。本机 full collection 因缺 `scipy/sklearn`，该结果不算 full-suite pass，等待集群 exact commit 复验。
 
+推送后在集群 fresh no-smudge exact commit `81a09d53...` 上，focused 25/25（3.10s），full phase1 848/848
+（62.75s，33 个既有 warning），changed-file secret scan 0/0，worktree clean。持久日志与机器 receipt 位于
+`phase1/results/critic_scaling_materializer_20260823_81a09d5/`。
+
 访问证明：real future truth=false，GPU=0，API=0，model fit=0。当前没有产生任何 scaling 效果数字。

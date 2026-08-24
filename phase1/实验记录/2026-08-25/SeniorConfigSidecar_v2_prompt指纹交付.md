@@ -2,7 +2,7 @@
 
 日期：2026-08-25
 
-状态：`V2_HANDOFF_READY_NOT_DEPLOYED`
+状态：`V2_BATCH_EXPORTER_READY_NOT_DEPLOYED`
 
 协议：`senior-experiment-config-manifest-v2`
 
@@ -63,3 +63,8 @@ scaling confirmation。v2 只让**下一批**具备可识别性，不是效果�
 
 建议学长从下一批 producer 在 archive 发布前调用 exporter，并把 per-run sidecar 与 source manifest 同步作为不可变
 分批文件上传；consumer 合并时必须覆盖 frozen expected-run 集的全部 rows，禁止挑方便子集。
+
+同日后续已新增 4/8-seed 原子 batch wrapper，避免手工逐 run 留下半批 sidecar。fresh Linux focused/full=
+`17/1000 passed`，正式 `SHA256SUMS` hash=`ceb4959c...31b5`；详见
+`phase1/实验记录/2026-08-25/SeniorConfigSidecar_v2_批次原子导出器.md`。真实 producer sidecar 仍未观察到，
+所以 NOT DEPLOYED 边界不变。

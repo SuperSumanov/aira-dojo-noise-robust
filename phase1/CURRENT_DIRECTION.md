@@ -54,7 +54,7 @@ hash=`dff24b09...8f6e`。详见：
 
 - `phase1/实验记录/2026-08-25/PredictionEscrowCoverage_f109_七臂同池结构矩阵.md`。
 
-## 0FS. 2026-08-25 future config sidecar v2 已补 resolved-solver/prompt 指纹；尚未部署真实 producer
+## 0FS. 2026-08-25 future config sidecar v2 已补 prompt 指纹与批次原子导出；尚未部署真实 producer
 
 现有 v1/历史 `config_sha256` 只覆盖 client、hardware 与两个时间限制，无法区分学长 `b80c056` 的 system/user prompt
 拆分。新增 future-only v2：从未归档 producer `dojo_config.json` 去掉恰好两个 run-specific 路径字段后，对完整 resolved
@@ -63,14 +63,20 @@ solver canonical JSON 计算 SHA；config stratum 同时纳入 generator release
 fail closed。
 
 本地 v1+v2=`19 passed, 1 Windows symlink skipped`；fresh Linux commit=`a6776be...` 为 `20 passed`，receipt
-`SHA256SUMS` hash=`93bde54b...8a3b`。状态只能是 `V2_HANDOFF_READY_NOT_DEPLOYED`：没有真实 next-batch sidecar，
+`SHA256SUMS` hash=`93bde54b...8a3b`。当时状态为 `V2_HANDOFF_READY_NOT_DEPLOYED`：没有真实 next-batch sidecar，
 0823 archives 禁止事后回填为 prompt A/B 或 exact-stratum 证据。详见：
+
+随后新增 4/8-seed batch wrapper：所有显式未归档 config 先全量校验，再检查重复 run ID、按 run_id 排序并通过
+exclusive temp + `fsync` + atomic replace 一次写出；任一坏 row 整批零输出。commit=`f4099ad...` 的 fresh Linux
+focused/full=`17/1000 passed`，receipt `SHA256SUMS` hash=`ceb4959c...31b5`，credential hits=`0/0`。正式状态仍为
+`V2_BATCH_EXPORTER_READY_NOT_DEPLOYED`，因为 `real_producer_sidecar_observed=false`；工具通过不等于生产已部署。
 
 集成报告 commit=`aa91322...` 的 fresh Linux 全套另为 `984 passed, 47 warnings in 75.33s`，postpush receipt
 `SHA256SUMS` hash=`943f787d...7e26`；这 984 包含 coverage 975-test 基线与 v2 新增的 9 个测试。
 
 - `phase1/contracts/SENIOR_EXPERIMENT_CONFIG_MANIFEST_V2.md`；
-- `phase1/实验记录/2026-08-25/SeniorConfigSidecar_v2_prompt指纹交付.md`。
+- `phase1/实验记录/2026-08-25/SeniorConfigSidecar_v2_prompt指纹交付.md`；
+- `phase1/实验记录/2026-08-25/SeniorConfigSidecar_v2_批次原子导出器.md`。
 
 ## 0FR. 2026-08-25 target-300 改为 5×300s 多归档静默触发；覆盖 0FP 的 immediate-monitor 状态
 

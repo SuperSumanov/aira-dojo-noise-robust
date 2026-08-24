@@ -52,7 +52,8 @@ trap failure_receipt EXIT
 
 git -C "${base_repo}" fetch fork phase1-value-critic \
   > "${bootstrap}/fetch.stdout" 2> "${bootstrap}/fetch.stderr"
-test "$(git -C "${base_repo}" rev-parse fork/phase1-value-critic)" = "${commit}"
+git -C "${base_repo}" merge-base --is-ancestor \
+  "${commit}" fork/phase1-value-critic
 GIT_LFS_SKIP_SMUDGE=1 git -C "${base_repo}" worktree add --detach "${worktree}" "${commit}" \
   > "${bootstrap}/worktree.stdout" 2> "${bootstrap}/worktree.stderr"
 test "$(git -C "${worktree}" rev-parse HEAD)" = "${commit}"

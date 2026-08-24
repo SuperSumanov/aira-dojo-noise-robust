@@ -1,4 +1,4 @@
-# 当前研究方向唯一入口（2026-08-24）
+# 当前研究方向唯一入口（2026-08-25）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
@@ -12,6 +12,27 @@
 > 支持审计改写；所有更早“唯一主实验”“主线已确认”措辞均按本段降为历史状态。
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
+
+## 0FO. 2026-08-25 H200 jobs 11410/11411 均触发 24h TIMEOUT；仅封存调度事实
+
+继 11408 后，学长 H200 exploratory jobs `11410/11411` 也分别在 `1-00:00:17` / `1-00:00:09`
+触发顶层 `TIMEOUT`；节点为 `projgpu6`（2 GPUs）/`projgpu13`（4 GPUs）。两份 terminal receipt 与总 monitor
+receipt 已逐文件复验并递归只读；`logs/metrics/outcomes/checkpoints_read=false`，没有打开训练日志、指标、预测、
+checkpoint 或共享 output，也没有模型效果结论。三份 `SHA256SUMS` 自身 SHA-256 分别为
+`e7e20059...a607`、`e75befc7...4d56`、`740f8f1b...824a6`。这不改变 0FD：这些 test-touched、映射未冻结的
+exploratory jobs 不能升级为 clean scaling confirmation。详见：
+
+- `phase1/实验记录/2026-08-25/H200_11410_11411_TIMEOUT_调度收据.md`。
+
+## 0FN. 2026-08-24 target-300 runner 去除脆弱的 exact branch-head 耦合
+
+target cohort runner 仍在调用者绑定的 exact control commit 上建立 detached worktree并检查 HEAD，但发布证明由“fork
+branch HEAD 必须永远等于 control commit”修正为“control commit 必须是当前 fork branch 的 ancestor”。这避免纯文档
+push 让已运行 monitor 在下批到达后无科学理由地失败，同时仍拒绝未发布/被 force-push 删除的 commit，也不会使用
+descendant 的新代码。新增攻击测试锁住 ancestor proof + exact worktree proof。`5d44361` monitor 已在新快照前封存，
+替代 `795e3da` monitor 首轮仍停在 `f109ac...`，outcome/effect/GPU/API=未读/空/0/0。详见：
+
+- `phase1/实验记录/2026-08-24/Target300_monitor_exact_head耦合修正.md`。
 
 ## 0FM. 2026-08-24 GitHub LFS fresh clone 可逐字节重建 v11；发布可访问性 PASS
 

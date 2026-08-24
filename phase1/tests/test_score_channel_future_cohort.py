@@ -510,3 +510,16 @@ def test_formal_runner_has_full_preflight_and_forbidden_open_audit():
     assert "producer x2 independent verifier x2" in script
     assert "forbidden_open_count" in script
     assert "GPU=0; API=0; model-fit=0" in script
+
+
+def test_formal_runner_keeps_exact_commit_but_allows_published_descendant_head():
+    script = (
+        REPO / "phase1" / "scripts" / "run_score_channel_future_cohort_20260823.sh"
+    ).read_text(encoding="utf-8")
+    assert "merge-base --is-ancestor" in script
+    assert '"${commit}" fork/phase1-value-critic' in script
+    assert 'test "$(git -C "${worktree}" rev-parse HEAD)" = "${commit}"' in script
+    assert (
+        'test "$(git -C "${base_repo}" rev-parse fork/phase1-value-critic)" = "${commit}"'
+        not in script
+    )

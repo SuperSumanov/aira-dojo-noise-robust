@@ -65,4 +65,4 @@ def draft_op(
     if complexity is not None:
         draft_data["draft_complexity"] = complexity.value
 
-    return draft_llm(query_data=draft_data, no_user_message=True)
+    return draft_llm(query_data=draft_data)

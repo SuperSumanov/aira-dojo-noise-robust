@@ -68,5 +68,4 @@ def analyze_op(
         json_schema=schema,
         function_name="submit_review",
         function_description="Submit a review evaluating the output of the training script.",
-        no_user_message=True,
     )

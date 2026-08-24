@@ -65,4 +65,4 @@ def debug_op(
     else:
         debug_data["data_overview"] = "(No data preview available)"
 
-    return debug_llm(query_data=debug_data, no_user_message=True)
+    return debug_llm(query_data=debug_data)

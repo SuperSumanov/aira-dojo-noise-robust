@@ -35,7 +35,6 @@ return analyze_llm(
     function_description=(
         "Submit a review evaluating the output of the training script."
     ),
-    no_user_message=True,
 )
 ```
 

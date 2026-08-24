@@ -3,13 +3,13 @@
 # Usage: bash src/mle_critic/scripts/train/pro6000/train_mixed_decision_value.sh [seed]
 set -euo pipefail
 source "$(dirname "$0")/../../experiment_env_augmented_data.sh"
-SEED=${1:-7}
+SEED=${1:-6}
 
 accelerate launch \
 --config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
---train_pairs "$DATA_DIR/decision_value_mixed_pairs_filtered_runsplit.jsonl" \
---test_pairs "$DATA_DIR/decision_value_mixed_pairs_filtered_runsplit.jsonl" \
+--train_pairs "$DATA_DIR/decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl" \
+--test_pairs "$DATA_DIR/decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl" \
 --cards "$DATA_DIR/augmented_cards_current.json" \
 --model Qwen/Qwen3-8B-Base \
 --max-len 16384 \
@@ -26,8 +26,8 @@ accelerate launch \
 accelerate launch \
 --config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
---train_pairs "$DATA_DIR/decision_value_mixed_pairs_filtered_runsplit.jsonl" \
---test_pairs "$DATA_DIR/decision_value_mixed_pairs_filtered_runsplit.jsonl" \
+--train_pairs "$DATA_DIR/decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl" \
+--test_pairs "$DATA_DIR/decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl" \
 --cards "$DATA_DIR/augmented_cards_current.json" \
 --model Qwen/Qwen3-4B-Base \
 --max-len 16384 \
@@ -44,8 +44,8 @@ accelerate launch \
 accelerate launch \
 --config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
---train_pairs "$DATA_DIR/decision_value_mixed_pairs_filtered_runsplit.jsonl" \
---test_pairs "$DATA_DIR/decision_value_mixed_pairs_filtered_runsplit.jsonl" \
+--train_pairs "$DATA_DIR/decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl" \
+--test_pairs "$DATA_DIR/decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl" \
 --cards "$DATA_DIR/augmented_cards_current.json" \
 --model Qwen/Qwen3-1.7B-Base \
 --max-len 16384 \
@@ -62,8 +62,8 @@ accelerate launch \
 accelerate launch \
 --config_file "$ACCELERATE_CONFIG" \
 --num_processes 2 "$TRAIN_SCRIPT" \
---train_pairs "$DATA_DIR/decision_value_mixed_pairs_filtered_runsplit.jsonl" \
---test_pairs "$DATA_DIR/decision_value_mixed_pairs_filtered_runsplit.jsonl" \
+--train_pairs "$DATA_DIR/decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl" \
+--test_pairs "$DATA_DIR/decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl" \
 --cards "$DATA_DIR/augmented_cards_current.json" \
 --model Qwen/Qwen3-0.6B-Base \
 --max-len 16384 \

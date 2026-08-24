@@ -67,7 +67,6 @@ class GenericLLM:
         self,
         query_data: Optional[Dict[str, Any]] = None,
         messages: Optional[List[Dict[str, str]]] = None,
-        no_user_message: bool = False,
         json_schema: Optional[str] = None,
         function_name: Optional[str] = None,
         function_description: Optional[str] = None,
@@ -78,7 +77,6 @@ class GenericLLM:
         Args:
             query_data: A dictionary containing data for formatting prompts.
             messages: A list of message dictionaries to send to the LLM.
-            no_user_message: If True, does not append a user message to the prompts.
             json_schema: An optional JSON schema string.
 
         Returns:
@@ -115,19 +113,6 @@ class GenericLLM:
                     self.client.client_content_key: self.system_message_prompt_template.format(**query_data),
                 }
             ]
-
-        # If no_user_message is True, directly query the client without adding a user message
-        if no_user_message:
-            output, usage_stats = self.client.query(
-                messages,
-                json_schema=json_schema,
-                function_name=function_name,
-                function_description=function_description,
-                **self.generation_kwargs,
-            )
-            usage_stats["cumulative_num_llm_calls"] = self.call_tracker
-
-            return output, {"usage": usage_stats, "prompt_messages": messages, "completion_text": str(output)}
 
         # Append a user message based on whether it's the first message or a subsequent one
         if len(messages) == 1:

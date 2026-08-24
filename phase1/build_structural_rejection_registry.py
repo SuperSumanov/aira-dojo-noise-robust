@@ -14,8 +14,10 @@ from typing import Any
 
 AUDIT_PROTOCOL = "prospective_archive_task_identity_audit_v1"
 REJECTION_PROTOCOL = "prospective_structural_rejection_v1"
-REJECTION_STATUS = "STRUCTURAL_TASK_IDENTITY_REJECTION_SUPPORTED"
-REASON_CODE = "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+TASK_IDENTITY_REJECTION_STATUS = "STRUCTURAL_TASK_IDENTITY_REJECTION_SUPPORTED"
+NO_CHECKPOINT_REJECTION_STATUS = "STRUCTURAL_NO_CHECKPOINT_REJECTION_SUPPORTED"
+TASK_IDENTITY_REASON = "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+NO_CHECKPOINT_REASON = "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS"
 SHA_RX = re.compile(r"[0-9a-f]{64}")
 COMMIT_RX = re.compile(r"[0-9a-f]{40}")
 EXPECTED_SECURITY = {
@@ -92,11 +94,17 @@ def build_registry(
     receipt = read_object(diagnostic_receipt)
     if receipt.get("protocol") != AUDIT_PROTOCOL:
         raise RegistryBuildError("diagnostic protocol mismatch")
-    if receipt.get("status") != REJECTION_STATUS:
+    status = receipt.get("status")
+    reason_code = receipt.get("recommended_reason_code")
+    status_to_reason = {
+        TASK_IDENTITY_REJECTION_STATUS: TASK_IDENTITY_REASON,
+        NO_CHECKPOINT_REJECTION_STATUS: NO_CHECKPOINT_REASON,
+    }
+    if status not in status_to_reason:
         raise RegistryBuildError("diagnostic does not support structural rejection")
     if receipt.get("outcomes_read") is not False:
         raise RegistryBuildError("diagnostic outcome-blindness mismatch")
-    if receipt.get("recommended_reason_code") != REASON_CODE:
+    if reason_code != status_to_reason[status]:
         raise RegistryBuildError("diagnostic reason-code mismatch")
     if receipt.get("source_commit") != expected_source_commit:
         raise RegistryBuildError("diagnostic source-commit mismatch")
@@ -128,8 +136,14 @@ def build_registry(
     }
     if sum(normalized_counts.values()) != journals:
         raise RegistryBuildError("diagnostic cardinality counts do not sum to journals")
-    if normalized_counts["zero"] + normalized_counts["multiple"] != invalid or invalid == 0:
-        raise RegistryBuildError("diagnostic invalid-journal accounting mismatch")
+    if status == TASK_IDENTITY_REJECTION_STATUS:
+        if (
+            normalized_counts["zero"] + normalized_counts["multiple"] != invalid
+            or invalid == 0
+        ):
+            raise RegistryBuildError("diagnostic invalid-journal accounting mismatch")
+    elif invalid != 0 or journals != 0 or any(normalized_counts.values()):
+        raise RegistryBuildError("no-checkpoint diagnostic journal accounting mismatch")
 
     per_journal = receipt.get("per_journal")
     if not isinstance(per_journal, list) or len(per_journal) != journals:
@@ -159,6 +173,34 @@ def build_registry(
     if rebuilt_counts != normalized_counts:
         raise RegistryBuildError("per-journal cardinalities differ from aggregate counts")
 
+    if status == NO_CHECKPOINT_REJECTION_STATUS:
+        archive_audit = receipt.get("archive_audit")
+        expected_audit_keys = {
+            "checkpoint_runs",
+            "checkpoint_with_live_event_log",
+            "checkpoint_without_live_event_log",
+            "declared_member_bytes",
+            "discovered_run_roots",
+            "live_only_runs_excluded",
+            "members",
+        }
+        if not isinstance(archive_audit, dict) or set(archive_audit) != expected_audit_keys:
+            raise RegistryBuildError("no-checkpoint archive-audit schema mismatch")
+        normalized_audit = {
+            key: require_nonnegative_int(archive_audit[key], f"archive audit {key}")
+            for key in expected_audit_keys
+        }
+        if (
+            normalized_audit["checkpoint_runs"] != 0
+            or normalized_audit["checkpoint_with_live_event_log"] != 0
+            or normalized_audit["checkpoint_without_live_event_log"] != 0
+            or normalized_audit["discovered_run_roots"] <= 0
+            or normalized_audit["members"] <= 0
+            or normalized_audit["live_only_runs_excluded"]
+            != normalized_audit["discovered_run_roots"]
+        ):
+            raise RegistryBuildError("no-checkpoint archive-audit accounting mismatch")
+
     return {
         "protocol": REJECTION_PROTOCOL,
         "outcomes_read": False,
@@ -170,7 +212,7 @@ def build_registry(
                 "archive_size": stat.st_size,
                 "diagnostic_receipt_file": diagnostic_receipt.name,
                 "diagnostic_receipt_sha256": sha256(diagnostic_receipt),
-                "reason_code": REASON_CODE,
+                "reason_code": reason_code,
             }
         ],
     }

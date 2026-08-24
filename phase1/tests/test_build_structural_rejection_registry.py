@@ -60,6 +60,30 @@ def _receipt(archive: Path, archive_sha: str) -> dict[str, object]:
     }
 
 
+def _no_checkpoint_receipt(archive: Path, archive_sha: str) -> dict[str, object]:
+    value = _receipt(archive, archive_sha)
+    value.update(
+        {
+            "status": "STRUCTURAL_NO_CHECKPOINT_REJECTION_SUPPORTED",
+            "journals": 0,
+            "task_identity_cardinality_counts": {"zero": 0, "one": 0, "multiple": 0},
+            "invalid_journals": 0,
+            "per_journal": [],
+            "archive_audit": {
+                "checkpoint_runs": 0,
+                "checkpoint_with_live_event_log": 0,
+                "checkpoint_without_live_event_log": 0,
+                "declared_member_bytes": 123,
+                "discovered_run_roots": 4,
+                "live_only_runs_excluded": 4,
+                "members": 8,
+            },
+            "recommended_reason_code": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+        }
+    )
+    return value
+
+
 def test_builds_registry_bound_to_receipt_and_runner_accepts_it(tmp_path: Path) -> None:
     archive = tmp_path / "task.tar.gz"
     archive.write_bytes(b"opaque archive")
@@ -83,6 +107,50 @@ def test_builds_registry_bound_to_receipt_and_runner_accepts_it(tmp_path: Path) 
     assert rows[0]["archive_relative_path"] == "0819/task.tar.gz"
     assert rows[0]["archive_sha256"] == archive_sha
     assert rows[0]["diagnostic_receipt_file"] == "diagnostic.json"
+
+
+def test_builds_no_checkpoint_registry_and_runner_accepts_it(tmp_path: Path) -> None:
+    archive = tmp_path / "task.tar.gz"
+    archive.write_bytes(b"opaque archive")
+    archive_sha = _sha(archive.read_bytes())
+    receipt_path = tmp_path / "diagnostic.json"
+    receipt_path.write_text(
+        json.dumps(_no_checkpoint_receipt(archive, archive_sha)) + "\n", encoding="utf-8"
+    )
+
+    registry = build_registry(
+        archive,
+        "0822/task.tar.gz",
+        archive_sha,
+        receipt_path,
+        COMMIT,
+    )
+    registry_path = tmp_path / "registry.json"
+    registry_path.write_text(json.dumps(registry, sort_keys=True) + "\n", encoding="utf-8")
+    registry_sha = _sha(registry_path.read_bytes())
+    rows, actual_sha = load_structural_rejections(registry_path, registry_sha)
+
+    assert actual_sha == registry_sha
+    assert rows[0]["reason_code"] == "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS"
+
+
+def test_rejects_inconsistent_no_checkpoint_archive_audit(tmp_path: Path) -> None:
+    archive = tmp_path / "task.tar.gz"
+    archive.write_bytes(b"opaque archive")
+    archive_sha = _sha(archive.read_bytes())
+    value = _no_checkpoint_receipt(archive, archive_sha)
+    value["archive_audit"]["checkpoint_runs"] = 1
+    receipt_path = tmp_path / "diagnostic.json"
+    receipt_path.write_text(json.dumps(value) + "\n", encoding="utf-8")
+
+    with pytest.raises(RegistryBuildError, match="no-checkpoint archive-audit accounting"):
+        build_registry(
+            archive,
+            "0822/task.tar.gz",
+            archive_sha,
+            receipt_path,
+            COMMIT,
+        )
 
 
 @pytest.mark.parametrize(

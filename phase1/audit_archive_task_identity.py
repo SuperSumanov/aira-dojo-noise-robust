@@ -13,6 +13,10 @@ from phase1.prospective_drop_intake import IntakeError, journals_from_archive, s
 
 
 PROTOCOL = "prospective_archive_task_identity_audit_v1"
+TASK_IDENTITY_REJECTION_STATUS = "STRUCTURAL_TASK_IDENTITY_REJECTION_SUPPORTED"
+NO_CHECKPOINT_REJECTION_STATUS = "STRUCTURAL_NO_CHECKPOINT_REJECTION_SUPPORTED"
+TASK_IDENTITY_REASON = "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+NO_CHECKPOINT_REASON = "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS"
 
 
 class AuditError(RuntimeError):
@@ -74,11 +78,21 @@ def audit(archive: Path, expected_sha256: str, source_commit: str) -> dict[str, 
         )
     per_journal.sort(key=lambda row: row["journal_sha256"])
     invalid = counts["zero"] + counts["multiple"]
+    no_checkpoint_runs = archive_audit["checkpoint_runs"] == 0
+    if no_checkpoint_runs and (
+        sources
+        or archive_audit["discovered_run_roots"] <= 0
+        or archive_audit["live_only_runs_excluded"]
+        != archive_audit["discovered_run_roots"]
+    ):
+        raise AuditError("inconsistent no-checkpoint archive audit")
     stat = archive.stat()
     return {
         "protocol": PROTOCOL,
         "status": (
-            "STRUCTURAL_TASK_IDENTITY_REJECTION_SUPPORTED"
+            NO_CHECKPOINT_REJECTION_STATUS
+            if no_checkpoint_runs
+            else TASK_IDENTITY_REJECTION_STATUS
             if invalid > 0
             else "TASK_IDENTITY_EXACTLY_ONE_IN_ALL_JOURNALS"
         ),
@@ -102,7 +116,9 @@ def audit(archive: Path, expected_sha256: str, source_commit: str) -> dict[str, 
         },
         "outcomes_read": False,
         "recommended_reason_code": (
-            "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+            NO_CHECKPOINT_REASON
+            if no_checkpoint_runs
+            else TASK_IDENTITY_REASON
             if invalid > 0
             else None
         ),

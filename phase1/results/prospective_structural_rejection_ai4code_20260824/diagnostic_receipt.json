@@ -1,0 +1,37 @@
+{
+  "archive": {
+    "mtime_ns": 1787498878000000000,
+    "relative_basename": "AI4Code-8seeds.tar.gz",
+    "sha256": "c6291fe93cc2ec6ba8fff28a76ef7db77912f2d5306875280d330df7bbdc019e",
+    "size": 4286045
+  },
+  "archive_audit": {
+    "checkpoint_runs": 0,
+    "checkpoint_with_live_event_log": 0,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 23993632,
+    "discovered_run_roots": 4,
+    "live_only_runs_excluded": 4,
+    "members": 55
+  },
+  "invalid_journals": 0,
+  "journals": 0,
+  "outcomes_read": false,
+  "per_journal": [],
+  "protocol": "prospective_archive_task_identity_audit_v1",
+  "recommended_reason_code": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+  "security": {
+    "code_stdout_grade_or_metric_values_emitted": false,
+    "env_members_read": false,
+    "journal_scanned_before_json": true,
+    "live_event_journal_members_read": false,
+    "task_identity_values_emitted": false
+  },
+  "source_commit": "688f03b729921d20186641c33f478653f8d65b80",
+  "status": "STRUCTURAL_NO_CHECKPOINT_REJECTION_SUPPORTED",
+  "task_identity_cardinality_counts": {
+    "multiple": 0,
+    "one": 0,
+    "zero": 0
+  }
+}

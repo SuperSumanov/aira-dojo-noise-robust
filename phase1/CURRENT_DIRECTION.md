@@ -13,6 +13,47 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FT. 2026-08-25 f109 七臂 prediction escrow 已证明逐 pair 同池；效果仍未知且 transition 支持不足
+
+在 outcome-blind `f109` 上，WL 四臂与 transition 三臂各有 2,589 structural pairs、324 个有 pair 的 runs、29 tasks；
+独立 canonical unordered identity 显示 intersection=union=2,589、IoU=1.0、同向 left/right=2,589，mapping
+SHA-256=`e0131368...392f`。这是可做未来 paired comparison 的正面 benchmark 资产，消除了方法间 pair-pool 混杂；
+但它没有读取 truth，也没有 accuracy、方法优越性、search utility 或 runtime/cost 结论。
+
+两套 activation 不同，必须保留交叉表：417 pairs 同时在两者 activation 后，507 仅在 WL activation 后、transition
+仍为 support-only，1,665 在两者 support-only。transition 只有 363 个 `strict_effect_eligible` pairs，45 runs、16 tasks；
+仍因 pairs<1,500、runs<150、dominant task share=`0.29476584`>0.25 而
+`TRANSITION_ESCROW_INSUFFICIENT_FUTURE_SUPPORT`，禁止提前揭盲。正式 commit=`2c5626d...`，focused/full=
+`10/975 passed`；formal `SHA256SUMS` 自身 SHA-256=`e5006577...e7c7`。6 个失败尝试无覆盖保留，失败/复验 registry
+hash=`dff24b09...8f6e`。详见：
+
+- `phase1/实验记录/2026-08-25/PredictionEscrowCoverage_f109_七臂同池结构矩阵.md`。
+
+## 0FS. 2026-08-25 future config sidecar v2 已补 resolved-solver/prompt 指纹；尚未部署真实 producer
+
+现有 v1/历史 `config_sha256` 只覆盖 client、hardware 与两个时间限制，无法区分学长 `b80c056` 的 system/user prompt
+拆分。新增 future-only v2：从未归档 producer `dojo_config.json` 去掉恰好两个 run-specific 路径字段后，对完整 resolved
+solver canonical JSON 计算 SHA；config stratum 同时纳入 generator release，consumer 再与 source manifest 的逐 run
+`producer_commit` 组合成 producer stratum。mixed operator clients、credential-shaped raw config、symlink、篡改与缺覆盖均
+fail closed。
+
+本地 v1+v2=`19 passed, 1 Windows symlink skipped`；fresh Linux commit=`a6776be...` 为 `20 passed`，receipt
+`SHA256SUMS` hash=`93bde54b...8a3b`。状态只能是 `V2_HANDOFF_READY_NOT_DEPLOYED`：没有真实 next-batch sidecar，
+0823 archives 禁止事后回填为 prompt A/B 或 exact-stratum 证据。详见：
+
+- `phase1/contracts/SENIOR_EXPERIMENT_CONFIG_MANIFEST_V2.md`；
+- `phase1/实验记录/2026-08-25/SeniorConfigSidecar_v2_prompt指纹交付.md`。
+
+## 0FR. 2026-08-25 target-300 改为 5×300s 多归档静默触发；覆盖 0FP 的 immediate-monitor 状态
+
+0FP 的 ancestor-safe immediate monitor 在 f109 未变、formal 未启动、outcome 未读时封存，stop receipt
+`SHA256SUMS` hash=`af128285...c4f6`。替代 PID=`1986763` 绑定 exact science commit `ab59a01...`，要求新 snapshot
+连续 5 轮、每轮 300 秒完全相同后才运行一次 target formal；snapshot 继续变化则计数清零。当前已连续 6 轮仍为 f109，
+`outcomes_read=false`。这只避免同一批多 archive 到达时先封中间 receipt，不改变 target/overshoot/closure/truth 契约。
+详见：
+
+- `phase1/实验记录/2026-08-25/Target300_多归档静默触发部署收据.md`。
+
 ## 0FQ. 2026-08-25 学长 0823 六归档仅完成预摄取观察；新 producer stratum 尚不可归因
 
 连续 intake 在 metadata 层观察到 archive 总数从 212 增至 218；新增 `0823` 六个归档、共约 146 MB，当前均为

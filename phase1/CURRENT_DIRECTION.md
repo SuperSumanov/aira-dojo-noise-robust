@@ -13,6 +13,29 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FH. 2026-08-24 transition future escrow 已补齐 0822；任务广度门首次通过，仍 NO_UNLOCK
+
+固定 first-960 scorer 已随 74 个 accepted transactions 完整前滚到 snapshot `f109ac...`：registry 覆盖
+9,992 eligible endpoints / 328 scoreable runs / 29 tasks，`labels_read=false`、`label_vault_opened=false`。
+独立 transition prediction escrow monitor 此前在 `2026-08-23T03:58:28Z` 正常完成 145 polls，最后停在
+`79701f...`，因此 0822 入库后存在 prediction asset 滞后而不是语料丢失。现以原 science commit `7458f09...`、
+原 monitor control `ca8e000...` 和逐字节相同脚本 SHA-256=
+`52df665581b31986bb9db0cb79458e69194d1e7398cbabcd409b6670c5ded154` 结果盲续接到 `f109ac...`；旧
+2,426 rows 逐字段存活，producer/不 import producer 的 verifier 均返回 0，2,589 个总 pair 的 future margin
+独立复算最大差=0，forbidden-path/credential hits=0/0，产物递归只读。
+
+结构支持从旧 strict/eligible/runs/tasks=`254/222/28/11` 前滚为 `417/363/45/16`。因此预注册的
+minimum-15-tasks 门首次 PASS，parent-source coverage=`0.8776978417266187` 继续 PASS，endpoint/run/code
+overlap 三门继续 PASS；但 1,500 eligible pairs、150 runs 与 dominant task share≤0.25 三门仍 FAIL。正式状态保持
+`TRANSITION_ESCROW_INSUFFICIENT_FUTURE_SUPPORT`，effect metrics 为空，prospective outcomes/GPU/API=
+`未读/0/0`。这是一项正向的结构支持进展，不是 transition critic 效果、accuracy 或 search gain；不得因 task 门已过
+而提前揭盲。summary SHA-256=`da62681ed53835de40a9a3dda583e589e05aef7c5bd1d602cc556b78c851d5cf`，
+证据与边界见：
+
+- `phase1/实验记录/2026-08-24/TransitionFutureEscrow_0822补齐与任务门进展_正式裁决.md`；
+- 远端只读产物
+  `/research/d7/spc/yzyang4/transition-future-escrow/7458f09-append/20260824T111032Z_f109ac928ed0`。
+
 ## 0FG. 2026-08-24 0822 双结构拒收完成；摄取恢复，两个冻结人口仍保持 outcome-blind
 
 0822 新观察的 8 个 archive 已全部 settled：6 个完整进入 append-only intake，另 2 个按各自精确 bytes 拒收。

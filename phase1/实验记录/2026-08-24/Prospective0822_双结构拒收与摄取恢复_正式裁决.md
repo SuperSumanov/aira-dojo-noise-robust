@@ -99,6 +99,14 @@ receipt 原样保留，随后在 `OMP/OpenBLAS/MKL/NumExpr=1` 下从头完成 95
 - `/research/d7/spc/yzyang4/prepush-ai4code-registry/5d0baad-v1`；
 - `/research/d7/spc/yzyang4/postpush-ai4code-registry/5d0baad-v1`。
 
+本报告首次 commit `b03fa81ffc39a9beca7dd3925b7004fa6f10d76b` 的第一版远端验收包装在 source 集群
+环境前错误开启 `set -u`，因初始 `LD_LIBRARY_PATH` 未定义而 rc=1；失败发生在 Git fetch/worktree、测试或任何
+state 读取之前，回执保存在 `/research/d7/spc/yzyang4/prepush-0822-report/b03fa81-v0-failed`。只调整包装的
+source 顺序后从头复验，39 focused / 960 full tests 全过，registry、first-960、target-300 与全部 formal manifest
+由独立脚本重建一致；成功根为 `/research/d7/spc/yzyang4/prepush-0822-report/b03fa81-v1`，其 `SHA256SUMS`
+自身 SHA-256=`ca9cad0eb6da7ecefdfe71e0a46aa44664fe7419a5f83fdbdd3a14a62caf20de`。两次均未读取 truth，
+GPU/API=0/0。
+
 ## 4. first-960 当前不可变状态
 
 当前 `LATEST` snapshot SHA-256=

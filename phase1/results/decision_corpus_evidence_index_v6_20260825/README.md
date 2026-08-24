@@ -18,6 +18,12 @@ fresh-worktree outputs. The formal run reported 10 entries, 28 JSON artifacts,
 It made zero GPU/API calls and read no prospective outcome or prediction-value
 aggregate.
 
+The published commit `2735d1bfe597408a6685d93867410f450674173a` was then
+checked in a second fresh worktree: focused tests were `8 passed`, the full
+suite was `992 passed, 47 warnings in 71.87s`, and both checked-in JSON files
+were byte-identical to independent reconstruction. The post-push `SHA256SUMS`
+file SHA-256 is `f29728efbaca6370b84ba4b2690239c9a820b411591d3f72e9aeb4ffb9de5663`.
+
 The positive claim is deliberately structural: all seven escrow arms share the
 same 2,589 canonical pair identities. It is not an accuracy, effect, method
 superiority, search-utility, runtime, or closure result, and the WL and

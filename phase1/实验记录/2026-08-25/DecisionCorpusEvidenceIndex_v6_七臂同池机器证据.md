@@ -51,6 +51,12 @@ v6 在 v5 的 9 项 evidence stack 中增加第 10 项 `prediction_escrow_common
 GitHub 目录 `phase1/results/decision_corpus_evidence_index_v6_20260825/` 的 index 与 verification receipt 和正式件
 逐字节相同。
 
+发布 commit=`2735d1bfe597408a6685d93867410f450674173a` 后又在第二个 fresh worktree 做了集成复验：focused=
+`8 passed in 0.26s`，full=`992 passed, 47 warnings in 71.87s`；从固定源码重建的 index 与 verification 均和仓库
+版本逐字节相同，credential hits=`0/0`。post-push 根目录为
+`/research/d7/spc/yzyang4/postpush-2735d1b-full-v1`，其 `SHA256SUMS` 文件自身 SHA-256 为
+`f29728efbaca6370b84ba4b2690239c9a820b411591d3f72e9aeb4ffb9de5663`。
+
 ## 4. 失败历史
 
 第一次正式尝试没有覆盖或删除。未限制数值库线程时，full pytest 在登录节点观测到约 `2892%` CPU，5 分钟仅到

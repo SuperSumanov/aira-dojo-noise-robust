@@ -26,6 +26,10 @@ activation 交叉表、transition missing-parent null 和 363 strict-effect-elig
 `0ee7d885...f9d1`；formal `SHA256SUMS` 文件自身 SHA-256=`784271eb...0680`。outcome read / prediction aggregate /
 GPU/API=`false/false/0`，credential filename/content hits=`0/0`。
 
+GitHub 发布 commit=`2735d1b...` 后的第二个 fresh worktree 进一步为 focused/full=`8/992 passed`，从固定源码
+重建的 index 与 independent receipt 均和仓库版本逐字节相同；post-push `SHA256SUMS` hash=
+`f29728ef...5663`，credential hits 仍为 `0/0`。
+
 首次 formal 因未限制 BLAS 线程导致约 2,892% CPU，在 14% 测试进度主动中止；builder/verifier 尚未运行，失败根目录
 原样封存，`SHA256SUMS` hash=`379754b3...c947`。v2 固定所有数值库为单线程后通过。该正结果只消除未来 paired
 benchmark 的 pair-pool 混杂，不提供 predictor accuracy、方法优越性、runtime/cost、search utility、first-960 closure

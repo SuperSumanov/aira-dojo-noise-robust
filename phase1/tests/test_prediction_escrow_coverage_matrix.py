@@ -211,3 +211,14 @@ def test_write_once_is_immutable(tmp_path: Path) -> None:
     builder.write_once(output, build(args))
     with pytest.raises(builder.CoverageError, match="already exists"):
         builder.write_once(output, build(args))
+
+
+def test_formal_runner_sources_environment_before_nounset() -> None:
+    runner = (
+        Path(__file__).parents[1]
+        / "scripts"
+        / "run_prediction_escrow_coverage_f109_20260825.sh"
+    ).read_text(encoding="utf-8")
+    first_set = next(line for line in runner.splitlines() if line.startswith("set -"))
+    assert "u" not in first_set.removeprefix("set -").split()[0]
+    assert runner.index("source /uac/y24/yzyang4/env_setup.sh") < runner.index("\nset -u\n")

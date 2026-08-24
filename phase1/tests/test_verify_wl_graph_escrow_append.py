@@ -57,7 +57,7 @@ def _pair(left: dict[str, str], right: dict[str, str]) -> dict:
 
 
 def _write_artifact(root: Path, snapshot: str, endpoints: list[dict[str, str]], pairs: list[dict]) -> None:
-    root.mkdir(parents=True)
+    root.mkdir(parents=True, exist_ok=True)
     endpoint_path = root / "endpoint_scores.csv"
     with endpoint_path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=ENDPOINT_FIELDS, lineterminator="\n")
@@ -170,10 +170,40 @@ def _fixture(tmp_path: Path) -> argparse.Namespace:
 def test_accepts_exact_blind_append(tmp_path: Path) -> None:
     receipt = verify(_fixture(tmp_path))
     assert receipt["added"] == {"endpoints": 2, "runs": 1, "pairs": 1}
+    assert receipt["strict_post_activation_inventory"]["endpoint_runs"] == 1
     assert receipt["strict_post_activation_inventory"]["runs"] == 1
     assert receipt["strict_post_activation_inventory"]["pairs"] == 1
     assert receipt["fixed_effect_eligibility_gate"]["passed"] is False
     assert receipt["effect_metrics_computed"] == []
+
+
+def test_endpoint_only_run_does_not_count_as_finite_decision_run(tmp_path: Path) -> None:
+    args = _fixture(tmp_path)
+    support = "outcome_unread_support_only"
+    strict = "strict_post_activation_primary"
+    old_a = _endpoint("a", "old-run", "old-task", support, 2.0)
+    old_b = _endpoint("b", "old-run", "old-task", support, 1.0)
+    new_c = _endpoint("c", "new-run", "new-task", strict, 4.0)
+    new_d = _endpoint("d", "new-run", "new-task", strict, 3.0)
+    solo = _endpoint("solo", "endpoint-only-run", "endpoint-only-task", strict, 5.0)
+    _write_artifact(
+        args.current_artifact,
+        CURRENT_SNAPSHOT,
+        [old_a, old_b, new_c, new_d, solo],
+        [_pair(old_a, old_b), _pair(new_c, new_d)],
+    )
+    independent = json.loads(args.current_independent_verification.read_text())
+    independent["artifact_summary_sha256"] = _sha(args.current_artifact / "summary.json")
+    independent["endpoints"] = 5
+    args.current_independent_verification.write_text(json.dumps(independent) + "\n", encoding="utf-8")
+
+    receipt = verify(args)
+    strict_inventory = receipt["strict_post_activation_inventory"]
+    assert strict_inventory["endpoint_runs"] == 2
+    assert strict_inventory["endpoint_tasks"] == 2
+    assert strict_inventory["runs"] == 1
+    assert strict_inventory["tasks"] == 1
+    assert strict_inventory["pairs"] == 1
 
 
 def test_rejects_changed_prior_prediction(tmp_path: Path) -> None:

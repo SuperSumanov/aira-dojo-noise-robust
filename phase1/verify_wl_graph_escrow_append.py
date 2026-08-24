@@ -366,12 +366,18 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         row for row in current_pairs.values()
         if row["temporal_stratum"] == "strict_post_activation_primary"
     ]
+    strict_endpoint_runs = {row["run_id"] for row in strict_endpoints.values()}
+    strict_endpoint_tasks = {row["task"] for row in strict_endpoints.values()}
+    strict_pair_runs = {row["run_id"] for row in strict_pairs}
+    strict_pair_tasks = {row["task"] for row in strict_pairs}
     strict_task_pairs = collections.Counter(row["task"] for row in strict_pairs)
     dominant_share = max(strict_task_pairs.values(), default=0) / max(len(strict_pairs), 1)
     strict_inventory = {
         "endpoints": len(strict_endpoints),
-        "runs": len({row["run_id"] for row in strict_endpoints.values()}),
-        "tasks": len({row["task"] for row in strict_endpoints.values()}),
+        "endpoint_runs": len(strict_endpoint_runs),
+        "endpoint_tasks": len(strict_endpoint_tasks),
+        "runs": len(strict_pair_runs),
+        "tasks": len(strict_pair_tasks),
         "pairs": len(strict_pairs),
         "dominant_pair_task_share": dominant_share if strict_pairs else None,
         "pair_task_counts": dict(sorted(strict_task_pairs.items())),

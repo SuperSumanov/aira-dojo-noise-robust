@@ -136,16 +136,20 @@ def finite_number(value: Any, field: str) -> float:
     return result
 
 
-def normalized_stratum(value: Any) -> str:
+def normalized_stratum(value: Any, source: str) -> str:
     if not isinstance(value, str):
         raise CoverageError("temporal_stratum is not a string")
-    aliases = {
-        "support_only": "support_only",
-        "outcome_unread_support_only": "support_only",
-        "strict_effect_eligible": "strict_effect_eligible",
-        "outcome_unread_strict_effect_eligible": "strict_effect_eligible",
-        "strict_post_activation_primary": "strict_effect_eligible",
-    }
+    aliases = (
+        {
+            "outcome_unread_support_only": "support_only",
+            "strict_post_activation_primary": "post_wl_activation",
+        }
+        if source == "wl"
+        else {
+            "support_only": "support_only",
+            "strict_future": "post_transition_activation",
+        }
+    )
     normalized = aliases.get(value)
     if normalized is None:
         raise CoverageError(f"unknown temporal stratum: {value}")
@@ -211,14 +215,17 @@ def parse_wl(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
         for arm in WL_ARMS:
             margin = finite_number(row[f"{arm}_margin_left_minus_right"], arm)
             selected = row[f"{arm}_selected"]
-            if selected not in {row["left"], row["right"]}:
-                raise CoverageError(f"WL selected endpoint is outside pair: {arm}")
+            expected_selected = (
+                row["left"] if margin > 0 else row["right"] if margin < 0 else "tie"
+            )
+            if selected != expected_selected:
+                raise CoverageError(f"WL selection/margin receipt mismatch: {arm}")
             margins.append(margin)
         parsed[key] = {
             "parts": identity_parts(row),
             "orientation": (row["left"], row["right"]),
             "native_id": native,
-            "stratum": normalized_stratum(row["temporal_stratum"]),
+            "stratum": normalized_stratum(row["temporal_stratum"], "wl"),
             "nontie_all_arms": all(value != 0.0 for value in margins),
         }
     return parsed
@@ -230,7 +237,7 @@ def parse_transition(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
         native = row["pair_id"]
         if not isinstance(native, str) or SHA256_RE.fullmatch(native) is None:
             raise CoverageError("invalid transition native pair key")
-        for field in ("left_code_sha256", "right_code_sha256", "parent_code_sha256"):
+        for field in ("left_code_sha256", "right_code_sha256"):
             if not isinstance(row[field], str) or SHA256_RE.fullmatch(row[field]) is None:
                 raise CoverageError(f"invalid transition code hash: {field}")
         for field in (
@@ -245,14 +252,45 @@ def parse_transition(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
         ):
             if not isinstance(row[field], bool):
                 raise CoverageError(f"non-boolean transition field: {field}")
-        values = [finite_number(row[arm], arm) for arm in TRANSITION_ARMS]
-        if row["finite_all_arms"] is not True:
+        if row["parent_source_present"]:
+            if (
+                not isinstance(row["parent_code_sha256"], str)
+                or SHA256_RE.fullmatch(row["parent_code_sha256"]) is None
+            ):
+                raise CoverageError("covered transition parent hash is invalid")
+            values = [finite_number(row[arm], arm) for arm in TRANSITION_ARMS]
+            derived_finite = True
+            derived_nontie = all(value != 0.0 for value in values)
+        else:
+            if row["parent_code_sha256"] is not None or any(
+                row[arm] is not None for arm in TRANSITION_ARMS
+            ):
+                raise CoverageError("missing-parent transition must carry null scores/hash")
+            derived_finite = False
+            derived_nontie = False
+        if row["finite_all_arms"] != derived_finite:
             raise CoverageError("transition finite_all_arms receipt mismatch")
-        derived_nontie = all(value != 0.0 for value in values)
         if row["nontie_all_arms"] != derived_nontie:
             raise CoverageError("transition nontie_all_arms receipt mismatch")
-        stratum = normalized_stratum(row["temporal_stratum"])
-        if row["strict_effect_eligible"] != (stratum == "strict_effect_eligible"):
+        derived_novel = not any(
+            row[field]
+            for field in (
+                "training_endpoint_id_overlap",
+                "training_run_id_overlap",
+                "training_code_sha_overlap",
+            )
+        )
+        if row["source_novel"] != derived_novel:
+            raise CoverageError("transition source-novel receipt mismatch")
+        stratum = normalized_stratum(row["temporal_stratum"], "transition")
+        derived_eligible = (
+            stratum == "post_transition_activation"
+            and row["parent_source_present"]
+            and row["source_novel"]
+            and derived_finite
+            and derived_nontie
+        )
+        if row["strict_effect_eligible"] != derived_eligible:
             raise CoverageError("transition strict-effect receipt mismatch")
         key = identity_sha256(row)
         if key in parsed:
@@ -265,6 +303,7 @@ def parse_transition(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
             "nontie_all_arms": derived_nontie,
             "parent_source_present": row["parent_source_present"],
             "source_novel": row["source_novel"],
+            "strict_effect_eligible": row["strict_effect_eligible"],
         }
     return parsed
 
@@ -321,12 +360,11 @@ def build_matrix(
     union = wl_keys | transition_keys
     same_orientation = 0
     reversed_orientation = 0
-    per_stratum: dict[str, int] = {}
+    joint_strata: Counter[str] = Counter()
+    eligible_in_intersection = 0
     for key in intersection:
-        if wl[key]["stratum"] != transition[key]["stratum"]:
-            raise CoverageError("overlapping pair has inconsistent temporal stratum")
-        stratum = wl[key]["stratum"]
-        per_stratum[stratum] = per_stratum.get(stratum, 0) + 1
+        joint_strata[f"{wl[key]['stratum']}|{transition[key]['stratum']}"] += 1
+        eligible_in_intersection += transition[key]["strict_effect_eligible"]
         if wl[key]["orientation"] == transition[key]["orientation"]:
             same_orientation += 1
         elif wl[key]["orientation"] == tuple(reversed(transition[key]["orientation"])):
@@ -363,7 +401,8 @@ def build_matrix(
             "transition_only_pairs": len(transition_keys - wl_keys),
             "same_left_right_orientation": same_orientation,
             "reversed_left_right_orientation": reversed_orientation,
-            "pairs_per_stratum": dict(sorted(per_stratum.items())),
+            "joint_temporal_strata": dict(sorted(joint_strata.items())),
+            "transition_effect_eligible_pairs": eligible_in_intersection,
             "intersection_mapping_sha256": mapping_sha256(sorted(intersection)),
         },
         "transition_support_receipts": {
@@ -388,7 +427,7 @@ def build_matrix(
             "blind_scope_verified": True,
             "duplicate_canonical_pairs_eq_0": True,
             "seven_arm_prediction_fields_complete": True,
-            "overlap_strata_consistent": True,
+            "source_specific_activation_strata_preserved": True,
         },
         "access_attestation": {
             "labels_grades_outcomes_or_winner_orientation_read": False,

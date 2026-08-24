@@ -83,20 +83,38 @@ def verify_prediction_shape(row: dict[str, Any], source: str) -> None:
             selected = row.get(f"{arm}_selected")
             if not finite(margin):
                 raise VerificationError("WL prediction is absent or non-finite")
-            if selected not in {row.get("left"), row.get("right")}:
-                raise VerificationError("WL selection is outside its pair")
+            expected = (
+                row.get("left")
+                if float(margin) > 0
+                else row.get("right")
+                if float(margin) < 0
+                else "tie"
+            )
+            if selected != expected:
+                raise VerificationError("WL selection/margin mismatch")
         return
     values = [row.get(arm) for arm in TRANSITION_ARMS]
-    if not all(finite(value) for value in values):
-        raise VerificationError("transition prediction is absent or non-finite")
-    if row.get("finite_all_arms") is not True:
+    if row.get("parent_source_present") is True:
+        if not all(finite(value) for value in values):
+            raise VerificationError("covered transition prediction is absent or non-finite")
+        finite_receipt = True
+        nontie = all(float(value) != 0.0 for value in values)
+    elif row.get("parent_source_present") is False:
+        if any(value is not None for value in values) or row.get("parent_code_sha256") is not None:
+            raise VerificationError("missing-parent transition is not null")
+        finite_receipt = False
+        nontie = False
+    else:
+        raise VerificationError("invalid parent-source receipt")
+    if row.get("finite_all_arms") != finite_receipt:
         raise VerificationError("transition finite receipt mismatch")
-    nontie = all(float(value) != 0.0 for value in values)
     if row.get("nontie_all_arms") != nontie:
         raise VerificationError("transition nontie receipt mismatch")
 
 
-def key_and_metadata(row: dict[str, Any]) -> tuple[str, tuple[str, str], str, str, str]:
+def key_and_metadata(
+    row: dict[str, Any], source: str
+) -> tuple[str, tuple[str, str], str, str, str, bool]:
     values = [row.get(field) for field in ("task", "run_id", "parent", "left", "right")]
     if not all(isinstance(value, str) and value for value in values):
         raise VerificationError("invalid pair identity")
@@ -109,29 +127,36 @@ def key_and_metadata(row: dict[str, Any]) -> tuple[str, tuple[str, str], str, st
     stratum = row.get("temporal_stratum")
     if not isinstance(stratum, str):
         raise VerificationError("invalid stratum")
-    aliases = {
-        "support_only": "support_only",
-        "outcome_unread_support_only": "support_only",
-        "strict_effect_eligible": "strict_effect_eligible",
-        "outcome_unread_strict_effect_eligible": "strict_effect_eligible",
-        "strict_post_activation_primary": "strict_effect_eligible",
-    }
+    aliases = (
+        {
+            "outcome_unread_support_only": "support_only",
+            "strict_post_activation_primary": "post_wl_activation",
+        }
+        if source == "wl"
+        else {
+            "support_only": "support_only",
+            "strict_future": "post_transition_activation",
+        }
+    )
     stratum = aliases.get(stratum)
     if stratum is None:
         raise VerificationError("unknown stratum")
-    return key, (left, right), stratum, task, run_id
+    eligible = bool(row.get("strict_effect_eligible", False)) if source == "transition" else False
+    if source == "transition" and eligible and stratum != "post_transition_activation":
+        raise VerificationError("eligible transition precedes activation")
+    return key, (left, right), stratum, task, run_id, eligible
 
 
 def parse_source(
     rows: list[dict[str, Any]], source: str
-) -> dict[str, tuple[tuple[str, str], str, str, str]]:
-    parsed: dict[str, tuple[tuple[str, str], str, str, str]] = {}
+) -> dict[str, tuple[tuple[str, str], str, str, str, bool]]:
+    parsed: dict[str, tuple[tuple[str, str], str, str, str, bool]] = {}
     for row in rows:
         verify_prediction_shape(row, source)
-        key, orientation, stratum, task, run_id = key_and_metadata(row)
+        key, orientation, stratum, task, run_id, eligible = key_and_metadata(row, source)
         if key in parsed:
             raise VerificationError("duplicate canonical identity")
-        parsed[key] = (orientation, stratum, task, run_id)
+        parsed[key] = (orientation, stratum, task, run_id, eligible)
     return parsed
 
 
@@ -150,7 +175,9 @@ def verify(matrix: dict[str, Any], wl_raw: bytes, transition_raw: bytes) -> dict
     intersection = wl_keys & transition_keys
     union = wl_keys | transition_keys
 
-    def expected_inventory(source: dict[str, tuple[tuple[str, str], str, str, str]]) -> dict[str, Any]:
+    def expected_inventory(
+        source: dict[str, tuple[tuple[str, str], str, str, str, bool]]
+    ) -> dict[str, Any]:
         task_counts = Counter(value[2] for value in source.values())
         run_counts = Counter(value[3] for value in source.values())
         strata = Counter(value[1] for value in source.values())
@@ -178,11 +205,11 @@ def verify(matrix: dict[str, Any], wl_raw: bytes, transition_raw: bytes) -> dict
 
     same = 0
     reversed_count = 0
-    strata = Counter()
+    joint_strata = Counter()
+    eligible_in_intersection = 0
     for key in intersection:
-        if wl[key][1] != transition[key][1]:
-            raise VerificationError("overlap stratum mismatch")
-        strata[wl[key][1]] += 1
+        joint_strata[f"{wl[key][1]}|{transition[key][1]}"] += 1
+        eligible_in_intersection += transition[key][4]
         if wl[key][0] == transition[key][0]:
             same += 1
         elif wl[key][0] == tuple(reversed(transition[key][0])):
@@ -199,7 +226,8 @@ def verify(matrix: dict[str, Any], wl_raw: bytes, transition_raw: bytes) -> dict
         "transition_only_pairs": len(transition_keys - wl_keys),
         "same_left_right_orientation": same,
         "reversed_left_right_orientation": reversed_count,
-        "pairs_per_stratum": dict(sorted(strata.items())),
+        "joint_temporal_strata": dict(sorted(joint_strata.items())),
+        "transition_effect_eligible_pairs": eligible_in_intersection,
         "intersection_mapping_sha256": map_digest(sorted(intersection)),
     }
     for field, value in expected_overlap.items():

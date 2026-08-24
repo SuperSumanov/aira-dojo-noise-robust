@@ -47,11 +47,12 @@ def transition_row(
     *,
     stratum: str = "support_only",
     reverse: bool = False,
+    parent_present: bool = True,
 ) -> dict[str, object]:
     left, right = f"left-{index}", f"right-{index}"
     if reverse:
         left, right = right, left
-    strict = stratum == "strict_effect_eligible"
+    strict = stratum == "strict_future" and parent_present
     return {
         "pair_id": f"{index + 101:064x}",
         "task": f"task-{index % 2}",
@@ -61,20 +62,20 @@ def transition_row(
         "right": right,
         "generation_started_at_utc": "2026-08-20T00:00:00Z",
         "temporal_stratum": stratum,
-        "parent_source_present": True,
+        "parent_source_present": parent_present,
         "left_code_sha256": "a" * 64,
         "right_code_sha256": "b" * 64,
-        "parent_code_sha256": "c" * 64,
+        "parent_code_sha256": "c" * 64 if parent_present else None,
         "training_endpoint_id_overlap": False,
         "training_run_id_overlap": False,
         "training_code_sha_overlap": False,
         "source_novel": True,
-        "finite_all_arms": True,
-        "nontie_all_arms": True,
+        "finite_all_arms": parent_present,
+        "nontie_all_arms": parent_present,
         "strict_effect_eligible": strict,
-        "child_code": 0.2,
-        "transition_only": -0.1,
-        "child_plus_transition": 0.3,
+        "child_code": 0.2 if parent_present else None,
+        "transition_only": -0.1 if parent_present else None,
+        "child_plus_transition": 0.3 if parent_present else None,
     }
 
 
@@ -106,7 +107,7 @@ def fixture(tmp_path: Path):
     )
     transition_sha = write_jsonl(
         transition_path,
-        [transition_row(0, reverse=True), transition_row(1, stratum="strict_effect_eligible")],
+        [transition_row(0, reverse=True), transition_row(1, stratum="strict_future")],
     )
     wl_summary = tmp_path / "wl_summary.json"
     transition_summary = tmp_path / "transition_summary.json"
@@ -140,10 +141,11 @@ def test_overlap_is_outcome_blind_and_orientation_invariant(tmp_path: Path) -> N
     assert result["overlap"]["intersection_pairs"] == 2
     assert result["overlap"]["union_pairs"] == 3
     assert result["overlap"]["reversed_left_right_orientation"] == 1
-    assert result["overlap"]["pairs_per_stratum"] == {
-        "strict_effect_eligible": 1,
-        "support_only": 1,
+    assert result["overlap"]["joint_temporal_strata"] == {
+        "post_wl_activation|post_transition_activation": 1,
+        "support_only|support_only": 1,
     }
+    assert result["overlap"]["transition_effect_eligible_pairs"] == 1
     assert result["access_attestation"]["prediction_values_aggregated"] is False
 
 
@@ -178,7 +180,7 @@ def test_nonfinite_and_outside_selection_fail_closed(tmp_path: Path) -> None:
     row["step_only_lr_selected"] = "outside"
     args[1] = write_jsonl(args[0], [row])
     args[3] = write_json(args[2], summary("wl", args[1]))
-    with pytest.raises(builder.CoverageError, match="outside pair"):
+    with pytest.raises(builder.CoverageError, match="selection/margin receipt mismatch"):
         build(tuple(args))
 
 
@@ -211,6 +213,23 @@ def test_write_once_is_immutable(tmp_path: Path) -> None:
     builder.write_once(output, build(args))
     with pytest.raises(builder.CoverageError, match="already exists"):
         builder.write_once(output, build(args))
+
+
+def test_transition_missing_parent_is_valid_only_with_null_predictions(tmp_path: Path) -> None:
+    args = list(fixture(tmp_path))
+    missing = transition_row(0, parent_present=False)
+    args[5] = write_jsonl(args[4], [missing])
+    args[7] = write_json(args[6], summary("transition", args[5]))
+    result = build(tuple(args))
+    assert result["inventory"]["transition"]["pairs"] == 1
+    assert result["inventory"]["transition"]["nontie_all_arms_pairs"] == 0
+    assert result["transition_support_receipts"]["parent_source_present_pairs"] == 0
+
+    missing["child_code"] = 0.2
+    args[5] = write_jsonl(args[4], [missing])
+    args[7] = write_json(args[6], summary("transition", args[5]))
+    with pytest.raises(builder.CoverageError, match="must carry null"):
+        build(tuple(args))
 
 
 def test_formal_runner_sources_environment_before_nounset() -> None:

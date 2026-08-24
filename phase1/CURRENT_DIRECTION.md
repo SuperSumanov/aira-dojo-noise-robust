@@ -13,6 +13,32 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FM. 2026-08-24 GitHub LFS fresh clone 可逐字节重建 v11；发布可访问性 PASS
+
+在不复用本地/集群主仓库 LFS cache 的隔离 fresh clone 中，从 GitHub fork 的 `phase1-value-critic` 精确拉取
+v11 registry 的 29 个 immutable batches（303,226,677 bytes / 16,012 rows），随后统一 rebuild 得到
+305,750,663 bytes / 16,012 rows / SHA-256=
+`6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75`，与 release descriptor 逐项一致；
+secret-shape count=0，临时 clone/payload 已安全清理，formal manifest 与只读复验通过。这证明学长可直接通过 GitHub
+LFS+`rebuild_corpus.sh` 获取 v11，不依赖我们的 big-data storage。
+
+边界不变：v4/v5 仍不可从已发布 batches 逐字节恢复；0812 仍因 temporal-blind labels 明确 withheld；0821/0822
+prospective intake 也尚未成为公开脱敏 batch。不得把本 PASS 外推为这些版本已发布。正式证据见：
+
+- `phase1/实验记录/2026-08-24/CorpusLFS_v11_全新克隆逐字节重建.md`；
+- `/research/d7/spc/yzyang4/corpus-lfs-freshclone-audit/5d44361-v11-v1`。
+
+## 0FL. 2026-08-24 target-300 首次闭合到 component-breadth prediction escrow 已自动接力
+
+dual-truth runner 原本已把 component-breadth prediction escrow 设为首次 outcome read 的硬前驱，但闭合锚出现后仍
+依赖人工运行。现部署单次、identity-only closure hook：只监视固定只读
+`FIRST_CLOSED_COHORT_ANCHOR.json`，严格校验 target≥300、完整 boundary-archive 闭合及 truth/outcome=false 后，运行
+冻结的 9-arm/36-fit CPU prediction runner；不运行 dual-truth、不自动揭盲、不重试或另选 cohort。monitor/runner
+SHA-256 分别为 `aa62ca...d23d` / `257373...7d97`，首轮仍是 no-anchor，GPU/API=0/0。该完善只消除人工漏步，
+不是效果结果；first-960 与 target-300 仍不得混池。详见：
+
+- `phase1/实验记录/2026-08-24/Target300_首次闭合预测接力_部署收据.md`。
+
 ## 0FK. 2026-08-24 WL/graph 已追加到 f109；finite-decision run 口径修正后仍 NO_UNLOCK
 
 固定 `031edb3` 四臂 WL/graph prediction escrow 已从 0819 的 6,471 endpoints / 249 runs / 1,665 pairs

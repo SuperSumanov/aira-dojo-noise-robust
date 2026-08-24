@@ -13,6 +13,33 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FG. 2026-08-24 0822 双结构拒收完成；摄取恢复，两个冻结人口仍保持 outcome-blind
+
+0822 新观察的 8 个 archive 已全部 settled：6 个完整进入 append-only intake，另 2 个按各自精确 bytes 拒收。
+`multi-modal-gesture-recognition-8seeds.tar.gz` 的 4/4 checkpoint journal 均没有可识别 competition identity；
+`AI4Code-8seeds.tar.gz` 则是另一种结构失败：4 个 discovered run roots 全部只有 live journal、checkpoint journal=0。
+后者暴露并修复了旧 auditor 对“0/0 journals 全通过”的 vacuous-success 表述；现在没有 checkpoint 的 archive 使用独立
+`ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS` reason，不能再冒充 task-identity audit pass。两类拒收都不从文件名补 task、
+不读取 live journal、env、code/stdout/grade/metric/prediction/outcome，也不做部分 salvage。
+
+恢复控制 commit=`5d0baaddca14ce6db53a43ed1976b85a8b24c9f3`。其 fresh Linux prepush focused/full=
+`28/960 passed`，postpush focused=`28 passed`；连续 monitor 已在该 exact clean commit 上连续两轮打印
+`archives=212, baseline=128, ready=0, rejected=10, transactions=74, outcomes_read=false`，watchdog 同时存活。
+当前 first-960 snapshot=`f109ac928ed076f83b651af3c4a98bccd11cf592a3c81da541f34f0d2b11d708`：
+328/960 provisional physical runs、9,992 endpoints、2,589 structural pairs、29 tasks，closure 尚未提供，
+`label_vault_opened=false`，没有 frozen population 或 accuracy。
+
+独立 target-300 identity cohort 已在同一 control commit 上正式双跑到 53/300：17 accepted archives、16 tasks、
+remaining=247；旧 33-run/11-archive 前缀精确存活，20 个 settled-prefix archives 中 3 个为结构拒收。
+producer×2/verifier×2 逐字节一致，focused/full=`11/960 passed`，formal `SHA256SUMS` 自身 SHA-256=
+`7285cc3b6b91bbfdb390d79d37c103d19f2e426628f5c5b32a4ac980d4d8ce65`，全部 manifest 条目复验通过。
+状态仍是 `FUTURE_COHORT_COLLECTING`；label/score/outcome/raw payload、truth support、prediction effect 与 replay
+均未打开/未计算/未授权。53/300 只是合法数据进展，不是正效果，也不能与 first-960 混池。详见：
+
+- `phase1/实验记录/2026-08-24/Prospective0822_双结构拒收与摄取恢复_正式裁决.md`；
+- `phase1/results/prospective_structural_rejection_20260824/`；
+- `phase1/results/prospective_structural_rejection_ai4code_20260824/`。
+
 ## 0FF. 2026-08-24 task-relative raw-gap critic 正式 NO_UNLOCK；同池方法线关闭
 
 为检验 official-five-decimal raw grade 除了 truth support 外能否改善 critic 训练，新增一个严格限定的

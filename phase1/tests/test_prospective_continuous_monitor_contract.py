@@ -35,6 +35,7 @@ def test_all_repo_backed_rejection_registry_hashes_are_exact() -> None:
         "EXTRA_0818_REGISTRY",
         "EXTRA_0820_REGISTRY",
         "EXTRA_0821_REGISTRY",
+        "EXTRA_0822_REGISTRY",
     )
     for prefix in prefixes:
         relative = values[f"{prefix}_REL"]
@@ -45,11 +46,17 @@ def test_all_repo_backed_rejection_registry_hashes_are_exact() -> None:
 
 def test_extra_registry_arguments_remain_paired() -> None:
     text = SCRIPT.read_text(encoding="utf-8")
-    assert text.count("--extra-structural-rejection-registry ") == 6
-    assert text.count("--expect-extra-structural-rejection-registry-sha256 ") == 6
+    assert text.count("--extra-structural-rejection-registry ") == 7
+    assert text.count("--expect-extra-structural-rejection-registry-sha256 ") == 7
 
 
 def test_0821_registry_is_verified_passed_and_receipted() -> None:
     text = SCRIPT.read_text(encoding="utf-8")
     assert text.count("${EXTRA_0821_REGISTRY_SHA}") == 3
     assert text.count("${extra_0821_registry}") == 2
+
+
+def test_0822_registry_is_verified_passed_and_receipted() -> None:
+    text = SCRIPT.read_text(encoding="utf-8")
+    assert text.count("${EXTRA_0822_REGISTRY_SHA}") == 3
+    assert text.count("${extra_0822_registry}") == 2

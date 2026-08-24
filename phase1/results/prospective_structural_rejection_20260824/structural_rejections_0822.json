@@ -1,0 +1,15 @@
+{
+  "entries": [
+    {
+      "archive_mtime_ns": 1787498876000000000,
+      "archive_relative_path": "0822/multi-modal-gesture-recognition-8seeds.tar.gz",
+      "archive_sha256": "0770c9e390d24a1b27eaedd7260398260baf6e47b5ed3a3dc7e54c3e9aa564da",
+      "archive_size": 276439998,
+      "diagnostic_receipt_file": "diagnostic_receipt.json",
+      "diagnostic_receipt_sha256": "18a68d79b7c4940ae76aefdccaf398836df33f467612a097ef66a150be60e4d4",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+    }
+  ],
+  "outcomes_read": false,
+  "protocol": "prospective_structural_rejection_v1"
+}

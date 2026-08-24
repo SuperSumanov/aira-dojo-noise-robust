@@ -109,8 +109,15 @@ def key_and_metadata(row: dict[str, Any]) -> tuple[str, tuple[str, str], str, st
     stratum = row.get("temporal_stratum")
     if not isinstance(stratum, str):
         raise VerificationError("invalid stratum")
-    stratum = stratum.removeprefix("outcome_unread_")
-    if stratum not in {"support_only", "strict_effect_eligible"}:
+    aliases = {
+        "support_only": "support_only",
+        "outcome_unread_support_only": "support_only",
+        "strict_effect_eligible": "strict_effect_eligible",
+        "outcome_unread_strict_effect_eligible": "strict_effect_eligible",
+        "strict_post_activation_primary": "strict_effect_eligible",
+    }
+    stratum = aliases.get(stratum)
+    if stratum is None:
         raise VerificationError("unknown stratum")
     return key, (left, right), stratum, task, run_id
 

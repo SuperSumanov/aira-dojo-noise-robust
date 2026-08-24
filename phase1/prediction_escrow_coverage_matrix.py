@@ -139,8 +139,15 @@ def finite_number(value: Any, field: str) -> float:
 def normalized_stratum(value: Any) -> str:
     if not isinstance(value, str):
         raise CoverageError("temporal_stratum is not a string")
-    normalized = value.removeprefix("outcome_unread_")
-    if normalized not in {"support_only", "strict_effect_eligible"}:
+    aliases = {
+        "support_only": "support_only",
+        "outcome_unread_support_only": "support_only",
+        "strict_effect_eligible": "strict_effect_eligible",
+        "outcome_unread_strict_effect_eligible": "strict_effect_eligible",
+        "strict_post_activation_primary": "strict_effect_eligible",
+    }
+    normalized = aliases.get(value)
+    if normalized is None:
         raise CoverageError(f"unknown temporal stratum: {value}")
     return normalized
 

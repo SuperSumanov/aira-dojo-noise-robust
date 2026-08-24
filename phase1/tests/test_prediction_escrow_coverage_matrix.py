@@ -100,7 +100,7 @@ def fixture(tmp_path: Path):
         wl_path,
         [
             wl_row(0),
-            wl_row(1, stratum="outcome_unread_strict_effect_eligible"),
+            wl_row(1, stratum="strict_post_activation_primary"),
             wl_row(2),
         ],
     )

@@ -41,6 +41,9 @@ fail closed。
 `SHA256SUMS` hash=`93bde54b...8a3b`。状态只能是 `V2_HANDOFF_READY_NOT_DEPLOYED`：没有真实 next-batch sidecar，
 0823 archives 禁止事后回填为 prompt A/B 或 exact-stratum 证据。详见：
 
+集成报告 commit=`aa91322...` 的 fresh Linux 全套另为 `984 passed, 47 warnings in 75.33s`，postpush receipt
+`SHA256SUMS` hash=`943f787d...7e26`；这 984 包含 coverage 975-test 基线与 v2 新增的 9 个测试。
+
 - `phase1/contracts/SENIOR_EXPERIMENT_CONFIG_MANIFEST_V2.md`；
 - `phase1/实验记录/2026-08-25/SeniorConfigSidecar_v2_prompt指纹交付.md`。
 

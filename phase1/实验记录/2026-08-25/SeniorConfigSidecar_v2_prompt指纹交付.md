@@ -50,6 +50,11 @@ worktree `a6776bef85513209f36c88e3c373d54638c7f17c` 重跑，得到 **`20 passed
 攻击测试包括：prompt 改动必须改 hash、仅 run 路径改动必须不改 hash、release/solver hash 进入 stratum、mixed clients、
 raw credential、完整 source composition、tampered hash、unknown 降级、fresh output 和仓库 synthetic example。
 
+v2 与 coverage/report 完全集成后的 commit=`aa91322f05f41c58276686fc4e632449c3649cf5` 又在 fresh Linux
+no-smudge worktree 跑完整 `phase1/tests`：`984 passed, 47 warnings in 75.33s`。postpush root=
+`/research/d7/spc/yzyang4/postpush-aa91322-full-v1`，其 `SHA256SUMS` 自身 SHA-256=
+`943f787d4c926b22d84955f16f82cfae2c0ee77c43c2ee665b27c9ea453a7e26`。
+
 ## 4. 当前不能说什么
 
 没有真实 next-batch v2 sidecar，也没有真实 `PROMPT_SENSITIVE_CONFIG_PROVENANCE_VERIFIED` receipt；学长生产尚未

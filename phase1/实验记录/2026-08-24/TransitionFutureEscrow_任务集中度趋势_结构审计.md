@@ -91,6 +91,16 @@ share 下降的精确分数为 `5029/26862`。最关键的结构事实是：新�
 - 独立 manifest 与字段重算通过；
 - `SHA256SUMS` 文件 SHA-256=`e75c855094a89f4ff801389f41750341110725c223a5cb1a4ca312c16bb8e57d`。
 
+提交验证也保留完整失败链。第一次 pre-push wrapper 没有限制 BLAS 线程，在登录节点出现约 30 核过度并行；聚焦测试已
+完成，但全量测试只到 22%，因此人工终止并明确标为 `INVALID_TEST_HARNESS_BLAS_THREADS_UNBOUNDED`。该次没有运行
+科学分析、没有读取 outcome，也没有写 `COMPLETE`；失败 root 封存后的 `SHA256SUMS` 文件 SHA-256=
+`42469fb4b997f50cf519985213c53553d5460f91f4edad0007b8536ca1409909`。全新 v2 使用 `env -i` 与
+`OMP/OPENBLAS/MKL/NUMEXPR=1` 从头运行，聚焦=`9 passed`、全量=`963 passed, 47 warnings`，两份正式结构产物的
+独立复核与 commit 文件名/内容凭据扫描也全部通过；其 `SHA256SUMS` 文件 SHA-256=
+`8b3c28c08bf4b1a3737aa56655324bce36b27dad0de9eebc3f488d97518dbed7`。推送后从 GitHub fresh no-smudge
+拉回 commit `92c2ad28ce3d244e520d55074de3908bfa351860`，聚焦 9/9 再次通过、源码 SHA 与正式 producer 字节一致，
+post-push `SHA256SUMS` 文件 SHA-256=`af608525e4278ea7a9099bf111bfb881e21d1f0f0bb31af8fcf7ab7b7910b0fd`。
+
 ## 5. 科学裁决
 
 可以新增的正面主张只有：**在固定自然时间外 population 中，0822 新增结构支持扩大了任务广度，并把旧主导任务

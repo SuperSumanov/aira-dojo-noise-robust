@@ -13,6 +13,35 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FQ. 2026-08-25 学长 0823 六归档仅完成预摄取观察；新 producer stratum 尚不可归因
+
+连续 intake 在 metadata 层观察到 archive 总数从 212 增至 218；新增 `0823` 六个归档、共约 146 MB，当前均为
+pending，未进入 snapshot。它们的最晚文件 mtime 为香港时间 `2026-08-25 00:16:28`；固定门同时要求 mtime age≥
+21,600 秒、至少 3 次观察和稳定跨度≥600 秒，因此在 bytes 不再变化时最早约 `06:16:28 +08:00` 才可逐个处理。
+截至本节写入，first-960 仍为 `f109` 的 328/960，target-300 仍为 53/300，outcome 未读。
+
+学长同日 `dojo-reproduce@b80c056` 把 AIRA/AIDE operator 的静态 system policy 与动态 user context 正式分离，发生在归档
+mtime 前约 55 分钟；但 0823 目录只有 tar 文件，没有 outcome 前 config sidecar。归档 mtime 不是 run 启动时间，不能据此
+断言这些 runs 使用或未使用 `b80c056`。所以若结构摄取通过，它们可按固定时间序进入自然前瞻 corpus，却不能作为
+exact-stratum scaling confirmation、prompt A/B 或 producer-config 因果证据；后两者仍要求 0FD 的 outcome 前 sidecar。
+详见：
+
+- `phase1/实验记录/2026-08-25/Prospective0823_六归档预摄取观察与producer边界.md`。
+
+## 0FP. 2026-08-25 target-300 ancestor-safe monitor 已部署；首次交接失败完整保留
+
+commit `ab59a01...` 推送后，旧 `795e3da` monitor 在 `f109` 未变、未看到 trigger、未启动 formal runner、未读 outcome
+的状态下停止并封存，receipt `SHA256SUMS` 自身 SHA-256=`1857ec8b...4847`。首次交接在停止旧 PID 后因错误假定旧目录
+已有 `runner_sha256.txt` sidecar 而 fail closed；没有隐藏或覆盖，failure history 已进入不可变收据。恢复脚本从旧 runner
+本体现场计算哈希、复核半成品边界后启动新 PID=`1985359`。
+
+新 monitor 绑定 exact commit `ab59a01...`，runner/monitor/launcher SHA-256 分别为
+`c6f6ed7a...660e` / `02fd9081...36b0` / `00f62349...2048`；首轮仍为 `f109` no-change。runner 继续建立 exact
+detached worktree，但允许发布分支为其 descendant，因此今后的 docs-only push 不再要求轮换。truth/effect/GPU/API=
+未打开/空/0/0。详见：
+
+- `phase1/实验记录/2026-08-25/Target300_ancestor-safe_monitor部署与失败恢复.md`。
+
 ## 0FO. 2026-08-25 H200 jobs 11410/11411 均触发 24h TIMEOUT；仅封存调度事实
 
 继 11408 后，学长 H200 exploratory jobs `11410/11411` 也分别在 `1-00:00:17` / `1-00:00:09`

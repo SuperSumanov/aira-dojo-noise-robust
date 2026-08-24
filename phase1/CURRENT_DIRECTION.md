@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FU. 2026-08-25 七臂同池结构结果已进入 Decision Corpus v6 机器索引；仍无 effect unlock
+
+新增 `decision_corpus_evidence_index_v6`，在 v5 的 9 项 evidence stack 后加入第 10 项
+`prediction_escrow_common_support`。它绑定 GitHub 可访问、与 formal 逐字节相同的 f109 coverage matrix 与独立复核，
+把“七臂共享 2,589 个 canonical structural pair identities”升级为机器契约；同时强制保留 417/507/1,665 的双
+activation 交叉表、transition missing-parent null 和 363 strict-effect-eligible pairs，禁止把 common pair universe
+写成 common strict-effect population。
+
+正式 commit=`3182b75...`；v2 fresh-worktree 为 `991 passed, 1 skipped, 47 warnings in 71.75s`，builder/verifier
+各自 A/B 逐字节一致。index 包含 10 entries / 28 artifacts / 3 bound files / 362 assertions，SHA-256=
+`0ee7d885...f9d1`；formal `SHA256SUMS` 文件自身 SHA-256=`784271eb...0680`。outcome read / prediction aggregate /
+GPU/API=`false/false/0`，credential filename/content hits=`0/0`。
+
+首次 formal 因未限制 BLAS 线程导致约 2,892% CPU，在 14% 测试进度主动中止；builder/verifier 尚未运行，失败根目录
+原样封存，`SHA256SUMS` hash=`379754b3...c947`。v2 固定所有数值库为单线程后通过。该正结果只消除未来 paired
+benchmark 的 pair-pool 混杂，不提供 predictor accuracy、方法优越性、runtime/cost、search utility、first-960 closure
+或 transition gate 通过结论。详见：
+
+- `phase1/results/decision_corpus_evidence_index_v6_20260825/README.md`；
+- `phase1/实验记录/2026-08-25/DecisionCorpusEvidenceIndex_v6_七臂同池机器证据.md`。
+
 ## 0FT. 2026-08-25 f109 七臂 prediction escrow 已证明逐 pair 同池；效果仍未知且 transition 支持不足
 
 在 outcome-blind `f109` 上，WL 四臂与 transition 三臂各有 2,589 structural pairs、324 个有 pair 的 runs、29 tasks；

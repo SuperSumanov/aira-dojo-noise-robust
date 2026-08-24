@@ -1,0 +1,15 @@
+{
+  "artifact_count": 28,
+  "bound_file_count": 3,
+  "entry_count": 10,
+  "gpu_or_api_calls": 0,
+  "index_protocol": "decision_corpus_evidence_index_v6",
+  "index_sha256": "0ee7d885dcaccab59b8294d42f1a165d3b7f1354d433303f978ae7e8c18df9d1",
+  "index_status": "PROVISIONAL_COMMON_SUPPORT_EVIDENCE_STACK_AWAITING_FIRST960",
+  "json_assertion_count": 362,
+  "new_entry_name": "prediction_escrow_common_support",
+  "prediction_values_aggregated": false,
+  "prospective_outcomes_read": false,
+  "protocol": "decision-corpus-evidence-index-v6-formal-summary",
+  "status": "INDEPENDENTLY_VERIFIED_COMMON_SUPPORT_EVIDENCE_INDEX"
+}

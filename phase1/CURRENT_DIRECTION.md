@@ -13,6 +13,39 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FK. 2026-08-24 WL/graph 已追加到 f109；finite-decision run 口径修正后仍 NO_UNLOCK
+
+固定 `031edb3` 四臂 WL/graph prediction escrow 已从 0819 的 6,471 endpoints / 249 runs / 1,665 pairs
+结果盲追加到 `f109ac...` 的 9,992 / 328 / 2,589；新增 3,521 endpoints、79 endpoint-bearing runs、924 pairs，
+旧 rows 逐字段不变。producer/verifier 分别耗时 17:43.80/16:38.10，四臂独立最大差均为 0；18,328 条 trace
+禁区命中=0、network=0、11,316,324 bytes 凭据扫描 matches=0，manifest 复验和只读权限通过。
+
+追加后发现旧 gate verifier 把所有 strict endpoint-bearing runs（79）当成预注册的 finite-decision runs。独立解析证明
+其中只有 76 个实际贡献至少一个 strict sibling pair。修复 commit `c29bcde...` 现把 `runs/tasks` 从 pair rows 统计，
+并另保留 `endpoint_runs/endpoint_tasks`；endpoint-only run 攻击测试通过。fresh Linux focused/full=
+`20/964 passed`，corrected verifier 双跑逐字节一致，非 import parser 精确复算。
+
+修正后的 strict 支持为 3,521 endpoints / 79 endpoint runs / **76 finite-decision runs** / 924 pairs / 17 tasks；
+主导 `osic-pulmonary-fibrosis-progression`=545/924=`0.5898268398268398`。因此 tasks 门通过，但
+pairs、runs、dominant 三门失败；最低 pair/run 缺口为 576/74，若 dominant count 固定，需再增加 1,256 个非主导
+pairs 才能到 0.25。正式状态仍 `NO_EFFECT_UNLOCK`，first-960 也只有 328/960 且无 closure；outcome/effect/GPU/API=
+未读/空/0/0。不得删 OSIC、改 gate、改 activation 或与 target-300 混池。详见：
+
+- `phase1/实验记录/2026-08-24/WLGraph_f109追加与finite-decision-run门修正_正式裁决.md`；
+- prediction root `/research/d7/spc/yzyang4/wl-graph-escrow-current/5826ef7-f109ac928ed0-v1`；
+- corrected receipt `/research/d7/spc/yzyang4/prepush-wl-finite-decision-run-gate/c29bcde-v1`。
+
+## 0FJ. 2026-08-24 学长 H200 job 11408 触发 24h TIMEOUT；只封存调度事实
+
+job `11408` 的顶层 scheduler 状态为 `TIMEOUT`，elapsed=`1-00:00:01`，2 GPUs on `projgpu39`；这不是正常
+完成，也没有模型效果含义。由于它是 `/bin/bash` interactive allocation，尚无逐 job launcher/seed/model/data/output
+映射，本轮只封存 scheduler metadata，未打开日志或 metric、未挑 checkpoint、未复制共享 output。正式 v3 receipt
+manifest/只读复验通过，`outcomes_read=false`、`metrics_read=false`。11410/11411 当时仍运行；后续同样只在退出后
+按真实映射保全，不把 test-touched exploratory checkpoint 升级为 clean confirmation。详见：
+
+- `phase1/实验记录/2026-08-24/H200_11408_TIMEOUT_调度收据.md`；
+- `/research/d7/spc/yzyang4/h200-exploratory-preservation/scheduler-11408-timeout-20260824-v3`。
+
 ## 0FI. 2026-08-24 transition 任务集中度显著改善，但预注册门仍未通过
 
 对 0FH 的同一固定旧/新 escrow 产物补做了**结果后、仅结构、描述性**任务均衡审计。两套不共享解析实现

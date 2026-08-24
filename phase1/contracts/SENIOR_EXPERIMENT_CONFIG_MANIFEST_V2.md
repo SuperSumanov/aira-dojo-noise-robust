@@ -25,6 +25,32 @@ read `env_variables.json`; hardware is supplied as an explicit public label so r
 credentials are never loaded by this tool.  Consumer-side code must never run this exporter by
 opening an archive that has not first been independently redacted.
 
+## Atomic multi-seed batch export
+
+For a normal 4/8-seed task archive, prefer the batch wrapper and pass every unarchived config path
+explicitly:
+
+```bash
+python phase1/senior_experiment_config_batch_v2.py \
+  --dojo-config <run-1>/dojo_config.json \
+  --dojo-config <run-2>/dojo_config.json \
+  --dojo-config <run-N>/dojo_config.json \
+  --task <exact-task> \
+  --generator-release <public-outcome-before-release-label-or-unknown> \
+  --hardware <public-hardware-label> \
+  --output <archive-basename>.config_v2.jsonl
+```
+
+The wrapper validates all rows in memory before creating the output, rejects duplicate physical
+run IDs, sorts rows bytewise by `run_id`, writes with an exclusive temporary file plus `fsync` and
+atomic replace, and prints the complete manifest SHA-256.  Any bad config makes the entire command
+fail without a partial sidecar.  Argument order cannot change the bytes.
+
+The resulting `.config_v2.jsonl` should be uploaded as an immutable sibling of the corresponding
+archive, before anyone uses archive outcomes.  Do not place raw configs, environment dumps, or the
+resolved solver projection in this public sidecar.  The batch wrapper does not infer task,
+hardware, release, or config paths and does not open tar files.
+
 ## Prompt-sensitive solver projection
 
 `resolved_solver_config_sha256` is SHA-256 of canonical compact JSON for the complete resolved

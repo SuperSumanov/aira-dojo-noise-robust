@@ -1,0 +1,31 @@
+{
+  "access_boundary": {
+    "accuracy_or_effect_metrics_computed": false,
+    "gpu_or_api_calls": 0,
+    "label_grade_outcome_or_winner_orientation_read": false,
+    "prediction_values_aggregated": false
+  },
+  "frozen_inputs": {
+    "snapshot_sha256": "f109ac928ed076f83b651af3c4a98bccd11cf592a3c81da541f34f0d2b11d708",
+    "transition_pairs_sha256": "498a8aebf79027e96294e6c22fdce87e4007cdaeacfbb969198f55627b9db3fe",
+    "transition_summary_sha256": "da62681ed53835de40a9a3dda583e589e05aef7c5bd1d602cc556b78c851d5cf",
+    "wl_pairs_sha256": "cd99277991397884f9fcbaa92b7e30175bf69bdc497687eacb1a388d859a1513",
+    "wl_summary_sha256": "1370533dfc808ea8f2f6891d544c2ccfd460a503c5f535e4b6fe078eb9ba94ff"
+  },
+  "hard_checks": [
+    "all four input SHA-256 values match before JSON parsing",
+    "both summaries bind the same frozen snapshot and declare prospective outcomes unread",
+    "each source has unique canonical unordered pair identities",
+    "all seven frozen predictor arms have finite and structurally valid predictions",
+    "overlap, orientation, run, task, and temporal-stratum counts are recomputed without labels",
+    "an independent implementation re-derives the aggregate coverage receipt"
+  ],
+  "non_claims": [
+    "predictor accuracy",
+    "method superiority",
+    "search utility",
+    "runtime or query-cost comparability",
+    "frozen-cohort completion"
+  ],
+  "protocol": "prediction-escrow-coverage-matrix-v1"
+}

@@ -222,3 +222,15 @@ def test_formal_runner_sources_environment_before_nounset() -> None:
     first_set = next(line for line in runner.splitlines() if line.startswith("set -"))
     assert "u" not in first_set.removeprefix("set -").split()[0]
     assert runner.index("source /uac/y24/yzyang4/env_setup.sh") < runner.index("\nset -u\n")
+
+
+def test_formal_runner_does_not_write_shared_remote_tracking_ref() -> None:
+    runner = (
+        Path(__file__).parents[1]
+        / "scripts"
+        / "run_prediction_escrow_coverage_f109_20260825.sh"
+    ).read_text(encoding="utf-8")
+    assert "ls-remote fork refs/heads/phase1-value-critic" in runner
+    assert "fetch --no-write-fetch-head fork \"$release_head\"" in runner
+    assert "fetch fork phase1-value-critic" not in runner
+    assert 'merge-base --is-ancestor "$control_commit" "$release_head"' in runner

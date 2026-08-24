@@ -46,9 +46,15 @@ export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 
-git -C "$repo" fetch fork phase1-value-critic > "$staging/fetch.stdout" 2> "$staging/fetch.stderr"
+git -C "$repo" ls-remote fork refs/heads/phase1-value-critic \
+    > "$staging/release_ref.txt" 2> "$staging/release_ref.stderr"
+release_head=$(awk 'NR == 1 {print $1}' "$staging/release_ref.txt")
+[[ $release_head =~ ^[0-9a-f]{40}$ ]] || exit 4
+git -C "$repo" fetch --no-write-fetch-head fork "$release_head" \
+    > "$staging/fetch.stdout" 2> "$staging/fetch.stderr"
 git -C "$repo" cat-file -e "$control_commit^{commit}"
-git -C "$repo" merge-base --is-ancestor "$control_commit" fork/phase1-value-critic
+git -C "$repo" cat-file -e "$release_head^{commit}"
+git -C "$repo" merge-base --is-ancestor "$control_commit" "$release_head"
 GIT_LFS_SKIP_SMUDGE=1 git -C "$repo" worktree add --detach "$worktree" "$control_commit" \
     > "$staging/worktree.stdout" 2> "$staging/worktree.stderr"
 [[ $(git -C "$worktree" rev-parse HEAD) == "$control_commit" ]] || exit 4
@@ -63,6 +69,7 @@ protocol=phase1/prediction_escrow_coverage_protocol_v1.json
 test_file=phase1/tests/test_prediction_escrow_coverage_matrix.py
 
 printf '%s\n' "$control_commit" > "$staging/control_commit.txt"
+printf '%s\n' "$release_head" > "$staging/release_head.txt"
 "$python" --version > "$staging/python_version.txt" 2>&1
 git --version > "$staging/git_version.txt"
 sha256sum "$builder" "$verifier" "$protocol" "$test_file" > "$staging/control_sha256.txt"

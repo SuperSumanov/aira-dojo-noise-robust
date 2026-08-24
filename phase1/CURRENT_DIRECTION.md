@@ -13,6 +13,31 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FI. 2026-08-24 transition 任务集中度显著改善，但预注册门仍未通过
+
+对 0FH 的同一固定旧/新 escrow 产物补做了**结果后、仅结构、描述性**任务均衡审计。两套不共享解析实现
+（Python stdlib JSON 与 `jq-1.7`）对 task-count TSV 逐字节一致：旧 `79701f...` 的 222 个 eligible pairs 中，
+主导任务 `tensorflow-speech-recognition-challenge` 为 107 个，占 `0.481981981981982`；新 `f109ac...` 的
+363 个 eligible pairs 中该任务仍为 107 个，占 `0.29476584022038566`。因此 0822 新增的 141 个 eligible pairs、
+17 个 eligible runs、5 个 eligible tasks 没有增加旧主导任务，集中度绝对下降
+`0.18721614176159632`（exact=`5029/26862`）。
+
+这是支持自然时间外语料正在扩宽的正面结构证据，但**不是预测效果或通过门槛**：当前 `0.29476584022038566>0.25`，
+正式状态仍是 `TRANSITION_ESCROW_INSUFFICIENT_FUTURE_SUPPORT`。若且仅若主导计数保持 107 不变，至少再增加
+65 个非主导 eligible pairs 才能到达 0.25；旧快照对应条件缺口为 206。这个 65 是确定性算术，不是生产预测、
+功效保证或改变任务生产分布的授权。1,500 pairs 与 150 runs 两门也仍 FAIL，不得提前揭盲。
+
+首次 v1 wrapper 因宽泛 `sk-...` 扫描把 `protocol` 字段中、前一字符为字母的普通子串误报为两份凭据文件，已在
+未写 `COMPLETE` 的状态 fail closed 并封存；redacted classifier 仅记录字段路径/类型/长度/哈希，边界感知高置信扫描为
+0。全新 v2 从固定输入重跑，forbidden/credential hits=`0/0`，递归只读；趋势产物也独立封存。两轮均
+`outcomes_read=false`、effect metrics=`[]`、GPU/API=`0/0`。证据与边界见：
+
+- `phase1/实验记录/2026-08-24/TransitionFutureEscrow_任务集中度趋势_结构审计.md`；
+- 当前单点只读产物
+  `/research/d7/spc/yzyang4/transition-task-balance-audit/17f0b27-f109-v2`；
+- 旧→新趋势只读产物
+  `/research/d7/spc/yzyang4/transition-task-balance-trend/17f0b27-797-f109-v1`。
+
 ## 0FH. 2026-08-24 transition future escrow 已补齐 0822；任务广度门首次通过，仍 NO_UNLOCK
 
 固定 first-960 scorer 已随 74 个 accepted transactions 完整前滚到 snapshot `f109ac...`：registry 覆盖

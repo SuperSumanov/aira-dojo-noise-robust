@@ -90,7 +90,7 @@ skip/安装临时依赖追认。push 前必须在集群冻结 venv 的 fresh exa
 | strict training endpoint overlap | 0 | 0 | =0：PASS |
 | strict training run overlap | 0 | 0 | =0：PASS |
 | eligible training code overlap | 0 | 0 | =0：PASS |
-| dominant eligible-pair task share | >0.25 | >0.25 | ≤0.25：FAIL |
+| dominant eligible-pair task share | 0.481981981981982 | 0.29476584022038566 | ≤0.25：FAIL |
 
 旧 2,172 support-only pairs 保持不变；新 snapshot 的 strict run stratum 为 53 runs，其中完整满足 parent/source/
 finite/non-tie 的 eligible runs 为 45。这里的 53 与独立 target-300 identity cohort 的 53 不得因为数字相同而混称：
@@ -105,7 +105,12 @@ finite/non-tie 的 eligible runs 为 45。这里的 53 与独立 target-300 iden
 
 1. eligible pairs 363 < 1,500；
 2. eligible runs 45 < 150；
-3. dominant eligible-pair task share 仍 >0.25。
+3. dominant eligible-pair task share=`0.29476584022038566`，仍 >0.25。
+
+结果后、仅结构的双实现审计进一步确认：旧→新新增 141 个 eligible pairs 时，旧主导任务计数保持 107 不变，
+所以其占比从 `0.481981981981982` 下降到 `0.29476584022038566`；在主导计数不再增长的条件下，算术上还需至少
+65 个非主导 eligible pairs 才到 0.25。该 65 不是 ETA、生产预测或功效保证，完整失败记录与边界见
+`TransitionFutureEscrow_任务集中度趋势_结构审计.md`。
 
 不能因为 15-task 门已过而提前读取 outcome，也不能修改 dominant threshold、过滤主导任务、按当前 task 分布改变
 生产策略后仍称原始自然时间外估计。合法动作只有继续 outcome-blind 自然摄取与 append-only prediction escrow；

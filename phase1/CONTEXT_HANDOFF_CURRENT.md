@@ -1,0 +1,189 @@
+# Context handoff：Decision Corpus + Predictor Benchmark
+
+**Last updated:** 2026-08-26
+
+**Dynamic status timestamp:** 2026-08-26 01:36 Asia/Hong_Kong
+
+**Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
+
+**Authority warning:** 本文件不是科学方向的最高权威。开始任何实验前必须先 fetch Git，再读
+`phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
+
+## 1. 项目目标与当前唯一容器
+
+- 目标：发布大规模、富标注的 MLE-agent 搜索树数据集和 predictor study。
+- 优先投稿：NeurIPS Datasets & Benchmarks；ACL R&E/ARR 与 ICML 为后续选择。
+- 论文容器：**Decision Corpus + Predictor Benchmark + Audit Protocol**。
+- 实验台：`facebookresearch/aira-dojo`。MLEvolve 只作现状对照或快速 sandbox，不能作为公平主实验台。
+- agent 底座 LLM 不做微调或 RL-finetune；独立 critic/predictor 可按批准协议训练。
+
+## 2. 当前冻结人口与盲态
+
+### First-960 confirmation cohort
+
+- 唯一确认人口是按预注册时间全序排列的 first-960 eligible physical runs。
+- 必须另有独立 accrual-closure receipt；1,500 structural pairs 只是支持门，不是提前停止门。
+- 最近一次只读状态为 339/960 runs、10,196 endpoints、2,635 structural pairs、30 tasks。
+- 仍为 `PROSPECTIVE_COHORT_COLLECTING`，closure 未成立。
+
+### Target-300 support cohort
+
+- target-300 是 score-channel dual-truth 的独立支持 cohort，保留 boundary-archive overshoot。
+- 它与 first-960 estimand 不同，不能混池，也不能因达到 300 自动授权 replay/effect。
+
+### 绝对盲态
+
+- first-960 + closure 前，禁止读取 prospective label/outcome vault、accuracy、search utility 或 prediction values。
+- 固定 scorer/WL/component extensions 只能写 prediction escrow。
+- 最近一次安全证明：label vault 未打开，outcome files 与 scorer prediction files 的 opened list 均为空。
+
+## 3. 最近确认的正面资产
+
+### 3.1 Structural dependency atlas
+
+对 provisional first-240 与当前 339-run 快照做 outcome-blind 双实现复算：
+
+- run-weighted 最大任务占比：0.1083333333 → 0.0914454277；
+- run-weighted inverse-HHI：17.8660 → 20.4595；
+- pair-weighted 最大任务占比：0.1714990746 → 0.3123339658；
+- pair-weighted inverse-HHI：12.0427 → 7.3666；
+- 当前 run→pair task-distribution TV：0.3370825007；
+- pair 主导任务相对其 run share 的放大：5.0419625915 倍。
+
+结论：新增 runs 的任务覆盖更均衡，不代表 pair-micro benchmark 的隐式任务权重更均衡。这是
+D&B benchmark-design 正结果，不是 predictor accuracy 或 search-utility 结果。
+
+2,635 pairs 来自 2,593 physical decision-parent groups；只有 42 个 pair 超过 one-pair-per-parent
+基线，因此集中现象不是少数 parent 大量重复枚举造成的简单假象。
+
+证据：`phase1/results/structural_dependency_atlas_7cda_20260825/`；源码/确定性修复/发布提交为
+`e19f5f3`、`b8ea5f7`、`1e3ea6d`。
+
+### 3.2 Outcome 前冻结统一 estimand panel
+
+- generic benchmark headline：pair credit → physical parent 内平均 → task 内平均 parents → tasks 等权。
+- 强制并列、不得 rescue：task-pair macro、task→run→parent→pair macro、pair micro。
+- 所有 arms 必须 exact common pair support，并先算 pair-level arm difference 再聚合。
+- 推断：20,000 task bootstrap，seed `20260901`，固定 SHA index，LOTO，run-cluster sensitivity。
+- pair-i.i.d. CI 不能做 headline；alternate aggregation/truth/subgroup 不能挽救失败 primary。
+- 既有 scaling 与 component-breadth primary 保持原 authority，不被 generic panel 改写。
+
+证据：`phase1/contracts/DECISION_PREDICTOR_ESTIMAND_PANEL_V1.md`、
+`phase1/results/decision_predictor_estimand_panel_v1_20260825/`；提交 `1763030`、`b7e90fd`。
+
+### 3.3 Benchmark checklist 与其他数据资产
+
+- ABC/NAS-Bench-style 24 项 crosswalk：PASS_LOCAL 9、PARTIAL 9、INHERITED_UPSTREAM 5、N/A 1。
+- 语料唯一性：12,383-card 审计中 raw 99.47%、AST/skeleton 98.96%，0 个 duplicate group 跨 run/task。
+- label-noise ceiling、query/init/execution cost、run-level leakage、撤回链、真实 sibling protocol 已有证据。
+- 这些资产提高 D&B 完整性，但不能替代 prospective method effect。
+
+## 4. 方法侧最强但仍未确认的信号
+
+学长 2026-08-20 experiment 内 value-pair 两 seed final mean 随 Qwen3
+0.6B/1.7B/4B/8B 为 58.64%/60.67%/62.01%/64.68%；8B 比同数据 TF-IDF 61.18%
+高 3.50 pp。decision zero-shot transfer 为 56.25%/56.25%/59.06%/59.38%，8B 仍低于
+TF-IDF 59.90%。
+
+只能称探索性 capacity/scaling 信号，因为旧实验存在：
+
+- cross-exact-config mixing；
+- shared endpoints；
+- 周期性 outer-test evaluation；
+- 部分大模型未正常结束；
+- checkpoint direction/version 问题。
+
+确认只能使用 future exact-stratum producer、train-run-disjoint dev 选择的新 checkpoint，以及从未触碰的
+immutable frozen cohort。任何 GPU 重训仍需先报精确矩阵、总 runs、GPU-hours 与 ETA，获得用户批准。
+
+## 5. 已明确关闭或撤回；不得自动复活
+
+- 旧 `decision_pairs_runsplit` test 与 v11 b0/b1/b2 是同一 2,087-row multiset；旧 Qwen3-4B/8B
+  checkpoint 的 frozen scoring 已撤回，禁止定位或运行。
+- score-channel 排序优越性已预注册 KILL；execution cliff 只留作 missingness 数据诊断。
+- 旧 HCE、TD/RL、多保真、Probe-First、E2-A、early-trace、conformal stop、旧 K≥1 lookahead。
+- Parent-conditioned patch critic、source-choice、global→local、component/data scaling 等历史候选均须按
+  `CURRENT_DIRECTION.md` 的最新撤回链解释，不能因旧 memory 或标题看起来正面而恢复。
+- 不把结构支持、工程通过、prediction escrow、support gate 或调度完成写成 method effect。
+
+## 6. 当前运行与数据摄取
+
+最近一次远端只读状态：
+
+- senior archives：218；最新仍为 `0823/alaska2-image-steganalysis-4seeds.tar.gz`；
+- latest snapshot：`7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1`；
+- intake、transition、WL graph、coverage matrix、component closure、target quiescence 六个核心监控存活；
+- intake/transition/target 在各自 145 次有限轮询正常结束后，于 2026-08-26 01:36 通过 17/17 独立预检重启；
+  intake 另启用修正 PID receipt 竞争后的 watchdog，最多自动接续 20 个正常 segment；
+- 主 intake 每约 5 分钟轮询，最近 `ready=0`、`rejected=12`、`transactions=78`；
+- 用户 SLURM 队列为空；没有 GPU 实验正在运行；本次监控恢复 GPU/API/model-fit 均为 0。
+
+动态状态会过期。恢复时使用 metadata-only 脚本重新检查，不能直接沿用本段数字。
+
+若生产恢复到约 60 eligible runs/day，剩余 621 runs 约对应 10.4 个生产日；这不是日历承诺。
+
+## 7. 学长最新分支状态
+
+- `dojo-reproduce` 最近观察到 `2b22f3102a2a64cb89ebcae9ede4d8eb72e1430d`；
+- 新增 RL-judger message 构造、上下文统计、Qwen2.5 0.5B/1.5B/3B/7B mixed
+  decision/value full-FT 脚本，以及避免复制/缓存完整数据的 prompt 约束；
+- 没有新的 outcome 文档，不能称新 scaling 结果；
+- train/test 参数当前指向同一 runsplit 文件，正式使用前必须核对程序内部 split、endpoint/run/experiment
+  零交集、outer-test 是否参与 checkpoint selection、停止原因和 checkpoint receipt。
+
+贡献归属：语料生产来自学长；structural dependency atlas 的问题、代码、双实现复核和 benchmark 主张来自
+我方；0.6B→8B 探索性 scaling 来自学长。
+
+## 8. 仓库、路径与分支
+
+- 本地 worktree：`C:\Research\New\my_project\MLEvolve\aira-dojo-codex-20260813`
+- 本地工作分支：`codex-prospective-decision-v1-20260814`
+- 发布分支：`myfork/phase1-value-critic`
+- 最近一致 head：`b7e90fd0d0242ca891df7df34370e8946ed2c5fd`
+- GitHub：`https://github.com/SuperSumanov/aira-dojo-noise-robust`
+- 远端 alias：`linux5`
+- prospective state：`/research/d7/spc/yzyang4/prospective_decision_v1`
+- senior archive metadata source：`/research/d7/spc/yzyang4/external/senior_data/mle`
+- 远端 Python：`/research/d7/spc/yzyang4/venvs/exp/bin/python`
+- `codex_tmp/` 是保留的未跟踪操作文件，除非明确判断，不删除、不整目录 stage。
+
+## 9. 安全与远端硬规则
+
+- API keys 只放远端 `.env`；不在聊天复述，不写本地、memory、日志或 Git。
+- 学长 tar archives 可能含原始密钥；只读 metadata/listing。任何内容读取前必须先做 blind redaction。
+- push 前执行 staged filename secret scan：
+  `git diff --cached --name-only | grep -icE 'env|key|token|secret'`，并做内容扫描。
+- 非交互脚本先 `source "$HOME/env_setup.sh"`，之后再 `set -u`。
+- 所有 SLURM 命令必须 `export SLURM_CONF=/opt1/slurm/gpu-slurm.conf`。
+- QOS 上限 4 jobs / 8 GPUs；避开 `projgpu7`、`projgpu8`、`projgpu33`、`gpu36`、`gpu38`。
+- SSH 内层引号会被剥；复杂逻辑写成 LF 脚本、scp 到远端再执行。
+- Windows 不跨 shell 拼接删除/移动命令；任何递归删除/移动前核验绝对路径。
+- commit 标题若含数字，只能复制程序打印并验证过的数字，不能心算。
+
+## 10. 实验纪律
+
+- 每个长实验先完整执行 13 项 preflight，给目标、硬件/软件、固定项、成功/kill gate、矩阵、总 runs、
+  GPU-hours 和 ETA。
+- 新代码路径先做 CPU/tiny smoke；声称改了旋钮必须从 run artifact 反验。
+- 保存 commit、版本、全部 seed、完整命令/config/environment；一行一个 run 写 CSV。
+- 报 task/run 分解、median、跨 seed 方差和 clustered inference；不只报均值或单次数字。
+- 训练期禁止访问冻结 test；任何外部 evaluator 使用 pristine code 与访问审计。
+- 保留失败、INVALID、KILL 与撤回记录，不能只留下漂亮结果。
+
+## 11. 恢复时的安全顺序
+
+1. Fetch `phase1-value-critic` 和学长分支，读取 `CURRENT_DIRECTION.md` 顶部最新日期段。
+2. 只读检查 Git drift、archive metadata、latest snapshot、六个核心 monitor、intake log 与正确 SLURM 队列。
+3. 不打开 tar bytes、outcome/prediction vault 或旧 checkpoint。
+4. 若有新 archive，让既有 append-only intake 与 stability gate 处理，再报告精确增量。
+5. 没有 first-960 + closure 时，优先做 outcome-blind benchmark/integrity 工作；不要制造新的后验 effect 假设。
+6. 如需 GPU，先提交精确实验矩阵和预算给用户批准；当前没有自动授权的 GPU effect 主实验。
+7. 结果与代码完成后做 fresh Linux reproduction、独立 verifier、secret scan，再 commit/push。
+
+## 12. 关键入口
+
+- 唯一方向：`phase1/CURRENT_DIRECTION.md`
+- 学长建议：`phase1/ADVISOR_DIRECTIVES.md`
+- 给学长的近期汇报：`phase1/实验记录/2026-08-26/给学长的近期进展汇报_2026-08-26.md`
+- structural atlas：`phase1/results/structural_dependency_atlas_7cda_20260825/README.md`
+- estimand panel：`phase1/results/decision_predictor_estimand_panel_v1_20260825/README.md`

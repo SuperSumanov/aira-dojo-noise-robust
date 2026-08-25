@@ -1,7 +1,7 @@
 ---
 name: advisor-directives
 description: 学长(advisor)历次意见的完整清单——每次做实验/下结论前必须逐条对照；含已生效的框架纠正(自报分不免费)和 NAS/NAS-Bench 模板
-metadata: 
+metadata:
   node_type: memory
   type: feedback
   originSessionId: b02aa9ce-c8e5-440f-9f4f-b8040fa6c31f
@@ -94,3 +94,28 @@ checkpoint-180(仅约 6% 训练量)accuracy **0.8143** / macro 0.7956,「加长 
 - **配置审计提醒**：学长最新 `2cb6f0c` 把 best metric 改为 `eval_pair_accuracy` 却保留
   `greater_is_better=False`。逐 checkpoint 日志不受影响，但 best-only 保存方向会反；修复后先用人为递增 metric
   做最小保存测试。旧 0812 结果使用较早的 eval-loss 配置，不能把旧 0.55 事后归因于这个新 bug。
+
+## H. 2026-08-15—25 新增意见、结果与边界
+
+- **方法应由 agent 自然学出，而不是固定工程规则**：学长认可早期 submission 方向的现象，但指出，如果能提供
+  更灵活的 harness，让 agent 根据过去经验通过训练或其他方式自然发展出该能力，会更有趣；当前在 AIRA 外挂
+  early-submission 检测和处理逻辑，容易被批评为 heuristic/engineering。
+  → 规则：固定检测器可作机制 smoke 或系统基线，不能直接冒充算法创新。若恢复类似方向，贡献必须落在可学习、
+  可泛化的 controller/evaluator，以及固定预算端到端 utility；不得把旧 HCE/多保真重新命名后复活。
+- **16,384-context 训练的诚实结果**：学长报告该轮仍接近随机，效果太差，不准备进入下一步测试，并删除 checkpoint
+  节省空间。
+  → 规则：这是该具体数据/协议/run 的负结果，不推出所有长上下文都无效；但 checkpoint 已不可追溯，不能事后补测或
+  把聊天结论升级为正式证据。未来贵训练必须保存 config、日志、停止原因、选点规则与必要 checkpoint receipt。
+- **experiment-level split 出现更强 scaling 迹象**：学长随后在 `0820` outcomes 中补齐两 seed value-pair 结果，
+  Qwen3 0.6B/1.7B/4B/8B final mean 为 58.64%/60.67%/62.01%/64.68%，8B 比同数据
+  TF-IDF 61.18% 高 3.50 pp；decision zero-shot transfer 为 56.25%/56.25%/59.06%/59.38%，
+  8B 仍低于 TF-IDF 59.90%。
+  → 这是当前最强的探索性 capacity signal，覆盖更早“1.5B—8B 都在 0.55、规模不是杠杆”的宽解释；但旧实验含
+  cross-exact-config mixing、shared endpoints、周期性 outer-test eval、非正常结束和 checkpoint 方向/version 问题，
+  不能称确认。正式确认只允许 future exact-stratum、train-run-disjoint dev 选点和全新 immutable frozen cohort。
+- **语料生产与方法分工**：学长仍负责持续生产 physical runs 和训练/规模侧；我方负责 run-clean 数据、真实 sibling
+  estimand、冻结评测、成本/噪声/覆盖审计和独立复核。结构依赖图谱的分析与 benchmark 主张来自我方，原始前瞻
+  语料生产来自学长；scaling 信号来自学长，写作时必须分开归因。
+- **最新分支资产不是结果**：`dojo-reproduce@2b22f31...` 新增 RL-judger messages、context 工具和
+  Qwen2.5 0.5B/1.5B/3B/7B mixed decision/value full-FT 脚本，但尚无新 outcome 文档。train/test 参数
+  指向同一 runsplit 文件，使用前必须核对内部 split、endpoint/run/experiment 零交集、outer-test 选点和停止收据。

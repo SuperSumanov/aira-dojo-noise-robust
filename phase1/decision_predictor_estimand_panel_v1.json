@@ -1,0 +1,146 @@
+{
+  "protocol": "decision-predictor-estimand-panel-v1",
+  "status": "FROZEN_OUTCOME_BLIND_BEFORE_FIRST960_CLOSURE",
+  "paper_scope": "generic Decision Corpus predictor benchmark reporting panel",
+  "evidence_bindings": {
+    "structural_dependency_atlas": {
+      "path": "phase1/results/structural_dependency_atlas_7cda_20260825/atlas.json",
+      "sha256": "1c3e5c34afe82a236e4f242373ee7b71fd44d90207eb2d74b9177fb6776db1a5"
+    },
+    "critic_scaling_primary_contract": {
+      "path": "phase1/critic_scaling_confirmation_contract_v1.json",
+      "sha256": "579771ac1b90b1022bdded1182ce5c5a17780a741dc95d82a53f5f91d577a568"
+    },
+    "component_breadth_primary_contract": {
+      "path": "phase1/critic_component_breadth_future_evaluation_v1.json",
+      "sha256": "1596c6f2abdfdd8b8880937f41099d81db74151e491175c123e581d9b028fdad"
+    }
+  },
+  "authority": {
+    "generic_reporting_panel_only": true,
+    "supersedes_existing_experiment_primary": false,
+    "supersedes_existing_truth_contract": false,
+    "supersedes_existing_support_or_effect_gate": false,
+    "existing_experiment_contract_controls_its_claim": true,
+    "panel_metric_may_rescue_failed_experiment_primary": false
+  },
+  "entry_gate": {
+    "confirmatory_population": "chronological first-960 eligible physical runs",
+    "independent_accrual_closure_required": true,
+    "structural_gate_required": true,
+    "exact_common_pair_support_required_per_contrast": true,
+    "all_prediction_escrow_hashes_verify_before_truth_access": true,
+    "outcome_dependent_pair_task_run_or_parent_selection_allowed": false,
+    "prediction_missingness_action": "fail contrast closed and report coverage; never silently drop",
+    "truth_ties": "follow the experiment-specific frozen truth contract and report the tied/excluded denominator",
+    "prediction_exact_tie_credit": 0.5
+  },
+  "generic_headline": {
+    "id": "task_macro_parent_macro_pair_accuracy",
+    "unit_target": "uniform task, then uniform contributing decision parent, then uniform informative canonical sibling pair",
+    "aggregation_order": [
+      "compute tie-aware credit for each informative canonical sibling pair",
+      "average pair credits within each physical decision parent",
+      "average contributing parent metrics within each task",
+      "average task metrics with equal task weight"
+    ],
+    "physical_run_role": "identity and dependence cluster; not an implicit pair-frequency weight",
+    "multi_sibling_parent_role": "all canonical unordered pairs are averaged within the parent before parent aggregation",
+    "reason": "the parent is the logged candidate-choice opportunity and task equality prevents pair-yield-defined task weighting"
+  },
+  "required_nonrescuing_panel": [
+    {
+      "id": "task_macro_pair_macro_accuracy",
+      "aggregation_order": [
+        "average informative pair credits within each task",
+        "average task metrics with equal task weight"
+      ],
+      "role": "compatibility view for the frozen critic-scaling primary",
+      "may_rescue_generic_headline_or_existing_primary": false
+    },
+    {
+      "id": "task_macro_run_macro_parent_macro_pair_accuracy",
+      "aggregation_order": [
+        "average informative pair credits within each parent",
+        "average contributing parent metrics within each physical run",
+        "average contributing run metrics within each task",
+        "average task metrics with equal task weight"
+      ],
+      "role": "sensitivity to unequal decision-parent yield across independent physical runs",
+      "may_rescue_generic_headline_or_existing_primary": false
+    },
+    {
+      "id": "pair_micro_accuracy",
+      "aggregation_order": [
+        "average all informative common-support pair credits"
+      ],
+      "role": "empirical pair-frequency view whose task mixture is reported explicitly",
+      "may_rescue_generic_headline_or_existing_primary": false
+    }
+  ],
+  "paired_contrast_contract": {
+    "same_truth_and_pair_ids_for_all_arms": true,
+    "compute_arm_difference_at_pair_before_aggregation": true,
+    "same_parent_run_and_task_hierarchy_for_all_arms": true,
+    "zero_prediction_margin_credit": 0.5,
+    "pair_iid_confidence_interval_allowed": false
+  },
+  "inference": {
+    "generic_headline_cluster": "task",
+    "bootstrap_draws": 20000,
+    "bootstrap_seed": 20260901,
+    "bootstrap_algorithm": "uint64_big_endian_first8_sha256(seed\\0replicate\\0position)_mod_n_tasks",
+    "interval": "two-sided percentile",
+    "quantiles": [
+      0.025,
+      0.975
+    ],
+    "quantile_algorithm": "Hyndman-Fan type 7 linear interpolation",
+    "leave_one_task_out_required": true,
+    "physical_run_clustered_sensitivity_required": true,
+    "pair_iid_interval_allowed": false,
+    "existing_experiment_specific_bootstrap_remains_authoritative_for_its_gate": true
+  },
+  "required_support_table": {
+    "counts": [
+      "all cohort runs",
+      "finite-decision runs",
+      "tasks",
+      "informative tasks",
+      "decision parents",
+      "informative decision parents",
+      "canonical pairs",
+      "informative common-support pairs",
+      "truth ties",
+      "prediction ties"
+    ],
+    "concentration_views": [
+      "task share by runs",
+      "task share by endpoints",
+      "task share by parents",
+      "task share by pairs"
+    ],
+    "missingness_by_task_and_run_required": true,
+    "no_single_raw_pair_count_as_independence_claim": true,
+    "inverse_hhi_label": "descriptive diversity, not statistical effective sample size"
+  },
+  "reporting_firewall": {
+    "every_existing_primary_reported_first_for_its_claim": true,
+    "all_panel_rows_reported_together": true,
+    "no_metric_selected_after_effect_values": true,
+    "no_task_subgroup_rescue": true,
+    "no_truth_channel_rescue": true,
+    "no_aggregation_rescue": true,
+    "random_orientation_baseline_required": true,
+    "cost_and_coverage_reported_separately_from_accuracy": true
+  },
+  "access_and_compute": {
+    "prospective_label_grade_outcome_or_winner_orientation_read": false,
+    "prediction_values_read_or_aggregated": false,
+    "accuracy_effect_or_search_utility_computed": false,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "new_model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

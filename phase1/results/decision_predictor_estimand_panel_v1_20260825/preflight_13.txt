@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus + Predictor Benchmark + Audit Protocol; no old HCE, multifidelity, probe, score-channel replay, or effect execution
+PREFLIGHT_02_QUESTION=freeze a generic reporting hierarchy before first960 truth while preserving every already-frozen experiment-specific primary
+PREFLIGHT_03_KNOWN=structural weighting drift is already known from the outcome-blind atlas; no accuracy, arm difference, or utility is known
+PREFLIGHT_04_INPUTS=atlas SHA 1c3e5c34afe82a236e4f242373ee7b71fd44d90207eb2d74b9177fb6776db1a5 plus scaling/component contracts SHA 579771ac1b90b1022bdded1182ce5c5a17780a741dc95d82a53f5f91d577a568 and 1596c6f2abdfdd8b8880937f41099d81db74151e491175c123e581d9b028fdad
+PREFLIGHT_05_LEAKAGE=static contract and evidence hashes only; prospective truth, labels, outcomes, winner orientation, predictions, accuracy, and utility forbidden
+PREFLIGHT_06_UNIT=generic headline averages pair within physical parent, parent within task, and tasks equally; physical run remains identity/dependence and mandatory sensitivity
+PREFLIGHT_07_MATRIX=generic headline plus exactly three non-rescuing views: task-pair macro, task-run-parent-pair macro, and pair micro
+PREFLIGHT_08_MODEL=no model, fit, threshold, task selection, truth choice, or prediction read
+PREFLIGHT_09_INFERENCE=generic task bootstrap 20000 seed 20260901 plus LOTO and run-cluster sensitivity; existing experiment bootstrap remains gate authority
+PREFLIGHT_10_RESOURCES=deterministic CPU schema/hash verifier; GPU/API/model-fit/base-LLM update 0/0/0/0
+PREFLIGHT_11_OUTPUT=contract JSON, human contract, independent schema/hash receipt, focused/full tests, and exact source/evidence hashes
+PREFLIGHT_12_DURATION=under one hour; verifier itself should complete in under one second
+PREFLIGHT_13_STOP=fail closed on evidence hash, authority, hierarchy, rescue firewall, inference, access attestation, determinism, tests, or secret scan; never alter an existing primary

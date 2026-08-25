@@ -13,6 +13,28 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FZ. 2026-08-25 结构依赖图谱确认 pair weighting 会逆转语料均衡趋势
+
+对固定 `7cda` snapshot 的 accumulator summary 与 independent structural gate 做结果盲双实现复算。first-240→当前
+339 runs / 30 tasks 时，run-weighted 最大任务占比从 `0.1083333333` 降至 `0.0914454277`、inverse-HHI 描述性
+多样性从 `17.8660` 升至 `20.4595`；但 pair-weighted 最大占比从 `0.1714990746` 升至
+`0.3123339658`、inverse-HHI 从 `12.0427` 降至 `7.3666`。当前 run→pair task-distribution TV=
+`0.3370825007`，pair 主导任务相对其自身 run share 放大 `5.0419625915` 倍。这证明“新增 runs 更均衡”不等于
+pair-micro benchmark 的任务权重更均衡。
+
+2,635 pairs 来自 2,593 decision-parent groups；超出 one-pair-per-parent baseline 的只有 42 pairs（占
+`0.0159392789`），所以当前集中度主要不是 sibling 组合爆炸，而是任务/run 的 endpoint 与 decision-parent yield 不同。
+由此 closure 后的主要 estimand 固定为 task-macro + task bootstrap/LOTO；run-macro/run-clustered 与 pair-micro 只作
+次级视图。inverse-HHI 只称描述性多样性，绝非统计 ESS；该结果也不是 predictor accuracy 或方法优越性。
+
+正式 commit=`b8ea5f7...`，focused/full=`7/1033 passed`，producer/verifier 各双跑逐字节一致；atlas / independent
+SHA-256=`1c3e5c34...b1a5` / `634c5784...150f`，正式 `SHA256SUMS` hash=`17f41f52...d221d`，
+credential filename/content/forbidden-open hits=`0/0/0`。四个未接纳尝试（测试范围、BLAS 超卖、hash-seed 末位差、
+文件名护栏）均保留。直接证据：
+
+- `phase1/results/structural_dependency_atlas_7cda_20260825/README.md`；
+- `phase1/实验记录/2026-08-25/First960_结构依赖图谱与estimand裁决.md`。
+
 ## 0FY. 2026-08-25 ABC 交叉审计把 D&B 主张收紧为“衍生 decision benchmark 的本地增量”
 
 NeurIPS D&B 2025 的 Agentic Benchmark Checklist（ABC，arXiv:2507.02825v5）已经直接评过上游

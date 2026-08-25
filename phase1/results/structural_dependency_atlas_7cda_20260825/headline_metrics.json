@@ -1,0 +1,20 @@
+{
+  "chronological_flags": {
+    "pair_inverse_hhi_diversity_fell_despite_more_tasks": true,
+    "run_max_share_fell_while_pair_max_share_rose": true
+  },
+  "current_pair_inverse_hhi_diversity": 7.366637206731296,
+  "current_pair_max_share": 0.31233396584440226,
+  "current_pairs": 2635,
+  "current_run_max_share": 0.09144542772861357,
+  "current_runs": 339,
+  "current_tasks": 30,
+  "decision_parent_groups": 2593,
+  "first240_pair_max_share": 0.1714990746452807,
+  "first240_runs": 240,
+  "pair_dominant_task_share_amplification_vs_its_run_share": 5.041962591488208,
+  "pairs_per_parent_group": 1.0161974546856922,
+  "run_to_pair_total_variation": 0.337082500713674,
+  "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+  "status": "OUTCOME_BLIND_STRUCTURAL_DEPENDENCY_ATLAS_READY"
+}

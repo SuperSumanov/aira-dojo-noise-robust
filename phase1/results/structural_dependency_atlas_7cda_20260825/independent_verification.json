@@ -1,0 +1,33 @@
+{
+  "atlas_sha256": "1c3e5c34afe82a236e4f242373ee7b71fd44d90207eb2d74b9177fb6776db1a5",
+  "checks": {
+    "all_task_concentration_metrics_recomputed": true,
+    "all_weighting_shifts_recomputed": true,
+    "chronological_comparison_recomputed": true,
+    "dependency_funnel_recomputed": true,
+    "estimand_contract_exact": true,
+    "input_hashes_bound": true,
+    "outcome_blind_attestations_exact": true,
+    "scope_inventories_recomputed": true,
+    "source_hash_bound": true
+  },
+  "inputs": {
+    "accumulator_summary_sha256": "ad3e8fe4180fd6c6f7fcea121ef0c51c0f292445d77368e2b3ab4dc9a56d4585",
+    "structural_gate_sha256": "ca44845bc0f5feaf5de0e77ec658e4b0cca3f5a451b75b33bb4c63acfc1eccca"
+  },
+  "producer_source_sha256": "fe78a7957b7fa40d8618111508bb75f80dfdd84f9875e824dbe7426fdb056ae5",
+  "protocol": "independent_prospective_structural_dependency_atlas_v1",
+  "recomputed_key_findings": {
+    "current_pair_dominant_share": 0.31233396584440226,
+    "current_pair_inverse_hhi_diversity": 7.366637206731296,
+    "current_pairs": 2635,
+    "current_runs": 339,
+    "pairs_per_parent_group": 1.0161974546856922
+  },
+  "security": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "gpu_or_api_calls": 0,
+    "label_grade_outcome_prediction_or_winner_orientation_read": false
+  },
+  "status": "INDEPENDENT_STRUCTURAL_DEPENDENCY_ATLAS_PASS"
+}

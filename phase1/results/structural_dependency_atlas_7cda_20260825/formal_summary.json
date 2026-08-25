@@ -1,0 +1,78 @@
+{
+  "status": "FORMAL_STRUCTURAL_DEPENDENCY_ATLAS_PASS",
+  "protocol": "prospective_structural_dependency_atlas_formal_v1",
+  "source_commit": "b8ea5f7e3d30ced33043167ecaffcb363bb4e320",
+  "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+  "inputs": {
+    "accumulator_summary_sha256": "ad3e8fe4180fd6c6f7fcea121ef0c51c0f292445d77368e2b3ab4dc9a56d4585",
+    "structural_gate_sha256": "ca44845bc0f5feaf5de0e77ec658e4b0cca3f5a451b75b33bb4c63acfc1eccca",
+    "producer_source_sha256": "fe78a7957b7fa40d8618111508bb75f80dfdd84f9875e824dbe7426fdb056ae5"
+  },
+  "outputs": {
+    "atlas_sha256": "1c3e5c34afe82a236e4f242373ee7b71fd44d90207eb2d74b9177fb6776db1a5",
+    "independent_verification_sha256": "634c57840667d4cd9a301fb3d8c8d39e37c161ea1d11872a57ac740d951c150f",
+    "headline_metrics_sha256": "f6db60ae066323ff3e65944ab24d3c30e18074765f080d4f2618de4bfc86814f"
+  },
+  "formal_execution": {
+    "root": "/research/d7/spc/yzyang4/prepush-structural-atlas/b8ea5f7-v2",
+    "focused_tests": "7 passed in 0.39s",
+    "full_tests": "1033 passed, 47 warnings in 71.41s",
+    "producer_a_b_byte_identical": true,
+    "independent_verifier_a_b_byte_identical": true,
+    "producer_elapsed_seconds": [
+      0.20,
+      0.20
+    ],
+    "verifier_elapsed_seconds": [
+      0.22,
+      0.21
+    ],
+    "maximum_rss_kb": 22080,
+    "sha256sums_file_sha256": "17f41f52d0a4a9da4f32433b46b3a404a1932e0963a2c22691ca09d42e5d221d",
+    "python_version": "3.11.15",
+    "numeric_library_threads": 1
+  },
+  "failure_history": [
+    {
+      "root": "/research/d7/spc/yzyang4/prepush-structural-atlas/e19f5f3-v1",
+      "status": "INFRASTRUCTURE_TEST_SCOPE_FAILURE",
+      "producer_executed": false,
+      "failure_summary_sha256": "e64bf4e0355e6a179612b96941dab48fe50650dc98a962eed97b50d24b4a6b5b"
+    },
+    {
+      "root": "/research/d7/spc/yzyang4/prepush-structural-atlas/e19f5f3-v2",
+      "status": "INFRASTRUCTURE_OVERSUBSCRIPTION_STOPPED",
+      "producer_executed": false,
+      "failure_summary_sha256": "14ed2b69392305e5e44439d79d080e1e751501c066619f7c7f0bb8ef2211e7e1"
+    },
+    {
+      "root": "/research/d7/spc/yzyang4/prepush-structural-atlas/e19f5f3-v3",
+      "status": "PRODUCER_BYTE_NONDETERMINISM_FAILURE",
+      "result_accepted": false,
+      "failure_summary_sha256": "bef17162785e95fbb8820cf54bcb9a5183c17a2c5212792f4d22f3d4c349b521"
+    },
+    {
+      "root": "/research/d7/spc/yzyang4/prepush-structural-atlas/b8ea5f7-v1",
+      "status": "PACKAGING_FILENAME_GUARD_FAILURE",
+      "result_accepted": false,
+      "failure_summary_sha256": "72bd6d426e590a8a2899b3d7e8cd2b786c4005ec154d7bab746824ec7c81913f"
+    }
+  ],
+  "security": {
+    "filename_secret_hits": 0,
+    "content_secret_hits": 0,
+    "forbidden_open_trace_hits": 0,
+    "label_grade_outcome_prediction_or_winner_orientation_read": false,
+    "accuracy_effect_or_search_utility_computed": false,
+    "gpu_calls": 0,
+    "api_calls": 0,
+    "base_llm_updates": 0
+  },
+  "interpretation_limits": {
+    "descriptive_post_hoc_not_preregistered_effect_test": true,
+    "inverse_hhi_is_not_statistical_effective_sample_size": true,
+    "predictor_accuracy_claim": false,
+    "method_superiority_claim": false,
+    "search_utility_claim": false
+  }
+}

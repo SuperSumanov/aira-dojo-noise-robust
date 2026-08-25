@@ -63,10 +63,11 @@ debug:
         - Always ensure predictions on the provided unlabeled test set are saved in `./submission.csv`. This is crucial for grading.
       
       # Other remarks
-      - Huggingface is set to OFFLINE mode by default. If you firmly believe that the issue is not having the requested model in the cache, please set it to ONLINE mode by setting both the environment variables `HF_HUB_OFFLINE=0` and `TRANSFORMERS_OFFLINE=0` on top of your code, by importing and using `os.environ[...] = ...`.
+      - Huggingface is set to ONLINE mode by default.
       - Do not set/force Huggingface to OFFLINE mode as that will NOT fix any issue.
       - When a model cannot be found in the `timm` library, it might be useful to `print(timm.list_models())`.
       - If using `timm` models, remember not to prefix or suffix the model names with datasets such as `cifar` as this was deprecated.
+      - All the provided input data is stored in "./data" directory. Do not make another copy or cache, otherwise you will overflow the allocated disk space.
 
       Brainstorm about possible ways to fix the bug and WHY THEY ARE LIKELY TO FIX THE BUG for the given implementation. Additionally, if any other bugs further down the line are observed, please fix them as well.
       Generate a bug-fix plan that will structure and guide your step-by-step reasoning process. Reflect on it to make sure all the requirements are satisfied.

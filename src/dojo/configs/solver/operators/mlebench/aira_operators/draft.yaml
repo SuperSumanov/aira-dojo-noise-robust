@@ -45,7 +45,7 @@ draft:
         - If using `timm` models, remember not to prefix or suffix the model names with datasets such as `cifar` as this was deprecated.
         - As much as possible, keep the stdout clean.
       
-      **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
+      **DATA**: The data is already prepared and available in the read-only `./data` directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space. You should not unzip any files.
       
       **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. If you need to, feel free to use additional libraries that fit the problem.
 

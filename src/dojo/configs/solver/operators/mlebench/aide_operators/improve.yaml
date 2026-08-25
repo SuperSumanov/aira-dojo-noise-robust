@@ -57,7 +57,7 @@ improve:
       No parts of the code should be skipped, don't terminate the before finishing the script.
       Your response should only contain a single code block.
       Be aware of the running time of the code, it should complete within {{execution_timeout}}.
-      All the provided input data is stored in "./data" directory.
+      All the provided input data is stored in "./data" directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space.
       **If there is test data provided for this task, please save the test predictions in a `submission.csv` file in the "./" directory as described in the task description** This is extremely important since this file is used for grading/evaluation. DO NOT FORGET THE submission.csv file!
       You can also use the current directory to store any temporary files that your code needs to create.
       REMEMBER THE ./submission.csv FILE!!!!! The correct directory is important too.

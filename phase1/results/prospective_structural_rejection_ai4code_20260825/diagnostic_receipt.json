@@ -1,0 +1,58 @@
+{
+  "archive": {
+    "mtime_ns": 1787588170000000000,
+    "relative_basename": "AI4Code-8seeds.tar.gz",
+    "sha256": "cecac2bc9f156c33630f7e4bd740f4e403907aa656fd740a2e3b2ad6af804a14",
+    "size": 82377109
+  },
+  "archive_audit": {
+    "checkpoint_runs": 4,
+    "checkpoint_with_live_event_log": 4,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 385382562,
+    "discovered_run_roots": 4,
+    "live_only_runs_excluded": 0,
+    "members": 65
+  },
+  "invalid_journals": 1,
+  "journals": 4,
+  "outcomes_read": false,
+  "per_journal": [
+    {
+      "journal_sha256": "1557c70db982a0c7adee03b18bf86c371218bb4a37ec7d6bf3478849f982f972",
+      "nodes": 249,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "a53ec6b3f1b2b09da33936f5d1c91da687bfcb869fedbdc1992d8fcad46814d6",
+      "nodes": 45,
+      "task_identity_cardinality": 1
+    },
+    {
+      "journal_sha256": "c9eb0f8fba60af78572aac8e83e6fade445b232c80a6518ed6c6a7fe57bef005",
+      "nodes": 165,
+      "task_identity_cardinality": 1
+    },
+    {
+      "journal_sha256": "ce4ce140cc0a94a6a646d610ada750933ecc66bb417de26a092a9e0c11deb273",
+      "nodes": 49,
+      "task_identity_cardinality": 1
+    }
+  ],
+  "protocol": "prospective_archive_task_identity_audit_v1",
+  "recommended_reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+  "security": {
+    "code_stdout_grade_or_metric_values_emitted": false,
+    "env_members_read": false,
+    "journal_scanned_before_json": true,
+    "live_event_journal_members_read": false,
+    "task_identity_values_emitted": false
+  },
+  "source_commit": "5d0baaddca14ce6db53a43ed1976b85a8b24c9f3",
+  "status": "STRUCTURAL_TASK_IDENTITY_REJECTION_SUPPORTED",
+  "task_identity_cardinality_counts": {
+    "multiple": 0,
+    "one": 3,
+    "zero": 1
+  }
+}

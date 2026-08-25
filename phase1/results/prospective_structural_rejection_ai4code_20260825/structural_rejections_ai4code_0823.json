@@ -1,0 +1,15 @@
+{
+  "entries": [
+    {
+      "archive_mtime_ns": 1787588170000000000,
+      "archive_relative_path": "0823/AI4Code-8seeds.tar.gz",
+      "archive_sha256": "cecac2bc9f156c33630f7e4bd740f4e403907aa656fd740a2e3b2ad6af804a14",
+      "archive_size": 82377109,
+      "diagnostic_receipt_file": "diagnostic_receipt.json",
+      "diagnostic_receipt_sha256": "7fe6c1ba33c35837ce5705867b6e900c77aa44d7692ea1be8dbfb12d5e2b36a4",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+    }
+  ],
+  "outcomes_read": false,
+  "protocol": "prospective_structural_rejection_v1"
+}

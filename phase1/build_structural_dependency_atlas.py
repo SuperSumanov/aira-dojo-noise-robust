@@ -89,7 +89,7 @@ def concentration(counts: dict[str, int]) -> dict[str, Any]:
     }
 
 
-def normalized_shares(counts: dict[str, int], keys: set[str]) -> dict[str, float]:
+def normalized_shares(counts: dict[str, int], keys: list[str]) -> dict[str, float]:
     total = sum(counts.get(key, 0) for key in keys)
     if total <= 0:
         raise AtlasError("share normalization has zero total")
@@ -97,7 +97,7 @@ def normalized_shares(counts: dict[str, int], keys: set[str]) -> dict[str, float
 
 
 def weighting_shift(reference: dict[str, int], comparison: dict[str, int]) -> dict[str, Any]:
-    keys = set(reference) | set(comparison)
+    keys = sorted(set(reference) | set(comparison))
     reference_shares = normalized_shares(reference, keys)
     comparison_shares = normalized_shares(comparison, keys)
     ref_concentration = concentration(reference)

@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -252,3 +255,36 @@ def test_independent_verifier_rejects_wrong_producer_source_hash(tmp_path: Path)
             SOURCE,
             "d" * 64,
         )
+
+
+def test_cli_is_byte_deterministic_across_python_hash_seeds(tmp_path: Path) -> None:
+    accumulator_path, accumulator_sha, gate_path, gate_sha = fixture(tmp_path)
+    outputs = []
+    for seed in ("1", "987654"):
+        output = tmp_path / f"atlas-{seed}.json"
+        environment = os.environ.copy()
+        environment["PYTHONHASHSEED"] = seed
+        subprocess.run(
+            [
+                sys.executable,
+                str(SOURCE),
+                "--accumulator-summary",
+                str(accumulator_path),
+                "--expect-accumulator-summary-sha256",
+                accumulator_sha,
+                "--structural-gate",
+                str(gate_path),
+                "--expect-structural-gate-sha256",
+                gate_sha,
+                "--source-commit",
+                "a" * 40,
+                "--output",
+                str(output),
+            ],
+            check=True,
+            env=environment,
+            capture_output=True,
+            text=True,
+        )
+        outputs.append(output.read_bytes())
+    assert outputs[0] == outputs[1]

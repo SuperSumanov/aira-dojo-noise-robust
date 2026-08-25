@@ -1,0 +1,39 @@
+{
+  "guard_sha256": "fd87246bb3656befba27de5a98c88f808ca39e178e7322d27ae9536fe4a751b0",
+  "outcomes_or_predictions_read": false,
+  "protocol": "independent_prospective_task_balance_accrual_guard_v1",
+  "randomness_used": false,
+  "recomputed_allowance_table": [
+    {
+      "future_nondominant_pairs": 657,
+      "maximum_future_dominant_pairs": 0
+    },
+    {
+      "future_nondominant_pairs": 1000,
+      "maximum_future_dominant_pairs": 114
+    },
+    {
+      "future_nondominant_pairs": 2000,
+      "maximum_future_dominant_pairs": 447
+    },
+    {
+      "future_nondominant_pairs": 3000,
+      "maximum_future_dominant_pairs": 781
+    },
+    {
+      "future_nondominant_pairs": 4000,
+      "maximum_future_dominant_pairs": 1114
+    }
+  ],
+  "recomputed_current": {
+    "dominant_pairs": 823,
+    "dominant_share": 0.31233396584440226,
+    "dominant_task": "osic-pulmonary-fibrosis-progression",
+    "gate_pass": false,
+    "maximum_share": 0.25,
+    "pairs": 2635,
+    "tasks": 30
+  },
+  "recomputed_minimum_nondominant_pairs": 657,
+  "status": "INDEPENDENT_TASK_BALANCE_ACCRUAL_GUARD_PASS"
+}

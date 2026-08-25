@@ -13,6 +13,25 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FX. 2026-08-25 first-960 当前有 657-pair 任务均衡债务；摄取改用逐任务前瞻护栏
+
+固定结构门要求任一任务的 canonical sibling-pair share 不超过 0.25。snapshot `7cdaefcf...` 的 2,635 pairs 中，
+OSIC 有 823 个，占 `0.31233396584440226`，因此当前未通过。令未来非 OSIC / OSIC pairs 分别为 `x/y`，精确整数
+包络为 `x >= 657 + 3*y`：若暂不新增 OSIC，至少须观察到 657 个非 OSIC pairs；之后每新增 1 个 OSIC pair，累计
+至少配 3 个非 OSIC pairs。
+
+657 只解除当前 OSIC 债务。达到该点时总数为 3,292、每任务上限为 823；仍须对所有任务同时执行
+`4*(current_t+future_t) <= current_total+sum_future_all_tasks`，避免把新增量堆到另一个任务。producer 应暂时避开
+OSIC、轮换其他任务，并在每个稳定 snapshot 按实际 canonical pairs 重算。pair yield 不固定，所以 657 绝不能写成
+raw-run 配额。
+
+该护栏仅使用结构 metadata，不读 outcome/prediction aggregate；不删除、重排或排除已进入的 run，不改变 chronological
+first-960 membership，也不是提前停止门。guard/independent SHA-256 分别为 `fd87246b...51b0` /
+`7feaf1a7...760d`。直接证据：
+
+- `phase1/results/task_balance_accrual_guard_7cda_20260825/README.md`；
+- `phase1/实验记录/2026-08-25/First960_任务均衡摄取护栏.md`。
+
 ## 0FW. 2026-08-25 post-baseline 90 个归档裁决已形成 outcome-blind 完整拒收台账
 
 observer metadata 在 snapshot `7cdaefcf...` 时把 218 个 source archives 精确、互斥且完备地分成 128 个 sealed

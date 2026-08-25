@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus + Predictor Benchmark + Audit Protocol only; HCE, multifidelity, probe, score-channel replay, and premature truth evaluation remain closed
+PREFLIGHT_02_QUESTION=how strongly do run-, endpoint-, and pair-weighting change task concentration, and how many nested parent/run/task support units underlie the current canonical sibling-pair count
+PREFLIGHT_03_KNOWN=current inventory, dominant pair share, pair-task HHI, parent-group count, and first240/current dominant shares were already visible in bound receipts; this is explicitly a descriptive post-hoc audit, not a preregistered effect test
+PREFLIGHT_04_INPUTS=accumulator summary SHA ad3e8fe4180fd6c6f7fcea121ef0c51c0f292445d77368e2b3ab4dc9a56d4585 and structural gate SHA ca44845bc0f5feaf5de0e77ec658e4b0cca3f5a451b75b33bb4c63acfc1eccca from snapshot 7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1
+PREFLIGHT_05_LEAKAGE=CLI accepts only aggregate summary, structural gate, producer source, hashes, commit, and outputs; label vault, grades, outcomes, winner orientation, score registry, prediction values, accuracy, and search utility are forbidden
+PREFLIGHT_06_UNIT=report raw canonical pairs plus nested decision-parent, physical-run, and task support; inverse HHI is descriptive diversity and must never be called a statistical effective sample size
+PREFLIGHT_07_MATRIX=scopes are frozen provisional_first240 and chronological provisional_first960 prefix; weightings are runs, endpoints, and structural pairs; no adaptive scope, threshold, or metric choice
+PREFLIGHT_08_MODEL=no learned model and no parameter fitting; deterministic Python standard-library arithmetic only
+PREFLIGHT_09_INFERENCE=descriptive concentration, total variation, weighting amplification, and chronological deltas only; no p-values, confidence intervals, causal claims, or accuracy claims
+PREFLIGHT_10_RESOURCES=single-process CPU producer x2 and independently coded verifier x2; GPU/API/base-LLM update 0/0/0
+PREFLIGHT_11_OUTPUT=atlas JSON, independent verification JSON, exact logs, input/source hashes, recursive hashes, focused tests, full-suite test log, and interpretation README
+PREFLIGHT_12_DURATION=estimated 1-2 hours including clean-worktree full-suite validation; each analysis execution should finish in seconds
+PREFLIGHT_13_STOP=fail closed on SHA/protocol/snapshot/security/inventory/source binding, nonfinite arithmetic, producer nondeterminism, independent mismatch, test failure, or secret scan hit; never repair a result by changing scope or metric

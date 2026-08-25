@@ -17,7 +17,8 @@ AUGMENTED_DATA_DIR = PROJECT_ROOT / "data" / "augmented_mle_critic"
 DEFAULT_PAIRS = AUGMENTED_DATA_DIR / "decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl"
 DEFAULT_CARDS = AUGMENTED_DATA_DIR / "augmented_cards_current.json"
 DEFAULT_PROMPTS = AUGMENTED_DATA_DIR / "rl_judger_system_prompts.json"
-DEFAULT_OUTPUT = AUGMENTED_DATA_DIR / "rl_judger_messages.jsonl"
+DEFAULT_TRAIN_OUTPUT = AUGMENTED_DATA_DIR / "rl_judger_messages_train.jsonl"
+DEFAULT_TEST_OUTPUT = AUGMENTED_DATA_DIR / "rl_judger_messages_test.jsonl"
 
 FINAL_INSTRUCTION = (
     "now please reasoning step by step and output your final decision in \\boxed{A} or \\boxed{B}"
@@ -59,11 +60,12 @@ def build_messages(
     pairs_path: Path = DEFAULT_PAIRS,
     cards_path: Path = DEFAULT_CARDS,
     prompts_path: Path = DEFAULT_PROMPTS,
-    output_path: Path = DEFAULT_OUTPUT,
+    train_output_path: Path = DEFAULT_TRAIN_OUTPUT,
+    test_output_path: Path = DEFAULT_TEST_OUTPUT,
     *,
     seed: int = 7,
 ) -> int:
-    """Write one randomly A/B-oriented judger example per valid pair."""
+    """Write one randomly A/B-oriented judger example per train/test pair."""
     with prompts_path.open(encoding="utf-8") as file:
         prompts = json.load(file)
     if not isinstance(prompts, dict):
@@ -72,11 +74,18 @@ def build_messages(
     cards_by_id = read_cards(str(cards_path))
     pairs = read_pairs(str(pairs_path), cards_by_id)
     rng = random.Random(seed)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    train_output_path.parent.mkdir(parents=True, exist_ok=True)
+    test_output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    written = 0
-    with output_path.open("w", encoding="utf-8") as output_file:
+    written = {"train": 0, "test": 0}
+    with (
+        train_output_path.open("w", encoding="utf-8") as train_file,
+        test_output_path.open("w", encoding="utf-8") as test_file,
+    ):
         for pair in pairs:
+            split = pair.get("intask_split")
+            if split not in written:
+                continue
             task_name = pair["task"]
             try:
                 system_prompt = prompts[task_name]
@@ -106,8 +115,9 @@ def build_messages(
                 ],
                 "solution": better_position,
             }
+            output_file = train_file if split == "train" else test_file
             output_file.write(json.dumps(record, ensure_ascii=False) + "\n")
-            written += 1
+            written[split] += 1
     return written
 
 
@@ -116,11 +126,22 @@ def main() -> None:
     parser.add_argument("--pairs", type=Path, default=DEFAULT_PAIRS)
     parser.add_argument("--cards", type=Path, default=DEFAULT_CARDS)
     parser.add_argument("--prompts", type=Path, default=DEFAULT_PROMPTS)
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--train-output", type=Path, default=DEFAULT_TRAIN_OUTPUT)
+    parser.add_argument("--test-output", type=Path, default=DEFAULT_TEST_OUTPUT)
     parser.add_argument("--seed", type=int, default=7)
     args = parser.parse_args()
-    count = build_messages(args.pairs, args.cards, args.prompts, args.output, seed=args.seed)
-    print(f"[build_judger_messages] wrote {count} records -> {args.output}")
+    counts = build_messages(
+        args.pairs,
+        args.cards,
+        args.prompts,
+        args.train_output,
+        args.test_output,
+        seed=args.seed,
+    )
+    print(
+        f"[build_judger_messages] wrote train={counts['train']} -> {args.train_output}; "
+        f"test={counts['test']} -> {args.test_output}"
+    )
 
 
 if __name__ == "__main__":

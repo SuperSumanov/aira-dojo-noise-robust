@@ -39,6 +39,7 @@ def test_all_repo_backed_rejection_registry_hashes_are_exact() -> None:
         "EXTRA_0822_REGISTRY",
         "EXTRA_0822_AI4CODE_REGISTRY",
         "EXTRA_0823_AI4CODE_REGISTRY",
+        "EXTRA_0823_LMSYS_REGISTRY",
     )
     for prefix in prefixes:
         relative = values[f"{prefix}_REL"]
@@ -49,8 +50,8 @@ def test_all_repo_backed_rejection_registry_hashes_are_exact() -> None:
 
 def test_extra_registry_arguments_remain_paired() -> None:
     text = SCRIPT.read_text(encoding="utf-8")
-    assert text.count("--extra-structural-rejection-registry ") == 9
-    assert text.count("--expect-extra-structural-rejection-registry-sha256 ") == 9
+    assert text.count("--extra-structural-rejection-registry ") == 10
+    assert text.count("--expect-extra-structural-rejection-registry-sha256 ") == 10
 
 
 def test_0821_registry_is_verified_passed_and_receipted() -> None:
@@ -95,4 +96,31 @@ def test_0823_ai4code_registry_is_verified_passed_and_receipted() -> None:
         "multiple": 0,
         "one": 3,
         "zero": 1,
+    }
+
+
+def test_0823_lmsys_registry_is_verified_passed_and_receipted() -> None:
+    text = SCRIPT.read_text(encoding="utf-8")
+    assert text.count("${EXTRA_0823_LMSYS_REGISTRY_SHA}") == 3
+    assert text.count("${extra_0823_lmsys_registry}") == 2
+
+    values = assignments()
+    registry_path = ROOT / values["EXTRA_0823_LMSYS_REGISTRY_REL"]
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    assert registry["outcomes_read"] is False
+    assert len(registry["entries"]) == 1
+    entry = registry["entries"][0]
+    assert entry["archive_relative_path"] == "0823/lmsys-chatbot-arena-8seeds.tar.gz"
+    assert entry["reason_code"] == "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+
+    receipt_path = registry_path.parent / entry["diagnostic_receipt_file"]
+    assert sha256(receipt_path) == entry["diagnostic_receipt_sha256"]
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    assert receipt["outcomes_read"] is False
+    assert receipt["journals"] == 4
+    assert receipt["invalid_journals"] == 4
+    assert receipt["task_identity_cardinality_counts"] == {
+        "multiple": 0,
+        "one": 0,
+        "zero": 4,
     }

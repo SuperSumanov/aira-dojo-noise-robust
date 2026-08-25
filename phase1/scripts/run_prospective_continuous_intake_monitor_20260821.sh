@@ -31,6 +31,8 @@ EXTRA_0822_AI4CODE_REGISTRY_REL=phase1/results/prospective_structural_rejection_
 EXTRA_0822_AI4CODE_REGISTRY_SHA=992d1a25267a66e161c7b2a4143c30110816011e09a3d82929f65cb8a00d33b7
 EXTRA_0823_AI4CODE_REGISTRY_REL=phase1/results/prospective_structural_rejection_ai4code_20260825/structural_rejections_ai4code_0823.json
 EXTRA_0823_AI4CODE_REGISTRY_SHA=0162c771ce1df3743776642456247d0974b7bc6e40550ca98fd626ee3dc6653f
+EXTRA_0823_LMSYS_REGISTRY_REL=phase1/results/prospective_structural_rejection_lmsys_20260825/structural_rejections_lmsys_0823.json
+EXTRA_0823_LMSYS_REGISTRY_SHA=81b9c87f140265b3438587953aadfd00ff3f53ca665799b807ec4c80596bd005
 POLL_SECONDS=300
 MAX_POLLS=145
 
@@ -52,6 +54,7 @@ extra_0821_registry="${control_repo}/${EXTRA_0821_REGISTRY_REL}"
 extra_0822_registry="${control_repo}/${EXTRA_0822_REGISTRY_REL}"
 extra_0822_ai4code_registry="${control_repo}/${EXTRA_0822_AI4CODE_REGISTRY_REL}"
 extra_0823_ai4code_registry="${control_repo}/${EXTRA_0823_AI4CODE_REGISTRY_REL}"
+extra_0823_lmsys_registry="${control_repo}/${EXTRA_0823_LMSYS_REGISTRY_REL}"
 log_root="${STATE_ROOT}/logs"
 monitor_log="${log_root}/continuous_intake_monitor_20260821.log"
 pid_file="${STATE_ROOT}/continuous_intake_monitor_20260821.pid"
@@ -75,6 +78,7 @@ verify_contracts() {
   test "$(sha256sum "${extra_0822_registry}" | awk '{print $1}')" = "${EXTRA_0822_REGISTRY_SHA}"
   test "$(sha256sum "${extra_0822_ai4code_registry}" | awk '{print $1}')" = "${EXTRA_0822_AI4CODE_REGISTRY_SHA}"
   test "$(sha256sum "${extra_0823_ai4code_registry}" | awk '{print $1}')" = "${EXTRA_0823_AI4CODE_REGISTRY_SHA}"
+  test "$(sha256sum "${extra_0823_lmsys_registry}" | awk '{print $1}')" = "${EXTRA_0823_LMSYS_REGISTRY_SHA}"
   test "$(tr -d '\r\n' < "${STATE_ROOT}/production_commit.txt")" = "${SCIENTIFIC_COMMIT}"
   test ! -e "${STATE_ROOT}/BASELINE_INVALID"
 }
@@ -109,6 +113,8 @@ runner() {
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0822_AI4CODE_REGISTRY_SHA}" \
       --extra-structural-rejection-registry "${extra_0823_ai4code_registry}" \
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0823_AI4CODE_REGISTRY_SHA}" \
+      --extra-structural-rejection-registry "${extra_0823_lmsys_registry}" \
+      --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0823_LMSYS_REGISTRY_SHA}" \
       --minimum-age-seconds 21600 \
       --minimum-observations 3 \
       --minimum-observation-interval-seconds 300 \
@@ -131,6 +137,7 @@ if [[ "${mode}" == --initialize ]]; then
   echo "PREFLIGHT_04D_0822_REJECTION_SHA256=${EXTRA_0822_REGISTRY_SHA}"
   echo "PREFLIGHT_04E_0822_AI4CODE_REJECTION_SHA256=${EXTRA_0822_AI4CODE_REGISTRY_SHA}"
   echo "PREFLIGHT_04F_0823_AI4CODE_REJECTION_SHA256=${EXTRA_0823_AI4CODE_REGISTRY_SHA}"
+  echo "PREFLIGHT_04G_0823_LMSYS_REJECTION_SHA256=${EXTRA_0823_LMSYS_REGISTRY_SHA}"
   echo 'PREFLIGHT_05_INPUT=stable append-only senior archives bound by exact path size mtime and SHA256'
   echo 'PREFLIGHT_06_ESTIMAND=unchanged; no outcome metric and no historical backfill'
   echo 'PREFLIGHT_07_SECURITY=credential-first journal audit; env and live-event members never read; umask077'

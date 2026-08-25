@@ -1,0 +1,58 @@
+{
+  "archive": {
+    "mtime_ns": 1787238813000000000,
+    "relative_basename": "plant-pathology-2021-fgvc8-8seeds.tar.gz",
+    "sha256": "f583a74a3e828d45a22de11158d79ab5ed33c51dd58933b076b48dc191e7ed4d",
+    "size": 109828866
+  },
+  "archive_audit": {
+    "checkpoint_runs": 4,
+    "checkpoint_with_live_event_log": 4,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 583728821,
+    "discovered_run_roots": 4,
+    "live_only_runs_excluded": 0,
+    "members": 59
+  },
+  "invalid_journals": 4,
+  "journals": 4,
+  "outcomes_read": false,
+  "per_journal": [
+    {
+      "journal_sha256": "44b8b513ac2a12f35f0b68b5280e9c967380ab957bb5f17524ee8cec18b46418",
+      "nodes": 217,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "9240ae61610233556471d585e4e43a22cebab283713ac86345c6d2c7e9f9f4fb",
+      "nodes": 209,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "b06058f392ac01f596a07c06cf75fe9285d9e81e41bf0db6c6478b2f92ca6959",
+      "nodes": 213,
+      "task_identity_cardinality": 0
+    },
+    {
+      "journal_sha256": "eadbc64eddc4d212d989be8a962010815a3d97204366af8fefad4b00ae7f7f4d",
+      "nodes": 181,
+      "task_identity_cardinality": 0
+    }
+  ],
+  "protocol": "prospective_archive_task_identity_audit_v1",
+  "recommended_reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+  "security": {
+    "code_stdout_grade_or_metric_values_emitted": false,
+    "env_members_read": false,
+    "journal_scanned_before_json": true,
+    "live_event_journal_members_read": false,
+    "task_identity_values_emitted": false
+  },
+  "source_commit": "c4478d012b59ba37efd7a75263f31a7bd3cfc63e",
+  "status": "STRUCTURAL_TASK_IDENTITY_REJECTION_SUPPORTED",
+  "task_identity_cardinality_counts": {
+    "multiple": 0,
+    "one": 0,
+    "zero": 4
+  }
+}

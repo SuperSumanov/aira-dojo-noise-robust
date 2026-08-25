@@ -13,6 +13,47 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FW. 2026-08-25 post-baseline 90 个归档裁决已形成 outcome-blind 完整拒收台账
+
+observer metadata 在 snapshot `7cdaefcf...` 时把 218 个 source archives 精确、互斥且完备地分成 128 个 sealed
+baseline、78 个 accepted archive transactions、12 个 structural rejections 和 0 个 pending。由此 post-baseline
+归档拒收率为 `12/90 = 0.13333333333333333`；12 个拒收中 11 个是任务身份元数据问题（`11/12 =
+0.9166666666666666`），另 1 个没有 checkpoint journal。
+
+更关键的是，出现拒收的 6 个竞赛全部也至少出现过一次 accepted archive transaction（6/6）。这证明结构有效性是
+archive-level、随批次变化的属性：不能用 task whitelist/blacklist 替代逐归档 credential-first 门控。该结论强化
+Decision Corpus / D&B 的 audit-protocol 贡献；它不估计 producer metadata 修改的因果效果，也不说明被拒收归档的模型质量
+更差。
+
+partition/partition-independent/ledger/ledger-independent receipt SHA-256 分别为 `aa161d4c...f07c` /
+`ffa0974d...b82e` / `b194b1bc...ad03` / `1281797c...7a60`；12 个 registry 均与相邻 diagnostic receipt 逐哈希绑定，
+0819 外部安全 registry 已以逐字节相同版本
+发布进仓库。outcome/prediction aggregate/GPU/API=`false/false/0/0`。直接证据：
+
+- `phase1/results/structural_rejection_ledger_v1_20260825/README.md`；
+- `phase1/results/prospective_structural_rejection_20260821/README.md`；
+- `phase1/实验记录/2026-08-25/Prospective0823_最终结构资产与拒收台账.md`。
+
+## 0FV. 2026-08-25 7cda 七臂同池扩至 2,635 pairs；transition 仍不解锁 effect
+
+0823 六个归档最终为 4 accepted / 2 rejected。相对 f109，语料增加 11 runs、204 endpoints、46 canonical sibling
+pairs 和 1 task；当前为 339 eligible physical runs、10,196 endpoints、2,635 pairs、30 tasks，其中 334 runs 有 finite
+decision。exact-code unique fraction=`0.9970576696743821`，21 个 duplicate groups 全部局限于同一 run，跨 run/task
+duplicate groups 均为 0。
+
+在该最终 snapshot 上，WL 四臂与 transition 三臂各覆盖同一组 2,635 pairs、334 runs、30 tasks；独立 canonical
+identity 得到 intersection=union=2,635、IoU=1.0、left/right 同向=2,635。activation 交叉表为 463 个双 activation
+后、507 个仅 WL activation 后、1,665 个双 support-only。transition strict-effect-eligible 只有 399 pairs、52 runs、
+17 tasks，状态仍为 `TRANSITION_ESCROW_INSUFFICIENT_FUTURE_SUPPORT`；不得读取 effect。
+
+matrix SHA-256=`be63fbe0...f6b7`；formal focused/full=`10/1002 passed`，`SHA256SUMS` 文件自身 SHA-256=
+`f67c1eca...1a26`，credential filename/content hits=`0/0`。这是未来 paired benchmark 的正面 common-support 资产，
+不是 accuracy、方法优越性、runtime/cost、search utility 或 first-960 closure。直接证据：
+
+- `phase1/results/prospective_0823_batch_postflight_20260825_6299865/README.md`；
+- `phase1/results/prediction_escrow_coverage_7cda_20260825_6299865/README.md`；
+- `phase1/实验记录/2026-08-25/Prospective0823_最终结构资产与拒收台账.md`。
+
 ## 0FU. 2026-08-25 七臂同池结构结果已进入 Decision Corpus v6 机器索引；仍无 effect unlock
 
 新增 `decision_corpus_evidence_index_v6`，在 v5 的 9 项 evidence stack 后加入第 10 项

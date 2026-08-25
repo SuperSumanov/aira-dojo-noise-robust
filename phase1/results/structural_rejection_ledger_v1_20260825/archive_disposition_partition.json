@@ -1,0 +1,110 @@
+{
+  "access_attestation": {
+    "archive_payloads_opened": false,
+    "credentials_opened": false,
+    "labels_grades_outcomes_or_predictions_read": false,
+    "observation_metadata_only": true
+  },
+  "counts": {
+    "accepted_archive_transactions": 78,
+    "baseline_archives": 128,
+    "observed_archives": 218,
+    "pending_archives": 0,
+    "rejected_archives": 12
+  },
+  "latest_snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+  "mapping_sha256": {
+    "accepted_path_archive_snapshot": "af5f5534378508549d697d61358a404b9a47c1a54ef1062aac705a78ec6d06a8",
+    "all_observed_path_disposition_size_mtime": "410b339756889c6d35c69491bb363204eb4c8d5232993ffb4b188e01f58440dc",
+    "baseline_path_size_mtime": "89a018e123a8da5be968cbeca4e52558e6f91f0bd0340daf4f94da6125e72e3f",
+    "rejected_path_archive_reason_registry": "6c4cc25dac366c819c0369c5cb4cc6ae1dda076434601fefa2bd926f278f51e6"
+  },
+  "partition_checks": {
+    "all_observed_archives_present": true,
+    "collectively_exhaustive": true,
+    "latest_snapshot_seen_in_accepted": true,
+    "mutually_exclusive": true
+  },
+  "protocol": "prospective_archive_disposition_partition_v1",
+  "reason_counts": {
+    "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": 1,
+    "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": 2,
+    "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": 9
+  },
+  "rejected_archive_identities": [
+    {
+      "archive_relative_path": "0814/tweet-sentiment-extraction-8seeds.tar.gz",
+      "archive_sha256": "b63d223a5efacffaf0797a257d2197315292b5433c9c3d05c2ea71cf02c386ec",
+      "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
+      "rejection_registry_sha256": "d32cd70b7c755a8ad340cf376fd88f54ca1bea0a50cffbc5fa4cb58bc97ffb01"
+    },
+    {
+      "archive_relative_path": "0815/text-normalization-challenge-russian-language-8seeds.tar.gz",
+      "archive_sha256": "1de64423a081a13688f2413938be30b64b64d8ea77b1cf5a0a3b41237180da49",
+      "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
+      "rejection_registry_sha256": "64e009d3ff1460101b84ff269e12d437ae95a4b0df27fe5a904dc259e09555c2"
+    },
+    {
+      "archive_relative_path": "0816/plant-pathology-2021-fgvc8-8seeds.tar.gz",
+      "archive_sha256": "859f6ca0a54664c74ea2ae31fa005f24e846c99f764dd729bd251b3de9924776",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "02f51081e6cdbc6451a3ffdc3d4f14761e627c28bf9c646529fcfb5755b219a6"
+    },
+    {
+      "archive_relative_path": "0817/lmsys-chatbot-arena-8seeds.tar.gz",
+      "archive_sha256": "c73582b32c98cb2ba2731dd867515a8624163998a3b3335a0f21e846ce4a3ffe",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "f4758f9dbb634607b65c128cd03430e0d9494c09d674293912275bd0941da545"
+    },
+    {
+      "archive_relative_path": "0818/multi-modal-gesture-recognition-8seeds.tar.gz",
+      "archive_sha256": "300e602a694075d05b1634d0126a660b0c2f44508cb7ae618732b95f39843d74",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "91369ba5cc571f607907d1bf209b4bc77a370137110bf167226173a664e324c6"
+    },
+    {
+      "archive_relative_path": "0819/plant-pathology-2021-fgvc8-8seeds.tar.gz",
+      "archive_sha256": "f583a74a3e828d45a22de11158d79ab5ed33c51dd58933b076b48dc191e7ed4d",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "0dc58a4f2b2770f615b4ebf6d077c25ec7866d0f0ad72a2cc2f312d8d4f1d503"
+    },
+    {
+      "archive_relative_path": "0820/lmsys-chatbot-arena-8seeds.tar.gz",
+      "archive_sha256": "88cda8b980ee3b03fb2a19b6fdbddf35e4330e9e2adbc678c83cf20e3510f5b3",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "766a4fa678a4cb9ae55fdb460ae94b5f1be93ce2040b64ed7e48c13260f9aebd"
+    },
+    {
+      "archive_relative_path": "0821/plant-pathology-2021-fgvc8-8seeds.tar.gz",
+      "archive_sha256": "5213f40cb0246d927b5e825943232a8f6e2bf0eba7c7d7005a13740ba0a67b20",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "7c16889eb5ec57b1ca391b4171a997ad0fcd35d076ad6b34fddb53b556e35e6e"
+    },
+    {
+      "archive_relative_path": "0822/AI4Code-8seeds.tar.gz",
+      "archive_sha256": "c6291fe93cc2ec6ba8fff28a76ef7db77912f2d5306875280d330df7bbdc019e",
+      "reason_code": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+      "rejection_registry_sha256": "992d1a25267a66e161c7b2a4143c30110816011e09a3d82929f65cb8a00d33b7"
+    },
+    {
+      "archive_relative_path": "0822/multi-modal-gesture-recognition-8seeds.tar.gz",
+      "archive_sha256": "0770c9e390d24a1b27eaedd7260398260baf6e47b5ed3a3dc7e54c3e9aa564da",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "8d085fd9c195c306f2a9c01d66ad13044f44b1f182fc6170907912dbd80d344b"
+    },
+    {
+      "archive_relative_path": "0823/AI4Code-8seeds.tar.gz",
+      "archive_sha256": "cecac2bc9f156c33630f7e4bd740f4e403907aa656fd740a2e3b2ad6af804a14",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "0162c771ce1df3743776642456247d0974b7bc6e40550ca98fd626ee3dc6653f"
+    },
+    {
+      "archive_relative_path": "0823/lmsys-chatbot-arena-8seeds.tar.gz",
+      "archive_sha256": "31c53f6027b39847149506135649a2c48a5c5feb30396b2d0e78f58341bd9661",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "81b9c87f140265b3438587953aadfd00ff3f53ca665799b807ec4c80596bd005"
+    }
+  ],
+  "source_observations_sha256": "1f4426c2e2e41700764aafb3ce27c81949b4c1e68768e38553b299a97249a502",
+  "status": "SOURCE_ARCHIVE_DISPOSITIONS_PARTITION_EXACT"
+}

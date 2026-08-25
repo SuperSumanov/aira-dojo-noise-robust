@@ -1,0 +1,19 @@
+{
+  "access_attestation": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "labels_grades_outcomes_or_winner_orientation_read": false,
+    "prediction_values_aggregated": false
+  },
+  "canonical_matrix_sha256": "0774456b6e3c81f72fc16ac8ab777a7ca4bc9510fb9341d5710c854df89424f9",
+  "formal_status": "INDEPENDENT_COVERAGE_VERIFICATION_PASS",
+  "protocol": "independent-prediction-escrow-coverage-matrix-v1",
+  "recomputed": {
+    "intersection_mapping_sha256": "ca1b2b558671f4b77e2b70f4824a6fa4b2a8bd452023f4eb345b79cf383bef15",
+    "intersection_pairs": 2635,
+    "runs_in_intersection": 334,
+    "tasks_in_intersection": 30,
+    "transition_pairs": 2635,
+    "union_pairs": 2635,
+    "wl_pairs": 2635
+  }
+}

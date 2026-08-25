@@ -1,0 +1,24 @@
+{
+  "ledger_sha256": "b194b1bc88e561e77f982ae6f46d5ea7cccb745cc960c26da2661ea0ce8bad03",
+  "outcomes_read": false,
+  "prediction_values_aggregated": false,
+  "protocol": "independent_prospective_structural_rejection_ledger_verifier_v1",
+  "randomness_used": false,
+  "recomputed_counts": {
+    "accepted_archive_transactions": 78,
+    "baseline_archives": 128,
+    "identity_related_rejections": 11,
+    "mixed_disposition_competitions": 6,
+    "observed_archives": 218,
+    "pending_archives": 0,
+    "rejected_archives": 12,
+    "rejected_competitions": 6,
+    "settled_archive_decisions": 90
+  },
+  "recomputed_reason_counts": {
+    "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": 1,
+    "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": 2,
+    "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": 9
+  },
+  "status": "INDEPENDENT_STRUCTURAL_REJECTION_LEDGER_PASS"
+}

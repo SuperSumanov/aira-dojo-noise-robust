@@ -1,0 +1,343 @@
+{
+  "claim_boundary": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "causal_effect_of_metadata_changes_estimated": false,
+    "labels_grades_outcomes_or_winner_orientation_read": false,
+    "prediction_values_aggregated": false,
+    "source_archive_partition_complete": true,
+    "unit_of_validation": "archive_not_competition"
+  },
+  "counts": {
+    "accepted_archive_transactions": 78,
+    "baseline_archives": 128,
+    "identity_related_rejections": 11,
+    "mixed_disposition_competitions": 6,
+    "observed_archives": 218,
+    "pending_archives": 0,
+    "rejected_archives": 12,
+    "rejected_competitions": 6,
+    "settled_archive_decisions": 90
+  },
+  "fractions": {
+    "identity_related_over_rejected": {
+      "denominator": 12,
+      "numerator": 11,
+      "value": 0.9166666666666666
+    },
+    "mixed_disposition_over_rejected_competitions": {
+      "denominator": 6,
+      "numerator": 6,
+      "value": 1.0
+    },
+    "rejected_over_settled": {
+      "denominator": 90,
+      "numerator": 12,
+      "value": 0.13333333333333333
+    }
+  },
+  "protocol": "prospective_structural_rejection_ledger_v1",
+  "reason_counts": {
+    "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": 1,
+    "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": 2,
+    "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": 9
+  },
+  "rejected_archive_entries": [
+    {
+      "archive_mtime_ns": 1786802831000000000,
+      "archive_relative_path": "0814/tweet-sentiment-extraction-8seeds.tar.gz",
+      "archive_sha256": "b63d223a5efacffaf0797a257d2197315292b5433c9c3d05c2ea71cf02c386ec",
+      "archive_size": 184009348,
+      "competition": "tweet-sentiment-extraction",
+      "day": "0814",
+      "diagnostic_receipt_sha256": "d69cf9922318aa95142c596a15ea95d232f3f05e192e4e2fc5dc1c38bf2cac8f",
+      "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
+      "rejection_registry_sha256": "d32cd70b7c755a8ad340cf376fd88f54ca1bea0a50cffbc5fa4cb58bc97ffb01",
+      "seed_count": 8
+    },
+    {
+      "archive_mtime_ns": 1786887449000000000,
+      "archive_relative_path": "0815/text-normalization-challenge-russian-language-8seeds.tar.gz",
+      "archive_sha256": "1de64423a081a13688f2413938be30b64b64d8ea77b1cf5a0a3b41237180da49",
+      "archive_size": 175512106,
+      "competition": "text-normalization-challenge-russian-language",
+      "day": "0815",
+      "diagnostic_receipt_sha256": "39ab9eebc926059137890ccd22ab5ed62c5809c7a30b46491c6878fef83cfa35",
+      "reason_code": "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
+      "rejection_registry_sha256": "64e009d3ff1460101b84ff269e12d437ae95a4b0df27fe5a904dc259e09555c2",
+      "seed_count": 8
+    },
+    {
+      "archive_mtime_ns": 1786977664000000000,
+      "archive_relative_path": "0816/plant-pathology-2021-fgvc8-8seeds.tar.gz",
+      "archive_sha256": "859f6ca0a54664c74ea2ae31fa005f24e846c99f764dd729bd251b3de9924776",
+      "archive_size": 285154068,
+      "competition": "plant-pathology-2021-fgvc8",
+      "day": "0816",
+      "diagnostic_receipt_sha256": "a0a8669681926d3bfa971a904e3ead3263b2f2f2fd64f64fdfbcccd79a36b59c",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "02f51081e6cdbc6451a3ffdc3d4f14761e627c28bf9c646529fcfb5755b219a6",
+      "seed_count": 8
+    },
+    {
+      "archive_mtime_ns": 1787065985000000000,
+      "archive_relative_path": "0817/lmsys-chatbot-arena-8seeds.tar.gz",
+      "archive_sha256": "c73582b32c98cb2ba2731dd867515a8624163998a3b3335a0f21e846ce4a3ffe",
+      "archive_size": 87323463,
+      "competition": "lmsys-chatbot-arena",
+      "day": "0817",
+      "diagnostic_receipt_sha256": "2de964ea8bb1d49a084ccfd97f65f408dfd0556499d911dc5cf36a446a321ee1",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "f4758f9dbb634607b65c128cd03430e0d9494c09d674293912275bd0941da545",
+      "seed_count": 8
+    },
+    {
+      "archive_mtime_ns": 1787151247000000000,
+      "archive_relative_path": "0818/multi-modal-gesture-recognition-8seeds.tar.gz",
+      "archive_sha256": "300e602a694075d05b1634d0126a660b0c2f44508cb7ae618732b95f39843d74",
+      "archive_size": 379465731,
+      "competition": "multi-modal-gesture-recognition",
+      "day": "0818",
+      "diagnostic_receipt_sha256": "a5c2a0d832ef6923664c6caeffde71d5f3950fe2fd2870edc942bc54f4ca6f93",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "91369ba5cc571f607907d1bf209b4bc77a370137110bf167226173a664e324c6",
+      "seed_count": 8
+    },
+    {
+      "archive_mtime_ns": 1787238813000000000,
+      "archive_relative_path": "0819/plant-pathology-2021-fgvc8-8seeds.tar.gz",
+      "archive_sha256": "f583a74a3e828d45a22de11158d79ab5ed33c51dd58933b076b48dc191e7ed4d",
+      "archive_size": 109828866,
+      "competition": "plant-pathology-2021-fgvc8",
+      "day": "0819",
+      "diagnostic_receipt_sha256": "8d05bb39325855ce1d3ed3ac244e3095522c2c0a40fdc6494119e855bc19f2ad",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "0dc58a4f2b2770f615b4ebf6d077c25ec7866d0f0ad72a2cc2f312d8d4f1d503",
+      "seed_count": 8
+    },
+    {
+      "archive_mtime_ns": 1787326291000000000,
+      "archive_relative_path": "0820/lmsys-chatbot-arena-8seeds.tar.gz",
+      "archive_sha256": "88cda8b980ee3b03fb2a19b6fdbddf35e4330e9e2adbc678c83cf20e3510f5b3",
+      "archive_size": 29102615,
+      "competition": "lmsys-chatbot-arena",
+      "day": "0820",
+      "diagnostic_receipt_sha256": "c71a3a7e952e693fb715d34dd82bc71c7a53ccb0285f2bfa06680d5dbbc09728",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "766a4fa678a4cb9ae55fdb460ae94b5f1be93ce2040b64ed7e48c13260f9aebd",
+      "seed_count": 8
+    },
+    {
+      "archive_mtime_ns": 1787408006000000000,
+      "archive_relative_path": "0821/plant-pathology-2021-fgvc8-8seeds.tar.gz",
+      "archive_sha256": "5213f40cb0246d927b5e825943232a8f6e2bf0eba7c7d7005a13740ba0a67b20",
+      "archive_size": 119572767,
+      "competition": "plant-pathology-2021-fgvc8",
+      "day": "0821",
+      "diagnostic_receipt_sha256": "8277d6dfe0651d88179735d8e2088d2de1cf329e9c2720272804833b65d226fc",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "7c16889eb5ec57b1ca391b4171a997ad0fcd35d076ad6b34fddb53b556e35e6e",
+      "seed_count": 8
+    },
+    {
+      "archive_mtime_ns": 1787498876000000000,
+      "archive_relative_path": "0822/multi-modal-gesture-recognition-8seeds.tar.gz",
+      "archive_sha256": "0770c9e390d24a1b27eaedd7260398260baf6e47b5ed3a3dc7e54c3e9aa564da",
+      "archive_size": 276439998,
+      "competition": "multi-modal-gesture-recognition",
+      "day": "0822",
+      "diagnostic_receipt_sha256": "18a68d79b7c4940ae76aefdccaf398836df33f467612a097ef66a150be60e4d4",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "8d085fd9c195c306f2a9c01d66ad13044f44b1f182fc6170907912dbd80d344b",
+      "seed_count": 8
+    },
+    {
+      "archive_mtime_ns": 1787498878000000000,
+      "archive_relative_path": "0822/AI4Code-8seeds.tar.gz",
+      "archive_sha256": "c6291fe93cc2ec6ba8fff28a76ef7db77912f2d5306875280d330df7bbdc019e",
+      "archive_size": 4286045,
+      "competition": "AI4Code",
+      "day": "0822",
+      "diagnostic_receipt_sha256": "1a7c63ff884a92fd5d86592450a512c31804a83d587c9a45bd5739ca79ef6104",
+      "reason_code": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+      "rejection_registry_sha256": "992d1a25267a66e161c7b2a4143c30110816011e09a3d82929f65cb8a00d33b7",
+      "seed_count": 8
+    },
+    {
+      "archive_mtime_ns": 1787588170000000000,
+      "archive_relative_path": "0823/AI4Code-8seeds.tar.gz",
+      "archive_sha256": "cecac2bc9f156c33630f7e4bd740f4e403907aa656fd740a2e3b2ad6af804a14",
+      "archive_size": 82377109,
+      "competition": "AI4Code",
+      "day": "0823",
+      "diagnostic_receipt_sha256": "7fe6c1ba33c35837ce5705867b6e900c77aa44d7692ea1be8dbfb12d5e2b36a4",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "0162c771ce1df3743776642456247d0974b7bc6e40550ca98fd626ee3dc6653f",
+      "seed_count": 8
+    },
+    {
+      "archive_mtime_ns": 1787588178000000000,
+      "archive_relative_path": "0823/lmsys-chatbot-arena-8seeds.tar.gz",
+      "archive_sha256": "31c53f6027b39847149506135649a2c48a5c5feb30396b2d0e78f58341bd9661",
+      "archive_size": 22329733,
+      "competition": "lmsys-chatbot-arena",
+      "day": "0823",
+      "diagnostic_receipt_sha256": "a7d2432f25d854bdcd256e4f98df50bb9818b36847c5ed9b259cc72aa6c8838a",
+      "reason_code": "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+      "rejection_registry_sha256": "81b9c87f140265b3438587953aadfd00ff3f53ca665799b807ec4c80596bd005",
+      "seed_count": 8
+    }
+  ],
+  "rejected_competition_timelines": [
+    {
+      "accepted_archive_transactions": 3,
+      "accepted_days": [
+        "0816",
+        "0817",
+        "0819"
+      ],
+      "competition": "AI4Code",
+      "rejected_archives": 2,
+      "rejected_days": [
+        "0822",
+        "0823"
+      ]
+    },
+    {
+      "accepted_archive_transactions": 2,
+      "accepted_days": [
+        "0818",
+        "0822"
+      ],
+      "competition": "lmsys-chatbot-arena",
+      "rejected_archives": 3,
+      "rejected_days": [
+        "0817",
+        "0820",
+        "0823"
+      ]
+    },
+    {
+      "accepted_archive_transactions": 3,
+      "accepted_days": [
+        "0817",
+        "0819",
+        "0821"
+      ],
+      "competition": "multi-modal-gesture-recognition",
+      "rejected_archives": 2,
+      "rejected_days": [
+        "0818",
+        "0822"
+      ]
+    },
+    {
+      "accepted_archive_transactions": 1,
+      "accepted_days": [
+        "0823"
+      ],
+      "competition": "plant-pathology-2021-fgvc8",
+      "rejected_archives": 3,
+      "rejected_days": [
+        "0816",
+        "0819",
+        "0821"
+      ]
+    },
+    {
+      "accepted_archive_transactions": 2,
+      "accepted_days": [
+        "0814",
+        "0820"
+      ],
+      "competition": "text-normalization-challenge-russian-language",
+      "rejected_archives": 1,
+      "rejected_days": [
+        "0815"
+      ]
+    },
+    {
+      "accepted_archive_transactions": 1,
+      "accepted_days": [
+        "0813"
+      ],
+      "competition": "tweet-sentiment-extraction",
+      "rejected_archives": 1,
+      "rejected_days": [
+        "0814"
+      ]
+    }
+  ],
+  "source_archive_partition_receipt": {
+    "path": "phase1/results/structural_rejection_ledger_v1_20260825/archive_disposition_partition.json",
+    "sha256": "aa161d4cf601bd323420336381f932818b4b4bbb310abedeb6951b852910f07c",
+    "source_observations_sha256": "1f4426c2e2e41700764aafb3ce27c81949b4c1e68768e38553b299a97249a502"
+  },
+  "source_rejection_registries": [
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_20260816/structural_rejections.json",
+      "sha256": "d32cd70b7c755a8ad340cf376fd88f54ca1bea0a50cffbc5fa4cb58bc97ffb01"
+    },
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_20260816/structural_rejections_0815.json",
+      "sha256": "64e009d3ff1460101b84ff269e12d437ae95a4b0df27fe5a904dc259e09555c2"
+    },
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_20260818/structural_rejections_0816.json",
+      "sha256": "02f51081e6cdbc6451a3ffdc3d4f14761e627c28bf9c646529fcfb5755b219a6"
+    },
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_20260819/structural_rejections_0817.json",
+      "sha256": "f4758f9dbb634607b65c128cd03430e0d9494c09d674293912275bd0941da545"
+    },
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_20260820/structural_rejections_0818.json",
+      "sha256": "91369ba5cc571f607907d1bf209b4bc77a370137110bf167226173a664e324c6"
+    },
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_20260821/structural_rejections_0819.json",
+      "sha256": "0dc58a4f2b2770f615b4ebf6d077c25ec7866d0f0ad72a2cc2f312d8d4f1d503"
+    },
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_20260822/structural_rejections_0820.json",
+      "sha256": "766a4fa678a4cb9ae55fdb460ae94b5f1be93ce2040b64ed7e48c13260f9aebd"
+    },
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_20260823/structural_rejections_0821.json",
+      "sha256": "7c16889eb5ec57b1ca391b4171a997ad0fcd35d076ad6b34fddb53b556e35e6e"
+    },
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_20260824/structural_rejections_0822.json",
+      "sha256": "8d085fd9c195c306f2a9c01d66ad13044f44b1f182fc6170907912dbd80d344b"
+    },
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_ai4code_20260824/structural_rejections_ai4code_0822.json",
+      "sha256": "992d1a25267a66e161c7b2a4143c30110816011e09a3d82929f65cb8a00d33b7"
+    },
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_ai4code_20260825/structural_rejections_ai4code_0823.json",
+      "sha256": "0162c771ce1df3743776642456247d0974b7bc6e40550ca98fd626ee3dc6653f"
+    },
+    {
+      "entries": 1,
+      "path": "phase1/results/prospective_structural_rejection_lmsys_20260825/structural_rejections_lmsys_0823.json",
+      "sha256": "81b9c87f140265b3438587953aadfd00ff3f53ca665799b807ec4c80596bd005"
+    }
+  ],
+  "source_structural_gate": {
+    "path": "phase1/results/prospective_0823_batch_postflight_20260825_6299865/structural_gate.json",
+    "sha256": "ca44845bc0f5feaf5de0e77ec658e4b0cca3f5a451b75b33bb4c63acfc1eccca",
+    "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1"
+  },
+  "status": "OUTCOME_BLIND_ARCHIVE_DISPOSITION_AUDIT_COMPLETE"
+}

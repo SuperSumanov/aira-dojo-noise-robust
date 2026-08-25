@@ -1,0 +1,168 @@
+{
+  "access_attestation": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "base_llm_updates": 0,
+    "gpu_or_api_calls": 0,
+    "labels_grades_outcomes_or_winner_orientation_read": false,
+    "prediction_values_aggregated": false
+  },
+  "arms": {
+    "total": 7,
+    "transition": [
+      "child_code",
+      "transition_only",
+      "child_plus_transition"
+    ],
+    "wl": [
+      "step_only_lr",
+      "wl_graph_lr",
+      "wl_graph_static_lr",
+      "wl_graph_static_tfidf_lr"
+    ]
+  },
+  "cost_boundary": {
+    "input_artifact_bytes": {
+      "transition_pairs": 3073515,
+      "transition_summary": 31277,
+      "wl_pairs": 3021888,
+      "wl_summary": 25574
+    },
+    "runtime_or_query_cost_comparison": "NOT_COMPUTED",
+    "shared_runtime_receipt_available": false
+  },
+  "criteria": {
+    "blind_scope_verified": true,
+    "duplicate_canonical_pairs_eq_0": true,
+    "input_hashes_verified": true,
+    "same_snapshot_verified": true,
+    "seven_arm_prediction_fields_complete": true,
+    "source_specific_activation_strata_preserved": true
+  },
+  "formal_status": "OUTCOME_BLIND_PREDICTION_COVERAGE_VERIFIED",
+  "inputs": {
+    "transition_pairs_sha256": "311b422cff2bbb7952b65ca5a25ba0e6217b969da74b9b5e1acb8f0fe5d59a01",
+    "transition_summary_sha256": "f873dafbc5c63b04571c28ed5812bad817192dfc9b992353f59edd97f1246053",
+    "wl_pairs_sha256": "bccfc4b1b14e254949a7d41f3f3f5192ab9beb97afa47bf3442f7db69b2a0ac9",
+    "wl_summary_sha256": "a410b1bf97ae832613dc0b956aafb6647c491016c113766c17c8811835d9b57e"
+  },
+  "inventory": {
+    "transition": {
+      "canonical_identity_mapping_sha256": "ca1b2b558671f4b77e2b70f4824a6fa4b2a8bd452023f4eb345b79cf383bef15",
+      "dominant_task": "osic-pulmonary-fibrosis-progression",
+      "dominant_task_pairs": 823,
+      "dominant_task_share": 0.31233396584440226,
+      "native_identity_mapping_sha256": "eb2ea776f036f8f8bf1226f1bdd87efb753a848a513f82722fd07453c48f8e7a",
+      "nontie_all_arms_pairs": 2280,
+      "pairs": 2635,
+      "pairs_per_task": {
+        "AI4Code": 101,
+        "alaska2-image-steganalysis": 38,
+        "aptos2019-blindness-detection": 12,
+        "billion-word-imputation": 14,
+        "cassava-leaf-disease-classification": 30,
+        "cdiscount-image-classification-challenge": 28,
+        "dog-breed-identification": 35,
+        "dogs-vs-cats-redux-kernels-edition": 118,
+        "facebook-recruiting-iii-keyword-extraction": 55,
+        "google-quest-challenge": 29,
+        "hubmap-kidney-segmentation": 15,
+        "imet-2020-fgvc7": 20,
+        "kuzushiji-recognition": 1,
+        "learning-agency-lab-automated-essay-scoring-2": 27,
+        "lmsys-chatbot-arena": 60,
+        "multi-modal-gesture-recognition": 185,
+        "new-york-city-taxi-fare-prediction": 86,
+        "osic-pulmonary-fibrosis-progression": 823,
+        "plant-pathology-2021-fgvc8": 4,
+        "random-acts-of-pizza": 17,
+        "ranzcr-clip-catheter-line-classification": 62,
+        "tensorflow-speech-recognition-challenge": 278,
+        "tensorflow2-question-answering": 9,
+        "text-normalization-challenge-russian-language": 45,
+        "tgs-salt-identification-challenge": 275,
+        "tweet-sentiment-extraction": 1,
+        "us-patent-phrase-to-phrase-matching": 38,
+        "uw-madison-gi-tract-image-segmentation": 90,
+        "ventilator-pressure-prediction": 131,
+        "whale-categorization-playground": 8
+      },
+      "runs": 334,
+      "strata": {
+        "post_transition_activation": 463,
+        "support_only": 2172
+      },
+      "tasks": 30
+    },
+    "wl": {
+      "canonical_identity_mapping_sha256": "ca1b2b558671f4b77e2b70f4824a6fa4b2a8bd452023f4eb345b79cf383bef15",
+      "dominant_task": "osic-pulmonary-fibrosis-progression",
+      "dominant_task_pairs": 823,
+      "dominant_task_share": 0.31233396584440226,
+      "native_identity_mapping_sha256": "09fe02f8ac709881b7c5a88e1c2c6499aafdf1f51913bb514757d3de78f5e9c0",
+      "nontie_all_arms_pairs": 2635,
+      "pairs": 2635,
+      "pairs_per_task": {
+        "AI4Code": 101,
+        "alaska2-image-steganalysis": 38,
+        "aptos2019-blindness-detection": 12,
+        "billion-word-imputation": 14,
+        "cassava-leaf-disease-classification": 30,
+        "cdiscount-image-classification-challenge": 28,
+        "dog-breed-identification": 35,
+        "dogs-vs-cats-redux-kernels-edition": 118,
+        "facebook-recruiting-iii-keyword-extraction": 55,
+        "google-quest-challenge": 29,
+        "hubmap-kidney-segmentation": 15,
+        "imet-2020-fgvc7": 20,
+        "kuzushiji-recognition": 1,
+        "learning-agency-lab-automated-essay-scoring-2": 27,
+        "lmsys-chatbot-arena": 60,
+        "multi-modal-gesture-recognition": 185,
+        "new-york-city-taxi-fare-prediction": 86,
+        "osic-pulmonary-fibrosis-progression": 823,
+        "plant-pathology-2021-fgvc8": 4,
+        "random-acts-of-pizza": 17,
+        "ranzcr-clip-catheter-line-classification": 62,
+        "tensorflow-speech-recognition-challenge": 278,
+        "tensorflow2-question-answering": 9,
+        "text-normalization-challenge-russian-language": 45,
+        "tgs-salt-identification-challenge": 275,
+        "tweet-sentiment-extraction": 1,
+        "us-patent-phrase-to-phrase-matching": 38,
+        "uw-madison-gi-tract-image-segmentation": 90,
+        "ventilator-pressure-prediction": 131,
+        "whale-categorization-playground": 8
+      },
+      "runs": 334,
+      "strata": {
+        "post_wl_activation": 970,
+        "support_only": 1665
+      },
+      "tasks": 30
+    }
+  },
+  "overlap": {
+    "intersection_mapping_sha256": "ca1b2b558671f4b77e2b70f4824a6fa4b2a8bd452023f4eb345b79cf383bef15",
+    "intersection_over_union": 1.0,
+    "intersection_pairs": 2635,
+    "joint_temporal_strata": {
+      "post_wl_activation|post_transition_activation": 463,
+      "post_wl_activation|support_only": 507,
+      "support_only|support_only": 1665
+    },
+    "reversed_left_right_orientation": 0,
+    "same_left_right_orientation": 2635,
+    "transition_covered_by_wl": 1.0,
+    "transition_effect_eligible_pairs": 399,
+    "transition_only_pairs": 0,
+    "union_pairs": 2635,
+    "wl_covered_by_transition": 1.0,
+    "wl_only_pairs": 0
+  },
+  "protocol": "prediction-escrow-coverage-matrix-v1",
+  "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+  "transition_support_receipts": {
+    "parent_source_present_pairs": 2297,
+    "source_novel_pairs": 2307
+  }
+}

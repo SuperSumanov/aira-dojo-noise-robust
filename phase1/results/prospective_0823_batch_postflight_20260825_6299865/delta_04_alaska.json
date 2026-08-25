@@ -1,0 +1,39 @@
+{
+  "access_attestation": {
+    "effect_metrics_computed": false,
+    "outcomes_or_labels_read": false
+  },
+  "base": {
+    "archive_relative_path": "0823/ranzcr-clip-catheter-line-classification-8seeds.tar.gz",
+    "closure_provided": false,
+    "dominant_endpoint_task_share": 0.2715342871238283,
+    "dominant_run_task_share": 0.09198813056379822,
+    "dominant_structural_pair_task_share": 0.31364329268292684,
+    "endpoints": 10135,
+    "runs": 337,
+    "snapshot_sha256": "1fbcaae6e6d8265e6cbea8e506be3bea664ff1663833d77c461078df8c00c4a7",
+    "structural_pairs": 2624,
+    "tasks": 30,
+    "transactions": 77
+  },
+  "current": {
+    "archive_relative_path": "0823/alaska2-image-steganalysis-4seeds.tar.gz",
+    "closure_provided": false,
+    "dominant_endpoint_task_share": 0.269909768536681,
+    "dominant_run_task_share": 0.09144542772861357,
+    "dominant_structural_pair_task_share": 0.31233396584440226,
+    "endpoints": 10196,
+    "runs": 339,
+    "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+    "structural_pairs": 2635,
+    "tasks": 30,
+    "transactions": 78
+  },
+  "delta": {
+    "endpoints": 61,
+    "runs": 2,
+    "structural_pairs": 11,
+    "tasks": 0,
+    "transactions": 1
+  }
+}

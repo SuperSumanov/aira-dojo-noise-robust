@@ -1,0 +1,39 @@
+{
+  "access_attestation": {
+    "effect_metrics_computed": false,
+    "outcomes_or_labels_read": false
+  },
+  "base": {
+    "archive_relative_path": "0823/tensorflow-speech-recognition-challenge-8seeds.tar.gz",
+    "closure_provided": false,
+    "dominant_endpoint_task_share": 0.27188302706974904,
+    "dominant_run_task_share": 0.09226190476190477,
+    "dominant_structural_pair_task_share": 0.3137628669462448,
+    "endpoints": 10122,
+    "runs": 336,
+    "snapshot_sha256": "719e54433649af665efa7d719aeb2d3a83b375425c4b42d63695c8e874373851",
+    "structural_pairs": 2623,
+    "tasks": 30,
+    "transactions": 76
+  },
+  "current": {
+    "archive_relative_path": "0823/ranzcr-clip-catheter-line-classification-8seeds.tar.gz",
+    "closure_provided": false,
+    "dominant_endpoint_task_share": 0.2715342871238283,
+    "dominant_run_task_share": 0.09198813056379822,
+    "dominant_structural_pair_task_share": 0.31364329268292684,
+    "endpoints": 10135,
+    "runs": 337,
+    "snapshot_sha256": "1fbcaae6e6d8265e6cbea8e506be3bea664ff1663833d77c461078df8c00c4a7",
+    "structural_pairs": 2624,
+    "tasks": 30,
+    "transactions": 77
+  },
+  "delta": {
+    "endpoints": 13,
+    "runs": 1,
+    "structural_pairs": 1,
+    "tasks": 0,
+    "transactions": 1
+  }
+}

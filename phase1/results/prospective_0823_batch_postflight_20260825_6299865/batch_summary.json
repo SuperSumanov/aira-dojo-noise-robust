@@ -1,0 +1,39 @@
+{
+  "access_attestation": {
+    "effect_metrics_computed": false,
+    "outcomes_or_labels_read": false
+  },
+  "base": {
+    "archive_relative_path": "0822/uw-madison-gi-tract-image-segmentation-8seeds.tar.gz",
+    "closure_provided": false,
+    "dominant_endpoint_task_share": 0.2754203362690152,
+    "dominant_run_task_share": 0.09146341463414634,
+    "dominant_structural_pair_task_share": 0.3178833526458092,
+    "endpoints": 9992,
+    "runs": 328,
+    "snapshot_sha256": "f109ac928ed076f83b651af3c4a98bccd11cf592a3c81da541f34f0d2b11d708",
+    "structural_pairs": 2589,
+    "tasks": 29,
+    "transactions": 74
+  },
+  "current": {
+    "archive_relative_path": "0823/alaska2-image-steganalysis-4seeds.tar.gz",
+    "closure_provided": false,
+    "dominant_endpoint_task_share": 0.269909768536681,
+    "dominant_run_task_share": 0.09144542772861357,
+    "dominant_structural_pair_task_share": 0.31233396584440226,
+    "endpoints": 10196,
+    "runs": 339,
+    "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+    "structural_pairs": 2635,
+    "tasks": 30,
+    "transactions": 78
+  },
+  "delta": {
+    "endpoints": 204,
+    "runs": 11,
+    "structural_pairs": 46,
+    "tasks": 1,
+    "transactions": 4
+  }
+}

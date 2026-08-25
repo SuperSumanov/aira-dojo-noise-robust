@@ -30,8 +30,13 @@ leave-one-task-out 以及删除 pair-dominant OSIC 后仍成立。
 accuracy、模型优越性或 search utility。正式源码 commit=`57561d8...`，producer/verifier 各双跑逐字节一致，Linux
 focused/full=`5/1047 passed`，exact-path forbidden opens=`0`，GPU/API/base update=`0/0/0`。直接证据：
 
+数学上 `q_t=p_tY_t/E_p[Y]`，且 `TV(p_run,p_pair)` 正好等于 pairing 对任意 `[0,1]` task-level metric 可造成的最大
+run-weighted→pair-weighted 聚合偏移。当前 `TV=0.337082500713674`，因此结构上的 sharp worst-case headline leverage 为
+33.71 pp；这不是已观察 accuracy 差或 expected bias，closure 后必须用真实 task vector 另算实际偏移。
+
 - `phase1/results/structural_weight_trajectory_7cda_20260826/README.md`；
 - `phase1/实验记录/2026-08-26/First960_结构权重时序分解_结果.md`。
+- `phase1/实验记录/2026-08-26/OpportunityYield_重加权恒等式与影响上界.md`。
 
 ## 0GA. 2026-08-25 outcome 前冻结统一 estimand panel；不改写任何既有实验 primary
 

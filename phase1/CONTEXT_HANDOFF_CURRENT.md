@@ -53,6 +53,9 @@
 增量只剩 `+0.001888405775504004`。因此只能称“符号可泛化、幅度受批次影响”。证据：
 `phase1/results/structural_weight_trajectory_7cda_20260826/`；源码 commit `57561d8`。
 
+精确重加权恒等式为 `q_t=p_tY_t/E_p[Y]`；`TV(p_run,p_pair)=0.337082500713674` 也是任意 `[0,1]` task-level metric
+在这两种聚合下的 sharp worst-case 差，即 33.71 pp 结构 leverage。它不是已观察 accuracy 差或 expected bias。
+
 ### 3.2 Structural dependency atlas
 
 对 provisional first-240 与当前 339-run 快照做 outcome-blind 双实现复算：
@@ -203,5 +206,6 @@ immutable frozen cohort。任何 GPU 重训仍需先报精确矩阵、总 runs�
 - 学长建议：`phase1/ADVISOR_DIRECTIVES.md`
 - 给学长的近期汇报：`phase1/实验记录/2026-08-26/近期进展汇报_2026-08-26.md`
 - 结构时序分解：`phase1/results/structural_weight_trajectory_7cda_20260826/README.md`
+- 重加权恒等式：`phase1/实验记录/2026-08-26/OpportunityYield_重加权恒等式与影响上界.md`
 - structural atlas：`phase1/results/structural_dependency_atlas_7cda_20260825/README.md`
 - estimand panel：`phase1/results/decision_predictor_estimand_panel_v1_20260825/README.md`

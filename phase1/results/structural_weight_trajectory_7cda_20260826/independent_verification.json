@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "all_339_prefixes_recomputed": true,
+    "all_claim_gates_recomputed": true,
+    "all_milestones_recomputed": true,
+    "drop_and_task_deletions_recomputed": true,
+    "security_contract_exact": true,
+    "shapley_and_midpoint_decompositions_recomputed": true,
+    "snapshot_and_intake_hashes_reopened": true,
+    "task_yields_recomputed": true
+  },
+  "producer_source_sha256": "712878d2fa332b68f340ce2df4e6828cba705f39ed82f6edd81984186b54dc07",
+  "protocol": "independent_prospective_structural_weight_trajectory_v1",
+  "protocol_spec_sha256": "5a6e6a3012f71b17532fa62fb0ec16b1da3f2a8f31e1f942ae8e2e205e05f869",
+  "recomputed_key_findings": {
+    "claim_gates": {
+      "G1_temporal_persistence": true,
+      "G2_no_single_drop_artifact": false,
+      "G3_single_task_robustness": true,
+      "G4_yield_is_primary_mechanism": true
+    },
+    "pairs": 2635,
+    "runs": 339
+  },
+  "security": {
+    "gpu_or_api_calls": 0,
+    "label_outcome_prediction_or_raw_archive_opened": false
+  },
+  "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+  "status": "INDEPENDENT_STRUCTURAL_WEIGHT_TRAJECTORY_PASS",
+  "trajectory_sha256": "bbdb802711bd2f300725be156c5fd228a79fa0792f8d7317674a6a0bbb419f30"
+}

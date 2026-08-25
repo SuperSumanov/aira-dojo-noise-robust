@@ -13,6 +13,26 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GB. 2026-08-26 时序分解确认 opportunity yield 内生重写 pair benchmark；幅度受单批次影响
+
+对固定 `7cda` snapshot 的 first-240→first-339 做结果前冻结、outcome-blind 的完整时间序与机制分解。run-HHI 变化为
+`-0.007095167549882084`，pair-HHI 从 `0.08303759912408124` 升至 `0.1357471491993994`；run→pair TV 从
+`0.2750745424635` 升至 `0.337082500713674`。反转在 260/280/300/320/339 共 5/5 个晚期检查点成立，30/30 个
+leave-one-task-out 以及删除 pair-dominant OSIC 后仍成立。
+
+固定 Shapley 分解中，task-specific opportunity-yield 变化解释 pair-HHI 正向增量的 `0.6446576519060645`、TV 增量的
+`0.5951060527094302`，两者均超过预注册 50% 门，因此可称 yield heterogeneity 是主要机制。但无单批次 artifact 门失败：
+0820 OSIC 的 5-run drop attribution=`0.9641733656841007`；删除后 pair-HHI 增量仍为正但只剩
+`0.001888405775504004`。故唯一允许 headline 是“**反转符号可泛化，幅度对批次敏感**”，禁止写成幅度广泛稳定。
+
+这把 0FZ 的端点图谱推进为时间持续性与机制证据：真实搜索树产生 decision opportunities 的速率会内生改变 pair-micro 的
+任务混合。它强化 task-macro/parent-macro headline、pair-micro sensitivity 与 drop-level leverage 披露，但不提供 predictor
+accuracy、模型优越性或 search utility。正式源码 commit=`57561d8...`，producer/verifier 各双跑逐字节一致，Linux
+focused/full=`5/1047 passed`，exact-path forbidden opens=`0`，GPU/API/base update=`0/0/0`。直接证据：
+
+- `phase1/results/structural_weight_trajectory_7cda_20260826/README.md`；
+- `phase1/实验记录/2026-08-26/First960_结构权重时序分解_结果.md`。
+
 ## 0GA. 2026-08-25 outcome 前冻结统一 estimand panel；不改写任何既有实验 primary
 
 结构图谱证明不同聚合会产生相反的 task-mixture 趋势，因此通用 predictor benchmark 第一行在 closure 前冻结为

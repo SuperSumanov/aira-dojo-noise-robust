@@ -1,0 +1,25 @@
+{
+  "formal_execution": {
+    "independent_verifier_a_b_byte_identical": true,
+    "numeric_library_threads": 1,
+    "producer_a_b_byte_identical": true,
+    "python_version": "3.11.15",
+    "root": "/research/d7/spc/yzyang4/prepush-structural-trajectory/57561d8-v2"
+  },
+  "outputs": {
+    "headline_metrics_sha256": "8d4041994f8998e5a04df0e2e18508ebf97915221303c14f62d9abb8d0e6b2b2",
+    "independent_verification_sha256": "8094e21acde877a67cdcc295c6decaaaf9e650c06fd55a91ed69026f877f9420",
+    "trajectory_sha256": "bbdb802711bd2f300725be156c5fd228a79fa0792f8d7317674a6a0bbb419f30"
+  },
+  "protocol": "prospective_structural_weight_trajectory_formal_v1",
+  "security": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "forbidden_open_trace_hits": 0,
+    "gpu_calls": 0,
+    "label_outcome_prediction_or_raw_archive_opened": false
+  },
+  "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+  "source_commit": "57561d8114e3e284c658e2733e1749cdfc1a4cd3",
+  "status": "FORMAL_STRUCTURAL_WEIGHT_TRAJECTORY_PASS"
+}

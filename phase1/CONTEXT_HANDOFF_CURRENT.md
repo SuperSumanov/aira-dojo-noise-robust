@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-08-26
 
-**Dynamic status timestamp:** 2026-08-26 01:36 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-08-26 03:54 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -39,7 +39,21 @@
 
 ## 3. 最近确认的正面资产
 
-### 3.1 Structural dependency atlas
+### 3.1 Structural weight trajectory 与 opportunity-yield 分解
+
+在结果前固定 9 个时间点、Shapley 分解和四个主张门后，对 first-240→first-339 做 outcome-blind 双实现复算：
+
+- run-HHI 增量 `-0.007095167549882084`，pair-HHI 增量 `+0.05270955007531816`；
+- run→pair TV 增量 `+0.06200795825017402`；
+- 260/280/300/320/339 共 `5/5` 个晚期检查点保留反转；
+- `30/30` 个 leave-one-task-out 和删除主导 OSIC task 均保留反转；
+- opportunity yield 解释 pair-HHI/TV 增量的 `0.6446576519060645` / `0.5951060527094302`。
+
+单批次稳健性门失败：一个 5-run OSIC drop 的 attribution=`0.9641733656841007`；删除后反转符号仍在，但 pair-HHI
+增量只剩 `+0.001888405775504004`。因此只能称“符号可泛化、幅度受批次影响”。证据：
+`phase1/results/structural_weight_trajectory_7cda_20260826/`；源码 commit `57561d8`。
+
+### 3.2 Structural dependency atlas
 
 对 provisional first-240 与当前 339-run 快照做 outcome-blind 双实现复算：
 
@@ -59,7 +73,7 @@ D&B benchmark-design 正结果，不是 predictor accuracy 或 search-utility �
 证据：`phase1/results/structural_dependency_atlas_7cda_20260825/`；源码/确定性修复/发布提交为
 `e19f5f3`、`b8ea5f7`、`1e3ea6d`。
 
-### 3.2 Outcome 前冻结统一 estimand panel
+### 3.3 Outcome 前冻结统一 estimand panel
 
 - generic benchmark headline：pair credit → physical parent 内平均 → task 内平均 parents → tasks 等权。
 - 强制并列、不得 rescue：task-pair macro、task→run→parent→pair macro、pair micro。
@@ -71,7 +85,7 @@ D&B benchmark-design 正结果，不是 predictor accuracy 或 search-utility �
 证据：`phase1/contracts/DECISION_PREDICTOR_ESTIMAND_PANEL_V1.md`、
 `phase1/results/decision_predictor_estimand_panel_v1_20260825/`；提交 `1763030`、`b7e90fd`。
 
-### 3.3 Benchmark checklist 与其他数据资产
+### 3.4 Benchmark checklist 与其他数据资产
 
 - ABC/NAS-Bench-style 24 项 crosswalk：PASS_LOCAL 9、PARTIAL 9、INHERITED_UPSTREAM 5、N/A 1。
 - 语料唯一性：12,383-card 审计中 raw 99.47%、AST/skeleton 98.96%，0 个 duplicate group 跨 run/task。
@@ -110,11 +124,13 @@ immutable frozen cohort。任何 GPU 重训仍需先报精确矩阵、总 runs�
 
 最近一次远端只读状态：
 
-- senior archives：218；最新仍为 `0823/alaska2-image-steganalysis-4seeds.tar.gz`；
+- senior archives：226；最新观察到 `0824/osic-pulmonary-fibrosis-progression-8seeds.tar.gz`；
 - latest snapshot：`7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1`；
+- 新增 8 个 archives 尚未通过固定 6 小时 age/stability 与后续结构门，故未进入 snapshot；不得提前把它们计作 eligible runs；
 - intake、transition、WL graph、coverage matrix、component closure、target quiescence 六个核心监控存活；
 - intake/transition/target 在各自 145 次有限轮询正常结束后，于 2026-08-26 01:36 通过 17/17 独立预检重启；
   intake 另启用修正 PID receipt 竞争后的 watchdog，最多自动接续 20 个正常 segment；
+- WL graph 与 coverage 在 145 次无新 snapshot 的正常轮询后，于 2026-08-26 03:55 通过 hash、lock、旧退出状态和盲态复核重启；
 - 主 intake 每约 5 分钟轮询，最近 `ready=0`、`rejected=12`、`transactions=78`；
 - 用户 SLURM 队列为空；没有 GPU 实验正在运行；本次监控恢复 GPU/API/model-fit 均为 0。
 
@@ -128,8 +144,9 @@ immutable frozen cohort。任何 GPU 重训仍需先报精确矩阵、总 runs�
 - 新增 RL-judger message 构造、上下文统计、Qwen2.5 0.5B/1.5B/3B/7B mixed
   decision/value full-FT 脚本，以及避免复制/缓存完整数据的 prompt 约束；
 - 没有新的 outcome 文档，不能称新 scaling 结果；
-- train/test 参数当前指向同一 runsplit 文件，正式使用前必须核对程序内部 split、endpoint/run/experiment
-  零交集、outer-test 是否参与 checkpoint selection、停止原因和 checkpoint receipt。
+- train/test 参数当前指向同一 runsplit 文件；源码审计确认普通模式会按 `intask_split` 分流，因此路径相同本身不构成行泄漏。
+- 但 outer test 被作为 Trainer `eval_dataset` 每 10 steps 观察并参与 best-checkpoint 保存，故只能作 dev；旧 scaling 仍是探索性，
+  不能称 untouched frozen confirmation。LOTO 还会绕过 `intask_split`，必须与 run-clean frozen-test estimand 分开。
 
 贡献归属：语料生产来自学长；structural dependency atlas 的问题、代码、双实现复核和 benchmark 主张来自
 我方；0.6B→8B 探索性 scaling 来自学长。
@@ -139,7 +156,7 @@ immutable frozen cohort。任何 GPU 重训仍需先报精确矩阵、总 runs�
 - 本地 worktree：`C:\Research\New\my_project\MLEvolve\aira-dojo-codex-20260813`
 - 本地工作分支：`codex-prospective-decision-v1-20260814`
 - 发布分支：`myfork/phase1-value-critic`
-- 最近一致 head：`b7e90fd0d0242ca891df7df34370e8946ed2c5fd`
+- 最近正式源码 head：`57561d8114e3e284c658e2733e1749cdfc1a4cd3`
 - GitHub：`https://github.com/SuperSumanov/aira-dojo-noise-robust`
 - 远端 alias：`linux5`
 - prospective state：`/research/d7/spc/yzyang4/prospective_decision_v1`
@@ -184,6 +201,7 @@ immutable frozen cohort。任何 GPU 重训仍需先报精确矩阵、总 runs�
 
 - 唯一方向：`phase1/CURRENT_DIRECTION.md`
 - 学长建议：`phase1/ADVISOR_DIRECTIVES.md`
-- 给学长的近期汇报：`phase1/实验记录/2026-08-26/给学长的近期进展汇报_2026-08-26.md`
+- 给学长的近期汇报：`phase1/实验记录/2026-08-26/近期进展汇报_2026-08-26.md`
+- 结构时序分解：`phase1/results/structural_weight_trajectory_7cda_20260826/README.md`
 - structural atlas：`phase1/results/structural_dependency_atlas_7cda_20260825/README.md`
 - estimand panel：`phase1/results/decision_predictor_estimand_panel_v1_20260825/README.md`

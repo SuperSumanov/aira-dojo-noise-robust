@@ -1,0 +1,22 @@
+{
+  "claim_gates": {
+    "G1_temporal_persistence": true,
+    "G2_no_single_drop_artifact": false,
+    "G3_single_task_robustness": true,
+    "G4_yield_is_primary_mechanism": true
+  },
+  "decision_parents": 2593,
+  "dominant_task": "osic-pulmonary-fibrosis-progression",
+  "dominant_task_deletion_retained": true,
+  "endpoints": 10196,
+  "maximum_single_drop_attribution": 0.9641733656841007,
+  "pair_hhi_delta": 0.05270955007531816,
+  "pair_hhi_yield_fraction": 0.6446576519060645,
+  "run_hhi_delta": -0.007095167549882084,
+  "run_to_pair_tv_yield_fraction": 0.5951060527094302,
+  "runs": 339,
+  "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+  "status": "OUTCOME_BLIND_STRUCTURAL_WEIGHT_TRAJECTORY_READY",
+  "structural_pairs": 2635,
+  "tasks": 30
+}

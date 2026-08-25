@@ -92,3 +92,7 @@ phase1/results/critic_gap_aware_qualification_20260824_b79717b/*.json text eol=l
 phase1/results/critic_gap_aware_qualification_20260824_b79717b/*.csv text eol=lf diff
 phase1/results/critic_gap_aware_qualification_20260824_b79717b/*.txt text eol=lf diff
 phase1/results/critic_gap_aware_qualification_20260824_b79717b/*.sha256 text eol=lf diff
+# Preserve the exact formal structural-trajectory receipts and inner manifest;
+# keep only the human README normalized and diffable.
+phase1/results/structural_weight_trajectory_7cda_20260826/** -text -diff
+phase1/results/structural_weight_trajectory_7cda_20260826/README.md text eol=lf diff

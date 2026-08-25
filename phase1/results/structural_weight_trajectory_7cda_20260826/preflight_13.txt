@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus + Predictor Benchmark + Audit Protocol; structural outcome-blind extension only
+PREFLIGHT_02_QUESTION=is first240-to-current task-weight inversion persistent and driven by observed decision-opportunity yield
+PREFLIGHT_03_SNAPSHOT=7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1; chronological first339; first960 membership unchanged
+PREFLIGHT_04_INPUTS=SHA-bound accumulator runs plus intake summaries source_provenance and eligible_structural_pairs only
+PREFLIGHT_05_FORBIDDEN=label vault outcome grade winner orientation score prediction checkpoint raw archive and journal bytes
+PREFLIGHT_06_ESTIMAND=fixed milestones 120,160,200,240,260,280,300,320,339; baseline first240; current first339
+PREFLIGHT_07_GATES=G1 4of5 persistence; G2 single-drop below50pct; G3 80pct LOTO plus dominant deletion; G4 yield at least50pct in HHI and TV
+PREFLIGHT_08_LEAKAGE=no prospective outcomes or prediction values; strace producer and verifier opens
+PREFLIGHT_09_REPRO=commit 57561d8114e3e284c658e2733e1749cdfc1a4cd3; producer 712878d2fa332b68f340ce2df4e6828cba705f39ed82f6edd81984186b54dc07; verifier 011f626912325cb8edfbf23eb45a1f981e5be67ef967e1d92dd92db855b371f6; spec 5a6e6a3012f71b17532fa62fb0ec16b1da3f2a8f31e1f942ae8e2e205e05f869; PYTHONHASHSEED A/B
+PREFLIGHT_10_CONTROLS=midpoint additivity; two-path Shapley additivity; leave-one-drop and leave-one-task attacks; independent implementation
+PREFLIGHT_11_RESOURCES=CPU only; GPU=0; API=0; base-LLM-update=0; expected under10 minutes including full tests
+PREFLIGHT_12_FAILURE=any hash schema blindness additivity byte-repro test or forbidden-open failure rejects the whole attempt
+PREFLIGHT_13_OUTPUT=JSON artifact and independent receipt plus hashes commands environment failure history and exact test logs

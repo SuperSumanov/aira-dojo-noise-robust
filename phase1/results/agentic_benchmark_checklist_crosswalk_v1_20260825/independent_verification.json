@@ -1,0 +1,22 @@
+{
+  "accuracy_effect_or_search_utility_computed": false,
+  "aggregate_compliance_score_reported": false,
+  "crosswalk_sha256_normalized_lf": "fb622cd16e95d6e340ce6fba4bf6661329ec005ec43b184b5ef3cbf29d179b1b",
+  "evidence_catalog_sha256": "1b83a6de1f01e560c76df67e5d5068aa5a5cf16339af0880b27f8873ffc7202a",
+  "evidence_files_verified": 24,
+  "gpu_or_api_calls": 0,
+  "imports_crosswalk_authoring_code": false,
+  "items_verified": 24,
+  "prediction_values_aggregated": false,
+  "prospective_outcomes_read": false,
+  "protocol": "independent_agentic_benchmark_checklist_crosswalk_verifier_v1",
+  "semantic_assessment_certified": false,
+  "status": "INDEPENDENTLY_VERIFIED_SCHEMA_AND_LOCAL_EVIDENCE_BINDING",
+  "status_counts": {
+    "INHERITED_UPSTREAM": 5,
+    "NOT_APPLICABLE": 1,
+    "PARTIAL": 9,
+    "PASS_LOCAL": 9
+  },
+  "verified_evidence_mapping_sha256": "f86ad87232fbb14c320a0c3ee6061b123b88ad43960da304377dbd08bb6afb41"
+}

@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0FY. 2026-08-25 ABC 交叉审计把 D&B 主张收紧为“衍生 decision benchmark 的本地增量”
+
+NeurIPS D&B 2025 的 Agentic Benchmark Checklist（ABC，arXiv:2507.02825v5）已经直接评过上游
+MLE-bench：其 O.i.1、T.2--T.10、R.1--R.12 的既有评价不能重复计为本项目贡献；T.1 的工具版本缺口和 R.13 的
+trivial-agent 缺口也不能靠引用上游消失。新增 24 项人工 crosswalk 严格区分 9 个 `PASS_LOCAL`、9 个 `PARTIAL`、
+5 个 `INHERITED_UPSTREAM` 和 1 个 `NOT_APPLICABLE`，且禁止把四类状态二值化为合规总分。
+
+独立 verifier 只验证项目项集、保守状态锁和 24 个本地证据文件的 normalized-LF SHA-256，不认证人工语义。crosswalk /
+independent SHA-256 分别为 `fb622cd1...79b1b` / `6fadb5c6...b174b`；prospective outcome / prediction aggregate /
+GPU/API=`false/false/0`。当前最关键的真实缺口是：producer 环境/config-v2 尚未在真实批次 outcome-before 部署、
+first-960 仍未闭合和发布、prospective clustered effect 表仍被封存。
+
+防 scoop 边界同步收紧：Aletheia（2601.12186）已覆盖 execution-grounded code verifier scaling/recipe/covariate
+shift；Agent Psychometrics（2604.00594）已覆盖 unseen task/benchmark/LLM-scaffold 的 task-level performance
+prediction。因此不得声称“首个 code verifier”或“首个 agent performance predictor”。可守住的单位是同一真实
+MLE-agent 搜索、同一 parent/预算/上下文中的 physical-run sibling decision，加上 run-clean、结果盲时间外确认、
+common support、label/coverage/cost audit 与不可变可重建发布。直接证据：
+
+- `phase1/results/agentic_benchmark_checklist_crosswalk_v1_20260825/README.md`；
+- `phase1/实验记录/2026-08-25/AgenticBenchmarkChecklist_交叉审计与主张收紧.md`。
+
 ## 0FX. 2026-08-25 first-960 当前有 657-pair 任务均衡债务；摄取改用逐任务前瞻护栏
 
 固定结构门要求任一任务的 canonical sibling-pair share 不超过 0.25。snapshot `7cdaefcf...` 的 2,635 pairs 中，

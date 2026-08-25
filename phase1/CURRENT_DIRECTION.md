@@ -13,6 +13,26 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GA. 2026-08-25 outcome 前冻结统一 estimand panel；不改写任何既有实验 primary
+
+结构图谱证明不同聚合会产生相反的 task-mixture 趋势，因此通用 predictor benchmark 第一行在 closure 前冻结为
+`task_macro_parent_macro_pair_accuracy`：pair credit 先在 physical decision parent 内平均，再在 task 内平均 parent，
+最后 tasks 等权。必须并列且不得 rescue 的三行是 task-pair macro、task→run→parent→pair macro 和 pair micro；所有 arm
+要求 exact common pair support，并先在 pair 上求差后用同一 hierarchy 聚合。
+
+该 panel 只控制 generic paper reporting，不 supersede 既有契约：clean scaling 的 task-macro pair primary、component
+breadth 的 task-macro parent-macro primary，以及各自 truth/support/effect/bootstrap 均保持原 authority。任一旧 primary
+失败时，alternate aggregation、truth channel 或 subgroup 都不能救回。generic inference 固定为 20,000 次 task
+bootstrap（seed `20260901`）+ LOTO，并强制 physical-run clustered sensitivity；pair-i.i.d. CI 禁止。
+
+contract / independent SHA-256=`4f394d0e...7adea` / `fcb74182...426de`；源码 commit=`1763030...`，fresh Linux
+focused/full=`5/1040 passed`，verifier A/B 逐字节一致，正式 `SHA256SUMS` hash=`cd198c5f...3d402`；
+truth/prediction read、GPU/API/model fit/base-LLM update=`false/false/0/0/0/0`。直接证据：
+
+- `phase1/contracts/DECISION_PREDICTOR_ESTIMAND_PANEL_V1.md`；
+- `phase1/results/decision_predictor_estimand_panel_v1_20260825/README.md`；
+- `phase1/实验记录/2026-08-25/DecisionPredictorEstimandPanel_结果前冻结.md`。
+
 ## 0FZ. 2026-08-25 结构依赖图谱确认 pair weighting 会逆转语料均衡趋势
 
 对固定 `7cda` snapshot 的 accumulator summary 与 independent structural gate 做结果盲双实现复算。first-240→当前

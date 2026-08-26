@@ -111,7 +111,7 @@ def test_independent_verifier_checks_complete_clean_stack(tmp_path: Path) -> Non
 def test_checked_in_index_matches_builder_when_present() -> None:
     checked = (
         REPO_ROOT
-        / "phase1/results/decision_corpus_evidence_index_v7_20260826/index.json"
+        / "phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/index.json"
     )
     if not checked.exists():
         pytest.skip("formal v7 output has not been generated yet")

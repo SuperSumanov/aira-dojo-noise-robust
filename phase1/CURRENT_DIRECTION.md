@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0GH. 2026-08-26 Decision Corpus evidence index v7 从未污染 v5 重建；formal 尚未运行
+## 0GH. 2026-08-26 Decision Corpus evidence index v7 从未污染 v5 重建；formal 全门通过
 
 0GF/0GG 的污染传播还使 Decision Corpus Evidence Index v6 与 ABC crosswalk v1 的受影响机器指针失效。v7 不修补
 v6，而从 normalized-LF SHA-256=`4bff2b9f...7a1627` 的最后未受影响 v5 重建；formal file trace 明确禁止打开 v6、
@@ -21,13 +21,17 @@ withdrawn coverage matrices、task-balance v1/forward v1 与 crosswalk v1。旧 
 
 新增五项 clean replacement：provenance registry、receipt-only 2,755-pair common support、structural atlas+trajectory、
 closure-time opportunity-yield audit、task-balance structural-only v2。预冻结机器规模为 14 entries、37 JSON artifacts、
-3 bound files、434 assertions；本地 smoke=`10 passed, 1 skipped`，只确认实现可运行，不是 formal evidence。允许主张只到
+3 bound files、434 assertions。允许主张只到
 receipt-certified support、结构 weighting shift、interpretation contract 和“debt improved but uncleared”；orientation/tie/
 margin、accuracy/effect/utility、robust magnitude、producer compliance、causal effect 与 v1 provenance repair 均禁止。
 
-正式件必须从随后公开的精确 source commit 在 fresh no-smudge Linux 上执行 builder A/B、non-importing verifier A/B、
-focused/full tests、forbidden-open trace 与 credential scan；任一失败不提升。当前 formal 尚未运行，ABC crosswalk v2 也必须
-等 v7 正式件后再冻结。预注册：
+正式件已从公开 source commit=`a83bebfdb8dcf59bea21a1b84269b2e87bf7a02e` 的 fresh no-smudge Linux
+worktree 通过：builder/verifier A/B 均逐字节一致，focused=`10 passed, 1 skipped`，full=`1127 passed, 1 skipped,
+47 warnings`；生产 trace forbidden-path hits=0，credential hits=0，GPU/API/model-fit/base-update=`0/0/0/0`。
+index/independent SHA-256=`d8cc9c60...31674` / `b0bcd321...1d128`，formal manifest=
+`608c0a4f...cbbbe1`。结果包：`phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/`。
+这恢复的是 clean machine evidence stack，不新增 predictor effect；下一步只允许从该正式包重建 ABC crosswalk v2。
+预注册与结果记录：
 `phase1/实验记录/2026-08-26/DecisionCorpusEvidenceIndexV7_清洁证据栈预注册.md`。
 
 ## 0GG. 2026-08-26 prediction-matrix 污染已传播到 task-balance v1；structural-only v2 正式预注册

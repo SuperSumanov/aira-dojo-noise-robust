@@ -31,6 +31,11 @@
 - 学长 archive source 最新仍是 0824；`myfork/dojo-reproduce` 精确 HEAD=`2b22f3102a2a64cb89ebcae9ede4d8eb72e1430d`，
   `src/mle_critic/docs/outcomes` 仍只有 0812/0817/0820 三批文档。metadata-only 搜索仍未发现
   `*.config_v2.jsonl`，故 future exact-stratum clean scaling 尚不能启动。
+- clean-provenance Decision Corpus Evidence Index v7 已从未污染 v5 重建，不读取 v6 或 withdrawn matrix/guard/crosswalk
+  路径；14 entries、37 JSON artifacts、3 bound files、434 assertions 全部独立通过。fresh Linux focused/full=
+  `10 passed, 1 skipped` / `1127 passed, 1 skipped, 47 warnings`，A/B 均逐字相同，production forbidden opens=0。
+  source commit=`a83bebfdb8dcf59bea21a1b84269b2e87bf7a02e`；结果包位于
+  `phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/`。下一步是 replacement ABC crosswalk v2。
 
 ## 0A. 13:31 历史动态状态（被上文覆盖）
 

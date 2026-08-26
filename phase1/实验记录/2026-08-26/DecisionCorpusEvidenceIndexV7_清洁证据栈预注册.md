@@ -52,3 +52,19 @@ base-LLM update=`0/0/0/0`。
 
 本地 smoke 在冻结前只确认实现可运行：`10 passed, 1 skipped`；该数字不是 formal evidence。正式结果无论通过或失败均须
 记录，且不能据此新增 predictor/effect 主张。
+
+## 5. 预注册后的 formal 结果
+
+公开 source commit=`a83bebfdb8dcf59bea21a1b84269b2e87bf7a02e`。fresh detached no-smudge Linux
+focused=`10 passed, 1 skipped`，完整 `phase1/tests`=`1127 passed, 1 skipped, 47 warnings`；builder A/B 与
+non-importing verifier A/B 均逐字节一致。固定规模精确为 14 entries、37 JSON artifacts、3 bound files、434 assertions。
+
+生产 builder/verifier file traces 对 v6、两套 withdrawn matrix、task-balance v1/forward v1、crosswalk v1、pair
+predictions 与 prospective label/outcome 路径命中为 0；credential hits=0；GPU/API/model-fit/base-update=
+`0/0/0/0`。index/independent SHA-256=
+`d8cc9c60900ab41ff1df0e3aae3add29bbb922d5a32157957dcac5675fa31674` /
+`b0bcd3213be641dcf6832b08d6a47720189bcfacc72dca15276ed01fe191d128`；formal manifest=
+`608c0a4f9ef5d1a3af5e6f3c3123bb515afba968f8f1524406d2c25cffcbbbe1`。
+
+正式包：`phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/`。该 PASS 恢复 clean machine evidence
+stack 与 claim-boundary 可复现性，不新增 accuracy/effect/utility，也不追溯恢复任何 withdrawn artifact。

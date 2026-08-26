@@ -1,0 +1,13 @@
+01_question=Can v7 rebuild a clean machine evidence stack from unaffected v5 without opening any withdrawn evidence path? PASS
+02_estimand=Evidence provenance and claim boundaries only; no predictor outcome or effect estimand. PASS
+03_inputs=Exact v5 source, immutable taint registry, and eleven pinned clean replacement JSON artifacts. PASS
+04_split_leakage=Prospective labels,outcomes,prediction pair/value files and raw archives are forbidden. PASS
+05_controls=Builder A/B,non-importing verifier A/B,exact hashes,434 assertions,and negative tests. PASS
+06_sample_size=Fixed 14 entries,37 artifacts,3 bound files; focused plus complete phase1 test suite. PASS
+07_randomness=Deterministic JSON verification with PYTHONHASHSEED=0; no stochastic fit. PASS
+08_inference=No accuracy,CI,p-value,search utility or method effect is computed. PASS
+09_cost=CPU only; GPU/API/model-fit/base-update=0/0/0/0. PASS
+10_resume=Unique immutable formal root; any failure leaves no COMPLETE and no promotion. PASS
+11_environment=Fresh detached no-smudge worktree at exact public commit with pinned project environment. PASS
+12_security=Production file traces,forbidden-path scan,boundary-aware credential scan,and clean worktree. PASS
+13_promotion=Only exact A/B,verifier,tests,trace,security,and manifest success may create COMPLETE. PASS

@@ -1,0 +1,32 @@
+{
+  "accuracy_effect_or_search_utility_computed": false,
+  "artifact_count": 37,
+  "bound_file_count": 3,
+  "builder_ab_byte_identical": true,
+  "credential_content_file_hits": 0,
+  "entry_count": 14,
+  "focused_passed": 10,
+  "focused_skipped": 1,
+  "full_passed": 1127,
+  "full_skipped": 1,
+  "full_warnings": 47,
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "independent_verification_sha256": "b0bcd3213be641dcf6832b08d6a47720189bcfacc72dca15276ed01fe191d128",
+  "index_sha256": "d8cc9c60900ab41ff1df0e3aae3add29bbb922d5a32157957dcac5675fa31674",
+  "json_assertion_count": 434,
+  "prediction_pair_files_opened": false,
+  "prediction_values_read_or_aggregated": false,
+  "production_trace_forbidden_path_hits": 0,
+  "prospective_outcomes_read": false,
+  "protocol": "decision-corpus-evidence-index-v7-formal-v1",
+  "source_commit": "a83bebfdb8dcf59bea21a1b84269b2e87bf7a02e",
+  "source_v6_read_or_inherited": false,
+  "status": "FORMAL_CLEAN_PROVENANCE_EVIDENCE_INDEX_PASS",
+  "verifier_ab_byte_identical": true,
+  "withdrawn_evidence_paths_used": false
+}

@@ -109,3 +109,7 @@ phase1/results/prediction_receipt_common_support_8579_20260826_9f2cbe9/README.md
 # fresh Linux; keep only the explanatory README normalized and diffable.
 phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/** -text -diff
 phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/README.md text eol=lf diff
+# Preserve the exact formal v7 index and verifier receipts copied from fresh
+# Linux; keep only the explanatory README normalized and diffable.
+phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/** -text -diff
+phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/README.md text eol=lf diff

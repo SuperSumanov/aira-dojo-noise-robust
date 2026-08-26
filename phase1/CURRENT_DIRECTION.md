@@ -13,6 +13,19 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GI. 2026-08-26 ABC crosswalk v2 清洁迁移已预注册；formal 尚未运行
+
+ABC crosswalk v1 的 24 项人工判断只保留为 hash-pinned 文本/status 模板；其 catalog 中 v6、两项 coverage、guard v1
+及各自 independent 共 6 个 evidence IDs 全部移除，旧 evidence artifacts 不得打开。v2 加入 v7、receipt-only support、
+taint registry、structural trajectory、opportunity-yield audit、task-balance structural-only v2 的 11 个 clean IDs，最终
+items/evidence=`24/29`。
+
+迁移不得借机升级任何人工判断：PASS_LOCAL/PARTIAL/INHERITED_UPSTREAM/NOT_APPLICABLE 仍固定 `9/9/5/1`；机器
+verifier 只认证 schema、状态约束、引用闭包与 SHA-256，不做 semantic certification 或 aggregate compliance score。正式
+production trace 允许打开 source v1 crosswalk template 本身，但 removed evidence、prediction pair/value、label/outcome
+路径必须 0 hit。当前本地 smoke=`11 passed, 1 skipped`；formal 尚未运行。预注册：
+`phase1/实验记录/2026-08-26/ABCCrosswalkV2_清洁证据迁移预注册.md`。
+
 ## 0GH. 2026-08-26 Decision Corpus evidence index v7 从未污染 v5 重建；formal 全门通过
 
 0GF/0GG 的污染传播还使 Decision Corpus Evidence Index v6 与 ABC crosswalk v1 的受影响机器指针失效。v7 不修补

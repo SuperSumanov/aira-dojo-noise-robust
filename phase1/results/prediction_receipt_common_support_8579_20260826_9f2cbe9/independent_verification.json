@@ -1,0 +1,14 @@
+{
+  "candidate_exact": true,
+  "candidate_sha256": "3b2d0200cf8982a69837a65ca0511fcb35534c94ee440f6bf17789c09c721263",
+  "effect_metrics_computed": [],
+  "pairs": 2755,
+  "prediction_pair_files_opened": false,
+  "prediction_values_accessed": false,
+  "producer_imported": false,
+  "prospective_outcomes_read": false,
+  "protocol": "prediction-receipt-common-support-v1",
+  "same_canonical_pair_population_certified": true,
+  "snapshot_sha256": "8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248",
+  "status": "INDEPENDENT_PREDICTION_RECEIPT_COMMON_SUPPORT_VERIFIED"
+}

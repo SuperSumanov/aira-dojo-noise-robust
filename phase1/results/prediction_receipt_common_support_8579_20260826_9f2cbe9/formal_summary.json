@@ -1,0 +1,22 @@
+{
+  "api_calls": 0,
+  "base_llm_updates": 0,
+  "builder_ab_byte_identical": true,
+  "effect_metrics_computed": [],
+  "focused_passed": 19,
+  "full_passed": 1104,
+  "full_warnings": 47,
+  "gpu_jobs": 0,
+  "model_fits": 0,
+  "pair_identity_or_orientation_reopened": false,
+  "prediction_pair_files_opened": false,
+  "prediction_value_aggregates_computed": [],
+  "prediction_values_accessed": false,
+  "prospective_outcomes_read": false,
+  "receipt_certified_common_support_pairs": 2755,
+  "receipt_sha256": "3b2d0200cf8982a69837a65ca0511fcb35534c94ee440f6bf17789c09c721263",
+  "snapshot_sha256": "8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248",
+  "status": "INDEPENDENT_PREDICTION_RECEIPT_COMMON_SUPPORT_VERIFIED",
+  "verification_sha256": "24a7ff758d391f4fd506236df97f1a9d6692ddb965cab490e6e92475e2cb012e",
+  "verifier_ab_byte_identical": true
+}

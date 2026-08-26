@@ -53,3 +53,24 @@ canonical pair count 不同；producer A/B 或 verifier A/B 不一致；独立 v
 
 当前运行只给出 pass/fail 和 structural pair count。无论结果是否通过，都不得据此改 scorer、arm、threshold 或假设；
 first-960 与 closure 之前继续禁止 effect/accuracy 解封。
+
+## 5. 预注册后的正式结果
+
+上述协议先以 public commit `9f2cbe9bff91c2f0ee6f86ff93d9737f9431547f` 固定。fresh Linux focused/full=
+`19 passed` / `1104 passed, 47 warnings`。随后在 current `8579` promoted states 上正式执行：
+
+- status=`INDEPENDENT_PREDICTION_RECEIPT_COMMON_SUPPORT_VERIFIED`；
+- receipt-certified exact canonical common support=`2,755 structural pairs`；
+- producer A/B 与 non-importing verifier A/B 各自逐字节一致；
+- prediction pair file open hits=`0`，outcome path open hits=`0`；
+- prediction values accessed=`false`，prediction value aggregates=`[]`；
+- pair identity/orientation reopened=`false`，prospective outcome/effect=`false/[]`；
+- formal manifest=`179a511d9c85dbde73b93cd8f3f5eec6b90efc53a7c6f75e341fddf33635d995`。
+
+前置 WL exact replay 通过 `22/1094 passed`，producer 与 one-shot current artifact 逐字相同，manifest=
+`ba152f6171a87cc72ec805c8c4ecacd07bd0462b9a93e063709ce19b798e121d`。新 WL / receipt-only monitors 分别为
+PID `2374019/2374760`；transition PID `2320379` 保持。两个旧 monitor 只在精确 cmdline 与 replacement live state 都核验
+后 TERM，历史 artifacts 保留。
+
+因此本次允许的正面结论是：未来 paired benchmark 的 exact common support 可在 first-960 closure 前由 receipt chain
+认证，而无需通用审计读取 prediction values。它不是方法效果、accuracy 或 orientation 结论。

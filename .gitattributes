@@ -101,3 +101,7 @@ phase1/results/opportunity_yield_aggregation_audit_v1_20260826/** text eol=lf di
 phase1/results/opportunity_yield_aggregation_audit_postpush_bad6ec5_20260826/** text eol=lf diff
 phase1/results/task_balance_guard_forward_8579_20260826/** text eol=lf diff
 phase1/results/task_balance_guard_forward_8579_formal_20260826/** text eol=lf diff
+# Preserve the byte-exact receipt-only common-support projection and its inner
+# SHA-256 manifest; keep only the human README normalized and diffable.
+phase1/results/prediction_receipt_common_support_8579_20260826_9f2cbe9/** -text -diff
+phase1/results/prediction_receipt_common_support_8579_20260826_9f2cbe9/README.md text eol=lf diff

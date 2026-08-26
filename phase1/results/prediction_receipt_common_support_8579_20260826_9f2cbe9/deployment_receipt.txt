@@ -1,0 +1,16 @@
+deployed_at_utc=2026-08-26T05:19:28Z
+control_commit=9f2cbe9bff91c2f0ee6f86ff93d9737f9431547f
+monitor_pid=2374760
+snapshot_sha256=8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248
+formal_manifest_sha256=179a511d9c85dbde73b93cd8f3f5eec6b90efc53a7c6f75e341fddf33635d995
+formal_receipt_sha256=3b2d0200cf8982a69837a65ca0511fcb35534c94ee440f6bf17789c09c721263
+poll_seconds=300
+max_polls=72
+stable_polls=3
+prediction_pair_files_opened=false
+prediction_values_accessed=false
+outcomes_read=false
+effect_metrics=0
+gpu_jobs=0
+api_calls=0
+base_llm_updates=0

@@ -1,0 +1,3 @@
+prediction_pair_file_open_hits=0
+outcome_path_open_hits=0
+credential_content_file_hits=0

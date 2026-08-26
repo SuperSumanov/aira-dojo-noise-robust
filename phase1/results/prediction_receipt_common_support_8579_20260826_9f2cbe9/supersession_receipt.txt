@@ -1,0 +1,10 @@
+retired_at_utc=2026-08-26T05:20:29Z
+old_wl_pid=2288648
+old_coverage_pid=2288649
+termination_signal=TERM
+old_artifacts_deleted=false
+old_artifacts_preserved=true
+new_wl_pid=2374019
+new_receipt_pid=2374760
+transition_pid=2320379
+replacement_validated_before_retirement=true

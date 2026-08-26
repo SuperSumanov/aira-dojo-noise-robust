@@ -28,9 +28,20 @@ summary 与 frozen verifier source bytes 做 SHA-256；绝不打开 pair files �
 同一 canonical sibling-pair population，receipt/command/summary/source 全链绑定且 pair counts 相同。“count 相同”单独
 不充分；不得声称新审计重开了 identity/orientation，也不得报告 margin、tie/non-tie、activation/eligibility 或 prediction
 distribution。producer A/B、非 import verifier A/B、file-strace、credential scan 和原子 state promotion 均为硬门。
-正式 receipt 尚未运行，当前状态为 `PREREGISTERED_NOT_EXECUTED`。直接记录：
+预注册 commit=`9f2cbe9bff91c2f0ee6f86ff93d9737f9431547f` 的 fresh Linux focused/full=
+`19/1104 passed`。真实 `8579` 正式件通过：2,755 structural pairs 为
+`INDEPENDENT_PREDICTION_RECEIPT_COMMON_SUPPORT_VERIFIED`，producer A/B 与非 import verifier A/B 各自逐字节一致；
+file-strace 的 prediction-pair/outcome-path opens=`0/0`，prediction values accessed/aggregates=`false/[]`，且没有重开
+pair identity/orientation。formal manifest / receipt / independent SHA-256 分别为 `179a511d...35d995` /
+`3b2d0200...721263` / `24a7ff75...cb012e`。
+
+其前置 WL exact monitor replay 也通过 focused/full=`22/1094 passed`，producer 与 one-shot current artifact 逐字相同，
+manifest=`ba152f61...8e121d`。新 WL / receipt-only monitors PID=`2374019/2374760` 已上线，transition PID=`2320379`
+保持；两个旧 WL/value-reading coverage monitors 经精确 cmdline 核验后 TERM，历史 artifacts 全保留。该结果恢复的是合规
+common-support integrity 资产，不恢复旧 orientation/tie/eligibility 主张，也不提供 predictor effect。直接记录：
 
 - `phase1/prediction_receipt_common_support_protocol_v1.json`；
+- `phase1/results/prediction_receipt_common_support_8579_20260826_9f2cbe9/README.md`；
 - `phase1/实验记录/2026-08-26/PredictionEscrowCoverage_预测值访问事故与ReceiptOnly替代预注册.md`。
 
 ## 0GE. 2026-08-26 provisional first-960 membership 非单调；prediction escrow chain 已结果盲修复并部署

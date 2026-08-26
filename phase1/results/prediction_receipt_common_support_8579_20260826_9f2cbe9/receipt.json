@@ -1,0 +1,65 @@
+{
+  "families": {
+    "transition": {
+      "artifact_summary_sha256": "f3b7937f3d8637500631ebcd285e4eb16ec7bd4cac6e0bdffc2469c6cb77de64",
+      "independent_receipt_sha256": "44a5f5b6d549caa26fc2377676ea64ec48e69528db04c86cb80cfb313f579254",
+      "independent_status": "INDEPENDENT_PROSPECTIVE_TRANSITION_FUTURE_ESCROW_VERIFIED",
+      "independent_verifier_command_sha256": "d7a26cfa22a59daf28911c3e86ce265f442520baf0d954e1ca0cca01765c64a0",
+      "pairs": 2755,
+      "state_sha256": "42f26f4af76f3b485dae1ed0d2b8e2136c24e87309a1c6d42812a4241c827abd"
+    },
+    "wl": {
+      "artifact_summary_sha256": "18d6070ce668133ea273819b2b81873224b598900d9f2ee9d87e67871511818c",
+      "independent_receipt_sha256": "292d035f0ad3e055d71281e09ed0b0b9a34a293ad7571277dbb8022804086cc8",
+      "independent_status": "INDEPENDENT_PROSPECTIVE_WL_GRAPH_ESCROW_VERIFIED",
+      "independent_verifier_command_sha256": "7cacddaa15249e39b921817addf7c3bddf02789aa9677f272fcc15ca1d49e8bb",
+      "pairs": 2755,
+      "state_sha256": "c61ea42ecee9e966041546c626b46d6ae2dd4dfc6d5a87ef095fc58c9e615032"
+    }
+  },
+  "input_policy": {
+    "allowed": [
+      "promoted WL state receipt",
+      "promoted transition state receipt",
+      "WL independent verification receipt",
+      "transition independent verification receipt",
+      "recorded independent-verifier command receipts",
+      "artifact summary bytes for SHA-256 only",
+      "frozen independent-verifier source bytes for SHA-256 only"
+    ],
+    "artifact_summary_content_parsed": false,
+    "prediction_pair_files_opened": false
+  },
+  "protocol": "prediction-receipt-common-support-v1",
+  "receipt_certified_common_support": {
+    "basis": "both frozen independent verifiers reconstruct the exact canonical structural pair population for the same immutable snapshot and certify their bound artifacts",
+    "pair_identity_or_orientation_reopened": false,
+    "pairs": 2755,
+    "same_canonical_pair_population_certified": true,
+    "same_immutable_snapshot": true
+  },
+  "scope": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu": 0,
+    "labels_grades_outcomes_or_winner_orientation_read": false,
+    "prediction_value_aggregates_computed": [],
+    "prediction_values_accessed": false,
+    "prediction_values_printed": false
+  },
+  "snapshot_sha256": "8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248",
+  "source_contracts": {
+    "transition": {
+      "commit": "7458f0969b92a258ea0e495bbbee282aa12b748e",
+      "independent_status": "INDEPENDENT_PROSPECTIVE_TRANSITION_FUTURE_ESCROW_VERIFIED",
+      "source_sha256": "2e96eb0610a94d58c01127e1850e60d6905a87a7870d0f9d692d28d4bd010787"
+    },
+    "wl": {
+      "commit": "031edb34400781ca026bc9833ac7f850312ffb1c",
+      "independent_status": "INDEPENDENT_PROSPECTIVE_WL_GRAPH_ESCROW_VERIFIED",
+      "source_sha256": "d7f2113a45ffe37f0a44bdabfc76068b3d83da635aea7409b713fd9a53baef60"
+    }
+  },
+  "status": "RECEIPT_CERTIFIED_EXACT_CANONICAL_COMMON_SUPPORT"
+}

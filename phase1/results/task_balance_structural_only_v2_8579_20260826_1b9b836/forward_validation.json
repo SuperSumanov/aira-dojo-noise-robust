@@ -1,0 +1,113 @@
+{
+  "access_attestation": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "labels_grades_outcomes_or_winner_orientation_read": false,
+    "model_fits": 0,
+    "prediction_pair_files_opened": [],
+    "prediction_values_read_or_aggregated": false,
+    "randomness_used": false,
+    "raw_archive_payload_read": false
+  },
+  "chronology_audit": {
+    "baseline_runs": 339,
+    "byte_prefix_required": false,
+    "current_runs": 366,
+    "new_runs": 27,
+    "new_runs_before_old_baseline_tail": 2,
+    "observed_byte_prefix": false,
+    "old_rows_unchanged_by_run_id": true,
+    "old_run_order_preserved_as_subsequence": true,
+    "old_run_set_preserved": true
+  },
+  "claim_boundary": {
+    "arithmetic_identity_is_statistical_prediction": false,
+    "descriptive_hhi_or_tv_can_rescue_failed_cap": false,
+    "natural_accrual_causal_effect_claimed": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "producer_compliance_claimed": false
+  },
+  "descriptive_secondary": {
+    "baseline_pair_hhi": 0.1357471491993994,
+    "baseline_run_hhi": 0.048877054672340124,
+    "baseline_run_to_pair_tv": 0.337082500713674,
+    "current_pair_hhi": 0.13322920543739974,
+    "current_run_hhi": 0.04868762877362716,
+    "current_run_to_pair_tv": 0.32785794333204404,
+    "pair_hhi_delta": -0.0025179437619996525,
+    "preregistered_for_this_forward_check": false,
+    "run_hhi_delta": -0.00018942589871296517,
+    "run_to_pair_tv_delta": -0.009224557381629972
+  },
+  "frozen_guard_forward_result": {
+    "baseline_debt": 657,
+    "current_cap_pass": false,
+    "current_cap_violating_tasks": [
+      "osic-pulmonary-fibrosis-progression"
+    ],
+    "current_dominant_pairs": 850,
+    "current_dominant_share": 0.308529945553539,
+    "debt_accounting_identity_exact": true,
+    "debt_delta": -12,
+    "debt_direction": "IMPROVED_BUT_UNCLEARED",
+    "dominant_task": "osic-pulmonary-fibrosis-progression",
+    "future_dominant_pairs": 27,
+    "future_nondominant_pairs": 93,
+    "immediate_action_adherence": "DEFINITELY_NOT_ADHERED_BEFORE_DEBT_CLEARANCE",
+    "observed_current_debt": 645,
+    "pair_increments_by_task": {
+      "AI4Code": 0,
+      "alaska2-image-steganalysis": 0,
+      "aptos2019-blindness-detection": 0,
+      "billion-word-imputation": 0,
+      "cassava-leaf-disease-classification": 0,
+      "cdiscount-image-classification-challenge": 9,
+      "dog-breed-identification": 0,
+      "dogs-vs-cats-redux-kernels-edition": 0,
+      "facebook-recruiting-iii-keyword-extraction": 0,
+      "google-quest-challenge": 0,
+      "hubmap-kidney-segmentation": 0,
+      "imet-2020-fgvc7": 0,
+      "kuzushiji-recognition": 0,
+      "learning-agency-lab-automated-essay-scoring-2": 0,
+      "lmsys-chatbot-arena": 18,
+      "multi-modal-gesture-recognition": 0,
+      "new-york-city-taxi-fare-prediction": 16,
+      "osic-pulmonary-fibrosis-progression": 27,
+      "plant-pathology-2021-fgvc8": 0,
+      "random-acts-of-pizza": 0,
+      "ranzcr-clip-catheter-line-classification": 0,
+      "tensorflow-speech-recognition-challenge": 0,
+      "tensorflow2-question-answering": 6,
+      "text-normalization-challenge-russian-language": 0,
+      "tgs-salt-identification-challenge": 21,
+      "tweet-sentiment-extraction": 0,
+      "us-patent-phrase-to-phrase-matching": 0,
+      "uw-madison-gi-tract-image-segmentation": 12,
+      "ventilator-pressure-prediction": 11,
+      "whale-categorization-playground": 0
+    },
+    "predicted_current_debt": 645,
+    "strict_guard_adherence_claimed": false
+  },
+  "inputs": {
+    "baseline_accumulator_summary_sha256": "ad3e8fe4180fd6c6f7fcea121ef0c51c0f292445d77368e2b3ab4dc9a56d4585",
+    "baseline_first960_runs_sha256": "43b1f16d5326fad5de490a5b63bd8a6f3c454ad303c031cd1fb54e607919cf83",
+    "baseline_guard_independent_verification_sha256": "62f5fa00ad4535c0e6e8706daf62f5408ac4fa407506f761b42840d1c115310c",
+    "baseline_guard_sha256": "2ffa91a5e10f17f31c1a79f51a69d2f4e2331353e9ac9cfab14c6c40352cd177",
+    "baseline_snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+    "current_accumulator_summary_sha256": "bc03570594dca4acf36f7068fd7f185e7e3121f8d759d8d9c5bf81e91151aa15",
+    "current_first960_runs_sha256": "09e3f63b2ae274e6a769ff26fdbcd400a55cacbf6719c3b71063c0c84664bcd1",
+    "current_receipt_common_support_verification_sha256": "24a7ff758d391f4fd506236df97f1a9d6692ddb965cab490e6e92475e2cb012e",
+    "current_snapshot_sha256": "8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248"
+  },
+  "protocol": "task_balance_guard_forward_validation_v2",
+  "source_validation": {
+    "baseline_summary_and_ledger_revalidated": true,
+    "current_summary_and_ledger_revalidated": true,
+    "current_total_cross_checked_by_receipt_only_independent_verifier": true,
+    "prediction_matrix_input_used": false
+  },
+  "status": "STRUCTURAL_ONLY_FORWARD_ACCOUNTING_EXACT"
+}

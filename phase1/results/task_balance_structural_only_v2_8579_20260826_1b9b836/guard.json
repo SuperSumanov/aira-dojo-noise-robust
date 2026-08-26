@@ -1,0 +1,447 @@
+{
+  "access_attestation": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "labels_grades_outcomes_or_winner_orientation_read": false,
+    "model_fits": 0,
+    "prediction_pair_files_opened": [],
+    "prediction_values_read_or_aggregated": false,
+    "randomness_used": false,
+    "raw_archive_payload_read": false
+  },
+  "all_task_simultaneous_constraint": {
+    "dominant_debt_alone_is_not_sufficient": true,
+    "inequality": "For every task t: 4*(current_t+future_t) <= 1*(current_total+sum_future_all_tasks).",
+    "must_hold_for_every_task": true,
+    "recompute_after_each_stable_snapshot": true
+  },
+  "current": {
+    "dominant_pairs": 823,
+    "dominant_share": 0.31233396584440226,
+    "dominant_task": "osic-pulmonary-fibrosis-progression",
+    "gate_pass": false,
+    "maximum_share": 0.25,
+    "pairs": 2635,
+    "tasks": 30
+  },
+  "exact_integer_envelope": {
+    "allowance_table": [
+      {
+        "future_nondominant_pairs": 657,
+        "maximum_future_dominant_pairs": 0
+      },
+      {
+        "future_nondominant_pairs": 1000,
+        "maximum_future_dominant_pairs": 114
+      },
+      {
+        "future_nondominant_pairs": 2000,
+        "maximum_future_dominant_pairs": 447
+      },
+      {
+        "future_nondominant_pairs": 3000,
+        "maximum_future_dominant_pairs": 781
+      },
+      {
+        "future_nondominant_pairs": 4000,
+        "maximum_future_dominant_pairs": 1114
+      }
+    ],
+    "cap_denominator": 4,
+    "cap_numerator": 1,
+    "imbalance_debt_numerator": 657,
+    "minimum_future_nondominant_pairs_formula": "ceil((657+3*future_dominant_pairs)/1)",
+    "minimum_future_nondominant_pairs_if_zero_future_dominant": 657
+  },
+  "inputs": {
+    "accumulator_summary_sha256": "ad3e8fe4180fd6c6f7fcea121ef0c51c0f292445d77368e2b3ab4dc9a56d4585",
+    "provisional_first960_runs_sha256": "43b1f16d5326fad5de490a5b63bd8a6f3c454ad303c031cd1fb54e607919cf83",
+    "structural_gate_sha256": "ca44845bc0f5feaf5de0e77ec658e4b0cca3f5a451b75b33bb4c63acfc1eccca"
+  },
+  "operational_guard": {
+    "after_debt_is_cleared": "Each additional osic-pulmonary-fibrosis-progression pair requires at least (3/1) additional non-dominant pairs, with integer rounding applied to the cumulative envelope.",
+    "allocation_unit": "observed_canonical_sibling_pairs_not_raw_runs",
+    "chronological_first_960_membership_rule_unchanged": true,
+    "immediate_action": "Temporarily route acquisition away from osic-pulmonary-fibrosis-progression until at least 657 observed non-osic-pulmonary-fibrosis-progression sibling pairs accrue, while enforcing the all-task simultaneous constraint.",
+    "not_a_stopping_rule": true,
+    "recompute_from_observed_pairs_not_expected_yield": true
+  },
+  "protocol": "prospective_task_balance_accrual_guard_v2",
+  "single_task_only_headroom": [
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 743,
+      "current_pairs": 101,
+      "current_share": 0.038330170777988615,
+      "currently_above_cap": false,
+      "task": "AI4Code"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 827,
+      "current_pairs": 38,
+      "current_share": 0.014421252371916509,
+      "currently_above_cap": false,
+      "task": "alaska2-image-steganalysis"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 862,
+      "current_pairs": 12,
+      "current_share": 0.004554079696394687,
+      "currently_above_cap": false,
+      "task": "aptos2019-blindness-detection"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 859,
+      "current_pairs": 14,
+      "current_share": 0.005313092979127135,
+      "currently_above_cap": false,
+      "task": "billion-word-imputation"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 838,
+      "current_pairs": 30,
+      "current_share": 0.011385199240986717,
+      "currently_above_cap": false,
+      "task": "cassava-leaf-disease-classification"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 841,
+      "current_pairs": 28,
+      "current_share": 0.01062618595825427,
+      "currently_above_cap": false,
+      "task": "cdiscount-image-classification-challenge"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 831,
+      "current_pairs": 35,
+      "current_share": 0.013282732447817837,
+      "currently_above_cap": false,
+      "task": "dog-breed-identification"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 721,
+      "current_pairs": 118,
+      "current_share": 0.044781783681214424,
+      "currently_above_cap": false,
+      "task": "dogs-vs-cats-redux-kernels-edition"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 805,
+      "current_pairs": 55,
+      "current_share": 0.020872865275142316,
+      "currently_above_cap": false,
+      "task": "facebook-recruiting-iii-keyword-extraction"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 839,
+      "current_pairs": 29,
+      "current_share": 0.011005692599620493,
+      "currently_above_cap": false,
+      "task": "google-quest-challenge"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 858,
+      "current_pairs": 15,
+      "current_share": 0.0056925996204933585,
+      "currently_above_cap": false,
+      "task": "hubmap-kidney-segmentation"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 851,
+      "current_pairs": 20,
+      "current_share": 0.007590132827324478,
+      "currently_above_cap": false,
+      "task": "imet-2020-fgvc7"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 877,
+      "current_pairs": 1,
+      "current_share": 0.0003795066413662239,
+      "currently_above_cap": false,
+      "task": "kuzushiji-recognition"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 842,
+      "current_pairs": 27,
+      "current_share": 0.010246679316888045,
+      "currently_above_cap": false,
+      "task": "learning-agency-lab-automated-essay-scoring-2"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 798,
+      "current_pairs": 60,
+      "current_share": 0.022770398481973434,
+      "currently_above_cap": false,
+      "task": "lmsys-chatbot-arena"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 631,
+      "current_pairs": 185,
+      "current_share": 0.07020872865275142,
+      "currently_above_cap": false,
+      "task": "multi-modal-gesture-recognition"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 763,
+      "current_pairs": 86,
+      "current_share": 0.03263757115749526,
+      "currently_above_cap": false,
+      "task": "new-york-city-taxi-fare-prediction"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": null,
+      "current_pairs": 823,
+      "current_share": 0.31233396584440226,
+      "currently_above_cap": true,
+      "task": "osic-pulmonary-fibrosis-progression"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 873,
+      "current_pairs": 4,
+      "current_share": 0.0015180265654648956,
+      "currently_above_cap": false,
+      "task": "plant-pathology-2021-fgvc8"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 855,
+      "current_pairs": 17,
+      "current_share": 0.0064516129032258064,
+      "currently_above_cap": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 795,
+      "current_pairs": 62,
+      "current_share": 0.023529411764705882,
+      "currently_above_cap": false,
+      "task": "ranzcr-clip-catheter-line-classification"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 507,
+      "current_pairs": 278,
+      "current_share": 0.10550284629981024,
+      "currently_above_cap": false,
+      "task": "tensorflow-speech-recognition-challenge"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 866,
+      "current_pairs": 9,
+      "current_share": 0.003415559772296015,
+      "currently_above_cap": false,
+      "task": "tensorflow2-question-answering"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 818,
+      "current_pairs": 45,
+      "current_share": 0.017077798861480076,
+      "currently_above_cap": false,
+      "task": "text-normalization-challenge-russian-language"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 511,
+      "current_pairs": 275,
+      "current_share": 0.10436432637571158,
+      "currently_above_cap": false,
+      "task": "tgs-salt-identification-challenge"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 877,
+      "current_pairs": 1,
+      "current_share": 0.0003795066413662239,
+      "currently_above_cap": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 827,
+      "current_pairs": 38,
+      "current_share": 0.014421252371916509,
+      "currently_above_cap": false,
+      "task": "us-patent-phrase-to-phrase-matching"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 758,
+      "current_pairs": 90,
+      "current_share": 0.03415559772296015,
+      "currently_above_cap": false,
+      "task": "uw-madison-gi-tract-image-segmentation"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 703,
+      "current_pairs": 131,
+      "current_share": 0.04971537001897533,
+      "currently_above_cap": false,
+      "task": "ventilator-pressure-prediction"
+    },
+    {
+      "additional_same_task_pairs_before_cap_if_no_other_pairs": 867,
+      "current_pairs": 8,
+      "current_share": 0.0030360531309297912,
+      "currently_above_cap": false,
+      "task": "whale-categorization-playground"
+    }
+  ],
+  "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+  "source_validation": {
+    "independent_structural_gate_cross_checks_all_true": true,
+    "independent_structural_gate_totals_match": true,
+    "ledger_rows": 339,
+    "ledger_run_and_endpoint_counts_match_summary": true,
+    "snapshot_path_binding_exact": true,
+    "summary_binds_ledger_sha256": true,
+    "summary_task_counts_sum_exactly": true
+  },
+  "status": "STRUCTURAL_ONLY_TASK_BALANCE_ACCRUAL_GUARD_READY",
+  "zero_future_dominant_debt_clearance_endpoint": {
+    "future_nondominant_pairs": 657,
+    "maximum_pairs_per_task": 823,
+    "nondominant_task_allocation_capacities": [
+      {
+        "current_pairs": 101,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 722,
+        "task": "AI4Code"
+      },
+      {
+        "current_pairs": 38,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 785,
+        "task": "alaska2-image-steganalysis"
+      },
+      {
+        "current_pairs": 12,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 811,
+        "task": "aptos2019-blindness-detection"
+      },
+      {
+        "current_pairs": 14,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 809,
+        "task": "billion-word-imputation"
+      },
+      {
+        "current_pairs": 30,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 793,
+        "task": "cassava-leaf-disease-classification"
+      },
+      {
+        "current_pairs": 28,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 795,
+        "task": "cdiscount-image-classification-challenge"
+      },
+      {
+        "current_pairs": 35,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 788,
+        "task": "dog-breed-identification"
+      },
+      {
+        "current_pairs": 118,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 705,
+        "task": "dogs-vs-cats-redux-kernels-edition"
+      },
+      {
+        "current_pairs": 55,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 768,
+        "task": "facebook-recruiting-iii-keyword-extraction"
+      },
+      {
+        "current_pairs": 29,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 794,
+        "task": "google-quest-challenge"
+      },
+      {
+        "current_pairs": 15,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 808,
+        "task": "hubmap-kidney-segmentation"
+      },
+      {
+        "current_pairs": 20,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 803,
+        "task": "imet-2020-fgvc7"
+      },
+      {
+        "current_pairs": 1,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 822,
+        "task": "kuzushiji-recognition"
+      },
+      {
+        "current_pairs": 27,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 796,
+        "task": "learning-agency-lab-automated-essay-scoring-2"
+      },
+      {
+        "current_pairs": 60,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 763,
+        "task": "lmsys-chatbot-arena"
+      },
+      {
+        "current_pairs": 185,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 638,
+        "task": "multi-modal-gesture-recognition"
+      },
+      {
+        "current_pairs": 86,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 737,
+        "task": "new-york-city-taxi-fare-prediction"
+      },
+      {
+        "current_pairs": 4,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 819,
+        "task": "plant-pathology-2021-fgvc8"
+      },
+      {
+        "current_pairs": 17,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 806,
+        "task": "random-acts-of-pizza"
+      },
+      {
+        "current_pairs": 62,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 761,
+        "task": "ranzcr-clip-catheter-line-classification"
+      },
+      {
+        "current_pairs": 278,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 545,
+        "task": "tensorflow-speech-recognition-challenge"
+      },
+      {
+        "current_pairs": 9,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 814,
+        "task": "tensorflow2-question-answering"
+      },
+      {
+        "current_pairs": 45,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 778,
+        "task": "text-normalization-challenge-russian-language"
+      },
+      {
+        "current_pairs": 275,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 548,
+        "task": "tgs-salt-identification-challenge"
+      },
+      {
+        "current_pairs": 1,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 822,
+        "task": "tweet-sentiment-extraction"
+      },
+      {
+        "current_pairs": 38,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 785,
+        "task": "us-patent-phrase-to-phrase-matching"
+      },
+      {
+        "current_pairs": 90,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 733,
+        "task": "uw-madison-gi-tract-image-segmentation"
+      },
+      {
+        "current_pairs": 131,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 692,
+        "task": "ventilator-pressure-prediction"
+      },
+      {
+        "current_pairs": 8,
+        "maximum_future_pairs_at_debt_clearance_endpoint": 815,
+        "task": "whale-categorization-playground"
+      }
+    ],
+    "resulting_total_pairs": 3292
+  }
+}

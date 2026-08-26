@@ -51,6 +51,12 @@
   "replacement": {
     "protocol_path": "phase1/task_balance_structural_only_protocol_v2.json",
     "status_at_registry_freeze": "SOURCE_AND_TESTS_IMPLEMENTED_FORMAL_PROMOTION_PENDING",
-    "forbidden_dependency": "prediction escrow coverage matrix"
+    "formal_status": "INDEPENDENT_STRUCTURAL_ONLY_TASK_BALANCE_FORWARD_PASS",
+    "formal_source_commit": "1b9b8365f1b2067c9ebb27c20d29b6844bc79f3a",
+    "formal_result_path": "phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/forward_validation.json",
+    "formal_forward_sha256": "fca979bb912c61bb14385638069a64aefcb8a7b9bc41cb77c260d07075ea0fb1",
+    "formal_independent_sha256": "00f8fec272705d0d5dfe072f2e0e59efa170913900249a506c829b693f102146",
+    "forbidden_dependency": "prediction escrow coverage matrix",
+    "v1_provenance_retroactively_repaired": false
   }
 }

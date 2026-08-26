@@ -1,0 +1,43 @@
+{
+  "access_attestation": {
+    "gpu_or_api_calls": 0,
+    "outcomes_or_prediction_values_read": false,
+    "randomness_used": false,
+    "raw_archive_payload_read": false
+  },
+  "checks": {
+    "baseline_guard_independently_verified": true,
+    "both_accumulator_sources_recomputed": true,
+    "cap_failure_preserved": true,
+    "causal_and_effect_claims_forbidden": true,
+    "chronology_membership_exact": true,
+    "current_total_receipt_cross_check_exact": true,
+    "debt_accounting_identity_exact": true,
+    "no_prediction_matrix_input": true
+  },
+  "forward_result_sha256": "fca979bb912c61bb14385638069a64aefcb8a7b9bc41cb77c260d07075ea0fb1",
+  "inputs": {
+    "baseline_accumulator_summary_sha256": "ad3e8fe4180fd6c6f7fcea121ef0c51c0f292445d77368e2b3ab4dc9a56d4585",
+    "baseline_first960_runs_sha256": "43b1f16d5326fad5de490a5b63bd8a6f3c454ad303c031cd1fb54e607919cf83",
+    "baseline_guard_independent_verification_sha256": "62f5fa00ad4535c0e6e8706daf62f5408ac4fa407506f761b42840d1c115310c",
+    "baseline_guard_sha256": "2ffa91a5e10f17f31c1a79f51a69d2f4e2331353e9ac9cfab14c6c40352cd177",
+    "baseline_snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+    "current_accumulator_summary_sha256": "bc03570594dca4acf36f7068fd7f185e7e3121f8d759d8d9c5bf81e91151aa15",
+    "current_first960_runs_sha256": "09e3f63b2ae274e6a769ff26fdbcd400a55cacbf6719c3b71063c0c84664bcd1",
+    "current_receipt_common_support_verification_sha256": "24a7ff758d391f4fd506236df97f1a9d6692ddb965cab490e6e92475e2cb012e",
+    "current_snapshot_sha256": "8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248"
+  },
+  "protocol": "independent_task_balance_guard_forward_validation_v2",
+  "recomputed": {
+    "baseline_debt": 657,
+    "baseline_pairs": 2635,
+    "current_debt": 645,
+    "current_dominant_share": 0.308529945553539,
+    "current_pairs": 2755,
+    "debt_delta": -12,
+    "future_dominant_pairs": 27,
+    "future_nondominant_pairs": 93,
+    "new_runs": 27
+  },
+  "status": "INDEPENDENT_STRUCTURAL_ONLY_TASK_BALANCE_FORWARD_PASS"
+}

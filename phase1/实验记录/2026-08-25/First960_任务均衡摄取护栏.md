@@ -1,5 +1,10 @@
 # first-960 任务均衡摄取护栏
 
+> **2026-08-26 provenance 撤回：** 本文 v1 guard 实际直接依赖已读取/聚合 prediction values 的 coverage matrix，故下文
+> “没有读取 prediction values/仅结构 metadata”不成立。657-pair 算术未被证明错误，并已由 structural-only v2 从
+> accumulator summary + first-960 ledger + independent structural gate 独立恢复。新证据见
+> `phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/README.md`；旧文件只作历史审计链。
+
 ## 给学长的一页结论
 
 first-960 的结构门早已冻结为“任一任务不得超过 canonical sibling pairs 的 25%”。截至最终 0823 snapshot，

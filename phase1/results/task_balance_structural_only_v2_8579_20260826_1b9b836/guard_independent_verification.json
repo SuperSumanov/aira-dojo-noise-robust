@@ -1,0 +1,28 @@
+{
+  "access_attestation": {
+    "gpu_or_api_calls": 0,
+    "outcomes_or_prediction_values_read": false,
+    "randomness_used": false,
+    "raw_archive_payload_read": false
+  },
+  "guard_sha256": "2ffa91a5e10f17f31c1a79f51a69d2f4e2331353e9ac9cfab14c6c40352cd177",
+  "protocol": "independent_prospective_task_balance_accrual_guard_v2",
+  "recomputed_current": {
+    "dominant_pairs": 823,
+    "dominant_share": 0.31233396584440226,
+    "dominant_task": "osic-pulmonary-fibrosis-progression",
+    "gate_pass": false,
+    "maximum_share": 0.25,
+    "pairs": 2635,
+    "tasks": 30
+  },
+  "recomputed_minimum_nondominant_pairs": 657,
+  "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+  "source_checks": {
+    "independent_structural_gate_cross_checked": true,
+    "ledger_counts_recomputed": true,
+    "snapshot_path_binding_exact": true,
+    "summary_ledger_binding_exact": true
+  },
+  "status": "INDEPENDENT_STRUCTURAL_ONLY_TASK_BALANCE_GUARD_PASS"
+}

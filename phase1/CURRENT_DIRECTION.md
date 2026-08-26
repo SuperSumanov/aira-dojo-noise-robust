@@ -30,7 +30,16 @@ fresh Linux focused/full 都是硬门。
 v1 的 657→645 已为操作者所知，所以 v2 明确是 provenance repair，不是 blind numerical discovery；即使复现，也不能
 追溯恢复 v1 合规性。协议与预注册记录：
 
+formal v2 已从公开 commit `1b9b8365f1b2067c9ebb27c20d29b6844bc79f3a` 的 fresh no-smudge Linux worktree
+全量通过：focused/full=`4/1113 passed`，guard/forward producer A/B 与 non-importing verifier A/B 均逐字节一致，
+postformal verifier A/B 又与 formal verifier 完全相同；forbidden-open/credential hits=`0/0`。纯结构链独立恢复
+baseline/current pairs=`2635/2755`、债务=`657/645`、delta=`-12`、current OSIC share=
+`0.308529945553539`；25% cap 及即时动作遵从仍失败。guard/forward independent SHA-256 分别为
+`62f5fa00...15310c` / `00f8fec2...102146`，formal/postformal manifest 为 `b1405cd4...005135` /
+`8b90eab9...cb0166`。这恢复相应结构算术主张，不恢复 v1 provenance，也不提供 predictor effect。
+
 - `phase1/task_balance_structural_only_protocol_v2.json`；
+- `phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/README.md`；
 - `phase1/实验记录/2026-08-26/TaskBalance_预测矩阵污染传播与StructuralOnlyV2预注册.md`。
 
 ## 0GF. 2026-08-26 旧 prediction coverage matrix 因预闭包聚合预测值撤回；替代协议先行冻结
@@ -103,6 +112,9 @@ outcome/effect/GPU/API/base-update=`未读/未计算/0/0/0`。直接证据：
 - `phase1/实验记录/2026-08-26/First960_暂定集合churn与PredictionEscrow完整性_正式裁决.md`。
 
 ## 0GD. 2026-08-26 冻结 task-balance guard 首次前瞻记账精确；债务改善但 cap 与遵从仍失败
+
+> **provenance 勘误：** 本节原 v1 artifacts 依赖 value-reading matrix，已按 0GG 撤回其严格零 prediction-value
+> 合规性；相同算术已由 0GG structural-only v2 独立恢复。以下 v1 过程仅作历史审计链。
 
 把 0FX 在 `7cda` outcome 前冻结的 25% dominant-task pair-share guard 应用于后续 `8579` structural exact-common
 inventory。新增 27 runs / 120 pairs，其中 27 个 OSIC、93 个非 OSIC；旧整数 envelope 精确给出
@@ -256,6 +268,9 @@ common support、label/coverage/cost audit 与不可变可重建发布。直接�
 - `phase1/实验记录/2026-08-25/AgenticBenchmarkChecklist_交叉审计与主张收紧.md`。
 
 ## 0FX. 2026-08-25 first-960 当前有 657-pair 任务均衡债务；摄取改用逐任务前瞻护栏
+
+> **provenance 勘误：** 本节原 guard v1 直接读取已撤回 matrix，故旧“仅结构 metadata”表述不成立；657-pair
+> 算术已由 0GG structural-only v2 从 accumulator+ledger+independent gate 重新建立。
 
 固定结构门要求任一任务的 canonical sibling-pair share 不超过 0.25。snapshot `7cdaefcf...` 的 2,635 pairs 中，
 OSIC 有 823 个，占 `0.31233396584440226`，因此当前未通过。令未来非 OSIC / OSIC pairs 分别为 `x/y`，精确整数

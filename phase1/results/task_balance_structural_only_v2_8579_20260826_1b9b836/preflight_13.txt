@@ -1,0 +1,13 @@
+PREFLIGHT_01_QUESTION=Can structural-only sources reproduce guard v2 and forward debt accounting?
+PREFLIGHT_02_ESTIMAND=25-percent dominant-task pair-share integer envelope and later structural debt
+PREFLIGHT_03_PRIMARY=exact independent reconstruction; no statistical effect
+PREFLIGHT_04_COHORT=baseline 7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1 to current 8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248
+PREFLIGHT_05_SPLIT=chronological provisional first-960; membership unchanged
+PREFLIGHT_06_INPUTS=gate ca44845bc0f5feaf5de0e77ec658e4b0cca3f5a451b75b33bb4c63acfc1eccca; baseline summary/ledger ad3e8fe4180fd6c6f7fcea121ef0c51c0f292445d77368e2b3ab4dc9a56d4585/43b1f16d5326fad5de490a5b63bd8a6f3c454ad303c031cd1fb54e607919cf83; current summary/ledger bc03570594dca4acf36f7068fd7f185e7e3121f8d759d8d9c5bf81e91151aa15/09e3f63b2ae274e6a769ff26fdbcd400a55cacbf6719c3b71063c0c84664bcd1; receipt 24a7ff758d391f4fd506236df97f1a9d6692ddb965cab490e6e92475e2cb012e
+PREFLIGHT_07_FORBIDDEN=prediction pair/value/matrix; label/outcome/raw archive/effect
+PREFLIGHT_08_CONTROLS=producer A/B; non-importing verifier A/B; tamper tests
+PREFLIGHT_09_RANDOMNESS=none
+PREFLIGHT_10_RESOURCES=CPU only; GPU/API/model-fit/base-update 0/0/0/0
+PREFLIGHT_11_FAILURE=any binding, count, chronology, A/B, trace, credential, or test failure
+PREFLIGHT_12_OUTPUT=immutable JSON receipts plus traces and SHA256SUMS
+PREFLIGHT_13_CLAIM=provenance repair only; no causal, accuracy, or utility claim

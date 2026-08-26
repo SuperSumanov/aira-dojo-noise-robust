@@ -1,5 +1,9 @@
 # First-960 任务均衡护栏：首次前瞻核验结果
 
+> **2026-08-26 provenance 撤回：** 本文 v1 forward 绑定了 tainted v1 guard 与 value-reading current coverage matrix，
+> 所以旧“未读取 prediction values”attestation 不成立。相同 657→645、delta −12 算术已由 structural-only v2 独立恢复；
+> 新证据见 `phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/README.md`。本文仅保留历史过程。
+
 **日期：** 2026-08-26
 
 **确认人口状态：** 366/960，closure 未成立

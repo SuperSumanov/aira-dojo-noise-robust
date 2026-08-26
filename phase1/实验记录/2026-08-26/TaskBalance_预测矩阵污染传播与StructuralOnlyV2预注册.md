@@ -41,3 +41,24 @@ v1 已经显示过 657→645、债务 −12 等算术。因此 v2 不是 blind n
 任一输入 hash/path/snapshot 绑定失败；summary/ledger/gate/receipt 数量不一致；ledger 出现非结构字段；安全字段显示
 prediction/outcome access；chronology set/subsequence/row identity 失败；A/B 不一致；独立复核不一致；forbidden file open 或
 credential hit 非零，均须 fail-closed。GPU/API/model-fit/base-LLM update 固定为 0。
+
+## 5. 预注册后的 formal 结果
+
+公开 source commit=`1b9b8365f1b2067c9ebb27c20d29b6844bc79f3a`。fresh no-smudge Linux focused/full=
+`4 passed` / `1113 passed, 47 warnings`。guard 与 forward 的 producer A/B、non-importing verifier A/B 均逐字节一致；
+postformal verifier A/B 又分别与 formal verifier 逐字节一致。forbidden file opens、credential filename/content hits 均为 0，
+GPU/API/model-fit/base-update=`0/0/0/0`。
+
+结构源独立恢复：baseline 2,635 pairs、OSIC 823、share=`0.31233396584440226`、debt=657；current 2,755
+pairs、OSIC 850、share=`0.308529945553539`。新增 dominant/non-dominant pairs=`27/93`，故冻结恒等式与当前逐任务
+重算均为 debt=645，delta=−12。25% cap 仍失败，且 debt 清零前新增 dominant pairs，因此即时动作状态仍为
+`DEFINITELY_NOT_ADHERED_BEFORE_DEBT_CLEARANCE`。
+
+guard/independent SHA-256=`2ffa91a5...52cd177` / `62f5fa00...15310c`；forward/independent=
+`fca979bb...ea0fb1` / `00f8fec2...102146`；formal/postformal manifest=`b1405cd4...005135` /
+`8b90eab9...cb0166`。结果包：
+`phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/`。
+
+首次 formal 已完成 4/1113 tests 与 A/B，但 credential regex 无左边界，把目录名内部的 `sk-...` 字符串误报为 key，
+因此按约定 fail-closed、不提升。修复只收紧为 boundary-aware regex 并加入正/负自检；新 commit/new output 从头重跑。
+本次一致性只恢复结构算术主张，绝不追溯恢复 v1 provenance。

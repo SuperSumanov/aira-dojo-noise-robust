@@ -55,13 +55,13 @@ def counts(value: Any, label: str) -> dict[str, int]:
 
 def hhi(value: dict[str, int]) -> float:
     total = sum(value.values())
-    return sum((count / total) ** 2 for count in value.values())
+    return math.fsum((count / total) ** 2 for count in value.values())
 
 
 def tv(left: dict[str, int], right: dict[str, int]) -> float:
     left_total = sum(left.values())
     right_total = sum(right.values())
-    return 0.5 * sum(
+    return 0.5 * math.fsum(
         abs(left.get(task, 0) / left_total - right.get(task, 0) / right_total)
         for task in set(left) | set(right)
     )

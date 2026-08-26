@@ -49,6 +49,11 @@
   parent-child/sibling/same-run-other=`4078/50/2941`，cross-run/cross-task=`0/0`。0.95 下 2,758 pairs 仍无
   cross-run edge。producer/verifier A/B、384-doc brute force、focused/full=`13/1163 passed` 和禁读/密钥门均通过。
   这是“高相似演化严格 lineage-local”的 D&B 正资产，不是 semantic uniqueness 或 predictor effect；closure 后重跑。
+- 下一项 historical-v11-train↔prospective-first960 bipartite fuzzy-overlap 已在真实 similarity 前冻结：历史侧固定
+  5,816 train rows/5,519 unique endpoints/333 runs/23 tasks；同一 token-5gram、0.85/0.95 定义，成功门为两侧
+  coverage≥0.99、future affected≤1%、cross-task≤0.5%、无大跨任务 component 与 256×256 brute-force 一致。
+  producer/non-importing verifier 的 14 项合成测试已通过；尚未计算真实 edge。只读 historical identity/code，前瞻
+  label/outcome/prediction 仍为零访问；通过也仅是 lexical train→future independence 资产，closure 后重跑。
 
 ## 0A. 13:31 历史动态状态（被上文覆盖）
 

@@ -13,6 +13,25 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GK. 2026-08-26 historical v11 train ↔ first-960 fuzzy overlap 已结果前预注册
+
+0GJ 只证明 prospective prefix 内部的高 lexical 相似代码严格局限于同一 run，不能排除历史 critic train code 与未来
+评测 code 近重复。新 bipartite 审计把历史侧冻结为 v11 b0/b1/b2 的全部 `intask_split=train`：5,816 rows、
+5,519 unique endpoints、333 physical runs、23 tasks；三份 pair normalized-LF SHA 与 305,750,663-byte historical
+cards SHA 均写入 schema。历史 JSON 中虽含回顾性 label/observation 字段，审计只使用 identity/run/task/parent/code，
+只主张这些字段未用于计算，不能声称历史文件未打开。
+
+在任何真实 historical↔prospective similarity 前，表示继续冻结为 token 5-gram+BLAKE2b-128、Jaccard 0.85 primary/
+0.95 strict、minimum 20 distinct shingles，并加 fail-closed dependency contract。成功门为两侧 coverage 各≥0.99、
+prospective affected≤1%、cross-task prospective affected≤0.5%、无 size≥10 且跨≥3 tasks component，以及固定
+256×256 subset 的 exact brute-force 一致。失败不得换阈值、删 task/run 或用 strict/subset rescue。
+
+producer 与不 import 新 producer 的 verifier 已通过 14 项 synthetic/exhaustive/adversarial tests；真实 candidate、edge、
+component 与 gate 尚未计算。正式件只能在公开 source commit 的 fresh no-smudge Linux worktree 中生成；前瞻
+label/outcome/prediction/effect 保持零访问，CPU-only。即使通过，也只支持 train→future lexical overlap 较低，不证明
+semantic/pretraining contamination absence 或 predictor effect；first-960+closure 后必须重跑。预注册：
+`phase1/实验记录/2026-08-26/HistoricalTrain_First960_FuzzyOverlap_v1_结果前预注册.md`。
+
 ## 0GJ. 2026-08-26 first-960 token-shingle 近重复审计 formal 全门通过
 
 现有 clone 资产只覆盖 raw/token/AST 规范化后的 exact fingerprint，明确不能排除 fuzzy/语义近重复。新审计不把

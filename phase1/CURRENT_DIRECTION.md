@@ -13,6 +13,22 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GN. 2026-08-27 historical train ↔ first-960 identifier-erased overlap 已结果前预注册
+
+0GL 的 lexical audit 明确不能排除 identifier-renamed clones。新审计在任何真实相似度前固定更激进表示：Python tokenizer
+删除 comment/layout，hard keyword/operator 保留，其他 NAME→`<IDENT>`，number/string→固定 token；继续使用 token
+5-gram、BLAKE2b-128、minimum 20 distinct shingles、0.85 primary / 0.95 strict 和 256×256 brute-force control。
+
+历史人口仍为 5,519 endpoints，前瞻仍为 chronological first-960 prefix；不按 task/run 过滤 candidates。通过门固定为两侧
+coverage≥0.99、prospective affected≤1%、cross-task affected≤0.5%、无 size≥10 且跨≥3 tasks component，并要求
+producer/verifier 全 aggregates/digests 一致。任一失败不得改表示、阈值、人口或 snapshot rescue。
+
+12 项 synthetic/adversarial tests 已在不读取真实结果时通过：alpha-renaming+literal-change 正控 Jaccard=1、结构无关负控
+低于 0.85、两个独立 tokenizer/shingler 一致、prefix join 与 brute force 一致、hash-seed 无关。相关工作已覆盖 code
+dedup 与 identifier abstraction，因此本项只定位为 run-aware MLE-agent benchmark-integrity extension，不主张新 clone
+detector 或 semantic equivalence。真实 formal 尚未运行；当前仍 closure=false，最终 first-960+closure 后必须原协议重跑。
+预注册：`phase1/实验记录/2026-08-27/HistoricalTrain_First960_IdentifierErasedOverlap_v1_结果前预注册.md`。
+
 ## 0GM. 2026-08-27 archive alias 显式处置完成，公开 monitor 与 outcome-blind 摄取链恢复
 
 0GL 末尾的 8 个固定 source-path aliases 已完成独立处置。8/8 alias 与各自 canonical committed transaction 逐字节

@@ -1,0 +1,28 @@
+{
+  "status": "REJECTED_OVERSTRONG_BYTE_PREFIX_INVARIANT",
+  "attempt_root": "/research/d7/spc/yzyang4/task-balance-forward-8579/extraction-v1",
+  "failed_assertion": "current_run_ledger_bytes.startswith(baseline_run_ledger_bytes)",
+  "diagnosis": {
+    "baseline_runs": 339,
+    "current_runs": 366,
+    "raw_byte_prefix": false,
+    "whole_row_equal_prefix": false,
+    "old_run_id_set_subset_of_current": true,
+    "old_run_id_sequence_is_subsequence": true,
+    "old_rows_equal_when_joined_by_run_id": true,
+    "missing_old_run_ids": 0,
+    "new_run_ids": 27,
+    "new_runs_before_old_baseline_tail": 2
+  },
+  "resolution": "The byte-prefix check was not retried or silently weakened. The corrected invariant follows the frozen total order: preserve every old run, preserve old relative order as a subsequence, and preserve each old row by run_id; later-arriving runs may be inserted before the previous provisional tail.",
+  "claim_boundary": {
+    "append_only_membership_failure": false,
+    "file_byte_prefix_required": false,
+    "failure_preserved": true
+  },
+  "access_attestation": {
+    "outcomes_or_prediction_values_read": false,
+    "raw_archive_payload_read": false,
+    "gpu_or_api_calls": 0
+  }
+}

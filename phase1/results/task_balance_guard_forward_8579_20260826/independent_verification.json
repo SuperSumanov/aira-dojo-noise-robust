@@ -1,0 +1,29 @@
+{
+  "access_attestation": {
+    "gpu_or_api_calls": 0,
+    "outcomes_or_prediction_values_read": false,
+    "randomness_used": false,
+    "raw_archive_payload_read": false
+  },
+  "checks": {
+    "access_firewall_exact": true,
+    "causal_and_effect_claims_forbidden": true,
+    "chronology_membership_exact": true,
+    "debt_accounting_identity_exact": true,
+    "descriptive_metrics_recomputed": true,
+    "frozen_cap_failure_preserved": true,
+    "nonadherence_preserved": true
+  },
+  "forward_result_sha256": "58126971bc846fa14561d3665a824c19b16a6dc2cf96da6e1fea378ff843e799",
+  "guard_sha256": "fd87246bb3656befba27de5a98c88f808ca39e178e7322d27ae9536fe4a751b0",
+  "observed_structural_input_sha256": "0422e068eba42f6769dd4edbe41b17a5c058804108febd8068518c28098c095e",
+  "protocol": "independent_task_balance_guard_forward_validation_v1",
+  "recomputed": {
+    "baseline_debt": 657,
+    "current_debt": 645,
+    "debt_delta": -12,
+    "future_dominant_pairs": 27,
+    "future_nondominant_pairs": 93
+  },
+  "status": "INDEPENDENT_TASK_BALANCE_FORWARD_VALIDATION_PASS"
+}

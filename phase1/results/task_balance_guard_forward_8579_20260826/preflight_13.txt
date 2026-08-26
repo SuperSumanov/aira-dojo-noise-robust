@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol; no closed HCE multifidelity probe or score-channel effect revival
+PREFLIGHT_02_GOAL=apply the frozen 7cda task-balance guard to the later 8579 structural exact-common pair inventory
+PREFLIGHT_03_CONFIRMATORY=only the old 25-percent cap integer debt envelope all-task constraint observed-pair unit and immediate action are confirmatory
+PREFLIGHT_04_DISCLOSURE=8579 totals and broad metric direction were seen during operations; HHI and TV are descriptive secondary and not new preregistered gates
+PREFLIGHT_05_INPUTS=guard fd87246b; safe structural input 0422e068; current runs 09e3f63b; current coverage matrix 45741980
+PREFLIGHT_06_FIXED=cap one-quarter dominant task from baseline chronological first-960 membership pair identity common-support arm and truth firewall
+PREFLIGHT_07_CHRONOLOGY=old run set must be contained old order must be a subsequence and same run_id rows must be unchanged; raw byte prefix is diagnostic only
+PREFLIGHT_08_SUCCESS=hash and access checks pass and frozen-envelope predicted debt equals independently recomputed current debt
+PREFLIGHT_09_FAILURE=negative increments chronology failure hash mismatch access violation or arithmetic mismatch fails closed without task deletion snapshot swap or cap change
+PREFLIGHT_10_CLAIMS=no causal acquisition effect producer compliance predictor accuracy search utility p-value or rescue by descriptive HHI and TV
+PREFLIGHT_11_REPRO=producer plus algebraically independent verifier deterministic JSON two hash seeds fresh detached Linux worktree and full tests
+PREFLIGHT_12_RESOURCES=single CPU; GPU API model fit and base-LLM update all zero; ETA 15-30 minutes
+PREFLIGHT_13_SECURITY=structural ledgers and coverage only; no label grade outcome orientation prediction value raw archive checkpoint or credential access

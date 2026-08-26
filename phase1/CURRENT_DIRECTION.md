@@ -1,4 +1,4 @@
-# 当前研究方向唯一入口（2026-08-26）
+# 当前研究方向唯一入口（2026-08-27）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
@@ -12,6 +12,24 @@
 > 支持审计改写；所有更早“唯一主实验”“主线已确认”措辞均按本段降为历史状态。
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
+
+## 0GM. 2026-08-27 archive alias 显式处置完成，公开 monitor 与 outcome-blind 摄取链恢复
+
+0GL 末尾的 8 个固定 source-path aliases 已完成独立处置。8/8 alias 与各自 canonical committed transaction 逐字节
+相同，合计 183,409,093 bytes；固定 reason=`ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION` 写入 observation ledger
+后，transactions 仍为 86，SHA-256=`a8a44574...2160`，snapshot=`8579d7cd...d9248`，first-960 暂定人口仍为
+366 runs / 10,683 endpoints / 2,755 pairs。fresh post-verifier 和 partition verifier 通过；禁读 `open/openat=0`，
+label/outcome/prediction value/utility 未读取，tar members 未解包。
+
+formal-v1 的实质步骤已完成，但 broad filename gate 把 Git status 的 6 次 `newfstatat` 元数据检查误报为禁读；该根
+保持无 `COMPLETE`。可引用完成件是独立 postflight-v2，manifest=`1fa3c81c...3a8625`。公开 alias-bound monitor
+commit=`bc362dfe...b6ee0` 在 fresh Linux 通过 focused/full=`32/1196 passed`，提交凭据扫描=`0/0`。live poll 0
+通过且 snapshot/transactions 不变；observed archive paths 从 234 增至 246，但 `ready=0`，所以只能说新增 12 路径
+进入稳定性观察，不能说已有新 run。transition snapshot chain 已从 8579 state 恢复；WL/receipt/config 与 successor
+supervisor 仍 live。未知 content alias 继续 fail-closed；本修复不提供 predictor effect。
+
+结果包：`phase1/results/archive_content_alias_disposition_8579_20260827_9b7640a/`；结果前协议：
+`phase1/实验记录/2026-08-26/Archive_Content_Alias_Disposition_v1_结果前预注册.md`。
 
 ## 0GL. 2026-08-26 historical v11 train ↔ provisional first-960 lexical independence formal 全门通过
 

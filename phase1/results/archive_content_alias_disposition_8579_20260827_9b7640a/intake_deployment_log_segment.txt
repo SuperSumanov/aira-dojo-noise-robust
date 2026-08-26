@@ -1,0 +1,3 @@
+2026-08-26T21:40:28Z poll_start=0
+PROSPECTIVE_ARCHIVE_OBSERVATION_COMPLETE archives=246 baseline=128 ready=0 rejected=20 transactions=86 outcomes_read=false
+2026-08-26T21:40:35Z poll_end=0 rc=0

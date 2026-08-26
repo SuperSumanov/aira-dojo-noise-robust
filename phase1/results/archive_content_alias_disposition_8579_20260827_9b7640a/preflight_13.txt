@@ -1,0 +1,13 @@
+PREFLIGHT_01_GOAL=independently certify the already-applied fixed eight-path archive-content alias disposition
+PREFLIGHT_02_ESTIMAND=deterministic byte identity and ledger invariants; no model effect
+PREFLIGHT_03_SOURCE_COMMIT=9b7640ae44bd4fabb0b06a28cc1887eec3983adf; production commit=90842c49dbd73d41d405a5ecdad2224ee447b375
+PREFLIGHT_04_INPUT=frozen declaration, immutable v1 artifacts, current observation metadata, transaction registry, alias and canonical whole-file bytes
+PREFLIGHT_05_FORBIDDEN=tar extraction, journal/member reads, label, outcome, grade, prediction value, effect, utility, env
+PREFLIGHT_06_CONTROL=unknown duplicates remain fail-closed; only the declared eight aliases are accepted
+PREFLIGHT_07_SAMPLE=exhaustive 8/8, no sampling or optional stopping
+PREFLIGHT_08_RANDOMNESS=none; PYTHONHASHSEED=0 and numerical threads=1
+PREFLIGHT_09_INFERENCE=exact identity/invariant checks only; no significance claim
+PREFLIGHT_10_EXPECTED_STATE=snapshot=8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248; transactions=86; runs=366; endpoints=10683; pairs=2755; pending=0
+PREFLIGHT_11_FAILURE_HISTORY=v1 remains without COMPLETE; six stat-only filename touches are recorded, while actual forbidden open/openat calls must be zero
+PREFLIGHT_12_RESOURCES=CPU-only; GPU/API/model_fit/base_update=0/0/0/0; expected under 10 minutes
+PREFLIGHT_13_PROMOTION=fresh verifier, partition recheck, v1 hash manifest, access audit, credential scan, and clean repos all pass before COMPLETE

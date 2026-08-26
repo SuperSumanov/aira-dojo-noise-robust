@@ -1,0 +1,12 @@
+status=PUBLIC_ALIAS_MONITOR_POSTPUSH_PASS
+source_commit=bc362dfe95287f199f6bc4a1dc8f781f3b1b6ee0
+alias_registry_sha256=080a6df133c8b8184267f074e0620b2a9ebf1d21616b0dfb7674eebad2c28dcb
+alias_postflight_manifest_sha256=1fa3c81c257316d2c2886ddbd36f72e60f1d8ed85f889450916e4d59de3a8625
+focused_tests=32 passed in 0.51s
+full_tests=1196 passed, 47 warnings in 78.87s (0:01:18)
+shell_syntax=pass
+commit_filename_secret_hits=0
+commit_blob_secret_hits=0
+numerical_threads=1
+failed_v1_preserved=true
+gpu_api_model_fit_base_update=0/0/0/0

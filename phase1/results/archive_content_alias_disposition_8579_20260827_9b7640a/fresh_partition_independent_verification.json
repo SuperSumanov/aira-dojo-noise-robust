@@ -1,0 +1,27 @@
+{
+  "outcomes_or_predictions_read": false,
+  "partition_receipt_sha256": "66ddf28bb7bd90641b5ec303731e7753e828b60963c1805424a34354f29e3e23",
+  "protocol": "independent_prospective_archive_disposition_partition_v1",
+  "randomness_used": false,
+  "recomputed_counts": {
+    "accepted_archive_transactions": 86,
+    "baseline_archives": 128,
+    "observed_archives": 234,
+    "pending_archives": 0,
+    "rejected_archives": 20
+  },
+  "recomputed_mapping_sha256": {
+    "accepted_path_archive_snapshot": "169655b76a5adc4aaa731c3af01ee7ae35fb72c708b4355207599ac06d4e8e73",
+    "all_observed_path_disposition_size_mtime": "2499c2236314e6ba9e8101d3f19a80e1e7483fe0091c4e1cccccdb911eb4390c",
+    "baseline_path_size_mtime": "89a018e123a8da5be968cbeca4e52558e6f91f0bd0340daf4f94da6125e72e3f",
+    "rejected_path_archive_reason_registry": "9a7139af3dbf9ad2587ae0266a8efbd08c1e0f70bebe65772293393509821da9"
+  },
+  "recomputed_reason_counts": {
+    "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION": 8,
+    "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": 1,
+    "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": 2,
+    "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": 9
+  },
+  "source_observations_sha256": "5c50c11785819edd85e9de82c8205809d9c00fcfeb79f210d7583668402d1fe9",
+  "status": "INDEPENDENT_ARCHIVE_DISPOSITION_PARTITION_PASS"
+}

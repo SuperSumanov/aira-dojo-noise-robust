@@ -74,3 +74,19 @@ alias 目录固定为 `0824-这里开始prompt变成system和user两部分/`，c
 若通过，只能写：这 8 个明确声明的 source paths 是已提交归档的逐字节别名，已在不改变 transaction/run/snapshot 的情况下被显式、可审计地处置。
 
 不得写：新目录没有新语料、所有重复都安全、目录名所描述的 prompt 变化不存在，或未来同名文件可自动忽略。
+
+## 7. 结果与恢复记录（2026-08-27 香港时间）
+
+固定 8/8 aliases 全部与 canonical committed transactions 逐字节相同，合计 183,409,093 bytes；显式 reason code
+写入后 transaction count/hash 仍为 `86` / `a8a445744371ae6809cf5eb80071790079875447303d2553874aee5e617a2160`，
+snapshot 仍为 `8579d7cd...d9248`，first-960 暂定人口仍为 366 runs / 10,683 endpoints / 2,755 pairs。
+fresh post-verifier、partition verifier 与语义门全部通过；label/outcome/prediction value/utility/tar-member 读取为 0。
+
+formal-v1 的最终 broad filename gate 把 Git status 的 6 次 `newfstatat` 误计为禁读，故其目录诚实保持无
+`COMPLETE`；独立 postflight-v2 证明实际 forbidden `open/openat=0` 并在新根完成，manifest SHA-256=
+`1fa3c81c257316d2c2886ddbd36f72e60f1d8ed85f889450916e4d59de3a8625`。
+
+公开 monitor commit=`bc362dfe95287f199f6bc4a1dc8f781f3b1b6ee0` 在 fresh Linux 通过 focused/full=
+`32/1196 passed`。live initialize 与 poll 0 通过；archive path observations=`246`、baseline=`128`、ready=`0`、
+rejected=`20`、transactions=`86`，因此新增 12 个路径尚只处于稳定性观察，不能称作新 run。transition chain 已从
+`8579...d9248` state 恢复并记录首轮 no-change。GPU/API/model-fit/base-update=`0/0/0/0`，outcomes_read=false。

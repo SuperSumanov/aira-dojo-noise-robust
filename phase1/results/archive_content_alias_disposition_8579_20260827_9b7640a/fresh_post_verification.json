@@ -1,0 +1,22 @@
+{
+  "alias_count": 8,
+  "alias_total_bytes": 183409093,
+  "archive_payloads_extracted": false,
+  "byte_identical_aliases": 8,
+  "canonical_transactions": 8,
+  "expected_disposition": "applied",
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "new_transactions_created": 0,
+  "outcomes_read": false,
+  "protocol": "prospective_archive_content_alias_independent_verification_v1",
+  "registry_sha256": "080a6df133c8b8184267f074e0620b2a9ebf1d21616b0dfb7674eebad2c28dcb",
+  "snapshot_sha256": "8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248",
+  "source_commit": "9b7640ae44bd4fabb0b06a28cc1887eec3983adf",
+  "status": "ARCHIVE_CONTENT_ALIAS_REGISTRY_VERIFIED",
+  "transaction_count": 86
+}

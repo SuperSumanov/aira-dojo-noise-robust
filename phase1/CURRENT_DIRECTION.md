@@ -40,6 +40,11 @@ manifest=`ba152f61...8e121d`。新 WL / receipt-only monitors PID=`2374019/23747
 保持；两个旧 WL/value-reading coverage monitors 经精确 cmdline 核验后 TERM，历史 artifacts 全保留。该结果恢复的是合规
 common-support integrity 资产，不恢复旧 orientation/tie/eligibility 主张，也不提供 predictor effect。直接记录：
 
+公开结果 commit=`6d6e24828d525a04c8f209bae2debc47e2d01df5` 又在 fresh detached Linux worktree 通过
+checked-in inner manifest、focused/full=`24/1109 passed`；post-push receipt manifest=
+`9c1770ca6be9264d13b4358ac7b6d45b8dfed53b944fe27166960d2b991c301f`。这只复核公开可复现性，不新增
+prediction/effect 主张。
+
 - `phase1/prediction_receipt_common_support_protocol_v1.json`；
 - `phase1/results/prediction_receipt_common_support_8579_20260826_9f2cbe9/README.md`；
 - `phase1/实验记录/2026-08-26/PredictionEscrowCoverage_预测值访问事故与ReceiptOnly替代预注册.md`。

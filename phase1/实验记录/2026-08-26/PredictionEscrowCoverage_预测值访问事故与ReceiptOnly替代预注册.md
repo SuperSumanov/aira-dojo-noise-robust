@@ -74,3 +74,8 @@ PID `2374019/2374760`；transition PID `2320379` 保持。两个旧 monitor 只�
 
 因此本次允许的正面结论是：未来 paired benchmark 的 exact common support 可在 first-960 closure 前由 receipt chain
 认证，而无需通用审计读取 prediction values。它不是方法效果、accuracy 或 orientation 结论。
+
+公开结果 commit `6d6e24828d525a04c8f209bae2debc47e2d01df5` 随后在 fresh detached Linux worktree 通过
+checked-in inner manifest、focused/full=`24 passed` / `1109 passed, 47 warnings`；post-push manifest=
+`9c1770ca6be9264d13b4358ac7b6d45b8dfed53b944fe27166960d2b991c301f`。该复现只证明公开包可重建，不新增
+科学结论。

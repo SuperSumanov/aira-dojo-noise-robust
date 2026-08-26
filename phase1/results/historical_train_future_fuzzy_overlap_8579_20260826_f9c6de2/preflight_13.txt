@@ -1,0 +1,13 @@
+01_question=At exact provisional snapshot 8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248, how much fixed lexical similarity connects historical v11 critic-train endpoints to future first-960 endpoints? PASS
+02_estimand=Prospective endpoint membership in an exact bipartite Jaccard >=17/20 relation from the frozen 5519-endpoint historical train union. PASS
+03_inputs=Three hash-bound v11 train pair files,exact LFS historical cards,and immutable prospective blind snapshot manifests/receipts. PASS
+04_split_leakage=Historical label/observation fields are unused; prospective label,outcome,prediction,accuracy,utility and senior raw archives are forbidden. PASS
+05_controls=Producer A/B,non-importing verifier A/B,256x256 brute force,0.95 strict sensitivity and 14 synthetic/adversarial tests. PASS
+06_sample_size=All 5519 historical train endpoints versus all fingerprintable endpoints in the 366-run provisional first-960 prefix; no deletion or early stopping. PASS
+07_randomness=No randomness; integer threshold arithmetic,global deterministic ordering and PYTHONHASHSEED=0. PASS
+08_inference=Six corpus-integrity checks fixed before real cross-cohort similarities; no p-value,accuracy,utility or predictor-effect inference. PASS
+09_cost=CPU-only expected under 40 minutes; GPU,API,model-fit,base-LLM-update=0,0,0,0. PASS
+10_resume=Immutable A/B outputs in a unique root; any infrastructure failure leaves no COMPLETE and retry requires a new root. PASS
+11_environment=Fresh detached no-smudge worktree,exact public commit,exact LFS object,project venv and single-thread numerical environment. PASS
+12_security=File traces,forbidden-path scan,boundary-aware credential scan,and no code/card/run/task identity values emitted. PASS
+13_promotion=Only COMPLETE after focused/full,A/B equality,independent equality,trace,security,clean-worktree and manifest gates. PASS

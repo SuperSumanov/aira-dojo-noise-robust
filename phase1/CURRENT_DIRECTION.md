@@ -13,6 +13,29 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GL. 2026-08-26 historical v11 train ↔ provisional first-960 lexical independence formal 全门通过
+
+0GK 的结果前协议已从公开 source commit=`f9c6de27afd933d9ceee04e67acbd51d25947798` 在 immutable
+snapshot=`8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248` 上正式执行。历史侧 5,519/5,519
+train endpoints 可 fingerprint；前瞻侧 10,674/10,683 可 fingerprint，coverage=`0.9991575400168492`。
+
+固定 token 5-gram+BLAKE2b-128、minimum 20 distinct shingles、Jaccard≥0.85 下，exact candidate checks=`2,880`，
+near-duplicate pairs=`0`，same-task/cross-task=`0/0`，两侧 affected endpoints=`0/0`，components=`0`；0.95 strict
+同样为 0。256×256 共 65,536 对 brute-force 控制一致，六个预注册门全部通过。producer A/B、non-importing verifier
+A/B 各自逐字节一致，focused/full=`14/1182 passed`，禁读路径/凭据命中=`0/0`。formal/recheck manifest SHA-256=
+`8b4dc3aef2ada8f848362f049517511bd2658d847f5911f32435206c48c55730` /
+`91e368c6e81e2dd3eb19791f1ed509697bcc29d67fb7c389ee0c34416d6c3713`。
+
+这是当前最干净的新增 D&B benchmark-integrity 正资产：在结果前固定的 lexical 定义下，历史 critic-train code 与
+chronological future prefix 没有高相似链接。边界不变：它不证明 semantic/identifier-renamed/pretraining contamination
+absence，不提供 predictor effect；当前只有 366/960、closure=false，最终 first-960+独立 closure 后必须原协议重跑。
+结果包：`phase1/results/historical_train_future_fuzzy_overlap_8579_20260826_f9c6de2/`。
+
+同日生产侧另出现 8 个新 source paths 与既有 `0824/` basenames/size/mtime 对齐，旧 intake 因首个 content SHA 已存在于
+transaction registry 而 fail-closed。这不是新语料或模型结果。修复只允许对固定 8 路径做 hash-bound 显式 alias
+disposition；未知重复仍 fail-closed，且应用前后必须证明 transaction/run/snapshot 不变。完整 8/8 byte identity 尚未在
+本节声明，须以单独 pre/post independent verifier 的完成件为准。
+
 ## 0GK. 2026-08-26 historical v11 train ↔ first-960 fuzzy overlap 已结果前预注册
 
 0GJ 只证明 prospective prefix 内部的高 lexical 相似代码严格局限于同一 run，不能排除历史 critic train code 与未来

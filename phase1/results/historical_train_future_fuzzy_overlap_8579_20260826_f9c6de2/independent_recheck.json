@@ -1,0 +1,26 @@
+{
+  "candidate_pairs_exactly_checked": 2880,
+  "credential_file_hits": 0,
+  "focused_tests_passed": 14,
+  "forbidden_path_hits": 0,
+  "full_tests_passed": 1182,
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "historical_endpoints": 5519,
+  "manifest_payload_files": 21,
+  "outcomes_read": false,
+  "primary_near_duplicate_pairs": 0,
+  "producer_ab_byte_identical": true,
+  "prospective_endpoints": 10683,
+  "prospective_fingerprinted_endpoints": 10674,
+  "protocol": "historical_train_future_formal_independent_recheck_v1",
+  "snapshot_sha256": "8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248",
+  "source_commit": "f9c6de27afd933d9ceee04e67acbd51d25947798",
+  "status": "INDEPENDENT_RECHECK_COMPLETE",
+  "strict_near_duplicate_pairs": 0,
+  "verifier_ab_byte_identical": true
+}

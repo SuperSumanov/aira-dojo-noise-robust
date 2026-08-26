@@ -1,0 +1,28 @@
+{
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "historical_endpoints": 5519,
+  "historical_label_or_observation_fields_used": false,
+  "imports_new_producer_code": false,
+  "prediction_values_read": false,
+  "primary_candidate_pairs": 2880,
+  "primary_edge_digest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "primary_near_duplicate_pairs": 0,
+  "producer_aggregate_matches": true,
+  "producer_receipt_sha256": "fbba6dbe10937b7376b4bb2b052934bcf1b47cf16610ab2be872d0101ae28194",
+  "prospective_endpoints": 10683,
+  "prospective_outcomes_read": false,
+  "prospective_runs": 366,
+  "protocol": "independent_historical_train_to_prospective_fuzzy_overlap_v1",
+  "snapshot_sha256": "8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248",
+  "status": "INDEPENDENTLY_VERIFIED_PROVISIONAL_HISTORICAL_TRAIN_FUTURE_OVERLAP",
+  "strict_edge_digest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "strict_near_duplicate_pairs": 0,
+  "subset_bruteforce_matches": true,
+  "token_implementation_sha256": "05bf32ce39dbdcf6f0344cb1a736be3aad7516fb9f2640bf26b620dc80bc9d79",
+  "verifier_source_sha256": "8d5a3f678d797bde5dc2c106aacd126f810473a078287e41af738bc97f7f55fd"
+}

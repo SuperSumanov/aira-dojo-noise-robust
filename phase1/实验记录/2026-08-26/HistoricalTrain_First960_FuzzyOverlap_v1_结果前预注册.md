@@ -90,3 +90,27 @@ train→future lexical overlap，并在后续 benchmark protocol 中做 train-ex
 - independent verifier：`phase1/verify_historical_train_future_fuzzy_overlap.py`；
 - focused synthetic tests：`14 passed in 0.22s`；与既有 fuzzy audit 合并：`27 passed in 0.27s`；
 - 真实 candidate/similarity/edge/component/gate：未读取、未计算。
+
+## 6. 正式执行结果（预注册后追加）
+
+正式 source commit=`f9c6de27afd933d9ceee04e67acbd51d25947798`，prospective snapshot=
+`8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248`。fresh no-smudge Linux worktree 先核验
+305,750,663-byte historical cards 与三份 normalized-LF pair SHA，再完成 producer A/B、non-importing verifier A/B、
+file trace、安全扫描和 manifest 封口。
+
+结果为：historical 5,519/5,519 endpoints 可 fingerprint；prospective 10,674/10,683 可 fingerprint，coverage=
+`0.9991575400168492`。0.85 primary 的 exact candidate checks=`2,880`，near-duplicate pairs=`0`，same-task/
+cross-task=`0/0`，两侧 affected endpoints=`0/0`，components=`0`；0.95 strict 同样为 0。固定 256×256 的
+65,536 对 brute-force 控制一致，六个预注册门全部通过。
+
+producer/verifier A/B 各自逐字节一致，独立 verifier 不 import producer 且 aggregate matches=true；focused/full=
+`14/1182 passed`（47 warnings），forbidden-path/credential hits=`0/0`，GPU/API/model-fit/base-update=`0/0/0/0`。
+另一个不修改 formal root 的独立 recheck 对 21 个 manifest payload 与全部固定计数再次通过。formal / recheck manifest
+SHA-256 分别为 `8b4dc3aef2ada8f848362f049517511bd2658d847f5911f32435206c48c55730` /
+`91e368c6e81e2dd3eb19791f1ed509697bcc29d67fb7c389ee0c34416d6c3713`。
+
+裁决为 `FORMAL_PROVISIONAL_HISTORICAL_TRAIN_FUTURE_OVERLAP_COMPLETE` 且
+`strong_low_historical_train_future_overlap_support=true`。允许结论仅是固定 lexical 定义下的 provisional
+train→future 高相似链接为零；不外推 semantic/pretraining contamination absence 或 predictor effect。当前 366/960、
+closure=false，最终 first-960+closure 后必须原协议重跑。公开结果包：
+`phase1/results/historical_train_future_fuzzy_overlap_8579_20260826_f9c6de2/`。

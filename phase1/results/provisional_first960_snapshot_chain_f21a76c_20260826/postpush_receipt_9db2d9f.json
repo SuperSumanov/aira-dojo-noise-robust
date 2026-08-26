@@ -1,0 +1,12 @@
+{
+  "api_calls": 0,
+  "base_llm_updates": 0,
+  "commit": "9db2d9f965b342853bd1ce944dd84051f898ccc9",
+  "effect_metrics_computed": [],
+  "focused_passed": 11,
+  "full_passed": 1093,
+  "gpu_jobs": 0,
+  "outcomes_read": false,
+  "prediction_values_printed": false,
+  "public_result_manifest_entries_verified": 7
+}

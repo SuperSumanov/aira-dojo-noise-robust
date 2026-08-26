@@ -32,6 +32,10 @@ focused/full=`24/1089 passed`，双 receipt 一致；deployable monitor replay f
 independent scorer verifier 与 chain verifier 全部 rc=0；不传 legacy prior 的 2,755-row `pairs.jsonl` 与旧 `8579`
 artifact 逐字相同。两份 formal manifest hash 分别为 `62f90ef5...d16d6b3` / `06b0aaeb...758179e0`。
 
+公开结果 commit=`9db2d9f965b342853bd1ce944dd84051f898ccc9` 的 fresh post-push worktree 再通过 focused/full=
+`11/1093 passed` 与公开包原 7-entry manifest；post-push formal manifest hash=`0d267216...1ef146`。该复现只认证
+公开可复现性，不新增 effect 或真实 churn 主张。
+
 首次 full-suite launcher 未锁 BLAS 线程，在登录节点扩到约 28 CPU 后主动 TERM；只有 staging `FAILURE`、无
 `COMPLETE`。v2 锁定六类线程变量为 1 后通过，首次失败不计证据。旧 transition monitor 的精确 cmdline 核验后已
 TERM，全部历史 artifact 保留；churn-safe monitor PID=`2320379` 从同一 `8579` summary SHA 接管，300 秒×72 polls，

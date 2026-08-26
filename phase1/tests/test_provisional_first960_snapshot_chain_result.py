@@ -15,7 +15,7 @@ def sha256(path: Path) -> str:
 
 def test_result_manifest_is_exact() -> None:
     rows = [line.split("  ", 1) for line in (RESULT / "SHA256SUMS").read_text().splitlines()]
-    assert len(rows) == 7
+    assert len(rows) == 8
     for expected, name in rows:
         assert sha256(RESULT / name) == expected
 
@@ -23,6 +23,7 @@ def test_result_manifest_is_exact() -> None:
 def test_formal_and_deployment_receipts_preserve_exact_boundaries() -> None:
     source = json.loads((RESULT / "source_formal_summary_7017387.json").read_text())
     formal = json.loads((RESULT / "monitor_replay_formal_summary_f21a76c.json").read_text())
+    postpush = json.loads((RESULT / "postpush_receipt_9db2d9f.json").read_text())
     chain = json.loads((RESULT / "monitor_replay_chain_receipt_f21a76c.json").read_text())
     deployed = (RESULT / "deployment_receipt.txt").read_text()
     assert source["focused_passed"] == 24 and source["full_passed"] == 1089
@@ -32,6 +33,10 @@ def test_formal_and_deployment_receipts_preserve_exact_boundaries() -> None:
     assert (formal["added_runs"], formal["removed_runs"]) == (4, 0)
     assert (formal["common_pairs"], formal["current_only_pairs"]) == (2728, 27)
     assert formal["outcomes_read"] is False and formal["effect_metrics_computed"] == []
+    assert postpush["commit"] == "9db2d9f965b342853bd1ce944dd84051f898ccc9"
+    assert (postpush["focused_passed"], postpush["full_passed"]) == (11, 1093)
+    assert postpush["public_result_manifest_entries_verified"] == 7
+    assert postpush["outcomes_read"] is False and postpush["prediction_values_printed"] is False
     assert chain["closure"] == {
         "final_first960_identity": False,
         "support_gate_is_provisional_until_closure": True,

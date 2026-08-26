@@ -31,6 +31,10 @@ append-only source registry 不推出 provisional chronological first-960 member
 - deployable monitor replay：`/research/d7/spc/yzyang4/provisional-first960-chain/f21a76c-monitor-replay-v1`，
   `SHA256SUMS` hash=`06b0aaeb40a5c1206a093745b35fe1e0ae89857fa066960e069cb3aa758179e0`。
 
+公开结果 commit `9db2d9f965b342853bd1ce944dd84051f898ccc9` 的 fresh post-push worktree 又通过
+focused/full=`11/1093 passed`，本目录原 7-entry manifest 全部通过；post-push formal manifest hash=
+`0d267216c7848a2dd9cf7528fef6b63a48dc3876b4277103f51c7a3e681ef146`。它只认证公开可复现性，不新增科学主张。
+
 ## 部署
 
 旧 transition monitor 经精确 cmdline 核验后正常 TERM，历史 artifact 全保留。新 monitor 从同一个 `8579` artifact/SHA

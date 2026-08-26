@@ -92,6 +92,7 @@ byte prefix 不是正确 invariant。fresh Linux focused/full=`15/1080 passed`�
   增删必须由固定 rank 解释；不改 scorer、activation、模型、预测或 estimand。
 - 合成 append/stasis/churn 与篡改反例通过；真实 362→366 shadow 为 added/removed=`4/0`、共同/新增 pairs=`2728/27`。
 - 不传 legacy prior 的真实 monitor replay 与旧 `8579` 2,755-row predictions 逐字相同；focused/full=`25/1090 passed`。
+- 公开结果 commit `9db2d9f` 的 fresh post-push focused/full=`11/1093 passed`，原 7-entry manifest 全通过。
 - churn-safe monitor PID=`2320379`，300 秒×72 polls；旧 artifact 全保留，intake monitor 不变。
 - 当前真实 removed=0，不能声称真实 churn 已发生；closure 前 support gate 仍 provisional，outcome/effect 未读未算。
 

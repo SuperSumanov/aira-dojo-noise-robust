@@ -29,6 +29,10 @@ deployable monitor commit `f21a76c0a56c65eb1f24cafc33db33a65302935a` 随后在�
 2,755-row `pairs.jsonl` 与旧 `8579` artifact 逐字相同。formal manifest hash=
 `06b0aaeb40a5c1206a093745b35fe1e0ae89857fa066960e069cb3aa758179e0`。
 
+公开结果 commit `9db2d9f965b342853bd1ce944dd84051f898ccc9` 随后在 fresh post-push worktree 通过
+focused/full=`11/1093 passed`，公开包原 7-entry manifest 全验；post-push formal manifest hash=
+`0d267216c7848a2dd9cf7528fef6b63a48dc3876b4277103f51c7a3e681ef146`。
+
 第一次 formal full-suite launcher 未显式锁 BLAS 线程，pytest 在登录节点扩到约 28 CPU。发现后主动 TERM；失败目录只有
 `FAILURE`、没有 `COMPLETE`。v2 显式锁定六类线程变量为 1 后通过。该失败是资源契约错误，不混入正式计数。
 

@@ -1,0 +1,58 @@
+{
+  "artifact_policy": {
+    "current_artifact_support": "exact chronological first-960 prefix in its bound immutable snapshot",
+    "immutable_snapshot_artifacts": true,
+    "legacy_prior_survival_argument_on_churn": "must be omitted; legacy subset gate is invalid when selected membership changes",
+    "prediction_intersection": "every endpoint/pair row common to prior and current artifacts must be exactly equal",
+    "support_additions": "every current-only prediction row must belong to a run entering the current first-960 prefix",
+    "support_removals": "every prior-only prediction row must belong to a run displaced beyond rank 959"
+  },
+  "blindness": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "effect_metrics_computed": [],
+    "gpu": 0,
+    "label_or_outcome_inputs": [],
+    "prediction_values_printed": false
+  },
+  "closure": {
+    "effect_or_accuracy_unlock_before_closure": false,
+    "final_identity_requires": [
+      "exactly 960 selected eligible physical runs",
+      "independent accrual closure receipt",
+      "all_scheduled_runs_uploaded=true",
+      "outcomes_read=false"
+    ],
+    "preclosure_support_gate_status": "provisional and reversible under cohort churn"
+  },
+  "cohort_order": {
+    "ascending_fields": [
+      "generation_started_at_utc",
+      "source_sha256",
+      "run_id"
+    ],
+    "target_physical_runs": 960
+  },
+  "escrow_families": {
+    "transition": {
+      "frozen_scorer_commit": "7458f0969b92a258ea0e495bbbee282aa12b748e",
+      "independent_receipt_status": "INDEPENDENT_PROSPECTIVE_TRANSITION_FUTURE_ESCROW_VERIFIED"
+    },
+    "wl_graph": {
+      "frozen_scorer_commit": "031edb34400781ca026bc9833ac7f850312ffb1c",
+      "independent_receipt_status": "INDEPENDENT_PROSPECTIVE_WL_GRAPH_ESCROW_VERIFIED"
+    }
+  },
+  "protocol": "provisional-first960-snapshot-chain-v1",
+  "source_append_invariant": {
+    "file_byte_prefix_required": false,
+    "old_physical_run_rows_exactly_preserved": true,
+    "old_run_id_set_contained": true,
+    "old_run_sequence_is_subsequence": true
+  },
+  "source_paths": [
+    "phase1/provisional_first960_snapshot_chain_protocol_v1.json",
+    "phase1/verify_provisional_first960_snapshot_chain.py",
+    "phase1/tests/test_provisional_first960_snapshot_chain.py"
+  ]
+}

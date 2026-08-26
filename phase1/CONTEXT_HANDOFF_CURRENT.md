@@ -2,12 +2,37 @@
 
 **Last updated:** 2026-08-26
 
-**Dynamic status timestamp:** 2026-08-26 11:40 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-08-26 13:31 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
 **Authority warning:** 本文件不是科学方向的最高权威。开始任何实验前必须先 fetch Git，再读
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
+
+## 0. 13:31 动态覆盖（覆盖下文冲突的旧 monitor/coverage/head 状态）
+
+- GitHub 发布分支精确 HEAD=`ff9d42672da138a7bf9283e3704ef741567a2a94`；最终 fresh Linux 已通过
+  checked-in inner manifest、focused/full=`24/1109 passed`，复现 manifest=
+  `3fa4e2451a6eef55cb9d82e1d53828d7ac303ec4ce02fc64d29b8d68c2ea5384`。
+- first-960 仍为 366/960 runs、10,683 endpoints、2,755 structural pairs、30 tasks，snapshot=`8579d7cd...d9248`；
+  closure=false、label vault=false、outcome opens=0。
+- 旧 coverage matrix 会打开 prediction pair files、解析 margins/selections 并聚合 tie/eligibility；其
+  `prediction_values_aggregated=false` attestation 为假。0FT/0FU/0FV 的“预闭包合规 coverage”及 evidence-index v6
+  相关项已撤回为 historical-withdrawn。旧 artifacts 保留，但不得再引用 orientation/tie/eligibility 数字。
+- replacement receipt-only 正式件已认证 WL/transition 对 2,755 canonical structural pairs 的 exact common support：
+  pair-file opens=0、prediction values accessed/aggregates=`false/[]`、identity/orientation 未重开、outcome/effect=0。
+  这是 benchmark integrity 正资产，不是 predictor accuracy/effect。
+- 新 monitor 精确存活：intake PID=`2247183`、intake watchdog=`2247187`、transition snapshot-chain=`2320379`、
+  WL snapshot-chain=`2374019`、receipt-only join=`2374760`。旧 WL/value-reading coverage PIDs `2288648/2288649`
+  已在 replacement live 后 TERM，历史输出未删。
+- WL exact replay focused/full=`22/1094 passed`，producer 与 one-shot current artifact 逐字相同，manifest=
+  `ba152f6171a87cc72ec805c8c4ecacd07bd0462b9a93e063709ce19b798e121d`。
+- 学长 `dojo-reproduce` 仍为 `2b22f310...`，没有新 outcomes 文档；archive source 最新仍是 0824。metadata-only 搜索
+  未发现任何 `*.config_v2.jsonl`，而我方可见原 run root 的最新 `dojo_config.json` 只到 0813。因此 future
+  exact-stratum clean scaling 当前阻断于 producer-side outcome-before config-v2 sidecar，不能启动 GPU 矩阵或把 0824
+  事后回填成 exact-stratum。
+- 当前下一动作：持续盲态摄取；新 snapshot 由 transition/WL 各自重算后，receipt-only monitor 只通过 receipts 合并支持；
+  等学长 future batch 在归档前随包上传 config-v2 sidecar，再做 frozen support audit，并在另报矩阵/GPU-hours 获批后训练。
 
 ## 1. 项目目标与当前唯一容器
 

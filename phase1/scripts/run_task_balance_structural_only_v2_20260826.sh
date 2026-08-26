@@ -173,7 +173,19 @@ if find "$output_root" -type f -printf '%f\n' | grep -E -i '(\.env|api[_-]?key|t
   exit 2
 fi
 : > "$output_root/name_scan_hits.txt"
-if grep -R -E -i '(sk-[A-Za-z0-9._-]{16,}|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{20,})' \
+credential_pattern='(^|[^[:alnum:]_])(sk-[A-Za-z0-9._-]{16,}|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{20,})'
+if printf '%s\n' '/research/example/task-balance-structural-only-v2' | \
+  grep -E -i "$credential_pattern" > /dev/null; then
+  echo "credential scanner boundary self-test failed" >&2
+  exit 2
+fi
+positive_probe='s''k-abcdefghijklmnop'
+if ! printf '%s\n' "$positive_probe" | grep -E -i "$credential_pattern" > /dev/null; then
+  echo "credential scanner positive self-test failed" >&2
+  exit 2
+fi
+unset positive_probe
+if grep -R -E -i "$credential_pattern" \
   --exclude=content_scan_hits.txt "$output_root" > "$output_root/content_scan_hits.txt"; then
   echo "credential-like output content detected" >&2
   exit 2

@@ -1,4 +1,4 @@
-# 当前研究方向唯一入口（2026-08-25）
+# 当前研究方向唯一入口（2026-08-26）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
@@ -12,6 +12,38 @@
 > 支持审计改写；所有更早“唯一主实验”“主线已确认”措辞均按本段降为历史状态。
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
+
+## 0GC. 2026-08-26 outcome 前冻结两级 opportunity-yield 聚合影响审计；不改写既有 primary
+
+在 first-960 closure 与任何 prospective outcome/prediction-value 揭盲前，正式冻结 closure-time aggregation audit。
+它把容易混淆的 `run → informative pair` 分成两级：eligible runs `R_t` 先产生 truth/evaluability 过滤前的 structural
+exact-common pairs `S_t`，再保留最终 informative/evaluable pairs `I_t`。对应 structural opportunity yield
+`Y_t=S_t/R_t` 与 informative retention `E_t=I_t/S_t`，任务权重必须逐项满足
+`q_t=p_tY_t/E_p[Y]` 和 `r_t=q_tE_t/E_q[E]`。
+
+closure 后，每个冻结 arm 和 paired contrast 必须并列报告 informative-pair、structural-pair、run-weighted-task 与
+uniform-task 四种点估计，并把 pair→run 的实际变化精确分成 structural-yield component 与 informative-filter component。
+每段和总变化同时报告 `range(task metric) * TV(task weights)` 的 sharp worst-case bound；bound 不是 observed/expected
+bias，更不是 predictor effect。pair-vs-run sign flip 只作描述，精确零固定为 `ON_BOUNDARY`。
+
+entry gate 要求 first-960 + 独立 closure、冻结 arm/contrast registry、exact common support，且 cohort 中每个任务同时具有
+structural 与 informative pairs；否则必须返回 `NOT_IDENTIFIABLE_FULL_TASK_UNIVERSE`，不得删除零支持任务继续。该审计不
+supersede generic estimand headline、scaling/component-breadth primary、truth/support/effect gate 或 inference；任何 alternate
+weighting、decomposition、subgroup 或 sign flip 都不能挽救失败 primary。
+
+理论边界已主动收紧：informative cluster size、cluster-weighted 与 individual-weighted estimand 的区别已有 Williamson et
+al. (2003) 与 Kahan et al. (2023) 等先例，不主张 size-biased weighting 恒等式本身新颖。本地贡献仅限真实 MLE-agent
+chronological search 中 decision-opportunity yield 对衍生 sibling-pair benchmark task mix 的 outcome-blind 证据，以及结果前
+冻结的两级机器审计。
+
+contract/source commit=`49a9e7c6...86cff3` / `f97026221e099c11fa1ca8f2c13a95c389bea743`；fresh Linux
+focused/full=`17 passed in 0.24s` / `1064 passed, 47 warnings in 77.09s`，18/18 independent checks PASS，verifier
+A/B 逐字节一致；formal `SHA256SUMS` 文件自身 SHA-256=`60711365...86cff95`。prospective truth/prediction/raw archive
+read=`false/false/false`，accuracy/effect/search utility 未计算，GPU/API/model-fit/base-update=`0/0/0/0`。直接证据：
+
+- `phase1/contracts/OPPORTUNITY_YIELD_AGGREGATION_AUDIT_V1.md`；
+- `phase1/results/opportunity_yield_aggregation_audit_v1_20260826/README.md`；
+- `phase1/实验记录/2026-08-26/OpportunityYield_两级聚合影响审计冻结.md`。
 
 ## 0GB. 2026-08-26 时序分解确认 opportunity yield 内生重写 pair benchmark；幅度受单批次影响
 

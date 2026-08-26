@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-08-26
 
-**Dynamic status timestamp:** 2026-08-26 03:54 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-08-26 10:22 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -23,7 +23,7 @@
 
 - 唯一确认人口是按预注册时间全序排列的 first-960 eligible physical runs。
 - 必须另有独立 accrual-closure receipt；1,500 structural pairs 只是支持门，不是提前停止门。
-- 最近一次只读状态为 339/960 runs、10,196 endpoints、2,635 structural pairs、30 tasks。
+- 最近一次只读状态为 366/960 runs、10,683 endpoints、2,755 structural pairs、30 tasks。
 - 仍为 `PROSPECTIVE_COHORT_COLLECTING`，closure 未成立。
 
 ### Target-300 support cohort
@@ -56,7 +56,20 @@
 精确重加权恒等式为 `q_t=p_tY_t/E_p[Y]`；`TV(p_run,p_pair)=0.337082500713674` 也是任意 `[0,1]` task-level metric
 在这两种聚合下的 sharp worst-case 差，即 33.71 pp 结构 leverage。它不是已观察 accuracy 差或 expected bias。
 
-### 3.2 Structural dependency atlas
+### 3.2 Closure-time opportunity-yield aggregation audit
+
+- outcome 前把 `run → final informative pair` 冻结为两级：`R_t → S_t → I_t`；
+- structural opportunity yield=`S_t/R_t`，informative retention=`I_t/S_t`；
+- closure 后对每个冻结 arm/contrast 精确分解 structural-yield 与 informative-filter 两段聚合影响；
+- 每段和总差同时报告 task-metric range × weight TV 的 sharp bound，但不得称 observed/expected bias；
+- first-960+closure、frozen registry、exact common support 和 full task universe 是硬 entry gate；
+- alternate weighting、decomposition、subgroup 或 sign flip 均不能挽救失败 primary。
+
+fresh Linux focused/full=`17/1064 passed`，18/18 independent checks PASS，verifier A/B 逐字节一致；源码提交
+`f970262`。informative cluster size 理论已有先例，本项目只主张真实 MLE-agent chronological sibling benchmark 中的
+outcome-blind 证据与预冻结机器审计。
+
+### 3.3 Structural dependency atlas
 
 对 provisional first-240 与当前 339-run 快照做 outcome-blind 双实现复算：
 
@@ -76,7 +89,7 @@ D&B benchmark-design 正结果，不是 predictor accuracy 或 search-utility �
 证据：`phase1/results/structural_dependency_atlas_7cda_20260825/`；源码/确定性修复/发布提交为
 `e19f5f3`、`b8ea5f7`、`1e3ea6d`。
 
-### 3.3 Outcome 前冻结统一 estimand panel
+### 3.4 Outcome 前冻结统一 estimand panel
 
 - generic benchmark headline：pair credit → physical parent 内平均 → task 内平均 parents → tasks 等权。
 - 强制并列、不得 rescue：task-pair macro、task→run→parent→pair macro、pair micro。
@@ -88,7 +101,7 @@ D&B benchmark-design 正结果，不是 predictor accuracy 或 search-utility �
 证据：`phase1/contracts/DECISION_PREDICTOR_ESTIMAND_PANEL_V1.md`、
 `phase1/results/decision_predictor_estimand_panel_v1_20260825/`；提交 `1763030`、`b7e90fd`。
 
-### 3.4 Benchmark checklist 与其他数据资产
+### 3.5 Benchmark checklist 与其他数据资产
 
 - ABC/NAS-Bench-style 24 项 crosswalk：PASS_LOCAL 9、PARTIAL 9、INHERITED_UPSTREAM 5、N/A 1。
 - 语料唯一性：12,383-card 审计中 raw 99.47%、AST/skeleton 98.96%，0 个 duplicate group 跨 run/task。
@@ -128,18 +141,17 @@ immutable frozen cohort。任何 GPU 重训仍需先报精确矩阵、总 runs�
 最近一次远端只读状态：
 
 - senior archives：226；最新观察到 `0824/osic-pulmonary-fibrosis-progression-8seeds.tar.gz`；
-- latest snapshot：`7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1`；
-- 新增 8 个 archives 尚未通过固定 6 小时 age/stability 与后续结构门，故未进入 snapshot；不得提前把它们计作 eligible runs；
+- latest snapshot：`8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248`；
+- 226 个 archives 已被互斥分为 128 baseline、86 accepted transactions 和 12 structural rejections；当前 ready/pending=0；
 - intake、transition、WL graph、coverage matrix、component closure、target quiescence 六个核心监控存活；
-- intake/transition/target 在各自 145 次有限轮询正常结束后，于 2026-08-26 01:36 通过 17/17 独立预检重启；
-  intake 另启用修正 PID receipt 竞争后的 watchdog，最多自动接续 20 个正常 segment；
-- WL graph 与 coverage 在 145 次无新 snapshot 的正常轮询后，于 2026-08-26 03:55 通过 hash、lock、旧退出状态和盲态复核重启；
-- 主 intake 每约 5 分钟轮询，最近 `ready=0`、`rejected=12`、`transactions=78`；
+- intake/transition/watchdog 以及 component monitor 均存活；watchdog 使用精确命令行检查确认，而非旧的错误 pgrep pattern；
+- WL graph、coverage 与 target 在 `8579` baseline 后重启并存活；target recovery postflight 已逐哈希通过；
+- 主 intake 每约 5 分钟轮询，最近 `ready=0`、`rejected=12`、`transactions=86`；
 - 用户 SLURM 队列为空；没有 GPU 实验正在运行；本次监控恢复 GPU/API/model-fit 均为 0。
 
 动态状态会过期。恢复时使用 metadata-only 脚本重新检查，不能直接沿用本段数字。
 
-若生产恢复到约 60 eligible runs/day，剩余 621 runs 约对应 10.4 个生产日；这不是日历承诺。
+若生产维持约 60 eligible runs/day，剩余 594 runs 约对应 9.9 个生产日；这不是日历承诺。
 
 ## 7. 学长最新分支状态
 
@@ -159,7 +171,7 @@ immutable frozen cohort。任何 GPU 重训仍需先报精确矩阵、总 runs�
 - 本地 worktree：`C:\Research\New\my_project\MLEvolve\aira-dojo-codex-20260813`
 - 本地工作分支：`codex-prospective-decision-v1-20260814`
 - 发布分支：`myfork/phase1-value-critic`
-- 最近正式源码 head：`57561d8114e3e284c658e2733e1749cdfc1a4cd3`
+- 最近正式源码 head：`f97026221e099c11fa1ca8f2c13a95c389bea743`
 - GitHub：`https://github.com/SuperSumanov/aira-dojo-noise-robust`
 - 远端 alias：`linux5`
 - prospective state：`/research/d7/spc/yzyang4/prospective_decision_v1`

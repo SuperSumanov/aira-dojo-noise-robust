@@ -1,0 +1,42 @@
+{
+  "status": "FORMAL_OPPORTUNITY_YIELD_AGGREGATION_AUDIT_PASS",
+  "protocol": "opportunity-yield-aggregation-audit-formal-v1",
+  "source_commit": "f97026221e099c11fa1ca8f2c13a95c389bea743",
+  "contract_sha256": "49a9e7c659057f1f8e7db032b7b25de14e3de9e594f969df20d3d3f80686cff3",
+  "verifier_source_sha256": "52898a2a4fee71fdf667cfe64dc4753607468c3b851a8181b9a8358d449b8185",
+  "independent_verification_sha256": "0054e5fceaf326b67f773d44109841ce576db59c9efd959671e97b6b3357e973",
+  "formal_execution": {
+    "root": "/research/d7/spc/yzyang4/opportunity-yield-aggregation-audit/f970262-v1",
+    "focused_tests": "17 passed in 0.24s",
+    "full_tests": "1064 passed, 47 warnings in 77.09s",
+    "independent_checks_passed": 18,
+    "verifier_a_b_byte_identical": true,
+    "sha256sums_file_sha256": "60711365ffe7ccaf00b346a78303c65f2d80fe6a2f5eb99c9d506cad980ecf95",
+    "numeric_library_threads": 1
+  },
+  "security": {
+    "filename_secret_hits": 0,
+    "content_secret_hits": 0,
+    "prospective_label_grade_outcome_or_orientation_read": false,
+    "prediction_values_read_or_aggregated": false,
+    "raw_archive_payload_read": false,
+    "accuracy_effect_or_search_utility_computed": false,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "new_model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "claim_boundary": {
+    "closure_time_audit_frozen": true,
+    "structural_yield_and_informative_filter_separated": true,
+    "existing_primary_or_inference_superseded": false,
+    "alternate_weighting_can_rescue_primary": false,
+    "effect_result": false,
+    "informative_cluster_size_theory_claimed_novel": false,
+    "semantic_certification_by_verifier": false
+  },
+  "local_advisory": {
+    "windows_full_suite_attempt_valid": false,
+    "reason": "local Windows environment lacks scipy and scikit-learn; fresh fixed Linux environment is authoritative"
+  }
+}

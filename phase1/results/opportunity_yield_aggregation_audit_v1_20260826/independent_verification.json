@@ -1,0 +1,43 @@
+{
+  "access_and_compute": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "new_model_fits": 0,
+    "prediction_values_read_or_aggregated": false,
+    "prospective_label_grade_outcome_or_winner_orientation_read": false,
+    "raw_archive_payload_read": false
+  },
+  "checks": {
+    "access_attestation_exact": true,
+    "arm_range_tv_bound_exact": true,
+    "atlas_marks_pair_count_nonindependent": true,
+    "atlas_uses_observed_yield_without_reordering": true,
+    "authority_firewall_exact": true,
+    "closure_and_common_support_gate_exact": true,
+    "contract_schema_exact": true,
+    "contrast_range_tv_bound_exact": true,
+    "evidence_paths_and_hashes_exact": true,
+    "panel_forbids_rescue": true,
+    "panel_frozen_before_closure": true,
+    "panel_has_pair_micro_sensitivity": true,
+    "prior_work_boundary_explicit": true,
+    "reporting_firewall_exact": true,
+    "trajectory_attributes_majority_tv_delta_to_yield": true,
+    "trajectory_forbids_accuracy_claim": true,
+    "trajectory_has_positive_run_pair_tv": true,
+    "weight_identity_exact": true
+  },
+  "contract_sha256": "49a9e7c659057f1f8e7db032b7b25de14e3de9e594f969df20d3d3f80686cff3",
+  "evidence_sha256": {
+    "decision_predictor_estimand_panel": "4f394d0e0437992eb9d3e5f3aa56f83df86ffcbda68a752ebada4e306bf7adea",
+    "structural_dependency_atlas": "1c3e5c34afe82a236e4f242373ee7b71fd44d90207eb2d74b9177fb6776db1a5",
+    "structural_weight_trajectory": "bbdb802711bd2f300725be156c5fd228a79fa0792f8d7317674a6a0bbb419f30"
+  },
+  "protocol": "independent-decision-opportunity-yield-aggregation-audit-v1",
+  "scope_limit": "contract, hash, and authority verification only; no prospective effect evaluation",
+  "source_commit": "f97026221e099c11fa1ca8f2c13a95c389bea743",
+  "status": "INDEPENDENT_OPPORTUNITY_YIELD_AUDIT_CONTRACT_PASS",
+  "verifier_source_sha256": "52898a2a4fee71fdf667cfe64dc4753607468c3b851a8181b9a8358d449b8185"
+}

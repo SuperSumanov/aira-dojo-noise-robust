@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol; no closed HCE multifidelity probe or score-channel effect revival
+PREFLIGHT_02_GOAL=freeze and verify a non-rescuing closure-time aggregation audit that separates structural opportunity yield from informative-pair filtering
+PREFLIGHT_03_CONTEXT=exact published commit f97026221e099c11fa1ca8f2c13a95c389bea743; fixed remote Python venv; CPU only
+PREFLIGHT_04_INPUTS=three immutable repository evidence JSON files bound by SHA plus the new machine contract; no prospective state path
+PREFLIGHT_05_FIXED=first-960 authority, existing generic headline, experiment-specific primaries, truth rules, support gates, and inference remain unchanged
+PREFLIGHT_06_VARIABLE=none; this is contract verification and deterministic synthetic arithmetic only
+PREFLIGHT_07_ENTRY=contract and evidence hashes exact; source commit published; fresh detached worktree
+PREFLIGHT_08_SUCCESS=focused and full tests rc0; verifier replicas byte-identical; credential scans zero; git worktree clean
+PREFLIGHT_09_FAILURE=any mismatch exits nonzero and preserves FAILED_RC; no retry with altered contract, tolerance, or evidence
+PREFLIGHT_10_REPRO=PYTHONHASHSEED=0 then 1 for verifier replicas; all numeric libraries single-thread; exact commands and versions saved
+PREFLIGHT_11_RESOURCES=single CPU process; GPU jobs=0 API calls=0 model fits=0 base-LLM updates=0; ETA 2-4 minutes
+PREFLIGHT_12_SECURITY=no label outcome prediction value raw archive checkpoint or remote prospective state access; staged source was filename/content scanned before push
+PREFLIGHT_13_REPORTING=engineering pass is a preregistration asset, not predictor accuracy, method effect, search utility, or novelty of informative-cluster-size theory

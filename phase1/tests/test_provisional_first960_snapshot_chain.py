@@ -473,3 +473,10 @@ def test_transition_monitor_rebuilds_current_artifact_without_legacy_prior_gate(
         assert f"export {variable}=1" in text
     assert "effect_metrics=0" in text
     assert "gpu_jobs=0" in text
+    for variable in (
+        "SNAPSHOT_CHAIN_LEGACY_MONITOR_ROOT",
+        "SNAPSHOT_CHAIN_STATE_ROOT",
+        "SNAPSHOT_CHAIN_OUTPUT_ROOT",
+        "SNAPSHOT_CHAIN_MONITOR_ROOT",
+    ):
+        assert f"${{{variable}:-" in text

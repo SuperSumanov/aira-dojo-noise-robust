@@ -13,6 +13,25 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GJ. 2026-08-26 first-960 token-shingle 近重复审计已结果前冻结；formal 尚未运行
+
+现有 clone 资产只覆盖 raw/token/AST 规范化后的 exact fingerprint，明确不能排除 fuzzy/语义近重复。新审计不把
+代码去重包装成方法 novelty：代码重复会夸大模型评测已有直接先例，The Stack 也已采用 5-token shingles 与 Jaccard
+复核。新增贡献边界仅是 outcome-blind MLE-agent chronological cohort 中按 sibling/parent-child/same-run/cross-run/
+cross-task 分层的结构实证与机器协议。
+
+在读取任何真实相似度前，primary 固定为去注释/格式、归一化 number/string 但保留 identifier/operator 的 token
+5-gram set，128-bit BLAKE2b shingle，exact prefix-filter join 后以整数算术判定 Jaccard≥`17/20=0.85`；`19/20=0.95`
+只作更严格并列表，不能 rescue primary。长度不足 20 个 distinct shingles 的端点不删除，计为 coverage failure。
+成功门固定为 fingerprint coverage≥0.99、跨 run affected endpoint fraction≤0.01、跨任务≤0.005、无 size≥10 且
+跨≥3 tasks 的 fuzzy component，并要求 384-document deterministic subset 与 brute force 完全一致。任一门失败不改阈值。
+
+审计只允许读取 snapshot-bound `eligible_blind_manifest`、identity-only runs 与 intake/accumulator summaries；不输出
+code/card/run/task 值，不读取 label/outcome/prediction，不计算 predictor effect。当前 366/960 只能给 provisional
+prefix 结果，closure 后必须原协议重跑。独立 verifier 不 import producer，并用另一种 prefix-posting 枚举重算全部
+edge digest；当前 synthetic/adversarial tests=`13 passed`，真实 formal 尚未运行。预注册：
+`phase1/实验记录/2026-08-26/First960_FuzzyCodeCloneAudit_v1_结果前预注册.md`。
+
 ## 0GI. 2026-08-26 ABC crosswalk v2 清洁迁移 formal 全门通过
 
 ABC crosswalk v1 的 24 项人工判断只保留为 hash-pinned 文本/status 模板；其 catalog 中 v6、两项 coverage、guard v1

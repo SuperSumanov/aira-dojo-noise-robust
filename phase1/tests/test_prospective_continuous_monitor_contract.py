@@ -124,3 +124,28 @@ def test_0823_lmsys_registry_is_verified_passed_and_receipted() -> None:
         "one": 0,
         "zero": 4,
     }
+
+
+def test_archive_content_alias_registry_is_exactly_bound() -> None:
+    text = SCRIPT.read_text(encoding="utf-8")
+    values = assignments()
+    assert values["ARCHIVE_CONTENT_ALIAS_REGISTRY"] == (
+        "/research/d7/spc/yzyang4/archive-content-alias/formal-9b7640a-v1/"
+        "archive_content_alias_registry.json"
+    )
+    assert values["ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA"] == (
+        "080a6df133c8b8184267f074e0620b2a9ebf1d21616b0dfb7674eebad2c28dcb"
+    )
+    assert values["ARCHIVE_CONTENT_ALIAS_POSTFLIGHT"] == (
+        "/research/d7/spc/yzyang4/archive-content-alias/postflight-9b7640a-v2"
+    )
+    assert values["ARCHIVE_CONTENT_ALIAS_POSTFLIGHT_MANIFEST_SHA"] == (
+        "1fa3c81c257316d2c2886ddbd36f72e60f1d8ed85f889450916e4d59de3a8625"
+    )
+    assert text.count('--archive-content-alias-registry "${ARCHIVE_CONTENT_ALIAS_REGISTRY}"') == 1
+    assert text.count(
+        '--expect-archive-content-alias-registry-sha256 '
+        '"${ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA}"'
+    ) == 1
+    assert text.count("${ARCHIVE_CONTENT_ALIAS_POSTFLIGHT_MANIFEST_SHA}") == 2
+    assert text.count("${ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA}") == 3

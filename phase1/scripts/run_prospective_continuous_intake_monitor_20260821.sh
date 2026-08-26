@@ -33,6 +33,10 @@ EXTRA_0823_AI4CODE_REGISTRY_REL=phase1/results/prospective_structural_rejection_
 EXTRA_0823_AI4CODE_REGISTRY_SHA=0162c771ce1df3743776642456247d0974b7bc6e40550ca98fd626ee3dc6653f
 EXTRA_0823_LMSYS_REGISTRY_REL=phase1/results/prospective_structural_rejection_lmsys_20260825/structural_rejections_lmsys_0823.json
 EXTRA_0823_LMSYS_REGISTRY_SHA=81b9c87f140265b3438587953aadfd00ff3f53ca665799b807ec4c80596bd005
+ARCHIVE_CONTENT_ALIAS_REGISTRY=/research/d7/spc/yzyang4/archive-content-alias/formal-9b7640a-v1/archive_content_alias_registry.json
+ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA=080a6df133c8b8184267f074e0620b2a9ebf1d21616b0dfb7674eebad2c28dcb
+ARCHIVE_CONTENT_ALIAS_POSTFLIGHT=/research/d7/spc/yzyang4/archive-content-alias/postflight-9b7640a-v2
+ARCHIVE_CONTENT_ALIAS_POSTFLIGHT_MANIFEST_SHA=1fa3c81c257316d2c2886ddbd36f72e60f1d8ed85f889450916e4d59de3a8625
 POLL_SECONDS=300
 MAX_POLLS=145
 
@@ -79,6 +83,9 @@ verify_contracts() {
   test "$(sha256sum "${extra_0822_ai4code_registry}" | awk '{print $1}')" = "${EXTRA_0822_AI4CODE_REGISTRY_SHA}"
   test "$(sha256sum "${extra_0823_ai4code_registry}" | awk '{print $1}')" = "${EXTRA_0823_AI4CODE_REGISTRY_SHA}"
   test "$(sha256sum "${extra_0823_lmsys_registry}" | awk '{print $1}')" = "${EXTRA_0823_LMSYS_REGISTRY_SHA}"
+  test -f "${ARCHIVE_CONTENT_ALIAS_POSTFLIGHT}/COMPLETE"
+  test "$(sha256sum "${ARCHIVE_CONTENT_ALIAS_POSTFLIGHT}/SHA256SUMS" | awk '{print $1}')" = "${ARCHIVE_CONTENT_ALIAS_POSTFLIGHT_MANIFEST_SHA}"
+  test "$(sha256sum "${ARCHIVE_CONTENT_ALIAS_REGISTRY}" | awk '{print $1}')" = "${ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA}"
   test "$(tr -d '\r\n' < "${STATE_ROOT}/production_commit.txt")" = "${SCIENTIFIC_COMMIT}"
   test ! -e "${STATE_ROOT}/BASELINE_INVALID"
 }
@@ -115,6 +122,8 @@ runner() {
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0823_AI4CODE_REGISTRY_SHA}" \
       --extra-structural-rejection-registry "${extra_0823_lmsys_registry}" \
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0823_LMSYS_REGISTRY_SHA}" \
+      --archive-content-alias-registry "${ARCHIVE_CONTENT_ALIAS_REGISTRY}" \
+      --expect-archive-content-alias-registry-sha256 "${ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA}" \
       --minimum-age-seconds 21600 \
       --minimum-observations 3 \
       --minimum-observation-interval-seconds 300 \
@@ -138,6 +147,8 @@ if [[ "${mode}" == --initialize ]]; then
   echo "PREFLIGHT_04E_0822_AI4CODE_REJECTION_SHA256=${EXTRA_0822_AI4CODE_REGISTRY_SHA}"
   echo "PREFLIGHT_04F_0823_AI4CODE_REJECTION_SHA256=${EXTRA_0823_AI4CODE_REGISTRY_SHA}"
   echo "PREFLIGHT_04G_0823_LMSYS_REJECTION_SHA256=${EXTRA_0823_LMSYS_REGISTRY_SHA}"
+  echo "PREFLIGHT_04H_ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA256=${ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA}"
+  echo "PREFLIGHT_04I_ARCHIVE_CONTENT_ALIAS_POSTFLIGHT_MANIFEST_SHA256=${ARCHIVE_CONTENT_ALIAS_POSTFLIGHT_MANIFEST_SHA}"
   echo 'PREFLIGHT_05_INPUT=stable append-only senior archives bound by exact path size mtime and SHA256'
   echo 'PREFLIGHT_06_ESTIMAND=unchanged; no outcome metric and no historical backfill'
   echo 'PREFLIGHT_07_SECURITY=credential-first journal audit; env and live-event members never read; umask077'

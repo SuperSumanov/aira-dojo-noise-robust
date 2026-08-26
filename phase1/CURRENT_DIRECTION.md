@@ -13,6 +13,35 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GE. 2026-08-26 provisional first-960 membership 非单调；prediction escrow chain 已结果盲修复并部署
+
+0GD 的 chronology 勘误还有一个达到 960 后才会显现的直接后果：append-only source registry 不推出 chronological
+`first-960` membership append-only。迟上传但冻结时间更早的 run 可以进入 rank `<960` 并挤出旧 tail；旧 WL append
+verifier 与 transition producer/verifier 的 prior-support-subset 条件会把这种合法 churn 误判为失败。若新增 run 排在
+960 之后、prefix 完全不变，旧 WL verifier 还会因“not a growing append”误拒绝。
+
+结果前冻结的修复不改 frozen scorer、activation、模型、prediction、三字段排序、first-960 estimand 或 closure。每代
+artifact 仍绑定不可变 snapshot；跨代改查 source set containment + sequence subsequence + row identity、共同预测逐字段
+相同，以及所有 prior/current-only rows 是否分别由 rank≥960 的 displaced run / rank<960 的 entering run 精确解释。
+transition 若发生 removal，current producer/verifier 不传 legacy prior，再由原 independent scorer verifier 与新的 chain
+verifier 双重核验。closure 前 support gate 明确是 provisional、可因 churn 反转，不能触发揭盲。
+
+合成 append/stasis/insertion-displacement 与篡改反例全部通过；旧 WL verifier 在同一合法 churn fixture 上按预期失败。
+真实 `d748→8579` shadow 为 362→366 runs、added/removed=`4/0`、common/current-only pairs=`2728/27`。source formal
+focused/full=`24/1089 passed`，双 receipt 一致；deployable monitor replay focused/full=`25/1090 passed`，producer、原
+independent scorer verifier 与 chain verifier 全部 rc=0；不传 legacy prior 的 2,755-row `pairs.jsonl` 与旧 `8579`
+artifact 逐字相同。两份 formal manifest hash 分别为 `62f90ef5...d16d6b3` / `06b0aaeb...758179e0`。
+
+首次 full-suite launcher 未锁 BLAS 线程，在登录节点扩到约 28 CPU 后主动 TERM；只有 staging `FAILURE`、无
+`COMPLETE`。v2 锁定六类线程变量为 1 后通过，首次失败不计证据。旧 transition monitor 的精确 cmdline 核验后已
+TERM，全部历史 artifact 保留；churn-safe monitor PID=`2320379` 从同一 `8579` summary SHA 接管，300 秒×72 polls，
+首轮 `no_change`。当前真实区间 removed=0，因此禁止写“真实 churn 已通过”；该事实须等自然 accrual 首次 removal receipt。
+outcome/effect/GPU/API/base-update=`未读/未计算/0/0/0`。直接证据：
+
+- `phase1/provisional_first960_snapshot_chain_protocol_v1.json`；
+- `phase1/results/provisional_first960_snapshot_chain_f21a76c_20260826/README.md`；
+- `phase1/实验记录/2026-08-26/First960_暂定集合churn与PredictionEscrow完整性_正式裁决.md`。
+
 ## 0GD. 2026-08-26 冻结 task-balance guard 首次前瞻记账精确；债务改善但 cap 与遵从仍失败
 
 把 0FX 在 `7cda` outcome 前冻结的 25% dominant-task pair-share guard 应用于后续 `8579` structural exact-common

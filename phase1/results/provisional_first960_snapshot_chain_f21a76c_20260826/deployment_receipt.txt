@@ -1,0 +1,13 @@
+deployed_at_utc=2026-08-26T03:39:49Z
+control_commit=f21a76c0a56c65eb1f24cafc33db33a65302935a
+monitor_script_sha256=87ed6fa645de2fad25695b212434bd1dd64b6f1a44a34f6232c941ad8d8b9161
+old_monitor_pid=2247188
+new_monitor_pid=2320379
+poll_seconds=300
+max_polls=72
+nominal_hours=6
+gpu_jobs=0
+api_calls=0
+base_llm_updates=0
+formal_replay_root=/research/d7/spc/yzyang4/provisional-first960-chain/f21a76c-monitor-replay-v1
+formal_manifest_sha256=06b0aaeb40a5c1206a093745b35fe1e0ae89857fa066960e069cb3aa758179e0

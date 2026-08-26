@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-08-26
 
-**Dynamic status timestamp:** 2026-08-26 10:58 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-08-26 11:40 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -84,7 +84,20 @@ manifest 全通过，verifier 双跑与 committed receipt 三者逐字节一致�
 byte prefix 不是正确 invariant。fresh Linux focused/full=`15/1080 passed`，双 producer/verifier 逐字节一致；源码
 `76bdaad`，formal hash=`688f8b4f...eb45721`。
 
-### 3.4 Structural dependency atlas
+### 3.4 Provisional first-960 snapshot-chain 完整性
+
+- append-only source 不推出 chronological first-960 membership append-only；960 后迟到的较早 run 可进入并挤出 tail。
+- 旧 WL/transition prior-support-subset 检查会误拒绝合法 churn；prefix 不变时旧 WL 还会误拒绝 stasis。
+- 新 verifier 固定 immutable snapshot binding、source set/subsequence/row identity、共同 prediction row exact，以及所有
+  增删必须由固定 rank 解释；不改 scorer、activation、模型、预测或 estimand。
+- 合成 append/stasis/churn 与篡改反例通过；真实 362→366 shadow 为 added/removed=`4/0`、共同/新增 pairs=`2728/27`。
+- 不传 legacy prior 的真实 monitor replay 与旧 `8579` 2,755-row predictions 逐字相同；focused/full=`25/1090 passed`。
+- churn-safe monitor PID=`2320379`，300 秒×72 polls；旧 artifact 全保留，intake monitor 不变。
+- 当前真实 removed=0，不能声称真实 churn 已发生；closure 前 support gate 仍 provisional，outcome/effect 未读未算。
+
+证据：`phase1/results/provisional_first960_snapshot_chain_f21a76c_20260826/`；control commit `f21a76c`。
+
+### 3.5 Structural dependency atlas
 
 对 provisional first-240 与当前 339-run 快照做 outcome-blind 双实现复算：
 
@@ -104,7 +117,7 @@ D&B benchmark-design 正结果，不是 predictor accuracy 或 search-utility �
 证据：`phase1/results/structural_dependency_atlas_7cda_20260825/`；源码/确定性修复/发布提交为
 `e19f5f3`、`b8ea5f7`、`1e3ea6d`。
 
-### 3.5 Outcome 前冻结统一 estimand panel
+### 3.6 Outcome 前冻结统一 estimand panel
 
 - generic benchmark headline：pair credit → physical parent 内平均 → task 内平均 parents → tasks 等权。
 - 强制并列、不得 rescue：task-pair macro、task→run→parent→pair macro、pair micro。
@@ -116,7 +129,7 @@ D&B benchmark-design 正结果，不是 predictor accuracy 或 search-utility �
 证据：`phase1/contracts/DECISION_PREDICTOR_ESTIMAND_PANEL_V1.md`、
 `phase1/results/decision_predictor_estimand_panel_v1_20260825/`；提交 `1763030`、`b7e90fd`。
 
-### 3.6 Benchmark checklist 与其他数据资产
+### 3.7 Benchmark checklist 与其他数据资产
 
 - ABC/NAS-Bench-style 24 项 crosswalk：PASS_LOCAL 9、PARTIAL 9、INHERITED_UPSTREAM 5、N/A 1。
 - 语料唯一性：12,383-card 审计中 raw 99.47%、AST/skeleton 98.96%，0 个 duplicate group 跨 run/task。

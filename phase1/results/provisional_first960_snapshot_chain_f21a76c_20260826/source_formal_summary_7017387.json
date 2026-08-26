@@ -1,0 +1,17 @@
+{
+  "api_calls": 0,
+  "effect_metrics_computed": [],
+  "focused_passed": 24,
+  "full_passed": 1089,
+  "gpu_jobs": 0,
+  "new_model_fits": 0,
+  "outcomes_read": false,
+  "real_shadow": {
+    "added_runs": 4,
+    "common_pairs": 2728,
+    "current_only_pairs": 27,
+    "current_runs": 366,
+    "prior_runs": 362,
+    "removed_runs": 0
+  }
+}

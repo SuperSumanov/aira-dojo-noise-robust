@@ -1,0 +1,16 @@
+{
+  "added_runs": 4,
+  "api_calls": 0,
+  "base_llm_updates": 0,
+  "common_pairs": 2728,
+  "current_only_pairs": 27,
+  "effect_metrics_computed": [],
+  "focused_passed": 25,
+  "full_passed": 1090,
+  "gpu_jobs": 0,
+  "monitor_rc": 0,
+  "outcomes_read": false,
+  "producer_pairs_identical_to_legacy_current": true,
+  "producer_prior_used": false,
+  "removed_runs": 0
+}

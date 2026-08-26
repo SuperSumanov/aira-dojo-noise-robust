@@ -21,13 +21,15 @@ import re
 import shutil
 import subprocess
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
 
 PROTOCOL = "prospective_production_runner_v1"
 OBSERVER_PROTOCOL = "prospective_archive_observer_v1"
 REJECTION_PROTOCOL = "prospective_structural_rejection_v1"
+ALIAS_PROTOCOL = "prospective_archive_content_alias_v1"
+ALIAS_REASON_CODE = "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION"
 ACTIVE_RECEIPT_SHA256 = "cfab01a80536a50ef21c47ac269c7ce54a11a3b1f0b6daa5700873cbb02ce178"
 FIXED_SCORER_DIR = "fixed_decision_scorer_v11_20260814"
 SHA_RX = re.compile(r"[0-9a-f]{64}")
@@ -56,6 +58,18 @@ REJECTION_REASON_CODES = {
     "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
     "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
     "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE",
+}
+ALIAS_KEYS = {
+    "archive_mtime_ns",
+    "archive_relative_path",
+    "archive_sha256",
+    "archive_size",
+    "canonical_archive_relative_path",
+    "canonical_drop_id",
+    "canonical_transaction_committed_at_utc",
+    "diagnostic_receipt_file",
+    "diagnostic_receipt_sha256",
+    "reason_code",
 }
 FORBIDDEN_TRACE_MARKERS = (
     b"label_vault.jsonl",
@@ -412,6 +426,143 @@ def apply_structural_rejections(
             raise ProductionError(f"structural rejection binding changed: {relative}")
         entry["rejected_archive_sha256"] = row["archive_sha256"]
         entry["rejection_reason_code"] = row["reason_code"]
+        entry["rejection_registry_sha256"] = registry_sha256
+
+
+def load_archive_content_aliases(
+    path: Path, expected_sha256: str
+) -> tuple[list[dict[str, Any]], str]:
+    """Load an explicit registry for byte-identical aliases of committed archives."""
+
+    if not SHA_RX.fullmatch(expected_sha256):
+        raise ProductionError("expected archive alias registry SHA must be lowercase SHA-256")
+    blob = path.read_bytes()
+    actual_sha256 = sha256_bytes(blob)
+    if actual_sha256 != expected_sha256:
+        raise ProductionError("archive alias registry SHA mismatch")
+    try:
+        value = json.loads(blob.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ProductionError("cannot parse archive alias registry") from error
+    if (
+        not isinstance(value, dict)
+        or set(value) != {"protocol", "outcomes_read", "archive_payloads_opened", "entries"}
+        or value.get("protocol") != ALIAS_PROTOCOL
+        or value.get("outcomes_read") is not False
+        or value.get("archive_payloads_opened") is not False
+        or not isinstance(value.get("entries"), list)
+        or not value["entries"]
+    ):
+        raise ProductionError("archive alias registry contract mismatch")
+
+    rows: list[dict[str, Any]] = []
+    seen_aliases: set[str] = set()
+    seen_hashes: set[str] = set()
+    for index, row in enumerate(value["entries"], 1):
+        if not isinstance(row, dict) or set(row) != ALIAS_KEYS:
+            raise ProductionError(f"archive alias schema mismatch at entry {index}")
+        alias = row["archive_relative_path"]
+        canonical = row["canonical_archive_relative_path"]
+        if any(
+            not isinstance(relative, str)
+            or len(PurePosixPath(relative).parts) != 2
+            or any(part in {"", ".", ".."} for part in PurePosixPath(relative).parts)
+            or "\\" in relative
+            or not relative.endswith(".tar.gz")
+            or any(character in relative for character in "\r\n\t")
+            for relative in (alias, canonical)
+        ):
+            raise ProductionError(f"invalid archive alias path at entry {index}")
+        if alias == canonical or Path(alias).name != Path(canonical).name:
+            raise ProductionError(f"archive alias basename/canonical mismatch at entry {index}")
+        if alias in seen_aliases or row["archive_sha256"] in seen_hashes:
+            raise ProductionError(f"duplicate archive alias identity at entry {index}")
+        if not isinstance(row["archive_sha256"], str) or not SHA_RX.fullmatch(
+            row["archive_sha256"]
+        ):
+            raise ProductionError(f"invalid archive alias SHA at entry {index}")
+        if row["reason_code"] != ALIAS_REASON_CODE:
+            raise ProductionError(f"invalid archive alias reason at entry {index}")
+        if not isinstance(row["canonical_drop_id"], str) or not DROP_RX.fullmatch(
+            row["canonical_drop_id"]
+        ):
+            raise ProductionError(f"invalid canonical drop ID at entry {index}")
+        if not isinstance(row["canonical_transaction_committed_at_utc"], str):
+            raise ProductionError(f"invalid canonical transaction time at entry {index}")
+        parse_utc(row["canonical_transaction_committed_at_utc"])
+        for key in ("archive_size", "archive_mtime_ns"):
+            if isinstance(row[key], bool) or not isinstance(row[key], int) or row[key] < 0:
+                raise ProductionError(f"invalid archive alias {key} at entry {index}")
+        receipt_file = row["diagnostic_receipt_file"]
+        if (
+            not isinstance(receipt_file, str)
+            or Path(receipt_file).name != receipt_file
+            or not receipt_file.endswith(".json")
+            or not isinstance(row["diagnostic_receipt_sha256"], str)
+            or not SHA_RX.fullmatch(row["diagnostic_receipt_sha256"])
+        ):
+            raise ProductionError(f"invalid archive alias receipt at entry {index}")
+        receipt_path = path.parent / receipt_file
+        if not receipt_path.is_file() or sha256(receipt_path) != row["diagnostic_receipt_sha256"]:
+            raise ProductionError(f"archive alias receipt binding mismatch at entry {index}")
+        seen_aliases.add(alias)
+        seen_hashes.add(row["archive_sha256"])
+        rows.append(row)
+    if [row["archive_relative_path"] for row in rows] != sorted(seen_aliases):
+        raise ProductionError("archive alias registry entries are not sorted")
+    return rows, actual_sha256
+
+
+def apply_archive_content_aliases(
+    observations: dict[str, Any],
+    transactions: list[dict[str, Any]],
+    rows: list[dict[str, Any]],
+    registry_sha256: str,
+) -> None:
+    """Bind aliases as rejected dispositions without creating duplicate transactions."""
+
+    transaction_by_relative = {
+        row["archive_relative_path"]: row for row in transactions
+    }
+    for row in rows:
+        alias = row["archive_relative_path"]
+        canonical = row["canonical_archive_relative_path"]
+        entry = observations["entries"].get(alias)
+        canonical_entry = observations["entries"].get(canonical)
+        transaction = transaction_by_relative.get(canonical)
+        if entry is None or entry.get("present") is not True:
+            raise ProductionError(f"archive alias source is absent: {alias}")
+        if canonical_entry is None or canonical_entry.get("present") is not True:
+            raise ProductionError(f"canonical archive source is absent: {canonical}")
+        if transaction is None:
+            raise ProductionError(f"canonical archive transaction is absent: {canonical}")
+        if entry.get("baseline") is True or entry.get("committed_archive_sha256") is not None:
+            raise ProductionError(f"archive alias already has an incompatible disposition: {alias}")
+        if (
+            transaction["archive_sha256"] != row["archive_sha256"]
+            or transaction["archive_size"] != row["archive_size"]
+            or transaction["drop_id"] != row["canonical_drop_id"]
+            or transaction["committed_at_utc"]
+            != row["canonical_transaction_committed_at_utc"]
+            or canonical_entry.get("committed_archive_sha256") != row["archive_sha256"]
+        ):
+            raise ProductionError(f"canonical archive transaction binding mismatch: {canonical}")
+        if int(entry["size"]) != row["archive_size"] or int(entry["mtime_ns"]) != row[
+            "archive_mtime_ns"
+        ]:
+            raise ProductionError(f"archive alias metadata mismatch: {alias}")
+        if sha256(Path(entry["path"])) != row["archive_sha256"]:
+            raise ProductionError(f"archive alias content hash mismatch: {alias}")
+        existing = (
+            entry.get("rejected_archive_sha256"),
+            entry.get("rejection_reason_code"),
+            entry.get("rejection_registry_sha256"),
+        )
+        expected = (row["archive_sha256"], ALIAS_REASON_CODE, registry_sha256)
+        if any(value is not None for value in existing) and existing != expected:
+            raise ProductionError(f"archive alias disposition changed: {alias}")
+        entry["rejected_archive_sha256"] = row["archive_sha256"]
+        entry["rejection_reason_code"] = ALIAS_REASON_CODE
         entry["rejection_registry_sha256"] = registry_sha256
 
 
@@ -935,6 +1086,21 @@ def run_once(args: argparse.Namespace) -> int:
                 apply_structural_rejections(
                     observations, rejection_rows, rejection_registry_sha
                 )
+            alias_path = getattr(args, "archive_content_alias_registry", None)
+            alias_sha = getattr(
+                args, "expect_archive_content_alias_registry_sha256", None
+            )
+            if (alias_path is None) != (alias_sha is None):
+                raise ProductionError(
+                    "archive content alias registry path and SHA must be supplied together"
+                )
+            if alias_path is not None:
+                alias_rows, alias_registry_sha = load_archive_content_aliases(
+                    alias_path.resolve(), alias_sha
+                )
+                apply_archive_content_aliases(
+                    observations, transactions, alias_rows, alias_registry_sha
+                )
             atomic_bytes(observations_path, canonical_json(observations))
             now_epoch = args.now_epoch if args.now_epoch is not None else dt.datetime.now(
                 dt.timezone.utc
@@ -988,6 +1154,8 @@ def arguments() -> argparse.Namespace:
     parser.add_argument(
         "--expect-extra-structural-rejection-registry-sha256", action="append"
     )
+    parser.add_argument("--archive-content-alias-registry", type=Path)
+    parser.add_argument("--expect-archive-content-alias-registry-sha256")
     parser.add_argument("--minimum-age-seconds", type=int, default=6 * 60 * 60)
     parser.add_argument("--minimum-observations", type=int, default=3)
     parser.add_argument("--minimum-observation-interval-seconds", type=int, default=5 * 60)

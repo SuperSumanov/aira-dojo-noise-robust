@@ -7,12 +7,15 @@ from pathlib import Path
 import pytest
 
 from phase1.prospective_production_runner import (
+    ALIAS_REASON_CODE,
     ProductionError,
+    apply_archive_content_aliases,
     apply_structural_rejections,
     canonical_jsonl,
     empty_observations,
     intake_registry_bytes,
     load_latest,
+    load_archive_content_aliases,
     load_structural_rejections,
     parse_transactions,
     ready_archives,
@@ -335,6 +338,161 @@ def test_parse_transactions_rejects_blank_lines(tmp_path: Path):
     blob = canonical_jsonl([transaction(tmp_path)]) + b"\n"
     with pytest.raises(ProductionError, match="blank transaction registry line"):
         parse_transactions(blob)
+
+
+def alias_fixture(tmp_path: Path) -> tuple[dict, list[dict], dict, Path]:
+    source = tmp_path / "source"
+    canonical = source / "0824" / "task.tar.gz"
+    alias = source / "0824-copy" / "task.tar.gz"
+    canonical.parent.mkdir(parents=True)
+    alias.parent.mkdir(parents=True)
+    payload = b"identical-archive-bytes"
+    canonical.write_bytes(payload)
+    alias.write_bytes(payload)
+    archive_sha = sha256_bytes(payload)
+    observed = update_observations(empty_observations(source), {}, 0.0, 300)
+    current = {}
+    for relative, path in (("0824/task.tar.gz", canonical), ("0824-copy/task.tar.gz", alias)):
+        stat = path.stat()
+        current[relative] = {
+            "path": str(path.resolve()),
+            "size": stat.st_size,
+            "mtime_ns": stat.st_mtime_ns,
+        }
+    observed = update_observations(observed, current, 300.0, 300)
+    canonical_entry = observed["entries"]["0824/task.tar.gz"]
+    canonical_entry["committed_archive_sha256"] = archive_sha
+    canonical_entry["committed_snapshot_sha256"] = "f" * 64
+    canonical_transaction = transaction(tmp_path)
+    canonical_transaction.update(
+        {
+            "archive_relative_path": "0824/task.tar.gz",
+            "archive_sha256": archive_sha,
+            "archive_size": len(payload),
+            "drop_id": "canonical-drop",
+            "committed_at_utc": "2026-08-25T00:00:00Z",
+        }
+    )
+    alias_stat = alias.stat()
+    receipt = tmp_path / "diagnostic_receipt.json"
+    receipt.write_text("{}\n", encoding="utf-8")
+    row = {
+        "archive_mtime_ns": alias_stat.st_mtime_ns,
+        "archive_relative_path": "0824-copy/task.tar.gz",
+        "archive_sha256": archive_sha,
+        "archive_size": len(payload),
+        "canonical_archive_relative_path": "0824/task.tar.gz",
+        "canonical_drop_id": "canonical-drop",
+        "canonical_transaction_committed_at_utc": "2026-08-25T00:00:00Z",
+        "diagnostic_receipt_file": receipt.name,
+        "diagnostic_receipt_sha256": sha256_bytes(receipt.read_bytes()),
+        "reason_code": ALIAS_REASON_CODE,
+    }
+    return observed, [canonical_transaction], row, receipt
+
+
+def test_archive_content_alias_registry_is_hash_and_receipt_bound(tmp_path: Path):
+    _, _, row, _ = alias_fixture(tmp_path)
+    payload = {
+        "protocol": "prospective_archive_content_alias_v1",
+        "outcomes_read": False,
+        "archive_payloads_opened": False,
+        "entries": [row],
+    }
+    path = tmp_path / "aliases.json"
+    blob = json.dumps(payload, sort_keys=True).encode("utf-8")
+    path.write_bytes(blob)
+    rows, actual = load_archive_content_aliases(path, sha256_bytes(blob))
+    assert rows == [row]
+    assert actual == sha256_bytes(blob)
+    with pytest.raises(ProductionError, match="registry SHA mismatch"):
+        load_archive_content_aliases(path, "0" * 64)
+
+
+def test_archive_content_alias_registry_rejects_empty_unsafe_or_unsorted_entries(
+    tmp_path: Path,
+):
+    _, _, row, _ = alias_fixture(tmp_path)
+
+    def write_and_load(entries: list[dict]) -> None:
+        path = tmp_path / "aliases.json"
+        blob = json.dumps(
+            {
+                "protocol": "prospective_archive_content_alias_v1",
+                "outcomes_read": False,
+                "archive_payloads_opened": False,
+                "entries": entries,
+            },
+            sort_keys=True,
+        ).encode("utf-8")
+        path.write_bytes(blob)
+        load_archive_content_aliases(path, sha256_bytes(blob))
+
+    with pytest.raises(ProductionError, match="contract mismatch"):
+        write_and_load([])
+
+    unsafe = dict(row)
+    unsafe["archive_relative_path"] = "../task.tar.gz"
+    with pytest.raises(ProductionError, match="invalid archive alias path"):
+        write_and_load([unsafe])
+
+    second = dict(row)
+    second["archive_relative_path"] = "0823/task.tar.gz"
+    second["canonical_archive_relative_path"] = "0822/task.tar.gz"
+    second["archive_sha256"] = "a" * 64
+    with pytest.raises(ProductionError, match="not sorted"):
+        write_and_load([row, second])
+
+
+def test_archive_content_alias_is_explicitly_excluded_without_new_transaction(tmp_path: Path):
+    observed, transactions, row, _ = alias_fixture(tmp_path)
+    before = json.loads(json.dumps(transactions))
+    apply_archive_content_aliases(observed, transactions, [row], "e" * 64)
+    alias = observed["entries"][row["archive_relative_path"]]
+    assert alias["committed_archive_sha256"] is None
+    assert alias["rejected_archive_sha256"] == row["archive_sha256"]
+    assert alias["rejection_reason_code"] == ALIAS_REASON_CODE
+    assert alias["rejection_registry_sha256"] == "e" * 64
+    assert transactions == before
+    apply_archive_content_aliases(observed, transactions, [row], "e" * 64)
+
+
+def test_archive_content_alias_fails_on_content_or_canonical_drift(tmp_path: Path):
+    observed, transactions, row, _ = alias_fixture(tmp_path)
+    Path(observed["entries"][row["archive_relative_path"]]["path"]).write_bytes(
+        b"different"
+    )
+    with pytest.raises(ProductionError, match="content hash mismatch"):
+        apply_archive_content_aliases(observed, transactions, [row], "e" * 64)
+
+    observed, transactions, row, _ = alias_fixture(tmp_path / "second")
+    transactions[0]["drop_id"] = "changed-drop"
+    with pytest.raises(ProductionError, match="transaction binding mismatch"):
+        apply_archive_content_aliases(observed, transactions, [row], "e" * 64)
+
+
+def test_archive_content_alias_disposition_is_protected_by_observation_ledger(tmp_path: Path):
+    observed, transactions, row, _ = alias_fixture(tmp_path)
+    apply_archive_content_aliases(observed, transactions, [row], "e" * 64)
+    alias = observed["entries"][row["archive_relative_path"]]
+    with pytest.raises(ProductionError, match="rejected source archive metadata changed"):
+        update_observations(
+            observed,
+            {
+                "0824/task.tar.gz": {
+                    "path": observed["entries"]["0824/task.tar.gz"]["path"],
+                    "size": observed["entries"]["0824/task.tar.gz"]["size"],
+                    "mtime_ns": observed["entries"]["0824/task.tar.gz"]["mtime_ns"],
+                },
+                row["archive_relative_path"]: {
+                    "path": alias["path"],
+                    "size": alias["size"] + 1,
+                    "mtime_ns": alias["mtime_ns"],
+                },
+            },
+            600.0,
+            300,
+        )
 
 
 def test_monitor_runner_enters_the_frozen_repo_for_every_invocation():

@@ -53,6 +53,7 @@
   "source_paths": [
     "phase1/provisional_first960_snapshot_chain_protocol_v1.json",
     "phase1/verify_provisional_first960_snapshot_chain.py",
+    "phase1/scripts/monitor_transition_snapshot_chain_20260826.sh",
     "phase1/tests/test_provisional_first960_snapshot_chain.py"
   ]
 }

@@ -449,3 +449,27 @@ def test_protocol_freezes_nonmonotone_prefix_and_no_unlock() -> None:
     assert value["source_append_invariant"]["file_byte_prefix_required"] is False
     assert value["closure"]["effect_or_accuracy_unlock_before_closure"] is False
     assert value["closure"]["preclosure_support_gate_status"].startswith("provisional")
+
+
+def test_transition_monitor_rebuilds_current_artifact_without_legacy_prior_gate() -> None:
+    text = (
+        ROOT / "phase1" / "scripts" / "monitor_transition_snapshot_chain_20260826.sh"
+    ).read_text(encoding="utf-8")
+    producer = text.split("  producer=(", 1)[1].split("  verifier=(", 1)[0]
+    verifier = text.split("  verifier=(", 1)[1].split("  printf '%q ' \"${producer[@]}\"", 1)[0]
+    chain_command = text.split("  chain_command=(", 1)[1].split("  printf '%q ' \"${chain_command[@]}\"", 1)[0]
+    assert "--prior-artifact" not in producer
+    assert "--prior-artifact" not in verifier
+    assert "--prior-artifact" in chain_command
+    assert "--current-artifact" in chain_command
+    for variable in (
+        "OMP_NUM_THREADS",
+        "MKL_NUM_THREADS",
+        "OPENBLAS_NUM_THREADS",
+        "NUMEXPR_NUM_THREADS",
+        "VECLIB_MAXIMUM_THREADS",
+        "BLIS_NUM_THREADS",
+    ):
+        assert f"export {variable}=1" in text
+    assert "effect_metrics=0" in text
+    assert "gpu_jobs=0" in text

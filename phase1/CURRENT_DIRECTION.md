@@ -13,6 +13,26 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GG. 2026-08-26 prediction-matrix 污染已传播到 task-balance v1；structural-only v2 正式预注册
+
+0GF 的撤回链继续向下审计后确认：旧 task-balance guard v1 直接从已撤回 matrix 读取逐任务 pair counts；其 forward v1
+又同时绑定该 guard 与后续 value-reading coverage matrix。因此 0FX/0GD 的 v1 artifacts 虽然算术未被证明错误，但不能再
+作为“first-960 + closure 前严格零 prediction-value access”证据。ABC crosswalk 中指向 matrix/guard 的 evidence pointers
+与 Decision Corpus Evidence Index v6 matrix 项同步降级；其他独立结构证据不受影响。机器污染登记为
+`phase1/prediction_matrix_downstream_taint_registry_v1.json`。所有旧文件保留、不删除、不覆盖。
+
+替代 v2 已在任何 formal promotion 前冻结。基线只读 independent structural gate、snapshot-bound accumulator summary 与
+summary 内 SHA-256 绑定的 first-960 ledger；forward 对基线/当前两套 summary+ledger 重新验证，并用 0GF 的 receipt-only
+independent receipt 交叉确认当前 canonical pair 总数。任何 prediction pair/value/coverage matrix、label/outcome/raw archive/
+effect 表均禁止作为输入。producer A/B、non-importing verifier A/B、ledger 重计、chronology、file trace、credential scan 与
+fresh Linux focused/full 都是硬门。
+
+v1 的 657→645 已为操作者所知，所以 v2 明确是 provenance repair，不是 blind numerical discovery；即使复现，也不能
+追溯恢复 v1 合规性。协议与预注册记录：
+
+- `phase1/task_balance_structural_only_protocol_v2.json`；
+- `phase1/实验记录/2026-08-26/TaskBalance_预测矩阵污染传播与StructuralOnlyV2预注册.md`。
+
 ## 0GF. 2026-08-26 旧 prediction coverage matrix 因预闭包聚合预测值撤回；替代协议先行冻结
 
 代码审计确认旧 `prediction_escrow_coverage_matrix.py` 打开两套 pair prediction 文件、解析 margin/selected，并计算

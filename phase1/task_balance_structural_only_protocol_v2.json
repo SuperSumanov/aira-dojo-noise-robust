@@ -1,0 +1,70 @@
+{
+  "protocol": "task-balance-structural-only-v2",
+  "version": 2,
+  "frozen_at_utc": "2026-08-26T05:48:16Z",
+  "freeze_timing": "after_local_implementation_and_smoke_before_formal_evidence_promotion",
+  "epistemic_note": "The v1 arithmetic was already known. This protocol repairs provenance; it is not a blinded discovery of the numeric direction.",
+  "question": "Can the frozen 25-percent task-balance guard and its later forward accounting be reconstructed without opening or depending on any prediction pair file or prediction-derived matrix?",
+  "allowed_inputs": {
+    "baseline": [
+      "independent structural gate",
+      "snapshot-bound prospective accumulator summary",
+      "summary-bound provisional_first960_runs ledger"
+    ],
+    "current": [
+      "snapshot-bound prospective accumulator summary",
+      "summary-bound provisional_first960_runs ledger",
+      "receipt-only independent canonical-common-support verification"
+    ],
+    "hash_policy": "Every input is a regular non-symlink file bound by an expected SHA-256. Summary and ledger paths must be under <snapshot>/accumulator."
+  },
+  "forbidden_inputs": [
+    "prediction pair files",
+    "prediction values or derived margins",
+    "prediction escrow coverage matrices",
+    "label, grade, outcome, or winner-orientation vaults",
+    "raw archive payloads",
+    "accuracy, effect, or search-utility tables"
+  ],
+  "formal_checks": [
+    "producer A/B byte identity",
+    "non-importing verifier A/B byte identity",
+    "independent structural-gate and accumulator total agreement",
+    "ledger run and endpoint recount",
+    "current total cross-check against receipt-only independent verification",
+    "baseline run-set containment, sequence subsequence, and common-row identity",
+    "exact integer debt identity",
+    "synthetic source, receipt, schema, and candidate tamper rejection",
+    "file-level trace with zero prediction-pair and outcome-path opens",
+    "credential filename and content scan",
+    "fresh Linux focused and full test suite"
+  ],
+  "success_claims": [
+    "structural-only v2 exactly reconstructs the frozen guard",
+    "structural-only v2 exactly reconstructs the later debt accounting",
+    "reported cap and compliance statuses follow from structural counts only"
+  ],
+  "forbidden_claims": [
+    "natural accrual caused any improvement",
+    "the producer complied with the frozen guard unless chronology proves it",
+    "task balance implies predictor accuracy or search utility",
+    "v1 artifacts met the strict zero-prediction-value contract",
+    "numerical agreement retroactively repairs v1 provenance"
+  ],
+  "kill_conditions": [
+    "any input hash or snapshot-path binding mismatch",
+    "any accumulator or gate security field indicates outcome or prediction-file access",
+    "any summary, ledger, independent gate, or receipt total mismatch",
+    "any ledger schema contains a non-structural field",
+    "any chronology invariant fails",
+    "any producer/verifier A/B mismatch",
+    "any independent reconstruction mismatch",
+    "any forbidden file open or credential scan hit"
+  ],
+  "resources": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

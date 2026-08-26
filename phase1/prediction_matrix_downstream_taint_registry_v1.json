@@ -1,0 +1,56 @@
+{
+  "protocol": "prediction-matrix-downstream-taint-registry-v1",
+  "recorded_at_utc": "2026-08-26T05:48:16Z",
+  "root_incident": {
+    "path": "phase1/results/prediction_escrow_coverage_7cda_20260825_6299865/matrix.json",
+    "sha256": "be63fbe02c63c306bb488aa30416de7260e83e4701bdce3ed3f1d8843fd6f6b7",
+    "reason": "The producer opened prediction pair files and aggregated prediction-derived fields while attesting prediction_values_aggregated=false.",
+    "labels_or_outcomes_read": false,
+    "numeric_values_proven_wrong": false
+  },
+  "artifacts": [
+    {
+      "path": "phase1/results/prediction_escrow_coverage_7cda_20260825_6299865/matrix.json",
+      "sha256": "be63fbe02c63c306bb488aa30416de7260e83e4701bdce3ed3f1d8843fd6f6b7",
+      "dependency": "direct",
+      "status": "HISTORICAL_WITHDRAWN_AS_STRICT_ZERO_PREDICTION_ACCESS_EVIDENCE"
+    },
+    {
+      "path": "phase1/results/decision_corpus_evidence_index_v6_20260825/index.json",
+      "sha256": "0ee7d885dcaccab59b8294d42f1a165d3b7f1354d433303f978ae7e8c18df9d1",
+      "dependency": "direct_catalog_entry",
+      "status": "PARTIALLY_DEGRADED_MATRIX_DEPENDENT_ENTRY_WITHDRAWN"
+    },
+    {
+      "path": "phase1/results/task_balance_accrual_guard_7cda_20260825/guard.json",
+      "sha256": "fd87246bb3656befba27de5a98c88f808ca39e178e7322d27ae9536fe4a751b0",
+      "dependency": "direct_pair_counts_from_root_matrix",
+      "status": "HISTORICAL_WITHDRAWN_AS_STRICT_ZERO_PREDICTION_ACCESS_EVIDENCE"
+    },
+    {
+      "path": "phase1/results/task_balance_guard_forward_8579_20260826/safe_structural_input.json",
+      "sha256": "0422e068eba42f6769dd4edbe41b17a5c058804108febd8068518c28098c095e",
+      "dependency": "indirect_via_v1_guard_and_direct_via_current_value_reading_matrix",
+      "status": "HISTORICAL_WITHDRAWN_AS_STRICT_ZERO_PREDICTION_ACCESS_EVIDENCE"
+    },
+    {
+      "path": "phase1/results/task_balance_guard_forward_8579_20260826/forward_validation.json",
+      "sha256": "58126971bc846fa14561d3665a824c19b16a6dc2cf96da6e1fea378ff843e799",
+      "dependency": "indirect_via_tainted_v1_guard_and_forward_input",
+      "status": "HISTORICAL_WITHDRAWN_AS_STRICT_ZERO_PREDICTION_ACCESS_EVIDENCE"
+    },
+    {
+      "path": "phase1/results/agentic_benchmark_checklist_crosswalk_v1_20260825/crosswalk.json",
+      "sha256": "fb622cd16e95d6e340ce6fba4bf6661329ec005ec43b184b5ef3cbf29d179b1b",
+      "dependency": "evidence_catalog_contains_root_matrix_and_v1_guard",
+      "status": "PARTIALLY_DEGRADED_AFFECTED_EVIDENCE_POINTERS_WITHDRAWN"
+    }
+  ],
+  "propagation_rule": "An artifact that directly or transitively binds a tainted source cannot attest strict zero-prediction-value provenance, even if its arithmetic is later reproduced.",
+  "preservation_rule": "All historical files remain immutable and auditable; none is deleted or overwritten.",
+  "replacement": {
+    "protocol_path": "phase1/task_balance_structural_only_protocol_v2.json",
+    "status_at_registry_freeze": "SOURCE_AND_TESTS_IMPLEMENTED_FORMAL_PROMOTION_PENDING",
+    "forbidden_dependency": "prediction escrow coverage matrix"
+  }
+}

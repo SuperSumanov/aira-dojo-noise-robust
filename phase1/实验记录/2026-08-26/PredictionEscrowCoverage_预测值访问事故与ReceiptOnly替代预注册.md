@@ -17,6 +17,12 @@ Git artifacts 原样保留作事故与撤回链，不删除、不覆盖，也不
 Evidence Index v6 中依赖该 matrix 的第十项也降级为 historical-withdrawn。旧 matrix 的任何 orientation、tie/non-tie、
 activation/eligibility 数字均不得迁入新结果。该撤回不等于其数值已被证明错误，而是证据生成协议不合规。
 
+后续依赖传播审计又确认：task-balance guard v1 直接读取该 matrix 的逐任务 pair counts，forward v1 同时绑定 v1 guard
+与后续 value-reading coverage matrix；ABC crosswalk 也把 matrix/guard 收入 evidence catalog。因此这些下游文件不能再
+作为严格零 prediction-value provenance 的证据，完整登记见
+`phase1/prediction_matrix_downstream_taint_registry_v1.json`。这不撤回其算术值本身，但必须由不含 matrix 输入的
+structural-only v2 独立重建后才能重新提升相应结构主张。
+
 ## 2. 结果前冻结的新问题与允许主张
 
 唯一问题：在不打开 prediction pair 文件、不解析 artifact summary 内容、不读取 prediction value 的条件下，能否认证

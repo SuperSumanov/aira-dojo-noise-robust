@@ -1,0 +1,646 @@
+{
+  "protocol": "agentic_benchmark_checklist_crosswalk_v2",
+  "status": "CLEAN_PROVENANCE_HUMAN_ASSESSMENT_AWAITING_FIRST960",
+  "assessment_date": "2026-08-26",
+  "assessed_artifact": {
+    "name": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+    "scope": "A derivative benchmark for execution-free prediction over physical-run sibling candidates produced by MLE agents.",
+    "not_identical_to_upstream": "This derivative predictor benchmark is not the upstream MLE-bench agent benchmark. Upstream ABC findings are inherited context, not local compliance credit.",
+    "confirmatory_cohort": "chronological first-960 eligible physical runs plus an independent accrual-closure receipt",
+    "confirmatory_cohort_complete": false,
+    "prospective_outcomes_open_allowed": false
+  },
+  "source_checklist": {
+    "name": "Agentic Benchmark Checklist",
+    "paper_title": "Establishing Best Practices for Building Rigorous Agentic Benchmarks",
+    "arxiv_id": "2507.02825",
+    "revision": "v5",
+    "paper_url": "https://arxiv.org/html/2507.02825",
+    "checklist_url": "https://github.com/uiuc-kang-lab/agentic-benchmarks/blob/main/ABC.md",
+    "upstream_mle_bench_assessment": "The paper reports MLE-bench as satisfying O.i.1, T.2-T.10, and R.1-R.12, while not satisfying T.1 and R.13. Those findings are not rescored here."
+  },
+  "interpretation_contract": {
+    "semantic_assessment_by_humans": true,
+    "machine_verification_scope": "schema_item_set_status_constraints_and_local_evidence_sha256_binding_only",
+    "machine_semantic_certification": false,
+    "aggregate_compliance_score_reported": false,
+    "binary_pass_fail_conversion_allowed": false,
+    "inherited_upstream_counts_as_local_pass": false,
+    "partial_counts_as_pass": false,
+    "not_applicable_counts_as_pass": false
+  },
+  "access_attestation": {
+    "prospective_labels_grades_outcomes_or_winner_orientation_read": false,
+    "prediction_pair_files_opened_by_v2": false,
+    "prediction_values_read_or_aggregated_by_v2": false,
+    "withdrawn_artifacts_used_as_v2_evidence": false,
+    "accuracy_effect_or_search_utility_computed": false,
+    "gpu_or_api_calls": 0,
+    "base_llm_updates": 0
+  },
+  "allowed_statuses": [
+    "PASS_LOCAL",
+    "PARTIAL",
+    "INHERITED_UPSTREAM",
+    "NOT_APPLICABLE"
+  ],
+  "evidence_catalog": {
+    "decision_corpus_audit": {
+      "path": "phase1/results/decision_corpus_audit_v11_20260814/audit_card.json",
+      "sha256_normalized_lf": "a3b5e12cbe280909300d83d54a326c06c736cfb59f2f6762cb5518720393b399",
+      "role": "Physical-run sibling integrity and train/frozen isolation."
+    },
+    "decision_corpus_audit_independent": {
+      "path": "phase1/results/decision_corpus_audit_v11_20260814/independent_verification.json",
+      "sha256_normalized_lf": "63497b5faccc6657cbf58be885a12548c6b16ec15a19cb598c02bb2192ef4a92",
+      "role": "Independent reconstruction of the decision-corpus audit."
+    },
+    "label_repeatability": {
+      "path": "phase1/results/label_repeatability_v2_20260814_4e3bebe/attestation.json",
+      "sha256_normalized_lf": "eba5e2b3ce01d3cbf80bb81d9854d1e08c6bd73a045d97fe1a20b1e264c8cf8b",
+      "role": "Retrospective ten-task regrade repeatability attestation."
+    },
+    "label_repeatability_independent": {
+      "path": "phase1/results/label_repeatability_v2_20260814_4e3bebe/independent_verification.json",
+      "sha256_normalized_lf": "6a167a31498ea2ad11781978949f1aac12b2c9cc001d03fa4d43ef3c4b91fbf3",
+      "role": "Independent label-repeatability verification."
+    },
+    "clone_audit": {
+      "path": "phase1/results/prospective_code_clone_audit_20260820_e121452/receipt.json",
+      "sha256_normalized_lf": "9d85a642928385bac099b46ce36d24f5d8e24434a7b5076dc6b83ea8810656be",
+      "role": "Prospective normalized-code clone audit."
+    },
+    "clone_audit_independent": {
+      "path": "phase1/results/prospective_code_clone_audit_20260820_e121452/verification_summary.json",
+      "sha256_normalized_lf": "d27b2bc8df58d60400c5dd30b39d1ea1eeddb499320f28631b710bcc5c32639b",
+      "role": "Independent normalized-code clone verification."
+    },
+    "deployment_cost": {
+      "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/cross_run_comparison.json",
+      "sha256_normalized_lf": "d124c5b664bf2a0d878eb02cfaa071a3fae45fd1525da30d82ea8a229571c784",
+      "role": "Pinned repeated timing and query-versus-execution cost boundary."
+    },
+    "rejection_ledger": {
+      "path": "phase1/results/structural_rejection_ledger_v1_20260825/ledger.json",
+      "sha256_normalized_lf": "b194b1bc88e561e77f982ae6f46d5ea7cccb745cc960c26da2661ea0ce8bad03",
+      "role": "Complete outcome-blind archive disposition and structural rejection ledger."
+    },
+    "rejection_ledger_independent": {
+      "path": "phase1/results/structural_rejection_ledger_v1_20260825/independent_verification.json",
+      "sha256_normalized_lf": "1281797c52007f3a6f9687ded4a785f21f0cc779bb8276e9e41e4ed057587a60",
+      "role": "Independent rejection-ledger reconstruction."
+    },
+    "structural_gate_7cda": {
+      "path": "phase1/results/prospective_0823_batch_postflight_20260825_6299865/structural_gate.json",
+      "sha256_normalized_lf": "ca44845bc0f5feaf5de0e77ec658e4b0cca3f5a451b75b33bb4c63acfc1eccca",
+      "role": "Latest published outcome-blind first-960 structural state."
+    },
+    "lfs_fresh_pull": {
+      "path": "phase1/results/corpus_lfs_audit_20260814/fresh_pull_receipt.json",
+      "sha256_normalized_lf": "e8aaf834162350f5a232b3ced7fe57927e309caef2c61a45bf8e2e5413442fab",
+      "role": "Git LFS fresh-pull accessibility receipt."
+    },
+    "corpus_v11_release": {
+      "path": "phase1/results/corpus_release_contract_20260814_73fd5f6/v11.receipt.json",
+      "sha256_normalized_lf": "d04688cadd6a5d6f53d7bcdeda01e8f894f53cac880efe5e2dcc1d43dd7e3e4c",
+      "role": "Immutable-batch v11 release reconstruction receipt."
+    },
+    "config_v2_contract": {
+      "path": "phase1/contracts/SENIOR_EXPERIMENT_CONFIG_MANIFEST_V2.md",
+      "sha256_normalized_lf": "7eef1ec5939fc3b9a32491989ba08234fe400ca6b6aef1b2fc927872e8b38947",
+      "role": "Future-only prompt-sensitive producer provenance contract, explicitly not deployed on historical archives."
+    },
+    "future_schema_only": {
+      "path": "phase1/results/future_provenance_schema_only_20260823/schema_output.txt",
+      "sha256_normalized_lf": "caa59456c864f07770e73fcb4a7fe5565c93bb7519b44b2faa873aafa1905589",
+      "role": "Observed safe-sidecar schema showing missing model, hardware, and timing fields."
+    },
+    "static_suite": {
+      "path": "phase1/results/critic_component_static_suite_20260821_76c1b49/metrics.json",
+      "sha256_normalized_lf": "ddad91e1c3e2d3b0a461e7277092b6a5e52edaf74415b2bba6ea95da7383b297",
+      "role": "Same-pool static predictor metrics with clustered uncertainty."
+    },
+    "static_suite_independent": {
+      "path": "phase1/results/critic_component_static_suite_20260821_76c1b49/final_verification_receipt.json",
+      "sha256_normalized_lf": "b83f0cefdb95ead29d485be47d4b006ea03649b3867bc78e544a6efad1e8e400",
+      "role": "Independent static-suite verification."
+    },
+    "observability_funnel": {
+      "path": "phase1/results/decision_observability_funnel_v1_20260821_1b8a7b9/formal_summary.json",
+      "sha256_normalized_lf": "e2bf11bc557ff147a11040821a6d3aa5a0650023ba585bbbf7f5e730fcf07ceb",
+      "role": "Quantitative decision-observability attrition analysis."
+    },
+    "observability_funnel_independent": {
+      "path": "phase1/results/decision_observability_funnel_v1_20260821_1b8a7b9/verification_a.json",
+      "sha256_normalized_lf": "d83f2128ccc1d0309a31b3aa5f518b453514181dc1d858445b23facbcbe4feb1",
+      "role": "Independent decision-observability reconstruction."
+    },
+    "evidence_index_v7": {
+      "path": "phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/index.json",
+      "sha256_normalized_lf": "d8cc9c60900ab41ff1df0e3aae3add29bbb922d5a32157957dcac5675fa31674",
+      "role": "Clean-provenance machine index for fourteen audit assets and claim boundaries."
+    },
+    "evidence_index_v7_independent": {
+      "path": "phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/independent_verification.json",
+      "sha256_normalized_lf": "b0bcd3213be641dcf6832b08d6a47720189bcfacc72dca15276ed01fe191d128",
+      "role": "Independent reconstruction of the clean-provenance v7 evidence index."
+    },
+    "receipt_common_support": {
+      "path": "phase1/results/prediction_receipt_common_support_8579_20260826_9f2cbe9/receipt.json",
+      "sha256_normalized_lf": "3b2d0200cf8982a69837a65ca0511fcb35534c94ee440f6bf17789c09c721263",
+      "role": "Receipt-certified 2,755-pair common support without prediction-pair access."
+    },
+    "receipt_common_support_independent": {
+      "path": "phase1/results/prediction_receipt_common_support_8579_20260826_9f2cbe9/independent_verification.json",
+      "sha256_normalized_lf": "24a7ff758d391f4fd506236df97f1a9d6692ddb965cab490e6e92475e2cb012e",
+      "role": "Independent receipt-only common-support verification."
+    },
+    "provenance_taint_registry": {
+      "path": "phase1/prediction_matrix_downstream_taint_registry_v1.json",
+      "sha256_normalized_lf": "f15cba54aca4572cc6c515d8b0f30d614874997bc873fa5cee7698f0aeb3c13b",
+      "role": "Immutable propagation registry for all withdrawn strict-zero-value pointers."
+    },
+    "structural_weight_trajectory": {
+      "path": "phase1/results/structural_weight_trajectory_7cda_20260826/headline_metrics.json",
+      "sha256_normalized_lf": "8d4041994f8998e5a04df0e2e18508ebf97915221303c14f62d9abb8d0e6b2b2",
+      "role": "Outcome-blind run-to-pair task-weight trajectory with all robustness gates."
+    },
+    "structural_weight_trajectory_independent": {
+      "path": "phase1/results/structural_weight_trajectory_7cda_20260826/independent_verification.json",
+      "sha256_normalized_lf": "8094e21acde877a67cdcc295c6decaaaf9e650c06fd55a91ed69026f877f9420",
+      "role": "Independent recomputation of the structural weighting trajectory."
+    },
+    "opportunity_yield_audit": {
+      "path": "phase1/results/opportunity_yield_aggregation_audit_v1_20260826/formal_summary.json",
+      "sha256_normalized_lf": "ec0671e8fb4d17faa53603fc53c4a8a98069e27a86feeac203a89e932d61e053",
+      "role": "Frozen closure-time opportunity-yield aggregation interpretation contract."
+    },
+    "opportunity_yield_audit_independent": {
+      "path": "phase1/results/opportunity_yield_aggregation_audit_v1_20260826/independent_verification.json",
+      "sha256_normalized_lf": "0054e5fceaf326b67f773d44109841ce576db59c9efd959671e97b6b3357e973",
+      "role": "Independent verification of the no-rescue aggregation contract."
+    },
+    "task_balance_v2": {
+      "path": "phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/forward_validation.json",
+      "sha256_normalized_lf": "fca979bb912c61bb14385638069a64aefcb8a7b9bc41cb77c260d07075ea0fb1",
+      "role": "Structural-only task-balance forward accounting; cap and adherence failures retained."
+    },
+    "task_balance_v2_independent": {
+      "path": "phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/forward_independent_verification.json",
+      "sha256_normalized_lf": "00f8fec272705d0d5dfe072f2e0e59efa170913900249a506c829b693f102146",
+      "role": "Independent structural-only task-balance reconstruction."
+    }
+  },
+  "items": [
+    {
+      "id": "O.i.1",
+      "domain": "outcome_validity",
+      "criterion": "Quality metrics should resist exploitation and remain tied to genuine task progress.",
+      "status": "INHERITED_UPSTREAM",
+      "ownership": "upstream_mle_bench_with_local_extension",
+      "rationale": "ABC v5 gives upstream MLE-bench a positive assessment because leaderboard position is not easily exploitable. The derivative benchmark inherits that metric but does not claim a new local pass from it.",
+      "local_evidence_ids": [
+        "label_repeatability",
+        "label_repeatability_independent"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Repeatability and noise transport on the closed first-960 outcome population remain unavailable while outcomes are sealed."
+    },
+    {
+      "id": "T.1",
+      "domain": "task_validity",
+      "criterion": "Versions of important tools and packages are clearly specified.",
+      "status": "PARTIAL",
+      "ownership": "mixed",
+      "rationale": "ABC v5 already flags missing Python and PyTorch versions in upstream MLE-bench prompts. The local config-v2 contract fingerprints solver configuration but does not retroactively supply complete package versions for historical producers.",
+      "local_evidence_ids": [
+        "config_v2_contract",
+        "future_schema_only"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Deploy an outcome-before producer sidecar that records the real resolved environment and package versions for future exact strata."
+    },
+    {
+      "id": "T.2",
+      "domain": "task_validity",
+      "criterion": "Required API tools remain consistently accessible during evaluation.",
+      "status": "PARTIAL",
+      "ownership": "mixed",
+      "rationale": "Upstream MLE-bench evaluation itself does not require external APIs, but optional LLM-judge predictor arms and the corpus producer do. CPU baselines remain reproducible without those services; provider availability is not yet a fully frozen benchmark property.",
+      "local_evidence_ids": [
+        "config_v2_contract",
+        "future_schema_only"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Specify which released arms require providers and archive provider release, availability, and retry metadata outcome-before."
+    },
+    {
+      "id": "T.3",
+      "domain": "task_validity",
+      "criterion": "The harness terminates or handles failures appropriately when a required API is inaccessible.",
+      "status": "PARTIAL",
+      "ownership": "local_derivative",
+      "rationale": "Collection and escrow paths fail closed, but the final public predictor harness has not yet frozen a provider-outage reporting contract for optional API-backed arms.",
+      "local_evidence_ids": [
+        "rejection_ledger",
+        "rejection_ledger_independent",
+        "config_v2_contract"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Add and test explicit provider-unavailable statuses without silently dropping pairs or substituting models."
+    },
+    {
+      "id": "T.4",
+      "domain": "task_validity",
+      "criterion": "Residual state is cleared between runs.",
+      "status": "INHERITED_UPSTREAM",
+      "ownership": "upstream_mle_bench_with_local_extension",
+      "rationale": "ABC v5 credits upstream clean evaluation environments. Locally, physical-run reconstruction and split isolation prevent different runs from being treated as independent fragments, but do not create a new environment-cleanliness result.",
+      "local_evidence_ids": [
+        "decision_corpus_audit",
+        "decision_corpus_audit_independent"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Future producer environment receipts should remain attached to each immutable run."
+    },
+    {
+      "id": "T.5",
+      "domain": "task_validity",
+      "criterion": "The agent and benchmark-development pipeline are isolated from ground-truth information at decision time.",
+      "status": "PASS_LOCAL",
+      "ownership": "local_derivative",
+      "rationale": "The confirmatory pipeline is outcome-blind, keeps the vault sealed, verifies train/frozen physical-run isolation, and now binds those claims through the clean-provenance v7 index.",
+      "local_evidence_ids": [
+        "decision_corpus_audit",
+        "decision_corpus_audit_independent",
+        "structural_gate_7cda",
+        "evidence_index_v7"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "The pass applies to the implemented isolation contract, not to a prospective accuracy claim."
+    },
+    {
+      "id": "T.6",
+      "domain": "task_validity",
+      "criterion": "The environment setup is frozen and reproducible at benchmark release.",
+      "status": "PARTIAL",
+      "ownership": "mixed",
+      "rationale": "Immutable corpus batches and a reconstruction contract exist, but historical producer archives lack a complete outcome-before prompt-sensitive environment sidecar. The future v2 interface is implemented but not observed on real producer data.",
+      "local_evidence_ids": [
+        "corpus_v11_release",
+        "config_v2_contract",
+        "future_schema_only"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Observe and validate real config-v2 sidecars before claiming exact producer-stratum reproducibility."
+    },
+    {
+      "id": "T.7",
+      "domain": "task_validity",
+      "criterion": "Ground-truth annotations are verified for correctness.",
+      "status": "INHERITED_UPSTREAM",
+      "ownership": "upstream_mle_bench_with_local_extension",
+      "rationale": "Ground truth originates from Kaggle and upstream MLE-bench. Local repeated regrading supports pair-order repeatability on a retrospective ten-task subset but is not a full prospective ground-truth audit.",
+      "local_evidence_ids": [
+        "label_repeatability",
+        "label_repeatability_independent"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Recompute outcome reliability on the closed first-960 population under the frozen analysis plan."
+    },
+    {
+      "id": "T.8",
+      "domain": "task_validity",
+      "criterion": "Each task is verified to be solvable.",
+      "status": "INHERITED_UPSTREAM",
+      "ownership": "upstream_mle_bench",
+      "rationale": "The tasks are historical Kaggle competitions with demonstrated solutions, matching the upstream ABC assessment. The derivative benchmark does not re-establish task solvability.",
+      "local_evidence_ids": [
+        "decision_corpus_audit"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "None locally beyond preserving exact task identity and upstream citations."
+    },
+    {
+      "id": "T.9",
+      "domain": "task_validity",
+      "criterion": "An oracle or reference solution demonstrates task configuration correctness.",
+      "status": "INHERITED_UPSTREAM",
+      "ownership": "upstream_mle_bench",
+      "rationale": "Kaggle solutions provide the upstream oracle concept cited by ABC. The local benchmark uses external grades rather than claiming a new oracle implementation.",
+      "local_evidence_ids": [
+        "label_repeatability"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Document the upstream oracle relationship in the final datasheet without presenting it as a local contribution."
+    },
+    {
+      "id": "T.10",
+      "domain": "task_validity",
+      "criterion": "Pilot outliers and implementation shortcuts are inspected and exploitable benchmark flaws are mitigated.",
+      "status": "PARTIAL",
+      "ownership": "local_derivative",
+      "rationale": "Run leakage, fragmentary choice sets, clone risk, structural invalidity, task concentration, and the prediction-matrix provenance incident are explicitly audited with fail-closed handling and preserved retractions.",
+      "local_evidence_ids": [
+        "decision_corpus_audit",
+        "clone_audit",
+        "rejection_ledger",
+        "task_balance_v2",
+        "task_balance_v2_independent",
+        "observability_funnel",
+        "provenance_taint_registry"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Repeat the full vulnerability and outlier audit on the closed release and retain all exclusions and retractions."
+    },
+    {
+      "id": "R.1",
+      "domain": "benchmark_reporting",
+      "criterion": "The dataset is fully or partially open-sourced.",
+      "status": "PARTIAL",
+      "ownership": "local_derivative",
+      "rationale": "Code and immutable v11 batches are accessible through Git LFS and reproducibly rebuildable, but the prospective first-960 confirmatory release is not closed or published.",
+      "local_evidence_ids": [
+        "lfs_fresh_pull",
+        "corpus_v11_release",
+        "structural_gate_7cda"
+      ],
+      "external_evidence_urls": [
+        "https://github.com/SuperSumanov/aira-dojo-noise-robust"
+      ],
+      "remaining_gap": "Close first-960, redact and publish its immutable batches, and verify a fresh no-cache rebuild."
+    },
+    {
+      "id": "R.2",
+      "domain": "benchmark_reporting",
+      "criterion": "An open-source evaluation and audit harness is available.",
+      "status": "PASS_LOCAL",
+      "ownership": "local_derivative",
+      "rationale": "The public repository contains reconstruction, audit, predictor, escrow, and independent-verification code; v7 and the receipt-only join bind representative outputs without opening prediction values.",
+      "local_evidence_ids": [
+        "decision_corpus_audit_independent",
+        "evidence_index_v7_independent",
+        "receipt_common_support_independent"
+      ],
+      "external_evidence_urls": [
+        "https://github.com/SuperSumanov/aira-dojo-noise-robust"
+      ],
+      "remaining_gap": "The final paper should provide a single release command and minimal end-to-end tutorial."
+    },
+    {
+      "id": "R.3",
+      "domain": "benchmark_reporting",
+      "criterion": "Measures address contamination and overfitting to evaluation data.",
+      "status": "PARTIAL",
+      "ownership": "local_derivative",
+      "rationale": "Physical-run train/frozen isolation, temporal first-960 accrual, outcome sealing, and normalized clone checks directly address split and corpus contamination. Pretraining exposure to public Kaggle tasks cannot be ruled out.",
+      "local_evidence_ids": [
+        "decision_corpus_audit",
+        "clone_audit",
+        "clone_audit_independent",
+        "structural_gate_7cda"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Report public-task pretraining exposure as an irreducible limitation and avoid claims requiring task secrecy."
+    },
+    {
+      "id": "R.4",
+      "domain": "benchmark_reporting",
+      "criterion": "The benchmark has measures or plans for consistent updates over time.",
+      "status": "PASS_LOCAL",
+      "ownership": "local_derivative",
+      "rationale": "Corpus growth is append-only through immutable batches, archive-level credential-first intake, explicit structural rejection, and deterministic rebuild receipts.",
+      "local_evidence_ids": [
+        "corpus_v11_release",
+        "rejection_ledger",
+        "rejection_ledger_independent",
+        "structural_gate_7cda"
+      ],
+      "external_evidence_urls": [
+        "https://github.com/SuperSumanov/aira-dojo-noise-robust"
+      ],
+      "remaining_gap": "Publish the update cadence and semantic-version policy in the final datasheet."
+    },
+    {
+      "id": "R.5",
+      "domain": "benchmark_reporting",
+      "criterion": "The relationship between the target capability and measured construct is explicit.",
+      "status": "PASS_LOCAL",
+      "ownership": "local_derivative",
+      "rationale": "The estimand is execution-free ranking of same-decision physical-run siblings before candidate execution; cost, post-execution self-report, receipt-certified support, structural weighting, and accuracy remain distinct constructs.",
+      "local_evidence_ids": [
+        "evidence_index_v7",
+        "deployment_cost",
+        "receipt_common_support"
+      ],
+      "external_evidence_urls": [],
+      "remaining_gap": "Prospective utility remains unmeasured until first-960 closure and must not be inferred from structural coverage."
+    },
+    {
+      "id": "R.6",
+      "domain": "benchmark_reporting",
+      "criterion": "The evaluation subject is clearly stated.",
+      "status": "PASS_LOCAL",
+      "ownership": "local_derivative",
+      "rationale": "The benchmark evaluates independent critics and predictors over frozen sibling decisions; receipt-certified support does not evaluate or update the base agent LLM.",
+      "local_evidence_ids": [
+        "evidence_index_v7",
+        "receipt_common_support"
+      ],
+      "external_evidence_urls": [],
+      "remaining_gap": "Keep base-agent quality and predictor quality separated in all tables."
+    },
+    {
+      "id": "R.7",
+      "domain": "benchmark_reporting",
+      "criterion": "Steps taken to prevent, identify, and correct flaws are documented.",
+      "status": "PASS_LOCAL",
+      "ownership": "local_derivative",
+      "rationale": "The project preserves retractions, independently reconstructs physical runs, rejects invalid archives without outcomes, and rebuilds tainted machine pointers from unaffected sources rather than rewriting history.",
+      "local_evidence_ids": [
+        "decision_corpus_audit",
+        "rejection_ledger",
+        "rejection_ledger_independent",
+        "evidence_index_v7",
+        "provenance_taint_registry"
+      ],
+      "external_evidence_urls": [],
+      "remaining_gap": "Continue preserving failed attempts and supersession history through final release."
+    },
+    {
+      "id": "R.8",
+      "domain": "benchmark_reporting",
+      "criterion": "Unavoidable flaws and their possible impacts are discussed qualitatively.",
+      "status": "PASS_LOCAL",
+      "ownership": "local_derivative",
+      "rationale": "Every v7 asset carries an explicit does-not-prove boundary; fragmentary choice sets, missing outcomes, task-weight transformation, batch-sensitive magnitude, task concentration, and public-task exposure remain visible.",
+      "local_evidence_ids": [
+        "evidence_index_v7",
+        "observability_funnel",
+        "task_balance_v2",
+        "structural_weight_trajectory",
+        "structural_weight_trajectory_independent"
+      ],
+      "external_evidence_urls": [],
+      "remaining_gap": "The final limitations section must retain these boundaries even if a positive effect appears."
+    },
+    {
+      "id": "R.9",
+      "domain": "benchmark_reporting",
+      "criterion": "The impact of unavoidable flaws is assessed quantitatively.",
+      "status": "PASS_LOCAL",
+      "ownership": "local_derivative",
+      "rationale": "The clean evidence stack quantifies label repeatability, observability loss, clone isolation, archive rejection, receipt-certified support, deployment cost, run-to-pair weighting shift, and structural balance debt.",
+      "local_evidence_ids": [
+        "label_repeatability",
+        "observability_funnel",
+        "observability_funnel_independent",
+        "rejection_ledger",
+        "receipt_common_support",
+        "deployment_cost",
+        "task_balance_v2",
+        "structural_weight_trajectory",
+        "structural_weight_trajectory_independent",
+        "opportunity_yield_audit",
+        "opportunity_yield_audit_independent"
+      ],
+      "external_evidence_urls": [],
+      "remaining_gap": "Add closed first-960 noise, missingness, and sensitivity analyses without selecting analyses after seeing effects."
+    },
+    {
+      "id": "R.10",
+      "domain": "benchmark_reporting",
+      "criterion": "Results include uncertainty or statistical-significance measures.",
+      "status": "PARTIAL",
+      "ownership": "local_derivative",
+      "rationale": "Retrospective same-pool suites use task- and parent-clustered intervals, while the clean v7 stack forbids any prospective first-960 effect before closure.",
+      "local_evidence_ids": [
+        "static_suite",
+        "static_suite_independent",
+        "evidence_index_v7"
+      ],
+      "external_evidence_urls": [],
+      "remaining_gap": "Apply the frozen clustered-inference plan once to the closed cohort and report all methods on common support."
+    },
+    {
+      "id": "R.11",
+      "domain": "benchmark_reporting",
+      "criterion": "Guidance is provided for interpreting results under evaluation flaws.",
+      "status": "PASS_LOCAL",
+      "ownership": "local_derivative",
+      "rationale": "V7 forbids translating receipt-certified support or structural weighting into accuracy, effect, or search utility and freezes an explicit opportunity-yield interpretation contract.",
+      "local_evidence_ids": [
+        "evidence_index_v7",
+        "evidence_index_v7_independent",
+        "receipt_common_support",
+        "observability_funnel"
+      ],
+      "external_evidence_urls": [],
+      "remaining_gap": "Preserve the same interpretation contract in paper tables, captions, and abstract."
+    },
+    {
+      "id": "R.12",
+      "domain": "benchmark_reporting",
+      "criterion": "Appropriate non-AI or human baselines are reported.",
+      "status": "PARTIAL",
+      "ownership": "mixed",
+      "rationale": "Upstream MLE-bench reports human Kaggle performance, and the local suite includes random and static non-neural comparators. The final closed common-support predictor table still does not exist.",
+      "local_evidence_ids": [
+        "static_suite",
+        "static_suite_independent",
+        "receipt_common_support"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Report the frozen random, code-length/static, TF-IDF, learned, judge, and post-execution reference rows on the closed common pool."
+    },
+    {
+      "id": "R.13",
+      "domain": "benchmark_reporting",
+      "criterion": "A trivial agent is reported as a harness sanity check.",
+      "status": "NOT_APPLICABLE",
+      "ownership": "local_derivative",
+      "rationale": "A do-nothing agent is not the evaluated object in a predictor benchmark. The correct analogue is an orientation-independent random predictor; receipt-certified support does not convert that analogue into a literal pass.",
+      "local_evidence_ids": [
+        "static_suite",
+        "receipt_common_support"
+      ],
+      "external_evidence_urls": [
+        "https://arxiv.org/html/2507.02825"
+      ],
+      "remaining_gap": "Include the frozen random predictor as a mandatory sanity baseline after closure and retain R.13 as not directly applicable."
+    }
+  ],
+  "status_counts": {
+    "PASS_LOCAL": 9,
+    "PARTIAL": 9,
+    "INHERITED_UPSTREAM": 5,
+    "NOT_APPLICABLE": 1
+  },
+  "priority_gaps": [
+    "Deploy real outcome-before producer environment and prompt-sensitive config sidecars for future exact strata.",
+    "Reach first-960 plus independent accrual closure before opening prospective outcomes.",
+    "Publish the closed immutable corpus through Git LFS and verify a fresh no-cache rebuild.",
+    "Run the frozen common-support predictor analysis with clustered uncertainty exactly once after closure.",
+    "Retain public-Kaggle-task pretraining exposure and incomplete historical producer provenance as explicit limitations."
+  ],
+  "source_v1_template": {
+    "path": "phase1/results/agentic_benchmark_checklist_crosswalk_v1_20260825/crosswalk.json",
+    "sha256_normalized_lf": "fb622cd16e95d6e340ce6fba4bf6661329ec005ec43b184b5ef3cbf29d179b1b",
+    "used_for_human_item_text_and_conservative_statuses_only": true,
+    "source_evidence_artifacts_opened": false,
+    "source_access_attestation_inherited": false
+  },
+  "provenance_repair": {
+    "removed_evidence_ids": [
+      "evidence_index_v6",
+      "evidence_index_v6_independent",
+      "coverage_7cda",
+      "coverage_7cda_independent",
+      "balance_guard",
+      "balance_guard_independent"
+    ],
+    "added_clean_evidence_ids": [
+      "evidence_index_v7",
+      "evidence_index_v7_independent",
+      "receipt_common_support",
+      "receipt_common_support_independent",
+      "provenance_taint_registry",
+      "structural_weight_trajectory",
+      "structural_weight_trajectory_independent",
+      "opportunity_yield_audit",
+      "opportunity_yield_audit_independent",
+      "task_balance_v2",
+      "task_balance_v2_independent"
+    ],
+    "withdrawn_artifacts_used_as_v2_evidence": false,
+    "v6_or_value_reading_matrix_inherited": false,
+    "human_statuses_upgraded_during_migration": false,
+    "historical_files_deleted_or_overwritten": false
+  }
+}

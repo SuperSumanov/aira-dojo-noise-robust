@@ -119,7 +119,7 @@ def test_independent_verifier_checks_complete_clean_crosswalk(tmp_path: Path) ->
 def test_checked_in_crosswalk_matches_builder_when_present() -> None:
     checked = (
         REPO_ROOT
-        / "phase1/results/agentic_benchmark_checklist_crosswalk_v2_20260826/crosswalk.json"
+        / "phase1/results/agentic_benchmark_checklist_crosswalk_v2_20260826_c97371d/crosswalk.json"
     )
     if not checked.exists():
         pytest.skip("formal v2 crosswalk has not been generated yet")

@@ -1,0 +1,13 @@
+01_question=Can ABC crosswalk v2 preserve all conservative human statuses while replacing every tainted evidence pointer? PASS
+02_estimand=Schema,status,and evidence-provenance verification only; no compliance score or method effect. PASS
+03_inputs=Exact v1 human template plus twenty-nine clean hash-pinned evidence files. PASS
+04_split_leakage=Removed v1 evidence,prediction pair/value files,labels,outcomes,and raw archives are forbidden. PASS
+05_controls=Builder A/B,non-importing verifier A/B,removed-ID negatives,and status-promotion negatives. PASS
+06_sample_size=Fixed 24 checklist items,29 evidence files,and status counts 9/9/5/1. PASS
+07_randomness=Deterministic JSON migration with PYTHONHASHSEED=0; no stochastic fit. PASS
+08_inference=No semantic machine certification,aggregate score,accuracy,effect,CI,p-value,or utility. PASS
+09_cost=CPU only; GPU/API/model-fit/base-update=0/0/0/0. PASS
+10_resume=Unique formal root; failure leaves no COMPLETE and no public promotion. PASS
+11_environment=Fresh detached no-smudge worktree at exact public commit. PASS
+12_security=Production file traces distinguish allowed v1 template from forbidden v1 evidence; credential scan required. PASS
+13_promotion=Only exact A/B,tests,trace,security,clean-worktree,and manifest success may create COMPLETE. PASS

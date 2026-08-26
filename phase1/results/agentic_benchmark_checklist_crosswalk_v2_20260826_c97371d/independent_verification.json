@@ -1,0 +1,49 @@
+{
+  "accuracy_effect_or_search_utility_computed": false,
+  "added_clean_evidence_ids": [
+    "evidence_index_v7",
+    "evidence_index_v7_independent",
+    "receipt_common_support",
+    "receipt_common_support_independent",
+    "provenance_taint_registry",
+    "structural_weight_trajectory",
+    "structural_weight_trajectory_independent",
+    "opportunity_yield_audit",
+    "opportunity_yield_audit_independent",
+    "task_balance_v2",
+    "task_balance_v2_independent"
+  ],
+  "aggregate_compliance_score_reported": false,
+  "crosswalk_sha256_normalized_lf": "65cbf6cf0b9e15d0c5821420f5ce1adbdd8b8749c42fa8fbcc0ccc217b1487ee",
+  "evidence_catalog_sha256": "f85668436c20e637f79a1b9e07cb4b01e9ef033bad65f647edccdfda0d5d5f1b",
+  "evidence_files_verified": 29,
+  "gpu_or_api_calls": 0,
+  "human_statuses_upgraded_during_migration": false,
+  "imports_crosswalk_authoring_code": false,
+  "items_verified": 24,
+  "prediction_pair_files_opened": false,
+  "prediction_values_read_or_aggregated": false,
+  "prospective_outcomes_read": false,
+  "protocol": "independent_agentic_benchmark_checklist_crosswalk_verifier_v2",
+  "removed_evidence_ids": [
+    "evidence_index_v6",
+    "evidence_index_v6_independent",
+    "coverage_7cda",
+    "coverage_7cda_independent",
+    "balance_guard",
+    "balance_guard_independent"
+  ],
+  "semantic_assessment_certified": false,
+  "source_v1_evidence_artifacts_opened": false,
+  "source_v1_template_opened": true,
+  "source_v1_template_sha256_normalized_lf": "fb622cd16e95d6e340ce6fba4bf6661329ec005ec43b184b5ef3cbf29d179b1b",
+  "status": "INDEPENDENTLY_VERIFIED_CLEAN_PROVENANCE_ABC_CROSSWALK",
+  "status_counts": {
+    "INHERITED_UPSTREAM": 5,
+    "NOT_APPLICABLE": 1,
+    "PARTIAL": 9,
+    "PASS_LOCAL": 9
+  },
+  "verified_evidence_mapping_sha256": "43ba59e4bd5922237d373ae0702492d43e91bba695ea62f3cd18a4930f399a2b",
+  "withdrawn_artifacts_used_as_v2_evidence": false
+}

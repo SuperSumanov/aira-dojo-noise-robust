@@ -1,0 +1,2 @@
+source_v1_template_open_hits=24
+source_v1_removed_evidence_or_forbidden_path_hits=0

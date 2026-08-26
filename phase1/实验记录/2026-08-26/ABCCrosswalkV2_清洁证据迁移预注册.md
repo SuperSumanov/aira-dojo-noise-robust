@@ -48,3 +48,22 @@ pair/value、prospective label/outcome 或 raw archive payload。GPU/API/model-f
 - verifier 不得 import builder；semantic certification 与 aggregate score 永远为 false。
 
 冻结前本地 smoke=`11 passed, 1 skipped`，只证明实现能运行，不是 formal evidence 或新的 D&B compliance 分数。
+
+## 5. Formal 结果（预注册后追加）
+
+正式运行来自公开 source commit
+`c97371d7433b808933624b706a848a644991139c` 的 fresh detached no-smudge Linux worktree，未从开发目录直接生成
+结果。13 项预检全部通过；builder A/B 与 non-importing verifier A/B 分别逐字节一致。
+
+- focused=`11 passed, 1 skipped`；完整 `phase1/tests`=`1144 passed, 1 skipped, 47 warnings`；
+- items/evidence=`24/29`，removed/added clean IDs=`6/11`，人工状态仍为 `9/9/5/1`；
+- production trace 中 source v1 template open records=`24`；removed evidence、prediction pair/value、label/outcome
+  forbidden-path hits=`0`；credential hits=`0`；
+- GPU/API/model-fit/base-LLM update=`0/0/0/0`；
+- crosswalk SHA-256=`65cbf6cf0b9e15d0c5821420f5ce1adbdd8b8749c42fa8fbcc0ccc217b1487ee`；
+- independent verification SHA-256=`242ef697a7c78c1da332703f7a9fa6f289bfaaae69245d00fc0cdfbae535dd06`；
+- formal manifest SHA-256=`1552c9111a7b4b173759db7249fdf67ef7bb758f6f82c224deb7a9b529effcef`。
+
+发布包为 `phase1/results/agentic_benchmark_checklist_crosswalk_v2_20260826_c97371d/`。发布前本地 package
+复验新增结果测试后为 `17 passed`，包内 9 个载荷均通过 `SHA256SUMS`。该结果只恢复清洁、可机验的 checklist
+证据来源；它不认证人工语义，不产生 aggregate compliance score，也不提供新的 predictor effect。

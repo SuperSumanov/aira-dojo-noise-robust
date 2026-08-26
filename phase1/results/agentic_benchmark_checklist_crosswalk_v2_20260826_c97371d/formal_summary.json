@@ -1,0 +1,38 @@
+{
+  "added_clean_evidence_ids": 11,
+  "aggregate_compliance_score_reported": false,
+  "builder_ab_byte_identical": true,
+  "crosswalk_sha256": "65cbf6cf0b9e15d0c5821420f5ce1adbdd8b8749c42fa8fbcc0ccc217b1487ee",
+  "evidence_files": 29,
+  "focused_passed": 11,
+  "focused_skipped": 1,
+  "full_passed": 1144,
+  "full_skipped": 1,
+  "full_warnings": 47,
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "human_statuses_upgraded_during_migration": false,
+  "independent_verification_sha256": "242ef697a7c78c1da332703f7a9fa6f289bfaaae69245d00fc0cdfbae535dd06",
+  "items": 24,
+  "prediction_pair_files_opened": false,
+  "prediction_values_read_or_aggregated": false,
+  "prospective_outcomes_read": false,
+  "protocol": "abc-crosswalk-v2-formal-v1",
+  "removed_evidence_ids": 6,
+  "semantic_assessment_certified": false,
+  "source_commit": "c97371d7433b808933624b706a848a644991139c",
+  "source_v1_removed_evidence_or_forbidden_path_hits": 0,
+  "source_v1_template_open_hits": 24,
+  "status": "FORMAL_CLEAN_PROVENANCE_ABC_CROSSWALK_PASS",
+  "status_counts": {
+    "INHERITED_UPSTREAM": 5,
+    "NOT_APPLICABLE": 1,
+    "PARTIAL": 9,
+    "PASS_LOCAL": 9
+  },
+  "verifier_ab_byte_identical": true
+}

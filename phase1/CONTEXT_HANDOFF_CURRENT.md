@@ -2,14 +2,14 @@
 
 **Last updated:** 2026-08-26
 
-**Dynamic status timestamp:** 2026-08-26 14:27 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-08-26 15:04 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
 **Authority warning:** 本文件不是科学方向的最高权威。开始任何实验前必须先 fetch Git，再读
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
-## 0. 14:27 动态覆盖（覆盖下文冲突的旧 monitor/coverage/task-balance 状态）
+## 0. 15:04 动态覆盖（覆盖下文冲突的旧 monitor/coverage/task-balance 状态）
 
 - task-balance v1 的输入链已确认下游继承 withdrawn prediction matrix：旧 guard 直接读该 matrix 的逐任务
   pair counts，旧 forward 又绑定该 guard 与另一 value-reading matrix。因此 v1 的 `657→645` 算术虽未被证明错误，
@@ -35,7 +35,14 @@
   路径；14 entries、37 JSON artifacts、3 bound files、434 assertions 全部独立通过。fresh Linux focused/full=
   `10 passed, 1 skipped` / `1127 passed, 1 skipped, 47 warnings`，A/B 均逐字相同，production forbidden opens=0。
   source commit=`a83bebfdb8dcf59bea21a1b84269b2e87bf7a02e`；结果包位于
-  `phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/`。下一步是 replacement ABC crosswalk v2。
+  `phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/`。
+- replacement ABC crosswalk v2 已从公开 source commit=`c97371d7433b808933624b706a848a644991139c` 的 fresh
+  Linux worktree 通过：24 items、29 clean evidence files，删除 6 个污染 IDs、加入 11 个 clean IDs，人工状态仍固定
+  `9/9/5/1`。focused/full=`11 passed, 1 skipped` / `1144 passed, 1 skipped, 47 warnings`；production removed
+  evidence/prediction/outcome path hits=0，GPU/API/model-fit/base-update=`0/0/0/0`。crosswalk/independent SHA-256=
+  `65cbf6cf...1487ee` / `242ef697...5dd06`，formal manifest=`1552c911...ffcef`；结果包位于
+  `phase1/results/agentic_benchmark_checklist_crosswalk_v2_20260826_c97371d/`。这是审计来源修复，不是 predictor
+  effect 或 D&B 合规总分。
 
 ## 0A. 13:31 历史动态状态（被上文覆盖）
 

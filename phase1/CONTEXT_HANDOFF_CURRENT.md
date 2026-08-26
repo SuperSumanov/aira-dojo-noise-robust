@@ -2,14 +2,37 @@
 
 **Last updated:** 2026-08-26
 
-**Dynamic status timestamp:** 2026-08-26 13:31 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-08-26 14:27 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
 **Authority warning:** 本文件不是科学方向的最高权威。开始任何实验前必须先 fetch Git，再读
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
-## 0. 13:31 动态覆盖（覆盖下文冲突的旧 monitor/coverage/head 状态）
+## 0. 14:27 动态覆盖（覆盖下文冲突的旧 monitor/coverage/task-balance 状态）
+
+- task-balance v1 的输入链已确认下游继承 withdrawn prediction matrix：旧 guard 直接读该 matrix 的逐任务
+  pair counts，旧 forward 又绑定该 guard 与另一 value-reading matrix。因此 v1 的 `657→645` 算术虽未被证明错误，
+  但其“first-960+closure 前严格零 prediction-value access” provenance 已撤回；旧 artifacts 原样保留，只作历史记录。
+- structural-only v2 已从独立 structural gate、snapshot-bound accumulator summary、其 SHA-256 绑定的 first-960
+  ledger 和 receipt-only independent receipt 重建同一算术。正式 fresh Linux focused/full=`4/1113 passed`；
+  baseline/current pairs=`2635/2755`、debt=`657/645`、delta=`-12`，current OSIC share=
+  `0.308529945553539`，25% cap 与即时 route-away 遵从仍失败。该结果只恢复结构算术，不恢复 v1 provenance，
+  也不是 predictor effect。
+- 公开结果 commit=`b90429ddc817c72bae81eadd32f444174326babb`；fresh public post-push worktree 又通过
+  focused/full=`8/1117 passed`、结果包 inner manifest=`12/12`、检出前后 `git clean=true`，post-push
+  manifest=`5d645f21aa9fe61f88c90c350e75bf3f8acfb5680c7c5d232e18c1943e39fcb4`。分支可能有仅文档后继，
+  每次接手仍须先 fetch。
+- 14:27 metadata-only 复核：first-960 仍为 366/960 runs、10,683 endpoints、2,755 structural pairs、30 tasks，
+  snapshot=`8579d7cd...d9248`；closure=false、label vault=false、outcome/scorer-prediction opens=`0/0`。
+- 当前顶层进程：intake watchdog=`2247187`、replacement intake monitor=`2400213`、transition snapshot-chain=
+  `2320379`、WL snapshot-chain=`2374019`、receipt-only join=`2374760`、future config-v2 readiness=`2385217`。
+  旧 intake PID `2247183` 已被 replacement monitor 接替，不应再作为存活判据。
+- 学长 archive source 最新仍是 0824；`myfork/dojo-reproduce` 精确 HEAD=`2b22f3102a2a64cb89ebcae9ede4d8eb72e1430d`，
+  `src/mle_critic/docs/outcomes` 仍只有 0812/0817/0820 三批文档。metadata-only 搜索仍未发现
+  `*.config_v2.jsonl`，故 future exact-stratum clean scaling 尚不能启动。
+
+## 0A. 13:31 历史动态状态（被上文覆盖）
 
 - GitHub 发布分支精确 HEAD=`ff9d42672da138a7bf9283e3704ef741567a2a94`；最终 fresh Linux 已通过
   checked-in inner manifest、focused/full=`24/1109 passed`，复现 manifest=
@@ -97,7 +120,10 @@ outcome-blind 证据与预冻结机器审计。
 公开结果包 commit `bad6ec5` 的 post-push fresh Linux 复现进一步为 focused/full=`20/1067 passed`，结果包 inner
 manifest 全通过，verifier 双跑与 committed receipt 三者逐字节一致；formal `SHA256SUMS` hash=`06832278...3ee246`。
 
-### 3.3 Frozen task-balance guard 的首次 forward audit
+### 3.3 历史：Frozen task-balance guard v1 的首次 forward audit（provenance 已撤回）
+
+> 本小节保留旧 v1 当时实际报告的数值，但其输入链继承 withdrawn prediction matrix，不能再作为严格零
+> prediction-value access 的证据。可引用的 replacement 是本文件 0 节所列 structural-only v2。
 
 - `7cda→8579` 新增 27 runs / 120 structural pairs：27 OSIC、93 non-OSIC；
 - frozen debt identity 精确：`657 + 3×27 - 93 = 645`，债务净减 12；

@@ -62,3 +62,10 @@ guard/independent SHA-256=`2ffa91a5...52cd177` / `62f5fa00...15310c`；forward/i
 首次 formal 已完成 4/1113 tests 与 A/B，但 credential regex 无左边界，把目录名内部的 `sk-...` 字符串误报为 key，
 因此按约定 fail-closed、不提升。修复只收紧为 boundary-aware regex 并加入正/负自检；新 commit/new output 从头重跑。
 本次一致性只恢复结构算术主张，绝不追溯恢复 v1 provenance。
+
+公开结果 commit=`b90429ddc817c72bae81eadd32f444174326babb` 的 fresh public post-push no-smudge
+worktree 进一步通过 focused/full=`8/1117 passed`、结果包 inner manifest=`12/12`、检出前后
+`git clean=true`；post-push manifest=
+`5d645f21aa9fe61f88c90c350e75bf3f8acfb5680c7c5d232e18c1943e39fcb4`。post-push harness 的首次 broad
+credential grep 把自己的 scan-output 文件纳入扫描而出现自引用 diagnostic；该输出不计作安全证据，随后独立 postcheck
+排除 scanner 自身输出并得到 0 hit。公开复现不改变 v2 的认识边界，也不新增 predictor/effect 主张。

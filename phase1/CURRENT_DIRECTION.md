@@ -38,6 +38,12 @@ baseline/current pairs=`2635/2755`、债务=`657/645`、delta=`-12`、current OS
 `62f5fa00...15310c` / `00f8fec2...102146`，formal/postformal manifest 为 `b1405cd4...005135` /
 `8b90eab9...cb0166`。这恢复相应结构算术主张，不恢复 v1 provenance，也不提供 predictor effect。
 
+公开结果 commit=`b90429ddc817c72bae81eadd32f444174326babb` 在 fresh public post-push no-smudge worktree
+再次通过 focused/full=`8/1117 passed`、结果包 inner manifest=`12/12`、检出前后 `git clean=true`；post-push
+manifest=`5d645f21aa9fe61f88c90c350e75bf3f8acfb5680c7c5d232e18c1943e39fcb4`。首次 broad credential grep
+把自己的 scan-output 文件纳入输入，故该自引用 diagnostic 不作为安全证据；独立 postcheck 排除 scanner 自身输出后
+credential hits=`0`。这只认证公开可复现性，不新增科学主张。
+
 - `phase1/task_balance_structural_only_protocol_v2.json`；
 - `phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/README.md`；
 - `phase1/实验记录/2026-08-26/TaskBalance_预测矩阵污染传播与StructuralOnlyV2预注册.md`。

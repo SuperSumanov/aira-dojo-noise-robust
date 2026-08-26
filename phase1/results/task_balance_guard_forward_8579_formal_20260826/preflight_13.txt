@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol; no closed direction revival
+PREFLIGHT_02_GOAL=formally reproduce frozen 7cda guard forward accounting on outcome-blind 8579 structural input
+PREFLIGHT_03_CONFIRMATORY=old cap debt envelope all-task constraint pair unit and immediate action only
+PREFLIGHT_04_DISCLOSURE=HHI and TV are descriptive after operations had exposed broad direction and cannot rescue cap failure
+PREFLIGHT_05_CONTEXT=exact published commit 76bdaad398da675aa62614260d63a019594f172c; fixed Linux venv; fresh detached LFS-skip-smudge worktree
+PREFLIGHT_06_INPUTS=guard fd87246bb3656befba27de5a98c88f808ca39e178e7322d27ae9536fe4a751b0; observed 0422e068eba42f6769dd4edbe41b17a5c058804108febd8068518c28098c095e; forward 58126971bc846fa14561d3665a824c19b16a6dc2cf96da6e1fea378ff843e799; independent b9990aabacf93f3b921ca11d523e88eb2036257ba2b1ae86a0e149dc7f7af0fb
+PREFLIGHT_07_CHRONOLOGY=old run set rows and relative order must persist; byte prefix is not required and rejected v1 is preserved
+PREFLIGHT_08_SUCCESS=inner hashes exact; focused and full rc0; producer and verifier replicas deterministic and equal committed artifacts
+PREFLIGHT_09_FAILURE=any mismatch exits nonzero with FAILED_RC and no threshold snapshot task-universe or invariant change
+PREFLIGHT_10_CLAIMS=no causal acquisition producer compliance predictor accuracy search utility p-value or descriptive rescue
+PREFLIGHT_11_REPRO=PYTHONHASHSEED 0 and 1; single-thread numeric libraries; exact versions and commands retained
+PREFLIGHT_12_RESOURCES=one CPU process; GPU API model-fit and base-update all zero; ETA 3-5 minutes
+PREFLIGHT_13_SECURITY=repository structural artifacts only; no prospective truth prediction value archive payload checkpoint or credentials

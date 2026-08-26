@@ -13,6 +13,33 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GD. 2026-08-26 冻结 task-balance guard 首次前瞻记账精确；债务改善但 cap 与遵从仍失败
+
+把 0FX 在 `7cda` outcome 前冻结的 25% dominant-task pair-share guard 应用于后续 `8579` structural exact-common
+inventory。新增 27 runs / 120 pairs，其中 27 个 OSIC、93 个非 OSIC；旧整数 envelope 精确给出
+`657 + 3*27 - 93 = 645`，独立按 current per-task counts 复算也是 645，故债务净减 12。作为非预注册 descriptive
+secondary，pair-HHI 从 `0.1357471491993994` 降至 `0.13322920543739974`，run→pair TV 从
+`0.337082500713674` 降至 `0.32785794333204404`。
+
+两个失败边界不能省略：OSIC share=`0.308529945553539`，25% cap 仍失败；且 debt 清零前新增了 27 个 OSIC
+pairs，所以旧 guard 的“暂避 OSIC”即时动作明确没有遵守。自然摄取不是随机干预，因此只允许称 frozen accounting
+forward check 精确、结构债务有所改善；禁止称 guard 导致改善、producer compliance、predictor effect 或 search utility。
+HHI/TV 也不能救回 cap failure。
+
+chronology 首轮因错误要求 ledger bytes 为前缀而 fail-closed。正式诊断为：339 个旧 run_id 全部保留，旧顺序是 366-run
+序列的 subsequence，同 run_id 行完全不变；只是 2 个按冻结时间全序更早的新 run 插入旧 provisional tail 前。因此正确
+append-only invariant 是 set containment + sequence subsequence + row identity，不是文件 byte prefix；首次失败已保留。
+
+source commit=`76bdaad398da675aa62614260d63a019594f172c`；fresh Linux focused/full=
+`15 passed in 0.22s` / `1080 passed, 47 warnings in 73.13s`，producer/verifier 各双跑并与仓库 artifacts 逐字节相同，
+formal `SHA256SUMS` hash=`688f8b4f...eb45721`。另保留 runner matcher 冲突与 Python 3.11/3.13 普通 float sum
+末位不一致两次 formal 失败；后者用 `math.fsum` 真修复，没有放宽比较。truth/prediction/raw archive read=
+`false/false/false`，GPU/API/model-fit/base-update=`0/0/0/0`。直接证据：
+
+- `phase1/results/task_balance_guard_forward_8579_20260826/README.md`；
+- `phase1/results/task_balance_guard_forward_8579_formal_20260826/README.md`；
+- `phase1/实验记录/2026-08-26/First960_任务均衡护栏前瞻核验_结果.md`。
+
 ## 0GC. 2026-08-26 outcome 前冻结两级 opportunity-yield 聚合影响审计；不改写既有 primary
 
 在 first-960 closure 与任何 prospective outcome/prediction-value 揭盲前，正式冻结 closure-time aggregation audit。

@@ -1,0 +1,36 @@
+{
+  "status": "FAILURES_PRESERVED_BEFORE_ACCEPTED_FORMAL",
+  "attempts": [
+    {
+      "stage": "structural_input_extraction_v1",
+      "status": "REJECTED_OVERSTRONG_BYTE_PREFIX_INVARIANT",
+      "failure": "current ledger bytes were not a raw prefix extension",
+      "resolution": "use the first-960 total-order invariants: old run set inclusion, old sequence as subsequence, and unchanged rows joined by run_id",
+      "scientific_inputs_or_thresholds_changed": false
+    },
+    {
+      "stage": "formal_e6a0ea9_v1",
+      "status": "RUNNER_ERROR_BEFORE_TESTS",
+      "failure": "grep was invoked with conflicting Perl and extended-regex matchers",
+      "resolution": "remove the conflicting extended-regex flag in a new immutable formal root",
+      "scientific_inputs_or_thresholds_changed": false
+    },
+    {
+      "stage": "formal_e6a0ea9_v2",
+      "status": "CROSS_VERSION_BYTE_REPRODUCIBILITY_FAILURE",
+      "failure": "Python 3.11 and 3.13 ordinary float sum differed in the last one or two digits of HHI and TV",
+      "resolution": "replace ordinary float sum with math.fsum in producer and independent verifier; retain exact byte comparison",
+      "scientific_inputs_or_thresholds_changed": false
+    },
+    {
+      "stage": "formal_76bdaad_v1",
+      "status": "ACCEPTED",
+      "source_commit": "76bdaad398da675aa62614260d63a019594f172c"
+    }
+  ],
+  "access_attestation": {
+    "prospective_truth_or_prediction_values_read": false,
+    "raw_archive_payload_read": false,
+    "gpu_or_api_calls": 0
+  }
+}

@@ -22,6 +22,7 @@ from phase1.verify_task_balance_guard_forward_validation import (
 ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT / "phase1/results/task_balance_accrual_guard_7cda_20260825/guard.json"
 RESULT_DIR = ROOT / "phase1/results/task_balance_guard_forward_8579_20260826"
+FORMAL_DIR = ROOT / "phase1/results/task_balance_guard_forward_8579_formal_20260826"
 OBSERVED = RESULT_DIR / "safe_structural_input.json"
 RESULT = RESULT_DIR / "forward_validation.json"
 INDEPENDENT = RESULT_DIR / "independent_verification.json"
@@ -268,3 +269,48 @@ def test_result_manifest_and_rejected_first_attempt_are_preserved() -> None:
     assert failure["diagnosis"]["old_run_id_set_subset_of_current"] is True
     assert failure["diagnosis"]["old_run_id_sequence_is_subsequence"] is True
     assert failure["diagnosis"]["old_rows_equal_when_joined_by_run_id"] is True
+
+
+def test_formal_receipt_binds_remote_execution_and_preserves_failures() -> None:
+    summary = _load(FORMAL_DIR / "formal_summary.json")
+    assert summary["status"] == "TASK_BALANCE_FORWARD_FORMAL_PASS"
+    assert summary["source_commit"] == "76bdaad398da675aa62614260d63a019594f172c"
+    assert summary["artifact_sha256"]["formal_sha256sums_file"] == _sha(
+        FORMAL_DIR / "remote_SHA256SUMS"
+    )
+    assert summary["tests"]["focused"] == "15 passed in 0.22s"
+    assert summary["tests"]["full"] == "1080 passed, 47 warnings in 73.13s"
+    assert all(summary["reproducibility"].values())
+    assert summary["scientific_result"]["current_cap_pass"] is False
+    assert summary["scientific_result"]["immediate_action_adhered"] is False
+    assert not any(summary["access_and_compute"].values())
+
+    failures = _load(FORMAL_DIR / "formal_failures.json")
+    statuses = [attempt["status"] for attempt in failures["attempts"]]
+    assert statuses == [
+        "REJECTED_OVERSTRONG_BYTE_PREFIX_INVARIANT",
+        "RUNNER_ERROR_BEFORE_TESTS",
+        "CROSS_VERSION_BYTE_REPRODUCIBILITY_FAILURE",
+        "ACCEPTED",
+    ]
+    assert all(
+        attempt.get("scientific_inputs_or_thresholds_changed") is False
+        for attempt in failures["attempts"][:-1]
+    )
+
+
+def test_formal_local_manifest_is_complete_and_exact() -> None:
+    rows = {}
+    for line in (FORMAL_DIR / "SHA256SUMS").read_text(encoding="utf-8").splitlines():
+        digest_value, relative = line.split("  ./", maxsplit=1)
+        rows[relative] = digest_value
+    assert set(rows) == {
+        "README.md",
+        "access_attestation.txt",
+        "formal_failures.json",
+        "formal_summary.json",
+        "preflight_13.txt",
+        "remote_SHA256SUMS",
+    }
+    for relative, digest_value in rows.items():
+        assert _sha(FORMAL_DIR / relative) == digest_value

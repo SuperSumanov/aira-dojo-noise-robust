@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-08-26
 
-**Dynamic status timestamp:** 2026-08-26 10:22 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-08-26 10:58 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -72,7 +72,19 @@ outcome-blind 证据与预冻结机器审计。
 公开结果包 commit `bad6ec5` 的 post-push fresh Linux 复现进一步为 focused/full=`20/1067 passed`，结果包 inner
 manifest 全通过，verifier 双跑与 committed receipt 三者逐字节一致；formal `SHA256SUMS` hash=`06832278...3ee246`。
 
-### 3.3 Structural dependency atlas
+### 3.3 Frozen task-balance guard 的首次 forward audit
+
+- `7cda→8579` 新增 27 runs / 120 structural pairs：27 OSIC、93 non-OSIC；
+- frozen debt identity 精确：`657 + 3×27 - 93 = 645`，债务净减 12；
+- descriptive pair-HHI / run→pair TV 分别下降 `0.0025179437619996525` / `0.009224557381629972`；
+- 但 OSIC share 仍为 `0.308529945553539`，25% cap 失败；route-away immediate action 也明确未遵守；
+- 只能称 outcome-blind accounting 与结构改善，不能称 causal acquisition effect、producer compliance 或 method effect。
+
+339 个旧 runs 全部保留、旧顺序为新序列 subsequence、同 ID 行不变；2 个新 runs 因冻结总序插入旧 tail 前，故 raw file
+byte prefix 不是正确 invariant。fresh Linux focused/full=`15/1080 passed`，双 producer/verifier 逐字节一致；源码
+`76bdaad`，formal hash=`688f8b4f...eb45721`。
+
+### 3.4 Structural dependency atlas
 
 对 provisional first-240 与当前 339-run 快照做 outcome-blind 双实现复算：
 
@@ -92,7 +104,7 @@ D&B benchmark-design 正结果，不是 predictor accuracy 或 search-utility �
 证据：`phase1/results/structural_dependency_atlas_7cda_20260825/`；源码/确定性修复/发布提交为
 `e19f5f3`、`b8ea5f7`、`1e3ea6d`。
 
-### 3.4 Outcome 前冻结统一 estimand panel
+### 3.5 Outcome 前冻结统一 estimand panel
 
 - generic benchmark headline：pair credit → physical parent 内平均 → task 内平均 parents → tasks 等权。
 - 强制并列、不得 rescue：task-pair macro、task→run→parent→pair macro、pair micro。
@@ -104,7 +116,7 @@ D&B benchmark-design 正结果，不是 predictor accuracy 或 search-utility �
 证据：`phase1/contracts/DECISION_PREDICTOR_ESTIMAND_PANEL_V1.md`、
 `phase1/results/decision_predictor_estimand_panel_v1_20260825/`；提交 `1763030`、`b7e90fd`。
 
-### 3.5 Benchmark checklist 与其他数据资产
+### 3.6 Benchmark checklist 与其他数据资产
 
 - ABC/NAS-Bench-style 24 项 crosswalk：PASS_LOCAL 9、PARTIAL 9、INHERITED_UPSTREAM 5、N/A 1。
 - 语料唯一性：12,383-card 审计中 raw 99.47%、AST/skeleton 98.96%，0 个 duplicate group 跨 run/task。
@@ -176,6 +188,7 @@ immutable frozen cohort。任何 GPU 重训仍需先报精确矩阵、总 runs�
 - 发布分支：`myfork/phase1-value-critic`
 - 最近已验证的公开结果包：`bad6ec5428c62b6a213b0d75fa0d1e58d858b5d4`；恢复时最新分支 head 仍以 fetch 为准；
   contract source=`f97026221e099c11fa1ca8f2c13a95c389bea743`
+- task-balance forward formal source：`76bdaad398da675aa62614260d63a019594f172c`
 - GitHub：`https://github.com/SuperSumanov/aira-dojo-noise-robust`
 - 远端 alias：`linux5`
 - prospective state：`/research/d7/spc/yzyang4/prospective_decision_v1`

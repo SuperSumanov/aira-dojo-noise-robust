@@ -1,0 +1,37 @@
+{
+  "status": "OPPORTUNITY_YIELD_AGGREGATION_AUDIT_POSTPUSH_PASS",
+  "protocol": "opportunity-yield-aggregation-audit-postpush-v1",
+  "validated_public_commit": "bad6ec5428c62b6a213b0d75fa0d1e58d858b5d4",
+  "contract_source_commit": "f97026221e099c11fa1ca8f2c13a95c389bea743",
+  "contract_sha256": "49a9e7c659057f1f8e7db032b7b25de14e3de9e594f969df20d3d3f80686cff3",
+  "committed_independent_receipt_sha256": "0054e5fceaf326b67f773d44109841ce576db59c9efd959671e97b6b3357e973",
+  "formal_execution": {
+    "root": "/research/d7/spc/yzyang4/opportunity-yield-aggregation-audit/bad6ec5-postpush-v1",
+    "focused_tests": "20 passed in 0.42s",
+    "full_tests": "1067 passed, 47 warnings in 72.20s",
+    "inner_manifest_all_ok": true,
+    "independent_checks_passed": 18,
+    "verifier_replicas_byte_identical": true,
+    "verifier_equals_committed_receipt": true,
+    "worktree_clean_before_and_after": true,
+    "sha256sums_file_sha256": "068322783ea6328c8b9f5c457c3a919d55e6e09bfe1f1d375ae0f5e39f3ee246",
+    "numeric_library_threads": 1
+  },
+  "access_and_compute": {
+    "prospective_label_grade_outcome_or_orientation_read": false,
+    "prediction_values_read_or_aggregated": false,
+    "raw_archive_payload_read": false,
+    "accuracy_effect_or_search_utility_computed": false,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "new_model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "claim_boundary": {
+    "public_reproducibility_certified": true,
+    "existing_primary_or_inference_superseded": false,
+    "effect_result": false,
+    "theory_novelty_certified": false,
+    "statistical_semantics_certified": false
+  }
+}

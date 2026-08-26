@@ -89,6 +89,11 @@ sibling-pair benchmark 的 task mix，并在揭盲前把 structural-yield 与 in
 - formal `SHA256SUMS` 文件自身 SHA-256：
   `60711365ffe7ccaf00b346a78303c65f2d80fe6a2f5eb99c9d506cad980ecf95`。
 
+公开结果包 commit `bad6ec5428c62b6a213b0d75fa0d1e58d858b5d4` 的 post-push fresh Linux 复现为
+`20 passed in 0.42s` / `1067 passed, 47 warnings in 72.20s`；结果包 inner manifest 全通过，两个 verifier replica
+与 committed receipt 三者逐字节一致。该次 formal `SHA256SUMS` 文件自身 SHA-256 为
+`068322783ea6328c8b9f5c457c3a919d55e6e09bfe1f1d375ae0f5e39f3ee246`。
+
 本地 Windows full-suite 尝试因该环境缺少 SciPy 与 scikit-learn，在旧测试 collection 阶段失败；没有把它伪报成源码失败或
 成功。随后使用固定、已有依赖的 fresh Linux worktree 完成 authoritative full suite。另一个在预提交阶段发现并纠正的问题
 是初稿把 structural pair production 与 informative filtering 合为一个 yield；最终 contract 已改为上述两级链后才提交。
@@ -103,3 +108,4 @@ effect 或 search utility；GPU/API/new-model-fit/base-LLM-update 均为 0。
 - arithmetic implementation：`phase1/opportunity_yield_aggregation.py`；
 - independent verifier：`phase1/verify_opportunity_yield_aggregation_audit.py`；
 - formal result package：`phase1/results/opportunity_yield_aggregation_audit_v1_20260826/`。
+- post-push receipt：`phase1/results/opportunity_yield_aggregation_audit_postpush_bad6ec5_20260826/`。

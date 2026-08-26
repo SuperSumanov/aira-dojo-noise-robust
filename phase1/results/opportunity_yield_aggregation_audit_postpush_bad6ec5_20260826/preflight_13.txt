@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol; no closed HCE multifidelity probe or score-channel effect revival
+PREFLIGHT_02_GOAL=verify the public result package and two-stage opportunity-yield contract from exact final commit without prospective access
+PREFLIGHT_03_CONTEXT=final public commit bad6ec5428c62b6a213b0d75fa0d1e58d858b5d4; immutable contract source f97026221e099c11fa1ca8f2c13a95c389bea743; fixed Linux venv; CPU only
+PREFLIGHT_04_INPUTS=repository blobs only: contract, fixed historical evidence, result receipt, tests, and documentation; no prospective state path
+PREFLIGHT_05_FIXED=first-960 authority, existing primaries, truth/support/effect gates, estimand panel, and inference remain unchanged
+PREFLIGHT_06_VARIABLE=none; deterministic contract, package-hash, and synthetic arithmetic verification only
+PREFLIGHT_07_ENTRY=published branch exactly equals final commit; fresh detached LFS-skip-smudge worktree; core six blobs identical to source commit
+PREFLIGHT_08_SUCCESS=focused/full tests rc0; inner manifest exact; verifier replicas byte-identical and equal committed receipt; clean worktree
+PREFLIGHT_09_FAILURE=any mismatch exits nonzero and records FAILED_RC; no altered tolerance, evidence, task universe, or retry contract
+PREFLIGHT_10_REPRO=PYTHONHASHSEED 0 and 1 verifier replicas; numeric libraries single-thread; exact versions and commands preserved
+PREFLIGHT_11_RESOURCES=single CPU process; GPU jobs=0 API calls=0 model fits=0 base-LLM updates=0; ETA 3-5 minutes
+PREFLIGHT_12_SECURITY=filename/content scans before execution; no label outcome prediction value archive payload checkpoint or prospective path access
+PREFLIGHT_13_REPORTING=pass certifies public reproducibility and preregistration only; no predictor effect, search utility, or theory novelty claim

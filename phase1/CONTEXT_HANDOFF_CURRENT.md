@@ -69,6 +69,9 @@ fresh Linux focused/full=`17/1064 passed`，18/18 independent checks PASS，veri
 `f970262`。informative cluster size 理论已有先例，本项目只主张真实 MLE-agent chronological sibling benchmark 中的
 outcome-blind 证据与预冻结机器审计。
 
+公开结果包 commit `bad6ec5` 的 post-push fresh Linux 复现进一步为 focused/full=`20/1067 passed`，结果包 inner
+manifest 全通过，verifier 双跑与 committed receipt 三者逐字节一致；formal `SHA256SUMS` hash=`06832278...3ee246`。
+
 ### 3.3 Structural dependency atlas
 
 对 provisional first-240 与当前 339-run 快照做 outcome-blind 双实现复算：
@@ -171,7 +174,8 @@ immutable frozen cohort。任何 GPU 重训仍需先报精确矩阵、总 runs�
 - 本地 worktree：`C:\Research\New\my_project\MLEvolve\aira-dojo-codex-20260813`
 - 本地工作分支：`codex-prospective-decision-v1-20260814`
 - 发布分支：`myfork/phase1-value-critic`
-- 最近正式源码 head：`f97026221e099c11fa1ca8f2c13a95c389bea743`
+- 最近已验证的公开结果包：`bad6ec5428c62b6a213b0d75fa0d1e58d858b5d4`；恢复时最新分支 head 仍以 fetch 为准；
+  contract source=`f97026221e099c11fa1ca8f2c13a95c389bea743`
 - GitHub：`https://github.com/SuperSumanov/aira-dojo-noise-robust`
 - 远端 alias：`linux5`
 - prospective state：`/research/d7/spc/yzyang4/prospective_decision_v1`

@@ -41,8 +41,14 @@ focused/full=`17 passed in 0.24s` / `1064 passed, 47 warnings in 77.09s`，18/18
 A/B 逐字节一致；formal `SHA256SUMS` 文件自身 SHA-256=`60711365...86cff95`。prospective truth/prediction/raw archive
 read=`false/false/false`，accuracy/effect/search utility 未计算，GPU/API/model-fit/base-update=`0/0/0/0`。直接证据：
 
+GitHub 公开结果包 commit=`bad6ec5428c62b6a213b0d75fa0d1e58d858b5d4` 又经 fresh detached Linux
+post-push 复现：focused/full=`20 passed in 0.42s` / `1067 passed, 47 warnings in 72.20s`，inner manifest 全部
+通过，verifier 双跑与仓库 receipt 三者逐字节一致；post-push `SHA256SUMS` 文件自身 SHA-256=
+`06832278...3ee246`。该复现仍只认证公开可复现性，不新增 effect 主张。
+
 - `phase1/contracts/OPPORTUNITY_YIELD_AGGREGATION_AUDIT_V1.md`；
 - `phase1/results/opportunity_yield_aggregation_audit_v1_20260826/README.md`；
+- `phase1/results/opportunity_yield_aggregation_audit_postpush_bad6ec5_20260826/README.md`；
 - `phase1/实验记录/2026-08-26/OpportunityYield_两级聚合影响审计冻结.md`。
 
 ## 0GB. 2026-08-26 时序分解确认 opportunity yield 内生重写 pair benchmark；幅度受单批次影响

@@ -1,18 +1,18 @@
 diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
-@@ -38,6 +38,7 @@ system_message_prompt_template:
+@@ -43,4 +43,5 @@ system_message_prompt_template:
          - Replace the deprecated `early_stopping_rounds` argument in `lightgbm.train()` with the `lightgbm.early_stopping(stopping_rounds=…)` callback.
          - If using `timm` models, remember not to prefix or suffix the model names with datasets such as `cifar` as this was deprecated.
          - As much as possible, keep the stdout clean.
 +        - Do not set, unset, or modify the `CUDA_VISIBLE_DEVICES` environment variable; use the GPU devices already exposed by the runtime.
        
-       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space. You should not unzip any files.
        
 diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml
-@@ -58,6 +58,7 @@ system_message_prompt_template:
+@@ -60,4 +60,5 @@ system_message_prompt_template:
        - **Important Reminders:**
          - Absolutely do **NOT** skip any part of the code.
          - Always ensure predictions on the provided unlabeled test set are saved in `./submission.csv`. This is crucial for grading.
@@ -23,67 +23,67 @@ diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yam
 diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
-@@ -45,6 +45,7 @@ system_message_prompt_template:
+@@ -50,4 +50,5 @@ system_message_prompt_template:
          - Replace the deprecated `early_stopping_rounds` argument in `lightgbm.train()` with the `lightgbm.early_stopping(stopping_rounds=…)` callback.
          - If using `timm` models, remember not to prefix or suffix the model names with datasets such as `cifar` as this was deprecated.
          - As much as possible, keep the stdout clean.
 +        - Do not set, unset, or modify the `CUDA_VISIBLE_DEVICES` environment variable; use the GPU devices already exposed by the runtime.
        
-       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space. You should not unzip any files. 
        
 diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
-@@ -57,6 +57,7 @@ system_message_prompt_template:
+@@ -62,4 +62,5 @@ system_message_prompt_template:
          - Replace the deprecated `early_stopping_rounds` argument in `lightgbm.train()` with the `lightgbm.early_stopping(stopping_rounds=…)` callback.
          - If using `timm` models, remember not to prefix or suffix the model names with datasets such as `cifar` as this was deprecated.
          - As much as possible, keep the stdout clean.
 +        - Do not set, unset, or modify the `CUDA_VISIBLE_DEVICES` environment variable; use the GPU devices already exposed by the runtime.
  
-       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space. You should not unzip any files.
  
 diff --git a/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml b/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml
-@@ -47,6 +47,7 @@ system_message_prompt_template:
+@@ -52,4 +52,5 @@ system_message_prompt_template:
        No parts of the code should be skipped, don't terminate the before finishing the script.
        Your response should only contain a single code block.
        Be aware of the running time of the code, it should complete within {{execution_timeout}}.
 +      Do not set, unset, or modify the `CUDA_VISIBLE_DEVICES` environment variable; use the GPU devices already exposed by the runtime.
-       All the provided input data is stored in "./data" directory.
+       All the provided input data is stored in "./data" directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space.
        **If there is test data provided for this task, please save the test predictions in a `submission.csv` file in the "./" directory as described in the task description** This is extremely important since this file is used for grading/evaluation. DO NOT FORGET THE submission.csv file!
        You can also use the current directory to store any temporary files that your code needs to create.
 diff --git a/src/dojo/configs/solver/operators/mlebench/aide_operators/debug.yaml b/src/dojo/configs/solver/operators/mlebench/aide_operators/debug.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aide_operators/debug.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aide_operators/debug.yaml
-@@ -48,6 +48,7 @@ system_message_prompt_template:
+@@ -53,4 +53,5 @@ system_message_prompt_template:
        No parts of the code should be skipped, don't terminate the before finishing the script.
        Your response should only contain a single code block.
        Be aware of the running time of the code, it should complete within {{execution_timeout}}.
 +      Do not set, unset, or modify the `CUDA_VISIBLE_DEVICES` environment variable; use the GPU devices already exposed by the runtime.
-       All the provided input data is stored in "./data" directory.
+       All the provided input data is stored in "./data" directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space.
        **If there is test data provided for this task, please save the test predictions in a `submission.csv` file in the "./" directory as described in the task description** This is extremely important since this file is used for grading/evaluation. DO NOT FORGET THE submission.csv file!
        You can also use the current directory to store any temporary files that your code needs to create.
 diff --git a/src/dojo/configs/solver/operators/mlebench/aide_operators/improve.yaml b/src/dojo/configs/solver/operators/mlebench/aide_operators/improve.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aide_operators/improve.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aide_operators/improve.yaml
-@@ -51,6 +51,7 @@ system_message_prompt_template:
+@@ -56,4 +56,5 @@ system_message_prompt_template:
        No parts of the code should be skipped, don't terminate the before finishing the script.
        Your response should only contain a single code block.
        Be aware of the running time of the code, it should complete within {{execution_timeout}}.
 +      Do not set, unset, or modify the `CUDA_VISIBLE_DEVICES` environment variable; use the GPU devices already exposed by the runtime.
-       All the provided input data is stored in "./data" directory.
+       All the provided input data is stored in "./data" directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space.
        **If there is test data provided for this task, please save the test predictions in a `submission.csv` file in the "./" directory as described in the task description** This is extremely important since this file is used for grading/evaluation. DO NOT FORGET THE submission.csv file!
        You can also use the current directory to store any temporary files that your code needs to create.
 diff --git a/src/dojo/configs/solver/operators/mlebench/aide_operators/crossover.yaml b/src/dojo/configs/solver/operators/mlebench/aide_operators/crossover.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aide_operators/crossover.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aide_operators/crossover.yaml
-@@ -54,6 +54,7 @@ system_message_prompt_template:
+@@ -60,4 +60,5 @@ system_message_prompt_template:
        No parts of the code should be skipped, don't terminate the before finishing the script.
        Your response should only contain a single code block.
        Be aware of the running time of the code, it should complete within {{execution_timeout}}.
 +      Do not set, unset, or modify the `CUDA_VISIBLE_DEVICES` environment variable; use the GPU devices already exposed by the runtime.
-       All the provided input data is stored in "./data" directory.
+       All the provided input data is stored in "./data" directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space.
        **If there is test data provided for this task, please save the test predictions in a `submission.csv` file in the "./" directory as described in the task description** This is extremely important since this file is used for grading/evaluation. DO NOT FORGET THE submission.csv file!
        You can also use the current directory to store any temporary files that your code needs to create.
 diff --git a/src/mle_critic/test/test_cuda_visible_devices_prompt_guard.py b/src/mle_critic/test/test_cuda_visible_devices_prompt_guard.py

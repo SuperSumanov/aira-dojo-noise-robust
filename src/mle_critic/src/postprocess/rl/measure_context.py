@@ -16,6 +16,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import tempfile
 from collections import Counter
 from pathlib import Path
 from statistics import mean
@@ -67,11 +69,15 @@ def measure_context(
     messages_path: Path = DEFAULT_MESSAGES,
     expected_context_length: int = 32768,
     *,
+    max_context_length: int | None = None,
+    filtered_messages_path: Path | None = None,
     trust_remote_code: bool = False,
 ) -> dict[str, Any]:
     """Measure all records and return JSON-serializable summary statistics."""
     if expected_context_length <= 0:
         raise ValueError("expected_context_length must be positive")
+    if max_context_length is not None and max_context_length <= 0:
+        raise ValueError("max_context_length must be positive")
     try:
         from transformers import AutoTokenizer
     except ImportError as error:
@@ -83,6 +89,20 @@ def measure_context(
     lengths: list[int] = []
     buckets: Counter[str] = Counter()
     malformed = 0
+    removed = 0
+    temp_path: str | None = None
+    filtered_file = None
+    if max_context_length is not None:
+        if filtered_messages_path is None:
+            # In-place filtering is requested; use a sibling temporary file and
+            # replace the original only after the complete pass succeeds.
+            fd, temp_path = tempfile.mkstemp(
+                prefix=f".{messages_path.name}.", suffix=".tmp", dir=messages_path.parent
+            )
+            filtered_file = os.fdopen(fd, "w", encoding="utf-8")
+        else:
+            filtered_messages_path.parent.mkdir(parents=True, exist_ok=True)
+            filtered_file = filtered_messages_path.open("w", encoding="utf-8")
     with messages_path.open(encoding="utf-8") as input_file:
         for line_number, line in enumerate(input_file, start=1):
             if not line.strip():
@@ -99,6 +119,16 @@ def measure_context(
                 continue
             lengths.append(length)
             buckets[_bucket(length, expected_context_length)] += 1
+            if filtered_file is not None:
+                if length <= max_context_length:
+                    filtered_file.write(line)
+                else:
+                    removed += 1
+
+    if filtered_file is not None:
+        filtered_file.close()
+        if temp_path is not None:
+            os.replace(temp_path, messages_path)
 
     sample_count = len(lengths)
     over_limit = sum(length > expected_context_length for length in lengths)
@@ -107,10 +137,13 @@ def measure_context(
         "messages": str(messages_path),
         "expected_context_length": expected_context_length,
         "sample_count": sample_count,
+        "retained_count": sample_count - removed,
+        "removed_count": removed,
+        "max_context_length": max_context_length,
         "malformed_count": malformed,
         "average_context_length": mean(lengths) if lengths else 0.0,
         "min_context_length": min(lengths) if lengths else 0,
-        "max_context_length": max(lengths) if lengths else 0,
+        "maximum_observed_context_length": max(lengths) if lengths else 0,
         "over_expected_count": over_limit,
         "over_expected_fraction": over_limit / sample_count if sample_count else 0.0,
         "buckets": {
@@ -134,14 +167,29 @@ def main() -> None:
         required=True,
         help="Context length to use as the expected limit",
     )
+    parser.add_argument(
+        "--max-context-length",
+        type=int,
+        help=(
+            "Drop records longer than this limit after measuring. Without "
+            "--filtered-messages, the input JSONL is rewritten in place."
+        ),
+    )
     parser.add_argument("--trust-remote-code", action="store_true")
     parser.add_argument("--output", type=Path, help="Optional path for the JSON summary")
+    parser.add_argument(
+        "--filtered-messages",
+        type=Path,
+        help="Optional output JSONL for retained records; otherwise filter input in place",
+    )
     args = parser.parse_args()
 
     summary = measure_context(
         args.model,
         args.messages,
         args.expected_context_length,
+        max_context_length=args.max_context_length,
+        filtered_messages_path=args.filtered_messages,
         trust_remote_code=args.trust_remote_code,
     )
     rendered = json.dumps(summary, ensure_ascii=False, indent=2)

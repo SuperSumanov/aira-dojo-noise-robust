@@ -1,6 +1,6 @@
 _target_: dojo.config_dataclasses.client.base.ClientConfig
 api: litellm
-model_id: "stealth/ox-alpha"
+model_id: "nvidia/nemotron-3-ultra-550b-a55b:free"
 base_url: "https://openrouter.ai/api/v1"
 use_azure_client: false
 provider: openai

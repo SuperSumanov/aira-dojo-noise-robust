@@ -1,0 +1,123 @@
+{
+  "protocol": "decision-opportunity-yield-aggregation-audit-v1",
+  "status": "FROZEN_OUTCOME_BLIND_BEFORE_FIRST960_CLOSURE",
+  "paper_scope": "non-rescuing aggregation-sensitivity audit for the generic Decision Corpus predictor benchmark",
+  "evidence_bindings": {
+    "decision_predictor_estimand_panel": {
+      "path": "phase1/decision_predictor_estimand_panel_v1.json",
+      "sha256": "4f394d0e0437992eb9d3e5f3aa56f83df86ffcbda68a752ebada4e306bf7adea"
+    },
+    "structural_dependency_atlas": {
+      "path": "phase1/results/structural_dependency_atlas_7cda_20260825/atlas.json",
+      "sha256": "1c3e5c34afe82a236e4f242373ee7b71fd44d90207eb2d74b9177fb6776db1a5"
+    },
+    "structural_weight_trajectory": {
+      "path": "phase1/results/structural_weight_trajectory_7cda_20260826/trajectory.json",
+      "sha256": "bbdb802711bd2f300725be156c5fd228a79fa0792f8d7317674a6a0bbb419f30"
+    }
+  },
+  "authority": {
+    "supplementary_audit_only": true,
+    "supersedes_generic_headline": false,
+    "supersedes_existing_experiment_primary": false,
+    "supersedes_truth_support_effect_or_inference_contract": false,
+    "may_rescue_failed_primary": false,
+    "ranking_flip_is_descriptive_not_a_new_primary": true
+  },
+  "entry_gate": {
+    "population": "chronological first-960 eligible physical runs",
+    "independent_accrual_closure_required": true,
+    "structural_gate_required": true,
+    "all_prediction_escrow_hashes_must_verify_before_truth_access": true,
+    "exact_common_pair_support_required_for_every_compared_arm": true,
+    "arm_and_contrast_registry_frozen_before_truth_access": true,
+    "every_cohort_task_requires_at_least_one_structural_and_informative_common_pair": true,
+    "zero_pair_task_action": "emit NOT_IDENTIFIABLE_FULL_TASK_UNIVERSE and do not compute the full-cohort impact headline",
+    "silent_pair_task_run_or_parent_drop_allowed": false,
+    "outcome_or_prediction_dependent_selection_allowed": false
+  },
+  "task_weight_identity": {
+    "run_count": "R_t is the number of eligible physical runs for task t in the closed cohort",
+    "structural_pair_count": "S_t is the number of exact-common-support canonical sibling pairs before truth-tie or evaluability filtering",
+    "informative_pair_count": "I_t is the number of pairs retained by the experiment-specific frozen truth and evaluability rules",
+    "opportunity_yield": "Y_t=S_t/R_t",
+    "informative_rate": "E_t=I_t/S_t",
+    "run_share": "p_t=R_t/sum_t R_t",
+    "structural_pair_share": "q_t=S_t/sum_t S_t",
+    "informative_pair_share": "r_t=I_t/sum_t I_t",
+    "structural_identity": "q_t=p_t*Y_t/sum_s(p_s*Y_s)",
+    "informative_identity": "r_t=q_t*E_t/sum_s(q_s*E_s)",
+    "total_variations": {
+      "run_to_structural": "TV_run_structural=0.5*sum_t(abs(q_t-p_t))",
+      "structural_to_informative": "TV_structural_informative=0.5*sum_t(abs(r_t-q_t))",
+      "run_to_informative": "TV_run_informative=0.5*sum_t(abs(r_t-p_t))"
+    },
+    "identity_absolute_tolerance": 1e-12,
+    "all_task_weights_yields_and_informative_rates_reported": true
+  },
+  "arm_audit": {
+    "task_metric": "a_m_t is the arithmetic mean tie-aware pair credit for arm m within task t on informative exact common support",
+    "pair_weighted_metric": "A_pair_m=sum_t(r_t*a_m_t)",
+    "structural_weighted_task_metric": "A_struct_m=sum_t(q_t*a_m_t)",
+    "run_weighted_task_metric": "A_run_m=sum_t(p_t*a_m_t)",
+    "uniform_task_metric": "A_task_m=mean_t(a_m_t)",
+    "observed_reweighting": {
+      "structural_yield": "delta_yield_m=A_struct_m-A_run_m",
+      "informative_filter": "delta_info_m=A_pair_m-A_struct_m",
+      "total": "delta_total_m=A_pair_m-A_run_m=delta_yield_m+delta_info_m"
+    },
+    "task_range": "W_m=max_t(a_m_t)-min_t(a_m_t)",
+    "sharp_bounds": {
+      "structural_yield": "abs(delta_yield_m)<=W_m*TV_run_structural",
+      "informative_filter": "abs(delta_info_m)<=W_m*TV_structural_informative",
+      "total": "abs(delta_total_m)<=W_m*TV_run_informative"
+    },
+    "bound_absolute_tolerance": 1e-12,
+    "realized_fractions": "absolute observed component divided by its matching W_m*TV bound, or null when the denominator is zero",
+    "report_every_registered_arm_together": true
+  },
+  "contrast_audit": {
+    "task_metric": "c_ab_t is the within-task arithmetic mean of pair-level credit_a-credit_b on exact common support",
+    "pair_weighted_contrast": "C_pair_ab=sum_t(r_t*c_ab_t)",
+    "structural_weighted_task_contrast": "C_struct_ab=sum_t(q_t*c_ab_t)",
+    "run_weighted_task_contrast": "C_run_ab=sum_t(p_t*c_ab_t)",
+    "uniform_task_contrast": "C_task_ab=mean_t(c_ab_t)",
+    "observed_reweighting": "C_pair_ab-C_run_ab is decomposed exactly into (C_struct_ab-C_run_ab)+(C_pair_ab-C_struct_ab)",
+    "task_range": "W_ab=max_t(c_ab_t)-min_t(c_ab_t)",
+    "sharp_bounds": "apply W_ab times the matching run-to-structural, structural-to-informative, and run-to-informative TV to the two components and total",
+    "ranking_flip_rule": "PAIR_VS_RUN_SIGN_FLIP only when C_pair_ab*C_run_ab<0; equality to zero is reported separately as ON_BOUNDARY",
+    "all_preregistered_contrasts_reported_together": true,
+    "unregistered_post_truth_contrasts_allowed": false
+  },
+  "inference_and_reporting": {
+    "decomposition_is_deterministic_descriptive": true,
+    "new_p_value_or_confidence_interval_for_identity_or_bound": false,
+    "generic_estimand_panel_retains_its_task_bootstrap_loto_and_run_cluster_sensitivity": true,
+    "experiment_specific_primary_and_bootstrap_remain_authoritative": true,
+    "pair_micro_run_weighted_and_uniform_task_results_shown_side_by_side": true,
+    "per_task_metrics_and_support_published": true,
+    "missingness_and_zero_pair_tasks_published": true,
+    "no_aggregation_truth_channel_task_subgroup_or_flip_rescue": true
+  },
+  "related_work_boundary": {
+    "general_cluster_vs_individual_weighting_is_prior_statistical_work": true,
+    "informative_cluster_size_reference": "Williamson, Datta, and Satten (2003), Biometrics, doi:10.1111/1541-0420.00005",
+    "estimand_reference": "Kahan, Li, Copas, and Harhay (2023), International Journal of Epidemiology, doi:10.1093/ije/dyac131",
+    "novelty_not_claimed": [
+      "the algebra of size-biased cluster weighting",
+      "the general distinction between cluster-average and unit-average estimands",
+      "macro versus micro averaging in isolation"
+    ],
+    "local_contribution_boundary": "an outcome-blind chronological audit showing that task-specific decision-opportunity yield in a real MLE-agent search process endogenously changes the task mixture of a derived sibling-pair benchmark, plus a machine-frozen non-rescuing impact audit"
+  },
+  "access_and_compute": {
+    "prospective_label_grade_outcome_or_winner_orientation_read": false,
+    "prediction_values_read_or_aggregated": false,
+    "accuracy_effect_or_search_utility_computed": false,
+    "raw_archive_payload_read": false,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "new_model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

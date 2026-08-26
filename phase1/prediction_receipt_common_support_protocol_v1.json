@@ -1,0 +1,43 @@
+{
+  "claim": {
+    "basis": "both frozen independent verifiers reconstruct the exact canonical structural pair population for the same immutable snapshot and certify their bound artifacts",
+    "same_pair_count_alone_is_sufficient": false,
+    "status": "RECEIPT_CERTIFIED_EXACT_CANONICAL_COMMON_SUPPORT"
+  },
+  "inputs": {
+    "allowed": [
+      "promoted WL state receipt",
+      "promoted transition state receipt",
+      "WL independent verification receipt",
+      "transition independent verification receipt",
+      "recorded independent-verifier command receipts",
+      "artifact summary bytes for SHA-256 only",
+      "frozen independent-verifier source bytes for SHA-256 only"
+    ],
+    "artifact_summary_content_parsed": false,
+    "prediction_pair_files_opened": false
+  },
+  "protocol": "prediction-receipt-common-support-v1",
+  "scope": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu": 0,
+    "labels_grades_outcomes_or_winner_orientation_read": false,
+    "prediction_value_aggregates_computed": [],
+    "prediction_values_accessed": false,
+    "prediction_values_printed": false
+  },
+  "verifier_contracts": {
+    "transition": {
+      "commit": "7458f0969b92a258ea0e495bbbee282aa12b748e",
+      "independent_status": "INDEPENDENT_PROSPECTIVE_TRANSITION_FUTURE_ESCROW_VERIFIED",
+      "source_sha256": "2e96eb0610a94d58c01127e1850e60d6905a87a7870d0f9d692d28d4bd010787"
+    },
+    "wl": {
+      "commit": "031edb34400781ca026bc9833ac7f850312ffb1c",
+      "independent_status": "INDEPENDENT_PROSPECTIVE_WL_GRAPH_ESCROW_VERIFIED",
+      "source_sha256": "d7f2113a45ffe37f0a44bdabfc76068b3d83da635aea7409b713fd9a53baef60"
+    }
+  }
+}

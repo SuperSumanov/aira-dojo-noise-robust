@@ -13,6 +13,26 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GF. 2026-08-26 旧 prediction coverage matrix 因预闭包聚合预测值撤回；替代协议先行冻结
+
+代码审计确认旧 `prediction_escrow_coverage_matrix.py` 打开两套 pair prediction 文件、解析 margin/selected，并计算
+tie/non-tie、activation 与 effect-eligibility 聚合；其 `prediction_values_aggregated=false` attestation 按字面为假。
+诊断中还显示过少量 prediction-derived aggregate。没有读取 label/grade/outcome/accuracy/search utility，也没有据此改变
+frozen scorer、activation、模型、threshold、task/subset、停止规则或 hypothesis；但 0FT/0FU/0FV 及后续 matrix 不能再称
+符合“first-960 + closure 前零 prediction-value audit access”。Decision Corpus Evidence Index v6 的相关第十项同步降级为
+historical-withdrawn。旧 artifacts 保留作撤回链，不删除、不覆盖，其 orientation/tie/eligibility 数字禁止迁入新结果。
+
+替代协议已在正式运行前冻结：只读取 promoted states、independent receipts、记录的 verifier commands，并只对 artifact
+summary 与 frozen verifier source bytes 做 SHA-256；绝不打开 pair files 或解析 summary 内容。成功主张最多是
+`RECEIPT_CERTIFIED_EXACT_CANONICAL_COMMON_SUPPORT`：两套 frozen verifier contracts 对同一 immutable snapshot 各自重建
+同一 canonical sibling-pair population，receipt/command/summary/source 全链绑定且 pair counts 相同。“count 相同”单独
+不充分；不得声称新审计重开了 identity/orientation，也不得报告 margin、tie/non-tie、activation/eligibility 或 prediction
+distribution。producer A/B、非 import verifier A/B、file-strace、credential scan 和原子 state promotion 均为硬门。
+正式 receipt 尚未运行，当前状态为 `PREREGISTERED_NOT_EXECUTED`。直接记录：
+
+- `phase1/prediction_receipt_common_support_protocol_v1.json`；
+- `phase1/实验记录/2026-08-26/PredictionEscrowCoverage_预测值访问事故与ReceiptOnly替代预注册.md`。
+
 ## 0GE. 2026-08-26 provisional first-960 membership 非单调；prediction escrow chain 已结果盲修复并部署
 
 0GD 的 chronology 勘误还有一个达到 960 后才会显现的直接后果：append-only source registry 不推出 chronological

@@ -1,0 +1,13 @@
+01_question=At exact provisional snapshot 8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248, how much lexical token-shingle near duplication crosses physical runs and tasks? PASS
+02_estimand=Endpoint membership in exact Jaccard >=17/20 relation over normalized five-token shingle sets; same-run and cross-run strata fixed. PASS
+03_inputs=Immutable snapshot blind manifests,identity-only run ledger,intake summaries and accumulator summary at exact source commit. PASS
+04_split_leakage=Prospective label,outcome,prediction,raw archive and frozen effect artifacts are forbidden; closure must remain false. PASS
+05_controls=Producer A/B,non-importing verifier A/B,384-document brute force,0.95 strict sensitivity and synthetic tests. PASS
+06_sample_size=All fingerprintable endpoints in the 366-run provisional first-960 prefix; no task or run deletion and no early stopping. PASS
+07_randomness=No randomness; integer threshold arithmetic,global deterministic ordering and PYTHONHASHSEED=0. PASS
+08_inference=Five corpus-quality gates fixed before real similarities; no p-value,accuracy,utility or method-effect inference. PASS
+09_cost=CPU-only expected under 20 minutes; GPU,API,model-fit,base-LLM-update=0,0,0,0. PASS
+10_resume=Immutable A/B outputs in unique root; any failure leaves no COMPLETE and retries require a new root. PASS
+11_environment=Fresh detached no-smudge worktree,exact public commit,project venv and single-thread numerical environment. PASS
+12_security=File traces,forbidden-path scan,boundary-aware credential scan,no code or identity values emitted. PASS
+13_promotion=Only COMPLETE after focused/full,A/B equality,independent equality,trace,security,clean-worktree and manifest gates. PASS

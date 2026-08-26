@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0GJ. 2026-08-26 first-960 token-shingle 近重复审计已结果前冻结；formal 尚未运行
+## 0GJ. 2026-08-26 first-960 token-shingle 近重复审计 formal 全门通过
 
 现有 clone 资产只覆盖 raw/token/AST 规范化后的 exact fingerprint，明确不能排除 fuzzy/语义近重复。新审计不把
 代码去重包装成方法 novelty：代码重复会夸大模型评测已有直接先例，The Stack 也已采用 5-token shingles 与 Jaccard
@@ -27,10 +27,19 @@ cross-task 分层的结构实证与机器协议。
 跨≥3 tasks 的 fuzzy component，并要求 384-document deterministic subset 与 brute force 完全一致。任一门失败不改阈值。
 
 审计只允许读取 snapshot-bound `eligible_blind_manifest`、identity-only runs 与 intake/accumulator summaries；不输出
-code/card/run/task 值，不读取 label/outcome/prediction，不计算 predictor effect。当前 366/960 只能给 provisional
-prefix 结果，closure 后必须原协议重跑。独立 verifier 不 import producer，并用另一种 prefix-posting 枚举重算全部
-edge digest；当前 synthetic/adversarial tests=`13 passed`，真实 formal 尚未运行。预注册：
-`phase1/实验记录/2026-08-26/First960_FuzzyCodeCloneAudit_v1_结果前预注册.md`。
+code/card/run/task 值，不读取 label/outcome/prediction，不计算 predictor effect。独立 verifier 不 import producer，
+并用另一种 prefix-posting 枚举重算全部 edge digest。
+
+正式 source commit=`cb368f95c5374fd2ab7448455b3ba3af054d02ec` 在 snapshot=`8579d7cd...d9248` 上全门通过：
+366 runs、10,683 endpoints 中 10,674 可 fingerprint，coverage=`0.9991575400168492`。0.85 门下 61,070 个候选
+exact check 后有 7,069 个 near-duplicate pairs，全部局限在同一 physical run：parent-child/sibling/same-run-other=
+`4078/50/2941`，cross-run same-task/cross-task=`0/0`；0.95 门下 2,758 pairs，跨 run 仍为 0。五项预注册门、
+384-doc brute force、producer/verifier A/B 均通过；focused/full=`13/1163 passed`，forbidden/credential hits=`0/0`。
+结果包：`phase1/results/prospective_fuzzy_code_clone_audit_8579_20260826_cb368f9/`。
+
+可用正结论是“高相似代码确实大量存在，但在固定 lexical 定义下呈严格 lineage-local，而非跨 run 复制”；仍不能
+外推为语义唯一、变量重命名 clone 不存在或 predictor 无泄漏。当前 366/960 只是 provisional，closure 后必须原协议
+重跑。预注册与结果：`phase1/实验记录/2026-08-26/First960_FuzzyCodeCloneAudit_v1_结果前预注册.md`。
 
 ## 0GI. 2026-08-26 ABC crosswalk v2 清洁迁移 formal 全门通过
 

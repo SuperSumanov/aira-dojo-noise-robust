@@ -1,0 +1,63 @@
+{
+  "closure_rerun_required": true,
+  "credential_hits": 0,
+  "fingerprint_coverage": 0.9991575400168492,
+  "fingerprinted_endpoints": 10674,
+  "focused_tests": {
+    "passed": 13,
+    "skipped": 0,
+    "warnings": 0
+  },
+  "forbidden_path_hits": 0,
+  "full_tests": {
+    "passed": 1163,
+    "skipped": 0,
+    "warnings": 47
+  },
+  "gate_checks": {
+    "cross_run_affected_endpoint_fraction": true,
+    "cross_task_affected_endpoint_fraction": true,
+    "exact_join_self_check": true,
+    "fingerprint_coverage": true,
+    "large_multitask_components": true
+  },
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "independent_aggregate_matches": true,
+  "observed_endpoints": 10683,
+  "observed_runs": 366,
+  "primary_candidate_pairs": 61070,
+  "primary_cross_run_affected_endpoint_fraction": 0.0,
+  "primary_cross_run_affected_endpoints": 0,
+  "primary_cross_run_components": 0,
+  "primary_cross_task_affected_endpoint_fraction": 0.0,
+  "primary_cross_task_affected_endpoints": 0,
+  "primary_large_multitask_components": 0,
+  "primary_largest_component_endpoints": 0,
+  "primary_largest_component_tasks": 0,
+  "primary_near_duplicate_pairs": 7069,
+  "primary_relation_pair_counts": {
+    "cross_run_cross_task": 0,
+    "cross_run_same_task": 0,
+    "parent_child": 4078,
+    "same_parent_siblings": 50,
+    "same_run_other": 2941
+  },
+  "producer_ab_byte_identical": true,
+  "protocol": "prospective-fuzzy-clone-formal-v1",
+  "semantic_equivalence_absence_proven": false,
+  "snapshot_sha256": "8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248",
+  "source_commit": "cb368f95c5374fd2ab7448455b3ba3af054d02ec",
+  "status": "FORMAL_PROVISIONAL_FUZZY_CLONE_AUDIT_COMPLETE",
+  "strict_cross_run_affected_endpoints": 0,
+  "strict_near_duplicate_pairs": 2758,
+  "strong_low_fuzzy_clone_support": true,
+  "subset_bruteforce_matches": true,
+  "tokenization_failures": 8,
+  "too_short_or_low_distinct_shingles": 1,
+  "verifier_ab_byte_identical": true
+}

@@ -2,14 +2,14 @@
 
 **Last updated:** 2026-08-26
 
-**Dynamic status timestamp:** 2026-08-26 15:04 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-08-26 15:50 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
 **Authority warning:** 本文件不是科学方向的最高权威。开始任何实验前必须先 fetch Git，再读
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
-## 0. 15:04 动态覆盖（覆盖下文冲突的旧 monitor/coverage/task-balance 状态）
+## 0. 15:50 动态覆盖（覆盖下文冲突的旧 monitor/coverage/task-balance 状态）
 
 - task-balance v1 的输入链已确认下游继承 withdrawn prediction matrix：旧 guard 直接读该 matrix 的逐任务
   pair counts，旧 forward 又绑定该 guard 与另一 value-reading matrix。因此 v1 的 `657→645` 算术虽未被证明错误，
@@ -43,6 +43,12 @@
   `65cbf6cf...1487ee` / `242ef697...5dd06`，formal manifest=`1552c911...ffcef`；结果包位于
   `phase1/results/agentic_benchmark_checklist_crosswalk_v2_20260826_c97371d/`。这是审计来源修复，不是 predictor
   effect 或 D&B 合规总分。
+- 新增的 outcome-blind fuzzy-clone audit 在公开 source commit=`cb368f95c5374fd2ab7448455b3ba3af054d02ec`、
+  snapshot=`8579d7cd...d9248` 上 formal 全门通过。10,683 endpoints 中 10,674 可 fingerprint（coverage=
+  `0.9991575400168492`）；Jaccard≥0.85 有 7,069 near-duplicate pairs，但全部在同一 physical run：
+  parent-child/sibling/same-run-other=`4078/50/2941`，cross-run/cross-task=`0/0`。0.95 下 2,758 pairs 仍无
+  cross-run edge。producer/verifier A/B、384-doc brute force、focused/full=`13/1163 passed` 和禁读/密钥门均通过。
+  这是“高相似演化严格 lineage-local”的 D&B 正资产，不是 semantic uniqueness 或 predictor effect；closure 后重跑。
 
 ## 0A. 13:31 历史动态状态（被上文覆盖）
 

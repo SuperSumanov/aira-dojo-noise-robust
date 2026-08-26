@@ -76,3 +76,34 @@ size、threshold、最短长度、cohort、分母或 component 定义；strict/�
 - non-importing verifier：`phase1/verify_prospective_fuzzy_code_clones.py`；
 - synthetic/adversarial focused tests：`13 passed in 0.20s`；
 - 真实 candidate count、similarity、edge、component 与 gate：未读取、未计算。
+
+## 6. Formal 结果（预注册后追加）
+
+公开 source commit `cb368f95c5374fd2ab7448455b3ba3af054d02ec` 在 fresh detached no-smudge Linux
+worktree 上，对不可变 snapshot `8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248`
+正式运行。producer A/B 与 non-importing verifier A/B 分别逐字节一致；384-document real subset 的 exact prefix
+join 与 73,536 个 brute-force pairs 完全一致。
+
+- scope：366/960 runs、10,683 endpoints；10,674 fingerprinted，coverage=`0.9991575400168492`；
+  tokenization failures=8，too-short/low-distinct=1；
+- primary 0.85：61,070 candidate pairs 做 exact set check，得到 7,069 near-duplicate pairs；
+- relation：parent-child=`4078`、same-parent siblings=`50`、same-run-other=`2941`、cross-run same-task=`0`、
+  cross-run cross-task=`0`；因此 cross-run/cross-task affected endpoints 与 fractions 均为 0；
+- strict 0.95：2,758 near-duplicate pairs，cross-run affected endpoints 仍为 0；
+- coverage、cross-run、cross-task、large-component 与 exact-join self-check 五门全部通过，
+  `strong_low_fuzzy_clone_support=true`；
+- focused/full=`13 passed` / `1163 passed, 47 warnings`；production forbidden-path hits=0、credential hits=0；
+  GPU/API/model-fit/base-update=`0/0/0/0`；
+- producer/verifier/formal-summary SHA-256 分别为
+  `f07454fdaacfc5ace8ef8b7f6630ed824b80acd0666bc549a2f6e53bc29ccbdc`、
+  `9c6d4bd0938e3cb2517b1c317a8eaa89628bff04eb9d537ac35ec9e4b7c10cf4`、
+  `8ddc1dbf5efb154fd3ea4f468c98ba5447c6138c4296afaf8f563dbc6a8d1493`；formal manifest=
+  `88c6309bc0b4694a4bcc962915a68374e87df3a852c9bad5f29bf320a3f46204`；
+- producer/verifier A 的 wall time=`4:16.50` / `4:01.27`，max RSS=`3298876` / `2936592` KiB。
+
+这给出一个比“exact clone 为零”更有内容的正面结构结论：搜索轨迹内部存在大量高相似连续演化，但在当前固定
+lexical 0.85/0.95 定义下没有任何高相似 edge 跨越 physical run，更没有跨任务 edge。它支持把 lineage-local
+continuity 当作语料标注价值，同时反驳“规模主要靠跨-run模板复制堆出”的简单解释。它仍不证明 semantic clone
+absence、底座预训练无 contamination 或 predictor effect；first-960+closure 后必须原协议复跑。
+
+正式包：`phase1/results/prospective_fuzzy_code_clone_audit_8579_20260826_cb368f9/`。

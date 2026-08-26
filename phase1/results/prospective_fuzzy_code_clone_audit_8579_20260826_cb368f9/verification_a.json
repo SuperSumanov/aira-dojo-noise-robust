@@ -1,0 +1,26 @@
+{
+  "fingerprinted_endpoints": 10674,
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "imports_producer_code": false,
+  "observed_endpoints": 10683,
+  "observed_runs": 366,
+  "prediction_values_read": false,
+  "primary_candidate_pairs": 61070,
+  "primary_edge_digest_sha256": "37b7e4aa493dfd752443b9e30e82297f5d9b273ccc5aa536c182d73a8180865d",
+  "primary_near_duplicate_pairs": 7069,
+  "producer_aggregate_matches": true,
+  "producer_receipt_sha256": "f07454fdaacfc5ace8ef8b7f6630ed824b80acd0666bc549a2f6e53bc29ccbdc",
+  "prospective_outcomes_read": false,
+  "protocol": "independent_prospective_fuzzy_code_clone_verifier_v1",
+  "semantic_equivalence_certified": false,
+  "snapshot_sha256": "8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248",
+  "status": "INDEPENDENTLY_VERIFIED_PROVISIONAL_FUZZY_CODE_CLONE_AUDIT",
+  "strict_edge_digest_sha256": "1653e0ef76d8f0fb7589c60f729528f88c1f2b8f74476cab84d6b7d244361dc1",
+  "strict_near_duplicate_pairs": 2758,
+  "subset_bruteforce_matches": true
+}

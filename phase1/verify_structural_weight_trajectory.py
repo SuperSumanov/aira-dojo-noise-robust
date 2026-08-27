@@ -95,7 +95,11 @@ def assert_close(expected: Any, observed: Any, label: str) -> None:
     raise VerificationError(f"unsupported comparison type at {label}")
 
 
-def inspect_inputs(root: Path, artifact: dict[str, Any]) -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]]]:
+def inspect_inputs(
+    root: Path,
+    artifact: dict[str, Any],
+    expected_runs: int = 339,
+) -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]]]:
     snapshot = artifact["snapshot_sha256"]
     if root.is_symlink() or not root.is_dir() or root.name != snapshot or not is_hash(snapshot):
         raise VerificationError("snapshot root identity mismatch")
@@ -133,8 +137,8 @@ def inspect_inputs(root: Path, artifact: dict[str, Any]) -> tuple[list[dict[str,
         required["accumulator/provisional_first960_runs.jsonl"],
     )
     registry = rows_file(root / "intake_registry.jsonl", required["intake_registry.jsonl"])
-    if len(runs) != 339:
-        raise VerificationError("frozen trajectory verifier expects exactly 339 runs")
+    if len(runs) != expected_runs:
+        raise VerificationError(f"frozen trajectory verifier expects exactly {expected_runs} runs")
     if len(registry) != accumulator.get("inventory", {}).get("drops"):
         raise VerificationError("drop count mismatch")
 

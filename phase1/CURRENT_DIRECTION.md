@@ -13,6 +13,20 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GP. 2026-08-27 opportunity-yield 404-run 时序外延已结果前冻结
+
+404-run ad0b 的 counts 与 dominant pair-task share=`0.2947295423023578` 已知，不作为新发现。尚未读取的
+HHI 轨迹、Shapley decomposition 与 drop/task deletion 已冻结为外延审计：完整 1..404，headline extension=
+360/380/400/404；沿用旧 G2 的单 drop attribution `<0.5`，task deletion≥80%且 dominant deletion 保留，
+yield 对 pair-HHI 与 run→pair TV 正增量均≥50%。旧 339-run G2=`0.9641733656841007` 失败；只有新 E2 真正
+通过才可升级为“非单批次 artifact”，其他门不得 rescue。
+
+provisional chronology 可能受晚到 run 重排，故旧 7cda first339 与 ad0b 重建 first339 只报告 sensitivity，不假定
+逐字节相同，也不称严格 held-out append extension。CPU-only；label/outcome/prediction/effect 不读，closure 后原协议重跑。
+查重边界：PALOMA/MixEval-X 已覆盖 domain/task mixture，informative-cluster-size 理论已覆盖 cluster/individual estimand，
+ABC 已覆盖 agent benchmark validity；这里只主张 MLE search-tree opportunity-yield 的版本化实例与机器审计，不写首次。
+预注册：`phase1/实验记录/2026-08-27/First960_结构权重时序外延404_结果前冻结.md`。
+
 ## 0GO. 2026-08-27 0825 outcome-blind 摄取、Target-300 进度与 identifier-erased formal 完成
 
 0825 的 12/12 个 archives 已由 append-only intake 提交，transactions=`86→98`，最终 settle poll 为

@@ -21,6 +21,14 @@ Qwen2.5-0.5B 的 A/B/T comparator、双输入顺序一致性和 `K/R` winner-cou
 WebShop/ALFWorld/tau3-Retail 的 3 actors × 3 environments 均报告正收益。它实质覆盖“同状态两候选谁更可能通向更好
 结果”“小模型只比较不求解也能指导强 actor”“pairwise comparator 接运行时 gate”三类一般方法主张，而非仅标题相似。
 
+该边界必须与本文件 0BT/0BY 联合解释，不能误写成 COTA 才首次覆盖程序比较器。Co-Reyes et al. 的
+[Guided Evolution（arXiv:2402.05821）](https://arxiv.org/abs/2402.05821) 已在线训练二元 ML-program discriminator，
+以 PAM/PAM-RT 比较 mutated child 与 parent、拒绝预测较差且尚未执行的候选，并在 Hero/AutoRL 报告约 3.7×/4×
+搜索加速；CPRD/BoN 理论又已关闭“pair construction 决定 deployment distribution/estimand”的一般概念首创。
+COTA 的新增直接重叠是把该范式推进到 exact-prefix、actor-conditioned continuation 与 agent runtime intervention。
+因此 comparator、跳过执行、在线 gate 和 pair-distribution 原理均只能作 related work；我方可主张的是这些已知问题在
+完整 Python MLE solution distribution 上的 run-clean、结果盲、连续分数领域实证与可重建 benchmark，不是通用首创。
+
 因此从本节起，以上三类主张以及 A/B/T、双顺序一致性均不得作为我方 novelty；学长此前提出的 future-potential
 扩展也只能称 MLE 领域复现/压力测试，不能称一般方法首创。当前不恢复已关闭的 `K>=1` lookahead、未来潜力标注或
 控制器实验。clean 0.6B→8B scaling 若以后确认，也只定位为 MLE 完整程序 decision distribution 上的 capacity/transport
@@ -30,7 +38,8 @@ WebShop/ALFWorld/tau3-Retail 的 3 actors × 3 environments 均报告正收益�
 连续外部分数、真实同-parent choice fragment、physical-run/comparison-component/experiment-config 隔离、gap/regrade
 noise、missingness、endpoint/pair graph、query/init/execution cost 和结果盲时间前瞻 closure。尤其必须区分：COTA 的
 actor-conditioned continuation return 与我方 canonical candidate 自身即时 external grade 是不同 estimand，不能都写成
-“future potential”。该直接竞品反而强化“pair construction determines the deployment estimand”的组织原则。详见
+“future potential”。该直接竞品反而强化“pair construction determines the deployment estimand”的组织原则，但 0BY 已明确该原则本身
+不是我方理论或概念 novelty。详见
 `phase1/实验记录/2026-08-27/COTA_同前缀比较器_最新防Scoop与主张收紧.md`。本轮只读公开文献，prospective
 truth/prediction/GPU/API/model-fit/base-update=`false/false/0/0/0/0`。
 

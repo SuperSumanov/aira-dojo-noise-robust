@@ -22,6 +22,23 @@ Jiang et al., *Don't Solve, Just Compare: Tiny Advisors for Runtime Intervention
 该工作不是只有“相似标题”。它已经同时覆盖了本项目曾考虑过的三个核心方法命题：同状态 pairwise continuation
 比较、弱小 comparator 指导更强 frozen actor，以及 comparator judgment 到在线 intervention 的转换。
 
+### 1.1 与此前已记录先例的联合边界
+
+COTA 不是“二元 ML-program predictor”的首篇工作。本项目在 2026-08-20 已记录 Co-Reyes et al. 的
+[Guided Evolution with Binary Discriminators for ML Program Search](https://arxiv.org/abs/2402.05821)：它把 symbolic
+optimizer、RL loss、symbolic regression 和 NAS candidates 编为 DAG，在线训练 pairwise discriminator，并用
+PAM/PAM-RT 比较 mutated child 与 parent、拒绝预测较差且尚未执行的 candidate；Hero/AutoRL 分别报告约 3.7×/4×
+搜索加速。两项工作的直接覆盖应分层理解：
+
+- Guided Evolution 已覆盖 `program pair → binary predictor → skip costly evaluation → guide search`；
+- COTA 进一步覆盖 `exact prefix → alternative action → same frozen actor continuation → Q^pi ordering → runtime advice`；
+- CPRD/BoN preference-learning 理论已覆盖 comparison distribution、margin/connectivity 与 target deployment
+  distribution 的一般关系，因此“pair construction determines deployment estimand”也只能作组织原则，不能作我方
+  理论或概念首创。
+
+我方不是在二者之间寻找措辞空隙。剩余贡献必须由 MLE 完整 Python solution、真实 physical-run sibling、连续 pristine
+external score、时间前瞻盲态闭合和可重建审计共同成立；缺少这些具体证据时，不得声称新的 comparator 方法。
+
 ## 2. 立即关闭的主张
 
 从本记录起，以下表述不得再作为我方 novelty 或正方向：
@@ -49,7 +66,7 @@ COTA 不等价覆盖当前论文容器。差异必须写成可核查事实，而
 - **论文任务不同**：COTA 是正向 runtime-intervention 方法论文；我方应坚持 Decision Corpus + Predictor Benchmark +
   Audit Protocol，研究不同 pair construction 和 aggregation 对 deployment estimand 的影响。
 
-因此 COTA 反而加强了一个已有组织原则：**pair construction 决定所学习的量**。同 prefix + same continuation actor 的
+因此 COTA 反而加强了一个已有但非我方首创的组织原则：**pair construction 决定所学习的量**。同 prefix + same continuation actor 的
 return pair 学的是 continuation ordering；同 parent 完整程序的即时外部分数学的是 current-solution ordering；global/value
 pair 又是第三种 comparison distribution。headline accuracy 不可跨三者直接横比。
 
@@ -60,6 +77,8 @@ pair 又是第三种 comparison distribution。headline accuracy 不可跨三者
   可 transport；不是 pairwise comparator 或 tiny-advisor 方法创新。
 - 我方 LLM judge 已做双顺序检查；今后可把 COTA 作为该保守设计的直接 related work，但不得称我方首创。
 - 论文 related-work 表必须加入 COTA，并显式区分 `immediate pristine score` 与 `actor-conditioned continuation return`。
+- related-work 表还必须把 Guided Evolution 列为更早的 ML-program binary-predictor / execution-skipping 直接先例；
+  不得用 COTA 的 2026 日期暗示该一般范式此前不存在。
 - first-960/target-300、config-v2 producer 部署、outcome-blind support gate 和 GPU 审批边界均不改变。
 
 ## 5. 本轮访问声明

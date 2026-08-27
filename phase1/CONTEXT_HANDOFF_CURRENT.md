@@ -18,6 +18,10 @@
   正收益。因此“比较两候选谁会通向更好结果”“tiny comparator 指导强 actor”及 pairwise-to-gate 均不再是我方方法
   novelty；不恢复 K≥1/lookahead。保留边界是 MLE 完整程序 decision corpus、即时 pristine score 与 run/component/
   config/时间前瞻审计，并明确它与 COTA 的 actor-conditioned continuation return 是不同 estimand。
+- 联合边界：2024 Guided Evolution 更早已覆盖二元 ML-program discriminator、跳过候选执行及 PAM/PAM-RT 搜索引导；
+  CPRD/BoN 又已覆盖 comparison distribution→deployment estimand 的一般理论。COTA 的新增直接重叠是 exact-prefix
+  continuation advisor。故 comparator、execution skipping、runtime gate 与“pair construction 决定 estimand”均非我方
+  通用 novelty；只保留完整 Python MLE sibling distribution 上的 run-clean、连续分数、盲态时间前瞻领域实证。
 - 最新 immutable snapshot=`ad0b624d636cb5e89f94d8887a7abe99f7b9ef6ce77bbde7da704b0275dedb0e`：first-960
   provisional=404/960 runs、11,310 endpoints、2,884 structural pairs、31 tasks；closure=false、label vault=false、
   outcome files=0。target-300 独立支持人口=129 runs/41 archives，remaining=171，truth 未读；两个人口不得混池。

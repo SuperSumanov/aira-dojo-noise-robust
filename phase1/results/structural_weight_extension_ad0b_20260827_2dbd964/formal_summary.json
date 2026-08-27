@@ -1,0 +1,27 @@
+{
+  "formal_execution": {
+    "focused_tests": "12 passed in 2.43s",
+    "full_tests": "1225 passed, 47 warnings in 80.95s (0:01:20)",
+    "independent_verifier_a_b_byte_identical": true,
+    "numeric_library_threads": 1,
+    "producer_a_b_byte_identical": true,
+    "python_version": "3.11.15"
+  },
+  "outputs": {
+    "headline_metrics_sha256": "7535a647df1fd9afa8ace16e4e0f301fcd82a1e2e05e6d333b660794d57658c8",
+    "independent_verification_sha256": "d31a3ff38f291ee674e7307bfc134d711fa1204ed49a6c0c01ecd08da2e74f62",
+    "trajectory_sha256": "2dbd96452efe07a0e8edbcd4dc7e14daf8d45503c601712b49f3425c1a5d304c"
+  },
+  "protocol": "prospective_structural_weight_extension_formal_ad0b_v1",
+  "security": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "forbidden_open_trace_hits": 0,
+    "gpu_calls": 0,
+    "label_outcome_prediction_or_raw_archive_opened": false,
+    "model_fits": 0
+  },
+  "snapshot_sha256": "ad0b624d636cb5e89f94d8887a7abe99f7b9ef6ce77bbde7da704b0275dedb0e",
+  "source_commit": "7b9ddf64efcbf75107e3bdc7846d7467454ddc90",
+  "status": "FORMAL_STRUCTURAL_WEIGHT_EXTENSION_PASS"
+}

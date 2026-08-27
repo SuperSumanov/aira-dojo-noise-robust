@@ -1,0 +1,160 @@
+{
+  "all_gates_passed": false,
+  "baseline_first240": {
+    "pair_hhi": 0.08303759912408124,
+    "pair_maximum_share": 0.1714990746452807,
+    "run_hhi": 0.05597222222222222
+  },
+  "claim_gates": {
+    "E1_extension_temporal_persistence": true,
+    "E2_no_single_drop_artifact": false,
+    "E3_single_task_robustness": false,
+    "E4_yield_is_primary_mechanism": false,
+    "E5_reconstructed_version_direction_consistency": true
+  },
+  "current_first404": {
+    "pair_hhi": 0.12479008004370566,
+    "pair_hhi_delta_vs_first240": 0.04175248091962443,
+    "pair_maximum_share": 0.2947295423023578,
+    "run_hhi": 0.047532104695618076,
+    "run_hhi_delta_vs_first240": -0.008440117526604146
+  },
+  "extension_checkpoints": [
+    {
+      "inversion_vs_reconstructed_first240": true,
+      "prefix_runs": 360
+    },
+    {
+      "inversion_vs_reconstructed_first240": true,
+      "prefix_runs": 380
+    },
+    {
+      "inversion_vs_reconstructed_first240": true,
+      "prefix_runs": 400
+    },
+    {
+      "inversion_vs_reconstructed_first240": true,
+      "prefix_runs": 404
+    }
+  ],
+  "inventory": {
+    "decision_parents": 2842,
+    "endpoints": 11310,
+    "finite_decision_runs": 399,
+    "pair_tasks": 31,
+    "runs": 404,
+    "structural_pairs": 2884,
+    "tasks": 31
+  },
+  "maximum_positive_single_drop_attribution": 1.0617531614480789,
+  "prior_public_maximum_positive_single_drop_attribution": 0.9641733656841007,
+  "reconstructed_first339": {
+    "pair_hhi": 0.13542696390462028,
+    "pair_maximum_share": 0.3126899696048632,
+    "run_hhi": 0.048024294950444225
+  },
+  "snapshot_sha256": "ad0b624d636cb5e89f94d8887a7abe99f7b9ef6ce77bbde7da704b0275dedb0e",
+  "status": "OUTCOME_BLIND_STRUCTURAL_WEIGHT_EXTENSION_READY",
+  "task_deletion": {
+    "dominant_task": "osic-pulmonary-fibrosis-progression",
+    "dominant_task_deletion_retained": false,
+    "fraction": 0.967741935483871,
+    "retained": 30,
+    "total": 31
+  },
+  "version_sensitivity": {
+    "old_minus_reconstructed_first339": {
+      "pair_hhi": 0.0003201852947791184,
+      "pair_maximum_share": -0.0003560037604609656,
+      "run_hhi": 0.0008527597218959126
+    },
+    "old_public_first339": {
+      "maximum_positive_single_drop_attribution": 0.9641733656841007,
+      "pair_hhi": 0.1357471491993994,
+      "pair_maximum_share": 0.31233396584440226,
+      "run_hhi": 0.04887705467234014,
+      "runs": 339,
+      "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1"
+    },
+    "reconstructed_first339": {
+      "concentration": {
+        "decision_parents": {
+          "dominant_tasks": [
+            "osic-pulmonary-fibrosis-progression"
+          ],
+          "exponential_shannon_descriptive_diversity": 12.887433413731447,
+          "gini": 0.64998712998713,
+          "hhi": 0.1390408610485831,
+          "inverse_hhi_descriptive_diversity": 7.1921303741824785,
+          "maximum_share": 0.31776061776061776,
+          "positive_tasks": 30,
+          "shannon_entropy": 2.5562526825969623,
+          "top3_share": 0.5281853281853282,
+          "total_weight": 2590
+        },
+        "endpoints": {
+          "dominant_tasks": [
+            "osic-pulmonary-fibrosis-progression"
+          ],
+          "exponential_shannon_descriptive_diversity": 16.48509582948488,
+          "gini": 0.5473405299313052,
+          "hhi": 0.10493183006680723,
+          "inverse_hhi_descriptive_diversity": 9.529996754686612,
+          "maximum_share": 0.2700686947988224,
+          "positive_tasks": 30,
+          "shannon_entropy": 2.8024566896390324,
+          "top3_share": 0.43248282630029444,
+          "total_weight": 10190
+        },
+        "runs": {
+          "dominant_tasks": [
+            "ranzcr-clip-catheter-line-classification",
+            "tensorflow-speech-recognition-challenge"
+          ],
+          "exponential_shannon_descriptive_diversity": 24.27557357326498,
+          "gini": 0.35939036381514256,
+          "hhi": 0.048024294950444225,
+          "inverse_hhi_descriptive_diversity": 20.822793984417462,
+          "maximum_share": 0.08849557522123894,
+          "positive_tasks": 30,
+          "shannon_entropy": 3.1894706420451064,
+          "top3_share": 0.24188790560471976,
+          "total_weight": 339
+        },
+        "structural_pairs": {
+          "dominant_tasks": [
+            "osic-pulmonary-fibrosis-progression"
+          ],
+          "exponential_shannon_descriptive_diversity": 13.127121950868059,
+          "gini": 0.6453900709219859,
+          "hhi": 0.13542696390462028,
+          "inverse_hhi_descriptive_diversity": 7.384053892726185,
+          "maximum_share": 0.3126899696048632,
+          "positive_tasks": 30,
+          "shannon_entropy": 2.574680467857196,
+          "top3_share": 0.5197568389057751,
+          "total_weight": 2632
+        }
+      },
+      "inventory": {
+        "decision_parents": 2590,
+        "endpoints": 10190,
+        "finite_decision_runs": 334,
+        "pair_tasks": 30,
+        "runs": 339,
+        "structural_pairs": 2632,
+        "tasks": 30
+      },
+      "weighting_shift_tv": {
+        "runs_to_decision_parents": 0.3484891971617635,
+        "runs_to_endpoints": 0.27295949235904254,
+        "runs_to_structural_pairs": 0.3377502667419821
+      }
+    },
+    "warning": "provisional chronological ranks can change after late arrival; old and reconstructed first339 are not asserted byte-identical"
+  },
+  "yield_mechanism": {
+    "pair_hhi_fraction": 0.5991375958702558,
+    "run_to_pair_tv_fraction": 0.44105064109821923
+  }
+}

@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus + Predictor Benchmark + Audit Protocol; outcome-blind weighting audit only
+PREFLIGHT_02_QUESTION=does the first240-to-404 run-versus-pair concentration inversion persist without a single-drop artifact,and is opportunity yield the primary decomposition term
+PREFLIGHT_03_INPUT=immutable ad0b snapshot ad0b624d636cb5e89f94d8887a7abe99f7b9ef6ce77bbde7da704b0275dedb0e; exactly 404 chronological provisional runs
+PREFLIGHT_04_FORBIDDEN=label vault,outcome,grade,winner orientation,score,prediction value,checkpoint,raw archive,and raw journal bytes
+PREFLIGHT_05_ESTIMAND=fixed first240 baseline; checkpoints 360,380,400,404; reconstructed first339 sensitivity; no predictor effect
+PREFLIGHT_06_GATES=E1 all four checkpoints; E2 max positive single-drop attribution below0.5; E3 at least80pct task deletions plus dominant; E4 yield fractions at least0.5 for HHI and TV; E5 first339 and first404 direction
+PREFLIGHT_07_NEGATIVE=drop deletion,task deletion,version sensitivity,known-count mismatch,protocol drift,and interpretation tamper controls
+PREFLIGHT_08_INDEPENDENCE=producer A/B plus non-importing verifier A/B and exact-path syscall audit
+PREFLIGHT_09_REPRO=public commit 7b9ddf64efcbf75107e3bdc7846d7467454ddc90; producer b72400a554063f5ff9c10cc2d614330b4f6b1109334cd3754768c098be2d5504; verifier 32c15ca06972ca547d972f9f307ad9efd97503c754f652bf138f610a60ec2d0a; verifier core 56d32ccafa95068951b8870a83b2abb76a55791436d95759b7beca2b8b25fa79; spec 605208097096d445b3fcf6d29467a9a564f9f458241cc504866f5d672d6d8d2e; pinned environment and numeric threads
+PREFLIGHT_10_STATISTICS=descriptive concentration and exact deterministic decomposition only; inverse HHI is not an inferential effective sample size
+PREFLIGHT_11_RESOURCES=CPU only; expected under5 minutes; GPU/API/model_fit/base_update=0/0/0/0
+PREFLIGHT_12_SECURITY=postpush receipt fixed; strace forbidden-path audit; commit/result credential scan; clean worktree
+PREFLIGHT_13_STOP=any hash,schema,blindness,determinism,test,path,security,or LATEST drift failure rejects the complete attempt without rescue

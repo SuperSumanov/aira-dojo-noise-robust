@@ -1,0 +1,31 @@
+{
+  "forbidden_open_hits": 0,
+  "protocol": "structural_weight_extension_exact_path_audit_v1",
+  "status": "EXACT_PATH_AUDIT_PASS",
+  "traces": {
+    "producer_a": {
+      "open_calls": 455,
+      "prospective_allowed_unique_paths": 298,
+      "unique_open_paths": 436,
+      "violations": []
+    },
+    "producer_b": {
+      "open_calls": 455,
+      "prospective_allowed_unique_paths": 298,
+      "unique_open_paths": 436,
+      "violations": []
+    },
+    "verifier_a": {
+      "open_calls": 448,
+      "prospective_allowed_unique_paths": 298,
+      "unique_open_paths": 429,
+      "violations": []
+    },
+    "verifier_b": {
+      "open_calls": 448,
+      "prospective_allowed_unique_paths": 298,
+      "unique_open_paths": 429,
+      "violations": []
+    }
+  }
+}

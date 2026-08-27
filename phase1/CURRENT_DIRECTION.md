@@ -13,6 +13,20 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GQ. 2026-08-27 opportunity-yield 404-run 外延正式 NO-GO
+
+结果前公开冻结 commit=`7b9ddf64efcbf75107e3bdc7846d7467454ddc90`，固定 ad0b；producer/verifier A/B、
+focused/full=`12/1225 passed`、exact-path 与凭据门全部通过。科学门为 E1/E5 PASS、E2/E3/E4 FAIL：360/380/400/404
+持续反转，但最大单 drop attribution=`1.0617531614480789`；31 个 task deletion 中 30 个保留，删除 dominant OSIC 后
+pair-HHI 差=`-0.0018797549643278927`；yield fraction 对 pair-HHI=`0.5991375958702558`，对 run→pair TV 仅
+`0.44105064109821923`。因此正式裁决为 `ROBUST_OPPORTUNITY_YIELD_CLAIM_NO_GO`。
+
+只保留“run-level coverage 与 pair-micro task weight 持续背离”的描述性诊断；撤回在 provisional404 上“非单批次稳健、
+且 yield 对两个集中度指标均为主要机制”的表述。不得以 E1、30/31、pair max share 下降或单个分解指标 rescue。该审计支持
+同时发布 task-macro、pair-micro、drop leverage 与层级 provenance，但不是 predictor/method/search-utility 正结果。同一 snapshot
+不再调 baseline、门或删除规则；closure 后按原协议重跑。正式包：
+`phase1/results/structural_weight_extension_ad0b_20260827_2dbd964/`。
+
 ## 0GP. 2026-08-27 opportunity-yield 404-run 时序外延已结果前冻结
 
 404-run ad0b 的 counts 与 dominant pair-task share=`0.2947295423023578` 已知，不作为新发现。尚未读取的

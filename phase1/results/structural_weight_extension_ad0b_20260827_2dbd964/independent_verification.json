@@ -1,0 +1,39 @@
+{
+  "checks": {
+    "all_404_prefixes_recomputed": true,
+    "all_claim_gates_recomputed": true,
+    "all_milestones_recomputed": true,
+    "decompositions_recomputed": true,
+    "drop_and_task_deletions_recomputed": true,
+    "security_contract_exact": true,
+    "snapshot_and_intake_hashes_reopened": true,
+    "task_yields_recomputed": true,
+    "version_sensitivity_recomputed": true
+  },
+  "producer_source_sha256": "b72400a554063f5ff9c10cc2d614330b4f6b1109334cd3754768c098be2d5504",
+  "protocol": "independent_prospective_structural_weight_extension_ad0b_v1",
+  "protocol_spec_sha256": "605208097096d445b3fcf6d29467a9a564f9f458241cc504866f5d672d6d8d2e",
+  "recomputed_key_findings": {
+    "claim_gates": {
+      "E1_extension_temporal_persistence": true,
+      "E2_no_single_drop_artifact": false,
+      "E3_single_task_robustness": false,
+      "E4_yield_is_primary_mechanism": false,
+      "E5_reconstructed_version_direction_consistency": true
+    },
+    "pairs": 2884,
+    "runs": 404
+  },
+  "security": {
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "label_outcome_prediction_or_raw_archive_opened": false
+  },
+  "snapshot_sha256": "ad0b624d636cb5e89f94d8887a7abe99f7b9ef6ce77bbde7da704b0275dedb0e",
+  "status": "INDEPENDENT_STRUCTURAL_WEIGHT_EXTENSION_PASS",
+  "trajectory_sha256": "2dbd96452efe07a0e8edbcd4dc7e14daf8d45503c601712b49f3425c1a5d304c"
+}

@@ -3,6 +3,26 @@
 这里保存针对其他现有分支、但不直接改写对方分支的可审计补丁。补丁必须注明精确 base commit、测试结果与
 迁移边界；只有维护者审阅后才 cherry-pick。
 
+## Prospective config-v2 producer hook（2026-08-27）
+
+`0001-Add-prospective-config-v2-producer-hook-18-tests.patch` 精确基于学长
+`dojo-reproduce@61459c0a1248900079dafed7c505afa87e476b40`，SHA-256=
+`56a3e4b61918e1b06830712d418ed27ef5135017eab2b9e833b92c626054c9a5`。它把已经审计的
+prompt-sensitive config-v2 指纹嵌入真实 `dojo.main_run` 启动路径，但默认关闭；仅在
+`DOJO_CONFIG_V2_SIDECAR=1` 且显式提供 `DOJO_GENERATOR_RELEASE` 时，于 solver/task 构造前写
+`producer.config_v2.jsonl`。输出不含 resolved solver、环境 dump、凭据、outcome 或 label；只含十个公开字段与
+SHA-256。相同 run 的 resume 只允许复用逐字节一致的 sidecar，配置变化或竞争写入均拒绝且不覆盖。
+
+fresh Linux no-smudge worktree 的 focused/full 为 `19 passed` / `84 passed, 1 skipped`；128 个合法变体与
+`phase1/senior_experiment_config_v2.py` 逐 row、逐字节相同，4 类非法变体两边都拒绝；filename/blob
+credential hits=`0/0`。正式根=
+`/research/d7/spc/yzyang4/config-v2-producer-hook/verify_fa2151b_v4`，`SHA256SUMS` 自身 SHA-256=
+`fbb9536c760c9a14ba9e7da044d1f32fe7f748ff54298f27fb1951bbe743c2b0`。
+
+状态严格为 `PATCH_VERIFIED_NOT_DEPLOYED`：补丁没有改写学长分支，尚未观察到真实 producer sidecar，不能把
+历史 archive 回填为 exact stratum，也不授权训练、GPU 矩阵或效果主张。8 月 19 日旧 exact-stratum patch 是
+Cards/pair 生成后的 v1 同层过滤；本补丁解决的是更早的 outcome-before producer config/prompt 可识别性，两者不重复。
+
 ## Critic clean-confirmation overlay（2026-08-23）
 
 以下四份补丁按顺序应用于学长 `dojo-reproduce@ac008af8b907d319b694f26b0ba9cf4053b3bf69`：

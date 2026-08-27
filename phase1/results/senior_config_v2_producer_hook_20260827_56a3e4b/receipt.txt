@@ -1,0 +1,14 @@
+status=ENGINEERING_PATCH_VERIFIED
+base_commit=61459c0a1248900079dafed7c505afa87e476b40
+patched_commit=57d5d7bc617c5f303662e8e0e9db19a1026aa04e
+reference_commit=f5955b0b887e6c89244fd5ac5b8b17de7b1ae88b
+patch_sha256=56a3e4b61918e1b06830712d418ed27ef5135017eab2b9e833b92c626054c9a5
+focused=19 passed in 0.26s
+crosscheck={"equivalent_cases": 128, "rejected_cases": 4, "status": "EXACT_ROW_BYTES_EQUIVALENT"}
+full_tests_rc=0
+full_tests=84 passed, 1 skipped, 26 warnings in 32.69s
+filename_secret_hits=0
+blob_secret_hits=0
+gpu_jobs_submitted=0
+archives_or_outcomes_read=false
+labels_or_predictions_read=false

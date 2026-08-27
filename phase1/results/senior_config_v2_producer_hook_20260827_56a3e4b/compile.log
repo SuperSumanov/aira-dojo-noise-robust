@@ -1,0 +1,3 @@
+COMPILE_PASS src/dojo/main_run.py
+COMPILE_PASS src/dojo/utils/config_v2_sidecar.py
+COMPILE_PASS tests/test_config_v2_sidecar.py

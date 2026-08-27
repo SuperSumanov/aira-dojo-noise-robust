@@ -1,0 +1,4 @@
+docs/config_v2_sidecar.md
+src/dojo/main_run.py
+src/dojo/utils/config_v2_sidecar.py
+tests/test_config_v2_sidecar.py

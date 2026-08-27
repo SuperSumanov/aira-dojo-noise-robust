@@ -13,6 +13,28 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GR. 2026-08-27 config-v2 已形成可 cherry-pick 的真实 producer 自动接入补丁；仍未部署
+
+学长最新 `dojo-reproduce@61459c0a1248900079dafed7c505afa87e476b40` 上已制作默认关闭的 upstream patch：
+`phase1/upstream_patches/0001-Add-prospective-config-v2-producer-hook-18-tests.patch`，SHA-256=
+`56a3e4b61918e1b06830712d418ed27ef5135017eab2b9e833b92c626054c9a5`。启用后，resolved config 保存完成、
+`env_variables.json` 与 task/solver 构造之前，自动写单-run `producer.config_v2.jsonl`；它只含公开字段和
+prompt-sensitive solver/config hashes，不读取环境 dump、archive、journal、outcome、grade、label 或 prediction。
+开关默认关闭；release 缺失、混合 operator client、凭据形状、非法 run identity/timeout、hash/schema 异常、竞争写入
+均 fail closed。checkpoint/resume 仅可复用逐字节相同的既有 sidecar，任何配置变化都不覆盖。
+
+fresh Linux 正式验证：focused=`19 passed in 0.26s`，full=`84 passed, 1 skipped, 26 warnings in 32.69s`；
+与现有独立 v2 exporter 的 128 个合法变体 row/bytes 全等，4 个非法变体两边共同拒绝；secret filename/blob=`0/0`，
+GPU/API/outcome/label 访问=`0/0/false/false`。formal root=
+`/research/d7/spc/yzyang4/config-v2-producer-hook/verify_fa2151b_v4`，manifest hash=
+`fbb9536c760c9a14ba9e7da044d1f32fe7f748ff54298f27fb1951bbe743c2b0`。v1/v2/v3 的环境失败史保留，正式引用 v4。
+
+当前裁决仍是 `PATCH_VERIFIED_NOT_DEPLOYED`：没有直接修改学长分支，也尚未观察到下一批真实 sidecar，故 0825/更早
+archives 不得回填，clean scaling GPU 重训仍未获授权。学长 review/cherry-pick 后必须从下一批 producer 显式设
+`DOJO_CONFIG_V2_SIDECAR=1` 与公开 `DOJO_GENERATOR_RELEASE`；只有真实 sidecar 与 source/expected-run receipt 完整
+组合、outcome-blind support gate 通过后，才另报模型×数据×seed×GPU·时矩阵。详见
+`phase1/实验记录/2026-08-27/SeniorConfigSidecar_v2_生产自动接入补丁.md`。
+
 ## 0GQ. 2026-08-27 opportunity-yield 404-run 外延正式 NO-GO
 
 结果前公开冻结 commit=`7b9ddf64efcbf75107e3bdc7846d7467454ddc90`，固定 ad0b；producer/verifier A/B、

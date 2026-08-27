@@ -1,13 +1,35 @@
 # Context handoff：Decision Corpus + Predictor Benchmark
 
-**Last updated:** 2026-08-26
+**Last updated:** 2026-08-27
 
-**Dynamic status timestamp:** 2026-08-26 15:50 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-08-27 09:53 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
 **Authority warning:** 本文件不是科学方向的最高权威。开始任何实验前必须先 fetch Git，再读
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
+
+## 0N. 09:53 动态覆盖（覆盖下文所有旧 snapshot、sidecar、学长 HEAD 与结构机制状态）
+
+- 当前唯一主线仍是 Decision Corpus + Predictor Benchmark + Audit Protocol；旧 HCE/多保真/probe/score-channel
+  effect/K≥1 lookahead/conformal stop 均关闭，不得恢复。
+- 最新 immutable snapshot=`ad0b624d636cb5e89f94d8887a7abe99f7b9ef6ce77bbde7da704b0275dedb0e`：first-960
+  provisional=404/960 runs、11,310 endpoints、2,884 structural pairs、31 tasks；closure=false、label vault=false、
+  outcome files=0。target-300 独立支持人口=129 runs/41 archives，remaining=171，truth 未读；两个人口不得混池。
+- historical-v11-train↔future identifier-erased audit 已在 5,519 historical endpoints 与 11,299 可 fingerprint future
+  endpoints 上完成；5,923,921 exact candidate checks、Jaccard≥0.85 links=`0`，cross-run/cross-task=`0/0`。这是
+  benchmark-integrity 正资产，不是 predictor effect，closure 后必须重跑。
+- opportunity-yield 404-run 外延按预注册正式 NO-GO：E1/E5 PASS，E2/E3/E4 FAIL；最大单-drop attribution=
+  `1.0617531614480789`，删除 dominant OSIC 后反转不保留，run→pair TV 的 yield fraction=
+  `0.44105064109821923`。只保留 run-level coverage 与 pair-micro task weight 背离的描述性诊断，不 rescue 机制主张。
+- 学长 `dojo-reproduce` 最新精确 HEAD=`61459c0a1248900079dafed7c505afa87e476b40`，没有新的 clean scaling outcome。
+  latest future producer 仍未观察到真实 `*.config_v2.jsonl`，旧 archive 禁止回填。
+- 已针对该精确 HEAD 交付 config-v2 producer auto-hook patch，SHA-256=
+  `56a3e4b61918e1b06830712d418ed27ef5135017eab2b9e833b92c626054c9a5`。fresh Linux focused/full=
+  `19/84 passed`（full 另有 1 skipped）；128 个合法变体与独立 v2 exporter 字节全等，4 个非法变体共同拒绝，
+  secret=`0/0`。状态仅为 `PATCH_VERIFIED_NOT_DEPLOYED`；学长 review/cherry-pick 后的下一批才可形成真实 sidecar。
+- 下一动作：保持盲态摄取和 prediction escrow monitor；等待真实 v2 sidecar 后做 source/expected/config composition 与
+  support audit。只有 support gate 通过，才提交模型×数据×seed×GPU·时矩阵请求 clean scaling 重训；当前不启动 GPU。
 
 ## 0. 15:50 动态覆盖（覆盖下文冲突的旧 monitor/coverage/task-balance 状态）
 

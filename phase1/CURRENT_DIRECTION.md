@@ -29,6 +29,14 @@ GPU/API/outcome/label 访问=`0/0/false/false`。formal root=
 `/research/d7/spc/yzyang4/config-v2-producer-hook/verify_fa2151b_v4`，manifest hash=
 `fbb9536c760c9a14ba9e7da044d1f32fe7f748ff54298f27fb1951bbe743c2b0`。v1/v2/v3 的环境失败史保留，正式引用 v4。
 
+随后用 metadata-only 规则冻结原 run root 中 mtime 最新的 20 个 regular `dojo_config.json`，在不打开 env/journal/
+submission/grade/Cards/pairs/tar/outcome/prediction 的条件下做历史 schema-only smoke：20/20 candidate/reference row 与
+canonical bytes 一致，覆盖 7 tasks、2 clients、2 个 solver fingerprints、9 strata，顶层 schema=1；credential-before-parse
+通过、forbidden opens=0、sidecars written=0。rows SHA-256=
+`fd8982cf75099f71b73d1d5b2ad3e955a89d81efbae941e94705981216ed9e5e`，formal manifest=
+`80c8ab4b9ef5c23693aad00c7db75e81d81fd18f7339f65d6dff67e86003c47e`。这只排除 synthetic-vs-real config shape
+不兼容，不把历史 runs 回填成 outcome-before provenance，也不证明新 prompt/config 已在生产使用。
+
 当前裁决仍是 `PATCH_VERIFIED_NOT_DEPLOYED`：没有直接修改学长分支，也尚未观察到下一批真实 sidecar，故 0825/更早
 archives 不得回填，clean scaling GPU 重训仍未获授权。学长 review/cherry-pick 后必须从下一批 producer 显式设
 `DOJO_CONFIG_V2_SIDECAR=1` 与公开 `DOJO_GENERATOR_RELEASE`；只有真实 sidecar 与 source/expected-run receipt 完整

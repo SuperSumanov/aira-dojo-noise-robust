@@ -19,6 +19,12 @@ credential hits=`0/0`。正式根=
 `/research/d7/spc/yzyang4/config-v2-producer-hook/verify_fa2151b_v4`，`SHA256SUMS` 自身 SHA-256=
 `fbb9536c760c9a14ba9e7da044d1f32fe7f748ff54298f27fb1951bbe743c2b0`。
 
+另在不读 env/outcome 的历史 schema-only smoke 中，按 mtime 预先冻结的 20 个真实 `dojo_config.json` 全部得到
+candidate/reference 完全相同的 row/bytes；覆盖 7 tasks、2 clients、2 solver fingerprints、9 strata，forbidden
+path opens=0、sidecar writes=0。formal root=
+`/research/d7/spc/yzyang4/config-v2-producer-hook/real_config_smoke_65896b6_v1`，manifest SHA-256=
+`80c8ab4b9ef5c23693aad00c7db75e81d81fd18f7339f65d6dff67e86003c47e`。这是兼容性验证，不是历史 provenance。
+
 状态严格为 `PATCH_VERIFIED_NOT_DEPLOYED`：补丁没有改写学长分支，尚未观察到真实 producer sidecar，不能把
 历史 archive 回填为 exact stratum，也不授权训练、GPU 矩阵或效果主张。8 月 19 日旧 exact-stratum patch 是
 Cards/pair 生成后的 v1 同层过滤；本补丁解决的是更早的 outcome-before producer config/prompt 可识别性，两者不重复。

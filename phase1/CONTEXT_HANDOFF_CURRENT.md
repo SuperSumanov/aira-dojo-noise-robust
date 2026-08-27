@@ -28,6 +28,9 @@
   `56a3e4b61918e1b06830712d418ed27ef5135017eab2b9e833b92c626054c9a5`。fresh Linux focused/full=
   `19/84 passed`（full 另有 1 skipped）；128 个合法变体与独立 v2 exporter 字节全等，4 个非法变体共同拒绝，
   secret=`0/0`。状态仅为 `PATCH_VERIFIED_NOT_DEPLOYED`；学长 review/cherry-pick 后的下一批才可形成真实 sidecar。
+- 历史 schema-only compatibility smoke 又用 metadata-only 规则冻结 20 个真实 `dojo_config.json`：20/20 两实现
+  row/bytes 全等，覆盖 7 tasks、2 clients、2 solver fingerprints、9 strata；forbidden opens=0、sidecar writes=0。
+  这不读取 env/outcome，也不回填 provenance，只排除 synthetic fixture 与当前可见真实 config shape 不兼容。
 - 下一动作：保持盲态摄取和 prediction escrow monitor；等待真实 v2 sidecar 后做 source/expected/config composition 与
   support audit。只有 support gate 通过，才提交模型×数据×seed×GPU·时矩阵请求 clean scaling 重训；当前不启动 GPU。
 

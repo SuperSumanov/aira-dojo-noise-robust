@@ -53,6 +53,24 @@ mixed client、credential-shaped prompt、坏 run ID、NaN limit 四类非法输
 本地镜像包：`phase1/results/senior_config_v2_producer_hook_20260827_56a3e4b/`；其 `SHA256SUMS`
 SHA-256=`816ca815e9614aaa762227a58f8f7d8a46e3c5bf218d36bf3aa807ddcf3f1b53`。
 
+## 3.1 真实 `dojo_config.json` 形状兼容 smoke
+
+synthetic 与完整单测通过后，仍可能存在真实 Hydra 序列化结构不同这一风险。为避免挑结果，先按文件 metadata 冻结
+`aira-dojo-runs` 中 mtime 最新的 20 个 regular `dojo_config.json`，再读取内容；选择 SHA-256=
+`6b2f6d904a0ae9278ea920e549fe56d3493fa857f210806c115ad86e66187b7e`。所有 config 在 JSON parse 前先通过两套
+credential regex，随后仅用于 schema/hash 兼容，不读取相邻 env、journal、submission 或结果文件。
+
+20/20 config 的 candidate/reference row 与 canonical bytes 完全一致；覆盖 7 tasks、2 clients、2 distinct solver
+fingerprints、9 distinct experiment strata，顶层 schema 只有 1 种。canonical rows SHA-256=
+`fd8982cf75099f71b73d1d5b2ad3e955a89d81efbae941e94705981216ed9e5e`。`strace` 对
+env/journal/submission/grade/Cards/pairs/tar/outcome/prediction 的 open/openat 命中为 0，运行前后 per-run sidecar 均为
+0，sidecars written=0；GPU/API=0。formal root=
+`/research/d7/spc/yzyang4/config-v2-producer-hook/real_config_smoke_65896b6_v1`，`SHA256SUMS` hash=
+`80c8ab4b9ef5c23693aad00c7db75e81d81fd18f7339f65d6dff67e86003c47e`。
+
+这些 configs 是历史且 outcome 已经存在，因此本 smoke **绝不**构成 outcome-before provenance，也不证明最新
+`61459c0` prompt/config 已用于它们；它只排除“补丁仅适配 synthetic fixture、不适配当前可见真实 config shape”。
+
 ## 4. 与 8 月 19 日旧 patch 的关系
 
 `0001-Enforce-exact-experiment-strata-6-focused-tests-pass.patch` 处理的是 Cards 已生成后的 v1 tuple 同层配对与 pair

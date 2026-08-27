@@ -1,0 +1,13 @@
+01_direction=Decision Corpus + Predictor Benchmark + Audit Protocol only; PASS
+02_question=identifier/literal-erased syntactic overlap from fixed v11 train to chronological first-960; PASS
+03_population=5519 historical endpoints versus all fingerprintable endpoints in immutable ad0b624d636cb5e89f94d8887a7abe99f7b9ef6ce77bbde7da704b0275dedb0e; PASS
+04_inputs=hash-bound pairs/cards and blind snapshot manifests only; label/outcome/prediction/effect/utility forbidden; PASS
+05_representation=hard-keyword/operator preserving identifier/number/string erasure, token 5-grams, BLAKE2b-128, min20; PASS
+06_thresholds=17/20 primary and 19/20 strict, no task/run prefilter and no rescue; PASS
+07_controls=alpha-renaming positive, unrelated negative, producer A/B, non-importing verifier A/B, 256x256 brute force; PASS
+08_randomness=none, integer threshold arithmetic, PYTHONHASHSEED=0 and numeric threads=1; PASS
+09_inference=seven deterministic integrity gates, no p-value or predictor effect; PASS
+10_cost=CPU-only, each formal command timeout 1200s and virtual memory cap 32GiB, GPU/API/model-fit/base-update=0/0/0/0; PASS
+11_recovery=unique immutable root, failure leaves FAILED_RC without COMPLETE; PASS
+12_security=strace forbidden-open audit, boundary-aware credential scan, no endpoint identities emitted; PASS
+13_promotion=tests,A/B equality,independent equality,trace,clean worktree,stable LATEST and manifest before COMPLETE; PASS

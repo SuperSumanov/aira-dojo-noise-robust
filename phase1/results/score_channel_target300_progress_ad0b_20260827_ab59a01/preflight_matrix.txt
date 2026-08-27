@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=future score-channel truth-support cohort identity closure
+PREFLIGHT_02_QUESTION=has the frozen temporal cohort reached 300 accepted unique physical runs without reading truth
+PREFLIGHT_03_INPUT=LATEST transaction hash ad0b624d636cb5e89f94d8887a7abe99f7b9ef6ce77bbde7da704b0275dedb0e; observations hash 9d1059da4f1f72af68a3a10a34544e2c2b7790ae977d2cdb937408a85d2b9cfa; protocol 54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d
+PREFLIGHT_04_UNIT=complete accepted archive then unique physical run; no partial archive salvage
+PREFLIGHT_05_ORDER=mtime_ns then relative-path UTF-8 bytes; stop at first unresolved archive
+PREFLIGHT_06_REJECTIONS=structural rejection counts zero runs and remains in settled prefix
+PREFLIGHT_07_CLOSURE=include complete archive crossing 300 runs; prior output must survive as exact prefix
+PREFLIGHT_08_LEAKAGE=only transaction metadata observation metadata intake summary archive manifest source provenance
+PREFLIGHT_09_FORBIDDEN=raw tar payload blind code label vault score directory outcome and prediction
+PREFLIGHT_10_REPRO=producer x2 independent verifier x2 byte comparison and fresh no-smudge commit
+PREFLIGHT_11_FAILURE=metadata drift ordering gap duplicate run SHA mismatch or forbidden open fails closed
+PREFLIGHT_12_RESOURCES=single-thread CPU; GPU=0; API=0; model-fit=0; base-LLM-update=0
+PREFLIGHT_13_NEXT=PASS closure only permits frozen truth-support CPU audit; replay remains unauthorized

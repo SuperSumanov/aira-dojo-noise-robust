@@ -13,6 +13,31 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GO. 2026-08-27 0825 outcome-blind 摄取、Target-300 进度与 identifier-erased formal 完成
+
+0825 的 12/12 个 archives 已由 append-only intake 提交，transactions=`86→98`，最终 settle poll 为
+`archives=246 ready=0 transactions=98 outcomes_read=false`；immutable snapshot=`ad0b624d...5dedb0e`。
+provisional first-960 从 366 runs / 10,683 endpoints / 2,755 pairs / 30 tasks 增至
+404 / 11,310 / 2,884 / 31，净增 `+38/+627/+129/+1`，当前 404/960、尚差 556、closure=false。
+dominant pair-task share 从 `0.308529945553539` 降至 `0.2947295423023578`（-1.3800403251181204 pp），
+但仍高于 25% cap，结构 balance gate 未通过。该批没有 `*.config_v2.jsonl` sidecar，不能用于 exact-stratum
+scaling 确认或触发 GPU 重训。
+
+target-300 固定 runner 在 5×300 秒 quiescent gate 后完成：64→129 runs、21→41 archives、21 tasks、
+remaining=171；previous exact prefix survived，boundary archive/closure anchor 均不存在。独立 verifier=
+`PASS_COLLECTING_TRUTH_UNREAD`，truth support 未计算，replay 未授权。该人口与 first-960 estimand 不同，不得混池，
+达到 300 也不会自动授权 effect/replay。结果包：
+`phase1/results/score_channel_target300_progress_ad0b_20260827_ab59a01/`。
+
+0GN 的 identifier-erased audit 从预注册 commit=`065d0b56...a913f2` 在 ad0b snapshot 正式完成。历史侧
+5,519 endpoints /333 runs 全覆盖；前瞻侧 11,299/11,310 可 fingerprint，coverage=
+`0.999027409372237`。Jaccard≥0.85 下 exact candidate checks=`5,923,921`，near-duplicate links=`0`；
+same/cross-task=`0/0`、affected endpoints=`0/0`、components=`0`，0.95 sensitivity 亦为 0。65,536-pair
+brute-force control、六个 gate、producer/verifier A/B、独立 24-payload recheck 全通过；focused/full=
+`29/1212 passed`，forbidden/credential=`0/0`。这是更强的 train→future syntactic-independence 正资产，仍不证明
+semantic/pretraining contamination absence，也不提供 predictor effect；first-960+closure 后必须原协议重跑。
+结果包：`phase1/results/historical_train_future_identifier_erased_overlap_ad0b_20260827_065d0b5/`。
+
 ## 0GN. 2026-08-27 historical train ↔ first-960 identifier-erased overlap 已结果前预注册
 
 0GL 的 lexical audit 明确不能排除 identifier-renamed clones。新审计在任何真实相似度前固定更激进表示：Python tokenizer

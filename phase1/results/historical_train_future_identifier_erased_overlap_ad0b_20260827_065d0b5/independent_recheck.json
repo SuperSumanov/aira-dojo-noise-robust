@@ -1,0 +1,27 @@
+{
+  "candidate_pairs_exactly_checked": 5923921,
+  "credential_file_hits": 0,
+  "focused_tests_passed": 29,
+  "forbidden_path_hits": 0,
+  "full_tests_passed": 1212,
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "historical_endpoints": 5519,
+  "manifest_payload_files": 24,
+  "outcomes_read": false,
+  "primary_near_duplicate_pairs": 0,
+  "producer_ab_byte_identical": true,
+  "prospective_endpoints": 11310,
+  "prospective_fingerprinted_endpoints": 11299,
+  "prospective_runs": 404,
+  "protocol": "identifier_erased_formal_independent_recheck_v1",
+  "snapshot_sha256": "ad0b624d636cb5e89f94d8887a7abe99f7b9ef6ce77bbde7da704b0275dedb0e",
+  "source_commit": "065d0b56fdc366d05faf723ef03938e7f7a913f2",
+  "status": "INDEPENDENT_RECHECK_COMPLETE",
+  "strict_near_duplicate_pairs": 0,
+  "verifier_ab_byte_identical": true
+}

@@ -1,0 +1,87 @@
+{
+  "closure_rerun_required": true,
+  "credential_hits": 0,
+  "focused_tests": {
+    "passed": 29,
+    "skipped": 0,
+    "warnings": 0
+  },
+  "forbidden_path_hits": 0,
+  "full_tests": {
+    "passed": 1212,
+    "skipped": 0,
+    "warnings": 47
+  },
+  "gate_checks": {
+    "bipartite_join_self_check": true,
+    "cross_task_prospective_affected_fraction": true,
+    "historical_fingerprint_coverage": true,
+    "large_multitask_components": true,
+    "prospective_affected_fraction": true,
+    "prospective_fingerprint_coverage": true
+  },
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "historical_endpoints": 5519,
+  "historical_fingerprint_coverage": 1.0,
+  "historical_fingerprinted_endpoints": 5519,
+  "historical_label_or_observation_fields_used": false,
+  "historical_runs": 333,
+  "independent_aggregate_matches": true,
+  "prediction_values_read": false,
+  "pretraining_contamination_absence_proven": false,
+  "primary_candidate_pairs": 5923921,
+  "primary_components": 0,
+  "primary_cross_task_pairs": 0,
+  "primary_cross_task_prospective_affected_endpoints": 0,
+  "primary_cross_task_prospective_affected_fraction": 0.0,
+  "primary_historical_affected_endpoints": 0,
+  "primary_historical_affected_fraction": 0.0,
+  "primary_large_multitask_components": 0,
+  "primary_largest_component_endpoints": 0,
+  "primary_largest_component_tasks": 0,
+  "primary_near_duplicate_pairs": 0,
+  "primary_prospective_affected_endpoints": 0,
+  "primary_prospective_affected_fraction": 0.0,
+  "primary_same_task_pairs": 0,
+  "producer_ab_byte_identical": true,
+  "prospective_endpoints": 11310,
+  "prospective_fingerprint_coverage": 0.999027409372237,
+  "prospective_fingerprinted_endpoints": 11299,
+  "prospective_outcomes_read": false,
+  "prospective_runs": 404,
+  "protocol": "historical-train-future-identifier-erased-overlap-formal-v1",
+  "representation": {
+    "comments_and_layout_dropped": true,
+    "minimum_distinct_shingles": 20,
+    "name": "python_token_identifier_erased_v1",
+    "non_keyword_names_replaced": "<IDENT>",
+    "numbers_replaced": "<NUMBER>",
+    "operators_preserved": true,
+    "primary_jaccard": [
+      17,
+      20
+    ],
+    "python_hard_keywords_preserved": true,
+    "shingle_hash_bits": 128,
+    "shingle_size": 5,
+    "strict_jaccard": [
+      19,
+      20
+    ],
+    "strings_replaced": "<STRING>"
+  },
+  "semantic_equivalence_proven": false,
+  "snapshot_sha256": "ad0b624d636cb5e89f94d8887a7abe99f7b9ef6ce77bbde7da704b0275dedb0e",
+  "source_commit": "065d0b56fdc366d05faf723ef03938e7f7a913f2",
+  "status": "FORMAL_PROVISIONAL_IDENTIFIER_ERASED_OVERLAP_AUDIT_COMPLETE",
+  "strict_near_duplicate_pairs": 0,
+  "strict_prospective_affected_endpoints": 0,
+  "strong_low_identifier_erased_overlap_support": true,
+  "subset_bruteforce_matches": true,
+  "verifier_ab_byte_identical": true
+}

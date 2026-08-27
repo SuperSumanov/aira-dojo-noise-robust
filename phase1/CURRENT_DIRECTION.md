@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GS. 2026-08-27 COTA 已直接覆盖同前缀 pairwise continuation advisor；方法 novelty 关闭
+
+最新公开的 [COTA / *Don't Solve, Just Compare*（arXiv:2608.21027v1）](https://arxiv.org/abs/2608.21027)
+已经在 exact-prefix state 上改变 branch action、交还同一 frozen actor、以 downstream return 估计 `Q^pi(s,a)`，并用
+Qwen2.5-0.5B 的 A/B/T comparator、双输入顺序一致性和 `K/R` winner-count gate 做非绑定 runtime intervention；
+WebShop/ALFWorld/tau3-Retail 的 3 actors × 3 environments 均报告正收益。它实质覆盖“同状态两候选谁更可能通向更好
+结果”“小模型只比较不求解也能指导强 actor”“pairwise comparator 接运行时 gate”三类一般方法主张，而非仅标题相似。
+
+因此从本节起，以上三类主张以及 A/B/T、双顺序一致性均不得作为我方 novelty；学长此前提出的 future-potential
+扩展也只能称 MLE 领域复现/压力测试，不能称一般方法首创。当前不恢复已关闭的 `K>=1` lookahead、未来潜力标注或
+控制器实验。clean 0.6B→8B scaling 若以后确认，也只定位为 MLE 完整程序 decision distribution 上的 capacity/transport
+证据，不包装成 tiny-advisor 方法。
+
+仍可守的论文边界是 Decision Corpus + Predictor Benchmark + Audit Protocol：完整 Python candidate program、pristine
+连续外部分数、真实同-parent choice fragment、physical-run/comparison-component/experiment-config 隔离、gap/regrade
+noise、missingness、endpoint/pair graph、query/init/execution cost 和结果盲时间前瞻 closure。尤其必须区分：COTA 的
+actor-conditioned continuation return 与我方 canonical candidate 自身即时 external grade 是不同 estimand，不能都写成
+“future potential”。该直接竞品反而强化“pair construction determines the deployment estimand”的组织原则。详见
+`phase1/实验记录/2026-08-27/COTA_同前缀比较器_最新防Scoop与主张收紧.md`。本轮只读公开文献，prospective
+truth/prediction/GPU/API/model-fit/base-update=`false/false/0/0/0/0`。
+
 ## 0GR. 2026-08-27 config-v2 已形成可 cherry-pick 的真实 producer 自动接入补丁；仍未部署
 
 学长最新 `dojo-reproduce@61459c0a1248900079dafed7c505afa87e476b40` 上已制作默认关闭的 upstream patch：

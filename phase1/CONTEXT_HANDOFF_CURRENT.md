@@ -13,6 +13,11 @@
 
 - 当前唯一主线仍是 Decision Corpus + Predictor Benchmark + Audit Protocol；旧 HCE/多保真/probe/score-channel
   effect/K≥1 lookahead/conformal stop 均关闭，不得恢复。
+- 2026-08-21 新提交的 COTA（arXiv:2608.21027v1）已经直接实现 exact-prefix branch、same frozen continuation actor、
+  0.5B A/B/T pairwise comparator、双顺序一致性与在线 winner-count intervention，并在 9 个 actor×environment 设置报告
+  正收益。因此“比较两候选谁会通向更好结果”“tiny comparator 指导强 actor”及 pairwise-to-gate 均不再是我方方法
+  novelty；不恢复 K≥1/lookahead。保留边界是 MLE 完整程序 decision corpus、即时 pristine score 与 run/component/
+  config/时间前瞻审计，并明确它与 COTA 的 actor-conditioned continuation return 是不同 estimand。
 - 最新 immutable snapshot=`ad0b624d636cb5e89f94d8887a7abe99f7b9ef6ce77bbde7da704b0275dedb0e`：first-960
   provisional=404/960 runs、11,310 endpoints、2,884 structural pairs、31 tasks；closure=false、label vault=false、
   outcome files=0。target-300 独立支持人口=129 runs/41 archives，remaining=171，truth 未读；两个人口不得混池。

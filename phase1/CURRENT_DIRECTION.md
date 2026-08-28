@@ -68,6 +68,13 @@ primary 不含 orphan，禁止静默改 canonical edge，也不申一般 selecti
 Target-522 至少 87 个不重叠未来 runs 上固定复用同一阈值做 forward confirmation；不得重新选阈值、调门或用累计人口
 rescue。GPU/API/model-fit/base-update=`0/0/0/0`，prospective truth/prediction、Target-522 profile 与 raw archives 均未读。
 
+结果后只做了不读新 profile 的确定性重表达：selective/unfiltered error-rate ratio=`2261/18538`，即相对错误下降
+`16277/18538=0.87803430790808068`。由最大 accepted task/run contribution 恰为 572/165，可得删除任一单 task/run、
+并保守假设删掉的全是正确项后，remaining precision 仍至少为 `2112/2119=0.99669655497876353` /
+`2519/2526=0.99722882026920034`。这是后验代数鲁棒下界，不是新实验或前瞻证据。ILINE、selective classification、
+modelDNA/model-lineage attestation 与 agent provenance survey 又关闭了一般方法首创；完整防撞见
+`phase1/实验记录/2026-08-29/SelectiveParentRecovery_防撞与单组删除鲁棒下界.md`。不再切 887 更多漂亮子组。
+
 ## 0HO. 2026-08-28 task-balance 重复观察实例已隔离；第二次 timeout handoff 在候选前修复
 
 结构巡检发现两个 CPU latch 同时只读等待 887 的首个后继。较早的

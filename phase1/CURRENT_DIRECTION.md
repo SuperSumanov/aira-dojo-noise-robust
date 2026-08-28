@@ -13,6 +13,22 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GZ. 2026-08-28 Evidence Index 的一般方法 novelty 关闭，MLE-specific 实证边界保留
+
+最新一手核验确认 BetterBench（NeurIPS 2024 D&B）已给出 46 项 benchmark 生命周期质量框架；BenchmarkCards
+（NeurIPS 2025 D&B）已同时发布 Markdown 与 machine-readable JSON；ReproEvalCard（ACL 2026）已固定多阶段 LLM
+pipeline 的 prompts/judge/snapshot/intermediate-trace 最低复现材料；Auto-BenchmarkCard（AAAI 2026 Demo）又已覆盖自动
+抽取与事实验证。2026-08 的 contamination-detectability 预印本也明确要求把 non-rejection 与 power/validity gates 同报。
+因此“首个 machine-readable benchmark card/evidence index”“首个 audit checklist/failure contract”“一般 contamination
+certificate”全部关闭。
+
+Evidence Index v8 只定位为本项目的可执行发布机制，不单独冒充算法或 reporting-standard 创新。仍可守的正贡献来自其
+绑定的 MLE-specific 实证：真实 sibling fragments、physical-run/component/config/time 隔离、outcome-blind accrual 与
+closure、连续外部分数的 gap/noise、failure/missingness、endpoint reuse/pair weighting、成本账本以及表示限定的完整
+release→future temporal-overlap certificate。正式写作应把上述三类标准作为上位 related work，并逐字段说明我方额外的
+provenance/estimand 约束。arXiv:2607.25589 当前已 withdrawn in full 且要求旧版本不得引用，不能拿其旧摘要作证据。
+详见 `phase1/实验记录/2026-08-28/BenchmarkCards_ReproEvalCard_证据索引防撞审计.md`。
+
 ## 0GY. 2026-08-28 Evidence Index v8 三档映射与独立验证已在结果前实现
 
 完整 release r2 的 producer A 尚未落结果文件时，已把 v8 的机器协议、builder 与不 import builder 的独立 verifier

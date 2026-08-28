@@ -65,3 +65,38 @@ run 独立不等于 task 独立；这不是 cumulative cohort 的独立复现，
 禁止读取 label/grade/outcome/prediction、accuracy/effect/utility 或 raw senior archive；
 GPU/API/model-fit/base-update=`0/0/0/0`。机器协议见
 `phase1/tree_linearization_within_stratum_forward_target522_v2.json`。
+
+## Formal 自动化与 post-push 回执（结果前）
+
+commit `70a48e3df8c5c764abde277fcad842771de1ffe2` 冻结了以下执行链：
+
+- formal runner：`phase1/scripts/run_tree_within_stratum_forward_target522_formal_20260828.sh`；
+- structural-only watcher：`phase1/scripts/monitor_tree_within_stratum_forward_target522_formal_20260828.sh`；
+- watcher 在 selection `COMPLETE` 前只检查文件存在性，不读取 candidate identity/count 或 profile；
+- selection 闭合后，watcher 才验证固定 selection-package hash 并调用 exact git-object 中的 runner；
+- runner 使用 fresh detached worktree，执行 producer A/B、独立 verifier A/B、字节一致性、`strace` 文件/网络审计、
+  凭据扫描与 immutable manifest，`COMPLETE` 最后写入；失败和中断均有显式回执。
+
+该 exact push 在独立 Linux fresh worktree 上完成 post-push 复验：
+
+- root：`/research/d7/spc/yzyang4/tree-target522-postpush/postpush-70a48e3-v3`；
+- focused：`27 passed in 0.66s`；
+- full：`1424 passed, 47 warnings in 86.99s`；
+- Python：`3.11.15`；GPU/API/model-fit/base-update=`0/0/0/0`；
+- credential filename/content hits：`0/0`；
+- `SHA256SUMS` SHA-256：`5b63572ccaf04df80158be170acaa47aceb3f53c19c6534d3ee723c118ff8dc9`。
+
+两次失败的 post-push 尝试原样保留：v1 误从仓库根收集 legacy tests；v2 未限制 BLAS/OpenMP 线程，发现登录节点
+CPU 异常后只终止了经 PID/PPID 核验属于本次任务的进程。v3 加入单线程环境限制后通过；这不是隐藏失败，也不改变
+科学协议。
+
+截至 `2026-08-28T13:36:15Z`：
+
+- selection root：`/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2`，
+  PID=`4047654`，状态 `WAITING`；
+- formal watcher root：`/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/formal-monitor-70a48e3-target522-v1`，
+  PID=`4055136`，状态 `WAITING`；
+- 两把锁均有效，`LATEST=887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697`，
+  first-960 provisional runs=`435`，candidate=`none`。
+
+因此当前新增资产是不可挑选、可独立复验的前瞻执行链；真实 future-increment scientific classification 仍未产生。

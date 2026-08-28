@@ -27,6 +27,15 @@ producer 与不导入 producer 的独立 verifier 已实现：两边各自读取
 profile。合成端到端及 hash-valid crossing-skip、old-row drift、cross-run parent、cycle 攻击测试均已通过；真实 candidate
 profile 仍未运行，故没有新科学分类。
 
+commit `70a48e3df8c5c764abde277fcad842771de1ffe2` 又冻结了 formal runner 与只看结构状态的 watcher：候选
+`COMPLETE` 前 watcher 只检查文件是否存在，闭合后才把 selection package 的精确 hash 交给固定 runner；runner 在全新
+detached worktree 中依次执行 producer A/B、非导入式 verifier A/B、字节一致性、文件/网络访问审计、凭据扫描和
+manifest，最后才写 `COMPLETE`。该 exact push 的独立 Linux 回执为 focused=`27 passed`、完整
+`phase1/tests=1424 passed, 47 warnings`；GPU/API/model-fit/base-update=`0/0/0/0`，凭据文件名与内容命中均为 0，
+manifest SHA-256=`5b63572ccaf04df80158be170acaa47aceb3f53c19c6534d3ee723c118ff8dc9`。截至
+`2026-08-28T13:36:15Z`，selection PID=`4047654`、formal watcher PID=`4055136`，两把锁均有效；仍为
+435/522 runs、candidate=`none`。因此这只是结果前执行链闭环，不得当作真实 scientific positive。
+
 0HJ 的 887 formal 必须永久保留 gate-fail；不得在同 snapshot 把 float-string 门改成 rational 后重跑救回。为避免把
 “只新增极少 runs 的下一 snapshot”包装成独立复现，新的 v2 在候选身份与 profile 未见时冻结为首个自动观测到
 `provisional_first960_runs>=522` 的 immutable snapshot。`522=ceil(435*6/5)`，primary 只使用 candidate 中不在

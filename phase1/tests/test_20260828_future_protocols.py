@@ -113,12 +113,31 @@ def test_task_balance_v3_runner_consumes_only_the_automatic_latch() -> None:
     assert "balance_values_or_classification_read=false" in latch
     assert "sleep 10" in latch
 
+    continuation = (
+        PHASE1
+        / "scripts"
+        / "resume_task_balance_v3_first_successor_after_887_20260828.sh"
+    ).read_text(encoding="utf-8")
+    assert "latch-continuation-after-887-v4" in continuation
+    assert "PREVIOUS_TIMEOUT_CONTIGUOUS_WITH_CURRENT_BASELINE" in continuation
+    assert "newest_snapshot_dir" in continuation
+    assert "continuity_snapshot_tokens" not in continuation
+    assert '"${root}/${name}_continuity_snapshot_ids.txt"' in continuation
+    assert "previous_latch_timeout_continuity=true" in continuation
+    assert "manual_snapshot_choice=false" in continuation
+    assert "earlier_successor_skipped=false" in continuation
+    assert "balance_values_or_classification_read=false" in continuation
+    assert "trap 'exit 143' TERM" in continuation
+    assert "sleep 10" in continuation
+
     runner = (
         PHASE1
         / "scripts"
         / "run_task_balance_forward_v3_first_successor_20260828.sh"
     ).read_text(encoding="utf-8")
-    assert "latch-ab55510-after-887-v3" in runner
+    assert "latch-continuation-after-887-v4" in runner
+    assert "continuation_source_from_git.sh" in runner
+    assert "previous_latch_timeout_continuity" in runner
     assert f"readonly forbidden_snapshot={SNAPSHOT_887}" in runner
     assert "candidate_snapshot_sha256" in runner
     assert "manual_snapshot_choice" in runner

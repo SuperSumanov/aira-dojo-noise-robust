@@ -429,6 +429,13 @@ GitHub fetch `rc=128`，发生在 protocol/LATEST 读取前并保留失败根；
 `887491a...`、candidate 为空。正式 runner 已公开，只有 latch+transition+WL+receipt-only common support 全部闭合后才执行；
 CPU-only，outcome/prediction value/GPU/API/model-fit/base-update=`false/false/0/0/0/0`。
 
+v3 后于 `2026-08-28T12:05:57Z` 按固定六小时边界正常 `TIMEOUT_RC=124`；最后一次仍是 887，且无
+`FAILED_RC/candidate/READY/COMPLETE`。在新 successor 尚未出现时，续接协议只允许在以下证据同时成立后启动新固定 root：
+当前 `LATEST`、mtime 最新 snapshot directory、transition/WL/receipt state，以及从旧 monitor 最后时间起三条 support
+日志出现的唯一 snapshot identity 必须全部仍为 887。续接脚本必须先公开、从 exact git object 启动、写 source hash 与
+continuity receipt；科学 cap、debt、task-expansion、classification 和禁止 rescue 规则不变。续接尚未产生 candidate 或
+balance classification。
+
 ## 0GS. 2026-08-27 COTA 已直接覆盖同前缀 pairwise continuation advisor；方法 novelty 关闭
 
 最新公开的 [COTA / *Don't Solve, Just Compare*（arXiv:2608.21027v1）](https://arxiv.org/abs/2608.21027)

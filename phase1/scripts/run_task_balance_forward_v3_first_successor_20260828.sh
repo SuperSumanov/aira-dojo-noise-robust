@@ -14,8 +14,8 @@ readonly output=$1
 readonly expected_commit=$2
 readonly python=/research/d7/spc/yzyang4/venvs/exp/bin/python
 readonly state_root=/research/d7/spc/yzyang4/prospective_decision_v1
-readonly latch=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-ab55510-after-887-v3
-readonly latch_source_commit=ab55510bc98ba05e947113e25a450f963d2f117d
+readonly latch=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v4
+readonly continuation_public_path=phase1/scripts/resume_task_balance_v3_first_successor_after_887_20260828.sh
 readonly forbidden_snapshot=887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697
 readonly baseline_snapshot=7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1
 readonly baseline_root=${state_root}/snapshots/${baseline_snapshot}/accumulator
@@ -53,9 +53,19 @@ test -f "${latch}/COMPLETE"
 test ! -e "${latch}/FAILED_RC"
 test -f "${latch}/READY"
 (cd "${latch}" && sha256sum -c SHA256SUMS > "${output}/latch_manifest_check.txt")
-test "$(field status "${latch}/READY")" = FIRST_SUCCESSOR_AND_SUPPORT_READY
-test "$(field source_commit "${latch}/READY")" = "${latch_source_commit}"
+test "$(field status "${latch}/READY")" = FIRST_SUCCESSOR_AND_SUPPORT_READY_AFTER_VERIFIED_CONTINUITY
+control_commit=$(field control_commit "${latch}/READY")
+continuation_script_sha=$(field continuation_script_sha256 "${latch}/READY")
+[[ ${control_commit} =~ ^[0-9a-f]{40}$ ]]
+[[ ${continuation_script_sha} =~ ^[0-9a-f]{64}$ ]]
+git cat-file -e "${control_commit}^{commit}"
+git merge-base --is-ancestor "${control_commit}" "${expected_commit}"
+git show "${control_commit}:${continuation_public_path}" > "${output}/continuation_source_from_git.sh"
+test "$(sha256sum "${output}/continuation_source_from_git.sh" | awk '{print $1}')" = "${continuation_script_sha}"
+cmp "${latch}/source_script.sh" "${output}/continuation_source_from_git.sh"
+test "$(field protocol_sha256 "${latch}/READY")" = "${protocol_sha}"
 test "$(field baseline_snapshot_sha256 "${latch}/READY")" = "${forbidden_snapshot}"
+test "$(field previous_latch_timeout_continuity "${latch}/READY")" = true
 test "$(field manual_snapshot_choice "${latch}/READY")" = false
 test "$(field earlier_successor_skipped "${latch}/READY")" = false
 test "$(field balance_values_or_classification_read "${latch}/READY")" = false
@@ -65,6 +75,9 @@ current_snapshot=$(field candidate_snapshot_sha256 "${latch}/READY")
 [[ ${current_snapshot} =~ ^[0-9a-f]{64}$ ]]
 test "${current_snapshot}" != "${forbidden_snapshot}"
 test "$(field candidate_snapshot_sha256 "${latch}/candidate.tsv")" = "${current_snapshot}"
+test "$(field control_commit "${latch}/candidate.tsv")" = "${control_commit}"
+test "$(field continuation_script_sha256 "${latch}/candidate.tsv")" = "${continuation_script_sha}"
+test "$(field previous_latch_timeout_continuity "${latch}/candidate.tsv")" = true
 current_root=${state_root}/snapshots/${current_snapshot}/accumulator
 current_summary=${current_root}/summary.json
 current_ledger=${current_root}/provisional_first960_runs.jsonl

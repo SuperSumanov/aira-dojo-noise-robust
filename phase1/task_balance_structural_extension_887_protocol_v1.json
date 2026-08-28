@@ -1,0 +1,70 @@
+{
+  "protocol": "task-balance-structural-extension-887-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T04:11:58Z",
+  "question": "At the exact 435-run outcome-blind snapshot, does the previously frozen 25-percent dominant-task guard pass, improve without passing, or worsen?",
+  "scientific_scope": "Decision Corpus benchmark-balance audit only; no predictor effect, accuracy, utility, or causal acquisition claim",
+  "fixed_inputs": {
+    "guard_baseline_snapshot": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+    "current_snapshot": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "current_summary_sha256": "2f28b5b53cca5d6ea5ebf16f746a70f9c1de0e3197487a6ed78d41b4cb611302",
+    "current_first960_ledger_sha256": "510d81820d7825fc6baa6db562b2371e50eb7d71d04cb1cc0bd17d095d6cdbca",
+    "current_common_support_verification_sha256": "82f56f8dae175f60adb0e0c7545be053cade98b1f84388ce282b187f74e70c78",
+    "known_outcome_blind_totals": {
+      "runs": 435,
+      "pairs": 3053,
+      "tasks": 34
+    }
+  },
+  "unchanged_contract": {
+    "maximum_dominant_pair_task_share": 0.25,
+    "debt_numerator": "max(0, 4 * dominant_pairs - total_pairs)",
+    "membership": "provisional first-960 in frozen chronological order",
+    "inputs": "structural gate, accumulator summary and ledger, receipt-only canonical common-support verification",
+    "producer_verifier": "task-balance structural-only v2 producer A/B plus non-importing verifier A/B"
+  },
+  "ordered_interpretation": [
+    {
+      "status": "CAP_PASS",
+      "condition": "current dominant share <= 0.25 and current debt == 0",
+      "allowed_claim": "the provisional benchmark currently satisfies the frozen structural task-balance cap"
+    },
+    {
+      "status": "DIRECTIONAL_BALANCE_GAIN_ONLY",
+      "condition": "cap fails, but dominant share and debt are both lower than the public ad0b reference (850/2884 and debt 516)",
+      "allowed_claim": "balance debt decreased descriptively, while the frozen cap still fails"
+    },
+    {
+      "status": "NO_BALANCE_GAIN",
+      "condition": "neither prior condition holds",
+      "allowed_claim": "the new accrual does not provide a positive task-balance update"
+    }
+  ],
+  "must_report": [
+    "dominant task, pair count, share, and cap status",
+    "baseline debt, current debt, and exact debt delta",
+    "future dominant and non-dominant increments",
+    "chronology and common-support invariants",
+    "all failed attempts and security receipts"
+  ],
+  "forbidden_inputs": [
+    "prediction pair files or prediction values",
+    "prediction-derived coverage matrices",
+    "label, grade, outcome, winner orientation, accuracy, effect, or search utility",
+    "raw archive payloads"
+  ],
+  "kill_conditions": [
+    "any fixed hash or snapshot binding mismatch",
+    "dominant task changes relative to the frozen guard",
+    "any structural total or common-support mismatch",
+    "any chronology or append-only invariant failure",
+    "any producer/verifier A/B mismatch",
+    "any forbidden file open or credential hit"
+  ],
+  "resources": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

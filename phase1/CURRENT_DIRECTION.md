@@ -13,6 +13,18 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GY. 2026-08-28 Evidence Index v8 三档映射与独立验证已在结果前实现
+
+完整 release r2 的 producer A 尚未落结果文件时，已把 v8 的机器协议、builder 与不 import builder 的独立 verifier
+实现并冻结。协议 `phase1/decision_corpus_evidence_index_v8_protocol_v1.json` SHA-256=
+`a463a6e7ede5bb9b46dbe6081ae46d26d6c2e8410e858acf9d022c642633deda`，固定继承 v7 的 14 entries、已知
+双轴 split certificate、完整 release package 的唯一输出路径，以及 ZERO/LOW/GATE_FAIL 三档 ordered status；任何
+manifest、关键 assertion、安全回执、旧失败史或 classification↔primary-link↔gate 关系漂移均拒绝构建。
+
+三档 synthetic chain、缺文件、预测值访问、独立 classification 漂移、删关键 assertion、改结果依赖 claim 和协议
+hash 漂移共 `11` 个 v8 测试，加 packager/v7 回归共 `30` 项待最终提交前复跑。当前没有生成 v8 正式 index，也没有
+读取 full-release aggregate；prospective label/outcome/prediction、GPU/API/model-fit/base-update=`false/false/false/0/0/0/0`。
+
 ## 0GX. 2026-08-28 三个直接 MLE 数据竞品关闭 trajectory-dataset 泛化主张
 
 最新公开材料显示，ML-Agent 已在 9 个 MLE tasks 上收集 10,000 条执行轨迹并做 Qwen2.5-7B SFT/step-wise PPO；

@@ -68,3 +68,17 @@ search utility、causal independence 或 first-960 closure。12 个不可 finger
 
 v8 仍是 provisional evidence stack；只有 first-960 与独立 accrual-closure receipt 同时闭合后，才按原协议重跑并考虑
 移除 `AWAITING_FIRST960`。
+
+## 5. 结果前实现回执
+
+在完整 release r2 的 producer A 尚未写结果文件时，已经冻结并实现：
+
+- `phase1/decision_corpus_evidence_index_v8_protocol_v1.json`，SHA-256=
+  `a463a6e7ede5bb9b46dbe6081ae46d26d6c2e8410e858acf9d022c642633deda`；
+- `phase1/build_decision_corpus_evidence_index_v8.py`；
+- `phase1/verify_decision_corpus_evidence_index_v8.py`，不 import builder；
+- `phase1/tests/test_decision_corpus_evidence_index_v8.py`。
+
+实现额外要求 classification、primary link count 与六个 release gate 严格一致，并把每个新增 artifact 的关键
+assertion membership 本身也冻结；少一个 assertion 即 fail closed。当前只运行 synthetic 三档与攻击测试，没有生成
+正式 v8 index、没有读取未知 full-release aggregate。

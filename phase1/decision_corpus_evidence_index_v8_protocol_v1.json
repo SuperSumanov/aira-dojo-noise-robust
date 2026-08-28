@@ -1,0 +1,86 @@
+{
+  "protocol": "decision-corpus-evidence-index-v8-protocol-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T08:03:26Z",
+  "status": "RESULT_BLIND_EVIDENCE_INDEX_PROTOCOL_FROZEN",
+  "purpose": "Append the fixed physical-run split certificate and the fixed complete-release temporal-overlap package to the clean-provenance v7 evidence index without changing any predictor estimand or opening prospective outcomes or predictions.",
+  "source_v7": {
+    "path": "phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/index.json",
+    "sha256": "d8cc9c60900ab41ff1df0e3aae3add29bbb922d5a32157957dcac5675fa31674",
+    "protocol": "decision_corpus_evidence_index_v7",
+    "status": "PROVISIONAL_CLEAN_PROVENANCE_EVIDENCE_STACK_AWAITING_FIRST960",
+    "entry_count": 14
+  },
+  "physical_run_split_certificate": {
+    "root": "phase1/results/split_integrity_certificate_887_20260828_25efd3a",
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "manifest_sha256": "e5c144d4d9f0bc3f4e2ae16593d63c44e02408beca32379d4cfceb89d4f20ea2",
+    "required_files": {
+      "README.md": "399429cfef46f1fdc402b7f18a512ed6899a975de005485aacc5ccfb5d2a2414",
+      "access_attestation.txt": "12840d48091619aaedc612d874968642f67a8ac4e1aa2b120db03cb658727571",
+      "certificate.json": "b44035bd073a83d4c57a03550db9c4b88af8afa8df95268c42f18541cdccca5c",
+      "independent_verification.json": "45dc560b882b31df3564740bd619ac2c7248a9edcc19656a8ef865f0720af944",
+      "source_bindings.json": "e1780dbaf6f62ca080116d5400472db087c07e58d225c3e95396525c167c9d5f"
+    },
+    "required_classification": "PROVISIONAL_ZERO_LINK_SPLIT_INTEGRITY_CERTIFICATE",
+    "provisional_until_first960_and_closure": true
+  },
+  "complete_release_temporal_package": {
+    "root": "phase1/results/historical_release_future_identifier_erased_overlap_887_20260828_8bf9512_r2",
+    "package_protocol_path": "phase1/historical_release_future_identifier_erased_package_protocol_v1.json",
+    "package_protocol_sha256": "ba6a1f6e44458e65b7042fcfd6e84e95e2e2b6cec0c7d0bb494ad7e0924da2d7",
+    "audit_source_commit": "8bf95124175a7ba7f388ac547b31be05916651f5",
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "required_files": [
+      "README.md",
+      "access_attestation.txt",
+      "formal_summary.json",
+      "independent_recheck.json",
+      "source_bindings.json"
+    ],
+    "manifest": "SHA256SUMS",
+    "required_formal_status": "FORMAL_HISTORICAL_RELEASE_FUTURE_IDENTIFIER_ERASED_PACKAGE_COMPLETE",
+    "required_independent_status": "INDEPENDENT_PACKAGE_RECHECK_COMPLETE",
+    "required_binding_status": "FORMAL_POSTFLIGHT_DEPLOYMENT_AND_FAILURE_HISTORY_BOUND"
+  },
+  "append_entry_order": [
+    "physical_run_split_integrity_certificate",
+    "complete_release_temporal_overlap_certificate"
+  ],
+  "ordered_status_mapping": {
+    "ZERO_IDENTIFIER_ERASED_RELEASE_LINKS": "PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960",
+    "LOW_IDENTIFIER_ERASED_RELEASE_OVERLAP_WITH_EXCEPTIONS": "PROVISIONAL_QUALIFIED_TEMPORAL_SPLIT_EVIDENCE_STACK_AWAITING_FIRST960",
+    "RELEASE_SPLIT_INTEGRITY_GATE_FAIL": "TEMPORAL_SPLIT_EVIDENCE_STACK_GATE_FAIL"
+  },
+  "status_rule": "Gate failure takes precedence. ZERO and LOW require all pre-registered gates true. Any classification, status, manifest, hash, population, failure-history, or security mismatch maps to failure by refusing to build; strict sensitivity cannot rescue primary.",
+  "fixed_population": {
+    "historical_release_endpoints": 16012,
+    "historical_release_runs": 667,
+    "historical_release_tasks": 25,
+    "future_endpoints": 11906,
+    "future_runs": 435,
+    "future_tasks": 34,
+    "future_closure": false
+  },
+  "claim_boundary": {
+    "fixed_identifier_erased_syntactic_overlap_only": true,
+    "semantic_clone_absence_proven": false,
+    "unknown_pretraining_contamination_absence_proven": false,
+    "all_historical_sources_covered": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "first960_or_closure_completed": false,
+    "strict_sensitivity_can_rescue_primary": false
+  },
+  "security": {
+    "prospective_label_grade_outcome_or_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "task_run_card_code_or_edge_identities_emitted": false,
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "failure_rule": "Fail closed and emit no index if any frozen path, hash, manifest membership, status mapping, source inheritance, producer-independent agreement, prior failure history, access attestation, or security condition differs."
+}

@@ -1,0 +1,95 @@
+{
+  "protocol": "decision-corpus-split-integrity-certificate-887-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T05:34:48Z",
+  "status": "RESULT_BLIND_CERTIFICATE_PROTOCOL_FROZEN_INPUTS_PENDING",
+  "question": "Can the exact 435-run future snapshot receive a machine-verifiable provisional split-integrity certificate under one fixed identifier/literal-erased syntactic representation?",
+  "fixed_representation": "python_token_identifier_erased_v1",
+  "fixed_thresholds": {
+    "primary_jaccard": "17/20",
+    "strict_sensitivity_jaccard": "19/20",
+    "strict_sensitivity_can_rescue_primary": false
+  },
+  "fixed_population": {
+    "future_snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "future_runs": 435,
+    "future_endpoints": 11906,
+    "future_tasks": 34,
+    "future_closure": false,
+    "historical_train_endpoints": 5519,
+    "historical_train_runs": 333,
+    "historical_train_tasks": 23
+  },
+  "required_inputs": {
+    "within_future": {
+      "source_commit": "519815df29ef1f7073e93aa1835dd7df06a7a035",
+      "formal_root": "/research/d7/spc/yzyang4/prospective-identifier-erased-clone-887/formal-519815d-887491a-v1",
+      "result_protocol_sha256": "a0c5e73c2e6bde6eed920c69909d13d6b0207271758e327b30eb0b346e654f52",
+      "pre_result_postflight_logic_sha256": "1b4ee9dd0841d537ba0ec6769d10e1898cd9148e852b243ea310cc2d888720ee",
+      "required_postflight_status": "INDEPENDENT_RECHECK_COMPLETE"
+    },
+    "historical_to_future": {
+      "source_commit": "ec67d1a6f31bde898631019867408687bac1fa99",
+      "formal_root": "/research/d7/spc/yzyang4/historical-train-future-identifier-erased-overlap/formal-ec67d1a-887491a-v1",
+      "result_protocol_sha256": "aa3b232c732c53bb24bf2fbac6932276d458f2e6a6ae20321edee0ff2d04ca1b",
+      "pre_result_postflight_logic_sha256": "0ce8df4d2ecee8f102a2780e743bc17335fb8778be06772526ca12ccac1496dc",
+      "required_postflight_status": "INDEPENDENT_RECHECK_COMPLETE"
+    }
+  },
+  "ordered_classification": [
+    {
+      "status": "PROVISIONAL_ZERO_LINK_SPLIT_INTEGRITY_CERTIFICATE",
+      "condition": "both independent postflights pass; both primary coverage and integrity gates pass; within-future primary cross-run links equal zero; historical-to-future primary links equal zero",
+      "allowed_claim": "under the fixed representation and threshold, no high-similarity link was found across future physical runs or from the fixed historical critic-train population into the future snapshot"
+    },
+    {
+      "status": "PROVISIONAL_LOW_OVERLAP_CERTIFICATE_WITH_EXCEPTIONS",
+      "condition": "both independent postflights and all integrity gates pass, but one or both zero-link conditions are false",
+      "allowed_claim": "overlap remains within the pre-registered integrity gates, with every nonzero exception count reported"
+    },
+    {
+      "status": "NO_SPLIT_INTEGRITY_CERTIFICATE",
+      "condition": "either postflight or any integrity gate fails",
+      "allowed_claim": "the provisional split-integrity certificate is withheld"
+    }
+  ],
+  "must_report": [
+    "fingerprinted and total future endpoints plus coverage",
+    "within-future primary and strict link counts",
+    "within-future primary cross-run and cross-task link counts",
+    "historical-to-future primary and strict link counts",
+    "historical-to-future same-task and cross-task link counts",
+    "all gate booleans, A/B receipts, independent postflight receipts, and manifest hashes",
+    "the known 404-run prior result and the provisional closure=false status"
+  ],
+  "verification": {
+    "builder_repetitions": 2,
+    "independent_verifier_repetitions": 2,
+    "byte_identity_within_role_required": true,
+    "independent_verifier_imports_builder": false,
+    "input_formal_and_postflight_manifests_must_verify": true,
+    "input_population_representation_threshold_and_classification_must_match": true,
+    "raw_corpus_or_archive_recomputation_allowed": false
+  },
+  "claim_boundary": {
+    "provisional_until_first960_and_closure": true,
+    "semantic_clone_absence_proven": false,
+    "pretraining_contamination_absence_proven": false,
+    "all_possible_historical_training_sources_covered": false,
+    "unfingerprintable_endpoints_certified": false,
+    "predictor_effect_accuracy_or_search_utility_computed": false,
+    "new_clone_detection_method_claimed": false
+  },
+  "forbidden_inputs": [
+    "prospective label, grade, outcome, winner orientation, prediction, accuracy, effect, or utility",
+    "raw senior archives",
+    "task, run, card, code, or edge identities from either formal result"
+  ],
+  "failure_rule": "No threshold, representation, population, input result, task, run, subset, or classification rescue after either input result is read.",
+  "resources": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

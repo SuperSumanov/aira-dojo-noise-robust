@@ -113,3 +113,38 @@ def test_task_balance_887_failure_package_is_byte_bound() -> None:
     assert verification["task_universe"]["current_tasks"] == 34
     assert verification["task_universe"]["added_tasks"] == 4
     assert verification["task_universe"]["removed_tasks"] == 0
+
+
+def test_split_integrity_certificate_is_result_blind_and_zero_link_ordered() -> None:
+    protocol_path = PHASE1 / "split_integrity_certificate_887_protocol_v1.json"
+    protocol = _json(protocol_path)
+    assert _sha(protocol_path) == (
+        "779ac3f1f5aef522a305b22b578dace2c0a8462fe748a7cd1b30dd20037ef5da"
+    )
+    assert protocol["status"] == (
+        "RESULT_BLIND_CERTIFICATE_PROTOCOL_FROZEN_INPUTS_PENDING"
+    )
+    assert protocol["fixed_representation"] == "python_token_identifier_erased_v1"
+    assert protocol["fixed_population"]["future_snapshot_sha256"] == SNAPSHOT_887
+    assert protocol["fixed_population"]["future_runs"] == 435
+    assert protocol["fixed_population"]["future_endpoints"] == 11906
+    assert protocol["fixed_population"]["future_closure"] is False
+    assert [row["status"] for row in protocol["ordered_classification"]] == [
+        "PROVISIONAL_ZERO_LINK_SPLIT_INTEGRITY_CERTIFICATE",
+        "PROVISIONAL_LOW_OVERLAP_CERTIFICATE_WITH_EXCEPTIONS",
+        "NO_SPLIT_INTEGRITY_CERTIFICATE",
+    ]
+    inputs = protocol["required_inputs"]
+    assert inputs["within_future"]["pre_result_postflight_logic_sha256"] == (
+        "1b4ee9dd0841d537ba0ec6769d10e1898cd9148e852b243ea310cc2d888720ee"
+    )
+    assert inputs["historical_to_future"][
+        "pre_result_postflight_logic_sha256"
+    ] == "0ce8df4d2ecee8f102a2780e743bc17335fb8778be06772526ca12ccac1496dc"
+    assert protocol["verification"]["raw_corpus_or_archive_recomputation_allowed"] is False
+    assert protocol["claim_boundary"]["semantic_clone_absence_proven"] is False
+    assert protocol["claim_boundary"]["pretraining_contamination_absence_proven"] is False
+    assert protocol["claim_boundary"][
+        "predictor_effect_accuracy_or_search_utility_computed"
+    ] is False
+    assert list(protocol["resources"].values()) == [0, 0, 0, 0]

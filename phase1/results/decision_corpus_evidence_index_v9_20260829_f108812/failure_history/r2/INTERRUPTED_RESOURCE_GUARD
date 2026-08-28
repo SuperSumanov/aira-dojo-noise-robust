@@ -1,0 +1,10 @@
+status=FORMAL_INTERRUPTED_BY_RESOURCE_GUARD
+reason=existing full-suite numerical test triggered approximately 27 CPU cores on login node
+scientific_output_created=false
+focused_tests_completed=true
+full_tests_completed=false
+builder_or_verifier_started=false
+prospective_values_read=false
+raw_senior_archives_opened=false
+gpu_api_model_fit_base_update=0/0/0/0
+next_action=rerun from new source commit with explicit single-thread BLAS limits

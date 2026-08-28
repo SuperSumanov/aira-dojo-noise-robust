@@ -1,0 +1,30 @@
+{
+  "all_aggregate_fields_equal": true,
+  "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+  "entries_preserved_without_modification": 15,
+  "entries_replaced": 1,
+  "entry_count": 16,
+  "failed_support_gate": "frozen:b2.maximum_single_run_pair_share",
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "hard_integrity_gates_passed": 15,
+  "hard_integrity_gates_total": 15,
+  "imports_builder": false,
+  "index_sha256": "b2d88479abb03cf72b27f9f958badfb3aeb8bc1e1e3cac2c50a3aace43511ff6",
+  "lineage_package_manifest_sha256": "4c72c32449a4a68377fe3764089321c852648e0d6603655a09cd360a21d45447",
+  "prospective_values_read": false,
+  "protocol": "independent-decision-corpus-evidence-index-v9-verification",
+  "raw_senior_archives_opened": false,
+  "replacement_artifact_count": 3,
+  "replacement_json_assertion_count": 51,
+  "row_level_release_created": false,
+  "source_v8_sha256": "e97eca05d99a2eb3b5429539469a7e790f20f40cf70670cdbdc6a2c0c3e730a3",
+  "source_v8_status_preserved": true,
+  "status": "INDEPENDENT_LINEAGE_REPAIRED_EVIDENCE_INDEX_V9_VERIFIED",
+  "support_gates_passed": 35,
+  "support_gates_total": 36
+}

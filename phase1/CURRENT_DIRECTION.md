@@ -13,6 +13,24 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HZ. 2026-08-29 Evidence Index v9 已用 lineage-direct certificate 修复 v8 的 sibling provenance 缺口
+
+Evidence Index v8 的 `decision_corpus` entry 绑定 v1 run-map audit；该 artifact 没有读取 `lineage.parent_id`，因此证据不足以
+单独支持 declared-parent direct-child relation。v9 是已知结果后的 reporting/provenance 修复，不冒充新预注册实验：只替换
+该 1 项，其余 15 项逐对象不变，first-960 provisional 状态也原样保留。
+
+新 entry 绑定 0HY 的 producer、独立 verifier 与 source bindings，共 3 artifacts / 51 assertions；机器保留 8,107 rows
+全部 lineage-direct、parent-present core=7,579、orphan tier=528、15/15 hard gates 与 35/36 support gates。唯一失败仍是
+`frozen:b2.maximum_single_run_pair_share`，不得被新 index 隐藏或升级。builder/verifier A/B 各自逐字节一致，index/verifier
+SHA-256=`b2d88479...11ff6` / `2319c028...85e6d`；focused/full=`37/1496 passed`（47 warnings），CPU threads=1，
+forbidden opens/network/credential filename/content=`0/0/0/0`，内容扫描器 rc=1 明确表示正常无命中。
+
+r1 fetch rc=128、r2 资源守护中断 rc=143、r3 因 `rg` 不存在却被旧 `|| true` 错写成空命中而正式作废，均进入发布包；
+r4 是唯一权威 formal。formal/postflight manifests=`2cc3b1b9...e854a` / `fb3cb40c...92b58`。正式包见
+`phase1/results/decision_corpus_evidence_index_v9_20260829_f108812/`。该资产不增加一般 evidence-index novelty，不证明
+predictor effect/scaling/search utility，不生成 row-level release；prospective values/raw archives 未读，GPU/API/model-fit/
+base-update=`0/0/0/0`。
+
 ## 0HY. 2026-08-29 v11 全部 lineage-direct sibling 正式认证；parent-complete core 总门仅一项小样本集中度失败
 
 0HX 的冻结 protocol 在 exact public commit=`25148420ee457018a1ee3740c4a1c42da830610d` 上完成 fresh detached

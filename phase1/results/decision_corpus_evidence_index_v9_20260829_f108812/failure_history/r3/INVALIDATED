@@ -1,0 +1,11 @@
+status=FORMAL_SECURITY_GATE_INVALIDATED
+formal_root=/research/d7/spc/yzyang4/decision-corpus-evidence-index-v9/formal-0e67844-r3
+formal_manifest_sha256=3a525dd7ef4c7a691cec60694f1f8b21975d6bc79218346463f6d42ae628be5e
+reason=credential content scanner executable was unavailable but shell OR-true converted rc127 into an empty hit file
+scientific_tests_completed=true
+scientific_output_authoritative=false
+formal_security_gate_authoritative=false
+prospective_values_read=false
+raw_senior_archives_opened=false
+gpu_api_model_fit_base_update=0/0/0/0
+next_action=rerun exact science with scanner presence and return-code gate

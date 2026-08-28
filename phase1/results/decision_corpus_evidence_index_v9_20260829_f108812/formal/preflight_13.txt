@@ -1,0 +1,13 @@
+01_direction=Decision Corpus Predictor Benchmark Audit Protocol; PASS
+02_goal=replace only the v8 decision_corpus evidence entry with the v2 lineage-direct certificate; PASS
+03_estimand=post-result reporting repair with no new scientific readout or predictor effect; PASS
+04_inputs=exact v8 index and published aggregate-only lineage package bound by SHA256; PASS
+05_forbidden=no prospective values raw senior archives row identities prediction effect or search utility; PASS
+06_population=historical v11 nine-set aggregate only; PASS
+07_controls=source v8 exact hash fifteen unchanged entries package manifest and independent verifier; PASS
+08_failure=any hash assertion support-gate status or security drift emits no index; PASS
+09_randomness=none deterministic JSON and duplicate A/B builds; PASS
+10_resources=CPU only with BLAS and OpenMP fixed to one thread GPU API model-fit base-update 0/0/0/0; PASS
+11_duration=focused and full tests plus deterministic builder/verifier under one CPU process; PASS
+12_security=fresh detached worktree LFS skip no secret-bearing archive access and trace scans; PASS
+13_promotion=status remains provisional and frozen:b2 failed support gate remains mandatory; PASS

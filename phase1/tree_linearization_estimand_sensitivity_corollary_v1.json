@@ -1,0 +1,86 @@
+{
+  "protocol": "tree-linearization-estimand-sensitivity-corollary-v1",
+  "version": 1,
+  "declared_at_utc": "2026-08-28T10:26:24Z",
+  "status": "POSTHOC_DETERMINISTIC_COROLLARY_DECLARED_AFTER_EXPLORATORY_VALUE_READ",
+  "question": "What exact edge-level empirical-measure shift, sharp bounded-statistic envelope, concentration change and maximum edge-mass inflation are implied by the already-published root-to-leaf edge-multiplicity histogram?",
+  "design_timing": {
+    "upstream_materiality_result_known": true,
+    "compatibility_certificate_known": true,
+    "exploratory_values_seen_before_this_declaration": true,
+    "no_confirmatory_or_novel_discovery_label_allowed": true,
+    "no_threshold_hypothesis_test_or_model_selection": true,
+    "interpretation": "This artifact verifies a deterministic analytic corollary of already-published aggregates. It is not a preregistered independent empirical finding."
+  },
+  "fixed_inputs": {
+    "linearization_receipt": {
+      "path": "phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/formal/final_receipt.json",
+      "sha256": "642e9fd793950d4dfd082669df164be0781bd13847f35d6483ebd8611a136ea8",
+      "required_classification": "MULTI_AXIS_MATERIAL_LINEARIZATION_REWEIGHTING"
+    },
+    "compatibility_receipt": {
+      "path": "phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/formal/final_receipt.json",
+      "sha256": "d5009a3464fb5d0597e67922bc7763af45271d0a06497b02b8fc2b7db989212d",
+      "required_classification": "VERIFIED_LOSSLESS_TREE_NATIVE_PATH_COMPATIBILITY"
+    }
+  },
+  "fixed_empirical_measures": {
+    "canonical": "p_e = 1 / E for each of E distinct observed child-parent edges",
+    "path_linearized": "q_e = m_e / M where m_e is the number of root-to-leaf path occurrences of edge e and M = sum_e m_e",
+    "inverse_multiplicity_corrected": "each path occurrence of edge e has unnormalized mass 1 / m_e, then the total mass is normalized by E"
+  },
+  "exact_derivations": {
+    "edge_total_variation": "TV(p,q) = (1/2) * sum_e |1/E - m_e/M|",
+    "maximizing_positive_set": "A_plus = {e : m_e * E > M}",
+    "sharp_indicator_identity": "q(A_plus) - p(A_plus) = TV(p,q)",
+    "bounded_statistic_envelope": "sup over all f:E->[0,1] of |E_q[f]-E_p[f]| = TV(p,q)",
+    "canonical_inverse_hhi_descriptive_diversity": "1 / sum_e p_e^2 = E",
+    "path_inverse_hhi_descriptive_diversity": "1 / sum_e q_e^2 = M^2 / sum_e m_e^2",
+    "diversity_retention_ratio": "M^2 / (E * sum_e m_e^2)",
+    "maximum_edge_mass_inflation": "max_e(q_e/p_e) = max_e(m_e) * E / M",
+    "corrected_measure_identity": "for every edge e, sum over its m_e occurrences of (1/m_e) = 1; normalized corrected edge mass equals 1/E"
+  },
+  "exploratory_values_seen": {
+    "E": 10895,
+    "M": 26107,
+    "edge_total_variation_fraction": "109845598/284435765",
+    "edge_total_variation_float": 0.38618771447395162,
+    "path_inverse_hhi_descriptive_diversity_float": 2300.156416945366,
+    "diversity_retention_ratio_float": 0.2111203686962245,
+    "maximizing_set_unique_edges": 2286,
+    "maximizing_set_path_occurrences": 15560,
+    "maximum_edge_mass_inflation_float": 60.094227601792625
+  },
+  "required_cross_checks": [
+    "the two fixed receipts have the required classifications and snapshot",
+    "E, M, duplicate count and the full multiplicity histogram match across receipts",
+    "histogram counts sum to E and multiplicity-weighted counts sum to M",
+    "all exact values are represented as reduced integer numerator and denominator",
+    "the maximizing-set identity equals the independently summed total variation exactly",
+    "inverse-multiplicity correction returns zero exact total variation from canonical",
+    "producer A/B and a non-importing independent verifier are byte-identical"
+  ],
+  "classification": {
+    "pass": "VERIFIED_EXACT_EDGE_MEASURE_SENSITIVITY_COROLLARY",
+    "failure": "EDGE_MEASURE_SENSITIVITY_COROLLARY_GATE_FAIL",
+    "partial_or_float_only_match_may_rescue": false
+  },
+  "claim_boundary": {
+    "allowed": "For the two fixed empirical edge measures induced by the published MLE-agent observed forest, root-to-leaf path linearization has the exact reported total variation and concentration shift; this total variation is the sharp worst-case shift over arbitrary bounded edge-level statistics, while inverse-multiplicity occurrence weights exactly recover the canonical edge measure.",
+    "actual_predictor_accuracy_shift_observed": false,
+    "particular_natural_metric_attains_bound": false,
+    "inverse_hhi_is_statistical_effective_sample_size": false,
+    "independent_confirmatory_discovery": false,
+    "algorithmic_novelty": false,
+    "complete_source_tree_or_choice_set_proven": false,
+    "generalization_beyond_fixed_snapshot": false
+  },
+  "security": {
+    "aggregate_receipts_only": true,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_or_blind_manifests_opened": false,
+    "identity_code_or_per_path_values_written": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  },
+  "failure_rule": "Any input hash, classification, snapshot, histogram reconciliation, integer accounting, exact rational identity, source, security or independent-verification mismatch fails closed. Exploratory values are disclosed and may not be presented as preregistered or independently confirmed."
+}

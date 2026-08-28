@@ -13,6 +13,20 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0II. 2026-08-29 学长 0828 NEXT 已收束为全上下文 evaluator 诊断；不授权底座微调或付费调用
+
+学长 outcome commit=`f534114...c8ad` 的三项 NEXT 经防撞与项目硬约束审查：便宜强模型复核历史 reward/decision pair
+与 predictor benchmark 直接相关，保留为 full-context、双方向、exact-resource-stratum 的历史诊断；“在简单任务上微调
+Qwen 生成器”会更新 agent 底座，违反本项目 hard NO，按原提法不实施；3×8 H200 trajectory 只接受学长提供的脱敏导出，
+不得使用 outcome 中带访问凭据的 W&B 链接，该凭据应撤销/轮换并清理历史。
+
+广义 generator-verifier 自演化 novelty 已被 ACE/ReVeal/CURE/V-STaR 等覆盖。允许继续验证的窄正方向是：固定 generator，
+在昂贵、延迟、任务异质的真实 MLE execution labels 下，用独立 verifier 改善可审计 label allocation/efficiency，并最终由
+未触碰外部 cohort 确认。`openrouter_full_context_judge_v1.json` 先冻结两个 32-pair 历史 panel、4 个 task-unit-gap 桶、
+run/endpoint/task 限制、完整不截断 prompt、4 个 exact model IDs、双方向与 2/10 USD stop；本次只实现和 mock 验证，
+`live_calls_authorized_by_this_freeze=false`，没有 API/GPU/model fit/base update。详见
+`phase1/实验记录/2026-08-29/Senior0828_NEXT_防撞与安全执行裁决.md`。
+
 ## 0IH. 2026-08-29 Target-522 order addendum 冻结提交通过公开源复验与提前读取拒绝测试
 
 冻结 commit=`0719d075d584481e72a3d67dd591a156bbaaa62b` 在 fresh detached worktree 通过 focused/full=

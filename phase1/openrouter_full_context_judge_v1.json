@@ -1,0 +1,225 @@
+{
+  "protocol": "openrouter-full-context-judge-v1",
+  "status": "FROZEN_BEFORE_PANEL_MATERIALIZATION_OR_API_CALLS",
+  "frozen_utc": "2026-08-28T21:57:07Z",
+  "source": {
+    "senior_outcome_commit": "f534114e60658043c07f7a15d6440492caffc8ad",
+    "senior_outcome_path": "src/mle_critic/docs/outcomes/0828/MIXED_PAIRWISE_REWARD_AND_RL_EXPERIMENTS.md",
+    "senior_outcome_sha256": "17317a2d239cb862ec16d57aa0a2fa168f2c1a6cd841117950d8ee8127129ad6",
+    "data_repair_commit": "4b9e9725c7ad867d36ead698de0ebe5ae48b8a4f",
+    "context_repair_commit": "30b396323f28064040bb0bdf9cccb198d676dd27"
+  },
+  "immutable_inputs": {
+    "cards": {
+      "sha256": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343",
+      "bytes": 779146574,
+      "credential_scanned_copy_required": true
+    },
+    "run_split": {
+      "sha256": "593117cfe0b34e1d2e3c9b718866a7751d7f008701add77b31cfd604282103bb",
+      "bytes": 148155,
+      "all_runs": 845,
+      "held_runs": 189
+    },
+    "decision": {
+      "sha256": "1a01d3a1202b35f21b9cd6c87237b29c50b1c293138b407cc453674108411442",
+      "bytes": 3337808,
+      "rows": 7644,
+      "test_rows": 1160
+    },
+    "value_hardware_time": {
+      "sha256": "60e9bbfba56ef94dfd70bb717694fa5b3b400f9458a13b92321bb1cb2ecdf3d9",
+      "bytes": 3807175,
+      "rows": 8598,
+      "test_rows": 895
+    },
+    "task_unit_gap": {
+      "lfs_oid_sha256": "598b9c5495a5ea4fb1b3c0db360073909e49ffa33a9d67635fc1a5ab64531efa",
+      "bytes": 1739
+    }
+  },
+  "known_before_freeze": {
+    "senior_reported_reward_model_results_seen": true,
+    "historical_pair_counts_and_schemas_seen": true,
+    "decision_verified_sibling_aggregate_support_seen": true,
+    "exact_selected_pair_identities_seen": false,
+    "api_judge_requests_sent": false,
+    "api_judge_outputs_seen": false,
+    "panel_feasibility_receipt_seen": false
+  },
+  "estimand": {
+    "name": "historical_full_context_pairwise_evaluator_diagnostic",
+    "unit": "unordered historical pair clustered by task and physical run",
+    "primary_observation": "both deterministic orientations of one pair-model combination",
+    "not_a_frozen_confirmation_test": true,
+    "not_search_utility": true,
+    "not_generator_training": true
+  },
+  "eligibility": {
+    "split": "test",
+    "panels": {
+      "value_hardware_time": {
+        "input": "value_hardware_time",
+        "pairs": 32
+      },
+      "decision_direct_sibling": {
+        "input": "decision",
+        "pairs": 32,
+        "requires_declared_parent_direct_sibling_same_run": true
+      }
+    },
+    "same_stratum_fields": [
+      "task.name",
+      "client",
+      "hardware",
+      "time_limit",
+      "execution_timeout"
+    ],
+    "requires_nonempty_full_code": true,
+    "requires_same_physical_run": true,
+    "requires_frozen_run_split_consistency": true,
+    "requires_finite_positive_gap": true,
+    "forbid_unordered_duplicates": true
+  },
+  "selection": {
+    "normalized_gap": "gap_raw / task_unit_gap[task]",
+    "gap_bins": [
+      {"name": "g1_2", "lower_inclusive": 1, "upper_exclusive": 2},
+      {"name": "g2_4", "lower_inclusive": 2, "upper_exclusive": 4},
+      {"name": "g4_8", "lower_inclusive": 4, "upper_exclusive": 8},
+      {"name": "g8_inf", "lower_inclusive": 8, "upper_exclusive": null}
+    ],
+    "pairs_per_panel_bin": 8,
+    "global_max_pairs_per_physical_run": 1,
+    "global_max_pairs_per_task": 4,
+    "global_endpoint_disjoint": true,
+    "deterministic_seed_search": {
+      "hash": "sha256",
+      "first_seed_in_half_open_range": [0, 4096],
+      "candidate_key": "seed,panel,gap_bin,sorted endpoint ids",
+      "accept_first_complete_greedy_round_robin_selection": true
+    },
+    "smoke_subset": "first selected pair by deterministic candidate order in each panel x gap bin",
+    "posthoc_rebalancing_forbidden": true,
+    "fail_closed_if_infeasible": true
+  },
+  "prompt_contract": {
+    "include": [
+      "full task description",
+      "metric name and direction",
+      "actual client",
+      "actual hardware",
+      "actual time limit",
+      "actual execution timeout",
+      "full unmodified code A",
+      "full unmodified code B"
+    ],
+    "exclude": [
+      "better/worse identity",
+      "grade or outcome",
+      "raw or normalized gap",
+      "pair source",
+      "existing predictor output",
+      "self report",
+      "lineage identity"
+    ],
+    "orientations": ["AB", "BA"],
+    "truncate_input": false,
+    "max_tokens_field": "OMITTED",
+    "temperature": 0,
+    "seed": 20260829,
+    "reasoning": {"enabled": true},
+    "provider": {"zdr": true, "data_collection": "deny"},
+    "answer_schema": "final content must contain exactly one standalone A or B"
+  },
+  "model_catalog_snapshot": {
+    "retrieved_date_utc": "2026-08-28",
+    "source": "https://openrouter.ai/api/v1/models",
+    "models": [
+      {
+        "id": "deepseek/deepseek-v4-flash-0731",
+        "canonical_slug": "deepseek/deepseek-v4-flash-20260731",
+        "context_length": 1310720,
+        "max_completion_tokens": 943718,
+        "input_usd_per_million": "0.05",
+        "output_usd_per_million": "0.10"
+      },
+      {
+        "id": "z-ai/glm-5.3-flash",
+        "canonical_slug": "z-ai/glm-5.3-flash-20260826",
+        "context_length": 1310720,
+        "max_completion_tokens": 131072,
+        "input_usd_per_million": "0.075",
+        "output_usd_per_million": "0.25"
+      },
+      {
+        "id": "qwen/qwen3.8-flash",
+        "canonical_slug": "qwen/qwen3.8-flash-20260826",
+        "context_length": 1000000,
+        "max_completion_tokens": 131072,
+        "input_usd_per_million": "0.15",
+        "output_usd_per_million": "0.47"
+      },
+      {
+        "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "canonical_slug": "nvidia/nemotron-3-ultra-550b-a55b-20260604",
+        "context_length": 1000000,
+        "max_completion_tokens": 65536,
+        "input_usd_per_million": "0",
+        "output_usd_per_million": "0"
+      }
+    ]
+  },
+  "phases": {
+    "smoke": {
+      "pairs": 8,
+      "orientations_per_pair": 2,
+      "models": 4,
+      "maximum_calls": 64,
+      "cumulative_usd_stop": "2.00"
+    },
+    "full": {
+      "pairs": 64,
+      "orientations_per_pair": 2,
+      "models": 4,
+      "maximum_calls": 512,
+      "cumulative_usd_stop_including_smoke": "10.00"
+    }
+  },
+  "smoke_gates": {
+    "all_requests_honor_prompt_contract": true,
+    "all_provider_routes_report_zdr_or_request_is_rejected": true,
+    "parse_success_minimum": "15/16 per paid model and 14/16 free model",
+    "no_context_or_output_truncation": true,
+    "usage_and_cost_present_for_every_success": true,
+    "cumulative_cost_within_stop": true,
+    "ambiguous_transport_retry_is_forbidden": true
+  },
+  "analysis": {
+    "report_parse_refusal_and_order_consistency_before_accuracy": true,
+    "pair_is_the_inference_unit_not_orientation": true,
+    "task_clustered_inference_primary": true,
+    "run_clustered_inference_secondary": true,
+    "model_differences_paired_on_identical_pairs": true,
+    "raw_reasoning_not_used_to_salvage_missing_final_answer": true,
+    "no_model_or_task_selection_after_results": true
+  },
+  "security": {
+    "credential_environment_variable": "OPENROUTER_API_KEY",
+    "credential_file_loading_implemented": false,
+    "raw_panel_and_responses_remote_mode": "0600",
+    "raw_reasoning_committed_to_git": false,
+    "aggregate_receipt_contains_identities": false,
+    "per_request_zero_data_retention_required": true,
+    "per_request_data_collection_denied": true,
+    "launch_requires_separate_cost_approval": true,
+    "live_calls_authorized_by_this_freeze": false,
+    "prospective_cohort_values_forbidden": true
+  },
+  "resources_at_freeze": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

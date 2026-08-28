@@ -31,6 +31,11 @@ test 称 untouched，也不授权 row-level release 或 GPU 重训。详见
 `phase1/实验记录/2026-08-29/Senior0819DecisionRelationTaxonomy_预注册.md`。当前尚无 readout；GPU/API/model-fit/
 base-update=`0/0/0/0`，前瞻值与 raw archives 未读。
 
+结果前实现已完成：producer/verifier/test/runner SHA-256=`f32c9a56...299e9` / `84453ca9...e787f` /
+`d922222b...8a502` / `bed7ae49...06fa4`；focused synthetic=`6 passed`，与 0HR tests 合并=`13 passed`。独立
+verifier 不导入 taxonomy producer；攻击测试覆盖 parent partition mismatch、support 不足、反向 duplicate/conflict 与
+input hash drift。尚未运行真实 split-specific readout。
+
 ## 0HR. 2026-08-29 senior 0819 mixed pair benchmark 已冻结独立完整性审计
 
 学长 `f534114e...` 的 0828 报告新增探索性 mixed-pair scaling/RL 汇总，但 Qwen3 容量趋势只在 seed 7 出现、seed 6
@@ -77,6 +82,12 @@ forbidden opens/network=`0/0`，formal manifest=`f5483cf2...47b17`。这只认�
 benchmark**，不升级 seed-specific scaling，不把周期使用过的 test 称 untouched。正式包见
 `phase1/results/senior_0819_pair_benchmark_integrity_20260829_4a84780/`；GPU/API/model-fit/base-update=`0/0/0/0`，
 前瞻值与 raw archives 未读。
+
+证书已由公开 commit=`e9e20c2552c97e11794069d8f9b73b791fec5a05` 发布。post-push v1 是 checkout 前环境顺序失败；
+v2 因未固定 BLAS 线程在登录节点过度并行而被精确 TERM；v3 虽通过 package 和 `7/1463` tests，但 Git 中文路径 quoting
+使 blob scanner 漏扫一个文档，故 superseded。NUL-safe v4 对每个 blob 先 `cat-file`、再显式检查 pipeline rc，package
+manifest=`9/9`、focused/full=`7/1463 passed`、credential filename/content=`0/0`，权威 post-push manifest=
+`013487f0d70ec27b73f6b1ef82bdf781d88d46985d0433efb7dacb4cbbd2db5a`。v1–v3 均保留，不能冒充权威成功。
 
 ## 0HQ. 2026-08-29 fixed-margin selective parent recovery 已冻结 Target-522 真前瞻确认
 

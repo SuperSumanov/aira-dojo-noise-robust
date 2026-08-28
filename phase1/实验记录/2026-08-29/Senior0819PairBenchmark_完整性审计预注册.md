@@ -107,6 +107,13 @@ producer A/B、verifier A/B 分别逐字节一致，SHA-256=`90e220ac...00cb` / 
 `phase1/results/senior_0819_pair_benchmark_integrity_20260829_4a84780/`。GPU/API/model-fit/base-update=
 `0/0/0/0`，前瞻值、模型 accuracy/scaling、search utility 与 raw senior archives 均未读。
 
+公开证书 commit=`e9e20c2552c97e11794069d8f9b73b791fec5a05` 的 post-push 验证保留四个根：v1 在 checkout 前因
+`set -u` 早于环境加载而失败；v2 的 full suite 未固定 BLAS 线程、在登录节点展开到约 29 cores 后由操作者核对 PID/命令行
+并 TERM，未写 COMPLETE；v3 的 package 与 focused/full=`7/1463 passed`，但 credential scanner 被 Git 的中文路径
+quoting 绕过一个文档 blob，故该 COMPLETE 明确 superseded。v4 改为 NUL-safe path stream，并逐 blob 要求 `cat-file`
+成功后才判 scanner rc；package manifest=`9/9`、focused/full=`7/1463 passed`、credential filename/content=`0/0`，
+post-push manifest=`013487f0d70ec27b73f6b1ef82bdf781d88d46985d0433efb7dacb4cbbd2db5a`。只有 v4 是发布后权威回执。
+
 ## 即使 strong pass 也不能说什么
 
 - 不能把 seed 7 的 14B proxy 数字升级成 clean scaling law；seed 6 未复现仍必须同表披露；

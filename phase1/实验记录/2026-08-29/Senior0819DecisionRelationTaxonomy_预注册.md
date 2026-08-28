@@ -42,3 +42,12 @@ focused/full tests、file/network strace、credential-before-parse、逐字节�
 其余 rows 保留为同-run/cross-run transport stress strata；这是一项 MLE Decision Corpus 的 benchmark repair/audit 资产。
 不能说 recorded parent 是外部语义或因果真值，不能把历史 test 说成 untouched final test，不能升级现有 seed-specific scaling，
 也不自动授权 row-level release、GPU 重训或 agent/base LLM 更新。
+
+## 结果前实现
+
+在真实 split-specific readout 之前完成 producer、独立 verifier、六项 synthetic attack tests 与 fresh-worktree formal runner。
+producer/verifier/test/runner SHA-256=`f32c9a56...299e9` / `84453ca9...e787f` / `d922222b...8a502` /
+`bed7ae49...06fa4`；本地 focused=`6 passed`，与上一 integrity audit 合并=`13 passed`。独立 verifier 不导入 taxonomy
+producer，使用上一轮独立 Card stream decoder 后自行重写 relation parsing、graph、fingerprint、profile 与 gates。测试覆盖
+三类 strong pass、aggregate-only、parent split mismatch、limited-support 不可 rescue、反向 duplicate/conflict 和 input hash
+drift。正式运行前仍只可称执行链就绪，没有真实分类。

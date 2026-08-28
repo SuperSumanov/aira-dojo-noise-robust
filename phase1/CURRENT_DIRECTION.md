@@ -13,6 +13,18 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IH. 2026-08-29 Target-522 order addendum 冻结提交通过公开源复验与提前读取拒绝测试
+
+冻结 commit=`0719d075d584481e72a3d67dd591a156bbaaa62b` 在 fresh detached worktree 通过 focused/full=
+`30/1537 passed`（47 warnings），protocol/producer/verifier/test/runner hashes 与预注册逐项一致，commit filename/blob secret
+hits=`0/0`。selection 与 upstream formal 均 `COMPLETE=false` 时，固定 runner 在 strace 下 `rc=1`，没有创建 future output/
+worktree，candidate/profile/snapshot/result opens=`0`；因此该控制确实在结果前冻结且无法提前 readout。
+
+16-member freeze manifest=`f6a7f53a3f3f31a96089b98c66c247340bef6e5a37bba14d96e87fc1d6ca0f6b`。既有三个 watcher 未修改、
+未重启、未复制，没有启动 addendum watcher；prospective values/Target-522 profile/raw archives 未读、无 row-level release，
+GPU/API/model-fit/base-update=`0/0/0/0`。详见
+`phase1/实验记录/2026-08-29/Target522_SelectiveParent_MaxPriorStep前瞻附录_冻结复验回执.md`。
+
 ## 0IG. 2026-08-29 Target-522 max-prior-step 前瞻附录已在 candidate 前冻结
 
 LATEST 仍为 `887491a...62697`，Target-522 selection/lineage/selective 三个既有 watcher 均 `complete=false, failed=false`；

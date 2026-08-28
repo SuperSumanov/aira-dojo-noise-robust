@@ -13,6 +13,18 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HW. 2026-08-29 outcome-blind 887 结构监控已连续续接
+
+LATEST 仍为 `887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697`。intake PID=`4008512`、WL 与
+Target-522 三条 watcher、六小时 guard 均保持原实例且锁 held；没有重复启动。此前自然完成的 transition、receipt-support、
+config-v2 readiness 与 Target-300 quiescent monitor 在核对旧进程为 0、锁 free、state/prior hashes 和 completion tail 后续接。
+
+新 transition/receipt/config-v6/Target-300 PID=`4177250/4177251/4177257/4177258` 均经独立 postflight 确认为 live 且
+lock held，first poll/start receipt 正常；config-v2 sidecar count=0。续接脚本 SHA-256=`9601beeb...69ae`，操作回执
+manifest=`714e83ffa445328f9353beba40069d454246e88ccf8d788f9417a0776912cf5d`。只读取 PID、锁、LATEST、state/artifact
+hash、结构日志尾部与 filename count；prospective values/outcomes/raw archives 未读，GPU/API/model-fit/base-update=
+`0/0/0/0`。详见 `phase1/实验记录/2026-08-29/OutcomeBlindMonitor_887续接回执.md`。
+
 ## 0HV. 2026-08-29 deterministic sibling quarantine 正式通过全部完整性门
 
 0HU 的 exact public commit=`254fc804c4904635e8f44e9121eab84b425ca6a8` 已完成 fresh detached formal，分类为
@@ -33,6 +45,11 @@ producer 且逐字段相等；focused/full=`6/1475 passed`，parent package mani
 `phase1/results/senior_0819_verified_sibling_quarantine_20260829_254fc80/`。这是数据集/审计协议的正资产，不证明
 predictor effect、scaling 或 search utility；row-level release 仍未授权。GPU/API/model-fit/base-update=`0/0/0/0`，
 prospective values/raw archives 未读。
+
+证书已由公开 commit=`04ed63ebd08bc6406d863b43c93ec61f44b97126` 发布。fresh detached post-push 对 package
+manifest、hard/support gates、counts、mismatch localization 与 verifier equality 复核通过，focused/full=`6/1475 passed`，
+credential filename/content=`0/0`；post-push manifest=
+`4e7093b20bec14cfd5a957db253812125f0620fff24123b9ad9460cb223e6d44`。
 
 ## 0HU. 2026-08-29 sibling-only quarantine feasibility 已在 closure readout 前冻结
 

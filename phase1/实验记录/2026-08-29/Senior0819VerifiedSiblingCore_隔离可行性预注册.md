@@ -72,3 +72,8 @@ producer/verifier A/B 各自逐字节一致，SHA-256=`4f4902ce...56315` / `8b0e
 network=`0/0`，formal manifest=`9a554d8c1ed3dffe5a5aa1ab7ff1579f890fa749fcbb82e545c3a2a7758d2d63`。正式包见
 `phase1/results/senior_0819_verified_sibling_quarantine_20260829_254fc80/`。row-level release 未创建；GPU/API/model-fit/
 base-update=`0/0/0/0`，prospective values/raw archives、模型分数与 utility 均未读。
+
+证书随后由公开 commit=`04ed63ebd08bc6406d863b43c93ec61f44b97126` 发布。fresh detached post-push 对 package
+manifest、`16/16` hard gates、`8/8` compatibility gates、core/quarantine counts、743 条 mismatch 定位与 verifier
+equality 均复核通过；focused/full=`6/1475 passed`，credential filename/content=`0/0`，post-push manifest=
+`4e7093b20bec14cfd5a957db253812125f0620fff24123b9ad9460cb223e6d44`。

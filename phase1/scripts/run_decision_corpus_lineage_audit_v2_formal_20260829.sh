@@ -76,6 +76,8 @@ test "$(sha256sum "$worktree/$producer_rel" | awk '{print $1}')" = "$producer_sh
 test "$(sha256sum "$worktree/$verifier_rel" | awk '{print $1}')" = "$verifier_sha"
 test "$(sha256sum "$worktree/$test_rel" | awk '{print $1}')" = "$test_sha"
 test "$(sha256sum "$worktree/$runner_rel" | awk '{print $1}')" = "$runner_sha"
+git -C "$worktree" lfs checkout -- phase1/cards_current_v11.jsonl >"$root/lfs_checkout.txt"
+test -z "$(git -C "$worktree" status --porcelain --untracked-files=all)"
 
 export CUDA_VISIBLE_DEVICES=''
 export WANDB_MODE=disabled
@@ -89,7 +91,7 @@ export BLIS_NUM_THREADS=1
 export TOKENIZERS_PARALLELISM=false
 unset OPENAI_API_KEY DASHSCOPE_API_KEY DEEPSEEK_API_KEY ANTHROPIC_API_KEY HF_TOKEN WANDB_API_KEY || true
 
-"$python_bin" - "$worktree/$protocol_rel" "$repo" "$root/input_hashes_preflight.json" <<'PY'
+"$python_bin" - "$worktree/$protocol_rel" "$worktree" "$root/input_hashes_preflight.json" <<'PY'
 import hashlib, json, pathlib, sys
 
 protocol_path, data_root, output = map(pathlib.Path, sys.argv[1:])
@@ -127,7 +129,7 @@ PY
 common=(
   --protocol "$worktree/$protocol_rel"
   --protocol-sha256 "$protocol_sha"
-  --root "$repo"
+  --root "$worktree"
 )
 
 env PYTHONHASHSEED=0 strace -ff -e trace=file,network -o "$root/producer_a.strace" \

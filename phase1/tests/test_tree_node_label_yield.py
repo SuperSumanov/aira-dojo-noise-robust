@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 
 from phase1 import tree_node_label_yield as label_yield
+from phase1 import verify_tree_node_label_yield as verifier
 
 
 def graph() -> label_yield.Graph:
@@ -23,6 +24,19 @@ def graph() -> label_yield.Graph:
         tuple("abcde"),
         {key: tuple(value) for key, value in incident.items()},
         context,
+    )
+
+
+def verifier_topology() -> verifier.Topology:
+    source = graph()
+    return verifier.Topology(
+        [
+            verifier.Pair(edge.u, edge.v, edge.parent, edge.task, edge.run)
+            for edge in source.edges
+        ],
+        source.nodes,
+        source.incident,
+        source.context,
     )
 
 
@@ -90,3 +104,26 @@ def test_fraction_is_reduced_and_exactly_serializable() -> None:
     value = label_yield.fraction(6, 8)
     assert value == {"numerator": 3, "denominator": 4, "decimal_17g": "0.75"}
     label_yield.canonical(value)
+
+
+def test_independent_planners_match_on_synthetic_topology() -> None:
+    first, second = graph(), verifier_topology()
+    for seed in range(3):
+        assert list(label_yield.uniform_node_actions(first, seed)) == list(
+            verifier.node_plan(second, seed)
+        )
+        assert list(label_yield.uniform_edge_actions(first, seed, 5)) == list(
+            verifier.edge_plan(second, seed, 5)
+        )
+        for balanced in (False, True):
+            assert list(label_yield.greedy_actions(first, seed, 5, balanced)) == list(
+                verifier.greedy_plan(second, seed, 5, balanced)
+            )
+
+
+def test_independent_trajectory_metrics_match() -> None:
+    first, second = graph(), verifier_topology()
+    actions = [("a", "b"), ("c",), ("d", "e")]
+    assert label_yield.snapshots_from_actions(first, 7, [1, 2, 3, 5], iter(actions)) == verifier.trajectory(
+        second, 7, [1, 2, 3, 5], iter(actions)
+    )

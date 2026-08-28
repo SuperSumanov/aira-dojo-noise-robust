@@ -436,6 +436,12 @@ v3 后于 `2026-08-28T12:05:57Z` 按固定六小时边界正常 `TIMEOUT_RC=124`
 continuity receipt；科学 cap、debt、task-expansion、classification 和禁止 rescue 规则不变。续接尚未产生 candidate 或
 balance classification。
 
+续接已由公开 commit `6b3a7ba626798cd4bf15147eef3da90293e98158` 的 exact git object 上线，script SHA-256=
+`8900896df4a13861dd53dd3d9b6de8c20d9b9d499fe1063c07b33ccd9ce814b8`。`2026-08-28T13:47:37Z` 时
+PID=`4061250`、lock held、candidate/READY/COMPLETE/FAILED/TIMEOUT=`false/false/false/none/none`；continuity receipt
+六项均为 887。该 exact push 的 fresh Linux focused/full=`13/1424 passed`，full 有 47 warnings，凭据命中=`0/0`，
+manifest SHA-256=`b979e874e7823660e30689f88e8ff1260e1ccf194fe3e4159e22d2e77efa2de8`。仍没有新的结构分类。
+
 ## 0GS. 2026-08-27 COTA 已直接覆盖同前缀 pairwise continuation advisor；方法 novelty 关闭
 
 最新公开的 [COTA / *Don't Solve, Just Compare*（arXiv:2608.21027v1）](https://arxiv.org/abs/2608.21027)

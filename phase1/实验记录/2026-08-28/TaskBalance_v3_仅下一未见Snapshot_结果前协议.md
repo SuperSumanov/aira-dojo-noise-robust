@@ -56,3 +56,22 @@ GPU/API/model-fit/base-update=`0/0/0/0`。
 调用者传 snapshot 或跳过更早 successor。cap=25%、整数 debt、task-expansion 与 ordered classification 均不变。
 TERM/INT/HUP 必须留下失败回执；再次正常六小时超时则保留新的 `TIMEOUT_RC`。本修订没有读取 balance 值、预测值、
 label/outcome、accuracy/effect/utility 或 raw archive，也没有授权 GPU/API/model fit/base update。
+
+## 续接上线与独立回执
+
+续接脚本已在任何 successor 出现前由公开 commit
+`6b3a7ba626798cd4bf15147eef3da90293e98158` 的 exact git object 启动；SHA-256 为
+`8900896df4a13861dd53dd3d9b6de8c20d9b9d499fe1063c07b33ccd9ce814b8`。固定 root 为
+`/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v4`。
+
+`2026-08-28T13:47:37Z` 的结构回执：PID=`4061250` 且 live，lock=`held`；candidate、READY、COMPLETE 均不存在，
+FAILED/TIMEOUT 均不存在。continuity receipt 逐项确认旧 timeout、当前 LATEST、最新 snapshot directory、三套 support
+state 和三条 support 日志的唯一 snapshot identity 全部为 887；`earlier_successor_observed_or_skipped=false`。
+
+该 exact push 的 fresh Linux post-push root 为
+`/research/d7/spc/yzyang4/task-balance-v3-first-successor/postpush-6b3a7ba-v1`：focused=`13 passed in 0.29s`，
+完整 `phase1/tests=1424 passed, 47 warnings in 80.52s`；Python=`3.11.15`，凭据文件名/内容命中=`0/0`，
+GPU/API/model-fit/base-update=`0/0/0/0`，`SHA256SUMS` SHA-256=
+`b979e874e7823660e30689f88e8ff1260e1ccf194fe3e4159e22d2e77efa2de8`。
+
+这些回执证明选择链连续且实现可复验，不是 `CAP_PASS` 或任何 predictor 正效果；真实 candidate 仍未产生。

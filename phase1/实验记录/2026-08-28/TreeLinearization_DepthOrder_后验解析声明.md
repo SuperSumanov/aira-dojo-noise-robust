@@ -49,3 +49,12 @@ first-960 closure 上确认。`lineage.depth` 只是 logged structural position�
 producer 与不 import producer 的 verifier 各跑两次并逐字节一致；所有分布、均值、CDF gap、TV、分位数和交叉均用
 整数/Fraction 精确计算。GPU/API/model-fit/base-update=`0/0/0/0`。任何 hash、schema、算术、复现、安全或 manifest
 不一致都 fail closed。
+
+结果后实现已完成：producer=`phase1/derive_tree_linearization_depth_order_corollary.py`，独立 verifier=
+`phase1/verify_tree_linearization_depth_order_corollary.py`。新增测试为 `13 passed, 1 skipped`；与 within-stratum、原
+linearization、estimand-sensitivity、path-compatibility 回归合计 `61 passed, 2 skipped`，两个 skip 均为 Windows
+symlink 权限边界。protocol/producer/verifier/test SHA-256 分别为
+`29a4e060ef958892b3e2c3f5dccf6258ef87f9bc5ea7b94923551d19d8a2e7e3`、
+`2d314d4b1c5f87e9c84782f43cc33ca079b4650182d7ea6b8d79b1deabee5321`、
+`f240a57cbb843ddd5200cd6112a35cbc9a1f2115525878d3e5c1f9a2a21ebb15`、
+`146b0721b7f705596352e9c286da83ed848a80c80e912ad389986b53c469b524`。真实 formal 仍未运行。

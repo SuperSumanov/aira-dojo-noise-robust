@@ -29,7 +29,10 @@ root-to-leaf 枚举把 logged edge-depth 经验分布系统性推向浅层。Tre
 又明确以 descendant 数归一化避免 near-root scale dominance；所以不申 shared-prefix/root bias/tree-aware weighting 的
 一般首创。`depth` 不等于语义重要性或难度，也没有 predictor effect/search utility、完整 source tree、first-960 closure
 或跨 snapshot 泛化。机器声明与时间顺序见 `phase1/tree_linearization_depth_order_corollary_v1.json` 和
-`phase1/实验记录/2026-08-28/TreeLinearization_DepthOrder_后验解析声明.md`；正式实现尚未运行。
+`phase1/实验记录/2026-08-28/TreeLinearization_DepthOrder_后验解析声明.md`。结果后 exact producer 与不 import
+producer 的独立 verifier 已实现；新增 13 项测试，与相邻 tree 回归合计 `61 passed, 2 skipped`，两个 skip 都是
+Windows symlink 权限边界。protocol/producer/verifier/test SHA-256=`29a4e060...a2e7e3` /
+`2d314d4b...ee5321` / `f240a57c...ebb15` / `146b0721...9b524`；真实 formal 尚未运行。
 
 ## 0HG. 2026-08-28 within-stratum decomposition 已在新 aggregate 前冻结
 

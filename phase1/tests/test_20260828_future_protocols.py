@@ -98,6 +98,21 @@ def test_task_balance_v3_is_future_only_and_cannot_rescue_887() -> None:
 
 
 def test_task_balance_v3_runner_consumes_only_the_automatic_latch() -> None:
+    latch_path = (
+        PHASE1
+        / "scripts"
+        / "latch_task_balance_v3_first_successor_after_887_20260828.sh"
+    )
+    assert _sha(latch_path) == (
+        "4afef04396684844e3755e7769b420c5a42e7ded8f50395122f974e454381598"
+    )
+    latch = latch_path.read_text(encoding="utf-8")
+    assert "latch-ab55510-after-887-v3" in latch
+    assert "manual_snapshot_choice=false" in latch
+    assert "earlier_successor_skipped=false" in latch
+    assert "balance_values_or_classification_read=false" in latch
+    assert "sleep 10" in latch
+
     runner = (
         PHASE1
         / "scripts"

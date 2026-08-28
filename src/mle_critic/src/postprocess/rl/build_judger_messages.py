@@ -14,7 +14,7 @@ from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[5]
 AUGMENTED_DATA_DIR = PROJECT_ROOT / "data" / "augmented_mle_critic"
-DEFAULT_PAIRS = AUGMENTED_DATA_DIR / "decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl"
+DEFAULT_PAIRS = AUGMENTED_DATA_DIR / "batch_value_pairs_filtered_runsplit.jsonl"
 DEFAULT_CARDS = AUGMENTED_DATA_DIR / "augmented_cards_current.json"
 DEFAULT_PROMPTS = AUGMENTED_DATA_DIR / "rl_judger_system_prompts.json"
 DEFAULT_TRAIN_OUTPUT = AUGMENTED_DATA_DIR / "rl_judger_messages_train.jsonl"
@@ -99,9 +99,20 @@ def build_messages(
             better_position = rng.choice(("A", "B"))
             if better_position == "A":
                 submission_a, submission_b = better_code, worse_code
+                card_a, card_b = cards_by_id[pair["better"]], cards_by_id[pair["worse"]]
             else:
                 submission_a, submission_b = worse_code, better_code
+                card_a, card_b = cards_by_id[pair["worse"]], cards_by_id[pair["better"]]
+            timeout_a = card_a.get("execution_timeout")
+            timeout_b = card_b.get("execution_timeout")
+            hardware_a = card_a.get("hardware")
+            hardware_b = card_b.get("hardware")
+            if timeout_a is None or timeout_b is None or hardware_a is None or hardware_b is None:
+                raise ValueError(f"Missing execution constraints for pair {pair!r}")
             user_prompt = (
+                "Execution and hardware constraints:\n"
+                f"Submission A: execution timeout = {timeout_a}; hardware = {hardware_a}\n"
+                f"Submission B: execution timeout = {timeout_b}; hardware = {hardware_b}\n\n"
                 "Submission A:\n"
                 f"{submission_a}\n\n"
                 "Submission B:\n"

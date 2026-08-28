@@ -62,11 +62,9 @@ def _extract_between(content: str, start: str, end: str, path: Path) -> str:
     return content[begin + len(start) : finish].strip()
 
 
-def _sections(content: str, path: Path) -> tuple[str, str, str]:
-    return (
-        _extract_between(content, "COMPETITION INSTRUCTIONS", "# PREVIOUSLY EXPLORED IDEAS", path),
-        _extract_between(content, "# DATA OVERVIEW", "**CONSTRAINTS**:", path),
-        _extract_between(content, "**CONSTRAINTS**:", "Consider the previously explored ideas", path),
+def _competition_instructions(content: str, path: Path) -> str:
+    return _extract_between(
+        content, "COMPETITION INSTRUCTIONS", "# PREVIOUSLY EXPLORED IDEAS", path
     )
 
 
@@ -110,12 +108,10 @@ def build_prompts(
         if not isinstance(task_name, str) or not task_name:
             raise ValueError(f"Invalid task name in {gap_filter_path}: {task_name!r}")
         content, path = _find_initial_content(task_name, journal_paths)
-        competition, data_overview, constraints = _sections(content, path)
+        competition = _competition_instructions(content, path)
         prompts[task_name] = (
             f"{FIXED_PREFIX}\n\n"
-            f"# COMPETITION INSTRUCTIONS\n{competition}\n\n"
-            f"# DATA OVERVIEW\n{data_overview}\n\n"
-            f"# CONSTRAINTS\n{constraints}"
+            f"# COMPETITION INSTRUCTIONS\n{competition}"
         )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", encoding="utf-8") as file:

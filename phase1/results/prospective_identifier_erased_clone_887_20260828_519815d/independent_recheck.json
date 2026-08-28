@@ -1,0 +1,30 @@
+{
+  "classification": "STRICT_LINEAGE_LOCAL_PASS",
+  "credential_file_hits": 0,
+  "fingerprinted_endpoints": 11894,
+  "focused_tests_passed": 27,
+  "forbidden_path_hits": 0,
+  "full_tests_passed": 1240,
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "manifest_payload_files": 19,
+  "observed_endpoints": 11906,
+  "observed_runs": 435,
+  "outcomes_read": false,
+  "prediction_values_read": false,
+  "primary_candidate_pairs": 7990766,
+  "primary_cross_run_pairs": 0,
+  "primary_near_duplicate_pairs": 11421,
+  "producer_ab_byte_identical": true,
+  "protocol": "internal_identifier_erased_887_formal_independent_recheck_v1",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "source_commit": "519815df29ef1f7073e93aa1835dd7df06a7a035",
+  "status": "INDEPENDENT_RECHECK_COMPLETE",
+  "strict_cross_run_pairs": 0,
+  "strict_near_duplicate_pairs": 4068,
+  "verifier_ab_byte_identical": true
+}

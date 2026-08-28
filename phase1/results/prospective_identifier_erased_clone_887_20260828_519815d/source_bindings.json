@@ -1,0 +1,15 @@
+{
+  "source_commit": "519815df29ef1f7073e93aa1835dd7df06a7a035",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "protocol_sha256": "a0c5e73c2e6bde6eed920c69909d13d6b0207271758e327b30eb0b346e654f52",
+  "formal_root": "/research/d7/spc/yzyang4/prospective-identifier-erased-clone-887/formal-519815d-887491a-v1",
+  "formal_summary_sha256": "37d775244467718fbb760c611cd3bce266ffe73b56a71bb9955a6b2a235ae97d",
+  "producer_receipt_sha256": "628361931a7ebada0fad03db90f4cfb06899242f3c8fd8ea530486e59d285861",
+  "independent_verification_sha256": "d9c9eef1c2ffe3642acab1eebd4e6fe20678fc33147296820f88759dd4ed009c",
+  "formal_sha256sums_file_sha256": "bff2ca4d3ddf17af4c656e9fbe59cfcf1aa2669f9c996be8cd2983878d893b30",
+  "deployment_sha256sums_file_sha256": "128e3f16d5460722353bf86e77ec4a973bcbae017a64fc96e99770a528fba586",
+  "postflight_root": "/research/d7/spc/yzyang4/prospective-identifier-erased-clone-887/postflight-519815d-887491a-v1",
+  "postflight_logic_sha256": "1b4ee9dd0841d537ba0ec6769d10e1898cd9148e852b243ea310cc2d888720ee",
+  "independent_recheck_sha256": "b93519591a92466c24c74aeb98ebe30980a19333b64c73ab7497f8e049e6c5ba",
+  "postflight_sha256sums_file_sha256": "e2535105565c8bf7a24412ffc0122c895733d920f895f7fbb0d05de249c2a106"
+}

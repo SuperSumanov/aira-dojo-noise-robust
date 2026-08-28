@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GV. 2026-08-28 完整 v11 release→435-run future identifier-erased 审计已结果前冻结；结果未读
+
+为补 0GU “历史侧只覆盖 critic-train endpoints”的边界，已冻结一个更强但仍仅属 benchmark-integrity 的
+population expansion：完整、可逐字节重建的 v11 release（16,012 endpoints / 667 physical runs / 25 tasks）对
+同一 `887491a...` future（11,906 endpoints / 435 runs / 34 tasks）。表示、候选 join、primary/strict 阈值与
+完整性门逐字复用 `python_token_identifier_erased_v1`、17/20、19/20；任务/run 不作 candidate prefilter。
+
+结果前明确披露：固定 5,519-endpoint critic-train 子集到该 future 的 primary links=0 已知，因此本轮是严格人口
+扩张，不冒充独立发现。ordered classification 固定为 `ZERO_IDENTIFIER_ERASED_RELEASE_LINKS` →
+`LOW_IDENTIFIER_ERASED_RELEASE_OVERLAP_WITH_EXCEPTIONS` → `RELEASE_SPLIT_INTEGRITY_GATE_FAIL`；strict
+sensitivity 不得 rescue primary。producer A/B、独立 verifier A/B、256×256 brute-force 控制和 immutable failure
+receipt 为硬门。协议 SHA-256=`22f2d4f4853c11398429c40f91f952711ee2003bc27bec7c977726c82f0771ea`；
+focused=`18 passed`。当前未运行、未读取任何 full-release similarity result；prospective outcome/prediction、raw senior
+archive、GPU/API/model-fit/base-update=`false/false/false/0/0/0/0`。
+
 ## 0GU. 2026-08-28 435-run 双轴 split-integrity certificate 正式签发
 
 结果前协议 SHA-256=`779ac3f1...37ef5da`，formal source commit=`25efd3a9237e93177e3c8c91b8f73169a70d4213`。

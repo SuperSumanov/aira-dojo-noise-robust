@@ -13,22 +13,25 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0HP. 2026-08-28 hierarchy×content 扩展为 run-disjoint selective parent recovery；readout 尚未执行
+## 0HP. 2026-08-28 run-disjoint selective parent recovery 正式通过全部强门
 
-0HN 已见的 `9196/9739` unique-top 只能说明总体 recorded-parent concordance，不能直接授权自动修复。更有 release
-价值、也更难的 readout 已在任何 margin 数值出现前冻结：对 snapshot 887 的 immutable run-ledger 顺序，前 290 个完整
-physical runs 只用于选择 top-vs-second exact-Jaccard margin 阈值，后 145 个 runs 只测试一次；禁止 edge random split、
-task 重平衡或 test label 参与阈值。train 规则固定为 precision≥`99/100`、accepted≥500 后最大化 coverage；最强开发分类
-要求 test accepted≥1,000、precision≥`49/50`、coverage≥`1/2`，selective error 不超过无阈值 unique-top error 的一半，
-并通过匿名 task/run breadth 与 anti-dominance 门。
+结果前冻结的最强分类已一次通过：`DEVELOPMENT_TIME_SPLIT_HIGH_PRECISION_SELECTIVE_PARENT_RECOVERY`。snapshot 887
+按 immutable run-ledger 固定为较早 290 个 train physical runs 与较晚 145 个 test runs；train-only 规则选中 exact
+Jaccard margin=`1006/16929`。test 2,907 个 ambiguous edges 中接受 2,691 个，正确 2,684 个：coverage=
+`2691/2907=0.92569659442724461`，precision=`2684/2691=0.99739873652917133`。无 reject 的 unique-top 为
+`2845/2907=0.97867217062263501`；固定 reject 后错误由 62 个降到 7 个。全部 hard-support、precision、coverage、
+selective-error、task/run breadth 与 anti-dominance 门均为 true；25/25 个可条件化 tasks 达到 0.95 reference，138/138
+个 runs 达到 0.90 reference，最大 accepted contribution share 分别为 task=`44/207`、run=`55/897`。
 
-冻结时只知道总体 top-1、候选集分位数和三种 wrong-parent 分母；margin distribution、margin-correctness、选中阈值与时间
-test profile 均未看。即使通过，也只支持 `suggested_parent + confidence + provenance` 的可选自审计层；recorded parent
-不是外部语义真值，primary 不含 orphan，禁止静默改 canonical edge，也不申一般 selective-NN/lineage 算法 novelty。
-机器协议/producer/独立 verifier/runner SHA-256 分别为 `a9fe1b26...f97c` / `b30ecf9a...055e` /
-`b53ee68e...5ffb` / `c3f6fb2d...8a2f`；verifier 使用独立 snapshot loader 与 fingerprint 实现且不 import producer，
-synthetic+相邻 lineage=`23 passed`。本节写入时尚未 commit/push 或运行真实 readout，故没有 selective 正结果。
-GPU/API/model-fit/base-update=`0/0/0/0`，prospective truth/prediction、Target-522 profile 与 raw archives 均未读。
+wrong-parent 三种口径必须同时保留：all-alternative micro=`7/11257`，uniform one-wrong-per-child expectation=
+`58/43605`，child-level adversarial=`7/2907`。producer A/B、非 import 独立 verifier A/B 均逐字节一致；focused/full=
+`23/1448 passed`。formal aggregate/verifier/manifest SHA-256=`2aca589f...a2690` / `50b3a280...2955` /
+`c51ad094...e281`；正式包见 `phase1/results/tree_content_selective_parent_recovery_887_20260828_63d37cf/`。
+
+这支持一个可选的 `suggested_parent + confidence + provenance` 自审计层，但 recorded parent 不是外部语义/因果真值，
+primary 不含 orphan，禁止静默改 canonical edge，也不申一般 selective classification/lineage novelty。下一步只在
+Target-522 至少 87 个不重叠未来 runs 上固定复用同一阈值做 forward confirmation；不得重新选阈值、调门或用累计人口
+rescue。GPU/API/model-fit/base-update=`0/0/0/0`，prospective truth/prediction、Target-522 profile 与 raw archives 均未读。
 
 ## 0HO. 2026-08-28 task-balance 重复观察实例已隔离；第二次 timeout handoff 在候选前修复
 

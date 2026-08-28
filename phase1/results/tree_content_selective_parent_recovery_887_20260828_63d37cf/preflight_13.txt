@@ -1,0 +1,13 @@
+01_direction=Decision Corpus + Predictor Benchmark + Audit Protocol only; PASS
+02_question=can an earlier-run-selected Jaccard-margin reject rule recover recorded parents on later run-disjoint development data; PASS
+03_protocol=phase1/tree_content_selective_parent_recovery_887_protocol_v1.json,sha256 a9fe1b26cec20b6725f19e30e605755aa2e854033ec0462c4a39d18e0f80f97c; PASS
+04_population=immutable disclosed snapshot 887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697,train runs 1-290,test runs 291-435; PASS
+05_selection=train precision at least 99/100 and support at least 500,maximize accepted edges,test labels unavailable to selection; PASS
+06_primary=test precision at least 49/50,coverage at least 1/2,error at most half unfiltered plus breadth gates; PASS
+07_denominators=all-alternative micro,uniform one-wrong-per-child,and adversarial child reported separately; PASS
+08_controls=recorded parent masked,unique top only,ties rejected,exact fractions; PASS
+09_reproducibility=producer A/B,non-importing verifier A/B,focused/full tests,hash seeds 0/1; PASS
+10_integrity=exact commit,protocol,producer,verifier,snapshot summary,registry,ledger and run-split hashes; PASS
+11_security=strace file/network audit and boundary-aware credential scan; PASS
+12_forbidden=no prospective truth,prediction,accuracy,utility,Target-522 profile,raw archive,GPU/API/model fit/base update; PASS
+13_interpretation=development masked-parent audit only,no orphan repair or semantic-lineage truth; PASS

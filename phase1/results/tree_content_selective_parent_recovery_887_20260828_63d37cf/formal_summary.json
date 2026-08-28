@@ -1,0 +1,309 @@
+{
+  "protocol": "tree-content-selective-parent-recovery-887-v1",
+  "status": "OUTCOME_BLIND_DEVELOPMENT_SELECTIVE_PARENT_RECOVERY_COMPLETE",
+  "classification": "DEVELOPMENT_TIME_SPLIT_HIGH_PRECISION_SELECTIVE_PARENT_RECOVERY",
+  "source_commit": "63d37cf6985a3b95c955a9d2d4c44c51aab8d152",
+  "protocol_sha256": "a9fe1b26cec20b6725f19e30e605755aa2e854033ec0462c4a39d18e0f80f97c",
+  "snapshot_bindings": {
+    "accumulator_summary_sha256": "2f28b5b53cca5d6ea5ebf16f746a70f9c1de0e3197487a6ed78d41b4cb611302",
+    "endpoints": 11906,
+    "intake_count": 106,
+    "intake_summary_manifest_sequence_sha256": "8a46eee264490b24bedceb7e04a0489ee45a975d7ab50824f67502f0093d82d6",
+    "provisional_runs_sha256": "510d81820d7825fc6baa6db562b2371e50eb7d71d04cb1cc0bd17d095d6cdbca",
+    "registry_sha256": "37e41460c85661fd9afc6f8789a065088a9da88dde027b955ff4bc366d5bbcd8",
+    "runs": 435,
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "tasks": 34
+  },
+  "split_bindings": {
+    "identities_emitted": false,
+    "run_overlap": 0,
+    "test_run_rows_sha256": "f96f494bbdd0e033e67847779ae7955f284b19d4fc7561c7fb36315e5ffa5ab2",
+    "test_runs": 145,
+    "train_run_rows_sha256": "d50d9e9481e5ef04c8bf010ac20685eb5b0315a97caae61ee5da9b64e3740c58",
+    "train_runs": 290
+  },
+  "inventory": {
+    "ambiguous_exact_depth_edges": 9739,
+    "depth_consistent_fingerprint_eligible_parent_edges": 10876,
+    "fingerprint_coverage": {
+      "decimal_17g": "0.99899210482109857",
+      "denominator": 5953,
+      "numerator": 5947
+    },
+    "fingerprint_eligible_parent_edges": 10876,
+    "fingerprinted_endpoints": 11894,
+    "parent_present_edges": 10895,
+    "test_ambiguous_edges": 2907,
+    "train_ambiguous_edges": 6832
+  },
+  "threshold_selection": {
+    "accepted_edges": 5769,
+    "candidate_thresholds": 6826,
+    "correct_edges": 5712,
+    "precision": {
+      "decimal_17g": "0.99011960478419136",
+      "denominator": 1923,
+      "numerator": 1904
+    },
+    "qualifying_thresholds": 5264,
+    "selected": true,
+    "threshold": {
+      "decimal_17g": "0.059424655915883987",
+      "denominator": 16929,
+      "numerator": 1006
+    }
+  },
+  "train_profile": {
+    "ambiguous_edges": 6832,
+    "candidate_size_quantiles": {
+      "maximum": 153,
+      "median": 4,
+      "p90_nearest_rank": 26
+    },
+    "selected_correct_edges": 5712,
+    "selected_coverage": {
+      "decimal_17g": "0.84440866510538637",
+      "denominator": 6832,
+      "numerator": 5769
+    },
+    "selected_edges": 5769,
+    "selected_error_edges": 57,
+    "selected_precision": {
+      "decimal_17g": "0.99011960478419136",
+      "denominator": 1923,
+      "numerator": 1904
+    },
+    "unfiltered_correct_edges": 6351,
+    "unfiltered_coverage": {
+      "decimal_17g": "1",
+      "denominator": 1,
+      "numerator": 1
+    },
+    "unfiltered_precision": {
+      "decimal_17g": "0.92959601873536302",
+      "denominator": 6832,
+      "numerator": 6351
+    },
+    "unique_top_edges": 6832,
+    "unique_top_margin_quantiles": {
+      "maximum": {
+        "decimal_17g": "0.86953723641000347",
+        "denominator": 166262,
+        "numerator": 144571
+      },
+      "median": {
+        "decimal_17g": "0.23744300748430017",
+        "denominator": 697460,
+        "numerator": 165607
+      },
+      "minimum": {
+        "decimal_17g": "1.0121175776990014e-06",
+        "denominator": 1976055,
+        "numerator": 2
+      },
+      "p90_nearest_rank": {
+        "decimal_17g": "0.56225147674840814",
+        "denominator": 451668,
+        "numerator": 253951
+      }
+    }
+  },
+  "test_profile": {
+    "ambiguous_edges": 2907,
+    "candidate_size_quantiles": {
+      "maximum": 30,
+      "median": 3,
+      "p90_nearest_rank": 11
+    },
+    "selected_correct_edges": 2684,
+    "selected_coverage": {
+      "decimal_17g": "0.92569659442724461",
+      "denominator": 323,
+      "numerator": 299
+    },
+    "selected_edges": 2691,
+    "selected_error_edges": 7,
+    "selected_precision": {
+      "decimal_17g": "0.99739873652917133",
+      "denominator": 2691,
+      "numerator": 2684
+    },
+    "unfiltered_correct_edges": 2845,
+    "unfiltered_coverage": {
+      "decimal_17g": "1",
+      "denominator": 1,
+      "numerator": 1
+    },
+    "unfiltered_precision": {
+      "decimal_17g": "0.97867217062263501",
+      "denominator": 2907,
+      "numerator": 2845
+    },
+    "unique_top_edges": 2907,
+    "unique_top_margin_quantiles": {
+      "maximum": {
+        "decimal_17g": "0.838214214858649",
+        "denominator": 1255067,
+        "numerator": 1052015
+      },
+      "median": {
+        "decimal_17g": "0.36874455642652731",
+        "denominator": 40185,
+        "numerator": 14818
+      },
+      "minimum": {
+        "decimal_17g": "0.00033573917515645677",
+        "denominator": 1730510,
+        "numerator": 581
+      },
+      "p90_nearest_rank": {
+        "decimal_17g": "0.6495699540721579",
+        "denominator": 27507062,
+        "numerator": 17867761
+      }
+    }
+  },
+  "test_breadth": {
+    "physical_run": {
+      "conditionable_groups": 138,
+      "fraction_at_or_above_reference": {
+        "decimal_17g": "1",
+        "denominator": 1,
+        "numerator": 1
+      },
+      "identities_emitted": false,
+      "maximum_accepted_contribution_share": {
+        "decimal_17g": "0.061315496098104792",
+        "denominator": 897,
+        "numerator": 55
+      },
+      "minimum_accepted_edges": 5,
+      "precision_quantiles": {
+        "maximum": {
+          "decimal_17g": "1",
+          "denominator": 1,
+          "numerator": 1
+        },
+        "median": {
+          "decimal_17g": "1",
+          "denominator": 1,
+          "numerator": 1
+        },
+        "minimum": {
+          "decimal_17g": "0.90000000000000002",
+          "denominator": 10,
+          "numerator": 9
+        },
+        "p90_nearest_rank": {
+          "decimal_17g": "1",
+          "denominator": 1,
+          "numerator": 1
+        }
+      },
+      "precision_reference": {
+        "decimal_17g": "0.90000000000000002",
+        "denominator": 10,
+        "numerator": 9
+      }
+    },
+    "task": {
+      "conditionable_groups": 25,
+      "fraction_at_or_above_reference": {
+        "decimal_17g": "1",
+        "denominator": 1,
+        "numerator": 1
+      },
+      "identities_emitted": false,
+      "maximum_accepted_contribution_share": {
+        "decimal_17g": "0.21256038647342995",
+        "denominator": 207,
+        "numerator": 44
+      },
+      "minimum_accepted_edges": 20,
+      "precision_quantiles": {
+        "maximum": {
+          "decimal_17g": "1",
+          "denominator": 1,
+          "numerator": 1
+        },
+        "median": {
+          "decimal_17g": "1",
+          "denominator": 1,
+          "numerator": 1
+        },
+        "minimum": {
+          "decimal_17g": "0.98360655737704916",
+          "denominator": 61,
+          "numerator": 60
+        },
+        "p90_nearest_rank": {
+          "decimal_17g": "1",
+          "denominator": 1,
+          "numerator": 1
+        }
+      },
+      "precision_reference": {
+        "decimal_17g": "0.94999999999999996",
+        "denominator": 20,
+        "numerator": 19
+      }
+    }
+  },
+  "test_wrong_pointer_controls": {
+    "all_wrong_alternative_micro_false_acceptance": {
+      "decimal_17g": "0.00062183530247845781",
+      "denominator": 11257,
+      "numerator": 7
+    },
+    "all_wrong_alternatives": 11257,
+    "child_level_adversarial_vulnerability": {
+      "decimal_17g": "0.0024079807361541109",
+      "denominator": 2907,
+      "numerator": 7
+    },
+    "confident_wrong_unique_top_children": 7,
+    "denominators_are_not_interchangeable": true,
+    "uniform_one_wrong_substitution_per_child_expected_false_acceptance": {
+      "decimal_17g": "0.0013301226923517946",
+      "denominator": 43605,
+      "numerator": 58
+    }
+  },
+  "support_gates": {
+    "conditionable_test_runs": true,
+    "conditionable_test_tasks": true,
+    "test_accepted_edges": true,
+    "test_ambiguous_edges": true,
+    "threshold_selected": true,
+    "train_ambiguous_edges": true
+  },
+  "primary_gates": {
+    "run_anti_dominance": true,
+    "run_breadth": true,
+    "selective_error_reduction": true,
+    "task_anti_dominance": true,
+    "task_breadth": true,
+    "test_coverage": true,
+    "test_precision": true
+  },
+  "claim_boundary": {
+    "allowed_if_positive": "On a predeclared chronological run split of the disclosed development snapshot, an earlier-run-selected reject threshold recovers recorded exact-depth parent pointers at the stated precision and coverage; this supports an optional self-audit suggestion layer, not silent canonical rewrites.",
+    "future_target522_confirmation_claimed": false,
+    "generic_lineage_method_novelty_claimed": false,
+    "orphan_edges_are_validated_or_repaired": false,
+    "predictor_accuracy_or_search_utility_computed": false,
+    "recorded_parent_is_external_semantic_or_causal_truth": false
+  },
+  "security": {
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "task_run_card_parent_code_or_per_edge_values_emitted": false
+  }
+}

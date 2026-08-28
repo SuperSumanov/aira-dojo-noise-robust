@@ -1,0 +1,20 @@
+{
+  "classification": "DEVELOPMENT_TIME_SPLIT_HIGH_PRECISION_SELECTIVE_PARENT_RECOVERY",
+  "fingerprints_candidates_threshold_and_gates_independently_recomputed": true,
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "producer_imported": false,
+  "prospective_label_grade_outcome_prediction_values_read": false,
+  "protocol": "independent-tree-content-selective-parent-recovery-887-verifier-v1",
+  "protocol_sha256": "a9fe1b26cec20b6725f19e30e605755aa2e854033ec0462c4a39d18e0f80f97c",
+  "raw_senior_archives_opened": false,
+  "result_sha256": "750ebd33306fa44e9421e1d421e8631c7ade7eae95f53b9adb854abc0c7e3c06",
+  "snapshot_and_split_independently_loaded": true,
+  "source_commit": "63d37cf6985a3b95c955a9d2d4c44c51aab8d152",
+  "status": "INDEPENDENT_SELECTIVE_PARENT_RECOVERY_VERIFIED",
+  "task_run_card_parent_code_or_per_edge_values_emitted": false
+}

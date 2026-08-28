@@ -13,6 +13,25 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HG. 2026-08-28 within-stratum decomposition 已在新 aggregate 前冻结
+
+为排除 0HC/0HE 的 38.62pp edge-measure shift 只是 task/run composition artifact，已在任何 within-task 或
+within-run 数值产生前冻结 canonical-marginal decomposition。主 estimand 为
+`W_p(G)=sum_g(E_g/E) TV(p(e|g),q(e|g))`，分别对 task 与 physical run 计算；path-marginal `W_q` 只作
+secondary sensitivity，不得 rescue。
+
+结果前已诚实披露：整体 TV 与 task/run marginal TV 已知，因此三角不等式已逻辑保证 `W_p` 至少为
+0.22585011065679452 / 0.19724349713897619；仅证明正值不算新结果。强正门固定为两个轴各自比精确 lower bound
+再高至少 0.05，且 `c_g>=0.10` 的 conditionable-group 比例达到 task≥1/2、run≥1/4，最大匿名 canonical
+contribution share 不超过 task 0.40、run 0.20。两轴全过才允许称
+`BROAD_NONCOMPOSITIONAL_LINEARIZATION_DISTORTION`；one-axis 和 below-gate 必须按序降级。
+
+协议只读固定 887 blind structural population 与两份 hash-bound aggregate receipts；输出 exact rational 与匿名
+histogram/quantiles，不输出 task/run/card/edge identity，不读 truth/prediction。GPU/API/model-fit/base-update=
+`0/0/0/0`。当前仅完成结果前协议，尚无新 aggregate 或分类；详见
+`phase1/tree_linearization_within_stratum_decomposition_v1.json` 与
+`phase1/实验记录/2026-08-28/TreeLinearizationWithinStratum_结果前预注册.md`。
+
 ## 0HF. 2026-08-28 完整历史 release→future 零链接证书与 Evidence Index v8 已正式闭环
 
 固定 snapshot `887491a...` 上，完整、可逐字节重建的 v11 历史 release（16,012 endpoints / 667 physical

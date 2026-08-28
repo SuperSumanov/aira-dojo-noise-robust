@@ -1,0 +1,153 @@
+{
+  "protocol": "tree-linearization-within-stratum-decomposition-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T11:14:15Z",
+  "status": "OUTCOME_BLIND_PROTOCOL_FROZEN_BEFORE_WITHIN_STRATUM_AGGREGATES",
+  "question": "After fixing task or physical-run marginal mass, how much root-to-leaf linearization distortion remains within those strata, and is that conditional distortion broad rather than concentrated in a few strata?",
+  "design_timing": {
+    "new_within_task_or_within_run_values_seen": false,
+    "upstream_overall_edge_tv_seen": true,
+    "upstream_task_and_run_marginal_tv_seen": true,
+    "triangle_lower_bounds_logically_implied_before_freeze": true,
+    "no_claim_that_the_existence_of_positive_within_stratum_tv_is_new": true
+  },
+  "fixed_population": {
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "eligible_endpoints": 11906,
+    "provisional_first960_runs": 435,
+    "tasks": 34,
+    "closure_provided": false,
+    "population_rule": "Reuse every eligible endpoint and every same-run observed child-parent edge from the fixed outcome-blind tree-linearization audit; no task, run, edge, or multiplicity subset may be selected after results."
+  },
+  "fixed_inputs": {
+    "population_protocol": {
+      "path": "phase1/prospective_tree_linearization_weight_audit_v1.json",
+      "sha256": "95b49fd50b75dd16fd9eefbb34557da35daa52fcecc35fce45ac89948a697feb"
+    },
+    "linearization_receipt": {
+      "path": "phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/formal/final_receipt.json",
+      "sha256": "642e9fd793950d4dfd082669df164be0781bd13847f35d6483ebd8611a136ea8",
+      "required_classification": "MULTI_AXIS_MATERIAL_LINEARIZATION_REWEIGHTING"
+    },
+    "estimand_sensitivity_receipt": {
+      "path": "phase1/results/tree_linearization_estimand_sensitivity_887_20260828_5a96d92/formal/final_receipt.json",
+      "sha256": "2587db7f1a77a5bcc13dd0bed2191616ccca6c5cbc57b73104ebb7b425c57cc4",
+      "required_classification": "VERIFIED_EXACT_EDGE_MEASURE_SENSITIVITY_COROLLARY"
+    }
+  },
+  "disclosed_pre_freeze_values": {
+    "canonical_unique_edges": 10895,
+    "path_edge_occurrences": 26107,
+    "overall_edge_total_variation": "109845598/284435765",
+    "overall_edge_total_variation_decimal_17g": "0.38618771447395162",
+    "task_marginal_total_variation_decimal_17g": "0.1603376038171571",
+    "physical_run_marginal_total_variation_decimal_17g": "0.18894421733497543",
+    "task_canonical_standardized_triangle_lower_bound_decimal": "0.22585011065679452",
+    "physical_run_canonical_standardized_triangle_lower_bound_decimal": "0.19724349713897619",
+    "interpretation": "The two lower bounds follow from TV(p,q) <= TV(p,r_G) + TV(r_G,q), so merely exceeding them is not a new empirical discovery. The pre-registered positive readout is at least 0.05 exact slack above each recomputed bound plus breadth and anti-dominance gates."
+  },
+  "estimands": {
+    "canonical_edge_measure": "p(e)=1/E over E distinct observed child-parent edges",
+    "path_frequency_edge_measure": "q(e)=m_e/M, where m_e is the descendant-leaf path multiplicity and M=sum_e m_e",
+    "partitions": [
+      "task",
+      "physical_run"
+    ],
+    "conditional_tv": "For group g, c_g=TV(p(e|g),q(e|g))=(1/2) sum_{e in g}|1/E_g-m_e/M_g|.",
+    "primary_canonical_standardized_within_tv": "W_p(G)=sum_g (E_g/E)c_g; equivalently TV(p,r_G) where r_G keeps canonical group marginals and path-frequency conditionals.",
+    "secondary_path_standardized_within_tv": "W_q(G)=sum_g (M_g/M)c_g; reported as sensitivity and never rescues the primary.",
+    "group_marginal_tv": "B(G)=TV({E_g/E},{M_g/M}).",
+    "triangle_slack": "S(G)=W_p(G)-max(0,TV(p,q)-B(G)); exact nonnegative slack above the lower bound already implied by disclosed aggregates.",
+    "conditionable_group": "A group with at least two observed edges; all such groups stay in the breadth denominator, including groups with c_g=0.",
+    "group_contribution": "a_g=(E_g/E)c_g; maximum contribution share is max_g a_g/W_p(G), or zero only when W_p(G)=0."
+  },
+  "fixed_distribution_summary": {
+    "conditional_tv_reference": "1/10",
+    "histogram_edges": [
+      "0",
+      "1/20",
+      "1/10",
+      "1/5",
+      "3/10",
+      "1/2",
+      "1"
+    ],
+    "histogram_rule": "Left-closed/right-open bins, except the final bin includes 1. Values and counts are anonymous and sorted; no task or run identifiers may be emitted.",
+    "quantiles": [
+      "median",
+      "p90_nearest_rank",
+      "maximum"
+    ]
+  },
+  "hard_integrity_and_support_gates": {
+    "latest_equals_fixed_snapshot": true,
+    "population_loader_rechecks_all_original_tree_audit_gates": true,
+    "upstream_receipt_hash_classification_snapshot_and_counts_match": true,
+    "recomputed_overall_edge_tv_matches_exact_upstream_fraction": true,
+    "recomputed_group_marginal_tv_roundtrips_to_disclosed_17g_values": true,
+    "every_edge_belongs_to_exactly_one_task_and_one_physical_run": true,
+    "all_exact_rational_identities_and_triangle_bounds_hold": true,
+    "minimum_conditionable_tasks": 15,
+    "minimum_conditionable_physical_runs": 150
+  },
+  "strong_positive_gates": {
+    "minimum_exact_triangle_slack_each_axis": "1/20",
+    "minimum_task_fraction_at_or_above_conditional_tv_reference": "1/2",
+    "minimum_physical_run_fraction_at_or_above_conditional_tv_reference": "1/4",
+    "maximum_single_task_canonical_contribution_share": "2/5",
+    "maximum_single_physical_run_canonical_contribution_share": "1/5",
+    "both_axes_must_pass_for_headline": true,
+    "secondary_path_standardized_metric_may_rescue": false
+  },
+  "ordered_classification": [
+    "BROAD_NONCOMPOSITIONAL_LINEARIZATION_DISTORTION",
+    "TASK_ONLY_BROAD_NONCOMPOSITIONAL_LINEARIZATION_DISTORTION",
+    "RUN_ONLY_BROAD_NONCOMPOSITIONAL_LINEARIZATION_DISTORTION",
+    "WITHIN_STRATUM_PROFILE_BELOW_STRONG_GATE",
+    "NO_OBSERVED_WITHIN_STRATUM_DISTORTION",
+    "WITHIN_STRATUM_DECOMPOSITION_GATE_FAIL"
+  ],
+  "classification_rule": "Hard-gate failure takes precedence. Otherwise each axis is strong only if its exact triangle slack, breadth fraction, and maximum-contribution-share gates all pass. Both axes strong maps to BROAD; exactly one maps to the matching one-axis class; positive W_p below those gates maps to PROFILE_BELOW_STRONG_GATE; exact zero on both axes maps to NO_OBSERVED. Path-standardized sensitivity cannot rescue any primary gate.",
+  "required_outputs": {
+    "identity_free_aggregate_only": true,
+    "exact_rational_overall_and_group_marginal_tv": true,
+    "exact_rational_canonical_and_path_standardized_within_tv": true,
+    "exact_rational_triangle_lower_bound_and_slack": true,
+    "anonymous_conditional_tv_histograms_and_quantiles": true,
+    "conditionable_group_counts_and_reference_breadth": true,
+    "maximum_anonymous_canonical_contribution_share": true,
+    "producer_a_b_byte_identical": true,
+    "non_importing_verifier_a_b_byte_identical": true
+  },
+  "claim_boundary": {
+    "allowed_if_broad": "On this fixed outcome-blind MLE-agent observed forest, path linearization changes edge measures materially within both task and physical-run strata after their marginals are fixed; the exact canonical-standardized shifts exceed the already-implied triangle lower bounds by at least 0.05 and pass predeclared breadth and anti-dominance gates.",
+    "positive_within_stratum_tv_existence_is_new": false,
+    "generic_probability_or_graph_decomposition_novelty": false,
+    "task_or_run_composition_fully_explains_overall_shift_if_broad": false,
+    "complete_source_tree_or_choice_set_proven": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "semantic_or_causal_claim": false,
+    "first960_or_closure_completed": false,
+    "generalization_beyond_fixed_snapshot": false
+  },
+  "security": {
+    "allowed_input_basenames": [
+      "LATEST",
+      "eligible_blind_manifest.jsonl",
+      "intake_registry.jsonl",
+      "provisional_runs.jsonl",
+      "summary.json",
+      "final_receipt.json"
+    ],
+    "raw_senior_archives_opened": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "task_run_card_parent_code_or_per_edge_values_emitted": false,
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "failure_rule": "Any snapshot, source hash, upstream aggregate, schema, graph, exact arithmetic, support, anonymity, byte-reproducibility, independent-verification, or security mismatch fails closed. No population, threshold, axis, denominator, or classification order may change after within-stratum values are computed."
+}

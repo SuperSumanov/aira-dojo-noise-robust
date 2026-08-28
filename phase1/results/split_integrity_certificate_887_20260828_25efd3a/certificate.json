@@ -1,0 +1,84 @@
+{
+  "certificate_gates": {
+    "historical_to_future_integrity": true,
+    "historical_to_future_zero_links": true,
+    "independent_postflights_passed": true,
+    "same_future_snapshot_population": true,
+    "same_representation_and_threshold": true,
+    "within_future_integrity": true,
+    "within_future_zero_cross_run_links": true
+  },
+  "claim_boundary": {
+    "all_possible_historical_training_sources_covered": false,
+    "new_clone_detection_method_claimed": false,
+    "predictor_effect_accuracy_or_search_utility_computed": false,
+    "pretraining_contamination_absence_proven": false,
+    "provisional_until_first960_and_closure": true,
+    "semantic_clone_absence_proven": false,
+    "unfingerprintable_endpoints_certified": false
+  },
+  "classification": "PROVISIONAL_ZERO_LINK_SPLIT_INTEGRITY_CERTIFICATE",
+  "future_population": {
+    "closure": false,
+    "endpoints": 11906,
+    "runs": 435
+  },
+  "historical_population": {
+    "endpoints": 5519,
+    "runs": 333
+  },
+  "historical_to_future": {
+    "formal_summary_sha256": "87e7298376319ab0afd1aa5bdbb7990fdfbe071513b3981f5fc203c74c678f27",
+    "future_fingerprint_coverage": 0.9989921048210986,
+    "future_fingerprinted_endpoints": 11894,
+    "gate_pass": true,
+    "historical_fingerprint_coverage": 1.0,
+    "historical_fingerprinted_endpoints": 5519,
+    "independent_recheck_sha256": "6e666a0691657b46dee11e76593e342efb94b9de62b44d18ac1aa0cd26d53565",
+    "package_manifest_sha256": "89891607ccf86e00b7ca96cde37538a5595765a28ab9f41a68e96f42c7a3ec7e",
+    "primary_cross_task_links": 0,
+    "primary_links": 0,
+    "primary_same_task_links": 0,
+    "source_classification": "ZERO_IDENTIFIER_ERASED_LINKS",
+    "strict_links": 0,
+    "zero_link_condition": true
+  },
+  "primary_jaccard": [
+    17,
+    20
+  ],
+  "protocol": "decision-corpus-split-integrity-certificate-887-v1",
+  "representation": "python_token_identifier_erased_v1",
+  "security": {
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "prospective_label_outcome_prediction_values_read": false,
+    "randomness_used": false,
+    "raw_corpus_or_archive_reopened": false,
+    "task_run_card_code_or_edge_identities_read": false
+  },
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "status": "PROVISIONAL_SPLIT_INTEGRITY_CERTIFICATE_BUILD_COMPLETE",
+  "strict_sensitivity_jaccard": [
+    19,
+    20
+  ],
+  "within_future": {
+    "fingerprint_coverage": 0.9989921048210986,
+    "fingerprinted_endpoints": 11894,
+    "formal_summary_sha256": "37d775244467718fbb760c611cd3bce266ffe73b56a71bb9955a6b2a235ae97d",
+    "gate_pass": true,
+    "independent_recheck_sha256": "b93519591a92466c24c74aeb98ebe30980a19333b64c73ab7497f8e049e6c5ba",
+    "package_manifest_sha256": "6a94667c099514dd6c42ce06749941493c078cd6bb73c3f7d2b727df7007d63d",
+    "primary_cross_run_links": 0,
+    "primary_links": 11421,
+    "source_classification": "STRICT_LINEAGE_LOCAL_PASS",
+    "strict_cross_run_links": 0,
+    "strict_links": 4068,
+    "zero_link_condition": true
+  }
+}

@@ -1,4 +1,4 @@
-# 当前研究方向唯一入口（2026-08-27）
+# 当前研究方向唯一入口（2026-08-28）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
@@ -12,6 +12,45 @@
 > 支持审计改写；所有更早“唯一主实验”“主线已确认”措辞均按本段降为历史状态。
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
+
+## 0GU. 2026-08-28 435-run 双轴 split-integrity certificate 正式签发
+
+结果前协议 SHA-256=`779ac3f1...37ef5da`，formal source commit=`25efd3a9237e93177e3c8c91b8f73169a70d4213`。
+同一 snapshot `887491a...`、同一 `python_token_identifier_erased_v1` 表示和 0.85/0.95 阈值下，证书分类为
+**`PROVISIONAL_ZERO_LINK_SPLIT_INTEGRITY_CERTIFICATE`**，七个 certificate gates 全部通过：
+
+- future 内部 11,906 endpoints 中 11,894 可 fingerprint。0.85 下 11,421 个高相似 links 全部在同一
+  physical run：parent-child/sibling/same-run-other=`5713/235/5473`，跨 run same/cross-task=`0/0`；
+  0.95 下 4,068 links，跨 run 仍为 0。
+- 固定历史 v11 critic-train 5,519 endpoints /333 runs 到 435-run future，0.85 下精确检查
+  6,172,443 个 candidates，links=`0`，same/cross-task=`0/0`；0.95 下仍为 0。历史/future coverage=
+  `1.0/0.9989921048210986`。该项是已知 404-run 零链接结论的顺序 +31-run 外延，不冒充全新独立发现。
+
+两项输入各自 producer/verifier A/B 与结果前冻结的 independent postflight 均通过；证书 builder/verifier A/B 也各自
+逐字节一致，独立 verifier 不 import builder。证书 formal focused/full=`7/1260 passed`，full 有 47 warnings；四个
+原始 formal/postflight 清单和两个 Git 安全包重新绑定。certificate/independent SHA-256=
+`b44035bd...ccca5c` / `45dc560b...af944`，formal manifest=`a7e6aeb9...a7161`。raw corpus/archive/identity、
+prospective outcome/prediction values 未读，GPU/API/model-fit/base-update=`0/0/0/0`。
+
+这是当前最强的 D&B benchmark-integrity 正资产：高相似性大量存在但严格 lineage-local，且固定历史 critic-train→future
+未发现高相似链接。只能按固定 syntactic representation/threshold 声明；不证明 semantic clone/pretraining
+contamination absence，不覆盖 12 个不可 fingerprint endpoints 或全部可能历史来源，也不提供 predictor effect。
+当前 435/960、closure=false，最终 first-960+closure 后必须原协议重跑。结果包：
+`phase1/results/split_integrity_certificate_887_20260828_25efd3a/`。
+
+## 0GT. 2026-08-28 task-balance v2 在 887 正式 KILL；v3 仅锁定下一未见 successor
+
+task-balance v2 的首轮是 Python 环境 pre-science failure；修复环境后的正式轮 focused/full=`4/1238 passed` 后按原规则
+在 task universe `30→34` 处 KILL，没有生成 forward result 或 balance classification。独立 postflight 验证 added/removed
+tasks=`4/0`，同一 887 不得用事后 padding rescue。
+
+v3 只把“新增 task 显式 baseline-zero、禁止删除/负增量/换 dominant task”写成未来协议；旧 v2 默认行为逐字节保留。
+激活人口只能是公开 commit 后自动观测到的最早 887 successor，禁止调用者传 snapshot、人工跳过或在 887 重跑。
+精确运行中的 latch SHA-256=`4afef04396684844e3755e7769b420c5a42e7ded8f50395122f974e454381598`，已公开于
+commit=`440ff2961b2e42ff7becea727ca5641cc3f13ccb`；10 秒轮询、六小时上限。v1/v2 启动均因漏载代理导致
+GitHub fetch `rc=128`，发生在 protocol/LATEST 读取前并保留失败根；v3 仅修复环境加载后启动。当前仍是
+`887491a...`、candidate 为空。正式 runner 已公开，只有 latch+transition+WL+receipt-only common support 全部闭合后才执行；
+CPU-only，outcome/prediction value/GPU/API/model-fit/base-update=`false/false/0/0/0/0`。
 
 ## 0GS. 2026-08-27 COTA 已直接覆盖同前缀 pairwise continuation advisor；方法 novelty 关闭
 

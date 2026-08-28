@@ -1,0 +1,14 @@
+{
+  "source_commit": "25efd3a9237e93177e3c8c91b8f73169a70d4213",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "protocol_sha256": "779ac3f1f5aef522a305b22b578dace2c0a8462fe748a7cd1b30dd20037ef5da",
+  "runner_sha256": "3bbcc2c2165993566977abf4338a1445d3bbb634bce095ef12e080ea8e06ccdd",
+  "formal_root": "/research/d7/spc/yzyang4/split-integrity-certificate-887/formal-25efd3a-887491a-v1",
+  "deployment_root": "/research/d7/spc/yzyang4/split-integrity-certificate-887/deploy-25efd3a-887491a-v1",
+  "certificate_sha256": "b44035bd073a83d4c57a03550db9c4b88af8afa8df95268c42f18541cdccca5c",
+  "independent_verification_sha256": "45dc560b882b31df3564740bd619ac2c7248a9edcc19656a8ef865f0720af944",
+  "within_package_manifest_sha256": "6a94667c099514dd6c42ce06749941493c078cd6bb73c3f7d2b727df7007d63d",
+  "historical_package_manifest_sha256": "89891607ccf86e00b7ca96cde37538a5595765a28ab9f41a68e96f42c7a3ec7e",
+  "formal_sha256sums_file_sha256": "a7e6aeb9e806ebeb70b9d7ddd2089c08b6cd6716ec2cd70921b20fcf4a1a7161",
+  "deployment_sha256sums_file_sha256": "92833795950123c9e77dcb09f9f1323957cce5ec8eab8eead5d68d50b4056ed1"
+}

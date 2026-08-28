@@ -45,3 +45,12 @@ orientation；split counts/fingerprint 与 0HT direct-sibling stratum 完全一�
 sibling core，适合作为 MLE Decision Corpus 的可选 curated view 和审计示例。不能说这是 untouched/prospective test，
 不能说 recorded parent 是语义或因果真值，不能升级旧 scaling，不能自动发布行 identities，也不能直接推出 predictor
 效果或端到端搜索收益。
+
+## 结果前实现
+
+在真实 sibling-only closure readout 前完成 producer、独立 verifier、六项 synthetic tests 与 formal runner。producer/
+verifier/test/runner SHA-256=`c23f5a43...4d04` / `58adabb2...cdd4` / `772e1974...d4e1` / `28d882ad...c580`；
+本地 focused=`6 passed`，与 0HS taxonomy tests 合并=`12 passed`。独立 verifier 不导入本轮 producer，而是使用上一轮
+独立 Card/decision decoder 后自行重建 core selection、partition mismatch、graph、fingerprint、overlap、support 与
+classification。攻击覆盖 cross-run parent mismatch 全量隔离、aggregate-only、core 反向 duplicate/conflict、已知支持门
+不足不可 rescue、parent certificate hash drift 与 input hash drift。正式运行前仍只有冻结执行链，没有真实 classification。

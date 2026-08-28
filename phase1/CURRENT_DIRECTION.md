@@ -29,6 +29,11 @@ quarantine feasible，不称 prospective confirmation，不自动授权 row-leve
 `phase1/实验记录/2026-08-29/Senior0819VerifiedSiblingCore_隔离可行性预注册.md`。当前尚无 readout；GPU/API/model-fit/
 base-update=`0/0/0/0`，prospective values/raw archives 未读。
 
+结果前实现已完成：producer/verifier/test/runner SHA-256=`c23f5a43...4d04` / `58adabb2...cdd4` /
+`772e1974...d4e1` / `28d882ad...c580`；focused synthetic=`6 passed`，与 0HS tests 合并=`12 passed`。独立 verifier
+不导入本轮 producer，攻击测试覆盖 mismatch quarantine、aggregate-only、core reversed duplicate/conflict、support 不足、
+parent certificate 与 input hash drift。尚未运行真实 closure readout。
+
 ## 0HT. 2026-08-29 relation-aware taxonomy 正式 fail closed；宽 sibling core 仅形成隔离可行性信号
 
 0HS 的 exact public commit=`827fe55dcf03280cd8e9391d4b44c20db38484d3` 已完成 fresh detached formal。冻结分类为

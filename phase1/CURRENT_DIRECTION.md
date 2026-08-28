@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IG. 2026-08-29 Target-522 max-prior-step 前瞻附录已在 candidate 前冻结
+
+LATEST 仍为 `887491a...62697`，Target-522 selection/lineage/selective 三个既有 watcher 均 `complete=false, failed=false`；
+candidate、increment profile、content result、max-prior-step 与 paired/breadth values 均未见。在此窗口冻结 protocol=
+`81df44e9194fb194611d6ffb7f3fba6c0a3fd1d7d2c0aa1ba6be19d33f84ce87`：未来只在固定 content-selected rows 上对比
+有效 `max_prior_step`，support=`selected≥500, comparable≥400, coverage≥9/10`，aggregate=`error ratio≤1/2,
+content-only/step-only≥2`，再过匿名 task/run breadth 与 anti-dominance。
+
+关键 fail-closed 顺序是：integrity failure 优先；若 upstream Target-522 selective-parent 不是 strongest classification，则本附录
+固定报 `PRIMARY_NOT_CONFIRMED`，绝不能用 order advantage 救回；随后才判断 support/aggregate/breadth。development/forward
+不混池，无 threshold/task/population/candidate/formal-root rescue。producer/verifier 独立重建，focused tests=`30 passed`；固定
+runner 不接受 roots 参数且当前未启动，也未新增 watcher。prospective values/Target-522 profile/raw archives 未读，
+GPU/API/model-fit/base-update=`0/0/0/0`。详见
+`phase1/实验记录/2026-08-29/Target522_SelectiveParent_MaxPriorStep前瞻附录预注册.md`。
+
 ## 0IF. 2026-08-29 order-baseline falsification 发布提交已通过 fresh post-push
 
 发布 commit=`c030d362e13e1a5f1545fd4d5e743e7c98cc15ae` 在 fresh detached worktree 复核 package manifest=`25/25`、

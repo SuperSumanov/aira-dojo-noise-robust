@@ -1,0 +1,178 @@
+{
+  "protocol": "tree-content-selective-parent-forward-target522-order-addendum-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T21:19:44Z",
+  "status": "OUTCOME_BLIND_FROZEN_AFTER_DEVELOPMENT_ORDER_READOUT_BEFORE_TARGET522_CANDIDATE",
+  "question": "On the first automatically selected disjoint Target-522 increment, does the already-fixed identifier-erased content rule add recorded-parent information beyond the valid max-prior-step causal-order control?",
+  "scientific_role": "Prospective falsification addendum to the Selective Parent Recovery audit; it cannot rescue a failed upstream Target-522 primary result and is not a new lineage algorithm, semantic ancestry claim, predictor effect, or search-utility experiment.",
+  "freeze_state": {
+    "baseline_snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "baseline_runs": 435,
+    "latest_snapshot_when_frozen": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "target522_selection_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+    "target522_selection_complete_present": false,
+    "target522_candidate_seen": false,
+    "target522_increment_profile_seen": false,
+    "target522_content_result_seen": false,
+    "target522_max_prior_step_values_seen": false,
+    "target522_paired_disagreement_seen": false,
+    "target522_task_or_run_disagreement_breadth_seen": false,
+    "checked_immediately_before_freeze_at_utc": "2026-08-28T21:19:44Z"
+  },
+  "known_development_evidence": {
+    "status": "DISCLOSED_BEFORE_THIS_FORWARD_ADDENDUM",
+    "package_root": "phase1/results/selective_parent_order_baseline_falsification_887_20260829_cb74a93",
+    "package_manifest": "MANIFEST.sha256",
+    "package_manifest_sha256": "0a667d45022d6b08265268cf78cf2c91cd7ff41b45b0afe7dab0f6f4cfcaf373",
+    "formal_result": "formal/producer_a.json",
+    "formal_result_sha256": "34412b5281ceae6091536ac811b7b141edb15ba1b6043465abf8d00892927532",
+    "independent_verification": "formal/verifier_a.json",
+    "independent_verification_sha256": "a9cf85a8aeae4145d1bba12ae1de8e0641b58bdcba9143ade0c43e2a692e8509",
+    "formal_classification": "DEVELOPMENT_ORDER_BASELINE_FALSIFICATION_INTEGRITY_FAIL",
+    "valid_control": "max_prior_step",
+    "development_selected_rows": 2691,
+    "development_content_errors": 7,
+    "development_max_prior_step_errors": 492,
+    "development_content_only_correct": 488,
+    "development_step_only_correct": 3,
+    "development_conditionable_tasks": 19,
+    "development_conditionable_runs": 96,
+    "development_result_is_post_result_falsification": true,
+    "development_formal_failure_must_not_be_hidden": true
+  },
+  "upstream_target522_contract": {
+    "selection_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+    "selection_protocol": "phase1/tree_linearization_within_stratum_forward_target522_v2.json",
+    "selection_protocol_sha256": "718224d9586b45a1bf6689c2bb9dd1d6b76e7243b8ddd2267dcf94fc6ea2667f",
+    "selection_monitor": "phase1/scripts/latch_tree_within_stratum_forward_target522_20260828.sh",
+    "selection_monitor_sha256": "8cab471b3c57c07711238f19cbcc80836aa7f4450faedf6ca50d60a306d4596b",
+    "selective_protocol": "phase1/tree_content_selective_parent_forward_target522_v1.json",
+    "selective_protocol_sha256": "f3adc77b61a305f834f84df0e5668095f511de15d1c68d2d90ff0ef956c3228f",
+    "selective_producer": "phase1/audit_tree_content_selective_parent_forward_target522.py",
+    "selective_producer_sha256": "0704edfa2e8511c32ded328098f3617608f362552ac176b780691a11501130b7",
+    "selective_verifier": "phase1/verify_tree_content_selective_parent_forward_target522.py",
+    "selective_verifier_sha256": "0eaafbec14ff3058514d2d4236472f033c84c2a5476751657bf5dadca4d813c2",
+    "selective_source_commit": "349b9ca9ef84defd70e950d873564cbd8973c180",
+    "selective_formal_root": "/research/d7/spc/yzyang4/tree-content-selective-parent-forward-target522/formal-349b9ca-target522-v1",
+    "required_upstream_classification_for_positive_addendum": "FORWARD_TIME_GENERALIZED_HIGH_PRECISION_SELECTIVE_PARENT_RECOVERY",
+    "candidate_must_be_first_observed_crossing": true,
+    "manual_candidate_or_alternate_selection_root_allowed": false,
+    "upstream_result_may_be_rescued_by_this_addendum": false
+  },
+  "immutable_helpers": {
+    "producer_snapshot_loader": {
+      "path": "phase1/audit_tree_within_stratum_forward_target522.py",
+      "sha256": "8a82d1ba3ef663c1eda161d32da0ad3a119ed3d3a13e42664648fff684d986f5"
+    },
+    "independent_snapshot_loader": {
+      "path": "phase1/verify_tree_within_stratum_forward_target522.py",
+      "sha256": "be6a31f95c2c855378ce20628855ff8fbba13e772aadf5c0232b225436e57d63"
+    },
+    "producer_fingerprint": {
+      "path": "phase1/audit_prospective_fuzzy_code_clones.py",
+      "sha256": "869dd84540d785232717eef7a9f2721b9d1ed892ac0340e2bc2f940041cddbec"
+    },
+    "independent_fingerprint": {
+      "path": "phase1/verify_prospective_fuzzy_code_clones.py",
+      "sha256": "d6d1e9a7121fb2bf006e51bdd174c79a6009bbf849dd50831ce57a42567219b7"
+    }
+  },
+  "fixed_content_rule": {
+    "threshold": "1006/16929",
+    "representation": "python_token_identifier_erased_v1 exact set Jaccard",
+    "candidate_set": "fingerprint-valid endpoints in the same increment physical run at child depth minus one; recorded parent masked from ranking; at least two candidates",
+    "acceptance": "unique content top and top-minus-second margin at least 1006/16929",
+    "threshold_or_population_change_allowed": false,
+    "future_task_filtering_or_rebalancing_allowed": false
+  },
+  "max_prior_step_control": {
+    "definition": "Within the exact fixed content candidate set, retain candidates with lineage.step strictly less than child lineage.step; predict only when exactly one retained candidate has the maximum step; otherwise abstain.",
+    "recorded_parent_used_for_ranking": false,
+    "parameter_fitting_allowed": false,
+    "combination_with_content_or_threshold_tuning_allowed": false,
+    "manifest_row_or_generation_timestamp_control_has_confirmatory_authority": false
+  },
+  "primary_population": {
+    "rows": "All Target-522 increment edges accepted by the fixed content rule, irrespective of either method's correctness.",
+    "paired_comparison": "Restrict to fixed content-selected rows where max_prior_step predicts; compare content and max_prior_step correctness on exactly the same rows.",
+    "baseline_abstentions_count_as_errors": false,
+    "baseline_rows_outside_content_selected_population_in_primary_estimand": false,
+    "all_ambiguous_step_profile_is_supplementary": true,
+    "identities_or_per_edge_values_emitted": false,
+    "all_counts_and_gates_use_exact_integer_arithmetic": true
+  },
+  "hard_integrity": {
+    "complete_hash_bound_first_crossing_selection": true,
+    "complete_hash_bound_upstream_selective_formal": true,
+    "candidate_and_baseline_append_only_contract_exact": true,
+    "fixed_content_profile_exactly_matches_upstream_formal": true,
+    "recorded_parent_strictly_precedes_child_step_for_every_parent_present_increment_edge": true,
+    "candidate_set_content_threshold_and_step_rule_unchanged": true,
+    "aggregate_only_output_without_identities": true
+  },
+  "hard_support": {
+    "minimum_content_selected_rows": 500,
+    "minimum_comparable_rows": 400,
+    "minimum_comparable_coverage": "9/10",
+    "minimum_conditionable_tasks_for_strong_breadth": 8,
+    "minimum_conditionable_runs_for_strong_breadth": 30,
+    "task_minimum_discordant_rows": 5,
+    "run_minimum_discordant_rows": 2
+  },
+  "aggregate_advantage_gates": {
+    "maximum_content_to_step_error_ratio": "1/2",
+    "minimum_content_only_to_step_only_win_ratio": "2/1",
+    "step_errors_must_be_nonzero": true,
+    "zero_step_only_wins_passes_ratio_only_if_content_only_wins_positive": true
+  },
+  "breadth_gates": {
+    "minimum_task_fraction_with_more_content_only_than_step_only_wins": "3/4",
+    "minimum_run_fraction_with_more_content_only_than_step_only_wins": "3/4",
+    "maximum_single_task_discordance_contribution_share": "2/5",
+    "maximum_single_run_discordance_contribution_share": "1/5"
+  },
+  "ordered_classification": [
+    "FORWARD_CONTENT_ADDS_BROADLY_BEYOND_MAX_PRIOR_STEP",
+    "FORWARD_CONTENT_ADDS_AGGREGATELY_BUT_BREADTH_UNSUPPORTED",
+    "FORWARD_MAX_PRIOR_STEP_NOT_RULED_OUT",
+    "FORWARD_ORDER_BASELINE_SUPPORT_INSUFFICIENT",
+    "FORWARD_SELECTIVE_PARENT_PRIMARY_NOT_CONFIRMED",
+    "FORWARD_ORDER_BASELINE_ADDENDUM_INTEGRITY_FAIL"
+  ],
+  "classification_rule": "Any integrity failure is last-word fail-closed. If the upstream Target-522 selective-parent formal classification is not the required strongest status, this addendum reports PRIMARY_NOT_CONFIRMED before considering order advantage and cannot rescue it. Otherwise support failure precedes aggregate and breadth decisions. A broad positive requires all support, aggregate, task/run breadth, and anti-dominance gates; aggregate-only requires all support and aggregate gates. No same-candidate repair is allowed.",
+  "claim_boundary": {
+    "allowed_if_broad_positive": "On the first automatically selected disjoint Target-522 increment, the already-fixed identifier-erased content rule reduces recorded-parent recovery errors relative to max-prior-step on the same accepted decisions with anonymous task/run breadth, conditional on the independently confirmed upstream selective-parent primary result.",
+    "development_and_forward_rows_may_be_pooled": false,
+    "recorded_parent_is_external_semantic_or_causal_truth": false,
+    "generic_lineage_or_selective_classification_novelty_claimed": false,
+    "predictor_accuracy_effect_scaling_or_search_utility_computed": false,
+    "upstream_target522_failure_rescued": false,
+    "row_level_release_created": false
+  },
+  "verification": {
+    "producer_repetitions": 2,
+    "independent_verifier_repetitions": 2,
+    "independent_verifier_imports_new_producer": false,
+    "selection_snapshot_fingerprint_candidate_content_step_pairing_and_gates_independently_recomputed": true,
+    "focused_and_full_tests_required": true,
+    "fresh_detached_worktree_required": true,
+    "file_and_network_access_trace_required": true
+  },
+  "security": {
+    "prospective_first960_or_target300_values_read": false,
+    "target522_candidate_or_profile_read_before_freeze": false,
+    "raw_senior_archives_opened": false,
+    "task_run_card_parent_code_or_per_edge_values_emitted": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  },
+  "resources": {
+    "cpu_only": true,
+    "per_formal_command_timeout_seconds": 1800,
+    "virtual_memory_limit_gib": 32,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "failure_rule": "Unknown duplicate, selection or manifest drift, missing upstream formal, snapshot discontinuity, step-schema violation, aggregate mismatch, support failure, security hit, or verifier disagreement fails closed. Do not modify or restart the existing selection or selective-parent watchers, and do not choose an alternate candidate or formal root."
+}

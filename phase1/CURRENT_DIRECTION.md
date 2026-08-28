@@ -38,6 +38,12 @@ v4 无效 parser receipt 均保留并撤回；生成器源码确认 canonical ta
 taxonomy、阈值和分类顺序未改。该结论不证明 predictor effect/scaling/search utility，不授权 row-level release；
 GPU/API/model-fit/base-update=`0/0/0/0`，prospective values/raw archives 未读。
 
+发布 commit=`7e625c603c8c47f433af2967f66c5a7c4b82ba0f` 随后通过 fresh detached post-push：package manifest=
+`16/16`、focused/full=`13/1488 passed`，producer/verifier 与正式 A 结果逐字节相等，forbidden opens/network 与
+credential filename/content=`0/0/0/0`；post-push manifest=
+`4fba37aa41c7563d49b9226d80b9ecb814125972507a317992e3d79b1db0daa4`。详见
+`phase1/实验记录/2026-08-29/DecisionCorpusLineageAudit_v2_PostPush回执.md`。
+
 ## 0HX. 2026-08-29 Decision-Corpus Audit Protocol v2 已在 lineage readout 前冻结
 
 8 月 14 日的 v1 已认证九个 v11 decision sets 的 endpoint 同 physical run、可映射 parent 不跨 run，以及同 budget

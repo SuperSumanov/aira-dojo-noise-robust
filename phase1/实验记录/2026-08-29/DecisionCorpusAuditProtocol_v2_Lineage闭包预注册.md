@@ -104,3 +104,7 @@ focused/full=`13/1488 passed`（47 warnings），forbidden opens/network=`0/0`�
 仍受同一 schema parser 错误影响，其 integrity-fail 结论撤回。生成器源码明确 pair task 来源为
 `card["task"]["name"]`；最终 producer/verifier 按这个既有 schema 修复并新增 nested-task 等价测试。协议、人口、taxonomy、
 门槛与分类顺序从未改动，v5 为唯一权威 scientific readout。
+
+发布 commit=`7e625c603c8c47f433af2967f66c5a7c4b82ba0f` 的 fresh detached post-push 又完成 package manifest
+`16/16`、focused/full=`13/1488 passed` 与 producer/verifier exact replay；forbidden/network/credential=
+`0/0/0/0`，post-push manifest=`4fba37aa41c7563d49b9226d80b9ecb814125972507a317992e3d79b1db0daa4`。

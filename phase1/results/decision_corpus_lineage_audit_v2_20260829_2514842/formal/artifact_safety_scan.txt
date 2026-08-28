@@ -1,0 +1,2 @@
+filename_secret_hits=0
+credential_content_hits=0

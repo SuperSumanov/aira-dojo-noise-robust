@@ -1,0 +1,853 @@
+{
+  "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+  "protocol": "decision-corpus-lineage-audit-v2-receipt",
+  "protocol_sha256": "ef3aefd1534fb76d7d0a05d0fc4f4b4cbe02ceac8b183acea635b2b9c8d3c88a",
+  "provenance": {
+    "input_hash_mode": "normalized_utf8_lf_v1",
+    "producer_script_sha256": "0616e11b0d165e71ed916df61b9da529fc4a091a740d3da4d328801ac231aaa7",
+    "source_commit": "25148420ee457018a1ee3740c4a1c42da830610d"
+  },
+  "scientific": {
+    "card_inventory": {
+      "cards": 16012,
+      "orphan_parent_references": 6181,
+      "physical_runs": 667,
+      "present_parent_edges": 9831,
+      "tasks": 25
+    },
+    "global_relation_counts": {
+      "cross_run_declared_context": 0,
+      "lineage_verified_orphan_parent_sibling": 528,
+      "parent_present_verified_direct_sibling": 7579,
+      "same_run_declared_context_non_sibling": 0
+    },
+    "hard_integrity_gate_count": {
+      "passed": 15,
+      "total": 15
+    },
+    "hard_integrity_gates": {
+      "all_input_hashes_and_v1_dependencies_exact": true,
+      "all_pair_endpoints_known_and_row_task_run_split_budget_consistent": true,
+      "card_ids_unique_and_run_map_exact": true,
+      "present_lineage_parents_share_task_and_physical_run": true,
+      "producer_emits_aggregate_only_without_row_identities": true,
+      "same_budget_strict_core_train_frozen_endpoint_overlap_zero": true,
+      "same_budget_strict_core_train_frozen_pair_overlap_zero": true,
+      "same_budget_strict_core_train_frozen_parent_overlap_zero": true,
+      "same_budget_strict_core_train_frozen_referenced_run_overlap_zero": true,
+      "strict_core_all_endpoints_are_direct_children_of_declared_parent": true,
+      "strict_core_all_parent_endpoint_contexts_match": true,
+      "strict_core_and_quarantine_exhaustive_and_disjoint": true,
+      "taxonomy_exhaustive_and_mutually_exclusive": true,
+      "v1_set_counts_and_same_budget_overlap_exactly_reproduced": true,
+      "within_set_unordered_duplicates_and_orientation_conflicts_zero": true
+    },
+    "same_budget_all_row_train_frozen_overlap": {
+      "b0": {
+        "endpoints": 0,
+        "parents": 0,
+        "referenced_physical_runs": 0,
+        "unordered_pairs": 0
+      },
+      "b1": {
+        "endpoints": 0,
+        "parents": 0,
+        "referenced_physical_runs": 0,
+        "unordered_pairs": 0
+      },
+      "b2": {
+        "endpoints": 0,
+        "parents": 0,
+        "referenced_physical_runs": 0,
+        "unordered_pairs": 0
+      }
+    },
+    "same_budget_strict_core_train_frozen_overlap": {
+      "b0": {
+        "endpoints": 0,
+        "parents": 0,
+        "referenced_physical_runs": 0,
+        "unordered_pairs": 0
+      },
+      "b1": {
+        "endpoints": 0,
+        "parents": 0,
+        "referenced_physical_runs": 0,
+        "unordered_pairs": 0
+      },
+      "b2": {
+        "endpoints": 0,
+        "parents": 0,
+        "referenced_physical_runs": 0,
+        "unordered_pairs": 0
+      }
+    },
+    "set_profiles": {
+      "extension:b0": {
+        "all_rows": {
+          "components": 114,
+          "duplicate_or_reverse_unordered_pair_rows": 0,
+          "endpoints": 239,
+          "mapped_parent_choice_sets": 109,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.27941176470588236",
+            "denominator": 68,
+            "numerator": 19
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.44117647058823528",
+            "denominator": 34,
+            "numerator": 15
+          },
+          "pairs": 136,
+          "parents": 114,
+          "physical_runs": 15,
+          "row_context_violation_counts": {
+            "budget_mismatch": 0,
+            "declared_run_mismatch": 0,
+            "endpoint_card_task_disagreement": 0,
+            "row_task_mismatch": 0,
+            "split_mismatch": 0
+          },
+          "tasks": 10
+        },
+        "quarantine_rows": 9,
+        "relation_counts": {
+          "cross_run_declared_context": 0,
+          "lineage_verified_orphan_parent_sibling": 9,
+          "parent_present_verified_direct_sibling": 127,
+          "same_run_declared_context_non_sibling": 0
+        },
+        "relation_identity_fingerprint_sha256": "4c71011d89f174cd696bdf11910a8d44ba27c4122629ec2ff8fa5d8b38768878",
+        "strict_core": {
+          "components": 109,
+          "endpoints": 227,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.29921259842519687",
+            "denominator": 127,
+            "numerator": 38
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.44094488188976377",
+            "denominator": 127,
+            "numerator": 56
+          },
+          "pairs": 127,
+          "parents": 109,
+          "physical_runs": 14,
+          "tasks": 10
+        },
+        "strict_core_identity_fingerprint_sha256": "2f51f8ef6e7bfbd91e95adfa5d0ce7599bf9e2125a9e95b84267511f318b4b4b",
+        "strict_core_retention": {
+          "endpoints": {
+            "decimal_17g": "0.94979079497907948",
+            "denominator": 239,
+            "numerator": 227
+          },
+          "pairs": {
+            "decimal_17g": "0.93382352941176472",
+            "denominator": 136,
+            "numerator": 127
+          },
+          "physical_runs": {
+            "decimal_17g": "0.93333333333333335",
+            "denominator": 15,
+            "numerator": 14
+          },
+          "tasks": {
+            "decimal_17g": "1",
+            "denominator": 1,
+            "numerator": 1
+          }
+        }
+      },
+      "extension:b1": {
+        "all_rows": {
+          "components": 37,
+          "duplicate_or_reverse_unordered_pair_rows": 0,
+          "endpoints": 75,
+          "mapped_parent_choice_sets": 35,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.4358974358974359",
+            "denominator": 39,
+            "numerator": 17
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.64102564102564108",
+            "denominator": 39,
+            "numerator": 25
+          },
+          "pairs": 39,
+          "parents": 37,
+          "physical_runs": 10,
+          "row_context_violation_counts": {
+            "budget_mismatch": 0,
+            "declared_run_mismatch": 0,
+            "endpoint_card_task_disagreement": 0,
+            "row_task_mismatch": 0,
+            "split_mismatch": 0
+          },
+          "tasks": 7
+        },
+        "quarantine_rows": 2,
+        "relation_counts": {
+          "cross_run_declared_context": 0,
+          "lineage_verified_orphan_parent_sibling": 2,
+          "parent_present_verified_direct_sibling": 37,
+          "same_run_declared_context_non_sibling": 0
+        },
+        "relation_identity_fingerprint_sha256": "98639508a4fab866e2c806ba90c25f0919a777e0ad8fd8eee3604b14c051e694",
+        "strict_core": {
+          "components": 35,
+          "endpoints": 71,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.45945945945945948",
+            "denominator": 37,
+            "numerator": 17
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.64864864864864868",
+            "denominator": 37,
+            "numerator": 24
+          },
+          "pairs": 37,
+          "parents": 35,
+          "physical_runs": 9,
+          "tasks": 6
+        },
+        "strict_core_identity_fingerprint_sha256": "8ec729e5b5f2f93f7b06453a8365596ceda3e7019ddb1edae38c79fcc0be4636",
+        "strict_core_retention": {
+          "endpoints": {
+            "decimal_17g": "0.94666666666666666",
+            "denominator": 75,
+            "numerator": 71
+          },
+          "pairs": {
+            "decimal_17g": "0.94871794871794868",
+            "denominator": 39,
+            "numerator": 37
+          },
+          "physical_runs": {
+            "decimal_17g": "0.90000000000000002",
+            "denominator": 10,
+            "numerator": 9
+          },
+          "tasks": {
+            "decimal_17g": "0.8571428571428571",
+            "denominator": 7,
+            "numerator": 6
+          }
+        }
+      },
+      "extension:b2": {
+        "all_rows": {
+          "components": 28,
+          "duplicate_or_reverse_unordered_pair_rows": 0,
+          "endpoints": 57,
+          "mapped_parent_choice_sets": 27,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.5",
+            "denominator": 2,
+            "numerator": 1
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.66666666666666663",
+            "denominator": 3,
+            "numerator": 2
+          },
+          "pairs": 30,
+          "parents": 28,
+          "physical_runs": 6,
+          "row_context_violation_counts": {
+            "budget_mismatch": 0,
+            "declared_run_mismatch": 0,
+            "endpoint_card_task_disagreement": 0,
+            "row_task_mismatch": 0,
+            "split_mismatch": 0
+          },
+          "tasks": 4
+        },
+        "quarantine_rows": 1,
+        "relation_counts": {
+          "cross_run_declared_context": 0,
+          "lineage_verified_orphan_parent_sibling": 1,
+          "parent_present_verified_direct_sibling": 29,
+          "same_run_declared_context_non_sibling": 0
+        },
+        "relation_identity_fingerprint_sha256": "60ba52d8de923f1aedaf0f82f97944f9d8e849299469f0a521e4ce19976594eb",
+        "strict_core": {
+          "components": 27,
+          "endpoints": 55,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.51724137931034486",
+            "denominator": 29,
+            "numerator": 15
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.65517241379310343",
+            "denominator": 29,
+            "numerator": 19
+          },
+          "pairs": 29,
+          "parents": 27,
+          "physical_runs": 6,
+          "tasks": 4
+        },
+        "strict_core_identity_fingerprint_sha256": "211fe94866aedbea2d6eb57b774c28c155646fc2c7e5fc21cb5489313bd40972",
+        "strict_core_retention": {
+          "endpoints": {
+            "decimal_17g": "0.96491228070175439",
+            "denominator": 57,
+            "numerator": 55
+          },
+          "pairs": {
+            "decimal_17g": "0.96666666666666667",
+            "denominator": 30,
+            "numerator": 29
+          },
+          "physical_runs": {
+            "decimal_17g": "1",
+            "denominator": 1,
+            "numerator": 1
+          },
+          "tasks": {
+            "decimal_17g": "1",
+            "denominator": 1,
+            "numerator": 1
+          }
+        }
+      },
+      "frozen:b0": {
+        "all_rows": {
+          "components": 845,
+          "duplicate_or_reverse_unordered_pair_rows": 0,
+          "endpoints": 2022,
+          "mapped_parent_choice_sets": 806,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.17890520694259013",
+            "denominator": 749,
+            "numerator": 134
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.40720961281708945",
+            "denominator": 749,
+            "numerator": 305
+          },
+          "pairs": 1498,
+          "parents": 845,
+          "physical_runs": 92,
+          "row_context_violation_counts": {
+            "budget_mismatch": 0,
+            "declared_run_mismatch": 0,
+            "endpoint_card_task_disagreement": 0,
+            "row_task_mismatch": 0,
+            "split_mismatch": 0
+          },
+          "tasks": 22
+        },
+        "quarantine_rows": 74,
+        "relation_counts": {
+          "cross_run_declared_context": 0,
+          "lineage_verified_orphan_parent_sibling": 74,
+          "parent_present_verified_direct_sibling": 1424,
+          "same_run_declared_context_non_sibling": 0
+        },
+        "relation_identity_fingerprint_sha256": "bdfe76fbfe0ac0d2c49de8f0e6dcd92129321d643b6d200aca414ad26ba1d14c",
+        "strict_core": {
+          "components": 806,
+          "endpoints": 1929,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.18820224719101122",
+            "denominator": 356,
+            "numerator": 67
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.425561797752809",
+            "denominator": 712,
+            "numerator": 303
+          },
+          "pairs": 1424,
+          "parents": 806,
+          "physical_runs": 83,
+          "tasks": 21
+        },
+        "strict_core_identity_fingerprint_sha256": "a493eed3565ed8ffb4cb83a2c714c13356b978289be7f8ac578a25a34e321d38",
+        "strict_core_retention": {
+          "endpoints": {
+            "decimal_17g": "0.95400593471810091",
+            "denominator": 674,
+            "numerator": 643
+          },
+          "pairs": {
+            "decimal_17g": "0.95060080106809075",
+            "denominator": 749,
+            "numerator": 712
+          },
+          "physical_runs": {
+            "decimal_17g": "0.90217391304347827",
+            "denominator": 92,
+            "numerator": 83
+          },
+          "tasks": {
+            "decimal_17g": "0.95454545454545459",
+            "denominator": 22,
+            "numerator": 21
+          }
+        }
+      },
+      "frozen:b1": {
+        "all_rows": {
+          "components": 229,
+          "duplicate_or_reverse_unordered_pair_rows": 0,
+          "endpoints": 507,
+          "mapped_parent_choice_sets": 222,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.1826625386996904",
+            "denominator": 323,
+            "numerator": 59
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.4024767801857585",
+            "denominator": 323,
+            "numerator": 130
+          },
+          "pairs": 323,
+          "parents": 229,
+          "physical_runs": 42,
+          "row_context_violation_counts": {
+            "budget_mismatch": 0,
+            "declared_run_mismatch": 0,
+            "endpoint_card_task_disagreement": 0,
+            "row_task_mismatch": 0,
+            "split_mismatch": 0
+          },
+          "tasks": 20
+        },
+        "quarantine_rows": 12,
+        "relation_counts": {
+          "cross_run_declared_context": 0,
+          "lineage_verified_orphan_parent_sibling": 12,
+          "parent_present_verified_direct_sibling": 311,
+          "same_run_declared_context_non_sibling": 0
+        },
+        "relation_identity_fingerprint_sha256": "31cee63eb67aaf19edc1e0039faaf5d793fbefbb7432766668a5b9514f172c99",
+        "strict_core": {
+          "components": 222,
+          "endpoints": 491,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.18649517684887459",
+            "denominator": 311,
+            "numerator": 58
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.41800643086816719",
+            "denominator": 311,
+            "numerator": 130
+          },
+          "pairs": 311,
+          "parents": 222,
+          "physical_runs": 39,
+          "tasks": 18
+        },
+        "strict_core_identity_fingerprint_sha256": "c11bc1d323ee061f76bd82a8ac436ca6c604990c09620625d26adfbaca2882b5",
+        "strict_core_retention": {
+          "endpoints": {
+            "decimal_17g": "0.9684418145956607",
+            "denominator": 507,
+            "numerator": 491
+          },
+          "pairs": {
+            "decimal_17g": "0.96284829721362231",
+            "denominator": 323,
+            "numerator": 311
+          },
+          "physical_runs": {
+            "decimal_17g": "0.9285714285714286",
+            "denominator": 14,
+            "numerator": 13
+          },
+          "tasks": {
+            "decimal_17g": "0.90000000000000002",
+            "denominator": 10,
+            "numerator": 9
+          }
+        }
+      },
+      "frozen:b2": {
+        "all_rows": {
+          "components": 180,
+          "duplicate_or_reverse_unordered_pair_rows": 0,
+          "endpoints": 404,
+          "mapped_parent_choice_sets": 174,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.19622641509433963",
+            "denominator": 265,
+            "numerator": 52
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.45660377358490567",
+            "denominator": 265,
+            "numerator": 121
+          },
+          "pairs": 265,
+          "parents": 180,
+          "physical_runs": 27,
+          "row_context_violation_counts": {
+            "budget_mismatch": 0,
+            "declared_run_mismatch": 0,
+            "endpoint_card_task_disagreement": 0,
+            "row_task_mismatch": 0,
+            "split_mismatch": 0
+          },
+          "tasks": 17
+        },
+        "quarantine_rows": 11,
+        "relation_counts": {
+          "cross_run_declared_context": 0,
+          "lineage_verified_orphan_parent_sibling": 11,
+          "parent_present_verified_direct_sibling": 254,
+          "same_run_declared_context_non_sibling": 0
+        },
+        "relation_identity_fingerprint_sha256": "31cc3d27264232e190c51d757abe7e0add7f8c67973bbefe4f74ce73b0b7f57d",
+        "strict_core": {
+          "components": 174,
+          "endpoints": 390,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.20472440944881889",
+            "denominator": 127,
+            "numerator": 26
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.4763779527559055",
+            "denominator": 254,
+            "numerator": 121
+          },
+          "pairs": 254,
+          "parents": 174,
+          "physical_runs": 25,
+          "tasks": 15
+        },
+        "strict_core_identity_fingerprint_sha256": "c0cbba6e4bc62dffb63a74e0fede4b190ff7b5373802f9f8f1b28d875065bf34",
+        "strict_core_retention": {
+          "endpoints": {
+            "decimal_17g": "0.96534653465346532",
+            "denominator": 202,
+            "numerator": 195
+          },
+          "pairs": {
+            "decimal_17g": "0.95849056603773586",
+            "denominator": 265,
+            "numerator": 254
+          },
+          "physical_runs": {
+            "decimal_17g": "0.92592592592592593",
+            "denominator": 27,
+            "numerator": 25
+          },
+          "tasks": {
+            "decimal_17g": "0.88235294117647056",
+            "denominator": 17,
+            "numerator": 15
+          }
+        }
+      },
+      "train:b0": {
+        "all_rows": {
+          "components": 2293,
+          "duplicate_or_reverse_unordered_pair_rows": 0,
+          "endpoints": 5499,
+          "mapped_parent_choice_sets": 2134,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.068027210884353748",
+            "denominator": 147,
+            "numerator": 10
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.21111893033075299",
+            "denominator": 1421,
+            "numerator": 300
+          },
+          "pairs": 4263,
+          "parents": 2293,
+          "physical_runs": 333,
+          "row_context_violation_counts": {
+            "budget_mismatch": 0,
+            "declared_run_mismatch": 0,
+            "endpoint_card_task_disagreement": 0,
+            "row_task_mismatch": 0,
+            "split_mismatch": 0
+          },
+          "tasks": 23
+        },
+        "quarantine_rows": 315,
+        "relation_counts": {
+          "cross_run_declared_context": 0,
+          "lineage_verified_orphan_parent_sibling": 315,
+          "parent_present_verified_direct_sibling": 3948,
+          "same_run_declared_context_non_sibling": 0
+        },
+        "relation_identity_fingerprint_sha256": "234126ac47c439715fc79c74229f04a8b9072a90ee95ae1591e6c448110fda8e",
+        "strict_core": {
+          "components": 2134,
+          "endpoints": 5114,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.073454913880445796",
+            "denominator": 1974,
+            "numerator": 145
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.21884498480243161",
+            "denominator": 329,
+            "numerator": 72
+          },
+          "pairs": 3948,
+          "parents": 2134,
+          "physical_runs": 280,
+          "tasks": 23
+        },
+        "strict_core_identity_fingerprint_sha256": "c5b0dc36afc4fff6a8b67f97648627aed28b4377e1706cfbc0f18df4c2666481",
+        "strict_core_retention": {
+          "endpoints": {
+            "decimal_17g": "0.92998727041280238",
+            "denominator": 5499,
+            "numerator": 5114
+          },
+          "pairs": {
+            "decimal_17g": "0.92610837438423643",
+            "denominator": 203,
+            "numerator": 188
+          },
+          "physical_runs": {
+            "decimal_17g": "0.84084084084084088",
+            "denominator": 333,
+            "numerator": 280
+          },
+          "tasks": {
+            "decimal_17g": "1",
+            "denominator": 1,
+            "numerator": 1
+          }
+        }
+      },
+      "train:b1": {
+        "all_rows": {
+          "components": 597,
+          "duplicate_or_reverse_unordered_pair_rows": 0,
+          "endpoints": 1325,
+          "mapped_parent_choice_sets": 557,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.081300813008130079",
+            "denominator": 123,
+            "numerator": 10
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.23693379790940766",
+            "denominator": 287,
+            "numerator": 68
+          },
+          "pairs": 861,
+          "parents": 597,
+          "physical_runs": 140,
+          "row_context_violation_counts": {
+            "budget_mismatch": 0,
+            "declared_run_mismatch": 0,
+            "endpoint_card_task_disagreement": 0,
+            "row_task_mismatch": 0,
+            "split_mismatch": 0
+          },
+          "tasks": 22
+        },
+        "quarantine_rows": 62,
+        "relation_counts": {
+          "cross_run_declared_context": 0,
+          "lineage_verified_orphan_parent_sibling": 62,
+          "parent_present_verified_direct_sibling": 799,
+          "same_run_declared_context_non_sibling": 0
+        },
+        "relation_identity_fingerprint_sha256": "44ff7abed16a454273b842894b22d4bec48ff92da64a52e9cf477eb092baa827",
+        "strict_core": {
+          "components": 557,
+          "endpoints": 1235,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.087609511889862324",
+            "denominator": 799,
+            "numerator": 70
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.25031289111389238",
+            "denominator": 799,
+            "numerator": 200
+          },
+          "pairs": 799,
+          "parents": 557,
+          "physical_runs": 130,
+          "tasks": 21
+        },
+        "strict_core_identity_fingerprint_sha256": "948c5c7a8fa6c2ba754564e9e194e07b3a6c245e079c1217e22301be63561f76",
+        "strict_core_retention": {
+          "endpoints": {
+            "decimal_17g": "0.93207547169811322",
+            "denominator": 265,
+            "numerator": 247
+          },
+          "pairs": {
+            "decimal_17g": "0.92799070847851339",
+            "denominator": 861,
+            "numerator": 799
+          },
+          "physical_runs": {
+            "decimal_17g": "0.9285714285714286",
+            "denominator": 14,
+            "numerator": 13
+          },
+          "tasks": {
+            "decimal_17g": "0.95454545454545459",
+            "denominator": 22,
+            "numerator": 21
+          }
+        }
+      },
+      "train:b2": {
+        "all_rows": {
+          "components": 466,
+          "duplicate_or_reverse_unordered_pair_rows": 0,
+          "endpoints": 1044,
+          "mapped_parent_choice_sets": 435,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.10115606936416185",
+            "denominator": 346,
+            "numerator": 35
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.27167630057803466",
+            "denominator": 173,
+            "numerator": 47
+          },
+          "pairs": 692,
+          "parents": 466,
+          "physical_runs": 105,
+          "row_context_violation_counts": {
+            "budget_mismatch": 0,
+            "declared_run_mismatch": 0,
+            "endpoint_card_task_disagreement": 0,
+            "row_task_mismatch": 0,
+            "split_mismatch": 0
+          },
+          "tasks": 21
+        },
+        "quarantine_rows": 42,
+        "relation_counts": {
+          "cross_run_declared_context": 0,
+          "lineage_verified_orphan_parent_sibling": 42,
+          "parent_present_verified_direct_sibling": 650,
+          "same_run_declared_context_non_sibling": 0
+        },
+        "relation_identity_fingerprint_sha256": "51e328eee45ee3fa8258aed5a481e382106301cec491b2da31be9aa68e802ffc",
+        "strict_core": {
+          "components": 435,
+          "endpoints": 977,
+          "maximum_single_run_pair_share": {
+            "decimal_17g": "0.1076923076923077",
+            "denominator": 65,
+            "numerator": 7
+          },
+          "maximum_single_task_pair_share": {
+            "decimal_17g": "0.28769230769230769",
+            "denominator": 650,
+            "numerator": 187
+          },
+          "pairs": 650,
+          "parents": 435,
+          "physical_runs": 95,
+          "tasks": 21
+        },
+        "strict_core_identity_fingerprint_sha256": "4c87eb77134763182208cb15c2d187014262292daa6fba424e4712242b650a8a",
+        "strict_core_retention": {
+          "endpoints": {
+            "decimal_17g": "0.93582375478927204",
+            "denominator": 1044,
+            "numerator": 977
+          },
+          "pairs": {
+            "decimal_17g": "0.93930635838150289",
+            "denominator": 346,
+            "numerator": 325
+          },
+          "physical_runs": {
+            "decimal_17g": "0.90476190476190477",
+            "denominator": 21,
+            "numerator": 19
+          },
+          "tasks": {
+            "decimal_17g": "1",
+            "denominator": 1,
+            "numerator": 1
+          }
+        }
+      }
+    },
+    "support_gate_count": {
+      "passed": 35,
+      "total": 36
+    },
+    "support_gates": {
+      "frozen:b0": {
+        "maximum_single_run_pair_share": true,
+        "maximum_single_task_pair_share": true,
+        "minimum_strict_core_endpoint_retention": true,
+        "minimum_strict_core_pair_retention": true,
+        "minimum_strict_core_run_retention": true,
+        "minimum_strict_core_task_retention": true
+      },
+      "frozen:b1": {
+        "maximum_single_run_pair_share": true,
+        "maximum_single_task_pair_share": true,
+        "minimum_strict_core_endpoint_retention": true,
+        "minimum_strict_core_pair_retention": true,
+        "minimum_strict_core_run_retention": true,
+        "minimum_strict_core_task_retention": true
+      },
+      "frozen:b2": {
+        "maximum_single_run_pair_share": false,
+        "maximum_single_task_pair_share": true,
+        "minimum_strict_core_endpoint_retention": true,
+        "minimum_strict_core_pair_retention": true,
+        "minimum_strict_core_run_retention": true,
+        "minimum_strict_core_task_retention": true
+      },
+      "train:b0": {
+        "maximum_single_run_pair_share": true,
+        "maximum_single_task_pair_share": true,
+        "minimum_strict_core_endpoint_retention": true,
+        "minimum_strict_core_pair_retention": true,
+        "minimum_strict_core_run_retention": true,
+        "minimum_strict_core_task_retention": true
+      },
+      "train:b1": {
+        "maximum_single_run_pair_share": true,
+        "maximum_single_task_pair_share": true,
+        "minimum_strict_core_endpoint_retention": true,
+        "minimum_strict_core_pair_retention": true,
+        "minimum_strict_core_run_retention": true,
+        "minimum_strict_core_task_retention": true
+      },
+      "train:b2": {
+        "maximum_single_run_pair_share": true,
+        "maximum_single_task_pair_share": true,
+        "minimum_strict_core_endpoint_retention": true,
+        "minimum_strict_core_pair_retention": true,
+        "minimum_strict_core_run_retention": true,
+        "minimum_strict_core_task_retention": true
+      }
+    }
+  },
+  "scope": {
+    "gpu_api_model_fit_base_update": "0/0/0/0",
+    "grade_gap_label_prediction_accuracy_or_utility_used": false,
+    "pair_orientation_used": false,
+    "prospective_values_read": false,
+    "raw_senior_archives_read": false,
+    "row_level_release_created": false
+  },
+  "status": "HISTORICAL_V11_LINEAGE_AUDIT_COMPLETE"
+}

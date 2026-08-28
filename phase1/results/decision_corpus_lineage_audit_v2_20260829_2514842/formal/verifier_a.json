@@ -1,0 +1,21 @@
+{
+  "all_aggregate_fields_equal": true,
+  "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+  "hard_integrity_gate_count": {
+    "passed": 15,
+    "total": 15
+  },
+  "imports_producer": false,
+  "producer_result_sha256": "23e9a8139be60ee4c34d3c44eda9afaed3034a68f6749ebcb0555c10a15f0032",
+  "producer_script_sha256": "0616e11b0d165e71ed916df61b9da529fc4a091a740d3da4d328801ac231aaa7",
+  "prospective_values_read": false,
+  "protocol": "independent-decision-corpus-lineage-audit-v2-verification",
+  "protocol_sha256": "ef3aefd1534fb76d7d0a05d0fc4f4b4cbe02ceac8b183acea635b2b9c8d3c88a",
+  "row_level_release_created": false,
+  "status": "INDEPENDENTLY_VERIFIED_DECISION_CORPUS_LINEAGE_AUDIT_V2",
+  "support_gate_count": {
+    "passed": 35,
+    "total": 36
+  },
+  "verifier_script_sha256": "dd73f0e49a4361aa63077da5ed6d15917c78b64339636d0fa07acc8ec222cc83"
+}

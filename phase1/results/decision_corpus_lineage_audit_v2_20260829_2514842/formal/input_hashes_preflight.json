@@ -1,0 +1,19 @@
+{
+  "count": 13,
+  "hashes": {
+    "cards": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "extension:b0": "2facb5a1cb192640229395b9befe4a824bd1e5f1477a2da61eb653d3a6c1ca9c",
+    "extension:b1": "f74b4f04b8e2ac07fee86fae5f552cc6125b71c29e181d928d1077d2479898c2",
+    "extension:b2": "3ee35f5e79cb2169f105ed8b0480f274d68a24c15bf409b3bea020e2a839519c",
+    "frozen:b0": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8",
+    "frozen:b1": "a56f6c7bd6aad141fdaa45f3f30f944062e8dea922eefc03e75bc8b415e7bc90",
+    "frozen:b2": "79d4694d4cea5a81a04c9d463b5c6599a559bbf867f34205fa5715b054f10bc7",
+    "run_map": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30",
+    "train:b0": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+    "train:b1": "5053bb3825c5d6a420491cdb056594b306b4850c2b3c179361031becade5d528",
+    "train:b2": "f0cb83c41b1e45d198384726194b3a2bd013132957d71aa2d81aea318dd7c881",
+    "v1_audit_card": "a3b5e12cbe280909300d83d54a326c06c736cfb59f2f6762cb5518720393b399",
+    "v1_independent_verification": "63497b5faccc6657cbf58be885a12548c6b16ec15a19cb598c02bb2192ef4a92"
+  },
+  "status": "ALL_FROZEN_INPUT_HASHES_EXACT"
+}

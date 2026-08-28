@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
+02_goal=verify declared-parent lineage and deterministic parent-complete sibling quarantine for historical v11; PASS
+03_population=exact Cards run map nine pair sets and published v1 receipts bound by normalized-LF SHA; PASS
+04_known_before=v1 counts breadth mapped-parent counts and all-row overlap known, lineage taxonomy core support and fingerprints unseen; PASS
+05_estimand=historical structural relation validity and strict-core quarantine feasibility, not predictor performance; PASS
+06_variable=only Card lineage parent closure is added, with population budget split and orientation fixed; PASS
+07_leakage=no prospective first960 target300 label outcome grade prediction accuracy utility or raw senior archive access; PASS
+08_thresholds=four relation classes 15 hard gates six support gates and classification order frozen before readout; PASS
+09_units=pair endpoint parent physical-run task and component, exact integer ratios without stochastic inference; PASS
+10_resources=CPU only and one-thread caps, GPU API model-fit base-update 0/0/0/0; PASS
+11_repro=public source commit exact source and input hashes two hash seeds fresh detached worktree and independent verifier; PASS
+12_artifacts=aggregate JSON verification tests traces scope receipt and manifest, no row-level release; PASS
+13_stop=hash schema context duplicate overlap leakage network or verifier mismatch fails closed without threshold rescue; PASS

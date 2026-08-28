@@ -13,6 +13,31 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HY. 2026-08-29 v11 全部 lineage-direct sibling 正式认证；parent-complete core 总门仅一项小样本集中度失败
+
+0HX 的冻结 protocol 在 exact public commit=`25148420ee457018a1ee3740c4a1c42da830610d` 上完成 fresh detached
+formal，分类必须保持为 **`HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT`**。15/15 hard gates
+全部通过：九个 set 共 8,107 行全部为 lineage-direct siblings，其中 parent-present strict core=`7579`，parent Card 被
+裁剪但 endpoint lineage 可证的 orphan tier=`528`，same-run non-sibling/cross-run=`0/0`。row task/run/split/budget
+violation、duplicate/reverse conflict 均为 0；同 budget train/frozen 在 unordered pair、endpoint、parent 与包含 parent
+的 referenced physical run 四层 overlap 全为 0。
+
+36 个 support gates 过 35 个。唯一失败是最小的 `frozen:b2`：strict core 最大单 run share=
+`52/254=26/127=0.20472440944881889`，略高于预注册上限 `1/5`，故不得事后升级总分类。其余五个 primary sets 全部
+六门通过；既有 headline `frozen:b0` 的 strict core=`1424/1498` pairs、`21/22` tasks、`83/92` runs、
+`1929/2022` endpoints，最大单 run share=`67/356=0.18820224719101122`，全部过门。三个 frozen budgets 合计 core=
+`1989/2086=0.95349952061361454`；全九 set core=`7579/8107=0.93487109905020349`。因此可守正贡献是：v11 不是
+same-run proxy corpus，而是 lineage-direct sibling corpus；parent-complete curated view 的主要代价约 6.5%，b0/b1
+支持宽度充分，b2 必须显式标为小样本/单 run 轻微集中，不得隐藏。
+
+producer/verifier A/B 各自逐字节一致，独立 verifier 不 import producer并逐字段相等；focused/full=
+`13/1488 passed`（47 warnings），forbidden opens/network/credential filename/content=`0/0/0/0`，remote manifest=
+`117678f333d2f053e2cc29aa8ca1e34238a39e52df5444bdd491e4d0ea9d36e4`。正式包见
+`phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/`。v1 输入 root 失败、v2/v3 nested-task parser crash 与
+v4 无效 parser receipt 均保留并撤回；生成器源码确认 canonical task 是 `card["task"]["name"]`，协议、population、
+taxonomy、阈值和分类顺序未改。该结论不证明 predictor effect/scaling/search utility，不授权 row-level release；
+GPU/API/model-fit/base-update=`0/0/0/0`，prospective values/raw archives 未读。
+
 ## 0HX. 2026-08-29 Decision-Corpus Audit Protocol v2 已在 lineage readout 前冻结
 
 8 月 14 日的 v1 已认证九个 v11 decision sets 的 endpoint 同 physical run、可映射 parent 不跨 run，以及同 budget

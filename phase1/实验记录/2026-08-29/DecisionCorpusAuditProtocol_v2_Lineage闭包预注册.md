@@ -78,5 +78,29 @@ sibling curated view 与 lineage-only orphan tier 明确分开。正文不得写
 
 ## 6. 当前状态
 
-本文件与机器协议仅完成结果前冻结；尚未运行真实 lineage readout。后续实现不得改变 population、class definition、
-retention/concentration 门或分类顺序。
+本文件与机器协议先在结果前完成冻结；population、class definition、retention/concentration 门与分类顺序均未在结果后
+改变。正式结果与实现更正链见下节。
+
+## 7. 正式结果（结果后追加）
+
+权威 source commit=`25148420ee457018a1ee3740c4a1c42da830610d`，fresh detached formal root=
+`/research/d7/spc/yzyang4/decision-corpus-lineage-audit-v2/formal-2514842-v5`。分类为
+**`HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT`**：15/15 hard gates 全过，36 个 support gates
+过 35 个。8,107 行全部为 lineage-direct sibling；parent-present strict core=`7579`，orphan-parent tier=`528`，
+same-run non-sibling/cross-run=`0/0`。四层同 budget train/frozen overlap、duplicate/reverse 与 row metadata violation 全为 0。
+
+唯一失败门是 `frozen:b2` strict core 最大单 run share=`52/254=26/127=0.20472440944881889`，超过冻结上限
+`1/5`，故不得升级总分类。其余五个 primary sets 全部 support 过门；既有 headline `frozen:b0` strict core=
+`1424/1498` pairs、`21/22` tasks、`83/92` runs、`1929/2022` endpoints，最大单 run share=
+`67/356=0.18820224719101122`。producer/verifier A/B 各自逐字节一致，独立 verifier 不 import producer且逐字段相等；
+focused/full=`13/1488 passed`（47 warnings），forbidden opens/network=`0/0`，formal manifest=
+`117678f333d2f053e2cc29aa8ca1e34238a39e52df5444bdd491e4d0ea9d36e4`。正式 aggregate-only 包见
+`phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/`。
+
+## 8. 实现更正与撤回链
+
+`formal-170f095-v1` 因输入 root 错误在 scientific readout 前停止；`formal-9628c23-v2/v3` 在 full tests 后发现 parser
+把 nested Card task object 整体字符串化，首行 task consistency 失败且无结果。`formal-89689b2-v4` 虽输出完整 receipt，
+仍受同一 schema parser 错误影响，其 integrity-fail 结论撤回。生成器源码明确 pair task 来源为
+`card["task"]["name"]`；最终 producer/verifier 按这个既有 schema 修复并新增 nested-task 等价测试。协议、人口、taxonomy、
+门槛与分类顺序从未改动，v5 为唯一权威 scientific readout。

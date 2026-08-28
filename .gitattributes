@@ -196,3 +196,6 @@ phase1/tests/test_tree_within_stratum_forward_target522_protocol.py text eol=lf 
 phase1/audit_tree_within_stratum_forward_target522.py text eol=lf diff
 phase1/verify_tree_within_stratum_forward_target522.py text eol=lf diff
 phase1/tests/test_tree_within_stratum_forward_target522_audit.py text eol=lf diff
+phase1/scripts/run_tree_within_stratum_forward_target522_formal_20260828.sh text eol=lf diff
+phase1/scripts/monitor_tree_within_stratum_forward_target522_formal_20260828.sh text eol=lf diff
+phase1/tests/test_tree_within_stratum_forward_target522_runner.py text eol=lf diff

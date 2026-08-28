@@ -30,7 +30,12 @@ triangle slack≥0.05 当强门；在任何 synthetic/真实新值产生前发�
 
 协议只读固定 887 blind structural population 与两份 hash-bound aggregate receipts；输出 exact rational 与匿名
 histogram/quantiles，不输出 task/run/card/edge identity，不读 truth/prediction。GPU/API/model-fit/base-update=
-`0/0/0/0`。当前仅完成结果前协议，尚无新 aggregate 或分类；详见
+`0/0/0/0`。结果前实现已补齐 producer 与不 import 新 producer 的独立 verifier；12 个新 synthetic tests 与相邻
+回归合计 `48 passed, 1 skipped`，producer/verifier/test SHA-256=
+`38aa702d58e1250db31790227778130d6fca41939cdc4f74249cbfa3d766e25c` /
+`c6158bb201d604180739c24f9cf57309f2159dbd2e7233190e0fe36db5690e16` /
+`08d874d98ed443378627213362e3e66b7af757f0d447228be6fc739ada11e3fd`。尚未运行真实 population，故仍无新
+aggregate 或分类；详见
 `phase1/tree_linearization_within_stratum_decomposition_v1.json` 与
 `phase1/实验记录/2026-08-28/TreeLinearizationWithinStratum_结果前预注册.md`。
 

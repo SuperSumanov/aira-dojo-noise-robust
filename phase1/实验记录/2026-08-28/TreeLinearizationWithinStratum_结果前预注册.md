@@ -65,7 +65,7 @@ profile below strong gate。所有 exact fractions（含非决策性的 triangle
 2. estimand：canonical-marginal `W_p` primary，path-marginal `W_q` secondary；PASS。
 3. inputs：固定 887 snapshot、原 tree audit 协议与两份 hash-bound aggregate receipts；PASS。
 4. split/leakage：只读 blind manifest 与 aggregate receipt；禁止 label/outcome/prediction；PASS。
-5. controls：synthetic equal-multiplicity、composition-only、pure-within（验证 slack 可为 0）、multi-group、tamper、cross-run、hash-drift negatives；待实现后必须 PASS。
+5. controls：synthetic equal-multiplicity、composition-only、pure-within（验证 slack 可为 0）、multi-group、tamper、cross-run、hash-drift negatives；12 个新测试通过，相邻回归合计 `48 passed, 1 skipped`；PASS。
 6. sample/support：固定全部 10,895 observed edges；conditionable task/run 最低 15/150；PASS。
 7. randomness：纯确定性 exact rational arithmetic，`PYTHONHASHSEED=0`；PASS。
 8. inference：无 p-value/CI/accuracy/effect；按固定阈值作描述性分类；PASS。
@@ -80,3 +80,14 @@ profile below strong gate。所有 exact fractions（含非决策性的 triangle
 即使最高档通过，也不声称一般概率分解或图论 novelty，不证明完整 source tree、predictor accuracy/effect、search utility、
 因果机制或 first-960 closure。它能支持的正面贡献仅是：在真实 MLE-agent observed forest 上，composition 并不足以吸收
 tree linearization 引入的 edge-estimand distortion，且该现象按预注册标准跨 task/run 广泛存在。
+
+## 结果前实现回执
+
+在真实 population 运行前，producer、独立 verifier 与 synthetic tests 已完成：
+
+- producer SHA-256：`38aa702d58e1250db31790227778130d6fca41939cdc4f74249cbfa3d766e25c`；
+- verifier SHA-256：`c6158bb201d604180739c24f9cf57309f2159dbd2e7233190e0fe36db5690e16`；
+- tests SHA-256：`08d874d98ed443378627213362e3e66b7af757f0d447228be6fc739ada11e3fd`；
+- 新 synthetic：12 passed；连同 tree-linearization 相邻回归：48 passed、1 skipped。
+
+此时尚未调用真实 887 population，因此没有 within-task/run aggregate 或分类可读。

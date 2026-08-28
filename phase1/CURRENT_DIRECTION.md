@@ -13,6 +13,20 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IF. 2026-08-29 order-baseline falsification 发布提交已通过 fresh post-push
+
+发布 commit=`c030d362e13e1a5f1545fd4d5e743e7c98cc15ae` 在 fresh detached worktree 复核 package manifest=`25/25`、
+focused/full=`13/1528 passed`（47 warnings）；887 result/verifier 重建均与发布包逐字节相同。正式 integrity-fail 与有效
+max-prior-step 的强描述性正证据同时保留，invalid manifest-order baseline 未用于救回；forbidden open/network、commit
+filename/blob secret hits=`0/0/0/0`。
+
+r1 在上述科学与测试检查全部通过后，因 line-delimited Git 中文 quoted path 令 blob scanner 退出，`FAILED_RC=1` 原样
+保留。r2 只修复操作扫描器为 NUL-delimited path，诊断 old quoted/failures=`1/1`，修复后读取 `29/29` changed blobs、
+secret hits=0，没有重跑或改变科学结果。权威 post-push manifest=
+`4ab54a464fd0a9d9da8c656f6f7fc12f468e57a3ec17ec5f36161d8abc19e438`。prospective values/Target-522 profile/raw archives
+未读、无 row-level release，GPU/API/model-fit/base-update=`0/0/0/0`。详见
+`phase1/实验记录/2026-08-29/SelectiveParentRecovery_因果顺序基线Falsification_PostPush回执.md`。
+
 ## 0IE. 2026-08-29 有效 max-prior-step 对照被内容方法大幅击败，但正式双基线审计须完整性 fail-closed
 
 在任何 order-baseline readout 前冻结的 protocol=`d6553882...f23e` 使用 887 已发布证书完全相同的 time split、候选集、

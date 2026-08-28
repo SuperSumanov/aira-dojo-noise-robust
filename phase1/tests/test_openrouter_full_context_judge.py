@@ -149,6 +149,38 @@ def test_builder_materializes_exact_balanced_private_panel(tmp_path: Path) -> No
     assert receipt["security"]["api_calls"] == 0
 
 
+def test_missing_metric_is_rejected_as_ineligible_not_global_parse_failure() -> None:
+    value = make_card("synthetic-card-with-missing-metric", "task-a", None)
+    assert isinstance(value["task"], dict)
+    value["task"]["metric"] = None
+    missing = builder.parse_card(
+        "synthetic-card-with-missing-metric", "synthetic-run-a", value
+    )
+    valid_value = make_card("synthetic-card-with-valid-metric", "task-a", None)
+    valid = builder.parse_card(
+        "synthetic-card-with-valid-metric", "synthetic-run-a", valid_value
+    )
+    rows = [
+        {
+            "better": missing.identity,
+            "worse": valid.identity,
+            "task": "task-a",
+            "loto_fold": "task-a",
+            "gap_raw": 1.5,
+        }
+    ]
+    candidates, rejected = builder.eligible_candidates(
+        "value_hardware_time",
+        rows,
+        {missing.identity: missing, valid.identity: valid},
+        {"synthetic-run-a"},
+        {"task-a": 1.0},
+        json.loads(REAL_PROTOCOL.read_text(encoding="utf-8"))["selection"]["gap_bins"],
+    )
+    assert candidates == []
+    assert rejected == {"missing_prompt_metadata": 1}
+
+
 def test_request_contract_keeps_full_code_and_excludes_labels(tmp_path: Path) -> None:
     protocol_path, protocol_sha, panel_path, _ = make_inputs(tmp_path)
     protocol, _ = judge.load_protocol(protocol_path, protocol_sha)

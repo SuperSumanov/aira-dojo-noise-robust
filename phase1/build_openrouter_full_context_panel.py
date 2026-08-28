@@ -137,16 +137,16 @@ class JsonObjectStream:
 class Card:
     identity: str
     run: str
-    task_name: str
-    task_description: str
-    metric: str
-    higher_is_better: bool
-    client: str
-    hardware: str
-    time_limit: int | float
-    execution_timeout: int | float
+    task_name: str | None
+    task_description: str | None
+    metric: str | None
+    higher_is_better: bool | None
+    client: str | None
+    hardware: str | None
+    time_limit: int | float | None
+    execution_timeout: int | float | None
     parent: str | None
-    code: str
+    code: str | None
 
     @property
     def stratum(self) -> tuple[Any, ...]:
@@ -279,34 +279,45 @@ def parse_card(identity: str, run: str, value: Any) -> Card:
     code = value.get("code")
     parent = lineage.get("parent_id")
     require(parent is None or (isinstance(parent, str) and parent), "Card parent")
-    require(isinstance(code, str), "Card code")
-    require(isinstance(task.get("name"), str) and task["name"], "Card task name")
-    require(isinstance(task.get("desc"), str) and task["desc"], "Card task description")
-    require(isinstance(task.get("metric"), str) and task["metric"], "Card metric")
-    require(isinstance(task.get("higher_is_better"), bool), "Card metric direction")
-    require(isinstance(value.get("client"), str) and value["client"], "Card client")
-    require(isinstance(value.get("hardware"), str) and value["hardware"], "Card hardware")
-    for field in ("time_limit", "execution_timeout"):
-        require(
-            isinstance(value.get(field), (int, float))
-            and not isinstance(value.get(field), bool)
-            and math.isfinite(float(value[field]))
-            and float(value[field]) > 0,
-            f"Card {field}",
-        )
+    task_name = task.get("name")
+    task_description = task.get("desc")
+    metric = task.get("metric")
+    higher_is_better = task.get("higher_is_better")
+    client = value.get("client")
+    hardware = value.get("hardware")
+    time_limit = value.get("time_limit")
+    execution_timeout = value.get("execution_timeout")
     return Card(
         identity=identity,
         run=run,
-        task_name=task["name"],
-        task_description=task["desc"],
-        metric=task["metric"],
-        higher_is_better=task["higher_is_better"],
-        client=value["client"],
-        hardware=value["hardware"],
-        time_limit=value["time_limit"],
-        execution_timeout=value["execution_timeout"],
+        task_name=task_name if isinstance(task_name, str) and task_name else None,
+        task_description=(
+            task_description
+            if isinstance(task_description, str) and task_description
+            else None
+        ),
+        metric=metric if isinstance(metric, str) and metric else None,
+        higher_is_better=higher_is_better if isinstance(higher_is_better, bool) else None,
+        client=client if isinstance(client, str) and client else None,
+        hardware=hardware if isinstance(hardware, str) and hardware else None,
+        time_limit=(
+            time_limit
+            if isinstance(time_limit, (int, float))
+            and not isinstance(time_limit, bool)
+            and math.isfinite(float(time_limit))
+            and float(time_limit) > 0
+            else None
+        ),
+        execution_timeout=(
+            execution_timeout
+            if isinstance(execution_timeout, (int, float))
+            and not isinstance(execution_timeout, bool)
+            and math.isfinite(float(execution_timeout))
+            and float(execution_timeout) > 0
+            else None
+        ),
         parent=parent,
-        code=code,
+        code=code if isinstance(code, str) else None,
     )
 
 
@@ -367,6 +378,9 @@ def eligible_candidates(
         if better.task_name != task or worse.task_name != task:
             rejected["card_task_mismatch"] += 1
             continue
+        if not (complete_prompt_metadata(better) and complete_prompt_metadata(worse)):
+            rejected["missing_prompt_metadata"] += 1
+            continue
         if better.run != worse.run:
             rejected["cross_run"] += 1
             continue
@@ -376,7 +390,7 @@ def eligible_candidates(
         if better.stratum != worse.stratum:
             rejected["resource_stratum_mismatch"] += 1
             continue
-        if not better.code.strip() or not worse.code.strip():
+        if not better.code or not better.code.strip() or not worse.code or not worse.code.strip():
             rejected["empty_code"] += 1
             continue
         if task not in gap_filter:
@@ -419,6 +433,25 @@ def eligible_candidates(
             )
         )
     return candidates, dict(sorted(rejected.items()))
+
+
+def complete_prompt_metadata(card: Card) -> bool:
+    return (
+        isinstance(card.task_name, str)
+        and bool(card.task_name)
+        and isinstance(card.task_description, str)
+        and bool(card.task_description)
+        and isinstance(card.metric, str)
+        and bool(card.metric)
+        and isinstance(card.higher_is_better, bool)
+        and isinstance(card.client, str)
+        and bool(card.client)
+        and isinstance(card.hardware, str)
+        and bool(card.hardware)
+        and card.time_limit is not None
+        and card.execution_timeout is not None
+        and isinstance(card.code, str)
+    )
 
 
 def candidate_order(seed: int, candidate: Candidate) -> str:
@@ -484,6 +517,7 @@ def select_panel(
 
 
 def card_payload(card: Card) -> dict[str, Any]:
+    require(complete_prompt_metadata(card), "selected Card lacks prompt metadata")
     return {
         "id": card.identity,
         "run": card.run,

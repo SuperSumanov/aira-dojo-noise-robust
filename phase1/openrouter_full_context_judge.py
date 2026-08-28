@@ -129,6 +129,15 @@ def validate_private_panel(
         require(first["run"] not in runs, "physical-run reuse")
         runs.add(first["run"])
         require(first["task"] == second["task"], "task metadata mismatch")
+        for field in ("name", "desc", "metric"):
+            require(
+                isinstance(first["task"].get(field), str) and first["task"][field],
+                f"missing task prompt field: {field}",
+            )
+        require(
+            isinstance(first["task"].get("higher_is_better"), bool),
+            "missing metric direction",
+        )
         for field in ("client", "hardware", "time_limit", "execution_timeout"):
             require(first[field] == second[field], f"resource stratum mismatch: {field}")
         task_name = first["task"]["name"]

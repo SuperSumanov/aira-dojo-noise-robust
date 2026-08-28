@@ -1,0 +1,179 @@
+{
+  "protocol": "decision-corpus-lineage-audit-v2",
+  "status": "FROZEN_AFTER_V1_SAME_RUN_AUDIT_BEFORE_LINEAGE_READOUT",
+  "date": "2026-08-29",
+  "analysis_base_commit": "235f8221ecf99a531f847b8b35562e04994b5cf6",
+  "hash_mode": "normalized_utf8_lf_v1",
+  "immutable_inputs": {
+    "cards": {
+      "path": "phase1/cards_current_v11.jsonl",
+      "sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+      "rows": 16012
+    },
+    "run_map": {
+      "path": "phase1/card_run_map.json",
+      "sha256": "3d774d8414e7b0553e4efdab9410b06aa67ed80cac48fff2d69cbe056baa0e30",
+      "entries": 16012
+    },
+    "v1_audit_card": {
+      "path": "phase1/results/decision_corpus_audit_v11_20260814/audit_card.json",
+      "sha256": "a3b5e12cbe280909300d83d54a326c06c736cfb59f2f6762cb5518720393b399"
+    },
+    "v1_independent_verification": {
+      "path": "phase1/results/decision_corpus_audit_v11_20260814/independent_verification.json",
+      "sha256": "63497b5faccc6657cbf58be885a12548c6b16ec15a19cb598c02bb2192ef4a92"
+    },
+    "pair_sets": {
+      "extension:b0": {
+        "path": "phase1/v11_decision/decision_extension_v11_b0.jsonl",
+        "sha256": "2facb5a1cb192640229395b9befe4a824bd1e5f1477a2da61eb653d3a6c1ca9c",
+        "partition": "extension",
+        "budget": 0,
+        "rows": 136
+      },
+      "extension:b1": {
+        "path": "phase1/v11_decision/decision_extension_v11_b1.jsonl",
+        "sha256": "f74b4f04b8e2ac07fee86fae5f552cc6125b71c29e181d928d1077d2479898c2",
+        "partition": "extension",
+        "budget": 1,
+        "rows": 39
+      },
+      "extension:b2": {
+        "path": "phase1/v11_decision/decision_extension_v11_b2.jsonl",
+        "sha256": "3ee35f5e79cb2169f105ed8b0480f274d68a24c15bf409b3bea020e2a839519c",
+        "partition": "extension",
+        "budget": 2,
+        "rows": 30
+      },
+      "frozen:b0": {
+        "path": "phase1/v11_decision/decision_frozen_v11_b0.jsonl",
+        "sha256": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8",
+        "partition": "frozen",
+        "budget": 0,
+        "rows": 1498
+      },
+      "frozen:b1": {
+        "path": "phase1/v11_decision/decision_frozen_v11_b1.jsonl",
+        "sha256": "a56f6c7bd6aad141fdaa45f3f30f944062e8dea922eefc03e75bc8b415e7bc90",
+        "partition": "frozen",
+        "budget": 1,
+        "rows": 323
+      },
+      "frozen:b2": {
+        "path": "phase1/v11_decision/decision_frozen_v11_b2.jsonl",
+        "sha256": "79d4694d4cea5a81a04c9d463b5c6599a559bbf867f34205fa5715b054f10bc7",
+        "partition": "frozen",
+        "budget": 2,
+        "rows": 265
+      },
+      "train:b0": {
+        "path": "phase1/v11_decision/decision_train_v11_b0.jsonl",
+        "sha256": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+        "partition": "train",
+        "budget": 0,
+        "rows": 4263
+      },
+      "train:b1": {
+        "path": "phase1/v11_decision/decision_train_v11_b1.jsonl",
+        "sha256": "5053bb3825c5d6a420491cdb056594b306b4850c2b3c179361031becade5d528",
+        "partition": "train",
+        "budget": 1,
+        "rows": 861
+      },
+      "train:b2": {
+        "path": "phase1/v11_decision/decision_train_v11_b2.jsonl",
+        "sha256": "f0cb83c41b1e45d198384726194b3a2bd013132957d71aa2d81aea318dd7c881",
+        "partition": "train",
+        "budget": 2,
+        "rows": 692
+      }
+    }
+  },
+  "known_before_freeze": {
+    "v1_status": "VERIFIED_DECISION_CORPUS_AUDIT",
+    "v1_independent_status": "INDEPENDENTLY_VERIFIED_DECISION_CORPUS_AUDIT",
+    "v1_true_sibling_claim_used_only_endpoint_run_equality_and_optional_parent_run_consistency": true,
+    "v1_did_not_read_card_lineage_parent_id": true,
+    "set_summaries": {
+      "extension:b0": {"pairs": 136, "parents": 114, "endpoints": 239, "runs": 15, "tasks": 10, "mapped_parent_choice_sets": 109},
+      "extension:b1": {"pairs": 39, "parents": 37, "endpoints": 75, "runs": 10, "tasks": 7, "mapped_parent_choice_sets": 35},
+      "extension:b2": {"pairs": 30, "parents": 28, "endpoints": 57, "runs": 6, "tasks": 4, "mapped_parent_choice_sets": 27},
+      "frozen:b0": {"pairs": 1498, "parents": 845, "endpoints": 2022, "runs": 92, "tasks": 22, "mapped_parent_choice_sets": 806},
+      "frozen:b1": {"pairs": 323, "parents": 229, "endpoints": 507, "runs": 42, "tasks": 20, "mapped_parent_choice_sets": 222},
+      "frozen:b2": {"pairs": 265, "parents": 180, "endpoints": 404, "runs": 27, "tasks": 17, "mapped_parent_choice_sets": 174},
+      "train:b0": {"pairs": 4263, "parents": 2293, "endpoints": 5499, "runs": 333, "tasks": 23, "mapped_parent_choice_sets": 2134},
+      "train:b1": {"pairs": 861, "parents": 597, "endpoints": 1325, "runs": 140, "tasks": 22, "mapped_parent_choice_sets": 557},
+      "train:b2": {"pairs": 692, "parents": 466, "endpoints": 1044, "runs": 105, "tasks": 21, "mapped_parent_choice_sets": 435}
+    },
+    "lineage_parent_match_counts_seen": false,
+    "relation_counts_by_set_seen": false,
+    "parent_present_core_counts_seen": false,
+    "strict_core_train_frozen_referenced_run_overlap_seen": false,
+    "strict_core_support_and_concentration_seen": false,
+    "strict_core_fingerprints_seen": false
+  },
+  "fixed_relation_taxonomy": {
+    "class_order": [
+      "parent_present_verified_direct_sibling",
+      "lineage_verified_orphan_parent_sibling",
+      "same_run_declared_context_non_sibling",
+      "cross_run_declared_context"
+    ],
+    "direct_sibling_requires_both_endpoint_lineage_parent_ids_equal_declared_parent": true,
+    "strict_core_requires_parent_card_present_and_all_three_cards_share_task_and_physical_run": true,
+    "strict_core_requires_partition_consistency": true,
+    "pair_orientation_used": false,
+    "grade_gap_label_prediction_accuracy_or_utility_used": false,
+    "row_level_release_created": false
+  },
+  "fixed_quarantine_rule": {
+    "keep_only": "parent_present_verified_direct_sibling",
+    "quarantine_all_other_classes": true,
+    "orphan_parent_siblings_remain_a_separate_supporting_relation_tier": true,
+    "no_post_readout_threshold_or_class_changes": true
+  },
+  "hard_integrity_gates": [
+    "all_input_hashes_and_v1_dependencies_exact",
+    "card_ids_unique_and_run_map_exact",
+    "present_lineage_parents_share_task_and_physical_run",
+    "all_pair_endpoints_known_and_row_task_run_split_budget_consistent",
+    "taxonomy_exhaustive_and_mutually_exclusive",
+    "strict_core_all_endpoints_are_direct_children_of_declared_parent",
+    "strict_core_all_parent_endpoint_contexts_match",
+    "strict_core_and_quarantine_exhaustive_and_disjoint",
+    "same_budget_strict_core_train_frozen_pair_overlap_zero",
+    "same_budget_strict_core_train_frozen_endpoint_overlap_zero",
+    "same_budget_strict_core_train_frozen_parent_overlap_zero",
+    "same_budget_strict_core_train_frozen_referenced_run_overlap_zero",
+    "within_set_unordered_duplicates_and_orientation_conflicts_zero",
+    "v1_set_counts_and_same_budget_overlap_exactly_reproduced",
+    "producer_emits_aggregate_only_without_row_identities"
+  ],
+  "support_gates": {
+    "applies_to": ["train:b0", "train:b1", "train:b2", "frozen:b0", "frozen:b1", "frozen:b2"],
+    "minimum_strict_core_pair_retention": "4/5",
+    "minimum_strict_core_task_retention": "3/4",
+    "minimum_strict_core_run_retention": "3/4",
+    "minimum_strict_core_endpoint_retention": "3/4",
+    "maximum_single_task_pair_share": "3/5",
+    "maximum_single_run_pair_share": "1/5"
+  },
+  "classification_rule": {
+    "integrity_failure": "HISTORICAL_V11_LINEAGE_AUDIT_INTEGRITY_GATE_FAIL",
+    "all_rows_parent_present_direct_and_support_pass": "HISTORICAL_V11_FULL_PARENT_CLOSED_DIRECT_SIBLING_CORPUS",
+    "all_rows_lineage_direct_and_support_pass": "HISTORICAL_V11_LINEAGE_VERIFIED_SIBLING_CORPUS_WITH_PARENT_COMPLETE_CORE",
+    "strict_core_support_pass": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_QUARANTINE_FEASIBLE",
+    "otherwise": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT"
+  },
+  "claim_boundary": {
+    "allowed": "historical v11 lineage-aware relation audit and deterministic parent-complete sibling quarantine feasibility",
+    "forbidden": [
+      "prospective confirmation",
+      "predictor effect or scaling",
+      "search utility",
+      "semantic or causal correctness of the recorded parent",
+      "first or only tree, sibling, quarantine, or leakage method",
+      "row-level release without separate authorization"
+    ]
+  }
+}

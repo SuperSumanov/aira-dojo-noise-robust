@@ -13,6 +13,29 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HX. 2026-08-29 Decision-Corpus Audit Protocol v2 已在 lineage readout 前冻结
+
+8 月 14 日的 v1 已认证九个 v11 decision sets 的 endpoint 同 physical run、可映射 parent 不跨 run，以及同 budget
+train/frozen 在 pair、endpoint、parent ID、run 四层零交叉；但其 producer/verifier 都没有读取 Card
+`lineage.parent_id`，故 `all_rows_true_physical_siblings=true` 只能解释为 run-map consistency，尚不能独立证明两个
+endpoint 真是 declared parent 的直接 children。0HR--0HV 在学长 mixed 文件上已证明这不是形式主义风险：same-run
+declared context 与 direct sibling 必须分层。
+
+新机器协议 `phase1/decision_corpus_lineage_audit_v2.json` 已绑定 v11 Cards/run map、九个 pair files 与 v1 双 artifact，
+SHA-256=`ef3aefd1534fb76d7d0a05d0fc4f4b4cbe02ceac8b183acea635b2b9c8d3c88a`。在真实 lineage readout 前固定四类：
+parent-present direct sibling、lineage-verified orphan-parent sibling、same-run non-sibling、cross-run context；严格 curated
+core 只保留第一类，其余显式 quarantine。15 个 hard gates 验证 direct-child/task/run/split 引用闭包、四层 train/test
+隔离、零 duplicate/conflict、v1 aggregate 精确复现与 aggregate-only 输出；六个 train/frozen sets 另固定 pair/task/run/
+endpoint retention≥`4/5,3/4,3/4,3/4`、最大 task/run share≤`3/5,1/5`。不得结果后改类或门。
+
+冻结时已知 v1 counts/breadth/mapped-parent counts；未见 lineage match、relation/core counts、strict-core referenced-run
+overlap、support/concentration 或 fingerprints。即使通过，也只允许称 historical v11 lineage-aware audit 与
+parent-complete sibling quarantine feasible，不称 prospective/predictor/search 结果，不发布 row identities。TraceML 正式
+论文、MLEvolve primary/reference edges 与 ReLoc sibling revision RM 已关闭 tree/parent/sibling/RM 的宽方法首创；当前可守
+增量是 MLE decision corpus 上 direct-child + physical-run/split closure + exhaustive quarantine + 双实现 receipt 的组合。
+详见 `phase1/实验记录/2026-08-29/DecisionCorpusAuditProtocol_v2_Lineage闭包预注册.md`。本节仅为冻结状态；
+GPU/API/model-fit/base-update=`0/0/0/0`，prospective values/raw archives 未读。
+
 ## 0HW. 2026-08-29 outcome-blind 887 结构监控已连续续接
 
 LATEST 仍为 `887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697`。intake PID=`4008512`、WL 与

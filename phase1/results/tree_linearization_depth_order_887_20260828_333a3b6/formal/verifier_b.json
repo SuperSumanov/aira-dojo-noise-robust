@@ -1,0 +1,39 @@
+{
+  "all_verification_checks_passed": true,
+  "classification": "VERIFIED_SHALLOW_DEPTH_STOCHASTIC_ORDER_COROLLARY",
+  "depth_total_variation": {
+    "decimal_17g": "0.095739352609191045",
+    "denominator": 284435765,
+    "numerator": 27231696
+  },
+  "maximum_cdf_gap": {
+    "decimal_17g": "0.095739352609191045",
+    "denominator": 284435765,
+    "numerator": 27231696
+  },
+  "path_minus_canonical_mean_depth": {
+    "decimal_17g": "-1.1407850064143656",
+    "denominator": 284435765,
+    "numerator": -324480056
+  },
+  "producer_source_sha256": "2d314d4b1c5f87e9c84782f43cc33ca079b4650182d7ea6b8d79b1deabee5321",
+  "protocol": "independent-tree-linearization-depth-order-verification-v1",
+  "protocol_sha256": "29a4e060ef958892b3e2c3f5dccf6258ef87f9bc5ea7b94923551d19d8a2e7e3",
+  "receipt_sha256": "49588d8c03e0cb5c1d05cd784e62a5b83df5d474701999be60fbdff3563096e7",
+  "security": {
+    "aggregate_receipt_only": true,
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "identity_code_or_per_edge_values_written": false,
+    "imports_producer": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_opened": false
+  },
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "source_commit": "333a3b66ca5399dcf87e586be1339423917d1264",
+  "status": "INDEPENDENT_TREE_LINEARIZATION_DEPTH_ORDER_PASS"
+}

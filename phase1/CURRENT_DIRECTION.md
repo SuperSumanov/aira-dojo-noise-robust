@@ -13,6 +13,52 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HL. 2026-08-28 path-record split 的共享前缀 crossing 正式分类为 run-only broad
+
+结果前冻结的 path-split audit 已在 commit=`aec63564cb4a347a3bb6c61b38ae30850d1d755f` 和固定 blind
+snapshot `887491a...` 上正式完成，分类为 **`RUN_ONLY_BROAD_PATH_SPLIT_PREFIX_LEAKAGE_RISK`**。3,599 条
+root-to-leaf paths 若按独立 records 做固定 80/10/10 split，train-test 预计共享
+`1291.4019805907681` 条 canonical edges；预计 test unique-edge / path-edge-occurrence contamination ratios 分别为
+`0.63841797380705656` / `0.71072159960645032`。这些全局量是已发布 multiplicity histogram 的后验确定性推论，
+只有以下匿名 breadth 是结果后新读数。
+
+physical-run 轴 435 个 groups 中 339 个达到 1/4 reference，最大贡献 share=`0.14093310549689442`，通过
+1/5 anti-dominance 门；task 轴 34 个中 31 个达到 reference，但最大贡献 share=`0.45161151698862051`，超过
+2/5 上限。因此不得宣称 task+run 双轴 broad。fragment/run grouped split 的 exact canonical-edge crossing 都为 0，
+作为 release remedy control。formal producer/verifier A/B 均逐字节一致，focused/full=`90/1391 passed`，full 有
+47 warnings；manifest=`83b552cdc68443f424c5bed8cdbf758c75eb3a14fdbd9ee34248a66909bc4b0b`。
+没有实际模型性能膨胀、random split 或 predictor/search utility 结果。正式包见
+`phase1/results/tree_path_split_prefix_leakage_887_20260828_aec6356/`。
+
+## 0HK. 2026-08-28 depth-order 后验解析已正式闭环
+
+结果后声明的 deterministic corollary 已在 commit=`333a3b66ca5399dcf87e586be1339423917d1264` 正式复验，分类为
+**`VERIFIED_SHALLOW_DEPTH_STOCHASTIC_ORDER_COROLLARY`**。canonical/path-frequency mean logged depth 分别为
+`89213/10895=8.1884350619550261` 与 `183993/26107=7.0476500555406592`；shift 为
+`-324480056/284435765=-1.1407850064143656`。path CDF 在全部 observed depths 上不低于 canonical CDF，非零
+PMF 差恰交叉一次；最大 CDF gap 在 depth 5，与 depth TV 同为
+`27231696/284435765=0.095739352609191045`；median/p90 从 `7/15` 变为 `6/13`。
+
+该结论只说明 path enumeration 把固定 observed forest 的 logged edge-depth 经验分布系统性推向浅层；数值在声明前已见，
+不能称预注册发现，也不把 depth 解释为语义重要性。producer/verifier A/B 均逐字节一致，focused/full=
+`63/1369 passed`，full 有 47 warnings；manifest=
+`ab5df469b2b92e87ab78e998142bd6bcafc8f681f8d0f6efcee7ca78a30f2001`。正式包见
+`phase1/results/tree_linearization_depth_order_887_20260828_333a3b6/`。
+
+## 0HJ. 2026-08-28 within-stratum 正式门失败；科学 profile 只作描述性证据
+
+固定 snapshot 的正式分类必须保留为 **`WITHIN_STRATUM_DECOMPOSITION_GATE_FAIL`**。原因是上游 JSON float
+曾以字符串 `0.1603376038171571` 披露，而 exact fraction `45605749/284435765` 在固定 `.17g` 规则下重算为
+`0.16033760381715709`；严格字符串 round-trip 门失败。这是协议表示层缺陷，但在结果后不得修改门并救回同一 snapshot。
+
+仅作描述性记录：task/run canonical-standardized within-TV 分别为 `0.34286096272939481` /
+`0.30840042995574296`；task 32/34、run 356/434 达到 conditional-TV reference 0.10，最大匿名贡献 share 分别为
+`0.35387441357728333` / `0.10868797144906397`，两个 scientific axis gates 都通过。这支持在**首个未见未来
+snapshot** 上用 exact rational 绑定重做确认，但当前不得宣称正式 `BROAD_NONCOMPOSITIONAL...`。formal producer/verifier
+A/B 均逐字节一致，focused/full=`49/1355 passed`，full 有 47 warnings；manifest=
+`dea00f84d8efa01585df21b63682a2f501386f06c3f413063403cb5d89ffd628`。正式失败包见
+`phase1/results/tree_linearization_within_stratum_887_20260828_2363b68/`。
+
 ## 0HI. 2026-08-28 path-record split 的共享前缀 crossing 已做结果前分层冻结
 
 0HC/0HD 已公开 root-to-leaf path multiplicity histogram；据此在冻结前探索性计算固定 80/10/10 path split

@@ -1,0 +1,404 @@
+{
+  "status": "TREE_LINEARIZATION_DEPTH_ORDER_COROLLARY_COMPLETE",
+  "classification": "VERIFIED_SHALLOW_DEPTH_STOCHASTIC_ORDER_COROLLARY",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "inventory": {
+    "canonical_depth_sum": 89213,
+    "canonical_unique_edges": 10895,
+    "depth_levels": 37,
+    "maximum_logged_depth": 38,
+    "minimum_logged_depth": 2,
+    "path_edge_occurrences": 26107,
+    "path_frequency_depth_sum": 183993
+  },
+  "exact_order_profile": {
+    "canonical_mean_depth": {
+      "decimal_17g": "8.1884350619550261",
+      "denominator": 10895,
+      "numerator": 89213
+    },
+    "canonical_nearest_rank_median_depth": 7,
+    "canonical_nearest_rank_p90_depth": 15,
+    "cdf_path_minus_canonical": [
+      {
+        "depth": 2,
+        "gap": {
+          "decimal_17g": "0.043835204760554636",
+          "denominator": 56887153,
+          "numerator": 2493660
+        }
+      },
+      {
+        "depth": 3,
+        "gap": {
+          "decimal_17g": "0.07617415130618331",
+          "denominator": 284435765,
+          "numerator": 21666653
+        }
+      },
+      {
+        "depth": 4,
+        "gap": {
+          "decimal_17g": "0.090894701656101515",
+          "denominator": 284435765,
+          "numerator": 25853704
+        }
+      },
+      {
+        "depth": 5,
+        "gap": {
+          "decimal_17g": "0.095739352609191045",
+          "denominator": 284435765,
+          "numerator": 27231696
+        }
+      },
+      {
+        "depth": 6,
+        "gap": {
+          "decimal_17g": "0.093963236303985898",
+          "denominator": 56887153,
+          "numerator": 5345301
+        }
+      },
+      {
+        "depth": 7,
+        "gap": {
+          "decimal_17g": "0.088915432276950118",
+          "denominator": 284435765,
+          "numerator": 25290729
+        }
+      },
+      {
+        "depth": 8,
+        "gap": {
+          "decimal_17g": "0.084344677962702758",
+          "denominator": 284435765,
+          "numerator": 23990643
+        }
+      },
+      {
+        "depth": 9,
+        "gap": {
+          "decimal_17g": "0.078465125509093417",
+          "denominator": 284435765,
+          "numerator": 22318288
+        }
+      },
+      {
+        "depth": 10,
+        "gap": {
+          "decimal_17g": "0.07174581227504917",
+          "denominator": 56887153,
+          "numerator": 4081415
+        }
+      },
+      {
+        "depth": 11,
+        "gap": {
+          "decimal_17g": "0.063951127946234185",
+          "denominator": 284435765,
+          "numerator": 18189988
+        }
+      },
+      {
+        "depth": 12,
+        "gap": {
+          "decimal_17g": "0.055763314434104302",
+          "denominator": 284435765,
+          "numerator": 15861081
+        }
+      },
+      {
+        "depth": 13,
+        "gap": {
+          "decimal_17g": "0.048827998124638089",
+          "denominator": 284435765,
+          "numerator": 13888429
+        }
+      },
+      {
+        "depth": 14,
+        "gap": {
+          "decimal_17g": "0.042473769077527923",
+          "denominator": 284435765,
+          "numerator": 12081059
+        }
+      },
+      {
+        "depth": 15,
+        "gap": {
+          "decimal_17g": "0.036571979617260858",
+          "denominator": 284435765,
+          "numerator": 10402379
+        }
+      },
+      {
+        "depth": 16,
+        "gap": {
+          "decimal_17g": "0.03298146068234422",
+          "denominator": 284435765,
+          "numerator": 9381107
+        }
+      },
+      {
+        "depth": 17,
+        "gap": {
+          "decimal_17g": "0.028363243982345188",
+          "denominator": 284435765,
+          "numerator": 8067521
+        }
+      },
+      {
+        "depth": 18,
+        "gap": {
+          "decimal_17g": "0.023344648659074221",
+          "denominator": 284435765,
+          "numerator": 6640053
+        }
+      },
+      {
+        "depth": 19,
+        "gap": {
+          "decimal_17g": "0.018254511699680242",
+          "denominator": 284435765,
+          "numerator": 5192236
+        }
+      },
+      {
+        "depth": 20,
+        "gap": {
+          "decimal_17g": "0.013980330497467504",
+          "denominator": 284435765,
+          "numerator": 3976506
+        }
+      },
+      {
+        "depth": 21,
+        "gap": {
+          "decimal_17g": "0.011080044733474358",
+          "denominator": 284435765,
+          "numerator": 3151561
+        }
+      },
+      {
+        "depth": 22,
+        "gap": {
+          "decimal_17g": "0.0088432198391084887",
+          "denominator": 284435765,
+          "numerator": 2515328
+        }
+      },
+      {
+        "depth": 23,
+        "gap": {
+          "decimal_17g": "0.0070183473586734072",
+          "denominator": 284435765,
+          "numerator": 1996269
+        }
+      },
+      {
+        "depth": 24,
+        "gap": {
+          "decimal_17g": "0.0057051615854286112",
+          "denominator": 284435765,
+          "numerator": 1622752
+        }
+      },
+      {
+        "depth": 25,
+        "gap": {
+          "decimal_17g": "0.004621078506073243",
+          "denominator": 56887153,
+          "numerator": 262880
+        }
+      },
+      {
+        "depth": 26,
+        "gap": {
+          "decimal_17g": "0.0036360089948604037",
+          "denominator": 284435765,
+          "numerator": 1034211
+        }
+      },
+      {
+        "depth": 27,
+        "gap": {
+          "decimal_17g": "0.0027499530517900938",
+          "denominator": 56887153,
+          "numerator": 156437
+        }
+      },
+      {
+        "depth": 28,
+        "gap": {
+          "decimal_17g": "0.0022534437608435071",
+          "denominator": 56887153,
+          "numerator": 128192
+        }
+      },
+      {
+        "depth": 29,
+        "gap": {
+          "decimal_17g": "0.0019022010118875171",
+          "denominator": 284435765,
+          "numerator": 541054
+        }
+      },
+      {
+        "depth": 30,
+        "gap": {
+          "decimal_17g": "0.0016044395823429588",
+          "denominator": 56887153,
+          "numerator": 91272
+        }
+      },
+      {
+        "depth": 31,
+        "gap": {
+          "decimal_17g": "0.0011231077076400712",
+          "denominator": 284435765,
+          "numerator": 319452
+        }
+      },
+      {
+        "depth": 32,
+        "gap": {
+          "decimal_17g": "0.00069525715234861551",
+          "denominator": 284435765,
+          "numerator": 197756
+        }
+      },
+      {
+        "depth": 33,
+        "gap": {
+          "decimal_17g": "0.00042785055529145569",
+          "denominator": 284435765,
+          "numerator": 121696
+        }
+      },
+      {
+        "depth": 34,
+        "gap": {
+          "decimal_17g": "0.00021392527764572784",
+          "denominator": 284435765,
+          "numerator": 60848
+        }
+      },
+      {
+        "depth": 35,
+        "gap": {
+          "decimal_17g": "0.00016044395823429589",
+          "denominator": 284435765,
+          "numerator": 45636
+        }
+      },
+      {
+        "depth": 36,
+        "gap": {
+          "decimal_17g": "0.00010696263882286392",
+          "denominator": 284435765,
+          "numerator": 30424
+        }
+      },
+      {
+        "depth": 37,
+        "gap": {
+          "decimal_17g": "5.3481319411431961e-05",
+          "denominator": 284435765,
+          "numerator": 15212
+        }
+      },
+      {
+        "depth": 38,
+        "gap": {
+          "decimal_17g": "0",
+          "denominator": 1,
+          "numerator": 0
+        }
+      }
+    ],
+    "cdf_terminal_gap": {
+      "decimal_17g": "0",
+      "denominator": 1,
+      "numerator": 0
+    },
+    "depth_total_variation": {
+      "decimal_17g": "0.095739352609191045",
+      "denominator": 284435765,
+      "numerator": 27231696
+    },
+    "maximum_cdf_gap": {
+      "decimal_17g": "0.095739352609191045",
+      "denominator": 284435765,
+      "numerator": 27231696
+    },
+    "maximum_cdf_gap_depth": 5,
+    "nonzero_pmf_sign_changes": 1,
+    "path_frequency_mean_depth": {
+      "decimal_17g": "7.0476500555406592",
+      "denominator": 26107,
+      "numerator": 183993
+    },
+    "path_frequency_nearest_rank_median_depth": 6,
+    "path_frequency_nearest_rank_p90_depth": 13,
+    "path_minus_canonical_mean_depth": {
+      "decimal_17g": "-1.1407850064143656",
+      "denominator": 284435765,
+      "numerator": -324480056
+    },
+    "path_to_canonical_mean_depth_ratio": {
+      "decimal_17g": "0.86068339093086754",
+      "denominator": 2329083791,
+      "numerator": 2004603735
+    }
+  },
+  "deterministic_properties": {
+    "exactly_one_nonzero_pmf_sign_change": true,
+    "maximum_cdf_gap_equals_depth_total_variation": true,
+    "shallow_first_order_stochastic_dominance": true,
+    "strictly_negative_mean_depth_shift": true
+  },
+  "exact_integrity_checks": {
+    "all_depth_counts_are_positive_integers": true,
+    "all_exact_means_cdf_gaps_total_variation_and_quantiles_recomputed": true,
+    "cdf_terminal_gap_is_exactly_zero": true,
+    "depth_count_totals_match_upstream_inventory": true,
+    "depth_keys_are_identical_contiguous_positive_integers": true,
+    "fixed_input_hash_and_metadata_match": true,
+    "seen_values_disclosure_matches_exact_recomputation": true,
+    "upstream_float_total_variation_roundtrips_to_exact_recomputation_at_decimal_17g": true
+  },
+  "design_timing": {
+    "confirmatory_or_preregistered_discovery_claim_allowed": false,
+    "exploratory_cdf_order_and_crossing_seen_before_declaration": true,
+    "exploratory_mean_depths_seen_before_declaration": true,
+    "role": "Exact, reproducible interpretation of an already published aggregate; not a new hypothesis test.",
+    "upstream_depth_counts_seen_before_declaration": true,
+    "upstream_depth_total_variation_seen_before_declaration": true
+  },
+  "claim_boundary": {
+    "allowed": "On the fixed outcome-blind observed MLE-agent forest, enumerating root-to-leaf paths systematically shifts the empirical logged edge-depth distribution toward shallower edges; the exact shift is a deterministic corollary of already published aggregate counts.",
+    "complete_source_tree_proven": false,
+    "first960_or_closure_completed": false,
+    "future_closure_requires_same_contract_rerun": true,
+    "generalization_beyond_fixed_snapshot": false,
+    "generic_tree_or_probability_novelty": false,
+    "logged_depth_is_semantic_importance_or_difficulty": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "preregistered_or_confirmatory_discovery": false,
+    "shared_prefix_or_root_dominance_first_observation": false
+  },
+  "security": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "aggregate_receipt_only": true,
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "task_run_card_parent_code_or_per_edge_values_emitted": false
+  }
+}

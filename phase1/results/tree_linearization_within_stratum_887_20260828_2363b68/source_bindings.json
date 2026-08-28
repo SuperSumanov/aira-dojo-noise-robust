@@ -1,0 +1,42 @@
+{
+  "protocol": "tree-linearization-within-stratum-result-package-v1",
+  "status": "WITHIN_STRATUM_DECOMPOSITION_GATE_FAIL",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "formal_source_commit": "2363b687ea503ced5945208766bb25f1baaeffed",
+  "source_sha256": {
+    "protocol": "9f4f27c56e6dcec7b6302b095225afb307c0be3900b528dd5f56225639fb79a7",
+    "producer": "38aa702d58e1250db31790227778130d6fca41939cdc4f74249cbfa3d766e25c",
+    "verifier": "c6158bb201d604180739c24f9cf57309f2159dbd2e7233190e0fe36db5690e16",
+    "tests": "08d874d98ed443378627213362e3e66b7af757f0d447228be6fc739ada11e3fd"
+  },
+  "formal_sha256": {
+    "final_receipt": "ad949f84705e5c66e3376d677c314802d5205a51eb7e52a2588066046d7c49a4",
+    "independent_verification": "537644d71ef0d2d4abd0e6d75015fa32db90fce137e87f9807520d0b41d497ba",
+    "formal_summary": "735b25265d354193170f51bf70ac86f62d1a0232ea55158f8de190587b42cc6a",
+    "formal_manifest": "dea00f84d8efa01585df21b63682a2f501386f06c3f413063403cb5d89ffd628"
+  },
+  "remote_root": "/research/d7/spc/yzyang4/tree-linearization-within-stratum/formal-2363b68-887491a-v1",
+  "verification": {
+    "focused_tests_passed": 49,
+    "full_tests_passed": 1355,
+    "full_test_warnings": 47,
+    "producer_a_b_byte_identical": true,
+    "verifier_a_b_byte_identical": true,
+    "formal_manifest_verified_after_transport": true
+  },
+  "interpretation": {
+    "same_snapshot_rescue_permitted": false,
+    "scientific_axis_gates_passed": true,
+    "formal_failure_cause": "The pre-recorded upstream task-marginal decimal string was 0.1603376038171571, while exact recomputation formatted with decimal_17g is 0.16033760381715709 for 45605749/284435765.",
+    "future_confirmation_requires_unseen_snapshot_and_exact_rational_binding": true
+  },
+  "security": {
+    "forbidden_open_hits": 0,
+    "credential_filename_hits": 0,
+    "credential_content_file_hits": 0,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "identity_code_or_per_edge_values_emitted": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  }
+}

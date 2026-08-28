@@ -1,0 +1,424 @@
+{
+  "status": "OUTCOME_BLIND_TREE_PATH_SPLIT_PREFIX_LEAKAGE_AUDIT_COMPLETE",
+  "classification": "RUN_ONLY_BROAD_PATH_SPLIT_PREFIX_LEAKAGE_RISK",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "inventory": {
+    "canonical_observed_edges": 10895,
+    "eligible_endpoints": 11906,
+    "fragments_with_observed_edges": 869,
+    "observed_fragments": 1011,
+    "path_edge_occurrences": 26107,
+    "physical_runs": 435,
+    "root_to_leaf_path_records": 3599,
+    "single_node_fragments": 142,
+    "tasks": 34
+  },
+  "global": {
+    "canonical_edge_overlap_fraction": {
+      "decimal_17g": "0.11853161822769785",
+      "denominator": 795973141567206333474598041421532715899719123890755725336543519915169837827075813542983823954806057757744038516429078286733352915443932511941730609551410733014780536830216087863228547593649206917979358210554166711682746928413733153732746148647480669840,
+      "numerator": 94347984535745399942708186666151699338708027427593804616220577324864853415719896666390950958766756643377362084972315605893479743322366279847253755026493394157107433299000042937324330896307765806997583769141149404392495102023265003749835188499832694067
+    },
+    "expected_contaminated_test_path_edge_occurrences": {
+      "decimal_17g": "1855.9964346577424",
+      "denominator": 217071681705439594349752737967994147195538492196879790627895167036568830972315638009873729793591005955327811379047900173185487513534497196731386445412947046280228771329795619595197280475516971657408079993995177102879262,
+      "numerator": 402884267310456188845765763619457691630612002868747043212978106462591641251254899032509968092442755131253730307868146688198748448623628021574386818808711549035730055405178158012960410167509720279725068014659540343168492235
+    },
+    "expected_test_path_edge_occurrences": {
+      "decimal_17g": "2611.4253959433177",
+      "denominator": 3599,
+      "numerator": 9398520
+    },
+    "expected_train_test_cross_split_canonical_edges": {
+      "decimal_17g": "1291.4019805907681",
+      "denominator": 73058571965783050341863060249796486085334476722419066116249978881612651475637981968149043043121253580334468886317492270466576678792467417342058798490262573016501196588363110405069164533607086454151386710468487077712964380763077847979141454671636592,
+      "numerator": 94347984535745399942708186666151699338708027427593804616220577324864853415719896666390950958766756643377362084972315605893479743322366279847253755026493394157107433299000042937324330896307765806997583769141149404392495102023265003749835188499832694067
+    },
+    "expected_unique_test_canonical_edges": {
+      "decimal_17g": "2022.8158253280276",
+      "denominator": 78653064683888197491709866027020976887060720549903151067610033377337240556643820715198590850533761962614464600983702094307387049714896660124156077658036297721422693230919384284043116483287483392303076162013059696959664768623305426088,
+      "numerator": 159100663953118042852393207295133116861154994457574145582628435859194610460601209016295101783114413959609181886694977834366461134344451336313886811669237175690022059279071018856920543230669141055973514998805094482651359552770937624759889
+    },
+    "split_sizes": {
+      "root_to_leaf_path_records": 3599,
+      "test": 360,
+      "train": 2879,
+      "validation": 360
+    },
+    "test_occurrence_contamination_ratio_of_expectations": {
+      "decimal_17g": "0.71072159960645032",
+      "denominator": 113373300469141880316089919580269650030575850496372250614731052253211052474016558496724559429822780844193806157388678562694485585201680610915469304525840015193423490520617434102687054431495180242377493080587027057791208752,
+      "numerator": 80576853462091237769153152723891538326122400573749408642595621292518328250250979806501993618488551026250746061573629337639749689724725604314877363761742309807146011081035631602592082033501944055945013602931908068633698447
+    },
+    "train_validation_identical_by_equal_split_size": true,
+    "unique_test_edge_contamination_ratio_of_expectations": {
+      "decimal_17g": "0.63841797380705656",
+      "denominator": 443352106644757617835159532364579066234645272547721576124466248326555210537005303761445113030971814934520347509423108059271409109556135673633282873429073993209409689559039276077968893366081927296822043062603442264052197598727120914367346608809584892578,
+      "numerator": 283043953607236199828124559998455098016124082282781413848661731974594560247159689999172852876300269930132086254916946817680439229967098839541761265079480182471322299897000128811972992688923297420992751307423448213177485306069795011249505565499498082201
+    }
+  },
+  "anonymous_profiles": {
+    "observed_fragment_descriptive": {
+      "anonymous_group_distribution": {
+        "fraction_at_or_above_reference": {
+          "decimal_17g": "0.50287686996547754",
+          "denominator": 869,
+          "numerator": 437
+        },
+        "groups_at_or_above_reference": 437,
+        "histogram": {
+          "counts": [
+            409,
+            23,
+            125,
+            223,
+            89
+          ],
+          "edges": [
+            {
+              "decimal_17g": "0",
+              "denominator": 1,
+              "numerator": 0
+            },
+            {
+              "decimal_17g": "0.10000000000000001",
+              "denominator": 10,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.25",
+              "denominator": 4,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.5",
+              "denominator": 2,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.75",
+              "denominator": 4,
+              "numerator": 3
+            },
+            {
+              "decimal_17g": "1",
+              "denominator": 1,
+              "numerator": 1
+            }
+          ],
+          "last_bin_right_closed": true
+        },
+        "maximum": {
+          "decimal_17g": "0.93340566674150793",
+          "denominator": 8794571623079,
+          "numerator": 8208902989546
+        },
+        "median": {
+          "decimal_17g": "0.26672225310357606",
+          "denominator": 10794,
+          "numerator": 2879
+        },
+        "p90_nearest_rank": {
+          "decimal_17g": "0.75208557509543661",
+          "denominator": 69809180364,
+          "numerator": 52502477561
+        },
+        "reference": {
+          "decimal_17g": "0.25",
+          "denominator": 4,
+          "numerator": 1
+        }
+      },
+      "conditionable_groups": 869,
+      "maximum_anonymous_expected_contaminated_occurrence_contribution_share": {
+        "decimal_17g": "0.07342913658226724",
+        "denominator": 59725948345989128655565414349699389644996597021320332769468237526305700759303782878456149490050214619666235531572811742453360832883836206880148764941840253257537196126061145481046023987319607021669558537220108307907020662,
+        "numerator": 4385624818603073839426504881235906746628900475458140560797580217131073175559951076834859807328382102242905885195252606427771452299100399056022230411302421517782043235970839387583033390692740387364783823204796738710080755
+      }
+    },
+    "physical_run": {
+      "anonymous_group_distribution": {
+        "fraction_at_or_above_reference": {
+          "decimal_17g": "0.77931034482758621",
+          "denominator": 145,
+          "numerator": 113
+        },
+        "groups_at_or_above_reference": 339,
+        "histogram": {
+          "counts": [
+            64,
+            32,
+            110,
+            173,
+            56
+          ],
+          "edges": [
+            {
+              "decimal_17g": "0",
+              "denominator": 1,
+              "numerator": 0
+            },
+            {
+              "decimal_17g": "0.10000000000000001",
+              "denominator": 10,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.25",
+              "denominator": 4,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.5",
+              "denominator": 2,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.75",
+              "denominator": 4,
+              "numerator": 3
+            },
+            {
+              "decimal_17g": "1",
+              "denominator": 1,
+              "numerator": 1
+            }
+          ],
+          "last_bin_right_closed": true
+        },
+        "maximum": {
+          "decimal_17g": "0.91073671456338401",
+          "denominator": 126297026278888285556433541667766543255336849755280,
+          "numerator": 115023338772360089672633754846604914838893199045871
+        },
+        "median": {
+          "decimal_17g": "0.51206096825102099",
+          "denominator": 3878287798,
+          "numerator": 1985919805
+        },
+        "p90_nearest_rank": {
+          "decimal_17g": "0.77046378018525008",
+          "denominator": 1221231955450694560460006094461879671624432206936,
+          "numerator": 940914988879566990993892360872291781341128782615
+        },
+        "reference": {
+          "decimal_17g": "0.25",
+          "denominator": 4,
+          "numerator": 1
+        }
+      },
+      "conditionable_groups": 435,
+      "maximum_anonymous_expected_contaminated_occurrence_contribution_share": {
+        "decimal_17g": "0.14093310549689442",
+        "denominator": 59725948345989128655565414349699389644996597021320332769468237526305700759303782878456149490050214619666235531572811742453360832883836206880148764941840253257537196126061145481046023987319607021669558537220108307907020662,
+        "numerator": 8417363379147352273245724655859172859957874200879987812240646193031906361137083179474296309094246520295695575351889067798188119316676175392832782055558460574425576904649751467452651235351981989635426946381848738572073849
+      },
+      "strong_positive_gate": {
+        "all_passed": true,
+        "breadth_threshold": {
+          "decimal_17g": "0.25",
+          "denominator": 4,
+          "numerator": 1
+        },
+        "checks": {
+          "breadth_fraction_at_least_minimum": true,
+          "maximum_contribution_share_at_most_maximum": true
+        },
+        "dominance_threshold": {
+          "decimal_17g": "0.20000000000000001",
+          "denominator": 5,
+          "numerator": 1
+        }
+      }
+    },
+    "task": {
+      "anonymous_group_distribution": {
+        "fraction_at_or_above_reference": {
+          "decimal_17g": "0.91176470588235292",
+          "denominator": 34,
+          "numerator": 31
+        },
+        "groups_at_or_above_reference": 31,
+        "histogram": {
+          "counts": [
+            1,
+            2,
+            11,
+            17,
+            3
+          ],
+          "edges": [
+            {
+              "decimal_17g": "0",
+              "denominator": 1,
+              "numerator": 0
+            },
+            {
+              "decimal_17g": "0.10000000000000001",
+              "denominator": 10,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.25",
+              "denominator": 4,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.5",
+              "denominator": 2,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.75",
+              "denominator": 4,
+              "numerator": 3
+            },
+            {
+              "decimal_17g": "1",
+              "denominator": 1,
+              "numerator": 1
+            }
+          ],
+          "last_bin_right_closed": true
+        },
+        "maximum": {
+          "decimal_17g": "0.83188378338328361",
+          "denominator": 361815663134864418486586062738082942837445037125777500949970156785541432199570551756714814309137855697106692836470055352369778568051301166645695813825670672167362400043924610327671561590977015066031735372705464907297312944,
+          "numerator": 300988582735962653654263667965806202489204836181187341615921448666408841208639248464907542894542827850470477626646311029639655316503845367840965745345513235823207526602063645447902844444961679996142681970060817425855852591
+        },
+        "median": {
+          "decimal_17g": "0.54251759730575722",
+          "denominator": 53538033335032092,
+          "numerator": 29045325209397149
+        },
+        "p90_nearest_rank": {
+          "decimal_17g": "0.68249161919352186",
+          "denominator": 1012797956187395365426505128335,
+          "numerator": 691226117034225078373678978492
+        },
+        "reference": {
+          "decimal_17g": "0.25",
+          "denominator": 4,
+          "numerator": 1
+        }
+      },
+      "conditionable_groups": 34,
+      "maximum_anonymous_expected_contaminated_occurrence_contribution_share": {
+        "decimal_17g": "0.45161151698862051",
+        "denominator": 29862974172994564327782707174849694822498298510660166384734118763152850379651891439228074745025107309833117765786405871226680416441918103440074382470920126628768598063030572740523011993659803510834779268610054153953510331,
+        "numerator": 13486463068058069580201463413542549538418695334273416835169804403600812961415235516489431411391463978016912682819511678646584069409168479489921702379149429462033265346184859417429477920597449364189790195949234264652797841
+      },
+      "strong_positive_gate": {
+        "all_passed": false,
+        "breadth_threshold": {
+          "decimal_17g": "0.5",
+          "denominator": 2,
+          "numerator": 1
+        },
+        "checks": {
+          "breadth_fraction_at_least_minimum": true,
+          "maximum_contribution_share_at_most_maximum": false
+        },
+        "dominance_threshold": {
+          "decimal_17g": "0.40000000000000002",
+          "denominator": 5,
+          "numerator": 2
+        }
+      }
+    }
+  },
+  "grouped_split_controls": {
+    "fragment_grouped_expected_exact_canonical_edge_crossing": {
+      "decimal_17g": "0",
+      "denominator": 1,
+      "numerator": 0
+    },
+    "physical_run_grouped_expected_exact_canonical_edge_crossing": {
+      "decimal_17g": "0",
+      "denominator": 1,
+      "numerator": 0
+    },
+    "reason": "Every canonical observed edge is bound to exactly one observed fragment and one physical run."
+  },
+  "pre_registered_gate": {
+    "all_hard_gates_passed": true,
+    "axis_strength": {
+      "physical_run": true,
+      "task": false
+    },
+    "fixed_thresholds": {
+      "both_axes_must_pass_for_headline": true,
+      "fragment_profile_may_rescue": false,
+      "global_floor_is_new_evidence": false,
+      "global_test_occurrence_contamination_integrity_floor": "1/2",
+      "maximum_single_physical_run_expected_contaminated_occurrence_contribution_share": "1/5",
+      "maximum_single_task_expected_contaminated_occurrence_contribution_share": "2/5",
+      "minimum_physical_run_fraction_at_or_above_group_ratio_reference": "1/4",
+      "minimum_task_fraction_at_or_above_group_ratio_reference": "1/2"
+    },
+    "global_floor_is_new_evidence": false,
+    "global_integrity_floor": {
+      "floor": {
+        "decimal_17g": "0.5",
+        "denominator": 2,
+        "numerator": 1
+      },
+      "is_new_evidence": false,
+      "ratio_at_least_floor": true
+    },
+    "hard_integrity_and_support": {
+      "conditionable_physical_runs_at_least_minimum": true,
+      "conditionable_tasks_at_least_minimum": true,
+      "each_edge_has_exactly_one_fragment_task_and_physical_run": true,
+      "each_path_contains_a_canonical_edge_at_most_once": true,
+      "enumerated_edge_occurrences_equal_descendant_leaf_multiplicity": true,
+      "fragment_and_run_grouped_controls_are_exact_zero": true,
+      "global_exact_combinatorics_roundtrip_to_disclosed_17g_values": true,
+      "latest_equals_fixed_snapshot": true,
+      "paths_are_fragment_task_and_run_bound": true,
+      "population_counts_match_frozen_protocol": true,
+      "population_loader_rechecked_original_tree_audit_contract": true,
+      "recomputed_multiplicity_histogram_matches_both_upstream_receipts": true,
+      "upstream_protocol_and_receipt_hashes_classifications_snapshot_and_counts_match": true
+    }
+  },
+  "design_timing": {
+    "actual_random_partition_drawn": false,
+    "global_analytic_split_values_seen_before_freeze": true,
+    "interpretation": "The global values are transparent post-hoc deterministic corollaries of an already released multiplicity histogram. Only the anonymous task/run breadth and anti-dominance profile is a result-after-freeze readout.",
+    "task_run_or_fragment_breadth_values_seen_before_freeze": false,
+    "upstream_multiplicity_histogram_seen": true
+  },
+  "claim_boundary": {
+    "actual_model_performance_inflation_measured": false,
+    "actual_random_split_or_training_run_performed": false,
+    "all_semantic_or_near_duplicate_leakage_measured": false,
+    "allowed_if_broad": "On this fixed outcome-blind MLE-agent observed forest, treating root-to-leaf paths as independent 80/10/10 records would place exact shared-prefix canonical edges across train and test in expectation, and the newly frozen anonymous profile shows that the expected contaminated test-occurrence mass is broad across tasks and physical runs rather than dominated by one group. Fragment- or physical-run-grouped splitting prevents exact canonical-edge crossing by construction.",
+    "complete_source_tree_or_choice_set_proven": false,
+    "first960_or_closure_completed": false,
+    "generalization_beyond_fixed_snapshot": false,
+    "generic_group_split_or_shared_prefix_novelty": false,
+    "global_values_are_post_hoc_corollaries": true,
+    "predictor_accuracy_effect_or_search_utility_computed": false
+  },
+  "security": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "allowed_input_basenames": [
+      "LATEST",
+      "eligible_blind_manifest.jsonl",
+      "intake_registry.jsonl",
+      "provisional_runs.jsonl",
+      "summary.json",
+      "final_receipt.json"
+    ],
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "task_run_fragment_path_card_parent_code_or_edge_values_emitted": false
+  }
+}

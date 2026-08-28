@@ -1,0 +1,35 @@
+{
+  "all_hard_gates_passed": true,
+  "canonical_observed_edges": 10895,
+  "checks": {
+    "anonymous_profiles_and_classification_independently_recomputed": true,
+    "blind_population_independently_reconstructed": true,
+    "fixed_inputs_rehashed": true,
+    "fixed_size_combinatorics_independently_recomputed": true,
+    "identity_free_contract_exact": true,
+    "paths_multiplicities_and_fragments_independently_reconstructed": true
+  },
+  "classification": "RUN_ONLY_BROAD_PATH_SPLIT_PREFIX_LEAKAGE_RISK",
+  "producer_source_sha256": "c91bcb07cb1f4690b32425096bf029019033d72959b69f36aad3a5ba7c22ac0c",
+  "protocol": "independent-tree-path-split-prefix-leakage-verifier-v1",
+  "receipt_sha256": "77b88a53220d3c78c52e8a2cc9724ff51ab7c879b38287738653497a61c01116",
+  "root_to_leaf_path_records": 3599,
+  "security": {
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "imports_new_producer": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "task_run_fragment_path_card_parent_code_or_edge_values_emitted": false
+  },
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "status": "INDEPENDENT_TREE_PATH_SPLIT_PREFIX_LEAKAGE_PASS",
+  "test_occurrence_contamination_ratio_of_expectations": {
+    "decimal_17g": "0.71072159960645032",
+    "denominator": 113373300469141880316089919580269650030575850496372250614731052253211052474016558496724559429822780844193806157388678562694485585201680610915469304525840015193423490520617434102687054431495180242377493080587027057791208752,
+    "numerator": 80576853462091237769153152723891538326122400573749408642595621292518328250250979806501993618488551026250746061573629337639749689724725604314877363761742309807146011081035631602592082033501944055945013602931908068633698447
+  }
+}

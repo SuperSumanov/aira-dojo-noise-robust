@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; HCE multifidelity Probe score-channel effect and K>=1 remain closed
+PREFLIGHT_02_QUESTION=after fixing task or physical-run marginal mass quantify exact conditional edge-measure distortion breadth and concentration
+PREFLIGHT_03_DISCLOSURE=overall edge TV and task/run marginal TVs plus their triangle lower bounds were known before freeze; positive or material W_p alone is not new
+PREFLIGHT_04_AMENDMENT=commit e99499e initial slack gate was corrected before synthetic or real new values because slack measures bound looseness; protocol SHA 9f4f27c56e6dcec7b6302b095225afb307c0be3900b528dd5f56225639fb79a7
+PREFLIGHT_05_INPUTS=exact snapshot 887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697; original blind population contract and two hash-bound aggregate receipts only
+PREFLIGHT_06_ESTIMAND=canonical-marginal standardized within TV primary; path-marginal standardized TV secondary non-rescuing; all conditionable groups retained
+PREFLIGHT_07_GATES=task/run integrity floors 0.20/0.15 are weaker than disclosed lower bounds; genuinely new gates are breadth 1/2 and 1/4 plus max contribution 0.40 and 0.20
+PREFLIGHT_08_LEAKAGE=no prospective label grade outcome prediction accuracy utility raw senior archive or identity-valued output access
+PREFLIGHT_09_SOURCE=fresh detached no-smudge exact commit 2363b687ea503ced5945208766bb25f1baaeffed; protocol producer verifier and tests hashes exact; clean before aggregate
+PREFLIGHT_10_TESTS=synthetic and neighboring focused suite followed by all phase1 tests before real aggregate
+PREFLIGHT_11_INDEPENDENCE=producer A/B byte equality and verifier A/B byte equality; verifier imports no new producer and reconstructs graph with a distinct algorithm
+PREFLIGHT_12_SECURITY=open trace forbidden paths zero; exact blind schema; credential filename/content zero; aggregate-only output; CPU only and GPU/API/model-fit/base-update 0/0/0/0
+PREFLIGHT_13_PROMOTION=only exact tests A/B independent reconstruction security clean-worktree and manifest success may create COMPLETE; any mismatch fails closed

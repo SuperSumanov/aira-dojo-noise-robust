@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; no HCE multifidelity Probe score-channel effect or lookahead
+PREFLIGHT_02_QUESTION=exact post-hoc interpretation of how root-to-leaf enumeration changes the logged edge-depth distribution
+PREFLIGHT_03_TIMING=all source depth counts TV mean CDF crossing and quantiles were seen before declaration; no preregistered or confirmatory discovery claim
+PREFLIGHT_04_INPUT=one hash-bound aggregate receipt 642e9fd793950d4dfd082669df164be0781bd13847f35d6483ebd8611a136ea8; no raw snapshot identity or prospective value input
+PREFLIGHT_05_ESTIMANDS=canonical-edge and path-frequency depth distributions exact FOSD mean shift TV CDF gaps sign crossings and nearest-rank quantiles
+PREFLIGHT_06_SOURCE=fresh detached no-smudge exact commit 333a3b66ca5399dcf87e586be1339423917d1264; protocol producer verifier and tests hashes exact
+PREFLIGHT_07_TESTS=synthetic attacks and official aggregate test plus neighboring tree tests followed by all phase1 tests before formal derivation
+PREFLIGHT_08_INDEPENDENCE=producer A/B and non-importing verifier A/B byte equality; verifier uses integer cross-products rather than producer PMF construction
+PREFLIGHT_09_RELATED=Tree Training and TreeAdv already cover shared-prefix duplication and root-scale normalization; only MLE empirical release corollary allowed
+PREFLIGHT_10_LEAKAGE=no prospective label grade outcome prediction accuracy utility raw senior archive or identity-valued output access
+PREFLIGHT_11_SECURITY=open trace forbidden paths zero; credential filename and content zero; aggregate-only output
+PREFLIGHT_12_RESOURCES=CPU only; GPU API model-fit base-update equals 0/0/0/0
+PREFLIGHT_13_PROMOTION=only exact tests A/B independent equality clean worktree security and manifest success may create COMPLETE; any mismatch fails closed

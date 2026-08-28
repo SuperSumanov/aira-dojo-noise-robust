@@ -1,0 +1,40 @@
+{
+  "all_hard_gates_passed": false,
+  "checks": {
+    "blind_population_independently_reconstructed": true,
+    "classification_independently_recomputed": true,
+    "exact_partition_metrics_independently_recomputed": true,
+    "fixed_inputs_rehashed": true,
+    "graph_and_multiplicities_independently_reconstructed": true,
+    "identity_free_contract_exact": true
+  },
+  "classification": "WITHIN_STRATUM_DECOMPOSITION_GATE_FAIL",
+  "observed_unique_edges": 10895,
+  "path_edge_occurrences": 26107,
+  "physical_run_canonical_standardized_within_total_variation": {
+    "decimal_17g": "0.30840042995574296",
+    "denominator": 2045404979839239658521702456699772746829120084877995695158126592581752116000,
+    "numerator": 630803775216039256925149105532628306275992120516564337936403660228343768993
+  },
+  "producer_source_sha256": "38aa702d58e1250db31790227778130d6fca41939cdc4f74249cbfa3d766e25c",
+  "protocol": "independent-tree-linearization-within-stratum-verifier-v1",
+  "receipt_sha256": "ad949f84705e5c66e3376d677c314802d5205a51eb7e52a2588066046d7c49a4",
+  "security": {
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "imports_new_producer": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "task_run_card_parent_code_or_per_edge_values_emitted": false
+  },
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "status": "INDEPENDENT_WITHIN_STRATUM_DECOMPOSITION_PASS",
+  "task_canonical_standardized_within_total_variation": {
+    "decimal_17g": "0.34286096272939481",
+    "denominator": 250168261662429768384456188533960403304956646953350875,
+    "numerator": 85772931037919815384034026176462780969050500357498184
+  }
+}

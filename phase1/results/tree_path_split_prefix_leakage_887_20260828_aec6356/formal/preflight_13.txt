@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; no HCE multifidelity Probe score-channel effect or lookahead
+PREFLIGHT_02_QUESTION=exact canonical-edge crossing if shared-root-to-leaf paths are treated as independent fixed-size split records
+PREFLIGHT_03_TIMING=global histogram-derived values disclosed as post-hoc; task run and fragment breadth unseen at protocol commit
+PREFLIGHT_04_INPUT=fixed outcome-blind snapshot 887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697 plus hash-bound tree linearization and tree-native receipts
+PREFLIGHT_05_ESTIMANDS=uniform fixed-size 2879/360/360 path assignment; exact overlap expectations and ratio-of-expectations; anonymous group breadth
+PREFLIGHT_06_SOURCE=fresh detached no-smudge exact commit aec63564cb4a347a3bb6c61b38ae30850d1d755f; protocol producer verifier tests and upstream receipt hashes exact
+PREFLIGHT_07_CONTROLS=all-multiplicity-one two-branch hand calculation small-N exhaustive allocation cycle cross-run tamper and grouped-zero controls
+PREFLIGHT_08_INDEPENDENCE=producer A/B and non-importing verifier A/B byte equality; verifier uses falling products rather than producer combinations
+PREFLIGHT_09_RELATED=shared-prefix reuse and grouped splitting are prior art; only exact MLE corpus measurement and release contract allowed
+PREFLIGHT_10_LEAKAGE=no prospective label grade outcome prediction accuracy effect utility or raw senior archive access
+PREFLIGHT_11_SECURITY=open trace forbidden paths zero; credential filename and content zero; identity-free aggregate only
+PREFLIGHT_12_RESOURCES=CPU only; GPU API model-fit base-update equals 0/0/0/0
+PREFLIGHT_13_PROMOTION=only focused full tests A/B independent equality clean worktree security and manifest success may create COMPLETE

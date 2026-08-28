@@ -1,0 +1,37 @@
+{
+  "protocol": "tree-linearization-depth-order-result-package-v1",
+  "status": "VERIFIED_SHALLOW_DEPTH_STOCHASTIC_ORDER_COROLLARY",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "declaration_commit": "c13e37158f650b4cea2a2de2b9eaa62189ac339f",
+  "formal_source_commit": "333a3b66ca5399dcf87e586be1339423917d1264",
+  "source_sha256": {
+    "protocol": "29a4e060ef958892b3e2c3f5dccf6258ef87f9bc5ea7b94923551d19d8a2e7e3",
+    "producer": "2d314d4b1c5f87e9c84782f43cc33ca079b4650182d7ea6b8d79b1deabee5321",
+    "verifier": "f240a57cbb843ddd5200cd6112a35cbc9a1f2115525878d3e5c1f9a2a21ebb15",
+    "tests": "146b0721b7f705596352e9c286da83ed848a80c80e912ad389986b53c469b524"
+  },
+  "formal_sha256": {
+    "final_receipt": "49588d8c03e0cb5c1d05cd784e62a5b83df5d474701999be60fbdff3563096e7",
+    "independent_verification": "478ed3df6058a82c0ac5e6348eda33c876b94bf0431727d74425cbdca9278541",
+    "formal_summary": "e6d71c4af4b8635e10a07f7bf207b2b5fde2f75e23a8e6d516a661559b9903bc",
+    "formal_manifest": "ab5df469b2b92e87ab78e998142bd6bcafc8f681f8d0f6efcee7ca78a30f2001"
+  },
+  "remote_root": "/research/d7/spc/yzyang4/tree-linearization-depth-order/formal-333a3b6-887491a-v1",
+  "verification": {
+    "focused_tests_passed": 63,
+    "full_tests_passed": 1369,
+    "full_test_warnings": 47,
+    "producer_a_b_byte_identical": true,
+    "verifier_a_b_byte_identical": true,
+    "formal_manifest_verified_after_transport": true
+  },
+  "security": {
+    "forbidden_open_hits": 0,
+    "credential_filename_hits": 0,
+    "credential_content_file_hits": 0,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "identity_code_or_per_edge_values_emitted": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  }
+}

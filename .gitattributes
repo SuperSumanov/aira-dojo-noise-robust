@@ -160,7 +160,33 @@ phase1/results/decision_corpus_evidence_index_v8_887_20260828_3d30826/README.md 
 phase1/results/decision_corpus_evidence_index_v8_887_20260828_3d30826/source_bindings.json text eol=lf diff
 # Freeze the outcome-blind within-stratum decomposition protocol bytes before
 # any new task/run-conditional aggregate is computed.
+phase1/prospective_tree_linearization_weight_audit_v1.json text eol=lf diff
+phase1/audit_prospective_tree_linearization_weights.py text eol=lf diff
+phase1/verify_prospective_tree_linearization_weights.py text eol=lf diff
+phase1/tests/test_prospective_tree_linearization_weights.py text eol=lf diff
 phase1/tree_linearization_within_stratum_decomposition_v1.json text eol=lf diff
 phase1/decompose_tree_linearization_within_strata.py text eol=lf diff
 phase1/verify_tree_linearization_within_stratum_decomposition.py text eol=lf diff
 phase1/tests/test_tree_linearization_within_stratum_decomposition.py text eol=lf diff
+# Freeze the post-hoc depth-order and path-split audit sources because their
+# SHA-256 values are embedded in formal receipts.
+phase1/tree_linearization_depth_order_corollary_v1.json text eol=lf diff
+phase1/derive_tree_linearization_depth_order_corollary.py text eol=lf diff
+phase1/verify_tree_linearization_depth_order_corollary.py text eol=lf diff
+phase1/tests/test_tree_linearization_depth_order_corollary.py text eol=lf diff
+phase1/tree_path_split_prefix_leakage_v1.json text eol=lf diff
+phase1/audit_tree_path_split_prefix_leakage.py text eol=lf diff
+phase1/verify_tree_path_split_prefix_leakage.py text eol=lf diff
+phase1/tests/test_tree_path_split_prefix_leakage.py text eol=lf diff
+# Preserve the three byte-exact formal tree-structure audits and their inner
+# manifests; keep package documentation and result tests normalized.
+phase1/results/tree_linearization_within_stratum_887_20260828_2363b68/formal/** -text -diff
+phase1/results/tree_linearization_within_stratum_887_20260828_2363b68/README.md text eol=lf diff
+phase1/results/tree_linearization_within_stratum_887_20260828_2363b68/source_bindings.json text eol=lf diff
+phase1/results/tree_linearization_depth_order_887_20260828_333a3b6/formal/** -text -diff
+phase1/results/tree_linearization_depth_order_887_20260828_333a3b6/README.md text eol=lf diff
+phase1/results/tree_linearization_depth_order_887_20260828_333a3b6/source_bindings.json text eol=lf diff
+phase1/results/tree_path_split_prefix_leakage_887_20260828_aec6356/formal/** -text -diff
+phase1/results/tree_path_split_prefix_leakage_887_20260828_aec6356/README.md text eol=lf diff
+phase1/results/tree_path_split_prefix_leakage_887_20260828_aec6356/source_bindings.json text eol=lf diff
+phase1/tests/test_tree_structure_audit_results.py text eol=lf diff

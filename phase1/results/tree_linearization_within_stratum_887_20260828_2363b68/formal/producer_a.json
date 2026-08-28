@@ -1,0 +1,377 @@
+{
+  "claim_boundary": {
+    "allowed_if_broad": "On this fixed outcome-blind MLE-agent observed forest, path linearization changes edge measures within both task and physical-run strata after their marginals are fixed; the anonymous conditional profiles pass predeclared breadth and anti-dominance gates. Positive/material W_p was already implied by disclosed aggregates and is not claimed as a new discovery.",
+    "complete_source_tree_or_choice_set_proven": false,
+    "first960_or_closure_completed": false,
+    "generalization_beyond_fixed_snapshot": false,
+    "generic_probability_or_graph_decomposition_novelty": false,
+    "positive_within_stratum_tv_existence_is_new": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "semantic_or_causal_claim": false,
+    "task_or_run_composition_fully_explains_overall_shift_if_broad": false
+  },
+  "classification": "WITHIN_STRATUM_DECOMPOSITION_GATE_FAIL",
+  "design_timing": {
+    "new_within_task_or_within_run_values_seen": false,
+    "no_claim_that_the_existence_of_positive_within_stratum_tv_is_new": true,
+    "triangle_lower_bounds_logically_implied_before_freeze": true,
+    "upstream_overall_edge_tv_seen": true,
+    "upstream_task_and_run_marginal_tv_seen": true
+  },
+  "input_bindings": {
+    "accumulator_summary_sha256": "2f28b5b53cca5d6ea5ebf16f746a70f9c1de0e3197487a6ed78d41b4cb611302",
+    "estimand_sensitivity_receipt": "2587db7f1a77a5bcc13dd0bed2191616ccca6c5cbc57b73104ebb7b425c57cc4",
+    "intake_count": 106,
+    "intake_summary_manifest_multiset_sha256": "388ba4b9110fc2a2b525ab80619c5e2c3049597d3f923e84682995be4375ff28",
+    "linearization_receipt": "642e9fd793950d4dfd082669df164be0781bd13847f35d6483ebd8611a136ea8",
+    "population_protocol": "95b49fd50b75dd16fd9eefbb34557da35daa52fcecc35fce45ac89948a697feb",
+    "provisional_runs_sha256": "510d81820d7825fc6baa6db562b2371e50eb7d71d04cb1cc0bd17d095d6cdbca",
+    "registry_sha256": "37e41460c85661fd9afc6f8789a065088a9da88dde027b955ff4bc366d5bbcd8"
+  },
+  "inventory": {
+    "duplicate_edge_occurrences": 15212,
+    "eligible_endpoints": 11906,
+    "fragment_leaves": 3599,
+    "fragment_roots": 1011,
+    "observed_unique_edges": 10895,
+    "path_edge_occurrences": 26107,
+    "physical_runs": 435,
+    "physical_runs_with_observed_edges": 435,
+    "single_node_fragments": 142,
+    "tasks_with_observed_edges": 34
+  },
+  "overall_edge_total_variation": {
+    "decimal_17g": "0.38618771447395162",
+    "denominator": 284435765,
+    "numerator": 109845598
+  },
+  "partitions": {
+    "physical_run": {
+      "anonymous_conditionable_group_distribution": {
+        "fraction_at_or_above_reference": {
+          "decimal_17g": "0.82027649769585254",
+          "denominator": 217,
+          "numerator": 178
+        },
+        "groups_at_or_above_reference": 356,
+        "histogram": {
+          "counts": [
+            63,
+            15,
+            96,
+            168,
+            84,
+            8
+          ],
+          "edges": [
+            {
+              "decimal_17g": "0",
+              "denominator": 1,
+              "numerator": 0
+            },
+            {
+              "decimal_17g": "0.050000000000000003",
+              "denominator": 20,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.10000000000000001",
+              "denominator": 10,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.20000000000000001",
+              "denominator": 5,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.29999999999999999",
+              "denominator": 10,
+              "numerator": 3
+            },
+            {
+              "decimal_17g": "0.5",
+              "denominator": 2,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "1",
+              "denominator": 1,
+              "numerator": 1
+            }
+          ],
+          "last_bin_right_closed": true
+        },
+        "maximum": {
+          "decimal_17g": "0.58347720733000152",
+          "denominator": 66030,
+          "numerator": 38527
+        },
+        "median": {
+          "decimal_17g": "0.2227695675971538",
+          "denominator": 1827,
+          "numerator": 407
+        },
+        "p90_nearest_rank": {
+          "decimal_17g": "0.36097560975609755",
+          "denominator": 205,
+          "numerator": 74
+        },
+        "reference": {
+          "decimal_17g": "0.10000000000000001",
+          "denominator": 10,
+          "numerator": 1
+        }
+      },
+      "canonical_marginal_standardized_within_total_variation": {
+        "decimal_17g": "0.30840042995574296",
+        "denominator": 2045404979839239658521702456699772746829120084877995695158126592581752116000,
+        "numerator": 630803775216039256925149105532628306275992120516564337936403660228343768993
+      },
+      "conditionable_groups": 434,
+      "exact_slack_above_triangle_lower_bound": {
+        "decimal_17g": "0.11115693281676678",
+        "denominator": 53399387808663029765026086037060967101467838055909833613493210952531802492412000,
+        "numerator": 5935712163104031264922360336324328670470268816299409633561737367502778758016251
+      },
+      "group_marginal_total_variation": {
+        "decimal_17g": "0.18894421733497543",
+        "denominator": 284435765,
+        "numerator": 53742493
+      },
+      "groups_with_observed_edges": 435,
+      "maximum_anonymous_canonical_contribution_share": {
+        "decimal_17g": "0.10868797144906397",
+        "denominator": 630803775216039256925149105532628306275992120516564337936403660228343768993,
+        "numerator": 68560782710642644374584655614887998534321708182333707717605675341078363904
+      },
+      "path_marginal_standardized_within_total_variation_secondary": {
+        "decimal_17g": "0.36989965674864556",
+        "denominator": 79701806479779319802188754709716061600,
+        "numerator": 29481670859117343616883810040950282663
+      },
+      "strong_positive_gate": {
+        "all_passed": true,
+        "breadth_threshold": {
+          "decimal_17g": "0.25",
+          "denominator": 4,
+          "numerator": 1
+        },
+        "checks": {
+          "breadth_fraction_at_least_minimum": true,
+          "canonical_standardized_within_tv_at_least_integrity_floor": true,
+          "maximum_contribution_share_at_most_maximum": true
+        },
+        "dominance_threshold": {
+          "decimal_17g": "0.20000000000000001",
+          "denominator": 5,
+          "numerator": 1
+        },
+        "triangle_slack_is_diagnostic_only": true,
+        "within_tv_integrity_floor": {
+          "decimal_17g": "0.14999999999999999",
+          "denominator": 20,
+          "numerator": 3
+        }
+      },
+      "triangle_lower_bound": {
+        "decimal_17g": "0.19724349713897618",
+        "denominator": 56887153,
+        "numerator": 11220621
+      }
+    },
+    "task": {
+      "anonymous_conditionable_group_distribution": {
+        "fraction_at_or_above_reference": {
+          "decimal_17g": "0.94117647058823528",
+          "denominator": 17,
+          "numerator": 16
+        },
+        "groups_at_or_above_reference": 32,
+        "histogram": {
+          "counts": [
+            1,
+            1,
+            6,
+            19,
+            7,
+            0
+          ],
+          "edges": [
+            {
+              "decimal_17g": "0",
+              "denominator": 1,
+              "numerator": 0
+            },
+            {
+              "decimal_17g": "0.050000000000000003",
+              "denominator": 20,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.10000000000000001",
+              "denominator": 10,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.20000000000000001",
+              "denominator": 5,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "0.29999999999999999",
+              "denominator": 10,
+              "numerator": 3
+            },
+            {
+              "decimal_17g": "0.5",
+              "denominator": 2,
+              "numerator": 1
+            },
+            {
+              "decimal_17g": "1",
+              "denominator": 1,
+              "numerator": 1
+            }
+          ],
+          "last_bin_right_closed": true
+        },
+        "maximum": {
+          "decimal_17g": "0.47260898196117929",
+          "denominator": 28174181,
+          "numerator": 13315371
+        },
+        "median": {
+          "decimal_17g": "0.2645190644658269",
+          "denominator": 3760504,
+          "numerator": 994725
+        },
+        "p90_nearest_rank": {
+          "decimal_17g": "0.36095606392396218",
+          "denominator": 107315,
+          "numerator": 38736
+        },
+        "reference": {
+          "decimal_17g": "0.10000000000000001",
+          "denominator": 10,
+          "numerator": 1
+        }
+      },
+      "canonical_marginal_standardized_within_total_variation": {
+        "decimal_17g": "0.34286096272939481",
+        "denominator": 250168261662429768384456188533960403304956646953350875,
+        "numerator": 85772931037919815384034026176462780969050500357498184
+      },
+      "conditionable_groups": 34,
+      "exact_slack_above_triangle_lower_bound": {
+        "decimal_17g": "0.11701085207260027",
+        "denominator": 6531142807221053963212997714056104249082503182011131293625,
+        "numerator": 764214584880770023248650529875637303228068328681798916763
+      },
+      "group_marginal_total_variation": {
+        "decimal_17g": "0.16033760381715709",
+        "denominator": 284435765,
+        "numerator": 45605749
+      },
+      "groups_with_observed_edges": 34,
+      "maximum_anonymous_canonical_contribution_share": {
+        "decimal_17g": "0.35387441357728333",
+        "denominator": 85772931037919815384034026176462780969050500357498184,
+        "numerator": 30352845671848640559374161859140790533967789091899775
+      },
+      "path_marginal_standardized_within_total_variation_secondary": {
+        "decimal_17g": "0.37800710128398879",
+        "denominator": 200172880282754581396012191106160952525,
+        "numerator": 75666770231350978042443967972267534948
+      },
+      "strong_positive_gate": {
+        "all_passed": true,
+        "breadth_threshold": {
+          "decimal_17g": "0.5",
+          "denominator": 2,
+          "numerator": 1
+        },
+        "checks": {
+          "breadth_fraction_at_least_minimum": true,
+          "canonical_standardized_within_tv_at_least_integrity_floor": true,
+          "maximum_contribution_share_at_most_maximum": true
+        },
+        "dominance_threshold": {
+          "decimal_17g": "0.40000000000000002",
+          "denominator": 5,
+          "numerator": 2
+        },
+        "triangle_slack_is_diagnostic_only": true,
+        "within_tv_integrity_floor": {
+          "decimal_17g": "0.20000000000000001",
+          "denominator": 5,
+          "numerator": 1
+        }
+      },
+      "triangle_lower_bound": {
+        "decimal_17g": "0.2258501106567945",
+        "denominator": 284435765,
+        "numerator": 64239849
+      }
+    }
+  },
+  "population_loader_source_sha256": "cd204c1607b754f1d07861da83c829cab09df2871242a69236fe65fcc84eb09f",
+  "pre_registered_gate": {
+    "all_hard_gates_passed": false,
+    "axis_strength": {
+      "physical_run": true,
+      "task": true
+    },
+    "fixed_thresholds": {
+      "both_axes_must_pass_for_headline": true,
+      "maximum_single_physical_run_canonical_contribution_share": "1/5",
+      "maximum_single_task_canonical_contribution_share": "2/5",
+      "minimum_physical_run_canonical_standardized_within_tv_integrity_floor": "3/20",
+      "minimum_physical_run_fraction_at_or_above_conditional_tv_reference": "1/4",
+      "minimum_task_canonical_standardized_within_tv_integrity_floor": "1/5",
+      "minimum_task_fraction_at_or_above_conditional_tv_reference": "1/2",
+      "secondary_path_standardized_metric_may_rescue": false
+    },
+    "hard_integrity_and_support": {
+      "conditionable_physical_runs_at_least_minimum": true,
+      "conditionable_tasks_at_least_minimum": true,
+      "edge_and_occurrence_counts_match_upstream": true,
+      "latest_equals_fixed_snapshot": true,
+      "population_loader_rechecked_original_contract": true,
+      "recomputed_overall_edge_tv_matches_exact_upstream_fraction": true,
+      "recomputed_run_marginal_tv_roundtrips_to_disclosed_17g": true,
+      "recomputed_task_marginal_tv_roundtrips_to_disclosed_17g": false,
+      "upstream_receipt_hash_classification_snapshot_and_counts_match": true
+    }
+  },
+  "producer_source_sha256": "38aa702d58e1250db31790227778130d6fca41939cdc4f74249cbfa3d766e25c",
+  "protocol": "tree-linearization-within-stratum-decomposition-receipt-v1",
+  "protocol_sha256": "9f4f27c56e6dcec7b6302b095225afb307c0be3900b528dd5f56225639fb79a7",
+  "reproducibility": {
+    "python_version": "3.11.15",
+    "randomness_used": false
+  },
+  "security": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "allowed_input_basenames": [
+      "LATEST",
+      "eligible_blind_manifest.jsonl",
+      "intake_registry.jsonl",
+      "provisional_runs.jsonl",
+      "summary.json",
+      "final_receipt.json"
+    ],
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "task_run_card_parent_code_or_per_edge_values_emitted": false
+  },
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "source_commit": "2363b687ea503ced5945208766bb25f1baaeffed",
+  "status": "OUTCOME_BLIND_WITHIN_STRATUM_DECOMPOSITION_COMPLETE"
+}

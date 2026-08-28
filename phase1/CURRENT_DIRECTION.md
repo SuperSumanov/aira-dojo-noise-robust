@@ -31,8 +31,16 @@ protocol/producer/独立 verifier/test/runner/watcher SHA-256=`f3adc77b...3228f`
 `0eaafbec...13c2` / `a74a5c2c...4a13` / `bcedd747...68e2` / `00bc6583...4986`。producer/verifier
 分别绑定独立 snapshot/fingerprint helper 与已发布 887 aggregate+verification；本地相关=`51 passed`，本机全套只因缺少
 scipy/sklearn 在 collection 阶段不可运行，不能冒充 code failure 或完整通过。详细边界见
-`phase1/实验记录/2026-08-29/SelectiveParentRecovery_Target522前瞻确认预注册.md`。本节写入时尚未 push/deploy，故无
-Target-522 scientific result；GPU/API/model-fit/base-update=`0/0/0/0`，prospective values/raw archives 均未读。
+`phase1/实验记录/2026-08-29/SelectiveParentRecovery_Target522前瞻确认预注册.md`。
+
+实现随后由公开 commit `349b9ca9ef84defd70e950d873564cbd8973c180` 闭环。fresh detached Linux 对 source hashes、
+protocol dependencies、887 development package manifest 和 runner/watcher syntax 均复核通过，focused/full=
+`51/1456 passed`，full 有 47 warnings；凭据命中=`0/0`，post-push manifest SHA-256=
+`d9f094a562b0bad9b51dd80fbcc35c3d6eee06c562020d30b8b1fc9724c190b0`。outcome-blind watcher 于
+`2026-08-28T16:18:01Z` 独立复核为 PID=`4119941`、lock held、13/13 preflight PASS，selection candidate/READY/COMPLETE
+仍为空、LATEST 仍为 887；deployment receipt manifest=`e067089795da56e2179320be1bbf310c4e6ecacb6667717614ddb429656fb844`。
+因此执行链已就绪但仍无 Target-522 scientific result；GPU/API/model-fit/base-update=`0/0/0/0`，prospective
+values/raw archives 均未读。
 
 ## 0HP. 2026-08-28 run-disjoint selective parent recovery 正式通过全部强门
 

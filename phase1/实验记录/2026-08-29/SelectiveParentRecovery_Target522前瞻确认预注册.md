@@ -68,4 +68,18 @@ fingerprint 与 candidate/margin 重算。正式 runner 还要求 fresh detached
 凭据扫描与 immutable manifest。当前本地相关测试=`51 passed`；本机全套收集因缺少 scipy/sklearn 依赖而不能作为完整
 回执，必须以远端固定 venv 的 fresh post-push 全套结果为准。GPU/API/model-fit/base-update=`0/0/0/0`。
 
-本文件写入时尚未 commit/push/deploy watcher，故不存在 Target-522 正结果。
+## 6. Post-push 与 watcher 部署回执
+
+公开 source commit 为 `349b9ca9ef84defd70e950d873564cbd8973c180`。fresh detached Linux 逐项复核 source hashes、
+protocol dependencies、887 development package manifest 与 runner/watcher syntax；focused/full=`51/1456 passed`，
+full 有 47 warnings，凭据文件名/内容命中=`0/0`，post-push manifest SHA-256=
+`d9f094a562b0bad9b51dd80fbcc35c3d6eee06c562020d30b8b1fc9724c190b0`。
+
+watcher 已上线到固定 root
+`/research/d7/spc/yzyang4/tree-content-selective-parent-forward-target522/formal-monitor-349b9ca-target522-v1`。
+`2026-08-28T16:18:01Z` 独立 postflight 确认 PID=`4119941` 存活、exclusive lock held、13/13 preflight PASS；
+selection `READY/COMPLETE/candidate.tsv` 仍不存在，LATEST 仍为 887。deployment receipt manifest SHA-256=
+`e067089795da56e2179320be1bbf310c4e6ecacb6667717614ddb429656fb844`。
+
+因此协议与执行链已结果前就绪，但尚不存在 Target-522 scientific result；prospective values/raw archives 未读，
+GPU/API/model-fit/base-update=`0/0/0/0`。

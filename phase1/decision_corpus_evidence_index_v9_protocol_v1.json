@@ -1,0 +1,150 @@
+{
+  "protocol": "decision-corpus-evidence-index-v9-lineage-repair-protocol-v1",
+  "version": 1,
+  "created_at_utc": "2026-08-28T19:30:00Z",
+  "status": "POST_RESULT_REPORTING_REPAIR_PROTOCOL_FIXED",
+  "purpose": "Replace the Evidence Index v8 decision_corpus entry, whose v1 artifact did not inspect lineage.parent_id, with the independently verified v2 direct-child lineage certificate while preserving every other v8 entry and the provisional first-960 status.",
+  "source_v8": {
+    "path": "phase1/results/decision_corpus_evidence_index_v8_887_20260828_3d30826/formal/index.json",
+    "sha256": "e97eca05d99a2eb3b5429539469a7e790f20f40cf70670cdbdc6a2c0c3e730a3",
+    "protocol": "decision_corpus_evidence_index_v8",
+    "status": "PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960",
+    "entry_count": 16,
+    "replacement_entry_name": "decision_corpus",
+    "replacement_entry_index": 0,
+    "unchanged_entry_count": 15
+  },
+  "lineage_package": {
+    "root": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842",
+    "manifest": "MANIFEST.sha256",
+    "manifest_sha256": "4c72c32449a4a68377fe3764089321c852648e0d6603655a09cd360a21d45447",
+    "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+    "package_status": "INDEPENDENTLY_VERIFIED_AGGREGATE_PACKAGE",
+    "source_commit": "25148420ee457018a1ee3740c4a1c42da830610d",
+    "protocol_sha256": "ef3aefd1534fb76d7d0a05d0fc4f4b4cbe02ceac8b183acea635b2b9c8d3c88a",
+    "producer_path": "formal/producer_a.json",
+    "producer_sha256": "23e9a8139be60ee4c34d3c44eda9afaed3034a68f6749ebcb0555c10a15f0032",
+    "verifier_path": "formal/verifier_a.json",
+    "verifier_sha256": "f183c7847343d3d485a3414cc14e1a20aa7761aaa5c94e2323bef32fb79bb59a",
+    "bindings_path": "source_bindings.json",
+    "bindings_sha256": "97ad6ac47bdd0290f9edb4ec878ca093bf87ec6e859498d3d725d721ae4fde97",
+    "required_counts": {
+      "all_rows": 8107,
+      "parent_present_verified_direct_sibling": 7579,
+      "lineage_verified_orphan_parent_sibling": 528,
+      "same_run_declared_context_non_sibling": 0,
+      "cross_run_declared_context": 0,
+      "hard_gates_passed": 15,
+      "hard_gates_total": 15,
+      "support_gates_passed": 35,
+      "support_gates_total": 36,
+      "frozen_b2_core_pairs": 254,
+      "frozen_b2_max_run_share_numerator": 26,
+      "frozen_b2_max_run_share_denominator": 127
+    }
+  },
+  "replacement_entry": {
+    "name": "decision_corpus",
+    "estimand": "declared-parent direct-child relation, parent-complete retention, and task/physical-run/split/budget closure across the nine canonical v11 decision sets",
+    "supported_claim": "All 8,107 audited v11 rows are lineage-direct sibling pairs under the recorded parent pointers. The parent-present strict core retains 7,579 rows, the lineage-verifiable orphan-parent tier contains 528 rows, all same-budget train/frozen pair, endpoint, parent, and referenced-run overlaps are zero, and 35 of 36 fixed support gates pass.",
+    "does_not_prove": "Recorded parent pointers are not semantic or causal ground truth. The frozen:b2 strict core fails the fixed maximum single-run share gate, so an all-support-gates-pass claim is forbidden; this audit also does not establish predictor accuracy, scaling, search utility, or prospective generalization.",
+    "artifacts": [
+      {
+        "path": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/formal/producer_a.json",
+        "sha256_normalized_lf": "23e9a8139be60ee4c34d3c44eda9afaed3034a68f6749ebcb0555c10a15f0032",
+        "json_assertions": {
+          "protocol": "decision-corpus-lineage-audit-v2-receipt",
+          "status": "HISTORICAL_V11_LINEAGE_AUDIT_COMPLETE",
+          "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+          "scientific.global_relation_counts.parent_present_verified_direct_sibling": 7579,
+          "scientific.global_relation_counts.lineage_verified_orphan_parent_sibling": 528,
+          "scientific.global_relation_counts.same_run_declared_context_non_sibling": 0,
+          "scientific.global_relation_counts.cross_run_declared_context": 0,
+          "scientific.hard_integrity_gate_count.passed": 15,
+          "scientific.hard_integrity_gate_count.total": 15,
+          "scientific.support_gate_count.passed": 35,
+          "scientific.support_gate_count.total": 36,
+          "scientific.support_gates.frozen:b2.maximum_single_run_pair_share": false,
+          "scientific.set_profiles.frozen:b2.strict_core.pairs": 254,
+          "scientific.set_profiles.frozen:b2.strict_core.maximum_single_run_pair_share.numerator": 26,
+          "scientific.set_profiles.frozen:b2.strict_core.maximum_single_run_pair_share.denominator": 127,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b0.unordered_pairs": 0,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b0.endpoints": 0,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b0.parents": 0,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b0.referenced_physical_runs": 0,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b1.unordered_pairs": 0,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b1.endpoints": 0,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b1.parents": 0,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b1.referenced_physical_runs": 0,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b2.unordered_pairs": 0,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b2.endpoints": 0,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b2.parents": 0,
+          "scientific.same_budget_strict_core_train_frozen_overlap.b2.referenced_physical_runs": 0,
+          "scope.prospective_values_read": false,
+          "scope.raw_senior_archives_read": false,
+          "scope.row_level_release_created": false,
+          "scope.grade_gap_label_prediction_accuracy_or_utility_used": false
+        }
+      },
+      {
+        "path": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/formal/verifier_a.json",
+        "sha256_normalized_lf": "f183c7847343d3d485a3414cc14e1a20aa7761aaa5c94e2323bef32fb79bb59a",
+        "json_assertions": {
+          "protocol": "independent-decision-corpus-lineage-audit-v2-verification",
+          "status": "INDEPENDENTLY_VERIFIED_DECISION_CORPUS_LINEAGE_AUDIT_V2",
+          "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+          "all_aggregate_fields_equal": true,
+          "imports_producer": false,
+          "hard_integrity_gate_count.passed": 15,
+          "hard_integrity_gate_count.total": 15,
+          "support_gate_count.passed": 35,
+          "support_gate_count.total": 36,
+          "prospective_values_read": false,
+          "row_level_release_created": false
+        }
+      },
+      {
+        "path": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/source_bindings.json",
+        "sha256_normalized_lf": "97ad6ac47bdd0290f9edb4ec878ca093bf87ec6e859498d3d725d721ae4fde97",
+        "json_assertions": {
+          "status": "INDEPENDENTLY_VERIFIED_AGGREGATE_PACKAGE",
+          "source_commit": "25148420ee457018a1ee3740c4a1c42da830610d",
+          "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+          "scope.aggregate_only": true,
+          "scope.row_level_release_created": false,
+          "scope.prospective_values_read": false,
+          "scope.raw_senior_archives_read": false,
+          "scope.pair_orientation_used": false,
+          "scope.gpu_api_model_fit_base_update": "0/0/0/0"
+        }
+      }
+    ]
+  },
+  "scope_additions": {
+    "lineage_direct_relation_verified": true,
+    "lineage_parent_present_strict_core_pairs": 7579,
+    "lineage_verified_orphan_parent_sibling_pairs": 528,
+    "lineage_same_run_non_sibling_pairs": 0,
+    "lineage_cross_run_context_pairs": 0,
+    "lineage_support_gates_passed": 35,
+    "lineage_support_gates_total": 36,
+    "lineage_all_support_gates_passed": false,
+    "lineage_row_level_release_created": false,
+    "first960_or_closure_completed_by_v9": false
+  },
+  "reporting_contract_additions": {
+    "lineage_direct_sibling_language_allowed": true,
+    "recorded_parent_semantic_or_causal_truth_language_allowed": false,
+    "parent_complete_all_support_gates_pass_language_allowed": false,
+    "frozen_b2_run_concentration_limitation_required": true,
+    "predictor_effect_or_search_utility_language_allowed_by_v9": false
+  },
+  "security": {
+    "prospective_label_grade_outcome_or_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "task_run_card_code_edge_or_row_identities_emitted": false,
+    "row_level_release_created": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  },
+  "failure_rule": "Fail closed and emit no index if the source v8 SHA/status/entry position, lineage package manifest or artifact assertions, independent-verifier agreement, limited-support classification, failed frozen:b2 concentration gate, unchanged-entry equality, status preservation, or security boundary differs."
+}

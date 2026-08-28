@@ -1,0 +1,164 @@
+{
+  "protocol": "tree-path-split-prefix-leakage-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T11:55:56Z",
+  "status": "OUTCOME_BLIND_PROTOCOL_FROZEN_AFTER_GLOBAL_EXPLORATION_BEFORE_CLUSTER_BREADTH",
+  "question": "If root-to-leaf paths from the same observed MLE-agent forest are treated as independent records and uniformly split 80/10/10, how much exact canonical-edge support is expected to cross from train into validation/test, and is that risk broad across tasks and physical runs?",
+  "design_timing": {
+    "upstream_multiplicity_histogram_seen": true,
+    "global_analytic_split_values_seen_before_freeze": true,
+    "task_run_or_fragment_breadth_values_seen_before_freeze": false,
+    "actual_random_partition_drawn": false,
+    "interpretation": "The global values are transparent post-hoc deterministic corollaries of an already released multiplicity histogram. Only the anonymous task/run breadth and anti-dominance profile is a result-after-freeze readout."
+  },
+  "fixed_population": {
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "eligible_endpoints": 11906,
+    "provisional_first960_runs": 435,
+    "tasks": 34,
+    "closure_provided": false,
+    "observed_fragments": 1011,
+    "root_to_leaf_path_records": 3599,
+    "canonical_observed_edges": 10895,
+    "path_edge_occurrences": 26107,
+    "population_rule": "Reuse every observed fragment, canonical child-parent edge, and root-to-leaf path from the fixed outcome-blind tree-native/path-compatible certificate; no task, run, fragment, path, edge, or multiplicity subset may be selected after breadth values are computed."
+  },
+  "fixed_inputs": {
+    "tree_population_protocol": {
+      "path": "phase1/prospective_tree_linearization_weight_audit_v1.json",
+      "sha256": "95b49fd50b75dd16fd9eefbb34557da35daa52fcecc35fce45ac89948a697feb"
+    },
+    "tree_linearization_receipt": {
+      "path": "phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/formal/final_receipt.json",
+      "sha256": "642e9fd793950d4dfd082669df164be0781bd13847f35d6483ebd8611a136ea8",
+      "required_classification": "MULTI_AXIS_MATERIAL_LINEARIZATION_REWEIGHTING"
+    },
+    "tree_native_contract": {
+      "path": "phase1/tree_native_path_compatibility_contract_v1.json",
+      "sha256": "319906f0dc0525ecbc2455a5d468d5fe9e3522405455657d29f0dd5accf54511"
+    },
+    "tree_native_receipt": {
+      "path": "phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/formal/final_receipt.json",
+      "sha256": "d5009a3464fb5d0597e67922bc7763af45271d0a06497b02b8fc2b7db989212d",
+      "required_classification": "VERIFIED_LOSSLESS_TREE_NATIVE_PATH_COMPATIBILITY"
+    }
+  },
+  "split_design": {
+    "unit_under_audit": "root-to-leaf path record",
+    "partition_law": "Uniform over all fixed-size assignments of the 3599 path records to disjoint train/validation/test sets.",
+    "train_paths": 2879,
+    "validation_paths": 360,
+    "test_paths": 360,
+    "random_draws": 0,
+    "primary_pair": "train_test",
+    "symmetric_replication_pair": "train_validation",
+    "safe_control_units": [
+      "observed_fragment",
+      "physical_run"
+    ],
+    "safe_control_expected_exact_edge_overlap": "0/1"
+  },
+  "estimands": {
+    "edge_multiplicity": "m_e is the number of distinct root-to-leaf path records containing canonical edge e.",
+    "fixed_set_allocation_probability": "For a fixed subset S of s paths, P(all m selected paths lie in S)=C(s,m)/C(N,m), interpreted as zero when m>s.",
+    "train_test_edge_overlap_probability": "P_e(T,X)=1-C(N-n_T,m_e)/C(N,m_e)-C(N-n_X,m_e)/C(N,m_e)+C(n_V,m_e)/C(N,m_e).",
+    "expected_cross_split_canonical_edges": "sum_e P_e(T,X).",
+    "canonical_overlap_fraction": "sum_e P_e(T,X) divided by the number of canonical observed edges.",
+    "unique_test_edge_contamination_ratio_of_expectations": "sum_e P_e(T,X) divided by sum_e P(edge e appears in test). This is a ratio of expectations, not the expectation of a random ratio.",
+    "test_occurrence_contamination_ratio_of_expectations": "The expected number of test path-edge rows whose same canonical edge has at least one train occurrence, divided by the expected number of test path-edge rows. For edge e this uses P(any of its other m_e-1 paths is train | one designated occurrence is test).",
+    "group_profile": "Recompute the test-occurrence contamination ratio of expectations within each task, physical run, and observed fragment while retaining the same global fixed-size partition law; emit only sorted anonymous aggregates.",
+    "contribution_share": "A group's expected contaminated test-occurrence numerator divided by the global numerator."
+  },
+  "disclosed_post_hoc_global_exploration": {
+    "expected_train_test_cross_split_canonical_edges_decimal_17g": "1291.4019805907681",
+    "canonical_edge_overlap_fraction_decimal_17g": "0.11853161822769785",
+    "unique_test_edge_contamination_ratio_of_expectations_decimal_17g": "0.63841797380705656",
+    "test_occurrence_contamination_ratio_of_expectations_decimal_17g": "0.71072159960645032",
+    "train_validation_is_identical_by_equal_split_size": true,
+    "new_discovery_claim": false
+  },
+  "fixed_distribution_summary": {
+    "group_ratio_reference": "1/4",
+    "histogram_edges": [
+      "0",
+      "1/10",
+      "1/4",
+      "1/2",
+      "3/4",
+      "1"
+    ],
+    "histogram_rule": "Left-closed/right-open bins, except the final bin includes 1. Emit anonymous counts and nearest-rank median/p90/maximum only.",
+    "conditionable_group": "A group with positive expected test path-edge mass; groups with zero contamination remain in the breadth denominator."
+  },
+  "hard_integrity_and_support_gates": {
+    "latest_equals_fixed_snapshot": true,
+    "population_loader_rechecks_all_original_tree_audit_gates": true,
+    "upstream_protocol_and_receipt_hashes_classifications_snapshot_and_counts_match": true,
+    "each_path_contains_a_canonical_edge_at_most_once": true,
+    "each_canonical_edge_is_bound_to_exactly_one_fragment_task_and_physical_run": true,
+    "recomputed_multiplicity_histogram_matches_upstream": true,
+    "global_exact_combinatorics_roundtrip_to_disclosed_17g_values": true,
+    "fragment_and_run_group_splits_have_exact_zero_cross_split_edge_overlap": true,
+    "minimum_conditionable_tasks": 15,
+    "minimum_conditionable_physical_runs": 150
+  },
+  "strong_positive_gates": {
+    "global_test_occurrence_contamination_integrity_floor": "1/2",
+    "global_floor_is_new_evidence": false,
+    "minimum_task_fraction_at_or_above_group_ratio_reference": "1/2",
+    "minimum_physical_run_fraction_at_or_above_group_ratio_reference": "1/4",
+    "maximum_single_task_expected_contaminated_occurrence_contribution_share": "2/5",
+    "maximum_single_physical_run_expected_contaminated_occurrence_contribution_share": "1/5",
+    "both_axes_must_pass_for_headline": true,
+    "fragment_profile_may_rescue": false
+  },
+  "ordered_classification": [
+    "BROAD_PATH_SPLIT_PREFIX_LEAKAGE_RISK",
+    "TASK_ONLY_BROAD_PATH_SPLIT_PREFIX_LEAKAGE_RISK",
+    "RUN_ONLY_BROAD_PATH_SPLIT_PREFIX_LEAKAGE_RISK",
+    "GLOBAL_EXPECTATION_WITHOUT_BROAD_SUPPORT",
+    "PATH_SPLIT_PREFIX_LEAKAGE_GATE_FAIL"
+  ],
+  "classification_rule": "Any hard-gate failure maps to GATE_FAIL. Otherwise an axis is broad only when its breadth and anti-dominance gates pass. Both axes broad maps to BROAD; exactly one maps to the matching one-axis class. All remaining hard-gate-passing cases map to GLOBAL_EXPECTATION_WITHOUT_BROAD_SUPPORT. The already seen global floor, train-validation symmetry, and zero-overlap grouped-split controls cannot rescue breadth.",
+  "required_outputs": {
+    "exact_rational_global_expectations_and_ratios": true,
+    "anonymous_task_run_and_fragment_histograms_quantiles_and_breadth": true,
+    "maximum_anonymous_task_and_run_contribution_share": true,
+    "exact_zero_fragment_and_run_split_controls": true,
+    "identity_free_aggregate_only": true,
+    "producer_a_b_byte_identical": true,
+    "non_importing_verifier_a_b_byte_identical": true
+  },
+  "claim_boundary": {
+    "allowed_if_broad": "On this fixed outcome-blind MLE-agent observed forest, treating root-to-leaf paths as independent 80/10/10 records would place exact shared-prefix canonical edges across train and test in expectation, and the newly frozen anonymous profile shows that the expected contaminated test-occurrence mass is broad across tasks and physical runs rather than dominated by one group. Fragment- or physical-run-grouped splitting prevents exact canonical-edge crossing by construction.",
+    "global_values_are_post_hoc_corollaries": true,
+    "actual_model_performance_inflation_measured": false,
+    "actual_random_split_or_training_run_performed": false,
+    "all_semantic_or_near_duplicate_leakage_measured": false,
+    "complete_source_tree_or_choice_set_proven": false,
+    "generic_group_split_or_shared_prefix_novelty": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "first960_or_closure_completed": false,
+    "generalization_beyond_fixed_snapshot": false
+  },
+  "security": {
+    "allowed_input_basenames": [
+      "LATEST",
+      "eligible_blind_manifest.jsonl",
+      "intake_registry.jsonl",
+      "provisional_runs.jsonl",
+      "summary.json",
+      "final_receipt.json"
+    ],
+    "raw_senior_archives_opened": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "task_run_fragment_path_card_parent_code_or_edge_values_emitted": false,
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "failure_rule": "Any snapshot, hash, upstream aggregate, schema, graph, exact combinatoric identity, support, anonymity, byte-reproducibility, independent-verification, trace, or security mismatch fails closed. No split size, group axis, threshold, denominator, population, or classification order may change after task/run/fragment profile values are computed."
+}

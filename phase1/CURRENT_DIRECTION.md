@@ -13,6 +13,24 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HI. 2026-08-28 path-record split 的共享前缀 crossing 已做结果前分层冻结
+
+0HC/0HD 已公开 root-to-leaf path multiplicity histogram；据此在冻结前探索性计算固定 80/10/10 path split
+（3,599 paths→2,879/360/360）：train-test 预计共享约 1,291.402 条 canonical edges；test path-edge rows 中同一
+canonical edge 预计也在 train 出现的 ratio-of-expectations 约 0.71072。两者都是已发布 histogram 的**后验确定性推论**，
+不得称新发现或结果前通过。
+
+尚未计算的新 readout 已冻结为匿名 task/run/fragment breadth：ratio reference=1/4，task 至少 1/2、run 至少 1/4
+达到 reference，并要求最大 expected-contaminated-occurrence contribution share 不超过 task 2/5、run 1/5；两轴全过才允许
+`BROAD_PATH_SPLIT_PREFIX_LEAKAGE_RISK`。固定大小随机分配用 exact combinatorics、不抽 seed；按 fragment/run grouped
+split 的 exact canonical-edge crossing 必须为 0，作为 release remedy control。只读 887 blind structure，GPU/API/model-fit/
+base-update=`0/0/0/0`。
+
+Tree Training 已覆盖 shared-prefix 线性化重复计算，一般 grouped split/parent-inherits-split 也早已存在；因此不申通用概念
+或算法 novelty，也不以 exact crossing 推断模型性能膨胀。可守贡献只是 MLE-agent observed forest 上的精确量化、跨 task/run
+广度和可执行 tree-native release contract。协议见 `phase1/tree_path_split_prefix_leakage_v1.json`，时间顺序与边界见
+`phase1/实验记录/2026-08-28/TreePathSplit_共享前缀泄漏风险_结果前分层冻结.md`；真实 breadth 尚未运行。
+
 ## 0HH. 2026-08-28 depth-order 只按已见数值后的确定性推论推进
 
 0HC 的 formal receipt 已经公开 canonical-edge 与 root-to-leaf path-frequency 两套 depth counts 和 depth TV；随后又

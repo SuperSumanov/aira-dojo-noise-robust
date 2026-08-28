@@ -92,6 +92,9 @@ exec 9>"$root/monitor.lock"
 flock -n 9
 printf '%s\n' "$$" >"$root/monitor.pid"
 trap 'rc=$?; if (( rc != 0 )); then printf "%s\n" "$rc" >"$root/FAILED_RC" 2>/dev/null || true; fi; exit "$rc"' EXIT
+trap 'exit 143' TERM
+trap 'exit 130' INT
+trap 'exit 129' HUP
 
 if [[ $mode == start ]]; then
   git -C "$repo" show "${source_commit}:${protocol_path}" >"$root/protocol.json"

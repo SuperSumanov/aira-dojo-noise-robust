@@ -29,7 +29,19 @@ def test_target_is_fixed_twenty_percent_forward_accrual() -> None:
     freeze = value["freeze_state"]
     activation = value["activation_rule"]
     assert value["status"] == (
-        "OUTCOME_BLIND_PROTOCOL_FROZEN_BEFORE_TARGET522_SELECTION_OR_INCREMENT_PROFILE"
+        "OUTCOME_BLIND_PROTOCOL_AMENDED_BEFORE_TARGET522_SELECTION_OR_INCREMENT_PROFILE"
+    )
+    amendment = value["pre_candidate_integrity_amendment"]
+    assert amendment["candidate_snapshot_identity_seen"] is False
+    assert amendment["increment_profile_seen"] is False
+    assert amendment["scientific_population_estimand_thresholds_or_classification_changed"] is False
+    assert amendment["superseded_source_commit"] == (
+        "3553744e98b75f2ee2414056cb56b1a523c0b303"
+    )
+    assert amendment["superseded_monitor_candidate_seen"] is False
+    assert amendment["superseded_monitor_exit_receipt_missing"] is True
+    assert amendment["superseded_monitor_sha256sums_sha256"] == (
+        "423a595f098040f0a2169231d0a20d7c01e23e377a88b328d4579fa94ed70131"
     )
     assert freeze["baseline_counts"]["provisional_first960_runs"] == 435
     assert activation["target_total_physical_runs"] == 522
@@ -135,6 +147,9 @@ def test_latch_is_selection_only_stable_and_fail_closed_on_resume_gap() -> None:
     assert "phase1.verify_tree_linearization" not in source
     assert "nvidia-smi" not in source
     assert "sbatch" not in source
+    assert "trap 'exit 143' TERM" in source
+    assert "trap 'exit 130' INT" in source
+    assert "trap 'exit 129' HUP" in source
 
 
 def test_latch_installs_failure_receipt_before_initializing_state() -> None:
@@ -152,3 +167,18 @@ def test_security_contract_is_zero_resource_and_identity_free() -> None:
     assert security["prospective_label_grade_outcome_prediction_values_read"] is False
     assert security["raw_senior_archives_opened"] is False
     assert security["task_run_card_parent_code_or_per_edge_values_emitted"] is False
+    assert set(security["corpus_input_basenames"]) == {
+        "LATEST",
+        "eligible_blind_manifest.jsonl",
+        "intake_registry.jsonl",
+        "provisional_runs.jsonl",
+        "summary.json",
+    }
+    assert {
+        "READY",
+        "SHA256SUMS",
+        "candidate.tsv",
+        "observed.tsv",
+        "protocol.json",
+        "source_script.sh",
+    } <= set(security["selection_support_input_basenames"])

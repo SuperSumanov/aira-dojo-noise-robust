@@ -2,7 +2,21 @@
   "protocol": "tree-linearization-within-stratum-forward-target522-v2",
   "version": 2,
   "frozen_at_utc": "2026-08-28T12:48:44Z",
-  "status": "OUTCOME_BLIND_PROTOCOL_FROZEN_BEFORE_TARGET522_SELECTION_OR_INCREMENT_PROFILE",
+  "status": "OUTCOME_BLIND_PROTOCOL_AMENDED_BEFORE_TARGET522_SELECTION_OR_INCREMENT_PROFILE",
+  "pre_candidate_integrity_amendment": {
+    "amended_at_utc": "2026-08-28T13:03:57Z",
+    "candidate_snapshot_identity_seen": false,
+    "increment_profile_seen": false,
+    "scientific_population_estimand_thresholds_or_classification_changed": false,
+    "reason": "The original corpus-input basename allowlist omitted the selection-support files required to independently prove the first observed crossing. The amendment separates corpus and selection-support inputs and adds explicit TERM, INT, and HUP failure receipts before any candidate existed.",
+    "superseded_source_commit": "3553744e98b75f2ee2414056cb56b1a523c0b303",
+    "superseded_protocol_sha256": "d609a4a1f1411272c2cca8971725031e857c335f1f8226433616c493667ee456",
+    "superseded_monitor_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-3553744-after-887-v1",
+    "superseded_monitor_sha256sums_sha256": "423a595f098040f0a2169231d0a20d7c01e23e377a88b328d4579fa94ed70131",
+    "superseded_monitor_candidate_seen": false,
+    "superseded_monitor_increment_profile_seen": false,
+    "superseded_monitor_exit_receipt_missing": true
+  },
   "question": "On the first automatically observed immutable snapshot whose chronological first-960 prefix contains at least 522 physical runs, does the disjoint increment beyond snapshot 887 retain broad within-task and within-run tree-linearization distortion under the already disclosed thresholds?",
   "scientific_role": "Forward-accrual confirmation on a disjoint physical-run increment; not a rescue or rerun of the failed snapshot-887 formal classification.",
   "freeze_state": {
@@ -114,14 +128,26 @@
     "generalization_beyond_selected_increment": false
   },
   "security": {
-    "allowed_input_basenames": [
+    "corpus_input_basenames": [
       "LATEST",
       "eligible_blind_manifest.jsonl",
       "intake_registry.jsonl",
       "provisional_runs.jsonl",
-      "summary.json",
+      "summary.json"
+    ],
+    "selection_support_input_basenames": [
       "READY",
-      "SHA256SUMS"
+      "SHA256SUMS",
+      "COMPLETE",
+      "candidate.tsv",
+      "monitor.lock",
+      "monitor.log",
+      "monitor.pid",
+      "observed.tsv",
+      "preflight_13.txt",
+      "protocol.json",
+      "security_scan_receipt.txt",
+      "source_script.sh"
     ],
     "raw_senior_archives_opened": false,
     "prospective_label_grade_outcome_prediction_values_read": false,

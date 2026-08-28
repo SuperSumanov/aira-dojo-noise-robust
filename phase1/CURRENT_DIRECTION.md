@@ -15,6 +15,12 @@
 
 ## 0HM. 2026-08-28 within-stratum 改为 Target-522 不重叠前瞻确认
 
+**结果前完整性修订（13:03:57Z）**：首个 monitor 上线后、候选仍为空且 LATEST 仍为 887 时，发现协议的
+corpus basename 白名单漏列了独立核验 first-observed crossing 所需的 selection-support 文件；同时 TERM 未产生
+预期 `FAILED_RC`。旧 commit `3553744e...` 的 monitor 已停止并以 `SUPERSEDED_PRE_CANDIDATE` 原样冻结，未见候选或
+increment profile。科学 population、estimand、阈值和分类完全不变；协议现把 corpus 与 selection-support 白名单分开，
+并显式捕获 TERM/INT/HUP。新版 monitor 必须在新 commit 上从同一 887 基线重新开始。
+
 0HJ 的 887 formal 必须永久保留 gate-fail；不得在同 snapshot 把 float-string 门改成 rational 后重跑救回。为避免把
 “只新增极少 runs 的下一 snapshot”包装成独立复现，新的 v2 在候选身份与 profile 未见时冻结为首个自动观测到
 `provisional_first960_runs>=522` 的 immutable snapshot。`522=ceil(435*6/5)`，primary 只使用 candidate 中不在

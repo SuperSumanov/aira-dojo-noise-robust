@@ -1,5 +1,17 @@
 # Within-stratum Target-522 不重叠前瞻确认预注册
 
+## 结果前完整性修订（2026-08-28T13:03:57Z）
+
+首个 monitor 启动后、候选仍为空且 LATEST 仍为固定 887 snapshot 时，发现原协议只列了 corpus 输入 basename，
+没有列出独立证明 first-observed crossing 必需的 `observed.tsv`、`candidate.tsv`、`source_script.sh` 等
+selection-support 文件；测试终止该 monitor 时又观察到 TERM 没有产生预期 `FAILED_RC`。旧 monitor 已保留为
+`SUPERSEDED_PRE_CANDIDATE`，其退出回执缺失也如实记录；没有候选身份或 increment profile 被读取。
+旧目录 `SHA256SUMS` 的 SHA-256 为
+`423a595f098040f0a2169231d0a20d7c01e23e377a88b328d4579fa94ed70131`。
+
+本修订只把 corpus 与 selection-support 白名单分开，并让脚本显式捕获 TERM/INT/HUP。population、estimand、
+Target-522、全部 exact gates、分类顺序及 claim boundary 均未改变。新版 monitor 必须从同一 887 基线重新启动。
+
 状态：`OUTCOME_BLIND_PROTOCOL_FROZEN_BEFORE_TARGET522_SELECTION_OR_INCREMENT_PROFILE`。
 
 冻结时 `LATEST=887491a...`，first-960 provisional population 为 435 runs。候选 snapshot 的身份、计数与任何

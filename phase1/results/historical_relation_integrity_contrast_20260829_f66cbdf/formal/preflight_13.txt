@@ -1,0 +1,13 @@
+01_direction=Decision Corpus Predictor Benchmark Audit Protocol; PASS
+02_goal=aggregate-only historical stress case for audit diagnostic discrimination and deterministic repair feasibility; PASS
+03_estimand=known-result descriptive contrast across canonical v11 mixed 0819 and fixed sibling quarantine receipts; PASS
+04_inputs=three exact published aggregate packages with complete manifests and independent verifiers; PASS
+05_forbidden=no prospective values raw senior archives row identities labels predictions accuracy effect or search utility; PASS
+06_population=two historical resource families and one deterministic repair certificate only; PASS
+07_controls=full package membership exact hashes independent source verifiers A/B builds and independent candidate verifier; PASS
+08_failure=any package hash count taxonomy certificate claim-boundary trace or security drift fails closed; PASS
+09_randomness=none deterministic aggregate arithmetic and duplicate byte comparisons; PASS
+10_resources=single-thread CPU only GPU API model-fit base-update 0/0/0/0; PASS
+11_duration=focused and full phase1 tests plus deterministic builder verifier and syscall traces; PASS
+12_security=fresh detached worktree no archive read forbidden-open and network traces plus credential scans; PASS
+13_promotion=descriptive two-family case study only gate schemas remain nonidentical and no prospective or general-method claim; PASS

@@ -1,0 +1,184 @@
+{
+  "aggregate_contrasts": {
+    "canonical_lineage_direct_share": {
+      "decimal_17g": "1",
+      "denominator": 8107,
+      "numerator": 8107
+    },
+    "canonical_minus_mixed_direct_relation_share": {
+      "decimal_17g": "0.83385661957090529",
+      "denominator": 7644,
+      "numerator": 6374
+    },
+    "canonical_parent_present_core_retention": {
+      "decimal_17g": "0.93487109905020349",
+      "denominator": 8107,
+      "numerator": 7579
+    },
+    "mixed_non_direct_relation_share": {
+      "decimal_17g": "0.83385661957090529",
+      "denominator": 7644,
+      "numerator": 6374
+    },
+    "mixed_quarantine_share": {
+      "decimal_17g": "0.83385661957090529",
+      "denominator": 7644,
+      "numerator": 6374
+    },
+    "mixed_repaired_core_retention": {
+      "decimal_17g": "0.16614338042909471",
+      "denominator": 7644,
+      "numerator": 1270
+    },
+    "mixed_verified_direct_sibling_share": {
+      "decimal_17g": "0.16614338042909471",
+      "denominator": 7644,
+      "numerator": 1270
+    },
+    "parent_partition_mismatch_cross_run_localization": {
+      "decimal_17g": "1",
+      "denominator": 743,
+      "numerator": 743
+    },
+    "referenced_run_overlap_before_after": {
+      "after": 0,
+      "before": 96
+    }
+  },
+  "claim_boundary": {
+    "allowed": "The published aggregate audit stack accepts the lineage-clean family's hard-integrity certificate, rejects the relation-mixed family's certificate, and a deterministic direct-sibling quarantine yields a core with zero referenced-run overlap that passes its separately frozen repair gates.",
+    "forbidden": [
+      "general audit-method novelty",
+      "causal attribution of the resource-family difference",
+      "predictor effect or scaling",
+      "search utility",
+      "prospective confirmation",
+      "row-level release",
+      "a calibrated sensitivity or specificity estimate"
+    ]
+  },
+  "classification": "HISTORICAL_RELATION_INTEGRITY_DIAGNOSTIC_AND_REPAIR_CONTRAST",
+  "comparability_notes": {
+    "canonical_lineage_direct_includes_orphan_parent_certificate_tier": true,
+    "contrast_is_a_deterministic_two_family_case_study_not_a_population_estimate": true,
+    "gate_pass_rates_must_not_be_compared_as_one_common_scale": true,
+    "gate_schemas_related_but_not_identical": true
+  },
+  "diagnostic_receipt": {
+    "audit_stack_is_not_constant_accept_or_constant_reject_on_these_two_historical_families": true,
+    "canonical_all_support_gates_accepted": false,
+    "canonical_failed_support_gate_preserved": "frozen:b2.maximum_single_run_pair_share",
+    "canonical_hard_integrity_accepted": true,
+    "deterministic_direct_sibling_quarantine_certificate_passed_all_hard_gates": true,
+    "deterministic_direct_sibling_quarantine_passed_all_support_compatibility_gates": true,
+    "mixed_family_hard_integrity_rejected": true
+  },
+  "known_result_status": {
+    "all_source_results_known_before_specification": true,
+    "descriptive_synthesis_not_preregistration": true,
+    "prospective_confirmation_claimed": false
+  },
+  "profiles": {
+    "canonical_v11": {
+      "cross_run_rows": 0,
+      "hard_integrity_gates": {
+        "passed": 15,
+        "total": 15
+      },
+      "lineage_direct_rows": 8107,
+      "orphan_parent_lineage_direct_rows": 528,
+      "parent_present_direct_rows": 7579,
+      "rows": 8107,
+      "same_run_non_sibling_rows": 0,
+      "support_gates": {
+        "failed": [
+          "frozen:b2.maximum_single_run_pair_share"
+        ],
+        "passed": 35,
+        "total": 36
+      }
+    },
+    "mixed_0819_after_direct_sibling_quarantine": {
+      "core_rows": 1270,
+      "hard_integrity_gates": {
+        "passed": 16,
+        "total": 16
+      },
+      "parent_partition_mismatches": 743,
+      "parent_partition_mismatches_in_cross_run": 743,
+      "quarantine_rows": 6374,
+      "support_compatibility_gates": {
+        "passed": 8,
+        "total": 8
+      },
+      "train_test_referenced_run_overlap": 0
+    },
+    "mixed_0819_before_quarantine": {
+      "cross_run_rows": 4255,
+      "hard_integrity_gates": {
+        "failed": [
+          "all_decision_endpoints_parent_tasks_and_splits_valid",
+          "train_test_physical_run_overlap_zero"
+        ],
+        "passed": 13,
+        "total": 15
+      },
+      "rows": 7644,
+      "same_run_non_sibling_rows": 2119,
+      "train_test_referenced_run_overlap": 96,
+      "verified_direct_sibling_rows": 1270
+    }
+  },
+  "protocol": "historical-decision-relation-integrity-contrast-v1-receipt",
+  "protocol_sha256": "9b647d1e25786631875114893604650c273a36051c815d976ab189602e0feb37",
+  "scope": {
+    "aggregate_only": true,
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "historical_post_result_descriptive_synthesis": true,
+    "labels_outcomes_predictions_accuracy_or_search_utility_read": false,
+    "prospective_first960_or_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "row_identities_or_pair_orientations_emitted": false
+  },
+  "source_packages": {
+    "canonical_v11": {
+      "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+      "manifest": "MANIFEST.sha256",
+      "manifest_member_count": 16,
+      "manifest_sha256": "4c72c32449a4a68377fe3764089321c852648e0d6603655a09cd360a21d45447",
+      "root": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842",
+      "summary": "formal/producer_a.json",
+      "summary_sha256": "23e9a8139be60ee4c34d3c44eda9afaed3034a68f6749ebcb0555c10a15f0032",
+      "verification": "formal/verifier_a.json",
+      "verification_sha256": "f183c7847343d3d485a3414cc14e1a20aa7761aaa5c94e2323bef32fb79bb59a"
+    },
+    "mixed_0819": {
+      "classification": "HISTORICAL_RELATION_AWARE_DECISION_TAXONOMY_INTEGRITY_GATE_FAIL",
+      "manifest": "MANIFEST.sha256",
+      "manifest_member_count": 9,
+      "manifest_sha256": "6ce816faec31d0e807e8859539e05d3ace814954ceea9db4c326828ae928faa7",
+      "root": "phase1/results/senior_0819_decision_relation_taxonomy_20260829_827fe55",
+      "summary": "formal_summary.json",
+      "summary_sha256": "b75df026fdab24a5a3da6f01d734820ad908e505df0140f13586c2386624c6d3",
+      "verification": "verification.json",
+      "verification_sha256": "d5613fe7780df6a7c4c894780a44d971ac470af9070d804705b26e729bc0b66a"
+    },
+    "repaired_0819": {
+      "classification": "HISTORICAL_VERIFIED_SIBLING_CORE_QUARANTINE_FEASIBLE",
+      "manifest": "MANIFEST.sha256",
+      "manifest_member_count": 10,
+      "manifest_sha256": "3f6202fb14b044a23fbcae722c0c38ab48253bbd5ac9ebe2b4b011f3b7f84a28",
+      "root": "phase1/results/senior_0819_verified_sibling_quarantine_20260829_254fc80",
+      "summary": "formal_summary.json",
+      "summary_sha256": "4f4902ce365523b01a0cca1eadb716b978aa0771d15286be1bf4aecca6456315",
+      "verification": "verification.json",
+      "verification_sha256": "8b0eb84365aa3cb16bfd3b9a4ca3affabfc4fd24774071a6cbba366b88f57ca0"
+    }
+  },
+  "status": "POST_RESULT_AGGREGATE_RELATION_INTEGRITY_CONTRAST_COMPLETE"
+}

@@ -1,0 +1,42 @@
+{
+  "status": "HISTORICAL_RELATION_INTEGRITY_CONTRAST_PUBLICATION_PACKAGE",
+  "source_commit": "f66cbdf10989da2e1242964259f31fb8d399db3e",
+  "protocol": {
+    "path": "phase1/historical_relation_integrity_contrast_v1.json",
+    "sha256": "9b647d1e25786631875114893604650c273a36051c815d976ab189602e0feb37"
+  },
+  "formal": {
+    "remote_root": "/research/d7/spc/yzyang4/historical-relation-integrity-contrast/formal-f66cbdf-r1",
+    "manifest_sha256": "ab2b6fa69fa6705dbd442488067b63d0aea63eb6dc9c326a8bd0cef08087af54",
+    "contrast_sha256": "96ce116570a6144b50c91bc39de99028614927c2c378d98dbd6a921eaed4a1b4",
+    "independent_verification_sha256": "1779e696251430347e2574915c2fd07c75e01004be925cd4beae088cc63c5ec2",
+    "focused_tests_passed": 34,
+    "full_tests_passed": 1510,
+    "warnings": 47
+  },
+  "postflight": {
+    "remote_root": "/research/d7/spc/yzyang4/historical-relation-integrity-contrast/postflight-f66cbdf-r1",
+    "manifest_sha256": "b50a9a2941b360d5ca40b1de8c3887512b4a9ef80ac1b1969e4864ab49f57b9e",
+    "formal_directory_files_read_only": true,
+    "source_commit_public_on_fork_phase1_value_critic": true
+  },
+  "source_package_manifest_sha256": {
+    "canonical_v11": "4c72c32449a4a68377fe3764089321c852648e0d6603655a09cd360a21d45447",
+    "mixed_0819": "6ce816faec31d0e807e8859539e05d3ace814954ceea9db4c326828ae928faa7",
+    "repaired_0819": "3f6202fb14b044a23fbcae722c0c38ab48253bbd5ac9ebe2b4b011f3b7f84a28"
+  },
+  "classification": "HISTORICAL_RELATION_INTEGRITY_DIAGNOSTIC_AND_REPAIR_CONTRAST",
+  "comparability": {
+    "gate_schemas_related_but_not_identical": true,
+    "descriptive_two_family_case_study_not_population_estimate": true,
+    "canonical_lineage_direct_includes_orphan_parent_certificate_tier": true
+  },
+  "scope": {
+    "aggregate_only": true,
+    "known_result_descriptive_synthesis": true,
+    "prospective_values_read": false,
+    "raw_senior_archives_opened": false,
+    "row_level_release_created": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  }
+}

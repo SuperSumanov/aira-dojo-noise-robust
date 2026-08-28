@@ -1,0 +1,23 @@
+{
+  "all_aggregate_fields_equal": true,
+  "candidate_sha256": "96ce116570a6144b50c91bc39de99028614927c2c378d98dbd6a921eaed4a1b4",
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "known_result_descriptive_synthesis": true,
+  "producer_imported": false,
+  "prospective_values_read": false,
+  "protocol": "historical-decision-relation-integrity-contrast-independent-verification-v1",
+  "protocol_sha256": "9b647d1e25786631875114893604650c273a36051c815d976ab189602e0feb37",
+  "raw_senior_archives_opened": false,
+  "row_level_release_created": false,
+  "source_package_manifest_sha256": {
+    "canonical_v11": "4c72c32449a4a68377fe3764089321c852648e0d6603655a09cd360a21d45447",
+    "mixed_0819": "6ce816faec31d0e807e8859539e05d3ace814954ceea9db4c326828ae928faa7",
+    "repaired_0819": "3f6202fb14b044a23fbcae722c0c38ab48253bbd5ac9ebe2b4b011f3b7f84a28"
+  },
+  "status": "INDEPENDENT_HISTORICAL_RELATION_INTEGRITY_CONTRAST_VERIFIED"
+}

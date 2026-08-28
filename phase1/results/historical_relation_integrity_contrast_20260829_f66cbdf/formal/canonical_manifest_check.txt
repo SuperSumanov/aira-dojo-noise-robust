@@ -1,0 +1,16 @@
+./README.md: OK
+./formal/MANIFEST_SHA256: OK
+./formal/SHA256SUMS: OK
+./formal/artifact_safety_scan.txt: OK
+./formal/focused_tests.txt: OK
+./formal/forbidden_opens.txt: OK
+./formal/full_tests.txt: OK
+./formal/input_hashes_preflight.json: OK
+./formal/network_calls.txt: OK
+./formal/preflight_13.txt: OK
+./formal/producer_a.json: OK
+./formal/producer_b.json: OK
+./formal/scope_receipt.txt: OK
+./formal/verifier_a.json: OK
+./formal/verifier_b.json: OK
+./source_bindings.json: OK

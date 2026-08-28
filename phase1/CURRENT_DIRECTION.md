@@ -13,6 +13,37 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IB. 2026-08-29 两个历史资源家族证明 relation-integrity 审计具有诊断区分力，fixed quarantine 可验证修复
+
+这是所有 source results 已知后的 aggregate-only descriptive synthesis，不是预注册确认。exact source commit=
+`f66cbdf10989da2e1242964259f31fb8d399db3e` 的 fresh-detached formal 将三份已发布独立证书组成同一机器链：canonical
+v11 的 `8107/8107=1` rows 均为 lineage-direct，hard gates=`15/15`；mixed 0819 仅 `1270/7644=
+0.16614338042909471` 是 verified direct sibling，`2119` 是 same-run non-sibling、`4255` 是 cross-run，taxonomy hard
+gates=`13/15` 且 train/test referenced-run overlap=`96`。固定 direct-sibling quarantine 后 core/quarantine=
+`1270/6374`，repair certificate hard/support=`16/16, 8/8`，referenced-run overlap=`0`；`743/743` parent-partition
+mismatches 全在 cross-run stratum。
+
+因此允许的正资产是：审计栈在这两个历史家族上不是 constant-accept/constant-reject，并能给出 deterministic、结构定义、
+与模型结果无关的 repair path。三套 frozen gate schemas 相关但不相同，不能把 `15/15,13/15,16/16` 当共同标尺，不能称
+calibrated sensitivity/specificity、一般审计方法首创、因果资源差异或总体估计；canonical lineage-direct 也显式包含 528 个
+orphan-parent lineage-certificate rows，parent-present retention 另报 `7579/8107=0.93487109905020349`。canonical 唯一
+support failure `frozen:b2.maximum_single_run_pair_share` 原样保留（35/36），不得隐藏。
+
+producer/verifier A/B 各自逐字节一致，contrast/verifier SHA-256=`96ce1165...a1b4` / `1779e696...5ec2`；focused/full=
+`34/1510 passed`（47 warnings），三包 manifest 共 35 个成员全过，forbidden open/network/credential=`0/0/0`。formal/
+postflight manifests=`ab2b6fa69...7af54` / `b50a9a29...57b9e`；发布包见
+`phase1/results/historical_relation_integrity_contrast_20260829_f66cbdf/`，package manifest=`36320ae5...5c1e`。
+prospective values/raw archives 未读、无 row-level release，GPU/API/model-fit/base-update=`0/0/0/0`。详见
+`phase1/实验记录/2026-08-29/DecisionRelationIntegrityContrast_v1_正式裁决.md`。
+
+## 0IA. 2026-08-29 Evidence Index v9 发布提交已通过 fresh post-push 复验
+
+发布 commit=`8f82a495ef05f1834432dd2c6229163b99e473e8` 在 fresh detached worktree 重新核对 24 个 package members、
+focused/full=`31/1501 passed`（47 warnings）、index/verifier 双重重建逐字节一致，commit filename/blob secret hits=`0/0`。
+post-push manifest=`6cb8d6681083405fccc7b1ab47677b844ad2df0884a79062f180aecf73e150ba`；provisional status 与
+`frozen:b2.maximum_single_run_pair_share` 唯一失败均保留。prospective values/raw archives 未读、无 row-level release，
+GPU/API/model-fit/base-update=`0/0/0/0`。详见 `phase1/实验记录/2026-08-29/DecisionCorpusEvidenceIndex_v9_PostPush回执.md`。
+
 ## 0HZ. 2026-08-29 Evidence Index v9 已用 lineage-direct certificate 修复 v8 的 sibling provenance 缺口
 
 Evidence Index v8 的 `decision_corpus` entry 绑定 v1 run-map audit；该 artifact 没有读取 `lineage.parent_id`，因此证据不足以

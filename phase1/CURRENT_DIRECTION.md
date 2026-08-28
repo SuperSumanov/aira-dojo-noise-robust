@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HM. 2026-08-28 within-stratum 改为 Target-522 不重叠前瞻确认
+
+0HJ 的 887 formal 必须永久保留 gate-fail；不得在同 snapshot 把 float-string 门改成 rational 后重跑救回。为避免把
+“只新增极少 runs 的下一 snapshot”包装成独立复现，新的 v2 在候选身份与 profile 未见时冻结为首个自动观测到
+`provisional_first960_runs>=522` 的 immutable snapshot。`522=ceil(435*6/5)`，primary 只使用 candidate 中不在
+887 的完整 physical runs，故至少有 87 个不重叠未来 runs；累计人口 profile 不能 rescue。
+
+科学阈值原样继承 v1，但所有完整性和 gate 比较改用 exact numerator/denominator，`decimal_17g` 永不参与判定。
+硬支持另要求至少 1,500 observed edges、60 个可条件化 runs、8 个可条件化 tasks 和至少 3/4 parent-present
+endpoint fraction。两轴全过才允许 `FORWARD_INCREMENT_BROAD_NONCOMPOSITIONAL_LINEARIZATION_DISTORTION`。
+公开 5 秒 monitor 只看 identity/count/hash，首个 observed crossing 自动锁定并保留 overshoot，连续 6 次 hash-stable
+才 READY；中断且 LATEST 已变化时 fail closed。协议与边界见
+`phase1/tree_linearization_within_stratum_forward_target522_v2.json` 和
+`phase1/实验记录/2026-08-28/WithinStratum_Target522_不重叠前瞻确认预注册.md`。候选 profile 尚未运行。
+
 ## 0HL. 2026-08-28 path-record split 的共享前缀 crossing 正式分类为 run-only broad
 
 结果前冻结的 path-split audit 已在 commit=`aec63564cb4a347a3bb6c61b38ae30850d1d755f` 和固定 blind

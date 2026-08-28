@@ -190,3 +190,6 @@ phase1/results/tree_path_split_prefix_leakage_887_20260828_aec6356/formal/** -te
 phase1/results/tree_path_split_prefix_leakage_887_20260828_aec6356/README.md text eol=lf diff
 phase1/results/tree_path_split_prefix_leakage_887_20260828_aec6356/source_bindings.json text eol=lf diff
 phase1/tests/test_tree_structure_audit_results.py text eol=lf diff
+phase1/tree_linearization_within_stratum_forward_target522_v2.json text eol=lf diff
+phase1/scripts/latch_tree_within_stratum_forward_target522_20260828.sh text eol=lf diff
+phase1/tests/test_tree_within_stratum_forward_target522_protocol.py text eol=lf diff

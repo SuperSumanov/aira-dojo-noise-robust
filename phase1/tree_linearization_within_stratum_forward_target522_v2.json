@@ -1,0 +1,132 @@
+{
+  "protocol": "tree-linearization-within-stratum-forward-target522-v2",
+  "version": 2,
+  "frozen_at_utc": "2026-08-28T12:48:44Z",
+  "status": "OUTCOME_BLIND_PROTOCOL_FROZEN_BEFORE_TARGET522_SELECTION_OR_INCREMENT_PROFILE",
+  "question": "On the first automatically observed immutable snapshot whose chronological first-960 prefix contains at least 522 physical runs, does the disjoint increment beyond snapshot 887 retain broad within-task and within-run tree-linearization distortion under the already disclosed thresholds?",
+  "scientific_role": "Forward-accrual confirmation on a disjoint physical-run increment; not a rescue or rerun of the failed snapshot-887 formal classification.",
+  "freeze_state": {
+    "baseline_snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "baseline_counts": {
+      "provisional_first960_runs": 435,
+      "eligible_endpoints": 11906,
+      "tasks": 34
+    },
+    "baseline_formal_classification": "WITHIN_STRATUM_DECOMPOSITION_GATE_FAIL",
+    "baseline_formal_receipt_sha256": "ad949f84705e5c66e3376d677c314802d5205a51eb7e52a2588066046d7c49a4",
+    "baseline_failure_reason": "The exact task-marginal fraction 45605749/284435765 formatted as 0.16033760381715709, while an upstream JSON-float display had been pre-recorded as 0.1603376038171571; the strict textual round-trip gate failed.",
+    "baseline_scientific_values_seen_before_this_freeze": {
+      "task_canonical_standardized_within_tv": "85772931037919815384034026176462780969050500357498184/250168261662429768384456188533960403304956646953350875",
+      "physical_run_canonical_standardized_within_tv": "630803775216039256925149105532628306275992120516564337936403660228343768993/2045404979839239658521702456699772746829120084877995695158126592581752116000",
+      "task_conditionable_fraction_at_or_above_reference": "16/17",
+      "physical_run_conditionable_fraction_at_or_above_reference": "178/217",
+      "task_maximum_canonical_contribution_share": "30352845671848640559374161859140790533967789091899775/85772931037919815384034026176462780969050500357498184",
+      "physical_run_maximum_canonical_contribution_share": "68560782710642644374584655614887998534321708182333707717605675341078363904/630803775216039256925149105532628306275992120516564337936403660228343768993"
+    },
+    "candidate_snapshot_identity_counts_and_profile_seen": false
+  },
+  "activation_rule": {
+    "target_total_physical_runs": 522,
+    "minimum_disjoint_increment_physical_runs": 87,
+    "target_derivation": "ceil(435 * 6/5) = 522; the increment is exactly 20 percent of the frozen baseline run count.",
+    "candidate": "the first immutable LATEST observed by the public five-second monitor after its source commit whose provisional_first960_runs is at least 522",
+    "boundary_overshoot_included": true,
+    "manual_snapshot_choice_allowed": false,
+    "skip_an_observed_eligible_crossing_allowed": false,
+    "profile_values_used_for_selection": false,
+    "candidate_must_be_hash_stable_for_consecutive_polls": 6,
+    "monitor_gap_with_changed_latest": "FAIL_CLOSED_REQUIRING_A_NEW_EXPLICIT_CONTINUITY_AUDIT"
+  },
+  "primary_population": {
+    "name": "disjoint_forward_physical_run_increment",
+    "membership": "all endpoints belonging to candidate provisional-first960 physical runs whose run_id is absent from the exact baseline snapshot",
+    "baseline_and_candidate_run_rows_must_be_append_only": true,
+    "baseline_and_candidate_endpoint_rows_must_be_byte_semantically_identical_for_old_ids": true,
+    "partial_physical_runs_allowed": false,
+    "baseline_rows_in_primary_estimand": false,
+    "cumulative_candidate_profile_may_rescue": false
+  },
+  "tree_estimand": {
+    "observed_edge": "child to parent only when both endpoints occur inside the disjoint increment",
+    "canonical_edge_measure": "one unit per observed child-parent edge",
+    "path_frequency_measure": "an edge receives multiplicity equal to its number of descendant observed-fragment leaves",
+    "primary_by_axis": "W_p(G)=sum_g(E_g/E) TV(uniform edges within g, path-frequency edges within g)",
+    "secondary_by_axis": "W_q(G)=sum_g(M_g/M) TV(uniform edges within g, path-frequency edges within g)",
+    "secondary_may_rescue_primary": false
+  },
+  "fixed_distribution_summary": {
+    "conditional_tv_reference": "1/10",
+    "histogram_edges": ["0", "1/20", "1/10", "1/5", "3/10", "1/2", "1"],
+    "quantiles": ["median", "p90_nearest_rank"],
+    "identities_emitted": false
+  },
+  "strong_positive_gates": {
+    "minimum_task_canonical_standardized_within_tv": "1/5",
+    "minimum_physical_run_canonical_standardized_within_tv": "3/20",
+    "minimum_task_fraction_at_or_above_conditional_tv_reference": "1/2",
+    "minimum_physical_run_fraction_at_or_above_conditional_tv_reference": "1/4",
+    "maximum_single_task_canonical_contribution_share": "2/5",
+    "maximum_single_physical_run_canonical_contribution_share": "1/5",
+    "both_axes_must_pass_for_headline": true
+  },
+  "hard_integrity_and_support_gates": {
+    "selection_receipt_and_monitor_source_hashes_exact": true,
+    "candidate_is_first_observed_target_crossing": true,
+    "candidate_total_runs_at_least": 522,
+    "disjoint_increment_runs_at_least": 87,
+    "baseline_runs_and_endpoints_are_exact_subsets_of_candidate": true,
+    "old_run_and_endpoint_rows_are_unchanged": true,
+    "candidate_accumulator_is_outcome_blind_and_unclosed": true,
+    "minimum_observed_unique_edges_in_increment": 1500,
+    "minimum_parent_present_endpoint_fraction_in_increment": "3/4",
+    "minimum_conditionable_tasks_in_increment": 8,
+    "minimum_conditionable_physical_runs_in_increment": 60,
+    "all_exact_gate_comparisons_use_fraction_numerators_and_denominators": true,
+    "decimal_strings_are_descriptive_only": true
+  },
+  "ordered_classification": [
+    "FORWARD_INCREMENT_BROAD_NONCOMPOSITIONAL_LINEARIZATION_DISTORTION",
+    "FORWARD_INCREMENT_TASK_ONLY_BROAD_NONCOMPOSITIONAL_LINEARIZATION_DISTORTION",
+    "FORWARD_INCREMENT_RUN_ONLY_BROAD_NONCOMPOSITIONAL_LINEARIZATION_DISTORTION",
+    "FORWARD_INCREMENT_PROFILE_BELOW_STRONG_GATE",
+    "FORWARD_INCREMENT_NO_OBSERVED_WITHIN_STRATUM_DISTORTION",
+    "FORWARD_INCREMENT_WITHIN_STRATUM_GATE_FAIL"
+  ],
+  "classification_rule": "Hard-gate failure takes precedence. Otherwise an axis is strong only when its exact W_p, breadth, and anti-dominance gates all pass. Both axes strong yields BROAD; exactly one yields the matching one-axis class; any positive W_p below strong gates yields PROFILE_BELOW; exact zero on both axes yields NO_OBSERVED. Neither decimal formatting, W_q, the cumulative snapshot, nor the snapshot-887 profile may rescue a primary gate.",
+  "verification": {
+    "producer_repetitions": 2,
+    "independent_verifier_repetitions": 2,
+    "producer_and_verifier_outputs_byte_identical_within_role": true,
+    "independent_verifier_imports_new_producer": false,
+    "baseline_and_candidate_blind_populations_independently_reconstructed": true,
+    "exact_rational_metrics_independently_recomputed": true,
+    "focused_and_full_tests_required": true,
+    "fresh_detached_worktree_required": true
+  },
+  "claim_boundary": {
+    "allowed_if_broad": "In the first automatically selected Target-522 snapshot, the disjoint forward increment of at least 87 physical runs independently retains broad within-task and within-run edge-measure distortion under thresholds fixed after snapshot 887 but before any candidate identity or increment profile was observed.",
+    "independent_runs_not_independent_tasks": true,
+    "cumulative_cohort_independent_replication": false,
+    "generic_tree_probability_or_weighting_novelty": false,
+    "logged_structure_is_semantic_or_causal_importance": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "first960_or_accrual_closure_completed": false,
+    "generalization_beyond_selected_increment": false
+  },
+  "security": {
+    "allowed_input_basenames": [
+      "LATEST",
+      "eligible_blind_manifest.jsonl",
+      "intake_registry.jsonl",
+      "provisional_runs.jsonl",
+      "summary.json",
+      "READY",
+      "SHA256SUMS"
+    ],
+    "raw_senior_archives_opened": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "task_run_card_parent_code_or_per_edge_values_emitted": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  },
+  "failure_rule": "Any selection, continuity, snapshot, append-only, hash, schema, graph, support, exact-rational, security, reproducibility, or independent-verification mismatch fails closed. No same-snapshot threshold, population, formatting, or interpretation repair is allowed."
+}

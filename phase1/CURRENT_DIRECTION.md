@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HT. 2026-08-29 relation-aware taxonomy 正式 fail closed；宽 sibling core 仅形成隔离可行性信号
+
+0HS 的 exact public commit=`827fe55dcf03280cd8e9391d4b44c20db38484d3` 已完成 fresh detached formal。冻结分类为
+**`HISTORICAL_RELATION_AWARE_DECISION_TAXONOMY_INTEGRITY_GATE_FAIL`**：15 个 hard gates 中 13 个通过；失败的是
+`all_decision_endpoints_parent_tasks_and_splits_valid` 与 `train_test_physical_run_overlap_zero`。train/test unordered pair 与
+endpoint overlap 仍为 0，但加入 declared parent run 的引用闭包后有 96 个 physical runs 跨 split；因此旧 7,644 rows
+整体不能升级成 run-clean relation-aware benchmark，不能由子组或模型分数 rescue。
+
+固定三类的 total/train/test 为 direct sibling=`1270/952/318`、same-run non-sibling=`2119/1620/499`、cross-run=
+`4255/3912/343`；train/test relation mix TV=`578477/1880360`。同时，冻结前未见的 test direct-sibling core 有 318 pairs、
+29 tasks、89 runs、591 endpoints、282 components，最大 task/run/component share=`25/159`、`7/106`、`1/53`，8/8
+预注册 support gates 均过。这只形成“确定性隔离 sibling core、明确 quarantine 非 sibling/context-leaking rows”的新可行性
+信号；当前仍无 row-level release，不能把本轮写成 strong-pass。
+
+producer/verifier A/B 各自逐字节一致，SHA-256=`b75df026f...c6d3` / `d5613fe7...b66a`，独立 verifier 报
+`all_aggregate_fields_equal=true`；focused/full=`6/1469 passed`，forbidden opens/network=`0/0`，formal manifest=
+`68d845cc6e2801d814bcd320017bce5ae5712c2e01f94dff7a010b1195230f56`。正式包见
+`phase1/results/senior_0819_decision_relation_taxonomy_20260829_827fe55/`。下一步若做修复，只能先冻结 aggregate-only
+quarantine feasibility protocol，验证 sibling-only train/test 的 parent/run closure；不得事后改 0HS 门、不得自动发布 row
+identities 或启动 GPU。GPU/API/model-fit/base-update=`0/0/0/0`，prospective values/raw archives 未读。
+
 ## 0HS. 2026-08-29 relation-aware decision taxonomy 已在 split-specific readout 前冻结
 
 0HR 证明 senior 0819 historical mixed benchmark 的 run/endpoint/unordered-pair 隔离、test 精确保留和 breadth 都成立，
@@ -28,8 +49,8 @@ overall aggregate。strongest test sibling-core 门固定为 pairs/tasks/runs/en
 task/run/component share≤`1/3`、`1/5`、`1/4`；不得事后调门或用别类/模型分数 rescue。若通过，只允许称 historical
 relation-aware taxonomy 含 broad structurally verified sibling core；不把 recorded parent 升级为语义/因果真值，不把历史
 test 称 untouched，也不授权 row-level release 或 GPU 重训。详见
-`phase1/实验记录/2026-08-29/Senior0819DecisionRelationTaxonomy_预注册.md`。当前尚无 readout；GPU/API/model-fit/
-base-update=`0/0/0/0`，前瞻值与 raw archives 未读。
+`phase1/实验记录/2026-08-29/Senior0819DecisionRelationTaxonomy_预注册.md`。本节是冻结时状态，正式 readout 与裁决由
+0HT 覆盖；GPU/API/model-fit/base-update=`0/0/0/0`，前瞻值与 raw archives 未读。
 
 结果前实现已完成：producer/verifier/test/runner SHA-256=`f32c9a56...299e9` / `84453ca9...e787f` /
 `d922222b...8a502` / `bed7ae49...06fa4`；focused synthetic=`6 passed`，与 0HR tests 合并=`13 passed`。独立

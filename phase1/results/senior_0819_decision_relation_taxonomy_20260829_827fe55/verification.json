@@ -1,0 +1,24 @@
+{
+  "all_aggregate_fields_equal": true,
+  "classification": "HISTORICAL_RELATION_AWARE_DECISION_TAXONOMY_INTEGRITY_GATE_FAIL",
+  "producer_imported": false,
+  "producer_result_sha256": "b75df026fdab24a5a3da6f01d734820ad908e505df0140f13586c2386624c6d3",
+  "protocol": "senior-0819-decision-relation-taxonomy-independent-verification-v1",
+  "protocol_sha256": "df94c4ec6a3bb2c0856e29d148cb898d2b796cc1279800456b8f8e6108e08e32",
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "historical_exploratory_dataset": true,
+    "identities_or_row_values_emitted": false,
+    "model_fits": 0,
+    "model_predictions_or_accuracy_read": false,
+    "pair_orientation_used_by_taxonomy": false,
+    "prospective_first960_or_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "row_level_release_created": false,
+    "search_utility_computed": false
+  },
+  "source_commit": "f534114e60658043c07f7a15d6440492caffc8ad",
+  "status": "INDEPENDENT_HISTORICAL_DECISION_RELATION_TAXONOMY_VERIFIED"
+}

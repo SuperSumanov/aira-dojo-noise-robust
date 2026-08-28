@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
+02_goal=partition historical decision rows into fixed structural relation strata and test broad verified sibling support; PASS
+03_context=senior f534114 exact Cards run-split and decision LFS objects plus prior aggregate certificate; PASS
+04_known_before=overall direct same-run and same-task counts known; split-specific counts breadth concentration and fingerprints unseen; PASS
+05_population=all 7644 historical decision rows with frozen train/test run assignment; PASS
+06_estimand=taxonomy purity split isolation and verified sibling structural breadth; no model accuracy or utility; PASS
+07_controls=fixed three-way exhaustive taxonomy and prior aggregate reproduction; PASS
+08_thresholds=test sibling support fixed at 100/10/30/150/50 and shares 1/3 1/5 1/4; PASS
+09_randomness=none; producer and independent verifier repeated under PYTHONHASHSEED 0 and 1; PASS
+10_resources=CPU only with one-thread caps; GPU API model-fit base-update 0/0/0/0; PASS
+11_leakage=no prospective first960 target300 raw archive outcome prediction grade or pair-orientation use; PASS
+12_security=credential-cleared Card map required before parse; identities never emitted; strace and credential scan; PASS
+13_stop=hash schema split parent partition taxonomy or dependency ambiguity fails closed with no threshold rescue; PASS

@@ -1,7 +1,7 @@
 # Senior 0819 decision relation taxonomy：结果前预注册
 
 日期：2026-08-29
-状态：`FROZEN_BEFORE_SPLIT_SPECIFIC_TAXONOMY_READOUT`
+状态：`FORMAL_COMPLETE_INTEGRITY_GATE_FAIL`
 
 ## GCCV
 
@@ -51,3 +51,22 @@ producer/verifier/test/runner SHA-256=`f32c9a56...299e9` / `84453ca9...e787f` / 
 producer，使用上一轮独立 Card stream decoder 后自行重写 relation parsing、graph、fingerprint、profile 与 gates。测试覆盖
 三类 strong pass、aggregate-only、parent split mismatch、limited-support 不可 rescue、反向 duplicate/conflict 和 input hash
 drift。正式运行前仍只可称执行链就绪，没有真实分类。
+
+## 正式结果（冻结协议原样执行）
+
+exact public commit=`827fe55dcf03280cd8e9391d4b44c20db38484d3` 的 fresh detached formal 已完成。分类为
+`HISTORICAL_RELATION_AWARE_DECISION_TAXONOMY_INTEGRITY_GATE_FAIL`：15 个 hard gates 中 13 个通过，失败的是
+`all_decision_endpoints_parent_tasks_and_splits_valid` 与 `train_test_physical_run_overlap_zero`。train/test endpoint 和
+unordered-pair overlap 均为 0，但加入 declared parent 的引用闭包后，physical-run overlap=`96`；因此旧文件整体不能称
+run-clean relation-aware benchmark，8 个 sibling support gates 全过也不得 rescue frozen strong classification。
+
+三个类的 total/train/test rows 分别为 direct sibling=`1270/952/318`、same-run non-sibling=`2119/1620/499`、
+cross-run=`4255/3912/343`。test direct-sibling core 有 318 pairs、29 tasks、89 runs、591 endpoints、282 components；
+最大 task/run/component share=`25/159`、`7/106`、`1/53`，8/8 预注册 support gates 通过。这个 aggregate 只支持后续
+“确定性隔离 sibling core 并 quarantine 其余 rows”的新可行性审计；它不是本轮 strong-pass，也没有发布 row identities。
+
+producer/verifier A/B 各自逐字节一致，SHA-256=`b75df026f...c6d3` / `d5613fe7...b66a`，独立 verifier 报
+`all_aggregate_fields_equal=true`。focused/full=`6/1469 passed`，forbidden opens/network=`0/0`，formal manifest=
+`68d845cc6e2801d814bcd320017bce5ae5712c2e01f94dff7a010b1195230f56`。正式包见
+`phase1/results/senior_0819_decision_relation_taxonomy_20260829_827fe55/`。GPU/API/model-fit/base-update=`0/0/0/0`，
+prospective values、raw archives、模型分数与 search utility 均未读。

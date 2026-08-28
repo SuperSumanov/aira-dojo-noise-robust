@@ -28,6 +28,11 @@ historical inputs 重建 eligibility、seed、全部私有行和**整份** aggre
 predictor scaling、label efficiency 或 search utility；API/GPU/model-fit/base-update=`0/0/0/0`，live call 仍未授权。
 详见 `phase1/实验记录/2026-08-29/OpenRouterFullContext_v2_结构可行性与独立复验正式裁决.md`。
 
+发布 commit=`845751f05016f6093f7be3a1bfe57af811413ee3` 随后通过 fresh detached post-push：7 个 changed files
+与预期集合精确相等、4 个 package manifest members 全过，aggregate/verifier SHA 不变，full=`1551 passed`
+（47 warnings），filename/blob secret、network、forbidden prospective opens=`0/0/0/0`。详见
+`phase1/实验记录/2026-08-29/OpenRouterFullContext_v2_PostPush回执.md`。
+
 ## 0IK. 2026-08-29 full-context v1 已结构 KILL；v2 只删除全库不存在的 metric-name 行
 
 metric-recovery r4 仍八个 strata eligible=0，故 v1 固定分类为

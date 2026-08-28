@@ -1,0 +1,31 @@
+{
+  "all_hard_gates_passed": true,
+  "branch_linearized_edge_occurrences": 26107,
+  "checks": {
+    "classification_recomputed": true,
+    "edge_multiplicity_recomputed": true,
+    "graph_reconstructed_without_importing_producer": true,
+    "identity_free_security_contract_exact": true,
+    "input_hashes_rechecked": true,
+    "population_reconstructed": true,
+    "task_run_depth_weights_recomputed": true
+  },
+  "classification": "MULTI_AXIS_MATERIAL_LINEARIZATION_REWEIGHTING",
+  "observed_unique_edges": 10895,
+  "producer_source_sha256": "cd204c1607b754f1d07861da83c829cab09df2871242a69236fe65fcc84eb09f",
+  "protocol": "independent-prospective-tree-linearization-weight-audit-v1",
+  "receipt_sha256": "642e9fd793950d4dfd082669df164be0781bd13847f35d6483ebd8611a136ea8",
+  "security": {
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "imports_producer": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "task_run_card_parent_or_code_values_emitted": false
+  },
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "status": "INDEPENDENT_TREE_LINEARIZATION_WEIGHT_AUDIT_PASS"
+}

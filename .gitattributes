@@ -121,3 +121,9 @@ phase1/results/agentic_benchmark_checklist_crosswalk_v2_20260826_c97371d/README.
 # keep only the explanatory README normalized and diffable.
 phase1/results/prospective_fuzzy_code_clone_audit_8579_20260826_cb368f9/** -text -diff
 phase1/results/prospective_fuzzy_code_clone_audit_8579_20260826_cb368f9/README.md text eol=lf diff
+# Preserve the formal and fresh-worktree postflight tree-linearization receipts
+# byte-for-byte; keep only package-level human documentation diffable.
+phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/formal/** -text -diff
+phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/postflight/** -text -diff
+phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/README.md text eol=lf diff
+phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/source_bindings.json text eol=lf diff

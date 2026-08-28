@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol only
+PREFLIGHT_02_GOAL=fresh-worktree independent reconstruction of the completed aggregate-only tree-linearization receipt
+PREFLIGHT_03_KNOWN=formal classification and aggregates are now known; no threshold population or implementation changes are allowed
+PREFLIGHT_04_INPUTS=immutable formal v3 receipt and exact fixed blind snapshot only
+PREFLIGHT_05_FIXED=protocol receipt source commit producer source hash and formal manifest exact
+PREFLIGHT_06_UNIT=all eligible endpoints and observed same-run same-task edges under frozen graph rules
+PREFLIGHT_07_LEAKAGE=no label grade outcome prediction accuracy utility or raw senior archive input
+PREFLIGHT_08_SOURCE=fresh detached exact commit e9f4fb9cf495d6751fb77d061095f6dca312728c; LFS smudge skipped only for unrelated historical pointers
+PREFLIGHT_09_TESTS=independent verifier focused tests before postflight reconstruction
+PREFLIGHT_10_INDEPENDENCE=verifier does not import producer; A/B byte equal and exact-match formal verifier
+PREFLIGHT_11_SECURITY=open trace forbidden paths zero; credential filename and content hits zero
+PREFLIGHT_12_RESOURCES=CPU only; GPU API model_fit base_update equals 0/0/0/0
+PREFLIGHT_13_PROMOTION=manifest exact and all gates required; any mismatch fails closed

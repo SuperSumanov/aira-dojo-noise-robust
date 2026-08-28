@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol; closed HCE multifidelity Probe score-channel effect and K>=1 remain closed
+PREFLIGHT_02_GOAL=measure whether root-to-leaf branch linearization duplicates observed shared-prefix edges and changes task or physical-run empirical weights
+PREFLIGHT_03_KNOWN=canonical path tables can duplicate shared prefixes; real MLE snapshot aggregate magnitude and threshold classification were unknown at protocol freeze
+PREFLIGHT_04_INPUTS=exact outcome-blind snapshot 887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697; registry accumulator provisional-run ledger and eligible blind manifests only
+PREFLIGHT_05_FIXED=population graph rule unique-edge and branch-linearized weights support gates material thresholds ordered classification and claim boundary
+PREFLIGHT_06_UNIT=all eligible endpoints; observed child-parent edges only when both endpoints are present; one physical run and task per observed edge
+PREFLIGHT_07_LEAKAGE=no prospective label grade outcome prediction accuracy utility raw senior archive or identity-valued output access
+PREFLIGHT_08_SOURCE=detached exact commit e9f4fb9cf495d6751fb77d061095f6dca312728c; protocol producer and verifier hashes exact; clean before aggregate computation
+PREFLIGHT_09_TESTS=focused neighboring regressions and all phase1 tests before aggregate computation
+PREFLIGHT_10_INDEPENDENCE=producer A/B byte equality plus non-importing Kahn-traversal verifier A/B byte equality
+PREFLIGHT_11_SECURITY=open trace forbidden paths zero; exact blind schema; credential filename and content hits zero; aggregate-only output
+PREFLIGHT_12_RESOURCES=CPU only; PYTHONHASHSEED zero and numeric thread counts one; GPU API model_fit base_update equals 0/0/0/0
+PREFLIGHT_13_PROMOTION=v3 changes only manifest temporary-file placement after preserved v1 worktree and v2 packaging failures; all tests producer and verifier runs repeat in a new root and every scientific gate is unchanged

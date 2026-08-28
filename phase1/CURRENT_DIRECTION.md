@@ -13,6 +13,34 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HC. 2026-08-28 tree-native 表示的多轴材料性正结果已正式复验
+
+0HB 的结果前协议在 snapshot `887491a...` 上正式分类为
+**`MULTI_AXIS_MATERIAL_LINEARIZATION_REWEIGHTING`**。11,906 个 blind endpoints 中，10,895 条 observed
+child-parent edges 覆盖全部 435 runs / 34 tasks，parent-present fraction=`0.9150848311775576`，12 个完整性/
+支持门全部通过。把每条物理 edge 计一次改成枚举全部 fragment-root-to-leaf paths 后，edge rows 从 `10,895`
+变为 `26,107`：重复 occurrence=`15,212`、重复质量占比=`0.5826789749875513`；`0.3877007801743919`
+的 unique edges 被重复，mean multiplicity=`2.396236805874254`、p90/p95/max=`4/7/144`。
+
+表示改变同时跨过两个结果前材料门：task-weight TV=`0.1603376038171571`（门 0.05），run-weight
+TV=`0.18894421733497543`（门 0.10）。task maximum share 从 `0.25672326755392383` 升至
+`0.3858352166085724`，run maximum share 从 `0.06351537402478201` 升至 `0.1158693070823917`；34 个
+task 内的匿名 run-TV 中位数=`0.08664274322169059`，12 个达到预设 0.10 reference。因而当前最清楚的正贡献不是
+“又发现一个数据问题”，而是：**tree-native node/edge/choice-set provenance 实质决定 benchmark estimand，不能把
+root-to-leaf trajectories 当独立样本而不改变经验分布。**
+
+边界必须保留：Tree Training/TreePO 已覆盖 shared-prefix 重复计算，T-STAR/Tree-OPO/SPPD 已覆盖 tree-aware credit/
+sampling，Dolma 已比较一般 thread linearization；不得声称首次发现 shared prefixes 或一般 tree 方法。可守 novelty 是在
+真实 Python MLE-agent search corpus 上，以结果盲、physical-run-bound、可重建协议量化 task/run reweighting，并把
+tree-native release 与 task→parent→pair estimand panel 一起交付。该结果仍是 435/960、closure=false 的 provisional
+结构证据；不证明完整 source tree、predictor accuracy、search utility 或因果机制。
+
+正式 source commit=`e9f4fb9cf495d6751fb77d061095f6dca312728c`；focused/full=`19/1299 passed`，full 有 47
+warnings；producer A/B、同 worktree 独立 verifier A/B、fresh-worktree postflight A/B 均逐字节一致。formal/postflight
+manifest SHA-256=`d8972749b7ee7e98abcbcc85dcefc7080ad674f2bdc260d01c27c6bf8628d46a` /
+`725566a5a928764a5700d08b086c2f815f55d4240c30403bdcd3ccb3e0392961`；forbidden/credential=`0/0/0`。
+结果包见 `phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/`。
+
 ## 0HB. 2026-08-28 tree linearization weight 已在 aggregate 前冻结
 
 为把 0HA 的 canonical-linearization 边界转成 outcome-blind MLE 实证，已固定 snapshot `887491a...` 上的结构审计：

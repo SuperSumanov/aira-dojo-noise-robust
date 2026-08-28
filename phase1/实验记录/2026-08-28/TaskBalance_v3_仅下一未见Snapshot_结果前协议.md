@@ -114,3 +114,28 @@ primary classification 与禁止 rescue 规则完全不变。
 
 本节写入时这些修复尚未公开 push 或部署；真实 candidate 与 balance classification 仍不存在。没有读取 prediction、
 label/outcome、accuracy/effect/utility 或 raw archive；GPU/API/model-fit/base-update=`0/0/0/0`。
+
+## 公开验证与部署回执
+
+修复已由 commit `69dd6b22acdf767f237571e0a530da3c659a7bad` 推送到 `phase1-value-critic`；提交文件名与
+boundary-aware blob 凭据命中均为 0。第一次 fresh detached worktree 验证在 checkout 阶段因历史 LFS object
+`5d75dc4...` 远端不存在而 `rc=128`，尚未开始 focused/full tests；该失败根保留为
+`postpush-69dd6b2-v1`。这不是代码测试失败，也不能算通过。
+
+第二次只在新 root 加 `GIT_LFS_SKIP_SMUDGE=1`，不读取这些无关历史大文件，也不改变 commit 或测试集合：
+focused=`38 passed in 0.91s`，完整 `phase1/tests=1439 passed, 47 warnings in 84.89s`；Python=`3.11.15`，
+changed filename/blob 凭据命中=`0/0`，prospective truth/prediction 与 raw archives 未读，GPU/API/model-fit/
+base-update=`0/0/0/0`。固定 root 为
+`/research/d7/spc/yzyang4/task-balance-v3-first-successor/postpush-69dd6b2-v2`，manifest SHA-256=
+`e5e2af60e98c38577eabdd2bc666cc27f46b5354af65f614ccde74d5ad5de4ff`。
+
+supervisor 从同一 exact commit 于 `2026-08-28T15:19:24Z` 上线；独立 postflight 在
+`2026-08-28T15:20:14Z` 复核：PID=`4098096` 且 lock held，source/v5 script SHA-256 分别为
+`0674d0a0...ac6b` / `93407853...0e7f`；权威 v4 PID=`4061250` 与非权威旧 observer PID=`4035896`
+都存活、锁有效且 candidate 仍为空，v5 root 尚不存在，LATEST 仍是 887。deployment root 为
+`/research/d7/spc/yzyang4/task-balance-v3-first-successor/deploy-69dd6b2-v1`，manifest SHA-256=
+`67041bbb8ea084ca84661904a5db826e579c4e30fd1386908159cb8342bb98b0`。
+
+supervisor 只做两件事：若权威 v4 COMPLETE，则停止且不创建 v5；若权威 v4 clean timeout，则验证 PID/锁释放后从
+Git exact object 启动唯一 v5。它不消费非权威 observer，也不自动读取 balance classification。至此结果前执行链闭环，
+科学结果仍未产生。

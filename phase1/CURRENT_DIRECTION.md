@@ -33,6 +33,16 @@ snapshot。formal runner 只在 v4 COMPLETE 或 v4 clean-timeout 后 v5 COMPLETE
 `38a138b9...2173`；本节写入时尚未 push/部署，因而仍无新的 balance classification。GPU/API/model-fit/base-update=
 `0/0/0/0`，prospective label/outcome/prediction values 与 raw archives 均未读。
 
+该修复随后已由公开 commit `69dd6b22acdf767f237571e0a530da3c659a7bad` 闭环。首次 fresh-worktree
+post-push 因仓库历史 LFS object `5d75dc4...` 在服务器不存在而于测试前 `rc=128`；失败根原样保留，没有把它写成测试
+通过。第二个新 root 用 `GIT_LFS_SKIP_SMUDGE=1` 只跳过与本测试无关的历史大文件，exact scripts/hash 仍从同一 commit
+检出，focused/full=`38/1439 passed`，full 有 47 warnings；凭据命中=`0/0`，manifest SHA-256=
+`e5e2af60e98c38577eabdd2bc666cc27f46b5354af65f614ccde74d5ad5de4ff`。supervisor 于
+`2026-08-28T15:19:24Z` 上线，独立 postflight 在 `15:20:14Z` 确认 PID=`4098096`、lock held、权威 v4
+PID=`4061250` 与非权威旧 observer PID=`4035896` 仍都 candidate-free，v5 尚未创建、LATEST 仍为 887；deployment
+manifest=`67041bbb8ea084ca84661904a5db826e579c4e30fd1386908159cb8342bb98b0`。这只是连续选择链闭环，仍不是
+`CAP_PASS` 或 predictor 正结果。
+
 ## 0HN. 2026-08-28 hierarchy × content parent concordance 已形成开发正信号并冻结 Target-522 前瞻确认
 
 在已公开的 outcome-blind snapshot 887 上，平面 identifier-erased Jaccard graph 与 physical parent graph 明显不是同一

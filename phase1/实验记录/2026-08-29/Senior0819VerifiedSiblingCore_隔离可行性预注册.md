@@ -1,7 +1,7 @@
 # Senior 0819 verified sibling core：隔离可行性结果前预注册
 
 日期：2026-08-29
-状态：`FROZEN_BEFORE_SIBLING_ONLY_PARTITION_CLOSURE_READOUT`
+状态：`FORMAL_COMPLETE_QUARANTINE_FEASIBLE`
 
 ## GCCV
 
@@ -54,3 +54,21 @@ verifier/test/runner SHA-256=`c23f5a43...4d04` / `58adabb2...cdd4` / `772e1974..
 独立 Card/decision decoder 后自行重建 core selection、partition mismatch、graph、fingerprint、overlap、support 与
 classification。攻击覆盖 cross-run parent mismatch 全量隔离、aggregate-only、core 反向 duplicate/conflict、已知支持门
 不足不可 rescue、parent certificate hash drift 与 input hash drift。正式运行前仍只有冻结执行链，没有真实 classification。
+
+## 正式结果（冻结规则原样执行）
+
+exact public commit=`254fc804c4904635e8f44e9121eab84b425ca6a8` 的 fresh detached formal 已完成，分类为
+`HISTORICAL_VERIFIED_SIBLING_CORE_QUARANTINE_FEASIBLE`。16/16 hard gates 与 8/8 descriptive compatibility gates
+通过。core=`1270`（train/test=`952/318`），quarantine=`6374`（`5532/842`）；core 的 train/test unordered-pair、
+endpoint、含 declared parent 的 referenced-run overlap 均为 0，duplicate/conflicting orientation=`0/0`，split counts 与
+fingerprints 精确匹配 0HT parent certificate。
+
+新增的 partition 诊断为：743 条 parent-partition mismatches 全部属于 cross-run stratum（train/test=`516/227`）；direct
+sibling 与 same-run non-sibling 均为 0。test support 仍为冻结前已知的 318 pairs / 29 tasks / 89 runs / 591 endpoints /
+282 components，不能包装成新确认；本轮新增证据是 deterministic core 的 parent/run closure 与所有 mismatch 的完整隔离。
+
+producer/verifier A/B 各自逐字节一致，SHA-256=`4f4902ce...56315` / `8b0eb843...57ca0`，独立 verifier 报
+`all_aggregate_fields_equal=true`。focused/full=`6/1475 passed`，parent package manifest 全项通过，forbidden opens/
+network=`0/0`，formal manifest=`9a554d8c1ed3dffe5a5aa1ab7ff1579f890fa749fcbb82e545c3a2a7758d2d63`。正式包见
+`phase1/results/senior_0819_verified_sibling_quarantine_20260829_254fc80/`。row-level release 未创建；GPU/API/model-fit/
+base-update=`0/0/0/0`，prospective values/raw archives、模型分数与 utility 均未读。

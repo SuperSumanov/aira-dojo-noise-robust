@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HV. 2026-08-29 deterministic sibling quarantine 正式通过全部完整性门
+
+0HU 的 exact public commit=`254fc804c4904635e8f44e9121eab84b425ca6a8` 已完成 fresh detached formal，分类为
+**`HISTORICAL_VERIFIED_SIBLING_CORE_QUARANTINE_FEASIBLE`**。16/16 hard gates 通过：固定规则得到 core=
+`1270`（train/test=`952/318`）和 exhaustive quarantine=`6374`（`5532/842`）；core train/test 在 unordered pair、
+endpoint、包含 declared parent 的 referenced physical run 三层 overlap 均为 0，duplicate/orientation conflict=`0/0`，
+split counts 与 fingerprints 精确匹配 0HT parent certificate。
+
+冻结前未见的污染定位也闭环：全文件 743 条 parent-partition mismatch（train/test=`516/227`）**全部**位于 cross-run
+stratum；direct sibling 与 same-run non-sibling 都为 0。因此旧文件整体失败并非要求丢弃全部 decision 资产：可用一个
+确定性、结构定义、与模型结果无关的 quarantine rule 提取 run-clean historical sibling curated view。test 的 318 pairs /
+29 tasks / 89 runs / 591 endpoints / 282 components 与 8/8 support compatibility 在本轮冻结前已知，只能说明 repair 后宽度
+仍足够，不能包装成独立确认。
+
+producer/verifier A/B 各自逐字节一致，SHA-256=`4f4902ce...56315` / `8b0eb843...57ca0`，独立 verifier 不导入本轮
+producer 且逐字段相等；focused/full=`6/1475 passed`，parent package manifest 全项通过，forbidden opens/network=
+`0/0`，formal manifest=`9a554d8c1ed3dffe5a5aa1ab7ff1579f890fa749fcbb82e545c3a2a7758d2d63`。正式包见
+`phase1/results/senior_0819_verified_sibling_quarantine_20260829_254fc80/`。这是数据集/审计协议的正资产，不证明
+predictor effect、scaling 或 search utility；row-level release 仍未授权。GPU/API/model-fit/base-update=`0/0/0/0`，
+prospective values/raw archives 未读。
+
 ## 0HU. 2026-08-29 sibling-only quarantine feasibility 已在 closure readout 前冻结
 
 0HT 后续不修改失败的 0HS 协议，而是另立 post-hoc repair estimand：只保留两个 endpoints 都是 declared parent 的直接
@@ -26,8 +47,8 @@ overlap、mismatch 的 relation×split 聚合分布或 quarantine fingerprint。
 disjoint、所有 mismatch 被隔离、pair/endpoint/referenced-run 三层零交叉、零 duplicate/conflict、split counts/fingerprint 与
 0HT 证书一致；support compatibility 沿用旧门但明确标记为冻结前已知。strong pass 只允许称 historical sibling-core
 quarantine feasible，不称 prospective confirmation，不自动授权 row-level release、GPU 或 predictor effect。详见
-`phase1/实验记录/2026-08-29/Senior0819VerifiedSiblingCore_隔离可行性预注册.md`。当前尚无 readout；GPU/API/model-fit/
-base-update=`0/0/0/0`，prospective values/raw archives 未读。
+`phase1/实验记录/2026-08-29/Senior0819VerifiedSiblingCore_隔离可行性预注册.md`。本节是冻结时状态，正式 readout 与
+裁决由 0HV 覆盖；GPU/API/model-fit/base-update=`0/0/0/0`，prospective values/raw archives 未读。
 
 结果前实现已完成：producer/verifier/test/runner SHA-256=`c23f5a43...4d04` / `58adabb2...cdd4` /
 `772e1974...d4e1` / `28d882ad...c580`；focused synthetic=`6 passed`，与 0HS tests 合并=`12 passed`。独立 verifier

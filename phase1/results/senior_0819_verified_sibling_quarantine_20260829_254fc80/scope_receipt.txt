@@ -1,0 +1,8 @@
+prospective_first960_or_target300_values_read=false
+model_predictions_or_accuracy_read=false
+support_counts_known_before_freeze=true
+pair_orientation_used=false
+raw_senior_archives_opened=false
+identities_or_row_values_emitted=false
+row_level_release_created=false
+gpu_api_model_fit_base_update=0/0/0/0

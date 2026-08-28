@@ -1,0 +1,197 @@
+{
+  "classification": "HISTORICAL_VERIFIED_SIBLING_CORE_QUARANTINE_FEASIBLE",
+  "core_counts": {
+    "test": 318,
+    "total": 1270,
+    "train": 952
+  },
+  "core_split_integrity": {
+    "conflicting_orientation_unordered_pairs": 0,
+    "duplicate_unordered_pair_rows": 0,
+    "train_test_endpoint_overlap": 0,
+    "train_test_referenced_physical_run_overlap": 0,
+    "train_test_unordered_pair_overlap": 0
+  },
+  "core_split_profiles": {
+    "test": {
+      "components": 282,
+      "endpoint_degree_maximum": 3,
+      "endpoint_degree_median_nearest_rank": 1,
+      "endpoint_degree_p90_nearest_rank": 1,
+      "endpoints": 591,
+      "maximum_single_component_pair_share": {
+        "decimal_17g": "0.018867924528301886",
+        "denominator": 53,
+        "numerator": 1
+      },
+      "maximum_single_run_pair_share": {
+        "decimal_17g": "0.066037735849056603",
+        "denominator": 106,
+        "numerator": 7
+      },
+      "maximum_single_task_pair_share": {
+        "decimal_17g": "0.15723270440251572",
+        "denominator": 159,
+        "numerator": 25
+      },
+      "orientation_free_identity_fingerprint_sha256": "8e8db63548d06f0428792c28535f33e4dfe41192cbb2fcb961d9a61f4d068cb5",
+      "pairs": 318,
+      "physical_runs": 89,
+      "tasks": 29
+    },
+    "train": {
+      "components": 849,
+      "endpoint_degree_maximum": 4,
+      "endpoint_degree_median_nearest_rank": 1,
+      "endpoint_degree_p90_nearest_rank": 1,
+      "endpoints": 1782,
+      "maximum_single_component_pair_share": {
+        "decimal_17g": "0.0063025210084033615",
+        "denominator": 476,
+        "numerator": 3
+      },
+      "maximum_single_run_pair_share": {
+        "decimal_17g": "0.028361344537815126",
+        "denominator": 952,
+        "numerator": 27
+      },
+      "maximum_single_task_pair_share": {
+        "decimal_17g": "0.13340336134453781",
+        "denominator": 952,
+        "numerator": 127
+      },
+      "orientation_free_identity_fingerprint_sha256": "464ac0ca065157affc94693b176283965ceec91ed831634bde0289fb48bb0656",
+      "pairs": 952,
+      "physical_runs": 327,
+      "tasks": 37
+    }
+  },
+  "descriptive_support_compatibility_gates": {
+    "maximum_single_test_component_pair_share": true,
+    "maximum_single_test_run_pair_share": true,
+    "maximum_single_test_task_pair_share": true,
+    "minimum_test_components": true,
+    "minimum_test_endpoints": true,
+    "minimum_test_pairs": true,
+    "minimum_test_physical_runs": true,
+    "minimum_test_tasks": true
+  },
+  "hard_integrity_gates": {
+    "all_input_hashes_and_reported_counts_exact": true,
+    "all_parent_partition_mismatches_are_quarantined": true,
+    "card_ids_unique_and_lineage_valid_within_run": true,
+    "cards_exactly_cover_frozen_run_manifest": true,
+    "core_all_endpoints_are_direct_children_of_declared_parent": true,
+    "core_all_members_share_task_and_physical_run": true,
+    "core_and_quarantine_are_exhaustive_and_disjoint": true,
+    "core_conflicting_orientations_zero": true,
+    "core_parent_partition_matches_row_split": true,
+    "core_split_counts_and_fingerprints_match_parent_certificate": true,
+    "core_train_test_endpoint_overlap_zero": true,
+    "core_train_test_referenced_physical_run_overlap_zero": true,
+    "core_train_test_unordered_pair_overlap_zero": true,
+    "core_unordered_pair_duplicates_zero": true,
+    "parent_certificate_dependencies_exact": true,
+    "prior_relation_class_counts_exactly_reproduced": true
+  },
+  "input_sha256": {
+    "cards": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343",
+    "decision": "1a01d3a1202b35f21b9cd6c87237b29c50b1c293138b407cc453674108411442",
+    "run_split": "593117cfe0b34e1d2e3c9b718866a7751d7f008701add77b31cfd604282103bb"
+  },
+  "inventory": {
+    "cards": 40950,
+    "decision_rows": 7644,
+    "physical_runs": 845
+  },
+  "parent_certificate_sha256": {
+    "formal_summary": "b75df026fdab24a5a3da6f01d734820ad908e505df0140f13586c2386624c6d3",
+    "independent_verification": "d5613fe7780df6a7c4c894780a44d971ac470af9070d804705b26e729bc0b66a"
+  },
+  "parent_partition_mismatch_counts": {
+    "cross_run_declared_context": {
+      "test": 227,
+      "total": 743,
+      "train": 516
+    },
+    "same_run_declared_context_non_sibling": {
+      "test": 0,
+      "total": 0,
+      "train": 0
+    },
+    "verified_direct_sibling": {
+      "test": 0,
+      "total": 0,
+      "train": 0
+    }
+  },
+  "parent_partition_mismatch_total": 743,
+  "protocol": "senior-0819-verified-sibling-quarantine-receipt-v1",
+  "protocol_sha256": "f4d09f1203ba72181046ac620862eb10351736cd01a25ac3597b21e4b931b680",
+  "quarantine_counts": {
+    "test": 842,
+    "total": 6374,
+    "train": 5532
+  },
+  "quarantine_profile": {
+    "components": 1838,
+    "endpoint_degree_maximum": 14,
+    "endpoint_degree_median_nearest_rank": 1,
+    "endpoint_degree_p90_nearest_rank": 7,
+    "endpoints": 5190,
+    "maximum_single_component_pair_share": {
+      "decimal_17g": "0.014747411358644493",
+      "denominator": 3187,
+      "numerator": 47
+    },
+    "maximum_single_run_pair_share": {
+      "decimal_17g": "0.0086288045183558204",
+      "denominator": 6374,
+      "numerator": 55
+    },
+    "maximum_single_task_pair_share": {
+      "decimal_17g": "0.077031691245685596",
+      "denominator": 6374,
+      "numerator": 491
+    },
+    "orientation_free_identity_fingerprint_sha256": "9d8e96dd26efe6c67873a74f3eec5b00b737107a53e0564fe6f343d6c9a763af",
+    "pairs": 6374,
+    "physical_runs": 788,
+    "tasks": 39
+  },
+  "relation_class_counts": {
+    "cross_run_declared_context": {
+      "test": 343,
+      "total": 4255,
+      "train": 3912
+    },
+    "same_run_declared_context_non_sibling": {
+      "test": 499,
+      "total": 2119,
+      "train": 1620
+    },
+    "verified_direct_sibling": {
+      "test": 318,
+      "total": 1270,
+      "train": 952
+    }
+  },
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "historical_exploratory_dataset": true,
+    "identities_or_row_values_emitted": false,
+    "model_fits": 0,
+    "model_predictions_or_accuracy_read": false,
+    "pair_orientation_used": false,
+    "post_hoc_repair_feasibility": true,
+    "prospective_first960_or_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "row_level_release_created": false,
+    "search_utility_computed": false,
+    "support_counts_known_before_freeze": true
+  },
+  "source_commit": "f534114e60658043c07f7a15d6440492caffc8ad",
+  "status": "HISTORICAL_VERIFIED_SIBLING_QUARANTINE_AUDIT_COMPLETE"
+}

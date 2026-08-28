@@ -1,0 +1,26 @@
+{
+  "all_aggregate_fields_equal": true,
+  "classification": "HISTORICAL_VERIFIED_SIBLING_CORE_QUARANTINE_FEASIBLE",
+  "producer_imported": false,
+  "producer_result_sha256": "4f4902ce365523b01a0cca1eadb716b978aa0771d15286be1bf4aecca6456315",
+  "protocol": "senior-0819-verified-sibling-quarantine-independent-verification-v1",
+  "protocol_sha256": "f4d09f1203ba72181046ac620862eb10351736cd01a25ac3597b21e4b931b680",
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "historical_exploratory_dataset": true,
+    "identities_or_row_values_emitted": false,
+    "model_fits": 0,
+    "model_predictions_or_accuracy_read": false,
+    "pair_orientation_used": false,
+    "post_hoc_repair_feasibility": true,
+    "prospective_first960_or_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "row_level_release_created": false,
+    "search_utility_computed": false,
+    "support_counts_known_before_freeze": true
+  },
+  "source_commit": "f534114e60658043c07f7a15d6440492caffc8ad",
+  "status": "INDEPENDENT_HISTORICAL_VERIFIED_SIBLING_QUARANTINE_VERIFIED"
+}

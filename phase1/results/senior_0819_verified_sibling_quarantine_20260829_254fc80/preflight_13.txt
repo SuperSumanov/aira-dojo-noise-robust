@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
+02_goal=test deterministic aggregate-only quarantine feasibility for a partition-closed historical sibling core; PASS
+03_context=senior f534114 immutable Cards run-split decision inputs plus published 0HT certificate; PASS
+04_known_before=class counts full overlap and sibling support known; sibling-only closure mismatch distribution and quarantine fingerprint unseen; PASS
+05_population=all 7644 historical decision rows with fixed core rule and exhaustive quarantine; PASS
+06_estimand=core parent task run split closure and three-level train-test isolation; no predictor accuracy or utility; PASS
+07_controls=fixed direct-sibling rule parent-certificate fingerprints and all excluded rows retained as aggregate quarantine; PASS
+08_thresholds=16 hard gates; descriptive support thresholds reused and explicitly known before this freeze; PASS
+09_randomness=none; producer and independent verifier repeated under PYTHONHASHSEED 0 and 1; PASS
+10_resources=CPU only with one-thread caps; GPU API model-fit base-update 0/0/0/0; PASS
+11_leakage=no prospective first960 target300 raw archive outcome prediction grade or pair-orientation use; PASS
+12_security=credential-cleared Card map required before parse; identities never emitted; strace and credential scan; PASS
+13_stop=hash certificate partition duplicate overlap or verifier ambiguity fails closed with no rule or threshold rescue; PASS

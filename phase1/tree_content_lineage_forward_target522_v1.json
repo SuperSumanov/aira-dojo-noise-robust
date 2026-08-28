@@ -1,0 +1,201 @@
+{
+  "protocol": "tree-content-lineage-forward-target522-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T14:30:00Z",
+  "status": "OUTCOME_BLIND_FROZEN_AFTER_DISCLOSED_887_DEVELOPMENT_BEFORE_TARGET522_SELECTION_COMPLETE",
+  "question": "On the first automatically selected Target-522 snapshot, does the disjoint increment show broad agreement between recorded physical parent pointers and identifier-erased code similarity only when the real run/depth hierarchy is supplied, while rejecting structurally plausible wrong parents?",
+  "scientific_role": "Forward structural quality certificate for the tree-native Decision Corpus; not a predictor-effect, search-utility, semantic-causality, or generic graph-reconstruction claim.",
+  "freeze_state": {
+    "baseline_snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "baseline_counts": {
+      "provisional_first960_runs": 435,
+      "eligible_endpoints": 11906,
+      "tasks": 34
+    },
+    "checked_immediately_before_freeze_at_utc": "2026-08-28T14:29:52Z",
+    "latest_snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "target522_selection_status": "WAITING",
+    "target522_candidate_snapshot_identity_seen": false,
+    "target522_increment_profile_seen": false,
+    "selection_pid": 4047654,
+    "selection_lock_held": true,
+    "development_population_role": "post-hoc method and threshold development only; may not be pooled with or rescue the disjoint forward increment"
+  },
+  "development_evidence_seen_before_freeze": {
+    "first_aggregate_sha256": "36bf9db4bc8ada595cf77a12d0453c3d92423a846f0c26e577919c96e0e6c5e1",
+    "first_independent_verification_sha256": "b2ce61937069f3636e61400b3ff869b57c9ff445f1391505f80caa9bfd8cd9f9",
+    "extension_aggregate_sha256": "893772daaeb236a0f4793a55469fbc09c8c262ea695a27bafb970a86c7396f42",
+    "extension_independent_verification_sha256": "b83e03a131cf6dbf4298401cec99fc2136523e8e939870da96d6b0f94d2eedd1",
+    "fingerprinted_endpoints": 11894,
+    "fingerprint_eligible_parent_edges": 10876,
+    "flat_same_run_fingerprinted_pairs": 524810,
+    "flat_pair_oracle_maximum_f1": "11446/22315",
+    "flat_pair_fixed_17_over_20_precision": "5713/11421",
+    "flat_pair_fixed_17_over_20_recall": "5713/10876",
+    "exact_depth_ambiguous_parent_edges": 9739,
+    "exact_depth_unique_top_recovery": "9196/9739",
+    "exact_depth_uniform_random_expected_recovery": "658424839318607/2197532334769200",
+    "exact_depth_unique_top_lift_over_random": "1416583616430193/2197532334769200",
+    "exact_depth_wrong_parent_false_acceptance": "543/99039",
+    "same_run_without_depth_unique_top_recovery": "2633/5438",
+    "exact_depth_task_fraction_at_or_above_17_over_20": "1/1",
+    "exact_depth_run_fraction_at_or_above_17_over_20": "377/394",
+    "known_result_interpretation": "The flat similarity graph is not the physical parent graph, but run/depth-conditioned similarity strongly cross-validates recorded parents on the development population."
+  },
+  "activation_rule": {
+    "selection_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+    "selection_protocol": "phase1/tree_linearization_within_stratum_forward_target522_v2.json",
+    "selection_protocol_sha256": "718224d9586b45a1bf6689c2bb9dd1d6b76e7243b8ddd2267dcf94fc6ea2667f",
+    "selection_monitor": "phase1/scripts/latch_tree_within_stratum_forward_target522_20260828.sh",
+    "selection_monitor_sha256": "8cab471b3c57c07711238f19cbcc80836aa7f4450faedf6ca50d60a306d4596b",
+    "candidate": "the exact immutable candidate in the completed hash-bound Target-522 selection package",
+    "target_total_physical_runs": 522,
+    "minimum_disjoint_increment_physical_runs": 87,
+    "manual_snapshot_choice_allowed": false,
+    "candidate_must_be_first_observed_crossing": true,
+    "candidate_profile_used_for_selection": false,
+    "watcher_may_read_candidate_or_increment_before_selection_complete": false
+  },
+  "implementation_dependencies": {
+    "snapshot_producer_module": "phase1/audit_tree_within_stratum_forward_target522.py",
+    "snapshot_producer_sha256": "8a82d1ba3ef663c1eda161d32da0ad3a119ed3d3a13e42664648fff684d986f5",
+    "snapshot_verifier_module": "phase1/verify_tree_within_stratum_forward_target522.py",
+    "snapshot_verifier_sha256": "be6a31f95c2c855378ce20628855ff8fbba13e772aadf5c0232b225436e57d63",
+    "fingerprint_producer_module": "phase1/audit_prospective_fuzzy_code_clones.py",
+    "fingerprint_producer_sha256": "869dd84540d785232717eef7a9f2721b9d1ed892ac0340e2bc2f940041cddbec",
+    "fingerprint_verifier_module": "phase1/verify_prospective_fuzzy_code_clones.py",
+    "fingerprint_verifier_sha256": "d6d1e9a7121fb2bf006e51bdd174c79a6009bbf849dd50831ce57a42567219b7"
+  },
+  "primary_population": {
+    "name": "disjoint_forward_physical_run_increment",
+    "membership": "all endpoints in candidate provisional-first960 physical runs whose run_id is absent from snapshot 887",
+    "baseline_rows_in_primary_estimand": false,
+    "partial_physical_runs_allowed": false,
+    "old_registry_run_and_endpoint_rows_must_be_exact_append_only_prefixes": true,
+    "cumulative_candidate_profile_may_rescue": false
+  },
+  "fixed_representation": {
+    "name": "python_token_identifier_erased_v1",
+    "ignored": ["encoding", "comments", "layout", "indentation markers", "end marker"],
+    "non_keyword_names": "<IDENT>",
+    "numbers": "<NUMBER>",
+    "strings": "<STRING>",
+    "keywords_and_operators": "preserved",
+    "shingle_size": 5,
+    "shingle_hash": "BLAKE2b-128",
+    "minimum_distinct_shingles": 20,
+    "similarity": "exact set Jaccard"
+  },
+  "parent_recovery_estimands": {
+    "eligible_edge": "a recorded child-parent edge with both endpoints present in the disjoint increment and both fingerprints valid",
+    "primary_candidate_set": "all fingerprint-valid endpoints in the same physical run at exactly child.depth minus one",
+    "primary_nontrivial_population": "eligible edges whose primary candidate set contains at least two endpoints",
+    "primary_success": "the recorded parent is the unique maximum-Jaccard candidate; ties are failures",
+    "uniform_random_control": "mean exact 1 over candidate-set size on the same nontrivial population",
+    "wrong_parent_control": "enumerate every non-parent member of every primary candidate set; accept a proposed pointer only when it is the unique maximum-Jaccard candidate",
+    "ablation_any_shallower_depth": "all same-run fingerprint-valid endpoints with depth below the child",
+    "ablation_same_run_without_depth": "all other fingerprint-valid endpoints in the same physical run",
+    "flat_pair_graph": "all unordered within-run fingerprinted endpoint pairs; report fixed Jaccard 17/20 and same-population oracle maximum F1",
+    "task_breadth_minimum_edges": 20,
+    "physical_run_breadth_minimum_edges": 5,
+    "breadth_reference": "17/20",
+    "identities_emitted": false
+  },
+  "hard_integrity_and_support_gates": {
+    "complete_hash_bound_selection_package": true,
+    "candidate_is_first_observed_target_crossing": true,
+    "candidate_total_runs_at_least": 522,
+    "disjoint_increment_runs_at_least": 87,
+    "baseline_is_exact_byte_unchanged_prefix": true,
+    "candidate_accumulator_is_outcome_blind_and_unclosed": true,
+    "minimum_fingerprint_coverage": "99/100",
+    "minimum_fingerprint_eligible_parent_edges": 1500,
+    "all_fingerprint_eligible_parent_edges_depth_consistent": true,
+    "minimum_ambiguous_exact_depth_parent_edges": 1000,
+    "minimum_enumerated_wrong_parent_alternatives": 10000,
+    "minimum_conditionable_tasks": 8,
+    "minimum_conditionable_physical_runs": 60,
+    "all_gate_comparisons_use_exact_fractions": true,
+    "decimal_strings_are_descriptive_only": true
+  },
+  "strong_content_concordance_gates": {
+    "minimum_exact_depth_unique_top_recovery": "9/10",
+    "minimum_exact_depth_lift_over_uniform_random": "1/2",
+    "maximum_exhaustive_wrong_parent_false_acceptance": "1/50",
+    "minimum_task_fraction_at_or_above_breadth_reference": "3/4",
+    "minimum_physical_run_fraction_at_or_above_breadth_reference": "3/4",
+    "maximum_single_task_edge_contribution_share": "2/5",
+    "maximum_single_physical_run_edge_contribution_share": "1/5"
+  },
+  "hierarchy_complementarity_gates": {
+    "maximum_same_run_without_depth_unique_top_recovery": "7/10",
+    "minimum_exact_depth_minus_no_depth_unique_top_recovery": "3/10",
+    "maximum_flat_pair_graph_oracle_f1": "7/10",
+    "all_three_required_for_strongest_classification": true
+  },
+  "ordered_classification": [
+    "FORWARD_HIERARCHY_CONTENT_PARENT_CONCORDANCE_CERTIFICATE",
+    "FORWARD_CONTENT_PARENT_CONCORDANCE_WITHOUT_HIERARCHY_COMPLEMENTARITY",
+    "FORWARD_PARENT_CONCORDANCE_PROFILE_BELOW_STRONG_GATE",
+    "FORWARD_PARENT_CONCORDANCE_GATE_FAIL"
+  ],
+  "classification_rule": "Hard-gate failure takes precedence. If every hard, content-concordance, and hierarchy-complementarity gate passes, emit the strongest certificate. If hard and content gates pass but any complementarity gate fails, emit concordance-only. Otherwise emit below-strong-gate. Development values, any-shallower-depth results, cumulative candidate values, decimal displays, and alternative thresholds may not rescue a gate.",
+  "verification": {
+    "producer_repetitions": 2,
+    "independent_verifier_repetitions": 2,
+    "producer_and_verifier_outputs_byte_identical_within_role": true,
+    "independent_verifier_imports_new_producer": false,
+    "independent_snapshot_reader": true,
+    "independent_identifier_erased_fingerprint": true,
+    "independent_pair_sweep_and_parent_candidate_construction": true,
+    "focused_and_full_tests_required": true,
+    "fresh_detached_worktree_required": true
+  },
+  "related_work_and_claim_boundary": {
+    "tracegraph_similarity_landscape_invalidated": false,
+    "mle_traj_parent_plus_similarity_graph_first_claim": false,
+    "generic_similarity_graph_or_parent_recovery_algorithm_novelty": false,
+    "recorded_parent_is_external_semantic_or_causal_ground_truth": false,
+    "all_embeddings_or_learned_reconstructors_ruled_out": false,
+    "allowed_if_strongest": "On a disjoint automatically selected future increment, recorded physical parent pointers are broadly cross-validated by identifier-erased content only when run/depth hierarchy is supplied; the fixed audit also rejects structurally plausible wrong pointers at the pre-registered rate, while flat same-run similarity remains a distinct graph object.",
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "first960_or_accrual_closure_completed": false,
+    "generalization_beyond_selected_increment": false
+  },
+  "security": {
+    "corpus_input_basenames": [
+      "eligible_blind_manifest.jsonl",
+      "intake_registry.jsonl",
+      "provisional_runs.jsonl",
+      "summary.json"
+    ],
+    "selection_support_input_basenames": [
+      "READY",
+      "SHA256SUMS",
+      "COMPLETE",
+      "candidate.tsv",
+      "monitor.lock",
+      "monitor.log",
+      "monitor.pid",
+      "observed.tsv",
+      "preflight_13.txt",
+      "protocol.json",
+      "security_scan_receipt.txt",
+      "source_script.sh"
+    ],
+    "raw_senior_archives_opened": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "task_run_card_parent_code_or_per_pair_values_emitted": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  },
+  "resources": {
+    "cpu_only": true,
+    "per_formal_command_timeout_seconds": 1800,
+    "virtual_memory_limit_gib": 32,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "failure_rule": "Any selection, continuity, snapshot, append-only, hash, schema, fingerprint, depth, support, exact-arithmetic, security, reproducibility, or independent-verification mismatch fails closed. No same-candidate threshold, representation, population, tie rule, or interpretation repair is allowed."
+}

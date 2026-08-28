@@ -13,6 +13,31 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HN. 2026-08-28 hierarchy × content parent concordance 已形成开发正信号并冻结 Target-522 前瞻确认
+
+在已公开的 outcome-blind snapshot 887 上，平面 identifier-erased Jaccard graph 与 physical parent graph 明显不是同一
+对象：524,810 个 within-run pairs 中，固定 Jaccard≥17/20 的 parent precision/recall/F1 分别为
+`5713/11421` / `5713/10876` / `11426/22297`；同 population 直接用 parent label 选阈值的 oracle max F1 也只有
+`11446/22315=0.5129285`。但在同一 physical run 内再给出 exact preceding depth 后，9,739 个非 trivial parent
+候选集中 recorded parent 是 unique nearest neighbor 的比例达到 `9196/9739=0.9442448`，比同候选集 uniform random
+期望高约 64.46pp；穷举 99,039 个同层错误 parent 只有 543 个会被误收，false acceptance=`543/99039=0.00548269`。
+
+该信号在 task/run 上很宽：33/33 conditionable tasks、377/394 runs 达到 0.85；移除 depth 后 unique-top 降至
+`2633/5438=0.4841854`，33 个 tasks 中 0 个达到 0.85。两阶段 producer 与不导入 producer 的独立实现均逐字段一致；
+aggregate/verification SHA-256 分别为 `36bf9db4...e6c5e1` / `b2ce6193...cd9f9` 与
+`893772da...96f42` / `b83e03a1...eedd1`。这些都是**已见的 887 development 结果**，不能称前瞻发现。
+
+TraceGraph 已把相似图定位为 descriptive landscape，mle-traj-v3 也已有 version/fork/token-Jaccard 双视图，因此不申
+similarity graph、parent recovery 或 dual-view 首创。可守正贡献是：对真实 MLE search physical parent 做结果盲的
+structure-content cross-certificate，并明确证明 flat similarity 与 physical hierarchy 不可互换。新协议已在
+`2026-08-28T14:29:52Z` candidate 仍为空、LATEST=887、435/522 时冻结，只使用同一自动 selection 的至少 87 个
+不重叠未来 runs。强门为 exact-depth unique-top≥0.90、对 random lift≥0.50、wrong-parent FPR≤0.02、task/run breadth
+各≥3/4；最强分类还要求 no-depth≤0.70、exact-depth gain≥0.30、flat oracle F1≤0.70。所有门用 exact fractions，
+hard support 先判，887/累计人口/替代阈值不得 rescue。协议与完整边界见
+`phase1/tree_content_lineage_forward_target522_v1.json` 和
+`phase1/实验记录/2026-08-28/PhysicalLineage_ContentConcordance_开发结果与Target522前瞻冻结.md`；真实未来 profile
+尚未运行，故当前只可称已独立复验的开发正信号与结果前执行机会。
+
 ## 0HM. 2026-08-28 within-stratum 改为 Target-522 不重叠前瞻确认
 
 **结果前完整性修订（13:03:57Z）**：首个 monitor 上线后、候选仍为空且 LATEST 仍为 887 时，发现协议的

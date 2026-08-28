@@ -1,0 +1,23 @@
+{
+  "all_aggregate_fields_equal": true,
+  "classification": "HISTORICAL_PAIR_BENCHMARK_INTEGRITY_GATE_FAIL",
+  "producer_imported": false,
+  "producer_result_sha256": "90e220ace013e8919a413b8e8a95524bfa374cc390c9bd0241d57b6ac9bb00cb",
+  "protocol": "senior-0819-pair-benchmark-integrity-independent-verification-v1",
+  "protocol_sha256": "8991d3048761ebe3463c5b90e223c86648d2dbaa4bbfce5e1894cd329dcfeb30",
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "historical_card_label_fields_used_by_audit_logic": false,
+    "historical_exploratory_proxy_dataset": true,
+    "identities_or_row_values_emitted": false,
+    "model_fits": 0,
+    "prospective_first960_or_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "search_utility_computed": false,
+    "test_accuracy_or_scaling_computed": false
+  },
+  "source_commit": "f534114e60658043c07f7a15d6440492caffc8ad",
+  "status": "INDEPENDENT_HISTORICAL_PAIR_BENCHMARK_INTEGRITY_VERIFIED"
+}

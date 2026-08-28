@@ -1,7 +1,7 @@
 # Senior 0819 pair benchmark：run/endpoint 完整性与依赖结构审计预注册
 
 日期：2026-08-29
-状态：`FROZEN_BEFORE_OVERLAP_COMPONENT_AND_RUN_READOUT`
+状态：`FORMAL_COMPLETE_GATE_FAIL_WITH_POSITIVE_SPLIT_CERTIFICATE`
 
 ## 为什么做
 
@@ -74,13 +74,38 @@ producer A/B、verifier A/B、逐字节比较、focused/full tests、file+networ
 原样保留，新 root 才可运行。
 
 第二个 post-push root `formal-0159f81-v2` 已通过 focused/full=`6/1462 passed`（47 warnings），但第一遍 producer
-在写结果文件前因 frozen decision-parent invariant 于 mixed line 6 停止。只读匿名结构诊断显示：decision `0/7644`、
-mixed 中 decision-schema `0/2563` 是 declared parent 的两个直接 children；declared parent 与两端同 physical run 的计数为
-`3389/7644`、`1389/2563`，同 task 则全部成立。该结果触发原 hard gate，不能删除 gate 或改称 sibling benchmark。
+在写结果文件前因 frozen decision-parent invariant 于 mixed line 6 停止。其后一次临时匿名诊断把字符串 parent ID 与
+Node 对象直接比较，错误报告 direct-child=`0`；正式结果前已定位并撤回该临时数字。该诊断同时得到的同-run 计数
+`3389/7644`、`1389/2563` 没有受该类型错误影响，并被正式双实现复现。gate 仍被真实结构违反，不能删除或改称
+sibling benchmark。
 
 结果后修复仅把这个逐行 exception 改成 aggregate violation count，使 formal receipt 能按原 gate 输出失败分类；跨 run pair
 的 run contribution 预先固定为“该 pair incident 的每个 run 各计一次，分母仍为 pair count”。protocol、population、gate、
 threshold 和 runner 不变；producer/verifier/test hash 更新为本节值。v2 无 producer/verifier JSON，原样保留。
+
+## 正式结果
+
+第三个新 root `formal-4a84780-v3` 已完成，正式分类为
+`HISTORICAL_PAIR_BENCHMARK_INTEGRITY_GATE_FAIL`。13 个 hard gates 中 12 个通过，唯一失败的是冻结的
+`all_decision_pairs_share_recorded_parent_and_physical_run`：decision 的 direct-child/same-run/same-task 计数分别为
+`1270/7644`、`3389/7644`、`7644/7644`；mixed 内 2,563 条 decision-schema rows 对应为
+`537/2563`、`1389/2563`、`2563/2563`。producer 与不导入它的 verifier 对这些计数逐字段一致，因此早先临时
+direct-child=`0` 明确撤回；修正不改变最终 gate-fail。
+
+其余结构子结论形成了可保留的正资产：mixed train/test 的 unordered pair、endpoint、physical run overlap 全为 0；
+mixed test 与 decision test 的 canonical multiset 精确相等（各 1,160 rows）；test duplicate=0，全 mixed orientation
+conflict=0。mixed train 14,715 rows 均有 declared source-train support，但其中 490 rows 同时属于两个 source pools，
+故 actual sampling origin 不可唯一恢复。
+
+八个 breadth gates 全过：test 有 1,160 pairs、38 tasks、173 physical runs、1,705 endpoints、724 components；最大
+task/run/component pair share=`21/232` / `43/1160` / `23/1160`。这认证的是一个隔离、精确保留且支持面广的**历史 mixed
+pair benchmark**，不是 sibling-decision benchmark，也不是 untouched final evaluation。
+
+producer A/B、verifier A/B 分别逐字节一致，SHA-256=`90e220ac...00cb` / `d01268f2...5b49`；focused/full=
+`7/1463 passed`，47 warnings；forbidden opens/network calls=`0/0`，formal manifest=
+`f5483cf2a2d7097fcd34342d93e5047bfaaec3498e545fe59e4e0d2487a47b17`。正式包见
+`phase1/results/senior_0819_pair_benchmark_integrity_20260829_4a84780/`。GPU/API/model-fit/base-update=
+`0/0/0/0`，前瞻值、模型 accuracy/scaling、search utility 与 raw senior archives 均未读。
 
 ## 即使 strong pass 也不能说什么
 

@@ -25,7 +25,7 @@ Git-LFS OID 全绑定。strongest 分类要求全部 13 个 hard integrity gates
 components≥1,000/20/50/500/100，最大 task/run/component share≤1/4、1/10、1/4；任一 hard gate 失败不得由模型分数
 或子组 rescue。冻结前只看过报告数字、计数和 schema，未看 overlap、preservation、component/breadth 或 source membership
 readout。protocol/producer/独立 verifier/test/runner SHA-256=`8991d304...eb30` / `06d19ad9...2437` /
-`712be2aa...2901` / `e98bf02f...61d8` / `7276e77a...544a`；synthetic=`7 passed`，formal 尚未完成。
+`712be2aa...2901` / `e98bf02f...61d8` / `7276e77a...544a`；synthetic=`7 passed`，formal 已完成，结果见本节末。
 
 779,146,574-byte Cards 在 JSON parse 前完成 credential scan，0 命中且 safe SHA 等于原 OID；八个小输入亦为 0。
 首次 v2 input root 因手抄 mixed SHA 错误在 scientific read 前 fail-closed，v3 用 LFS pointer 机器核对值重建。另发现学长
@@ -39,11 +39,26 @@ focused=`6 passed`，full=`1455 passed, 7 failed, 47 warnings`；7 个失败均�
 population、gate 或 scientific code；v1 原样保留，新 runner hash 如上，必须从新 root 重跑。
 
 第二个 root `formal-0159f81-v2` 的 focused/full=`6/1462 passed`（47 warnings），随后 producer 在写出结果前发现冻结
-gate 的前提不成立而停止：mixed line 6 不是 declared parent 的两个直接 children。匿名全量诊断进一步显示 decision
-`0/7644`、mixed decision-schema `0/2563` 满足“两端均为 declared parent 的直接 children”；三者同 physical run 分别只有
-`3389/7644`、`1389/2563`，但 task 均一致。该 readout 之后**没有删除或改宽 gate**；只把逐行 exception 改为匿名 violation
-计数，使第三个新 root 按原协议正式输出 `GATE_FAIL`，并把跨 run test pair 的 run contribution 固定为 incident-run count。
-producer/verifier/test hash 因这一 fail-reporting 修复更新为上文值；protocol 和 runner hash 不变，v2 原样保留。
+gate 的前提不成立而停止：mixed line 6 不是 declared parent 的两个直接 children。随后临时匿名诊断把字符串 parent ID
+与 Node 对象直接比较，错误报告 direct-child=`0`；该临时值已撤回。其同-run 计数 `3389/7644`、`1389/2563` 不受此
+类型错误影响，并被正式双实现复现。没有删除或改宽 gate；只把逐行 exception 改为匿名 violation 计数，使第三个新 root
+按原协议输出 `GATE_FAIL`，并把跨 run test pair 的 run contribution 固定为 incident-run count。producer/verifier/test
+hash 因这一 fail-reporting 修复更新为上文值；protocol 和 runner hash 不变，v2 原样保留。
+
+第三个 root `formal-4a84780-v3` 已正式完成，分类为 **`HISTORICAL_PAIR_BENCHMARK_INTEGRITY_GATE_FAIL`**。13 个 hard
+gates 中 12 个通过；唯一失败的是“全部 decision pairs 同 recorded parent 且同 physical run”：decision 的
+direct-child/same-run/same-task=`1270/7644` / `3389/7644` / `7644/7644`，mixed 中 2,563 条 decision-schema rows 为
+`537/2563` / `1389/2563` / `2563/2563`。因此不得称 sibling-decision benchmark。
+
+同时形成正的 benchmark 资产：mixed train/test 的 unordered pair、endpoint、physical-run overlap 全为 0，mixed test 与
+decision test canonical multiset 精确相等（各 1,160 rows），duplicate/orientation conflict=`0/0`。八个 breadth gates
+全过：test=1,160 pairs / 38 tasks / 173 runs / 1,705 endpoints / 724 components，最大 task/run/component share=
+`21/232` / `43/1160` / `23/1160`。14,715 个 mixed-train rows 全有 declared source support，但 490 rows 同时属于两个
+source pools，actual sampling origin 不可反推。producer/verifier A/B 逐字节一致，focused/full=`7/1463 passed`，
+forbidden opens/network=`0/0`，formal manifest=`f5483cf2...47b17`。这只认证隔离、精确保留、支持面广的**历史 mixed pair
+benchmark**，不升级 seed-specific scaling，不把周期使用过的 test 称 untouched。正式包见
+`phase1/results/senior_0819_pair_benchmark_integrity_20260829_4a84780/`；GPU/API/model-fit/base-update=`0/0/0/0`，
+前瞻值与 raw archives 未读。
 
 ## 0HQ. 2026-08-29 fixed-margin selective parent recovery 已冻结 Target-522 真前瞻确认
 

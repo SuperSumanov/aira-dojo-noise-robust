@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
+02_role=historical senior-0819 pair benchmark integrity and dependency audit,not effect scoring; PASS
+03_inputs=exact Git-LFS OIDs and credential-cleared Card map bound by protocol 8991d3048761ebe3463c5b90e223c86648d2dbaa4bbfce5e1894cd329dcfeb30; PASS
+04_known_before=reported proxy values,row counts,and schemas only; overlap/component/run results unseen at freeze; PASS
+05_population=mixed historical train/test with decision/value/hardware-time source support; PASS
+06_estimand=run/endpoint separation,test preservation,and dependence breadth; no accuracy or search utility; PASS
+07_controls=exact decision test multiset and declared source train union; PASS
+08_randomness=none,producer/verifier repeated under PYTHONHASHSEED 0 and 1; PASS
+09_resources=CPU only,0 GPU,0 API,0 model fit,0 base update; PASS
+10_leakage=no first-960,target-300,prospective state,raw archive,outcome,or prediction files; PASS
+11_security=Card credential scan precedes JSON parse; aggregate output contains no identities or row values; PASS
+12_stop=hash/schema/run/split/source ambiguity fails closed; no result-dependent threshold rescue; PASS
+13_reproducibility=exact commit/source hashes,commands,tests,strace,and manifest recorded; PASS

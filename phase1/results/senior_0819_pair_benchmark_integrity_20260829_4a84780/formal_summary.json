@@ -1,0 +1,214 @@
+{
+  "broad_support_gates": {
+    "single_component_anti_dominance": true,
+    "single_run_anti_dominance": true,
+    "single_task_anti_dominance": true,
+    "test_components": true,
+    "test_endpoints": true,
+    "test_pairs": true,
+    "test_physical_runs": true,
+    "test_tasks": true
+  },
+  "card_security_receipt_sha256": "d41142279bdba7db4495664df6836eecec3a36016cd316164ee5e54d4518eccc",
+  "classification": "HISTORICAL_PAIR_BENCHMARK_INTEGRITY_GATE_FAIL",
+  "dataset_integrity_profiles": {
+    "decision": {
+      "conflicting_orientation_unordered_pairs": 0,
+      "duplicate_unordered_pair_rows": 0,
+      "test_duplicate_unordered_pair_rows": 0,
+      "test_physical_runs": 173,
+      "test_unique_endpoints": 1705,
+      "train_physical_runs": 621,
+      "train_test_endpoint_overlap": 0,
+      "train_test_physical_run_overlap": 0,
+      "train_test_unordered_pair_overlap": 0,
+      "train_unique_endpoints": 5672,
+      "unique_unordered_pairs": 7644
+    },
+    "mixed": {
+      "conflicting_orientation_unordered_pairs": 0,
+      "duplicate_unordered_pair_rows": 0,
+      "test_duplicate_unordered_pair_rows": 0,
+      "test_physical_runs": 173,
+      "test_unique_endpoints": 1705,
+      "train_physical_runs": 625,
+      "train_test_endpoint_overlap": 0,
+      "train_test_physical_run_overlap": 0,
+      "train_test_unordered_pair_overlap": 0,
+      "train_unique_endpoints": 9620,
+      "unique_unordered_pairs": 15875
+    },
+    "value": {
+      "conflicting_orientation_unordered_pairs": 0,
+      "duplicate_unordered_pair_rows": 0,
+      "test_duplicate_unordered_pair_rows": 0,
+      "test_physical_runs": 168,
+      "test_unique_endpoints": 1884,
+      "train_physical_runs": 621,
+      "train_test_endpoint_overlap": 0,
+      "train_test_physical_run_overlap": 0,
+      "train_test_unordered_pair_overlap": 0,
+      "train_unique_endpoints": 9165,
+      "unique_unordered_pairs": 16204
+    },
+    "value_hardware_time": {
+      "conflicting_orientation_unordered_pairs": 0,
+      "duplicate_unordered_pair_rows": 0,
+      "test_duplicate_unordered_pair_rows": 0,
+      "test_physical_runs": 122,
+      "test_unique_endpoints": 954,
+      "train_physical_runs": 546,
+      "train_test_endpoint_overlap": 0,
+      "train_test_physical_run_overlap": 0,
+      "train_test_unordered_pair_overlap": 0,
+      "train_unique_endpoints": 6274,
+      "unique_unordered_pairs": 8598
+    }
+  },
+  "hard_integrity_gates": {
+    "all_decision_pairs_share_recorded_parent_and_physical_run": false,
+    "all_input_hashes_and_reported_counts_exact": true,
+    "all_pair_endpoints_known_and_task_consistent": true,
+    "all_pair_split_values_match_frozen_run_membership": true,
+    "card_ids_unique_and_present_lineage_parents_within_run": true,
+    "cards_exactly_cover_frozen_run_manifest": true,
+    "mixed_has_no_conflicting_pair_orientations": true,
+    "mixed_test_exactly_preserves_decision_test_multiset": true,
+    "mixed_test_has_no_duplicate_unordered_pairs": true,
+    "mixed_train_rows_belong_to_declared_source_train_union": true,
+    "mixed_train_test_endpoints_disjoint": true,
+    "mixed_train_test_physical_runs_disjoint": true,
+    "mixed_train_test_unordered_pairs_disjoint": true
+  },
+  "input_sha256": {
+    "cards": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343",
+    "decision": "1a01d3a1202b35f21b9cd6c87237b29c50b1c293138b407cc453674108411442",
+    "mixed": "7792a7da4119bb607cf76628fcdde19923898651ac734ff6afffb0732883cf6e",
+    "run_split": "593117cfe0b34e1d2e3c9b718866a7751d7f008701add77b31cfd604282103bb",
+    "value": "8a01dfb90c2c3d8498174ebe78df43ee21d6d0eac9f4ff81f63700b315473405",
+    "value_hardware_time": "60e9bbfba56ef94dfd70bb717694fa5b3b400f9458a13b92321bb1cb2ecdf3d9"
+  },
+  "inventory": {
+    "cards": 40950,
+    "datasets": {
+      "decision": {
+        "decision_schema_rows": 7644,
+        "decision_semantics": {
+          "both_endpoints_direct_children_of_declared_parent": 1270,
+          "declared_parent_and_endpoints_same_physical_run": 3389,
+          "declared_parent_and_endpoints_same_task": 7644,
+          "rows": 7644
+        },
+        "rows": 7644,
+        "test_rows": 1160,
+        "train_rows": 6484,
+        "value_schema_rows": 0
+      },
+      "mixed": {
+        "decision_schema_rows": 2563,
+        "decision_semantics": {
+          "both_endpoints_direct_children_of_declared_parent": 537,
+          "declared_parent_and_endpoints_same_physical_run": 1389,
+          "declared_parent_and_endpoints_same_task": 2563,
+          "rows": 2563
+        },
+        "rows": 15875,
+        "test_rows": 1160,
+        "train_rows": 14715,
+        "value_schema_rows": 13312
+      },
+      "value": {
+        "decision_schema_rows": 0,
+        "decision_semantics": {
+          "both_endpoints_direct_children_of_declared_parent": 0,
+          "declared_parent_and_endpoints_same_physical_run": 0,
+          "declared_parent_and_endpoints_same_task": 0,
+          "rows": 0
+        },
+        "rows": 16204,
+        "test_rows": 1998,
+        "train_rows": 14206,
+        "value_schema_rows": 16204
+      },
+      "value_hardware_time": {
+        "decision_schema_rows": 0,
+        "decision_semantics": {
+          "both_endpoints_direct_children_of_declared_parent": 0,
+          "declared_parent_and_endpoints_same_physical_run": 0,
+          "declared_parent_and_endpoints_same_task": 0,
+          "rows": 0
+        },
+        "rows": 8598,
+        "test_rows": 895,
+        "train_rows": 7703,
+        "value_schema_rows": 8598
+      }
+    },
+    "manifest_all_runs": 845,
+    "manifest_held_runs": 189,
+    "manifest_train_runs": 656,
+    "orphan_lineage_parent_edges": 0,
+    "physical_runs": 845,
+    "present_lineage_parent_edges": 40103
+  },
+  "mixed_test_dependency": {
+    "component_kish_effective_count": {
+      "decimal_17g": "307.63603109282121",
+      "denominator": 2187,
+      "numerator": 672800
+    },
+    "endpoint_degree_maximum": 8,
+    "endpoint_degree_median_nearest_rank": 1,
+    "endpoint_degree_p90_nearest_rank": 2,
+    "maximum_single_component_pair_share": {
+      "decimal_17g": "0.019827586206896553",
+      "denominator": 1160,
+      "numerator": 23
+    },
+    "maximum_single_run_pair_share": {
+      "decimal_17g": "0.037068965517241377",
+      "denominator": 1160,
+      "numerator": 43
+    },
+    "maximum_single_task_pair_share": {
+      "decimal_17g": "0.090517241379310345",
+      "denominator": 232,
+      "numerator": 21
+    },
+    "test_components": 724,
+    "test_endpoints": 1705,
+    "test_pairs": 1160,
+    "test_physical_runs": 173,
+    "test_tasks": 38
+  },
+  "mixed_test_exact_preservation": {
+    "canonical_multiset_equal": true,
+    "decision_test_rows": 1160,
+    "mixed_test_rows": 1160
+  },
+  "mixed_train_source_support": {
+    "actual_sampling_origin_uniquely_recoverable": false,
+    "membership_multiplicity_one": 14225,
+    "membership_multiplicity_three": 0,
+    "membership_multiplicity_two": 490,
+    "membership_multiplicity_zero": 0,
+    "mixed_train_rows": 14715
+  },
+  "protocol": "senior-0819-pair-benchmark-integrity-receipt-v1",
+  "protocol_sha256": "8991d3048761ebe3463c5b90e223c86648d2dbaa4bbfce5e1894cd329dcfeb30",
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "gpu_jobs": 0,
+    "historical_card_label_fields_used_by_audit_logic": false,
+    "historical_exploratory_proxy_dataset": true,
+    "identities_or_row_values_emitted": false,
+    "model_fits": 0,
+    "prospective_first960_or_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "search_utility_computed": false,
+    "test_accuracy_or_scaling_computed": false
+  },
+  "source_commit": "f534114e60658043c07f7a15d6440492caffc8ad",
+  "status": "HISTORICAL_PAIR_BENCHMARK_INTEGRITY_AUDIT_COMPLETE"
+}

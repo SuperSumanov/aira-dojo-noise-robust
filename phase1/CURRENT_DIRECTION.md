@@ -13,6 +13,20 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IM. 2026-08-29 Tree Node → Sibling Label Yield 已在真实 acquisition curve 前预注册
+
+防撞后不把 active ranking、graph active learning、active testing 或 NAS acquisition 当 novelty。允许验证的窄结构问题是：
+固定 generator 已知树拓扑时，一次**完整** endpoint execution 返回绝对 grade，并可同时闭合多个 sibling pair training
+labels；这不是旧多保真、search lookahead 或底座更新。
+
+protocol=`phase1/tree_node_label_yield_v1.json` 已固定 historical v11 train:b0 的 4,263 lineage-direct sibling edges、
+5,499 endpoints 和 exact normalized input SHA；算法只能读 unordered endpoint/parent/task/run，禁止 orientation/gap/
+outcome/code/prediction。primary 为 task/run-penalized closure greedy 对共享 endpoint 的强 `uniform_edge` 基线，固定 6 个
+endpoint budgets、64 random seeds、8 tie-sensitivity seeds及 yield/breadth/anti-dominance 四门。全过也只允许称历史
+full-execution label-yield feasible；downstream critic fit、API weighting、predictor effect 与 search utility 均须另冻协议。
+当前真实 curves 未运行，GPU/API/model-fit/base-update=`0/0/0/0`。详见
+`phase1/实验记录/2026-08-29/TreeNodeLabelYield_v1_预注册与防撞.md`。
+
 ## 0IL. 2026-08-29 full-context v2 得到精确平衡 panel，并通过第二实现逐字段复验
 
 v2 在 metric-independent eligibility readout 前只删除全库不存在的独立 metric-name 行；其 fresh formal 得到八个固定

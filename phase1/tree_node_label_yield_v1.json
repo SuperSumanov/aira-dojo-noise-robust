@@ -1,0 +1,145 @@
+{
+  "protocol": "tree-node-to-sibling-label-yield-v1",
+  "status": "FROZEN_AFTER_AGGREGATE_TOPOLOGY_TOTALS_BEFORE_ACQUISITION_CURVES",
+  "date": "2026-08-29",
+  "estimand": {
+    "name": "sibling_pair_training_labels_unlocked_per_full_endpoint_execution",
+    "population": "historical v11 train:b0 lineage-direct sibling graph",
+    "oracle_unit": "one complete endpoint execution returning one scalar external grade",
+    "label_closure": "an unordered sibling pair becomes labeled if and only if both endpoints have been fully executed",
+    "not_multifidelity": true,
+    "not_search_utility": true,
+    "not_predictor_accuracy": true,
+    "not_generator_training": true
+  },
+  "immutable_inputs": {
+    "pair_graph": {
+      "path": "phase1/v11_decision/decision_train_v11_b0.jsonl",
+      "hash_mode": "normalized_utf8_lf_v1",
+      "sha256": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+      "git_blob_bytes": 1996475,
+      "rows": 4263,
+      "partition": "train",
+      "budget": 0
+    },
+    "lineage_audit_bindings": {
+      "path": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/source_bindings.json",
+      "sha256": "97ad6ac47bdd0290f9edb4ec878ca093bf87ec6e859498d3d725d721ae4fde97",
+      "formal_result_path": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/formal/producer_a.json",
+      "formal_result_sha256": "23e9a8139be60ee4c34d3c44eda9afaed3034a68f6749ebcb0555c10a15f0032",
+      "required_classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+      "required_all_rows_lineage_direct": true
+    }
+  },
+  "known_before_freeze": {
+    "pairs": 4263,
+    "parents": 2293,
+    "endpoints": 5499,
+    "physical_runs": 333,
+    "tasks": 23,
+    "mapped_parent_choice_sets": 2134,
+    "all_rows_lineage_direct": true,
+    "parent_complete_core_support_is_limited_by_separate_frozen_b2_gate": true,
+    "any_acquisition_curve_seen": false,
+    "any_method_pair_yield_seen": false,
+    "any_task_or_run_breadth_curve_seen": false
+  },
+  "allowed_graph_fields": [
+    "unordered endpoint identities",
+    "declared parent identity",
+    "task identity",
+    "physical run identity",
+    "partition",
+    "budget"
+  ],
+  "forbidden_acquisition_inputs": [
+    "better-or-worse orientation",
+    "gap_raw or clears_tau",
+    "grade label or outcome",
+    "code text or embedding",
+    "predictor or judge output",
+    "self report",
+    "runtime or execution feedback"
+  ],
+  "graph_integrity": {
+    "canonicalize_each_pair_as_sorted_endpoint_ids": true,
+    "require_nonself_unique_edges": true,
+    "require_endpoint_task_and_run_context_unique": true,
+    "require_row_partition_train_and_budget_zero": true,
+    "require_lineage_certificate_binding": true,
+    "pair_orientation_used": false
+  },
+  "acquisition": {
+    "maximum_endpoint_budget": 4096,
+    "report_budgets": [128, 256, 512, 1024, 2048, 4096],
+    "random_baseline_seeds": {
+      "first_seed_in_half_open_range": [0, 64],
+      "hash": "sha256"
+    },
+    "greedy_tie_seeds": {
+      "first_seed_in_half_open_range": [0, 8],
+      "hash": "sha256"
+    },
+    "methods": {
+      "uniform_node": {
+        "rule": "order all endpoints by sha256(seed,NODE,endpoint_id), then fully execute in order"
+      },
+      "uniform_edge": {
+        "rule": "order all unordered edges by sha256(seed,EDGE,u,v); visit in order and execute only missing endpoints; already closed edges cost zero and are skipped"
+      },
+      "closure_greedy": {
+        "rule": "repeatedly choose a unique missing-endpoint action induced by an uncovered edge and fitting the remaining maximum budget; maximize exact newly closed edges divided by new endpoint cost, then gain, then lower cost, then sha256(seed,step,sorted missing endpoint ids)"
+      },
+      "balanced_closure_greedy": {
+        "rule": "as closure_greedy, but maximize gain divided by cost*(1+closed edges in candidate task)*(1+closed edges in candidate run), then unpenalized gain/cost, gain, lower cost, and sha256(seed,step,sorted missing endpoint ids)"
+      }
+    },
+    "trajectory_contract": {
+      "one trajectory_per_method_seed_to_maximum_budget": true,
+      "checkpoint_uses_last_complete_action_not_exceeding_budget": true,
+      "no_budget_specific_reoptimization": true,
+      "full_graph_topology_is_preexecution_information": true
+    }
+  },
+  "aggregate_metrics": [
+    "selected endpoints",
+    "closed sibling edges",
+    "closed edges per selected endpoint",
+    "parents with at least one closed edge",
+    "tasks and physical runs represented by closed edges",
+    "maximum single-task and single-run closed-edge share",
+    "task and run inverse-Herfindahl effective counts"
+  ],
+  "primary_comparison": {
+    "method": "balanced_closure_greedy",
+    "baseline": "uniform_edge",
+    "headline_budgets": [512, 1024, 2048],
+    "uniform_summary": "median and nearest-rank 5th/95th percentiles over 64 seeds",
+    "greedy_summary": "minimum/median/maximum over 8 deterministic tie seeds"
+  },
+  "promotion_gates": {
+    "yield": "at every headline budget, worst greedy tie seed closed-edge yield is at least 6/5 of the uniform-edge median",
+    "breadth": "at every headline budget, worst greedy tie seed task and run breadth are each at least 3/4 of the corresponding uniform-edge median",
+    "anti_dominance": "at every headline budget, worst greedy tie seed maximum single-task share is at most 2/5 and maximum single-run share is at most 1/10",
+    "trajectory_consistency": "balanced greedy median exceeds uniform-edge median in closed edges at at least 5 of 6 report budgets",
+    "classification_if_all_pass": "HISTORICAL_GRAPH_AWARE_FULL_EXECUTION_LABEL_YIELD_FEASIBLE",
+    "classification_otherwise": "HISTORICAL_GRAPH_AWARE_FULL_EXECUTION_LABEL_YIELD_NOT_ESTABLISHED"
+  },
+  "analysis": {
+    "result_is_aggregate_only": true,
+    "producer_and_independent_verifier_must_match_exactly": true,
+    "no_row_endpoint_parent_task_or_run_identities_emitted": true,
+    "no_statistical_p_value_for_deterministic_topology": true,
+    "random_baseline_distribution_reported_without_treating_seeds_as_independent_scientific_units": true,
+    "downstream_critic_fit_requires_separate_result_blind_protocol": true,
+    "future_evaluator_weighted_acquisition_requires_separate_prelabel_freeze": true
+  },
+  "security_and_resources": {
+    "prospective_values_forbidden": true,
+    "raw_senior_archives_forbidden": true,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

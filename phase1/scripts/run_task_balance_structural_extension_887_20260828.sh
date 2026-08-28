@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -Eeo pipefail
 source /uac/y24/yzyang4/env_setup.sh
+source /research/d7/spc/yzyang4/venvs/exp/bin/activate
 set -u
 umask 077
 

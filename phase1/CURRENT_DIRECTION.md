@@ -13,6 +13,40 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HF. 2026-08-28 完整历史 release→future 零链接证书与 Evidence Index v8 已正式闭环
+
+固定 snapshot `887491a...` 上，完整、可逐字节重建的 v11 历史 release（16,012 endpoints / 667 physical
+runs / 25 tasks）对 outcome-blind future（11,906 endpoints / 435 runs / 34 tasks）已完成结果前冻结的
+identifier/literal-erased Python token 审计。历史侧 fingerprint coverage=`16012/16012=1`；future 为
+`11894/11906=0.9989921048210986`，其中 10 个 tokenization failure、2 个 too-short endpoints 不在证书内。
+
+primary Jaccard 17/20 精确检查 18,510,294 个 candidate pairs，near-duplicate links、affected endpoints、
+components 均为 0；strict 19/20 sensitivity 也为 0 links，六个预注册完整性门全部通过。分类为
+**`ZERO_IDENTIFIER_ERASED_RELEASE_LINKS`**。这把此前只覆盖 5,519 个 critic-train endpoints 的零链接结果扩展到
+完整 v11 release，是当前 physical-run/time split 的正向 benchmark-integrity 证据；但仅限固定 syntactic
+representation/threshold，不证明 semantic clone 缺失、未知 pretraining 去污染或所有历史来源均已覆盖。
+
+首轮因 1,800 秒资源上限失败（formal rc=124、deployment rc=1，未生成/读取结果）；r2 仅把上限改为 5,400 秒，
+科学协议不变。r2 formal/postflight/deployment manifests 分别为
+`4089cef1c7a42886ae6a363d3854e2f4e89e254829549a4681ea6bfaaed80fac` /
+`868a11eda261ea78f71f4148eb60bf7b36a4b413ee708b7bbc03da3d1c6f5a98` /
+`9a178a93e4f2b074363f120a3e1974c47f003cf874a6b0f13942ffede16af69c`；focused/full=
+`19/1269 passed`，full 有 47 warnings。紧凑发布包 manifest=
+`152f6f7c2d12f8c47e0fd809a56eb2a3ad8cd3dac826b62115c994201a0da985`，见
+`phase1/results/historical_release_future_identifier_erased_overlap_887_20260828_8bf9512_r2/`。
+
+同一证据链已按结果前 v8 协议正式写入 clean-provenance Evidence Index：v7 的 14 entries 原样继承，追加
+physical-run split 与 complete-release temporal-overlap 两项，成为 16 entries / 43 artifacts / 3 bound files /
+499 exact assertions。正式状态为
+**`PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960`**；builder/verifier A/B 均逐字节一致，
+focused/full=`30/1288 passed`，full 有 47 warnings。index/independent verification/formal manifest SHA-256=
+`e97eca05d99a2eb3b5429539469a7e790f20f40cf70670cdbdc6a2c0c3e730a3` /
+`3fea00a811c4422485311d4e8a0d7233fd9caf7828282f00c9a910ca8942ab69` /
+`73a5884be6fffaed9d8ca3cb7972226c95bd1db3627cd1e330931dfd8f047b06`。prospective
+label/grade/outcome/prediction、accuracy/effect/search utility、raw senior archives 均未读取；GPU/API/model-fit/
+base-update=`0/0/0/0`。当前仍为 435/960、closure=false，最终 closure 后必须按原合同重签。正式包见
+`phase1/results/decision_corpus_evidence_index_v8_887_20260828_3d30826/`。
+
 ## 0HE. 2026-08-28 tree linearization 的 estimand sensitivity 后验解析已正式闭环
 
 在 0HC multiplicity aggregate 与 0HD compatibility certificate 均已知后，本轮先探索性看到了数值，再于

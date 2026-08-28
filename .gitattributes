@@ -150,3 +150,11 @@ phase1/results/tree_linearization_estimand_sensitivity_887_20260828_5a96d92/form
 phase1/results/tree_linearization_estimand_sensitivity_887_20260828_5a96d92/postflight/** -text -diff
 phase1/results/tree_linearization_estimand_sensitivity_887_20260828_5a96d92/README.md text eol=lf diff
 phase1/results/tree_linearization_estimand_sensitivity_887_20260828_5a96d92/source_bindings.json text eol=lf diff
+# Preserve the compact complete-release split certificate byte-for-byte because
+# its five payloads are covered by the package's own SHA-256 manifest.
+phase1/results/historical_release_future_identifier_erased_overlap_887_20260828_8bf9512_r2/** -text -diff
+# Preserve the complete formal Evidence Index v8 receipt byte-for-byte; keep
+# only package-level documentation and bindings normalized and diffable.
+phase1/results/decision_corpus_evidence_index_v8_887_20260828_3d30826/formal/** -text -diff
+phase1/results/decision_corpus_evidence_index_v8_887_20260828_3d30826/README.md text eol=lf diff
+phase1/results/decision_corpus_evidence_index_v8_887_20260828_3d30826/source_bindings.json text eol=lf diff

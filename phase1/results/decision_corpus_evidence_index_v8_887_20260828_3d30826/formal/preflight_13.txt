@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol; closed HCE multifidelity Probe score-channel effect and K>=1 remain closed
+PREFLIGHT_02_GOAL=bind the completed full-v11-release temporal certificate into Evidence Index v8 under the result-blind frozen mapping
+PREFLIGHT_03_KNOWN=critic-train subset split certificate is already known; complete-release classification was unknown when package and v8 protocols were frozen
+PREFLIGHT_04_INPUTS=exact r2 formal postflight deployment and prior rc124/1 roots; exact split certificate; immutable v7 index
+PREFLIGHT_05_FIXED=population representation thresholds six release gates seven split gates ordered status claim boundaries and first960 authority
+PREFLIGHT_06_UNIT=one aggregate-only temporal certificate plus two appended evidence entries; no endpoint identity or code emitted
+PREFLIGHT_07_LEAKAGE=no prospective label grade outcome prediction accuracy utility raw senior archive or identity payload access
+PREFLIGHT_08_SOURCE=detached exact commit 3d30826ed6aac9aa1c09e30b454a13b4e3b6dae3; clean before packaging; protocol hashes exact
+PREFLIGHT_09_TESTS=focused package v8 and v7 regressions plus all phase1 tests before reading aggregate output
+PREFLIGHT_10_INDEPENDENCE=producer A/B formal verifier A/B postflight A/B builder A/B and non-importing verifier A/B byte equality
+PREFLIGHT_11_SECURITY=three source manifests rechecked; open trace forbidden paths zero; credential filename and content hits zero
+PREFLIGHT_12_RESOURCES=CPU only; GPU API model_fit base_update equals 0/0/0/0
+PREFLIGHT_13_PROMOTION=only complete manifests exact mappings clean source and all checks permit COMPLETE; any drift writes FAILED_RC without rescue

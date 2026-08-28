@@ -1,0 +1,27 @@
+{
+  "accuracy_effect_or_search_utility_computed": false,
+  "appended_entry_count": 2,
+  "artifact_count": 43,
+  "bound_file_count": 3,
+  "classification": "ZERO_IDENTIFIER_ERASED_RELEASE_LINKS",
+  "complete_release_manifest_sha256": "152f6f7c2d12f8c47e0fd809a56eb2a3ad8cd3dac826b62115c994201a0da985",
+  "entry_count": 16,
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "index_sha256_normalized_lf": "e97eca05d99a2eb3b5429539469a7e790f20f40cf70670cdbdc6a2c0c3e730a3",
+  "index_status": "PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960",
+  "inherited_entry_count": 14,
+  "json_assertion_count": 499,
+  "producer_function_imported": false,
+  "prospective_label_grade_outcome_or_prediction_values_read": false,
+  "protocol": "independent-decision-corpus-evidence-index-v8-verifier-v1",
+  "protocol_sha256": "a463a6e7ede5bb9b46dbe6081ae46d26d6c2e8410e858acf9d022c642633deda",
+  "raw_senior_archives_opened": false,
+  "source_v7_entries_exact": true,
+  "source_v7_sha256": "d8cc9c60900ab41ff1df0e3aae3add29bbb922d5a32157957dcac5675fa31674",
+  "status": "INDEPENDENTLY_VERIFIED_TEMPORAL_SPLIT_EVIDENCE_INDEX"
+}

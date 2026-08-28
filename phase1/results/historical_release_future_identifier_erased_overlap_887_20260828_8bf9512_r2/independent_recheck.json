@@ -1,0 +1,33 @@
+{
+  "all_pre_registered_gates_passed": true,
+  "classification": "ZERO_IDENTIFIER_ERASED_RELEASE_LINKS",
+  "evidence_index_status": "PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960",
+  "formal_postflight_verifier_byte_identical": true,
+  "formal_verifier_sha256": "8188e4ec3595be769ca48f6bda1462298aa20c1fcd11cea77e536f7a41b7022e",
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "historical_endpoints": 16012,
+  "historical_runs": 667,
+  "imports_packager_builder": false,
+  "packager_source_commit": "3d30826ed6aac9aa1c09e30b454a13b4e3b6dae3",
+  "postflight_verifier_sha256": "8188e4ec3595be769ca48f6bda1462298aa20c1fcd11cea77e536f7a41b7022e",
+  "prediction_values_read": false,
+  "primary_candidate_pairs": 18510294,
+  "primary_near_duplicate_pairs": 0,
+  "producer_aggregate_matches": true,
+  "producer_receipt_sha256": "c86c52f0ffe2f9e02eb11560a9b1d5c89cc0dc8ee25ad0853208227f23e003d8",
+  "prospective_endpoints": 11906,
+  "prospective_outcomes_read": false,
+  "prospective_runs": 435,
+  "protocol": "independent-historical-release-future-identifier-erased-package-recheck-v1",
+  "raw_senior_archives_opened": false,
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "source_commit": "8bf95124175a7ba7f388ac547b31be05916651f5",
+  "status": "INDEPENDENT_PACKAGE_RECHECK_COMPLETE",
+  "strict_near_duplicate_pairs": 0,
+  "subset_bruteforce_matches": true
+}

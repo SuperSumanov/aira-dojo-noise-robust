@@ -13,6 +13,23 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HP. 2026-08-28 hierarchy×content 扩展为 run-disjoint selective parent recovery；readout 尚未执行
+
+0HN 已见的 `9196/9739` unique-top 只能说明总体 recorded-parent concordance，不能直接授权自动修复。更有 release
+价值、也更难的 readout 已在任何 margin 数值出现前冻结：对 snapshot 887 的 immutable run-ledger 顺序，前 290 个完整
+physical runs 只用于选择 top-vs-second exact-Jaccard margin 阈值，后 145 个 runs 只测试一次；禁止 edge random split、
+task 重平衡或 test label 参与阈值。train 规则固定为 precision≥`99/100`、accepted≥500 后最大化 coverage；最强开发分类
+要求 test accepted≥1,000、precision≥`49/50`、coverage≥`1/2`，selective error 不超过无阈值 unique-top error 的一半，
+并通过匿名 task/run breadth 与 anti-dominance 门。
+
+冻结时只知道总体 top-1、候选集分位数和三种 wrong-parent 分母；margin distribution、margin-correctness、选中阈值与时间
+test profile 均未看。即使通过，也只支持 `suggested_parent + confidence + provenance` 的可选自审计层；recorded parent
+不是外部语义真值，primary 不含 orphan，禁止静默改 canonical edge，也不申一般 selective-NN/lineage 算法 novelty。
+机器协议/producer/独立 verifier/runner SHA-256 分别为 `a9fe1b26...f97c` / `b30ecf9a...055e` /
+`b53ee68e...5ffb` / `c3f6fb2d...8a2f`；verifier 使用独立 snapshot loader 与 fingerprint 实现且不 import producer，
+synthetic+相邻 lineage=`23 passed`。本节写入时尚未 commit/push 或运行真实 readout，故没有 selective 正结果。
+GPU/API/model-fit/base-update=`0/0/0/0`，prospective truth/prediction、Target-522 profile 与 raw archives 均未读。
+
 ## 0HO. 2026-08-28 task-balance 重复观察实例已隔离；第二次 timeout handoff 在候选前修复
 
 结构巡检发现两个 CPU latch 同时只读等待 887 的首个后继。较早的

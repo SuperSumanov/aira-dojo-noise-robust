@@ -1,0 +1,145 @@
+{
+  "protocol": "tree-content-selective-parent-recovery-887-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T15:22:44Z",
+  "status": "OUTCOME_BLIND_DEVELOPMENT_SPLIT_FROZEN_BEFORE_MARGIN_READOUT",
+  "question": "Can an exact-Jaccard margin reject option selected only on earlier physical runs recover recorded parent pointers at high precision and useful coverage on later, run-disjoint snapshot-887 runs?",
+  "scientific_role": "Development-only masked-parent recovery and corruption-audit extension for the tree-native Decision Corpus; not a prospective Target-522 result, semantic lineage truth, orphan-edge validation, predictor effect, or search-utility claim.",
+  "freeze_state": {
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "snapshot_runs": 435,
+    "snapshot_endpoints": 11906,
+    "snapshot_tasks": 34,
+    "target522_candidate_seen": false,
+    "latest_snapshot_when_frozen": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "margin_distribution_seen": false,
+    "margin_correctness_profile_seen": false,
+    "selected_margin_threshold_seen": false,
+    "chronological_test_profile_seen": false
+  },
+  "disclosed_before_freeze": {
+    "exact_depth_ambiguous_parent_edges": 9739,
+    "exact_depth_unique_top_recovery": "9196/9739",
+    "exact_depth_uniform_random_expected_recovery": "658424839318607/2197532334769200",
+    "exact_depth_wrong_alternative_micro_false_acceptance": "543/99039",
+    "uniform_single_wrong_substitution_expected_false_acceptance": "781932207218999183/74583226893151856880",
+    "child_level_adversarial_vulnerability": "543/9739",
+    "tie_only_failures": 0,
+    "candidate_size_median_p90_maximum": [3, 15, 153],
+    "margin_conditioned_or_chronological_split_values_seen": false
+  },
+  "immutable_inputs": {
+    "accumulator_summary_sha256": "2f28b5b53cca5d6ea5ebf16f746a70f9c1de0e3197487a6ed78d41b4cb611302",
+    "intake_registry_sha256": "37e41460c85661fd9afc6f8789a065088a9da88dde027b955ff4bc366d5bbcd8",
+    "provisional_runs_sha256": "510d81820d7825fc6baa6db562b2371e50eb7d71d04cb1cc0bd17d095d6cdbca",
+    "producer_snapshot_loader": "phase1/audit_tree_within_stratum_forward_target522.py",
+    "producer_snapshot_loader_sha256": "8a82d1ba3ef663c1eda161d32da0ad3a119ed3d3a13e42664648fff684d986f5",
+    "independent_snapshot_loader": "phase1/verify_tree_within_stratum_forward_target522.py",
+    "independent_snapshot_loader_sha256": "be6a31f95c2c855378ce20628855ff8fbba13e772aadf5c0232b225436e57d63",
+    "producer_fingerprint": "phase1/audit_prospective_fuzzy_code_clones.py",
+    "producer_fingerprint_sha256": "869dd84540d785232717eef7a9f2721b9d1ed892ac0340e2bc2f940041cddbec",
+    "independent_fingerprint": "phase1/verify_prospective_fuzzy_code_clones.py",
+    "independent_fingerprint_sha256": "d6d1e9a7121fb2bf006e51bdd174c79a6009bbf849dd50831ce57a42567219b7"
+  },
+  "population": {
+    "eligible_edge": "recorded child and parent are both present and fingerprint-valid, parent depth equals child depth minus one, and the same-run exact-preceding-depth candidate set has at least two members",
+    "prediction": "the unique maximum-Jaccard candidate; a top tie is rejected",
+    "representation": "python_token_identifier_erased_v1 with exact set Jaccard",
+    "recorded_parent_is_masked_from_candidate_ranking": true,
+    "orphan_or_missing-parent_edges_in_primary_population": false,
+    "partial_physical_runs_allowed": false
+  },
+  "run_disjoint_split": {
+    "ordering": "the byte order of provisional_runs.jsonl in the immutable snapshot",
+    "train_run_positions_one_indexed_inclusive": [1, 290],
+    "test_run_positions_one_indexed_inclusive": [291, 435],
+    "train_runs": 290,
+    "test_runs": 145,
+    "edge_level_random_split_allowed": false,
+    "task_stratification_or_rebalancing_allowed": false,
+    "test_labels_used_for_threshold_selection": false
+  },
+  "confidence_rule": {
+    "margin": "largest exact Jaccard minus second-largest exact Jaccard within the fixed candidate set",
+    "candidate_thresholds": "all distinct positive margins among unique-top train predictions",
+    "acceptance": "unique top and margin at least the selected threshold",
+    "train_precision_target": "99/100",
+    "minimum_train_accepted_edges": 500,
+    "selection": "among thresholds satisfying the train precision target and minimum support, maximize accepted train edges; break any remaining tie toward the smaller exact threshold",
+    "selection_failure": "if no threshold qualifies, emit no test-selected rule and classify below gate",
+    "post_selection_threshold_change_allowed": false
+  },
+  "hard_support": {
+    "minimum_train_ambiguous_edges": 2000,
+    "minimum_test_ambiguous_edges": 1000,
+    "minimum_test_accepted_edges": 1000,
+    "minimum_conditionable_test_tasks": 8,
+    "minimum_conditionable_test_runs": 60,
+    "all_counts_and_fractions_recomputed_independently": true,
+    "all_gate_comparisons_use_exact_fractions": true
+  },
+  "primary_gates": {
+    "minimum_test_precision": "49/50",
+    "minimum_test_coverage": "1/2",
+    "maximum_selective_error_relative_to_unfiltered_unique_top_error": "1/2",
+    "task_minimum_accepted_edges": 20,
+    "task_precision_reference": "19/20",
+    "minimum_task_fraction_at_reference": "3/4",
+    "maximum_single_task_accepted_contribution_share": "2/5",
+    "run_minimum_accepted_edges": 5,
+    "run_precision_reference": "9/10",
+    "minimum_run_fraction_at_reference": "3/4",
+    "maximum_single_run_accepted_contribution_share": "1/5"
+  },
+  "mandatory_denominator_report": {
+    "all_wrong_alternative_micro": "confident wrong unique tops divided by every wrong candidate across test children",
+    "uniform_one_wrong_substitution_per_child": "mean over test children of confident-wrong indicator divided by wrong-candidate count",
+    "child_level_adversarial": "test children with a confidently accepted wrong top divided by all ambiguous test children",
+    "none_may_be_presented_as_the_other": true
+  },
+  "ordered_classification": [
+    "DEVELOPMENT_TIME_SPLIT_HIGH_PRECISION_SELECTIVE_PARENT_RECOVERY",
+    "DEVELOPMENT_TIME_SPLIT_PRECISION_ONLY_LOW_COVERAGE",
+    "DEVELOPMENT_TIME_SPLIT_SELECTIVE_RECOVERY_BELOW_GATE",
+    "DEVELOPMENT_TIME_SPLIT_SELECTIVE_RECOVERY_INTEGRITY_FAIL"
+  ],
+  "classification_rule": "Integrity or hard-support failure takes precedence. The strongest status requires every hard-support and primary gate. Precision-only requires hard support except the minimum test accepted/coverage gates, plus test precision at least 49/50; it cannot rescue the primary. All other valid executions are below gate.",
+  "mandatory_outputs": [
+    "exact selected threshold and train selection support",
+    "unfiltered and selective train/test precision and coverage",
+    "test accepted/correct/error counts",
+    "test task/run anonymous breadth and anti-dominance",
+    "all three wrong-pointer false-acceptance denominators",
+    "candidate-size and margin aggregate quantiles",
+    "run-split byte-binding hashes",
+    "ordered gate map and classification"
+  ],
+  "claim_boundary": {
+    "recorded_parent_is_external_semantic_or_causal_truth": false,
+    "orphan_edges_are_validated_or_repaired": false,
+    "generic_lineage_method_novelty_claimed": false,
+    "future_target522_confirmation_claimed": false,
+    "predictor_accuracy_or_search_utility_computed": false,
+    "allowed_if_positive": "On a predeclared chronological run split of the disclosed development snapshot, an earlier-run-selected reject threshold recovers recorded exact-depth parent pointers at the stated precision and coverage; this supports an optional self-audit suggestion layer, not silent canonical rewrites."
+  },
+  "verification": {
+    "producer_repetitions": 2,
+    "independent_verifier_repetitions": 2,
+    "producer_and_verifier_byte_identical_within_role": true,
+    "independent_verifier_imports_producer": false,
+    "file_access_trace_required": true,
+    "raw_identity_or_per_edge_output_allowed": false
+  },
+  "forbidden_inputs": [
+    "prospective first-960 or Target-300 labels, outcomes, grades, prediction values, accuracy, or search utility",
+    "raw senior archive payloads",
+    "Target-522 candidate identity or increment profile",
+    "test recorded-parent correctness during threshold selection"
+  ],
+  "resources": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

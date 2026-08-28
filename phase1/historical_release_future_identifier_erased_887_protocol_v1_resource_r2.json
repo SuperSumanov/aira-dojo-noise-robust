@@ -1,0 +1,131 @@
+{
+  "protocol": "historical-release-to-prospective-identifier-erased-887-v1",
+  "version": 1,
+  "resource_revision": 2,
+  "frozen_at_utc": "2026-08-28T07:35:06Z",
+  "status": "RESULT_BLIND_PROTOCOL_FROZEN",
+  "question": "Does any endpoint in the complete byte-reproducible v11 historical release have a high-similarity identifier/literal-erased token-shingle link to the exact 435-run chronological future snapshot?",
+  "scientific_scope": "Decision Corpus temporal-release and split integrity only; no predictor accuracy, effect, search utility, semantic-equivalence, or pretraining-contamination claim",
+  "fixed_historical_population": {
+    "cards_path": "phase1/cards_current_v11.jsonl",
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "cards_bytes": 305750663,
+    "release_receipt_path": "phase1/results/corpus_release_contract_20260814_73fd5f6/v11.receipt.json",
+    "release_receipt_sha256": "d04688cadd6a5d6f53d7bcdeda01e8f894f53cac880efe5e2dcc1d43dd7e3e4c",
+    "endpoints": 16012,
+    "physical_runs": 667,
+    "tasks": 25
+  },
+  "fixed_future_population": {
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "intake_registry_sha256": "37e41460c85661fd9afc6f8789a065088a9da88dde027b955ff4bc366d5bbcd8",
+    "provisional_first960_runs_sha256": "510d81820d7825fc6baa6db562b2371e50eb7d71d04cb1cc0bd17d095d6cdbca",
+    "accumulator_summary_sha256": "2f28b5b53cca5d6ea5ebf16f746a70f9c1de0e3197487a6ed78d41b4cb611302",
+    "runs": 435,
+    "endpoints": 11906,
+    "structural_pairs": 3053,
+    "tasks": 34,
+    "closure": false
+  },
+  "prior_result_disclosure": {
+    "historical_train_subset_result_known": true,
+    "historical_train_subset_endpoints": 5519,
+    "historical_train_subset_primary_links": 0,
+    "within_future_cross_run_primary_links": 0,
+    "full_release_result_read_before_freeze": false,
+    "interpretation": "The full 16012-endpoint historical release is a strict population expansion, not an independent discovery from the known 5519-endpoint train-subset result."
+  },
+  "resource_revision_disclosure": {
+    "scientific_protocol_changed": false,
+    "superseded_protocol_path": "phase1/historical_release_future_identifier_erased_887_protocol_v1.json",
+    "superseded_protocol_sha256": "22f2d4f4853c11398429c40f91f952711ee2003bc27bec7c977726c82f0771ea",
+    "failed_source_commit": "ed3d2941d047e5f88a527f244ebcdc6c6cea4e43",
+    "failed_stage": "producer_a",
+    "failed_rc": 124,
+    "failed_timeout_seconds": 1800,
+    "failed_result_file_created": false,
+    "failed_stderr_bytes": 0,
+    "failed_result_values_read": false,
+    "only_changed_resource_field": "resources.per_formal_command_timeout_seconds"
+  },
+  "representation": {
+    "name": "python_token_identifier_erased_v1",
+    "tokenizer": "Python tokenize",
+    "comments_and_layout_removed": true,
+    "keywords_and_operators_preserved": true,
+    "other_names_mapped_to": "<IDENT>",
+    "numbers_mapped_to": "<NUMBER>",
+    "strings_mapped_to": "<STRING>",
+    "shingle_size_tokens": 5,
+    "hash": "BLAKE2b-128",
+    "minimum_distinct_shingles": 20,
+    "task_or_run_candidate_prefilter": false
+  },
+  "thresholds": {
+    "primary_jaccard": "17/20",
+    "strict_sensitivity_jaccard": "19/20",
+    "strict_sensitivity_can_rescue_primary": false
+  },
+  "ordered_classification": [
+    {
+      "status": "ZERO_IDENTIFIER_ERASED_RELEASE_LINKS",
+      "condition": "all pre-registered integrity gates pass and the primary link count is exactly zero",
+      "allowed_claim": "no links were found between the complete v11 release and the fixed future snapshot under the frozen representation and threshold"
+    },
+    {
+      "status": "LOW_IDENTIFIER_ERASED_RELEASE_OVERLAP_WITH_EXCEPTIONS",
+      "condition": "all integrity gates pass but the primary link count is positive",
+      "allowed_claim": "release-to-future overlap remains below the frozen integrity gates, but zero-link temporal independence is false"
+    },
+    {
+      "status": "RELEASE_SPLIT_INTEGRITY_GATE_FAIL",
+      "condition": "one or more pre-registered integrity gates fail",
+      "allowed_claim": "the full-release temporal split-integrity extension failed"
+    }
+  ],
+  "integrity_gates": {
+    "historical_fingerprint_coverage_at_least": 0.99,
+    "future_fingerprint_coverage_at_least": 0.99,
+    "future_affected_endpoint_fraction_at_most": 0.01,
+    "cross_task_future_affected_endpoint_fraction_at_most": 0.005,
+    "large_multitask_components_at_most": 0,
+    "large_component_definition": "at least 10 endpoints and at least 3 tasks",
+    "fixed_256_by_256_bruteforce_control": true
+  },
+  "verification": {
+    "producer_repetitions": 2,
+    "independent_verifier_repetitions": 2,
+    "byte_identity_within_role_required": true,
+    "independent_verifier_imports_new_producer": false,
+    "focused_and_full_tests_required": true,
+    "clean_no_smudge_worktree_required": true,
+    "stable_latest_before_and_after_required": true,
+    "exact_manifest_and_independent_postflight_required": true
+  },
+  "forbidden_inputs": [
+    "prospective label, grade, outcome, winner orientation, prediction, accuracy, effect, or utility",
+    "raw senior archives",
+    "historical label or observation fields as computation inputs",
+    "task, run, card, code, or edge identities in emitted result packages"
+  ],
+  "claim_boundary": {
+    "full_byte_reproducible_v11_release_covered": true,
+    "all_possible_historical_or_pretraining_sources_covered": false,
+    "semantic_clone_absence_proven": false,
+    "pretraining_contamination_absence_proven": false,
+    "new_clone_detection_method_claimed": false,
+    "predictor_effect_accuracy_or_search_utility_computed": false,
+    "unfingerprintable_endpoints_certified": false,
+    "provisional_until_first960_and_closure": true
+  },
+  "resources": {
+    "cpu_only": true,
+    "per_formal_command_timeout_seconds": 5400,
+    "virtual_memory_limit_gib": 32,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "failure_rule": "Fail closed; preserve immutable FAILED_RC evidence and do not change population, representation, threshold, subset, task, gate, or ordered classification to rescue a result."
+}

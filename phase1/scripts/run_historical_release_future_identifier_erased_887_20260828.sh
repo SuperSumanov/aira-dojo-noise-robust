@@ -15,8 +15,8 @@ readonly expected_commit=$2
 readonly state=/research/d7/spc/yzyang4/prospective_decision_v1
 readonly snapshot_sha=887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697
 readonly snapshot=${state}/snapshots/${snapshot_sha}
-readonly protocol=phase1/historical_release_future_identifier_erased_887_protocol_v1.json
-readonly protocol_sha=22f2d4f4853c11398429c40f91f952711ee2003bc27bec7c977726c82f0771ea
+readonly protocol=phase1/historical_release_future_identifier_erased_887_protocol_v1_resource_r2.json
+readonly protocol_sha=52390b9a78893775db70a85dbda8e98132363cbb997e7006eab0646e9c0f73b3
 readonly python=/research/d7/spc/yzyang4/venvs/exp/bin/python
 readonly credential_pattern='(^|[^[:alnum:]_])(sk-[A-Za-z0-9._-]{16,}|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{20,})'
 
@@ -45,7 +45,8 @@ cat > "${output}/preflight_13.txt" <<EOF
 08_controls=256x256 prefix-join versus brute-force plus focused adversarial/schema tests; PASS
 09_hashes=protocol,full release,release receipt,snapshot inputs,source commit,all dependencies bound; PASS
 10_randomness=none,PYTHONHASHSEED=0,numeric threads=1; PASS
-11_resources=CPU only,1800-second command timeout,32-GiB virtual memory,GPU/API/model-fit/base-update 0/0/0/0; PASS
+11_resources=CPU only,5400-second command timeout,32-GiB virtual memory,GPU/API/model-fit/base-update 0/0/0/0; PASS
+11b_resource_revision=v1 producer A timed out at 1800 seconds with rc 124,no result file or stderr,scientific contract unchanged; PASS
 12_security=no raw senior archive or prospective label/outcome/prediction input,no identities emitted,credential scans; PASS
 13_failure=immutable FAILED_RC,no population,representation,threshold,gate,subset,task or classification rescue; PASS
 EOF
@@ -66,11 +67,11 @@ test "$(sha256sum phase1/cards_current_v11.jsonl | awk '{print $1}')" = \
   6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75
 test "$(stat -c %s phase1/cards_current_v11.jsonl)" = 305750663
 
-timeout 1800s "${python}" -m pytest -q \
+timeout 5400s "${python}" -m pytest -q \
   phase1/tests/test_historical_release_future_identifier_erased_overlap.py \
   phase1/tests/test_historical_train_future_identifier_erased_overlap.py \
   > "${output}/focused_tests.txt"
-timeout 1800s "${python}" -m pytest -q phase1/tests > "${output}/full_tests.txt"
+timeout 5400s "${python}" -m pytest -q phase1/tests > "${output}/full_tests.txt"
 
 producer=(
   "${python}" -m phase1.audit_historical_release_future_identifier_erased_overlap
@@ -81,9 +82,9 @@ producer=(
   --protocol "${protocol}"
   --expect-protocol-sha256 "${protocol_sha}"
 )
-timeout 1800s "${producer[@]}" --output "${output}/producer_a.json" \
+timeout 5400s "${producer[@]}" --output "${output}/producer_a.json" \
   > "${output}/producer_a.stdout" 2> "${output}/producer_a.stderr"
-timeout 1800s "${producer[@]}" --output "${output}/producer_b.json" \
+timeout 5400s "${producer[@]}" --output "${output}/producer_b.json" \
   > "${output}/producer_b.stdout" 2> "${output}/producer_b.stderr"
 test ! -s "${output}/producer_a.stderr"
 test ! -s "${output}/producer_b.stderr"
@@ -99,9 +100,9 @@ verifier=(
   --protocol "${protocol}"
   --expect-protocol-sha256 "${protocol_sha}"
 )
-timeout 1800s "${verifier[@]}" --output "${output}/verifier_a.json" \
+timeout 5400s "${verifier[@]}" --output "${output}/verifier_a.json" \
   > "${output}/verifier_a.stdout" 2> "${output}/verifier_a.stderr"
-timeout 1800s "${verifier[@]}" --output "${output}/verifier_b.json" \
+timeout 5400s "${verifier[@]}" --output "${output}/verifier_b.json" \
   > "${output}/verifier_b.stdout" 2> "${output}/verifier_b.stderr"
 test ! -s "${output}/verifier_a.stderr"
 test ! -s "${output}/verifier_b.stderr"

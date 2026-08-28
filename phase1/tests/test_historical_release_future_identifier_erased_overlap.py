@@ -152,3 +152,37 @@ def test_security_contract_has_no_result_or_model_unlock() -> None:
     assert resources["base_llm_updates"] == 0
     assert "prediction" in " ".join(protocol["forbidden_inputs"])
     assert "prospective label" in " ".join(protocol["forbidden_inputs"])
+
+
+def test_resource_revision_changes_only_timeout_and_records_blind_failure() -> None:
+    root = Path(__file__).parents[1]
+    original = json.loads(
+        (root / "historical_release_future_identifier_erased_887_protocol_v1.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    revised = json.loads(
+        (
+            root
+            / "historical_release_future_identifier_erased_887_protocol_v1_resource_r2.json"
+        ).read_text(encoding="utf-8")
+    )
+    producer.validate_protocol(revised)
+    verifier.validate_protocol(revised)
+    disclosure = revised["resource_revision_disclosure"]
+    assert revised["resource_revision"] == 2
+    assert disclosure["scientific_protocol_changed"] is False
+    assert disclosure["failed_rc"] == 124
+    assert disclosure["failed_result_file_created"] is False
+    assert disclosure["failed_stderr_bytes"] == 0
+    assert disclosure["failed_result_values_read"] is False
+    assert original["resources"]["per_formal_command_timeout_seconds"] == 1800
+    assert revised["resources"]["per_formal_command_timeout_seconds"] == 5400
+
+    comparable = dict(revised)
+    comparable.pop("resource_revision")
+    comparable.pop("resource_revision_disclosure")
+    comparable["frozen_at_utc"] = original["frozen_at_utc"]
+    comparable["resources"] = dict(comparable["resources"])
+    comparable["resources"]["per_formal_command_timeout_seconds"] = 1800
+    assert comparable == original

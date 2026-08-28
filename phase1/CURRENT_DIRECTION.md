@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0GV. 2026-08-28 完整 v11 release→435-run future identifier-erased 审计已结果前冻结；结果未读
+## 0GV. 2026-08-28 完整 v11 release→435-run future 审计首轮资源失败；r2 结果前冻结
 
 为补 0GU “历史侧只覆盖 critic-train endpoints”的边界，已冻结一个更强但仍仅属 benchmark-integrity 的
 population expansion：完整、可逐字节重建的 v11 release（16,012 endpoints / 667 physical runs / 25 tasks）对
@@ -24,9 +24,18 @@ population expansion：完整、可逐字节重建的 v11 release（16,012 endpo
 扩张，不冒充独立发现。ordered classification 固定为 `ZERO_IDENTIFIER_ERASED_RELEASE_LINKS` →
 `LOW_IDENTIFIER_ERASED_RELEASE_OVERLAP_WITH_EXCEPTIONS` → `RELEASE_SPLIT_INTEGRITY_GATE_FAIL`；strict
 sensitivity 不得 rescue primary。producer A/B、独立 verifier A/B、256×256 brute-force 控制和 immutable failure
-receipt 为硬门。协议 SHA-256=`22f2d4f4853c11398429c40f91f952711ee2003bc27bec7c977726c82f0771ea`；
-focused=`18 passed`。当前未运行、未读取任何 full-release similarity result；prospective outcome/prediction、raw senior
-archive、GPU/API/model-fit/base-update=`false/false/false/0/0/0/0`。
+receipt 为硬门。首轮协议 SHA-256=`22f2d4f4853c11398429c40f91f952711ee2003bc27bec7c977726c82f0771ea`、
+source commit=`ed3d2941d047e5f88a527f244ebcdc6c6cea4e43`。fresh Linux focused/full 完成后，producer A 在
+固定 `timeout 1800s` 处以 rc=`124` 终止；deployment rc=`1`、stderr=`0 bytes`、`producer_a.json` 未创建。
+这是 pre-science resource-envelope underestimate，不是科学 gate/classification；失败 roots 与 `FAILED_RC` 永久保留，
+没有读取任何 full-release aggregate/link/classification。
+
+结果前 resource revision r2 只把每命令 timeout `1800→5400s`，人口、输入哈希、表示、阈值、六门、分类与
+A/B/postflight 全部不变；新协议 SHA-256=`52390b9a78893775db70a85dbda8e98132363cbb997e7006eab0646e9c0f73b3`，
+并逐字段绑定旧失败史；focused=`19 passed`。新轮只能用公开新 commit、fresh worktrees 与全新 roots，从头执行；
+若 5,400 秒仍失败则停止扩 timeout，先做结果盲性能工程。当前仍未读取任何 full-release similarity result；prospective
+outcome/prediction、raw senior archive、GPU/API/model-fit/base-update=`false/false/false/0/0/0/0`。详见
+`phase1/实验记录/2026-08-28/HistoricalRelease_887_v1资源护栏修正_结果前冻结.md`。
 
 ## 0GU. 2026-08-28 435-run 双轴 split-integrity certificate 正式签发
 

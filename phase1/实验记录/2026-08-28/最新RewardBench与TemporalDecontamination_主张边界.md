@@ -42,8 +42,10 @@
     human/agent 逐版本代码节点、逐节点 held-out score 与 state/action/intent 标签；
     [v3](https://huggingface.co/datasets/jerryyan/mle-traj-v3) 又将 13,692 个人类版本以 version/fork/code-sim
     边构成 forest。因此“首个 MLE trajectory/graph dataset”“首个逐版本 score+code+标签”均已关闭。其 agent
-    MLEvolve 数据仅来自 13 个 physical runs 并线性化为 189 branches；我方可守差异是保留真实 search parent 与
-    sibling choice fragments，并以此做独立 predictor benchmark 和 outcome-blind temporal audit。
+    canonical tables 中的 MLEvolve 数据来自 13 个 physical runs 并线性化为 189 branches；但 gated raw layout
+    同时列出 `tree_summary.json`，因此 raw sibling recoverability 未决。可守差异应限定为我方 canonical release
+    已直接保留 search parent/sibling fragments，并把它接到独立 predictor benchmark 与 outcome-blind temporal audit；
+    不声称对方整个 release 没有可恢复 tree。
 
 ## 当前仍可守的差异化组合
 

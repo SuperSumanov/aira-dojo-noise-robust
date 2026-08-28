@@ -13,6 +13,20 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HA. 2026-08-28 mle-traj 的 true-sibling 缺口暂列未决，禁止由 canonical linearization 外推 raw release
+
+最新公开数据卡同时给出两项事实：canonical agent tables 把 13 个 MLEvolve physical runs 线性化为 189 条
+root-to-leaf branches；但 gated raw layout 又列出每个 run 的 `trajectory.json`、`paths/path_###.json`、逐版本代码和
+`tree_summary.json`。因此只能说其**主分析表是线性化表示**，不能在未获授权、未审计 raw tree 前断言该 release
+无法恢复真实 parent/sibling，或据此声称我方是首个/唯一 true-sibling MLE 数据集。
+
+直接竞争状态固定为 `UNRESOLVED_GATED_RAW_TREE_RECOVERABILITY`。若以后取得正常访问，必须先锁 revision/license/hash，
+按 13 个 physical runs 而非 189 paths 去重，结果盲重建 `(run,parent,children)` 并审计 sibling completeness；资格不足只报
+结构，不运行 transfer。当前仍可由现有证据支持的差异是：我方更大的 physical-run decision population、显式
+run/component/config/time 隔离、outcome-blind accrual+closure、同池 predictor 横评，以及 missingness/noise/
+pair-weighting/query-init-execution cost 联合账本。不得把“公开 card 未说明”写成对方最终论文或 raw release 明确没有。
+详见 `phase1/实验记录/2026-08-28/MLE直接数据竞品_MLAgent_OpenMLE_mletraj_防撞审计.md`。
+
 ## 0GZ. 2026-08-28 Evidence Index 的一般方法 novelty 关闭，MLE-specific 实证边界保留
 
 最新一手核验确认 BetterBench（NeurIPS 2024 D&B）已给出 46 项 benchmark 生命周期质量框架；BenchmarkCards

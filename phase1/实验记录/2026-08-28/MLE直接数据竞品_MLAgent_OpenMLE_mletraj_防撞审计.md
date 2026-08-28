@@ -56,10 +56,15 @@ versions、13,412 canonical-parent edges，加入 37 个 fork 和 113 个 token-
 - 首个把 MLE 代码版本组织成 graph/tree view；
 - 单靠“约 1.5 万节点”宣称规模领先。
 
-它与我方仍有实质不同：v3 的 human forest 含按 fork/code similarity 构造的边，agent MLEvolve tree 被线性化；我方以
-真实 search provenance 保留 physical run、真实 parent、siblings 与完整 choice fragment，目标是 execution-free
-predictor 的严格评价而非行为标签或人类对照。对方把 per-version score 烘焙进 canonical tables；我方则在前瞻阶段
-把 outcome vault 与 prediction escrow 隔离到 closure 后一次揭盲。
+它与我方的**已证差异**是：v3 的 human forest 含按 fork/code similarity 构造的边，agent canonical tables 把
+MLEvolve tree 线性化；我方 canonical release 直接保留 physical run、真实 parent、siblings 与 labeled choice
+fragment，目标是 execution-free predictor 的严格评价而非行为标签或人类对照。对方把 per-version score 烘焙进
+canonical tables；我方则在前瞻阶段把 outcome vault 与 prediction escrow 隔离到 closure 后一次揭盲。
+
+但 v1 的公开 layout 同时列出每个 MLEvolve run 的 `trajectory.json`、`paths/path_###.json`、逐版本代码和
+`tree_summary.json`。原始文件是 gated 的，本轮没有取得授权并检查字段；所以不能从 canonical 线性化外推为“整个
+release 无法恢复真实 parent/sibling”，也不能据此声称我方是首个/唯一 true-sibling MLE 数据集。当前精确状态是
+`UNRESOLVED_GATED_RAW_TREE_RECOVERABILITY`。
 
 ## 2. 更新后的可守主张
 
@@ -69,7 +74,7 @@ predictor 的严格评价而非行为标签或人类对照。对方把 per-versi
 > 程序为评价单元，用 pristine continuous external grade 定义 truth，系统比较 execution-free critics，并对 physical-run、
 > config、time-forward transport、pair-induced weighting、噪声、覆盖、查询/初始化/执行成本和撤回链做机器审计。
 
-当前公开材料中，三组直接邻居均未同时提供以下组合：
+当前公开、已核验的 canonical 材料中，尚未确认有一组同时提供以下组合：
 
 1. 大量真实、非线性搜索产生的同-parent sibling choice sets；
 2. 多 predictor family 在同一 frozen decision pool 上的横向 benchmark；
@@ -77,23 +82,27 @@ predictor 的严格评价而非行为标签或人类对照。对方把 per-versi
 4. outcome-blind accrual、prediction escrow 与独立 closure receipt；
 5. query/init/full-execution 成本、regrade noise 与 pair-graph weighting 联合账本。
 
-这仍只是基于当前检索的差异化判断，正式论文不写 “first”。
+这仍只是基于当前检索的差异化判断，且 mle-traj raw tree recoverability 未决；正式论文不写 “first/only”，也不把
+“公开 card 未说明”改写为对方最终论文或 gated raw release 明确没有。
 
 ## 3. 对实验路线的直接影响
 
-1. **保住 true branching，不再把树线性化。** 真实 siblings/choice fragments 是相对 mle-traj 最硬的结构差异；发布时
-   必须同时给 parent/run/component identifiers 与可复建边表。
+1. **保住 true branching，不再把树线性化。** 我方 canonical release 直接给真实 siblings/choice fragments 是确定
+   资产；但它相对 mle-traj 是否为独有差异，要等 gated raw tree 审计。发布时必须同时给 parent/run/component
+   identifiers 与可复建边表。
 2. **把 predictor study 做成主贡献，而非附录。** ML-Agent/OpenMLE 强在 actor learning，mle-traj 强在行为标签；我方
    的空位是 decision-time critic 的公平横评、成本与 transport。
 3. **把 linearization 当预注册 sensitivity。** closure 后，同一 scorer 可比较 true-sibling estimand 与线性
    parent-child/人为 cross-run estimand，量化“把树压成轨迹会怎样改变模型排序”；不能用 sensitivity rescue frozen primary。
 4. **规模主张用 physical decision units，而不是节点总数。** 正文同时报告 physical runs、真实 parents、choice sets、
    sibling pairs、tasks 与 generator/config strata，避免与 26k linear traces 或 15k human versions做误导性单列比较。
-5. **外部 transfer 只作后续扩展。** 若取得 mle-traj 的正式访问，可在不混入主 estimand的前提下测试我方 critic 对其
-   agent transitions 的 transport；由于其没有同构 true-sibling population，只能作为 domain shift，不是主测试替代品。
+5. **外部 transfer 只作后续扩展。** 若取得 mle-traj 的正式访问，先锁 revision/license/hash，并按 13 个 physical
+   runs 而非 189 paths 重建 parent/sibling；只有结构资格门通过后，才可在不混入主 estimand 的前提下测试 critic
+   transport。资格不足时只作 domain-shift 结构描述，不运行效果测试。
 
 ## 4. 当前正方向结论
 
-这次检索不是把主线推翻，而是把真正有价值的部分剥离出来：**“轨迹很多”已不新；“真实 search choice 的可复建、
-结果盲、成本感知 predictor measurement”仍有明确空位。** 因而当前最优动作仍是完成 full-release split certificate、
-继续 first-960 outcome-blind accrual，并把最终 predictor 表严格组织成 true-sibling decision benchmark。
+这次检索不是把主线推翻，而是把真正有价值的部分剥离出来：**“轨迹很多”已不新；我方已经落地的是大规模 physical-run
+decision provenance、结果盲 closure 与成本感知 predictor measurement 的组合。** true-sibling 相对 mle-traj raw
+release 的独有性保持未决，不拿未获授权的数据替自己制造正结论。当前最优动作仍是完成 full-release split certificate、
+继续 first-960 outcome-blind accrual，并把最终 predictor 表严格组织成 provenance-bound sibling-fragment benchmark。

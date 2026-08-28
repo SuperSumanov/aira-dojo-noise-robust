@@ -140,7 +140,14 @@ def reconstruct(protocol: dict[str, Any], root: Path) -> tuple[dict[str, Any], s
             check(bool(line.strip()), f"blank Card: {line_number}")
             raw = json.loads(line)
             check(isinstance(raw, dict) and {"id", "task", "run_id", "lineage"} <= set(raw), "Card schema")
-            identifier, task, run = str(raw["id"]), str(raw["task"]), str(raw["run_id"])
+            identifier, run = str(raw["id"]), str(raw["run_id"])
+            raw_task = raw["task"]
+            if isinstance(raw_task, dict):
+                check("name" in raw_task, "Card task.name")
+                task = str(raw_task["name"])
+            else:
+                check(isinstance(raw_task, str), "Card task schema")
+                task = raw_task
             lineage = raw["lineage"]
             check(identifier and task and run and isinstance(lineage, dict), "Card identity")
             parent_raw = lineage.get("parent_id")

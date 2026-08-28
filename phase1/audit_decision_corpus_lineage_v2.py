@@ -208,7 +208,14 @@ def load_cards(path: Path, expected_rows: int) -> tuple[dict[str, Card], dict[st
             value = json.loads(text)
             require(isinstance(value, dict), f"Card object required: {number}")
             require({"id", "task", "run_id", "lineage"} <= set(value), f"Card schema: {number}")
-            identifier, task, run = str(value["id"]), str(value["task"]), str(value["run_id"])
+            identifier, run = str(value["id"]), str(value["run_id"])
+            raw_task = value["task"]
+            if isinstance(raw_task, dict):
+                require("name" in raw_task, f"Card task.name missing: {number}")
+                task = str(raw_task["name"])
+            else:
+                require(isinstance(raw_task, str), f"Card task schema: {number}")
+                task = raw_task
             lineage = value["lineage"]
             require(identifier and task and run and isinstance(lineage, dict), f"Card identity: {number}")
             raw_parent = lineage.get("parent_id")

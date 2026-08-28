@@ -103,6 +103,9 @@ def build_fixture(tmp_path: Path, mutation: str | None = None) -> tuple[Path, st
         source = dict(rows_by_set["train:b0"][0])
         source["intask_split"] = "test"
         rows_by_set[target] = [source]
+    if mutation == "nested_task_schema":
+        for card in cards:
+            card["task"] = {"name": card["task"], "source": "synthetic"}
 
     cards_path = tmp_path / "cards.jsonl"
     write_jsonl(cards_path, cards)
@@ -303,6 +306,12 @@ def test_outcome_like_extra_fields_do_not_change_scientific_aggregates(tmp_path:
     injected, *_ = execute(tmp_path / "injected", "outcome_fields")
     assert baseline["scientific"] == injected["scientific"]
     assert injected["scope"]["grade_gap_label_prediction_accuracy_or_utility_used"] is False
+
+
+def test_nested_card_task_name_matches_pair_task_semantics(tmp_path: Path) -> None:
+    baseline, *_ = execute(tmp_path / "baseline")
+    nested, *_ = execute(tmp_path / "nested", "nested_task_schema")
+    assert baseline["scientific"] == nested["scientific"]
 
 
 def test_independent_verifier_rejects_tampered_aggregate(tmp_path: Path) -> None:

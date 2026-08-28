@@ -1,0 +1,30 @@
+{
+  "classification": "ZERO_IDENTIFIER_ERASED_LINKS",
+  "credential_file_hits": 0,
+  "focused_tests_passed": 32,
+  "forbidden_path_hits": 0,
+  "full_tests_passed": 1247,
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "historical_endpoints": 5519,
+  "historical_runs": 333,
+  "manifest_payload_files": 20,
+  "outcomes_read": false,
+  "prediction_values_read": false,
+  "primary_candidate_pairs": 6172443,
+  "primary_near_duplicate_pairs": 0,
+  "producer_ab_byte_identical": true,
+  "prospective_endpoints": 11906,
+  "prospective_fingerprinted_endpoints": 11894,
+  "prospective_runs": 435,
+  "protocol": "historical_identifier_erased_887_independent_recheck_v1",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "source_commit": "ec67d1a6f31bde898631019867408687bac1fa99",
+  "status": "INDEPENDENT_RECHECK_COMPLETE",
+  "strict_near_duplicate_pairs": 0,
+  "verifier_ab_byte_identical": true
+}

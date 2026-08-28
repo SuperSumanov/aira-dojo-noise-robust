@@ -32,6 +32,11 @@ WITHIN = (
     / "results"
     / "prospective_identifier_erased_clone_887_20260828_519815d"
 )
+HISTORICAL = (
+    PHASE1
+    / "results"
+    / "historical_train_future_identifier_erased_overlap_887_20260828_ec67d1a"
+)
 
 
 def _sha(path: Path) -> str:
@@ -200,6 +205,33 @@ def test_package_manifest_tampering_fails_closed(tmp_path: Path) -> None:
     summary.write_text(summary.read_text(encoding="utf-8") + "\n", encoding="utf-8")
     with pytest.raises(CertificateError, match="hash mismatch"):
         build(PROTOCOL, PROTOCOL_SHA256, WITHIN, historical)
+
+
+def test_actual_two_axis_packages_build_the_zero_link_certificate(
+    tmp_path: Path,
+) -> None:
+    certificate = build(PROTOCOL, PROTOCOL_SHA256, WITHIN, HISTORICAL)
+    assert certificate["classification"] == ZERO_CLASSIFICATION
+    assert certificate["certificate_gates"] == {
+        "historical_to_future_integrity": True,
+        "historical_to_future_zero_links": True,
+        "independent_postflights_passed": True,
+        "same_future_snapshot_population": True,
+        "same_representation_and_threshold": True,
+        "within_future_integrity": True,
+        "within_future_zero_cross_run_links": True,
+    }
+    result_path = tmp_path / "certificate.json"
+    _write(result_path, certificate)
+    receipt = verify(
+        PROTOCOL,
+        PROTOCOL_SHA256,
+        WITHIN,
+        HISTORICAL,
+        result_path,
+        _sha(result_path),
+    )
+    assert receipt["classification"] == ZERO_CLASSIFICATION
 
 
 def test_independent_verifier_does_not_import_builder() -> None:

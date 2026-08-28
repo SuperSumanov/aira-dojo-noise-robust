@@ -1,0 +1,102 @@
+{
+  "protocol": "historical-decision-relation-integrity-contrast-v1",
+  "status": "POST_RESULT_DESCRIPTIVE_SYNTHESIS_SPECIFICATION_FIXED",
+  "frozen_after_all_source_results_were_known": true,
+  "claim_boundary": {
+    "allowed": "The published aggregate audit stack accepts the lineage-clean family's hard-integrity certificate, rejects the relation-mixed family's certificate, and a deterministic direct-sibling quarantine yields a core with zero referenced-run overlap that passes its separately frozen repair gates.",
+    "forbidden": [
+      "general audit-method novelty",
+      "causal attribution of the resource-family difference",
+      "predictor effect or scaling",
+      "search utility",
+      "prospective confirmation",
+      "row-level release",
+      "a calibrated sensitivity or specificity estimate"
+    ]
+  },
+  "comparability_notes": {
+    "gate_schemas_related_but_not_identical": true,
+    "gate_pass_rates_must_not_be_compared_as_one_common_scale": true,
+    "canonical_lineage_direct_includes_orphan_parent_certificate_tier": true,
+    "contrast_is_a_deterministic_two_family_case_study_not_a_population_estimate": true
+  },
+  "inputs": {
+    "canonical_v11": {
+      "root": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842",
+      "manifest": "MANIFEST.sha256",
+      "manifest_sha256": "4c72c32449a4a68377fe3764089321c852648e0d6603655a09cd360a21d45447",
+      "summary": "formal/producer_a.json",
+      "summary_sha256": "23e9a8139be60ee4c34d3c44eda9afaed3034a68f6749ebcb0555c10a15f0032",
+      "verification": "formal/verifier_a.json",
+      "verification_sha256": "f183c7847343d3d485a3414cc14e1a20aa7761aaa5c94e2323bef32fb79bb59a",
+      "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT"
+    },
+    "mixed_0819": {
+      "root": "phase1/results/senior_0819_decision_relation_taxonomy_20260829_827fe55",
+      "manifest": "MANIFEST.sha256",
+      "manifest_sha256": "6ce816faec31d0e807e8859539e05d3ace814954ceea9db4c326828ae928faa7",
+      "summary": "formal_summary.json",
+      "summary_sha256": "b75df026fdab24a5a3da6f01d734820ad908e505df0140f13586c2386624c6d3",
+      "verification": "verification.json",
+      "verification_sha256": "d5613fe7780df6a7c4c894780a44d971ac470af9070d804705b26e729bc0b66a",
+      "classification": "HISTORICAL_RELATION_AWARE_DECISION_TAXONOMY_INTEGRITY_GATE_FAIL"
+    },
+    "repaired_0819": {
+      "root": "phase1/results/senior_0819_verified_sibling_quarantine_20260829_254fc80",
+      "manifest": "MANIFEST.sha256",
+      "manifest_sha256": "3f6202fb14b044a23fbcae722c0c38ab48253bbd5ac9ebe2b4b011f3b7f84a28",
+      "summary": "formal_summary.json",
+      "summary_sha256": "4f4902ce365523b01a0cca1eadb716b978aa0771d15286be1bf4aecca6456315",
+      "verification": "verification.json",
+      "verification_sha256": "8b0eb84365aa3cb16bfd3b9a4ca3affabfc4fd24774071a6cbba366b88f57ca0",
+      "classification": "HISTORICAL_VERIFIED_SIBLING_CORE_QUARANTINE_FEASIBLE"
+    }
+  },
+  "required_aggregate_facts": {
+    "canonical": {
+      "all_rows": 8107,
+      "parent_present_direct": 7579,
+      "orphan_parent_lineage_direct": 528,
+      "same_run_non_sibling": 0,
+      "cross_run": 0,
+      "hard_gates_passed": 15,
+      "hard_gates_total": 15,
+      "support_gates_passed": 35,
+      "support_gates_total": 36,
+      "failed_support_gate": "frozen:b2.maximum_single_run_pair_share"
+    },
+    "mixed": {
+      "all_rows": 7644,
+      "direct_sibling": 1270,
+      "same_run_non_sibling": 2119,
+      "cross_run": 4255,
+      "hard_gates_passed": 13,
+      "hard_gates_total": 15,
+      "failed_hard_gates": [
+        "all_decision_endpoints_parent_tasks_and_splits_valid",
+        "train_test_physical_run_overlap_zero"
+      ],
+      "train_test_referenced_run_overlap": 96
+    },
+    "repair": {
+      "core_rows": 1270,
+      "quarantine_rows": 6374,
+      "hard_gates_passed": 16,
+      "hard_gates_total": 16,
+      "support_gates_passed": 8,
+      "support_gates_total": 8,
+      "train_test_referenced_run_overlap": 0,
+      "parent_partition_mismatches": 743,
+      "parent_partition_mismatches_in_cross_run": 743
+    }
+  },
+  "scope": {
+    "aggregate_only": true,
+    "historical_post_result_descriptive_synthesis": true,
+    "prospective_first960_or_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "row_identities_or_pair_orientations_emitted": false,
+    "labels_outcomes_predictions_accuracy_or_search_utility_read": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  }
+}

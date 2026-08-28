@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HQ. 2026-08-29 fixed-margin selective parent recovery 已冻结 Target-522 真前瞻确认
+
+0HP 的开发正结果仍在同一 disclosed snapshot 内，因此新的 strongest next step 已在 Target-522 candidate/profile 未见时
+锁定：只用既有自动 selection 的首次 crossing，相对 887 的至少 87 个完整新增 physical runs；固定复用 train-only
+阈值 `1006/16929`，未来数据不重选阈值、不重平衡任务、不换表示，也不允许累计 887+future population rescue。冻结巡检
+时间为 `2026-08-28T16:10:51Z`；当时 LATEST 仍为 887，selection `READY/COMPLETE/FAILED_RC/candidate.tsv` 均不存在，
+PID=`4047654` 存活。
+
+最强前瞻门要求 ambiguous≥1,000、accepted≥500、wrong alternatives≥5,000、conditionable tasks/runs≥8/60，precision≥
+`49/50`、coverage≥`1/2`，selective error 不超过无 reject error 的一半，并通过固定 task/run breadth 与 anti-dominance。
+三个 wrong-pointer 分母仍分别报告。即使通过，也只支持 MLE Decision Corpus 的可选
+`suggested_parent + confidence + provenance` 自审计层；不验证 orphan/语义 ancestry，不申通用 selective/lineage novelty，
+不计算 predictor effect 或 search utility。
+
+protocol/producer/独立 verifier/test/runner/watcher SHA-256=`f3adc77b...3228f` / `0704edfa...30b7` /
+`0eaafbec...13c2` / `a74a5c2c...4a13` / `bcedd747...68e2` / `00bc6583...4986`。producer/verifier
+分别绑定独立 snapshot/fingerprint helper 与已发布 887 aggregate+verification；本地相关=`51 passed`，本机全套只因缺少
+scipy/sklearn 在 collection 阶段不可运行，不能冒充 code failure 或完整通过。详细边界见
+`phase1/实验记录/2026-08-29/SelectiveParentRecovery_Target522前瞻确认预注册.md`。本节写入时尚未 push/deploy，故无
+Target-522 scientific result；GPU/API/model-fit/base-update=`0/0/0/0`，prospective values/raw archives 均未读。
+
 ## 0HP. 2026-08-28 run-disjoint selective parent recovery 正式通过全部强门
 
 结果前冻结的最强分类已一次通过：`DEVELOPMENT_TIME_SPLIT_HIGH_PRECISION_SELECTIVE_PARENT_RECOVERY`。snapshot 887
@@ -27,6 +48,12 @@ wrong-parent 三种口径必须同时保留：all-alternative micro=`7/11257`，
 `58/43605`，child-level adversarial=`7/2907`。producer A/B、非 import 独立 verifier A/B 均逐字节一致；focused/full=
 `23/1448 passed`。formal aggregate/verifier/manifest SHA-256=`2aca589f...a2690` / `50b3a280...2955` /
 `c51ad094...e281`；正式包见 `phase1/results/tree_content_selective_parent_recovery_887_20260828_63d37cf/`。
+
+证书随后由公开 commit `0b7e873ac3aa89dade1dbfaefb5c69d916ce0579` 发布。首次 fresh post-push root 因远端仓库
+不存在误用的 `myfork` alias，在 checkout/test 前失败并原样保留；v2 改用服务器真实 `fork` alias，这是纯基础设施修复，
+未重跑科学 readout。v2 对发布包 manifest、classification 与全部 gates 的检查通过，focused/full=`23/1448 passed`，
+full 有 47 warnings，凭据命中=`0/0`，post-push manifest SHA-256=
+`c1e4692d1da6e722bdcddbc31a4ebf4447f749f9f6da6cd44b3e32ab7d339389`。
 
 这支持一个可选的 `suggested_parent + confidence + provenance` 自审计层，但 recorded parent 不是外部语义/因果真值，
 primary 不含 orphan，禁止静默改 canonical edge，也不申一般 selective classification/lineage novelty。下一步只在

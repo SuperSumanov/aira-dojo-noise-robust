@@ -1,0 +1,190 @@
+{
+  "protocol": "tree-content-selective-parent-forward-target522-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T16:10:51Z",
+  "status": "OUTCOME_BLIND_FROZEN_AFTER_887_RESULT_BEFORE_TARGET522_CANDIDATE",
+  "question": "Does the exact-Jaccard reject threshold selected on earlier snapshot-887 runs preserve high-precision, useful-coverage recorded-parent recovery on the first automatically selected Target-522 disjoint future increment?",
+  "scientific_role": "Prospective forward confirmation of an optional parent-pointer self-audit layer for the tree-native Decision Corpus; not semantic ancestry, orphan repair, predictor effect, or search utility.",
+  "freeze_state": {
+    "baseline_snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "baseline_runs": 435,
+    "latest_snapshot_when_frozen": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "target522_selection_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+    "target522_selection_pid": 4047654,
+    "target522_selection_pid_alive": true,
+    "target522_ready_present": false,
+    "target522_complete_present": false,
+    "target522_failed_present": false,
+    "target522_candidate_seen": false,
+    "target522_increment_profile_seen": false,
+    "checked_immediately_before_freeze_at_utc": "2026-08-28T16:10:51Z"
+  },
+  "fixed_development_rule": {
+    "threshold": "1006/16929",
+    "threshold_decimal_17g": "0.059424655915883987",
+    "representation": "python_token_identifier_erased_v1 exact set Jaccard",
+    "acceptance": "same-run exact-preceding-depth unique top and top-minus-second margin at least 1006/16929",
+    "development_source_commit": "63d37cf6985a3b95c955a9d2d4c44c51aab8d152",
+    "development_publication_commit": "0b7e873ac3aa89dade1dbfaefb5c69d916ce0579",
+    "development_train_runs": 290,
+    "development_test_runs": 145,
+    "development_test_accepted_correct_total": [2684, 2691, 2907],
+    "development_test_precision": "2684/2691",
+    "development_test_coverage": "2691/2907",
+    "threshold_reselection_on_future_allowed": false,
+    "future_task_rebalancing_or_filtering_allowed": false,
+    "future_cumulative_population_rescue_allowed": false
+  },
+  "immutable_inputs": {
+    "content_lineage_producer_helper": {
+      "path": "phase1/audit_tree_content_lineage_forward_target522.py",
+      "sha256": "d127337bb6d697d0eb0d589d0b42476e07e28e9cf702c58a70c650bf526f8a8b"
+    },
+    "content_lineage_verifier_helper": {
+      "path": "phase1/verify_tree_content_lineage_forward_target522.py",
+      "sha256": "5930a60f783462e8aebe630d4019e6418e02d1e3ab6a82c21e9aef1a58543478"
+    },
+    "snapshot_producer": {
+      "path": "phase1/audit_tree_within_stratum_forward_target522.py",
+      "sha256": "8a82d1ba3ef663c1eda161d32da0ad3a119ed3d3a13e42664648fff684d986f5"
+    },
+    "snapshot_verifier": {
+      "path": "phase1/verify_tree_within_stratum_forward_target522.py",
+      "sha256": "be6a31f95c2c855378ce20628855ff8fbba13e772aadf5c0232b225436e57d63"
+    },
+    "fingerprint_producer": {
+      "path": "phase1/audit_prospective_fuzzy_code_clones.py",
+      "sha256": "869dd84540d785232717eef7a9f2721b9d1ed892ac0340e2bc2f940041cddbec"
+    },
+    "fingerprint_verifier": {
+      "path": "phase1/verify_prospective_fuzzy_code_clones.py",
+      "sha256": "d6d1e9a7121fb2bf006e51bdd174c79a6009bbf849dd50831ce57a42567219b7"
+    },
+    "development_summary": {
+      "path": "phase1/results/tree_content_selective_parent_recovery_887_20260828_63d37cf/formal_summary.json",
+      "sha256": "2aca589f7d8f943360e9d1d7c3716744b0357d99918913729aecf898a59a2690"
+    },
+    "development_verification": {
+      "path": "phase1/results/tree_content_selective_parent_recovery_887_20260828_63d37cf/verification.json",
+      "sha256": "50b3a280ffbc4ea7d404065a97a7450b41c18ec5a89c95bc5644b88bfdbe2955"
+    }
+  },
+  "activation_rule": {
+    "selection_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+    "selection_protocol": "phase1/tree_linearization_within_stratum_forward_target522_v2.json",
+    "selection_protocol_sha256": "718224d9586b45a1bf6689c2bb9dd1d6b76e7243b8ddd2267dcf94fc6ea2667f",
+    "selection_monitor": "phase1/scripts/latch_tree_within_stratum_forward_target522_20260828.sh",
+    "selection_monitor_sha256": "8cab471b3c57c07711238f19cbcc80836aa7f4450faedf6ca50d60a306d4596b",
+    "target_total_physical_runs": 522,
+    "minimum_disjoint_increment_physical_runs": 87,
+    "candidate_must_be_first_observed_crossing": true,
+    "manual_candidate_or_alternate_selection_root_allowed": false,
+    "candidate_profile_used_for_selection": false,
+    "watcher_may_read_candidate_or_increment_before_selection_complete": false
+  },
+  "primary_population": {
+    "membership": "all endpoints in candidate provisional-first960 physical runs whose run_id is absent from snapshot 887",
+    "eligible_edge": "recorded child and parent both present and fingerprint-valid in the increment, parent depth exactly child depth minus one, and the complete same-run exact-preceding-depth candidate set has at least two members",
+    "recorded_parent_masked_from_ranking": true,
+    "top_tie_is_rejection": true,
+    "partial_runs_allowed": false,
+    "baseline_rows_in_estimand": false,
+    "identities_or_per_edge_values_emitted": false
+  },
+  "hard_integrity_and_support_gates": {
+    "complete_hash_bound_selection_package": true,
+    "candidate_is_first_observed_target_crossing": true,
+    "candidate_total_runs_at_least": 522,
+    "disjoint_increment_runs_at_least": 87,
+    "baseline_is_exact_byte_unchanged_prefix": true,
+    "candidate_accumulator_is_outcome_blind_and_unclosed": true,
+    "minimum_fingerprint_coverage": "99/100",
+    "all_fingerprint_eligible_parent_edges_depth_consistent": true,
+    "minimum_ambiguous_exact_depth_edges": 1000,
+    "minimum_selected_edges": 500,
+    "minimum_wrong_parent_alternatives": 5000,
+    "minimum_conditionable_tasks": 8,
+    "minimum_conditionable_physical_runs": 60,
+    "all_gate_comparisons_use_exact_fractions": true
+  },
+  "primary_gates": {
+    "minimum_forward_precision": "49/50",
+    "minimum_forward_coverage": "1/2",
+    "maximum_selective_error_relative_to_unfiltered_error": "1/2",
+    "task_minimum_accepted_edges": 20,
+    "task_precision_reference": "19/20",
+    "minimum_task_fraction_at_reference": "3/4",
+    "maximum_single_task_accepted_contribution_share": "2/5",
+    "run_minimum_accepted_edges": 5,
+    "run_precision_reference": "9/10",
+    "minimum_run_fraction_at_reference": "3/4",
+    "maximum_single_run_accepted_contribution_share": "1/5"
+  },
+  "mandatory_denominator_report": {
+    "all_wrong_alternative_micro": "confident wrong unique tops divided by every wrong candidate across future ambiguous children",
+    "uniform_one_wrong_substitution_per_child": "mean over future children of confident-wrong indicator divided by wrong-candidate count",
+    "child_level_adversarial": "future children with a confidently accepted wrong top divided by all future ambiguous children",
+    "none_may_be_presented_as_the_other": true
+  },
+  "ordered_classification": [
+    "FORWARD_TIME_GENERALIZED_HIGH_PRECISION_SELECTIVE_PARENT_RECOVERY",
+    "FORWARD_TIME_GENERALIZED_HIGH_PRECISION_WITHOUT_FULL_PRIMARY_GATE",
+    "FORWARD_SELECTIVE_PARENT_RECOVERY_BELOW_GATE",
+    "FORWARD_SELECTIVE_PARENT_RECOVERY_GATE_FAIL"
+  ],
+  "classification_rule": "Integrity/support failure takes precedence. The strongest status requires every hard and primary gate. The high-precision secondary may omit only the minimum-selected support gate and makes no coverage/breadth claim; it cannot rescue the primary. Development rows, cumulative candidate values, alternate thresholds, task filtering, or decimal displays may not rescue any gate.",
+  "claim_boundary": {
+    "recorded_parent_is_external_semantic_or_causal_truth": false,
+    "orphan_edges_are_validated_or_repaired": false,
+    "generic_selective_classification_or_lineage_novelty_claimed": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "first960_or_accrual_closure_completed": false,
+    "allowed_if_strongest": "A margin threshold learned only from earlier development runs transports to the first automatically selected disjoint future increment at the stated precision, coverage, error reduction, and breadth, supporting an optional suggested_parent plus confidence plus provenance audit layer without rewriting canonical edges."
+  },
+  "verification": {
+    "producer_repetitions": 2,
+    "independent_verifier_repetitions": 2,
+    "producer_and_verifier_outputs_byte_identical_within_role": true,
+    "independent_verifier_imports_new_producer": false,
+    "independent_snapshot_fingerprint_candidate_margin_gate_recomputation": true,
+    "focused_and_full_tests_required": true,
+    "fresh_detached_worktree_required": true,
+    "file_and_network_access_trace_required": true
+  },
+  "security": {
+    "corpus_input_basenames": [
+      "eligible_blind_manifest.jsonl",
+      "intake_registry.jsonl",
+      "provisional_runs.jsonl",
+      "summary.json"
+    ],
+    "selection_support_input_basenames": [
+      "READY",
+      "SHA256SUMS",
+      "COMPLETE",
+      "candidate.tsv",
+      "monitor.lock",
+      "monitor.log",
+      "monitor.pid",
+      "observed.tsv",
+      "preflight_13.txt",
+      "protocol.json",
+      "security_scan_receipt.txt",
+      "source_script.sh"
+    ],
+    "raw_senior_archives_opened": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "task_run_card_parent_code_or_per_edge_values_emitted": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  },
+  "resources": {
+    "cpu_only": true,
+    "per_formal_command_timeout_seconds": 1800,
+    "virtual_memory_limit_gib": 32,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "failure_rule": "Any selection, continuity, append-only, hash, schema, support, exact-arithmetic, security, reproducibility, or independent-verification mismatch fails closed. No same-candidate threshold, population, representation, gate, or interpretation repair is allowed."
+}

@@ -21,9 +21,11 @@ within-run 数值产生前冻结 canonical-marginal decomposition。主 estimand
 secondary sensitivity，不得 rescue。
 
 结果前已诚实披露：整体 TV 与 task/run marginal TV 已知，因此三角不等式已逻辑保证 `W_p` 至少为
-0.22585011065679452 / 0.19724349713897619；仅证明正值不算新结果。强正门固定为两个轴各自比精确 lower bound
-再高至少 0.05，且 `c_g>=0.10` 的 conditionable-group 比例达到 task≥1/2、run≥1/4，最大匿名 canonical
-contribution share 不超过 task 0.40、run 0.20。两轴全过才允许称
+0.22585011065679452 / 0.19724349713897619；仅证明正值或该量级不算新结果。初版 `e99499e...` 曾误把
+triangle slack≥0.05 当强门；在任何 synthetic/真实新值产生前发现 slack 只反映界的松紧，纯组内 distortion 时可为 0，
+故公开修订为诊断项。强正门现固定为低于已知下界的 task/run `W_p` integrity floor=0.20/0.15，加上
+`c_g>=0.10` 的 conditionable-group 比例 task≥1/2、run≥1/4，以及最大匿名 canonical contribution share
+不超过 task 0.40、run 0.20。真正的新证据来自 breadth/anti-dominance；两轴全过才允许称
 `BROAD_NONCOMPOSITIONAL_LINEARIZATION_DISTORTION`；one-axis 和 below-gate 必须按序降级。
 
 协议只读固定 887 blind structural population 与两份 hash-bound aggregate receipts；输出 exact rational 与匿名

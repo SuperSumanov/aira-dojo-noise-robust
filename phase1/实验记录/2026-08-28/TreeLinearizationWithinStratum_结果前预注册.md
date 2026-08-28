@@ -19,8 +19,16 @@ within TV 至少分别为：
 - task：0.38618771447395162 - 0.1603376038171571 = 0.22585011065679452；
 - physical run：0.38618771447395162 - 0.18894421733497543 = 0.19724349713897619。
 
-所以“组内 TV 大于零”是已有 aggregate 的逻辑推论，不能包装成新发现。真正冻结的强正结果要求：两个轴的精确
-standardized within TV 都比各自已知 triangle lower bound 再高至少 0.05，同时通过 breadth 与 anti-dominance 门。
+所以“组内 TV 大于零/达到上述量级”是已有 aggregate 的逻辑推论，不能包装成新发现。真正冻结的强正结果要求
+匿名 conditional profile 同时通过 breadth 与 anti-dominance 门。
+
+### 结果前修订（仍未计算 synthetic 或真实新数值）
+
+初版 commit `e99499efc2c85be0ac1551179a828ee06f23921a` 曾把“比 triangle lower bound 再高 0.05”设为
+强门。实现审计发现这在概念上不对：slack 衡量的是三角界松紧，不是组内 distortion 强度；当 group marginals 完全
+不变、全部 distortion 都在组内时，slack 恰可为 0。故在任何新 within-stratum 数值产生前移除该决策门，保留 exact
+slack 仅作诊断。主门改为低于已披露逻辑下界的 `W_p` integrity floor 加 breadth/anti-dominance；真正的新证据只来自
+后两者。这一修订不是看到结果后的降门。
 
 ## 固定 estimand
 
@@ -43,12 +51,12 @@ standardized within TV 都比各自已知 triangle lower bound 再高至少 0.05
 
 两个轴各自必须同时满足：
 
-1. `W_p - max(0, overall_TV - marginal_TV) >= 0.05`；
+1. `W_p` integrity floor：task≥0.20、run≥0.15（两者均弱于已披露逻辑下界，不算新证据）；
 2. task 中至少 1/2、run 中至少 1/4 的 conditionable groups 达到 `c_g >= 0.10`；
 3. 最大匿名 canonical contribution share：task 不超过 0.40，run 不超过 0.20。
 
 两个轴都通过才允许分类 `BROAD_NONCOMPOSITIONAL_LINEARIZATION_DISTORTION`。一个轴通过只能写 one-axis；其余只写
-profile below strong gate。所有 exact fractions、匿名 histogram、median/p90/max、breadth counts 与最大贡献 share 都需
+profile below strong gate。所有 exact fractions（含非决策性的 triangle slack）、匿名 histogram、median/p90/max、breadth counts 与最大贡献 share 都需
 由不 import producer 的独立 verifier 重算。
 
 ## 13 项 preflight
@@ -57,7 +65,7 @@ profile below strong gate。所有 exact fractions、匿名 histogram、median/p
 2. estimand：canonical-marginal `W_p` primary，path-marginal `W_q` secondary；PASS。
 3. inputs：固定 887 snapshot、原 tree audit 协议与两份 hash-bound aggregate receipts；PASS。
 4. split/leakage：只读 blind manifest 与 aggregate receipt；禁止 label/outcome/prediction；PASS。
-5. controls：synthetic equal-multiplicity、single-group、multi-group、tamper、cross-run、hash-drift negatives；待实现后必须 PASS。
+5. controls：synthetic equal-multiplicity、composition-only、pure-within（验证 slack 可为 0）、multi-group、tamper、cross-run、hash-drift negatives；待实现后必须 PASS。
 6. sample/support：固定全部 10,895 observed edges；conditionable task/run 最低 15/150；PASS。
 7. randomness：纯确定性 exact rational arithmetic，`PYTHONHASHSEED=0`；PASS。
 8. inference：无 p-value/CI/accuracy/effect；按固定阈值作描述性分类；PASS。

@@ -11,6 +11,14 @@
     "triangle_lower_bounds_logically_implied_before_freeze": true,
     "no_claim_that_the_existence_of_positive_within_stratum_tv_is_new": true
   },
+  "pre_result_amendment": {
+    "amended_at_utc": "2026-08-28T11:21:49Z",
+    "supersedes_protocol_commit": "e99499efc2c85be0ac1551179a828ee06f23921a",
+    "new_within_task_or_within_run_values_seen_before_amendment": false,
+    "synthetic_within_stratum_values_computed_before_amendment": false,
+    "change": "Remove triangle-slack magnitude from the strong-positive decision rule while retaining it as a required exact diagnostic. Replace it with axis-specific W_p integrity floors that are weaker than the already disclosed logical lower bounds; breadth and anti-dominance are the genuinely new positive gates.",
+    "reason": "Triangle slack measures looseness of a triangle bound, not strength of within-stratum distortion. It can be exactly zero when group marginals are unchanged and all observed distortion is within groups, so treating positive slack as scientific strength would be conceptually invalid."
+  },
   "fixed_population": {
     "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
     "eligible_endpoints": 11906,
@@ -44,7 +52,7 @@
     "physical_run_marginal_total_variation_decimal_17g": "0.18894421733497543",
     "task_canonical_standardized_triangle_lower_bound_decimal": "0.22585011065679452",
     "physical_run_canonical_standardized_triangle_lower_bound_decimal": "0.19724349713897619",
-    "interpretation": "The two lower bounds follow from TV(p,q) <= TV(p,r_G) + TV(r_G,q), so merely exceeding them is not a new empirical discovery. The pre-registered positive readout is at least 0.05 exact slack above each recomputed bound plus breadth and anti-dominance gates."
+    "interpretation": "The two lower bounds follow from TV(p,q) <= TV(p,r_G) + TV(r_G,q), so positive or material W_p is already logically implied and is not a new empirical discovery. The pre-registered positive readout is breadth and anti-dominance of anonymous conditional distortion; exact triangle slack remains diagnostic only."
   },
   "estimands": {
     "canonical_edge_measure": "p(e)=1/E over E distinct observed child-parent edges",
@@ -91,7 +99,8 @@
     "minimum_conditionable_physical_runs": 150
   },
   "strong_positive_gates": {
-    "minimum_exact_triangle_slack_each_axis": "1/20",
+    "minimum_task_canonical_standardized_within_tv_integrity_floor": "1/5",
+    "minimum_physical_run_canonical_standardized_within_tv_integrity_floor": "3/20",
     "minimum_task_fraction_at_or_above_conditional_tv_reference": "1/2",
     "minimum_physical_run_fraction_at_or_above_conditional_tv_reference": "1/4",
     "maximum_single_task_canonical_contribution_share": "2/5",
@@ -107,7 +116,7 @@
     "NO_OBSERVED_WITHIN_STRATUM_DISTORTION",
     "WITHIN_STRATUM_DECOMPOSITION_GATE_FAIL"
   ],
-  "classification_rule": "Hard-gate failure takes precedence. Otherwise each axis is strong only if its exact triangle slack, breadth fraction, and maximum-contribution-share gates all pass. Both axes strong maps to BROAD; exactly one maps to the matching one-axis class; positive W_p below those gates maps to PROFILE_BELOW_STRONG_GATE; exact zero on both axes maps to NO_OBSERVED. Path-standardized sensitivity cannot rescue any primary gate.",
+  "classification_rule": "Hard-gate failure takes precedence. Otherwise each axis is strong only if its W_p integrity floor, breadth fraction, and maximum-contribution-share gates all pass. The W_p floors are weaker than the disclosed triangle lower bounds and therefore are integrity checks, not new evidence. Both axes strong maps to BROAD; exactly one maps to the matching one-axis class; positive W_p below those gates maps to PROFILE_BELOW_STRONG_GATE; exact zero on both axes maps to NO_OBSERVED. Exact triangle slack is diagnostic only, and path-standardized sensitivity cannot rescue any primary gate.",
   "required_outputs": {
     "identity_free_aggregate_only": true,
     "exact_rational_overall_and_group_marginal_tv": true,
@@ -120,7 +129,7 @@
     "non_importing_verifier_a_b_byte_identical": true
   },
   "claim_boundary": {
-    "allowed_if_broad": "On this fixed outcome-blind MLE-agent observed forest, path linearization changes edge measures materially within both task and physical-run strata after their marginals are fixed; the exact canonical-standardized shifts exceed the already-implied triangle lower bounds by at least 0.05 and pass predeclared breadth and anti-dominance gates.",
+    "allowed_if_broad": "On this fixed outcome-blind MLE-agent observed forest, path linearization changes edge measures within both task and physical-run strata after their marginals are fixed; the anonymous conditional profiles pass predeclared breadth and anti-dominance gates. Positive/material W_p was already implied by disclosed aggregates and is not claimed as a new discovery.",
     "positive_within_stratum_tv_existence_is_new": false,
     "generic_probability_or_graph_decomposition_novelty": false,
     "task_or_run_composition_fully_explains_overall_shift_if_broad": false,

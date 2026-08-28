@@ -61,11 +61,17 @@ prediction 文件。
 ## 实现与资源
 
 protocol/producer/独立 verifier/test/runner SHA-256=`8991d304...eb30` / `16997ff0...7352` /
-`5bdb7834...4e7b` / `f4e5faef...fba3` / `8dbf88a1...7917`。独立 verifier 不导入 producer；formal runner 固定做
+`5bdb7834...4e7b` / `f4e5faef...fba3` / `7276e77a...544a`。独立 verifier 不导入 producer；formal runner 固定做
 producer A/B、verifier A/B、逐字节比较、focused/full tests、file+network strace 和 aggregate-only manifest。
 
 资源上限：CPU/network only，预计正式四次 streaming parse 加测试约 20–45 分钟；GPU/API/model-fit/base-update=
 `0/0/0/0`。任何 OID/schema/run/split/source ambiguity 均 fail closed，不增加 threshold、不改 population。
+
+首次 post-push root `formal-16552c6-v1` 在 science producer 前停止：focused=`6 passed`，full=
+`1455 passed, 7 failed, 47 warnings`。7 个失败都来自 pytest 未在 detached worktree 内启动，既有测试用相对路径或
+`Path.cwd()` 时把 `/data/d0/y24/yzyang4` 当作 repo；producer/verifier A/B 四个 scientific outputs 均不存在。修复只把
+两条 pytest 命令包在 `cd worktree` 子 shell 内，protocol、population、gate、producer、verifier 和 test 均未改；旧根
+原样保留，新 root 才可运行。
 
 ## 即使 strong pass 也不能说什么
 

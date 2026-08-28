@@ -105,8 +105,11 @@ export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 BLIS_NUM_THREADS=1
 unset OPENAI_API_KEY DASHSCOPE_API_KEY DEEPSEEK_API_KEY ANTHROPIC_API_KEY HF_TOKEN WANDB_API_KEY || true
 
-"$python_bin" -m pytest -q "$worktree/$test_rel" >"$root/focused_tests.txt"
-"$python_bin" -m pytest -q "$worktree/phase1/tests" >"$root/full_tests.txt"
+(
+  cd "$worktree"
+  "$python_bin" -m pytest -q "$test_rel" >"$root/focused_tests.txt"
+  "$python_bin" -m pytest -q phase1/tests >"$root/full_tests.txt"
+)
 
 common=(
   --protocol "$worktree/$protocol_rel"

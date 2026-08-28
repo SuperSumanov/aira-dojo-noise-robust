@@ -25,13 +25,18 @@ Git-LFS OID 全绑定。strongest 分类要求全部 13 个 hard integrity gates
 components≥1,000/20/50/500/100，最大 task/run/component share≤1/4、1/10、1/4；任一 hard gate 失败不得由模型分数
 或子组 rescue。冻结前只看过报告数字、计数和 schema，未看 overlap、preservation、component/breadth 或 source membership
 readout。protocol/producer/独立 verifier/test/runner SHA-256=`8991d304...eb30` / `16997ff0...7352` /
-`5bdb7834...4e7b` / `f4e5faef...fba3` / `8dbf88a1...7917`；synthetic=`6 passed`，formal 尚未运行。
+`5bdb7834...4e7b` / `f4e5faef...fba3` / `7276e77a...544a`；synthetic=`6 passed`，formal 尚未运行。
 
 779,146,574-byte Cards 在 JSON parse 前完成 credential scan，0 命中且 safe SHA 等于原 OID；八个小输入亦为 0。
 首次 v2 input root 因手抄 mixed SHA 错误在 scientific read 前 fail-closed，v3 用 LFS pointer 机器核对值重建。另发现学长
 报告正文含 credential-bearing dashboard URL：未访问、临时副本已删除，维护者须撤销并清理历史；不得复制 token。
 详细边界见 `phase1/实验记录/2026-08-29/Senior0819PairBenchmark_完整性审计预注册.md`。GPU/API/model-fit/base-update=
 `0/0/0/0`，first-960/Target-300 值和 raw archives 均未读。
+
+首次 post-push formal root `formal-16552c6-v1` 在 science producer 前因 runner 未切入 detached worktree 而失败：
+focused=`6 passed`，full=`1455 passed, 7 failed, 47 warnings`；7 个失败均为既有测试用 `Path.cwd()` 寻找仓库时误落到
+`/data/d0/y24/yzyang4`。producer/verifier A/B 四个结果均不存在。修复只把 pytest 包在 `cd worktree` 内，不改 protocol、
+population、gate 或 scientific code；v1 原样保留，新 runner hash 如上，必须从新 root 重跑。
 
 ## 0HQ. 2026-08-29 fixed-margin selective parent recovery 已冻结 Target-522 真前瞻确认
 

@@ -1,0 +1,130 @@
+{
+  "protocol": "selective-parent-order-baseline-falsification-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T20:21:32Z",
+  "status": "POST_RESULT_FALSIFICATION_FROZEN_BEFORE_ORDER_BASELINE_READOUT",
+  "scientific_role": "Development-only falsification of the published content-based selective parent certificate against cheap causal-order baselines; not a new prospective result or an optimized combined predictor.",
+  "freeze_state": {
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "snapshot_runs": 435,
+    "snapshot_endpoints": 11906,
+    "snapshot_tasks": 34,
+    "published_content_result_known": true,
+    "max_prior_step_baseline_values_seen": false,
+    "nearest_prior_manifest_row_baseline_values_seen": false,
+    "latest_prior_generation_time_baseline_values_seen": false,
+    "content_order_disagreement_values_seen": false,
+    "task_or_run_disagreement_breadth_seen": false,
+    "target522_candidate_or_profile_seen": false
+  },
+  "immutable_inputs": {
+    "accumulator_summary_sha256": "2f28b5b53cca5d6ea5ebf16f746a70f9c1de0e3197487a6ed78d41b4cb611302",
+    "intake_registry_sha256": "37e41460c85661fd9afc6f8789a065088a9da88dde027b955ff4bc366d5bbcd8",
+    "provisional_runs_sha256": "510d81820d7825fc6baa6db562b2371e50eb7d71d04cb1cc0bd17d095d6cdbca",
+    "published_result_package_root": "phase1/results/tree_content_selective_parent_recovery_887_20260828_63d37cf",
+    "published_result_package_manifest": "MANIFEST.sha256",
+    "published_result_package_manifest_sha256": "3589eeef844d5b1ae86e291f6ed81ab0dd164a64ce03c7c92cf8ecb07cc0ff24",
+    "published_formal_summary": "formal_summary.json",
+    "published_formal_summary_sha256": "2aca589f7d8f943360e9d1d7c3716744b0357d99918913729aecf898a59a2690",
+    "published_independent_verification": "verification.json",
+    "published_independent_verification_sha256": "50b3a280ffbc4ea7d404065a97a7450b41c18ec5a89c95bc5644b88bfdbe2955",
+    "producer_snapshot_loader": "phase1/audit_tree_within_stratum_forward_target522.py",
+    "producer_snapshot_loader_sha256": "8a82d1ba3ef663c1eda161d32da0ad3a119ed3d3a13e42664648fff684d986f5",
+    "independent_snapshot_loader": "phase1/verify_tree_within_stratum_forward_target522.py",
+    "independent_snapshot_loader_sha256": "be6a31f95c2c855378ce20628855ff8fbba13e772aadf5c0232b225436e57d63",
+    "producer_fingerprint": "phase1/audit_prospective_fuzzy_code_clones.py",
+    "producer_fingerprint_sha256": "869dd84540d785232717eef7a9f2721b9d1ed892ac0340e2bc2f940041cddbec",
+    "independent_fingerprint": "phase1/verify_prospective_fuzzy_code_clones.py",
+    "independent_fingerprint_sha256": "d6d1e9a7121fb2bf006e51bdd174c79a6009bbf849dd50831ce57a42567219b7"
+  },
+  "published_content_contract": {
+    "run_split_order": "provisional_runs.jsonl byte order",
+    "train_runs": 290,
+    "test_runs": 145,
+    "candidate_set": "fingerprint-valid endpoints in the same physical run at child depth minus one; at least two candidates; recorded parent masked from ranking",
+    "representation": "python_token_identifier_erased_v1 exact set Jaccard",
+    "selected_margin_threshold": "1006/16929",
+    "test_ambiguous_edges": 2907,
+    "test_selected_edges": 2691,
+    "test_selected_correct": 2684,
+    "test_selected_errors": 7,
+    "test_unfiltered_correct": 2845,
+    "test_unfiltered_errors": 62,
+    "threshold_or_population_change_allowed": false
+  },
+  "order_baselines": {
+    "primary_in_fixed_order": [
+      "max_prior_step",
+      "nearest_prior_manifest_row"
+    ],
+    "max_prior_step": "Among the fixed candidate set, retain candidates with lineage.step strictly less than child.step; predict only if exactly one candidate has the maximum retained step; otherwise abstain.",
+    "nearest_prior_manifest_row": "Among the fixed candidate set, retain candidates whose row occurs strictly before the child in the immutable concatenated blind-manifest order; predict the candidate with the maximum retained row position.",
+    "latest_prior_generation_time_secondary": "Among the fixed candidate set, retain candidates with a strictly earlier timezone-aware generation_started_at_utc value; predict only if exactly one candidate has the latest retained timestamp; otherwise abstain. This baseline is secondary and cannot rescue either primary baseline.",
+    "future_candidate_allowed": false,
+    "recorded_parent_used_for_ranking": false,
+    "baseline_parameter_fitting_allowed": false,
+    "baseline_combination_or_threshold_tuning_allowed": false
+  },
+  "primary_population": {
+    "rows": "The exact 2691 published content-selected test edges, recomputed from the immutable snapshot and fixed Jaccard-margin threshold.",
+    "comparison": "For each primary order baseline separately, restrict to rows where that baseline predicts; compare content and order correctness on exactly the same rows.",
+    "baseline_abstentions_count_as_errors": false,
+    "all_counts_and_decisions_use_exact_integer_arithmetic": true
+  },
+  "hard_support": {
+    "minimum_comparable_rows_per_primary_baseline": 2000,
+    "minimum_comparable_coverage_per_primary_baseline": "9/10",
+    "minimum_conditionable_tasks_for_strong_breadth": 8,
+    "minimum_conditionable_runs_for_strong_breadth": 30,
+    "task_minimum_discordant_rows": 5,
+    "run_minimum_discordant_rows": 2
+  },
+  "aggregate_advantage_gates": {
+    "all_primary_baselines_must_pass": true,
+    "maximum_content_to_order_error_ratio": "1/2",
+    "minimum_content_only_win_to_order_only_win_ratio": "2/1",
+    "zero_order_errors_forces_failure": true,
+    "zero_order_only_wins_passes_win_ratio_only_if_content_only_wins_is_positive": true
+  },
+  "breadth_gates_on_strongest_order_threat": {
+    "strongest_threat_selection": "Among primary baselines that pass hard support, minimize baseline errors on comparable rows; break ties by primary_in_fixed_order.",
+    "minimum_task_fraction_with_more_content_only_than_order_only_wins": "3/4",
+    "minimum_run_fraction_with_more_content_only_than_order_only_wins": "3/4",
+    "maximum_single_task_discordance_contribution_share": "2/5",
+    "maximum_single_run_discordance_contribution_share": "1/5"
+  },
+  "ordered_classification": [
+    "DEVELOPMENT_CONTENT_ADDS_BROADLY_BEYOND_CAUSAL_ORDER_BASELINES",
+    "DEVELOPMENT_CONTENT_ADDS_AGGREGATELY_BUT_BREADTH_UNSUPPORTED",
+    "DEVELOPMENT_CAUSAL_ORDER_BASELINE_NOT_RULED_OUT",
+    "DEVELOPMENT_ORDER_BASELINE_SUPPORT_INSUFFICIENT",
+    "DEVELOPMENT_ORDER_BASELINE_FALSIFICATION_INTEGRITY_FAIL"
+  ],
+  "classification_rule": "Integrity failure takes precedence, followed by hard-support failure. Strongest requires every aggregate gate for both primary baselines plus every task/run breadth and anti-dominance gate for the fixed strongest threat. Aggregate-only requires all primary aggregate gates but fails at least one breadth gate. Otherwise the cheap order explanation is not ruled out.",
+  "mandatory_outputs": [
+    "exact reproduction of the published content-selected test population",
+    "coverage, correctness, errors and four-cell paired correctness table for each order baseline",
+    "content-to-order error ratio and content-only/order-only wins",
+    "strongest-threat selection receipt fixed by the protocol",
+    "anonymous task/run disagreement breadth and anti-dominance",
+    "parent-before-child step and manifest-order integrity counts",
+    "secondary generation-time baseline with no rescue authority",
+    "ordered gate map and classification"
+  ],
+  "claim_boundary": {
+    "allowed_if_strong": "On the disclosed development time split and fixed selected population, identifier-erased content similarity reduces recorded-parent recovery errors relative to both fixed causal-order baselines with the stated aggregate and anonymous task/run breadth; this is a falsification control for the release audit, not a new lineage algorithm.",
+    "allowed_if_below_gate": "The published content certificate remains numerically valid, but this falsification does not rule out a cheap causal-order explanation and the content-specific interpretation must be weakened.",
+    "prospective_target522_confirmation_claimed": false,
+    "recorded_parent_is_external_semantic_or_causal_truth": false,
+    "generic_lineage_or_selective_classification_novelty_claimed": false,
+    "predictor_effect_or_search_utility_computed": false,
+    "row_level_release_created": false
+  },
+  "security": {
+    "prospective_first960_or_target300_values_read": false,
+    "target522_candidate_or_profile_read": false,
+    "raw_senior_archives_opened": false,
+    "task_run_card_parent_code_or_per_edge_values_emitted": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  }
+}

@@ -13,6 +13,24 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HS. 2026-08-29 relation-aware decision taxonomy 已在 split-specific readout 前冻结
+
+0HR 证明 senior 0819 historical mixed benchmark 的 run/endpoint/unordered-pair 隔离、test 精确保留和 breadth 都成立，
+但 frozen sibling gate 失败。为把这个失败转成可发布的 benchmark repair 资产，下一轮不看模型分数，固定把 7,644 条
+decision rows 完整互斥地分为 `verified_direct_sibling`、`same_run_declared_context_non_sibling`、
+`cross_run_declared_context`。前一轮已知 overall direct/same-run/same-task=`1270/7644` / `3389/7644` /
+`7644/7644`；本节冻结时尚未读取 split-specific class counts、test sibling breadth、每类 dependency concentration 或
+fingerprints。
+
+protocol SHA-256=`df94c4ec6a3bb2c0856e29d148cb898d2b796cc1279800456b8f8e6108e08e32`。15 个 hard gates 先保证
+input/Card/run/task/split、taxonomy purity/exhaustiveness、三层 train-test 零交叉、零 duplicate/conflict，并精确复现 0HR
+overall aggregate。strongest test sibling-core 门固定为 pairs/tasks/runs/endpoints/components≥`100/10/30/150/50`，最大
+task/run/component share≤`1/3`、`1/5`、`1/4`；不得事后调门或用别类/模型分数 rescue。若通过，只允许称 historical
+relation-aware taxonomy 含 broad structurally verified sibling core；不把 recorded parent 升级为语义/因果真值，不把历史
+test 称 untouched，也不授权 row-level release 或 GPU 重训。详见
+`phase1/实验记录/2026-08-29/Senior0819DecisionRelationTaxonomy_预注册.md`。当前尚无 readout；GPU/API/model-fit/
+base-update=`0/0/0/0`，前瞻值与 raw archives 未读。
+
 ## 0HR. 2026-08-29 senior 0819 mixed pair benchmark 已冻结独立完整性审计
 
 学长 `f534114e...` 的 0828 报告新增探索性 mixed-pair scaling/RL 汇总，但 Qwen3 容量趋势只在 seed 7 出现、seed 6

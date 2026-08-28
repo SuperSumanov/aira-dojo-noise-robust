@@ -1,0 +1,114 @@
+{
+  "protocol": "senior-0819-decision-relation-taxonomy-v1",
+  "status": "FROZEN_AFTER_OVERALL_SEMANTICS_BEFORE_SPLIT_SPECIFIC_TAXONOMY",
+  "frozen_utc": "2026-08-28T17:39:12Z",
+  "source": {
+    "senior_branch_commit": "f534114e60658043c07f7a15d6440492caffc8ad",
+    "prior_integrity_protocol_sha256": "8991d3048761ebe3463c5b90e223c86648d2dbaa4bbfce5e1894cd329dcfeb30",
+    "prior_formal_summary_sha256": "90e220ace013e8919a413b8e8a95524bfa374cc390c9bd0241d57b6ac9bb00cb",
+    "prior_independent_verification_sha256": "d01268f2ff5774ab16ed2a67dccb6fe31bae82f5ee4800ec08eddeca22dc5b49",
+    "prior_formal_manifest_sha256": "f5483cf2a2d7097fcd34342d93e5047bfaaec3498e545fe59e4e0d2487a47b17"
+  },
+  "immutable_inputs": {
+    "cards": {
+      "upstream_path": "data/augmented_mle_critic/augmented_cards_current.json",
+      "sha256": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343",
+      "bytes": 779146574,
+      "credential_scan_required_before_parse": true
+    },
+    "run_split": {
+      "upstream_path": "data/augmented_mle_critic/runsplit_holdruns.json",
+      "sha256": "593117cfe0b34e1d2e3c9b718866a7751d7f008701add77b31cfd604282103bb",
+      "all_runs_reported": 845,
+      "held_runs_reported": 189
+    },
+    "decision": {
+      "upstream_path": "data/augmented_mle_critic/merged_decision_pairs_filtered_runsplit.jsonl",
+      "sha256": "1a01d3a1202b35f21b9cd6c87237b29c50b1c293138b407cc453674108411442",
+      "rows": 7644,
+      "train_rows": 6484,
+      "test_rows": 1160
+    }
+  },
+  "known_before_freeze": {
+    "overall_rows_seen": 7644,
+    "overall_direct_sibling_rows_seen": 1270,
+    "overall_declared_context_same_run_rows_seen": 3389,
+    "overall_same_task_rows_seen": 7644,
+    "split_specific_class_counts_seen": false,
+    "test_verified_sibling_task_run_endpoint_component_breadth_seen": false,
+    "per_class_train_test_mix_seen": false,
+    "per_class_dependency_concentration_seen": false,
+    "per_class_identity_fingerprints_seen": false
+  },
+  "fixed_taxonomy": {
+    "verified_direct_sibling": "both endpoint lineage.parent_id equal declared parent AND both endpoints and declared parent share one physical run",
+    "same_run_declared_context_non_sibling": "declared parent and both endpoints share one physical run AND verified_direct_sibling is false",
+    "cross_run_declared_context": "declared parent and both endpoints do not all share one physical run",
+    "class_order": [
+      "verified_direct_sibling",
+      "same_run_declared_context_non_sibling",
+      "cross_run_declared_context"
+    ],
+    "pair_identity": "unordered exact endpoint ID set",
+    "component_identity": "connected component of each split-by-class undirected endpoint graph",
+    "run_contribution": "each incident endpoint physical run contributes at most once per pair",
+    "fingerprint": "SHA-256 over sorted class,split,unordered endpoints,declared parent records; identities not emitted"
+  },
+  "hard_integrity_gates": {
+    "all_input_hashes_and_reported_counts_exact": true,
+    "cards_exactly_cover_frozen_run_manifest": true,
+    "card_ids_unique_and_present_lineage_parents_within_run": true,
+    "all_decision_endpoints_parent_tasks_and_splits_valid": true,
+    "taxonomy_is_exhaustive_and_mutually_exclusive": true,
+    "verified_direct_sibling_class_is_semantically_pure": true,
+    "no_direct_sibling_crosses_physical_run": true,
+    "same_run_non_sibling_class_is_semantically_pure": true,
+    "cross_run_class_is_semantically_pure": true,
+    "train_test_unordered_pair_overlap_zero": true,
+    "train_test_endpoint_overlap_zero": true,
+    "train_test_physical_run_overlap_zero": true,
+    "unordered_pair_duplicates_zero": true,
+    "conflicting_orientations_zero": true,
+    "prior_overall_semantic_aggregate_exactly_reproduced": true
+  },
+  "verified_sibling_test_support_gates": {
+    "minimum_pairs": 100,
+    "minimum_tasks": 10,
+    "minimum_physical_runs": 30,
+    "minimum_endpoints": 150,
+    "minimum_components": 50,
+    "maximum_single_task_pair_share": "1/3",
+    "maximum_single_run_pair_share": "1/5",
+    "maximum_single_component_pair_share": "1/4"
+  },
+  "classification_order": [
+    "HISTORICAL_RELATION_AWARE_DECISION_TAXONOMY_BROAD_VERIFIED_SIBLING_CORE",
+    "HISTORICAL_RELATION_AWARE_DECISION_TAXONOMY_LIMITED_VERIFIED_SIBLING_CORE",
+    "HISTORICAL_RELATION_AWARE_DECISION_TAXONOMY_INTEGRITY_GATE_FAIL"
+  ],
+  "claim_boundary": {
+    "historical_exploratory_dataset_not_prospective": true,
+    "split_specific_taxonomy_was_unseen_at_freeze": true,
+    "test_was_used_for_periodic_validation_or_checkpoint_selection": true,
+    "taxonomy_uses_structure_not_model_predictions_or_pair_orientation": true,
+    "row_level_release_not_yet_authorized": true,
+    "test_accuracy_or_scaling_recomputed": false,
+    "end_to_end_search_utility_measured": false,
+    "semantic_or_causal_parent_truth_claimed": false,
+    "base_llm_or_agent_updated": false
+  },
+  "security": {
+    "prospective_first960_or_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "credential_values_emitted": false,
+    "card_pair_task_run_or_parent_identities_emitted": false,
+    "aggregate_only_output": true
+  },
+  "resources": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

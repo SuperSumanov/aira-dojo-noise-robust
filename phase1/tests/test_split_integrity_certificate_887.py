@@ -208,3 +208,24 @@ def test_independent_verifier_does_not_import_builder() -> None:
     )
     assert "from phase1.build_split_integrity_certificate_887" not in source
     assert "import phase1.build_split_integrity_certificate_887" not in source
+
+
+def test_formal_runner_rebinds_both_remote_formal_and_postflight_roots() -> None:
+    source = (
+        PHASE1 / "scripts" / "run_split_integrity_certificate_887_20260828.sh"
+    ).read_text(encoding="utf-8")
+    for name in (
+        "within_formal",
+        "within_postflight",
+        "historical_formal",
+        "historical_postflight",
+    ):
+        assert f"readonly {name}=" in source
+        assert f'"${{{name}}}"' in source
+    assert 'test -f "${root}/COMPLETE"' in source
+    assert 'test ! -e "${root}/FAILED_RC"' in source
+    assert source.count("sha256sum -c SHA256SUMS") >= 1
+    assert source.count("formal_summary.json\"") >= 4
+    assert source.count("independent_recheck.json\"") >= 4
+    assert source.count("formal_sha256sums_file_sha256") == 2
+    assert source.count("postflight_sha256sums_file_sha256") == 2

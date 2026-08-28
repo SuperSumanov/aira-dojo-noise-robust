@@ -97,6 +97,27 @@ def test_task_balance_v3_is_future_only_and_cannot_rescue_887() -> None:
     assert list(protocol["resources"].values()) == [0, 0, 0, 0]
 
 
+def test_task_balance_v3_runner_consumes_only_the_automatic_latch() -> None:
+    runner = (
+        PHASE1
+        / "scripts"
+        / "run_task_balance_forward_v3_first_successor_20260828.sh"
+    ).read_text(encoding="utf-8")
+    assert "latch-ab55510-after-887-v3" in runner
+    assert f"readonly forbidden_snapshot={SNAPSHOT_887}" in runner
+    assert "candidate_snapshot_sha256" in runner
+    assert "manual_snapshot_choice" in runner
+    assert "earlier_successor_skipped" in runner
+    assert "task_balance_guard_forward_validation_v3" in runner
+    assert "verify_task_balance_guard_forward_validation_v3" in runner
+    assert runner.count("producer_a.json") >= 4
+    assert runner.count("producer_b.json") >= 2
+    assert runner.count("verification_a.json") >= 4
+    assert runner.count("verification_b.json") >= 2
+    assert "pair_predictions\\.jsonl" in runner
+    assert "gpu_api_model_fit_base_update=0/0/0/0" in runner
+
+
 def test_task_balance_887_failure_package_is_byte_bound() -> None:
     result = PHASE1 / "results" / "task_balance_structural_extension_887_20260828_1e5f949"
     bindings = _json(result / "source_bindings.json")

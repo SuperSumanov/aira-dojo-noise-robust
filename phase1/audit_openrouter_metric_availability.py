@@ -74,6 +74,16 @@ def consensus_status(values: set[str]) -> str:
     return "ambiguous"
 
 
+def pair_consensus_status(
+    first: tuple[str, str, bool],
+    second: tuple[str, str, bool],
+    run_task_metrics: dict[tuple[str, str], set[str]],
+) -> str:
+    if first[:2] != second[:2]:
+        return "different_run_task_key"
+    return consensus_status(run_task_metrics.get(first[:2], set()))
+
+
 def audit(args: argparse.Namespace) -> dict[str, Any]:
     protocol_path = args.protocol.resolve()
     require(sha256(protocol_path) == args.protocol_sha256, "protocol SHA mismatch")
@@ -160,8 +170,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         values: Counter[str] = Counter()
         for first, second in pairs:
             first_meta, second_meta = endpoint_meta[first], endpoint_meta[second]
-            require(first_meta[:2] == second_meta[:2], f"pair run-task mismatch: {role}")
-            values[consensus_status(run_task_metrics.get(first_meta[:2], set()))] += 1
+            values[pair_consensus_status(first_meta, second_meta, run_task_metrics)] += 1
         pair_status[role] = values
 
     return {

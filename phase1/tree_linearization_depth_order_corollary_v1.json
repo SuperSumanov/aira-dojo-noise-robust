@@ -1,0 +1,118 @@
+{
+  "protocol": "tree-linearization-depth-order-corollary-v1",
+  "version": 1,
+  "declared_at_utc": "2026-08-28T11:39:03Z",
+  "status": "POST_HOC_DETERMINISTIC_COROLLARY_DECLARED_AFTER_EXPLORATORY_DERIVATION",
+  "question": "What exact change in the logged edge-depth distribution is induced when a fixed observed search forest is flattened into all root-to-leaf paths?",
+  "design_timing": {
+    "upstream_depth_counts_seen_before_declaration": true,
+    "upstream_depth_total_variation_seen_before_declaration": true,
+    "exploratory_mean_depths_seen_before_declaration": true,
+    "exploratory_cdf_order_and_crossing_seen_before_declaration": true,
+    "confirmatory_or_preregistered_discovery_claim_allowed": false,
+    "role": "Exact, reproducible interpretation of an already published aggregate; not a new hypothesis test."
+  },
+  "fixed_input": {
+    "path": "phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/formal/final_receipt.json",
+    "sha256": "642e9fd793950d4dfd082669df164be0781bd13847f35d6483ebd8611a136ea8",
+    "required_protocol": "prospective-tree-linearization-weight-audit-receipt-v1",
+    "required_status": "OUTCOME_BLIND_TREE_LINEARIZATION_WEIGHT_AUDIT_COMPLETE",
+    "required_classification": "MULTI_AXIS_MATERIAL_LINEARIZATION_REWEIGHTING",
+    "required_snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "required_observed_unique_edges": 10895,
+    "required_path_edge_occurrences": 26107
+  },
+  "fixed_estimands": {
+    "canonical_depth_distribution": "p_d = number of distinct observed child-parent edges whose child has logged lineage depth d, divided by all distinct observed edges.",
+    "path_frequency_depth_distribution": "q_d = number of root-to-leaf path edge occurrences whose child has logged lineage depth d, divided by all path edge occurrences.",
+    "shallow_first_order_stochastic_dominance": "F_q(d) >= F_p(d) for every observed integer depth d; this means path-frequency weighting puts weakly more cumulative mass at shallow depth thresholds.",
+    "mean_depth_shift": "sum_d d q_d minus sum_d d p_d, computed as an exact rational.",
+    "depth_total_variation": "one half times sum_d absolute(q_d-p_d), computed as an exact rational.",
+    "pmf_sign_changes": "The number of adjacent sign changes after zeros are removed from q_d-p_d in increasing depth order.",
+    "cdf_gap": "F_q(d)-F_p(d), reported exactly and without endpoint, run, task, or edge identities."
+  },
+  "values_seen_before_declaration": {
+    "canonical_depth_support": [
+      2,
+      38
+    ],
+    "canonical_depth_count": 10895,
+    "path_frequency_depth_count": 26107,
+    "canonical_depth_sum": 89213,
+    "path_frequency_depth_sum": 183993,
+    "canonical_mean_depth": "89213/10895",
+    "path_frequency_mean_depth": "183993/26107",
+    "path_minus_canonical_mean_depth": "-324480056/284435765",
+    "path_to_canonical_mean_depth_ratio": "2004603735/2329083791",
+    "depth_total_variation": "27231696/284435765",
+    "maximum_cdf_gap": "27231696/284435765",
+    "maximum_cdf_gap_depth": 5,
+    "shallow_first_order_stochastic_dominance": true,
+    "nonzero_pmf_sign_changes": 1,
+    "canonical_nearest_rank_median_depth": 7,
+    "path_frequency_nearest_rank_median_depth": 6,
+    "canonical_nearest_rank_p90_depth": 15,
+    "path_frequency_nearest_rank_p90_depth": 13
+  },
+  "required_exact_checks": {
+    "fixed_input_hash_and_metadata_match": true,
+    "depth_keys_are_identical_contiguous_positive_integers": true,
+    "all_depth_counts_are_positive_integers": true,
+    "depth_count_totals_match_upstream_inventory": true,
+    "upstream_float_total_variation_roundtrips_to_exact_recomputation_at_decimal_17g": true,
+    "all_exact_means_cdf_gaps_total_variation_and_quantiles_recomputed": true,
+    "cdf_terminal_gap_is_exactly_zero": true,
+    "first_order_ordering_checked_at_every_observed_depth": true,
+    "single_pmf_crossing_checked_without_assuming_it": true,
+    "maximum_cdf_gap_equals_depth_total_variation_checked_without_assuming_it": true,
+    "producer_a_b_byte_identical": true,
+    "non_importing_verifier_a_b_byte_identical": true
+  },
+  "ordered_classification": [
+    "VERIFIED_SHALLOW_DEPTH_STOCHASTIC_ORDER_COROLLARY",
+    "DEPTH_ORDER_COROLLARY_NOT_VERIFIED",
+    "DEPTH_ORDER_COROLLARY_GATE_FAIL"
+  ],
+  "classification_rule": "Any fixed-input, schema, count, arithmetic, reproducibility, or security mismatch is GATE_FAIL. Otherwise VERIFIED requires shallow first-order stochastic dominance at every observed depth, a strictly negative exact mean-depth shift, exactly one nonzero PMF sign change, and equality between maximum CDF gap and depth total variation. A valid aggregate that lacks any of those deterministic properties is NOT_VERIFIED. These conditions were selected after the values were seen and therefore classify a corollary, not a confirmatory discovery.",
+  "required_outputs": {
+    "aggregate_only": true,
+    "exact_rational_distributions_and_summaries": true,
+    "integer_depth_support_and_anonymous_counts": true,
+    "all_cdf_gaps_reported_in_depth_order": true,
+    "nearest_rank_median_and_p90": true,
+    "design_timing_copied_exactly": true,
+    "claim_boundary_copied_exactly": true
+  },
+  "claim_boundary": {
+    "allowed": "On the fixed outcome-blind observed MLE-agent forest, enumerating root-to-leaf paths systematically shifts the empirical logged edge-depth distribution toward shallower edges; the exact shift is a deterministic corollary of already published aggregate counts.",
+    "preregistered_or_confirmatory_discovery": false,
+    "generic_tree_or_probability_novelty": false,
+    "shared_prefix_or_root_dominance_first_observation": false,
+    "logged_depth_is_semantic_importance_or_difficulty": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "complete_source_tree_proven": false,
+    "generalization_beyond_fixed_snapshot": false,
+    "first960_or_closure_completed": false,
+    "future_closure_requires_same_contract_rerun": true
+  },
+  "related_work_boundary": {
+    "tree_training": "Already establishes duplicated shared-prefix computation when tree trajectories are decomposed into linear sequences.",
+    "treeadv": "Already normalizes descendant-trajectory aggregation to prevent near-root advantages from dominating by scale.",
+    "remaining_local_value": "Exact MLE-corpus measurement of the induced depth distribution and an executable release audit, not the general shared-prefix insight."
+  },
+  "security": {
+    "allowed_input_basenames": [
+      "final_receipt.json"
+    ],
+    "raw_senior_archives_opened": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "task_run_card_parent_code_or_per_edge_values_emitted": false,
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "failure_rule": "Fail closed on any source hash, source metadata, depth schema, exact arithmetic, producer/verifier equality, clean-worktree, forbidden-open, credential, or manifest mismatch. No value may be relabeled as preregistered or independent confirmation."
+}

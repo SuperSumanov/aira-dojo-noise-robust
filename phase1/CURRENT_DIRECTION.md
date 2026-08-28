@@ -13,6 +13,24 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HH. 2026-08-28 depth-order 只按已见数值后的确定性推论推进
+
+0HC 的 formal receipt 已经公开 canonical-edge 与 root-to-leaf path-frequency 两套 depth counts 和 depth TV；随后又
+探索性看到了均值、CDF 顺序、交叉数与分位数，才决定补精确解析。因此本线明确是
+`POST_HOC_DETERMINISTIC_COROLLARY_DECLARED_AFTER_EXPLORATORY_DERIVATION`，不得称预注册发现、独立确认或新假设检验。
+
+已见结果为：canonical/path depth means=`89213/10895` / `183993/26107`，path-minus-canonical=
+`-324480056/284435765`（约 -1.140785，均值比约 0.860683）；path CDF 在全部 observed depths 上均不低于 canonical
+CDF，非零 PMF 差只交叉一次，最大 CDF gap 在 depth=5，且与 depth TV 同为
+`27231696/284435765`（约 0.0957394）；nearest-rank median/p90 从 `7/15` 变为 `6/13`。
+
+若 exact producer 与不 import producer 的独立 verifier 通过，只允许称：固定 outcome-blind MLE observed forest 的
+root-to-leaf 枚举把 logged edge-depth 经验分布系统性推向浅层。Tree Training 已覆盖 shared-prefix 重复计算，TreeAdv
+又明确以 descendant 数归一化避免 near-root scale dominance；所以不申 shared-prefix/root bias/tree-aware weighting 的
+一般首创。`depth` 不等于语义重要性或难度，也没有 predictor effect/search utility、完整 source tree、first-960 closure
+或跨 snapshot 泛化。机器声明与时间顺序见 `phase1/tree_linearization_depth_order_corollary_v1.json` 和
+`phase1/实验记录/2026-08-28/TreeLinearization_DepthOrder_后验解析声明.md`；正式实现尚未运行。
+
 ## 0HG. 2026-08-28 within-stratum decomposition 已在新 aggregate 前冻结
 
 为排除 0HC/0HE 的 38.62pp edge-measure shift 只是 task/run composition artifact，已在任何 within-task 或

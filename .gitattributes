@@ -133,3 +133,10 @@ phase1/tree_native_path_compatibility_contract_v1.json text eol=lf diff
 phase1/certify_tree_native_path_compatibility.py text eol=lf diff
 phase1/verify_tree_native_path_compatibility.py text eol=lf diff
 phase1/tests/test_tree_native_path_compatibility.py text eol=lf diff
+# Preserve the byte-exact formal/postflight/failure receipts for the tree-native
+# compatibility certificate; keep only package documentation normalized.
+phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/formal/** -text -diff
+phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/postflight/** -text -diff
+phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/failed_launcher_preworktree/** -text -diff
+phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/README.md text eol=lf diff
+phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/source_bindings.json text eol=lf diff

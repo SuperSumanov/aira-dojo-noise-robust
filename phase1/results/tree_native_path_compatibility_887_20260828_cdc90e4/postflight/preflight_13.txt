@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol only
+PREFLIGHT_02_GOAL=fresh-worktree independent reconstruction of the completed aggregate-only compatibility certificate
+PREFLIGHT_03_TIMING=formal certificate is known; no protocol population path mass or output changes allowed
+PREFLIGHT_04_INPUTS=immutable formal receipt exact fixed blind snapshot and hash-bound aggregate upstream files
+PREFLIGHT_05_FIXED=protocol receipt source commit producer source and formal manifest exact
+PREFLIGHT_06_UNIT=all canonical observed edges and all observed-fragment root-to-leaf paths
+PREFLIGHT_07_LEAKAGE=no label grade outcome prediction accuracy utility raw senior archive or identity-valued output
+PREFLIGHT_08_SOURCE=second fresh detached exact commit cdc90e472eb57189a939187399d6b5fb5ec9a5c1; no shared generated state
+PREFLIGHT_09_TESTS=focused synthetic and neighboring tests before postflight reconstruction
+PREFLIGHT_10_INDEPENDENCE=non-importing leaf-backtrace verifier A/B byte equal and exact-match formal verifier
+PREFLIGHT_11_SECURITY=strace forbidden paths zero; credential filename and content hits zero
+PREFLIGHT_12_RESOURCES=CPU only; GPU API model_fit base_update equals 0/0/0/0
+PREFLIGHT_13_PROMOTION=manifest exact and every gate required; any mismatch records FAILED_RC

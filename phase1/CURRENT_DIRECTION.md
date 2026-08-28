@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HD. 2026-08-28 tree-native/path-compatible 双视图 remedy 已正式闭环
+
+在 0HC 的 materials result 已知后、任何 compatibility certificate 产生前，结果前 commit `0deb5b6...` 冻结双视图
+合同；正式实现 commit=`cdc90e472eb57189a939187399d6b5fb5ec9a5c1`。固定 snapshot `887491a...` 上分类为
+**`VERIFIED_LOSSLESS_TREE_NATIVE_PATH_COMPATIBILITY`**：10,895 条 canonical observed edges 与 3,599 条
+root-to-leaf paths/26,107 个 edge occurrences 并列保留；每个 occurrence 使用精确 `1/m_e` mass 后，逐 edge 质量
+均恢复为 1，总质量精确为 `10895/1`。task=34、physical run=435、depth cluster=37 的聚合质量也全部逐项恢复，
+maximum per-edge mass error=`0/1`。
+
+结构视图另有 1,011 fragments、142 single-node paths、8,307 observed child groups，其中 2,565 个有至少两个
+observed children、最大 size=3；只能称 observed sibling groups，不证明 complete source choice sets。该 remedy 允许
+tree-native canonical estimand 与 trajectory-only consumer 兼容共存；未加 inverse-multiplicity 的 path-frequency
+统计只能作为单列 sensitivity，不能冒充 canonical measure。`1/m_e` 恒等式不是算法 novelty；可守贡献是把 MLE-agent
+physical-run provenance、双视图 schema、estimand firewall 与 fail-closed independent verifier 做成可执行发布合同。
+
+formal producer A/B、non-importing verifier A/B 与第二 fresh-worktree postflight 均逐字节一致；focused/full=
+`31/1314 passed`，full 有 47 warnings。formal/postflight manifest=`342eefd9...66f2e` / `073b1bdb...fc1a`，
+forbidden/credential=`0/0/0`。首个 launcher 因 remote alias 写错在 worktree/科学输入前停止，失败现场完整保留；成功轮只
+修正 `myfork→fork`。当前仍为 435/960、closure=false；没有 truth/prediction/accuracy/effect/search utility，最终
+closure 后须原合同重签。结果包见 `phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/`。
+
 ## 0HC. 2026-08-28 tree-native 表示的多轴材料性正结果已正式复验
 
 0HB 的结果前协议在 snapshot `887491a...` 上正式分类为

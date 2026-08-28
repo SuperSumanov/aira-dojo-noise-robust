@@ -1,0 +1,8 @@
+status=FAILED_BEFORE_WORKTREE_AND_BEFORE_SCIENTIFIC_INPUT_READ
+failure_stage=git_fetch_remote_alias
+observed_bad_remote_alias=myfork
+correct_remote_alias=fork
+formal_output_created=false
+snapshot_manifest_opened=false
+prospective_truth_or_prediction_values_read=false
+gpu_api_model_fit_base_update=0/0/0/0

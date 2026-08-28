@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; HCE multifidelity Probe score-channel effect and K>=1 remain closed
+PREFLIGHT_02_GOAL=verify that a tree-native canonical observed-edge view can coexist with a root-to-leaf compatibility view that exactly recovers the canonical empirical measure
+PREFLIGHT_03_TIMING=linearization materiality was already known; remedy protocol was frozen at 0deb5b6e9161547bff7c2ec3566a90c5ab324fad before any compatibility certificate
+PREFLIGHT_04_INPUTS=exact blind snapshot 887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697; registry accumulator run ledger eligible manifests and hash-bound aggregate upstream receipt only
+PREFLIGHT_05_FIXED=population fragment path multiplicity inverse-mass exact rational rules classification and claim boundary
+PREFLIGHT_06_UNIT=canonical distinct observed child-parent edge; compatibility occurrence within one contiguous same-task same-physical-run fragment path
+PREFLIGHT_07_LEAKAGE=no prospective label grade outcome prediction accuracy utility raw senior archive or identity-valued artifact access
+PREFLIGHT_08_SOURCE=fresh detached exact implementation commit cdc90e472eb57189a939187399d6b5fb5ec9a5c1; protocol producer verifier hashes exact and worktree clean
+PREFLIGHT_09_TESTS=new synthetic adversarial tests neighboring regressions and all phase1 tests before real certificate
+PREFLIGHT_10_INDEPENDENCE=producer root-forward traversal versus non-importing verifier leaf-backtrace; producer A/B and verifier A/B byte equality
+PREFLIGHT_11_SECURITY=strace forbidden paths zero; exact blind schema; credential filename and content hits zero; aggregate-only outputs
+PREFLIGHT_12_RESOURCES=CPU only; deterministic no sampling; GPU API model_fit base_update equals 0/0/0/0; expected under ten minutes
+PREFLIGHT_13_PROMOTION=formal plus fresh-worktree postflight exact match and complete manifests required; any mismatch leaves FAILED_RC and no promoted claim

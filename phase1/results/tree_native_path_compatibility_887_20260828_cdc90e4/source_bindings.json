@@ -1,0 +1,46 @@
+{
+  "protocol": "tree-native-path-compatibility-result-package-v1",
+  "status": "VERIFIED_LOSSLESS_TREE_NATIVE_PATH_COMPATIBILITY",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "preregistration_commit": "0deb5b6e9161547bff7c2ec3566a90c5ab324fad",
+  "formal_source_commit": "cdc90e472eb57189a939187399d6b5fb5ec9a5c1",
+  "source_sha256": {
+    "protocol": "319906f0dc0525ecbc2455a5d468d5fe9e3522405455657d29f0dd5accf54511",
+    "producer": "cc06d01a09f3b78c35dfca9ad3075beb549a2669a869870eedc7f589ceac7569",
+    "verifier": "26b2dd7dda3d9f4b29f059d5b0e789000c78a94da79f74df09a1b97344437364",
+    "tests": "c4105b8e1b13d42ee7e1525e4b6e662e6764b3b4e694269fab47ad134cbdee0b"
+  },
+  "formal_sha256": {
+    "final_receipt": "d5009a3464fb5d0597e67922bc7763af45271d0a06497b02b8fc2b7db989212d",
+    "independent_verification": "873022dd4a6658b2770d981ccc2fe76201b0646529776f97689eaa5b8e76acaa",
+    "formal_summary": "183ddee30b8b0926d0293179a62abc83b7ef3007acff8d949926fcb43f1408a6",
+    "formal_manifest": "342eefd91090229aa056eadc8586c364e7349e8e34cc8d7f76c9f28bd7a66f2e",
+    "postflight_manifest": "073b1bdba76bda7a8de508de7ff1292e6594be05732d9a0f622d9d155e27fc1a",
+    "failed_launcher_manifest": "910e11c71d4e0fefd300d132d9d91b40938b21a86fde3a58ece7d22bd11dc9f2"
+  },
+  "remote_roots": {
+    "formal": "/research/d7/spc/yzyang4/tree-native-path-compatibility/formal-cdc90e4-887491a-v1",
+    "postflight": "/research/d7/spc/yzyang4/tree-native-path-compatibility/postflight-cdc90e4-887491a-v1",
+    "failed_launcher_preworktree": "/research/d7/spc/yzyang4/tree-native-path-compatibility/failed-launcher-preworktree-v1"
+  },
+  "verification": {
+    "focused_tests_passed": 31,
+    "full_tests_passed": 1314,
+    "full_test_warnings": 47,
+    "producer_a_b_byte_identical": true,
+    "verifier_a_b_byte_identical": true,
+    "fresh_worktree_postflight_matches_formal_verifier": true,
+    "formal_manifest_verified_after_transport": true,
+    "postflight_manifest_verified_after_transport": true,
+    "failed_launcher_manifest_verified_after_transport": true
+  },
+  "security": {
+    "forbidden_open_hits": 0,
+    "credential_filename_hits": 0,
+    "credential_content_file_hits": 0,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "identity_code_or_per_path_values_written": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  }
+}

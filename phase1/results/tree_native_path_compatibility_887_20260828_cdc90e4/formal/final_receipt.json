@@ -1,0 +1,165 @@
+{
+  "all_verification_gates_passed": true,
+  "claim_boundary": {
+    "allowed_if_verified": "For this fixed outcome-blind MLE-agent snapshot, a tree-native canonical view can coexist with a root-to-leaf path compatibility view whose preregistered inverse-multiplicity occurrence weights exactly recover the canonical observed-edge empirical measure across edge, task, physical-run and depth accounting.",
+    "complete_source_tree_or_choice_set_proven": false,
+    "elementary_inverse_weight_identity_is_algorithmic_novelty": false,
+    "first960_or_closure_completed": false,
+    "general_causal_or_semantic_claim": false,
+    "identity_level_public_release_before_closure": false,
+    "new_predictor_or_search_algorithm_claim": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "predictor_estimand_changed_or_superseded": false
+  },
+  "classification": "VERIFIED_LOSSLESS_TREE_NATIVE_PATH_COMPATIBILITY",
+  "exact_recovery": {
+    "arithmetic": "fractions.Fraction exact rational",
+    "canonical_total_edge_mass": 10895,
+    "depth_clusters_checked": 37,
+    "depth_mass_exact": true,
+    "edge_count_checked": 10895,
+    "maximum_per_edge_mass_error": {
+      "denominator": 1,
+      "numerator": 0
+    },
+    "physical_run_clusters_checked": 435,
+    "physical_run_mass_exact": true,
+    "recovered_total_edge_mass": {
+      "denominator": 1,
+      "numerator": 10895
+    },
+    "task_clusters_checked": 34,
+    "task_mass_exact": true
+  },
+  "input_bindings": {
+    "accumulator_summary_sha256": "2f28b5b53cca5d6ea5ebf16f746a70f9c1de0e3197487a6ed78d41b4cb611302",
+    "intake_count": 106,
+    "intake_summary_manifest_multiset_sha256": "388ba4b9110fc2a2b525ab80619c5e2c3049597d3f923e84682995be4375ff28",
+    "provisional_runs_sha256": "510d81820d7825fc6baa6db562b2371e50eb7d71d04cb1cc0bd17d095d6cdbca",
+    "registry_sha256": "37e41460c85661fd9afc6f8789a065088a9da88dde027b955ff4bc366d5bbcd8"
+  },
+  "inventory": {
+    "eligible_endpoints": 11906,
+    "fragment_leaves": 3599,
+    "fragment_roots": 1011,
+    "maximum_observed_sibling_group_size": 3,
+    "multi_child_observed_sibling_groups": 2565,
+    "observed_fragments": 1011,
+    "observed_sibling_groups": 8307,
+    "observed_unique_edges": 10895,
+    "physical_runs": 435,
+    "single_node_fragments": 142,
+    "tasks": 34
+  },
+  "path_compatibility": {
+    "duplicate_edge_occurrences": 15212,
+    "edge_multiplicity_histogram": {
+      "1": 6671,
+      "10": 29,
+      "11": 58,
+      "12": 35,
+      "13": 37,
+      "135": 1,
+      "14": 11,
+      "144": 2,
+      "15": 19,
+      "16": 18,
+      "17": 18,
+      "18": 19,
+      "19": 7,
+      "2": 1938,
+      "20": 9,
+      "21": 7,
+      "22": 11,
+      "23": 5,
+      "24": 6,
+      "25": 15,
+      "26": 3,
+      "27": 1,
+      "28": 13,
+      "29": 1,
+      "3": 740,
+      "30": 5,
+      "32": 2,
+      "33": 3,
+      "34": 2,
+      "38": 2,
+      "39": 1,
+      "4": 484,
+      "43": 1,
+      "44": 2,
+      "48": 1,
+      "5": 286,
+      "57": 1,
+      "58": 2,
+      "6": 193,
+      "62": 1,
+      "7": 111,
+      "73": 2,
+      "77": 4,
+      "79": 2,
+      "8": 65,
+      "86": 1,
+      "9": 50
+    },
+    "edge_occurrences": 26107,
+    "path_records": 3599,
+    "single_node_paths_have_zero_edge_occurrences": true,
+    "single_node_paths_retained": 142
+  },
+  "producer_source_sha256": "cc06d01a09f3b78c35dfca9ad3075beb549a2669a869870eedc7f589ceac7569",
+  "protocol": "tree-native-path-compatibility-certificate-v1",
+  "protocol_sha256": "319906f0dc0525ecbc2455a5d468d5fe9e3522405455657d29f0dd5accf54511",
+  "security": {
+    "accuracy_effect_or_search_utility_computed": false,
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "identity_code_or_per_path_values_written": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_opened": false
+  },
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "source_commit": "cdc90e472eb57189a939187399d6b5fb5ec9a5c1",
+  "status": "OUTCOME_BLIND_TREE_NATIVE_PATH_COMPATIBILITY_CERTIFICATE_COMPLETE",
+  "upstream_bindings": {
+    "linearization_producer": {
+      "sha256": "cd204c1607b754f1d07861da83c829cab09df2871242a69236fe65fcc84eb09f",
+      "verified": true
+    },
+    "linearization_receipt": {
+      "sha256": "642e9fd793950d4dfd082669df164be0781bd13847f35d6483ebd8611a136ea8",
+      "verified": true
+    },
+    "predictor_estimand_panel": {
+      "sha256": "4f394d0e0437992eb9d3e5f3aa56f83df86ffcbda68a752ebada4e306bf7adea",
+      "verified": true
+    }
+  },
+  "verification_gates": {
+    "depth_mass_exactly_recovers_unique_edges": true,
+    "edge_occurrence_count_equals_multiplicity": true,
+    "every_canonical_edge_covered": true,
+    "every_path_occurrence_references_canonical_edge": true,
+    "identity_free_aggregate_only": true,
+    "input_bindings_equal_upstream": true,
+    "paths_contiguous_and_acyclic": true,
+    "paths_fragment_task_and_run_bound": true,
+    "per_edge_inverse_mass_exactly_one": true,
+    "physical_run_mass_exactly_recovers_unique_edges": true,
+    "predictor_estimand_remains_authoritative": true,
+    "sibling_groups_equal_edges_grouped_by_parent": true,
+    "task_mass_exactly_recovers_unique_edges": true,
+    "total_inverse_mass_equals_unique_edges": true,
+    "upstream_duplicate_count_exact": true,
+    "upstream_multiplicity_histogram_exact": true,
+    "upstream_occurrence_count_exact": true,
+    "upstream_path_count_exact": true,
+    "upstream_population_exact": true,
+    "upstream_snapshot_equal_fixed": true,
+    "upstream_status_complete": true
+  }
+}

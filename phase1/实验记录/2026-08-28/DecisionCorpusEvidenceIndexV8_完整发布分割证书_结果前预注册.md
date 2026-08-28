@@ -13,9 +13,13 @@ estimand，也不授权提前揭盲、GPU、API 或模型训练。
    `b44035bd073a83d4c57a03550db9c4b88af8afa8df95268c42f18541cdccca5c` /
    `45dc560b882b31df3564740bd619ac2c7248a9edcc19656a8ef865f0720af944`。其结果已知，不冒充新发现。
 3. 未知输入是完整 v11 release（16,012 endpoints / 667 runs / 25 tasks）对固定 future `887491a...`
-   （11,906 endpoints / 435 runs / 34 tasks）的正式审计。其结果前 protocol SHA-256 固定为
-   `22f2d4f4853c11398429c40f91f952711ee2003bc27bec7c977726c82f0771ea`，source commit 固定为
-   `ed3d2941d047e5f88a527f244ebcdc6c6cea4e43`。当前不记录、不读取任何 aggregate、link count 或 classification。
+   （11,906 endpoints / 435 runs / 34 tasks）的正式审计。初始结果前 protocol SHA-256=
+   `22f2d4f4853c11398429c40f91f952711ee2003bc27bec7c977726c82f0771ea`、source commit=
+   `ed3d2941d047e5f88a527f244ebcdc6c6cea4e43`；其 producer A 在 1,800 秒资源护栏处 rc=124，未生成结果文件且
+   stderr 为空。结果盲 resource-r2 只把每命令 timeout 调为 5,400 秒，科学字段逐项不变，protocol SHA-256=
+   `52390b9a78893775db70a85dbda8e98132363cbb997e7006eab0646e9c0f73b3`、正式 source commit=
+   `8bf95124175a7ba7f388ac547b31be05916651f5`。两轮失败史都必须进入绑定；当前仍不记录、不读取任何
+   full-release aggregate、link count 或 classification。
 
 ## 2. 固定 entry 与 ordered status
 
@@ -52,6 +56,11 @@ search utility、causal independence 或 first-960 closure。12 个不可 finger
 - builder A/B 独立进程且逐字节一致；non-importing verifier A/B 独立重建且逐字节一致；
 - v7 source、两套证书、完整 release audit、独立 postflight、source commit、protocol 与 snapshot 全部 hash-bound；
 - JSON assertion 数、entry 数、artifact 数与 bound-file 数由实现完成后机器打印，并原样写入正式报告，不心算；
+- compact publication package 的结果前协议固定为
+  `phase1/historical_release_future_identifier_erased_package_protocol_v1.json`，SHA-256=
+  `ba6a1f6e44458e65b7042fcfd6e84e95e2e2b6cec0c7d0bb494ad7e0924da2d7`。它固定三个 remote roots、两个旧失败
+  roots、输出路径/文件集和三档映射；packager 只能在 formal/postflight/deployment 三份 manifest 全量复核、A/B
+  逐字节一致和旧 rc=124/1 历史精确成立后写 aggregate-only package；
 - fresh detached Linux worktree，13 项预检、focused/full tests、credential filename/blob scan、manifest recheck 全部通过；
 - 不读取 raw senior archives、prospective label/grade/outcome、prediction values 或 identity/code payload；
 - GPU/API/model-fit/base-update=`0/0/0/0`；任何未知重复、哈希漂移、snapshot 漂移、超时或 monitor 异常均 fail closed，

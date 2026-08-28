@@ -1,0 +1,91 @@
+{
+  "protocol": "historical-release-future-identifier-erased-package-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T07:48:00Z",
+  "status": "RESULT_BLIND_PACKAGE_PROTOCOL_FROZEN",
+  "purpose": "Create a compact, identity-free, hash-bound publication package from the fixed full-v11-release to 435-run future formal chain without changing its scientific decision rule.",
+  "fixed_source": {
+    "source_commit": "8bf95124175a7ba7f388ac547b31be05916651f5",
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "resource_r2_protocol_path": "phase1/historical_release_future_identifier_erased_887_protocol_v1_resource_r2.json",
+    "resource_r2_protocol_sha256": "52390b9a78893775db70a85dbda8e98132363cbb997e7006eab0646e9c0f73b3",
+    "superseded_protocol_sha256": "22f2d4f4853c11398429c40f91f952711ee2003bc27bec7c977726c82f0771ea",
+    "formal_root": "/research/d7/spc/yzyang4/historical-release-future-identifier-erased-overlap/formal-8bf9512-887491a-r2",
+    "postflight_root": "/research/d7/spc/yzyang4/historical-release-future-identifier-erased-overlap/postflight-8bf9512-887491a-r2",
+    "deployment_root": "/research/d7/spc/yzyang4/historical-release-future-identifier-erased-overlap/deploy-8bf9512-887491a-r2",
+    "failed_formal_root": "/research/d7/spc/yzyang4/historical-release-future-identifier-erased-overlap/formal-ed3d294-887491a-v1",
+    "failed_deployment_root": "/research/d7/spc/yzyang4/historical-release-future-identifier-erased-overlap/deploy-ed3d294-887491a-v1"
+  },
+  "fixed_population": {
+    "historical_endpoints": 16012,
+    "historical_runs": 667,
+    "historical_tasks": 25,
+    "future_endpoints": 11906,
+    "future_runs": 435,
+    "future_tasks": 34,
+    "future_closure": false
+  },
+  "required_chain": {
+    "formal_complete": true,
+    "formal_failed_rc_absent": true,
+    "postflight_complete": true,
+    "postflight_failed_rc_absent": true,
+    "deployment_complete": true,
+    "deployment_failed_rc_absent": true,
+    "producer_a_b_byte_identical": true,
+    "formal_verifier_a_b_byte_identical": true,
+    "postflight_verifier_a_b_byte_identical": true,
+    "postflight_equals_formal_verifier": true,
+    "all_three_sha256_manifests_recheck": true,
+    "snapshot_stable": true
+  },
+  "required_failure_history": {
+    "failed_formal_rc": 124,
+    "failed_deployment_rc": 1,
+    "failed_stage": "producer_a",
+    "failed_timeout_seconds": 1800,
+    "failed_result_file_created": false,
+    "failed_stderr_bytes": 0,
+    "failed_result_values_read": false,
+    "scientific_protocol_changed_in_r2": false
+  },
+  "ordered_classification": [
+    "ZERO_IDENTIFIER_ERASED_RELEASE_LINKS",
+    "LOW_IDENTIFIER_ERASED_RELEASE_OVERLAP_WITH_EXCEPTIONS",
+    "RELEASE_SPLIT_INTEGRITY_GATE_FAIL"
+  ],
+  "ordered_evidence_index_status": {
+    "ZERO_IDENTIFIER_ERASED_RELEASE_LINKS": "PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960",
+    "LOW_IDENTIFIER_ERASED_RELEASE_OVERLAP_WITH_EXCEPTIONS": "PROVISIONAL_QUALIFIED_TEMPORAL_SPLIT_EVIDENCE_STACK_AWAITING_FIRST960",
+    "RELEASE_SPLIT_INTEGRITY_GATE_FAIL": "TEMPORAL_SPLIT_EVIDENCE_STACK_GATE_FAIL"
+  },
+  "classification_rule": "Gate failure takes precedence; otherwise zero primary links maps to ZERO and any positive primary link count maps to LOW_WITH_EXCEPTIONS. Strict sensitivity cannot rescue primary.",
+  "output_contract": {
+    "fixed_repo_relative_root": "phase1/results/historical_release_future_identifier_erased_overlap_887_20260828_8bf9512_r2",
+    "files": [
+      "README.md",
+      "formal_summary.json",
+      "independent_recheck.json",
+      "source_bindings.json",
+      "access_attestation.txt",
+      "SHA256SUMS"
+    ],
+    "raw_identity_or_code_payloads_emitted": false
+  },
+  "claim_boundary": {
+    "fixed_identifier_erased_syntactic_overlap_only": true,
+    "semantic_clone_absence_proven": false,
+    "unknown_pretraining_contamination_absence_proven": false,
+    "all_historical_sources_covered": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "first960_or_closure_completed": false,
+    "strict_sensitivity_can_rescue_primary": false
+  },
+  "security": {
+    "prospective_label_grade_outcome_or_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "historical_label_or_observation_fields_used": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  },
+  "failure_rule": "Any path, hash, manifest, population, byte-identity, status, classification, prior-failure, or security mismatch fails closed and produces no package."
+}

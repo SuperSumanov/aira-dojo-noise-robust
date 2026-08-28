@@ -13,6 +13,23 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GW. 2026-08-28 完整 release 审计的结果盲发布封装已冻结
+
+在 r2 尚未产生或读取任何 full-release aggregate/link/classification 时，进一步冻结 compact publication package：
+协议 SHA-256=`ba6a1f6e44458e65b7042fcfd6e84e95e2e2b6cec0c7d0bb494ad7e0924da2d7`，固定 audit source commit=
+`8bf95124175a7ba7f388ac547b31be05916651f5`、snapshot=`887491a...`、formal/postflight/deployment 三个 roots、
+旧失败 formal/deployment 两个 roots，以及唯一 repo 输出路径。三档 evidence-index status 逐字节复用 v8 预注册：
+ZERO→`PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960`，LOW_WITH_EXCEPTIONS→
+`PROVISIONAL_QUALIFIED_TEMPORAL_SPLIT_EVIDENCE_STACK_AWAITING_FIRST960`，其余→
+`TEMPORAL_SPLIT_EVIDENCE_STACK_GATE_FAIL`；gate fail 优先，strict sensitivity 不得 rescue primary。
+
+packager 只有在三份 SHA256 manifest 全量成员与内容复核、producer/formal verifier/postflight verifier 各 A/B
+逐字节一致、postflight=formal verifier、旧 rc=`124/1` 且旧 producer result 不存在、全部 security/population/source
+binding 精确成立时，才原子写 aggregate-only 六文件包；任何漂移直接失败且不留半包。packager SHA-256=
+`48bc593957462356738f67f25a76fdd395dab40968f7a9e8bfabe77caf7849c7`，结果盲 synthetic focused=`8 passed`。
+当前 r2 正式 full tests=`1269 passed, 47 warnings` 后仍在 producer A；未读取 full-release result，prospective
+label/outcome/prediction、raw archive、GPU/API/model-fit/base-update=`false/false/false/false/0/0/0/0`。
+
 ## 0GV. 2026-08-28 完整 v11 release→435-run future 审计首轮资源失败；r2 结果前冻结
 
 为补 0GU “历史侧只覆盖 critic-train endpoints”的边界，已冻结一个更强但仍仅属 benchmark-integrity 的

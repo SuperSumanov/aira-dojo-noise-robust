@@ -1,0 +1,40 @@
+{
+  "aggregate_receipt_sha256": "8736be6a685e207eb39c25f1e7f7fa60f44adc0a908975fc1f7eb6e625343968",
+  "amendment_sha256": "63e8acc446417ee8fab51dabcdc296a8d3b38412900a7eb6152f96d5f592cae3",
+  "eligible_candidate_counts": {
+    "decision_direct_sibling:g1_2": 86,
+    "decision_direct_sibling:g2_4": 72,
+    "decision_direct_sibling:g4_8": 58,
+    "decision_direct_sibling:g8_inf": 102,
+    "value_hardware_time:g1_2": 103,
+    "value_hardware_time:g2_4": 118,
+    "value_hardware_time:g4_8": 80,
+    "value_hardware_time:g8_inf": 279
+  },
+  "private_panel_sha256": "a9d9f1df5a7a9aef2ba14682eb0514849ec8aba9abcc9dda69101babb7ff6be1",
+  "protocol": "openrouter-full-context-private-panel-independent-verifier-v2",
+  "protocol_sha256": "56a33c2409fd1cd317df948577bacb769f6bf61c08dd748f38b2e7c62e727a29",
+  "security": {
+    "api_calls": 0,
+    "identities_or_code_emitted": false,
+    "prospective_values_read": false
+  },
+  "selection": {
+    "endpoints": 128,
+    "first_feasible_seed": 0,
+    "pairs": 64,
+    "physical_runs": 64,
+    "selected_counts": {
+      "decision_direct_sibling:g1_2": 8,
+      "decision_direct_sibling:g2_4": 8,
+      "decision_direct_sibling:g4_8": 8,
+      "decision_direct_sibling:g8_inf": 8,
+      "value_hardware_time:g1_2": 8,
+      "value_hardware_time:g2_4": 8,
+      "value_hardware_time:g4_8": 8,
+      "value_hardware_time:g8_inf": 8
+    },
+    "tasks": 29
+  },
+  "status": "PRIVATE_PANEL_INDEPENDENT_RECONSTRUCTION_EXACT"
+}

@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IL. 2026-08-29 full-context v2 得到精确平衡 panel，并通过第二实现逐字段复验
+
+v2 在 metric-independent eligibility readout 前只删除全库不存在的独立 metric-name 行；其 fresh formal 得到八个固定
+strata 的 eligible counts=`86/72/58/102`（decision）与 `103/118/80/279`（value hardware-time），first-feasible
+seed=0。固定选择恰好 64 pairs、64 physical runs、29 tasks、128 endpoints，每 stratum=8、每 run≤1、每 task≤4、
+endpoint duplicate excess=0；private panel/aggregate receipt SHA-256=`a9d9f1df...be1` / `8736be6a...968`。
+
+公开 commit=`932ef387439c1f3a27ec0ec358bc986226f81bae` 的独立 verifier 不 import builder/judge，从五个 immutable
+historical inputs 重建 eligibility、seed、全部私有行和**整份** aggregate receipt，双跑逐字节一致；result SHA-256=
+`4ab25eaa...3a5`，focused/full=`14/1551 passed`（47 warnings），network/prospective opens/private-value emission=
+`0/0/0`。r1 的 direct-file module-path import failure 无 COMPLETE，r2 才是唯一 formal。该结论只升级为
+`METRIC_INDEPENDENT_EXACT_PANEL_FEASIBLE`：证明历史 full-context evaluator 诊断可执行且可审计，不证明模型准确率、
+predictor scaling、label efficiency 或 search utility；API/GPU/model-fit/base-update=`0/0/0/0`，live call 仍未授权。
+详见 `phase1/实验记录/2026-08-29/OpenRouterFullContext_v2_结构可行性与独立复验正式裁决.md`。
+
 ## 0IK. 2026-08-29 full-context v1 已结构 KILL；v2 只删除全库不存在的 metric-name 行
 
 metric-recovery r4 仍八个 strata eligible=0，故 v1 固定分类为

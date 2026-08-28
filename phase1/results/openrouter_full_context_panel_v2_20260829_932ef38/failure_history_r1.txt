@@ -1,0 +1,8 @@
+status=FAILED_NO_COMPLETE
+commit=932ef387439c1f3a27ec0ec358bc986226f81bae
+remote_root=/research/d7/spc/yzyang4/openrouter-full-context-v2/verify-932ef38-r1
+failure_stage=verifier_process_import
+failure=ModuleNotFoundError: No module named 'phase1'
+cause=direct-file invocation did not place the repository root on the Python module path
+private_panel_reconstruction_started=false
+remedy=fresh r2 root used the package module entry point; no failed artifact was promoted

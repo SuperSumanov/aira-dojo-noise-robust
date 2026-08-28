@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
+02_question=Can known search-tree topology unlock more sibling training labels per complete endpoint execution than a strong random-edge acquisition baseline? PASS
+03_population=exact historical v11 train-b0 lineage-direct graph with normalized-LF SHA and published lineage certificate; PASS
+04_known_before=pair parent endpoint task and run totals known while all acquisition yield breadth concentration curves remain unseen; PASS
+05_estimand=closed sibling labels per full endpoint execution, not predictor accuracy search utility or multifidelity; PASS
+06_methods=uniform node uniform edge closure greedy and task-run-balanced closure greedy exactly frozen; PASS
+07_budgets=one trajectory to 4096 endpoints with six fixed checkpoints and no checkpoint-specific reoptimization; PASS
+08_randomness=64 SHA random baseline seeds and 8 SHA tie-sensitivity seeds with two interpreter hash seeds; PASS
+09_gates=yield breadth anti-dominance and trajectory-consistency thresholds fixed before real curves; PASS
+10_resources=CPU-only topology replay with GPU API model-fit base-update 0/0/0/0; PASS
+11_repro=fresh detached public commit two producer runs and independent non-importing verifier runs; PASS
+12_security=no orientation gap grade code prediction runtime prospective value raw archive or row identity release; PASS
+13_stop=hash schema relation context duplicate trace secret or verifier mismatch fails closed without population budget threshold or primary rescue; PASS

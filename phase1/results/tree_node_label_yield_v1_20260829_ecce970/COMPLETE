@@ -1,0 +1,15 @@
+status=COMPLETE
+commit=ecce9702591b5950a63f1e58f4d56fb46cb6289a
+protocol_sha256=b32f7ba39aff81b5d5637530e0e0e73b2b9a655c56c83cc99d087bc0075cf881
+producer_result_sha256=dad4197b8172bd8e7a7ff785f35cddc722397574c680bd587d42fbcf7dfb1e2a
+verifier_result_sha256=82d2008268aea3607d4c0ab41b53e4f1525ad10a48a08c29ab4e4c5342e453cc
+classification=HISTORICAL_GRAPH_AWARE_FULL_EXECUTION_LABEL_YIELD_NOT_ESTABLISHED
+network_calls=0
+forbidden_prospective_opens=0
+row_identities_emitted=0
+full_test_tail=1558 passed, 47 warnings in 91.47s (0:01:31)
+gpu_jobs=0
+api_calls=0
+model_fits=0
+base_llm_updates=0
+completed_utc=2026-08-28T23:35:11Z

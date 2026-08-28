@@ -1,4 +1,4 @@
-# 当前研究方向唯一入口（2026-08-28）
+# 当前研究方向唯一入口（2026-08-29）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
@@ -12,6 +12,24 @@
 > 支持审计改写；所有更早“唯一主实验”“主线已确认”措辞均按本段降为历史状态。
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
+
+## 0IN. 2026-08-29 Tree Node → Sibling Label Yield 低预算正信号明确，但 v1 总门失败
+
+0IM 的 frozen b0 formal 已完成。task/run-balanced closure greedy 对强 `uniform_edge` 基线在 endpoint budget=512/1024
+的 closed-edge median 为 `422/285`、`806/628`，相对高 `48.070175%/28.343949%`，且这两个预算的 yield、breadth、
+task/run anti-dominance 单预算门均通过；六个预算有五个 balanced median 更高，trajectory consistency 也过门。
+
+但第三个预注册 headline budget=2048 只有 `1479/1420=1.041549296`，最差 tie seed=`1470`，未达到固定 `6/5`；4096
+预算还为 `3163/3222`。因此必须保持分类 **`HISTORICAL_GRAPH_AWARE_FULL_EXECUTION_LABEL_YIELD_NOT_ESTABLISHED`**，
+不得删除高预算、降门或用事后看到更强的非均衡 closure secondary 替换 primary。允许的窄诊断是 topology allocation
+可能只在 label-scarce regime 有优势，并存在 yield--balance 权衡；下一步若继续，只能把 b0 当 discovery，在 acquisition
+curves 尚未读取的 train:b1/b2 上先冻按 fraction 的外部确认，且先核验跨预算身份独立边界。
+
+producer/verifier A/B 各自逐字节一致，result/verifier SHA-256=`dad4197b...b1e2a` / `82d20082...453cc`；独立 verifier
+逐字段 exact，focused/full=`7/1558 passed`（47 warnings），network/prospective opens/row identities=`0/0/0`，
+GPU/API/model-fit/base-update=`0/0/0/0`。正式包见
+`phase1/results/tree_node_label_yield_v1_20260829_ecce970/`，详见
+`phase1/实验记录/2026-08-29/TreeNodeLabelYield_v1_正式裁决.md`。
 
 ## 0IM. 2026-08-29 Tree Node → Sibling Label Yield 已在真实 acquisition curve 前预注册
 

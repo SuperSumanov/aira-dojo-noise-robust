@@ -38,6 +38,9 @@ fail closed，未产生任何科学量；`explore-v2` 改用 commit `be91107...`
 - 穷举 99,039 个非 parent 同层候选，只有 543 个会被误收为 unique top，false-acceptance=
   `543/99039=0.00548269`；
 - 若每个 child 均匀替换一个错误 parent，期望误收约 `0.0104840`；
+- 若攻击者可针对每个 child 选择最有利的错误候选，则 543 个 child 至少有一个 wrong candidate 会成为 unique top，
+  child-level adversarial vulnerability=`543/9739=0.0557552`；本开发样本的 543 个真 parent 失败全部属于这一类，
+  tie-only failure=`0`。因此 `0.00548269` 只能称 all-alternative micro FPR，不能称任意 corruption 的总体失败率；
 - task breadth：33 个 conditionable tasks 中 `33/33` 达到 0.85，`31/33` 达到 0.90；
 - run breadth：394 个 conditionable runs 中 `377/394` 达到 0.85，`367/394` 达到 0.90；最大 task/run
   contribution share 分别约 0.2830/0.0717。
@@ -67,6 +70,11 @@ fail closed，未产生任何科学量；`explore-v2` 改用 commit `be91107...`
   directed graph；不能申“首次图结构记录 agent workflow”。
 - [Tracing the Roots](https://arxiv.org/abs/2604.10480) 重建的是 post-training dataset 之间的文档级继承关系，
   不是单次 search run 内的 node parent pointer；仍关闭泛化的“data lineage 首创”措辞。
+- [Towards Automatic Software Lineage Inference](https://www.usenix.org/conference/usenixsecurity13/technical-sessions/papers/jang)
+  已在真实软件直线与 DAG 版本上用程序相似性恢复 lineage，并系统比较 graph-arc edit、partial-order 等质量指标；
+  因此不能申“首次用代码内容验证程序 lineage”。
+- [Neural Lineage](https://arxiv.org/abs/2406.11129) 与 [modelDNA](https://arxiv.org/abs/2607.10617) 已分别用模型
+  相似性和权重 fingerprint 做 parent attribution/verification；所以“fingerprint-based parent verification”也不是一般首创。
 - Tree Training/TreePO/TreeAdv 等已覆盖 shared-prefix reuse 与 tree-aware credit；本线不申 tree learning 或
   weighting novelty。
 

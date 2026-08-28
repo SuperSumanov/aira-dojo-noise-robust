@@ -21,6 +21,9 @@
 `11446/22315=0.5129285`。但在同一 physical run 内再给出 exact preceding depth 后，9,739 个非 trivial parent
 候选集中 recorded parent 是 unique nearest neighbor 的比例达到 `9196/9739=0.9442448`，比同候选集 uniform random
 期望高约 64.46pp；穷举 99,039 个同层错误 parent 只有 543 个会被误收，false acceptance=`543/99039=0.00548269`。
+这里必须同时披露分母：按 child 计算，“至少存在一个可误收 wrong candidate”的 adversarial vulnerability 为
+`543/9739=0.0557552`；每个 child 均匀随机替换一个 wrong candidate 的期望为约 `0.0104840`。`0.00548269` 只允许称
+all-alternative micro FPR，不得单独包装成任意 corruption 的总体失败概率。
 
 该信号在 task/run 上很宽：33/33 conditionable tasks、377/394 runs 达到 0.85；移除 depth 后 unique-top 降至
 `2633/5438=0.4841854`，33 个 tasks 中 0 个达到 0.85。两阶段 producer 与不导入 producer 的独立实现均逐字段一致；
@@ -46,6 +49,11 @@ focused/full=`34/1438 passed`，full 有 47 warnings；post-push manifest SHA-25
 `f1141aa784bf8873adf1a71edd1469280b25706d7a745618184eb50ad00070d4`。首次外层 launcher 在 watcher 已启动后
 因正常 Git fetch 提示写入 stderr 而未完成自身 postcheck；该工程瑕疵已原样记录，watcher 本体未失败且没有重启或重复实例。
 截至该回执仍无 Target-522 scientific result。
+
+后续防撞又确认 ILINE 已对真实软件 DAG 做 similarity-based lineage inference 与 graph-arc/partial-order 评价，Neural
+Lineage/modelDNA 已对模型 parentage 做 similarity/fingerprint verification，Tracing the Roots 已做数据集演化图重建；
+因此“内容验证 lineage”“corruption detector”也不申一般方法 novelty。三层 MLE-specific release integrity stack 与完整
+分母裁决见 `phase1/实验记录/2026-08-28/ParentPointer完整性威胁模型与防撞裁决.md`；该文档不改变已冻结 protocol。
 
 ## 0HM. 2026-08-28 within-stratum 改为 Target-522 不重叠前瞻确认
 

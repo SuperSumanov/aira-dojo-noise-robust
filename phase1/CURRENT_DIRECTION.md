@@ -38,6 +38,15 @@ hard support 先判，887/累计人口/替代阈值不得 rescue。协议与完�
 `phase1/实验记录/2026-08-28/PhysicalLineage_ContentConcordance_开发结果与Target522前瞻冻结.md`；真实未来 profile
 尚未运行，故当前只可称已独立复验的开发正信号与结果前执行机会。
 
+实现与执行链已由 exact push `bee9e97e839fb4ffa9867f00e026b052a0570662` 闭环：fresh detached Linux
+focused/full=`34/1438 passed`，full 有 47 warnings；post-push manifest SHA-256=
+`08e384b343fbca1da2ee6d9e17efa62bee1ffe591882ef94336669afdbb01109`，提交文件名/内容凭据命中=`0/0`。
+同一 commit 的 watcher 于 `2026-08-28T14:52:33Z` 独立复核为 PID=`4087901`、lock held、selection
+`COMPLETE=false`，未读 candidate/profile；部署 postflight manifest=
+`f1141aa784bf8873adf1a71edd1469280b25706d7a745618184eb50ad00070d4`。首次外层 launcher 在 watcher 已启动后
+因正常 Git fetch 提示写入 stderr 而未完成自身 postcheck；该工程瑕疵已原样记录，watcher 本体未失败且没有重启或重复实例。
+截至该回执仍无 Target-522 scientific result。
+
 ## 0HM. 2026-08-28 within-stratum 改为 Target-522 不重叠前瞻确认
 
 **结果前完整性修订（13:03:57Z）**：首个 monitor 上线后、候选仍为空且 LATEST 仍为 887 时，发现协议的

@@ -96,3 +96,24 @@ physical tree 与 flat similarity landscape 是互补而非可互换的 release 
 
 不允许说：parent 是外部语义/因果真值、所有 learned/embedding reconstructor 都失败、首次提出 similarity graph、首次保存
 agent tree、证明 predictor 更准、证明 search utility 提升，或结果已泛化到 first-960 closure 之外。
+
+## 实现、推送与前瞻 watcher 回执
+
+协议、producer、不导入 producer 的独立 verifier、攻击测试、formal runner 与 watcher 已由 exact commit
+`bee9e97e839fb4ffa9867f00e026b052a0570662` 推送。fresh detached Linux 复验：focused=`34 passed in 1.63s`，完整
+`phase1/tests=1438 passed, 47 warnings in 77.88s`；post-push manifest SHA-256=
+`08e384b343fbca1da2ee6d9e17efa62bee1ffe591882ef94336669afdbb01109`。changed filename 与 boundary-aware
+changed-blob credential hits=`0/0`；prospective label/grade/outcome/prediction、raw senior archive 均未读，
+GPU/API/model-fit/base-update=`0/0/0/0`。
+
+watcher root：
+`/research/d7/spc/yzyang4/tree-content-lineage-forward-target522/formal-monitor-bee9e97-target522-v1`。独立部署
+postflight 于 `2026-08-28T14:52:33Z` 验证 PID=`4087901` 存活、exclusive lock held、无
+`FAILED_RC/READY/COMPLETE/TIMEOUT_RC/INTERRUPTED_RC`，且只观察 selection `COMPLETE` 的存在性，没有读取
+candidate 或 profile。postflight manifest SHA-256=
+`f1141aa784bf8873adf1a71edd1469280b25706d7a745618184eb50ad00070d4`。
+
+首次外层 launcher 在 watcher 已启动后，把 Git fetch 写入 stderr 的两行正常进度提示当作非空错误，因此没有走完
+launcher 自身的最终 postcheck。该事实与 stderr hash 已保留；它不是科学运行失败：watcher 源码与 runner 均重新绑定
+exact git object、PID/lock/markers 已由独立 postflight 复验。为避免重复实例与选择时序扰动，没有重启 watcher。
+截至本回执 selection 尚未闭合，因此仍没有真实 Target-522 classification。

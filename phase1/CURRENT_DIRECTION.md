@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HB. 2026-08-28 tree linearization weight 已在 aggregate 前冻结
+
+为把 0HA 的 canonical-linearization 边界转成 outcome-blind MLE 实证，已固定 snapshot `887491a...` 上的结构审计：
+同一 blind observed fragment 分别按“一条 child-parent edge 一次”和“枚举全部 fragment-root-to-leaf paths”计权；后者
+中每条 edge 的 multiplicity 等于 descendant leaves 数。只比较由表示产生的 task/run empirical-weight 变化，不读取
+label/outcome/prediction，不补缺失 parent，也不称 complete source tree。
+
+结果前支持门为 parent-present endpoint fraction≥0.75、unique edges≥1,500、edge-bearing runs/tasks≥150/15；材料门
+固定为 duplicate occurrence fraction≥0.25、task TV≥0.05、run TV≥0.10。ordered classification 明确区分多轴材料
+reweighting、仅 run 轴、只有 duplication、零 duplication 与 gate fail，后项不得 rescue 前项。即使最高档通过，也只
+是固定 MLE snapshot 的结构测量，不证明 mle-traj raw tree 缺失、predictor effect、search utility、因果性或一般方法
+novelty。协议与边界见 `phase1/实验记录/2026-08-28/TreeLinearizationWeight_887结果前预注册.md`。
+冻结协议 SHA-256 为 `95b49fd50b75dd16fd9eefbb34557da35daa52fcecc35fce45ac89948a697feb`；真实 aggregate
+运行前，本地生产器/独立复算器及相邻回归共 `19 passed`。
+
 ## 0HA. 2026-08-28 mle-traj 的 true-sibling 缺口暂列未决，禁止由 canonical linearization 外推 raw release
 
 最新公开数据卡同时给出两项事实：canonical agent tables 把 13 个 MLEvolve physical runs 线性化为 189 条

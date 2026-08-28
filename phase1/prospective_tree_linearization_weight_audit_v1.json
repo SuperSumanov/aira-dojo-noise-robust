@@ -1,0 +1,87 @@
+{
+  "protocol": "prospective-tree-linearization-weight-audit-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T09:24:04Z",
+  "status": "OUTCOME_BLIND_PROTOCOL_FROZEN_BEFORE_LINEARIZATION_AGGREGATES",
+  "question": "How much does representing each observed MLE search-tree fragment as all root-to-leaf trajectories duplicate shared-prefix edges and change the implicit task and physical-run weights relative to one-row-per-observed-edge representation?",
+  "fixed_snapshot": {
+    "sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "provisional_first960_runs": 435,
+    "eligible_endpoints": 11906,
+    "tasks": 34,
+    "closure_provided": false
+  },
+  "population": {
+    "rows": "all eligible endpoints in the fixed snapshot blind manifests",
+    "observed_edge": "child to parent only when both endpoint identities occur in the same fixed blind population",
+    "fragment_root": "an endpoint whose declared parent is absent from the fixed blind population",
+    "fragment_leaf": "an endpoint with no observed child in the fixed blind population",
+    "unique_edge_representation": "each observed child-parent edge has weight one",
+    "branch_linearized_representation": "enumerate every fragment-root-to-fragment-leaf path; an observed edge receives multiplicity equal to its number of descendant fragment leaves",
+    "single_node_fragments": "counted structurally but contribute zero edges in both representations",
+    "no_task_run_subset_or_threshold_selection_after_results": true
+  },
+  "hard_integrity_gates": {
+    "latest_equals_fixed_snapshot": true,
+    "intake_and_accumulator_hashes_rechecked": true,
+    "blind_manifest_schema_exact": true,
+    "all_cards_unique": true,
+    "all_provisional_runs_unique_and_scoreable": true,
+    "card_run_task_matches_provisional_run": true,
+    "observed_edges_same_task_and_physical_run": true,
+    "observed_graph_acyclic": true,
+    "minimum_parent_present_endpoint_fraction": 0.75,
+    "minimum_observed_unique_edges": 1500,
+    "minimum_physical_runs_with_observed_edges": 150,
+    "minimum_tasks_with_observed_edges": 15
+  },
+  "materiality_thresholds": {
+    "minimum_duplicate_branch_occurrence_fraction": 0.25,
+    "minimum_unique_to_linearized_task_total_variation": 0.05,
+    "minimum_unique_to_linearized_run_total_variation": 0.1,
+    "per_task_run_total_variation_reference": 0.1
+  },
+  "ordered_classification": [
+    "MULTI_AXIS_MATERIAL_LINEARIZATION_REWEIGHTING",
+    "RUN_LEVEL_MATERIAL_LINEARIZATION_REWEIGHTING",
+    "LINEARIZATION_DUPLICATION_WITHOUT_MATERIAL_WEIGHT_SHIFT",
+    "NO_OBSERVED_LINEARIZATION_DUPLICATION",
+    "LINEARIZATION_AUDIT_GATE_FAIL"
+  ],
+  "classification_rule": "Gate failure takes precedence. Otherwise MULTI_AXIS requires the duplicate-fraction, task-TV, and run-TV thresholds; RUN_LEVEL requires the duplicate-fraction and run-TV thresholds; any positive duplicate count below those gates maps to DUPLICATION_WITHOUT_MATERIAL_WEIGHT_SHIFT; exact zero duplication maps to NO_OBSERVED_LINEARIZATION_DUPLICATION.",
+  "required_outputs": {
+    "identity_free_aggregate_only": true,
+    "inventory": true,
+    "edge_multiplicity_distribution": true,
+    "unique_vs_linearized_task_and_run_concentration": true,
+    "task_and_run_total_variation": true,
+    "anonymous_per_task_run_tv_distribution": true,
+    "depth_weighting_diagnostic": true,
+    "producer_a_b_byte_identical": true,
+    "non_importing_verifier_a_b_byte_identical": true
+  },
+  "claim_boundary": {
+    "allowed_if_multi_axis": "On this fixed outcome-blind MLE-agent snapshot, root-to-leaf linearization materially duplicates shared-prefix edges and changes both task and physical-run empirical weights under the predeclared thresholds.",
+    "allowed_if_run_level": "On this fixed outcome-blind MLE-agent snapshot, root-to-leaf linearization materially duplicates shared-prefix edges and changes physical-run empirical weights under the predeclared thresholds; task-mix materiality is not supported.",
+    "generic_graph_theory_novelty": false,
+    "mle_traj_raw_tree_claim": false,
+    "complete_source_tree_or_choice_set_proven": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "first960_or_closure_completed": false,
+    "semantic_or_causal_claim": false
+  },
+  "security": {
+    "allowed_input_basenames": [
+      "LATEST",
+      "eligible_blind_manifest.jsonl",
+      "intake_registry.jsonl",
+      "provisional_runs.jsonl",
+      "summary.json"
+    ],
+    "raw_senior_archives_opened": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "task_run_card_parent_or_code_values_emitted": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  },
+  "failure_rule": "Any snapshot, hash, schema, graph, support, security, byte-reproducibility, or independent-verification mismatch fails closed without changing the population, fragment rule, weighting rule, threshold, or classification order."
+}

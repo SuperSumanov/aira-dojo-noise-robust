@@ -100,6 +100,8 @@ Qwen2.5 只跑了 seed 7：3B **59.14%**、7B **59.83%**、14B **61.12%**、32B 
 
 ## 5. RL judger 数据流水线与初步结果
 
+https://wandb.ai/zizhechen-the-chinese-university-of-hong-kong/mle-critic-rl/reports/MLE-critic-RL---VmlldzoxNzgyMzU1Nw?accessToken=3wv2wd5g3h9fk47lqyojqc8a8fpfrnva7cutmr3vof98edzl541xmartzgrvchzj
+
 流水线位于 `src/mle_critic/src/postprocess/rl`：
 
 1. `rl_system_prompt.py` 从每个任务找到一份 step-1 journal，抽取 competition instructions、data overview 和 constraints，拼成统一 system prompt；

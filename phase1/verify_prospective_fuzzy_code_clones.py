@@ -7,6 +7,7 @@ import collections
 import hashlib
 import io
 import json
+import keyword
 import math
 import os
 import subprocess
@@ -106,6 +107,55 @@ def shingles(code: str) -> frozenset[int] | None:
             "utf-8"
         )
         digest = hashlib.blake2b(payload, digest_size=schema.SHINGLE_HASH_BITS // 8)
+        values.add(int.from_bytes(digest.digest(), "big"))
+    if len(values) < schema.MIN_DISTINCT_SHINGLES:
+        return None
+    return frozenset(values)
+
+
+def identifier_erased_shingles(code: str) -> frozenset[int] | None:
+    ignored = {
+        tokenize.ENCODING,
+        tokenize.COMMENT,
+        tokenize.NL,
+        tokenize.NEWLINE,
+        tokenize.INDENT,
+        tokenize.DEDENT,
+        tokenize.ENDMARKER,
+    }
+    tokens: list[str] = []
+    try:
+        for token in tokenize.generate_tokens(io.StringIO(code).readline):
+            if token.type in ignored:
+                continue
+            if token.type == tokenize.NAME:
+                tokens.append(
+                    token.string
+                    if keyword.iskeyword(token.string)
+                    else schema.IDENTIFIER_TOKEN
+                )
+            elif token.type == tokenize.NUMBER:
+                tokens.append(schema.NUMBER_TOKEN)
+            elif token.type == tokenize.STRING:
+                tokens.append(schema.STRING_TOKEN)
+            elif token.type == tokenize.OP:
+                tokens.append(token.string)
+            elif token.type == tokenize.ERRORTOKEN and token.string.isspace():
+                continue
+            else:
+                tokens.append(f"{tokenize.tok_name[token.type]}:{token.string}")
+    except (IndentationError, SyntaxError, tokenize.TokenError):
+        return None
+    if len(tokens) < schema.SHINGLE_SIZE:
+        return None
+    values: set[int] = set()
+    for offset in range(len(tokens) - schema.SHINGLE_SIZE + 1):
+        payload = "\0".join(tokens[offset : offset + schema.SHINGLE_SIZE]).encode(
+            "utf-8"
+        )
+        digest = hashlib.blake2b(
+            payload, digest_size=schema.SHINGLE_HASH_BITS // 8
+        )
         values.add(int.from_bytes(digest.digest(), "big"))
     if len(values) < schema.MIN_DISTINCT_SHINGLES:
         return None
@@ -282,7 +332,23 @@ def aggregate(records: list[Record], edges: list[Edge]) -> dict[str, Any]:
 def reproduce(
     state_root: Path, snapshot_root: Path, producer: dict[str, Any]
 ) -> dict[str, Any]:
-    require(producer.get("protocol") == schema.PROTOCOL, "protocol mismatch")
+    protocol = producer.get("protocol")
+    require(
+        protocol in {schema.PROTOCOL, schema.IDENTIFIER_ERASED_PROTOCOL},
+        "protocol mismatch",
+    )
+    identifier_erased = protocol == schema.IDENTIFIER_ERASED_PROTOCOL
+    expected_representation = (
+        schema.IDENTIFIER_ERASED_REPRESENTATION
+        if identifier_erased
+        else schema.LEXICAL_REPRESENTATION
+    )
+    require(
+        producer.get("fingerprinting", {}).get("representation")
+        == expected_representation,
+        "representation mismatch",
+    )
+    fingerprint_function = identifier_erased_shingles if identifier_erased else shingles
     require(snapshot_root.resolve().name == producer.get("snapshot_sha256"), "snapshot mismatch")
     require(snapshot_root.resolve().parent == state_root.resolve() / "snapshots", "path mismatch")
     inputs = producer["inputs"]
@@ -364,7 +430,7 @@ def reproduce(
             endpoint_counts[row["run_id"]] += 1
             if row["run_id"] not in cohort_ids:
                 continue
-            values = shingles(row["code"])
+            values = fingerprint_function(row["code"])
             if values is None:
                 # Distinguish lexical failures from short/low-diversity cases without
                 # importing or calling the producer implementation.
@@ -426,9 +492,46 @@ def reproduce(
     subset_join, _ = independent_join(subset)
     subset_brute = brute_force(subset)
     require(edge_signature(subset_join) == edge_signature(subset_brute), "subset brute-force mismatch")
+    coverage = len(records) / producer["scope"]["observed_endpoints"]
+    gates = {
+        "fingerprint_coverage": coverage >= schema.MIN_FINGERPRINT_COVERAGE,
+        "cross_run_affected_endpoint_fraction": primary[
+            "cross_run_affected_endpoint_fraction"
+        ]
+        <= schema.MAX_CROSS_RUN_AFFECTED_ENDPOINT_FRACTION,
+        "cross_task_affected_endpoint_fraction": primary[
+            "cross_task_affected_endpoint_fraction"
+        ]
+        <= schema.MAX_CROSS_TASK_AFFECTED_ENDPOINT_FRACTION,
+        "large_multitask_components": primary["large_multitask_components"]
+        <= schema.MAX_LARGE_MULTITASK_COMPONENTS,
+        "exact_join_self_check": True,
+    }
+    gate_payload = producer["pre_registered_gate"]
+    require(gate_payload["checks"] == gates, "gate mismatch")
+    require(
+        gate_payload["strong_low_fuzzy_clone_support"] is all(gates.values()),
+        "low-overlap gate mismatch",
+    )
+    require(
+        gate_payload["strict_lineage_local_support"]
+        is (all(gates.values()) and primary["cross_run_pairs"] == 0),
+        "strict lineage-local gate mismatch",
+    )
+    independent_protocol = (
+        schema.IDENTIFIER_ERASED_INDEPENDENT_PROTOCOL
+        if identifier_erased
+        else schema.INDEPENDENT_PROTOCOL
+    )
+    status = (
+        "INDEPENDENTLY_VERIFIED_PROVISIONAL_IDENTIFIER_ERASED_FUZZY_CODE_CLONE_AUDIT"
+        if identifier_erased
+        else "INDEPENDENTLY_VERIFIED_PROVISIONAL_FUZZY_CODE_CLONE_AUDIT"
+    )
     return {
-        "protocol": schema.INDEPENDENT_PROTOCOL,
-        "status": "INDEPENDENTLY_VERIFIED_PROVISIONAL_FUZZY_CODE_CLONE_AUDIT",
+        "protocol": independent_protocol,
+        "status": status,
+        "representation": expected_representation,
         "producer_receipt_sha256": sha256_file(Path(producer["_receipt_path"])),
         "snapshot_sha256": producer["snapshot_sha256"],
         "observed_runs": producer["scope"]["observed_runs"],

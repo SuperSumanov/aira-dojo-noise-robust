@@ -184,7 +184,9 @@ def file_sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def synthetic_state(tmp_path: Path) -> tuple[Path, Path]:
+def synthetic_state(
+    tmp_path: Path, programs: list[str] | None = None
+) -> tuple[Path, Path]:
     state = tmp_path / "state"
     snapshot = state / "snapshots" / ("a" * 64)
     intake = state / "intakes" / "drop-1"
@@ -194,11 +196,13 @@ def synthetic_state(tmp_path: Path) -> tuple[Path, Path]:
     ) + "\n"
     renamed = "\n".join(f"other_{index} = {index}" for index in range(45)) + "\n"
     rows = []
+    selected = programs if programs is not None else [base, renamed, literal, base]
+    assert len(selected) == 4
     specifications = [
-        ("card-a", "run-a", "task-a", "parent-a", base, "2026-01-01T00:00:00Z"),
-        ("card-b", "run-a", "task-a", "parent-b", renamed, "2026-01-01T00:00:00Z"),
-        ("card-c", "run-b", "task-a", "parent-c", literal, "2026-01-02T00:00:00Z"),
-        ("card-d", "run-c", "task-b", "parent-d", base, "2026-01-03T00:00:00Z"),
+        ("card-a", "run-a", "task-a", "parent-a", selected[0], "2026-01-01T00:00:00Z"),
+        ("card-b", "run-a", "task-a", "parent-b", selected[1], "2026-01-01T00:00:00Z"),
+        ("card-c", "run-b", "task-a", "parent-c", selected[2], "2026-01-02T00:00:00Z"),
+        ("card-d", "run-c", "task-b", "parent-d", selected[3], "2026-01-03T00:00:00Z"),
     ]
     for card_id, run_id, task, parent, code, started in specifications:
         rows.append(
@@ -336,3 +340,92 @@ def test_verifier_module_does_not_import_authoring_module() -> None:
     source = Path(verifier.__file__).read_text(encoding="utf-8")
     assert "from phase1 import audit_prospective_fuzzy_code_clones" not in source
     assert "import phase1.audit_prospective_fuzzy_code_clones" not in source
+
+
+def identifier_program(prefix: str, literal_offset: int) -> str:
+    return f'''import {prefix}_package as {prefix}_pd
+from {prefix}_model import {prefix}_estimator
+
+def {prefix}_fit({prefix}_frame, {prefix}_target):
+    {prefix}_data = {prefix}_frame.copy()
+    {prefix}_numeric = {prefix}_data.select_dtypes(include=["number"])
+    if {prefix}_numeric.empty:
+        raise ValueError("missing-{literal_offset}")
+    for {prefix}_column in {prefix}_numeric.columns:
+        {prefix}_median = {prefix}_numeric[{prefix}_column].median()
+        {prefix}_numeric[{prefix}_column] = {prefix}_numeric[{prefix}_column].fillna({prefix}_median)
+    try:
+        {prefix}_model = {prefix}_estimator(random_state={literal_offset + 7})
+        {prefix}_model.fit({prefix}_numeric, {prefix}_target)
+    except Exception as {prefix}_error:
+        return {{"status": "failed-{literal_offset}", "value": None}}
+    {prefix}_scores = []
+    while len({prefix}_scores) < {literal_offset + 3}:
+        {prefix}_scores.append({prefix}_model.predict({prefix}_numeric))
+    return {{"status": "ok-{literal_offset}", "value": {prefix}_scores[-1]}}
+'''
+
+
+def unrelated_identifier_program(prefix: str) -> str:
+    return f'''class {prefix}_writer:
+    def __enter__(self):
+        return self
+
+    def __exit__(self, {prefix}_kind, {prefix}_value, {prefix}_trace):
+        return False
+
+    async def {prefix}_emit(self, {prefix}_items):
+        async for {prefix}_item in {prefix}_items:
+            match {prefix}_item:
+                case {{"kind": "alpha", "payload": {prefix}_payload}}:
+                    yield tuple(reversed({prefix}_payload))
+                case [*{prefix}_prefix, {prefix}_last]:
+                    yield ({prefix}_last, {prefix}_prefix)
+                case _:
+                    continue
+'''
+
+
+def test_identifier_erasure_matches_alpha_renaming_and_literal_changes() -> None:
+    first = identifier_program("alpha", 0)
+    second = identifier_program("omega", 100)
+    assert audit.token_shingles(first) != audit.token_shingles(second)
+    assert audit.identifier_erased_token_shingles(first) == (
+        audit.identifier_erased_token_shingles(second)
+    )
+    assert audit.identifier_erased_token_shingles(first) == (
+        verifier.identifier_erased_shingles(first)
+    )
+    assert audit.identifier_erased_token_shingles(first) != (
+        audit.identifier_erased_token_shingles(unrelated_identifier_program("zeta"))
+    )
+
+
+def test_identifier_erased_mode_is_independently_reproduced_end_to_end(
+    tmp_path: Path,
+) -> None:
+    programs = [
+        identifier_program("alpha", 0),
+        identifier_program("beta", 10),
+        identifier_program("gamma", 20),
+        unrelated_identifier_program("delta"),
+    ]
+    state, snapshot = synthetic_state(tmp_path, programs)
+    receipt = audit.audit(
+        state,
+        snapshot,
+        960,
+        "e" * 40,
+        schema.IDENTIFIER_ERASED_REPRESENTATION,
+    )
+    receipt_path = tmp_path / "identifier-receipt.json"
+    write_json(receipt_path, receipt)
+    receipt["_receipt_path"] = str(receipt_path)
+    independent = verifier.reproduce(state, snapshot, receipt)
+    assert receipt["protocol"] == schema.IDENTIFIER_ERASED_PROTOCOL
+    assert receipt["fingerprinting"]["fingerprinted_endpoints"] == 4
+    assert receipt["primary_jaccard_0_85"]["near_duplicate_pairs"] == 3
+    assert receipt["primary_jaccard_0_85"]["cross_run_pairs"] == 2
+    assert receipt["pre_registered_gate"]["strict_lineage_local_support"] is False
+    assert independent["representation"] == schema.IDENTIFIER_ERASED_REPRESENTATION
+    assert independent["producer_aggregate_matches"] is True

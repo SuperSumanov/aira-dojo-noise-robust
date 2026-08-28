@@ -14,6 +14,7 @@ import collections
 import hashlib
 import io
 import json
+import keyword
 import math
 import os
 import platform
@@ -126,6 +127,45 @@ def normalized_tokens(code: str) -> list[str] | None:
     return values
 
 
+def identifier_erased_tokens(code: str) -> list[str] | None:
+    """Return Python tokens after erasing non-keyword names and literals."""
+
+    ignored = {
+        tokenize.ENCODING,
+        tokenize.COMMENT,
+        tokenize.NL,
+        tokenize.NEWLINE,
+        tokenize.INDENT,
+        tokenize.DEDENT,
+        tokenize.ENDMARKER,
+    }
+    values: list[str] = []
+    try:
+        stream = tokenize.generate_tokens(io.StringIO(code).readline)
+        for token in stream:
+            if token.type in ignored:
+                continue
+            if token.type == tokenize.NAME:
+                values.append(
+                    token.string
+                    if keyword.iskeyword(token.string)
+                    else schema.IDENTIFIER_TOKEN
+                )
+            elif token.type == tokenize.NUMBER:
+                values.append(schema.NUMBER_TOKEN)
+            elif token.type == tokenize.STRING:
+                values.append(schema.STRING_TOKEN)
+            elif token.type == tokenize.OP:
+                values.append(token.string)
+            elif token.type == tokenize.ERRORTOKEN and token.string.isspace():
+                continue
+            else:
+                values.append(f"{tokenize.tok_name[token.type]}:{token.string}")
+    except (IndentationError, SyntaxError, tokenize.TokenError):
+        return None
+    return values
+
+
 def shingles_from_tokens(tokens: list[str]) -> frozenset[int] | None:
     if len(tokens) < schema.SHINGLE_SIZE:
         return None
@@ -141,11 +181,40 @@ def shingles_from_tokens(tokens: list[str]) -> frozenset[int] | None:
     return frozenset(values)
 
 
+def identifier_erased_shingles_from_tokens(
+    tokens: list[str],
+) -> frozenset[int] | None:
+    if len(tokens) < schema.SHINGLE_SIZE:
+        return None
+    values = {
+        int.from_bytes(
+            hashlib.blake2b(
+                "\0".join(tokens[offset : offset + schema.SHINGLE_SIZE]).encode(
+                    "utf-8"
+                ),
+                digest_size=schema.SHINGLE_HASH_BITS // 8,
+            ).digest(),
+            "big",
+        )
+        for offset in range(len(tokens) - schema.SHINGLE_SIZE + 1)
+    }
+    if len(values) < schema.MIN_DISTINCT_SHINGLES:
+        return None
+    return frozenset(values)
+
+
 def token_shingles(code: str) -> frozenset[int] | None:
     tokens = normalized_tokens(code)
     if tokens is None:
         return None
     return shingles_from_tokens(tokens)
+
+
+def identifier_erased_token_shingles(code: str) -> frozenset[int] | None:
+    tokens = identifier_erased_tokens(code)
+    if tokens is None:
+        return None
+    return identifier_erased_shingles_from_tokens(tokens)
 
 
 def threshold_passes(
@@ -508,20 +577,33 @@ def audit(
     snapshot_root: Path,
     cohort_run_target: int,
     source_commit: str,
+    representation: str = schema.LEXICAL_REPRESENTATION,
 ) -> dict[str, Any]:
+    if representation not in {
+        schema.LEXICAL_REPRESENTATION,
+        schema.IDENTIFIER_ERASED_REPRESENTATION,
+    }:
+        raise FuzzyCloneAuditError("unsupported fingerprint representation")
+    identifier_erased = representation == schema.IDENTIFIER_ERASED_REPRESENTATION
+    token_function = identifier_erased_tokens if identifier_erased else normalized_tokens
+    shingle_function = (
+        identifier_erased_shingles_from_tokens
+        if identifier_erased
+        else shingles_from_tokens
+    )
     cohort, inputs = load_cohort(state_root, snapshot_root, cohort_run_target)
     fingerprinted: list[FingerprintedRecord] = []
     failed_tokenization = 0
     too_short = 0
     for record in cohort:
-        tokens = normalized_tokens(record.code)
+        tokens = token_function(record.code)
         if tokens is None:
             failed_tokenization += 1
             continue
         if len(tokens) < schema.SHINGLE_SIZE:
             too_short += 1
             continue
-        shingles = shingles_from_tokens(tokens)
+        shingles = shingle_function(tokens)
         if shingles is None:
             too_short += 1
             continue
@@ -587,10 +669,24 @@ def audit(
         <= schema.MAX_LARGE_MULTITASK_COMPONENTS,
         "exact_join_self_check": self_check_passed,
     }
+    strict_lineage_local = all(gates.values()) and primary_summary["cross_run_pairs"] == 0
+    protocol = (
+        schema.IDENTIFIER_ERASED_PROTOCOL if identifier_erased else schema.PROTOCOL
+    )
+    status = (
+        "PROVISIONAL_IDENTIFIER_ERASED_FUZZY_CODE_CLONE_AUDIT_COMPLETE"
+        if identifier_erased
+        else "PROVISIONAL_FUZZY_CODE_CLONE_AUDIT_COMPLETE"
+    )
+    fingerprint_method = (
+        "python_identifier_erased_token_5gram_set_blake2b128"
+        if identifier_erased
+        else "normalized_token_5gram_set_blake2b128"
+    )
 
     return {
-        "status": "PROVISIONAL_FUZZY_CODE_CLONE_AUDIT_COMPLETE",
-        "protocol": schema.PROTOCOL,
+        "status": status,
+        "protocol": protocol,
         "source_commit": source_commit,
         "source_sha256": sha256_file(Path(__file__)),
         "schema_sha256": sha256_file(Path(schema.__file__).resolve()),
@@ -605,7 +701,11 @@ def audit(
         },
         "inputs": inputs,
         "fingerprinting": {
-            "method": "normalized_token_5gram_set_blake2b128",
+            "representation": representation,
+            "method": fingerprint_method,
+            "non_keyword_names_replaced": (
+                schema.IDENTIFIER_TOKEN if identifier_erased else None
+            ),
             "shingle_size": schema.SHINGLE_SIZE,
             "shingle_hash_bits": schema.SHINGLE_HASH_BITS,
             "minimum_distinct_shingles": schema.MIN_DISTINCT_SHINGLES,
@@ -645,12 +745,16 @@ def audit(
             },
             "checks": gates,
             "strong_low_fuzzy_clone_support": all(gates.values()),
+            "strict_lineage_local_support": strict_lineage_local,
+            "strict_lineage_local_requires_zero_cross_run_pairs": True,
             "semantic_equivalence_absence_proven": False,
             "training_data_contamination_absence_proven": False,
         },
         "interpretation_contract": {
             "near_duplicate_algorithm_novelty_claimed": False,
             "exact_means_threshold_join_over_hashed_token_shingle_sets": True,
+            "identifier_and_literal_erasure_used": identifier_erased,
+            "aggressive_abstraction_false_positive_risk": identifier_erased,
             "semantic_clone_absence_claimed": False,
             "provisional_prefix_requires_closure_rerun": True,
             "predictor_accuracy_or_effect_computed": False,
@@ -699,6 +803,14 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--snapshot-root", required=True, type=Path)
     parser.add_argument("--cohort-run-target", required=True, type=int)
     parser.add_argument("--source-commit", required=True)
+    parser.add_argument(
+        "--representation",
+        choices=(
+            schema.LEXICAL_REPRESENTATION,
+            schema.IDENTIFIER_ERASED_REPRESENTATION,
+        ),
+        default=schema.LEXICAL_REPRESENTATION,
+    )
     parser.add_argument("--output", required=True, type=Path)
     return parser.parse_args()
 
@@ -731,10 +843,11 @@ def main() -> int:
         args.snapshot_root,
         args.cohort_run_target,
         args.source_commit,
+        args.representation,
     )
     atomic_json(args.output, receipt)
     print(
-        "PROVISIONAL_FUZZY_CODE_CLONE_AUDIT_COMPLETE",
+        receipt["status"],
         f"runs={receipt['scope']['observed_runs']}",
         f"endpoints={receipt['scope']['observed_endpoints']}",
         "outcomes_read=false",

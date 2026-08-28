@@ -1,0 +1,114 @@
+{
+  "protocol": "prospective-identifier-erased-clone-887-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T04:31:13Z",
+  "question": "Within the exact 435-run outcome-blind prefix, do high-similarity links remain lineage-local after non-keyword identifiers and literals are erased?",
+  "scientific_scope": "Decision Corpus benchmark integrity only; no predictor accuracy, effect, search utility, or semantic-equivalence claim",
+  "fixed_population": {
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "intake_registry_sha256": "37e41460c85661fd9afc6f8789a065088a9da88dde027b955ff4bc366d5bbcd8",
+    "provisional_runs_sha256": "510d81820d7825fc6baa6db562b2371e50eb7d71d04cb1cc0bd17d095d6cdbca",
+    "accumulator_summary_sha256": "2f28b5b53cca5d6ea5ebf16f746a70f9c1de0e3197487a6ed78d41b4cb611302",
+    "observed_runs": 435,
+    "observed_endpoints": 11906,
+    "observed_tasks": 34,
+    "closure_provided": false
+  },
+  "representation": {
+    "name": "python_token_identifier_erased_v1",
+    "ignored": [
+      "encoding",
+      "comments",
+      "layout",
+      "indentation markers",
+      "end marker"
+    ],
+    "non_keyword_names": "<IDENT>",
+    "numbers": "<NUMBER>",
+    "strings": "<STRING>",
+    "keywords_and_operators": "preserved",
+    "shingle_size": 5,
+    "shingle_hash": "BLAKE2b-128",
+    "minimum_distinct_shingles": 20
+  },
+  "similarity": {
+    "primary_jaccard": "17/20",
+    "strict_sensitivity_jaccard": "19/20",
+    "arithmetic": "exact integer threshold",
+    "candidate_generation": "global-frequency ordered exact prefix join",
+    "task_or_run_prefilter": false,
+    "strict_sensitivity_may_rescue_primary": false
+  },
+  "relations": [
+    "same_parent_siblings",
+    "parent_child",
+    "same_run_other",
+    "cross_run_same_task",
+    "cross_run_cross_task"
+  ],
+  "ordered_interpretation": [
+    {
+      "status": "STRICT_LINEAGE_LOCAL_PASS",
+      "condition": "all integrity gates pass and primary cross-run pair count equals zero",
+      "allowed_claim": "under the frozen identifier/literal-erased syntactic relation, all observed high-similarity links are confined to physical runs"
+    },
+    {
+      "status": "LOW_CROSS_RUN_ONLY",
+      "condition": "fraction/component integrity gates pass but primary cross-run pair count is nonzero",
+      "allowed_claim": "cross-run overlap is below the frozen tolerance, but strict lineage locality is not supported"
+    },
+    {
+      "status": "INTEGRITY_GATE_FAIL",
+      "condition": "any integrity or reproducibility gate fails",
+      "allowed_claim": "the stronger internal identifier-erased integrity claim is not supported"
+    }
+  ],
+  "integrity_gates": {
+    "minimum_fingerprint_coverage": 0.99,
+    "maximum_cross_run_affected_endpoint_fraction": 0.01,
+    "maximum_cross_task_affected_endpoint_fraction": 0.005,
+    "maximum_large_multitask_components": 0,
+    "large_component_minimum_endpoints": 10,
+    "large_component_minimum_tasks": 3,
+    "exact_join_self_check_documents": 384
+  },
+  "controls": [
+    "alpha-renaming and literal-change positive control",
+    "structurally unrelated negative control",
+    "producer A/B byte identity",
+    "non-importing verifier A/B byte identity",
+    "384-document prefix-join versus brute-force equality",
+    "fixed input hashes before and after execution",
+    "forbidden-path trace and credential scans"
+  ],
+  "known_prior_before_freeze": [
+    "The 366-run lexical internal audit reported zero cross-run links while retaining identifiers.",
+    "The 404-run historical-train to future audit reported zero links under identifier/literal erasure.",
+    "No internal identifier-erased similarity result for snapshot 887491a0 was read before this protocol."
+  ],
+  "forbidden_inputs": [
+    "label or outcome vault",
+    "prediction files or values",
+    "accuracy, model effect, or search utility",
+    "raw senior archives",
+    "task/run/card/code identities in outputs"
+  ],
+  "claim_boundary": {
+    "near_duplicate_algorithm_novelty": false,
+    "semantic_clone_absence": false,
+    "pretraining_contamination_absence": false,
+    "predictor_effect": false,
+    "aggressive_abstraction_false_positive_risk": true,
+    "first960_closure_rerun_required": true
+  },
+  "resources": {
+    "cpu_only": true,
+    "per_formal_command_timeout_seconds": 1800,
+    "virtual_memory_limit_gib": 32,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "failure_policy": "Fail closed; preserve immutable FAILED_RC evidence and do not change population, representation, threshold, subset, task, or interpretation order to rescue a result."
+}

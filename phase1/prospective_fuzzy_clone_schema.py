@@ -5,6 +5,17 @@ from __future__ import annotations
 
 PROTOCOL = "prospective_fuzzy_code_clone_audit_v1"
 INDEPENDENT_PROTOCOL = "independent_prospective_fuzzy_code_clone_verifier_v1"
+IDENTIFIER_ERASED_PROTOCOL = (
+    "prospective_identifier_erased_fuzzy_code_clone_audit_v1"
+)
+IDENTIFIER_ERASED_INDEPENDENT_PROTOCOL = (
+    "independent_prospective_identifier_erased_fuzzy_code_clone_verifier_v1"
+)
+LEXICAL_REPRESENTATION = "normalized_token_literal_erased_v1"
+IDENTIFIER_ERASED_REPRESENTATION = "python_token_identifier_erased_v1"
+IDENTIFIER_TOKEN = "<IDENT>"
+NUMBER_TOKEN = "<NUMBER>"
+STRING_TOKEN = "<STRING>"
 FROZEN_COHORT_RUN_TARGET = 960
 
 # The Stack reports five-token shingles and exact Jaccard filtering around 0.85.

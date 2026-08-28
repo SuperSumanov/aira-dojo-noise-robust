@@ -78,7 +78,7 @@ test "$(grep -c ': OK$' "$formal_root/published_package_manifest_check.txt")" = 
 ) >"$formal_root/full_tests.txt" 2>"$formal_root/full_tests.stderr"
 
 producer=(
-  "$python_bin" "$worktree/phase1/audit_selective_parent_order_baseline_falsification.py"
+  "$python_bin" -m phase1.audit_selective_parent_order_baseline_falsification
   --repo-root "$worktree"
   --state-root "$state_root"
   --snapshot "$snapshot"
@@ -86,15 +86,17 @@ producer=(
   --source-commit "$source_commit"
 )
 for suffix in a b; do
-  PYTHONHASHSEED=$([[ $suffix == a ]] && printf 0 || printf 1) \
-    "${producer[@]}" --output "$formal_root/producer_${suffix}.json" \
-    >"$formal_root/producer_${suffix}.stdout" 2>"$formal_root/producer_${suffix}.stderr"
+  (
+    cd "$worktree"
+    PYTHONHASHSEED=$([[ $suffix == a ]] && printf 0 || printf 1) \
+      "${producer[@]}" --output "$formal_root/producer_${suffix}.json"
+  ) >"$formal_root/producer_${suffix}.stdout" 2>"$formal_root/producer_${suffix}.stderr"
 done
 cmp "$formal_root/producer_a.json" "$formal_root/producer_b.json"
 result_sha=$(sha256sum "$formal_root/producer_a.json" | awk '{print $1}')
 
 verifier=(
-  "$python_bin" "$worktree/phase1/verify_selective_parent_order_baseline_falsification.py"
+  "$python_bin" -m phase1.verify_selective_parent_order_baseline_falsification
   --repo-root "$worktree"
   --state-root "$state_root"
   --snapshot "$snapshot"
@@ -103,16 +105,20 @@ verifier=(
   --candidate "$formal_root/producer_a.json"
 )
 for suffix in a b; do
-  PYTHONHASHSEED=$([[ $suffix == a ]] && printf 0 || printf 1) \
-    "${verifier[@]}" --output "$formal_root/verifier_${suffix}.json" \
-    >"$formal_root/verifier_${suffix}.stdout" 2>"$formal_root/verifier_${suffix}.stderr"
+  (
+    cd "$worktree"
+    PYTHONHASHSEED=$([[ $suffix == a ]] && printf 0 || printf 1) \
+      "${verifier[@]}" --output "$formal_root/verifier_${suffix}.json"
+  ) >"$formal_root/verifier_${suffix}.stdout" 2>"$formal_root/verifier_${suffix}.stderr"
 done
 cmp "$formal_root/verifier_a.json" "$formal_root/verifier_b.json"
 verifier_sha=$(sha256sum "$formal_root/verifier_a.json" | awk '{print $1}')
 
-strace -f -qq -e trace=openat -o "$formal_root/open_trace.txt" \
-  "${producer[@]}" --output "$formal_root/producer_trace.json" \
-  >"$formal_root/trace_producer.stdout" 2>"$formal_root/trace_producer.stderr"
+(
+  cd "$worktree"
+  strace -f -qq -e trace=openat -o "$formal_root/open_trace.txt" \
+    "${producer[@]}" --output "$formal_root/producer_trace.json"
+) >"$formal_root/trace_producer.stdout" 2>"$formal_root/trace_producer.stderr"
 cmp "$formal_root/producer_a.json" "$formal_root/producer_trace.json"
 grep -E '/label[^/]*/|label_vault|/outcomes?/|/predictions?/|score-channel-future-identity-cohort|tree-content.*target522.*/(candidate|profile)|/external/senior_data/|/\.env([./\"]|$)' \
   "$formal_root/open_trace.txt" >"$formal_root/forbidden_open_hits.txt" || true
@@ -122,9 +128,11 @@ grep -oE '/research/d7/spc/yzyang4/prospective_decision_v1/snapshots/[0-9a-f]{64
 printf '%s\n' "$state_root/snapshots/$snapshot" >"$formal_root/expected_snapshot_root.txt"
 cmp "$formal_root/expected_snapshot_root.txt" "$formal_root/opened_snapshot_roots.txt"
 
-strace -f -qq -e trace=network -o "$formal_root/network_trace.txt" \
-  "${verifier[@]}" --output "$formal_root/verifier_trace.json" \
-  >"$formal_root/trace_verifier.stdout" 2>"$formal_root/trace_verifier.stderr"
+(
+  cd "$worktree"
+  strace -f -qq -e trace=network -o "$formal_root/network_trace.txt" \
+    "${verifier[@]}" --output "$formal_root/verifier_trace.json"
+) >"$formal_root/trace_verifier.stdout" 2>"$formal_root/trace_verifier.stderr"
 cmp "$formal_root/verifier_a.json" "$formal_root/verifier_trace.json"
 test ! -s "$formal_root/network_trace.txt"
 

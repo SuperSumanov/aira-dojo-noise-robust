@@ -338,6 +338,7 @@ def load_pairs(
     rows: list[PairRef] = []
     split_counts: collections.Counter[str] = collections.Counter()
     schema_counts: collections.Counter[str] = collections.Counter()
+    decision_semantics: collections.Counter[str] = collections.Counter()
     with path.open(encoding="utf-8") as handle:
         for line_number, line in enumerate(handle, start=1):
             require(bool(line.strip()), f"blank JSONL row: {role}:{line_number}")
@@ -370,16 +371,17 @@ def load_pairs(
             if schema == DECISION_FIELDS:
                 parent = value.get("parent")
                 require(isinstance(parent, str) and parent in cards, f"unknown decision parent: {role}:{line_number}")
-                require(
-                    better_card.parent == worse_card.parent == parent,
-                    f"decision pair does not share recorded parent: {role}:{line_number}",
-                )
                 parent_card = cards[parent]
-                require(
-                    better_card.run == worse_card.run == parent_card.run,
-                    f"decision pair crosses physical run: {role}:{line_number}",
+                decision_semantics["rows"] += 1
+                decision_semantics["both_endpoints_direct_children_of_declared_parent"] += (
+                    better_card.parent == worse_card.parent == parent
                 )
-                require(parent_card.task == task, f"decision parent task mismatch: {role}:{line_number}")
+                decision_semantics["declared_parent_and_endpoints_same_physical_run"] += (
+                    better_card.run == worse_card.run == parent_card.run
+                )
+                decision_semantics["declared_parent_and_endpoints_same_task"] += (
+                    better_card.task == worse_card.task == parent_card.task == task
+                )
             rows.append(
                 PairRef(
                     better=better,
@@ -403,6 +405,18 @@ def load_pairs(
         "test_rows": split_counts["test"],
         "decision_schema_rows": schema_counts["decision"],
         "value_schema_rows": schema_counts["value"],
+        "decision_semantics": {
+            "rows": decision_semantics["rows"],
+            "both_endpoints_direct_children_of_declared_parent": decision_semantics[
+                "both_endpoints_direct_children_of_declared_parent"
+            ],
+            "declared_parent_and_endpoints_same_physical_run": decision_semantics[
+                "declared_parent_and_endpoints_same_physical_run"
+            ],
+            "declared_parent_and_endpoints_same_task": decision_semantics[
+                "declared_parent_and_endpoints_same_task"
+            ],
+        },
     }
 
 
@@ -465,8 +479,8 @@ def dependency_profile(test_rows: list[PairRef]) -> tuple[dict[str, Any], dict[s
     degrees: collections.Counter[str] = collections.Counter()
     graph = UnionFind()
     for row in test_rows:
-        require(row.better_run == row.worse_run, "mixed decision test pair crosses run")
-        run_pairs[row.better_run] += 1
+        for run in {row.better_run, row.worse_run}:
+            run_pairs[run] += 1
         degrees[row.better] += 1
         degrees[row.worse] += 1
         graph.union(row.better, row.worse)
@@ -599,7 +613,18 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         "card_ids_unique_and_present_lineage_parents_within_run": True,
         "all_pair_endpoints_known_and_task_consistent": True,
         "all_pair_split_values_match_frozen_run_membership": True,
-        "all_decision_pairs_share_recorded_parent_and_physical_run": True,
+        "all_decision_pairs_share_recorded_parent_and_physical_run": (
+            inventories["decision"]["decision_semantics"]["rows"]
+            == inventories["decision"]["decision_semantics"][
+                "both_endpoints_direct_children_of_declared_parent"
+            ]
+            == inventories["decision"]["decision_semantics"][
+                "declared_parent_and_endpoints_same_physical_run"
+            ]
+            == inventories["decision"]["decision_semantics"][
+                "declared_parent_and_endpoints_same_task"
+            ]
+        ),
         "mixed_test_exactly_preserves_decision_test_multiset": exact_test_preservation,
         "mixed_train_rows_belong_to_declared_source_train_union": membership_counts[0] == 0,
         "mixed_train_test_unordered_pairs_disjoint": mixed_profile[

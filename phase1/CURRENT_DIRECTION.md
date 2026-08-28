@@ -24,8 +24,8 @@ declared source-union support，以及 task/run/component breadth；不计算 ac
 Git-LFS OID 全绑定。strongest 分类要求全部 13 个 hard integrity gates 通过，并满足 test pairs/tasks/runs/endpoints/
 components≥1,000/20/50/500/100，最大 task/run/component share≤1/4、1/10、1/4；任一 hard gate 失败不得由模型分数
 或子组 rescue。冻结前只看过报告数字、计数和 schema，未看 overlap、preservation、component/breadth 或 source membership
-readout。protocol/producer/独立 verifier/test/runner SHA-256=`8991d304...eb30` / `16997ff0...7352` /
-`5bdb7834...4e7b` / `f4e5faef...fba3` / `7276e77a...544a`；synthetic=`6 passed`，formal 尚未运行。
+readout。protocol/producer/独立 verifier/test/runner SHA-256=`8991d304...eb30` / `06d19ad9...2437` /
+`712be2aa...2901` / `e98bf02f...61d8` / `7276e77a...544a`；synthetic=`7 passed`，formal 尚未完成。
 
 779,146,574-byte Cards 在 JSON parse 前完成 credential scan，0 命中且 safe SHA 等于原 OID；八个小输入亦为 0。
 首次 v2 input root 因手抄 mixed SHA 错误在 scientific read 前 fail-closed，v3 用 LFS pointer 机器核对值重建。另发现学长
@@ -37,6 +37,13 @@ readout。protocol/producer/独立 verifier/test/runner SHA-256=`8991d304...eb30
 focused=`6 passed`，full=`1455 passed, 7 failed, 47 warnings`；7 个失败均为既有测试用 `Path.cwd()` 寻找仓库时误落到
 `/data/d0/y24/yzyang4`。producer/verifier A/B 四个结果均不存在。修复只把 pytest 包在 `cd worktree` 内，不改 protocol、
 population、gate 或 scientific code；v1 原样保留，新 runner hash 如上，必须从新 root 重跑。
+
+第二个 root `formal-0159f81-v2` 的 focused/full=`6/1462 passed`（47 warnings），随后 producer 在写出结果前发现冻结
+gate 的前提不成立而停止：mixed line 6 不是 declared parent 的两个直接 children。匿名全量诊断进一步显示 decision
+`0/7644`、mixed decision-schema `0/2563` 满足“两端均为 declared parent 的直接 children”；三者同 physical run 分别只有
+`3389/7644`、`1389/2563`，但 task 均一致。该 readout 之后**没有删除或改宽 gate**；只把逐行 exception 改为匿名 violation
+计数，使第三个新 root 按原协议正式输出 `GATE_FAIL`，并把跨 run test pair 的 run contribution 固定为 incident-run count。
+producer/verifier/test hash 因这一 fail-reporting 修复更新为上文值；protocol 和 runner hash 不变，v2 原样保留。
 
 ## 0HQ. 2026-08-29 fixed-margin selective parent recovery 已冻结 Target-522 真前瞻确认
 

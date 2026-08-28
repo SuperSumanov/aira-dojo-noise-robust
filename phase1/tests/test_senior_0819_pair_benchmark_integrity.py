@@ -243,6 +243,35 @@ def test_bad_run_split_assignment_fails_closed(tmp_path: Path) -> None:
         producer.audit(namespace(data))
 
 
+def test_non_direct_declared_parent_is_counted_as_frozen_gate_failure(
+    tmp_path: Path,
+) -> None:
+    data = fixture(tmp_path)
+    for role in ("decision", "mixed"):
+        path = data[role]
+        rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+        for row in rows:
+            if row.get("better") == "test-good-a":
+                row["parent"] = "test-good-a"
+        write_jsonl(path, rows)
+    protocol = json.loads(data["protocol"].read_text(encoding="utf-8"))
+    for role in ("decision", "mixed"):
+        protocol["immutable_inputs"][role]["sha256"] = sha(data[role])
+    data["protocol"].write_text(
+        json.dumps(protocol, sort_keys=True, indent=2) + "\n", encoding="utf-8"
+    )
+    data["protocol_sha"] = sha(data["protocol"])
+    result = producer.audit(namespace(data))
+    assert result["inventory"]["datasets"]["decision"]["decision_semantics"][
+        "both_endpoints_direct_children_of_declared_parent"
+    ] == 2
+    assert result["hard_integrity_gates"][
+        "all_decision_pairs_share_recorded_parent_and_physical_run"
+    ] is False
+    assert result["classification"] == "HISTORICAL_PAIR_BENCHMARK_INTEGRITY_GATE_FAIL"
+    assert verifier.recompute(namespace(data)) == result
+
+
 def test_conflicting_orientation_is_detected() -> None:
     rows = [
         producer.PairRef("a", "b", "t", "train", "r1", "r1", None, "one"),

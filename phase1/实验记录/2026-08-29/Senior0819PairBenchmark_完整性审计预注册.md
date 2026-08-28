@@ -60,8 +60,8 @@ prediction 文件。
 
 ## 实现与资源
 
-protocol/producer/独立 verifier/test/runner SHA-256=`8991d304...eb30` / `16997ff0...7352` /
-`5bdb7834...4e7b` / `f4e5faef...fba3` / `7276e77a...544a`。独立 verifier 不导入 producer；formal runner 固定做
+protocol/producer/独立 verifier/test/runner SHA-256=`8991d304...eb30` / `06d19ad9...2437` /
+`712be2aa...2901` / `e98bf02f...61d8` / `7276e77a...544a`。独立 verifier 不导入 producer；formal runner 固定做
 producer A/B、verifier A/B、逐字节比较、focused/full tests、file+network strace 和 aggregate-only manifest。
 
 资源上限：CPU/network only，预计正式四次 streaming parse 加测试约 20–45 分钟；GPU/API/model-fit/base-update=
@@ -72,6 +72,15 @@ producer A/B、verifier A/B、逐字节比较、focused/full tests、file+networ
 `Path.cwd()` 时把 `/data/d0/y24/yzyang4` 当作 repo；producer/verifier A/B 四个 scientific outputs 均不存在。修复只把
 两条 pytest 命令包在 `cd worktree` 子 shell 内，protocol、population、gate、producer、verifier 和 test 均未改；旧根
 原样保留，新 root 才可运行。
+
+第二个 post-push root `formal-0159f81-v2` 已通过 focused/full=`6/1462 passed`（47 warnings），但第一遍 producer
+在写结果文件前因 frozen decision-parent invariant 于 mixed line 6 停止。只读匿名结构诊断显示：decision `0/7644`、
+mixed 中 decision-schema `0/2563` 是 declared parent 的两个直接 children；declared parent 与两端同 physical run 的计数为
+`3389/7644`、`1389/2563`，同 task 则全部成立。该结果触发原 hard gate，不能删除 gate 或改称 sibling benchmark。
+
+结果后修复仅把这个逐行 exception 改成 aggregate violation count，使 formal receipt 能按原 gate 输出失败分类；跨 run pair
+的 run contribution 预先固定为“该 pair incident 的每个 run 各计一次，分母仍为 pair count”。protocol、population、gate、
+threshold 和 runner 不变；producer/verifier/test hash 更新为本节值。v2 无 producer/verifier JSON，原样保留。
 
 ## 即使 strong pass 也不能说什么
 

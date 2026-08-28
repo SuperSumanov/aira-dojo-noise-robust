@@ -266,6 +266,7 @@ def rows_for(
     result: list[Edge] = []
     splits = collections.Counter()
     schemas = collections.Counter()
+    decision_semantics = collections.Counter()
     with path.open(encoding="utf-8") as handle:
         for number, text in enumerate(handle, 1):
             check(bool(text.strip()), f"blank row {role}:{number}")
@@ -294,9 +295,17 @@ def rows_for(
             if kind == "decision":
                 parent = row.get("parent")
                 check(isinstance(parent, str) and parent in nodes, "decision parent")
-                check(high_node.ancestor == parent and low_node.ancestor == parent, "shared parent")
-                check(high_node.run == low_node.run == nodes[parent].run, "decision run")
-                check(nodes[parent].task == task, "decision parent task")
+                parent_node = nodes[parent]
+                decision_semantics["rows"] += 1
+                decision_semantics["both_endpoints_direct_children_of_declared_parent"] += (
+                    high_node.ancestor == parent and low_node.ancestor == parent
+                )
+                decision_semantics["declared_parent_and_endpoints_same_physical_run"] += (
+                    high_node.run == low_node.run == parent_node.run
+                )
+                decision_semantics["declared_parent_and_endpoints_same_task"] += (
+                    high_node.task == low_node.task == parent_node.task == task
+                )
             result.append(
                 Edge(high, low, task, split, high_node.run, low_node.run, parent, stable_row(row))
             )
@@ -311,6 +320,18 @@ def rows_for(
         "test_rows": splits["test"],
         "decision_schema_rows": schemas["decision"],
         "value_schema_rows": schemas["value"],
+        "decision_semantics": {
+            "rows": decision_semantics["rows"],
+            "both_endpoints_direct_children_of_declared_parent": decision_semantics[
+                "both_endpoints_direct_children_of_declared_parent"
+            ],
+            "declared_parent_and_endpoints_same_physical_run": decision_semantics[
+                "declared_parent_and_endpoints_same_physical_run"
+            ],
+            "declared_parent_and_endpoints_same_task": decision_semantics[
+                "declared_parent_and_endpoints_same_task"
+            ],
+        },
     }
 
 
@@ -375,9 +396,9 @@ def dependency(edges: list[Edge]) -> tuple[dict[str, Any], dict[str, Fraction]]:
     degrees = collections.Counter()
     graph = Components()
     for edge in edges:
-        check(edge.run_high == edge.run_low, "test decision pair run mismatch")
         tasks[edge.task] += 1
-        runs[edge.run_high] += 1
+        for run in {edge.run_high, edge.run_low}:
+            runs[run] += 1
         degrees[edge.high] += 1
         degrees[edge.low] += 1
         graph.connect(edge.high, edge.low)
@@ -490,7 +511,18 @@ def recompute(args: argparse.Namespace) -> dict[str, Any]:
         "card_ids_unique_and_present_lineage_parents_within_run": True,
         "all_pair_endpoints_known_and_task_consistent": True,
         "all_pair_split_values_match_frozen_run_membership": True,
-        "all_decision_pairs_share_recorded_parent_and_physical_run": True,
+        "all_decision_pairs_share_recorded_parent_and_physical_run": (
+            inventories["decision"]["decision_semantics"]["rows"]
+            == inventories["decision"]["decision_semantics"][
+                "both_endpoints_direct_children_of_declared_parent"
+            ]
+            == inventories["decision"]["decision_semantics"][
+                "declared_parent_and_endpoints_same_physical_run"
+            ]
+            == inventories["decision"]["decision_semantics"][
+                "declared_parent_and_endpoints_same_task"
+            ]
+        ),
         "mixed_test_exactly_preserves_decision_test_multiset": test_equal,
         "mixed_train_rows_belong_to_declared_source_train_union": multiplicity[0] == 0,
         "mixed_train_test_unordered_pairs_disjoint": mixed_profile["train_test_unordered_pair_overlap"] == 0,

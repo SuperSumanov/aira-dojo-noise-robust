@@ -3,6 +3,13 @@ set -Eeo pipefail
 source /uac/y24/yzyang4/env_setup.sh >/dev/null 2>&1
 set -u
 umask 077
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export BLIS_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+export VECLIB_MAXIMUM_THREADS=1
+export TOKENIZERS_PARALLELISM=false
 
 readonly source_repo=${1:?source repository required}
 readonly source_commit=${2:?40-character source commit required}
@@ -39,12 +46,21 @@ cat >"$formal_root/preflight_13.txt" <<EOF
 07_controls=source v8 exact hash fifteen unchanged entries package manifest and independent verifier; PASS
 08_failure=any hash assertion support-gate status or security drift emits no index; PASS
 09_randomness=none deterministic JSON and duplicate A/B builds; PASS
-10_resources=CPU only GPU API model-fit base-update 0/0/0/0; PASS
+10_resources=CPU only with BLAS and OpenMP fixed to one thread GPU API model-fit base-update 0/0/0/0; PASS
 11_duration=focused and full tests plus deterministic builder/verifier under one CPU process; PASS
 12_security=fresh detached worktree LFS skip no secret-bearing archive access and trace scans; PASS
 13_promotion=status remains provisional and frozen:b2 failed support gate remains mandatory; PASS
 EOF
 test "$(wc -l <"$formal_root/preflight_13.txt")" = 13
+cat >"$formal_root/resource_limits.txt" <<EOF
+OMP_NUM_THREADS=$OMP_NUM_THREADS
+OPENBLAS_NUM_THREADS=$OPENBLAS_NUM_THREADS
+MKL_NUM_THREADS=$MKL_NUM_THREADS
+BLIS_NUM_THREADS=$BLIS_NUM_THREADS
+NUMEXPR_NUM_THREADS=$NUMEXPR_NUM_THREADS
+VECLIB_MAXIMUM_THREADS=$VECLIB_MAXIMUM_THREADS
+TOKENIZERS_PARALLELISM=$TOKENIZERS_PARALLELISM
+EOF
 
 git -C "$source_repo" fetch "$fetch_remote" phase1-value-critic >"$formal_root/fetch.stdout" 2>"$formal_root/fetch.stderr"
 git -C "$source_repo" cat-file -e "$source_commit^{commit}"
@@ -163,6 +179,7 @@ cat >"$formal_root/formal_summary.json" <<EOF
   "prospective_values_read": false,
   "raw_senior_archives_opened": false,
   "row_level_release_created": false,
+  "cpu_thread_limit": 1,
   "gpu_api_model_fit_base_update": [0, 0, 0, 0]
 }
 EOF

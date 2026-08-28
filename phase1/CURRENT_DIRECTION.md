@@ -13,6 +13,22 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HU. 2026-08-29 sibling-only quarantine feasibility 已在 closure readout 前冻结
+
+0HT 后续不修改失败的 0HS 协议，而是另立 post-hoc repair estimand：只保留两个 endpoints 都是 declared parent 的直接
+children，且 parent/endpoints 同 task、同 physical run、同 frozen split 的 rows；其余全部显式 quarantine。冻结前已经知道
+三类 counts、full-file referenced-run overlap=96 和 test sibling support=318 pairs / 29 tasks / 89 runs / 591 endpoints /
+282 components，因此这些不是本轮新证据；尚未直接读取 sibling-only parent-partition closure、含 parent 的 train/test run
+overlap、mismatch 的 relation×split 聚合分布或 quarantine fingerprint。
+
+机器 protocol=`phase1/senior_0819_verified_sibling_quarantine_v1.json`，SHA-256=
+`f4d09f1203ba72181046ac620862eb10351736cd01a25ac3597b21e4b931b680`。16 个 hard gates 固定 core purity、exhaustive-
+disjoint、所有 mismatch 被隔离、pair/endpoint/referenced-run 三层零交叉、零 duplicate/conflict、split counts/fingerprint 与
+0HT 证书一致；support compatibility 沿用旧门但明确标记为冻结前已知。strong pass 只允许称 historical sibling-core
+quarantine feasible，不称 prospective confirmation，不自动授权 row-level release、GPU 或 predictor effect。详见
+`phase1/实验记录/2026-08-29/Senior0819VerifiedSiblingCore_隔离可行性预注册.md`。当前尚无 readout；GPU/API/model-fit/
+base-update=`0/0/0/0`，prospective values/raw archives 未读。
+
 ## 0HT. 2026-08-29 relation-aware taxonomy 正式 fail closed；宽 sibling core 仅形成隔离可行性信号
 
 0HS 的 exact public commit=`827fe55dcf03280cd8e9391d4b44c20db38484d3` 已完成 fresh detached formal。冻结分类为
@@ -33,6 +49,10 @@ producer/verifier A/B 各自逐字节一致，SHA-256=`b75df026f...c6d3` / `d561
 `phase1/results/senior_0819_decision_relation_taxonomy_20260829_827fe55/`。下一步若做修复，只能先冻结 aggregate-only
 quarantine feasibility protocol，验证 sibling-only train/test 的 parent/run closure；不得事后改 0HS 门、不得自动发布 row
 identities 或启动 GPU。GPU/API/model-fit/base-update=`0/0/0/0`，prospective values/raw archives 未读。
+
+证书已由公开 commit=`9a922abbf15cc769c1867f6991423021d661c5dd` 发布。fresh detached post-push 对 package manifest、
+失败门、class counts 和 verifier equality 复核通过，focused/full=`6/1469 passed`，credential filename/content=`0/0`；
+post-push manifest=`35b168b81ad5488cefd967b19e3f9054c9fa4b5546cf3fdaa775611fbda6b7aa`。
 
 ## 0HS. 2026-08-29 relation-aware decision taxonomy 已在 split-specific readout 前冻结
 

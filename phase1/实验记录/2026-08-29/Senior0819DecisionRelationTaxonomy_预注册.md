@@ -70,3 +70,8 @@ producer/verifier A/B 各自逐字节一致，SHA-256=`b75df026f...c6d3` / `d561
 `68d845cc6e2801d814bcd320017bce5ae5712c2e01f94dff7a010b1195230f56`。正式包见
 `phase1/results/senior_0819_decision_relation_taxonomy_20260829_827fe55/`。GPU/API/model-fit/base-update=`0/0/0/0`，
 prospective values、raw archives、模型分数与 search utility 均未读。
+
+证书随后由公开 commit=`9a922abbf15cc769c1867f6991423021d661c5dd` 发布。fresh detached post-push 对 package
+manifest、`13/15` hard gates、`8/8` support gates、class counts 与 verifier equality 均复核通过；focused/full=
+`6/1469 passed`，credential filename/content=`0/0`，post-push manifest=
+`35b168b81ad5488cefd967b19e3f9054c9fa4b5546cf3fdaa775611fbda6b7aa`。

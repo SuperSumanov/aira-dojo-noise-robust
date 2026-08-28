@@ -29,7 +29,10 @@ base-update=`0/0/0/0`。
 Tree Training 已覆盖 shared-prefix 线性化重复计算，一般 grouped split/parent-inherits-split 也早已存在；因此不申通用概念
 或算法 novelty，也不以 exact crossing 推断模型性能膨胀。可守贡献只是 MLE-agent observed forest 上的精确量化、跨 task/run
 广度和可执行 tree-native release contract。协议见 `phase1/tree_path_split_prefix_leakage_v1.json`，时间顺序与边界见
-`phase1/实验记录/2026-08-28/TreePathSplit_共享前缀泄漏风险_结果前分层冻结.md`；真实 breadth 尚未运行。
+`phase1/实验记录/2026-08-28/TreePathSplit_共享前缀泄漏风险_结果前分层冻结.md`。结果前 exact producer 与未 import
+producer 的独立 falling-product verifier 已实现；新 synthetic/exhaustive=`22 passed`，相邻 tree 回归合计
+`92 passed, 2 skipped`。producer/verifier/test SHA-256=`c91bcb07...2ac0c` / `974adb65...e414` /
+`51465ea7...a6b03`；真实 breadth 尚未运行。
 
 ## 0HH. 2026-08-28 depth-order 只按已见数值后的确定性推论推进
 

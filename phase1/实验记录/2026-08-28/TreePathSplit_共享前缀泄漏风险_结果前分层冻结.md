@@ -81,3 +81,17 @@ overlap 推断模型指标被抬高。
 匿名 breadth/anti-dominance 和 executable release contract 量化这一风险，并证明 tree-native grouped release 可兼容阻断 exact
 canonical-edge crossing。它不覆盖 semantic clones，不证明完整 source tree，不产生 predictor effect/search utility，且当前
 仍是 435/960、closure=false；最终 closure 后必须按原协议重签。
+
+## 结果前实现回执
+
+在真实 task/run/fragment profile 运行前，exact producer、未 import producer 的独立 falling-product verifier 与测试已完成：
+
+- producer SHA-256：`c91bcb07cb1f4690b32425096bf029019033d72959b69f36aad3a5ba7c22ac0c`；
+- verifier SHA-256：`974adb65b9a3da9ee9afc5650053995dd2565745158a14ec2730729a4298e414`；
+- tests SHA-256：`51465ea7d97e18df3fea5f1d15faba7790cfcadd2b89b76557d5f0b26eea6b03`；
+- 新 synthetic/exhaustive=`22 passed`；连同相邻 tree 回归=`92 passed, 2 skipped`，两个 skip 均为 Windows
+  symlink 权限边界。
+
+覆盖包括小 N 全分配穷举、all-multiplicity-one 零控、两分支手算、producer/verifier byte-equivalent aggregate、breadth/
+anti-dominance 不可 rescue、hard-gate precedence、cycle/cross-run/tamper/hash-timing negatives。此时没有调用真实 887
+population，故尚无新的匿名 breadth、贡献集中度或最终分类。

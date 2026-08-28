@@ -30,6 +30,8 @@ PANEL_SCHEMA = "openrouter-full-context-private-panel-row-v1"
 LAUNCH_RECEIPT = "openrouter-full-context-launch-receipt-v1"
 ERRATUM_NAME = "openrouter-full-context-metric-recovery-erratum-v1"
 ERRATUM_STATUS = "FROZEN_AFTER_ENDPOINT_SCHEMA_CENSUS_BEFORE_RUN_CONSENSUS_READOUT"
+OMISSION_NAME = "openrouter-full-context-metric-omission-amendment-v2"
+OMISSION_STATUS = "FROZEN_AFTER_V1_SCHEMA_KILL_BEFORE_METRIC_INDEPENDENT_ELIGIBILITY_READOUT"
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 KEY_ENVIRONMENT_VARIABLE = "OPENROUTER_API_KEY"
 
@@ -99,6 +101,23 @@ def load_metric_erratum(
     return value, observed
 
 
+def load_metric_omission_amendment(
+    path: Path, expected_sha256: str, protocol_sha256: str
+) -> tuple[dict[str, Any], str]:
+    observed = sha256_file(path)
+    require(observed == expected_sha256, "metric-omission amendment SHA mismatch")
+    value = json.loads(path.read_text(encoding="utf-8"))
+    require(isinstance(value, dict), "metric-omission amendment object")
+    require(value.get("protocol") == OMISSION_NAME, "metric-omission amendment name")
+    require(value.get("status") == OMISSION_STATUS, "metric-omission amendment status")
+    require(value["parent_protocol"]["sha256"] == protocol_sha256, "amendment parent binding")
+    fixed = value["fixed_representation_change"]
+    require(fixed["remove_separate_metric_name_line"] is True, "metric omission drift")
+    require(fixed["retain_full_task_description"] is True, "task description drift")
+    require(value["unchanged_parent_contract"]["live_calls_authorized"] is False, "live drift")
+    return value, observed
+
+
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
     require(path.is_file() and not path.is_symlink(), f"unsafe JSONL: {path}")
     rows: list[dict[str, Any]] = []
@@ -115,7 +134,9 @@ def validate_private_panel(
     rows: list[dict[str, Any]],
     protocol: dict[str, Any],
     protocol_sha256: str,
-    erratum_sha256: str,
+    representation_kind: str,
+    representation_sha256: str,
+    require_metric: bool,
 ) -> None:
     expected_pairs = sum(int(value["pairs"]) for value in protocol["eligibility"]["panels"].values())
     require(len(rows) == expected_pairs, "private panel row count")
@@ -130,9 +151,13 @@ def validate_private_panel(
     for row in rows:
         require(row.get("schema") == PANEL_SCHEMA, "private panel schema")
         require(row.get("protocol_sha256") == protocol_sha256, "private panel protocol binding")
+        representation = row.get("representation_contract")
+        require(isinstance(representation, dict), "private representation contract")
+        require(representation.get("kind") == representation_kind, "representation kind")
+        require(representation.get("sha256") == representation_sha256, "representation SHA")
         require(
-            row.get("metric_recovery_erratum_sha256") == erratum_sha256,
-            "private panel metric-recovery binding",
+            representation.get("separate_metric_name_required") is require_metric,
+            "representation metric policy",
         )
         private_id = row.get("pair_private_id")
         require(isinstance(private_id, str) and len(private_id) == 64, "private pair identity")
@@ -152,7 +177,7 @@ def validate_private_panel(
         require(first["run"] not in runs, "physical-run reuse")
         runs.add(first["run"])
         require(first["task"] == second["task"], "task metadata mismatch")
-        for field in ("name", "desc", "metric"):
+        for field in ("name", "desc"):
             require(
                 isinstance(first["task"].get(field), str) and first["task"][field],
                 f"missing task prompt field: {field}",
@@ -161,6 +186,13 @@ def validate_private_panel(
             isinstance(first["task"].get("higher_is_better"), bool),
             "missing metric direction",
         )
+        if require_metric:
+            require(
+                isinstance(first["task"].get("metric"), str) and first["task"]["metric"],
+                "missing structured metric name",
+            )
+        else:
+            require("metric" not in first["task"], "metric placeholder forbidden")
         for field in ("client", "hardware", "time_limit", "execution_timeout"):
             require(first[field] == second[field], f"resource stratum mismatch: {field}")
         task_name = first["task"]["name"]
@@ -181,9 +213,14 @@ def render_user_prompt(row: dict[str, Any], orientation: str) -> str:
     second = row["worse"] if orientation == "AB" else row["better"]
     task = first["task"]
     direction = "higher is better" if task["higher_is_better"] else "lower is better"
+    metric_block = (
+        f"METRIC\n{task['metric']} ({direction})\n\n"
+        if isinstance(task.get("metric"), str) and task["metric"]
+        else f"EVALUATION DIRECTION\n{direction}\n\n"
+    )
     return (
         f"TASK\n{task['desc']}\n\n"
-        f"METRIC\n{task['metric']} ({direction})\n\n"
+        f"{metric_block}"
         "SHARED EXECUTION CONTRACT\n"
         f"Agent/client: {first['client']}\n"
         f"Hardware: {first['hardware']}\n"
@@ -317,7 +354,11 @@ def live_response(request_payload_value: dict[str, Any], credential: str, timeou
 
 
 def load_launch_receipt(
-    path: Path | None, protocol_sha256: str, phase: str, cap: Decimal
+    path: Path | None,
+    protocol_sha256: str,
+    representation_sha256: str,
+    phase: str,
+    cap: Decimal,
 ) -> dict[str, Any]:
     require(path is not None, "live transport requires a separate launch receipt")
     require(path.is_file() and not path.is_symlink(), "unsafe launch receipt")
@@ -325,6 +366,10 @@ def load_launch_receipt(
     require(isinstance(value, dict), "launch receipt object")
     require(value.get("protocol") == LAUNCH_RECEIPT, "launch receipt protocol")
     require(value.get("protocol_sha256") == protocol_sha256, "launch receipt SHA binding")
+    require(
+        value.get("representation_contract_sha256") == representation_sha256,
+        "launch receipt representation binding",
+    )
     require(value.get("phase") == phase, "launch receipt phase")
     require(value.get("authorized") is True, "live calls not authorized")
     require(Decimal(str(value.get("cumulative_usd_stop"))) == cap, "launch receipt cost cap")
@@ -353,7 +398,9 @@ class ExistingState:
     cumulative_cost: Decimal
 
 
-def existing_state(path: Path, protocol_sha256: str) -> ExistingState:
+def existing_state(
+    path: Path, protocol_sha256: str, representation_sha256: str
+) -> ExistingState:
     if not path.exists():
         return ExistingState(frozenset(), Decimal(0))
     ensure_private_file(path)
@@ -362,6 +409,10 @@ def existing_state(path: Path, protocol_sha256: str) -> ExistingState:
     for number, value in enumerate(read_jsonl(path), 1):
         require(value.get("schema") == "openrouter-full-context-raw-call-v1", f"raw schema: {number}")
         require(value.get("protocol_sha256") == protocol_sha256, f"raw protocol binding: {number}")
+        require(
+            value.get("representation_contract_sha256") == representation_sha256,
+            f"raw representation binding: {number}",
+        )
         key = (value["pair_private_id"], value["model"], value["orientation"])
         require(key not in completed, f"duplicate raw call key: {number}")
         completed.add(key)
@@ -385,8 +436,11 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--protocol-sha256", required=True)
-    parser.add_argument("--metric-recovery-erratum", type=Path, required=True)
-    parser.add_argument("--metric-recovery-erratum-sha256", required=True)
+    representation = parser.add_mutually_exclusive_group(required=True)
+    representation.add_argument("--metric-recovery-erratum", type=Path)
+    representation.add_argument("--metric-omission-amendment", type=Path)
+    parser.add_argument("--metric-recovery-erratum-sha256")
+    parser.add_argument("--metric-omission-amendment-sha256")
     parser.add_argument("--panel", type=Path, required=True)
     parser.add_argument("--raw-out", type=Path)
     parser.add_argument("--phase", choices=("smoke", "full"), required=True)
@@ -399,15 +453,37 @@ def parse_args() -> argparse.Namespace:
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
     protocol, protocol_sha256 = load_protocol(args.protocol.resolve(), args.protocol_sha256)
-    _, erratum_sha256 = load_metric_erratum(
-        args.metric_recovery_erratum.resolve(),
-        args.metric_recovery_erratum_sha256,
-        protocol_sha256,
-    )
+    if args.metric_recovery_erratum is not None:
+        require(bool(args.metric_recovery_erratum_sha256), "missing metric-recovery SHA")
+        require(args.metric_omission_amendment_sha256 is None, "mixed representation SHA")
+        _, representation_sha256 = load_metric_erratum(
+            args.metric_recovery_erratum.resolve(),
+            args.metric_recovery_erratum_sha256,
+            protocol_sha256,
+        )
+        representation_kind = "metric_recovery_erratum_v1"
+        require_metric = True
+    else:
+        require(bool(args.metric_omission_amendment_sha256), "missing metric-omission SHA")
+        require(args.metric_recovery_erratum_sha256 is None, "mixed representation SHA")
+        _, representation_sha256 = load_metric_omission_amendment(
+            args.metric_omission_amendment.resolve(),
+            args.metric_omission_amendment_sha256,
+            protocol_sha256,
+        )
+        representation_kind = "metric_omission_amendment_v2"
+        require_metric = False
     panel_path = args.panel.resolve()
     ensure_private_file(panel_path)
     rows = read_jsonl(panel_path)
-    validate_private_panel(rows, protocol, protocol_sha256, erratum_sha256)
+    validate_private_panel(
+        rows,
+        protocol,
+        protocol_sha256,
+        representation_kind,
+        representation_sha256,
+        require_metric,
+    )
     catalog = model_catalog(protocol)
     models = args.models or list(catalog)
     require(models and len(models) == len(set(models)), "models must be unique")
@@ -434,12 +510,18 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
 
     require(args.raw_out is not None, "mock/live transport requires --raw-out")
     raw_path = args.raw_out.resolve()
-    state = existing_state(raw_path, protocol_sha256)
+    state = existing_state(raw_path, protocol_sha256, representation_sha256)
     cumulative = state.cumulative_cost
     require(cumulative <= cap, "existing cumulative cost exceeds phase cap")
     credential = ""
     if args.transport == "live":
-        load_launch_receipt(args.launch_receipt, protocol_sha256, args.phase, cap)
+        load_launch_receipt(
+            args.launch_receipt,
+            protocol_sha256,
+            representation_sha256,
+            args.phase,
+            cap,
+        )
         credential = os.environ.get(KEY_ENVIRONMENT_VARIABLE, "")
         require(bool(credential), f"missing {KEY_ENVIRONMENT_VARIABLE}")
         require("\n" not in credential and "\r" not in credential, "malformed credential")
@@ -479,6 +561,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             record = {
                 "schema": "openrouter-full-context-raw-call-v1",
                 "protocol_sha256": protocol_sha256,
+                "representation_contract_sha256": representation_sha256,
                 "pair_private_id": row["pair_private_id"],
                 "panel": row["panel"],
                 "gap_bin": row["gap_bin"],

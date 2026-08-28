@@ -25,6 +25,8 @@ PROTOCOL_STATUS = "FROZEN_BEFORE_PANEL_MATERIALIZATION_OR_API_CALLS"
 RECEIPT_NAME = "openrouter-full-context-panel-receipt-v1"
 ERRATUM_NAME = "openrouter-full-context-metric-recovery-erratum-v1"
 ERRATUM_STATUS = "FROZEN_AFTER_ENDPOINT_SCHEMA_CENSUS_BEFORE_RUN_CONSENSUS_READOUT"
+OMISSION_NAME = "openrouter-full-context-metric-omission-amendment-v2"
+OMISSION_STATUS = "FROZEN_AFTER_V1_SCHEMA_KILL_BEFORE_METRIC_INDEPENDENT_ELIGIBILITY_READOUT"
 PANELS = ("value_hardware_time", "decision_direct_sibling")
 
 
@@ -216,6 +218,24 @@ def load_metric_erratum(
     fixed = value["fixed_recovery"]
     require(fixed["key"] == ["physical_run_id", "task.name"], "metric key drift")
     require(fixed["acceptance"] == "exactly one distinct candidate value", "metric rule drift")
+    require(value["unchanged_parent_contract"]["live_calls_authorized"] is False, "live drift")
+    return value, observed
+
+
+def load_metric_omission_amendment(
+    path: Path, expected_sha256: str, protocol_sha256: str
+) -> tuple[dict[str, Any], str]:
+    observed = sha256_file(path)
+    require(observed == expected_sha256, "metric-omission amendment SHA mismatch")
+    value = json.loads(path.read_text(encoding="utf-8"))
+    require(isinstance(value, dict), "metric-omission amendment object required")
+    require(value.get("protocol") == OMISSION_NAME, "metric-omission amendment name")
+    require(value.get("status") == OMISSION_STATUS, "metric-omission amendment status")
+    require(value["parent_protocol"]["sha256"] == protocol_sha256, "amendment parent binding")
+    fixed = value["fixed_representation_change"]
+    require(fixed["remove_separate_metric_name_line"] is True, "metric omission drift")
+    require(fixed["retain_full_task_description"] is True, "task-description drift")
+    require(fixed["retain_higher_or_lower_is_better_direction"] is True, "direction drift")
     require(value["unchanged_parent_contract"]["live_calls_authorized"] is False, "live drift")
     return value, observed
 
@@ -437,6 +457,7 @@ def eligible_candidates(
     held_runs: set[str],
     gap_filter: dict[str, float],
     bins: list[dict[str, Any]],
+    require_metric: bool = True,
 ) -> tuple[list[Candidate], dict[str, int]]:
     candidates: list[Candidate] = []
     rejected: Counter[str] = Counter()
@@ -449,17 +470,21 @@ def eligible_candidates(
         if better.task_name != task or worse.task_name != task:
             rejected["card_task_mismatch"] += 1
             continue
-        statuses = {better.metric_consensus_status, worse.metric_consensus_status}
-        if "ambiguous" in statuses:
-            rejected["ambiguous_run_task_metric_consensus"] += 1
-            continue
-        if "inconsistent" in statuses:
-            rejected["inconsistent_endpoint_metric_consensus"] += 1
-            continue
-        if "missing" in statuses:
-            rejected["missing_run_task_metric_consensus"] += 1
-            continue
-        if not (complete_prompt_metadata(better) and complete_prompt_metadata(worse)):
+        if require_metric:
+            statuses = {better.metric_consensus_status, worse.metric_consensus_status}
+            if "ambiguous" in statuses:
+                rejected["ambiguous_run_task_metric_consensus"] += 1
+                continue
+            if "inconsistent" in statuses:
+                rejected["inconsistent_endpoint_metric_consensus"] += 1
+                continue
+            if "missing" in statuses:
+                rejected["missing_run_task_metric_consensus"] += 1
+                continue
+        if not (
+            complete_prompt_metadata(better, require_metric)
+            and complete_prompt_metadata(worse, require_metric)
+        ):
             rejected["missing_prompt_metadata"] += 1
             continue
         if better.run != worse.run:
@@ -516,15 +541,20 @@ def eligible_candidates(
     return candidates, dict(sorted(rejected.items()))
 
 
-def complete_prompt_metadata(card: Card) -> bool:
+def complete_prompt_metadata(card: Card, require_metric: bool = True) -> bool:
     return (
         isinstance(card.task_name, str)
         and bool(card.task_name)
         and isinstance(card.task_description, str)
         and bool(card.task_description)
-        and isinstance(card.metric, str)
-        and bool(card.metric)
-        and card.metric_consensus_status == "unique"
+        and (
+            not require_metric
+            or (
+                isinstance(card.metric, str)
+                and bool(card.metric)
+                and card.metric_consensus_status == "unique"
+            )
+        )
         and isinstance(card.higher_is_better, bool)
         and isinstance(card.client, str)
         and bool(card.client)
@@ -598,17 +628,22 @@ def select_panel(
     raise PanelError("no deterministic seed yields a complete frozen selection")
 
 
-def card_payload(card: Card) -> dict[str, Any]:
-    require(complete_prompt_metadata(card), "selected Card lacks prompt metadata")
+def card_payload(card: Card, require_metric: bool) -> dict[str, Any]:
+    require(
+        complete_prompt_metadata(card, require_metric),
+        "selected Card lacks prompt metadata",
+    )
+    task = {
+        "name": card.task_name,
+        "desc": card.task_description,
+        "higher_is_better": card.higher_is_better,
+    }
+    if require_metric:
+        task["metric"] = card.metric
     return {
         "id": card.identity,
         "run": card.run,
-        "task": {
-            "name": card.task_name,
-            "desc": card.task_description,
-            "metric": card.metric,
-            "higher_is_better": card.higher_is_better,
-        },
+        "task": task,
         "client": card.client,
         "hardware": card.hardware,
         "time_limit": card.time_limit,
@@ -618,7 +653,11 @@ def card_payload(card: Card) -> dict[str, Any]:
 
 
 def panel_rows(
-    selected: list[tuple[Candidate, str, int]], protocol_sha256: str, erratum_sha256: str
+    selected: list[tuple[Candidate, str, int]],
+    protocol_sha256: str,
+    representation_kind: str,
+    representation_sha256: str,
+    require_metric: bool,
 ) -> list[dict[str, Any]]:
     rows = []
     for candidate, order_hash, rank in selected:
@@ -629,7 +668,11 @@ def panel_rows(
             {
                 "schema": "openrouter-full-context-private-panel-row-v1",
                 "protocol_sha256": protocol_sha256,
-                "metric_recovery_erratum_sha256": erratum_sha256,
+                "representation_contract": {
+                    "kind": representation_kind,
+                    "sha256": representation_sha256,
+                    "separate_metric_name_required": require_metric,
+                },
                 "pair_private_id": private_identity,
                 "panel": candidate.panel,
                 "gap_bin": candidate.gap_bin,
@@ -638,8 +681,8 @@ def panel_rows(
                 "selection_order_sha256": order_hash,
                 "selection_rank_within_stratum": rank,
                 "smoke": rank == 1,
-                "better": card_payload(candidate.better),
-                "worse": card_payload(candidate.worse),
+                "better": card_payload(candidate.better, require_metric),
+                "worse": card_payload(candidate.worse, require_metric),
                 "declared_parent_id": candidate.parent,
             }
         )
@@ -679,7 +722,9 @@ def nearest_rank(values: list[int], fraction: float) -> int:
 
 def aggregate_receipt(
     protocol_sha256: str,
-    erratum_sha256: str,
+    representation_kind: str,
+    representation_sha256: str,
+    require_metric: bool,
     input_sha256: dict[str, str],
     input_splits: dict[str, dict[str, int]],
     inventory: dict[str, int],
@@ -706,7 +751,11 @@ def aggregate_receipt(
         "protocol": RECEIPT_NAME,
         "status": "HISTORICAL_PRIVATE_PANEL_MATERIALIZATION_COMPLETE",
         "protocol_sha256": protocol_sha256,
-        "metric_recovery_erratum_sha256": erratum_sha256,
+        "representation_contract": {
+            "kind": representation_kind,
+            "sha256": representation_sha256,
+            "separate_metric_name_required": require_metric,
+        },
         "input_sha256": input_sha256,
         "input_split_counts": input_splits,
         "card_inventory": inventory,
@@ -753,8 +802,11 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--protocol-sha256", required=True)
-    parser.add_argument("--metric-recovery-erratum", type=Path, required=True)
-    parser.add_argument("--metric-recovery-erratum-sha256", required=True)
+    representation = parser.add_mutually_exclusive_group(required=True)
+    representation.add_argument("--metric-recovery-erratum", type=Path)
+    representation.add_argument("--metric-omission-amendment", type=Path)
+    parser.add_argument("--metric-recovery-erratum-sha256")
+    parser.add_argument("--metric-omission-amendment-sha256")
     parser.add_argument("--cards", type=Path, required=True)
     parser.add_argument("--run-split", type=Path, required=True)
     parser.add_argument("--decision", type=Path, required=True)
@@ -767,11 +819,26 @@ def parse_args() -> argparse.Namespace:
 
 def build(args: argparse.Namespace) -> dict[str, Any]:
     protocol, protocol_sha256 = load_protocol(args.protocol.resolve(), args.protocol_sha256)
-    _, erratum_sha256 = load_metric_erratum(
-        args.metric_recovery_erratum.resolve(),
-        args.metric_recovery_erratum_sha256,
-        protocol_sha256,
-    )
+    if args.metric_recovery_erratum is not None:
+        require(bool(args.metric_recovery_erratum_sha256), "missing metric-recovery SHA")
+        require(args.metric_omission_amendment_sha256 is None, "mixed representation SHA")
+        _, representation_sha256 = load_metric_erratum(
+            args.metric_recovery_erratum.resolve(),
+            args.metric_recovery_erratum_sha256,
+            protocol_sha256,
+        )
+        representation_kind = "metric_recovery_erratum_v1"
+        require_metric = True
+    else:
+        require(bool(args.metric_omission_amendment_sha256), "missing metric-omission SHA")
+        require(args.metric_recovery_erratum_sha256 is None, "mixed representation SHA")
+        _, representation_sha256 = load_metric_omission_amendment(
+            args.metric_omission_amendment.resolve(),
+            args.metric_omission_amendment_sha256,
+            protocol_sha256,
+        )
+        representation_kind = "metric_omission_amendment_v2"
+        require_metric = False
     paths = {
         "cards": args.cards.resolve(),
         "run_split": args.run_split.resolve(),
@@ -809,16 +876,30 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
     rejected: dict[str, dict[str, int]] = {}
     for panel in PANELS:
         eligible, rejected[panel] = eligible_candidates(
-            panel, pair_rows[panel], cards, held_runs, unit_gaps, bins
+            panel,
+            pair_rows[panel],
+            cards,
+            held_runs,
+            unit_gaps,
+            bins,
+            require_metric,
         )
         candidates.extend(eligible)
     seed, selected = select_panel(candidates, protocol)
-    rows = panel_rows(selected, protocol_sha256, erratum_sha256)
+    rows = panel_rows(
+        selected,
+        protocol_sha256,
+        representation_kind,
+        representation_sha256,
+        require_metric,
+    )
     secure_write_jsonl(args.panel_out.resolve(), rows)
     panel_digest = sha256_file(args.panel_out.resolve())
     receipt = aggregate_receipt(
         protocol_sha256,
-        erratum_sha256,
+        representation_kind,
+        representation_sha256,
+        require_metric,
         input_sha256,
         input_splits,
         inventory,

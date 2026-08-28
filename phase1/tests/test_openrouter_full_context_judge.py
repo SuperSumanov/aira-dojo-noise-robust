@@ -47,7 +47,9 @@ def make_card(identity: str, task: str, parent: str | None) -> dict[str, object]
     }
 
 
-def make_inputs(tmp_path: Path) -> tuple[Path, str, Path, Path, Path, str]:
+def make_inputs(
+    tmp_path: Path, *, omission: bool = False
+) -> tuple[Path, str, Path, Path, Path, str]:
     protocol = json.loads(REAL_PROTOCOL.read_text(encoding="utf-8"))
     cards: dict[str, list[dict[str, object]]] = {}
     decision: list[dict[str, object]] = []
@@ -119,22 +121,27 @@ def make_inputs(tmp_path: Path) -> tuple[Path, str, Path, Path, Path, str]:
     protocol_path = tmp_path / "protocol.json"
     write_json(protocol_path, protocol)
     protocol_sha = sha256(protocol_path)
-    erratum = json.loads(
-        (REAL_PROTOCOL.parent / "openrouter_full_context_metric_recovery_erratum_v1.json").read_text(
-            encoding="utf-8"
-        )
+    representation_name = (
+        "openrouter_full_context_metric_omission_amendment_v2.json"
+        if omission
+        else "openrouter_full_context_metric_recovery_erratum_v1.json"
     )
-    erratum["parent_protocol"]["sha256"] = protocol_sha
-    erratum_path = tmp_path / "metric_erratum.json"
-    write_json(erratum_path, erratum)
-    erratum_sha = sha256(erratum_path)
+    representation = json.loads(
+        (REAL_PROTOCOL.parent / representation_name).read_text(encoding="utf-8")
+    )
+    representation["parent_protocol"]["sha256"] = protocol_sha
+    representation_path = tmp_path / "representation.json"
+    write_json(representation_path, representation)
+    representation_sha = sha256(representation_path)
     panel_path = tmp_path / "private" / "panel.jsonl"
     receipt_path = tmp_path / "private" / "receipt.jsonl"
     args = argparse.Namespace(
         protocol=protocol_path,
         protocol_sha256=protocol_sha,
-        metric_recovery_erratum=erratum_path,
-        metric_recovery_erratum_sha256=erratum_sha,
+        metric_recovery_erratum=None if omission else representation_path,
+        metric_omission_amendment=representation_path if omission else None,
+        metric_recovery_erratum_sha256=None if omission else representation_sha,
+        metric_omission_amendment_sha256=representation_sha if omission else None,
         cards=paths["cards"],
         run_split=paths["run_split"],
         decision=paths["decision"],
@@ -145,7 +152,14 @@ def make_inputs(tmp_path: Path) -> tuple[Path, str, Path, Path, Path, str]:
     )
     receipt = builder.build(args)
     assert receipt["selection"]["pairs"] == 64
-    return protocol_path, protocol_sha, panel_path, receipt_path, erratum_path, erratum_sha
+    return (
+        protocol_path,
+        protocol_sha,
+        panel_path,
+        receipt_path,
+        representation_path,
+        representation_sha,
+    )
 
 
 def test_builder_materializes_exact_balanced_private_panel(tmp_path: Path) -> None:
@@ -207,6 +221,37 @@ def test_unique_run_task_metric_consensus_recovers_missing_endpoint_metric() -> 
     assert counts == {"metric_recovered_from_run_task_consensus": 1}
 
 
+def test_metric_omission_v2_keeps_context_but_sends_no_metric_placeholder(
+    tmp_path: Path,
+) -> None:
+    protocol_path, protocol_sha, panel_path, _, amendment_path, amendment_sha = make_inputs(
+        tmp_path, omission=True
+    )
+    rows = judge.read_jsonl(panel_path)
+    assert all("metric" not in endpoint["task"] for row in rows for endpoint in (row["better"], row["worse"]))
+    prompt = judge.render_user_prompt(rows[0], "AB")
+    assert "EVALUATION DIRECTION" in prompt
+    assert "\nMETRIC\n" not in prompt
+    args = argparse.Namespace(
+        protocol=protocol_path,
+        protocol_sha256=protocol_sha,
+        metric_recovery_erratum=None,
+        metric_omission_amendment=amendment_path,
+        metric_recovery_erratum_sha256=None,
+        metric_omission_amendment_sha256=amendment_sha,
+        panel=panel_path,
+        raw_out=None,
+        phase="smoke",
+        transport="dry-run",
+        models=None,
+        launch_receipt=None,
+        timeout_seconds=1.0,
+    )
+    result = judge.run(args)
+    assert result["status"] == "DRY_RUN_COMPLETE_NO_NETWORK"
+    assert result["requests"] == 64
+
+
 def test_request_contract_keeps_full_code_and_excludes_labels(tmp_path: Path) -> None:
     protocol_path, protocol_sha, panel_path, _, _, _ = make_inputs(tmp_path)
     protocol, _ = judge.load_protocol(protocol_path, protocol_sha)
@@ -242,7 +287,9 @@ def test_mock_smoke_is_network_free_append_only_and_resumable(tmp_path: Path) ->
         protocol=protocol_path,
         protocol_sha256=protocol_sha,
         metric_recovery_erratum=erratum_path,
+        metric_omission_amendment=None,
         metric_recovery_erratum_sha256=erratum_sha,
+        metric_omission_amendment_sha256=None,
         panel=panel_path,
         raw_out=raw_path,
         phase="smoke",
@@ -270,7 +317,9 @@ def test_live_transport_requires_separate_launch_receipt_before_credential(
         protocol=protocol_path,
         protocol_sha256=protocol_sha,
         metric_recovery_erratum=erratum_path,
+        metric_omission_amendment=None,
         metric_recovery_erratum_sha256=erratum_sha,
+        metric_omission_amendment_sha256=None,
         panel=panel_path,
         raw_out=tmp_path / "private" / "live.jsonl",
         phase="smoke",

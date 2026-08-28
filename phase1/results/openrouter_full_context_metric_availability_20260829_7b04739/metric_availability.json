@@ -1,0 +1,52 @@
+{
+  "endpoint_consensus_status": {
+    "missing": 2208
+  },
+  "input_sha256": {
+    "cards": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343",
+    "decision": "1a01d3a1202b35f21b9cd6c87237b29c50b1c293138b407cc453674108411442",
+    "run_split": "593117cfe0b34e1d2e3c9b718866a7751d7f008701add77b31cfd604282103bb",
+    "value_hardware_time": "60e9bbfba56ef94dfd70bb717694fa5b3b400f9458a13b92321bb1cb2ecdf3d9"
+  },
+  "input_split_counts": {
+    "decision": {
+      "test": 1160,
+      "train": 6484
+    },
+    "value_hardware_time": {
+      "test": 895,
+      "train": 7703
+    }
+  },
+  "inventory": {
+    "all_run_task_keys_with_nonempty_metric": 0,
+    "cards": 40950,
+    "cards_with_nonempty_metric": 0,
+    "endpoint_cards_with_nonempty_metric": 0,
+    "historical_test_endpoint_cards": 2208,
+    "physical_runs": 845,
+    "referenced_run_task_keys": 174
+  },
+  "pair_consensus_status": {
+    "decision": {
+      "different_run_task_key": 198,
+      "missing": 962
+    },
+    "value_hardware_time": {
+      "different_run_task_key": 315,
+      "missing": 580
+    }
+  },
+  "protocol": "openrouter-full-context-metric-availability-audit-v1",
+  "protocol_sha256": "56a33c2409fd1cd317df948577bacb769f6bf61c08dd748f38b2e7c62e727a29",
+  "referenced_run_task_consensus_status": {
+    "missing": 174
+  },
+  "security": {
+    "api_calls": 0,
+    "code_labels_observations_predictions_read": false,
+    "identities_emitted": false,
+    "prospective_values_read": false
+  },
+  "status": "HISTORICAL_METRIC_AVAILABILITY_AUDIT_COMPLETE"
+}

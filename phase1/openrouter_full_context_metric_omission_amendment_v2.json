@@ -1,0 +1,65 @@
+{
+  "protocol": "openrouter-full-context-metric-omission-amendment-v2",
+  "status": "FROZEN_AFTER_V1_SCHEMA_KILL_BEFORE_METRIC_INDEPENDENT_ELIGIBILITY_READOUT",
+  "frozen_utc": "2026-08-28T22:33:39Z",
+  "parent_protocol": {
+    "name": "openrouter-full-context-judge-v1",
+    "sha256": "56a33c2409fd1cd317df948577bacb769f6bf61c08dd748f38b2e7c62e727a29",
+    "freeze_commit": "8ead91f86edda8ceb6587de1ed298ea509ddaedf"
+  },
+  "v1_final_classification": "RUN_TASK_METRIC_CONSENSUS_RECOVERY_PANEL_INFEASIBLE",
+  "independent_metric_audit": {
+    "source_commit": "7b047399daf86a31815496315b20574276a35662",
+    "result_sha256": "85a3c82812d1c001f3d311c58dbffa577398631f7bcd7602491ea44bfe7d6379",
+    "physical_runs": 845,
+    "cards": 40950,
+    "cards_with_nonempty_metric": 0,
+    "historical_test_endpoint_cards": 2208,
+    "referenced_run_task_keys": 174,
+    "referenced_run_task_keys_with_unique_metric": 0
+  },
+  "known_before_freeze": {
+    "all_structured_metric_names_unavailable": true,
+    "task_description_missing_endpoint_cards": 0,
+    "metric_direction_missing_endpoint_cards": 0,
+    "client_hardware_timeouts_or_code_missing_endpoint_cards": 0,
+    "eligible_counts_without_metric_requirement_seen": false,
+    "metric_independent_selected_pair_identities_seen": false,
+    "api_outputs_seen": false
+  },
+  "fixed_representation_change": {
+    "remove_separate_metric_name_line": true,
+    "do_not_send_null_placeholder": true,
+    "do_not_infer_parse_alias_or_web_lookup_metric_name": true,
+    "retain_full_task_description": true,
+    "retain_higher_or_lower_is_better_direction": true,
+    "retain_actual_client_hardware_time_limit_and_execution_timeout": true,
+    "retain_full_unmodified_code": true,
+    "metric_omission_reason_sent_to_provider": false
+  },
+  "unchanged_parent_contract": {
+    "immutable_inputs_and_hashes": true,
+    "historical_panels": true,
+    "gap_bins_and_eight_pair_quota": true,
+    "direct_sibling_decision_requirement": true,
+    "same_run_exact_resource_stratum": true,
+    "global_run_endpoint_and_task_caps": true,
+    "deterministic_selection": true,
+    "models_and_two_orientations": true,
+    "no_input_or_output_truncation": true,
+    "privacy_routing_and_cost_stops": true,
+    "live_calls_authorized": false
+  },
+  "classification_order": [
+    "METRIC_INDEPENDENT_EXACT_PANEL_FEASIBLE",
+    "METRIC_INDEPENDENT_EXACT_PANEL_INFEASIBLE",
+    "METRIC_INDEPENDENT_PANEL_INTEGRITY_FAIL"
+  ],
+  "security": {
+    "aggregate_only_public_receipt": true,
+    "prospective_values_forbidden": true,
+    "api_calls_at_freeze": 0,
+    "model_fits_at_freeze": 0,
+    "base_llm_updates_at_freeze": 0
+  }
+}

@@ -13,6 +13,19 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IK. 2026-08-29 full-context v1 已结构 KILL；v2 只删除全库不存在的 metric-name 行
+
+metric-recovery r4 仍八个 strata eligible=0，故 v1 固定分类为
+`RUN_TASK_METRIC_CONSENSUS_RECOVERY_PANEL_INFEASIBLE`，不得缩配额或继续 fallback。独立 verifier commit=
+`7b04739...5662`、result=`85a3c828...6379` 证明 845 runs / 40,950 Cards 中非空结构化 metric=0；2,208 endpoints、
+174 referenced run-task keys 也全无 consensus，network/prospective opens=`0/0`。
+
+在任何 metric-independent eligibility readout 前，v2 amendment 只删除不可存在的单独 metric-name 行且不猜/查/alias；
+完整 task description、higher/lower direction、client/hardware/two timeouts/full code 仍保留。其余输入、2 panels、4×8、
+direct sibling、same-run exact-resource、run/endpoint/task caps、模型/双方向/隐私/成本全部继承 v1；若仍不可行就终止，
+不设 v3 fallback，仍不授权 API。详见
+`phase1/实验记录/2026-08-29/OpenRouterFullContext_v1_结构终局与v2表示协议预注册.md`。
+
 ## 0IJ. 2026-08-29 full-context panel 的 endpoint metric 缺失已触发冻结勘误，不改样本规则
 
 原协议 commit=`8ead91f...aedf` 后，r1 因无关 LFS 404、r2 因 endpoint `task.metric` 为空、repair commit=

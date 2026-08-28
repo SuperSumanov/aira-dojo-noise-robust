@@ -136,6 +136,8 @@ def test_task_balance_v3_runner_consumes_only_the_automatic_latch() -> None:
         / "run_task_balance_forward_v3_first_successor_20260828.sh"
     ).read_text(encoding="utf-8")
     assert "latch-continuation-after-887-v4" in runner
+    assert "latch-continuation-after-887-v5" in runner
+    assert "no unique completed authoritative latch generation" in runner
     assert "continuation_source_from_git.sh" in runner
     assert "previous_latch_timeout_continuity" in runner
     assert f"readonly forbidden_snapshot={SNAPSHOT_887}" in runner
@@ -150,6 +152,54 @@ def test_task_balance_v3_runner_consumes_only_the_automatic_latch() -> None:
     assert runner.count("verification_b.json") >= 2
     assert "pair_predictions\\.jsonl" in runner
     assert "gpu_api_model_fit_base_update=0/0/0/0" in runner
+
+
+def test_task_balance_second_timeout_handoff_preserves_selection() -> None:
+    handoff = (
+        PHASE1
+        / "scripts"
+        / "resume_task_balance_v3_first_successor_after_v4_20260828.sh"
+    ).read_text(encoding="utf-8")
+    assert "latch-continuation-after-887-v4" in handoff
+    assert "latch-continuation-after-887-v5" in handoff
+    assert 'test -f "${previous}/TIMEOUT_RC"' in handoff
+    assert 'test ! -e "${previous}/FAILED_RC"' in handoff
+    assert 'test ! -e "${previous}/READY"' in handoff
+    assert 'test ! -e "${previous}/COMPLETE"' in handoff
+    assert 'cmp "$0" "${root}/source_script.sh"' in handoff
+    assert 'cmp "${previous}/source_script.sh"' in handoff
+    assert "CANDIDATE_PRESERVED_FROM_PREVIOUS_TIMEOUT" in handoff
+    assert "PRE_CANDIDATE_CONTIGUOUS_HANDOFF" in handoff
+    assert "RECOVERED_SINGLE_SUCCESSOR_ACROSS_TIMEOUT_GAP" in handoff
+    assert "assert_only_successor_since" in handoff
+    assert '-newermt "${previous_final_stamp}"' in handoff
+    assert 'test "$(tr -d \'\\r\\n\' < "${state_root}/LATEST")" = "${current_latest}"' in handoff
+    assert 'test "${nonbaseline_count}" -le 1' in handoff
+    assert 'test "${observed}" = "${baseline}" || test "${observed}" = "${candidate}"' in handoff
+    assert "support_skipped_candidate" in handoff
+    assert "timeout_handoff_generation=2" in handoff
+    assert "manual_snapshot_choice=false" in handoff
+    assert "earlier_successor_skipped=false" in handoff
+    assert "balance_values_or_classification_read=false" in handoff
+    assert "trap 'exit 143' TERM" in handoff
+    assert "sleep 10" in handoff
+
+    supervisor = (
+        PHASE1
+        / "scripts"
+        / "supervise_task_balance_v3_v4_to_v5_20260828.sh"
+    ).read_text(encoding="utf-8")
+    assert "supervisor-v4-to-v5-v1" in supervisor
+    assert 'test -f "${previous}/COMPLETE"' in supervisor
+    assert 'test -f "${previous}/TIMEOUT_RC"' in supervisor
+    assert 'test ! -e "${next}"' in supervisor
+    assert "TASK_BALANCE_HANDOFF_CONTROL_COMMIT" in supervisor
+    assert 'kill -0 "${launched_pid}"' in supervisor
+    assert '! flock -n "${next}/monitor.lock" true' in supervisor
+    assert "finish_success" in supervisor
+    assert "SHA256SUMS" in supervisor
+    assert "balance_values_or_classification_read=false" in supervisor
+    assert "gpu_api_model_fit_base_update=0/0/0/0" in supervisor
 
 
 def test_task_balance_887_failure_package_is_byte_bound() -> None:

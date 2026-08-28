@@ -14,8 +14,10 @@ readonly output=$1
 readonly expected_commit=$2
 readonly python=/research/d7/spc/yzyang4/venvs/exp/bin/python
 readonly state_root=/research/d7/spc/yzyang4/prospective_decision_v1
-readonly latch=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v4
-readonly continuation_public_path=phase1/scripts/resume_task_balance_v3_first_successor_after_887_20260828.sh
+readonly latch_v4=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v4
+readonly latch_v5=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v5
+readonly continuation_v4_public_path=phase1/scripts/resume_task_balance_v3_first_successor_after_887_20260828.sh
+readonly continuation_v5_public_path=phase1/scripts/resume_task_balance_v3_first_successor_after_v4_20260828.sh
 readonly forbidden_snapshot=887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697
 readonly baseline_snapshot=7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1
 readonly baseline_root=${state_root}/snapshots/${baseline_snapshot}/accumulator
@@ -49,11 +51,30 @@ failure_receipt() {
 }
 trap failure_receipt EXIT
 
+if test -f "${latch_v4}/COMPLETE"; then
+  test ! -e "${latch_v5}"
+  readonly latch=${latch_v4}
+  readonly continuation_public_path=${continuation_v4_public_path}
+  readonly expected_ready_status=FIRST_SUCCESSOR_AND_SUPPORT_READY_AFTER_VERIFIED_CONTINUITY
+  readonly timeout_handoff_generation=1
+elif test -f "${latch_v4}/TIMEOUT_RC" && test -f "${latch_v5}/COMPLETE"; then
+  test "$(tr -d '\r\n' < "${latch_v4}/TIMEOUT_RC")" = 124
+  test ! -e "${latch_v4}/FAILED_RC"
+  test ! -e "${latch_v4}/COMPLETE"
+  readonly latch=${latch_v5}
+  readonly continuation_public_path=${continuation_v5_public_path}
+  readonly expected_ready_status=FIRST_SUCCESSOR_AND_SUPPORT_READY_AFTER_SECOND_TIMEOUT_HANDOFF
+  readonly timeout_handoff_generation=2
+else
+  printf '%s\n' 'no unique completed authoritative latch generation' >&2
+  exit 65
+fi
+
 test -f "${latch}/COMPLETE"
 test ! -e "${latch}/FAILED_RC"
 test -f "${latch}/READY"
 (cd "${latch}" && sha256sum -c SHA256SUMS > "${output}/latch_manifest_check.txt")
-test "$(field status "${latch}/READY")" = FIRST_SUCCESSOR_AND_SUPPORT_READY_AFTER_VERIFIED_CONTINUITY
+test "$(field status "${latch}/READY")" = "${expected_ready_status}"
 control_commit=$(field control_commit "${latch}/READY")
 continuation_script_sha=$(field continuation_script_sha256 "${latch}/READY")
 [[ ${control_commit} =~ ^[0-9a-f]{40}$ ]]
@@ -70,6 +91,22 @@ test "$(field manual_snapshot_choice "${latch}/READY")" = false
 test "$(field earlier_successor_skipped "${latch}/READY")" = false
 test "$(field balance_values_or_classification_read "${latch}/READY")" = false
 test "$(field prospective_outcomes_or_prediction_values_read "${latch}/READY")" = false
+if test "${timeout_handoff_generation}" = 2; then
+  test "$(field timeout_handoff_generation "${latch}/READY")" = 2
+  test "$(field timeout_handoff_generation "${latch}/candidate.tsv")" = 2
+  test "$(field status "${latch}/candidate.tsv")" = FIRST_SUCCESSOR_BOUND_ACROSS_SECOND_TIMEOUT_HANDOFF
+  handoff_mode=$(field handoff_mode "${latch}/READY")
+  candidate_origin=$(field candidate_origin "${latch}/READY")
+  case "${handoff_mode}" in
+    CANDIDATE_PRESERVED_FROM_PREVIOUS_TIMEOUT|PRE_CANDIDATE_CONTIGUOUS_HANDOFF) ;;
+    *) exit 66 ;;
+  esac
+  case "${candidate_origin}" in
+    PREVIOUS_AUTHORITATIVE_LATCH|RECOVERED_SINGLE_SUCCESSOR_ACROSS_TIMEOUT_GAP|LATCHED_BY_SECOND_CONTINUATION) ;;
+    *) exit 67 ;;
+  esac
+  test "$(field candidate_origin "${latch}/candidate.tsv")" = "${candidate_origin}"
+fi
 
 current_snapshot=$(field candidate_snapshot_sha256 "${latch}/READY")
 [[ ${current_snapshot} =~ ^[0-9a-f]{64}$ ]]

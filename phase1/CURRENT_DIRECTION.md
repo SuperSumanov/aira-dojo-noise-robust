@@ -13,6 +13,26 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HO. 2026-08-28 task-balance 重复观察实例已隔离；第二次 timeout handoff 在候选前修复
+
+结构巡检发现两个 CPU latch 同时只读等待 887 的首个后继。较早的
+`latch-2363b68-after-887-v4`（PID=`4035896`）在 `2026-08-28T12:17:00Z` 启动，虽写了
+`source_commit=2363b687...`，却没有把运行脚本复制并逐字节绑定到 Git object，也没有复核 newest snapshot directory
+与三条 support 日志；因此从发现时起明确降为**非权威观察副本**，任何 candidate/READY/分类都不得被 formal runner
+消费。正式 authority 仍唯一是 0GT 已公开的 `latch-continuation-after-887-v4`（PID=`4061250`）：它绑定
+commit=`6b3a7ba...` 与 script SHA-256=`8900896d...14b8`，formal runner 也只接受该 exact root。独立检查到
+`2026-08-28T15:04:54Z` 时，两个实例仍均为 LATEST=887、candidate/READY/COMPLETE/FAILED/TIMEOUT 均为空；未终止继承
+进程，也未把重复观察当成科学复现。
+
+同时在任何权威 candidate 出现前补了第二次六小时 timeout 的状态机缺口。新 v5 handoff 必须等待权威 v4 正常
+`TIMEOUT_RC=124` 且进程和锁均释放；若 v4 已锁 candidate，则逐字段、逐 hash 保留同一 candidate 与已有 support，绝不
+重新看 LATEST 选择；若尚未锁 candidate，则把 timeout 缝隙内的 LATEST、mtime 新增 snapshot directories、三套 state
+与三条日志合并，非 baseline identity 至多一个，否则 fail closed。后续第一次 latch 也要求自 handoff 起只有一个新增
+snapshot。formal runner 只在 v4 COMPLETE 或 v4 clean-timeout 后 v5 COMPLETE 二选一，任何双 complete/无唯一 generation
+都拒绝。脚本 SHA-256 分别为 handoff=`93407853...0e7f`、supervisor=`0674d0a0...ac6b`、generation-aware runner=
+`38a138b9...2173`；本节写入时尚未 push/部署，因而仍无新的 balance classification。GPU/API/model-fit/base-update=
+`0/0/0/0`，prospective label/outcome/prediction values 与 raw archives 均未读。
+
 ## 0HN. 2026-08-28 hierarchy × content parent concordance 已形成开发正信号并冻结 Target-522 前瞻确认
 
 在已公开的 outcome-blind snapshot 887 上，平面 identifier-erased Jaccard graph 与 physical parent graph 明显不是同一

@@ -75,3 +75,42 @@ GPU/API/model-fit/base-update=`0/0/0/0`，`SHA256SUMS` SHA-256=
 `b979e874e7823660e30689f88e8ff1260e1ccf194fe3e4159e22d2e77efa2de8`。
 
 这些回执证明选择链连续且实现可复验，不是 `CAP_PASS` 或任何 predictor 正效果；真实 candidate 仍未产生。
+
+## 重复观察实例的隔离裁决
+
+`2026-08-28T15:04:57Z` 的进程与锁巡检发现另一个更早启动、仍存活的
+`/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-2363b68-after-887-v4`，PID=`4035896`。
+它从 `2026-08-28T12:17:00Z` 起等待，preflight 声明 `source_commit=2363b687...`，但 root 中没有
+`source_script.sh`，continuity receipt 也没有 newest snapshot directory、support-log unique identity 或 control-commit
+绑定。发现时其最后观测仍为 887，candidate/READY/COMPLETE/FAILED/TIMEOUT 均不存在。
+
+该实例不是独立科学复现：它与正式 v4 观察同一个 LATEST，且缺少正式 v4 的可复验绑定。从本裁决起它永久标记为
+`NONAUTHORITATIVE_DUPLICATE_OBSERVER`；即使之后自己产生 candidate 或 READY，也不得进入 formal runner、不得用于
+选择 snapshot、不得与正式实例投票或择优。正式 authority 仍唯一是 exact Git-bound
+`latch-continuation-after-887-v4`，PID=`4061250`；在 `2026-08-28T15:04:54Z` 它同样仍只见 887，candidate 为空。
+两者都是继承进程，本轮没有终止或修改；隔离通过 consumer allowlist 完成。
+
+## 第二次 timeout handoff：候选前状态机修复
+
+审计旧续接后发现一个尚未发生、但必须在结果前补齐的边界：正式 v4 若在“candidate 已锁定、三套 support 尚未齐”时
+到达第二个六小时上限，原脚本不能在不重选 snapshot 的条件下继续。新增
+`resume_task_balance_v3_first_successor_after_v4_20260828.sh` 将 timeout 分成两条显式路径：
+
+1. 若 v4 已有 candidate，验证旧 source/protocol/candidate/summary/ledger 的逐字段与逐 hash 绑定，复制已取得的
+   support receipts，并永久保留原 candidate；
+2. 若 v4 尚无 candidate，验证旧 monitor 末态，并联合 LATEST、mtime 新增 snapshot directories、三套 state 和从旧末
+   时间起的三条日志。非 baseline identity 为 0 才继续等待，为 1 才自动承接该唯一 successor，大于 1 立即失败。
+
+handoff 之后第一次看到 successor 时还会枚举 handoff 时间后的新增 snapshot directories，必须恰好只有该一个 identity；
+support state 若从 baseline 跳过固定 candidate 也立即失败。formal runner 改为只接受唯一 generation：v4 COMPLETE 时
+v5 必须不存在；或 v4 clean timeout 且 v5 COMPLETE。调用者仍不能传 snapshot/root，科学 cap、task-expansion、debt、
+primary classification 与禁止 rescue 规则完全不变。
+
+固定脚本 SHA-256：
+
+- v5 handoff：`934078533da2d34aac1325a36c5a25fd527d222651df4c4452fe6fe28d540e7f`；
+- v4→v5 supervisor：`0674d0a05b1e29907b530952f5ccb0e39346ea5e8f8cabca4c4037eb7e58ac6b`；
+- generation-aware formal runner：`38a138b9f8e6fed9cfaef6469454113b3714f1ebd540d1dfa963156e95872173`。
+
+本节写入时这些修复尚未公开 push 或部署；真实 candidate 与 balance classification 仍不存在。没有读取 prediction、
+label/outcome、accuracy/effect/utility 或 raw archive；GPU/API/model-fit/base-update=`0/0/0/0`。

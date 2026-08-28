@@ -1,0 +1,40 @@
+{
+  "claim": {
+    "cap_or_directional_balance_adjudicated": false,
+    "post_hoc_task_padding_used": false,
+    "rerun_on_same_snapshot_authorized": false
+  },
+  "first_attempt": {
+    "classification": "INFRASTRUCTURE_PRE_SCIENCE_FAILURE",
+    "forward_result_created": false,
+    "pytest_started": false
+  },
+  "protocol": "task-balance-887-failure-postflight-v1",
+  "second_attempt": {
+    "balance_classification_created": false,
+    "focused_tests_passed": 4,
+    "forward_failure": "task universe changed",
+    "forward_result_created": false,
+    "full_test_warnings": 47,
+    "full_tests_passed": 1238
+  },
+  "security": {
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "labels_outcomes_predictions_read": false
+  },
+  "status": "TASK_UNIVERSE_CHANGE_KILL_INDEPENDENTLY_VERIFIED",
+  "task_universe": {
+    "added_tasks": 4,
+    "baseline_task_set_sha256": "e408a4c9bc37cbd54461b51988583f5a32775de39be45f60d6666de651353e51",
+    "baseline_tasks": 30,
+    "current_task_set_sha256": "039758b3a7144c60231564e977b39aecdae54f0761fe627eddbb365414302b00",
+    "current_tasks": 34,
+    "removed_tasks": 0,
+    "task_identities_emitted": false
+  }
+}

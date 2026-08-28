@@ -1,0 +1,117 @@
+{
+  "protocol": "historical-train-future-identifier-erased-887-extension-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T05:21:33Z",
+  "status": "RESULT_BLIND_PROTOCOL_FROZEN",
+  "question": "Does the fixed historical v11 critic-train population have any high-similarity identifier/literal-erased token-shingle links to the exact 435-run chronological future snapshot?",
+  "scientific_scope": "Decision Corpus split-integrity extension only; no semantic-equivalence, pretraining-contamination, predictor-effect, accuracy, or search-utility claim",
+  "fixed_historical_population": {
+    "cards_path": "phase1/cards_current_v11.jsonl",
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "pair_files": [
+      {
+        "path": "phase1/v11_decision/decision_train_v11_b0.jsonl",
+        "normalized_lf_sha256": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+        "rows": 4263
+      },
+      {
+        "path": "phase1/v11_decision/decision_train_v11_b1.jsonl",
+        "normalized_lf_sha256": "5053bb3825c5d6a420491cdb056594b306b4850c2b3c179361031becade5d528",
+        "rows": 861
+      },
+      {
+        "path": "phase1/v11_decision/decision_train_v11_b2.jsonl",
+        "normalized_lf_sha256": "f0cb83c41b1e45d198384726194b3a2bd013132957d71aa2d81aea318dd7c881",
+        "rows": 692
+      }
+    ],
+    "union_rows": 5816,
+    "union_endpoints": 5519,
+    "union_runs": 333,
+    "union_tasks": 23,
+    "union_parents": 2302
+  },
+  "fixed_future_population": {
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "intake_registry_sha256": "37e41460c85661fd9afc6f8789a065088a9da88dde027b955ff4bc366d5bbcd8",
+    "provisional_first960_runs_sha256": "510d81820d7825fc6baa6db562b2371e50eb7d71d04cb1cc0bd17d095d6cdbca",
+    "accumulator_summary_sha256": "2f28b5b53cca5d6ea5ebf16f746a70f9c1de0e3197487a6ed78d41b4cb611302",
+    "runs": 435,
+    "endpoints": 11906,
+    "structural_pairs": 3053,
+    "tasks": 34,
+    "closure": false
+  },
+  "prior_result_disclosure": {
+    "ad0b_404_run_result_was_known": true,
+    "known_primary_links_at_404_runs": 0,
+    "new_435_run_result_was_read_before_freeze": false,
+    "interpretation": "sequential temporal extension, not a fully independent discovery cohort"
+  },
+  "representation": {
+    "name": "python_token_identifier_erased_v1",
+    "tokenizer": "Python tokenize",
+    "comments_and_layout_removed": true,
+    "keywords_and_operators_preserved": true,
+    "other_names_mapped_to": "<IDENT>",
+    "numbers_mapped_to": "<NUMBER>",
+    "strings_mapped_to": "<STRING>",
+    "shingle_size_tokens": 5,
+    "hash": "BLAKE2b-128",
+    "minimum_distinct_shingles": 20,
+    "task_or_run_candidate_prefilter": false
+  },
+  "thresholds": {
+    "primary_jaccard": "17/20",
+    "strict_sensitivity_jaccard": "19/20",
+    "strict_sensitivity_can_rescue_primary": false
+  },
+  "ordered_classification": [
+    {
+      "status": "ZERO_IDENTIFIER_ERASED_LINKS",
+      "condition": "all pre-registered integrity gates pass and primary near-duplicate link count is exactly zero",
+      "allowed_claim": "no links were found under the fixed identifier/literal-erased representation and 0.85 threshold"
+    },
+    {
+      "status": "LOW_IDENTIFIER_ERASED_OVERLAP_ONLY",
+      "condition": "all integrity gates pass but the primary near-duplicate link count is positive",
+      "allowed_claim": "overlap remains below the fixed benchmark-integrity gates, but zero-link independence is false"
+    },
+    {
+      "status": "INTEGRITY_GATE_FAIL",
+      "condition": "one or more pre-registered integrity gates fail",
+      "allowed_claim": "the fixed split-integrity extension failed"
+    }
+  ],
+  "integrity_gates": {
+    "historical_fingerprint_coverage_at_least": 0.99,
+    "future_fingerprint_coverage_at_least": 0.99,
+    "future_affected_endpoint_fraction_at_most": 0.01,
+    "cross_task_future_affected_endpoint_fraction_at_most": 0.005,
+    "large_multitask_components_at_most": 0,
+    "large_component_definition": "at least 10 endpoints and at least 3 tasks",
+    "fixed_256_by_256_bruteforce_control": true
+  },
+  "verification": {
+    "producer_repetitions": 2,
+    "independent_verifier_repetitions": 2,
+    "byte_identity_within_role_required": true,
+    "independent_verifier_imports_producer": false,
+    "focused_and_full_tests_required": true,
+    "clean_no_smudge_worktree_required": true,
+    "stable_latest_before_and_after_required": true,
+    "exact_manifest_and_independent_postflight_required": true
+  },
+  "forbidden_inputs": [
+    "prospective label, grade, outcome, winner orientation, prediction, accuracy, effect, or utility",
+    "raw senior archives",
+    "historical label or observation fields as computation inputs"
+  ],
+  "failure_rule": "No representation, threshold, population, task, run, subset, or ordered-classification rescue is allowed after result access.",
+  "resources": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

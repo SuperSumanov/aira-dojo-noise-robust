@@ -228,6 +228,8 @@ def verify(
     common_support_sha: str,
     result_path: Path,
     result_sha: str,
+    *,
+    allow_task_expansion: bool = False,
 ) -> dict[str, Any]:
     _, guard = load_object(guard_path, guard_sha)
     _, guard_verification = load_object(guard_verification_path, guard_verification_sha)
@@ -320,13 +322,34 @@ def verify(
     current_pairs = current["pair_counts"]
     baseline_runs = baseline["run_counts"]
     current_runs = current["run_counts"]
-    if set(baseline_pairs) != set(current_pairs) or set(baseline_runs) != set(current_runs):
+    baseline_tasks = set(baseline_pairs)
+    current_tasks = set(current_pairs)
+    if set(baseline_runs) != baseline_tasks or set(current_runs) != current_tasks:
+        raise ForwardV2VerificationError("pair/run task universes differ")
+    if allow_task_expansion:
+        if not baseline_tasks <= current_tasks:
+            raise ForwardV2VerificationError(
+                "task universe is not a monotone expansion"
+            )
+    elif baseline_tasks != current_tasks:
         raise ForwardV2VerificationError("task universe changed")
+    if allow_task_expansion:
+        expected_chronology.update(
+            {
+                "baseline_tasks": len(baseline_tasks),
+                "current_tasks": len(current_tasks),
+                "added_tasks": len(current_tasks - baseline_tasks),
+                "removed_tasks": 0,
+                "task_identities_emitted": True,
+            }
+        )
     increments = {
-        task: current_pairs[task] - baseline_pairs[task] for task in sorted(baseline_pairs)
+        task: current_pairs[task] - baseline_pairs.get(task, 0)
+        for task in sorted(current_pairs)
     }
     run_increments = {
-        task: current_runs[task] - baseline_runs[task] for task in sorted(baseline_runs)
+        task: current_runs[task] - baseline_runs.get(task, 0)
+        for task in sorted(current_runs)
     }
     if any(value < 0 for value in increments.values()) or any(
         value < 0 for value in run_increments.values()
@@ -403,6 +426,13 @@ def verify(
         "strict_guard_adherence_claimed": False,
         "pair_increments_by_task": increments,
     }
+    if allow_task_expansion:
+        expected_forward.update(
+            {
+                "new_task_zero_extension_explicit": True,
+                "added_task_count": len(current_tasks - baseline_tasks),
+            }
+        )
     secondary = {
         "baseline_run_hhi": hhi(baseline_runs),
         "current_run_hhi": hhi(current_runs),
@@ -437,6 +467,13 @@ def verify(
         "current_total_cross_checked_by_receipt_only_independent_verifier": True,
         "prediction_matrix_input_used": False,
     }
+    if allow_task_expansion:
+        expected_source.update(
+            {
+                "task_universe_contract": "monotone_expansion_with_explicit_zero_extension",
+                "baseline_task_set_subset_of_current": True,
+            }
+        )
     expected_boundary = {
         "arithmetic_identity_is_statistical_prediction": False,
         "natural_accrual_causal_effect_claimed": False,
@@ -444,6 +481,8 @@ def verify(
         "predictor_accuracy_effect_or_search_utility_computed": False,
         "descriptive_hhi_or_tv_can_rescue_failed_cap": False,
     }
+    if allow_task_expansion:
+        expected_boundary["same_snapshot_v2_kill_rescued"] = False
     expected_access = {
         "labels_grades_outcomes_or_winner_orientation_read": False,
         "prediction_pair_files_opened": [],
@@ -467,9 +506,19 @@ def verify(
         "access_attestation",
     }:
         raise ForwardV2VerificationError("result top-level schema mismatch")
-    if result.get("protocol") != "task_balance_guard_forward_validation_v2":
+    expected_protocol = (
+        "task_balance_guard_forward_validation_v3"
+        if allow_task_expansion
+        else "task_balance_guard_forward_validation_v2"
+    )
+    expected_status = (
+        "STRUCTURAL_ONLY_FORWARD_ACCOUNTING_EXACT_WITH_TASK_EXPANSION"
+        if allow_task_expansion
+        else "STRUCTURAL_ONLY_FORWARD_ACCOUNTING_EXACT"
+    )
+    if result.get("protocol") != expected_protocol:
         raise ForwardV2VerificationError("result protocol mismatch")
-    if result.get("status") != "STRUCTURAL_ONLY_FORWARD_ACCOUNTING_EXACT":
+    if result.get("status") != expected_status:
         raise ForwardV2VerificationError("result status mismatch")
     exact_sections = {
         "inputs": expected_inputs,
@@ -492,32 +541,54 @@ def verify(
                 raise ForwardV2VerificationError(f"secondary mismatch: {key}")
         elif not math.isclose(actual, expected, rel_tol=0.0, abs_tol=1e-15):
             raise ForwardV2VerificationError(f"secondary mismatch: {key}")
+    independent_protocol = (
+        "independent_task_balance_guard_forward_validation_v3"
+        if allow_task_expansion
+        else "independent_task_balance_guard_forward_validation_v2"
+    )
+    independent_status = (
+        "INDEPENDENT_STRUCTURAL_ONLY_TASK_BALANCE_FORWARD_V3_PASS"
+        if allow_task_expansion
+        else "INDEPENDENT_STRUCTURAL_ONLY_TASK_BALANCE_FORWARD_PASS"
+    )
+    checks = {
+        "no_prediction_matrix_input": True,
+        "baseline_guard_independently_verified": True,
+        "both_accumulator_sources_recomputed": True,
+        "current_total_receipt_cross_check_exact": True,
+        "chronology_membership_exact": True,
+        "debt_accounting_identity_exact": True,
+        "cap_failure_preserved": not expected_forward["current_cap_pass"],
+        "causal_and_effect_claims_forbidden": True,
+    }
+    recomputed = {
+        "baseline_pairs": baseline["pairs"],
+        "current_pairs": current["pairs"],
+        "new_runs": len(new_ids),
+        "future_dominant_pairs": future_dominant,
+        "future_nondominant_pairs": future_nondominant,
+        "baseline_debt": baseline_debt,
+        "current_debt": observed,
+        "debt_delta": delta,
+        "current_dominant_share": current["dominant_pairs"] / current["pairs"],
+    }
+    if allow_task_expansion:
+        checks["task_universe_monotone_expansion_exact"] = True
+        recomputed.update(
+            {
+                "baseline_tasks": len(baseline_tasks),
+                "current_tasks": len(current_tasks),
+                "added_tasks": len(current_tasks - baseline_tasks),
+                "removed_tasks": 0,
+            }
+        )
     return {
-        "protocol": "independent_task_balance_guard_forward_validation_v2",
-        "status": "INDEPENDENT_STRUCTURAL_ONLY_TASK_BALANCE_FORWARD_PASS",
+        "protocol": independent_protocol,
+        "status": independent_status,
         "forward_result_sha256": digest(result_raw),
         "inputs": expected_inputs,
-        "checks": {
-            "no_prediction_matrix_input": True,
-            "baseline_guard_independently_verified": True,
-            "both_accumulator_sources_recomputed": True,
-            "current_total_receipt_cross_check_exact": True,
-            "chronology_membership_exact": True,
-            "debt_accounting_identity_exact": True,
-            "cap_failure_preserved": not expected_forward["current_cap_pass"],
-            "causal_and_effect_claims_forbidden": True,
-        },
-        "recomputed": {
-            "baseline_pairs": baseline["pairs"],
-            "current_pairs": current["pairs"],
-            "new_runs": len(new_ids),
-            "future_dominant_pairs": future_dominant,
-            "future_nondominant_pairs": future_nondominant,
-            "baseline_debt": baseline_debt,
-            "current_debt": observed,
-            "debt_delta": delta,
-            "current_dominant_share": current["dominant_pairs"] / current["pairs"],
-        },
+        "checks": checks,
+        "recomputed": recomputed,
         "access_attestation": expected_zero,
     }
 

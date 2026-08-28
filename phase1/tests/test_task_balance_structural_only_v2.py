@@ -14,9 +14,16 @@ from phase1.task_balance_guard_forward_validation_v2 import (
     ForwardV2Error,
     build_forward,
 )
+from phase1.task_balance_guard_forward_validation_v3 import (
+    ForwardV3Error,
+    build_forward as build_forward_v3,
+)
 from phase1.verify_task_balance_accrual_guard_v2 import verify as verify_guard
 from phase1.verify_task_balance_guard_forward_validation_v2 import (
     verify as verify_forward,
+)
+from phase1.verify_task_balance_guard_forward_validation_v3 import (
+    verify as verify_forward_v3,
 )
 
 
@@ -105,7 +112,9 @@ def _make_source(
     return summary, _sha(summary), ledger, ledger_sha
 
 
-def _fixture(tmp_path: Path) -> dict[str, object]:
+def _fixture(
+    tmp_path: Path, *, expanded_task_pairs: int | None = None
+) -> dict[str, object]:
     baseline_snapshot = "a" * 64
     current_snapshot = "b" * 64
     baseline_rows = [
@@ -117,11 +126,17 @@ def _fixture(tmp_path: Path) -> dict[str, object]:
         _row("run-a1", "task-a", 4, "2026-01-03T00:00:00Z"),
         _row("run-b1", "task-b", 5, "2026-01-04T00:00:00Z"),
     ]
+    current_pair_counts = {"task-a": 71, "task-b": 35}
+    if expanded_task_pairs is not None:
+        current_rows.append(
+            _row("run-c0", "task-c", 6, "2026-01-05T00:00:00Z")
+        )
+        current_pair_counts["task-c"] = expanded_task_pairs
     baseline = _make_source(
         tmp_path, baseline_snapshot, baseline_rows, {"task-a": 70, "task-b": 30}
     )
     current = _make_source(
-        tmp_path, current_snapshot, current_rows, {"task-a": 71, "task-b": 35}
+        tmp_path, current_snapshot, current_rows, current_pair_counts
     )
     baseline_summary, baseline_summary_sha, baseline_ledger, baseline_ledger_sha = baseline
     current_summary, current_summary_sha, current_ledger, current_ledger_sha = current
@@ -187,7 +202,7 @@ def _fixture(tmp_path: Path) -> dict[str, object]:
             "protocol": "prediction-receipt-common-support-v1",
             "status": "INDEPENDENT_PREDICTION_RECEIPT_COMMON_SUPPORT_VERIFIED",
             "snapshot_sha256": current_snapshot,
-            "pairs": 106,
+            "pairs": sum(current_pair_counts.values()),
             "same_canonical_pair_population_certified": True,
             "candidate_exact": True,
             "candidate_sha256": "c" * 64,
@@ -229,6 +244,14 @@ def test_structural_only_guard_and_forward_chain(tmp_path: Path) -> None:
         Path(fx["common"]),
         _sha(Path(fx["common"])),
     )
+    assert forward["protocol"] == "task_balance_guard_forward_validation_v2"
+    assert forward["status"] == "STRUCTURAL_ONLY_FORWARD_ACCOUNTING_EXACT"
+    assert "task_universe_contract" not in forward["source_validation"]
+    assert "added_tasks" not in forward["chronology_audit"]
+    assert "new_task_zero_extension_explicit" not in forward[
+        "frozen_guard_forward_result"
+    ]
+    assert "same_snapshot_v2_kill_rescued" not in forward["claim_boundary"]
     assert forward["frozen_guard_forward_result"]["observed_current_debt"] == 178
     assert forward["frozen_guard_forward_result"]["debt_delta"] == -2
     assert forward["source_validation"]["prediction_matrix_input_used"] is False
@@ -333,3 +356,141 @@ def test_guard_rejects_ledger_with_unapproved_field(tmp_path: Path) -> None:
             _sha(ledger),
             fx["baseline_snapshot"],
         )
+
+
+def test_v2_preserves_the_frozen_same_task_universe_kill(tmp_path: Path) -> None:
+    fx = _fixture(tmp_path, expanded_task_pairs=4)
+    with pytest.raises(ForwardV2Error, match="task universe changed"):
+        build_forward(
+            Path(fx["guard_path"]),
+            fx["guard_sha"],
+            Path(fx["verification_path"]),
+            _sha(Path(fx["verification_path"])),
+            Path(fx["baseline_summary"]),
+            fx["baseline_summary_sha"],
+            Path(fx["baseline_ledger"]),
+            fx["baseline_ledger_sha"],
+            fx["baseline_snapshot"],
+            Path(fx["current_summary"]),
+            fx["current_summary_sha"],
+            Path(fx["current_ledger"]),
+            fx["current_ledger_sha"],
+            fx["current_snapshot"],
+            Path(fx["common"]),
+            _sha(Path(fx["common"])),
+        )
+
+
+def test_v3_zero_extends_a_monotone_new_task_and_is_independently_verified(
+    tmp_path: Path,
+) -> None:
+    fx = _fixture(tmp_path, expanded_task_pairs=4)
+    forward = build_forward_v3(
+        Path(fx["guard_path"]),
+        fx["guard_sha"],
+        Path(fx["verification_path"]),
+        _sha(Path(fx["verification_path"])),
+        Path(fx["baseline_summary"]),
+        fx["baseline_summary_sha"],
+        Path(fx["baseline_ledger"]),
+        fx["baseline_ledger_sha"],
+        fx["baseline_snapshot"],
+        Path(fx["current_summary"]),
+        fx["current_summary_sha"],
+        Path(fx["current_ledger"]),
+        fx["current_ledger_sha"],
+        fx["current_snapshot"],
+        Path(fx["common"]),
+        _sha(Path(fx["common"])),
+    )
+    assert forward["protocol"] == "task_balance_guard_forward_validation_v3"
+    chronology = forward["chronology_audit"]
+    assert {
+        key: chronology[key]
+        for key in (
+            "baseline_tasks",
+            "current_tasks",
+            "added_tasks",
+            "removed_tasks",
+            "task_identities_emitted",
+        )
+    } == {
+        "baseline_tasks": 2,
+        "current_tasks": 3,
+        "added_tasks": 1,
+        "removed_tasks": 0,
+        "task_identities_emitted": True,
+    }
+    result = forward["frozen_guard_forward_result"]
+    assert result["pair_increments_by_task"] == {
+        "task-a": 1,
+        "task-b": 5,
+        "task-c": 4,
+    }
+    assert result["new_task_zero_extension_explicit"] is True
+    assert result["added_task_count"] == 1
+    forward_path = tmp_path / "forward-v3.json"
+    _write_json(forward_path, forward)
+    receipt = verify_forward_v3(
+        Path(fx["guard_path"]),
+        fx["guard_sha"],
+        Path(fx["verification_path"]),
+        _sha(Path(fx["verification_path"])),
+        Path(fx["baseline_summary"]),
+        fx["baseline_summary_sha"],
+        Path(fx["baseline_ledger"]),
+        fx["baseline_ledger_sha"],
+        fx["baseline_snapshot"],
+        Path(fx["current_summary"]),
+        fx["current_summary_sha"],
+        Path(fx["current_ledger"]),
+        fx["current_ledger_sha"],
+        fx["current_snapshot"],
+        Path(fx["common"]),
+        _sha(Path(fx["common"])),
+        forward_path,
+        _sha(forward_path),
+    )
+    assert receipt["status"] == (
+        "INDEPENDENT_STRUCTURAL_ONLY_TASK_BALANCE_FORWARD_V3_PASS"
+    )
+    assert receipt["checks"]["task_universe_monotone_expansion_exact"] is True
+    assert receipt["recomputed"]["added_tasks"] == 1
+
+
+def test_v3_still_rejects_a_new_dominant_task(tmp_path: Path) -> None:
+    fx = _fixture(tmp_path, expanded_task_pairs=90)
+    with pytest.raises(ForwardV3Error, match="dominant task changed"):
+        build_forward_v3(
+            Path(fx["guard_path"]),
+            fx["guard_sha"],
+            Path(fx["verification_path"]),
+            _sha(Path(fx["verification_path"])),
+            Path(fx["baseline_summary"]),
+            fx["baseline_summary_sha"],
+            Path(fx["baseline_ledger"]),
+            fx["baseline_ledger_sha"],
+            fx["baseline_snapshot"],
+            Path(fx["current_summary"]),
+            fx["current_summary_sha"],
+            Path(fx["current_ledger"]),
+            fx["current_ledger_sha"],
+            fx["current_snapshot"],
+            Path(fx["common"]),
+            _sha(Path(fx["common"])),
+        )
+
+
+def test_v3_verifier_does_not_import_either_forward_producer() -> None:
+    verifier_v3 = (
+        Path(__file__).parents[1]
+        / "verify_task_balance_guard_forward_validation_v3.py"
+    ).read_text(encoding="utf-8")
+    verifier_v2 = (
+        Path(__file__).parents[1]
+        / "verify_task_balance_guard_forward_validation_v2.py"
+    ).read_text(encoding="utf-8")
+    assert "from phase1.task_balance_guard_forward_validation_v3" not in verifier_v3
+    assert "import phase1.task_balance_guard_forward_validation_v3" not in verifier_v3
+    assert "from phase1.task_balance_guard_forward_validation_v2" not in verifier_v2
+    assert "import phase1.task_balance_guard_forward_validation_v2" not in verifier_v2

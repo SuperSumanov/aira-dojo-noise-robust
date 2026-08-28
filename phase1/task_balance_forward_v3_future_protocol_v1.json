@@ -1,0 +1,95 @@
+{
+  "protocol": "task-balance-forward-v3-future-only-protocol-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T05:11:36Z",
+  "status": "IMPLEMENTATION_FROZEN_FIRST_UNSEEN_SUCCESSOR_PENDING",
+  "question": "At the first eligible immutable snapshot after the commit containing this protocol, does the fixed 25-percent dominant-task pair-share cap pass when newly appearing tasks are handled by explicit baseline-zero extension?",
+  "scientific_scope": "Decision Corpus structural balance audit only; no predictor effect, accuracy, utility, acquisition-causality, or producer-compliance claim",
+  "freeze_state": {
+    "latest_snapshot_when_protocol_was_written": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "known_outcome_blind_totals": {
+      "runs": 435,
+      "endpoints": 11906,
+      "pairs": 3053,
+      "tasks": 34
+    },
+    "task_balance_v2_result_at_this_snapshot": "TASK_UNIVERSE_CHANGE_KILL_NO_SCIENTIFIC_CLASSIFICATION",
+    "task_balance_values_from_this_snapshot_read_by_v3_authors": false
+  },
+  "immutable_baseline": {
+    "guard_snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+    "maximum_dominant_pair_task_share": 0.25,
+    "debt_numerator": "max(0, 4 * dominant_pairs - total_pairs)",
+    "membership": "chronological provisional first-960 physical runs",
+    "v2_behavior_preserved": "task-universe inequality remains a fail-closed condition when allow_task_expansion is false"
+  },
+  "v3_task_universe_contract": {
+    "baseline_pair_task_set_must_be_subset_of_current": true,
+    "baseline_run_task_set_must_equal_baseline_pair_task_set": true,
+    "current_run_task_set_must_equal_current_pair_task_set": true,
+    "new_tasks_receive_explicit_baseline_pair_and_run_count_zero": true,
+    "removed_tasks_allowed": false,
+    "negative_pair_or_run_accrual_allowed": false,
+    "dominant_task_change_allowed": false,
+    "task_identities_emitted": true,
+    "same_887_snapshot_v2_kill_can_be_rescued": false
+  },
+  "activation_rule": {
+    "forbidden_current_snapshots": [
+      "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697"
+    ],
+    "source_code_requirement": "execute from a clean public commit containing this exact protocol and the v3 producer, independent verifier, and tests",
+    "snapshot_selection": "the earliest immutable successor of 887491a0 in the audited transition chain that was first observed after the source commit and has an exact receipt-only canonical common-support verification",
+    "manual_snapshot_choice_allowed": false,
+    "skip_an_earlier_eligible_successor_allowed": false,
+    "run_before_snapshot_and_receipt_are_stable": false
+  },
+  "primary_interpretation": [
+    {
+      "status": "CAP_PASS",
+      "condition": "all task pair shares are at most 0.25 and exact debt is zero",
+      "allowed_claim": "the selected provisional snapshot satisfies the frozen structural task-balance cap"
+    },
+    {
+      "status": "CAP_FAIL",
+      "condition": "the CAP_PASS condition is false",
+      "allowed_claim": "the selected provisional snapshot does not satisfy the frozen structural task-balance cap"
+    }
+  ],
+  "secondary_only": [
+    "dominant and nondominant pair increments",
+    "exact debt delta and direction",
+    "run-HHI, pair-HHI, and run-to-pair TV",
+    "added-task count and explicit zero-extension receipt"
+  ],
+  "secondary_cannot_rescue_primary": true,
+  "verification": {
+    "producer_repetition": 2,
+    "independent_verifier_repetition": 2,
+    "producer_and_verifier_outputs_must_be_byte_identical_within_role": true,
+    "independent_verifier_imports_producer": false,
+    "focused_and_full_tests_required": true,
+    "exact_snapshot_summary_ledger_and_common_support_hashes_required": true,
+    "chronology_membership_and_old_rows_revalidated": true
+  },
+  "forbidden_inputs": [
+    "prediction pair files, matrices, or values",
+    "label, grade, outcome, winner orientation, accuracy, effect, or search utility",
+    "raw senior archive payloads"
+  ],
+  "kill_conditions": [
+    "887491a0 is used as the current v3 snapshot",
+    "an earlier eligible successor is skipped",
+    "any task is deleted or any pair/run count decreases",
+    "the dominant task changes relative to the immutable guard",
+    "any snapshot, summary, ledger, common-support, chronology, or source binding fails",
+    "producer or verifier A/B differs",
+    "any forbidden open or credential hit occurs"
+  ],
+  "resources": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

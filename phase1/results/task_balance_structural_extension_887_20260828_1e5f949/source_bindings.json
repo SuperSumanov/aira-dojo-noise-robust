@@ -1,0 +1,9 @@
+{
+  "postflight_root": "/research/d7/spc/yzyang4/task-balance-structural-extension-887/postflight-task-universe-kill-1e5f949-v1",
+  "postflight_sha256sums_file_sha256": "2fca093bdb43462ed506208b33d77fa0c482c9236ea04527f598f9d70adce9e1",
+  "verification_json_sha256": "341eb728b24e68c62a859104128f967804ac72da68e97f8f1448fcd3b56f38b4",
+  "access_attestation_sha256": "7a44c5d9ec942d14e234eae78462b505235156ace5a87144e23625a79ea47573",
+  "first_attempt_source_commit": "e8c74260310ee5bbbffe2f55d082214a3c002a2e",
+  "second_attempt_source_commit": "1e5f949856430e297daf2a8ed783af5e4a08b2e1",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697"
+}

@@ -13,6 +13,22 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0GX. 2026-08-28 三个直接 MLE 数据竞品关闭 trajectory-dataset 泛化主张
+
+最新公开材料显示，ML-Agent 已在 9 个 MLE tasks 上收集 10,000 条执行轨迹并做 Qwen2.5-7B SFT/step-wise PPO；
+Frontis-MA1/OpenMLE 又公开 26,259 条、4,891 task names 的 SFT traces，并把 Draft/Improve/Debug/Crossover operator
+learning 接到长程 evolution；mle-traj-v1/v3 则已有约 15k 个逐版本 human/agent code nodes、held-out scores、
+state/action/intent 标签与 forest view。故“首个/最大 MLE trajectory dataset”“首个逐节点分数/图结构”“首个
+execution-grounded MLE learning/cost”全部关闭，不得再进入标题、摘要或贡献点。
+
+仍可守且应升为论文中心的是 **true-sibling decision benchmark**：mle-traj 的 agent MLEvolve 部分只来自 13 个
+physical runs 并线性化为 189 branches，人类 forest 还混入构造的 fork/code-sim edges；我方保留真实 search parent、
+siblings 与 choice fragments，在同一 frozen decision pool 横评独立 execution-free critics，并联合审计 physical-run/
+config/time transport、outcome-blind closure、query/init/execution cost、regrade noise 和 pair-induced weighting。
+closure 后应把 true-sibling 与 linearized parent-child/cross-run 作为预注册 sensitivity 同报，但不得用于 rescue primary。
+详见 `phase1/实验记录/2026-08-28/MLE直接数据竞品_MLAgent_OpenMLE_mletraj_防撞审计.md`。本轮只读公开资料，
+prospective truth/prediction/GPU/API/model-fit/base-update=`false/false/0/0/0/0`。
+
 ## 0GW. 2026-08-28 完整 release 审计的结果盲发布封装已冻结
 
 在 r2 尚未产生或读取任何 full-release aggregate/link/classification 时，进一步冻结 compact publication package：

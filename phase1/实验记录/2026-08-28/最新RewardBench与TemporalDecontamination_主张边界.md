@@ -31,6 +31,19 @@
 8. [CodeScaler（arXiv:2602.17684）](https://arxiv.org/abs/2602.17684) 已将 execution-free code reward model
    用于训练和 test-time selection，并报告约 10 倍推理延迟下降。因此“廉价、无需执行的 code critic”也不是方法
    novelty；我方 query/init/execution 三账本的价值在于统一测量真实 MLE workload，而非提出这一概念。
+9. [ML-Agent（arXiv:2505.23723v2）](https://arxiv.org/html/2505.23723v2) 已收集 9 个 MLE tasks、10,000
+   条最长 15 步/30 分钟的执行轨迹，做 Qwen2.5-7B SFT 与 step-wise PPO，并显式给出 agentic-ML reward 和成本
+   分摊。因此“大规模 execution-grounded MLE trajectory”“MLE step-wise learning/cost”均不是我方首创。
+10. [Frontis-MA1 / OpenMLE（arXiv:2607.28568）](https://arxiv.org/abs/2607.28568) 已把四类程序演化 operator
+    的 execution-grounded SFT/RL 与长程 evolution search 接通；其官方
+    [SFT traces](https://huggingface.co/datasets/FrontisAI/OpenMLE-SFT-Traces) 有 26,259 条公开轨迹、4,891 个
+    task names。因此我方不能用训练轨迹规模、operator learning 或 agent 自改进作主 novelty。
+11. [MLE Trajectory Dataset v1](https://huggingface.co/datasets/jerryyan/mle-traj-v1) 已发布 15,572 个
+    human/agent 逐版本代码节点、逐节点 held-out score 与 state/action/intent 标签；
+    [v3](https://huggingface.co/datasets/jerryyan/mle-traj-v3) 又将 13,692 个人类版本以 version/fork/code-sim
+    边构成 forest。因此“首个 MLE trajectory/graph dataset”“首个逐版本 score+code+标签”均已关闭。其 agent
+    MLEvolve 数据仅来自 13 个 physical runs 并线性化为 189 branches；我方可守差异是保留真实 search parent 与
+    sibling choice fragments，并以此做独立 predictor benchmark 和 outcome-blind temporal audit。
 
 ## 当前仍可守的差异化组合
 
@@ -48,7 +61,8 @@
 trajectory 的成功/偏好判断；我方 benchmark 的 deployment estimand 是在真实 MLE 搜索节点上、执行前比较同一
 decision point 的完整候选程序，并把 pair construction 与有效 benchmark 权重本身作为受审计对象。
 
-新增文献进一步收紧后，最可守的差异不应写成“代码 RM”“agent RM”“execution-free critic”或“search pruning”本身；
+新增文献进一步收紧后，最可守的差异不应写成“MLE trajectory dataset”“代码 RM”“agent RM”“execution-free
+critic”或“search pruning”本身；
 应写成：**对自然产生的 MLE-agent search distribution 做可重建、run-clean、time-forward 的 decision-level
 measurement study，并公开 pair graph、隐式权重、执行成本和审计撤回链。** 当前检索未发现同时满足“完整 MLE
 solution、真实 sibling choice、连续 pristine external grade、physical-run/config 隔离、outcome-blind temporal

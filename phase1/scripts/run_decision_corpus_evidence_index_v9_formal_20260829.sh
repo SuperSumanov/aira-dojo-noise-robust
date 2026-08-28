@@ -32,6 +32,7 @@ trap failure_receipt EXIT
 [[ $source_commit =~ ^[0-9a-f]{40}$ ]]
 test -d "$source_repo/.git"
 test -x "$python_bin"
+command -v grep >/dev/null
 test ! -e "$formal_root"
 test ! -e "$worktree_root"
 mkdir -p "$formal_root"
@@ -140,8 +141,13 @@ find "$formal_root" -type f \
   \( -iname '*.env' -o -iname '*api*key*' -o -iname '*secret*' -o -iname '*credential*' \) \
   -printf '%P\n' >"$formal_root/artifact_filename_scan.txt"
 test ! -s "$formal_root/artifact_filename_scan.txt"
-rg -l -i 'sk-[A-Za-z0-9._-]{12,}|api[_-]?key[[:space:]]*[:=][[:space:]]*[A-Za-z0-9._-]{12,}|authorization:[[:space:]]*bearer' \
-  "$formal_root" >"$formal_root/artifact_content_scan.txt" || true
+set +e
+grep -RIlE --binary-files=without-match \
+  'sk-[A-Za-z0-9._-]{12,}|api[_-]?key[[:space:]]*[:=][[:space:]]*[A-Za-z0-9._-]{12,}|authorization:[[:space:]]*bearer' \
+  "$formal_root" >"$formal_root/artifact_content_scan.txt"
+content_scan_rc=$?
+set -e
+test "$content_scan_rc" = 1
 test ! -s "$formal_root/artifact_content_scan.txt"
 
 index_sha=$(sha256sum "$formal_root/index_a.json" | awk '{print $1}')
@@ -176,6 +182,7 @@ cat >"$formal_root/formal_summary.json" <<EOF
   "network_calls": 0,
   "credential_filename_hits": 0,
   "credential_content_hits": 0,
+  "credential_content_scanner_rc": 1,
   "prospective_values_read": false,
   "raw_senior_archives_opened": false,
   "row_level_release_created": false,

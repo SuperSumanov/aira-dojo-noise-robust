@@ -1,0 +1,58 @@
+{
+  "protocol": "openrouter-full-context-metric-recovery-erratum-v1",
+  "status": "FROZEN_AFTER_ENDPOINT_SCHEMA_CENSUS_BEFORE_RUN_CONSENSUS_READOUT",
+  "frozen_utc": "2026-08-28T22:18:31Z",
+  "parent_protocol": {
+    "name": "openrouter-full-context-judge-v1",
+    "sha256": "56a33c2409fd1cd317df948577bacb769f6bf61c08dd748f38b2e7c62e727a29",
+    "freeze_commit": "8ead91f86edda8ceb6587de1ed298ea509ddaedf"
+  },
+  "failed_implementation_commit": "c06a77b5b08ef7824b7262b5d7e0a3d972be3bc8",
+  "known_before_freeze": {
+    "infeasibility_census_sha256": "7a3ac11f6aafe037a74f104a52db0820c5281de356cd51268c594bbc78d38647",
+    "historical_endpoint_cards": 2208,
+    "endpoint_missing_metric": 2208,
+    "endpoint_missing_other_required_prompt_fields": 0,
+    "eligible_pairs_under_endpoint_only_metric": 0,
+    "run_task_consensus_metric_availability_seen": false,
+    "run_task_consensus_metric_ambiguity_seen": false,
+    "eligible_counts_after_recovery_seen": false,
+    "selected_pair_identities_seen": false,
+    "api_outputs_seen": false
+  },
+  "fixed_recovery": {
+    "scope": "immutable credential-scanned Cards input already bound by parent protocol",
+    "key": ["physical_run_id", "task.name"],
+    "candidate_values": "all non-empty string task.metric values across every Card with the exact key",
+    "normalization": "exact string; no case folding, stripping beyond testing non-empty, aliasing, parsing, or web lookup",
+    "acceptance": "exactly one distinct candidate value",
+    "endpoint_nonempty_metric": "must equal the unique run-task consensus",
+    "endpoint_empty_metric": "filled only from the unique run-task consensus",
+    "zero_candidate_values": "reject pair as missing_run_task_metric_consensus",
+    "multiple_candidate_values": "reject pair as ambiguous_run_task_metric_consensus",
+    "metric_source_sent_to_provider": false
+  },
+  "unchanged_parent_contract": {
+    "panels": true,
+    "historical_inputs_and_hashes": true,
+    "gap_bins_and_quota": true,
+    "run_endpoint_and_task_caps": true,
+    "exact_resource_stratum": true,
+    "complete_untruncated_code": true,
+    "models_orientations_and_prompts": true,
+    "privacy_and_cost_gates": true,
+    "live_calls_authorized": false
+  },
+  "classification_order": [
+    "RUN_TASK_METRIC_CONSENSUS_RECOVERY_EXACT_PANEL_FEASIBLE",
+    "RUN_TASK_METRIC_CONSENSUS_RECOVERY_PANEL_INFEASIBLE",
+    "RUN_TASK_METRIC_CONSENSUS_INTEGRITY_FAIL"
+  ],
+  "security": {
+    "aggregate_only_public_receipt": true,
+    "prospective_values_forbidden": true,
+    "api_calls_at_freeze": 0,
+    "model_fits_at_freeze": 0,
+    "base_llm_updates_at_freeze": 0
+  }
+}

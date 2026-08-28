@@ -28,6 +28,8 @@ PROTOCOL_NAME = "openrouter-full-context-judge-v1"
 PROTOCOL_STATUS = "FROZEN_BEFORE_PANEL_MATERIALIZATION_OR_API_CALLS"
 PANEL_SCHEMA = "openrouter-full-context-private-panel-row-v1"
 LAUNCH_RECEIPT = "openrouter-full-context-launch-receipt-v1"
+ERRATUM_NAME = "openrouter-full-context-metric-recovery-erratum-v1"
+ERRATUM_STATUS = "FROZEN_AFTER_ENDPOINT_SCHEMA_CENSUS_BEFORE_RUN_CONSENSUS_READOUT"
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 KEY_ENVIRONMENT_VARIABLE = "OPENROUTER_API_KEY"
 
@@ -83,6 +85,20 @@ def load_protocol(path: Path, expected_sha256: str) -> tuple[dict[str, Any], str
     return value, observed
 
 
+def load_metric_erratum(
+    path: Path, expected_sha256: str, protocol_sha256: str
+) -> tuple[dict[str, Any], str]:
+    observed = sha256_file(path)
+    require(observed == expected_sha256, "metric-recovery erratum SHA mismatch")
+    value = json.loads(path.read_text(encoding="utf-8"))
+    require(isinstance(value, dict), "metric-recovery erratum object")
+    require(value.get("protocol") == ERRATUM_NAME, "metric-recovery erratum name")
+    require(value.get("status") == ERRATUM_STATUS, "metric-recovery erratum status")
+    require(value["parent_protocol"]["sha256"] == protocol_sha256, "erratum parent binding")
+    require(value["unchanged_parent_contract"]["live_calls_authorized"] is False, "live drift")
+    return value, observed
+
+
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
     require(path.is_file() and not path.is_symlink(), f"unsafe JSONL: {path}")
     rows: list[dict[str, Any]] = []
@@ -96,7 +112,10 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
 
 
 def validate_private_panel(
-    rows: list[dict[str, Any]], protocol: dict[str, Any], protocol_sha256: str
+    rows: list[dict[str, Any]],
+    protocol: dict[str, Any],
+    protocol_sha256: str,
+    erratum_sha256: str,
 ) -> None:
     expected_pairs = sum(int(value["pairs"]) for value in protocol["eligibility"]["panels"].values())
     require(len(rows) == expected_pairs, "private panel row count")
@@ -111,6 +130,10 @@ def validate_private_panel(
     for row in rows:
         require(row.get("schema") == PANEL_SCHEMA, "private panel schema")
         require(row.get("protocol_sha256") == protocol_sha256, "private panel protocol binding")
+        require(
+            row.get("metric_recovery_erratum_sha256") == erratum_sha256,
+            "private panel metric-recovery binding",
+        )
         private_id = row.get("pair_private_id")
         require(isinstance(private_id, str) and len(private_id) == 64, "private pair identity")
         require(private_id not in private_ids, "duplicate private pair identity")
@@ -362,6 +385,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--protocol-sha256", required=True)
+    parser.add_argument("--metric-recovery-erratum", type=Path, required=True)
+    parser.add_argument("--metric-recovery-erratum-sha256", required=True)
     parser.add_argument("--panel", type=Path, required=True)
     parser.add_argument("--raw-out", type=Path)
     parser.add_argument("--phase", choices=("smoke", "full"), required=True)
@@ -374,10 +399,15 @@ def parse_args() -> argparse.Namespace:
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
     protocol, protocol_sha256 = load_protocol(args.protocol.resolve(), args.protocol_sha256)
+    _, erratum_sha256 = load_metric_erratum(
+        args.metric_recovery_erratum.resolve(),
+        args.metric_recovery_erratum_sha256,
+        protocol_sha256,
+    )
     panel_path = args.panel.resolve()
     ensure_private_file(panel_path)
     rows = read_jsonl(panel_path)
-    validate_private_panel(rows, protocol, protocol_sha256)
+    validate_private_panel(rows, protocol, protocol_sha256, erratum_sha256)
     catalog = model_catalog(protocol)
     models = args.models or list(catalog)
     require(models and len(models) == len(set(models)), "models must be unique")

@@ -47,7 +47,7 @@ def make_card(identity: str, task: str, parent: str | None) -> dict[str, object]
     }
 
 
-def make_inputs(tmp_path: Path) -> tuple[Path, str, Path, Path]:
+def make_inputs(tmp_path: Path) -> tuple[Path, str, Path, Path, Path, str]:
     protocol = json.loads(REAL_PROTOCOL.read_text(encoding="utf-8"))
     cards: dict[str, list[dict[str, object]]] = {}
     decision: list[dict[str, object]] = []
@@ -119,11 +119,22 @@ def make_inputs(tmp_path: Path) -> tuple[Path, str, Path, Path]:
     protocol_path = tmp_path / "protocol.json"
     write_json(protocol_path, protocol)
     protocol_sha = sha256(protocol_path)
+    erratum = json.loads(
+        (REAL_PROTOCOL.parent / "openrouter_full_context_metric_recovery_erratum_v1.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    erratum["parent_protocol"]["sha256"] = protocol_sha
+    erratum_path = tmp_path / "metric_erratum.json"
+    write_json(erratum_path, erratum)
+    erratum_sha = sha256(erratum_path)
     panel_path = tmp_path / "private" / "panel.jsonl"
     receipt_path = tmp_path / "private" / "receipt.jsonl"
     args = argparse.Namespace(
         protocol=protocol_path,
         protocol_sha256=protocol_sha,
+        metric_recovery_erratum=erratum_path,
+        metric_recovery_erratum_sha256=erratum_sha,
         cards=paths["cards"],
         run_split=paths["run_split"],
         decision=paths["decision"],
@@ -134,11 +145,11 @@ def make_inputs(tmp_path: Path) -> tuple[Path, str, Path, Path]:
     )
     receipt = builder.build(args)
     assert receipt["selection"]["pairs"] == 64
-    return protocol_path, protocol_sha, panel_path, receipt_path
+    return protocol_path, protocol_sha, panel_path, receipt_path, erratum_path, erratum_sha
 
 
 def test_builder_materializes_exact_balanced_private_panel(tmp_path: Path) -> None:
-    _, _, panel_path, receipt_path = make_inputs(tmp_path)
+    _, _, panel_path, receipt_path, _, _ = make_inputs(tmp_path)
     rows = [json.loads(line) for line in panel_path.read_text(encoding="utf-8").splitlines()]
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
     assert len(rows) == 64
@@ -181,8 +192,23 @@ def test_missing_metric_is_rejected_as_ineligible_not_global_parse_failure() -> 
     assert rejected == {"missing_prompt_metadata": 1}
 
 
+def test_unique_run_task_metric_consensus_recovers_missing_endpoint_metric() -> None:
+    value = make_card("synthetic-card-with-missing-metric", "task-a", None)
+    assert isinstance(value["task"], dict)
+    value["task"]["metric"] = None
+    card = builder.parse_card("synthetic-card-with-missing-metric", "run-a", value)
+    recovered, counts = builder.recover_metrics(
+        {card.identity: card}, {("run-a", "task-a"): {"accuracy"}}
+    )
+    observed = recovered[card.identity]
+    assert observed.metric == "accuracy"
+    assert observed.metric_source == "run_task_consensus"
+    assert observed.metric_consensus_status == "unique"
+    assert counts == {"metric_recovered_from_run_task_consensus": 1}
+
+
 def test_request_contract_keeps_full_code_and_excludes_labels(tmp_path: Path) -> None:
-    protocol_path, protocol_sha, panel_path, _ = make_inputs(tmp_path)
+    protocol_path, protocol_sha, panel_path, _, _, _ = make_inputs(tmp_path)
     protocol, _ = judge.load_protocol(protocol_path, protocol_sha)
     row = judge.read_jsonl(panel_path)[0]
     model = protocol["model_catalog_snapshot"]["models"][0]["id"]
@@ -210,11 +236,13 @@ def test_final_choice_parser_does_not_salvage_reasoning(content: str, pick: str 
 
 
 def test_mock_smoke_is_network_free_append_only_and_resumable(tmp_path: Path) -> None:
-    protocol_path, protocol_sha, panel_path, _ = make_inputs(tmp_path)
+    protocol_path, protocol_sha, panel_path, _, erratum_path, erratum_sha = make_inputs(tmp_path)
     raw_path = tmp_path / "private" / "mock.jsonl"
     args = argparse.Namespace(
         protocol=protocol_path,
         protocol_sha256=protocol_sha,
+        metric_recovery_erratum=erratum_path,
+        metric_recovery_erratum_sha256=erratum_sha,
         panel=panel_path,
         raw_out=raw_path,
         phase="smoke",
@@ -236,11 +264,13 @@ def test_mock_smoke_is_network_free_append_only_and_resumable(tmp_path: Path) ->
 def test_live_transport_requires_separate_launch_receipt_before_credential(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    protocol_path, protocol_sha, panel_path, _ = make_inputs(tmp_path)
+    protocol_path, protocol_sha, panel_path, _, erratum_path, erratum_sha = make_inputs(tmp_path)
     monkeypatch.setenv(judge.KEY_ENVIRONMENT_VARIABLE, "synthetic-not-a-real-credential")
     args = argparse.Namespace(
         protocol=protocol_path,
         protocol_sha256=protocol_sha,
+        metric_recovery_erratum=erratum_path,
+        metric_recovery_erratum_sha256=erratum_sha,
         panel=panel_path,
         raw_out=tmp_path / "private" / "live.jsonl",
         phase="smoke",

@@ -13,6 +13,19 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IJ. 2026-08-29 full-context panel 的 endpoint metric 缺失已触发冻结勘误，不改样本规则
+
+原协议 commit=`8ead91f...aedf` 后，r1 因无关 LFS 404、r2 因 endpoint `task.metric` 为空、repair commit=
+`c06a77b...3bc8` 的 r3 因八个 strata eligible=0 依次 fail-closed，均无 panel/COMPLETE/API call。aggregate census=
+`7a3ac11f...8647` 证明 2,208 个唯一 endpoint 只有 metric 字段全缺；task description/direction、client、hardware、两个
+时限和 code 缺失均为 0。
+
+在 run-level metric availability 未见时，`openrouter_full_context_metric_recovery_erratum_v1.json` 只允许从 immutable Cards
+中同 `(physical run, task.name)` 的所有非空 metric 做 exact unique consensus 回填；0 个或多值均拒绝，不猜、不查网页、
+不 alias。两个 panel、4×8 配额、gap/run/endpoint/task、resource stratum、模型/双方向/隐私/预算均不改；恢复后任一桶仍
+不足 8 就正式 infeasible，不再追加 fallback。详见
+`phase1/实验记录/2026-08-29/OpenRouterFullContext_v1_结构失败与MetricRecovery勘误预注册.md`。
+
 ## 0II. 2026-08-29 学长 0828 NEXT 已收束为全上下文 evaluator 诊断；不授权底座微调或付费调用
 
 学长 outcome commit=`f534114...c8ad` 的三项 NEXT 经防撞与项目硬约束审查：便宜强模型复核历史 reward/decision pair

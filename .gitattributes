@@ -144,3 +144,9 @@ phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/postflight/**
 phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/failed_launcher_preworktree/** -text -diff
 phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/README.md text eol=lf diff
 phase1/results/tree_native_path_compatibility_887_20260828_cdc90e4/source_bindings.json text eol=lf diff
+# Preserve the byte-exact formal/postflight aggregate corollary receipts;
+# keep only package documentation and bindings normalized and diffable.
+phase1/results/tree_linearization_estimand_sensitivity_887_20260828_5a96d92/formal/** -text -diff
+phase1/results/tree_linearization_estimand_sensitivity_887_20260828_5a96d92/postflight/** -text -diff
+phase1/results/tree_linearization_estimand_sensitivity_887_20260828_5a96d92/README.md text eol=lf diff
+phase1/results/tree_linearization_estimand_sensitivity_887_20260828_5a96d92/source_bindings.json text eol=lf diff

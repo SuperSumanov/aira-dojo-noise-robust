@@ -1,0 +1,13 @@
+PREFLIGHT_01_DIRECTION=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; HCE multifidelity Probe score-channel effect and K>=1 remain closed
+PREFLIGHT_02_GOAL=derive and independently verify the exact edge-empirical-measure sensitivity implied by the already-published path-multiplicity aggregate
+PREFLIGHT_03_TIMING=exploratory values were seen before declaration; protocol frozen at d8214ce0a1aecdc184ef6909fc2542c3e1506719; result is a post-hoc deterministic corollary and not an independent discovery
+PREFLIGHT_04_INPUTS=only two hash-bound aggregate receipts from fixed snapshot 887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697; no raw snapshot state
+PREFLIGHT_05_FIXED=canonical and path measures exact rational formulas reconciliation checks classification and claim boundary
+PREFLIGHT_06_UNIT=distinct observed child-parent edge under canonical measure versus path occurrence multiplicity measure
+PREFLIGHT_07_LEAKAGE=no prospective label grade outcome prediction accuracy utility identity code raw archive or blind manifest access
+PREFLIGHT_08_SOURCE=fresh detached exact implementation commit 5a96d92e0d638af6dba6f65c5f4a96e1ab37e9b4; protocol producer verifier hashes exact and worktree clean
+PREFLIGHT_09_TESTS=synthetic adversarial and neighboring focused tests plus all phase1 tests before formal receipt
+PREFLIGHT_10_INDEPENDENCE=histogram-count producer versus independently expanded-edge verifier; producer A/B and verifier A/B byte equality
+PREFLIGHT_11_SECURITY=strace forbidden paths zero; credential filename/content hits zero; aggregate-only outputs
+PREFLIGHT_12_RESOURCES=CPU only deterministic no sampling; GPU API model_fit base_update equals 0/0/0/0; expected under ten minutes
+PREFLIGHT_13_PROMOTION=formal plus second fresh-worktree postflight exact match and complete manifests required; any mismatch records FAILED_RC

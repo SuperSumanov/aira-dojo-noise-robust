@@ -1,0 +1,123 @@
+{
+  "status": "TREE_LINEARIZATION_ESTIMAND_SENSITIVITY_COROLLARY_COMPLETE",
+  "classification": "VERIFIED_EXACT_EDGE_MEASURE_SENSITIVITY_COROLLARY",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "protocol_sha256": "e4e6fcdb7fe859fc3b66b660cdca65093e8859b3b754ec54bc6e2cd33d1a84c0",
+  "source_commit": "5a96d92e0d638af6dba6f65c5f4a96e1ab37e9b4",
+  "inventory": {
+    "canonical_unique_edges": 10895,
+    "duplicate_edge_occurrences": 15212,
+    "maximum_multiplicity": 144,
+    "multiplicity_bins": 47,
+    "path_edge_occurrences": 26107
+  },
+  "edge_measure_shift": {
+    "bounded_statistic_envelope": {
+      "particular_natural_metric_claimed_to_attain_bound": false,
+      "sharp_supremum_absolute_expectation_shift": {
+        "decimal_17g": "0.38618771447395162",
+        "denominator": 284435765,
+        "numerator": 109845598
+      },
+      "statistic_range": "[0,1]"
+    },
+    "canonical_unique_edges": 10895,
+    "path_edge_occurrences": 26107,
+    "sharp_maximizing_set": {
+      "canonical_mass": {
+        "decimal_17g": "0.20982101881597062",
+        "denominator": 10895,
+        "numerator": 2286
+      },
+      "definition": "multiplicity * canonical_unique_edges > path_edge_occurrences",
+      "path_mass": {
+        "decimal_17g": "0.59600873328992221",
+        "denominator": 26107,
+        "numerator": 15560
+      },
+      "path_minus_canonical_mass": {
+        "decimal_17g": "0.38618771447395162",
+        "denominator": 284435765,
+        "numerator": 109845598
+      },
+      "path_occurrences": 15560,
+      "unique_edges": 2286
+    },
+    "total_variation": {
+      "decimal_17g": "0.38618771447395162",
+      "denominator": 284435765,
+      "numerator": 109845598
+    }
+  },
+  "concentration": {
+    "canonical_inverse_hhi_descriptive_diversity": {
+      "decimal_17g": "10895",
+      "denominator": 1,
+      "numerator": 10895
+    },
+    "inverse_hhi_is_statistical_effective_sample_size": false,
+    "maximum_single_edge_mass_inflation": {
+      "decimal_17g": "60.094227601792625",
+      "denominator": 26107,
+      "numerator": 1568880
+    },
+    "path_inverse_hhi_descriptive_diversity": {
+      "decimal_17g": "2300.1564169453659",
+      "denominator": 296317,
+      "numerator": 681575449
+    },
+    "path_to_canonical_diversity_retention": {
+      "decimal_17g": "0.2111203686962245",
+      "denominator": 3228373715,
+      "numerator": 681575449
+    },
+    "sum_squared_multiplicity": 296317
+  },
+  "inverse_multiplicity_correction": {
+    "corrected_total_variation_from_canonical": {
+      "decimal_17g": "0",
+      "denominator": 1,
+      "numerator": 0
+    },
+    "exact_measure_recovery": true,
+    "per_edge_unnormalized_mass": {
+      "denominator": 1,
+      "numerator": 1
+    },
+    "total_unnormalized_mass": {
+      "denominator": 1,
+      "numerator": 10895
+    }
+  },
+  "all_verification_checks_passed": true,
+  "claim_boundary": {
+    "actual_predictor_accuracy_shift_observed": false,
+    "algorithmic_novelty": false,
+    "allowed": "For the two fixed empirical edge measures induced by the published MLE-agent observed forest, root-to-leaf path linearization has the exact reported total variation and concentration shift; this total variation is the sharp worst-case shift over arbitrary bounded edge-level statistics, while inverse-multiplicity occurrence weights exactly recover the canonical edge measure.",
+    "complete_source_tree_or_choice_set_proven": false,
+    "generalization_beyond_fixed_snapshot": false,
+    "independent_confirmatory_discovery": false,
+    "inverse_hhi_is_statistical_effective_sample_size": false,
+    "particular_natural_metric_attains_bound": false
+  },
+  "design_timing": {
+    "compatibility_certificate_known": true,
+    "exploratory_values_seen_before_this_declaration": true,
+    "interpretation": "This artifact verifies a deterministic analytic corollary of already-published aggregates. It is not a preregistered independent empirical finding.",
+    "no_confirmatory_or_novel_discovery_label_allowed": true,
+    "no_threshold_hypothesis_test_or_model_selection": true,
+    "upstream_materiality_result_known": true
+  },
+  "security": {
+    "aggregate_receipts_only": true,
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "identity_code_or_per_path_values_written": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_or_blind_manifests_opened": false
+  }
+}

@@ -13,6 +13,36 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HE. 2026-08-28 tree linearization 的 estimand sensitivity 后验解析已正式闭环
+
+在 0HC multiplicity aggregate 与 0HD compatibility certificate 均已知后，本轮先探索性看到了数值，再于
+commit=`d8214ce0a1aecdc184ef6909fc2542c3e1506719` 如实冻结后验解析声明；因此只能称**已发布聚合量的
+确定性解析推论**，不能称结果前发现、独立确认或新假设检验。正式实现 commit=
+`5a96d92e0d638af6dba6f65c5f4a96e1ab37e9b4`，分类为
+**`VERIFIED_EXACT_EDGE_MEASURE_SENSITIVITY_COROLLARY`**。
+
+对固定 10,895 条 canonical unique edges 与 26,107 个 path edge occurrences，uniform-edge measure 和
+path-frequency measure 的精确 total variation 为 `109845598/284435765`=`0.38618771447395162`。达到该
+sharp bound 的 multiplicity-defined edge indicator 覆盖 2,286 条 unique edges：canonical mass=
+`2286/10895`=`0.20982101881597062`，却占 path mass=`15560/26107`=`0.59600873328992221`，相差恰为
+上述 TV。它严格意味着任意 `[0,1]` edge-level bounded statistic 的最坏经验期望偏移上界为 38.6188 个百分点；
+不意味着 predictor accuracy 或任何自然指标实际达到该界。
+
+描述性 concentration 同样材料：canonical inverse-HHI diversity=`10895`，path-frequency 为
+`681575449/296317`=`2300.1564169453659`，保留率仅
+`681575449/3228373715`=`0.2111203686962245`；单 edge 最大质量膨胀为
+`1568880/26107`=`60.094227601792625`。inverse-HHI 只称描述性多样性，不称统计 ESS。0HD 的
+`1/m_e` occurrence weighting 将每条 edge 的总质量精确恢复为 1，修正 measure 对 canonical 的 TV=`0/1`。
+
+正式 focused/full=`27/1330 passed`，full 有 47 warnings；producer A/B、non-importing verifier A/B 与
+第二 fresh-worktree postflight 均逐字节一致。formal/postflight manifest=
+`4b82d111df374cdfb742e68a612e07d4c9d8d6bb8f073c81c785f051eaf73d84` /
+`cb943d828d2fd4307d5f32b2de5c0e29c7c7a2ce3ae42618988023bf012c27ed`；forbidden/credential=
+`0/0/0`。本结果只读两份 hash-bound aggregate receipts；prospective truth/prediction、identity/code、GPU/API/
+model-fit/base-update 均未触碰。它强化的是 tree-native benchmark estimand 与发布合同，不是算法 novelty，也不能
+rescue predictor primary；当前仍为 435/960、closure=false。结果包见
+`phase1/results/tree_linearization_estimand_sensitivity_887_20260828_5a96d92/`。
+
 ## 0HD. 2026-08-28 tree-native/path-compatible 双视图 remedy 已正式闭环
 
 在 0HC 的 materials result 已知后、任何 compatibility certificate 产生前，结果前 commit `0deb5b6...` 冻结双视图

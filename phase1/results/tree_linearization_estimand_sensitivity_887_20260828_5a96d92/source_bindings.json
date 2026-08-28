@@ -1,0 +1,44 @@
+{
+  "protocol": "tree-linearization-estimand-sensitivity-result-package-v1",
+  "status": "VERIFIED_EXACT_EDGE_MEASURE_SENSITIVITY_COROLLARY",
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "declaration_commit": "d8214ce0a1aecdc184ef6909fc2542c3e1506719",
+  "formal_source_commit": "5a96d92e0d638af6dba6f65c5f4a96e1ab37e9b4",
+  "source_sha256": {
+    "protocol": "e4e6fcdb7fe859fc3b66b660cdca65093e8859b3b754ec54bc6e2cd33d1a84c0",
+    "producer": "13ba4f686ec0028d97e074da55e1c928bd7d2032690c92214d4cc5a7937e80c8",
+    "verifier": "877f96f4b6db24e45cb3d8a851e0650a811487da07699aa553a1f13ffc18a48e",
+    "tests": "2c26fa78ad6a548cc1b9f59568790e6f3d10eea8d908d461c841b6bbb4fdfb1f"
+  },
+  "formal_sha256": {
+    "final_receipt": "2587db7f1a77a5bcc13dd0bed2191616ccca6c5cbc57b73104ebb7b425c57cc4",
+    "independent_verification": "4801ff22d308d45fa0302174547ff1a2c724a0731e27e41fdc13f7fd8c16a49d",
+    "formal_summary": "4d4a8dfd502515b2b23adf2a1935ca35b8c3748385f46704fbbc50637f88333d",
+    "formal_manifest": "4b82d111df374cdfb742e68a612e07d4c9d8d6bb8f073c81c785f051eaf73d84",
+    "postflight_manifest": "cb943d828d2fd4307d5f32b2de5c0e29c7c7a2ce3ae42618988023bf012c27ed"
+  },
+  "remote_roots": {
+    "formal": "/research/d7/spc/yzyang4/tree-linearization-estimand-sensitivity/formal-5a96d92-887491a-v1",
+    "postflight": "/research/d7/spc/yzyang4/tree-linearization-estimand-sensitivity/postflight-5a96d92-887491a-v1"
+  },
+  "verification": {
+    "focused_tests_passed": 27,
+    "full_tests_passed": 1330,
+    "full_test_warnings": 47,
+    "postflight_focused_tests_passed": 16,
+    "producer_a_b_byte_identical": true,
+    "verifier_a_b_byte_identical": true,
+    "fresh_worktree_postflight_matches_formal_verifier": true,
+    "formal_manifest_verified_after_transport": true,
+    "postflight_manifest_verified_after_transport": true
+  },
+  "security": {
+    "forbidden_open_hits": 0,
+    "credential_filename_hits": 0,
+    "credential_content_file_hits": 0,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_or_blind_manifests_opened": false,
+    "identity_code_or_per_path_values_written": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  }
+}

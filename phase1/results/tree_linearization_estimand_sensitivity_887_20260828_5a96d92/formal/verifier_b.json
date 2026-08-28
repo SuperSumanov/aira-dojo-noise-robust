@@ -1,0 +1,39 @@
+{
+  "all_verification_checks_passed": true,
+  "classification": "VERIFIED_EXACT_EDGE_MEASURE_SENSITIVITY_COROLLARY",
+  "maximum_single_edge_mass_inflation": {
+    "decimal_17g": "60.094227601792625",
+    "denominator": 26107,
+    "numerator": 1568880
+  },
+  "path_inverse_hhi_descriptive_diversity": {
+    "decimal_17g": "2300.1564169453659",
+    "denominator": 296317,
+    "numerator": 681575449
+  },
+  "producer_source_sha256": "13ba4f686ec0028d97e074da55e1c928bd7d2032690c92214d4cc5a7937e80c8",
+  "protocol": "independent-tree-linearization-estimand-sensitivity-verification-v1",
+  "protocol_sha256": "e4e6fcdb7fe859fc3b66b660cdca65093e8859b3b754ec54bc6e2cd33d1a84c0",
+  "receipt_sha256": "2587db7f1a77a5bcc13dd0bed2191616ccca6c5cbc57b73104ebb7b425c57cc4",
+  "security": {
+    "aggregate_receipts_only": true,
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "identity_code_or_per_path_values_written": false,
+    "imports_producer": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "raw_senior_archives_or_blind_manifests_opened": false
+  },
+  "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+  "source_commit": "5a96d92e0d638af6dba6f65c5f4a96e1ab37e9b4",
+  "status": "INDEPENDENT_ESTIMAND_SENSITIVITY_COROLLARY_PASS",
+  "total_variation": {
+    "decimal_17g": "0.38618771447395162",
+    "denominator": 284435765,
+    "numerator": 109845598
+  }
+}

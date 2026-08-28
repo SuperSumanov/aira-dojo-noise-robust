@@ -11,6 +11,7 @@ readonly python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
 readonly worktree_root=/research/d7/spc/yzyang4/worktrees/evidence-index-v9-${source_commit:0:12}
 readonly protocol_rel=phase1/decision_corpus_evidence_index_v9_protocol_v1.json
 readonly protocol_sha=a5d49990f3af37ce8968495fd13bf1b1c3f5e48875b117a86a878b75ed8d958a
+readonly fetch_remote=${EVIDENCE_V9_FETCH_REMOTE:-fork}
 
 failure_receipt() {
   rc=$?
@@ -45,7 +46,7 @@ cat >"$formal_root/preflight_13.txt" <<EOF
 EOF
 test "$(wc -l <"$formal_root/preflight_13.txt")" = 13
 
-git -C "$source_repo" fetch myfork phase1-value-critic >"$formal_root/fetch.stdout" 2>"$formal_root/fetch.stderr"
+git -C "$source_repo" fetch "$fetch_remote" phase1-value-critic >"$formal_root/fetch.stdout" 2>"$formal_root/fetch.stderr"
 git -C "$source_repo" cat-file -e "$source_commit^{commit}"
 GIT_LFS_SKIP_SMUDGE=1 git -C "$source_repo" worktree add --detach "$worktree_root" "$source_commit" \
   >"$formal_root/worktree.stdout" 2>"$formal_root/worktree.stderr"

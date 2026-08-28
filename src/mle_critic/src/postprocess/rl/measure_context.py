@@ -22,7 +22,7 @@ from collections import Counter
 from pathlib import Path
 from statistics import mean
 from typing import Any
-
+from tqdm import tqdm
 
 PROJECT_ROOT = Path(__file__).resolve().parents[5]
 DEFAULT_MESSAGES = PROJECT_ROOT / "data" / "augmented_mle_critic" / "rl_judger_messages.jsonl"
@@ -104,7 +104,7 @@ def measure_context(
             filtered_messages_path.parent.mkdir(parents=True, exist_ok=True)
             filtered_file = filtered_messages_path.open("w", encoding="utf-8")
     with messages_path.open(encoding="utf-8") as input_file:
-        for line_number, line in enumerate(input_file, start=1):
+        for line_number, line in enumerate(tqdm(input_file, desc="Processing messages"), start=1):
             if not line.strip():
                 continue
             try:

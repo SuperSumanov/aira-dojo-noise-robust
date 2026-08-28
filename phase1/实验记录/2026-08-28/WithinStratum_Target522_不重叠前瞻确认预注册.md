@@ -12,6 +12,17 @@ selection-support 文件；测试终止该 monitor 时又观察到 TERM 没有�
 本修订只把 corpus 与 selection-support 白名单分开，并让脚本显式捕获 TERM/INT/HUP。population、estimand、
 Target-522、全部 exact gates、分类顺序及 claim boundary 均未改变。新版 monitor 必须从同一 887 基线重新启动。
 
+## 候选到达前实现
+
+- producer：`phase1/audit_tree_within_stratum_forward_target522.py`；
+- 独立 verifier：`phase1/verify_tree_within_stratum_forward_target522.py`，不导入新 producer；
+- 两边分别重建 baseline/candidate blind snapshots，并分别验证 selection package、first-observed crossing、
+  registry/run-ledger append-only、旧 run/endpoint 的 payload 与原始字节不变、完整新增 physical-run 差集；
+- full-snapshot 图完整性先于取差集检查，避免 cross-run parent 在差集里伪装成缺失父节点；
+- synthetic end-to-end、哈希合法但跳过更早 crossing、旧行漂移、cross-run parent 与 cycle 攻击均进入测试。
+
+截至实现完成，真实 Target-522 candidate 尚未产生，也没有运行任何真实 increment profile。
+
 状态：`OUTCOME_BLIND_PROTOCOL_FROZEN_BEFORE_TARGET522_SELECTION_OR_INCREMENT_PROFILE`。
 
 冻结时 `LATEST=887491a...`，first-960 provisional population 为 435 runs。候选 snapshot 的身份、计数与任何

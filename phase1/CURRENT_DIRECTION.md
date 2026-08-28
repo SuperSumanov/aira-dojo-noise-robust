@@ -21,6 +21,12 @@ corpus basename 白名单漏列了独立核验 first-observed crossing 所需的
 increment profile。科学 population、estimand、阈值和分类完全不变；协议现把 corpus 与 selection-support 白名单分开，
 并显式捕获 TERM/INT/HUP。新版 monitor 必须在新 commit 上从同一 887 基线重新开始。
 
+新版 monitor 已由 commit `42f1044e...` 从同一 887/435-run 基线重新上线；候选仍为空。候选到达前的 formal
+producer 与不导入 producer 的独立 verifier 已实现：两边各自读取 baseline/candidate、复验 first-observed crossing、
+严格比较 registry/run-ledger 前缀与旧 endpoint/run 的语义和原始字节，再只对完整新增 physical runs 计算 exact-rational
+profile。合成端到端及 hash-valid crossing-skip、old-row drift、cross-run parent、cycle 攻击测试均已通过；真实 candidate
+profile 仍未运行，故没有新科学分类。
+
 0HJ 的 887 formal 必须永久保留 gate-fail；不得在同 snapshot 把 float-string 门改成 rational 后重跑救回。为避免把
 “只新增极少 runs 的下一 snapshot”包装成独立复现，新的 v2 在候选身份与 profile 未见时冻结为首个自动观测到
 `provisional_first960_runs>=522` 的 immutable snapshot。`522=ceil(435*6/5)`，primary 只使用 candidate 中不在

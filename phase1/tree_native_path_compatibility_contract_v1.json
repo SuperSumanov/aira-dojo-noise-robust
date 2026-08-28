@@ -1,0 +1,140 @@
+{
+  "protocol": "tree-native-path-compatibility-contract-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-28T09:58:38Z",
+  "status": "OUTCOME_BLIND_CONTRACT_FROZEN_BEFORE_COMPATIBILITY_CERTIFICATE",
+  "question": "Can a path-oriented compatibility view of the fixed observed MLE-agent forest recover the canonical one-row-per-observed-edge empirical measure exactly, without exposing prospective truth or changing the predictor estimand?",
+  "design_timing": {
+    "frozen_after_upstream_linearization_materiality_result": true,
+    "frozen_before_any_path_compatibility_certificate": true,
+    "interpretation": "This is a prospective implementation and verification contract for a release remedy, not an independent discovery of linearization reweighting."
+  },
+  "fixed_snapshot": {
+    "sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "provisional_first960_runs": 435,
+    "eligible_endpoints": 11906,
+    "tasks": 34,
+    "closure_provided": false
+  },
+  "upstream_bindings": {
+    "linearization_receipt": {
+      "path": "phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/formal/final_receipt.json",
+      "sha256": "642e9fd793950d4dfd082669df164be0781bd13847f35d6483ebd8611a136ea8",
+      "required_classification": "MULTI_AXIS_MATERIAL_LINEARIZATION_REWEIGHTING"
+    },
+    "linearization_producer": {
+      "path": "phase1/audit_prospective_tree_linearization_weights.py",
+      "sha256": "cd204c1607b754f1d07861da83c829cab09df2871242a69236fe65fcc84eb09f"
+    },
+    "predictor_estimand_panel": {
+      "path": "phase1/decision_predictor_estimand_panel_v1.json",
+      "sha256": "4f394d0e0437992eb9d3e5f3aa56f83df86ffcbda68a752ebada4e306bf7adea",
+      "remains_authoritative": true
+    }
+  },
+  "population": {
+    "rows": "all eligible endpoints in the fixed snapshot blind manifests",
+    "observed_edge": "child to parent only when both endpoint identities occur in the same fixed blind population",
+    "fragment_root": "an endpoint whose declared parent is absent from the fixed blind population",
+    "fragment_leaf": "an endpoint with no observed child in the fixed blind population",
+    "missing_parent_policy": "start an observed fragment; never synthesize or impute the absent node",
+    "single_node_fragment_policy": "retain in node and fragment views; contribute no edge occurrence",
+    "no_task_run_depth_or_topology_subset_selection": true
+  },
+  "canonical_tree_native_view": {
+    "node_fields": [
+      "node_id",
+      "task_id",
+      "physical_run_id",
+      "declared_parent_node_id",
+      "observed_fragment_id",
+      "depth"
+    ],
+    "edge_fields": [
+      "edge_id",
+      "task_id",
+      "physical_run_id",
+      "observed_fragment_id",
+      "parent_node_id",
+      "child_node_id",
+      "child_depth"
+    ],
+    "observed_sibling_group_fields": [
+      "parent_node_id",
+      "physical_run_id",
+      "sorted_observed_child_node_ids"
+    ],
+    "canonical_edge_weight": "one per distinct observed child-parent edge",
+    "identity_redaction_or_pseudonymization_policy": "deferred until first-960 closure and release review"
+  },
+  "path_compatibility_view": {
+    "path_definition": "one ordered observed-fragment root-to-leaf node sequence, including single-node paths",
+    "edge_occurrence_fields": [
+      "path_id",
+      "path_position",
+      "edge_id",
+      "edge_multiplicity",
+      "canonical_mass_numerator",
+      "canonical_mass_denominator"
+    ],
+    "edge_multiplicity": "number of path records containing the edge, equivalently descendant observed-fragment leaves below its child",
+    "canonical_mass_numerator": 1,
+    "canonical_mass_denominator": "edge_multiplicity",
+    "consumer_rule": "A path-frequency statistic without inverse-multiplicity weights is a separately labelled compatibility sensitivity and must not be reported as the canonical edge empirical measure."
+  },
+  "exact_recovery_invariants": [
+    "every path occurrence references exactly one canonical observed edge",
+    "every canonical observed edge occurs in at least one path",
+    "for every edge, occurrence count equals declared edge multiplicity",
+    "for every edge, the exact rational sum of occurrence masses equals one",
+    "the exact rational total occurrence mass equals the canonical unique-edge count",
+    "exact rational task masses equal canonical per-task unique-edge counts",
+    "exact rational physical-run masses equal canonical per-run unique-edge counts",
+    "exact rational depth masses equal canonical per-depth unique-edge counts",
+    "every path is contiguous, acyclic, fragment-bound, task-bound and physical-run-bound",
+    "observed sibling groups equal canonical edges grouped by parent",
+    "all aggregate counts match the bound upstream linearization receipt"
+  ],
+  "required_certificate": {
+    "identity_free_aggregate_only_before_closure": true,
+    "canonical_and_path_inventory": true,
+    "exact_rational_recovery_checks": true,
+    "anonymous_multiplicity_distribution": true,
+    "producer_a_b_byte_identical": true,
+    "non_importing_verifier_a_b_byte_identical": true,
+    "no_node_edge_path_or_cluster_identity_values_emitted": true
+  },
+  "ordered_classification": [
+    "VERIFIED_LOSSLESS_TREE_NATIVE_PATH_COMPATIBILITY",
+    "TREE_NATIVE_PATH_COMPATIBILITY_GATE_FAIL"
+  ],
+  "classification_rule": "The verified classification requires every population, graph, upstream-binding, path-contiguity, exact-rational-recovery, aggregate-accounting, security and reproducibility gate. Any failed gate maps to TREE_NATIVE_PATH_COMPATIBILITY_GATE_FAIL; no partial recovery may rescue it.",
+  "claim_boundary": {
+    "allowed_if_verified": "For this fixed outcome-blind MLE-agent snapshot, a tree-native canonical view can coexist with a root-to-leaf path compatibility view whose preregistered inverse-multiplicity occurrence weights exactly recover the canonical observed-edge empirical measure across edge, task, physical-run and depth accounting.",
+    "elementary_inverse_weight_identity_is_algorithmic_novelty": false,
+    "new_predictor_or_search_algorithm_claim": false,
+    "predictor_estimand_changed_or_superseded": false,
+    "complete_source_tree_or_choice_set_proven": false,
+    "predictor_accuracy_effect_or_search_utility_computed": false,
+    "identity_level_public_release_before_closure": false,
+    "first960_or_closure_completed": false,
+    "general_causal_or_semantic_claim": false
+  },
+  "security": {
+    "allowed_input_basenames": [
+      "LATEST",
+      "eligible_blind_manifest.jsonl",
+      "intake_registry.jsonl",
+      "provisional_runs.jsonl",
+      "summary.json",
+      "final_receipt.json",
+      "decision_predictor_estimand_panel_v1.json",
+      "audit_prospective_tree_linearization_weights.py"
+    ],
+    "raw_senior_archives_opened": false,
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "identity_code_or_per_path_values_written": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  },
+  "failure_rule": "Fail closed on any snapshot, hash, schema, graph, support, upstream, exact-rational, security, byte-reproducibility or independent-verification mismatch. Do not change the population, path definition, multiplicity rule, occurrence mass or classification order after certificate values are observed."
+}

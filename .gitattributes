@@ -127,3 +127,6 @@ phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/formal/** -text -d
 phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/postflight/** -text -diff
 phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/README.md text eol=lf diff
 phase1/results/tree_linearization_weight_887_20260828_e9f4fb9/source_bindings.json text eol=lf diff
+# Freeze the preregistered tree-native/path-compatibility protocol bytes across
+# Windows and Linux because the protocol SHA-256 is embedded in later receipts.
+phase1/tree_native_path_compatibility_contract_v1.json text eol=lf diff

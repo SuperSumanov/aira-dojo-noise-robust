@@ -1,0 +1,150 @@
+{
+  "protocol": "senior-0819-pair-benchmark-integrity-v1",
+  "status": "FROZEN_AFTER_REPORT_AND_SCHEMA_BEFORE_OVERLAP_COMPONENT_AND_RUN_AUDIT",
+  "frozen_utc": "2026-08-28T16:54:31Z",
+  "source": {
+    "senior_branch_commit": "f534114e60658043c07f7a15d6440492caffc8ad",
+    "report_path": "src/mle_critic/docs/outcomes/0828/MIXED_PAIRWISE_REWARD_AND_RL_EXPERIMENTS.md",
+    "report_sha256": "17317a2d239cb862ec16d57aa0a2fa168f2c1a6cd841117950d8ee8127129ad6",
+    "data_commit_reported_in_report": "61459c0a1248900079dafed7c505afa87e476b40",
+    "pair_builder": {
+      "path": "src/mle_critic/src/postprocess/build_decision_augment_pairs.py",
+      "git_blob": "2b92e447065fdd6948d916882ed08b8910bc352f",
+      "sha256": "e7302d5fe7b914682b3327ea23022d2560fb54c348ed80e6fe40a5a065e71e63"
+    },
+    "run_split_applier": {
+      "path": "src/mle_critic/src/preprocess/build_bt_pairs/apply_runsplit.py",
+      "git_blob": "a73e015a14ec3ed1bf0ac604183bd25ee6367129",
+      "sha256": "4c110661b39cb5cb83bd2cd7670420d9a38cb77f0de3f66e2b53a3f10363fc08"
+    },
+    "run_split_builder": {
+      "path": "src/mle_critic/src/preprocess/download_and_resolve/build_runsplit.py",
+      "git_blob": "f9b88380cd189ebe2485e9493f00c069cb42cf04",
+      "sha256": "bb5b5c98cbe5ce6b38f350eb72d7e34ba4b9c4b9c633eeab88ea7568b564402b"
+    }
+  },
+  "immutable_inputs": {
+    "cards": {
+      "upstream_path": "data/augmented_mle_critic/augmented_cards_current.json",
+      "sha256": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343",
+      "bytes": 779146574,
+      "credential_scan_required_before_parse": true
+    },
+    "run_split": {
+      "upstream_path": "data/augmented_mle_critic/runsplit_holdruns.json",
+      "sha256": "593117cfe0b34e1d2e3c9b718866a7751d7f008701add77b31cfd604282103bb",
+      "all_runs_reported": 845,
+      "held_runs_reported": 189
+    },
+    "mixed": {
+      "upstream_path": "data/augmented_mle_critic/decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl",
+      "sha256": "7792a7da4119bb607cf76628fcdde19923898651ac734ff6afffb0732883cf6e",
+      "rows": 15875,
+      "train_rows": 14715,
+      "test_rows": 1160
+    },
+    "decision": {
+      "upstream_path": "data/augmented_mle_critic/merged_decision_pairs_filtered_runsplit.jsonl",
+      "sha256": "1a01d3a1202b35f21b9cd6c87237b29c50b1c293138b407cc453674108411442",
+      "rows": 7644,
+      "train_rows": 6484,
+      "test_rows": 1160
+    },
+    "value": {
+      "upstream_path": "data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl",
+      "sha256": "8a01dfb90c2c3d8498174ebe78df43ee21d6d0eac9f4ff81f63700b315473405",
+      "rows": 16204,
+      "train_rows": 14206,
+      "test_rows": 1998
+    },
+    "value_hardware_time": {
+      "upstream_path": "data/augmented_mle_critic/value_pairs_hardware_timelimit_gap_filtered_runsplit.jsonl",
+      "sha256": "60e9bbfba56ef94dfd70bb717694fa5b3b400f9458a13b92321bb1cb2ecdf3d9",
+      "rows": 8598,
+      "train_rows": 7703,
+      "test_rows": 895
+    }
+  },
+  "known_before_freeze": {
+    "report_accuracy_and_scaling_values_seen": true,
+    "input_row_counts_seen": true,
+    "input_field_schemas_seen": true,
+    "run_manifest_counts_seen": true,
+    "train_test_pair_overlap_seen": false,
+    "train_test_endpoint_overlap_seen": false,
+    "train_test_physical_run_overlap_seen": false,
+    "mixed_test_exact_preservation_seen": false,
+    "test_component_or_task_concentration_seen": false,
+    "mixed_source_membership_reconstructability_seen": false
+  },
+  "fixed_construction": {
+    "sample_seed": 7,
+    "requested_train_pool_rows": 15000,
+    "source_weights": {
+      "value": 8,
+      "decision": 1,
+      "value_hardware_time": 1
+    },
+    "retained_test_source": "decision",
+    "pair_identity": "unordered exact (better,worse) endpoint ID set",
+    "orientation_identity": "ordered exact (better,worse)",
+    "endpoint_identity": "exact Card id",
+    "physical_run_identity": "top-level key in augmented_cards_current.json",
+    "task_identity": "Card task.name and pair task must agree",
+    "component_identity": "connected component of the undirected mixed-test endpoint graph"
+  },
+  "hard_integrity_gates": {
+    "all_input_hashes_and_reported_counts_exact": true,
+    "cards_exactly_cover_frozen_run_manifest": true,
+    "card_ids_unique_and_present_lineage_parents_within_run": true,
+    "all_pair_endpoints_known_and_task_consistent": true,
+    "all_pair_split_values_match_frozen_run_membership": true,
+    "all_decision_pairs_share_recorded_parent_and_physical_run": true,
+    "mixed_test_exactly_preserves_decision_test_multiset": true,
+    "mixed_train_rows_belong_to_declared_source_train_union": true,
+    "mixed_train_test_unordered_pairs_disjoint": true,
+    "mixed_train_test_endpoints_disjoint": true,
+    "mixed_train_test_physical_runs_disjoint": true,
+    "mixed_test_has_no_duplicate_unordered_pairs": true,
+    "mixed_has_no_conflicting_pair_orientations": true
+  },
+  "broad_support_gates": {
+    "minimum_test_pairs": 1000,
+    "minimum_test_tasks": 20,
+    "minimum_test_physical_runs": 50,
+    "minimum_test_endpoints": 500,
+    "minimum_test_components": 100,
+    "maximum_single_task_pair_share": "1/4",
+    "maximum_single_run_pair_share": "1/10",
+    "maximum_single_component_pair_share": "1/4"
+  },
+  "classification_order": [
+    "HISTORICAL_RUN_ENDPOINT_DISJOINT_EXACT_TEST_PRESERVATION_BROAD_SUPPORT",
+    "HISTORICAL_RUN_ENDPOINT_DISJOINT_EXACT_TEST_PRESERVATION_LIMITED_BREADTH",
+    "HISTORICAL_PAIR_BENCHMARK_INTEGRITY_GATE_FAIL"
+  ],
+  "claim_boundary": {
+    "historical_exploratory_proxy_dataset_not_prospective": true,
+    "test_was_used_for_periodic_validation_or_checkpoint_selection": true,
+    "test_accuracy_or_model_scaling_recomputed": false,
+    "clean_scaling_confirmation": false,
+    "source_dataset_provenance_was_recorded_per_row": false,
+    "membership_in_source_files_can_prove_actual_sampling_origin": false,
+    "semantic_or_pretraining_contamination_excluded": false,
+    "end_to_end_search_utility_measured": false,
+    "base_llm_or_agent_updated": false
+  },
+  "security": {
+    "prospective_first960_or_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "credential_values_emitted": false,
+    "card_pair_task_run_or_parent_identities_emitted": false,
+    "aggregate_only_output": true
+  },
+  "resources": {
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

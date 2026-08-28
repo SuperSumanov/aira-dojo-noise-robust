@@ -13,6 +13,26 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0HR. 2026-08-29 senior 0819 mixed pair benchmark 已冻结独立完整性审计
+
+学长 `f534114e...` 的 0828 报告新增探索性 mixed-pair scaling/RL 汇总，但 Qwen3 容量趋势只在 seed 7 出现、seed 6
+未复现，RL 也不是 matched 正结论。继续 GPU 前先把其中 1,160-row decision test 能否成为可靠 benchmark 资产单独冻结：
+在结果前检查 frozen physical-run、endpoint、unordered pair 三层 train/test 隔离，decision test canonical multiset 精确保留，
+declared source-union support，以及 task/run/component breadth；不计算 accuracy、scaling 或 search utility。
+
+协议固定为 `phase1/senior_0819_pair_benchmark_integrity_v1.json`，Cards/run-split/mixed/decision/value/hardware-time 六个
+Git-LFS OID 全绑定。strongest 分类要求全部 13 个 hard integrity gates 通过，并满足 test pairs/tasks/runs/endpoints/
+components≥1,000/20/50/500/100，最大 task/run/component share≤1/4、1/10、1/4；任一 hard gate 失败不得由模型分数
+或子组 rescue。冻结前只看过报告数字、计数和 schema，未看 overlap、preservation、component/breadth 或 source membership
+readout。protocol/producer/独立 verifier/test/runner SHA-256=`8991d304...eb30` / `16997ff0...7352` /
+`5bdb7834...4e7b` / `f4e5faef...fba3` / `8dbf88a1...7917`；synthetic=`6 passed`，formal 尚未运行。
+
+779,146,574-byte Cards 在 JSON parse 前完成 credential scan，0 命中且 safe SHA 等于原 OID；八个小输入亦为 0。
+首次 v2 input root 因手抄 mixed SHA 错误在 scientific read 前 fail-closed，v3 用 LFS pointer 机器核对值重建。另发现学长
+报告正文含 credential-bearing dashboard URL：未访问、临时副本已删除，维护者须撤销并清理历史；不得复制 token。
+详细边界见 `phase1/实验记录/2026-08-29/Senior0819PairBenchmark_完整性审计预注册.md`。GPU/API/model-fit/base-update=
+`0/0/0/0`，first-960/Target-300 值和 raw archives 均未读。
+
 ## 0HQ. 2026-08-29 fixed-margin selective parent recovery 已冻结 Target-522 真前瞻确认
 
 0HP 的开发正结果仍在同一 disclosed snapshot 内，因此新的 strongest next step 已在 Target-522 candidate/profile 未见时

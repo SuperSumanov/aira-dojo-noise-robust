@@ -175,16 +175,19 @@ def reconstruct(protocol: dict[str, Any], root: Path) -> tuple[dict[str, Any], s
                 parent, task = str(raw["parent"]), str(raw["task"])
                 check(left and right and left != right and parent and task, "pair identity")
                 check(left in cards and right in cards, "unknown endpoint")
-                check(int(raw["budget"]) == budget and str(raw["intask_split"]) == expected_split, "pair split/budget")
                 left_task, left_run, left_parent = cards[left]
                 right_task, right_run, right_parent = cards[right]
-                check(left_task == right_task == task, "pair task")
-                if raw.get("run_id") is not None:
-                    check(str(raw["run_id"]) == left_run == right_run, "declared run")
+                endpoint_card_tasks_match = left_task == right_task
+                row_task_matches_endpoints = endpoint_card_tasks_match and left_task == task
+                budget_matches = int(raw["budget"]) == budget
+                split_matches = str(raw["intask_split"]) == expected_split
+                declared_run_matches = raw.get("run_id") is None or (
+                    str(raw["run_id"]) == left_run == right_run
+                )
                 parent_card = cards.get(parent)
                 direct = left_parent == right_parent == parent
                 same = left_task == right_task and left_run == right_run
-                if direct and same and parent_card is not None and parent_card[:2] == (task, left_run):
+                if direct and same and parent_card is not None and parent_card[:2] == (left_task, left_run):
                     relation = RELATIONS[0]
                 elif direct and same and parent_card is None:
                     relation = RELATIONS[1]
@@ -202,6 +205,11 @@ def reconstruct(protocol: dict[str, Any], root: Path) -> tuple[dict[str, Any], s
                     "left_run": left_run, "right_run": right_run,
                     "parent_run": None if parent_card is None else parent_card[1],
                     "relation": relation, "set": name,
+                    "endpoint_card_tasks_match": endpoint_card_tasks_match,
+                    "row_task_matches_endpoints": row_task_matches_endpoints,
+                    "budget_matches": budget_matches,
+                    "split_matches": split_matches,
+                    "declared_run_matches": declared_run_matches,
                 })
         check(len(rows) == metadata["rows"], f"pair count: {name}")
         rows_by_set[name] = rows
@@ -243,6 +251,13 @@ def reconstruct(protocol: dict[str, Any], root: Path) -> tuple[dict[str, Any], s
                 **all_profile,
                 "mapped_parent_choice_sets": len({row["parent"] for row in rows if row["parent_run"] is not None}),
                 "duplicate_or_reverse_unordered_pair_rows": len(rows) - len({(row["left"], row["right"]) for row in rows}),
+                "row_context_violation_counts": {
+                    "endpoint_card_task_disagreement": sum(not row["endpoint_card_tasks_match"] for row in rows),
+                    "row_task_mismatch": sum(not row["row_task_matches_endpoints"] for row in rows),
+                    "budget_mismatch": sum(not row["budget_matches"] for row in rows),
+                    "split_mismatch": sum(not row["split_matches"] for row in rows),
+                    "declared_run_mismatch": sum(not row["declared_run_matches"] for row in rows),
+                },
             },
             "relation_counts": relation_counts,
             "strict_core": core_profile,
@@ -318,10 +333,13 @@ def reconstruct(protocol: dict[str, Any], root: Path) -> tuple[dict[str, Any], s
         "all_input_hashes_and_v1_dependencies_exact": True,
         "card_ids_unique_and_run_map_exact": True,
         "present_lineage_parents_share_task_and_physical_run": present_parent_ok,
-        "all_pair_endpoints_known_and_row_task_run_split_budget_consistent": True,
+        "all_pair_endpoints_known_and_row_task_run_split_budget_consistent": all(
+            all(count == 0 for count in item["all_rows"]["row_context_violation_counts"].values())
+            for item in profiles.values()
+        ),
         "taxonomy_exhaustive_and_mutually_exclusive": sum(sum(item["relation_counts"].values()) for item in profiles.values()) == sum(item["all_rows"]["pairs"] for item in profiles.values()),
         "strict_core_all_endpoints_are_direct_children_of_declared_parent": all(cards[str(row["left"])][2] == cards[str(row["right"])][2] == row["parent"] for rows in rows_by_set.values() for row in rows if row["relation"] == RELATIONS[0]),
-        "strict_core_all_parent_endpoint_contexts_match": all(row["parent_run"] == row["left_run"] == row["right_run"] and cards[str(row["parent"])][0] == row["task"] for rows in rows_by_set.values() for row in rows if row["relation"] == RELATIONS[0]),
+        "strict_core_all_parent_endpoint_contexts_match": all(row["parent_run"] == row["left_run"] == row["right_run"] and cards[str(row["parent"])][0] == cards[str(row["left"])][0] == cards[str(row["right"])][0] for rows in rows_by_set.values() for row in rows if row["relation"] == RELATIONS[0]),
         "strict_core_and_quarantine_exhaustive_and_disjoint": all(item["strict_core"]["pairs"] + item["quarantine_rows"] == item["all_rows"]["pairs"] for item in profiles.values()),
         "same_budget_strict_core_train_frozen_pair_overlap_zero": all(item["unordered_pairs"] == 0 for item in core_overlap.values()),
         "same_budget_strict_core_train_frozen_endpoint_overlap_zero": all(item["endpoints"] == 0 for item in core_overlap.values()),

@@ -81,8 +81,17 @@ def build_fixture(tmp_path: Path, mutation: str | None = None) -> tuple[Path, st
         }
         if name == target and mutation == "outcome_fields":
             row.update({"better_score": 0.9, "worse_score": 0.1, "prediction": "left"})
+        elif name == target and mutation == "row_metadata_mismatch":
+            row.update({
+                "task": f"declared_task_other_{stem}",
+                "budget": budget + 10,
+                "intask_split": "train",
+                "run_id": f"declared_run_other_{stem}",
+            })
         if endpoint_runs[0] == endpoint_runs[1]:
             row["run_id"] = endpoint_runs[0]
+        if name == target and mutation == "row_metadata_mismatch":
+            row["run_id"] = f"declared_run_other_{stem}"
         rows = [row]
         if name == target and mutation == "duplicate_reverse":
             reverse = dict(row)
@@ -272,6 +281,21 @@ def test_same_budget_train_frozen_overlap_fails_closed(tmp_path: Path) -> None:
     assert gates["same_budget_strict_core_train_frozen_endpoint_overlap_zero"] is False
     assert gates["same_budget_strict_core_train_frozen_parent_overlap_zero"] is False
     assert gates["same_budget_strict_core_train_frozen_referenced_run_overlap_zero"] is False
+
+
+def test_row_metadata_mismatches_emit_aggregate_failure_receipt(tmp_path: Path) -> None:
+    result, *_ = execute(tmp_path, "row_metadata_mismatch")
+    profile = result["scientific"]["set_profiles"]["frozen:b0"]["all_rows"]
+    violations = profile["row_context_violation_counts"]
+    assert result["classification"] == "HISTORICAL_V11_LINEAGE_AUDIT_INTEGRITY_GATE_FAIL"
+    assert result["scientific"]["hard_integrity_gates"]["all_pair_endpoints_known_and_row_task_run_split_budget_consistent"] is False
+    assert violations == {
+        "endpoint_card_task_disagreement": 0,
+        "row_task_mismatch": 1,
+        "budget_mismatch": 1,
+        "split_mismatch": 1,
+        "declared_run_mismatch": 1,
+    }
 
 
 def test_outcome_like_extra_fields_do_not_change_scientific_aggregates(tmp_path: Path) -> None:

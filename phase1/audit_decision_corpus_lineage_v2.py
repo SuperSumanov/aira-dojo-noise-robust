@@ -129,6 +129,11 @@ class PairRow:
     second_run: str
     parent_run: str | None
     relation: str
+    endpoint_card_tasks_match: bool
+    row_task_matches_endpoints: bool
+    budget_matches: bool
+    split_matches: bool
+    declared_run_matches: bool
 
     @property
     def unordered(self) -> tuple[str, str]:
@@ -288,16 +293,15 @@ def load_pair_set(
             parent_id, task = str(value["parent"]), str(value["task"])
             require(first and second and parent_id and task and first != second, f"pair identity: {set_name}:{number}")
             require(first in cards and second in cards, f"unknown endpoint: {set_name}:{number}")
-            require(int(value["budget"]) == budget, f"budget mismatch: {set_name}:{number}")
-            require(str(value["intask_split"]) == expected_split, f"split mismatch: {set_name}:{number}")
             first_card, second_card = cards[first], cards[second]
-            require(first_card.task == second_card.task == task, f"task mismatch: {set_name}:{number}")
             declared_run = value.get("run_id")
-            if declared_run is not None:
-                require(
-                    str(declared_run) == first_card.run == second_card.run,
-                    f"declared run mismatch: {set_name}:{number}",
-                )
+            endpoint_card_tasks_match = first_card.task == second_card.task
+            row_task_matches_endpoints = endpoint_card_tasks_match and first_card.task == task
+            budget_matches = int(value["budget"]) == budget
+            split_matches = str(value["intask_split"]) == expected_split
+            declared_run_matches = declared_run is None or (
+                str(declared_run) == first_card.run == second_card.run
+            )
             parent_card = cards.get(parent_id)
             relation = classify_relation(first_card, second_card, parent_id, cards)
             rows.append(
@@ -313,6 +317,11 @@ def load_pair_set(
                     second_card.run,
                     None if parent_card is None else parent_card.run,
                     relation,
+                    endpoint_card_tasks_match,
+                    row_task_matches_endpoints,
+                    budget_matches,
+                    split_matches,
+                    declared_run_matches,
                 )
             )
     require(len(rows) == int(specification["rows"]), f"pair row count mismatch: {set_name}")
@@ -368,6 +377,13 @@ def set_profile(rows: list[PairRow], known: dict[str, int]) -> dict[str, Any]:
             **all_profile,
             "mapped_parent_choice_sets": len({row.parent for row in rows if row.parent_run is not None}),
             "duplicate_or_reverse_unordered_pair_rows": duplicates,
+            "row_context_violation_counts": {
+                "endpoint_card_task_disagreement": sum(not row.endpoint_card_tasks_match for row in rows),
+                "row_task_mismatch": sum(not row.row_task_matches_endpoints for row in rows),
+                "budget_mismatch": sum(not row.budget_matches for row in rows),
+                "split_mismatch": sum(not row.split_matches for row in rows),
+                "declared_run_mismatch": sum(not row.declared_run_matches for row in rows),
+            },
         },
         "relation_counts": class_counts,
         "strict_core": core_profile,
@@ -512,7 +528,10 @@ def audit(protocol: dict[str, Any], protocol_sha: str, root: Path, source_commit
         "all_input_hashes_and_v1_dependencies_exact": True,
         "card_ids_unique_and_run_map_exact": True,
         "present_lineage_parents_share_task_and_physical_run": present_parent_context_consistent(cards),
-        "all_pair_endpoints_known_and_row_task_run_split_budget_consistent": True,
+        "all_pair_endpoints_known_and_row_task_run_split_budget_consistent": all(
+            all(count == 0 for count in profile["all_rows"]["row_context_violation_counts"].values())
+            for profile in profiles.values()
+        ),
         "taxonomy_exhaustive_and_mutually_exclusive": relation_total == row_total,
         "strict_core_all_endpoints_are_direct_children_of_declared_parent": all(
             cards[row.first].parent == cards[row.second].parent == row.parent
@@ -522,7 +541,7 @@ def audit(protocol: dict[str, Any], protocol_sha: str, root: Path, source_commit
         ),
         "strict_core_all_parent_endpoint_contexts_match": all(
             row.parent_run == row.first_run == row.second_run
-            and cards[row.parent].task == row.task
+            and cards[row.parent].task == cards[row.first].task == cards[row.second].task
             for rows in all_rows.values()
             for row in rows
             if row.relation == CLASSES[0]

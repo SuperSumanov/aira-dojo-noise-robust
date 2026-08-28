@@ -134,10 +134,12 @@ common=(
 
 env PYTHONHASHSEED=0 strace -ff -e trace=file,network -o "$root/producer_a.strace" \
   "$python_bin" "$worktree/$producer_rel" "${common[@]}" \
-  --source-commit "$source_commit" --output "$root/producer_a.json"
+  --source-commit "$source_commit" --output "$root/producer_a.json" \
+  >"$root/producer_a.stdout" 2>"$root/producer_a.stderr"
 env PYTHONHASHSEED=1 strace -ff -e trace=file,network -o "$root/producer_b.strace" \
   "$python_bin" "$worktree/$producer_rel" "${common[@]}" \
-  --source-commit "$source_commit" --output "$root/producer_b.json"
+  --source-commit "$source_commit" --output "$root/producer_b.json" \
+  >"$root/producer_b.stdout" 2>"$root/producer_b.stderr"
 cmp "$root/producer_a.json" "$root/producer_b.json"
 
 verify_common=(
@@ -146,9 +148,11 @@ verify_common=(
   --producer-script "$worktree/$producer_rel"
 )
 env PYTHONHASHSEED=0 strace -ff -e trace=file,network -o "$root/verifier_a.strace" \
-  "$python_bin" "$worktree/$verifier_rel" "${verify_common[@]}" --output "$root/verifier_a.json"
+  "$python_bin" "$worktree/$verifier_rel" "${verify_common[@]}" --output "$root/verifier_a.json" \
+  >"$root/verifier_a.stdout" 2>"$root/verifier_a.stderr"
 env PYTHONHASHSEED=1 strace -ff -e trace=file,network -o "$root/verifier_b.strace" \
-  "$python_bin" "$worktree/$verifier_rel" "${verify_common[@]}" --output "$root/verifier_b.json"
+  "$python_bin" "$worktree/$verifier_rel" "${verify_common[@]}" --output "$root/verifier_b.json" \
+  >"$root/verifier_b.stdout" 2>"$root/verifier_b.stderr"
 cmp "$root/verifier_a.json" "$root/verifier_b.json"
 
 "$python_bin" - "$root/producer_a.json" "$root/verifier_a.json" <<'PY'

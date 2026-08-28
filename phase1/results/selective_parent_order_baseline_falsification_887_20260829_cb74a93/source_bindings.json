@@ -1,0 +1,61 @@
+{
+  "status": "DEVELOPMENT_ORDER_BASELINE_FALSIFICATION_PUBLICATION_PACKAGE",
+  "source_commit": "cb74a936204a44acbf957e9b9345e34c66b49aab",
+  "protocol": {
+    "path": "phase1/selective_parent_order_baseline_falsification_v1.json",
+    "sha256": "d6553882e56a3e6137aca1ef3d7f0beecd264171323dc38878fb9d970293f23e"
+  },
+  "formal": {
+    "remote_root": "/research/d7/spc/yzyang4/selective-parent-order-baseline-falsification/formal-cb74a93-r2",
+    "manifest_sha256": "0a3d3d278b535889d02aca2d51fcdf5060134a1cd974e7396d85aac3edc33659",
+    "result_sha256": "34412b5281ceae6091536ac811b7b141edb15ba1b6043465abf8d00892927532",
+    "independent_verification_sha256": "a9cf85a8aeae4145d1bba12ae1de8e0641b58bdcba9143ade0c43e2a692e8509",
+    "focused_tests_passed": 38,
+    "full_tests_passed": 1522,
+    "warnings": 47
+  },
+  "postflight": {
+    "remote_root": "/research/d7/spc/yzyang4/selective-parent-order-baseline-falsification/postflight-cb74a93-r2",
+    "manifest_sha256": "bb6ab5cd91ed826f4e67baa0ae6477d752b59daf66d97480c6388a05098706ed",
+    "formal_directory_files_read_only": true,
+    "source_commit_public_on_fork_phase1_value_critic": true
+  },
+  "failure_history": {
+    "r1_remote_root": "/research/d7/spc/yzyang4/selective-parent-order-baseline-falsification/formal-a962c8a-r1",
+    "failed_rc": 1,
+    "scientific_output_created": false,
+    "cause": "runner invoked the producer by absolute path without making the worktree package importable"
+  },
+  "classification": "DEVELOPMENT_ORDER_BASELINE_FALSIFICATION_INTEGRITY_FAIL",
+  "valid_descriptive_control": {
+    "baseline": "max_prior_step",
+    "comparable_rows": 2691,
+    "content_errors": 7,
+    "baseline_errors": 492,
+    "content_only_correct": 488,
+    "baseline_only_correct": 3,
+    "conditionable_tasks": 19,
+    "conditionable_runs": 96
+  },
+  "invalid_or_degenerate_controls": {
+    "recorded_parent_not_prior_manifest_row": 5449,
+    "manifest_baseline_comparable_rows": 2034,
+    "recorded_parent_equal_generation_time": 10895,
+    "generation_time_baseline_comparable_rows": 0
+  },
+  "interpretation": {
+    "formal_strong_classification_claimed": false,
+    "valid_step_baseline_supports_content_beyond_simple_step_recency": true,
+    "future_target522_confirmation_required": true,
+    "manifest_or_timestamp_baseline_used_to_rescue": false
+  },
+  "scope": {
+    "aggregate_only": true,
+    "post_result_falsification_with_unseen_baseline_readout": true,
+    "prospective_values_read": false,
+    "target522_candidate_or_profile_read": false,
+    "raw_senior_archives_opened": false,
+    "row_level_release_created": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  }
+}

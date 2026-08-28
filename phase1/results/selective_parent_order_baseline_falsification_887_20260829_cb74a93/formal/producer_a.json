@@ -1,0 +1,280 @@
+{
+  "all_ambiguous_test_order_baselines": {
+    "latest_prior_generation_time": {
+      "correct": 0,
+      "coverage": {
+        "decimal_17g": "0",
+        "denominator": 1,
+        "numerator": 0
+      },
+      "errors": 0,
+      "precision": {
+        "decimal_17g": "0",
+        "denominator": 1,
+        "numerator": 0
+      },
+      "predicted_rows": 0,
+      "rows": 2907
+    },
+    "max_prior_step": {
+      "correct": 2268,
+      "coverage": {
+        "decimal_17g": "1",
+        "denominator": 1,
+        "numerator": 1
+      },
+      "errors": 639,
+      "precision": {
+        "decimal_17g": "0.7801857585139319",
+        "denominator": 323,
+        "numerator": 252
+      },
+      "predicted_rows": 2907,
+      "rows": 2907
+    },
+    "nearest_prior_manifest_row": {
+      "correct": 717,
+      "coverage": {
+        "decimal_17g": "0.76057791537667696",
+        "denominator": 969,
+        "numerator": 737
+      },
+      "errors": 1494,
+      "precision": {
+        "decimal_17g": "0.32428765264586162",
+        "denominator": 737,
+        "numerator": 239
+      },
+      "predicted_rows": 2211,
+      "rows": 2907
+    }
+  },
+  "breadth_gates": {
+    "minimum_conditionable_runs": true,
+    "minimum_conditionable_tasks": true,
+    "run_disagreement_anti_dominance": true,
+    "run_net_content_positive_fraction": true,
+    "task_disagreement_anti_dominance": true,
+    "task_net_content_positive_fraction": true
+  },
+  "claim_boundary": {
+    "allowed_if_below_gate": "The published content certificate remains numerically valid, but this falsification does not rule out a cheap causal-order explanation and the content-specific interpretation must be weakened.",
+    "allowed_if_strong": "On the disclosed development time split and fixed selected population, identifier-erased content similarity reduces recorded-parent recovery errors relative to both fixed causal-order baselines with the stated aggregate and anonymous task/run breadth; this is a falsification control for the release audit, not a new lineage algorithm.",
+    "generic_lineage_or_selective_classification_novelty_claimed": false,
+    "predictor_effect_or_search_utility_computed": false,
+    "prospective_target522_confirmation_claimed": false,
+    "recorded_parent_is_external_semantic_or_causal_truth": false,
+    "row_level_release_created": false
+  },
+  "classification": "DEVELOPMENT_ORDER_BASELINE_FALSIFICATION_INTEGRITY_FAIL",
+  "integrity_gates": {
+    "aggregate_only_output_without_identities": true,
+    "candidate_set_and_content_threshold_unchanged": true,
+    "protocol_and_dependencies_exact": true,
+    "published_content_population_exactly_reproduced": true,
+    "published_package_and_independent_certificate_exact": true,
+    "recorded_parent_strictly_precedes_child_manifest_row": false,
+    "recorded_parent_strictly_precedes_child_step": true,
+    "snapshot_bindings_exact": true
+  },
+  "inventory": {
+    "ambiguous_exact_depth_edges": 9739,
+    "depth_consistent_fingerprint_eligible_parent_edges": 10876,
+    "fingerprint_eligible_parent_edges": 10876,
+    "fingerprinted_endpoints": 11894,
+    "parent_present_edges": 10895,
+    "recorded_parent_after_generation_time": 0,
+    "recorded_parent_equal_generation_time": 10895,
+    "recorded_parent_not_prior_manifest_row": 5449,
+    "recorded_parent_not_prior_step": 0
+  },
+  "known_result_status": {
+    "order_baseline_values_unseen_at_freeze": true,
+    "post_result_falsification_not_original_preregistration": true,
+    "published_content_result_known_before_falsification": true
+  },
+  "primary_baseline_gates": {
+    "max_prior_step": {
+      "content_error_at_most_half_order_error": true,
+      "content_only_wins_at_least_twice_order_only_wins": true,
+      "minimum_comparable_coverage": true,
+      "minimum_comparable_rows": true,
+      "order_errors_nonzero": true
+    },
+    "nearest_prior_manifest_row": {
+      "content_error_at_most_half_order_error": true,
+      "content_only_wins_at_least_twice_order_only_wins": true,
+      "minimum_comparable_coverage": false,
+      "minimum_comparable_rows": true,
+      "order_errors_nonzero": true
+    }
+  },
+  "primary_order_baseline_agreement": {
+    "agreement": {
+      "decimal_17g": "0.33284169124877089",
+      "denominator": 2034,
+      "numerator": 677
+    },
+    "both_predict_rows": 2034,
+    "same_prediction_rows": 677
+  },
+  "protocol": "selective-parent-order-baseline-falsification-receipt-v1",
+  "protocol_sha256": "d6553882e56a3e6137aca1ef3d7f0beecd264171323dc38878fb9d970293f23e",
+  "published_result_binding": {
+    "classification": "DEVELOPMENT_TIME_SPLIT_HIGH_PRECISION_SELECTIVE_PARENT_RECOVERY",
+    "formal_summary_sha256": "2aca589f7d8f943360e9d1d7c3716744b0357d99918913729aecf898a59a2690",
+    "independent_verification_sha256": "50b3a280ffbc4ea7d404065a97a7450b41c18ec5a89c95bc5644b88bfdbe2955",
+    "package_manifest_members": 7,
+    "package_manifest_sha256": "3589eeef844d5b1ae86e291f6ed81ab0dd164a64ce03c7c92cf8ecb07cc0ff24",
+    "package_root": "phase1/results/tree_content_selective_parent_recovery_887_20260828_63d37cf"
+  },
+  "reproduced_content_test": {
+    "ambiguous_edges": 2907,
+    "selected_correct": 2684,
+    "selected_edges": 2691,
+    "selected_errors": 7,
+    "selected_margin_threshold": {
+      "decimal_17g": "0.059424655915883987",
+      "denominator": 16929,
+      "numerator": 1006
+    },
+    "unfiltered_correct": 2845,
+    "unfiltered_errors": 62
+  },
+  "security": {
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "prospective_first960_or_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "target522_candidate_or_profile_read": false,
+    "task_run_card_parent_code_or_per_edge_values_emitted": false
+  },
+  "selected_population_primary_comparisons": {
+    "max_prior_step": {
+      "comparable_coverage": {
+        "decimal_17g": "1",
+        "denominator": 1,
+        "numerator": 1
+      },
+      "comparable_rows": 2691,
+      "content_correct": 2684,
+      "content_errors": 7,
+      "content_only_to_order_only_win_ratio": {
+        "decimal_17g": "162.66666666666666",
+        "denominator": 3,
+        "numerator": 488
+      },
+      "content_to_order_error_ratio": {
+        "decimal_17g": "0.014227642276422764",
+        "denominator": 492,
+        "numerator": 7
+      },
+      "order_correct": 2199,
+      "order_errors": 492,
+      "paired_correctness": {
+        "both_correct": 2196,
+        "both_wrong": 4,
+        "content_only_correct": 488,
+        "order_only_correct": 3
+      },
+      "selected_content_rows": 2691
+    },
+    "nearest_prior_manifest_row": {
+      "comparable_coverage": {
+        "decimal_17g": "0.7558528428093646",
+        "denominator": 299,
+        "numerator": 226
+      },
+      "comparable_rows": 2034,
+      "content_correct": 2031,
+      "content_errors": 3,
+      "content_only_to_order_only_win_ratio": null,
+      "content_to_order_error_ratio": {
+        "decimal_17g": "0.0022107590272660281",
+        "denominator": 1357,
+        "numerator": 3
+      },
+      "order_correct": 677,
+      "order_errors": 1357,
+      "paired_correctness": {
+        "both_correct": 677,
+        "both_wrong": 3,
+        "content_only_correct": 1354,
+        "order_only_correct": 0
+      },
+      "selected_content_rows": 2691
+    }
+  },
+  "selected_population_secondary_generation_time": {
+    "comparable_coverage": {
+      "decimal_17g": "0",
+      "denominator": 1,
+      "numerator": 0
+    },
+    "comparable_rows": 0,
+    "content_correct": 0,
+    "content_errors": 0,
+    "content_only_to_order_only_win_ratio": null,
+    "content_to_order_error_ratio": null,
+    "order_correct": 0,
+    "order_errors": 0,
+    "paired_correctness": {
+      "both_correct": 0,
+      "both_wrong": 0,
+      "content_only_correct": 0,
+      "order_only_correct": 0
+    },
+    "selected_content_rows": 2691
+  },
+  "snapshot_bindings": {
+    "accumulator_summary_sha256": "2f28b5b53cca5d6ea5ebf16f746a70f9c1de0e3197487a6ed78d41b4cb611302",
+    "endpoints": 11906,
+    "intake_count": 106,
+    "intake_summary_manifest_sequence_sha256": "8a46eee264490b24bedceb7e04a0489ee45a975d7ab50824f67502f0093d82d6",
+    "provisional_runs_sha256": "510d81820d7825fc6baa6db562b2371e50eb7d71d04cb1cc0bd17d095d6cdbca",
+    "registry_sha256": "37e41460c85661fd9afc6f8789a065088a9da88dde027b955ff4bc366d5bbcd8",
+    "runs": 435,
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "tasks": 34
+  },
+  "source_commit": "cb74a936204a44acbf957e9b9345e34c66b49aab",
+  "status": "DEVELOPMENT_ORDER_BASELINE_FALSIFICATION_COMPLETE",
+  "strongest_order_threat": {
+    "baseline": "max_prior_step",
+    "run_breadth": {
+      "conditionable_groups": 96,
+      "discordant_rows": 491,
+      "fraction_net_content_positive": {
+        "decimal_17g": "1",
+        "denominator": 1,
+        "numerator": 1
+      },
+      "identities_emitted": false,
+      "maximum_discordance_contribution_share": {
+        "decimal_17g": "0.099796334012219962",
+        "denominator": 491,
+        "numerator": 49
+      }
+    },
+    "selection_rule": "Among primary baselines that pass hard support, minimize baseline errors on comparable rows; break ties by primary_in_fixed_order.",
+    "task_breadth": {
+      "conditionable_groups": 19,
+      "discordant_rows": 491,
+      "fraction_net_content_positive": {
+        "decimal_17g": "1",
+        "denominator": 1,
+        "numerator": 1
+      },
+      "identities_emitted": false,
+      "maximum_discordance_contribution_share": {
+        "decimal_17g": "0.24032586558044808",
+        "denominator": 491,
+        "numerator": 118
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+01_direction=Decision Corpus Predictor Benchmark Audit Protocol; PASS
+02_question=does fixed identifier-erased content add beyond max-prior-step and nearest-prior-manifest-row baselines; PASS
+03_timing=published content result known but all order-baseline and disagreement values unseen at protocol freeze; PASS
+04_population=exact published 887 test split and fixed 2691 content-selected rows with threshold 1006/16929; PASS
+05_baselines=two primary causal-order rules fixed without fitting plus generation-time secondary with no rescue authority; PASS
+06_gates=each primary support at least 2000 and 9/10 coverage then half-error twofold-win and fixed breadth gates; PASS
+07_controls=same candidate set pairwise comparable rows exact arithmetic no threshold tuning or subgroup rescue; PASS
+08_failure=integrity support aggregate breadth ordered classification and all failures preserved; PASS
+09_reproducibility=producer A/B independent verifier A/B focused and full tests exact package manifests; PASS
+10_resources=single-thread CPU only GPU API model-fit base-update 0/0/0/0; PASS
+11_security=exact snapshot only syscall file/network traces credential scans aggregate-only output; PASS
+12_forbidden=no first960 Target300 values Target522 candidate/profile raw archive labels outcomes predictions accuracy or utility; PASS
+13_interpretation=falsification control only recorded parent is not semantic truth and below-gate weakens content-specific claim; PASS

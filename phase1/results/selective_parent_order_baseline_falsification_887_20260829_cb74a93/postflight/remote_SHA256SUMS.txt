@@ -1,0 +1,4 @@
+6add5d224258fe4369bc678a19f7b7fa973fec35b96d1b3dcb3df2d99b1d8bdd  ./fetch.stderr
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./fetch.stdout
+d12dac6315407f0e2fd6fc663ad68e008eb70f469d3fdc08046616abdccd1a3c  ./formal_manifest_check.txt
+6a9044f3427ff343ab3b8564f0780aeb49df65c59ff6def696dd9c108c5881dc  ./postflight.txt

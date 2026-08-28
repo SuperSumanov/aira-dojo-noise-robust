@@ -13,6 +13,35 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IE. 2026-08-29 有效 max-prior-step 对照被内容方法大幅击败，但正式双基线审计须完整性 fail-closed
+
+在任何 order-baseline readout 前冻结的 protocol=`d6553882...f23e` 使用 887 已发布证书完全相同的 time split、候选集、
+阈值与 `2691` 个 content-selected test rows。有效 `max_prior_step` 对照全覆盖：content/step errors=`7/492`，配对
+content-only/step-only correct=`488/3`；满足最小 discordance 的 task/run=`19/96`，两层净内容优势比例均为 1，最大
+单 task/run discordance share=`118/491,49/491`，全部预注册 aggregate/breadth 门通过。因而允许的正面描述是：在该
+development split 上，identifier-erased content 包含简单 step recency 不能解释的 recorded-parent 信息。
+
+但第二个预注册 primary `nearest_prior_manifest_row` 的因果前提不成立：`10895` 个 parent-present edges 中有 `5449` 个
+parent 不在 child row 之前，且 selected comparable coverage=`2034/2691=226/299<9/10`；generation timestamps 又是
+`10895/10895` 相等、覆盖 0。因此正式分类必须保持 **`DEVELOPMENT_ORDER_BASELINE_FALSIFICATION_INTEGRITY_FAIL`**，
+不得结果后删除该 baseline、改门或用其极差数字救回 strong pass。正确后续是在未见 Target-522 candidate profile 时另冻
+forward addendum，把有效 max-prior-step 作为 mandatory confirmation control；887 不重跑改分类。
+
+source commit=`cb74a936204a44acbf957e9b9345e34c66b49aab`；result/verifier SHA-256=`34412b52...7532` /
+`a9cf85a8...8509`；producer/verifier A/B 各自逐字节一致、独立字段全相等，focused/full=`38/1522 passed`（47 warnings）。
+r1 在 scientific output 前因 module path 退出，r2 唯一权威；formal/postflight manifests=`0a3d3d27...659` /
+`bb6ab5cd...06ed`。prospective values/Target-522 profile/raw archives 未读、无 row-level release，GPU/API/model-fit/
+base-update=`0/0/0/0`。详见 `phase1/实验记录/2026-08-29/SelectiveParentRecovery_因果顺序基线Falsification_正式裁决.md`。
+
+## 0ID. 2026-08-29 Selective Parent Recovery 因果顺序基线反证已在 readout 前冻结
+
+887 的 content certificate 已知，但 `max_prior_step`、`nearest_prior_manifest_row`、secondary generation-time 与所有
+paired disagreement/breadth values 在冻结时未见。机器协议固定同一 `2691` selected population，两个 primary baseline
+各自须 coverage≥`9/10`、comparable rows≥`2000`，再过 content/order error≤`1/2`、content-only/order-only wins≥`2`
+及匿名 task/run breadth/anti-dominance；任一 integrity failure 优先于所有数值。它是 post-result development falsification，
+不是原始预注册或 Target-522 confirmation。详见
+`phase1/实验记录/2026-08-29/SelectiveParentRecovery_因果顺序基线Falsification预注册.md`；正式裁决由 0IE 覆盖。
+
 ## 0IC. 2026-08-29 relation-integrity contrast 发布提交已通过 fresh post-push
 
 发布 commit=`e54560778de2c4294e3f8cbcb865caf5168e883c` 在 fresh detached worktree 复核 package manifest=`21/21`、

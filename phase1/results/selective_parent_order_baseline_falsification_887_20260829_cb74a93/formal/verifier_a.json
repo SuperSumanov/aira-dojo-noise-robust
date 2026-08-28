@@ -1,0 +1,21 @@
+{
+  "all_aggregate_fields_equal": true,
+  "candidate_sha256": "34412b5281ceae6091536ac811b7b141edb15ba1b6043465abf8d00892927532",
+  "classification": "DEVELOPMENT_ORDER_BASELINE_FALSIFICATION_INTEGRITY_FAIL",
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "independent_fingerprint_sha256": "d6d1e9a7121fb2bf006e51bdd174c79a6009bbf849dd50831ce57a42567219b7",
+  "independent_snapshot_loader_sha256": "be6a31f95c2c855378ce20628855ff8fbba13e772aadf5c0232b225436e57d63",
+  "producer_imported": false,
+  "prospective_values_read": false,
+  "protocol": "selective-parent-order-baseline-falsification-independent-verification-v1",
+  "protocol_sha256": "d6553882e56a3e6137aca1ef3d7f0beecd264171323dc38878fb9d970293f23e",
+  "raw_senior_archives_opened": false,
+  "row_level_release_created": false,
+  "status": "INDEPENDENT_ORDER_BASELINE_FALSIFICATION_VERIFIED",
+  "target522_candidate_or_profile_read": false
+}

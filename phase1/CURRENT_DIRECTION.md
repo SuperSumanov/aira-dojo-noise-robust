@@ -13,6 +13,15 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IC. 2026-08-29 relation-integrity contrast 发布提交已通过 fresh post-push
+
+发布 commit=`e54560778de2c4294e3f8cbcb865caf5168e883c` 在 fresh detached worktree 复核 package manifest=`21/21`、
+focused/full=`39/1515 passed`（47 warnings），contrast/verifier 重建均与发布包逐字节相同。commit filename/blob secret
+hits=`0/0`；known-result、gate-schema 不可直接比较和 canonical support failure 三项限制均保留。post-push manifest=
+`c56eeff476262fe5d7a0f11098f1ca1cac7393a8998691ef11e0c84922fcf4b3`。prospective values/raw archives 未读、无
+row-level release，GPU/API/model-fit/base-update=`0/0/0/0`。详见
+`phase1/实验记录/2026-08-29/DecisionRelationIntegrityContrast_v1_PostPush回执.md`。
+
 ## 0IB. 2026-08-29 两个历史资源家族证明 relation-integrity 审计具有诊断区分力，fixed quarantine 可验证修复
 
 这是所有 source results 已知后的 aggregate-only descriptive synthesis，不是预注册确认。exact source commit=

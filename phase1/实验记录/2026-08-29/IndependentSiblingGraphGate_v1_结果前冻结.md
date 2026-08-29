@@ -51,6 +51,9 @@ strict residual 必须同时满足：
 曲线前另冻 label-yield confirmation protocol；即便随后曲线为正，也只是独立历史图上的 resource-allocation extension，
 不是 active learning 或 graph acquisition 方法首创。
 
-机器协议：`phase1/historical_independent_sibling_graph_gate_v1.json`。producer 只输出 counts、shares 与不可逆 fingerprints，
-synthetic tests=`8 passed`；独立 non-importing verifier 将在下一提交补齐后才允许 formal。GPU/API/model-fit/base-update=
-`0/0/0/0`，前瞻 first-960/Target-300 值未读。
+机器协议：`phase1/historical_independent_sibling_graph_gate_v1.json`。producer 只输出 counts、shares 与不可逆 fingerprints。
+独立 verifier 不 import producer，使用此前独立 Card/decision decoder 重建 senior core，并另写 v11 parser、strict residual、
+profile、duplicate、fingerprint 与分类逻辑；producer/verifier focused synthetic=`15 passed`。固定 formal runner 将做 exact-SHA
+detached worktree、credential-first safe-Cards、producer/verifier 双 seed 逐字节复验、完整测试、file/network trace 与 blob
+secret scan；只有 runner 的公开冻结提交完成后才允许 crosswalk readout。GPU/API/model-fit/base-update=`0/0/0/0`，前瞻
+first-960/Target-300 值未读。

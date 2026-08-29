@@ -27,7 +27,8 @@ pairs≥500、retention≥1/2、endpoints≥500、parents≥250、runs≥75、ta
 senior crosswalk 前写入 `phase1/historical_independent_sibling_graph_gate_v1.json`；synthetic=`8 passed`。
 
 本门只决定是否有独立历史图可供**下一份**结果前 acquisition protocol，不运行 curve、不证明 label efficiency/critic effect/
-search utility。producer 只输出 aggregate/fingerprint；non-importing verifier 尚待下一提交，formal 未授权。详见
+search utility。producer 只输出 aggregate/fingerprint；独立 non-importing verifier 与固定 formal runner 已在 crosswalk 前
+补齐，focused synthetic=`15 passed`，只有其公开冻结提交通过 exact-SHA formal 后才允许读取 aggregate。详见
 `phase1/实验记录/2026-08-29/IndependentSiblingGraphGate_v1_结果前冻结.md`。
 
 ## 0IN. 2026-08-29 Tree Node → Sibling Label Yield 低预算正信号明确，但 v1 总门失败

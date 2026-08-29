@@ -1,0 +1,138 @@
+{
+  "candidate_to_v11_overlap": {
+    "endpoints": 746,
+    "exact_unordered_pairs": 413,
+    "parents": 342,
+    "physical_runs": 0,
+    "tasks_descriptive_only": 22
+  },
+  "classification": "HISTORICAL_SENIOR0819_INDEPENDENT_SIBLING_GRAPH_FEASIBLE",
+  "identity_fingerprints": {
+    "senior_train_core": "599f1296fcd8b154ad1341a2e14c9f35f3f50b2464fb00533f5335de0e5f69ec",
+    "strict_residual": "0b380a9ac490b043042c5ba5557c1acd7a4c1da5f5f288d360f9f7d5e903e485"
+  },
+  "inputs": {
+    "senior_decision_sha256": "1a01d3a1202b35f21b9cd6c87237b29c50b1c293138b407cc453674108411442",
+    "senior_run_split_sha256": "593117cfe0b34e1d2e3c9b718866a7751d7f008701add77b31cfd604282103bb",
+    "senior_safe_cards_sha256": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343",
+    "v11_train_b0_normalized_sha256": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca"
+  },
+  "integrity_gates": {
+    "aggregate_only_and_no_identities_emitted": true,
+    "all_inputs_and_parent_certificates_exact": true,
+    "credential_scan_passes_before_safe_cards_parse": true,
+    "residual_has_no_v11_pair_endpoint_parent_or_run_overlap": true,
+    "residual_rule_is_exhaustive_and_deterministic": true,
+    "residual_unordered_pair_duplicates_and_orientation_conflicts_zero": true,
+    "senior_candidate_exactly_reproduces_952_train_core_rows": true,
+    "v11_b0_rows_are_unique_train_budget0_lineage_direct": true
+  },
+  "protocol": "historical-independent-sibling-graph-gate-receipt-v1",
+  "protocol_sha256": "b033ddbe99c94a0e9e924233181879121e8a3f2021d86278210f58d1fa720c4c",
+  "scope": {
+    "acquisition_curves_computed": false,
+    "cards": 40950,
+    "gpu_api_model_fit_base_update": "0/0/0/0",
+    "identities_emitted": false,
+    "pair_orientation_gap_grade_code_prediction_runtime_used": false,
+    "population_qualification_only": true,
+    "prospective_first960_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "senior_test_rows_used": false
+  },
+  "senior_train_core_profile": {
+    "components": 849,
+    "endpoint_degree_maximum": 4,
+    "endpoint_degree_median_nearest_rank": 1,
+    "endpoint_degree_p90_nearest_rank": 1,
+    "endpoints": 1782,
+    "maximum_single_component_pair_share": {
+      "decimal_17g": "0.0063025210084033615",
+      "denominator": 476,
+      "numerator": 3
+    },
+    "maximum_single_run_pair_share": {
+      "decimal_17g": "0.028361344537815126",
+      "denominator": 952,
+      "numerator": 27
+    },
+    "maximum_single_task_pair_share": {
+      "decimal_17g": "0.13340336134453781",
+      "denominator": 952,
+      "numerator": 127
+    },
+    "orientation_free_identity_fingerprint_sha256": "464ac0ca065157affc94693b176283965ceec91ed831634bde0289fb48bb0656",
+    "pairs": 952,
+    "parents": 847,
+    "physical_runs": 327,
+    "tasks": 37
+  },
+  "status": "HISTORICAL_INDEPENDENT_SIBLING_GRAPH_GATE_COMPLETE",
+  "strict_residual_drop_reasons": {
+    "drop_mask_EP": 413,
+    "endpoint_overlap_rows": 413,
+    "parent_overlap_rows": 413,
+    "rows_dropped": 413,
+    "rows_retained": 539,
+    "run_overlap_rows": 0
+  },
+  "strict_residual_duplicate_profile": {
+    "conflicting_orientation_unordered_pairs": 0,
+    "duplicate_unordered_pair_rows": 0
+  },
+  "strict_residual_overlap_recheck": {
+    "endpoints": 0,
+    "exact_unordered_pairs": 0,
+    "parents": 0,
+    "physical_runs": 0
+  },
+  "strict_residual_pair_retention": {
+    "decimal_17g": "0.56617647058823528",
+    "denominator": 136,
+    "numerator": 77
+  },
+  "strict_residual_profile": {
+    "components": 505,
+    "endpoint_degree_maximum": 4,
+    "endpoint_degree_median_nearest_rank": 1,
+    "endpoint_degree_p90_nearest_rank": 1,
+    "endpoints": 1036,
+    "maximum_single_component_pair_share": {
+      "decimal_17g": "0.011131725417439703",
+      "denominator": 539,
+      "numerator": 6
+    },
+    "maximum_single_run_pair_share": {
+      "decimal_17g": "0.040816326530612242",
+      "denominator": 49,
+      "numerator": 2
+    },
+    "maximum_single_task_pair_share": {
+      "decimal_17g": "0.10760667903525047",
+      "denominator": 539,
+      "numerator": 58
+    },
+    "orientation_free_identity_fingerprint_sha256": "da19509646b4b08f482ef497a5ff569018030e7c31aa26d8c2a4b45033f2769f",
+    "pairs": 539,
+    "parents": 505,
+    "physical_runs": 190,
+    "tasks": 36
+  },
+  "support_gates": {
+    "maximum_single_residual_run_pair_share": true,
+    "maximum_single_residual_task_pair_share": true,
+    "minimum_residual_endpoints": true,
+    "minimum_residual_pair_retention": true,
+    "minimum_residual_pair_rows": true,
+    "minimum_residual_parents": true,
+    "minimum_residual_physical_runs": true,
+    "minimum_residual_tasks": true
+  },
+  "v11_graph_counts": {
+    "endpoints": 5499,
+    "pairs": 4263,
+    "parents": 2293,
+    "physical_runs": 333,
+    "tasks": 23
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "all_aggregate_fields_equal": true,
+  "classification": "HISTORICAL_SENIOR0819_INDEPENDENT_SIBLING_GRAPH_FEASIBLE",
+  "producer_imported": false,
+  "producer_result_sha256": "ea66df81b640c8623936c40bd2742245361c684f6d270ef53b59f4432e65fa18",
+  "protocol": "historical-independent-sibling-graph-gate-independent-verification-v1",
+  "protocol_sha256": "b033ddbe99c94a0e9e924233181879121e8a3f2021d86278210f58d1fa720c4c",
+  "scope": {
+    "acquisition_curves_computed": false,
+    "cards": 40950,
+    "gpu_api_model_fit_base_update": "0/0/0/0",
+    "identities_emitted": false,
+    "pair_orientation_gap_grade_code_prediction_runtime_used": false,
+    "population_qualification_only": true,
+    "prospective_first960_target300_values_read": false,
+    "raw_senior_archives_opened": false,
+    "senior_test_rows_used": false
+  },
+  "status": "INDEPENDENT_HISTORICAL_SIBLING_GRAPH_GATE_VERIFIED"
+}

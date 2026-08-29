@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0IO. 2026-08-29 b1/b2 独立确认路线因物理 run 嵌套关闭；senior-0819 残余图门已结果前冻结
+## 0IO. 2026-08-29 b1/b2 因物理 run 嵌套关闭；senior-0819 独立残余图资格门已权威通过
 
 0IN 后先做 identity gate、没有读取 b1/b2 acquisition curves。Python 与独立 PowerShell census 逐项一致：b0--b1 的
 pair/endpoint/parent/run overlap=`848/1307/589/140`，b0--b2=`677/1024/457/105`，b1--b2=
@@ -36,6 +36,19 @@ search utility。producer 只输出 aggregate/fingerprint；独立 non-importing
 在三个既有 CURRENT_DIRECTION 行误报并以 `FAILED_RC=90` 退出，故没有 `COMPLETE`、不得作为权威 formal。protocol、
 producer、verifier、输入和任何 gate 均不改；只允许给 `sk-` 增加非字母左边界、提高最小长度并加入正/负 self-test，随后
 从公开修复提交整轮重跑。r1 producer/verifier SHA-256=`ea66df81...fa18` / `6f7c3a3c...0c8a1` 原样保留。
+
+公开 scanner 修复 commit=`7ad83d2afa16c30df1464bdbe5fbb17ac16ac7c4` 的 fresh r2 是唯一权威 formal：producer/
+verifier A/B 各自逐字节一致，独立 verifier 全字段 exact；result/verifier SHA-256=`ea66df81...fa18` /
+`6f7c3a3c...0c8a1`，focused/full=`15/1573 passed`（47 warnings），forbidden/network/credential filename/blob=
+`0/0/0/0`。固定分类为 **`HISTORICAL_SENIOR0819_INDEPENDENT_SIBLING_GRAPH_FEASIBLE`**。
+
+senior train core=`952 pairs / 1782 endpoints / 847 parents / 327 runs / 37 tasks`；严格 EP+run exclusion 后 residual=
+`539 / 1036 / 505 / 190 / 36`，pair retention=`77/136`，与 v11 的 pair/endpoint/parent/run overlap=`0/0/0/0`，
+duplicate/reverse conflict=`0/0`，task/run 最大 share=`58/539,2/49`，八个 integrity 与八个 support gates 全过。
+这只是独立历史人口资格正结论，不是 acquisition effect。图有 505 components、endpoint degree max=4，下一步若继续必须在
+读取 residual curves 前另冻 label-scarce confirmation，且不得用高预算诊断救回。正式包见
+`phase1/results/historical_independent_sibling_graph_gate_20260829_7ad83d2/`，详见
+`phase1/实验记录/2026-08-29/IndependentSiblingGraphGate_v1_正式裁决.md`。
 
 ## 0IN. 2026-08-29 Tree Node → Sibling Label Yield 低预算正信号明确，但 v1 总门失败
 

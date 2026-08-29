@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
+02_goal=qualify one historical train-only direct-sibling graph strictly independent of v11 b0 before any second acquisition curve; PASS
+03_context=frozen v11 lineage and senior-0819 quarantine certificates plus credential-cleared immutable inputs; PASS
+04_known_before=v11 b0 curve and budget-variant collision known; senior crosswalk residual counts and curves unseen; PASS
+05_population=exact 952 senior-0819 train core rows; all 318 test core rows forbidden; PASS
+06_estimand=deterministic residual support after endpoint parent and physical-run exclusion; no accuracy effect or utility; PASS
+07_controls=fixed v11 b0 identity union fixed direct-sibling core exact parent certificates and independent decoder; PASS
+08_thresholds=eight support gates and eight integrity gates frozen before crosswalk with no rescue; PASS
+09_randomness=none; producer and non-importing verifier repeated under PYTHONHASHSEED 0 and 1; PASS
+10_resources=CPU only with one-thread caps; GPU API model-fit base-update 0/0/0/0; PASS
+11_leakage=no senior test orientation gap grade code runtime prediction or prospective first960 target300 value use; PASS
+12_security=credential receipt required before safe Cards parse; raw senior archives and identity release forbidden; PASS
+13_stop=hash certificate overlap duplicate verifier or scanner ambiguity fails closed and cannot alter residual rule or thresholds; PASS

@@ -41,7 +41,7 @@ trap failure_receipt EXIT
 
 git -C "$repo" fetch fork phase1-value-critic
 test "$(git -C "$repo" rev-parse FETCH_HEAD^{commit})" = "$analysis_commit"
-git -C "$repo" worktree add --detach "$worktree" "$analysis_commit" >/dev/null
+GIT_LFS_SKIP_SMUDGE=1 git -C "$repo" worktree add --detach "$worktree" "$analysis_commit" >/dev/null
 test "$(git -C "$worktree" rev-parse HEAD)" = "$analysis_commit"
 test -z "$(git -C "$worktree" status --porcelain)"
 test "$(sha256sum "$worktree/$protocol_rel" | awk '{print $1}')" = "$protocol_sha"

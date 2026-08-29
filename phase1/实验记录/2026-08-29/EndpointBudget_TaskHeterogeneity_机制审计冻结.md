@@ -45,3 +45,8 @@ prospective/raw-decision/label 路径必须为空。
 首次 deployment 在创建 formal root、fetch commit 或读取任一输入之前，由 `env_setup.sh` 对未定义 `LD_LIBRARY_PATH` 的访问返回非零；
 原因是 launcher 错把 `set -u` 放在 environment source 之前。该次只有 scp 传输，无科学 readout、无 fit、无 API/GPU，按 pre-run
 engineering failure 留痕。修复仅把顺序改为 `set -Eeo pipefail -> source env -> set -u`，不改 protocol、input binding、计算或输出。
+
+第二次 deployment 在 fresh detached worktree checkout 的 Git-LFS smudge 阶段遇到仓库旧对象
+`phase1/results/pairgraph_v11_20260814/full_artifacts.tar.gz` 的远端 404；同样发生在测试与输入读取前。失败 root 原样保留。该 tarball
+不属于本审计的代码或六个输入，因此 launcher 只对代码 checkout 增加 `GIT_LFS_SKIP_SMUDGE=1`，后续仍逐 SHA 读取独立 formal root
+里的输入；不改变 protocol、scientific computation 或结果门。

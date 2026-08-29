@@ -13,6 +13,24 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IU. 2026-08-29 exact-Budget 勘误后 yield-guarded breadth 开发正结论仍存活
+
+冻结 Target-522 前发现旧 `uniform_edge` 的双 endpoint 原子 action 会让奇数 checkpoint 实际只使用 `B-1`：两折
+`256×6×2=3072` 行中 fold0/fold1 分别 `503/453` 行 underfill，共 `956`。这是真实公平性缺陷，故先停止旧前瞻草案，
+固定保留 edge priority、确定性线性化两个 endpoint、最后独立 salt singleton-fill 的 exact-B baseline，并要求每 seed/每
+checkpoint `selected_endpoints==budget`。
+
+修正后两折所有 pointwise 与 integrated nearest-rank median baseline 门均未变化；重新单核求解仍为 fold0/fold1 integrated
+closed edges=`276/276,262/259`，task=`138/96,167/122`，run=`248/191,240/198`，terminal parent=`66/66,61/62`，
+原七门全部通过。producer A/B SHA=`86bdcee7...1314` 且逐字节一致；不导入 producer、独立重写 baseline order 与直接
+prefix induced-edge accounting 的 aggregate verifier A/B SHA=`7e3524f2...d37e`。它明确不声称重算未公开 private witness。
+
+固定分类为 **`HISTORICAL_RUN_SPLIT_EXACT_BUDGET_YIELD_GUARDED_BREADTH_JOINTLY_FEASIBLE_DEVELOPMENT_ONLY`**：仍是已读历史图
+开发，不是外部确认、predictor accuracy 或 search utility。Target-522 candidate/profile 未见时，前瞻协议已改为 exact-B、
+private mode-0600 witness + non-importing graph verifier；不得用原 underfilled baseline。r1–r4 的 pre-readout 工程失败原样
+保留，r5 才是首个 scientific run。GPU/API/model-fit/base-update=`0/0/0/0`，prospective values/senior test 未读。详见
+`phase1/实验记录/2026-08-29/YieldGuardedBreadth_ExactBudget基线勘误与前瞻冻结.md`。
+
 ## 0IT. 2026-08-29 outcome-blind 六小时续接已在运行窗口前冻结
 
 `LATEST=887491a...62697`，config-v2 sidecar filename count=`0`；intake、WL、Target-522 与 task-balance v5-r3

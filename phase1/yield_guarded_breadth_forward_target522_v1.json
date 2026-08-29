@@ -1,0 +1,153 @@
+{
+  "protocol": "yield-guarded-breadth-forward-target522-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-08-29T04:38:00Z",
+  "status": "FROZEN_BEFORE_TARGET522_SELECTION_OR_SIBLING_GRAPH_PROFILE",
+  "scientific_role": {
+    "primary": "one-time topology-only forward confirmation of joint label-yield noninferiority and task/run breadth on a disjoint physical-run increment",
+    "paper_role": "Decision Corpus acquisition-contract extension",
+    "not_claimed": [
+      "general graph active learning novelty",
+      "generic constrained optimization novelty",
+      "predictor accuracy improvement",
+      "search utility improvement",
+      "independent task replication"
+    ],
+    "same_target522_family_disclosure": "This is an additional fully reported deterministic structural hypothesis on the same automatically selected Target-522 increment. It cannot rescue or replace any within-stratum, lineage, or selective-parent classification."
+  },
+  "freeze_state": {
+    "baseline_snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "target522_selection_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+    "target522_selection_protocol": {
+      "path": "phase1/tree_linearization_within_stratum_forward_target522_v2.json",
+      "sha256": "718224d9586b45a1bf6689c2bb9dd1d6b76e7243b8ddd2267dcf94fc6ea2667f"
+    },
+    "target522_selection_monitor": {
+      "path": "phase1/scripts/latch_tree_within_stratum_forward_target522_20260828.sh",
+      "sha256": "8cab471b3c57c07711238f19cbcc80836aa7f4450faedf6ca50d60a306d4596b"
+    },
+    "candidate_identity_counts_or_profile_seen": false,
+    "freeze_observation": {
+      "checked_at_utc": "2026-08-29T04:38:06Z",
+      "latest_snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+      "target522_selection_complete_present": false,
+      "target522_selection_failed_present": false,
+      "config_v2_sidecar_filename_count": 0,
+      "prospective_values_read": false
+    },
+    "development_inputs": {
+      "development_result_sha256": "e43831946643d60654bb10b834278fd480c97292fcf91ea6dfa95962c77c191d",
+      "development_verification_sha256": "c3680fb2a767ad51a3b3c1109f102ec56556d17ec33e041d248cdb9e22f06a2d",
+      "development_solver_source_sha256": "0e62c9c3bf15b689caf98ee73b2f22d1134e99b6c212960c958bd7021570942e",
+      "development_aggregate_verifier_sha256": "5079a6350a5f4e83a028f43cfa99e8217abeb486acab8ae345d371f607a9610c",
+      "development_classification": "HISTORICAL_RUN_SPLIT_YIELD_GUARDED_BREADTH_JOINTLY_FEASIBLE_DEVELOPMENT_ONLY",
+      "exact_budget_robustness_result_sha256": "86bdcee7005914d6fcdaf2f39be517cf725fed785f7e590f7916c97f11051314",
+      "exact_budget_independent_verification_sha256": "7e3524f260f28a24d6faba6e838270ba48985346832be3fd3ea97f8cd17bd37e",
+      "exact_budget_robustness_classification": "HISTORICAL_RUN_SPLIT_EXACT_BUDGET_YIELD_GUARDED_BREADTH_JOINTLY_FEASIBLE_DEVELOPMENT_ONLY",
+      "old_uniform_edge_underfilled_checkpoint_rows": 956,
+      "exact_budget_changed_any_pointwise_or_integrated_nearest_rank_median_gate": false
+    }
+  },
+  "population": {
+    "membership": "all eligible structural sibling pairs whose complete endpoints belong to candidate Target-522 physical runs absent from snapshot 887",
+    "physical_run_increment_minimum": 87,
+    "baseline_rows_in_primary": false,
+    "boundary_archive_overshoot_retained": true,
+    "partial_physical_runs_allowed": false,
+    "manual_snapshot_choice_allowed": false,
+    "sibling_graph": "exact eligible_structural_pairs clique closure bound by every selected intake summary",
+    "pair_orientation_gap_grade_code_prediction_runtime_used": false
+  },
+  "support_gates_before_acquisition": {
+    "minimum_pairs": 200,
+    "minimum_endpoints": 350,
+    "minimum_parents": 180,
+    "minimum_physical_runs": 70,
+    "minimum_tasks": 18,
+    "maximum_single_task_pair_share": "1/3",
+    "maximum_single_run_pair_share": "1/10",
+    "baseline_candidate_append_only_and_zero_run_overlap": true,
+    "structural_pair_files_equal_exact_observed_sibling_cliques": true
+  },
+  "acquisition": {
+    "budget_fraction_denominator": 32,
+    "budget_fraction_numerators": [3, 4, 5, 6, 7, 8],
+    "checkpoints": "floor(number_of_graph_endpoints * numerator / 32), all six must be distinct and at least two",
+    "uniform_edge_baseline_seeds": 256,
+    "uniform_edge_seed_values": "integers 0 through 255",
+    "uniform_edge_exact_budget_contract": {
+      "edge_priority": "ascending SHA-256 hash_key(seed, EDGE, canonical_left, canonical_right)",
+      "two_unseen_endpoints": "linearize by ascending hash_key(seed, EDGE-ENDPOINT, canonical_left, canonical_right, endpoint)",
+      "edge_requiring_more_than_remaining_maximum_slots": "skip, preserving the historical uniform-edge maximum-budget rule",
+      "singleton_fill_after_edge_scan": "ascending hash_key(seed, EDGE-FILL, endpoint)",
+      "required_invariant": "selected_endpoints equals the checkpoint endpoint budget for every seed and every checkpoint",
+      "reason": "the earlier atomic two-endpoint action silently reported B-1 at 956 of 3072 odd-budget checkpoint rows"
+    },
+    "uniform_statistic": "nearest-rank median",
+    "trajectory_must_be_nested": true,
+    "solver": "single-CPU SciPy-HiGHS binary feasibility with constant objective",
+    "solver_time_limit_seconds": 900,
+    "solver_random_seed": 0,
+    "solver_threads_requested": 1,
+    "private_witness_required": true,
+    "private_witness_public_release": false
+  },
+  "fixed_gates": {
+    "all_six_pointwise_closed_edge_counts_at_least_uniform_median": true,
+    "integrated_closed_edges_at_least_uniform_trajectory_median": true,
+    "integrated_task_breadth_at_least_uniform_trajectory_median_times": "6/5",
+    "integrated_run_breadth_at_least_uniform_trajectory_median_times": "11/10",
+    "terminal_parent_breadth_at_least_uniform_terminal_median_times": "9/10",
+    "terminal_maximum_single_task_edge_share_at_most": "1/3",
+    "terminal_maximum_single_run_edge_share_at_most": "1/10"
+  },
+  "ordered_classification": [
+    "FORWARD_TARGET522_YIELD_GUARDED_BREADTH_JOINTLY_FEASIBLE",
+    "FORWARD_TARGET522_YIELD_GUARDED_BREADTH_INFEASIBLE_PROVEN",
+    "FORWARD_TARGET522_YIELD_GUARDED_BREADTH_FEASIBILITY_UNRESOLVED",
+    "FORWARD_TARGET522_YIELD_GUARDED_BREADTH_LIMITED_SUPPORT",
+    "FORWARD_TARGET522_YIELD_GUARDED_BREADTH_INTEGRITY_FAIL"
+  ],
+  "classification_rule": "Integrity failure precedes support. Limited support prevents acquisition. A graph-level independently verified private witness satisfying every fixed gate yields JOINTLY_FEASIBLE. A solver proof of infeasibility yields INFEASIBLE_PROVEN. Time limit or no independently verified witness is UNRESOLVED, not a negative scientific result.",
+  "verification": {
+    "producer_repetitions": 2,
+    "private_witness_repetitions": 2,
+    "producer_and_private_witness_bytes_identical": true,
+    "independent_verifier_repetitions": 2,
+    "independent_verifier_imports_forward_producer": false,
+    "independent_selection_population_pair_graph_baseline_and_witness_reconstruction": true,
+    "independent_baseline_implementation_must_not_import_forward_producer": true,
+    "private_witness_verifier_must_recompute_induced_edges_from_endpoint_ids": true,
+    "aggregate_output_emits_endpoint_task_run_parent_identities": false,
+    "fresh_detached_worktree_required": true
+  },
+  "stop_and_no_rescue": {
+    "one_automatic_target522_increment_only": true,
+    "no_threshold_budget_seed_support_or_population_change_after_profile": true,
+    "no_deleting_failed_checkpoints": true,
+    "no_cumulative_887_plus_future_rescue": true,
+    "no_using_other_target522_hypotheses_to_rescue": true,
+    "no_accuracy_or_search_utility_claim": true
+  },
+  "security": {
+    "allowed_inputs": [
+      "outcome-blind accumulator snapshots",
+      "Target-522 selection support package",
+      "eligible_blind_manifest.jsonl",
+      "eligible_structural_pairs.jsonl",
+      "intake and accumulator summaries",
+      "private witness inside mode-0600 remote result root"
+    ],
+    "forbidden": [
+      "label vault",
+      "outcome vault",
+      "prediction values",
+      "accuracy",
+      "search utility",
+      "raw senior archives",
+      "provider credentials"
+    ],
+    "prospective_label_grade_outcome_prediction_values_read": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  }
+}

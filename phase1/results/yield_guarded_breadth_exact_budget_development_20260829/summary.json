@@ -1,0 +1,68 @@
+{
+  "protocol": "yield-guarded-breadth-exact-budget-development-public-summary-v1",
+  "status": "DEVELOPMENT_COMPLETE_PENDING_PUBLIC_COMMIT_POSTPUSH_REPLAY",
+  "classification": "HISTORICAL_RUN_SPLIT_EXACT_BUDGET_YIELD_GUARDED_BREADTH_JOINTLY_FEASIBLE_DEVELOPMENT_ONLY",
+  "raw_result_sha256": "86bdcee7005914d6fcdaf2f39be517cf725fed785f7e590f7916c97f11051314",
+  "independent_aggregate_verification_sha256": "7e3524f260f28a24d6faba6e838270ba48985346832be3fd3ea97f8cd17bd37e",
+  "executed_source_sha256": "de09b7c308042f16ece2936e625e0b76011bec30e6d0855f890c0ceef231c015",
+  "executed_independent_verifier_sha256": "840298c2a02e6a26581916dbb11dbe20ba56e3493abe47d3b1a94984d56adfbb",
+  "public_source_sha256_before_commit": "78ac2fd0ccb4ac761ab4e2bc31f83a58c7bcdfc18b1f2df466fd701c17fc96ae",
+  "public_independent_verifier_sha256_before_commit": "11cf2a364883ac100728e8232ba8ac371e17a6d55d11ef34807663bda807240b",
+  "input_binding": {
+    "historical_worktree_commit": "6cdcc928b3b654a8c7df31999cc3e332bccb0269",
+    "development_source_worktree_commit": "e816a5d8909fbb1d2bd379e625d6a0ec3b419020",
+    "prior_falsification_result_sha256": "f1d8054ccc3e0d50f77a3ff4be29480f99ab0dbc51a6e1e510853da63c06e042"
+  },
+  "baseline_correction": {
+    "old_atomic_uniform_edge_rows": 3072,
+    "old_rows_with_selected_endpoints_equal_budget_minus_one": 956,
+    "fold0_underfilled_rows": 503,
+    "fold1_underfilled_rows": 453,
+    "exact_budget_invariant_pass": true,
+    "pointwise_nearest_rank_medians_changed": false,
+    "integrated_nearest_rank_medians_changed": false
+  },
+  "folds": {
+    "fold0": {
+      "checkpoints": [50, 66, 83, 100, 117, 133],
+      "baseline_integrated": {"closed_edges": 276, "tasks": 96, "physical_runs": 191},
+      "witness_integrated": {"closed_edges": 276, "tasks": 138, "physical_runs": 248},
+      "terminal_parent_baseline_and_witness": [66, 66],
+      "all_exact_budget_development_gates_pass": true
+    },
+    "fold1": {
+      "checkpoints": [46, 62, 78, 93, 109, 125],
+      "baseline_integrated": {"closed_edges": 259, "tasks": 122, "physical_runs": 198},
+      "witness_integrated": {"closed_edges": 262, "tasks": 167, "physical_runs": 240},
+      "terminal_parent_baseline_and_witness": [62, 61],
+      "all_exact_budget_development_gates_pass": true
+    }
+  },
+  "verification": {
+    "producer_repetitions": 2,
+    "producer_results_byte_exact": true,
+    "independent_verifier_repetitions": 2,
+    "independent_verifier_results_byte_exact": true,
+    "independent_baseline_reimplemented": true,
+    "aggregate_gates_recomputed": true,
+    "private_witness_recomputed": false,
+    "focused_tests": "3 passed in 0.21s",
+    "single_cpu_wall_seconds": [31.17, 29.19],
+    "maximum_rss_kib": [160752, 160896],
+    "network_syscall_hits": 0,
+    "prospective_boundary_hits": 0
+  },
+  "failed_attempts_before_scientific_readout": [
+    "r1: multi-file transfer omitted the explicitly named Python source",
+    "r2: Python-suffix destination was absent at the expected path",
+    "r3: missing fixed worktree PYTHONPATH",
+    "r4: import-only preflight found that the historical falsification worktree predates the development module"
+  ],
+  "scope": {
+    "historical_post_readout_development_only": true,
+    "external_confirmation": false,
+    "endpoint_parent_task_run_identities_emitted": false,
+    "prospective_values_read": false,
+    "gpu_api_model_fit_base_update": "0/0/0/0"
+  }
+}

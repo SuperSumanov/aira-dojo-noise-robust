@@ -25,6 +25,11 @@ source SHA、RC65、最后 baseline status、旧 guard manifest、dead PID 与 f
 不改 cohort/scorer/WL/门；LATEST 仍为 887、sidecar filename count=0，prospective values 未读，GPU/API/model-fit/base-update=
 `0/0/0/0`。详见 `phase1/实验记录/2026-08-29/OutcomeBlind_只读锁故障与Supervisor_v2修复.md`。
 
+修复公开 commit=`7212167f0bf39e0be95b07085baca4208f8fbc6a` 的 Linux focused/full=
+`7 passed in 0.08s` / `1626 passed, 47 warnings in 93.74s`，credential filename/blob=`0/0`。`05:55:37Z`
+exact-source supervisor v2 PID=`289403` 与 guard v4 PID=`289483` 已上线，exclusive locks 均经 shared probe 确认为 held；
+LATEST exact baseline、sidecar count=0。部署 manifest=`0bed43b9...3469`，support renewal 仍等旧 monitors 自然完成后触发。
+
 ## 0IV. 2026-08-29 Target-522 yield-guarded breadth 前瞻执行链已在 candidate 前冻结
 
 唯一协议 `yield_guarded_breadth_forward_target522_v1.json` 在 Target-522 candidate/READY/COMPLETE 与失败 marker 全不存在时

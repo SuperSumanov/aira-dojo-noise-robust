@@ -26,6 +26,11 @@ run/parent=`349/93`，且不输出 endpoint witness；原 SHA 全局 tie 则在 
 `37ad2fab68227d4aa236f1ce8c70c6197d1160b3f885adc466288ea1af41b06e`。当前状态是
 **`FROZEN_AFTER_V1_SOLVER_FAILURE_BEFORE_V2_ENDPOINT_WITNESS_OR_PREDICTION`**；尚无 v2 endpoint witness、预测或 task metric。
 
+v2 formal r2 的 selection A/B、两个 fit 与 verifier A/B 已写出，但在 COMPLETE 前被 forbidden-path scanner 终止，故 summary/指标未读。
+独立结果盲审计证明 30 条命中全部是仓库的 `target522.py/.pyc` 代码模块，data-path lines=`0`、network bytes=`0`，
+receipt manifest=`b278058f2c6775acf4ed6c2456710b2d5abef14404b49013ff8a0b94af3b2205`；r2 已只读封存。
+r3 只把 scanner 收窄为同名 token 下的 raw/prospective 数据扩展名；v2 protocol、selection、fit、七门与 private A/B 要求均不变。
+
 新规则只改 endpoint acquisition：在与旧 yield arm 完全相同的 nested endpoint checkpoints
 `72/96/120/144/168/192` 和 induced-pair counts `36/49/61/73/85/99` 下，使 35 个 outer-train task 的已选 pair
 分布匹配其 train-only availability；每个 checkpoint 同时固定 task share `<=20%`、run share `<=10%`，并保留 integrated

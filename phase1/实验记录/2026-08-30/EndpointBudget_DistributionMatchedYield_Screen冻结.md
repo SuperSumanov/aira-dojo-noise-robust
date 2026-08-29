@@ -24,6 +24,17 @@
 独立 DP 证明全局下界，图 MILP 必须达到下界；tie 由 pinned deterministic feasibility witness 和 private A/B byte identity 固定。
 上述 r1/诊断的 6 个证据 SHA 均写入 v2 协议并由 formal runner 验证。
 
+### r2 scanner 勘误（v2 冻结后、结果读取前）
+
+formal r2 已完成 selection A/B、两个 fit 与 verifier A/B，但在写 COMPLETE 前被 forbidden-path scanner fail-closed；因此没有读取
+summary 或任何 scientific metric。独立审计只看 strace 路径并确认：30 条命中全部来自仓库内 `target522.py/.pyc` 代码文件，
+数据扩展名命中 0、network bytes=0，receipt manifest=
+`b278058f2c6775acf4ed6c2456710b2d5abef14404b49013ff8a0b94af3b2205`。r2 失败根已只读封存。
+
+r3 只修正 scanner 的 lexical scope：token 必须出现在以 `.json/.jsonl/.csv/.parquet/.pkl/.npz/.npy/.pt/.safetensors/.sqlite`
+等结尾的数据路径中才算命中。科学协议 SHA、DP objective、pinned witness、fit 与七个 gate 不变；r3 仍从 fresh commit/worktree
+重跑全链，不复用 r2 的 selection、checkpoint 或 verifier 输出。
+
 ## 1. 为什么做这一项
 
 旧 endpoint-budget smoke 在 96/192 endpoints 上有同向 pooled accuracy/calibration 描述性改善，但严格 gate 因

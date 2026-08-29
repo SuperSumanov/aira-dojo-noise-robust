@@ -27,7 +27,9 @@ evidence_base=/research/d7/spc/yzyang4/endpoint-distribution-matched-yield-scree
 v1_root=$evidence_base/formal-68e943d-r1
 dp_root=$evidence_base/diagnostic-lower-bound-68e943d-r1
 sha_tie_root=$evidence_base/diagnostic-dp-sha-tie-68e943d-r1
-root=/research/d7/spc/yzyang4/endpoint-distribution-matched-yield-screen/formal-${analysis_commit:0:7}-r2
+r2_root=$evidence_base/formal-ca4fe06-r2
+r2_audit=$evidence_base/scanner-audit-ca4fe06-r2
+root=/research/d7/spc/yzyang4/endpoint-distribution-matched-yield-screen/formal-${analysis_commit:0:7}-r3
 worktree=$root/worktree
 protocol_rel=phase1/endpoint_budget_distribution_matched_yield_screen_v2.json
 protocol_sha=37ad2fab68227d4aa236f1ce8c70c6197d1160b3f885adc466288ea1af41b06e
@@ -54,7 +56,7 @@ test "$(sha256sum "$worktree/$protocol_rel" | awk '{print $1}')" = "$protocol_sh
 cat >"$root/preflight_13.txt" <<EOF
 01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
 02_goal=test the frozen v2 distribution-matched yield rule with an exact DP lower-bound proof while matching old endpoint and induced-pair counts; PASS
-03_context=old efficacy audit v1 RC1 and both structural diagnostics are disclosed; no v2 endpoint witness prediction or task metric was seen; PASS
+03_context=v1 solver failure and r2 code-path scanner false positive are disclosed; r2 scientific summary was not read and v2 rule gates remain unchanged; PASS
 04_population=bound 539-row train-only firewall with 401 outer-train and 138 held-run evaluation pairs; senior test and prospective cohorts forbidden; PASS
 05_split=unchanged salted physical-run fold0 evaluation and folds1-4 training; post-audit historical development only and never confirmation; PASS
 06_estimand=new minus old-yield task-macro accuracy at budgets 96 and 192 with pooled proper-score task-sign and robust-vs-uniform secondary checks; PASS
@@ -95,6 +97,14 @@ test "$(sha256sum "$evidence_base/diagnose-dp-sha-tie-68e943d.log" | awk '{print
 test "$(sha256sum "$sha_tie_root/preflight_13.txt" | awk '{print $1}')" = 55352253e15c5ef9c464f34b9bc4047ce201865e682e34bb6b53d25a1d1b5244
 test ! -e "$sha_tie_root/public.json"
 test ! -e "$sha_tie_root/COMPLETE"
+test -f "$r2_audit/COMPLETE"
+test "$(tr -d '\r\n' <"$r2_audit/MANIFEST_SHA256")" = b278058f2c6775acf4ed6c2456710b2d5abef14404b49013ff8a0b94af3b2205
+(cd "$r2_audit" && sha256sum -c SHA256SUMS >/dev/null)
+test ! -e "$r2_root/COMPLETE"
+test "$(tr -d '\r\n' <"$r2_root/FAILED_RC")" = 1
+test ! -s "$r2_root/network_calls.txt"
+test "$(sha256sum "$r2_root/forbidden_path_opens.txt" | awk '{print $1}')" = 6b86e8568d39651c270df8e746fe73cdb3a882f56f8e51ac4ed91b91576fe26d
+test -z "$(find "$r2_root" -type f -perm /222 -print -quit)"
 
 (cd "$worktree" && "$python_bin" -m pytest -q \
   phase1/tests/test_endpoint_budget_distribution_matched_yield_screen.py \
@@ -171,7 +181,7 @@ cmp "$root/verifier_a.json" "$root/verifier_b.json"
 
 grep -hE 'socket\(|connect\(|sendto\(|recvfrom\(' "$root"/*.strace* >"$root/network_calls.txt" || true
 test ! -s "$root/network_calls.txt"
-grep -hEi '(first[-_]?960|target[-_]?300|target[-_]?522|decision(_clean)?[^/]*\.jsonl|outcome[^/]*\.json|prospective[^/]*\.(json|jsonl))' \
+grep -hEi '/(first[-_]?960|target[-_]?300|target[-_]?522|decision(_clean)?|outcome|prospective)[^\"]*\.(json|jsonl|csv|tsv|parquet|arrow|pkl|pickle|npz|npy|pt|pth|safetensors|bin|sqlite|db)\"' \
   "$root"/*.strace* >"$root/forbidden_path_opens.txt" || true
 test ! -s "$root/forbidden_path_opens.txt"
 grep -hEi '(labels\.json|cards\.safe\.json|private_pairs\.json|fit/summary\.json)' "$root"/selection_*.strace* \

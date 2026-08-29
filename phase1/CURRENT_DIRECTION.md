@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IY. 2026-08-29 task-heterogeneity 机制审计已在任务级 readout 前冻结
+
+0IX 的 smoke 严格不晋级，但两个 endpoint budget 的 accuracy/calibration 描述性同向且诱导 pair 数几乎相等；当前关键未知量不是
+再跑更多模型，而是 terminal 增益为何被一个任务主导。为避免看完 task 表再选择解释，协议
+`endpoint_budget_task_heterogeneity_audit_v1.json` 已在任何 task sign、coverage delta、task metric delta、coverage-metric correlation、
+LOTO distribution 与 positive-gain concentration 未见时冻结，SHA-256=`f3aea619...0a99e`。
+
+审计只重用已完成的四个 historical train-only 模型 witness，固定预算 `96/192`，0 model refit；逐 task 计算 endpoint/run/induced-pair
+coverage delta、三项 metric delta、净正确贡献、全 20-task Spearman、LOTO 与 gain concentration。任务 SHA 和逐 task 行只写远端
+mode-0600 private witness；公开产物不含 raw/hash identity 或 per-pair probability。独立 verifier 不导入 producer，从六个绑定输入
+重建全部 task rows 与 aggregate。该审计没有 efficacy promotion gate，不能删任务、重加权、救回 smoke 或把 fold0 当 confirmation；
+唯一允许用途是决定是否另行冻结 task-quota + yield-floor acquisition rule。CPU 单线程、预计少于 5 分钟，GPU/API/model-fit/
+base-update=`0/0/0/0`。完整设计见
+`phase1/实验记录/2026-08-29/EndpointBudget_TaskHeterogeneity_机制审计冻结.md`。
+
 ## 0IX. 2026-08-29 endpoint-budget label-efficiency smoke：描述性同向，但严格不晋级
 
 0IV 的 Target-522 topology rule 只有结构可行性，论文价值必须落到真实 endpoint execution 成本下的 downstream critic label

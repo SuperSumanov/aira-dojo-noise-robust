@@ -1,0 +1,79 @@
+{
+  "protocol": "endpoint-budget-task-heterogeneity-audit-v1",
+  "status": "FROZEN_AFTER_SMOKE_AGGREGATE_READOUT_BEFORE_TASK_LEVEL_READOUT",
+  "date": "2026-08-29",
+  "scope": {
+    "paper_mainline": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+    "historical_development_only": true,
+    "single_outer_fold": 0,
+    "scientific_confirmation": false,
+    "may_rescue_failed_smoke": false,
+    "may_tune_or_drop_tasks": false,
+    "prospective_first960_target300_target522_values_forbidden": true,
+    "senior_test_rows_forbidden": true
+  },
+  "input_bindings": {
+    "artifact_source_commit": "9f9705a14eac5bf73a070ac7c37091a815c4e31b",
+    "smoke_protocol_sha256": "e0dd7414ce0885257234d87112507a3b89393260111398349dd22b05abb29761",
+    "firewall_receipt_sha256": "9291d9e715ccff4ecdfac39cd462379be2d6ecacedb9e6d38a1762c0e9d64ab3",
+    "train_only_topology_sha256": "832d892a69046a8cef72263fac2ea63ce2a79be8a132f761112a625328273c70",
+    "selection_public_sha256": "d1e4274b1046c4e4fea294818beb5522fcdd352a9379a2d72e8bc3255b59bd15",
+    "selection_private_sha256": "ab4c76721964b3a7c8554e551c5bc524043f111eb52c7a3eddec952553bb1445",
+    "fit_summary_sha256": "b8068e691c84c1413d1e21091bde4ef89914dc3a0777ff44ba92bfe57f1ed6ec",
+    "private_pair_witness_sha256": "1f9bcb84fe6652c8801ce3872f2c9bdc830c8d2dcaa8347eaaa9bb567f1300ce"
+  },
+  "known_before_freeze": {
+    "outer_eval_pairs": 138,
+    "outer_eval_tasks": 20,
+    "budgets": [96, 192],
+    "overall_accuracy_delta_yield_minus_uniform": {
+      "96": 0.021739130434782608,
+      "192": 0.036231884057971016
+    },
+    "terminal_drop_dominant_task_accuracy_delta": -0.038461538461538464,
+    "dominant_task_pair_count": 34,
+    "task_level_sign_counts_seen": false,
+    "task_level_coverage_deltas_seen": false,
+    "task_level_metric_deltas_seen": false,
+    "coverage_metric_correlations_seen": false,
+    "leave_one_task_out_distribution_seen": false,
+    "positive_gain_concentration_seen": false
+  },
+  "frozen_computations": {
+    "task_unit": "sha256(task\\0raw_task_id); emitted only in mode-0600 private witness",
+    "evaluation_accuracy_delta": "mean(1[p_yield>0.5]-1[p_uniform>0.5]) within task",
+    "evaluation_log_loss_delta": "mean(-log(clip(p_yield))-(-log(clip(p_uniform)))) within task",
+    "evaluation_brier_delta": "mean((1-p_yield)^2-(1-p_uniform)^2) within task",
+    "train_coverage": [
+      "selected endpoints by task",
+      "selected physical runs by task",
+      "induced canonical sibling pairs by task"
+    ],
+    "coverage_deltas": "yield_guarded_breadth minus exact_b_uniform_edge at the same endpoint budget",
+    "task_sign": "sign of integer net-correct contribution; zero is retained",
+    "leave_one_task_out": "pooled accuracy delta after removing each task, with min/median/max and negative/zero/positive counts",
+    "positive_gain_concentration": "largest and two-largest positive integer contributions divided by total positive contribution; HHI over positive contributions",
+    "distribution_distance": "L1 distance between each arm induced-pair task share and outer-train available-pair task share",
+    "correlation": "nine Spearman coefficients: each of selected-endpoint, selected-run and induced-pair coverage deltas versus each of accuracy, log-loss and Brier task deltas; Pearson correlation of deterministic average ranks; all evaluation tasks included and missing train counts fixed to zero",
+    "floating_point": "Python binary64; probabilities clipped to [1e-15,1-1e-15] only for log loss",
+    "budgets": [96, 192]
+  },
+  "outputs": {
+    "public": "aggregate only; no raw or hashed task/run/pair identity and no per-pair probability",
+    "private": "one row per task and budget with task SHA-256, train coverage and evaluation deltas; mode 0600",
+    "independent_verifier": "reconstructs all private rows and public aggregates from bound inputs without importing producer; zero model refits"
+  },
+  "interpretation": {
+    "classification": "EXPLORATORY_TASK_HETEROGENEITY_AUDIT_COMPLETE_NOT_CONFIRMATORY",
+    "no_promotion_gate": true,
+    "permitted_use": "choose whether a separately frozen task-quota plus yield-floor acquisition rule is scientifically motivated",
+    "forbidden_use": "claim efficacy, remove/reweight a task, retune the existing smoke, or treat historical fold0 as confirmation"
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "critic_model_fits": 0,
+    "base_model_updates": 0,
+    "expected_cpu_minutes": "less than 5"
+  }
+}

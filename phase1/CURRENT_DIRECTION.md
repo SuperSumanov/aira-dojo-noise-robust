@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0IS. 2026-08-29 TaskBalance v5 在 candidate 前发现 heartbeat 竞态；v5-r2 只修连续性
+## 0IS. 2026-08-29 TaskBalance v5/v5-r2 均在 candidate 前失败；v5-r3 只修 typed identity parser
 
 权威 v4 在 `LATEST=887491a...62697` 不变时以 `TIMEOUT_RC=124` 正常结束；自动交接 v5 随即 `FAILED_RC=1`。
 旧 v5 exact 11-file set SHA-256=`d3ee4736...3ba50`，candidate/READY/COMPLETE/monitor.log/preflight/handoff
@@ -21,11 +21,18 @@ receipt 均不存在，gap snapshot 与第一次 transition heartbeat 文件均�
 v4/v5/supervisor 锁均 free。故失败被定位为 10 秒 latch 在 300 秒 support monitor 下一次 heartbeat 前启动，使空 `grep`
 pipeline 在 `pipefail` 下提前退出的工程竞态，不是候选或科学门失败。
 
-结果前修复固定为新 root `latch-continuation-after-887-v5-r2`：先绑定旧失败 fileset/source/protocol/marker；继续从 v4
-最后 observation 扫描完整 gap；若边界后尚无 heartbeat，只允许使用结果盲 state identity 且必须等于 baseline 或唯一
-current LATEST，并写 fallback receipt。多个 successor、support skip、identity/hash 漂移仍 fail-closed。formal runner 也只在
-v4 clean-timeout + 旧 v5 exact pre-candidate failure + v5-r2 唯一 COMPLETE 时接受 r2。population、1/4 task-share 门、
-producer/verifier 与解释完全不改；部署前 prospective values 未读，GPU/API/model-fit/base-update=`0/0/0/0`。详见
+第一次修复 commit=`1dab029...e3d1` 经 fresh post-push 与 focused=`14 passed` 后部署；v5-r2 又在 candidate/preflight/
+monitor loop 前 `FAILED_RC=1`。其 exact 18-file set=`0f858d36...d02aa`，gap snapshot directory 仍为空，WL/receipt 只见
+baseline；transition 中的额外 64-hex=`87ed6fa6...b9161` 经字段核对是 `script_sha256`，所有具名 snapshot identity 仍为 887。
+因此第二次失败是“任意 64-hex”parser 缺陷，也不是科学门失败。
+
+结果前 r3 固定新 root `latch-continuation-after-887-v5-r3`：绑定 v5 与 v5-r2 两个失败 fileset/source/protocol/marker；
+继续从 v4 最后 observation 扫描完整 gap；日志只接受 `snapshot/prior_snapshot/latest/wl/transition/prior` 具名 identity，
+若尚无具名 heartbeat 才允许使用结果盲 state identity 且必须等于 baseline 或唯一 current LATEST。多个 successor、support
+skip、identity/hash 漂移仍 fail-closed。formal runner 只在 v4 clean-timeout + v5/v5-r2 exact pre-candidate failure +
+v5-r3 唯一 COMPLETE 时接受 r3。population、1/4 task-share 门、producer/verifier 与解释完全不改；r3 部署前 prospective
+values 未读；真实结果盲 transition/WL/receipt 日志的 typed-extractor replay 各自只输出 887，独立通过。GPU/API/model-fit/
+base-update=`0/0/0/0`。详见
 `phase1/实验记录/2026-08-29/TaskBalance_v5心跳竞态与v5-r2结果前修复.md`。
 
 ## 0IR. 2026-08-29 学长最新 outcome 已对齐；全上下文 evaluator smoke 已冻结在凭据门前

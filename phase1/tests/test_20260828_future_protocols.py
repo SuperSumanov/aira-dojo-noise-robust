@@ -138,8 +138,11 @@ def test_task_balance_v3_runner_consumes_only_the_automatic_latch() -> None:
     assert "latch-continuation-after-887-v4" in runner
     assert "latch-continuation-after-887-v5" in runner
     assert "latch-continuation-after-887-v5-r2" in runner
+    assert "latch-continuation-after-887-v5-r3" in runner
     assert "heartbeat_race_repair" in runner
+    assert "snapshot_field_parse_repair" in runner
     assert "failed_v5_fileset_sha" in runner
+    assert "failed_v5_r2_fileset_sha" in runner
     assert "no unique completed authoritative latch generation" in runner
     assert "continuation_source_from_git.sh" in runner
     assert "previous_latch_timeout_continuity" in runner
@@ -166,14 +169,18 @@ def test_task_balance_second_timeout_handoff_preserves_selection() -> None:
     assert "latch-continuation-after-887-v4" in handoff
     assert "latch-continuation-after-887-v5" in handoff
     assert "latch-continuation-after-887-v5-r2" in handoff
+    assert "latch-continuation-after-887-v5-r3" in handoff
     assert "PRE_CANDIDATE_POST_TIMEOUT_HEARTBEAT_RACE_BOUND" in handoff
+    assert "PRE_CANDIDATE_UNTYPED_64HEX_SNAPSHOT_PARSE_FAILURE_BOUND" in handoff
     assert "failed_attempt_fileset_sha" in handoff
-    assert "PRE_CANDIDATE_CONTIGUOUS_HANDOFF_AFTER_HEARTBEAT_RACE_REPAIR" in handoff
+    assert "failed_attempt_r2_fileset_sha" in handoff
+    assert "PRE_CANDIDATE_CONTIGUOUS_HANDOFF_AFTER_HEARTBEAT_AND_TYPED_PARSE_REPAIR" in handoff
     assert 'if test ! -s "${root}/${name}_handoff_snapshot_ids.txt"; then' in handoff
     assert 'test -s "${root}/${name}_handoff_snapshot_ids.txt"' not in handoff
-    assert '"${root}/${name}_handoff_snapshot_ids.unsorted" || true' in handoff
     assert 'test "${observed}" = "${baseline}" || test "${observed}" = "${current_latest}"' in handoff
     assert "heartbeat_race_state_fallbacks.tsv" in handoff
+    assert "snapshot|prior_snapshot|latest|wl|transition|prior" in handoff
+    assert "script_sha256" not in handoff.split("awk -v lower=", 1)[1].split("' \"${log}\"", 1)[0]
     assert 'test -f "${previous}/TIMEOUT_RC"' in handoff
     assert 'test ! -e "${previous}/FAILED_RC"' in handoff
     assert 'test ! -e "${previous}/READY"' in handoff

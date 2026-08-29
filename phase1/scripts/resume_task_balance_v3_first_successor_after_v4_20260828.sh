@@ -20,11 +20,16 @@ readonly wl_state=${wl_root}/state.tsv
 readonly receipt_state=${receipt_root}/state.tsv
 readonly previous=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v4
 readonly failed_attempt=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v5
-readonly root=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v5-r2
+readonly failed_attempt_r2=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v5-r2
+readonly root=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v5-r3
 readonly failed_attempt_control_commit=69dd6b22acdf767f237571e0a530da3c659a7bad
 readonly failed_attempt_source_sha=934078533da2d34aac1325a36c5a25fd527d222651df4c4452fe6fe28d540e7f
 readonly failed_attempt_previous_source_sha=8900896df4a13861dd53dd3d9b6de8c20d9b9d499fe1063c07b33ccd9ce814b8
 readonly failed_attempt_fileset_sha=d3ee4736512f81ad6f40a6ec7bdeb5547d48b217f9452c72461187dc14e3ba50
+readonly failed_attempt_r2_control_commit=1dab0292b225216b3fb79f69b3eb48b09699e3d1
+readonly failed_attempt_r2_source_sha=607fa2f01fc2236eebb96c0963e559b3d601b57a60a489f2a5d75bad70df2240
+readonly failed_attempt_r2_fileset_sha=0f858d36e77448aeb56390603347ad78cc3208d573b8887b8a28103db08d02aa
+readonly transition_monitor_script_sha=87ed6fa645de2fad25695b212434bd1dd64b6f1a44a34f6232c941ad8d8b9161
 readonly credential_pattern='(^|[^[:alnum:]_])(sk-[A-Za-z0-9._-]{16,}|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{20,})'
 
 field() {
@@ -58,6 +63,8 @@ write_candidate() {
     printf 'timeout_handoff_generation=2\n'
     printf 'heartbeat_race_repair=true\n'
     printf 'failed_attempt_fileset_sha256=%s\n' "${failed_attempt_fileset_sha}"
+    printf 'snapshot_field_parse_repair=true\n'
+    printf 'failed_attempt_r2_fileset_sha256=%s\n' "${failed_attempt_r2_fileset_sha}"
     printf 'manual_snapshot_choice=false\n'
     printf 'earlier_successor_skipped=false\n'
     printf 'balance_values_or_classification_read=false\n'
@@ -167,6 +174,69 @@ monitor_loop_started=false
 prospective_values_or_classification_read=false
 EOF
 
+# r2 fixed the empty-heartbeat race and then exposed a second pre-candidate
+# parser bug: a monitor script SHA was collected as if it were a snapshot ID.
+# Bind that exact failure before restricting extraction to named identity fields.
+test -d "${failed_attempt_r2}" && test ! -L "${failed_attempt_r2}"
+test -f "${failed_attempt_r2}/FAILED_RC"
+test "$(tr -d '\r\n' < "${failed_attempt_r2}/FAILED_RC")" = 1
+for forbidden in candidate.tsv READY COMPLETE TIMEOUT_RC INTERRUPTED_RC monitor.log preflight_13.txt handoff_receipt.txt; do
+  test ! -e "${failed_attempt_r2}/${forbidden}"
+done
+for required in \
+  failed_attempt_receipt.txt failed_attempt_sha256.txt \
+  failed_attempt_source_from_git.sh FAILED_RC fetch.stderr fetch.stdout \
+  handoff_new_snapshot_ids.txt handoff_nonbaseline_snapshot_ids.txt \
+  handoff_observed_snapshot_ids.txt handoff_unique_snapshot_ids.txt \
+  monitor.lock monitor.pid previous_source_from_git.sh protocol.json \
+  receipt_handoff_snapshot_ids.txt source_script.sh \
+  transition_handoff_snapshot_ids.txt wl_handoff_snapshot_ids.txt; do
+  test -f "${failed_attempt_r2}/${required}"
+  test ! -L "${failed_attempt_r2}/${required}"
+done
+test "$(find "${failed_attempt_r2}" -maxdepth 1 -type f -printf '%f\n' | LC_ALL=C sort | sha256sum | awk '{print $1}')" = \
+  "${failed_attempt_r2_fileset_sha}"
+test "$(sha256sum "${failed_attempt_r2}/source_script.sh" | awk '{print $1}')" = \
+  "${failed_attempt_r2_source_sha}"
+test "$(sha256sum "${failed_attempt_r2}/protocol.json" | awk '{print $1}')" = "${protocol_sha}"
+test ! -s "${failed_attempt_r2}/handoff_new_snapshot_ids.txt"
+test "$(LC_ALL=C sort -u "${failed_attempt_r2}/handoff_nonbaseline_snapshot_ids.txt" | tr -d '\r\n')" = \
+  "${transition_monitor_script_sha}"
+test "$(LC_ALL=C sort -u "${failed_attempt_r2}/wl_handoff_snapshot_ids.txt" | tr -d '\r\n')" = "${baseline}"
+test "$(LC_ALL=C sort -u "${failed_attempt_r2}/receipt_handoff_snapshot_ids.txt" | tr -d '\r\n')" = "${baseline}"
+test "$(LC_ALL=C sort -u "${failed_attempt_r2}/transition_handoff_snapshot_ids.txt" | wc -l)" = 2
+grep -Fxq "${baseline}" "${failed_attempt_r2}/transition_handoff_snapshot_ids.txt"
+grep -Fxq "${transition_monitor_script_sha}" "${failed_attempt_r2}/transition_handoff_snapshot_ids.txt"
+failed_r2_pid=$(tr -d '\r\n' < "${failed_attempt_r2}/monitor.pid")
+[[ ${failed_r2_pid} =~ ^[0-9]+$ ]]
+! kill -0 "${failed_r2_pid}" 2>/dev/null
+flock -n "${failed_attempt_r2}/monitor.lock" true
+git -C "${repo}" cat-file -e "${failed_attempt_r2_control_commit}^{commit}"
+git -C "${repo}" merge-base --is-ancestor "${failed_attempt_r2_control_commit}" "${control_commit}"
+git -C "${repo}" show "${failed_attempt_r2_control_commit}:${public_path}" \
+  > "${root}/failed_attempt_r2_source_from_git.sh"
+test "$(sha256sum "${root}/failed_attempt_r2_source_from_git.sh" | awk '{print $1}')" = \
+  "${failed_attempt_r2_source_sha}"
+cmp "${failed_attempt_r2}/source_script.sh" "${root}/failed_attempt_r2_source_from_git.sh"
+(
+  cd "${failed_attempt_r2}"
+  find . -maxdepth 1 -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum
+) > "${root}/failed_attempt_r2_sha256.txt"
+cat > "${root}/failed_attempt_r2_receipt.txt" <<EOF
+status=PRE_CANDIDATE_UNTYPED_64HEX_SNAPSHOT_PARSE_FAILURE_BOUND
+failed_attempt=${failed_attempt_r2}
+failed_attempt_control_commit=${failed_attempt_r2_control_commit}
+failed_attempt_source_sha256=${failed_attempt_r2_source_sha}
+failed_attempt_fileset_sha256=${failed_attempt_r2_fileset_sha}
+foreign_monitor_script_sha256=${transition_monitor_script_sha}
+latest_and_named_snapshot_fields=${baseline}
+candidate_present=false
+ready_present=false
+complete_present=false
+monitor_loop_started=false
+prospective_values_or_classification_read=false
+EOF
+
 test -f "${previous}/TIMEOUT_RC"
 test "$(tr -d '\r\n' < "${previous}/TIMEOUT_RC")" = 124
 test ! -e "${previous}/FAILED_RC"
@@ -244,7 +314,7 @@ if test -f "${previous}/candidate.tsv"; then
     fi
   done
 else
-  handoff_mode=PRE_CANDIDATE_CONTIGUOUS_HANDOFF_AFTER_HEARTBEAT_RACE_REPAIR
+  handoff_mode=PRE_CANDIDATE_CONTIGUOUS_HANDOFF_AFTER_HEARTBEAT_AND_TYPED_PARSE_REPAIR
   candidate_origin=LATCHED_BY_SECOND_CONTINUATION
   for item in transition wl receipt; do
     test ! -e "${previous}/${item}_state.tsv"
@@ -278,9 +348,18 @@ else
     IFS=$'\t' read -r observed _ < "${state}"
     [[ ${observed} =~ ^[0-9a-f]{64}$ ]]
     test "${observed}" = "${baseline}" || test "${observed}" = "${current_latest}"
-    awk -v lower="${previous_final_stamp}" '$1 >= lower {print}' "${log}" \
-      | grep -oE '[0-9a-f]{64}' \
-      > "${root}/${name}_handoff_snapshot_ids.unsorted" || true
+    awk -v lower="${previous_final_stamp}" '
+      $1 >= lower {
+        for (i = 2; i <= NF; i++) {
+          split($i, kv, "=")
+          if (kv[1] ~ /^(snapshot|prior_snapshot|latest|wl|transition|prior)$/ \
+              && length(kv[2]) == 64 \
+              && kv[2] ~ /^[0-9a-f]+$/) {
+            print kv[2]
+          }
+        }
+      }
+    ' "${log}" > "${root}/${name}_handoff_snapshot_ids.unsorted"
     LC_ALL=C sort -u "${root}/${name}_handoff_snapshot_ids.unsorted" \
       > "${root}/${name}_handoff_snapshot_ids.txt"
     rm "${root}/${name}_handoff_snapshot_ids.unsorted"
@@ -333,6 +412,11 @@ failed_attempt=${failed_attempt}
 failed_attempt_control_commit=${failed_attempt_control_commit}
 failed_attempt_source_sha256=${failed_attempt_source_sha}
 failed_attempt_fileset_sha256=${failed_attempt_fileset_sha}
+snapshot_field_parse_repair=true
+failed_attempt_r2=${failed_attempt_r2}
+failed_attempt_r2_control_commit=${failed_attempt_r2_control_commit}
+failed_attempt_r2_source_sha256=${failed_attempt_r2_source_sha}
+failed_attempt_r2_fileset_sha256=${failed_attempt_r2_fileset_sha}
 manual_snapshot_choice=false
 earlier_successor_skipped=false
 balance_values_or_classification_read=false
@@ -343,8 +427,8 @@ cat > "${root}/preflight_13.txt" <<EOF
 02_goal=preserve the exact first-successor selection across a second bounded timeout; PASS
 03_control_commit=${control_commit}; PASS
 04_protocol_sha256=${protocol_sha}; PASS
-05_previous=exact Git-bound authoritative v4 timeout plus exact pre-candidate v5 heartbeat-race failure; PASS
-06_handoff=${handoff_mode},candidate origin ${candidate_origin},race repair true; PASS
+05_previous=exact Git-bound authoritative v4 timeout plus exact pre-candidate v5 and v5-r2 parser failures; PASS
+06_handoff=${handoff_mode},candidate origin ${candidate_origin},heartbeat and typed-field repairs true; PASS
 07_selection=no caller-supplied snapshot,no manual skip,existing candidate preserved if present; PASS
 08_support=transition,WL,and receipt-only common support must each reach the fixed candidate; PASS
 09_inputs=LATEST,state TSV,snapshot structural hashes,and safe common-support verification only; PASS
@@ -438,6 +522,8 @@ previous_latch_timeout_continuity=true
 timeout_handoff_generation=2
 heartbeat_race_repair=true
 failed_attempt_fileset_sha256=${failed_attempt_fileset_sha}
+snapshot_field_parse_repair=true
+failed_attempt_r2_fileset_sha256=${failed_attempt_r2_fileset_sha}
 handoff_mode=${handoff_mode}
 candidate_origin=${candidate_origin}
 manual_snapshot_choice=false

@@ -16,10 +16,12 @@ readonly python=/research/d7/spc/yzyang4/venvs/exp/bin/python
 readonly state_root=/research/d7/spc/yzyang4/prospective_decision_v1
 readonly latch_v4=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v4
 readonly latch_v5_failed=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v5
-readonly latch_v5_r2=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v5-r2
+readonly latch_v5_r2_failed=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v5-r2
+readonly latch_v5_r3=/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v5-r3
 readonly continuation_v4_public_path=phase1/scripts/resume_task_balance_v3_first_successor_after_887_20260828.sh
-readonly continuation_v5_r2_public_path=phase1/scripts/resume_task_balance_v3_first_successor_after_v4_20260828.sh
+readonly continuation_v5_r3_public_path=phase1/scripts/resume_task_balance_v3_first_successor_after_v4_20260828.sh
 readonly failed_v5_fileset_sha=d3ee4736512f81ad6f40a6ec7bdeb5547d48b217f9452c72461187dc14e3ba50
+readonly failed_v5_r2_fileset_sha=0f858d36e77448aeb56390603347ad78cc3208d573b8887b8a28103db08d02aa
 readonly forbidden_snapshot=887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697
 readonly baseline_snapshot=7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1
 readonly baseline_root=${state_root}/snapshots/${baseline_snapshot}/accumulator
@@ -55,14 +57,16 @@ trap failure_receipt EXIT
 
 if test -f "${latch_v4}/COMPLETE"; then
   test ! -e "${latch_v5_failed}"
-  test ! -e "${latch_v5_r2}"
+  test ! -e "${latch_v5_r2_failed}"
+  test ! -e "${latch_v5_r3}"
   readonly latch=${latch_v4}
   readonly continuation_public_path=${continuation_v4_public_path}
   readonly expected_ready_status=FIRST_SUCCESSOR_AND_SUPPORT_READY_AFTER_VERIFIED_CONTINUITY
   readonly timeout_handoff_generation=1
 elif test -f "${latch_v4}/TIMEOUT_RC" \
   && test -f "${latch_v5_failed}/FAILED_RC" \
-  && test -f "${latch_v5_r2}/COMPLETE"; then
+  && test -f "${latch_v5_r2_failed}/FAILED_RC" \
+  && test -f "${latch_v5_r3}/COMPLETE"; then
   test "$(tr -d '\r\n' < "${latch_v4}/TIMEOUT_RC")" = 124
   test ! -e "${latch_v4}/FAILED_RC"
   test ! -e "${latch_v4}/COMPLETE"
@@ -70,8 +74,12 @@ elif test -f "${latch_v4}/TIMEOUT_RC" \
   test ! -e "${latch_v5_failed}/candidate.tsv"
   test ! -e "${latch_v5_failed}/READY"
   test ! -e "${latch_v5_failed}/COMPLETE"
-  readonly latch=${latch_v5_r2}
-  readonly continuation_public_path=${continuation_v5_r2_public_path}
+  test "$(tr -d '\r\n' < "${latch_v5_r2_failed}/FAILED_RC")" = 1
+  test ! -e "${latch_v5_r2_failed}/candidate.tsv"
+  test ! -e "${latch_v5_r2_failed}/READY"
+  test ! -e "${latch_v5_r2_failed}/COMPLETE"
+  readonly latch=${latch_v5_r3}
+  readonly continuation_public_path=${continuation_v5_r3_public_path}
   readonly expected_ready_status=FIRST_SUCCESSOR_AND_SUPPORT_READY_AFTER_SECOND_TIMEOUT_HANDOFF
   readonly timeout_handoff_generation=2
 else
@@ -108,10 +116,14 @@ if test "${timeout_handoff_generation}" = 2; then
   test "$(field heartbeat_race_repair "${latch}/candidate.tsv")" = true
   test "$(field failed_attempt_fileset_sha256 "${latch}/READY")" = "${failed_v5_fileset_sha}"
   test "$(field failed_attempt_fileset_sha256 "${latch}/candidate.tsv")" = "${failed_v5_fileset_sha}"
+  test "$(field snapshot_field_parse_repair "${latch}/READY")" = true
+  test "$(field snapshot_field_parse_repair "${latch}/candidate.tsv")" = true
+  test "$(field failed_attempt_r2_fileset_sha256 "${latch}/READY")" = "${failed_v5_r2_fileset_sha}"
+  test "$(field failed_attempt_r2_fileset_sha256 "${latch}/candidate.tsv")" = "${failed_v5_r2_fileset_sha}"
   handoff_mode=$(field handoff_mode "${latch}/READY")
   candidate_origin=$(field candidate_origin "${latch}/READY")
   case "${handoff_mode}" in
-    CANDIDATE_PRESERVED_FROM_PREVIOUS_TIMEOUT|PRE_CANDIDATE_CONTIGUOUS_HANDOFF_AFTER_HEARTBEAT_RACE_REPAIR) ;;
+    CANDIDATE_PRESERVED_FROM_PREVIOUS_TIMEOUT|PRE_CANDIDATE_CONTIGUOUS_HANDOFF_AFTER_HEARTBEAT_AND_TYPED_PARSE_REPAIR) ;;
     *) exit 66 ;;
   esac
   case "${candidate_origin}" in

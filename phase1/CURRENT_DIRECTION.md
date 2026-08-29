@@ -13,6 +13,23 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IQ. 2026-08-29 breadth-at-near-equal-yield 已冻结 run-disjoint 内部 falsification
+
+0IP 的大幅 label-yield 总门失败不变；事后只观察到六个低预算点的最差 balanced yield 均不低于 uniform-edge median，且终点
+task/run breadth 更大。为排除该 pattern 被单一 run/task 子集驱动，在任何 hash split count、support profile 或 fold curve
+readout 前，固定将 exact 539-pair residual 按 salted SHA-256 的 physical-run parity 分成两折。
+
+每折先过 pairs/endpoints/parents/runs/tasks=`200/350/180/70/18`、task/run share≤`1/3,1/10`；任一失败不算 curve。
+若 support 通过，则固定 `[3..8]/32` endpoint budgets、uniform/tie=`256/32`，要求两折同时满足 yield integral noninferiority、
+pointwise≥`5/6`、task/run breadth integral≥`6/5,11/10`、terminal parent≥`9/10` 及 anti-dominance。threshold、salt、fold、
+budget、method 均不得结果后修改。
+
+protocol/producer/non-importing verifier/test/runner SHA-256=`76a6ad30...4396` / `cac94d9c...3636` /
+`94252e49...bda2` / `29ae8fbe...c323` / `a7859103...3d8e`；新增 synthetic=`7 passed`。这明确是 full-graph
+readout 后的内部 falsification，不是外部 confirmation；即使 survives 也仍需第三个未见 graph，且不证明 critic accuracy 或
+search utility。GPU/API/model-fit/base-update=`0/0/0/0`，prospective values/senior test 未读。详见
+`phase1/实验记录/2026-08-29/RunSplitBreadthParetoFalsification_v1_预注册.md`。
+
 ## 0IP. 2026-08-29 独立图未确认大幅 yield 增益；出现 breadth-at-near-equal-yield 新假设
 
 0IN 的全局 v1 失败完整保留；新假设明确降为 post-discovery 的稀缺标注区间，不声称全预算优势。0IO 的独立 residual 已知

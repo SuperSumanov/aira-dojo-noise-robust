@@ -1,0 +1,120 @@
+{
+  "protocol": "historical-run-split-breadth-pareto-falsification-v1",
+  "status": "FROZEN_AFTER_FULL_GRAPH_READOUT_BEFORE_HASH_RUN_SPLIT_COUNTS_OR_CURVES",
+  "date": "2026-08-29",
+  "role": {
+    "post_readout_falsification_only": true,
+    "not_an_independent_external_confirmation": true,
+    "question": "Is the observed yield-noninferior task/run breadth gain present in both deterministic physical-run-disjoint halves, rather than being driven by one subset?"
+  },
+  "known_after_full_graph_readout": {
+    "full_graph_primary_classification": "HISTORICAL_INDEPENDENT_LABEL_SCARCE_FULL_EXECUTION_YIELD_NOT_CONFIRMED",
+    "full_graph_yield_integral_minimum_vs_uniform_median": "343/341",
+    "full_graph_pointwise_worst_balanced_yield_not_below_uniform_median": "6/6",
+    "full_graph_terminal_balanced_vs_uniform_median": {
+      "yield": "103/99",
+      "task_breadth": "36/27",
+      "run_breadth": "94/70",
+      "parent_breadth": "94/96"
+    },
+    "thresholds_below_are_post_readout_and_cannot_upgrade_to_confirmation": true,
+    "hash_run_split_counts_seen": false,
+    "hash_run_split_support_profiles_seen": false,
+    "hash_run_split_acquisition_curves_seen": false
+  },
+  "immutable_inputs": {
+    "prior_protocol": {
+      "path": "phase1/historical_independent_label_scarce_yield_confirmation_v1.json",
+      "sha256": "69db0331c92f5912dfb5fcd6ebc3dfeb0838eff090f80390e2137c91bd489581"
+    },
+    "prior_result": {
+      "path": "phase1/results/historical_independent_label_scarce_yield_20260829_c7148fb/aggregate_result.json",
+      "sha256": "aea7a45b1ad3c7213cf90a508e4e0bba42ba72bfdd4ca9fca539e309d953622d",
+      "required_classification": "HISTORICAL_INDEPENDENT_LABEL_SCARCE_FULL_EXECUTION_YIELD_NOT_CONFIRMED"
+    },
+    "prior_verification": {
+      "path": "phase1/results/historical_independent_label_scarce_yield_20260829_c7148fb/independent_verification.json",
+      "sha256": "13b70a87b4d6c4a49091a1684dc2ab0dec5fc8c064d7c994b7f2b2236c431d63",
+      "required_status": "INDEPENDENT_RECONSTRUCTION_EXACT"
+    },
+    "prior_package_manifest": {
+      "path": "phase1/results/historical_independent_label_scarce_yield_20260829_c7148fb/SHA256SUMS",
+      "sha256": "b93fcc8240329ee743b5f178da3a06d47cbb69b5f5226f76616696542492a5fc"
+    },
+    "prior_producer_source": {
+      "path": "phase1/confirm_historical_independent_label_scarce_yield.py",
+      "sha256": "3195b7499a1a10ad8e4e3f8faa586d3bc92314589dcb88c7e4f6157be912a78d"
+    },
+    "prior_independent_source": {
+      "path": "phase1/verify_historical_independent_label_scarce_yield.py",
+      "sha256": "ea72412b072f693045089daef1f37bfcdd672f563d6cd7ff1392bbe1e00ccfa7"
+    }
+  },
+  "population": {
+    "source": "the exact 539-pair strict residual bound by the prior result",
+    "split_unit": "physical run",
+    "fold_rule": "least-significant bit of the first eight bytes of sha256(UTF8('PARETO-RUN-SPLIT-V1\\0' + run_id))",
+    "fold_labels": ["fold0", "fold1"],
+    "require_pair_endpoint_parent_run_overlap_between_folds": "0/0/0/0",
+    "senior_test_rows_forbidden": true,
+    "pair_orientation_used": false
+  },
+  "support_gates_per_fold": {
+    "minimum_pairs": 200,
+    "minimum_endpoints": 350,
+    "minimum_parents": 180,
+    "minimum_physical_runs": 70,
+    "minimum_tasks": 18,
+    "maximum_single_task_pair_share": "1/3",
+    "maximum_single_run_pair_share": "1/10",
+    "if_either_fold_fails_no_acquisition_curve_is_computed": true
+  },
+  "acquisition": {
+    "budget_fraction_denominator": 32,
+    "budget_fraction_numerators": [3, 4, 5, 6, 7, 8],
+    "integer_budget_rule": "floor(fold_endpoint_count*numerator/denominator)",
+    "one_nested_trajectory_per_method_seed": true,
+    "checkpoint_uses_last_complete_action_not_exceeding_budget": true,
+    "no_budget_specific_reoptimization": true,
+    "methods": ["uniform_edge", "balanced_closure_greedy"],
+    "random_baseline_seeds": [0, 256],
+    "greedy_tie_seeds": [0, 32],
+    "hash": "sha256"
+  },
+  "pareto_gates_per_fold": {
+    "integrated_yield_noninferiority": "minimum balanced six-checkpoint yield sum is at least the nearest-rank median uniform-edge trajectory sum",
+    "pointwise_yield_noninferiority": "minimum balanced yield is at least uniform-edge median at at least 5 of 6 checkpoints",
+    "integrated_task_breadth_superiority": "minimum balanced six-checkpoint task-breadth sum is at least 6/5 of the uniform-edge trajectory-sum median",
+    "integrated_run_breadth_superiority": "minimum balanced six-checkpoint run-breadth sum is at least 11/10 of the uniform-edge trajectory-sum median",
+    "terminal_parent_breadth_noninferiority": "minimum balanced parent breadth is at least 9/10 of uniform-edge median",
+    "terminal_anti_dominance": "every balanced tie trajectory has maximum task share at most 1/3 and maximum run share at most 1/10",
+    "all_gates_required_in_both_folds": true
+  },
+  "classification_order": [
+    "POSTREADOUT_RUN_SPLIT_BREADTH_PARETO_INTEGRITY_FAIL",
+    "POSTREADOUT_RUN_SPLIT_BREADTH_PARETO_LIMITED_SUPPORT",
+    "POSTREADOUT_RUN_SPLIT_BREADTH_PARETO_DOES_NOT_SURVIVE",
+    "POSTREADOUT_RUN_SPLIT_BREADTH_PARETO_FALSIFICATION_SURVIVES"
+  ],
+  "analysis": {
+    "producer_and_nonimporting_verifier_must_match_exactly": true,
+    "aggregate_only_no_identity_release": true,
+    "all_support_counts_curves_methods_and_gates_reported": true,
+    "no_threshold_split_budget_or_method_change_after_readout": true,
+    "survival_is_internal_robustness_not_external_confirmation": true,
+    "a_future_unseen_graph_is_still_required_for_confirmation": true
+  },
+  "forbidden_inputs": [
+    "pair orientation gap grade outcome code prediction runtime",
+    "senior historical test rows",
+    "prospective first-960 Target-300 or Target-522 values",
+    "raw senior archives"
+  ],
+  "security_and_resources": {
+    "credential_first_safe_cards_required": true,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

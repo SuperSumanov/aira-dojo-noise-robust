@@ -57,3 +57,16 @@ profile、duplicate、fingerprint 与分类逻辑；producer/verifier focused sy
 detached worktree、credential-first safe-Cards、producer/verifier 双 seed 逐字节复验、完整测试、file/network trace 与 blob
 secret scan；只有 runner 的公开冻结提交完成后才允许 crosswalk readout。GPU/API/model-fit/base-update=`0/0/0/0`，前瞻
 first-960/Target-300 值未读。
+
+## 5. 第一次 formal 的结果后操作勘误
+
+公开 commit=`f2f5469cd927123100c148b52e54dc42024a130c` 的 r1 已完成 producer/verifier A/B、两组 `cmp`、逐字段
+exact 和完整测试，随后才在最终 commit-blob credential scan 以 `FAILED_RC=90` 退出；root 不含 `COMPLETE`。r1 固定
+readout 为 `HISTORICAL_SENIOR0819_INDEPENDENT_SIBLING_GRAPH_FEASIBLE`，producer/verifier SHA-256=
+`ea66df81b640c8623936c40bd2742245361c684f6d270ef53b59f4432e65fa18` /
+`6f7c3a3ca782e4d18d9d67ee6954f0a6bcbbafedac0d1a134a1b1fdfa6e0c8a1`；这些输出原样保留，不能因操作失败丢弃。
+
+故障不是密钥命中：旧正则没有左边界，把 CURRENT_DIRECTION 三处 `task-...` 子串中的 `sk-` 计为 3 hits；加入
+非字母左边界和较长最小长度后同一提交为 0 hits。允许的修复严格限于 runner scanner，并加入 `task-...` 负例和运行时
+合成的 key-shaped 正例 self-test；protocol、producer、verifier、输入 SHA、residual rule、阈值和分类顺序均不改。只有
+修复后的公开提交从 fresh detached worktree 整轮通过并写 `COMPLETE`，才发布权威结果包。

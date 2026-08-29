@@ -202,11 +202,20 @@ git -C "$repo" diff-tree --no-commit-id --name-only -r -z "$control_commit" >"$r
 if tr '\0' '\n' <"$root/changed_files.zlist" | grep -Ei '(^|/)(\.env|[^/]*(key|token|secret)[^/]*)$' >"$root/credential_filename_hits.txt"; then
   exit 89
 fi
+readonly credential_value_pattern='(^|[^[:alpha:]])sk-(or-v1-|ws-)?[A-Za-z0-9._-]{20,}|(api[_ -]?key|token|secret)[[:space:]]*[:=][[:space:]]*[^][[:space:]]{20,}'
+if printf '%s\n' 'transition-task-snapshot-chain' | grep -E -i -q "$credential_value_pattern"; then
+  exit 91
+fi
+synthetic_secret=$(printf 's%s%024d' 'k-' 0)
+if ! printf '%s\n' "$synthetic_secret" | grep -E -i -q "$credential_value_pattern"; then
+  exit 92
+fi
+unset synthetic_secret
 : >"$root/credential_blob_hits.txt"
 while IFS= read -r -d '' changed; do
   if git -C "$repo" cat-file -e "${control_commit}:${changed}" 2>/dev/null; then
     if git -C "$repo" show "${control_commit}:${changed}" \
-      | grep -E -i -n 'sk-[A-Za-z0-9._-]{12,}|(api[_ -]?key|token|secret)[[:space:]]*[:=][[:space:]]*[^][[:space:]]+' \
+      | grep -E -i -n "$credential_value_pattern" \
       >>"$root/credential_blob_hits.txt"; then
       exit 90
     fi

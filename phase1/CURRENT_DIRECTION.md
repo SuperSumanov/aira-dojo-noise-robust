@@ -31,6 +31,12 @@ search utility。producer 只输出 aggregate/fingerprint；独立 non-importing
 补齐，focused synthetic=`15 passed`，只有其公开冻结提交通过 exact-SHA formal 后才允许读取 aggregate。详见
 `phase1/实验记录/2026-08-29/IndependentSiblingGraphGate_v1_结果前冻结.md`。
 
+第一次 formal（commit=`f2f5469...`）已完成 producer/verifier A/B、逐字段 exact 与完整测试，固定分类 readout 为
+`HISTORICAL_SENIOR0819_INDEPENDENT_SIBLING_GRAPH_FEASIBLE`；但最终 blob scanner 把 `task-...` 内部的 `sk-` 当密钥前缀，
+在三个既有 CURRENT_DIRECTION 行误报并以 `FAILED_RC=90` 退出，故没有 `COMPLETE`、不得作为权威 formal。protocol、
+producer、verifier、输入和任何 gate 均不改；只允许给 `sk-` 增加非字母左边界、提高最小长度并加入正/负 self-test，随后
+从公开修复提交整轮重跑。r1 producer/verifier SHA-256=`ea66df81...fa18` / `6f7c3a3c...0c8a1` 原样保留。
+
 ## 0IN. 2026-08-29 Tree Node → Sibling Label Yield 低预算正信号明确，但 v1 总门失败
 
 0IM 的 frozen b0 formal 已完成。task/run-balanced closure greedy 对强 `uniform_edge` 基线在 endpoint budget=512/1024

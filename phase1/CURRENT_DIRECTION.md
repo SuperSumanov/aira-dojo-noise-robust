@@ -13,6 +13,36 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IR. 2026-08-29 学长最新 outcome 已对齐；全上下文 evaluator smoke 已冻结在凭据门前
+
+学长 0828 outcome 的科学提交=`f534114e60658043c07f7a15d6440492caffc8ad`，后续 context-repair branch head=
+`30b396323f28064040bb0bdf9cccb198d676dd27`；原文 Git blob=`7f691d9b6fa3d971bf889738fa8661694b6b0051`、
+SHA-256=`17317a2d239cb862ec16d57aa0a2fa168f2c1a6cd841117950d8ee8127129ad6`。凭据行先在远端内存整行脱敏后才读；
+明文 token、带权 W&B 链接与 raw reasoning 均未复制、调用或进入 Git。学长的新判断是 pair proxy 可能只有 60%—70% 可见
+上限，应把重点转到真实 MLE end-to-end/label efficiency；mixed scaling 仅 seed7 明显、RL judger 尚不稳定且 prompt 存在
+resource mismatch。故这些仍是探索线索，不升级为规模律或 RL 正结论。
+
+允许推进的直接诊断是冻结历史 8-pair smoke panel 上，四个完整上下文 evaluator × AB/BA 共 64 calls 的 transport、parse、
+顺序与 route reliability；accuracy 只描述、不作 smoke gate。generator 微调会更新 agent 底座，继续受 hard NO 禁止；RL/W&B
+只接收学长先行脱敏导出。prospective first-960/Target-300/Target-522 values、search utility 与任何 future confirmation 均未读。
+
+live-v2 已在任何真实调用前补齐：ZDR/deny-collection/require-parameters/price-sort/no-fallback、每模型 max-price、router
+metadata、context-compression kill、attempt=1、同模型单 provider、按完整 context cap 的 2 USD pre-call upper-bound stop，以及
+mode-0600 pre-call intent journal。
+只有 intent/raw 构成冻结矩阵 exact prefix 且原始 response 可独立重算相同 route/pick/cost 才能续跑；pending intent 或失败记录
+禁止 retry；launch receipt SHA 也写入每个 intent/raw row。hardening/runner/analyzer SHA-256=`01af5ff7...b5d60` /
+`1c7da717...fc9a5` / `64ac3dbe...d7260`。
+
+fresh r5 development 已完成：focused=`18 passed`；dry-run=`64` requests、network=`0`；mock intent/raw/parsed=
+`64/64/64`，attempt-one 与 single-provider gates 过，随机 mock 被顺序门裁为 FAIL，证明 gate 非空泛。有效 launch receipt 的
+missing-key attack 为 `rc=1`、network=`0`、raw/intent 均未创建。实际 live/API calls、GPU、model fit、base update=
+`0/0/0/0`。公开包见 `phase1/results/openrouter_full_context_live_v2_preflight_20260829_01af5ff/`。
+
+当前状态固定为 **`LIVE_SMOKE_AUTHORIZED_BUT_CREDENTIAL_NOT_INSTALLED_FAIL_CLOSED`**：远端 mode-0600 `.env` 尚无
+`OPENROUTER_API_KEY` 变量。不得把聊天中的明文重新放进 tool command/stdin；只能由用户或学长直接写入远端 `.env`。变量名
+就绪后仍须先做不回显 key 的 account/catalog/privacy gate，再从公开 exact post-push commit 运行 smoke；PASS 也不自动授权
+512-call full。详见 `phase1/实验记录/2026-08-29/OpenRouterFullContext_v2_LiveSmoke预检与凭据门.md`。
+
 ## 0IQ. 2026-08-29 breadth-at-near-equal-yield 已冻结 run-disjoint 内部 falsification
 
 0IP 的大幅 label-yield 总门失败不变；事后只观察到六个低预算点的最差 balanced yield 均不低于 uniform-edge median，且终点

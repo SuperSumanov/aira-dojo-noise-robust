@@ -1,0 +1,157 @@
+{
+  "protocol": "openrouter-full-context-live-hardening-v2",
+  "status": "FROZEN_AFTER_PANEL_FEASIBILITY_BEFORE_ANY_LIVE_CALL",
+  "frozen_utc": "2026-08-29T02:38:46Z",
+  "parent": {
+    "judge_protocol": "openrouter-full-context-judge-v1",
+    "judge_protocol_sha256": "56a33c2409fd1cd317df948577bacb769f6bf61c08dd748f38b2e7c62e727a29",
+    "representation": "openrouter-full-context-metric-omission-amendment-v2",
+    "representation_sha256": "63e8acc446417ee8fab51dabcdc296a8d3b38412900a7eb6152f96d5f592cae3",
+    "private_panel_sha256": "a9d9f1df5a7a9aef2ba14682eb0514849ec8aba9abcc9dda69101babb7ff6be1",
+    "private_panel_rows": 64,
+    "private_smoke_rows": 8
+  },
+  "authorization": {
+    "basis": "user relayed senior outcome and supplied a dedicated OpenRouter credential on 2026-08-29",
+    "account_limit_usd_reported_by_senior": "50.00",
+    "this_launch_phase": "smoke",
+    "this_launch_maximum_calls": 64,
+    "this_launch_cumulative_usd_stop": "2.00",
+    "credential_must_exist_only_in_remote_mode_0600_dotenv": true,
+    "credential_value_must_never_enter_git_command_arguments_or_logs": true
+  },
+  "catalog_recheck": {
+    "checked_utc": "2026-08-29T02:20:00Z",
+    "authoritative_endpoint": "https://openrouter.ai/api/v1/models",
+    "all_exact_ids_available": true,
+    "models": [
+      {
+        "id": "deepseek/deepseek-v4-flash-0731",
+        "canonical_slug": "deepseek/deepseek-v4-flash-20260731",
+        "context_length": 1310720,
+        "max_completion_tokens": 943718,
+        "prompt_usd_per_million_at_recheck": "0.045",
+        "completion_usd_per_million_at_recheck": "0.09",
+        "paid": true
+      },
+      {
+        "id": "z-ai/glm-5.3-flash",
+        "canonical_slug": "z-ai/glm-5.3-flash-20260826",
+        "context_length": 1310720,
+        "max_completion_tokens": 131072,
+        "prompt_usd_per_million_at_recheck": "0.075",
+        "completion_usd_per_million_at_recheck": "0.25",
+        "paid": true
+      },
+      {
+        "id": "qwen/qwen3.8-flash",
+        "canonical_slug": "qwen/qwen3.8-flash-20260826",
+        "context_length": 1000000,
+        "max_completion_tokens": 131072,
+        "prompt_usd_per_million_at_recheck": "0.15",
+        "completion_usd_per_million_at_recheck": "0.47",
+        "paid": true
+      },
+      {
+        "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "canonical_slug": "nvidia/nemotron-3-ultra-550b-a55b-20260604",
+        "context_length": 1000000,
+        "max_completion_tokens": 65536,
+        "prompt_usd_per_million_at_recheck": "0",
+        "completion_usd_per_million_at_recheck": "0",
+        "paid": false
+      }
+    ]
+  },
+  "request_hardening": {
+    "input_truncation": false,
+    "max_tokens_or_max_completion_tokens_field": "OMITTED",
+    "temperature": 0,
+    "seed": 20260829,
+    "reasoning_enabled": true,
+    "provider": {
+      "zdr": true,
+      "data_collection": "deny",
+      "require_parameters": true,
+      "allow_fallbacks": false,
+      "sort": "price"
+    },
+    "provider_max_price_from_catalog_recheck": true,
+    "nonsecret_headers": {
+      "Content-Type": "application/json",
+      "X-OpenRouter-Metadata": "enabled"
+    },
+    "authorization_header_excluded_from_request_receipt": true,
+    "client_automatic_retry": false,
+    "timeout_seconds": 600
+  },
+  "resume_hardening": {
+    "pre_call_intent_journal_required": true,
+    "intent_journal_remote_mode": "0600",
+    "intent_must_be_fsynced_before_request": true,
+    "completed_rows_must_be_an_exact_planned_prefix": true,
+    "pending_intent_is_ambiguous_and_forbids_resume": true,
+    "failed_record_forbids_resume": true
+  },
+  "cost_hardening": {
+    "input_token_upper_bound": "serialized request UTF-8 byte count",
+    "completion_token_upper_bound": "maximum of catalog context_length and max_completion_tokens",
+    "per_request_max_price_enforced_from_catalog_recheck": true,
+    "require_cumulative_plus_single_call_upper_bound_within_stop_before_send": true,
+    "single_call_stop_overshoot_allowed": false
+  },
+  "response_hardening": {
+    "require_router_metadata": true,
+    "require_requested_model_exact": true,
+    "require_router_attempt_exactly_one": true,
+    "require_exactly_one_selected_endpoint": true,
+    "allow_response_model_only_if_requested_or_frozen_canonical": true,
+    "reject_context_compression_pipeline_stage": true,
+    "require_usage_and_cost": true,
+    "raw_response_remote_mode": "0600",
+    "raw_response_or_reasoning_in_git": false
+  },
+  "smoke_gates": {
+    "expected_pairs": 8,
+    "expected_orientations_per_pair": 2,
+    "expected_models": 4,
+    "expected_calls": 64,
+    "zero_transport_errors": true,
+    "zero_model_drift": true,
+    "zero_context_compression": true,
+    "all_router_attempts_exactly_one": true,
+    "single_selected_provider_per_model": true,
+    "all_request_privacy_fields_exact": true,
+    "paid_model_minimum_parsed_orientations": 15,
+    "free_model_minimum_parsed_orientations": 14,
+    "paid_model_minimum_both_parsed_pairs": 7,
+    "free_model_minimum_both_parsed_pairs": 6,
+    "paid_model_minimum_order_consistent_pairs": 6,
+    "free_model_minimum_order_consistent_pairs": 5,
+    "accuracy_is_not_a_smoke_gate": true,
+    "all_models_must_pass_without_posthoc_selection": true,
+    "full_phase_requires_a_new_launch_receipt": true
+  },
+  "analysis": {
+    "pair_is_inference_unit": true,
+    "order_consistent_correct": "both parsed orientations select the better endpoint",
+    "order_consistent_wrong": "both parsed orientations select the worse endpoint",
+    "order_inconsistent": "the two orientations select different endpoints",
+    "report_reliability_before_accuracy": true,
+    "task_clustered_bootstrap_primary": true,
+    "run_clustered_bootstrap_secondary": true,
+    "bootstrap_seed": 20260829,
+    "bootstrap_repetitions": 20000,
+    "no_model_task_panel_or_gap_selection_after_readout": true
+  },
+  "scientific_boundary": {
+    "historical_development_diagnostic_only": true,
+    "not_frozen_future_confirmation": true,
+    "not_predictor_scaling": true,
+    "not_label_efficiency": true,
+    "not_search_utility": true,
+    "not_generator_training": true,
+    "prospective_first960_target300_target522_values_forbidden": true,
+    "agent_base_model_update": false
+  }
+}

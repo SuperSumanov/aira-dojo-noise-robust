@@ -1,0 +1,41 @@
+{
+  "protocol": "openrouter-full-context-live-launch-receipt-v2",
+  "authorized": true,
+  "authorization_basis": "user relayed the senior 0828 outcome, supplied a dedicated OpenRouter credential, and delegated the approved positive-direction work on 2026-08-29",
+  "judge_protocol_sha256": "56a33c2409fd1cd317df948577bacb769f6bf61c08dd748f38b2e7c62e727a29",
+  "representation_sha256": "63e8acc446417ee8fab51dabcdc296a8d3b38412900a7eb6152f96d5f592cae3",
+  "hardening_sha256": "01af5ff7656fe4131539729efa28383c45480b8ddc5b20dbfcddabc217eb5d60",
+  "private_panel_sha256": "a9d9f1df5a7a9aef2ba14682eb0514849ec8aba9abcc9dda69101babb7ff6be1",
+  "runner_sha256": "1c7da71778dcbe1ec2037fc0596a6bc1af612bceaf4cea7e9e253eb9d0efc9a5",
+  "analyzer_sha256": "64ac3dbefb91ee4e39f4c1eb6604ad040113dd4e83458c37e7309ed9c82d7260",
+  "phase": "smoke",
+  "models": [
+    "deepseek/deepseek-v4-flash-0731",
+    "z-ai/glm-5.3-flash",
+    "qwen/qwen3.8-flash",
+    "nvidia/nemotron-3-ultra-550b-a55b:free"
+  ],
+  "pairs": 8,
+  "orientations_per_pair": 2,
+  "maximum_calls": 64,
+  "cumulative_usd_stop": "2.00",
+  "senior_reported_account_limit_usd": "50.00",
+  "timeout_seconds": 600,
+  "client_automatic_retry": false,
+  "credential_source": "remote_dotenv_environment_only",
+  "credential_value_recorded": false,
+  "raw_output_remote_mode": "0600",
+  "launch_conditions": {
+    "remote_dotenv_mode_0600": true,
+    "openrouter_key_name_present_at_freeze": false,
+    "live_launch_must_fail_closed_until_key_name_is_present": true,
+    "account_status_must_be_checked_without_printing_the_key": true,
+    "exact_post_push_source_required": true,
+    "private_intent_journal_must_be_fsynced_before_each_call": true,
+    "pending_intent_or_failed_record_forbids_resume": true
+  },
+  "full_phase_authorized_by_this_receipt": false,
+  "gpu_jobs": 0,
+  "model_fits": 0,
+  "base_model_updates": 0
+}

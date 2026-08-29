@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
+02_goal=test transport reliability parseability order consistency route stability and descriptive historical accuracy of four full-context evaluators on the exact frozen smoke panel; PASS
+03_context=senior 0828 proxy-to-e2e outcome and prior truncated judge weakness are disclosed; historical diagnostic only; PASS
+04_known_before=panel structure and senior proxy aggregates known; exact API outputs unseen; PASS
+05_population=exact SHA-bound 64-pair historical panel with deterministic 8-pair smoke subset; all prospective cohorts forbidden; PASS
+06_estimand=pair-level two-orientation reliability first and descriptive accuracy second; no search utility predictor scaling or label-efficiency claim; PASS
+07_controls=same eight pairs full task resource and unmodified code for four exact models with AB and BA orientations; PASS
+08_thresholds=paid parse 15/16 both-parsed 7/8 consistent 6/8; free 14/16 6/8 5/8; one provider per model and attempt one; accuracy is not a gate; PASS
+09_randomness=temperature0 seed20260829 fixed model order and bootstrap seed20260829 repetitions20000; no post-readout selection; PASS
+10_resources=smoke 8 pairs x 4 models x 2 orientations equals 64 calls; scheduler stop USD2; CPU network only GPU/model-fit/base-update 0/0/0; expected ETA 30 minutes to 3 hours and absolute serial timeout envelope 10 hours 40 minutes after credential readiness; PASS
+11_leakage=provider sees no identity orientation truth grade gap source predictor self-report or prospective values; PASS
+12_security=ZDR deny-collection require-parameters price-sort no-fallback per-model max-price context-cap cost upper bound router metadata no compression raw and intent mode0600; credential absent and live forbidden in this development run; PASS
+13_stop=launch receipt SHA is bound into every intent and raw row; pre-call fsynced intent; pending intent failed record missing credential launch/hash/route/model/usage/cost/privacy/parse/order gate fails closed; no client retry and no automatic full launch; PASS

@@ -1,0 +1,22 @@
+r1_root=/research/d7/spc/yzyang4/openrouter-full-context-live-v2/dev-candidate-be31-aaf3-r1
+r1_stage=fresh_worktree_materialization_before_tests_or_requests
+r1_failure=existing pairgraph_v11 Git LFS object returned 404 during default smudge
+r1_scientific_output=false
+r1_api_calls=0
+r1_repair=r2 changed only worktree creation to GIT_LFS_SKIP_SMUDGE=1
+r2_root=/research/d7/spc/yzyang4/openrouter-full-context-live-v2/dev-candidate-be31-aaf3-r2
+r2_status=superseded_before_live_after_code_audit_found_ambiguous_resume_and_analyzer_trust_gaps
+r2_api_calls=0
+r3_root=/research/d7/spc/yzyang4/openrouter-full-context-live-v2/dev-candidate-281f-ac54-r3
+r3_status=superseded_before_live_after_public_endpoint_census_found_multi_provider_routing_and_endpoint_completion_cap_heterogeneity
+r3_api_calls=0
+r4_root=/research/d7/spc/yzyang4/openrouter-full-context-live-v2/dev-candidate-01af-a33d-r4
+r4_status=superseded_before_live_after_provenance_audit_found_launch_receipt_sha_absent_from_private_rows
+r4_api_calls=0
+r5_root=/research/d7/spc/yzyang4/openrouter-full-context-live-v2/dev-candidate-01af-1c7d-r5
+r5_status=development_complete
+r5_change=launch_receipt_sha_bound_into_every_intent_and_raw_row_plus_aggregate_execution_provenance
+r5_api_calls=0
+r5_gpu_jobs=0
+r5_model_fits=0
+r5_base_model_updates=0

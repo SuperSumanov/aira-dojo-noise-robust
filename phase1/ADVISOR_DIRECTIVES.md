@@ -119,3 +119,39 @@ checkpoint-180(仅约 6% 训练量)accuracy **0.8143** / macro 0.7956,「加长 
 - **最新分支资产不是结果**：`dojo-reproduce@2b22f31...` 新增 RL-judger messages、context 工具和
   Qwen2.5 0.5B/1.5B/3B/7B mixed decision/value full-FT 脚本，但尚无新 outcome 文档。train/test 参数
   指向同一 runsplit 文件，使用前必须核对内部 split、endpoint/run/experiment 零交集、outer-test 选点和停止收据。
+
+## I. 2026-08-28—29 最新 outcome：从 proxy 上限转向可审计的 MLE label efficiency
+
+权威来源为学长 `dojo-reproduce@f534114e60658043c07f7a15d6440492caffc8ad` 的
+`src/mle_critic/docs/outcomes/0828/MIXED_PAIRWISE_REWARD_AND_RL_EXPERIMENTS.md`；后续数据/上下文修复 branch head
+为 `30b396323f28064040bb0bdf9cccb198d676dd27`。该 outcome 的 Git blob=`7f691d9b6fa3d971bf889738fa8661694b6b0051`、
+SHA-256=`17317a2d239cb862ec16d57aa0a2fa168f2c1a6cd841117950d8ee8127129ad6`。原文凭据行只经远端内存脱敏后阅读，
+不得把其中任何 token、带权链接或原始 reasoning 放入本文件、日志或 Git。
+
+- **proxy 与最终目标分开**：学长判断现有 value/decision pair proxy 的实际可见上限大约落在 60%—70% 区间，
+  下一步重点应是它能否转化为固定预算下的 MLE end-to-end 改善。规则：pair accuracy、loss、gap 曲线和 scaling
+  只能作探索证据；最终主张仍须落在真实搜索成本与任务成绩，不能把 proxy 百分点直接写成 agent 提升。
+- **混合数据 scaling 仍不稳定**：Qwen3 Base 的模型规模趋势只在 seed 7 明显，seed 6 未复现；instruction 模型和
+  Qwen2.5 对照也交叉。规则：不得把单 seed 最佳 checkpoint 写成规模律；必须同时审计 test composition、共享 endpoint、
+  task/experiment 比例、标签噪声、优化配置与 checkpoint 选点。
+- **RL 不能自动救回 critic**：当前 RL judger 在 decision test 上没有稳定随训练步提升，在 value test 上约 0.59，且与
+  BT 8B 约 0.6411 不是严格 matched 比较。规则：不宣称 RL 自然带来 scaling；若未来比较，先固定 rollout、奖励、训练预算、
+  prompt 和资源 stratum，并保留完整停止与 checkpoint receipt。
+- **RL prompt 有真实资源错配**：现脚本每 task 只取第一份 step-1 journal 的 hardware/time constraints，可能与后续 pair
+  两端实际条件不同。规则：任何 evaluator/RL prompt 必须按 pair/Card 的真实 `(task, client, hardware, time_limit,
+  execution_timeout)` 生成并校验；不得用 task-level 第一条 journal 兜底。
+- **混合采样必须保留 provenance**：8:1:1 是采样权重，不是最终比例，旧输出没有 `source_dataset`，无法恢复每条来源。
+  下一版必须写入来源、原始 experiment/run 与 draft/improve relation，并在 test 中固定各类数量。
+- **新的方法想法**：MLE 介于无标签 self-improvement 与充足监督之间——execution label 昂贵且稀少，可能在固定 generator
+  下借助 verifier 反馈提高真实标签生产效率。广义 generator+verifier/self-evolution 已有大量先例，不能当作首次；本项目
+  可守的窄创新是：昂贵、延迟、任务异质的真实 MLE execution labels 下，结合 run-clean corpus、成本账、relation/lineage
+  certificate 与未触碰 confirmation，验证 verifier 是否提高 label allocation efficiency。
+- **学长点名的 API 诊断**：从经过审计的 reward/decision pairs 选小而平衡的 panel，对 DeepSeek/GLM/Qwen flash 与免费
+  Nemotron 做完整 task/resource/code、双方向评估；禁止截断输入输出，保留远端私有 reasoning，并先看 parse、顺序稳定性、
+  隐私路由与成本，再看 accuracy。用户本轮已转达专用 OpenRouter 凭据与学长的 50 USD 账户限额；项目内 smoke 仍锁死
+  64 calls、调度停止 2 USD，且凭据只能由远端 mode-0600 `.env` 注入。
+- **generator 微调提案与项目硬边界冲突**：学长建议用 2—3 个简单任务采 API 数据微调小 Qwen generator 做 demo；当前
+  项目明确禁止更新 agent 底座，因此未经用户明确修改边界不得启动。允许的替代是固定 generator，只训练/使用独立
+  verifier 或轻量选择器，并在相同 execution 预算下测 label efficiency。
+- **RL trajectory 审计只收脱敏导出**：outcome 的 W&B 链接含访问凭据，不能点击或自动使用。必须由学长先轮换凭据并导出
+  脱敏 prompt/final answer/reward/metadata/run receipt；隐藏 chain-of-thought 不进入 Git，也不作为论文可复核证据。

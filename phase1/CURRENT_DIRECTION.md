@@ -13,6 +13,22 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IP. 2026-08-29 独立图 label-scarce yield confirmation 已在任何 residual curve 前冻结
+
+0IN 的全局 v1 失败完整保留；新假设明确降为 post-discovery 的稀缺标注区间，不声称全预算优势。0IO 的独立 residual 已知
+aggregate=`539 pairs / 1036 endpoints / 505 parents / 190 runs / 36 tasks / 505 components`，但其 acquisition yield、breadth、
+method curves 在本协议冻结时均未读取。按 endpoint 总数固定 `[1..6]/32` 向下取整 budgets=`32,64,97,129,161,194`，
+每 seed 只允许一条 nested trajectory。
+
+primary=`balanced_closure_greedy` 对能利用 endpoint reuse 的强 `uniform_edge`；固定 uniform/tie seeds=`256/32`。trajectory
+六点积分的最差 tie seed 须达到 uniform trajectory-integral 中位数的 `6/5`，逐点 median wins≥`5/6`，终点 yield≥`11/10`，
+再过 parent/task/run breadth=`2/3,3/4,3/4` 与 task/run anti-dominance=`1/3,1/10`；所有门缺一不可，高预算诊断不得 rescue。
+
+protocol SHA-256=`69db0331...9581`；producer 与 non-importing verifier 绑定两套既有 graph/acquisition engines，synthetic=
+`29 passed`（新测试 7）。只读 unordered topology，senior test、orientation/gap/grade/outcome/code/prediction/runtime 和全部
+prospective values 禁用；输出 aggregate-only，GPU/API/model-fit/base-update=`0/0/0/0`。只有公开冻结 commit 的 exact-SHA
+formal 才能读结果。详见 `phase1/实验记录/2026-08-29/IndependentLabelScarceYieldConfirmation_v1_预注册.md`。
+
 ## 0IO. 2026-08-29 b1/b2 因物理 run 嵌套关闭；senior-0819 独立残余图资格门已权威通过
 
 0IN 后先做 identity gate、没有读取 b1/b2 acquisition curves。Python 与独立 PowerShell census 逐项一致：b0--b1 的

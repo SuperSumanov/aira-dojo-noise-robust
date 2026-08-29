@@ -13,6 +13,22 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IT. 2026-08-29 outcome-blind 六小时续接已在运行窗口前冻结
+
+`LATEST=887491a...62697`，config-v2 sidecar filename count=`0`；intake、WL、Target-522 与 task-balance v5-r3
+仍 live。现有 guard v3 预计先于用户离开窗口结束，transition/receipt/config-v7/Target-300 随后自然结束，因此在任何
+successor 或 sidecar 出现前冻结三段式结果盲续接：supervisor 先等待 v3 exact manifest 正常完成，再启动 fresh guard v4；
+只有 transition、receipt、config-v7 与 Target-300 同时以固定 887 tail 正常结束、旧 PID 退出、锁 free、state/prior hash
+不变时，才启动 transition/receipt/config-v8/Target-300 的原协议续接。live monitor 不重启，guard 必须先于 support
+renewal，任何 snapshot/sidecar/FAILED/hash/duplicate 漂移均 fail-closed 或只写 identity handoff。
+
+guard/renewal/supervisor/static-test SHA-256=`7c67778b...48a12` / `53c24da6...6a29` /
+`8febae8e...337e9` / `398dc9d4...8f01c`；Bash syntax 与 focused=`5 passed`。固定成本为 CPU metadata polling，
+GPU/API/model-fit/base-update=`0/0/0/0`；只读 PID、锁、LATEST、具名结构尾部、hash、sidecar filename count 与
+`outcomes_read=false` 汇总，prospective label/outcome/prediction/accuracy/utility 与 sidecar/archive 内容均不读。部署必须从
+公开 exact commit 的 Git object 执行，且 child first-poll 与 postflight manifest 均通过后才记为上线。详见
+`phase1/实验记录/2026-08-29/OutcomeBlind_887六小时无空窗续接预检.md`。
+
 ## 0IS. 2026-08-29 TaskBalance v5/v5-r2 均在 candidate 前失败；v5-r3 只修 typed identity parser
 
 权威 v4 在 `LATEST=887491a...62697` 不变时以 `TIMEOUT_RC=124` 正常结束；自动交接 v5 随即 `FAILED_RC=1`。

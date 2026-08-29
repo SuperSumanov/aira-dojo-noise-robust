@@ -24,12 +24,24 @@ run/parent=`349/93`，且不输出 endpoint witness；原 SHA 全局 tie 则在 
 上述失败与诊断结果已全部披露并绑定后，结果前冻结 v2：
 `endpoint_budget_distribution_matched_yield_screen_v2.json`，SHA-256=
 `37ad2fab68227d4aa236f1ce8c70c6197d1160b3f885adc466288ea1af41b06e`。当前状态是
-**`FROZEN_AFTER_V1_SOLVER_FAILURE_BEFORE_V2_ENDPOINT_WITNESS_OR_PREDICTION`**；尚无 v2 endpoint witness、预测或 task metric。
+**`FROZEN_AFTER_V1_SOLVER_FAILURE_BEFORE_V2_ENDPOINT_WITNESS_OR_PREDICTION`**；冻结当时尚无 v2 endpoint witness、预测或 task metric。
 
 v2 formal r2 的 selection A/B、两个 fit 与 verifier A/B 已写出，但在 COMPLETE 前被 forbidden-path scanner 终止，故 summary/指标未读。
 独立结果盲审计证明 30 条命中全部是仓库的 `target522.py/.pyc` 代码模块，data-path lines=`0`、network bytes=`0`，
 receipt manifest=`b278058f2c6775acf4ed6c2456710b2d5abef14404b49013ff8a0b94af3b2205`；r2 已只读封存。
 r3 只把 scanner 收窄为同名 token 下的 raw/prospective 数据扩展名；v2 protocol、selection、fit、七门与 private A/B 要求均不变。
+
+formal r3 已通过并按冻结七门分类为 **`POST_AUDIT_DISTRIBUTION_MATCHED_YIELD_SCREEN_DOES_NOT_ADVANCE`**：只有 task-L1 gate
+为 true，其余 6 个 efficacy gate 全 false。结构优化本身完全成功：六个 checkpoint 的 new L1 均低于 old yield，terminal 从
+`0.37869971535806946` 降到 `0.08816342980931514`，objective=`22282` 精确等于 DP 下界；但 budget 96/192 相对 old yield 的 pooled
+accuracy delta=`-0.050724637681159424/-0.07971014492753623`，task-macro=`+0.017860913596207714/-0.08391887524240466`。
+terminal 相对 uniform pooled/task-macro/drop-dominant=`-0.043478260869565216/-0.18793956043956045/-0.09615384615384616`，且相对
+old yield 的 log-loss/Brier 均变差。结论是“按 availability 配平任务分布”不是旧异质性的解决机制，不得继续扩大或救回。
+
+formal commit=`ba75d078e1abf9542a11fa73c0de1a960312b5da`，manifest=`44c41f55...ed87`；postflight manifest=
+`60949acd...bf4d`，第三次独立 verifier SHA=`9de0e843...a27e4f`，focused/full=`26/1652 passed`，全部扫描为空。
+下一项若继续历史开发，必须另立协议：保留 yield pair，不再用 selection 丢信息，仅测试 task-balanced/hierarchical critic fitting；
+这不是对当前七门的 post-hoc rescue，仍不能替代 rule-frozen 新 physical runs confirmation。
 
 新规则只改 endpoint acquisition：在与旧 yield arm 完全相同的 nested endpoint checkpoints
 `72/96/120/144/168/192` 和 induced-pair counts `36/49/61/73/85/99` 下，使 35 个 outer-train task 的已选 pair

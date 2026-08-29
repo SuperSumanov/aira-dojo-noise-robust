@@ -1,0 +1,38 @@
+{
+  "classification": "POST_AUDIT_DISTRIBUTION_MATCHED_YIELD_SCREEN_DOES_NOT_ADVANCE",
+  "formal_commit": "ba75d078e1abf9542a11fa73c0de1a960312b5da",
+  "formal_manifest_sha256": "44c41f55533d4fa3d94918bdc502128bebd4fd921fdc15038e6d47b4df85ed87",
+  "formal_root": "/research/d7/spc/yzyang4/endpoint-distribution-matched-yield-screen/formal-ba75d07-r3",
+  "postflight_manifest_sha256": "60949acd8203548a31f8ce1df4f701a2e8e346574dfb89a92ac2122b7963bf4d",
+  "protocol_sha256": "37ad2fab68227d4aa236f1ce8c70c6197d1160b3f885adc466288ea1af41b06e",
+  "public_artifacts": {
+    "runs_csv_formal_sha256": "883d0d12d0573b043e9065aa9b99385845314d3e14094446a23680364e5cf2b1",
+    "runs_csv_lf_normalized_sha256": "1f0007ca112ee48d77e3f3698a48a0d7d09ba21e71b80f039ece4f31bdaa9594",
+    "selection_public_sha256": "c8df1f77d4ad531402418b8e6982c1695791490e209a150305b4c9dc8bd263d3",
+    "summary_sha256": "e5f7b43fa0c8924b3fe0756b003bf1451b06aa408e70bcbb3990bc172d23ff8a",
+    "verifier_sha256": "9de0e843d1c33c28ab26512273bc82b6bcd335d25c42deba06ae1f3494a27e4f"
+  },
+  "scope": {
+    "base_agent_updates": 0,
+    "critic_model_fits": 2,
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "prospective_values_used": false,
+    "scientific_confirmation": false,
+    "senior_test_rows_used": false
+  },
+  "tests": {
+    "focused_passed": 26,
+    "full_passed": 1652,
+    "full_warnings": 48
+  },
+  "verification": {
+    "all_scanner_files_empty": true,
+    "gate_false": 6,
+    "gate_true": 1,
+    "postflight_verifier_byte_equal": true,
+    "private_files_sealed_mode": "0400",
+    "producer_public_private_ab_byte_equal": true,
+    "verifier_ab_byte_equal": true
+  }
+}

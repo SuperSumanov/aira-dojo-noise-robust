@@ -128,3 +128,43 @@ v1/诊断证据 SHA，随后执行：
 
 这项实验复用了已经开发过的 fold0，只能筛选机制，不能增加确认性证据。即使通过，论文中也只能作为 development/ablation，
 最终正主张必须在规则冻结后新产生、physical-run disjoint 且从未触碰的 cohort 上确认。
+
+## 8. formal r3 结果与冻结裁决
+
+formal commit=`ba75d078e1abf9542a11fa73c0de1a960312b5da`。13 项 preflight、focused=`26 passed`、full=
+`1652 passed, 48 warnings`、selection public/private A/B、verifier A/B、network/prospective/boundary/credential scanners、整棵
+manifest 与 mode-0400 sealing 全通过。formal manifest=
+`44c41f55533d4fa3d94918bdc502128bebd4fd921fdc15038e6d47b4df85ed87`；独立 postflight 第三次重建 verifier，
+verifier SHA=`9de0e843d1c33c28ab26512273bc82b6bcd335d25c42deba06ae1f3494a27e4f`，postflight manifest=
+`60949acd8203548a31f8ce1df4f701a2e8e346574dfb89a92ac2122b7963bf4d`。
+
+### 8.1 结构目标成功
+
+MILP witness 的 objective=`22282`，精确等于独立 DP 下界，integrated runs=`349`、terminal parents=`93`。六个 checkpoint
+的 new/old-yield task-distribution L1 为：
+
+- 72：`0.22180659462454977 / 0.8808534220005544`；
+- 96：`0.2038780599521604 / 0.8042139549086468`；
+- 120：`0.15731163893544825 / 0.6488696292056744`；
+- 144：`0.11601134150924056 / 0.544665732927954`；
+- 168：`0.12703535279448439 / 0.4917705735660847`；
+- 192：`0.08816342980931514 / 0.37869971535806946`。
+
+因此“优化器没有真正改变分布”已被排除，唯一结构 gate 通过。
+
+### 8.2 efficacy 目标失败
+
+相对 old yield：
+
+- budget 96：pooled accuracy=`-0.050724637681159424`，task-macro accuracy=`+0.017860913596207714`，
+  log-loss=`+0.0023422012058906005`，Brier=`+0.001171600740109284`，task signs=`7+/9-/4=`；
+- budget 192：pooled accuracy=`-0.07971014492753623`，task-macro accuracy=`-0.08391887524240466`，
+  log-loss=`+0.006681921256433458`，Brier=`+0.00333860958843695`，task signs=`3+/9-/8=`。
+
+terminal 相对 uniform 的 pooled accuracy=`-0.043478260869565216`、task-macro=`-0.18793956043956045`、
+drop-dominant=`-0.09615384615384616`。七门中 `1 true / 6 false`，固定分类为
+**`POST_AUDIT_DISTRIBUTION_MATCHED_YIELD_SCREEN_DOES_NOT_ADVANCE`**。
+
+这项结果只说明当前 availability-matching acquisition 失败，不能外推为所有 task-aware 方法失败。禁止修改 caps/floors/budget/tie、
+删 task 或改 headline 救回。后续若测试 task-balanced/hierarchical fitting，必须保留 yield selection、另冻协议，并明确属于新的
+historical development hypothesis；最终确认仍需新 physical runs。

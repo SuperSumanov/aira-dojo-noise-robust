@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
+02_goal=test the frozen v2 distribution-matched yield rule with an exact DP lower-bound proof while matching old endpoint and induced-pair counts; PASS
+03_context=v1 solver failure and r2 code-path scanner false positive are disclosed; r2 scientific summary was not read and v2 rule gates remain unchanged; PASS
+04_population=bound 539-row train-only firewall with 401 outer-train and 138 held-run evaluation pairs; senior test and prospective cohorts forbidden; PASS
+05_split=unchanged salted physical-run fold0 evaluation and folds1-4 training; post-audit historical development only and never confirmation; PASS
+06_estimand=new minus old-yield task-macro accuracy at budgets 96 and 192 with pooled proper-score task-sign and robust-vs-uniform secondary checks; PASS
+07_controls=exact same endpoints budgets induced-pair counts fixed critic code representation labels evaluation pairs and old prediction witness; only task allocation rule changes; PASS
+08_thresholds=seven frozen screen gates including two-budget L1 and task-macro signs terminal pooled macro drop-dominant proper scores and task signs; no rescue; PASS
+09_randomness=pinned numpy1.26.4 scipy1.16.2 HiGHS1.8.0 threads1 seed0 constant-objective witness with private A/B identity; LR random_state0; bootstraps fixed; PASS
+10_resources=CPU single-thread two new critic fits under 30 minutes expected; GPU paid-API base-update 0/0/0; atomic per-budget resume; PASS
+11_outputs=selection public/private A/B fit CSV aggregate and private probabilities plus zero-refit independent primal/aggregate verifier A/B; PASS
+12_security=old formal manifest and 11 input SHA bindings checked; credential env unset; selection cannot open labels/cards/predictions and all stages forbid prospective/raw decision/network; PASS
+13_stop=any hash mode DP-bound exact-count solver A/B fit checkpoint verifier scanner or manifest failure exits before COMPLETE; failed gates cannot be altered; PASS

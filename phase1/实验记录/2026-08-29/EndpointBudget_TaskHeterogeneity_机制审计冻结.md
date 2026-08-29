@@ -41,3 +41,7 @@ prospective/raw-decision/label 路径必须为空。
 固定分类是 `EXPLORATORY_TASK_HETEROGENEITY_AUDIT_COMPLETE_NOT_CONFIRMATORY`，没有 promotion gate。本审计不能救回失败 smoke，不能
 事后删除/重加权任务，也不能把 fold0 当确认集。它只允许支持或反对“另行结果前冻结 task-quota + yield-floor acquisition rule”这个
 机制设计选择。资源=`CPU single-thread, <5 min; GPU/API/model-fit/base-update=0/0/0/0`。
+
+首次 deployment 在创建 formal root、fetch commit 或读取任一输入之前，由 `env_setup.sh` 对未定义 `LD_LIBRARY_PATH` 的访问返回非零；
+原因是 launcher 错把 `set -u` 放在 environment source 之前。该次只有 scp 传输，无科学 readout、无 fit、无 API/GPU，按 pre-run
+engineering failure 留痕。修复仅把顺序改为 `set -Eeo pipefail -> source env -> set -u`，不改 protocol、input binding、计算或输出。

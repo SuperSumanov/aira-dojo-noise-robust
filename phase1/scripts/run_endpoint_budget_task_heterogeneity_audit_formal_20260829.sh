@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-set -Eeuo pipefail
+set -Eeo pipefail
 source /uac/y24/yzyang4/env_setup.sh
+set -u
 umask 077
 
 export OMP_NUM_THREADS=1

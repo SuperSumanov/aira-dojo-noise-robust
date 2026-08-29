@@ -55,3 +55,29 @@ engineering failure 留痕。修复仅把顺序改为 `set -Eeo pipefail -> sour
 `amplifier_test.py`、`premise_test.py` 两个带命令行参数的 standalone analysis scripts 当作 pytest module 收集，得到固定的
 `JSONDecodeError/FileNotFoundError('-q')`。既有 formal 的全套回归范围一直是 `phase1/tests`；因此修复为该确切范围。错误仍发生在
 producer 与六个私有输入读取前，失败 root 和原始日志均保留，不改变协议或任何计算。
+
+## Formal 结果
+
+正式 commit=`d2fb68c38b75eabd0f3520775da9aa16ea0e6ad6`，formal manifest=
+`6928273091f64ce9aa304a05909364e5df40a6d9b55c93d28f5fd612e52651d8`。focused/full=
+`7 passed in 0.13s` / `1645 passed, 48 warnings in 97.24s`。producer A/B、private A/B、verifier A/B 均逐字节一致；独立 verifier
+从六个 bound inputs 重建 40 个 task-budget rows 与全部 aggregate，0 model refit、未导入 producer。网络、禁读路径、凭据文件名、
+凭据内容四类 scanner 全空；private witness 在写入时 mode-0600，formal seal 后为 owner-only mode-0400。
+
+| Budget | Pooled acc Δ | Task-macro acc Δ | Task +/-/0 | LOTO negative | Top-1 / Top-2 positive contribution | Train-task L1 uniform → yield |
+|---:|---:|---:|---:|---:|---:|---:|
+| 96 | +0.021739130434782608 | -0.03829778065072183 | 6 / 7 / 7 | 2/20 | 0.35714285714285715 / 0.6428571428571429 | 0.5776184538653364 → 0.8042139549086468 |
+| 192 | +0.036231884057971016 | -0.1040206851971558 | 6 / 8 / 6 | 1/20 | 0.5294117647058824 / 0.7058823529411765 | 0.3624937655860349 → 0.37869971535806946 |
+
+注：表中 task `+/-/0` 依次为 positive / negative / zero；不公开任何 task identity/hash。
+
+三个 coverage delta 对 task accuracy delta 的 Spearman 在 budget 96 为 `0.3023/0.1594/0.2969`（endpoint/run/pair），budget 192
+为 `0.2705/0.2968/0.1504`；同三种 coverage 对 log-loss/Brier 的相关性除 budget-96 run 外均为弱负，方向上与 calibration 改善
+一致，但绝不能解释成因果或显著性。结合 pooled 与 macro 反号、gain concentration 和 task-distribution L1 恶化，最简洁机制是：
+pure breadth 确实提高了跨 run/task 的触达，却把有限 labels 分散得过薄；少数大任务获益足以抬高 micro average，多数小任务并未
+稳定受益。
+
+因此旧 `yield_guarded_breadth` 继续保持 **不晋级、不扩跑**。审计支持的新设计假设是：保留 exact endpoint budget 与 pair-yield
+floor，但把任务目标从“尽可能多 unique tasks”改成“induced-label distribution 匹配 outer-train task availability，并加最大任务
+占比约束”，同时保留 run anti-dominance。任何新规则必须另行结果前冻结；由于设计已经看过 fold0 task-level audit，历史五折全部
+只能标为 development，真正 confirmation 仍只能来自规则冻结后新产生的 physical runs。

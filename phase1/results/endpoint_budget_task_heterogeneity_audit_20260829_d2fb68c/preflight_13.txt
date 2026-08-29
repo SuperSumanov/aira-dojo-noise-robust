@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
+02_goal=map the already disclosed single-fold endpoint-acquisition gain heterogeneity without tuning or rescuing the failed smoke; PASS
+03_context=overall two-budget deltas and terminal dominant-task reversal are disclosed in the frozen protocol while task signs coverage correlations LOTO and concentration were unseen; PASS
+04_population=the exact bound senior-0819 train-only firewall topology and completed private pair witness only; senior test and all prospective cohorts forbidden; PASS
+05_split=the original salted physical-run fold0 evaluation and folds1-4 training are reconstructed with 401/138 rows and no new split choice; PASS
+06_estimand=task-level net-correct and proper-score deltas versus endpoint run and induced-pair coverage deltas at frozen budgets 96 and 192; exploratory mechanism audit only; PASS
+07_controls=same four fitted models and same evaluation pairs are reused; no refit task removal reweighting threshold seed or budget selection; PASS
+08_thresholds=no efficacy promotion threshold and no rescue gate; all zero negative and positive tasks retained; PASS
+09_randomness=none; deterministic binary64 ranks correlations concentration and leave-one-task-out summaries; PASS
+10_resources=CPU single-thread under five minutes expected; GPU paid-API critic-fit base-update 0/0/0/0; PASS
+11_outputs=public aggregate without raw or hashed identities plus mode0600 private task rows; producer A/B and independent verifier A/B; PASS
+12_security=all six input SHA bindings and private modes checked; credential environment unset; strace network and forbidden prospective/raw-label paths must be empty; PASS
+13_stop=any hash mode schema identity leakage A/B verifier scanner or manifest failure exits before COMPLETE and cannot alter the failed smoke classification; PASS

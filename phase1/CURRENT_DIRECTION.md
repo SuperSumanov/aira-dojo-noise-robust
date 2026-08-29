@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0IY. 2026-08-29 task-heterogeneity 机制审计已在任务级 readout 前冻结
+## 0IY. 2026-08-29 task-heterogeneity 机制审计：旧 breadth 过度分散，新规则应匹配任务密度
 
 0IX 的 smoke 严格不晋级，但两个 endpoint budget 的 accuracy/calibration 描述性同向且诱导 pair 数几乎相等；当前关键未知量不是
 再跑更多模型，而是 terminal 增益为何被一个任务主导。为避免看完 task 表再选择解释，协议
@@ -24,8 +24,22 @@ LOTO distribution 与 positive-gain concentration 未见时冻结，SHA-256=`f3a
 coverage delta、三项 metric delta、净正确贡献、全 20-task Spearman、LOTO 与 gain concentration。任务 SHA 和逐 task 行只写远端
 mode-0600 private witness；公开产物不含 raw/hash identity 或 per-pair probability。独立 verifier 不导入 producer，从六个绑定输入
 重建全部 task rows 与 aggregate。该审计没有 efficacy promotion gate，不能删任务、重加权、救回 smoke 或把 fold0 当 confirmation；
-唯一允许用途是决定是否另行冻结 task-quota + yield-floor acquisition rule。CPU 单线程、预计少于 5 分钟，GPU/API/model-fit/
-base-update=`0/0/0/0`。完整设计见
+唯一允许用途是决定是否另行冻结 task-quota + yield-floor acquisition rule。
+
+formal 结果固定为 **`EXPLORATORY_TASK_HETEROGENEITY_AUDIT_COMPLETE_NOT_CONFIRMATORY`**。budget 96/192 的 pooled accuracy delta 虽为
+`+0.021739130434782608/+0.036231884057971016`，task-macro accuracy delta 却为
+`-0.03829778065072183/-0.1040206851971558`；terminal 任务符号=`6 positive / 6 zero / 8 negative`。terminal 最大正贡献占
+全部正贡献 `0.5294117647058824`，前两项占 `0.7058823529411765`；20 个 LOTO 中 1 个为负，复现主导任务反转。
+
+机制上，yield arm 的 induced-pair task distribution 到 outer-train availability 的 L1 距离在 budget 96 从 baseline
+`0.5776184538653364` 恶化到 `0.8042139549086468`，budget 192 也从 `0.3624937655860349` 恶化到
+`0.37869971535806946`：最大化 unique task/run 把有限 labels 铺得过薄。另一方面，endpoint/run/pair coverage delta 与 task accuracy
+delta 的 Spearman 仍为弱正（两预算约 `0.150--0.303`），说明“任务内密度”可能有效。下一规则应冻结为
+**distribution-matched yield + anti-dominance**，而不是继续 pure breadth；任何同一 fold0 后续结果只能作 post-hoc development。
+
+formal commit=`d2fb68c38b75eabd0f3520775da9aa16ea0e6ad6`，manifest=`69282730...51d8`；focused/full=
+`7 passed` / `1645 passed`。producer A/B、private A/B、verifier A/B 逐字节一致；独立重建 40 个 task-budget rows，四类扫描为空，
+sealed private mode=`0400`。GPU/API/model-fit/base-update=`0/0/0/0`。完整设计与失败留痕见
 `phase1/实验记录/2026-08-29/EndpointBudget_TaskHeterogeneity_机制审计冻结.md`。
 
 ## 0IX. 2026-08-29 endpoint-budget label-efficiency smoke：描述性同向，但严格不晋级

@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
+02_goal=falsify whether the post-readout yield-noninferior task/run-breadth Pareto pattern survives in both deterministic physical-run-disjoint halves; PASS
+03_context=the full-graph yield-confirmation failure and descriptive breadth pattern are disclosed; this is internal falsification and never external confirmation; PASS
+04_known_before=full 539-pair aggregate and full-graph curves known; hash-run split counts support profiles and fold curves unseen; PASS
+05_population=exact prior 539-pair strict residual split only by physical-run SHA256 parity; senior test rows forbidden; PASS
+06_estimand=per-fold six-checkpoint yield noninferiority plus task/run breadth superiority and parent breadth preservation; no accuracy or search utility; PASS
+07_controls=balanced-closure greedy versus strong uniform-edge on the same fold topology endpoint budgets and nested trajectory contract; PASS
+08_thresholds=fold support plus yield 1 and 5/6 task 6/5 run 11/10 parent 9/10 and anti-dominance all fixed in both folds with no rescue; PASS
+09_randomness=256 uniform randomizations and 32 greedy tie trajectories fixed by SHA256; producer and independent verifier repeated under hash seeds 0 and 1; PASS
+10_resources=CPU only with one-thread caps; GPU API model-fit base-update 0/0/0/0; PASS
+11_leakage=no orientation gap grade outcome code prediction runtime senior test or prospective first960 target300 target522 value use; PASS
+12_security=credential receipt checked before safe Cards parse; raw senior archives and identity release forbidden; PASS
+13_stop=any hash certificate manifest verifier or scanner failure exits before COMPLETE; overlap gets the frozen integrity class and support failure gets the frozen limited-support class with no curves; PASS

@@ -40,6 +40,21 @@ method/threshold/runner 全不改。repaired producer/verifier/test SHA-256=`d89
 `10d36750...a5b`，focused=`37 passed`。必须从公开修复 commit 在 fresh r2 整轮重跑；详见
 `phase1/实验记录/2026-08-29/RunSplitBreadthParetoFalsification_v1_r1失败与Fingerprint勘误.md`。
 
+勘误 commit=`6cdcc928b3b654a8c7df31999cc3e332bccb0269` 的 fresh r2 已权威完成。两折 support 全过且
+pair/endpoint/parent/run overlap=`0/0/0/0`；producer A/B 逐字节一致、non-importing verifier A/B 全字段 exact，focused/full=
+`37/1588 passed`（47 warnings），forbidden/network/credential filename/blob=`0/0/0/0`。result/verifier SHA-256=
+`f1d8054c...e042` / `9025f2e5...991b`，formal manifest=`223549d3...5d77`。
+
+fold1 七门全过；fold0 breadth/parent/anti-dominance 全过，但 integrated yield=`274<276` 且 pointwise only=`4/6`，后两预算
+分别 `58<59,67<68`。固定分类因此是 **`POSTREADOUT_RUN_SPLIT_BREADTH_PARETO_DOES_NOT_SURVIVE`**；不得用 fold1、median
+tie seed 或降门 rescue。仍可描述的稳定形状是 fold0/fold1 task integral=`164/96,186/122`、run integral=
+`262/191,239/198`，而 yield cost 为 `-0.724637681159%/0%`：这是 small-yield-cost / large-breadth tradeoff，不是 free Pareto。
+
+下一步 development 改成 yield-guarded breadth optimization：每个 nested checkpoint 将 topology-only closed-edge yield 硬约束
+为至少 uniform-edge median，再最大化 task/run coverage；当前图只做开发，必须在未见 graph 上另冻确认。正式包见
+`phase1/results/historical_run_split_breadth_pareto_20260829_6cdcc92/`，详见
+`phase1/实验记录/2026-08-29/RunSplitBreadthParetoFalsification_v1_正式裁决.md`。
+
 ## 0IP. 2026-08-29 独立图未确认大幅 yield 增益；出现 breadth-at-near-equal-yield 新假设
 
 0IN 的全局 v1 失败完整保留；新假设明确降为 post-discovery 的稀缺标注区间，不声称全预算优势。0IO 的独立 residual 已知

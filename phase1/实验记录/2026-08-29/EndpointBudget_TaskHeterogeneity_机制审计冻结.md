@@ -50,3 +50,8 @@ engineering failure 留痕。修复仅把顺序改为 `set -Eeo pipefail -> sour
 `phase1/results/pairgraph_v11_20260814/full_artifacts.tar.gz` 的远端 404；同样发生在测试与输入读取前。失败 root 原样保留。该 tarball
 不属于本审计的代码或六个输入，因此 launcher 只对代码 checkout 增加 `GIT_LFS_SKIP_SMUDGE=1`，后续仍逐 SHA 读取独立 formal root
 里的输入；不改变 protocol、scientific computation 或结果门。
+
+第三次 deployment 的新增 focused tests=`7 passed`，但 full-suite 命令误写成 `pytest phase1`，把
+`amplifier_test.py`、`premise_test.py` 两个带命令行参数的 standalone analysis scripts 当作 pytest module 收集，得到固定的
+`JSONDecodeError/FileNotFoundError('-q')`。既有 formal 的全套回归范围一直是 `phase1/tests`；因此修复为该确切范围。错误仍发生在
+producer 与六个私有输入读取前，失败 root 和原始日志均保留，不改变协议或任何计算。

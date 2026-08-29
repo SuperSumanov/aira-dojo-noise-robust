@@ -81,7 +81,7 @@ for path in "$input_root/firewall_a/topology.json" "$input_root/selection_a.priv
 done
 
 (cd "$worktree" && "$python_bin" -m pytest -q phase1/tests/test_endpoint_budget_task_heterogeneity_audit.py) >"$root/focused_tests.txt"
-(cd "$worktree" && "$python_bin" -m pytest -q phase1) >"$root/full_tests.txt"
+(cd "$worktree" && "$python_bin" -m pytest -q phase1/tests) >"$root/full_tests.txt"
 
 common=(
   --protocol "$worktree/$protocol_rel"

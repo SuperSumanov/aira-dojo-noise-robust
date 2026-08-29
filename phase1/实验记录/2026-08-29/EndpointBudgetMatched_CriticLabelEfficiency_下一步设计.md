@@ -1,7 +1,7 @@
 # Endpoint-Budget-Matched Critic Label Efficiency：下一步设计
 
 日期：2026-08-29
-状态：`DESIGN_ONLY_NOT_PREREGISTERED_NOT_RUN`
+状态：`SINGLE_FOLD_SMOKE_PROTOCOL_FROZEN_NOT_RUN`
 目的：把 topology-only 结构可行性推进为真正有论文价值的 downstream 正结论。
 
 ## 一句话问题
@@ -82,3 +82,26 @@ labels 会改善 predictor。Graph active learning、pairwise active sampling �
   1 fold × 2 budgets smoke。
 - GPU Phase B：仅 Phase A 过门后另报 0.6B/8B、context、seed、总 GPU·时矩阵并请求批准。
 - API：0；agent 底座更新：0；RL：0。
+
+## 2026-08-29 结果前冻结的 single-fold smoke
+
+用户已授权所有有利于该正方向、且不启动 GPU/付费 API/底座更新的实验。正式五折四臂前先冻结最小 falsification：
+
+- population 仍是已认证的 539 条 senior-0819 strict residual，全部源于 `intask_split=train`；salted physical-run fold 0
+  只作历史 outer evaluation，fold 1--4 训练，绝不是 senior test 或 future confirmation；
+- 只比较 `exact_b_uniform_edge` 与 `yield_guarded_breadth`，只拟合 `4/32`、`8/32` 两个 endpoint budgets，共 4 个
+  char-TFIDF LR fits；六 checkpoint topology trajectory 仍完整求解；
+- 在看本比较任何 selection witness、accuracy、log-loss、Brier 或 prediction 前，协议冻结为
+  `phase1/endpoint_budget_label_efficiency_smoke_v1.json`；support 与 advancement gate 见该文件，不允许事后 rescue；
+- raw `decision.jsonl` 混有不允许进入训练进程的行，因此增加可信 train-only firewall。只有 firewall 读取并验证原始来源，输出
+  mode-0600 的 orientation-free topology 和 train-only orientation；selection/fit 命令行均不接收 raw decision path，test
+  导出数强制为 0；
+- 每个完成的 arm-budget fit 先写原子 mode-0600 checkpoint，重启时逐 hash/identity/probability 复验后复用；长任务可 resume；
+- 每对概率只以 pair/task/run SHA-256 指纹写私有 witness。独立 verifier 不导入训练模块、不 refit 模型，重建 evaluation pair set
+  并重算三项指标、task/run clustered bootstrap、drop-dominant-task 与 advancement gate；
+- 预期资源：CPU 单线程、4 fits、20--45 分钟；GPU/API/base update=`0/0/0`。smoke 即使过门也只授权冻结后续五折四臂
+  Phase-A 协议，不自动授权 GPU。
+
+结果前实现审计：Windows synthetic=`11 passed, 1 skipped`；远端真实 SciPy/sklearn path=`12 passed`。可信 firewall 的
+precommit 功能检查逐项复现 source/core/train-core/residual=`7644/1270/952/539`，strict-residual fingerprint 与既有认证一致，
+且 receipt 明确 `senior_test_rows_exported=0`；尚未运行 topology selection 或任何模型 fit。

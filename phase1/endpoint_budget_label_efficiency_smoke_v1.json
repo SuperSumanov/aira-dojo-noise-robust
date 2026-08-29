@@ -1,0 +1,161 @@
+{
+  "protocol": "endpoint-budget-label-efficiency-smoke-v1",
+  "status": "FROZEN_AFTER_TOPOLOGY_DIRECTION_BEFORE_THIS_COMPARISON_LABEL_READOUT",
+  "frozen_at_utc": "2026-08-29T05:59:30Z",
+  "pre_readout_verification_hardening_at_utc": "2026-08-29T06:10:39Z",
+  "direction": "Decision Corpus plus Predictor Benchmark plus Audit Protocol",
+  "known_before_freeze": {
+    "historical_pair_labels_and_prior_predictor_aggregate_results_exist": true,
+    "exact_budget_yield_guarded_topology_feasibility_on_two_historical_halves_seen": true,
+    "endpoint_budget_matched_downstream_comparison_run_or_seen": false,
+    "this_selection_witness_seen": false,
+    "this_accuracy_logloss_brier_or_pairwise_prediction_seen": false,
+    "prospective_first960_target300_target522_values_seen": false
+  },
+  "immutable_inputs": {
+    "historical_topology_protocol": {
+      "path": "phase1/historical_run_split_breadth_pareto_falsification_v1.json",
+      "sha256": "76a6ad30188c53c4f93b1132d45f16608d025057a5624eae7c5b9f13d4544396"
+    },
+    "senior_safe_cards": {
+      "remote_path": "/research/d7/spc/yzyang4/senior-0828-pair-audit/cards-f534114-v1/cards.safe.json",
+      "sha256": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343"
+    },
+    "senior_security_receipt": {
+      "remote_path": "/research/d7/spc/yzyang4/senior-0828-pair-audit/cards-f534114-v1/security_scan.json",
+      "sha256": "d41142279bdba7db4495664df6836eecec3a36016cd316164ee5e54d4518eccc"
+    },
+    "senior_run_split": {
+      "remote_path": "/research/d7/spc/yzyang4/senior-0828-pair-audit/input-f534114-v3/runsplit_holdruns.json",
+      "sha256": "593117cfe0b34e1d2e3c9b718866a7751d7f008701add77b31cfd604282103bb"
+    },
+    "senior_decision": {
+      "remote_path": "/research/d7/spc/yzyang4/senior-0828-pair-audit/input-f534114-v3/decision.jsonl",
+      "sha256": "1a01d3a1202b35f21b9cd6c87237b29c50b1c293138b407cc453674108411442"
+    }
+  },
+  "population": {
+    "source": "strict residual of the already certified senior-0819 train direct-sibling core",
+    "source_rows_must_have_intask_split": "train",
+    "senior_test_rows_forbidden": true,
+    "prospective_rows_forbidden": true,
+    "train_only_firewall": {
+      "trusted_exporter": "phase1/export_endpoint_budget_train_only_firewall.py",
+      "selection_input": "orientation-free topology export only",
+      "fit_input": "train-only orientation export only",
+      "raw_decision_path_passed_to_selection_or_fit": false,
+      "topology_labels_and_aggregate_receipt_mode": "0600",
+      "test_rows_exported": 0
+    },
+    "fold_unit": "physical_run",
+    "fold_count": 5,
+    "fold_assignment": "uint64_be(sha256('endpoint-label-efficiency-v1\\0'+run_id)[:8]) mod 5",
+    "smoke_outer_eval_fold": 0,
+    "smoke_outer_train_folds": [1, 2, 3, 4],
+    "endpoint_parent_or_run_overlap_between_outer_train_and_eval_must_equal": 0
+  },
+  "selection": {
+    "budget_fraction_denominator": 32,
+    "six_checkpoint_numerators": [3, 4, 5, 6, 7, 8],
+    "smoke_fit_numerators": [4, 8],
+    "arms": ["exact_b_uniform_edge", "yield_guarded_breadth"],
+    "uniform_edge_seeds": 256,
+    "uniform_representative_rule": "nearest-rank median integrated closed-edge yield over all six checkpoints, then smallest seed",
+    "uniform_edge_order": "edge SHA256 priority, deterministic endpoint linearization, independent singleton fill",
+    "yield_guarded_contract": {
+      "all_checkpoints_exact_endpoint_budget": true,
+      "pointwise_closed_edges_at_least_uniform_nearest_rank_median": true,
+      "integrated_closed_edges_at_least_uniform_trajectory_median": true,
+      "integrated_task_breadth_ratio_minimum": "6/5",
+      "integrated_physical_run_breadth_ratio_minimum": "11/10",
+      "terminal_parent_breadth_ratio_minimum": "9/10",
+      "terminal_maximum_single_task_edge_share": "1/3",
+      "terminal_maximum_single_run_edge_share": "1/10",
+      "solver": "scipy.optimize.milp_HiGHS",
+      "solver_threads": 1,
+      "solver_random_seed": 0,
+      "solver_time_limit_seconds": 300,
+      "unresolved_or_infeasible_policy": "stop_without_model_fit"
+    },
+    "selection_forbidden_features": [
+      "pair orientation",
+      "gap",
+      "grade",
+      "code",
+      "prediction",
+      "runtime"
+    ],
+    "private_witness_mode": "0600",
+    "public_output_identity_policy": "aggregate only"
+  },
+  "model": {
+    "name": "char_tfidf_pairwise_logistic_regression",
+    "vectorizer_fit_population": "selected outer-train endpoint code only",
+    "code_character_limit": 20000,
+    "analyzer": "char_wb",
+    "ngram_range": [3, 5],
+    "max_features": 30000,
+    "min_df": 3,
+    "sublinear_tf": true,
+    "pair_representation": "tfidf(better)-tfidf(worse) plus exact antisymmetric reverse rows",
+    "logistic_regression": {
+      "C": 0.5,
+      "max_iter": 1500,
+      "solver": "lbfgs",
+      "random_state": 0
+    },
+    "outer_eval_population": "every informative strict-residual pair in held-out physical runs",
+    "outer_eval_never_used_for": ["vocabulary fit", "selection", "seed choice", "hyperparameter choice"]
+  },
+  "metrics": {
+    "primary": ["pairwise_accuracy", "log_loss", "brier_score"],
+    "cost": ["selected_endpoints", "induced_unique_train_pairs", "fit_seconds", "query_seconds"],
+    "inference": {
+      "task_clustered_paired_bootstrap_repetitions": 2000,
+      "run_clustered_paired_bootstrap_repetitions": 2000,
+      "bootstrap_seed": 20260829,
+      "drop_dominant_task": true
+    },
+    "report_every_arm_budget_even_if_unfavorable": true,
+    "private_pair_witness": {
+      "mode": "0600",
+      "contents": "pair/task/physical-run SHA256 fingerprints and one probability per arm-budget-pair; no raw identity",
+      "public_summary_binds_witness_sha256": true,
+      "independent_verifier_recomputes": [
+        "evaluation pair-set closure",
+        "pairwise accuracy",
+        "log loss",
+        "brier score",
+        "task-clustered paired bootstrap",
+        "run-clustered paired bootstrap",
+        "drop-dominant-task contrast",
+        "advancement gates"
+      ],
+      "independent_verifier_model_refits": 0
+    }
+  },
+  "support_gates_before_model_fit": {
+    "minimum_outer_eval_pairs": 80,
+    "minimum_outer_eval_tasks": 8,
+    "maximum_single_outer_eval_task_pair_share": "7/20",
+    "minimum_induced_train_pairs_at_each_smoke_budget": 30,
+    "all_endpoint_budgets_exact": true,
+    "all_selected_endpoints_outer_train_only": true
+  },
+  "advancement_gate_not_a_scientific_claim": {
+    "accuracy_delta_yield_minus_uniform_strictly_positive_at_both_smoke_budgets": true,
+    "terminal_log_loss_delta_yield_minus_uniform_at_most": 0.0,
+    "terminal_brier_delta_yield_minus_uniform_at_most": 0.0,
+    "drop_dominant_task_terminal_accuracy_delta_not_negative": true,
+    "if_gate_fails": "do not scale this exact two-arm rule; retain honest smoke and inspect predeclared four-arm full design only as a new protocol",
+    "if_gate_passes": "freeze five-fold four-arm Phase-A protocol before any additional readout"
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "base_model_updates": 0,
+    "critic_model_fits": 4,
+    "cpu_wall_time_expected_minutes": "20-45",
+    "checkpoint_resume": "one mode-0600 atomic cell per completed arm-budget fit; completed cells are verified and reused"
+  }
+}

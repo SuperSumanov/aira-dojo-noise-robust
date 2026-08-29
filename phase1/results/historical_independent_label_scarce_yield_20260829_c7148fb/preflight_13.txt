@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
+02_goal=confirm whether topology-aware endpoint acquisition improves complete sibling-label yield only in the first six thirty-seconds of budget on a truly independent historical graph; PASS
+03_context=v11 discovery curve disclosed and independent senior residual qualification published with exact fingerprints; PASS
+04_known_before=v11 low-budget signal and high-budget failures plus residual aggregate census known; all residual acquisition yield breadth and method curves unseen; PASS
+05_population=exact 539-pair 1036-endpoint 190-run 36-task strict residual; senior test rows forbidden; PASS
+06_estimand=trajectory-level six-checkpoint discrete yield area under complete endpoint execution labels; no accuracy or search utility; PASS
+07_controls=uniform-edge primary baseline uniform-node diagnostic same topology same endpoint budget and nested trajectory contract; PASS
+08_thresholds=integrated 6/5 pointwise 5/6 terminal 11/10 plus parent task run breadth and anti-dominance all fixed with no rescue; PASS
+09_randomness=256 uniform randomizations and 32 greedy tie trajectories fixed by SHA256; producer and independent verifier repeated under hash seeds 0 and 1; PASS
+10_resources=CPU only with one-thread caps; GPU API model-fit base-update 0/0/0/0; PASS
+11_leakage=no orientation gap grade outcome code prediction runtime senior test or prospective first960 target300 target522 value use; PASS
+12_security=credential receipt checked before safe Cards parse; raw senior archives and identity release forbidden; PASS
+13_stop=any hash certificate manifest identity overlap duplicate verifier scanner or no-rescue contract failure exits before COMPLETE; PASS

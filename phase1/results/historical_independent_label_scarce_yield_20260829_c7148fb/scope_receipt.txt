@@ -1,0 +1,7 @@
+label_scarce_acquisition_curve_computed=true
+senior_test_rows_used=false
+pair_orientation_gap_grade_code_prediction_runtime_used=false
+prospective_first960_target300_target522_values_read=false
+raw_senior_archives_opened=false
+identities_emitted=false
+gpu_api_model_fit_base_update=0/0/0/0

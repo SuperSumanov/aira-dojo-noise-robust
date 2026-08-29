@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0IP. 2026-08-29 独立图 label-scarce yield confirmation 已在任何 residual curve 前冻结
+## 0IP. 2026-08-29 独立图未确认大幅 yield 增益；出现 breadth-at-near-equal-yield 新假设
 
 0IN 的全局 v1 失败完整保留；新假设明确降为 post-discovery 的稀缺标注区间，不声称全预算优势。0IO 的独立 residual 已知
 aggregate=`539 pairs / 1036 endpoints / 505 parents / 190 runs / 36 tasks / 505 components`，但其 acquisition yield、breadth、
@@ -28,6 +28,19 @@ protocol SHA-256=`69db0331...9581`；producer 与 non-importing verifier 绑定�
 `29 passed`（新测试 7）。只读 unordered topology，senior test、orientation/gap/grade/outcome/code/prediction/runtime 和全部
 prospective values 禁用；输出 aggregate-only，GPU/API/model-fit/base-update=`0/0/0/0`。只有公开冻结 commit 的 exact-SHA
 formal 才能读结果。详见 `phase1/实验记录/2026-08-29/IndependentLabelScarceYieldConfirmation_v1_预注册.md`。
+
+公开冻结 commit=`c7148fbc40ace86441248f7551c3c9b6637b547e` 的 formal 已完成。uniform trajectory-integral median=
+`341`，balanced tie minimum/median/maximum=`343/353/382`；最差仅为 baseline 的 `1.0058651026392962`，未达 `6/5`。
+逐点 strict median wins=`4/6`，终点 minimum yield=`99` 对 baseline median=`99`，也分别未达 `5/6,11/10`。因此固定
+分类是 **`HISTORICAL_INDEPENDENT_LABEL_SCARCE_FULL_EXECUTION_YIELD_NOT_CONFIRMED`**，不得降门或删相等点。
+
+六个预算上最差 balanced yield 都不低于 uniform median；终点 balanced median yield/task/run/parent=`103/36/94/94`，
+uniform median=`99/27/70/96`。这是结果后形成的 **yield non-inferiority + task/run breadth superiority** Pareto 假设，不能
+救回 v1；只有在第三个未见图上先冻新门才可确认。producer/verifier A/B 各自逐字节一致且独立全字段 exact，result/verifier
+SHA-256=`aea7a45b...622d` / `13b70a87...1d63`，focused/full=`29/1580 passed`（47 warnings），forbidden/network/
+credential filename/blob=`0/0/0/0`。正式包见
+`phase1/results/historical_independent_label_scarce_yield_20260829_c7148fb/`，详见
+`phase1/实验记录/2026-08-29/IndependentLabelScarceYieldConfirmation_v1_正式裁决.md`。
 
 ## 0IO. 2026-08-29 b1/b2 因物理 run 嵌套关闭；senior-0819 独立残余图资格门已权威通过
 

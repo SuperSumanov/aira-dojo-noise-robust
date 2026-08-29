@@ -222,18 +222,7 @@ lower-is-better 任务取最小有限 grade，NaN/Inf 不参与比较。指标�
 
 ## 5. 构建 value/reward pairs
 
-## 5.1 global value pairs
-
-```bash
-PYTHONPATH=src/mle_critic python -m src.preprocess.build_bt_pairs.build_subtree_pairs \
-  data/augmented_mle_critic/raw_journal/value_pairs.jsonl \
-  data/augmented_mle_critic/augmented_cards_current.json \
-  --cap 1000 \
-  --seed 7 \
-  --budget-steps -1
-```
-
-## 5.2 batched value pairs
+### 5.1 batched value pairs
 
 脚本：
 
@@ -278,7 +267,7 @@ data/augmented_mle_critic/raw_journal/batch_value_pairs.jsonl
 grade，higher_is_better 决定取最大还是最小，NaN/Inf grade 不参与比较。输出中的
 loto_fold 保存任务名，gap_raw 保存两个节点的 value 差，初始 intask_split 为 unassigned。
 
-### 5.3 Batch decision pairs
+### 5.2 Batch decision pairs
 
 Decision pair 也按 batch 单独构建，使用以下两个 wrapper：
 
@@ -318,7 +307,7 @@ draft 和 improve 两个聚合文件确认无误后，按行手动拼接成一�
 cat \
   data/augmented_mle_critic/raw_journal/batch_draft_decision_pairs.jsonl \
   data/augmented_mle_critic/raw_journal/batch_improve_decision_pairs.jsonl \
-  > data/augmented_mle_critic/merged_decision_pairs.jsonl
+  > data/augmented_mle_critic/raw_journal/merged_decision_pairs.jsonl
 ```
 
 然后和 value pair 相同，先做 gap filter，再应用 frozen physical-run split：
@@ -326,15 +315,15 @@ cat \
 ```bash
 PYTHONPATH=src/mle_critic python \
   -m src.postprocess.gap_filter \
-  --value-pairs data/augmented_mle_critic/merged_decision_pairs.jsonl \
+  --value-pairs data/augmented_mle_critic/raw_journal/merged_decision_pairs.jsonl \
   --gap-filter data/augmented_mle_critic/gap_filter.json \
-  --output data/augmented_mle_critic/merged_decision_pairs_gap_filtered.jsonl
+  --output data/augmented_mle_critic/raw_journal/merged_decision_pairs_gap_filtered.jsonl
 
 PYTHONPATH=src/mle_critic python \
   -m src.preprocess.build_bt_pairs.apply_runsplit \
   data/augmented_mle_critic/augmented_cards_current.json \
   data/augmented_mle_critic/runsplit_holdruns.json \
-  data/augmented_mle_critic/merged_decision_pairs_gap_filtered.jsonl \
+  data/augmented_mle_critic/raw_journal/merged_decision_pairs_gap_filtered.jsonl \
   data/augmented_mle_critic/merged_decision_pairs_filtered_runsplit.jsonl
 ```
 
@@ -364,7 +353,19 @@ PYTHONPATH=src/mle_critic python \
 ```
 
 脚本会校验每条记录的 loto_fold 和有限数值 gap_raw，缺少任务阈值时直接失败，不会默默
-放行。输出仍是 JSONL，字段不改。
+放行。输出仍是 JSONL，字段不改。gap filter还支持自定义gap大小
+
+```bash
+PYTHONPATH=src/mle_critic python \
+  -m src.postprocess.gap_filter \
+  --value-pairs data/augmented_mle_critic/raw_journal/batch_value_pairs.jsonl \
+  --gap-filter data/augmented_mle_critic/gap_filter.json \
+  --min-gap 8 \
+  --max-gap 999 \
+  --output data/augmented_mle_critic/experimental/batch_value_pairs_filtered_min8_max999.jsonl
+```
+
+其中`--min-gap 8`和`--max-gap 999`的意思是gap在8*最小gap（来自`data/augmented_mle_critic/gap_filter.json`）和无限大之间。
 
 ## 7. Frozen physical-run split
 
@@ -452,8 +453,102 @@ PYTHONPATH=. python -m src.mle_critic.src.train.light_predictor.train \
 它支持 tfidf_lr、static_lr、static_gbm 三个 sklearn pairwise predictor，并默认将 train/test
 分别限制为 24,000/6,000 条。
 
-## 10. 不再作为当前主线的内容
+## 10. Mixed Pair Dataset
 
-旧文档中关于学生版 L1/L2 混合数据、train_l2_budget.sh、rescue、旧 minimal_gap.json、
-扁平 cards_current.jsonl 和在 pair builder 内随机切分的说明不适用于当前 augmented reward
-流程，已从本文删除。相关旧代码即使仍在历史提交中，也不能当作当前数据产物或复现实验的入口。
+### 10.1 Global Value Pairs
+
+用以下脚本从task level构建value pairs
+
+```bash
+PYTHONPATH=src/mle_critic python -m src.preprocess.build_bt_pairs.build_subtree_pairs \
+  data/augmented_mle_critic/raw_journal/value_pairs.jsonl \
+  data/augmented_mle_critic/augmented_cards_current.json \
+  --cap 1000 \
+  --seed 7 \
+  --budget-steps -1
+```
+
+然后通过hardware和time limit filter来保证pair间的环境是基本公平的。
+
+```bash
+PYTHONPATH=src/mle_critic  python -m  src.postprocess.hardware_timelimit_filter \
+  --value-pairs data/augmented_mle_critic/raw_journal/value_pairs.jsonl \
+  --cards data/augmented_mle_critic/augmented_cards_current.json \
+  --output data/augmented_mle_critic/raw_journal/value_pairs_hardware_timelimit_filtered.jsonl
+```
+
+最后再使用gap filter和run split
+
+```bash
+PYTHONPATH=src/mle_critic python \
+  -m src.postprocess.gap_filter \
+  --value-pairs data/augmented_mle_critic/raw_journal/value_pairs_hardware_timelimit_filtered.jsonl \
+  --gap-filter data/augmented_mle_critic/gap_filter.json \
+  --output data/augmented_mle_critic/raw_journal/value_pairs_hardware_timelimit_gap_filtered.jsonl
+
+PYTHONPATH=src/mle_critic python \
+  -m src.preprocess.build_bt_pairs.apply_runsplit \
+  data/augmented_mle_critic/augmented_cards_current.json \
+  data/augmented_mle_critic/runsplit_holdruns.json \
+  data/augmented_mle_critic/raw_journal/value_pairs_hardware_timelimit_gap_filtered.jsonl \
+  data/augmented_mle_critic/value_pairs_hardware_timelimit_gap_filtered_runsplit.jsonl
+```
+
+### 10.2 Mix
+
+完成上述三种数据集的构造后，通过以下脚本进行混合
+
+```bash
+python -m src.mle_critic.src.postprocess.build_decision_augment_pairs \
+  --datasets \
+    data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl \
+    data/augmented_mle_critic/merged_decision_pairs_filtered_runsplit.jsonl \
+    data/augmented_mle_critic/value_pairs_hardware_timelimit_gap_filtered_runsplit.jsonl \
+  --weights 8 1 1 \
+  --n-samples 18000 \
+  --use-test-split \
+    data/augmented_mle_critic/merged_decision_pairs_filtered_runsplit.jsonl \
+  --output-path data/augmented_mle_critic/decision_global_local_value_mixed_filtered_pairs_runsplit.jsonl
+```
+
+## RL Dataset
+
+RL dataset可以从上述任何的pair dataset上进行创建。首先我们构建每个RL样本的system prompt（新版本基本上只包含基础的instruction和task description）
+
+```bash
+python src/mle_critic/src/postprocess/rl/rl_system_prompt.py \
+  --runs-root data/augmented_mle_critic/raw_journal \
+  --gap-filter data/augmented_mle_critic/gap_filter.json \
+  --output data/augmented_mle_critic/rl_judger_system_prompts.json
+```
+
+随后构建RL样本，基本上就是把两个solution的code和运行环境拼接到user prompt中，并加上推理和格式化答案的instruction
+
+```bash
+python src/mle_critic/src/postprocess/rl/build_judger_messages.py \
+  --pairs data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl \
+  --cards data/augmented_mle_critic/augmented_cards_current.json \
+  --prompts data/augmented_mle_critic/rl_judger_system_prompts.json \
+  --train-output data/augmented_mle_critic/rl_judger_messages_train.jsonl \
+  --test-output data/augmented_mle_critic/rl_judger_messages_test.jsonl
+```
+
+这将导致极长的context，而qwen3-14B模型仅有40K的context，所以建议最后过一遍context长度统计和过滤（如果后面换用更长context的模型，可以不做）
+
+```bash
+python src/mle_critic/src/postprocess/rl/measure_context.py \
+  --model Qwen/Qwen3-0.6B-Base \
+  --messages data/augmented_mle_critic/rl_judger_messages_train.jsonl \
+  --expected-context-length 32768 \
+  --max-context-length 32768 \
+  --trust-remote-code \
+  --output tmp/rl_context_stats.json
+
+python src/mle_critic/src/postprocess/rl/measure_context.py \
+  --model Qwen/Qwen3-0.6B-Base \
+  --messages data/augmented_mle_critic/rl_judger_messages_test.jsonl \
+  --expected-context-length 32768 \
+  --max-context-length 32768 \
+  --trust-remote-code \
+  --output tmp/rl_context_stats.json
+```

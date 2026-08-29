@@ -24,3 +24,12 @@ bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_c
 bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0817/
 bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0818/
 bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0819/
+
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0820/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0821/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0822/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0823/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0824/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0825/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0826/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0827/

@@ -302,10 +302,3 @@ context length、seed、batch size、gradient accumulation
 raw pair 必须从当前 Cards 重建，不能每天直接 append：新后代会改变祖先的 reward/value，
 新 batch 也会改变 cap 采样池。run split 可以增量更新，但已有 physical run 的 train/test
 身份不能漂移。
-
-## 10. 已删掉的旧说明
-
-以下内容不再写入当前实验文档：学生版 L1/L2 数据生成、按预算 K 的 decision/flip 训练、
-rescue launcher、旧 minimal_gap.json、训练脚本内的 80/20 validation、训练脚本内的
-CSV/普通测试评估，以及旧的 sidecar 复现实验结论。它们可能仍存在于历史提交或未合并分支，
-但不属于当前 augmented reward pipeline。

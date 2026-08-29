@@ -84,6 +84,15 @@ live_pids() {
   done | LC_ALL=C sort -nu
 }
 
+lock_is_free() {
+  local lock_path=$1
+  test -f "${lock_path}" && test ! -L "${lock_path}"
+  (
+    exec 8< "${lock_path}"
+    flock -n -s 8
+  )
+}
+
 assert_live_locked_or_tail() {
   local root_path=$1 expected_tail=$2
   local count
@@ -91,7 +100,7 @@ assert_live_locked_or_tail() {
   test ! -e "${root_path}/FAILED_RC"
   test ! -e "${root_path}/CONTINUITY_GAP"
   count=$(live_pids "${root_path}" | wc -l)
-  if ! flock -n "${root_path}/monitor.lock" -c true; then
+  if ! lock_is_free "${root_path}/monitor.lock"; then
     test "${count}" -ge 1
   else
     tail -n 1 "${root_path}/monitor.log" | grep -Fq "${expected_tail}"
@@ -104,7 +113,7 @@ assert_live_or_complete() {
   test -d "${root_path}"
   test ! -e "${root_path}/FAILED_RC"
   count=$(live_pids "${root_path}" | wc -l)
-  if ! flock -n "${root_path}/monitor.lock" -c true; then
+  if ! lock_is_free "${root_path}/monitor.lock"; then
     test "${count}" -ge 1
   else
     test -e "${root_path}/COMPLETE"
@@ -160,7 +169,7 @@ for poll in $(seq 0 72); do
   test ! -e "${active_config}/FAILED_RC"
   test ! -e "${active_config}/OBSERVED"
   config_live=$(live_pids "${active_config}" | wc -l)
-  if ! flock -n "${active_config}/monitor.lock" -c true; then
+  if ! lock_is_free "${active_config}/monitor.lock"; then
     test "${config_live}" -ge 1
   else
     grep -Fq 'status=NO_CONFIG_V2_SIDECAR_OBSERVED' "${active_config}/COMPLETE"
@@ -169,7 +178,7 @@ for poll in $(seq 0 72); do
 
   test ! -e "${task_balance}/FAILED_RC"
   task_balance_live=$(live_pids "${task_balance}" | wc -l)
-  if ! flock -n "${task_balance}/monitor.lock" -c true; then
+  if ! lock_is_free "${task_balance}/monitor.lock"; then
     test "${task_balance_live}" -ge 1
   elif test -e "${task_balance}/COMPLETE"; then
     :

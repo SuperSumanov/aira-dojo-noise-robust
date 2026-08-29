@@ -64,6 +64,15 @@ failure_receipt() {
 }
 trap failure_receipt EXIT
 
+lock_is_free() {
+  local lock_path=$1
+  test -f "${lock_path}" && test ! -L "${lock_path}"
+  (
+    exec 8< "${lock_path}"
+    flock -n -s 8
+  )
+}
+
 git -C "${repo}" fetch fork phase1-value-critic > "${root}/fetch.stdout" 2> "${root}/fetch.stderr"
 remote_head=$(git -C "${repo}" rev-parse fork/phase1-value-critic)
 git -C "${repo}" cat-file -e "${control_commit}^{commit}"
@@ -99,7 +108,7 @@ case "${intake_cmdline}" in
   *"${intake_launcher} --run ${intake_control} ${intake_commit}"*) ;;
   *) exit 65 ;;
 esac
-if flock -n "${guard}/guard.lock" -c true; then exit 66; fi
+if lock_is_free "${guard}/guard.lock"; then exit 66; fi
 grep -Fq 'outcomes_read=false' "${guard}/status.log"
 test ! -e "${guard}/FAILED_RC"
 
@@ -123,10 +132,10 @@ for old_pid_file in "${transition_old_pid}" "${receipt_old_pid}" "${config_old}/
   [[ ${old_pid} =~ ^[0-9]+$ ]]
   ! kill -0 "${old_pid}" 2>/dev/null
 done
-flock -n "${transition_root}/monitor.lock" -c true
-flock -n "${receipt_root}/monitor.lock" -c true
-flock -n "${config_old}/monitor.lock" -c true
-flock -n "${target_root}/monitor.lock" -c true
+lock_is_free "${transition_root}/monitor.lock"
+lock_is_free "${receipt_root}/monitor.lock"
+lock_is_free "${config_old}/monitor.lock"
+lock_is_free "${target_root}/monitor.lock"
 
 test "$(sha256sum "${transition_root}/state.tsv" | awk '{print $1}')" = "${transition_state_sha}"
 test "$(sha256sum "${transition_prior}/summary.json" | awk '{print $1}')" = "${transition_prior_sha}"
@@ -139,7 +148,9 @@ grep -Fq 'contents_opened=false' "${config_old}/COMPLETE"
 tail -n 1 "${target_root}/monitor.log" | grep -Fq "monitor_complete_without_quiescent_new_snapshot baseline=${baseline} outcomes_read=false"
 test ! -e "${target_root}/formal_rc.txt"
 test -z "$(find "${target_root}" -maxdepth 1 -type f -name 'runner_worktree_path_*.diff' -print -quit)"
-if flock -n "${wl_root}/monitor.lock" -c true; then exit 67; fi
+if lock_is_free "${wl_root}/monitor.lock"; then
+  tail -n 1 "${wl_root}/monitor.log" | grep -Fq "monitor_complete prior_snapshot=${baseline}"
+fi
 
 transition_before=$(wc -l < "${transition_root}/monitor.log")
 receipt_before=$(wc -l < "${receipt_root}/monitor.log")
@@ -208,7 +219,7 @@ test "${config_started}" = true
 test "${target_started}" = true
 for pid in "${transition_pid}" "${receipt_pid}" "${config_pid}" "${target_pid}"; do kill -0 "${pid}"; done
 for lock in "${transition_root}/monitor.lock" "${receipt_root}/monitor.lock" "${config_root}/monitor.lock" "${target_root}/monitor.lock"; do
-  if flock -n "${lock}" -c true; then exit 69; fi
+  if lock_is_free "${lock}"; then exit 69; fi
 done
 test ! -s "${transition_root}/resume_20260829_887_v4.stderr"
 test ! -s "${receipt_root}/resume_20260829_887_v4.stderr"

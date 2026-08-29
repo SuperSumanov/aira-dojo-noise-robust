@@ -13,6 +13,18 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IW. 2026-08-29 supervisor v1 因完成产物只读锁 fail-closed；v2 修复已冻结
+
+guard v3 在 `05:37:17Z` 正常 COMPLETE；v1 supervisor 于下一轮以 RC=`65` 退出，且 guard v4 root 完全不存在。
+真实复验显示 v3 完成后 `chmod -R a-w` 令 lock path 不可写，旧 `flock -n PATH -c true` 因 path-open permission
+返回 65；同一 inode 用 read-only FD + nonblocking shared flock 为 free，而四个 live monitor 的 exclusive locks 在相同 probe
+下均为 held。因此这是结果盲编排 bug，不是 snapshot/sidecar/duplicate/scientific failure。
+
+结果前修复统一把 guard、renewal 与新 supervisor v2 的外部 lock 检查改为 read-only shared probe；v2 还绑定旧 v1/guard
+source SHA、RC65、最后 baseline status、旧 guard manifest、dead PID 与 free lock，才可依次启动 guard v4 和 support renewal。
+不改 cohort/scorer/WL/门；LATEST 仍为 887、sidecar filename count=0，prospective values 未读，GPU/API/model-fit/base-update=
+`0/0/0/0`。详见 `phase1/实验记录/2026-08-29/OutcomeBlind_只读锁故障与Supervisor_v2修复.md`。
+
 ## 0IV. 2026-08-29 Target-522 yield-guarded breadth 前瞻执行链已在 candidate 前冻结
 
 唯一协议 `yield_guarded_breadth_forward_target522_v1.json` 在 Target-522 candidate/READY/COMPLETE 与失败 marker 全不存在时
@@ -31,6 +43,12 @@ formal runner 绑定公开 commit 与 protocol/producer/verifier/test/runner SHA
 `4936e680...e2d9b`。一份旧开发 launcher 因遗漏线程环境产生 119 threads/约 30 CPU cores 而被主动终止并留中断回执；它没有
 科学 readout，不计为通过。当前状态仍是 **`IMPLEMENTATION_FROZEN_BEFORE_TARGET522_CANDIDATE`**，不是正/负科学结论；
 prospective label/outcome/prediction/accuracy/utility 未读，GPU/API/model-fit/base-update=`0/0/0/0`。
+
+公开 commit=`219438e65d1275498e44a650306ce561696fdb8c` 的 fresh post-push focused/full 为
+`27 passed in 6.51s` / `1624 passed, 47 warnings in 98.28s`，changed path/credential filename/blob=`9/0/0`。
+在所有 selection marker 仍不存在时，exact-source monitor PID=`283216` 已上线且首轮只写
+`selection_complete=false prospective_values_read=false`；部署回执已独立封存。Git fetch 的正常两行 stderr 是部署回执脚本的
+白名单修正，不影响 live monitor，也没有重启它。
 
 即使未来结构 witness 通过，也不能把 generic constrained graph selection 当 novelty。下一项正面主张必须是 endpoint-cost-matched
 downstream label efficiency：历史 train-only、physical-run outer folds、exact-B 四臂、固定 CPU char-TFIDF LR，比较诱导 labels

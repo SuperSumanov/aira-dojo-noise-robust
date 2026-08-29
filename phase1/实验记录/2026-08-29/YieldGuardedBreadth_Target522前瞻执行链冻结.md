@@ -59,6 +59,12 @@ physical-run disjoint increment，不允许人工换 snapshot、混入 baseline�
   - limited-support 在 baseline curve 和 private witness 前停止。
 - 最终版 full `phase1/tests`：单线程替代运行 `1624 passed, 47 warnings in 89.91s`，RC=`0`；
   `SHA256SUMS` 文件 SHA-256=`4936e6801eb6810cb3b79de7b3eabb43cdbd894bbb43f734c8035015e41e2d9b`。
+- 公开 commit=`219438e65d1275498e44a650306ce561696fdb8c` 的 fresh detached post-push：focused=
+  `27 passed in 6.51s`，full=`1624 passed, 47 warnings in 98.28s`；changed paths / credential filename /
+  credential blob=`9/0/0`，manifest SHA-256=`88eaba3f220fdb6574f64e0d0550fcffdebccb6fad0d4a90820964fab68ef0a4`。
+- 在 candidate/READY/COMPLETE 与所有失败 marker 仍不存在时，已由该 exact commit 部署 monitor PID=`283216`；
+  first poll=`selection_complete=false`、shared-lock probe=held。Git fetch 的两行正常状态 stderr 经过 exact whitelist 后，独立部署
+  回执 manifest SHA-256=`5eb77817aa2bb7626aae888bc500303194cba296b319c2640ae248d1f860c8d8`。
 
 失败完整保留：第一次全支持 fixture 把 candidate 累计 task 数写成 36，实际为“36 个新 task + 1 个 baseline task”，因此在
 snapshot ledger gate、solver 前失败；只把 fixture 计数改为 37 后原样通过。另一次 SSH 断开后误启两份旧 full suite，发现后

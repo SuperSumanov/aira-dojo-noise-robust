@@ -13,6 +13,23 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IO. 2026-08-29 b1/b2 独立确认路线因物理 run 嵌套关闭；senior-0819 残余图门已结果前冻结
+
+0IN 后先做 identity gate、没有读取 b1/b2 acquisition curves。Python 与独立 PowerShell census 逐项一致：b0--b1 的
+pair/endpoint/parent/run overlap=`848/1307/589/140`，b0--b2=`677/1024/457/105`，b1--b2=
+`690/1042/465/105`。b1/b2 总 runs 恰为 `140/105`，即 100% 已在 b0；它们是高度嵌套 budget variants，不能充当
+外部 replication，故该路线在 curve readout 前关闭。
+
+新的、仍未 readout 的资格门只检查已认证 senior-0819 **train** direct-sibling core 是否存在严格独立残余图；318 条历史
+test core 禁止使用。固定剔除任一 endpoint/parent identity 或 physical run 与 v11 b0 重合的 row，再要求 residual
+pairs≥500、retention≥1/2、endpoints≥500、parents≥250、runs≥75、tasks≥15、task/run share≤1/3/1/10，且四层 overlap
+与 duplicate/reverse conflict 均为 0。threshold、residual rule、输入 SHA 与 credential-first safe-Cards receipt 已在任何
+senior crosswalk 前写入 `phase1/historical_independent_sibling_graph_gate_v1.json`；synthetic=`8 passed`。
+
+本门只决定是否有独立历史图可供**下一份**结果前 acquisition protocol，不运行 curve、不证明 label efficiency/critic effect/
+search utility。producer 只输出 aggregate/fingerprint；non-importing verifier 尚待下一提交，formal 未授权。详见
+`phase1/实验记录/2026-08-29/IndependentSiblingGraphGate_v1_结果前冻结.md`。
+
 ## 0IN. 2026-08-29 Tree Node → Sibling Label Yield 低预算正信号明确，但 v1 总门失败
 
 0IM 的 frozen b0 formal 已完成。task/run-balanced closure greedy 对强 `uniform_edge` 基线在 endpoint budget=512/1024

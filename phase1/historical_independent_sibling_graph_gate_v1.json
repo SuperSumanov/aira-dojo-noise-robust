@@ -1,0 +1,136 @@
+{
+  "protocol": "historical-independent-sibling-graph-gate-v1",
+  "status": "FROZEN_AFTER_B0_ACQUISITION_RESULT_AND_BUDGET_VARIANT_OVERLAP_BEFORE_SENIOR0819_CROSSWALK",
+  "date": "2026-08-29",
+  "question": "Does the senior-0819 train-only verified-direct-sibling core contain a sufficiently broad graph that is strictly disjoint from v11 train:b0 by endpoint, parent, and physical-run identity?",
+  "role": {
+    "this_is_only_a_population_qualification_gate": true,
+    "acquisition_curves_computed": false,
+    "predictor_accuracy_or_search_utility_computed": false,
+    "if_feasible_next_acquisition_protocol_must_be_frozen_before_curve_readout": true
+  },
+  "discovery_context_known_before_freeze": {
+    "v11_train_b0_label_yield_classification": "HISTORICAL_GRAPH_AWARE_FULL_EXECUTION_LABEL_YIELD_NOT_ESTABLISHED",
+    "v11_train_b0_low_budget_signal_seen": true,
+    "v11_budget_variant_overlap_seen": {
+      "b0_b1": {
+        "pairs": 848,
+        "endpoints": 1307,
+        "parents": 589,
+        "physical_runs": 140
+      },
+      "b0_b2": {
+        "pairs": 677,
+        "endpoints": 1024,
+        "parents": 457,
+        "physical_runs": 105
+      },
+      "b1_b2": {
+        "pairs": 690,
+        "endpoints": 1042,
+        "parents": 465,
+        "physical_runs": 105
+      }
+    },
+    "budget_variants_rejected_as_independent_confirmation": true,
+    "senior_0819_core_counts_known": {
+      "total": 1270,
+      "train": 952,
+      "test": 318
+    },
+    "senior_0819_crosswalk_or_residual_counts_seen": false
+  },
+  "immutable_inputs": {
+    "v11_train_b0": {
+      "path": "phase1/v11_decision/decision_train_v11_b0.jsonl",
+      "hash_mode": "normalized_utf8_lf_v1",
+      "sha256": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+      "rows": 4263,
+      "partition": "train",
+      "budget": 0
+    },
+    "v11_lineage_certificate": {
+      "path": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/formal/producer_a.json",
+      "sha256": "23e9a8139be60ee4c34d3c44eda9afaed3034a68f6749ebcb0555c10a15f0032",
+      "required_classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT"
+    },
+    "senior_0819_quarantine_protocol": {
+      "path": "phase1/senior_0819_verified_sibling_quarantine_v1.json",
+      "sha256": "f4d09f1203ba72181046ac620862eb10351736cd01a25ac3597b21e4b931b680"
+    },
+    "senior_0819_quarantine_result": {
+      "path": "phase1/results/senior_0819_verified_sibling_quarantine_20260829_254fc80/formal_summary.json",
+      "sha256": "4f4902ce365523b01a0cca1eadb716b978aa0771d15286be1bf4aecca6456315",
+      "verification_path": "phase1/results/senior_0819_verified_sibling_quarantine_20260829_254fc80/verification.json",
+      "verification_sha256": "8b0eb84365aa3cb16bfd3b9a4ca3affabfc4fd24774071a6cbba366b88f57ca0",
+      "manifest_path": "phase1/results/senior_0819_verified_sibling_quarantine_20260829_254fc80/MANIFEST.sha256",
+      "manifest_sha256": "3f6202fb14b044a23fbcae722c0c38ab48253bbd5ac9ebe2b4b011f3b7f84a28",
+      "required_classification": "HISTORICAL_VERIFIED_SIBLING_CORE_QUARANTINE_FEASIBLE"
+    },
+    "senior_safe_cards": {
+      "upstream_path": "cards-f534114-v1/cards.safe.json",
+      "sha256": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343",
+      "credential_scan_receipt_sha256": "d41142279bdba7db4495664df6836eecec3a36016cd316164ee5e54d4518eccc",
+      "credential_scan_required_before_parse": true
+    },
+    "senior_run_split": {
+      "upstream_path": "input-f534114-v3/runsplit_holdruns.json",
+      "sha256": "593117cfe0b34e1d2e3c9b718866a7751d7f008701add77b31cfd604282103bb"
+    },
+    "senior_decision": {
+      "upstream_path": "input-f534114-v3/decision.jsonl",
+      "sha256": "1a01d3a1202b35f21b9cd6c87237b29c50b1c293138b407cc453674108411442",
+      "rows": 7644
+    }
+  },
+  "fixed_candidate": {
+    "source": "senior-0819 verified direct sibling core",
+    "split": "train only",
+    "test_rows_forbidden": true,
+    "pair_orientation_used": false,
+    "strict_disjoint_residual_rule": "drop a senior train-core row if any endpoint or declared parent ID appears in the union of v11-b0 endpoints and parents, or if its physical run appears in v11-b0 runs",
+    "no_task_disjointness_requirement": true,
+    "reason_tasks_may_overlap": "the confirmation target is new physical executions under shared MLE task families, not leave-task-out transfer"
+  },
+  "support_gates": {
+    "minimum_residual_pair_rows": 500,
+    "minimum_residual_pair_retention": "1/2",
+    "minimum_residual_endpoints": 500,
+    "minimum_residual_parents": 250,
+    "minimum_residual_physical_runs": 75,
+    "minimum_residual_tasks": 15,
+    "maximum_single_residual_task_pair_share": "1/3",
+    "maximum_single_residual_run_pair_share": "1/10"
+  },
+  "integrity_gates": {
+    "all_inputs_and_parent_certificates_exact": true,
+    "credential_scan_passes_before_safe_cards_parse": true,
+    "v11_b0_rows_are_unique_train_budget0_lineage_direct": true,
+    "senior_candidate_exactly_reproduces_952_train_core_rows": true,
+    "residual_rule_is_exhaustive_and_deterministic": true,
+    "residual_has_no_v11_pair_endpoint_parent_or_run_overlap": true,
+    "residual_unordered_pair_duplicates_and_orientation_conflicts_zero": true,
+    "aggregate_only_and_no_identities_emitted": true
+  },
+  "classification_order": [
+    "HISTORICAL_SENIOR0819_INDEPENDENT_SIBLING_GRAPH_INTEGRITY_FAIL",
+    "HISTORICAL_SENIOR0819_INDEPENDENT_SIBLING_GRAPH_LIMITED_SUPPORT",
+    "HISTORICAL_SENIOR0819_INDEPENDENT_SIBLING_GRAPH_FEASIBLE"
+  ],
+  "analysis": {
+    "producer_and_nonimporting_verifier_must_match_exactly": true,
+    "emit_counts_shares_and_irreversible_fingerprints_only": true,
+    "no_row_endpoint_parent_task_or_run_identities_emitted": true,
+    "no_p_value_for_deterministic_population_gate": true,
+    "no_threshold_or_residual_rule_rescue_after_readout": true
+  },
+  "security_and_resources": {
+    "raw_senior_archives_forbidden": true,
+    "prospective_first960_target300_values_forbidden": true,
+    "grade_outcome_code_prediction_runtime_forbidden": true,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

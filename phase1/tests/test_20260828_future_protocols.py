@@ -137,6 +137,9 @@ def test_task_balance_v3_runner_consumes_only_the_automatic_latch() -> None:
     ).read_text(encoding="utf-8")
     assert "latch-continuation-after-887-v4" in runner
     assert "latch-continuation-after-887-v5" in runner
+    assert "latch-continuation-after-887-v5-r2" in runner
+    assert "heartbeat_race_repair" in runner
+    assert "failed_v5_fileset_sha" in runner
     assert "no unique completed authoritative latch generation" in runner
     assert "continuation_source_from_git.sh" in runner
     assert "previous_latch_timeout_continuity" in runner
@@ -162,6 +165,15 @@ def test_task_balance_second_timeout_handoff_preserves_selection() -> None:
     ).read_text(encoding="utf-8")
     assert "latch-continuation-after-887-v4" in handoff
     assert "latch-continuation-after-887-v5" in handoff
+    assert "latch-continuation-after-887-v5-r2" in handoff
+    assert "PRE_CANDIDATE_POST_TIMEOUT_HEARTBEAT_RACE_BOUND" in handoff
+    assert "failed_attempt_fileset_sha" in handoff
+    assert "PRE_CANDIDATE_CONTIGUOUS_HANDOFF_AFTER_HEARTBEAT_RACE_REPAIR" in handoff
+    assert 'if test ! -s "${root}/${name}_handoff_snapshot_ids.txt"; then' in handoff
+    assert 'test -s "${root}/${name}_handoff_snapshot_ids.txt"' not in handoff
+    assert '"${root}/${name}_handoff_snapshot_ids.unsorted" || true' in handoff
+    assert 'test "${observed}" = "${baseline}" || test "${observed}" = "${current_latest}"' in handoff
+    assert "heartbeat_race_state_fallbacks.tsv" in handoff
     assert 'test -f "${previous}/TIMEOUT_RC"' in handoff
     assert 'test ! -e "${previous}/FAILED_RC"' in handoff
     assert 'test ! -e "${previous}/READY"' in handoff

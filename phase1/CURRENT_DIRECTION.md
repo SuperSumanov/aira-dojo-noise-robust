@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IS. 2026-08-29 TaskBalance v5 在 candidate 前发现 heartbeat 竞态；v5-r2 只修连续性
+
+权威 v4 在 `LATEST=887491a...62697` 不变时以 `TIMEOUT_RC=124` 正常结束；自动交接 v5 随即 `FAILED_RC=1`。
+旧 v5 exact 11-file set SHA-256=`d3ee4736...3ba50`，candidate/READY/COMPLETE/monitor.log/preflight/handoff
+receipt 均不存在，gap snapshot 与第一次 transition heartbeat 文件均为空，observed IDs 去重后只有 baseline；PID 已退出且
+v4/v5/supervisor 锁均 free。故失败被定位为 10 秒 latch 在 300 秒 support monitor 下一次 heartbeat 前启动，使空 `grep`
+pipeline 在 `pipefail` 下提前退出的工程竞态，不是候选或科学门失败。
+
+结果前修复固定为新 root `latch-continuation-after-887-v5-r2`：先绑定旧失败 fileset/source/protocol/marker；继续从 v4
+最后 observation 扫描完整 gap；若边界后尚无 heartbeat，只允许使用结果盲 state identity 且必须等于 baseline 或唯一
+current LATEST，并写 fallback receipt。多个 successor、support skip、identity/hash 漂移仍 fail-closed。formal runner 也只在
+v4 clean-timeout + 旧 v5 exact pre-candidate failure + v5-r2 唯一 COMPLETE 时接受 r2。population、1/4 task-share 门、
+producer/verifier 与解释完全不改；部署前 prospective values 未读，GPU/API/model-fit/base-update=`0/0/0/0`。详见
+`phase1/实验记录/2026-08-29/TaskBalance_v5心跳竞态与v5-r2结果前修复.md`。
+
 ## 0IR. 2026-08-29 学长最新 outcome 已对齐；全上下文 evaluator smoke 已冻结在凭据门前
 
 学长 0828 outcome 的科学提交=`f534114e60658043c07f7a15d6440492caffc8ad`，后续 context-repair branch head=

@@ -1,0 +1,52 @@
+# TaskBalance v5：post-timeout 心跳竞态与 v5-r2 结果前修复
+
+日期：2026-08-29（Asia/Hong_Kong）
+
+主线：Decision Corpus + Predictor Benchmark + Audit Protocol
+
+状态：`PRE_CANDIDATE_MONITOR_RACE_IDENTIFIED_AND_REPAIR_FROZEN`
+
+## 1. 事故证据
+
+权威 v4 在连续 2,160 个 10 秒 poll 后保持 `LATEST=887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697`，以 `TIMEOUT_RC=124` 正常结束；没有 candidate、READY、COMPLETE 或 FAILED。
+
+supervisor 随后创建 v5，但 v5 在 monitor loop 与 preflight 之前以 `FAILED_RC=1` fail-closed。失败根固定为：
+
+`/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v5`
+
+它只有 11 个顶层文件，fileset SHA-256=`d3ee4736512f81ad6f40a6ec7bdeb5547d48b217f9452c72461187dc14e3ba50`；`handoff_new_snapshot_ids.txt` 与 `transition_handoff_snapshot_ids.txt` 均为空，`handoff_observed_snapshot_ids.txt` 去重后只有冻结 baseline。source/protocol SHA-256=`934078533da2d34aac1325a36c5a25fd527d222651df4c4452fe6fe28d540e7f` / `6db91cddecc3b1937fd694e2b4903f02f8f81bd4c6a6cdd6b01f46944c552ee1`。candidate、READY、COMPLETE、monitor.log、preflight 与 handoff receipt 全部不存在；PID 已退出，v4/v5/supervisor 锁均 free。
+
+这把失败点唯一定位到第一次 transition post-timeout heartbeat 的空 `grep` pipeline：在 `set -o pipefail` 下，它在后续 fallback 机会之前返回 1。v5 在 v4 最后 observation 后约 14 秒启动，而 transition/WL/receipt monitor 每 300 秒 poll，一次合法的“尚未来得及写下一条 heartbeat”被误判为 continuity failure。它不是候选、标签或科学门失败。
+
+## 2. 只修工程竞态，不改科学协议
+
+v5-r2 固定使用新根：
+
+`/research/d7/spc/yzyang4/task-balance-v3-first-successor/latch-continuation-after-887-v5-r2`
+
+修复只做四件事：
+
+1. 在启动前绑定旧 v5 的 exact file set、旧 Git source、协议、空 heartbeat 文件、baseline-only observed IDs、死亡 PID 与 free lock；任一漂移即失败；
+2. 继续从 v4 最后 observation 时间扫描全部 snapshot directories 和三条 support 日志，不缩短时间窗；
+3. 若某条 support log 在边界后尚无 heartbeat，只允许读取该 monitor 的结果盲 state identity，并要求它等于 baseline 或唯一 current LATEST，同时把 fallback 明写入 receipt；
+4. formal runner 只有在 v4 clean-timeout、旧 v5 exact pre-candidate failure、v5-r2 唯一 COMPLETE 三者同时成立时才接受 r2。
+
+population、first-successor 定义、baseline、task-share 1/4 门、support、正式 producer/verifier 和解释均不变。多个 gap successor、support 跳过 candidate、state 非 baseline/current、旧失败根漂移、重复完成或任何新 failure 仍 fail-closed。
+
+## 3. 结果前 preflight
+
+1. 方向：只续接 Decision Corpus 的 first-successor 结构确认；
+2. 目标：修复 300 秒 support heartbeat 与 10 秒 latch 交接的调度竞态；
+3. 已知信息：只知 v4/v5 marker、PID、锁、文件名/哈希和 baseline identity；
+4. 未知信息：新 candidate、task balance、classification、outcome/prediction/utility 全未知；
+5. population：v4 之后自动观察到的第一个非 baseline snapshot，不能由调用者传入；
+6. estimand：不变，仍为固定 1/4 task-share cap 的 forward structural confirmation；
+7. 对照与门：不变；该补丁不改变任何科学阈值；
+8. 完整性：snapshot directory、LATEST、transition/WL/receipt state 与日志共同审计；
+9. 随机性：无；
+10. 资源：2,161 个至多 10 秒 poll，约 6 小时；CPU state watcher；GPU/API/model fit/base update=`0/0/0/0`；
+11. 泄漏：禁止 label、outcome、prediction value、accuracy、effect、utility 和 raw archive；
+12. 复现：公开 commit、旧失败 fileset、source/protocol SHA 与新脚本 SHA 全绑定；
+13. 停止：成功只在 candidate 及三条 support receipt 齐备后写 READY/COMPLETE；任何歧义写 FAILED_RC，不能重选 snapshot。
+
+本报告冻结时 v5-r2 尚未部署，prospective values 未读，也没有科学结果。

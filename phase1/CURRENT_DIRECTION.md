@@ -13,6 +13,31 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0IV. 2026-08-29 Target-522 yield-guarded breadth 前瞻执行链已在 candidate 前冻结
+
+唯一协议 `yield_guarded_breadth_forward_target522_v1.json` 在 Target-522 candidate/READY/COMPLETE 与失败 marker 全不存在时
+冻结，SHA-256=`ce50247e...13cf`。producer 只接受相对 snapshot 887 的第一次自动选择、physical-run disjoint 且完整的
+append-only increment；逐文件绑定 intake structural-pair SHA，并要求 pair rows 与增量 cards 重建出的 sibling cliques 完全
+相等。exact-B uniform-edge baseline 每 seed/checkpoint 必须用满 endpoint budget。MILP 只读 unordered endpoint/parent/task/run
+拓扑，公开文件只含 aggregate，endpoint witness 只写远端 mode-0600 private 文件。
+
+独立 verifier 不导入 producer，也不复用其 MILP constraint builder：它重写 Target-522 loader、pair graph、exact-B baseline 与
+完整约束矩阵；有 witness 时从 endpoint IDs 直接重算 induced edges 和全部固定门，无 witness 时独立求解并要求同 status。
+formal runner 绑定公开 commit 与 protocol/producer/verifier/test/runner SHA，在 fresh detached worktree 先跑 focused/full tests，
+再要求 producer/private/verifier A/B 各自逐字节一致，并用 strace 审计 forbidden path 与 network。六小时 monitor 在 start 时要求
+候选仍不存在，等待阶段只测 marker existence；只有 selection COMPLETE 后才验 manifest 并运行唯一 formal root。
+
+结果前最终 focused=`27 passed in 6.16s`；单线程 full=`1624 passed, 47 warnings in 89.91s`，RC=`0`，manifest SHA-256=
+`4936e680...e2d9b`。一份旧开发 launcher 因遗漏线程环境产生 119 threads/约 30 CPU cores 而被主动终止并留中断回执；它没有
+科学 readout，不计为通过。当前状态仍是 **`IMPLEMENTATION_FROZEN_BEFORE_TARGET522_CANDIDATE`**，不是正/负科学结论；
+prospective label/outcome/prediction/accuracy/utility 未读，GPU/API/model-fit/base-update=`0/0/0/0`。
+
+即使未来结构 witness 通过，也不能把 generic constrained graph selection 当 novelty。下一项正面主张必须是 endpoint-cost-matched
+downstream label efficiency：历史 train-only、physical-run outer folds、exact-B 四臂、固定 CPU char-TFIDF LR，比较诱导 labels
+对未见 run critic accuracy/calibration 的贡献；equal-pair-count 只能作机制 secondary，不能 rescue primary。详见
+`phase1/实验记录/2026-08-29/YieldGuardedBreadth_Target522前瞻执行链冻结.md` 与
+`EndpointBudgetMatched_CriticLabelEfficiency_下一步设计.md`。
+
 ## 0IU. 2026-08-29 exact-Budget 勘误后 yield-guarded breadth 开发正结论仍存活
 
 冻结 Target-522 前发现旧 `uniform_edge` 的双 endpoint 原子 action 会让奇数 checkpoint 实际只使用 `B-1`：两折

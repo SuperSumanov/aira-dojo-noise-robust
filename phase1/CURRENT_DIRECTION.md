@@ -68,6 +68,12 @@ wall=`27.33s`，access/network hits=`0/0`。这只证明已读历史图的联合
 confirmation、predictor accuracy 或 search utility。下一步须在下一张未见且 identity/run-disjoint graph 前先冻 private-witness
 双实现。详见 `phase1/实验记录/2026-08-29/YieldGuardedBreadthFeasibility_v2_开发裁决.md`。
 
+公开开发包 commit=`e816a5d8909fbb1d2bd379e625d6a0ec3b419020` 的 fresh post-push r2 已通过：package=`9/9`，
+self-test=`PASS`，focused/full=`6/1594 passed`，credential filename/blob=`0/0`，result/verification SHA 保持
+`e4383194...191d` / `c3680fb2...6a2d`，remote manifest=`13c84f02...702c`。r1 因 runner 漏 `PYTHONPATH` 在
+self-test import 前失败，原样保留且不算通过。详见
+`phase1/实验记录/2026-08-29/YieldGuardedBreadthFeasibility_v2_PostPush回执.md`。
+
 ## 0IP. 2026-08-29 独立图未确认大幅 yield 增益；出现 breadth-at-near-equal-yield 新假设
 
 0IN 的全局 v1 失败完整保留；新假设明确降为 post-discovery 的稀缺标注区间，不声称全预算优势。0IO 的独立 residual 已知

@@ -120,6 +120,22 @@ def topology_fingerprint(topology: engine.Topology) -> str:
     return hashlib.sha256(("\n".join(sorted(records)) + "\n").encode()).hexdigest()
 
 
+def verify_full_graph_fingerprints(
+    observed_identity_fingerprint: str,
+    prior_result: dict[str, Any],
+    qualification_result: dict[str, Any],
+) -> None:
+    check(
+        prior_result["graph_census"]["orientation_free_identity_fingerprint_sha256"]
+        == qualification_result["strict_residual_profile"]["orientation_free_identity_fingerprint_sha256"],
+        "prior profile fingerprint",
+    )
+    check(
+        observed_identity_fingerprint == qualification_result["identity_fingerprints"]["strict_residual"],
+        "full graph identity fingerprint",
+    )
+
+
 def profile(topology: engine.Topology) -> dict[str, Any]:
     by_task = Counter(pair.task for pair in topology.pairs)
     by_run = Counter(pair.run for pair in topology.pairs)
@@ -252,7 +268,7 @@ def reconstruct(args: argparse.Namespace) -> dict[str, Any]:
     )
     qualification_result, qualification_hashes = prior.verify_qualification(args, prior_protocol)
     full_topology, raw_hashes = prior.reconstruct_topology(args, prior_protocol, qualification_result)
-    check(topology_fingerprint(full_topology) == prior_result["graph_census"]["orientation_free_identity_fingerprint_sha256"], "full graph fingerprint")
+    verify_full_graph_fingerprints(topology_fingerprint(full_topology), prior_result, qualification_result)
 
     fold_pairs = {0: [], 1: []}
     for pair in full_topology.pairs:

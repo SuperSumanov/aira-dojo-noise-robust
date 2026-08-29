@@ -5,6 +5,8 @@ import hashlib
 import json
 from pathlib import Path
 
+import pytest
+
 from phase1 import falsify_historical_run_split_breadth_pareto as producer
 from phase1 import verify_historical_run_split_breadth_pareto as verifier
 
@@ -115,6 +117,24 @@ def test_protocol_binds_prior_result_and_two_sources() -> None:
         binding = value["immutable_inputs"][key]
         observed = hashlib.sha256((ROOT / binding["path"]).read_bytes()).hexdigest()
         assert observed == binding["sha256"]
+
+
+def test_profile_and_identity_fingerprints_are_bound_to_their_own_schemas() -> None:
+    prior_result = {
+        "graph_census": {"orientation_free_identity_fingerprint_sha256": "profile-fingerprint"}
+    }
+    qualification_result = {
+        "strict_residual_profile": {
+            "orientation_free_identity_fingerprint_sha256": "profile-fingerprint"
+        },
+        "identity_fingerprints": {"strict_residual": "identity-fingerprint"},
+    }
+    producer.verify_full_graph_fingerprints("identity-fingerprint", prior_result, qualification_result)
+    verifier.verify_full_graph_fingerprints("identity-fingerprint", prior_result, qualification_result)
+    with pytest.raises(producer.ParetoFalsificationError, match="full graph identity fingerprint"):
+        producer.verify_full_graph_fingerprints("profile-fingerprint", prior_result, qualification_result)
+    with pytest.raises(verifier.IndependentParetoError, match="full graph identity fingerprint"):
+        verifier.verify_full_graph_fingerprints("profile-fingerprint", prior_result, qualification_result)
 
 
 def test_verifier_does_not_import_falsification_producer() -> None:

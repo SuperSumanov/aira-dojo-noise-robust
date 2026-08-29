@@ -111,6 +111,22 @@ def graph_fingerprint(graph: engine.Graph) -> str:
     return hashlib.sha256(("\n".join(sorted(records)) + "\n").encode()).hexdigest()
 
 
+def verify_full_graph_fingerprints(
+    observed_identity_fingerprint: str,
+    prior_result: dict[str, Any],
+    qualification_result: dict[str, Any],
+) -> None:
+    require(
+        prior_result["graph_census"]["orientation_free_identity_fingerprint_sha256"]
+        == qualification_result["strict_residual_profile"]["orientation_free_identity_fingerprint_sha256"],
+        "prior profile fingerprint",
+    )
+    require(
+        observed_identity_fingerprint == qualification_result["identity_fingerprints"]["strict_residual"],
+        "full graph identity fingerprint",
+    )
+
+
 def profile(graph: engine.Graph) -> dict[str, Any]:
     by_task = Counter(edge.task for edge in graph.edges)
     by_run = Counter(edge.run for edge in graph.edges)
@@ -245,7 +261,7 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
     )
     qualification_result, qualification_hashes = prior.verify_qualification(args, prior_protocol)
     full_graph, raw_hashes = prior.reconstruct_graph(args, prior_protocol, qualification_result)
-    require(graph_fingerprint(full_graph) == prior_result["graph_census"]["orientation_free_identity_fingerprint_sha256"], "full graph fingerprint")
+    verify_full_graph_fingerprints(graph_fingerprint(full_graph), prior_result, qualification_result)
 
     fold_edges = {0: [], 1: []}
     for edge in full_graph.edges:

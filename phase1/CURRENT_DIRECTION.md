@@ -30,6 +30,16 @@ readout 后的内部 falsification，不是外部 confirmation；即使 survives
 search utility。GPU/API/model-fit/base-update=`0/0/0/0`，prospective values/senior test 未读。详见
 `phase1/实验记录/2026-08-29/RunSplitBreadthParetoFalsification_v1_预注册.md`。
 
+公开冻结 commit=`1563655a998851d41e9038fa5bda79a78f650247` 的 formal r1 在 focused/full=`36/1587 passed` 后，首个
+producer 于 full-graph fingerprint assertion fail-closed，`FAILED_RC=1`；没有 producer JSON/verifier/COMPLETE，且发生在 fold
+partition、split counts/support/curves 前。根因是错误混比了 qualification 的 profile fingerprint
+`(relation,split,endpoints,parent)` 与 graph identity fingerprint `(endpoints,parent,task,run)`。
+
+唯一勘误是分别把 prior census 绑定到前者、当前重建 graph 绑定到 qualification 已发布的后者；protocol/salt/support/budget/
+method/threshold/runner 全不改。repaired producer/verifier/test SHA-256=`d8966a0b...b9be` / `d915167b...3fd4` /
+`10d36750...a5b`，focused=`37 passed`。必须从公开修复 commit 在 fresh r2 整轮重跑；详见
+`phase1/实验记录/2026-08-29/RunSplitBreadthParetoFalsification_v1_r1失败与Fingerprint勘误.md`。
+
 ## 0IP. 2026-08-29 独立图未确认大幅 yield 增益；出现 breadth-at-near-equal-yield 新假设
 
 0IN 的全局 v1 失败完整保留；新假设明确降为 post-discovery 的稀缺标注区间，不声称全预算优势。0IO 的独立 residual 已知

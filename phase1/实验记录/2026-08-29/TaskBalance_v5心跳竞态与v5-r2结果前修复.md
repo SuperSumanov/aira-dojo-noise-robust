@@ -56,4 +56,12 @@ population、first-successor 定义、baseline、task-share 1/4 门、support、
 12. 复现：公开 commits、两个旧失败 fileset、source/protocol SHA 与新脚本 SHA 全绑定；
 13. 停止：成功只在 candidate 及三条 support receipt 齐备后写 READY/COMPLETE；任何歧义写 FAILED_RC，不能重选 snapshot。
 
-本次修订冻结时 v5-r3 尚未部署，prospective values 未读，也没有科学结果。v5 与 v5-r2 两个失败根均原样保留。
+## 4. 公开提交、post-push 与部署回执
+
+修订由公开 commit=`9f1b57f02cdf6b9a70c870268127ffacb3bc44b7` 发布。handoff/正式 runner/static test SHA-256=`990f600732bf525c4279ef31d65a63b8d35c6316cfd2f78cad0a5da52908f0e7` / `eb384dbbd3b94a6add9ceebef78198bfc2bbf0759c3db99b9cb497b066453725` / `dbb05b0ea63bed8c9221bcbaa811a175100bd96aba00c60660a0dc20db498c80`。
+
+fresh detached post-push：changed files=5，focused=`14 passed in 0.38s`，typed identity replay=PASS，credential filename/blob=`0/0`，git clean；没有跑无界 full suite。随后从该公开 commit 启动 v5-r3。`2026-08-29T03:58:22Z` 的独立 postflight：PID=`194734` live、lock held、LATEST 与 handoff unique identity 均为 `887491a...62697`，candidate/READY/COMPLETE/FAILED=`false/false/false/false`，连续四个 poll 正常。
+
+handoff/preflight/deploy-manifest SHA-256=`75e136446b87a346cce9bbf9d614930c654a7f6c9062a4a968c5ffc88f307128` / `585385de90fc2d6e35b041c4173856cec560daeccd87a47ea0fedb82ce7c37f6` / `a4975902227fd135b3459b6188c900686077be3260dbf86077090e7cf45ff8f5`。公开最小回执见 `phase1/results/task_balance_v5_r3_monitor_repair_20260829_9f1b57f/`。
+
+prospective values 仍未读，也没有科学结果；v5 与 v5-r2 两个失败根均原样保留。v5-r3 后续若出现 candidate，只能等 transition/WL/receipt 三条 support 到达同一固定 identity 后写结构 READY，不得提前读取 balance 或分类。

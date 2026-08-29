@@ -35,6 +35,12 @@ values 未读；真实结果盲 transition/WL/receipt 日志的 typed-extractor 
 base-update=`0/0/0/0`。详见
 `phase1/实验记录/2026-08-29/TaskBalance_v5心跳竞态与v5-r2结果前修复.md`。
 
+r3 由公开 commit=`9f1b57f02cdf6b9a70c870268127ffacb3bc44b7` 部署；fresh post-push changed files=`5`、focused=
+`14 passed in 0.38s`、typed replay=PASS、credential filename/blob=`0/0`。`2026-08-29T03:58:22Z` 独立 postflight
+确认 PID=`194734` live、lock held、LATEST/handoff unique identity 均为 887，candidate/READY/COMPLETE/FAILED 全为空，
+连续四个 poll 正常。handoff/preflight/deploy manifest SHA-256=`75e13644...07128` / `585385de...c37f6` /
+`a4975902...8f5`；公开回执见 `phase1/results/task_balance_v5_r3_monitor_repair_20260829_9f1b57f/`。
+
 ## 0IR. 2026-08-29 学长最新 outcome 已对齐；全上下文 evaluator smoke 已冻结在凭据门前
 
 学长 0828 outcome 的科学提交=`f534114e60658043c07f7a15d6440492caffc8ad`，后续 context-repair branch head=

@@ -16,16 +16,22 @@
 ## 0IZ. 2026-08-30 distribution-matched yield：结果前冻结的历史开发筛选
 
 0IY 已证明旧 pure breadth 的 pooled 小增益由大任务集中贡献，且 task-macro 在两个 endpoint budget 都下降；因此不再扩大旧规则，
-也不再拟合更大模型来掩盖 acquisition 机制。结果前已冻结新协议
-`endpoint_budget_distribution_matched_yield_screen_v1.json`，SHA-256=
-`371a5a2d1e57de886995c3ad2c09426c8de813bf3018921d6553380af156c4f4`。当前状态是
-**`FROZEN_AFTER_TASK_HETEROGENEITY_AUDIT_BEFORE_NEW_SELECTION_OR_PREDICTION`**，尚无新选择、新预测或新指标结果。
+也不再拟合更大模型来掩盖 acquisition 机制。v1 协议 SHA=`371a5a2d...b06e` 的 formal r1 在 focused/full
+`25/1651 passed` 后，于第一阶段 300 秒时限 fail-closed，RC=1；selection public/private 和 fit 均未写出，因此不是科学负结果。
+无标签结构诊断随后证明 exact task-count DP 下界可在图上达到：总 objective=`22282`，耗时 `128.11160844005644s`，
+run/parent=`349/93`，且不输出 endpoint witness；原 SHA 全局 tie 则在 300 秒后因缺失 mip gap 的诊断处理 bug 退出，也未写 witness。
+
+上述失败与诊断结果已全部披露并绑定后，结果前冻结 v2：
+`endpoint_budget_distribution_matched_yield_screen_v2.json`，SHA-256=
+`37ad2fab68227d4aa236f1ce8c70c6197d1160b3f885adc466288ea1af41b06e`。当前状态是
+**`FROZEN_AFTER_V1_SOLVER_FAILURE_BEFORE_V2_ENDPOINT_WITNESS_OR_PREDICTION`**；尚无 v2 endpoint witness、预测或 task metric。
 
 新规则只改 endpoint acquisition：在与旧 yield arm 完全相同的 nested endpoint checkpoints
 `72/96/120/144/168/192` 和 induced-pair counts `36/49/61/73/85/99` 下，使 35 个 outer-train task 的已选 pair
 分布匹配其 train-only availability；每个 checkpoint 同时固定 task share `<=20%`、run share `<=10%`，并保留 integrated
-closed-run floor=`317`、terminal parent floor=`86`。两阶段单线程 MILP 先取得 exact integer optimum，再在固定 optimum 上用
-SHA-256 endpoint 权重确定性破同；任何 time-limit incumbent、非零 gap 或 A/B 漂移立即 fail-closed。
+closed-run floor=`317`、terminal parent floor=`86`。独立整数 DP 给出所有 task-count allocation 的图外全局下界；单线程 MILP
+必须在完整 graph/nesting/cap/floor 约束下精确达到该下界。tie 固定为 pinned numpy `1.26.4`、scipy `1.16.2`、HiGHS `1.8.0`、
+threads=1、seed=0 的 constant-objective feasibility witness，并要求 producer A/B private bytes 完全一致；任何时限、gap 或漂移终止。
 
 只在历史 train-only fold0 开发人口上，预算 `96/192` 各拟合一个与 0IX 完全相同的 char-TFIDF LR；旧 uniform/yield prediction
 witness 原样复用，合计仅 2 个 CPU critic fits，GPU/付费 API/base update=`0/0/0`。七个结果前门同时要求：两预算 task-L1

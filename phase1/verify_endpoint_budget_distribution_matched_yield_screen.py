@@ -18,13 +18,13 @@ from typing import Any
 from phase1 import endpoint_budget_label_efficiency_smoke as smoke
 
 
-PROTOCOL = "endpoint-budget-distribution-matched-yield-screen-v1"
-SELECTION_PUBLIC = "endpoint-budget-distribution-matched-yield-selection-public-v1"
-SELECTION_PRIVATE = "endpoint-budget-distribution-matched-yield-selection-private-v1"
-FIT_CELL = "endpoint-budget-distribution-matched-yield-fit-cell-v1"
-FIT_RESULT = "endpoint-budget-distribution-matched-yield-fit-result-v1"
-FIT_PRIVATE = "endpoint-budget-distribution-matched-yield-private-pair-witness-v1"
-VERIFY_RESULT = "endpoint-budget-distribution-matched-yield-independent-verification-v1"
+PROTOCOL = "endpoint-budget-distribution-matched-yield-screen-v2"
+SELECTION_PUBLIC = "endpoint-budget-distribution-matched-yield-selection-public-v2"
+SELECTION_PRIVATE = "endpoint-budget-distribution-matched-yield-selection-private-v2"
+FIT_CELL = "endpoint-budget-distribution-matched-yield-fit-cell-v2"
+FIT_RESULT = "endpoint-budget-distribution-matched-yield-fit-result-v2"
+FIT_PRIVATE = "endpoint-budget-distribution-matched-yield-private-pair-witness-v2"
+VERIFY_RESULT = "endpoint-budget-distribution-matched-yield-independent-verification-v2"
 OLD_UNIFORM = "exact_b_uniform_edge"
 OLD_YIELD = "yield_guarded_breadth"
 NEW_ARM = "distribution_matched_yield"
@@ -106,6 +106,28 @@ def direct_metrics(graph: Any, selections: dict[int, set[str]], protocol: dict[s
     return output
 
 
+def checkpoint_task_count_lower_bound(available: list[int], total: int, selected_pairs: int) -> int:
+    """Independent exact DP for the graph-agnostic task-count lower bound."""
+    require(total == sum(available) and total > 0, "lower-bound availability")
+    cap = selected_pairs // 5
+    infinity = 10**30
+    dynamic = [infinity] * (selected_pairs + 1)
+    dynamic[0] = 0
+    for count in available:
+        following = [infinity] * (selected_pairs + 1)
+        for assigned_before, value in enumerate(dynamic):
+            if value == infinity:
+                continue
+            for assigned in range(min(cap, selected_pairs - assigned_before) + 1):
+                index = assigned_before + assigned
+                candidate = value + abs(total * assigned - selected_pairs * count)
+                if candidate < following[index]:
+                    following[index] = candidate
+        dynamic = following
+    require(dynamic[selected_pairs] < infinity, "task-count lower bound infeasible")
+    return int(dynamic[selected_pairs])
+
+
 def old_yield_metrics(graph: Any, old_private: dict[str, Any], protocol: dict[str, Any]) -> list[dict[str, Any]]:
     old = smoke.entries_by_budget(old_private, OLD_YIELD)
     return direct_metrics(graph, old, protocol)
@@ -176,7 +198,7 @@ def main_verify(args: argparse.Namespace) -> dict[str, Any]:
     require(file_sha(protocol_path) == args.protocol_sha256, "protocol SHA")
     protocol = load(protocol_path)
     require(protocol.get("protocol") == PROTOCOL, "protocol name")
-    require(protocol.get("status") == "FROZEN_AFTER_TASK_HETEROGENEITY_AUDIT_BEFORE_NEW_SELECTION_OR_PREDICTION", "freeze status")
+    require(protocol.get("status") == "FROZEN_AFTER_V1_SOLVER_FAILURE_BEFORE_V2_ENDPOINT_WITNESS_OR_PREDICTION", "freeze status")
     bindings = protocol["input_bindings"]
     fixed = {
         "old_smoke_protocol": (args.old_protocol.resolve(), bindings["old_smoke_protocol_sha256"], False),
@@ -218,9 +240,19 @@ def main_verify(args: argparse.Namespace) -> dict[str, Any]:
     require(set(selections) == set(checkpoints), "selection checkpoints")
     direct = direct_metrics(train, selections, protocol)
     require(selection_public["solver"]["metrics"] == direct, "direct selection metrics")
-    require(selection_public["solver"]["primary_integer_objective"] == sum(row["integer_distribution_objective"] for row in direct), "primary objective")
-    require(selection_public["solver"]["primary_solver_status"] == selection_public["solver"]["tie_solver_status"] == 0, "solver status")
-    require(selection_public["solver"]["primary_solver_mip_gap"] == selection_public["solver"]["tie_solver_mip_gap"] == 0.0, "solver gaps")
+    available = Counter(edge.task for edge in train.edges)
+    exact_pairs = [int(value) for value in protocol["selection"]["exact_induced_pair_count"]]
+    lower_by_checkpoint = [
+        checkpoint_task_count_lower_bound([available[task] for task in sorted(available)], len(train.edges), pair_count)
+        for pair_count in exact_pairs
+    ]
+    lower_total = sum(lower_by_checkpoint)
+    require(selection_public["solver"]["task_count_dp_lower_bound_by_checkpoint"] == lower_by_checkpoint, "DP lower bounds")
+    require(selection_public["solver"]["task_count_dp_lower_bound_total"] == lower_total, "DP lower-bound total")
+    require(selection_public["solver"]["primary_integer_objective"] == lower_total == sum(row["integer_distribution_objective"] for row in direct), "primary objective attains lower bound")
+    require(selection_public["solver"]["feasibility_solver_status"] == 0, "solver status")
+    require(selection_public["solver"]["feasibility_solver_mip_gap"] == 0.0, "solver gap")
+    require(selection_public["solver"]["solver_versions"] == {"numpy": "1.26.4", "scipy": "1.16.2", "highs": "1.8.0"}, "solver versions")
     require(selection_public["solver"]["integrated_closed_runs"] == sum(row["represented_runs"] for row in direct), "integrated runs")
     observed_fingerprint = fingerprint(selections, checkpoints)
     require(observed_fingerprint == selection_private["selection_fingerprint_sha256"] == selection_public["solver"]["private_selection_fingerprint_sha256"], "selection fingerprint")
@@ -344,7 +376,7 @@ def main_verify(args: argparse.Namespace) -> dict[str, Any]:
         "runs_csv_sha256": file_sha(args.runs_csv.resolve()),
         "fit_private_witness_sha256": file_sha(private_path),
         "selection_primal_and_objective_reconstructed": True,
-        "selection_optimality_source": "bound HiGHS status=0 and mip_gap=0; verifier independently checks primal constraints and objective value but does not rerun MILP",
+        "selection_optimality_source": "independent exact task-count DP lower bound equals reconstructed graph-witness objective; pinned HiGHS status=0 gap=0 supplies deterministic feasible witness and producer A/B binds the tie",
         "evaluation_pair_set_and_40_new_task_budget_rows_reconstructed": True,
         "all_aggregate_fields_equal": True,
         "producer_module_imported": False,

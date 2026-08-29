@@ -2,11 +2,27 @@
 
 日期：2026-08-30
 
-状态：`FROZEN_AFTER_TASK_HETEROGENEITY_AUDIT_BEFORE_NEW_SELECTION_OR_PREDICTION`
+状态：`FROZEN_AFTER_V1_SOLVER_FAILURE_BEFORE_V2_ENDPOINT_WITNESS_OR_PREDICTION`
 
-协议：`phase1/endpoint_budget_distribution_matched_yield_screen_v1.json`
+协议：`phase1/endpoint_budget_distribution_matched_yield_screen_v2.json`
 
-协议 SHA-256：`371a5a2d1e57de886995c3ad2c09426c8de813bf3018921d6553380af156c4f4`
+协议 SHA-256：`37ad2fab68227d4aa236f1ce8c70c6197d1160b3f885adc466288ea1af41b06e`
+
+## 0. 结果前求解工程勘误
+
+最初冻结的 v1 协议 SHA=`371a5a2d...b06e` 没有产生科学 readout。formal r1 在 focused/full
+`25/1651 passed` 后，第一阶段 MILP 恰在 300 秒上限 fail-closed，RC=1；selection public/private、fit 与预测均不存在。
+
+随后两个只读 outer-train topology 的诊断均在新的 v2 witness 前完成并披露：
+
+- exact task-count DP 给出的六 checkpoint 下界为 `3202/4006/3848/3396/4330/3500`，总和 `22282`；
+- constant-objective graph MILP 在 `128.11160844005644s` 达到同一总 objective，integrated runs=`349`、terminal parents=`93`，
+  task/run caps 全过，且不写 endpoint IDs；
+- v1 的 SHA 全局 tie 在固定 300 秒后，诊断脚本因把缺失 mip gap 转成 float 而退出，没有 public result 或 endpoint witness。
+
+因此 v2 不改科学目标、预算、pair counts、caps、floors、fit 或七个 gate，只把“如何证明并确定一个 optimum witness”改成：
+独立 DP 证明全局下界，图 MILP 必须达到下界；tie 由 pinned deterministic feasibility witness 和 private A/B byte identity 固定。
+上述 r1/诊断的 6 个证据 SHA 均写入 v2 协议并由 formal runner 验证。
 
 ## 1. 为什么做这一项
 
@@ -50,8 +66,10 @@ drop-dominant-task 反转而不晋级。随后冻结的匿名 task-heterogeneity
 - 六个 checkpoint 的 represented-run 数之和至少 317；
 - terminal represented-parent 数至少 86。
 
-第一阶段必须由单线程 HiGHS 返回 status=0、mip gap=0；第二阶段固定第一阶段整数 optimum，再最小化预先定义的
-SHA-256 endpoint 权重。任何带 incumbent 的 time limit 都不得标作 optimal，任何 A/B selection 漂移均终止。
+独立动态规划在仅放松 graph/nesting/run/parent 约束、保留整数 task cap 与 pair 总数时精确计算每个 checkpoint 的理论下界；
+完整图 MILP 必须返回 status=0、mip gap=0，并由 endpoint witness 直接达到六个下界之和，因而构成全局最优性证明。
+tie 固定为 numpy=`1.26.4`、scipy=`1.16.2`、bundled HiGHS=`1.8.0`、threads=1、seed=0 的 constant-objective
+feasibility witness；producer A/B 的 public/private 必须逐字节相同。任何 timeout、gap、版本漂移或 A/B 漂移终止。
 
 ## 4. 拟合与 estimand
 
@@ -81,7 +99,8 @@ accuracy/log-loss/Brier、task sign、task/run-clustered bootstrap、terminal dr
 
 ## 6. 预检、验证与安全
 
-formal runner 在读取 private labels 前必须完成并写入 13 项 preflight，绑定旧 formal manifest 与 11 个输入 SHA，随后执行：
+formal runner 在读取 private labels 前必须完成并写入 13 项 preflight，绑定旧 formal manifest、11 个科学输入 SHA 与 6 个
+v1/诊断证据 SHA，随后执行：
 
 - 新模块 + 旧 smoke + task-audit focused tests；
 - `phase1/tests` 全测试；

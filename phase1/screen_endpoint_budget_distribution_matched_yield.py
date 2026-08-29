@@ -21,12 +21,12 @@ from typing import Any, Iterable
 from phase1 import endpoint_budget_label_efficiency_smoke as smoke
 
 
-PROTOCOL = "endpoint-budget-distribution-matched-yield-screen-v1"
-SELECTION_PUBLIC = "endpoint-budget-distribution-matched-yield-selection-public-v1"
-SELECTION_PRIVATE = "endpoint-budget-distribution-matched-yield-selection-private-v1"
-FIT_CELL = "endpoint-budget-distribution-matched-yield-fit-cell-v1"
-FIT_RESULT = "endpoint-budget-distribution-matched-yield-fit-result-v1"
-FIT_PRIVATE = "endpoint-budget-distribution-matched-yield-private-pair-witness-v1"
+PROTOCOL = "endpoint-budget-distribution-matched-yield-screen-v2"
+SELECTION_PUBLIC = "endpoint-budget-distribution-matched-yield-selection-public-v2"
+SELECTION_PRIVATE = "endpoint-budget-distribution-matched-yield-selection-private-v2"
+FIT_CELL = "endpoint-budget-distribution-matched-yield-fit-cell-v2"
+FIT_RESULT = "endpoint-budget-distribution-matched-yield-fit-result-v2"
+FIT_PRIVATE = "endpoint-budget-distribution-matched-yield-private-pair-witness-v2"
 OLD_UNIFORM = "exact_b_uniform_edge"
 OLD_YIELD = "yield_guarded_breadth"
 NEW_ARM = "distribution_matched_yield"
@@ -58,13 +58,14 @@ def load_protocol(path: Path, expected_sha: str) -> dict[str, Any]:
     value = object_file(path)
     require(value.get("protocol") == PROTOCOL, "screen protocol name")
     require(
-        value.get("status") == "FROZEN_AFTER_TASK_HETEROGENEITY_AUDIT_BEFORE_NEW_SELECTION_OR_PREDICTION",
+        value.get("status") == "FROZEN_AFTER_V1_SOLVER_FAILURE_BEFORE_V2_ENDPOINT_WITNESS_OR_PREDICTION",
         "screen freeze status",
     )
     known = value["known_before_freeze"]
-    require(known["new_selection_seen"] is False, "new selection was seen")
-    require(known["new_distribution_objective_seen"] is False, "new objective was seen")
-    require(known["new_prediction_or_task_metric_seen"] is False, "new metric was seen")
+    require(known["v1_endpoint_witness_emitted"] is False, "v1 endpoint witness was emitted")
+    require(known["v1_prediction_or_metric_emitted"] is False, "v1 metric was emitted")
+    require(known["v2_endpoint_witness_seen"] is False, "v2 endpoint witness was seen")
+    require(known["v2_prediction_or_task_metric_seen"] is False, "v2 metric was seen")
     require(value["resources"] == {
         "gpu": 0,
         "paid_api_calls": 0,
@@ -284,6 +285,28 @@ def ratio(numerator: int, denominator: int) -> dict[str, Any]:
     return smoke.graph_source.engine.fraction(numerator, denominator)
 
 
+def checkpoint_task_count_lower_bound(available: list[int], total: int, selected_pairs: int) -> int:
+    """Exact graph-agnostic integer lower bound under the frozen task cap."""
+    require(total == sum(available) and total > 0, "lower-bound availability")
+    cap = selected_pairs // 5
+    infinity = 10**30
+    dynamic = [infinity] * (selected_pairs + 1)
+    dynamic[0] = 0
+    for count in available:
+        following = [infinity] * (selected_pairs + 1)
+        for assigned_before, value in enumerate(dynamic):
+            if value == infinity:
+                continue
+            for assigned in range(min(cap, selected_pairs - assigned_before) + 1):
+                index = assigned_before + assigned
+                candidate = value + abs(total * assigned - selected_pairs * count)
+                if candidate < following[index]:
+                    following[index] = candidate
+        dynamic = following
+    require(dynamic[selected_pairs] < infinity, "task-count lower bound infeasible")
+    return int(dynamic[selected_pairs])
+
+
 def trajectory_metrics(graph: Any, selected_by_step: list[set[str]], exact_pairs: list[int]) -> list[dict[str, Any]]:
     available = Counter(edge.task for edge in graph.edges)
     total = len(graph.edges)
@@ -318,56 +341,37 @@ def solve_distribution_matched(graph: Any, protocol: dict[str, Any], time_limit:
         graph, checkpoints, exact_pairs, layout, tasks, runs, parents,
         int(selection["integrated_closed_run_floor"]), int(selection["terminal_parent_floor"]),
     )
-    primary = [0.0] * layout.size
-    for step in range(len(checkpoints)):
-        for task in tasks:
-            primary[layout.index[("d", step, task)]] = 1.0
-    first = milp_once(layout, rows, primary, time_limit)
-    if first.x is None:
-        return {
-            "status": "INFEASIBLE_PROVEN" if int(first.status) == 2 else "PRIMARY_OPTIMUM_NOT_RESOLVED",
-            "solver_status": int(first.status),
-            "solver_message": str(first.message),
-        }, None
-    first_gap = float(getattr(first, "mip_gap", math.inf))
-    if int(first.status) != 0 or not math.isclose(first_gap, 0.0, rel_tol=0.0, abs_tol=0.0):
-        return {
-            "status": "PRIMARY_OPTIMUM_NOT_RESOLVED",
-            "solver_status": int(first.status),
-            "solver_message": str(first.message),
-            "solver_mip_gap": first_gap,
-        }, None
-    primary_optimum = int(round(float(first.fun)))
-    require(math.isclose(float(first.fun), primary_optimum, rel_tol=0.0, abs_tol=1e-5), "integer primary optimum")
+    available = [sum(edge.task == task for edge in graph.edges) for task in tasks]
+    lower_by_checkpoint = [
+        checkpoint_task_count_lower_bound(available, len(graph.edges), pair_count)
+        for pair_count in exact_pairs
+    ]
+    primary_optimum = sum(lower_by_checkpoint)
     rows.add(
         ((layout.index[("d", step, task)], 1) for step in range(len(checkpoints)) for task in tasks),
         -math.inf,
         primary_optimum,
     )
-    tie = [0.0] * layout.size
-    for step in range(len(checkpoints)):
-        for node in graph.nodes:
-            digest = hashlib.sha256(("distribution-match-tiebreak\0" + str(step) + "\0" + node).encode()).digest()
-            tie[layout.index[("x", step, node)]] = (int.from_bytes(digest[:8], "big") + 1) / (2**64)
-    second = milp_once(layout, rows, tie, time_limit)
-    if second.x is None:
+    solved = milp_once(layout, rows, [0.0] * layout.size, time_limit)
+    if solved.x is None:
         return {
-            "status": "TIE_BREAK_NOT_RESOLVED",
+            "status": "DP_LOWER_BOUND_WITNESS_NOT_RESOLVED",
             "primary_integer_objective": primary_optimum,
-            "solver_status": int(second.status),
-            "solver_message": str(second.message),
+            "solver_status": int(solved.status),
+            "solver_message": str(solved.message),
         }, None
-    second_gap = float(getattr(second, "mip_gap", math.inf))
-    if int(second.status) != 0 or not math.isclose(second_gap, 0.0, rel_tol=0.0, abs_tol=0.0):
+    raw_gap = getattr(solved, "mip_gap", None)
+    solver_gap = math.inf if raw_gap is None else float(raw_gap)
+    if int(solved.status) != 0 or not math.isclose(solver_gap, 0.0, rel_tol=0.0, abs_tol=0.0):
         return {
-            "status": "TIE_BREAK_NOT_RESOLVED",
+            "status": "DP_LOWER_BOUND_WITNESS_NOT_RESOLVED",
             "primary_integer_objective": primary_optimum,
-            "solver_status": int(second.status),
-            "solver_message": str(second.message),
-            "solver_mip_gap": second_gap,
+            "solver_status": int(solved.status),
+            "solver_message": str(solved.message),
+            "solver_mip_gap": solver_gap,
         }, None
     selected_by_step = [
-        {node for node in graph.nodes if second.x[layout.index[("x", step, node)]] >= 0.5}
+        {node for node in graph.nodes if solved.x[layout.index[("x", step, node)]] >= 0.5}
         for step in range(len(checkpoints))
     ]
     require(all(len(selected) == budget for selected, budget in zip(selected_by_step, checkpoints)), "exact endpoint budgets")
@@ -389,17 +393,18 @@ def solve_distribution_matched(graph: Any, protocol: dict[str, Any], time_limit:
     return {
         "status": "OPTIMAL_WITNESS",
         "primary_integer_objective": primary_optimum,
-        "tie_break_objective": float(second.fun),
+        "task_count_dp_lower_bound_by_checkpoint": lower_by_checkpoint,
+        "task_count_dp_lower_bound_total": primary_optimum,
+        "optimality_proof": "independent exact task-count DP lower bound attained by graph witness",
+        "tie_break": "pinned deterministic HiGHS feasibility witness with producer A/B byte identity required",
         "variable_count": layout.size,
         "constraint_count": len(rows.lower),
-        "primary_solver_status": int(first.status),
-        "primary_solver_message": str(first.message),
-        "primary_solver_mip_gap": first_gap,
-        "tie_solver_status": int(second.status),
-        "tie_solver_message": str(second.message),
-        "tie_solver_mip_gap": second_gap,
+        "feasibility_solver_status": int(solved.status),
+        "feasibility_solver_message": str(solved.message),
+        "feasibility_solver_mip_gap": solver_gap,
         "solver_threads_requested": 1,
         "solver_random_seed": 0,
+        "solver_versions": {"numpy": "1.26.4", "scipy": "1.16.2", "highs": "1.8.0"},
         "metrics": [dict(row, endpoint_budget=budget) for row, budget in zip(metrics, checkpoints)],
         "integrated_closed_runs": sum(int(row["represented_runs"]) for row in metrics),
         "private_selection_fingerprint_sha256": fingerprint,

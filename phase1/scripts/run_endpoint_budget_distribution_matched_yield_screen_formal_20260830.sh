@@ -23,10 +23,14 @@ repo=/research/d7/spc/yzyang4/aira-dojo
 python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
 old_root=/research/d7/spc/yzyang4/endpoint-label-efficiency-smoke/formal-9f9705a-r1
 cards_root=/research/d7/spc/yzyang4/senior-0828-pair-audit/cards-f534114-v1
-root=/research/d7/spc/yzyang4/endpoint-distribution-matched-yield-screen/formal-${analysis_commit:0:7}-r1
+evidence_base=/research/d7/spc/yzyang4/endpoint-distribution-matched-yield-screen
+v1_root=$evidence_base/formal-68e943d-r1
+dp_root=$evidence_base/diagnostic-lower-bound-68e943d-r1
+sha_tie_root=$evidence_base/diagnostic-dp-sha-tie-68e943d-r1
+root=/research/d7/spc/yzyang4/endpoint-distribution-matched-yield-screen/formal-${analysis_commit:0:7}-r2
 worktree=$root/worktree
-protocol_rel=phase1/endpoint_budget_distribution_matched_yield_screen_v1.json
-protocol_sha=371a5a2d1e57de886995c3ad2c09426c8de813bf3018921d6553380af156c4f4
+protocol_rel=phase1/endpoint_budget_distribution_matched_yield_screen_v2.json
+protocol_sha=37ad2fab68227d4aa236f1ce8c70c6197d1160b3f885adc466288ea1af41b06e
 old_protocol_rel=phase1/endpoint_budget_label_efficiency_smoke_v1.json
 task_audit_rel=phase1/results/endpoint_budget_task_heterogeneity_audit_20260829_d2fb68c/public.json
 
@@ -49,18 +53,18 @@ test "$(sha256sum "$worktree/$protocol_rel" | awk '{print $1}')" = "$protocol_sh
 
 cat >"$root/preflight_13.txt" <<EOF
 01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
-02_goal=test a frozen distribution-matched yield acquisition rule that changes task allocation while exactly matching old breadth endpoint and induced-pair counts; PASS
-03_context=old pooled and task-macro deltas plus heterogeneity audit are disclosed in protocol; new selection objective witness predictions and metrics were unseen; PASS
+02_goal=test the frozen v2 distribution-matched yield rule with an exact DP lower-bound proof while matching old endpoint and induced-pair counts; PASS
+03_context=old efficacy audit v1 RC1 and both structural diagnostics are disclosed; no v2 endpoint witness prediction or task metric was seen; PASS
 04_population=bound 539-row train-only firewall with 401 outer-train and 138 held-run evaluation pairs; senior test and prospective cohorts forbidden; PASS
 05_split=unchanged salted physical-run fold0 evaluation and folds1-4 training; post-audit historical development only and never confirmation; PASS
 06_estimand=new minus old-yield task-macro accuracy at budgets 96 and 192 with pooled proper-score task-sign and robust-vs-uniform secondary checks; PASS
 07_controls=exact same endpoints budgets induced-pair counts fixed critic code representation labels evaluation pairs and old prediction witness; only task allocation rule changes; PASS
 08_thresholds=seven frozen screen gates including two-budget L1 and task-macro signs terminal pooled macro drop-dominant proper scores and task signs; no rescue; PASS
-09_randomness=deterministic two-stage MILP threads1 seed0 and SHA tie-break; LR random_state0; task/run bootstrap fixed seeds and 2000 repetitions; PASS
+09_randomness=pinned numpy1.26.4 scipy1.16.2 HiGHS1.8.0 threads1 seed0 constant-objective witness with private A/B identity; LR random_state0; bootstraps fixed; PASS
 10_resources=CPU single-thread two new critic fits under 30 minutes expected; GPU paid-API base-update 0/0/0; atomic per-budget resume; PASS
 11_outputs=selection public/private A/B fit CSV aggregate and private probabilities plus zero-refit independent primal/aggregate verifier A/B; PASS
 12_security=old formal manifest and 11 input SHA bindings checked; credential env unset; selection cannot open labels/cards/predictions and all stages forbid prospective/raw decision/network; PASS
-13_stop=any hash mode exact-count MILP A/B fit checkpoint verifier scanner or manifest failure exits before COMPLETE; failed gates cannot be altered; PASS
+13_stop=any hash mode DP-bound exact-count solver A/B fit checkpoint verifier scanner or manifest failure exits before COMPLETE; failed gates cannot be altered; PASS
 EOF
 test "$(wc -l <"$root/preflight_13.txt")" = 13
 
@@ -78,6 +82,19 @@ test "$(sha256sum "$old_root/fit/private_pairs.json" | awk '{print $1}')" = 1f9b
 test "$(sha256sum "$worktree/$task_audit_rel" | awk '{print $1}')" = 001f58d11f13016ba66e09bcee7aabe313f1defa4ad3756153254784343f6ab5
 test "$(sha256sum "$cards_root/cards.safe.json" | awk '{print $1}')" = 5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343
 test "$(sha256sum "$cards_root/security_scan.json" | awk '{print $1}')" = d41142279bdba7db4495664df6836eecec3a36016cd316164ee5e54d4518eccc
+test "$(sha256sum "$evidence_base/launch-68e943d.log" | awk '{print $1}')" = 330e2058995c3955ff579e179132bc99e4d54e5df64b9f870a2192a716dd51a6
+test "$(sha256sum "$v1_root/FAILED_RC" | awk '{print $1}')" = 4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865
+test "$(tr -d '\r\n' <"$v1_root/FAILED_RC")" = 1
+test ! -e "$v1_root/selection_a.public.json"
+test ! -e "$v1_root/selection_a.private.json"
+test ! -e "$v1_root/fit/summary.json"
+test -f "$dp_root/COMPLETE"
+test "$(sha256sum "$dp_root/public.json" | awk '{print $1}')" = 75e54acea9e5f797ab11d283c620ec332ee5ffc35ac8fa745f7c7f42a03cee54
+test "$(sha256sum "$dp_root/preflight_13.txt" | awk '{print $1}')" = e1d96cae958d55389632b85f9791efb38cabdfcd6410234af195a4ecc83c36c0
+test "$(sha256sum "$evidence_base/diagnose-dp-sha-tie-68e943d.log" | awk '{print $1}')" = bb4e51ca70bb3d260db2732147fb814ed242cf1baed4c2330b8d0ffb924fcecc
+test "$(sha256sum "$sha_tie_root/preflight_13.txt" | awk '{print $1}')" = 55352253e15c5ef9c464f34b9bc4047ce201865e682e34bb6b53d25a1d1b5244
+test ! -e "$sha_tie_root/public.json"
+test ! -e "$sha_tie_root/COMPLETE"
 
 (cd "$worktree" && "$python_bin" -m pytest -q \
   phase1/tests/test_endpoint_budget_distribution_matched_yield_screen.py \

@@ -11,12 +11,12 @@ from phase1 import verify_endpoint_budget_distribution_matched_yield_screen as v
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PROTOCOL = ROOT / "phase1" / "endpoint_budget_distribution_matched_yield_screen_v1.json"
+PROTOCOL = ROOT / "phase1" / "endpoint_budget_distribution_matched_yield_screen_v2.json"
 
 
 def test_protocol_freezes_post_audit_scope_and_exact_pair_matching() -> None:
     value = json.loads(PROTOCOL.read_text(encoding="utf-8"))
-    assert value["status"] == "FROZEN_AFTER_TASK_HETEROGENEITY_AUDIT_BEFORE_NEW_SELECTION_OR_PREDICTION"
+    assert value["status"] == "FROZEN_AFTER_V1_SOLVER_FAILURE_BEFORE_V2_ENDPOINT_WITNESS_OR_PREDICTION"
     assert value["selection"]["checkpoints"] == [72, 96, 120, 144, 168, 192]
     assert value["selection"]["exact_induced_pair_count"] == [36, 49, 61, 73, 85, 99]
     assert value["selection"]["task_anti_dominance_every_checkpoint"].startswith("5 *")
@@ -25,8 +25,11 @@ def test_protocol_freezes_post_audit_scope_and_exact_pair_matching() -> None:
     assert value["scope"]["scientific_confirmation"] is False
     assert value["scope"]["prospective_first960_target300_target522_values_forbidden"] is True
     assert all(value["known_before_freeze"][key] is False for key in (
-        "new_selection_seen", "new_distribution_objective_seen", "new_prediction_or_task_metric_seen"
+        "v1_endpoint_witness_emitted", "v1_prediction_or_metric_emitted",
+        "v2_endpoint_witness_seen", "v2_prediction_or_task_metric_seen",
     ))
+    assert value["known_before_freeze"]["dp_lower_bound_diagnostic"]["lower_bound_total"] == 22282
+    assert "producer A/B private bytes must be identical" in value["selection"]["tie_break"]
 
 
 def test_solver_matches_small_exhaustive_objective_and_is_deterministic() -> None:
@@ -57,14 +60,17 @@ def test_solver_matches_small_exhaustive_objective_and_is_deterministic() -> Non
 
 
 def test_time_limited_primary_incumbent_is_not_called_optimal(monkeypatch: pytest.MonkeyPatch) -> None:
-    edges = [smoke.graph_source.engine.Edge("u", "v", "p", "t", "r")]
+    edges = [
+        smoke.graph_source.engine.Edge(f"u{i}", f"v{i}", f"p{i}", f"t{i}", f"r{i}")
+        for i in range(5)
+    ]
     graph = smoke.graph_source.graph_from_edges(edges)
     protocol = {
         "selection": {
-            "checkpoints": [2],
-            "exact_induced_pair_count": [1],
-            "integrated_closed_run_floor": 1,
-            "terminal_parent_floor": 1,
+            "checkpoints": [10],
+            "exact_induced_pair_count": [5],
+            "integrated_closed_run_floor": 5,
+            "terminal_parent_floor": 5,
         }
     }
     monkeypatch.setattr(
@@ -79,10 +85,19 @@ def test_time_limited_primary_incumbent_is_not_called_optimal(monkeypatch: pytes
         ),
     )
     result, witness = producer.solve_distribution_matched(graph, protocol, 1)
-    assert result["status"] == "PRIMARY_OPTIMUM_NOT_RESOLVED"
+    assert result["status"] == "DP_LOWER_BOUND_WITNESS_NOT_RESOLVED"
     assert result["solver_status"] == 1
     assert result["solver_mip_gap"] == 0.25
     assert witness is None
+
+
+def test_task_count_lower_bound_matches_independent_verifier() -> None:
+    available = [1] * 20
+    assert producer.checkpoint_task_count_lower_bound(available, 20, 10) == 200
+    assert verifier.checkpoint_task_count_lower_bound(available, 20, 10) == 200
+    uneven = [8, 5, 4, 2, 1]
+    assert producer.checkpoint_task_count_lower_bound(uneven, 20, 10) == 100
+    assert verifier.checkpoint_task_count_lower_bound(uneven, 20, 10) == 100
 
 
 def test_independent_verifier_does_not_import_or_execute_producer() -> None:

@@ -35,6 +35,10 @@
 - A/B 单核 wall=`31.17/29.19s`，max RSS=`160752/160896 KiB`；network/prospective boundary hits=`0/0`；
 - prospective values、senior test、GPU、API、model fit、base update 均未使用。
 
+公开 commit=`dfdf8c28e29860f62327403e83f6bf7a3130a282` 的 fresh detached post-push replay 也已完成：focused=
+`3 passed in 0.43s`，producer A/B 与 independent verifier A/B 分别再次逐字节得到同一
+`86bdcee7...1314` / `7e3524f2...d37e`；network/prospective boundary/credential filename/blob hits=`0/0/0/0`。
+
 r1–r4 都在 scientific readout 前失败并保留：两次显式传输路径错误、一次 `PYTHONPATH` 缺失、一次 import-only preflight
 发现历史 falsification worktree 本来就早于 development module。r5 才是首个实际重建图并完成结果的运行；没有覆盖失败证据。
 

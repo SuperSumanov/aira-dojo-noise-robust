@@ -25,6 +25,9 @@ closed edges=`276/276,262/259`，task=`138/96,167/122`，run=`248/191,240/198`�
 原七门全部通过。producer A/B SHA=`86bdcee7...1314` 且逐字节一致；不导入 producer、独立重写 baseline order 与直接
 prefix induced-edge accounting 的 aggregate verifier A/B SHA=`7e3524f2...d37e`。它明确不声称重算未公开 private witness。
 
+公开 commit=`dfdf8c28e29860f62327403e83f6bf7a3130a282` 的 fresh detached post-push replay 再次逐字节复现同一 result/verifier
+SHA；focused=`3 passed in 0.43s`，network/prospective boundary/credential filename/blob hits=`0/0/0/0`。
+
 固定分类为 **`HISTORICAL_RUN_SPLIT_EXACT_BUDGET_YIELD_GUARDED_BREADTH_JOINTLY_FEASIBLE_DEVELOPMENT_ONLY`**：仍是已读历史图
 开发，不是外部确认、predictor accuracy 或 search utility。Target-522 candidate/profile 未见时，前瞻协议已改为 exact-B、
 private mode-0600 witness + non-importing graph verifier；不得用原 underfilled baseline。r1–r4 的 pre-readout 工程失败原样

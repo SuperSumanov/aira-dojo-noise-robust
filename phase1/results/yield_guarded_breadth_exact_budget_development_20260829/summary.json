@@ -1,6 +1,6 @@
 {
   "protocol": "yield-guarded-breadth-exact-budget-development-public-summary-v1",
-  "status": "DEVELOPMENT_COMPLETE_PENDING_PUBLIC_COMMIT_POSTPUSH_REPLAY",
+  "status": "DEVELOPMENT_COMPLETE_WITH_PUBLIC_COMMIT_POSTPUSH_REPLAY",
   "classification": "HISTORICAL_RUN_SPLIT_EXACT_BUDGET_YIELD_GUARDED_BREADTH_JOINTLY_FEASIBLE_DEVELOPMENT_ONLY",
   "raw_result_sha256": "86bdcee7005914d6fcdaf2f39be517cf725fed785f7e590f7916c97f11051314",
   "independent_aggregate_verification_sha256": "7e3524f260f28a24d6faba6e838270ba48985346832be3fd3ea97f8cd17bd37e",
@@ -39,6 +39,10 @@
     }
   },
   "verification": {
+    "public_commit": "dfdf8c28e29860f62327403e83f6bf7a3130a282",
+    "public_postpush_result_sha256": "86bdcee7005914d6fcdaf2f39be517cf725fed785f7e590f7916c97f11051314",
+    "public_postpush_verification_sha256": "7e3524f260f28a24d6faba6e838270ba48985346832be3fd3ea97f8cd17bd37e",
+    "public_postpush_focused_tests": "3 passed in 0.43s",
     "producer_repetitions": 2,
     "producer_results_byte_exact": true,
     "independent_verifier_repetitions": 2,

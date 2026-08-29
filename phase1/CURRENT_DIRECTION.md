@@ -38,6 +38,13 @@ fresh r5 development 已完成：focused=`18 passed`；dry-run=`64` requests、n
 missing-key attack 为 `rc=1`、network=`0`、raw/intent 均未创建。实际 live/API calls、GPU、model fit、base update=
 `0/0/0/0`。公开包见 `phase1/results/openrouter_full_context_live_v2_preflight_20260829_01af5ff/`。
 
+公开实现 commit=`69aa57acba50d298e20b222cd27ad8ee72a03d3d` 的 fresh detached post-push 复验也已完成：预检包
+`9/9`、focused=`18 passed in 1.87s`、dry/mock network=`0/0`，缺失凭据攻击仍在网络和 intent/raw 之前阻断；
+changed files=`18`、credential filename/blob=`0/0`。公开最小回执包见
+`phase1/results/openrouter_full_context_live_v2_postpush_20260829_69aa57a/`。一次 precommit 无界 full suite 曾错误消耗
+login-node 多线程 CPU，已中断且无科学输出；此后禁止在 login node 重复，详见
+`phase1/实验记录/2026-08-29/OpenRouterFullContext_v2_LiveTransport_PostPush回执.md`。
+
 当前状态固定为 **`LIVE_SMOKE_AUTHORIZED_BUT_CREDENTIAL_NOT_INSTALLED_FAIL_CLOSED`**：远端 mode-0600 `.env` 尚无
 `OPENROUTER_API_KEY` 变量。不得把聊天中的明文重新放进 tool command/stdin；只能由用户或学长直接写入远端 `.env`。变量名
 就绪后仍须先做不回显 key 的 account/catalog/privacy gate，再从公开 exact post-push commit 运行 smoke；PASS 也不自动授权

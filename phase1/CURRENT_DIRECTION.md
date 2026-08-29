@@ -1,4 +1,4 @@
-# 当前研究方向唯一入口（2026-08-29）
+# 当前研究方向唯一入口（2026-08-30）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
@@ -12,6 +12,31 @@
 > 支持审计改写；所有更早“唯一主实验”“主线已确认”措辞均按本段降为历史状态。
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
+
+## 0IZ. 2026-08-30 distribution-matched yield：结果前冻结的历史开发筛选
+
+0IY 已证明旧 pure breadth 的 pooled 小增益由大任务集中贡献，且 task-macro 在两个 endpoint budget 都下降；因此不再扩大旧规则，
+也不再拟合更大模型来掩盖 acquisition 机制。结果前已冻结新协议
+`endpoint_budget_distribution_matched_yield_screen_v1.json`，SHA-256=
+`371a5a2d1e57de886995c3ad2c09426c8de813bf3018921d6553380af156c4f4`。当前状态是
+**`FROZEN_AFTER_TASK_HETEROGENEITY_AUDIT_BEFORE_NEW_SELECTION_OR_PREDICTION`**，尚无新选择、新预测或新指标结果。
+
+新规则只改 endpoint acquisition：在与旧 yield arm 完全相同的 nested endpoint checkpoints
+`72/96/120/144/168/192` 和 induced-pair counts `36/49/61/73/85/99` 下，使 35 个 outer-train task 的已选 pair
+分布匹配其 train-only availability；每个 checkpoint 同时固定 task share `<=20%`、run share `<=10%`，并保留 integrated
+closed-run floor=`317`、terminal parent floor=`86`。两阶段单线程 MILP 先取得 exact integer optimum，再在固定 optimum 上用
+SHA-256 endpoint 权重确定性破同；任何 time-limit incumbent、非零 gap 或 A/B 漂移立即 fail-closed。
+
+只在历史 train-only fold0 开发人口上，预算 `96/192` 各拟合一个与 0IX 完全相同的 char-TFIDF LR；旧 uniform/yield prediction
+witness 原样复用，合计仅 2 个 CPU critic fits，GPU/付费 API/base update=`0/0/0`。七个结果前门同时要求：两预算 task-L1
+均严格改善、两预算 new-old task-macro accuracy 均为正、terminal 相对 uniform 的 pooled/macro/drop-dominant 不退化、terminal
+相对 old yield 的 log-loss/Brier 不退化、以及正 task 数不少于负 task 数。任一门失败即
+`POST_AUDIT_DISTRIBUTION_MATCHED_YIELD_SCREEN_DOES_NOT_ADVANCE`；禁止删任务、改权重、换预算或换 tie-break 救回。
+
+selection 命令行不接收 labels/cards/predictions/eval topology；fit 才接收已绑定的 train-only firewall。formal runner 要求 13 项预检、
+focused/full tests、producer A/B、private A/B、独立 verifier A/B、strace 网络/路径边界、credential scan、整棵 SHA manifest 和 sealed
+private files。即使七门全过，也只能称 **post-audit historical development promising**；确认必须等 rule-frozen 新 physical runs。
+完整设计见 `phase1/实验记录/2026-08-30/EndpointBudget_DistributionMatchedYield_Screen冻结.md`。
 
 ## 0IY. 2026-08-29 task-heterogeneity 机制审计：旧 breadth 过度分散，新规则应匹配任务密度
 

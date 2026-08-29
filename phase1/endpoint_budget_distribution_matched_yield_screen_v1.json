@@ -1,0 +1,105 @@
+{
+  "protocol": "endpoint-budget-distribution-matched-yield-screen-v1",
+  "status": "FROZEN_AFTER_TASK_HETEROGENEITY_AUDIT_BEFORE_NEW_SELECTION_OR_PREDICTION",
+  "date": "2026-08-30",
+  "scope": {
+    "paper_mainline": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+    "historical_post_audit_development_only": true,
+    "scientific_confirmation": false,
+    "outer_eval_fold": 0,
+    "senior_test_rows_forbidden": true,
+    "prospective_first960_target300_target522_values_forbidden": true,
+    "old_pure_breadth_rule_may_be_rescued": false,
+    "new_rule_may_advance_beyond_screen_without_new_protocol": false
+  },
+  "input_bindings": {
+    "artifact_source_commit": "9f9705a14eac5bf73a070ac7c37091a815c4e31b",
+    "old_smoke_protocol_sha256": "e0dd7414ce0885257234d87112507a3b89393260111398349dd22b05abb29761",
+    "firewall_receipt_sha256": "9291d9e715ccff4ecdfac39cd462379be2d6ecacedb9e6d38a1762c0e9d64ab3",
+    "train_only_topology_sha256": "832d892a69046a8cef72263fac2ea63ce2a79be8a132f761112a625328273c70",
+    "train_only_labels_sha256": "12240a6d67c31d1b17f1ac6ae2b2ebe7ef57303ff05c1d97bc71aabe4161a0e6",
+    "old_selection_public_sha256": "d1e4274b1046c4e4fea294818beb5522fcdd352a9379a2d72e8bc3255b59bd15",
+    "old_selection_private_sha256": "ab4c76721964b3a7c8554e551c5bc524043f111eb52c7a3eddec952553bb1445",
+    "old_fit_summary_sha256": "b8068e691c84c1413d1e21091bde4ef89914dc3a0777ff44ba92bfe57f1ed6ec",
+    "old_private_pair_witness_sha256": "1f9bcb84fe6652c8801ce3872f2c9bdc830c8d2dcaa8347eaaa9bb567f1300ce",
+    "task_heterogeneity_public_sha256": "001f58d11f13016ba66e09bcee7aabe313f1defa4ad3756153254784343f6ab5",
+    "safe_cards_sha256": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343",
+    "safe_cards_security_receipt_sha256": "d41142279bdba7db4495664df6836eecec3a36016cd316164ee5e54d4518eccc"
+  },
+  "known_before_freeze": {
+    "outer_train_pairs_tasks": [401, 35],
+    "outer_eval_pairs_tasks": [138, 20],
+    "old_yield_exact_induced_pairs_by_checkpoint": [36, 49, 61, 73, 85, 99],
+    "old_terminal_parent_count": 95,
+    "old_integrated_closed_run_count": 373,
+    "old_pooled_accuracy_delta_vs_uniform": {
+      "96": 0.021739130434782608,
+      "192": 0.036231884057971016
+    },
+    "old_task_macro_accuracy_delta_vs_uniform": {
+      "96": -0.03829778065072183,
+      "192": -0.1040206851971558
+    },
+    "old_induced_pair_task_l1": {
+      "96": 0.8042139549086468,
+      "192": 0.37869971535806946
+    },
+    "new_selection_seen": false,
+    "new_distribution_objective_seen": false,
+    "new_prediction_or_task_metric_seen": false
+  },
+  "selection": {
+    "arm": "distribution_matched_yield",
+    "checkpoints": [72, 96, 120, 144, 168, 192],
+    "exact_endpoint_budget": true,
+    "nested_trajectory": true,
+    "exact_induced_pair_count": [36, 49, 61, 73, 85, 99],
+    "task_target": "outer-train available canonical pair share n_t / 401; evaluation topology is not used",
+    "primary_integer_objective": "minimize sum_{b,t} abs(401 * selected_pairs_{b,t} - exact_pairs_b * available_pairs_t)",
+    "primary_objective_scope": "all six checkpoints and all 35 outer-train tasks",
+    "task_anti_dominance_every_checkpoint": "5 * selected_pairs_{b,t} <= exact_pairs_b",
+    "run_anti_dominance_every_checkpoint": "10 * selected_pairs_{b,r} <= exact_pairs_b",
+    "integrated_closed_run_floor": 317,
+    "terminal_parent_floor": 86,
+    "tie_break": "after fixing the integer optimum, minimize deterministic SHA256-derived endpoint weights across the nested trajectory",
+    "solver": "scipy.optimize.milp HiGHS; threads=1; random_seed=0; mip_rel_gap=0"
+  },
+  "fit": {
+    "budgets": [96, 192],
+    "critic": "the identical fixed char_wb TFIDF(3,5,max_features=30000,min_df=3,sublinear_tf=True) plus pairwise LR(C=0.5,lbfgs,max_iter=1500,random_state=0)",
+    "model_fits": 2,
+    "comparison_arms": ["exact_b_uniform_edge", "yield_guarded_breadth", "distribution_matched_yield"],
+    "old_arm_predictions": "reuse exact bound private witness; no old model refit",
+    "primary_screen_estimand": "distribution_matched_yield minus yield_guarded_breadth task-macro accuracy at both budgets",
+    "secondary": [
+      "pooled accuracy/log-loss/Brier versus old yield and uniform",
+      "task sign counts and task-clustered bootstrap",
+      "drop-dominant-task versus uniform",
+      "distribution L1 and exact induced pair count"
+    ],
+    "checkpoint_resume": "one mode-0600 atomic cell per new-arm budget"
+  },
+  "frozen_screen_gates": {
+    "new_task_distribution_l1_strictly_below_old_yield_at_both_budgets": true,
+    "new_minus_old_yield_task_macro_accuracy_positive_at_both_budgets": true,
+    "terminal_new_minus_uniform_pooled_accuracy_positive": true,
+    "terminal_new_minus_uniform_task_macro_accuracy_nonnegative": true,
+    "terminal_new_minus_uniform_drop_dominant_accuracy_nonnegative": true,
+    "terminal_new_minus_old_yield_log_loss_and_brier_nonworse": true,
+    "terminal_new_minus_old_yield_positive_task_count_at_least_negative": true
+  },
+  "interpretation": {
+    "pass_classification": "POST_AUDIT_DISTRIBUTION_MATCHED_YIELD_SCREEN_PROMISING_DEVELOPMENT_ONLY",
+    "fail_classification": "POST_AUDIT_DISTRIBUTION_MATCHED_YIELD_SCREEN_DOES_NOT_ADVANCE",
+    "pass_does_not_mean_confirmation": true,
+    "future_confirmation_required": "rule-frozen newly produced physical runs",
+    "no_rescue": "failed gates cannot be repaired by dropping/reweighting tasks, changing budgets, loosening pair matching or selecting another tie break"
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "critic_model_fits": 2,
+    "base_model_updates": 0,
+    "expected_cpu_minutes": "less than 30"
+  }
+}

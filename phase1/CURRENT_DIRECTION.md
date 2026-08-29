@@ -55,6 +55,11 @@ tie seed 或降门 rescue。仍可描述的稳定形状是 fold0/fold1 task inte
 `phase1/results/historical_run_split_breadth_pareto_20260829_6cdcc92/`，详见
 `phase1/实验记录/2026-08-29/RunSplitBreadthParetoFalsification_v1_正式裁决.md`。
 
+公开结果 commit=`a38b6f2f299b09a384f2f4a1edc290f97548d82d` 的 fresh detached post-push 也已完成：13 个正式包成员、
+result/verifier SHA 全精确，focused/full=`37/1588 passed`，credential filename/blob=`0/0`，remote manifest=
+`8aca13de...8cf1`；prospective values/senior test 未读。详见
+`phase1/实验记录/2026-08-29/RunSplitBreadthParetoFalsification_v1_PostPush回执.md`。
+
 ## 0IP. 2026-08-29 独立图未确认大幅 yield 增益；出现 breadth-at-near-equal-yield 新假设
 
 0IN 的全局 v1 失败完整保留；新假设明确降为 post-discovery 的稀缺标注区间，不声称全预算优势。0IO 的独立 residual 已知

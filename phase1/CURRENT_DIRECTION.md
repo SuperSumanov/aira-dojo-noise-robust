@@ -50,6 +50,12 @@ duplicate/reverse conflict=`0/0`，task/run 最大 share=`58/539,2/49`，八个 
 `phase1/results/historical_independent_sibling_graph_gate_20260829_7ad83d2/`，详见
 `phase1/实验记录/2026-08-29/IndependentSiblingGraphGate_v1_正式裁决.md`。
 
+发布 commit=`9a8ab7e4ecfd9d43f006a83f5eb891468e6a4251` 随后通过 fresh detached post-push：14 个 changed files、
+11 个 package members、producer/verifier SHA 全部精确；focused/full=`15/1573 passed`（47 warnings），credential
+filename/blob=`0/0`，prospective values/senior test 未读。r1 因误把整个 `phase1` 当 pytest root 收集命令行脚本而无
+`COMPLETE`；r2 只改为正式 `phase1/tests`，权威 manifest=`8d8865d8...840b`。详见
+`phase1/实验记录/2026-08-29/IndependentSiblingGraphGate_v1_PostPush回执.md`。
+
 ## 0IN. 2026-08-29 Tree Node → Sibling Label Yield 低预算正信号明确，但 v1 总门失败
 
 0IM 的 frozen b0 formal 已完成。task/run-balanced closure greedy 对强 `uniform_edge` 基线在 endpoint budget=512/1024

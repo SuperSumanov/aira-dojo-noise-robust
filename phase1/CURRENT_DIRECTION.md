@@ -13,23 +13,33 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0IX. 2026-08-29 endpoint-budget label-efficiency smoke 已在 readout 前冻结
+## 0IX. 2026-08-29 endpoint-budget label-efficiency smoke：描述性同向，但严格不晋级
 
 0IV 的 Target-522 topology rule 只有结构可行性，论文价值必须落到真实 endpoint execution 成本下的 downstream critic label
-efficiency。结果前冻结 single-fold smoke：已认证 senior-0819 strict residual 539 pairs，salted physical-run fold0 历史评估、
+efficiency。结果前冻结的 single-fold smoke 使用已认证 senior-0819 strict residual 539 pairs：salted physical-run fold0 历史评估、
 fold1--4 训练；只比较 exact-B uniform-edge 与 yield-guarded breadth，在 `4/32,8/32` 两个 endpoint budgets 拟合固定
-char-TFIDF LR，共 4 fits。accuracy 两点均严格为正、terminal log-loss/Brier 不劣及 drop-dominant-task 不反转才允许进入后续
-五折四臂协议；该门只是 advancement，不是科学确认。
+char-TFIDF LR，共 4 fits。固定分类为
+**`HISTORICAL_SINGLE_FOLD_ENDPOINT_LABEL_EFFICIENCY_SMOKE_DOES_NOT_ADVANCE`**：四项 advancement gate 只过 3 项，不能把该规则
+升级为确认性正主张，也不能按原两臂规则直接扩规模。
 
 协议 SHA-256=`e0dd7414...9761` 在本 comparison 的 selection witness、prediction、accuracy、log-loss 与 Brier 均未见时冻结。
 为落实“senior test 行绝不能进训练进程”，raw decision 只交给可信 split-firewall；selection 仅接收无方向 topology，fit 仅接收
 train-only orientation，二者命令行都没有 raw decision path。precommit firewall 功能检查精确复现 source/core/train-core/
-residual=`7644/1270/952/539` 与既有 residual fingerprint，并写出 `senior_test_rows_exported=0`；尚未运行 selection 或 fit。
+residual=`7644/1270/952/539` 与既有 residual fingerprint；formal receipt 再次确认 `senior_test_rows_exported=0`。
+
+两个预算上，yield-guarded breadth 的 accuracy delta 分别为 `+0.021739130434782608` 与
+`+0.036231884057971016`，log-loss delta 为 `-0.0025496231820229844` 与 `-0.004405386232297436`，Brier delta 为
+`-0.0012740898302717129` 与 `-0.0021991937887723906`；诱导训练 pairs 几乎相同（`49 vs 48`、`99 vs 100`），所以描述性信号
+不是简单的 label 数量膨胀。但两组 task/run-clustered 95% CI 均跨 0，且 terminal drop-dominant-task accuracy delta=
+`-0.038461538461538464`，触发预注册否决门。terminal 总体净增 5 个正确 pair，而去掉占 `34/138` 的最大任务后净少 4 个，
+说明当前增益高度异质，不能事后删任务或重加权救回 headline。
 
 每个 fit 原子 mode-0600 checkpoint/resume；私有 per-pair witness 只含 pair/task/run hashes 与 probability。独立 verifier 不导入
-训练模块且 0 refit，重算 pair-set、accuracy、log-loss、Brier、task/run clustered bootstrap、drop-dominant-task 与最终 gate。
-Windows synthetic=`11 passed, 1 skipped`，远端真实 SciPy/sklearn path=`12 passed`。资源固定 CPU 单线程、4 fits、预计
-20--45 分钟；GPU/API/base-update=`0/0/0`。完整设计见
+训练模块且 0 refit，精确重算 pair-set、三项指标、task/run clustered bootstrap、drop-dominant-task 与最终 gate；A/B 双跑逐字节
+一致。focused/full=`35 passed` / `1638 passed`。formal manifest=`4995bdf6...c6e38`，独立 summary/CSV SHA-256=
+`b8068e69...d6ec` / `5037e206...7a12`；postflight 对 4 个 checkpoint mode、7 个 boundary/network/credential scanner、整棵
+SHA256SUMS 全部精确通过。GPU/API/base-update=`0/0/0`。下一步仅允许先做不调参的匿名异质性机制审计，再结果前冻结新的
+task-quota/yield-guarded 规则；fold0 已用于开发，不能再冒充外部确认。完整设计与结果见
 `phase1/实验记录/2026-08-29/EndpointBudgetMatched_CriticLabelEfficiency_下一步设计.md`。
 
 ## 0IW. 2026-08-29 supervisor v1 因完成产物只读锁 fail-closed；v2 修复已冻结

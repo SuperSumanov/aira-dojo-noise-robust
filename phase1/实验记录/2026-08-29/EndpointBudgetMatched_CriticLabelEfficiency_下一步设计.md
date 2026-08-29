@@ -1,7 +1,7 @@
 # Endpoint-Budget-Matched Critic Label Efficiency：下一步设计
 
 日期：2026-08-29
-状态：`SINGLE_FOLD_SMOKE_PROTOCOL_FROZEN_NOT_RUN`
+状态：`SINGLE_FOLD_SMOKE_COMPLETE_DOES_NOT_ADVANCE`
 目的：把 topology-only 结构可行性推进为真正有论文价值的 downstream 正结论。
 
 ## 一句话问题
@@ -104,4 +104,33 @@ labels 会改善 predictor。Graph active learning、pairwise active sampling �
 
 结果前实现审计：Windows synthetic=`11 passed, 1 skipped`；远端真实 SciPy/sklearn path=`12 passed`。可信 firewall 的
 precommit 功能检查逐项复现 source/core/train-core/residual=`7644/1270/952/539`，strict-residual fingerprint 与既有认证一致，
-且 receipt 明确 `senior_test_rows_exported=0`；尚未运行 topology selection 或任何模型 fit。
+且 receipt 明确 `senior_test_rows_exported=0`。
+
+## 2026-08-29 formal 结果与裁决
+
+固定 formal root：`/research/d7/spc/yzyang4/endpoint-label-efficiency-smoke/formal-9f9705a-r1`；source commit=
+`9f9705a14eac5bf73a070ac7c37091a815c4e31b`，manifest SHA-256=
+`4995bdf6e936b2e7f62fb9f44174e69cc3752b203a950816b17d2dd01f4c6e38`。可信 firewall 与双跑验证均精确通过；
+source/core/train-core/residual=`7644/1270/952/539`，`senior_test_rows_exported=0`，prospective values used=`false`。
+
+| Endpoint budget | Uniform train pairs | Yield train pairs | Uniform acc | Yield acc | Acc delta | Log-loss delta | Brier delta |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 96 | 48 | 49 | 0.5434782608695652 | 0.5652173913043478 | +0.021739130434782608 | -0.0025496231820229844 | -0.0012740898302717129 |
+| 192 | 100 | 99 | 0.5434782608695652 | 0.5797101449275363 | +0.036231884057971016 | -0.004405386232297436 | -0.0021991937887723906 |
+
+两点 accuracy 与 calibration 描述性同向，而且 induced pair 数几乎匹配，排除了“只是产生更多 labels”这一最简单解释。但
+task-clustered CI 分别为 `[-0.10416666666666667, 0.1466842105263157]` 与
+`[-0.14288931788931789, 0.14592332676023664]`；run-clustered CI 也都跨 0。更关键的是 terminal drop-dominant-task delta=
+`-0.038461538461538464`：总体净多 5 个正确 pair，移除占 `34/138` 的最大任务后反而净少 4 个。
+
+因此预注册 gate 为 `true/true/true/false`，固定分类：
+**`HISTORICAL_SINGLE_FOLD_ENDPOINT_LABEL_EFFICIENCY_SMOKE_DOES_NOT_ADVANCE`**。这不是“没有任何信号”，而是“现有 breadth objective
+产生了有希望但任务主导的信号”；不能事后删任务、改权重或直接把原两臂扩成五折来救结论。允许的下一步只有先冻结并执行
+匿名任务异质性机制审计，再据结果提出新的 task-proportional/minimax quota + yield floor acquisition rule。所有历史 fold 只能作
+development；真正 confirmation 仍须用 acquisition rule 冻结后新产生的 future physical runs。
+
+独立 verifier 不导入 producer、0 model refits，状态=`INDEPENDENT_AGGREGATE_RECOMPUTATION_EXACT`，summary/CSV SHA-256=
+`b8068e691c84c1413d1e21091bde4ef89914dc3a0777ff44ba92bfe57f1ed6ec` /
+`5037e206092cd594b84e6ef895d226386a338b3d22cefea6f36a19e494747a12`。focused/full=`35 passed` /
+`1638 passed`；postflight 精确核验 SHA256SUMS、A/B 双跑、4 个 mode-0600 checkpoint 与 7 个空 scanner。GPU/API/base update=
+`0/0/0`。

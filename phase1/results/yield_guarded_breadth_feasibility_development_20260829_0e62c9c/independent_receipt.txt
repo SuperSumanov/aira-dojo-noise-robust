@@ -1,0 +1,10 @@
+status=INDEPENDENT_AGGREGATE_VERIFICATION_COMPLETE
+verifier_sha256=5079a6350a5f4e83a028f43cfa99e8217abeb486acab8ae345d371f607a9610c
+verification_sha256=c3680fb2a767ad51a3b3c1109f102ec56556d17ec33e041d248cdb9e22f06a2d
+ab_result_byte_exact=true
+private_witness_recomputed=false
+external_confirmation=false
+prospective_values_read=false
+senior_test_rows_used=false
+gpu_api_model_fit_base_update=0/0/0/0
+completed_utc=2026-08-29T02:12:02Z

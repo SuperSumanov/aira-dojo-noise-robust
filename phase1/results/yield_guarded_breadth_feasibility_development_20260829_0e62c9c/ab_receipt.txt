@@ -1,0 +1,17 @@
+status=DEVELOPMENT_AB_EXACT
+script_sha256=0e62c9c3bf15b689caf98ee73b2f22d1134e99b6c212960c958bd7021570942e
+preflight_sha256=3d3c5fa54877ef830c9fff67ae06a93330bbcfcd12448c8cbc6639deb5ad900b
+result_a_sha256=e43831946643d60654bb10b834278fd480c97292fcf91ea6dfa95962c77c191d
+result_b_sha256=e43831946643d60654bb10b834278fd480c97292fcf91ea6dfa95962c77c191d
+result_byte_exact=true
+self_test=PASS
+access_boundary_hits=0
+network_syscall_hits=0
+single_cpu_affinity=0
+solver_threads_requested=1
+solver_random_seed=0
+prospective_values_read=false
+senior_test_rows_used=false
+identities_emitted=false
+gpu_api_model_fit_base_update=0/0/0/0
+completed_utc=2026-08-29T02:08:40Z

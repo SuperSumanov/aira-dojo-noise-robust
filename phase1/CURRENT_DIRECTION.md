@@ -60,6 +60,14 @@ result/verifier SHA 全精确，focused/full=`37/1588 passed`，credential filen
 `8aca13de...8cf1`；prospective values/senior test 未读。详见
 `phase1/实验记录/2026-08-29/RunSplitBreadthParetoFalsification_v1_PostPush回执.md`。
 
+0IQ 后的 yield-guarded feasibility development 已得到一个窄正结论：把既有逐点 yield、task/run breadth、terminal parent 与
+anti-dominance 七门全部编码为同一 nested feasibility contract 后，fold0/fold1 均找到 witness。integrated
+closed-edge=`276/276,262/259`，同时 task=`138/96,167/122`、run=`248/191,240/198`；七门两折全过。
+result A/B SHA 均为 `e4383194...191d` 且逐字节一致，non-importing aggregate verifier=`c3680fb2...6a2d`；single-CPU
+wall=`27.33s`，access/network hits=`0/0`。这只证明已读历史图的联合可行性，未私下重算 endpoint witness，也不是 future
+confirmation、predictor accuracy 或 search utility。下一步须在下一张未见且 identity/run-disjoint graph 前先冻 private-witness
+双实现。详见 `phase1/实验记录/2026-08-29/YieldGuardedBreadthFeasibility_v2_开发裁决.md`。
+
 ## 0IP. 2026-08-29 独立图未确认大幅 yield 增益；出现 breadth-at-near-equal-yield 新假设
 
 0IN 的全局 v1 失败完整保留；新假设明确降为 post-discovery 的稀缺标注区间，不声称全预算优势。0IO 的独立 residual 已知

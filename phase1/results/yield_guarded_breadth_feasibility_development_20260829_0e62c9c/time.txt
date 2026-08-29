@@ -1,0 +1,23 @@
+	Command being timed: "strace -f -qq -e trace=file,network -o /research/d7/spc/yzyang4/yield-guarded-breadth-development/dev-0e62c9c-r2/access.trace taskset --cpu-list 0 /research/d7/spc/yzyang4/venvs/exp/bin/python /uac/y24/yzyang4/yield_guarded_breadth_milp_feasibility_v2_20260829.py --worktree /research/d7/spc/yzyang4/historical-run-split-breadth-pareto/formal-6cdcc92-r2/worktree --data-root /research/d7/spc/yzyang4/senior-0828-pair-audit/input-f534114-v3 --cards-root /research/d7/spc/yzyang4/senior-0828-pair-audit/cards-f534114-v1 --falsification-result /research/d7/spc/yzyang4/historical-run-split-breadth-pareto/formal-6cdcc92-r2/producer_a.json --time-limit-seconds 300 --output /research/d7/spc/yzyang4/yield-guarded-breadth-development/dev-0e62c9c-r2/result.json"
+	User time (seconds): 25.28
+	System time (seconds): 1.87
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:27.33
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 159320
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 114370
+	Voluntary context switches: 45442
+	Involuntary context switches: 231
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 1120
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

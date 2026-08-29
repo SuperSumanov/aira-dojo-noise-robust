@@ -1,0 +1,6 @@
+status=STOPPED_BEFORE_READOUT
+reason=HIGHS_PROCESS_THREAD_COUNT_EXCEEDED_SINGLE_THREAD_PREFLIGHT
+python_pid=137742
+threads_observed=20
+result_file_present=false
+stopped_at_utc=2026-08-29T02:00:04Z

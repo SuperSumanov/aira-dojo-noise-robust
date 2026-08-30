@@ -54,13 +54,13 @@ def test_extra_registry_arguments_remain_paired() -> None:
     assert text.count("--expect-extra-structural-rejection-registry-sha256 ") == 10
 
 
-def test_scientific_intake_migration_is_exactly_bound() -> None:
+def test_scientific_score_identity_migration_is_exactly_bound() -> None:
     values = assignments()
     assert values["SCIENTIFIC_REPO"] == (
-        "/research/d7/spc/yzyang4/worktrees/prospective_intake_consensus_3903a2a"
+        "/research/d7/spc/yzyang4/worktrees/prospective_score_identity_migration_5ed1988"
     )
     assert values["SCIENTIFIC_COMMIT"] == (
-        "3903a2aa40cd995097cbbe2911d3a9dd911758a8"
+        "5ed1988045a3fd8c365d001c87977314572383d9"
     )
     text = SCRIPT.read_text(encoding="utf-8")
     assert text.count("${SCIENTIFIC_COMMIT}") >= 4

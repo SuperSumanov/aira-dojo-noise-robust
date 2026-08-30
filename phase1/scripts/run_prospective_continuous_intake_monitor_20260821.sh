@@ -6,8 +6,8 @@ umask 077
 
 SOURCE_ROOT=/research/d7/spc/yzyang4/external/senior_data/mle
 STATE_ROOT=/research/d7/spc/yzyang4/prospective_decision_v1
-SCIENTIFIC_REPO=/research/d7/spc/yzyang4/worktrees/prospective_intake_consensus_3903a2a
-SCIENTIFIC_COMMIT=3903a2aa40cd995097cbbe2911d3a9dd911758a8
+SCIENTIFIC_REPO=/research/d7/spc/yzyang4/worktrees/prospective_score_identity_migration_5ed1988
+SCIENTIFIC_COMMIT=5ed1988045a3fd8c365d001c87977314572383d9
 PYTHON=/research/d7/spc/yzyang4/venvs/exp/bin/python
 REGISTRY_REL=phase1/results/prospective_structural_rejection_20260816/structural_rejections.json
 REGISTRY_SHA=d32cd70b7c755a8ad340cf376fd88f54ca1bea0a50cffbc5fa4cb58bc97ffb01

@@ -23,6 +23,10 @@ reliability gates、分析与科学边界逐字段不变；只更新 DeepSeek �
 `0/0/0/0`。远端固定 venv 在正式 `umask 077` 下又通过 focused/full=`9/1680 passed`；第一次漏设 umask 的 0644 private
 fixture 被安全门正确拒绝并保留为工程失败回执。
 
+公开 commit=`b19e23d5090a08e2f1d059131772266644f17a98` 的 fresh detached post-push 又通过 focused/full=
+`9 passed in 1.33s` / `1680 passed, 48 warnings in 97.36s`；changed paths=`8`、credential filename/blob=`0/0`、
+三项新增机器 artifact SHA 与冻结值逐字节一致，worktree clean。独立根=`openrouter-catalog-refresh-postpush/verify-3KnXk4`。
+
 远端 `.env` mode=600，但截至 `2026-08-30T01:41:34Z` 仍没有 `OPENROUTER_API_KEY` 变量；聊天明文没有转存。只有用户或
 学长直接安全安装后，才重跑不回显值的 account/catalog/privacy gate；目录再漂移或任何 transport contract 不满足即
 fail-closed。smoke PASS 也不自动授权 full。详见同日结果前修复记录。

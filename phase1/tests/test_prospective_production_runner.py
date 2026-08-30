@@ -7,6 +7,8 @@ from pathlib import Path
 import pytest
 
 from phase1.prospective_production_runner import (
+    ARCHIVE_CONSENSUS_PROTOCOL,
+    ARCHIVE_CONSENSUS_PROTOCOL_SHA256,
     ALIAS_REASON_CODE,
     ProductionError,
     apply_archive_content_aliases,
@@ -24,6 +26,8 @@ from phase1.prospective_production_runner import (
     sha256_bytes,
     structural_rejection_specs,
     update_observations,
+    verify_archive_consensus_receipt,
+    verify_intake_binding,
     write_payload_manifest,
 )
 
@@ -324,6 +328,56 @@ def test_transaction_registry_rejects_duplicate_archive_identity(tmp_path: Path)
     second["archive_sha256"] = first["archive_sha256"]
     with pytest.raises(ProductionError, match="duplicate transaction identity"):
         parse_transactions(canonical_jsonl([first, second]))
+
+
+def test_intake_and_independent_consensus_receipts_are_strictly_bound(tmp_path: Path):
+    archive = tmp_path / "spaceship-titanic-2seeds.tar.gz"
+    archive.write_bytes(b"immutable-archive")
+    archive_sha = sha256_bytes(archive.read_bytes())
+    intake = tmp_path / "intake"
+    intake.mkdir()
+    summary = {
+        "configuration": {
+            "archive_selection": "explicit_names",
+            "selected_archive_names": [archive.name],
+            "archive_consensus_fallback_protocol": ARCHIVE_CONSENSUS_PROTOCOL,
+            "archive_consensus_fallback_protocol_sha256": (
+                ARCHIVE_CONSENSUS_PROTOCOL_SHA256
+            ),
+        },
+        "inventory": {"archive_consensus_fallback_runs": 1},
+    }
+    (intake / "summary.json").write_text(json.dumps(summary) + "\n", encoding="utf-8")
+    (intake / "archive_manifest.tsv").write_text(
+        f"name\tsize\tsha256\n{archive.name}\t{archive.stat().st_size}\t{archive_sha}\n",
+        encoding="utf-8",
+    )
+    intake_sha, fallback_runs = verify_intake_binding(intake, archive, archive_sha)
+    assert fallback_runs == 1
+
+    receipt = {
+        "status": "ARCHIVE_CONSENSUS_INDEPENDENT_VERIFICATION_PASS",
+        "archive_sha256": archive_sha,
+        "intake_summary_sha256": intake_sha,
+        "archive_consensus_fallback_journals": 1,
+        "security": {
+            "env_or_key_members_opened": False,
+            "live_event_journals_opened": False,
+            "label_vault_opened": False,
+            "outcomes_predictions_accuracy_utility_read": False,
+            "competition_identities_emitted": False,
+        },
+    }
+    receipt_path = tmp_path / "verification.json"
+    receipt_path.write_text(json.dumps(receipt) + "\n", encoding="utf-8")
+    assert len(verify_archive_consensus_receipt(
+        receipt_path, archive_sha, intake_sha, fallback_runs
+    )) == 64
+
+    receipt["security"]["label_vault_opened"] = True
+    receipt_path.write_text(json.dumps(receipt) + "\n", encoding="utf-8")
+    with pytest.raises(ProductionError, match="verification receipt mismatch"):
+        verify_archive_consensus_receipt(receipt_path, archive_sha, intake_sha, fallback_runs)
 
 
 def test_safe_drop_id_is_deterministic_and_bounded():

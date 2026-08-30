@@ -12,24 +12,38 @@ import pytest
 
 from phase1.cards import TaskInfo, parse_journal, parse_journal_nodes
 from phase1.fixed_decision_scorer import load_blind_manifest, parse_utc
-from phase1.prospective_drop_intake import IntakeError, build
+from phase1.prospective_drop_intake import (
+    ARCHIVE_CONSENSUS_PROTOCOL_SHA256,
+    IntakeError,
+    build,
+)
+from phase1.verify_prospective_intake_archive_consensus import (
+    ConsensusVerificationError,
+    verify as verify_archive_consensus,
+)
 
 
 START = 1_780_000_000.0
 
 
-def journal_nodes(code_suffix: str = "") -> list[dict]:
+def journal_nodes(
+    code_suffix: str = "",
+    *,
+    id_suffix: str = "",
+    competition_id: str | None = "spaceship-titanic",
+) -> list[dict]:
     metric = {
-        "competition_id": "spaceship-titanic",
         "is_lower_better": False,
         "gold_threshold": 0.9,
         "silver_threshold": 0.8,
         "bronze_threshold": 0.7,
     }
+    if competition_id is not None:
+        metric["competition_id"] = competition_id
     return [
         {
             "step": 0,
-            "id": "root",
+            "id": f"root{id_suffix}",
             "code": "",
             "parents": [],
             "creation_time": START,
@@ -39,7 +53,7 @@ def journal_nodes(code_suffix: str = "") -> list[dict]:
         },
         {
             "step": 1,
-            "id": "left",
+            "id": f"left{id_suffix}",
             "code": f"print('left{code_suffix}')",
             "parents": [0],
             "creation_time": START + 1,
@@ -50,7 +64,7 @@ def journal_nodes(code_suffix: str = "") -> list[dict]:
         },
         {
             "step": 2,
-            "id": "right",
+            "id": f"right{id_suffix}",
             "code": "print('right')",
             "parents": [0],
             "creation_time": START + 2,
@@ -93,6 +107,20 @@ def make_archive(
         add_bytes(handle, f"{root}/env_variables.json", json.dumps({"API_KEY": fake_secret}).encode())
         if unsafe_name is not None:
             add_bytes(handle, unsafe_name, b"unsafe")
+
+
+def make_multi_archive(path: Path, journals: list[bytes]) -> None:
+    with tarfile.open(path, "w:gz") as handle:
+        for index, blob in enumerate(journals, 1):
+            root = f"drop/run_seed_{index}"
+            add_bytes(handle, f"{root}/checkpoint/journal.jsonl", blob)
+            add_bytes(handle, f"{root}/json/JOURNAL.jsonl", blob)
+            fake_secret = "sk" + "-" + "x" * 32
+            add_bytes(
+                handle,
+                f"{root}/env_variables.json",
+                json.dumps({"API_KEY": fake_secret}).encode(),
+            )
 
 
 def make_receipt(path: Path, activated_at: str) -> str:
@@ -167,6 +195,7 @@ def test_intake_never_reads_or_extracts_env_and_emits_fixed_scorer_schema(tmp_pa
         "eligible_structural_pairs": 1,
         "no_scoreable_code_runs": 0,
         "empty_code_nodes_excluded": 0,
+        "archive_consensus_fallback_runs": 0,
     }
     assert summary["security"]["env_members_read"] is False
     assert summary["security"]["env_members_extracted"] is False
@@ -362,6 +391,185 @@ def test_explicit_archive_selection_fails_closed(
     arguments.archive_name = names
 
     with pytest.raises(IntakeError, match=match):
+        build(arguments)
+    assert not arguments.out_dir.exists()
+
+
+def test_archive_consensus_fills_only_missing_journal_and_audits_source(tmp_path: Path):
+    drop = tmp_path / "drop"
+    drop.mkdir()
+    archive_name = "spaceship-titanic-2seeds.tar.gz"
+    make_multi_archive(
+        drop / archive_name,
+        [
+            journal_blob(journal_nodes(id_suffix="-a")),
+            journal_blob(journal_nodes(id_suffix="-b", competition_id=None)),
+        ],
+    )
+    receipt = tmp_path / "receipt.json"
+    receipt_sha = make_receipt(receipt, "2026-01-01T00:00:00Z")
+    arguments = args_for(drop, receipt, tmp_path / "intake", receipt_sha)
+    arguments.archive_name = [archive_name]
+
+    assert build(arguments) == 0
+    summary = json.loads((arguments.out_dir / "summary.json").read_text(encoding="utf-8"))
+    provenance = json.loads(
+        (arguments.out_dir / "source_provenance.json").read_text(encoding="utf-8")
+    )
+    audits = json.loads(
+        (arguments.out_dir / "archive_audits.json").read_text(encoding="utf-8")
+    )
+    assert summary["inventory"]["runs"] == 2
+    assert summary["inventory"]["archive_consensus_fallback_runs"] == 1
+    assert summary["configuration"]["archive_consensus_fallback_protocol_sha256"] == (
+        ARCHIVE_CONSENSUS_PROTOCOL_SHA256
+    )
+    assert sorted(row["competition_id_source"] for row in provenance) == [
+        "archive_consensus_fallback",
+        "explicit_journal",
+    ]
+    assert audits == [
+        {
+            "archive_name": archive_name,
+            "archive_consensus_fallback_used": True,
+            "checkpoint_runs": 2,
+            "checkpoint_with_live_event_log": 2,
+            "checkpoint_without_live_event_log": 0,
+            "competition_id_archive_consensus_fallback_journals": 1,
+            "competition_id_explicit_journals": 1,
+            "declared_member_bytes": audits[0]["declared_member_bytes"],
+            "discovered_run_roots": 2,
+            "live_only_runs_excluded": 0,
+            "members": 6,
+        }
+    ]
+    archive = drop / archive_name
+    summary_path = arguments.out_dir / "summary.json"
+    verification = verify_archive_consensus(
+        archive,
+        hashlib.sha256(archive.read_bytes()).hexdigest(),
+        arguments.out_dir,
+        hashlib.sha256(summary_path.read_bytes()).hexdigest(),
+    )
+    assert verification["status"] == "ARCHIVE_CONSENSUS_INDEPENDENT_VERIFICATION_PASS"
+    assert verification["checkpoint_journals"] == 2
+    assert verification["archive_consensus_fallback_journals"] == 1
+    assert verification["security"]["competition_identities_emitted"] is False
+
+
+def test_archive_consensus_independent_verifier_rejects_provenance_tamper(tmp_path: Path):
+    drop = tmp_path / "drop"
+    drop.mkdir()
+    archive_name = "spaceship-titanic-2seeds.tar.gz"
+    archive = drop / archive_name
+    make_multi_archive(
+        archive,
+        [
+            journal_blob(journal_nodes(id_suffix="-a")),
+            journal_blob(journal_nodes(id_suffix="-b", competition_id=None)),
+        ],
+    )
+    receipt = tmp_path / "receipt.json"
+    receipt_sha = make_receipt(receipt, "2026-01-01T00:00:00Z")
+    arguments = args_for(drop, receipt, tmp_path / "intake", receipt_sha)
+    arguments.archive_name = [archive_name]
+    build(arguments)
+    provenance_path = arguments.out_dir / "source_provenance.json"
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    provenance[0]["competition_id_source"] = "archive_consensus_fallback"
+    provenance_path.write_text(json.dumps(provenance) + "\n", encoding="utf-8")
+
+    with pytest.raises(ConsensusVerificationError, match="summary hash mismatch"):
+        verify_archive_consensus(
+            archive,
+            hashlib.sha256(archive.read_bytes()).hexdigest(),
+            arguments.out_dir,
+            hashlib.sha256((arguments.out_dir / "summary.json").read_bytes()).hexdigest(),
+        )
+
+
+@pytest.mark.parametrize(
+    "archive_name,journals,match",
+    [
+        (
+            "wrong-task-2seeds.tar.gz",
+            [
+                journal_blob(journal_nodes(id_suffix="-a")),
+                journal_blob(journal_nodes(id_suffix="-b", competition_id=None)),
+            ],
+            "does not match archive stem",
+        ),
+        (
+            "spaceship-titanic-2seeds.tar.gz",
+            [
+                journal_blob(journal_nodes(id_suffix="-a", competition_id=None)),
+                journal_blob(journal_nodes(id_suffix="-b", competition_id=None)),
+            ],
+            "at least one explicit competition",
+        ),
+        (
+            "spaceship-titanic-3seeds.tar.gz",
+            [
+                journal_blob(journal_nodes(id_suffix="-a")),
+                journal_blob(journal_nodes(id_suffix="-b", competition_id="other-task")),
+                journal_blob(journal_nodes(id_suffix="-c", competition_id=None)),
+            ],
+            "exactly one explicit competition",
+        ),
+    ],
+)
+def test_archive_consensus_ambiguity_fails_closed(
+    tmp_path: Path, archive_name: str, journals: list[bytes], match: str
+):
+    drop = tmp_path / "drop"
+    drop.mkdir()
+    make_multi_archive(drop / archive_name, journals)
+    receipt = tmp_path / "receipt.json"
+    receipt_sha = make_receipt(receipt, "2026-01-01T00:00:00Z")
+    arguments = args_for(drop, receipt, tmp_path / "intake", receipt_sha)
+    arguments.archive_name = [archive_name]
+
+    with pytest.raises(IntakeError, match=match):
+        build(arguments)
+    assert not arguments.out_dir.exists()
+
+
+def test_archive_consensus_rejects_multiple_ids_within_one_journal(tmp_path: Path):
+    drop = tmp_path / "drop"
+    drop.mkdir()
+    nodes = journal_nodes(id_suffix="-a")
+    nodes[2]["metric_info"]["competition_id"] = "other-task"
+    archive_name = "spaceship-titanic-2seeds.tar.gz"
+    make_multi_archive(
+        drop / archive_name,
+        [journal_blob(nodes), journal_blob(journal_nodes(id_suffix="-b", competition_id=None))],
+    )
+    receipt = tmp_path / "receipt.json"
+    receipt_sha = make_receipt(receipt, "2026-01-01T00:00:00Z")
+    arguments = args_for(drop, receipt, tmp_path / "intake", receipt_sha)
+    arguments.archive_name = [archive_name]
+
+    with pytest.raises(IntakeError, match="more than one competition"):
+        build(arguments)
+    assert not arguments.out_dir.exists()
+
+
+def test_archive_consensus_requires_explicit_single_archive_selection(tmp_path: Path):
+    drop = tmp_path / "drop"
+    drop.mkdir()
+    archive_name = "spaceship-titanic-2seeds.tar.gz"
+    make_multi_archive(
+        drop / archive_name,
+        [
+            journal_blob(journal_nodes(id_suffix="-a")),
+            journal_blob(journal_nodes(id_suffix="-b", competition_id=None)),
+        ],
+    )
+    receipt = tmp_path / "receipt.json"
+    receipt_sha = make_receipt(receipt, "2026-01-01T00:00:00Z")
+    arguments = args_for(drop, receipt, tmp_path / "intake", receipt_sha)
+
+    with pytest.raises(IntakeError, match="one explicitly selected immutable archive"):
         build(arguments)
     assert not arguments.out_dir.exists()
 

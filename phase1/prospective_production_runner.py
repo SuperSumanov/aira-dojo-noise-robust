@@ -32,6 +32,13 @@ ALIAS_PROTOCOL = "prospective_archive_content_alias_v1"
 ALIAS_REASON_CODE = "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION"
 ACTIVE_RECEIPT_SHA256 = "cfab01a80536a50ef21c47ac269c7ce54a11a3b1f0b6daa5700873cbb02ce178"
 FIXED_SCORER_DIR = "fixed_decision_scorer_v11_20260814"
+ARCHIVE_CONSENSUS_PROTOCOL = "prospective-intake-archive-consensus-fallback-v1"
+ARCHIVE_CONSENSUS_PROTOCOL_SHA256 = (
+    "3110da4403fa0477454d8e1415fd23e9a7a7482694b778784c9d5270b8e4993e"
+)
+ARCHIVE_CONSENSUS_VERIFICATION_STATUS = (
+    "ARCHIVE_CONSENSUS_INDEPENDENT_VERIFICATION_PASS"
+)
 SHA_RX = re.compile(r"[0-9a-f]{64}")
 DROP_RX = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}")
 TRANSACTION_KEYS = {
@@ -752,7 +759,9 @@ def run_logged(
             raise ProductionError(f"forbidden file marker in subprocess trace: {hits}")
 
 
-def verify_intake_binding(intake_dir: Path, archive: Path, archive_sha: str) -> str:
+def verify_intake_binding(
+    intake_dir: Path, archive: Path, archive_sha: str
+) -> tuple[str, int]:
     summary_path = intake_dir / "summary.json"
     summary = read_json(summary_path)
     configuration = summary.get("configuration")
@@ -760,13 +769,52 @@ def verify_intake_binding(intake_dir: Path, archive: Path, archive_sha: str) -> 
         raise ProductionError("intake did not record explicit archive selection")
     if configuration.get("selected_archive_names") != [archive.name]:
         raise ProductionError("intake selected archive name mismatch")
+    if (
+        configuration.get("archive_consensus_fallback_protocol")
+        != ARCHIVE_CONSENSUS_PROTOCOL
+        or configuration.get("archive_consensus_fallback_protocol_sha256")
+        != ARCHIVE_CONSENSUS_PROTOCOL_SHA256
+    ):
+        raise ProductionError("intake archive-consensus protocol binding mismatch")
+    inventory = summary.get("inventory")
+    fallback_runs = (
+        inventory.get("archive_consensus_fallback_runs")
+        if isinstance(inventory, dict)
+        else None
+    )
+    if isinstance(fallback_runs, bool) or not isinstance(fallback_runs, int) or fallback_runs < 0:
+        raise ProductionError("intake archive-consensus fallback count is invalid")
     with (intake_dir / "archive_manifest.tsv").open("r", encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
     if len(rows) != 1 or rows[0].get("name") != archive.name or rows[0].get(
         "sha256"
     ) != archive_sha:
         raise ProductionError("intake archive manifest binding mismatch")
-    return sha256(summary_path)
+    return sha256(summary_path), fallback_runs
+
+
+def verify_archive_consensus_receipt(
+    receipt_path: Path,
+    archive_sha: str,
+    intake_sha: str,
+    fallback_runs: int,
+) -> str:
+    receipt = read_json(receipt_path)
+    security = receipt.get("security")
+    if (
+        receipt.get("status") != ARCHIVE_CONSENSUS_VERIFICATION_STATUS
+        or receipt.get("archive_sha256") != archive_sha
+        or receipt.get("intake_summary_sha256") != intake_sha
+        or receipt.get("archive_consensus_fallback_journals") != fallback_runs
+        or not isinstance(security, dict)
+        or security.get("env_or_key_members_opened") is not False
+        or security.get("live_event_journals_opened") is not False
+        or security.get("label_vault_opened") is not False
+        or security.get("outcomes_predictions_accuracy_utility_read") is not False
+        or security.get("competition_identities_emitted") is not False
+    ):
+        raise ProductionError("archive-consensus independent verification receipt mismatch")
+    return sha256(receipt_path)
 
 
 def write_payload_manifest(root: Path) -> tuple[int, str]:
@@ -867,9 +915,42 @@ def process_archive(
         require_strace=False,
         audit_no_outcomes=False,
     )
-    intake_sha = verify_intake_binding(intake_stage, archive, archive_sha)
+    intake_sha, fallback_runs = verify_intake_binding(intake_stage, archive, archive_sha)
     if sha256(archive) != archive_sha:
         raise ProductionError("archive changed during intake")
+    consensus_verification_sha: str | None = None
+    if fallback_runs > 0:
+        consensus_verification = snapshot_stage / "archive_consensus_verification.json"
+        consensus_command = [
+            python,
+            "-m",
+            "phase1.verify_prospective_intake_archive_consensus",
+            "--archive",
+            str(archive),
+            "--expect-archive-sha256",
+            archive_sha,
+            "--intake-dir",
+            str(intake_stage),
+            "--expect-intake-summary-sha256",
+            intake_sha,
+            "--out",
+            str(consensus_verification),
+        ]
+        run_logged(
+            consensus_command,
+            logs / "01b_archive_consensus_verification.log",
+            cwd=repo_root,
+            require_strace=False,
+            audit_no_outcomes=False,
+        )
+        consensus_verification_sha = verify_archive_consensus_receipt(
+            consensus_verification,
+            archive_sha,
+            intake_sha,
+            fallback_runs,
+        )
+        if sha256(archive) != archive_sha:
+            raise ProductionError("archive changed during consensus verification")
     score_command = [
         python,
         "-m",
@@ -974,6 +1055,8 @@ def process_archive(
         "transaction_registry_sha256": transaction_sha,
         "transactions": len(proposed),
         "accumulator_status": accumulator_summary.get("status"),
+        "archive_consensus_fallback_runs": fallback_runs,
+        "archive_consensus_verification_sha256": consensus_verification_sha,
         "security": {
             "api_calls": 0,
             "gpu_jobs": 0,

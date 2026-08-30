@@ -33,6 +33,15 @@ from .endpoint_denylist import (
 
 
 PROTOCOL = "prospective_drop_intake_v1"
+ARCHIVE_CONSENSUS_PROTOCOL = "prospective-intake-archive-consensus-fallback-v1"
+ARCHIVE_CONSENSUS_PROTOCOL_SHA256 = (
+    "3110da4403fa0477454d8e1415fd23e9a7a7482694b778784c9d5270b8e4993e"
+)
+ARCHIVE_CONSENSUS_PROTOCOL_PATH = Path(
+    "phase1/prospective_intake_archive_consensus_fallback_v1.json"
+)
+ARCHIVE_SEED_SUFFIX = re.compile(r"^(?P<stem>.+)-[0-9]+seeds\.tar\.gz$")
+NON_ASCII_ALNUM = re.compile(r"[^a-z0-9]+")
 CREDENTIAL = re.compile(
     rb"(?:^|[^A-Za-z0-9])(?:sk-[A-Za-z0-9._-]{16,}|hf_[A-Za-z0-9]{16,}|"
     rb"gh[pousr]_[A-Za-z0-9]{16,}|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|"
@@ -206,7 +215,7 @@ def journals_from_archive(
     return selected, audit
 
 
-def decode_journal(blob: bytes) -> tuple[list[dict[str, Any]], str, str]:
+def parse_journal_rows(blob: bytes) -> list[dict[str, Any]]:
     try:
         text = blob.decode("utf-8")
     except UnicodeDecodeError as error:
@@ -224,6 +233,84 @@ def decode_journal(blob: bytes) -> tuple[list[dict[str, Any]], str, str]:
         nodes.append(value)
     if not nodes:
         raise IntakeError("empty journal")
+    return nodes
+
+
+def competition_ids(nodes: list[dict[str, Any]]) -> set[str]:
+    competitions: set[str] = set()
+    for node in nodes:
+        metric_info = node.get("metric_info") or {}
+        if not isinstance(metric_info, dict):
+            raise IntakeError("journal metric_info must be an object")
+        competition = metric_info.get("competition_id")
+        if competition:
+            competitions.add(str(competition))
+    return competitions
+
+
+def normalize_competition(value: str) -> str:
+    return NON_ASCII_ALNUM.sub("-", value.casefold()).strip("-")
+
+
+def resolve_archive_consensus(
+    sources: list[dict[str, Any]],
+    archive_name: str,
+    *,
+    explicitly_selected_single_archive: bool,
+    repo_root: Path,
+) -> tuple[str | None, dict[str, Any]]:
+    """Resolve a missing journal task only under the frozen one-archive consensus rule."""
+    per_journal: list[set[str]] = []
+    for source in sources:
+        identifiers = competition_ids(parse_journal_rows(source["blob"]))
+        if len(identifiers) > 1:
+            raise IntakeError("journal identifies more than one competition")
+        per_journal.append(identifiers)
+
+    explicit_journals = sum(bool(identifiers) for identifiers in per_journal)
+    missing_journals = len(per_journal) - explicit_journals
+    audit: dict[str, Any] = {
+        "competition_id_explicit_journals": explicit_journals,
+        "competition_id_archive_consensus_fallback_journals": 0,
+        "archive_consensus_fallback_used": False,
+    }
+    if missing_journals == 0:
+        return None, audit
+    if not explicitly_selected_single_archive:
+        raise IntakeError(
+            "missing competition requires one explicitly selected immutable archive"
+        )
+    if explicit_journals == 0:
+        raise IntakeError("archive consensus requires at least one explicit competition")
+
+    exact_union = set().union(*per_journal)
+    if len(exact_union) != 1:
+        raise IntakeError("archive consensus requires exactly one explicit competition")
+    normalized_union = {normalize_competition(value) for value in exact_union}
+    if "" in normalized_union or len(normalized_union) != 1:
+        raise IntakeError("archive consensus normalized competition is not unique")
+
+    suffix_match = ARCHIVE_SEED_SUFFIX.fullmatch(archive_name)
+    if suffix_match is None:
+        raise IntakeError("archive consensus requires a -Nseeds.tar.gz filename")
+    archive_stem = normalize_competition(suffix_match.group("stem"))
+    if archive_stem != next(iter(normalized_union)):
+        raise IntakeError("archive consensus competition does not match archive stem")
+
+    protocol_path = repo_root / ARCHIVE_CONSENSUS_PROTOCOL_PATH
+    if not protocol_path.is_file() or sha256(protocol_path) != ARCHIVE_CONSENSUS_PROTOCOL_SHA256:
+        raise IntakeError("archive consensus frozen protocol SHA mismatch")
+
+    audit["competition_id_archive_consensus_fallback_journals"] = missing_journals
+    audit["archive_consensus_fallback_used"] = True
+    return next(iter(exact_union)), audit
+
+
+def decode_journal(
+    blob: bytes,
+    archive_consensus: str | None = None,
+) -> tuple[list[dict[str, Any]], str, str, str]:
+    nodes = parse_journal_rows(blob)
 
     steps = [node.get("step") for node in nodes]
     if any(isinstance(step, bool) or not isinstance(step, int) for step in steps):
@@ -260,14 +347,14 @@ def decode_journal(blob: bytes) -> tuple[list[dict[str, Any]], str, str]:
         if float(creation) > now_epoch + 300:
             raise IntakeError("journal creation_time is implausibly in the future")
 
-    competitions = {
-        str((node.get("metric_info") or {}).get("competition_id"))
-        for node in nodes
-        if (node.get("metric_info") or {}).get("competition_id")
-    }
-    if len(competitions) != 1:
+    competitions = competition_ids(nodes)
+    if len(competitions) > 1:
+        raise IntakeError("journal identifies more than one competition")
+    if competitions:
+        return nodes, next(iter(competitions)), started, "explicit_journal"
+    if archive_consensus is None:
         raise IntakeError("journal must identify exactly one competition")
-    return nodes, competitions.pop(), started
+    return nodes, archive_consensus, started, "archive_consensus_fallback"
 
 
 def finite_or_none(value: Any) -> float | None:
@@ -282,10 +369,13 @@ def run_payload(
     archive_name: str,
     archive_sha: str,
     activated_at: dt.datetime,
+    archive_consensus: str | None = None,
 ) -> dict[str, Any]:
     blob = source["blob"]
     journal_sha = sha256_bytes(blob)
-    nodes, competition, started = decode_journal(blob)
+    nodes, competition, started, competition_id_source = decode_journal(
+        blob, archive_consensus
+    )
     if source["journal_mtime"] + 300 < parse_utc(started).timestamp():
         raise IntakeError("journal member mtime predates root creation_time")
     task = TaskInfo(
@@ -343,6 +433,7 @@ def run_payload(
         "journal_member": source["journal_member"],
         "journal_mtime": source["journal_mtime"],
         "journal_sha256": journal_sha,
+        "competition_id_source": competition_id_source,
         "flow_status": "scoreable" if cards else "no_scoreable_code",
         "endpoints": len(cards),
         "empty_code_nodes_excluded": len(parsed_cards) - len(cards),
@@ -467,6 +558,7 @@ def build(args: argparse.Namespace) -> int:
     journal_hashes: set[str] = set()
     total_journal_bytes = 0
     archive_audits: list[dict[str, Any]] = []
+    explicitly_selected_single_archive = requested_names is not None and len(archives) == 1
     for record in archive_records:
         if sha256(record["path"]) != record["sha256"]:
             raise IntakeError("archive changed after inventory freeze")
@@ -476,12 +568,26 @@ def build(args: argparse.Namespace) -> int:
             args.max_members_per_archive,
             args.max_total_member_bytes_per_archive,
         )
-        archive_audits.append({"archive_name": record["name"], **archive_audit})
+        archive_consensus, consensus_audit = resolve_archive_consensus(
+            sources,
+            record["name"],
+            explicitly_selected_single_archive=explicitly_selected_single_archive,
+            repo_root=args.repo_root,
+        )
+        archive_audits.append(
+            {"archive_name": record["name"], **archive_audit, **consensus_audit}
+        )
         for source in sources:
             total_journal_bytes += len(source["blob"])
             if total_journal_bytes > args.max_total_journal_bytes:
                 raise IntakeError("drop exceeds total-journal-byte cap")
-            run = run_payload(source, record["name"], record["sha256"], activated_at)
+            run = run_payload(
+                source,
+                record["name"],
+                record["sha256"],
+                activated_at,
+                archive_consensus,
+            )
             if run["journal_sha256"] in journal_hashes:
                 raise IntakeError("duplicate source journal across archives")
             journal_hashes.add(run["journal_sha256"])
@@ -535,6 +641,7 @@ def build(args: argparse.Namespace) -> int:
             "journal_member",
             "journal_mtime",
             "journal_sha256",
+            "competition_id_source",
             "flow_status",
             "endpoints",
             "empty_code_nodes_excluded",
@@ -580,6 +687,9 @@ def build(args: argparse.Namespace) -> int:
                 run["flow_status"] == "no_scoreable_code" for run in runs
             ),
             "empty_code_nodes_excluded": sum(run["empty_code_nodes_excluded"] for run in runs),
+            "archive_consensus_fallback_runs": sum(
+                run["competition_id_source"] == "archive_consensus_fallback" for run in runs
+            ),
         },
         "outputs": {
             "all_blind_views_sha256": all_blind_sha,
@@ -611,6 +721,10 @@ def build(args: argparse.Namespace) -> int:
         "configuration": {
             "archive_selection": "all_in_drop_dir" if requested_names is None else "explicit_names",
             "selected_archive_names": [path.name for path in archives],
+            "archive_consensus_fallback_protocol": ARCHIVE_CONSENSUS_PROTOCOL,
+            "archive_consensus_fallback_protocol_sha256": (
+                ARCHIVE_CONSENSUS_PROTOCOL_SHA256
+            ),
             "max_archives": args.max_archives,
             "max_archive_bytes": args.max_archive_bytes,
             "max_total_archive_bytes": args.max_total_archive_bytes,

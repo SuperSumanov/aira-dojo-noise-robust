@@ -69,6 +69,22 @@ manifest=`69149e510d0bc519363dc48b57e578a3933757ae500e8e830ab60ff849d0bba0`。�
 473 仅 `5<12`，按冻结 batch 门等待，receipt-support 也因此等待；Target-522 还差 49 runs。所有八个相关 monitor
 均存活；没有读取 label/outcome/prediction value/accuracy/utility，GPU/API/model fit/base update=`0/0/0/0`。
 
+一次性 delta receipt 随后被升级为独立 continuous chain，固定 exact commit=
+`2e59423736747f7d806d50a69fd1f312d4927c48`、seed=`0c0584b8...b07a`、默认 `96 polls x 300s=8h`。
+每次 LATEST 变化必须 primary A/B 与不导入 primary/production 的 grounded A/B 全部逐字节一致；两者都复验完整
+payload manifest 并独立重建 registry projections，任何失败不得推进唯一 state。primary 另新增 output/input overlap 与重复
+manifest path 拒绝门，grounded 拒绝 candidate hash、内容、额外字段、runner count 与 projection 漂移。
+
+第一次 activation 在 focused=`50 passed` 后，full suite 因 formal runner 声明但未实际导出 BLAS 单线程上限而达到约
+`2,948% CPU`；在 15% 主动终止精确 pytest process group，receipt/monitor/state promotion=`0/0/0`，失败根只读
+manifest=`1352c528368f70eff55a6e4ba8dfde809373785c21de4922efb4553af34c88f3`。v2 唯一执行变化是导出并逐项断言
+六个 thread caps=`1`，实测 pytest 约 79% CPU。fresh activation 通过 focused/full=`50/1835 passed`（48 warnings）、
+真实 primary/grounded 双 A/B 和 seed no-change smoke；activation manifest=
+`0b41b37e11355d5907ef0dac75913f7940d122def141d667f68e4d7db4b8fe6a`。部署 manifest=
+`30525bb7d78af6f2b76e9dee83368413efe57b853988476a92f1bacc67bca3c0`，postflight 时 PID=`1599587` live、
+lock held、state=LATEST、artifact count=0。该链是数据版本 lineage/auditability 的持续正面基础设施，不是 predictor/scaling/
+search-utility 方法效果；GPU/API/model fit/base update=`0/0/0/0`。
+
 ## 0KE. 2026-08-31 新归档 intake 在第二个 uncommitted archive fail-closed；共识回填规则已在 stem-match 前冻结
 
 267 个归档中的第一个新 archive 已形成 LATEST=`813f3c1c...2b54d`，first-960=`469 runs / 12,536 endpoints /

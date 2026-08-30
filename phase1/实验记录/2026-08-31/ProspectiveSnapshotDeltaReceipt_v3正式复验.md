@@ -73,3 +73,35 @@ snapshot 的 manifest payload，解析 transaction contract，从 transaction �
 
 因此，当前没有学长已上传但漏处理的 archive。新 archive 到达后，continuous intake 会先经过 6 小时 age、3 次观察和
 至少 600 秒稳定跨度，再进入相同 fail-closed 链；WL 累积到相对 468-run state 的 +12 门后才会重算。
+
+## Continuous lineage chain 部署
+
+一次性 receipt 已升级为每次 LATEST 变化自动运行的 continuous chain：
+
+- exact commit：`2e59423736747f7d806d50a69fd1f312d4927c48`；
+- seed：当前 `0c0584b8...b07a` formal receipt；
+- schedule：`96 x 300s`，约 8 小时；
+- 每个 successor：primary A/B + non-importing grounded A/B；
+- state 只在 immutable COMPLETE、manifest、trace/security、无 symlink、只读门全部通过后原子推进；
+- 任一失败保留 FAILED evidence，禁止同目录修补，state 不推进。
+
+第一轮 activation 暴露了一个执行错误：preflight 写着 single CPU，但 runner 没有实际 export BLAS thread caps，完整
+测试进程约 `2,948% CPU`。在 full suite 15% 时主动终止精确 pytest process group；focused=`50 passed`，receipt/
+monitor/state promotion=`0/0/0`，失败根 manifest=
+`1352c528368f70eff55a6e4ba8dfde809373785c21de4922efb4553af34c88f3`。
+
+v2 只添加并断言 `OPENBLAS/OMP/MKL/NUMEXPR/VECLIB/BLIS` 六个上限均为 1；实测 pytest 约 79% CPU。fresh
+activation 通过：
+
+- focused/full：`50/1835 passed`，48 warnings；
+- primary A/B、grounded A/B：均逐字节一致；
+- real delta：仍为 transactions `118->119`、inventory `+4/+4/+144/+7/+0`；
+- seed no-change monitor smoke：PASS，未创建伪 artifact；
+- activation manifest：
+  `0b41b37e11355d5907ef0dac75913f7940d122def141d667f68e4d7db4b8fe6a`；
+- deployment manifest：
+  `30525bb7d78af6f2b76e9dee83368413efe57b853988476a92f1bacc67bca3c0`；
+- postflight：PID `1599587` live、lock held、state=LATEST、artifact count=0、values read=false。
+
+这使语料 append-only 与 code/schema migration 不再依赖人工“看到 LATEST 变了再查”，而成为持续、双实现、可追溯的
+benchmark release lineage。允许称正面数据基础设施贡献；仍禁止称 critic accuracy、scaling 或 search utility 增益。

@@ -1,0 +1,31 @@
+{
+  "protocol": "vertex-cost-contrast-design-engineering-postpush-receipt-v1",
+  "status": "VERIFIED",
+  "checked_at_utc": "2026-08-30T02:25:46Z",
+  "commit": "c57bbbf14d9e7415452b404d373674c768a67cce",
+  "fresh_detached_root": "/research/d7/spc/yzyang4/vccd-engineering-postpush-20260830-r1",
+  "credential_scan": {
+    "commit_blobs_scanned": 5,
+    "secret_hits": 0
+  },
+  "bindings": {
+    "implementation_sha256": "e241864e136deab45c7ac58386d91bdf5eacb98ded2241a0a4a1605d8bfcd68f",
+    "test_sha256": "7e799d46b3687fecf16d06425b987bc3157f110bb1f8f460145e98a55e7f0518",
+    "contract_binding_match": true
+  },
+  "tests": {
+    "focused": "11 passed in 0.35s at pre-push",
+    "full_postpush": "1691 passed, 48 warnings in 96.72s",
+    "warnings": "existing sklearn/scipy deprecation warnings only"
+  },
+  "forbidden_file_read_calls_in_new_core_or_tests": 0,
+  "worktree_clean": true,
+  "prospective_values_read": false,
+  "gpu_paid_api_model_fit_base_update": [0, 0, 0, 0],
+  "first_failed_preflight_retained": {
+    "root": "/research/d7/spc/yzyang4/vccd-engineering-precommit-20260830-r1",
+    "rc": 128,
+    "reason": "shared repository did not yet contain the baseline commit; no tests or data reads occurred",
+    "retry_change": "r2 added only an explicit fetch and preserved r1"
+  }
+}

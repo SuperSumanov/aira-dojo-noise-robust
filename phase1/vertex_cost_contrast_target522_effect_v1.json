@@ -1,0 +1,363 @@
+{
+  "protocol": "vertex-cost-contrast-target522-effect-v1",
+  "version": 1,
+  "status": "FROZEN_BEFORE_TARGET522_CANDIDATE_PROFILE_OR_VALUES",
+  "frozen_at_utc": "2026-08-30T02:33:42Z",
+  "scientific_role": {
+    "question": "At the same paid endpoint budget, does a code-only D-optimal contrast design produce a more transferable pairwise critic than a topology-only representative uniform-edge order and the frozen yield-guarded breadth contract?",
+    "paper_role_if_confirmed": "Decision Corpus label-acquisition extension with endpoint-cost, dependent-clique, and run-clean accounting",
+    "not_claimed": [
+      "first D-optimal pairwise design",
+      "first active preference learning",
+      "first graph-feedback method",
+      "generic search-controller novelty",
+      "current predictor accuracy improvement",
+      "search utility improvement"
+    ],
+    "same_target522_family_disclosure": "The automatically selected Target-522 increment is shared with structure-only hypotheses, but this protocol fixes a new outcome-blind physical-run acquisition/evaluation split. It cannot rescue or replace any other Target-522 classification."
+  },
+  "prior_work_boundary": {
+    "accelerated_pairwise_d_optimal_design": "https://arxiv.org/abs/1901.06080",
+    "feedback_graph_bandits": "https://arxiv.org/abs/2105.14260",
+    "distinction_under_test": "one paid MLE endpoint execution reveals one scalar grade, while all complete sibling preferences among executed endpoints are dependent deterministic derivatives"
+  },
+  "freeze_state": {
+    "baseline_snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "latest_snapshot_sha256": "98f2cba9ca4b3ac6404305da2528a4e8c391ba795f74438a5e4cca1a162765fa",
+    "latest_structural_physical_runs": 468,
+    "snapshot_directory_count": 117,
+    "checked_at_utc": "2026-08-30T02:32:51Z",
+    "target522_candidate_present": false,
+    "target522_complete_present": false,
+    "target522_failed_present": false,
+    "candidate_identity_counts_graph_profile_code_features_or_selections_seen": false,
+    "config_v2_sidecar_filename_count": 0,
+    "prospective_values_read": false,
+    "first960_accrual_closure_complete": false,
+    "target522_selection_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+    "target522_selection_protocol": {
+      "path": "phase1/tree_linearization_within_stratum_forward_target522_v2.json",
+      "sha256": "718224d9586b45a1bf6689c2bb9dd1d6b76e7243b8ddd2267dcf94fc6ea2667f"
+    },
+    "target522_selection_monitor": {
+      "path": "phase1/scripts/latch_tree_within_stratum_forward_target522_20260828.sh",
+      "sha256": "8cab471b3c57c07711238f19cbcc80836aa7f4450faedf6ca50d60a306d4596b"
+    },
+    "vertex_cost_engineering": {
+      "contract_path": "phase1/vertex_cost_contrast_design_engineering_v0.json",
+      "contract_sha256": "876c20eae0b6cd2e80bddfad17f257060a52e225856fc9dfc575b82c960d3323",
+      "implementation_path": "phase1/vertex_cost_contrast_design.py",
+      "implementation_sha256": "e241864e136deab45c7ac58386d91bdf5eacb98ded2241a0a4a1605d8bfcd68f"
+    },
+    "selection_exporter": {
+      "path": "phase1/freeze_vertex_cost_contrast_target522_selection.py",
+      "sha256": "63095d5a33f7094a9e79c662913b7fa80c3d07a6308f3db1a10537a21c76a5cf"
+    },
+    "independent_selection_verifier": {
+      "path": "phase1/verify_vertex_cost_contrast_target522_selection.py",
+      "sha256": "ccb7e375f255a22144b9363c6a07b10af0c87048976cdc3676f870be4fb8ba6e",
+      "imports_selection_exporter": false,
+      "reuses_bound_engineering_core": true,
+      "independently_reconstructs": [
+        "candidate increment and exact sibling graph",
+        "physical-run partition",
+        "uniform representative order",
+        "VCCD endpoint order",
+        "yield witness constraints",
+        "all aggregate metrics and identity-leak checks"
+      ]
+    },
+    "focused_test": {
+      "path": "phase1/tests/test_freeze_vertex_cost_contrast_target522_selection.py",
+      "sha256": "f483b3251a3a1ff28e3497fa1eaf228a37ea1a8ad967d365695a1703827e26b3",
+      "result": "14 passed in 1.24s"
+    },
+    "runtime_dependencies": [
+      {
+        "path": "phase1/audit_tree_within_stratum_forward_target522.py",
+        "sha256": "8a82d1ba3ef663c1eda161d32da0ad3a119ed3d3a13e42664648fff684d986f5"
+      },
+      {
+        "path": "phase1/confirm_yield_guarded_breadth_forward_target522.py",
+        "sha256": "8822454bd8ceb2ab1dad9617069212cd081baf979f863608b5615653054a8d2e"
+      },
+      {
+        "path": "phase1/endpoint_budget_label_efficiency_smoke.py",
+        "sha256": "9153f8480d475b2c1d2706fdb61d6a567e0c559c70874eecdf4513b8c3e7e706"
+      },
+      {
+        "path": "phase1/audit_yield_guarded_breadth_exact_budget_development_v1.py",
+        "sha256": "78ac2fd0ccb4ac761ab4e2bc31f83a58c7bcdfc18b1f2df466fd701c17fc96ae"
+      },
+      {
+        "path": "phase1/develop_yield_guarded_breadth_feasibility_v2.py",
+        "sha256": "0e62c9c3bf15b689caf98ee73b2f22d1134e99b6c212960c958bd7021570942e"
+      },
+      {
+        "path": "phase1/falsify_historical_run_split_breadth_pareto.py",
+        "sha256": "d8966a0b26c7b2bb57152038a56fbd838ae780dcd4851c78d792ff7954a1b9be"
+      },
+      {
+        "path": "phase1/vertex_cost_contrast_design.py",
+        "sha256": "e241864e136deab45c7ac58386d91bdf5eacb98ded2241a0a4a1605d8bfcd68f"
+      },
+      {
+        "path": "phase1/yield_guarded_breadth_forward_target522_v1.json",
+        "sha256": "ce50247e662137db6172e7b0c4181c68b0c3aed0e968e9b8c89e6653d99f13cf"
+      }
+    ]
+  },
+  "population": {
+    "physical_run_increment_minimum": 87,
+    "membership": "all complete physical runs in the first automatic stable Target-522 candidate absent from snapshot 887",
+    "boundary_archive_overshoot_retained": true,
+    "partial_physical_runs_allowed": false,
+    "manual_snapshot_choice_allowed": false,
+    "sibling_graph": "exact eligible_structural_pairs clique closure bound by intake summaries",
+    "run_split_salt": "vertex-cost-contrast-target522-effect-v1-run-split",
+    "run_split_algorithm": "within each task sort complete physical runs by SHA256(salt,NUL,task,NUL,run); for n>=2 put min(n-1,max(1,floor(2n/5))) first runs in evaluation and the rest in acquisition; singleton-task runs use hash bucket 0..2 acquisition and 3..4 evaluation",
+    "split_unit": "physical_run",
+    "run_endpoint_parent_overlap_between_acquisition_and_evaluation_required": 0,
+    "outcomes_gaps_predictions_or_runtime_used_for_split": false
+  },
+  "release_gate": {
+    "stage_a": "After the immutable Target-522 selection receipt, export only topology, code hashes, aggregate profiles, and mode-0600 endpoint/run selections.",
+    "selection_stage_may_read_outcomes": false,
+    "selection_stage_may_read_label_or_prediction_vaults": false,
+    "effect_stage_requires_first960_accrual_closure": true,
+    "effect_stage_requires": [
+      "the one-time first-960 accrual-closure receipt and exact cohort SHA",
+      "byte-exact Stage-A public result, private selection, and independent verification hashes",
+      "a separately reviewed label-release exporter that opens only the closed cohort vault",
+      "fresh detached full tests, path-access audit, and mode-0600 private outputs"
+    ],
+    "before_release": "No grade, pair orientation, gap, outcome, prediction, accuracy, calibration, or utility value may be opened or computed.",
+    "closure_missing_or_ambiguous": "fail closed without any critic fit"
+  },
+  "support_gates_before_selection": {
+    "minimum_acquisition_pairs": 100,
+    "minimum_acquisition_endpoints": 200,
+    "minimum_acquisition_physical_runs": 40,
+    "minimum_acquisition_tasks": 12,
+    "minimum_evaluation_pairs": 80,
+    "minimum_evaluation_endpoints": 120,
+    "minimum_evaluation_physical_runs": 25,
+    "minimum_evaluation_tasks": 10,
+    "maximum_single_task_pair_share_numerator": 7,
+    "maximum_single_task_pair_share_denominator": 20,
+    "any_failure": "VCCD_TARGET522_SELECTION_LIMITED_SUPPORT; no selection or later model fit"
+  },
+  "selection": {
+    "paid_unit": "executed endpoint vertex",
+    "budget_fraction_denominator": 32,
+    "trajectory_numerators": [3, 4, 5, 6, 7, 8],
+    "fit_checkpoint_numerators": [4, 8],
+    "all_trajectories_exact_budget_and_nested": true,
+    "arms": [
+      "exact_b_uniform_edge",
+      "yield_guarded_breadth",
+      "vertex_cost_contrast_design"
+    ],
+    "exact_b_uniform_edge": {
+      "seeds": 256,
+      "seed_values": "0 through 255",
+      "representative_rule": "nearest-rank median integrated closed-edge yield over all six checkpoints, then smallest seed",
+      "selection_features": "orientation-free sibling topology only",
+      "exact_singleton_fill": true
+    },
+    "yield_guarded": {
+      "same_frozen_contract_as": "phase1/yield_guarded_breadth_forward_target522_v1.json",
+      "same_frozen_contract_sha256": "ce50247e662137db6172e7b0c4181c68b0c3aed0e968e9b8c89e6653d99f13cf",
+      "recomputed_on_acquisition_runs_only": true,
+      "pointwise_and_integrated_yield_noninferiority": true,
+      "task_breadth_ratio_minimum": "6/5",
+      "run_breadth_ratio_minimum": "11/10",
+      "terminal_parent_breadth_ratio_minimum": "9/10",
+      "terminal_maximum_single_task_pair_share": "1/3",
+      "terminal_maximum_single_run_pair_share": "1/10",
+      "solver": "single-CPU scipy.optimize.milp HiGHS",
+      "solver_time_limit_seconds": 900,
+      "solver_seed": 0,
+      "solver_threads": 1,
+      "infeasible_or_unresolved": "retain uniform and VCCD; classify yield comparator unavailable without changing any gate"
+    },
+    "vccd": {
+      "selection_features": "endpoint code only",
+      "maximum_characters": 20000,
+      "character_ngram_range": [3, 5],
+      "dimension": 128,
+      "signed_hash": "two seeded zlib.crc32 calls",
+      "sublinear_term_frequency": true,
+      "normalization": "l2",
+      "ridge": 1.0,
+      "objective": "exact log(1+q^T A_inverse q) per newly paid endpoint; q=sqrt(k/(k+1))*(x_new-mean_selected)",
+      "maximum_budget_order_used_for_all_prefixes": true,
+      "task_terminal_share_denominator": 5,
+      "run_terminal_share_denominator": 10,
+      "caps_apply_to_terminal_8_over_32_budget_not_each_earlier_prefix": true,
+      "tie_break": "ascending SHA-256",
+      "corpus_vocabulary_or_future_fit": false
+    },
+    "selection_forbidden_features": [
+      "grade",
+      "pair orientation",
+      "score gap",
+      "outcome",
+      "prediction",
+      "accuracy",
+      "utility",
+      "runtime"
+    ],
+    "private_identity_witness_mode": "0600",
+    "public_output": "aggregate counts, fractions, hashes, and solver diagnostics only"
+  },
+  "effect_after_release": {
+    "fit_population": "for each arm and budget, every non-tied sibling pair whose two endpoints are selected acquisition-run endpoints",
+    "evaluation_population": "every non-tied sibling pair in evaluation physical runs; identical rows and order for every arm",
+    "ties": "exclude exact equal scalar grades from train and evaluation; report excluded counts",
+    "historical_labels_added": false,
+    "critic": {
+      "name": "char_tfidf_pairwise_logistic_regression",
+      "vectorizer_fit_population": "selected acquisition endpoint code only",
+      "analyzer": "char_wb",
+      "ngram_range": [3, 5],
+      "maximum_features": 30000,
+      "minimum_document_frequency": 3,
+      "sublinear_term_frequency": true,
+      "pair_representation": "tfidf(better)-tfidf(worse) and exact antisymmetric reverse row",
+      "logistic_regression_C": 0.5,
+      "solver": "lbfgs",
+      "maximum_iterations": 1500,
+      "random_state": 0,
+      "hyperparameter_selection_on_target522": false
+    },
+    "dependent_clique_weighting": {
+      "unordered_pair_weight": "2/k when k selected endpoints occur in that parent clique",
+      "each_antisymmetric_orientation_weight": "1/k",
+      "clique_total_unordered_weight": "k-1",
+      "same_weight_rule_for_every_arm": true
+    },
+    "matrix": {
+      "three_selection_arms_times_two_budgets": 6,
+      "full_acquisition_endpoint_reference_fits": 1,
+      "maximum_critic_fits_if_yield_available": 7,
+      "maximum_critic_fits_if_yield_unavailable": 5,
+      "gpu_jobs": 0,
+      "paid_api_calls": 0,
+      "base_model_updates": 0,
+      "expected_single_cpu_wall_minutes": "35-90",
+      "checkpoint_resume": "one mode-0600 atomic cell per arm-budget"
+    }
+  },
+  "support_gates_before_fit": {
+    "first960_accrual_closure_receipt_exact": true,
+    "selection_and_verification_hashes_exact": true,
+    "minimum_non_tied_evaluation_pairs": 80,
+    "minimum_non_tied_evaluation_tasks": 10,
+    "minimum_non_tied_evaluation_physical_runs": 25,
+    "maximum_single_evaluation_task_pair_share": "7/20",
+    "minimum_induced_non_tied_train_pairs_per_arm_budget": 30,
+    "every_arm_budget_exact": true,
+    "zero_acquisition_evaluation_run_endpoint_parent_overlap": true,
+    "any_failure": "effect limited support; no partial-arm efficacy claim"
+  },
+  "metrics_and_inference": {
+    "primary": "rank-normalized task-macro pairwise accuracy; within each evaluation parent clique each unordered pair has weight 2/k, then tasks are averaged equally",
+    "proper_scores": [
+      "rank-normalized task-macro log loss",
+      "rank-normalized task-macro Brier score"
+    ],
+    "secondary": [
+      "raw pair-micro accuracy/log-loss/Brier",
+      "parent-macro metrics",
+      "run-macro metrics",
+      "coverage and cost diagnostics"
+    ],
+    "paired_inference": {
+      "task_clustered_bootstrap_repetitions": 5000,
+      "physical_run_clustered_bootstrap_repetitions": 5000,
+      "bootstrap_seed": 20260830,
+      "confidence_level": 0.95,
+      "drop_dominant_task": true,
+      "all_pairs_for_every_arm": true
+    },
+    "fixed_gap_diagnostic_not_a_gate": {
+      "absolute_grade_gap_edges": [
+        0.0,
+        0.0001,
+        0.0003,
+        0.001,
+        0.003,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        "infinity"
+      ],
+      "hard_region_upper_exclusive": 0.01,
+      "minimum_pairs_per_reported_bucket": 20,
+      "empty_or_small_buckets": "report support only; never pool or rescue"
+    }
+  },
+  "ordered_effect_classification": [
+    "VCCD_TARGET522_STRONG_TRANSFER_GAIN",
+    "VCCD_TARGET522_DIRECTIONAL_TRANSFER_GAIN",
+    "VCCD_TARGET522_MIXED_EFFECT",
+    "VCCD_TARGET522_NO_OBSERVED_GAIN",
+    "VCCD_TARGET522_EFFECT_LIMITED_SUPPORT",
+    "VCCD_TARGET522_EFFECT_INTEGRITY_FAIL"
+  ],
+  "classification_rule": {
+    "strong": "VCCD-minus-uniform primary accuracy is positive at both budgets; terminal task-clustered 95% CI lower bound is above zero; terminal proper-score deltas are nonpositive; drop-dominant-task terminal accuracy delta is nonnegative.",
+    "directional": "Both primary accuracy deltas are positive and terminal proper-score deltas are nonpositive, but the strong CI or robustness gate fails.",
+    "no_observed_gain": "Primary accuracy deltas are nonpositive at both budgets and neither terminal proper score improves.",
+    "mixed": "Every other supported pattern; no sign selection, budget deletion, or proper-score rescue.",
+    "yield_comparator": "Always report the same paired contrasts if its frozen feasibility witness exists; it does not change the uniform-primary ordered class.",
+    "full_endpoint_reference": "Context only; never participates in advancement or rescues an arm."
+  },
+  "verification": {
+    "stage_a_producer_repetitions": 2,
+    "stage_a_independent_verifier_repetitions": 2,
+    "byte_identical_outputs_within_role": true,
+    "independent_verifier_imports_selection_exporter": false,
+    "fresh_detached_worktree_and_full_tests_required": true,
+    "effect_runner_and_nonimporting_metric_verifier_must_be_frozen_before_first960_release": true,
+    "effect_model_refits_by_independent_verifier": 0,
+    "private_per-pair_prediction_witness_mode": "0600",
+    "public_raw_or_hashed_task_run_endpoint_parent_identities_emitted": false
+  },
+  "stop_and_no_rescue": {
+    "one_automatic_target522_candidate_only": true,
+    "no_threshold_split_budget_arm_model_weight_seed_or_metric_change_after_candidate_profile": true,
+    "no_historical_single_fold_rescue": true,
+    "no_same_cohort_OpenRouter_or_LLM_judge_addition": true,
+    "no_cumulative_snapshot887_plus_target522_rescue": true,
+    "no_readout_before_first960_accrual_closure": true,
+    "report_every_supported_arm_budget_even_if_unfavorable": true,
+    "search_utility_claim": false
+  },
+  "security": {
+    "selection_allowed_fields": [
+      "card_id",
+      "task",
+      "physical_run",
+      "parent",
+      "endpoint_code",
+      "code_sha256",
+      "orientation-free sibling edges"
+    ],
+    "selection_forbidden_sources": [
+      "label vault",
+      "outcome vault",
+      "prediction escrow values",
+      "accuracy or utility reports",
+      "raw senior archives",
+      "provider credentials"
+    ],
+    "selection_public_identities": false,
+    "selection_private_modes": "0600",
+    "prospective_values_read_at_freeze": false,
+    "gpu_paid_api_model_fit_base_update_at_freeze": [0, 0, 0, 0],
+    "failure_rule": "Any hash, schema, append-only, selection receipt, split, clique, code binding, exact-budget, cap, identity-leak, private-mode, closure, path-access, model, metric, or independent-verification mismatch fails closed."
+  }
+}

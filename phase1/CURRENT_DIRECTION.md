@@ -13,6 +13,23 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JG. 2026-08-30 VCCD Target-522 结果前协议已冻结；效果读数仍必须等 first-960 closure
+
+0JF 的工程门现已补齐为独立科学协议 `vertex-cost-contrast-target522-effect-v1`：在同一自动 Target-522 增量中，先按 task 内
+salted physical-run hash 固定 acquisition/evaluation；Stage A 只能用 code + sibling topology，比较 exact-B representative
+uniform、既有 yield-guarded breadth 与 VCCD 三条 nested endpoint 轨迹，fit checkpoint 固定为 `4/32`、`8/32`。producer 与
+不导入 producer 的 verifier 已分别冻结；后者重新构造 run split、uniform/VCCD 顺序与 yield 证书约束。
+
+真正效果阶段仍受最高优先级门约束：**first-960 + accrual-closure 前绝不读任何 grade/outcome/orientation/gap/prediction，绝不 fit**。
+闭合后才允许在 acquisition runs 选中 endpoints 的非平局 sibling pairs 上训练固定 char-TFIDF LR，并在完全不交叠的 evaluation
+runs 上一次性评估。训练与主指标均使用 clique `2/k` rank-normalization；主指标是 task-macro accuracy，proper scores、task/run
+clustered CI、drop-dominant-task 和固定 gap buckets 全报，不能删预算或换指标救结果。最大矩阵为三臂×两预算加 full-data reference=
+7 个 CPU fits，GPU/API/base update=`0/0/0`，预计单 CPU 35–90 分钟；当前没有执行授权需求，因为 closure 尚不存在。
+
+冻结观测 `2026-08-30T02:32:51Z`：LATEST=`98f2cba9...2765fa`、structural runs=`468`、snapshot dirs=`117`，Target-522
+candidate/COMPLETE/FAILED 均不存在、config-v2 count=`0`、prospective values 未读。focused synthetic+end-to-end=`14 passed`；该状态只是
+**结果前协议冻结，不是正效果结论**。OpenRouter、历史 single-fold rescue 和任何事后 arm 均不得混入本 cohort。
+
 ## 0JF. 2026-08-30 vertex-cost contrast design 已冻结工程合同，尚非效果正结论
 
 新的窄正方向不再最大化 materialized sibling pairs：同 parent 执行 k 个 endpoints 虽产生 `k(k-1)/2` 条 rows，但独立

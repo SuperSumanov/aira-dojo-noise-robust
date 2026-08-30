@@ -13,6 +13,37 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JS. 2026-08-30 historical UST sensitivity 正式完成：结构非平凡，旧 predictor 排名稳健但未获性能突破
+
+v2 exact commit=`65b2e2a6669a1ddc41059746c843fab501895190` 已在 fresh detached formal 根
+`/research/d7/spc/yzyang4/historical-ust-predictor-sensitivity/formal-65b2e2a-v2` 完成。focused/full=
+`13/1760 passed`、48 个既有 warning；producer A/B 与 grounded-inverse verifier A/B 均逐字节一致，独立最大数值差=
+`1.1368683772161603e-13`，23-entry manifest 全通过，结果树只读，file/network/credential hits 全为 0。
+
+结构读数为 931 pair rows、1,346 endpoint memberships、28 tasks、550 decision parents、559 connected components、
+incidence rank=`787`、cycle rows=`144`；UST edge TV=`0.12106505144691318`，task-weight TV=
+`0.049068032215226765`。这确认 graph/rank audit 在历史支持上也是非平凡的，但不能称 effective sample size 或独立标签数。
+
+冻结 nested `pair→parent→task` headline 下，`static_gbm_task` raw/UST=`0.54801174684043918/0.5483277645334842`，
+UST−raw=`0.00031601769304501204`，95% CI=`[-0.00037747374181428185,0.001145659286141352]`；UST
+headline CI=`[0.49819079664424992,0.60078820168816471]`，下界未超过 0.5。相对固定 TF-IDF 的 paired delta=
+`-0.018259007376133896`，CI=`[-0.10907272623875371,0.086268880671008574]`。12-model 与 primary-panel
+headline ranking discordance 均为 0，TF-IDF 继续第一。因此允许的正主张是“graph-aware benchmark correction 可量化且旧排序对其稳健”，
+不是 critic 性能提升或 prospective confirmation。详见同日正式结果与机器回执。
+
+## 0JR. 2026-08-30 Target-300 在 `98f2` 增至 193/300；严格前缀保持，truth 继续封存
+
+固定 quiescent formal 在 snapshot=`98f2cba9ca4b3ac6404305da2528a4e8c391ba795f74438a5e4cca1a162765fa`
+完成，exact control commit=`ab59a011d945e4a96daf7dbbbc927a59027da077`，focused/full=`12/965 passed`、
+47 warnings。最小白名单结构回执显示 selected physical runs=`160→193`、archives=`49→60`、tasks=`30`、remaining=`107`，
+previous exact prefix survived=`true`；boundary archive 与 first-closed anchor 都不存在。producer 状态仍为
+`FUTURE_COHORT_COLLECTING`，独立 verifier=`PASS_COLLECTING_TRUTH_UNREAD`。
+
+producer/verifier A/B diff=`0/0 bytes`，52-entry manifest 全通过，forbidden/credential hits 全为 0；truth、prediction values、
+accuracy、search utility 均未读。第一次检查的官方 aggregate stdout 附带 task-level 结构 run counts，超出原定 totals-only
+白名单但不含 identity/value/effect；偏差已记录且这些 task rows 不复制、不使用，后续复核固定为 totals-only。Target-300 尚未闭合，
+不授权 truth support、replay、effect、GPU 或付费 API。详见同日安全进度回执。
+
 ## 0JQ. 2026-08-30 historical UST sensitivity v1 在 outcome aggregate 前作废；v2 补齐既有 nested headline
 
 v1 exact commit=`52951ebfe80d4fdb28b13ac970ceff524a00ed22` 的 focused=`11 passed`，但 pre-flight 复核发现它只算
@@ -26,7 +57,8 @@ v2 在任何 historical UST outcome aggregate 前唯一增加：parent 内 UST-w
 headline；固定 `static_gbm_task` champion 不重选。新增 2:1 parent-count control 精确区分 global-parent=`2/3` 与
 nested task-parent=`1/2`，以及完整 931-pair×12-model synthetic end-to-end verifier；后者抓到并修复“TF-IDF 尚未
 重建就求 paired delta”的顺序 bug。v2 focused=`13 passed`，GPU/API/model fit/base update=`0/0/0/0`；正式结果尚未运行。
-详见同日 v1 失效与 v2 修订记录及 `historical_ust_predictor_sensitivity_v2.json`。
+本段最后一句是冻结时状态，现已由 0JS 的正式结果 supersede。详见同日 v1 失效与 v2 修订记录及
+`historical_ust_predictor_sensitivity_v2.json`。
 
 ## 0JP. 2026-08-30 FOREAGENT UST/rank 权重出现非平凡外部结构正结果
 

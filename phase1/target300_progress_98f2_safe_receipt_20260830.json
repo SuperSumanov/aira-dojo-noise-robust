@@ -1,0 +1,63 @@
+{
+  "protocol": "target300-progress-safe-aggregate-receipt-v1",
+  "status": "TARGET300_COLLECTING_193_OF_300_TRUTH_UNREAD",
+  "checked_at_utc": "2026-08-30T05:13:33Z",
+  "formal": {
+    "completed_at_utc": "2026-08-30T02:38:22Z",
+    "control_commit": "ab59a011d945e4a96daf7dbbbc927a59027da077",
+    "scientific_protocol_sha256": "54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d",
+    "snapshot_sha256": "98f2cba9ca4b3ac6404305da2528a4e8c391ba795f74438a5e4cca1a162765fa",
+    "result_root": "/research/d7/spc/yzyang4/score-channel-future-identity-cohort/ab59a01-98f2cba9ca4b-9f69935923f7",
+    "focused_tests": {
+      "passed": 12,
+      "seconds": 0.28
+    },
+    "full_phase1_tests": {
+      "passed": 965,
+      "warnings": 47,
+      "seconds": 71.18
+    },
+    "formal_rc": 0,
+    "formal_stderr_bytes": 0
+  },
+  "safe_aggregate": {
+    "selected_physical_runs": 193,
+    "target_physical_runs": 300,
+    "remaining_physical_runs": 107,
+    "selected_archives": 60,
+    "selected_tasks": 30,
+    "previous_selected_physical_runs": 160,
+    "previous_selected_archives": 49,
+    "previous_exact_prefix_survived": true,
+    "boundary_archive_present": false,
+    "complete_boundary_archive_included": false,
+    "first_closed_cohort_anchor_present": false,
+    "producer_status": "FUTURE_COHORT_COLLECTING",
+    "independent_verification_status": "PASS_COLLECTING_TRUTH_UNREAD"
+  },
+  "reproducibility": {
+    "result_manifest_sha256": "81831f68055cef1fcae654b8adad3d71c8bf2893a57ef4ba0785e2c2b475cb2e",
+    "manifest_entries": 52,
+    "manifest_verification_passed": true,
+    "producer_reproducibility_diff_bytes": 0,
+    "verifier_reproducibility_diff_bytes": 0,
+    "result_root_mode": "555",
+    "forbidden_open_count": 0,
+    "credential_filename_count": 0,
+    "credential_content_count": 0
+  },
+  "scope": {
+    "truth_or_label_read": false,
+    "prediction_values_read": false,
+    "accuracy_or_search_utility_read": false,
+    "effect_or_truth_support_computed": false,
+    "replay_authorized": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  },
+  "metadata_scope_deviation": {
+    "occurred": true,
+    "description": "The first inspection printed the runner's official aggregate formal.stdout, whose inventory included per-task structural run counts. It exposed no run/card identity, label, outcome, prediction, accuracy or utility, but exceeded the intended totals-only whitelist.",
+    "containment": "Task-level rows are not reproduced in this receipt, were not used for selection or analysis, and all subsequent verification used an exact totals-only whitelist."
+  },
+  "decision": "Continue append-only outcome-blind accrual. The cohort is not closed; do not run truth support, replay, effect analysis, GPU work or paid APIs."
+}

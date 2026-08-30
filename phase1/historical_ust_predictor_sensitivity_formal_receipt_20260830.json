@@ -1,0 +1,111 @@
+{
+  "protocol": "historical-ust-predictor-sensitivity-formal-receipt-v1",
+  "status": "HISTORICAL_UST_PREDICTOR_SENSITIVITY_FORMAL_COMPLETE",
+  "classification": "HISTORICAL_UST_PREDICTOR_SENSITIVITY_AUDIT_COMPLETE",
+  "completed_at_utc": "2026-08-30T05:20:11Z",
+  "independently_checked_at_utc": "2026-08-30T05:21:42Z",
+  "formal": {
+    "result_root": "/research/d7/spc/yzyang4/historical-ust-predictor-sensitivity/formal-65b2e2a-v2",
+    "source_commit": "65b2e2a6669a1ddc41059746c843fab501895190",
+    "scientific_protocol_sha256": "dc23bbac584600f11f7d6de62313c210377576aadc727fce79694de2b823771c",
+    "result_sha256": "9f0ba71b1be84a79b64edc27b0c625579bb1d2c0a781c3daf43fbbb339f41a7c",
+    "independent_verification_sha256": "4b522f844c6f49429c836986fd5ccd15a9f662ad3660ce480fc2b277a7cbf188",
+    "manifest_sha256": "12b18ae96e07a3e202671749527270de45caf67304b35eb9a7d820fce6b67e74",
+    "manifest_entries": 23,
+    "manifest_verification_passed": true,
+    "producer_a_b_byte_exact": true,
+    "verifier_a_b_byte_exact": true,
+    "producer_stderr_bytes": [0, 0],
+    "verifier_stderr_bytes": [0, 0],
+    "root_mode": "500",
+    "result_mode": "400",
+    "verification_mode": "400",
+    "focused_tests": {
+      "passed": 13,
+      "seconds": 6.92
+    },
+    "full_phase1_tests": {
+      "passed": 1760,
+      "warnings": 48,
+      "seconds": 114.66
+    }
+  },
+  "source_bindings": {
+    "producer_source_sha256": "fd3ab87949d80012d7f0384cf3e691626dffa324024f950fef87a123450f28ea",
+    "verifier_source_sha256": "5a365655942f12829d7dbb464998631b797451eb9fe7e88f6feb1831c7fcc6d3",
+    "test_source_sha256": "c1ff81384314fb222cd59ec8316e47225bb7f34ed4f5927dc1d23b88039b3478",
+    "runner_source_sha256": "0d9e7f772cefe475c683dbc3ddb2b9b06428ced7c4159117c87f334fdf6302aa",
+    "static_per_pair_sha256": "ec5a9afd37e9fbf21a4a1e89c29e9a0c771a75f0f2090b99a163711a59515acd",
+    "tfidf_per_pair_sha256": "021f8b3c74db89c6b770714edb879731799b145744af7b765005eed72f9ecde6"
+  },
+  "independent_verification": {
+    "status": "INDEPENDENT_GROUNDED_RECONSTRUCTION_EXACT_WITHIN_TOLERANCE",
+    "maximum_absolute_numeric_difference_decimal_17g": "1.1368683772161603e-13",
+    "pairs": 931,
+    "models": 12,
+    "incidence_rank": 787
+  },
+  "pair_graph": {
+    "pair_rows": 931,
+    "endpoint_memberships": 1346,
+    "tasks": 28,
+    "decision_parents": 550,
+    "connected_components": 559,
+    "complete_components": 445,
+    "incomplete_components": 114,
+    "incidence_rank": 787,
+    "cycle_rows": 144,
+    "weight_sum_decimal_17g": "786.99999999999989",
+    "minimum_weight_decimal_17g": "0.23901264298615302",
+    "median_weight_decimal_17g": "0.99999999999999978",
+    "maximum_weight_decimal_17g": "1",
+    "edge_distribution_total_variation_decimal_17g": "0.12106505144691318",
+    "task_weight_total_variation_decimal_17g": "0.049068032215226765",
+    "raw_max_task_share_decimal_17g": "0.10741138560687433",
+    "rank_max_task_share_decimal_17g": "0.10927573062261753"
+  },
+  "headline": {
+    "frozen_champion": "static_gbm_task",
+    "reference": "tfidf_lr",
+    "champion_raw_nested_task_parent_accuracy_decimal_17g": "0.54801174684043918",
+    "champion_ust_nested_task_parent_accuracy_decimal_17g": "0.5483277645334842",
+    "champion_ust_nested_task_parent_clustered_ci95": [
+      "0.49819079664424992",
+      "0.60078820168816471"
+    ],
+    "champion_ust_minus_raw_nested_task_parent_decimal_17g": "0.00031601769304501204",
+    "champion_ust_minus_raw_nested_task_parent_ci95": [
+      "-0.00037747374181428185",
+      "0.001145659286141352"
+    ],
+    "champion_ust_nested_delta_vs_tfidf_decimal_17g": "-0.018259007376133896",
+    "champion_ust_nested_delta_vs_tfidf_ci95": [
+      "-0.10907272623875371",
+      "0.086268880671008574"
+    ],
+    "tfidf_raw_nested_task_parent_accuracy_decimal_17g": "0.56652923211993333",
+    "tfidf_ust_nested_task_parent_accuracy_decimal_17g": "0.56658677190961804",
+    "all_model_headline_discordant_pairs": 0,
+    "primary_model_headline_discordant_pairs": 0,
+    "headline_champion_above_chance_supported": false,
+    "headline_champion_advantage_over_tfidf_supported": false,
+    "headline_ust_shift_supported": false,
+    "frozen_champion_reselection_performed": false
+  },
+  "scope": {
+    "historical_revealed_prediction_outcomes_read": true,
+    "prospective_values_read": false,
+    "raw_pair_task_parent_endpoint_identities_emitted": false,
+    "producer_forbidden_path_hits": 0,
+    "verifier_forbidden_path_hits": 0,
+    "producer_network_hits": 0,
+    "verifier_network_hits": 0,
+    "credential_filename_hits": 0,
+    "credential_content_file_hits": 0,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  },
+  "interpretation": {
+    "allowed": "UST weighting is structurally non-trivial but does not materially change the frozen nested headline or predictor ordering on this already-revealed historical support.",
+    "forbidden": "This is not prospective confirmation, a new graph theorem, an effective sample-size claim, a test-selected model improvement, task-unseen generalization or search utility."
+  }
+}

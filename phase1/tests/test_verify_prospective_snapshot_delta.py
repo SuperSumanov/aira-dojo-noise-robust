@@ -182,6 +182,36 @@ def test_payload_tamper_fails_manifest_gate(tmp_path: Path):
         verifier.verify(arguments(prior, prior_sha, current, current_sha))
 
 
+def test_duplicate_manifest_payload_fails_closed(tmp_path: Path):
+    prior = tmp_path / "prior"
+    current = tmp_path / "current"
+    prior_sha = write_snapshot(prior, [transaction(0)], inventory(1, 10, 3))
+    current_sha = write_snapshot(
+        current,
+        [transaction(0), transaction(1)],
+        inventory(2, 14, 5),
+    )
+    manifest = current / "SHA256SUMS"
+    first = manifest.read_text(encoding="utf-8").splitlines()[0]
+    manifest.write_text(
+        manifest.read_text(encoding="utf-8") + first + "\n",
+        encoding="utf-8",
+        newline="",
+    )
+    current_sha = verifier.sha256(manifest)
+    with pytest.raises(verifier.DeltaVerificationError, match="duplicate manifest"):
+        verifier.verify(arguments(prior, prior_sha, current, current_sha))
+
+
+def test_output_must_not_overlap_snapshot_inputs(tmp_path: Path):
+    prior = tmp_path / "prior"
+    current = tmp_path / "current"
+    prior.mkdir()
+    current.mkdir()
+    with pytest.raises(verifier.DeltaVerificationError, match="overlaps"):
+        verifier.ensure_output_outside(prior / "receipt.json", (prior, current))
+
+
 def test_execution_addendum_v2_freezes_failure_and_single_repair():
     addendum = json.loads(
         (

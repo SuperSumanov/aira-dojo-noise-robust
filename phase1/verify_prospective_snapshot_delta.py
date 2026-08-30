@@ -72,6 +72,7 @@ def verify_manifest(root: Path, expected_snapshot_sha: str) -> int:
     if sha256(manifest) != require_sha(expected_snapshot_sha, "snapshot"):
         raise DeltaVerificationError("snapshot manifest identity mismatch")
     count = 0
+    seen_payloads: set[str] = set()
     for line_number, line in enumerate(manifest.read_text(encoding="utf-8").splitlines(), 1):
         match = re.fullmatch(r"([0-9a-f]{64})  ([^\r\n]+)", line)
         if match is None:
@@ -79,6 +80,10 @@ def verify_manifest(root: Path, expected_snapshot_sha: str) -> int:
         relative = Path(match.group(2))
         if relative.is_absolute() or ".." in relative.parts or relative.name == "SHA256SUMS":
             raise DeltaVerificationError("unsafe manifest payload path")
+        relative_key = relative.as_posix()
+        if relative_key in seen_payloads:
+            raise DeltaVerificationError("duplicate manifest payload path")
+        seen_payloads.add(relative_key)
         payload = root / relative
         if not payload.is_file() or payload.is_symlink() or sha256(payload) != match.group(1):
             raise DeltaVerificationError(f"manifest payload mismatch at line {line_number}")
@@ -86,6 +91,18 @@ def verify_manifest(root: Path, expected_snapshot_sha: str) -> int:
     if count == 0:
         raise DeltaVerificationError("empty snapshot payload manifest")
     return count
+
+
+def ensure_output_outside(out: Path, protected_roots: tuple[Path, ...]) -> None:
+    resolved = out.resolve()
+    for root in protected_roots:
+        protected = root.resolve()
+        if (
+            resolved == protected
+            or protected in resolved.parents
+            or resolved in protected.parents
+        ):
+            raise DeltaVerificationError("output path overlaps immutable snapshot input")
 
 
 def parse_transactions(path: Path) -> tuple[bytes, list[dict[str, Any]]]:
@@ -291,6 +308,10 @@ def main() -> int:
     out = args.out.resolve()
     if out.exists():
         raise FileExistsError(f"refusing to overwrite delta receipt: {out}")
+    ensure_output_outside(
+        out,
+        (args.prior_snapshot.resolve(), args.current_snapshot.resolve()),
+    )
     receipt = verify(args)
     blob = (json.dumps(receipt, sort_keys=True, indent=2) + "\n").encode("utf-8")
     out.parent.mkdir(parents=True, exist_ok=True)

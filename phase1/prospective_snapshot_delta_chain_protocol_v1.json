@@ -1,0 +1,49 @@
+{
+  "protocol": "prospective-snapshot-delta-chain-monitor-v1",
+  "status": "OUTCOME_BLIND_AUDIT_SPECIFICATION",
+  "purpose": "Continuously certify append-only immutable production snapshot lineage with two implementations before advancing monitor state.",
+  "seed": {
+    "snapshot_sha256": "0c0584b87140d9a3242f2aa59920829e07e9178749880e3c1f3bd0d065e0b07a",
+    "formal_root": "/research/d7/spc/yzyang4/prospective-snapshot-delta/formal-734a2b1-v3",
+    "formal_manifest_sha256": "69149e510d0bc519363dc48b57e578a3933757ae500e8e830ab60ff849d0bba0"
+  },
+  "trigger": {
+    "source": "atomic prospective_decision_v1/LATEST",
+    "condition": "LATEST differs from the single promoted state snapshot",
+    "manual_snapshot_choice_allowed": false,
+    "multi_transaction_successor_allowed": true
+  },
+  "required_execution": [
+    "exact clean control commit and fixed source hashes",
+    "primary verifier A/B byte identity",
+    "non-importing grounded verifier A/B byte identity",
+    "full snapshot payload-manifest verification in both implementations",
+    "independent reconstruction of transaction-to-intake and transaction-to-score projections",
+    "network, forbidden-path, credential, symlink, permissions, and read-only gates",
+    "atomic state promotion only after an immutable COMPLETE artifact"
+  ],
+  "failure_policy": {
+    "fail_closed": true,
+    "same_root_repair_allowed": false,
+    "state_promotion_after_failure_allowed": false,
+    "unknown_duplicate_or_hash_drift_allowed": false
+  },
+  "output_policy": {
+    "aggregate_counts_and_deltas_only": true,
+    "archive_drop_run_endpoint_pair_candidate_identities_emitted": false,
+    "label_outcome_prediction_value_accuracy_utility_read": false,
+    "prediction_pair_files_opened": false
+  },
+  "default_schedule": {
+    "poll_seconds": 300,
+    "max_polls": 96,
+    "nominal_hours": 8
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  },
+  "claim_boundary": "This chain supports tamper-evident dataset version lineage and benchmark auditability only; it is not evidence of predictor accuracy, scaling, or search utility."
+}

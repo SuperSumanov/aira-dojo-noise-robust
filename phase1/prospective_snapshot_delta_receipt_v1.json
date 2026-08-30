@@ -1,0 +1,25 @@
+{
+  "protocol": "prospective-snapshot-delta-receipt-v1",
+  "status": "AUDIT_SPECIFICATION",
+  "purpose": "Independently certify append-only production snapshot lineage without opening labels, outcomes, prediction values, or candidate payloads.",
+  "inputs": [
+    "prior immutable snapshot root and expected SHA-256",
+    "current immutable snapshot root and expected SHA-256"
+  ],
+  "required_invariants": [
+    "Each snapshot SHA equals the SHA-256 of its SHA256SUMS payload manifest and every listed payload hash verifies.",
+    "The prior transaction registry is an exact byte prefix of the current transaction registry.",
+    "The intake and score registry projections are independently reconstructed from transactions and each prior projection is an exact byte prefix of the current projection.",
+    "Historical transaction rows are byte-preserved; archive SHA, archive path, and drop ID remain globally unique.",
+    "Current structural inventory is component-wise nondecreasing for physical runs, eligible runs, endpoints, structural pairs, and tasks.",
+    "Runner transaction count and accumulator blindness receipts match the current registry."
+  ],
+  "output_policy": {
+    "aggregate_counts_and_deltas_only": true,
+    "archive_names_or_paths_emitted": false,
+    "drop_ids_emitted": false,
+    "run_endpoint_pair_or_candidate_identities_emitted": false,
+    "label_outcome_prediction_value_accuracy_or_utility_emitted": false
+  },
+  "claim_boundary": "This receipt supports immutable version lineage and schema-evolution auditability only; it is not evidence of predictor quality, scaling, or search utility."
+}

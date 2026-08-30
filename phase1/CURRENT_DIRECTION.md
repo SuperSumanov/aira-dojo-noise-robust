@@ -13,6 +13,20 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KB. 2026-08-30 FOREAGENT LOEO v3 在结果写入前被 raw 数值门拦截；v4 只修公式容差
+
+exact commit=`701b4058b56b65121d939736a0920b81adb86fae` 的第三次 formal 通过 focused/full=
+`11/1784 passed`、48 warnings，随后 producer 在图投影与结果写入前以 `ValueError: known raw reproduction`
+fail-closed。result/verification 文件仍为 `0`，verifier 未启动；失败根=`formal-701b405-v3`，不得复用。
+
+独立整数诊断在固定 18,381 pairs=`55,143` judgments 上得到 DeepSeek/GPT 正确轮数=`33,925/32,477`，即
+`33925/55143` 与 `32477/55143`。普通 binary64 累加相对冻结小数仅差 `18ε/13ε`，旧门 `2e-15` 小于合法
+summation error。numeric addendum v4 在任何完整 LOEO 结果前把 production-only raw reproduction 门改为
+`64 * binary64 epsilon = 1.4210854715202004e-14`；18ε 必须通过、128ε synthetic drift 必须失败。
+KNOWN raw constants、support、LOEO、estimands、bootstrap、verifier、分类门和资源均不变；本地 focused=`14 passed`。
+addendum SHA-256=`94fa4b3ae4fa591dd7d56fe32d8f9b6c1bf1ea96ef7a5f3f6bf2c37e5d144d6c`，
+GPU/API/model fit/base update=`0/0/0/0`。下一次仍须 fresh exact commit/root 与全部 formal 门。
+
 ## 0KA. 2026-08-30 FOREAGENT LOEO v2 在结果前暴露全仓 pytest 范围错误；v3 只修测试边界
 
 exact commit=`29a523cf6d50f95eba24fb29df6b39c765044273` 的第二次 formal 已通过 fresh no-smudge checkout 与

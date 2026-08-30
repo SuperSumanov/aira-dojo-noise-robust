@@ -1,0 +1,114 @@
+{
+  "protocol": "foreagent-loeo-graph-denoising-numeric-addendum-v4",
+  "version": 4,
+  "status": "FROZEN_NUMERIC_TOLERANCE_AMENDMENT_BEFORE_ANY_COMPLETE_LOEO_RESULT",
+  "frozen_at_utc": "2026-08-30T15:18:50Z",
+  "parent_protocol_sha256": "bcd25033e2340a0b98c362ae1fffb29fe39c5222ceb531e5112d4675d7be033c",
+  "parent_execution_addendum_v2_sha256": "8cb1c80c36d6bc75b605ba9498cd75691f3e30077cadea4d952f432ea3b58a45",
+  "parent_execution_addendum_v3_sha256": "6f10eab92fbda4594ce428695c2da5522ed8e9bd38022a7587b1c8db42f392b5",
+  "failed_attempt": {
+    "source_commit": "701b4058b56b65121d939736a0920b81adb86fae",
+    "root": "/research/d7/spc/yzyang4/foreagent-loeo-graph-denoising/formal-701b405-v3",
+    "exit_code": 1,
+    "failure_stage": "known raw reproduction guard before graph projection and before any result write",
+    "failure": "ValueError: known raw reproduction",
+    "focused_tests_passed": 11,
+    "full_phase1_tests_passed": 1784,
+    "full_phase1_test_warnings": 48,
+    "producer_started": true,
+    "graph_projection_started": false,
+    "verifier_started": false,
+    "result_files_created": 0,
+    "verification_files_created": 0,
+    "complete_loeo_outcome_computed_or_read": false,
+    "artifact_sha256": {
+      "FAILED_RC": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "focused_tests.stdout": "b4cf5fa27b26e4dc5f5cb23a53f424e67ce09d580ef46740ff53639acac198c3",
+      "full_tests.stdout": "3439355253b04f34e87a34dabce4b60d5ca529306828a504e57e80708f3e3f14",
+      "producer_a.stderr": "4fd33a0bbc3e49129b7515f4f31b95e9a90d42d0c1fe9252fced570a86183b3b",
+      "preflight_13.txt": "ee67f788277c600d51f26127671f4565f95ba060958ca8d2fd3a26bbf0bae053"
+    }
+  },
+  "exact_rational_diagnostic": {
+    "root": "/research/d7/spc/yzyang4/foreagent-loeo-graph-denoising/numeric-diagnostic-701b405-v1",
+    "source_commit": "701b4058b56b65121d939736a0920b81adb86fae",
+    "manifest_sha256": "3df2715b2d2e5f3cc6193c07c99eb682e042e8aa6cb724b046b2469b35773a4e",
+    "master_sha256": "480616317ddebb249084dbc8b36b4060fac4b77353fce16b436351eab9c235fe",
+    "diagnostic_sha256": "1e62eac2cc36b0f8e38b6d74976ea423fb473e5acf41c5a52f758727570dbd7a",
+    "pairs": 18381,
+    "rounds": 55143,
+    "tasks": 26,
+    "deepseek": {
+      "correct_rounds": 33925,
+      "exact_fraction": "33925/55143",
+      "exact_decimal_17g": "0.61521861342328132",
+      "observed_decimal_17g": "0.61521861342327711",
+      "frozen_decimal_17g": "0.6152186134232811",
+      "observed_vs_frozen_absolute_difference": "3.9968028886505635e-15",
+      "difference_in_binary64_epsilons": "18"
+    },
+    "gpt": {
+      "correct_rounds": 32477,
+      "exact_fraction": "32477/55143",
+      "exact_decimal_17g": "0.58895961409426401",
+      "observed_decimal_17g": "0.58895961409426123",
+      "frozen_decimal_17g": "0.58895961409426412",
+      "observed_vs_frozen_absolute_difference": "2.886579864025407e-15",
+      "difference_in_binary64_epsilons": "13"
+    },
+    "graph_projection_computed": false,
+    "loeo_outcome_computed": false,
+    "raw_identities_emitted": false
+  },
+  "reason": "Both frozen values equal the exact integer correct-round count over 55,143 judgments up to decimal rounding. Ordinary binary64 accumulation differs by only 18 and 13 machine epsilons, while the old absolute tolerance was 2e-15. The production-only reproduction guard is therefore changed to a formulaic 64 binary64 epsilons.",
+  "raw_reproduction_tolerance_formula": "64 * binary64_epsilon",
+  "raw_reproduction_tolerance_decimal_17g": "1.4210854715202004e-14",
+  "old_tolerance": "2e-15",
+  "scientific_changes": [],
+  "resource_changes": [],
+  "scope": {
+    "changed": "production-only guard for two already disclosed raw reproduction values",
+    "unchanged": [
+      "KNOWN_COMMON_ROUND_PAIR_MICRO constants",
+      "18,381-pair exact common support",
+      "26 tasks and 894 vertices",
+      "triplicate signed flow",
+      "target-edge-excluded Hodge projection",
+      "bridge and zero fallback",
+      "raw and hybrid estimands",
+      "20,000 task bootstrap repetitions and seeds",
+      "frozen classification gates",
+      "independent grounded verifier",
+      "prospective and confidence access prohibitions",
+      "0 GPU, 0 paid API, 0 model fit and 0 base update"
+    ]
+  },
+  "test_policy": {
+    "observed_18_epsilon_difference_must_pass": true,
+    "synthetic_128_epsilon_drift_must_fail": true,
+    "fresh_exact_commit_and_output_root_required": true,
+    "failed_v1_v2_v3_roots_must_not_be_reused": true
+  },
+  "source_bindings": {
+    "producer": {
+      "path": "phase1/analyze_foreagent_loeo_graph_denoising.py",
+      "sha256": "4f581e9dba64a49bb4b05d9ea7b00f2bb80cf987cf8d85516cb25605a972c756"
+    },
+    "verifier": {
+      "path": "phase1/verify_foreagent_loeo_graph_denoising.py",
+      "sha256": "6473b3fa8b56ed65d31ff46de7b6e684656dbd675dc8932c4a8b7ad5c3b5e043"
+    },
+    "main_test": {
+      "path": "phase1/tests/test_foreagent_loeo_graph_denoising.py",
+      "sha256": "14df53144725a4a1d9a5beeaecb6c08f05b9e8f000d45306dca17c0778ef58ad"
+    },
+    "execution_test": {
+      "path": "phase1/tests/test_foreagent_loeo_graph_denoising_execution.py",
+      "sha256": "0851748aa6bb5688b4a63ab9a3c971f7ef8713b092c16e9b19c31ac7e949a699"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_foreagent_loeo_graph_denoising_formal_20260830.sh",
+      "sha256": "4d04b7c99208f625f2a0f79d2fdbcb483e61d3b3fdf2c203e6931f17b189f053"
+    }
+  }
+}

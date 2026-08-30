@@ -37,11 +37,16 @@ BOOTSTRAP_REPETITIONS = 20000
 BOOTSTRAP_SEED = 20260901
 SIGN_TOLERANCE = 1e-12
 BRIDGE_TOLERANCE = 1e-10
+RAW_REPRODUCTION_TOLERANCE = 64.0 * np.finfo(np.float64).eps
 
 
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise ValueError(message)
+
+
+def raw_reproduction_matches(actual: float, expected: float) -> bool:
+    return abs(actual - expected) <= RAW_REPRODUCTION_TOLERANCE
 
 
 def sha256(path: Path) -> str:
@@ -244,7 +249,9 @@ def load_common_support(
         require(len(vertices) == EXPECTED_VERTICES, "vertex count")
         for model in MODELS:
             require(
-                abs(raw_pair_micro[model] - KNOWN_COMMON_ROUND_PAIR_MICRO[model]) <= 2e-15,
+                raw_reproduction_matches(
+                    raw_pair_micro[model], KNOWN_COMMON_ROUND_PAIR_MICRO[model]
+                ),
                 "known raw reproduction",
             )
     return output, {

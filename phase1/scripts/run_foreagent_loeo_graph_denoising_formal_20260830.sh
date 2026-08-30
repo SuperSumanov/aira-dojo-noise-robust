@@ -8,8 +8,8 @@ export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 
-if (( $# != 10 )); then
-  echo 'usage: runner OUTPUT EXPECTED_COMMIT PROTOCOL_SHA EXECUTION_ADDENDUM_V2_SHA EXECUTION_ADDENDUM_V3_SHA PRODUCER_SHA VERIFIER_SHA TEST_SHA EXECUTION_TEST_SHA RUNNER_SHA' >&2
+if (( $# != 11 )); then
+  echo 'usage: runner OUTPUT EXPECTED_COMMIT PROTOCOL_SHA EXECUTION_ADDENDUM_V2_SHA EXECUTION_ADDENDUM_V3_SHA NUMERIC_ADDENDUM_V4_SHA PRODUCER_SHA VERIFIER_SHA TEST_SHA EXECUTION_TEST_SHA RUNNER_SHA' >&2
   exit 64
 fi
 
@@ -18,11 +18,12 @@ readonly expected_commit=$2
 readonly protocol_sha=$3
 readonly execution_addendum_v2_sha=$4
 readonly execution_addendum_v3_sha=$5
-readonly producer_sha=$6
-readonly verifier_sha=$7
-readonly test_sha=$8
-readonly execution_test_sha=$9
-readonly runner_sha=${10}
+readonly numeric_addendum_v4_sha=$6
+readonly producer_sha=$7
+readonly verifier_sha=$8
+readonly test_sha=$9
+readonly execution_test_sha=${10}
+readonly runner_sha=${11}
 readonly repo=/research/d7/spc/yzyang4/aira-dojo
 readonly python=/research/d7/spc/yzyang4/venvs/exp/bin/python
 readonly master=/research/d7/spc/yzyang4/scratch/pbe_alignment_cache_v1/all_predictions.compact.jsonl
@@ -72,6 +73,7 @@ GIT_LFS_SKIP_SMUDGE=1 git -C "$repo" worktree add --detach "$worktree" "$expecte
 readonly protocol=$worktree/phase1/foreagent_loeo_graph_denoising_v1.json
 readonly execution_addendum_v2=$worktree/phase1/foreagent_loeo_graph_denoising_execution_addendum_v2.json
 readonly execution_addendum_v3=$worktree/phase1/foreagent_loeo_graph_denoising_execution_addendum_v3.json
+readonly numeric_addendum_v4=$worktree/phase1/foreagent_loeo_graph_denoising_numeric_addendum_v4.json
 readonly producer=$worktree/phase1/analyze_foreagent_loeo_graph_denoising.py
 readonly verifier=$worktree/phase1/verify_foreagent_loeo_graph_denoising.py
 readonly test_source=$worktree/phase1/tests/test_foreagent_loeo_graph_denoising.py
@@ -82,6 +84,7 @@ readonly manifest=$worktree/phase1/foreagent_alignment_manifest_v1.json
 test "$(sha256sum "$protocol" | cut -d ' ' -f1)" = "$protocol_sha"
 test "$(sha256sum "$execution_addendum_v2" | cut -d ' ' -f1)" = "$execution_addendum_v2_sha"
 test "$(sha256sum "$execution_addendum_v3" | cut -d ' ' -f1)" = "$execution_addendum_v3_sha"
+test "$(sha256sum "$numeric_addendum_v4" | cut -d ' ' -f1)" = "$numeric_addendum_v4_sha"
 test "$(sha256sum "$producer" | cut -d ' ' -f1)" = "$producer_sha"
 test "$(sha256sum "$verifier" | cut -d ' ' -f1)" = "$verifier_sha"
 test "$(sha256sum "$test_source" | cut -d ' ' -f1)" = "$test_sha"
@@ -177,6 +180,7 @@ source_commit=$expected_commit
 protocol_sha256=$protocol_sha
 execution_addendum_v2_sha256=$execution_addendum_v2_sha
 execution_addendum_v3_sha256=$execution_addendum_v3_sha
+numeric_addendum_v4_sha256=$numeric_addendum_v4_sha
 producer_sha256=$producer_sha
 verifier_sha256=$verifier_sha
 test_sha256=$test_sha

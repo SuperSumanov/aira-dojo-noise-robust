@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 RUNNER = ROOT / "phase1/scripts/run_foreagent_loeo_graph_denoising_formal_20260830.sh"
 ADDENDUM_V2 = ROOT / "phase1/foreagent_loeo_graph_denoising_execution_addendum_v2.json"
 ADDENDUM_V3 = ROOT / "phase1/foreagent_loeo_graph_denoising_execution_addendum_v3.json"
+NUMERIC_ADDENDUM_V4 = ROOT / "phase1/foreagent_loeo_graph_denoising_numeric_addendum_v4.json"
 
 
 def test_lfs_skip_smudge_is_scoped_to_fresh_worktree_checkout() -> None:
@@ -49,5 +50,18 @@ def test_v3_addendum_records_result_free_collection_failure() -> None:
     assert value["failed_attempt"]["focused_tests_passed"] == 9
     assert value["failed_attempt"]["producer_started"] is False
     assert value["failed_attempt"]["result_files_created"] == 0
+    assert value["scientific_changes"] == []
+    assert value["resource_changes"] == []
+
+
+def test_v4_numeric_addendum_records_exact_rational_diagnostic() -> None:
+    value = json.loads(NUMERIC_ADDENDUM_V4.read_text(encoding="utf-8"))
+    assert value["protocol"] == "foreagent-loeo-graph-denoising-numeric-addendum-v4"
+    assert value["failed_attempt"]["focused_tests_passed"] == 11
+    assert value["failed_attempt"]["full_phase1_tests_passed"] == 1784
+    assert value["failed_attempt"]["result_files_created"] == 0
+    assert value["exact_rational_diagnostic"]["deepseek"]["exact_fraction"] == "33925/55143"
+    assert value["exact_rational_diagnostic"]["gpt"]["exact_fraction"] == "32477/55143"
+    assert value["raw_reproduction_tolerance_formula"] == "64 * binary64_epsilon"
     assert value["scientific_changes"] == []
     assert value["resource_changes"] == []

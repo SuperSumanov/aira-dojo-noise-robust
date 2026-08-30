@@ -5,11 +5,13 @@ import json
 import numpy as np
 
 from phase1.analyze_foreagent_loeo_graph_denoising import (
+    RAW_REPRODUCTION_TOLERANCE,
     bootstrap_metrics,
     incidence_matrix,
     load_common_support,
     loeo_projection,
     point_metrics,
+    raw_reproduction_matches,
     task_statistics,
 )
 from phase1.verify_foreagent_loeo_graph_denoising import grounded_projection
@@ -34,6 +36,17 @@ def test_closed_form_loeo_matches_brute_force() -> None:
         potential, *_ = np.linalg.lstsq(matrix[keep], flow[keep], rcond=None)
         expected = float(matrix[edge] @ potential)
         assert abs(float(result["loeo"][edge]) - expected) < 1e-10
+
+
+def test_raw_reproduction_tolerance_accepts_observed_roundoff() -> None:
+    epsilon = np.finfo(np.float64).eps
+    assert RAW_REPRODUCTION_TOLERANCE == 64.0 * epsilon
+    assert raw_reproduction_matches(1.0 + 18.0 * epsilon, 1.0)
+
+
+def test_raw_reproduction_tolerance_rejects_material_drift() -> None:
+    epsilon = np.finfo(np.float64).eps
+    assert not raw_reproduction_matches(1.0 + 128.0 * epsilon, 1.0)
 
 
 def test_tree_edges_are_not_loeo_evaluable() -> None:

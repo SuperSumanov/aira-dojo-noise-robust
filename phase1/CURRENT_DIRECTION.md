@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JA. 2026-08-30 influence-bounded task reweight 已在新模型 readout 前冻结
+
+0IZ 的 distribution-matched selection 精确改变了 task mixture，却因丢弃旧 yield pairs 而六个 efficacy 门失败；因此本项不再改
+selection，而是原样保留旧 yield budget=`96/192` 的 `49/99` 个 induced pairs，只把训练 loss 的任务混合向完整 outer-train
+availability 校正。旧 fold0 uniform/yield 结果、0IZ 负结果和全部结构诊断均已写入机器协议，仍是 historical development，不能
+重分类 0IZ，也不能替代未来 physical-run confirmation。
+
+直接 density ratio 在 budget96 会使 ESS fraction=`0.4291236656381884`、最大单 pair 梯度份额=
+`0.12987012987012989`；预先提出的平方根 ratio 虽把 ESS 提到 `0.7850387062365991`，但单 pair 份额仍为
+`0.05810467312403285`，超过先定 `1/20` 影响门，故在任何模型 fit 前停止。最终唯一规则是闭式 influence-bounded shrinkage：
+先把每条 pair 的 `availability_task_count/selected_task_count` 归一到均值 1，再用
+`w_i(lambda)=1+lambda(r_i-1)`；`lambda` 取同时满足 ESS≥`7/10`、单 pair weight share≤`1/20` 的最大值。
+不搜索温度、clip、budget 或任务，不读 outcome 决定 `lambda`；正反 antisymmetric rows 使用同一权重。
+
+协议 `endpoint_budget_influence_bounded_task_reweight_v1.json` 在任何新 weight、prediction 或 metric 前冻结。表示、LR、选样、
+外部 eval 与旧 private baseline witness 全不变，只跑两个 CPU critic fits；primary 要求两个预算 task-macro accuracy 均严格优于
+旧 yield，并同时过 terminal pooled/proper-score、uniform/drop-dominant、task-sign 与结构七门。任一失败即
+`HISTORICAL_SINGLE_FOLD_INFLUENCE_BOUNDED_TASK_REWEIGHT_DOES_NOT_ADVANCE`，不得在 fold0 上换公式救回；全过也只能称
+`...PROMISING_PENDING_NEW_RUN_CONFIRMATION`。GPU/付费 API/base update=`0/0/0`。详见
+`phase1/实验记录/2026-08-30/EndpointBudget_InfluenceBoundedTaskReweight_预注册.md`。
+
 ## 0IZ. 2026-08-30 distribution-matched yield：结果前冻结的历史开发筛选
 
 0IY 已证明旧 pure breadth 的 pooled 小增益由大任务集中贡献，且 task-macro 在两个 endpoint budget 都下降；因此不再扩大旧规则，

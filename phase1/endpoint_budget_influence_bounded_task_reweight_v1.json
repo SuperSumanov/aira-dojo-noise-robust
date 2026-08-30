@@ -1,0 +1,147 @@
+{
+  "protocol": "endpoint-budget-influence-bounded-task-reweight-v1",
+  "status": "FROZEN_AFTER_STRUCTURAL_WEIGHT_DIAGNOSTICS_BEFORE_ANY_REWEIGHTED_MODEL_FIT_OR_PREDICTION",
+  "frozen_at_utc": "2026-08-30T00:06:05Z",
+  "direction": "Decision Corpus plus Predictor Benchmark plus Audit Protocol",
+  "question": "Can all topology-yield-selected training pairs be retained while a deterministic influence-bounded task-density correction removes acquisition-induced task-mixture shift and improves the historical held-run critic?",
+  "known_before_freeze": {
+    "historical_fold0_labels_and_old_uniform_and_yield_predictions_exist": true,
+    "old_yield_accuracy_delta_vs_uniform_budget96": 0.021739130434782608,
+    "old_yield_accuracy_delta_vs_uniform_budget192": 0.036231884057971016,
+    "old_yield_task_macro_delta_vs_uniform_budget96": -0.0382983682983683,
+    "old_yield_task_macro_delta_vs_uniform_budget192": -0.10402097902097902,
+    "distribution_matched_selection_classification": "POST_AUDIT_DISTRIBUTION_MATCHED_YIELD_SCREEN_DOES_NOT_ADVANCE",
+    "distribution_matched_selection_budget96_accuracy_delta_vs_old_yield": -0.050724637681159424,
+    "distribution_matched_selection_budget192_accuracy_delta_vs_old_yield": -0.07971014492753623,
+    "direct_density_ratio_structural_diagnostic": {
+      "budget96_effective_sample_size_fraction": 0.4291236656381884,
+      "budget96_maximum_single_pair_weight_share": 0.12987012987012989,
+      "budget192_effective_sample_size_fraction": 0.7407179940998836,
+      "budget192_maximum_single_pair_weight_share": 0.038847117794486206
+    },
+    "square_root_density_ratio_structural_diagnostic": {
+      "budget96_effective_sample_size_fraction": 0.7850387062365991,
+      "budget96_maximum_single_pair_weight_share": 0.05810467312403285,
+      "budget192_effective_sample_size_fraction": 0.9329208808895967,
+      "budget192_maximum_single_pair_weight_share": 0.020508759727949587,
+      "disposition": "stopped before model fit because the frozen 1/20 maximum single-pair influence gate failed at budget96"
+    },
+    "influence_bounded_weight_values_seen": false,
+    "reweighted_model_fit_prediction_or_metric_seen": false,
+    "prospective_first960_target300_target522_values_seen": false
+  },
+  "immutable_inputs": {
+    "historical_smoke_protocol": {
+      "path": "phase1/endpoint_budget_label_efficiency_smoke_v1.json",
+      "sha256": "e0dd7414ce0885257234d87112507a3b89393260111398349dd22b05abb29761"
+    },
+    "historical_smoke_source_commit": "9f9705a14eac5bf73a070ac7c37091a815c4e31b",
+    "historical_formal_root": "/research/d7/spc/yzyang4/endpoint-label-efficiency-smoke/formal-9f9705a-r1",
+    "historical_artifacts": {
+      "selection_a.public.json": "d1e4274b1046c4e4fea294818beb5522fcdd352a9379a2d72e8bc3255b59bd15",
+      "selection_a.private.json": "ab4c76721964b3a7c8554e551c5bc524043f111eb52c7a3eddec952553bb1445",
+      "firewall_a/receipt.json": "9291d9e715ccff4ecdfac39cd462379be2d6ecacedb9e6d38a1762c0e9d64ab3",
+      "firewall_a/topology.json": "832d892a69046a8cef72263fac2ea63ce2a79be8a132f761112a625328273c70",
+      "firewall_a/labels.json": "12240a6d67c31d1b17f1ac6ae2b2ebe7ef57303ff05c1d97bc71aabe4161a0e6",
+      "fit/summary.json": "b8068e691c84c1413d1e21091bde4ef89914dc3a0777ff44ba92bfe57f1ed6ec",
+      "fit/private_pairs.json": "1f9bcb84fe6652c8801ce3872f2c9bdc830c8d2dcaa8347eaaa9bb567f1300ce",
+      "fit/runs.csv": "5037e206092cd594b84e6ef895d226386a338b3d22cefea6f36a19e494747a12"
+    },
+    "senior_safe_cards": {
+      "remote_path": "/research/d7/spc/yzyang4/senior-0828-pair-audit/cards-f534114-v1/cards.safe.json",
+      "sha256": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343"
+    },
+    "senior_security_receipt": {
+      "remote_path": "/research/d7/spc/yzyang4/senior-0828-pair-audit/cards-f534114-v1/security_scan.json",
+      "sha256": "d41142279bdba7db4495664df6836eecec3a36016cd316164ee5e54d4518eccc"
+    }
+  },
+  "population": {
+    "source": "the exact historical smoke fold0 firewall, yield selections, and old uniform/yield pair-probability witness",
+    "outer_eval_fold": 0,
+    "outer_train_folds": [1, 2, 3, 4],
+    "fit_endpoint_budgets": [96, 192],
+    "selection_arm": "yield_guarded_breadth",
+    "all_historical_source_rows_must_have_intask_split": "train",
+    "senior_test_rows_forbidden": true,
+    "prospective_rows_forbidden": true,
+    "no_new_pair_or_task_filtering": true
+  },
+  "model": {
+    "name": "char_tfidf_pairwise_logistic_regression_with_influence_bounded_task_density_weights",
+    "same_as_historical_smoke_except_sample_weight": true,
+    "vectorizer_fit_population": "all selected yield-arm outer-train endpoint code only",
+    "code_character_limit": 20000,
+    "analyzer": "char_wb",
+    "ngram_range": [3, 5],
+    "max_features": 30000,
+    "min_df": 3,
+    "sublinear_tf": true,
+    "pair_representation": "tfidf(better)-tfidf(worse) plus exact antisymmetric reverse rows",
+    "logistic_regression": {
+      "C": 0.5,
+      "max_iter": 1500,
+      "solver": "lbfgs",
+      "random_state": 0
+    },
+    "sample_weight": {
+      "availability_count": "number of all outer-train pairs for the pair task",
+      "selected_count": "number of yield-induced outer-train pairs for the pair task at the endpoint budget",
+      "direct_ratio_per_pair": "(availability_count / selected_count), normalized to mean one across induced pairs",
+      "shrinkage_family": "w_i(lambda) = 1 + lambda * (direct_ratio_i - 1)",
+      "lambda_rule": "largest lambda in [0,1] satisfying both the exact ESS and maximum-single-pair influence constraints; computed in closed form with no grid or outcome access",
+      "effective_sample_size_fraction_minimum": "7/10",
+      "maximum_single_pair_weight_share": "1/20",
+      "same_weight_for_forward_and_antisymmetric_reverse_row": true,
+      "no_clipping_grid_temperature_or_post_result_choice": true
+    }
+  },
+  "structural_gates_before_model_fit": {
+    "minimum_selected_task_support_availability_fraction": "19/20",
+    "weighted_task_distribution_l1_strictly_below_unweighted_at_both_budgets": true,
+    "effective_sample_size_fraction_at_least": "7/10",
+    "maximum_single_pair_weight_share_at_most": "1/20",
+    "all_original_yield_induced_pairs_retained": true
+  },
+  "metrics": {
+    "primary": "task-macro pairwise accuracy delta versus the old unweighted yield critic at both budgets",
+    "secondary": [
+      "pair-micro accuracy",
+      "log loss",
+      "Brier score",
+      "positive negative equal task signs",
+      "drop-dominant-task pair-micro accuracy",
+      "task-clustered pair-micro bootstrap",
+      "run-clustered pair-micro bootstrap",
+      "task-macro bootstrap"
+    ],
+    "bootstrap_repetitions": 2000,
+    "bootstrap_seed": 20260830,
+    "report_both_budgets_even_if_unfavorable": true
+  },
+  "advancement_gates_historical_development_only": {
+    "structural_influence_gates_all_pass": true,
+    "task_distribution_l1_strictly_lower_at_both_budgets": true,
+    "task_macro_accuracy_delta_new_minus_old_yield_strictly_positive_at_both_budgets": true,
+    "terminal_pair_micro_accuracy_delta_new_minus_old_yield_nonnegative": true,
+    "terminal_log_loss_and_brier_delta_new_minus_old_yield_nonpositive": true,
+    "terminal_pair_micro_task_macro_and_drop_dominant_accuracy_delta_new_minus_uniform_nonnegative": true,
+    "positive_task_count_at_least_negative_task_count_at_both_budgets": true,
+    "if_any_gate_fails": "HISTORICAL_SINGLE_FOLD_INFLUENCE_BOUNDED_TASK_REWEIGHT_DOES_NOT_ADVANCE",
+    "if_all_gates_pass": "HISTORICAL_SINGLE_FOLD_INFLUENCE_BOUNDED_TASK_REWEIGHT_PROMISING_PENDING_NEW_RUN_CONFIRMATION"
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "base_model_updates": 0,
+    "critic_model_fits": 2,
+    "cpu_wall_time_expected_minutes": "20-45",
+    "checkpoint_resume": "one mode-0600 atomic checkpoint per endpoint budget"
+  },
+  "scope": {
+    "single_historical_outer_fold_development_only": true,
+    "not_a_rescue_or_reclassification_of_distribution_matched_selection": true,
+    "confirmation_requires_rule_frozen_new_physical_runs": true,
+    "no_generator_or_agent_base_update": true
+  }
+}

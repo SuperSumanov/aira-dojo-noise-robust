@@ -3,6 +3,7 @@ set -Eeo pipefail
 source /uac/y24/yzyang4/env_setup.sh
 set -u
 umask 077
+export PYTHONDONTWRITEBYTECODE=1
 
 if [[ "$#" -ne 3 ]]; then
   printf 'usage: %s (--initialize|--run) CONTROL_REPO CONTROL_COMMIT\n' "$0" >&2

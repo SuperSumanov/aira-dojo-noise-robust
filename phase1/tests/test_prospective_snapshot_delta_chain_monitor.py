@@ -56,6 +56,7 @@ def test_monitor_binds_exact_protocol_and_two_verifier_sources():
     assert source.index("source /uac/y24/yzyang4/env_setup.sh") < source.index(
         "set -u"
     )
+    assert "export PYTHONDONTWRITEBYTECODE=1" in source
 
 
 def test_monitor_requires_primary_and_grounded_ab_before_state_promotion():

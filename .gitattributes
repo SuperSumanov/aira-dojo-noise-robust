@@ -205,3 +205,6 @@ phase1/tests/test_tree_within_stratum_forward_target522_runner.py text eol=lf di
 phase1/results/endpoint_budget_influence_bounded_task_reweight_20260830_d768cb2/summary.json -text -diff
 phase1/results/endpoint_budget_influence_bounded_task_reweight_20260830_d768cb2/runs.csv -text -diff
 phase1/results/endpoint_budget_influence_bounded_task_reweight_20260830_d768cb2/verifier.json -text -diff
+phase1/scripts/guard_outcome_blind_continuity_887_20260830_v5.sh text eol=lf diff
+phase1/scripts/renew_outcome_blind_monitors_887_20260830_v5.sh text eol=lf diff
+phase1/tests/test_outcome_blind_monitor_renewal_20260830.py text eol=lf diff

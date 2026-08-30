@@ -13,6 +13,19 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JB. 2026-08-30 outcome-blind 887 v5 续接已在重启前冻结
+
+纯结构复核发现旧 continuous intake 已正常跑满 `145×300s` 后退出；v4 guard 最后一个成功状态仍是 poll 71、baseline
+`887491a...62697`、所有支持链 healthy，下一轮只因 intake PID 已自然结束而留下 `FAILED_RC=1`。这不是 snapshot、sidecar、
+label 或科学故障。复核时 LATEST 仍为 887，config-v2 文件名数=0，Target-522 候选/READY/COMPLETE/FAILED 均不存在，四个
+Target-522 monitor 仍 live/持锁；前瞻 value 未读。
+
+结果前冻结 v5：先绑定旧正常完成、RC1/poll71、死 PID、free lock、三个 state SHA 与六个脚本 SHA，再按固定顺序重启
+credential-first intake → transition/receipt/config-v9/Target-300/WL → 六小时 guard。所有 cohort/scorer/state root/门保持不变；
+guard 只读 PID、锁、LATEST、marker、文件名计数、哈希和 `outcomes_read=false` 结构汇总。唯一 successor 只写 identity handoff，
+config-v2 只写 metadata 后停在 redaction/review 前；未知重复、哈希漂移或进程异常 fail-closed。GPU/API/model-fit/base-update=
+`0/0/0/0`。当前状态为 **`FROZEN_BEFORE_V5_RESTART`**，详见同日续接预注册。
+
 ## 0JA. 2026-08-30 influence-bounded task reweight 已在新模型 readout 前冻结
 
 0IZ 的 distribution-matched selection 精确改变了 task mixture，却因丢弃旧 yield pairs 而六个 efficacy 门失败；因此本项不再改

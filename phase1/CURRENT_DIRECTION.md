@@ -13,6 +13,31 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JE. 2026-08-30 OpenRouter 目录价格漂移已在任何 live call 前追加式修复
+
+四个冻结模型 ID 在官方公共目录中仍全部存在，但 DeepSeek V4 Flash 0731 的 prompt/completion 价格已从旧冻结值
+`0.045/0.09` 变为 `0.065/0.18 USD per million tokens`；旧 `provider.max_price` 会错误拒绝该 arm。旧 hardening/receipt
+保持不可变，新增 public catalog receipt、append-only hardening 与 launch receipt，SHA-256 分别为
+`a534573d...73ab4`、`924526a4...b99d7`、`8899c1bf...7f35`。panel、prompt、四模型、双方向、64 calls、2 USD stop、
+reliability gates、分析与科学边界逐字段不变；只更新 DeepSeek 目录价格。focused=`9 passed`，API/GPU/model fit/base update=
+`0/0/0/0`。远端固定 venv 在正式 `umask 077` 下又通过 focused/full=`9/1680 passed`；第一次漏设 umask 的 0644 private
+fixture 被安全门正确拒绝并保留为工程失败回执。
+
+远端 `.env` mode=600，但截至 `2026-08-30T01:41:34Z` 仍没有 `OPENROUTER_API_KEY` 变量；聊天明文没有转存。只有用户或
+学长直接安全安装后，才重跑不回显值的 account/catalog/privacy gate；目录再漂移或任何 transport contract 不满足即
+fail-closed。smoke PASS 也不自动授权 full。详见同日结果前修复记录。
+
+## 0JD. 2026-08-30 v5 首批 successor 已连续摄取，支持链仍结果盲运行
+
+v5 guard 在 `01:16:30Z` 正常 handoff 第一 successor `c04bbd2c...6a575` 后 COMPLETE、无 FAILED；固定 intake 又连续纳入
+六个累计 successor，`LATEST=13d67288...1c449`，snapshot dirs=`113`。截至 `01:50:08Z`，intake、transition、receipt、
+config-v9、Target-300、WL PID 均 live，support locks held；Target-522 纯结构计数=`460` runs，candidate 不存在。
+
+WL 最近正式处理到 `a22a56ae...a348` 的 selected runs=446、baseline delta=11，故仍 deferred；最新结构已到 460，WL PID/lock
+仍 live/held 但尚未写下一条，可能正在构建 threshold 后 extension。不得读取中间文件、杀进程或提前推断门通过。Target-300
+仍等待 quiescence，config-v2 filename count=0；
+prospective label/outcome/prediction/accuracy/utility 全部未读。详见同日 successor 结构记录。
+
 ## 0JC. 2026-08-30 学长最新 5baccb 语料已增长，但 clean-scaling sidecar 仍未部署
 
 `dojo-reproduce@5baccb170ce287f9c8eed7b23ccf693a0268515a` 已把 cards、value/mixed/merged decision、runsplit 与

@@ -1,0 +1,135 @@
+{
+  "protocol": "foreagent-public-ust-pair-weighting-addendum-v1",
+  "version": 1,
+  "status": "FROZEN_BEFORE_EDGE_LEVERAGE_OR_TASK_WEIGHT_READOUT",
+  "frozen_at_utc": "2026-08-30T04:33:13Z",
+  "paper_container": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+  "question": "How does uniform-spanning-tree edge weighting redistribute FOREAGENT's public comparison rows relative to uniform row counting?",
+  "disclosure": {
+    "known_before_freeze": {
+      "pair_rows": 18361,
+      "vertices": 895,
+      "tasks": 26,
+      "connected_components": 26,
+      "endpoint_edge_incidence_rank": 869,
+      "cycle_redundant_pair_rows": 17492,
+      "minimum_degree": 2,
+      "maximum_degree": 49
+    },
+    "not_read_before_freeze": [
+      "per-edge effective resistance or leverage weight",
+      "leverage-weight quantiles",
+      "edge-distribution total variation from uniform rows",
+      "per-task edge counts or rank weights",
+      "task-distribution total variation or concentration",
+      "FOREAGENT scores, best_index, full_ranking, code or model predictions"
+    ],
+    "classification_policy": "Deterministic post-disclosure structural description only; no effect threshold, p-value or confirmatory success label is permitted."
+  },
+  "source": {
+    "dataset": "zjunlp/PredictBeforeExecute",
+    "huggingface_revision": "6b322cb88bdbcb2b2d3897ec7d0ded94a5bb2d06",
+    "auto_parquet_sha256": "79363b7ef0b6154061f18e81f6c6fdf380e71ae3f1d7b9a262cc79acb08f0b5f",
+    "auto_parquet_bytes": 8456690,
+    "columns_allowed": [
+      "paths"
+    ],
+    "columns_forbidden": [
+      "scores",
+      "best_index",
+      "full_ranking",
+      "is_lower_better",
+      "model predictions"
+    ],
+    "solution_code_allowed": false,
+    "raw_identity_emission_allowed": false
+  },
+  "estimand": {
+    "edge_weight": "For each unweighted comparison edge e, R_e=b_e^T L^+ b_e, its effective resistance and uniform-spanning-tree inclusion probability within its connected component.",
+    "normalization": "Foster/Kirchhoff identity: sum_e R_e=V-C, the endpoint-edge incidence rank.",
+    "ust_averaged_pair_metric": "sum_e R_e m_e / (V-C), where m_e is any fixed edge-level metric value; with scientific tasks, aggregate this quantity task-macro outside each task graph.",
+    "expectation": "The component-normalized quantity equals the expected average of m_e over the edges of an independently drawn uniform spanning tree in each component.",
+    "complete_clique": "For K_k, every edge has R_e=2/k, exactly matching the already-frozen sibling-clique rank normalization.",
+    "tree": "For a tree, every edge has R_e=1, so the weighting is unchanged.",
+    "reported_structure_only": [
+      "Foster residual",
+      "fixed edge-weight quantiles at 0, 0.25, 0.5, 0.75, 1",
+      "edge-distribution total variation from uniform rows",
+      "minimum and maximum relative to mean rank-per-row weight",
+      "unit-probability bridge count",
+      "raw-row versus incidence-rank task concentration and total variation"
+    ]
+  },
+  "independent_implementations": {
+    "producer": "symmetric Laplacian eigendecomposition and Moore-Penrose pseudoinverse",
+    "verifier": "deterministic connected-component DFS plus grounded reduced-Laplacian inverse",
+    "producer_and_verifier_import_each_other": false,
+    "numeric_tolerance": "producer 5e-9 and verifier 2e-8 relative-to-max(1, magnitude)",
+    "producer_and_verifier_repeated_byte_exact": true,
+    "synthetic_positive_controls": [
+      "K_5 has every edge weight 2/5 and total weight 4",
+      "a path has every edge weight 1",
+      "triangle plus bridge matches explicitly enumerated uniform spanning trees"
+    ]
+  },
+  "related_work_boundary": {
+    "established_theory": [
+      "Kirchhoff/transfer-current identity connecting effective resistance and uniform-spanning-tree inclusion",
+      "Foster's theorem that edge leverage weights sum to graph rank",
+      "effective-resistance graph sparsification",
+      "graph-resistance error analysis for pairwise comparison learning",
+      "A/D/E-optimal pairwise comparison design and HodgeRank sampling"
+    ],
+    "allowed_claim": "A reproducible MLE benchmark audit and metric interpretation that generalizes sibling-clique 2/k weighting to arbitrary released comparison graphs.",
+    "forbidden_claims": [
+      "new effective-resistance, leverage-score or spanning-tree mathematics",
+      "first graph-aware pairwise comparison method",
+      "effective sample size or independent-label count",
+      "information-theoretic optimality",
+      "predictor improvement without a separately frozen outcome-bearing sensitivity analysis",
+      "invalidity of FOREAGENT's published model accuracy"
+    ],
+    "primary_sources": {
+      "spielman_srivastava": "https://arxiv.org/abs/0803.0929",
+      "graph_resistance_pairwise_learning": "https://arxiv.org/abs/1902.00141",
+      "accelerated_pairwise_design": "https://arxiv.org/abs/1901.06080",
+      "targeted_statistical_rankings": "https://proceedings.mlr.press/v28/osting13.html",
+      "hodge_rank_sampling": "https://arxiv.org/abs/1503.00164"
+    }
+  },
+  "integrity": {
+    "unordered_edges_unique": true,
+    "cross_task_edges_forbidden": true,
+    "component_task_homogeneity_required": true,
+    "Foster_identity_required_per_component_and_globally": true,
+    "producer_and_verifier_A_B_byte_exact": true,
+    "file_and_network_trace": true,
+    "fresh_exact_commit_focused_and_full_tests": true,
+    "no_result_dependent_threshold_or_model_selection": true
+  },
+  "source_bindings": {
+    "producer": {
+      "path": "phase1/audit_foreagent_ust_pair_weighting.py",
+      "sha256": "9320b24ade28c40359994e0a205024be31c66eed239eb8da0323da4ffa185b31"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_foreagent_ust_pair_weighting.py",
+      "sha256": "6f0cd2dd4bbc37c06ea9e37ff4df2812b7e26957798300bdf746a17078922e47"
+    },
+    "test": {
+      "path": "phase1/tests/test_foreagent_ust_pair_weighting.py",
+      "sha256": "16d5dbb22bc74121f5da9fc2ef95a63ad56161a32cd79a30e700129979e5fb62"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_foreagent_ust_pair_weighting_formal_20260830.sh",
+      "sha256": "944f0941ad44f02b9fef4304c66c1c458e7b22e3a08eeb44e010804de6077409"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "expected_single_cpu_seconds_excluding_full_tests": "under 30"
+  }
+}

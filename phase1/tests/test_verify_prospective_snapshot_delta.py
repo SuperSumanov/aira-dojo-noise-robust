@@ -7,6 +7,7 @@ from pathlib import Path
 
 import pytest
 
+from phase1 import prospective_production_runner as production
 from phase1 import verify_prospective_snapshot_delta as verifier
 
 
@@ -102,6 +103,16 @@ def test_append_only_delta_passes_and_emits_aggregates_only(tmp_path: Path):
     assert receipt["security"]["score_prediction_files_opened"] is False
 
 
+def test_registry_projection_bytes_match_frozen_production_serialization():
+    rows = [transaction(0), transaction(1)]
+    intake = verifier.expected_intake_projection(rows)
+    score = verifier.expected_score_projection(rows)
+    assert intake == production.intake_registry_bytes(rows)
+    assert score == production.score_registry_bytes(rows)
+    assert b'": "' in intake and b', "' in intake
+    assert b'": "' in score and b', "' in score
+
+
 def test_mutated_historical_transaction_fails_prefix_gate(tmp_path: Path):
     prior = tmp_path / "prior"
     current = tmp_path / "current"
@@ -169,3 +180,21 @@ def test_payload_tamper_fails_manifest_gate(tmp_path: Path):
     (current / "runner_summary.json").write_text("{}\n", encoding="utf-8")
     with pytest.raises(verifier.DeltaVerificationError, match="payload mismatch"):
         verifier.verify(arguments(prior, prior_sha, current, current_sha))
+
+
+def test_execution_addendum_v2_freezes_failure_and_single_repair():
+    addendum = json.loads(
+        (
+            Path(__file__).parents[1]
+            / "prospective_snapshot_delta_receipt_execution_addendum_v2.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert addendum["failed_v1"]["manifest_sha256"] == (
+        "ff5a27a190443f01d9cdb91f69286ec321b8ce125169d1eec9402758b50e2d8b"
+    )
+    assert addendum["permitted_change"] == (
+        "Match the frozen production canonical JSONL separators while retaining "
+        "sorted keys, UTF-8, final newlines, and NaN rejection."
+    )
+    assert addendum["scientific_protocol_changed"] is False
+    assert addendum["same_root_repair_allowed"] is False

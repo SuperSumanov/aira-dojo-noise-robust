@@ -151,7 +151,12 @@ def parse_transactions(path: Path) -> tuple[bytes, list[dict[str, Any]]]:
 def canonical_jsonl(rows: list[dict[str, Any]]) -> bytes:
     return b"".join(
         (
-            json.dumps(row, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+            json.dumps(
+                row,
+                sort_keys=True,
+                ensure_ascii=False,
+                allow_nan=False,
+            )
             + "\n"
         ).encode("utf-8")
         for row in rows

@@ -1,0 +1,29 @@
+{
+  "protocol": "prospective-snapshot-delta-receipt-execution-addendum-v2",
+  "status": "RESULTS_BLIND_EXECUTION_FIX",
+  "failed_v1": {
+    "root": "/research/d7/spc/yzyang4/prospective-snapshot-delta/formal-0e833df-v1",
+    "manifest_sha256": "ff5a27a190443f01d9cdb91f69286ec321b8ce125169d1eec9402758b50e2d8b",
+    "stage": "producer_a_registry_projection_check",
+    "focused_tests": "34 passed",
+    "full_tests": "1819 passed, 48 warnings",
+    "receipt_files_created": 0,
+    "latest_modified": false
+  },
+  "diagnosis": "The independent verifier serialized reconstructed registry projections with compact JSON separators, while the already-frozen production canonical JSONL contract uses the standard separators retained by json.dumps.",
+  "permitted_change": "Match the frozen production canonical JSONL separators while retaining sorted keys, UTF-8, final newlines, and NaN rejection.",
+  "required_new_test": "Compare independently reconstructed intake and score projection bytes against the frozen production serializer and assert standard separator bytes.",
+  "required_independent_verifier_change": "The non-importing grounded verifier must independently reconstruct both registry projections from transactions with the same frozen canonical JSON contract before checking append-only prefixes.",
+  "scientific_protocol_changed": false,
+  "inputs_changed": false,
+  "inventory_or_delta_expectations_changed": false,
+  "claim_boundary_changed": false,
+  "same_root_repair_allowed": false,
+  "fresh_exact_commit_and_output_root_required": true,
+  "resource_policy": {
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  }
+}

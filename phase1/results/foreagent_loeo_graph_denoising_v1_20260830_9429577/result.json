@@ -1,0 +1,145 @@
+{
+  "claim_boundary": {
+    "algorithmic_novelty_claimed": false,
+    "prospective_confirmation": false,
+    "role": "predictor-benchmark baseline imported from established graph ranking and recent topological judge denoising work"
+  },
+  "classification": "NO_DENOISING_GAIN_MODEL_COMPARISON_REMAINS_STABLE",
+  "frozen_gates": {
+    "at_least_one_task_macro_gain_ci_lower_gt_zero": false,
+    "both_model_task_macro_gain_points_nonnegative": false,
+    "coverage_pass": true,
+    "hybrid_model_comparison_ci_lower_gt_zero": true,
+    "minimum_pair_coverage": 0.9
+  },
+  "inference": {
+    "bootstrap_repetitions": 20000,
+    "cluster": "task",
+    "pair_iid_inference": false,
+    "seeds": [
+      20260901,
+      20260902,
+      20260903
+    ]
+  },
+  "inputs": {
+    "confidence_values_read": false,
+    "manifest_sha256": "3df2715b2d2e5f3cc6193c07c99eb682e042e8aa6cb724b046b2469b35773a4e",
+    "master_sha256": "480616317ddebb249084dbc8b36b4060fac4b77353fce16b436351eab9c235fe",
+    "prospective_sources_read": false,
+    "source_files": 156,
+    "source_records": 110620
+  },
+  "method": {
+    "bridge_or_zero_policy": "fall back to raw triplicate majority in full-coverage hybrid",
+    "fit": "unweighted task-local Hodge least squares on mean signed triplicate judgments",
+    "labels_used_for_projection": false,
+    "loeo_formula": "(fitted_e - leverage_e * observed_e) / (1 - leverage_e)",
+    "target_edge_excluded": true
+  },
+  "metrics": {
+    "deepseek": {
+      "hybrid_minus_raw_loto": {
+        "positive": 26,
+        "total": 26
+      },
+      "label_free_diagnostics": {
+        "bridge_or_zero_edges": 157,
+        "residual_energy_sum": 4573.2012910932945
+      },
+      "point": {
+        "hybrid_minus_raw_pair_micro": 0.0063108644796257005,
+        "hybrid_minus_raw_task_macro": 0.0034202548490305197,
+        "hybrid_pair_micro": 0.6273869756814101,
+        "hybrid_task_macro": 0.6128439427994843,
+        "loeo_coverage_pair_micro": 0.9914585713508515,
+        "loeo_coverage_task_macro": 0.9359762141745829,
+        "loeo_minus_raw_on_loeo_support_task_macro": 0.003111494831547582,
+        "loeo_only_task_macro": 0.6273620349491686,
+        "raw_majority_pair_micro": 0.6210761112017844,
+        "raw_majority_task_macro": 0.6094236879504538,
+        "raw_on_loeo_support_task_macro": 0.624250540117621
+      },
+      "task_bootstrap_ci": {
+        "hybrid_minus_raw_pair_micro": [
+          0.0012241329058583503,
+          0.011108040895274937
+        ],
+        "hybrid_minus_raw_task_macro": [
+          -0.0043703959864033895,
+          0.00991932144534674
+        ],
+        "loeo_minus_raw_on_loeo_support_task_macro": [
+          -0.005468291261818252,
+          0.010019076598390776
+        ]
+      }
+    },
+    "gpt": {
+      "hybrid_minus_raw_loto": {
+        "positive": 1,
+        "total": 26
+      },
+      "label_free_diagnostics": {
+        "bridge_or_zero_edges": 134,
+        "residual_energy_sum": 6328.934034277856
+      },
+      "point": {
+        "hybrid_minus_raw_pair_micro": 0.005658016430009249,
+        "hybrid_minus_raw_task_macro": -0.0014593090007331022,
+        "hybrid_pair_micro": 0.5954518252543387,
+        "hybrid_task_macro": 0.5819708565346422,
+        "loeo_coverage_pair_micro": 0.9927098634459496,
+        "loeo_coverage_task_macro": 0.9278517202881376,
+        "loeo_minus_raw_on_loeo_support_task_macro": -0.001867865471347688,
+        "loeo_only_task_macro": 0.5932158318403578,
+        "raw_majority_pair_micro": 0.5897938088243295,
+        "raw_majority_task_macro": 0.5834301655353753,
+        "raw_on_loeo_support_task_macro": 0.5950836973117053
+      },
+      "task_bootstrap_ci": {
+        "hybrid_minus_raw_pair_micro": [
+          -0.0013064133016627078,
+          0.012074538885719719
+        ],
+        "hybrid_minus_raw_task_macro": [
+          -0.010356725763437023,
+          0.006794261543876969
+        ],
+        "loeo_minus_raw_on_loeo_support_task_macro": [
+          -0.011495863226220161,
+          0.006789972179482955
+        ]
+      }
+    }
+  },
+  "paired_deepseek_minus_gpt": {
+    "hybrid_loto_positive": 26,
+    "hybrid_task_macro_delta": 0.030873086264842024,
+    "hybrid_task_macro_delta_ci": [
+      0.006733984687049144,
+      0.05938772182771875
+    ],
+    "loto_total": 26,
+    "raw_loto_positive": 26,
+    "raw_task_macro_delta": 0.025993522415078404,
+    "raw_task_macro_delta_ci": [
+      -0.00020939006472648432,
+      0.05709761392507569
+    ]
+  },
+  "population": {
+    "common_pairs": 18381,
+    "components": 26,
+    "cycle_rows": 17513,
+    "incidence_rank": 868,
+    "raw_round_pair_micro_reproduction": {
+      "deepseek": 0.6152186134232771,
+      "gpt": 0.5889596140942612
+    },
+    "tasks": 26,
+    "vertices": 894
+  },
+  "protocol": "foreagent-loeo-graph-denoising-result-v1",
+  "status": "HISTORICAL_PUBLIC_GRAPH_CONSISTENCY_BASELINE_COMPLETE"
+}

@@ -1,0 +1,143 @@
+{
+  "protocol": "foreagent-loeo-graph-denoising-formal-receipt-v1",
+  "status": "FORMAL_COMPLETE_AND_INDEPENDENT_POSTFLIGHT_PASS",
+  "completed_at_utc": "2026-08-30T15:54:15.188526730Z",
+  "source_commit": "942957757fd0c8464b1670ab3e35da64f4cccebf",
+  "formal_root": "/research/d7/spc/yzyang4/foreagent-loeo-graph-denoising/formal-9429577-v5",
+  "source_bindings": {
+    "scientific_protocol_sha256": "bcd25033e2340a0b98c362ae1fffb29fe39c5222ceb531e5112d4675d7be033c",
+    "execution_addendum_v2_sha256": "8cb1c80c36d6bc75b605ba9498cd75691f3e30077cadea4d952f432ea3b58a45",
+    "execution_addendum_v3_sha256": "6f10eab92fbda4594ce428695c2da5522ed8e9bd38022a7587b1c8db42f392b5",
+    "numeric_addendum_v4_sha256": "94fa4b3ae4fa591dd7d56fe32d8f9b6c1bf1ea96ef7a5f3f6bf2c37e5d144d6c",
+    "execution_addendum_v5_sha256": "10abe7f5ca55879063fdf2790611c2b3f4650314fcd9bc63b178c652ace17214",
+    "producer_sha256": "4f581e9dba64a49bb4b05d9ea7b00f2bb80cf987cf8d85516cb25605a972c756",
+    "verifier_sha256": "6473b3fa8b56ed65d31ff46de7b6e684656dbd675dc8932c4a8b7ad5c3b5e043",
+    "main_test_sha256": "14df53144725a4a1d9a5beeaecb6c08f05b9e8f000d45306dca17c0778ef58ad",
+    "execution_test_sha256": "2d48ccaa3c9d69d635edf91310da52456032a7b100822b7235a8c0a8904da552",
+    "runner_sha256": "6bdd0b27aa81b5cd37b645f8897fda4b80e18cad10c656247c616ff6bad1328b",
+    "input_manifest_sha256": "3df2715b2d2e5f3cc6193c07c99eb682e042e8aa6cb724b046b2469b35773a4e",
+    "input_master_sha256": "480616317ddebb249084dbc8b36b4060fac4b77353fce16b436351eab9c235fe"
+  },
+  "formal_artifacts": {
+    "result_sha256": "b00ab6b786a83e04255904845a010d5278e838e9d3c3d15ab9e743dc8831e96b",
+    "verification_sha256": "a69128906fe330d1d3b90f035c0fbe1e49c5ec49d16c124086e181d792eac524",
+    "sha256_manifest_sha256": "a3453efadf4d9d8a2e0f1ce53b474b8101aa5f30d411b330679e3ce08393eee0",
+    "producer_a_b_byte_match": true,
+    "verifier_a_b_byte_match": true,
+    "complete_marker_present": true,
+    "failed_marker_present": false,
+    "tree_read_only": true
+  },
+  "tests": {
+    "preflight_items_passed": 13,
+    "focused_passed": 16,
+    "full_phase1_passed": 1789,
+    "full_phase1_warnings": 48,
+    "full_phase1_seconds": 134.14
+  },
+  "independent_verification": {
+    "status": "PASS",
+    "method": "opposite orientation plus grounded reduced-Laplacian inverse",
+    "checked_numeric_fields": 45,
+    "maximum_absolute_numeric_difference": 0.0,
+    "postflight_sha256_manifest_check": true,
+    "postflight_a_b_check": true,
+    "postflight_trace_and_security_check": true
+  },
+  "security": {
+    "prospective_sources_read": false,
+    "confidence_values_read": false,
+    "raw_task_or_endpoint_identities_emitted": false,
+    "forbidden_trace_hits": 0,
+    "network_hits": 0,
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0,
+    "symlink_hits": 0,
+    "writable_path_hits_after_seal": 0,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  },
+  "population": {
+    "tasks": 26,
+    "common_pairs": 18381,
+    "vertices": 894,
+    "components": 26,
+    "incidence_rank": 868,
+    "cycle_rows": 17513
+  },
+  "frozen_classification": "NO_DENOISING_GAIN_MODEL_COMPARISON_REMAINS_STABLE",
+  "frozen_gates": {
+    "coverage_pass": true,
+    "at_least_one_task_macro_gain_ci_lower_gt_zero": false,
+    "both_model_task_macro_gain_points_nonnegative": false,
+    "hybrid_model_comparison_ci_lower_gt_zero": true
+  },
+  "headline_results": {
+    "deepseek": {
+      "loeo_pair_coverage": 0.9914585713508515,
+      "hybrid_minus_raw_task_macro": 0.0034202548490305197,
+      "task_clustered_ci": [
+        -0.0043703959864033895,
+        0.00991932144534674
+      ],
+      "loto_positive": "26/26"
+    },
+    "gpt": {
+      "loeo_pair_coverage": 0.9927098634459496,
+      "hybrid_minus_raw_task_macro": -0.0014593090007331022,
+      "task_clustered_ci": [
+        -0.010356725763437023,
+        0.006794261543876969
+      ],
+      "loto_positive": "1/26"
+    },
+    "deepseek_minus_gpt": {
+      "raw_task_macro_delta": 0.025993522415078404,
+      "raw_task_clustered_ci": [
+        -0.00020939006472648432,
+        0.05709761392507569
+      ],
+      "hybrid_task_macro_delta": 0.030873086264842024,
+      "hybrid_task_clustered_ci": [
+        0.006733984687049144,
+        0.05938772182771875
+      ],
+      "hybrid_loto_positive": "26/26"
+    }
+  },
+  "claim_boundary": {
+    "allowed": [
+      "Target-edge-excluded graph consistency has approximately 99 percent pair coverage on the fixed public grid.",
+      "It does not establish a task-macro accuracy gain for either fixed judge.",
+      "The graph-corrected DeepSeek-versus-GPT comparison is task-bootstrap positive and 26-of-26 LOTO positive on this historical public grid.",
+      "This is a robustness baseline for the predictor benchmark."
+    ],
+    "forbidden": [
+      "Graph consistency improves judge accuracy in general.",
+      "The method is algorithmically novel.",
+      "The result prospectively validates critic or search utility.",
+      "Pair-IID significance or candidate-level generalization."
+    ]
+  },
+  "failed_attempts_retained": [
+    {
+      "root": "formal-9cdf42d-v1",
+      "stage": "unrelated LFS smudge before tests",
+      "scientific_result_files": 0
+    },
+    {
+      "root": "formal-29a523c-v2",
+      "stage": "unscoped repository pytest collection",
+      "scientific_result_files": 0
+    },
+    {
+      "root": "formal-701b405-v3",
+      "stage": "raw reproduction numeric guard before graph projection",
+      "scientific_result_files": 0
+    },
+    {
+      "root": "formal-7ad86cd-v4",
+      "stage": "post-verification zero-hit counter before COMPLETE",
+      "scientific_outcome_values_read": false
+    }
+  ]
+}

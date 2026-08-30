@@ -13,6 +13,22 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KD. 2026-08-30 FOREAGENT LOEO v5 正式完成：不支持单模型去噪提升，支持图修正后的模型比较稳健性
+
+exact commit=`942957757fd0c8464b1670ab3e35da64f4cccebf` 在 fresh root `formal-9429577-v5` 完成。
+preflight/focused/full=`13/16/1789 passed`、48 warnings；producer A/B 与 opposite-orientation grounded verifier A/B
+各自逐字节一致，45 个独立数值字段最大差=`0.0`；result/verification/manifest SHA-256=
+`b00ab6b7...1e96b` / `a6912890...c524` / `a3453efa...3eee0`。独立 postflight 再验全部哈希、trace/security 与
+只读树均 PASS，forbidden/network/credential/writable hits 全为 0。
+
+预注册分类=`NO_DENOISING_GAIN_MODEL_COMPARISON_REMAINS_STABLE`。DeepSeek/GPT LOEO pair coverage=
+`0.9914585714/0.9927098634`；hybrid−raw task-macro=`+0.0034202548/-0.0014593090`，task CI=
+`[-0.0043703960,0.0099193214]` / `[-0.0103567258,0.0067942615]`，故不能称单模型去噪提升。正支持项是
+DeepSeek−GPT：raw task-macro delta=`0.0259935224`，CI=`[-0.0002093901,0.0570976139]`；hybrid delta=
+`0.0308730863`，CI=`[0.0067339847,0.0593877218]`，26/26 LOTO 正号。允许定位为 Predictor Benchmark 的
+graph-aware robustness baseline；禁止称算法首创、通用 judge accuracy gain 或 prospective critic/search utility。
+prospective/confidence read=`false/false`，GPU/API/model fit/base update=`0/0/0/0`。详见正式报告与机器回执。
+
 ## 0KC. 2026-08-30 FOREAGENT LOEO v4 完成 A/B+独立复验后被零命中计数器误杀；v5 只修 pipefail
 
 exact commit=`7ad86cd312dde2c40c8b0842af1f6a6ca732f71c` 的第四次 formal 通过 focused/full=

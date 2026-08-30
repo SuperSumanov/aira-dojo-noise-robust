@@ -1,0 +1,12 @@
+{
+  "checked_numeric_fields": 45,
+  "confidence_values_read": false,
+  "independent_method": "opposite orientation plus grounded reduced-Laplacian inverse",
+  "manifest_sha256": "3df2715b2d2e5f3cc6193c07c99eb682e042e8aa6cb724b046b2469b35773a4e",
+  "master_sha256": "480616317ddebb249084dbc8b36b4060fac4b77353fce16b436351eab9c235fe",
+  "maximum_absolute_numeric_difference": 0.0,
+  "producer_result_sha256": "b00ab6b786a83e04255904845a010d5278e838e9d3c3d15ab9e743dc8831e96b",
+  "prospective_sources_read": false,
+  "protocol": "foreagent-loeo-graph-denoising-verification-v1",
+  "status": "PASS"
+}

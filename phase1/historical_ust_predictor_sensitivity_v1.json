@@ -1,0 +1,185 @@
+{
+  "protocol": "historical-ust-predictor-sensitivity-v1",
+  "version": 1,
+  "status": "FROZEN_AFTER_HISTORICAL_SCHEMA_DESERIALIZATION_BEFORE_UST_OUTCOME_AGGREGATION",
+  "frozen_at_utc": "2026-08-30T04:49:49Z",
+  "paper_container": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+  "question": "On the fixed historical 931-pair same-pool test support, does uniform-spanning-tree edge weighting materially change predictor point estimates, clustered uncertainty or model rankings relative to uniform pair rows?",
+  "disclosure": {
+    "historical_prediction_outcomes_already_revealed": true,
+    "method_freeze_not_outcome_blind_confirmation": true,
+    "known_before_freeze": {
+      "test_pairs": 931,
+      "tasks": 28,
+      "parent_groups": 550,
+      "connected_components": 559,
+      "static_models": 11,
+      "tfidf_models": 1,
+      "all_model_supports_exactly_equal": true,
+      "tfidf_raw_task_macro": "0.5757982662586206",
+      "tfidf_raw_task_ci95": [
+        "0.5066135214563272",
+        "0.6409030224715225"
+      ],
+      "dev_selected_static_champion": "static_gbm_task",
+      "static_champion_raw_task_macro": "0.5585685275472433",
+      "static_champion_raw_task_ci95": [
+        "0.500809682553181",
+        "0.6176416031350442"
+      ],
+      "static_champion_raw_task_delta_vs_tfidf": "-0.01722973871137726",
+      "static_champion_raw_task_delta_ci95": [
+        "-0.11177361183157879",
+        "0.09201062529949726"
+      ]
+    },
+    "schema_inventory_before_freeze": "The historical static and TF-IDF JSONL rows were deserialized to verify field names, model/split counts and exact test support. No UST weights, UST-weighted outcome aggregate, UST-minus-raw shift or UST ranking was computed or emitted before this freeze.",
+    "not_computed_or_read_before_freeze": [
+      "per-pair UST effective-resistance weights on the 931-pair support",
+      "historical support incidence rank and UST weight distribution",
+      "UST-weighted micro, task-macro or parent-macro values for any model",
+      "clustered confidence interval for any UST-minus-raw shift",
+      "UST-weighted paired delta against TF-IDF",
+      "raw-versus-UST model order discordance",
+      "UST-weighted champion leave-one-task-out range"
+    ],
+    "classification_policy": "This is a deterministic post-disclosure sensitivity audit. Exact points, intervals and order changes are reported without a tunable success threshold; the frozen dev champion is never reselected on test. It cannot be called prospective confirmation."
+  },
+  "inputs": {
+    "static_per_pair": {
+      "producer_a_path": "/research/d7/spc/yzyang4/critic-component-static-suite/76c1b49_20260821T022057Z/producer_1/per_pair.jsonl",
+      "producer_b_path": "/research/d7/spc/yzyang4/critic-component-static-suite/76c1b49_20260821T022057Z/producer_2/per_pair.jsonl",
+      "sha256": "ec5a9afd37e9fbf21a4a1e89c29e9a0c771a75f0f2090b99a163711a59515acd",
+      "producer_a_b_byte_exact_required": true
+    },
+    "tfidf_per_pair": {
+      "path": "phase1/results/critic_component_tfidf_20260821_a6075d1/per_pair.jsonl",
+      "sha256": "021f8b3c74db89c6b770714edb879731799b145744af7b765005eed72f9ecde6"
+    },
+    "allowed_population": "historical split=test rows only",
+    "prospective_cohort_access_allowed": false
+  },
+  "models": {
+    "all_reported": [
+      "code_len",
+      "depth",
+      "n_cv",
+      "n_ensemble",
+      "n_lines",
+      "random_hash",
+      "static_gbm_pooled",
+      "static_gbm_task",
+      "static_lr_pooled",
+      "static_lr_task",
+      "step",
+      "tfidf_lr"
+    ],
+    "primary_full_coverage_no_tie_panel": [
+      "tfidf_lr",
+      "static_lr_pooled",
+      "static_gbm_pooled",
+      "static_lr_task",
+      "static_gbm_task"
+    ],
+    "frozen_dev_selected_champion": "static_gbm_task",
+    "fixed_reference": "tfidf_lr",
+    "test_reselection_allowed": false,
+    "tie_or_abstention_credit_for_nonprimary_heuristics": "0.5"
+  },
+  "estimands": {
+    "graph_unit": "Each connected component inside a fixed (task,parent) historical sibling comparison context.",
+    "edge_weight": "Unweighted effective resistance b_e^T L^+ b_e, equivalently the edge inclusion probability under a uniform spanning tree of that component.",
+    "normalization": "Weights sum to incidence rank separately per connected component and globally by Foster's identity.",
+    "model_metrics": [
+      "uniform-row pair micro accuracy",
+      "uniform-row task macro accuracy",
+      "uniform-row parent macro accuracy",
+      "UST-weighted pair micro accuracy",
+      "UST-within-task then task-macro accuracy",
+      "UST-within-parent then parent-macro accuracy",
+      "paired task-clustered and parent-clustered UST-minus-uniform shifts",
+      "paired task-clustered and parent-clustered UST model-minus-TFIDF deltas"
+    ],
+    "ranking_sensitivity": "Report full 12-model and primary 5-model deterministic orders plus discordant unordered model pairs. Do not choose a new champion.",
+    "champion_robustness": "Report the fixed champion's leave-one-task-out UST task-macro delta versus TF-IDF, including minimum, maximum and positive count."
+  },
+  "inference": {
+    "bootstrap_repetitions": 20000,
+    "task_seed": 20260830,
+    "parent_seed": 20260831,
+    "cluster_resampling": "Resample task-level or (task,parent)-level aggregate points with replacement; report empirical order statistics 500 and 19499.",
+    "reported_flags": [
+      "fixed champion UST task CI lower endpoint above 0.5",
+      "fixed champion paired UST delta versus TF-IDF task CI lower endpoint above 0",
+      "fixed champion paired UST delta versus TF-IDF parent CI lower endpoint above 0",
+      "fixed champion paired UST-minus-uniform task CI excludes 0",
+      "fixed champion paired UST-minus-uniform parent CI excludes 0"
+    ],
+    "effect_threshold_or_multiple_testing_claim": false
+  },
+  "independent_implementations": {
+    "producer": "Per-component symmetric Laplacian eigendecomposition and Moore-Penrose pseudoinverse.",
+    "verifier": "Independent connected-component reconstruction and grounded reduced-Laplacian inverse; it does not import the producer.",
+    "producer_and_verifier_A_B_byte_exact_across_distinct_hash_seeds": true,
+    "numeric_tolerance": "producer 5e-9 and verifier 2e-8 relative to max(1,magnitude)",
+    "synthetic_controls": [
+      "K_4 gives every edge weight 1/2 and total rank 3",
+      "a tree gives every edge weight 1",
+      "disconnected subgraphs inside one parent are accounted as separate components",
+      "tie or abstention receives exactly neutral 1/2 credit",
+      "raw-versus-UST ranking discordance is independently reconstructed"
+    ]
+  },
+  "integrity": {
+    "exact_input_schema_and_support_required": true,
+    "duplicate_unordered_edges_fail_closed": true,
+    "Foster_identity_required_per_component_and_globally": true,
+    "all_output_pair_task_parent_endpoint_and_run_identities_forbidden": true,
+    "historical_outcome_access_explicitly_disclosed": true,
+    "prospective_value_access_forbidden": true,
+    "file_and_network_trace": true,
+    "fresh_exact_commit_focused_and_full_tests": true,
+    "producer_verifier_repeated_byte_exact": true,
+    "failure_policy": "Any source hash, schema, support, graph, identity, trace, test, byte or arithmetic mismatch stops without scientific classification."
+  },
+  "interpretation_boundary": {
+    "allowed": [
+      "Whether UST/rank weighting is outcome-material or ranking-material on this already revealed historical same-pool benchmark.",
+      "Whether the previously frozen static champion remains above chance and/or superior to TF-IDF under this alternate audit metric."
+    ],
+    "forbidden": [
+      "new effective-resistance or spanning-tree mathematics",
+      "prospective or temporal confirmation",
+      "effective sample size or independent-label count",
+      "test-selected model improvement",
+      "task-unseen generalization",
+      "search utility or end-to-end acceleration",
+      "invalidity of any prior benchmark accuracy"
+    ]
+  },
+  "source_bindings": {
+    "producer": {
+      "path": "phase1/analyze_historical_ust_predictor_sensitivity.py",
+      "sha256": "e6f56472bb85d2faaec849f0bf2f01ccbbf3222bdbe34c3d8adc4881b80c9111"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_historical_ust_predictor_sensitivity.py",
+      "sha256": "cfe1ab0b4ec1b2cc9fdbe78e30a8b2203f95a868fb308286e07a300164c9dc6d"
+    },
+    "test": {
+      "path": "phase1/tests/test_historical_ust_predictor_sensitivity.py",
+      "sha256": "97151c2759bd0edf48ccda162770ebae2acb346466b208f87af13386cf7749ff"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_historical_ust_predictor_sensitivity_formal_20260830.sh",
+      "sha256": "274eee48d4b17f2df537229a75497243d4ffa8712c5a264e4b432bb7e671c410"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "expected_single_cpu_minutes_excluding_full_tests": "3--20"
+  }
+}

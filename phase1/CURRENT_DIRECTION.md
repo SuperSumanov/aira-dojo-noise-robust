@@ -13,6 +13,19 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JJ. 2026-08-30 VCCD 的 vertex-query 主张进一步收窄
+
+部署后继续按更精确的“付费节点观测”关键词查重，发现 graph-signal sampling 已长期研究从图上选择少量 vertices、读取其
+scalar values，并用 experimental design / D-optimal 或 volume-maximization 目标重建未观测节点；Chen et al. (IEEE TSP 2015)
+给出 experiment-designed graph sampling operator，Jayawant & Ortega (Signal Processing 2022) 明确以 D-opt 近似选择 vertex set。
+Osting et al. (JMLR 2014) 还已用 A/D/E-optimal design 选择 ranking comparison graph。
+
+因此追加禁止“首次把付费 unit 从 edge 改成 vertex”“首次 D-opt vertex observation”“首次图上最优采样”等主张。即使未来
+Target-522 为正，VCCD 也只能说：把已知 optimal-design 思路实例化到 MLE 搜索树中，其中 grade 只在 sibling clique 内诱导
+依赖比较、可行点由异质 task/physical run/parent topology 限制，目标是跨 run 的 code critic 而非 bandlimited graph-signal
+reconstruction，并与语料泄漏、标签噪声、query/init 成本和聚类推断共同审计。该收窄不改变已冻结 execution、arm、预算或统计门；
+论文主贡献仍是 Decision Corpus + Predictor Benchmark + Audit Protocol。详见 additive related-work v2。
+
 ## 0JI. 2026-08-30 VCCD Stage-A 执行链已公开复验并开始结果盲守候
 
 Stage-A 执行链已作为 exact commit=`4fc9c3e4c9629ac86960a9cca198569e6a80ee2c` 推送。fresh detached

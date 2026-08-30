@@ -1,0 +1,82 @@
+{
+  "protocol": "vertex-cost-contrast-target522-related-work-addendum-v2",
+  "status": "ADDITIVE_CLAIM_NARROWING_AFTER_DEPLOYMENT_BEFORE_TARGET522_CANDIDATE",
+  "extends": {
+    "path": "phase1/vertex_cost_contrast_target522_related_work_addendum_v1.json",
+    "sha256": "4176772f5287d4bd77957a151973578489acaa4bdfbeb3171ca43ab3c222a816"
+  },
+  "searched_at_utc": "2026-08-30T03:34:59Z",
+  "search_scope": "Primary paper pages for D-optimal or experimental-design selection of graph vertices whose scalar values are observed, plus optimal design for ranking graphs.",
+  "additional_closest_prior_work": [
+    {
+      "title": "Discrete Signal Processing on Graphs: Sampling Theory",
+      "venue": "IEEE Transactions on Signal Processing 2015",
+      "url": "https://arxiv.org/abs/1503.05432",
+      "doi": "https://doi.org/10.1109/TSP.2015.2469645",
+      "overlap": [
+        "selects graph vertices at which scalar signal values are observed",
+        "uses an experimentally designed sampling operator",
+        "optimizes recovery from a limited vertex sample"
+      ],
+      "boundary": [
+        "assumes a graph-signal reconstruction model, including bandlimited or smooth signal structure",
+        "targets recovery of unobserved node values rather than a contextual pairwise critic on disjoint physical runs",
+        "does not model grades that are comparable only within realized MLE sibling cliques",
+        "does not address task/run heterogeneity, dependent induced ranks, MLE leakage, or endpoint execution accounting"
+      ]
+    },
+    {
+      "title": "Practical graph signal sampling with log-linear size scaling",
+      "venue": "Signal Processing 2022",
+      "url": "https://arxiv.org/abs/2102.10506",
+      "doi": "https://doi.org/10.1016/j.sigpro.2021.108436",
+      "overlap": [
+        "selects representative graph vertices whose scalar values are observed",
+        "optimizes the sampling set toward a D-optimal or volume-maximization objective",
+        "uses a fixed vertex budget"
+      ],
+      "boundary": [
+        "reconstructs a smooth or bandlimited graph signal from node samples",
+        "does not induce dependent sibling comparisons from endpoint grades",
+        "does not learn a code-feature critic for unseen MLE runs under parent/task feasibility constraints"
+      ]
+    },
+    {
+      "title": "Optimal Data Collection For Informative Rankings Expose Well-Connected Graphs",
+      "venue": "Journal of Machine Learning Research 2014",
+      "url": "https://www.jmlr.org/beta/papers/v15/osting14a.html",
+      "arxiv": "https://arxiv.org/abs/1207.6430",
+      "overlap": [
+        "uses optimal experimental design for informative rankings",
+        "includes A-optimal, D-optimal, and E-optimal criteria",
+        "optimizes the comparison graph under a data-collection budget"
+      ],
+      "boundary": [
+        "purchases pairwise comparison edges rather than executing one endpoint vertex",
+        "does not model one scalar execution yielding a dependent sibling clique",
+        "does not target code-critic transfer to disjoint future physical runs"
+      ]
+    }
+  ],
+  "additional_claim_restrictions": {
+    "forbidden": [
+      "first D-optimal selection of graph vertices",
+      "first optimal-design method with paid scalar vertex observations",
+      "first graph-signal sampling method",
+      "first optimal experimental design for ranking graphs",
+      "generic novelty from changing the paid primitive from an edge query to a vertex query"
+    ],
+    "allowed_if_target522_effect_is_positive": "Known optimal-design ideas can improve endpoint-label efficiency in the frozen MLE-specific setting with constrained sibling cliques, dependent induced comparisons, disjoint physical runs, and full benchmark/audit accounting.",
+    "paper_container": "Decision Corpus plus Predictor Benchmark plus Audit Protocol remains the primary contribution; VCCD is a domain instantiation and empirical extension."
+  },
+  "protocol_impact": {
+    "execution_changed": false,
+    "arms_changed": false,
+    "budgets_changed": false,
+    "metrics_or_gates_changed": false,
+    "reason": "The additive search only narrows novelty language and does not use any Target-522 candidate or prospective value."
+  },
+  "target522_candidate_profile_read": false,
+  "prospective_values_read": false,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

@@ -1,0 +1,132 @@
+{
+  "protocol": "target522-linear-contrast-rank-audit-v1",
+  "version": 1,
+  "status": "FROZEN_AFTER_DISCLOSED_HISTORICAL_EXPLORATION_BEFORE_TARGET522_CANDIDATE",
+  "frozen_at_utc": "2026-08-30T03:48:16Z",
+  "paper_container": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+  "question": "In each untouched Target-522 Stage-A run partition, do materialized sibling-pair rows exceed the rank of the endpoint-edge incidence design by a predeclared material factor?",
+  "freeze_observation": {
+    "target522_selection_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+    "checked_at_utc": "2026-08-30T03:48:16Z",
+    "target522_candidate_present": false,
+    "target522_ready_present": false,
+    "target522_complete_present": false,
+    "target522_failed_present": false,
+    "stage_a_output_present": false,
+    "candidate_profile_or_identity_opened": false,
+    "prospective_values_read": false,
+    "first960_accrual_closure_opened": false
+  },
+  "historical_exploration_disclosed_before_confirmation": {
+    "disposition": "DESCRIPTIVE_THRESHOLD_DEVELOPMENT_ONLY_NOT_PREREGISTERED_CONFIRMATION",
+    "source": "phase1/v11_decision/decision_train_v11_b0.jsonl",
+    "source_checkout_sha256": "6110488201163832f9ae4f95af7de3682152aed9d77e413ca72538b203691c59",
+    "source_rows": 4263,
+    "unique_unordered_pair_rows": 4263,
+    "parents": 2293,
+    "within_parent_endpoint_memberships": 5499,
+    "endpoint_edge_incidence_rank": 3206,
+    "redundant_pair_rows": 1057,
+    "pair_rows_per_rank": {
+      "numerator": 4263,
+      "denominator": 3206,
+      "decimal_17g": "1.3296943231441047"
+    },
+    "redundant_pair_row_share": {
+      "numerator": 1057,
+      "denominator": 4263,
+      "decimal_17g": "0.24794745484400657"
+    },
+    "complete_parent_cliques": 2259,
+    "incomplete_parent_groups": 34,
+    "why_not_confirmation": "This historical split was examined before the threshold was fixed and includes 34 incomplete parent groups; it may motivate but cannot confirm the Target-522 claim."
+  },
+  "estimand": {
+    "name": "pair-row inflation over endpoint-edge incidence rank",
+    "unit": "one acquisition or evaluation sibling graph",
+    "paid_observation_unit": "executed endpoint vertex",
+    "formula_under_frozen_stage_a_certificate": "For a disjoint union of complete sibling cliques with k_j endpoints per parent, pair rows equal sum_j k_j(k_j-1)/2 and endpoint-edge incidence rank equals sum_j(k_j-1)=endpoints-parents.",
+    "redundant_pair_rows": "pairs - incidence_rank",
+    "pair_rows_per_rank": "pairs / incidence_rank",
+    "redundant_pair_row_share": "(pairs - incidence_rank) / pairs",
+    "algebraic_note": "pair_rows_per_rank >= 6/5 and redundant_pair_row_share >= 1/6 are exactly equivalent; the latter is reported for readability but is not counted as a second gate."
+  },
+  "frozen_stage_a": {
+    "public_protocol": "vertex-cost-contrast-target522-selection-public-v1",
+    "source_commit": "4fc9c3e4c9629ac86960a9cca198569e6a80ee2c",
+    "scientific_protocol_sha256": "b3df170ebb4ae097549cb0225142e94aebfa481aea6c79815f1be2af687d9e1d",
+    "producer_source": "phase1/freeze_vertex_cost_contrast_target522_selection.py",
+    "producer_source_sha256": "63095d5a33f7094a9e79c662913b7fa80c3d07a6308f3db1a10537a21c76a5cf",
+    "formal_output": "/research/d7/spc/yzyang4/vertex-cost-contrast-target522/formal-4fc9c3e-selection-v1",
+    "required_public_certificate": "structural_pair_files_equal_exact_observed_sibling_cliques=true",
+    "source_semantics_proof": "The frozen producer builds sibling_groups from the unique increment-card dictionary, assigning each endpoint identifier to exactly one task/run/parent key, and proves every observed group is its exact complete clique.",
+    "required_run_partition_overlap": 0,
+    "required_scope": "outcome-blind code and topology only; no public identities and no prospective scientific values"
+  },
+  "confirmation_gates": {
+    "material_pair_rows_per_rank_numerator": 6,
+    "material_pair_rows_per_rank_denominator": 5,
+    "maximum_single_task_pair_share_numerator": 7,
+    "maximum_single_task_pair_share_denominator": 20,
+    "acquisition": {
+      "minimum_pairs": 100,
+      "minimum_physical_runs": 40,
+      "minimum_tasks": 12
+    },
+    "evaluation": {
+      "minimum_pairs": 80,
+      "minimum_physical_runs": 25,
+      "minimum_tasks": 10
+    }
+  },
+  "decision_rule": {
+    "stage_a_support_requirement": "Every frozen Stage-A support gate must be true; otherwise classify limited support regardless of observed ratios.",
+    "confirmed": "TARGET522_LINEAR_CONTRAST_ROW_INFLATION_CONFIRMED iff every frozen Stage-A support gate is true and every confirmation gate passes independently in both acquisition and evaluation graphs.",
+    "not_confirmed": "TARGET522_LINEAR_CONTRAST_ROW_INFLATION_NOT_CONFIRMED iff Stage-A support is complete but at least one graph confirmation gate fails.",
+    "limited_support": "TARGET522_LINEAR_CONTRAST_RANK_AUDIT_LIMITED_SUPPORT iff any frozen Stage-A support gate fails.",
+    "multiplicity": "One fixed descriptive claim evaluated once in each of two disjoint run partitions; no threshold, partition, task, or graph may be changed after Stage-A release.",
+    "uncertainty": "This is deterministic census arithmetic over the frozen graphs, not a sampled label-performance estimate; no confidence interval is attached."
+  },
+  "interpretation_boundary": {
+    "allowed_if_confirmed": "The future run-clean benchmark materializes materially more pair rows than endpoint-incidence contrast dimensions in both disjoint structural partitions; pair-row counts therefore overstate this exact linear contrast count unless clique dependence is accounted for.",
+    "not_claimed": [
+      "that labels are statistically independent",
+      "an effective sample size",
+      "Shannon information",
+      "the feature-matrix rank of every critic",
+      "predictor efficacy",
+      "algorithmic novelty for D-optimal or graph vertex sampling",
+      "a model-scaling effect"
+    ],
+    "paper_role": "A positive audit result can strengthen endpoint-cost accounting, clique 2/k weighting, and benchmark documentation; it does not replace the prospective predictor benchmark or first-960 closure."
+  },
+  "source_bindings": {
+    "analyzer": {
+      "path": "phase1/audit_target522_linear_contrast_rank.py",
+      "sha256": "120e55269fde767cdbe3f036bc28a6293788e72c83972529fbef9c48e0274c41"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_target522_linear_contrast_rank.py",
+      "sha256": "92ab4533d72d8bd73b75e7ef266798ecf7d25ca4d454ada0571488028695ff93"
+    },
+    "test": {
+      "path": "phase1/tests/test_target522_linear_contrast_rank.py",
+      "sha256": "a4e82a14b4f8d3e05174bc2639bafe22e46fec1d3ef5c3c05b7c0b8019818205"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "expected_single_cpu_seconds_after_stage_a": "under 10 excluding fresh full test suite"
+  },
+  "security": {
+    "allowed_scientific_input": "Stage-A public aggregate producer only",
+    "private_stage_a_selection_opened": false,
+    "candidate_profile_or_identity_opened": false,
+    "label_grade_gap_prediction_accuracy_utility_runtime_used": false,
+    "prospective_values_read": false,
+    "credentials_used": false
+  }
+}

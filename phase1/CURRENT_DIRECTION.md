@@ -13,6 +13,30 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JK. 2026-08-30 Target-522 线性 contrast-rank 审计已在候选出现前冻结
+
+VCCD 的 endpoint-cost 论证暴露出一个可独立验证、但不依赖模型效果的 benchmark 审计问题：同一 parent 执行 `k` 个
+endpoints 会物化 `k(k-1)/2` 条 sibling pair rows，但该 complete-clique endpoint-edge incidence design 的秩只有
+`k-1`。在互不共享 endpoint 的 sibling cliques 上，总秩精确为 `endpoints - parents`。这不是 effective sample size、
+Shannon information、统计独立标签数或任意 critic 的 feature-matrix rank。
+
+历史 v11 开发读数已完整披露：4,263 条唯一 pair rows、2,293 parents、5,499 次 within-parent endpoint membership，
+incidence rank=`3,206`、冗余 rows=`1,057`、rows/rank=`1.3296943231441047`；但其中有 34 个不完整 parent groups，且读数
+先于阈值，因此只能用于阈值开发，不能作为确认。另纠正一处容易制造假证据的设计：`rows/rank >= 6/5` 与冗余行占比
+`>=1/6` 数学等价，只计为同一个门，后者仅作可读报告。
+
+在 `2026-08-30T03:48:16Z`，Target-522 candidate/READY/COMPLETE/FAILED 和 Stage-A output 全部不存在、既有 Stage-A
+monitor PID live，且 candidate profile/identity 与 prospective values 均未读。此时冻结科学协议 SHA-256=
+`3c8b8f87...7ad323`：acquisition 与 evaluation 两个 physical-run-disjoint 图必须分别达到 rows/rank `>=6/5`，并分别
+满足 Stage-A 原有规模/任务集中门；Stage-A 任一支持门失败只记 limited support。两图全过才允许分类
+`TARGET522_LINEAR_CONTRAST_ROW_INFLATION_CONFIRMED`，否则按预先规则记 not-confirmed 或 limited-support，不换阈值。
+
+analyzer 与不导入 analyzer 的 verifier 已通过 focused=`17 passed`；execution SHA-256=`50baf5c7...9b41ac`。六小时
+monitor 在 Stage-A `COMPLETE` 前只看 marker，之后也只校验公开 `producer_a/b.json`，不 hash/打开 private selection；
+fresh exact-commit full tests、A/B 逐字节复跑、mode-0600、file/network trace 与独立算术重建全部 fail-closed。
+GPU/付费 API/model fit/base update=`0/0/0/0`。该项若为正，只能强化数据集的 clique-dependence、endpoint 成本与 `2/k`
+权重审计；不替代 first-960 predictor benchmark，也不扩大 VCCD 的算法 novelty 主张。
+
 ## 0JJ. 2026-08-30 VCCD 的 vertex-query 主张进一步收窄
 
 部署后继续按更精确的“付费节点观测”关键词查重，发现 graph-signal sampling 已长期研究从图上选择少量 vertices、读取其

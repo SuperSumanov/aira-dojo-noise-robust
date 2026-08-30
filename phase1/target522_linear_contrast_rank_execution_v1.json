@@ -1,0 +1,84 @@
+{
+  "protocol": "target522-linear-contrast-rank-execution-v1",
+  "version": 1,
+  "status": "FROZEN_AFTER_DISCLOSED_HISTORICAL_EXPLORATION_BEFORE_TARGET522_CANDIDATE",
+  "frozen_at_utc": "2026-08-30T03:48:16Z",
+  "scientific_protocol": {
+    "path": "phase1/target522_linear_contrast_rank_audit_v1.json",
+    "sha256": "3c8b8f87b43cae74a57c28d78e3428d824f54969051fadf5086810da467ad323"
+  },
+  "activation": {
+    "upstream_stage_a_output": "/research/d7/spc/yzyang4/vertex-cost-contrast-target522/formal-4fc9c3e-selection-v1",
+    "required_marker": "COMPLETE",
+    "forbidden_marker": "FAILED_RC",
+    "before_complete": "The monitor may inspect marker existence only and may not open producer profiles, candidate identities, private selection, or scientific values.",
+    "after_complete": "Verify the immutable manifest file hash plus producer_a.json and producer_b.json entries only; do not hash or open private Stage-A files.",
+    "alternate_input_argument_allowed": false,
+    "first960_closure_required": false,
+    "why": "This audit uses only public code/topology aggregates and performs no model fit or prospective-value read."
+  },
+  "bindings": {
+    "analyzer": {
+      "path": "phase1/audit_target522_linear_contrast_rank.py",
+      "sha256": "120e55269fde767cdbe3f036bc28a6293788e72c83972529fbef9c48e0274c41"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_target522_linear_contrast_rank.py",
+      "sha256": "92ab4533d72d8bd73b75e7ef266798ecf7d25ca4d454ada0571488028695ff93"
+    },
+    "test": {
+      "path": "phase1/tests/test_target522_linear_contrast_rank.py",
+      "sha256": "a4e82a14b4f8d3e05174bc2639bafe22e46fec1d3ef5c3c05b7c0b8019818205"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_target522_linear_contrast_rank_audit_formal_20260830.sh",
+      "sha256": "dd462b22f85157ebb4172c0d8653656fcf8b8dbbdf98fd7e466412fbb383b794"
+    },
+    "monitor": {
+      "path": "phase1/scripts/monitor_target522_linear_contrast_rank_audit_formal_20260830.sh",
+      "sha256": "11d753a58ecf811a74d371aa759825103b4f2e4f2765072efcaad92ba509b51e"
+    }
+  },
+  "reproducibility": {
+    "fresh_detached_exact_commit_worktree": true,
+    "focused_tests": "phase1/tests/test_target522_linear_contrast_rank.py",
+    "full_tests": "phase1/tests",
+    "analyzer_repetitions": 2,
+    "independent_verifier_repetitions": 2,
+    "all_repetitions_must_be_byte_exact": true,
+    "result_and_receipt_mode": "0600",
+    "pythonhashseed": 0,
+    "thread_count": 1,
+    "manifest_before_and_after": true
+  },
+  "path_and_network_firewall": {
+    "allowed_scientific_files": [
+      "the exact scientific protocol",
+      "the immutable Stage-A public producer_a.json"
+    ],
+    "forbidden": [
+      "Stage-A private selection",
+      "Target-522 candidate file or raw identities",
+      "label/outcome/regrade/raw-archive vaults",
+      "prediction/accuracy/gap/runtime/utility files",
+      "credential files",
+      "network calls"
+    ],
+    "enforcement": "strace file,network for one analyzer and one independent verifier plus zero-hit audit"
+  },
+  "monitor": {
+    "poll_seconds": 30,
+    "maximum_polls_per_invocation": 720,
+    "bounded_hours": 6,
+    "exclusive_lock": true,
+    "supports_resume_after_clean_timeout_or_interruption": true,
+    "unknown_or_hash_drift": "fail closed"
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "cpu": "one thread; expected under ten seconds excluding fresh full tests"
+  }
+}

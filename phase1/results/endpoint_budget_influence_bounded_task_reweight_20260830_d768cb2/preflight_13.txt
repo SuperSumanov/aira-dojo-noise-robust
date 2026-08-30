@@ -1,0 +1,13 @@
+01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; CURRENT_DIRECTION 2026-08-30 read before design; PASS
+02_goal=retain both old yield-selected pair sets and test one closed-form influence-bounded task-density correction without changing acquisition representation optimizer or evaluation; PASS
+03_context=all old fold0 uniform yield and failed distribution-matched-selection aggregates plus direct and square-root structural diagnostics are disclosed in protocol; no influence-bounded weight model prediction or metric existed at freeze; PASS
+04_population=exact historical smoke firewall 539 intask-train rows with folds1-4 train and fold0 eval; old selection and prediction artifacts are SHA-bound; senior test and all prospective rows forbidden; PASS
+05_split=physical-run SHA256 fold assignment unchanged; train/eval endpoint parent run overlap zero; same 138 evaluation pairs and old baseline prediction witnesses; PASS
+06_estimand=primary task-macro accuracy delta new-minus-old-yield at budgets96 and192 with pooled proper-score task-sign and drop-dominant safeguards; historical development only; PASS
+07_controls=old yield endpoint selections all induced pairs char-wb TFIDF C0.5 lbfgs and evaluation unchanged; only antisymmetrically duplicated sample weights change; PASS
+08_weight=direct task availability-to-selected density ratio shrunk toward one by maximum closed-form lambda satisfying ESS fraction at least7/10 and single-pair share at most1/20; no grid clipping temperature or result choice; PASS
+09_randomness=model random_state0 PYTHONHASHSEED0 single-thread BLAS; bootstrap seed20260830 with2000 task run and task-macro repetitions; PASS
+10_resources=CPU only two critic fits with atomic mode0600 checkpoints expected20-45minutes; GPU paid-API base-model-update 0/0/0; PASS
+11_outputs=CSV one row per fit aggregate summary structural weight receipts private hashed pair witness and two independent zero-refit verifier runs; all budgets reported; PASS
+12_security=credential-first safe cards exact SHA and old firewall private modes checked; API variables unset; prospective vault and network forbidden; staged and commit blobs scanned including accessToken query values; PASS
+13_stop=any hash mode split source support weight influence ESS L1 test verifier scanner network or manifest mismatch stops; any efficacy gate failure does not advance and cannot be rescued on fold0; PASS

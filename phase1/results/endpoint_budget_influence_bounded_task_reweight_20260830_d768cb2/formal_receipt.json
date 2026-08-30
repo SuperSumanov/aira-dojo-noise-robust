@@ -1,0 +1,33 @@
+{
+  "schema": "endpoint-budget-influence-bounded-task-reweight-formal-receipt-v1",
+  "date_asia_hong_kong": "2026-08-30",
+  "control_commit": "d768cb2ffefd8fc1a9a74cf07e02a2a9ed8fabd7",
+  "protocol_sha256": "0cabba460cc6a0acc65b60a0271177dfc6d98c1d80b5e9a4453f286ed134f885",
+  "formal_root": "/research/d7/spc/yzyang4/endpoint-influence-bounded-task-reweight/formal-d768cb2-r1",
+  "postflight_root": "/research/d7/spc/yzyang4/endpoint-influence-bounded-task-reweight/postflight-d768cb2-r1",
+  "formal_manifest_sha256": "df1df724c72f8a34fdb1ebc6059755cf04cc09ac2ca15cc44ff6c774bc0f6273",
+  "postflight_manifest_sha256": "92f9e4b0c1b11caec8a3426ab74a2c9beed833053d6e3640315ac5570e9cd762",
+  "public_artifacts": {
+    "summary.json": "faf1f6881ec03eb6436149c66cb1ff1aafbca32351ca44517513f98877b689e7",
+    "runs.csv": "967bcc7df90e1fccffb66c555289a05f1dda77394503e9b2daeb71c561bd74d5",
+    "verifier.json": "9eb71ba49fc7f56009311621bed05e00b136a4fc54ebac537805e2bb015dc6ed"
+  },
+  "tests": {
+    "focused_passed": 37,
+    "full_passed": 1663,
+    "full_warnings": 48,
+    "postflight_focused_passed": 11
+  },
+  "advancement_gates": {
+    "passed": 5,
+    "failed": 2,
+    "total": 7
+  },
+  "classification": "HISTORICAL_SINGLE_FOLD_INFLUENCE_BOUNDED_TASK_REWEIGHT_DOES_NOT_ADVANCE",
+  "resources": {
+    "critic_model_fits": 2,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "base_model_updates": 0
+  }
+}

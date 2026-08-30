@@ -1,0 +1,20 @@
+{
+  "schema": "endpoint-budget-influence-bounded-task-reweight-integrity-receipt-v1",
+  "formal_manifest_members": 5240,
+  "formal_manifest_failures": 0,
+  "formal_verifier_a_b_byte_exact": true,
+  "fresh_postflight_verifier_byte_exact_to_formal": true,
+  "private_artifact_modes": "0400",
+  "scanner_bytes": {
+    "forbidden_all_stage_opens": 0,
+    "verifier_card_violations": 0,
+    "network_calls": 0,
+    "credential_filename_hits": 0,
+    "credential_blob_hits": 0
+  },
+  "historical_source_rows_intask_train_only": true,
+  "senior_test_rows_used": false,
+  "prospective_values_used": false,
+  "independent_verifier_model_refits": 0,
+  "all_aggregate_fields_equal": true
+}

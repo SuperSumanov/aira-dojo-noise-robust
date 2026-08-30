@@ -34,6 +34,20 @@ availability 校正。旧 fold0 uniform/yield 结果、0IZ 负结果和全部结
 `...PROMISING_PENDING_NEW_RUN_CONFIRMATION`。GPU/付费 API/base update=`0/0/0`。详见
 `phase1/实验记录/2026-08-30/EndpointBudget_InfluenceBoundedTaskReweight_预注册.md`。
 
+formal r1 已完整结束，严格分类为 **`HISTORICAL_SINGLE_FOLD_INFLUENCE_BOUNDED_TASK_REWEIGHT_DOES_NOT_ADVANCE`**：
+七门 `5/7` 通过。结构机制和 primary direction 都成立——budget 96/192 的 task-macro delta（new-old yield）为
+`+0.005352833441068732/+0.08566095669036845`，pair-micro accuracy delta 为
+`+0.036231884057971016/+0.021739130434782608`，drop-dominant 也为正；但 terminal log-loss/Brier 各恶化
+`+0.0005388794995246778/+0.0002654579027394411`，且相对 uniform 的 terminal task-macro/drop-dominant 仍为
+`-0.018359728506787333/-0.009615384615384616`，第二个 efficacy gate 失败。两档 task-macro 95% bootstrap CI 也均跨 0。
+
+因此允许的窄正证据是：在相同 yield pairs 上，结果盲闭式 task-density reweight 能把旧 yield 的 task-macro 与 pooled accuracy
+同时推高，尤其 terminal task-macro 为 +8.57pp；但它尚未超过强 uniform baseline 的跨任务稳健性，也未保持 calibration，不能
+晋级或在 fold0 上调参救回。formal/postflight manifest=`df1df724...f6273` / `92f9e4b0...cd762`，第三 verifier 与 A/B
+逐字节一致，focused/full=`37/1663 passed`，5,240 个 manifest members 零失败，五类扫描为空。正式包见
+`phase1/results/endpoint_budget_influence_bounded_task_reweight_20260830_d768cb2/`；发布前 package-focused/full 又通过
+`44/1670`，详见同日正式裁决。
+
 ## 0IZ. 2026-08-30 distribution-matched yield：结果前冻结的历史开发筛选
 
 0IY 已证明旧 pure breadth 的 pooled 小增益由大任务集中贡献，且 task-macro 在两个 endpoint budget 都下降；因此不再扩大旧规则，

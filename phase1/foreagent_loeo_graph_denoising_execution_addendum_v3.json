@@ -1,0 +1,77 @@
+{
+  "protocol": "foreagent-loeo-graph-denoising-execution-addendum-v3",
+  "version": 3,
+  "status": "FROZEN_AFTER_RESULT_FREE_FULL_REPOSITORY_COLLECTION_FAILURE",
+  "frozen_at_utc": "2026-08-30T15:05:23Z",
+  "parent_protocol": "foreagent-loeo-graph-denoising-v1",
+  "parent_protocol_sha256": "bcd25033e2340a0b98c362ae1fffb29fe39c5222ceb531e5112d4675d7be033c",
+  "parent_execution_addendum_v2_sha256": "8cb1c80c36d6bc75b605ba9498cd75691f3e30077cadea4d952f432ea3b58a45",
+  "failed_attempt": {
+    "source_commit": "29a523cf6d50f95eba24fb29df6b39c765044273",
+    "root": "/research/d7/spc/yzyang4/foreagent-loeo-graph-denoising/formal-29a523c-v2",
+    "exit_code": 2,
+    "failure_stage": "unscoped repository-wide pytest collection after focused tests",
+    "cause": "The runner invoked bare pytest at repository root. This collected two historical command-line modules named *_test.py as tests and two unrelated top-level tests whose optional dojo package is absent from the analysis environment.",
+    "focused_tests_passed": 9,
+    "full_phase1_tests_started": false,
+    "producer_started": false,
+    "verifier_started": false,
+    "result_files_created": 0,
+    "verification_files_created": 0,
+    "scientific_outcomes_computed_or_read": false,
+    "related_processes_after_failure": 0,
+    "artifact_sha256": {
+      "FAILED_RC": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "focused_tests.stdout": "9f97bb226299f07535cd455323489a2330604d563a8773b883eb9a0f9a8b1bbd",
+      "focused_tests.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_tests.stdout": "4b071cd7f4b44f2e0d9556f143a15e51ede1614eca5c1f45677097478c3d5769",
+      "full_tests.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "preflight_13.txt": "ee67f788277c600d51f26127671f4565f95ba060958ca8d2fd3a26bbf0bae053"
+    }
+  },
+  "execution_change": {
+    "single_change": "Scope the full regression command from bare repository pytest to pytest phase1/tests.",
+    "reason": "phase1/tests is the project's established full analysis-suite boundary and excludes command-line modules and optional integration tests outside this analysis environment.",
+    "phase1_test_files_excluded": 0,
+    "focused_test_command_unchanged": true,
+    "input_hashes_unchanged": true
+  },
+  "scientific_changes": [],
+  "resource_changes": [],
+  "unchanged": [
+    "18,381-pair exact common support",
+    "26 tasks and 894 vertices",
+    "triplicate signed flow",
+    "target-edge-excluded Hodge projection",
+    "bridge and zero fallback",
+    "raw and hybrid estimands",
+    "20,000 task bootstrap repetitions and seeds",
+    "frozen classification gates",
+    "producer and grounded verifier algorithms",
+    "prospective and confidence access prohibitions",
+    "0 GPU, 0 paid API, 0 model fit and 0 base update"
+  ],
+  "new_controls": [
+    "Static test requires exactly one full regression invocation scoped to phase1/tests.",
+    "Static test forbids the failed bare repository-wide invocation.",
+    "Formal runner verifies both execution addenda and every scientific source and input SHA.",
+    "Fresh exact commit and fresh output root remain mandatory."
+  ],
+  "source_bindings": {
+    "failed_runner_sha256": "cb08b836537927bdd5237ddde489cebb0384b9121d0e5aad4b2fde19efd897e0",
+    "revised_runner": {
+      "path": "phase1/scripts/run_foreagent_loeo_graph_denoising_formal_20260830.sh",
+      "sha256": "a2cb11ef27746b9981f68f525a99e99ca1093fc21fa110a4f0321ee92d0f08c3"
+    },
+    "execution_test": {
+      "path": "phase1/tests/test_foreagent_loeo_graph_denoising_execution.py",
+      "sha256": "0b8da1319b0a44f2a73445c490904eba19da8a5dce2396a7ac4db2f4eb76769e"
+    }
+  },
+  "next_attempt": {
+    "fresh_commit_required": true,
+    "fresh_output_root_required": true,
+    "reuse_failed_root_forbidden": true,
+    "all_parent_formal_gates_required": true
+  }
+}

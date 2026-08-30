@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KA. 2026-08-30 FOREAGENT LOEO v2 在结果前暴露全仓 pytest 范围错误；v3 只修测试边界
+
+exact commit=`29a523cf6d50f95eba24fb29df6b39c765044273` 的第二次 formal 已通过 fresh no-smudge checkout 与
+focused=`9 passed`，随后因 runner 使用 bare repository-wide `pytest` 在 collection 阶段返回 `2`。它误收集两个历史
+`*_test.py` 命令行模块，并触发两个依赖可选 `dojo` 包的无关顶层 integration tests；producer/verifier 均未启动，
+result/verification 文件均为 `0`，相关进程清零。失败根=`formal-29a523c-v2`，不得复用或解释科学结果。
+
+execution addendum v3 唯一改动是把 full regression 从 bare repo root 收敛到项目一贯的 `phase1/tests`；其中测试文件不删减。
+科学协议、输入、estimands、20,000 task bootstrap、分类门、producer/verifier 与资源均不变。新增静态门同时要求 scoped
+full-suite 命令并禁止失败的 bare 命令；本地 focused=`11 passed`。addendum/runner/execution-test SHA-256=
+`6f10eab92fbda4594ce428695c2da5522ed8e9bd38022a7587b1c8db42f392b5` /
+`a2cb11ef27746b9981f68f525a99e99ca1093fc21fa110a4f0321ee92d0f08c3` /
+`0b8da1319b0a44f2a73445c490904eba19da8a5dce2396a7ac4db2f4eb76769e`，GPU/API/model fit/base update=
+`0/0/0/0`。下一次必须 fresh exact commit + fresh output root，重新跑完整 `phase1/tests` 后才允许 producer 启动。
+
 ## 0JZ. 2026-08-30 FOREAGENT LOEO v1 在测试前因无关 LFS smudge 失败；v2 只修 checkout
 
 exact commit=`9cdf42dbce45a7edbf3053589384cc4c50efcf91` 的第一次 formal 在 fresh worktree checkout 时，

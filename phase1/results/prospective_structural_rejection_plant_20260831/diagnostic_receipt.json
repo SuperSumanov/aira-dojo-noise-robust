@@ -1,0 +1,37 @@
+{
+  "archive": {
+    "mtime_ns": 1788099684000000000,
+    "relative_basename": "plant-pathology-2021-fgvc8-8seeds.tar.gz",
+    "sha256": "e38569e0ab91120b63224f995820975579a8b3de101ef1448b984221bc2e05bb",
+    "size": 12464282
+  },
+  "archive_audit": {
+    "checkpoint_runs": 0,
+    "checkpoint_with_live_event_log": 0,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 91615988,
+    "discovered_run_roots": 8,
+    "live_only_runs_excluded": 8,
+    "members": 109
+  },
+  "invalid_journals": 0,
+  "journals": 0,
+  "outcomes_read": false,
+  "per_journal": [],
+  "protocol": "prospective_archive_task_identity_audit_v1",
+  "recommended_reason_code": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+  "security": {
+    "code_stdout_grade_or_metric_values_emitted": false,
+    "env_members_read": false,
+    "journal_scanned_before_json": true,
+    "live_event_journal_members_read": false,
+    "task_identity_values_emitted": false
+  },
+  "source_commit": "eff897058251bcbc4e97c1a616b8f9630a045cce",
+  "status": "STRUCTURAL_NO_CHECKPOINT_REJECTION_SUPPORTED",
+  "task_identity_cardinality_counts": {
+    "multiple": 0,
+    "one": 0,
+    "zero": 0
+  }
+}

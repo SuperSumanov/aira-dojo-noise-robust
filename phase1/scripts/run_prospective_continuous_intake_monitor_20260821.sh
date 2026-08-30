@@ -33,6 +33,8 @@ EXTRA_0823_AI4CODE_REGISTRY_REL=phase1/results/prospective_structural_rejection_
 EXTRA_0823_AI4CODE_REGISTRY_SHA=0162c771ce1df3743776642456247d0974b7bc6e40550ca98fd626ee3dc6653f
 EXTRA_0823_LMSYS_REGISTRY_REL=phase1/results/prospective_structural_rejection_lmsys_20260825/structural_rejections_lmsys_0823.json
 EXTRA_0823_LMSYS_REGISTRY_SHA=81b9c87f140265b3438587953aadfd00ff3f53ca665799b807ec4c80596bd005
+EXTRA_0829_PLANT_REGISTRY_REL=phase1/results/prospective_structural_rejection_plant_20260831/structural_rejections_0829_plant.json
+EXTRA_0829_PLANT_REGISTRY_SHA=e77654a795ebc05a773ea81aacd91801303d2a57c5a14b43c290204e26852093
 ARCHIVE_CONTENT_ALIAS_REGISTRY=/research/d7/spc/yzyang4/archive-content-alias/formal-9b7640a-v1/archive_content_alias_registry.json
 ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA=080a6df133c8b8184267f074e0620b2a9ebf1d21616b0dfb7674eebad2c28dcb
 ARCHIVE_CONTENT_ALIAS_POSTFLIGHT=/research/d7/spc/yzyang4/archive-content-alias/postflight-9b7640a-v2
@@ -59,6 +61,7 @@ extra_0822_registry="${control_repo}/${EXTRA_0822_REGISTRY_REL}"
 extra_0822_ai4code_registry="${control_repo}/${EXTRA_0822_AI4CODE_REGISTRY_REL}"
 extra_0823_ai4code_registry="${control_repo}/${EXTRA_0823_AI4CODE_REGISTRY_REL}"
 extra_0823_lmsys_registry="${control_repo}/${EXTRA_0823_LMSYS_REGISTRY_REL}"
+extra_0829_plant_registry="${control_repo}/${EXTRA_0829_PLANT_REGISTRY_REL}"
 log_root="${STATE_ROOT}/logs"
 monitor_log="${log_root}/continuous_intake_monitor_20260821.log"
 pid_file="${STATE_ROOT}/continuous_intake_monitor_20260821.pid"
@@ -83,6 +86,7 @@ verify_contracts() {
   test "$(sha256sum "${extra_0822_ai4code_registry}" | awk '{print $1}')" = "${EXTRA_0822_AI4CODE_REGISTRY_SHA}"
   test "$(sha256sum "${extra_0823_ai4code_registry}" | awk '{print $1}')" = "${EXTRA_0823_AI4CODE_REGISTRY_SHA}"
   test "$(sha256sum "${extra_0823_lmsys_registry}" | awk '{print $1}')" = "${EXTRA_0823_LMSYS_REGISTRY_SHA}"
+  test "$(sha256sum "${extra_0829_plant_registry}" | awk '{print $1}')" = "${EXTRA_0829_PLANT_REGISTRY_SHA}"
   test -f "${ARCHIVE_CONTENT_ALIAS_POSTFLIGHT}/COMPLETE"
   test "$(sha256sum "${ARCHIVE_CONTENT_ALIAS_POSTFLIGHT}/SHA256SUMS" | awk '{print $1}')" = "${ARCHIVE_CONTENT_ALIAS_POSTFLIGHT_MANIFEST_SHA}"
   test "$(sha256sum "${ARCHIVE_CONTENT_ALIAS_REGISTRY}" | awk '{print $1}')" = "${ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA}"
@@ -122,6 +126,8 @@ runner() {
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0823_AI4CODE_REGISTRY_SHA}" \
       --extra-structural-rejection-registry "${extra_0823_lmsys_registry}" \
       --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0823_LMSYS_REGISTRY_SHA}" \
+      --extra-structural-rejection-registry "${extra_0829_plant_registry}" \
+      --expect-extra-structural-rejection-registry-sha256 "${EXTRA_0829_PLANT_REGISTRY_SHA}" \
       --archive-content-alias-registry "${ARCHIVE_CONTENT_ALIAS_REGISTRY}" \
       --expect-archive-content-alias-registry-sha256 "${ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA}" \
       --minimum-age-seconds 21600 \
@@ -147,8 +153,9 @@ if [[ "${mode}" == --initialize ]]; then
   echo "PREFLIGHT_04E_0822_AI4CODE_REJECTION_SHA256=${EXTRA_0822_AI4CODE_REGISTRY_SHA}"
   echo "PREFLIGHT_04F_0823_AI4CODE_REJECTION_SHA256=${EXTRA_0823_AI4CODE_REGISTRY_SHA}"
   echo "PREFLIGHT_04G_0823_LMSYS_REJECTION_SHA256=${EXTRA_0823_LMSYS_REGISTRY_SHA}"
-  echo "PREFLIGHT_04H_ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA256=${ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA}"
-  echo "PREFLIGHT_04I_ARCHIVE_CONTENT_ALIAS_POSTFLIGHT_MANIFEST_SHA256=${ARCHIVE_CONTENT_ALIAS_POSTFLIGHT_MANIFEST_SHA}"
+  echo "PREFLIGHT_04H_0829_PLANT_REJECTION_SHA256=${EXTRA_0829_PLANT_REGISTRY_SHA}"
+  echo "PREFLIGHT_04I_ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA256=${ARCHIVE_CONTENT_ALIAS_REGISTRY_SHA}"
+  echo "PREFLIGHT_04J_ARCHIVE_CONTENT_ALIAS_POSTFLIGHT_MANIFEST_SHA256=${ARCHIVE_CONTENT_ALIAS_POSTFLIGHT_MANIFEST_SHA}"
   echo 'PREFLIGHT_05_INPUT=stable append-only senior archives bound by exact path size mtime and SHA256'
   echo 'PREFLIGHT_06_ESTIMAND=unchanged; no outcome metric and no historical backfill'
   echo 'PREFLIGHT_07_SECURITY=credential-first journal audit; env and live-event members never read; umask077'

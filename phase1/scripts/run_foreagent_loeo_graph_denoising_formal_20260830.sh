@@ -8,18 +8,20 @@ export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 
-if (( $# != 7 )); then
-  echo 'usage: runner OUTPUT EXPECTED_COMMIT PROTOCOL_SHA PRODUCER_SHA VERIFIER_SHA TEST_SHA RUNNER_SHA' >&2
+if (( $# != 9 )); then
+  echo 'usage: runner OUTPUT EXPECTED_COMMIT PROTOCOL_SHA EXECUTION_ADDENDUM_SHA PRODUCER_SHA VERIFIER_SHA TEST_SHA EXECUTION_TEST_SHA RUNNER_SHA' >&2
   exit 64
 fi
 
 readonly output=$1
 readonly expected_commit=$2
 readonly protocol_sha=$3
-readonly producer_sha=$4
-readonly verifier_sha=$5
-readonly test_sha=$6
-readonly runner_sha=$7
+readonly execution_addendum_sha=$4
+readonly producer_sha=$5
+readonly verifier_sha=$6
+readonly test_sha=$7
+readonly execution_test_sha=$8
+readonly runner_sha=$9
 readonly repo=/research/d7/spc/yzyang4/aira-dojo
 readonly python=/research/d7/spc/yzyang4/venvs/exp/bin/python
 readonly master=/research/d7/spc/yzyang4/scratch/pbe_alignment_cache_v1/all_predictions.compact.jsonl
@@ -51,7 +53,7 @@ cat >"$output/preflight_13.txt" <<'EOF'
 04_inputs=official 156-file manifest and 110620-row compact primitive at fixed SHA256; PASS
 05_estimand=raw-majority versus full-coverage LOEO hybrid task macro primary with pair micro secondary; PASS
 06_method=task-local Hodge least squares where each target edge is analytically excluded; PASS
-07_controls=raw majority bridge fallback brute-force LOEO synthetic orientation reversal and known raw reproduction; PASS
+07_controls=raw majority bridge fallback brute-force LOEO synthetic orientation reversal known raw reproduction and LFS no-smudge checkout; PASS
 08_inference=20000 task-clustered bootstraps plus LOTO with no pair-IID claim; PASS
 09_leakage=historical public labels evaluate only after label-free projection and prospective sources are forbidden; PASS
 10_resources=single CPU only GPU paid-API model-fit base-update 0/0/0/0; PASS
@@ -64,25 +66,31 @@ test "$(grep -c '; PASS$' "$output/preflight_13.txt")" = 13
 git -C "$repo" fetch fork phase1-value-critic >"$output/fetch.stdout" 2>"$output/fetch.stderr"
 test "$(git -C "$repo" rev-parse "$expected_commit")" = "$expected_commit"
 git -C "$repo" merge-base --is-ancestor "$expected_commit" fork/phase1-value-critic
-git -C "$repo" worktree add --detach "$worktree" "$expected_commit" >"$output/worktree.stdout" 2>"$output/worktree.stderr"
+GIT_LFS_SKIP_SMUDGE=1 git -C "$repo" worktree add --detach "$worktree" "$expected_commit" >"$output/worktree.stdout" 2>"$output/worktree.stderr"
 
 readonly protocol=$worktree/phase1/foreagent_loeo_graph_denoising_v1.json
+readonly execution_addendum=$worktree/phase1/foreagent_loeo_graph_denoising_execution_addendum_v2.json
 readonly producer=$worktree/phase1/analyze_foreagent_loeo_graph_denoising.py
 readonly verifier=$worktree/phase1/verify_foreagent_loeo_graph_denoising.py
 readonly test_source=$worktree/phase1/tests/test_foreagent_loeo_graph_denoising.py
+readonly execution_test_source=$worktree/phase1/tests/test_foreagent_loeo_graph_denoising_execution.py
 readonly runner=$worktree/phase1/scripts/run_foreagent_loeo_graph_denoising_formal_20260830.sh
 readonly manifest=$worktree/phase1/foreagent_alignment_manifest_v1.json
 
 test "$(sha256sum "$protocol" | cut -d ' ' -f1)" = "$protocol_sha"
+test "$(sha256sum "$execution_addendum" | cut -d ' ' -f1)" = "$execution_addendum_sha"
 test "$(sha256sum "$producer" | cut -d ' ' -f1)" = "$producer_sha"
 test "$(sha256sum "$verifier" | cut -d ' ' -f1)" = "$verifier_sha"
 test "$(sha256sum "$test_source" | cut -d ' ' -f1)" = "$test_sha"
+test "$(sha256sum "$execution_test_source" | cut -d ' ' -f1)" = "$execution_test_sha"
 test "$(sha256sum "$runner" | cut -d ' ' -f1)" = "$runner_sha"
 test "$(sha256sum "$manifest" | cut -d ' ' -f1)" = "$manifest_sha"
 test "$(sha256sum "$master" | cut -d ' ' -f1)" = "$master_sha"
 
 cd "$worktree"
-env PYTHONHASHSEED=0 "$python" -m pytest phase1/tests/test_foreagent_loeo_graph_denoising.py -q \
+env PYTHONHASHSEED=0 "$python" -m pytest \
+  phase1/tests/test_foreagent_loeo_graph_denoising.py \
+  phase1/tests/test_foreagent_loeo_graph_denoising_execution.py -q \
   >"$output/focused_tests.stdout" 2>"$output/focused_tests.stderr"
 env PYTHONHASHSEED=0 "$python" -m pytest -q \
   >"$output/full_tests.stdout" 2>"$output/full_tests.stderr"
@@ -164,9 +172,11 @@ EOF
 cat >"$output/source_bindings.txt" <<EOF
 source_commit=$expected_commit
 protocol_sha256=$protocol_sha
+execution_addendum_sha256=$execution_addendum_sha
 producer_sha256=$producer_sha
 verifier_sha256=$verifier_sha
 test_sha256=$test_sha
+execution_test_sha256=$execution_test_sha
 runner_sha256=$runner_sha
 manifest_sha256=$manifest_sha
 master_sha256=$master_sha

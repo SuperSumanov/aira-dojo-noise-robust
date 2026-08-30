@@ -13,6 +13,17 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JZ. 2026-08-30 FOREAGENT LOEO v1 在测试前因无关 LFS smudge 失败；v2 只修 checkout
+
+exact commit=`9cdf42dbce45a7edbf3053589384cc4c50efcf91` 的第一次 formal 在 fresh worktree checkout 时，
+Git LFS 试图下载一个本实验不使用、且服务器缺失对象的历史 tarball，返回 `128`。focused/full tests、producer、verifier
+均未开始，四份 result/verification 文件均不存在；失败根固定为 `formal-9cdf42d-v1`，不得复用或解释科学结果。
+
+execution addendum v2 唯一改动是在 fresh `git worktree add` 前局部设置 `GIT_LFS_SKIP_SMUDGE=1`；科学协议、18,381-pair
+support、estimands、bootstrap、分类门、producer/verifier 和资源全不变。新增静态控制要求恰好一个 scoped no-smudge checkout，
+focused=`9 passed`。addendum SHA-256=`8cb1c80c36d6bc75b605ba9498cd75691f3e30077cadea4d952f432ea3b58a45`，
+GPU/API/model fit/base update=`0/0/0/0`。下一次必须 fresh exact commit + fresh output root，并重新通过全部 formal 门。
+
 ## 0JY. 2026-08-30 FOREAGENT target-edge-excluded 图一致性基线已结果前冻结
 
 近期 related-work gate 找到 2026 年 5 月的 Topological Consensus Rewards，以及更早的 Hodge/least-squares ranking、

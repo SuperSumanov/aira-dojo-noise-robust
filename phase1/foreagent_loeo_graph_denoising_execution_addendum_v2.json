@@ -1,0 +1,67 @@
+{
+  "protocol": "foreagent-loeo-graph-denoising-execution-addendum-v2",
+  "version": 2,
+  "status": "FROZEN_AFTER_RESULT_FREE_LFS_SMUDGE_FAILURE",
+  "frozen_at_utc": "2026-08-30T14:57:25Z",
+  "parent_protocol": "foreagent-loeo-graph-denoising-v1",
+  "parent_protocol_sha256": "bcd25033e2340a0b98c362ae1fffb29fe39c5222ceb531e5112d4675d7be033c",
+  "failed_attempt": {
+    "source_commit": "9cdf42dbce45a7edbf3053589384cc4c50efcf91",
+    "root": "/research/d7/spc/yzyang4/foreagent-loeo-graph-denoising/formal-9cdf42d-v1",
+    "exit_code": 128,
+    "failure_stage": "fresh detached worktree checkout before focused tests",
+    "cause": "Git LFS smudge attempted to download an unrelated historical tarball whose object is absent from the LFS server.",
+    "missing_lfs_oid": "5d75dc403cbe866b749e798947147b03cf248d003119da101a10fbfc2ffc675e",
+    "focused_tests_started": false,
+    "producer_started": false,
+    "verifier_started": false,
+    "result_files_created": 0,
+    "verification_files_created": 0,
+    "scientific_outcomes_computed_or_read": false
+  },
+  "execution_change": {
+    "single_change": "Prefix only the fresh git worktree checkout with GIT_LFS_SKIP_SMUDGE=1.",
+    "reason": "The formal experiment uses tracked source, JSON protocol, manifest and an external compact primitive; it does not require any LFS payload.",
+    "lfs_pointer_files_remain_immutable": true,
+    "lfs_content_used_by_experiment": false,
+    "input_hashes_unchanged": true
+  },
+  "scientific_changes": [],
+  "resource_changes": [],
+  "unchanged": [
+    "18,381-pair exact common support",
+    "26 tasks and 894 vertices",
+    "triplicate signed flow",
+    "target-edge-excluded Hodge projection",
+    "bridge and zero fallback",
+    "raw and hybrid estimands",
+    "20,000 task bootstrap repetitions and seeds",
+    "frozen classification gates",
+    "producer and grounded verifier algorithms",
+    "prospective and confidence access prohibitions",
+    "0 GPU, 0 paid API, 0 model fit and 0 base update"
+  ],
+  "new_controls": [
+    "Static test requires exactly one GIT_LFS_SKIP_SMUDGE=1 prefix on worktree add.",
+    "Static test forbids an unprefixed worktree-add line.",
+    "Formal runner still verifies every scientific source and input SHA after checkout.",
+    "Fresh exact commit and fresh output root remain mandatory."
+  ],
+  "source_bindings": {
+    "parent_runner_sha256": "2f163a0fa1af63dde0f3138f6b2b4ab846980b254672563aa4917944e8404ffc",
+    "revised_runner": {
+      "path": "phase1/scripts/run_foreagent_loeo_graph_denoising_formal_20260830.sh",
+      "sha256": "cb08b836537927bdd5237ddde489cebb0384b9121d0e5aad4b2fde19efd897e0"
+    },
+    "execution_test": {
+      "path": "phase1/tests/test_foreagent_loeo_graph_denoising_execution.py",
+      "sha256": "592a9f6d2bb8be8cd572ad8030894e459d48a958418b73d891ac31ccc3485794"
+    }
+  },
+  "next_attempt": {
+    "fresh_commit_required": true,
+    "fresh_output_root_required": true,
+    "reuse_failed_root_forbidden": true,
+    "all_parent_formal_gates_required": true
+  }
+}

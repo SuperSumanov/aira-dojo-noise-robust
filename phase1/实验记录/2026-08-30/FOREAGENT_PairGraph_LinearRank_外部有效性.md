@@ -42,8 +42,12 @@ Union-find producer 与不导入 producer 的 adjacency+DFS verifier 逐字段�
 | min / max endpoint degree | 2 / 49 |
 | degree sum | 36,722 = 2E |
 
-development focused=`7 passed`；A/B producer byte-exact，independent DFS status=
-`INDEPENDENT_DFS_RECONSTRUCTION_EXACT`；结果与 receipt mode=0600。正式 exact-commit/post-push package 仍是发布门。
+formal exact commit=`dcf03949bb8afc3a71ff12242277cf03d381efdf`：post-push changed paths=`8`、credential
+filename/blob hits=`0/0`、source bindings 全一致；fresh detached focused/full=`7/1737 passed`、48 warnings。
+A/B producer byte-exact，independent DFS A/B byte-exact，status=`INDEPENDENT_DFS_RECONSTRUCTION_EXACT`；file/network
+forbidden hits=`0`，结果与 receipt mode=0600，包只读。result SHA-256=
+`0ecb166d365863f34d2e3102b45c6815d1e9bc2f2f5c34a65a81e10c4f6c1275`，manifest SHA-256=
+`47a9f87164f17f54bc598d9f074de0e405ec0a1e92fc8c90f1f05f32a1f63689`。
 
 ## 正向意义
 

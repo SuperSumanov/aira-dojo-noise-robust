@@ -13,6 +13,19 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JO. 2026-08-30 FOREAGENT incidence-rank 外部审计已完成 formal 复验
+
+exact commit=`dcf03949bb8afc3a71ff12242277cf03d381efdf` 的 post-push changed paths=`8`、credential filename/blob
+hits=`0/0`、四个 source bindings 全一致。fresh detached formal 根=
+`/research/d7/spc/yzyang4/foreagent-pair-graph-linear-rank/formal-dcf0394-v1`，focused/full=`7/1737 passed`、48 个
+既有 warning，union-find A/B 与 independent adjacency/DFS A/B 逐字节一致，file/network forbidden hits=`0`，输出只读。
+result SHA-256=`0ecb166d...6c1275`、manifest SHA-256=`47a9f871...f63689`。
+
+正式结果：18,361 rows、895 vertices、26 tasks/components、26/26 task graphs connected、incidence rank=`869`、
+cycle-space rows=`17,492`、rows/rank=`21.128883774453396`、redundant share=`0.95267142312510211`。只读 `paths`，
+scores/predictions/code/identities 均未读或输出；GPU/API/model-fit/base-update=`0/0/0/0`。分类严格保持
+`DESCRIPTIVE_PAIR_GRAPH_LINEAR_RANK_AUDIT_COMPLETE`，不是 confirmatory effect。机器回执见同日 JSON。
+
 ## 0JN. 2026-08-30 学长 0828 outcome 已安全接入；新 self-improvement 想法不得直接转成底座微调
 
 `dojo-reproduce` 仍为 `5baccb170ce287f9c8eed7b23ccf693a0268515a`；最新 outcome 是

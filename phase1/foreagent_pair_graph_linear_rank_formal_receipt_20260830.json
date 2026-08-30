@@ -1,0 +1,69 @@
+{
+  "protocol": "foreagent-public-pair-graph-linear-rank-formal-receipt-v1",
+  "status": "FORMAL_COMPLETE",
+  "source_commit": "dcf03949bb8afc3a71ff12242277cf03d381efdf",
+  "postpush": {
+    "remote_head_exact": true,
+    "changed_paths": 8,
+    "credential_filename_hits": 0,
+    "credential_blob_hits": 0,
+    "source_bindings_exact": true
+  },
+  "formal": {
+    "root": "/research/d7/spc/yzyang4/foreagent-pair-graph-linear-rank/formal-dcf0394-v1",
+    "fresh_detached_exact_commit_worktree": true,
+    "focused_tests": {
+      "passed": 7,
+      "seconds": 0.09
+    },
+    "full_phase1_tests": {
+      "passed": 1737,
+      "warnings": 48,
+      "seconds": 105.19
+    },
+    "producer_repetitions": 2,
+    "producer_byte_exact": true,
+    "independent_dfs_repetitions": 2,
+    "independent_dfs_byte_exact": true,
+    "producer_forbidden_path_hits": 0,
+    "verifier_forbidden_path_hits": 0,
+    "producer_network_hits": 0,
+    "verifier_network_hits": 0,
+    "output_readonly": true,
+    "result_sha256": "0ecb166d365863f34d2e3102b45c6815d1e9bc2f2f5c34a65a81e10c4f6c1275",
+    "sha256sums_sha256": "47a9f87164f17f54bc598d9f074de0e405ec0a1e92fc8c90f1f05f32a1f63689"
+  },
+  "result": {
+    "classification": "DESCRIPTIVE_PAIR_GRAPH_LINEAR_RANK_AUDIT_COMPLETE",
+    "source_sha256": "79363b7ef0b6154061f18e81f6c6fdf380e71ae3f1d7b9a262cc79acb08f0b5f",
+    "pair_rows": 18361,
+    "vertices": 895,
+    "tasks": 26,
+    "connected_components": 26,
+    "tasks_with_exactly_one_connected_component": 26,
+    "endpoint_edge_incidence_rank": 869,
+    "cycle_redundant_pair_rows": 17492,
+    "pair_rows_per_incidence_rank": {
+      "numerator": 18361,
+      "denominator": 869,
+      "decimal_17g": "21.128883774453396"
+    },
+    "redundant_pair_row_share": {
+      "numerator": 17492,
+      "denominator": 18361,
+      "decimal_17g": "0.95267142312510211"
+    },
+    "independent_verification_status": "INDEPENDENT_DFS_RECONSTRUCTION_EXACT"
+  },
+  "scope": {
+    "columns_read": [
+      "paths"
+    ],
+    "scores_or_predictions_read": false,
+    "solution_code_read": false,
+    "raw_identities_emitted": false,
+    "effective_sample_size_claimed": false,
+    "published_accuracy_invalidity_claimed": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  }
+}

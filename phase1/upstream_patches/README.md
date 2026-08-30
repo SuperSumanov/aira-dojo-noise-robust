@@ -29,6 +29,13 @@ path opens=0、sidecar writes=0。formal root=
 历史 archive 回填为 exact stratum，也不授权训练、GPU 矩阵或效果主张。8 月 19 日旧 exact-stratum patch 是
 Cards/pair 生成后的 v1 同层过滤；本补丁解决的是更早的 outcome-before producer config/prompt 可识别性，两者不重复。
 
+2026-08-30 再对学长最新 `dojo-reproduce@5baccb170ce287f9c8eed7b23ccf693a0268515a` 做 sparse/no-data
+兼容复验：该 branch 仍未包含 `DOJO_CONFIG_V2_SIDECAR` 或 `DOJO_GENERATOR_RELEASE`；原补丁 SHA 不变且
+`git apply --check`/apply 均无冲突，Linux focused=`19 passed`，compile 通过，4 个变更路径的 credential
+filename/blob=`0/0`。复验没有展开 LFS data，也没有改写或推送学长分支。状态仍是
+`PATCH_VERIFIED_NOT_DEPLOYED`；只有学长 review/apply 并在未来 producer 显式启用后，新 run 才能进入 exact-stratum
+confirmation。
+
 ## Critic clean-confirmation overlay（2026-08-23）
 
 以下四份补丁按顺序应用于学长 `dojo-reproduce@ac008af8b907d319b694f26b0ba9cf4053b3bf69`：

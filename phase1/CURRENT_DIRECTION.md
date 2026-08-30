@@ -13,6 +13,19 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JC. 2026-08-30 学长最新 5baccb 语料已增长，但 clean-scaling sidecar 仍未部署
+
+`dojo-reproduce@5baccb170ce287f9c8eed7b23ccf693a0268515a` 已把 cards、value/mixed/merged decision、runsplit 与
+RL train/test 换成更大的不可变 LFS objects；这里只核验 pointer OID/size，未展开数据。代码树仍没有
+`DOJO_CONFIG_V2_SIDECAR`、`DOJO_GENERATOR_RELEASE` 或 config-v2 hook，outcome-blind source 的 sidecar 文件名数也为 0；
+故本批不能事后升级为 exact-stratum clean scaling confirmation。
+
+正向工程门没有失效：原 producer hook patch SHA=`56a3e4b6...54c9a5` 对最新 5baccb 仍 clean apply。Linux sparse/no-data
+复验只取 `src/dojo/docs/tests`，4 个变更路径、focused=`19 passed`、compile 通过、credential filename/blob=`0/0`；
+未修改/推送学长分支，也未读 LFS/prospective values。当前分类仍为
+**`PATCH_COMPATIBLE_WITH_LATEST_SENIOR_COMMIT_NOT_DEPLOYED`**。只有学长 review/apply 并在未来 producer 显式启用后，
+才报告并审批 0.6B/4B/8B × seeds GPU 矩阵；当前 GPU/API/model-fit/base-update=`0/0/0/0`。详见同日兼容复验。
+
 ## 0JB. 2026-08-30 outcome-blind 887 v5 续接已在重启前冻结
 
 纯结构复核发现旧 continuous intake 已正常跑满 `145×300s` 后退出；v4 guard 最后一个成功状态仍是 poll 71、baseline

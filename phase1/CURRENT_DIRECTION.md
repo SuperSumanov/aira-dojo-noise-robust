@@ -1,4 +1,4 @@
-# 当前研究方向唯一入口（2026-08-30）
+# 当前研究方向唯一入口（2026-08-31）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
@@ -12,6 +12,40 @@
 > 支持审计改写；所有更早“唯一主实验”“主线已确认”措辞均按本段降为历史状态。
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
+
+## 0KF. 2026-08-31 score 双层 code epoch 迁移正式通过；新归档已进入不可变 LATEST
+
+第二个 0828 archive 的共识回填本身已通过，但第一次生产重试在重放历史 score registry 时 fail-closed：旧 118 个
+top-level score summary 全部来自 exact commit=`90842c4...`/source=`f7fc2aa...`，其中 117 个 nested scorer 全部来自
+同一 commit/source=`678ecb2...`，另 1 个是无 eligible endpoint、因而没有 nested score。此前修复只迁移了 intake schema，
+没有迁移这两个 score code identity 层。只读 summary 元数据审计 receipt SHA-256=
+`9688d3544268a84d4b7073fcba1d470ab74a330c57b4f99d2a65a04c81840102`；没有打开 blind-score CSV、label vault，
+也没有读取 outcome/prediction value/accuracy/utility 或输出 candidate identity。
+
+结果前冻结的修复只允许两个完整 epoch：上述唯一 legacy top+nested tuple，或 fresh exact commit 的 current
+top+nested tuple；top/nested 混搭、部分 tuple、未知 SHA 或 caller-supplied identity 全部 fail-closed。另有不导入
+production pipeline 的独立 verifier。v1 exact commit=`d414676...` 通过 focused=`72 passed`，但 full suite 在 producer
+启动前因远端默认 umask 令一个隐私测试的 synthetic tempfile 成为 `0644` 而停止（`1813 passed / 1 failed`）；失败根
+manifest=`87bd5f0e...fdb60ec` 已只读封存，无 intake/score/registry 科学输出。v2 唯一执行改动是结果前固定
+`umask 0077`，科学协议、输入、身份白名单、测试范围与解释均不变。
+
+v2 exact scientific commit=`5ed1988045a3fd8c365d001c87977314572383d9` 在 fresh root `formal-5ed1988-v2`
+通过 focused/full=`72/1814 passed`（48 warnings）；intake、archive verifier、blind score、119-transaction registry、
+独立 epoch verifier、accumulator 六层 A/B 全部逐字节一致。formal manifest SHA-256=
+`06a877e2fe3e9ee34122cb3f7f3fe9b112e0124fdd74a7f1fcc56e556700f65f`；legacy/current top counts=`118/1`，
+nested=`117/1`，无 nested=`1`。control commit=`c8e6775d11d20d5008add11763b93e7d6c99362d` 已部署，deployment manifest=
+`108c01fac59fc8e00b84bad5f1cd9104220dfad7c66ab9c3a3f7f5f9b72896fb`。
+
+新不可变 LATEST=`0c0584b87140d9a3242f2aa59920829e07e9178749880e3c1f3bd0d065e0b07a`，transactions=`119`；
+all physical/eligible runs/endpoints/structural pairs/tasks=`499/473/12,680/3,151/34`。相对上一 LATEST，新增
+`4 eligible runs / 144 endpoints / 7 structural pairs / 0 tasks`。snapshot 全 manifest、formal、deployment 与 recovery
+均独立 postflight PASS；label vault opened=`false`，outcome/prediction value/accuracy/utility read=`false`，
+GPU/API/model fit/base update=`0/0/0/0`。transition snapshot chain 已完成并独立复核：selected/added/removed runs=
+`473/4/0`、common pairs=`3,144`、outcomes/effect metrics=`false/0`。WL 相对上次正式 468-run state 仅
+`delta=5<12` 而按预注册批门 deferred，并已续挂 outcome-blind monitor；Target-522 只观察到 473-run 结构、candidate=none。
+
+允许主张：append-only 语料在遇到真实 schema/code-epoch 漂移时可 fail-closed、独立复验并无损恢复，且新数据已安全增长。
+禁止把本节解释成 critic 精度、scaling、search utility 或方法效果正结果。
 
 ## 0KE. 2026-08-31 新归档 intake 在第二个 uncommitted archive fail-closed；共识回填规则已在 stem-match 前冻结
 

@@ -13,6 +13,24 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JY. 2026-08-30 FOREAGENT target-edge-excluded 图一致性基线已结果前冻结
+
+近期 related-work gate 找到 2026 年 5 月的 Topological Consensus Rewards，以及更早的 Hodge/least-squares ranking、
+Bradley–Terry、LLM-judge non-transitivity、TrustJudge/Sage；因此“用全局传递性给 pairwise judge 去噪”已经被直接
+scoop，禁止声称算法首创。本实验只作为 Predictor Benchmark 的强基线与 MLE-solution domain transfer。
+
+固定输入仍是 exact common finite `18,381 pairs / 26 tasks / 894 vertices / rank 868`。每个 model×task 将三轮
+winner 编为 signed edge flow；对目标边 `e`，只用其他边的 Hodge least-squares potential 预测它，闭式 LOEO 为
+`(fitted_e - h_e*y_e)/(1-h_e)`。bridge 或精确零预测回退 raw triplicate majority，形成 full-coverage hybrid；
+truth 只在预测完成后评分。primary 是 equal-task task-macro `hybrid−raw`，20,000 次 task bootstrap，不做 pair-IID。
+
+结果前固定正门：LOEO pair coverage≥`0.90`；至少一个固定模型的 task-macro gain CI 下界>`0`；两个模型 point gain
+均非负。若方法提升门失败但 hybrid DeepSeek−GPT CI 下界仍>`0`，只能记为模型比较稳健，不能称去噪提升。截至冻结，
+majority/LOEO coverage、accuracy、gain、residual 与 hybrid model delta 均未计算或读取；synthetic focused=`7 passed`。
+protocol SHA-256=`bcd25033e2340a0b98c362ae1fffb29fe39c5222ceb531e5112d4675d7be033c`，GPU/API/model
+fit/base update=`0/0/0/0`。正式运行必须 fresh exact commit、A/B byte match、opposite-orientation grounded verifier、
+trace/security 与只读门全过；无论正负都记录。
+
 ## 0JX. 2026-08-30 FOREAGENT exact-grid UST outcome sensitivity 正式完成：外部模型比较对图重加权稳健
 
 v4 exact commit=`b0fddf62134f006809278418a109411f4426da87` 已在 fresh root

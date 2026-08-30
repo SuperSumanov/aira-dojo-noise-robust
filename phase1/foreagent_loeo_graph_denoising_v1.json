@@ -1,0 +1,178 @@
+{
+  "protocol": "foreagent-loeo-graph-denoising-v1",
+  "version": 1,
+  "status": "FROZEN_AFTER_RAW_AND_UST_DISCLOSURE_BEFORE_MAJORITY_OR_LOEO_OUTCOME_COMPUTATION",
+  "frozen_at_utc": "2026-08-30T14:46:35Z",
+  "paper_container": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+  "question": "On FOREAGENT's exact common released pair grid, can a label-free task-local graph projection improve fixed DeepSeek or GPT pairwise judgments when the target edge is excluded from its own reconstruction?",
+  "disclosure": {
+    "known_before_freeze": {
+      "common_finite_pairs": 18381,
+      "tasks": 26,
+      "vertices": 894,
+      "components": 26,
+      "incidence_rank": 868,
+      "cycle_rows": 17513,
+      "deepseek_round_average_pair_micro": "0.6152186134232811",
+      "gpt_round_average_pair_micro": "0.5889596140942641",
+      "deepseek_ust_pair_micro": "0.6052414090772692",
+      "gpt_ust_pair_micro": "0.5811351723564873",
+      "deepseek_minus_gpt_equal_task_raw": "0.026657533634302202",
+      "deepseek_minus_gpt_equal_task_ust": "0.02671874905758977"
+    },
+    "not_computed_or_read_before_freeze": [
+      "per-model triplicate-majority accuracy",
+      "per-model label-free cyclic residual energy",
+      "per-edge target-excluded Hodge predictions",
+      "LOEO coverage or bridge/zero count",
+      "LOEO-only accuracy",
+      "full-coverage hybrid accuracy",
+      "hybrid-minus-raw point estimates, confidence intervals or LOTO signs",
+      "hybrid DeepSeek-minus-GPT comparison"
+    ],
+    "classification_is_fixed_before_new_outcomes": true
+  },
+  "inputs": {
+    "manifest": {
+      "path": "phase1/foreagent_alignment_manifest_v1.json",
+      "sha256": "3df2715b2d2e5f3cc6193c07c99eb682e042e8aa6cb724b046b2469b35773a4e",
+      "source_files": 156
+    },
+    "compact_primitive_master": {
+      "path": "/research/d7/spc/yzyang4/scratch/pbe_alignment_cache_v1/all_predictions.compact.jsonl",
+      "sha256": "480616317ddebb249084dbc8b36b4060fac4b77353fce16b436351eab9c235fe",
+      "records": 110620
+    },
+    "allowed_fields": [
+      "source_index",
+      "task",
+      "model_family",
+      "release_run",
+      "solution_paths",
+      "scores",
+      "is_lower_better",
+      "groundtruth_best_index",
+      "prediction_best_index"
+    ],
+    "confidence_allowed": false,
+    "solution_code_allowed": false,
+    "prospective_sources_allowed": false
+  },
+  "support": {
+    "population": "The same 18,381-pair, 26-task exact common finite directional support already frozen for FOREAGENT UST sensitivity.",
+    "deepseek_grid": "The three released grids must be exactly equal within task.",
+    "gpt_grid": "Use the three-release intersection within task before cross-model intersection.",
+    "truth": "Finite non-tied score-derived winner, direction and score mapping must agree across all six model-release records.",
+    "triplicate_flow": "Encode each released winner as +1 or -1 under a canonical endpoint orientation and average the three signs. Missing predictions encode zero; any zero triplicate majority fails closed for this fixed released support.",
+    "graph": "One task-local graph on common support; every task must be connected and total incidence rank must equal 868."
+  },
+  "method": {
+    "name": "leave-one-edge-out Hodge least-squares baseline",
+    "fit": "For each fixed model and task, fit node potentials to the mean signed triplicate edge flow by unweighted ordinary least squares.",
+    "target_edge_exclusion": "For edge e, compute the prediction fitted without e using (fitted_e - h_e*y_e)/(1-h_e), where h_e is its incidence leverage. Synthetic tests must match brute-force edge deletion.",
+    "truth_access": "The graph fit and target-edge prediction use model judgments and topology only. Truth is accessed only to score the already-produced sign.",
+    "bridge_or_zero_policy": "If h_e is within 1e-10 of one or the leave-one-out prediction has absolute value at most 1e-12, LOEO abstains. The practical full-coverage hybrid falls back to the raw triplicate majority on that edge.",
+    "raw_baseline": "Triplicate-majority sign on every edge.",
+    "primary": "Equal-task task-macro hybrid-minus-raw accuracy for each fixed model.",
+    "secondary": [
+      "pair-micro hybrid-minus-raw",
+      "LOEO-only minus raw on the identical LOEO-evaluable support",
+      "LOEO pair and task coverage",
+      "hybrid DeepSeek-minus-GPT equal-task comparison",
+      "label-free cyclic residual energy"
+    ]
+  },
+  "inference": {
+    "bootstrap_repetitions": 20000,
+    "seeds": [
+      20260901,
+      20260902,
+      20260903
+    ],
+    "primary_cluster": "task",
+    "bootstrap": "Resample the 26 tasks with replacement and recompute equal-task and ratio estimands.",
+    "leave_one_task_out": true,
+    "pair_iid_inference_allowed": false,
+    "confidence_interval": "Empirical 2.5 and 97.5 percent order statistics with fixed indices."
+  },
+  "frozen_classification_gates": {
+    "minimum_loeo_pair_coverage": 0.9,
+    "supporting_graph_consistency_baseline_improves": "Coverage passes, at least one fixed model has a task-macro hybrid-minus-raw 95% CI strictly above zero, and both model point changes are nonnegative.",
+    "no_denoising_gain_model_comparison_remains_stable": "The improvement gate fails but the hybrid DeepSeek-minus-GPT task-macro 95% CI remains strictly above zero.",
+    "no_positive_graph_consistency_result": "Neither fixed condition holds.",
+    "no_model_or_threshold_reselection": true
+  },
+  "independent_implementations": {
+    "producer": "Canonical-left-minus-right incidence, Moore-Penrose pseudoinverse and analytic OLS leave-one-out.",
+    "verifier": "Opposite orientation, grounded reduced-Laplacian inverse and independent parser/aggregation.",
+    "producer_and_verifier_import_each_other": false,
+    "A_B_byte_exact_under_distinct_hash_seeds": true,
+    "synthetic_controls": [
+      "closed-form LOEO equals brute-force deletion on every K4 edge",
+      "tree edges have leverage one and abstain",
+      "orientation reversal preserves the physical prediction",
+      "reversed source pair order canonicalizes identically",
+      "bridge fallback reproduces raw majority",
+      "task bootstrap is deterministic",
+      "grounded verifier matches pseudoinverse producer"
+    ]
+  },
+  "related_work_boundary": {
+    "scoop_gate": "The method family is not novel. Classical Hodge/least-squares ranking, Bradley-Terry aggregation, non-transitivity diagnostics, TrustJudge, Sage and 2026 Topological Consensus Rewards already establish graph/global-consistency aggregation or denoising.",
+    "primary_sources": {
+      "hodge_rank_sampling": "https://arxiv.org/abs/1503.00164",
+      "non_transitivity_llm_judge": "https://arxiv.org/abs/2502.14074",
+      "trustjudge": "https://arxiv.org/abs/2509.21117",
+      "sage": "https://arxiv.org/abs/2512.16041",
+      "topological_consensus_rewards": "https://arxiv.org/abs/2510.15514",
+      "efficient_comparative_assessment": "https://aclanthology.org/2024.emnlp-main.389/"
+    },
+    "allowed_claim": "A leak-free graph-consistency baseline and domain transfer result for the MLE-solution predictor benchmark.",
+    "forbidden_claims": [
+      "new graph-ranking or judge-denoising algorithm",
+      "first use of transitivity or cycles for LLM judges",
+      "prospective confirmation",
+      "improved agent search utility",
+      "replacement of the frozen critic estimand",
+      "effective sample size or independent-label count"
+    ]
+  },
+  "integrity": {
+    "exact_input_hashes_required": true,
+    "raw_reproduction_required": true,
+    "target_edge_must_be_excluded": true,
+    "truth_must_not_enter_projection": true,
+    "raw_task_and_endpoint_identity_output_forbidden": true,
+    "confidence_access_forbidden": true,
+    "prospective_access_forbidden": true,
+    "focused_and_full_tests_required": true,
+    "file_and_network_trace_required": true,
+    "producer_verifier_A_B_required": true,
+    "failure_policy": "Any source hash, schema, support, graph, arithmetic, trace, identity, test, verifier, security or byte mismatch stops without scientific interpretation."
+  },
+  "source_bindings": {
+    "producer": {
+      "path": "phase1/analyze_foreagent_loeo_graph_denoising.py",
+      "sha256": "b92784cd90620b7af9a75d5b8b7c2e50271f2ddaf70aa2cc9cd56ad3626c94ce"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_foreagent_loeo_graph_denoising.py",
+      "sha256": "6473b3fa8b56ed65d31ff46de7b6e684656dbd675dc8932c4a8b7ad5c3b5e043"
+    },
+    "test": {
+      "path": "phase1/tests/test_foreagent_loeo_graph_denoising.py",
+      "sha256": "52c7f19f505c0d0878468f5fb61c2991a71cf526cbb69f7b95cefd13a9bb891a"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_foreagent_loeo_graph_denoising_formal_20260830.sh",
+      "sha256": "2f163a0fa1af63dde0f3138f6b2b4ab846980b254672563aa4917944e8404ffc"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "expected_single_cpu_minutes_including_full_tests": "5--30"
+  }
+}

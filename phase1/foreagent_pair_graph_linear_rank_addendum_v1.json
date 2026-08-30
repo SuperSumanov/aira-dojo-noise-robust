@@ -1,0 +1,103 @@
+{
+  "protocol": "foreagent-public-pair-graph-linear-rank-addendum-v1",
+  "version": 1,
+  "status": "POSTDISCLOSURE_DESCRIPTIVE_AUDIT_NOT_PREREGISTERED_CONFIRMATION",
+  "frozen_at_utc": "2026-08-30T04:13:40Z",
+  "paper_container": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+  "question": "How many endpoint-edge incidence dimensions are represented by FOREAGENT's released comparison rows?",
+  "disclosure": {
+    "known_before_this_addendum": {
+      "pair_rows": 18361,
+      "vertices": 895,
+      "tasks": 26,
+      "connected_components": 26,
+      "maximum_degree": 49
+    },
+    "development_probe_read_before_formalization": {
+      "endpoint_edge_incidence_rank": 869,
+      "cycle_redundant_pair_rows": 17492,
+      "pair_rows_per_incidence_rank_decimal_17g": "21.128883774453396",
+      "redundant_pair_row_share_decimal_17g": "0.95267142312510211"
+    },
+    "disposition": "All values are post-disclosure deterministic description and external validation of an audit quantity; none is a preregistered hypothesis test or confirmatory effect."
+  },
+  "source": {
+    "dataset": "zjunlp/PredictBeforeExecute",
+    "huggingface_revision": "6b322cb88bdbcb2b2d3897ec7d0ded94a5bb2d06",
+    "auto_parquet_sha256": "79363b7ef0b6154061f18e81f6c6fdf380e71ae3f1d7b9a262cc79acb08f0b5f",
+    "auto_parquet_bytes": 8456690,
+    "columns_allowed": [
+      "paths"
+    ],
+    "columns_forbidden": [
+      "scores",
+      "best_index",
+      "model predictions"
+    ],
+    "solution_code_allowed": false,
+    "raw_identity_emission_allowed": false
+  },
+  "estimand": {
+    "quantity": "rank of an oriented endpoint-edge incidence matrix over the released undirected comparison graph",
+    "formula": "For a graph with V vertices and C connected components, incidence rank over the reals is V-C; cycle-space dimension is E-V+C.",
+    "pair_rows_per_incidence_rank": "E/(V-C)",
+    "redundant_pair_row_share": "(E-V+C)/E",
+    "why_relevant": "It reports the exact number of linear endpoint-potential contrast dimensions represented by the released edge rows and makes endpoint reuse visible.",
+    "why_not_effective_sample_size": "Label noise, feature sharing, model class, optimization, task heterogeneity, and dependence across rows are not modeled by this graph identity."
+  },
+  "integrity": {
+    "each_row_must_have_exactly_two_distinct_paths": true,
+    "unordered_edges_must_be_unique": true,
+    "edges_must_not_cross_tasks": true,
+    "each_endpoint_must_have_one_task": true,
+    "every_component_task_homogeneous": true,
+    "degree_sum_must_equal_twice_edges": true,
+    "producer": "union-find",
+    "independent_verifier": "adjacency plus deterministic depth-first search",
+    "producer_and_verifier_import_each_other": false,
+    "two_byte_exact_runs_each": true
+  },
+  "interpretation_boundary": {
+    "allowed": "Report raw pair rows together with vertices, connected components, endpoint-incidence rank, cycle-space rows, degree reuse, task/run grouping, and clustering assumptions.",
+    "not_claimed": [
+      "that only V-C labels are statistically independent",
+      "effective sample size",
+      "Shannon information",
+      "that FOREAGENT's reported model accuracy is invalid",
+      "that row inflation causes any observed accuracy",
+      "that our predictor is more accurate",
+      "algorithmic novelty for graph incidence rank"
+    ],
+    "external_validity_role": "Shows that pair-row inflation is not unique to our sibling corpus and motivates a common benchmark reporting standard across MLE preference datasets."
+  },
+  "related_primary_sources": {
+    "foreagent": "https://arxiv.org/abs/2601.05930",
+    "instructgpt_correlated_k_way_comparisons": "https://arxiv.org/abs/2203.02155",
+    "note": "InstructGPT explicitly treats all K-choose-2 comparisons from one ranking prompt as correlated and batches them as one element; this addendum reports a complementary exact graph-linear quantity rather than claiming that precedent."
+  },
+  "source_bindings": {
+    "producer": {
+      "path": "phase1/audit_foreagent_pair_graph_linear_rank.py",
+      "sha256": "3021dd4030d2cfbc4e2cdcf7c168aa413a65b2f4112a6f732df04881ec1309ed"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_foreagent_pair_graph_linear_rank.py",
+      "sha256": "6dd31f3e4f02e7bda184ab48517b325157248afb7c9b637ae1a55c5bbf9d8372"
+    },
+    "test": {
+      "path": "phase1/tests/test_foreagent_pair_graph_linear_rank.py",
+      "sha256": "ba25381c356a65d2046d5a70f4548c1e413c425273a61ebb5eee105da7747850"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_foreagent_pair_graph_linear_rank_formal_20260830.sh",
+      "sha256": "a693fd4af5be11f38e10fe02d48f36df706f71413febfe1c49d0630090d9a586"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "expected_single_cpu_seconds_excluding_full_tests": "under 10"
+  }
+}

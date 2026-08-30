@@ -13,6 +13,40 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JN. 2026-08-30 学长 0828 outcome 已安全接入；新 self-improvement 想法不得直接转成底座微调
+
+`dojo-reproduce` 仍为 `5baccb170ce287f9c8eed7b23ccf693a0268515a`；最新 outcome 是
+`0828/MIXED_PAIRWISE_REWARD_AND_RL_EXPERIMENTS.md`，不是新 commit。原 blob 的 credential-shape hits=`1`，先在远端
+流式脱敏为 mode-0600 副本；source/sanitized SHA-256=`17317a2d...129ad6` / `15f04f80...76c3f5`，脱敏后 hits=`0`，
+原值未打印、未使用、未转存本地。
+
+报告的正面信息是 seed-7 的 Qwen3 Base 从 1.7B 到 14B 有 proxy scaling，14B best=`62.76%`，超过同一 1,160-pair
+test 的轻量基线；但 seed-6 不复现、0.6B seed-6 缺失，mixed 输出无 source provenance，shared endpoint 未聚类，
+best validation checkpoint 不是 frozen outer test，RL prompt 还把 task 第一条 journal 的资源条件错配到其他 experiment。
+因此它继续是探索性容量信号，不升级为 clean scaling confirmation。
+
+学长提出的 generator+verifier+昂贵稀缺 label 循环，在一般方法上已与 ReST、Self-Rewarding LM、SPIN、ReST-MCTS*、
+VDS-TTT、Sol-Ver、RAFT/CodeRL 高度重叠，不能申通用框架首创；直接微调 Qwen generator 还违反本项目“不微调/RL agent
+底座”硬约束，当前不启动。仅保留一个以后需另批的 MLE-specific extension：固定真实 execution-label 预算，用不更新底座
+参数的 experience retrieval/in-context memory 让 generator 利用已执行经验，并与 critic-only、memory-only、joint 及 uniform
+做 end-to-end 等预算对照。OpenRouter full-context judge 继续沿既有预注册 panel；聊天/报告中的 key 不存不使用，付费矩阵需
+精确成本批准。W&B token 已脱敏且禁止使用，只有学长提供 public/safe export 后才分析 3 个 RL trajectories。详见同日安全接入记录。
+
+## 0JM. 2026-08-30 FOREAGENT 公开 pair 图验证了 rank 审计的外部适用性
+
+对直接竞品 FOREAGENT / PredictBeforeExecute 的官方自动转换 parquet（SHA-256=`79363b7e...f0b5f`，8,456,690 bytes）
+只读 `paths` 一列；scores、predictions、solution code 均未读。Union-find producer 与不导入它的 adjacency/DFS verifier
+逐字节一致：18,361 unique rows、895 vertices、26 tasks/connected components，26/26 task graphs 连通，故 endpoint-edge
+incidence rank=`895-26=869`，cycle-space rows=`17,492`，rows/rank=`21.128883774453396`，redundant-row share=
+`0.95267142312510211`，degree sum=`36,722=2E`。development focused=`7 passed`，GPU/API/model-fit/base-update=`0/0/0/0`。
+
+这是已知 counts 后的 deterministic descriptive addendum，不是预注册 effect。允许的正结论是：pair-row inflation 不是我方
+sibling corpus 特例；MLE preference benchmark 应同时报告 rows、vertices、components/incidence rank、endpoint degree、真实
+decision/run grouping 与 cluster assumptions。禁止把 869 写成 effective sample size、独立 labels 或信息量，也不据此否定
+FOREAGENT accuracy。InstructGPT 已明确指出同一 K-way ranking 派生的 `K choose 2` comparisons 相关并需成组训练，所以这里的
+贡献是把该问题做成 MLE benchmark 的精确、可复验 graph-linear audit，而不是宣称依赖发现首创。当前 formal exact-commit
+复验待代码公开后执行，开发 smoke 不能替代 post-push 回执。
+
 ## 0JL. 2026-08-30 Target-522 contrast-rank 链已公开复验并开始结果盲守候
 
 结果前冻结链已作为 exact commit=`984876ff8ca812af64fe9c761180ecf78cf33ff1` 推送。fresh detached

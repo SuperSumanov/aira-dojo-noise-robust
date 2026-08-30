@@ -1,0 +1,92 @@
+{
+  "protocol": "vertex-cost-contrast-design-engineering-v0",
+  "version": 0,
+  "status": "ENGINEERING_CONTRACT_FROZEN_BEFORE_TARGET522_CANDIDATE_PROFILE_OR_VALUES",
+  "frozen_at_utc": "2026-08-30T02:12:52Z",
+  "scientific_role": {
+    "purpose": "build and falsify an outcome-blind endpoint-cost selector before a separate effect protocol",
+    "paper_role_if_later_confirmed": "Decision Corpus label-acquisition extension with endpoint rather than materialized-pair cost accounting",
+    "not_claimed": [
+      "first D-optimal pairwise experimental design",
+      "first active preference learning",
+      "first feedback-graph method",
+      "current predictor accuracy improvement",
+      "current search utility improvement",
+      "Target-522 scientific preregistration"
+    ]
+  },
+  "prior_work_boundary": {
+    "accelerated_pairwise_d_optimal_design": "https://arxiv.org/abs/1901.06080",
+    "feedback_graph_bandits": "https://arxiv.org/abs/2105.14260",
+    "distinction_under_test": "one paid endpoint execution reveals one scalar outcome; all materialized sibling preferences among executed endpoints are deterministically derived and statistically dependent"
+  },
+  "freeze_observation": {
+    "checked_at_utc": "2026-08-30T02:12:52Z",
+    "baseline_snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "latest_snapshot_sha256": "27d0ca1c99501009278d17ea81211bb54c14fe3797c476a2d990778c49ab6b10",
+    "latest_structural_physical_runs": 466,
+    "snapshot_directory_count": 116,
+    "target522_candidate_present": false,
+    "target522_complete_present": false,
+    "target522_failed_present": false,
+    "config_v2_sidecar_filename_count": 0,
+    "prospective_values_read": false
+  },
+  "implementation": {
+    "path": "phase1/vertex_cost_contrast_design.py",
+    "sha256": "e241864e136deab45c7ac58386d91bdf5eacb98ded2241a0a4a1605d8bfcd68f",
+    "test_path": "phase1/tests/test_vertex_cost_contrast_design.py",
+    "test_sha256": "7e799d46b3687fecf16d06425b987bc3157f110bb1f8f460145e98a55e7f0518",
+    "focused_tests": "11 passed in 0.25s",
+    "dependencies": ["python-standard-library", "numpy"],
+    "accepted_scientific_fields": ["parent", "task", "physical_run", "endpoint_code"],
+    "forbidden_scientific_fields": ["label", "grade", "outcome", "gap", "prediction", "accuracy", "utility", "runtime"]
+  },
+  "cost_and_dependence_accounting": {
+    "paid_unit": "executed endpoint vertex",
+    "materialized_pair_rows_in_selected_parent_clique": "k*(k-1)/2",
+    "independent_contrast_rank_upper_bound": "k-1",
+    "primary_pair_weight_for_future_fit": "2/k per unordered pair; half of that per antisymmetric orientation",
+    "weight_invariant": "sum of unordered pair weights in a complete selected clique equals k-1"
+  },
+  "feature_map": {
+    "input": "endpoint code only; Unicode character n-grams are encoded to UTF-8 only for deterministic hashing",
+    "max_characters": 20000,
+    "encoding": "utf-8",
+    "character_ngram_range": [3, 5],
+    "signed_hash": "two seeded zlib.crc32 calls; one bucket and one sign",
+    "dimension": 128,
+    "sublinear_term_frequency": "1+log(count)",
+    "normalization": "l2",
+    "corpus_fit_or_future_vocabulary": false
+  },
+  "selection": {
+    "ridge": 1.0,
+    "unopened_parent_action": "select two siblings maximizing rank-one logdet gain per endpoint",
+    "opened_parent_action": "select one sibling with q=sqrt(k/(k+1))*(x_new-mean_selected)",
+    "objective": "log(1+q^T A_inverse q) per newly executed endpoint",
+    "inverse_update": "Sherman-Morrison",
+    "task_terminal_endpoint_cap": "max(2,ceil(B/5))",
+    "run_terminal_endpoint_cap": "max(2,ceil(B/10))",
+    "tie_break": "ascending SHA-256 of action kind parent and sorted endpoints",
+    "exact_budget_required": true,
+    "nested_prefix_emitted": true,
+    "unknown_cap_infeasibility": "fail closed"
+  },
+  "required_before_effect_freeze": [
+    "Target-522 candidate still absent when the end-to-end effect protocol is frozen",
+    "trusted code-only exporter with senior-test and prospective-value firewall",
+    "same endpoint-budget baselines and deterministic acquisition/evaluation run split",
+    "fixed critic fit and rank-normalized pair weighting",
+    "independent non-importing verifier",
+    "support and advancement gates",
+    "exact CPU fit count and ETA",
+    "fresh detached full tests and credential/prospective path scans"
+  ],
+  "resources_used_at_this_freeze": {
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_model_updates": 0
+  }
+}

@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JF. 2026-08-30 vertex-cost contrast design 已冻结工程合同，尚非效果正结论
+
+新的窄正方向不再最大化 materialized sibling pairs：同 parent 执行 k 个 endpoints 虽产生 `k(k-1)/2` 条 rows，但独立
+contrast rank 至多 `k-1`。新 selector 以 endpoint execution 为成本，向已开 parent 加点时使用精确 centered-scatter 更新
+`sqrt(k/(k+1))*(x_new-mean)`，按 D-opt logdet gain/endpoint 选点，并固定 task/run terminal caps；未来 fit 的每条 clique pair
+权重为 `2/k`，使 parent 总权重恰为 `k-1`。这直接针对旧 yield 的 clique 膨胀、任务集中与 calibration 风险。
+
+查重后明确不宣称 D-opt pair design、active preference learning 或 feedback graph 首创；可检验差异仅是 MLE 中“付费顶点执行→
+依赖的 sibling pair 派生标签”加完整成本/异质性/run-clean 审计。纯 NumPy outcome-blind 核心与 synthetic tests SHA-256=
+`e241864e...fcd68f` / `7e799d46...7f0518`，focused=`11 passed`；接口不接收 label/grade/outcome/prediction/accuracy/utility。
+
+当前只到 **`ENGINEERING_CONTRACT_FROZEN_BEFORE_TARGET522_CANDIDATE_PROFILE_OR_VALUES`**：冻结时 Target-522 structural runs=466、
+candidate/COMPLETE/FAILED 均不存在，values 未读。必须在 candidate 前补齐 code-only firewall、固定外层 run split、exact-B baselines、
+critic matrix、独立 verifier 和效果门，才能成为科学预注册；OpenRouter 结果不得事后混入 v0。详见同日工程冻结记录。
+
 ## 0JE. 2026-08-30 OpenRouter 目录价格漂移已在任何 live call 前追加式修复
 
 四个冻结模型 ID 在官方公共目录中仍全部存在，但 DeepSeek V4 Flash 0731 的 prompt/completion 价格已从旧冻结值

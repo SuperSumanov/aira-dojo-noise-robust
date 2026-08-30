@@ -1,0 +1,63 @@
+{
+  "protocol": "target522-linear-contrast-rank-postpush-and-monitor-receipt-v1",
+  "status": "POSTPUSH_VERIFIED_AND_RESULT_BLIND_MONITOR_LIVE",
+  "checked_at_utc": "2026-08-30T04:03:07Z",
+  "source": {
+    "commit": "984876ff8ca812af64fe9c761180ecf78cf33ff1",
+    "remote": "myfork/phase1-value-critic",
+    "remote_head_exact_at_verification": true,
+    "scientific_protocol_sha256": "3c8b8f87b43cae74a57c28d78e3428d824f54969051fadf5086810da467ad323",
+    "execution_protocol_sha256": "50baf5c7a31c9be8786e8f1cabce1f3b9d89834a0a0a508d6a76b5e4e99b41ac",
+    "all_bound_sources_exact": true
+  },
+  "postpush": {
+    "root": "/research/d7/spc/yzyang4/target522-linear-contrast-rank-postpush-20260830-r1",
+    "fresh_detached_exact_commit_worktree": true,
+    "changed_paths": 9,
+    "expected_changed_paths_exact": true,
+    "credential_filename_hits": 0,
+    "credential_blob_hits": 0,
+    "focused_tests": {
+      "passed": 17,
+      "seconds": 0.64
+    },
+    "full_phase1_tests": {
+      "passed": 1730,
+      "warnings": 48,
+      "seconds": 96.05
+    },
+    "worktree_clean": true,
+    "package_readonly": true,
+    "sha256sums_sha256": "bf60c797b8eaf404ce3ad3df7c67653921af35ddd9d869f25fe4e526a7169a59"
+  },
+  "deployment_observation": {
+    "target522_candidate_present": false,
+    "target522_ready_present": false,
+    "target522_complete_present": false,
+    "target522_failed_present": false,
+    "target522_continuity_gap_present": false,
+    "target522_timeout_present": false,
+    "stage_a_output_present": false
+  },
+  "monitor": {
+    "root": "/research/d7/spc/yzyang4/target522-linear-contrast-rank/formal-monitor-984876f-v1",
+    "pid": 955941,
+    "pid_live": true,
+    "exclusive_lock_held": true,
+    "source_sha256": "11d753a58ecf811a74d371aa759825103b4f2e4f2765072efcaad92ba509b51e",
+    "runner_sha256": "dd462b22f85157ebb4172c0d8653656fcf8b8dbbdf98fd7e466412fbb383b794",
+    "execution_sha256": "50baf5c7a31c9be8786e8f1cabce1f3b9d89834a0a0a508d6a76b5e4e99b41ac",
+    "latest_log": "2026-08-30T04:02:20Z waiting poll=0 stage_a_complete=false prospective_values_read=false",
+    "bounded_hours": 6,
+    "classification": null
+  },
+  "scope": {
+    "candidate_profile_or_identity_opened": false,
+    "stage_a_public_profile_opened": false,
+    "stage_a_private_selection_opened": false,
+    "label_grade_gap_prediction_accuracy_utility_runtime_used": false,
+    "prospective_values_read": false,
+    "first960_closure_opened": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  }
+}

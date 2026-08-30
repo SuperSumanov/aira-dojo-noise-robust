@@ -13,6 +13,20 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JL. 2026-08-30 Target-522 contrast-rank 链已公开复验并开始结果盲守候
+
+结果前冻结链已作为 exact commit=`984876ff8ca812af64fe9c761180ecf78cf33ff1` 推送。fresh detached
+post-push 根=`/research/d7/spc/yzyang4/target522-linear-contrast-rank-postpush-20260830-r1`：changed paths=`9`、
+credential filename/blob hits=`0/0`、科学/执行与五个 source bindings 全一致；focused/full=`17/1730 passed`、48 个既有
+warning，worktree clean，包只读，manifest SHA-256=`bf60c797...169a59`。本机 full collection 因没有 scipy/sklearn 而停，
+正式远端固定 venv 已补足并通过，不用本机环境掩盖缺口。
+
+部署时 Target-522 candidate/READY/COMPLETE/FAILED/CONTINUITY_GAP/TIMEOUT 全不存在，Stage-A output 也不存在。
+固定 monitor=`/research/d7/spc/yzyang4/target522-linear-contrast-rank/formal-monitor-984876f-v1`，PID=`955941` live、
+lock held；poll 0 只记录 `stage_a_complete=false/prospective_values_read=false`。它在 Stage-A `COMPLETE` 前不打开 public
+profile，之后也只校验 public producer A/B，不读取或整体 hash private selection。当前仍无 contrast-rank 科学结果；
+GPU/付费 API/model fit/base update=`0/0/0/0`。完整机器回执见同日 post-push/monitor receipt。
+
 ## 0JK. 2026-08-30 Target-522 线性 contrast-rank 审计已在候选出现前冻结
 
 VCCD 的 endpoint-cost 论证暴露出一个可独立验证、但不依赖模型效果的 benchmark 审计问题：同一 parent 执行 `k` 个

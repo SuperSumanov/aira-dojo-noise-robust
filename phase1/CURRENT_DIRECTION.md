@@ -13,6 +13,19 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JW. 2026-08-30 FOREAGENT v3 的 raw reproduction 门误设为 `1e-15`；v4 以 `64ε` 修正
+
+v3 exact commit=`93154e54987c3fec720f50b754785737f3e0a1c2` 通过 focused/full=`12/1772 passed`、48 warnings，
+但 producer 在写任何 result 前被 raw reproduction guard 拒绝，失败根=`formal-93154e5-v3`，四份 result/verification
+均不存在。该门比较的是协议中已披露的四个 raw accuracy，不是新 UST outcome。
+
+独立整数/`Fraction` 诊断确认四项与同一 110,620-row 输入精确一致；普通 binary64 求和顺序相对冻结 decimal 的最大偏差
+为 DeepSeek pair-micro 的 `3.9968028886505635e-15 = 18ε`，另外三项为 `12.5ε/1ε/0ε`。原绝对门
+`1e-15` 小于合法 summation error。v4 在任何完整 UST result 前冻结为 `64 * binary64 epsilon =
+1.4210854715202004e-14`；18ε 必须通过，128ε synthetic drift 必须失败。KNOWN raw constants、输出算法、support、UST、
+四 estimands、bootstrap/verifier/classification 全不变。focused=`13 passed`，numeric addendum SHA-256=
+`5a47d185...83fb69`，GPU/API/model fit/base update=`0/0/0/0`。下一次仍用 fresh exact commit/root。
+
 ## 0JV. 2026-08-30 FOREAGENT endpoint identity 必须是 `(task,path)`；v2 无结果失败，v3 已冻结
 
 v2 exact commit=`293576b1cab6f46a7ffab0ad0df768325701d390` 的 focused/full=`11/1771 passed`、48 warnings，

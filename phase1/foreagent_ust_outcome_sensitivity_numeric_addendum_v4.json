@@ -1,0 +1,113 @@
+{
+  "protocol": "foreagent-ust-outcome-sensitivity-numeric-addendum-v4",
+  "version": 4,
+  "status": "FROZEN_NUMERIC_TOLERANCE_AMENDMENT_BEFORE_ANY_COMPLETE_UST_RESULT",
+  "frozen_at_utc": "2026-08-30T06:13:30Z",
+  "parent_scientific_protocol_sha256": "7d47b1aa6ef3ffb61c47f1fe3d6631a5bb7b2c97228de8a7c9192b9fc557a425",
+  "parent_execution_addendum_sha256": "2da287a5cc1221a4be6e553a184dda8b2b866c33f6bf4efc1e2b419df58c7869",
+  "parent_identity_addendum_sha256": "e2d8f6a5de13698c0940c0e19ae4d4650eeeff7f09c338a7c0dc8c68df6f3684",
+  "scientific_estimands_support_and_inference_changed": false,
+  "new_ust_outcome_aggregates_computed_or_read": false,
+  "reason": "The v3 production guard compared four already disclosed raw reproduction values with an absolute tolerance of 1e-15. Exact rational reconstruction showed that all four observed values agree mathematically, while ordinary binary64 summation order differs from the frozen decimal by at most 18 machine epsilons. The guard is therefore changed to a formulaic 64 binary64 epsilons; no metric computation or stored raw constant changes.",
+  "failed_v3_attempt": {
+    "root": "/research/d7/spc/yzyang4/foreagent-ust-outcome-sensitivity/formal-93154e5-v3",
+    "source_commit": "93154e54987c3fec720f50b754785737f3e0a1c2",
+    "complete_marker_present": false,
+    "failed_rc": 1,
+    "result_or_verification_files_present": 0,
+    "focused_tests": 12,
+    "full_tests": 1772,
+    "full_test_warnings": 48,
+    "failure": "ValueError: raw reproduction",
+    "complete_ust_result_written_or_read": false,
+    "evidence_sha256": {
+      "FAILED_RAW_REPRODUCTION_NUMERIC_TOLERANCE.txt": "fa5ac165718fcca81a82d8a7c576325dbe72d5de8c00c5677cc9f3704d04d303",
+      "known_raw_reproduction_numeric_diagnostic.json": "3097c3ce19ea72132e66805211193bd17b6210db7d3483f4be4e923008b821c6",
+      "producer_a.stderr": "ff1f8fbeee19be692886362c7c74788db0969e9a92990ef9e27b18ba694f3896",
+      "full_tests.txt": "034a8427f1a7f102be682a51bab10ce56d7318ddff2d89a51c4b8295f4c42143"
+    }
+  },
+  "exact_rational_diagnostic": {
+    "manifest_sha256": "3df2715b2d2e5f3cc6193c07c99eb682e042e8aa6cb724b046b2469b35773a4e",
+    "master_sha256": "480616317ddebb249084dbc8b36b4060fac4b77353fce16b436351eab9c235fe",
+    "source_records": 110620,
+    "new_ust_graph_or_outcome_computed": false,
+    "raw_identities_emitted": false,
+    "deepseek_raw_pair_micro": {
+      "exact_fraction": "1616/2627",
+      "observed_decimal_17g": "0.61515036162923076",
+      "frozen_decimal_17g": "0.61515036162923475",
+      "absolute_difference": "3.9968028886505635e-15",
+      "difference_in_binary64_epsilons": "18"
+    },
+    "deepseek_raw_task_macro": {
+      "exact_fraction": "37777818629854788093261688571/62267959142734032839845293600",
+      "observed_decimal_17g": "0.6066975560136536",
+      "frozen_decimal_17g": "0.60669755601365383",
+      "absolute_difference": "2.2204460492503131e-16",
+      "difference_in_binary64_epsilons": "1"
+    },
+    "gpt_raw_pair_micro": {
+      "exact_fraction": "32477/55143",
+      "observed_decimal_17g": "0.58895961409426123",
+      "frozen_decimal_17g": "0.58895961409426401",
+      "absolute_difference": "2.7755575615628914e-15",
+      "difference_in_binary64_epsilons": "12.5"
+    },
+    "gpt_raw_task_macro": {
+      "exact_fraction": "9323612458796464987461732053/16073341117180164123845338800",
+      "observed_decimal_17g": "0.58006685671784952",
+      "frozen_decimal_17g": "0.58006685671784952",
+      "absolute_difference": "0",
+      "difference_in_binary64_epsilons": "0"
+    }
+  },
+  "raw_reproduction_tolerance_formula": "64 * binary64_epsilon",
+  "raw_reproduction_tolerance_decimal_17g": "1.4210854715202004e-14",
+  "old_tolerance": "1e-15",
+  "scope": {
+    "changed": "production-only guard for four already disclosed raw reproduction values",
+    "unchanged": [
+      "KNOWN_REPRODUCTION constants",
+      "source_grid_reproduction outputs",
+      "common finite support",
+      "graph and UST weighting",
+      "all four outcome estimands",
+      "DeepSeek-minus-GPT paired estimands",
+      "task bootstrap and LOTO",
+      "independent verifier tolerances",
+      "classification and prior INSUFFICIENT-SUPPORT"
+    ]
+  },
+  "test_policy": {
+    "observed_18_epsilon_difference_must_pass": true,
+    "synthetic_128_epsilon_drift_must_fail": true,
+    "fresh_exact_commit_and_output_root_required": true,
+    "failed_v1_v2_v3_roots_must_not_be_reused": true
+  },
+  "current_source_bindings": {
+    "producer": {
+      "path": "phase1/analyze_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "cf3836a90883f6458505411586bfa8f2ffdf2ff26ef3b267c6a5ebba543fb634"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "6cdc55db837318c871d134e317a70e1df3910af2f19f8884763c65c8a765d096"
+    },
+    "test": {
+      "path": "phase1/tests/test_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "008cc7139d5e06f5f3a4b8636082946ee2906507b3977da8725d7d4fa3a4d232"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_foreagent_ust_outcome_sensitivity_formal_20260830.sh",
+      "sha256": "ae5eb811ca87059560b8b0eb89fed93753d3828c64170bdb4948038e4c2907c1"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "blas_threads": 1
+  }
+}

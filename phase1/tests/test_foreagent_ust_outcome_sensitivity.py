@@ -246,6 +246,14 @@ def test_bootstrap_is_deterministic_and_loto_has_all_tasks() -> None:
     assert all(value["total"] == 2 for value in loto.values())
 
 
+def test_raw_reproduction_tolerance_is_machine_epsilon_scaled() -> None:
+    epsilon = math.ulp(1.0)
+    assert producer.RAW_REPRODUCTION_TOLERANCE == 64.0 * epsilon
+    expected = producer.KNOWN_REPRODUCTION["deepseek"]["raw_pair_micro"]
+    assert producer.raw_reproduction_matches(expected + 18.0 * epsilon, expected)
+    assert not producer.raw_reproduction_matches(expected + 128.0 * epsilon, expected)
+
+
 def test_exclusive_writers_refuse_overwrite(tmp_path: Path) -> None:
     producer_path = tmp_path / "producer.json"
     verifier_path = tmp_path / "verifier.json"
@@ -285,6 +293,7 @@ def test_runner_is_exact_commit_repeated_traced_and_cpu_only() -> None:
         "cmp \"$output/result_a.json\" \"$output/result_b.json\"",
         "cmp \"$output/verification_a.json\" \"$output/verification_b.json\"",
         "identity_addendum_sha256=$identity_addendum_sha",
+        "numeric_addendum_sha256=$numeric_addendum_sha",
         "chmod -R a-w",
     ):
         assert required in source
@@ -341,6 +350,9 @@ def test_protocol_binds_runtime_sources_and_discloses_postdisclosure_scope() -> 
         "phase1/foreagent_ust_outcome_sensitivity_identity_addendum_v3.json"
     )
     identity = json.loads(identity_path.read_text(encoding="utf-8"))
+    assert hashlib.sha256(identity_path.read_bytes()).hexdigest() == (
+        "e2d8f6a5de13698c0940c0e19ae4d4650eeeff7f09c338a7c0dc8c68df6f3684"
+    )
     assert identity["parent_scientific_protocol_sha256"] == (
         "7d47b1aa6ef3ffb61c47f1fe3d6631a5bb7b2c97228de8a7c9192b9fc557a425"
     )
@@ -350,7 +362,17 @@ def test_protocol_binds_runtime_sources_and_discloses_postdisclosure_scope() -> 
     assert identity["endpoint_identity"] == ["task", "solution_path"]
     assert identity["scientific_estimands_support_and_inference_changed"] is False
     assert identity["new_ust_outcome_aggregates_computed_or_read"] is False
-    for item in identity["current_source_bindings"].values():
+    numeric_path = Path(
+        "phase1/foreagent_ust_outcome_sensitivity_numeric_addendum_v4.json"
+    )
+    numeric = json.loads(numeric_path.read_text(encoding="utf-8"))
+    assert numeric["parent_identity_addendum_sha256"] == (
+        "e2d8f6a5de13698c0940c0e19ae4d4650eeeff7f09c338a7c0dc8c68df6f3684"
+    )
+    assert numeric["raw_reproduction_tolerance_formula"] == "64 * binary64_epsilon"
+    assert numeric["scientific_estimands_support_and_inference_changed"] is False
+    assert numeric["new_ust_outcome_aggregates_computed_or_read"] is False
+    for item in numeric["current_source_bindings"].values():
         path_value = Path(item["path"])
         digest = hashlib.sha256(path_value.read_bytes()).hexdigest()
         assert digest == item["sha256"]

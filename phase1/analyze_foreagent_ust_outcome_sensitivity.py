@@ -31,6 +31,7 @@ BOOTSTRAP_REPETITIONS = 20000
 BOOTSTRAP_SEED = 20260830
 NUMERIC_TOLERANCE = 5e-9
 SIGN_TOLERANCE = 1e-10
+RAW_REPRODUCTION_TOLERANCE = 64.0 * np.finfo(np.float64).eps
 MODELS = ("deepseek", "gpt")
 
 KNOWN_REPRODUCTION = {
@@ -48,6 +49,10 @@ KNOWN_REPRODUCTION = {
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise ValueError(message)
+
+
+def raw_reproduction_matches(actual: float, expected: float) -> bool:
+    return abs(actual - expected) <= RAW_REPRODUCTION_TOLERANCE
 
 
 def file_sha(path: Path) -> str:
@@ -591,7 +596,10 @@ def analyze_data(
         for model in MODELS:
             for field in ("raw_pair_micro", "raw_task_macro"):
                 actual = float(reproduction[model][f"{field}_decimal_17g"])
-                require(abs(actual - KNOWN_REPRODUCTION[model][field]) <= 1e-15, "raw reproduction")
+                require(
+                    raw_reproduction_matches(actual, KNOWN_REPRODUCTION[model][field]),
+                    "raw reproduction",
+                )
 
     metrics = {
         model: summarize_statistics(

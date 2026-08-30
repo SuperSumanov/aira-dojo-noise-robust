@@ -8,8 +8,8 @@ export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 
-if [[ $# -ne 8 ]]; then
-  printf 'usage: %s OUTPUT EXPECTED_COMMIT PROTOCOL_SHA ADDENDUM_SHA PRODUCER_SHA VERIFIER_SHA TEST_SHA RUNNER_SHA\n' "$0" >&2
+if [[ $# -ne 9 ]]; then
+  printf 'usage: %s OUTPUT EXPECTED_COMMIT PROTOCOL_SHA EXECUTION_ADDENDUM_SHA IDENTITY_ADDENDUM_SHA PRODUCER_SHA VERIFIER_SHA TEST_SHA RUNNER_SHA\n' "$0" >&2
   exit 2
 fi
 
@@ -17,10 +17,11 @@ readonly output=$1
 readonly expected_commit=$2
 readonly protocol_sha=$3
 readonly addendum_sha=$4
-readonly producer_sha=$5
-readonly verifier_sha=$6
-readonly test_sha=$7
-readonly runner_sha=$8
+readonly identity_addendum_sha=$5
+readonly producer_sha=$6
+readonly verifier_sha=$7
+readonly test_sha=$8
+readonly runner_sha=$9
 readonly repo=/research/d7/spc/yzyang4/aira-dojo
 readonly python=/research/d7/spc/yzyang4/venvs/exp/bin/python
 readonly master=/research/d7/spc/yzyang4/scratch/pbe_alignment_cache_v1/all_predictions.compact.jsonl
@@ -59,6 +60,7 @@ test -z "$(git -C "$worktree" status --porcelain --untracked-files=no)"
 
 readonly protocol="$worktree/phase1/foreagent_ust_outcome_sensitivity_v1.json"
 readonly addendum="$worktree/phase1/foreagent_ust_outcome_sensitivity_execution_addendum_v2.json"
+readonly identity_addendum="$worktree/phase1/foreagent_ust_outcome_sensitivity_identity_addendum_v3.json"
 readonly producer_source="$worktree/phase1/analyze_foreagent_ust_outcome_sensitivity.py"
 readonly verifier_source="$worktree/phase1/verify_foreagent_ust_outcome_sensitivity.py"
 readonly test_source="$worktree/phase1/tests/test_foreagent_ust_outcome_sensitivity.py"
@@ -67,6 +69,7 @@ readonly manifest="$worktree/phase1/foreagent_alignment_manifest_v1.json"
 
 test "$(sha256sum "$protocol" | cut -d ' ' -f1)" = "$protocol_sha"
 test "$(sha256sum "$addendum" | cut -d ' ' -f1)" = "$addendum_sha"
+test "$(sha256sum "$identity_addendum" | cut -d ' ' -f1)" = "$identity_addendum_sha"
 test "$(sha256sum "$producer_source" | cut -d ' ' -f1)" = "$producer_sha"
 test "$(sha256sum "$verifier_source" | cut -d ' ' -f1)" = "$verifier_sha"
 test "$(sha256sum "$test_source" | cut -d ' ' -f1)" = "$test_sha"
@@ -185,6 +188,7 @@ cat >"$output/source_bindings.txt" <<EOF
 source_commit=$expected_commit
 scientific_protocol_sha256=$protocol_sha
 execution_addendum_sha256=$addendum_sha
+identity_addendum_sha256=$identity_addendum_sha
 producer_source_sha256=$producer_sha
 verifier_source_sha256=$verifier_sha
 test_source_sha256=$test_sha

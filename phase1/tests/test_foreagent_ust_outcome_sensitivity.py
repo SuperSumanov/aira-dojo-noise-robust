@@ -118,6 +118,30 @@ def test_synthetic_end_to_end_matches_independent_verifier() -> None:
     assert not any(identity in serialized for identity in endpoint_identities)
 
 
+def test_endpoint_identity_is_task_scoped_when_raw_paths_repeat() -> None:
+    repeated_pair = ("relative/solution_0.py", "relative/solution_1.py")
+    common = {
+        "task-a": {repeated_pair: {"deepseek": 1.0, "gpt": 0.0}},
+        "task-b": {repeated_pair: {"deepseek": 0.0, "gpt": 1.0}},
+    }
+    producer_weights, producer_graph = producer.build_weights(common)
+    verifier_weights, verifier_graph = verifier.graph(common)
+    for name, expected in {
+        "tasks": 2,
+        "pair_rows": 2,
+        "vertices": 4,
+        "connected_components": 2,
+        "endpoint_edge_incidence_rank": 2,
+    }.items():
+        assert producer_graph[name] == verifier_graph[name] == expected
+    for task in common:
+        assert producer_weights[(task, repeated_pair)] == pytest.approx(1.0)
+        assert verifier_weights[(task, repeated_pair)] == pytest.approx(1.0)
+        assert producer_weights[(task, repeated_pair)] == pytest.approx(
+            verifier_weights[(task, repeated_pair)], abs=1e-12
+        )
+
+
 def test_confidence_is_not_read_and_invalid_prediction_receives_zero() -> None:
     manifest, rows = fixture()
     rows[0]["confidence"] = object()
@@ -260,6 +284,7 @@ def test_runner_is_exact_commit_repeated_traced_and_cpu_only() -> None:
         "strace -ff",
         "cmp \"$output/result_a.json\" \"$output/result_b.json\"",
         "cmp \"$output/verification_a.json\" \"$output/verification_b.json\"",
+        "identity_addendum_sha256=$identity_addendum_sha",
         "chmod -R a-w",
     ):
         assert required in source
@@ -287,16 +312,20 @@ def test_protocol_binds_runtime_sources_and_discloses_postdisclosure_scope() -> 
         "base_updates": 0,
         "expected_single_cpu_minutes_excluding_full_tests": "2--20",
     }
-    for name in ("producer", "independent_verifier"):
-        item = protocol["source_bindings"][name]
-        path_value = Path(item["path"])
-        digest = hashlib.sha256(path_value.read_bytes()).hexdigest()
-        assert digest == item["sha256"]
+    assert protocol["source_bindings"]["producer"]["sha256"] == (
+        "ac8db1ef0f913eb9d5f7d4a87c6109d29a27dbc9693c9726846a9989fbe90ba5"
+    )
+    assert protocol["source_bindings"]["independent_verifier"]["sha256"] == (
+        "3cc166303a6684ff2183684a410fff3922630e32c3f247fedeb08fa1ba12590a"
+    )
 
     addendum_path = Path(
         "phase1/foreagent_ust_outcome_sensitivity_execution_addendum_v2.json"
     )
     addendum = json.loads(addendum_path.read_text(encoding="utf-8"))
+    assert hashlib.sha256(addendum_path.read_bytes()).hexdigest() == (
+        "2da287a5cc1221a4be6e553a184dda8b2b866c33f6bf4efc1e2b419df58c7869"
+    )
     assert addendum["parent_scientific_protocol_sha256"] == (
         "7d47b1aa6ef3ffb61c47f1fe3d6631a5bb7b2c97228de8a7c9192b9fc557a425"
     )
@@ -308,7 +337,20 @@ def test_protocol_binds_runtime_sources_and_discloses_postdisclosure_scope() -> 
         "MKL_NUM_THREADS": "1",
         "NUMEXPR_NUM_THREADS": "1",
     }
-    for item in addendum["current_source_bindings"].values():
+    identity_path = Path(
+        "phase1/foreagent_ust_outcome_sensitivity_identity_addendum_v3.json"
+    )
+    identity = json.loads(identity_path.read_text(encoding="utf-8"))
+    assert identity["parent_scientific_protocol_sha256"] == (
+        "7d47b1aa6ef3ffb61c47f1fe3d6631a5bb7b2c97228de8a7c9192b9fc557a425"
+    )
+    assert identity["parent_execution_addendum_sha256"] == (
+        "2da287a5cc1221a4be6e553a184dda8b2b866c33f6bf4efc1e2b419df58c7869"
+    )
+    assert identity["endpoint_identity"] == ["task", "solution_path"]
+    assert identity["scientific_estimands_support_and_inference_changed"] is False
+    assert identity["new_ust_outcome_aggregates_computed_or_read"] is False
+    for item in identity["current_source_bindings"].values():
         path_value = Path(item["path"])
         digest = hashlib.sha256(path_value.read_bytes()).hexdigest()
         assert digest == item["sha256"]

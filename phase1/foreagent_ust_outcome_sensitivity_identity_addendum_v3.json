@@ -1,0 +1,96 @@
+{
+  "protocol": "foreagent-ust-outcome-sensitivity-identity-addendum-v3",
+  "version": 3,
+  "status": "FROZEN_IDENTITY_CLARIFICATION_BEFORE_ANY_COMPLETE_UST_RESULT",
+  "frozen_at_utc": "2026-08-30T06:03:10Z",
+  "parent_scientific_protocol_sha256": "7d47b1aa6ef3ffb61c47f1fe3d6631a5bb7b2c97228de8a7c9192b9fc557a425",
+  "parent_execution_addendum_sha256": "2da287a5cc1221a4be6e553a184dda8b2b866c33f6bf4efc1e2b419df58c7869",
+  "scientific_estimands_support_and_inference_changed": false,
+  "endpoint_identity": [
+    "task",
+    "solution_path"
+  ],
+  "new_ust_outcome_aggregates_computed_or_read": false,
+  "reason": "The official solution path is relative to its task directory. The v2 producer incorrectly enforced global uniqueness of the raw path string even though all graphs, pair keys and metric clusters are task-local. A path-only audit recovered 895 task-scoped endpoint memberships but only 885 raw strings, proving that raw cross-task reuse is valid release structure.",
+  "failed_v2_attempt": {
+    "root": "/research/d7/spc/yzyang4/foreagent-ust-outcome-sensitivity/formal-293576b-v2",
+    "source_commit": "293576b1cab6f46a7ffab0ad0df768325701d390",
+    "complete_marker_present": false,
+    "failed_rc": 1,
+    "result_or_verification_files_present": 0,
+    "focused_tests": 11,
+    "full_tests": 1771,
+    "full_test_warnings": 48,
+    "failure": "ValueError: endpoint crosses tasks",
+    "historical_public_scores_and_predictions_read_by_failed_producer": true,
+    "complete_common_graph_or_ust_outcome_artifact_written": false,
+    "partial_in_memory_work_disposition": "discarded and never interpreted",
+    "evidence_sha256": {
+      "FAILED_TASK_SCOPED_ENDPOINT_IDENTITY.txt": "d207fc0cdc13b51ab9b633a3b1ec2b34248f1a1c3e1e6d7cf70dfdc35f5f569f",
+      "task_scoped_endpoint_structural_audit.json": "4be62ecc52aba271019df5c005124ada58723cf583c0548b3299289679824f32",
+      "producer_a.stderr": "632faea756e575985b89728307d38c063e0e182c13b97f4dcf590ecf0c50633f",
+      "full_tests.txt": "c9001cbd1f2385a6f2487a9053e2f0e1275e3be444568cb86f3d19ad765d64dd"
+    }
+  },
+  "path_only_structural_audit": {
+    "manifest_sha256": "3df2715b2d2e5f3cc6193c07c99eb682e042e8aa6cb724b046b2469b35773a4e",
+    "master_sha256": "480616317ddebb249084dbc8b36b4060fac4b77353fce16b436351eab9c235fe",
+    "allowed_fields_read": [
+      "source_index",
+      "solution_paths"
+    ],
+    "scores_read": false,
+    "predictions_read": false,
+    "confidence_read": false,
+    "tasks": 26,
+    "cross_model_common_grid_pairs_before_finite_filter": 18430,
+    "task_scoped_endpoint_memberships": 895,
+    "raw_unique_path_strings": 885,
+    "raw_path_strings_reused_across_tasks": 9,
+    "task_path_memberships_covered_by_reused_strings": 19,
+    "raw_task_or_path_identities_emitted": false,
+    "classification": "TASK_SCOPED_ENDPOINT_IDENTITY_REQUIRED"
+  },
+  "superseded_integrity_clause": {
+    "old": "cross_task_endpoint_reuse_fail_closed",
+    "new": "Endpoint identity is the ordered namespace (task, solution_path). Raw path reuse across different task namespaces is valid. Duplicate unordered edges remain forbidden within each source and task, task drift across releases remains forbidden, and no graph may combine two task namespaces."
+  },
+  "implementation_change": {
+    "producer": "Remove the invalid global raw-path-to-task map; retain one independent UnionFind graph inside each task loop.",
+    "independent_verifier": "Remove the same invalid global raw-path guard independently; retain one adjacency/DFS graph inside each task loop.",
+    "test": "Two tasks deliberately reuse the same raw path pair and must produce four task-scoped vertices, two components and rank two in both implementations.",
+    "runner": "Hash-bind this identity addendum in addition to the immutable scientific protocol and execution addendum."
+  },
+  "formal_rerun_policy": {
+    "fresh_exact_commit_required": true,
+    "fresh_output_root_required": true,
+    "failed_v1_and_v2_roots_must_not_be_reused": true,
+    "all_13_preflight_focused_full_AB_verifier_trace_security_manifest_mode_and_read_only_gates_unchanged": true,
+    "no_success_threshold_or_result_dependent_change": true
+  },
+  "current_source_bindings": {
+    "producer": {
+      "path": "phase1/analyze_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "fb37b3fc98890147ea90820c46f7badbe8667ec0e1816d87c41cba54c15e60da"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "6cdc55db837318c871d134e317a70e1df3910af2f19f8884763c65c8a765d096"
+    },
+    "test": {
+      "path": "phase1/tests/test_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "6aea903205fbebced7ab41e88cf435cd05a96611664f2b3e555f979e1defdff4"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_foreagent_ust_outcome_sensitivity_formal_20260830.sh",
+      "sha256": "d07ba3e0889fdf4bca755d215512c665e71305d64efdc982710dd715358a8bdd"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "blas_threads": 1
+  }
+}

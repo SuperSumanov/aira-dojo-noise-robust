@@ -291,12 +291,11 @@ def graph(
     rank_by_task: dict[str, int] = {}
     vertices = component_count = complete = incomplete = 0
     maximum_residual = 0.0
-    node_task: dict[str, str] = {}
     for task in sorted(pairs_by_task):
         adjacency: dict[str, set[str]] = defaultdict(set)
         for left, right in sorted(pairs_by_task[task]):
-            check(node_task.setdefault(left, task) == task, "node task")
-            check(node_task.setdefault(right, task) == task, "node task")
+            # Paths are task-relative in the official release. This independently
+            # reconstructs one graph per task, hence vertices are (task, path).
             adjacency[left].add(right)
             adjacency[right].add(left)
         unseen = set(adjacency)

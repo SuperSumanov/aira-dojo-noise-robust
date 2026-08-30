@@ -366,14 +366,13 @@ def build_weights(
     task_rank: dict[str, int] = {}
     vertices = components = complete_components = incomplete_components = 0
     maximum_residual = 0.0
-    node_task: dict[str, str] = {}
     for task in sorted(common):
         pairs = common[task]
         union = UnionFind()
         for pair_key in sorted(pairs):
             left, right = pair_key
-            require(node_task.setdefault(left, task) == task, "endpoint crosses tasks")
-            require(node_task.setdefault(right, task) == task, "endpoint crosses tasks")
+            # Official solution paths are relative to a task. Every graph in this
+            # routine is task-local, so endpoint identity is (task, path).
             union.union(left, right)
         component_nodes: dict[str, list[str]] = defaultdict(list)
         for node in sorted(union.parent):

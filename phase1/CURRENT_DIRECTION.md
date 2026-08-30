@@ -13,6 +13,24 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JV. 2026-08-30 FOREAGENT endpoint identity 必须是 `(task,path)`；v2 无结果失败，v3 已冻结
+
+v2 exact commit=`293576b1cab6f46a7ffab0ad0df768325701d390` 的 focused/full=`11/1771 passed`、48 warnings，
+线程修正有效；但 producer A 在写任何 result 前以 `ValueError: endpoint crosses tasks` fail-closed。`COMPLETE` 与四份
+result/verification 文件均不存在；历史公开 scores/predictions 已被 producer 读取，但没有完整 common graph、UST outcome
+artifact 或可解释 aggregate，partial in-memory work 全部作废。失败根固定为 `formal-293576b-v2`。
+
+随后独立 path-only 审计只读 `source_index + solution_paths`：18,430 个 finite-filter 前共同 grid pairs、26 tasks，
+按任务命名空间有 895 个 endpoint membership，裸 path 字符串只有 885 个；9 个字符串跨任务复用，覆盖 19 个
+task-path membership。故官方 path 是 task-relative，endpoint identity 必须是 `(task,solution_path)`；这也精确恢复论文的
+895 solutions，而不是允许跨任务合图。
+
+identity addendum v3 在任何完整 UST result 前冻结：producer 保持 task-local UnionFind，独立 verifier 保持 task-local
+adjacency/DFS，只删除错误的全局 raw-path guard；同 source/task 内 duplicate、release task drift 和跨 task 合图仍 fail-closed。
+18,381-pair support、四 estimands、20,000 task bootstrap、分类政策均不变。新增“两任务复用同一 raw pair”控制，要求
+`4 vertices / 2 components / rank 2`，focused=`12 passed`；addendum SHA-256=`e2d8f6a5...6f3684`，
+GPU/API/model fit/base update=`0/0/0/0`。下一次仍须 fresh exact commit/root 重跑完整 formal。
+
 ## 0JU. 2026-08-30 FOREAGENT UST v1 在结果前因 BLAS 线程过订阅失效；v2 仅修执行资源
 
 exact commit=`5abfbd44d1459f9170904e0c8e1b954ead5628df` 的第一次 formal 在 full suite 完成 270 个测试后，

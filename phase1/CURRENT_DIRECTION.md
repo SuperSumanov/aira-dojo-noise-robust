@@ -13,6 +13,26 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JP. 2026-08-30 FOREAGENT UST/rank 权重出现非平凡外部结构正结果
+
+在任何 per-edge leverage、task edge count 或 task redistribution 读数前，先以 commit=
+`1ad29a9568421a2a864d279a5cb71f67ec74e99f` 冻结 effective-resistance / uniform-spanning-tree 权重协议；
+其数学不是首创，贡献定位为 MLE pair benchmark 的审计标准。fresh detached formal 根=
+`/research/d7/spc/yzyang4/foreagent-ust-pair-weighting/formal-1ad29a9-v1`，focused/full=`10/1747 passed`、
+48 warnings；eigendecomposition producer A/B 与 grounded-inverse verifier A/B 各自逐字节一致，Foster 总和的
+双实现残差约 `1.85e-11/1.84e-11`，file/network forbidden hits=`0`，结果树只读。
+
+正式结构结果：18,361 rows、895 vertices、26 components、rank=`869`；相对 uniform rows，edge distribution
+TV=`0.11721717545274284`，task-weight TV=`0.11712428448024467`。raw-row 与 rank weighting 的 effective task
+count 分别为 `17.066060493372625/20.574912132523227`，最大 task share 从 `0.066608572517836723` 降为
+`0.056386651323360182`；最大 edge weight=`2/3`，为 uniform mean 的 `14.085922516302263` 倍。这证明 `2/k`
+不是我方 sibling clique 特例：任意 graph 上可用 UST inclusion probability 推广，且会造成非平凡的 benchmark
+隐式重加权。
+
+边界：只读公开 `paths`，scores/predictions/code/identity 未读或输出；GPU/API/model-fit/base-update=`0/0/0/0`。
+不得称新图定理、ESS、独立标签数或 FOREAGENT accuracy 无效。下一步只能先冻结历史同池 931-pair sensitivity
+protocol，再检查 11 个 static/heuristic arms + fixed TF-IDF 的 raw/UST task-macro 与排序稳定性；不得事后换 champion。
+
 ## 0JO. 2026-08-30 FOREAGENT incidence-rank 外部审计已完成 formal 复验
 
 exact commit=`dcf03949bb8afc3a71ff12242277cf03d381efdf` 的 post-push changed paths=`8`、credential filename/blob

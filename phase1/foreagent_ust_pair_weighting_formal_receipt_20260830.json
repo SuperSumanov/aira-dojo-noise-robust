@@ -1,0 +1,70 @@
+{
+  "protocol": "foreagent-public-ust-pair-weighting-formal-receipt-v1",
+  "status": "FORMAL_COMPLETE",
+  "source_commit": "1ad29a9568421a2a864d279a5cb71f67ec74e99f",
+  "formal_root": "/research/d7/spc/yzyang4/foreagent-ust-pair-weighting/formal-1ad29a9-v1",
+  "scientific_protocol_sha256": "220d2b580b5faa968a3b230032e754b17186221b9f2565468373dc97757eb5db",
+  "input": {
+    "dataset": "zjunlp/PredictBeforeExecute",
+    "revision": "6b322cb88bdbcb2b2d3897ec7d0ded94a5bb2d06",
+    "parquet_sha256": "79363b7ef0b6154061f18e81f6c6fdf380e71ae3f1d7b9a262cc79acb08f0b5f",
+    "columns_read": [
+      "paths"
+    ]
+  },
+  "tests": {
+    "focused_passed": 10,
+    "full_passed": 1747,
+    "full_warnings": 48,
+    "full_seconds": 100.60
+  },
+  "reproducibility": {
+    "producer_runs": 2,
+    "producer_byte_exact": true,
+    "independent_grounded_laplacian_verifier_runs": 2,
+    "verifier_byte_exact": true,
+    "independent_reconstruction_within_tolerance": true,
+    "result_sha256": "a1a948eef07c446b37708018126801ea80883e439f5d2b93d213858bb723efdb",
+    "verification_sha256": "b17e7a53c50b59cc60f7af86730f01d245559011ccce080e27ffb44ea3723ff8",
+    "manifest_sha256": "d94fd0e822f46a2b0ca48d0bdd4acc4ba42ab73265bbf2c8c16eb077e5c97bce",
+    "global_foster_residual_producer": "1.8530954548623413e-11",
+    "global_foster_residual_verifier": "1.8417267710901797e-11"
+  },
+  "result": {
+    "classification": "DESCRIPTIVE_UST_PAIR_WEIGHTING_AUDIT_COMPLETE",
+    "pair_rows": 18361,
+    "vertices": 895,
+    "tasks": 26,
+    "connected_components": 26,
+    "endpoint_edge_incidence_rank": 869,
+    "ust_weight_sum": "868.99999999998147",
+    "edge_distribution_total_variation_from_uniform_rows": "0.11721717545274284",
+    "minimum_edge_weight": "0.039999999999999897",
+    "median_edge_weight": "0.040416666666666635",
+    "maximum_edge_weight": "0.66666666666666663",
+    "maximum_to_uniform_mean": "14.085922516302263",
+    "raw_pair_row_effective_task_count": "17.066060493372625",
+    "incidence_rank_effective_task_count": "20.574912132523227",
+    "raw_pair_row_max_task_share": "0.066608572517836723",
+    "incidence_rank_max_task_share": "0.056386651323360182",
+    "task_weight_total_variation": "0.11712428448024467",
+    "tasks_upweighted": 12,
+    "tasks_downweighted": 14
+  },
+  "security": {
+    "credential_filename_hits": 0,
+    "credential_content_file_hits": 0,
+    "producer_forbidden_path_hits": 0,
+    "verifier_forbidden_path_hits": 0,
+    "network_hits": 0,
+    "scores_or_predictions_read": false,
+    "solution_code_read": false,
+    "raw_identities_emitted": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+    "formal_tree_read_only": true
+  },
+  "interpretation": {
+    "allowed": "FOREAGENT's released pair rows are materially redistributed by a standard rank-preserving UST edge weighting; this supports a common MLE pair-benchmark audit beyond our sibling cliques.",
+    "not_yet_allowed": "No predictor accuracy, model ranking, statistical independence, effective sample size or search-utility conclusion follows before the separately frozen outcome-bearing sensitivity analysis."
+  }
+}

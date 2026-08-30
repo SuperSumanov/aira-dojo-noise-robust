@@ -9,6 +9,7 @@ RUNNER = ROOT / "phase1/scripts/run_foreagent_loeo_graph_denoising_formal_202608
 ADDENDUM_V2 = ROOT / "phase1/foreagent_loeo_graph_denoising_execution_addendum_v2.json"
 ADDENDUM_V3 = ROOT / "phase1/foreagent_loeo_graph_denoising_execution_addendum_v3.json"
 NUMERIC_ADDENDUM_V4 = ROOT / "phase1/foreagent_loeo_graph_denoising_numeric_addendum_v4.json"
+ADDENDUM_V5 = ROOT / "phase1/foreagent_loeo_graph_denoising_execution_addendum_v5.json"
 
 
 def test_lfs_skip_smudge_is_scoped_to_fresh_worktree_checkout() -> None:
@@ -63,5 +64,28 @@ def test_v4_numeric_addendum_records_exact_rational_diagnostic() -> None:
     assert value["exact_rational_diagnostic"]["deepseek"]["exact_fraction"] == "33925/55143"
     assert value["exact_rational_diagnostic"]["gpt"]["exact_fraction"] == "32477/55143"
     assert value["raw_reproduction_tolerance_formula"] == "64 * binary64_epsilon"
+    assert value["scientific_changes"] == []
+    assert value["resource_changes"] == []
+
+
+def test_zero_network_hits_are_compatible_with_pipefail() -> None:
+    text = RUNNER.read_text(encoding="utf-8")
+    expected = (
+        "network_hits=$(grep -hE 'socket\\(|connect\\(|sendto\\(|recvfrom\\(' "
+        '"$output"/*.trace* | wc -l || true)'
+    )
+    assert text.count(expected) == 1
+    assert '| wc -l)\ntest "$network_hits" = 0' not in text
+
+
+def test_v5_addendum_records_post_verification_counter_failure() -> None:
+    value = json.loads(ADDENDUM_V5.read_text(encoding="utf-8"))
+    assert value["protocol"] == "foreagent-loeo-graph-denoising-execution-addendum-v5"
+    assert value["failed_attempt"]["focused_tests_passed"] == 14
+    assert value["failed_attempt"]["full_phase1_tests_passed"] == 1787
+    assert value["failed_attempt"]["result_files_created"] == 2
+    assert value["failed_attempt"]["verification_files_created"] == 2
+    assert value["failed_attempt"]["scientific_outcome_values_read"] is False
+    assert value["execution_change"]["single_change"].endswith("|| true.")
     assert value["scientific_changes"] == []
     assert value["resource_changes"] == []

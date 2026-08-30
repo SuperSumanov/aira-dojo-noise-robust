@@ -1,0 +1,95 @@
+{
+  "protocol": "foreagent-loeo-graph-denoising-execution-addendum-v5",
+  "version": 5,
+  "status": "FROZEN_AFTER_POST_VERIFICATION_ZERO_HIT_COUNTER_FAILURE",
+  "frozen_at_utc": "2026-08-30T15:47:29Z",
+  "parent_protocol_sha256": "bcd25033e2340a0b98c362ae1fffb29fe39c5222ceb531e5112d4675d7be033c",
+  "parent_execution_addendum_v2_sha256": "8cb1c80c36d6bc75b605ba9498cd75691f3e30077cadea4d952f432ea3b58a45",
+  "parent_execution_addendum_v3_sha256": "6f10eab92fbda4594ce428695c2da5522ed8e9bd38022a7587b1c8db42f392b5",
+  "parent_numeric_addendum_v4_sha256": "94fa4b3ae4fa591dd7d56fe32d8f9b6c1bf1ea96ef7a5f3f6bf2c37e5d144d6c",
+  "failed_attempt": {
+    "source_commit": "7ad86cd312dde2c40c8b0842af1f6a6ca732f71c",
+    "root": "/research/d7/spc/yzyang4/foreagent-loeo-graph-denoising/formal-7ad86cd-v4",
+    "exit_code": 1,
+    "failure_stage": "post-verification network-hit count assignment before security summary and COMPLETE",
+    "cause": "With pipefail enabled, grep correctly returned one for zero matches. The assignment pipeline therefore aborted before the explicit network_hits equals zero assertion.",
+    "focused_tests_passed": 14,
+    "full_phase1_tests_passed": 1787,
+    "full_phase1_test_warnings": 48,
+    "producer_a_b_completed": true,
+    "producer_a_b_byte_match": true,
+    "verifier_a_b_completed": true,
+    "verifier_a_b_byte_match": true,
+    "result_files_created": 2,
+    "verification_files_created": 2,
+    "result_schema_gate_passed": true,
+    "verification_schema_gate_passed": true,
+    "forbidden_trace_hits": 0,
+    "network_hits": 0,
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0,
+    "symlink_hits": 0,
+    "group_or_world_writable_file_hits": 0,
+    "scientific_outcome_values_read": false,
+    "classification_read": false,
+    "complete_marker_present": false,
+    "artifact_sha256": {
+      "FAILED_RC": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "focused_tests.stdout": "3d982959a6d0ad327e4c2ff7cfedf579823ee4d0c00b0aff1195763fb428a921",
+      "full_tests.stdout": "525108071ae96e8cd6bd7d23c331c84edcab22c977312b12ef6288a51bedce43",
+      "result_a.json": "b00ab6b786a83e04255904845a010d5278e838e9d3c3d15ab9e743dc8831e96b",
+      "result_b.json": "b00ab6b786a83e04255904845a010d5278e838e9d3c3d15ab9e743dc8831e96b",
+      "verification_a.json": "a69128906fe330d1d3b90f035c0fbe1e49c5ec49d16c124086e181d792eac524",
+      "verification_b.json": "a69128906fe330d1d3b90f035c0fbe1e49c5ec49d16c124086e181d792eac524",
+      "postfailure_gatecheck.txt": "d5ba24c48dbcb15d7ce88533a735cf31003e31e0277687c084413a434babf0a7",
+      "postfailure_failed_artifact_hashes.txt": "185123ab1ec9c5bd2c60ec04fcb3013f107bf95cd08b8a5dfa1973b8cfcf6a42"
+    }
+  },
+  "execution_change": {
+    "single_change": "Append || true.",
+    "exact_scope": "Only the grep-to-wc zero-network-hit counting assignment; the subsequent test network_hits equals zero remains mandatory.",
+    "reason": "Zero matches is the required outcome and must produce the integer zero rather than abort under pipefail.",
+    "security_gate_weakened": false,
+    "input_hashes_unchanged": true
+  },
+  "scientific_changes": [],
+  "resource_changes": [],
+  "unchanged": [
+    "18,381-pair exact common support",
+    "26 tasks and 894 vertices",
+    "triplicate signed flow",
+    "target-edge-excluded Hodge projection",
+    "bridge and zero fallback",
+    "raw and hybrid estimands",
+    "20,000 task bootstrap repetitions and seeds",
+    "frozen classification gates",
+    "producer and grounded verifier algorithms",
+    "prospective and confidence access prohibitions",
+    "network_hits must equal zero assertion",
+    "0 GPU, 0 paid API, 0 model fit and 0 base update"
+  ],
+  "new_controls": [
+    "Static test requires the zero-match-safe network counting assignment exactly once.",
+    "Static test forbids the failed pipefail-unsafe assignment immediately before the zero assertion.",
+    "Formal runner verifies all four prior addenda and this execution addendum by SHA.",
+    "Fresh exact commit and fresh output root remain mandatory."
+  ],
+  "source_bindings": {
+    "failed_runner_sha256": "4d04b7c99208f625f2a0f79d2fdbcb483e61d3b3fdf2c203e6931f17b189f053",
+    "revised_runner": {
+      "path": "phase1/scripts/run_foreagent_loeo_graph_denoising_formal_20260830.sh",
+      "sha256": "6bdd0b27aa81b5cd37b645f8897fda4b80e18cad10c656247c616ff6bad1328b"
+    },
+    "execution_test": {
+      "path": "phase1/tests/test_foreagent_loeo_graph_denoising_execution.py",
+      "sha256": "2d48ccaa3c9d69d635edf91310da52456032a7b100822b7235a8c0a8904da552"
+    }
+  },
+  "next_attempt": {
+    "fresh_commit_required": true,
+    "fresh_output_root_required": true,
+    "reuse_failed_root_forbidden": true,
+    "scientific_outputs_must_be_recomputed": true,
+    "all_parent_formal_gates_required": true
+  }
+}

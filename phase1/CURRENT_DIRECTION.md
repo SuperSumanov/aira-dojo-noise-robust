@@ -13,6 +13,19 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KC. 2026-08-30 FOREAGENT LOEO v4 完成 A/B+独立复验后被零命中计数器误杀；v5 只修 pipefail
+
+exact commit=`7ad86cd312dde2c40c8b0842af1f6a6ca732f71c` 的第四次 formal 通过 focused/full=
+`14/1787 passed`、48 warnings，producer A/B 与 verifier A/B 都完成且各自逐字节一致，result/verification schema、
+forbidden trace、network、credential、symlink、权限门逐项复查均 PASS/0。但 runner 在写 security summary 与 `COMPLETE`
+前，把“network grep 无命中”的规范退出码 `1` 经 `pipefail` 误判为失败；失败根=`formal-7ad86cd-v4`。
+
+v4 的两份 result 与两份 verification 只做了存在性、哈希、A/B、schema gate，不读取科学 outcome 数值或具体
+classification，继续作废。execution addendum v5 唯一改动是在 grep→wc 的零命中计数 assignment 末尾加 `|| true`；
+后续 `test network_hits = 0` 仍强制，安全门不放宽。科学协议、源码、输入、统计、判据与资源均不变；本地
+focused=`16 passed`。addendum SHA-256=`10abe7f5ca55879063fdf2790611c2b3f4650314fcd9bc63b178c652ace17214`，
+GPU/API/model fit/base update=`0/0/0/0`。下一次必须 fresh exact commit/root 并重算所有科学输出。
+
 ## 0KB. 2026-08-30 FOREAGENT LOEO v3 在结果写入前被 raw 数值门拦截；v4 只修公式容差
 
 exact commit=`701b4058b56b65121d939736a0920b81adb86fae` 的第三次 formal 通过 focused/full=

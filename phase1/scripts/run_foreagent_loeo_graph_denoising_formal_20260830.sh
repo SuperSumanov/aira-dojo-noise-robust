@@ -8,8 +8,8 @@ export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 
-if (( $# != 11 )); then
-  echo 'usage: runner OUTPUT EXPECTED_COMMIT PROTOCOL_SHA EXECUTION_ADDENDUM_V2_SHA EXECUTION_ADDENDUM_V3_SHA NUMERIC_ADDENDUM_V4_SHA PRODUCER_SHA VERIFIER_SHA TEST_SHA EXECUTION_TEST_SHA RUNNER_SHA' >&2
+if (( $# != 12 )); then
+  echo 'usage: runner OUTPUT EXPECTED_COMMIT PROTOCOL_SHA EXECUTION_ADDENDUM_V2_SHA EXECUTION_ADDENDUM_V3_SHA NUMERIC_ADDENDUM_V4_SHA EXECUTION_ADDENDUM_V5_SHA PRODUCER_SHA VERIFIER_SHA TEST_SHA EXECUTION_TEST_SHA RUNNER_SHA' >&2
   exit 64
 fi
 
@@ -19,11 +19,12 @@ readonly protocol_sha=$3
 readonly execution_addendum_v2_sha=$4
 readonly execution_addendum_v3_sha=$5
 readonly numeric_addendum_v4_sha=$6
-readonly producer_sha=$7
-readonly verifier_sha=$8
-readonly test_sha=$9
-readonly execution_test_sha=${10}
-readonly runner_sha=${11}
+readonly execution_addendum_v5_sha=$7
+readonly producer_sha=$8
+readonly verifier_sha=$9
+readonly test_sha=${10}
+readonly execution_test_sha=${11}
+readonly runner_sha=${12}
 readonly repo=/research/d7/spc/yzyang4/aira-dojo
 readonly python=/research/d7/spc/yzyang4/venvs/exp/bin/python
 readonly master=/research/d7/spc/yzyang4/scratch/pbe_alignment_cache_v1/all_predictions.compact.jsonl
@@ -74,6 +75,7 @@ readonly protocol=$worktree/phase1/foreagent_loeo_graph_denoising_v1.json
 readonly execution_addendum_v2=$worktree/phase1/foreagent_loeo_graph_denoising_execution_addendum_v2.json
 readonly execution_addendum_v3=$worktree/phase1/foreagent_loeo_graph_denoising_execution_addendum_v3.json
 readonly numeric_addendum_v4=$worktree/phase1/foreagent_loeo_graph_denoising_numeric_addendum_v4.json
+readonly execution_addendum_v5=$worktree/phase1/foreagent_loeo_graph_denoising_execution_addendum_v5.json
 readonly producer=$worktree/phase1/analyze_foreagent_loeo_graph_denoising.py
 readonly verifier=$worktree/phase1/verify_foreagent_loeo_graph_denoising.py
 readonly test_source=$worktree/phase1/tests/test_foreagent_loeo_graph_denoising.py
@@ -85,6 +87,7 @@ test "$(sha256sum "$protocol" | cut -d ' ' -f1)" = "$protocol_sha"
 test "$(sha256sum "$execution_addendum_v2" | cut -d ' ' -f1)" = "$execution_addendum_v2_sha"
 test "$(sha256sum "$execution_addendum_v3" | cut -d ' ' -f1)" = "$execution_addendum_v3_sha"
 test "$(sha256sum "$numeric_addendum_v4" | cut -d ' ' -f1)" = "$numeric_addendum_v4_sha"
+test "$(sha256sum "$execution_addendum_v5" | cut -d ' ' -f1)" = "$execution_addendum_v5_sha"
 test "$(sha256sum "$producer" | cut -d ' ' -f1)" = "$producer_sha"
 test "$(sha256sum "$verifier" | cut -d ' ' -f1)" = "$verifier_sha"
 test "$(sha256sum "$test_source" | cut -d ' ' -f1)" = "$test_sha"
@@ -152,7 +155,7 @@ jq -e '
 ' "$output/verification_a.json" >/dev/null
 
 test -z "$(grep -RIl '/prospective_decision_v1\|first-960\|target522\|score-channel-future-identity-cohort' "$output" --include='*.trace*' || true)"
-network_hits=$(grep -hE 'socket\(|connect\(|sendto\(|recvfrom\(' "$output"/*.trace* | wc -l)
+network_hits=$(grep -hE 'socket\(|connect\(|sendto\(|recvfrom\(' "$output"/*.trace* | wc -l || true)
 test "$network_hits" = 0
 filename_hits=$(find "$output" -type f -printf '%f\n' | grep -Eic '(\.env|api[_-]?key|token|secret)' || true)
 credential_hits=$(grep -RIlE "$credential_pattern" "$output" || true)
@@ -181,6 +184,7 @@ protocol_sha256=$protocol_sha
 execution_addendum_v2_sha256=$execution_addendum_v2_sha
 execution_addendum_v3_sha256=$execution_addendum_v3_sha
 numeric_addendum_v4_sha256=$numeric_addendum_v4_sha
+execution_addendum_v5_sha256=$execution_addendum_v5_sha
 producer_sha256=$producer_sha
 verifier_sha256=$verifier_sha
 test_sha256=$test_sha

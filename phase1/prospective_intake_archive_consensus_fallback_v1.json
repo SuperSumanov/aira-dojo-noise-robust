@@ -1,0 +1,78 @@
+{
+  "protocol": "prospective-intake-archive-consensus-fallback-v1",
+  "version": 1,
+  "status": "FROZEN_BEFORE_ARCHIVE_STEM_MATCH_READOUT",
+  "frozen_at_utc": "2026-08-30T16:11:47Z",
+  "direction": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+  "public_source_commit_at_freeze": "ebaef13c27237f20ed0f6305b3137ff905b3f117",
+  "production_control_commit": "90842c49dbd73d41d405a5ecdad2224ee447b375",
+  "production_intake_source_sha256": "ef02ad7905c4fa3a17e4e91af373a735fd6a981590cd637a4af533eb067b9af2",
+  "failed_uncommitted_archive_sha256": "295ebf679f54f16c1e3e13f28086d0900a2f1faee9400fc2df76c27f6afac9c4",
+  "failed_attempt": {
+    "root": "/research/d7/spc/yzyang4/prospective_decision_v1/attempts/0828-tgs-salt-identification-challenge-4seeds-295ebf679f54f16c.1463754",
+    "error": "journal must identify exactly one competition",
+    "latest_snapshot_before_attempt": "813f3c1cb5ae0f4fb26873b5627870e35c3705ea89eb245e5649c4cf4a22b54d",
+    "archive_committed": false,
+    "prospective_state_mutated_by_failed_attempt": false
+  },
+  "result_blind_diagnostic_v1": {
+    "root": "/research/d7/spc/yzyang4/outcome-blind-intake-diagnostics/20260830T1608Z-competition-structure-v1",
+    "manifest_sha256": "913d57b1db6a4d69af6e763589f7d7d5e9e5d7d2cb91a8bdd2e96ccf9f4e848a",
+    "checkpoint_journals": 4,
+    "journals_with_zero_competition_ids": 2,
+    "journals_with_one_competition_id": 2,
+    "journals_with_more_than_one_competition_id": 0,
+    "global_exact_distinct_competitions": 1,
+    "global_normalized_distinct_competitions": 1,
+    "all_root_competition_ids_missing": true,
+    "competition_names_emitted": false,
+    "labels_outcomes_predictions_accuracy_utility_read": false,
+    "env_or_key_files_opened": false
+  },
+  "strict_fallback_rule": {
+    "scope": "one explicitly selected immutable archive at a time",
+    "credential_first_journal_scan_required": true,
+    "journal_exact_competition_count_allowed": [
+      0,
+      1
+    ],
+    "at_least_one_journal_must_identify_competition": true,
+    "archive_global_exact_distinct_competitions_must_equal": 1,
+    "archive_global_normalized_distinct_competitions_must_equal": 1,
+    "archive_filename_suffix_removed_before_match": "-[0-9]+seeds.tar.gz",
+    "normalization": "Unicode casefold followed by non-[a-z0-9] runs to hyphen and edge-hyphen stripping",
+    "global_normalized_competition_must_equal_normalized_archive_stem": true,
+    "only_zero-id_journals_may_inherit_archive_consensus": true,
+    "one-id_journals_must_remain_unchanged": true,
+    "more_than_one_id_journal_fails_closed": true,
+    "cross-archive_consensus_forbidden": true
+  },
+  "kill_conditions": [
+    "The unique normalized competition does not exactly match the normalized archive stem.",
+    "Any checkpoint journal contains more than one exact or normalized competition.",
+    "No checkpoint journal contains a competition identifier.",
+    "Credential-first scan, archive stability, A/B determinism, independent verification or blindness audit fails."
+  ],
+  "required_outputs": [
+    "Per-run competition_id_source is explicit_journal or archive_consensus_fallback.",
+    "Summary reports fallback run count without emitting competition identities.",
+    "Existing accepted snapshots are byte-unchanged.",
+    "Only the failed uncommitted archive may be retried after a fresh exact-commit deployment."
+  ],
+  "unread_at_freeze": {
+    "archive_stem_match_boolean": true,
+    "labels": true,
+    "outcomes": true,
+    "predictions": true,
+    "accuracy": true,
+    "utility": true,
+    "code": true,
+    "candidate_profiles": true
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  }
+}

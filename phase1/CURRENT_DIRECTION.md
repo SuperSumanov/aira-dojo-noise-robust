@@ -13,6 +13,20 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KE. 2026-08-31 新归档 intake 在第二个 uncommitted archive fail-closed；共识回填规则已在 stem-match 前冻结
+
+267 个归档中的第一个新 archive 已形成 LATEST=`813f3c1c...2b54d`，first-960=`469 runs / 12,536 endpoints /
+3,144 structural pairs / 34 tasks`；transition 已处理，WL 因仅 `delta_runs=1<12` 正确 deferred。随后第二个 archive
+在 `prospective_drop_intake` 以 `journal must identify exactly one competition` 退出，intake monitor fail-closed，未提交该
+archive。credential-first 聚合诊断只读 4 个 checkpoint journals：2 个有一个 ID、2 个没有 ID、0 个有多个 ID；全归档 exact/
+normalized distinct 均为 1，所有 root ID 缺失；没有输出名称、节点、代码或 label/outcome/prediction 值，也未打开 env/key 成员。
+
+在读取 archive stem-match 布尔值前，已冻结 `prospective-intake-archive-consensus-fallback-v1`：仅当每 journal ID 数∈{0,1}、
+全归档 exact/normalized union 均唯一、至少一个显式 ID、且唯一 normalized ID 与去掉 `-Nseeds` 的 archive stem 完全一致时，
+才允许 0-ID journal 继承；显式 ID 不改，任一歧义继续失败。协议 SHA-256=
+`3110da4403fa0477454d8e1415fd23e9a7a7482694b778784c9d5270b8e4993e`；GPU/API/model fit/base update=
+`0/0/0/0`。现有 469-run snapshot 不变，任何修复只能 fresh exact commit + A/B + independent verifier 后重试该 uncommitted archive。
+
 ## 0KD. 2026-08-30 FOREAGENT LOEO v5 正式完成：不支持单模型去噪提升，支持图修正后的模型比较稳健性
 
 exact commit=`942957757fd0c8464b1670ab3e35da64f4cccebf` 在 fresh root `formal-9429577-v5` 完成。

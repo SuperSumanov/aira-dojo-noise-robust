@@ -1,0 +1,37 @@
+{
+  "protocol": "prospective-score-identity-migration-execution-addendum-v2",
+  "status": "FROZEN_BEFORE_V2_RETRY",
+  "frozen_at_utc_date": "2026-08-31",
+  "parent_protocol": "prospective-score-identity-migration-v1",
+  "failed_v1": {
+    "source_commit": "d414676c8e354b9dd58377c86eaec655567186b8",
+    "formal_root": "/research/d7/spc/yzyang4/score-identity-migration/formal-d414676-v1",
+    "focused_tests_passed": 72,
+    "full_tests_passed": 1813,
+    "full_tests_failed": 1,
+    "failure_test": "test_openrouter_full_context_live_v2.py::test_resume_requires_exact_fsynced_intent_and_completed_prefix",
+    "failure_stage": "complete phase1 test suite before every production or verification command",
+    "failure_reason": "The remote default umask created a synthetic private temporary file with mode 0644; the test correctly requires no group or other permission bits.",
+    "intake_producer_started": false,
+    "score_producer_started": false,
+    "registry_validator_started": false,
+    "accumulator_started": false,
+    "independent_verifier_started": false,
+    "scientific_or_structural_result_generated": false
+  },
+  "sole_v2_change": {
+    "execution_environment": "set process umask to 0077 before creating the fresh formal root and before all tests",
+    "scientific_protocol_changed": false,
+    "score_identity_allowlist_changed": false,
+    "input_or_population_changed": false,
+    "test_scope_changed": false,
+    "threshold_or_interpretation_changed": false
+  },
+  "v2_requirements": [
+    "Use a fresh exact public commit, fresh detached no-smudge worktree, and fresh formal output root.",
+    "Rerun the focused tests and the complete phase1 test suite; no output from v1 may be reused.",
+    "Rerun every intake, score, registry, accumulator, A/B, independent-verifier, hash, trace, and security gate.",
+    "Keep GPU jobs, paid API calls, model fits, and base-model updates at zero.",
+    "Do not read or emit label, outcome, prediction value, accuracy, utility, candidate identity, or private selection."
+  ]
+}

@@ -54,6 +54,18 @@ def test_extra_registry_arguments_remain_paired() -> None:
     assert text.count("--expect-extra-structural-rejection-registry-sha256 ") == 10
 
 
+def test_scientific_intake_migration_is_exactly_bound() -> None:
+    values = assignments()
+    assert values["SCIENTIFIC_REPO"] == (
+        "/research/d7/spc/yzyang4/worktrees/prospective_intake_consensus_3903a2a"
+    )
+    assert values["SCIENTIFIC_COMMIT"] == (
+        "3903a2aa40cd995097cbbe2911d3a9dd911758a8"
+    )
+    text = SCRIPT.read_text(encoding="utf-8")
+    assert text.count("${SCIENTIFIC_COMMIT}") >= 4
+
+
 def test_0821_registry_is_verified_passed_and_receipted() -> None:
     text = SCRIPT.read_text(encoding="utf-8")
     assert text.count("${EXTRA_0821_REGISTRY_SHA}") == 3

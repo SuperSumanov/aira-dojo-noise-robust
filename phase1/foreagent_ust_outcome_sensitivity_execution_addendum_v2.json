@@ -1,0 +1,88 @@
+{
+  "protocol": "foreagent-ust-outcome-sensitivity-execution-addendum-v2",
+  "version": 2,
+  "status": "FROZEN_ENGINEERING_AMENDMENT_BEFORE_ANY_RESULT",
+  "frozen_at_utc": "2026-08-30T05:52:56Z",
+  "parent_scientific_protocol": "phase1/foreagent_ust_outcome_sensitivity_v1.json",
+  "parent_scientific_protocol_sha256": "7d47b1aa6ef3ffb61c47f1fe3d6631a5bb7b2c97228de8a7c9192b9fc557a425",
+  "scientific_estimands_support_and_inference_changed": false,
+  "producer_or_verifier_changed": false,
+  "results_computed_or_read_before_amendment": false,
+  "reason": "The first formal attempt entered a synthetic full-suite test with uncapped BLAS threading. Before any result or verification artifact existed, the process was observed with 119 threads, 2948 percent CPU, 04:29:28 accumulated CPU time and 09:08 elapsed time. The same exact-commit test passed under explicit single-thread limits in 2.95 pytest seconds and 10.14 total elapsed seconds. The first root was stopped and preserved; this addendum changes execution resource limits only.",
+  "aborted_attempt": {
+    "root": "/research/d7/spc/yzyang4/foreagent-ust-outcome-sensitivity/formal-5abfbd4-v1",
+    "source_commit": "5abfbd44d1459f9170904e0c8e1b954ead5628df",
+    "complete_marker_present": false,
+    "result_or_verification_files_present": 0,
+    "scientific_results_read": false,
+    "failed_rc_file_value": 0,
+    "failed_rc_note": "The shell EXIT trap wrote zero when the waiting parent was terminated; ABORTED_ENGINEERING_OVERSUBSCRIPTION is the authoritative disposition marker.",
+    "completed_full_suite_tests_before_abort": 270,
+    "active_test": "phase1/tests/test_critic_component_static_suite.py::test_hash_gate_and_tamper_detection",
+    "observed_process": {
+      "threads": 119,
+      "elapsed": "00:09:08",
+      "cpu_time": "04:29:28",
+      "cpu_percent": 2948
+    },
+    "single_thread_control": {
+      "passed": true,
+      "tests": 1,
+      "warnings": 4,
+      "pytest_seconds": "2.95",
+      "total_elapsed_seconds": "10.14",
+      "cpu_percent": "65%",
+      "maxrss_kb": 262848
+    },
+    "evidence_sha256": {
+      "ABORTED_ENGINEERING_OVERSUBSCRIPTION.txt": "f09b8476cc87586231ef1a10bf1ecf56099c26eb07c3b7dbdd172badbe833429",
+      "abort_process_before.txt": "0e2d31ce7d838369b75541b28a49785da6b4f3d0f11d8cea4a5e46c5e5bd2521",
+      "aborted_at_utc.txt": "6d98ae01fdac71a343c8d34d308645e4d308680ff8e737f23c1cd4a87882549e",
+      "single_thread_control.txt": "a4057385d721cbf43b0d5689af9d064525f5df10db7ed802497e0465b3a873be",
+      "single_thread_control_time.txt": "673646b345fca1d5a4161b680ef4ea691c352affe7048633823d59ce0f3e18c3"
+    }
+  },
+  "required_thread_environment": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "formal_rerun_policy": {
+    "fresh_exact_commit_required": true,
+    "fresh_output_root_required": true,
+    "focused_and_full_tests_required": true,
+    "producer_and_verifier_A_B_required": true,
+    "all_parent_protocol_hash_trace_security_and_read_only_gates_unchanged": true,
+    "aborted_root_must_not_be_reused": true
+  },
+  "original_v1_source_bindings": {
+    "test_sha256": "06f132393b0b791185d6d1e60833a96a06505f3eaa16092dc682592c9a727c88",
+    "runner_sha256": "43fa08bba3cd5f553ee7d1a1be293c2968dba96a76e2515a685cfec9c1bc267a"
+  },
+  "current_source_bindings": {
+    "producer": {
+      "path": "phase1/analyze_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "ac8db1ef0f913eb9d5f7d4a87c6109d29a27dbc9693c9726846a9989fbe90ba5"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "3cc166303a6684ff2183684a410fff3922630e32c3f247fedeb08fa1ba12590a"
+    },
+    "test": {
+      "path": "phase1/tests/test_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "5070072642e66006baf7acfd60b8ef25d9086dd8d68c112d69c518055ddf2e81"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_foreagent_ust_outcome_sensitivity_formal_20260830.sh",
+      "sha256": "39efe7d78d1ab9058eb0fa363a5b15c359312b6b1a405a4f2a0504e0520993bc"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "blas_threads": 1
+  }
+}

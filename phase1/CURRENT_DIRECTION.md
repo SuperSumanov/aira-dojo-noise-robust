@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JU. 2026-08-30 FOREAGENT UST v1 在结果前因 BLAS 线程过订阅失效；v2 仅修执行资源
+
+exact commit=`5abfbd44d1459f9170904e0c8e1b954ead5628df` 的第一次 formal 在 full suite 完成 270 个测试后，
+进入一个 36-pair synthetic tamper test 时出现 119 threads、`2948%` CPU、elapsed=`00:09:08`、累计
+CPU=`04:29:28`。此时 `COMPLETE` 与四份 result/verification 文件均不存在，任何 UST outcome aggregate 均未生成或读取；
+故主动终止并保留无结果根 `formal-5abfbd4-v1`。shell EXIT trap 留下的 `FAILED_RC=0` 不是成功证据，固定
+`ABORTED_ENGINEERING_OVERSUBSCRIPTION` 才是该根的 disposition。
+
+同一 exact commit、同一测试在 `OPENBLAS/OMP/MKL/NUMEXPR=1` 下 `1 passed`，pytest=`2.95s`、总墙钟
+`10.14s`。因此新增 additive execution addendum v2，只在 runner 顶部强制四项线程上限并把 addendum 纳入 hash binding；
+producer、独立 verifier、18,381-pair support、四个 estimands、20,000 次 task bootstrap、阈值与科学分类全部不变。
+父科学协议 SHA-256 仍为 `7d47b1aa...557a425`；本地 focused=`11 passed`，GPU/API/model fit/base update=
+`0/0/0/0`。下一次必须 fresh exact commit + fresh output root 重跑全部 formal gates，不能复用 v1 根。
+详见同日工程失效记录与 `foreagent_ust_outcome_sensitivity_execution_addendum_v2.json`。
+
 ## 0JT. 2026-08-30 FOREAGENT exact-grid UST outcome sensitivity 已结果前冻结
 
 FOREAGENT 官方 ACL 2026 论文明确从 895 solutions 穷举 18,438 pair rows，并以 micro-averaged pair accuracy 为 primary；

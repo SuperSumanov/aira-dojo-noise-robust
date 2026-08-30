@@ -249,6 +249,10 @@ def test_runner_is_exact_commit_repeated_traced_and_cpu_only() -> None:
         "GIT_LFS_SKIP_SMUDGE=1",
         "worktree add --detach",
         "phase1/tests -q",
+        "export OPENBLAS_NUM_THREADS=1",
+        "export OMP_NUM_THREADS=1",
+        "export MKL_NUM_THREADS=1",
+        "export NUMEXPR_NUM_THREADS=1",
         "PYTHONHASHSEED=1",
         "PYTHONHASHSEED=2",
         "PYTHONHASHSEED=3",
@@ -266,6 +270,9 @@ def test_runner_is_exact_commit_repeated_traced_and_cpu_only() -> None:
 def test_protocol_binds_runtime_sources_and_discloses_postdisclosure_scope() -> None:
     protocol_path = Path("phase1/foreagent_ust_outcome_sensitivity_v1.json")
     protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
+    assert hashlib.sha256(protocol_path.read_bytes()).hexdigest() == (
+        "7d47b1aa6ef3ffb61c47f1fe3d6631a5bb7b2c97228de8a7c9192b9fc557a425"
+    )
     assert protocol["status"] == (
         "FROZEN_AFTER_RAW_OUTCOMES_DISCLOSED_BEFORE_GRAPH_WEIGHTED_OUTCOME_COMPUTATION"
     )
@@ -280,7 +287,28 @@ def test_protocol_binds_runtime_sources_and_discloses_postdisclosure_scope() -> 
         "base_updates": 0,
         "expected_single_cpu_minutes_excluding_full_tests": "2--20",
     }
-    for item in protocol["source_bindings"].values():
+    for name in ("producer", "independent_verifier"):
+        item = protocol["source_bindings"][name]
+        path_value = Path(item["path"])
+        digest = hashlib.sha256(path_value.read_bytes()).hexdigest()
+        assert digest == item["sha256"]
+
+    addendum_path = Path(
+        "phase1/foreagent_ust_outcome_sensitivity_execution_addendum_v2.json"
+    )
+    addendum = json.loads(addendum_path.read_text(encoding="utf-8"))
+    assert addendum["parent_scientific_protocol_sha256"] == (
+        "7d47b1aa6ef3ffb61c47f1fe3d6631a5bb7b2c97228de8a7c9192b9fc557a425"
+    )
+    assert addendum["scientific_estimands_support_and_inference_changed"] is False
+    assert addendum["results_computed_or_read_before_amendment"] is False
+    assert addendum["required_thread_environment"] == {
+        "OPENBLAS_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+    }
+    for item in addendum["current_source_bindings"].values():
         path_value = Path(item["path"])
         digest = hashlib.sha256(path_value.read_bytes()).hexdigest()
         assert digest == item["sha256"]

@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JT. 2026-08-30 FOREAGENT exact-grid UST outcome sensitivity 已结果前冻结
+
+FOREAGENT 官方 ACL 2026 论文明确从 895 solutions 穷举 18,438 pair rows，并以 micro-averaged pair accuracy 为 primary；
+这使已验证的 graph-rank inflation 直接对应一个公开 benchmark estimand。旧 auto parquet 与 official alignment 相差 77 rows
+且 5,068 个共同 finite pairs 的 winner 版本不同，故绝不复用旧 graph weights。新协议固定在 156-file、110,620-row compact
+primitive 上重建 exact common graph：DeepSeek exact 三轮 grid、GPT 三轮 intersection、cross-model intersection、finite
+directional filter后固定 `18,381 pairs / 26 tasks`；confidence 不读，三次 correctness 先在 pair 内平均。
+
+四个强制估计量为 raw pair micro、UST rank micro、raw task macro、UST task macro，并在同 pair 上报告 DeepSeek−GPT；
+20,000 次 task bootstrap seeds=`20260830/20260831`，固定 LOTO sign tolerance=`1e-10`。UST rank micro 只解释为随机
+spanning basis sensitivity，不是唯一正确 accuracy；prior `INSUFFICIENT-SUPPORT` 不得重写，也不得据此否定 FOREAGENT 的
+agent-level 6×/+6%。protocol SHA-256=`7d47b1aa6ef3ffb61c47f1fe3d6631a5bb7b2c97228de8a7c9192b9fc557a425`；
+focused=`11 passed`，GPU/API/model fit/base update=`0/0/0/0`。截至冻结，exact-grid graph rank/UST weights 与所有新 UST
+outcome metrics 均未计算或读取；只能先公开 exact source，再运行 fresh formal。详见同日结果前冻结记录。
+
 ## 0JS. 2026-08-30 historical UST sensitivity 正式完成：结构非平凡，旧 predictor 排名稳健但未获性能突破
 
 v2 exact commit=`65b2e2a6669a1ddc41059746c843fab501895190` 已在 fresh detached formal 根

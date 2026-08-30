@@ -1,0 +1,202 @@
+{
+  "protocol": "foreagent-ust-outcome-sensitivity-v1",
+  "version": 1,
+  "status": "FROZEN_AFTER_RAW_OUTCOMES_DISCLOSED_BEFORE_GRAPH_WEIGHTED_OUTCOME_COMPUTATION",
+  "frozen_at_utc": "2026-08-30T05:36:11Z",
+  "paper_container": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+  "question": "On FOREAGENT's exact released prediction grid, how much do published pair-row micro accuracy, task-macro accuracy and the DeepSeek-versus-GPT comparison change under graph-rank/UST weighting on one common finite directional support?",
+  "disclosure": {
+    "historical_raw_outcomes_already_revealed": true,
+    "new_ust_outcomes_computed_before_freeze": false,
+    "known_before_freeze": {
+      "paper_solutions": 895,
+      "paper_pair_rows": 18438,
+      "paper_tasks": 26,
+      "paper_primary_metric": "micro-averaged accuracy across pair rows",
+      "paper_deepseek_accuracy": "0.615",
+      "paper_gpt_accuracy": "0.588",
+      "our_reproduced_deepseek_pair_micro": "0.6151503616292348",
+      "our_reproduced_deepseek_task_macro": "0.6066975560136538",
+      "our_reproduced_gpt_pair_micro": "0.588959614094264",
+      "our_reproduced_gpt_task_macro": "0.5800668567178495",
+      "prior_alignment_audit_decision": "INSUFFICIENT-SUPPORT",
+      "prior_alignment_audit_failure_reasons": [
+        "The frozen confidence-coverage gate failed for DeepSeek although directional prediction coverage was complete.",
+        "Only 22 of 26 tasks met the frozen quartile support threshold."
+      ],
+      "auto_parquet_is_not_exact_alignment_grid": true,
+      "auto_parquet_pair_rows": 18361,
+      "auto_parquet_endpoint_incidence_rank": 869,
+      "auto_parquet_ust_edge_tv": "0.11721717545274284",
+      "auto_parquet_task_weight_tv": "0.11712428448024467"
+    },
+    "not_computed_or_read_before_freeze": [
+      "exact common finite alignment-support vertices, components, incidence rank or cycle rows",
+      "exact common-support per-edge UST/effective-resistance weights",
+      "exact common-support edge and task weight total variation",
+      "DeepSeek or GPT UST rank-micro accuracy",
+      "DeepSeek or GPT UST task-macro accuracy",
+      "UST-minus-raw shifts and task-clustered intervals",
+      "UST-weighted DeepSeek-minus-GPT paired deltas",
+      "leave-one-task-out UST sensitivity ranges"
+    ],
+    "classification_policy": "Deterministic post-disclosure sensitivity only. No confirmatory success label or result-dependent threshold is permitted. The prior INSUFFICIENT-SUPPORT decision is immutable."
+  },
+  "primary_sources": {
+    "paper": "https://aclanthology.org/2026.acl-long.182/",
+    "paper_pdf": "https://aclanthology.org/2026.acl-long.182.pdf",
+    "official_code": "https://github.com/zjunlp/predict-before-execute",
+    "official_dataset": "https://huggingface.co/datasets/zjunlp/PredictBeforeExecute"
+  },
+  "inputs": {
+    "manifest": {
+      "path": "phase1/foreagent_alignment_manifest_v1.json",
+      "sha256": "3df2715b2d2e5f3cc6193c07c99eb682e042e8aa6cb724b046b2469b35773a4e",
+      "official_huggingface_revision": "6b322cb88bdbcb2b2d3897ec7d0ded94a5bb2d06",
+      "source_files": 156
+    },
+    "compact_primitive_master": {
+      "path": "/research/d7/spc/yzyang4/scratch/pbe_alignment_cache_v1/all_predictions.compact.jsonl",
+      "sha256": "480616317ddebb249084dbc8b36b4060fac4b77353fce16b436351eab9c235fe",
+      "bytes": 34910546,
+      "records": 110620
+    },
+    "allowed_fields": [
+      "source_index",
+      "task",
+      "model_family",
+      "release_run",
+      "solution_paths",
+      "scores",
+      "is_lower_better",
+      "groundtruth_best_index",
+      "prediction_best_index"
+    ],
+    "confidence_values_allowed": false,
+    "solution_code_allowed": false,
+    "prospective_sources_allowed": false
+  },
+  "support": {
+    "deepseek_grid": "Exact intersection is required to equal each of the three released pair grids within every task.",
+    "gpt_grid": "Use the three-release intersection within task; retain and report the eight excluded incomplete triplicate pairs.",
+    "cross_model_grid": "Intersect the two model grids within each task.",
+    "directional_filter": "Remove only nonfinite-score and exact-score-tie pairs before graph construction. Invalid prediction indices receive zero correctness, matching the prior audit; confidence never controls inclusion.",
+    "truth_consistency": "Scores, metric direction and the score-derived winner must agree across releases and models on common support.",
+    "common_finite_directional_pairs": 18381,
+    "tasks": 26,
+    "release_aggregation": "Average the three binary correctness values within model-task-pair before any graph or task aggregation."
+  },
+  "estimands": {
+    "raw_pair_micro": "Uniform average over exact common-support pair rows.",
+    "ust_rank_micro": "Weight every common-support edge by b_e^T L^+ b_e within its task-connected component, then divide by the total endpoint-incidence rank. Tasks therefore receive total weight equal to their graph rank.",
+    "raw_task_macro": "Uniform pair average within each task followed by an equal average over 26 tasks.",
+    "ust_task_macro": "UST-weighted edge average within each task followed by an equal average over 26 tasks.",
+    "paired_model_delta": "Compute DeepSeek-minus-GPT correctness on the same pair before all four aggregations.",
+    "common_graph": "The graph is built only once on the exact cross-model common finite support, so both models use identical edges and weights.",
+    "interpretation": "UST rank-micro is the expected edge accuracy on one uniform spanning basis per connected component. It is an alternative graph-basis sensitivity, not a universally correct replacement for the paper's row-population estimand."
+  },
+  "inference": {
+    "bootstrap_repetitions": 20000,
+    "model_metric_seed": 20260830,
+    "paired_metric_seed": 20260831,
+    "primary_cluster": "task",
+    "task_bootstrap": "Resample the 26 tasks with replacement. Recompute ratio estimands from sampled task numerators and denominators rather than averaging precomputed global ratios.",
+    "empirical_order_statistics_zero_based": [
+      500,
+      19499
+    ],
+    "leave_one_task_out": "Report minimum, maximum and sign count for every point estimand with a fixed 1e-10 sign tolerance.",
+    "pair_iid_inference_allowed": false,
+    "effect_threshold_or_multiple_testing_claim": false
+  },
+  "mandatory_outputs": [
+    "exact reproduction of the prior per-model raw pair-micro and task-macro values on each model's released support",
+    "common-support graph rows, vertices, components, incidence rank, cycle rows and complete/incomplete component counts",
+    "Foster residual, edge-weight range, bridge count, edge-distribution TV and task-weight TV",
+    "all four common-support metrics with task-clustered intervals for both models",
+    "UST-minus-raw rank-micro and task-macro shifts with intervals",
+    "paired DeepSeek-minus-GPT versions of all metrics",
+    "leave-one-task-out ranges and sign counts",
+    "all negative, null or direction-reversing results"
+  ],
+  "independent_implementations": {
+    "producer_graph": "Symmetric Laplacian eigendecomposition and Moore-Penrose pseudoinverse.",
+    "verifier_graph": "Independent adjacency/DFS components and grounded reduced-Laplacian inverse.",
+    "producer_and_verifier_import_each_other": false,
+    "producer_and_verifier_A_B_byte_exact_across_distinct_hash_seeds": true,
+    "numeric_tolerance": "producer 5e-9, verifier 2e-8 relative to max(1,magnitude)",
+    "synthetic_controls": [
+      "K_4 has every edge weight 1/2 and total rank 3.",
+      "A tree has every edge weight 1.",
+      "A triangle plus bridge has nonuniform weights and a known rank deficit.",
+      "Reversing pair position does not change truth or correctness.",
+      "A missing prediction receives zero correctness without reading confidence.",
+      "Incomplete GPT triplicates are intersected before common support.",
+      "Nonfinite truth is removed before graph construction.",
+      "Near-zero LOTO signs use a shared fixed tolerance."
+    ]
+  },
+  "related_work_boundary": {
+    "established": [
+      "FOREAGENT explicitly uses exhaustive pair generation and micro-averaged pair accuracy.",
+      "Effective resistance equals uniform-spanning-tree edge inclusion probability.",
+      "Foster's theorem makes total edge leverage equal graph incidence rank.",
+      "Graph-resistance error analysis and optimal design for pairwise comparisons predate this work."
+    ],
+    "allowed_claim": "A reproducible MLE benchmark sensitivity showing whether combinatorial pair-row weighting is outcome-material on a directly competing released corpus.",
+    "forbidden_claims": [
+      "new effective-resistance or spanning-tree mathematics",
+      "a universally corrected FOREAGENT accuracy",
+      "effective sample size or independent-label count",
+      "invalidity of FOREAGENT's 6x agent-level acceleration or +6 percent gain",
+      "reclassification of the prior INSUFFICIENT-SUPPORT audit",
+      "prospective confirmation",
+      "model selection or model improvement"
+    ],
+    "theory_sources": {
+      "spielman_srivastava": "https://arxiv.org/abs/0803.0929",
+      "graph_resistance_pairwise_learning": "https://arxiv.org/abs/1902.00141",
+      "accelerated_pairwise_design": "https://arxiv.org/abs/1901.06080",
+      "targeted_statistical_rankings": "https://proceedings.mlr.press/v28/osting13.html",
+      "hodge_rank_sampling": "https://arxiv.org/abs/1503.00164"
+    }
+  },
+  "integrity": {
+    "exact_input_hashes_required": true,
+    "duplicate_unordered_edges_fail_closed": true,
+    "cross_task_endpoint_reuse_fail_closed": true,
+    "Foster_identity_required_per_component_and_globally": true,
+    "raw_task_and_endpoint_identity_output_forbidden": true,
+    "confidence_access_forbidden": true,
+    "prospective_access_forbidden": true,
+    "fresh_exact_commit_focused_and_full_tests": true,
+    "file_and_network_trace": true,
+    "producer_verifier_repeated_byte_exact": true,
+    "failure_policy": "Any source hash, schema, support, truth, duplicate, graph, arithmetic, identity, test, trace or byte mismatch stops without scientific interpretation."
+  },
+  "source_bindings": {
+    "producer": {
+      "path": "phase1/analyze_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "ac8db1ef0f913eb9d5f7d4a87c6109d29a27dbc9693c9726846a9989fbe90ba5"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "3cc166303a6684ff2183684a410fff3922630e32c3f247fedeb08fa1ba12590a"
+    },
+    "test": {
+      "path": "phase1/tests/test_foreagent_ust_outcome_sensitivity.py",
+      "sha256": "06f132393b0b791185d6d1e60833a96a06505f3eaa16092dc682592c9a727c88"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_foreagent_ust_outcome_sensitivity_formal_20260830.sh",
+      "sha256": "43fa08bba3cd5f553ee7d1a1be293c2968dba96a76e2515a685cfec9c1bc267a"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "expected_single_cpu_minutes_excluding_full_tests": "2--20"
+  }
+}

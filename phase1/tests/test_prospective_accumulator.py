@@ -72,27 +72,53 @@ def add_bytes(handle: tarfile.TarFile, name: str, blob: bytes, mtime: int) -> No
     handle.addfile(info, io.BytesIO(blob))
 
 
-def make_intake(tmp_path: Path, tag: str, started: float) -> Path:
+def make_intake(
+    tmp_path: Path, tag: str, started: float, *, archive_consensus_fallback: bool = False
+) -> Path:
     drop = tmp_path / f"drop-{tag}"
     drop.mkdir()
-    archive = drop / f"{tag}.tar.gz"
-    nodes = journal_nodes(tag, started)
-    journal = ("\n".join(json.dumps(node, sort_keys=True) for node in nodes) + "\n").encode()
-    root = f"batch/run-{tag}"
+    archive = drop / (
+        "spaceship-titanic-2seeds.tar.gz"
+        if archive_consensus_fallback
+        else f"{tag}.tar.gz"
+    )
+    journals = [(tag, journal_nodes(tag, started), started)]
+    if archive_consensus_fallback:
+        missing_tag = f"{tag}-missing"
+        missing_nodes = journal_nodes(missing_tag, started + 10)
+        for node in missing_nodes:
+            (node.get("metric_info") or {}).pop("competition_id", None)
+        journals.append((missing_tag, missing_nodes, started + 10))
     with tarfile.open(archive, "w:gz") as handle:
-        add_bytes(handle, f"{root}/checkpoint/journal.jsonl", journal, int(started + 30))
-        add_bytes(handle, f"{root}/json/JOURNAL.jsonl", b'{"event":"ignored"}\n', int(started + 30))
-        fake_secret = "sk" + "-" + "x" * 32
-        add_bytes(
-            handle,
-            f"{root}/env_variables.json",
-            json.dumps({"API_KEY": fake_secret}).encode(),
-            int(started + 30),
-        )
+        for run_tag, nodes, run_started in journals:
+            journal = (
+                "\n".join(json.dumps(node, sort_keys=True) for node in nodes) + "\n"
+            ).encode()
+            root = f"batch/run-{run_tag}"
+            add_bytes(
+                handle,
+                f"{root}/checkpoint/journal.jsonl",
+                journal,
+                int(run_started + 30),
+            )
+            add_bytes(
+                handle,
+                f"{root}/json/JOURNAL.jsonl",
+                b'{"event":"ignored"}\n',
+                int(run_started + 30),
+            )
+            fake_secret = "sk" + "-" + "x" * 32
+            add_bytes(
+                handle,
+                f"{root}/env_variables.json",
+                json.dumps({"API_KEY": fake_secret}).encode(),
+                int(run_started + 30),
+            )
     output = tmp_path / f"intake-{tag}"
     intake.build(
         argparse.Namespace(
             drop_dir=drop,
+            archive_name=[archive.name] if archive_consensus_fallback else None,
             freeze_receipt=RECEIPT,
             precutoff_endpoint_denylist=DENYLIST,
             out_dir=output,
@@ -124,6 +150,46 @@ def write_registry(path: Path, entries: list[tuple[str, Path]]) -> str:
     text = "".join(json.dumps(row, sort_keys=True) + "\n" for row in rows)
     path.write_text(text, encoding="utf-8", newline="\n")
     return hashlib.sha256(text.encode()).hexdigest()
+
+
+def downgrade_intake_to_exact_legacy_schema(path: Path) -> None:
+    provenance_path = path / "source_provenance.json"
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    for row in provenance:
+        row.pop("competition_id_source")
+    provenance_path.write_text(
+        json.dumps(provenance, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    audits_path = path / "archive_audits.json"
+    audits = json.loads(audits_path.read_text(encoding="utf-8"))
+    for row in audits:
+        row.pop("competition_id_explicit_journals")
+        row.pop("competition_id_archive_consensus_fallback_journals")
+        row.pop("archive_consensus_fallback_used")
+    audits_path.write_text(
+        json.dumps(audits, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    summary_path = path / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary["git_commit"] = accumulator.LEGACY_INTAKE_GIT_COMMIT
+    summary["source_sha256"] = accumulator.LEGACY_INTAKE_SOURCE_SHA256
+    summary["configuration"].pop("archive_consensus_fallback_protocol")
+    summary["configuration"].pop("archive_consensus_fallback_protocol_sha256")
+    summary["inventory"].pop("archive_consensus_fallback_runs")
+    summary["outputs"]["source_provenance_sha256"] = hashlib.sha256(
+        provenance_path.read_bytes()
+    ).hexdigest()
+    summary["outputs"]["archive_audits_sha256"] = hashlib.sha256(
+        audits_path.read_bytes()
+    ).hexdigest()
+    summary_path.write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
 
 def args_for(registry: Path, output: Path, **overrides) -> argparse.Namespace:
@@ -166,6 +232,43 @@ def test_collecting_state_is_label_blind_and_provisional(
     assert summary["security"]["label_vault_opened"] is False
     assert "label_vault.jsonl" not in summary["security"]["opened_basenames"]
     assert not (output / "frozen_runs.jsonl").exists()
+
+
+def test_exact_legacy_intake_identity_and_schema_remain_accepted(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    monkeypatch.setattr(accumulator, "FIRST_PILOT", 2)
+    intake_dir = make_intake(tmp_path, "legacy", START)
+    downgrade_intake_to_exact_legacy_schema(intake_dir)
+    registry = tmp_path / "legacy-registry.jsonl"
+    write_registry(registry, [("drop-legacy", intake_dir)])
+    output = tmp_path / "legacy-accumulator"
+
+    assert accumulator.build(args_for(registry, output)) == 0
+    summary = json.loads((output / "summary.json").read_text(encoding="utf-8"))
+    assert summary["inventory"]["all_physical_runs"] == 1
+    assert summary["inputs"]["intake_git_commits"] == {
+        "drop-legacy": accumulator.LEGACY_INTAKE_GIT_COMMIT
+    }
+
+
+def test_archive_consensus_fallback_intake_flows_through_accumulator(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    monkeypatch.setattr(accumulator, "FIRST_PILOT", 3)
+    intake_dir = make_intake(
+        tmp_path, "consensus", START, archive_consensus_fallback=True
+    )
+    intake_summary = json.loads((intake_dir / "summary.json").read_text(encoding="utf-8"))
+    assert intake_summary["inventory"]["archive_consensus_fallback_runs"] == 1
+    registry = tmp_path / "consensus-registry.jsonl"
+    write_registry(registry, [("drop-consensus", intake_dir)])
+    output = tmp_path / "consensus-accumulator"
+
+    assert accumulator.build(args_for(registry, output)) == 0
+    summary = json.loads((output / "summary.json").read_text(encoding="utf-8"))
+    assert summary["inventory"]["all_physical_runs"] == 2
+    assert summary["security"]["label_vault_opened"] is False
 
 
 def test_late_arrival_order_stays_provisional_until_closure(

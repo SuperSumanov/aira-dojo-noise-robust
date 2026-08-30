@@ -26,6 +26,14 @@ from .endpoint_denylist import (
 PROTOCOL = "prospective_accumulator_v1"
 INTAKE_PROTOCOL = "prospective_drop_intake_v1"
 SCORER_PROTOCOL = "prospective_decision_v1"
+LEGACY_INTAKE_GIT_COMMIT = "90842c49dbd73d41d405a5ecdad2224ee447b375"
+LEGACY_INTAKE_SOURCE_SHA256 = (
+    "ef02ad7905c4fa3a17e4e91af373a735fd6a981590cd637a4af533eb067b9af2"
+)
+ARCHIVE_CONSENSUS_PROTOCOL = "prospective-intake-archive-consensus-fallback-v1"
+ARCHIVE_CONSENSUS_PROTOCOL_SHA256 = (
+    "3110da4403fa0477454d8e1415fd23e9a7a7482694b778784c9d5270b8e4993e"
+)
 FREEZE_RECEIPT_SHA256 = "cfab01a80536a50ef21c47ac269c7ce54a11a3b1f0b6daa5700873cbb02ce178"
 FIRST_PILOT = 240
 FIRST_CONFIRM = 960
@@ -42,7 +50,7 @@ BLIND_KEYS = {
     "source_sha256",
 }
 LINEAGE_KEYS = {"depth", "step", "n_siblings", "op", "parent"}
-PROVENANCE_KEYS = {
+LEGACY_PROVENANCE_KEYS = {
     "run_id",
     "task",
     "generation_started_at_utc",
@@ -56,8 +64,9 @@ PROVENANCE_KEYS = {
     "endpoints",
     "empty_code_nodes_excluded",
 }
+PROVENANCE_KEYS = LEGACY_PROVENANCE_KEYS | {"competition_id_source"}
 PAIR_KEYS = {"task", "run_id", "parent", "left", "right"}
-ARCHIVE_AUDIT_KEYS = {
+LEGACY_ARCHIVE_AUDIT_KEYS = {
     "archive_name",
     "discovered_run_roots",
     "checkpoint_runs",
@@ -67,6 +76,19 @@ ARCHIVE_AUDIT_KEYS = {
     "members",
     "declared_member_bytes",
 }
+ARCHIVE_AUDIT_COUNT_KEYS = (
+    LEGACY_ARCHIVE_AUDIT_KEYS
+    - {"archive_name"}
+    | {
+        "competition_id_explicit_journals",
+        "competition_id_archive_consensus_fallback_journals",
+    }
+)
+ARCHIVE_AUDIT_KEYS = (
+    LEGACY_ARCHIVE_AUDIT_KEYS
+    | ARCHIVE_AUDIT_COUNT_KEYS
+    | {"archive_consensus_fallback_used"}
+)
 CLOSURE_KEYS = {
     "status",
     "protocol",
@@ -242,7 +264,9 @@ def validate_blind_rows(
 
 def validate_provenance(
     rows: list[dict[str, Any]], activated_at: dt.datetime
-) -> dict[str, dict[str, Any]]:
+) -> tuple[dict[str, dict[str, Any]], bool]:
+    if not rows:
+        raise AccumulatorError("source provenance is empty")
     expected_order = sorted(
         rows,
         key=lambda row: (
@@ -254,9 +278,19 @@ def validate_provenance(
     if rows != expected_order:
         raise AccumulatorError("source provenance is not in canonical order")
     output: dict[str, dict[str, Any]] = {}
+    consensus_schema: bool | None = None
     for row_number, row in enumerate(rows, 1):
-        if set(row) != PROVENANCE_KEYS:
+        row_keys = set(row)
+        if row_keys == PROVENANCE_KEYS:
+            row_consensus_schema = True
+        elif row_keys == LEGACY_PROVENANCE_KEYS:
+            row_consensus_schema = False
+        else:
             raise AccumulatorError(f"provenance schema mismatch at row {row_number}")
+        if consensus_schema is None:
+            consensus_schema = row_consensus_schema
+        elif consensus_schema is not row_consensus_schema:
+            raise AccumulatorError("mixed provenance schema versions")
         run_id, task, journal_sha = row["run_id"], row["task"], row["journal_sha256"]
         if not all(isinstance(value, str) and value for value in (run_id, task, journal_sha)):
             raise AccumulatorError(f"invalid provenance identity at row {row_number}")
@@ -279,8 +313,15 @@ def validate_provenance(
         expected_flow = "scoreable" if row["endpoints"] else "no_scoreable_code"
         if row["flow_status"] != expected_flow:
             raise AccumulatorError(f"provenance flow status mismatch at row {row_number}")
+        if row_consensus_schema and row["competition_id_source"] not in {
+            "explicit_journal",
+            "archive_consensus_fallback",
+        }:
+            raise AccumulatorError(
+                f"invalid provenance competition source at row {row_number}"
+            )
         output[run_id] = row
-    return output
+    return output, bool(consensus_schema)
 
 
 def rebuild_pairs(blind_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -337,14 +378,26 @@ def load_archive_manifest(
 
 def validate_archive_audits(
     rows: list[dict[str, Any]], archive_names: set[str]
-) -> dict[str, int]:
+) -> tuple[dict[str, int], bool]:
     if {row.get("archive_name") for row in rows} != archive_names or len(rows) != len(archive_names):
         raise AccumulatorError("archive audit support mismatch")
     totals = collections.Counter()
+    consensus_schema: bool | None = None
     for row_number, row in enumerate(rows, 1):
-        if set(row) != ARCHIVE_AUDIT_KEYS:
+        row_keys = set(row)
+        if row_keys == ARCHIVE_AUDIT_KEYS:
+            row_consensus_schema = True
+            count_keys = ARCHIVE_AUDIT_COUNT_KEYS
+        elif row_keys == LEGACY_ARCHIVE_AUDIT_KEYS:
+            row_consensus_schema = False
+            count_keys = LEGACY_ARCHIVE_AUDIT_KEYS - {"archive_name"}
+        else:
             raise AccumulatorError(f"archive audit schema mismatch at row {row_number}")
-        for key in ARCHIVE_AUDIT_KEYS - {"archive_name"}:
+        if consensus_schema is None:
+            consensus_schema = row_consensus_schema
+        elif consensus_schema is not row_consensus_schema:
+            raise AccumulatorError("mixed archive audit schema versions")
+        for key in count_keys:
             value = row[key]
             if isinstance(value, bool) or not isinstance(value, int) or value < 0:
                 raise AccumulatorError(f"invalid archive audit {key} at row {row_number}")
@@ -355,7 +408,20 @@ def validate_archive_audits(
             raise AccumulatorError(f"archive checkpoint accounting mismatch at row {row_number}")
         if row["discovered_run_roots"] != row["checkpoint_runs"] + row["live_only_runs_excluded"]:
             raise AccumulatorError(f"archive run-root accounting mismatch at row {row_number}")
-    return dict(totals)
+        if row_consensus_schema:
+            fallback = row["competition_id_archive_consensus_fallback_journals"]
+            explicit = row["competition_id_explicit_journals"]
+            if explicit + fallback != row["checkpoint_runs"]:
+                raise AccumulatorError(
+                    f"archive competition-source accounting mismatch at row {row_number}"
+                )
+            if not isinstance(row["archive_consensus_fallback_used"], bool) or row[
+                "archive_consensus_fallback_used"
+            ] is not (fallback > 0):
+                raise AccumulatorError(
+                    f"archive consensus-use flag mismatch at row {row_number}"
+                )
+    return dict(totals), bool(consensus_schema)
 
 
 def validate_intake(
@@ -375,11 +441,16 @@ def validate_intake(
         "protocol"
     ) != INTAKE_PROTOCOL:
         raise AccumulatorError(f"intake status/protocol mismatch: {entry['drop_id']}")
-    if summary.get("git_commit") != expected_git_commit:
-        raise AccumulatorError(f"intake git commit mismatch: {entry['drop_id']}")
-    if summary.get("source_sha256") != expected_source_sha256:
-        raise AccumulatorError(f"intake source SHA mismatch: {entry['drop_id']}")
-    if not isinstance(summary.get("configuration"), dict) or not isinstance(
+    intake_identity = (summary.get("git_commit"), summary.get("source_sha256"))
+    current_identity = (expected_git_commit, expected_source_sha256)
+    legacy_identity = (LEGACY_INTAKE_GIT_COMMIT, LEGACY_INTAKE_SOURCE_SHA256)
+    if not all(isinstance(value, str) for value in intake_identity) or intake_identity not in {
+        current_identity,
+        legacy_identity,
+    }:
+        raise AccumulatorError(f"intake code identity mismatch: {entry['drop_id']}")
+    configuration = summary.get("configuration")
+    if not isinstance(configuration, dict) or not isinstance(
         summary.get("software"), dict
     ):
         raise AccumulatorError(f"intake execution metadata missing: {entry['drop_id']}")
@@ -437,7 +508,7 @@ def validate_intake(
     )
     if not isinstance(archive_audits, list):
         raise AccumulatorError(f"archive audits are not a list: {entry['drop_id']}")
-    audit_totals = validate_archive_audits(
+    audit_totals, audit_consensus_schema = validate_archive_audits(
         archive_audits, {row["name"] for row in archive_manifest}
     )
     provenance_rows = read_json_value(
@@ -445,7 +516,29 @@ def validate_intake(
     )
     if not isinstance(provenance_rows, list):
         raise AccumulatorError(f"source provenance is not a list: {entry['drop_id']}")
-    provenance = validate_provenance(provenance_rows, activated_at)
+    provenance, provenance_consensus_schema = validate_provenance(
+        provenance_rows, activated_at
+    )
+    if audit_consensus_schema is not provenance_consensus_schema:
+        raise AccumulatorError(f"intake schema-version mismatch: {entry['drop_id']}")
+    expected_consensus_schema = intake_identity == current_identity
+    if provenance_consensus_schema is not expected_consensus_schema:
+        raise AccumulatorError(f"intake schema/code identity mismatch: {entry['drop_id']}")
+    consensus_configuration = (
+        configuration.get("archive_consensus_fallback_protocol"),
+        configuration.get("archive_consensus_fallback_protocol_sha256"),
+    )
+    expected_configuration = (
+        ARCHIVE_CONSENSUS_PROTOCOL,
+        ARCHIVE_CONSENSUS_PROTOCOL_SHA256,
+    )
+    configuration_mismatch = (
+        consensus_configuration != expected_configuration
+        if provenance_consensus_schema
+        else consensus_configuration != (None, None)
+    )
+    if configuration_mismatch:
+        raise AccumulatorError(f"intake consensus protocol mismatch: {entry['drop_id']}")
     all_blind = read_jsonl(
         intake_dir / "all_blind_views.jsonl", outputs["all_blind_views_sha256"], opened
     )
@@ -508,7 +601,21 @@ def validate_intake(
             run["empty_code_nodes_excluded"] for run in provenance.values()
         ),
     }
-    if inventory != expected_inventory or audit_totals["checkpoint_runs"] != len(provenance):
+    fallback_runs = sum(
+        run.get("competition_id_source") == "archive_consensus_fallback"
+        for run in provenance.values()
+    )
+    if provenance_consensus_schema:
+        expected_inventory["archive_consensus_fallback_runs"] = fallback_runs
+    if (
+        inventory != expected_inventory
+        or audit_totals["checkpoint_runs"] != len(provenance)
+        or (
+            provenance_consensus_schema
+            and audit_totals["competition_id_archive_consensus_fallback_journals"]
+            != fallback_runs
+        )
+    ):
         raise AccumulatorError(f"intake inventory mismatch: {entry['drop_id']}")
     return {
         "drop_id": entry["drop_id"],

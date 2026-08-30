@@ -66,6 +66,7 @@ def make_intake(
     rows: list[dict],
     *,
     archive_sha: str | None = None,
+    legacy: bool = False,
 ) -> tuple[Path, str]:
     intake = root / f"intake-{tag}"
     intake.mkdir()
@@ -107,6 +108,8 @@ def make_intake(
             "task": "synthetic-prospective-task",
         }
     ]
+    if not legacy:
+        provenance[0]["competition_id_source"] = "explicit_journal"
     provenance_sha = write_json(intake / "source_provenance.json", provenance)
     # Deliberately invalid content: opening this file would fail the guarded tests.
     (intake / "label_vault.jsonl").write_text("DO_NOT_OPEN\n", encoding="utf-8")
@@ -126,6 +129,18 @@ def make_intake(
         "structural_pairs": 1 if endpoints == 2 else 0,
         "tasks": 1,
     }
+    if not legacy:
+        inventory["archive_consensus_fallback_runs"] = 0
+    configuration = (
+        {}
+        if legacy
+        else {
+            "archive_consensus_fallback_protocol": pipeline.ARCHIVE_CONSENSUS_PROTOCOL,
+            "archive_consensus_fallback_protocol_sha256": (
+                pipeline.ARCHIVE_CONSENSUS_PROTOCOL_SHA256
+            ),
+        }
+    )
     summary = {
         "activated_at_utc": ACTIVATED_AT,
         "blindness": {
@@ -134,8 +149,12 @@ def make_intake(
             "labels_used_for_run_selection": False,
             "metrics_computed": [],
         },
-        "configuration": {},
-        "git_commit": pipeline.git_commit(REPO_ROOT),
+        "configuration": configuration,
+        "git_commit": (
+            pipeline.LEGACY_INTAKE_GIT_COMMIT
+            if legacy
+            else pipeline.git_commit(REPO_ROOT)
+        ),
         "inputs": {
             "archive_manifest_sha256": archive_manifest_sha,
             "drop_dir": str(root),
@@ -161,7 +180,11 @@ def make_intake(
         },
         "selection_rule": "physical run root creation_time strictly after scorer activation",
         "software": {},
-        "source_sha256": pipeline.sha256(REPO_ROOT / "phase1" / "prospective_drop_intake.py"),
+        "source_sha256": (
+            pipeline.LEGACY_INTAKE_SOURCE_SHA256
+            if legacy
+            else pipeline.sha256(REPO_ROOT / "phase1" / "prospective_drop_intake.py")
+        ),
         "status": "PROSPECTIVE_DROP_INTAKE_COMPLETE",
     }
     summary_sha = write_json(intake / "summary.json", summary)
@@ -260,6 +283,20 @@ def test_zero_eligible_transaction_is_complete_without_nested_scores(tmp_path: P
     result = json.loads((registry_out / "summary.json").read_text(encoding="utf-8"))
     assert result["inventory"]["eligible_endpoints"] == 0
     assert result["inventory"]["physical_runs"] == 1
+
+
+def test_exact_legacy_intake_identity_and_schema_remain_valid(tmp_path: Path, monkeypatch):
+    intake, summary_sha = make_intake(tmp_path, "legacy-shadow", [], legacy=True)
+    score_dir = tmp_path / "scores-legacy"
+    guard_label_vault(monkeypatch)
+    assert pipeline.score_drop(
+        score_args(intake, summary_sha, score_dir, "legacy-shadow")
+    ) == 0
+    summary = json.loads((score_dir / "summary.json").read_text(encoding="utf-8"))
+    assert summary["status"] == "NO_ELIGIBLE_ENDPOINTS"
+    assert summary["inputs"]["intake_source_sha256"] == (
+        pipeline.LEGACY_INTAKE_SOURCE_SHA256
+    )
 
 
 def test_extra_label_field_fails_before_formal_output(tmp_path: Path):

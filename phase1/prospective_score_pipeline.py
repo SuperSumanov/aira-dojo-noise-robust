@@ -28,6 +28,14 @@ from . import fixed_decision_scorer as frozen_scorer
 PROTOCOL = "prospective_drop_scoring_v1"
 INTAKE_PROTOCOL = "prospective_drop_intake_v1"
 SCORER_PROTOCOL = "prospective_decision_v1"
+LEGACY_INTAKE_GIT_COMMIT = "90842c49dbd73d41d405a5ecdad2224ee447b375"
+LEGACY_INTAKE_SOURCE_SHA256 = (
+    "ef02ad7905c4fa3a17e4e91af373a735fd6a981590cd637a4af533eb067b9af2"
+)
+ARCHIVE_CONSENSUS_PROTOCOL = "prospective-intake-archive-consensus-fallback-v1"
+ARCHIVE_CONSENSUS_PROTOCOL_SHA256 = (
+    "3110da4403fa0477454d8e1415fd23e9a7a7482694b778784c9d5270b8e4993e"
+)
 ACTIVE_RECEIPT_SHA256 = (
     "cfab01a80536a50ef21c47ac269c7ce54a11a3b1f0b6daa5700873cbb02ce178"
 )
@@ -100,7 +108,7 @@ INTAKE_OUTPUT_KEYS = {
     "source_provenance_sha256",
     "structural_pairs_sha256",
 }
-INTAKE_INVENTORY_KEYS = {
+LEGACY_INTAKE_INVENTORY_KEYS = {
     "archives",
     "discovered_run_roots",
     "eligible_endpoints",
@@ -115,7 +123,10 @@ INTAKE_INVENTORY_KEYS = {
     "structural_pairs",
     "tasks",
 }
-PROVENANCE_KEYS = {
+INTAKE_INVENTORY_KEYS = LEGACY_INTAKE_INVENTORY_KEYS | {
+    "archive_consensus_fallback_runs"
+}
+LEGACY_PROVENANCE_KEYS = {
     "archive_name",
     "archive_sha256",
     "eligible",
@@ -129,6 +140,7 @@ PROVENANCE_KEYS = {
     "run_id",
     "task",
 }
+PROVENANCE_KEYS = LEGACY_PROVENANCE_KEYS | {"competition_id_source"}
 TRANSACTION_TOP_KEYS = {
     "status",
     "protocol",
@@ -366,12 +378,14 @@ def load_provenance(
     expected_sha: str,
     archive_shas: set[str],
     activated_at: Any,
+    consensus_schema: bool,
 ) -> dict[str, dict[str, Any]]:
     value = load_json_array(path, expected_sha, "source provenance")
     runs: dict[str, dict[str, Any]] = {}
     activation = frozen_scorer.parse_utc(str(activated_at))
+    expected_keys = PROVENANCE_KEYS if consensus_schema else LEGACY_PROVENANCE_KEYS
     for index, raw in enumerate(value, 1):
-        require_exact_keys(raw, PROVENANCE_KEYS, f"source provenance row {index}")
+        require_exact_keys(raw, expected_keys, f"source provenance row {index}")
         for key in (
             "archive_name",
             "archive_sha256",
@@ -399,6 +413,11 @@ def load_provenance(
         expected_flow = "scoreable" if raw["endpoints"] else "no_scoreable_code"
         if raw["flow_status"] != expected_flow:
             raise PipelineError(f"provenance flow status mismatch at row {index}")
+        if consensus_schema and raw["competition_id_source"] not in {
+            "explicit_journal",
+            "archive_consensus_fallback",
+        }:
+            raise PipelineError(f"invalid provenance competition source at row {index}")
         if run_id in runs:
             raise PipelineError("duplicate physical run in source provenance")
         runs[run_id] = raw
@@ -450,10 +469,17 @@ def validate_intake(
         "protocol"
     ) != INTAKE_PROTOCOL:
         raise PipelineError("intake is not complete")
+    if not isinstance(summary.get("configuration"), dict):
+        raise PipelineError("intake configuration must be an object")
     current_commit = git_commit(repo_root)
     intake_source = sha256(Path(__file__).with_name("prospective_drop_intake.py"))
-    if summary.get("git_commit") != current_commit or summary.get("source_sha256") != intake_source:
+    intake_identity = (summary.get("git_commit"), summary.get("source_sha256"))
+    if not all(isinstance(value, str) for value in intake_identity) or intake_identity not in {
+        (current_commit, intake_source),
+        (LEGACY_INTAKE_GIT_COMMIT, LEGACY_INTAKE_SOURCE_SHA256),
+    }:
         raise PipelineError("intake code identity mismatch")
+    consensus_schema = intake_identity == (current_commit, intake_source)
     if summary.get("activated_at_utc") != receipt.get("activated_at_utc"):
         raise PipelineError("intake activation timestamp mismatch")
     inputs = summary.get("inputs")
@@ -465,9 +491,25 @@ def validate_intake(
         raise PipelineError("intake summary sections must be objects")
     require_exact_keys(inputs, INTAKE_INPUT_KEYS, "intake inputs")
     require_exact_keys(outputs, INTAKE_OUTPUT_KEYS, "intake outputs")
-    require_exact_keys(inventory, INTAKE_INVENTORY_KEYS, "intake inventory")
-    for key in INTAKE_INVENTORY_KEYS:
+    expected_inventory_keys = (
+        INTAKE_INVENTORY_KEYS if consensus_schema else LEGACY_INTAKE_INVENTORY_KEYS
+    )
+    require_exact_keys(inventory, expected_inventory_keys, "intake inventory")
+    for key in expected_inventory_keys:
         strict_nonnegative_int(inventory[key], f"intake inventory {key}")
+    configuration = summary["configuration"]
+    consensus_configuration = (
+        configuration.get("archive_consensus_fallback_protocol"),
+        configuration.get("archive_consensus_fallback_protocol_sha256"),
+    )
+    configuration_mismatch = (
+        consensus_configuration
+        != (ARCHIVE_CONSENSUS_PROTOCOL, ARCHIVE_CONSENSUS_PROTOCOL_SHA256)
+        if consensus_schema
+        else consensus_configuration != (None, None)
+    )
+    if configuration_mismatch:
+        raise PipelineError("intake archive-consensus protocol mismatch")
     if require_sha(inputs.get("freeze_receipt_sha256"), "intake receipt") != ACTIVE_RECEIPT_SHA256:
         raise PipelineError("intake scorer receipt mismatch")
     if require_sha(
@@ -511,6 +553,7 @@ def validate_intake(
         require_sha(outputs.get("source_provenance_sha256"), "source provenance"),
         archive_shas,
         receipt["activated_at_utc"],
+        consensus_schema,
     )
     if len(provenance) != inventory["runs"]:
         raise PipelineError("intake run inventory mismatch")
@@ -520,6 +563,11 @@ def validate_intake(
         raise PipelineError("eligible manifest contains a non-eligible provenance run")
     if len(eligible_provenance) != inventory["eligible_runs"]:
         raise PipelineError("intake eligible run inventory mismatch")
+    if consensus_schema and inventory["archive_consensus_fallback_runs"] != sum(
+        row["competition_id_source"] == "archive_consensus_fallback"
+        for row in provenance.values()
+    ):
+        raise PipelineError("intake archive-consensus fallback inventory mismatch")
     return {
         "summary": summary,
         "summary_sha256": sha256(summary_path),

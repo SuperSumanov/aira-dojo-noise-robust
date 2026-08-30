@@ -24,7 +24,12 @@ Target-522 monitor 仍 live/持锁；前瞻 value 未读。
 credential-first intake → transition/receipt/config-v9/Target-300/WL → 六小时 guard。所有 cohort/scorer/state root/门保持不变；
 guard 只读 PID、锁、LATEST、marker、文件名计数、哈希和 `outcomes_read=false` 结构汇总。唯一 successor 只写 identity handoff，
 config-v2 只写 metadata 后停在 redaction/review 前；未知重复、哈希漂移或进程异常 fail-closed。GPU/API/model-fit/base-update=
-`0/0/0/0`。当前状态为 **`FROZEN_BEFORE_V5_RESTART`**，详见同日续接预注册。
+`0/0/0/0`。
+
+v5 已由公开 exact commit=`fc1ca43b...79f86d` 部署。第一次推前回执因中文路径 quote bug 漏扫一个 blob，已作废且未部署；
+NUL-path r2 重跑为 changed paths=`6`、credential filename/blob=`0/0`、focused/full=`14/1677 passed`。启动后七个
+intake/support/guard PID 全 live、锁 held，launcher manifest=`760c8300...5dcf8c`；独立 post-deploy 仍为 LATEST 887、
+sidecar count 0、guard first poll 正常、prospective values 未读。当前状态为 **`V5_LIVE_AT_BASELINE_887`**，详见同日部署回执。
 
 ## 0JA. 2026-08-30 influence-bounded task reweight 已在新模型 readout 前冻结
 

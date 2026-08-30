@@ -47,6 +47,28 @@ GPU/API/model fit/base update=`0/0/0/0`。transition snapshot chain 已完成并
 允许主张：append-only 语料在遇到真实 schema/code-epoch 漂移时可 fail-closed、独立复验并无损恢复，且新数据已安全增长。
 禁止把本节解释成 critic 精度、scaling、search utility 或方法效果正结果。
 
+在此基础上，新增了不导入 production runner 的通用 snapshot-delta verifier，用于证明任意两个不可变生产
+snapshot 之间的 append-only lineage，而不输出 archive/drop/run/endpoint/pair/candidate identity。第一次 formal
+在 focused/full=`34/1819 passed` 后因独立实现错误地使用 compact JSON separators 而在第一个真实 projection 门
+fail-closed，未生成 receipt；失败根 manifest=`ff5a27a190443f01d9cdb91f69286ec321b8ce125169d1eec9402758b50e2d8b`。
+修复只令独立重建与已冻结 production canonical JSONL 的标准 separators 一致，并新增与 production bytes 的精确
+兼容测试；随后一次 checkout 前失败源于远端尚未 fetch 新 commit，producer/tests 均未启动，失败根 manifest=
+`2255a2fb50f02ab7aa6d1bd7c02b7d3e53e4aeefa001f7282b1aaab64a0c4697`。两者均只读封存且未复用目录。
+
+最终 exact commit=`734a2b14bc20e97c95421c8faaf26b1109c329e5`、fresh root=`formal-734a2b1-v3` 通过
+focused/full=`36/1821 passed`（48 warnings），producer A/B 与不导入 production 的 grounded verifier A/B 均逐字节
+一致；grounded verifier 自行复验每个 manifest payload，并从 transactions 重建 intake/score projections。formal
+manifest=`69149e510d0bc519363dc48b57e578a3933757ae500e8e830ab60ff849d0bba0`。它确认
+`813f3c1c...2b54d -> 0c0584b8...b07a` 为 exact append：transactions=`118->119`，inventory
+`495/469/12,536/3,144/34 -> 499/473/12,680/3,151/34`，增量=`4/4/144/7/0`；独立 postflight
+再次通过 manifest、只读、trace/security 与 clean-worktree 门，network/forbidden/credential hits=`0/0/0`。
+这是数据版本 lineage/auditability 的正面基础设施结果，不是 predictor 精度或 search utility 结果。
+
+同次 outcome-blind 状态核验：senior source/ledger archives=`267/267`，baseline/committed/rejected/pending/ready=
+`128/119/20/0/0`，故当前没有漏处理的新 archive；transition 已与 LATEST 对齐，WL 仍为 468 runs，距离 LATEST
+473 仅 `5<12`，按冻结 batch 门等待，receipt-support 也因此等待；Target-522 还差 49 runs。所有八个相关 monitor
+均存活；没有读取 label/outcome/prediction value/accuracy/utility，GPU/API/model fit/base update=`0/0/0/0`。
+
 ## 0KE. 2026-08-31 新归档 intake 在第二个 uncommitted archive fail-closed；共识回填规则已在 stem-match 前冻结
 
 267 个归档中的第一个新 archive 已形成 LATEST=`813f3c1c...2b54d`，first-960=`469 runs / 12,536 endpoints /

@@ -13,6 +13,40 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KG. 2026-08-31 0829 语料摄取已排空；494-run 双 escrow 公共结构支持正式认证
+
+senior source 与 intake 现均为 275 个 archives；baseline/transactions/rejected/ready=`128/126/21/0`。
+其中一个 archive 的 8 个 discovered run roots 全部只有 live state、checkpoint journals=`0`，因此按
+`ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS` 整包结构拒绝。该拒绝先在 exact pre-change commit=`eff8970...`
+完成不变性 A/B、独立诊断及 focused/full=`29/1835 passed`，再以 commit=
+`b81dd3bfb34a18e85875680fa849884a3d6fae4e` 部署；diagnostic/registry SHA-256=
+`094fe135...f4a` / `e77654a7...2093`。它是 append-only intake 的合法结构拒绝，不是数据丢失或科学负结果。
+
+队列排空后的不可变 LATEST=`30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f`，
+transactions=`126`；physical/eligible first-960 runs/endpoints/structural pairs/tasks=
+`520/494/13,098/3,230/34`，closure 尚未提供。continuous snapshot-delta chain 的 exact control commit=
+`2e59423736747f7d806d50a69fd1f312d4927c48`；final manifest=
+`88188e3b983e13ce1efc21dd3f7b3a1c9f65f11827d0e6d5d4b2c6104a267f07`，primary A/B 与不导入
+production 的 grounded A/B、完整 payload/hash、trace/security 和只读门均 PASS。
+
+transition chain 在 control/scorer commits=`bc362dfe...6ee0` / `7458f096...748e` 上提升到同一 LATEST；
+selected/added/removed runs=`494/20/0`，与前态 common pairs=`3,152`。artifact summary=
+`9826529f...3c7`，额外 postflight manifest=`dc2647e3...3d8`。WL chain 在 control/scorer commits=
+`c8e6775d...93e7` / `031edb34...fb1c` 上恰好跨过预注册 `minimum_new_runs=12` 批门；
+selected/added/removed=`494/12/0`、与前态 common pairs=`3,163`，artifact summary=`e33edc1e...83db`。
+
+当 `WL=transition=LATEST` 连续三次稳定后，receipt-support exact commit=
+`9f2cbe9bff91c2f0ee6f86ff93d9737f9431547f` 完成 builder A/B 与不导入 builder 的 verifier A/B，
+两组均逐字节一致；receipt SHA-256=`6f281979732c3171d99bef59ad7064934f053ab185dec92c498185f7549e4f9e`。
+独立 postflight 再验 manifest、四个 rc、trace/security、symlink 与只读门，认证当前两个 escrow 的 exact
+canonical common support=`3,230 structural pairs`；postflight manifest=`fc581b06...f3bed`。
+
+允许主张：我们已有可逐快照复验、能在真实 schema/code epoch 与无 journal 归档上 fail-closed，并能对两个冻结
+prediction escrow 给出 exact common-support certificate 的正面 benchmark-audit 资产。禁止将其解释为 critic
+accuracy、模型 scaling、search utility 或方法效果提升；first-960 仍未 closure，prediction pair files/values、label、
+outcome、accuracy、utility、candidate identity 均未读取，GPU/API/model fit/base update=`0/0/0/0`。机器回执见
+`phase1/results/prospective_final_support_30945550_20260831/`。
+
 ## 0KF. 2026-08-31 score 双层 code epoch 迁移正式通过；新归档已进入不可变 LATEST
 
 第二个 0828 archive 的共识回填本身已通过，但第一次生产重试在重放历史 score registry 时 fail-closed：旧 118 个

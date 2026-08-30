@@ -1,0 +1,97 @@
+{
+  "status": "FINAL_OUTCOME_BLIND_STRUCTURAL_SUPPORT_CERTIFIED",
+  "recorded_at_utc_date": "2026-08-31",
+  "snapshot": {
+    "sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "transactions": 126,
+    "inventory": {
+      "physical_runs": 520,
+      "eligible_runs": 494,
+      "provisional_first960_runs": 494,
+      "endpoints": 13098,
+      "structural_pairs": 3230,
+      "tasks": 34
+    },
+    "closure_provided": false,
+    "all_scheduled_runs_uploaded": null
+  },
+  "intake": {
+    "senior_archives": 275,
+    "baseline_archives": 128,
+    "ready_archives": 0,
+    "rejected_archives": 21,
+    "committed_transactions": 126,
+    "deployment_commit": "b81dd3bfb34a18e85875680fa849884a3d6fae4e",
+    "deployment_manifest_sha256": "a11709f85f0cb1e5e0c50cb816571a051aa75aaa3a03d4bda5e4c34d79e16f05"
+  },
+  "snapshot_delta_chain": {
+    "control_commit": "2e59423736747f7d806d50a69fd1f312d4927c48",
+    "final_manifest_sha256": "88188e3b983e13ce1efc21dd3f7b3a1c9f65f11827d0e6d5d4b2c6104a267f07",
+    "postflight_status": "PASS"
+  },
+  "transition": {
+    "control_commit": "bc362dfe95287f199f6bc4a1dc8f781f3b1b6ee0",
+    "scorer_commit": "7458f0969b92a258ea0e495bbbee282aa12b748e",
+    "artifact_summary_sha256": "9826529f9273789e22e3fbecdaf3cb99fd348319a5d101e6412290cd19b8b3c7",
+    "postflight_manifest_sha256": "dc2647e3cb6679db04e946cfa105bf405f6365e580b8fa1d0b7597ee2bdfb3d8",
+    "selected_runs": 494,
+    "added_runs": 20,
+    "removed_runs": 0,
+    "common_pairs_with_prior_state": 3152,
+    "producer_runs": 1,
+    "independent_verifier_runs": 1,
+    "chain_verifier_runs": 1
+  },
+  "wl": {
+    "control_commit": "c8e6775d11d20d5008add11763b93e7d6c99362d",
+    "scorer_commit": "031edb34400781ca026bc9833ac7f850312ffb1c",
+    "artifact_summary_sha256": "e33edc1e8deefcb1a2690b80bcc9326ce409b155e99d7c0723b2f4242e3a83db",
+    "output_manifest_sha256": "c7793ca9c89a85e44c1a5344367cfa43847dc8088054887a85e92f7afb228de1",
+    "selected_runs": 494,
+    "added_runs": 12,
+    "removed_runs": 0,
+    "common_pairs_with_prior_state": 3163,
+    "minimum_new_runs_gate": 12,
+    "producer_runs": 1,
+    "independent_verifier_runs": 1,
+    "chain_verifier_runs": 1
+  },
+  "receipt_support": {
+    "control_commit": "9f2cbe9bff91c2f0ee6f86ff93d9737f9431547f",
+    "receipt_sha256": "6f281979732c3171d99bef59ad7064934f053ab185dec92c498185f7549e4f9e",
+    "output_manifest_sha256": "7281d87f621ab21d4b73741345bdacd5df310a70560f76fa16abd61459d3f437",
+    "postflight_manifest_sha256": "fc581b06f6d39135510bcade0e40afec5b7034e50d3318823e64139d08af3bed",
+    "receipt_certified_common_support_pairs": 3230,
+    "builder_runs": 2,
+    "independent_verifier_runs": 2,
+    "builder_ab_byte_identical": true,
+    "verifier_ab_byte_identical": true
+  },
+  "structural_rejection": {
+    "registry_record": "../prospective_structural_rejection_plant_20260831/structural_rejections_0829_plant.json",
+    "reason": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+    "discovered_run_roots": 8,
+    "checkpoint_journals": 0,
+    "diagnostic_sha256": "094fe135ca00ecdb3ad9de8ec69c7da026624918508b67266b78321fb8127f4a",
+    "registry_sha256": "e77654a795ebc05a773ea81aacd91801303d2a57c5a14b43c290204e26852093"
+  },
+  "scope": {
+    "prediction_pair_files_opened": false,
+    "prediction_values_accessed": false,
+    "labels_read": false,
+    "prospective_outcomes_read": false,
+    "accuracy_computed": false,
+    "utility_computed": false,
+    "candidate_identity_read": false,
+    "effect_metrics_computed": [],
+    "config_v2_filename_count": 0,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "claim_boundary": {
+    "allowed": "The append-only corpus, frozen WL and transition escrows, and exact canonical common-support receipt form a reproducible outcome-blind benchmark-audit asset.",
+    "forbidden": "This receipt is not evidence of critic accuracy, model scaling, search utility, or any method-effect gain. The first-960 cohort is not closed."
+  }
+}

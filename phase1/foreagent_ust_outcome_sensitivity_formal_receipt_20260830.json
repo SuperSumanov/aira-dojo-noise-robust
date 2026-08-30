@@ -1,0 +1,202 @@
+{
+  "protocol": "foreagent-ust-outcome-sensitivity-formal-receipt-v1",
+  "status": "FOREAGENT_UST_OUTCOME_SENSITIVITY_FORMAL_COMPLETE",
+  "classification": "POSTDISCLOSURE_GRAPH_WEIGHTED_SENSITIVITY_COMPLETE",
+  "completed_at_utc": "2026-08-30T06:21:28Z",
+  "independently_checked_at_utc": "2026-08-30T06:22:48Z",
+  "formal": {
+    "result_root": "/research/d7/spc/yzyang4/foreagent-ust-outcome-sensitivity/formal-b0fddf6-v4",
+    "source_commit": "b0fddf62134f006809278418a109411f4426da87",
+    "scientific_protocol_sha256": "7d47b1aa6ef3ffb61c47f1fe3d6631a5bb7b2c97228de8a7c9192b9fc557a425",
+    "execution_addendum_sha256": "2da287a5cc1221a4be6e553a184dda8b2b866c33f6bf4efc1e2b419df58c7869",
+    "identity_addendum_sha256": "e2d8f6a5de13698c0940c0e19ae4d4650eeeff7f09c338a7c0dc8c68df6f3684",
+    "numeric_addendum_sha256": "5a47d185fb210027ade9c9eee7c23ac0fbc6857e05f63e7e99a30ac77383fb69",
+    "result_sha256": "ec51dcfadb2c322b784841f8f47fa7e71f0d75d631fa9224dcf32c46ceff4083",
+    "independent_verification_sha256": "6a0942e070362f85ef45c270b3f3d00bb689337c08dc7260e74abd8859df43f1",
+    "manifest_sha256": "a5d35103f8507396ead59d28695da72005d7dc7383c0be6b1af58b8a5dea0567",
+    "manifest_entries": 23,
+    "manifest_verification_passed": true,
+    "producer_a_b_byte_exact": true,
+    "verifier_a_b_byte_exact": true,
+    "producer_stderr_bytes": [0, 0],
+    "verifier_stderr_bytes": [0, 0],
+    "root_mode": "500",
+    "result_mode": "400",
+    "verification_mode": "400",
+    "focused_tests": {
+      "passed": 13,
+      "seconds": 0.46
+    },
+    "full_phase1_tests": {
+      "passed": 1773,
+      "warnings": 48,
+      "seconds": 106.63
+    }
+  },
+  "source_bindings": {
+    "producer_source_sha256": "cf3836a90883f6458505411586bfa8f2ffdf2ff26ef3b267c6a5ebba543fb634",
+    "verifier_source_sha256": "6cdc55db837318c871d134e317a70e1df3910af2f19f8884763c65c8a765d096",
+    "test_source_sha256": "008cc7139d5e06f5f3a4b8636082946ee2906507b3977da8725d7d4fa3a4d232",
+    "runner_source_sha256": "ae5eb811ca87059560b8b0eb89fed93753d3828c64170bdb4948038e4c2907c1",
+    "source_manifest_sha256": "3df2715b2d2e5f3cc6193c07c99eb682e042e8aa6cb724b046b2469b35773a4e",
+    "source_master_sha256": "480616317ddebb249084dbc8b36b4060fac4b77353fce16b436351eab9c235fe"
+  },
+  "independent_verification": {
+    "status": "INDEPENDENT_GROUNDED_RECONSTRUCTION_EXACT_WITHIN_TOLERANCE",
+    "maximum_absolute_numeric_difference_decimal_17g": "2.2737367544323206e-13",
+    "pairs": 18381,
+    "tasks": 26,
+    "incidence_rank": 868
+  },
+  "population": {
+    "source_files": 156,
+    "source_records": 110620,
+    "deepseek_grid_pairs": 18438,
+    "gpt_grid_pairs": 18430,
+    "cross_model_common_grid_pairs": 18430,
+    "common_finite_directional_pairs": 18381,
+    "tasks": 26,
+    "release_runs_averaged_within_pair": true
+  },
+  "pair_graph": {
+    "pair_rows": 18381,
+    "vertices": 894,
+    "connected_components": 26,
+    "complete_components": 7,
+    "incomplete_components": 19,
+    "incidence_rank": 868,
+    "cycle_rows": 17513,
+    "weight_sum_decimal_17g": "867.99999999996919",
+    "minimum_weight_decimal_17g": "0.039999999999999938",
+    "median_weight_decimal_17g": "0.040000000000000029",
+    "maximum_weight_decimal_17g": "0.66666666666666663",
+    "unit_probability_bridge_edges": 0,
+    "edge_distribution_total_variation_decimal_17g": "0.11449711207982645",
+    "task_weight_total_variation_decimal_17g": "0.11373050512738934",
+    "raw_max_task_share_decimal_17g": "0.066644905065012791",
+    "rank_max_task_share_decimal_17g": "0.056451612903225805"
+  },
+  "models": {
+    "deepseek": {
+      "raw_pair_micro": {
+        "point_decimal_17g": "0.6152186134232811",
+        "task_clustered_ci95": ["0.57549354803132236", "0.65334837838299908"]
+      },
+      "ust_rank_micro": {
+        "point_decimal_17g": "0.6052414090772692",
+        "task_clustered_ci95": ["0.56350876665670313", "0.64544843859751855"]
+      },
+      "ust_minus_raw_rank_micro": {
+        "point_decimal_17g": "-0.0099772043460119031",
+        "task_clustered_ci95": ["-0.024529104704855254", "0.0026177484893845637"]
+      },
+      "raw_task_macro": {
+        "point_decimal_17g": "0.60672439035215153",
+        "task_clustered_ci95": ["0.54980211970678328", "0.66480748744842599"]
+      },
+      "ust_task_macro": {
+        "point_decimal_17g": "0.60580917495867836",
+        "task_clustered_ci95": ["0.5484784165755584", "0.66450416281141678"]
+      },
+      "ust_minus_raw_task_macro": {
+        "point_decimal_17g": "-0.00091521539347316772",
+        "task_clustered_ci95": ["-0.0027681028509883854", "5.9468097512005436e-05"]
+      },
+      "leave_one_task_out_ust_minus_raw_positive_count": 0
+    },
+    "gpt": {
+      "raw_pair_micro": {
+        "point_decimal_17g": "0.58895961409426412",
+        "task_clustered_ci95": ["0.55143516751195221", "0.62738914373088672"]
+      },
+      "ust_rank_micro": {
+        "point_decimal_17g": "0.58113517235648726",
+        "task_clustered_ci95": ["0.54485490930335956", "0.61819437973910329"]
+      },
+      "ust_minus_raw_rank_micro": {
+        "point_decimal_17g": "-0.0078244417377768549",
+        "task_clustered_ci95": ["-0.020361700974923402", "0.0032945061117868324"]
+      },
+      "raw_task_macro": {
+        "point_decimal_17g": "0.58006685671784952",
+        "task_clustered_ci95": ["0.52460590002578023", "0.63685713593763704"]
+      },
+      "ust_task_macro": {
+        "point_decimal_17g": "0.57909042590108883",
+        "task_clustered_ci95": ["0.52350830460220199", "0.63619141837394"]
+      },
+      "ust_minus_raw_task_macro": {
+        "point_decimal_17g": "-0.00097643081676068721",
+        "task_clustered_ci95": ["-0.0027150123363389733", "0.00017573968559969622"]
+      },
+      "leave_one_task_out_ust_minus_raw_positive_count": 0
+    }
+  },
+  "paired_deepseek_minus_gpt": {
+    "raw_pair_micro": {
+      "point_decimal_17g": "0.026258999329017273",
+      "task_clustered_ci95": ["-0.0035077846557868969", "0.058978263879274531"]
+    },
+    "ust_rank_micro": {
+      "point_decimal_17g": "0.024106236720782173",
+      "task_clustered_ci95": ["-0.0040085986029572184", "0.055564483872122969"]
+    },
+    "raw_task_macro": {
+      "point_decimal_17g": "0.026657533634302202",
+      "task_clustered_ci95": ["0.0021004144235817652", "0.053036401295895153"]
+    },
+    "ust_task_macro": {
+      "point_decimal_17g": "0.02671874905758977",
+      "task_clustered_ci95": ["0.0019568230933495541", "0.053442489897444191"]
+    },
+    "ust_minus_raw_rank_micro": {
+      "point_decimal_17g": "-0.0021527626082351002",
+      "task_clustered_ci95": ["-0.0084926274707667476", "0.0032505725092570638"]
+    },
+    "ust_minus_raw_task_macro": {
+      "point_decimal_17g": "6.1215423287568071e-05",
+      "task_clustered_ci95": ["-0.0006165995949058492", "0.00080876824744826464"]
+    },
+    "leave_one_task_out_raw_task_macro_positive_count": 26,
+    "leave_one_task_out_ust_task_macro_positive_count": 26,
+    "leave_one_task_out_total": 26
+  },
+  "inference": {
+    "primary_cluster": "task",
+    "bootstrap_repetitions": 20000,
+    "model_metric_seed": 20260830,
+    "paired_metric_seed": 20260831,
+    "pair_micro_ust_shift_supported": false,
+    "task_macro_ust_shift_supported": false,
+    "pair_micro_model_delta_supported": false,
+    "task_macro_model_delta_supported_before_and_after_ust": true
+  },
+  "failed_attempt_chain": {
+    "failed_roots_reused": false,
+    "attempts_before_v4": 3,
+    "all_failed_before_complete_result": true,
+    "causes": [
+      "BLAS thread oversubscription",
+      "raw path identity was not task-scoped",
+      "raw reproduction tolerance was below legitimate binary64 summation error"
+    ]
+  },
+  "scope": {
+    "historical_public_scores_and_predictions_read": true,
+    "confidence_values_read": false,
+    "prospective_values_read": false,
+    "solution_code_read": false,
+    "raw_task_or_endpoint_identities_emitted": false,
+    "producer_forbidden_path_hits": 0,
+    "verifier_forbidden_path_hits": 0,
+    "producer_network_hits": 0,
+    "verifier_network_hits": 0,
+    "credential_filename_hits": 0,
+    "credential_content_file_hits": 0,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  },
+  "interpretation": {
+    "allowed": "Graph-aware UST weighting materially changes the implicit edge/task distribution and lowers both released systems' pair-micro point estimates, while the task-macro DeepSeek-over-GPT ordering and its task-clustered interval remain stable on the exact common support.",
+    "forbidden": "This is not prospective confirmation, a new graph theorem, an effective sample-size claim, a model-improvement result, proof of a significant UST-induced accuracy drop, or a reclassification of FOREAGENT's agent-level result or the prior insufficient-support audit."
+  }
+}

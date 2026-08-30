@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JX. 2026-08-30 FOREAGENT exact-grid UST outcome sensitivity 正式完成：外部模型比较对图重加权稳健
+
+v4 exact commit=`b0fddf62134f006809278418a109411f4426da87` 已在 fresh root
+`/research/d7/spc/yzyang4/foreagent-ust-outcome-sensitivity/formal-b0fddf6-v4` 完成。focused/full=
+`13/1773 passed`、48 warnings；producer A/B 与独立 grounded-inverse verifier A/B 各自逐字节一致，23-entry manifest
+全通过，独立最大数值差=`2.2737367544323206e-13`，结果树只读，forbidden-path/network/credential hits 全为 0。
+
+exact common support 为 18,381 pairs、894 vertices、26 components、incidence rank=`868`、cycle rows=`17,513`；
+edge/task-weight TV=`0.11449711207982645/0.11373050512738934`。DeepSeek pair-micro raw/UST=
+`0.6152186134232811/0.6052414090772692`，shift=`-0.0099772043460119031`，95% task CI=
+`[-0.024529104704855254,0.0026177484893845637]`；GPT raw/UST=
+`0.58895961409426412/0.58113517235648726`，shift=`-0.0078244417377768549`，CI=
+`[-0.020361700974923402,0.0032945061117868324]`。两项下降均不能称显著。
+
+正结果是模型比较的外部稳健性：DeepSeek−GPT equal-task task-macro 在 raw 下为 `0.026657533634302202`，
+95% CI=`[0.0021004144235817652,0.053036401295895153]`；UST 后为 `0.02671874905758977`，CI=
+`[0.0019568230933495541,0.053442489897444191]`，26/26 LOTO 均保持正号。允许主张 graph-aware correction
+非平凡地改变绝对 headline，但不推翻主要模型比较；禁止称 UST 提升、显著降分、ESS、新图定理或重写 FOREAGENT 的
+agent-level/prior insufficient-support 结论。result/verification/manifest SHA-256=`ec51dcfa...4083` /
+`6a0942e0...43f1` / `a5d35103...0567`，GPU/API/model fit/base update=`0/0/0/0`。详见正式报告与机器回执。
+
 ## 0JW. 2026-08-30 FOREAGENT v3 的 raw reproduction 门误设为 `1e-15`；v4 以 `64ε` 修正
 
 v3 exact commit=`93154e54987c3fec720f50b754785737f3e0a1c2` 通过 focused/full=`12/1772 passed`、48 warnings，

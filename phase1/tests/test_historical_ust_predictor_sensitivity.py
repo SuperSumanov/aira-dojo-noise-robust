@@ -15,7 +15,7 @@ from phase1 import verify_historical_ust_predictor_sensitivity as verifier
 
 ROOT = Path(__file__).resolve().parents[2]
 RUNNER = ROOT / "phase1/scripts/run_historical_ust_predictor_sensitivity_formal_20260830.sh"
-PROTOCOL = ROOT / "phase1/historical_ust_predictor_sensitivity_v1.json"
+PROTOCOL = ROOT / "phase1/historical_ust_predictor_sensitivity_v2.json"
 
 
 def graph_row(index: int, task: str, parent: str, left: str, right: str) -> tuple[tuple, dict]:
@@ -95,8 +95,12 @@ def test_neutral_credit_and_weight_shift_match_independent_aggregation(monkeypat
         key: prediction_row(row, correct=value, tie=(value is None))
         for (key, row), value in zip(items, (True, False, None, True))
     }
-    producer_metrics, producer_tasks, producer_parents = producer.model_metrics(rows, weights)
-    verifier_metrics, verifier_tasks, verifier_parents = verifier.aggregate(rows, weights)
+    (
+        producer_metrics, producer_tasks, producer_task_parents, producer_parents
+    ) = producer.model_metrics(rows, weights)
+    (
+        verifier_metrics, verifier_tasks, verifier_task_parents, verifier_parents
+    ) = verifier.aggregate(rows, weights)
     assert producer.credit(rows[items[2][0]]) == 0.5
     assert float(producer_metrics["ust_task_macro_accuracy_decimal_17g"]) == pytest.approx(
         verifier_metrics["ust_task"]
@@ -107,7 +111,34 @@ def test_neutral_credit_and_weight_shift_match_independent_aggregation(monkeypat
     assert [float(value) for value in producer_metrics["ust_minus_raw_task_macro_clustered_ci95"]] \
         == pytest.approx(verifier_metrics["task_shift_ci"])
     assert producer_tasks == pytest.approx(verifier_tasks)
+    assert producer_task_parents == pytest.approx(verifier_task_parents)
     assert producer_parents == pytest.approx(verifier_parents)
+
+
+def test_nested_task_parent_macro_does_not_weight_tasks_by_parent_count(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(producer, "BOOTSTRAP_REPETITIONS", 200)
+    monkeypatch.setattr(verifier, "REPETITIONS", 200)
+    items = [
+        graph_row(0, "task-a", "parent-a1", "a", "b"),
+        graph_row(1, "task-a", "parent-a2", "c", "d"),
+        graph_row(2, "task-b", "parent-b1", "e", "f"),
+    ]
+    base = dict(items)
+    weights, _graph = producer.build_weights(base)
+    rows = {
+        key: prediction_row(row, correct=value)
+        for (key, row), value in zip(items, (True, True, False))
+    }
+    metrics, _task, task_parent, _parent = producer.model_metrics(rows, weights)
+    rebuilt, _task_v, task_parent_v, _parent_v = verifier.aggregate(rows, weights)
+    assert float(metrics["raw_parent_macro_accuracy_decimal_17g"]) == pytest.approx(2 / 3)
+    assert float(metrics["raw_task_parent_macro_accuracy_decimal_17g"]) == pytest.approx(0.5)
+    assert float(metrics["ust_task_parent_macro_accuracy_decimal_17g"]) == pytest.approx(0.5)
+    assert task_parent == pytest.approx({"task-a": 1.0, "task-b": 0.0})
+    assert task_parent == pytest.approx(task_parent_v)
+    assert rebuilt["ust_task_parent"] == pytest.approx(0.5)
 
 
 def test_bootstrap_is_deterministic_and_uses_repetition_relative_order_statistics(
@@ -165,6 +196,51 @@ def test_identity_emission_guard_detects_task_parent_endpoint_or_run() -> None:
     assert "parent-secret" not in verifier.all_strings(claimed)
 
 
+def test_synthetic_931_pair_end_to_end_claim_is_independently_verified(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    static_path = tmp_path / "static.jsonl"
+    tfidf_path = tmp_path / "tfidf.jsonl"
+    static_rows = []
+    tfidf_rows = []
+    for index in range(931):
+        _item_key, base = graph_row(
+            index, f"task-{index % 28}", f"parent-{index}", f"left-{index}", f"right-{index}"
+        )
+        common = {
+            **base,
+            "correct": index % 3 != 0,
+            "margin": 1.0 if index % 3 != 0 else -1.0,
+            "split": "test",
+            "tie": False,
+        }
+        tfidf_rows.append(common)
+        for model in producer.STATIC_MODELS:
+            static_rows.append({**common, "abstain": False, "model": model})
+    static_path.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in static_rows),
+                           encoding="utf-8")
+    tfidf_path.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in tfidf_rows),
+                          encoding="utf-8")
+    static_sha = hashlib.sha256(static_path.read_bytes()).hexdigest()
+    tfidf_sha = hashlib.sha256(tfidf_path.read_bytes()).hexdigest()
+    monkeypatch.setattr(producer, "STATIC_PAIR_SHA256", static_sha)
+    monkeypatch.setattr(producer, "TFIDF_PAIR_SHA256", tfidf_sha)
+    monkeypatch.setattr(producer, "BOOTSTRAP_REPETITIONS", 200)
+    monkeypatch.setattr(verifier, "STATIC_SHA", static_sha)
+    monkeypatch.setattr(verifier, "TFIDF_SHA", tfidf_sha)
+    monkeypatch.setattr(verifier, "REPETITIONS", 200)
+    claimed = producer.analyze(static_path, tfidf_path)
+    receipt = verifier.verify(claimed, static_path, tfidf_path)
+    assert claimed["models"][producer.FROZEN_CHAMPION][
+        "ust_task_parent_macro_accuracy_decimal_17g"
+    ] == claimed["models"][producer.FROZEN_CHAMPION][
+        "raw_task_parent_macro_accuracy_decimal_17g"
+    ]
+    assert receipt["status"] == "INDEPENDENT_GROUNDED_RECONSTRUCTION_EXACT_WITHIN_TOLERANCE"
+    assert receipt["pairs"] == 931 and receipt["models"] == 12
+    assert receipt["raw_pair_task_parent_endpoint_identities_emitted"] is False
+
+
 def test_exclusive_output_refuses_overwrite(tmp_path: Path) -> None:
     output = tmp_path / "result.json"
     producer.write_exclusive(output, {"status": "ok"})
@@ -194,8 +270,10 @@ def test_runner_is_hash_bound_repeated_traced_and_cpu_only() -> None:
 def test_protocol_binds_every_runtime_source_and_freezes_disclosure() -> None:
     protocol = json.loads(PROTOCOL.read_text(encoding="utf-8"))
     assert protocol["status"] == (
-        "FROZEN_AFTER_HISTORICAL_SCHEMA_DESERIALIZATION_BEFORE_UST_OUTCOME_AGGREGATION"
+        "FROZEN_AFTER_V1_INVALIDATED_BEFORE_OUTCOME_AGGREGATION_WITH_NESTED_TASK_PARENT_HEADLINE"
     )
+    assert protocol["v1_invalid_attempt"]["result_a_created"] is False
+    assert protocol["v1_invalid_attempt"]["result_b_created"] is False
     assert protocol["disclosure"]["historical_prediction_outcomes_already_revealed"] is True
     assert protocol["resources"] == {
         "gpu": 0,

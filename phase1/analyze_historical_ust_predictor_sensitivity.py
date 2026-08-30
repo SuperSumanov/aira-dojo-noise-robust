@@ -295,7 +295,9 @@ def bootstrap_ci(values: Mapping[Any, float], seed: int) -> tuple[float, float]:
 def model_metrics(
     rows: Mapping[tuple[Any, ...], Mapping[str, Any]],
     weights: Mapping[tuple[Any, ...], float],
-) -> tuple[dict[str, Any], dict[str, float], dict[tuple[str, str], float]]:
+) -> tuple[
+    dict[str, Any], dict[str, float], dict[str, float], dict[tuple[str, str], float]
+]:
     raw_by_task: dict[str, list[float]] = defaultdict(list)
     raw_by_parent: dict[tuple[str, str], list[float]] = defaultdict(list)
     weighted_by_task: dict[str, list[tuple[float, float]]] = defaultdict(list)
@@ -323,11 +325,28 @@ def model_metrics(
         parent: sum(weight * value for weight, value in values) / sum(weight for weight, _ in values)
         for parent, values in weighted_by_parent.items()
     }
+    raw_parent_by_task: dict[str, list[float]] = defaultdict(list)
+    ust_parent_by_task: dict[str, list[float]] = defaultdict(list)
+    for (task, _parent), value in raw_parent.items():
+        raw_parent_by_task[task].append(value)
+    for (task, _parent), value in ust_parent.items():
+        ust_parent_by_task[task].append(value)
+    raw_task_parent = {
+        task: sum(values) / len(values) for task, values in raw_parent_by_task.items()
+    }
+    ust_task_parent = {
+        task: sum(values) / len(values) for task, values in ust_parent_by_task.items()
+    }
     task_ci = bootstrap_ci(ust_task, TASK_BOOTSTRAP_SEED)
+    task_parent_ci = bootstrap_ci(ust_task_parent, TASK_BOOTSTRAP_SEED)
     parent_ci = bootstrap_ci(ust_parent, PARENT_BOOTSTRAP_SEED)
     task_shift = {task: ust_task[task] - raw_task[task] for task in ust_task}
+    task_parent_shift = {
+        task: ust_task_parent[task] - raw_task_parent[task] for task in ust_task_parent
+    }
     parent_shift = {parent: ust_parent[parent] - raw_parent[parent] for parent in ust_parent}
     task_shift_ci = bootstrap_ci(task_shift, TASK_BOOTSTRAP_SEED)
+    task_parent_shift_ci = bootstrap_ci(task_parent_shift, TASK_BOOTSTRAP_SEED)
     parent_shift_ci = bootstrap_ci(parent_shift, PARENT_BOOTSTRAP_SEED)
     result = {
         "pairs": len(rows),
@@ -338,12 +357,21 @@ def model_metrics(
         "neutral_credit_policy_for_tie_or_abstain": 0.5,
         "raw_pair_micro_accuracy_decimal_17g": decimal(sum(credits) / len(credits)),
         "raw_task_macro_accuracy_decimal_17g": decimal(sum(raw_task.values()) / len(raw_task)),
+        "raw_task_parent_macro_accuracy_decimal_17g": decimal(
+            sum(raw_task_parent.values()) / len(raw_task_parent)
+        ),
         "raw_parent_macro_accuracy_decimal_17g": decimal(sum(raw_parent.values()) / len(raw_parent)),
         "ust_pair_micro_accuracy_decimal_17g": decimal(
             sum(weights[key] * credit(rows[key]) for key in rows) / sum(weights.values())
         ),
         "ust_task_macro_accuracy_decimal_17g": decimal(sum(ust_task.values()) / len(ust_task)),
         "ust_task_clustered_ci95": [decimal(task_ci[0]), decimal(task_ci[1])],
+        "ust_task_parent_macro_accuracy_decimal_17g": decimal(
+            sum(ust_task_parent.values()) / len(ust_task_parent)
+        ),
+        "ust_task_parent_clustered_ci95": [
+            decimal(task_parent_ci[0]), decimal(task_parent_ci[1])
+        ],
         "ust_parent_macro_accuracy_decimal_17g": decimal(sum(ust_parent.values()) / len(ust_parent)),
         "ust_parent_clustered_ci95": [decimal(parent_ci[0]), decimal(parent_ci[1])],
         "ust_minus_raw_task_macro_decimal_17g": decimal(
@@ -352,6 +380,13 @@ def model_metrics(
         "ust_minus_raw_task_macro_clustered_ci95": [
             decimal(task_shift_ci[0]), decimal(task_shift_ci[1])
         ],
+        "ust_minus_raw_task_parent_macro_decimal_17g": decimal(
+            sum(ust_task_parent.values()) / len(ust_task_parent)
+            - sum(raw_task_parent.values()) / len(raw_task_parent)
+        ),
+        "ust_minus_raw_task_parent_macro_clustered_ci95": [
+            decimal(task_parent_shift_ci[0]), decimal(task_parent_shift_ci[1])
+        ],
         "ust_minus_raw_parent_macro_decimal_17g": decimal(
             sum(ust_parent.values()) / len(ust_parent) - sum(raw_parent.values()) / len(raw_parent)
         ),
@@ -359,7 +394,7 @@ def model_metrics(
             decimal(parent_shift_ci[0]), decimal(parent_shift_ci[1])
         ],
     }
-    return result, ust_task, ust_parent
+    return result, ust_task, ust_task_parent, ust_parent
 
 
 def paired_summary(
@@ -400,9 +435,12 @@ def analyze(static_path: Path, tfidf_path: Path) -> dict[str, Any]:
     weights, graph = build_weights(base)
     metrics: dict[str, dict[str, Any]] = {}
     task_values: dict[str, dict[str, float]] = {}
+    task_parent_values: dict[str, dict[str, float]] = {}
     parent_values: dict[str, dict[tuple[str, str], float]] = {}
     for model in sorted(models):
-        metrics[model], task_values[model], parent_values[model] = model_metrics(models[model], weights)
+        (
+            metrics[model], task_values[model], task_parent_values[model], parent_values[model]
+        ) = model_metrics(models[model], weights)
     for model in sorted(models):
         metrics[model]["paired_ust_task_delta_vs_tfidf"] = paired_summary(
             task_values[model], task_values[REFERENCE_MODEL], TASK_BOOTSTRAP_SEED
@@ -410,7 +448,18 @@ def analyze(static_path: Path, tfidf_path: Path) -> dict[str, Any]:
         metrics[model]["paired_ust_parent_delta_vs_tfidf"] = paired_summary(
             parent_values[model], parent_values[REFERENCE_MODEL], PARENT_BOOTSTRAP_SEED
         )
+        metrics[model]["paired_ust_task_parent_delta_vs_tfidf"] = paired_summary(
+            task_parent_values[model], task_parent_values[REFERENCE_MODEL], TASK_BOOTSTRAP_SEED
+        )
 
+    raw_headline_points = {
+        name: float(value["raw_task_parent_macro_accuracy_decimal_17g"])
+        for name, value in metrics.items()
+    }
+    ust_headline_points = {
+        name: float(value["ust_task_parent_macro_accuracy_decimal_17g"])
+        for name, value in metrics.items()
+    }
     raw_task_points = {
         name: float(value["raw_task_macro_accuracy_decimal_17g"]) for name, value in metrics.items()
     }
@@ -418,13 +467,17 @@ def analyze(static_path: Path, tfidf_path: Path) -> dict[str, Any]:
         name: float(value["ust_task_macro_accuracy_decimal_17g"]) for name, value in metrics.items()
     }
     all_names = sorted(models)
-    raw_all_order = ordering(raw_task_points, all_names)
-    ust_all_order = ordering(ust_task_points, all_names)
-    raw_primary_order = ordering(raw_task_points, PRIMARY_FULL_COVERAGE_MODELS)
-    ust_primary_order = ordering(ust_task_points, PRIMARY_FULL_COVERAGE_MODELS)
+    raw_all_order = ordering(raw_headline_points, all_names)
+    ust_all_order = ordering(ust_headline_points, all_names)
+    raw_primary_order = ordering(raw_headline_points, PRIMARY_FULL_COVERAGE_MODELS)
+    ust_primary_order = ordering(ust_headline_points, PRIMARY_FULL_COVERAGE_MODELS)
+    raw_task_all_order = ordering(raw_task_points, all_names)
+    ust_task_all_order = ordering(ust_task_points, all_names)
+    raw_task_primary_order = ordering(raw_task_points, PRIMARY_FULL_COVERAGE_MODELS)
+    ust_task_primary_order = ordering(ust_task_points, PRIMARY_FULL_COVERAGE_MODELS)
     champion_task_delta = {
-        task: task_values[FROZEN_CHAMPION][task] - task_values[REFERENCE_MODEL][task]
-        for task in task_values[FROZEN_CHAMPION]
+        task: task_parent_values[FROZEN_CHAMPION][task] - task_parent_values[REFERENCE_MODEL][task]
+        for task in task_parent_values[FROZEN_CHAMPION]
     }
     loto = [
         sum(value for task, value in champion_task_delta.items() if task != dropped)
@@ -433,9 +486,10 @@ def analyze(static_path: Path, tfidf_path: Path) -> dict[str, Any]:
     ]
     primary = metrics[FROZEN_CHAMPION]
     task_delta = primary["paired_ust_task_delta_vs_tfidf"]
+    task_parent_delta = primary["paired_ust_task_parent_delta_vs_tfidf"]
     parent_delta = primary["paired_ust_parent_delta_vs_tfidf"]
     return {
-        "protocol": "historical-ust-predictor-sensitivity-result-v1",
+        "protocol": "historical-ust-predictor-sensitivity-result-v2",
         "status": "HISTORICAL_SENSITIVITY_COMPLETE",
         "classification": "HISTORICAL_UST_PREDICTOR_SENSITIVITY_AUDIT_COMPLETE",
         "inputs": {
@@ -454,17 +508,42 @@ def analyze(static_path: Path, tfidf_path: Path) -> dict[str, Any]:
         "pair_graph": graph,
         "models": metrics,
         "ranking_sensitivity": {
-            "all_models_raw_task_macro_order": raw_all_order,
-            "all_models_ust_task_macro_order": ust_all_order,
-            "all_models_discordant_pairs": discordant_pairs(raw_all_order, ust_all_order),
-            "primary_models_raw_task_macro_order": raw_primary_order,
-            "primary_models_ust_task_macro_order": ust_primary_order,
-            "primary_models_discordant_pairs": discordant_pairs(raw_primary_order, ust_primary_order),
+            "headline_all_models_raw_task_parent_macro_order": raw_all_order,
+            "headline_all_models_ust_task_parent_macro_order": ust_all_order,
+            "headline_all_models_discordant_pairs": discordant_pairs(raw_all_order, ust_all_order),
+            "headline_primary_models_raw_task_parent_macro_order": raw_primary_order,
+            "headline_primary_models_ust_task_parent_macro_order": ust_primary_order,
+            "headline_primary_models_discordant_pairs": discordant_pairs(
+                raw_primary_order, ust_primary_order
+            ),
+            "sensitivity_all_models_raw_task_pair_macro_order": raw_task_all_order,
+            "sensitivity_all_models_ust_task_pair_macro_order": ust_task_all_order,
+            "sensitivity_all_models_discordant_pairs": discordant_pairs(
+                raw_task_all_order, ust_task_all_order
+            ),
+            "sensitivity_primary_models_raw_task_pair_macro_order": raw_task_primary_order,
+            "sensitivity_primary_models_ust_task_pair_macro_order": ust_task_primary_order,
+            "sensitivity_primary_models_discordant_pairs": discordant_pairs(
+                raw_task_primary_order, ust_task_primary_order
+            ),
             "frozen_champion_reselection_performed": False,
         },
         "frozen_champion_summary": {
             "model": FROZEN_CHAMPION,
             "reference": REFERENCE_MODEL,
+            "headline_ust_task_parent_macro_accuracy_decimal_17g": primary[
+                "ust_task_parent_macro_accuracy_decimal_17g"
+            ],
+            "headline_ust_task_parent_clustered_ci95": primary[
+                "ust_task_parent_clustered_ci95"
+            ],
+            "headline_ust_minus_raw_task_parent_macro_decimal_17g": primary[
+                "ust_minus_raw_task_parent_macro_decimal_17g"
+            ],
+            "headline_ust_minus_raw_task_parent_macro_clustered_ci95": primary[
+                "ust_minus_raw_task_parent_macro_clustered_ci95"
+            ],
+            "headline_paired_ust_task_parent_delta": task_parent_delta,
             "ust_task_macro_accuracy_decimal_17g": primary["ust_task_macro_accuracy_decimal_17g"],
             "ust_task_clustered_ci95": primary["ust_task_clustered_ci95"],
             "ust_minus_raw_task_macro_decimal_17g": primary[
@@ -485,10 +564,21 @@ def analyze(static_path: Path, tfidf_path: Path) -> dict[str, Any]:
             "leave_one_task_out_task_delta_max_decimal_17g": decimal(max(loto)),
             "leave_one_task_out_positive_count": sum(value > 0.0 for value in loto),
             "leave_one_task_out_total": len(loto),
-            "chance_supported_task_ci_lower_above_half": float(primary["ust_task_clustered_ci95"][0]) > 0.5,
-            "advantage_over_tfidf_supported_task_ci_lower_above_zero": float(task_delta["ci95"][0]) > 0.0,
+            "headline_chance_supported_task_ci_lower_above_half": (
+                float(primary["ust_task_parent_clustered_ci95"][0]) > 0.5
+            ),
+            "headline_advantage_over_tfidf_supported_task_ci_lower_above_zero": (
+                float(task_parent_delta["ci95"][0]) > 0.0
+            ),
+            "sensitivity_advantage_over_tfidf_supported_task_pair_ci_lower_above_zero": (
+                float(task_delta["ci95"][0]) > 0.0
+            ),
             "advantage_over_tfidf_supported_parent_ci_lower_above_zero": float(parent_delta["ci95"][0]) > 0.0,
-            "ust_weighting_changes_task_macro_supported_ci_excludes_zero": (
+            "headline_ust_weighting_changes_task_parent_macro_supported_ci_excludes_zero": (
+                float(primary["ust_minus_raw_task_parent_macro_clustered_ci95"][0]) > 0.0
+                or float(primary["ust_minus_raw_task_parent_macro_clustered_ci95"][1]) < 0.0
+            ),
+            "sensitivity_ust_weighting_changes_task_pair_macro_supported_ci_excludes_zero": (
                 float(primary["ust_minus_raw_task_macro_clustered_ci95"][0]) > 0.0
                 or float(primary["ust_minus_raw_task_macro_clustered_ci95"][1]) < 0.0
             ),

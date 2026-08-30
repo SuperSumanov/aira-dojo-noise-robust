@@ -1,0 +1,194 @@
+{
+  "protocol": "historical-ust-predictor-sensitivity-v2",
+  "version": 2,
+  "status": "FROZEN_AFTER_V1_INVALIDATED_BEFORE_OUTCOME_AGGREGATION_WITH_NESTED_TASK_PARENT_HEADLINE",
+  "frozen_at_utc": "2026-08-30T05:00:41Z",
+  "paper_container": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+  "question": "On the fixed historical 931-pair same-pool test support, does UST edge weighting materially change the already-frozen pair-to-parent-to-task headline, clustered uncertainty or predictor rankings relative to uniform pair rows?",
+  "v1_invalid_attempt": {
+    "source_commit": "52951ebfe80d4fdb28b13ac970ceff524a00ed22",
+    "formal_root": "/research/d7/spc/yzyang4/historical-ust-predictor-sensitivity/formal-52951eb-v1",
+    "stopped_during_full_tests": true,
+    "last_observed_full_test_progress": "40 percent",
+    "result_a_created": false,
+    "result_b_created": false,
+    "verification_a_created": false,
+    "verification_b_created": false,
+    "historical_ust_outcome_aggregate_read_before_v2_freeze": false,
+    "invalid_reason": "V1 omitted the existing generic benchmark headline that averages pair credit within parent, then parents within task, then tasks uniformly. Task-pair macro and global parent macro do not reconstruct this nested estimand when tasks have unequal parent counts."
+  },
+  "disclosure": {
+    "historical_prediction_outcomes_already_revealed": true,
+    "method_freeze_not_outcome_blind_confirmation": true,
+    "known_before_v2_freeze": {
+      "test_pairs": 931,
+      "tasks": 28,
+      "parent_groups": 550,
+      "connected_components": 559,
+      "static_models": 11,
+      "tfidf_models": 1,
+      "all_model_supports_exactly_equal": true,
+      "tfidf_raw_task_pair_macro": "0.5757982662586206",
+      "dev_selected_static_champion": "static_gbm_task",
+      "static_champion_raw_task_pair_macro": "0.5585685275472433",
+      "static_champion_raw_task_pair_delta_vs_tfidf": "-0.01722973871137726",
+      "v1_focused_tests": "11 passed",
+      "v1_formal_stopped_before_any_result_file": true
+    },
+    "not_computed_or_read_before_v2_freeze": [
+      "per-pair UST effective-resistance weights on the historical support",
+      "historical support incidence rank and UST weight distribution",
+      "raw or UST nested task-parent headline for any predictor",
+      "UST-weighted pair-micro, task-pair-macro or global-parent-macro values",
+      "clustered interval for any UST-minus-raw shift",
+      "UST-weighted paired delta against TF-IDF",
+      "raw-versus-UST predictor order discordance",
+      "UST-weighted frozen-champion leave-one-task-out range"
+    ],
+    "classification_policy": "Deterministic post-disclosure sensitivity only. The nested task-parent estimand is the headline because it was frozen on 2026-08-25, before this UST audit. Task-pair and global-parent rows are mandatory sensitivities and cannot rescue a failed headline. The dev-selected champion is never reselected on test."
+  },
+  "inputs": {
+    "static_per_pair": {
+      "producer_a_path": "/research/d7/spc/yzyang4/critic-component-static-suite/76c1b49_20260821T022057Z/producer_1/per_pair.jsonl",
+      "producer_b_path": "/research/d7/spc/yzyang4/critic-component-static-suite/76c1b49_20260821T022057Z/producer_2/per_pair.jsonl",
+      "sha256": "ec5a9afd37e9fbf21a4a1e89c29e9a0c771a75f0f2090b99a163711a59515acd",
+      "producer_a_b_byte_exact_required": true
+    },
+    "tfidf_per_pair": {
+      "path": "phase1/results/critic_component_tfidf_20260821_a6075d1/per_pair.jsonl",
+      "sha256": "021f8b3c74db89c6b770714edb879731799b145744af7b765005eed72f9ecde6"
+    },
+    "allowed_population": "historical split=test rows only",
+    "prospective_cohort_access_allowed": false
+  },
+  "models": {
+    "all_reported": [
+      "code_len",
+      "depth",
+      "n_cv",
+      "n_ensemble",
+      "n_lines",
+      "random_hash",
+      "static_gbm_pooled",
+      "static_gbm_task",
+      "static_lr_pooled",
+      "static_lr_task",
+      "step",
+      "tfidf_lr"
+    ],
+    "primary_full_coverage_no_tie_panel": [
+      "tfidf_lr",
+      "static_lr_pooled",
+      "static_gbm_pooled",
+      "static_lr_task",
+      "static_gbm_task"
+    ],
+    "frozen_dev_selected_champion": "static_gbm_task",
+    "fixed_reference": "tfidf_lr",
+    "test_reselection_allowed": false,
+    "tie_or_abstention_credit_for_nonprimary_heuristics": "0.5"
+  },
+  "estimands": {
+    "graph_unit": "Each connected component inside a fixed (task,parent) sibling comparison context.",
+    "edge_weight": "Unweighted effective resistance b_e^T L^+ b_e, equivalently uniform-spanning-tree edge inclusion probability within that component.",
+    "normalization": "Weights sum to incidence rank separately per connected component and globally by Foster identity.",
+    "headline": "For every predictor, UST-weight pair credit within each (task,parent), average parent points uniformly inside each task, then average task points uniformly.",
+    "uniform_reference_headline": "Replace UST weights by uniform pair-row weights inside each parent while retaining the same parent-then-task hierarchy.",
+    "mandatory_sensitivities": [
+      "uniform and UST pair micro",
+      "uniform and UST task-pair macro, where all pairs within task are pooled before task averaging",
+      "uniform and UST global parent macro, where all parents are averaged without outer task balancing",
+      "paired UST-minus-uniform shifts for nested task-parent, task-pair and global-parent metrics",
+      "paired UST predictor-minus-TFIDF deltas at the same three aggregation levels"
+    ],
+    "ranking": "Primary ranking uses nested task-parent headline points. Task-pair ranking is reported separately as sensitivity. No test-time reselection is performed.",
+    "champion_robustness": "LOTO uses per-task nested task-parent champion-minus-TFIDF differences."
+  },
+  "inference": {
+    "bootstrap_repetitions": 20000,
+    "task_seed": 20260830,
+    "parent_seed": 20260831,
+    "headline_cluster_resampling": "Resample the 28 task-level nested parent averages with replacement.",
+    "task_pair_cluster_resampling": "Resample the 28 task-level pooled-pair averages with replacement.",
+    "global_parent_cluster_resampling": "Resample (task,parent) points with replacement; this is sensitivity only, not the headline.",
+    "empirical_order_statistics": [
+      500,
+      19499
+    ],
+    "effect_threshold_or_multiple_testing_claim": false
+  },
+  "reported_frozen_champion_flags": [
+    "headline UST nested task-parent CI lower endpoint above 0.5",
+    "headline paired UST nested task-parent delta versus TF-IDF CI lower endpoint above 0",
+    "headline paired UST-minus-uniform nested task-parent CI excludes 0",
+    "task-pair paired UST delta versus TF-IDF CI lower endpoint above 0",
+    "global-parent paired UST delta versus TF-IDF CI lower endpoint above 0",
+    "task-pair and global-parent UST-minus-uniform intervals exclude 0"
+  ],
+  "independent_implementations": {
+    "producer": "Connected components plus symmetric Laplacian eigendecomposition and Moore-Penrose pseudoinverse.",
+    "verifier": "Independent component reconstruction plus grounded reduced-Laplacian inverse; it does not import the producer.",
+    "producer_and_verifier_A_B_byte_exact_across_distinct_hash_seeds": true,
+    "numeric_tolerance": "producer 5e-9 and verifier 2e-8 relative to max(1,magnitude)",
+    "synthetic_controls": [
+      "K_4 gives edge weight 1/2 and total rank 3",
+      "a tree gives every edge weight 1",
+      "disconnected subgraphs inside one parent are separate components",
+      "tie or abstention receives neutral 1/2 credit",
+      "two tasks with unequal parent counts distinguish global-parent macro 2/3 from nested task-parent macro 1/2",
+      "raw-versus-UST ranking discordance is independently reconstructed"
+    ]
+  },
+  "integrity": {
+    "exact_input_schema_and_support_required": true,
+    "duplicate_unordered_edges_fail_closed": true,
+    "Foster_identity_required_per_component_and_globally": true,
+    "all_output_pair_task_parent_endpoint_and_run_identities_forbidden": true,
+    "historical_outcome_access_explicitly_disclosed": true,
+    "prospective_value_access_forbidden": true,
+    "file_and_network_trace": true,
+    "fresh_exact_commit_focused_and_full_tests": true,
+    "producer_verifier_repeated_byte_exact": true,
+    "failure_policy": "Any source hash, schema, support, hierarchy, graph, identity, trace, test, byte or arithmetic mismatch stops without scientific classification."
+  },
+  "interpretation_boundary": {
+    "allowed": [
+      "Whether UST/rank weighting is outcome-material or ranking-material on this already revealed historical same-pool benchmark.",
+      "Whether the previously frozen static champion remains above chance and/or superior to TF-IDF under the pre-existing nested benchmark headline."
+    ],
+    "forbidden": [
+      "new effective-resistance or spanning-tree mathematics",
+      "prospective or temporal confirmation",
+      "effective sample size or independent-label count",
+      "test-selected model improvement",
+      "task-unseen generalization",
+      "search utility or end-to-end acceleration",
+      "invalidity of any prior benchmark accuracy"
+    ]
+  },
+  "source_bindings": {
+    "producer": {
+      "path": "phase1/analyze_historical_ust_predictor_sensitivity.py",
+      "sha256": "fd3ab87949d80012d7f0384cf3e691626dffa324024f950fef87a123450f28ea"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_historical_ust_predictor_sensitivity.py",
+      "sha256": "5a365655942f12829d7dbb464998631b797451eb9fe7e88f6feb1831c7fcc6d3"
+    },
+    "test": {
+      "path": "phase1/tests/test_historical_ust_predictor_sensitivity.py",
+      "sha256": "c1ff81384314fb222cd59ec8316e47225bb7f34ed4f5927dc1d23b88039b3478"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_historical_ust_predictor_sensitivity_formal_20260830.sh",
+      "sha256": "0d9e7f772cefe475c683dbc3ddb2b9b06428ced7c4159117c87f334fdf6302aa"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "expected_single_cpu_minutes_excluding_full_tests": "3--20"
+  }
+}

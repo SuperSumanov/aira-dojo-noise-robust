@@ -22,9 +22,9 @@ readonly static_a=$static_root/producer_1/per_pair.jsonl
 readonly static_b=$static_root/producer_2/per_pair.jsonl
 readonly static_sha=ec5a9afd37e9fbf21a4a1e89c29e9a0c771a75f0f2090b99a163711a59515acd
 readonly tfidf_sha=021f8b3c74db89c6b770714edb879731799b145744af7b765005eed72f9ecde6
-readonly worktree=/research/d7/spc/yzyang4/historical-ust-predictor-sensitivity/worktree-${expected_commit:0:7}-v1
+readonly worktree=/research/d7/spc/yzyang4/historical-ust-predictor-sensitivity/worktree-${expected_commit:0:7}-v2
 readonly python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
-readonly protocol_rel=phase1/historical_ust_predictor_sensitivity_v1.json
+readonly protocol_rel=phase1/historical_ust_predictor_sensitivity_v2.json
 readonly producer_rel=phase1/analyze_historical_ust_predictor_sensitivity.py
 readonly verifier_rel=phase1/verify_historical_ust_predictor_sensitivity.py
 readonly test_rel=phase1/tests/test_historical_ust_predictor_sensitivity.py
@@ -65,11 +65,11 @@ trap 'exit 130' INT
 
 cat >"$output/preflight_13.txt" <<EOF
 01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
-02_question=whether UST edge weighting changes historical same-pool predictor points uncertainty or rankings; PASS
+02_question=whether UST edge weighting changes historical nested task-parent headline points uncertainty or rankings; PASS
 03_disclosure=historical raw outcomes and published aggregates known,UST outcome aggregates ranking and shifts unseen; PASS
 04_population=fixed 931 test pairs exact support across 11 static or heuristic arms plus fixed TFIDF; PASS
 05_selection=dev-selected static_gbm_task champion and TFIDF reference fixed,no test reselection; PASS
-06_estimands=raw and UST pair micro task macro parent macro paired shifts and paired deltas; PASS
+06_estimands=raw and UST pair micro task-pair macro nested task-parent headline global parent macro shifts and deltas; PASS
 07_inference=20000 deterministic task and parent clustered bootstrap repetitions plus champion LOTO; PASS
 08_inputs=two byte-identical static producers and tracked TFIDF exact SHA,all historical only; PASS
 09_independence=eigendecomposition producer and grounded-inverse verifier,hashseed A/B byte exact; PASS
@@ -93,8 +93,8 @@ test "$(sha256sum "$tfidf" | awk '{print $1}')" = "$tfidf_sha"
 cmp "$0" "$worktree/$runner_rel"
 jq -e --arg producer_sha "$producer_sha" --arg verifier_sha "$verifier_sha" \
   --arg test_sha "$test_sha" --arg runner_sha "$runner_sha" '
-  .protocol == "historical-ust-predictor-sensitivity-v1"
-  and .status == "FROZEN_AFTER_HISTORICAL_SCHEMA_DESERIALIZATION_BEFORE_UST_OUTCOME_AGGREGATION"
+  .protocol == "historical-ust-predictor-sensitivity-v2"
+  and .status == "FROZEN_AFTER_V1_INVALIDATED_BEFORE_OUTCOME_AGGREGATION_WITH_NESTED_TASK_PARENT_HEADLINE"
   and .source_bindings.producer.sha256 == $producer_sha
   and .source_bindings.independent_verifier.sha256 == $verifier_sha
   and .source_bindings.test.sha256 == $test_sha
@@ -177,7 +177,7 @@ printf 'producer_forbidden_path_hits=0\nverifier_forbidden_path_hits=0\nproducer
   >"$output/trace_audit.txt"
 
 jq -e --arg static_sha "$static_sha" --arg tfidf_sha "$tfidf_sha" '
-  .protocol == "historical-ust-predictor-sensitivity-result-v1"
+  .protocol == "historical-ust-predictor-sensitivity-result-v2"
   and .status == "HISTORICAL_SENSITIVITY_COMPLETE"
   and .classification == "HISTORICAL_UST_PREDICTOR_SENSITIVITY_AUDIT_COMPLETE"
   and .inputs.static_per_pair_sha256 == $static_sha
@@ -189,6 +189,10 @@ jq -e --arg static_sha "$static_sha" --arg tfidf_sha "$tfidf_sha" '
   and .pair_graph.decision_parents == 550
   and .pair_graph.connected_components == 559
   and .pair_graph.task_identities_emitted == false
+  and (.models.static_gbm_task.ust_task_parent_macro_accuracy_decimal_17g | type) == "string"
+  and (.models.static_gbm_task.ust_task_parent_clustered_ci95 | length) == 2
+  and (.models.static_gbm_task.ust_minus_raw_task_parent_macro_clustered_ci95 | length) == 2
+  and .frozen_champion_summary.headline_paired_ust_task_parent_delta.clusters == 28
   and .ranking_sensitivity.frozen_champion_reselection_performed == false
   and .scope.historical_revealed_prediction_outcomes_read == true
   and .scope.prospective_values_read == false

@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JQ. 2026-08-30 historical UST sensitivity v1 在 outcome aggregate 前作废；v2 补齐既有 nested headline
+
+v1 exact commit=`52951ebfe80d4fdb28b13ac970ceff524a00ed22` 的 focused=`11 passed`，但 pre-flight 复核发现它只算
+task-pair macro 与 global-parent macro，漏掉 0GA 已冻结的 `pair→parent→task` nested headline。formal 在 full tests
+最近可见 `40%` 时主动终止；`result_a/b.json` 与 verification A/B 全不存在，故没有 UST accuracy、shift 或 ranking
+被计算/读取。无结果失败根保留为 `/research/d7/spc/yzyang4/historical-ust-predictor-sensitivity/formal-52951eb-v1`，
+不能引用其科学分类。
+
+v2 在任何 historical UST outcome aggregate 前唯一增加：parent 内 UST-weight pair credit → task 内等权 parent →
+28 tasks 等权；uniform reference 保持相同层级。task-pair 与 global-parent 只作 mandatory sensitivity，不能 rescue
+headline；固定 `static_gbm_task` champion 不重选。新增 2:1 parent-count control 精确区分 global-parent=`2/3` 与
+nested task-parent=`1/2`，以及完整 931-pair×12-model synthetic end-to-end verifier；后者抓到并修复“TF-IDF 尚未
+重建就求 paired delta”的顺序 bug。v2 focused=`13 passed`，GPU/API/model fit/base update=`0/0/0/0`；正式结果尚未运行。
+详见同日 v1 失效与 v2 修订记录及 `historical_ust_predictor_sensitivity_v2.json`。
+
 ## 0JP. 2026-08-30 FOREAGENT UST/rank 权重出现非平凡外部结构正结果
 
 在任何 per-edge leverage、task edge count 或 task redistribution 读数前，先以 commit=

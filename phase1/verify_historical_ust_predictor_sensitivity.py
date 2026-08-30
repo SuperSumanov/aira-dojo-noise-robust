@@ -253,7 +253,7 @@ def ci(values: Mapping[Any, float], seed: int) -> tuple[float, float]:
     return draws[int(0.025 * REPETITIONS)], draws[int(0.975 * REPETITIONS) - 1]
 
 
-def aggregate(model_rows: Mapping, weights: Mapping) -> tuple[dict, dict, dict]:
+def aggregate(model_rows: Mapping, weights: Mapping) -> tuple[dict, dict, dict, dict]:
     raw_task = defaultdict(list)
     raw_parent = defaultdict(list)
     weighted_task = defaultdict(list)
@@ -278,9 +278,26 @@ def aggregate(model_rows: Mapping, weights: Mapping) -> tuple[dict, dict, dict]:
         name: sum(w * value for w, value in values) / sum(w for w, _value in values)
         for name, values in weighted_parent.items()
     }
+    raw_parent_by_task = defaultdict(list)
+    parent_by_task = defaultdict(list)
+    for (task, _parent), value in raw_parent_points.items():
+        raw_parent_by_task[task].append(value)
+    for (task, _parent), value in parent_points.items():
+        parent_by_task[task].append(value)
+    raw_task_parent_points = {
+        task: sum(values) / len(values) for task, values in raw_parent_by_task.items()
+    }
+    task_parent_points = {
+        task: sum(values) / len(values) for task, values in parent_by_task.items()
+    }
     task_ci = ci(task_points, TASK_SEED)
+    task_parent_ci = ci(task_parent_points, TASK_SEED)
     parent_ci = ci(parent_points, PARENT_SEED)
     task_shift = {name: task_points[name] - raw_task_points[name] for name in task_points}
+    task_parent_shift = {
+        name: task_parent_points[name] - raw_task_parent_points[name]
+        for name in task_parent_points
+    }
     parent_shift = {name: parent_points[name] - raw_parent_points[name] for name in parent_points}
     return {
         "pairs": len(model_rows),
@@ -290,18 +307,23 @@ def aggregate(model_rows: Mapping, weights: Mapping) -> tuple[dict, dict, dict]:
         "abstentions": sum(row.get("abstain", False) for row in model_rows.values()),
         "raw_micro": sum(all_credits) / len(all_credits),
         "raw_task": sum(raw_task_points.values()) / len(raw_task_points),
+        "raw_task_parent": sum(raw_task_parent_points.values()) / len(raw_task_parent_points),
         "raw_parent": sum(raw_parent_points.values()) / len(raw_parent_points),
         "ust_micro": sum(weights[item_key] * neutral_credit(row) for item_key, row in model_rows.items())
         / sum(weights.values()),
         "ust_task": sum(task_points.values()) / len(task_points),
         "ust_task_ci": task_ci,
+        "ust_task_parent": sum(task_parent_points.values()) / len(task_parent_points),
+        "ust_task_parent_ci": task_parent_ci,
         "ust_parent": sum(parent_points.values()) / len(parent_points),
         "ust_parent_ci": parent_ci,
         "task_shift": sum(task_shift.values()) / len(task_shift),
         "task_shift_ci": ci(task_shift, TASK_SEED),
+        "task_parent_shift": sum(task_parent_shift.values()) / len(task_parent_shift),
+        "task_parent_shift_ci": ci(task_parent_shift, TASK_SEED),
         "parent_shift": sum(parent_shift.values()) / len(parent_shift),
         "parent_shift_ci": ci(parent_shift, PARENT_SEED),
-    }, task_points, parent_points
+    }, task_points, task_parent_points, parent_points
 
 
 def paired(candidate: Mapping, reference: Mapping, seed: int) -> tuple[float, tuple[float, float]]:
@@ -344,7 +366,7 @@ def verify(claimed: Mapping[str, Any], static_path: Path, tfidf_path: Path) -> d
         "models", "ranking_sensitivity", "frozen_champion_summary",
         "interpretation_boundary", "scope",
     }, "claimed result")
-    check(claimed["protocol"] == "historical-ust-predictor-sensitivity-result-v1", "protocol")
+    check(claimed["protocol"] == "historical-ust-predictor-sensitivity-result-v2", "protocol")
     check(claimed["status"] == "HISTORICAL_SENSITIVITY_COMPLETE", "status")
     check(claimed["classification"] == "HISTORICAL_UST_PREDICTOR_SENSITIVITY_AUDIT_COMPLETE",
           "classification")
@@ -394,23 +416,32 @@ def verify(claimed: Mapping[str, Any], static_path: Path, tfidf_path: Path) -> d
 
     aggregates = {}
     task_points = {}
+    task_parent_points = {}
     parent_points = {}
     check(set(claimed["models"]) == set(models), "claimed model set")
     for name in sorted(models):
-        aggregates[name], task_points[name], parent_points[name] = aggregate(models[name], weights)
+        (
+            aggregates[name], task_points[name], task_parent_points[name], parent_points[name]
+        ) = aggregate(models[name], weights)
+    for name in sorted(models):
         observed = claimed["models"][name]
         exact_keys(observed, {
             "pairs", "tasks", "parents", "ties", "abstentions",
             "neutral_credit_policy_for_tie_or_abstain",
             "raw_pair_micro_accuracy_decimal_17g", "raw_task_macro_accuracy_decimal_17g",
+            "raw_task_parent_macro_accuracy_decimal_17g",
             "raw_parent_macro_accuracy_decimal_17g", "ust_pair_micro_accuracy_decimal_17g",
             "ust_task_macro_accuracy_decimal_17g", "ust_task_clustered_ci95",
+            "ust_task_parent_macro_accuracy_decimal_17g", "ust_task_parent_clustered_ci95",
             "ust_parent_macro_accuracy_decimal_17g", "ust_parent_clustered_ci95",
             "ust_minus_raw_task_macro_decimal_17g",
             "ust_minus_raw_task_macro_clustered_ci95",
+            "ust_minus_raw_task_parent_macro_decimal_17g",
+            "ust_minus_raw_task_parent_macro_clustered_ci95",
             "ust_minus_raw_parent_macro_decimal_17g",
             "ust_minus_raw_parent_macro_clustered_ci95",
-            "paired_ust_task_delta_vs_tfidf", "paired_ust_parent_delta_vs_tfidf",
+            "paired_ust_task_delta_vs_tfidf", "paired_ust_task_parent_delta_vs_tfidf",
+            "paired_ust_parent_delta_vs_tfidf",
         }, f"{name} metrics")
         check(observed["neutral_credit_policy_for_tie_or_abstain"] == 0.5,
               f"{name} neutral policy")
@@ -419,26 +450,37 @@ def verify(claimed: Mapping[str, Any], static_path: Path, tfidf_path: Path) -> d
         for field, expected in (
             ("raw_pair_micro_accuracy_decimal_17g", aggregates[name]["raw_micro"]),
             ("raw_task_macro_accuracy_decimal_17g", aggregates[name]["raw_task"]),
+            ("raw_task_parent_macro_accuracy_decimal_17g", aggregates[name]["raw_task_parent"]),
             ("raw_parent_macro_accuracy_decimal_17g", aggregates[name]["raw_parent"]),
             ("ust_pair_micro_accuracy_decimal_17g", aggregates[name]["ust_micro"]),
             ("ust_task_macro_accuracy_decimal_17g", aggregates[name]["ust_task"]),
+            ("ust_task_parent_macro_accuracy_decimal_17g", aggregates[name]["ust_task_parent"]),
             ("ust_parent_macro_accuracy_decimal_17g", aggregates[name]["ust_parent"]),
             ("ust_minus_raw_task_macro_decimal_17g", aggregates[name]["task_shift"]),
+            ("ust_minus_raw_task_parent_macro_decimal_17g", aggregates[name]["task_parent_shift"]),
             ("ust_minus_raw_parent_macro_decimal_17g", aggregates[name]["parent_shift"]),
         ):
             close(observed[field], expected, f"{name} {field}", differences)
         for index, expected in enumerate(aggregates[name]["ust_task_ci"]):
             close(observed["ust_task_clustered_ci95"][index], expected, f"{name} task ci", differences)
+        for index, expected in enumerate(aggregates[name]["ust_task_parent_ci"]):
+            close(observed["ust_task_parent_clustered_ci95"][index], expected,
+                  f"{name} task parent ci", differences)
         for index, expected in enumerate(aggregates[name]["ust_parent_ci"]):
             close(observed["ust_parent_clustered_ci95"][index], expected, f"{name} parent ci", differences)
         for index, expected in enumerate(aggregates[name]["task_shift_ci"]):
             close(observed["ust_minus_raw_task_macro_clustered_ci95"][index], expected,
                   f"{name} task shift ci", differences)
+        for index, expected in enumerate(aggregates[name]["task_parent_shift_ci"]):
+            close(observed["ust_minus_raw_task_parent_macro_clustered_ci95"][index], expected,
+                  f"{name} task parent shift ci", differences)
         for index, expected in enumerate(aggregates[name]["parent_shift_ci"]):
             close(observed["ust_minus_raw_parent_macro_clustered_ci95"][index], expected,
                   f"{name} parent shift ci", differences)
         for level, points, seed in (
-            ("task", task_points, TASK_SEED), ("parent", parent_points, PARENT_SEED)
+            ("task", task_points, TASK_SEED),
+            ("task_parent", task_parent_points, TASK_SEED),
+            ("parent", parent_points, PARENT_SEED),
         ):
             point, interval = paired(points[name], points[REFERENCE], seed)
             paired_claim = observed[f"paired_ust_{level}_delta_vs_tfidf"]
@@ -449,32 +491,64 @@ def verify(claimed: Mapping[str, Any], static_path: Path, tfidf_path: Path) -> d
             for index, expected in enumerate(interval):
                 close(paired_claim["ci95"][index], expected, f"{name} {level} delta ci", differences)
 
-    raw = {name: aggregates[name]["raw_task"] for name in models}
-    ust = {name: aggregates[name]["ust_task"] for name in models}
-    raw_all = sorted(models, key=lambda name: (-raw[name], name))
-    ust_all = sorted(models, key=lambda name: (-ust[name], name))
-    raw_primary = sorted(PRIMARY, key=lambda name: (-raw[name], name))
-    ust_primary = sorted(PRIMARY, key=lambda name: (-ust[name], name))
+    raw_headline = {name: aggregates[name]["raw_task_parent"] for name in models}
+    ust_headline = {name: aggregates[name]["ust_task_parent"] for name in models}
+    raw_task = {name: aggregates[name]["raw_task"] for name in models}
+    ust_task = {name: aggregates[name]["ust_task"] for name in models}
+    raw_all = sorted(models, key=lambda name: (-raw_headline[name], name))
+    ust_all = sorted(models, key=lambda name: (-ust_headline[name], name))
+    raw_primary = sorted(PRIMARY, key=lambda name: (-raw_headline[name], name))
+    ust_primary = sorted(PRIMARY, key=lambda name: (-ust_headline[name], name))
+    raw_task_all = sorted(models, key=lambda name: (-raw_task[name], name))
+    ust_task_all = sorted(models, key=lambda name: (-ust_task[name], name))
+    raw_task_primary = sorted(PRIMARY, key=lambda name: (-raw_task[name], name))
+    ust_task_primary = sorted(PRIMARY, key=lambda name: (-ust_task[name], name))
     ranking = claimed["ranking_sensitivity"]
     exact_keys(ranking, {
-        "all_models_raw_task_macro_order", "all_models_ust_task_macro_order",
-        "all_models_discordant_pairs", "primary_models_raw_task_macro_order",
-        "primary_models_ust_task_macro_order", "primary_models_discordant_pairs",
+        "headline_all_models_raw_task_parent_macro_order",
+        "headline_all_models_ust_task_parent_macro_order",
+        "headline_all_models_discordant_pairs",
+        "headline_primary_models_raw_task_parent_macro_order",
+        "headline_primary_models_ust_task_parent_macro_order",
+        "headline_primary_models_discordant_pairs",
+        "sensitivity_all_models_raw_task_pair_macro_order",
+        "sensitivity_all_models_ust_task_pair_macro_order",
+        "sensitivity_all_models_discordant_pairs",
+        "sensitivity_primary_models_raw_task_pair_macro_order",
+        "sensitivity_primary_models_ust_task_pair_macro_order",
+        "sensitivity_primary_models_discordant_pairs",
         "frozen_champion_reselection_performed",
     }, "ranking")
-    check(ranking["all_models_raw_task_macro_order"] == raw_all, "raw all order")
-    check(ranking["all_models_ust_task_macro_order"] == ust_all, "ust all order")
-    check(ranking["primary_models_raw_task_macro_order"] == raw_primary, "raw primary order")
-    check(ranking["primary_models_ust_task_macro_order"] == ust_primary, "ust primary order")
-    check(ranking["all_models_discordant_pairs"] == discordance(raw_all, ust_all),
-          "all ranking discordance")
-    check(ranking["primary_models_discordant_pairs"] == discordance(raw_primary, ust_primary),
-          "primary ranking discordance")
+    check(ranking["headline_all_models_raw_task_parent_macro_order"] == raw_all,
+          "headline raw all order")
+    check(ranking["headline_all_models_ust_task_parent_macro_order"] == ust_all,
+          "headline ust all order")
+    check(ranking["headline_primary_models_raw_task_parent_macro_order"] == raw_primary,
+          "headline raw primary order")
+    check(ranking["headline_primary_models_ust_task_parent_macro_order"] == ust_primary,
+          "headline ust primary order")
+    check(ranking["headline_all_models_discordant_pairs"] == discordance(raw_all, ust_all),
+          "headline all ranking discordance")
+    check(ranking["headline_primary_models_discordant_pairs"] ==
+          discordance(raw_primary, ust_primary), "headline primary ranking discordance")
+    check(ranking["sensitivity_all_models_raw_task_pair_macro_order"] == raw_task_all,
+          "task-pair raw all order")
+    check(ranking["sensitivity_all_models_ust_task_pair_macro_order"] == ust_task_all,
+          "task-pair ust all order")
+    check(ranking["sensitivity_primary_models_raw_task_pair_macro_order"] == raw_task_primary,
+          "task-pair raw primary order")
+    check(ranking["sensitivity_primary_models_ust_task_pair_macro_order"] == ust_task_primary,
+          "task-pair ust primary order")
+    check(ranking["sensitivity_all_models_discordant_pairs"] ==
+          discordance(raw_task_all, ust_task_all), "task-pair all ranking discordance")
+    check(ranking["sensitivity_primary_models_discordant_pairs"] ==
+          discordance(raw_task_primary, ust_task_primary),
+          "task-pair primary ranking discordance")
     check(ranking["frozen_champion_reselection_performed"] is False, "champion reselection")
 
     champion_delta = {
-        name: task_points[CHAMPION][name] - task_points[REFERENCE][name]
-        for name in task_points[CHAMPION]
+        name: task_parent_points[CHAMPION][name] - task_parent_points[REFERENCE][name]
+        for name in task_parent_points[CHAMPION]
     }
     loto = [
         sum(value for name, value in champion_delta.items() if name != dropped) / (len(champion_delta) - 1)
@@ -482,20 +556,41 @@ def verify(claimed: Mapping[str, Any], static_path: Path, tfidf_path: Path) -> d
     ]
     summary = claimed["frozen_champion_summary"]
     exact_keys(summary, {
-        "model", "reference", "ust_task_macro_accuracy_decimal_17g",
+        "model", "reference", "headline_ust_task_parent_macro_accuracy_decimal_17g",
+        "headline_ust_task_parent_clustered_ci95",
+        "headline_ust_minus_raw_task_parent_macro_decimal_17g",
+        "headline_ust_minus_raw_task_parent_macro_clustered_ci95",
+        "headline_paired_ust_task_parent_delta", "ust_task_macro_accuracy_decimal_17g",
         "ust_task_clustered_ci95", "ust_minus_raw_task_macro_decimal_17g",
         "ust_minus_raw_task_macro_clustered_ci95",
         "ust_minus_raw_parent_macro_decimal_17g",
         "ust_minus_raw_parent_macro_clustered_ci95", "paired_ust_task_delta",
         "paired_ust_parent_delta", "leave_one_task_out_task_delta_min_decimal_17g",
         "leave_one_task_out_task_delta_max_decimal_17g", "leave_one_task_out_positive_count",
-        "leave_one_task_out_total", "chance_supported_task_ci_lower_above_half",
-        "advantage_over_tfidf_supported_task_ci_lower_above_zero",
+        "leave_one_task_out_total", "headline_chance_supported_task_ci_lower_above_half",
+        "headline_advantage_over_tfidf_supported_task_ci_lower_above_zero",
+        "sensitivity_advantage_over_tfidf_supported_task_pair_ci_lower_above_zero",
         "advantage_over_tfidf_supported_parent_ci_lower_above_zero",
-        "ust_weighting_changes_task_macro_supported_ci_excludes_zero",
+        "headline_ust_weighting_changes_task_parent_macro_supported_ci_excludes_zero",
+        "sensitivity_ust_weighting_changes_task_pair_macro_supported_ci_excludes_zero",
         "ust_weighting_changes_parent_macro_supported_ci_excludes_zero",
     }, "champion summary")
     check(summary["model"] == CHAMPION and summary["reference"] == REFERENCE, "summary model")
+    check(summary["headline_ust_task_parent_macro_accuracy_decimal_17g"] ==
+          claimed["models"][CHAMPION]["ust_task_parent_macro_accuracy_decimal_17g"],
+          "summary headline point")
+    check(summary["headline_ust_task_parent_clustered_ci95"] ==
+          claimed["models"][CHAMPION]["ust_task_parent_clustered_ci95"],
+          "summary headline ci")
+    check(summary["headline_ust_minus_raw_task_parent_macro_decimal_17g"] ==
+          claimed["models"][CHAMPION]["ust_minus_raw_task_parent_macro_decimal_17g"],
+          "summary headline shift")
+    check(summary["headline_ust_minus_raw_task_parent_macro_clustered_ci95"] ==
+          claimed["models"][CHAMPION]["ust_minus_raw_task_parent_macro_clustered_ci95"],
+          "summary headline shift ci")
+    check(summary["headline_paired_ust_task_parent_delta"] ==
+          claimed["models"][CHAMPION]["paired_ust_task_parent_delta_vs_tfidf"],
+          "summary headline delta")
     for field in (
         "ust_task_macro_accuracy_decimal_17g", "ust_task_clustered_ci95",
         "ust_minus_raw_task_macro_decimal_17g", "ust_minus_raw_task_macro_clustered_ci95",
@@ -510,18 +605,31 @@ def verify(claimed: Mapping[str, Any], static_path: Path, tfidf_path: Path) -> d
     close(summary["leave_one_task_out_task_delta_max_decimal_17g"], max(loto), "loto max", differences)
     check(summary["leave_one_task_out_positive_count"] == sum(value > 0.0 for value in loto), "loto count")
     check(summary["leave_one_task_out_total"] == len(loto), "loto total")
+    headline_delta_ci = claimed["models"][CHAMPION][
+        "paired_ust_task_parent_delta_vs_tfidf"
+    ]["ci95"]
     task_delta_ci = claimed["models"][CHAMPION]["paired_ust_task_delta_vs_tfidf"]["ci95"]
     parent_delta_ci = claimed["models"][CHAMPION]["paired_ust_parent_delta_vs_tfidf"]["ci95"]
+    headline_shift_ci = claimed["models"][CHAMPION][
+        "ust_minus_raw_task_parent_macro_clustered_ci95"
+    ]
     task_shift_ci = claimed["models"][CHAMPION]["ust_minus_raw_task_macro_clustered_ci95"]
     parent_shift_ci = claimed["models"][CHAMPION]["ust_minus_raw_parent_macro_clustered_ci95"]
-    check(summary["chance_supported_task_ci_lower_above_half"] ==
-          (float(summary["ust_task_clustered_ci95"][0]) > 0.5), "summary chance flag")
-    check(summary["advantage_over_tfidf_supported_task_ci_lower_above_zero"] ==
-          (float(task_delta_ci[0]) > 0.0), "summary task advantage flag")
+    check(summary["headline_chance_supported_task_ci_lower_above_half"] ==
+          (float(summary["headline_ust_task_parent_clustered_ci95"][0]) > 0.5),
+          "summary headline chance flag")
+    check(summary["headline_advantage_over_tfidf_supported_task_ci_lower_above_zero"] ==
+          (float(headline_delta_ci[0]) > 0.0), "summary headline advantage flag")
+    check(summary["sensitivity_advantage_over_tfidf_supported_task_pair_ci_lower_above_zero"] ==
+          (float(task_delta_ci[0]) > 0.0), "summary task-pair advantage flag")
     check(summary["advantage_over_tfidf_supported_parent_ci_lower_above_zero"] ==
           (float(parent_delta_ci[0]) > 0.0), "summary parent advantage flag")
-    check(summary["ust_weighting_changes_task_macro_supported_ci_excludes_zero"] ==
-          (float(task_shift_ci[0]) > 0.0 or float(task_shift_ci[1]) < 0.0), "summary task shift flag")
+    check(summary["headline_ust_weighting_changes_task_parent_macro_supported_ci_excludes_zero"] ==
+          (float(headline_shift_ci[0]) > 0.0 or float(headline_shift_ci[1]) < 0.0),
+          "summary headline shift flag")
+    check(summary["sensitivity_ust_weighting_changes_task_pair_macro_supported_ci_excludes_zero"] ==
+          (float(task_shift_ci[0]) > 0.0 or float(task_shift_ci[1]) < 0.0),
+          "summary task-pair shift flag")
     check(summary["ust_weighting_changes_parent_macro_supported_ci_excludes_zero"] ==
           (float(parent_shift_ci[0]) > 0.0 or float(parent_shift_ci[1]) < 0.0), "summary parent shift flag")
     check(claimed["interpretation_boundary"] == {
@@ -551,7 +659,7 @@ def verify(claimed: Mapping[str, Any], static_path: Path, tfidf_path: Path) -> d
     }
     check(not (set(all_strings(claimed)) & sensitive), "raw identity emitted")
     return {
-        "protocol": "historical-ust-predictor-sensitivity-independent-verification-v1",
+        "protocol": "historical-ust-predictor-sensitivity-independent-verification-v2",
         "status": "INDEPENDENT_GROUNDED_RECONSTRUCTION_EXACT_WITHIN_TOLERANCE",
         "static_per_pair_sha256": STATIC_SHA,
         "tfidf_per_pair_sha256": TFIDF_SHA,

@@ -1,0 +1,49 @@
+{
+  "protocol": "prospective-score-identity-migration-v1",
+  "status": "FROZEN_BEFORE_PRODUCTION_RETRY",
+  "frozen_at_utc_date": "2026-08-31",
+  "purpose": "Replay the append-only score registry across one exact historical code epoch without weakening current-code validation.",
+  "metadata_audit": {
+    "receipt_sha256": "9688d3544268a84d4b7073fcba1d470ab74a330c57b4f99d2a65a04c81840102",
+    "latest_snapshot_sha256": "813f3c1cb5ae0f4fb26873b5627870e35c3705ea89eb245e5649c4cf4a22b54d",
+    "registered_transactions": 118,
+    "registered_top_level_identity_count": 1,
+    "registered_nested_identity_count": 1,
+    "registered_nested_transactions": 117,
+    "registered_without_nested_score": 1,
+    "blind_score_csv_opened": false,
+    "label_vault_opened": false,
+    "outcomes_predictions_accuracy_utility_read": false
+  },
+  "allowed_legacy_epoch": {
+    "git_commit": "90842c49dbd73d41d405a5ecdad2224ee447b375",
+    "top_level_source_sha256": "f7fc2aa8f03ed52e5b9431b925581741ce3a17867fb0a25577deae805bd0ba01",
+    "nested_scorer_source_sha256": "678ecb2a0651135a679d00a06005c0fbfc83673ad7ba833f86a17c63f4e47ccf"
+  },
+  "allowed_current_epoch": {
+    "git_commit": "the exact clean execution commit",
+    "top_level_source_sha256": "sha256 of prospective_score_pipeline.py at that commit",
+    "nested_scorer_source_sha256": "sha256 of fixed_decision_scorer.py at that commit"
+  },
+  "hard_rules": [
+    "Top-level score identity must equal one complete allowed epoch tuple.",
+    "A non-empty transaction's nested scorer identity must equal the same epoch as its top-level score identity.",
+    "Mixed, partial, unknown, caller-supplied, or inferred identity tuples fail closed.",
+    "The exact historical intake migration remains independently enforced; this protocol does not add another intake identity.",
+    "The failed unregistered current-epoch output is not grandfathered and must be recoverably restored to its failed attempt before retry.",
+    "No prediction value, label, outcome, accuracy, utility, candidate identity, or private selection may be emitted by migration audit artifacts."
+  ],
+  "formal_gates": {
+    "focused_attack_tests": true,
+    "complete_phase1_test_suite": true,
+    "actual_registered_registry_replay": true,
+    "actual_candidate_transaction_a_b_byte_identity": true,
+    "independent_archive_consensus_verification": true,
+    "fresh_exact_commit_and_worktree": true,
+    "hash_and_trace_security_postflight": true,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_model_updates": 0
+  }
+}

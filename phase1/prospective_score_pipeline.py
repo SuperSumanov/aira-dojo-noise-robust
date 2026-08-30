@@ -32,6 +32,13 @@ LEGACY_INTAKE_GIT_COMMIT = "90842c49dbd73d41d405a5ecdad2224ee447b375"
 LEGACY_INTAKE_SOURCE_SHA256 = (
     "ef02ad7905c4fa3a17e4e91af373a735fd6a981590cd637a4af533eb067b9af2"
 )
+LEGACY_SCORE_GIT_COMMIT = LEGACY_INTAKE_GIT_COMMIT
+LEGACY_SCORE_PIPELINE_SOURCE_SHA256 = (
+    "f7fc2aa8f03ed52e5b9431b925581741ce3a17867fb0a25577deae805bd0ba01"
+)
+LEGACY_FIXED_SCORER_SOURCE_SHA256 = (
+    "678ecb2a0651135a679d00a06005c0fbfc83673ad7ba833f86a17c63f4e47ccf"
+)
 ARCHIVE_CONSENSUS_PROTOCOL = "prospective-intake-archive-consensus-fallback-v1"
 ARCHIVE_CONSENSUS_PROTOCOL_SHA256 = (
     "3110da4403fa0477454d8e1415fd23e9a7a7482694b778784c9d5270b8e4993e"
@@ -636,6 +643,7 @@ def validate_nested_score(
     identities: dict[str, dict[str, str]],
     intake: dict[str, Any],
     repo_root: Path,
+    score_code_epoch: str = "current",
 ) -> dict[str, Any]:
     summary_path = score_dir / "summary.json"
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
@@ -644,9 +652,22 @@ def validate_nested_score(
         "protocol"
     ) != SCORER_PROTOCOL:
         raise PipelineError("nested scorer is not complete")
-    if summary.get("git_commit") != git_commit(repo_root) or summary.get(
-        "source_sha256"
-    ) != sha256(Path(frozen_scorer.__file__)):
+    if score_code_epoch == "current":
+        expected_code_identity = (
+            git_commit(repo_root),
+            sha256(Path(frozen_scorer.__file__)),
+        )
+    elif score_code_epoch == "legacy":
+        expected_code_identity = (
+            LEGACY_SCORE_GIT_COMMIT,
+            LEGACY_FIXED_SCORER_SOURCE_SHA256,
+        )
+    else:  # pragma: no cover - internal misuse guard
+        raise PipelineError("unknown score code epoch")
+    if (
+        summary.get("git_commit"),
+        summary.get("source_sha256"),
+    ) != expected_code_identity:
         raise PipelineError("nested scorer code identity mismatch")
     if summary.get("labels_read") is not False or summary.get(
         "post_execution_fields_read"
@@ -817,9 +838,17 @@ def validate_transaction(
     require_exact_keys(summary, TRANSACTION_TOP_KEYS, "score transaction summary")
     if summary.get("protocol") != PROTOCOL or summary.get("drop_id") != drop_id:
         raise PipelineError("score transaction identity mismatch")
-    if summary.get("git_commit") != git_commit(repo_root) or summary.get(
-        "source_sha256"
-    ) != sha256(Path(__file__)):
+    score_code_identity = (summary.get("git_commit"), summary.get("source_sha256"))
+    current_score_identity = (git_commit(repo_root), sha256(Path(__file__)))
+    legacy_score_identity = (
+        LEGACY_SCORE_GIT_COMMIT,
+        LEGACY_SCORE_PIPELINE_SOURCE_SHA256,
+    )
+    if score_code_identity == current_score_identity:
+        score_code_epoch = "current"
+    elif score_code_identity == legacy_score_identity:
+        score_code_epoch = "legacy"
+    else:
         raise PipelineError("score transaction code identity mismatch")
     expected_status = "BLIND_DROP_SCORING_COMPLETE" if intake["identities"] else "NO_ELIGIBLE_ENDPOINTS"
     if summary.get("status") != expected_status:
@@ -860,7 +889,13 @@ def validate_transaction(
             "blind_scores"
         ) != "scores/blind_scores.csv":
             raise PipelineError("score transaction relative output mismatch")
-        nested = validate_nested_score(score_dir / "scores", identities, intake, repo_root)
+        nested = validate_nested_score(
+            score_dir / "scores",
+            identities,
+            intake,
+            repo_root,
+            score_code_epoch=score_code_epoch,
+        )
         if outputs.get("nested_scorer_summary_sha256") != nested["summary_sha256"] or outputs.get(
             "blind_scores_sha256"
         ) != nested["blind_scores_sha256"]:

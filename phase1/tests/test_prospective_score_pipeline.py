@@ -228,6 +228,23 @@ def registry_entry(tag: str, intake: Path, score_dir: Path) -> dict:
     }
 
 
+def downgrade_score_to_exact_legacy_identity(score_dir: Path) -> None:
+    summary_path = score_dir / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    nested_relative = summary["outputs"]["nested_scorer_summary"]
+    if nested_relative is not None:
+        nested_path = score_dir / nested_relative
+        nested = json.loads(nested_path.read_text(encoding="utf-8"))
+        nested["git_commit"] = pipeline.LEGACY_SCORE_GIT_COMMIT
+        nested["source_sha256"] = pipeline.LEGACY_FIXED_SCORER_SOURCE_SHA256
+        summary["outputs"]["nested_scorer_summary_sha256"] = write_json(
+            nested_path, nested
+        )
+    summary["git_commit"] = pipeline.LEGACY_SCORE_GIT_COMMIT
+    summary["source_sha256"] = pipeline.LEGACY_SCORE_PIPELINE_SOURCE_SHA256
+    write_json(summary_path, summary)
+
+
 def guard_label_vault(monkeypatch: pytest.MonkeyPatch) -> None:
     original = Path.open
 
@@ -297,6 +314,75 @@ def test_exact_legacy_intake_identity_and_schema_remain_valid(tmp_path: Path, mo
     assert summary["inputs"]["intake_source_sha256"] == (
         pipeline.LEGACY_INTAKE_SOURCE_SHA256
     )
+
+
+def test_exact_legacy_score_and_nested_identities_remain_registry_valid(
+    tmp_path: Path, monkeypatch
+):
+    require_sklearn()
+    intake, summary_sha = make_intake(
+        tmp_path,
+        "legacy-registry",
+        future_rows("legacy-registry"),
+        legacy=True,
+    )
+    score_dir = tmp_path / "scores-legacy-registry"
+    guard_label_vault(monkeypatch)
+    pipeline.score_drop(score_args(intake, summary_sha, score_dir, "legacy-registry"))
+    downgrade_score_to_exact_legacy_identity(score_dir)
+
+    registry = tmp_path / "legacy-score-registry.jsonl"
+    write_registry(
+        registry,
+        [registry_entry("legacy-registry", intake, score_dir)],
+    )
+    output = tmp_path / "legacy-score-registry-output"
+    assert pipeline.validate_registry(registry_args(registry, output)) == 0
+    result = json.loads((output / "summary.json").read_text(encoding="utf-8"))
+    assert result["inventory"]["drops"] == 1
+    assert result["security"]["label_vault_opened"] is False
+
+
+@pytest.mark.parametrize("legacy_layer", ["top", "nested"])
+def test_registry_rejects_mixed_score_code_epochs(
+    tmp_path: Path, legacy_layer: str
+):
+    require_sklearn()
+    intake, summary_sha = make_intake(
+        tmp_path,
+        f"mixed-{legacy_layer}",
+        future_rows(f"mixed-{legacy_layer}"),
+    )
+    score_dir = tmp_path / f"scores-mixed-{legacy_layer}"
+    pipeline.score_drop(
+        score_args(intake, summary_sha, score_dir, f"mixed-{legacy_layer}")
+    )
+    summary_path = score_dir / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    nested_path = score_dir / "scores" / "summary.json"
+    if legacy_layer == "top":
+        summary["git_commit"] = pipeline.LEGACY_SCORE_GIT_COMMIT
+        summary["source_sha256"] = pipeline.LEGACY_SCORE_PIPELINE_SOURCE_SHA256
+    else:
+        nested = json.loads(nested_path.read_text(encoding="utf-8"))
+        nested["git_commit"] = pipeline.LEGACY_SCORE_GIT_COMMIT
+        nested["source_sha256"] = pipeline.LEGACY_FIXED_SCORER_SOURCE_SHA256
+        summary["outputs"]["nested_scorer_summary_sha256"] = write_json(
+            nested_path, nested
+        )
+    write_json(summary_path, summary)
+
+    registry = tmp_path / f"mixed-{legacy_layer}-registry.jsonl"
+    write_registry(
+        registry,
+        [registry_entry(f"mixed-{legacy_layer}", intake, score_dir)],
+    )
+    output = tmp_path / f"mixed-{legacy_layer}-output"
+    with pytest.raises(
+        pipeline.PipelineError, match="nested scorer code identity mismatch"
+    ):
+        pipeline.validate_registry(registry_args(registry, output))
+    assert not output.exists()
 
 
 def test_extra_label_field_fails_before_formal_output(tmp_path: Path):

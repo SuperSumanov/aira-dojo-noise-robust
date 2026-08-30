@@ -13,6 +13,20 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JI. 2026-08-30 VCCD Stage-A 执行链已公开复验并开始结果盲守候
+
+Stage-A 执行链已作为 exact commit=`4fc9c3e4c9629ac86960a9cca198569e6a80ee2c` 推送。fresh detached
+post-push 根=`/research/d7/spc/yzyang4/vccd-target522-execution-postpush-20260830-r1`：changed blobs=`8`、
+credential pattern hits=`0`、execution bindings=`8`，focused/full=`33/1713 passed`、48 个既有 warning，worktree clean；
+execution contract SHA-256=`66937a1f...15856`，prospective values 未读，GPU/付费 API/model fit/base update=`0/0/0/0`。
+
+随后在 Target-522 candidate/READY/COMPLETE/FAILED 均不存在时启动固定 monitor
+`/research/d7/spc/yzyang4/vertex-cost-contrast-target522/formal-monitor-4fc9c3e-selection-v1`。独立检查于
+`2026-08-30T03:28:25Z` 证明 PID=`939255` live、lock held、poll 0 正在等待；它在 selection `COMPLETE` 前只看 marker，
+之后只能调用已哈希绑定的 Stage A。启动时 LATEST=`98f2cba9...2765fa`、structural runs=`468`、config-v2 count=`0`；
+receipt-support 已以 `values_accessed=false/outcomes_read=false` 完成固定 snapshot 的结构回执。该状态仍不是效果结论，
+first-960 + accrual-closure 前禁止任何 fit 或结果读取。
+
 ## 0JH. 2026-08-30 VCCD Target-522 Stage-A 自动执行链已结果前冻结
 
 0JG 的科学协议已公开为 commit=`63a5b38bcdb6f057c6ea86309cd4ae7ca82dcce7`，fresh detached post-push
@@ -28,7 +42,6 @@ file+network trace。任一 hash、mode、重复、forbidden path、network 或 
 候选前严格查重另发现 ICML 2025 *Comparing Few to Rank Many* 已对 K-way 完整排序反馈做 D-optimal subset design；NeurIPS 2024
 也已做 contextual logistic preference 的主动 pair 采样与 out-of-sample 泛化，NeurIPS 2021 则给出 multi-wise active ranking 样本复杂度。
 因此明确禁止“D-opt/K-way/contextual active ranking 首创”和未匹配 oracle 的算法优越性主张。VCCD 只能定位为已知思路在 MLE 的付费 endpoint
-执行、受 parent-clique 约束、依赖派生偏好、跨 physical-run critic 泛化与完整审计下的领域实例化。related-work addendum SHA-256=
 执行、受 parent-clique 约束、依赖派生偏好、跨 physical-run critic 泛化与完整审计下的领域实例化。related-work addendum SHA-256=
 `4176772f...2a816`；这收窄方法主张，但不影响 Decision Corpus + Predictor Benchmark + Audit Protocol 论文容器。
 

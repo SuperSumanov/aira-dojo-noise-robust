@@ -1,0 +1,54 @@
+{
+  "protocol": "vertex-cost-contrast-target522-execution-postpush-and-monitor-receipt-v1",
+  "status": "FRESH_POSTPUSH_VERIFIED_AND_OUTCOME_BLIND_MONITOR_LIVE",
+  "postpush": {
+    "checked_at_utc": "2026-08-30T03:27:43Z",
+    "finished_at_utc": "2026-08-30T03:26:43Z",
+    "source_commit": "4fc9c3e4c9629ac86960a9cca198569e6a80ee2c",
+    "remote_root": "/research/d7/spc/yzyang4/vccd-target522-execution-postpush-20260830-r1",
+    "execution_contract_sha256": "66937a1f82ff4d427b382f5bb2ce15481f40d2a3fd7777c84d6596a2cef15856",
+    "changed_blobs_scanned": 8,
+    "credential_pattern_hits": 0,
+    "bound_sources_verified": 8,
+    "focused_tests": {
+      "passed": 33,
+      "seconds": 2.61
+    },
+    "full_phase1_tests": {
+      "passed": 1713,
+      "warnings": 48,
+      "seconds": 98.25
+    },
+    "worktree_clean": true
+  },
+  "monitor": {
+    "checked_at_utc": "2026-08-30T03:28:25Z",
+    "remote_root": "/research/d7/spc/yzyang4/vertex-cost-contrast-target522/formal-monitor-4fc9c3e-selection-v1",
+    "pid": 939255,
+    "pid_live": true,
+    "lock_state": "held",
+    "initial_poll": 0,
+    "selection_candidate_present": false,
+    "selection_ready_present": false,
+    "selection_complete_present": false,
+    "selection_failed_present": false,
+    "latest_snapshot_sha256": "98f2cba9ca4b3ac6404305da2528a4e8c391ba795f74438a5e4cca1a162765fa",
+    "structural_runs": 468,
+    "config_v2_filename_count": 0
+  },
+  "independent_monitor_verification": {
+    "verified_at_utc": "2026-08-30T03:31:23Z",
+    "postpush_complete": true,
+    "monitor_pid_live": true,
+    "monitor_lock_held": true,
+    "preflight_line_count": 13,
+    "monitor_source_sha256": "aef2aff4d1b367c19ba77675374f2d1671bc550ba8ab7fa5ece495971e5d4470",
+    "runner_source_sha256": "9b44ffb82739035601665df11d366b8c1a3570cfad767bf728ef83a291e6e4bc",
+    "snapshot_directories": 117,
+    "selection_markers_absent": true
+  },
+  "target522_candidate_profile_read": false,
+  "prospective_values_read": false,
+  "first960_closure_opened": false,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

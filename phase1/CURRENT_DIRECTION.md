@@ -13,6 +13,31 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0JH. 2026-08-30 VCCD Target-522 Stage-A 自动执行链已结果前冻结
+
+0JG 的科学协议已公开为 commit=`63a5b38bcdb6f057c6ea86309cd4ae7ca82dcce7`，fresh detached post-push
+再次通过 focused/full=`25/1705 passed`、48 个既有 warning；changed blobs=`7`、credential pattern hits=`0`、
+15 个协议绑定全一致、worktree clean，prospective values 未读。该回执只证明代码与协议发布完整，不是效果结论。
+
+为避免 Target-522 到达后人工挑 snapshot、临时换参数或漏做复验，追加冻结
+`vertex-cost-contrast-target522-stage-a-execution-v1`，SHA-256=`66937a1f...15856`。六小时 monitor 在 selection
+`COMPLETE` 前只看 marker；激活后先重验 selection manifest，再在 fresh exact-commit worktree 跑 focused/full tests、producer
+A/B、mode-0600 private selection A/B、以及不导入 producer 的 verifier A/B，全部要求逐字节一致，并对 producer/verifier 做
+file+network trace。任一 hash、mode、重复、forbidden path、network 或 byte mismatch 都 fail-closed。
+
+候选前严格查重另发现 ICML 2025 *Comparing Few to Rank Many* 已对 K-way 完整排序反馈做 D-optimal subset design；NeurIPS 2024
+也已做 contextual logistic preference 的主动 pair 采样与 out-of-sample 泛化，NeurIPS 2021 则给出 multi-wise active ranking 样本复杂度。
+因此明确禁止“D-opt/K-way/contextual active ranking 首创”和未匹配 oracle 的算法优越性主张。VCCD 只能定位为已知思路在 MLE 的付费 endpoint
+执行、受 parent-clique 约束、依赖派生偏好、跨 physical-run critic 泛化与完整审计下的领域实例化。related-work addendum SHA-256=
+执行、受 parent-clique 约束、依赖派生偏好、跨 physical-run critic 泛化与完整审计下的领域实例化。related-work addendum SHA-256=
+`4176772f...2a816`；这收窄方法主张，但不影响 Decision Corpus + Predictor Benchmark + Audit Protocol 论文容器。
+
+该链仍是纯 Stage A：GPU/付费 API/model fit/base update=`0/0/0/0`；单线程 CPU，两个 producer 的 yield solver 各至多
+900 秒，预期总墙钟 `10--70` 分钟、90 分钟停止。first-960 closure 对 Stage A 不需要，但对任何 grade/outcome/orientation/
+gap/prediction 读取和 7 个 CPU critic fits 仍是绝对前置门。截至 `2026-08-30T03:03:57Z`，LATEST=`98f2cba9...2765fa`、
+snapshot dirs=`117`、structural runs=`468`，Target-522 candidate/COMPLETE/FAILED 均不存在、config-v2 count=`0`、values 未读。
+详见同日 Stage-A 执行链冻结记录。
+
 ## 0JG. 2026-08-30 VCCD Target-522 结果前协议已冻结；效果读数仍必须等 first-960 closure
 
 0JF 的工程门现已补齐为独立科学协议 `vertex-cost-contrast-target522-effect-v1`：在同一自动 Target-522 增量中，先按 task 内

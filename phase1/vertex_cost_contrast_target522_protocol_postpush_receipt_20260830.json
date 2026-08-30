@@ -1,0 +1,24 @@
+{
+  "protocol": "vertex-cost-contrast-target522-protocol-postpush-receipt-v1",
+  "status": "FRESH_POSTPUSH_VERIFIED",
+  "checked_at_utc": "2026-08-30T02:58:06Z",
+  "finished_at_utc": "2026-08-30T02:57:15Z",
+  "source_commit": "63a5b38bcdb6f057c6ea86309cd4ae7ca82dcce7",
+  "remote_root": "/research/d7/spc/yzyang4/vccd-target522-protocol-postpush-20260830-r1",
+  "protocol_sha256": "b3df170ebb4ae097549cb0225142e94aebfa481aea6c79815f1be2af687d9e1d",
+  "changed_blobs_scanned": 7,
+  "credential_pattern_hits": 0,
+  "bound_sources_verified": 15,
+  "focused_tests": {
+    "passed": 25,
+    "seconds": 2.61
+  },
+  "full_phase1_tests": {
+    "passed": 1705,
+    "warnings": 48,
+    "seconds": 97.7
+  },
+  "worktree_clean": true,
+  "prospective_values_read": false,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

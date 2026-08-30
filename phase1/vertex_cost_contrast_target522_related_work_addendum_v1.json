@@ -1,0 +1,104 @@
+{
+  "protocol": "vertex-cost-contrast-target522-related-work-addendum-v1",
+  "status": "FROZEN_BEFORE_TARGET522_CANDIDATE",
+  "frozen_at_utc": "2026-08-30T03:09:57Z",
+  "search_scope": "Primary paper pages and author-linked artifacts for D-optimal pairwise or K-way subset design, active ranking, and graph-feedback learning; no generic novelty inference from keyword absence.",
+  "closest_prior_work": [
+    {
+      "title": "Comparing Few to Rank Many: Active Human Preference Learning Using Randomized Frank-Wolfe Method",
+      "venue": "ICML 2025",
+      "url": "https://proceedings.mlr.press/v267/thekumparampil25a.html",
+      "arxiv": "https://arxiv.org/abs/2412.19396",
+      "overlap": [
+        "D-optimal design over item features",
+        "limited feedback budget",
+        "selection of K-item subsets",
+        "a complete ranking is observed for each selected subset under a Plackett-Luce model"
+      ],
+      "boundary": [
+        "their paid observation is one human K-way full-ranking interaction over a fixed item universe",
+        "our paid unit is one MLE endpoint execution that reveals one scalar grade and deterministically induces preferences only against already executed siblings",
+        "our feasible subsets are constrained by generated parent cliques across heterogeneous tasks and physical runs",
+        "their target is ranking the same fixed universe; our target is a code critic evaluated on disjoint future physical runs",
+        "our study accounts for endpoint cost, dependent clique rank, task/run clustering, noise, leakage, and query/init cost"
+      ]
+    },
+    {
+      "title": "Accelerated Experimental Design for Pairwise Comparisons",
+      "venue": "arXiv 2019",
+      "url": "https://arxiv.org/abs/1901.06080",
+      "overlap": [
+        "D-optimal selection of pairwise comparisons",
+        "feature-based comparison design"
+      ],
+      "boundary": [
+        "selects paid comparison edges",
+        "does not model one paid endpoint revealing a dependent clique of deterministic sibling comparisons"
+      ]
+    },
+    {
+      "title": "Active preference learning for ordering items in- and out-of-sample",
+      "venue": "NeurIPS 2024",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/8443219a991f068c34d9491ad68ffa94-Abstract-Conference.html",
+      "overlap": [
+        "contextual item attributes",
+        "logistic preference model",
+        "active sampling for label efficiency",
+        "generalization to previously unseen items"
+      ],
+      "boundary": [
+        "purchases selected pair annotations rather than scalar endpoint executions",
+        "does not use the constrained parent-clique observation process of MLE search trees",
+        "does not address physical-run disjointness or dependent clique labels derived from one executed vertex"
+      ]
+    },
+    {
+      "title": "Sample Complexity Bounds for Active Ranking from Multi-wise Comparisons",
+      "venue": "NeurIPS 2021",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2021/hash/22508552d3fc22f867e33e6c56b30b16-Abstract.html",
+      "overlap": [
+        "active ranking from winner or full-ranking feedback on multi-item queries",
+        "analysis of how multi-wise feedback changes sample complexity"
+      ],
+      "boundary": [
+        "ranks a fixed item set under a comparison-query budget",
+        "does not learn a contextual critic for disjoint future MLE physical runs",
+        "does not model endpoint execution as the paid primitive"
+      ]
+    },
+    {
+      "title": "Understanding Bandits with Graph Feedback",
+      "venue": "NeurIPS 2021",
+      "url": "https://arxiv.org/abs/2105.14260",
+      "overlap": [
+        "one action can reveal structured feedback about multiple alternatives"
+      ],
+      "boundary": [
+        "online regret with graph feedback is not the frozen offline MLE critic estimand",
+        "the present protocol does not claim a new graph-feedback bandit algorithm"
+      ]
+    }
+  ],
+  "claim_restrictions": {
+    "forbidden": [
+      "first D-optimal preference design",
+      "first K-way or subset-wise active ranking method",
+      "first use of item features in active preference learning",
+      "algorithmic superiority to DopeWolfe without a matched feedback oracle",
+      "generic active-learning novelty"
+    ],
+    "allowed_if_target522_effect_is_positive": "A D-opt-inspired, endpoint-cost-aware instantiation improves run-clean MLE critic label efficiency under the frozen benchmark and audit protocol.",
+    "allowed_if_only_stage_a_completes": "The MLE-specific endpoint-cost and dependent-clique selection protocol is reproducibly instantiated; no efficacy claim.",
+    "paper_container": "Decision Corpus plus Predictor Benchmark plus Audit Protocol; VCCD remains an extension rather than the sole novelty claim."
+  },
+  "baseline_rationale": {
+    "representative_uniform": "matched paid endpoint budget and orientation-free topology baseline",
+    "yield_guarded_breadth": "matched MLE-specific topology acquisition baseline already frozen before the candidate",
+    "vccd": "exact centered complete-clique scatter gain for a linear pairwise critic, presented as a domain instantiation rather than a new general D-opt theorem",
+    "dopewolfe_not_directly_runnable": "its oracle purchases one stochastic human full ranking of an arbitrary K-subset from a fixed universe; that is not the endpoint-execution oracle or feasible-set constraint in this benchmark",
+    "required_discussion": "A paper must discuss the ICML 2025 method as closest conceptual prior work and explicitly explain the oracle, feasible-set, target-population, and dependence differences."
+  },
+  "scoop_disposition": "STRONG_RELATED_WORK_FOUND_CLAIMS_NARROWED_MAIN_DATASET_AND_AUDIT_DIRECTION_NOT_SCOOPED",
+  "prospective_values_read": false,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

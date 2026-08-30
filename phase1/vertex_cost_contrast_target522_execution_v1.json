@@ -1,0 +1,113 @@
+{
+  "protocol": "vertex-cost-contrast-target522-stage-a-execution-v1",
+  "version": 1,
+  "status": "FROZEN_BEFORE_TARGET522_CANDIDATE",
+  "frozen_at_utc": "2026-08-30T03:02:50Z",
+  "scientific_protocol": {
+    "path": "phase1/vertex_cost_contrast_target522_effect_v1.json",
+    "sha256": "b3df170ebb4ae097549cb0225142e94aebfa481aea6c79815f1be2af687d9e1d"
+  },
+  "question": "Can the already frozen Target-522 VCCD Stage-A selection be activated automatically and reproduced independently without opening prospective values or relying on a manually chosen candidate?",
+  "activation": {
+    "selection_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+    "requires_complete_marker": true,
+    "requires_exact_selection_manifest": true,
+    "alternate_candidate_argument_allowed": false,
+    "candidate_profile_read_before_complete": false,
+    "first960_closure_required_for_stage_a": false,
+    "first960_closure_required_for_any_fit": true,
+    "monitor_polls": 721,
+    "monitor_interval_seconds": 30,
+    "monitor_resume_allowed_only_without_failure_marker": true
+  },
+  "stage_a": {
+    "inputs": [
+      "immutable Target-522 selection package",
+      "outcome-blind accumulator metadata and code payloads",
+      "frozen scientific protocol and exact source commit"
+    ],
+    "forbidden_inputs": [
+      "grade",
+      "pair orientation",
+      "score gap",
+      "outcome",
+      "prediction",
+      "accuracy",
+      "runtime",
+      "utility",
+      "first-960 closure payload"
+    ],
+    "producer_repetitions": 2,
+    "independent_verifier_repetitions": 2,
+    "byte_exact_public_required": true,
+    "byte_exact_private_required_when_present": true,
+    "byte_exact_verification_required": true,
+    "private_mode": "0600",
+    "fresh_detached_worktree": true,
+    "focused_and_full_tests_before_selection": true,
+    "file_and_network_trace_required": true,
+    "selection_manifest_rechecked_after_verification": true
+  },
+  "bindings": {
+    "producer": {
+      "path": "phase1/freeze_vertex_cost_contrast_target522_selection.py",
+      "sha256": "63095d5a33f7094a9e79c662913b7fa80c3d07a6308f3db1a10537a21c76a5cf"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_vertex_cost_contrast_target522_selection.py",
+      "sha256": "ccb7e375f255a22144b9363c6a07b10af0c87048976cdc3676f870be4fb8ba6e"
+    },
+    "test": {
+      "path": "phase1/tests/test_vertex_cost_contrast_target522_runner.py",
+      "sha256": "44c0d110ae7030d2061dd2a08645b320ce0d190015478ee8a18c59636ba3c069"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_vertex_cost_contrast_target522_selection_formal_20260830.sh",
+      "sha256": "9b44ffb82739035601665df11d366b8c1a3570cfad767bf728ef83a291e6e4bc"
+    },
+    "monitor": {
+      "path": "phase1/scripts/monitor_vertex_cost_contrast_target522_selection_formal_20260830.sh",
+      "sha256": "aef2aff4d1b367c19ba77675374f2d1671bc550ba8ab7fa5ece495971e5d4470"
+    },
+    "scientific_protocol_postpush_receipt": {
+      "path": "phase1/vertex_cost_contrast_target522_protocol_postpush_receipt_20260830.json",
+      "sha256": "aa8b7f302fce7f49a7fa716314055398604835505986f0bc2b17b489253e17ca"
+    },
+    "related_work_addendum": {
+      "path": "phase1/vertex_cost_contrast_target522_related_work_addendum_v1.json",
+      "sha256": "4176772f5287d4bd77957a151973578489acaa4bdfbeb3171ca43ab3c222a816"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "cpu_threads": 1,
+    "yield_solver_time_limit_seconds_per_producer": 900,
+    "maximum_producer_runs": 2,
+    "expected_total_wall_clock_minutes": "10-70",
+    "fail_closed_wall_clock_minutes": 90
+  },
+  "release_boundary": {
+    "stage_a_success_is_not_an_effect_result": true,
+    "stage_a_success_only_means_support_split_and_selections_are_reproducibly_frozen": true,
+    "vccd_is_a_domain_instantiation_not_a_new_general_d_optimal_design_theorem": true,
+    "closest_prior_work_must_be_discussed": [
+      "Comparing Few to Rank Many, ICML 2025",
+      "Active preference learning for ordering items in- and out-of-sample, NeurIPS 2024",
+      "Sample Complexity Bounds for Active Ranking from Multi-wise Comparisons, NeurIPS 2021"
+    ],
+    "no_critic_fit_before_first960_accrual_closure": true,
+    "no_outcome_or_prediction_value_before_first960_accrual_closure": true,
+    "no_arm_budget_metric_or_task_selection_may_be_changed_after_stage_a": true
+  },
+  "ordered_failure_policy": [
+    "selection failure, continuity gap, timeout, or manifest drift: stop",
+    "source, protocol, test, runner, monitor, or receipt hash drift: stop",
+    "duplicate output root, unsafe permissions, credential hit, forbidden path, or network access: stop",
+    "producer or verifier byte mismatch: stop",
+    "support gate failure: retain the protocol-defined limited-support classification and do not fit later",
+    "yield solver unavailable: retain the protocol-defined two-arm structural package without changing its gates"
+  ]
+}

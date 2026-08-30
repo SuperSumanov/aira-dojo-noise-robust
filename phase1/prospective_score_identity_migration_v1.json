@@ -38,6 +38,7 @@
     "complete_phase1_test_suite": true,
     "actual_registered_registry_replay": true,
     "actual_candidate_transaction_a_b_byte_identity": true,
+    "independent_score_identity_verifier": true,
     "independent_archive_consensus_verification": true,
     "fresh_exact_commit_and_worktree": true,
     "hash_and_trace_security_postflight": true,

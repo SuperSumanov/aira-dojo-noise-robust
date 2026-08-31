@@ -29,6 +29,12 @@ checkpoint runs=0、live-only roots=all roots、credential-shaped member names=0
 诊断 producer / verifier / registry builder SHA-256=`b74c6dc9...b876e` / `56b60bbf...cd19` /
 `338c979c...e10c`；GPU/API/model fit/base update=`0/0/0/0`，label/outcome/prediction/accuracy/utility 均未读。
 
+正式诊断 v1 在任何 producer 前因 Git LFS 缺失历史对象停止；fresh nosmudge v2 已生成 producer/verifier/registry 双份
+文件，但 safe summary 前的 trace 扫描把 Python 标准库 `token.py` / `tokenize.py` / `secrets.py` 误判为敏感路径而停止。
+在读取 archive-audit aggregate 前冻结 trace addendum v2：不重跑三类产物，只允许上述六个 exact basename（含对应
+`.pyc`），其余 `label_vault/prediction/accuracy/utility/.env/api_key` 与非白名单 token/secret 路径仍必须为 0；
+任一 A/B、hash、failure binding 或 trace 不符均不生成可部署 registry。v1/v2 失败根均保留。
+
 ## 0KM. 2026-08-31 219-run 后续接已冻结为 ordered continuous chain
 
 为消除 one-shot formal collecting 后 monitor 退出造成的人工延迟与 snapshot 选择空间，冻结

@@ -1,0 +1,60 @@
+{
+  "protocol": "prospective_no_checkpoint_trace_addendum_20260901_v2",
+  "frozen_before_archive_audit_readout": true,
+  "parent_protocol": "prospective_no_checkpoint_rejection_amendment_20260901_v1",
+  "execution_root": "formal-5116f7f-v2",
+  "execution_state": {
+    "producer_a_exists": true,
+    "producer_b_exists": true,
+    "verifier_a_exists": true,
+    "verifier_b_exists": true,
+    "registry_a_exists": true,
+    "registry_b_exists": true,
+    "safe_summary_exists": false,
+    "archive_audit_aggregate_read": false
+  },
+  "stopping_condition": {
+    "stage": "post-output trace keyword scan",
+    "reason": "the generic token and secret substrings matched Python standard-library module filenames",
+    "non_token_secret_forbidden_marker_counts": 0,
+    "producer_token_matches_each": 6,
+    "producer_secret_matches_each": 3,
+    "verifier_token_matches_each": 0,
+    "verifier_secret_matches_each": 0
+  },
+  "fixed_resolution": {
+    "rerun_producer": false,
+    "rerun_verifier": false,
+    "rerun_registry_builder": false,
+    "allowed_false_positive_basenames_exact": [
+      "secrets.cpython-311.pyc",
+      "secrets.py",
+      "token.cpython-311.pyc",
+      "token.py",
+      "tokenize.cpython-311.pyc",
+      "tokenize.py"
+    ],
+    "still_forbidden": [
+      "label_vault",
+      "prediction",
+      "accuracy",
+      "utility",
+      "/.env",
+      "api_key",
+      "any non-whitelisted token or secret path basename"
+    ],
+    "finalizer_scope": "validate existing A/B bytes, exact hashes, trace whitelist, failure binding, and write only the safe summary plus read-only receipt"
+  },
+  "failure_policy": "any mismatch leaves v2 failed and produces no deployable registry",
+  "scope": {
+    "labels_read": false,
+    "outcomes_read": false,
+    "prediction_values_read": false,
+    "accuracy_or_utility_computed": false,
+    "candidate_identities_emitted": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

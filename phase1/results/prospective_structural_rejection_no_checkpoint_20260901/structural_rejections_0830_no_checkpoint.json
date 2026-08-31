@@ -1,0 +1,15 @@
+{
+  "entries": [
+    {
+      "archive_mtime_ns": 1788189680000000000,
+      "archive_relative_path": "0830/freesound-audio-tagging-2019-4seeds.tar.gz",
+      "archive_sha256": "6fef3b683dbef1e133a00f9e8118041bde414abce5f804f4d171c7302665cfea",
+      "archive_size": 12327016,
+      "diagnostic_receipt_file": "diagnostic_receipt.json",
+      "diagnostic_receipt_sha256": "b92598729cdd1a2b45f263f345ba79aafff6d393375b22bb1f480987e0fe4a06",
+      "reason_code": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS"
+    }
+  ],
+  "outcomes_read": false,
+  "protocol": "prospective_structural_rejection_v1"
+}

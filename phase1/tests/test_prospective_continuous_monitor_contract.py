@@ -41,6 +41,7 @@ def test_all_repo_backed_rejection_registry_hashes_are_exact() -> None:
         "EXTRA_0823_AI4CODE_REGISTRY",
         "EXTRA_0823_LMSYS_REGISTRY",
         "EXTRA_0829_PLANT_REGISTRY",
+        "EXTRA_0830_NO_CHECKPOINT_REGISTRY",
     )
     for prefix in prefixes:
         relative = values[f"{prefix}_REL"]
@@ -51,8 +52,8 @@ def test_all_repo_backed_rejection_registry_hashes_are_exact() -> None:
 
 def test_extra_registry_arguments_remain_paired() -> None:
     text = SCRIPT.read_text(encoding="utf-8")
-    assert text.count("--extra-structural-rejection-registry ") == 11
-    assert text.count("--expect-extra-structural-rejection-registry-sha256 ") == 11
+    assert text.count("--extra-structural-rejection-registry ") == 12
+    assert text.count("--expect-extra-structural-rejection-registry-sha256 ") == 12
 
 
 def test_scientific_score_identity_migration_is_exactly_bound() -> None:
@@ -162,6 +163,39 @@ def test_0829_plant_registry_is_verified_passed_and_receipted() -> None:
     assert receipt["archive_audit"]["discovered_run_roots"] == 8
     assert receipt["archive_audit"]["live_only_runs_excluded"] == 8
     assert receipt["security"]["live_event_journal_members_read"] is False
+
+
+def test_0830_no_checkpoint_registry_is_verified_passed_and_receipted() -> None:
+    text = SCRIPT.read_text(encoding="utf-8")
+    assert text.count("${EXTRA_0830_NO_CHECKPOINT_REGISTRY_SHA}") == 3
+    assert text.count("${extra_0830_no_checkpoint_registry}") == 2
+
+    values = assignments()
+    registry_path = ROOT / values["EXTRA_0830_NO_CHECKPOINT_REGISTRY_REL"]
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    assert registry["outcomes_read"] is False
+    assert len(registry["entries"]) == 1
+    entry = registry["entries"][0]
+    assert entry["archive_relative_path"] == "0830/freesound-audio-tagging-2019-4seeds.tar.gz"
+    assert entry["reason_code"] == "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS"
+
+    receipt_path = registry_path.parent / entry["diagnostic_receipt_file"]
+    assert sha256(receipt_path) == entry["diagnostic_receipt_sha256"]
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    assert receipt["outcomes_read"] is False
+    assert receipt["journals"] == 0
+    assert receipt["archive_audit"]["checkpoint_runs"] == 0
+    assert receipt["archive_audit"]["discovered_run_roots"] == 2
+    assert receipt["archive_audit"]["live_only_runs_excluded"] == 2
+    assert receipt["security"]["live_event_journal_members_read"] is False
+
+    verification = json.loads(
+        (registry_path.parent / "independent_verification.json").read_text(encoding="utf-8")
+    )
+    assert verification["diagnostic_receipt_sha256"] == entry["diagnostic_receipt_sha256"]
+    assert verification["journal_member_bytes_read"] == 0
+    assert verification["archive_audit"]["credential_shaped_member_names"] == 0
+    assert verification["outcomes_read"] is False
 
 
 def test_archive_content_alias_registry_is_exactly_bound() -> None:

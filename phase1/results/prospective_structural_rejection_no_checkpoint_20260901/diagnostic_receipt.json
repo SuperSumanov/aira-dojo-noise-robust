@@ -1,0 +1,37 @@
+{
+  "archive": {
+    "mtime_ns": 1788189680000000000,
+    "relative_basename": "freesound-audio-tagging-2019-4seeds.tar.gz",
+    "sha256": "6fef3b683dbef1e133a00f9e8118041bde414abce5f804f4d171c7302665cfea",
+    "size": 12327016
+  },
+  "archive_audit": {
+    "checkpoint_runs": 0,
+    "checkpoint_with_live_event_log": 0,
+    "checkpoint_without_live_event_log": 0,
+    "declared_member_bytes": 66216969,
+    "discovered_run_roots": 2,
+    "live_only_runs_excluded": 2,
+    "members": 31
+  },
+  "invalid_journals": 0,
+  "journals": 0,
+  "outcomes_read": false,
+  "per_journal": [],
+  "protocol": "prospective_archive_task_identity_audit_v1",
+  "recommended_reason_code": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+  "security": {
+    "code_stdout_grade_or_metric_values_emitted": false,
+    "env_members_read": false,
+    "journal_scanned_before_json": true,
+    "live_event_journal_members_read": false,
+    "task_identity_values_emitted": false
+  },
+  "source_commit": "6e27d6af965a68a44bd6d34f65addbec2f74063c",
+  "status": "STRUCTURAL_NO_CHECKPOINT_REJECTION_SUPPORTED",
+  "task_identity_cardinality_counts": {
+    "multiple": 0,
+    "one": 0,
+    "zero": 0
+  }
+}

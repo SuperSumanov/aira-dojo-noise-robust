@@ -1,0 +1,42 @@
+{
+  "archive_audit": {
+    "checkpoint_runs": 0,
+    "checkpoint_with_live_event_log": 0,
+    "checkpoint_without_live_event_log": 0,
+    "credential_shaped_member_names": 0,
+    "declared_member_bytes": 66216969,
+    "discovered_run_roots": 2,
+    "live_only_runs_excluded": 2,
+    "members": 31
+  },
+  "archive_binding": {
+    "mtime_ns": 1788189680000000000,
+    "sha256": "6fef3b683dbef1e133a00f9e8118041bde414abce5f804f4d171c7302665cfea",
+    "size": 12327016
+  },
+  "base_llm_updates": 0,
+  "candidate_identities_emitted": false,
+  "diagnostic_receipt_sha256": "b92598729cdd1a2b45f263f345ba79aafff6d393375b22bb1f480987e0fe4a06",
+  "failed_attempt_retained": true,
+  "failure_log_sha256": "966e7e67dbc45bf59af2c28054adb63ba64aca3a4594302ae2af0e35128f6001",
+  "gpu_jobs": 0,
+  "independent_verification_sha256": "9b1b715cf25bac50305df9fdcc1651acddc7efd1455217a9fdd081eac9bb98a0",
+  "journal_member_bytes_read_by_independent_verifier": 0,
+  "model_fits": 0,
+  "outcomes_read": false,
+  "paid_api_calls": 0,
+  "producer_ab_byte_identical": true,
+  "public_finalizer_commit": "ba733e66e316ca50330379ce4e5990114d31901d",
+  "registry_ab_byte_identical": true,
+  "registry_sha256": "0c138eb6aa3f5de27041a99e4da38b9c802338e952f6306e9e44f43eab129ffe",
+  "status": "STRUCTURAL_NO_CHECKPOINT_REJECTION_FORMAL_PASS",
+  "trace_false_positive_basenames_exact": [
+    "secrets.cpython-311.pyc",
+    "secrets.py",
+    "token.cpython-311.pyc",
+    "token.py",
+    "tokenize.cpython-311.pyc",
+    "tokenize.py"
+  ],
+  "verifier_ab_byte_identical": true
+}

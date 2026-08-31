@@ -35,6 +35,20 @@ checkpoint runs=0、live-only roots=all roots、credential-shaped member names=0
 `.pyc`），其余 `label_vault/prediction/accuracy/utility/.env/api_key` 与非白名单 token/secret 路径仍必须为 0；
 任一 A/B、hash、failure binding 或 trace 不符均不生成可部署 registry。v1/v2 失败根均保留。
 
+addendum 后的正式 finalizer 已通过：同一唯一失败 archive 含 2 个 discovered physical run roots，二者均只有 live-event、
+checkpoint journals=`0`，故 2/2 被归为 live-only 并按既有 `ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS` taxonomy 拒绝；
+credential-shaped member names=`0`，独立 verifier 读取 journal bytes=`0`，outcomes/identities 均未读。producer/verifier/registry
+A/B 均逐字节一致，safe-summary/diagnostic/verification/registry SHA-256=`0819fdbe...df10` / `b9259872...a06` /
+`9b1b715c...98a0` / `0c138eb6...ffe`。23 项 focused tests 通过；registry 已接入 monitor 契约，但只有远端 full suite
+与 fresh-instance 启动通过后才允许把 intake 从该 fail-closed 点继续推进。
+
+与此同时，Target-300 ordered chain 在最后成功 LATEST 上独立完成 attempt 1：formal/verifier 状态为
+`FUTURE_COHORT_COLLECTING` / `PASS_COLLECTING_TRUTH_UNREAD`，exact 219-run prefix 完整保留并推进至 235 runs /
+73 archives / 33 tasks，remaining=`65`、boundary absent；相对上一正式点为 `+16/+4/+2`。summary/verification/safe-receipt
+SHA-256=`ebf8426a...908` / `2e5f0d69...96f1c` / `d9deb91b...df7f`。continuous monitor PID=`2206791`、lock held，
+已转入 attempt 2 等待下一个不同且稳定的 LATEST。该进展只证明冻结人口按序增长，不是 predictor、scaling 或 search-utility
+正结果；GPU/API/model fit/base update=`0/0/0/0`。
+
 ## 0KM. 2026-08-31 219-run 后续接已冻结为 ordered continuous chain
 
 为消除 one-shot formal collecting 后 monitor 退出造成的人工延迟与 snapshot 选择空间，冻结

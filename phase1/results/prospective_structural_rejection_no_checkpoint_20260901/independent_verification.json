@@ -1,0 +1,18 @@
+{
+  "archive_audit": {
+    "checkpoint_runs": 0,
+    "checkpoint_with_live_event_log": 0,
+    "checkpoint_without_live_event_log": 0,
+    "credential_shaped_member_names": 0,
+    "declared_member_bytes": 66216969,
+    "discovered_run_roots": 2,
+    "live_only_runs_excluded": 2,
+    "members": 31
+  },
+  "archive_sha256": "6fef3b683dbef1e133a00f9e8118041bde414abce5f804f4d171c7302665cfea",
+  "candidate_identities_emitted": false,
+  "diagnostic_receipt_sha256": "b92598729cdd1a2b45f263f345ba79aafff6d393375b22bb1f480987e0fe4a06",
+  "journal_member_bytes_read": 0,
+  "outcomes_read": false,
+  "status": "STRUCTURAL_NO_CHECKPOINT_REJECTION_INDEPENDENTLY_VERIFIED"
+}

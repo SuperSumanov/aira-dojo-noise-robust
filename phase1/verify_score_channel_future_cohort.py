@@ -32,7 +32,7 @@ TRANSACTION_KEYS = {
     "score_dir",
     "score_summary_sha256",
 }
-PROVENANCE_KEYS = {
+PROVENANCE_REQUIRED_KEYS = {
     "run_id",
     "task",
     "generation_started_at_utc",
@@ -46,6 +46,8 @@ PROVENANCE_KEYS = {
     "endpoints",
     "empty_code_nodes_excluded",
 }
+PROVENANCE_OPTIONAL_KEYS = {"competition_id_source"}
+COMPETITION_ID_SOURCES = {"explicit_journal", "archive_consensus_fallback"}
 ARCHIVE_KEYS = {
     "archive_relative_path",
     "archive_sha256",
@@ -376,8 +378,17 @@ def intake_runs(
     output: list[dict[str, Any]] = []
     seen: set[str] = set()
     for row in provenance:
-        if not isinstance(row, dict) or set(row) != PROVENANCE_KEYS:
+        if not isinstance(row, dict) or not (
+            PROVENANCE_REQUIRED_KEYS
+            <= set(row)
+            <= PROVENANCE_REQUIRED_KEYS | PROVENANCE_OPTIONAL_KEYS
+        ):
             raise VerificationError("provenance schema failed")
+        if (
+            "competition_id_source" in row
+            and row["competition_id_source"] not in COMPETITION_ID_SOURCES
+        ):
+            raise VerificationError("provenance competition source failed")
         journal = sha(row.get("journal_sha256"), "journal SHA")
         run_id = row.get("run_id")
         task = row.get("task")

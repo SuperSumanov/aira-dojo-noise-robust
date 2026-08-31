@@ -9,7 +9,11 @@ from pathlib import Path
 import pytest
 
 from phase1.score_channel_future_cohort import CohortError, produce
-from phase1.verify_score_channel_future_cohort import VerificationError, verify
+from phase1.verify_score_channel_future_cohort import (
+    VerificationError,
+    intake_runs,
+    verify,
+)
 
 
 REPO = Path(__file__).parents[2]
@@ -83,9 +87,10 @@ def provenance_row(
     *,
     task: str | None = None,
     journal_digest: str | None = None,
+    competition_id_source: str | None = None,
 ) -> dict:
     journal = journal_digest or journal_sha(marker)
-    return {
+    row = {
         "run_id": f"journal:{journal}",
         "task": task or f"task-{marker % 3}",
         "generation_started_at_utc": f"2026-08-22T12:{marker % 60:02d}:00Z",
@@ -99,6 +104,9 @@ def provenance_row(
         "endpoints": 2,
         "empty_code_nodes_excluded": 0,
     }
+    if competition_id_source is not None:
+        row["competition_id_source"] = competition_id_source
+    return row
 
 
 def make_intake(
@@ -109,6 +117,7 @@ def make_intake(
     size: int,
     *,
     duplicate_journal: str | None = None,
+    competition_id_source: str | None = None,
 ) -> dict:
     archive_digest = archive_sha(marker)
     drop_id = f"drop-{marker}"
@@ -120,6 +129,7 @@ def make_intake(
             archive_digest,
             run_marker,
             journal_digest=duplicate_journal,
+            competition_id_source=competition_id_source,
         )
         for run_marker in run_markers
     ]
@@ -182,6 +192,27 @@ def make_intake(
         "score_dir": str((state / "scores" / drop_id).resolve()),
         "score_summary_sha256": archive_sha(marker + 1000),
     }
+
+
+def rewrite_provenance_source(
+    transaction: dict,
+    source: str,
+) -> None:
+    intake = Path(transaction["intake_dir"])
+    provenance_path = intake / "source_provenance.json"
+    rows = json.loads(provenance_path.read_text(encoding="utf-8"))
+    for row in rows:
+        row["competition_id_source"] = source
+    provenance_path.write_text(
+        json.dumps(rows, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    summary_path = intake / "summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary["outputs"]["source_provenance_sha256"] = digest(provenance_path)
+    summary_path.write_text(
+        json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    transaction["intake_summary_sha256"] = digest(summary_path)
 
 
 def write_snapshot(state: Path, transactions: list[dict]) -> str:
@@ -333,6 +364,48 @@ def test_boundary_archive_is_included_whole_and_verified(tmp_path: Path):
     ]
     assert [row["physical_runs"] for row in archives] == [2, 2]
     assert receipt["status"] == "PASS_IDENTITY_CLOSED_TRUTH_UNREAD"
+
+
+def test_mixed_legacy_and_optional_provenance_schema_is_supported(
+    tmp_path: Path,
+):
+    protocol, protocol_sha, state, source, transactions, _ = fixture_state(
+        tmp_path,
+        ["committed", "committed"],
+        [[1, 2], [3, 4]],
+        target=3,
+    )
+    rewrite_provenance_source(transactions[1], "archive_consensus_fallback")
+    write_snapshot(state, transactions)
+    output = tmp_path / "cohort"
+    summary, receipt = run_and_verify(
+        protocol, protocol_sha, state, source, output
+    )
+    assert summary["status"] == "FUTURE_COHORT_IDENTITY_CLOSED_TRUTH_UNREAD"
+    assert summary["inventory"]["selected_physical_runs"] == 4
+    assert receipt["status"] == "PASS_IDENTITY_CLOSED_TRUTH_UNREAD"
+    cohort_rows = [
+        json.loads(line)
+        for line in (output / "cohort_runs.jsonl").read_text(encoding="utf-8").splitlines()
+    ]
+    assert all("competition_id_source" not in row for row in cohort_rows)
+
+
+def test_invalid_optional_provenance_value_fails_producer_and_verifier(
+    tmp_path: Path,
+):
+    protocol, protocol_sha, state, source, transactions, _ = fixture_state(
+        tmp_path,
+        ["committed"],
+        [[1, 2]],
+        target=3,
+    )
+    rewrite_provenance_source(transactions[0], "unregistered_source")
+    write_snapshot(state, transactions)
+    with pytest.raises(CohortError, match="invalid source provenance competition source"):
+        produce(protocol, protocol_sha, state, source, REPO, tmp_path / "cohort")
+    with pytest.raises(VerificationError, match="provenance competition source failed"):
+        intake_runs(transactions[0], state)
 
 
 def test_settled_archive_after_pending_gap_fails_closed(tmp_path: Path):

@@ -31,6 +31,13 @@ v2 实现/运行前必须补 mixed-schema 正例及 producer/verifier 非法值�
 trace/security、clean worktree 门。v2 失败也不得重试。该技术修正只授权同一冻结 candidate 的 CPU 结构闭合；即使成功也不授权
 truth-support、replay/effect、GPU、API 或模型训练，且不构成 predictor accuracy/scaling/search utility 结论。
 
+结果前最小实现已完成：producer/verifier 只把 strict equality 改为 `required <= keys <= required|{competition_id_source}`，
+并各自验证固定二值 enum；cohort output schema 不含新字段。mixed legacy/new 正例、producer/verifier 非法值反例及部署静态门合计
+24/24 通过。producer/verifier/wrapper/deployer SHA-256=`0273b1e1...1d25f` / `4ed03a0f...5622e` /
+`16747430...761c5` / `08fe5351...99306`；运行时只对旧 formal runner 增加唯一 worktree 后缀与固定 candidate 断言，
+patched runner SHA-256=`0f50c1dc...edbff`。本地 full suite 因未安装 scipy/sklearn 在 collection 前停止，不计科学失败；
+远端正式 venv 的 full suite 是 producer 启动前硬门，任何失败均不产生 cohort 或 anchor。
+
 ## 0KJ. 2026-08-31 Target-300 已从 `98f2` 的 193-run 前缀冻结结果盲续接
 
 原 quiescent monitor 在 `98f2` 正式确认 `193 runs / 60 archives / 30 tasks / remaining 107` 后自然退出；当前

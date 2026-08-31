@@ -36,7 +36,7 @@ TRANSACTION_KEYS = {
     "score_dir",
     "score_summary_sha256",
 }
-PROVENANCE_KEYS = {
+PROVENANCE_REQUIRED_KEYS = {
     "run_id",
     "task",
     "generation_started_at_utc",
@@ -50,6 +50,8 @@ PROVENANCE_KEYS = {
     "endpoints",
     "empty_code_nodes_excluded",
 }
+PROVENANCE_OPTIONAL_KEYS = {"competition_id_source"}
+COMPETITION_ID_SOURCES = {"explicit_journal", "archive_consensus_fallback"}
 RUN_OUTPUT_KEYS = {
     "archive_relative_path",
     "archive_sha256",
@@ -432,8 +434,19 @@ def load_archive_runs(
     seen_runs: set[str] = set()
     archive_name = Path(transaction["archive_relative_path"]).name
     for number, row in enumerate(provenance, 1):
-        if not isinstance(row, dict) or set(row) != PROVENANCE_KEYS:
+        if not isinstance(row, dict) or not (
+            PROVENANCE_REQUIRED_KEYS
+            <= set(row)
+            <= PROVENANCE_REQUIRED_KEYS | PROVENANCE_OPTIONAL_KEYS
+        ):
             raise CohortError(f"source provenance schema mismatch at row {number}")
+        if (
+            "competition_id_source" in row
+            and row["competition_id_source"] not in COMPETITION_ID_SOURCES
+        ):
+            raise CohortError(
+                f"invalid source provenance competition source at row {number}"
+            )
         journal_sha = valid_sha(row.get("journal_sha256"), "journal SHA")
         run_id, task = row.get("run_id"), row.get("task")
         if (

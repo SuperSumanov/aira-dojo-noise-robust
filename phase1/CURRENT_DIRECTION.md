@@ -13,6 +13,29 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KH. 2026-08-31 archive disposition taxonomy-aware 纵向审计强门通过
+
+旧 v1 在结果写出前因 `unknown rejection reason` fail-closed：它漏列了 8 个早已单独预注册并逐字节验证的 byte-alias
+quarantine，同时错误要求 accepted 与 alias 的 payload hash 互异。v1 永久保留为
+`ARCHIVE_DISPOSITION_REPLICATION_INTEGRITY_FAIL`；没有 result、未启动 verifier、未计算结构 competition overlap。
+
+在 taxonomy-only 诊断后、任何结构 overlap readout 前冻结 v2，将当前 21 个 rejected archives 精确分成 structural=`13`
+与 aliases=`8`。exact commit=`43ce72a94dc70a4bdff07c9b5494176ff1926f15` 在 fresh root 通过 focused/full=
+`16/1848 passed`（48 warnings），producer A/B 与独立 verifier A/B 逐字节一致，独立 postflight PASS。
+
+冻结强门正式通过：current structural rejected competitions=`6`，其中 accepted-overlap=`6/6=1.0`，Wilson 95% CI=
+`[0.6096657121,1.0]`；overall extension settled=`57>=50`。hash taxonomy 同时精确通过：accepted unique=`126`，
+structural unique=`13` 且 overlap accepted=`0`，alias unique=`8` 且 overlap accepted=`8`，aliases 未进入结构 estimand。
+result/verification/manifest=`58539382...c104e` / `854f81e5...21ab4f` / `f5440d4d...65b7b`；
+network/forbidden/credential/identity hits=`0/0/0/0`。
+
+这是正面的 benchmark-audit / corpus-validity 结果：语料扩张后，结构拒绝仍不是 task blacklist，且生产账本可把结构无效
+archive 与 byte aliases 可复验地分层。但新增目标结构拒绝只有 `1`（accepted/structural/alias extension=`48/1/8`），
+所以论文措辞必须是 **longitudinal persistence**，不得称一批独立新结构拒绝上的 replication。它不支持 predictor accuracy、
+模型 scaling、search utility、metadata 修复因果效果或拒绝率稳定；archive payload、label、outcome、prediction value、
+accuracy、utility 均未读取，GPU/API/model fit/base update=`0/0/0/0`。机器件见
+`phase1/results/archive_disposition_longitudinal_replication_v2_20260831_43ce72a/`。
+
 ## 0KG. 2026-08-31 0829 语料摄取已排空；494-run 双 escrow 公共结构支持正式认证
 
 senior source 与 intake 现均为 275 个 archives；baseline/transactions/rejected/ready=`128/126/21/0`。

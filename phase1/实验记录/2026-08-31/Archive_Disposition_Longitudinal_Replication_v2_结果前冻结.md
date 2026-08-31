@@ -62,3 +62,22 @@ accepted archive”是否复现？
 
 不得说 predictor accuracy 提高、模型 scaling 得到确认、search utility 改善、metadata 修复有因果效果、拒绝率稳定，或
 任何 task 应被排除。该结果是正面的 benchmark-audit / corpus-validity 资产，不是 critic 方法效果。
+
+## 正式结果（冻结后写入）
+
+exact commit=`43ce72a94dc70a4bdff07c9b5494176ff1926f15` 在 fresh root
+`formal-43ce72a-taxonomy-v2-v1` 通过 focused/full=`16/1848 passed`（48 warnings）；producer A/B 与不导入 producer
+的 verifier A/B 均逐字节一致，独立 postflight PASS。
+
+正式状态=`LONGITUDINAL_ARCHIVE_LEVEL_GATE_REPLICATED`：current structural rejected competitions=`6`，其中 mixed=
+`6`，fraction=`1.0`，Wilson 95% CI=`[0.6096657121,1.0]`；overall extension settled=`57`，故三项冻结强门全过。
+当前 accepted/structural rejected/alias=`126/13/8`；hash taxonomy 为 accepted unique=`126`、structural unique=`13`
+且 overlap accepted=`0`、alias unique=`8` 且 overlap accepted=`8`。
+
+result/verification/manifest SHA-256=`58539382...c104e` / `854f81e5...21ab4f` /
+`f5440d4d...65b7b`；network/forbidden/credential/identity hits=`0/0/0/0`。未读取 archive payload、label、outcome、
+prediction value、accuracy 或 utility。
+
+严格限制：相对历史 anchor 的 accepted/structural rejected/alias 增量=`48/1/8`，目标结构 settled 增量只有 `49`；
+因此这是累计人口扩张后的 longitudinal persistence，不是大量独立新结构拒绝样本上的 replication。论文正文应优先使用
+“taxonomy-aware archive validity audit persists under corpus growth”，不得仅凭内部状态名夸大。

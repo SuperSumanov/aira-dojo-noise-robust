@@ -1,0 +1,13 @@
+01_direction=Decision Corpus + Predictor Benchmark + Audit Protocol only; PASS
+02_question=does structural archive-level mixed disposition replicate after taxonomy-aware alias quarantine; PASS
+03_context=frozen observer SHA, latest snapshot, public historical ledger and exact public commit; PASS
+04_unit=whole source archive disposition; accepted task comes from hash-bound intake metadata and rejected task from seeded filename; PASS
+05_security=observer metadata only; tar payloads labels outcomes predictions accuracy utility remain unread; PASS
+06_controls=historical anchor plus accepted structural-reject alias-quarantine and pending partition; PASS
+07_repetitions=producer A/B and independent verifier A/B must be byte-identical; PASS
+08_independence=verifier does not import producer and recomputes all aggregate fields and status; PASS
+09_reproducibility=exact commit clean no-smudge worktree hashes commands tests traces and manifest; PASS
+10_statistics=Wilson 95 percent intervals; no stationarity or causal repair claim; PASS
+11_resources=CPU single-thread only; gpu api model-fit base-update 0/0/0/0; PASS
+12_trace=file and network trace plus forbidden-path credential identity and worktree cleanliness gates; PASS
+13_failure=unknown taxonomy duplicate class hash semantic drift pending archive or mismatch fails closed; PASS

@@ -1,0 +1,18 @@
+{
+  "all_aggregate_fields_equal": true,
+  "identities_emitted": false,
+  "outcomes_predictions_labels_read": false,
+  "protocol": "independent_archive_disposition_longitudinal_replication_v2",
+  "randomness_used": false,
+  "recomputed_counts": {
+    "current_observed_archives": 275,
+    "current_settled_archives": 147,
+    "current_structural_mixed_disposition_competitions": 6,
+    "current_structural_rejected_competitions": 6,
+    "overall_extension_settled_archives": 57,
+    "structural_target_extension_settled_archives": 49
+  },
+  "result_sha256": "58539382eb9cd82e52560b8073287e2a94043c5035e34ad2d955baa3329c104e",
+  "result_status": "LONGITUDINAL_ARCHIVE_LEVEL_GATE_REPLICATED",
+  "status": "INDEPENDENT_ARCHIVE_DISPOSITION_REPLICATION_PASS"
+}

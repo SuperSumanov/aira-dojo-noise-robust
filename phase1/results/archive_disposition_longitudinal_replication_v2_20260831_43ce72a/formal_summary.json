@@ -1,0 +1,135 @@
+{
+  "candidate_identities_emitted": false,
+  "claim_boundary": {
+    "claims_rejection_rate_stationarity": false,
+    "estimates_metadata_repair_causal_effect": false,
+    "estimates_predictor_accuracy_scaling_or_search_utility": false,
+    "supports_task_whitelist_or_blacklist": false,
+    "supports_taxonomy_aware_archive_level_fail_closed_validation": true
+  },
+  "control_commit": "43ce72a94dc70a4bdff07c9b5494176ff1926f15",
+  "current": {
+    "accepted_archives": 126,
+    "alias_quarantine_rate": {
+      "denominator": 147,
+      "numerator": 8,
+      "value": 0.05442176870748299,
+      "wilson_95": [
+        0.027831258408052437,
+        0.10370723887126486
+      ]
+    },
+    "alias_quarantined_archives": 8,
+    "baseline_archives": 128,
+    "competition_mapping_audit": {
+      "accepted_filename_task_mismatches": 0,
+      "accepted_seeded_filename_archives": 124,
+      "accepted_single_task_archives": 126,
+      "accepted_task_metadata_fallback_archives": 2,
+      "hash_bound_source_provenance_rows": 520,
+      "rejected_seeded_filename_archives": 21,
+      "snapshot_transactions": 126,
+      "source_provenance_competition_source_rows": 25
+    },
+    "observed_archives": 275,
+    "overall_rejection_rate": {
+      "denominator": 147,
+      "numerator": 21,
+      "value": 0.14285714285714285,
+      "wilson_95": [
+        0.09537404484545026,
+        0.20853085755400258
+      ]
+    },
+    "overall_settled_postbaseline_archives": 147,
+    "payload_hash_partition_audit": {
+      "accepted_unique_payload_hashes": 126,
+      "alias_payload_hashes_overlapping_accepted": 8,
+      "alias_unique_payload_hashes": 8,
+      "distinct_alias_registry_hashes": 1,
+      "distinct_postbaseline_payload_hashes": 139,
+      "structural_payload_hashes_overlapping_accepted": 0,
+      "structural_unique_payload_hashes": 13
+    },
+    "pending_archives": 0,
+    "rejection_reason_counts": {
+      "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION": 8,
+      "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": 2,
+      "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": 2,
+      "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": 9
+    },
+    "structural_mixed_disposition_competitions": 6,
+    "structural_mixed_disposition_fraction": {
+      "denominator": 6,
+      "numerator": 6,
+      "value": 1.0,
+      "wilson_95": [
+        0.6096657120978346,
+        1.0
+      ]
+    },
+    "structural_nonmixed_rejected_competitions": 0,
+    "structural_rejected_archives": 13,
+    "structural_rejected_competitions": 6,
+    "structural_rejection_rate": {
+      "denominator": 139,
+      "numerator": 13,
+      "value": 0.09352517985611511,
+      "wilson_95": [
+        0.05547239293226588,
+        0.153440755022583
+      ]
+    },
+    "structural_target_settled_postbaseline_archives": 139,
+    "total_rejected_archives": 21
+  },
+  "decision": {
+    "identities_emitted": false,
+    "kill_gate_triggered": false,
+    "partial_gate_passed": false,
+    "strong_gate_passed": true
+  },
+  "extension_beyond_historical_anchor": {
+    "accepted_archives": 48,
+    "alias_quarantine_rate": {
+      "denominator": 57,
+      "numerator": 8,
+      "value": 0.14035087719298245,
+      "wilson_95": [
+        0.07287276143238601,
+        0.2532446460934409
+      ]
+    },
+    "alias_quarantined_archives": 8,
+    "observed_archives": 57,
+    "overall_rejection_rate": {
+      "denominator": 57,
+      "numerator": 9,
+      "value": 0.15789473684210525,
+      "wilson_95": [
+        0.0853579597035527,
+        0.2736317694063802
+      ]
+    },
+    "overall_settled_archives": 57,
+    "structural_rejected_archives": 1,
+    "structural_rejection_rate": {
+      "denominator": 49,
+      "numerator": 1,
+      "value": 0.02040816326530612,
+      "wilson_95": [
+        0.0036116725898252475,
+        0.10693521523391616
+      ]
+    },
+    "structural_target_settled_archives": 49,
+    "total_rejected_archives": 9
+  },
+  "frozen_observations_sha256": "dccd59d9e3fe964aabce2458647013d772070c40a120f79f9a6b02605356e855",
+  "historical_ledger_sha256": "b194b1bc88e561e77f982ae6f46d5ea7cccb745cc960c26da2661ea0ce8bad03",
+  "outcomes_predictions_labels_read": false,
+  "protocol_sha256": "8f52154bee899b3a4f9c71d24d5fbdb886d6259ee0ff0eaf8f20432bd8f4512b",
+  "result_sha256": "58539382eb9cd82e52560b8073287e2a94043c5035e34ad2d955baa3329c104e",
+  "status": "LONGITUDINAL_ARCHIVE_LEVEL_GATE_REPLICATED",
+  "verification_sha256": "854f81e58e9cf2aabce7a1a0edbda6f4f9696fdd6beeabd47524c1738321ab4f"
+}

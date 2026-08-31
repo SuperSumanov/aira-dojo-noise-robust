@@ -12,8 +12,8 @@
 1. Goal：检验“结构有效性是 archive-level 而不是 task whitelist/blacklist 属性”能否在新增 57 个归档后复制。
 2. Context：唯一方向为 Decision Corpus + Predictor Benchmark + Audit Protocol；LATEST 固定为
    `30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f`。
-3. Population：observer metadata SHA-256 固定为
-   `3b0780991fd55fde5d49f1dbd56ff28a27513cf3d71a74954d00e8367df5f470`，194,489 bytes；source 与 observer 均为
+3. Population：observer metadata 的不可变私有快照 SHA-256 固定为
+   `dccd59d9e3fe964aabce2458647013d772070c40a120f79f9a6b02605356e855`，194,489 bytes；source 与 observer 均为
    275 archives。
 4. Historical control：历史 ledger SHA-256 固定为
    `b194b1bc88e561e77f982ae6f46d5ea7cccb745cc960c26da2661ea0ce8bad03`，不得更换锚点。
@@ -29,6 +29,17 @@
     GPU/API/model-fit/base-update=`0/0/0/0`。
 13. Promotion：focused/full tests、精确 commit、输入 hash、trace/security、只读门和 post-push fresh checkout 全过后，
     才允许把 strong/partial/kill 写入 `CURRENT_DIRECTION.md`。
+
+## 结果前输入绑定修订（revision 2）
+
+首次正式运行固定在 commit `d821a55c93ef5efd7877f57176bf916471bded4f`。它在 producer 启动前即因 live
+`observations.json` 的整文件 SHA 漂移而 fail-closed：正式目录中没有 focused/full-test 输出、producer 输出、result 或
+verifier 输出。诊断时文件仍为 194,489 bytes，LATEST 仍为 `30945550...104f`，source 仍为 275 archives，四类聚合仍为
+128 baseline / 126 accepted / 21 rejected / 0 pending；未读取当前 competition 集合、mixed fraction 或 rejection reason 分布。
+
+因此 revision 2 仅把输入改绑到随后立即生成的远端私有不可变副本
+`dccd59d9e3fe964aabce2458647013d772070c40a120f79f9a6b02605356e855`。Strong/Partial/Kill 阈值、历史锚点、统计口径和
+访问边界均未改变。旧 live-file 绑定 `3b078099...1f470` 保留在机器可审计失败目录和协议的 superseded 字段中，不删除失败证据。
 
 ## 结论边界
 

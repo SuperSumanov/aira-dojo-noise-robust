@@ -13,6 +13,20 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KI. 2026-08-31 archive-granularity retention audit 已在 retention readout 前冻结
+
+为把 0KH 的“6/6 结构拒绝 competition 也有 accepted archive”从定性结论变成 corpus utility 数量级，新增
+`archive_granularity_retention_audit_v1`。它比较两个明示策略：archive-granular validation 只丢结构无效 archive；
+task-level blacklist 则丢掉 affected competition 下全部 accepted archives。主 estimand 是后者会额外丢失的 eligible
+runs/endpoints 占当前 accepted corpus 的 exact share；这是冻结 corpus 的确定性 accounting，不是线上方法因果效果。
+
+冻结时只知道 prior aggregate structural competitions/mixed=`6/6`，未读/未输出 task identity，也未读取 retained
+archive/physical-run/eligible-run/endpoint 数或 dominance。强门预先固定为：6 个 affected tasks 全部有 eligible support，
+retained eligible-run 与 endpoint share 均≥10%，两项 dominant-task share 均≤70%；partial 为 tasks≥4、shares≥5%、
+dominance≤85%，其余 kill。alias quarantine 明确排除。输入绑定同一 LATEST=`30945550...104f`、frozen observations=
+`dccd59d9...e855` 及 0KH result/verification hashes；只允许 CPU metadata-only A/B+独立 verifier，GPU/API/model fit/base
+update=`0/0/0/0`。当前只有结果前协议，尚无 retention scientific result。
+
 ## 0KH. 2026-08-31 archive disposition taxonomy-aware 纵向审计强门通过
 
 旧 v1 在结果写出前因 `unknown rejection reason` fail-closed：它漏列了 8 个早已单独预注册并逐字节验证的 byte-alias

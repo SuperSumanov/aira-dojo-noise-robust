@@ -1,0 +1,118 @@
+{
+  "protocol": "archive_granularity_retention_audit_v1",
+  "frozen_before_retention_count_readout": true,
+  "frozen_at_utc_date": "2026-08-31",
+  "question": "How much valid accepted structural support would a task-level blacklist discard, relative to archive-granular structural validation, among competitions with at least one structurally rejected archive?",
+  "disclosure_at_freeze": {
+    "structural_rejected_competition_count_known": 6,
+    "structural_mixed_disposition_competition_count_known": 6,
+    "affected_competition_identities_read_or_emitted": false,
+    "retained_accepted_archive_count_read": false,
+    "retained_physical_run_count_read": false,
+    "retained_eligible_run_count_read": false,
+    "retained_eligible_endpoint_count_read": false,
+    "affected_task_dominance_read": false
+  },
+  "inputs": {
+    "current_latest_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "current_observations_sha256": "dccd59d9e3fe964aabce2458647013d772070c40a120f79f9a6b02605356e855",
+    "current_observations_bytes": 194489,
+    "archive_disposition_v2_result_path": "results/archive_disposition_longitudinal_replication_v2_20260831_43ce72a/a/result.json",
+    "archive_disposition_v2_result_sha256": "58539382eb9cd82e52560b8073287e2a94043c5035e34ad2d955baa3329c104e",
+    "archive_disposition_v2_verification_path": "results/archive_disposition_longitudinal_replication_v2_20260831_43ce72a/a/independent_verification.json",
+    "archive_disposition_v2_verification_sha256": "854f81e58e9cf2aabce7a1a0edbda6f4f9696fdd6beeabd47524c1738321ab4f"
+  },
+  "known_structural_metadata_before_readout": {
+    "observed_archives": 275,
+    "baseline_archives": 128,
+    "accepted_archives": 126,
+    "structural_rejected_archives": 13,
+    "alias_quarantined_archives": 8,
+    "pending_archives": 0,
+    "accepted_tasks": 34,
+    "accepted_physical_runs": 520,
+    "accepted_eligible_runs": 494,
+    "accepted_eligible_endpoints": 13098,
+    "structural_rejected_competitions": 6,
+    "structural_mixed_disposition_competitions": 6,
+    "accepted_single_task_archives": 126,
+    "hash_bound_source_provenance_rows": 520
+  },
+  "rejection_taxonomy": {
+    "structural_target_reasons": [
+      "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+      "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
+      "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+    ],
+    "quarantine_only_reasons": [
+      "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION"
+    ],
+    "aliases_enter_retention_estimand": false
+  },
+  "estimand": {
+    "affected_competitions": "competitions with at least one structural-target rejected archive",
+    "counterfactual_policy": "discard every accepted archive belonging to an affected competition",
+    "reference_policy": "discard only structurally invalid archives and retain accepted archives from the same competition",
+    "retained_units": [
+      "accepted archives",
+      "physical runs",
+      "eligible runs",
+      "eligible endpoints"
+    ],
+    "primary_shares": [
+      "retained eligible runs / all accepted eligible runs",
+      "retained eligible endpoints / all accepted eligible endpoints"
+    ],
+    "dominance_denominator": "retained support within affected competitions",
+    "full_census_not_sampling_inference": true
+  },
+  "integrity_gates": {
+    "exact_snapshot_and_frozen_observations_required": true,
+    "prior_taxonomy_result_and_independent_verification_hash_bound": true,
+    "all_accepted_archives_must_map_to_exactly_one_hash_bound_task": true,
+    "accepted_provenance_run_ids_must_be_unique": true,
+    "accepted_totals_must_match_known_structural_metadata": true,
+    "structural_rejected_competitions_must_equal_prior_result_count": true,
+    "structural_mixed_disposition_competitions_must_equal_prior_result_count": true,
+    "aliases_must_be_excluded_from_affected_competitions": true,
+    "no_archive_task_run_or_candidate_identity_emitted": true
+  },
+  "decision_rule": {
+    "strong": {
+      "minimum_affected_competitions_with_eligible_support": 6,
+      "minimum_retained_eligible_run_share": 0.1,
+      "minimum_retained_eligible_endpoint_share": 0.1,
+      "maximum_dominant_affected_task_eligible_run_share": 0.7,
+      "maximum_dominant_affected_task_eligible_endpoint_share": 0.7,
+      "status": "ARCHIVE_GRANULARITY_RETENTION_STRONG"
+    },
+    "partial": {
+      "minimum_affected_competitions_with_eligible_support": 4,
+      "minimum_retained_eligible_run_share": 0.05,
+      "minimum_retained_eligible_endpoint_share": 0.05,
+      "maximum_dominant_affected_task_eligible_run_share": 0.85,
+      "maximum_dominant_affected_task_eligible_endpoint_share": 0.85,
+      "status": "ARCHIVE_GRANULARITY_RETENTION_PARTIAL"
+    },
+    "kill": {
+      "status": "ARCHIVE_GRANULARITY_RETENTION_NOT_SUPPORTED"
+    },
+    "integrity_failure_status": "ARCHIVE_GRANULARITY_RETENTION_INTEGRITY_FAIL"
+  },
+  "reporting": {
+    "report_exact_counts_and_shares": true,
+    "report_affected_task_anonymous_min_median_max": true,
+    "report_physical_and_eligible_units_separately": true,
+    "emit_affected_competition_or_archive_identities": false,
+    "do_not_call_the_counterfactual_an_observed_method_effect": true,
+    "do_not_claim_predictor_accuracy_scaling_or_search_utility": true
+  },
+  "access_contract": {
+    "observation_and_hash_bound_intake_metadata_only": true,
+    "archive_payloads_opened": false,
+    "labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+    "candidate_identities_or_profiles_read": false,
+    "archive_task_run_or_candidate_identity_values_emitted": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  }
+}

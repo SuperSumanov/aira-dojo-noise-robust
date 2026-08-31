@@ -1,0 +1,80 @@
+{
+  "status": "TARGET300_V1_SCHEMA_DRIFT_FAIL_CLOSED",
+  "recorded_at_utc_date": "2026-08-31",
+  "v1_execution": {
+    "release_commit": "98875a648464de11a31f47beaf879cd9d0a18076",
+    "science_commit": "ab59a011d945e4a96daf7dbbbc927a59027da077",
+    "continuation_protocol_sha256": "3a9027792d9d0b6a5466788007b363a9472b62f26409f2fc13eff88987670f97",
+    "monitor_sha256": "e35ea6e2ed7cb243e93e20acc1edecbd655155033fb9c5fa4b86ffc453a1be7b",
+    "frozen_candidate_latest_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "stable_observations": 5,
+    "formal_rc": 2,
+    "failure_stage": "producer_a_source_provenance_validation",
+    "focused_tests": {
+      "passed": 12,
+      "seconds": 0.43
+    },
+    "full_tests": {
+      "passed": 965,
+      "warnings": 47,
+      "seconds": 75.0
+    },
+    "producer_b_started": false,
+    "independent_verifier_started": false,
+    "formal_complete_written": false,
+    "first_closed_anchor_written": false,
+    "outer_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "outer_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "producer_a_stderr_sha256": "1a50441409e285b7f3eea61fb22fbac5d9af88de570a9cf5768c21533f8fc64c",
+    "redacted_error": "FUTURE_COHORT_ERROR: source provenance schema mismatch at row 1",
+    "v1_retry_permitted": false
+  },
+  "key_only_schema_audit": {
+    "latest_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "transactions": 126,
+    "provenance_files": 126,
+    "provenance_rows": 520,
+    "schema_variants": 2,
+    "required_keys": [
+      "archive_name",
+      "archive_sha256",
+      "eligible",
+      "empty_code_nodes_excluded",
+      "endpoints",
+      "flow_status",
+      "generation_started_at_utc",
+      "journal_member",
+      "journal_mtime",
+      "journal_sha256",
+      "run_id",
+      "task"
+    ],
+    "legacy_exact_rows": 495,
+    "optional_source_rows": 25,
+    "optional_keys": [
+      "competition_id_source"
+    ],
+    "rows_with_missing_required_keys": 0,
+    "rows_with_other_extra_keys": 0,
+    "values_printed": false,
+    "candidate_identities_or_profile_printed": false,
+    "truth_outcome_prediction_accuracy_or_utility_read": false
+  },
+  "diagnosis": {
+    "classification": "forward_schema_compatibility_omission",
+    "intake_schema_change_commit": "b5c76ebb8f93625f31d991486a5684c75d5348d0",
+    "old_reader_required_exact_key_equality": true,
+    "new_schema_removes_old_required_fields": false,
+    "new_schema_adds_one_audited_source_field": true,
+    "evidence_supports_data_corruption": false,
+    "evidence_supports_scientific_readout": false
+  },
+  "blindness": {
+    "label_vault_opened": false,
+    "score_or_outcome_opened": false,
+    "prediction_values_opened": false,
+    "accuracy_or_utility_computed": false,
+    "candidate_identifiers_or_task_profile_read": false,
+    "private_selection_read": false
+  }
+}

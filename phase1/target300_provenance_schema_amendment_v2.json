@@ -1,0 +1,93 @@
+{
+  "protocol": "target300_provenance_schema_amendment_v2",
+  "status": "FROZEN_AFTER_V1_STRUCTURAL_FAILURE_BEFORE_SCIENTIFIC_READOUT",
+  "frozen_at_utc_date": "2026-08-31",
+  "question": "Can the already frozen Target-300 candidate be evaluated under the unchanged temporal identity contract after a minimal forward-compatible provenance-schema correction?",
+  "failure_binding": {
+    "safe_receipt_path": "phase1/target300_v1_schema_failure_safe_receipt_20260831.json",
+    "v1_release_commit": "98875a648464de11a31f47beaf879cd9d0a18076",
+    "v1_science_commit": "ab59a011d945e4a96daf7dbbbc927a59027da077",
+    "v1_formal_rc": 2,
+    "v1_producer_error_sha256": "1a50441409e285b7f3eea61fb22fbac5d9af88de570a9cf5768c21533f8fc64c",
+    "v1_first_closed_anchor_absent": true,
+    "v1_must_not_be_retried": true
+  },
+  "fixed_candidate": {
+    "latest_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "selected_by_v1_first_stable_successor_rule": true,
+    "alternate_snapshot_selection_allowed": false,
+    "candidate_identity_or_profile_read_before_freeze": false,
+    "private_selection_read_before_freeze": false,
+    "truth_outcome_prediction_accuracy_or_utility_read_before_freeze": false
+  },
+  "previous_prefix": {
+    "formal_result_path": "/research/d7/spc/yzyang4/score-channel-future-identity-cohort/ab59a01-98f2cba9ca4b-9f69935923f7",
+    "manifest_sha256": "81831f68055cef1fcae654b8adad3d71c8bf2893a57ef4ba0785e2c2b475cb2e",
+    "summary_sha256": "01d67cec48537c28183eac8777ab2cf0b19c118ed637318dd5d959c69b9a8b42",
+    "verification_sha256": "59624c596eb8d48a52540182c6632b89f90fdc71ad661b8a38d93a355e12ee12",
+    "selected_runs": 193,
+    "selected_archives": 60,
+    "selected_tasks": 30,
+    "must_survive_as_exact_prefix": true
+  },
+  "schema_amendment": {
+    "required_keys": [
+      "archive_name",
+      "archive_sha256",
+      "eligible",
+      "empty_code_nodes_excluded",
+      "endpoints",
+      "flow_status",
+      "generation_started_at_utc",
+      "journal_member",
+      "journal_mtime",
+      "journal_sha256",
+      "run_id",
+      "task"
+    ],
+    "sole_optional_key": "competition_id_source",
+    "allowed_optional_values": [
+      "archive_consensus_fallback",
+      "explicit_journal"
+    ],
+    "accepted_key_sets": "required exactly, or required plus the sole optional key",
+    "arbitrary_extra_keys_rejected": true,
+    "missing_required_keys_rejected": true,
+    "invalid_optional_values_rejected": true,
+    "optional_key_dropped_from_cohort_identity_rows": true,
+    "archive_order_changed": false,
+    "run_deduplication_changed": false,
+    "eligibility_logic_changed": false,
+    "target_or_boundary_rule_changed": false,
+    "label_score_outcome_or_prediction_access_added": false
+  },
+  "required_validation": {
+    "legacy_schema_regression_passes": true,
+    "mixed_legacy_and_optional_schema_test_required": true,
+    "producer_rejects_invalid_optional_value": true,
+    "independent_verifier_rejects_invalid_optional_value": true,
+    "producer_replicas": 2,
+    "independent_verifier_replicas": 2,
+    "producer_and_verifier_replicas_byte_identical": true,
+    "focused_and_full_tests_before_producer": true,
+    "file_trace_forbidden_open_gate": true,
+    "clean_worktree_and_secret_scan": true,
+    "same_frozen_candidate_required_at_start": true,
+    "v2_failure_retained_without_retry": true
+  },
+  "scope": {
+    "identity_closure_only": true,
+    "gpu_jobs_authorized": 0,
+    "paid_api_calls_authorized": 0,
+    "model_fits_authorized": 0,
+    "base_llm_update_authorized": false,
+    "truth_support_replay_or_effect_authorized": false
+  },
+  "claim_boundary": {
+    "v1_failure_is_not_erased_by_v2": true,
+    "v2_success_would_be_a_structural_identity_milestone_only": true,
+    "not_a_predictor_accuracy_or_scaling_result": true,
+    "not_a_search_utility_or_method_effect_result": true,
+    "first960_and_target300_estimands_remain_separate": true
+  }
+}

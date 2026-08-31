@@ -13,6 +13,24 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KK. 2026-08-31 Target-300 v1 因前向 schema 漂移 fail-closed；v2 修正已在结果前冻结
+
+0KJ 的 monitor 在 `30945550...104f` 连续 `5×300s` 稳定后按协议触发。12 focused tests 与 965 full tests 通过，
+但 producer A 在任何 verifier/anchor/scientific readout 前以 rc=2 退出；v1 不得重试。key-only 审计确认根因不是数据损坏：
+126 个 provenance 文件共 520 行，495 行是原 12-key schema，25 行保留全部旧字段并只增加正式 intake fallback 引入的
+`competition_id_source`；缺旧字段与其他额外字段均为 0。未读取或输出候选身份/profile/private selection，也未读取
+truth/outcome/prediction/accuracy/utility。失败 safe receipt SHA-256=`aef8d5a8...5da42`。
+
+结果前冻结 `target300_provenance_schema_amendment_v2`（SHA-256=`ef6de30a...6df1`）：candidate 仍是 v1 自动固定的同一
+`30945550...104f`，previous 仍是 193 runs / 60 archives exact prefix，不允许换 snapshot。唯一修正是 producer 与独立 verifier
+接受原 required keys，或 required keys 加唯一可选字段 `competition_id_source`；字段存在时只允许
+`explicit_journal` / `archive_consensus_fallback`，且不进入 cohort identity rows。任意其他 extra、missing 或非法值仍 fail-closed。
+archive 时间序、run 去重、eligibility、target/boundary 与盲性均不变。
+
+v2 实现/运行前必须补 mixed-schema 正例及 producer/verifier 非法值反例，再过 focused/full tests、A/B、独立 verifier、
+trace/security、clean worktree 门。v2 失败也不得重试。该技术修正只授权同一冻结 candidate 的 CPU 结构闭合；即使成功也不授权
+truth-support、replay/effect、GPU、API 或模型训练，且不构成 predictor accuracy/scaling/search utility 结论。
+
 ## 0KJ. 2026-08-31 Target-300 已从 `98f2` 的 193-run 前缀冻结结果盲续接
 
 原 quiescent monitor 在 `98f2` 正式确认 `193 runs / 60 archives / 30 tasks / remaining 107` 后自然退出；当前

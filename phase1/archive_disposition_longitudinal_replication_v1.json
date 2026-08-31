@@ -1,0 +1,69 @@
+{
+  "protocol": "archive_disposition_longitudinal_replication_v1",
+  "frozen_before_current_mixed_disposition_readout": true,
+  "frozen_at_utc_date": "2026-08-31",
+  "question": "Does the earlier archive-level mixed-disposition finding replicate after the outcome-blind source population grows from 218 to 275 archives?",
+  "inputs": {
+    "current_latest_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "current_observations_sha256": "3b0780991fd55fde5d49f1dbd56ff28a27513cf3d71a74954d00e8367df5f470",
+    "current_observations_bytes": 194489,
+    "current_source_archive_count": 275,
+    "historical_ledger_path": "phase1/results/structural_rejection_ledger_v1_20260825/ledger.json",
+    "historical_ledger_sha256": "b194b1bc88e561e77f982ae6f46d5ea7cccb745cc960c26da2661ea0ce8bad03"
+  },
+  "known_metadata_before_readout": {
+    "current_baseline_archives": 128,
+    "current_accepted_archives": 126,
+    "current_rejected_archives": 21,
+    "current_pending_archives": 0,
+    "historical_observed_archives": 218,
+    "historical_settled_postbaseline_archives": 90,
+    "historical_rejected_competitions": 6,
+    "historical_mixed_disposition_competitions": 6
+  },
+  "recognized_rejection_reasons": [
+    "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+    "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
+    "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+  ],
+  "integrity_gates": {
+    "observations_match_frozen_sha256": true,
+    "source_count_equals_observation_count": true,
+    "baseline_accepted_rejected_pending_partition_is_mutually_exclusive_and_exhaustive": true,
+    "pending_archives_must_equal": 0,
+    "postbaseline_archive_payload_sha256_values_must_be_unique": true,
+    "all_rejection_reasons_must_be_recognized": true,
+    "latest_snapshot_must_appear_in_an_accepted_disposition": true,
+    "historical_anchor_must_reproduce_its_committed_counts_and_mixed_fraction": true
+  },
+  "decision_rule": {
+    "strong": {
+      "minimum_current_rejected_competitions": 6,
+      "minimum_extension_settled_archives": 50,
+      "required_current_mixed_disposition_fraction": 1.0,
+      "status": "LONGITUDINAL_ARCHIVE_LEVEL_GATE_REPLICATED"
+    },
+    "partial": {
+      "minimum_current_mixed_disposition_fraction": 0.8,
+      "status": "PARTIAL_ARCHIVE_LEVEL_GATE_REPLICATION"
+    },
+    "kill": {
+      "status": "ARCHIVE_LEVEL_GATE_REPLICATION_FAILED"
+    },
+    "integrity_failure_status": "ARCHIVE_DISPOSITION_REPLICATION_INTEGRITY_FAIL"
+  },
+  "reporting": {
+    "report_current_and_extension_rejection_rates_with_wilson_95_intervals": true,
+    "report_current_mixed_disposition_numerator_and_denominator": true,
+    "emit_archive_or_competition_identities": false,
+    "do_not_claim_rejection_rate_stationarity": true,
+    "do_not_estimate_causal_effect_of_metadata_changes": true
+  },
+  "access_contract": {
+    "observation_metadata_only": true,
+    "archive_payloads_opened": false,
+    "labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+    "candidate_identities_emitted": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  }
+}

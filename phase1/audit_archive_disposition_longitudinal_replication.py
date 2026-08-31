@@ -19,6 +19,34 @@ OBSERVATION_PROTOCOL = "prospective_archive_observer_v1"
 HISTORICAL_LEDGER_PROTOCOL = "prospective_structural_rejection_ledger_v1"
 HISTORICAL_LEDGER_STATUS = "OUTCOME_BLIND_ARCHIVE_DISPOSITION_AUDIT_COMPLETE"
 SHA_RX = re.compile(r"[0-9a-f]{64}")
+SEEDED_ARCHIVE_RX = re.compile(r"(?P<competition>.+)-(?P<seeds>[0-9]+)seeds\.tar\.gz")
+NON_ASCII_ALNUM = re.compile(r"[^a-z0-9]+")
+TRANSACTION_KEYS = {
+    "archive_relative_path",
+    "archive_sha256",
+    "archive_size",
+    "committed_at_utc",
+    "drop_id",
+    "intake_dir",
+    "intake_summary_sha256",
+    "score_dir",
+    "score_summary_sha256",
+}
+PROVENANCE_REQUIRED_KEYS = {
+    "archive_name",
+    "archive_sha256",
+    "eligible",
+    "empty_code_nodes_excluded",
+    "endpoints",
+    "flow_status",
+    "generation_started_at_utc",
+    "journal_member",
+    "journal_mtime",
+    "journal_sha256",
+    "run_id",
+    "task",
+}
+PROVENANCE_OPTIONAL_KEYS = {"competition_id_source"}
 ENTRY_KEYS = {
     "baseline",
     "committed_archive_sha256",
@@ -81,21 +109,66 @@ def require_sha(value: Any, label: str) -> str:
     return value
 
 
-def competition_from_relative(value: Any) -> str:
+def clean_archive_relative(value: Any) -> tuple[str, str]:
     if not isinstance(value, str):
         raise ReplicationError("archive identity is not a string")
-    parts = PurePosixPath(value).parts
-    if len(parts) != 2 or len(parts[0]) != 4 or not parts[0].isdigit():
-        raise ReplicationError("archive identity is not a clean day/basename path")
-    basename = parts[1]
+    path = PurePosixPath(value)
+    parts = path.parts
+    if path.is_absolute() or len(parts) != 2 or any(
+        part in {"", ".", ".."} for part in parts
+    ):
+        raise ReplicationError("archive identity is not a clean two-part path")
+    directory, basename = parts
     if not basename.endswith(".tar.gz"):
         raise ReplicationError("archive identity is not a tar.gz")
-    stem = basename[: -len(".tar.gz")]
-    seeded = re.fullmatch(r"(.+)-([0-9]+)seeds", stem)
-    competition = seeded.group(1) if seeded is not None else stem
-    if not competition or competition in {".", ".."}:
-        raise ReplicationError("empty competition identity")
-    return competition
+    return directory, basename
+
+
+def normalize_competition(value: Any) -> str:
+    if not isinstance(value, str):
+        raise ReplicationError("competition identity is not a string")
+    normalized = NON_ASCII_ALNUM.sub("-", value.casefold()).strip("-")
+    if not normalized:
+        raise ReplicationError("empty normalized competition identity")
+    return normalized
+
+
+def rejected_competition_from_relative(value: Any) -> str:
+    _directory, basename = clean_archive_relative(value)
+    match = SEEDED_ARCHIVE_RX.fullmatch(basename)
+    if match is None:
+        raise ReplicationError("rejected archive lacks a -Nseeds filename")
+    return normalize_competition(match.group("competition"))
+
+
+def read_list(path: Path, label: str) -> list[Any]:
+    if path.is_symlink() or not path.is_file():
+        raise ReplicationError(f"{label} is absent, non-regular, or symlinked")
+    try:
+        value = json.loads(path.read_bytes())
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ReplicationError(f"cannot parse {label}") from exc
+    if not isinstance(value, list):
+        raise ReplicationError(f"{label} is not a JSON list")
+    return value
+
+
+def read_jsonl(path: Path, label: str) -> list[dict[str, Any]]:
+    if path.is_symlink() or not path.is_file():
+        raise ReplicationError(f"{label} is absent, non-regular, or symlinked")
+    rows: list[dict[str, Any]] = []
+    try:
+        with path.open("r", encoding="utf-8") as handle:
+            for line_number, line in enumerate(handle, 1):
+                value = json.loads(line)
+                if not isinstance(value, dict):
+                    raise ReplicationError(f"non-object {label} row {line_number}")
+                rows.append(value)
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ReplicationError(f"cannot parse {label}") from exc
+    if not rows:
+        raise ReplicationError(f"{label} is empty")
+    return rows
 
 
 def wilson_95(numerator: int, denominator: int) -> list[float]:
@@ -131,12 +204,200 @@ def validate_protocol(protocol: dict[str, Any]) -> None:
     access = protocol.get("access_contract")
     if access != {
         "observation_metadata_only": True,
+        "hash_bound_intake_task_metadata_only": True,
         "archive_payloads_opened": False,
         "labels_grades_outcomes_predictions_accuracy_or_utility_read": False,
         "candidate_identities_emitted": False,
+        "run_or_card_identity_values_emitted": False,
         "gpu_paid_api_model_fit_base_update": "0/0/0/0",
     }:
         raise ReplicationError("access contract mismatch")
+
+
+def accepted_competitions_from_snapshot(
+    protocol: dict[str, Any],
+    state_root: Path,
+    accepted_archives: dict[str, str],
+) -> tuple[set[str], dict[str, int]]:
+    inputs = protocol.get("inputs")
+    known = protocol.get("known_metadata_before_readout")
+    if not isinstance(inputs, dict) or not isinstance(known, dict):
+        raise ReplicationError("protocol mapping metadata missing")
+    latest = require_sha(inputs.get("current_latest_snapshot_sha256"), "current latest")
+    unresolved_root = state_root
+    if unresolved_root.is_symlink() or not unresolved_root.is_dir():
+        raise ReplicationError("state root is absent, non-directory, or symlinked")
+    root = unresolved_root.resolve()
+    snapshot = root / "snapshots" / latest
+    if snapshot.is_symlink() or not snapshot.is_dir() or snapshot.parent != root / "snapshots":
+        raise ReplicationError("bound snapshot is absent or unsafe")
+    manifest = snapshot / "SHA256SUMS"
+    if sha256(manifest) != latest:
+        raise ReplicationError("bound snapshot manifest hash mismatch")
+    transaction_sha: str | None = None
+    try:
+        lines = manifest.read_text(encoding="utf-8").splitlines()
+    except UnicodeDecodeError as exc:
+        raise ReplicationError("snapshot manifest is not UTF-8") from exc
+    seen_manifest_paths: set[str] = set()
+    for line in lines:
+        match = re.fullmatch(r"([0-9a-f]{64})  (.+)", line)
+        if match is None:
+            raise ReplicationError("snapshot manifest row malformed")
+        relative = match.group(2)
+        path = PurePosixPath(relative)
+        if path.is_absolute() or any(part in {"", ".", ".."} for part in path.parts):
+            raise ReplicationError("snapshot manifest path malformed")
+        if relative in seen_manifest_paths:
+            raise ReplicationError("duplicate snapshot manifest path")
+        seen_manifest_paths.add(relative)
+        if relative == "transactions.jsonl":
+            transaction_sha = match.group(1)
+    if transaction_sha is None:
+        raise ReplicationError("snapshot transaction registry absent from manifest")
+    transaction_path = snapshot / "transactions.jsonl"
+    if sha256(transaction_path) != transaction_sha:
+        raise ReplicationError("snapshot transaction registry hash mismatch")
+    transactions = read_jsonl(transaction_path, "transaction registry")
+    by_archive: dict[str, dict[str, Any]] = {}
+    for row in transactions:
+        if set(row) != TRANSACTION_KEYS:
+            raise ReplicationError("transaction registry schema mismatch")
+        archive_sha = require_sha(row.get("archive_sha256"), "transaction archive hash")
+        if archive_sha in by_archive:
+            raise ReplicationError("duplicate transaction archive hash")
+        if nonnegative_int(row.get("archive_size"), "transaction archive size") < 0:
+            raise ReplicationError("negative transaction archive size")
+        for key in (
+            "archive_relative_path",
+            "committed_at_utc",
+            "drop_id",
+            "intake_dir",
+            "score_dir",
+        ):
+            if not isinstance(row.get(key), str) or not row[key]:
+                raise ReplicationError("transaction string field malformed")
+        require_sha(row.get("intake_summary_sha256"), "intake summary hash")
+        require_sha(row.get("score_summary_sha256"), "score summary hash")
+        clean_archive_relative(row["archive_relative_path"])
+        by_archive[archive_sha] = row
+    if set(by_archive) != set(accepted_archives):
+        raise ReplicationError("snapshot transactions and accepted observations differ")
+
+    competitions: set[str] = set()
+    seeded_filenames = 0
+    task_metadata_fallbacks = 0
+    filename_task_mismatches = 0
+    provenance_rows = 0
+    provenance_competition_source_rows = 0
+    for archive_sha, relative in sorted(accepted_archives.items()):
+        row = by_archive[archive_sha]
+        if row["archive_relative_path"] != relative:
+            raise ReplicationError("accepted observation path differs from transaction")
+        intake = Path(row["intake_dir"])
+        if intake.is_symlink():
+            raise ReplicationError("intake directory is symlinked")
+        intake = intake.resolve()
+        if intake.parent != root / "intakes" or intake.name != row["drop_id"]:
+            raise ReplicationError("transaction intake path binding mismatch")
+        summary_path = intake / "summary.json"
+        if sha256(summary_path) != row["intake_summary_sha256"]:
+            raise ReplicationError("intake summary hash mismatch")
+        summary = read_object(summary_path, "intake summary")
+        outputs = summary.get("outputs")
+        security = summary.get("security")
+        blindness = summary.get("blindness")
+        if (
+            summary.get("status") != "PROSPECTIVE_DROP_INTAKE_COMPLETE"
+            or summary.get("protocol") != "prospective_drop_intake_v1"
+            or not isinstance(outputs, dict)
+            or not isinstance(security, dict)
+            or not isinstance(blindness, dict)
+            or security.get("env_members_read") is not False
+            or security.get("live_event_journal_members_read") is not False
+            or security.get("journal_scanned_before_json") is not True
+            or blindness.get("labels_used_for_run_selection") is not False
+            or blindness.get("labels_used_for_endpoint_selection") is not False
+            or blindness.get("label_values_printed") is not False
+        ):
+            raise ReplicationError("intake task metadata is not outcome-blind")
+        provenance_path = intake / "source_provenance.json"
+        expected_provenance_sha = require_sha(
+            outputs.get("source_provenance_sha256"), "source provenance hash"
+        )
+        if sha256(provenance_path) != expected_provenance_sha:
+            raise ReplicationError("source provenance hash mismatch")
+        provenance = read_list(provenance_path, "source provenance")
+        tasks: set[str] = set()
+        _directory, basename = clean_archive_relative(relative)
+        for provenance_row in provenance:
+            if not isinstance(provenance_row, dict) or not (
+                PROVENANCE_REQUIRED_KEYS
+                <= set(provenance_row)
+                <= PROVENANCE_REQUIRED_KEYS | PROVENANCE_OPTIONAL_KEYS
+            ):
+                raise ReplicationError("source provenance schema mismatch")
+            if (
+                provenance_row.get("archive_sha256") != archive_sha
+                or provenance_row.get("archive_name") != basename
+            ):
+                raise ReplicationError("source provenance archive binding mismatch")
+            tasks.add(normalize_competition(provenance_row.get("task")))
+            provenance_competition_source_rows += (
+                "competition_id_source" in provenance_row
+            )
+        provenance_rows += len(provenance)
+        if len(tasks) != 1:
+            raise ReplicationError("accepted archive is not single-task")
+        task = next(iter(tasks))
+        match = SEEDED_ARCHIVE_RX.fullmatch(basename)
+        if match is None:
+            task_metadata_fallbacks += 1
+        else:
+            seeded_filenames += 1
+            filename_task_mismatches += (
+                normalize_competition(match.group("competition")) != task
+            )
+        competitions.add(task)
+
+    mapping_audit = {
+        "snapshot_transactions": len(transactions),
+        "accepted_single_task_archives": len(accepted_archives),
+        "accepted_seeded_filename_archives": seeded_filenames,
+        "accepted_task_metadata_fallback_archives": task_metadata_fallbacks,
+        "accepted_filename_task_mismatches": filename_task_mismatches,
+        "hash_bound_source_provenance_rows": provenance_rows,
+        "source_provenance_competition_source_rows": provenance_competition_source_rows,
+    }
+    expected_mapping_audit = {
+        "snapshot_transactions": nonnegative_int(
+            known.get("current_snapshot_transactions"), "known snapshot transactions"
+        ),
+        "accepted_single_task_archives": nonnegative_int(
+            known.get("current_accepted_single_task_archives"),
+            "known accepted single-task archives",
+        ),
+        "accepted_seeded_filename_archives": nonnegative_int(
+            known.get("current_accepted_seeded_filename_archives"),
+            "known accepted seeded filenames",
+        ),
+        "accepted_task_metadata_fallback_archives": nonnegative_int(
+            known.get("current_accepted_task_metadata_fallback_archives"),
+            "known accepted task metadata fallbacks",
+        ),
+        "accepted_filename_task_mismatches": 0,
+        "hash_bound_source_provenance_rows": nonnegative_int(
+            known.get("current_hash_bound_source_provenance_rows"),
+            "known source provenance rows",
+        ),
+        "source_provenance_competition_source_rows": nonnegative_int(
+            known.get("current_source_provenance_competition_source_rows"),
+            "known source provenance competition-source rows",
+        ),
+    }
+    if mapping_audit != expected_mapping_audit:
+        raise ReplicationError("accepted competition mapping audit mismatch")
+    return competitions, mapping_audit
 
 
 def historical_anchor(
@@ -237,7 +498,7 @@ def historical_anchor(
 
 
 def current_population(
-    protocol: dict[str, Any], observations: dict[str, Any]
+    protocol: dict[str, Any], observations: dict[str, Any], state_root: Path
 ) -> dict[str, Any]:
     if set(observations) != {
         "baseline_sealed_at_epoch",
@@ -268,13 +529,13 @@ def current_population(
 
     counts = Counter()
     reasons: Counter[str] = Counter()
-    accepted_competitions: set[str] = set()
+    accepted_archives: dict[str, str] = {}
     rejected_competitions: set[str] = set()
     postbaseline_hashes: set[str] = set()
     latest_seen = False
     latest = require_sha(inputs.get("current_latest_snapshot_sha256"), "current latest")
     for relative, row in entries.items():
-        competition = competition_from_relative(relative)
+        clean_archive_relative(relative)
         if not isinstance(row, dict) or set(row) != ENTRY_KEYS:
             raise ReplicationError("observation entry schema mismatch")
         if row.get("path") != prefix + relative or row.get("present") is not True:
@@ -305,7 +566,7 @@ def current_population(
                 raise ReplicationError("duplicate postbaseline archive payload hash")
             postbaseline_hashes.add(archive_sha)
             counts["accepted"] += 1
-            accepted_competitions.add(competition)
+            accepted_archives[archive_sha] = relative
             latest_seen |= snapshot_sha == latest
             continue
         if rejected:
@@ -318,7 +579,7 @@ def current_population(
             postbaseline_hashes.add(archive_sha)
             counts["rejected"] += 1
             reasons[reason] += 1
-            rejected_competitions.add(competition)
+            rejected_competitions.add(rejected_competition_from_relative(relative))
             continue
         counts["pending"] += 1
 
@@ -354,12 +615,24 @@ def current_population(
         raise ReplicationError("current partition does not close")
     if not latest_seen:
         raise ReplicationError("current latest snapshot is absent from accepted dispositions")
+    accepted_competitions, mapping_audit = accepted_competitions_from_snapshot(
+        protocol, state_root, accepted_archives
+    )
+    if counts["rejected"] != nonnegative_int(
+        known.get("current_rejected_seeded_filename_archives"),
+        "known rejected seeded filenames",
+    ):
+        raise ReplicationError("rejected competition mapping audit mismatch")
     return {
         "counts": normalized,
         "reason_counts": dict(sorted(reasons.items())),
         "accepted_competitions": accepted_competitions,
         "rejected_competitions": rejected_competitions,
         "postbaseline_unique_hashes": len(postbaseline_hashes),
+        "competition_mapping_audit": {
+            **mapping_audit,
+            "rejected_seeded_filename_archives": counts["rejected"],
+        },
     }
 
 
@@ -367,6 +640,7 @@ def build_result(
     protocol_path: Path,
     observations_path: Path,
     historical_ledger_path: Path,
+    state_root: Path,
 ) -> dict[str, Any]:
     protocol = read_object(protocol_path.resolve(), "protocol")
     validate_protocol(protocol)
@@ -390,7 +664,7 @@ def build_result(
     historical_counts, historical_accepted, historical_rejected = historical_anchor(
         protocol, historical
     )
-    current = current_population(protocol, observations)
+    current = current_population(protocol, observations, state_root)
     current_counts = current["counts"]
     accepted_competitions = current["accepted_competitions"]
     rejected_competitions = current["rejected_competitions"]
@@ -463,6 +737,10 @@ def build_result(
             "postbaseline_archive_payload_hashes_unique": True,
             "all_rejection_reasons_recognized": True,
             "latest_snapshot_seen_in_accepted": True,
+            "snapshot_transaction_registry_hash_bound": True,
+            "accepted_archives_single_task_hash_bound": True,
+            "accepted_seeded_filename_task_match": True,
+            "rejected_seeded_filenames_complete": True,
             "historical_anchor_reproduced": True,
         },
         "historical": {
@@ -494,6 +772,7 @@ def build_result(
             "mixed_disposition_fraction": rate(mixed_count, rejected_competition_count),
             "rejection_rate": rate(current_counts["rejected"], current_settled),
             "rejection_reason_counts": current["reason_counts"],
+            "competition_mapping_audit": current["competition_mapping_audit"],
         },
         "extension_beyond_historical_anchor": {
             "observed_archives": extension["observed"],
@@ -510,9 +789,11 @@ def build_result(
         },
         "access_attestation": {
             "observation_metadata_only": True,
+            "hash_bound_intake_task_metadata_only": True,
             "archive_payloads_opened": False,
             "labels_grades_outcomes_predictions_accuracy_or_utility_read": False,
             "candidate_identities_emitted": False,
+            "run_or_card_identity_values_emitted": False,
             "randomness_used": False,
             "gpu_paid_api_model_fit_base_update": "0/0/0/0",
         },
@@ -548,11 +829,12 @@ def main() -> int:
     parser.add_argument("--protocol", required=True, type=Path)
     parser.add_argument("--observations", required=True, type=Path)
     parser.add_argument("--historical-ledger", required=True, type=Path)
+    parser.add_argument("--state-root", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
     try:
         result = build_result(
-            args.protocol, args.observations, args.historical_ledger
+            args.protocol, args.observations, args.historical_ledger, args.state_root
         )
         write_new(args.output.resolve(), result)
         print(

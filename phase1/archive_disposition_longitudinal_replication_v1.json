@@ -5,6 +5,8 @@
   "input_binding_revision": 2,
   "input_binding_revision_reason": "The first formal attempt stopped before producer execution because the live observer file changed bytes while its frozen structural population stayed unchanged; revision 2 binds an immutable pre-readout copy without changing any scientific gate.",
   "superseded_live_observations_sha256": "3b0780991fd55fde5d49f1dbd56ff28a27513cf3d71a74954d00e8367df5f470",
+  "competition_mapping_revision": 2,
+  "competition_mapping_revision_reason": "The second formal attempt passed all 1844 phase1 tests but stopped on the first legacy/baseline path before emitting a result. Revision 2 assigns no competition to baseline archives, uses snapshot-hash-bound single-task intake provenance for accepted archives, and uses the pre-existing -Nseeds filename contract for rejected archives. No accepted/rejected competition intersection was computed before this revision.",
   "question": "Does the earlier archive-level mixed-disposition finding replicate after the outcome-blind source population grows from 218 to 275 archives?",
   "inputs": {
     "current_latest_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
@@ -19,6 +21,13 @@
     "current_accepted_archives": 126,
     "current_rejected_archives": 21,
     "current_pending_archives": 0,
+    "current_snapshot_transactions": 126,
+    "current_accepted_single_task_archives": 126,
+    "current_accepted_seeded_filename_archives": 124,
+    "current_accepted_task_metadata_fallback_archives": 2,
+    "current_rejected_seeded_filename_archives": 21,
+    "current_hash_bound_source_provenance_rows": 520,
+    "current_source_provenance_competition_source_rows": 25,
     "historical_observed_archives": 218,
     "historical_settled_postbaseline_archives": 90,
     "historical_rejected_competitions": 6,
@@ -37,6 +46,10 @@
     "postbaseline_archive_payload_sha256_values_must_be_unique": true,
     "all_rejection_reasons_must_be_recognized": true,
     "latest_snapshot_must_appear_in_an_accepted_disposition": true,
+    "snapshot_transaction_registry_must_be_manifest_hash_bound": true,
+    "each_accepted_archive_must_have_exactly_one_hash_bound_task": true,
+    "parseable_accepted_filenames_must_match_hash_bound_task": true,
+    "all_rejected_archives_must_have_seeded_filenames": true,
     "historical_anchor_must_reproduce_its_committed_counts_and_mixed_fraction": true
   },
   "decision_rule": {
@@ -64,9 +77,11 @@
   },
   "access_contract": {
     "observation_metadata_only": true,
+    "hash_bound_intake_task_metadata_only": true,
     "archive_payloads_opened": false,
     "labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
     "candidate_identities_emitted": false,
+    "run_or_card_identity_values_emitted": false,
     "gpu_paid_api_model_fit_base_update": "0/0/0/0"
   }
 }

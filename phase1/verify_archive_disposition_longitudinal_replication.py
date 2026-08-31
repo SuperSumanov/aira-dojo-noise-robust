@@ -15,6 +15,34 @@ from typing import Any
 
 
 SHA_RX = re.compile(r"[0-9a-f]{64}")
+SEED_NAME_RX = re.compile(r"(?P<task>.+)-(?P<seeds>[0-9]+)seeds\.tar\.gz")
+NON_TASK_CHARACTER = re.compile(r"[^a-z0-9]+")
+TRANSACTION_FIELDS = {
+    "archive_relative_path",
+    "archive_sha256",
+    "archive_size",
+    "committed_at_utc",
+    "drop_id",
+    "intake_dir",
+    "intake_summary_sha256",
+    "score_dir",
+    "score_summary_sha256",
+}
+PROVENANCE_REQUIRED_FIELDS = {
+    "archive_name",
+    "archive_sha256",
+    "eligible",
+    "empty_code_nodes_excluded",
+    "endpoints",
+    "flow_status",
+    "generation_started_at_utc",
+    "journal_member",
+    "journal_mtime",
+    "journal_sha256",
+    "run_id",
+    "task",
+}
+PROVENANCE_OPTIONAL_FIELDS = {"competition_id_source"}
 
 
 class VerificationError(RuntimeError):
@@ -62,18 +90,65 @@ def sha(value: Any, label: str) -> str:
     return value
 
 
-def competition(relative: Any) -> str:
+def archive_parts(relative: Any) -> tuple[str, str]:
     if not isinstance(relative, str):
         raise VerificationError("non-string archive path")
-    parts = PurePosixPath(relative).parts
-    if len(parts) != 2 or len(parts[0]) != 4 or not parts[0].isdigit():
+    path = PurePosixPath(relative)
+    parts = path.parts
+    if path.is_absolute() or len(parts) != 2 or any(
+        item in {"", ".", ".."} for item in parts
+    ):
         raise VerificationError("malformed archive path")
-    basename = parts[1]
+    directory, basename = parts
     if not basename.endswith(".tar.gz"):
         raise VerificationError("malformed archive suffix")
-    stem = basename[:-7]
-    match = re.fullmatch(r"(.+)-([0-9]+)seeds", stem)
-    return match.group(1) if match else stem
+    return directory, basename
+
+
+def canonical_task(value: Any) -> str:
+    if not isinstance(value, str):
+        raise VerificationError("non-string task metadata")
+    normalized = NON_TASK_CHARACTER.sub("-", value.casefold()).strip("-")
+    if not normalized:
+        raise VerificationError("empty canonical task")
+    return normalized
+
+
+def rejected_task(relative: Any) -> str:
+    _directory, basename = archive_parts(relative)
+    match = SEED_NAME_RX.fullmatch(basename)
+    if match is None:
+        raise VerificationError("rejected archive lacks seeded filename")
+    return canonical_task(match.group("task"))
+
+
+def load_list(path: Path, label: str) -> list[Any]:
+    if path.is_symlink() or not path.is_file():
+        raise VerificationError(f"unsafe {label} path")
+    try:
+        value = json.loads(path.read_bytes())
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise VerificationError(f"cannot parse {label}") from exc
+    if not isinstance(value, list):
+        raise VerificationError(f"{label} is not a list")
+    return value
+
+
+def load_lines(path: Path, label: str) -> list[dict[str, Any]]:
+    if path.is_symlink() or not path.is_file():
+        raise VerificationError(f"unsafe {label} path")
+    rows: list[dict[str, Any]] = []
+    try:
+        for line in path.read_text(encoding="utf-8").splitlines():
+            value = json.loads(line)
+            if not isinstance(value, dict):
+                raise VerificationError(f"non-object {label} row")
+            rows.append(value)
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise VerificationError(f"cannot parse {label}") from exc
+    if not rows:
+        raise VerificationError(f"empty {label}")
+    return rows
 
 
 def interval(successes: int, total: int) -> list[float]:
@@ -102,11 +177,183 @@ def assert_equal(actual: Any, expected: Any, label: str) -> None:
         raise VerificationError(f"{label} mismatch")
 
 
+def reconstruct_accepted_tasks(
+    state_root: Path,
+    snapshot_sha: str,
+    accepted: dict[str, str],
+    known: dict[str, Any],
+) -> tuple[set[str], dict[str, int]]:
+    if state_root.is_symlink() or not state_root.is_dir():
+        raise VerificationError("unsafe state root")
+    state = state_root.resolve()
+    snapshot = state / "snapshots" / snapshot_sha
+    if snapshot.is_symlink() or not snapshot.is_dir():
+        raise VerificationError("unsafe snapshot root")
+    manifest = snapshot / "SHA256SUMS"
+    if digest(manifest) != snapshot_sha:
+        raise VerificationError("snapshot manifest binding mismatch")
+    paths: dict[str, str] = {}
+    try:
+        manifest_lines = manifest.read_text(encoding="utf-8").splitlines()
+    except UnicodeDecodeError as exc:
+        raise VerificationError("snapshot manifest encoding mismatch") from exc
+    for line in manifest_lines:
+        match = re.fullmatch(r"([0-9a-f]{64})  (.+)", line)
+        if match is None:
+            raise VerificationError("snapshot manifest syntax mismatch")
+        relative = match.group(2)
+        path = PurePosixPath(relative)
+        if (
+            path.is_absolute()
+            or any(item in {"", ".", ".."} for item in path.parts)
+            or relative in paths
+        ):
+            raise VerificationError("snapshot manifest path mismatch")
+        paths[relative] = match.group(1)
+    transaction_expected = paths.get("transactions.jsonl")
+    transaction_path = snapshot / "transactions.jsonl"
+    if transaction_expected is None or digest(transaction_path) != transaction_expected:
+        raise VerificationError("transaction registry binding mismatch")
+    transactions = load_lines(transaction_path, "transaction registry")
+    transaction_by_hash: dict[str, dict[str, Any]] = {}
+    for row in transactions:
+        if set(row) != TRANSACTION_FIELDS:
+            raise VerificationError("transaction schema mismatch")
+        archive_hash = sha(row.get("archive_sha256"), "transaction archive hash")
+        if archive_hash in transaction_by_hash:
+            raise VerificationError("duplicate transaction archive")
+        integer(row.get("archive_size"), "transaction archive size")
+        for key in (
+            "archive_relative_path",
+            "committed_at_utc",
+            "drop_id",
+            "intake_dir",
+            "score_dir",
+        ):
+            if not isinstance(row.get(key), str) or not row[key]:
+                raise VerificationError("transaction string field mismatch")
+        sha(row.get("intake_summary_sha256"), "intake summary hash")
+        sha(row.get("score_summary_sha256"), "score summary hash")
+        archive_parts(row["archive_relative_path"])
+        transaction_by_hash[archive_hash] = row
+    assert_equal(set(transaction_by_hash), set(accepted), "accepted transaction support")
+
+    accepted_tasks: set[str] = set()
+    seeded = 0
+    fallback = 0
+    mismatches = 0
+    source_rows = 0
+    competition_source_rows = 0
+    for archive_hash, relative in sorted(accepted.items()):
+        transaction = transaction_by_hash[archive_hash]
+        assert_equal(
+            transaction["archive_relative_path"], relative, "accepted archive path"
+        )
+        intake_unresolved = Path(transaction["intake_dir"])
+        if intake_unresolved.is_symlink():
+            raise VerificationError("symlinked intake directory")
+        intake = intake_unresolved.resolve()
+        if intake.parent != state / "intakes" or intake.name != transaction["drop_id"]:
+            raise VerificationError("intake directory binding mismatch")
+        summary_path = intake / "summary.json"
+        if digest(summary_path) != transaction["intake_summary_sha256"]:
+            raise VerificationError("intake summary digest mismatch")
+        summary = load(summary_path, "intake summary")
+        outputs = summary.get("outputs")
+        security = summary.get("security")
+        blindness = summary.get("blindness")
+        if (
+            summary.get("status") != "PROSPECTIVE_DROP_INTAKE_COMPLETE"
+            or summary.get("protocol") != "prospective_drop_intake_v1"
+            or not isinstance(outputs, dict)
+            or not isinstance(security, dict)
+            or not isinstance(blindness, dict)
+            or security.get("env_members_read") is not False
+            or security.get("live_event_journal_members_read") is not False
+            or security.get("journal_scanned_before_json") is not True
+            or blindness.get("labels_used_for_run_selection") is not False
+            or blindness.get("labels_used_for_endpoint_selection") is not False
+            or blindness.get("label_values_printed") is not False
+        ):
+            raise VerificationError("unsafe intake metadata")
+        provenance_path = intake / "source_provenance.json"
+        provenance_hash = sha(
+            outputs.get("source_provenance_sha256"), "source provenance hash"
+        )
+        if digest(provenance_path) != provenance_hash:
+            raise VerificationError("source provenance digest mismatch")
+        provenance = load_list(provenance_path, "source provenance")
+        tasks: set[str] = set()
+        _directory, basename = archive_parts(relative)
+        for item in provenance:
+            if not isinstance(item, dict) or not (
+                PROVENANCE_REQUIRED_FIELDS
+                <= set(item)
+                <= PROVENANCE_REQUIRED_FIELDS | PROVENANCE_OPTIONAL_FIELDS
+            ):
+                raise VerificationError("source provenance schema mismatch")
+            if item.get("archive_sha256") != archive_hash or item.get(
+                "archive_name"
+            ) != basename:
+                raise VerificationError("source provenance archive mismatch")
+            tasks.add(canonical_task(item.get("task")))
+            competition_source_rows += "competition_id_source" in item
+        source_rows += len(provenance)
+        if len(tasks) != 1:
+            raise VerificationError("accepted archive task multiplicity mismatch")
+        task = next(iter(tasks))
+        filename_match = SEED_NAME_RX.fullmatch(basename)
+        if filename_match is None:
+            fallback += 1
+        else:
+            seeded += 1
+            mismatches += canonical_task(filename_match.group("task")) != task
+        accepted_tasks.add(task)
+    audit = {
+        "snapshot_transactions": len(transactions),
+        "accepted_single_task_archives": len(accepted),
+        "accepted_seeded_filename_archives": seeded,
+        "accepted_task_metadata_fallback_archives": fallback,
+        "accepted_filename_task_mismatches": mismatches,
+        "hash_bound_source_provenance_rows": source_rows,
+        "source_provenance_competition_source_rows": competition_source_rows,
+    }
+    expected = {
+        "snapshot_transactions": integer(
+            known.get("current_snapshot_transactions"), "known snapshot transactions"
+        ),
+        "accepted_single_task_archives": integer(
+            known.get("current_accepted_single_task_archives"),
+            "known accepted single-task archives",
+        ),
+        "accepted_seeded_filename_archives": integer(
+            known.get("current_accepted_seeded_filename_archives"),
+            "known accepted seeded filenames",
+        ),
+        "accepted_task_metadata_fallback_archives": integer(
+            known.get("current_accepted_task_metadata_fallback_archives"),
+            "known accepted task metadata fallbacks",
+        ),
+        "accepted_filename_task_mismatches": 0,
+        "hash_bound_source_provenance_rows": integer(
+            known.get("current_hash_bound_source_provenance_rows"),
+            "known source provenance rows",
+        ),
+        "source_provenance_competition_source_rows": integer(
+            known.get("current_source_provenance_competition_source_rows"),
+            "known source provenance competition-source rows",
+        ),
+    }
+    assert_equal(audit, expected, "accepted task mapping audit")
+    return accepted_tasks, audit
+
+
 def verify(
     protocol_path: Path,
     observations_path: Path,
     historical_path: Path,
     result_path: Path,
+    state_root: Path,
 ) -> dict[str, Any]:
     protocol = load(protocol_path.resolve(), "protocol")
     observations = load(observations_path.resolve(), "observations")
@@ -121,6 +368,19 @@ def verify(
     rules = protocol.get("decision_rule")
     if not all(isinstance(value, dict) for value in (inputs, known, rules)):
         raise VerificationError("protocol sections missing")
+    assert_equal(
+        protocol.get("access_contract"),
+        {
+            "observation_metadata_only": True,
+            "hash_bound_intake_task_metadata_only": True,
+            "archive_payloads_opened": False,
+            "labels_grades_outcomes_predictions_accuracy_or_utility_read": False,
+            "candidate_identities_emitted": False,
+            "run_or_card_identity_values_emitted": False,
+            "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+        },
+        "protocol access contract",
+    )
     if digest(observations_path.resolve()) != sha(
         inputs.get("current_observations_sha256"), "observation hash"
     ):
@@ -224,13 +484,13 @@ def verify(
     allowed = set(allowed_value)
     current_counts: Counter[str] = Counter()
     reason_counts: Counter[str] = Counter()
-    current_accepted: set[str] = set()
+    accepted_archive_paths: dict[str, str] = {}
     current_rejected: set[str] = set()
     payload_hashes: set[str] = set()
     latest = sha(inputs.get("current_latest_snapshot_sha256"), "current latest")
     latest_seen = False
     for relative, row in entries.items():
-        task = competition(relative)
+        archive_parts(relative)
         if not isinstance(row, dict):
             raise VerificationError("malformed observation row")
         if row.get("path") != prefix + relative or row.get("present") is not True:
@@ -256,7 +516,7 @@ def verify(
                 raise VerificationError("duplicate payload hash")
             payload_hashes.add(archive_hash)
             current_counts["accepted"] += 1
-            current_accepted.add(task)
+            accepted_archive_paths[archive_hash] = relative
             latest_seen |= snapshot_hash == latest
         elif rejected:
             archive_hash = sha(rejected_archive, "rejected payload hash")
@@ -267,7 +527,7 @@ def verify(
                 raise VerificationError("duplicate payload hash")
             payload_hashes.add(archive_hash)
             current_counts["rejected"] += 1
-            current_rejected.add(task)
+            current_rejected.add(rejected_task(relative))
             reason_counts[reason] += 1
         else:
             current_counts["pending"] += 1
@@ -301,6 +561,21 @@ def verify(
     )
     if current["pending"] != 0 or not latest_seen:
         raise VerificationError("current frozen population is not settled")
+    current_accepted, accepted_mapping_audit = reconstruct_accepted_tasks(
+        state_root, latest, accepted_archive_paths, known
+    )
+    assert_equal(
+        current["rejected"],
+        integer(
+            known.get("current_rejected_seeded_filename_archives"),
+            "known rejected seeded filenames",
+        ),
+        "rejected filename mapping audit",
+    )
+    competition_mapping_audit = {
+        **accepted_mapping_audit,
+        "rejected_seeded_filename_archives": current["rejected"],
+    }
     rejected_tasks = len(current_rejected)
     mixed_tasks = len(current_accepted & current_rejected)
     if rejected_tasks == 0:
@@ -369,6 +644,10 @@ def verify(
             "postbaseline_archive_payload_hashes_unique": True,
             "all_rejection_reasons_recognized": True,
             "latest_snapshot_seen_in_accepted": True,
+            "snapshot_transaction_registry_hash_bound": True,
+            "accepted_archives_single_task_hash_bound": True,
+            "accepted_seeded_filename_task_match": True,
+            "rejected_seeded_filenames_complete": True,
             "historical_anchor_reproduced": True,
         },
         "integrity receipt",
@@ -407,6 +686,7 @@ def verify(
             "mixed_disposition_fraction": proportion(mixed_tasks, rejected_tasks),
             "rejection_rate": proportion(current["rejected"], current_settled),
             "rejection_reason_counts": dict(sorted(reason_counts.items())),
+            "competition_mapping_audit": competition_mapping_audit,
         },
         "current aggregate",
     )
@@ -437,9 +717,11 @@ def verify(
         result.get("access_attestation"),
         {
             "observation_metadata_only": True,
+            "hash_bound_intake_task_metadata_only": True,
             "archive_payloads_opened": False,
             "labels_grades_outcomes_predictions_accuracy_or_utility_read": False,
             "candidate_identities_emitted": False,
+            "run_or_card_identity_values_emitted": False,
             "randomness_used": False,
             "gpu_paid_api_model_fit_base_update": "0/0/0/0",
         },
@@ -497,6 +779,7 @@ def main() -> int:
     parser.add_argument("--observations", required=True, type=Path)
     parser.add_argument("--historical-ledger", required=True, type=Path)
     parser.add_argument("--result", required=True, type=Path)
+    parser.add_argument("--state-root", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
     try:
@@ -505,6 +788,7 @@ def main() -> int:
             args.observations,
             args.historical_ledger,
             args.result,
+            args.state_root,
         )
         write_new(args.output.resolve(), receipt)
         print(json.dumps(receipt["recomputed_counts"], sort_keys=True, separators=(",", ":")))

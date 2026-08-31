@@ -41,6 +41,25 @@ verifier 输出。诊断时文件仍为 194,489 bytes，LATEST 仍为 `30945550.
 `dccd59d9e3fe964aabce2458647013d772070c40a120f79f9a6b02605356e855`。Strong/Partial/Kill 阈值、历史锚点、统计口径和
 访问边界均未改变。旧 live-file 绑定 `3b078099...1f470` 保留在机器可审计失败目录和协议的 superseded 字段中，不删除失败证据。
 
+## 结果前 competition mapping 修订（revision 2）
+
+输入绑定修订后的第二次正式运行通过 focused `12/12` 与全量 `1844/1844` 测试，随后在 producer 的第一个 archive
+path 解析处停止；没有生成 result 或 verifier 输出。原因是旧实现错误地把所有 observer path（包括 baseline legacy path）
+都假设成 `4-digit-day/competition-Nseeds.tar.gz`。
+
+在仍未计算 accepted/rejected competition 交集的前提下，结构扫描确认：全部 275 paths 均为安全两段 tar.gz；accepted
+126 个中 124 个有 `-Nseeds` 文件名、2 个没有；rejected 21 个全部有 `-Nseeds` 文件名。进一步只读固定 snapshot 的
+hash-bound intake metadata，确认 126/126 accepted archives 都恰好对应一个 task，124 个可解析文件名与 task 规范化后
+0 mismatch，另外 2 个由 task metadata 补足；共核验 520 条 source-provenance rows。扫描没有输出 archive、competition、
+run 或 candidate identity，也没有计算 mixed fraction 或 reason distribution。
+
+520 条 provenance 分属两个兼容 schema：25 条含可选的 `competition_id_source`，495 条来自更早 schema、不含该字段；其余
+12 个必需字段一致。因此正式门把该字段定义为唯一可选字段，并把 `25/520` 结构计数冻结，而不是按最新模板拒绝历史行。
+
+revision 2 因而固定为：baseline 不赋 competition；accepted 使用 snapshot manifest → transaction → intake summary →
+source-provenance 的逐 SHA 单 task；rejected 使用既有 `-Nseeds` filename stem；两侧都只做小写字母数字 slug 规范化。
+Strong/Partial/Kill 门、历史锚点和结论边界继续不变。
+
 ## 结论边界
 
 即使 strong gate 通过，也只支持“逐归档 fail-closed 验证不可被 task whitelist 替代”这一 benchmark-audit 主张。

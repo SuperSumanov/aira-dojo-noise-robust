@@ -16,7 +16,6 @@ from phase1.verify_archive_disposition_longitudinal_replication import (
 )
 
 
-LATEST = "f" * 64
 REASONS = [
     "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
     "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
@@ -88,21 +87,30 @@ def _historical() -> dict[str, object]:
     }
 
 
-def _observations(*, rejected_only: bool = False) -> dict[str, object]:
+def _observations(
+    *, rejected_only: bool = False
+) -> tuple[dict[str, object], dict[str, str]]:
     entries: dict[str, object] = {}
+    accepted_tasks: dict[str, str] = {}
     serial = 1
     for index in range(128):
-        relative = f"{1000 + index:04d}/baseline-{index}.tar.gz"
+        relative = f"legacy-{index % 3}/baseline-{index}.tar.gz"
         row = _entry(relative)
         row["baseline"] = True
         entries[relative] = row
     for index in range(126):
         task = f"competition-{index % 8}"
-        relative = f"{2000 + index:04d}/{task}-4seeds.tar.gz"
+        basename = (
+            f"legacy-bundle-{index}.tar.gz"
+            if index < 2
+            else f"{task}-4seeds.tar.gz"
+        )
+        relative = f"{2000 + index:04d}/{basename}"
         row = _entry(relative)
         row["committed_archive_sha256"] = f"{serial:064x}"
-        row["committed_snapshot_sha256"] = LATEST if index == 0 else f"{5000 + index:064x}"
+        row["committed_snapshot_sha256"] = "f" * 64
         entries[relative] = row
+        accepted_tasks[relative] = task
         serial += 1
     for index in range(21):
         task = "rejected-only" if rejected_only and index == 0 else f"competition-{index % 8}"
@@ -113,20 +121,133 @@ def _observations(*, rejected_only: bool = False) -> dict[str, object]:
         row["rejection_reason_code"] = REASONS[index % len(REASONS)]
         entries[relative] = row
         serial += 1
-    return {
-        "baseline_sealed_at_epoch": 1.0,
-        "entries": entries,
-        "protocol": "prospective_archive_observer_v1",
-        "source_root": "/safe/source",
+    return (
+        {
+            "baseline_sealed_at_epoch": 1.0,
+            "entries": entries,
+            "protocol": "prospective_archive_observer_v1",
+            "source_root": "/safe/source",
+        },
+        accepted_tasks,
+    )
+
+
+def _provenance_row(
+    task: str,
+    archive_name: str,
+    archive_sha: str,
+    *,
+    include_competition_source: bool,
+) -> dict[str, object]:
+    row: dict[str, object] = {
+        "archive_name": archive_name,
+        "archive_sha256": archive_sha,
+        "eligible": True,
+        "empty_code_nodes_excluded": 0,
+        "endpoints": 2,
+        "flow_status": "scoreable",
+        "generation_started_at_utc": "2026-08-31T00:00:00Z",
+        "journal_member": "checkpoint/journal.json",
+        "journal_mtime": 1,
+        "journal_sha256": "e" * 64,
+        "run_id": "synthetic-run",
+        "task": task,
     }
+    if include_competition_source:
+        row["competition_id_source"] = "explicit_journal"
+    return row
 
 
-def _protocol(observations: Path, historical: Path) -> dict[str, object]:
+def _build_state(
+    tmp_path: Path,
+    observations: dict[str, object],
+    accepted_tasks: dict[str, str],
+) -> tuple[Path, str, int, int]:
+    state = tmp_path / "state"
+    intakes = state / "intakes"
+    intakes.mkdir(parents=True)
+    entries = observations["entries"]
+    transactions: list[dict[str, object]] = []
+    provenance_rows = 0
+    competition_source_rows = 0
+    for index, (relative, task) in enumerate(sorted(accepted_tasks.items())):
+        row = entries[relative]
+        archive_sha = row["committed_archive_sha256"]
+        drop_id = f"drop-{index:03d}"
+        intake = intakes / drop_id
+        intake.mkdir()
+        provenance = [
+            _provenance_row(
+                task,
+                Path(relative).name,
+                str(archive_sha),
+                include_competition_source=index < 25,
+            )
+        ]
+        provenance_path = intake / "source_provenance.json"
+        _write(provenance_path, provenance)
+        provenance_rows += len(provenance)
+        competition_source_rows += "competition_id_source" in provenance[0]
+        summary_path = intake / "summary.json"
+        _write(
+            summary_path,
+            {
+                "status": "PROSPECTIVE_DROP_INTAKE_COMPLETE",
+                "protocol": "prospective_drop_intake_v1",
+                "outputs": {"source_provenance_sha256": _sha(provenance_path)},
+                "security": {
+                    "env_members_read": False,
+                    "live_event_journal_members_read": False,
+                    "journal_scanned_before_json": True,
+                },
+                "blindness": {
+                    "labels_used_for_run_selection": False,
+                    "labels_used_for_endpoint_selection": False,
+                    "label_values_printed": False,
+                },
+            },
+        )
+        transactions.append(
+            {
+                "archive_relative_path": relative,
+                "archive_sha256": archive_sha,
+                "archive_size": 4,
+                "committed_at_utc": "2026-08-31T00:00:00Z",
+                "drop_id": drop_id,
+                "intake_dir": str(intake.resolve()),
+                "intake_summary_sha256": _sha(summary_path),
+                "score_dir": str((state / "scores" / drop_id).resolve()),
+                "score_summary_sha256": "d" * 64,
+            }
+        )
+    transaction_blob = "".join(
+        json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n"
+        for row in transactions
+    ).encode("utf-8")
+    transaction_sha = hashlib.sha256(transaction_blob).hexdigest()
+    manifest_blob = f"{transaction_sha}  transactions.jsonl\n".encode("utf-8")
+    latest = hashlib.sha256(manifest_blob).hexdigest()
+    snapshot = state / "snapshots" / latest
+    snapshot.mkdir(parents=True)
+    (snapshot / "transactions.jsonl").write_bytes(transaction_blob)
+    (snapshot / "SHA256SUMS").write_bytes(manifest_blob)
+    for relative in accepted_tasks:
+        entries[relative]["committed_snapshot_sha256"] = latest
+    return state, latest, provenance_rows, competition_source_rows
+
+
+def _protocol(
+    observations: Path,
+    historical: Path,
+    latest: str,
+    provenance_rows: int,
+    competition_source_rows: int,
+) -> dict[str, object]:
     return {
         "protocol": "archive_disposition_longitudinal_replication_v1",
         "frozen_before_current_mixed_disposition_readout": True,
         "inputs": {
-            "current_latest_snapshot_sha256": LATEST,
+            "current_latest_snapshot_sha256": latest,
             "current_observations_sha256": _sha(observations),
             "current_observations_bytes": observations.stat().st_size,
             "current_source_archive_count": 275,
@@ -137,6 +258,13 @@ def _protocol(observations: Path, historical: Path) -> dict[str, object]:
             "current_accepted_archives": 126,
             "current_rejected_archives": 21,
             "current_pending_archives": 0,
+            "current_snapshot_transactions": 126,
+            "current_accepted_single_task_archives": 126,
+            "current_accepted_seeded_filename_archives": 124,
+            "current_accepted_task_metadata_fallback_archives": 2,
+            "current_rejected_seeded_filename_archives": 21,
+            "current_hash_bound_source_provenance_rows": provenance_rows,
+            "current_source_provenance_competition_source_rows": competition_source_rows,
             "historical_observed_archives": 218,
             "historical_settled_postbaseline_archives": 90,
             "historical_rejected_competitions": 6,
@@ -158,41 +286,70 @@ def _protocol(observations: Path, historical: Path) -> dict[str, object]:
         },
         "access_contract": {
             "observation_metadata_only": True,
+            "hash_bound_intake_task_metadata_only": True,
             "archive_payloads_opened": False,
             "labels_grades_outcomes_predictions_accuracy_or_utility_read": False,
             "candidate_identities_emitted": False,
+            "run_or_card_identity_values_emitted": False,
             "gpu_paid_api_model_fit_base_update": "0/0/0/0",
         },
     }
 
 
-def _fixture(tmp_path: Path, *, rejected_only: bool = False) -> tuple[Path, Path, Path]:
+def _fixture(
+    tmp_path: Path, *, rejected_only: bool = False
+) -> tuple[Path, Path, Path, Path]:
     observations = tmp_path / "observations.json"
     historical = tmp_path / "historical.json"
     protocol = tmp_path / "protocol.json"
-    _write(observations, _observations(rejected_only=rejected_only))
+    population, accepted_tasks = _observations(rejected_only=rejected_only)
+    state, latest, provenance_rows, competition_source_rows = _build_state(
+        tmp_path, population, accepted_tasks
+    )
+    _write(observations, population)
     _write(historical, _historical())
-    _write(protocol, _protocol(observations, historical))
-    return protocol, observations, historical
+    _write(
+        protocol,
+        _protocol(
+            observations,
+            historical,
+            latest,
+            provenance_rows,
+            competition_source_rows,
+        ),
+    )
+    return protocol, observations, historical, state
 
 
 def test_strong_replication_and_independent_verifier(tmp_path: Path) -> None:
-    protocol, observations, historical = _fixture(tmp_path)
-    result = build_result(protocol, observations, historical)
+    protocol, observations, historical, state = _fixture(tmp_path)
+    result = build_result(protocol, observations, historical, state)
     assert result["status"] == "LONGITUDINAL_ARCHIVE_LEVEL_GATE_REPLICATED"
     assert result["current"]["rejected_competitions"] == 8
     assert result["current"]["mixed_disposition_competitions"] == 8
     assert result["extension_beyond_historical_anchor"]["settled_archives"] == 57
+    assert result["current"]["competition_mapping_audit"] == {
+        "snapshot_transactions": 126,
+        "accepted_single_task_archives": 126,
+        "accepted_seeded_filename_archives": 124,
+        "accepted_task_metadata_fallback_archives": 2,
+        "accepted_filename_task_mismatches": 0,
+        "hash_bound_source_provenance_rows": 126,
+        "source_provenance_competition_source_rows": 25,
+        "rejected_seeded_filename_archives": 21,
+    }
     result_path = tmp_path / "result.json"
     _write(result_path, result)
-    receipt = verify(protocol, observations, historical, result_path)
+    receipt = verify(protocol, observations, historical, result_path, state)
     assert receipt["status"] == "INDEPENDENT_ARCHIVE_DISPOSITION_REPLICATION_PASS"
     assert receipt["all_aggregate_fields_equal"] is True
 
 
 def test_nonmixed_rejected_competition_is_only_partial(tmp_path: Path) -> None:
-    protocol, observations, historical = _fixture(tmp_path, rejected_only=True)
-    result = build_result(protocol, observations, historical)
+    protocol, observations, historical, state = _fixture(
+        tmp_path, rejected_only=True
+    )
+    result = build_result(protocol, observations, historical, state)
     assert result["status"] == "PARTIAL_ARCHIVE_LEVEL_GATE_REPLICATION"
     assert result["current"]["rejected_competitions"] == 9
     assert result["current"]["mixed_disposition_competitions"] == 8
@@ -200,7 +357,7 @@ def test_nonmixed_rejected_competition_is_only_partial(tmp_path: Path) -> None:
 
 
 def test_duplicate_postbaseline_payload_hash_fails_closed(tmp_path: Path) -> None:
-    protocol, observations, historical = _fixture(tmp_path)
+    protocol, observations, historical, state = _fixture(tmp_path)
     value = json.loads(observations.read_text(encoding="utf-8"))
     accepted = [
         row
@@ -209,13 +366,27 @@ def test_duplicate_postbaseline_payload_hash_fails_closed(tmp_path: Path) -> Non
     ]
     accepted[1]["committed_archive_sha256"] = accepted[0]["committed_archive_sha256"]
     _write(observations, value)
-    _write(protocol, _protocol(observations, historical))
+    original_protocol = json.loads(protocol.read_text(encoding="utf-8"))
+    _write(
+        protocol,
+        _protocol(
+            observations,
+            historical,
+            original_protocol["inputs"]["current_latest_snapshot_sha256"],
+            original_protocol["known_metadata_before_readout"][
+                "current_hash_bound_source_provenance_rows"
+            ],
+            original_protocol["known_metadata_before_readout"][
+                "current_source_provenance_competition_source_rows"
+            ],
+        ),
+    )
     with pytest.raises(ReplicationError, match="duplicate postbaseline"):
-        build_result(protocol, observations, historical)
+        build_result(protocol, observations, historical, state)
 
 
 def test_unknown_reason_fails_closed(tmp_path: Path) -> None:
-    protocol, observations, historical = _fixture(tmp_path)
+    protocol, observations, historical, state = _fixture(tmp_path)
     value = json.loads(observations.read_text(encoding="utf-8"))
     rejected = next(
         row
@@ -224,27 +395,41 @@ def test_unknown_reason_fails_closed(tmp_path: Path) -> None:
     )
     rejected["rejection_reason_code"] = "UNREGISTERED_REASON"
     _write(observations, value)
-    _write(protocol, _protocol(observations, historical))
+    original_protocol = json.loads(protocol.read_text(encoding="utf-8"))
+    _write(
+        protocol,
+        _protocol(
+            observations,
+            historical,
+            original_protocol["inputs"]["current_latest_snapshot_sha256"],
+            original_protocol["known_metadata_before_readout"][
+                "current_hash_bound_source_provenance_rows"
+            ],
+            original_protocol["known_metadata_before_readout"][
+                "current_source_provenance_competition_source_rows"
+            ],
+        ),
+    )
     with pytest.raises(ReplicationError, match="unknown rejection reason"):
-        build_result(protocol, observations, historical)
+        build_result(protocol, observations, historical, state)
 
 
 def test_verifier_rejects_status_mutation(tmp_path: Path) -> None:
-    protocol, observations, historical = _fixture(tmp_path)
-    result = build_result(protocol, observations, historical)
+    protocol, observations, historical, state = _fixture(tmp_path)
+    result = build_result(protocol, observations, historical, state)
     result["status"] = "PARTIAL_ARCHIVE_LEVEL_GATE_REPLICATION"
     result_path = tmp_path / "mutated.json"
     _write(result_path, result)
     with pytest.raises(VerificationError, match="result status mismatch"):
-        verify(protocol, observations, historical, result_path)
+        verify(protocol, observations, historical, result_path, state)
 
 
 def test_malformed_partial_threshold_fails_closed(tmp_path: Path) -> None:
-    protocol, observations, historical = _fixture(tmp_path)
+    protocol, observations, historical, state = _fixture(tmp_path)
     value = json.loads(protocol.read_text(encoding="utf-8"))
     value["decision_rule"]["partial"][
         "minimum_current_mixed_disposition_fraction"
     ] = "0.8"
     _write(protocol, value)
     with pytest.raises(ReplicationError, match="partial mixed-disposition fraction"):
-        build_result(protocol, observations, historical)
+        build_result(protocol, observations, historical, state)

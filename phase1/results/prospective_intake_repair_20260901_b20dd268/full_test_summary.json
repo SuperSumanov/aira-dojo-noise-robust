@@ -1,0 +1,17 @@
+{
+  "control_commit": "b20dd2682d609c0236c138c08797678cf31a2fc0",
+  "duration_seconds": 98.74,
+  "focused_passed": 23,
+  "full_passed": 1893,
+  "full_warnings": 48,
+  "model_experiment_run": false,
+  "outcomes_read": false,
+  "private_identities_read": false,
+  "thread_environment": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  }
+}

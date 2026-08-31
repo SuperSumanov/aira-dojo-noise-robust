@@ -39,8 +39,13 @@ addendum 后的正式 finalizer 已通过：同一唯一失败 archive 含 2 个
 checkpoint journals=`0`，故 2/2 被归为 live-only 并按既有 `ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS` taxonomy 拒绝；
 credential-shaped member names=`0`，独立 verifier 读取 journal bytes=`0`，outcomes/identities 均未读。producer/verifier/registry
 A/B 均逐字节一致，safe-summary/diagnostic/verification/registry SHA-256=`0819fdbe...df10` / `b9259872...a06` /
-`9b1b715c...98a0` / `0c138eb6...ffe`。23 项 focused tests 通过；registry 已接入 monitor 契约，但只有远端 full suite
-与 fresh-instance 启动通过后才允许把 intake 从该 fail-closed 点继续推进。
+`9b1b715c...98a0` / `0c138eb6...ffe`。registry 接入后的远端恢复保留了全部失败证据：v1 在测试前因 zero-hit grep rc
+语义停止；v2 的同一 full suite 在新 synthetic GBM 单测处出现约 30 线程过度并行，超过既有 2–4 分钟基线后被中止；
+v3 只固定 BLAS/OpenMP thread ceiling=`1`，同一提交与同一测试集合通过 focused/full=`23/1,893`（48 warnings，
+98.74s）。monitor 随后启动为 PID=`2920968`；wrapper 只在启动后的 Bash PID 正则写法处停止，v4 因而不重启，独立核验
+PID/cmdline、clean worktree、script/registry hash 与首个 poll。postdeploy=`PASS`，monitor script/postdeploy receipt SHA-256=
+`ef658449...8eead` / `3a2e38d3...381e`；首个恢复 poll 已提交 1 个新 transaction，LATEST=`63037694...eeae`。
+两次运行层失败都在 outcome-blind 边界内，未改变 source 顺序、已有 transaction exact prefix 或 scientific commit。
 
 与此同时，Target-300 ordered chain 在最后成功 LATEST 上独立完成 attempt 1：formal/verifier 状态为
 `FUTURE_COHORT_COLLECTING` / `PASS_COLLECTING_TRUTH_UNREAD`，exact 219-run prefix 完整保留并推进至 235 runs /

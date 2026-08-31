@@ -1,0 +1,58 @@
+{
+  "protocol": "prospective_no_checkpoint_rejection_amendment_20260901_v1",
+  "frozen_before_archive_structure_readout": true,
+  "trigger": {
+    "source_archives": 283,
+    "new_transactions_before_failure": 4,
+    "failed_monitor_poll": 14,
+    "failure_stage": "phase1.prospective_drop_intake",
+    "failure_message": "drop produced no physical runs",
+    "failed_intake_log_sha256": "966e7e67dbc45bf59af2c28054adb63ba64aca3a4594302ae2af0e35128f6001",
+    "failed_intake_log_bytes": 1756,
+    "credential_shape_hits": 0,
+    "failed_attempt_retained": true
+  },
+  "selection": {
+    "rule": "the unique archive bound by the newest failed production attempt at poll 14",
+    "caller_supplied_archive_forbidden": true,
+    "alternate_archive_on_failure_forbidden": true
+  },
+  "exact_sources": {
+    "pre_change_public_commit": "6e27d6af965a68a44bd6d34f65addbec2f74063c",
+    "diagnostic_producer": "phase1/audit_archive_task_identity.py",
+    "diagnostic_producer_sha256": "b74c6dc90dec060f2a84d22e99ac55ecbe25e3114f6e53ea4718f412477b876e",
+    "independent_verifier": "phase1/verify_no_checkpoint_archive_rejection.py",
+    "independent_verifier_sha256": "56b60bbfbfdd4f5684cbec9056c212bc4fc985a992de5900bb15f1d38013cd19",
+    "registry_builder": "phase1/build_structural_rejection_registry.py",
+    "registry_builder_sha256": "338c979c38b4a0dc76b5bec10c1bcd370ce5ed1cad4d1de4242afba2fa1de10c",
+    "pre_change_monitor_sha256": "4fc3da1a0db8bdebabbda2f3cd2cc5acf2a4045ab5e2fa4b4179456376e7d88d"
+  },
+  "pass_gate": {
+    "producer_ab_byte_identical": true,
+    "verifier_ab_byte_identical": true,
+    "archive_sha_size_mtime_match_failed_attempt": true,
+    "discovered_run_roots_minimum": 1,
+    "checkpoint_runs_exact": 0,
+    "live_only_runs_equal_discovered_roots": true,
+    "credential_shaped_member_names_exact": 0,
+    "independent_verifier_journal_member_bytes_read_exact": 0,
+    "recommended_reason_code": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS"
+  },
+  "promotion": {
+    "only_if_pass": "build one immutable adjacent rejection registry, add it as one extra monitor registry, run focused and full tests, then start a fresh monitor instance",
+    "failed_attempt_must_remain": true,
+    "existing_four_transactions_must_remain_exact_prefix": true,
+    "unknown_or_changed_structure": "fail_closed_without_registry_or_restart"
+  },
+  "scope": {
+    "labels_read": false,
+    "outcomes_read": false,
+    "prediction_values_read": false,
+    "accuracy_or_utility_computed": false,
+    "candidate_identities_emitted": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

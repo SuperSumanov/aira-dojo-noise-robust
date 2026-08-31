@@ -1,4 +1,4 @@
-# 当前研究方向唯一入口（2026-08-31）
+# 当前研究方向唯一入口（2026-09-01）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
@@ -12,6 +12,22 @@
 > 支持审计改写；所有更早“唯一主实验”“主线已确认”措辞均按本段降为历史状态。
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
+
+## 0KN. 2026-09-01 八归档摄取已提交 4 个，第 5 个在无 physical run 门 fail-closed
+
+学长 source 从 275 增至 283 个 archives；冻结的 6 小时/三观察稳定门通过后，append-only intake 顺序提交前 4 个并
+形成新 LATEST。随后唯一下一 archive 在 `phase1.prospective_drop_intake` 以 `drop produced no physical runs` 停止，
+monitor poll=14、rc=1；失败 attempt 原样保留，未跳过、未重试、未换候选。私有 intake log bytes/SHA-256=
+`1756` / `966e7e67...f6001`，credential-shape hit=`0`。Target-300 ordered chain 与该 intake 故障隔离，仍按最后成功
+LATEST 的稳定计数继续；这不是 outcome、accuracy、utility 或方法效果结果。
+
+在读取 raw archive 结构计数前冻结 `prospective_no_checkpoint_rejection_amendment_20260901_v1`：候选只能来自上述唯一
+失败 attempt；producer A/B 与不导入 producer 的 verifier A/B 必须分别逐字节一致，并同时证明 discovered roots>0、
+checkpoint runs=0、live-only roots=all roots、credential-shaped member names=0，且 verifier 读取 journal bytes=0。
+只有全部通过才允许生成相邻 immutable rejection registry、给 monitor 增加一个 extra registry、跑 focused/full tests 并
+启动 fresh instance；否则保持 fail-closed。失败 attempt 不删除，已有 4 个 transactions 必须保持 exact prefix。
+诊断 producer / verifier / registry builder SHA-256=`b74c6dc9...b876e` / `56b60bbf...cd19` /
+`338c979c...e10c`；GPU/API/model fit/base update=`0/0/0/0`，label/outcome/prediction/accuracy/utility 均未读。
 
 ## 0KM. 2026-08-31 219-run 后续接已冻结为 ordered continuous chain
 

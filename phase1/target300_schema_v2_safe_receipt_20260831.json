@@ -1,0 +1,82 @@
+{
+  "status": "TARGET300_SCHEMA_V2_PASS_COLLECTING_TRUTH_UNREAD",
+  "recorded_at_utc_date": "2026-08-31",
+  "execution": {
+    "release_commit": "4a68c83fba90655e9d60344081ae2b53b7c36104",
+    "protocol_freeze_commit": "14a97fb27dc3286b68d22f3b0db871f338694cae",
+    "fixed_candidate_latest_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "formal_result_path": "/research/d7/spc/yzyang4/score-channel-future-identity-cohort/4a68c83-30945550b6b1-8e42f764cc05",
+    "formal_rc": 0,
+    "v1_failure_retained": true,
+    "v1_retried": false,
+    "alternate_candidate_used": false,
+    "first_closed_anchor_written": false
+  },
+  "formal_validation": {
+    "cohort_status": "FUTURE_COHORT_COLLECTING",
+    "verifier_status": "PASS_COLLECTING_TRUTH_UNREAD",
+    "focused_tests_passed": 14,
+    "focused_tests_seconds": 0.6,
+    "full_tests_passed": 1877,
+    "full_tests_warnings": 48,
+    "full_tests_seconds": 121.48,
+    "producer_replicas": 2,
+    "producer_replicas_byte_identical": true,
+    "independent_verifier_replicas": 2,
+    "independent_verifier_replicas_byte_identical": true,
+    "independent_verifier_imported_producer": false,
+    "formal_tree_read_only": true,
+    "formal_manifest_verified": true
+  },
+  "inventory": {
+    "selected_physical_runs": 219,
+    "selected_archives": 69,
+    "selected_tasks": 31,
+    "observed_future_archives": 83,
+    "future_transactions": 69,
+    "settled_archive_prefix": 83,
+    "structurally_rejected_in_settled_prefix": 14,
+    "pending_head_present": false
+  },
+  "closure": {
+    "target_unique_physical_runs": 300,
+    "remaining_runs_to_target": 81,
+    "boundary_archive_present": false,
+    "previous_selected_runs": 193,
+    "previous_selected_archives": 60,
+    "previous_exact_prefix_survived": true,
+    "new_selected_runs_since_previous": 26,
+    "new_selected_archives_since_previous": 9,
+    "new_selected_tasks_since_previous": 1
+  },
+  "hashes": {
+    "summary_sha256": "6a9301af50fd8d471ffb40b55e59dee4dec987f73c94f0eccbbe6c803dd42428",
+    "verification_sha256": "5d3dec87aaab9e38f03fab7c89f05c390e54d091b004bf41cc7e3db69dcd785a",
+    "formal_manifest_sha256": "f05446579f8d808a7b37ad78566a0339a7999a9d70e1b2fec5388bce9b8fcbdc",
+    "private_stdout_sha256": "e6141a6ffb0efc0fdcbcc674ec09fe7869c07d5c23284c86081c4b77e12cf27e",
+    "safe_verifier_sha256": "b2b7a1a8cf869d3ee4b8c8a963df4281f32a6ac7189ca6d069ee0a1753de9b83"
+  },
+  "security": {
+    "forbidden_open_count": 0,
+    "filename_secret_scan_count": 0,
+    "content_secret_scan_count": 0,
+    "label_vault_opened": false,
+    "score_or_outcome_opened": false,
+    "prediction_values_opened": false,
+    "accuracy_or_utility_computed": false,
+    "candidate_identifiers_or_task_profile_read": false,
+    "private_selection_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "claim_boundary": {
+    "schema_amendment_validated": true,
+    "target300_identity_closed": false,
+    "structural_progress_only": true,
+    "not_a_predictor_accuracy_or_scaling_result": true,
+    "not_a_search_utility_or_method_effect_result": true,
+    "truth_support_replay_or_effect_authorized": false
+  }
+}

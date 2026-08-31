@@ -13,6 +13,22 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KL. 2026-08-31 Target-300 schema v2 正式通过，当前为 219/300 collecting
+
+v2 在 v1 自动冻结的同一 `30945550...104f` candidate 上一次运行成功，未重试 v1、未换 snapshot。远端正式门为
+14 focused + 1,877 full tests，producer A/B 与独立 verifier A/B 均逐字节一致；manifest/read-only、forbidden-open、
+filename/content secret scans 全通过。summary/verifier/formal-manifest SHA-256=`6a9301af...42428` /
+`5d3dec87...d785a` / `f0544657...fcbdc`。
+
+白名单独立复验状态为 `FUTURE_COHORT_COLLECTING` / `PASS_COLLECTING_TRUTH_UNREAD`：219 physical runs / 69 archives /
+31 tasks，remaining=81，boundary/anchor 均不存在。83 个 observed future archives 已全部 settled：69 accepted、14 structural
+rejections，pending head 不存在；所以当前缺口是后续新增语料，不是 unresolved intake。相对 `98f2` 的 193-run / 60-archive
+前缀新增 26 runs / 9 archives / 1 task，且 previous exact prefix 完整保留。
+
+这正式验证了 schema amendment 与 append-only cohort 管线，但 target 尚未闭合，只能称结构进度；不构成 predictor accuracy、
+scaling、search utility 或 method-effect 正结果，也不授权 truth-support/replay/effect/GPU/API/model fit。安全收据为
+`target300_schema_v2_safe_receipt_20260831.json`；未读取 candidate identity/profile/private selection 或任何结果值。
+
 ## 0KK. 2026-08-31 Target-300 v1 因前向 schema 漂移 fail-closed；v2 修正已在结果前冻结
 
 0KJ 的 monitor 在 `30945550...104f` 连续 `5×300s` 稳定后按协议触发。12 focused tests 与 965 full tests 通过，

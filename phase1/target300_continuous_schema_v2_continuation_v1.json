@@ -1,0 +1,76 @@
+{
+  "protocol": "target300_continuous_schema_v2_continuation_v1",
+  "status": "FROZEN_BEFORE_ANY_POST_309_SUCCESSOR",
+  "frozen_at_utc_date": "2026-08-31",
+  "question": "Can the fixed Target-300 temporal cohort close by processing every first stable successor in order while preserving each formal collecting result as the next exact prefix?",
+  "initial_state": {
+    "base_latest_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "previous_formal_result_path": "/research/d7/spc/yzyang4/score-channel-future-identity-cohort/4a68c83-30945550b6b1-8e42f764cc05",
+    "previous_manifest_sha256": "f05446579f8d808a7b37ad78566a0339a7999a9d70e1b2fec5388bce9b8fcbdc",
+    "previous_summary_sha256": "6a9301af50fd8d471ffb40b55e59dee4dec987f73c94f0eccbbe6c803dd42428",
+    "previous_verification_sha256": "5d3dec87aaab9e38f03fab7c89f05c390e54d091b004bf41cc7e3db69dcd785a",
+    "previous_selected_runs": 219,
+    "previous_selected_archives": 69,
+    "previous_selected_tasks": 31,
+    "remaining_runs": 81,
+    "previous_exact_prefix_survived": true,
+    "first_closed_anchor_absent": true
+  },
+  "fixed_science": {
+    "commit": "4a68c83fba90655e9d60344081ae2b53b7c36104",
+    "cohort_protocol_sha256": "54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d",
+    "base_runner_sha256": "c6f6ed7abda2fbe6252271f2707e576845b1fd950aa9884d03597b86be8f660e",
+    "producer_sha256": "0273b1e1d6db0e8acc2d90682d03cbcd1da88dfe1cf3eabf84f76619c871d25f",
+    "verifier_sha256": "4ed03a0fb9108d33ce9b4f5d3740231d55c187c50cf38cf3f20fa9cba345622e",
+    "schema_amendment_sha256": "ef6de30a9ba3cf9b2f893523765baa08b4fcf1c6f87ee4539e4ef594eb2d6df1"
+  },
+  "successor_rule": {
+    "candidate_definition": "the first LATEST differing from the immediately previous formal candidate and observed after that formal result",
+    "stable_observations_required": 5,
+    "poll_interval_seconds": 300,
+    "minimum_first_to_fifth_observation_seconds": 1200,
+    "candidate_change_resets_stability_count": true,
+    "caller_snapshot_argument_allowed": false,
+    "alternate_candidate_selection_allowed": false,
+    "maximum_polls": 2016
+  },
+  "chain_rule": {
+    "process_candidates_in_observed_order": true,
+    "formal_collecting_result_becomes_next_previous_prefix": true,
+    "previous_prefix_must_survive_exactly": true,
+    "complete_boundary_archive_overshoot_preserved": true,
+    "partial_archive_salvage_allowed": false,
+    "formal_failure_stops_entire_chain": true,
+    "failed_candidate_retry_allowed": false,
+    "closed_result_stops_chain_and_requires_one_time_anchor": true
+  },
+  "per_candidate_validation": {
+    "fixed_science_commit_worktree": true,
+    "focused_and_full_tests_before_producer": true,
+    "producer_replicas": 2,
+    "independent_verifier_replicas": 2,
+    "producer_and_verifier_replicas_byte_identical": true,
+    "manifest_and_read_only_gate": true,
+    "file_trace_forbidden_open_gate": true,
+    "clean_worktree_and_secret_scan": true
+  },
+  "assistant_read_boundary": {
+    "totals_status_hash_and_blindness_receipts_only": true,
+    "candidate_identity_or_task_profile_forbidden": true,
+    "private_selection_forbidden": true,
+    "truth_outcome_prediction_accuracy_or_utility_forbidden": true
+  },
+  "resources": {
+    "single_thread_cpu": true,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "claim_boundary": {
+    "identity_closure_only": true,
+    "not_a_predictor_accuracy_or_scaling_result": true,
+    "not_a_search_utility_or_method_effect_result": true,
+    "closure_does_not_authorize_truth_support_replay_or_effect": true
+  }
+}

@@ -13,6 +13,18 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KM. 2026-08-31 219-run 后续接已冻结为 ordered continuous chain
+
+为消除 one-shot formal collecting 后 monitor 退出造成的人工延迟与 snapshot 选择空间，冻结
+`target300_continuous_schema_v2_continuation_v1`：从 0KL 的 219 runs / 69 archives formal exact prefix 开始，
+只处理不同于上一个 formal candidate 的第一个 `5×300s` 稳定 LATEST；调用者不能传、跳过或替换 snapshot。
+
+每次 formal collecting 成功后，该结果自动成为下一轮 previous exact prefix；任一 formal/hash/A-B/verifier/trace/security/read-only
+失败则整条链停止，失败 candidate 不重试。closed 时必须写 one-time anchor 后停止。protocol/monitor/deployer SHA-256=
+`8a499b62...fa6a23` / `11119500...7a599d` / `3d67dd07...81760bb`，6 项契约测试覆盖顺序、prefix、失败与资源门。
+固定 science commit 仍为 `4a68c83...6104`；单线程 CPU，GPU/API/model fit/base update=0。safe monitor 不输出/读取
+candidate identity/profile/private selection 或 truth/outcome/prediction/accuracy/utility，闭合也不自动授权后续 effect。
+
 ## 0KL. 2026-08-31 Target-300 schema v2 正式通过，当前为 219/300 collecting
 
 v2 在 v1 自动冻结的同一 `30945550...104f` candidate 上一次运行成功，未重试 v1、未换 snapshot。远端正式门为

@@ -1,0 +1,42 @@
+{
+  "protocol": "archive_disposition_longitudinal_replication_v1",
+  "status": "ARCHIVE_DISPOSITION_REPLICATION_INTEGRITY_FAIL",
+  "attempt_commit": "5fb6a34250a60607165970989e7dd0d49b505e55",
+  "protocol_sha256": "348d5ceac89d502a1394cee8d31742bec94d92955e5b180cf9c170988c7773e1",
+  "current_observations_sha256": "dccd59d9e3fe964aabce2458647013d772070c40a120f79f9a6b02605356e855",
+  "formal_root": "/research/d7/spc/yzyang4/prospective-archive-disposition/formal-5fb6a34-v3",
+  "failed_rc": 2,
+  "focused_tests_passed": 12,
+  "full_phase1_tests_passed": 1844,
+  "full_phase1_test_warnings": 48,
+  "failure_gate": "all_rejection_reasons_must_be_recognized",
+  "failure_message": "unknown rejection reason",
+  "diagnosis": {
+    "performed_before_structural_competition_overlap_readout": true,
+    "structural_target_rejection_archives": 13,
+    "alias_quarantine_archives": 8,
+    "alias_reason_code": "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION",
+    "accepted_payload_hashes": 126,
+    "accepted_payload_hashes_unique": 126,
+    "structural_target_payload_hashes": 13,
+    "structural_target_payload_hashes_unique": 13,
+    "structural_target_payload_hashes_overlapping_accepted": 0,
+    "alias_payload_hashes": 8,
+    "alias_payload_hashes_unique": 8,
+    "alias_payload_hashes_overlapping_accepted": 8,
+    "distinct_alias_registry_hashes": 1
+  },
+  "result_emitted": false,
+  "independent_verifier_started": false,
+  "accepted_rejected_competition_intersection_computed": false,
+  "mixed_disposition_fraction_computed": false,
+  "archive_or_competition_identities_emitted": false,
+  "labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+  "evidence_sha256": {
+    "failed_rc": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+    "focused_tests": "e1e7c05738de1958cb56efc46368627ec8c274a7c7e94db3a381fe6461f5f43c",
+    "full_phase1_tests": "7c63f29d2b5cfd294f69e922f920c70eafeed13f195c2b40e34ffbdaa64153ee",
+    "preflight13": "4f731c7862a0d3d708e9657abde7719627cc66e9f96992bd43e62a090d0a6798"
+  }
+}

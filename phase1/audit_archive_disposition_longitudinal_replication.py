@@ -14,7 +14,7 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 
 
-PROTOCOL_NAME = "archive_disposition_longitudinal_replication_v1"
+PROTOCOL_NAME = "archive_disposition_longitudinal_replication_v2"
 OBSERVATION_PROTOCOL = "prospective_archive_observer_v1"
 HISTORICAL_LEDGER_PROTOCOL = "prospective_structural_rejection_ledger_v1"
 HISTORICAL_LEDGER_STATUS = "OUTCOME_BLIND_ARCHIVE_DISPOSITION_AUDIT_COMPLETE"
@@ -199,7 +199,10 @@ def rate(numerator: int, denominator: int) -> dict[str, Any]:
 def validate_protocol(protocol: dict[str, Any]) -> None:
     if protocol.get("protocol") != PROTOCOL_NAME:
         raise ReplicationError("protocol identity mismatch")
-    if protocol.get("frozen_before_current_mixed_disposition_readout") is not True:
+    if (
+        protocol.get("frozen_before_current_structural_mixed_disposition_readout")
+        is not True
+    ):
         raise ReplicationError("protocol is not result-before frozen")
     access = protocol.get("access_contract")
     if access != {
@@ -212,6 +215,42 @@ def validate_protocol(protocol: dict[str, Any]) -> None:
         "gpu_paid_api_model_fit_base_update": "0/0/0/0",
     }:
         raise ReplicationError("access contract mismatch")
+
+
+def validate_bound_repo_evidence(
+    protocol_path: Path, inputs: dict[str, Any]
+) -> None:
+    repo_root = protocol_path.resolve().parent
+    bindings = (
+        ("v1_failure_path", "v1_failure_sha256", "v1 failure"),
+        ("v1_protocol_path", "v1_protocol_sha256", "v1 protocol"),
+        (
+            "alias_formal_summary_path",
+            "alias_formal_summary_sha256",
+            "alias formal summary",
+        ),
+        (
+            "alias_declaration_report_path",
+            "alias_declaration_report_sha256",
+            "alias declaration report",
+        ),
+    )
+    for path_key, hash_key, label in bindings:
+        relative = inputs.get(path_key)
+        if not isinstance(relative, str) or not relative:
+            raise ReplicationError(f"{label} path missing")
+        unresolved = repo_root / relative
+        if unresolved.is_symlink():
+            raise ReplicationError(f"{label} path is unsafe")
+        candidate = unresolved.resolve()
+        try:
+            candidate.relative_to(repo_root)
+        except ValueError as exc:
+            raise ReplicationError(f"{label} path escapes repository") from exc
+        if not candidate.is_file():
+            raise ReplicationError(f"{label} path is absent or unsafe")
+        if sha256(candidate) != require_sha(inputs.get(hash_key), f"{label} hash"):
+            raise ReplicationError(f"{label} hash mismatch")
 
 
 def accepted_competitions_from_snapshot(
@@ -518,20 +557,43 @@ def current_population(
     inputs = protocol.get("inputs")
     if not isinstance(known, dict) or not isinstance(inputs, dict):
         raise ReplicationError("protocol metadata missing")
-    reasons_allowed = protocol.get("recognized_rejection_reasons")
-    if not isinstance(reasons_allowed, list) or not reasons_allowed:
-        raise ReplicationError("recognized rejection reasons missing")
-    allowed = set(reasons_allowed)
-    if len(allowed) != len(reasons_allowed) or not all(
-        isinstance(item, str) and item for item in allowed
+    taxonomy = protocol.get("rejection_taxonomy")
+    if not isinstance(taxonomy, dict):
+        raise ReplicationError("rejection taxonomy missing")
+    target_value = taxonomy.get("structural_target_reasons")
+    quarantine_value = taxonomy.get("quarantine_only_reasons")
+    if not isinstance(target_value, list) or not isinstance(quarantine_value, list):
+        raise ReplicationError("rejection taxonomy classes malformed")
+    target_reasons = set(target_value)
+    quarantine_reasons = set(quarantine_value)
+    if (
+        not target_reasons
+        or not quarantine_reasons
+        or target_reasons & quarantine_reasons
+        or len(target_reasons) != len(target_value)
+        or len(quarantine_reasons) != len(quarantine_value)
+        or not all(
+            isinstance(item, str) and item
+            for item in target_reasons | quarantine_reasons
+        )
+        or taxonomy.get(
+            "quarantine_archives_contribute_to_structural_competition_estimand"
+        )
+        is not False
+        or taxonomy.get("quarantine_archives_contribute_to_overall_settled_growth_gate")
+        is not True
     ):
-        raise ReplicationError("recognized rejection reasons malformed")
+        raise ReplicationError("rejection taxonomy contract mismatch")
+    allowed = target_reasons | quarantine_reasons
 
     counts = Counter()
     reasons: Counter[str] = Counter()
     accepted_archives: dict[str, str] = {}
-    rejected_competitions: set[str] = set()
-    postbaseline_hashes: set[str] = set()
+    structural_rejected_competitions: set[str] = set()
+    accepted_hashes: set[str] = set()
+    structural_hashes: set[str] = set()
+    alias_hashes: set[str] = set()
+    alias_registry_hashes: set[str] = set()
     latest_seen = False
     latest = require_sha(inputs.get("current_latest_snapshot_sha256"), "current latest")
     for relative, row in entries.items():
@@ -562,24 +624,33 @@ def current_population(
         if accepted:
             archive_sha = require_sha(committed_archive, "accepted archive hash")
             snapshot_sha = require_sha(committed_snapshot, "accepted snapshot hash")
-            if archive_sha in postbaseline_hashes:
-                raise ReplicationError("duplicate postbaseline archive payload hash")
-            postbaseline_hashes.add(archive_sha)
+            if archive_sha in accepted_hashes:
+                raise ReplicationError("duplicate accepted archive payload hash")
+            accepted_hashes.add(archive_sha)
             counts["accepted"] += 1
             accepted_archives[archive_sha] = relative
             latest_seen |= snapshot_sha == latest
             continue
         if rejected:
             archive_sha = require_sha(rejected_archive, "rejected archive hash")
-            require_sha(rejection_registry, "rejection registry hash")
+            registry_sha = require_sha(rejection_registry, "rejection registry hash")
             if not isinstance(reason, str) or reason not in allowed:
                 raise ReplicationError("unknown rejection reason")
-            if archive_sha in postbaseline_hashes:
-                raise ReplicationError("duplicate postbaseline archive payload hash")
-            postbaseline_hashes.add(archive_sha)
+            competition = rejected_competition_from_relative(relative)
             counts["rejected"] += 1
             reasons[reason] += 1
-            rejected_competitions.add(rejected_competition_from_relative(relative))
+            if reason in target_reasons:
+                if archive_sha in structural_hashes:
+                    raise ReplicationError("duplicate structural archive payload hash")
+                structural_hashes.add(archive_sha)
+                counts["structural_rejected"] += 1
+                structural_rejected_competitions.add(competition)
+            else:
+                if archive_sha in alias_hashes:
+                    raise ReplicationError("duplicate alias archive payload hash")
+                alias_hashes.add(archive_sha)
+                alias_registry_hashes.add(registry_sha)
+                counts["alias_quarantined"] += 1
             continue
         counts["pending"] += 1
 
@@ -615,6 +686,86 @@ def current_population(
         raise ReplicationError("current partition does not close")
     if not latest_seen:
         raise ReplicationError("current latest snapshot is absent from accepted dispositions")
+    expected_subcounts = {
+        "structural_rejected": nonnegative_int(
+            known.get("current_structural_rejected_archives"),
+            "known structural rejected archives",
+        ),
+        "alias_quarantined": nonnegative_int(
+            known.get("current_alias_quarantined_archives"),
+            "known alias quarantined archives",
+        ),
+    }
+    actual_subcounts = {
+        "structural_rejected": counts["structural_rejected"],
+        "alias_quarantined": counts["alias_quarantined"],
+    }
+    if actual_subcounts != expected_subcounts or sum(actual_subcounts.values()) != normalized["rejected"]:
+        raise ReplicationError("rejection taxonomy partition mismatch")
+    expected_reason_counts = known.get("current_rejection_reason_counts")
+    if not isinstance(expected_reason_counts, dict) or any(
+        not isinstance(key, str)
+        or isinstance(value, bool)
+        or not isinstance(value, int)
+        or value < 0
+        for key, value in expected_reason_counts.items()
+    ):
+        raise ReplicationError("known rejection reason counts malformed")
+    if dict(sorted(reasons.items())) != dict(sorted(expected_reason_counts.items())):
+        raise ReplicationError("rejection reason count mismatch")
+    structural_overlap = len(structural_hashes & accepted_hashes)
+    alias_overlap = len(alias_hashes & accepted_hashes)
+    hash_audit = {
+        "accepted_unique_payload_hashes": len(accepted_hashes),
+        "structural_unique_payload_hashes": len(structural_hashes),
+        "structural_payload_hashes_overlapping_accepted": structural_overlap,
+        "alias_unique_payload_hashes": len(alias_hashes),
+        "alias_payload_hashes_overlapping_accepted": alias_overlap,
+        "distinct_alias_registry_hashes": len(alias_registry_hashes),
+        "distinct_postbaseline_payload_hashes": len(
+            accepted_hashes | structural_hashes | alias_hashes
+        ),
+    }
+    expected_hash_audit = {
+        "accepted_unique_payload_hashes": nonnegative_int(
+            known.get("current_accepted_unique_payload_hashes"),
+            "known accepted unique payload hashes",
+        ),
+        "structural_unique_payload_hashes": nonnegative_int(
+            known.get("current_structural_unique_payload_hashes"),
+            "known structural unique payload hashes",
+        ),
+        "structural_payload_hashes_overlapping_accepted": nonnegative_int(
+            known.get("current_structural_payload_hashes_overlapping_accepted"),
+            "known structural payload overlap",
+        ),
+        "alias_unique_payload_hashes": nonnegative_int(
+            known.get("current_alias_unique_payload_hashes"),
+            "known alias unique payload hashes",
+        ),
+        "alias_payload_hashes_overlapping_accepted": nonnegative_int(
+            known.get("current_alias_payload_hashes_overlapping_accepted"),
+            "known alias payload overlap",
+        ),
+        "distinct_alias_registry_hashes": nonnegative_int(
+            known.get("current_distinct_alias_registry_hashes"),
+            "known alias registry hash count",
+        ),
+        "distinct_postbaseline_payload_hashes": (
+            nonnegative_int(
+                known.get("current_accepted_unique_payload_hashes"),
+                "known accepted unique payload hashes",
+            )
+            + nonnegative_int(
+                known.get("current_structural_unique_payload_hashes"),
+                "known structural unique payload hashes",
+            )
+        ),
+    }
+    if hash_audit != expected_hash_audit:
+        raise ReplicationError("payload hash taxonomy audit mismatch")
+    if structural_overlap != 0 or alias_overlap != len(alias_hashes):
+        raise ReplicationError("payload hash taxonomy semantics mismatch")
     accepted_competitions, mapping_audit = accepted_competitions_from_snapshot(
         protocol, state_root, accepted_archives
     )
@@ -625,10 +776,11 @@ def current_population(
         raise ReplicationError("rejected competition mapping audit mismatch")
     return {
         "counts": normalized,
+        "taxonomy_counts": actual_subcounts,
         "reason_counts": dict(sorted(reasons.items())),
         "accepted_competitions": accepted_competitions,
-        "rejected_competitions": rejected_competitions,
-        "postbaseline_unique_hashes": len(postbaseline_hashes),
+        "structural_rejected_competitions": structural_rejected_competitions,
+        "hash_partition_audit": hash_audit,
         "competition_mapping_audit": {
             **mapping_audit,
             "rejected_seeded_filename_archives": counts["rejected"],
@@ -647,6 +799,7 @@ def build_result(
     inputs = protocol.get("inputs")
     if not isinstance(inputs, dict):
         raise ReplicationError("protocol inputs missing")
+    validate_bound_repo_evidence(protocol_path, inputs)
     if sha256(observations_path.resolve()) != require_sha(
         inputs.get("current_observations_sha256"), "current observations hash"
     ):
@@ -667,25 +820,43 @@ def build_result(
     current = current_population(protocol, observations, state_root)
     current_counts = current["counts"]
     accepted_competitions = current["accepted_competitions"]
-    rejected_competitions = current["rejected_competitions"]
+    rejected_competitions = current["structural_rejected_competitions"]
     mixed = accepted_competitions & rejected_competitions
     rejected_competition_count = len(rejected_competitions)
     mixed_count = len(mixed)
     if rejected_competition_count == 0:
         raise ReplicationError("current population has no rejected competitions")
+    taxonomy_counts = current["taxonomy_counts"]
     extension = {
         "observed": current_counts["observed"] - historical_counts["observed"],
         "accepted": current_counts["accepted"] - historical_counts["accepted"],
-        "rejected": current_counts["rejected"] - historical_counts["rejected"],
-        "settled": (
+        "total_rejected": current_counts["rejected"] - historical_counts["rejected"],
+        "structural_rejected": (
+            taxonomy_counts["structural_rejected"] - historical_counts["rejected"]
+        ),
+        "alias_quarantined": taxonomy_counts["alias_quarantined"],
+        "overall_settled": (
             current_counts["accepted"]
             + current_counts["rejected"]
+            - historical_counts["settled"]
+        ),
+        "structural_target_settled": (
+            current_counts["accepted"]
+            + taxonomy_counts["structural_rejected"]
             - historical_counts["settled"]
         ),
     }
     if any(value < 0 for value in extension.values()):
         raise ReplicationError("current population is not an extension of historical counts")
-    if extension["observed"] != extension["settled"]:
+    if (
+        extension["observed"] != extension["overall_settled"]
+        or extension["overall_settled"]
+        != extension["accepted"] + extension["total_rejected"]
+        or extension["total_rejected"]
+        != extension["structural_rejected"] + extension["alias_quarantined"]
+        or extension["structural_target_settled"]
+        != extension["accepted"] + extension["structural_rejected"]
+    ):
         raise ReplicationError("extension archive accounting mismatch")
     decision = protocol.get("decision_rule")
     if not isinstance(decision, dict):
@@ -696,19 +867,25 @@ def build_result(
     if not all(isinstance(item, dict) for item in (strong, partial, kill)):
         raise ReplicationError("decision rule malformed")
     required_exact_fraction = unit_fraction(
-        strong.get("required_current_mixed_disposition_fraction"),
+        strong.get("required_current_structural_mixed_disposition_fraction"),
         "strong exact mixed-disposition fraction",
     )
     partial_fraction = unit_fraction(
-        partial.get("minimum_current_mixed_disposition_fraction"),
+        partial.get("minimum_current_structural_mixed_disposition_fraction"),
         "partial mixed-disposition fraction",
     )
     exact_mixed = mixed_count == rejected_competition_count
     if (
         rejected_competition_count
-        >= nonnegative_int(strong.get("minimum_current_rejected_competitions"), "strong competition minimum")
-        and extension["settled"]
-        >= nonnegative_int(strong.get("minimum_extension_settled_archives"), "strong extension minimum")
+        >= nonnegative_int(
+            strong.get("minimum_current_structural_rejected_competitions"),
+            "strong competition minimum",
+        )
+        and extension["overall_settled"]
+        >= nonnegative_int(
+            strong.get("minimum_overall_extension_settled_archives"),
+            "strong extension minimum",
+        )
         and exact_mixed
         and required_exact_fraction == 1.0
     ):
@@ -721,6 +898,9 @@ def build_result(
         raise ReplicationError("decision status malformed")
 
     current_settled = current_counts["accepted"] + current_counts["rejected"]
+    current_target_settled = (
+        current_counts["accepted"] + taxonomy_counts["structural_rejected"]
+    )
     result = {
         "protocol": PROTOCOL_NAME,
         "status": status,
@@ -729,13 +909,22 @@ def build_result(
             "current_latest_snapshot_sha256": inputs["current_latest_snapshot_sha256"],
             "current_observations_sha256": inputs["current_observations_sha256"],
             "historical_ledger_sha256": inputs["historical_ledger_sha256"],
+            "v1_failure_sha256": inputs["v1_failure_sha256"],
+            "v1_protocol_sha256": inputs["v1_protocol_sha256"],
+            "alias_formal_summary_sha256": inputs["alias_formal_summary_sha256"],
+            "alias_declaration_report_sha256": inputs[
+                "alias_declaration_report_sha256"
+            ],
         },
         "integrity": {
             "source_count_equals_observation_count": True,
-            "disposition_partition_mutually_exclusive_and_exhaustive": True,
+            "taxonomy_partition_mutually_exclusive_and_exhaustive": True,
             "pending_archives_zero": True,
-            "postbaseline_archive_payload_hashes_unique": True,
-            "all_rejection_reasons_recognized": True,
+            "accepted_payload_hashes_unique": True,
+            "structural_payload_hashes_unique_and_disjoint_from_accepted": True,
+            "alias_payload_hashes_unique_and_all_overlap_accepted": True,
+            "alias_registry_hash_count_bound": True,
+            "all_rejection_reasons_classified": True,
             "latest_snapshot_seen_in_accepted": True,
             "snapshot_transaction_registry_hash_bound": True,
             "accepted_archives_single_task_hash_bound": True,
@@ -758,28 +947,53 @@ def build_result(
         },
         "current": {
             "observed_archives": current_counts["observed"],
-            "settled_postbaseline_archives": current_settled,
+            "overall_settled_postbaseline_archives": current_settled,
+            "structural_target_settled_postbaseline_archives": current_target_settled,
             "baseline_archives": current_counts["baseline"],
             "accepted_archives": current_counts["accepted"],
-            "rejected_archives": current_counts["rejected"],
+            "total_rejected_archives": current_counts["rejected"],
+            "structural_rejected_archives": taxonomy_counts["structural_rejected"],
+            "alias_quarantined_archives": taxonomy_counts["alias_quarantined"],
             "pending_archives": current_counts["pending"],
-            "postbaseline_unique_archive_hashes": current[
-                "postbaseline_unique_hashes"
-            ],
-            "rejected_competitions": rejected_competition_count,
-            "mixed_disposition_competitions": mixed_count,
-            "nonmixed_rejected_competitions": rejected_competition_count - mixed_count,
-            "mixed_disposition_fraction": rate(mixed_count, rejected_competition_count),
-            "rejection_rate": rate(current_counts["rejected"], current_settled),
+            "payload_hash_partition_audit": current["hash_partition_audit"],
+            "structural_rejected_competitions": rejected_competition_count,
+            "structural_mixed_disposition_competitions": mixed_count,
+            "structural_nonmixed_rejected_competitions": (
+                rejected_competition_count - mixed_count
+            ),
+            "structural_mixed_disposition_fraction": rate(
+                mixed_count, rejected_competition_count
+            ),
+            "overall_rejection_rate": rate(current_counts["rejected"], current_settled),
+            "structural_rejection_rate": rate(
+                taxonomy_counts["structural_rejected"], current_target_settled
+            ),
+            "alias_quarantine_rate": rate(
+                taxonomy_counts["alias_quarantined"], current_settled
+            ),
             "rejection_reason_counts": current["reason_counts"],
             "competition_mapping_audit": current["competition_mapping_audit"],
         },
         "extension_beyond_historical_anchor": {
             "observed_archives": extension["observed"],
-            "settled_archives": extension["settled"],
             "accepted_archives": extension["accepted"],
-            "rejected_archives": extension["rejected"],
-            "rejection_rate": rate(extension["rejected"], extension["settled"]),
+            "total_rejected_archives": extension["total_rejected"],
+            "structural_rejected_archives": extension["structural_rejected"],
+            "alias_quarantined_archives": extension["alias_quarantined"],
+            "overall_settled_archives": extension["overall_settled"],
+            "structural_target_settled_archives": extension[
+                "structural_target_settled"
+            ],
+            "overall_rejection_rate": rate(
+                extension["total_rejected"], extension["overall_settled"]
+            ),
+            "structural_rejection_rate": rate(
+                extension["structural_rejected"],
+                extension["structural_target_settled"],
+            ),
+            "alias_quarantine_rate": rate(
+                extension["alias_quarantined"], extension["overall_settled"]
+            ),
         },
         "decision": {
             "strong_gate_passed": status == strong.get("status"),
@@ -798,8 +1012,9 @@ def build_result(
             "gpu_paid_api_model_fit_base_update": "0/0/0/0",
         },
         "claim_boundary": {
-            "supports_archive_level_fail_closed_validation": status
-            == strong.get("status"),
+            "supports_taxonomy_aware_archive_level_fail_closed_validation": (
+                status == strong.get("status")
+            ),
             "supports_task_whitelist_or_blacklist": False,
             "estimates_metadata_repair_causal_effect": False,
             "estimates_predictor_accuracy_scaling_or_search_utility": False,
@@ -841,11 +1056,13 @@ def main() -> int:
             json.dumps(
                 {
                     "status": result["status"],
-                    "current_rejected_competitions": result["current"][
-                        "rejected_competitions"
+                    "current_structural_rejected_competitions": result["current"][
+                        "structural_rejected_competitions"
                     ],
-                    "current_mixed_disposition_competitions": result["current"][
-                        "mixed_disposition_competitions"
+                    "current_structural_mixed_disposition_competitions": result[
+                        "current"
+                    ][
+                        "structural_mixed_disposition_competitions"
                     ],
                 },
                 sort_keys=True,

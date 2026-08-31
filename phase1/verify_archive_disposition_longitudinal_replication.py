@@ -359,9 +359,12 @@ def verify(
     observations = load(observations_path.resolve(), "observations")
     historical = load(historical_path.resolve(), "historical ledger")
     result = load(result_path.resolve(), "result")
-    if protocol.get("protocol") != "archive_disposition_longitudinal_replication_v1":
+    if protocol.get("protocol") != "archive_disposition_longitudinal_replication_v2":
         raise VerificationError("protocol identity mismatch")
-    if protocol.get("frozen_before_current_mixed_disposition_readout") is not True:
+    if (
+        protocol.get("frozen_before_current_structural_mixed_disposition_readout")
+        is not True
+    ):
         raise VerificationError("protocol was not frozen")
     inputs = protocol.get("inputs")
     known = protocol.get("known_metadata_before_readout")
@@ -381,6 +384,36 @@ def verify(
         },
         "protocol access contract",
     )
+    repo_root = protocol_path.resolve().parent
+    for path_key, hash_key, label in (
+        ("v1_failure_path", "v1_failure_sha256", "v1 failure"),
+        ("v1_protocol_path", "v1_protocol_sha256", "v1 protocol"),
+        (
+            "alias_formal_summary_path",
+            "alias_formal_summary_sha256",
+            "alias formal summary",
+        ),
+        (
+            "alias_declaration_report_path",
+            "alias_declaration_report_sha256",
+            "alias declaration report",
+        ),
+    ):
+        relative = inputs.get(path_key)
+        if not isinstance(relative, str) or not relative:
+            raise VerificationError(f"{label} path missing")
+        unresolved = repo_root / relative
+        if unresolved.is_symlink():
+            raise VerificationError(f"unsafe {label} path")
+        candidate = unresolved.resolve()
+        try:
+            candidate.relative_to(repo_root)
+        except ValueError as exc:
+            raise VerificationError(f"{label} path escapes repository") from exc
+        if not candidate.is_file() or digest(candidate) != sha(
+            inputs.get(hash_key), f"{label} hash"
+        ):
+            raise VerificationError(f"{label} binding mismatch")
     if digest(observations_path.resolve()) != sha(
         inputs.get("current_observations_sha256"), "observation hash"
     ):
@@ -478,15 +511,42 @@ def verify(
     if not isinstance(entries, dict) or not isinstance(source_root, str):
         raise VerificationError("observation schema mismatch")
     prefix = source_root.rstrip("/") + "/"
-    allowed_value = protocol.get("recognized_rejection_reasons")
-    if not isinstance(allowed_value, list) or not allowed_value:
-        raise VerificationError("recognized reason set missing")
-    allowed = set(allowed_value)
+    taxonomy = protocol.get("rejection_taxonomy")
+    if not isinstance(taxonomy, dict):
+        raise VerificationError("rejection taxonomy missing")
+    target_value = taxonomy.get("structural_target_reasons")
+    quarantine_value = taxonomy.get("quarantine_only_reasons")
+    if not isinstance(target_value, list) or not isinstance(quarantine_value, list):
+        raise VerificationError("rejection taxonomy classes malformed")
+    target_reasons = set(target_value)
+    quarantine_reasons = set(quarantine_value)
+    if (
+        not target_reasons
+        or not quarantine_reasons
+        or target_reasons & quarantine_reasons
+        or len(target_reasons) != len(target_value)
+        or len(quarantine_reasons) != len(quarantine_value)
+        or not all(
+            isinstance(item, str) and item
+            for item in target_reasons | quarantine_reasons
+        )
+        or taxonomy.get(
+            "quarantine_archives_contribute_to_structural_competition_estimand"
+        )
+        is not False
+        or taxonomy.get("quarantine_archives_contribute_to_overall_settled_growth_gate")
+        is not True
+    ):
+        raise VerificationError("rejection taxonomy contract mismatch")
+    allowed = target_reasons | quarantine_reasons
     current_counts: Counter[str] = Counter()
     reason_counts: Counter[str] = Counter()
     accepted_archive_paths: dict[str, str] = {}
-    current_rejected: set[str] = set()
-    payload_hashes: set[str] = set()
+    structural_rejected_tasks: set[str] = set()
+    accepted_hashes: set[str] = set()
+    structural_hashes: set[str] = set()
+    alias_hashes: set[str] = set()
+    alias_registry_hashes: set[str] = set()
     latest = sha(inputs.get("current_latest_snapshot_sha256"), "current latest")
     latest_seen = False
     for relative, row in entries.items():
@@ -512,23 +572,32 @@ def verify(
         elif accepted:
             archive_hash = sha(committed_archive, "accepted payload hash")
             snapshot_hash = sha(committed_snapshot, "accepted snapshot hash")
-            if archive_hash in payload_hashes:
-                raise VerificationError("duplicate payload hash")
-            payload_hashes.add(archive_hash)
+            if archive_hash in accepted_hashes:
+                raise VerificationError("duplicate accepted payload hash")
+            accepted_hashes.add(archive_hash)
             current_counts["accepted"] += 1
             accepted_archive_paths[archive_hash] = relative
             latest_seen |= snapshot_hash == latest
         elif rejected:
             archive_hash = sha(rejected_archive, "rejected payload hash")
-            sha(rejected_registry, "rejection registry hash")
+            registry_hash = sha(rejected_registry, "rejection registry hash")
             if not isinstance(reason, str) or reason not in allowed:
                 raise VerificationError("unknown rejection reason")
-            if archive_hash in payload_hashes:
-                raise VerificationError("duplicate payload hash")
-            payload_hashes.add(archive_hash)
             current_counts["rejected"] += 1
-            current_rejected.add(rejected_task(relative))
             reason_counts[reason] += 1
+            task = rejected_task(relative)
+            if reason in target_reasons:
+                if archive_hash in structural_hashes:
+                    raise VerificationError("duplicate structural payload hash")
+                structural_hashes.add(archive_hash)
+                current_counts["structural_rejected"] += 1
+                structural_rejected_tasks.add(task)
+            else:
+                if archive_hash in alias_hashes:
+                    raise VerificationError("duplicate alias payload hash")
+                alias_hashes.add(archive_hash)
+                alias_registry_hashes.add(registry_hash)
+                current_counts["alias_quarantined"] += 1
         else:
             current_counts["pending"] += 1
     current = {
@@ -561,6 +630,93 @@ def verify(
     )
     if current["pending"] != 0 or not latest_seen:
         raise VerificationError("current frozen population is not settled")
+    taxonomy_counts = {
+        "structural_rejected": current_counts["structural_rejected"],
+        "alias_quarantined": current_counts["alias_quarantined"],
+    }
+    assert_equal(
+        taxonomy_counts,
+        {
+            "structural_rejected": integer(
+                known.get("current_structural_rejected_archives"),
+                "known structural rejected archives",
+            ),
+            "alias_quarantined": integer(
+                known.get("current_alias_quarantined_archives"),
+                "known alias quarantined archives",
+            ),
+        },
+        "rejection taxonomy partition",
+    )
+    if sum(taxonomy_counts.values()) != current["rejected"]:
+        raise VerificationError("rejection taxonomy does not close")
+    expected_reason_counts = known.get("current_rejection_reason_counts")
+    if not isinstance(expected_reason_counts, dict):
+        raise VerificationError("known rejection reason counts malformed")
+    assert_equal(
+        dict(sorted(reason_counts.items())),
+        dict(sorted(expected_reason_counts.items())),
+        "rejection reason counts",
+    )
+    hash_partition_audit = {
+        "accepted_unique_payload_hashes": len(accepted_hashes),
+        "structural_unique_payload_hashes": len(structural_hashes),
+        "structural_payload_hashes_overlapping_accepted": len(
+            structural_hashes & accepted_hashes
+        ),
+        "alias_unique_payload_hashes": len(alias_hashes),
+        "alias_payload_hashes_overlapping_accepted": len(alias_hashes & accepted_hashes),
+        "distinct_alias_registry_hashes": len(alias_registry_hashes),
+        "distinct_postbaseline_payload_hashes": len(
+            accepted_hashes | structural_hashes | alias_hashes
+        ),
+    }
+    assert_equal(
+        hash_partition_audit,
+        {
+            "accepted_unique_payload_hashes": integer(
+                known.get("current_accepted_unique_payload_hashes"),
+                "known accepted unique hashes",
+            ),
+            "structural_unique_payload_hashes": integer(
+                known.get("current_structural_unique_payload_hashes"),
+                "known structural unique hashes",
+            ),
+            "structural_payload_hashes_overlapping_accepted": integer(
+                known.get("current_structural_payload_hashes_overlapping_accepted"),
+                "known structural overlap",
+            ),
+            "alias_unique_payload_hashes": integer(
+                known.get("current_alias_unique_payload_hashes"),
+                "known alias unique hashes",
+            ),
+            "alias_payload_hashes_overlapping_accepted": integer(
+                known.get("current_alias_payload_hashes_overlapping_accepted"),
+                "known alias overlap",
+            ),
+            "distinct_alias_registry_hashes": integer(
+                known.get("current_distinct_alias_registry_hashes"),
+                "known alias registry count",
+            ),
+            "distinct_postbaseline_payload_hashes": (
+                integer(
+                    known.get("current_accepted_unique_payload_hashes"),
+                    "known accepted unique hashes",
+                )
+                + integer(
+                    known.get("current_structural_unique_payload_hashes"),
+                    "known structural unique hashes",
+                )
+            ),
+        },
+        "payload hash taxonomy audit",
+    )
+    if (
+        hash_partition_audit["structural_payload_hashes_overlapping_accepted"] != 0
+        or hash_partition_audit["alias_payload_hashes_overlapping_accepted"]
+        != len(alias_hashes)
+    ):
+        raise VerificationError("payload hash taxonomy semantics mismatch")
     current_accepted, accepted_mapping_audit = reconstruct_accepted_tasks(
         state_root, latest, accepted_archive_paths, known
     )
@@ -576,18 +732,30 @@ def verify(
         **accepted_mapping_audit,
         "rejected_seeded_filename_archives": current["rejected"],
     }
-    rejected_tasks = len(current_rejected)
-    mixed_tasks = len(current_accepted & current_rejected)
+    rejected_tasks = len(structural_rejected_tasks)
+    mixed_tasks = len(current_accepted & structural_rejected_tasks)
     if rejected_tasks == 0:
         raise VerificationError("zero rejected competitions")
     extension = {
         "observed": current["observed"] - historical_counts["observed"],
         "accepted": current["accepted"] - historical_counts["accepted"],
-        "rejected": current["rejected"] - historical_counts["rejected"],
+        "total_rejected": current["rejected"] - historical_counts["rejected"],
+        "structural_rejected": (
+            taxonomy_counts["structural_rejected"] - historical_counts["rejected"]
+        ),
+        "alias_quarantined": taxonomy_counts["alias_quarantined"],
     }
-    extension["settled"] = extension["accepted"] + extension["rejected"]
-    if extension["observed"] != extension["settled"] or any(
-        value < 0 for value in extension.values()
+    extension["overall_settled"] = (
+        extension["accepted"] + extension["total_rejected"]
+    )
+    extension["structural_target_settled"] = (
+        extension["accepted"] + extension["structural_rejected"]
+    )
+    if (
+        extension["observed"] != extension["overall_settled"]
+        or extension["total_rejected"]
+        != extension["structural_rejected"] + extension["alias_quarantined"]
+        or any(value < 0 for value in extension.values())
     ):
         raise VerificationError("extension does not close")
     strong = rules.get("strong")
@@ -596,22 +764,22 @@ def verify(
     if not all(isinstance(value, dict) for value in (strong, partial, kill)):
         raise VerificationError("decision rules malformed")
     required_exact_fraction = unit_fraction(
-        strong.get("required_current_mixed_disposition_fraction"),
+        strong.get("required_current_structural_mixed_disposition_fraction"),
         "strong exact mixed-disposition fraction",
     )
     partial_fraction = unit_fraction(
-        partial.get("minimum_current_mixed_disposition_fraction"),
+        partial.get("minimum_current_structural_mixed_disposition_fraction"),
         "partial mixed-disposition fraction",
     )
     if (
         rejected_tasks
         >= integer(
-            strong.get("minimum_current_rejected_competitions"),
+            strong.get("minimum_current_structural_rejected_competitions"),
             "strong rejected competition minimum",
         )
-        and extension["settled"]
+        and extension["overall_settled"]
         >= integer(
-            strong.get("minimum_extension_settled_archives"),
+            strong.get("minimum_overall_extension_settled_archives"),
             "strong extension minimum",
         )
         and mixed_tasks == rejected_tasks
@@ -632,6 +800,12 @@ def verify(
             "current_latest_snapshot_sha256": latest,
             "current_observations_sha256": inputs["current_observations_sha256"],
             "historical_ledger_sha256": inputs["historical_ledger_sha256"],
+            "v1_failure_sha256": inputs["v1_failure_sha256"],
+            "v1_protocol_sha256": inputs["v1_protocol_sha256"],
+            "alias_formal_summary_sha256": inputs["alias_formal_summary_sha256"],
+            "alias_declaration_report_sha256": inputs[
+                "alias_declaration_report_sha256"
+            ],
         },
         "input bindings",
     )
@@ -639,10 +813,13 @@ def verify(
         result.get("integrity"),
         {
             "source_count_equals_observation_count": True,
-            "disposition_partition_mutually_exclusive_and_exhaustive": True,
+            "taxonomy_partition_mutually_exclusive_and_exhaustive": True,
             "pending_archives_zero": True,
-            "postbaseline_archive_payload_hashes_unique": True,
-            "all_rejection_reasons_recognized": True,
+            "accepted_payload_hashes_unique": True,
+            "structural_payload_hashes_unique_and_disjoint_from_accepted": True,
+            "alias_payload_hashes_unique_and_all_overlap_accepted": True,
+            "alias_registry_hash_count_bound": True,
+            "all_rejection_reasons_classified": True,
             "latest_snapshot_seen_in_accepted": True,
             "snapshot_transaction_registry_hash_bound": True,
             "accepted_archives_single_task_hash_bound": True,
@@ -670,21 +847,35 @@ def verify(
         "historical aggregate",
     )
     current_settled = current["accepted"] + current["rejected"]
+    current_target_settled = (
+        current["accepted"] + taxonomy_counts["structural_rejected"]
+    )
     assert_equal(
         result.get("current"),
         {
             "observed_archives": current["observed"],
-            "settled_postbaseline_archives": current_settled,
+            "overall_settled_postbaseline_archives": current_settled,
+            "structural_target_settled_postbaseline_archives": current_target_settled,
             "baseline_archives": current["baseline"],
             "accepted_archives": current["accepted"],
-            "rejected_archives": current["rejected"],
+            "total_rejected_archives": current["rejected"],
+            "structural_rejected_archives": taxonomy_counts["structural_rejected"],
+            "alias_quarantined_archives": taxonomy_counts["alias_quarantined"],
             "pending_archives": current["pending"],
-            "postbaseline_unique_archive_hashes": len(payload_hashes),
-            "rejected_competitions": rejected_tasks,
-            "mixed_disposition_competitions": mixed_tasks,
-            "nonmixed_rejected_competitions": rejected_tasks - mixed_tasks,
-            "mixed_disposition_fraction": proportion(mixed_tasks, rejected_tasks),
-            "rejection_rate": proportion(current["rejected"], current_settled),
+            "payload_hash_partition_audit": hash_partition_audit,
+            "structural_rejected_competitions": rejected_tasks,
+            "structural_mixed_disposition_competitions": mixed_tasks,
+            "structural_nonmixed_rejected_competitions": rejected_tasks - mixed_tasks,
+            "structural_mixed_disposition_fraction": proportion(
+                mixed_tasks, rejected_tasks
+            ),
+            "overall_rejection_rate": proportion(current["rejected"], current_settled),
+            "structural_rejection_rate": proportion(
+                taxonomy_counts["structural_rejected"], current_target_settled
+            ),
+            "alias_quarantine_rate": proportion(
+                taxonomy_counts["alias_quarantined"], current_settled
+            ),
             "rejection_reason_counts": dict(sorted(reason_counts.items())),
             "competition_mapping_audit": competition_mapping_audit,
         },
@@ -694,11 +885,23 @@ def verify(
         result.get("extension_beyond_historical_anchor"),
         {
             "observed_archives": extension["observed"],
-            "settled_archives": extension["settled"],
             "accepted_archives": extension["accepted"],
-            "rejected_archives": extension["rejected"],
-            "rejection_rate": proportion(
-                extension["rejected"], extension["settled"]
+            "total_rejected_archives": extension["total_rejected"],
+            "structural_rejected_archives": extension["structural_rejected"],
+            "alias_quarantined_archives": extension["alias_quarantined"],
+            "overall_settled_archives": extension["overall_settled"],
+            "structural_target_settled_archives": extension[
+                "structural_target_settled"
+            ],
+            "overall_rejection_rate": proportion(
+                extension["total_rejected"], extension["overall_settled"]
+            ),
+            "structural_rejection_rate": proportion(
+                extension["structural_rejected"],
+                extension["structural_target_settled"],
+            ),
+            "alias_quarantine_rate": proportion(
+                extension["alias_quarantined"], extension["overall_settled"]
             ),
         },
         "extension aggregate",
@@ -730,8 +933,9 @@ def verify(
     assert_equal(
         result.get("claim_boundary"),
         {
-            "supports_archive_level_fail_closed_validation": expected_status
-            == strong.get("status"),
+            "supports_taxonomy_aware_archive_level_fail_closed_validation": (
+                expected_status == strong.get("status")
+            ),
             "supports_task_whitelist_or_blacklist": False,
             "estimates_metadata_repair_causal_effect": False,
             "estimates_predictor_accuracy_scaling_or_search_utility": False,
@@ -740,16 +944,19 @@ def verify(
         "claim boundary",
     )
     return {
-        "protocol": "independent_archive_disposition_longitudinal_replication_v1",
+        "protocol": "independent_archive_disposition_longitudinal_replication_v2",
         "status": "INDEPENDENT_ARCHIVE_DISPOSITION_REPLICATION_PASS",
         "result_sha256": digest(result_path.resolve()),
         "result_status": expected_status,
         "recomputed_counts": {
             "current_observed_archives": current["observed"],
             "current_settled_archives": current_settled,
-            "current_rejected_competitions": rejected_tasks,
-            "current_mixed_disposition_competitions": mixed_tasks,
-            "extension_settled_archives": extension["settled"],
+            "current_structural_rejected_competitions": rejected_tasks,
+            "current_structural_mixed_disposition_competitions": mixed_tasks,
+            "overall_extension_settled_archives": extension["overall_settled"],
+            "structural_target_extension_settled_archives": extension[
+                "structural_target_settled"
+            ],
         },
         "all_aggregate_fields_equal": True,
         "identities_emitted": False,

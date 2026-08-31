@@ -1,0 +1,126 @@
+{
+  "protocol": "archive_disposition_longitudinal_replication_v2",
+  "frozen_before_current_structural_mixed_disposition_readout": true,
+  "frozen_at_utc_date": "2026-08-31",
+  "supersedes_protocol_for_future_execution_only": "archive_disposition_longitudinal_replication_v1",
+  "v1_disposition": "ARCHIVE_DISPOSITION_REPLICATION_INTEGRITY_FAIL",
+  "taxonomy_repair_reason": "v1 stopped before result emission because it omitted the pre-existing byte-alias quarantine reason and simultaneously required payload hashes to be unique across accepted and quarantined aliases. v2 preserves v1 as a failure, partitions rejection taxonomy before any structural competition-overlap readout, and excludes aliases from the structural estimand.",
+  "information_known_before_v2_readout": {
+    "v1_result_emitted": false,
+    "v1_independent_verifier_started": false,
+    "structural_competition_overlap_computed": false,
+    "mixed_disposition_fraction_computed": false,
+    "rejection_taxonomy_counts_known": true,
+    "payload_hash_partition_counts_known": true
+  },
+  "question": "Does the earlier structural archive-level mixed-disposition finding replicate after the outcome-blind source population grows from 218 to 275 archives, while byte-alias quarantine is audited separately?",
+  "inputs": {
+    "current_latest_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "current_observations_sha256": "dccd59d9e3fe964aabce2458647013d772070c40a120f79f9a6b02605356e855",
+    "current_observations_bytes": 194489,
+    "current_source_archive_count": 275,
+    "historical_ledger_path": "phase1/results/structural_rejection_ledger_v1_20260825/ledger.json",
+    "historical_ledger_sha256": "b194b1bc88e561e77f982ae6f46d5ea7cccb745cc960c26da2661ea0ce8bad03",
+    "v1_failure_path": "results/archive_disposition_longitudinal_replication_v1_20260831_5fb6a34/integrity_failure.json",
+    "v1_failure_sha256": "8c7d05983f58228c31e2ebb871e8ab218e9c15d33a0a4f211e777e4a1945d151",
+    "v1_protocol_path": "archive_disposition_longitudinal_replication_v1.json",
+    "v1_protocol_sha256": "348d5ceac89d502a1394cee8d31742bec94d92955e5b180cf9c170988c7773e1",
+    "alias_formal_summary_path": "results/archive_content_alias_disposition_8579_20260827_9b7640a/formal_summary.json",
+    "alias_formal_summary_sha256": "d1a34ac549c3fcba5a69834fde77af1fb5e89228d1165a4b43297d5f03998309",
+    "alias_declaration_report_path": "实验记录/2026-08-26/Archive_Content_Alias_Disposition_v1_结果前预注册.md",
+    "alias_declaration_report_sha256": "9e73ed9e52d2af7e012d18de542bdf33216a96c774a33ec239854ead2e83001e"
+  },
+  "known_metadata_before_readout": {
+    "current_baseline_archives": 128,
+    "current_accepted_archives": 126,
+    "current_rejected_archives": 21,
+    "current_structural_rejected_archives": 13,
+    "current_alias_quarantined_archives": 8,
+    "current_pending_archives": 0,
+    "current_snapshot_transactions": 126,
+    "current_accepted_single_task_archives": 126,
+    "current_accepted_seeded_filename_archives": 124,
+    "current_accepted_task_metadata_fallback_archives": 2,
+    "current_rejected_seeded_filename_archives": 21,
+    "current_hash_bound_source_provenance_rows": 520,
+    "current_source_provenance_competition_source_rows": 25,
+    "current_accepted_unique_payload_hashes": 126,
+    "current_structural_unique_payload_hashes": 13,
+    "current_structural_payload_hashes_overlapping_accepted": 0,
+    "current_alias_unique_payload_hashes": 8,
+    "current_alias_payload_hashes_overlapping_accepted": 8,
+    "current_distinct_alias_registry_hashes": 1,
+    "current_rejection_reason_counts": {
+      "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION": 8,
+      "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": 2,
+      "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": 2,
+      "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": 9
+    },
+    "historical_observed_archives": 218,
+    "historical_settled_postbaseline_archives": 90,
+    "historical_rejected_competitions": 6,
+    "historical_mixed_disposition_competitions": 6
+  },
+  "rejection_taxonomy": {
+    "structural_target_reasons": [
+      "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+      "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS",
+      "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE"
+    ],
+    "quarantine_only_reasons": [
+      "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION"
+    ],
+    "quarantine_archives_contribute_to_structural_competition_estimand": false,
+    "quarantine_archives_contribute_to_overall_settled_growth_gate": true
+  },
+  "integrity_gates": {
+    "observations_match_frozen_sha256": true,
+    "source_count_equals_observation_count": true,
+    "baseline_accepted_structural_alias_pending_partition_is_mutually_exclusive_and_exhaustive": true,
+    "pending_archives_must_equal": 0,
+    "accepted_payload_hashes_must_be_unique": true,
+    "structural_payload_hashes_must_be_unique_and_disjoint_from_accepted": true,
+    "alias_payload_hashes_must_be_unique_and_all_overlap_accepted": true,
+    "alias_registry_hash_count_must_equal": 1,
+    "all_rejection_reasons_must_be_classified": true,
+    "latest_snapshot_must_appear_in_an_accepted_disposition": true,
+    "snapshot_transaction_registry_must_be_manifest_hash_bound": true,
+    "each_accepted_archive_must_have_exactly_one_hash_bound_task": true,
+    "parseable_accepted_filenames_must_match_hash_bound_task": true,
+    "all_rejected_archives_must_have_seeded_filenames": true,
+    "historical_anchor_must_reproduce_its_committed_counts_and_mixed_fraction": true
+  },
+  "decision_rule": {
+    "strong": {
+      "minimum_current_structural_rejected_competitions": 6,
+      "minimum_overall_extension_settled_archives": 50,
+      "required_current_structural_mixed_disposition_fraction": 1.0,
+      "status": "LONGITUDINAL_ARCHIVE_LEVEL_GATE_REPLICATED"
+    },
+    "partial": {
+      "minimum_current_structural_mixed_disposition_fraction": 0.8,
+      "status": "PARTIAL_ARCHIVE_LEVEL_GATE_REPLICATION"
+    },
+    "kill": {
+      "status": "ARCHIVE_LEVEL_GATE_REPLICATION_FAILED"
+    },
+    "integrity_failure_status": "ARCHIVE_DISPOSITION_REPLICATION_INTEGRITY_FAIL"
+  },
+  "reporting": {
+    "report_overall_structural_and_alias_rates_with_wilson_95_intervals": true,
+    "report_overall_and_structural_target_extension_counts": true,
+    "report_current_structural_mixed_disposition_numerator_and_denominator": true,
+    "emit_archive_or_competition_identities": false,
+    "do_not_claim_rejection_rate_stationarity": true,
+    "do_not_estimate_causal_effect_of_metadata_changes": true
+  },
+  "access_contract": {
+    "observation_metadata_only": true,
+    "hash_bound_intake_task_metadata_only": true,
+    "archive_payloads_opened": false,
+    "labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+    "candidate_identities_emitted": false,
+    "run_or_card_identity_values_emitted": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  }
+}

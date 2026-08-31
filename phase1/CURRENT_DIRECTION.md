@@ -13,6 +13,25 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KJ. 2026-08-31 Target-300 已从 `98f2` 的 193-run 前缀冻结结果盲续接
+
+原 quiescent monitor 在 `98f2` 正式确认 `193 runs / 60 archives / 30 tasks / remaining 107` 后自然退出；当前
+LATEST 已为 `30945550...104f`、first-960 公共结构总量为 494 runs，但尚未读取当前 successor 的 Target-300 selected
+runs、boundary overshoot、candidate profile/private selection。为避免延迟续接变成人工挑 snapshot，新增
+`target300_continuation_after_98f2_v1`：部署后只接受第一个观察到的非 `98f2` LATEST，连续 `5×300s` 稳定后自动调用
+原 fixed runner；调用者不能传 snapshot，变化重置，formal 失败不得换候选或重试。
+
+续接精确绑定 science commit=`ab59a011d945e4a96daf7dbbbc927a59027da077`、原 protocol/runner SHA-256=
+`54187f38...377d` / `c6f6ed7a...660e`，以及 previous manifest/summary/verification=`81831f68...cb2e` /
+`01d67cec...8b42` / `59624c59...ee12`。fixed runner 必须把 193 runs/60 archives 逐行保留为 exact prefix，再按既有
+时间序达到 target=300 并保留完整 boundary archive overshoot。continuation protocol/monitor SHA-256=
+`3a902779...70f97` / `e35ea6e2...1be7b`。producer/verifier 双 A/B、focused/full tests、trace/security、clean worktree
+门保持不变；CPU-only，GPU/API/model fit/base update=`0/0/0/0`。
+
+当前只有结果前冻结协议，尚无 successor Target-300 scientific result。第一次闭合仍只能写 fixed one-time anchor；后续只读
+status、totals、hash 与 blindness receipt，不得读取 candidate identity/profile/private selection 或 truth/outcome/prediction/
+accuracy/utility。闭合不自动授权 truth-support、replay、effect、GPU 或付费 API；Target-300 与 first-960 estimand 继续分离。
+
 ## 0KI. 2026-08-31 archive-granularity retention audit 强门正式通过
 
 为把 0KH 的“6/6 结构拒绝 competition 也有 accepted archive”从定性结论变成 corpus utility 数量级，新增

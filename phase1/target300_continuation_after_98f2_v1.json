@@ -1,0 +1,83 @@
+{
+  "protocol": "target300_continuation_after_98f2_v1",
+  "status": "FROZEN_BEFORE_SUCCESSOR_TARGET300_IDENTITY_READOUT",
+  "frozen_at_utc_date": "2026-08-31",
+  "question": "Does the fixed outcome-blind Target-300 temporal cohort close on the first stable successor observed after continuation deployment while preserving the independently verified 193-run prefix?",
+  "pre_readout_disclosure": {
+    "current_latest_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "current_provisional_first960_runs": 494,
+    "current_provisional_first960_endpoints": 13098,
+    "current_provisional_first960_structural_pairs": 3230,
+    "current_provisional_first960_tasks": 34,
+    "target300_selected_runs_on_current_successor_read": false,
+    "target300_boundary_overshoot_read": false,
+    "target300_candidate_identities_or_profile_read": false,
+    "target300_private_selection_read": false,
+    "target300_truth_outcome_prediction_accuracy_or_utility_read": false
+  },
+  "fixed_science": {
+    "control_commit": "ab59a011d945e4a96daf7dbbbc927a59027da077",
+    "scientific_protocol_sha256": "54187f386ee18f009b57ccd04f851083160db3e607a4e8a760e070b276ac377d",
+    "runner_sha256": "c6f6ed7abda2fbe6252271f2707e576845b1fd950aa9884d03597b86be8f660e",
+    "base_latest_snapshot_sha256": "98f2cba9ca4b3ac6404305da2528a4e8c391ba795f74438a5e4cca1a162765fa",
+    "previous_formal_result_path": "/research/d7/spc/yzyang4/score-channel-future-identity-cohort/ab59a01-98f2cba9ca4b-9f69935923f7",
+    "previous_formal_manifest_sha256": "81831f68055cef1fcae654b8adad3d71c8bf2893a57ef4ba0785e2c2b475cb2e",
+    "previous_summary_sha256": "01d67cec48537c28183eac8777ab2cf0b19c118ed637318dd5d959c69b9a8b42",
+    "previous_verification_sha256": "59624c596eb8d48a52540182c6632b89f90fdc71ad661b8a38d93a355e12ee12",
+    "previous_selected_runs": 193,
+    "previous_selected_archives": 60,
+    "previous_selected_tasks": 30,
+    "previous_remaining_runs": 107,
+    "previous_status": "FUTURE_COHORT_COLLECTING",
+    "previous_verification_status": "PASS_COLLECTING_TRUTH_UNREAD",
+    "previous_exact_prefix_survived": true,
+    "safe_public_receipt_path": "phase1/target300_progress_98f2_safe_receipt_20260830.json",
+    "safe_public_receipt_sha256": "bde76f2798e341cd866d57dd4e3c0d9a8a9c76a4d2ce7f37ed252921006aa9ea"
+  },
+  "trigger": {
+    "candidate_definition": "LATEST differs from the fixed 98f2 base and is the first candidate observed after this continuation deployment",
+    "stable_observations_required": 5,
+    "poll_interval_seconds": 300,
+    "minimum_first_to_fifth_observation_seconds": 1200,
+    "maximum_polls": 144,
+    "candidate_change_resets_stability_count": true,
+    "no_manual_snapshot_argument": true,
+    "no_retry_or_alternate_candidate_after_formal_failure": true
+  },
+  "continuity_contract": {
+    "previous_cohort_directory_passed_to_fixed_runner": true,
+    "previous_193_runs_and_60_archives_must_survive_as_exact_prefix": true,
+    "archive_order_unchanged": "mtime_ns ascending then relative-path UTF-8 bytes ascending",
+    "target_unique_physical_runs": 300,
+    "complete_boundary_archive_overshoot_preserved": true,
+    "partial_archive_salvage_allowed": false,
+    "first_closed_anchor_path": "/research/d7/spc/yzyang4/score-channel-future-identity-cohort/FIRST_CLOSED_COHORT_ANCHOR.json",
+    "first_closed_anchor_absent_at_freeze": true,
+    "later_snapshots_cannot_reselect_an_existing_anchor": true
+  },
+  "execution": {
+    "producer_replicas": 2,
+    "independent_verifier_replicas": 2,
+    "producer_and_verifier_replicas_must_be_byte_identical": true,
+    "fresh_no_smudge_exact_commit_worktree": true,
+    "focused_and_full_phase1_tests_before_producer": true,
+    "file_trace_and_forbidden_open_gate": true,
+    "clean_worktree_and_secret_scan_required": true,
+    "single_thread_cpu": true,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  },
+  "result_handling": {
+    "monitor_may_write_private_identity_artifacts": true,
+    "assistant_may_read_only_totals_status_hash_and_blindness_receipts": true,
+    "assistant_must_not_read_candidate_identity_profile_or_private_selection": true,
+    "assistant_must_not_read_truth_outcome_prediction_accuracy_or_utility": true,
+    "closure_does_not_authorize_truth_support_replay_effect_gpu_or_paid_api": true,
+    "formal_failure_is_retained_and_not_retried": true
+  },
+  "claim_boundary": {
+    "identity_closure_is_a_structural_milestone_only": true,
+    "not_a_predictor_accuracy_or_scaling_result": true,
+    "not_a_search_utility_or_method_effect_result": true,
+    "first960_and_target300_estimands_remain_separate": true
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "all_aggregate_fields_equal": true,
+  "identities_emitted": false,
+  "outcomes_predictions_labels_read": false,
+  "protocol": "independent_archive_granularity_retention_v1",
+  "randomness_used": false,
+  "recomputed_aggregate": {
+    "affected_competitions": 6,
+    "affected_competitions_with_eligible_support": 6,
+    "dominant_affected_task_eligible_endpoint_share": 0.36903831118060987,
+    "dominant_affected_task_eligible_run_share": 0.31521739130434784,
+    "eligible_endpoint_share_of_accepted_corpus": 0.1952969919071614,
+    "eligible_run_share_of_accepted_corpus": 0.1862348178137652,
+    "retained_accepted_archives": 20,
+    "retained_eligible_endpoints": 2558,
+    "retained_eligible_runs": 92,
+    "retained_physical_runs": 94
+  },
+  "result_sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184",
+  "result_status": "ARCHIVE_GRANULARITY_RETENTION_STRONG",
+  "status": "INDEPENDENT_ARCHIVE_GRANULARITY_RETENTION_PASS"
+}

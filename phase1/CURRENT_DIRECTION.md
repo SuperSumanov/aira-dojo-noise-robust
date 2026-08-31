@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0KI. 2026-08-31 archive-granularity retention audit 已在 retention readout 前冻结
+## 0KI. 2026-08-31 archive-granularity retention audit 强门正式通过
 
 为把 0KH 的“6/6 结构拒绝 competition 也有 accepted archive”从定性结论变成 corpus utility 数量级，新增
 `archive_granularity_retention_audit_v1`。它比较两个明示策略：archive-granular validation 只丢结构无效 archive；
@@ -24,8 +24,22 @@ runs/endpoints 占当前 accepted corpus 的 exact share；这是冻结 corpus �
 archive/physical-run/eligible-run/endpoint 数或 dominance。强门预先固定为：6 个 affected tasks 全部有 eligible support，
 retained eligible-run 与 endpoint share 均≥10%，两项 dominant-task share 均≤70%；partial 为 tasks≥4、shares≥5%、
 dominance≤85%，其余 kill。alias quarantine 明确排除。输入绑定同一 LATEST=`30945550...104f`、frozen observations=
-`dccd59d9...e855` 及 0KH result/verification hashes；只允许 CPU metadata-only A/B+独立 verifier，GPU/API/model fit/base
-update=`0/0/0/0`。当前只有结果前协议，尚无 retention scientific result。
+`dccd59d9...e855` 及 0KH result/verification hashes。
+
+exact scientific commit=`bc88298cb410183cf642c132c5d1df2e2d9497ba` 的正式结果为
+`ARCHIVE_GRANULARITY_RETENTION_STRONG`：6/6 affected competitions 都有 eligible support；archive-granular validation
+保留了 task blacklist 会额外丢掉的 accepted archives/physical runs/eligible runs/endpoints=`20/94/92/2,558`。
+eligible-run 与 endpoint share=`18.6235%/19.5297%`，dominant-task share=`31.5217%/36.9038%`，均以充分余量
+通过冻结强门。affected-task 匿名 run min/median/max=`4/17/29`，endpoint=`50/458.5/944`，结果不由单任务主导。
+
+producer A/B 与不导入 producer 的 verifier A/B 逐字节一致；focused/full=`10/1860 passed`（48 warnings），独立
+postflight PASS，network/forbidden/credential/identity hits=`0/0/0/0`。result/verification/manifest=`f28ef794...9a2184` /
+`4965c047...d3b187` / `5a5f5168...957823`。允许主张：当前冻结语料若因一个结构无效 archive 而 blacklist 整个
+task，会额外丢掉约五分之一的有效 accepted support，因此 archive-level fail-closed validation 有明确 corpus utility。
+但这是确定性 counterfactual accounting，不是观察到的方法效果；不支持 predictor accuracy、scaling、search utility、
+task whitelist/blacklist 或未来 stationarity。affected identity、archive payload、label、outcome、prediction value、accuracy、
+utility 均未读取/输出，GPU/API/model fit/base update=`0/0/0/0`。机器件见
+`phase1/results/archive_granularity_retention_v1_20260831_bc88298/`。
 
 ## 0KH. 2026-08-31 archive disposition taxonomy-aware 纵向审计强门通过
 

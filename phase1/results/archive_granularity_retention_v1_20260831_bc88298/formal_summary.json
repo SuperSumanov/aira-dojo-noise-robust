@@ -1,0 +1,86 @@
+{
+  "claim_boundary": {
+    "claims_future_corpus_stationarity": false,
+    "estimates_predictor_accuracy_scaling_or_search_utility": false,
+    "is_observed_method_effect": false,
+    "supports_archive_granularity_retention_accounting": true,
+    "supports_task_whitelist_or_blacklist": false
+  },
+  "control_commit": "bc88298cb410183cf642c132c5d1df2e2d9497ba",
+  "decision": {
+    "identities_emitted": false,
+    "kill_gate_triggered": false,
+    "partial_gate_passed": false,
+    "strong_gate_passed": true
+  },
+  "frozen_observations_sha256": "dccd59d9e3fe964aabce2458647013d772070c40a120f79f9a6b02605356e855",
+  "identities_emitted": false,
+  "outcomes_predictions_labels_read": false,
+  "population": {
+    "accepted_archives": 126,
+    "accepted_tasks": 34,
+    "alias_quarantined_archives": 8,
+    "eligible_endpoints": 13098,
+    "eligible_runs": 494,
+    "hash_bound_source_provenance_rows": 520,
+    "physical_runs": 520,
+    "structural_mixed_disposition_competitions": 6,
+    "structural_rejected_competitions": 6,
+    "unique_run_ids": 520
+  },
+  "protocol_sha256": "5cc7c4fae9e9b2589a71c06caaa52e67a06d3702191ec9a7536450f946ec468d",
+  "result_sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184",
+  "retained_by_archive_granular_validation": {
+    "accepted_archives": 20,
+    "affected_competitions": 6,
+    "affected_competitions_with_eligible_support": 6,
+    "anonymous_affected_task_distribution": {
+      "accepted_archives": {
+        "maximum": 5,
+        "median": 4.0,
+        "minimum": 1
+      },
+      "eligible_endpoints": {
+        "maximum": 944,
+        "median": 458.5,
+        "minimum": 50
+      },
+      "eligible_runs": {
+        "maximum": 29,
+        "median": 17.0,
+        "minimum": 4
+      },
+      "physical_runs": {
+        "maximum": 29,
+        "median": 17.0,
+        "minimum": 4
+      }
+    },
+    "dominant_affected_task_eligible_endpoint_share": 0.36903831118060987,
+    "dominant_affected_task_eligible_run_share": 0.31521739130434784,
+    "eligible_endpoint_share_of_accepted_corpus": 0.1952969919071614,
+    "eligible_endpoints": 2558,
+    "eligible_run_share_of_accepted_corpus": 0.1862348178137652,
+    "eligible_runs": 92,
+    "physical_runs": 94
+  },
+  "status": "ARCHIVE_GRANULARITY_RETENTION_STRONG",
+  "task_blacklist_counterfactual": {
+    "additional_valid_support_discarded": {
+      "accepted_archives": 20,
+      "eligible_endpoints": 2558,
+      "eligible_runs": 92,
+      "physical_runs": 94
+    },
+    "eligible_endpoint_loss_share": 0.1952969919071614,
+    "eligible_run_loss_share": 0.1862348178137652,
+    "observed_method_effect": false,
+    "remaining_valid_support": {
+      "accepted_archives": 106,
+      "eligible_endpoints": 10540,
+      "eligible_runs": 402,
+      "physical_runs": 426
+    }
+  },
+  "verification_sha256": "4965c04739d6ca8468be7fa04f807a8f5c123b3ce2adec37efbfd47608d3b187"
+}

@@ -1,0 +1,13 @@
+01_direction=Decision Corpus + Predictor Benchmark + Audit Protocol only; PASS
+02_question=how much accepted support archive-granular validation retains relative to task blacklist; PASS
+03_context=pre-readout frozen protocol observations latest snapshot and prior taxonomy result/verification; PASS
+04_unit=accepted archive physical run eligible run and eligible endpoint aggregated anonymously by affected task; PASS
+05_security=hash-bound observation and intake metadata only; payload label outcome prediction accuracy utility identity output forbidden; PASS
+06_controls=task blacklist deterministic counterfactual versus archive-granular validation; aliases excluded; PASS
+07_repetitions=producer A/B and independent verifier A/B must be byte-identical; PASS
+08_independence=verifier does not import producer and reconstructs every aggregate and status; PASS
+09_reproducibility=exact clean no-smudge commit immutable inputs tests traces hashes and manifest; PASS
+10_statistics=full-census exact counts/shares only; no sampling inference or observed method-effect claim; PASS
+11_resources=CPU single-thread only; gpu api model-fit base-update 0/0/0/0; PASS
+12_trace=file/network trace forbidden-path credential identity symlink and read-only gates; PASS
+13_failure=hash taxonomy totals duplicate run mixed count identity or security drift fails closed; PASS

@@ -1,0 +1,48 @@
+{
+  "status": "OUTCOME_BLIND_MONITOR_RENEWALS_POSTDEPLOY_PASS",
+  "verified_at_utc": "2026-09-01T12:02:31Z",
+  "execution_commit": "b00eeea7aa993a13bf3f6cce0b7a7bcda84fcf3c",
+  "independent_postdeploy_verifier_sha256": "bf3a74c690445ee83f22ee905a08deedb772e2451e8789f94331a06d04c6d8c8",
+  "intake": {
+    "old_pid": 2920968,
+    "old_disposition": "NORMAL_145_POLL_COMPLETION",
+    "new_pid": 3451688,
+    "new_pid_live": true,
+    "first_new_poll_rc": 0,
+    "source_archives": 283,
+    "latest": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "safe_receipt_sha256": "c5b4c8ecc70e729ddeba45fa4078f637ea5f34b59a7abc9a6c9628808f4bba52"
+  },
+  "target522": {
+    "selection_pid": 2930562,
+    "selection_pid_live": true,
+    "selection_lock_held": true,
+    "selection_observed_sha256": "0277463211df467fb241776d975b4afab0133009f75f8b9cd53d15785341170f",
+    "selection_observed_lines": 29,
+    "selection_runs": 517,
+    "selection_target_runs": 522,
+    "selection_remaining_runs": 5,
+    "stage_a": {
+      "old_pid": 2931879,
+      "old_disposition": "NATURAL_TIMEOUT_RC_124",
+      "new_pid": 3451204,
+      "new_pid_live": true,
+      "lock_held": true,
+      "status": "WAITING_FOR_SELECTION_COMPLETE"
+    },
+    "contrast_rank": {
+      "old_pid": 2931942,
+      "old_disposition": "NATURAL_TIMEOUT_RC_124",
+      "new_pid": 3451299,
+      "new_pid_live": true,
+      "lock_held": true,
+      "status": "WAITING_FOR_STAGE_A_COMPLETE"
+    },
+    "prior_context_sha256": "eec0154fa8528e9d75a8befd2861bcec0dafb7a696f1aec8029446e22928f508",
+    "repeat_timeout_context_sha256": "9e305ace00d2a2383f119170a69297b7592e76d3640750493d79db407668425e",
+    "formal_output_roots_absent": true
+  },
+  "outcomes_or_prediction_values_read": false,
+  "candidate_identity_or_profile_read": false,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

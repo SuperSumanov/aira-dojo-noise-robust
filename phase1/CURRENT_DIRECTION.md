@@ -34,6 +34,14 @@ second-timeout context，绝不覆盖第一次 context 或恢复旧 within/linea
 尚未重启任何进程；outcome/prediction/accuracy/utility/candidate profile/private identity 均未读，GPU/API/model fit/
 base update=`0/0/0/0`。
 
+随后从公开 exact commit=`b00eeea7aa993a13bf3f6cce0b7a7bcda84fcf3c` 提取两份脚本，重新通过 exact-commit
+preflight 后执行。Stage-A/contrast-rank 已续接为 PID=`3451204/3451299`，两锁 held，分别继续等待 selection 与
+Stage-A COMPLETE；selection bytes/PID/lock 仍为 `02774632...170f/2930562/held`，正式 output roots 仍不存在。
+intake 已续接为 PID=`3451688`，首个新 poll rc=`0`，source/LATEST 仍为 `283/e9e12c63...8a6d`。不导入续接脚本的
+独立 postdeploy verifier=`PASS`；intake safe receipt / 两份 second-timeout context SHA-256=
+`c5b4c8ec...ba52` / `9e305ace...425e`，verifier SHA-256=`bf3a74c6...d8c8`。prospective values、候选
+profile/private identity 仍未读，GPU/API/model fit/base update=`0/0/0/0`。
+
 ## 0KP. 2026-09-01 Target-522 七步缺口正式通过：494→517，未错过首次 crossing
 
 `target522-selection-gap-recovery-v1` 的 exact-commit formal 已完成。第一次 formal v1 的 8 项 focused 与 1,901 项

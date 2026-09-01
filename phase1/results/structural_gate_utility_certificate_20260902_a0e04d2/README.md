@@ -28,3 +28,12 @@ base update=`0/0/0/0`。
 前三次未产生任何 scientific output：v1 在 checkout 前因缺少 Git LFS filter 以 rc=128 停止；v2 的交互连接中断后
 最终记录同一 post-checkout hook rc=2；v3 的持久化运行再次确认该 hook 失败。v4 只对单次 `worktree add` 使用
 空 hooks path，未删除或修改远端仓库钩子。完整记录见 `failure_history.json`。
+
+公开 release commit `3cda09d73292255381ce032de032987194785441` 的第一次 fresh-checkout 复验已完成
+`18/2,019 passed`，随后被旧 credential regex 对 `CURRENT_DIRECTION.md` 中普通 `task-*` 子串的单文件假阳性
+fail-closed（rc=1，未写 COMPLETE）；安全检查确认唯一命中文件后，没有把该失败改写成成功。v2 仅给 `sk-` 模式
+增加左侧非字母数字边界，使用全新 worktree/root 重跑，得到 `18 passed` / `2,019 passed`（48 warnings），公开包
+manifest 全部一致，credential filename/content hits=`0/0`。远端 root mode/files=`0500/15`，post-push manifest
+SHA-256=`bfab7b182b6c0532c86a3b765a6df5f4110e309a0fc55f3da04194e401b5f69d`；独立复核再次验证 exact commit/parent、
+clean worktree、两层 manifest 与固定 certificate/verifier hash 后 PASS。该步骤只确认公开提交可复现，没有重算或
+重选科学结果；详见 `postpush_summary.json`、`postpush_SHA256SUMS` 与 `postpush_independent_verification.json`。

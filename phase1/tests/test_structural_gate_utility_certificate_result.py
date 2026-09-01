@@ -118,6 +118,35 @@ def test_formal_security_reproducibility_and_failed_attempt_boundaries() -> None
     assert history["successful_attempt"]["independent_postflight"] == "PASS"
 
 
+def test_public_release_postpush_is_exact_and_false_positive_is_accounted() -> None:
+    summary = load("postpush_summary.json")
+    verifier = load("postpush_independent_verification.json")
+    history = load("failure_history.json")
+    assert summary["status"] == "FRESH_PUBLIC_CHECKOUT_POSTPUSH_PASS"
+    assert summary["source_commit"] == "3cda09d73292255381ce032de032987194785441"
+    assert summary["focused_test_tail"] == "18 passed in 2.07s"
+    assert summary["full_test_tail"] == "2019 passed, 48 warnings in 139.01s (0:02:19)"
+    assert summary["release_manifest_all_exact"] is True
+    assert summary["credential_filename_hits"] == 0
+    assert summary["credential_content_hits"] == 0
+    assert verifier["postpush_manifest_sha256"] == (
+        "bfab7b182b6c0532c86a3b765a6df5f4110e309a0fc55f3da04194e401b5f69d"
+    )
+    assert verifier["postpush_manifest_all_exact"] is True
+    assert verifier["clean_exact_worktree"] is True
+    assert verifier["scientific_readout_recomputed"] is False
+    postpush = history["release_postpush_attempts"]
+    assert len(postpush) == 2
+    assert postpush[0]["classification"] == "FAIL_CLOSED_SCANNER_FALSE_POSITIVE_AFTER_TESTS"
+    assert postpush[0]["only_hit_basename"] == "CURRENT_DIRECTION.md"
+    assert postpush[0]["complete_marker_created"] is False
+    assert postpush[1]["complete_marker_created"] is True
+    assert postpush[1]["independent_postpush_verification"] == "PASS"
+    remote = manifest(RESULT / "postpush_SHA256SUMS")
+    assert len(remote) == 13
+    assert remote["postpush_summary.json"] == sha256(RESULT / "postpush_summary.json")
+
+
 def test_readme_keeps_the_paper_safe_boundary() -> None:
     readme = (RESULT / "README.md").read_text(encoding="utf-8")
     assert "support-preserving quality gate" in readme
@@ -125,3 +154,5 @@ def test_readme_keeps_the_paper_safe_boundary() -> None:
     assert "不能宣称" in readme
     assert "counts_as_distinct_claim_evidence=false" in readme
     assert "0/0/0/0" in readme
+    assert "单文件假阳性" in readme
+    assert "2,019 passed" in readme

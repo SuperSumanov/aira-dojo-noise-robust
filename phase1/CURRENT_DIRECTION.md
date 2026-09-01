@@ -13,6 +13,21 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0L0. 2026-09-02 未来 20 天执行裁决：停止堆微型事后审计，集中完成 clean scaling 的来源门与论文初稿
+
+本节覆盖下文所有“继续找一个小审计正数”的历史倾向，但不改变任何冻结 cohort、揭盲门或 GPU 审批规则。未来
+20 天只保留四条并行工作：现有 outcome-blind closure watcher；真实 producer 的 config-v2 outcome-before 部署；
+来源门通过后另报 GPU·时并获批的一次 `Qwen3 Base 0.6B/4B/8B × seeds 6/7` clean critic scaling；以及立即开始的
+数据卡、贡献表、撤回表和论文完整初稿。新的 CPU-only audit 只有在关闭数据可发布性、split/label 完整性、claim
+去重、前瞻 closure 或 scaling provenance 之一时才允许；对已发布 aggregate 的重新组合必须标为非独立证据。
+
+当前结构起点仍为 source archives / eligible runs=`283/517`，Target-522 还差 `5` runs，first-960 还差 `443` runs；
+按学长给出的理想生产速度 60 runs/day，后者条件点估计为 `7.383333` 天，不是进度保证。source 中 canonical
+`*.config_v2.jsonl` 仍为 `0`；state root 内只出现一个非 canonical、metadata-only 的 config-v2 相关文件，内容未读，
+不构成真实 producer sidecar。因而最大时限风险是学长尚未 review/apply 已验证的 producer hook；旧 archive 禁止事后
+回填，缺 provenance 的新 runs 不能用于 exact-stratum scaling confirmation。完整日程、kill 条件与防 scoop 定位见
+`phase1/TWENTY_DAY_POSITIVE_RESULT_SPRINT_20260902.md`。
+
 ## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
 
 为把 0KI/0KV/0KW 与 zero-checkpoint 审计转成一条可直接写进论文的数据工程结论，本节只做**事后逻辑合成**，
@@ -41,6 +56,14 @@ search utility、因果方法效果或 task 白/黑名单。前三次执行环�
 hook rc=`2`。v4 只对单次 worktree-add 使用空 hooks path，未改远端仓库钩子。prospective values/raw senior archives/
 identity read=`false/false/false`，GPU/API/model fit/base update=`0/0/0/0`。公开件见
 `phase1/results/structural_gate_utility_certificate_20260902_a0e04d2/`。
+
+公开 release commit=`3cda09d73292255381ce032de032987194785441` 的 fresh-checkout v1 已先完成 focused/full=
+`18/2,019 passed`，但旧 credential regex 将 `CURRENT_DIRECTION.md` 中普通 `task-*` 子串误判为 `sk-*`，因此按
+fail-closed 以 rc=`1` 停止且未写 COMPLETE；安全复核确认只有这一文件路径命中。v2 只增加 `sk-` 左侧边界并使用
+全新 worktree/root，正式通过 `18/2,019 passed`（48 warnings，139.01 秒），公开 package manifest 全部一致，
+credential filename/content hits=`0/0`；root mode/files=`0500/15`，post-push manifest=
+`bfab7b18...1b5f69d`。独立复核再次验证 exact commit/parent、clean worktree、两层 manifest 与固定 certificate/verifier
+hash 后 PASS。该步骤仅确认公开提交可复现，没有重算、重选或增加科学结果。
 
 ## 0KY. 2026-09-02 Target-522 两个下游纯等待 watcher 第三次自然超时后已无结果续接
 

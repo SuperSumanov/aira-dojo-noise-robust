@@ -1,0 +1,19 @@
+{
+  "protocol": "structural-gate-utility-release-postpush-v2",
+  "status": "FRESH_PUBLIC_CHECKOUT_POSTPUSH_PASS",
+  "source_commit": "3cda09d73292255381ce032de032987194785441",
+  "source_parent": "a0e04d27bcf900c2a1293f8ffad38d5104f6d3a3",
+  "focused_test_tail": "18 passed in 2.07s",
+  "full_test_tail": "2019 passed, 48 warnings in 139.01s (0:02:19)",
+  "certificate_sha256": "b50e99e23ac2202b29c2a710922133bd972768e7dcf30d48a83825c7972b1f55",
+  "independent_verification_sha256": "9ec64e099c5a90f9da0128fa07cfe00e254f31f6c4291d43367ec5c69581d055",
+  "remote_formal_manifest_sha256": "1078227f2b9591ae39041da26b9c2cea4930c4775c15799f1b19d36c15d45d82",
+  "release_manifest_all_exact": true,
+  "credential_filename_hits": 0,
+  "credential_content_hits": 0,
+  "prospective_values_read": false,
+  "raw_senior_archives_opened": false,
+  "scientific_readout_recomputed": false,
+  "counts_as_distinct_claim_evidence": false,
+  "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+}

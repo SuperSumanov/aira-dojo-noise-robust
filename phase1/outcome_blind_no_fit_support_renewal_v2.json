@@ -1,0 +1,101 @@
+{
+  "protocol_id": "outcome-blind-no-fit-support-renewal-v2",
+  "frozen_at_utc_date": "2026-09-01",
+  "supersedes_execution_only": "outcome-blind-no-fit-support-renewal-v1",
+  "scientific_scope_changed": false,
+  "direction": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+  "purpose": "Retry the same frozen-bundle WL and receipt-only support renewal with a corrected start receipt and process-group cleanup, after v1 failed before any state promotion.",
+  "v1_failure_chain": {
+    "first_deployer_rc": 128,
+    "first_deployer_cause": "Cluster repository remote is named fork rather than the local name myfork; launcher was never extracted and action root was absent.",
+    "second_deployer_rc": 1,
+    "second_deployer_cause": "The v1 launcher required a new_snapshot log line that the immutable WL monitor never emits.",
+    "v1_launcher_preflight_passed": true,
+    "v1_parent_pids": [3463406, 3463407],
+    "v1_parent_pids_dead": true,
+    "v1_partial_wl_output_basename": "20260901T122214Z_e9e12c639fde",
+    "v1_partial_wl_output_file_count": 28,
+    "v1_partial_wl_output_complete": false,
+    "v1_partial_wl_output_failure_marker": false,
+    "v1_partial_wl_output_producer_rc_absent": true,
+    "v1_wl_state_promoted": false,
+    "v1_receipt_state_promoted": false,
+    "orphan_cleanup_exact_pids": [3463566, 3463567, 3463570],
+    "orphan_cleanup_status": "FAILED_NO_FIT_WL_ORPHANS_CLEARED",
+    "orphan_cleanup_safe_receipt_sha256": "45d186e7f0d8581820a928e26aed9d1497d6037f02dbbba34cf4a60b96518618"
+  },
+  "trigger": {
+    "latest_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "latest_inventory": {
+      "all_physical_runs": 543,
+      "eligible_runs": 517,
+      "eligible_endpoints": 13581,
+      "eligible_structural_pairs": 3325,
+      "eligible_tasks": 38
+    },
+    "source_archives": 283,
+    "prior_promoted_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "prior_promoted_eligible_runs": 494,
+    "eligible_run_delta": 23,
+    "wl_minimum_new_runs": 12,
+    "batch_gate_crossed": true
+  },
+  "post_v1_frozen_inputs": {
+    "wl_state_sha256": "d6fdf8658e72ff8bb100feb01cfb952c3d510eb8addfb651ff5b80b57c6fd363",
+    "wl_log_sha256": "6b48b8b615f70aaf3cb4e60bc176d9a9ffae899fac208044354df3ac529fb0bd",
+    "receipt_state_sha256": "6a1ac64a49221f3879a165e608b3cb8298aab221f3ff1bcd20764c1fe47d38bc",
+    "receipt_log_sha256": "6e4379797c1d7edee3214b9fd242da7cca17658d2602d149686f25a15043d4f3",
+    "transition_state_sha256": "ac66b2deb9054b05e9fab803587d1ee38478f88cbadc86aebfa9f4a9f7ebad4e",
+    "transition_log_sha256": "a23e382f0a8ccb2684dbd29bed68ae0ea1d61c7a6a1727f03195033697f9ec43",
+    "v1_action_failed_rc_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "v1_deployer_failed_rc_sha256": "56292515f7d3a7110811eb8de26b3f75f82a0766aa5a1fd66ebcfcb84fe6d5ff",
+    "v2_deployer_failed_rc_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "wl_monitor_script_sha256": "4cec4fd7cb2382f6e7f4e071b31212cfa45901de9dcfcc7730f18cad4e619daa",
+    "receipt_monitor_script_sha256": "458b50a3ac4499abd80c951881f69ab15f82af15a8b2bc51c950cf425d906533",
+    "control_commit": "bc362dfe95287f199f6bc4a1dc8f781f3b1b6ee0",
+    "receipt_commit": "9f2cbe9bff91c2f0ee6f86ff93d9737f9431547f"
+  },
+  "execution_amendments": {
+    "start_receipt": "Require one fresh WL output directory whose matrix binds prior/current snapshots, run counts, batch threshold, exact commits and zero-resource effect fields; do not require a nonexistent log event.",
+    "process_isolation": "Start WL and receipt monitors in separate setsid process groups.",
+    "failure_cleanup": "On launcher failure, terminate each exact process group and verify all descendants and locks are gone before returning failure.",
+    "fresh_action_root": "Use outcome-blind-no-fit-support-renewal-20260901-v2 and never reuse or modify the v1 partial output."
+  },
+  "authorized_actions": {
+    "wl": "Start one exact frozen-bundle WL snapshot-chain monitor with 72 polls x 300 seconds and minimum_new_runs=12.",
+    "receipt": "Start one exact receipt-only common-support monitor with 72 polls x 300 seconds and stable_polls=3.",
+    "transition": "FORBIDDEN; the installed transition scorer performs six deterministic HGB fits.",
+    "config_v2": "No restart and no content read."
+  },
+  "resource_matrix": {
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0,
+    "cpu_workers_per_active_stage": 1,
+    "monitor_wall_clock_hours": 6,
+    "historical_wl_producer_wall_time": "27:10.13",
+    "historical_wl_independent_verifier_wall_time": "24:33.12",
+    "historical_wl_chain_verifier_wall_time": "0:01.32",
+    "expected_active_compute_minutes": "45-70"
+  },
+  "claim_boundary": {
+    "allowed_if_wl_promotes": "The frozen WL escrow has independently verified structural coverage for the promoted snapshot.",
+    "forbidden": [
+      "critic accuracy",
+      "model scaling",
+      "search utility",
+      "method effect",
+      "transition common-support completion before a separate authorization"
+    ]
+  },
+  "blindness": {
+    "prediction_values_read": false,
+    "prospective_outcomes_read": false,
+    "accuracy_read": false,
+    "utility_read": false,
+    "candidate_identity_read": false,
+    "candidate_profile_read": false,
+    "config_v2_contents_opened": false
+  }
+}

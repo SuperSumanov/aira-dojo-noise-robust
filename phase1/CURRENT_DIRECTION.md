@@ -13,6 +13,25 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KS. 2026-09-01 零 fit support v1 在 state promotion 前停止；v2 只修启动回执与进程组清理
+
+0KR 的公开 exact commit=`7d89d1bce13cbf5223b380a167d8868df1cbb6bc` 已冻结。第一次部署在提取 launcher 前因
+集群 remote 名是 `fork` 而非本地 `myfork` 以 rc=`128` 停止，action root 尚不存在。fresh deploy v2 的 frozen preflight
+通过并启动 WL/receipt，但 v1 launcher 错误要求 immutable WL monitor 从未实现的 `new_snapshot` 日志事件，60 秒后以 rc=`1`
+fail-closed；WL/receipt state 仍逐字节停在 494-run `30945550...104f`，没有 COMPLETE 或 receipt，也没有使用 partial output。
+
+失败 trap 只 TERM 了父 Bash，producer 的 `time/strace/python` 三个后代与 receipt 的 sleep 暂时继承锁；独立核验后对精确
+PID=`3463566/3463567/3463570` 执行 TERM，receipt sleep 已自然退出。cleanup 后两锁 free、state 不变，v1 partial basename=
+`20260901T122214Z_e9e12c639fde`，files=`28`，COMPLETE/FAILURE/producer rc 均 absent；cleanup safe receipt SHA-256=
+`45d186e7...18618`。prediction value/outcome/identity/profile 未读。
+
+结果前冻结 `outcome-blind-no-fit-support-renewal-v2`，科学动作不变：仍只有 frozen-bundle WL 与纯 receipt waiter，transition/
+config-v2 不重启。唯一执行修正是用 fresh action root，以 matrix 中 exact prior/current/run counts/threshold/commit/resource 字段
+作为 WL start receipt，并用两个独立 `setsid` process groups 保证失败时清理全部后代。历史同协议 wall time 为 producer/
+independent verifier/chain=`27:10.13/24:33.12/0:01.32`，所以修正 ETA 为 active CPU `45–70` 分钟而非 v1 的 `5–30`；
+协议/launcher SHA-256=`0f907e22...57be11` / `a396aa69...54cd7e`，focused contract tests=`7 passed`；
+GPU/API/model fit/base update 仍为 `0/0/0/0`。v2 尚未执行。
+
 ## 0KR. 2026-09-01 517-run support 链落后原因已定位；零 model-fit 续接在行动前冻结
 
 当前 immutable LATEST=`e9e12c63...8a6d` 的聚合库存为 physical/eligible runs/endpoints/structural pairs/tasks=

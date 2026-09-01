@@ -1,0 +1,83 @@
+{
+  "protocol_id": "outcome-blind-no-fit-support-renewal-v1",
+  "frozen_at_utc_date": "2026-09-01",
+  "direction": "Decision Corpus + Predictor Benchmark + Audit Protocol",
+  "purpose": "Renew only the expired frozen-WL and receipt-only support monitors after a 23-run structural accrual gap, without running the transition refit scorer.",
+  "trigger": {
+    "latest_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "latest_inventory": {
+      "all_physical_runs": 543,
+      "eligible_runs": 517,
+      "eligible_endpoints": 13581,
+      "eligible_structural_pairs": 3325,
+      "eligible_tasks": 38
+    },
+    "source_archives": 283,
+    "prior_promoted_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "prior_promoted_eligible_runs": 494,
+    "eligible_run_delta": 23,
+    "wl_minimum_new_runs": 12,
+    "batch_gate_crossed": true
+  },
+  "frozen_inputs": {
+    "wl_state_sha256": "d6fdf8658e72ff8bb100feb01cfb952c3d510eb8addfb651ff5b80b57c6fd363",
+    "wl_log_sha256": "a75ee5c43c6b8a11d0b92aed321d79e6e7e03d756eb6066c160843136ecafe7e",
+    "receipt_state_sha256": "6a1ac64a49221f3879a165e608b3cb8298aab221f3ff1bcd20764c1fe47d38bc",
+    "receipt_log_sha256": "6337bb856529f8bcaf59a0d5d8df37630a75b469d771f7e6170b97970e9f5643",
+    "transition_state_sha256": "ac66b2deb9054b05e9fab803587d1ee38478f88cbadc86aebfa9f4a9f7ebad4e",
+    "transition_log_sha256": "a23e382f0a8ccb2684dbd29bed68ae0ea1d61c7a6a1727f03195033697f9ec43",
+    "wl_monitor_script_sha256": "4cec4fd7cb2382f6e7f4e071b31212cfa45901de9dcfcc7730f18cad4e619daa",
+    "receipt_monitor_script_sha256": "458b50a3ac4499abd80c951881f69ab15f82af15a8b2bc51c950cf425d906533",
+    "control_commit": "bc362dfe95287f199f6bc4a1dc8f781f3b1b6ee0",
+    "receipt_commit": "9f2cbe9bff91c2f0ee6f86ff93d9737f9431547f"
+  },
+  "required_preconditions": [
+    "LATEST and the aggregate inventory exactly match the frozen trigger.",
+    "The source archive count remains 283 and the continuous intake owner remains live.",
+    "All historical WL and receipt PID owners are dead, both locks are free, and both logs end in natural monitor_complete at the frozen prior snapshot.",
+    "The transition monitor is not restarted and its state and log remain byte-identical.",
+    "No existing WL artifact directory targets the frozen LATEST prefix.",
+    "The source worktrees are clean exact commits and all frozen script hashes match.",
+    "The config-v2 sidecar filename count remains zero; contents are never opened."
+  ],
+  "authorized_actions": {
+    "wl": "Start one exact frozen-bundle WL snapshot-chain monitor with 72 polls x 300 seconds and minimum_new_runs=12.",
+    "receipt": "Start one exact receipt-only common-support monitor with 72 polls x 300 seconds and stable_polls=3; it may only wait until transition reaches the same snapshot.",
+    "transition": "FORBIDDEN in this renewal because the installed transition scorer performs six deterministic HGB fits.",
+    "config_v2": "No restart; filename-count metadata inspection only."
+  },
+  "postconditions": [
+    "The first WL observation must bind old=30945550... and new=e9e12c63....",
+    "The receipt monitor must start from prior=30945550... and must not read prediction pair files or values.",
+    "Both new PIDs and locks must be live/held, unless WL has already completed the frozen snapshot successfully.",
+    "Any precondition, hash, lock, PID, first-observation, sidecar, or output-collision mismatch fails closed."
+  ],
+  "claim_boundary": {
+    "allowed_if_wl_promotes": "The frozen WL escrow has independently verified structural coverage for the promoted snapshot.",
+    "forbidden": [
+      "critic accuracy",
+      "model scaling",
+      "search utility",
+      "method effect",
+      "transition common-support completion before its separately authorized scorer update"
+    ]
+  },
+  "resource_matrix": {
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0,
+    "cpu_workers_per_active_stage": 1,
+    "monitor_wall_clock_hours": 6,
+    "expected_active_compute_minutes": "5-30"
+  },
+  "blindness": {
+    "prediction_values_read": false,
+    "prospective_outcomes_read": false,
+    "accuracy_read": false,
+    "utility_read": false,
+    "candidate_identity_read": false,
+    "candidate_profile_read": false,
+    "config_v2_contents_opened": false
+  }
+}

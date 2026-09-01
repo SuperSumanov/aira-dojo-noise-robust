@@ -13,6 +13,23 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KR. 2026-09-01 517-run support 链落后原因已定位；零 model-fit 续接在行动前冻结
+
+当前 immutable LATEST=`e9e12c63...8a6d` 的聚合库存为 physical/eligible runs/endpoints/structural pairs/tasks=
+`543/517/13,581/3,325/38`。transition、WL 与 receipt-support state 都仍停在上一正式
+`30945550...104f`（494 eligible runs）；三条旧进程均已退出、锁 free、FAILED/CONTINUITY_GAP 均不存在，日志分别以
+`13/10/13` 次自然 `monitor_complete` 结束。因此落后不是 scorer 失败或 batch gate：WL 的 run delta=`23`，已经严格越过
+预注册 `minimum_new_runs=12`。config-v2 sidecar filename count 仍为 `0`，内容未打开。
+
+由于 transition exact monitor 每个 snapshot 会进行 producer+independent verifier 合计 `6` 次确定性 HGB refit，而当前没有
+新 model-fit 授权，本次结果前只冻结 `outcome-blind-no-fit-support-renewal-v1`：允许从公开 exact commit 启动 frozen-bundle
+WL chain 与纯 receipt waiter，各 `72x300s`；transition/config-v2 都不重启。preflight 精确绑定 LATEST、`283` 个 source
+archives、五项 inventory、三条 state/log SHA、clean exact worktrees、旧 PID/锁、首个 WL observation 和零 sidecar；任一漂移
+fail-closed。协议/launcher SHA-256=`ba9b1fa6...b4beea` / `d28918f5...cdb670`；协议与 launcher 尚未执行；
+GPU/API/model fit/base update=`0/0/0/0`，prediction value、outcome、accuracy、
+utility、candidate identity/profile 均未读。即使 WL 成功，也只允许主张当前 snapshot 的冻结 WL escrow 结构覆盖，不能提前
+声称 transition common-support、accuracy、scaling、utility 或方法效果。
+
 ## 0KQ. 2026-09-01 三个等待守护自然耗尽；两份独立续接契约已在重启前冻结
 
 连续 intake PID=`2920968` 已退出；只读诊断证明它正常写完固定 `145` polls，末态为

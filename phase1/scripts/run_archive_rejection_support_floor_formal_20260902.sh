@@ -1,0 +1,305 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
+export PYTHONHASHSEED=0
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+umask 077
+
+MODE="${1:-check}"
+CONTROL_COMMIT="${2:-}"
+SOURCE_REPO=/research/d7/spc/yzyang4/aira-dojo
+STATE_ROOT=/research/d7/spc/yzyang4/prospective_decision_v1
+OBSERVATIONS="$STATE_ROOT/frozen_inputs/incremental_archive_support_20260901_d2ed361a/observations.json"
+OBSERVATIONS_RECEIPT="$STATE_ROOT/frozen_inputs/incremental_archive_support_20260901_d2ed361a/receipt.json"
+RESULT_PARENT=/research/d7/spc/yzyang4/prospective-archive-support-floor
+PROTOCOL_REL=phase1/archive_rejection_support_floor_v1.json
+PRODUCER_REL=phase1/audit_archive_rejection_support_floor.py
+VERIFIER_REL=phase1/verify_archive_rejection_support_floor.py
+PRODUCER_MODULE=phase1.audit_archive_rejection_support_floor
+VERIFIER_MODULE=phase1.verify_archive_rejection_support_floor
+TEST_REL=phase1/tests/test_archive_rejection_support_floor.py
+RUNNER_TEST_REL=phase1/tests/test_archive_rejection_support_floor_runner.py
+RUNNER_REL=phase1/scripts/run_archive_rejection_support_floor_formal_20260902.sh
+CENSUS_RESULT_REL=phase1/results/archive_rejection_support_census_20260902_7ad0164/result.json
+CENSUS_VERIFICATION_REL=phase1/results/archive_rejection_support_census_20260902_7ad0164/independent_verification.json
+
+EXPECTED_PROTOCOL_SHA=e60500f71a5820f02c1c9ba5bf5c886564574bed71d4fb9cba262989fe066b2d
+EXPECTED_OBSERVATIONS_SHA=d2ed361a557bf52dadfe9f0547e49c16ea5dc1eea42a1c78f7b354542a2a704a
+EXPECTED_OBSERVATIONS_BYTES=200613
+EXPECTED_OBSERVATIONS_RECEIPT_SHA=f5c722af76c6eda9b47b1fb175a51373b721ee084df02c6b72f5298e8fb93cfa
+EXPECTED_PRIOR_SNAPSHOT=30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f
+EXPECTED_CURRENT_SNAPSHOT=e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d
+EXPECTED_PRIOR_TRANSACTIONS=4f05659db88e290f18a20d43b33330daa5df27211b1fffb770cbf1658b46ec60
+EXPECTED_CURRENT_TRANSACTIONS=fabae2e42b8e669bc0f212df5365809751966859df22cb1a0ba952ba277f7467
+EXPECTED_CENSUS_RESULT=f904ff54e110057e4cd11c6f71a09c43661abea9e5e4fb37c39099338f917fad
+EXPECTED_CENSUS_VERIFICATION=39a634f0bba48dbeb3783f67589604a4ba8e840aaab65ad25daff55528e276e6
+
+die() {
+  echo "ARCHIVE_REJECTION_SUPPORT_FLOOR_FORMAL_FAIL: $*" >&2
+  exit 2
+}
+
+sha() {
+  sha256sum "$1" | awk '{print $1}'
+}
+
+require_file_sha() {
+  local path="$1"
+  local expected="$2"
+  [[ -f "$path" && ! -L "$path" ]] || die "unsafe or absent file: $path"
+  [[ "$(sha "$path")" == "$expected" ]] || die "hash mismatch: $path"
+}
+
+static_check() {
+  bash -n "$0"
+  for value in \
+    "$EXPECTED_PROTOCOL_SHA" "$EXPECTED_OBSERVATIONS_SHA" \
+    "$EXPECTED_OBSERVATIONS_RECEIPT_SHA" "$EXPECTED_PRIOR_SNAPSHOT" \
+    "$EXPECTED_CURRENT_SNAPSHOT" "$EXPECTED_PRIOR_TRANSACTIONS" \
+    "$EXPECTED_CURRENT_TRANSACTIONS" "$EXPECTED_CENSUS_RESULT" \
+    "$EXPECTED_CENSUS_VERIFICATION"; do
+    [[ "$value" =~ ^[0-9a-f]{64}$ ]] || die "bad frozen hash constant"
+  done
+  [[ "$EXPECTED_OBSERVATIONS_BYTES" =~ ^[0-9]+$ ]] || die "bad observations byte constant"
+  echo "ARCHIVE_REJECTION_SUPPORT_FLOOR_FORMAL_STATIC_CHECK_PASS"
+}
+
+if [[ "$MODE" == check ]]; then
+  static_check
+  exit 0
+fi
+[[ "$MODE" == run ]] || die "mode must be check or run"
+[[ "$CONTROL_COMMIT" =~ ^[0-9a-f]{40}$ ]] || die "exact control commit required"
+static_check
+
+set +u
+source ~/env_setup.sh
+set -u
+PYTHON_BIN=/research/d7/spc/yzyang4/venvs/exp/bin/python
+[[ -x "$PYTHON_BIN" ]] || die "verified experiment python absent"
+"$PYTHON_BIN" -c 'import pytest' || die "pytest absent from verified experiment python"
+git -C "$SOURCE_REPO" fetch fork phase1-value-critic
+[[ "$(git -C "$SOURCE_REPO" rev-parse fork/phase1-value-critic)" == "$CONTROL_COMMIT" ]] \
+  || die "public branch does not equal requested commit"
+git -C "$SOURCE_REPO" cat-file -e "$CONTROL_COMMIT^{commit}"
+
+SHORT="${CONTROL_COMMIT:0:7}"
+FORMAL_ROOT="$RESULT_PARENT/formal-${SHORT}-support-floor-v1"
+PUBLIC_ROOT="$FORMAL_ROOT/public"
+WORKTREE="$RESULT_PARENT/worktrees/formal-${SHORT}-support-floor-v1"
+[[ ! -e "$FORMAL_ROOT" && ! -e "$WORKTREE" ]] || die "formal root or worktree already exists"
+mkdir -p "$PUBLIC_ROOT" "$(dirname "$WORKTREE")"
+formal_complete=false
+record_failure() {
+  local rc=$?
+  if [[ "$formal_complete" != true && -d "$PUBLIC_ROOT" && ! -e "$PUBLIC_ROOT/COMPLETE" ]]; then
+    printf '%s\n' "$rc" >"$PUBLIC_ROOT/FAILED_RC"
+  fi
+}
+trap record_failure EXIT
+GIT_LFS_SKIP_SMUDGE=1 git -C "$SOURCE_REPO" worktree add --detach "$WORKTREE" "$CONTROL_COMMIT" \
+  >"$PUBLIC_ROOT/worktree.stdout" 2>"$PUBLIC_ROOT/worktree.stderr"
+[[ "$(git -C "$WORKTREE" rev-parse HEAD)" == "$CONTROL_COMMIT" ]] || die "worktree commit mismatch"
+[[ -z "$(git -C "$WORKTREE" status --porcelain --untracked-files=no)" ]] || die "worktree is dirty at start"
+cmp "$0" "$WORKTREE/$RUNNER_REL" || die "executed runner differs from exact commit"
+
+PROTOCOL="$WORKTREE/$PROTOCOL_REL"
+PRODUCER="$WORKTREE/$PRODUCER_REL"
+VERIFIER="$WORKTREE/$VERIFIER_REL"
+CENSUS_RESULT="$WORKTREE/$CENSUS_RESULT_REL"
+CENSUS_VERIFICATION="$WORKTREE/$CENSUS_VERIFICATION_REL"
+
+require_file_sha "$PROTOCOL" "$EXPECTED_PROTOCOL_SHA"
+require_file_sha "$OBSERVATIONS" "$EXPECTED_OBSERVATIONS_SHA"
+require_file_sha "$OBSERVATIONS_RECEIPT" "$EXPECTED_OBSERVATIONS_RECEIPT_SHA"
+[[ "$(stat -c '%s' "$OBSERVATIONS")" == "$EXPECTED_OBSERVATIONS_BYTES" ]] \
+  || die "observations byte count mismatch"
+[[ "$(tr -d '\r\n' < "$STATE_ROOT/LATEST")" == "$EXPECTED_CURRENT_SNAPSHOT" ]] || die "LATEST mismatch"
+require_file_sha "$STATE_ROOT/snapshots/$EXPECTED_PRIOR_SNAPSHOT/SHA256SUMS" "$EXPECTED_PRIOR_SNAPSHOT"
+require_file_sha "$STATE_ROOT/snapshots/$EXPECTED_CURRENT_SNAPSHOT/SHA256SUMS" "$EXPECTED_CURRENT_SNAPSHOT"
+require_file_sha "$STATE_ROOT/snapshots/$EXPECTED_PRIOR_SNAPSHOT/transactions.jsonl" "$EXPECTED_PRIOR_TRANSACTIONS"
+require_file_sha "$STATE_ROOT/snapshots/$EXPECTED_CURRENT_SNAPSHOT/transactions.jsonl" "$EXPECTED_CURRENT_TRANSACTIONS"
+require_file_sha "$CENSUS_RESULT" "$EXPECTED_CENSUS_RESULT"
+require_file_sha "$CENSUS_VERIFICATION" "$EXPECTED_CENSUS_VERIFICATION"
+if git -C "$WORKTREE" show "$CONTROL_COMMIT:$VERIFIER_REL" \
+  | grep -q 'audit_archive_rejection_support_floor'; then
+  die "independent verifier imports or names support-floor producer"
+fi
+
+cat >"$PUBLIC_ROOT/preflight13.txt" <<'EOF'
+01_direction=Decision Corpus + Predictor Benchmark + Audit Protocol only; PASS
+02_question=among all seven anonymized rejected competitions how deep redundant and concentrated is accepted support at the frozen prior anchor and current snapshot; PASS
+03_context=post-hoc after aggregate census exact prior/current snapshots immutable observer copy completed census result and verification and exact public commit; PASS
+04_unit=seven distinct anonymized rejected competitions with the six prior-supported competitions as the primary subset; aliases excluded; PASS
+05_security=observer and hash-bound intake metadata only; rejection registry contents archive payloads labels outcomes predictions accuracy utility candidate identities and profiles remain unread or un-emitted; PASS
+06_controls=all four census support classes exact prior anchor exact seven-transaction window and current total; PASS
+07_repetitions=producer A/B and independent verifier A/B must be byte-identical; PASS
+08_independence=verifier does not import the support-floor producer and independently reconstructs every result field and exact rational summary; PASS
+09_reproducibility=exact public commit clean no-smudge worktree fixed hashes commands tests traces read-only receipt and manifest; PASS
+10_statistics=complete descriptive post-hoc census exact integer and rational summaries no sampling inference and no binary success threshold; PASS
+11_resources=CPU single-thread only; gpu api model-fit base-update 0/0/0/0; PASS
+12_trace=file and network traces plus credential forbidden-path identity-schema and worktree-cleanliness gates; PASS
+13_failure=hash drift prefix break unknown duplicate payload overlap inconsistent class task multiplicity duplicate run candidate tamper identity emission or any contract mismatch fails closed; PASS
+EOF
+
+cat >"$PUBLIC_ROOT/environment.txt" <<EOF
+control_commit=$CONTROL_COMMIT
+protocol_sha256=$EXPECTED_PROTOCOL_SHA
+observations_sha256=$EXPECTED_OBSERVATIONS_SHA
+observations_bytes=$EXPECTED_OBSERVATIONS_BYTES
+observed_archives=283
+structural_rejection_events=14
+distinct_rejected_competitions=7
+prior_supported_competitions=6
+prior_snapshot_sha256=$EXPECTED_PRIOR_SNAPSHOT
+current_snapshot_sha256=$EXPECTED_CURRENT_SNAPSHOT
+prior_transactions_sha256=$EXPECTED_PRIOR_TRANSACTIONS
+current_transactions_sha256=$EXPECTED_CURRENT_TRANSACTIONS
+census_result_sha256=$EXPECTED_CENSUS_RESULT
+census_verification_sha256=$EXPECTED_CENSUS_VERIFICATION
+producer_sha256=$(sha "$PRODUCER")
+verifier_sha256=$(sha "$VERIFIER")
+gpu_api_model_fit_base_update=0/0/0/0
+EOF
+
+(
+  cd "$WORKTREE"
+  "$PYTHON_BIN" -m pytest -q "$TEST_REL" "$RUNNER_TEST_REL"
+) >"$PUBLIC_ROOT/focused_tests.txt" 2>&1
+(
+  cd "$WORKTREE"
+  "$PYTHON_BIN" -m pytest -q phase1/tests
+) >"$PUBLIC_ROOT/full_phase1_tests.txt" 2>&1
+
+readonly_receipt() {
+  local output="$1"
+  "$PYTHON_BIN" - "$STATE_ROOT" "$OBSERVATIONS" "$OBSERVATIONS_RECEIPT" \
+    "$PROTOCOL" "$CENSUS_RESULT" "$CENSUS_VERIFICATION" "$output" <<'PY'
+import hashlib
+import json
+import pathlib
+import sys
+
+state = pathlib.Path(sys.argv[1]).resolve()
+files = [pathlib.Path(item).resolve() for item in sys.argv[2:7]]
+output = pathlib.Path(sys.argv[7])
+latest = (state / "LATEST").read_text(encoding="ascii").strip()
+snapshots = [
+    "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+]
+files.append(state / "LATEST")
+for snapshot in snapshots:
+    root = state / "snapshots" / snapshot
+    files.extend([root / "SHA256SUMS", root / "transactions.jsonl"])
+files.append(state / "snapshots" / snapshots[-1] / "accumulator" / "summary.json")
+transactions = state / "snapshots" / snapshots[-1] / "transactions.jsonl"
+for line in transactions.read_text(encoding="utf-8").splitlines():
+    row = json.loads(line)
+    intake = pathlib.Path(row["intake_dir"]).resolve()
+    if intake.parent != state / "intakes" or intake.name != row["drop_id"]:
+        raise SystemExit("unsafe intake binding")
+    files.extend([intake / "summary.json", intake / "source_provenance.json"])
+digests = []
+for path in files:
+    if not path.is_file() or path.is_symlink():
+        raise SystemExit("unsafe read-only input")
+    digests.append(hashlib.sha256(path.read_bytes()).hexdigest())
+aggregate = hashlib.sha256(("\n".join(digests) + "\n").encode()).hexdigest()
+receipt = {
+    "protocol": "archive_rejection_support_floor_readonly_receipt_v1",
+    "latest_snapshot_sha256": latest,
+    "allowed_metadata_file_count": len(files),
+    "ordered_content_digest_sha256": aggregate,
+    "identity_values_emitted": False,
+    "forbidden_values_read": False,
+}
+output.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+PY
+}
+
+readonly_receipt "$PUBLIC_ROOT/readonly_before.json"
+for arm in a b; do
+  mkdir "$PUBLIC_ROOT/$arm"
+  (
+    cd "$WORKTREE"
+    strace -f -qq -e trace=file,network -o "$PUBLIC_ROOT/$arm/producer.trace" \
+      "$PYTHON_BIN" -m "$PRODUCER_MODULE" --protocol "$PROTOCOL" \
+        --observations "$OBSERVATIONS" --state-root "$STATE_ROOT" \
+        --output "$PUBLIC_ROOT/$arm/result.json"
+  ) >"$PUBLIC_ROOT/$arm/producer.stdout" 2>"$PUBLIC_ROOT/$arm/producer.stderr"
+  (
+    cd "$WORKTREE"
+    strace -f -qq -e trace=file,network -o "$PUBLIC_ROOT/$arm/verifier.trace" \
+      "$PYTHON_BIN" -m "$VERIFIER_MODULE" --protocol "$PROTOCOL" \
+        --observations "$OBSERVATIONS" --result "$PUBLIC_ROOT/$arm/result.json" \
+        --state-root "$STATE_ROOT" --output "$PUBLIC_ROOT/$arm/independent_verification.json"
+  ) >"$PUBLIC_ROOT/$arm/verifier.stdout" 2>"$PUBLIC_ROOT/$arm/verifier.stderr"
+done
+cmp "$PUBLIC_ROOT/a/result.json" "$PUBLIC_ROOT/b/result.json"
+cmp "$PUBLIC_ROOT/a/independent_verification.json" "$PUBLIC_ROOT/b/independent_verification.json"
+readonly_receipt "$PUBLIC_ROOT/readonly_after.json"
+cmp "$PUBLIC_ROOT/readonly_before.json" "$PUBLIC_ROOT/readonly_after.json"
+
+cat "$PUBLIC_ROOT/a/producer.trace" "$PUBLIC_ROOT/b/producer.trace" \
+  "$PUBLIC_ROOT/a/verifier.trace" "$PUBLIC_ROOT/b/verifier.trace" >"$PUBLIC_ROOT/combined.trace"
+if grep -E 'connect\(|sendto\(|sendmsg\(|recvfrom\(|recvmsg\(' "$PUBLIC_ROOT/combined.trace" >/dev/null; then
+  die "network syscall detected"
+fi
+if grep -Ei '(/|\\)(\.env|[^/\\]*(api[_-]?key|credential|secret|token)[^/\\]*|labels?|outcomes?|predictions?|grades?|[^/\\]*\.tar\.gz)(/|\\|")' \
+  "$PUBLIC_ROOT/combined.trace" >/dev/null; then
+  die "forbidden path detected"
+fi
+if grep -E '"(task|run_id|archive_relative_path|competition|archive_name|drop_id|intake_dir)"[[:space:]]*:' \
+  "$PUBLIC_ROOT/a/result.json" "$PUBLIC_ROOT/a/independent_verification.json" >/dev/null; then
+  die "identity-bearing schema detected in formal output"
+fi
+"$PYTHON_BIN" - "$PUBLIC_ROOT" <<'PY'
+import pathlib
+import re
+import sys
+
+root = pathlib.Path(sys.argv[1])
+credential = re.compile(
+    rb"sk-[A-Za-z0-9._-]{16,}|AKIA[0-9A-Z]{16}|BEGIN (?:RSA|OPENSSH|EC) PRIVATE KEY|"
+    rb"(?i:(?:api[_-]?key|secret|token)\s*[:=]\s*['\"]?[A-Za-z0-9._-]{16,})"
+)
+hits = []
+for path in root.rglob("*"):
+    if path.is_file() and not path.is_symlink() and credential.search(path.read_bytes()):
+        hits.append(path.name)
+if hits:
+    raise SystemExit("credential-shaped content detected")
+print("credential_content_hits=0")
+PY
+[[ -z "$(git -C "$WORKTREE" status --porcelain --untracked-files=all)" ]] \
+  || die "worktree dirty after run"
+[[ "$(git -C "$WORKTREE" rev-parse HEAD)" == "$CONTROL_COMMIT" ]] || die "worktree commit drift"
+
+cat >"$PUBLIC_ROOT/postflight_summary.txt" <<EOF
+status=PASS
+post_hoc_after_aggregate_census_readout=true
+producer_a_b_byte_identical=true
+independent_verifier_a_b_byte_identical=true
+readonly_receipts_byte_identical=true
+network_syscalls_detected=false
+forbidden_paths_detected=false
+identity_bearing_output_schema_detected=false
+credential_content_hits=0
+worktree_exact_clean=true
+labels_outcomes_predictions_accuracy_utility_read=false
+gpu_api_model_fit_base_update=0/0/0/0
+EOF
+
+find "$PUBLIC_ROOT" -type f ! -name SHA256SUMS ! -name MANIFEST_SHA256 -print0 \
+  | sort -z | xargs -0 sha256sum >"$PUBLIC_ROOT/SHA256SUMS"
+sha "$PUBLIC_ROOT/SHA256SUMS" >"$PUBLIC_ROOT/MANIFEST_SHA256"
+touch "$PUBLIC_ROOT/COMPLETE"
+chmod -R a-w "$FORMAL_ROOT"
+formal_complete=true
+trap - EXIT
+echo "ARCHIVE_REJECTION_SUPPORT_FLOOR_FORMAL_COMPLETE root=$PUBLIC_ROOT manifest=$(cat "$PUBLIC_ROOT/MANIFEST_SHA256")"

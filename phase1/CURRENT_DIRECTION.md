@@ -35,6 +35,13 @@ producer 与不导入 producer 的独立 verifier 已分别实现；合成四类
 producer，任何 support-floor 数值均未知**；GPU/API/model fit/base update=`0/0/0/0`，不得外推 predictor accuracy、
 scaling、search utility 或方法效果。
 
+随后冻结 exact-commit formal runner：13 项 preflight、fresh no-smudge worktree、focused+full tests、producer A/B、
+不导入 producer 的 verifier A/B、allowed-metadata read-only before/after、file/network trace、credential 与 identity-schema
+门、clean-worktree 及 append-only COMPLETE/FAILED receipt。runner static check=`PASS`，floor+runner focused=`12 passed`，
+全部相邻 archive 审计=`57 passed`；runner/contract-test SHA-256=`5b66502a...c3229` / `880dfcab...3392a`。
+截至本段 runner **尚未 formal 执行**，因此上一段的未知量仍不得读取或报告；必须先公开该 runner 的 exact commit，
+再从 fresh formal root 单次执行。
+
 ## 0KV. 2026-09-01 全部 14 个结构拒绝的支持度普查完成：13/14 在 prior anchor 已有 eligible support
 
 为避免把 0KT 的单个 absent 事件误写成总体频率，本段把当前 immutable observer census 中**全部 14 个结构拒绝事件**

@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KY. 2026-09-02 Target-522 两个下游纯等待 watcher 第三次自然超时后已无结果续接
+
+outcome-blind 复核确认 source/LATEST/snapshot dirs 仍为 `283/e9e12c63...8a6d/133`，Target-522 selection
+账本仍为 SHA/lines/runs=`02774632...170f/29/517`，距固定 `522` 还差 `5` runs；selection PID=`2930562`
+live、lock held，无 COMPLETE/FAILED/TIMEOUT/CONTINUITY_GAP。Stage-A 与 contrast-rank 的上一轮纯等待 PID=
+`3451204/3451299` 均在 poll=`720` 后自然写出 `TIMEOUT_RC=124` 并退出；两锁 free、无 COMPLETE/FAILED/
+INTERRUPTED，两个正式 output root 均不存在，初始 gap context 与第一次 repeat-timeout context 的 SHA-256=
+`eec0154f...f508` / `9e305ace...425e` 均保持不变。
+
+结果前冻结 `target522-downstream-third-timeout-renewal-v1`，唯一允许动作是分别调用已安装且哈希绑定的两个
+`source_script.sh resume` 一次，并追加第二份 repeat-timeout context；selection、target、protocol、producer/analyzer、
+verifier、tests、runner 均不可改变，旧 within/lineage/selective/yield/lookahead watcher 不恢复。公开 exact commit=
+`4223ade7670d3ba6a6f66debf63a7b0c6872d9c1` 的 remote check 通过后执行，Stage-A/rank 新 PID=
+`4041657/4041733` 均 live、locks held、新 marker-only waiting 日志存在，selection ledger 逐字节不变。
+
+独立 postdeploy v1 已完成全部状态核验，但在最后的 credential 零命中 grep 因 pipefail rc=`1` 提前退出；它没有修改
+远端状态。v2 只修零命中计数语义后完整 PASS：selection+两个下游共三锁 held，旧 context 保留，新 context 两份
+逐字节一致（SHA-256=`b670658c...01fb`），action root mode=`0700`、manifest=`1f4dce42...ecec5`，credential
+filename/content hits=`0/0`。这是监控连续性修复，不是科学结果；outcome/prediction/candidate identity/profile 未读，
+GPU/API/model fit/base update=`0/0/0/0`。
+
 ## 0KX. 2026-09-02 Evidence Index v10 正式通过：四项 distinct 资产入索引，0KW 强制只计 reconstruction
 
 0KW 的 prior-evidence omission 表明仅靠人工阅读长方向文档不足以防止同一 estimand 被重复包装。新增

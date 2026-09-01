@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 PROTOCOL = ROOT / "phase1/target522_downstream_third_timeout_renewal_v1.json"
 SCRIPT = ROOT / "phase1/scripts/renew_target522_downstream_after_third_timeout_20260902.sh"
+RECEIPT = ROOT / "phase1/target522_downstream_third_timeout_postdeploy_receipt_20260902.json"
 
 
 def test_protocol_binds_observed_third_timeout_state() -> None:
@@ -66,3 +67,22 @@ def test_script_binds_itself_to_a_public_exact_commit() -> None:
     assert "git -C \"${repo}\" show \"${public_commit}:${public_path}\"" in text
     assert "git -C \"${repo}\" merge-base --is-ancestor" in text
     assert "d6f6719b9b5ce8182c4473ee82f56b1b2533cd2f904f2db025653cd48392077d" in text
+
+
+def test_postdeploy_receipt_records_independent_pass_and_harness_failure() -> None:
+    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+    assert receipt["status"] == (
+        "TARGET522_DOWNSTREAM_THIRD_TIMEOUT_RENEWAL_INDEPENDENTLY_VERIFIED"
+    )
+    assert receipt["selection"]["runs"] == 517
+    assert receipt["selection"]["remaining_runs"] == 5
+    assert receipt["stage_a"]["new_pid_live"] is True
+    assert receipt["contrast_rank"]["new_pid_live"] is True
+    post = receipt["independent_postdeploy"]
+    assert post["v1_status"].startswith("ZERO_HIT_CREDENTIAL_GREP_RC_")
+    assert post["v1_mutated_remote_state"] is False
+    assert post["v2_status"] == "PASS"
+    assert post["credential_filename_hits"] == 0
+    assert post["credential_content_hits"] == 0
+    assert receipt["scope"]["outcomes_or_prediction_values_read"] is False
+    assert receipt["scope"]["gpu_paid_api_model_fit_base_update"] == "0/0/0/0"

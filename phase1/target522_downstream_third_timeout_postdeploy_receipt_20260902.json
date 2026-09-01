@@ -1,0 +1,60 @@
+{
+  "protocol": "target522-downstream-third-timeout-postdeploy-receipt-v1",
+  "status": "TARGET522_DOWNSTREAM_THIRD_TIMEOUT_RENEWAL_INDEPENDENTLY_VERIFIED",
+  "renewed_at_utc": "2026-09-01T18:29:34Z",
+  "freeze_commit": "4223ade7670d3ba6a6f66debf63a7b0c6872d9c1",
+  "action_root": "/research/d7/spc/yzyang4/target522-downstream-third-timeout-renewal-20260902-v1",
+  "action_root_mode": "0700",
+  "selection": {
+    "observed_sha256": "0277463211df467fb241776d975b4afab0133009f75f8b9cd53d15785341170f",
+    "observed_lines": 29,
+    "runs": 517,
+    "target_runs": 522,
+    "remaining_runs": 5,
+    "pid": 2930562,
+    "pid_live": true,
+    "lock_held": true,
+    "complete_failed_timeout_or_gap_markers": false
+  },
+  "stage_a": {
+    "old_pid": 3451204,
+    "old_timeout_rc": 124,
+    "new_pid": 4041657,
+    "new_pid_live": true,
+    "lock_held": true,
+    "new_wait_log_present": true
+  },
+  "contrast_rank": {
+    "old_pid": 3451299,
+    "old_timeout_rc": 124,
+    "new_pid": 4041733,
+    "new_pid_live": true,
+    "lock_held": true,
+    "new_wait_log_present": true
+  },
+  "hashes": {
+    "initial_gap_context_sha256": "eec0154fa8528e9d75a8befd2861bcec0dafb7a696f1aec8029446e22928f508",
+    "prior_repeat_timeout_context_sha256": "9e305ace00d2a2383f119170a69297b7592e76d3640750493d79db407668425e",
+    "new_repeat_timeout_context_sha256": "b670658c5dda08714408cf4e201785eddebd5f877e4e6ca070bfff03977001fb",
+    "action_manifest_sha256": "1f4dce4225a670b299125bae901b7cf98736f9ab50b7b87325d9ac7f4e5ecec5",
+    "action_safe_receipt_sha256": "7412ebe1ff8656663e3308d7422f219d41650a33965cbc73a43b2fa8e2b2b680",
+    "action_preflight_sha256": "e2632309e82fd266023091d71e0055304d883deaebe8ecea2d0c3e4ea7605f1f"
+  },
+  "independent_postdeploy": {
+    "v1_status": "ZERO_HIT_CREDENTIAL_GREP_RC_HARNESS_EXIT_AFTER_ALL_STATE_CHECKS",
+    "v1_mutated_remote_state": false,
+    "v2_status": "PASS",
+    "selection_and_three_locks_verified": true,
+    "both_prior_contexts_preserved": true,
+    "new_contexts_byte_identical": true,
+    "action_manifest_exact": true,
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0
+  },
+  "scope": {
+    "outcomes_or_prediction_values_read": false,
+    "candidate_identity_or_profile_read": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+    "scientific_effect_computed": false
+  }
+}

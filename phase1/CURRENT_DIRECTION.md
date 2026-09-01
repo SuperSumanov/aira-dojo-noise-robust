@@ -29,6 +29,13 @@ transactions 有 exact prior byte prefix、目标 registry 只选中 1 个结构
 registry content、archive payload、label/outcome/prediction/identity read=`false`，GPU/API/model fit/base update=`0/0/0/0`。
 protocol SHA-256=`9d1c9377...8acfaff`，focused contract tests=`4 passed`；当前只有结果前冻结，尚未执行真实 overlap readout。
 
+随后在真实 readout 前完成 producer 与**不导入 producer**的独立 verifier。实现审阅先纠正 observer `path` 必须等于
+`source_root + relative`（不能误当纯 relative），并把 accepted increment 从硬编码改为读取冻结协议，同时补齐
+LATEST/intake summary/source provenance 的 no-symlink 门；纠正发生在任何 target competition/support readout 之前。
+producer/verifier SHA-256=`ddc09da3...9c2c51` / `a6098cdf...247f7`；三种 decision path 及 prefix tamper、重复目标、
+payload overlap、路径伪造、候选结果篡改与 identity non-emission 共 `14 passed`，连同既有 archive longitudinal 契约为
+`24 passed`。截至本段仍未执行真实 overlap readout，故不得提前报告 strong/partial/absent。
+
 ## 0KS. 2026-09-01 零 fit support v1 在 state promotion 前停止；v2 只修启动回执与进程组清理
 
 0KR 的公开 exact commit=`7d89d1bce13cbf5223b380a167d8868df1cbb6bc` 已冻结。第一次部署在提取 launcher 前因

@@ -1,0 +1,23 @@
+	Command being timed: "strace -ff -e trace=file -o /research/d7/spc/yzyang4/wl-graph-escrow-snapshot-chain/20260901T123808Z_e9e12c639fde/producer.strace env PYTHONPATH=/research/d7/spc/yzyang4/worktrees/codex_wl_escrow_031edb3 /research/d7/spc/yzyang4/venvs/exp/bin/python -m phase1.prospective_wl_graph_escrow --repo-root /research/d7/spc/yzyang4/worktrees/codex_wl_escrow_031edb3 --source-commit 031edb34400781ca026bc9833ac7f850312ffb1c --protocol /research/d7/spc/yzyang4/worktrees/codex_wl_escrow_031edb3/phase1/wl_graph_prediction_protocol_v1.json --expect-protocol-sha256 e3d299863eacf3655d17de378e7838bbebecfc347d751f33d19249b6b9f0bda3 --activation-receipt /research/d7/spc/yzyang4/wl-graph-activation-031edb3-v1/activation_receipt.json --expect-activation-receipt-sha256 0139670acc49c961e38e6851d0416d1e5bfa1c318024b50330c15d51823112fb --bundle /research/d7/spc/yzyang4/wl-graph-multiview-f67157a-v1/result/wl_graph_multiview_scorer.npz --expect-bundle-sha256 df02cd1f5ba74be6b171ee9c377eeb58cf209a310a470b2ade671f2db03ee19e --bundle-summary /research/d7/spc/yzyang4/wl-graph-multiview-f67157a-v1/result/summary.json --expect-bundle-summary-sha256 d8d1b57172e4b63f391a0ca93b1213c0f040adf9592637c38d057ad6576622f5 --bundle-verification /research/d7/spc/yzyang4/wl-graph-multiview-f67157a-v1/independent_verification.json --expect-bundle-verification-sha256 9918e6797b8f48fa9bb72e8cb740d1d5fab0ef81c0a961809fef40250b3e6b6e --state-root /research/d7/spc/yzyang4/prospective_decision_v1 --snapshot-root /research/d7/spc/yzyang4/prospective_decision_v1/snapshots/e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d --expect-snapshot-sha256 e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d --output /research/d7/spc/yzyang4/wl-graph-escrow-snapshot-chain/20260901T123808Z_e9e12c639fde/artifact"
+	User time (seconds): 1457.37
+	System time (seconds): 39.19
+	Percent of CPU this job got: 98%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 25:14.25
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 7312852
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 587
+	Minor (reclaiming a frame) page faults: 3616795
+	Voluntary context switches: 330957
+	Involuntary context switches: 10321
+	Swaps: 0
+	File system inputs: 595848
+	File system outputs: 22504
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

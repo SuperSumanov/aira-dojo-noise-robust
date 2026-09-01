@@ -1,0 +1,13 @@
+01_direction=Decision Corpus + Predictor Benchmark + Audit Protocol only; PASS
+02_question=WL prediction escrow snapshot-chain update only; PASS
+03_inputs=prior/current blind snapshots and frozen WL chain; PASS
+04_forbidden_inputs=no label/outcome/score registry/regrade paths; PASS
+05_order=ordering rule frozen,membership provisional until closure; PASS
+06_batch_rule=batched before 960,immediate full-prefix churn or closure; PASS
+07_negative_contract=shared prediction mutation/rank-unexplained rows fail; PASS
+08_independence=original WL numerical verifier plus chain verifier; PASS
+09_reproducibility=exact commits,hashes,commands,manifest; PASS
+10_statistics=structural counts only,no effect metric; PASS
+11_resources=single CPU,gpu=0,api=0,base update=0; PASS
+12_security=strace and boundary-aware credential scan required; PASS
+13_stop=any failure prevents state promotion; PASS

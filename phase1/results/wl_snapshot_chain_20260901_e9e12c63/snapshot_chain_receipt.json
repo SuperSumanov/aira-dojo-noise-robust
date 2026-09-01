@@ -1,0 +1,68 @@
+{
+  "closure": {
+    "final_first960_identity": false,
+    "support_gate_is_provisional_until_closure": true
+  },
+  "cohort_churn": {
+    "added_run_ids_sha256": "71bba9c2d7180b28decdfd04c15dcd9ba3df27df42d3726aa9f79263d15b84b0",
+    "added_runs": 23,
+    "all_changes_explained_by_frozen_order": true,
+    "removed_run_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "removed_runs": 0,
+    "target_runs": 960,
+    "unchanged_runs": 494
+  },
+  "family": "wl_graph",
+  "independent_current_verification": {
+    "path_sha256": "9fe6de7c71634fccd0eb86ff61ca6fa82f719880b1c7452cbb57850b69a33d40",
+    "status": "INDEPENDENT_PROSPECTIVE_WL_GRAPH_ESCROW_VERIFIED"
+  },
+  "prediction_intersection": {
+    "endpoints": {
+      "common": 13098,
+      "common_rows_exact": true,
+      "current": 13581,
+      "current_only": 483,
+      "prior": 13098,
+      "prior_only": 0
+    },
+    "pairs": {
+      "common": 3230,
+      "common_rows_exact": true,
+      "current": 3325,
+      "current_only": 95,
+      "prior": 3230,
+      "prior_only": 0
+    }
+  },
+  "protocol": "provisional-first960-snapshot-chain-v1",
+  "scope": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "effect_metrics_computed": [],
+    "gpu": 0,
+    "prediction_values_printed": false,
+    "prospective_outcomes_read": false
+  },
+  "snapshots": {
+    "current": {
+      "accumulator_summary_sha256": "000b31ea1fd4da829a31d12ef0db79a48e4e288367fe51f905d42b5506cd96c9",
+      "all_runs": 517,
+      "selected_runs": 517,
+      "sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d"
+    },
+    "prior": {
+      "accumulator_summary_sha256": "7495ac3fb2cb562cc004c983b9143799525ebac6c288aa08aa656ff4d0812925",
+      "all_runs": 494,
+      "selected_runs": 494,
+      "sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f"
+    }
+  },
+  "source_append_invariants": {
+    "byte_prefix_required": false,
+    "prior_run_rows_exact": true,
+    "prior_run_sequence_subsequence": true,
+    "prior_run_set_contained": true
+  },
+  "status": "PROVISIONAL_FIRST960_SNAPSHOT_CHAIN_INDEPENDENTLY_VERIFIED"
+}

@@ -1,0 +1,2 @@
+forbidden_path_hits=0
+credential_content_file_hits=0

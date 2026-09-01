@@ -13,6 +13,24 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KU. 2026-09-01 517-run WL 冻结链完成：旧 494-run 前缀零删除，新增 23 runs
+
+零 fit support renewal v2 的 WL 路径已在 current snapshot=`e9e12c63...8a6d` 上完整结束并 promotion；远端 formal root
+权限=`0500`、files=`52`、COMPLETE/FAILURE/FAILED_RC=`true/false/false`，producer、非导入 independent verifier 与
+snapshot-chain verifier rc=`0/0/0`，三者 wall time=`25:14.25/23:46.31/0:02.09`。完整 SHA256SUMS 独立复验全过，
+forbidden-path/credential hits=`0/0`。
+
+append-only 结构覆盖从 `494` 增至 `517` eligible runs：added/removed/unchanged=`23/0/494`；旧 endpoint/pair 行
+`13,098/3,230` 均逐行保持，当前为 `13,581/3,325`，新增 `483/95`，prior set/sequence/frozen-order invariants 全过。
+snapshot-chain status=`PROVISIONAL_FIRST960_SNAPSHOT_CHAIN_INDEPENDENTLY_VERIFIED`，独立当前 verifier status=
+`INDEPENDENT_PROSPECTIVE_WL_GRAPH_ESCROW_VERIFIED`。这是一项**benchmark coverage + audit protocol** 正证据，
+不是 predictor accuracy、scaling、effect size 或 search utility；first-960 尚未 closure，support gate 仍 provisional。
+
+公开记录只保存结构 receipts、rc、runtimes 与 hash；endpoint scores、pair predictions、artifact summary、traces、commands
+及 full independent payload 均未复制。outcome/prediction value/candidate identity/profile read=`false/false/false/false`，
+GPU/API/model fit/base update=`0/0/0/0`。截至 `2026-09-01T15:18:34Z`，学长 source 仍为 `283` archives，LATEST 未变；
+transition/receipt state 仍在 `30945550...104f`，因为 transition 需要另行批准的 6 次 model fit，本次没有擅自重启。
+
 ## 0KT. 2026-09-01 新增单个结构拒绝的时间顺序支持审计已在 overlap readout 前冻结
 
 相对 `30945550...104f`，当前 `e9e12c63...8a6d` 的 outcome-blind archive 增量为 observed/accepted/structural reject/

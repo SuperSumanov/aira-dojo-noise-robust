@@ -1,0 +1,23 @@
+	Command being timed: "strace -ff -e trace=file -o /research/d7/spc/yzyang4/wl-graph-escrow-snapshot-chain/20260901T123808Z_e9e12c639fde/independent_verifier.strace env PYTHONPATH=/research/d7/spc/yzyang4/worktrees/codex_wl_escrow_031edb3 /research/d7/spc/yzyang4/venvs/exp/bin/python -m phase1.verify_prospective_wl_graph_escrow --state-root /research/d7/spc/yzyang4/prospective_decision_v1 --snapshot-root /research/d7/spc/yzyang4/prospective_decision_v1/snapshots/e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d --expect-snapshot-sha256 e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d --bundle /research/d7/spc/yzyang4/wl-graph-multiview-f67157a-v1/result/wl_graph_multiview_scorer.npz --expect-bundle-sha256 df02cd1f5ba74be6b171ee9c377eeb58cf209a310a470b2ade671f2db03ee19e --activation-receipt /research/d7/spc/yzyang4/wl-graph-activation-031edb3-v1/activation_receipt.json --expect-activation-receipt-sha256 0139670acc49c961e38e6851d0416d1e5bfa1c318024b50330c15d51823112fb --artifact /research/d7/spc/yzyang4/wl-graph-escrow-snapshot-chain/20260901T123808Z_e9e12c639fde/artifact --output /research/d7/spc/yzyang4/wl-graph-escrow-snapshot-chain/20260901T123808Z_e9e12c639fde/independent_verification.json"
+	User time (seconds): 1414.07
+	System time (seconds): 9.13
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 23:46.31
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 7328036
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 24
+	Minor (reclaiming a frame) page faults: 2176903
+	Voluntary context switches: 308716
+	Involuntary context switches: 22857
+	Swaps: 0
+	File system inputs: 7448
+	File system outputs: 2696
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

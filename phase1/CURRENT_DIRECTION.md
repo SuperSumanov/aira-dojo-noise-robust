@@ -39,8 +39,14 @@ filename/content hits=`0/0/0/0`。index/verifier/manifest SHA-256=`51da3ccb...ae
 这是一项正面的 **Audit Protocol 完整性资产**：它把近期有效结果纳入单一机器索引，并机械阻止本次已发生的重复证据
 计数；但它不增加新的科学 effect、predictor accuracy、scaling 或 search-utility 结果，也不解除 first-960 closure。
 prospective values/raw senior archives/candidate identities read=`false/false/false`，GPU/API/model fit/base update=
-`0/0/0/0`。公开件见 `phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/`；截至本段尚未执行
-release commit 的 fresh post-push 复验。
+`0/0/0/0`。公开件见 `phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/`。
+
+公开 release commit=`492fad67a43c2e4ddd4aaad3d290d8c2570b41f9` 的 fresh post-push 复验也完整通过：
+focused/full=`112/1,995 passed`（48 warnings，124.38 秒），13 项 preflight、13 个输入 hash before/after、
+builder/verifier A/B 与 trace 重建均一致；root mode/files=`0500/41`，COMPLETE/FAILED_RC=`true/false`，
+forbidden-open/network/credential filename/content hits=`0/0/0/0`。post-push manifest SHA-256=
+`303a350b...e6e8`（39 members，全部逐字节一致），index/verifier SHA-256 仍为 `51da3ccb...ae7af` /
+`b31e389d...c0e0f`。该复验只确认公开 commit 可独立重建，没有重算或重选科学结论。
 
 ## 0KW. 2026-09-02 support floor 已完成；证据索引勘误后降级为独立重建 + current-window lineage
 

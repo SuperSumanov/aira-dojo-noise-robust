@@ -216,6 +216,8 @@ phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/** -text -dif
 phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/README.md text eol=lf diff
 phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/formal_summary.json text eol=lf diff
 phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/failed_v1_summary.json text eol=lf diff
+phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/postpush_summary.json text eol=lf diff
+phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/SHA256SUMS text eol=lf diff
 
 # Preserve the byte-exact identity-erased support-census receipts copied from
 # the formal Linux root; keep human documentation and its public summary diffable.

@@ -55,6 +55,7 @@ def test_release_manifest_covers_every_public_payload_exactly() -> None:
         "formal_summary.json",
         "independent_verification.json",
         "index.json",
+        "postpush_summary.json",
     }
     for name, digest in rows.items():
         assert sha256(RELEASE / name) == digest
@@ -107,6 +108,7 @@ def test_support_floor_is_only_a_reconstruction_with_nineteen_exact_fields() -> 
 def test_formal_gates_and_failed_preworktree_attempt_are_recorded() -> None:
     summary = load("formal_summary.json")
     failure = load("failed_v1_summary.json")
+    postpush = load("postpush_summary.json")
     assert summary["status"] == "FORMAL_CLAIM_DEDUPLICATED_EVIDENCE_INDEX_V10_COMPLETE"
     assert summary["focused_test_tail"] == "105 passed in 3.31s"
     assert summary["full_test_tail"] == "1988 passed, 48 warnings in 115.29s (0:01:55)"
@@ -123,6 +125,39 @@ def test_formal_gates_and_failed_preworktree_attempt_are_recorded() -> None:
     assert failure["index_files_created"] == 0
     assert failure["verifier_files_created"] == 0
     assert failure["complete_marker_created"] is False
+    assert postpush["status"] == "FRESH_PUBLIC_CHECKOUT_POSTPUSH_PASS"
+    assert postpush["source_commit"] == (
+        "492fad67a43c2e4ddd4aaad3d290d8c2570b41f9"
+    )
+    assert postpush["root_mode"] == "0500"
+    assert postpush["file_count"] == 41
+    assert postpush["complete"] is True
+    assert postpush["failed_rc_present"] is False
+    assert postpush["preflight_lines"] == 13
+    assert postpush["input_hash_lines"] == 13
+    assert postpush["input_hashes_before_after_identical"] is True
+    assert postpush["builder_ab_and_trace_byte_identical"] is True
+    assert postpush["verifier_ab_and_trace_byte_identical"] is True
+    assert postpush["focused_test_tail"] == "112 passed in 3.17s"
+    assert postpush["full_test_tail"] == (
+        "1995 passed, 48 warnings in 124.38s (0:02:04)"
+    )
+    assert postpush["index_sha256"] == summary["index_sha256"]
+    assert postpush["independent_verification_sha256"] == summary[
+        "independent_verification_sha256"
+    ]
+    assert postpush["remote_manifest_sha256"] == (
+        "303a350b594f67377fb754c523bb172c2c73d1a086f978064cb3b1ce2042e6e8"
+    )
+    assert postpush["remote_manifest_members"] == 39
+    assert postpush["remote_manifest_all_exact"] is True
+    assert postpush["forbidden_open_hits"] == 0
+    assert postpush["network_calls"] == 0
+    assert postpush["credential_filename_hits"] == 0
+    assert postpush["credential_content_hits"] == 0
+    assert postpush["prospective_values_read"] is False
+    assert postpush["raw_senior_archives_opened"] is False
+    assert postpush["gpu_api_model_fit_base_update"] == [0, 0, 0, 0]
 
 
 def test_readme_keeps_claim_and_security_boundaries() -> None:

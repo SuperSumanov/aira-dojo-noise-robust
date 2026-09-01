@@ -172,7 +172,12 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 - Kaggle competition data 必须零字节分发，用户自行通过官方 prepare/API 获取并遵守 ToS/逐赛事规则；
 - v11 实际是 25 个 task，不是旧清单的 22；25/25 官方规则页已可追溯初筛，但 7 个简化旧模板、2 个
   非标准详细模板及数据/代码外部发布解释仍需机构/法律复核；
-- Qwen 生成批次的 provider 输出条款与计划中的 Apache-2.0/CC-BY-4.0 数据许可兼容性尚需最终法律/机构确认；
+- provider provenance 已按 v11 immutable batch 做双实现盘点：29 批/16,012 行中，24 批/9,901 行能映射到 provider
+  family，23 批/9,794 行有 exact annotated version/model，1 批/107 行位于 DeepSeek 静默版本边界，另有
+  5 批/6,111 行完全未映射；文件名/日期不得替代原始 producer 证据；
+- DeepSeek API 条款与当前阿里云百炼/Model Studio 条款已做官方来源初筛，但这不是法律 clearance。Qwen 两批的账号区域、
+  签约主体及 collection-time terms 未记录，当前大陆协议生效日晚于采集窗口；计划中的 Apache-2.0/CC-BY-4.0
+  兼容性仍需最终法律/机构确认；
 - 需要最终 `licenses.json`（competition slug、规则 URL、审计日期、允许的衍生发布范围）与 generator/provider
   provenance table；
 - 旧 compliance 文档的 novelty 段已被 ML-Agent、OpenMLE 与 mle-traj supersede，不能继续引用。
@@ -187,7 +192,7 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 | v11 16,012-card competition-data scan | BLOCKED | 对所有 prepared tasks 重跑高熵逐字扫描并独立验证 |
 | credential/PII/path scan on final public fields | PARTIAL | 对精确 release candidate 做双实现零命中/脱敏 receipt |
 | 逐 competition 规则审计 | PARTIAL | 25/25 rule URLs 已初筛；简化/非标准模板与派生代码/score/tree 发布仍需机构/法律裁决 |
-| provider/model output terms by immutable batch | PARTIAL | DeepSeek/Qwen provenance 与许可兼容裁决 |
+| provider/model output terms by immutable batch | PARTIAL / 5 BATCHES BLOCKED | 24/29 批有 provider-family annotation；补齐 5 批/6,111 行 provenance、Qwen collection-time contract entity/terms，并做许可兼容裁决 |
 | final dataset license + upstream notices | BLOCKED | 法律/机构 review；生成 `LICENSE`, `NOTICE`, `licenses.json` |
 | v11 schema dictionary | COMPLETE (SCHEMA ONLY) | 10 resources / 24,119 rows 已机器盘点并独立复核；完整 release 仍受内容/许可门阻塞 |
 | Croissant/Responsible AI metadata | TODO | 从最终 schema/data card 生成并验证 |
@@ -208,6 +213,8 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 - current claim ledger：`phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/`
 - paper-facing withdrawal table：`phase1/PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md`
 - Kaggle rules triage / draft license map：`phase1/KAGGLE_RULES_TRIAGE_V11_20260902.md` / `phase1/licenses_v11_draft.json`
+- provider provenance/terms triage：`phase1/PROVIDER_PROVENANCE_AND_TERMS_TRIAGE_V11_20260902.md` /
+  `phase1/provider_terms_v11_draft.json`
 - decision audit：`phase1/results/decision_corpus_audit_v11_20260814/`
 - source provenance：`phase1/results/v11_source_provenance_audit_20260814/`
 - choice-fragment boundary：`phase1/results/raw_choice_set_completeness_v11_20260815_6610618/`

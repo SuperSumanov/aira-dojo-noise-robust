@@ -1,0 +1,23 @@
+{
+  "protocol": "release-provider-provenance-inventory-v1",
+  "status": "FROZEN_BEFORE_FORMAL_METADATA_RUN",
+  "question": "Which immutable v11 batches have provider/model annotations sufficient to route provider-output terms review, and which remain provenance-blocked?",
+  "inputs": [
+    "phase1/corpus_releases/v11.json",
+    "phase1/corpus_releases/batch_registry.json",
+    "phase1/corpus_manifest.txt",
+    "phase1/generator_versions.json"
+  ],
+  "allowed_reads": "release and batch metadata only; no card payload",
+  "outputs": "batch-level public metadata, aggregate row/byte coverage, input hashes, and independent verification receipt",
+  "failure_conditions": [
+    "batch lock or ordered manifest mismatch",
+    "duplicate provider annotation",
+    "annotation outside the v11 selected prefix",
+    "producer/verifier mismatch"
+  ],
+  "interpretation": "This inventory routes legal review. It does not interpret provider terms and cannot clear the release.",
+  "counts_as_distinct_claim_evidence": false,
+  "prospective_resources_read": false,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

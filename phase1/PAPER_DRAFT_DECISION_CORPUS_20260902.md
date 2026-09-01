@@ -313,9 +313,13 @@ failure, and retention all influence the observed population.
 
 The v11 schema is machine-inventoried, but data release is not yet legally or
 content-cleared. Prepared-data matching currently covers 23 of 25 tasks. All 25
-official competition rules pages have been triaged, but seven compact legacy pages,
-two nonstandard detailed templates, provider-output terms, final licenses/notices,
-and privacy/path scanning remain release gates. Immutable historical batches are
+official competition rules pages have been triaged, but seven compact legacy pages
+and two nonstandard detailed templates still require institutional interpretation.
+A metadata-only provider inventory maps 24 of 29 immutable batches (9,901 of 16,012
+rows) to a provider family; five batches (6,111 rows) remain unmapped, and the two
+Qwen-annotated batches lack a collection-time contracting entity and terms record.
+Provider-output terms, final licenses/notices, and privacy/path scanning therefore
+remain release gates. Immutable historical batches are
 never silently edited. If sanitation
 is required, a new append-only successor and receipt are created while the affected
 version remains documented.

@@ -1,0 +1,70 @@
+{
+  "schema_version": "decision-corpus-provider-terms-triage-v1",
+  "audit_date": "2026-09-02",
+  "status": "PARTIAL_NOT_RELEASE_CLEARED",
+  "inventory": {
+    "path": "phase1/results/release_provider_provenance_v11_20260902/inventory.json",
+    "sha256": "88df63ed0434ba10f4eaa2c9965735c70b61a750026d290372415321834b550a",
+    "release_batches": 29,
+    "release_rows": 16012,
+    "mapped_batches": 24,
+    "mapped_rows": 9901,
+    "unmapped_batches": 5,
+    "unmapped_rows": 6111
+  },
+  "providers": [
+    {
+      "provider": "DeepSeek",
+      "annotated_groups": [
+        "ds-flash-v1",
+        "ds-flash-v2",
+        "ds-flash-ambiguous"
+      ],
+      "batches": 22,
+      "rows": 9857,
+      "official_terms_url": "https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html",
+      "terms_release_date": "2026-04-22",
+      "terms_effective_date": "2026-04-29",
+      "triage": {
+        "api_specific": true,
+        "output_rights_assignment_observed": true,
+        "academic_and_derivative_use_observed": true,
+        "user_input_output_rights_responsibility_observed": true,
+        "third_party_rights_cleared": false,
+        "dataset_license_compatibility_cleared": false
+      },
+      "status": "PARTIAL_REQUIRES_INSTITUTIONAL_LEGAL_REVIEW"
+    },
+    {
+      "provider": "Alibaba Cloud Model Studio / Bailian",
+      "annotated_groups": [
+        "qwen3-coder-flash"
+      ],
+      "batches": 2,
+      "rows": 44,
+      "official_mainland_terms_url": "https://terms.alicdn.com/legal-agreement/terms/common_platform_service/20230728213935489/20230728213935489.html",
+      "official_international_terms_url": "https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-product-terms-of-service-v-3-8-0",
+      "current_mainland_terms_effective_date": "2026-09-02",
+      "historical_collection_range_documented_by_git": "2026-08-04_to_2026-08-07",
+      "triage": {
+        "contracting_entity_or_account_region_recorded": false,
+        "collection_time_terms_snapshot_recorded": false,
+        "current_output_use_or_ip_clause_observed": true,
+        "current_competing_product_training_restriction_observed": true,
+        "current_terms_sufficient_for_historical_clearance": false,
+        "dataset_license_compatibility_cleared": false
+      },
+      "status": "BLOCKED_CONTRACT_ENTITY_AND_COLLECTION_TIME_TERMS"
+    },
+    {
+      "provider": null,
+      "annotated_groups": [],
+      "batches": 5,
+      "rows": 6111,
+      "status": "BLOCKED_PROVIDER_PROVENANCE_UNMAPPED"
+    }
+  ],
+  "release_cleared": false,
+  "legal_advice": false,
+  "counts_as_distinct_claim_evidence": false
+}

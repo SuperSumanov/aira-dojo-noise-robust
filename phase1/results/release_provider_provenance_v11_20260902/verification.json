@@ -1,0 +1,24 @@
+{
+  "card_payloads_read": false,
+  "coverage": {
+    "exact_version_or_model_batches": 23,
+    "exact_version_or_model_rows": 9794,
+    "mapped_batches": 24,
+    "mapped_rows": 9901,
+    "unmapped_batches": 5,
+    "unmapped_rows": 6111,
+    "version_boundary_ambiguous_batches": 1,
+    "version_boundary_ambiguous_rows": 107
+  },
+  "inventory_sha256": "88df63ed0434ba10f4eaa2c9965735c70b61a750026d290372415321834b550a",
+  "protocol": "release-provider-provenance-independent-verification-v1",
+  "release": {
+    "batch_lock_sha256": "e5d971d422d07e08a7ba8cd7785d21c10cb19ccda8ae5fe5c75ffa1f249fb0e2",
+    "batches": 29,
+    "release_commit": "306bfa25633e713edd98d0a49675bfa2c1e6281c",
+    "rows": 16012,
+    "version": "v11"
+  },
+  "release_cleared": false,
+  "status": "PASS"
+}

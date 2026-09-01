@@ -121,6 +121,23 @@ private-file resume test：runner 继承系统 umask 后，其 pytest 临时文�
 因此它同样在 cards/source scan 前 rc=`1` fail-closed，producer/verifier/readout=`0/0/0`。第四次只允许在任何 artifact
 创建前恢复项目 formal runner 的标准 `umask 077`，新增顺序契约测试；不得跳过该失败测试，仍须新 commit/root。
 
+## 0L3. 2026-09-02 v11 provider provenance 已精确量化；38.165126% rows 因未映射仍阻塞条款 clearance
+
+为关闭 0L0 允许的 provider/license release blocker，新增 metadata-only provider inventory；它绑定 v11 release
+descriptor、ordered 29-batch registry/manifest 与既有 `generator_versions.json` 四个输入，不打开任何 card payload。
+producer 与不导入 producer 的 verifier 分别重算 batch lock、映射唯一性、rows/bytes 与输入 hash；focused=`5 passed`，
+formal inventory/verifier SHA-256=`88df63ed...b550a` / `66459ae...62f5b`，逐项一致。
+
+29 批/16,012 行中，provider family mapped=`24/9,901`（61.834874%）；exact annotated version/model=
+`23/9,794`；DeepSeek 静默版本边界 ambiguous=`1/107`；provider unmapped=`5/6,111`（38.165126%）。未映射的是
+`cards_senior_0805seq/0808/0809/0810/0811`，禁止按文件名或日期猜 provider。官方条款初筛显示：DeepSeek API
+专用条款在采集前已生效且含 output rights assignment/academic use，但不清除第三方与 Kaggle 权利；Qwen 两批没有
+collection-time account region/contract entity/terms 记录，当前大陆协议 2026-09-02 才生效，晚于 2026-08-04--08-07
+采集窗口，不能追溯替代。故 provider gate 仍是 `PARTIAL_NOT_RELEASE_CLEARED`；需要学长补无密钥 producer 元数据和
+机构/法律 review，证据缺失则相关 rows 进入 withheld tier。GPU/API/model fit/base update=`0/0/0/0`，prospective
+value/identity read=`false/false`，`counts_as_distinct_claim_evidence=false`。见
+`phase1/PROVIDER_PROVENANCE_AND_TERMS_TRIAGE_V11_20260902.md`。
+
 ## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
 
 为把 0KI/0KV/0KW 与 zero-checkpoint 审计转成一条可直接写进论文的数据工程结论，本节只做**事后逻辑合成**，

@@ -1,0 +1,380 @@
+{
+  "annotation_notes": {
+    "deepseek_version_boundary": "gen2C/gen2D/t3c*/t3g* collected 0730, gen3A and t3gB span 0731; the flip day itself is uncertain to +-1 day, treat 0730-0731 collections as version-ambiguous in analyses",
+    "general": "deepseek-v4-flash was silently updated server-side around 0730/0731; config model_id never changed - the version axis exists ONLY via this annotation. Senior batches are dated by upload day. Our gen2*/gen3* batches were INTENDED as qwen3-coder-flash / glm-5 but a launcher bug (PC_CLIENT never referenced, client configs missing) ran them all on deepseek-v4-flash - see commit e1abb9d. They are reassigned below by their true collection dates. No real second-generator data exists yet; the qwen/glm keys are kept empty until genuinely collected."
+  },
+  "batches": [
+    {
+      "annotation_group": "ds-flash-v1",
+      "annotation_status": "annotated-version",
+      "bytes": 12059716,
+      "file": "cards_ours_20260727.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 1072,
+      "sha256": "2a1f7b4315f81ac0edebb673c981edc8d4b243fba03efbb54113b4f21d3fd2f3"
+    },
+    {
+      "annotation_group": "ds-flash-v1",
+      "annotation_status": "annotated-version",
+      "bytes": 1241216,
+      "file": "cards_senior_0724.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 93,
+      "sha256": "2eeabd990c8a53c9a24602bc733300dfe8f5f117e2448d4d41b669685b417ca1"
+    },
+    {
+      "annotation_group": "ds-flash-v1",
+      "annotation_status": "annotated-version",
+      "bytes": 15191641,
+      "file": "cards_senior_0726.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 768,
+      "sha256": "fb38ab31976d4399f216cf8094b6707d0a4d98b393c5ac749e65d363704ad451"
+    },
+    {
+      "annotation_group": "ds-flash-v1",
+      "annotation_status": "annotated-version",
+      "bytes": 3884194,
+      "file": "cards_senior_0727.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 229,
+      "sha256": "dace17d497ca330c90fa6c4ee8dd1f0f8fcdac60cef923e9d9a852b516e92882"
+    },
+    {
+      "annotation_group": "ds-flash-v1",
+      "annotation_status": "annotated-version",
+      "bytes": 13856467,
+      "file": "cards_senior_0728.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 672,
+      "sha256": "8ddc4e6230bd9ec797cc8d256b0ddbfb754d43bd443f37e9b88cd4ebd0b04e65"
+    },
+    {
+      "annotation_group": "ds-flash-v1",
+      "annotation_status": "annotated-version",
+      "bytes": 4135758,
+      "file": "cards_senior_0729.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 243,
+      "sha256": "172c44cd005cffd747deed7946af25ddb59918f7d5ab8dec556d2215d5eea50a"
+    },
+    {
+      "annotation_group": "ds-flash-v1",
+      "annotation_status": "annotated-version",
+      "bytes": 15726823,
+      "file": "cards_senior_0730.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 1097,
+      "sha256": "4c4e0a633ae5b6c79df0ced0cb91275826949084a3a18e8155084de9301412cb"
+    },
+    {
+      "annotation_group": "ds-flash-v2",
+      "annotation_status": "annotated-version",
+      "bytes": 8477410,
+      "file": "cards_senior_0731.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 404,
+      "sha256": "e5788a053682470766781d2da72108af96990711acd342ac1cd6a65026d2650c"
+    },
+    {
+      "annotation_group": "ds-flash-v2",
+      "annotation_status": "annotated-version",
+      "bytes": 32357110,
+      "file": "cards_senior_0801.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 2437,
+      "sha256": "1c6e2911bda95b3fa70b169c06bc397708a3967b077abe19393e7fe1e0fefa43"
+    },
+    {
+      "annotation_group": "ds-flash-v1",
+      "annotation_status": "annotated-version",
+      "bytes": 529938,
+      "file": "cards_gen2A.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 41,
+      "sha256": "0b8c622512aa4da2cbe728627e6074c4414df549a52d1496452a10fdf3ea6208"
+    },
+    {
+      "annotation_group": "ds-flash-v1",
+      "annotation_status": "annotated-version",
+      "bytes": 226521,
+      "file": "cards_gen2B.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 28,
+      "sha256": "193fb4af38d9860a64c69a9e9730f7988f3b29ca5534a6b3477b09326a67dd99"
+    },
+    {
+      "annotation_group": "ds-flash-v1",
+      "annotation_status": "annotated-version",
+      "bytes": 530784,
+      "file": "cards_gen2C.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 35,
+      "sha256": "3c92925ccdfe93502a413971824f9df569ccb5c11f7a50d0e64d7b030b1b2085"
+    },
+    {
+      "annotation_group": "ds-flash-v1",
+      "annotation_status": "annotated-version",
+      "bytes": 187093,
+      "file": "cards_gen2D.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 21,
+      "sha256": "55f77738f74f198d913b0bdef920f17c10ffcbb83aa0b486cbe864d791e5ec5c"
+    },
+    {
+      "annotation_group": "ds-flash-v2",
+      "annotation_status": "annotated-version",
+      "bytes": 784198,
+      "file": "cards_gen3A.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 50,
+      "sha256": "b5dedc34bc66d3fc2c98b9df208a6deae7fbff283bb5268f47f8f994f82d2ce3"
+    },
+    {
+      "annotation_group": "ds-flash-v2",
+      "annotation_status": "annotated-version",
+      "bytes": 10123206,
+      "file": "cards_senior_0802.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 333,
+      "sha256": "eae308c9e3501f8cf0b55c164e5ef3080b5fab0299cf4d82e75a19759242040a"
+    },
+    {
+      "annotation_group": "ds-flash-ambiguous",
+      "annotation_status": "version-boundary-ambiguous",
+      "bytes": 974391,
+      "file": "cards_t3era_missing.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 107,
+      "sha256": "64b2b9fe7afb6ccac2d0f185faa96ecbdaabeb6de9404de02751043abfacdc47"
+    },
+    {
+      "annotation_group": "ds-flash-v2",
+      "annotation_status": "annotated-version",
+      "bytes": 1680747,
+      "file": "cards_senior_0803.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 93,
+      "sha256": "a30fa11a7a8c99e1dff78675974f9622adc9409f71c361c6e52f01d796d23567"
+    },
+    {
+      "annotation_group": "ds-flash-v2",
+      "annotation_status": "annotated-version",
+      "bytes": 4103425,
+      "file": "cards_deepA.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 146,
+      "sha256": "deb458716e7a5cfab961fadc37b1bd7cdecb285454490acb1d2387b4fd30c3e0"
+    },
+    {
+      "annotation_group": "qwen3-coder-flash",
+      "annotation_status": "annotated-model",
+      "bytes": 135282,
+      "file": "cards_gen2VAL.jsonl",
+      "model": "qwen3-coder-flash",
+      "provider": "Alibaba Cloud Model Studio",
+      "rows": 11,
+      "sha256": "c2f391eac032621f2967b5b19717af94ee8dd8a764ea605e03ff3c67920ac256"
+    },
+    {
+      "annotation_group": "ds-flash-v2",
+      "annotation_status": "annotated-version",
+      "bytes": 6609953,
+      "file": "cards_senior_0804.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 386,
+      "sha256": "3e535c6b8d27cc0916e5918789b28c29e96cf28d334f658502aa3e94359a56b2"
+    },
+    {
+      "annotation_group": "ds-flash-v2",
+      "annotation_status": "annotated-version",
+      "bytes": 7941769,
+      "file": "cards_deepB2.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 280,
+      "sha256": "a59087a43b18746717aadc4fd4476888ce338e0dc6229107efc141207c06d0f9"
+    },
+    {
+      "annotation_group": "qwen3-coder-flash",
+      "annotation_status": "annotated-model",
+      "bytes": 317461,
+      "file": "cards_gen2VALb.jsonl",
+      "model": "qwen3-coder-flash",
+      "provider": "Alibaba Cloud Model Studio",
+      "rows": 33,
+      "sha256": "3c50cd18ca9ad6c66e07adba0234cc0750918a9abe27d2f787422039a694c242"
+    },
+    {
+      "annotation_group": null,
+      "annotation_status": "unmapped",
+      "bytes": 17972148,
+      "file": "cards_senior_0805seq.jsonl",
+      "model": null,
+      "provider": null,
+      "rows": 854,
+      "sha256": "9cd584ea34dfd97d4428c845946e3e3af0ffed2c4ddbdcd7907dff057a06898c"
+    },
+    {
+      "annotation_group": "ds-flash-v2",
+      "annotation_status": "annotated-version",
+      "bytes": 18499992,
+      "file": "cards_senior_0806.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 892,
+      "sha256": "007a47b49cf26b9e85234cb52a242f3044fa82aa15e24f4878617def25980c41"
+    },
+    {
+      "annotation_group": "ds-flash-v2",
+      "annotation_status": "annotated-version",
+      "bytes": 5646130,
+      "file": "cards_senior_0807.jsonl",
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 430,
+      "sha256": "cf881a2a33d1433f572f9d5126d7658846d3898766c2ba1954b277bfa26faa0c"
+    },
+    {
+      "annotation_group": null,
+      "annotation_status": "unmapped",
+      "bytes": 30365420,
+      "file": "cards_senior_0808.jsonl",
+      "model": null,
+      "provider": null,
+      "rows": 1628,
+      "sha256": "0ac66d13625abb8ed51d44592d4b22c81c4ef18498f7a6a1d5102497a2c7ff6a"
+    },
+    {
+      "annotation_group": null,
+      "annotation_status": "unmapped",
+      "bytes": 56424624,
+      "file": "cards_senior_0809.jsonl",
+      "model": null,
+      "provider": null,
+      "rows": 1940,
+      "sha256": "133500c0fd731201bde35f44598ada17430684ed2b762326ae006101722a3094"
+    },
+    {
+      "annotation_group": null,
+      "annotation_status": "unmapped",
+      "bytes": 15001311,
+      "file": "cards_senior_0810.jsonl",
+      "model": null,
+      "provider": null,
+      "rows": 835,
+      "sha256": "f273637fba2ec93f1c354d4ce06412e98c3ddd76c8eeac0ce8040442903a52dc"
+    },
+    {
+      "annotation_group": null,
+      "annotation_status": "unmapped",
+      "bytes": 18241949,
+      "file": "cards_senior_0811.jsonl",
+      "model": null,
+      "provider": null,
+      "rows": 854,
+      "sha256": "592c4f26dc132e4116011819622efc5327cb6a2c62b94b32a1fc6df1094f05c7"
+    }
+  ],
+  "coverage": {
+    "exact_version_or_model_batches": 23,
+    "exact_version_or_model_rows": 9794,
+    "mapped_batches": 24,
+    "mapped_rows": 9901,
+    "unmapped_batches": 5,
+    "unmapped_rows": 6111,
+    "version_boundary_ambiguous_batches": 1,
+    "version_boundary_ambiguous_rows": 107
+  },
+  "groups": {
+    "ds-flash-ambiguous": {
+      "annotation_status": "version-boundary-ambiguous",
+      "batches": 1,
+      "bytes": 974391,
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 107
+    },
+    "ds-flash-v1": {
+      "annotation_status": "annotated-version",
+      "batches": 11,
+      "bytes": 67570151,
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 4299
+    },
+    "ds-flash-v2": {
+      "annotation_status": "annotated-version",
+      "batches": 10,
+      "bytes": 96223940,
+      "model": "deepseek-v4-flash",
+      "provider": "DeepSeek",
+      "rows": 5451
+    },
+    "glm-5": {
+      "annotation_status": "annotated-model",
+      "batches": 0,
+      "bytes": 0,
+      "model": "glm-5",
+      "provider": "Zhipu AI",
+      "rows": 0
+    },
+    "qwen3-coder-flash": {
+      "annotation_status": "annotated-model",
+      "batches": 2,
+      "bytes": 452743,
+      "model": "qwen3-coder-flash",
+      "provider": "Alibaba Cloud Model Studio",
+      "rows": 44
+    }
+  },
+  "input_sha256": {
+    "batch_registry": "143401a2ea41a9dda40f115c99e64ed361901e4e3f37994478aa1132ea0be955",
+    "generator_annotations": "47653bb9c6e46b5ad5f317f71c05841dced7f2e6893ea82b03781e4bb0018063",
+    "ordered_manifest": "54e3c0ff30f45fab327df67645dff6068e33f7ee939bdc4a7e1198d1c635a8ef",
+    "release_descriptor": "04398a75698d8e58bf8c13d1e8a0c6a0801fb3a644b00325245ec67a44301ddd"
+  },
+  "protocol": "release-provider-provenance-inventory-v1",
+  "release": {
+    "batch_lock_sha256": "e5d971d422d07e08a7ba8cd7785d21c10cb19ccda8ae5fe5c75ffa1f249fb0e2",
+    "batches": 29,
+    "release_commit": "306bfa25633e713edd98d0a49675bfa2c1e6281c",
+    "rows": 16012,
+    "version": "v11"
+  },
+  "scope": {
+    "card_payloads_read": false,
+    "counts_as_distinct_claim_evidence": false,
+    "labels_or_predictions_read": false,
+    "prospective_resources_read": false,
+    "provider_terms_interpreted": false,
+    "release_cleared": false
+  },
+  "status": "PARTIAL_NOT_RELEASE_CLEARED",
+  "unmapped_batch_files": [
+    "cards_senior_0805seq.jsonl",
+    "cards_senior_0808.jsonl",
+    "cards_senior_0809.jsonl",
+    "cards_senior_0810.jsonl",
+    "cards_senior_0811.jsonl"
+  ]
+}

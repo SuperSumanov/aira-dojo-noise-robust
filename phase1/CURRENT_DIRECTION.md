@@ -30,8 +30,17 @@ payload 只做 hash，GPU/API/model fit/base update=`0/0/0/0`。
 SHA/lines/tail=`0e444525...8c47/22/494`、当前 LATEST=`e9e12c63...8a6d`、formal 根完整且只读、monitor 锁空闲及
 所有候选/失败标记仍为空时，把 exact extension（SHA-256=`d998e8a3...8da9`）在同目录临时文件验证为
 29 lines / 517 runs / `02774632...170f` 后原子替换，再调用旧根保存的 exact source script `resume`。协议 / safe receipt /
-resume script SHA-256=`81f04069...22d4` / `078a0c8b...ca71` / `6e91660d...a7f8`。当前仍停在 append 前；部署后必须
-独立核验 PID、cmdline、锁、TIMEOUT 删除、无 CONTINUITY_GAP，并保持结果盲。
+resume script SHA-256=`81f04069...22d4` / `078a0c8b...ca71` / `6e91660d...a7f8`。该结果前状态由公开
+commit=`b407182e8d61ac31cbae0212c0864d491c735b7a` 固定。
+
+同一提交的 fresh nosmudge worktree 通过 script/JSON/hash/security、focused=`8 passed` 后执行原子追加；旧 ledger 精确成为
+29 lines / 517 runs / SHA-256=`02774632...170f`。旧 exact source script 的 `resume` 已上线为 PID=`2930562`，独立
+postdeploy 证明 cmdline、锁、TIMEOUT 删除、无 FAILED/CONTINUITY_GAP，仍差 5 runs。当前优先下游 Stage-A 与只读
+contrast-rank watcher 也只按各自旧 exact source/commit 从自然 TIMEOUT 恢复为 PID=`2931879/2931942`，三把锁均 held；
+它们在 selection/Stage-A COMPLETE 前只读 marker existence。postdeploy safe receipt 已逐项固定，prospective values、候选
+profile/private identity 仍未读；receipt SHA-256=`e06e1e70...64ea`。更早 within/lineage/selective watcher 的旧
+`FAILED_RC` 未删除，也未擅自恢复；其恢复需另立
+upstream-timeout amendment，不能混入本次 Stage-A/rank 续接。
 
 ## 0KO. 2026-09-01 Target-522 超时缺口恢复已在读取七个 successor counts 前冻结
 

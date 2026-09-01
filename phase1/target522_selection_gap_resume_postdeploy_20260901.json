@@ -1,0 +1,34 @@
+{
+  "candidate_identity_or_profile_read": false,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+  "outcomes_or_prediction_values_read": false,
+  "protocol": "target522-selection-gap-resume-postdeploy-v1",
+  "release_commit": "b407182e8d61ac31cbae0212c0864d491c735b7a",
+  "selection": {
+    "gap_recovery_applied_sha256": "f24e384761b019edfffc5818d4cb145041d6da65d0a33e1529fadba1b3e01a43",
+    "gap_recovery_preflight_sha256": "6219a8e67ff331ca0c0dda69654abc29b44e18d0b0e2bd885adfe2a7fc74a848",
+    "gap_recovery_resume_receipt_sha256": "b727028647597a339d6e6b019e5bb668f71cfb8566110882f836dec304956302",
+    "gap_recovery_static_manifest_sha256": "b91578034234e1f02c491b7c5d2c7f6740836b3c050f7e0331ba23dac897d9c5",
+    "lock_held": true,
+    "observed_lines": 29,
+    "observed_sha256": "0277463211df467fb241776d975b4afab0133009f75f8b9cd53d15785341170f",
+    "pid": 2930562,
+    "remaining_runs": 5,
+    "runs": 517,
+    "target_runs": 522
+  },
+  "stage_a": {
+    "context_receipt_sha256": "eec0154fa8528e9d75a8befd2861bcec0dafb7a696f1aec8029446e22928f508",
+    "lock_held": true,
+    "pid": 2931879,
+    "status": "RESUMED_WAITING_FOR_SELECTION_COMPLETE"
+  },
+  "status": "TARGET522_SELECTION_AND_STAGEA_RANK_WATCHERS_RESUMED",
+  "structural_rank": {
+    "context_receipt_sha256": "eec0154fa8528e9d75a8befd2861bcec0dafb7a696f1aec8029446e22928f508",
+    "lock_held": true,
+    "pid": 2931942,
+    "status": "RESUMED_WAITING_FOR_STAGE_A_COMPLETE"
+  },
+  "timeouts_preserved_in_context_receipts": true
+}

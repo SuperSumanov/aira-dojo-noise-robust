@@ -23,9 +23,12 @@ micro and 98.0% task-macro. Under a pinned CPU deployment protocol, lightweight
 predictor queries are 4,048--6,037 times cheaper than median candidate execution.
 We further show that balancing collected runs need not balance decision pairs:
 task-specific decision-opportunity yield changes the benchmark estimand and reverses
-the temporal direction of run-level and pair-level concentration. A sealed,
-append-only chronological cohort currently contains 517 eligible runs, while its
-labels and prediction values remain hidden pending preregistered closure.
+the temporal direction of run-level and pair-level concentration. A frozen
+competition-data screen conservatively routes 15,174 of 16,012 historical cards
+(94.766425%) to further legal/privacy content review and 838 to structure-only
+release; this is not release clearance. A sealed, append-only chronological cohort
+currently contains 559 eligible runs, while its labels and prediction values remain
+hidden pending preregistered closure.
 **[SEALED: one-shot prospective common-support predictor table.]** Decision Corpus
 turns critic evaluation for ML-agent search into a versioned, cost-aware, and
 leakage-resistant measurement problem, and releases reconstruction manifests,
@@ -183,9 +186,11 @@ outcome-independent accrual-closure receipt. Intake is append-only and validates
 archive hashes, source/run/endpoint identity, and cross-batch duplication before
 promotion. Fixed models write prediction escrow without opening the label vault.
 The one-time evaluation may occur only after the identity cohort and closure receipt
-are fixed. At the current structural snapshot, 283 archives yield 517 eligible runs;
-the fixed scorer preserves all 494 previously covered runs after 23 additions. These
-are structural statements only, not interim performance estimates.
+are fixed. At the current structural snapshot, 296 source archives yield 559 eligible
+runs, 14,383 endpoints, and 3,447 structural pairs across 45 tasks. The cohort is 401
+runs short of its first-960 target and has no closure receipt. These are structural
+statements only, not interim performance estimates; no outcome, label, prediction,
+candidate identity, or private profile was opened to produce them.
 
 ## 4. Predictor Benchmark
 
@@ -312,7 +317,15 @@ model pretraining. Generator, operator, hardware, time, task difficulty, executi
 failure, and retention all influence the observed population.
 
 The v11 schema is machine-inventoried, but data release is not yet legally or
-content-cleared. Prepared-data matching currently covers 23 of 25 tasks. All 25
+content-cleared. The frozen content scan covers prepared data for 23 of 25 tasks and
+tests 3,766,518 fixed high-entropy patterns. It finds 173 matched patterns affecting
+419 cards, while the two unscanned tasks contain another 419 cards. A rule frozen
+before task/card disposition therefore routes 15,174 cards to later content review
+and 838 to structure-only release, withholding both code and stdout for every
+matched or unscanned card. Producer A/B, an independently implemented verifier, and
+an independent postflight reconstruction are byte-exact. “Content-review eligible”
+is deliberately not called clean or cleared: raw-match adjudication, the two missing
+prepared sources, credential/PII/path checks, and legal review remain. All 25
 official competition rules pages have been triaged, but seven compact legacy pages
 and two nonstandard detailed templates still require institutional interpretation.
 A metadata-only provider inventory maps 24 of 29 immutable batches (9,901 of 16,012
@@ -355,7 +368,8 @@ benchmark for predictors and, equally, a benchmark for the claims made about the
 - Label agreement: `label_repeatability`.
 - Cost ratios: `deployment_cost`.
 - Pair-weight shift: `structural_weighting_shift`.
-- Prospective structural counts: `prospective_wl_snapshot_chain_517`.
+- Prospective structural counts: `prospective_structural_status_receipt_20260902.json`;
+  outcome/label/prediction/identity/profile remain sealed.
 - Structural gate scope: `archive_rejection_support_census` and the derived utility
   certificate; do not count the latter as distinct evidence.
 - Table 1--3 copy-ready material: `PAPER_TABLES_1_3_DRAFT_20260902.md`.
@@ -365,4 +379,7 @@ benchmark for predictors and, equally, a benchmark for the claims made about the
   this is release engineering, not scientific-claim evidence or clearance.
 - Rules triage: `KAGGLE_RULES_TRIAGE_V11_20260902.md` and
   `licenses_v11_draft.json`; this is not legal clearance.
+- Content scan/tiering: `release_content_scan_postflight_receipt_20260902.json` and
+  `release_content_tier_postflight_receipt_20260902.json`; these are release
+  engineering evidence, not predictor-effect evidence or release clearance.
 - Claim-withdrawal appendix: `PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md`.

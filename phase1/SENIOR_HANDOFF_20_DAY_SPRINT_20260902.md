@@ -8,11 +8,11 @@
 
 ## 当前结构状态
 
-- 学长 source=`283` archives；prospective eligible=`517` physical runs；Target-522 只差 `5` runs。
-- first-960 还差 `443` runs。按你之前说的理想 60 runs/day，条件点估计是 `7.383333` 天；上传节奏和 eligible
+- 学长 source=`296` archives；prospective first-960 provisional=`559` physical runs；Target-522 结构目标已达到。
+- first-960 还差 `401` runs。按你之前说的理想 60 runs/day，条件点估计是 `6.683333` 天；上传节奏和 eligible
   rate 会使它变化。
-- fixed WL scorer 的 current common support=`13,098` endpoints / `3,230` pairs；494→517 增加 23 runs、删除 0，
-  prior rows 逐字节保留。
+- 最新 outcome-blind snapshot=`bf7674a4...ce0d6`，结构计数为 14,383 endpoints / 3,447 pairs / 45 tasks；
+  closure 仍未提供，canonical config-v2 sidecar 仍为 0。
 - first-960、Target-300、Target-522 的 label/outcome/prediction values/accuracy/utility 仍未读取。
 - 你当前 `dojo-reproduce` head 仍为 `5baccb170ce287f9c8eed7b23ccf693a0268515a`；outcome 目录相对该 head 没有新增。
 
@@ -36,6 +36,20 @@ endpoints。唯一没有 accepted support 的 competition 对应 zero-checkpoint
 - 当前数据卡草稿：`phase1/DATACARD_DECISION_CORPUS_DRAFT_20260902.md`
 - claim ledger：Evidence Index v10，20 项 distinct entries；support-floor reconstruction 与 gate certificate 均不重复计数。
 - 旧 `paper.tex` 已标为历史 “Decodable but Not Usable” 稿，不再延续。
+
+### 3. v11 内容扫描保守隔离后，94.766425% cards 仍可进入后续审查
+
+v11 的 16,012 cards 已用冻结阈值对 23/25 prepared tasks 做全量 code-literal/comment + stdout 高熵逐字扫描：
+3,766,518 candidate patterns 中 173 个命中，影响 419 cards；两个尚无 prepared source 的任务另含 419 cards。
+在看到 task/card 分布前冻结的 whole-card rule 将两类都同时 withholding code+stdout，其余只标为
+`CONTENT_REVIEW_ELIGIBLE`。正式 tier 为 15,174 review-eligible / 838 structure-only（94.766425% / 5.233575%）。
+
+scan 与 tier 分别通过 exact-commit、producer A/B、独立 verifier A/B、2,029/2,063 full tests、file/network/security gate
+和独立 postflight 重建。这个结果说明保守隔离不会把大部分结构资产一起丢掉，是正面的 release-engineering 资产；但
+review-eligible 不等于 clean/cleared，仍需补两个 source、私下审查 173 matches、credential/PII/path 与法律门。
+
+Target-522 的 Stage-A/rank 兼容链也已收口，但预注册支持要求不足，正式为 `LIMITED_SUPPORT`，既非正也非负；我们不做
+事后阈值/分区 rescue，也不让它占用 20 天冲刺主力。
 
 ## 当前最关键阻塞：真实 producer sidecar 仍为 0
 

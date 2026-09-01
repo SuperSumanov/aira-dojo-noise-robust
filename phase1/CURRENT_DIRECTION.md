@@ -21,11 +21,14 @@
 数据卡、贡献表、撤回表和论文完整初稿。新的 CPU-only audit 只有在关闭数据可发布性、split/label 完整性、claim
 去重、前瞻 closure 或 scaling provenance 之一时才允许；对已发布 aggregate 的重新组合必须标为非独立证据。
 
-当前结构起点仍为 source archives / eligible runs=`283/517`，Target-522 还差 `5` runs，first-960 还差 `443` runs；
-按学长给出的理想生产速度 60 runs/day，后者条件点估计为 `7.383333` 天，不是进度保证。source 中 canonical
-`*.config_v2.jsonl` 仍为 `0`；state root 内只出现一个非 canonical、metadata-only 的 config-v2 相关文件，内容未读，
-不构成真实 producer sidecar。因而最大时限风险是学长尚未 review/apply 已验证的 producer hook；旧 archive 禁止事后
-回填，缺 provenance 的新 runs 不能用于 exact-stratum scaling confirmation。完整日程、kill 条件与防 scoop 定位见
+2026-09-02 最新 outcome-blind 结构状态为 source archives=`296`、first-960 provisional runs=`559/960`，尚差
+`401` runs；按学长给出的理想生产速度 60 runs/day，条件点估计为 `6.683333` 天，不是进度保证。LATEST=
+`bf7674a4a3aec4cde8eec3e3fec31f1410e0445e0096f8e9fada3fae8b0ce0d6`，closure 仍未提供；本次只读取
+runs/endpoints/pairs/tasks 结构计数，没有读取 outcome、label、prediction、identity 或 profile。Target-522 结构目标已达到；
+Stage-A v2 与 frozen rank v2 都完成 exact-commit/A-B/独立 postflight，但 rank 的预注册支持要求不足，正式分类为
+`LIMITED_SUPPORT`，既不算正也不算负，不允许事后 rescue。source 中 canonical `*.config_v2.jsonl` 仍为 `0`；因而最大
+时限风险仍是学长尚未 review/apply 已验证的 producer hook。旧 archive 禁止事后回填，缺 provenance 的新 runs 不能用于
+exact-stratum scaling confirmation。完整日程、kill 条件与防 scoop 定位见
 `phase1/TWENTY_DAY_POSITIVE_RESULT_SPRINT_20260902.md`；当前论文标题、摘要、贡献、主表/主图与 Evidence Index 路由见
 `phase1/PAPER_BLUEPRINT_DECISION_CORPUS_20260902.md`；数据发布事实、用途、偏差与未闭合许可/隐私门见
 `phase1/DATACARD_DECISION_CORPUS_DRAFT_20260902.md`。旧 `phase1/paper.tex` 已显式标为历史稿，不得继续作为当前论文；
@@ -81,7 +84,26 @@ metadata 仍未闭合。公开件见 `phase1/SCHEMA_DICTIONARY_DECISION_CORPUS_V
 mle-traj raw true-sibling recoverability 标为 unknown，把 13,581 structural endpoints 与 13,098 scorer-common-support
 endpoints 分开，并保持 Table 4/5 为 closure/scaling 条件槽；它是论文写作资产，不是新的实验结果。
 
-## 0L2. 2026-09-02 v11 release-content scan 已完成 13 项预注册，正式结果尚未产生
+## 0L2. 2026-09-02 v11 release-content scan 与保守 tier 已正式完成；94.766425% 仅进入后续审查候选
+
+公开 exact commit=`fc419323816fa953ce0023a9b3fc1fde01bf85e7` 的正式 scan 已通过：focused/full=
+`6/2,029 passed`（48 warnings），producer A/B 与不导入 producer 的 verifier A/B 逐字节一致，独立 postflight 再核
+exact commit、输入/输出 hash、trace、权限与 security 后 PASS。23/25 tasks 的 prepared text 共生成 `3,766,518`
+个固定高熵候选 pattern；命中 `173` 个 pattern，影响 `419` 张 cards，parser failures=`0`。另外两个未覆盖任务为
+`aptos2019-blindness-detection` 与 `histopathologic-cancer-detection`。raw source/matched span/card identity 未公开，
+prospective value/identity 未读，GPU/paid API/model fit/base update=`0/0/0/0`。正式动作是 private review + sanitized
+successor，而不是原地改 v11，也不是 release clearance。
+
+在只看到上述**全局**计数、尚未打开 task/card disposition 时，已冻结 whole-card tier rule：未扫描任务的全部 cards，
+以及任一 code/stdout field 命中的 card，均同时 withholding code 与 stdout；其余只标记为
+`CONTENT_REVIEW_ELIGIBLE`，不叫 clean/cleared。公开 exact commit=
+`313558945cb16f1bc14caff8ca8f30f4b23a859b` 的真实 16,012-card formal 通过 focused/full=`5/2,063 passed`
+（48 warnings）、producer A/B、独立 verifier A/B、file/network trace 和独立 postflight 重建。结果为 review-eligible /
+structure-only=`15,174/838`，即 exact fraction=`7,587/8,006`、decimal=`0.94766425181114167`；structure-only 的两项
+互斥来源恰为 matched-pattern / unscanned-task=`419/419`。这是当前最直接的正面 release-engineering 结果：保守隔离后
+大部分历史 cards 仍可进入后续法律/隐私内容审查；但 zero match 不是无泄漏证明，15,174 也不是获准发布。
+
+以下保留正式成功前的设计与失败链，供审计，不得用其中“尚未运行”措辞覆盖上面的最新裁决。
 
 schema 闭合后，当前最高价值的 CPU-only release blocker 是把 2026-08-08 只覆盖 v6/20 tasks 的 stdout 扫描升级到
 v11。metadata-only preflight 已确认 exact cards rows/bytes/SHA=`16,012/305,750,663/6794acbf...1b75`；25 个历史

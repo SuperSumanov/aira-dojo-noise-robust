@@ -70,8 +70,9 @@ children，但不能恢复未 retained child 的完整 numeric outcome。
 
 截至本卡时间：
 
-- source archives=`283`；eligible physical runs=`517`；first-960 还差 `443` runs；
-- fixed WL scorer 的 common support 为 13,098 endpoints、3,230 pairs；494→517 增加 23 runs、删除 0，旧行逐字节保留；
+- source archives=`296`；provisional first-960 physical runs=`559`；first-960 还差 `401` runs；
+- 当前结构 snapshot 为 14,383 endpoints、3,447 pairs、45 tasks；较早 fixed WL 517-run receipt 的 common support
+  为 13,098 endpoints、3,230 pairs，不能把未揭盲的新结构行自动冒充已评分 support；
 - broader eligible structural population 为 13,581 endpoints，与 13,098 scorer-common-support 是不同口径；
 - labels/outcomes/prediction values/accuracy/search utility 均保持封存；1,500 pairs 只是支持门，不是 stopping rule；
 - prospective labels 所在 withheld batch 在独立 release 决策前不得上传到 Git LFS。
@@ -154,15 +155,22 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 - run 数均衡不保证 pair 数均衡；高 branching/yield task 可主导 pair-micro。
 - source retention 不完整，且部分 historical physical runs 由 heuristic segmentation 得到。
 - task、run、parent、gap 与 generator/config strata 支持不均；所有结果必须同时报告 breadth、coverage 与 dominant share。
-- prospective cohort 仍未闭合，不能将当前 517-run prefix 当固定最终 population。
+- prospective cohort 仍未闭合，不能将当前 559-run prefix 当固定最终 population。
 
 ## 10. Privacy, security, and content risks
 
 现有流程对 archive 先做 credential-shape scan，命中则在远端内存流式脱敏后才允许读取；密钥不进本地/Git。公开前仍需
-完成全量 code/stdout 的 credential、cookie、绝对路径、个人标识与 competition-data contamination 扫描。
+对最终 release candidate 完成 credential、cookie、绝对路径与个人标识扫描，并保留双实现 receipt。
 
-2026-08-08 的旧 compliance 工作只对 v6 的 9,433 cards 做 prepared-data 逐字比对，发现并脱敏 19 张；当时两个图像
-任务的 245 cards 未扫。v11 已增长到 16,012 cards，因此旧结果**不能**升级为 v11 全量 clean receipt。
+2026-08-08 的旧 compliance 工作只对 v6 的 9,433 cards 做 prepared-data 逐字比对，发现并脱敏 19 张；它不能升级为
+v11 clean receipt。2026-09-02 的 v11 frozen scan 已覆盖 23/25 tasks、3,766,518 个固定高熵 pattern，命中 173 个
+pattern、影响 419 cards，另有两个未扫描任务共 419 cards。producer A/B、独立 verifier A/B 与独立 postflight 均通过。
+
+在看到 task/card disposition 前冻结的 whole-card rule 将任一命中 card 与全部未扫描-task cards 同时 withholding code
+和 stdout。正式 tier 为 content-review-eligible / structure-only=`15,174/838`，即 `94.766425%/5.233575%`；后者由
+matched-pattern / unscanned-task=`419/419` 构成。`CONTENT_REVIEW_ELIGIBLE` 只表示可进入下一轮法律/隐私审查，绝不表示
+clean、无泄漏或获准发布；raw match 仍需授权 reviewer 判定，两个缺失 prepared source 仍需补齐，必要时只能生成
+append-only sanitized successor，不能原地覆写 v11。
 
 ## 11. Licensing and release status
 
@@ -189,7 +197,7 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 
 | Gate | Status | Required closure |
 |---|---|---|
-| v11 16,012-card competition-data scan | BLOCKED | 对所有 prepared tasks 重跑高熵逐字扫描并独立验证 |
+| v11 16,012-card competition-data scan | PARTIAL / FORMALLY TIERED | 23/25 tasks 已双实现扫描并独立 postflight；15,174 review-eligible、838 structure-only。补两个 source、私下审查 173 matches，并生成 sanitized successor receipt |
 | credential/PII/path scan on final public fields | PARTIAL | 对精确 release candidate 做双实现零命中/脱敏 receipt |
 | 逐 competition 规则审计 | PARTIAL | 25/25 rule URLs 已初筛；简化/非标准模板与派生代码/score/tree 发布仍需机构/法律裁决 |
 | provider/model output terms by immutable batch | PARTIAL / 5 BATCHES BLOCKED | 24/29 批有 provider-family annotation；补齐 5 批/6,111 行 provenance、Qwen collection-time contract entity/terms，并做许可兼容裁决 |
@@ -225,3 +233,5 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 - value-free schema inventory：`phase1/results/release_schema_inventory_v11_20260902/`
 - Croissant/RAI readiness：`phase1/CROISSANT_RAI_READINESS_V11_20260902.md` /
   `phase1/results/croissant_rai_readiness_v11_20260902/`
+- v11 content scan/tier receipts：`phase1/release_content_scan_postflight_receipt_20260902.json` /
+  `phase1/release_content_tier_postflight_receipt_20260902.json`

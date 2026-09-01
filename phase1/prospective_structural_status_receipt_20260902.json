@@ -1,0 +1,21 @@
+{
+  "protocol": "prospective-outcome-blind-structural-status-receipt-v1",
+  "checked_at_utc": "2026-09-01T23:08:50Z",
+  "latest_snapshot_sha256": "bf7674a4a3aec4cde8eec3e3fec31f1410e0445e0096f8e9fada3fae8b0ce0d6",
+  "latest_accumulator_summary_sha256": "5c00320bae7b97c3c69212a545c5f7658ede9f37e5c8d7f8b41e3cb4be050b6f",
+  "source_archives": 296,
+  "snapshot_directories": 146,
+  "attempt_directories": 16,
+  "canonical_config_v2_sidecars": 0,
+  "provisional_first960": {
+    "runs": 559,
+    "endpoints": 14383,
+    "structural_pairs": 3447,
+    "tasks": 45,
+    "remaining_runs_to_960": 401
+  },
+  "closure_provided": false,
+  "intake_pid": 3451688,
+  "intake_live": true,
+  "outcome_label_prediction_identity_profile_read": false
+}

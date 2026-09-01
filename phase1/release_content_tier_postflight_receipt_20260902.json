@@ -1,0 +1,28 @@
+{
+  "cards": 16012,
+  "content_review_eligible_cards": 15174,
+  "content_review_eligible_fraction": {
+    "decimal_17g": "0.94766425181114167",
+    "denominator": 8006,
+    "numerator": 7587
+  },
+  "credential_hits": 0,
+  "formal_manifest_sha256": "6a2b2ad8821ee7cc93cd54c374afa3211a6a6f559bd155752fe6241356219e20",
+  "focused_tests_passed": 5,
+  "full_tests_passed": 2063,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+  "independent_verifier_rerun_byte_exact": true,
+  "network_calls": 0,
+  "producer_rerun_byte_exact": true,
+  "prospective_values_or_identities_read": false,
+  "protocol": "decision-corpus-release-content-tier-independent-postflight-v1",
+  "raw_card_ids_or_values_emitted": false,
+  "release_clearance": false,
+  "source_commit": "313558945cb16f1bc14caff8ca8f30f4b23a859b",
+  "status": "PASS_PENDING_EXTERNAL_RELEASE_GATES",
+  "structure_only_cards": 838,
+  "structure_only_due_matched_pattern": 419,
+  "structure_only_due_unscanned_task": 419,
+  "tier_summary_sha256": "6f3572e301d67a1d5bec49745271ee27cf645819419622db06e0ae533afd9515",
+  "verification_sha256": "c96632651b6f938ea4321bc157666e711260f3b3d3d0585f3887f29964c454d0"
+}

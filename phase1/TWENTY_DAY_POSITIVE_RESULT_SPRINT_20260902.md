@@ -6,8 +6,9 @@ clean critic scaling + 冻结前瞻确认**；同时把已经足够强的数据�
 
 ## 当前起点与唯一关键阻塞
 
-- 语料状态仍为 283 source archives、517 eligible runs；Target-522 只差 5 runs，first-960 还差 443 runs。
-- 按学长所说的理想生产速度 60 runs/day，443 runs 的条件点估计是 7.383333 天；这不是进度保证，上传和
+- 最新语料状态为 296 source archives、559 provisional first-960 runs；Target-522 结构目标已闭合，first-960 还差
+  401 runs。
+- 按学长所说的理想生产速度 60 runs/day，401 runs 的条件点估计是 6.683333 天；这不是进度保证，上传和
   eligible rate 都可能使其延长。
 - `config-v2` canonical sidecar 文件名数仍为 0。学长分支 `dojo-reproduce` 仍停在
   `5baccb170ce287f9c8eed7b23ccf693a0268515a`，最近没有新的 outcome 文档。
@@ -27,8 +28,8 @@ label 或 outcome，且已对学长当前 commit clean-apply 验证。若第 2 �
 
 1. 保持 intake、Target-300、Target-522、WL、receipt 与 config readiness 现有 watcher；只读 PID、锁、LATEST、hash
    和结构 marker。
-2. 新 archive 到达后，Target-522 由既有 selection 自动从 517 补到 522；随后只按已冻结 Stage-A / contrast-rank
-   链执行，独立 verifier 与只读门先于任何允许的 aggregate readout。
+2. Target-522 已按冻结 selection 闭合；Stage-A / contrast-rank v2 已 exact-commit/A-B/postflight 完成，但 frozen
+   支持要求不足，正式为 `LIMITED_SUPPORT`，不得重选 cohort、改阈值或 rescue。
 3. 不恢复旧 within/lineage/selective/yield/Probe/HCE/多保真/K≥1 路线，不为“再找一个小正数”改 cohort 或门。
 
 ### B. D1–D9：让 first-960 真正可用于 clean confirmation

@@ -37,8 +37,8 @@ internal evidence routing；prospective common-support 与 clean scaling 仍是�
 > raw and 98.0% task-macro ordering agreement, while lightweight predictor queries are 4,048--6,037 times cheaper than
 > median candidate execution under a pinned CPU protocol. We further show that balancing physical runs need not balance
 > decision pairs: opportunity-yield heterogeneity reverses the temporal direction of run-level and pair-level task
-> concentration. A sealed chronological cohort currently contains 517 eligible runs; its fixed scorer preserves all 494
-> prior runs after 23 additions, and labels and predictions remain hidden until the preregistered first-960 closure.
+> concentration. A sealed chronological cohort currently contains 559 eligible runs; its latest independently verified fixed-scorer
+> receipt remains the earlier 517-run prefix, while labels and predictions remain hidden until the preregistered first-960 closure.
 > **[CLOSURE SLOT: one-shot common-pool predictor table.] [OPTIONAL CONFIRMATION SLOT: clean 0.6B-to-8B scaling.]**
 > Decision Corpus turns critic evaluation for ML-agent search into a versioned, cost-aware, leakage-resistant measurement
 > problem and releases the data, reconstruction manifests, withdrawal ledger, and independent verifiers needed to audit it.
@@ -176,7 +176,7 @@ Table 1--3 的可粘贴正文草稿、caption 与 evidence routing 已写入
 | regrade raw 0.965860；task-macro 0.980181 | 10-task measured subset；transport ceiling 依赖 symmetry/exchangeability | `label_repeatability` |
 | predictor query p50 对 execution p50 低 4,048--6,037× | pinned CPU deployment path；不证明 search utility | `deployment_cost` |
 | run→pair TV 0.337083；yield 解释 HHI/TV 增量约 0.645/0.595 | 方向持续且 task-deletion robust；幅度被一个 drop 高 leverage | `structural_weighting_shift` |
-| 494→517 runs，+23/−0；13,098 endpoints、3,230 pairs 精确保留 | provisional append-only scorer support；未闭合 first-960 | `prospective_wl_snapshot_chain_517` |
+| 当前结构 559 runs / 14,383 endpoints / 3,447 pairs；latest fixed-scorer receipt 仍为 517-run prefix | provisional append-only structure；不能把未评分增量并入 scorer support；未闭合 first-960 | `prospective_structural_status_receipt_20260902.json` + `prospective_wl_snapshot_chain_517` |
 | 20 archives / 94 physical runs / 92 eligible runs / 2,558 endpoints 被 archive-granular gate 保留 | deterministic corpus-utility accounting，不是 online effect | `archive_granularity_retention` |
 | 14 reject events、7 competitions；6 retained support、1 zero-checkpoint trigger | post-hoc descriptive census；当前观测 last usable support elimination=0 | `archive_rejection_support_census` + derived gate certificate |
 

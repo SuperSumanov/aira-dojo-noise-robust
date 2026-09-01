@@ -1,0 +1,50 @@
+{
+  "protocol": "decision-corpus-generator-provenance-completion-independent-postflight-public-receipt-v1",
+  "status": "PASS_MODEL_ID_COMPLETE_PROVIDER_PARTIAL_NOT_RELEASE_CLEARED",
+  "source_commit": "186ca4b3e074891053a0e512168e89fddd7d80fb",
+  "formal_root": "/research/d7/spc/yzyang4/generator-provenance-completion-v1/formal-186ca4b-r1",
+  "postflight_root": "/research/d7/spc/yzyang4/generator-provenance-completion-v1/postflight-186ca4b-r1",
+  "protocol_sha256": "bbe895c5787a6a7cf583d6ff1868ee5d9c4922aa240b9a0f8146d74351fb208e",
+  "postflight_script_sha256": "0b5d5e72b180e43a7cdc09064d71ed2fe8629b4133ed88c03ac3d093c755abaa",
+  "postflight_receipt_sha256": "7e369bd7ca17e41c727c5830cb969c02c49446b4f69f0a80c3ff3b260245e7b5",
+  "formal_manifest_sha256": "86fe3c4933baf601aaafdc7be2daa281e9929182d94f9fa2f16ae94ccd447269",
+  "completion_summary_sha256": "3ba20307f59ea505a1934a19b0af9f05a89140d5c29f41bd2a8d7749a2ffc391",
+  "verification_sha256": "235e4c907b046a38359c109bbce7a5738900a2b9b81d096fbb5d455376d0f412",
+  "focused_tests_passed": 5,
+  "full_tests_passed": 2068,
+  "full_test_warnings": 48,
+  "release": {
+    "version": "v11",
+    "batches": 29,
+    "rows": 16012
+  },
+  "coverage": {
+    "configured_model_id_rows": 16012,
+    "configured_model_id_fraction": "1",
+    "exact_version_or_model_rows": 15905,
+    "exact_version_or_model_fraction": "0.9933175118661004",
+    "version_boundary_ambiguous_rows": 107,
+    "provider_family_rows": 9901,
+    "provider_family_fraction": "0.61834873844616534",
+    "provider_family_unresolved_rows": 6111
+  },
+  "archived_recovery": {
+    "batches": 5,
+    "rows": 6111,
+    "evidence": "exact_archived_dojo_config"
+  },
+  "composer_ab_byte_exact": true,
+  "independent_composer_rerun_byte_exact": true,
+  "independent_verifier_rerun_byte_exact": true,
+  "configured_model_id_identifies_provider_or_contract_entity": false,
+  "configured_model_id_is_server_side_version": false,
+  "provider_family_coverage_changed": false,
+  "version_boundary_ambiguity_changed": false,
+  "counts_as_distinct_scientific_claim_evidence": false,
+  "release_clearance": false,
+  "raw_card_ids_or_archive_values_emitted": false,
+  "prospective_values_or_identities_read": false,
+  "credential_hits": 0,
+  "network_calls": 0,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

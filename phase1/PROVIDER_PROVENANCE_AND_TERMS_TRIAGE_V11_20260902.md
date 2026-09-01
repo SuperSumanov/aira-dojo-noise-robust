@@ -2,24 +2,34 @@
 
 > 状态：`PARTIAL_NOT_RELEASE_CLEARED`。这是发布治理盘点，不是法律意见，也不是新的科学证据。
 
-## 1. 先固定 provenance，再谈条款
+## 1. 先把 generator/model 与 service-provider/contract 分轴，再谈条款
 
 v11 的权威范围是 29 个不可变 batch、16,012 行。metadata-only producer 与不导入 producer 的 verifier
 分别重算 release batch lock、ordered manifest、generator annotation 唯一映射、rows/bytes 与四个输入 hash，结果逐项一致；
 两者都没有打开 card payload，也没有读取 label、prediction 或 prospective resource。
 
-| provenance 状态 | batches | rows | v11 rows 占比 |
+| provenance 轴 | batches | rows | v11 rows 占比 |
 |---|---:|---:|---:|
+| configured model ID 已恢复 | 29 | 16,012 | 100.000000% |
+| exact version-or-configured-model | 28 | 15,905 | 99.331751% |
+| server-side version boundary 不确定 | 1 | 107 | 0.668249% |
 | 映射到 provider family | 24 | 9,901 | 61.834874% |
-| 其中 exact annotated version/model | 23 | 9,794 | 61.166625% |
-| DeepSeek 静默版本边界不确定 | 1 | 107 | 0.668249% |
-| provider 完全未映射 | 5 | 6,111 | 38.165126% |
+| service provider / contract entity unresolved | 5 | 6,111 | 38.165126% |
 
-未映射的五批是 `cards_senior_0805seq.jsonl`、`cards_senior_0808.jsonl`、
-`cards_senior_0809.jsonl`、`cards_senior_0810.jsonl`、`cards_senior_0811.jsonl`。文件名和上传日期不是
-provider 证据，不能把它们猜成 DeepSeek 或 Qwen。正式 inventory / verifier SHA-256=
-`88df63ed...b550a` / `66459ae...62f5b`，见
-`phase1/results/release_provider_provenance_v11_20260902/`。
+原 inventory 中未映射的五批是 `cards_senior_0805seq.jsonl`、`cards_senior_0808.jsonl`、
+`cards_senior_0809.jsonl`、`cards_senior_0810.jsonl`、`cards_senior_0811.jsonl`。现在已从它们各自的原始 archive
+内精确 `dojo_config` 恢复 6,111/6,111 行 configured model ID：`deepseek-v4-flash` 1,429、`gpt-5.4-nano`
+1,737、`gpt-5.6-luna` 159、`minimax/minimax-m3` 990、`moonshotai/kimi-k2.5` 323、
+`qwen3.5-397b-a17b` 466、`tencent/hy3-preview` 62、`z-ai/glm-5` 945。该证据不推断调用所经 service provider、
+base URL family、账号区域或 contract entity；模型厂商名也不能替代服务合同证据。
+
+archived recovery 的正式 r6 通过 focused/full=`4/2,047 passed`，completion composition 通过
+`5/2,068 passed`，两者均有 producer/verifier A/B 与独立 postflight byte-exact 重建。原 inventory / verifier SHA-256=
+`88df63ed...b550a` / `66459ae...62f5b`；completion / verification SHA-256=
+`3ba20307...ffc391` / `235e4c90...0f412`。公开证据见
+`phase1/results/release_provider_provenance_v11_20260902/`、
+`phase1/archived_generator_provenance_postflight_receipt_20260902.json` 与
+`phase1/generator_provenance_completion_postflight_receipt_20260902.json`。
 
 ## 2. 已映射 provider 的官方条款初筛
 
@@ -50,8 +60,9 @@ v1/v2 静默切换边界，虽然 provider family 已知，但模型版本不可
 
 ## 3. 关闭 gate 的最小动作
 
-1. 学长为五个未映射 batch 提供**不含密钥**的 provider/model/base URL family/collection-time account-region 元数据；若无
-   原始日志，保持 unknown，不按日期回填。
+1. 学长为五个 provider-unresolved batch 提供**不含密钥**的 service provider/base URL family/collection-time
+   account-region/contract entity 元数据；configured model ID 已精确恢复，不再要求按记忆回填 model。若无原始日志，
+   provider/contract 轴保持 unknown，不按日期或模型名推断。
 2. 对 Qwen 两批提供 2026-08-04--08-07 当时的签约主体、账号区域与已接受协议版本/订单回执；先做 credential-shape
    scan，再只提取非敏感 metadata。
 3. 机构/法律 review 分别裁决：DeepSeek 输出条款、阿里云历史条款、Kaggle task 规则与最终数据许可之间是否兼容；
@@ -64,5 +75,6 @@ v1/v2 静默切换边界，虽然 provider family 已知，但模型版本不可
 - 不证明任何生成代码具有版权或不侵犯第三方权利；
 - 不证明 Apache-2.0、CC-BY-4.0 或其他最终 license 已获授权；
 - 不证明当前网页条款追溯适用于历史调用；
+- 不把 configured model ID 当作 server-side version、service provider、账号区域或 contract entity；
 - 不读取或评价 predictor accuracy、search utility 或 prospective outcome；
 - 不计入 Evidence Index 的 distinct scientific claims。

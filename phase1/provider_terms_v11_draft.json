@@ -7,10 +7,16 @@
     "sha256": "88df63ed0434ba10f4eaa2c9965735c70b61a750026d290372415321834b550a",
     "release_batches": 29,
     "release_rows": 16012,
+    "configured_model_batches": 29,
+    "configured_model_rows": 16012,
+    "exact_version_or_model_rows": 15905,
+    "version_boundary_ambiguous_rows": 107,
     "mapped_batches": 24,
     "mapped_rows": 9901,
     "unmapped_batches": 5,
-    "unmapped_rows": 6111
+    "unmapped_rows": 6111,
+    "generator_completion_receipt": "phase1/generator_provenance_completion_postflight_receipt_20260902.json",
+    "generator_completion_receipt_sha256": "7e369bd7ca17e41c727c5830cb969c02c49446b4f69f0a80c3ff3b260245e7b5"
   },
   "providers": [
     {
@@ -58,10 +64,22 @@
     },
     {
       "provider": null,
-      "annotated_groups": [],
+      "configured_model_ids": {
+        "deepseek-v4-flash": 1429,
+        "gpt-5.4-nano": 1737,
+        "gpt-5.6-luna": 159,
+        "minimax/minimax-m3": 990,
+        "moonshotai/kimi-k2.5": 323,
+        "qwen3.5-397b-a17b": 466,
+        "tencent/hy3-preview": 62,
+        "z-ai/glm-5": 945
+      },
       "batches": 5,
       "rows": 6111,
-      "status": "BLOCKED_PROVIDER_PROVENANCE_UNMAPPED"
+      "configured_model_id_evidence": "exact_archived_dojo_config",
+      "configured_model_id_complete": true,
+      "service_provider_or_contract_entity_inferred": false,
+      "status": "BLOCKED_SERVICE_PROVIDER_AND_CONTRACT_ENTITY_UNRESOLVED"
     }
   ],
   "release_cleared": false,

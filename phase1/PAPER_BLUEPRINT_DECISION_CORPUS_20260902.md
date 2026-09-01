@@ -145,6 +145,8 @@ internal evidence routing；prospective common-support 与 clean scaling 仍是�
 ### 7 Limitations, Governance, and Release
 
 - incomplete choice fragments、public Kaggle task secrecy、producer/config history、任务异质性、未证 semantic clone。
+- generator model ID 与 serving-provider/contract provenance 分轴：前者历史 v11 已全覆盖，后者仍有 6,111/16,012
+  rows unresolved；不得把模型名当作服务商、账号区域或条款证据。
 - claim ledger、失败运行、撤回链、raw-vs-public artifact 边界。
 - 不微调/RL-finetune agent 底座；独立 critic 与 agent policy 的外部效度边界。
 

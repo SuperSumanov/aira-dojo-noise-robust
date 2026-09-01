@@ -51,6 +51,23 @@ review-eligible 不等于 clean/cleared，仍需补两个 source、私下审查 
 Target-522 的 Stage-A/rank 兼容链也已收口，但预注册支持要求不足，正式为 `LIMITED_SUPPORT`，既非正也非负；我们不做
 事后阈值/分区 rescue，也不让它占用 20 天冲刺主力。
 
+### 4. 五个历史批次的 generator model ID 已精确恢复；不要把它误写成 provider clearance
+
+我们从 `cards_senior_0805seq/0808/0809/0810/0811` 对应原始 archive 的 exact `dojo_config` 恢复了 6,111/6,111 行
+configured model ID，0 ambiguous、0 missing。与既有 inventory 合成后，v11 的 model ID 覆盖为 16,012/16,012（100%），
+exact version-or-configured-model 为 15,905/16,012（99.331751%）；107 行 DeepSeek 静默版本边界仍保留。
+
+两层正式链分别通过 2,047 与 2,068 个 full tests、A/B、独立 verifier 与独立 postflight。重要边界是：五批的 service
+provider、base URL family、账号区域和 contract entity 仍未知，provider-family coverage 仍只有 9,901/16,012
+（61.834874%）。所以麻烦你若能提供原始、无密钥的调用端/provider/账号区域/合同元数据就补这一轴；不用再凭记忆提供
+model ID，也不要从模型名猜 provider。该结果改善可复现元数据，但不是 release clearance 或新的 predictor 科学证据。
+
+另外，两个缺 prepared text 的 image tasks 已尝试固定 staging，但远端 Kaggle API credential 对应账号仍报告未接受规则，
+因此在任何下载前 fail-closed。若方便，请确认接受规则的网页账号与远端 API credential 是同一个账号：
+
+- `https://www.kaggle.com/competitions/aptos2019-blindness-detection/rules`
+- `https://www.kaggle.com/competitions/histopathologic-cancer-detection/rules`
+
 ## 当前最关键阻塞：真实 producer sidecar 仍为 0
 
 source 中 canonical `*.config_v2.jsonl` 仍为 `0`。这意味着接下来即使继续产生几百个 runs，只要没有 outcome-before

@@ -328,11 +328,14 @@ is deliberately not called clean or cleared: raw-match adjudication, the two mis
 prepared sources, credential/PII/path checks, and legal review remain. All 25
 official competition rules pages have been triaged, but seven compact legacy pages
 and two nonstandard detailed templates still require institutional interpretation.
-A metadata-only provider inventory maps 24 of 29 immutable batches (9,901 of 16,012
-rows) to a provider family; five batches (6,111 rows) remain unmapped, and the two
-Qwen-annotated batches lack a collection-time contracting entity and terms record.
-Provider-output terms, final licenses/notices, and privacy/path scanning therefore
-remain release gates. Croissant 1.1 and Responsible AI 1.0 generation is now backed
+A metadata-only inventory plus exact archived `dojo_config` reconstruction recovers
+the configured generator model ID for all 16,012 rows and an exact version-or-model
+identifier for 15,905 (99.33%). This does not identify the serving provider or
+contract: provider-family provenance remains available for only 24 of 29 immutable
+batches (9,901 rows), leaving five batches (6,111 rows) unresolved on that separate
+axis, while two Qwen-annotated batches also lack a collection-time contracting entity
+and terms record. Provider-output terms, final licenses/notices, and privacy/path
+scanning therefore remain release gates. Croissant 1.1 and Responsible AI 1.0 generation is now backed
 by a value-free, independently checked builder over all 10 release resources, but
 the final JSON-LD is deliberately absent until the real license, landing page,
 creator, publication date, and content base URL are fixed and every independent
@@ -382,4 +385,7 @@ benchmark for predictors and, equally, a benchmark for the claims made about the
 - Content scan/tiering: `release_content_scan_postflight_receipt_20260902.json` and
   `release_content_tier_postflight_receipt_20260902.json`; these are release
   engineering evidence, not predictor-effect evidence or release clearance.
+- Generator provenance: `archived_generator_provenance_postflight_receipt_20260902.json`
+  and `generator_provenance_completion_postflight_receipt_20260902.json`; configured
+  model IDs are complete, but provider/contract provenance and release clearance are not.
 - Claim-withdrawal appendix: `PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md`.

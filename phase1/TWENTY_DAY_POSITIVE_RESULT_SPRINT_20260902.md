@@ -12,6 +12,9 @@ clean critic scaling + 冻结前瞻确认**；同时把已经足够强的数据�
   eligible rate 都可能使其延长。
 - `config-v2` canonical sidecar 文件名数仍为 0。学长分支 `dojo-reproduce` 仍停在
   `5baccb170ce287f9c8eed7b23ccf693a0268515a`，最近没有新的 outcome 文档。
+- v11 历史 generator provenance 的 model-ID 轴已补齐：16,012/16,012 configured model ID、15,905 exact
+  version-or-model；但 provider/contract 轴仍只有 9,901/16,012，不能把历史恢复当成新 producer 的 outcome-before
+  config-v2 sidecar，也不能据此提前启动 clean scaling。
 - 因而眼下最大风险不是模型不够大，而是未来 8 天继续生产的 runs 仍缺少 outcome-before config provenance，导致
   0.6B→8B scaling 再次被 cross-config mixing 否决。
 

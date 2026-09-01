@@ -1,0 +1,54 @@
+{
+  "protocol": "archived-generator-provenance-independent-postflight-public-receipt-v1",
+  "status": "PASS_COMPLETE_EXACT",
+  "source_commit": "bfc5a70e36823fdad98c13d974efccd6810209a9",
+  "formal_root": "/research/d7/spc/yzyang4/archived-generator-provenance-v1/formal-bfc5a70-r6",
+  "postflight_root": "/research/d7/spc/yzyang4/archived-generator-provenance-v1/postflight-bfc5a70-r6",
+  "postflight_script_sha256": "1063f6269e4eb471a9ca833c18f09bc1acb0f215dcb77003b726dd04b940f648",
+  "postflight_receipt_sha256": "7ecf3708a6daf444b886eaa5867bfc8408b61964575f2d70b11a8a4677e657b6",
+  "formal_manifest_sha256": "108b9ce8de587764759c5043b6e347f462db658abfbda4d6b2f4e83fd8aab981",
+  "summary_sha256": "564ad00a7638979e7b2d7c81dba3968e4cd9a87eaa0da39fd28e070dd11d7bd9",
+  "verification_sha256": "a510cb86468d953f4cf2aa1fbebd2990363b36219b73f65b0bcc8be5e0655ab9",
+  "overlay_sha256": "faf95363a1740328733ba14b43301ff17388985dc8eb5392f7a2cedbd3f5e12c",
+  "source_archive_lock_sha256": "44192635074aaa923847e6d1e279155bfaf8796e727af0501d5d68d210beedb8",
+  "focused_tests_passed": 4,
+  "full_tests_passed": 2047,
+  "full_test_warnings": 48,
+  "coverage": {
+    "batches": 5,
+    "target_rows": 6111,
+    "exact_rows": 6111,
+    "ambiguous_rows": 0,
+    "missing_rows": 0
+  },
+  "model_counts": {
+    "deepseek-v4-flash": 1429,
+    "gpt-5.4-nano": 1737,
+    "gpt-5.6-luna": 159,
+    "minimax/minimax-m3": 990,
+    "moonshotai/kimi-k2.5": 323,
+    "qwen3.5-397b-a17b": 466,
+    "tencent/hy3-preview": 62,
+    "z-ai/glm-5": 945
+  },
+  "producer_ab_byte_exact": true,
+  "verifier_ab_byte_exact": true,
+  "independent_verifier_rerun_byte_exact": true,
+  "preserved_failed_attempts": [
+    {
+      "root": "/research/d7/spc/yzyang4/archived-generator-provenance-v1/formal-bfc5a70-r4",
+      "status": "INTERRUPTED_PARTIAL_NO_SCIENTIFIC_READOUT"
+    },
+    {
+      "root": "/research/d7/spc/yzyang4/archived-generator-provenance-v1/formal-bfc5a70-r5",
+      "status": "FAIL_CLOSED_AB_OUTPUT_BASENAME_MISMATCH",
+      "failed_rc": 1
+    }
+  ],
+  "service_provider_or_contract_entity_inferred": false,
+  "release_clearance": false,
+  "raw_archive_values_or_credentials_emitted": false,
+  "prospective_values_or_identities_read": false,
+  "network_calls": 0,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

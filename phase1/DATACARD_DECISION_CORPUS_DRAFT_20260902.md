@@ -180,9 +180,10 @@ append-only sanitized successor，不能原地覆写 v11。
 - Kaggle competition data 必须零字节分发，用户自行通过官方 prepare/API 获取并遵守 ToS/逐赛事规则；
 - v11 实际是 25 个 task，不是旧清单的 22；25/25 官方规则页已可追溯初筛，但 7 个简化旧模板、2 个
   非标准详细模板及数据/代码外部发布解释仍需机构/法律复核；
-- provider provenance 已按 v11 immutable batch 做双实现盘点：29 批/16,012 行中，24 批/9,901 行能映射到 provider
-  family，23 批/9,794 行有 exact annotated version/model，1 批/107 行位于 DeepSeek 静默版本边界，另有
-  5 批/6,111 行完全未映射；文件名/日期不得替代原始 producer 证据；
+- provider provenance 已按 v11 immutable batch 做双实现盘点，并从五个历史 archive 的 exact `dojo_config` 恢复
+  configured model ID：29 批/16,012 行 model ID 覆盖 100%，15,905 行有 exact version-or-configured-model，107 行仍处于
+  DeepSeek 静默版本边界；但 provider family 仍只覆盖 24 批/9,901 行，另 5 批/6,111 行的 service provider、账号区域与
+  contract entity unresolved。model ID、文件名或日期均不得替代 provider/contract 原始证据；
 - DeepSeek API 条款与当前阿里云百炼/Model Studio 条款已做官方来源初筛，但这不是法律 clearance。Qwen 两批的账号区域、
   签约主体及 collection-time terms 未记录，当前大陆协议生效日晚于采集窗口；计划中的 Apache-2.0/CC-BY-4.0
   兼容性仍需最终法律/机构确认；
@@ -200,7 +201,8 @@ append-only sanitized successor，不能原地覆写 v11。
 | v11 16,012-card competition-data scan | PARTIAL / FORMALLY TIERED | 23/25 tasks 已双实现扫描并独立 postflight；15,174 review-eligible、838 structure-only。补两个 source、私下审查 173 matches，并生成 sanitized successor receipt |
 | credential/PII/path scan on final public fields | PARTIAL | 对精确 release candidate 做双实现零命中/脱敏 receipt |
 | 逐 competition 规则审计 | PARTIAL | 25/25 rule URLs 已初筛；简化/非标准模板与派生代码/score/tree 发布仍需机构/法律裁决 |
-| provider/model output terms by immutable batch | PARTIAL / 5 BATCHES BLOCKED | 24/29 批有 provider-family annotation；补齐 5 批/6,111 行 provenance、Qwen collection-time contract entity/terms，并做许可兼容裁决 |
+| generator model ID by immutable batch | COMPLETE (MODEL-ID AXIS ONLY) | 29/29 批、16,012/16,012 行 configured model ID；15,905 exact version-or-model、107 version-boundary ambiguous；不推断 provider/contract |
+| provider/model output terms by immutable batch | PARTIAL / 5 BATCHES BLOCKED | provider family 仍为 24/29 批、9,901/16,012 行；补齐 5 批/6,111 行 service-provider/account-region/contract provenance、Qwen collection-time terms，并做许可兼容裁决 |
 | final dataset license + upstream notices | BLOCKED | 法律/机构 review；生成 `LICENSE`, `NOTICE`, `licenses.json` |
 | v11 schema dictionary | COMPLETE (SCHEMA ONLY) | 10 resources / 24,119 rows 已机器盘点并独立复核；完整 release 仍受内容/许可门阻塞 |
 | Croissant/Responsible AI metadata | ENGINEERING READY / 5 PUBLICATION FIELDS BLOCKED | 10 resources / 24,119 rows 已由双实现固定；最终 `license`、`url`、`creator`、`datePublished`、`contentBaseUrl` 真实填写且其余发布门关闭后才允许生成 JSON-LD |
@@ -223,6 +225,9 @@ append-only sanitized successor，不能原地覆写 v11。
 - Kaggle rules triage / draft license map：`phase1/KAGGLE_RULES_TRIAGE_V11_20260902.md` / `phase1/licenses_v11_draft.json`
 - provider provenance/terms triage：`phase1/PROVIDER_PROVENANCE_AND_TERMS_TRIAGE_V11_20260902.md` /
   `phase1/provider_terms_v11_draft.json`
+- generator provenance recovery/completion receipts：
+  `phase1/archived_generator_provenance_postflight_receipt_20260902.json` /
+  `phase1/generator_provenance_completion_postflight_receipt_20260902.json`
 - decision audit：`phase1/results/decision_corpus_audit_v11_20260814/`
 - source provenance：`phase1/results/v11_source_provenance_audit_20260814/`
 - choice-fragment boundary：`phase1/results/raw_choice_set_completeness_v11_20260815_6610618/`

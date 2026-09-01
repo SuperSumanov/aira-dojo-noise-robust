@@ -103,6 +103,13 @@ structure-only=`15,174/838`，即 exact fraction=`7,587/8,006`、decimal=`0.9476
 互斥来源恰为 matched-pattern / unscanned-task=`419/419`。这是当前最直接的正面 release-engineering 结果：保守隔离后
 大部分历史 cards 仍可进入后续法律/隐私内容审查；但 zero match 不是无泄漏证明，15,174 也不是获准发布。
 
+两个缺失 prepared text source 的固定 staging 尝试已在任何 competition data 下载/打开前 fail-closed：远端 Kaggle API
+credential 所属账号仍未接受这两个赛事的规则。active prepared root 未修改，凭据值未读取/回显，GPU/API/model fit/base
+update=`0/0/0/0`。只有同一远端 credential 账号在
+`https://www.kaggle.com/competitions/aptos2019-blindness-detection/rules` 与
+`https://www.kaggle.com/competitions/histopathologic-cancer-detection/rules` 完成接受后才允许新 root 重试；当前 838-card
+保守 tier 不因这次失败改变。见 `phase1/missing_prepared_text_sources_failure_receipt_20260902.json`。
+
 以下保留正式成功前的设计与失败链，供审计，不得用其中“尚未运行”措辞覆盖上面的最新裁决。
 
 schema 闭合后，当前最高价值的 CPU-only release blocker 是把 2026-08-08 只覆盖 v6/20 tasks 的 stdout 扫描升级到
@@ -143,22 +150,37 @@ private-file resume test：runner 继承系统 umask 后，其 pytest 临时文�
 因此它同样在 cards/source scan 前 rc=`1` fail-closed，producer/verifier/readout=`0/0/0`。第四次只允许在任何 artifact
 创建前恢复项目 formal runner 的标准 `umask 077`，新增顺序契约测试；不得跳过该失败测试，仍须新 commit/root。
 
-## 0L3. 2026-09-02 v11 provider provenance 已精确量化；38.165126% rows 因未映射仍阻塞条款 clearance
+## 0L3. 2026-09-02 v11 generator model ID 已补到 100%；provider/contract 轴仍有 38.165126% unresolved
 
 为关闭 0L0 允许的 provider/license release blocker，新增 metadata-only provider inventory；它绑定 v11 release
 descriptor、ordered 29-batch registry/manifest 与既有 `generator_versions.json` 四个输入，不打开任何 card payload。
 producer 与不导入 producer 的 verifier 分别重算 batch lock、映射唯一性、rows/bytes 与输入 hash；focused=`5 passed`，
 formal inventory/verifier SHA-256=`88df63ed...b550a` / `66459ae...62f5b`，逐项一致。
 
-29 批/16,012 行中，provider family mapped=`24/9,901`（61.834874%）；exact annotated version/model=
-`23/9,794`；DeepSeek 静默版本边界 ambiguous=`1/107`；provider unmapped=`5/6,111`（38.165126%）。未映射的是
-`cards_senior_0805seq/0808/0809/0810/0811`，禁止按文件名或日期猜 provider。官方条款初筛显示：DeepSeek API
+随后只从五个 historical batch 的原始 archive 内精确 `dojo_config` 恢复 generator model ID；未使用文件名、日期或
+模型名猜 provider。公开 commit=`bfc5a70e36823fdad98c13d974efccd6810209a9` 的 r6 正式链通过 focused/full=
+`4/2,047 passed`（48 warnings），5 批/6,111 行全部 exact、ambiguous/missing=`0/0`，producer/verifier A/B 与独立
+postflight 重建均逐字节一致。r4 的中断 partial 与 r5 因 output basename 进入摘要导致的 A/B failure 均原样保留，未用其
+科学 readout。八个恢复的 configured model ID 及逐模型行数见公开 postflight receipt。
+
+把恢复结果与原 inventory 按结果前冻结规则合成后，公开 commit=
+`186ca4b3e074891053a0e512168e89fddd7d80fb` 的正式链通过 focused/full=`5/2,068 passed`（48 warnings）及独立
+postflight。v11 configured model ID=`16,012/16,012`（100%）；exact version-or-configured-model=
+`15,905/16,012`（99.331751%）；DeepSeek 静默版本边界仍为 `107/16,012`（0.668249%）。但 provider family 仍只映射
+`24 batches/9,901 rows`（61.834874%），另 `5 batches/6,111 rows`（38.165126%）的服务 provider、账号区域和签约主体
+仍 unresolved。configured model ID 不等于 server-side version，更不能推出 provider 或 contract entity；因此该恢复只
+关闭“用了哪个模型 ID”元数据缺口，**不**改变 provider terms gate，也不构成独立科学证据或 release clearance。
+
+官方条款初筛显示：DeepSeek API
 专用条款在采集前已生效且含 output rights assignment/academic use，但不清除第三方与 Kaggle 权利；Qwen 两批没有
 collection-time account region/contract entity/terms 记录，当前大陆协议 2026-09-02 才生效，晚于 2026-08-04--08-07
-采集窗口，不能追溯替代。故 provider gate 仍是 `PARTIAL_NOT_RELEASE_CLEARED`；需要学长补无密钥 producer 元数据和
+采集窗口，不能追溯替代。故 provider gate 仍是 `PARTIAL_NOT_RELEASE_CLEARED`；需要学长补无密钥 service-provider/
+account-region/contract 元数据和
 机构/法律 review，证据缺失则相关 rows 进入 withheld tier。GPU/API/model fit/base update=`0/0/0/0`，prospective
 value/identity read=`false/false`，`counts_as_distinct_claim_evidence=false`。见
-`phase1/PROVIDER_PROVENANCE_AND_TERMS_TRIAGE_V11_20260902.md`。
+`phase1/PROVIDER_PROVENANCE_AND_TERMS_TRIAGE_V11_20260902.md`、
+`phase1/archived_generator_provenance_postflight_receipt_20260902.json` 与
+`phase1/generator_provenance_completion_postflight_receipt_20260902.json`。
 
 ## 0L4. 2026-09-02 Croissant/RAI 工程门已就绪；五项真实 publication fields 缺失时禁止生成最终 JSON-LD
 

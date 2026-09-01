@@ -1,0 +1,20 @@
+{
+  "protocol": "release-content-missing-prepared-text-staging-receipt-v1",
+  "status": "FAIL_CLOSED_BEFORE_DOWNLOAD",
+  "reason": "The Kaggle API credential account on the remote host has not accepted the fixed competition rules.",
+  "competitions": [
+    "aptos2019-blindness-detection",
+    "histopathologic-cancer-detection"
+  ],
+  "fixed_requested_files": [
+    "aptos2019-blindness-detection/train.csv",
+    "histopathologic-cancer-detection/train_labels.csv"
+  ],
+  "remote_failure_receipt_sha256": "be641051d845827084cc1ad88be4ee48f002fd268538ee286b1a74db84912668",
+  "remote_preflight_sha256": "6a57e7bf6f6174a18918630024136b5e8411d5bc44da0c68731196a600a07c7d",
+  "competition_data_downloaded": false,
+  "competition_data_opened": false,
+  "credential_values_read_or_emitted": false,
+  "active_prepared_data_root_modified": false,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

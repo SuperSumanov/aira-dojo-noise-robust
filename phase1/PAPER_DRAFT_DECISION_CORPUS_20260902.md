@@ -319,7 +319,11 @@ A metadata-only provider inventory maps 24 of 29 immutable batches (9,901 of 16,
 rows) to a provider family; five batches (6,111 rows) remain unmapped, and the two
 Qwen-annotated batches lack a collection-time contracting entity and terms record.
 Provider-output terms, final licenses/notices, and privacy/path scanning therefore
-remain release gates. Immutable historical batches are
+remain release gates. Croissant 1.1 and Responsible AI 1.0 generation is now backed
+by a value-free, independently checked builder over all 10 release resources, but
+the final JSON-LD is deliberately absent until the real license, landing page,
+creator, publication date, and content base URL are fixed and every independent
+release gate closes. Immutable historical batches are
 never silently edited. If sanitation
 is required, a new append-only successor and receipt are created while the affected
 version remains documented.
@@ -357,6 +361,8 @@ benchmark for predictors and, equally, a benchmark for the claims made about the
 - Table 1--3 copy-ready material: `PAPER_TABLES_1_3_DRAFT_20260902.md`.
 - Schema/release boundaries: `SCHEMA_DICTIONARY_DECISION_CORPUS_V11_20260902.md` and
   `DATACARD_DECISION_CORPUS_DRAFT_20260902.md`.
+- Machine-readable metadata readiness: `CROISSANT_RAI_READINESS_V11_20260902.md`;
+  this is release engineering, not scientific-claim evidence or clearance.
 - Rules triage: `KAGGLE_RULES_TRIAGE_V11_20260902.md` and
   `licenses_v11_draft.json`; this is not legal clearance.
 - Claim-withdrawal appendix: `PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md`.

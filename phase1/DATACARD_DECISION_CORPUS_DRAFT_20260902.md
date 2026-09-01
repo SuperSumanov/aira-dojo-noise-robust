@@ -195,7 +195,7 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 | provider/model output terms by immutable batch | PARTIAL / 5 BATCHES BLOCKED | 24/29 批有 provider-family annotation；补齐 5 批/6,111 行 provenance、Qwen collection-time contract entity/terms，并做许可兼容裁决 |
 | final dataset license + upstream notices | BLOCKED | 法律/机构 review；生成 `LICENSE`, `NOTICE`, `licenses.json` |
 | v11 schema dictionary | COMPLETE (SCHEMA ONLY) | 10 resources / 24,119 rows 已机器盘点并独立复核；完整 release 仍受内容/许可门阻塞 |
-| Croissant/Responsible AI metadata | TODO | 从最终 schema/data card 生成并验证 |
+| Croissant/Responsible AI metadata | ENGINEERING READY / 5 PUBLICATION FIELDS BLOCKED | 10 resources / 24,119 rows 已由双实现固定；最终 `license`、`url`、`creator`、`datePublished`、`contentBaseUrl` 真实填写且其余发布门关闭后才允许生成 JSON-LD |
 | prospective first-960 release | SEALED | closure + one-time result protocol + outcome-independent release decision |
 | v4/v5 reproducibility | PERMANENTLY UNRESOLVED | 只在找回原 payload 时可改变；否则明确排除 |
 
@@ -223,3 +223,5 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 - current paper plan：`phase1/PAPER_BLUEPRINT_DECISION_CORPUS_20260902.md`
 - v11 schema dictionary：`phase1/SCHEMA_DICTIONARY_DECISION_CORPUS_V11_20260902.md`
 - value-free schema inventory：`phase1/results/release_schema_inventory_v11_20260902/`
+- Croissant/RAI readiness：`phase1/CROISSANT_RAI_READINESS_V11_20260902.md` /
+  `phase1/results/croissant_rai_readiness_v11_20260902/`

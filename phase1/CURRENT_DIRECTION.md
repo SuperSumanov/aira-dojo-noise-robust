@@ -71,7 +71,7 @@ val_curve 全部未记录，`obs.error` 全 null；`val_at_low`、runtime、stdo
 b1/b2 仍是历史 descendant-budget resource，不因 schema 完成而恢复 K>=1 lookahead 主张。
 
 该工作关闭 `v11 schema dictionary` 单项 gate，但绝不等于数据 release clearance：code/stdout competition-data、
-credential/PII/path 扫描，22/22 competition rules，provider terms，最终 LICENSE/NOTICE/licenses.json 与 Croissant/RAI
+credential/PII/path 扫描，25/25 competition rules，provider terms，最终 LICENSE/NOTICE/licenses.json 与 Croissant/RAI
 metadata 仍未闭合。公开件见 `phase1/SCHEMA_DICTIONARY_DECISION_CORPUS_V11_20260902.md` 与
 `phase1/results/release_schema_inventory_v11_20260902/`；它是数据资产/复现补强，不计为新的 predictor/scaling/effect
 科学证据，也不进入 Evidence Index 的 distinct claim count。
@@ -137,6 +137,21 @@ collection-time account region/contract entity/terms 记录，当前大陆协议
 机构/法律 review，证据缺失则相关 rows 进入 withheld tier。GPU/API/model fit/base update=`0/0/0/0`，prospective
 value/identity read=`false/false`，`counts_as_distinct_claim_evidence=false`。见
 `phase1/PROVIDER_PROVENANCE_AND_TERMS_TRIAGE_V11_20260902.md`。
+
+## 0L4. 2026-09-02 Croissant/RAI 工程门已就绪；五项真实 publication fields 缺失时禁止生成最终 JSON-LD
+
+为关闭 0L0 允许的 release-readiness blocker，已按 MLCommons Croissant 1.1 与 RAI 1.0 实现严格构建器和
+不导入 producer 的独立 verifier。两者只读取 0L1 的 value-free schema inventory；10 个 JSONL resources、
+24,119 行、路径、字节数、raw SHA-256、distribution/recordSet/field source 均可确定生成。focused schema+metadata
+tests=`12 passed`；readiness/verifier SHA-256=`5a38dbaf...3854a` / `780de48f...eb7b`，prospective、label、outcome、
+prediction、candidate identity 与 payload read=`false`，GPU/API/model fit/base update=`0/0/0/0`。
+
+最终 Croissant artifact 当前**没有生成**。构建器对 `license`、dataset `url`、`creator`、`datePublished`、
+`contentBaseUrl` 五项逐一做非空、非占位与 URL/date/type 检查，任一缺失就 fail-closed；因此不会为了补 checklist
+而虚构许可、作者或发布地址。即使这五项将来补齐，competition/provider/content-safety/机构法律门仍须独立关闭，
+本 receipt 也不授予 release clearance、不给 Evidence Index 增加 scientific claim。公开件见
+`phase1/CROISSANT_RAI_READINESS_V11_20260902.md` 与
+`phase1/results/croissant_rai_readiness_v11_20260902/`。
 
 ## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
 

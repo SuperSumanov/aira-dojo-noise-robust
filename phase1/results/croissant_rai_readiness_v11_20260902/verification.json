@@ -1,0 +1,36 @@
+{
+  "input_sha256": {
+    "readiness": "5a38dbaf80485c77fa2e034aa55aaafdedfaf03f631a7dfe0793ae690573854a",
+    "schema_inventory": "9a48bde7b97a7174c117abff272f9ff9af4f150876c42fc14c87c932786440eb"
+  },
+  "metadata": null,
+  "protocol": "independent-croissant-rai-release-readiness-verification-v1",
+  "readiness": {
+    "checks": {
+      "blocked_field_count": true,
+      "blocked_fields": true,
+      "blocked_status": true,
+      "byte_count": true,
+      "inventory_hash": true,
+      "protocol": true,
+      "release_not_cleared": true,
+      "resource_count": true,
+      "resource_receipts": true,
+      "row_count": true,
+      "specifications": true,
+      "value_free_scope": true
+    },
+    "resource_count": 10,
+    "total_bytes_across_resources": 309458051,
+    "total_rows_across_resources": 24119
+  },
+  "scope": {
+    "counts_as_distinct_claim_evidence": false,
+    "independent_implementation": true,
+    "labels_outcomes_predictions_read": false,
+    "prospective_resources_read": false,
+    "release_clearance_granted": false,
+    "schema_metadata_only": true
+  },
+  "status": "INDEPENDENTLY_VERIFIED_CROISSANT_RAI_READINESS_BLOCKED"
+}

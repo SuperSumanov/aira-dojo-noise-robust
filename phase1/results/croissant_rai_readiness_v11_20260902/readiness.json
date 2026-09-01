@@ -1,0 +1,123 @@
+{
+  "blocked_field_count": 5,
+  "blocked_publication_config_fields": [
+    "license",
+    "url",
+    "creator",
+    "datePublished",
+    "contentBaseUrl"
+  ],
+  "inputs": {
+    "schema_inventory": "phase1/results/release_schema_inventory_v11_20260902/schema_inventory.json",
+    "schema_inventory_sha256": "9a48bde7b97a7174c117abff272f9ff9af4f150876c42fc14c87c932786440eb"
+  },
+  "interpretation": "The metadata engineering path is deterministic, but no Croissant release artifact may be emitted until all publication-time fields are supplied and the independent legal/content gates close.",
+  "protocol": "croissant-rai-release-readiness-v1",
+  "release_clearance": false,
+  "resolved_required_dataset_fields": [
+    "@context",
+    "@type",
+    "dct:conformsTo",
+    "name",
+    "description",
+    "distribution structure, byte counts, and SHA-256 digests"
+  ],
+  "resource_count": 10,
+  "resources": [
+    {
+      "bytes": 305750663,
+      "field_paths": 41,
+      "path": "phase1/cards_current_v11.jsonl",
+      "resource_id": "cards",
+      "rows": 16012,
+      "sha256_raw": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75"
+    },
+    {
+      "bytes": 60778,
+      "field_paths": 13,
+      "path": "phase1/v11_decision/decision_extension_v11_b0.jsonl",
+      "resource_id": "extension_b0",
+      "rows": 136,
+      "sha256_raw": "ddebb127ec322fae45db0995fb16c2726dc4057946452901a4b360ca7c501009"
+    },
+    {
+      "bytes": 17229,
+      "field_paths": 13,
+      "path": "phase1/v11_decision/decision_extension_v11_b1.jsonl",
+      "resource_id": "extension_b1",
+      "rows": 39,
+      "sha256_raw": "b067fd1ef13f453fdbfd7204985019857da6224ff427f6ff3cdd947b3100ff90"
+    },
+    {
+      "bytes": 12992,
+      "field_paths": 13,
+      "path": "phase1/v11_decision/decision_extension_v11_b2.jsonl",
+      "resource_id": "extension_b2",
+      "rows": 30,
+      "sha256_raw": "f5934b8a881d1a4fdfec12aaf421662ab478790bcd6bbb558985e2be9c600fd9"
+    },
+    {
+      "bytes": 632081,
+      "field_paths": 12,
+      "path": "phase1/v11_decision/decision_frozen_v11_b0.jsonl",
+      "resource_id": "frozen_b0",
+      "rows": 1498,
+      "sha256_raw": "a82320294af0af9a1c41b2d4bb9392686c48fb4402858ca0a5ed6bf70661f1aa"
+    },
+    {
+      "bytes": 137452,
+      "field_paths": 12,
+      "path": "phase1/v11_decision/decision_frozen_v11_b1.jsonl",
+      "resource_id": "frozen_b1",
+      "rows": 323,
+      "sha256_raw": "9d1d1cfc882ee864bce78d19b8947472aa6f66ccf0a81a2a344e036631434209"
+    },
+    {
+      "bytes": 112737,
+      "field_paths": 12,
+      "path": "phase1/v11_decision/decision_frozen_v11_b2.jsonl",
+      "resource_id": "frozen_b2",
+      "rows": 265,
+      "sha256_raw": "a6b33d6e4f3b2555149db6979ead056ae78e9fd9955ba20545158bab7f209fb5"
+    },
+    {
+      "bytes": 2000738,
+      "field_paths": 13,
+      "path": "phase1/v11_decision/decision_train_v11_b0.jsonl",
+      "resource_id": "train_b0",
+      "rows": 4263,
+      "sha256_raw": "6110488201163832f9ae4f95af7de3682152aed9d77e413ca72538b203691c59"
+    },
+    {
+      "bytes": 406527,
+      "field_paths": 13,
+      "path": "phase1/v11_decision/decision_train_v11_b1.jsonl",
+      "resource_id": "train_b1",
+      "rows": 861,
+      "sha256_raw": "0eca0dac81712e44d9f6cc3204f2ca81dc487d6d18c141e6f77dd63ba7d202a8"
+    },
+    {
+      "bytes": 326854,
+      "field_paths": 13,
+      "path": "phase1/v11_decision/decision_train_v11_b2.jsonl",
+      "resource_id": "train_b2",
+      "rows": 692,
+      "sha256_raw": "43e2d26a200e87f0382ab8c5b3c3a3afb1e0340846dff5871dc693ffb331fe23"
+    }
+  ],
+  "scope": {
+    "card_or_decision_payload_read": false,
+    "counts_as_distinct_claim_evidence": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+    "labels_outcomes_predictions_read": false,
+    "prospective_resources_read": false,
+    "schema_metadata_only": true
+  },
+  "specifications": {
+    "croissant": "http://mlcommons.org/croissant/1.1",
+    "responsible_ai": "http://mlcommons.org/croissant/RAI/1.0"
+  },
+  "status": "ENGINEERING_READY_PUBLICATION_FIELDS_BLOCKED",
+  "total_bytes_across_resources": 309458051,
+  "total_rows_across_resources": 24119
+}

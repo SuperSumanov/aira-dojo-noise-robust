@@ -152,3 +152,27 @@ def test_real_protocol_freezes_provider_and_version_nonimplications() -> None:
     assert value["completion_rule"]["provider_family_rows_change_allowed"] is False
     assert value["completion_rule"]["version_boundary_ambiguous_rows_change_allowed"] is False
     assert value["completion_rule"]["service_provider_or_contract_entity_inference_from_model_id_allowed"] is False
+
+
+def test_formal_runner_pins_archived_postflight_and_double_execution() -> None:
+    runner = (
+        Path(__file__).resolve().parents[1]
+        / "scripts"
+        / "run_generator_provenance_completion_v1_20260902.sh"
+    ).read_text(encoding="utf-8")
+    for digest in (
+        "564ad00a7638979e7b2d7c81dba3968e4cd9a87eaa0da39fd28e070dd11d7bd9",
+        "a510cb86468d953f4cf2aa1fbebd2990363b36219b73f65b0bcc8be5e0655ab9",
+        "108b9ce8de587764759c5043b6e347f462db658abfbda4d6b2f4e83fd8aab981",
+        "7ecf3708a6daf444b886eaa5867bfc8408b61964575f2d70b11a8a4677e657b6",
+    ):
+        assert digest in runner
+    assert runner.count("-m phase1.compose_generator_provenance_completion") == 2
+    assert runner.count("-m phase1.verify_generator_provenance_completion") == 2
+    assert 'cmp "${result_a}" "${result_b}"' in runner
+    assert 'cmp "${verify_a}" "${verify_b}"' in runner
+    assert "provider_family_coverage_changed" in runner
+    assert "prospective_hits=" in runner
+    assert "network_hits=" in runner
+    assert "credential_hits=" in runner
+    assert "absolute_path_hits=" in runner

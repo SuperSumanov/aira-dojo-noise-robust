@@ -31,6 +31,11 @@ predictor accuracy、scaling、search utility 或方法效果。
 从协议读取 window，避免实现写死。四类合成正控、prefix/payload/candidate 篡改、协议引用哈希、窗口绑定与 identity
 non-emission 合计 focused=`8 passed`；与相邻单事件审计合跑=`19 passed`。protocol/producer/verifier/test SHA-256=
 `c1429763...d409f3` / `fa9f182d...c46b15` / `902da600...487a6` / `335185e2...e223b`。
+
+随后冻结 exact-commit formal runner：13 项 preflight、fresh no-smudge worktree、focused+full tests、producer A/B、
+不导入 producer 的 verifier A/B、allowed-metadata read-only before/after、file/network trace、credential 与 identity-schema
+门、append-only COMPLETE/FAILED receipt。runner/static check=`PASS`，census+runner focused=`12 passed`，连同相邻单事件
+审计=`23 passed`；runner/contract-test SHA-256=`8ac1f769...5dd0a` / `21028895...c2761`。
 截至本段只完成**结果前冻结**，真实 14 事件 census 尚未运行、真实四类计数仍未知；GPU/API/model fit/base update=`0/0/0/0`，
 label/outcome/prediction/accuracy/utility/candidate identity/profile read=`false/false/false/false/false/false/false`。
 

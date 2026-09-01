@@ -30,6 +30,8 @@
 `phase1/PAPER_BLUEPRINT_DECISION_CORPUS_20260902.md`；数据发布事实、用途、偏差与未闭合许可/隐私门见
 `phase1/DATACARD_DECISION_CORPUS_DRAFT_20260902.md`。旧 `phase1/paper.tex` 已显式标为历史稿，不得继续作为当前论文；
 旧 `phase1/RELEASE_COMPLIANCE.md` 已标为只覆盖 v6 的历史初版，不得当作 v11 release clearance。
+给学长的最小 producer 动作、sidecar patch SHA、联合 scaling 边界与贡献归属已整理在
+`phase1/SENIOR_HANDOFF_20_DAY_SPRINT_20260902.md`。
 
 ## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
 

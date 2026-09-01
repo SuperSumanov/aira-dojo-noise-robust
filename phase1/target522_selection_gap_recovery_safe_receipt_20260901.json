@@ -1,0 +1,31 @@
+{
+  "candidate_identity_or_profile_read": false,
+  "formal_manifest_sha256": "9c0f96eb9d652eefc7f57f451271b61bd72e85235b3157ca49b9e67f0e8864c0",
+  "formal_root": "/research/d7/spc/yzyang4/target522-gap-recovery/formal-c0f67fd-v2",
+  "formal_root_read_only": true,
+  "formal_summary_sha256": "db98021768139d873e8012d83f0b0716a8fa7d53f64f1efbb12674aa3ab76812",
+  "formal_verification_sha256": "ef801e5d052dada9b40f3256d982da7489764338ae429ea27d54416c2d783e3b",
+  "full_tests_passed": 1901,
+  "full_tests_warnings": 48,
+  "gpu_api_model_fit_base_update": "0/0/0/0",
+  "outcomes_or_prediction_values_read": false,
+  "previous_runs": 494,
+  "protocol": "target522-selection-gap-recovery-safe-receipt-v1",
+  "protocol_sha256": "e86b29e67f481543395fc3b08729bfd6165ba4ceeac39bc62c825594c6acb29f",
+  "recovered_observed_sha256": "0277463211df467fb241776d975b4afab0133009f75f8b9cd53d15785341170f",
+  "recovered_successors": 7,
+  "registry_or_run_payload_parsed": false,
+  "remaining_runs": 5,
+  "result_commit": "c0f67fd8d171fccb6ca68e805c8111e4828e5813",
+  "status": "TARGET522_GAP_RECOVERY_NO_CROSSING_PASS",
+  "target_runs": 522,
+  "final_runs": 517,
+  "trace_network_connect_calls": 0,
+  "trace_credential_shape_hits": 0,
+  "v1_harness_failure": {
+    "failed_rc": 1,
+    "formal_result_emitted": false,
+    "reason": "deployment harness precreated a producer output directory that the no-overwrite producer correctly rejected",
+    "structural_analysis_completed_before_no_overwrite_rejection": true
+  }
+}

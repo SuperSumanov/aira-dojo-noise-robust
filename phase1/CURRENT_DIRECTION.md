@@ -13,6 +13,26 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KP. 2026-09-01 Target-522 七步缺口正式通过：494→517，未错过首次 crossing
+
+`target522-selection-gap-recovery-v1` 的 exact-commit formal 已完成。第一次 formal v1 的 8 项 focused 与 1,901 项
+full tests 均通过，但部署 harness 预建 producer 输出目录，触发 no-overwrite producer 的正确拒绝（rc=1）；该次已经完成
+结构分析但未发出 formal result，失败根原样保留。只修正 harness、不改提交/协议/producer/verifier 的 fresh v2 再次通过
+focused/full=`8/1,901`（48 warnings），producer A/B、独立 verifier A/B、manifest、只读、trace/network/credential 门均通过。
+
+七个按 intake 顺序固定的 successor 把 observed structural count 从 494 单调推进至 **517/522**，每一步均严格小于 522，
+remaining=`5`；因此可以排除旧六小时 watcher 在缺口中跳过首次 crossing。formal manifest / summary / independent
+verification SHA-256=`9c0f96eb...64c0` / `db980217...6812` / `ef801e5d...3e3b`，恢复后 ledger 预期
+SHA-256=`02774632...170f`。outcome/prediction/accuracy/utility/candidate profile/private identity 均未读，registry/run
+payload 只做 hash，GPU/API/model fit/base update=`0/0/0/0`。
+
+在修改旧 ledger 前又冻结独立 `target522-selection-gap-resume-v1`：只允许在旧 ledger
+SHA/lines/tail=`0e444525...8c47/22/494`、当前 LATEST=`e9e12c63...8a6d`、formal 根完整且只读、monitor 锁空闲及
+所有候选/失败标记仍为空时，把 exact extension（SHA-256=`d998e8a3...8da9`）在同目录临时文件验证为
+29 lines / 517 runs / `02774632...170f` 后原子替换，再调用旧根保存的 exact source script `resume`。协议 / safe receipt /
+resume script SHA-256=`81f04069...22d4` / `078a0c8b...ca71` / `6e91660d...a7f8`。当前仍停在 append 前；部署后必须
+独立核验 PID、cmdline、锁、TIMEOUT 删除、无 CONTINUITY_GAP，并保持结果盲。
+
 ## 0KO. 2026-09-01 Target-522 超时缺口恢复已在读取七个 successor counts 前冻结
 
 原 Target-522 first-crossing watcher 正常耗尽固定轮数时仍停在 LATEST=`30945550...104f`、494 runs，candidate/READY/

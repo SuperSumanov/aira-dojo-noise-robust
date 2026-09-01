@@ -1,0 +1,80 @@
+{
+  "protocol": "target522-selection-gap-recovery-v1",
+  "version": 1,
+  "frozen_at_utc": "2026-09-01T00:30:00Z",
+  "status": "FROZEN_BEFORE_SUCCESSOR_RUN_COUNTS_READ",
+  "selection_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+  "state_root": "/research/d7/spc/yzyang4/prospective_decision_v1",
+  "selection_source_commit": "42f10449f793a5c4feafc0a622b91804d45e59a7",
+  "selection_protocol_sha256": "718224d9586b45a1bf6689c2bb9dd1d6b76e7243b8ddd2267dcf94fc6ea2667f",
+  "selection_source_script_sha256": "8cab471b3c57c07711238f19cbcc80836aa7f4450faedf6ca50d60a306d4596b",
+  "old_observed_sha256": "0e444525aed0e8f34892dda4334251260add7efa33e2e76ebc22773ef7f48c47",
+  "old_observed_lines": 22,
+  "timeout_rc": 124,
+  "last_observed_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+  "last_observed_runs": 494,
+  "target_runs": 522,
+  "current_latest_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+  "ordered_successors": [
+    {
+      "snapshot_sha256": "66906ce9e5f636b44fa412c21da46efdc5884044bbe9f3957ed2d0c39c5ec851",
+      "summary_sha256": "65d1dd6b175a93bce9cc7d988558b9663fe917ecb6da622d4fb165f7f5c88278",
+      "registry_sha256": "f87c02d9fae1cff95554b314a22ef7c5c5c30c755a9069b63c228a66a5721b02",
+      "runs_sha256": "bde755574f94a25915417c8d8cd81b375ba3687991063ef88500137743497fb9"
+    },
+    {
+      "snapshot_sha256": "9cf3ac6b566884f9c6acb10a920a55b0a4e6557ffd4d8d57cda518feb3a03beb",
+      "summary_sha256": "51759fcc8ae8f2fc3981524f24a7aed49c10011455c19194f15c3ba5e2d147f6",
+      "registry_sha256": "f508ce46e38241aace24c901327e0b80524d22f6c4f35996f1f69b9b48eee115",
+      "runs_sha256": "e0ec7e6fdff7caa12e847777a11290d96962946218b85164f8d79ae1d6efab55"
+    },
+    {
+      "snapshot_sha256": "72dc5106759e0bfcc29f6253ddf9bf72f0f1040d3ca88df800e7f97ab7bb11c2",
+      "summary_sha256": "b20f4554fdf8931bb9c2397dd4dfd6dcf2680430b2675d3730dfc42e9bbab01d",
+      "registry_sha256": "294771da3760f6995bc1970b512bc2fa8a9c0f64165257b846a73f15b12a3d9c",
+      "runs_sha256": "a4ead3a117ad65dcaf154847e346697ee33fa647ed5d0cdfc6569bfd3e028eca"
+    },
+    {
+      "snapshot_sha256": "8649d8a4a94226fc524ad131e782e4302d58ee0bdc6752059db425d9f040be3c",
+      "summary_sha256": "b1eb663a1880e4c2a4c3b475a286c67f836f3b947a7fc9f159f40e948b46d704",
+      "registry_sha256": "f77fc29b13ad8979559d1f6e71397c252d2e35a3877ed8a920b15c336cee2e6f",
+      "runs_sha256": "8c2ecf1c34169d4a9994f06e69a94cae5aae329fc2000d952b31d4de88ceb5ed"
+    },
+    {
+      "snapshot_sha256": "63037694f102ac7b126d215fbcb6e42c5f082013583197a10b34d3e9d565eeae",
+      "summary_sha256": "1a2cd7dc518041eaa90001ae03ae95745a37f3b3495df443d9090eec75f33575",
+      "registry_sha256": "9325d173bfa37ddcdec4aa54247b28f57fdfab08e8dd752ad5233c5e52836b64",
+      "runs_sha256": "1962476500b20617cb8df31a2c1502c339887826e506cdefae0851b44f708f35"
+    },
+    {
+      "snapshot_sha256": "7c2b7dc51ddfb3dbf6432a9991d755a96167f1f5b3c4e21c4f0d4e79fe3e1bc6",
+      "summary_sha256": "7962944d70cfdab8e9f848ffcbc290a6b53ceb4bea081fcea416dcde208137d8",
+      "registry_sha256": "acf521ae00da4a034dd19e252578a50d1193d3bb3ef2c9d337a52345f58a0a1c",
+      "runs_sha256": "5743f17409ec5ecab06aac8c4b10e17dec33b2fc83221579d933d3580fbe3509"
+    },
+    {
+      "snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+      "summary_sha256": "000b31ea1fd4da829a31d12ef0db79a48e4e288367fe51f905d42b5506cd96c9",
+      "registry_sha256": "00f49dd9171aeecd97412337c45c8287e308a4bdb31078168e2d6e560ee3faa2",
+      "runs_sha256": "cb0ea9edeb709e9b2692ecbfb86c7f41fff41837a6a6a4b1e958037f15921241"
+    }
+  ],
+  "gates": {
+    "old_observed_is_exact_prefix": true,
+    "successors_are_exactly_the_seven_committed_snapshot_shas": true,
+    "successor_counts_are_monotone": true,
+    "every_recovered_successor_is_strictly_below_target": true,
+    "final_successor_equals_current_latest": true,
+    "accumulator_security_fields_remain_closed": true,
+    "registry_and_run_payloads_are_hashed_but_not_parsed": true,
+    "candidate_profile_or_identity_read": false,
+    "manual_candidate_choice_allowed": false
+  },
+  "failure_rule": "Any hash, schema, order, monotonicity, security, current-LATEST, old-prefix, marker, or below-target mismatch fails closed. A recovered count at or above 522 proves that a crossing may have been skipped and forbids resume.",
+  "resources": {
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  }
+}

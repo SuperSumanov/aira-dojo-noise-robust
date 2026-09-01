@@ -13,6 +13,24 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KO. 2026-09-01 Target-522 超时缺口恢复已在读取七个 successor counts 前冻结
+
+原 Target-522 first-crossing watcher 正常耗尽固定轮数时仍停在 LATEST=`30945550...104f`、494 runs，candidate/READY/
+COMPLETE/FAILED/CONTINUITY_GAP 均不存在，只写 `TIMEOUT_RC=124`。当前 LATEST 已推进至 `e9e12c63...8a6d`；直接
+`resume` 会违反原协议的 changed-LATEST continuity 门，不能为了继续守候而删除缺口证据。
+
+在读取七个缺口 snapshots 的 first-960 run counts 前，冻结 `target522-selection-gap-recovery-v1`：旧 observed ledger
+SHA-256/lines=`0e444525...8c47/22`，最后观察固定为 494 runs；successor 只能是 intake log 中按提交顺序出现的七个 exact
+SHA，且每个 summary/registry/run-ledger hash 已单独固定。producer A/B 与不导入 producer 的 verifier A/B 必须证明旧 ledger
+是 exact prefix、七步计数单调、final=当前 LATEST、security fields 全关闭，并且 **七个 counts 全部严格小于 522**；任一
+successor 已达到 522 就说明可能跳过首次 crossing，恢复必须 KILL。registry/run payload 只做字节 hash，不解析身份。
+
+协议/producer/verifier/test SHA-256=`e86b29e6...b29f` / `e5933a6f...923d` / `327605a3...a30b` /
+`e5e7793a...7512`，本地 focused=`8 passed`。当前只有结果前冻结实现，尚未读取七个 counts、未追加 observed ledger、未删除
+TIMEOUT、未重启 selection 或下游 watcher；远端 exact-commit full tests、双 A/B、independent verifier、trace/security 与
+append-only postflight 全过后才允许恢复。outcome/prediction/accuracy/utility/candidate profile/private identity 均未读，
+GPU/API/model fit/base update=`0/0/0/0`。
+
 ## 0KN. 2026-09-01 八归档已全部结算；Target-300 attempt 2 推进至 242/300
 
 学长 source 从 275 增至 283 个 archives；冻结的 6 小时/三观察稳定门通过后，append-only intake 顺序提交前 4 个并

@@ -13,6 +13,35 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KX. 2026-09-02 Evidence Index v10 正式通过：四项 distinct 资产入索引，0KW 强制只计 reconstruction
+
+0KW 的 prior-evidence omission 表明仅靠人工阅读长方向文档不足以防止同一 estimand 被重复包装。新增
+`decision_corpus_evidence_index_v10` 作为 post-result reporting/audit 修复：逐字保留 v9 的 16 个条目与
+`AWAITING_FIRST960` 状态，只新增四项 distinct evidence entry：0KH archive-disposition longitudinal、0KI
+archive-granularity retention、0KU 494→517 WL append-only snapshot chain、0KV 14-event support census。
+0KW support floor 不进入 distinct `entries`，而进入单独 `reconstructions`，必须指向 0KI 的
+`prior_support_depth` component 且 `counts_as_distinct_claim_evidence=false`。
+
+除结构 signature/pointer 门外，builder 与**不导入 builder**的 verifier 都直接交叉比较 0KI/0KW 的 competition
+数、四类 totals、四类 min/median/max 与两项 dominance，共 `19` 个共享数值；任一不等、缺失 prior pointer、
+把 reconstruction 计为 distinct、修改任一 v9 entry 或提升 provisional 状态都 fail-closed。v10 的机器 accounting
+为 source/distinct-added/reconstruction/total-distinct/duplicate-counted=`16/4/1/20/0`；旧 v9 条目尚未追溯结构化
+fingerprint，因此该门的明确覆盖范围是 v10 additions 与 reconstruction records，不能声称已自动解决全部历史语义重复。
+
+第一次 formal launcher 因调用方传入不存在的完整 commit 字符串在 worktree 前以 rc=`128` 停止；worktree/index/
+verifier/COMPLETE=`false/0/0/false`，没有 reporting 或科学 readout。随后 exact commit=
+`983bdec9c19da52ca12fd58d6f1a9ae371ea24d5` 的 fresh v2 完整通过：focused/full=`105/1,988 passed`
+（48 warnings，115.29 秒），13 项 preflight、13 个输入 hash before/after、builder A/B、verifier A/B、trace
+重建均一致；root mode/files=`0500/41`，COMPLETE/FAILED_RC=`true/false`，forbidden-open/network/credential
+filename/content hits=`0/0/0/0`。index/verifier/manifest SHA-256=`51da3ccb...ae7af` /
+`b31e389d...c0e0f` / `0c98fde4...55d00`。
+
+这是一项正面的 **Audit Protocol 完整性资产**：它把近期有效结果纳入单一机器索引，并机械阻止本次已发生的重复证据
+计数；但它不增加新的科学 effect、predictor accuracy、scaling 或 search-utility 结果，也不解除 first-960 closure。
+prospective values/raw senior archives/candidate identities read=`false/false/false`，GPU/API/model fit/base update=
+`0/0/0/0`。公开件见 `phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/`；截至本段尚未执行
+release commit 的 fresh post-push 复验。
+
 ## 0KW. 2026-09-02 support floor 已完成；证据索引勘误后降级为独立重建 + current-window lineage
 
 > **证据索引勘误（覆盖本节所有“未知/新正结果/推进”旧措辞）**：本节首次发布时漏检了 0KI 的 2026-08-31

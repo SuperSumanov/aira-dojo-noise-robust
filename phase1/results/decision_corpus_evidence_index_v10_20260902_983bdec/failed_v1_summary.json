@@ -1,0 +1,10 @@
+{
+  "status": "INVALID_SOURCE_COMMIT_LAUNCH_FAIL_BEFORE_WORKTREE",
+  "failed_rc": 128,
+  "formal_root": "/research/d7/spc/yzyang4/prospective-evidence-index-v10/formal-983bdec-v1",
+  "worktree_created": false,
+  "index_files_created": 0,
+  "verifier_files_created": 0,
+  "complete_marker_created": false,
+  "scientific_or_reporting_readout_created": false
+}

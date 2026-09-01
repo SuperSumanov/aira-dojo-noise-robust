@@ -1,0 +1,24 @@
+{
+  "all_aggregate_fields_equal": true,
+  "distinct_entries_added": 4,
+  "duplicate_claims_counted_as_distinct": 0,
+  "gpu_api_model_fit_base_update": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "imports_builder": false,
+  "index_sha256": "51da3ccb8b0040153c352633c6e4b4f7b2c530442d81ec1445f03ebf6adae7af",
+  "prospective_values_read": false,
+  "protocol": "independent-decision-corpus-evidence-index-v10-verification",
+  "raw_senior_archives_opened": false,
+  "reconstruction_records_added": 1,
+  "row_level_release_created": false,
+  "shared_numeric_fields_crosschecked": 19,
+  "source_entries_preserved_without_modification": 16,
+  "source_v9_sha256": "b2d88479abb03cf72b27f9f958badfb3aeb8bc1e1e3cac2c50a3aace43511ff6",
+  "source_v9_status_preserved": true,
+  "status": "INDEPENDENT_CLAIM_DEDUPLICATED_EVIDENCE_INDEX_V10_VERIFIED",
+  "total_distinct_entry_count": 20
+}

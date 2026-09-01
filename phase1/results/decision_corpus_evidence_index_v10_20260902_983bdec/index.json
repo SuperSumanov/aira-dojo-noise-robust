@@ -1,0 +1,1551 @@
+{
+  "claim_accounting": {
+    "distinct_entries_added": 4,
+    "duplicate_claims_counted_as_distinct": 0,
+    "reconstruction_records_added": 1,
+    "shared_numeric_fields_crosschecked": 19,
+    "source_distinct_entry_count": 16,
+    "source_v9_status_preserved": true,
+    "total_distinct_entry_count": 20
+  },
+  "claim_deduplication": {
+    "artifact_count_by_record": {
+      "archive_disposition_longitudinal": 2,
+      "archive_granularity_retention": 2,
+      "archive_rejection_support_census": 2,
+      "archive_rejection_support_floor_reconstruction": 3,
+      "prospective_wl_snapshot_chain_517": 2
+    },
+    "distinct_claim_signature_sha256_by_name": {
+      "archive_disposition_longitudinal": "37e32babd7840cee6c0a13f858db47d557d6a51d8255e9baed0c94cae8ecace2",
+      "archive_granularity_retention": "80404bc116926ea7f0203ce161d860057e78c89f1491ca0f19f891e53fb9d4ae",
+      "archive_rejection_support_census": "8aad6fb95091ea8c2d5bcd77bc6cdf9dd9749a075da3689d8f98b6d72e4d70df",
+      "prospective_wl_snapshot_chain_517": "23803957b911769ccf1cb3488e3fd7154eea5ddfaca85b3f716790c32712196d"
+    },
+    "json_assertion_count_by_record": {
+      "archive_disposition_longitudinal": 15,
+      "archive_granularity_retention": 16,
+      "archive_rejection_support_census": 17,
+      "archive_rejection_support_floor_reconstruction": 31,
+      "prospective_wl_snapshot_chain_517": 24
+    },
+    "reconstruction_numeric_crosscheck": {
+      "counts_as_distinct_claim_evidence": false,
+      "incremental_descriptive_component_is_independent_confirmation": false,
+      "reconstruction_record": "archive_rejection_support_floor_reconstruction",
+      "shared_numeric_fields_exact": 19,
+      "target_entry": "archive_granularity_retention"
+    },
+    "reconstruction_target_by_name": {
+      "archive_rejection_support_floor_reconstruction": "archive_granularity_retention"
+    },
+    "structured_signature_scope": "v10 additions and reconstruction records; legacy v9 entries are preserved but not retroactively fingerprinted"
+  },
+  "entries": [
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+            "protocol": "decision-corpus-lineage-audit-v2-receipt",
+            "scientific.global_relation_counts.cross_run_declared_context": 0,
+            "scientific.global_relation_counts.lineage_verified_orphan_parent_sibling": 528,
+            "scientific.global_relation_counts.parent_present_verified_direct_sibling": 7579,
+            "scientific.global_relation_counts.same_run_declared_context_non_sibling": 0,
+            "scientific.hard_integrity_gate_count.passed": 15,
+            "scientific.hard_integrity_gate_count.total": 15,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b0.endpoints": 0,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b0.parents": 0,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b0.referenced_physical_runs": 0,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b0.unordered_pairs": 0,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b1.endpoints": 0,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b1.parents": 0,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b1.referenced_physical_runs": 0,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b1.unordered_pairs": 0,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b2.endpoints": 0,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b2.parents": 0,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b2.referenced_physical_runs": 0,
+            "scientific.same_budget_strict_core_train_frozen_overlap.b2.unordered_pairs": 0,
+            "scientific.set_profiles.frozen:b2.strict_core.maximum_single_run_pair_share.denominator": 127,
+            "scientific.set_profiles.frozen:b2.strict_core.maximum_single_run_pair_share.numerator": 26,
+            "scientific.set_profiles.frozen:b2.strict_core.pairs": 254,
+            "scientific.support_gate_count.passed": 35,
+            "scientific.support_gate_count.total": 36,
+            "scientific.support_gates.frozen:b2.maximum_single_run_pair_share": false,
+            "scope.grade_gap_label_prediction_accuracy_or_utility_used": false,
+            "scope.prospective_values_read": false,
+            "scope.raw_senior_archives_read": false,
+            "scope.row_level_release_created": false,
+            "status": "HISTORICAL_V11_LINEAGE_AUDIT_COMPLETE"
+          },
+          "path": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/formal/producer_a.json",
+          "sha256_normalized_lf": "23e9a8139be60ee4c34d3c44eda9afaed3034a68f6749ebcb0555c10a15f0032"
+        },
+        {
+          "json_assertions": {
+            "all_aggregate_fields_equal": true,
+            "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+            "hard_integrity_gate_count.passed": 15,
+            "hard_integrity_gate_count.total": 15,
+            "imports_producer": false,
+            "prospective_values_read": false,
+            "protocol": "independent-decision-corpus-lineage-audit-v2-verification",
+            "row_level_release_created": false,
+            "status": "INDEPENDENTLY_VERIFIED_DECISION_CORPUS_LINEAGE_AUDIT_V2",
+            "support_gate_count.passed": 35,
+            "support_gate_count.total": 36
+          },
+          "path": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/formal/verifier_a.json",
+          "sha256_normalized_lf": "f183c7847343d3d485a3414cc14e1a20aa7761aaa5c94e2323bef32fb79bb59a"
+        },
+        {
+          "json_assertions": {
+            "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+            "scope.aggregate_only": true,
+            "scope.gpu_api_model_fit_base_update": "0/0/0/0",
+            "scope.pair_orientation_used": false,
+            "scope.prospective_values_read": false,
+            "scope.raw_senior_archives_read": false,
+            "scope.row_level_release_created": false,
+            "source_commit": "25148420ee457018a1ee3740c4a1c42da830610d",
+            "status": "INDEPENDENTLY_VERIFIED_AGGREGATE_PACKAGE"
+          },
+          "path": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/source_bindings.json",
+          "sha256_normalized_lf": "97ad6ac47bdd0290f9edb4ec878ca093bf87ec6e859498d3d725d721ae4fde97"
+        }
+      ],
+      "does_not_prove": "Recorded parent pointers are not semantic or causal ground truth. The frozen:b2 strict core fails the fixed maximum single-run share gate, so an all-support-gates-pass claim is forbidden; this audit also does not establish predictor accuracy, scaling, search utility, or prospective generalization.",
+      "estimand": "declared-parent direct-child relation, parent-complete retention, and task/physical-run/split/budget closure across the nine canonical v11 decision sets",
+      "name": "decision_corpus",
+      "supported_claim": "All 8,107 audited v11 rows are lineage-direct sibling pairs under the recorded parent pointers. The parent-present strict core retains 7,579 rows, the lineage-verifiable orphan-parent tier contains 528 rows, all same-budget train/frozen pair, endpoint, parent, and referenced-run overlaps are zero, and 35 of 36 fixed support gates pass."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "choice_set_faithful_claim_allowed": false,
+            "labeled_sibling_fragment_claim_allowed": true,
+            "parents": 3252,
+            "reads_first960": false,
+            "reads_pair_orientation": false,
+            "status": "VERIFIED_RAW_CHOICE_SET_COMPLETENESS_AUDIT",
+            "uses_numeric_outcome_magnitude": false
+          },
+          "path": "phase1/results/raw_choice_set_completeness_v11_20260815_6610618/verification_summary.json",
+          "sha256_normalized_lf": "52e0e4c77de6f85adc2690cc541664299be3700f069a07f51b5ec7879161c833"
+        },
+        {
+          "json_assertions": {
+            "complete_labeled_choice_set_claim_allowed": false,
+            "exact_identity_recoverable_parents": 721,
+            "exact_identity_recovery_rate": 0.828735632183908,
+            "nonorphan_unrecoverable_incomplete_parents": 0,
+            "opportunity_identity_registry_claim_allowed": true,
+            "reads_first960": false,
+            "reads_numeric_outcomes": false,
+            "recovered_missing_identities": 996,
+            "source_incomplete_parents": 870,
+            "status": "VERIFIED_SOURCE_OPPORTUNITY_IDENTITY_RECOVERY"
+          },
+          "path": "phase1/results/source_opportunity_identity_recovery_v11_20260815_3faf001/verification_summary.json",
+          "sha256_normalized_lf": "297d4cf0c6ee72d180208738e0b51c3c3a27d3792b32b3a1dce3bf8172b2c422"
+        },
+        {
+          "json_assertions": {
+            "categories.EXECUTION_ERROR": 893,
+            "categories.OFFICIAL_GRADE_ABSENT": 9,
+            "complete_labeled_choice_set_claim_allowed": false,
+            "journal_parent_mismatches": 0,
+            "missing_at_random_claim_allowed": false,
+            "missing_status_registry_claim_allowed": true,
+            "node_recovery_rate": 0.9056224899598394,
+            "reads_first960": false,
+            "reads_numeric_grade": false,
+            "source_journal_collisions": 0,
+            "status": "VERIFIED_SOURCE_OPPORTUNITY_JOURNAL_STATUS",
+            "target_missing_identities": 996,
+            "unique_nodes_recovered": 902
+          },
+          "path": "phase1/results/source_opportunity_journal_status_v11_20260815_42cb6b1/verification_summary.json",
+          "sha256_normalized_lf": "4d094aa119c25c2f0639fc4315e70e85b297f3d9afd808b0a39d15726b17fedc"
+        }
+      ],
+      "does_not_prove": "The registry does not recover missing numeric outcomes, establish missing-at-random, make the labeled fragment a complete choice set, or demonstrate a censor-aware selector's utility.",
+      "estimand": "retention boundary plus parent-linked identity and journal-status coverage for generated siblings absent from the labeled release",
+      "name": "source_opportunity",
+      "supported_claim": "The release is a labeled sibling fragment with a high-coverage, parent-linked registry of missing generated identities and statuses."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "claim_allowed": true,
+            "criteria.finite_pair_loss_share_ge_material_minimum": true,
+            "criteria.loss_stages_add_exactly": true,
+            "criteria.pair_minus_child_loss_share_ge_material_minimum": true,
+            "criteria.supported_tasks_ge_minimum": true,
+            "criteria.tasks_with_pair_loss_gt_child_loss_ge_minimum": true,
+            "criteria.train_and_frozen_pair_loss_gt_child_loss": true,
+            "inputs.parent_rows": 3252,
+            "overall.decision_parent_survival": 1.0,
+            "overall.finite_children": 7760,
+            "overall.finite_pair_capacity": 5998,
+            "overall.finite_to_published_pair_loss": 101,
+            "overall.pair_attrition_amplification": 2.6356283154144,
+            "overall.pair_minus_child_loss_share": 0.23900906721724502,
+            "overall.published_unique_edges": 5897,
+            "overall.raw_to_finite_pair_loss": 0,
+            "overall.source_children": 9088,
+            "overall.source_pair_capacity": 9755,
+            "overall.source_to_finite_child_loss_share": 0.14612676056338025,
+            "overall.source_to_finite_pair_loss_share": 0.3851358277806253,
+            "overall.source_to_raw_pair_loss": 3757,
+            "protocol": "decision-observability-funnel-v1",
+            "roles.frozen.source_to_finite_pair_loss_share": 0.3173546382600977,
+            "roles.train.source_to_finite_pair_loss_share": 0.4112200435729847,
+            "scope.api_calls": 0,
+            "scope.base_llm_updates": 0,
+            "scope.complete_choice_set_claim": false,
+            "scope.gpu_hours": 0,
+            "scope.missing_at_random_claim": false,
+            "scope.numeric_outcome_read": false,
+            "scope.pair_orientation_read": false,
+            "scope.prospective_outcome_read": false,
+            "status": "VERIFIED_MATERIAL_COMBINATORIAL_DECISION_ATTRITION",
+            "support.supported_tasks": 14,
+            "support.tasks_with_pair_loss_gt_child_loss": 12
+          },
+          "path": "phase1/results/decision_observability_funnel_v1_20260821_1b8a7b9/formal_summary.json",
+          "sha256_normalized_lf": "e2bf11bc557ff147a11040821a6d3aa5a0650023ba585bbbf7f5e730fcf07ceb"
+        },
+        {
+          "json_assertions": {
+            "artifact_summary_sha256": "e2bf11bc557ff147a11040821a6d3aa5a0650023ba585bbbf7f5e730fcf07ceb",
+            "claim_allowed": true,
+            "finite_pair_capacity": 5998,
+            "imports_producer": false,
+            "maximum_reconstruction_difference": 0.0,
+            "parent_rows": 3252,
+            "producer_status": "VERIFIED_MATERIAL_COMBINATORIAL_DECISION_ATTRITION",
+            "prospective_outcome_read": false,
+            "source_pair_capacity": 9755,
+            "status": "INDEPENDENT_DECISION_OBSERVABILITY_FUNNEL_VERIFIED"
+          },
+          "path": "phase1/results/decision_observability_funnel_v1_20260821_1b8a7b9/verification_a.json",
+          "sha256_normalized_lf": "d83f2128ccc1d0309a31b3aa5f518b453514181dc1d858445b23facbcbe4feb1"
+        }
+      ],
+      "does_not_prove": "Declared C(n,2) capacity is not a log of comparisons made by the agent, all audited parents retain a finite published decision, and the census does not recover a complete labeled choice set or establish predictor accuracy, search utility, missing-at-random, or causality.",
+      "estimand": "finite-population child-slot and declared undirected sibling-pair capacity through source, raw, finite, and published release stages",
+      "name": "decision_observability",
+      "supported_claim": "In the audited 3,252-parent release, 14.61 percent source child-slot loss corresponds to 38.51 percent declared pair-capacity loss; the comparison-resolution loss is material in both train and frozen roles."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "by_category.EXECUTION_ERROR": 2060,
+            "by_category.OFFICIAL_GRADE_ABSENT": 19,
+            "by_role.extension": 22,
+            "by_role.frozen": 424,
+            "by_role.train": 1633,
+            "edge_count": 2079,
+            "execution_error_only_sensitivity.criteria.added_relations_ge_material_minimum": true,
+            "execution_error_only_sensitivity.criteria.dominant_task_share_le_maximum": true,
+            "execution_error_only_sensitivity.criteria.frozen_coverage_gain_ge_material_minimum": true,
+            "execution_error_only_sensitivity.criteria.gap_recovery_ge_material_minimum": true,
+            "execution_error_only_sensitivity.criteria.overall_coverage_gain_ge_material_minimum": true,
+            "execution_error_only_sensitivity.criteria.relation_accounting_exact": true,
+            "execution_error_only_sensitivity.criteria.supported_tasks_ge_minimum": true,
+            "execution_error_only_sensitivity.criteria.tasks_with_positive_gain_ge_minimum": true,
+            "execution_error_only_sensitivity.criteria.train_coverage_gain_ge_material_minimum": true,
+            "execution_error_only_sensitivity.criteria.unknown_status_not_promoted": true,
+            "execution_error_only_sensitivity.overall.certified_coverage": 0.815684264479754,
+            "execution_error_only_sensitivity.overall.certified_relations": 7957,
+            "execution_error_only_sensitivity.overall.coverage_gain": 0.21117375704766786,
+            "execution_error_only_sensitivity.overall.lost_relation_recovery": 0.5339554173146708,
+            "execution_error_only_sensitivity.overall.published_unique_edges": 5897,
+            "execution_error_only_sensitivity.overall.source_pair_capacity": 9755,
+            "execution_error_only_sensitivity.overall.validity_dominance_edges": 2060,
+            "execution_error_only_sensitivity.preserves_all_original_material_gates": true,
+            "execution_error_only_sensitivity.roles.extension.coverage_gain": 0.12658227848101267,
+            "execution_error_only_sensitivity.roles.frozen.coverage_gain": 0.18819351975144252,
+            "execution_error_only_sensitivity.roles.train.coverage_gain": 0.22004357298474944,
+            "execution_error_only_sensitivity.support.dominant_added_relation_task": "spooky-author-identification",
+            "execution_error_only_sensitivity.support.dominant_added_relation_task_share": 0.1883495145631068,
+            "execution_error_only_sensitivity.support.supported_tasks": 14,
+            "execution_error_only_sensitivity.support.tasks_with_positive_gain": 11,
+            "parents": 658,
+            "protocol": "status-certified-edge-export-v1",
+            "scope.candidate_code_read": false,
+            "scope.complete_choice_set_claim": false,
+            "scope.gap_or_numeric_score_used": false,
+            "scope.numeric_quality_order_claim": false,
+            "scope.post_result_release_export": true,
+            "scope.prospective_outcome_read": false,
+            "scope.published_pair_files_read_for_endpoint_identity": true,
+            "scope.published_pair_orientation_direction_used": false,
+            "source_commit": "c9bfc21c1e8428787caf4e70db404a18990910bc",
+            "status": "VERIFIED_STATUS_CERTIFIED_EDGE_MANIFEST",
+            "tasks": 14,
+            "unique_invalid_children": 902,
+            "unique_valid_children": 1498
+          },
+          "path": "phase1/results/status_certified_edge_manifest_v1_20260821_c9bfc21/producer_a/summary.json",
+          "sha256_normalized_lf": "5dd53823ca6e432e4ab593a1267c9a73bce954be977deceb6de63c4ed90ea84b"
+        },
+        {
+          "json_assertions": {
+            "artifact_manifest_sha256": "e843720791e51501e07e556acaa05cd8624c1334d74879e4a6df8a61e1780323",
+            "artifact_summary_sha256": "5dd53823ca6e432e4ab593a1267c9a73bce954be977deceb6de63c4ed90ea84b",
+            "edge_count": 2079,
+            "execution_error_only_preserves_all_original_material_gates": true,
+            "imports_producer": false,
+            "maximum_reconstruction_difference": 0,
+            "pair_orientation_direction_used": false,
+            "producer_status": "VERIFIED_STATUS_CERTIFIED_EDGE_MANIFEST",
+            "prospective_outcome_read": false,
+            "status": "INDEPENDENT_STATUS_CERTIFIED_EDGE_MANIFEST_VERIFIED",
+            "unique_invalid_children": 902
+          },
+          "path": "phase1/results/status_certified_edge_manifest_v1_20260821_c9bfc21/verification_a.json",
+          "sha256_normalized_lf": "ae280675707b38fad4da3042296b90c7a2fd3c744f484ba482703c542d0e5abf"
+        },
+        {
+          "json_assertions": {
+            "edges.jsonl": "dda9f121dc32a1ef309992b0bec61934864e35ec337385bb2f5c0c548b258a3d",
+            "summary.json": "5dd53823ca6e432e4ab593a1267c9a73bce954be977deceb6de63c4ed90ea84b"
+          },
+          "path": "phase1/results/status_certified_edge_manifest_v1_20260821_c9bfc21/producer_a/sha256_manifest.json",
+          "sha256_normalized_lf": "e843720791e51501e07e556acaa05cd8624c1334d74879e4a6df8a61e1780323"
+        }
+      ],
+      "bound_files": [
+        {
+          "format": "jsonl",
+          "line_count": 2079,
+          "path": "phase1/results/status_certified_edge_manifest_v1_20260821_c9bfc21/producer_a/edges.jsonl",
+          "sha256_normalized_lf": "dda9f121dc32a1ef309992b0bec61934864e35ec337385bb2f5c0c548b258a3d"
+        }
+      ],
+      "does_not_prove": "Validity dominance is not a numeric-quality total order, unresolved relations remain unknown, and the release does not establish a complete choice set, missing-at-random, predictor accuracy, search utility, or algorithmic novelty.",
+      "estimand": "provenance-certified validity-dominance relation coverage among natural same-parent MLE-agent source candidates",
+      "name": "status_certified_partial_order",
+      "supported_claim": "The release contains 2,079 explicit status-certified validity edges; the stricter execution-error-only subset retains 2,060 edges and passes every original material and support gate."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "claim_allowed": true,
+            "criteria.dominant_added_winner_task_share_le_maximum": true,
+            "criteria.frozen_winner_rate_gain_ge_material_minimum": true,
+            "criteria.newly_identified_parents_ge_material_minimum": true,
+            "criteria.overall_winner_rate_gain_ge_material_minimum": true,
+            "criteria.status_winner_rate_ge_material_minimum": true,
+            "criteria.supported_tasks_ge_minimum": true,
+            "criteria.tasks_with_positive_gain_ge_minimum": true,
+            "criteria.train_winner_rate_gain_ge_material_minimum": true,
+            "execution_error_only_sensitivity_criteria.dominant_added_winner_task_share_le_maximum": true,
+            "execution_error_only_sensitivity_criteria.frozen_winner_rate_gain_ge_material_minimum": true,
+            "execution_error_only_sensitivity_criteria.newly_identified_parents_ge_material_minimum": true,
+            "execution_error_only_sensitivity_criteria.overall_winner_rate_gain_ge_material_minimum": true,
+            "execution_error_only_sensitivity_criteria.status_winner_rate_ge_material_minimum": true,
+            "execution_error_only_sensitivity_criteria.tasks_with_positive_gain_ge_minimum": true,
+            "execution_error_only_sensitivity_criteria.train_winner_rate_gain_ge_material_minimum": true,
+            "overall.execution_only_unanswered_gap_recovery": 0.7147577092511013,
+            "overall.execution_only_winner_rate": 0.9203567035670357,
+            "overall.execution_only_winner_rate_gain": 0.19956949569495694,
+            "overall.execution_only_winners": 2993,
+            "overall.newly_identified_by_status": 657,
+            "overall.newly_identified_execution_only": 649,
+            "overall.parents": 3252,
+            "overall.published_winner_rate": 0.7207872078720787,
+            "overall.published_winners": 2344,
+            "overall.runs": 440,
+            "overall.source_identity_available_parents": 3103,
+            "overall.source_pair_capacity": 9755,
+            "overall.status_unanswered_gap_recovery": 0.723568281938326,
+            "overall.status_winner_rate": 0.9228167281672817,
+            "overall.status_winner_rate_gain": 0.20202952029520296,
+            "overall.status_winners": 3001,
+            "protocol": "source-decision-answerability-v1",
+            "roles.extension.newly_identified_by_status": 11,
+            "roles.extension.status_winner_rate_gain": 0.09649122807017543,
+            "roles.frozen.newly_identified_by_status": 150,
+            "roles.frozen.status_winner_rate_gain": 0.17751479289940827,
+            "roles.train.newly_identified_by_status": 496,
+            "roles.train.status_winner_rate_gain": 0.21631051024858264,
+            "scope.code_or_observation_used": false,
+            "scope.complete_total_order_claim_allowed": false,
+            "scope.gap_used": false,
+            "scope.inferred_relations_are_logged_comparisons": false,
+            "scope.numeric_grade_used": false,
+            "scope.predictor_or_search_utility_claim_allowed": false,
+            "scope.prospective_outcome_used": false,
+            "source_commit": "e9f6f69ebb1364e14bd97ce0a140be6579977f33",
+            "status": "VERIFIED_MATERIAL_SOURCE_WINNER_ANSWERABILITY_RECOVERY",
+            "support.dominant_added_winner_task_share": 0.2800608828006088,
+            "support.execution_only_dominant_added_winner_task_share": 0.28197226502311246,
+            "support.execution_only_tasks_with_positive_gain": 11,
+            "support.supported_tasks": 14,
+            "support.tasks_with_positive_gain": 11
+          },
+          "path": "phase1/results/source_decision_answerability_v1_20260821_e9f6f69/summary.json",
+          "sha256_normalized_lf": "048f18cc2769df4c9cc4836c491c2917b2e8b051a847da20bdce454dd6592326"
+        },
+        {
+          "json_assertions": {
+            "newly_identified_by_status": 657,
+            "parents": 3252,
+            "producer_imported": false,
+            "producer_status": "VERIFIED_MATERIAL_SOURCE_WINNER_ANSWERABILITY_RECOVERY",
+            "protocol": "independent-source-decision-answerability-verifier-v1",
+            "published_winners": 2344,
+            "status": "INDEPENDENT_SOURCE_DECISION_ANSWERABILITY_VERIFIED",
+            "status_winners": 3001,
+            "summary_sha256": "048f18cc2769df4c9cc4836c491c2917b2e8b051a847da20bdce454dd6592326"
+          },
+          "path": "phase1/results/source_decision_answerability_v1_20260821_e9f6f69/independent_verification.json",
+          "sha256_normalized_lf": "05e4398e65ba9b19559247cf084359eba0d6ec18753b72dbe6fb8f780e1c845e"
+        },
+        {
+          "json_assertions": {
+            "per_parent.csv": "b2488d059ce4fafacc321e98fb4f4e82b5f0b4d4abc86a413d9e6f80da0cb4d4",
+            "per_task.csv": "7c1669f101706efc76c0894c76f5abc382eb842401141b01037505404d168fb5",
+            "summary.json": "048f18cc2769df4c9cc4836c491c2917b2e8b051a847da20bdce454dd6592326"
+          },
+          "path": "phase1/results/source_decision_answerability_v1_20260821_e9f6f69/producer_sha256_manifest.json",
+          "sha256_normalized_lf": "674405276e61abba1971b6e68dda26d2edcef400466b6beb7b50430a39d3de18"
+        }
+      ],
+      "bound_files": [
+        {
+          "data_row_count": 3252,
+          "format": "csv",
+          "header": [
+            "role",
+            "task",
+            "run_id_sha256",
+            "parent_sha256",
+            "source_children",
+            "finite_children",
+            "source_identity_available",
+            "missing_identity_children",
+            "certified_invalid_children",
+            "unknown_source_children",
+            "published_direct_relations",
+            "status_direct_relations",
+            "execution_only_direct_relations",
+            "published_transitive_relations",
+            "status_transitive_relations",
+            "execution_only_transitive_relations",
+            "published_top_set_size",
+            "status_top_set_size",
+            "execution_only_top_set_size",
+            "published_winner_identified",
+            "status_winner_identified",
+            "execution_only_winner_identified",
+            "newly_identified_by_status",
+            "newly_identified_execution_only"
+          ],
+          "line_count": 3253,
+          "path": "phase1/results/source_decision_answerability_v1_20260821_e9f6f69/per_parent.csv",
+          "sha256_normalized_lf": "b2488d059ce4fafacc321e98fb4f4e82b5f0b4d4abc86a413d9e6f80da0cb4d4"
+        },
+        {
+          "data_row_count": 23,
+          "format": "csv",
+          "header": [
+            "stratum_type",
+            "stratum",
+            "parents",
+            "runs",
+            "source_pair_capacity",
+            "source_identity_available_parents",
+            "published_direct_relations",
+            "status_direct_relations",
+            "execution_only_direct_relations",
+            "published_transitive_relations",
+            "status_transitive_relations",
+            "execution_only_transitive_relations",
+            "published_winners",
+            "status_winners",
+            "execution_only_winners",
+            "newly_identified_by_status",
+            "newly_identified_execution_only",
+            "published_winner_rate",
+            "status_winner_rate",
+            "execution_only_winner_rate",
+            "status_winner_rate_gain",
+            "execution_only_winner_rate_gain",
+            "status_unanswered_gap_recovery",
+            "execution_only_unanswered_gap_recovery",
+            "published_relation_coverage",
+            "status_direct_relation_coverage",
+            "status_transitive_relation_coverage",
+            "execution_only_transitive_relation_coverage"
+          ],
+          "line_count": 24,
+          "path": "phase1/results/source_decision_answerability_v1_20260821_e9f6f69/per_task.csv",
+          "sha256_normalized_lf": "7c1669f101706efc76c0894c76f5abc382eb842401141b01037505404d168fb5"
+        }
+      ],
+      "does_not_prove": "Source-winner answerability is not predictor accuracy, search utility, a complete numeric total order, or a prospective effect; transitive relations are implications of the released partial order rather than logged agent comparisons, and identity-unavailable parents remain unanswered.",
+      "estimand": "fraction of all frozen natural source-parent choice sets for which the released provenance-bound partial order certifies a unique winner",
+      "name": "source_decision_answerability",
+      "supported_claim": "Published finite orientations certify 2,344 of 3,252 source winners; status-certified validity raises this to 3,001, adds 657, and reaches a 0.9228167281672817 all-parent answerability rate."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "primary_mode": "all_successful_records",
+            "protocol": "label_repeatability_attestation_v2",
+            "scope.reads_endpoint_code": false,
+            "scope.trains_predictor": false,
+            "sensitivity_modes.all_successful_records.original_vs_first_repeat.raw_agreement": 0.9658601259529334,
+            "sensitivity_modes.all_successful_records.original_vs_first_repeat.tasks": 10,
+            "status": "VERIFIED_LABEL_REPEATABILITY_ATTESTATION_V2"
+          },
+          "path": "phase1/results/label_repeatability_v2_20260814_4e3bebe/attestation.json",
+          "sha256_normalized_lf": "eba5e2b3ce01d3cbf80bb81d9854d1e08c6bd73a045d97fe1a20b1e264c8cf8b"
+        },
+        {
+          "json_assertions": {
+            "imports_producer": false,
+            "protocol": "independent_label_repeatability_attestation_verifier_v2",
+            "status": "INDEPENDENTLY_VERIFIED_LABEL_REPEATABILITY_ATTESTATION_V2",
+            "verified_regrade_files": 7
+          },
+          "path": "phase1/results/label_repeatability_v2_20260814_4e3bebe/independent_verification.json",
+          "sha256_normalized_lf": "6a167a31498ea2ad11781978949f1aac12b2c9cc001d03fa4d43ef3c4b91fbf3"
+        }
+      ],
+      "does_not_prove": "Repeatability is not empirical predictor accuracy and the transported quantity depends on the explicitly recorded exchangeability and symmetry assumptions.",
+      "estimand": "repeatability of pair ordering under independent regrades and model-based transport over score-gap distributions",
+      "name": "label_repeatability",
+      "supported_claim": "Pair ordering is highly repeatable on the independently regraded ten-task subset under the recorded regrade protocol."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "normalizations.ast_literal_norm.cross_run_duplicate_endpoints": 0,
+            "normalizations.ast_literal_norm.cross_task_duplicate_endpoints": 0,
+            "normalizations.ast_literal_norm.fingerprinted_endpoints": 5488,
+            "normalizations.token_literal_norm.cross_run_duplicate_endpoints": 0,
+            "normalizations.token_literal_norm.cross_task_duplicate_endpoints": 0,
+            "normalizations.token_literal_norm.fingerprinted_endpoints": 5638,
+            "pre_registered_gate.primary_checks.ast_literal_norm.coverage": false,
+            "pre_registered_gate.primary_checks.token_literal_norm.coverage": true,
+            "pre_registered_gate.semantic_equivalence_or_fuzzy_clone_absence_proven": false,
+            "pre_registered_gate.strong_low_normalized_clone_support": false,
+            "protocol": "prospective_code_clone_audit_v1",
+            "status": "PROVISIONAL_CODE_CLONE_AUDIT_COMPLETE"
+          },
+          "path": "phase1/results/prospective_code_clone_audit_20260820_e121452/receipt.json",
+          "sha256_normalized_lf": "9d85a642928385bac099b46ce36d24f5d8e24434a7b5076dc6b83ea8810656be"
+        },
+        {
+          "json_assertions": {
+            "credential_shape_matches": 0,
+            "forbidden_file_access_matches": 0,
+            "label_vault_opened": false,
+            "outcomes_read": false,
+            "receipt_byte_identical": true
+          },
+          "path": "phase1/results/prospective_code_clone_audit_20260820_e121452/verification_summary.json",
+          "sha256_normalized_lf": "d27b2bc8df58d60400c5dd30b39d1ea1eeddb499320f28631b710bcc5c32639b"
+        },
+        {
+          "json_assertions": {
+            "diagnostic.direct_ast.failure_endpoints": 155,
+            "diagnostic.failed_subset_token_literal_norm.fingerprinted_endpoints": 150,
+            "diagnostic.failed_subset_token_literal_norm.unique_fingerprints": 150,
+            "interpretation_contract.preregistered_clone_gate_rescued": false,
+            "interpretation_contract.semantic_or_fuzzy_clone_absence_proven": false,
+            "protocol": "prospective_ast_failure_diagnostic_v1",
+            "status": "POST_HOC_AST_FAILURE_DIAGNOSTIC_COMPLETE"
+          },
+          "path": "phase1/results/prospective_ast_failure_diagnostic_20260820_31aee5a/receipt.json",
+          "sha256_normalized_lf": "cde16b78f5df01dde4ec579a6111d97610699d4d52e93b2a388dc7b39cb7a744"
+        },
+        {
+          "json_assertions": {
+            "credential_shape_matches": 0,
+            "forbidden_file_access_matches": 0,
+            "label_vault_opened": false,
+            "outcomes_read": false,
+            "receipt_byte_identical": true
+          },
+          "path": "phase1/results/prospective_ast_failure_diagnostic_20260820_31aee5a/verification_summary.json",
+          "sha256_normalized_lf": "cbf62924db57de277ffac5a3d1fc2298fbaab60e7ddc8714204a9c834484e2e0"
+        }
+      ],
+      "does_not_prove": "The token result covers 99.91 percent and the AST result 97.25 percent; neither excludes fuzzy, semantic, or training-data duplication, and the preregistered aggregate strong gate failed on AST coverage.",
+      "estimand": "cross-run and cross-task shallow code-clone incidence under preregistered tokenizer and AST normalizations",
+      "name": "normalized_clone",
+      "supported_claim": "No cross-run or cross-task duplicates were observed among endpoints covered by the preregistered token and AST normalizations."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "models.static_gbm.initialization_break_even_parallel_pairs": 1,
+            "models.static_lr.initialization_break_even_parallel_pairs": 1,
+            "models.tfidf_lr.initialization_break_even_parallel_pairs": 1,
+            "positive_checks.all_init_p50_below_10_parallel_execution_p50": true,
+            "positive_checks.all_query_p95_below_1pct_parallel_execution_p50": true,
+            "protocol": "deployment_cost_attestation_v2",
+            "scope.accuracy_computed": false,
+            "scope.api_used": false,
+            "scope.gpu_used": false,
+            "scope.prospective_vault_opened": false,
+            "status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED"
+          },
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/run_A/summary.json",
+          "sha256_normalized_lf": "27996594f37bb0c327d7d90e7ba6f49a66b3ce1fb42dbb4e79899f3e4cf458bc"
+        },
+        {
+          "json_assertions": {
+            "models.static_gbm.initialization_break_even_parallel_pairs": 1,
+            "models.static_lr.initialization_break_even_parallel_pairs": 1,
+            "models.tfidf_lr.initialization_break_even_parallel_pairs": 1,
+            "positive_checks.all_init_p50_below_10_parallel_execution_p50": true,
+            "positive_checks.all_query_p95_below_1pct_parallel_execution_p50": true,
+            "protocol": "deployment_cost_attestation_v2",
+            "scope.accuracy_computed": false,
+            "scope.api_used": false,
+            "scope.gpu_used": false,
+            "scope.prospective_vault_opened": false,
+            "status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED"
+          },
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/run_B/summary.json",
+          "sha256_normalized_lf": "009b00e49216400370a82ffb9d2c91126aa203423f073d77efa6eb4d88076a4f"
+        },
+        {
+          "json_assertions": {
+            "measurement_rows": 2313,
+            "producer_imported": false,
+            "result_status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "status": "INDEPENDENTLY_VERIFIED_DEPLOYMENT_COST_ATTESTATION",
+            "trial_receipts": 9
+          },
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/verification_A.json",
+          "sha256_normalized_lf": "4005e7a787d8212b1c0a6d560e85117f0c13c9039baa8789db23e4b8b903f2bf"
+        },
+        {
+          "json_assertions": {
+            "measurement_rows": 2313,
+            "producer_imported": false,
+            "result_status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "status": "INDEPENDENTLY_VERIFIED_DEPLOYMENT_COST_ATTESTATION",
+            "trial_receipts": 9
+          },
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/verification_B.json",
+          "sha256_normalized_lf": "ec5d87874337b3171b07da03846838fdefaa4ccfcba3261b6deab263c4c06ef0"
+        },
+        {
+          "json_assertions": {
+            "checks.all_init_p50_ratios_at_most_3": true,
+            "checks.all_models_same_decisions": true,
+            "checks.all_query_p50_ratios_at_most_2": true,
+            "checks.same_single_cpu_affinity": true,
+            "checks.thread_contract_is_one": true,
+            "protocol": "deployment_cost_cross_run_verification_v2",
+            "result_status": "DEPLOYMENT_COST_ADVANTAGE_SUPPORTED",
+            "status": "CROSS_RUN_STABILITY_VERIFIED"
+          },
+          "path": "phase1/results/deployment_cost_attestation_v2_20260820_c800345/cross_run_comparison.json",
+          "sha256_normalized_lf": "d124c5b664bf2a0d878eb02cfaa071a3fae45fd1525da30d82ea8a229571c784"
+        }
+      ],
+      "does_not_prove": "This experiment does not compute frozen accuracy or show that a particular selector improves search score or wall-clock time.",
+      "estimand": "single-pair online query latency and initialization cost relative to recorded pair execution runtime",
+      "name": "deployment_cost",
+      "supported_claim": "The audited lightweight predictors have online query latency far below recorded candidate execution time under the pinned CPU protocol."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "artifacts.1.status": "PARTIALLY_DEGRADED_MATRIX_DEPENDENT_ENTRY_WITHDRAWN",
+            "artifacts.2.status": "HISTORICAL_WITHDRAWN_AS_STRICT_ZERO_PREDICTION_ACCESS_EVIDENCE",
+            "artifacts.5.status": "PARTIALLY_DEGRADED_AFFECTED_EVIDENCE_POINTERS_WITHDRAWN",
+            "protocol": "prediction-matrix-downstream-taint-registry-v1",
+            "replacement.formal_status": "INDEPENDENT_STRUCTURAL_ONLY_TASK_BALANCE_FORWARD_PASS",
+            "replacement.v1_provenance_retroactively_repaired": false,
+            "root_incident.labels_or_outcomes_read": false,
+            "root_incident.numeric_values_proven_wrong": false
+          },
+          "path": "phase1/prediction_matrix_downstream_taint_registry_v1.json",
+          "sha256_normalized_lf": "f15cba54aca4572cc6c515d8b0f30d614874997bc873fa5cee7698f0aeb3c13b"
+        }
+      ],
+      "does_not_prove": "Withdrawal does not prove every historical number wrong, does not delete the audit trail, and cannot retroactively repair v1 provenance.",
+      "estimand": "which machine evidence pointers retain strict zero-prediction-value provenance after the prediction-matrix incident",
+      "name": "evidence_provenance_repair",
+      "supported_claim": "The value-reading coverage matrices, their v6 catalog entry, the v1 task-balance chain, and affected ABC crosswalk pointers are preserved as historical-withdrawn. V7 is rebuilt from unaffected v5 and binds only replacement receipt-only or structural-only evidence."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "families.transition.pairs": 2755,
+            "families.wl.pairs": 2755,
+            "input_policy.artifact_summary_content_parsed": false,
+            "input_policy.prediction_pair_files_opened": false,
+            "protocol": "prediction-receipt-common-support-v1",
+            "receipt_certified_common_support.pair_identity_or_orientation_reopened": false,
+            "receipt_certified_common_support.pairs": 2755,
+            "receipt_certified_common_support.same_canonical_pair_population_certified": true,
+            "scope.accuracy_effect_or_search_utility_computed": false,
+            "scope.labels_grades_outcomes_or_winner_orientation_read": false,
+            "scope.prediction_value_aggregates_computed": [],
+            "scope.prediction_values_accessed": false,
+            "snapshot_sha256": "8579d7cd32091a11089b935217f7189e321b1d623dbaa69233182ba2fedd9248",
+            "status": "RECEIPT_CERTIFIED_EXACT_CANONICAL_COMMON_SUPPORT"
+          },
+          "path": "phase1/results/prediction_receipt_common_support_8579_20260826_9f2cbe9/receipt.json",
+          "sha256_normalized_lf": "3b2d0200cf8982a69837a65ca0511fcb35534c94ee440f6bf17789c09c721263"
+        },
+        {
+          "json_assertions": {
+            "candidate_exact": true,
+            "effect_metrics_computed": [],
+            "pairs": 2755,
+            "prediction_pair_files_opened": false,
+            "prediction_values_accessed": false,
+            "producer_imported": false,
+            "prospective_outcomes_read": false,
+            "protocol": "prediction-receipt-common-support-v1",
+            "same_canonical_pair_population_certified": true,
+            "status": "INDEPENDENT_PREDICTION_RECEIPT_COMMON_SUPPORT_VERIFIED"
+          },
+          "path": "phase1/results/prediction_receipt_common_support_8579_20260826_9f2cbe9/independent_verification.json",
+          "sha256_normalized_lf": "24a7ff758d391f4fd506236df97f1a9d6692ddb965cab490e6e92475e2cb012e"
+        }
+      ],
+      "does_not_prove": "Receipt equality does not reopen pair identity or orientation and does not support tie, margin, activation, accuracy, effect, utility, runtime, or first-960 closure claims.",
+      "estimand": "receipt-certified equality of the canonical structural-pair population reconstructed by frozen WL and transition independent verifiers",
+      "name": "prediction_receipt_common_support",
+      "supported_claim": "At immutable snapshot 8579, the two frozen verifier chains independently certify the same 2,755-pair canonical population. The join opens no pair prediction file and accesses no prediction value."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "chronological_flags.pair_inverse_hhi_diversity_fell_despite_more_tasks": true,
+            "chronological_flags.run_max_share_fell_while_pair_max_share_rose": true,
+            "current_pair_max_share": 0.31233396584440226,
+            "current_pairs": 2635,
+            "current_runs": 339,
+            "current_tasks": 30,
+            "run_to_pair_total_variation": 0.337082500713674,
+            "snapshot_sha256": "7cdaefcf2be7786442e1af1f4d0b4012edee708932f1fad31e174c0dcaf803a1",
+            "status": "OUTCOME_BLIND_STRUCTURAL_DEPENDENCY_ATLAS_READY"
+          },
+          "path": "phase1/results/structural_dependency_atlas_7cda_20260825/headline_metrics.json",
+          "sha256_normalized_lf": "f6db60ae066323ff3e65944ab24d3c30e18074765f080d4f2618de4bfc86814f"
+        },
+        {
+          "json_assertions": {
+            "checks.all_task_concentration_metrics_recomputed": true,
+            "checks.all_weighting_shifts_recomputed": true,
+            "checks.chronological_comparison_recomputed": true,
+            "checks.input_hashes_bound": true,
+            "security.accuracy_effect_or_search_utility_computed": false,
+            "security.gpu_or_api_calls": 0,
+            "security.label_grade_outcome_prediction_or_winner_orientation_read": false,
+            "status": "INDEPENDENT_STRUCTURAL_DEPENDENCY_ATLAS_PASS"
+          },
+          "path": "phase1/results/structural_dependency_atlas_7cda_20260825/independent_verification.json",
+          "sha256_normalized_lf": "634c57840667d4cd9a301fb3d8c8d39e37c161ea1d11872a57ac740d951c150f"
+        },
+        {
+          "json_assertions": {
+            "claim_gates.G1_temporal_persistence": true,
+            "claim_gates.G2_no_single_drop_artifact": false,
+            "claim_gates.G3_single_task_robustness": true,
+            "claim_gates.G4_yield_is_primary_mechanism": true,
+            "maximum_single_drop_attribution": 0.9641733656841007,
+            "pair_hhi_delta": 0.05270955007531816,
+            "pair_hhi_yield_fraction": 0.6446576519060645,
+            "run_hhi_delta": -0.007095167549882084,
+            "run_to_pair_tv_yield_fraction": 0.5951060527094302,
+            "runs": 339,
+            "status": "OUTCOME_BLIND_STRUCTURAL_WEIGHT_TRAJECTORY_READY",
+            "structural_pairs": 2635,
+            "tasks": 30
+          },
+          "path": "phase1/results/structural_weight_trajectory_7cda_20260826/headline_metrics.json",
+          "sha256_normalized_lf": "8d4041994f8998e5a04df0e2e18508ebf97915221303c14f62d9abb8d0e6b2b2"
+        },
+        {
+          "json_assertions": {
+            "checks.all_339_prefixes_recomputed": true,
+            "checks.all_claim_gates_recomputed": true,
+            "checks.drop_and_task_deletions_recomputed": true,
+            "checks.security_contract_exact": true,
+            "recomputed_key_findings.claim_gates.G2_no_single_drop_artifact": false,
+            "security.gpu_or_api_calls": 0,
+            "security.label_outcome_prediction_or_raw_archive_opened": false,
+            "status": "INDEPENDENT_STRUCTURAL_WEIGHT_TRAJECTORY_PASS"
+          },
+          "path": "phase1/results/structural_weight_trajectory_7cda_20260826/independent_verification.json",
+          "sha256_normalized_lf": "8094e21acde877a67cdcc295c6decaaaf9e650c06fd55a91ed69026f877f9420"
+        }
+      ],
+      "does_not_prove": "The shift is not observed predictor bias or effect. One drop explains 0.9641733656841007 of the pair-HHI change, so robust magnitude and causal producer-behavior claims are forbidden.",
+      "estimand": "how chronological physical-run task weights are transformed into derived sibling-pair benchmark weights by task-specific opportunity yield",
+      "name": "structural_weighting_shift",
+      "supported_claim": "At the 339-run 7cda prefix, run-to-pair task-weight TV is 0.337082500713674. Run HHI fell while pair HHI rose; the direction is temporally persistent and task-deletion robust, and opportunity yield explains most of the measured HHI/TV shift."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "claim_boundary.alternate_weighting_can_rescue_primary": false,
+            "claim_boundary.closure_time_audit_frozen": true,
+            "claim_boundary.effect_result": false,
+            "claim_boundary.existing_primary_or_inference_superseded": false,
+            "formal_execution.independent_checks_passed": 18,
+            "formal_execution.verifier_a_b_byte_identical": true,
+            "security.accuracy_effect_or_search_utility_computed": false,
+            "security.api_calls": 0,
+            "security.gpu_jobs": 0,
+            "security.new_model_fits": 0,
+            "security.prediction_values_read_or_aggregated": false,
+            "security.prospective_label_grade_outcome_or_orientation_read": false,
+            "source_commit": "f97026221e099c11fa1ca8f2c13a95c389bea743",
+            "status": "FORMAL_OPPORTUNITY_YIELD_AGGREGATION_AUDIT_PASS"
+          },
+          "path": "phase1/results/opportunity_yield_aggregation_audit_v1_20260826/formal_summary.json",
+          "sha256_normalized_lf": "ec0671e8fb4d17faa53603fc53c4a8a98069e27a86feeac203a89e932d61e053"
+        },
+        {
+          "json_assertions": {
+            "access_and_compute.accuracy_effect_or_search_utility_computed": false,
+            "access_and_compute.prediction_values_read_or_aggregated": false,
+            "access_and_compute.prospective_label_grade_outcome_or_winner_orientation_read": false,
+            "checks.access_attestation_exact": true,
+            "checks.closure_and_common_support_gate_exact": true,
+            "checks.panel_forbids_rescue": true,
+            "checks.reporting_firewall_exact": true,
+            "checks.weight_identity_exact": true,
+            "status": "INDEPENDENT_OPPORTUNITY_YIELD_AUDIT_CONTRACT_PASS"
+          },
+          "path": "phase1/results/opportunity_yield_aggregation_audit_v1_20260826/independent_verification.json",
+          "sha256_normalized_lf": "0054e5fceaf326b67f773d44109841ce576db59c9efd959671e97b6b3357e973"
+        }
+      ],
+      "does_not_prove": "This is an interpretation contract, not a measured predictor effect; it cannot supersede a frozen primary, rescue a failed primary with alternate weighting, or claim informative-cluster-size theory as novel.",
+      "estimand": "a closure-time decomposition of run-to-informative-pair aggregation into structural opportunity yield and informative retention",
+      "name": "opportunity_yield_aggregation_audit",
+      "supported_claim": "Before closure, the two-stage decomposition, full task-universe gate, common-support gate, range-times-TV bounds, and no-rescue reporting rule were frozen and independently checked."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "access_attestation.labels_grades_outcomes_or_winner_orientation_read": false,
+            "access_attestation.prediction_pair_files_opened": [],
+            "access_attestation.prediction_values_read_or_aggregated": false,
+            "chronology_audit.old_run_order_preserved_as_subsequence": true,
+            "chronology_audit.old_run_set_preserved": true,
+            "claim_boundary.predictor_accuracy_effect_or_search_utility_computed": false,
+            "claim_boundary.producer_compliance_claimed": false,
+            "frozen_guard_forward_result.baseline_debt": 657,
+            "frozen_guard_forward_result.current_cap_pass": false,
+            "frozen_guard_forward_result.current_dominant_share": 0.308529945553539,
+            "frozen_guard_forward_result.debt_delta": -12,
+            "frozen_guard_forward_result.future_dominant_pairs": 27,
+            "frozen_guard_forward_result.future_nondominant_pairs": 93,
+            "frozen_guard_forward_result.immediate_action_adherence": "DEFINITELY_NOT_ADHERED_BEFORE_DEBT_CLEARANCE",
+            "frozen_guard_forward_result.observed_current_debt": 645,
+            "protocol": "task_balance_guard_forward_validation_v2",
+            "source_validation.baseline_summary_and_ledger_revalidated": true,
+            "source_validation.current_summary_and_ledger_revalidated": true,
+            "source_validation.current_total_cross_checked_by_receipt_only_independent_verifier": true,
+            "source_validation.prediction_matrix_input_used": false,
+            "status": "STRUCTURAL_ONLY_FORWARD_ACCOUNTING_EXACT"
+          },
+          "path": "phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/forward_validation.json",
+          "sha256_normalized_lf": "fca979bb912c61bb14385638069a64aefcb8a7b9bc41cb77c260d07075ea0fb1"
+        },
+        {
+          "json_assertions": {
+            "access_attestation.outcomes_or_prediction_values_read": false,
+            "checks.both_accumulator_sources_recomputed": true,
+            "checks.cap_failure_preserved": true,
+            "checks.causal_and_effect_claims_forbidden": true,
+            "checks.current_total_receipt_cross_check_exact": true,
+            "checks.debt_accounting_identity_exact": true,
+            "checks.no_prediction_matrix_input": true,
+            "protocol": "independent_task_balance_guard_forward_validation_v2",
+            "recomputed.baseline_debt": 657,
+            "recomputed.baseline_pairs": 2635,
+            "recomputed.current_debt": 645,
+            "recomputed.current_dominant_share": 0.308529945553539,
+            "recomputed.current_pairs": 2755,
+            "recomputed.debt_delta": -12,
+            "status": "INDEPENDENT_STRUCTURAL_ONLY_TASK_BALANCE_FORWARD_PASS"
+          },
+          "path": "phase1/results/task_balance_structural_only_v2_8579_20260826_1b9b836/forward_independent_verification.json",
+          "sha256_normalized_lf": "00f8fec272705d0d5dfe072f2e0e59efa170913900249a506c829b693f102146"
+        }
+      ],
+      "does_not_prove": "The current 0.308529945553539 dominant share still fails the 25% cap and dominant pairs accrued before debt clearance, so producer compliance, causal acquisition effect, predictor effect, and v1 provenance repair are forbidden claims.",
+      "estimand": "forward accounting of a frozen structural-pair task-balance debt using only snapshot-bound accumulator summaries, ledgers, structural gates, and receipt-only total-count certification",
+      "name": "task_balance_structural_only_v2",
+      "supported_claim": "From 2,635 to 2,755 pairs, frozen debt changed from 657 to 645 exactly because dominant/non-dominant increments were 27/93. The debt improved by 12 but remains uncleared."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "gate.remaining_confirmatory_runs": 737,
+            "gate.vault_open_allowed": false,
+            "independent_inventory.all_eligible.runs": 223,
+            "independent_inventory.all_eligible.structural_pairs": 1473,
+            "protocol": "prospective_structural_gate_independent_verifier_v5",
+            "security.label_vault_opened": false,
+            "status": "CONFIRMATORY_COHORT_COLLECTING"
+          },
+          "path": "phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/receipt.json",
+          "sha256_normalized_lf": "9d12e2a8cac555a9eef6743169d0b922c2840b1e6d9c20996662e1910b65e875"
+        },
+        {
+          "json_assertions": {
+            "accrual_closure_provided": false,
+            "confirmatory_runs": 223,
+            "confirmatory_target_runs": 960,
+            "file_access_forbidden_pattern_matches": 0,
+            "remaining_confirmatory_runs": 737,
+            "secret_shape_matches": 0,
+            "status": "CONFIRMATORY_COHORT_COLLECTING",
+            "vault_open_allowed": false
+          },
+          "path": "phase1/results/prospective_confirmatory_gate_correction_20260820_757ced0/verification_summary.json",
+          "sha256_normalized_lf": "88dc19ceb7e2017179dec4c08d7741180559971dbdef57f67c46b143ffc4dca5"
+        }
+      ],
+      "does_not_prove": "The cohort is incomplete and outcomes remain sealed; this entry is not a prospective accuracy or mechanism result.",
+      "estimand": "outcome-blind accrual and structural eligibility state of the preregistered first-960 confirmatory cohort",
+      "name": "prospective_gate",
+      "supported_claim": "The preregistered confirmatory cohort is accruing outcome-blind and remains sealed until its run target and independent closure are met."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "certificate_gates.historical_to_future_integrity": true,
+            "certificate_gates.historical_to_future_zero_links": true,
+            "certificate_gates.within_future_integrity": true,
+            "certificate_gates.within_future_zero_cross_run_links": true,
+            "classification": "PROVISIONAL_ZERO_LINK_SPLIT_INTEGRITY_CERTIFICATE",
+            "future_population.closure": false,
+            "future_population.endpoints": 11906,
+            "future_population.runs": 435,
+            "protocol": "decision-corpus-split-integrity-certificate-887-v1",
+            "security.gpu_api_model_fit_base_update": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "security.prospective_label_outcome_prediction_values_read": false,
+            "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+            "status": "PROVISIONAL_SPLIT_INTEGRITY_CERTIFICATE_BUILD_COMPLETE"
+          },
+          "path": "phase1/results/split_integrity_certificate_887_20260828_25efd3a/certificate.json",
+          "sha256_normalized_lf": "b44035bd073a83d4c57a03550db9c4b88af8afa8df95268c42f18541cdccca5c"
+        },
+        {
+          "json_assertions": {
+            "certificate_sha256": "b44035bd073a83d4c57a03550db9c4b88af8afa8df95268c42f18541cdccca5c",
+            "classification": "PROVISIONAL_ZERO_LINK_SPLIT_INTEGRITY_CERTIFICATE",
+            "imports_builder": false,
+            "prospective_outcomes_or_prediction_values_read": false,
+            "protocol": "independent-decision-corpus-split-integrity-certificate-887-v1",
+            "status": "INDEPENDENT_SPLIT_INTEGRITY_CERTIFICATE_VERIFIED"
+          },
+          "path": "phase1/results/split_integrity_certificate_887_20260828_25efd3a/independent_verification.json",
+          "sha256_normalized_lf": "45dc560b882b31df3564740bd619ac2c7248a9edcc19656a8ef865f0720af944"
+        },
+        {
+          "json_assertions": {
+            "certificate_sha256": "b44035bd073a83d4c57a03550db9c4b88af8afa8df95268c42f18541cdccca5c",
+            "deployment_sha256sums_file_sha256": "92833795950123c9e77dcb09f9f1323957cce5ec8eab8eead5d68d50b4056ed1",
+            "formal_sha256sums_file_sha256": "a7e6aeb9e806ebeb70b9d7ddd2089c08b6cd6716ec2cd70921b20fcf4a1a7161",
+            "independent_verification_sha256": "45dc560b882b31df3564740bd619ac2c7248a9edcc19656a8ef865f0720af944",
+            "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+            "source_commit": "25efd3a9237e93177e3c8c91b8f73169a70d4213"
+          },
+          "path": "phase1/results/split_integrity_certificate_887_20260828_25efd3a/source_bindings.json",
+          "sha256_normalized_lf": "e1780dbaf6f62ca080116d5400472db087c07e58d225c3e95396525c167c9d5f"
+        }
+      ],
+      "does_not_prove": "The certificate does not cover the complete historical release, semantic equivalence, unknown pretraining data, predictor effect, search utility, or first-960 closure.",
+      "estimand": "whether future lineage is physical-run local and the historical critic-train subset has zero identifier-erased links to the exact future snapshot",
+      "name": "physical_run_split_integrity_certificate",
+      "supported_claim": "The two-axis, outcome-blind split certificate passed on the fixed 435-run prefix under the frozen identifier/literal-erased syntactic relation."
+    },
+    {
+      "artifacts": [
+        {
+          "json_assertions": {
+            "all_pre_registered_gates_passed": true,
+            "classification": "ZERO_IDENTIFIER_ERASED_RELEASE_LINKS",
+            "evidence_index_status": "PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960",
+            "gpu_api_model_fit_base_update": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "historical_endpoints": 16012,
+            "historical_runs": 667,
+            "historical_tasks": 25,
+            "prediction_values_read": false,
+            "prior_failed_deployment_rc": 1,
+            "prior_failed_formal_rc": 124,
+            "prior_failed_result_file_created": false,
+            "prior_failed_result_values_read": false,
+            "prospective_endpoints": 11906,
+            "prospective_outcomes_read": false,
+            "prospective_runs": 435,
+            "prospective_tasks": 34,
+            "protocol": "historical-release-future-identifier-erased-package-v1",
+            "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+            "source_commit": "8bf95124175a7ba7f388ac547b31be05916651f5",
+            "status": "FORMAL_HISTORICAL_RELEASE_FUTURE_IDENTIFIER_ERASED_PACKAGE_COMPLETE"
+          },
+          "path": "phase1/results/historical_release_future_identifier_erased_overlap_887_20260828_8bf9512_r2/formal_summary.json",
+          "sha256_normalized_lf": "14e4f3c1cb08d2bb60ed4dfc8939245aafba99339213e0f6210bd1cece0351ca"
+        },
+        {
+          "json_assertions": {
+            "all_pre_registered_gates_passed": true,
+            "classification": "ZERO_IDENTIFIER_ERASED_RELEASE_LINKS",
+            "evidence_index_status": "PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960",
+            "imports_packager_builder": false,
+            "prediction_values_read": false,
+            "producer_aggregate_matches": true,
+            "prospective_outcomes_read": false,
+            "protocol": "independent-historical-release-future-identifier-erased-package-recheck-v1",
+            "status": "INDEPENDENT_PACKAGE_RECHECK_COMPLETE",
+            "subset_bruteforce_matches": true
+          },
+          "path": "phase1/results/historical_release_future_identifier_erased_overlap_887_20260828_8bf9512_r2/independent_recheck.json",
+          "sha256_normalized_lf": "6ab5877d70281b4f1b98d2c09a088466dd64c605f73c27e38fd3124039c687fc"
+        },
+        {
+          "json_assertions": {
+            "package_protocol_sha256": "ba6a1f6e44458e65b7042fcfd6e84e95e2e2b6cec0c7d0bb494ad7e0924da2d7",
+            "prior_failed_deployment_rc": 1,
+            "prior_failed_formal_rc": 124,
+            "prior_failed_result_file_created": false,
+            "prior_failed_result_values_read": false,
+            "protocol": "historical-release-future-identifier-erased-package-bindings-v1",
+            "scientific_protocol_changed_in_r2": false,
+            "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+            "source_commit": "8bf95124175a7ba7f388ac547b31be05916651f5",
+            "status": "FORMAL_POSTFLIGHT_DEPLOYMENT_AND_FAILURE_HISTORY_BOUND"
+          },
+          "path": "phase1/results/historical_release_future_identifier_erased_overlap_887_20260828_8bf9512_r2/source_bindings.json",
+          "sha256_normalized_lf": "76a1687ddebe3fbc4274a8b8d76f29a0e315b434d98344cb237a324e779bb010"
+        }
+      ],
+      "does_not_prove": "This aggregate certificate does not prove semantic-clone absence, unknown-pretraining decontamination, all-source independence, predictor accuracy or effect, search utility, causal independence, or first-960 closure; strict sensitivity cannot rescue primary.",
+      "estimand": "identifier/literal-erased syntactic overlap between the complete byte-reproducible v11 release and the exact future snapshot",
+      "name": "complete_release_temporal_overlap_certificate",
+      "supported_claim": "No links were found between the complete byte-reproducible v11 release and the fixed 435-run future prefix under the frozen identifier/literal-erased syntactic relation and primary threshold."
+    },
+    {
+      "artifact_count": 2,
+      "artifacts": [
+        {
+          "json_assertions": {
+            "access_attestation.archive_payloads_opened": false,
+            "access_attestation.candidate_identities_emitted": false,
+            "access_attestation.labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+            "current.structural_mixed_disposition_competitions": 6,
+            "current.structural_rejected_competitions": 6,
+            "decision.strong_gate_passed": true,
+            "extension_beyond_historical_anchor.structural_rejected_archives": 1,
+            "protocol": "archive_disposition_longitudinal_replication_v2",
+            "status": "LONGITUDINAL_ARCHIVE_LEVEL_GATE_REPLICATED"
+          },
+          "path": "phase1/results/archive_disposition_longitudinal_replication_v2_20260831_43ce72a/a/result.json",
+          "sha256": "58539382eb9cd82e52560b8073287e2a94043c5035e34ad2d955baa3329c104e"
+        },
+        {
+          "json_assertions": {
+            "all_aggregate_fields_equal": true,
+            "identities_emitted": false,
+            "outcomes_predictions_labels_read": false,
+            "protocol": "independent_archive_disposition_longitudinal_replication_v2",
+            "result_sha256": "58539382eb9cd82e52560b8073287e2a94043c5035e34ad2d955baa3329c104e",
+            "status": "INDEPENDENT_ARCHIVE_DISPOSITION_REPLICATION_PASS"
+          },
+          "path": "phase1/results/archive_disposition_longitudinal_replication_v2_20260831_43ce72a/a/independent_verification.json",
+          "sha256": "854f81e58e9cf2aabce7a1a0edbda6f4f9696fdd6beeabd47524c1738321ab4f"
+        }
+      ],
+      "claim_components": {},
+      "claim_signature": {
+        "aggregation": "taxonomy-aware structural-rejection competition overlap and payload-hash partition accounting",
+        "population_unit": "settled post-baseline archive and structural-rejected competition",
+        "snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+        "taxonomy": "accepted versus structural reject versus byte-alias quarantine"
+      },
+      "claim_signature_sha256": "37e32babd7840cee6c0a13f858db47d557d6a51d8255e9baed0c94cae8ecace2",
+      "counts_as_distinct_claim_evidence": true,
+      "does_not_prove": "The extension contains only one new structural rejection, so this is longitudinal persistence rather than an independent batch replication. It does not estimate a rejection-rate law, predictor accuracy, scaling, search utility, or a causal metadata-repair effect.",
+      "estimand": "whether archive-level fail-closed validation preserves accepted support for competitions that also contain structurally rejected archives, with byte aliases separated from structural failures",
+      "evidence_class": "benchmark_audit",
+      "json_assertion_count": 15,
+      "name": "archive_disposition_longitudinal",
+      "supported_claim": "At the 30945550 snapshot, all 6 structurally rejected competitions also have accepted archives; the accepted, structural-reject, and byte-alias payload-hash partitions are mutually auditable, and the frozen longitudinal strong gate passes."
+    },
+    {
+      "artifact_count": 2,
+      "artifacts": [
+        {
+          "json_assertions": {
+            "access_attestation.candidate_identities_or_profiles_read": false,
+            "access_attestation.labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+            "decision.strong_gate_passed": true,
+            "protocol": "archive_granularity_retention_audit_v1",
+            "retained_by_archive_granular_validation.accepted_archives": 20,
+            "retained_by_archive_granular_validation.affected_competitions": 6,
+            "retained_by_archive_granular_validation.eligible_endpoints": 2558,
+            "retained_by_archive_granular_validation.eligible_runs": 92,
+            "retained_by_archive_granular_validation.physical_runs": 94,
+            "status": "ARCHIVE_GRANULARITY_RETENTION_STRONG"
+          },
+          "path": "phase1/results/archive_granularity_retention_v1_20260831_bc88298/a/result.json",
+          "sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184"
+        },
+        {
+          "json_assertions": {
+            "all_aggregate_fields_equal": true,
+            "identities_emitted": false,
+            "outcomes_predictions_labels_read": false,
+            "protocol": "independent_archive_granularity_retention_v1",
+            "result_sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184",
+            "status": "INDEPENDENT_ARCHIVE_GRANULARITY_RETENTION_PASS"
+          },
+          "path": "phase1/results/archive_granularity_retention_v1_20260831_bc88298/a/independent_verification.json",
+          "sha256": "4965c04739d6ca8468be7fa04f807a8f5c123b3ce2adec37efbfd47608d3b187"
+        }
+      ],
+      "claim_components": {
+        "prior_support_depth": {
+          "aggregates": [
+            "accepted_archives",
+            "physical_runs",
+            "eligible_runs",
+            "eligible_endpoints",
+            "anonymous_min_median_max",
+            "maximum_share"
+          ],
+          "competition_count": 6,
+          "filter": "accepted archives in structural-rejection affected competitions; byte aliases excluded",
+          "population_unit": "distinct affected competition",
+          "snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f"
+        }
+      },
+      "claim_signature": {
+        "aggregation": "exact retained-support accounting under archive-granular validation versus task blacklist",
+        "population_unit": "accepted archive, physical run, eligible run, and eligible endpoint",
+        "snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+        "taxonomy": "structural-rejection affected competitions with aliases excluded"
+      },
+      "claim_signature_sha256": "80404bc116926ea7f0203ce161d860057e78c89f1491ca0f19f891e53fb9d4ae",
+      "counts_as_distinct_claim_evidence": true,
+      "does_not_prove": "This is deterministic counterfactual corpus accounting, not an observed online method effect. It does not establish future stationarity, predictor accuracy, scaling, search utility, or a task whitelist or blacklist.",
+      "estimand": "valid accepted support retained by archive-granular validation that a counterfactual task-level blacklist would additionally discard",
+      "evidence_class": "corpus_utility_accounting",
+      "json_assertion_count": 16,
+      "name": "archive_granularity_retention",
+      "supported_claim": "Archive-granular validation retains 20 accepted archives, 94 physical runs, 92 eligible runs, and 2,558 endpoints in 6 affected competitions; task blacklisting would additionally remove about one fifth of accepted-corpus eligible support, and the frozen strong gate passes without single-task dominance."
+    },
+    {
+      "artifact_count": 2,
+      "artifacts": [
+        {
+          "json_assertions": {
+            "added_runs": 23,
+            "common_endpoints": 13098,
+            "common_pairs": 3230,
+            "current_runs": 517,
+            "prior_endpoints": 13098,
+            "prior_pairs": 3230,
+            "prior_runs": 494,
+            "protocol": "wl-snapshot-chain-monitor-v1",
+            "removed_runs": 0,
+            "scope.candidate_identities_read": false,
+            "scope.outcomes_read": false,
+            "scope.prediction_values_read": false,
+            "status": "PROVISIONAL_FIRST960_SNAPSHOT_CHAIN_INDEPENDENTLY_VERIFIED",
+            "support_gate_is_provisional_until_closure": true
+          },
+          "path": "phase1/results/wl_snapshot_chain_20260901_e9e12c63/structural_summary.json",
+          "sha256": "033259a447abbe7d7b75654481c706947bee56ad25cc1cf0d35b414d18a021cf"
+        },
+        {
+          "json_assertions": {
+            "closure.final_first960_identity": false,
+            "cohort_churn.added_runs": 23,
+            "cohort_churn.removed_runs": 0,
+            "protocol": "provisional-first960-snapshot-chain-v1",
+            "scope.prediction_values_printed": false,
+            "scope.prospective_outcomes_read": false,
+            "source_append_invariants.prior_run_rows_exact": true,
+            "source_append_invariants.prior_run_sequence_subsequence": true,
+            "source_append_invariants.prior_run_set_contained": true,
+            "status": "PROVISIONAL_FIRST960_SNAPSHOT_CHAIN_INDEPENDENTLY_VERIFIED"
+          },
+          "path": "phase1/results/wl_snapshot_chain_20260901_e9e12c63/snapshot_chain_receipt.json",
+          "sha256": "12ce7fed6785e5f7805c5a45626ae28f9d6f77dd4a8fca3869d59555eb2406db"
+        }
+      ],
+      "claim_components": {},
+      "claim_signature": {
+        "aggregation": "append-only exact-row preservation across consecutive WL escrow snapshots",
+        "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+        "population_unit": "eligible physical run, endpoint row, and structural pair row",
+        "prior_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f"
+      },
+      "claim_signature_sha256": "23803957b911769ccf1cb3488e3fd7154eea5ddfaca85b3f716790c32712196d",
+      "counts_as_distinct_claim_evidence": true,
+      "does_not_prove": "The first-960 cohort is not closed and the support gate remains provisional. This is accrual-integrity evidence, not predictor accuracy, scaling, effect size, or search utility.",
+      "estimand": "whether a fixed WL prediction escrow extends from the prior to current prospective snapshot without removing or changing prior run, endpoint, or pair rows",
+      "evidence_class": "provisional_corpus_accrual_integrity",
+      "json_assertion_count": 24,
+      "name": "prospective_wl_snapshot_chain_517",
+      "supported_claim": "The WL escrow extends from 494 to 517 eligible runs with 23 additions and zero removals; all 494 prior runs, 13,098 endpoint rows, and 3,230 pair rows are preserved exactly under the frozen order."
+    },
+    {
+      "artifact_count": 2,
+      "artifacts": [
+        {
+          "json_assertions": {
+            "access_attestation.candidate_identities_or_profiles_read": false,
+            "access_attestation.event_competition_archive_task_run_or_candidate_identity_values_emitted": false,
+            "access_attestation.labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+            "competition_support_class_counts.NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+            "competition_support_class_counts.PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 6,
+            "competition_support_class_counts.distinct_rejected_competitions": 7,
+            "event_support_class_counts.NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+            "event_support_class_counts.PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 13,
+            "protocol": "archive_rejection_support_census_v1",
+            "status": "ARCHIVE_REJECTION_SUPPORT_CENSUS_COMPLETE_PARTIALLY_PREDISCLOSED"
+          },
+          "path": "phase1/results/archive_rejection_support_census_20260902_7ad0164/result.json",
+          "sha256": "f904ff54e110057e4cd11c6f71a09c43661abea9e5e4fb37c39099338f917fad"
+        },
+        {
+          "json_assertions": {
+            "all_result_fields_equal": true,
+            "identity_values_emitted": false,
+            "outcomes_predictions_labels_read": false,
+            "producer_imported": false,
+            "protocol": "independent_archive_rejection_support_census_v1",
+            "result_sha256": "f904ff54e110057e4cd11c6f71a09c43661abea9e5e4fb37c39099338f917fad",
+            "status": "INDEPENDENT_ARCHIVE_REJECTION_SUPPORT_CENSUS_PASS"
+          },
+          "path": "phase1/results/archive_rejection_support_census_20260902_7ad0164/independent_verification.json",
+          "sha256": "39a634f0bba48dbeb3783f67589604a4ba8e840aaab65ad25daff55528e276e6"
+        }
+      ],
+      "claim_components": {},
+      "claim_signature": {
+        "aggregation": "four-class support census by rejection event and distinct rejected competition",
+        "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+        "population_unit": "all 14 structural rejection events and their 7 distinct competitions",
+        "prior_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f"
+      },
+      "claim_signature_sha256": "8aad6fb95091ea8c2d5bcd77bc6cdf9dd9749a075da3689d8f98b6d72e4d70df",
+      "counts_as_distinct_claim_evidence": true,
+      "does_not_prove": "The headline was partially predisclosed, prior-anchor support is not event-time preexistence, and this complete census is not sampling inference. It does not estimate future rejection frequency, causal effects, predictor accuracy, scaling, method effects, or search utility.",
+      "estimand": "complete identity-erased classification of all structural rejection events by whether eligible accepted support exists in the prior prefix, current window, accepted archives only, or nowhere",
+      "evidence_class": "identity_erased_descriptive_census",
+      "json_assertion_count": 17,
+      "name": "archive_rejection_support_census",
+      "supported_claim": "In the complete 14-event census, 13 events and 6 of 7 distinct rejected competitions have eligible support already in the prior anchor; one competition has no accepted-archive support, so the structural gate is non-vacuous."
+    }
+  ],
+  "lineage_repair": {
+    "all_support_gates_passed": false,
+    "classification": "HISTORICAL_V11_PARENT_COMPLETE_SIBLING_CORE_LIMITED_SUPPORT",
+    "failed_support_gate": "frozen:b2.maximum_single_run_pair_share",
+    "hard_integrity_gates_passed": 15,
+    "hard_integrity_gates_total": 15,
+    "lineage_package_manifest_path": "phase1/results/decision_corpus_lineage_audit_v2_20260829_2514842/MANIFEST.sha256",
+    "lineage_package_manifest_sha256": "4c72c32449a4a68377fe3764089321c852648e0d6603655a09cd360a21d45447",
+    "lineage_package_member_count": 16,
+    "new_entry_canonical_sha256": "dfe49c15a89a399f55fa60f17cba13bab06a856e9fd12f532db673f78af62116",
+    "old_entry_canonical_sha256": "20d921ee6bdb28f520b03d9f559d1d8597809c5a6165330e224b40382edfa362",
+    "replacement_artifact_count": 3,
+    "replacement_entry_index": 0,
+    "replacement_entry_name": "decision_corpus",
+    "replacement_json_assertion_count": 51,
+    "source_v8_status_preserved": true,
+    "support_gates_passed": 35,
+    "support_gates_total": 36
+  },
+  "protocol": "decision_corpus_evidence_index_v10",
+  "reconstructions": [
+    {
+      "artifact_count": 3,
+      "artifacts": [
+        {
+          "json_assertions": {
+            "access_attestation.candidate_identities_or_profiles_read": false,
+            "access_attestation.labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+            "distinct_competition_support_totals.current_window.accepted_archives": 1,
+            "distinct_competition_support_totals.current_window.eligible_endpoints": 96,
+            "distinct_competition_support_totals.current_window.eligible_runs": 4,
+            "distinct_competition_support_totals.current_window.physical_runs": 4,
+            "prior_supported_competition_floor.competition_count": 6,
+            "prior_supported_competition_floor.prior_metric_summaries.accepted_archives.sum": 20,
+            "prior_supported_competition_floor.prior_metric_summaries.eligible_endpoints.sum": 2558,
+            "prior_supported_competition_floor.prior_metric_summaries.eligible_runs.sum": 92,
+            "prior_supported_competition_floor.prior_metric_summaries.physical_runs.sum": 94,
+            "protocol": "archive_rejection_support_floor_v1",
+            "status": "ARCHIVE_REJECTION_SUPPORT_FLOOR_COMPLETE_POST_HOC"
+          },
+          "path": "phase1/results/archive_rejection_support_floor_20260902_5609a8e/result.json",
+          "sha256": "ce8b30101a26fdba178c6046c24e55a219eacd1e307dc8c033cae754898f4248"
+        },
+        {
+          "json_assertions": {
+            "all_result_fields_equal": true,
+            "identity_values_emitted": false,
+            "outcomes_predictions_labels_accuracy_utility_read": false,
+            "producer_imported": false,
+            "protocol": "independent_archive_rejection_support_floor_v1",
+            "result_sha256": "ce8b30101a26fdba178c6046c24e55a219eacd1e307dc8c033cae754898f4248",
+            "status": "INDEPENDENT_ARCHIVE_REJECTION_SUPPORT_FLOOR_PASS_POST_HOC"
+          },
+          "path": "phase1/results/archive_rejection_support_floor_20260902_5609a8e/independent_verification.json",
+          "sha256": "3ab7085a8eb7219b03575a5bc85a8d5395c986c3608eedd81fa1af564cb4796c"
+        },
+        {
+          "json_assertions": {
+            "classification": "PRIOR_EVIDENCE_OMISSION_CORRECTED_INDEPENDENT_RECONSTRUCTION",
+            "current_result.commit": "5609a8e70098af0a912e61284529ca20d0a91f8e",
+            "current_result.sha256": "ce8b30101a26fdba178c6046c24e55a219eacd1e307dc8c033cae754898f4248",
+            "incremental_descriptive_fields.independent_scientific_confirmation": false,
+            "prior_result.commit": "bc88298cb410183cf642c132c5d1df2e2d9497ba",
+            "prior_result.sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184",
+            "shared_estimand_exact_match.competition_count": 6,
+            "shared_estimand_exact_match.metric_distribution.accepted_archives.sum": 20,
+            "shared_estimand_exact_match.metric_distribution.eligible_endpoints.sum": 2558,
+            "shared_estimand_exact_match.metric_distribution.eligible_runs.sum": 92,
+            "shared_estimand_exact_match.metric_distribution.physical_runs.sum": 94
+          },
+          "path": "phase1/results/archive_rejection_support_floor_20260902_5609a8e/prior_evidence_crosswalk.json",
+          "sha256": "326ade363dd0199112ae2e2a265808f74488b4b2c9921807a7b2491d3fc23975"
+        }
+      ],
+      "counts_as_distinct_claim_evidence": false,
+      "does_not_prove": "The reconstruction cannot increase the count of independent scientific claims, cannot be called a new discovery or confirmation, and does not establish predictor accuracy, scaling, method effects, search utility, or future stationarity.",
+      "evidence_class": "corrected_independent_reconstruction",
+      "incremental_descriptive_component": {
+        "counts_as_independent_confirmation": false,
+        "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+        "description": "identity-erased current-window lineage totals and two additional ratio summaries"
+      },
+      "json_assertion_count": 31,
+      "name": "archive_rejection_support_floor_reconstruction",
+      "reproduction_of": "archive_granularity_retention",
+      "shared_component_name": "prior_support_depth",
+      "shared_component_signature": {
+        "aggregates": [
+          "accepted_archives",
+          "physical_runs",
+          "eligible_runs",
+          "eligible_endpoints",
+          "anonymous_min_median_max",
+          "maximum_share"
+        ],
+        "competition_count": 6,
+        "filter": "accepted archives in structural-rejection affected competitions; byte aliases excluded",
+        "population_unit": "distinct affected competition",
+        "snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f"
+      },
+      "shared_component_signature_sha256": "412e31b0433b7cdff349d858feaff03e72c1ca936e1e68e59efc55493c921a5b",
+      "supported_claim": "This package independently reconstructs the already published 0KI prior-support totals and distributions and adds descriptive current-window lineage. It is useful reproducibility evidence but is not a second distinct positive result."
+    }
+  ],
+  "reporting_contract": {
+    "actual_agent_comparison_count_language_allowed": false,
+    "complete_choice_set_language_allowed": false,
+    "complete_release_temporal_gate_failure_language_required": false,
+    "decision_point_disappearance_language_allowed": false,
+    "explicit_validity_edge_count_language_allowed": true,
+    "first_or_only_claim_allowed": false,
+    "fixed_syntactic_complete_release_zero_link_language_allowed": true,
+    "frozen_b2_run_concentration_limitation_required": true,
+    "lineage_direct_sibling_language_allowed": true,
+    "missing_at_random_language_allowed": false,
+    "numeric_quality_total_order_language_allowed": false,
+    "opportunity_yield_effect_language_allowed": false,
+    "pair_orientation_tie_or_margin_language_allowed": false,
+    "parent_complete_all_support_gates_pass_language_allowed": false,
+    "predictor_effect_or_search_utility_language_allowed_by_v8": false,
+    "predictor_effect_or_search_utility_language_allowed_by_v9": false,
+    "prospective_effect_claim_allowed": false,
+    "prospective_predictor_effect_language_allowed": false,
+    "qualified_complete_release_exception_language_required": false,
+    "receipt_certified_common_support_language_allowed": true,
+    "recorded_parent_semantic_or_causal_truth_language_allowed": false,
+    "self_report_classification": "post_execution_signal",
+    "semantic_clone_or_pretraining_decontamination_language_allowed": false,
+    "single_drop_robust_magnitude_language_allowed": false,
+    "source_winner_answerability_language_allowed": true,
+    "source_winner_predictor_performance_language_allowed": false,
+    "strict_sensitivity_can_rescue_primary": false,
+    "structural_weighting_shift_language_allowed": true,
+    "task_balance_cap_or_producer_compliance_language_allowed": false,
+    "task_balance_improved_but_uncleared_language_allowed": true
+  },
+  "scope": {
+    "clean_provenance_rebuilt_from_last_unaffected_index": true,
+    "complete_release_population_endpoints": 16012,
+    "complete_release_temporal_classification": "ZERO_IDENTIFIER_ERASED_RELEASE_LINKS",
+    "complete_release_temporal_overlap_certificate_bound": true,
+    "complete_release_temporal_primary_gate_passed": true,
+    "estimands_merged": false,
+    "first960_closed": false,
+    "first960_or_closure_completed_by_v8": false,
+    "first960_or_closure_completed_by_v9": false,
+    "frozen_accuracy_computed_by_deployment_cost": false,
+    "future_snapshot_runs_for_temporal_certificate": 435,
+    "grade_absent_required_for_materiality": false,
+    "lineage_all_support_gates_passed": false,
+    "lineage_cross_run_context_pairs": 0,
+    "lineage_direct_relation_verified": true,
+    "lineage_parent_present_strict_core_pairs": 7579,
+    "lineage_row_level_release_created": false,
+    "lineage_same_run_non_sibling_pairs": 0,
+    "lineage_support_gates_passed": 35,
+    "lineage_support_gates_total": 36,
+    "lineage_verified_orphan_parent_sibling_pairs": 528,
+    "missing_at_random_assumed": false,
+    "observability_establishes_predictor_or_search_utility": false,
+    "observability_is_actual_agent_comparison_log": false,
+    "pair_identity_or_orientation_reopened_by_receipt_join": false,
+    "physical_run_split_integrity_certificate_bound": true,
+    "prediction_pair_files_opened_by_replacement_common_support": false,
+    "prediction_values_read_or_aggregated_by_replacement_entries": false,
+    "prospective_accuracy_or_effect_computed": false,
+    "prospective_outcomes_read": false,
+    "prospective_vault_open_allowed": false,
+    "receipt_certified_current_common_support_pairs": 2755,
+    "release_complete": false,
+    "source_choice_set_complete": false,
+    "source_identity_unavailable_imputed": false,
+    "source_winner_answerability_is_complete_total_order": false,
+    "source_winner_answerability_is_predictor_accuracy": false,
+    "source_winner_answerability_is_search_utility": false,
+    "status_partial_order_establishes_predictor_or_search_utility": false,
+    "status_partial_order_is_complete_choice_set": false,
+    "status_partial_order_is_numeric_quality_order": false,
+    "status_unknown_imputed": false,
+    "structural_weighting_shift_quantified": true,
+    "task_balance_cap_pass": false,
+    "task_balance_source_is_structural_only_v2": true,
+    "transitive_relations_are_logged_comparisons": false,
+    "withdrawn_v6_inherited": false
+  },
+  "source_v7_index": {
+    "entries_inherited_without_modification": 14,
+    "path": "phase1/results/decision_corpus_evidence_index_v7_20260826_a83bebf/index.json",
+    "sha256": "d8cc9c60900ab41ff1df0e3aae3add29bbb922d5a32157957dcac5675fa31674"
+  },
+  "source_v8_index": {
+    "entries_preserved_without_modification": 15,
+    "entries_replaced": 1,
+    "entry_count": 16,
+    "path": "phase1/results/decision_corpus_evidence_index_v8_887_20260828_3d30826/formal/index.json",
+    "sha256": "e97eca05d99a2eb3b5429539469a7e790f20f40cf70670cdbdc6a2c0c3e730a3"
+  },
+  "source_v9_index": {
+    "entries_preserved_without_modification": 16,
+    "entry_count": 16,
+    "path": "phase1/results/decision_corpus_evidence_index_v9_20260829_f108812/formal/index.json",
+    "sha256": "b2d88479abb03cf72b27f9f958badfb3aeb8bc1e1e3cac2c50a3aace43511ff6"
+  },
+  "status": "PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960",
+  "temporal_split_extension": {
+    "classification": "ZERO_IDENTIFIER_ERASED_RELEASE_LINKS",
+    "complete_release_manifest_members": {
+      "README.md": "6bd85e93ae92555eeab7e269bae682c5c7dc990b7d5ef2c386ecc6c970c1ce04",
+      "access_attestation.txt": "e08b9717a43080d34cc0cefb65e508f42d3356815ece9160dbf686658a32c396",
+      "formal_summary.json": "14e4f3c1cb08d2bb60ed4dfc8939245aafba99339213e0f6210bd1cece0351ca",
+      "independent_recheck.json": "6ab5877d70281b4f1b98d2c09a088466dd64c605f73c27e38fd3124039c687fc",
+      "source_bindings.json": "76a1687ddebe3fbc4274a8b8d76f29a0e315b434d98344cb237a324e779bb010"
+    },
+    "complete_release_manifest_sha256": "152f6f7c2d12f8c47e0fd809a56eb2a3ad8cd3dac826b62115c994201a0da985",
+    "ordered_status": "PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960",
+    "physical_split_manifest_sha256": "e5c144d4d9f0bc3f4e2ae16593d63c44e02408beca32379d4cfceb89d4f20ea2",
+    "snapshot_sha256": "887491a021d75d889c00a5af672a11b8b06e249d98e84fd91288534080f62697",
+    "source_v7_entries_removed_or_modified": false,
+    "source_v7_read_only": true,
+    "strict_sensitivity_can_rescue_primary": false
+  },
+  "v10_protocol": {
+    "path": "phase1/decision_corpus_evidence_index_v10_protocol_v1.json",
+    "post_result_reporting_extension": true,
+    "sha256": "a210f17f0ded3c64b795a6d898032e04be44ae403b3585eafe527bff3e12534d"
+  },
+  "v10_reporting_contract": {
+    "distinct_entries_added": 4,
+    "duplicate_claim_components_require_reproduction_pointer": true,
+    "legacy_v9_entries_retroactively_fingerprinted": false,
+    "predictor_effect_scaling_or_search_utility_language_allowed_by_v10": false,
+    "reconstruction_records_added": 1,
+    "reconstruction_records_must_not_appear_in_distinct_entries": true,
+    "source_v9_entries_must_be_preserved_without_modification": true,
+    "source_v9_provisional_status_must_be_preserved": true
+  },
+  "v10_security": {
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "prospective_label_grade_outcome_or_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "row_level_release_created": false,
+    "task_run_card_code_edge_or_row_identities_emitted": false
+  },
+  "v8_protocol": {
+    "path": "phase1/decision_corpus_evidence_index_v8_protocol_v1.json",
+    "sha256": "a463a6e7ede5bb9b46dbe6081ae46d26d6c2e8410e858acf9d022c642633deda"
+  },
+  "v9_protocol": {
+    "path": "phase1/decision_corpus_evidence_index_v9_protocol_v1.json",
+    "post_result_reporting_repair": true,
+    "sha256": "a5d49990f3af37ce8968495fd13bf1b1c3f5e48875b117a86a878b75ed8d958a"
+  },
+  "v9_security": {
+    "gpu_api_model_fit_base_update": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "prospective_label_grade_outcome_or_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "row_level_release_created": false,
+    "task_run_card_code_edge_or_row_identities_emitted": false
+  }
+}

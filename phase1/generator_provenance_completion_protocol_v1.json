@@ -1,0 +1,48 @@
+{
+  "protocol": "decision-corpus-generator-provenance-completion-v1",
+  "version": 1,
+  "status": "FROZEN_BEFORE_R6_FORMAL_PUBLIC_AGGREGATE_READ",
+  "frozen_at_utc": "2026-09-01T23:14:18Z",
+  "known_baseline": {
+    "release_rows": 16012,
+    "provider_family_rows": 9901,
+    "configured_model_id_rows": 9901,
+    "exact_version_or_model_rows": 9794,
+    "version_boundary_ambiguous_rows": 107,
+    "unmapped_rows": 6111,
+    "unmapped_batches": 5,
+    "inventory_sha256": "88df63ed0434ba10f4eaa2c9965735c70b61a750026d290372415321834b550a",
+    "inventory_verification_sha256": "66459ae21415dff9a1728442334b460550604818f9b7831220d33b9f6bf62f5b"
+  },
+  "activation": {
+    "archived_formal_root": "/research/d7/spc/yzyang4/archived-generator-provenance-v1/formal-bfc5a70-r6",
+    "required_marker": "COMPLETE",
+    "forbidden_marker": "FAILED_RC",
+    "independent_postflight_required": true,
+    "alternate_archive_source_map_or_batch_selection_allowed": false
+  },
+  "completion_rule": {
+    "archived_batch_set_must_equal_baseline_unmapped_batch_set": true,
+    "each_archived_batch_requires_all_rows_exact": true,
+    "ambiguous_or_missing_archived_rows_allowed": 0,
+    "configured_model_id_rows_add_archived_exact_rows": true,
+    "exact_version_or_model_rows_add_archived_exact_rows": true,
+    "provider_family_rows_change_allowed": false,
+    "version_boundary_ambiguous_rows_change_allowed": false,
+    "service_provider_or_contract_entity_inference_from_model_id_allowed": false,
+    "post_result_rule_change_allowed": false
+  },
+  "interpretation": {
+    "configured_model_id_is_server_side_version": false,
+    "configured_model_id_identifies_provider_or_contract_entity": false,
+    "provider_terms_cleared": false,
+    "release_cleared": false,
+    "counts_as_distinct_scientific_claim_evidence": false
+  },
+  "scope": {
+    "public_aggregate_only": true,
+    "raw_card_ids_or_archive_values_emitted": false,
+    "prospective_resources_read": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  }
+}

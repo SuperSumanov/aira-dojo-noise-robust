@@ -257,6 +257,12 @@ temporal and leave-one-task-out checks, although the magnitude is sensitive to o
 high-leverage task. The result motivates reporting both physical-unit and pair-level
 weights in predictor benchmarks.
 
+Figure 2 visualizes this trajectory from run 120 onward. The discontinuity at run
+260 is explicitly annotated as one high-leverage drop rather than smoothed away;
+the figure caption therefore separates the task-deletion-robust direction from the
+non-robust magnitude. Its PNG/SVG and hash receipt are in
+`phase1/figures/decision_corpus_20260902/`.
+
 ### 5.4 Duplicate, provenance, and structural-gate scope
 
 Fixed exact, token, and AST normalizations show no observed cross-run or cross-task

@@ -1,0 +1,49 @@
+{
+  "baseline_first240": {
+    "pair_hhi": 0.08303759912408124,
+    "pair_max_share": 0.1714990746452807,
+    "run_hhi": 0.05597222222222222,
+    "run_max_share": 0.10833333333333334
+  },
+  "claim_boundary": "Outcome-blind structural weighting diagnostic; not predictor bias, accuracy, effect, utility, or a causal producer-behavior estimate.",
+  "current_339": {
+    "pair_hhi": 0.1357471491993994,
+    "pair_max_share": 0.31233396584440226,
+    "run_hhi": 0.04887705467234014,
+    "run_max_share": 0.09144542772861357,
+    "run_to_pair_total_variation": 0.337082500713674
+  },
+  "displayed_prefix_max": 339,
+  "displayed_prefix_min": 120,
+  "input_path": "phase1/results/structural_weight_trajectory_7cda_20260826/trajectory.json",
+  "input_sha256": "bbdb802711bd2f300725be156c5fd228a79fa0792f8d7317674a6a0bbb419f30",
+  "largest_post240_pair_hhi_jump": {
+    "delta": 0.0454064572252568,
+    "prefix_runs": 260
+  },
+  "outputs": {
+    "figure2_run_to_pair_weighting.png": "36d647b0fd4d44f39644f3af4fffe72496398cc244c9bff1afffb48b07ad701b",
+    "figure2_run_to_pair_weighting.svg": "326e2f7bcb684214a4d3f2e43fa8efea0933457d38b956fa7db0266b5081b459"
+  },
+  "protocol": "decision-corpus-paper-figure2-v1",
+  "security": {
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "eligible_blind_manifest_opened": false,
+    "gpu_calls": 0,
+    "label_vault_opened": false,
+    "opened_basenames": [
+      "SHA256SUMS",
+      "summary.json",
+      "provisional_first960_runs.jsonl",
+      "intake_registry.jsonl",
+      "source_provenance.json",
+      "eligible_structural_pairs.jsonl"
+    ],
+    "outcome_grade_winner_orientation_opened": false,
+    "raw_archive_or_journal_bytes_opened": false,
+    "score_or_prediction_values_opened": false
+  },
+  "status": "PASS",
+  "trajectory_rows": 339
+}

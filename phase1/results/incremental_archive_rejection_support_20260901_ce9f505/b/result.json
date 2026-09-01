@@ -1,0 +1,113 @@
+{
+  "access_attestation": {
+    "archive_payloads_opened": false,
+    "archive_task_run_or_candidate_identity_values_emitted": false,
+    "candidate_identities_or_profiles_read": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+    "labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+    "observation_and_hash_bound_intake_metadata_only": true,
+    "randomness_used": false,
+    "target_registry_contents_opened": false
+  },
+  "anonymized_target_support": {
+    "current_total": {
+      "accepted_archives": 0,
+      "eligible_endpoints": 0,
+      "eligible_runs": 0,
+      "physical_runs": 0
+    },
+    "eligible_endpoint_share_of_current_corpus": 0.0,
+    "eligible_run_share_of_current_corpus": 0.0,
+    "new_window": {
+      "accepted_archives": 0,
+      "eligible_endpoints": 0,
+      "eligible_runs": 0,
+      "physical_runs": 0
+    },
+    "prior_prefix": {
+      "accepted_archives": 0,
+      "eligible_endpoints": 0,
+      "eligible_runs": 0,
+      "physical_runs": 0
+    }
+  },
+  "claim_boundary": {
+    "estimates_predictor_accuracy_scaling_search_utility_or_method_effect": false,
+    "population_level_replication": false,
+    "single_event_confirmation_only": true,
+    "supports_task_whitelist_or_blacklist": false
+  },
+  "decision": {
+    "contemporaneous_only_support": false,
+    "identities_emitted": false,
+    "single_event_scope": true,
+    "strong_preexisting_support": false,
+    "support_absent": true
+  },
+  "input_bindings": {
+    "current_observations_sha256": "d2ed361a557bf52dadfe9f0547e49c16ea5dc1eea42a1c78f7b354542a2a704a",
+    "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "current_transactions_sha256": "fabae2e42b8e669bc0f212df5365809751966859df22cb1a0ba952ba277f7467",
+    "prior_result_sha256": "58539382eb9cd82e52560b8073287e2a94043c5035e34ad2d955baa3329c104e",
+    "prior_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "prior_transactions_sha256": "4f05659db88e290f18a20d43b33330daa5df27211b1fffb770cbf1658b46ec60",
+    "prior_verification_sha256": "854f81e58e9cf2aabce7a1a0edbda6f4f9696fdd6beeabd47524c1738321ab4f",
+    "protocol_sha256": "451f4b64c3029e0240e618e48de180cddc8aa36d23fb6f0e2b4b966dd57008b2",
+    "target_rejection_registry_sha256": "0c138eb6aa3f5de27041a99e4da38b9c802338e952f6306e9e44f43eab129ffe"
+  },
+  "integrity": {
+    "accepted_archives_single_task_hash_bound": true,
+    "accepted_run_ids_unique": true,
+    "accepted_transactions_match_observations": true,
+    "current_inventory_reproduced": true,
+    "current_transactions_have_exact_prior_byte_prefix": true,
+    "observation_partition_reproduced": true,
+    "prior_result_and_verification_hash_bound": true,
+    "target_payload_disjoint_from_accepted": true,
+    "target_registry_selected_exactly_one_rejection": true
+  },
+  "mapping_audit": {
+    "accepted_archives": 133,
+    "accepted_filename_task_mismatches": 0,
+    "accepted_seeded_filename_archives": 131,
+    "accepted_single_task_archives": 133,
+    "accepted_task_metadata_fallback_archives": 2,
+    "accepted_tasks": 38,
+    "eligible_endpoints": 13581,
+    "eligible_runs": 517,
+    "hash_bound_source_provenance_rows": 543,
+    "physical_runs": 543,
+    "unique_run_ids": 543
+  },
+  "population": {
+    "accepted_archives": 133,
+    "alias_quarantined_archives": 8,
+    "baseline_archives": 128,
+    "eligible_endpoints": 13581,
+    "eligible_runs": 517,
+    "eligible_structural_pairs": 3325,
+    "eligible_tasks": 38,
+    "observed_archives": 283,
+    "pending_archives": 0,
+    "physical_runs": 543,
+    "prior_transaction_prefix_lines": 126,
+    "rejection_reason_counts": {
+      "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION": 8,
+      "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": 3,
+      "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": 2,
+      "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": 9
+    },
+    "structural_rejected_archives": 14,
+    "transaction_lines": 133
+  },
+  "protocol": "incremental_archive_rejection_support_audit_v1",
+  "status": "INCREMENTAL_ARCHIVE_SUPPORT_ABSENT",
+  "target_event": {
+    "archive_identity_emitted": false,
+    "competition_identity_emitted": false,
+    "payload_hash_disjoint_from_accepted": true,
+    "payload_hash_emitted": false,
+    "rejection_reason": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+    "target_rejection_count": 1
+  }
+}

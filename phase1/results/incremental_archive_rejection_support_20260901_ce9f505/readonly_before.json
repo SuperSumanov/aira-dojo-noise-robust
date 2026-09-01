@@ -1,0 +1,8 @@
+{
+  "allowed_metadata_file_count": 277,
+  "forbidden_values_read": false,
+  "identities_emitted": false,
+  "latest_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+  "ordered_content_digest_sha256": "4ab37c5cf66eb85027c0234bf5f5e25c65984bffd4c25a38fdc7cacae4edc5a5",
+  "protocol": "incremental_archive_support_readonly_receipt_v1"
+}

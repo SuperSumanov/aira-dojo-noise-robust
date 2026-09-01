@@ -1,0 +1,31 @@
+{
+  "all_result_fields_equal": true,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+  "identities_emitted": false,
+  "outcomes_predictions_labels_read": false,
+  "protocol": "independent_incremental_archive_rejection_support_v1",
+  "randomness_used": false,
+  "recomputed_anonymized_support": {
+    "current_total": {
+      "accepted_archives": 0,
+      "eligible_endpoints": 0,
+      "eligible_runs": 0,
+      "physical_runs": 0
+    },
+    "new_window": {
+      "accepted_archives": 0,
+      "eligible_endpoints": 0,
+      "eligible_runs": 0,
+      "physical_runs": 0
+    },
+    "prior_prefix": {
+      "accepted_archives": 0,
+      "eligible_endpoints": 0,
+      "eligible_runs": 0,
+      "physical_runs": 0
+    }
+  },
+  "result_sha256": "c95b8e0ffce0162bc65e26ce69867187f29a52184205c6c34745daa54c742080",
+  "result_status": "INCREMENTAL_ARCHIVE_SUPPORT_ABSENT",
+  "status": "INDEPENDENT_INCREMENTAL_ARCHIVE_SUPPORT_PASS"
+}

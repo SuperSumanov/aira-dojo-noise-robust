@@ -1,0 +1,53 @@
+{
+  "protocol": "incremental_archive_rejection_support_formal_summary_v1",
+  "status": "INCREMENTAL_ARCHIVE_SUPPORT_ABSENT",
+  "exact_commit": "ce9f50531779174c497da5eae5c66b570de92880",
+  "formal_manifest_sha256": "65f0d2ebbf67ea5c31587b39770a70098f5acff562b4ce6bb96d0c6ff7e476de",
+  "result_sha256": "c95b8e0ffce0162bc65e26ce69867187f29a52184205c6c34745daa54c742080",
+  "independent_verification_sha256": "4acc607c86a2560df3036588b1d0f8898533966385551d9d5c0612bc5a64d836",
+  "target_event": {
+    "count": 1,
+    "rejection_reason": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+    "prior_prefix_support_accepted_archives_physical_runs_eligible_runs_endpoints": "0/0/0/0",
+    "new_window_support_accepted_archives_physical_runs_eligible_runs_endpoints": "0/0/0/0",
+    "current_total_support_accepted_archives_physical_runs_eligible_runs_endpoints": "0/0/0/0"
+  },
+  "population": {
+    "observed_archives": 283,
+    "accepted_archives": 133,
+    "structural_rejected_archives": 14,
+    "alias_quarantined_archives": 8,
+    "pending_archives": 0,
+    "physical_runs": 543,
+    "eligible_runs": 517,
+    "eligible_endpoints": 13581,
+    "eligible_structural_pairs": 3325,
+    "eligible_tasks": 38
+  },
+  "verification": {
+    "focused_tests_passed": 24,
+    "full_phase1_tests_passed": 1930,
+    "full_phase1_test_warnings": 48,
+    "producer_a_b_byte_identical": true,
+    "independent_verifier_a_b_byte_identical": true,
+    "readonly_receipts_byte_identical": true,
+    "network_syscalls_detected": false,
+    "forbidden_paths_detected": false,
+    "credential_content_hits": 0,
+    "identity_values_emitted": false,
+    "worktree_exact_clean": true
+  },
+  "claim_boundary": {
+    "single_event_only": true,
+    "population_level_replication": false,
+    "predictor_accuracy_scaling_or_search_utility_estimated": false,
+    "supports_task_whitelist_or_blacklist": false,
+    "interpretation": "the frozen audit identifies one genuine accepted-support gap and is therefore non-vacuous; it does not estimate how common such gaps are"
+  },
+  "resource_use": {
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

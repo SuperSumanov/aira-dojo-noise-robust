@@ -1,0 +1,13 @@
+01_direction=Decision Corpus + Predictor Benchmark + Audit Protocol only; PASS
+02_question=does one newly settled structural rejection have anonymized accepted eligible support, and did it preexist the new window; PASS
+03_context=frozen prior/current snapshots, exact transaction prefix, immutable observer copy and target-registry hash, public prior audit and exact commit; PASS
+04_unit=one newly settled structural-rejection event selected only by its frozen registry hash; PASS
+05_security=observer and hash-bound intake metadata only; registry contents tar payloads labels outcomes predictions accuracy utility identities remain unread or un-emitted; PASS
+06_controls=exact prior prefix versus seven-transaction new window with strong contemporaneous-only and absent rules frozen before overlap readout; PASS
+07_repetitions=producer A/B and independent verifier A/B must be byte-identical; PASS
+08_independence=verifier does not import producer and reconstructs every result field and decision; PASS
+09_reproducibility=exact public commit clean no-smudge worktree fixed hashes commands tests traces read-only receipt and manifest; PASS
+10_statistics=full metadata census and exact anonymized counts/shares; no sampling inference or population-level replication claim; PASS
+11_resources=CPU single-thread only; gpu api model-fit base-update 0/0/0/0; PASS
+12_trace=file and network traces plus credential forbidden-path identity-schema and worktree-cleanliness gates; PASS
+13_failure=hash drift prefix break duplicate target payload overlap task multiplicity duplicate run candidate tamper or any contract mismatch fails closed; PASS

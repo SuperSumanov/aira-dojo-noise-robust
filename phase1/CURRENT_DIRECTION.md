@@ -75,6 +75,17 @@ COMPLETE=`0/0/false`。只输出键名的独立 schema 检查证明 frozen obser
 `b1495de4...2f187` / `0d5ac76f...112e4` / `6e688332...9bc4e`，focused=`24 passed`，与既有 archive
 longitudinal 合跑=`21 passed`；科学协议、输入与资源不变，仍须新的公开 exact commit fresh run。
 
+公开 exact commit=`ce9f50531779174c497da5eae5c66b570de92880` 的 fresh formal 已完整通过。focused/full=
+`24/1,930 passed`（48 warnings）；producer A/B、非导入 verifier A/B、read-only before/after 均逐字节一致，network/
+forbidden-path/credential/identity-schema hits=`0/0/0/0`，worktree exact-clean。result/verifier/formal-manifest SHA=
+`c95b8e0f...742080` / `4acc607c...4d836` / `65f0d2eb...e476de`。
+
+预注册 status=`INCREMENTAL_ARCHIVE_SUPPORT_ABSENT`：该唯一新 `ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS` 事件的匿名
+competition 在 prior 126-transaction prefix、新 7-transaction window 与 current 133-transaction registry 中，
+accepted archives/physical runs/eligible runs/endpoints 均精确为 **`0/0/0/0`**。这只证明 support gate 非 vacuous、能识别
+一个真实 prospective coverage gap；不能称 population-level replication、不能估计 gap 频率、不能建 task whitelist/
+blacklist，也不涉及 predictor accuracy、scaling 或 search utility。GPU/API/model fit/base update=`0/0/0/0`。
+
 ## 0KS. 2026-09-01 零 fit support v1 在 state promotion 前停止；v2 只修启动回执与进程组清理
 
 0KR 的公开 exact commit=`7d89d1bce13cbf5223b380a167d8868df1cbb6bc` 已冻结。第一次部署在提取 launcher 前因

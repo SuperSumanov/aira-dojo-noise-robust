@@ -1,0 +1,41 @@
+{
+  "protocol": "outcome-blind-intake-natural-completion-renewal-v1",
+  "date": "2026-09-01",
+  "goal": "Renew the exact outcome-blind intake monitor after its normal 145-poll completion without changing the scientific intake contract or selecting an archive.",
+  "frozen_preconditions": {
+    "public_parent_commit": "039ca86d136b087370dee1e6a46b1da0c50ea155",
+    "control_commit": "b20dd2682d609c0236c138c08797678cf31a2fc0",
+    "control_worktree": "/research/d7/spc/yzyang4/worktrees/prospective-intake-control-b20dd268",
+    "monitor_script_sha256": "ef6584493de0f5e14a08bde4cc9501f268e43fb04bfd889af438666b1948eead",
+    "latest_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "eligible_source_archive_count": 283,
+    "old_pid": 2920968,
+    "old_pid_must_be_dead": true,
+    "last_log_class": "PROSPECTIVE_CONTINUOUS_INTAKE_MONITOR_COMPLETE polls=145 outcomes_read=false",
+    "fail_closed_tail_must_be_absent": true,
+    "baseline_invalid_must_be_absent": true
+  },
+  "allowed_change": "Invoke the installed exact monitor in --initialize mode once, creating a new PID and appending a new poll cycle to the existing append-only log.",
+  "forbidden_changes": [
+    "changing archive order or choosing an archive",
+    "changing intake, scorer, registry, stability, or security configuration",
+    "reading archive payload identities beyond existing credential-first structural intake",
+    "reading labels, outcomes, predictions, accuracy, utility, candidate profile, or private selection",
+    "starting GPU, paid API, model fit, or base-model update",
+    "overwriting the previous log or completion evidence"
+  ],
+  "postconditions": {
+    "new_pid_must_be_live": true,
+    "new_cmdline_must_bind_exact_control_commit": true,
+    "first_new_poll_must_end_rc_zero": true,
+    "latest_must_remain_frozen_until_the_first_new_poll_completes": true,
+    "safe_receipt_required": true
+  },
+  "resources": {
+    "cpu_only": true,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  }
+}

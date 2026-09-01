@@ -1,0 +1,55 @@
+{
+  "protocol": "target522-downstream-repeat-timeout-renewal-v1",
+  "date": "2026-09-01",
+  "goal": "Renew the Stage-A and contrast-rank marker-only waiters after a second natural timeout while preserving the live 517/522 selection monitor and all prior timeout evidence.",
+  "frozen_preconditions": {
+    "public_parent_commit": "039ca86d136b087370dee1e6a46b1da0c50ea155",
+    "selection_observed_sha256": "0277463211df467fb241776d975b4afab0133009f75f8b9cd53d15785341170f",
+    "selection_observed_lines": 29,
+    "selection_runs": 517,
+    "selection_target_runs": 522,
+    "selection_remaining_runs": 5,
+    "selection_pid": 2930562,
+    "selection_pid_live_and_lock_held": true,
+    "selection_complete_failed_timeout_or_gap_markers": false,
+    "prior_context_sha256": "eec0154fa8528e9d75a8befd2861bcec0dafb7a696f1aec8029446e22928f508",
+    "stage_a": {
+      "old_pid": 2931879,
+      "old_pid_must_be_dead": true,
+      "timeout_rc": 124,
+      "complete_failed_or_interrupted_markers": false,
+      "output_root_must_be_absent": true
+    },
+    "contrast_rank": {
+      "old_pid": 2931942,
+      "old_pid_must_be_dead": true,
+      "timeout_rc": 124,
+      "complete_failed_or_interrupted_markers": false,
+      "output_root_must_be_absent": true
+    }
+  },
+  "allowed_change": "Call each immutable installed source_script.sh in resume mode once and append a distinct repeat-timeout context receipt without replacing the first gap-recovery context.",
+  "forbidden_changes": [
+    "changing selection ledger, target, protocol, analyzer, producer, verifier, test, or runner bytes",
+    "deleting or overwriting the first gap-recovery context receipt",
+    "reading labels, outcomes, predictions, accuracy, utility, candidate profile, or private selection",
+    "starting GPU, paid API, model fit, or base-model update",
+    "restoring older within, lineage, or selective watchers"
+  ],
+  "postconditions": {
+    "both_new_pids_must_be_live": true,
+    "both_locks_must_be_held": true,
+    "both_timeout_markers_must_be_removed_by_the_exact_source_scripts": true,
+    "both_new_log_segments_must_show_marker_only_waiting": true,
+    "selection_ledger_must_remain_byte_identical": true,
+    "prospective_values_read": false,
+    "candidate_profile_or_private_identity_read": false
+  },
+  "resources": {
+    "cpu_only": true,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  }
+}

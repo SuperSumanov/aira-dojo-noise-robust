@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KQ. 2026-09-01 三个等待守护自然耗尽；两份独立续接契约已在重启前冻结
+
+连续 intake PID=`2920968` 已退出；只读诊断证明它正常写完固定 `145` polls，末态为
+`PROSPECTIVE_CONTINUOUS_INTAKE_MONITOR_COMPLETE ... outcomes_read=false`，不存在 fail-closed tail。control
+worktree 仍为 clean exact commit=`b20dd268...2fc0`，monitor SHA-256=`ef658449...8eead`；source/LATEST 仍为
+`283/e9e12c63...8a6d`，没有新归档或账本变化。结果前冻结
+`outcome-blind-intake-natural-completion-renewal-v1`：只允许对同一 exact monitor 调用一次 `--initialize`，首个新 poll
+必须 rc=0，旧日志与完成证据不得覆盖；任一 source/LATEST/hash/PID/clean-worktree 漂移即停止。
+
+Target-522 selection 仍为 PID=`2930562` live、lock held，observed bytes/lines/tail=
+`02774632...170f/29/517`，无 COMPLETE/FAILED/TIMEOUT/CONTINUITY_GAP。Stage-A 与 contrast-rank 的第一次 gap-resume
+PID=`2931879/2931942` 都在纯等待期间再次自然写出 `TIMEOUT_RC=124` 后退出；两锁 free、无 COMPLETE/FAILED/
+INTERRUPTED、两个正式 output root 均不存在，第一份 gap context 仍逐字节等于 `eec0154f...f508`。结果前冻结
+`target522-downstream-repeat-timeout-renewal-v1`：只调用两个 installed immutable `source_script.sh resume`，追加独立
+second-timeout context，绝不覆盖第一次 context 或恢复旧 within/lineage/selective watchers。
+
+两份协议/脚本 SHA-256 分别为 `0007ea11...032e` / `97d27cae...d5e` 与 `5f1e4151...5f78` /
+`5474618d...a77d`；本地与远端 `bash -n`、两份 `check` preflight 均 PASS。截至本段只有结果前冻结与只读检查，
+尚未重启任何进程；outcome/prediction/accuracy/utility/candidate profile/private identity 均未读，GPU/API/model fit/
+base update=`0/0/0/0`。
+
 ## 0KP. 2026-09-01 Target-522 七步缺口正式通过：494→517，未错过首次 crossing
 
 `target522-selection-gap-recovery-v1` 的 exact-commit formal 已完成。第一次 formal v1 的 8 项 focused 与 1,901 项

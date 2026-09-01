@@ -144,3 +144,16 @@ def test_formal_runner_pins_pytest_capable_interpreter_for_every_python_step() -
     assert runner.count('"${python_bin}" -m phase1.verify_release_content_scan') == 2
     assert '\npython -m ' not in runner
     assert '\npython - ' not in runner
+
+
+def test_formal_runner_sets_private_umask_before_any_artifact_creation() -> None:
+    runner = (
+        Path(__file__).resolve().parents[1]
+        / "scripts"
+        / "run_release_content_scan_v11_20260902.sh"
+    ).read_text(encoding="utf-8")
+    umask = runner.index("umask 077")
+    source = runner.index('source "$HOME/env_setup.sh"')
+    root_creation = runner.index('mkdir -p "${base}" "${root}"')
+    log_creation = runner.index(': >"${log}"')
+    assert umask < source < root_creation < log_creation

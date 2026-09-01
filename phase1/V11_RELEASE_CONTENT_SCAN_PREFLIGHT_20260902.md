@@ -23,7 +23,8 @@
    test/producer/verifier/summary 全部固定使用项目既有 `venvs/exp/bin/python`，worktree 前必须通过 executable 与
    `import pytest` capability gate；禁止静默回退到系统 Python。
 9. **安全门**：公开件必须通过 credential-shape、绝对路径、raw-span/card-ID non-emission 检查；push 前执行 staged filename
-   `grep -icE 'env|key|token|secret'` 与内容扫描。任何 raw hit 只留远端只读 private root。
+   `grep -icE 'env|key|token|secret'` 与内容扫描。runner 在任何 artifact 创建前固定 `umask 077`；任何 raw hit 只留
+   远端只读 private root。
 10. **规模 / 预算 / ETA**：一次 producer + 一次 resume replay + verifier A/B；cards=`16,012`，tasks=`25`，可扫=`23`，
     prepared text=`1,377,069,541 bytes`。预估 candidate unique-pattern 上界=`1,433,130`（stdout/code 分开计数之和，
     真正 union 只会更小）。GPU·时=`0`，付费 API=`0`；预估 wall=`15--60 min`，runner hard timeout=`4 h`，每 task

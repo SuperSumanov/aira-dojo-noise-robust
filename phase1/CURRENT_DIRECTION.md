@@ -93,6 +93,12 @@ fresh exact worktree，但在第一个 focused test 前因 `source ~/env_setup.s
 第三次只允许把 runner 的所有 test/producer/verifier/summary Python 调用统一固定到该解释器，并在 worktree 前执行
 `import pytest` capability gate；protocol、输入、阈值与 estimand 均不变，仍须使用新的公开 exact commit/root。
 
+第三次公开 commit=`99048fc225431d8eaf1426289d4dcce933b612c9` 已通过 13 项 preflight、fresh exact checkout 与
+focused=`5 passed`；full phase1 tests 为 `2,027 passed / 1 failed`（48 warnings，148.25 秒）。唯一失败来自一个无关的
+private-file resume test：runner 继承系统 umask 后，其 pytest 临时文件为 `0644`，而测试要求 group/other bits 为零。
+因此它同样在 cards/source scan 前 rc=`1` fail-closed，producer/verifier/readout=`0/0/0`。第四次只允许在任何 artifact
+创建前恢复项目 formal runner 的标准 `umask 077`，新增顺序契约测试；不得跳过该失败测试，仍须新 commit/root。
+
 ## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
 
 为把 0KI/0KV/0KW 与 zero-checkpoint 审计转成一条可直接写进论文的数据工程结论，本节只做**事后逻辑合成**，

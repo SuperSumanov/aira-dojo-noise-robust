@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail
+umask 077
 source "$HOME/env_setup.sh"
 set -u
 

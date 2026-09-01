@@ -69,7 +69,9 @@ fi
 [[ "$CONTROL_COMMIT" =~ ^[0-9a-f]{40}$ ]] || die "exact control commit required"
 static_check
 
+set +u
 source ~/env_setup.sh
+set -u
 PYTHON_BIN="$(command -v python3.11 || command -v python3 || command -v python)"
 [[ -n "$PYTHON_BIN" ]] || die "python interpreter absent"
 git -C "$SOURCE_REPO" fetch fork phase1-value-critic

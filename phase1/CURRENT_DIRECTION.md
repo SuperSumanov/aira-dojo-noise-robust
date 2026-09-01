@@ -41,6 +41,12 @@ producer A/B、非导入 verifier A/B、allowed-metadata read-only receipt、fil
 append-only COMPLETE/FAILED receipt。runner/runner-contract-test SHA-256=`0f5e561c...8f44eb` / `1b783b37...70d10d`；
 远端 `bash -n + check` PASS，focused 总计=`18 passed`。截至本段 runner 尚未 formal 执行，科学 readout 仍未知。
 
+第一次 exact-commit 提取在 formal root/worktree 创建前因外层 launcher 未加载 proxy 失败；第二次仍在提取前因
+`env_setup.sh` 与 caller 的 nounset 冲突失败。两次独立检查均为 formal root/worktree absent，producer/result files=`0/0`，
+因此没有科学 readout。仅作执行修复：外层 launcher 加载环境，formal runner 在 source 前后临时 `set +u`/恢复 `set -u`；
+科学协议、输入、producer/verifier 与资源矩阵不变。修正 runner SHA-256=`e64cc237...60c22f`，focused 仍为
+`18 passed`；须从新的公开 exact commit 重新开始 fresh formal。
+
 ## 0KS. 2026-09-01 零 fit support v1 在 state promotion 前停止；v2 只修启动回执与进程组清理
 
 0KR 的公开 exact commit=`7d89d1bce13cbf5223b380a167d8868df1cbb6bc` 已冻结。第一次部署在提取 launcher 前因

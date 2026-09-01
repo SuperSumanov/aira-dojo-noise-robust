@@ -49,6 +49,7 @@ def test_runner_requires_byte_identical_producer_and_independent_verifier_pairs(
 
 def test_runner_is_cpu_only_outcome_blind_and_scopes_full_tests() -> None:
     text = runner_text()
+    assert "set +u\nsource ~/env_setup.sh\nset -u" in text
     assert '"$PYTHON_BIN" -m pytest -q phase1/tests' in text
     assert "strace -f -qq -e trace=file,network" in text
     assert "gpu_api_model_fit_base_update=0/0/0/0" in text

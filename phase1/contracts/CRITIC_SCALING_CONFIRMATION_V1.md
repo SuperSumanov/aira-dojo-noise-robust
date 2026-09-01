@@ -1,5 +1,11 @@
 # Clean critic scaling 独立确认契约 v1
 
+> **Superseded for newly produced runs on 2026-09-02.** The current matrix is the
+> six-run `{0.6B, 4B, 8B} x {6, 7}` contract in
+> `CRITIC_SCALING_CONFIRMATION_V2.md`. This v1 file and its frozen machine contract
+> remain immutable historical compatibility artifacts; do not launch a new eight-run
+> matrix from this document.
+
 状态：`CONTRACT_READY_ASSETS_PENDING`。本契约只准备 future-only 结果交付与独立裁决，不授权 GPU、API、
 模型拟合、底座更新或前瞻 score-channel 真值读取。
 

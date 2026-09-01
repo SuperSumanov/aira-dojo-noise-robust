@@ -21,6 +21,7 @@ from typing import Any, Iterable, Mapping, Sequence
 
 
 EXPECTED_CONTRACT_SHA256 = "579771ac1b90b1022bdded1182ce5c5a17780a741dc95d82a53f5f91d577a568"
+EXPECTED_CONTRACT_V2_SHA256 = "c64ab02a20066a9d282de8b3d5a803838e3637e33dd39b53600b52b1dd277642"
 HEX64 = re.compile(r"[0-9a-f]{64}")
 
 
@@ -174,15 +175,53 @@ def model_name(size: float, seed: int) -> str:
     return f"qwen3_{size:g}b_seed{seed}"
 
 
+def verify_v2_source_provenance(lock: Mapping[str, Any]) -> dict[str, Any]:
+    provenance = lock.get("source_provenance")
+    required = {
+        "canonical_config_v2_sidecar_coverage",
+        "canonical_config_v2_sidecar_manifest_sha256",
+        "stable_public_generator_release_id",
+        "exact_generator_config_stratum_id",
+        "sidecars_written_before_outcome",
+        "historical_backfill_used",
+    }
+    if not isinstance(provenance, dict) or set(provenance) != required:
+        raise VerificationError("v2 lock source-provenance fields differ")
+    if number(
+        provenance.get("canonical_config_v2_sidecar_coverage"),
+        "canonical config-v2 sidecar coverage",
+    ) != 1.0:
+        raise VerificationError("v2 canonical config-v2 sidecar coverage is not 100%")
+    manifest = provenance.get("canonical_config_v2_sidecar_manifest_sha256")
+    if not isinstance(manifest, str) or HEX64.fullmatch(manifest) is None:
+        raise VerificationError("invalid canonical config-v2 sidecar manifest digest")
+    for field in ("stable_public_generator_release_id", "exact_generator_config_stratum_id"):
+        value = provenance.get(field)
+        if not isinstance(value, str) or not value.strip():
+            raise VerificationError(f"v2 lock lacks {field}")
+    if provenance.get("sidecars_written_before_outcome") is not True:
+        raise VerificationError("v2 sidecars were not attested outcome-before")
+    if provenance.get("historical_backfill_used") is not False:
+        raise VerificationError("v2 source provenance used historical backfill")
+    return dict(provenance)
+
+
 def verify_contract_and_lock(
     contract_path: Path, lock_path: Path
 ) -> tuple[dict[str, Any], dict[str, Any], dict[tuple[float, int], dict[str, Any]]]:
-    if sha256(contract_path) != EXPECTED_CONTRACT_SHA256:
-        raise VerificationError("contract is not the frozen v1 bytes")
+    contract_sha = sha256(contract_path)
+    if contract_sha == EXPECTED_CONTRACT_SHA256:
+        expected_protocol = "critic-scaling-confirmation-contract-v1"
+        expected_sizes = [0.6, 1.7, 4.0, 8.0]
+    elif contract_sha == EXPECTED_CONTRACT_V2_SHA256:
+        expected_protocol = "critic-scaling-confirmation-contract-v2"
+        expected_sizes = [0.6, 4.0, 8.0]
+    else:
+        raise VerificationError("contract is not a frozen supported version")
     contract = object_from(contract_path, "contract")
-    if contract.get("protocol") != "critic-scaling-confirmation-contract-v1":
+    if contract.get("protocol") != expected_protocol:
         raise VerificationError("wrong contract protocol")
-    if contract["matrix"]["model_sizes_b"] != [0.6, 1.7, 4.0, 8.0]:
+    if contract["matrix"]["model_sizes_b"] != expected_sizes:
         raise VerificationError("wrong size matrix")
     if contract["matrix"]["seeds"] != [6, 7]:
         raise VerificationError("wrong seed matrix")
@@ -202,8 +241,34 @@ def verify_contract_and_lock(
         raise VerificationError("wrong lock protocol")
     if lock.get("status") != "LOCKED_BEFORE_TEST_ACCESS":
         raise VerificationError("lock was not frozen before test")
-    if lock.get("contract_sha256") != EXPECTED_CONTRACT_SHA256:
+    if lock.get("contract_sha256") != contract_sha:
         raise VerificationError("lock references another contract")
+    if expected_protocol == "critic-scaling-confirmation-contract-v2":
+        source_commit = lock.get("source_commit")
+        if not isinstance(source_commit, str) or re.fullmatch(
+            r"(?:[0-9a-f]{40}|[0-9a-f]{64})", source_commit
+        ) is None:
+            raise VerificationError("invalid v2 lock source commit")
+        frozen_at = lock.get("frozen_at_utc")
+        if not isinstance(frozen_at, str) or not frozen_at.endswith("Z"):
+            raise VerificationError("v2 lock lacks a UTC freeze timestamp")
+        dataset = lock.get("dataset")
+        if not isinstance(dataset, dict) or dataset.get("split") != "test":
+            raise VerificationError("v2 lock dataset is absent or not test")
+        truth_digest = dataset.get("truth_sha256")
+        if not isinstance(truth_digest, str) or HEX64.fullmatch(truth_digest) is None:
+            raise VerificationError("invalid v2 locked truth digest")
+        if not isinstance(dataset.get("truth_rows"), int) or dataset["truth_rows"] <= 0:
+            raise VerificationError("invalid v2 locked truth row count")
+        baseline = lock.get("baseline")
+        if not isinstance(baseline, dict) or baseline.get("id") != "char_tfidf_lr":
+            raise VerificationError("invalid v2 locked baseline identity")
+        if baseline.get("fit_scope") != "train_only":
+            raise VerificationError("v2 baseline was not fit train-only")
+        baseline_receipt = baseline.get("receipt_sha256")
+        if not isinstance(baseline_receipt, str) or HEX64.fullmatch(baseline_receipt) is None:
+            raise VerificationError("invalid v2 baseline receipt digest")
+        verify_v2_source_provenance(lock)
     expected = {
         (float(size), int(seed))
         for size in contract["matrix"]["model_sizes_b"]
@@ -547,10 +612,12 @@ def decision_result(
     metrics: Mapping[str, dict[str, Any]],
     internals: Mapping[str, dict[str, Any]],
     truth: Mapping[str, dict[str, Any]],
+    lock: Mapping[str, Any],
 ) -> dict[str, Any]:
     sizes = [float(value) for value in contract["matrix"]["model_sizes_b"]]
     seeds = [int(value) for value in contract["matrix"]["seeds"]]
-    low, high = 0.6, 8.0
+    low = float(contract["matrix"]["reference_low_size_b"])
+    high = float(contract["matrix"]["reference_high_size_b"])
     baseline = "char_tfidf_lr"
     tasks = sorted(internals[baseline]["per_task"])
     size_task = {
@@ -592,6 +659,10 @@ def decision_result(
         task: average(value for other, value in high_base.items() if other != task)
         for task in tasks
     }
+    low_high_loto = {
+        task: average(value for other, value in low_high.items() if other != task)
+        for task in tasks
+    }
     baseline_gain = internals[baseline]["component_task_gain"]
     utility_delta = {
         task: average(
@@ -608,11 +679,24 @@ def decision_result(
     task_counts = collections.Counter(row["task"] for row in primary)
     components = len({row["comparison_component_id"] for row in primary})
     dominant = max(task_counts.values()) / len(primary)
+    dominant_count = max(task_counts.values())
+    dominant_task = min(task for task, count in task_counts.items() if count == dominant_count)
+    dominant_deleted_delta = average(
+        value for task, value in low_high.items() if task != dominant_task
+    )
     support_gates = {
         "tasks_at_least_20": len(task_counts) >= 20,
         "components_at_least_300": components >= 300,
         "dominant_task_pair_share_at_most_0_2": dominant <= 0.2,
     }
+    is_v2 = contract.get("protocol") == "critic-scaling-confirmation-contract-v2"
+    sidecar_coverage = None
+    if is_v2:
+        source_provenance = verify_v2_source_provenance(lock)
+        sidecar_coverage = source_provenance["canonical_config_v2_sidecar_coverage"]
+        support_gates["canonical_config_v2_sidecar_coverage_equals_1"] = (
+            sidecar_coverage == 1.0
+        )
     monotonic = all(
         size_means[str(left)] <= size_means[str(right)]
         for left, right in zip(sizes, sizes[1:])
@@ -623,6 +707,15 @@ def decision_result(
         "each_seed_high_minus_low_positive": all(value > 0 for value in endpoint_by_seed.values()),
         "high_minus_low_ci_lower_positive": low_high_ci[0] > 0,
     }
+    if is_v2:
+        scaling_gates.update(
+            {
+                "all_leave_one_task_out_high_minus_low_deltas_positive": all(
+                    value > 0 for value in low_high_loto.values()
+                ),
+                "dominant_task_deleted_high_minus_low_positive": dominant_deleted_delta > 0,
+            }
+        )
     baseline_gates = {
         "each_high_size_seed_above_baseline": all(value > baseline_macro for value in high_seed.values()),
         "high_minus_baseline_ci_lower_positive": high_base_ci[0] > 0,
@@ -641,21 +734,33 @@ def decision_result(
         status = "CLEAN_SCALING_PASS_BASELINE_NOT_CONFIRMED"
     else:
         status = "VALID_NO_CLEAN_SCALING_CONFIRMATION"
+    support = {
+        "pairs": len(primary), "tasks": len(task_counts), "components": components,
+        "dominant_task_pair_share": dominant, "gates": support_gates, "pass": support_pass,
+    }
+    capacity_scaling = {
+        "size_mean_task_macro_accuracy": size_means,
+        "size_seed_task_macro_accuracy": size_seed,
+        "high_minus_low_task_macro_delta": average(low_high.values()),
+        "high_minus_low_task_macro_delta_by_seed": endpoint_by_seed,
+        "high_minus_low_task_bootstrap_ci": low_high_ci,
+        "per_task_delta": low_high,
+        "gates": scaling_gates, "pass": scaling_pass,
+    }
+    if is_v2:
+        support["canonical_config_v2_sidecar_coverage"] = sidecar_coverage
+        capacity_scaling.update(
+            {
+                "high_minus_low_leave_one_task_out_delta": low_high_loto,
+                "dominant_task_rule": contract["inference"]["dominant_task_rule"],
+                "dominant_task": dominant_task,
+                "dominant_task_deleted_high_minus_low_delta": dominant_deleted_delta,
+            }
+        )
     return {
         "status": status,
-        "support": {
-            "pairs": len(primary), "tasks": len(task_counts), "components": components,
-            "dominant_task_pair_share": dominant, "gates": support_gates, "pass": support_pass,
-        },
-        "capacity_scaling": {
-            "size_mean_task_macro_accuracy": size_means,
-            "size_seed_task_macro_accuracy": size_seed,
-            "high_minus_low_task_macro_delta": average(low_high.values()),
-            "high_minus_low_task_macro_delta_by_seed": endpoint_by_seed,
-            "high_minus_low_task_bootstrap_ci": low_high_ci,
-            "per_task_delta": low_high,
-            "gates": scaling_gates, "pass": scaling_pass,
-        },
+        "support": support,
+        "capacity_scaling": capacity_scaling,
         "high_size_vs_baseline": {
             "baseline_task_macro_accuracy": baseline_macro,
             "high_size_seed_task_macro_accuracy": high_seed,
@@ -754,7 +859,7 @@ def verify(
     for name in sorted(predictions):
         metric, rows, internal = predictor_result(name, truth, predictions[name], contract)
         metrics[name], components[name], internals[name] = metric, rows, internal
-    decision = decision_result(contract, metrics, internals, truth)
+    decision = decision_result(contract, metrics, internals, truth, lock)
     released = object_from(result_dir / "summary.json", "released summary")
     if released.get("protocol") != "critic-scaling-confirmation-analysis-v1":
         raise VerificationError("released summary protocol differs")

@@ -62,7 +62,9 @@ def test_runner_uses_fresh_exact_clean_worktree_and_no_network_fetch() -> None:
     assert "filter.lfs.process=" in source
     assert "filter.lfs.smudge=cat" in source
     assert "filter.lfs.required=false" in source
-    assert "structural-gate-utility-${source_commit:0:12}-v3" in source
+    assert 'mkdir -m 0500 "${formal_root}/empty-hooks"' in source
+    assert 'core.hooksPath="${formal_root}/empty-hooks"' in source
+    assert "structural-gate-utility-${source_commit:0:12}-v4" in source
     assert 'rev-parse HEAD)" = "${source_commit}"' in source
     assert "status --porcelain --untracked-files=all" in source
     assert " git -C \"${source_repo}\" fetch " not in source

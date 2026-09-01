@@ -1,0 +1,58 @@
+{
+  "protocol": "target522-downstream-third-timeout-renewal-v1",
+  "date": "2026-09-02",
+  "goal": "Renew the Stage-A and contrast-rank marker-only waiters after their third natural timeout while preserving the live 517/522 selection monitor and every prior timeout receipt.",
+  "frozen_preconditions": {
+    "public_parent_commit": "ed9fccde8efa18e3799b6f7ee732a5ea52f40799",
+    "selection_observed_sha256": "0277463211df467fb241776d975b4afab0133009f75f8b9cd53d15785341170f",
+    "selection_observed_lines": 29,
+    "selection_runs": 517,
+    "selection_target_runs": 522,
+    "selection_remaining_runs": 5,
+    "selection_pid": 2930562,
+    "selection_pid_live_and_lock_held": true,
+    "selection_complete_failed_timeout_or_gap_markers": false,
+    "initial_gap_context_sha256": "eec0154fa8528e9d75a8befd2861bcec0dafb7a696f1aec8029446e22928f508",
+    "prior_repeat_timeout_context_sha256": "9e305ace00d2a2383f119170a69297b7592e76d3640750493d79db407668425e",
+    "stage_a": {
+      "old_pid": 3451204,
+      "old_pid_must_be_dead": true,
+      "timeout_rc": 124,
+      "last_wait_poll": 720,
+      "complete_failed_or_interrupted_markers": false,
+      "output_root_must_be_absent": true
+    },
+    "contrast_rank": {
+      "old_pid": 3451299,
+      "old_pid_must_be_dead": true,
+      "timeout_rc": 124,
+      "last_wait_poll": 720,
+      "complete_failed_or_interrupted_markers": false,
+      "output_root_must_be_absent": true
+    }
+  },
+  "allowed_change": "Call each hash-bound installed source_script.sh in resume mode once, append a second repeat-timeout context receipt, and write an append-only action receipt.",
+  "forbidden_changes": [
+    "changing selection ledger, target, protocol, analyzer, producer, verifier, test, runner, or installed source-script bytes",
+    "deleting or overwriting either earlier context receipt",
+    "reading labels, outcomes, predictions, accuracy, utility, candidate profile, or private selection",
+    "starting GPU, paid API, model fit, or base-model update",
+    "restoring older within, lineage, selective-parent, yield, or lookahead watchers"
+  ],
+  "postconditions": {
+    "both_new_pids_must_be_live": true,
+    "both_locks_must_be_held": true,
+    "both_timeout_markers_must_be_removed_by_the_exact_source_scripts": true,
+    "both_new_log_segments_must_show_marker_only_waiting": true,
+    "selection_ledger_must_remain_byte_identical": true,
+    "prospective_values_read": false,
+    "candidate_profile_or_private_identity_read": false
+  },
+  "resources": {
+    "cpu_metadata_waiters_only": true,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  }
+}

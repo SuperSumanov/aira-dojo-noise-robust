@@ -209,6 +209,9 @@ phase1/tests/test_decision_corpus_evidence_index_v10.py text eol=lf diff
 phase1/scripts/run_decision_corpus_evidence_index_v10_formal_20260902.sh text eol=lf diff
 phase1/tests/test_decision_corpus_evidence_index_v10_runner.py text eol=lf diff
 phase1/tests/test_decision_corpus_evidence_index_v10_result.py text eol=lf diff
+phase1/target522_downstream_third_timeout_renewal_v1.json text eol=lf diff
+phase1/scripts/renew_target522_downstream_after_third_timeout_20260902.sh text eol=lf diff
+phase1/tests/test_target522_downstream_third_timeout_renewal.py text eol=lf diff
 
 # Preserve the byte-exact v10 index and verifier copied from the formal Linux
 # run; keep package documentation and summaries normalized and diffable.

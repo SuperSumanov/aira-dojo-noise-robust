@@ -65,6 +65,20 @@ release contract=`5 passed`，floor+runner+release focused=`17 passed`，全部�
 GPU/API/model fit/base update=`0/0/0/0`，label/grade/outcome/prediction/accuracy/utility/candidate identity/profile
 read=`false/false/false/false/false/false/false/false`，identity values emitted=`false`。
 
+公开 release commit=`d1766d1aa767af9e61d1f6a23132978a9af3e238` 的 fresh-Linux post-push 复验也已通过：
+formal receipt hashes=`7/7 exact`，focused/full=`17/1,968 passed`（48 warnings，140.61 秒），公开 result/verifier
+hash、identity release contract、changed-path credential filename/content 与 clean-worktree 门均通过。post-push root
+mode/files=`0500/10`，COMPLETE/FAILED_RC=`true/false`，manifest=`0364ddca...064d`；该步骤只验证 GitHub checkout，
+没有重算或重选科学结果。
+
+截至 `2026-09-01T17:18:39Z` 的 outcome-blind 结构复核：学长 source 仍为 `283` archives，最新 archive mtime=
+`2026-08-31T15:21:59Z`，LATEST/snapshot dirs=`e9e12c63...8a6d/133`，canonical config-v2 sidecars=`0`；intake、
+Target-522 selection、Stage-A、contrast-rank 四个既有 PID 均 live，未重复启动。`fork/dojo-reproduce` 已到
+`5baccb170ce287f9c8eed7b23ccf693a0268515a`，相对已处理 outcome commit=`f534114e...c8ad` 有 3 个 commit、20 个
+changed paths（16 live、4 deleted），但没有 `src/mle_critic/docs/outcomes` 变更；增量 credential content/filename
+hits=`0/0`。这些变更集中在旧 augmented data/training/lookahead 路径，内容未读，也不会据此恢复已关闭 lookahead
+或旧训练方向；远端旧 checkout 有 1 个 tracked dirty 文件，未覆盖、未 reset。
+
 ## 0KV. 2026-09-01 全部 14 个结构拒绝的支持度普查完成：13/14 在 prior anchor 已有 eligible support
 
 为避免把 0KT 的单个 absent 事件误写成总体频率，本段把当前 immutable observer census 中**全部 14 个结构拒绝事件**

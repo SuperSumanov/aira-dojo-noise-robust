@@ -79,6 +79,15 @@ hash、identity release contract、changed-path credential filename/content 与 
 mode/files=`0500/10`，COMPLETE/FAILED_RC=`true/false`，manifest=`0364ddca...064d`；该步骤只验证 GitHub checkout，
 没有重算或重选科学结果。
 
+证据索引勘误与机器 crosswalk 已由公开 commit=`c0189bba0d808c4faddc9a83f69dcb75c4143ae2` 固定；其
+fresh-Linux corrected-release post-push 复验完整通过：formal receipt hashes=`7/7 exact`，focused/full=
+`18/1,969 passed`（48 warnings，123.21 秒），公开 result/verifier hash、identity release contract、changed-path
+credential filename/content 与 clean-worktree 门均通过。post-push root mode/files=`0500/10`，
+COMPLETE/FAILED_RC=`true/false`，manifest=`6b7a5411...9011f`；固定分类为
+`PRIOR_EVIDENCE_OMISSION_CORRECTED_INDEPENDENT_RECONSTRUCTION`，且 crosswalk 明确
+`counts_as_independent_new_scientific_result=false`。该步骤只验证纠错后的公开 checkout 与既有 formal receipts，
+没有重算、重选或增加科学结果。
+
 截至 `2026-09-01T17:18:39Z` 的 outcome-blind 结构复核：学长 source 仍为 `283` archives，最新 archive mtime=
 `2026-08-31T15:21:59Z`，LATEST/snapshot dirs=`e9e12c63...8a6d/133`，canonical config-v2 sidecars=`0`；intake、
 Target-522 selection、Stage-A、contrast-rank 四个既有 PID 均 live，未重复启动。`fork/dojo-reproduce` 已到

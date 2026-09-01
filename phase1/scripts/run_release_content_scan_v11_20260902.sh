@@ -8,6 +8,7 @@ readonly repo=/research/d7/spc/yzyang4/aira-dojo
 readonly cards="${repo}/phase1/cards_current_v11.jsonl"
 readonly cards_sha=6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75
 readonly data_root=/research/d7/spc/yzyang4/mle-bench-data
+readonly python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
 readonly short="${public_commit:0:7}"
 readonly base=/research/d7/spc/yzyang4/release-content-scan-v11
 readonly worktree="${base}/worktree-${short}"
@@ -46,7 +47,9 @@ printf 'PREFLIGHT_04_DATA_ROOT_PRESENT=true\n'
 command -v grep >/dev/null
 command -v strace >/dev/null
 command -v timeout >/dev/null
-printf 'PREFLIGHT_05_RUNTIME=grep/strace/timeout\n'
+[[ -x "${python_bin}" ]]
+"${python_bin}" -c 'import pytest'
+printf 'PREFLIGHT_05_RUNTIME=grep/strace/timeout/exp-python-with-pytest\n'
 printf 'PREFLIGHT_06_FIELDS=stdout_tail/code_literal_or_comment\n'
 printf 'PREFLIGHT_07_THRESHOLDS=40/12/24\n'
 printf 'PREFLIGHT_08_PROSPECTIVE_PATHS_ALLOWED=false\n'
@@ -61,8 +64,8 @@ GIT_LFS_SKIP_SMUDGE=1 git -c core.hooksPath=/dev/null -C "${repo}" worktree add 
 [[ -z "$(git -C "${worktree}" status --porcelain --untracked-files=no)" ]]
 
 cd "${worktree}"
-python -m pytest phase1/tests/test_release_content_scan.py -q | tee "${public}/focused_tests.txt"
-python -m pytest phase1/tests -q | tee "${public}/full_tests.txt"
+"${python_bin}" -m pytest phase1/tests/test_release_content_scan.py -q | tee "${public}/focused_tests.txt"
+"${python_bin}" -m pytest phase1/tests -q | tee "${public}/full_tests.txt"
 
 readonly summary_a="${public}/summary_a.json"
 readonly summary_b="${public}/summary_b.json"
@@ -73,7 +76,7 @@ readonly verify_b="${public}/verification_b.json"
 
 timeout 14400s nice -n 10 ionice -c2 -n7 \
   strace -ff -qq -e trace=file,network -o "${private}/producer_a.strace" \
-  python -m phase1.release_content_scan \
+  "${python_bin}" -m phase1.release_content_scan \
     --cards "${cards}" \
     --expected-cards-sha256 "${cards_sha}" \
     --data-root "${data_root}" \
@@ -85,7 +88,7 @@ timeout 14400s nice -n 10 ionice -c2 -n7 \
 
 timeout 14400s nice -n 10 ionice -c2 -n7 \
   strace -ff -qq -e trace=file,network -o "${private}/producer_b.strace" \
-  python -m phase1.release_content_scan \
+  "${python_bin}" -m phase1.release_content_scan \
     --cards "${cards}" \
     --expected-cards-sha256 "${cards_sha}" \
     --data-root "${data_root}" \
@@ -101,7 +104,7 @@ cmp "${private_a}" "${private_b}"
 
 timeout 14400s nice -n 10 ionice -c2 -n7 \
   strace -ff -qq -e trace=file,network -o "${private}/verifier_a.strace" \
-  python -m phase1.verify_release_content_scan \
+  "${python_bin}" -m phase1.verify_release_content_scan \
     --summary "${summary_a}" \
     --private-manifest "${private_a}" \
     --cards "${cards}" \
@@ -110,7 +113,7 @@ timeout 14400s nice -n 10 ionice -c2 -n7 \
     --output "${verify_a}"
 
 timeout 14400s nice -n 10 ionice -c2 -n7 \
-  python -m phase1.verify_release_content_scan \
+  "${python_bin}" -m phase1.verify_release_content_scan \
     --summary "${summary_a}" \
     --private-manifest "${private_a}" \
     --cards "${cards}" \
@@ -126,7 +129,7 @@ credential_hits=$(grep -hEi '(^|[^A-Za-z0-9])sk-[A-Za-z0-9._-]{12,}|api[_-]?key[
 [[ "${network_hits}" == 0 ]]
 [[ "${credential_hits}" == 0 ]]
 
-python - "${summary_a}" "${verify_a}" "${public_commit}" "${public}/formal_summary.json" <<'PY'
+"${python_bin}" - "${summary_a}" "${verify_a}" "${public_commit}" "${public}/formal_summary.json" <<'PY'
 import hashlib, json, pathlib, sys
 summary_path, verify_path, commit, output_path = map(pathlib.Path, sys.argv[1:])
 summary = json.loads(summary_path.read_text())

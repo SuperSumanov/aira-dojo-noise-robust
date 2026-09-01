@@ -20,6 +20,8 @@
    `prospective_decision_v1`、vault、prediction escrow 或 senior raw archive 路径。
 8. **确定性与复核**：pattern 规则无随机性；producer A 后以 `--resume` 重算 B，public/private aggregate 必须逐字节一致；
    verifier 不导入 producer，重建 pattern sets、source manifests、affected-card aggregates，并逐 match 确认 source occurrence。
+   test/producer/verifier/summary 全部固定使用项目既有 `venvs/exp/bin/python`，worktree 前必须通过 executable 与
+   `import pytest` capability gate；禁止静默回退到系统 Python。
 9. **安全门**：公开件必须通过 credential-shape、绝对路径、raw-span/card-ID non-emission 检查；push 前执行 staged filename
    `grep -icE 'env|key|token|secret'` 与内容扫描。任何 raw hit 只留远端只读 private root。
 10. **规模 / 预算 / ETA**：一次 producer + 一次 resume replay + verifier A/B；cards=`16,012`，tasks=`25`，可扫=`23`，

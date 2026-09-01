@@ -124,3 +124,23 @@ def test_formal_runner_creates_log_before_process_substitution() -> None:
     chmod = runner.index('chmod 0600 "${log}"')
     redirect = runner.index('exec > >(tee -a "${log}")')
     assert create < chmod < redirect
+
+
+def test_formal_runner_pins_pytest_capable_interpreter_for_every_python_step() -> None:
+    runner = (
+        Path(__file__).resolve().parents[1]
+        / "scripts"
+        / "run_release_content_scan_v11_20260902.sh"
+    ).read_text(encoding="utf-8")
+    declaration = (
+        "readonly python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python"
+    )
+    capability_gate = '"${python_bin}" -c \'import pytest\''
+    assert declaration in runner
+    assert capability_gate in runner
+    assert runner.index(declaration) < runner.index(capability_gate)
+    assert runner.count('"${python_bin}" -m pytest') == 2
+    assert runner.count('"${python_bin}" -m phase1.release_content_scan') == 2
+    assert runner.count('"${python_bin}" -m phase1.verify_release_content_scan') == 2
+    assert '\npython -m ' not in runner
+    assert '\npython - ' not in runner

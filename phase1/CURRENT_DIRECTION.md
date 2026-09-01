@@ -86,6 +86,13 @@ cards/source content read 或 scan output 前 fail-closed：runner 把 stdout �
 `0/0/0/0`，科学/发布 readout=`0`。修复只是在 process substitution 前同步创建并 chmod log；新增契约测试固定语句顺序，
 下一次必须用新的公开 exact commit/root，不能覆盖 r1 失败证据。
 
+第二次公开 commit=`2bc056edb1a61e94e23b70c0b81cba175424cf1c` 已通过 13 项 immutable-input preflight 并创建
+fresh exact worktree，但在第一个 focused test 前因 `source ~/env_setup.sh` 后的默认 `/usr/bin/python` 不含 pytest
+而 fail-closed（rc=`1`）；cards/source scan、producer/verifier 与科学/发布 readout 仍均为 `0`。远端元数据门已确认项目
+既有 `/research/d7/spc/yzyang4/venvs/exp/bin/python` 可执行，解析到 CPython `3.11.15` 且 pytest=`7.4.3`。
+第三次只允许把 runner 的所有 test/producer/verifier/summary Python 调用统一固定到该解释器，并在 worktree 前执行
+`import pytest` capability gate；protocol、输入、阈值与 estimand 均不变，仍须使用新的公开 exact commit/root。
+
 ## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
 
 为把 0KI/0KV/0KW 与 zero-checkpoint 审计转成一条可直接写进论文的数据工程结论，本节只做**事后逻辑合成**，

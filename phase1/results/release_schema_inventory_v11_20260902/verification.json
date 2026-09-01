@@ -1,0 +1,59 @@
+{
+  "inventory_sha256": "9a48bde7b97a7174c117abff272f9ff9af4f150876c42fc14c87c932786440eb",
+  "protocol": "release-schema-inventory-independent-verification-v1",
+  "resources": {
+    "cards": {
+      "field_paths": 41,
+      "rows": 16012,
+      "sha256_normalized_lf": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75"
+    },
+    "extension_b0": {
+      "field_paths": 13,
+      "rows": 136,
+      "sha256_normalized_lf": "2facb5a1cb192640229395b9befe4a824bd1e5f1477a2da61eb653d3a6c1ca9c"
+    },
+    "extension_b1": {
+      "field_paths": 13,
+      "rows": 39,
+      "sha256_normalized_lf": "f74b4f04b8e2ac07fee86fae5f552cc6125b71c29e181d928d1077d2479898c2"
+    },
+    "extension_b2": {
+      "field_paths": 13,
+      "rows": 30,
+      "sha256_normalized_lf": "3ee35f5e79cb2169f105ed8b0480f274d68a24c15bf409b3bea020e2a839519c"
+    },
+    "frozen_b0": {
+      "field_paths": 12,
+      "rows": 1498,
+      "sha256_normalized_lf": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8"
+    },
+    "frozen_b1": {
+      "field_paths": 12,
+      "rows": 323,
+      "sha256_normalized_lf": "a56f6c7bd6aad141fdaa45f3f30f944062e8dea922eefc03e75bc8b415e7bc90"
+    },
+    "frozen_b2": {
+      "field_paths": 12,
+      "rows": 265,
+      "sha256_normalized_lf": "79d4694d4cea5a81a04c9d463b5c6599a559bbf867f34205fa5715b054f10bc7"
+    },
+    "train_b0": {
+      "field_paths": 13,
+      "rows": 4263,
+      "sha256_normalized_lf": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca"
+    },
+    "train_b1": {
+      "field_paths": 13,
+      "rows": 861,
+      "sha256_normalized_lf": "5053bb3825c5d6a420491cdb056594b306b4850c2b3c179361031becade5d528"
+    },
+    "train_b2": {
+      "field_paths": 13,
+      "rows": 692,
+      "sha256_normalized_lf": "f0cb83c41b1e45d198384726194b3a2bd013132957d71aa2d81aea318dd7c881"
+    }
+  },
+  "source_values_emitted": false,
+  "status": "PASS",
+  "total_rows": 24119
+}

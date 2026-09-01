@@ -91,7 +91,10 @@ children，但不能恢复未 retained child 的完整 numeric outcome。
 
 ## 4. Fields and information classes
 
-最终 schema 文档必须逐字段给出 type、nullable、source、decision-time availability、release class 与敏感等级。至少分成：
+v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
+`SCHEMA_DICTIONARY_DECISION_CORPUS_V11_20260902.md`；机器盘点与独立 verifier 对 10 个资源、24,119 行完全一致，
+且不写出 source values。字典逐字段给出 type、nullable、source、decision-time availability、release class 与敏感等级，
+并明确以下六类：
 
 1. **Identifiers/provenance**：card、task、archive、physical run、recorded parent、operator/budget/config stratum。
 2. **Candidate artifacts**：generated code、sanitized stdout/observation、runtime/status。
@@ -101,6 +104,7 @@ children，但不能恢复未 retained child 的完整 numeric outcome。
 6. **Audit metadata**：source retention、clone fingerprints、cost/noise receipts、split/closure hashes。
 
 公开 schema 不应包含 API key、cookie、authorization header、private reasoning、Kaggle raw data、用户名/邮箱或原始绝对路径。
+本 schema 工作没有读取这些内容，也不替代最终 content/license scan。
 
 ## 5. Label construction and quality
 
@@ -184,7 +188,7 @@ children，但不能恢复未 retained child 的完整 numeric outcome。
 | 逐 competition 规则审计 | BLOCKED | 22/22 rule URLs、版本日期、派生代码/score/tree 发布判断 |
 | provider/model output terms by immutable batch | PARTIAL | DeepSeek/Qwen provenance 与许可兼容裁决 |
 | final dataset license + upstream notices | BLOCKED | 法律/机构 review；生成 `LICENSE`, `NOTICE`, `licenses.json` |
-| v11 schema dictionary | PARTIAL | 逐字段 availability/source/sensitivity/nullability |
+| v11 schema dictionary | COMPLETE (SCHEMA ONLY) | 10 resources / 24,119 rows 已机器盘点并独立复核；完整 release 仍受内容/许可门阻塞 |
 | Croissant/Responsible AI metadata | TODO | 从最终 schema/data card 生成并验证 |
 | prospective first-960 release | SEALED | closure + one-time result protocol + outcome-independent release decision |
 | v4/v5 reproducibility | PERMANENTLY UNRESOLVED | 只在找回原 payload 时可改变；否则明确排除 |
@@ -207,3 +211,5 @@ children，但不能恢复未 retained child 的完整 numeric outcome。
 - label repeatability：`phase1/results/label_repeatability_v2_20260814_4e3bebe/`
 - deployment cost：`phase1/results/deployment_cost_attestation_v2_20260820_c800345/`
 - current paper plan：`phase1/PAPER_BLUEPRINT_DECISION_CORPUS_20260902.md`
+- v11 schema dictionary：`phase1/SCHEMA_DICTIONARY_DECISION_CORPUS_V11_20260902.md`
+- value-free schema inventory：`phase1/results/release_schema_inventory_v11_20260902/`

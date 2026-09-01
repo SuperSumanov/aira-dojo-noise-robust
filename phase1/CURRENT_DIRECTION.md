@@ -33,6 +33,32 @@
 给学长的最小 producer 动作、sidecar patch SHA、联合 scaling 边界与贡献归属已整理在
 `phase1/SENIOR_HANDOFF_20_DAY_SPRINT_20260902.md`。
 
+## 0L1. 2026-09-02 v11 schema gate 已关闭；完整 release 仍受内容与许可门阻塞
+
+为执行 0L0 中“只做能关闭 release blocker 的 CPU 工作”，现已对历史 v11 cards 与九个 decision JSONL 做值盲
+schema inventory：10 个资源、24,119 行，producer 与不导入 producer 的 verifier 对每个 JSON path 的 type、presence/
+null count、array-length bounds、bytes 与 hash 完全一致；focused tests=`3 passed`。inventory/verifier SHA-256=
+`9a48bde7...6440eb` / `d6725443...7b1f8`，source value、candidate identity、label、prediction、prospective resource
+read/emission=`false/false/false/false/false`，GPU/API/model fit/base update=`0/0/0/0`。
+
+逐字段字典已固定 type、nullable、source、availability、release class 与 sensitivity，并正式记录一个历史 schema 边界：
+train+extension 的 6,021/8,107 decision rows 显式带 `run_id`，三份 frozen 的 2,086 行全部缺该字段；后者必须由
+endpoint→`card_run_map.json` 重建且接受 true-sibling/zero-overlap audit，不能任意回填。cards 中 fidelity fields 与
+val_curve 全部未记录，`obs.error` 全 null；`val_at_low`、runtime、stdout 与 parent value 均不是 execution-free 输入，
+`children_ids/n_siblings` 是 retrospective structure。`better/worse/gap_raw` 是 target，原始 ID/split/run 只供审计。
+b1/b2 仍是历史 descendant-budget resource，不因 schema 完成而恢复 K>=1 lookahead 主张。
+
+该工作关闭 `v11 schema dictionary` 单项 gate，但绝不等于数据 release clearance：code/stdout competition-data、
+credential/PII/path 扫描，22/22 competition rules，provider terms，最终 LICENSE/NOTICE/licenses.json 与 Croissant/RAI
+metadata 仍未闭合。公开件见 `phase1/SCHEMA_DICTIONARY_DECISION_CORPUS_V11_20260902.md` 与
+`phase1/results/release_schema_inventory_v11_20260902/`；它是数据资产/复现补强，不计为新的 predictor/scaling/effect
+科学证据，也不进入 Evidence Index 的 distinct claim count。
+
+同一写作冲刺已把论文 Table 1--3 从蓝图占位展开成 `phase1/PAPER_TABLES_1_3_DRAFT_20260902.md`：直接竞品与相邻
+方法定位、historical/prospective 分母分栏、十项 audit readout/does-not-prove 及 evidence routing 均已成稿。表中继续把
+mle-traj raw true-sibling recoverability 标为 unknown，把 13,581 structural endpoints 与 13,098 scorer-common-support
+endpoints 分开，并保持 Table 4/5 为 closure/scaling 条件槽；它是论文写作资产，不是新的实验结果。
+
 ## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
 
 为把 0KI/0KV/0KW 与 zero-checkpoint 审计转成一条可直接写进论文的数据工程结论，本节只做**事后逻辑合成**，

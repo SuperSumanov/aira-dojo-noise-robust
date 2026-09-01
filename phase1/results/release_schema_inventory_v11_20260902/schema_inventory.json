@@ -1,0 +1,1810 @@
+{
+  "protocol": "release-schema-inventory-v1",
+  "resources": {
+    "cards": {
+      "bytes": 305750663,
+      "fields": {
+        "$": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "object": 16012
+          }
+        },
+        "$.code": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.id": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.label": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "object": 16012
+          }
+        },
+        "$.label.graded": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 21,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "null": 21,
+            "number": 15991
+          }
+        },
+        "$.label.medal_bucket": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.label.y_norm": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 21,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "null": 21,
+            "number": 15991
+          }
+        },
+        "$.lineage": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "object": 16012
+          }
+        },
+        "$.lineage.children_ids": {
+          "array_length_max": 11,
+          "array_length_min": 0,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "array": 16012
+          }
+        },
+        "$.lineage.children_ids[]": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 9759,
+          "null_occurrences": 0,
+          "occurrences": 13942,
+          "presence_rows": 6253,
+          "type_counts": {
+            "string": 13942
+          }
+        },
+        "$.lineage.depth": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "integer": 16012
+          }
+        },
+        "$.lineage.n_siblings": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "integer": 16012
+          }
+        },
+        "$.lineage.op": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.lineage.parent_id": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.lineage.parent_val": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 7289,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "null": 7289,
+            "number": 8723
+          }
+        },
+        "$.lineage.step": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "integer": 16012
+          }
+        },
+        "$.lineage.tree_depth": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "integer": 16012
+          }
+        },
+        "$.obs": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "object": 16012
+          }
+        },
+        "$.obs.error": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 16012,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "null": 16012
+          }
+        },
+        "$.obs.fidelity": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "object": 16012
+          }
+        },
+        "$.obs.fidelity.data_frac": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 16012,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "null": 16012
+          }
+        },
+        "$.obs.fidelity.epochs": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 16012,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "null": 16012
+          }
+        },
+        "$.obs.runtime_s": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "number": 16012
+          }
+        },
+        "$.obs.stdout_tail": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.obs.val_at_low": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 1344,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "null": 1344,
+            "number": 14668
+          }
+        },
+        "$.obs.val_curve": {
+          "array_length_max": 0,
+          "array_length_min": 0,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "array": 16012
+          }
+        },
+        "$.provenance": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "object": 16012
+          }
+        },
+        "$.provenance.label_status": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 15991,
+          "null_occurrences": 0,
+          "occurrences": 21,
+          "presence_rows": 21,
+          "type_counts": {
+            "string": 21
+          }
+        },
+        "$.provenance.run_id_source": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.provenance.task_type_source": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.run_id": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.task": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "object": 16012
+          }
+        },
+        "$.task.desc": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.task.higher_is_better": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "boolean": 16012
+          }
+        },
+        "$.task.medal_thresholds": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "object": 16012
+          }
+        },
+        "$.task.medal_thresholds.bronze": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "number": 16012
+          }
+        },
+        "$.task.medal_thresholds.gold": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "number": 16012
+          }
+        },
+        "$.task.medal_thresholds.silver": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "number": 16012
+          }
+        },
+        "$.task.metric": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.task.name": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        },
+        "$.task.type": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 16012,
+          "presence_rows": 16012,
+          "type_counts": {
+            "string": 16012
+          }
+        }
+      },
+      "path": "phase1/cards_current_v11.jsonl",
+      "rows": 16012,
+      "sha256_normalized_lf": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+      "sha256_raw": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75"
+    },
+    "extension_b0": {
+      "bytes": 60778,
+      "fields": {
+        "$": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "object": 136
+          }
+        },
+        "$.better": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "string": 136
+          }
+        },
+        "$.budget": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "integer": 136
+          }
+        },
+        "$.clears_tau": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 136,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "null": 136
+          }
+        },
+        "$.gap_raw": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "number": 136
+          }
+        },
+        "$.intask_split": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "string": 136
+          }
+        },
+        "$.loto_fold": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "string": 136
+          }
+        },
+        "$.parent": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "string": 136
+          }
+        },
+        "$.run_id": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "string": 136
+          }
+        },
+        "$.set_size": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "integer": 136
+          }
+        },
+        "$.src": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "string": 136
+          }
+        },
+        "$.task": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "string": 136
+          }
+        },
+        "$.worse": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 136,
+          "presence_rows": 136,
+          "type_counts": {
+            "string": 136
+          }
+        }
+      },
+      "path": "phase1/v11_decision/decision_extension_v11_b0.jsonl",
+      "rows": 136,
+      "sha256_normalized_lf": "2facb5a1cb192640229395b9befe4a824bd1e5f1477a2da61eb653d3a6c1ca9c",
+      "sha256_raw": "ddebb127ec322fae45db0995fb16c2726dc4057946452901a4b360ca7c501009"
+    },
+    "extension_b1": {
+      "bytes": 17229,
+      "fields": {
+        "$": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "object": 39
+          }
+        },
+        "$.better": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "string": 39
+          }
+        },
+        "$.budget": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "integer": 39
+          }
+        },
+        "$.clears_tau": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 39,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "null": 39
+          }
+        },
+        "$.gap_raw": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "number": 39
+          }
+        },
+        "$.intask_split": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "string": 39
+          }
+        },
+        "$.loto_fold": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "string": 39
+          }
+        },
+        "$.parent": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "string": 39
+          }
+        },
+        "$.run_id": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "string": 39
+          }
+        },
+        "$.set_size": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "integer": 39
+          }
+        },
+        "$.src": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "string": 39
+          }
+        },
+        "$.task": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "string": 39
+          }
+        },
+        "$.worse": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 39,
+          "presence_rows": 39,
+          "type_counts": {
+            "string": 39
+          }
+        }
+      },
+      "path": "phase1/v11_decision/decision_extension_v11_b1.jsonl",
+      "rows": 39,
+      "sha256_normalized_lf": "f74b4f04b8e2ac07fee86fae5f552cc6125b71c29e181d928d1077d2479898c2",
+      "sha256_raw": "b067fd1ef13f453fdbfd7204985019857da6224ff427f6ff3cdd947b3100ff90"
+    },
+    "extension_b2": {
+      "bytes": 12992,
+      "fields": {
+        "$": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "object": 30
+          }
+        },
+        "$.better": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "string": 30
+          }
+        },
+        "$.budget": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "integer": 30
+          }
+        },
+        "$.clears_tau": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 30,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "null": 30
+          }
+        },
+        "$.gap_raw": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "number": 30
+          }
+        },
+        "$.intask_split": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "string": 30
+          }
+        },
+        "$.loto_fold": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "string": 30
+          }
+        },
+        "$.parent": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "string": 30
+          }
+        },
+        "$.run_id": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "string": 30
+          }
+        },
+        "$.set_size": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "integer": 30
+          }
+        },
+        "$.src": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "string": 30
+          }
+        },
+        "$.task": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "string": 30
+          }
+        },
+        "$.worse": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 30,
+          "presence_rows": 30,
+          "type_counts": {
+            "string": 30
+          }
+        }
+      },
+      "path": "phase1/v11_decision/decision_extension_v11_b2.jsonl",
+      "rows": 30,
+      "sha256_normalized_lf": "3ee35f5e79cb2169f105ed8b0480f274d68a24c15bf409b3bea020e2a839519c",
+      "sha256_raw": "f5934b8a881d1a4fdfec12aaf421662ab478790bcd6bbb558985e2be9c600fd9"
+    },
+    "frozen_b0": {
+      "bytes": 632081,
+      "fields": {
+        "$": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "object": 1498
+          }
+        },
+        "$.better": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "string": 1498
+          }
+        },
+        "$.budget": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "integer": 1498
+          }
+        },
+        "$.clears_tau": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 1498,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "null": 1498
+          }
+        },
+        "$.gap_raw": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "number": 1498
+          }
+        },
+        "$.intask_split": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "string": 1498
+          }
+        },
+        "$.loto_fold": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "string": 1498
+          }
+        },
+        "$.parent": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "string": 1498
+          }
+        },
+        "$.set_size": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "integer": 1498
+          }
+        },
+        "$.src": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "string": 1498
+          }
+        },
+        "$.task": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "string": 1498
+          }
+        },
+        "$.worse": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 1498,
+          "presence_rows": 1498,
+          "type_counts": {
+            "string": 1498
+          }
+        }
+      },
+      "path": "phase1/v11_decision/decision_frozen_v11_b0.jsonl",
+      "rows": 1498,
+      "sha256_normalized_lf": "2717e331c9e7156bdc47a31ea1fdd13c5eecb4465c33ad249c41bfac597a8da8",
+      "sha256_raw": "a82320294af0af9a1c41b2d4bb9392686c48fb4402858ca0a5ed6bf70661f1aa"
+    },
+    "frozen_b1": {
+      "bytes": 137452,
+      "fields": {
+        "$": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "object": 323
+          }
+        },
+        "$.better": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "string": 323
+          }
+        },
+        "$.budget": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "integer": 323
+          }
+        },
+        "$.clears_tau": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 323,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "null": 323
+          }
+        },
+        "$.gap_raw": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "number": 323
+          }
+        },
+        "$.intask_split": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "string": 323
+          }
+        },
+        "$.loto_fold": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "string": 323
+          }
+        },
+        "$.parent": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "string": 323
+          }
+        },
+        "$.set_size": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "integer": 323
+          }
+        },
+        "$.src": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "string": 323
+          }
+        },
+        "$.task": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "string": 323
+          }
+        },
+        "$.worse": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 323,
+          "presence_rows": 323,
+          "type_counts": {
+            "string": 323
+          }
+        }
+      },
+      "path": "phase1/v11_decision/decision_frozen_v11_b1.jsonl",
+      "rows": 323,
+      "sha256_normalized_lf": "a56f6c7bd6aad141fdaa45f3f30f944062e8dea922eefc03e75bc8b415e7bc90",
+      "sha256_raw": "9d1d1cfc882ee864bce78d19b8947472aa6f66ccf0a81a2a344e036631434209"
+    },
+    "frozen_b2": {
+      "bytes": 112737,
+      "fields": {
+        "$": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "object": 265
+          }
+        },
+        "$.better": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "string": 265
+          }
+        },
+        "$.budget": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "integer": 265
+          }
+        },
+        "$.clears_tau": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 265,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "null": 265
+          }
+        },
+        "$.gap_raw": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "number": 265
+          }
+        },
+        "$.intask_split": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "string": 265
+          }
+        },
+        "$.loto_fold": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "string": 265
+          }
+        },
+        "$.parent": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "string": 265
+          }
+        },
+        "$.set_size": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "integer": 265
+          }
+        },
+        "$.src": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "string": 265
+          }
+        },
+        "$.task": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "string": 265
+          }
+        },
+        "$.worse": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 265,
+          "presence_rows": 265,
+          "type_counts": {
+            "string": 265
+          }
+        }
+      },
+      "path": "phase1/v11_decision/decision_frozen_v11_b2.jsonl",
+      "rows": 265,
+      "sha256_normalized_lf": "79d4694d4cea5a81a04c9d463b5c6599a559bbf867f34205fa5715b054f10bc7",
+      "sha256_raw": "a6b33d6e4f3b2555149db6979ead056ae78e9fd9955ba20545158bab7f209fb5"
+    },
+    "train_b0": {
+      "bytes": 2000738,
+      "fields": {
+        "$": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "object": 4263
+          }
+        },
+        "$.better": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "string": 4263
+          }
+        },
+        "$.budget": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "integer": 4263
+          }
+        },
+        "$.clears_tau": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 4263,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "null": 4263
+          }
+        },
+        "$.gap_raw": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "number": 4263
+          }
+        },
+        "$.intask_split": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "string": 4263
+          }
+        },
+        "$.loto_fold": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "string": 4263
+          }
+        },
+        "$.parent": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "string": 4263
+          }
+        },
+        "$.run_id": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "string": 4263
+          }
+        },
+        "$.set_size": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "integer": 4263
+          }
+        },
+        "$.src": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "string": 4263
+          }
+        },
+        "$.task": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "string": 4263
+          }
+        },
+        "$.worse": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 4263,
+          "presence_rows": 4263,
+          "type_counts": {
+            "string": 4263
+          }
+        }
+      },
+      "path": "phase1/v11_decision/decision_train_v11_b0.jsonl",
+      "rows": 4263,
+      "sha256_normalized_lf": "bd31b4679c7b4405703b976921df0bc63acba4fc0c4a002f4b8f36d171251fca",
+      "sha256_raw": "6110488201163832f9ae4f95af7de3682152aed9d77e413ca72538b203691c59"
+    },
+    "train_b1": {
+      "bytes": 406527,
+      "fields": {
+        "$": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "object": 861
+          }
+        },
+        "$.better": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "string": 861
+          }
+        },
+        "$.budget": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "integer": 861
+          }
+        },
+        "$.clears_tau": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 861,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "null": 861
+          }
+        },
+        "$.gap_raw": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "number": 861
+          }
+        },
+        "$.intask_split": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "string": 861
+          }
+        },
+        "$.loto_fold": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "string": 861
+          }
+        },
+        "$.parent": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "string": 861
+          }
+        },
+        "$.run_id": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "string": 861
+          }
+        },
+        "$.set_size": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "integer": 861
+          }
+        },
+        "$.src": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "string": 861
+          }
+        },
+        "$.task": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "string": 861
+          }
+        },
+        "$.worse": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 861,
+          "presence_rows": 861,
+          "type_counts": {
+            "string": 861
+          }
+        }
+      },
+      "path": "phase1/v11_decision/decision_train_v11_b1.jsonl",
+      "rows": 861,
+      "sha256_normalized_lf": "5053bb3825c5d6a420491cdb056594b306b4850c2b3c179361031becade5d528",
+      "sha256_raw": "0eca0dac81712e44d9f6cc3204f2ca81dc487d6d18c141e6f77dd63ba7d202a8"
+    },
+    "train_b2": {
+      "bytes": 326854,
+      "fields": {
+        "$": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "object": 692
+          }
+        },
+        "$.better": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "string": 692
+          }
+        },
+        "$.budget": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "integer": 692
+          }
+        },
+        "$.clears_tau": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 692,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "null": 692
+          }
+        },
+        "$.gap_raw": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "number": 692
+          }
+        },
+        "$.intask_split": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "string": 692
+          }
+        },
+        "$.loto_fold": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "string": 692
+          }
+        },
+        "$.parent": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "string": 692
+          }
+        },
+        "$.run_id": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "string": 692
+          }
+        },
+        "$.set_size": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "integer": 692
+          }
+        },
+        "$.src": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "string": 692
+          }
+        },
+        "$.task": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "string": 692
+          }
+        },
+        "$.worse": {
+          "array_length_max": null,
+          "array_length_min": null,
+          "missing_rows": 0,
+          "null_occurrences": 0,
+          "occurrences": 692,
+          "presence_rows": 692,
+          "type_counts": {
+            "string": 692
+          }
+        }
+      },
+      "path": "phase1/v11_decision/decision_train_v11_b2.jsonl",
+      "rows": 692,
+      "sha256_normalized_lf": "f0cb83c41b1e45d198384726194b3a2bd013132957d71aa2d81aea318dd7c881",
+      "sha256_raw": "43e2d26a200e87f0382ab8c5b3c3a3afb1e0340846dff5871dc693ffb331fe23"
+    }
+  },
+  "scope": {
+    "candidate_identities_emitted": false,
+    "labels_or_predictions_emitted": false,
+    "prospective_resources_read": false,
+    "source_values_emitted": false
+  }
+}

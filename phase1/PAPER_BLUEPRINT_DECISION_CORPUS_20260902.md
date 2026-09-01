@@ -147,10 +147,13 @@
 
 ## 6. 主表与主图
 
+Table 1--3 的可粘贴正文草稿、caption 与 evidence routing 已写入
+`phase1/PAPER_TABLES_1_3_DRAFT_20260902.md`；该文件不授权填入任何 prospective outcome。
+
 | 编号 | 内容 | 当前状态 | 绑定证据 |
 |---|---|---|---|
 | Table 1 | 与 ML-Agent/OpenMLE/mle-traj/NAS predictor benchmark 的单位与协议比较 | 可写；raw mle-traj tree recoverability 保持 unknown | 2026-08-28 直接竞品审计 |
-| Table 2 | Corpus statistics：historical strict core + sealed prospective structural support | 可写结构值；不得写 prospective outcome | Evidence Index v10 entries 1, 14, 19 |
+| Table 2 | Corpus statistics：historical strict core + sealed prospective structural support | 可写结构值；不得写 prospective outcome；v11 schema 已逐字段闭合 | Evidence Index v10 entries 1, 14, 19 + v11 schema inventory |
 | Table 3 | Audit findings 与适用范围/失败门 | 可写 | Evidence Index v10 全 20 distinct entries |
 | Table 4 | Exact-common-support predictor benchmark：accuracy/calibration/coverage/init/query | **等待 first-960 closure** | prospective gate + prediction receipts |
 | Table 5 | 0.6B/4B/8B × 2 seeds clean scaling | **等待 sidecar、GPU 审批与训练** | C4 条件 |
@@ -199,7 +202,7 @@
 ## 10. 未来 20 天的写作交付
 
 - D0--D3：锁定本蓝图、Table 1--3、Figure 1--2 storyboards、
-  `DATACARD_DECISION_CORPUS_DRAFT_20260902.md` 与 claim/withdrawal appendix。
+  `DATACARD_DECISION_CORPUS_DRAFT_20260902.md`、v11 schema dictionary 与 claim/withdrawal appendix。
 - D4--D8：完成 Sections 1--5 初稿；所有数字从 Evidence Index 路由，不从聊天或旧 paper 抄写。
 - D7--D14：closure/sidecar 到位后填 Table 4；C4 获批才跑 Table 5。
 - D14--D18：Sections 6--7、limitations、ethics/license/data statement、复现说明。

@@ -1,0 +1,92 @@
+{
+  "protocol": "structural-gate-utility-certificate-v1",
+  "date": "2026-09-02",
+  "analysis_class": "POST_HOC_LOGICAL_SYNTHESIS_OF_PUBLISHED_AGGREGATES",
+  "question": "Within the fully settled 283-archive state, did structural rejection remove the last observed usable checkpoint-derived support for any affected competition?",
+  "definitions": {
+    "affected_competition": "a distinct competition represented by at least one of the 14 structural-rejection events in the published census",
+    "retained_usable_support": "the competition has accepted eligible runs in the prior anchor; archive-granularity retention supplies the exact support floor",
+    "invalid_only_trigger": "the unique no-accepted-support competition is linked to the unique no-support rejection event, whose bound source archive has zero checkpoint runs and all discovered roots are live-only",
+    "observed_last_usable_support_elimination": "a no-accepted-support affected competition whose linked rejected archive contains at least one checkpoint run"
+  },
+  "inputs": [
+    {
+      "name": "archive_granularity_retention_result",
+      "path": "phase1/results/archive_granularity_retention_v1_20260831_bc88298/a/result.json",
+      "sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184"
+    },
+    {
+      "name": "archive_granularity_retention_verification",
+      "path": "phase1/results/archive_granularity_retention_v1_20260831_bc88298/a/independent_verification.json",
+      "sha256": "4965c04739d6ca8468be7fa04f807a8f5c123b3ce2adec37efbfd47608d3b187"
+    },
+    {
+      "name": "archive_rejection_support_census_result",
+      "path": "phase1/results/archive_rejection_support_census_20260902_7ad0164/result.json",
+      "sha256": "f904ff54e110057e4cd11c6f71a09c43661abea9e5e4fb37c39099338f917fad"
+    },
+    {
+      "name": "archive_rejection_support_census_verification",
+      "path": "phase1/results/archive_rejection_support_census_20260902_7ad0164/independent_verification.json",
+      "sha256": "39a634f0bba48dbeb3783f67589604a4ba8e840aaab65ad25daff55528e276e6"
+    },
+    {
+      "name": "incremental_archive_support_result",
+      "path": "phase1/results/incremental_archive_rejection_support_20260901_ce9f505/a/result.json",
+      "sha256": "c95b8e0ffce0162bc65e26ce69867187f29a52184205c6c34745daa54c742080"
+    },
+    {
+      "name": "incremental_archive_support_verification",
+      "path": "phase1/results/incremental_archive_rejection_support_20260901_ce9f505/a/independent_verification.json",
+      "sha256": "4acc607c86a2560df3036588b1d0f8898533966385551d9d5c0612bc5a64d836"
+    },
+    {
+      "name": "no_checkpoint_archive_summary",
+      "path": "phase1/results/prospective_structural_rejection_no_checkpoint_20260901/safe_summary.json",
+      "sha256": "0819fdbe3d36cc0b27b284ec6b3399e59301b54cd0de1432ff324e4455e5df10"
+    },
+    {
+      "name": "no_checkpoint_archive_verification",
+      "path": "phase1/results/prospective_structural_rejection_no_checkpoint_20260901/independent_verification.json",
+      "sha256": "9b1b715cf25bac50305df9fdcc1651acddc7efd1455217a9fdd081eac9bb98a0"
+    }
+  ],
+  "expected_linkage": {
+    "prior_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "target_rejection_registry_sha256": "0c138eb6aa3f5de27041a99e4da38b9c802338e952f6306e9e44f43eab129ffe",
+    "distinct_rejected_competitions": 7,
+    "prior_supported_competitions": 6,
+    "no_accepted_support_competitions": 1,
+    "no_support_events": 1,
+    "no_support_no_checkpoint_events": 1
+  },
+  "decision_rule": {
+    "pass_if": "all seven affected competitions are exhausted by retained_usable_support or invalid_only_trigger and observed_last_usable_support_elimination equals zero",
+    "no_tunable_threshold": true,
+    "counts_as_distinct_claim_evidence": false,
+    "derives_from": [
+      "archive_granularity_retention",
+      "archive_rejection_support_census",
+      "incremental_archive_support_absent",
+      "structural_no_checkpoint_rejection"
+    ]
+  },
+  "claim_boundary": {
+    "allowed": "A within-state, identity-erased claim that the observed structural gate retained usable accepted support when it existed and otherwise rejected a uniquely linked archive with zero checkpoint runs.",
+    "forbidden": [
+      "calling this new independent evidence or a fully blind confirmation",
+      "claiming future-corpus stationarity or a universal lossless validation theorem",
+      "claiming the malformed archive could not yield usable data after an untested repair",
+      "claiming predictor accuracy, scaling, search utility, causal method effect, or task whitelist/blacklist"
+    ]
+  },
+  "resources": {
+    "randomness": "none",
+    "cpu_threads": 1,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  }
+}

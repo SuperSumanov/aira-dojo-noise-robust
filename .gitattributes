@@ -220,6 +220,15 @@ phase1/tests/test_structural_gate_utility_certificate.py text eol=lf diff
 phase1/scripts/run_structural_gate_utility_certificate_formal_20260902.sh text eol=lf diff
 phase1/tests/test_structural_gate_utility_certificate_runner.py text eol=lf diff
 
+# Preserve the byte-exact certificate, verifier, and formal receipts copied
+# from the Linux formal root; keep public documentation diffable.
+phase1/results/structural_gate_utility_certificate_20260902_a0e04d2/** -text -diff
+phase1/results/structural_gate_utility_certificate_20260902_a0e04d2/README.md text eol=lf diff
+phase1/results/structural_gate_utility_certificate_20260902_a0e04d2/failure_history.json text eol=lf diff
+phase1/results/structural_gate_utility_certificate_20260902_a0e04d2/REMOTE_MANIFEST_SHA256 text eol=lf diff
+phase1/results/structural_gate_utility_certificate_20260902_a0e04d2/SHA256SUMS text eol=lf diff
+phase1/tests/test_structural_gate_utility_certificate_result.py text eol=lf diff
+
 # Preserve the byte-exact v10 index and verifier copied from the formal Linux
 # run; keep package documentation and summaries normalized and diffable.
 phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/** -text -diff

@@ -1,0 +1,73 @@
+{
+  "protocol": "structural-gate-utility-formal-attempt-history-v1",
+  "failed_attempts": [
+    {
+      "attempt": "v1_missing_lfs_filter",
+      "source_commit": "066d5fb196189fa6fec8ed305ad09185de21fb6a",
+      "root": "/research/d7/spc/yzyang4/structural-gate-utility-formal-066d5fb-v1",
+      "root_mode": "0700",
+      "file_count": 5,
+      "failed_rc": 128,
+      "checkout_complete": false,
+      "git_lfs_not_found_hits": 1,
+      "focused_tests_created": false,
+      "full_tests_created": false,
+      "certificate_created": false,
+      "independent_verification_created": false,
+      "formal_summary_created": false,
+      "complete_marker_created": false,
+      "classification": "EXECUTION_ENVIRONMENT_FAILURE_BEFORE_CHECKOUT"
+    },
+    {
+      "attempt": "v2_transport_interrupted_then_lfs_hook_failed",
+      "source_commit": "d8642e71da48eec54c2a06e467dbb76ceb4c6cff",
+      "root": "/research/d7/spc/yzyang4/structural-gate-utility-formal-d8642e7-v2",
+      "root_mode": "0700",
+      "file_count": 5,
+      "failed_rc": 2,
+      "interactive_client_connection_reset_observed": true,
+      "checkout_complete": true,
+      "git_lfs_not_found_hits": 1,
+      "focused_tests_created": false,
+      "full_tests_created": false,
+      "certificate_created": false,
+      "independent_verification_created": false,
+      "formal_summary_created": false,
+      "complete_marker_created": false,
+      "classification": "TRANSPORT_INTERRUPTION_WITH_EVENTUAL_POST_CHECKOUT_HOOK_FAILURE"
+    },
+    {
+      "attempt": "v3_persistent_lfs_post_checkout_hook_failure",
+      "source_commit": "41401a66cee0970df6fe39fd0978260d1b52d848",
+      "root": "/research/d7/spc/yzyang4/structural-gate-utility-formal-41401a6-v3",
+      "root_mode": "0700",
+      "file_count": 5,
+      "failed_rc": 2,
+      "checkout_complete": true,
+      "git_lfs_not_found_hits": 1,
+      "focused_tests_created": false,
+      "full_tests_created": false,
+      "certificate_created": false,
+      "independent_verification_created": false,
+      "formal_summary_created": false,
+      "complete_marker_created": false,
+      "classification": "POST_CHECKOUT_HOOK_EXECUTION_ENVIRONMENT_FAILURE"
+    }
+  ],
+  "successful_attempt": {
+    "attempt": "v4_command_scoped_empty_hooks_path",
+    "source_commit": "a0e04d27bcf900c2a1293f8ffad38d5104f6d3a3",
+    "root": "/research/d7/spc/yzyang4/structural-gate-utility-formal-a0e04d2-v4",
+    "root_mode": "0500",
+    "file_count": 39,
+    "manifest_members": 37,
+    "failed_rc_present": false,
+    "complete_marker_created": true,
+    "focused_tests": "12 passed in 1.91s",
+    "full_tests": "2013 passed, 48 warnings in 140.68s (0:02:20)",
+    "independent_postflight": "PASS"
+  },
+  "failed_attempt_scientific_outputs_created": 0,
+  "failed_attempts_count_as_claim_evidence": false,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

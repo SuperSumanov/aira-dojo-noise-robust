@@ -13,6 +13,35 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
+
+为把 0KI/0KV/0KW 与 zero-checkpoint 审计转成一条可直接写进论文的数据工程结论，本节只做**事后逻辑合成**，
+不读取新的 prospective value，也不把共享输入重复计成第五项独立结果。结果前协议把 7 个 distinct rejected
+competitions 固定为互斥完备分区：仍有 accepted eligible support，或唯一链接到零 checkpoint trigger；只有前者也
+消失时才计为 observed last-usable-support elimination。协议及八份输入 result/verifier 均绑定精确 SHA-256，producer
+A/B 与不导入 producer 的 verifier A/B 另做 trace 重建；`counts_as_distinct_claim_evidence=false` 从协议到发布件保持。
+
+公开 exact commit=`a0e04d27bcf900c2a1293f8ffad38d5104f6d3a3` 的 fresh formal v4 完整通过：focused/full=
+`12/2,013 passed`（48 warnings，140.68 秒），13 项 preflight、9 个输入 hash before/after、builder/verifier A/B 与
+trace 均逐字节一致；root mode/files=`0500/39`，COMPLETE/FAILED_RC=`true/false`，formal manifest=
+`1078227f...45d82`（37 members）。独立 postflight 逐项复核 manifest、clean exact worktree、A/B、JSON contract 与
+security receipt 后 PASS；certificate/verifier SHA-256=`b50e99e2...b1f55` / `9ec64e09...1d055`，forbidden-open/
+network/credential filename/content hits=`0/0/0/0`。
+
+正式分区为 retained-support / invalid-only=`6/1`，accounted=`7/7`，observed last-usable-support elimination=`0`。
+6 个 retained competitions 合计有 accepted archives / physical runs / eligible runs / endpoints=`20/94/92/2,558`，
+每个至少 `4` eligible runs 与 `50` endpoints；唯一 no-support competition 所链接 archive 的 discovered roots /
+checkpoint runs / live-only excluded=`2/0/2`。因此 paper-safe 正结论是：**在已结算 283-archive 状态中，结构校验
+表现为 support-preserving quality gate；有可用 checkpoint 支持时它仍被保留，唯一无支持事件本身没有 checkpoint 数据。**
+
+边界：这是四份已发布 aggregate evidence 的 post-hoc certificate，不是新的独立实验或 fully blind confirmation；
+不得外推未来 stationarity、宣称普适无损定理、断言 malformed archive 无法修复，或声称 predictor accuracy、scaling、
+search utility、因果方法效果或 task 白/黑名单。前三次执行环境失败均在任何 tests/certificate/verifier/formal summary 前
+停止并保留：v1 缺 LFS filter rc=`128`；v2 交互连接中断后最终记录 post-checkout hook rc=`2`；v3 持久化复现同一
+hook rc=`2`。v4 只对单次 worktree-add 使用空 hooks path，未改远端仓库钩子。prospective values/raw senior archives/
+identity read=`false/false/false`，GPU/API/model fit/base update=`0/0/0/0`。公开件见
+`phase1/results/structural_gate_utility_certificate_20260902_a0e04d2/`。
+
 ## 0KY. 2026-09-02 Target-522 两个下游纯等待 watcher 第三次自然超时后已无结果续接
 
 outcome-blind 复核确认 source/LATEST/snapshot dirs 仍为 `283/e9e12c63...8a6d/133`，Target-522 selection

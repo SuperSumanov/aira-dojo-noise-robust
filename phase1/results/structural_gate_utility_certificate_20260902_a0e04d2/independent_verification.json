@@ -1,0 +1,16 @@
+{
+  "all_derived_fields_equal": true,
+  "candidate_sha256": "b50e99e23ac2202b29c2a710922133bd972768e7dcf30d48a83825c7972b1f55",
+  "counts_as_distinct_claim_evidence": false,
+  "distinct_rejected_competitions": 7,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+  "identity_values_emitted": false,
+  "invalid_only_trigger_competitions": 1,
+  "observed_last_usable_support_elimination_competitions": 0,
+  "producer_imported": false,
+  "prospective_values_read": false,
+  "protocol": "independent-structural-gate-utility-certificate-v1",
+  "raw_senior_archives_opened": false,
+  "retained_usable_support_competitions": 6,
+  "status": "INDEPENDENT_STRUCTURAL_GATE_UTILITY_CERTIFICATE_PASS"
+}

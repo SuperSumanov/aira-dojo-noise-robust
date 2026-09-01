@@ -1,0 +1,93 @@
+{
+  "access_attestation": {
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+    "identity_values_emitted": false,
+    "predictor_accuracy_scaling_search_utility_or_causal_effect_computed": false,
+    "prospective_values_read": false,
+    "published_aggregate_json_only": true,
+    "raw_senior_archives_opened": false
+  },
+  "analysis_class": "POST_HOC_LOGICAL_SYNTHESIS_OF_PUBLISHED_AGGREGATES",
+  "claim_boundary": {
+    "allowed": "A within-state, identity-erased claim that the observed structural gate retained usable accepted support when it existed and otherwise rejected a uniquely linked archive with zero checkpoint runs.",
+    "forbidden": [
+      "calling this new independent evidence or a fully blind confirmation",
+      "claiming future-corpus stationarity or a universal lossless validation theorem",
+      "claiming the malformed archive could not yield usable data after an untested repair",
+      "claiming predictor accuracy, scaling, search utility, causal method effect, or task whitelist/blacklist"
+    ]
+  },
+  "decision": {
+    "counts_as_distinct_claim_evidence": false,
+    "derived_from_published_evidence_count": 4,
+    "logical_gate_passed": true,
+    "paper_safe_claim": "Within the settled 283-archive audit state, all seven structurally rejected competitions are accounted for: six retain accepted eligible support, while the only no-accepted-support competition is uniquely linked to an archive with zero checkpoint runs. No observed competition therefore shows evidence that structural validation removed its last usable checkpoint-derived support."
+  },
+  "derived_partition": {
+    "accounted_affected_competitions": 7,
+    "accounting_complete": true,
+    "invalid_only_trigger_competitions": 1,
+    "observed_last_usable_support_elimination_competitions": 0,
+    "retained_usable_support_competitions": 6
+  },
+  "input_bindings": {
+    "archive_granularity_retention_result": {
+      "path": "phase1/results/archive_granularity_retention_v1_20260831_bc88298/a/result.json",
+      "sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184"
+    },
+    "archive_granularity_retention_verification": {
+      "path": "phase1/results/archive_granularity_retention_v1_20260831_bc88298/a/independent_verification.json",
+      "sha256": "4965c04739d6ca8468be7fa04f807a8f5c123b3ce2adec37efbfd47608d3b187"
+    },
+    "archive_rejection_support_census_result": {
+      "path": "phase1/results/archive_rejection_support_census_20260902_7ad0164/result.json",
+      "sha256": "f904ff54e110057e4cd11c6f71a09c43661abea9e5e4fb37c39099338f917fad"
+    },
+    "archive_rejection_support_census_verification": {
+      "path": "phase1/results/archive_rejection_support_census_20260902_7ad0164/independent_verification.json",
+      "sha256": "39a634f0bba48dbeb3783f67589604a4ba8e840aaab65ad25daff55528e276e6"
+    },
+    "incremental_archive_support_result": {
+      "path": "phase1/results/incremental_archive_rejection_support_20260901_ce9f505/a/result.json",
+      "sha256": "c95b8e0ffce0162bc65e26ce69867187f29a52184205c6c34745daa54c742080"
+    },
+    "incremental_archive_support_verification": {
+      "path": "phase1/results/incremental_archive_rejection_support_20260901_ce9f505/a/independent_verification.json",
+      "sha256": "4acc607c86a2560df3036588b1d0f8898533966385551d9d5c0612bc5a64d836"
+    },
+    "no_checkpoint_archive_summary": {
+      "path": "phase1/results/prospective_structural_rejection_no_checkpoint_20260901/safe_summary.json",
+      "sha256": "0819fdbe3d36cc0b27b284ec6b3399e59301b54cd0de1432ff324e4455e5df10"
+    },
+    "no_checkpoint_archive_verification": {
+      "path": "phase1/results/prospective_structural_rejection_no_checkpoint_20260901/independent_verification.json",
+      "sha256": "9b1b715cf25bac50305df9fdcc1651acddc7efd1455217a9fdd081eac9bb98a0"
+    }
+  },
+  "population": {
+    "accepted_archives": 133,
+    "distinct_rejected_competitions": 7,
+    "eligible_endpoints": 13581,
+    "eligible_runs": 517,
+    "observed_archives": 283,
+    "structural_rejected_archives": 14
+  },
+  "protocol": "structural-gate-utility-certificate-v1",
+  "retained_support": {
+    "accepted_archives": 20,
+    "eligible_endpoints": 2558,
+    "eligible_runs": 92,
+    "minimum_eligible_endpoints_per_retained_competition": 50,
+    "minimum_eligible_runs_per_retained_competition": 4,
+    "physical_runs": 94
+  },
+  "status": "OBSERVED_STRUCTURAL_GATE_SUPPORT_PRESERVING_DERIVED_CERTIFICATE",
+  "unique_no_support_trigger": {
+    "checkpoint_runs": 0,
+    "discovered_run_roots": 2,
+    "live_only_runs_excluded": 2,
+    "no_accepted_support_events": 1,
+    "no_support_no_checkpoint_events": 1,
+    "target_registry_sha256": "0c138eb6aa3f5de27041a99e4da38b9c802338e952f6306e9e44f43eab129ffe"
+  }
+}

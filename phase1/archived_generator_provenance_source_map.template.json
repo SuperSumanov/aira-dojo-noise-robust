@@ -1,0 +1,25 @@
+{
+  "schema_version": "archived-generator-provenance-source-map-v1",
+  "sources": [
+    {
+      "batch": "cards_senior_0805seq.jsonl",
+      "archive_dir": "/ABSOLUTE/PATH/TO/0805_ARCHIVES"
+    },
+    {
+      "batch": "cards_senior_0808.jsonl",
+      "archive_dir": "/ABSOLUTE/PATH/TO/0808_ARCHIVES"
+    },
+    {
+      "batch": "cards_senior_0809.jsonl",
+      "archive_dir": "/ABSOLUTE/PATH/TO/0809_ARCHIVES"
+    },
+    {
+      "batch": "cards_senior_0810.jsonl",
+      "archive_dir": "/ABSOLUTE/PATH/TO/0810_ARCHIVES"
+    },
+    {
+      "batch": "cards_senior_0811.jsonl",
+      "archive_dir": "/ABSOLUTE/PATH/TO/0811_ARCHIVES"
+    }
+  ]
+}

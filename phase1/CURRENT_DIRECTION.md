@@ -26,7 +26,8 @@
 `*.config_v2.jsonl` 仍为 `0`；state root 内只出现一个非 canonical、metadata-only 的 config-v2 相关文件，内容未读，
 不构成真实 producer sidecar。因而最大时限风险是学长尚未 review/apply 已验证的 producer hook；旧 archive 禁止事后
 回填，缺 provenance 的新 runs 不能用于 exact-stratum scaling confirmation。完整日程、kill 条件与防 scoop 定位见
-`phase1/TWENTY_DAY_POSITIVE_RESULT_SPRINT_20260902.md`。
+`phase1/TWENTY_DAY_POSITIVE_RESULT_SPRINT_20260902.md`；当前论文标题、摘要、贡献、主表/主图与 Evidence Index 路由见
+`phase1/PAPER_BLUEPRINT_DECISION_CORPUS_20260902.md`。旧 `phase1/paper.tex` 已显式标为历史稿，不得继续作为当前论文。
 
 ## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
 

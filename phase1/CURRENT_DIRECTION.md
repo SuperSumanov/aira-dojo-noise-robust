@@ -1,4 +1,4 @@
-# 当前研究方向唯一入口（2026-09-01）
+# 当前研究方向唯一入口（2026-09-02）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
@@ -12,6 +12,28 @@
 > 支持审计改写；所有更早“唯一主实验”“主线已确认”措辞均按本段降为历史状态。
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
+
+## 0KW. 2026-09-02 rejected-competition support floor 已结果前冻结：仅为 post-hoc 深度审计，尚未真实读出
+
+0KV 已完成的 aggregate census 表明 14 个结构拒绝事件来自 7 个匿名 competition，event 四类计数为
+prior/window/archive-only/no-support=`13/0/0/1`，competition 去重计数为 `6/0/0/1`；这些量及 event-weighted
+support totals 已公开，不能再伪装为未知或 fully blind。本段只提出一个更窄的 **post-hoc identity-erased full-census**
+问题：对每个 rejected competition，prior/current 支持究竟有多深、是否只靠单个 archive/run、支持是否高度集中；
+不设置二元成功阈值，不作抽样推断，也不估计未来 rejection 频率或因果效应。
+
+真实 floor readout 前冻结 `archive_rejection_support_floor_v1`：exact prior/current snapshot=`30945550...104f` /
+`e9e12c63...8a6d`，transactions=`126/133`、window=`7`，observations SHA/bytes=`d2ed361a...a704a/200,613`；
+并逐字节绑定已发布 census result/verifier SHA=`f904ff54...917fad` / `39a634f0...276e6`。未知量仅包括 distinct-
+competition totals、四指标的 min/exact-rational-median/max/zero/one/max-share、6 个 prior-supported competition 的
+最小 eligible-run fraction 与 endpoints-per-eligible-run，以及 current window 有增量的 competition 数。输出禁止
+competition/archive/task/run/candidate 身份值及逐 competition 向量。
+
+producer 与不导入 producer 的独立 verifier 已分别实现；合成四类 fixture 验证动态 `4/1` competition，而非把真实
+`7/6` 写死进实现。精确摘要、census evidence/window/candidate 篡改、identity non-emission、verifier non-import 与真实
+协议 hash-binding 共 focused=`8 passed`。protocol/producer/verifier/test SHA-256=`e60500f7...66b2d` /
+`25b74e48...0b58` / `97321e0f...c8f2` / `207b5530...faf9`。截至本段只有结果前冻结，**尚未在真实 state 上运行
+producer，任何 support-floor 数值均未知**；GPU/API/model fit/base update=`0/0/0/0`，不得外推 predictor accuracy、
+scaling、search utility 或方法效果。
 
 ## 0KV. 2026-09-01 全部 14 个结构拒绝的支持度普查完成：13/14 在 prior anchor 已有 eligible support
 

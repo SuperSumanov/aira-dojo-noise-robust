@@ -1,0 +1,140 @@
+{
+  "protocol": "archive_rejection_support_floor_v1",
+  "frozen_at_utc_date": "2026-09-02",
+  "frozen_before_distinct_competition_floor_readout": true,
+  "post_hoc_after_aggregate_census_readout": true,
+  "question": "For each anonymized competition represented by a structural archive rejection, how deep and redundant is the accepted support retained at the prior anchor and current snapshot, rather than merely whether any support exists?",
+  "inputs": {
+    "prior_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "current_observations_sha256": "d2ed361a557bf52dadfe9f0547e49c16ea5dc1eea42a1c78f7b354542a2a704a",
+    "current_observations_bytes": 200613,
+    "prior_transactions_sha256": "4f05659db88e290f18a20d43b33330daa5df27211b1fffb770cbf1658b46ec60",
+    "prior_transaction_lines": 126,
+    "current_transactions_sha256": "fabae2e42b8e669bc0f212df5365809751966859df22cb1a0ba952ba277f7467",
+    "current_transaction_lines": 133,
+    "current_window_transaction_lines": 7,
+    "census_result_path": "results/archive_rejection_support_census_20260902_7ad0164/result.json",
+    "census_result_sha256": "f904ff54e110057e4cd11c6f71a09c43661abea9e5e4fb37c39099338f917fad",
+    "census_verification_path": "results/archive_rejection_support_census_20260902_7ad0164/independent_verification.json",
+    "census_verification_sha256": "39a634f0bba48dbeb3783f67589604a4ba8e840aaab65ad25daff55528e276e6"
+  },
+  "known_before_floor_readout": {
+    "population": {
+      "observed_archives": 283,
+      "baseline_archives": 128,
+      "accepted_archives": 133,
+      "structural_rejected_archives": 14,
+      "alias_quarantined_archives": 8,
+      "physical_runs": 543,
+      "eligible_runs": 517,
+      "eligible_endpoints": 13581,
+      "eligible_structural_pairs": 3325,
+      "eligible_tasks": 38
+    },
+    "census_event_support_class_counts": {
+      "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 13,
+      "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+      "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+      "NO_ACCEPTED_ARCHIVE_SUPPORT": 1
+    },
+    "census_competition_support_class_counts": {
+      "distinct_rejected_competitions": 7,
+      "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 6,
+      "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+      "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+      "NO_ACCEPTED_ARCHIVE_SUPPORT": 1
+    },
+    "census_event_weighted_support_quantities": {
+      "prior_prefix": {
+        "accepted_archives": 40,
+        "physical_runs": 187,
+        "eligible_runs": 185,
+        "eligible_endpoints": 5278
+      },
+      "current_window": {
+        "accepted_archives": 2,
+        "physical_runs": 8,
+        "eligible_runs": 8,
+        "eligible_endpoints": 192
+      },
+      "current_total": {
+        "accepted_archives": 42,
+        "physical_runs": 195,
+        "eligible_runs": 193,
+        "eligible_endpoints": 5470
+      },
+      "repeated_competitions_are_repeated_per_event": true
+    },
+    "headline_is_partially_predisclosed": true
+  },
+  "unknown_at_freeze": {
+    "distinct_competition_weighted_support_totals": false,
+    "per_class_metric_minimum_median_maximum": false,
+    "number_of_prior_supported_competitions_with_exactly_one_archive_or_run": false,
+    "minimum_prior_eligible_run_fraction": false,
+    "minimum_prior_endpoints_per_eligible_run": false,
+    "maximum_prior_support_concentration_share": false,
+    "number_of_competitions_receiving_any_current_window_increment": false,
+    "competition_or_task_identity_values_read_or_emitted": false
+  },
+  "estimand": {
+    "primary_unit": "each of the seven distinct anonymized competitions represented by the 14 structural rejection events",
+    "primary_subset": "the six competitions classified as PRIOR_ANCHOR_ELIGIBLE_SUPPORT by the completed census",
+    "anchors": [
+      "prior 126-transaction prefix",
+      "seven-transaction current window",
+      "current 133-transaction total"
+    ],
+    "metrics": [
+      "accepted_archives",
+      "physical_runs",
+      "eligible_runs",
+      "eligible_endpoints"
+    ],
+    "summary_rule": "For each metric report count, sum, minimum, exact rational median, maximum, zero count, one count, positive count and exact maximum share. Empty classes report null order statistics.",
+    "ratio_rules": [
+      "minimum eligible_runs / physical_runs among prior-supported competitions",
+      "minimum eligible_endpoints / eligible_runs among prior-supported competitions"
+    ],
+    "full_census_not_sampling_inference": true,
+    "no_binary_success_threshold": true
+  },
+  "integrity_gates": {
+    "completed_census_result_and_independent_verification_hash_bound": true,
+    "all_census_counts_must_reconstruct_exactly": true,
+    "current_transactions_must_have_exact_prior_byte_prefix": true,
+    "accepted_observation_transaction_and_provenance_bindings_required": true,
+    "each_rejected_competition_must_have_one_consistent_support_class": true,
+    "all_expected_distinct_rejected_competitions_must_be_summarized": true,
+    "producer_a_b_byte_identity_required": true,
+    "non_importing_independent_verifier_a_b_byte_identity_required": true,
+    "no_competition_archive_task_run_or_candidate_identity_emission": true
+  },
+  "reporting": {
+    "report_exact_integer_and_rational_summaries": true,
+    "report_distinct_competition_totals_not_event_weighted_totals": true,
+    "report_post_hoc_status_prominently": true,
+    "do_not_report_identity_rows_or_sorted_per_competition_vectors": true,
+    "do_not_call_this_a_new_blind_confirmation": true,
+    "do_not_infer_future_rejection_frequency_or_causality": true,
+    "do_not_claim_predictor_accuracy_scaling_search_utility_or_method_effect": true
+  },
+  "access_contract": {
+    "observation_and_hash_bound_intake_metadata_only": true,
+    "rejection_registry_contents_opened": false,
+    "archive_payloads_opened": false,
+    "labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+    "candidate_identities_or_profiles_read": false,
+    "identity_values_emitted": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  },
+  "resource_matrix": {
+    "cpu_workers": 1,
+    "expected_wall_minutes": "5-20",
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

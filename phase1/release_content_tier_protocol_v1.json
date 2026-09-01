@@ -1,0 +1,58 @@
+{
+  "protocol": "decision-corpus-release-content-tier-v1",
+  "version": 1,
+  "status": "FROZEN_AFTER_GLOBAL_SCAN_COUNTS_BEFORE_TASK_OR_CARD_DISPOSITION_READ",
+  "frozen_at_utc": "2026-09-01T22:48:19Z",
+  "freeze_observation": {
+    "global_tasks_scanned": 23,
+    "global_tasks_total": 25,
+    "global_matched_patterns": 173,
+    "global_affected_card_sum_across_tasks": 419,
+    "task_level_scan_summary_opened": false,
+    "private_card_hash_hit_manifest_opened": false,
+    "raw_matched_span_opened": false,
+    "card_code_or_stdout_value_opened_for_tiering": false
+  },
+  "activation": {
+    "upstream_formal_root": "/research/d7/spc/yzyang4/release-content-scan-v11/formal-fc41932-r1",
+    "required_marker": "COMPLETE",
+    "forbidden_marker": "FAILED_RC",
+    "independent_postflight_required": true,
+    "single_upstream_output_only": true,
+    "alternate_scan_or_threshold_allowed": false
+  },
+  "decision_rule": {
+    "unit": "historical v11 card",
+    "structure_metadata_tier": "All cards remain structurally representable, subject to the separate competition-license and privacy gates.",
+    "content_review_eligible": "A card is eligible for later code/stdout legal review only if its task has prepared source text and its card hash appears in no scan hit.",
+    "structure_only_unscanned": "Every card from a task without prepared source text is withheld from code/stdout release.",
+    "structure_only_matched": "If either scanned field has a matched competition-data pattern, withhold both code and stdout for the entire card.",
+    "whole_card_conservatism": "Do not release the other content field merely because only one field triggered.",
+    "raw_match_review_required_to_downgrade": true,
+    "post_result_rule_change_allowed": false
+  },
+  "outputs": {
+    "public": "aggregate counts and exact fractions by task and reason; no card hashes, identities, source paths, or matched spans",
+    "private": "sorted card-id SHA-256 tier map with task, reason codes, triggering field names, and withheld field names; no raw IDs or values",
+    "raw_or_redacted_cards_materialized": false
+  },
+  "interpretation_boundary": {
+    "content_review_eligible_is_release_clearance": false,
+    "zero_scan_match_is_proof_of_no_leakage": false,
+    "structure_only_is_a_scientific_failure": false,
+    "remaining_required_gates": [
+      "two missing prepared task sources",
+      "raw matched-span disposition by an authorized reviewer",
+      "competition data/code license review",
+      "provider terms and provenance review",
+      "final LICENSE NOTICE and dataset metadata"
+    ]
+  },
+  "security": {
+    "prospective_resources_read": false,
+    "label_outcome_prediction_accuracy_utility_read": false,
+    "candidate_identity_or_private_selection_read": false,
+    "raw_matched_span_emitted": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  }
+}

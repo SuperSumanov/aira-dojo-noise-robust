@@ -1,0 +1,42 @@
+{
+  "protocol": "decision-corpus-release-content-tier-execution-v1",
+  "version": 1,
+  "status": "FROZEN_BEFORE_TIER_OUTPUT_GENERATION",
+  "upstream": {
+    "formal_root": "/research/d7/spc/yzyang4/release-content-scan-v11/formal-fc41932-r1",
+    "source_commit": "fc419323816fa953ce0023a9b3fc1fde01bf85e7",
+    "summary_sha256": "9ba53816984850397eeaf0dd80cd685cae2df6d602a7ab17aa0893852e703927",
+    "private_manifest_sha256": "616e95f7cd85965d98975b6643b7bfe1cfe634a080ed3e8ca29776fda81388f7",
+    "verification_sha256": "047a70b2ea189193d684aab41c04362035f4edd5119ddf90ace5b39342f1cf77",
+    "formal_summary_sha256": "16a8b7045a5cddf3941f49f6637ef4c3a78149a762407b68587ae300c0dfe235",
+    "complete_marker_sha256": "3bc901e971ad845cda587a2ff71002d98bd03ffae1df39f39d898755dd49da5a",
+    "independent_postflight": "PASS",
+    "postflight_receipt_sha256": "98f9671120aaabf661b5010ac4e61ff16a097e3e5ee3952fa5ce2ccb3cfb3065",
+    "postflight_manifest_sha256": "7791def28bf976832057ab0ed843da0d6dcec1b446aa2f4f43e31c83fd1c9252"
+  },
+  "inputs": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "cards_rows": 16012,
+    "tier_protocol_sha256": "88cd6f1063f89e14a470c04a6af45c5f8ba2359fe5ba7ecf4e48bd783ed55d6c",
+    "producer_sha256": "350db21a04ea0837b09be6b1ba8ae069018bb6fd4243a77b475b7608f384936b",
+    "verifier_sha256": "dd685278e86381cf44f6657dbdd531dbbc92cf3e06713bd50ff83226a42ecf46",
+    "focused_test_sha256": "ef4b8c9bce692cb37c541e70ab631a6c00b848d1aaef7081c4848874913af85b"
+  },
+  "execution": {
+    "fresh_exact_commit_worktree": true,
+    "producer_runs": 2,
+    "independent_verifier_runs": 2,
+    "byte_compare_required": true,
+    "file_and_network_trace_required": true,
+    "full_phase1_tests_required": true,
+    "private_outputs_mode": "0400",
+    "public_outputs_mode": "0400",
+    "result_values_precommitted": false
+  },
+  "scope": {
+    "prospective_resources_allowed": false,
+    "raw_card_ids_or_values_emitted": false,
+    "raw_matched_spans_emitted": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  }
+}

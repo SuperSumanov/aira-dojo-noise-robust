@@ -11,6 +11,7 @@ PARENT = ROOT / "phase1/incremental_archive_rejection_support_audit_v1.json"
 EXECUTION = ROOT / "phase1/incremental_archive_rejection_support_audit_execution_v2.json"
 ADDENDUM = ROOT / "phase1/incremental_archive_rejection_support_execution_addendum_v2.json"
 ADDENDUM_V3 = ROOT / "phase1/incremental_archive_rejection_support_execution_addendum_v3.json"
+ADDENDUM_V4 = ROOT / "phase1/incremental_archive_rejection_support_execution_addendum_v4.json"
 RUNNER = ROOT / "phase1/scripts/run_incremental_archive_rejection_support_formal_20260901.sh"
 
 
@@ -76,3 +77,23 @@ def test_v3_addendum_records_result_free_python_selection_failure() -> None:
     assert addendum["protocol_changes"] == []
     assert addendum["input_changes"] == []
     assert parent["execution_protocol_sha256"] == addendum["execution_protocol_sha256"]
+
+
+def test_v4_addendum_records_preclassification_schema_failure() -> None:
+    addendum = load(ADDENDUM_V4)
+    assert addendum["parent_execution_addendum_sha256"] == sha(ADDENDUM_V3)
+    assert addendum["execution_protocol_sha256"] == sha(EXECUTION)
+    assert addendum["failed_attempt"]["focused_tests_passed"] == 22
+    assert addendum["failed_attempt"]["full_phase1_tests_passed"] == 1930
+    assert addendum["failed_attempt"]["producer_failed_before_entry_classification"] is True
+    assert addendum["failed_attempt"]["target_support_counts_or_status_computed"] is False
+    assert addendum["failed_attempt"]["result_files_created"] == 0
+    assert addendum["actual_frozen_observer_container"]["top_level_keys_sorted"] == [
+        "baseline_sealed_at_epoch",
+        "entries",
+        "protocol",
+        "source_root",
+    ]
+    assert addendum["scientific_changes"] == []
+    assert addendum["protocol_changes"] == []
+    assert addendum["input_changes"] == []

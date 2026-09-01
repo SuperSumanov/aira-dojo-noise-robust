@@ -66,6 +66,15 @@ executable + `import pytest`（远端 pytest=`7.4.3`）；协议与输入均不�
 `8768d4d9...a8da3d` / `a0d0bca8...91a7d2`，远端 static check PASS，focused=`22 passed`；须再从新的公开
 exact commit 运行 fresh root。
 
+`2f77069...` fresh formal 的 focused/full tests 已精确通过 `22/1,930`（48 warnings），随后 producer 在任何 entry
+classification、target support/status 或 result write 之前以 `observations schema mismatch` fail-closed；result/verifier/
+COMPLETE=`0/0/false`。只输出键名的独立 schema 检查证明 frozen observer 顶层为
+`baseline_sealed_at_epoch,entries,protocol,source_root`，而实现误用了相邻 watcher 的
+`minimum_age_seconds,updated_at_utc` 容器。producer 与非导入 verifier 已分别改为真实四键 schema，并验证 baseline seal
+为 finite nonnegative；fixture 同步改正且新增 adjacent-schema 反例。v4 addendum/producer/verifier SHA=
+`b1495de4...2f187` / `0d5ac76f...112e4` / `6e688332...9bc4e`，focused=`24 passed`，与既有 archive
+longitudinal 合跑=`21 passed`；科学协议、输入与资源不变，仍须新的公开 exact commit fresh run。
+
 ## 0KS. 2026-09-01 零 fit support v1 在 state promotion 前停止；v2 只修启动回执与进程组清理
 
 0KR 的公开 exact commit=`7d89d1bce13cbf5223b380a167d8868df1cbb6bc` 已冻结。第一次部署在提取 launcher 前因

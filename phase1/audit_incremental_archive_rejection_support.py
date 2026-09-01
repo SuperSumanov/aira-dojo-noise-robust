@@ -312,9 +312,17 @@ def classify_observations(
 ) -> tuple[dict[str, str], dict[str, Any], dict[str, Any]]:
     check(
         set(observations)
-        == {"entries", "minimum_age_seconds", "protocol", "source_root", "updated_at_utc"}
+        == {"baseline_sealed_at_epoch", "entries", "protocol", "source_root"}
         and observations.get("protocol") == OBSERVATION_PROTOCOL,
         "observations schema mismatch",
+    )
+    baseline_sealed = observations.get("baseline_sealed_at_epoch")
+    check(
+        isinstance(baseline_sealed, (int, float))
+        and not isinstance(baseline_sealed, bool)
+        and math.isfinite(float(baseline_sealed))
+        and baseline_sealed >= 0,
+        "baseline seal timestamp malformed",
     )
     entries = observations.get("entries")
     check(isinstance(entries, dict), "observations entries missing")

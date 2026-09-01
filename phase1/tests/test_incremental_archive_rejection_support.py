@@ -359,11 +359,10 @@ def fixture(
     write_json(
         observations,
         {
+            "baseline_sealed_at_epoch": 1.0,
             "entries": entries,
-            "minimum_age_seconds": 60,
             "protocol": "prospective_archive_observer_v1",
             "source_root": source_root,
-            "updated_at_utc": "2026-09-01T00:00:00Z",
         },
     )
     prior_known = {
@@ -501,3 +500,18 @@ def test_independent_verifier_does_not_import_producer() -> None:
         encoding="utf-8"
     )
     assert "audit_incremental_archive_rejection_support" not in verifier_source
+
+
+def test_adjacent_watcher_container_schema_fails_closed(tmp_path: Path) -> None:
+    case = fixture(tmp_path, "strong")
+    observations = json.loads(case["observations"].read_text(encoding="utf-8"))
+    observations.pop("baseline_sealed_at_epoch")
+    observations["minimum_age_seconds"] = 60
+    observations["updated_at_utc"] = "2026-09-01T00:00:00Z"
+    write_json(case["observations"], observations)
+    protocol = json.loads(case["protocol"].read_text(encoding="utf-8"))
+    protocol["inputs"]["current_observations_sha256"] = file_sha(case["observations"])
+    protocol["inputs"]["current_observations_bytes"] = case["observations"].stat().st_size
+    write_json(case["protocol"], protocol)
+    with pytest.raises(IncrementalArchiveAuditError, match="schema mismatch"):
+        build_result(case["protocol"], case["observations"], case["state"])

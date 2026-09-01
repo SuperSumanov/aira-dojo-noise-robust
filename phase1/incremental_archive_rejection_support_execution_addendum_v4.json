@@ -1,0 +1,51 @@
+{
+  "protocol": "incremental_archive_rejection_support_execution_addendum_v4",
+  "parent_execution_addendum_path": "phase1/incremental_archive_rejection_support_execution_addendum_v3.json",
+  "parent_execution_addendum_sha256": "8768d4d9c67f1913fa796427abfe0e484c10111fdafeae7bc0037d3aafa8da3d",
+  "execution_protocol_path": "phase1/incremental_archive_rejection_support_audit_execution_v2.json",
+  "execution_protocol_sha256": "451f4b64c3029e0240e618e48de180cddc8aa36d23fb6f0e2b4b966dd57008b2",
+  "failed_attempt": {
+    "exact_commit": "2f770696773ddbd86f33d6ed91fcabc79870ba1a",
+    "formal_root": "/research/d7/spc/yzyang4/prospective-archive-support/formal-2f77069-incremental-support-v1/public",
+    "failure_stage": "producer_observer_container_schema_gate_before_entry_classification",
+    "failure_reason": "producer and independent verifier encoded the adjacent watcher container schema instead of the frozen observer's actual top-level schema",
+    "exit_code": 2,
+    "failed_rc_sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+    "focused_tests_sha256": "677d6298452a11073614781b3f8b97604679c0af3308427a5ba4aa1aca22f33e",
+    "full_phase1_tests_sha256": "d658b4c37c6dc1808cc89bb0ee576ad680cfd084ea1950214b28a35bf8a736a2",
+    "producer_stderr_sha256": "1d4e328d09a7eb248bc4ced92e5109b1e8a1351ff9af461c252f9a889d5a6819",
+    "readonly_before_sha256": "c1f9e92e2fa975d1f81a51143e4a74a74d3c0c5bed378f2a14ead01d18111b1b",
+    "focused_tests_passed": 22,
+    "full_phase1_tests_passed": 1930,
+    "full_phase1_test_warnings": 48,
+    "producer_started": true,
+    "producer_failed_before_entry_classification": true,
+    "result_files_created": 0,
+    "verification_files_created": 0,
+    "complete_marker_created": false,
+    "target_support_counts_or_status_computed": false,
+    "identity_values_emitted": false
+  },
+  "actual_frozen_observer_container": {
+    "top_level_keys_sorted": [
+      "baseline_sealed_at_epoch",
+      "entries",
+      "protocol",
+      "source_root"
+    ],
+    "distinct_entry_key_sets": 1,
+    "entry_schema_unchanged": true,
+    "identity_values_emitted_by_schema_inspection": false
+  },
+  "single_implementation_change": {
+    "producer": "require the actual four-key observer container and a finite nonnegative baseline_sealed_at_epoch",
+    "independent_verifier": "independently require the same externally observed container contract without importing producer",
+    "synthetic_fixtures": "use the actual observer container and explicitly reject the adjacent watcher schema"
+  },
+  "scientific_changes": [],
+  "protocol_changes": [],
+  "input_changes": [],
+  "resource_changes": [],
+  "access_changes": [],
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

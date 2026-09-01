@@ -311,9 +311,17 @@ def classify_observations(
     protocol: dict[str, Any], observations: dict[str, Any]
 ) -> tuple[dict[str, str], dict[str, Any], dict[str, Any]]:
     require(
-        set(observations) == {"entries", "minimum_age_seconds", "protocol", "source_root", "updated_at_utc"}
+        set(observations) == {"baseline_sealed_at_epoch", "entries", "protocol", "source_root"}
         and observations.get("protocol") == OBSERVER_PROTOCOL,
         "observation container mismatch",
+    )
+    baseline_sealed = observations.get("baseline_sealed_at_epoch")
+    require(
+        isinstance(baseline_sealed, (int, float))
+        and not isinstance(baseline_sealed, bool)
+        and math.isfinite(float(baseline_sealed))
+        and baseline_sealed >= 0,
+        "baseline seal timestamp mismatch",
     )
     entries = observations.get("entries")
     source_root = observations.get("source_root")

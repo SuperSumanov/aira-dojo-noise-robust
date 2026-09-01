@@ -36,6 +36,11 @@ producer/verifier SHA-256=`ddc09da3...9c2c51` / `a6098cdf...247f7`；三种 deci
 payload overlap、路径伪造、候选结果篡改与 identity non-emission 共 `14 passed`，连同既有 archive longitudinal 契约为
 `24 passed`。截至本段仍未执行真实 overlap readout，故不得提前报告 strong/partial/absent。
 
+真实执行前进一步冻结 exact-commit formal runner：fresh no-smudge worktree、13 项 preflight、focused+full `phase1/tests`、
+producer A/B、非导入 verifier A/B、allowed-metadata read-only receipt、file/network trace、credential/identity-schema 门及
+append-only COMPLETE/FAILED receipt。runner/runner-contract-test SHA-256=`0f5e561c...8f44eb` / `1b783b37...70d10d`；
+远端 `bash -n + check` PASS，focused 总计=`18 passed`。截至本段 runner 尚未 formal 执行，科学 readout 仍未知。
+
 ## 0KS. 2026-09-01 零 fit support v1 在 state promotion 前停止；v2 只修启动回执与进程组清理
 
 0KR 的公开 exact commit=`7d89d1bce13cbf5223b380a167d8868df1cbb6bc` 已冻结。第一次部署在提取 launcher 前因

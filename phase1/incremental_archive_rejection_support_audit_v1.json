@@ -1,0 +1,155 @@
+{
+  "protocol": "incremental_archive_rejection_support_audit_v1",
+  "frozen_before_target_competition_or_support_readout": true,
+  "frozen_at_utc_date": "2026-09-01",
+  "question": "Does the single newly settled structural rejection after the 30945550 anchor belong to a competition with independently accepted eligible support, and was that support already present before the new eight-archive window?",
+  "inputs": {
+    "prior_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "current_observations_sha256": "54a8d773d34171e066fba572045117e637c2187026980e56e3638a882e6571e0",
+    "current_observations_bytes": 200613,
+    "prior_transactions_sha256": "4f05659db88e290f18a20d43b33330daa5df27211b1fffb770cbf1658b46ec60",
+    "prior_transaction_lines": 126,
+    "current_transactions_sha256": "fabae2e42b8e669bc0f212df5365809751966859df22cb1a0ba952ba277f7467",
+    "current_transaction_lines": 133,
+    "target_rejection_registry_path": "results/prospective_structural_rejection_no_checkpoint_20260901/structural_rejections_0830_no_checkpoint.json",
+    "target_rejection_registry_sha256": "0c138eb6aa3f5de27041a99e4da38b9c802338e952f6306e9e44f43eab129ffe",
+    "prior_archive_disposition_result_path": "results/archive_disposition_longitudinal_replication_v2_20260831_43ce72a/a/result.json",
+    "prior_archive_disposition_result_sha256": "58539382eb9cd82e52560b8073287e2a94043c5035e34ad2d955baa3329c104e",
+    "prior_archive_disposition_verification_path": "results/archive_disposition_longitudinal_replication_v2_20260831_43ce72a/a/independent_verification.json",
+    "prior_archive_disposition_verification_sha256": "854f81e58e9cf2aabce7a1a0edbda6f4f9696fdd6beeabd47524c1738321ab4f"
+  },
+  "known_before_readout": {
+    "prior": {
+      "observed_archives": 275,
+      "baseline_archives": 128,
+      "accepted_archives": 126,
+      "structural_rejected_archives": 13,
+      "alias_quarantined_archives": 8,
+      "pending_archives": 0,
+      "physical_runs": 520,
+      "eligible_runs": 494,
+      "eligible_endpoints": 13098,
+      "eligible_structural_pairs": 3230,
+      "eligible_tasks": 34
+    },
+    "current": {
+      "observed_archives": 283,
+      "baseline_archives": 128,
+      "accepted_archives": 133,
+      "structural_rejected_archives": 14,
+      "alias_quarantined_archives": 8,
+      "pending_archives": 0,
+      "rejection_reason_counts": {
+        "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION": 8,
+        "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": 3,
+        "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": 2,
+        "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": 9
+      },
+      "physical_runs": 543,
+      "eligible_runs": 517,
+      "eligible_endpoints": 13581,
+      "eligible_structural_pairs": 3325,
+      "eligible_tasks": 38
+    },
+    "increment": {
+      "observed_archives": 8,
+      "accepted_archives": 7,
+      "structural_rejected_archives": 1,
+      "alias_quarantined_archives": 0,
+      "pending_archives": 0,
+      "target_rejection_reason": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS"
+    }
+  },
+  "unknown_at_freeze": {
+    "target_competition_identity_read_or_emitted": false,
+    "target_competition_has_any_accepted_archive": false,
+    "target_competition_has_prior_accepted_archive": false,
+    "prior_accepted_archives_for_target": false,
+    "prior_physical_runs_for_target": false,
+    "prior_eligible_runs_for_target": false,
+    "prior_eligible_endpoints_for_target": false,
+    "new_window_support_for_target": false,
+    "current_total_support_for_target": false,
+    "decision_status": false
+  },
+  "target_selection": {
+    "selector": "the unique observation row whose rejection_registry_sha256 equals the frozen target registry hash",
+    "required_count": 1,
+    "required_rejection_reason": "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS",
+    "caller_may_choose_archive_or_competition": false,
+    "registry_contents_required_for_selection": false,
+    "registry_file_hash_only": true
+  },
+  "estimand": {
+    "unit": "one newly settled structural-rejection event after the prior anchor",
+    "primary": "whether its anonymized competition had accepted eligible support in the exact 126-transaction prior prefix",
+    "secondary": "whether accepted eligible support exists only after adding the seven new accepted transactions",
+    "support_metrics": [
+      "accepted archives",
+      "physical runs",
+      "eligible runs",
+      "eligible endpoints"
+    ],
+    "full_census_not_sampling_inference": true
+  },
+  "decision_rule": {
+    "strong": {
+      "minimum_prior_accepted_archives": 1,
+      "minimum_prior_eligible_runs": 1,
+      "minimum_prior_eligible_endpoints": 1,
+      "status": "INCREMENTAL_ARCHIVE_SUPPORT_PREEXISTING_STRONG"
+    },
+    "partial": {
+      "prior_eligible_support_required": false,
+      "minimum_current_accepted_archives": 1,
+      "minimum_current_eligible_runs": 1,
+      "minimum_current_eligible_endpoints": 1,
+      "status": "INCREMENTAL_ARCHIVE_SUPPORT_CONTEMPORANEOUS_ONLY"
+    },
+    "absent": {
+      "status": "INCREMENTAL_ARCHIVE_SUPPORT_ABSENT"
+    },
+    "integrity_failure": {
+      "status": "INCREMENTAL_ARCHIVE_SUPPORT_INTEGRITY_FAIL"
+    }
+  },
+  "integrity_gates": {
+    "exact_prior_and_current_snapshot_manifests_required": true,
+    "current_transaction_registry_must_have_exact_prior_byte_prefix": true,
+    "observation_partition_must_match_known_counts": true,
+    "target_registry_hash_must_select_exactly_one_structural_rejection": true,
+    "target_rejection_payload_hash_must_be_disjoint_from_accepted_payload_hashes": true,
+    "accepted_transactions_must_match_accepted_observations": true,
+    "every_accepted_archive_must_map_to_exactly_one_hash_bound_task": true,
+    "accepted_run_ids_must_be_unique": true,
+    "producer_a_b_byte_identity_required": true,
+    "non_importing_independent_verifier_a_b_byte_identity_required": true,
+    "no_identity_emission": true
+  },
+  "reporting": {
+    "report_exact_anonymized_prior_new_and_total_support_counts": true,
+    "report_support_share_of_current_accepted_corpus": true,
+    "report_single_event_scope_prominently": true,
+    "emit_archive_task_run_or_candidate_identity": false,
+    "do_not_call_one_event_population_level_replication": true,
+    "do_not_claim_predictor_accuracy_scaling_search_utility_or_method_effect": true
+  },
+  "access_contract": {
+    "observation_and_hash_bound_intake_metadata_only": true,
+    "target_registry_contents_opened": false,
+    "archive_payloads_opened": false,
+    "labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+    "candidate_identities_or_profiles_read": false,
+    "archive_task_run_or_candidate_identity_values_emitted": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  },
+  "resource_matrix": {
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0,
+    "cpu_workers": 1,
+    "expected_wall_minutes": "5-20"
+  }
+}

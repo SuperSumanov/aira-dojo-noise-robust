@@ -13,6 +13,22 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KT. 2026-09-01 新增单个结构拒绝的时间顺序支持审计已在 overlap readout 前冻结
+
+相对 `30945550...104f`，当前 `e9e12c63...8a6d` 的 outcome-blind archive 增量为 observed/accepted/structural reject/
+alias/pending=`8/7/1/0/0`；累计 observations SHA-256/bytes=`54a8d773...6571e0/200,613`，current/prior
+transactions SHA-256/lines=`fabae2e4...f7467/133` 与 `4f05659d...6ec60/126`。新增唯一结构拒绝由结果前已固定的
+no-checkpoint registry SHA-256=`0c138eb6...129ffe` 选择，reason=`ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS`；截至本段尚未
+读取它对应的 competition，也未计算其 accepted support。
+
+预注册 `incremental_archive_rejection_support_audit_v1`：strong 要求该匿名 competition 在旧 126-transaction prefix 中已
+至少有 `1` accepted archive、`1` eligible run、`1` endpoint；若仅新增 7 个 accepted transactions 后才有 support，降为
+contemporaneous-only；当前仍无 eligible support 则 absent。producer/verifier 必须各自 A/B 逐字节一致，并证明 current
+transactions 有 exact prior byte prefix、目标 registry 只选中 1 个结构拒绝、accepted provenance 单任务且 run IDs 唯一。
+该项只是单个前向事件的 event-level confirmation，不得称 population-level replication、predictor 效果或 search utility；
+registry content、archive payload、label/outcome/prediction/identity read=`false`，GPU/API/model fit/base update=`0/0/0/0`。
+protocol SHA-256=`9d1c9377...8acfaff`，focused contract tests=`4 passed`；当前只有结果前冻结，尚未执行真实 overlap readout。
+
 ## 0KS. 2026-09-01 零 fit support v1 在 state promotion 前停止；v2 只修启动回执与进程组清理
 
 0KR 的公开 exact commit=`7d89d1bce13cbf5223b380a167d8868df1cbb6bc` 已冻结。第一次部署在提取 launcher 前因

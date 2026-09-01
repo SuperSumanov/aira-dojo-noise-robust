@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0KN. 2026-09-01 八归档摄取已提交 4 个，第 5 个在无 physical run 门 fail-closed
+## 0KN. 2026-09-01 八归档已全部结算；Target-300 attempt 2 推进至 242/300
 
 学长 source 从 275 增至 283 个 archives；冻结的 6 小时/三观察稳定门通过后，append-only intake 顺序提交前 4 个并
 形成新 LATEST。随后唯一下一 archive 在 `phase1.prospective_drop_intake` 以 `drop produced no physical runs` 停止，
@@ -46,6 +46,9 @@ v3 只固定 BLAS/OpenMP thread ceiling=`1`，同一提交与同一测试集合�
 PID/cmdline、clean worktree、script/registry hash 与首个 poll。postdeploy=`PASS`，monitor script/postdeploy receipt SHA-256=
 `ef658449...8eead` / `3a2e38d3...381e`；首个恢复 poll 已提交 1 个新 transaction，LATEST=`63037694...eeae`。
 两次运行层失败都在 outcome-blind 边界内，未改变 source 顺序、已有 transaction exact prefix 或 scientific commit。
+恢复 monitor 随后按唯一时间顺序再提交 2 个 transaction；因此 source 的 8 个新增 archives 已全部结算为 7 个
+transaction + 1 个冻结结构拒绝。最终结构状态为 archives/baseline/ready/rejected/transactions=`283/128/0/22/133`，
+LATEST=`e9e12c63...8a6d`；PID/cmdline/clean worktree 持续通过。该结算只证明 append-only intake 完整，不是方法效果。
 
 与此同时，Target-300 ordered chain 在最后成功 LATEST 上独立完成 attempt 1：formal/verifier 状态为
 `FUTURE_COHORT_COLLECTING` / `PASS_COLLECTING_TRUTH_UNREAD`，exact 219-run prefix 完整保留并推进至 235 runs /
@@ -53,6 +56,12 @@ PID/cmdline、clean worktree、script/registry hash 与首个 poll。postdeploy=
 SHA-256=`ebf8426a...908` / `2e5f0d69...96f1c` / `d9deb91b...df7f`。continuous monitor PID=`2206791`、lock held，
 已转入 attempt 2 等待下一个不同且稳定的 LATEST。该进展只证明冻结人口按序增长，不是 predictor、scaling 或 search-utility
 正结果；GPU/API/model fit/base update=`0/0/0/0`。
+
+最终 LATEST 达到 `5×300s` 后，ordered chain 自动执行 attempt 2；formal rc=`0`、exact 235-run prefix 完整保留，状态仍为
+`FUTURE_COHORT_COLLECTING` / `PASS_COLLECTING_TRUTH_UNREAD`，当前为 242 runs / 76 archives / 35 tasks，remaining=`58`、
+boundary absent；相对 attempt 1 为 `+7/+3/+2`。summary/verification/safe-receipt SHA-256=`7b416089...c3aac` /
+`94ad8859...d73b` / `9e2218c2...f1dd`。chain 已推进至 attempt 3 继续等待后续新 LATEST；未读取 outcomes/identities，
+GPU/API/model fit/base update=`0/0/0/0`。
 
 ## 0KM. 2026-08-31 219-run 后续接已冻结为 ordered continuous chain
 

@@ -1,6 +1,13 @@
 # 发布合规清单(2026-08-08 首版,实证支撑)
 
-两份独立 license 调研 + 集群实测。**结论:可发布,不是拦路虎。**
+> **2026-09-02 状态覆盖：历史初版，不是 v11 最终 release clearance。** 本文件的污染扫描只覆盖 v6 的
+> 9,433 cards，且 22 个赛事规则只精读 4 个；v11 已有 16,012 cards。Qwen 输出条款与最终数据许可兼容性、
+> 逐赛事规则、全量 credential/PII/competition-data scan、`licenses.json` 和机构/法律 review 均未闭合。
+> 本文件末尾“没有直接竞品”的 novelty 结论也已被 ML-Agent、OpenMLE 与 mle-traj supersede，不得引用。
+> 当前数据卡入口：`phase1/DATACARD_DECISION_CORPUS_DRAFT_20260902.md`。
+
+两份独立 license 调研 + 集群实测。**历史判断“可发布”已由上方 2026-09-02 状态覆盖；当前结论是尚未完成
+v11 release clearance。**
 
 ## 已完成(实测,非判断)
 
@@ -63,7 +70,7 @@ repository, but not the external datasets and files...");jupyter-agent-dataset �
 与 MLE-bench(MIT, OpenAI);AI 生成内容披露(DeepSeek §8.1)。NeurIPS 还需
 Croissant + Responsible AI 元数据。
 
-## 新颖性(调研副产品,可直接进论文)
+## 新颖性（历史段，已被直接竞品 supersede，不得引用）
 
 MLE-bench 排行榜**没有任何一个团队公开过 agent 生成的解代码——一个都没有**。
 AIDE 的内部表示本就是一棵解树、AIRA-dojo 同理,全都只放框架。HuggingFace 上不存在

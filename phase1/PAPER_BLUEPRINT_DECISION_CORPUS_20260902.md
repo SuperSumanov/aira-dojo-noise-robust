@@ -198,7 +198,8 @@
 
 ## 10. 未来 20 天的写作交付
 
-- D0--D3：锁定本蓝图、Table 1--3、Figure 1--2 storyboards、数据卡目录与 claim/withdrawal appendix。
+- D0--D3：锁定本蓝图、Table 1--3、Figure 1--2 storyboards、
+  `DATACARD_DECISION_CORPUS_DRAFT_20260902.md` 与 claim/withdrawal appendix。
 - D4--D8：完成 Sections 1--5 初稿；所有数字从 Evidence Index 路由，不从聊天或旧 paper 抄写。
 - D7--D14：closure/sidecar 到位后填 Table 4；C4 获批才跑 Table 5。
 - D14--D18：Sections 6--7、limitations、ethics/license/data statement、复现说明。

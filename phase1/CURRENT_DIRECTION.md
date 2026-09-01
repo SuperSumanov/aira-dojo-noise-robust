@@ -27,7 +27,9 @@
 不构成真实 producer sidecar。因而最大时限风险是学长尚未 review/apply 已验证的 producer hook；旧 archive 禁止事后
 回填，缺 provenance 的新 runs 不能用于 exact-stratum scaling confirmation。完整日程、kill 条件与防 scoop 定位见
 `phase1/TWENTY_DAY_POSITIVE_RESULT_SPRINT_20260902.md`；当前论文标题、摘要、贡献、主表/主图与 Evidence Index 路由见
-`phase1/PAPER_BLUEPRINT_DECISION_CORPUS_20260902.md`。旧 `phase1/paper.tex` 已显式标为历史稿，不得继续作为当前论文。
+`phase1/PAPER_BLUEPRINT_DECISION_CORPUS_20260902.md`；数据发布事实、用途、偏差与未闭合许可/隐私门见
+`phase1/DATACARD_DECISION_CORPUS_DRAFT_20260902.md`。旧 `phase1/paper.tex` 已显式标为历史稿，不得继续作为当前论文；
+旧 `phase1/RELEASE_COMPLIANCE.md` 已标为只覆盖 v6 的历史初版，不得当作 v11 release clearance。
 
 ## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
 

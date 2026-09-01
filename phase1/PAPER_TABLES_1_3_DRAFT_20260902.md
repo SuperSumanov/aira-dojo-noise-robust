@@ -46,14 +46,15 @@ joint cost/noise/pair-weight auditing. “Not reported” denotes scope after th
 
 | Population | Archives / runs | Endpoints | Pairs | Closure status | Allowed interpretation |
 |---|---:|---:|---:|---|---|
-| source intake | 283 archives / 517 eligible runs | 13,581 structurally eligible | — | first-960 remaining 443 | append-only structural support only |
-| fixed-WL common support | same 517 runs | 13,098 scorer-covered | 3,230 | 494→517 added 23 runs, deleted 0 | fixed scorer support; do not substitute for broader 13,581 |
-| Target-522 selection | 517/522 runs | withheld | withheld | remaining 5; watchers active | no label, prediction, accuracy, utility, identity or profile read |
+| source intake | 296 archives / 559 eligible runs | 14,383 structurally eligible | 3,447 | first-960 remaining 401; closure absent | append-only structural support only |
+| latest independently verified fixed-WL prefix | 517 runs | 13,098 scorer-covered | 3,230 | 494→517 added 23 runs, deleted 0 | fixed scorer support; do not substitute for broader 14,383 |
+| Target-522 frozen selection/rank | 522/522 reached | withheld | withheld | Stage-A/rank complete; rank=`LIMITED_SUPPORT` | no label, prediction, accuracy, utility, identity or profile disclosed; no post-hoc rescue |
 | canonical producer config-v2 | 0 sidecars | — | — | deployment blocker | no exact-stratum clean scaling confirmation yet |
 
 **Table 2 caption draft.** Historical v11 and prospective populations have different provenance and disclosure rules. Historical decision
-rows are labeled sibling fragments; prospective values remain sealed. The 13,581 structural endpoints and 13,098 scorer-common-support
-endpoints are distinct denominators. The table reports physical structural units instead of claiming size leadership by raw node count.
+rows are labeled sibling fragments; prospective values remain sealed. The current 14,383 structural endpoints and the latest independently
+verified 13,098-endpoint fixed-scorer prefix are distinct denominators. The table reports physical structural units instead of claiming size
+leadership by raw node count.
 
 ## Table 3. Audit findings, receipts, and claim boundaries
 
@@ -69,6 +70,8 @@ endpoints are distinct denominators. The table reports physical structural units
 | Archive gate utility | 14 reject events affect 7 competitions; 6 retain accepted support, 1 links only to zero-checkpoint roots; observed last-usable-support elimination 0 | current structural gate is support-preserving on the settled 283-archive state | future stationarity, causal benefit, or universally lossless filtering |
 | Prospective append-only scorer | 494→517 runs is +23/−0 with prior rows byte-preserved | outcome-blind support accrual and scorer continuity | predictor effect before first-960 closure |
 | Release schema | 10 resources / 24,119 rows; independent field-path inventory agrees exactly; 27 focused+adjacent tests pass | machine-readable type/nullability/availability boundary | content safety, licensing, or dataset release clearance |
+| Conservative content tier | 15,174/16,012 cards content-review-eligible; 838 structure-only under a rule frozen before task/card disposition | conservative isolation retains 94.766425% for later review | “clean” content, legal clearance, or safety of unmatched text |
+| Generator provenance axes | configured model ID 16,012/16,012; exact version-or-model 15,905; provider family 9,901 | complete model-ID accounting with provider/contract uncertainty made explicit | serving provider, contract entity, output rights, or release clearance for 6,111 unresolved rows |
 
 **Table 3 caption draft.** Every positive readout is paired with its validity boundary. Audit rows are not assumed statistically
 independent, and derived reconstructions/certificates are not counted again as new scientific evidence. Prospective labels, predictions and
@@ -81,7 +84,7 @@ utility remain unopened.
 | Table 1 | `实验记录/2026-08-28/MLE直接数据竞品_MLAgent_OpenMLE_mletraj_防撞审计.md`; `TWENTY_DAY_POSITIVE_RESULT_SPRINT_20260902.md` |
 | Table 2 historical | `results/decision_corpus_audit_v11_20260814/`; `results/v11_source_provenance_audit_20260814/`; data card |
 | Table 2 prospective | Evidence Index v10 entries 14/19; `CURRENT_DIRECTION.md` 0L0/0KY |
-| Table 3 | Evidence Index v10; Structural Gate Utility Certificate; v11 schema inventory |
+| Table 3 | Evidence Index v10; Structural Gate Utility Certificate; v11 schema inventory; release-content tier and generator-provenance postflight receipts |
 
 Before camera-ready use: replace inline links with bibliography keys, reconcile terminology with the final English draft, rerun the structural
 status receipt, and fill Table 4 only after the one-time closure protocol allows it. Table 5 remains absent unless the clean scaling matrix is

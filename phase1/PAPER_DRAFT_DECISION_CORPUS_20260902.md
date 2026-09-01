@@ -1,6 +1,6 @@
 # Decision Corpus: Auditing Predictors for ML-Engineering Agent Search Trees
 
-> Internal manuscript draft v0.1, 2026-09-02. This draft is governed by
+> Internal manuscript draft v0.2, 2026-09-02. This draft is governed by
 > `CURRENT_DIRECTION.md` and Evidence Index v10. Bracketed result slots are sealed;
 > they must not be filled before the corresponding preregistered gate closes.
 

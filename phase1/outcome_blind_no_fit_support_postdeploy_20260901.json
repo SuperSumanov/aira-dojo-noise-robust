@@ -1,0 +1,60 @@
+{
+  "status": "INDEPENDENT_NO_FIT_SUPPORT_POSTDEPLOY_PASS",
+  "recorded_at_utc_date": "2026-09-01",
+  "public_commit": "0fb6a7f811be7eb6b7dbea91f4924479d0cdb881",
+  "latest_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+  "prior_promoted_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+  "eligible_runs": 517,
+  "eligible_run_delta": 23,
+  "wl_minimum_new_runs": 12,
+  "processes": {
+    "wl_pid": 3476431,
+    "receipt_pid": 3476432,
+    "wl_process_group_isolated": true,
+    "receipt_process_group_isolated": true,
+    "wl_lock_held": true,
+    "receipt_lock_held": true
+  },
+  "wl_start_receipt": {
+    "output_basename": "20260901T123808Z_e9e12c639fde",
+    "matrix_exact": true,
+    "prior_all_runs": 494,
+    "current_all_runs": 517,
+    "gpu_jobs": 0,
+    "api_calls": 0,
+    "base_llm_updates": 0,
+    "effect_metrics": 0
+  },
+  "v1_failure_preserved": {
+    "partial_output_basename": "20260901T122214Z_e9e12c639fde",
+    "reused": false,
+    "complete": false,
+    "failure_marker": false,
+    "producer_rc_absent": true,
+    "exact_orphans_cleared": true,
+    "cleanup_safe_receipt_sha256": "45d186e7f0d8581820a928e26aed9d1497d6037f02dbbba34cf4a60b96518618"
+  },
+  "receipts": {
+    "launcher_safe_receipt_sha256": "b62d125cd4b3176378ccc1e40d022e9329f2cf69bce6511b86ef9ab2008f7b3c",
+    "independent_postdeploy_safe_receipt_sha256": "0bdc2e1e00403a49c961c289851b80b402aa6a018e7ccc0e9fb471d18de25376",
+    "deployer_sha256": "aef8db7ef196346749d241c409da7a06b2eb534345591acd158fa381c7a0426f",
+    "independent_postdeploy_verifier_sha256": "31404a6bcfea64a3bfee93899aa430d8200141e5c2da016b39dbeacce05ff429"
+  },
+  "expected_completion": {
+    "historical_wl_producer_wall_time": "27:10.13",
+    "historical_wl_independent_verifier_wall_time": "24:33.12",
+    "historical_wl_chain_verifier_wall_time": "0:01.32",
+    "expected_active_compute_minutes": "45-70",
+    "receipt_waits_for_transition": true
+  },
+  "scope": {
+    "transition_restarted": false,
+    "config_v2_restarted": false,
+    "config_v2_sidecar_filename_count": 0,
+    "prediction_values_read": false,
+    "prospective_outcomes_read": false,
+    "candidate_identity_or_profile_read": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  },
+  "claim_boundary": "This is a verified monitor start, not WL completion, common-support completion, accuracy, scaling, utility, or method effect."
+}

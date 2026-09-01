@@ -30,7 +30,15 @@ config-v2 不重启。唯一执行修正是用 fresh action root，以 matrix �
 作为 WL start receipt，并用两个独立 `setsid` process groups 保证失败时清理全部后代。历史同协议 wall time 为 producer/
 independent verifier/chain=`27:10.13/24:33.12/0:01.32`，所以修正 ETA 为 active CPU `45–70` 分钟而非 v1 的 `5–30`；
 协议/launcher SHA-256=`0f907e22...57be11` / `a396aa69...54cd7e`，focused contract tests=`7 passed`；
-GPU/API/model fit/base update 仍为 `0/0/0/0`。v2 尚未执行。
+GPU/API/model fit/base update 仍为 `0/0/0/0`。截至该冻结点 v2 尚未执行。
+
+随后从公开 exact commit=`0fb6a7f811be7eb6b7dbea91f4924479d0cdb881` 提取 v2 launcher 并通过 frozen
+`check`。正式 start receipt 与不导入 launcher 的 postdeploy 均 PASS：WL/receipt PID=`3476431/3476432`，各自独立
+process group 与 lock 精确；fresh WL output basename=`20260901T123808Z_e9e12c639fde` 的 matrix 逐项绑定
+prior/current=`30945550...104f/e9e12c63...8a6d`、runs=`494/517`、threshold=`12` 及 resource/effect=`0`。
+v1 partial 未复用，transition state/log 逐字节不变，config-v2 count=`0`。launcher/postdeploy safe receipt SHA-256=
+`b62d125c...f7b3c` / `0bdc2e1e...25376`；独立 verifier SHA-256=`31404a6b...ff429`。当前只是已验证启动，
+WL state 尚未 promotion，预计 `45–70` 分钟完成；receipt 仍须等待另行授权的 transition，不能提前称 common support 完成。
 
 ## 0KR. 2026-09-01 517-run support 链落后原因已定位；零 model-fit 续接在行动前冻结
 

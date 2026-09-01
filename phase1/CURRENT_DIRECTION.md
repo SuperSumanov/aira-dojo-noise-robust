@@ -59,6 +59,27 @@ metadata 仍未闭合。公开件见 `phase1/SCHEMA_DICTIONARY_DECISION_CORPUS_V
 mle-traj raw true-sibling recoverability 标为 unknown，把 13,581 structural endpoints 与 13,098 scorer-common-support
 endpoints 分开，并保持 Table 4/5 为 closure/scaling 条件槽；它是论文写作资产，不是新的实验结果。
 
+## 0L2. 2026-09-02 v11 release-content scan 已完成 13 项预注册，正式结果尚未产生
+
+schema 闭合后，当前最高价值的 CPU-only release blocker 是把 2026-08-08 只覆盖 v6/20 tasks 的 stdout 扫描升级到
+v11。metadata-only preflight 已确认 exact cards rows/bytes/SHA=`16,012/305,750,663/6794acbf...1b75`；25 个历史
+tasks 中 23 个已有 prepared text，合计 `1,377,069,541` bytes，仍缺 `aptos2019-blindness-detection` 与
+`histopathologic-cancer-detection`，故本轮最多是 partial clearance，不能改写为 25/25。
+
+结果前冻结 `release-content-scan-v1`：stdout 全行与 code decoded literals/literal containers/comments 使用固定
+`40-byte / 12-distinct / 24-nonspace` 窗口，prepared suffix 固定为 csv/json/jsonl/txt/tsv/yaml/yml；public 只写
+coverage/count/hash，raw patterns/matches、source file records 与 card identity 均留 mode-0700/0600 private root。
+producer 支持 per-task receipt/resume；不导入 producer 的 verifier 重建 candidate patterns、source manifests、
+affected-card aggregates，并逐 match 确认 source occurrence。synthetic focused=`3 passed`，Python compile 与 runner
+`bash -n` 均通过。
+
+正式执行必须从公开 exact commit 的 fresh no-smudge worktree 运行 producer A + resume B + verifier A/B，A/B 逐字一致，
+另跑 focused+full tests、file/network trace、prospective-path 与 credential non-emission 门。GPU/API/model fit/base update=
+`0/0/0/0`，预估 wall=`15--60 min`、hard timeout=`4 h`。若发现 match，只触发 review/sanitized successor protocol；
+禁止原地修改 v11 LFS batch。完整 13 项 checklist 与 runner 见
+`phase1/V11_RELEASE_CONTENT_SCAN_PREFLIGHT_20260902.md` / `phase1/scripts/run_release_content_scan_v11_20260902.sh`。
+截至本段尚未在真实数据运行，不得报告 match/affected-card 数。
+
 ## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
 
 为把 0KI/0KV/0KW 与 zero-checkpoint 审计转成一条可直接写进论文的数据工程结论，本节只做**事后逻辑合成**，

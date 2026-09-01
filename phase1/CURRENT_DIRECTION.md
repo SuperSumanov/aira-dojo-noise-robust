@@ -31,6 +31,13 @@ snapshot-chain status=`PROVISIONAL_FIRST960_SNAPSHOT_CHAIN_INDEPENDENTLY_VERIFIE
 GPU/API/model fit/base update=`0/0/0/0`。截至 `2026-09-01T15:18:34Z`，学长 source 仍为 `283` archives，LATEST 未变；
 transition/receipt state 仍在 `30945550...104f`，因为 transition 需要另行批准的 6 次 model fit，本次没有擅自重启。
 
+公开 commit=`cbb22c5bce60b6eb592a10da4bf9672212d7866a` 的 post-push v1 focused=`6 passed`，但 full 从远端 home
+启动，16 项 repository-relative path 测试触发 `FileNotFoundError`（`1,919 passed/16 failed`）；该 harness 错误根已按
+`EXECUTION_HARNESS_CWD_FAILURE` 只读封存，科学/发布代码未改。fresh v2 只把 cwd 固定到 exact clean worktree，随后
+focused/full=`6/1,935 passed`（48 warnings，pytest=`122.59s`），13-item preflight、filename/content credential scan、
+manifest 与 scope 门全过，COMPLETE=`true`。v1/v2 manifest SHA-256=`70ed232f...fae0a/d27e9da9...e0421`；
+GPU/API/model fit/base update=`0/0/0/0`，outcome/prediction value/identity/profile read=`false/false/false/false`。
+
 ## 0KT. 2026-09-01 新增单个结构拒绝的时间顺序支持审计已在 overlap readout 前冻结
 
 相对 `30945550...104f`，当前 `e9e12c63...8a6d` 的 outcome-blind archive 增量为 observed/accepted/structural reject/

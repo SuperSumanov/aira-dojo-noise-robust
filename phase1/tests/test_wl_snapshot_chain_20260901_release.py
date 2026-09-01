@@ -44,6 +44,29 @@ def test_copied_source_files_match_remote_manifest() -> None:
         == summary["manifest_verification_sha256"]
     )
 
+    for subdir, manifest_sha in (
+        (
+            "postpush_v1_failure",
+            summary["postpush_verification"]["v1_remote_manifest_sha256"],
+        ),
+        (
+            "postpush_v2",
+            summary["postpush_verification"]["v2_remote_manifest_sha256"],
+        ),
+    ):
+        root = RESULT / subdir
+        manifest_path = root / "SHA256SUMS"
+        assert sha256(manifest_path) == manifest_sha
+        manifest = {}
+        for line in manifest_path.read_text(encoding="utf-8").splitlines():
+            expected, relative = line.split("  ", 1)
+            manifest[relative.removeprefix("./")] = expected
+        for path in root.iterdir():
+            if path.is_file() and path.name not in {"SHA256SUMS", "COMPLETE"}:
+                assert sha256(path) == manifest[path.name]
+
+    assert sha256(RESULT / "postpush_v2" / "COMPLETE") == hashlib.sha256(b"").hexdigest()
+
 
 def test_structural_summary_reconstructs_receipts() -> None:
     summary = json.loads((RESULT / "structural_summary.json").read_text())
@@ -68,9 +91,19 @@ def test_structural_summary_reconstructs_receipts() -> None:
     assert summary["scope"]["prediction_values_read"] is False
     assert summary["scope"]["effect_metrics_computed"] == []
 
+    postpush = summary["postpush_verification"]
+    assert postpush["exact_commit"] == "cbb22c5bce60b6eb592a10da4bf9672212d7866a"
+    assert postpush["v1_status"] == "EXECUTION_HARNESS_CWD_FAILURE"
+    assert postpush["v1_scientific_or_release_code_changed"] is False
+    assert (postpush["v1_focused_passed"], postpush["v1_full_passed_before_cwd_failures"], postpush["v1_full_failed_from_wrong_cwd"]) == (6, 1919, 16)
+    assert postpush["v2_complete"] is True
+    assert (postpush["v2_focused_passed"], postpush["v2_full_passed"], postpush["v2_warnings"]) == (6, 1935, 48)
+    assert (RESULT / "postpush_v2" / "focused.stdout.txt").read_text().strip().endswith("6 passed in 0.16s")
+    assert "1935 passed, 48 warnings in 122.59s" in (RESULT / "postpush_v2" / "full.stdout.txt").read_text()
+
 
 def test_release_omits_value_bearing_artifacts_and_credentials() -> None:
-    names = {path.name for path in RESULT.iterdir() if path.is_file()}
+    names = {path.name for path in RESULT.rglob("*") if path.is_file()}
     assert {
         "endpoint_scores.csv",
         "pair_predictions.jsonl",
@@ -98,6 +131,6 @@ def test_release_omits_value_bearing_artifacts_and_credentials() -> None:
                 stack.extend(item)
 
     credential = re.compile(r"(?:sk|api)[-_][A-Za-z0-9._-]{12,}", re.IGNORECASE)
-    for path in RESULT.iterdir():
+    for path in RESULT.rglob("*"):
         if path.is_file():
             assert credential.search(path.read_text(encoding="utf-8", errors="ignore")) is None

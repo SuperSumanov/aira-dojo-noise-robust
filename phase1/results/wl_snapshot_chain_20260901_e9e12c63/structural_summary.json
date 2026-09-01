@@ -64,5 +64,27 @@
     "receipt_state_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
     "config_v2_sidecar_filename_count": 0
   },
+  "postpush_verification": {
+    "exact_commit": "cbb22c5bce60b6eb592a10da4bf9672212d7866a",
+    "v1_status": "EXECUTION_HARNESS_CWD_FAILURE",
+    "v1_focused_passed": 6,
+    "v1_full_passed_before_cwd_failures": 1919,
+    "v1_full_failed_from_wrong_cwd": 16,
+    "v1_scientific_or_release_code_changed": false,
+    "v1_remote_manifest_sha256": "70ed232ffcfd746d306d35b5be497c04c26ed478a2dcc5cbb730c453c7afae0a",
+    "v2_complete": true,
+    "v2_focused_passed": 6,
+    "v2_full_passed": 1935,
+    "v2_warnings": 48,
+    "v2_pytest_seconds": 122.59,
+    "v2_focused_wall_time": "0:09.16",
+    "v2_full_wall_time": "2:10.24",
+    "v2_remote_file_count": 20,
+    "v2_remote_root_mode": "0500",
+    "v2_remote_manifest_sha256": "d27e9da940da285d4be809249e15b7dae086a32dae599f1403a48b2ed02e0421",
+    "v2_credential_filename_hits": 0,
+    "v2_credential_content_hits": 0,
+    "v2_clean_exact_worktree": true
+  },
   "interpretation": "The fixed WL escrow extends append-only structural coverage from 494 to 517 eligible runs while preserving every prior run, endpoint row, and pair row. This is benchmark-coverage evidence only, not a predictor effect, accuracy, scaling, or search-utility result."
 }

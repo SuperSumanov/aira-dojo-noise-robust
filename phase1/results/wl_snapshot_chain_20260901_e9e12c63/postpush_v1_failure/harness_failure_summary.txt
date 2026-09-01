@@ -1,0 +1,5 @@
+status=EXECUTION_HARNESS_CWD_FAILURE
+failed_tests=16
+passed_tests=1919
+root_cause=pytest_started_outside_exact_worktree
+scientific_or_release_code_changed=false

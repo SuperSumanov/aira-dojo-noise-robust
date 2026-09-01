@@ -1,0 +1,13 @@
+01_direction=Decision Corpus + Predictor Benchmark + Audit Protocol only; PASS
+02_question=public structural receipt verification only; PASS
+03_inputs=exact public commit and copied structural receipts; PASS
+04_forbidden_inputs=no label,outcome,prediction-value,accuracy,utility paths; PASS
+05_order=no cohort or arm selection; PASS
+06_batch_rule=no scientific execution; PASS
+07_negative_contract=value-bearing artifacts must remain absent; PASS
+08_independence=public receipts reconstructed by release tests; PASS
+09_reproducibility=exact commit,clean no-smudge worktree,hashes; PASS
+10_statistics=structural counts only,no effect metric; PASS
+11_resources=cpu tests only,gpu=0,api=0,model_fit=0,base_update=0; PASS
+12_security=commit filename and credential-content scans required; PASS
+13_stop=any failed check prevents COMPLETE; PASS

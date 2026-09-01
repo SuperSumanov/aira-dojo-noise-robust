@@ -206,6 +206,7 @@ Table 1--3 的可粘贴正文草稿、caption 与 evidence routing 已写入
 
 - D0--D3：锁定本蓝图、Table 1--3、Figure 1--2 storyboards、
   `DATACARD_DECISION_CORPUS_DRAFT_20260902.md`、v11 schema dictionary 与 claim/withdrawal appendix。
+  上述写作件已形成初稿；withdrawal appendix 固定 15 项重大撤回/缩界及禁止复用规则。
 - D4--D8：完成 Sections 1--5 初稿；所有数字从 Evidence Index 路由，不从聊天或旧 paper 抄写。
 - D7--D14：closure/sidecar 到位后填 Table 4；C4 获批才跑 Table 5。
 - D14--D18：Sections 6--7、limitations、ethics/license/data statement、复现说明。

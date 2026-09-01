@@ -205,6 +205,7 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 
 - release descriptors：`phase1/corpus_releases/`
 - current claim ledger：`phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/`
+- paper-facing withdrawal table：`phase1/PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md`
 - decision audit：`phase1/results/decision_corpus_audit_v11_20260814/`
 - source provenance：`phase1/results/v11_source_provenance_audit_20260814/`
 - choice-fragment boundary：`phase1/results/raw_choice_set_completeness_v11_20260815_6610618/`

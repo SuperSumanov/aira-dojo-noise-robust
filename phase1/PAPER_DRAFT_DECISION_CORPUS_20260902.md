@@ -322,7 +322,10 @@ Scientific claims are governed by an Evidence Index. Each entry fixes its popula
 estimand, artifact hashes, verifier, and non-implications. Reconstruction or derived
 certificates do not count again as independent evidence. Failures and withdrawals are
 preserved, including earlier conclusions invalidated by run leakage, common-support
-mismatch, or post-execution baseline framing.
+mismatch, or post-execution baseline framing. Appendix A classifies each material
+correction as a retracted result, scope correction, hypothesis kill, provenance
+withdrawal, novelty withdrawal, or evidence-dedup correction, and states the exact
+rule preventing the superseded claim from silently returning.
 
 ## 8. Conclusion
 
@@ -348,3 +351,4 @@ benchmark for predictors and, equally, a benchmark for the claims made about the
 - Table 1--3 copy-ready material: `PAPER_TABLES_1_3_DRAFT_20260902.md`.
 - Schema/release boundaries: `SCHEMA_DICTIONARY_DECISION_CORPUS_V11_20260902.md` and
   `DATACARD_DECISION_CORPUS_DRAFT_20260902.md`.
+- Claim-withdrawal appendix: `PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md`.

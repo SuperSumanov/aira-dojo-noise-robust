@@ -43,6 +43,11 @@ Figure 1 的 corpus hierarchy + sealed benchmark protocol 亦已生成：历史�
 三条 evidence track 分离，prediction escrow / outcome vault 只通过 one-time closure anchor 汇合，底部固定 audit rail。
 该图不读取任何 corpus row 或 prospective identity/value，PNG/SVG 双次渲染逐字节一致。
 
+论文 claim-withdrawal appendix 也已形成可粘贴初稿：用六类状态区分 retracted result、scope
+correction、hypothesis kill、provenance withdrawal、novelty withdrawal 与 evidence-dedup correction，并对
+15 项重大历史主张固定当前可写边界与禁止复用规则。该附录只整理已有撤回链，不计为新科学证据，见
+`phase1/PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md`。
+
 ## 0L1. 2026-09-02 v11 schema gate 已关闭；完整 release 仍受内容与许可门阻塞
 
 为执行 0L0 中“只做能关闭 release blocker 的 CPU 工作”，现已对历史 v11 cards 与九个 decision JSONL 做值盲

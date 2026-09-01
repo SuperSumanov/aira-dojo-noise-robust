@@ -160,7 +160,7 @@ Table 1--3 的可粘贴正文草稿、caption 与 evidence routing 已写入
 | Table 3 | Audit findings 与适用范围/失败门 | 可写 | Evidence Index v10 全 20 distinct entries |
 | Table 4 | Exact-common-support predictor benchmark：accuracy/calibration/coverage/init/query | **等待 first-960 closure** | prospective gate + prediction receipts |
 | Table 5 | 0.6B/4B/8B × 2 seeds clean scaling | **等待 sidecar、GPU 审批与训练** | C4 条件 |
-| Figure 1 | archive→run→endpoint→parent→pair + vault/escrow/closure 流程图 | 可画 |
+| Figure 1 | archive→run→endpoint→parent→pair + vault/escrow/closure 流程图 | PNG/SVG/receipt 已完成且 value-free 双次渲染一致 |
 | Figure 2 | run-level 与 pair-level task weight 随时间反转；标注单 drop 高 leverage | PNG/SVG/receipt 已完成且双次渲染逐字节一致 | structural_weighting_shift |
 | Figure 3 | predictor quality--query cost Pareto，execution p50 作参照 | 等 Table 4；成本轴已完成 | deployment_cost |
 | Figure 4 | historical→prospective transport 与 scaling curve | 等 closure/C4 | prospective gate |

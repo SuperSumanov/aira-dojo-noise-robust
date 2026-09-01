@@ -1,0 +1,14 @@
+{
+  "claim_boundary": "Protocol schematic only; it does not report predictor performance, search utility, cohort identities, or a completed scaling experiment.",
+  "gpu_api_model_fit_base_update": "0/0/0/0",
+  "outcome_label_prediction_accuracy_utility_read": false,
+  "outputs": {
+    "figure1_corpus_and_sealed_protocol.png": "3a5c0531bcd69d4b74ddbf5cfba7f8a6b0930d01e33b36fb38b4933c3084320a",
+    "figure1_corpus_and_sealed_protocol.svg": "485f460610d62bc1cf9d83c4ebfe3e36b98b44e833bd565f737ceffb0e30e3e4"
+  },
+  "prospective_identity_profile_read": false,
+  "protocol": "decision-corpus-paper-figure1-v1",
+  "renderer_sha256": "28f73d9404c1397bd69d4c93775647d58136cf29ca598a48fbb9cacacc2493fa",
+  "scientific_values_read": false,
+  "status": "PASS"
+}

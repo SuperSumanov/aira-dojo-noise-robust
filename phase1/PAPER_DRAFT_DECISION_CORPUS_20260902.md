@@ -144,6 +144,11 @@ children from the same physical run. Pair rows orient two finite-grade children 
 that parent. We use “fragment” deliberately: retained children are fully represented
 within the released graph, but children absent from the archive cannot be recovered.
 
+Figure 1 summarizes this unit hierarchy and the sealed evaluation path. It keeps the
+historical development track, chronological confirmation track, and conditional clean
+scaling track visually distinct, and shows that prediction escrow and outcome vault
+may be joined only through the one-time closure anchor.
+
 ### 3.2 Labels and relation types
 
 Numeric quality is computed by an external pristine evaluator rather than workspace

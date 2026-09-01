@@ -1,4 +1,24 @@
-# Decision Corpus paper Figure 2
+# Decision Corpus paper figures
+
+## Figure 1. Corpus units and sealed evaluation protocol
+
+`figure1_corpus_and_sealed_protocol.{png,svg}` is a value-free schematic of the
+current paper contract. It separates the archive→physical-run→endpoint→recorded-parent
+→sibling-fragment hierarchy from the historical, prospective, and conditional clean-
+scaling evidence tracks. Prediction escrow and the label/outcome vault meet only at
+the one-time closure anchor; the audit rail records exact commits, hashes, A/B runs,
+independent verification, traces, read-only artifacts, and withdrawals.
+
+The renderer reads no corpus row, prospective identity/profile, label, outcome,
+prediction, accuracy, or utility. Two consecutive renders were byte-identical.
+
+- receipt: `320c2d50fb0b6813a11e72a347963c902d05592187c3c133cb49838da38cded3`
+- PNG: `3a5c0531bcd69d4b74ddbf5cfba7f8a6b0930d01e33b36fb38b4933c3084320a`
+- SVG: `485f460610d62bc1cf9d83c4ebfe3e36b98b44e833bd565f737ceffb0e30e3e4`
+
+Reproduce with `python -m phase1.plot_paper_figure1_protocol`.
+
+## Figure 2. Run-to-pair weighting shift
 
 `figure2_run_to_pair_weighting.{png,svg}` is rendered only from the hash-locked,
 outcome-blind structural trajectory at

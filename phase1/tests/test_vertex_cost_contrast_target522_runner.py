@@ -19,7 +19,7 @@ MONITOR = (
     / "scripts"
     / "monitor_vertex_cost_contrast_target522_selection_formal_20260830.sh"
 )
-CONTRACT = ROOT / "phase1" / "vertex_cost_contrast_target522_execution_v1.json"
+CONTRACT = ROOT / "phase1" / "vertex_cost_contrast_target522_execution_v2.json"
 SELECTION = (
     "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/"
     "latch-42f1044-after-887-v2"
@@ -36,8 +36,11 @@ def sha(path: Path) -> str:
 
 def test_execution_contract_binds_every_runtime_source() -> None:
     contract = json.loads(CONTRACT.read_text(encoding="utf-8"))
-    assert contract["protocol"] == "vertex-cost-contrast-target522-stage-a-execution-v1"
-    assert contract["status"] == "FROZEN_BEFORE_TARGET522_CANDIDATE"
+    assert contract["protocol"] == "vertex-cost-contrast-target522-stage-a-execution-v2"
+    assert (
+        contract["status"]
+        == "EXECUTION_COMPATIBILITY_FROZEN_AFTER_CLOSURE_BEFORE_PROFILE_OR_VALUES"
+    )
     assert contract["activation"]["first960_closure_required_for_stage_a"] is False
     assert contract["activation"]["first960_closure_required_for_any_fit"] is True
     bindings = contract["bindings"]
@@ -47,16 +50,20 @@ def test_execution_contract_binds_every_runtime_source() -> None:
         assert sha(path) == binding["sha256"]
     scientific = contract["scientific_protocol"]
     assert sha(ROOT / scientific["path"]) == scientific["sha256"]
+    compatibility = contract["selection_container_compatibility"]
+    assert sha(ROOT / compatibility["path"]) == compatibility["sha256"]
+    assert compatibility["scientific_threshold_arm_budget_or_estimand_changed"] is False
 
 
 def test_formal_runner_has_exact_sources_and_full_preflight() -> None:
     text = source(RUNNER)
     assert len(re.findall(r"(?m)^(?:0[1-9]|1[0-3])_", text)) == 13
-    assert "if [[ $# -ne 10 ]]" in text
+    assert "if [[ $# -ne 11 ]]" in text
     assert SELECTION in text
     for name in (
         "execution_sha",
         "protocol_sha",
+        "compatibility_sha",
         "producer_sha",
         "verifier_sha",
         "test_sha",
@@ -107,19 +114,20 @@ def test_formal_runner_is_append_only_and_marks_complete_last() -> None:
     assert manifest < complete < readonly
 
 
-def test_monitor_proves_pre_candidate_start_and_reads_no_candidate_before_complete() -> None:
+def test_monitor_proves_post_closure_pre_profile_start_and_reads_no_candidate_content() -> None:
     text = source(MONITOR)
-    assert "if [[ $# -ne 10 ]]" in text
+    assert "if [[ $# -ne 11 ]]" in text
     assert SELECTION in text
-    assert 'test ! -e "$selection/candidate.tsv"' in text
-    assert 'test ! -e "$selection/READY"' in text
-    assert 'test ! -e "$selection/COMPLETE"' in text
+    assert 'test -f "$selection/candidate.tsv"' in text
+    assert 'test -f "$selection/READY"' in text
+    assert 'test -f "$selection/COMPLETE"' in text
     activation = text.index('if test -f "$selection/COMPLETE"')
     first_selection_hash = text.index('sha256sum "$selection/SHA256SUMS"')
     assert activation < first_selection_hash
     prefix = text[:activation]
     assert 'cat "$selection/' not in prefix
     assert 'jq ' not in prefix
+    assert 'source "$selection/' not in text
 
 
 def test_monitor_is_bounded_resumable_hash_bound_and_fit_gated() -> None:

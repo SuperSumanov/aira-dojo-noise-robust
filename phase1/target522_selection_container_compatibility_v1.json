@@ -1,0 +1,86 @@
+{
+  "protocol": "target522-selection-container-compatibility-v1",
+  "version": 1,
+  "status": "FROZEN_AFTER_STRUCTURAL_CLOSURE_BEFORE_CANDIDATE_PROFILE_OR_VALUES",
+  "frozen_at_utc": "2026-09-01T22:10:21Z",
+  "scientific_protocol": {
+    "path": "phase1/vertex_cost_contrast_target522_effect_v1.json",
+    "sha256": "b3df170ebb4ae097549cb0225142e94aebfa481aea6c79815f1be2af687d9e1d",
+    "scientific_content_changed": false
+  },
+  "selection_container": {
+    "root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+    "sha256sums_sha256": "8e00c2e21818b89dafed76d06244df041efb27d901a67cf5f409c620c3e3b7e2",
+    "core_basenames": [
+      "READY",
+      "SHA256SUMS",
+      "COMPLETE",
+      "candidate.tsv",
+      "monitor.lock",
+      "monitor.log",
+      "monitor.pid",
+      "observed.tsv",
+      "preflight_13.txt",
+      "protocol.json",
+      "security_scan_receipt.txt",
+      "source_script.sh"
+    ],
+    "manifest_bound_auxiliary_basenames": [
+      "GAP_RECOVERY_APPLIED",
+      "GAP_RECOVERY_STATIC_SHA256SUMS",
+      "gap_recovery_resume_preflight_13.txt",
+      "gap_recovery_resume_receipt.txt",
+      "resume_after_gap_recovery.stderr",
+      "resume_after_gap_recovery.stdout"
+    ],
+    "core_count": 12,
+    "auxiliary_count": 6,
+    "actual_count": 18,
+    "missing_count": 0,
+    "unknown_count": 0,
+    "manifest_membership_exact": true,
+    "auxiliary_members_all_manifest_bound": true,
+    "all_members_regular_non_symlink": true
+  },
+  "execution_correction": {
+    "failure_class": "selection-support basename set mismatch",
+    "failed_formal_root": "/research/d7/spc/yzyang4/vertex-cost-contrast-target522/formal-4fc9c3e-selection-v1",
+    "failed_rc": 1,
+    "failed_producer_stderr_sha256": "a9e363f14d3b9e71f89bb311f61ab63ac84f904e06508b9180725059b81cbf69",
+    "action": "Verify the immutable outer 18-member package and its original manifest, construct a mode-0700 temporary projection containing exactly the 12 frozen core members with a derived core-only manifest, run the unchanged scientific selection logic on that projection, bind both manifest hashes, and remove the projection on process exit.",
+    "mutates_original_selection_root": false,
+    "changes_candidate_snapshot": false,
+    "changes_thresholds_arms_budgets_or_estimand": false
+  },
+  "replacement_bindings": {
+    "runtime_dependencies": [],
+    "selection_exporter": {
+      "path": "phase1/freeze_vertex_cost_contrast_target522_selection.py",
+      "old_sha256": "63095d5a33f7094a9e79c662913b7fa80c3d07a6308f3db1a10537a21c76a5cf",
+      "new_sha256": "72932a4cc981a1a5ec75deabd084a8aa24a21e2a49baf491a78b149ae463e473"
+    },
+    "independent_selection_verifier": {
+      "path": "phase1/verify_vertex_cost_contrast_target522_selection.py",
+      "old_sha256": "ccb7e375f255a22144b9363c6a07b10af0c87048976cdc3676f870be4fb8ba6e",
+      "new_sha256": "414b18f30ea21b0bc500d1fdb40b2553c4ac8488b8c509bf4d283581b47da558"
+    },
+    "focused_test": {
+      "path": "phase1/tests/test_freeze_vertex_cost_contrast_target522_selection.py",
+      "old_sha256": "f483b3251a3a1ff28e3497fa1eaf228a37ea1a8ad967d365695a1703827e26b3",
+      "new_sha256": "e760ee2ee74b064691347154e8146b1d7e0c728317da3cc48fdd716f33fc7b69"
+    }
+  },
+  "scope": {
+    "metadata_used_to_define_fix": [
+      "selection container basenames",
+      "outer SHA256SUMS membership and digest",
+      "failed exception class",
+      "file type and symlink status"
+    ],
+    "candidate_identity_or_profile_read_to_define_fix": false,
+    "prospective_values_read": false,
+    "scientific_threshold_arm_budget_or_estimand_changed": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  },
+  "failure_rule": "Any outer-manifest drift, missing or unknown basename, auxiliary receipt outside the original manifest, projection mismatch, scientific-protocol drift, replacement-binding drift, identity/value access, or original-root mutation fails closed."
+}

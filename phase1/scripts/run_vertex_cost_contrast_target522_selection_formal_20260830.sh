@@ -5,29 +5,32 @@ set -Eeo pipefail
 set -u
 umask 077
 
-if [[ $# -ne 10 ]]; then
-  echo 'usage: run_vertex_cost_contrast_target522_selection_formal_20260830.sh OUTPUT_ROOT EXPECTED_COMMIT EXECUTION_SHA PROTOCOL_SHA PRODUCER_SHA VERIFIER_SHA TEST_SHA RUNNER_SHA MONITOR_SHA SELECTION_SHA256SUMS_SHA' >&2
+if [[ $# -ne 11 ]]; then
+  echo 'usage: run_vertex_cost_contrast_target522_selection_formal_20260830.sh OUTPUT_ROOT EXPECTED_COMMIT EXECUTION_SHA PROTOCOL_SHA COMPATIBILITY_SHA PRODUCER_SHA VERIFIER_SHA TEST_SHA RUNNER_SHA MONITOR_SHA SELECTION_SHA256SUMS_SHA' >&2
   exit 64
 fi
 readonly output=$1
 readonly expected_commit=$2
 readonly execution_sha=$3
 readonly protocol_sha=$4
-readonly producer_sha=$5
-readonly verifier_sha=$6
-readonly test_sha=$7
-readonly runner_sha=$8
-readonly monitor_sha=$9
-readonly selection_manifest_sha=${10}
+readonly compatibility_sha=$5
+readonly producer_sha=$6
+readonly verifier_sha=$7
+readonly test_sha=$8
+readonly runner_sha=$9
+readonly monitor_sha=${10}
+readonly selection_manifest_sha=${11}
 readonly repo=/research/d7/spc/yzyang4/aira-dojo
 readonly state=/research/d7/spc/yzyang4/prospective_decision_v1
 readonly selection=/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2
 readonly worktree=/research/d7/spc/yzyang4/vertex-cost-contrast-target522/worktree-${expected_commit:0:7}-selection-v1
 readonly python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
-readonly execution_rel=phase1/vertex_cost_contrast_target522_execution_v1.json
+readonly execution_rel=phase1/vertex_cost_contrast_target522_execution_v2.json
 readonly protocol_rel=phase1/vertex_cost_contrast_target522_effect_v1.json
+readonly compatibility_rel=phase1/target522_selection_container_compatibility_v1.json
 readonly producer_rel=phase1/freeze_vertex_cost_contrast_target522_selection.py
 readonly verifier_rel=phase1/verify_vertex_cost_contrast_target522_selection.py
+readonly compatibility_test_rel=phase1/tests/test_freeze_vertex_cost_contrast_target522_selection.py
 readonly test_rel=phase1/tests/test_vertex_cost_contrast_target522_runner.py
 readonly runner_rel=phase1/scripts/run_vertex_cost_contrast_target522_selection_formal_20260830.sh
 readonly monitor_rel=phase1/scripts/monitor_vertex_cost_contrast_target522_selection_formal_20260830.sh
@@ -35,7 +38,7 @@ readonly credential_pattern='(^|[^A-Za-z0-9])(sk-[A-Za-z0-9._-]{16,}|hf_[A-Za-z0
 
 [[ $output =~ ^/research/d7/spc/yzyang4/vertex-cost-contrast-target522/formal-[A-Za-z0-9._-]+$ ]]
 [[ $expected_commit =~ ^[0-9a-f]{40}$ ]]
-for value in "$execution_sha" "$protocol_sha" "$producer_sha" "$verifier_sha" \
+for value in "$execution_sha" "$protocol_sha" "$compatibility_sha" "$producer_sha" "$verifier_sha" \
   "$test_sha" "$runner_sha" "$monitor_sha" "$selection_manifest_sha"; do
   [[ $value =~ ^[0-9a-f]{64}$ ]]
 done
@@ -77,15 +80,15 @@ trap 'exit 129' HUP
 cat >"$output/preflight_13.txt" <<EOF
 01_direction=Decision Corpus plus Predictor Benchmark plus Audit Protocol only; PASS
 02_question=at equal paid endpoint budgets does code-only VCCD improve future run-clean critic transfer over representative uniform and frozen yield breadth; PASS
-03_selection=one automatic Target-522 package COMPLETE and exact manifest,alternate candidate argument forbidden; PASS
-04_source=exact public commit plus execution protocol producer verifier test runner and monitor hashes; PASS
+03_selection=one automatic Target-522 package COMPLETE and exact outer manifest plus manifest-bound six-receipt compatibility projection,alternate candidate argument forbidden; PASS
+04_source=exact public commit plus scientific protocol compatibility protocol execution protocol producer verifier test runner and monitor hashes; PASS
 05_population=complete physical runs absent from frozen snapshot 887,task-stratified acquisition versus evaluation split; PASS
 06_stage=Stage A code and sibling topology only,no grade orientation gap outcome prediction runtime or utility; PASS
 07_arms=representative exact-B uniform edge,frozen yield-guarded breadth,and VCCD at six nested checkpoints; PASS
 08_cost=one executed endpoint is one paid unit,dependent clique labels are not counted as independent executions; PASS
 09_repetitions=producer A/B,private selection A/B,and non-importing verifier A/B must be byte exact; PASS
 10_tests=focused and full phase1 tests in a fresh detached exact-commit worktree; PASS
-11_integrity=manifest rechecked before and after,run split disjoint,public identity guard,private mode 0600; PASS
+11_integrity=outer and core-projection manifests bound,original selection root unmodified,run split disjoint,public identity guard,private mode 0600; PASS
 12_security=strace file/network audit,no external senior data vault outcome prediction or credential access; PASS
 13_resources=single CPU only,GPU paid-API model-fit base-update 0/0/0/0,first-960 closure remains unopened; PASS
 EOF
@@ -96,19 +99,25 @@ GIT_LFS_SKIP_SMUDGE=1 git -C "$repo" worktree add --detach "$worktree" "$expecte
 test "$(git -C "$worktree" rev-parse HEAD)" = "$expected_commit"
 test "$(sha256sum "$worktree/$execution_rel" | awk '{print $1}')" = "$execution_sha"
 test "$(sha256sum "$worktree/$protocol_rel" | awk '{print $1}')" = "$protocol_sha"
+test "$(sha256sum "$worktree/$compatibility_rel" | awk '{print $1}')" = "$compatibility_sha"
 test "$(sha256sum "$worktree/$producer_rel" | awk '{print $1}')" = "$producer_sha"
 test "$(sha256sum "$worktree/$verifier_rel" | awk '{print $1}')" = "$verifier_sha"
+compatibility_test_sha=$(jq -r '.bindings.compatibility_focused_test.sha256' "$worktree/$execution_rel")
+[[ $compatibility_test_sha =~ ^[0-9a-f]{64}$ ]]
+test "$(sha256sum "$worktree/$compatibility_test_rel" | awk '{print $1}')" = "$compatibility_test_sha"
 test "$(sha256sum "$worktree/$test_rel" | awk '{print $1}')" = "$test_sha"
 test "$(sha256sum "$worktree/$runner_rel" | awk '{print $1}')" = "$runner_sha"
 test "$(sha256sum "$worktree/$monitor_rel" | awk '{print $1}')" = "$monitor_sha"
 cmp "$0" "$worktree/$runner_rel"
 jq -e \
   --arg execution_sha "$execution_sha" --arg protocol_sha "$protocol_sha" \
+  --arg compatibility_sha "$compatibility_sha" \
   --arg producer_sha "$producer_sha" --arg verifier_sha "$verifier_sha" \
   --arg test_sha "$test_sha" --arg runner_sha "$runner_sha" --arg monitor_sha "$monitor_sha" '
-  .protocol == "vertex-cost-contrast-target522-stage-a-execution-v1"
-  and .status == "FROZEN_BEFORE_TARGET522_CANDIDATE"
+  .protocol == "vertex-cost-contrast-target522-stage-a-execution-v2"
+  and .status == "EXECUTION_COMPATIBILITY_FROZEN_AFTER_CLOSURE_BEFORE_PROFILE_OR_VALUES"
   and .scientific_protocol.sha256 == $protocol_sha
+  and .selection_container_compatibility.sha256 == $compatibility_sha
   and .bindings.producer.sha256 == $producer_sha
   and .bindings.independent_verifier.sha256 == $verifier_sha
   and .bindings.test.sha256 == $test_sha
@@ -185,6 +194,8 @@ producer=(
   "$python_bin" -m phase1.freeze_vertex_cost_contrast_target522_selection
   --protocol "$worktree/$protocol_rel"
   --protocol-sha256 "$protocol_sha"
+  --compatibility "$worktree/$compatibility_rel"
+  --compatibility-sha256 "$compatibility_sha"
   --source-commit "$expected_commit"
   --state-root "$state"
   --selection-root "$selection"
@@ -219,6 +230,8 @@ verifier=(
   "$python_bin" -m phase1.verify_vertex_cost_contrast_target522_selection
   --protocol "$worktree/$protocol_rel"
   --protocol-sha256 "$protocol_sha"
+  --compatibility "$worktree/$compatibility_rel"
+  --compatibility-sha256 "$compatibility_sha"
   --source-commit "$expected_commit"
   --state-root "$state"
   --selection-root "$selection"
@@ -258,11 +271,16 @@ done
 printf 'producer_forbidden_path_hits=0\nverifier_forbidden_path_hits=0\nproducer_network_hits=0\nverifier_network_hits=0\n' \
   >"$output/trace_audit.txt"
 
-jq -e --arg commit "$expected_commit" --arg protocol_sha "$protocol_sha" '
+jq -e --arg commit "$expected_commit" --arg protocol_sha "$protocol_sha" \
+  --arg compatibility_sha "$compatibility_sha" --arg selection_manifest_sha "$selection_manifest_sha" '
   .protocol == "vertex-cost-contrast-target522-selection-public-v1"
   and .status == "COMPLETE"
   and .analysis_source_commit == $commit
   and .protocol_sha256 == $protocol_sha
+  and .selection_container_compatibility_sha256 == $compatibility_sha
+  and .selection_container.outer_sha256sums_sha256 == $selection_manifest_sha
+  and (.selection_container.core_projection_sha256sums_sha256 | test("^[0-9a-f]{64}$"))
+  and .selection_container.manifest_bound_auxiliary_receipt_count == 6
   and (.classification == "VCCD_TARGET522_SELECTION_LIMITED_SUPPORT"
        or .classification == "VCCD_TARGET522_SELECTION_READY_THREE_ARMS"
        or .classification == "VCCD_TARGET522_SELECTION_READY_YIELD_BASELINE_UNAVAILABLE")
@@ -277,10 +295,11 @@ jq -e --arg commit "$expected_commit" --arg protocol_sha "$protocol_sha" '
   and .scope.raw_identities_publicly_emitted == false
   and .scope.gpu_paid_api_model_fit_base_update == "0/0/0/0"
 ' "$output/producer_a.json" >/dev/null
-jq -e --arg protocol_sha "$protocol_sha" '
+jq -e --arg protocol_sha "$protocol_sha" --arg compatibility_sha "$compatibility_sha" '
   .protocol == "vertex-cost-contrast-target522-selection-verification-v1"
   and .status == "VERIFIED"
   and .protocol_sha256 == $protocol_sha
+  and .selection_container_compatibility_sha256 == $compatibility_sha
   and .prospective_values_read == false
 ' "$output/verifier_a.json" >/dev/null
 test "$(jq -r .classification "$output/producer_a.json")" = \
@@ -322,6 +341,7 @@ cat >"$output/source_bindings.txt" <<EOF
 source_commit=${expected_commit}
 execution_protocol_sha256=${execution_sha}
 scientific_protocol_sha256=${protocol_sha}
+selection_container_compatibility_sha256=${compatibility_sha}
 producer_source_sha256=${producer_sha}
 verifier_source_sha256=${verifier_sha}
 test_source_sha256=${test_sha}

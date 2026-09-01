@@ -11,6 +11,7 @@ import math
 import os
 from pathlib import Path
 import re
+import tempfile
 from typing import Any, Mapping, Sequence
 
 from phase1 import confirm_yield_guarded_breadth_forward_target522 as forward
@@ -24,6 +25,7 @@ from phase1.vertex_cost_contrast_design import (
 
 
 PROTOCOL_NAME = "vertex-cost-contrast-target522-effect-v1"
+COMPATIBILITY_PROTOCOL = "target522-selection-container-compatibility-v1"
 PUBLIC_PROTOCOL = "vertex-cost-contrast-target522-selection-public-v1"
 PRIVATE_PROTOCOL = "vertex-cost-contrast-target522-selection-private-v1"
 VERIFICATION_PROTOCOL = "vertex-cost-contrast-target522-selection-verification-v1"
@@ -78,12 +80,84 @@ def load_protocol(path: Path, expected_sha: str) -> tuple[dict[str, Any], str]:
     return protocol, actual
 
 
-def verify_runtime_sources(repo_root: Path, protocol: dict[str, Any]) -> None:
+def load_compatibility(
+    path: Path,
+    expected_sha: str,
+    protocol_path: Path,
+    protocol_sha: str,
+    selection_root: Path,
+) -> tuple[dict[str, Any], str]:
+    require(SHA_RE.fullmatch(expected_sha) is not None, "compatibility SHA syntax")
+    actual = file_sha(path)
+    require(actual == expected_sha, "compatibility SHA")
+    compatibility = forward.target.read_object(path)
+    require(compatibility.get("protocol") == COMPATIBILITY_PROTOCOL, "compatibility protocol")
+    require(
+        compatibility.get("status")
+        == "FROZEN_AFTER_STRUCTURAL_CLOSURE_BEFORE_CANDIDATE_PROFILE_OR_VALUES",
+        "compatibility status",
+    )
+    scientific = compatibility.get("scientific_protocol") or {}
+    require(
+        scientific.get("path") == "phase1/vertex_cost_contrast_target522_effect_v1.json"
+        and scientific.get("sha256") == protocol_sha
+        and file_sha(protocol_path) == protocol_sha,
+        "compatibility scientific binding",
+    )
+    container = compatibility.get("selection_container") or {}
+    require(container.get("root") == str(selection_root.resolve()), "compatibility selection root")
+    require(
+        SHA_RE.fullmatch(str(container.get("sha256sums_sha256", ""))) is not None,
+        "compatibility manifest SHA",
+    )
+    core = container.get("core_basenames")
+    auxiliary = container.get("manifest_bound_auxiliary_basenames")
+    require(
+        isinstance(core, list)
+        and isinstance(auxiliary, list)
+        and len(core) == len(set(core))
+        and len(auxiliary) == len(set(auxiliary))
+        and not (set(core) & set(auxiliary))
+        and all(isinstance(name, str) and re.fullmatch(r"[A-Za-z0-9._-]+", name) for name in core + auxiliary),
+        "compatibility basenames",
+    )
+    scope = compatibility.get("scope") or {}
+    require(
+        scope.get("candidate_identity_or_profile_read_to_define_fix") is False
+        and scope.get("prospective_values_read") is False
+        and scope.get("scientific_threshold_arm_budget_or_estimand_changed") is False,
+        "compatibility scope",
+    )
+    return compatibility, actual
+
+
+def _replacement_map(compatibility: dict[str, Any]) -> dict[str, dict[str, str]]:
+    rows = compatibility["replacement_bindings"]["runtime_dependencies"]
+    require(isinstance(rows, list), "replacement dependency list")
+    result: dict[str, dict[str, str]] = {}
+    for row in rows:
+        require(
+            set(row) == {"path", "old_sha256", "new_sha256"}
+            and isinstance(row["path"], str)
+            and row["path"].startswith("phase1/")
+            and SHA_RE.fullmatch(row["old_sha256"]) is not None
+            and SHA_RE.fullmatch(row["new_sha256"]) is not None
+            and row["path"] not in result,
+            "replacement dependency binding",
+        )
+        result[row["path"]] = row
+    return result
+
+
+def verify_runtime_sources(
+    repo_root: Path, protocol: dict[str, Any], compatibility: dict[str, Any] | None = None
+) -> None:
     root = repo_root.resolve()
     require(root.is_dir() and not repo_root.is_symlink(), "unsafe repo root")
     bindings = protocol["freeze_state"]["runtime_dependencies"]
     require(isinstance(bindings, list) and bindings, "runtime dependencies")
     seen: set[str] = set()
+    replacements = _replacement_map(compatibility) if compatibility is not None else {}
     for row in bindings:
         require(set(row) == {"path", "sha256"}, "dependency schema")
         relative, expected = row["path"], row["sha256"]
@@ -99,15 +173,102 @@ def verify_runtime_sources(repo_root: Path, protocol: dict[str, Any]) -> None:
         seen.add(relative)
         candidate = (root / relative).resolve()
         require(candidate.is_relative_to(root), "dependency escapes repo")
+        replacement = replacements.get(relative)
+        if replacement is not None:
+            require(replacement["old_sha256"] == expected, "replacement old dependency SHA")
+            expected = replacement["new_sha256"]
         require(file_sha(candidate) == expected, "dependency SHA mismatch")
+    require(set(replacements) <= seen, "replacement dependency absent from scientific protocol")
 
 
-def verify_program_binding(repo_root: Path, protocol: dict[str, Any]) -> None:
+def verify_program_binding(
+    repo_root: Path, protocol: dict[str, Any], compatibility: dict[str, Any] | None = None
+) -> None:
     root = repo_root.resolve()
     binding = protocol["freeze_state"]["independent_selection_verifier"]
+    if compatibility is not None:
+        replacement = compatibility["replacement_bindings"]["independent_selection_verifier"]
+        require(
+            replacement.get("path") == binding["path"]
+            and replacement.get("old_sha256") == binding["sha256"]
+            and SHA_RE.fullmatch(str(replacement.get("new_sha256", ""))) is not None,
+            "verifier replacement binding",
+        )
+        binding = {"path": replacement["path"], "sha256": replacement["new_sha256"]}
     path = (root / binding["path"]).resolve()
     require(path.is_relative_to(root), "verifier escapes repo")
     require(file_sha(path) == binding["sha256"], "verifier SHA mismatch")
+
+
+def compatible_selection_and_increment(
+    state_root: Path,
+    selection_root: Path,
+    repo_root: Path,
+    protocol: dict[str, Any],
+    compatibility: dict[str, Any],
+) -> tuple[dict[str, Any], Any, dict[str, Any], dict[str, Any], dict[str, Any]]:
+    root = selection_root.resolve()
+    container = compatibility["selection_container"]
+    require(root.is_dir() and not selection_root.is_symlink(), "unsafe outer selection root")
+    require(file_sha(root / "SHA256SUMS") == container["sha256sums_sha256"], "outer manifest SHA")
+    target_protocol, target_protocol_sha = forward.original_target_protocol(repo_root, protocol)
+    core = tuple(target_protocol["security"]["selection_support_input_basenames"])
+    require(core == tuple(container["core_basenames"]), "core basename contract")
+    auxiliary = tuple(container["manifest_bound_auxiliary_basenames"])
+    actual = {path.name for path in root.iterdir()}
+    require(actual == set(core) | set(auxiliary), "outer selection basename set")
+    require(all(path.is_file() and not path.is_symlink() for path in root.iterdir()), "unsafe outer member")
+    outer_hashes = forward.target.verify_sha256sums(root)
+    require(set(auxiliary) <= set(outer_hashes), "auxiliary receipt missing from outer manifest")
+
+    projection: Path
+    with tempfile.TemporaryDirectory(prefix="target522-core-verification-") as temporary:
+        projection = Path(temporary)
+        os.chmod(projection, 0o700)
+        for name in core:
+            if name in {"SHA256SUMS", "COMPLETE"}:
+                continue
+            destination = projection / name
+            destination.write_bytes((root / name).read_bytes())
+            os.chmod(destination, 0o600)
+        manifest_names = sorted(set(core) - {"SHA256SUMS", "COMPLETE"})
+        manifest_text = "".join(f"{outer_hashes[name]}  ./{name}\n" for name in manifest_names)
+        (projection / "SHA256SUMS").write_text(manifest_text, encoding="utf-8", newline="\n")
+        (projection / "COMPLETE").write_bytes(b"")
+        os.chmod(projection / "SHA256SUMS", 0o600)
+        os.chmod(projection / "COMPLETE", 0o600)
+        selection = forward.target.verify_selection(
+            projection, repo_root, target_protocol, target_protocol_sha
+        )
+    require(not projection.exists(), "temporary core projection was not removed")
+
+    selection["outer_selection_sha256sums_sha256"] = container["sha256sums_sha256"]
+    selection["core_projection_sha256sums_sha256"] = selection[
+        "selection_support_sha256sums_sha256"
+    ]
+    require(
+        str(root) == protocol["freeze_state"]["target522_selection_root"],
+        "selection root mismatch",
+    )
+    monitor_binding = protocol["freeze_state"]["target522_selection_monitor"]
+    require(
+        selection["selection_monitor_source_sha256"] == monitor_binding["sha256"],
+        "selection monitor SHA",
+    )
+    baseline = forward.target.load_blind_snapshot(
+        state_root, selection["baseline_snapshot_sha256"]
+    )
+    candidate = forward.target.load_blind_snapshot(
+        state_root, selection["candidate_snapshot_sha256"]
+    )
+    increment_cards, increment_runs, append_only = forward.target.disjoint_increment(
+        baseline, candidate, target_protocol
+    )
+    require(
+        len(increment_runs) >= protocol["population"]["physical_run_increment_minimum"],
+        "increment below frozen minimum",
+    )
+    return selection, candidate, increment_cards, increment_runs, append_only
 
 
 def run_key(salt: str, task: str, run: str) -> tuple[str, str]:
@@ -283,16 +444,44 @@ def no_public_identities(public: dict[str, Any], graph: Any) -> bool:
 
 def verify(args: argparse.Namespace) -> dict[str, Any]:
     protocol, protocol_sha = load_protocol(args.protocol.resolve(), args.protocol_sha256)
+    compatibility, compatibility_sha = load_compatibility(
+        args.compatibility.resolve(),
+        args.compatibility_sha256,
+        args.protocol.resolve(),
+        protocol_sha,
+        args.selection_root.resolve(),
+    )
     require(COMMIT_RE.fullmatch(args.source_commit) is not None, "source commit")
-    verify_runtime_sources(args.repo_root, protocol)
-    verify_program_binding(args.repo_root, protocol)
+    verify_runtime_sources(args.repo_root, protocol, compatibility)
+    verify_program_binding(args.repo_root, protocol, compatibility)
     public = forward.target.read_object(args.public_result.resolve())
     require(public.get("protocol") == PUBLIC_PROTOCOL and public.get("status") == "COMPLETE", "public result")
     require(public.get("protocol_sha256") == protocol_sha, "public protocol binding")
+    require(
+        public.get("selection_container_compatibility_sha256") == compatibility_sha,
+        "public compatibility binding",
+    )
     require(public.get("analysis_source_commit") == args.source_commit, "public source binding")
 
-    selection, candidate, increment_cards, increment_runs, append_only = forward.selection_and_increment(
-        args.state_root.resolve(), args.selection_root.resolve(), args.repo_root.resolve(), protocol
+    selection, candidate, increment_cards, increment_runs, append_only = compatible_selection_and_increment(
+        args.state_root.resolve(),
+        args.selection_root.resolve(),
+        args.repo_root.resolve(),
+        protocol,
+        compatibility,
+    )
+    require(
+        public.get("selection_container")
+        == {
+            "outer_sha256sums_sha256": selection["outer_selection_sha256sums_sha256"],
+            "core_projection_sha256sums_sha256": selection[
+                "core_projection_sha256sums_sha256"
+            ],
+            "manifest_bound_auxiliary_receipt_count": len(
+                compatibility["selection_container"]["manifest_bound_auxiliary_basenames"]
+            ),
+        },
+        "public selection container binding",
     )
     graph, pair_bindings = forward.structural_pair_graph(
         args.state_root.resolve(), candidate, increment_cards, increment_runs
@@ -330,6 +519,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
             "status": "VERIFIED",
             "classification": public["classification"],
             "protocol_sha256": protocol_sha,
+            "selection_container_compatibility_sha256": compatibility_sha,
             "public_result_sha256": file_sha(args.public_result.resolve()),
             "private_selection_sha256": None,
             "prospective_values_read": False,
@@ -344,6 +534,10 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
     private = forward.target.read_object(private_path)
     require(private.get("protocol") == PRIVATE_PROTOCOL, "private protocol")
     require(private.get("protocol_sha256") == protocol_sha, "private protocol binding")
+    require(
+        private.get("selection_container_compatibility_sha256") == compatibility_sha,
+        "private compatibility binding",
+    )
     require(private.get("analysis_source_commit") == args.source_commit, "private source binding")
     require(private.get("candidate_snapshot_sha256") == selection["candidate_snapshot_sha256"], "private candidate")
     require(file_sha(private_path) == public["private_selection_sha256"], "private SHA")
@@ -403,6 +597,7 @@ def verify(args: argparse.Namespace) -> dict[str, Any]:
         "status": "VERIFIED",
         "classification": public["classification"],
         "protocol_sha256": protocol_sha,
+        "selection_container_compatibility_sha256": compatibility_sha,
         "public_result_sha256": file_sha(args.public_result.resolve()),
         "private_selection_sha256": file_sha(private_path),
         "candidate_snapshot_sha256": selection["candidate_snapshot_sha256"],
@@ -435,6 +630,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--protocol-sha256", required=True)
+    parser.add_argument("--compatibility", type=Path, required=True)
+    parser.add_argument("--compatibility-sha256", required=True)
     parser.add_argument("--source-commit", required=True)
     parser.add_argument("--state-root", type=Path, required=True)
     parser.add_argument("--selection-root", type=Path, required=True)

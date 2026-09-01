@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 from types import SimpleNamespace
+
+import pytest
 
 from phase1 import falsify_historical_run_split_breadth_pareto as graph_source
 from phase1 import freeze_vertex_cost_contrast_target522_selection as producer
@@ -188,22 +191,134 @@ def test_independent_verifier_does_not_import_selection_exporter() -> None:
     assert "import phase1.freeze_vertex_cost_contrast_target522_selection" not in source
 
 
-def test_frozen_protocol_loads_in_both_implementations() -> None:
+def test_frozen_protocol_loads_in_both_implementations(tmp_path: Path) -> None:
     repo_root = Path(__file__).parents[2]
     path = repo_root / "phase1" / "vertex_cost_contrast_target522_effect_v1.json"
+    compatibility_path = (
+        repo_root / "phase1" / "target522_selection_container_compatibility_v1.json"
+    )
     expected = hashlib.sha256(path.read_bytes()).hexdigest()
+    compatibility = json.loads(compatibility_path.read_text(encoding="utf-8"))
+    selection_root = tmp_path / "selection"
+    compatibility["selection_container"]["root"] = str(selection_root.resolve())
+    compatibility_path = tmp_path / "compatibility.json"
+    compatibility_path.write_text(
+        json.dumps(compatibility, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    compatibility_sha = hashlib.sha256(compatibility_path.read_bytes()).hexdigest()
     direct, direct_sha = producer.load_protocol(path, expected)
     rebuilt, rebuilt_sha = independent.load_protocol(path, expected)
+    direct_compatibility, direct_compatibility_sha = producer.load_compatibility(
+        compatibility_path, compatibility_sha, path, expected, selection_root
+    )
+    rebuilt_compatibility, rebuilt_compatibility_sha = independent.load_compatibility(
+        compatibility_path, compatibility_sha, path, expected, selection_root
+    )
     assert direct == rebuilt
     assert direct_sha == rebuilt_sha == expected
-    producer.verify_runtime_sources(repo_root, direct)
-    independent.verify_runtime_sources(repo_root, rebuilt)
-    producer.verify_program_binding(repo_root, direct)
-    independent.verify_program_binding(repo_root, rebuilt)
+    assert direct_compatibility == rebuilt_compatibility
+    assert direct_compatibility_sha == rebuilt_compatibility_sha == compatibility_sha
+    producer.verify_runtime_sources(repo_root, direct, direct_compatibility)
+    independent.verify_runtime_sources(repo_root, rebuilt, rebuilt_compatibility)
+    producer.verify_program_binding(repo_root, direct, direct_compatibility)
+    independent.verify_program_binding(repo_root, rebuilt, rebuilt_compatibility)
     assert set(direct["selection"]["fit_checkpoint_numerators"]) < set(
         direct["selection"]["trajectory_numerators"]
     )
     assert direct["release_gate"]["effect_stage_requires_first960_accrual_closure"] is True
+
+
+def test_manifest_bound_auxiliary_receipts_use_read_only_core_projection(
+    tmp_path: Path, monkeypatch
+) -> None:
+    repo_root = Path(__file__).parents[2]
+    protocol_path = repo_root / "phase1" / "vertex_cost_contrast_target522_effect_v1.json"
+    protocol_sha = hashlib.sha256(protocol_path.read_bytes()).hexdigest()
+    protocol, _ = producer.load_protocol(protocol_path, protocol_sha)
+    compatibility = json.loads(
+        (
+            repo_root / "phase1" / "target522_selection_container_compatibility_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    root = tmp_path / "selection"
+    root.mkdir()
+    protocol["freeze_state"]["target522_selection_root"] = str(root.resolve())
+    compatibility["selection_container"]["root"] = str(root.resolve())
+    core = compatibility["selection_container"]["core_basenames"]
+    auxiliary = compatibility["selection_container"]["manifest_bound_auxiliary_basenames"]
+    for name in set(core + auxiliary) - {"SHA256SUMS", "COMPLETE"}:
+        (root / name).write_bytes(f"receipt:{name}\n".encode())
+    (root / "COMPLETE").write_bytes(b"")
+
+    def rewrite_manifest() -> str:
+        members = sorted(
+            path for path in root.iterdir() if path.name not in {"SHA256SUMS", "COMPLETE"}
+        )
+        (root / "SHA256SUMS").write_text(
+            "".join(
+                f"{hashlib.sha256(path.read_bytes()).hexdigest()}  ./{path.name}\n"
+                for path in members
+            ),
+            encoding="utf-8",
+            newline="\n",
+        )
+        return hashlib.sha256((root / "SHA256SUMS").read_bytes()).hexdigest()
+
+    compatibility["selection_container"]["sha256sums_sha256"] = rewrite_manifest()
+    before = {
+        path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in root.iterdir()
+    }
+    monitor_sha = protocol["freeze_state"]["target522_selection_monitor"]["sha256"]
+
+    def inspect_projection(projection, *args):
+        assert {path.name for path in projection.iterdir()} == set(core)
+        hashes = producer.forward.target.verify_sha256sums(projection)
+        return {
+            "baseline_snapshot_sha256": "b" * 64,
+            "candidate_snapshot_sha256": "c" * 64,
+            "selection_monitor_source_sha256": monitor_sha,
+            "selection_support_sha256sums_sha256": hashlib.sha256(
+                (projection / "SHA256SUMS").read_bytes()
+            ).hexdigest(),
+            "selection_member_hashes": hashes,
+        }
+
+    minimum = protocol["population"]["physical_run_increment_minimum"]
+    monkeypatch.setattr(producer.forward.target, "verify_selection", inspect_projection)
+    monkeypatch.setattr(
+        producer.forward.target, "load_blind_snapshot", lambda *args: SimpleNamespace()
+    )
+    monkeypatch.setattr(
+        producer.forward.target,
+        "disjoint_increment",
+        lambda *args: ({}, {f"run-{index}": {} for index in range(minimum)}, {}),
+    )
+    first = producer.compatible_selection_and_increment(
+        tmp_path / "state", root, repo_root, protocol, compatibility
+    )[0]
+    second = independent.compatible_selection_and_increment(
+        tmp_path / "state", root, repo_root, protocol, compatibility
+    )[0]
+    assert first["outer_selection_sha256sums_sha256"] == second[
+        "outer_selection_sha256sums_sha256"
+    ]
+    assert first["core_projection_sha256sums_sha256"] == second[
+        "core_projection_sha256sums_sha256"
+    ]
+    assert before == {
+        path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in root.iterdir()
+    }
+
+    (root / "unknown-receipt.txt").write_bytes(b"manifest bound but undeclared\n")
+    compatibility["selection_container"]["sha256sums_sha256"] = rewrite_manifest()
+    with pytest.raises(SelectionFreezeError, match="outer selection basename set"):
+        producer.compatible_selection_and_increment(
+            tmp_path / "state", root, repo_root, protocol, compatibility
+        )
+    with pytest.raises(independent.IndependentVerificationError, match="outer selection basename set"):
+        independent.compatible_selection_and_increment(
+            tmp_path / "state", root, repo_root, protocol, compatibility
+        )
 
 
 def test_outcome_blind_selection_and_independent_verification_end_to_end(
@@ -212,6 +327,20 @@ def test_outcome_blind_selection_and_independent_verification_end_to_end(
     repo_root = Path(__file__).parents[2]
     protocol_path = repo_root / "phase1" / "vertex_cost_contrast_target522_effect_v1.json"
     protocol_sha = hashlib.sha256(protocol_path.read_bytes()).hexdigest()
+    compatibility_template = json.loads(
+        (
+            repo_root / "phase1" / "target522_selection_container_compatibility_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    compatibility_template["selection_container"]["root"] = str(
+        (tmp_path / "selection").resolve()
+    )
+    compatibility_path = tmp_path / "compatibility.json"
+    compatibility_path.write_text(
+        json.dumps(compatibility_template, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    compatibility_sha = hashlib.sha256(compatibility_path.read_bytes()).hexdigest()
     edges = []
     payloads = {}
     increment_runs = {}
@@ -236,22 +365,25 @@ def test_outcome_blind_selection_and_independent_verification_end_to_end(
     selection = {
         "baseline_snapshot_sha256": "b" * 64,
         "candidate_snapshot_sha256": "a" * 64,
+        "outer_selection_sha256sums_sha256": compatibility_template[
+            "selection_container"
+        ]["sha256sums_sha256"],
+        "core_projection_sha256sums_sha256": "c" * 64,
     }
     candidate = SimpleNamespace(card_payloads=payloads)
     append_only = {"increment_contains_only_complete_new_physical_runs": True}
     pair_bindings = {"structural_pair_files_equal_exact_observed_sibling_cliques": True}
 
-    monkeypatch.setattr(
-        producer.forward,
-        "selection_and_increment",
-        lambda *args, **kwargs: (
+    def synthetic_selection(*args, **kwargs):
+        return (
             selection,
             candidate,
             increment_cards,
             increment_runs,
             append_only,
-        ),
-    )
+        )
+    monkeypatch.setattr(producer, "compatible_selection_and_increment", synthetic_selection)
+    monkeypatch.setattr(independent, "compatible_selection_and_increment", synthetic_selection)
     monkeypatch.setattr(
         producer.forward,
         "structural_pair_graph",
@@ -268,6 +400,8 @@ def test_outcome_blind_selection_and_independent_verification_end_to_end(
     common = {
         "protocol": protocol_path,
         "protocol_sha256": protocol_sha,
+        "compatibility": compatibility_path,
+        "compatibility_sha256": compatibility_sha,
         "source_commit": "0" * 40,
         "state_root": tmp_path / "state",
         "selection_root": tmp_path / "selection",

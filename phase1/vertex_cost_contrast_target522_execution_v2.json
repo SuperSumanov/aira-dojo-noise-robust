@@ -1,0 +1,126 @@
+{
+  "protocol": "vertex-cost-contrast-target522-stage-a-execution-v2",
+  "version": 2,
+  "status": "EXECUTION_COMPATIBILITY_FROZEN_AFTER_CLOSURE_BEFORE_PROFILE_OR_VALUES",
+  "frozen_at_utc": "2026-09-01T22:10:21Z",
+  "scientific_protocol": {
+    "path": "phase1/vertex_cost_contrast_target522_effect_v1.json",
+    "sha256": "b3df170ebb4ae097549cb0225142e94aebfa481aea6c79815f1be2af687d9e1d",
+    "changed_from_v1": false
+  },
+  "selection_container_compatibility": {
+    "path": "phase1/target522_selection_container_compatibility_v1.json",
+    "sha256": "50dc7afef6ca755b46a67cda2d180fe21d9c6760e14e40273e3a9dc4d9f0e6e8",
+    "scientific_threshold_arm_budget_or_estimand_changed": false
+  },
+  "supersedes_execution_only": {
+    "path": "phase1/vertex_cost_contrast_target522_execution_v1.json",
+    "reason": "The closed selection container has six manifest-bound gap-recovery receipts in addition to the twelve frozen core members. V1 stopped before any profile or result was emitted because it required exact equality with the core basename set."
+  },
+  "question": "Can the already frozen Target-522 VCCD Stage-A selection be activated reproducibly through a manifest-bound read-only core projection without changing its cohort, scientific protocol, arms, budgets, thresholds, or estimand?",
+  "activation": {
+    "selection_root": "/research/d7/spc/yzyang4/tree-within-stratum-forward-target522/latch-42f1044-after-887-v2",
+    "requires_complete_marker": true,
+    "requires_exact_selection_manifest": true,
+    "requires_exact_manifest_bound_auxiliary_receipt_set": true,
+    "alternate_candidate_argument_allowed": false,
+    "candidate_profile_or_identity_read_to_define_fix": false,
+    "first960_closure_required_for_stage_a": false,
+    "first960_closure_required_for_any_fit": true,
+    "monitor_polls": 721,
+    "monitor_interval_seconds": 30,
+    "monitor_resume_allowed_only_without_failure_marker": true
+  },
+  "stage_a": {
+    "inputs": [
+      "immutable Target-522 selection package and original outer SHA256SUMS",
+      "twelve-member temporary core projection derived from outer manifest hashes",
+      "outcome-blind accumulator metadata and code payloads",
+      "frozen scientific protocol, compatibility protocol, and exact source commit"
+    ],
+    "forbidden_inputs": [
+      "grade",
+      "pair orientation",
+      "score gap",
+      "outcome",
+      "prediction",
+      "accuracy",
+      "runtime",
+      "utility",
+      "first-960 closure payload"
+    ],
+    "producer_repetitions": 2,
+    "independent_verifier_repetitions": 2,
+    "byte_exact_public_required": true,
+    "byte_exact_private_required_when_present": true,
+    "byte_exact_verification_required": true,
+    "private_mode": "0600",
+    "temporary_projection_mode": "0700",
+    "original_selection_root_mutation_allowed": false,
+    "fresh_detached_worktree": true,
+    "focused_and_full_tests_before_selection": true,
+    "file_and_network_trace_required": true,
+    "selection_manifest_rechecked_after_verification": true
+  },
+  "bindings": {
+    "producer": {
+      "path": "phase1/freeze_vertex_cost_contrast_target522_selection.py",
+      "sha256": "72932a4cc981a1a5ec75deabd084a8aa24a21e2a49baf491a78b149ae463e473"
+    },
+    "independent_verifier": {
+      "path": "phase1/verify_vertex_cost_contrast_target522_selection.py",
+      "sha256": "414b18f30ea21b0bc500d1fdb40b2553c4ac8488b8c509bf4d283581b47da558"
+    },
+    "compatibility_focused_test": {
+      "path": "phase1/tests/test_freeze_vertex_cost_contrast_target522_selection.py",
+      "sha256": "e760ee2ee74b064691347154e8146b1d7e0c728317da3cc48fdd716f33fc7b69"
+    },
+    "test": {
+      "path": "phase1/tests/test_vertex_cost_contrast_target522_runner.py",
+      "sha256": "9561cf3510ce2ce316cf67bdb54c2ec7212d158492453ebb8a38a1c548dfef7b"
+    },
+    "runner": {
+      "path": "phase1/scripts/run_vertex_cost_contrast_target522_selection_formal_20260830.sh",
+      "sha256": "0305c3215cb58c179f19378769c7518483e2f91749f0e30a075dda9ceee21b5e"
+    },
+    "monitor": {
+      "path": "phase1/scripts/monitor_vertex_cost_contrast_target522_selection_formal_20260830.sh",
+      "sha256": "8332799d11523f59d000d19b14cb8dc95ded9ce67e67c9134d6306a40d0f8b6c"
+    },
+    "scientific_protocol_postpush_receipt": {
+      "path": "phase1/vertex_cost_contrast_target522_protocol_postpush_receipt_20260830.json",
+      "sha256": "aa8b7f302fce7f49a7fa716314055398604835505986f0bc2b17b489253e17ca"
+    },
+    "related_work_addendum": {
+      "path": "phase1/vertex_cost_contrast_target522_related_work_addendum_v1.json",
+      "sha256": "4176772f5287d4bd77957a151973578489acaa4bdfbeb3171ca43ab3c222a816"
+    }
+  },
+  "resources": {
+    "gpu": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_updates": 0,
+    "cpu_threads": 1,
+    "yield_solver_time_limit_seconds_per_producer": 900,
+    "maximum_producer_runs": 2,
+    "expected_total_wall_clock_minutes": "10-70",
+    "fail_closed_wall_clock_minutes": 90
+  },
+  "release_boundary": {
+    "stage_a_success_is_not_an_effect_result": true,
+    "stage_a_success_only_means_support_split_and_selections_are_reproducibly_frozen": true,
+    "vccd_is_a_domain_instantiation_not_a_new_general_d_optimal_design_theorem": true,
+    "no_critic_fit_before_first960_accrual_closure": true,
+    "no_outcome_or_prediction_value_before_first960_accrual_closure": true,
+    "no_arm_budget_metric_or_task_selection_may_be_changed_after_stage_a": true
+  },
+  "ordered_failure_policy": [
+    "outer selection failure, manifest drift, auxiliary receipt drift, or original-root mutation: stop",
+    "scientific protocol, compatibility protocol, source, test, runner, or monitor hash drift: stop",
+    "duplicate output root, unsafe permissions, credential hit, forbidden path, or network access: stop",
+    "producer or verifier byte mismatch: stop",
+    "support gate failure: retain the protocol-defined limited-support classification and do not fit later",
+    "yield solver unavailable: retain the protocol-defined two-arm structural package without changing its gates"
+  ]
+}

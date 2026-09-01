@@ -19,6 +19,8 @@ RESULT_PARENT=/research/d7/spc/yzyang4/prospective-archive-support-census
 PROTOCOL_REL=phase1/archive_rejection_support_census_v1.json
 PRODUCER_REL=phase1/audit_archive_rejection_support_census.py
 VERIFIER_REL=phase1/verify_archive_rejection_support_census.py
+PRODUCER_MODULE=phase1.audit_archive_rejection_support_census
+VERIFIER_MODULE=phase1.verify_archive_rejection_support_census
 TEST_REL=phase1/tests/test_archive_rejection_support_census.py
 RUNNER_TEST_REL=phase1/tests/test_archive_rejection_support_census_runner.py
 RUNNER_REL=phase1/scripts/run_archive_rejection_support_census_formal_20260901.sh
@@ -225,15 +227,20 @@ PY
 readonly_receipt "$PUBLIC_ROOT/readonly_before.json"
 for arm in a b; do
   mkdir "$PUBLIC_ROOT/$arm"
-  strace -f -qq -e trace=file,network -o "$PUBLIC_ROOT/$arm/producer.trace" \
-    "$PYTHON_BIN" "$PRODUCER" --protocol "$PROTOCOL" --observations "$OBSERVATIONS" \
-      --state-root "$STATE_ROOT" --output "$PUBLIC_ROOT/$arm/result.json" \
-      >"$PUBLIC_ROOT/$arm/producer.stdout" 2>"$PUBLIC_ROOT/$arm/producer.stderr"
-  strace -f -qq -e trace=file,network -o "$PUBLIC_ROOT/$arm/verifier.trace" \
-    "$PYTHON_BIN" "$VERIFIER" --protocol "$PROTOCOL" --observations "$OBSERVATIONS" \
-      --result "$PUBLIC_ROOT/$arm/result.json" --state-root "$STATE_ROOT" \
-      --output "$PUBLIC_ROOT/$arm/independent_verification.json" \
-      >"$PUBLIC_ROOT/$arm/verifier.stdout" 2>"$PUBLIC_ROOT/$arm/verifier.stderr"
+  (
+    cd "$WORKTREE"
+    strace -f -qq -e trace=file,network -o "$PUBLIC_ROOT/$arm/producer.trace" \
+      "$PYTHON_BIN" -m "$PRODUCER_MODULE" --protocol "$PROTOCOL" \
+        --observations "$OBSERVATIONS" --state-root "$STATE_ROOT" \
+        --output "$PUBLIC_ROOT/$arm/result.json"
+  ) >"$PUBLIC_ROOT/$arm/producer.stdout" 2>"$PUBLIC_ROOT/$arm/producer.stderr"
+  (
+    cd "$WORKTREE"
+    strace -f -qq -e trace=file,network -o "$PUBLIC_ROOT/$arm/verifier.trace" \
+      "$PYTHON_BIN" -m "$VERIFIER_MODULE" --protocol "$PROTOCOL" \
+        --observations "$OBSERVATIONS" --result "$PUBLIC_ROOT/$arm/result.json" \
+        --state-root "$STATE_ROOT" --output "$PUBLIC_ROOT/$arm/independent_verification.json"
+  ) >"$PUBLIC_ROOT/$arm/verifier.stdout" 2>"$PUBLIC_ROOT/$arm/verifier.stderr"
 done
 cmp "$PUBLIC_ROOT/a/result.json" "$PUBLIC_ROOT/b/result.json"
 cmp "$PUBLIC_ROOT/a/independent_verification.json" "$PUBLIC_ROOT/b/independent_verification.json"

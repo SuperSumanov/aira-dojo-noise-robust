@@ -36,6 +36,13 @@ non-emission 合计 focused=`8 passed`；与相邻单事件审计合跑=`19 pass
 不导入 producer 的 verifier A/B、allowed-metadata read-only before/after、file/network trace、credential 与 identity-schema
 门、append-only COMPLETE/FAILED receipt。runner/static check=`PASS`，census+runner focused=`12 passed`，连同相邻单事件
 审计=`23 passed`；runner/contract-test SHA-256=`8ac1f769...5dd0a` / `21028895...c2761`。
+
+公开 exact commit=`ec2bf654750080ffce6f1972789adc50033c5e0e` 的第一次 formal 已通过 focused/full=
+`12/1,947 passed`（48 warnings），但第一个 producer 以绝对脚本路径从远端 home 启动，导入阶段即触发
+`ModuleNotFoundError: No module named 'phase1'`；result/verifier/COMPLETE=`0/0/false`，FAILED_RC=`1`，因此没有任何真实
+事件分类或科学 readout。只允许执行层修正为在 exact worktree 中以 `python -m` 启动 producer/verifier；协议、输入、
+分类、资源与访问契约均不变，并须从新的公开 exact commit 使用 fresh formal root 重跑。修正后 static check=`PASS`，
+focused/adjacent=`12/23 passed`，runner/contract-test SHA-256=`fe3bc55f...fc7c4d` / `556a2a94...5e72c`。
 截至本段只完成**结果前冻结**，真实 14 事件 census 尚未运行、真实四类计数仍未知；GPU/API/model fit/base update=`0/0/0/0`，
 label/outcome/prediction/accuracy/utility/candidate identity/profile read=`false/false/false/false/false/false/false`。
 

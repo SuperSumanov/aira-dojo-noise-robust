@@ -51,6 +51,11 @@ def test_runner_is_cpu_only_outcome_blind_and_identity_erased() -> None:
     assert "set +u\nsource ~/env_setup.sh\nset -u" in text
     assert "PYTHON_BIN=/research/d7/spc/yzyang4/venvs/exp/bin/python" in text
     assert '"$PYTHON_BIN" -m pytest -q phase1/tests' in text
+    assert 'cd "$WORKTREE"' in text
+    assert '"$PYTHON_BIN" -m "$PRODUCER_MODULE"' in text
+    assert '"$PYTHON_BIN" -m "$VERIFIER_MODULE"' in text
+    assert '"$PYTHON_BIN" "$PRODUCER"' not in text
+    assert '"$PYTHON_BIN" "$VERIFIER"' not in text
     assert "strace -f -qq -e trace=file,network" in text
     assert "gpu_api_model_fit_base_update=0/0/0/0" in text
     assert "credential_content_hits=0" in text

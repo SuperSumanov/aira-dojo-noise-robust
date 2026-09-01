@@ -30,8 +30,9 @@ trap 'fail $?' ERR
 [[ ! -e "${root}" ]]
 mkdir -p "${base}" "${root}" "${private}" "${public}"
 chmod 0700 "${root}" "${private}" "${public}"
-exec > >(tee -a "${log}") 2>&1
+: >"${log}"
 chmod 0600 "${log}"
+exec > >(tee -a "${log}") 2>&1
 
 printf 'PREFLIGHT_01_OBJECTIVE=verbatim_historical_release_content_scan\n'
 git -C "${repo}" cat-file -e "${public_commit}^{commit}"

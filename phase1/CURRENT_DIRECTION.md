@@ -80,6 +80,12 @@ affected-card aggregates，并逐 match 确认 source occurrence。synthetic foc
 `phase1/V11_RELEASE_CONTENT_SCAN_PREFLIGHT_20260902.md` / `phase1/scripts/run_release_content_scan_v11_20260902.sh`。
 截至本段尚未在真实数据运行，不得报告 match/affected-card 数。
 
+第一次公开 commit=`6bb82e59cb30db8612f4aa7dbbe6f6c4b4fda005` 的 remote launch 在任何 worktree、tests、
+cards/source content read 或 scan output 前 fail-closed：runner 把 stdout 重定向到异步 `tee` 后立即 `chmod runner.log`，
+文件创建存在竞态，本次恰好先执行 chmod，故 rc=`1`。失败 root/FAILED_RC 保留，GPU/API/model fit/base update=
+`0/0/0/0`，科学/发布 readout=`0`。修复只是在 process substitution 前同步创建并 chmod log；新增契约测试固定语句顺序，
+下一次必须用新的公开 exact commit/root，不能覆盖 r1 失败证据。
+
 ## 0KZ. 2026-09-02 Structural Gate Utility Certificate 正式通过：当前 7/7 受影响 competition 未见最后可用支持被清空
 
 为把 0KI/0KV/0KW 与 zero-checkpoint 审计转成一条可直接写进论文的数据工程结论，本节只做**事后逻辑合成**，

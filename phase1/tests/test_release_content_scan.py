@@ -112,3 +112,15 @@ def test_aggregate_scan_is_value_free_and_resumable(tmp_path: Path) -> None:
     arguments.resume = True
     repeated = scan(arguments)
     assert repeated == result
+
+
+def test_formal_runner_creates_log_before_process_substitution() -> None:
+    runner = (
+        Path(__file__).resolve().parents[1]
+        / "scripts"
+        / "run_release_content_scan_v11_20260902.sh"
+    ).read_text(encoding="utf-8")
+    create = runner.index(': >"${log}"')
+    chmod = runner.index('chmod 0600 "${log}"')
+    redirect = runner.index('exec > >(tee -a "${log}")')
+    assert create < chmod < redirect

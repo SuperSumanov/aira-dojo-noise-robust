@@ -47,6 +47,18 @@ append-only COMPLETE/FAILED receipt。runner/runner-contract-test SHA-256=`0f5e5
 科学协议、输入、producer/verifier 与资源矩阵不变。修正 runner SHA-256=`e64cc237...60c22f`，focused 仍为
 `18 passed`；须从新的公开 exact commit 重新开始 fresh formal。
 
+`4cb063d...` fresh formal 随后在 focused tests/producer 前被 observations whole-file hash 门停止：FAILED_RC=`2`，
+result/verifier/COMPLETE=`0/0/false`。复验显示 mutable observations 新 SHA/bytes=`d2ed361a...a704a/200,613`，但
+LATEST、transactions SHA/lines、prior-prefix、disposition partition、target-registry match 与 inventory 仍精确为
+`e9e12c63...8a6d`、`fabae2e4...f7467/133`、true、`283/128/133/14/8/0`、`1`、
+`543/517/13,581/3,325/38`；旧 bytes 未保存，故**不能**声称只改了 `updated_at_utc`。
+
+在 support readout 前已把当前完整 observations 封存到权限 `0444` 的远端不可变副本，SHA/receipt SHA=
+`d2ed361a...a704a` / `f5c722af...b93cfa`。execution-v2 通过机器比较证明相对原协议只改
+`inputs.current_observations_sha256`，科学/资源/access changes 均为空；execution protocol/addendum/runner SHA=
+`451f4b64...7008b2` / `7a144f73...04628f` / `d52b3c73...6f7d5d`，远端 static check PASS，focused=`21 passed`。
+截至本段 execution-v2 尚未 formal 执行，strong/partial/absent 仍未知。
+
 ## 0KS. 2026-09-01 零 fit support v1 在 state promotion 前停止；v2 只修启动回执与进程组清理
 
 0KR 的公开 exact commit=`7d89d1bce13cbf5223b380a167d8868df1cbb6bc` 已冻结。第一次部署在提取 launcher 前因

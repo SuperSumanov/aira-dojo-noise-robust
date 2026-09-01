@@ -1,0 +1,61 @@
+{
+  "protocol": "incremental_archive_rejection_support_execution_addendum_v2",
+  "parent_protocol_path": "phase1/incremental_archive_rejection_support_audit_v1.json",
+  "parent_protocol_sha256": "9d1c93772789a1c1b1fea4839745226ed51b4a92b05d2a251a3c0c6cf8acfaff",
+  "execution_protocol_path": "phase1/incremental_archive_rejection_support_audit_execution_v2.json",
+  "execution_protocol_sha256": "451f4b64c3029e0240e618e48de180cddc8aa36d23fb6f0e2b4b966dd57008b2",
+  "frozen_before_target_competition_or_support_readout": true,
+  "failed_attempt": {
+    "exact_commit": "4cb063d512c2b7a7b077bcdd9988e11bf3fb4f7a",
+    "failure_stage": "input_hash_preflight_before_focused_tests_or_producer",
+    "failure_reason": "the mutable observer file no longer matched the earlier whole-file SHA-256 even though its byte count and all frozen structural aggregates remained unchanged",
+    "exit_code": 2,
+    "formal_root": "/research/d7/spc/yzyang4/prospective-archive-support/formal-4cb063d-incremental-support-v1/public",
+    "failed_rc_sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+    "worktree_stderr_sha256": "402d1391d33dfaf7d81859a98914d559cdd4ffddb2156cae982a80daba24aa46",
+    "worktree_stdout_sha256": "76e71440df04da7e04f12d6dc2e1fb5fa3d216b12e2e9a8f10bc45af95ceb3b1",
+    "focused_tests_started": false,
+    "producer_started": false,
+    "result_files_created": 0,
+    "verification_files_created": 0,
+    "complete_marker_created": false,
+    "scientific_readout_values_read": false
+  },
+  "structural_reverification": {
+    "mutable_observations_sha256": "d2ed361a557bf52dadfe9f0547e49c16ea5dc1eea42a1c78f7b354542a2a704a",
+    "mutable_observations_bytes": 200613,
+    "latest_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "transactions_sha256": "fabae2e42b8e669bc0f212df5365809751966859df22cb1a0ba952ba277f7467",
+    "transaction_lines": 133,
+    "prior_transaction_prefix": true,
+    "observation_partition_observed_baseline_accepted_structural_alias_pending": "283/128/133/14/8/0",
+    "frozen_target_registry_matches": 1,
+    "inventory_physical_eligible_endpoints_pairs_tasks": "543/517/13581/3325/38",
+    "identities_emitted": false,
+    "labels_outcomes_predictions_accuracy_utility_read": false
+  },
+  "immutable_observations_copy": {
+    "path": "/research/d7/spc/yzyang4/prospective_decision_v1/frozen_inputs/incremental_archive_support_20260901_d2ed361a/observations.json",
+    "sha256": "d2ed361a557bf52dadfe9f0547e49c16ea5dc1eea42a1c78f7b354542a2a704a",
+    "bytes": 200613,
+    "mode": "0444",
+    "directory_mode": "0555",
+    "receipt_path": "/research/d7/spc/yzyang4/prospective_decision_v1/frozen_inputs/incremental_archive_support_20260901_d2ed361a/receipt.json",
+    "receipt_sha256": "f5c722af76c6eda9b47b1fb175a51373b721ee084df02c6b72f5298e8fb93cfa",
+    "copy_completed_before_support_readout": true
+  },
+  "single_execution_protocol_change": {
+    "field": "inputs.current_observations_sha256",
+    "old": "54a8d773d34171e066fba572045117e637c2187026980e56e3638a882e6571e0",
+    "new": "d2ed361a557bf52dadfe9f0547e49c16ea5dc1eea42a1c78f7b354542a2a704a",
+    "reason": "bind the full currently reverified observer content to an immutable copy so future polling timestamps cannot invalidate the formal input"
+  },
+  "not_claimed": {
+    "old_and_new_observer_files_differ_only_in_updated_at_utc_claimed": false,
+    "reason": "the earlier bytes were not preserved, so unchanged size and aggregates are insufficient to prove a byte-level one-field diff"
+  },
+  "scientific_changes": [],
+  "resource_changes": [],
+  "access_changes": [],
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

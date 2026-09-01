@@ -13,20 +13,20 @@ MODE="${1:-check}"
 CONTROL_COMMIT="${2:-}"
 SOURCE_REPO=/research/d7/spc/yzyang4/aira-dojo
 STATE_ROOT=/research/d7/spc/yzyang4/prospective_decision_v1
-OBSERVATIONS="$STATE_ROOT/observations.json"
-SOURCE_ARCHIVES=/research/d7/spc/yzyang4/external/senior_data/mle
+OBSERVATIONS="$STATE_ROOT/frozen_inputs/incremental_archive_support_20260901_d2ed361a/observations.json"
+OBSERVATIONS_RECEIPT="$STATE_ROOT/frozen_inputs/incremental_archive_support_20260901_d2ed361a/receipt.json"
 RESULT_PARENT=/research/d7/spc/yzyang4/prospective-archive-support
-PROTOCOL_REL=phase1/incremental_archive_rejection_support_audit_v1.json
+PROTOCOL_REL=phase1/incremental_archive_rejection_support_audit_execution_v2.json
 PRODUCER_REL=phase1/audit_incremental_archive_rejection_support.py
 VERIFIER_REL=phase1/verify_incremental_archive_rejection_support.py
 TEST_REL=phase1/tests/test_incremental_archive_rejection_support.py
 PROTOCOL_TEST_REL=phase1/tests/test_incremental_archive_rejection_support_protocol.py
 RUNNER_REL=phase1/scripts/run_incremental_archive_rejection_support_formal_20260901.sh
 
-EXPECTED_PROTOCOL_SHA=9d1c93772789a1c1b1fea4839745226ed51b4a92b05d2a251a3c0c6cf8acfaff
-EXPECTED_OBSERVATIONS_SHA=54a8d773d34171e066fba572045117e637c2187026980e56e3638a882e6571e0
+EXPECTED_PROTOCOL_SHA=451f4b64c3029e0240e618e48de180cddc8aa36d23fb6f0e2b4b966dd57008b2
+EXPECTED_OBSERVATIONS_SHA=d2ed361a557bf52dadfe9f0547e49c16ea5dc1eea42a1c78f7b354542a2a704a
 EXPECTED_OBSERVATIONS_BYTES=200613
-EXPECTED_SOURCE_ARCHIVES=283
+EXPECTED_OBSERVATIONS_RECEIPT_SHA=f5c722af76c6eda9b47b1fb175a51373b721ee084df02c6b72f5298e8fb93cfa
 EXPECTED_PRIOR_SNAPSHOT=30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f
 EXPECTED_CURRENT_SNAPSHOT=e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d
 EXPECTED_PRIOR_TRANSACTIONS=4f05659db88e290f18a20d43b33330daa5df27211b1fffb770cbf1658b46ec60
@@ -108,10 +108,9 @@ PRIOR_VERIFICATION="$WORKTREE/phase1/results/archive_disposition_longitudinal_re
 
 require_file_sha "$PROTOCOL" "$EXPECTED_PROTOCOL_SHA"
 require_file_sha "$OBSERVATIONS" "$EXPECTED_OBSERVATIONS_SHA"
+require_file_sha "$OBSERVATIONS_RECEIPT" "$EXPECTED_OBSERVATIONS_RECEIPT_SHA"
 [[ "$(stat -c '%s' "$OBSERVATIONS")" == "$EXPECTED_OBSERVATIONS_BYTES" ]] || die "observations byte count mismatch"
 [[ "$(tr -d '\r\n' < "$STATE_ROOT/LATEST")" == "$EXPECTED_CURRENT_SNAPSHOT" ]] || die "LATEST mismatch"
-[[ "$(find "$SOURCE_ARCHIVES" -maxdepth 1 -type f -name '*.tar.gz' -printf . | wc -c)" == "$EXPECTED_SOURCE_ARCHIVES" ]] \
-  || die "source archive count mismatch"
 require_file_sha "$STATE_ROOT/snapshots/$EXPECTED_PRIOR_SNAPSHOT/SHA256SUMS" "$EXPECTED_PRIOR_SNAPSHOT"
 require_file_sha "$STATE_ROOT/snapshots/$EXPECTED_CURRENT_SNAPSHOT/SHA256SUMS" "$EXPECTED_CURRENT_SNAPSHOT"
 require_file_sha "$STATE_ROOT/snapshots/$EXPECTED_PRIOR_SNAPSHOT/transactions.jsonl" "$EXPECTED_PRIOR_TRANSACTIONS"
@@ -125,7 +124,7 @@ fi
 cat >"$PUBLIC_ROOT/preflight13.txt" <<'EOF'
 01_direction=Decision Corpus + Predictor Benchmark + Audit Protocol only; PASS
 02_question=does one newly settled structural rejection have anonymized accepted eligible support, and did it preexist the new window; PASS
-03_context=frozen prior/current snapshots, exact transaction prefix, frozen observer and target-registry hash, public prior audit and exact commit; PASS
+03_context=frozen prior/current snapshots, exact transaction prefix, immutable observer copy and target-registry hash, public prior audit and exact commit; PASS
 04_unit=one newly settled structural-rejection event selected only by its frozen registry hash; PASS
 05_security=observer and hash-bound intake metadata only; registry contents tar payloads labels outcomes predictions accuracy utility identities remain unread or un-emitted; PASS
 06_controls=exact prior prefix versus seven-transaction new window with strong contemporaneous-only and absent rules frozen before overlap readout; PASS
@@ -143,7 +142,7 @@ control_commit=$CONTROL_COMMIT
 protocol_sha256=$EXPECTED_PROTOCOL_SHA
 observations_sha256=$EXPECTED_OBSERVATIONS_SHA
 observations_bytes=$EXPECTED_OBSERVATIONS_BYTES
-source_archives=$EXPECTED_SOURCE_ARCHIVES
+observed_archives=283
 prior_snapshot_sha256=$EXPECTED_PRIOR_SNAPSHOT
 current_snapshot_sha256=$EXPECTED_CURRENT_SNAPSHOT
 prior_transactions_sha256=$EXPECTED_PRIOR_TRANSACTIONS

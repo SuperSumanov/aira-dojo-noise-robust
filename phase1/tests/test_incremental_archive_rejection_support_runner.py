@@ -21,8 +21,9 @@ def test_runner_has_13_item_preflight_and_exact_frozen_inputs() -> None:
     text = runner_text()
     assert len(re.findall(r"(?m)^(?:0[1-9]|1[0-3])_", text)) == 13
     for value in (
-        "9d1c93772789a1c1b1fea4839745226ed51b4a92b05d2a251a3c0c6cf8acfaff",
-        "54a8d773d34171e066fba572045117e637c2187026980e56e3638a882e6571e0",
+        "451f4b64c3029e0240e618e48de180cddc8aa36d23fb6f0e2b4b966dd57008b2",
+        "d2ed361a557bf52dadfe9f0547e49c16ea5dc1eea42a1c78f7b354542a2a704a",
+        "f5c722af76c6eda9b47b1fb175a51373b721ee084df02c6b72f5298e8fb93cfa",
         "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
         "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
         "4f05659db88e290f18a20d43b33330daa5df27211b1fffb770cbf1658b46ec60",

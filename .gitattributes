@@ -200,6 +200,15 @@ phase1/scripts/run_tree_within_stratum_forward_target522_formal_20260828.sh text
 phase1/scripts/monitor_tree_within_stratum_forward_target522_formal_20260828.sh text eol=lf diff
 phase1/tests/test_tree_within_stratum_forward_target522_runner.py text eol=lf diff
 
+# Evidence Index v10 binds the protocol bytes and must execute identically in
+# Windows development and fresh Linux formal worktrees.
+phase1/decision_corpus_evidence_index_v10_protocol_v1.json text eol=lf diff
+phase1/build_decision_corpus_evidence_index_v10.py text eol=lf diff
+phase1/verify_decision_corpus_evidence_index_v10.py text eol=lf diff
+phase1/tests/test_decision_corpus_evidence_index_v10.py text eol=lf diff
+phase1/scripts/run_decision_corpus_evidence_index_v10_formal_20260902.sh text eol=lf diff
+phase1/tests/test_decision_corpus_evidence_index_v10_runner.py text eol=lf diff
+
 # Preserve the byte-exact identity-erased support-census receipts copied from
 # the formal Linux root; keep human documentation and its public summary diffable.
 phase1/results/archive_rejection_support_census_20260902_7ad0164/** -text -diff

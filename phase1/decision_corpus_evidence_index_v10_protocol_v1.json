@@ -1,0 +1,318 @@
+{
+  "protocol": "decision-corpus-evidence-index-v10-claim-dedup-protocol-v1",
+  "version": 1,
+  "created_at_utc": "2026-09-01T17:41:23Z",
+  "status": "PUBLIC_RESULT_REPORTING_INDEX_EXTENSION_FIXED",
+  "purpose": "Extend the independently verified Evidence Index v9 with four distinct public benchmark-audit assets from 2026-08-31 through 2026-09-02, while registering the support-floor package as a non-distinct independent reconstruction of an already published 0KI claim component.",
+  "source_v9": {
+    "path": "phase1/results/decision_corpus_evidence_index_v9_20260829_f108812/formal/index.json",
+    "sha256": "b2d88479abb03cf72b27f9f958badfb3aeb8bc1e1e3cac2c50a3aace43511ff6",
+    "protocol": "decision_corpus_evidence_index_v9",
+    "status": "PROVISIONAL_TEMPORAL_SPLIT_CERTIFIED_EVIDENCE_STACK_AWAITING_FIRST960",
+    "entry_count": 16
+  },
+  "distinct_entries": [
+    {
+      "name": "archive_disposition_longitudinal",
+      "evidence_class": "benchmark_audit",
+      "counts_as_distinct_claim_evidence": true,
+      "claim_signature": {
+        "aggregation": "taxonomy-aware structural-rejection competition overlap and payload-hash partition accounting",
+        "population_unit": "settled post-baseline archive and structural-rejected competition",
+        "snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+        "taxonomy": "accepted versus structural reject versus byte-alias quarantine"
+      },
+      "claim_components": {},
+      "estimand": "whether archive-level fail-closed validation preserves accepted support for competitions that also contain structurally rejected archives, with byte aliases separated from structural failures",
+      "supported_claim": "At the 30945550 snapshot, all 6 structurally rejected competitions also have accepted archives; the accepted, structural-reject, and byte-alias payload-hash partitions are mutually auditable, and the frozen longitudinal strong gate passes.",
+      "does_not_prove": "The extension contains only one new structural rejection, so this is longitudinal persistence rather than an independent batch replication. It does not estimate a rejection-rate law, predictor accuracy, scaling, search utility, or a causal metadata-repair effect.",
+      "artifacts": [
+        {
+          "path": "phase1/results/archive_disposition_longitudinal_replication_v2_20260831_43ce72a/a/result.json",
+          "sha256": "58539382eb9cd82e52560b8073287e2a94043c5035e34ad2d955baa3329c104e",
+          "json_assertions": {
+            "protocol": "archive_disposition_longitudinal_replication_v2",
+            "status": "LONGITUDINAL_ARCHIVE_LEVEL_GATE_REPLICATED",
+            "decision.strong_gate_passed": true,
+            "current.structural_rejected_competitions": 6,
+            "current.structural_mixed_disposition_competitions": 6,
+            "extension_beyond_historical_anchor.structural_rejected_archives": 1,
+            "access_attestation.archive_payloads_opened": false,
+            "access_attestation.labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+            "access_attestation.candidate_identities_emitted": false
+          }
+        },
+        {
+          "path": "phase1/results/archive_disposition_longitudinal_replication_v2_20260831_43ce72a/a/independent_verification.json",
+          "sha256": "854f81e58e9cf2aabce7a1a0edbda6f4f9696fdd6beeabd47524c1738321ab4f",
+          "json_assertions": {
+            "protocol": "independent_archive_disposition_longitudinal_replication_v2",
+            "status": "INDEPENDENT_ARCHIVE_DISPOSITION_REPLICATION_PASS",
+            "result_sha256": "58539382eb9cd82e52560b8073287e2a94043c5035e34ad2d955baa3329c104e",
+            "all_aggregate_fields_equal": true,
+            "outcomes_predictions_labels_read": false,
+            "identities_emitted": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "archive_granularity_retention",
+      "evidence_class": "corpus_utility_accounting",
+      "counts_as_distinct_claim_evidence": true,
+      "claim_signature": {
+        "aggregation": "exact retained-support accounting under archive-granular validation versus task blacklist",
+        "population_unit": "accepted archive, physical run, eligible run, and eligible endpoint",
+        "snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+        "taxonomy": "structural-rejection affected competitions with aliases excluded"
+      },
+      "claim_components": {
+        "prior_support_depth": {
+          "aggregates": [
+            "accepted_archives",
+            "physical_runs",
+            "eligible_runs",
+            "eligible_endpoints",
+            "anonymous_min_median_max",
+            "maximum_share"
+          ],
+          "competition_count": 6,
+          "filter": "accepted archives in structural-rejection affected competitions; byte aliases excluded",
+          "population_unit": "distinct affected competition",
+          "snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f"
+        }
+      },
+      "estimand": "valid accepted support retained by archive-granular validation that a counterfactual task-level blacklist would additionally discard",
+      "supported_claim": "Archive-granular validation retains 20 accepted archives, 94 physical runs, 92 eligible runs, and 2,558 endpoints in 6 affected competitions; task blacklisting would additionally remove about one fifth of accepted-corpus eligible support, and the frozen strong gate passes without single-task dominance.",
+      "does_not_prove": "This is deterministic counterfactual corpus accounting, not an observed online method effect. It does not establish future stationarity, predictor accuracy, scaling, search utility, or a task whitelist or blacklist.",
+      "artifacts": [
+        {
+          "path": "phase1/results/archive_granularity_retention_v1_20260831_bc88298/a/result.json",
+          "sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184",
+          "json_assertions": {
+            "protocol": "archive_granularity_retention_audit_v1",
+            "status": "ARCHIVE_GRANULARITY_RETENTION_STRONG",
+            "decision.strong_gate_passed": true,
+            "retained_by_archive_granular_validation.affected_competitions": 6,
+            "retained_by_archive_granular_validation.accepted_archives": 20,
+            "retained_by_archive_granular_validation.physical_runs": 94,
+            "retained_by_archive_granular_validation.eligible_runs": 92,
+            "retained_by_archive_granular_validation.eligible_endpoints": 2558,
+            "access_attestation.labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+            "access_attestation.candidate_identities_or_profiles_read": false
+          }
+        },
+        {
+          "path": "phase1/results/archive_granularity_retention_v1_20260831_bc88298/a/independent_verification.json",
+          "sha256": "4965c04739d6ca8468be7fa04f807a8f5c123b3ce2adec37efbfd47608d3b187",
+          "json_assertions": {
+            "protocol": "independent_archive_granularity_retention_v1",
+            "status": "INDEPENDENT_ARCHIVE_GRANULARITY_RETENTION_PASS",
+            "result_sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184",
+            "all_aggregate_fields_equal": true,
+            "outcomes_predictions_labels_read": false,
+            "identities_emitted": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "prospective_wl_snapshot_chain_517",
+      "evidence_class": "provisional_corpus_accrual_integrity",
+      "counts_as_distinct_claim_evidence": true,
+      "claim_signature": {
+        "aggregation": "append-only exact-row preservation across consecutive WL escrow snapshots",
+        "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+        "population_unit": "eligible physical run, endpoint row, and structural pair row",
+        "prior_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f"
+      },
+      "claim_components": {},
+      "estimand": "whether a fixed WL prediction escrow extends from the prior to current prospective snapshot without removing or changing prior run, endpoint, or pair rows",
+      "supported_claim": "The WL escrow extends from 494 to 517 eligible runs with 23 additions and zero removals; all 494 prior runs, 13,098 endpoint rows, and 3,230 pair rows are preserved exactly under the frozen order.",
+      "does_not_prove": "The first-960 cohort is not closed and the support gate remains provisional. This is accrual-integrity evidence, not predictor accuracy, scaling, effect size, or search utility.",
+      "artifacts": [
+        {
+          "path": "phase1/results/wl_snapshot_chain_20260901_e9e12c63/structural_summary.json",
+          "sha256": "033259a447abbe7d7b75654481c706947bee56ad25cc1cf0d35b414d18a021cf",
+          "json_assertions": {
+            "protocol": "wl-snapshot-chain-monitor-v1",
+            "status": "PROVISIONAL_FIRST960_SNAPSHOT_CHAIN_INDEPENDENTLY_VERIFIED",
+            "prior_runs": 494,
+            "current_runs": 517,
+            "added_runs": 23,
+            "removed_runs": 0,
+            "prior_endpoints": 13098,
+            "common_endpoints": 13098,
+            "prior_pairs": 3230,
+            "common_pairs": 3230,
+            "support_gate_is_provisional_until_closure": true,
+            "scope.outcomes_read": false,
+            "scope.prediction_values_read": false,
+            "scope.candidate_identities_read": false
+          }
+        },
+        {
+          "path": "phase1/results/wl_snapshot_chain_20260901_e9e12c63/snapshot_chain_receipt.json",
+          "sha256": "12ce7fed6785e5f7805c5a45626ae28f9d6f77dd4a8fca3869d59555eb2406db",
+          "json_assertions": {
+            "protocol": "provisional-first960-snapshot-chain-v1",
+            "status": "PROVISIONAL_FIRST960_SNAPSHOT_CHAIN_INDEPENDENTLY_VERIFIED",
+            "cohort_churn.added_runs": 23,
+            "cohort_churn.removed_runs": 0,
+            "source_append_invariants.prior_run_rows_exact": true,
+            "source_append_invariants.prior_run_sequence_subsequence": true,
+            "source_append_invariants.prior_run_set_contained": true,
+            "closure.final_first960_identity": false,
+            "scope.prospective_outcomes_read": false,
+            "scope.prediction_values_printed": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "archive_rejection_support_census",
+      "evidence_class": "identity_erased_descriptive_census",
+      "counts_as_distinct_claim_evidence": true,
+      "claim_signature": {
+        "aggregation": "four-class support census by rejection event and distinct rejected competition",
+        "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+        "population_unit": "all 14 structural rejection events and their 7 distinct competitions",
+        "prior_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f"
+      },
+      "claim_components": {},
+      "estimand": "complete identity-erased classification of all structural rejection events by whether eligible accepted support exists in the prior prefix, current window, accepted archives only, or nowhere",
+      "supported_claim": "In the complete 14-event census, 13 events and 6 of 7 distinct rejected competitions have eligible support already in the prior anchor; one competition has no accepted-archive support, so the structural gate is non-vacuous.",
+      "does_not_prove": "The headline was partially predisclosed, prior-anchor support is not event-time preexistence, and this complete census is not sampling inference. It does not estimate future rejection frequency, causal effects, predictor accuracy, scaling, method effects, or search utility.",
+      "artifacts": [
+        {
+          "path": "phase1/results/archive_rejection_support_census_20260902_7ad0164/result.json",
+          "sha256": "f904ff54e110057e4cd11c6f71a09c43661abea9e5e4fb37c39099338f917fad",
+          "json_assertions": {
+            "protocol": "archive_rejection_support_census_v1",
+            "status": "ARCHIVE_REJECTION_SUPPORT_CENSUS_COMPLETE_PARTIALLY_PREDISCLOSED",
+            "event_support_class_counts.PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 13,
+            "event_support_class_counts.NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+            "competition_support_class_counts.PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 6,
+            "competition_support_class_counts.NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+            "competition_support_class_counts.distinct_rejected_competitions": 7,
+            "access_attestation.labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+            "access_attestation.candidate_identities_or_profiles_read": false,
+            "access_attestation.event_competition_archive_task_run_or_candidate_identity_values_emitted": false
+          }
+        },
+        {
+          "path": "phase1/results/archive_rejection_support_census_20260902_7ad0164/independent_verification.json",
+          "sha256": "39a634f0bba48dbeb3783f67589604a4ba8e840aaab65ad25daff55528e276e6",
+          "json_assertions": {
+            "protocol": "independent_archive_rejection_support_census_v1",
+            "status": "INDEPENDENT_ARCHIVE_REJECTION_SUPPORT_CENSUS_PASS",
+            "result_sha256": "f904ff54e110057e4cd11c6f71a09c43661abea9e5e4fb37c39099338f917fad",
+            "all_result_fields_equal": true,
+            "producer_imported": false,
+            "outcomes_predictions_labels_read": false,
+            "identity_values_emitted": false
+          }
+        }
+      ]
+    }
+  ],
+  "reconstructions": [
+    {
+      "name": "archive_rejection_support_floor_reconstruction",
+      "evidence_class": "corrected_independent_reconstruction",
+      "counts_as_distinct_claim_evidence": false,
+      "reproduction_of": "archive_granularity_retention",
+      "shared_component_name": "prior_support_depth",
+      "shared_component_signature": {
+        "aggregates": [
+          "accepted_archives",
+          "physical_runs",
+          "eligible_runs",
+          "eligible_endpoints",
+          "anonymous_min_median_max",
+          "maximum_share"
+        ],
+        "competition_count": 6,
+        "filter": "accepted archives in structural-rejection affected competitions; byte aliases excluded",
+        "population_unit": "distinct affected competition",
+        "snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f"
+      },
+      "incremental_descriptive_component": {
+        "counts_as_independent_confirmation": false,
+        "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+        "description": "identity-erased current-window lineage totals and two additional ratio summaries"
+      },
+      "supported_claim": "This package independently reconstructs the already published 0KI prior-support totals and distributions and adds descriptive current-window lineage. It is useful reproducibility evidence but is not a second distinct positive result.",
+      "does_not_prove": "The reconstruction cannot increase the count of independent scientific claims, cannot be called a new discovery or confirmation, and does not establish predictor accuracy, scaling, method effects, search utility, or future stationarity.",
+      "artifacts": [
+        {
+          "path": "phase1/results/archive_rejection_support_floor_20260902_5609a8e/result.json",
+          "sha256": "ce8b30101a26fdba178c6046c24e55a219eacd1e307dc8c033cae754898f4248",
+          "json_assertions": {
+            "protocol": "archive_rejection_support_floor_v1",
+            "status": "ARCHIVE_REJECTION_SUPPORT_FLOOR_COMPLETE_POST_HOC",
+            "prior_supported_competition_floor.competition_count": 6,
+            "prior_supported_competition_floor.prior_metric_summaries.accepted_archives.sum": 20,
+            "prior_supported_competition_floor.prior_metric_summaries.physical_runs.sum": 94,
+            "prior_supported_competition_floor.prior_metric_summaries.eligible_runs.sum": 92,
+            "prior_supported_competition_floor.prior_metric_summaries.eligible_endpoints.sum": 2558,
+            "distinct_competition_support_totals.current_window.accepted_archives": 1,
+            "distinct_competition_support_totals.current_window.physical_runs": 4,
+            "distinct_competition_support_totals.current_window.eligible_runs": 4,
+            "distinct_competition_support_totals.current_window.eligible_endpoints": 96,
+            "access_attestation.labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+            "access_attestation.candidate_identities_or_profiles_read": false
+          }
+        },
+        {
+          "path": "phase1/results/archive_rejection_support_floor_20260902_5609a8e/independent_verification.json",
+          "sha256": "3ab7085a8eb7219b03575a5bc85a8d5395c986c3608eedd81fa1af564cb4796c",
+          "json_assertions": {
+            "protocol": "independent_archive_rejection_support_floor_v1",
+            "status": "INDEPENDENT_ARCHIVE_REJECTION_SUPPORT_FLOOR_PASS_POST_HOC",
+            "result_sha256": "ce8b30101a26fdba178c6046c24e55a219eacd1e307dc8c033cae754898f4248",
+            "all_result_fields_equal": true,
+            "producer_imported": false,
+            "outcomes_predictions_labels_accuracy_utility_read": false,
+            "identity_values_emitted": false
+          }
+        },
+        {
+          "path": "phase1/results/archive_rejection_support_floor_20260902_5609a8e/prior_evidence_crosswalk.json",
+          "sha256": "326ade363dd0199112ae2e2a265808f74488b4b2c9921807a7b2491d3fc23975",
+          "json_assertions": {
+            "classification": "PRIOR_EVIDENCE_OMISSION_CORRECTED_INDEPENDENT_RECONSTRUCTION",
+            "prior_result.commit": "bc88298cb410183cf642c132c5d1df2e2d9497ba",
+            "prior_result.sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184",
+            "current_result.commit": "5609a8e70098af0a912e61284529ca20d0a91f8e",
+            "current_result.sha256": "ce8b30101a26fdba178c6046c24e55a219eacd1e307dc8c033cae754898f4248",
+            "shared_estimand_exact_match.competition_count": 6,
+            "shared_estimand_exact_match.metric_distribution.accepted_archives.sum": 20,
+            "shared_estimand_exact_match.metric_distribution.physical_runs.sum": 94,
+            "shared_estimand_exact_match.metric_distribution.eligible_runs.sum": 92,
+            "shared_estimand_exact_match.metric_distribution.eligible_endpoints.sum": 2558,
+            "incremental_descriptive_fields.independent_scientific_confirmation": false
+          }
+        }
+      ]
+    }
+  ],
+  "reporting_contract": {
+    "source_v9_entries_must_be_preserved_without_modification": true,
+    "distinct_entries_added": 4,
+    "reconstruction_records_added": 1,
+    "reconstruction_records_must_not_appear_in_distinct_entries": true,
+    "duplicate_claim_components_require_reproduction_pointer": true,
+    "legacy_v9_entries_retroactively_fingerprinted": false,
+    "source_v9_provisional_status_must_be_preserved": true,
+    "predictor_effect_scaling_or_search_utility_language_allowed_by_v10": false
+  },
+  "security": {
+    "prospective_label_grade_outcome_or_prediction_values_read": false,
+    "raw_senior_archives_opened": false,
+    "task_run_card_code_edge_or_row_identities_emitted": false,
+    "row_level_release_created": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  },
+  "failure_rule": "Fail closed and emit no index if the source v9 SHA/protocol/status/entry count drifts; a source entry changes; any artifact SHA or assertion drifts; a distinct entry repeats a structured claim signature; a reconstruction lacks a prior target and exact shared-component match; a reconstruction is counted as distinct; the provisional first-960 status is promoted; or the security/reporting boundary changes."
+}

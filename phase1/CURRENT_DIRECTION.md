@@ -36,6 +36,11 @@ exact-stratum scaling confirmation。完整日程、kill 条件与防 scoop 定�
 给学长的最小 producer 动作、sidecar patch SHA、联合 scaling 边界与贡献归属已整理在
 `phase1/SENIOR_HANDOFF_20_DAY_SPRINT_20260902.md`。
 
+论文 reproducibility/audit appendix 已成稿，见 `phase1/PAPER_REPRODUCIBILITY_APPENDIX_DRAFT_20260902.md`。它把四级
+access boundary、immutable rebuild、unit/relation、split/common support、成本、first-960 one-time closure、no-rescue、
+clean-scaling 条件、统计依赖、release governance 和 failed-run retention 连成一份可审稿协议；所有 prospective 槽仍 sealed，
+该写作资产不读取新结果，也不计为独立科学证据。
+
 release 许可清单的口径已从历史 `22 competitions` 纠正为 v11 精确 `25 tasks`。25/25 官方 Kaggle
 rules URL 都已直接渲染初筛：完整 data+code 模板 / 简化旧模板 / 非标准详细模板=`16/7/2`，
 明确私下共享禁止 / 公开 forum 共享语句=`25/25`，明确 OSI 且不限商用条款=`18/25`，精确标准

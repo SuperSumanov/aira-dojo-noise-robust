@@ -389,3 +389,5 @@ benchmark for predictors and, equally, a benchmark for the claims made about the
   and `generator_provenance_completion_postflight_receipt_20260902.json`; configured
   model IDs are complete, but provider/contract provenance and release clearance are not.
 - Claim-withdrawal appendix: `PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md`.
+- Reproducibility/audit appendix: `PAPER_REPRODUCIBILITY_APPENDIX_DRAFT_20260902.md`;
+  prospective result slots remain sealed and no path in this appendix authorizes an L3 read.

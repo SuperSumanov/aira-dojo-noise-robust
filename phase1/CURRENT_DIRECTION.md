@@ -42,6 +42,29 @@ scaling、search utility 或方法效果。
 截至本段 runner **尚未 formal 执行**，因此上一段的未知量仍不得读取或报告；必须先公开该 runner 的 exact commit，
 再从 fresh formal root 单次执行。
 
+公开 exact commit=`5609a8e70098af0a912e61284529ca20d0a91f8e` 的 fresh formal 已完整通过：focused/full=
+`12/1,963 passed`（48 warnings，147.02 秒），producer A/B、非导入 verifier A/B、read-only before/after 均逐字节
+一致；root mode/files=`0500/29`，COMPLETE/FAILED_RC=`true/false`，network/forbidden-path/identity-schema/credential
+hits=`0/0/0/0`，manifest=`86973b22...06a1`，result/verifier SHA-256=`ce8b3010...f4248` /
+`3ab7085a...796c`。
+
+6 个 prior-supported competition 在 prior anchor 的 accepted archives / physical runs / eligible runs / endpoints
+总量为 `20/94/92/2,558`；min/median/max 分别为 archives=`1/4/5`、physical runs=`4/17/29`、eligible
+runs=`4/17/29`、endpoints=`50/458.5/944`。恰好一个 accepted archive 的 competition 有 `1` 个，但恰好一个
+physical 或 eligible run 的 competition 都为 **`0`**；即使最弱支持也不是 single-run artifact。最小 eligible-run
+fraction=`5/7=0.7142857`，最小 endpoints/eligible-run=`25/2=12.5`。最大 competition concentration share 在
+archives/physical/eligible/endpoints 上分别为 `1/4`、`29/94`、`29/92`、`472/1279`（最高 36.90%），未出现单个
+competition 完全垄断。current 7-transaction window 仅给 `1` 个 competition 增加 `1/4/4/96`，因此 prior floor 不是
+窗口普遍补齐造成的。
+
+这把 0KV 的有限正结论从“多数拒绝仍有某种 support”推进为“6 个 prior-supported competition 均有至少 4 个 eligible
+runs 和 50 个 endpoints，且支持分布未被单个 competition 垄断”。但它仍是 aggregate census 揭盲后的 post-hoc
+descriptive audit，只有 7 个 competition，不是新的 fully blind confirmation；prior anchor 不等于 event-time preexistence，
+不得估计未来 rejection 频率、因果效应、predictor accuracy/scaling、search utility 或建立 task 白/黑名单。
+release contract=`5 passed`，floor+runner+release focused=`17 passed`，全部相邻 archive 审计=`62 passed`；
+GPU/API/model fit/base update=`0/0/0/0`，label/grade/outcome/prediction/accuracy/utility/candidate identity/profile
+read=`false/false/false/false/false/false/false/false`，identity values emitted=`false`。
+
 ## 0KV. 2026-09-01 全部 14 个结构拒绝的支持度普查完成：13/14 在 prior anchor 已有 eligible support
 
 为避免把 0KT 的单个 absent 事件误写成总体频率，本段把当前 immutable observer census 中**全部 14 个结构拒绝事件**

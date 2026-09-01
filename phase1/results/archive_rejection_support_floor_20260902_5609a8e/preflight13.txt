@@ -1,0 +1,13 @@
+01_direction=Decision Corpus + Predictor Benchmark + Audit Protocol only; PASS
+02_question=among all seven anonymized rejected competitions how deep redundant and concentrated is accepted support at the frozen prior anchor and current snapshot; PASS
+03_context=post-hoc after aggregate census exact prior/current snapshots immutable observer copy completed census result and verification and exact public commit; PASS
+04_unit=seven distinct anonymized rejected competitions with the six prior-supported competitions as the primary subset; aliases excluded; PASS
+05_security=observer and hash-bound intake metadata only; rejection registry contents archive payloads labels outcomes predictions accuracy utility candidate identities and profiles remain unread or un-emitted; PASS
+06_controls=all four census support classes exact prior anchor exact seven-transaction window and current total; PASS
+07_repetitions=producer A/B and independent verifier A/B must be byte-identical; PASS
+08_independence=verifier does not import the support-floor producer and independently reconstructs every result field and exact rational summary; PASS
+09_reproducibility=exact public commit clean no-smudge worktree fixed hashes commands tests traces read-only receipt and manifest; PASS
+10_statistics=complete descriptive post-hoc census exact integer and rational summaries no sampling inference and no binary success threshold; PASS
+11_resources=CPU single-thread only; gpu api model-fit base-update 0/0/0/0; PASS
+12_trace=file and network traces plus credential forbidden-path identity-schema and worktree-cleanliness gates; PASS
+13_failure=hash drift prefix break unknown duplicate payload overlap inconsistent class task multiplicity duplicate run candidate tamper identity emission or any contract mismatch fails closed; PASS

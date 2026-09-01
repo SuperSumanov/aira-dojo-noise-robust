@@ -1,0 +1,12 @@
+status=PASS
+post_hoc_after_aggregate_census_readout=true
+producer_a_b_byte_identical=true
+independent_verifier_a_b_byte_identical=true
+readonly_receipts_byte_identical=true
+network_syscalls_detected=false
+forbidden_paths_detected=false
+identity_bearing_output_schema_detected=false
+credential_content_hits=0
+worktree_exact_clean=true
+labels_outcomes_predictions_accuracy_utility_read=false
+gpu_api_model_fit_base_update=0/0/0/0

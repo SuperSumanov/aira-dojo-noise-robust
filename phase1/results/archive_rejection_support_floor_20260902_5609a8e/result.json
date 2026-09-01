@@ -1,0 +1,913 @@
+{
+  "access_attestation": {
+    "archive_payloads_opened": false,
+    "candidate_identities_or_profiles_read": false,
+    "competition_archive_task_run_or_candidate_identity_values_emitted": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+    "labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+    "observation_and_hash_bound_intake_metadata_only": true,
+    "randomness_used": false,
+    "rejection_registry_contents_opened": false
+  },
+  "claim_boundary": {
+    "estimates_future_rejection_frequency_or_causal_effect": false,
+    "estimates_predictor_accuracy_scaling_search_utility_or_method_effect": false,
+    "full_census_descriptive_not_sampling_inference": true,
+    "no_binary_success_threshold": true,
+    "post_hoc_after_aggregate_census_readout": true,
+    "prior_anchor_support_is_not_event_time_preexistence": true,
+    "supports_task_whitelist_or_blacklist": false
+  },
+  "classification_and_metric_digest": "9e98dcf717b71f87b1b9396ac75a67f152b97c87112fab41fcef7570d85d661c",
+  "competition_support_class_counts": {
+    "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+    "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+    "NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+    "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 6,
+    "distinct_rejected_competitions": 7
+  },
+  "current_window_competition_counts_with_positive_increment": {
+    "accepted_archives": 1,
+    "eligible_endpoints": 1,
+    "eligible_runs": 1,
+    "physical_runs": 1
+  },
+  "distinct_competition_support_totals": {
+    "current_total": {
+      "accepted_archives": 21,
+      "eligible_endpoints": 2654,
+      "eligible_runs": 96,
+      "physical_runs": 98
+    },
+    "current_window": {
+      "accepted_archives": 1,
+      "eligible_endpoints": 96,
+      "eligible_runs": 4,
+      "physical_runs": 4
+    },
+    "prior_prefix": {
+      "accepted_archives": 20,
+      "eligible_endpoints": 2558,
+      "eligible_runs": 92,
+      "physical_runs": 94
+    }
+  },
+  "input_bindings": {
+    "census_result_sha256": "f904ff54e110057e4cd11c6f71a09c43661abea9e5e4fb37c39099338f917fad",
+    "census_verification_sha256": "39a634f0bba48dbeb3783f67589604a4ba8e840aaab65ad25daff55528e276e6",
+    "current_observations_sha256": "d2ed361a557bf52dadfe9f0547e49c16ea5dc1eea42a1c78f7b354542a2a704a",
+    "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "prior_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "protocol_sha256": "e60500f71a5820f02c1c9ba5bf5c886564574bed71d4fb9cba262989fe066b2d"
+  },
+  "integrity": {
+    "accepted_run_ids_unique": true,
+    "accepted_transactions_and_provenance_hash_bound": true,
+    "all_expected_distinct_rejected_competitions_summarized": true,
+    "census_event_and_competition_counts_reproduced": true,
+    "completed_census_result_and_verification_bound": true,
+    "current_inventory_reproduced": true,
+    "current_transactions_have_exact_prior_byte_prefix": true,
+    "one_consistent_class_per_competition": true
+  },
+  "mapping_audit": {
+    "accepted_archives": 133,
+    "accepted_filename_task_mismatches": 0,
+    "accepted_seeded_filename_archives": 131,
+    "accepted_single_task_archives": 133,
+    "accepted_task_metadata_fallback_archives": 2,
+    "accepted_tasks": 38,
+    "eligible_endpoints": 13581,
+    "eligible_runs": 517,
+    "hash_bound_source_provenance_rows": 543,
+    "physical_runs": 543,
+    "unique_run_ids": 543
+  },
+  "per_class_metric_summaries": {
+    "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": {
+      "competition_count": 0,
+      "current_total": {
+        "accepted_archives": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_endpoints": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "physical_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        }
+      },
+      "current_window": {
+        "accepted_archives": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_endpoints": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "physical_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        }
+      },
+      "prior_prefix": {
+        "accepted_archives": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_endpoints": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "physical_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        }
+      }
+    },
+    "CURRENT_WINDOW_ELIGIBLE_SUPPORT": {
+      "competition_count": 0,
+      "current_total": {
+        "accepted_archives": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_endpoints": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "physical_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        }
+      },
+      "current_window": {
+        "accepted_archives": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_endpoints": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "physical_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        }
+      },
+      "prior_prefix": {
+        "accepted_archives": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_endpoints": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "eligible_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        },
+        "physical_runs": {
+          "count": 0,
+          "maximum": null,
+          "maximum_share": null,
+          "median": null,
+          "minimum": null,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 0
+        }
+      }
+    },
+    "NO_ACCEPTED_ARCHIVE_SUPPORT": {
+      "competition_count": 1,
+      "current_total": {
+        "accepted_archives": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        },
+        "eligible_endpoints": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        },
+        "eligible_runs": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        },
+        "physical_runs": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        }
+      },
+      "current_window": {
+        "accepted_archives": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        },
+        "eligible_endpoints": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        },
+        "eligible_runs": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        },
+        "physical_runs": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        }
+      },
+      "prior_prefix": {
+        "accepted_archives": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        },
+        "eligible_endpoints": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        },
+        "eligible_runs": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        },
+        "physical_runs": {
+          "count": 1,
+          "maximum": 0,
+          "maximum_share": null,
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 0,
+          "sum": 0,
+          "zero_count": 1
+        }
+      }
+    },
+    "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": {
+      "competition_count": 6,
+      "current_total": {
+        "accepted_archives": {
+          "count": 6,
+          "maximum": 5,
+          "maximum_share": {
+            "decimal_17g": "0.23809523809523808",
+            "denominator": 21,
+            "numerator": 5
+          },
+          "median": {
+            "decimal_17g": "4",
+            "denominator": 1,
+            "numerator": 4
+          },
+          "minimum": 1,
+          "one_count": 1,
+          "positive_count": 6,
+          "sum": 21,
+          "zero_count": 0
+        },
+        "eligible_endpoints": {
+          "count": 6,
+          "maximum": 1040,
+          "maximum_share": {
+            "decimal_17g": "0.39186134137151468",
+            "denominator": 1327,
+            "numerator": 520
+          },
+          "median": {
+            "decimal_17g": "458.5",
+            "denominator": 2,
+            "numerator": 917
+          },
+          "minimum": 50,
+          "one_count": 0,
+          "positive_count": 6,
+          "sum": 2654,
+          "zero_count": 0
+        },
+        "eligible_runs": {
+          "count": 6,
+          "maximum": 29,
+          "maximum_share": {
+            "decimal_17g": "0.30208333333333331",
+            "denominator": 96,
+            "numerator": 29
+          },
+          "median": {
+            "decimal_17g": "17",
+            "denominator": 1,
+            "numerator": 17
+          },
+          "minimum": 4,
+          "one_count": 0,
+          "positive_count": 6,
+          "sum": 96,
+          "zero_count": 0
+        },
+        "physical_runs": {
+          "count": 6,
+          "maximum": 29,
+          "maximum_share": {
+            "decimal_17g": "0.29591836734693877",
+            "denominator": 98,
+            "numerator": 29
+          },
+          "median": {
+            "decimal_17g": "17",
+            "denominator": 1,
+            "numerator": 17
+          },
+          "minimum": 4,
+          "one_count": 0,
+          "positive_count": 6,
+          "sum": 98,
+          "zero_count": 0
+        }
+      },
+      "current_window": {
+        "accepted_archives": {
+          "count": 6,
+          "maximum": 1,
+          "maximum_share": {
+            "decimal_17g": "1",
+            "denominator": 1,
+            "numerator": 1
+          },
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 1,
+          "positive_count": 1,
+          "sum": 1,
+          "zero_count": 5
+        },
+        "eligible_endpoints": {
+          "count": 6,
+          "maximum": 96,
+          "maximum_share": {
+            "decimal_17g": "1",
+            "denominator": 1,
+            "numerator": 1
+          },
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 1,
+          "sum": 96,
+          "zero_count": 5
+        },
+        "eligible_runs": {
+          "count": 6,
+          "maximum": 4,
+          "maximum_share": {
+            "decimal_17g": "1",
+            "denominator": 1,
+            "numerator": 1
+          },
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 1,
+          "sum": 4,
+          "zero_count": 5
+        },
+        "physical_runs": {
+          "count": 6,
+          "maximum": 4,
+          "maximum_share": {
+            "decimal_17g": "1",
+            "denominator": 1,
+            "numerator": 1
+          },
+          "median": {
+            "decimal_17g": "0",
+            "denominator": 1,
+            "numerator": 0
+          },
+          "minimum": 0,
+          "one_count": 0,
+          "positive_count": 1,
+          "sum": 4,
+          "zero_count": 5
+        }
+      },
+      "prior_prefix": {
+        "accepted_archives": {
+          "count": 6,
+          "maximum": 5,
+          "maximum_share": {
+            "decimal_17g": "0.25",
+            "denominator": 4,
+            "numerator": 1
+          },
+          "median": {
+            "decimal_17g": "4",
+            "denominator": 1,
+            "numerator": 4
+          },
+          "minimum": 1,
+          "one_count": 1,
+          "positive_count": 6,
+          "sum": 20,
+          "zero_count": 0
+        },
+        "eligible_endpoints": {
+          "count": 6,
+          "maximum": 944,
+          "maximum_share": {
+            "decimal_17g": "0.36903831118060987",
+            "denominator": 1279,
+            "numerator": 472
+          },
+          "median": {
+            "decimal_17g": "458.5",
+            "denominator": 2,
+            "numerator": 917
+          },
+          "minimum": 50,
+          "one_count": 0,
+          "positive_count": 6,
+          "sum": 2558,
+          "zero_count": 0
+        },
+        "eligible_runs": {
+          "count": 6,
+          "maximum": 29,
+          "maximum_share": {
+            "decimal_17g": "0.31521739130434784",
+            "denominator": 92,
+            "numerator": 29
+          },
+          "median": {
+            "decimal_17g": "17",
+            "denominator": 1,
+            "numerator": 17
+          },
+          "minimum": 4,
+          "one_count": 0,
+          "positive_count": 6,
+          "sum": 92,
+          "zero_count": 0
+        },
+        "physical_runs": {
+          "count": 6,
+          "maximum": 29,
+          "maximum_share": {
+            "decimal_17g": "0.30851063829787234",
+            "denominator": 94,
+            "numerator": 29
+          },
+          "median": {
+            "decimal_17g": "17",
+            "denominator": 1,
+            "numerator": 17
+          },
+          "minimum": 4,
+          "one_count": 0,
+          "positive_count": 6,
+          "sum": 94,
+          "zero_count": 0
+        }
+      }
+    }
+  },
+  "population": {
+    "accepted_archives": 133,
+    "alias_quarantined_archives": 8,
+    "baseline_archives": 128,
+    "distinct_rejected_competitions": 7,
+    "eligible_endpoints": 13581,
+    "eligible_runs": 517,
+    "eligible_structural_pairs": 3325,
+    "eligible_tasks": 38,
+    "observed_archives": 283,
+    "pending_archives": 0,
+    "physical_runs": 543,
+    "prior_supported_competitions": 6,
+    "rejection_reason_counts": {
+      "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION": 8,
+      "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": 3,
+      "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": 2,
+      "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": 9
+    },
+    "structural_rejected_archives": 14
+  },
+  "prior_supported_competition_floor": {
+    "competition_count": 6,
+    "competitions_with_exactly_one_prior_accepted_archive": 1,
+    "competitions_with_exactly_one_prior_eligible_run": 0,
+    "competitions_with_exactly_one_prior_physical_run": 0,
+    "minimum_prior_eligible_run_fraction": {
+      "decimal_17g": "0.7142857142857143",
+      "denominator": 7,
+      "numerator": 5
+    },
+    "minimum_prior_endpoints_per_eligible_run": {
+      "decimal_17g": "12.5",
+      "denominator": 2,
+      "numerator": 25
+    },
+    "prior_metric_summaries": {
+      "accepted_archives": {
+        "count": 6,
+        "maximum": 5,
+        "maximum_share": {
+          "decimal_17g": "0.25",
+          "denominator": 4,
+          "numerator": 1
+        },
+        "median": {
+          "decimal_17g": "4",
+          "denominator": 1,
+          "numerator": 4
+        },
+        "minimum": 1,
+        "one_count": 1,
+        "positive_count": 6,
+        "sum": 20,
+        "zero_count": 0
+      },
+      "eligible_endpoints": {
+        "count": 6,
+        "maximum": 944,
+        "maximum_share": {
+          "decimal_17g": "0.36903831118060987",
+          "denominator": 1279,
+          "numerator": 472
+        },
+        "median": {
+          "decimal_17g": "458.5",
+          "denominator": 2,
+          "numerator": 917
+        },
+        "minimum": 50,
+        "one_count": 0,
+        "positive_count": 6,
+        "sum": 2558,
+        "zero_count": 0
+      },
+      "eligible_runs": {
+        "count": 6,
+        "maximum": 29,
+        "maximum_share": {
+          "decimal_17g": "0.31521739130434784",
+          "denominator": 92,
+          "numerator": 29
+        },
+        "median": {
+          "decimal_17g": "17",
+          "denominator": 1,
+          "numerator": 17
+        },
+        "minimum": 4,
+        "one_count": 0,
+        "positive_count": 6,
+        "sum": 92,
+        "zero_count": 0
+      },
+      "physical_runs": {
+        "count": 6,
+        "maximum": 29,
+        "maximum_share": {
+          "decimal_17g": "0.30851063829787234",
+          "denominator": 94,
+          "numerator": 29
+        },
+        "median": {
+          "decimal_17g": "17",
+          "denominator": 1,
+          "numerator": 17
+        },
+        "minimum": 4,
+        "one_count": 0,
+        "positive_count": 6,
+        "sum": 94,
+        "zero_count": 0
+      }
+    }
+  },
+  "protocol": "archive_rejection_support_floor_v1",
+  "status": "ARCHIVE_REJECTION_SUPPORT_FLOOR_COMPLETE_POST_HOC"
+}

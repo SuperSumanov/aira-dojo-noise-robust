@@ -1,0 +1,92 @@
+{
+  "access": {
+    "candidate_identity_or_profile_read": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+    "identity_values_emitted": false,
+    "label_grade_outcome_prediction_accuracy_utility_read": false
+  },
+  "claim_boundary": {
+    "estimates_predictor_accuracy_scaling_search_utility_or_method_effect": false,
+    "full_census_descriptive_not_sampling_inference": true,
+    "no_binary_success_threshold": true,
+    "post_hoc_after_aggregate_census_readout": true,
+    "prior_anchor_support_is_not_event_time_preexistence": true
+  },
+  "formal": {
+    "complete": true,
+    "control_commit": "5609a8e70098af0a912e61284529ca20d0a91f8e",
+    "failed_rc_present": false,
+    "file_count": 29,
+    "manifest_sha256": "86973b2260f99676513c8f3e7a951accafcf0cdfaf4bf5a35e9bf74bc9ed06a1",
+    "mode": "0500",
+    "root": "/research/d7/spc/yzyang4/prospective-archive-support-floor/formal-5609a8e-support-floor-v1/public"
+  },
+  "integrity": {
+    "credential_content_hits": 0,
+    "forbidden_path_hits": 0,
+    "identity_schema_hits": 0,
+    "independent_verifier_a_b_byte_identical": true,
+    "network_syscall_hits": 0,
+    "producer_a_b_byte_identical": true,
+    "readonly_receipts_byte_identical": true,
+    "worktree_exact_clean": true
+  },
+  "population": {
+    "distinct_rejected_competitions": 7,
+    "no_accepted_archive_support_competitions": 1,
+    "prior_supported_competitions": 6
+  },
+  "prior_supported_floor": {
+    "accepted_archives": {
+      "exactly_one_count": 1,
+      "maximum": 5,
+      "maximum_share": "1/4",
+      "median": "4/1",
+      "minimum": 1,
+      "sum": 20
+    },
+    "eligible_endpoints": {
+      "maximum": 944,
+      "maximum_share": "472/1279",
+      "median": "917/2",
+      "minimum": 50,
+      "sum": 2558
+    },
+    "eligible_runs": {
+      "exactly_one_count": 0,
+      "maximum": 29,
+      "maximum_share": "29/92",
+      "median": "17/1",
+      "minimum": 4,
+      "sum": 92
+    },
+    "minimum_eligible_endpoints_per_eligible_run": "25/2",
+    "minimum_eligible_run_fraction": "5/7",
+    "physical_runs": {
+      "exactly_one_count": 0,
+      "maximum": 29,
+      "maximum_share": "29/94",
+      "median": "17/1",
+      "minimum": 4,
+      "sum": 94
+    }
+  },
+  "release_files": {
+    "independent_verification_sha256": "3ab7085a8eb7219b03575a5bc85a8d5395c986c3608eedd81fa1af564cb4796c",
+    "result_sha256": "ce8b30101a26fdba178c6046c24e55a219eacd1e307dc8c033cae754898f4248"
+  },
+  "status": "ARCHIVE_REJECTION_SUPPORT_FLOOR_COMPLETE_POST_HOC",
+  "tests": {
+    "focused_passed": 12,
+    "full_passed": 1963,
+    "full_seconds": 147.02,
+    "warnings": 48
+  },
+  "window_increment": {
+    "accepted_archives": 1,
+    "competition_count": 1,
+    "eligible_endpoints": 96,
+    "eligible_runs": 4,
+    "physical_runs": 4
+  }
+}

@@ -14,7 +14,7 @@ readonly source_repo=${1:?source repository required}
 readonly source_commit=${2:?40-character source commit required}
 readonly formal_root=${3:?new formal output root required}
 readonly python_bin=/research/d7/spc/yzyang4/venvs/exp/bin/python
-readonly worktree_root=/research/d7/spc/yzyang4/worktrees/structural-gate-utility-${source_commit:0:12}-v2
+readonly worktree_root=/research/d7/spc/yzyang4/worktrees/structural-gate-utility-${source_commit:0:12}-v3
 readonly protocol_rel=phase1/structural_gate_utility_certificate_v1.json
 readonly protocol_sha=bb4091ff0585c288d0fb99614125e82148338d6871872ae023a1c41913c60308
 

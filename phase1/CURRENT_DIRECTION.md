@@ -33,6 +33,10 @@
 给学长的最小 producer 动作、sidecar patch SHA、联合 scaling 边界与贡献归属已整理在
 `phase1/SENIOR_HANDOFF_20_DAY_SPRINT_20260902.md`。
 
+英文正文已从蓝图推进为 `phase1/PAPER_DRAFT_DECISION_CORPUS_20260902.md` v0.1：Abstract、Sections 1--8、
+limitations/governance 与逐 claim evidence routing 均已展开；只使用 Evidence Index v10 已核验数字。prospective
+Table 4B 与 clean-scaling Table 5 保持 sealed/conditional 占位，没有读取或臆造 outcome/prediction/accuracy/utility。
+
 ## 0L1. 2026-09-02 v11 schema gate 已关闭；完整 release 仍受内容与许可门阻塞
 
 为执行 0L0 中“只做能关闭 release blocker 的 CPU 工作”，现已对历史 v11 cards 与九个 decision JSONL 做值盲

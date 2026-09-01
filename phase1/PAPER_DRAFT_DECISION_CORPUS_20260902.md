@@ -312,9 +312,11 @@ model pretraining. Generator, operator, hardware, time, task difficulty, executi
 failure, and retention all influence the observed population.
 
 The v11 schema is machine-inventoried, but data release is not yet legally or
-content-cleared. Prepared-data matching currently covers 23 of 25 tasks; competition
-rules, provider-output terms, final licenses/notices, and privacy/path scanning remain
-release gates. Immutable historical batches are never silently edited. If sanitation
+content-cleared. Prepared-data matching currently covers 23 of 25 tasks. All 25
+official competition rules pages have been triaged, but seven compact legacy pages,
+two nonstandard detailed templates, provider-output terms, final licenses/notices,
+and privacy/path scanning remain release gates. Immutable historical batches are
+never silently edited. If sanitation
 is required, a new append-only successor and receipt are created while the affected
 version remains documented.
 
@@ -351,4 +353,6 @@ benchmark for predictors and, equally, a benchmark for the claims made about the
 - Table 1--3 copy-ready material: `PAPER_TABLES_1_3_DRAFT_20260902.md`.
 - Schema/release boundaries: `SCHEMA_DICTIONARY_DECISION_CORPUS_V11_20260902.md` and
   `DATACARD_DECISION_CORPUS_DRAFT_20260902.md`.
+- Rules triage: `KAGGLE_RULES_TRIAGE_V11_20260902.md` and
+  `licenses_v11_draft.json`; this is not legal clearance.
 - Claim-withdrawal appendix: `PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md`.

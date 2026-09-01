@@ -1,0 +1,62 @@
+{
+  "schema_version": "decision-corpus-v11-kaggle-rules-triage-v1",
+  "status": "PARTIAL_RULES_TRIAGE_NOT_LEGAL_CLEARANCE",
+  "read_at_utc": "2026-09-01T20:31:47Z",
+  "task_inventory": {
+    "source": "phase1/cards_current_v11.jsonl",
+    "distinct_task_slugs": 25
+  },
+  "aggregate": {
+    "rules_pages_visible": 25,
+    "detailed_standard": 16,
+    "compact_legacy": 7,
+    "detailed_legacy_custom": 2,
+    "explicit_private_sharing_prohibition": 25,
+    "public_forum_sharing_statement": 25,
+    "explicit_osi_no_commercial_limit": 18,
+    "exact_standard_data_nonredistribution": 13
+  },
+  "interpretation": {
+    "competition_data_redistribution_allowed": false,
+    "external_code_dataset_release_cleared": false,
+    "institutional_legal_review_required": true,
+    "missing_clause_means_permission": false,
+    "winner_license_is_blanket_participant_code_license": false
+  },
+  "field_semantics": {
+    "data_nonredistribution": "Exact standard non-redistribution sentence observed in the rendered rules page; false is not permission.",
+    "osi_no_commercial_limit": "Exact OSI/no-commercial-limit clause observed in the rendered rules page; false is not permission."
+  },
+  "tasks": [
+    {"slug":"aerial-cactus-identification","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/aerial-cactus-identification/rules","rules_tabs":32,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":"none","winner_solution_license_waived":true},
+    {"slug":"aptos2019-blindness-detection","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/aptos2019-blindness-detection/rules","rules_tabs":32,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":"OPEN SOURCE","winner_solution_license_waived":false},
+    {"slug":"chaii-hindi-and-tamil-question-answering","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/chaii-hindi-and-tamil-question-answering/rules","rules_tabs":35,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":"Open Source","winner_solution_license_waived":false},
+    {"slug":"denoising-dirty-documents","template":"compact_legacy","rules_url":"https://www.kaggle.com/competitions/denoising-dirty-documents/rules","rules_tabs":7,"data_nonredistribution":false,"osi_no_commercial_limit":false,"winner_license_type":null,"winner_solution_license_waived":false},
+    {"slug":"dog-breed-identification","template":"compact_legacy","rules_url":"https://www.kaggle.com/competitions/dog-breed-identification/rules","rules_tabs":6,"data_nonredistribution":false,"osi_no_commercial_limit":false,"winner_license_type":null,"winner_solution_license_waived":false,"rules_acceptance_not_required":true},
+    {"slug":"dogs-vs-cats-redux-kernels-edition","template":"compact_legacy","rules_url":"https://www.kaggle.com/competitions/dogs-vs-cats-redux-kernels-edition/rules","rules_tabs":7,"data_nonredistribution":false,"osi_no_commercial_limit":false,"winner_license_type":null,"winner_solution_license_waived":false},
+    {"slug":"google-quest-challenge","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/google-quest-challenge/rules","rules_tabs":34,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":"Open-Source","winner_solution_license_waived":false},
+    {"slug":"histopathologic-cancer-detection","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/histopathologic-cancer-detection/rules","rules_tabs":34,"data_nonredistribution":false,"osi_no_commercial_limit":true,"winner_license_type":null,"winner_solution_license_waived":true},
+    {"slug":"kuzushiji-recognition","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/kuzushiji-recognition/rules","rules_tabs":34,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":"Open Source under MIT License","winner_solution_license_waived":false},
+    {"slug":"leaf-classification","template":"compact_legacy","rules_url":"https://www.kaggle.com/competitions/leaf-classification/rules","rules_tabs":7,"data_nonredistribution":false,"osi_no_commercial_limit":false,"winner_license_type":null,"winner_solution_license_waived":false},
+    {"slug":"learning-agency-lab-automated-essay-scoring-2","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/learning-agency-lab-automated-essay-scoring-2/rules","rules_tabs":33,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":"OPEN SOURCE - MIT","winner_solution_license_waived":false},
+    {"slug":"mlsp-2013-birds","template":"compact_legacy","rules_url":"https://www.kaggle.com/competitions/mlsp-2013-birds/rules","rules_tabs":10,"data_nonredistribution":false,"osi_no_commercial_limit":false,"winner_license_type":null,"winner_solution_license_waived":false},
+    {"slug":"nomad2018-predict-transparent-conductors","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/nomad2018-predict-transparent-conductors/rules","rules_tabs":30,"data_nonredistribution":false,"osi_no_commercial_limit":true,"winner_license_type":null,"winner_solution_license_waived":false},
+    {"slug":"petfinder-pawpularity-score","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/petfinder-pawpularity-score/rules","rules_tabs":33,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":"Open-Source","winner_solution_license_waived":false},
+    {"slug":"random-acts-of-pizza","template":"compact_legacy","rules_url":"https://www.kaggle.com/competitions/random-acts-of-pizza/rules","rules_tabs":7,"data_nonredistribution":false,"osi_no_commercial_limit":false,"winner_license_type":null,"winner_solution_license_waived":false},
+    {"slug":"ranzcr-clip-catheter-line-classification","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/ranzcr-clip-catheter-line-classification/rules","rules_tabs":36,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":null,"winner_solution_license_waived":false},
+    {"slug":"spaceship-titanic","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/spaceship-titanic/rules","rules_tabs":29,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":null,"winner_solution_license_waived":false},
+    {"slug":"spooky-author-identification","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/spooky-author-identification/rules","rules_tabs":33,"data_nonredistribution":false,"osi_no_commercial_limit":true,"winner_license_type":null,"winner_solution_license_waived":false},
+    {"slug":"tabular-playground-series-dec-2021","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/tabular-playground-series-dec-2021/rules","rules_tabs":28,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":"None","winner_solution_license_waived":false},
+    {"slug":"tabular-playground-series-may-2022","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/tabular-playground-series-may-2022/rules","rules_tabs":28,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":"None","winner_solution_license_waived":false},
+    {"slug":"text-normalization-challenge-english-language","template":"detailed_legacy_custom","rules_url":"https://www.kaggle.com/competitions/text-normalization-challenge-english-language/rules","rules_tabs":30,"data_nonredistribution":false,"osi_no_commercial_limit":true,"winner_license_type":null,"winner_solution_license_waived":false},
+    {"slug":"text-normalization-challenge-russian-language","template":"detailed_legacy_custom","rules_url":"https://www.kaggle.com/competitions/text-normalization-challenge-russian-language/rules","rules_tabs":30,"data_nonredistribution":false,"osi_no_commercial_limit":true,"winner_license_type":null,"winner_solution_license_waived":false},
+    {"slug":"tweet-sentiment-extraction","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/tweet-sentiment-extraction/rules","rules_tabs":33,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":"Open Source","winner_solution_license_waived":false},
+    {"slug":"us-patent-phrase-to-phrase-matching","template":"detailed_standard","rules_url":"https://www.kaggle.com/competitions/us-patent-phrase-to-phrase-matching/rules","rules_tabs":33,"data_nonredistribution":true,"osi_no_commercial_limit":true,"winner_license_type":"OPEN SOURCE","winner_solution_license_waived":false},
+    {"slug":"whale-categorization-playground","template":"compact_legacy","rules_url":"https://www.kaggle.com/competitions/whale-categorization-playground/rules","rules_tabs":6,"data_nonredistribution":false,"osi_no_commercial_limit":false,"winner_license_type":null,"winner_solution_license_waived":false}
+  ],
+  "common_observations": {
+    "private_sharing_prohibition_all_tasks": true,
+    "public_forum_sharing_statement_all_tasks": true,
+    "raw_rule_text_or_page_snapshot_redistributed": false
+  }
+}

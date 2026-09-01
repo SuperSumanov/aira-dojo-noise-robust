@@ -33,6 +33,13 @@
 给学长的最小 producer 动作、sidecar patch SHA、联合 scaling 边界与贡献归属已整理在
 `phase1/SENIOR_HANDOFF_20_DAY_SPRINT_20260902.md`。
 
+release 许可清单的口径已从历史 `22 competitions` 纠正为 v11 精确 `25 tasks`。25/25 官方 Kaggle
+rules URL 都已直接渲染初筛：完整 data+code 模板 / 简化旧模板 / 非标准详细模板=`16/7/2`，
+明确私下共享禁止 / 公开 forum 共享语句=`25/25`，明确 OSI 且不限商用条款=`18/25`，精确标准
+Competition Data 不再分发语句=`13/25`。未观察到条款不等于获得许可；特别是 7 个简化旧页和派生代码
+外部发布仍须机构/法律复核。该工作只把规则 gate 从 BLOCKED 推进为 PARTIAL，不是 release clearance，见
+`phase1/KAGGLE_RULES_TRIAGE_V11_20260902.md` 与 `phase1/licenses_v11_draft.json`。
+
 英文正文已从蓝图推进为 `phase1/PAPER_DRAFT_DECISION_CORPUS_20260902.md` v0.1：Abstract、Sections 1--8、
 limitations/governance 与逐 claim evidence routing 均已展开；只使用 Evidence Index v10 已核验数字。prospective
 Table 4B 与 clean-scaling Table 5 保持 sealed/conditional 占位，没有读取或臆造 outcome/prediction/accuracy/utility。

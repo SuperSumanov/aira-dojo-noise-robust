@@ -170,7 +170,8 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 
 - aira-dojo 改动代码继承上游 CC BY-NC 4.0 与 Meta attribution；
 - Kaggle competition data 必须零字节分发，用户自行通过官方 prepare/API 获取并遵守 ToS/逐赛事规则；
-- 22 个赛事规则的旧审计只精读 4 个，其余依赖模板/API 字段推断，必须逐项复核；
+- v11 实际是 25 个 task，不是旧清单的 22；25/25 官方规则页已可追溯初筛，但 7 个简化旧模板、2 个
+  非标准详细模板及数据/代码外部发布解释仍需机构/法律复核；
 - Qwen 生成批次的 provider 输出条款与计划中的 Apache-2.0/CC-BY-4.0 数据许可兼容性尚需最终法律/机构确认；
 - 需要最终 `licenses.json`（competition slug、规则 URL、审计日期、允许的衍生发布范围）与 generator/provider
   provenance table；
@@ -185,7 +186,7 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 |---|---|---|
 | v11 16,012-card competition-data scan | BLOCKED | 对所有 prepared tasks 重跑高熵逐字扫描并独立验证 |
 | credential/PII/path scan on final public fields | PARTIAL | 对精确 release candidate 做双实现零命中/脱敏 receipt |
-| 逐 competition 规则审计 | BLOCKED | 22/22 rule URLs、版本日期、派生代码/score/tree 发布判断 |
+| 逐 competition 规则审计 | PARTIAL | 25/25 rule URLs 已初筛；简化/非标准模板与派生代码/score/tree 发布仍需机构/法律裁决 |
 | provider/model output terms by immutable batch | PARTIAL | DeepSeek/Qwen provenance 与许可兼容裁决 |
 | final dataset license + upstream notices | BLOCKED | 法律/机构 review；生成 `LICENSE`, `NOTICE`, `licenses.json` |
 | v11 schema dictionary | COMPLETE (SCHEMA ONLY) | 10 resources / 24,119 rows 已机器盘点并独立复核；完整 release 仍受内容/许可门阻塞 |
@@ -206,6 +207,7 @@ v11 cards 与九个 decision JSONL 的完整字段字典已经固定在
 - release descriptors：`phase1/corpus_releases/`
 - current claim ledger：`phase1/results/decision_corpus_evidence_index_v10_20260902_983bdec/`
 - paper-facing withdrawal table：`phase1/PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md`
+- Kaggle rules triage / draft license map：`phase1/KAGGLE_RULES_TRIAGE_V11_20260902.md` / `phase1/licenses_v11_draft.json`
 - decision audit：`phase1/results/decision_corpus_audit_v11_20260814/`
 - source provenance：`phase1/results/v11_source_provenance_audit_20260814/`
 - choice-fragment boundary：`phase1/results/raw_choice_set_completeness_v11_20260815_6610618/`

@@ -1,7 +1,8 @@
 # 发布合规清单(2026-08-08 首版,实证支撑)
 
 > **2026-09-02 状态覆盖：历史初版，不是 v11 最终 release clearance。** 本文件的污染扫描只覆盖 v6 的
-> 9,433 cards，且 22 个赛事规则只精读 4 个；v11 已有 16,012 cards。Qwen 输出条款与最终数据许可兼容性、
+> 9,433 cards，且当时清单的 22 个赛事规则只精读 4 个；v11 已有 16,012 cards / 25 tasks。
+> 2026-09-02 的 25/25 官方规则页初筛见 `KAGGLE_RULES_TRIAGE_V11_20260902.md`，仍不是法律放行。Qwen 输出条款与最终数据许可兼容性、
 > 逐赛事规则、全量 credential/PII/competition-data scan、`licenses.json` 和机构/法律 review 均未闭合。
 > 本文件末尾“没有直接竞品”的 novelty 结论也已被 ML-Agent、OpenMLE 与 mle-traj supersede，不得引用。
 > 当前数据卡入口：`phase1/DATACARD_DECISION_CORPUS_DRAFT_20260902.md`。

@@ -56,6 +56,33 @@
     "worktree_exact_clean": true,
     "gpu_paid_api_model_fit_base_update": "0/0/0/0"
   },
+  "public_release_postpush": {
+    "control_commit": "361e94171139630b90d8b969da06d78b06e601e3",
+    "v1_failure": {
+      "focused_passed": 16,
+      "full_phase1_passed": 1950,
+      "full_phase1_failed": 1,
+      "failure_class": "POSTPUSH_HARNESS_UMASK_PERMISSION_FAILURE",
+      "scientific_or_release_artifact_mismatch": false
+    },
+    "v2_success": {
+      "only_change": "set umask 077 in the external post-push harness and use a fresh root",
+      "focused_passed": 16,
+      "full_phase1_passed": 1951,
+      "full_phase1_warnings": 48,
+      "full_phase1_seconds": 145.85,
+      "root_mode": "0500",
+      "file_count": 10,
+      "manifest_sha256": "4cbbd83b16b7bb9805798b565fd2ffe285ba4a3ed37b6b6b072238dce232f270",
+      "result_hash_exact": true,
+      "independent_verification_hash_exact": true,
+      "remote_manifest_binding_exact": true,
+      "identity_release_contract_passed": true,
+      "credential_filename_hits": 0,
+      "credential_content_hits": 0,
+      "worktree_exact_clean": true
+    }
+  },
   "failed_attempt_retained": {
     "control_commit": "ec2bf654750080ffce6f1972789adc50033c5e0e",
     "focused_passed": 12,

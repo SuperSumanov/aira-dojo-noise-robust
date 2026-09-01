@@ -72,6 +72,11 @@ def test_release_integrity_and_claim_boundaries_are_preserved() -> None:
     assert result["claim_boundary"]["estimates_causal_effect"] is False
     assert summary["failed_attempt_retained"]["scientific_readout_occurred"] is False
     assert summary["failed_attempt_retained"]["partial_output_reused"] is False
+    postpush = summary["public_release_postpush"]
+    assert postpush["v1_failure"]["scientific_or_release_artifact_mismatch"] is False
+    assert postpush["v2_success"]["full_phase1_passed"] == 1951
+    assert postpush["v2_success"]["result_hash_exact"] is True
+    assert postpush["v2_success"]["identity_release_contract_passed"] is True
 
 
 def test_release_contains_no_identity_bearing_schema_keys() -> None:

@@ -36,6 +36,11 @@ competition 的唯一支持总量。不得据此建立 task 白名单/黑名单�
 - network / forbidden path / identity-schema / credential hits：`0 / 0 / 0 / 0`
 - GPU / paid API / model fit / base update：`0 / 0 / 0 / 0`
 
+公开 release commit `361e941...01e3` 的 post-push v1 因外部 harness 未设 `umask 077`，一个既有权限测试在
+`16 focused passed / 1,950 full passed / 1 failed` 后停止；fresh v2 只修 harness umask，随后 focused/full=
+`16/1,951 passed`（48 warnings，145.85 秒），发布哈希、身份擦除、安全扫描与 clean-worktree 门全部通过，manifest=
+`4cbbd83b...2f270`。这两个 post-push 都没有重算 census。
+
 第一次 `ec2bf65...5e0e` formal 在 `12 / 1,947 passed` 后、首个 producer 导入阶段因 module path 错误停止；没有生成
 result/verifier，也没有科学 readout。fresh `7ad0164` 只修为 exact worktree 内 `python -m` 启动，未改协议、输入或分类规则，
 且未复用第一次 partial root。

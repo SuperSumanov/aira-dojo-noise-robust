@@ -60,6 +60,12 @@ accuracy/scaling 或 search utility。公开 release contract=`4 passed`，censu
 GPU/API/model fit/base update=`0/0/0/0`，label/outcome/prediction/accuracy/utility/candidate identity/profile
 read=`false/false/false/false/false/false/false`，identity values emitted=`false`。
 
+公开 release commit=`361e94171139630b90d8b969da06d78b06e601e3` 的 post-push v1 focused=`16 passed`，但外部
+harness 未设 `umask 077`，一个既有 private-file 权限测试在 full=`1,950 passed/1 failed` 后正确停止；该失败不涉及 census
+或 release artifact。fresh v2 只补 harness umask，随后 focused/full=`16/1,951 passed`（48 warnings，145.85 秒），root
+mode/files=`0500/10`，result/verifier/remote-manifest 字节绑定、identity release contract、credential 与 clean-worktree 门全过；
+manifest=`4cbbd83b...2f270`。v1 失败根保留，v2 未重算科学结果。
+
 ## 0KU. 2026-09-01 517-run WL 冻结链完成：旧 494-run 前缀零删除，新增 23 runs
 
 零 fit support renewal v2 的 WL 路径已在 current snapshot=`e9e12c63...8a6d` 上完整结束并 promotion；远端 formal root

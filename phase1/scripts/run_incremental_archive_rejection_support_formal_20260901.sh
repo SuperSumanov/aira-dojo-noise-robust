@@ -72,8 +72,9 @@ static_check
 set +u
 source ~/env_setup.sh
 set -u
-PYTHON_BIN="$(command -v python3.11 || command -v python3 || command -v python)"
-[[ -n "$PYTHON_BIN" ]] || die "python interpreter absent"
+PYTHON_BIN=/research/d7/spc/yzyang4/venvs/exp/bin/python
+[[ -x "$PYTHON_BIN" ]] || die "verified experiment python absent"
+"$PYTHON_BIN" -c 'import pytest' || die "pytest absent from verified experiment python"
 git -C "$SOURCE_REPO" fetch fork phase1-value-critic
 [[ "$(git -C "$SOURCE_REPO" rev-parse fork/phase1-value-critic)" == "$CONTROL_COMMIT" ]] \
   || die "public branch does not equal requested commit"

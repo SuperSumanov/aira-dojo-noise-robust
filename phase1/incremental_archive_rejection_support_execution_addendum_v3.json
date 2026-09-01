@@ -1,0 +1,37 @@
+{
+  "protocol": "incremental_archive_rejection_support_execution_addendum_v3",
+  "parent_execution_addendum_path": "phase1/incremental_archive_rejection_support_execution_addendum_v2.json",
+  "parent_execution_addendum_sha256": "7a144f73a6bba8550422fd8b2faf8dd7c8818ee4d747e22b73964e81ff04628f",
+  "execution_protocol_path": "phase1/incremental_archive_rejection_support_audit_execution_v2.json",
+  "execution_protocol_sha256": "451f4b64c3029e0240e618e48de180cddc8aa36d23fb6f0e2b4b966dd57008b2",
+  "failed_attempt": {
+    "exact_commit": "78fe667b2d68f6ce3c03038fe4bdf95ee630c91c",
+    "formal_root": "/research/d7/spc/yzyang4/prospective-archive-support/formal-78fe667-incremental-support-v1/public",
+    "failure_stage": "focused_test_interpreter_precondition_before_producer",
+    "failure_reason": "the runner selected system Python, which did not contain pytest; the repository's established experiment Python was not used",
+    "exit_code": 1,
+    "failed_rc_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "focused_tests_sha256": "b72695fcb3e2889d64484497e2ea8079822f1532c2505f226cde970957bedf7d",
+    "environment_sha256": "655472296e6c741cb42410930815401178d6244e12f7e57b1d4f1443f7c242f8",
+    "preflight13_sha256": "3a2a8c601860c8c92db2ff339987c4ef6d2a014b72319dc00ad80eb2adc36bd3",
+    "focused_tests_passed": 0,
+    "full_tests_started": false,
+    "producer_started": false,
+    "result_files_created": 0,
+    "verification_files_created": 0,
+    "complete_marker_created": false,
+    "scientific_readout_values_read": false
+  },
+  "single_execution_change": {
+    "field": "runner.PYTHON_BIN",
+    "old": "first interpreter returned by command -v python3.11, python3, or python",
+    "new": "/research/d7/spc/yzyang4/venvs/exp/bin/python",
+    "preflight": "the exact interpreter is executable and imports pytest 7.4.3 before the formal root is used for tests or producer"
+  },
+  "scientific_changes": [],
+  "protocol_changes": [],
+  "input_changes": [],
+  "resource_changes": [],
+  "access_changes": [],
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

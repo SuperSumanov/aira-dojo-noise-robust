@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PARENT = ROOT / "phase1/incremental_archive_rejection_support_audit_v1.json"
 EXECUTION = ROOT / "phase1/incremental_archive_rejection_support_audit_execution_v2.json"
 ADDENDUM = ROOT / "phase1/incremental_archive_rejection_support_execution_addendum_v2.json"
+ADDENDUM_V3 = ROOT / "phase1/incremental_archive_rejection_support_execution_addendum_v3.json"
 RUNNER = ROOT / "phase1/scripts/run_incremental_archive_rejection_support_formal_20260901.sh"
 
 
@@ -57,3 +58,21 @@ def test_runner_uses_only_the_immutable_observer_copy() -> None:
     assert 'OBSERVATIONS="$STATE_ROOT/observations.json"' not in text
     assert "EXPECTED_OBSERVATIONS_RECEIPT_SHA=" in text
     assert "EXPECTED_SOURCE_ARCHIVES" not in text
+
+
+def test_v3_addendum_records_result_free_python_selection_failure() -> None:
+    parent = load(ADDENDUM)
+    addendum = load(ADDENDUM_V3)
+    assert addendum["parent_execution_addendum_sha256"] == sha(ADDENDUM)
+    assert addendum["execution_protocol_sha256"] == sha(EXECUTION)
+    assert addendum["failed_attempt"]["focused_tests_passed"] == 0
+    assert addendum["failed_attempt"]["producer_started"] is False
+    assert addendum["failed_attempt"]["result_files_created"] == 0
+    assert addendum["failed_attempt"]["verification_files_created"] == 0
+    assert addendum["single_execution_change"]["new"] == (
+        "/research/d7/spc/yzyang4/venvs/exp/bin/python"
+    )
+    assert addendum["scientific_changes"] == []
+    assert addendum["protocol_changes"] == []
+    assert addendum["input_changes"] == []
+    assert parent["execution_protocol_sha256"] == addendum["execution_protocol_sha256"]

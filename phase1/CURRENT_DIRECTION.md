@@ -59,6 +59,13 @@ LATEST、transactions SHA/lines、prior-prefix、disposition partition、target-
 `451f4b64...7008b2` / `7a144f73...04628f` / `d52b3c73...6f7d5d`，远端 static check PASS，focused=`21 passed`。
 截至本段 execution-v2 尚未 formal 执行，strong/partial/absent 仍未知。
 
+`78fe667...` execution-v2 已通过 immutable-input preflight，但 focused test 立即因系统 `/usr/bin/python3` 缺 pytest
+而停止；FAILED_RC=`1`，focused/full/producer/result/verifier/COMPLETE=`0/not-started/false/0/0/false`，仍无科学
+readout。只把 runner 解释器固定为项目既有 `/research/d7/spc/yzyang4/venvs/exp/bin/python`，并在 formal 前验证
+executable + `import pytest`（远端 pytest=`7.4.3`）；协议与输入均不变。v3 addendum/runner SHA=
+`8768d4d9...a8da3d` / `a0d0bca8...91a7d2`，远端 static check PASS，focused=`22 passed`；须再从新的公开
+exact commit 运行 fresh root。
+
 ## 0KS. 2026-09-01 零 fit support v1 在 state promotion 前停止；v2 只修启动回执与进程组清理
 
 0KR 的公开 exact commit=`7d89d1bce13cbf5223b380a167d8868df1cbb6bc` 已冻结。第一次部署在提取 launcher 前因

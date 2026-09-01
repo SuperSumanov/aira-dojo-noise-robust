@@ -1,0 +1,8 @@
+{
+  "allowed_metadata_file_count": 279,
+  "forbidden_values_read": false,
+  "identity_values_emitted": false,
+  "latest_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+  "ordered_content_digest_sha256": "53fa437beca7f9d8796bc5a9c1d18b55f364307614907b0f2dde7efeff60a32d",
+  "protocol": "archive_rejection_support_census_readonly_receipt_v1"
+}

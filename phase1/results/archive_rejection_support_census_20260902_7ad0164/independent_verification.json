@@ -1,0 +1,25 @@
+{
+  "all_result_fields_equal": true,
+  "classification_digest": "7a1c495dfbc67a60d522ccf331dbcce2795699184c46923034433b0340ee4008",
+  "competition_support_class_counts": {
+    "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+    "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+    "NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+    "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 6,
+    "distinct_rejected_competitions": 7
+  },
+  "event_support_class_counts": {
+    "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+    "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+    "NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+    "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 13
+  },
+  "identity_values_emitted": false,
+  "outcomes_predictions_labels_read": false,
+  "producer_imported": false,
+  "protocol": "independent_archive_rejection_support_census_v1",
+  "randomness_used": false,
+  "result_sha256": "f904ff54e110057e4cd11c6f71a09c43661abea9e5e4fb37c39099338f917fad",
+  "result_status": "ARCHIVE_REJECTION_SUPPORT_CENSUS_COMPLETE_PARTIALLY_PREDISCLOSED",
+  "status": "INDEPENDENT_ARCHIVE_REJECTION_SUPPORT_CENSUS_PASS"
+}

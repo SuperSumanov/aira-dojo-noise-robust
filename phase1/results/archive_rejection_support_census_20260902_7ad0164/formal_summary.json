@@ -1,0 +1,70 @@
+{
+  "protocol": "archive_rejection_support_census_public_release_v1",
+  "completed_at_utc_date": "2026-09-01",
+  "control_commit": "7ad0164d85b892fc0e809bcc43b3c235344620d0",
+  "formal_root": "/research/d7/spc/yzyang4/prospective-archive-support-census/formal-7ad0164-support-census-v1/public",
+  "formal_root_mode": "0500",
+  "formal_file_count": 29,
+  "remote_manifest_sha256": "69fdc6cbf21529509197ab5cddb0a0e9323abcfb550efb73326020d19076764f",
+  "result_sha256": "f904ff54e110057e4cd11c6f71a09c43661abea9e5e4fb37c39099338f917fad",
+  "independent_verification_sha256": "39a634f0bba48dbeb3783f67589604a4ba8e840aaab65ad25daff55528e276e6",
+  "tests": {
+    "focused_passed": 12,
+    "full_phase1_passed": 1947,
+    "full_phase1_warnings": 48,
+    "full_phase1_seconds": 119.83
+  },
+  "event_support_class_counts": {
+    "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 13,
+    "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+    "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+    "NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+    "total": 14,
+    "prior_anchor_percent": 92.857143
+  },
+  "competition_support_class_counts": {
+    "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 6,
+    "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+    "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+    "NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+    "distinct_rejected_competitions": 7,
+    "prior_anchor_percent": 85.714286
+  },
+  "new_information_relative_to_partial_disclosure": {
+    "thirteenth_event_class": "PRIOR_ANCHOR_ELIGIBLE_SUPPORT",
+    "latest_fourteenth_event_class_was_already_disclosed": "NO_ACCEPTED_ARCHIVE_SUPPORT",
+    "headline_is_fully_blind": false
+  },
+  "interpretation": {
+    "structural_rejections_are_predominantly_redundancy_or_quality_gates_at_the_fixed_anchor": true,
+    "current_window_only_support_observed": false,
+    "accepted_archive_only_without_eligible_support_observed": false,
+    "population_is_a_complete_descriptive_census": true,
+    "sampling_inference_or_causal_effect_estimated": false,
+    "predictor_accuracy_scaling_or_search_utility_estimated": false,
+    "supports_task_whitelist_or_blacklist": false
+  },
+  "formal_integrity": {
+    "producer_a_b_byte_identical": true,
+    "independent_verifier_a_b_byte_identical": true,
+    "all_result_fields_independently_reconstructed": true,
+    "readonly_receipts_byte_identical": true,
+    "network_syscalls_detected": false,
+    "forbidden_paths_detected": false,
+    "identity_bearing_output_schema_detected": false,
+    "credential_content_hits": 0,
+    "worktree_exact_clean": true,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  },
+  "failed_attempt_retained": {
+    "control_commit": "ec2bf654750080ffce6f1972789adc50033c5e0e",
+    "focused_passed": 12,
+    "full_phase1_passed": 1947,
+    "failed_rc": 1,
+    "failure_class": "EXECUTION_HARNESS_MODULE_PATH_FAILURE",
+    "result_files_written": 0,
+    "verifier_files_written": 0,
+    "scientific_readout_occurred": false,
+    "partial_output_reused": false
+  }
+}

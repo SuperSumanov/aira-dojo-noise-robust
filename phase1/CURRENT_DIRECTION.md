@@ -13,7 +13,7 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0KV. 2026-09-01 全部 14 个结构拒绝的支持度普查已在真实 readout 前冻结
+## 0KV. 2026-09-01 全部 14 个结构拒绝的支持度普查完成：13/14 在 prior anchor 已有 eligible support
 
 为避免把 0KT 的单个 absent 事件误写成总体频率，本段把当前 immutable observer census 中**全部 14 个结构拒绝事件**
 定义为完整描述性人口，并在任何真实全量支持 readout 前冻结四级互斥分类：`PRIOR_ANCHOR_ELIGIBLE_SUPPORT`、
@@ -43,8 +43,22 @@ non-emission 合计 focused=`8 passed`；与相邻单事件审计合跑=`19 pass
 事件分类或科学 readout。只允许执行层修正为在 exact worktree 中以 `python -m` 启动 producer/verifier；协议、输入、
 分类、资源与访问契约均不变，并须从新的公开 exact commit 使用 fresh formal root 重跑。修正后 static check=`PASS`，
 focused/adjacent=`12/23 passed`，runner/contract-test SHA-256=`fe3bc55f...fc7c4d` / `556a2a94...5e72c`。
-截至本段只完成**结果前冻结**，真实 14 事件 census 尚未运行、真实四类计数仍未知；GPU/API/model fit/base update=`0/0/0/0`，
-label/outcome/prediction/accuracy/utility/candidate identity/profile read=`false/false/false/false/false/false/false`。
+fresh exact commit=`7ad0164d85b892fc0e809bcc43b3c235344620d0` 的 formal 已完整通过：focused/full=
+`12/1,947 passed`（48 warnings，119.83 秒），producer A/B、非导入 verifier A/B、read-only before/after 均逐字节一致；
+root mode/files=`0500/29`，network/forbidden-path/identity-schema/credential hits=`0/0/0/0`，manifest=
+`69fdc6cb...76764f`，result/verifier SHA-256=`f904ff54...917fad` / `39a634f0...276e6`。
+
+正式四类计数为 event：prior/window/archive-only/no-support=`13/0/0/1`，即 prior support=`13/14=92.857143%`；按匿名
+competition 去重为 `6/0/0/1`，即 `6/7=85.714286%`。此前未知的第 13 个事件因此属于 prior support；唯一 no-support
+competition 是 0KT 已披露的最新事件。按原因分层，no-checkpoint=`2 prior + 1 absent`，identity-absent=`2 prior`，
+identity-not-exactly-one=`9 prior`。这支持“当前结构拒绝主要是冗余/质量门，而非系统性删光 competition 支持”的正向
+benchmark-audit 结论，同时唯一 absent 事件证明 gate 非 vacuous。
+
+该 headline 仍是 partially predisclosed complete census，不是 fully blind confirmation；prior anchor 不等于 event-time
+preexistence，event-weighted 数量会重复计算同一 competition，不能用于 task 白/黑名单、未来频率外推、因果效应、predictor
+accuracy/scaling 或 search utility。公开 release contract=`4 passed`，census+runner+release focused=`16 passed`；
+GPU/API/model fit/base update=`0/0/0/0`，label/outcome/prediction/accuracy/utility/candidate identity/profile
+read=`false/false/false/false/false/false/false`，identity values emitted=`false`。
 
 ## 0KU. 2026-09-01 517-run WL 冻结链完成：旧 494-run 前缀零删除，新增 23 runs
 

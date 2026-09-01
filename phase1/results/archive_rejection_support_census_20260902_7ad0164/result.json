@@ -1,0 +1,134 @@
+{
+  "access_attestation": {
+    "archive_payloads_opened": false,
+    "candidate_identities_or_profiles_read": false,
+    "event_competition_archive_task_run_or_candidate_identity_values_emitted": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+    "labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+    "observation_and_hash_bound_intake_metadata_only": true,
+    "randomness_used": false,
+    "rejection_registry_contents_opened": false
+  },
+  "claim_boundary": {
+    "estimates_causal_effect": false,
+    "estimates_predictor_accuracy_scaling_search_utility_or_method_effect": false,
+    "full_census_descriptive_not_sampling_inference": true,
+    "partially_predisclosed_not_fully_blind_confirmation": true,
+    "prior_anchor_support_is_not_event_time_preexistence": true,
+    "supports_task_whitelist_or_blacklist": false
+  },
+  "classification_digest": "7a1c495dfbc67a60d522ccf331dbcce2795699184c46923034433b0340ee4008",
+  "competition_support_class_counts": {
+    "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+    "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+    "NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+    "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 6,
+    "distinct_rejected_competitions": 7
+  },
+  "event_support_class_counts": {
+    "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+    "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+    "NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+    "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 13
+  },
+  "event_weighted_support_quantity_aggregates": {
+    "current_total": {
+      "accepted_archives": 42,
+      "eligible_endpoints": 5470,
+      "eligible_runs": 193,
+      "physical_runs": 195
+    },
+    "current_window": {
+      "accepted_archives": 2,
+      "eligible_endpoints": 192,
+      "eligible_runs": 8,
+      "physical_runs": 8
+    },
+    "prior_prefix": {
+      "accepted_archives": 40,
+      "eligible_endpoints": 5278,
+      "eligible_runs": 185,
+      "physical_runs": 187
+    },
+    "repeated_competitions_are_repeated_per_event": true
+  },
+  "input_bindings": {
+    "current_observations_sha256": "d2ed361a557bf52dadfe9f0547e49c16ea5dc1eea42a1c78f7b354542a2a704a",
+    "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "current_transactions_sha256": "fabae2e42b8e669bc0f212df5365809751966859df22cb1a0ba952ba277f7467",
+    "latest_single_event_result_sha256": "c95b8e0ffce0162bc65e26ce69867187f29a52184205c6c34745daa54c742080",
+    "latest_single_event_verification_sha256": "4acc607c86a2560df3036588b1d0f8898533966385551d9d5c0612bc5a64d836",
+    "legacy_ledger_sha256": "b194b1bc88e561e77f982ae6f46d5ea7cccb745cc960c26da2661ea0ce8bad03",
+    "legacy_verification_sha256": "1281797c52007f3a6f9687ded4a785f21f0cc779bb8276e9e41e4ed057587a60",
+    "prior_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "prior_transactions_sha256": "4f05659db88e290f18a20d43b33330daa5df27211b1fffb770cbf1658b46ec60",
+    "protocol_sha256": "c14297637b7356ea617509079fa25ac1875900aae581c8450fd4135a80d409f3"
+  },
+  "integrity": {
+    "accepted_archives_single_task_hash_bound": true,
+    "accepted_run_ids_unique": true,
+    "accepted_transactions_match_observations": true,
+    "alias_rejections_excluded": true,
+    "all_and_only_14_structural_rejections_classified": true,
+    "current_inventory_reproduced": true,
+    "current_transactions_have_exact_prior_byte_prefix": true,
+    "partial_prior_disclosure_consistent": true,
+    "rejected_payloads_disjoint_from_accepted": true
+  },
+  "mapping_audit": {
+    "accepted_archives": 133,
+    "accepted_filename_task_mismatches": 0,
+    "accepted_seeded_filename_archives": 131,
+    "accepted_single_task_archives": 133,
+    "accepted_task_metadata_fallback_archives": 2,
+    "accepted_tasks": 38,
+    "eligible_endpoints": 13581,
+    "eligible_runs": 517,
+    "hash_bound_source_provenance_rows": 543,
+    "physical_runs": 543,
+    "unique_run_ids": 543
+  },
+  "population": {
+    "accepted_archives": 133,
+    "alias_quarantined_archives": 8,
+    "baseline_archives": 128,
+    "current_transaction_lines": 133,
+    "eligible_endpoints": 13581,
+    "eligible_runs": 517,
+    "eligible_structural_pairs": 3325,
+    "eligible_tasks": 38,
+    "observed_archives": 283,
+    "pending_archives": 0,
+    "physical_runs": 543,
+    "prior_transaction_prefix_lines": 126,
+    "rejection_reason_counts": {
+      "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION": 8,
+      "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": 3,
+      "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": 2,
+      "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": 9
+    },
+    "structural_rejected_archives": 14
+  },
+  "protocol": "archive_rejection_support_census_v1",
+  "reason_by_event_support_class": {
+    "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": {
+      "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+      "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+      "NO_ACCEPTED_ARCHIVE_SUPPORT": 1,
+      "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 2
+    },
+    "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": {
+      "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+      "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+      "NO_ACCEPTED_ARCHIVE_SUPPORT": 0,
+      "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 2
+    },
+    "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": {
+      "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT": 0,
+      "CURRENT_WINDOW_ELIGIBLE_SUPPORT": 0,
+      "NO_ACCEPTED_ARCHIVE_SUPPORT": 0,
+      "PRIOR_ANCHOR_ELIGIBLE_SUPPORT": 9
+    }
+  },
+  "status": "ARCHIVE_REJECTION_SUPPORT_CENSUS_COMPLETE_PARTIALLY_PREDISCLOSED"
+}

@@ -1,0 +1,56 @@
+{
+  "classification": "PRIOR_EVIDENCE_OMISSION_CORRECTED_INDEPENDENT_RECONSTRUCTION",
+  "current_result": {
+    "commit": "5609a8e70098af0a912e61284529ca20d0a91f8e",
+    "path": "phase1/results/archive_rejection_support_floor_20260902_5609a8e/result.json",
+    "sha256": "ce8b30101a26fdba178c6046c24e55a219eacd1e307dc8c033cae754898f4248"
+  },
+  "incremental_descriptive_fields": {
+    "current_window_competitions_with_positive_increment": 1,
+    "current_window_totals": {
+      "accepted_archives": 1,
+      "eligible_endpoints": 96,
+      "eligible_runs": 4,
+      "physical_runs": 4
+    },
+    "independent_scientific_confirmation": false,
+    "minimum_prior_eligible_endpoints_per_eligible_run": "25/2",
+    "minimum_prior_eligible_run_fraction": "5/7"
+  },
+  "prior_result": {
+    "commit": "bc88298cb410183cf642c132c5d1df2e2d9497ba",
+    "path": "phase1/results/archive_granularity_retention_v1_20260831_bc88298/a/result.json",
+    "sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184"
+  },
+  "shared_estimand_exact_match": {
+    "competition_count": 6,
+    "metric_distribution": {
+      "accepted_archives": {
+        "maximum": 5,
+        "median": "4/1",
+        "minimum": 1,
+        "sum": 20
+      },
+      "eligible_endpoints": {
+        "maximum": 944,
+        "maximum_share": "472/1279",
+        "median": "917/2",
+        "minimum": 50,
+        "sum": 2558
+      },
+      "eligible_runs": {
+        "maximum": 29,
+        "maximum_share": "29/92",
+        "median": "17/1",
+        "minimum": 4,
+        "sum": 92
+      },
+      "physical_runs": {
+        "maximum": 29,
+        "median": "17/1",
+        "minimum": 4,
+        "sum": 94
+      }
+    }
+  }
+}

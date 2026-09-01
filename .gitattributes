@@ -210,7 +210,9 @@ phase1/results/archive_rejection_support_census_20260902_7ad0164/formal_summary.
 # the formal Linux root; keep human documentation and its public summary diffable.
 phase1/results/archive_rejection_support_floor_20260902_5609a8e/** -text -diff
 phase1/results/archive_rejection_support_floor_20260902_5609a8e/README.md text eol=lf diff
+phase1/results/archive_rejection_support_floor_20260902_5609a8e/ERRATUM.md text eol=lf diff
 phase1/results/archive_rejection_support_floor_20260902_5609a8e/formal_summary.json text eol=lf diff
+phase1/results/archive_rejection_support_floor_20260902_5609a8e/prior_evidence_crosswalk.json text eol=lf diff
 
 # These three public artifacts are verified byte-for-byte against the formal
 # Linux run.  Preserve their mixed producer-native line endings on every OS.

@@ -12,6 +12,14 @@
     "post_hoc_after_aggregate_census_readout": true,
     "prior_anchor_support_is_not_event_time_preexistence": true
   },
+  "evidence_index_erratum": {
+    "classification": "PRIOR_EVIDENCE_OMISSION_CORRECTED_INDEPENDENT_RECONSTRUCTION",
+    "core_prior_floor_already_published_by_0KI": true,
+    "counts_as_independent_new_scientific_result": false,
+    "prior_result_commit": "bc88298cb410183cf642c132c5d1df2e2d9497ba",
+    "prior_result_sha256": "f28ef79447ded3d642c563cf1a684f86f063a9e0c270949f5f935f995c9a2184",
+    "remaining_increment": "independent reconstruction plus current-window lineage"
+  },
   "formal": {
     "complete": true,
     "control_commit": "5609a8e70098af0a912e61284529ca20d0a91f8e",

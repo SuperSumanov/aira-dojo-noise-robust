@@ -1,5 +1,20 @@
 # Rejected-competition support floor（2026-09-02）
 
+## 重要勘误：这是独立重建，不是新的 prior-floor 发现
+
+本包首次发布时错误地把 prior totals、min/median/max 和 concentration 当成新的未知 readout。向后证据审计随后确认，
+这些核心量已经由 2026-08-31 的 `archive_granularity_retention_audit_v1`（commit `bc88298c...`）正式发布：
+`20/94/92/2,558`、runs=`4/17/29`、endpoints=`50/458.5/944`、dominance=`29/92` 与
+`472/1279` 均完全相同。因此本包现降级为：
+
+1. 对旧 0KI 结果的独立实现重建；
+2. 把同一 prior support 绑定到完成后的 14-event census；
+3. 记录 current 7-transaction window 的结构 lineage（仅 1 个 competition 增加 `1/4/4/96`）。
+
+它不增加一份独立 prior-floor 科学证据，也不能称“新正结果突破”。机器可读交叉核验见
+`prior_evidence_crosswalk.json`，完整责任说明见 `ERRATUM.md`。下文保留原 formal 数字，但所有“加强/推进”措辞均按本
+勘误解释为 reproducibility 与 lineage，而非新颖性。
+
 这是对已完成 14-event support census 的 **post-hoc、identity-erased、完整描述性审计**。它不重新估计
 `13/14` event 或 `6/7` competition 的 prior-support 比例，而是回答：6 个已有 prior eligible support 的匿名
 competition，支持是否仅来自一个脆弱 run，还是具有足够深度与冗余。
@@ -23,9 +38,9 @@ competition 只有一个 accepted archive，但该 competition 仍至少包含 4
 `472/1279=36.90%`。current 7-transaction window 只给其中 1 个 competition 增加了支持（`+1` archive、
 `+4` physical/eligible runs、`+96` endpoints），因此上述 prior floor 不是由该窗口普遍补齐产生的。
 
-这加强了一个有限但正向的 benchmark-audit 结论：当前结构拒绝通常是在已有、且往往具有多 run 深度的
-competition support 上做冗余/质量过滤，而不是系统性删光可评测覆盖。唯一 no-support competition 仍证明 gate
-不是 vacuous。
+作为独立重建，这再次得到一个有限但正向的 benchmark-audit 形状：当前结构拒绝通常是在已有、且往往具有多 run
+深度的 competition support 上做冗余/质量过滤，而不是系统性删光可评测覆盖；唯一 no-support competition 仍证明
+gate 不是 vacuous。该形状的首份正式证据归属于 0KI，本包不重复计作第二项科学资产。
 
 ## 完整性与边界
 

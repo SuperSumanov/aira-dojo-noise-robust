@@ -13,7 +13,14 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
-## 0KW. 2026-09-02 rejected-competition support floor 已结果前冻结：仅为 post-hoc 深度审计，尚未真实读出
+## 0KW. 2026-09-02 support floor 已完成；证据索引勘误后降级为独立重建 + current-window lineage
+
+> **证据索引勘误（覆盖本节所有“未知/新正结果/推进”旧措辞）**：本节首次发布时漏检了 0KI 的 2026-08-31
+> `archive_granularity_retention_audit_v1`。本次 prior totals=`20/94/92/2,558`、四指标 min/median/max、eligible-run 与
+> endpoint dominance 都已由 0KI 在同一 prior snapshot 正式发布；因此它们不是新未知量，本节也不能与 0KI 分开计作
+> 第二项正结果。当前固定分类为 `PRIOR_EVIDENCE_OMISSION_CORRECTED_INDEPENDENT_RECONSTRUCTION`：保留有效的独立
+> 重建、14-event census 绑定与 current-window `+1/+4/+4/+96` lineage，但撤回“新突破”定位。完整机器 crosswalk 与责任
+> 说明见 release 的 `prior_evidence_crosswalk.json` / `ERRATUM.md`。
 
 0KV 已完成的 aggregate census 表明 14 个结构拒绝事件来自 7 个匿名 competition，event 四类计数为
 prior/window/archive-only/no-support=`13/0/0/1`，competition 去重计数为 `6/0/0/1`；这些量及 event-weighted
@@ -23,16 +30,17 @@ support totals 已公开，不能再伪装为未知或 fully blind。本段只�
 
 真实 floor readout 前冻结 `archive_rejection_support_floor_v1`：exact prior/current snapshot=`30945550...104f` /
 `e9e12c63...8a6d`，transactions=`126/133`、window=`7`，observations SHA/bytes=`d2ed361a...a704a/200,613`；
-并逐字节绑定已发布 census result/verifier SHA=`f904ff54...917fad` / `39a634f0...276e6`。未知量仅包括 distinct-
+并逐字节绑定已发布 census result/verifier SHA=`f904ff54...917fad` / `39a634f0...276e6`。协议当时错误声明为未知的量包括 distinct-
 competition totals、四指标的 min/exact-rational-median/max/zero/one/max-share、6 个 prior-supported competition 的
 最小 eligible-run fraction 与 endpoints-per-eligible-run，以及 current window 有增量的 competition 数。输出禁止
-competition/archive/task/run/candidate 身份值及逐 competition 向量。
+competition/archive/task/run/candidate 身份值及逐 competition 向量；其中 prior totals/ranges/dominance 实际已由 0KI 公开，
+这是 predecessor evidence omission，不是合法盲测未知量。
 
 producer 与不导入 producer 的独立 verifier 已分别实现；合成四类 fixture 验证动态 `4/1` competition，而非把真实
 `7/6` 写死进实现。精确摘要、census evidence/window/candidate 篡改、identity non-emission、verifier non-import 与真实
 协议 hash-binding 共 focused=`8 passed`。protocol/producer/verifier/test SHA-256=`e60500f7...66b2d` /
-`25b74e48...0b58` / `97321e0f...c8f2` / `207b5530...faf9`。截至本段只有结果前冻结，**尚未在真实 state 上运行
-producer，任何 support-floor 数值均未知**；GPU/API/model fit/base update=`0/0/0/0`，不得外推 predictor accuracy、
+`25b74e48...0b58` / `97321e0f...c8f2` / `207b5530...faf9`。截至该历史时点尚未在真实 state 上运行
+producer，但 prior core 数值并非科学未知；GPU/API/model fit/base update=`0/0/0/0`，不得外推 predictor accuracy、
 scaling、search utility 或方法效果。
 
 随后冻结 exact-commit formal runner：13 项 preflight、fresh no-smudge worktree、focused+full tests、producer A/B、
@@ -57,8 +65,8 @@ archives/physical/eligible/endpoints 上分别为 `1/4`、`29/94`、`29/92`、`4
 competition 完全垄断。current 7-transaction window 仅给 `1` 个 competition 增加 `1/4/4/96`，因此 prior floor 不是
 窗口普遍补齐造成的。
 
-这把 0KV 的有限正结论从“多数拒绝仍有某种 support”推进为“6 个 prior-supported competition 均有至少 4 个 eligible
-runs 和 50 个 endpoints，且支持分布未被单个 competition 垄断”。但它仍是 aggregate census 揭盲后的 post-hoc
+数值上再次得到“6 个 prior-supported competition 均有至少 4 个 eligible runs 和 50 个 endpoints，且支持分布未被单个
+competition 垄断”，但该核心证据归属于 0KI；本节只构成独立实现重建与新 snapshot lineage，不推进科学证据计数。它仍是 aggregate census 揭盲后的 post-hoc
 descriptive audit，只有 7 个 competition，不是新的 fully blind confirmation；prior anchor 不等于 event-time preexistence，
 不得估计未来 rejection 频率、因果效应、predictor accuracy/scaling、search utility 或建立 task 白/黑名单。
 release contract=`5 passed`，floor+runner+release focused=`17 passed`，全部相邻 archive 审计=`62 passed`；

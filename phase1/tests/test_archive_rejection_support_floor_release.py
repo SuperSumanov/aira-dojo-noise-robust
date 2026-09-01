@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 RELEASE = ROOT / "phase1/results/archive_rejection_support_floor_20260902_5609a8e"
+PRIOR = ROOT / "phase1/results/archive_granularity_retention_v1_20260831_bc88298/a/result.json"
 
 
 def load(name: str) -> dict[str, object]:
@@ -143,3 +144,41 @@ def test_release_contains_no_identity_bearing_schema_keys() -> None:
     readme = (RELEASE / "README.md").read_text(encoding="utf-8")
     assert "post-hoc" in readme
     assert "不是新的 fully blind confirmation" in readme
+
+
+def test_erratum_proves_core_floor_was_already_published() -> None:
+    current = load("result.json")
+    prior = json.loads(PRIOR.read_text(encoding="utf-8"))
+    crosswalk = load("prior_evidence_crosswalk.json")
+    summary = load("formal_summary.json")
+    old = prior["retained_by_archive_granular_validation"]
+    new = current["prior_supported_competition_floor"]["prior_metric_summaries"]
+    assert current["prior_supported_competition_floor"]["competition_count"] == old[
+        "affected_competitions"
+    ] == 6
+    for metric in (
+        "accepted_archives",
+        "physical_runs",
+        "eligible_runs",
+        "eligible_endpoints",
+    ):
+        assert new[metric]["sum"] == old[metric]
+        old_range = old["anonymous_affected_task_distribution"][metric]
+        assert new[metric]["minimum"] == old_range["minimum"]
+        assert new[metric]["maximum"] == old_range["maximum"]
+        assert float(new[metric]["median"]["decimal_17g"]) == old_range["median"]
+    assert new["eligible_runs"]["maximum_share"]["decimal_17g"] == format(
+        old["dominant_affected_task_eligible_run_share"], ".17g"
+    )
+    assert new["eligible_endpoints"]["maximum_share"]["decimal_17g"] == format(
+        old["dominant_affected_task_eligible_endpoint_share"], ".17g"
+    )
+    expected_class = "PRIOR_EVIDENCE_OMISSION_CORRECTED_INDEPENDENT_RECONSTRUCTION"
+    assert crosswalk["classification"] == expected_class
+    assert summary["evidence_index_erratum"]["classification"] == expected_class
+    assert summary["evidence_index_erratum"][
+        "counts_as_independent_new_scientific_result"
+    ] is False
+    erratum = (RELEASE / "ERRATUM.md").read_text(encoding="utf-8")
+    assert "不构成新突破" in erratum
+    assert "bc88298" in erratum

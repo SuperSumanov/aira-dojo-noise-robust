@@ -1,0 +1,46 @@
+{
+  "protocol": "target522-linear-contrast-rank-stage-a-compatibility-v1",
+  "version": 1,
+  "status": "FROZEN_BEFORE_STAGE_A_V2_COMPLETE_WITHOUT_PUBLIC_PROFILE_READ",
+  "frozen_at_utc": "2026-09-01T22:26:37Z",
+  "freeze_observation": {
+    "stage_a_v2_complete_present": false,
+    "stage_a_public_profile_opened": false,
+    "stage_a_private_selection_opened": false,
+    "candidate_identity_opened": false,
+    "prospective_values_read": false
+  },
+  "rank_scientific_protocol": {
+    "path": "phase1/target522_linear_contrast_rank_audit_v1.json",
+    "sha256": "3c8b8f87b43cae74a57c28d78e3428d824f54969051fadf5086810da467ad323"
+  },
+  "stage_a_execution_bridge": {
+    "public_protocol": "vertex-cost-contrast-target522-selection-public-v1",
+    "frozen_scientific_source_commit": "4fc9c3e4c9629ac86960a9cca198569e6a80ee2c",
+    "compatible_execution_source_commit": "05458c439499b145cfeea3a69c109e9e55895ece",
+    "scientific_protocol_sha256": "b3df170ebb4ae097549cb0225142e94aebfa481aea6c79815f1be2af687d9e1d",
+    "execution_protocol_v2_sha256": "20ed4c9c0b6e02df1f672c90630fb2a88d8b47bc01926d7380ff9871cc2e1dd8",
+    "selection_container_compatibility_sha256": "50dc7afef6ca755b46a67cda2d180fe21d9c6760e14e40273e3a9dc4d9f0e6e8",
+    "outer_selection_sha256sums_sha256": "8e00c2e21818b89dafed76d06244df041efb27d901a67cf5f409c620c3e3b7e2",
+    "manifest_bound_auxiliary_receipt_count": 6
+  },
+  "projection": {
+    "remove_exact_top_level_keys": [
+      "selection_container",
+      "selection_container_compatibility_sha256"
+    ],
+    "replace_exact_top_level_key": "analysis_source_commit",
+    "replacement_value": "4fc9c3e4c9629ac86960a9cca198569e6a80ee2c",
+    "require_no_other_top_level_change": true,
+    "projected_input_role": "compatibility view for the byte-frozen rank analyzer and verifier only",
+    "actual_stage_a_public_remains_immutable": true
+  },
+  "scope": {
+    "changes_rank_threshold_partition_or_decision_rule": false,
+    "opens_stage_a_private_selection": false,
+    "opens_candidate_identity": false,
+    "reads_label_outcome_prediction_accuracy_gap_runtime_or_utility": false,
+    "reads_prospective_values": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  }
+}

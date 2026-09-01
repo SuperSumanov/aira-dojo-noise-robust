@@ -1,0 +1,128 @@
+{
+  "protocol": "archive_rejection_support_census_v1",
+  "frozen_at_utc_date": "2026-09-01",
+  "frozen_before_full_census_support_readout": true,
+  "question": "Across every structural archive rejection in the immutable 283-archive observer census, how often is eligible support present by the prior 126-transaction anchor, added only in the seven-transaction window, limited to accepted-but-ineligible archives, or still absent?",
+  "inputs": {
+    "prior_snapshot_sha256": "30945550b6b12a146dadd6eda733c3b676b467aef86636ae31ac59813133104f",
+    "current_snapshot_sha256": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+    "current_observations_sha256": "d2ed361a557bf52dadfe9f0547e49c16ea5dc1eea42a1c78f7b354542a2a704a",
+    "current_observations_bytes": 200613,
+    "prior_transactions_sha256": "4f05659db88e290f18a20d43b33330daa5df27211b1fffb770cbf1658b46ec60",
+    "prior_transaction_lines": 126,
+    "current_transactions_sha256": "fabae2e42b8e669bc0f212df5365809751966859df22cb1a0ba952ba277f7467",
+    "current_transaction_lines": 133,
+    "current_window_transaction_lines": 7,
+    "legacy_twelve_event_ledger_path": "results/structural_rejection_ledger_v1_20260825/ledger.json",
+    "legacy_twelve_event_ledger_sha256": "b194b1bc88e561e77f982ae6f46d5ea7cccb745cc960c26da2661ea0ce8bad03",
+    "legacy_twelve_event_verification_path": "results/structural_rejection_ledger_v1_20260825/independent_verification.json",
+    "legacy_twelve_event_verification_sha256": "1281797c52007f3a6f9687ded4a785f21f0cc779bb8276e9e41e4ed057587a60",
+    "latest_single_event_result_path": "results/incremental_archive_rejection_support_20260901_ce9f505/a/result.json",
+    "latest_single_event_result_sha256": "c95b8e0ffce0162bc65e26ce69867187f29a52184205c6c34745daa54c742080",
+    "latest_single_event_verification_path": "results/incremental_archive_rejection_support_20260901_ce9f505/a/independent_verification.json",
+    "latest_single_event_verification_sha256": "4acc607c86a2560df3036588b1d0f8898533966385551d9d5c0612bc5a64d836"
+  },
+  "known_before_readout": {
+    "population": {
+      "observed_archives": 283,
+      "baseline_archives": 128,
+      "accepted_archives": 133,
+      "structural_rejected_archives": 14,
+      "alias_quarantined_archives": 8,
+      "pending_archives": 0,
+      "rejection_reason_counts": {
+        "ARCHIVE_BYTES_DUPLICATE_COMMITTED_TRANSACTION": 8,
+        "ARCHIVE_HAS_NO_CHECKPOINT_JOURNALS": 3,
+        "JOURNAL_TASK_IDENTITY_ABSENT_ALL_CHECKPOINTS": 2,
+        "JOURNAL_TASK_IDENTITY_NOT_EXACTLY_ONE_WITHIN_ARCHIVE": 9
+      },
+      "physical_runs": 543,
+      "eligible_runs": 517,
+      "eligible_endpoints": 13581,
+      "eligible_structural_pairs": 3325,
+      "eligible_tasks": 38
+    },
+    "partial_support_disclosure": {
+      "legacy_structural_rejection_events": 12,
+      "legacy_rejected_competitions": 6,
+      "legacy_rejected_competitions_with_any_accepted_transaction": 6,
+      "legacy_support_was_known_by_the_7cda_snapshot_not_event-time_causal": true,
+      "latest_single_event_class": "NO_ACCEPTED_ARCHIVE_SUPPORT",
+      "latest_single_event_all_support_metrics_zero": true,
+      "therefore_headline_is_not_fully_blind": true
+    }
+  },
+  "unknown_at_freeze": {
+    "thirteenth_event_support_class": false,
+    "fourteen_event_support_class_counts": false,
+    "support_class_counts_by_rejection_reason": false,
+    "rejected_competition_counts_by_support_class": false,
+    "exact_anonymized_support_quantity_aggregates": false,
+    "event_and_competition_identity_values_read_or_emitted": false
+  },
+  "estimand": {
+    "primary_unit": "each of all 14 structural rejection events in the current immutable observer census",
+    "secondary_unit": "each distinct anonymized competition represented by those events",
+    "anchor_interpretation": "prior-prefix means support exists by snapshot 30945550, not necessarily before the rejection event itself",
+    "full_census_not_sampling_inference": true,
+    "no_binary_success_threshold": true
+  },
+  "support_classes_in_precedence_order": [
+    {
+      "class": "PRIOR_ANCHOR_ELIGIBLE_SUPPORT",
+      "rule": "prior accepted_archives >= 1 and prior eligible_runs >= 1 and prior eligible_endpoints >= 1"
+    },
+    {
+      "class": "CURRENT_WINDOW_ELIGIBLE_SUPPORT",
+      "rule": "current eligible support passes the same three minima but prior eligible support does not"
+    },
+    {
+      "class": "ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT",
+      "rule": "current accepted_archives >= 1 but current eligible_runs == 0 or current eligible_endpoints == 0"
+    },
+    {
+      "class": "NO_ACCEPTED_ARCHIVE_SUPPORT",
+      "rule": "current accepted_archives == 0"
+    }
+  ],
+  "integrity_gates": {
+    "exact_prior_and_current_snapshot_manifests_required": true,
+    "current_transactions_must_have_exact_prior_byte_prefix": true,
+    "immutable_observation_partition_must_match_all_known_counts": true,
+    "all_and_only_14_structural_rejections_must_be_classified": true,
+    "alias_rejections_must_be_excluded_from_estimand": true,
+    "every_rejected_payload_hash_must_be_disjoint_from_accepted_payload_hashes": true,
+    "accepted_transactions_must_match_accepted_observations": true,
+    "accepted_archives_must_map_to_exactly_one_hash_bound_task": true,
+    "accepted_run_ids_must_be_unique": true,
+    "producer_a_b_byte_identity_required": true,
+    "non_importing_independent_verifier_a_b_byte_identity_required": true,
+    "no_event_competition_archive_task_run_or_candidate_identity_emission": true
+  },
+  "reporting": {
+    "report_exact_event_and_competition_class_counts": true,
+    "report_reason_by_class_integer_table": true,
+    "report_aggregate_support_quantities_without_identity_rows": true,
+    "report_partial_prior_disclosure_prominently": true,
+    "do_not_call_this_a_fully_blind_confirmation": true,
+    "do_not_claim_event_time_preexistence_or_causality": true,
+    "do_not_claim_predictor_accuracy_scaling_search_utility_or_method_effect": true
+  },
+  "access_contract": {
+    "observation_and_hash_bound_intake_metadata_only": true,
+    "rejection_registry_contents_opened": false,
+    "archive_payloads_opened": false,
+    "labels_grades_outcomes_predictions_accuracy_or_utility_read": false,
+    "candidate_identities_or_profiles_read": false,
+    "identity_values_emitted": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  },
+  "resource_matrix": {
+    "cpu_workers": 1,
+    "expected_wall_minutes": "5-20",
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

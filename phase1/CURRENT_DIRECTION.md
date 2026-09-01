@@ -13,6 +13,27 @@
 > 第一次达到 target-300（含完整 boundary archive overshoot）的 formal output 必须自动写入固定 one-time closure anchor；
 > 后续 runner 不接受调用者另选 cohort path/SHA，避免在多个合法-looking snapshot 中选择。
 
+## 0KV. 2026-09-01 全部 14 个结构拒绝的支持度普查已在真实 readout 前冻结
+
+为避免把 0KT 的单个 absent 事件误写成总体频率，本段把当前 immutable observer census 中**全部 14 个结构拒绝事件**
+定义为完整描述性人口，并在任何真实全量支持 readout 前冻结四级互斥分类：`PRIOR_ANCHOR_ELIGIBLE_SUPPORT`、
+`CURRENT_WINDOW_ELIGIBLE_SUPPORT`、`ACCEPTED_ARCHIVE_ONLY_NO_ELIGIBLE_SUPPORT`、
+`NO_ACCEPTED_ARCHIVE_SUPPORT`。prior anchor 只表示到 `30945550...104f` 快照时已有支持，不能解释为拒绝发生前已有支持或
+因果关系；14 事件是 census，不作抽样推断，也不预注册二元成功阈值。
+
+已知信息被显式写入协议：旧 12 个事件来自 6 个 competition，且到旧 `7cda` 快照时 6 个都有某种 accepted transaction；
+最新第 14 个事件已由 0KT 独立证明为全零 support。因此 headline **不是 fully blind**。真实执行前仍未知的是第 13 个事件的
+类别、14 事件四类计数、reason×class 整数表、distinct competition 四类计数及匿名支持量聚合。输出禁止事件、competition、
+archive、task、run、candidate 身份值，只保留整数聚合和 classification digest；不得据此建立 task 白/黑名单，也不得声称
+predictor accuracy、scaling、search utility 或方法效果。
+
+协议把 current/prior transaction lines=`133/126` 与 window=`7` 分别绑定，producer 与不导入 producer 的独立 verifier 均
+从协议读取 window，避免实现写死。四类合成正控、prefix/payload/candidate 篡改、协议引用哈希、窗口绑定与 identity
+non-emission 合计 focused=`8 passed`；与相邻单事件审计合跑=`19 passed`。protocol/producer/verifier/test SHA-256=
+`c1429763...d409f3` / `fa9f182d...c46b15` / `902da600...487a6` / `335185e2...e223b`。
+截至本段只完成**结果前冻结**，真实 14 事件 census 尚未运行、真实四类计数仍未知；GPU/API/model fit/base update=`0/0/0/0`，
+label/outcome/prediction/accuracy/utility/candidate identity/profile read=`false/false/false/false/false/false/false`。
+
 ## 0KU. 2026-09-01 517-run WL 冻结链完成：旧 494-run 前缀零删除，新增 23 runs
 
 零 fit support renewal v2 的 WL 路径已在 current snapshot=`e9e12c63...8a6d` 上完整结束并 promotion；远端 formal root

@@ -1,0 +1,73 @@
+{
+  "protocol": "decision-corpus-release-prepared-text-successor-v2",
+  "version": 2,
+  "status": "FROZEN_AFTER_ACCESS_PASS_BEFORE_DOWNLOAD",
+  "frozen_at_utc": "2026-09-02T10:44:00Z",
+  "prior_failure_receipt": "phase1/missing_prepared_text_sources_failure_receipt_20260902.json",
+  "access_probe": {
+    "competitions": 2,
+    "both_file_listing_requests_succeeded": true,
+    "credential_shape_hits": 0,
+    "competition_data_downloaded": false,
+    "competition_data_opened": false
+  },
+  "requested_files": [
+    {
+      "competition": "aptos2019-blindness-detection",
+      "filename": "sample_submission.csv",
+      "expected_header": ["id_code", "diagnosis"]
+    },
+    {
+      "competition": "aptos2019-blindness-detection",
+      "filename": "test.csv",
+      "expected_header": ["id_code"]
+    },
+    {
+      "competition": "aptos2019-blindness-detection",
+      "filename": "train.csv",
+      "expected_header": ["id_code", "diagnosis"]
+    },
+    {
+      "competition": "histopathologic-cancer-detection",
+      "filename": "sample_submission.csv",
+      "expected_header": ["id", "label"]
+    },
+    {
+      "competition": "histopathologic-cancer-detection",
+      "filename": "train_labels.csv",
+      "expected_header": ["id", "label"]
+    }
+  ],
+  "bounds": {
+    "maximum_compressed_bytes_per_file": 67108864,
+    "maximum_extracted_bytes_per_file": 67108864,
+    "maximum_total_extracted_bytes": 134217728,
+    "minimum_data_rows_per_file": 1,
+    "archive_member_count_per_request": 1,
+    "network_timeout_seconds_per_file": 600
+  },
+  "staging_contract": {
+    "new_root_only": true,
+    "active_prepared_root_must_be_absent_for_both_tasks": true,
+    "symlinks_allowed": false,
+    "unexpected_files_allowed": false,
+    "archive_path_components_allowed": false,
+    "producer_and_independent_verifier_outputs_must_match": true,
+    "promotion_before_verification": false,
+    "overwrite_on_promotion": false
+  },
+  "interpretation_boundary": {
+    "task_prepared_text_coverage_after_verified_promotion": "25/25",
+    "prepared_text_is_complete_competition_payload": false,
+    "api_access_is_redistribution_permission": false,
+    "downloaded_csvs_may_enter_git_or_public_artifacts": false,
+    "content_scan_threshold_or_card_tier_rule_changed": false,
+    "new_25_task_scan_and_tier_successor_required": true
+  },
+  "security": {
+    "credential_values_may_be_read_or_emitted": false,
+    "prospective_first960_target300_target522_paths_allowed": false,
+    "prospective_labels_outcomes_predictions_accuracy_utility_allowed": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+  }
+}

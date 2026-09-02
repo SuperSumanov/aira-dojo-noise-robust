@@ -202,6 +202,18 @@ quantity is reported only with the exchangeability and symmetric-error assumptio
 identify it. Buckets with insufficient repeated labels remain unestimable rather than
 being pooled after results are seen.
 
+Task weighting is also fixed before outcomes. For eligible-run, structural-pair, and
+informative-pair counts \(R_t,S_t,I_t\), the implementation verifies
+\(q_t=p_tY_t/\sum_s p_sY_s\) and \(r_t=q_tE_t/\sum_s q_sE_s\), where
+\(Y_t=S_t/R_t\) and \(E_t=I_t/S_t\), to absolute tolerance \(10^{-12}\).
+Every registered arm and contrast is reported under informative-pair, structural-pair,
+run-weighted-task, and uniform-task aggregation. The two reweighting components and
+their range-times-total-variation bounds are deterministic descriptions, not new
+tests. A task with zero structural or informative support makes the full-task impact
+headline non-identifiable; it is never silently removed. This adapts established
+informative-cluster-size estimand distinctions rather than claiming a new statistical
+theorem.
+
 ## A.10 Release governance and redaction
 
 Scientific reproducibility and public-release permission are separate gates.

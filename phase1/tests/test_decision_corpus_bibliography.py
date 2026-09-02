@@ -27,6 +27,8 @@ REQUIRED_KEYS = {
     "white2021predictors",
     "krishnakumar2022nasbenchsuitezero",
     "tu2022nasbench360",
+    "williamson2003informativeclusters",
+    "kahan2023clusterestimands",
     "sokol2024benchmarkcards",
     "reuel2024betterbench",
     "zhu2025agenticbenchmarks",
@@ -42,7 +44,7 @@ REQUIRED_KEYS = {
 def test_working_bibliography_has_unique_expected_entries() -> None:
     text = BIB.read_text(encoding="utf-8")
     keys = re.findall(r"^@\w+\{([^,]+),", text, flags=re.MULTILINE)
-    assert len(keys) == 24
+    assert len(keys) == 26
     assert len(keys) == len(set(keys))
     assert set(keys) == REQUIRED_KEYS
     assert len(re.findall(r"(?<!\\)\{", text)) == len(re.findall(r"(?<!\\)\}", text))
@@ -77,6 +79,8 @@ def test_primary_identifiers_and_urls_are_bound() -> None:
         assert text.count(arxiv_id) >= 2
     assert "10.18653/v1/2026.acl-short.22" in text
     assert "https://aclanthology.org/2026.acl-short.22/" in text
+    assert "10.1111/1541-0420.00005" in text
+    assert "10.1093/ije/dyac131" in text
     for revision in (
         "4fc7f6e3d2fbd72d80bb75e1a35a9415630f3285",
         "97b1217a6ab98ccb1c1f2d4a5f044b9d03f161d3",
@@ -97,6 +101,8 @@ def test_manuscript_citation_keys_resolve() -> None:
         "pattnayak2026reproevalcard",
         "jerryyan2026mletrajv1",
         "jerryyan2026mletrajv3",
+        "williamson2003informativeclusters",
+        "kahan2023clusterestimands",
     }:
         assert key in cited
 

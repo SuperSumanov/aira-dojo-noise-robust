@@ -77,6 +77,9 @@ internal evidence routing；prospective common-support 与 clean scaling 仍是�
   component 总权重固定为 incidence rank，但不冒充独立性修复、ESS、因果校正或新的图论定理。
 - outcome-blind append-only intake、prediction escrow、one-time closure anchor、producer/verifier A/B、read-only root、
   file/network/credential trace 与 claim withdrawal ledger。
+- run→structural pair→informative pair 的两级 task mixture 已有精确 size-bias 恒等式与
+  `range(task metric) × TV(task weights)` leverage bound；零 structural/informative support 的 task 固定令
+  full-task impact 为不可识别，不能静默删除。一般 informative-cluster-size 理论已有先例，不申新统计定理。
 - 实证发现不是一般统计定理：在当前 MLE search corpus 中，task-specific decision-opportunity yield 会使 run-level
   与 pair-level任务权重沿相反方向变化，因此 pair-micro 不能自动代表“均衡采集”。
 

@@ -99,6 +99,24 @@ Decision Corpus is designed to measure.
 - Renbo Tu et al., **NAS-Bench-360: Benchmarking Diverse Tasks for Neural
   Architecture Search**, [arXiv:2110.05668](https://arxiv.org/abs/2110.05668).
 
+### Estimand and informative-cluster-size precedent
+
+- John M. Williamson, Somnath Datta, and Glen A. Satten, **Marginal Analyses of
+  Clustered Data When Cluster Size Is Informative**, *Biometrics* 59(1):36--42,
+  [doi:10.1111/1541-0420.00005](https://doi.org/10.1111/1541-0420.00005).
+- Brennan C. Kahan, Fan Li, Andrew J. Copas, and Michael O. Harhay, **Estimands in
+  Cluster-Randomized Trials: Choosing Analyses That Answer the Right Question**,
+  *International Journal of Epidemiology* 52(1):107--118,
+  [doi:10.1093/ije/dyac131](https://doi.org/10.1093/ije/dyac131).
+
+These works establish that unit-weighted and cluster-weighted analyses can target
+different quantities when cluster size is informative. Decision Corpus therefore
+does not claim novelty for size-biased weighting, inverse-size weighting, macro/micro
+averaging, or the associated algebra. Its scoped contribution is the outcome-blind,
+machine-frozen mapping from MLE-agent run composition through structural sibling
+opportunity yield and evaluability into the predictor benchmark's task mixture,
+including a fail-closed rule for zero-support tasks.
+
 ### Benchmark governance
 
 - **BenchmarkCards**, [arXiv:2410.12974](https://arxiv.org/abs/2410.12974).
@@ -170,7 +188,7 @@ be reported under a different name. It must not be labeled â€œRPM reproduction.â
 
 ## Working bibliography state
 
-`DECISION_CORPUS_REFERENCES_20260902.bib` now binds 24 primary-source-checked entries
+`DECISION_CORPUS_REFERENCES_20260902.bib` now binds 26 primary-source-checked entries
 used by this map and the manuscript. Large author lists that use BibTeX's canonical
 `and others` marker are explicitly internal-draft abbreviations and must be expanded
 from the linked primary record during final venue packaging. mle-traj v1/v3 artifact

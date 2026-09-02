@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0e. 2026-09-02 mle-traj v1/v3 制品引用已固定；正式 proceedings 作者身份仍不猜测
+
+此前 bibliography 的唯一 artifact-identity blocker 已用 Hugging Face 主来源关闭，而没有把 repository account 猜成人名。
+API 返回 v1/v3 的精确 repository ID、author account 与 immutable revision：v1=
+`jerryyan/mle-traj-v1@4fc7f6e3d2fbd72d80bb75e1a35a9415630f3285`，v3=
+`jerryyan/mle-traj-v3@97b1217a6ab98ccb1c1f2d4a5f044b9d03f161d3`；对应 revision-pinned README bytes/SHA-256=
+`9,110/d5049293...8f263b` 与 `6,977/a61907a6...ddbb6`。v1 card 自带的 proposed proceedings BibTeX 的 author 仍是
+字面 `<AUTHOR_NAME> et al.`，v3 没有 citation section；因此主稿只新增两个 Hugging Face artifact `@misc` 引用，并明确
+repository-account attribution 不是 person-level authorship，也不证明 NeurIPS 接收、v3 license 或 raw tree recoverability。
+
+工作 bibliography 从 `20` 条增至 `22` 条，主稿和 citation map 已改为显式引用两个固定 revision；正式 paper citation
+继续 unresolved，但不再阻塞对实际审计对象的可复核引用。公开实现 commit=
+`48127bb3d24a127a267fb4e36207c9b40a8ae7ff`；本地 focused=`15 passed`，远端 fresh detached no-smudge exact checkout
+通过 focused/full=`15/2,106 passed`、warnings/failures=`48/0`，full 用时 `246.64s`，两个 stderr 均为 0 bytes。
+独立 postflight 复核 22 个唯一 BibTeX key、两项 revision、placeholder 不进入 bibliography、主稿 key 解析、全部 hash 与
+credential filename/content=`0/0` 后 PASS；精确临时 root 在 hash 固化后安全清理。GPU/API/model fit/base update=
+`0/0/0/0`，prospective value/identity read=`false/false`，`counts_as_distinct_claim_evidence=false`。见
+`phase1/mle_traj_artifact_citation_identity_v1.json` 与 `phase1/mle_traj_citation_postpush_receipt_20260902.json`。
+
 ## 0L0d. 2026-09-02 v11 发布阻塞已收敛成角色分离行动包；所有 payload tier 仍未 release-cleared
 
 为避免未来 20 天继续以零散清单代替外部决策，现把已经冻结的 content tier、25-task rules、provider provenance、

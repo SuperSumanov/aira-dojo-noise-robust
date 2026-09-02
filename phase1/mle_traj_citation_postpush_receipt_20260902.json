@@ -1,0 +1,83 @@
+{
+  "protocol": "mle-traj-artifact-citation-postpush-receipt-v1",
+  "status": "PASS_ARTIFACT_CITATIONS_RESOLVED_FORMAL_PROCEEDINGS_AUTHORSHIP_UNRESOLVED",
+  "source_commit": "48127bb3d24a127a267fb4e36207c9b40a8ae7ff",
+  "source_parent": "73ecd87ee48d02b9e032ebe330c3e7547333ab7b",
+  "primary_source_bindings": [
+    {
+      "repository_id": "jerryyan/mle-traj-v1",
+      "revision": "4fc7f6e3d2fbd72d80bb75e1a35a9415630f3285",
+      "card_sha256": "d5049293ac2c5296804db355f9fc1ad96f820d0439b95673afe2d3fb4a8f263b",
+      "card_bytes": 9110,
+      "api_author_account": "jerryyan",
+      "formal_proceedings_author_field_is_placeholder": true
+    },
+    {
+      "repository_id": "jerryyan/mle-traj-v3",
+      "revision": "97b1217a6ab98ccb1c1f2d4a5f044b9d03f161d3",
+      "card_sha256": "a61907a65f93fcd1bf76ae71077487f40806805f090034cc59aeafb68a0ddbb6",
+      "card_bytes": 6977,
+      "api_author_account": "jerryyan",
+      "formal_citation_section_present": false
+    }
+  ],
+  "bibliography": {
+    "entries_before": 20,
+    "entries_after": 22,
+    "artifact_entries_added": 2,
+    "artifact_citation_keys": [
+      "jerryyan2026mletrajv1",
+      "jerryyan2026mletrajv3"
+    ],
+    "invented_person_authors": 0,
+    "invented_paper_citations": 0,
+    "formal_proceedings_authorship_resolved": false
+  },
+  "artifact_hashes": {
+    "bibliography_sha256": "a39166d51bbae4d01de84bce9cdaae1827229a2073904aa3e18e85144b645bc3",
+    "manuscript_sha256": "3d7e29b820a7e5629b7d4709226e383ed912f920ae24c8bde89d17357ad9596c",
+    "citation_map_sha256": "6708427a3ae84aa44eb1a6aa338a3caef85e263ce9af59d621436672c2e017ef",
+    "identity_record_sha256": "df29471e4fd00d920b6514e84023a1810e3ee301d98865535163bcd76c2cef5f",
+    "contract_test_sha256": "f1ecb54cc913efa5718206805d1ecae870407770b78be8e15c3ed33203c674b7"
+  },
+  "verification": {
+    "local_focused_tests_passed": 15,
+    "local_focused_duration_seconds": 0.26,
+    "remote_exact_detached_no_smudge_checkout": true,
+    "remote_focused_tests_passed": 15,
+    "remote_focused_duration_seconds": 0.19,
+    "remote_full_tests_passed": 2106,
+    "remote_full_test_warnings": 48,
+    "remote_full_test_failures": 0,
+    "remote_full_duration_seconds": 246.64,
+    "focused_stderr_bytes": 0,
+    "full_stderr_bytes": 0,
+    "runner_sha256": "4541f2c97ca78ed25a09ae4adb51070fc8db4415420d386642167bd305e51003",
+    "postflight_script_sha256": "6f308b03c65ff16b11be0214574ae94314baea424c2537e6fa662482a2f1181c",
+    "summary_sha256": "bd00b7c56223ec62ca3ed214db9653d013f50cb02aa8d21555d0e77e1a66bc36",
+    "sha256_manifest_sha256": "4ae69477abb1d4460968edca13f2d357b79fb2d918fbd5f6edd16063bdd7af3f",
+    "focused_stdout_sha256": "d28ca657a18ca45b21792c4e51daf001f3817255d99c9c6633d420b511a9194c",
+    "full_stdout_sha256": "a0ca431dfe73edf0d3670f110bb048404482a551d78b3710708772427cfbbfaa",
+    "independent_postflight_passed": true,
+    "postflight_root_mode": "0500",
+    "postflight_top_level_files": 6
+  },
+  "cleanup": {
+    "exact_remote_roots_removed_after_hash_capture": 1,
+    "cleanup_status": "PASS"
+  },
+  "security": {
+    "staged_filename_hits_before_push": 0,
+    "commit_content_credential_hits_before_push": 0,
+    "remote_filename_credential_hits": 0,
+    "remote_content_credential_hits": 0
+  },
+  "scope": {
+    "paper_or_venue_acceptance_inferred": false,
+    "raw_tree_recoverability_inferred": false,
+    "prospective_values_or_identities_read": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+    "counts_as_distinct_claim_evidence": false,
+    "release_clearance_changed": false
+  }
+}

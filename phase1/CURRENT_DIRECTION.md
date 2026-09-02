@@ -41,6 +41,18 @@ access boundary、immutable rebuild、unit/relation、split/common support、成
 clean-scaling 条件、统计依赖、release governance 和 failed-run retention 连成一份可审稿协议；所有 prospective 槽仍 sealed，
 该写作资产不读取新结果，也不计为独立科学证据。
 
+clean critic scaling 的新运行协议现已从历史 v1 八-run 矩阵收敛到 v2 六-run 矩阵：
+`Qwen3 Base 0.6B/4B/8B × seeds 6/7`。机器契约 SHA-256=
+`c64ab02a20066a9d282de8b3d5a803838e3637e33dd39b53600b52b1dd277642`，公开实现 commit=
+`977e06aae6812c4fb30555184ccd9fcebadb33fb`；v1 字节保持不变，只作历史兼容，不得再据其启动八个新 checkpoint。
+v2 的 producer 与不导入 producer 的 verifier 均在读结果前强制 lock：100% canonical config-v2 sidecar coverage、
+sidecar manifest hash、稳定 public generator release、exact config stratum、outcome-before attestation 与禁止 historical
+backfill。容量门除单调、`8B−0.6B≥0.02`、逐 seed 为正和 task-bootstrap CI 下界为正外，还机器执行 high-low LOTO
+全正与删除主导任务后为正；主导任务只按 primary pair 数确定，并以 task ID 字典序破平，不看 outcome。
+fresh exact-checkout verification=`31 focused + 2,074 full passed / 0 failed`（48 warnings）。这只说明协议/分析器 ready；
+GPU/API/model fit/base update=`0/0/0/0`，prospective value/identity read=`false/false`，训练仍须来源门、closure、资源矩阵与
+用户批准。readiness receipt 见 `phase1/critic_scaling_confirmation_v2_readiness_receipt_20260902.json`。
+
 release 许可清单的口径已从历史 `22 competitions` 纠正为 v11 精确 `25 tasks`。25/25 官方 Kaggle
 rules URL 都已直接渲染初筛：完整 data+code 模板 / 简化旧模板 / 非标准详细模板=`16/7/2`，
 明确私下共享禁止 / 公开 forum 共享语句=`25/25`，明确 OSI 且不限商用条款=`18/25`，精确标准

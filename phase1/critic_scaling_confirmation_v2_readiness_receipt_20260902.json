@@ -1,0 +1,61 @@
+{
+  "protocol": "critic-scaling-confirmation-v2-readiness-receipt-v1",
+  "status": "CONTRACT_AND_ANALYSIS_READY_COMPUTE_NOT_AUTHORIZED",
+  "source_commit": "977e06aae6812c4fb30555184ccd9fcebadb33fb",
+  "contract": {
+    "path": "phase1/critic_scaling_confirmation_contract_v2.json",
+    "sha256": "c64ab02a20066a9d282de8b3d5a803838e3637e33dd39b53600b52b1dd277642",
+    "model_sizes_b": [
+      0.6,
+      4.0,
+      8.0
+    ],
+    "seeds": [
+      6,
+      7
+    ],
+    "training_runs": 6,
+    "context_length_tokens": 16384
+  },
+  "machine_enforced_v2_gates": {
+    "canonical_config_v2_sidecar_coverage": 1.0,
+    "canonical_sidecar_manifest_sha256_required": true,
+    "stable_public_generator_release_id_required": true,
+    "exact_generator_config_stratum_id_required": true,
+    "sidecars_written_before_outcome_required": true,
+    "historical_backfill_forbidden": true,
+    "size_means_monotonic_nondecreasing": true,
+    "high_minus_low_point_at_least": 0.02,
+    "each_seed_high_minus_low_strictly_positive": true,
+    "high_minus_low_task_bootstrap_ci_lower_strictly_positive": true,
+    "all_leave_one_task_out_high_minus_low_strictly_positive": true,
+    "dominant_task_deleted_high_minus_low_strictly_positive": true,
+    "dominant_task_rule": "largest_primary_pair_count_then_lexicographically_smallest_task"
+  },
+  "verification": {
+    "fresh_exact_checkout": true,
+    "checkout_clean_before_tests": true,
+    "producer_and_independent_verifier_agree_on_synthetic_v2_output": true,
+    "focused_tests": {
+      "passed": 31,
+      "failed": 0,
+      "duration_seconds": 2.79
+    },
+    "full_phase1_tests": {
+      "passed": 2074,
+      "failed": 0,
+      "warnings": 48,
+      "duration_seconds": 127.45
+    }
+  },
+  "access_attestation": {
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0,
+    "prospective_labels_or_outcomes_read": false,
+    "prospective_prediction_values_read": false,
+    "prospective_candidate_identities_or_profiles_read": false
+  },
+  "next_gate": "Wait for reviewed canonical outcome-before config-v2 sidecars, an exact-stratum support lock, first-960 closure, and explicit GPU-hour approval before any training."
+}

@@ -174,6 +174,21 @@ on train-run development only; the untouched frozen cohort is evaluated once. Th
 agent base model is never fine-tuned or RL-updated. Historical model-ID recovery cannot
 substitute for outcome-before config-v2 provenance in newly produced runs.
 
+The frozen v2 machine contract requires the pre-test lock to contain 100% canonical
+config-v2 sidecar coverage, the sidecar-manifest digest, a stable public generator
+release, the exact generator/config stratum, an outcome-before attestation, and an
+explicit statement that historical backfill was not used. Both the producer and an
+implementation-independent verifier reject a missing or altered field before computing
+any performance result.
+
+The capacity claim passes only if the three two-seed task-macro means are nondecreasing,
+the mean 8B-minus-0.6B difference is at least 0.02, each seed-specific endpoint
+difference is positive, the task-bootstrap lower bound is positive, every high-low
+leave-one-task-out difference is positive, and the high-low difference remains positive
+after removing the dominant task. Dominance is fixed without outcome values as maximum
+primary-pair count, with lexicographically smallest task ID breaking ties. Baseline and
+component-gain claims are separately gated and cannot rescue a failed capacity primary.
+
 ## A.9 Statistical dependence and label repeatability
 
 Sibling pairs share parents, runs, and tasks. Pair-i.i.d. binomial intervals are not

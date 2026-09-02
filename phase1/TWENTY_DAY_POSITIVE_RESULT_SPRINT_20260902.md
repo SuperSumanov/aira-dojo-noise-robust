@@ -50,11 +50,22 @@ context、训练步数、optimizer、train/dev/frozen 划分、checkpoint rule �
 墙钟 hard cap、总 GPU·h 和 checkpoint/resume 方案，由用户明确批准。禁止周期访问 frozen/test；checkpoint 只能由
 train-run dev 选择，最终 frozen cohort 一次性评估。
 
+该矩阵已经由 `phase1/critic_scaling_confirmation_contract_v2.json` 锁定（SHA-256=
+`c64ab02a20066a9d282de8b3d5a803838e3637e33dd39b53600b52b1dd277642`，实现 commit=
+`977e06aae6812c4fb30555184ccd9fcebadb33fb`）。历史 v1 的 0.6B/1.7B/4B/8B 八-run 契约只保留兼容，不再用于新训练。
+fresh exact-checkout 已通过 focused/full=`31/2,074` tests、0 failures；这不授权 GPU 或 frozen access。
+
+来源 lock 必须在结果前同时给出 100% canonical config-v2 sidecar coverage、sidecar-manifest SHA-256、稳定 public
+generator release、exact generator/config stratum、outcome-before attestation 和 `historical_backfill_used=false`；
+producer 与独立 verifier 任一不满足即 fail-closed。
+
 预先固定最小可写结论：
 
-- primary：每个 seed 的 `8B−0.6B` 均为正，并报告 run/task-clustered interval；不能用两 seed 平均掩盖反转。
+- primary：三点两-seed task-macro 均值单调不降，平均 `8B−0.6B≥0.02`，每个 seed 的差都为正，task-bootstrap
+  95% CI 下界为正，所有 high-low LOTO 差为正，且删除按 primary pair 数预先定义的主导任务后仍为正。
 - secondary：完整 size curve、TF-IDF/static baselines、初始化成本与单次 query 成本同表；accuracy 与部署收益分开。
-- robustness：drop-dominant-task、task-macro 与 pair-micro、固定 gap buckets、coverage/tie/missingness 全报。
+- robustness：主导任务按 pair 数最大、task ID 字典序破平，另报 task-macro 与 pair-micro、固定 gap buckets、
+  coverage/tie/missingness；这些 secondary view 不得 rescue primary。
 - 若 primary 不过，不加 seed、不换切分、不删任务救结果；论文仍按数据集与 benchmark-audit 主线推进。
 
 ### D. D0–D20：立即转入论文生产

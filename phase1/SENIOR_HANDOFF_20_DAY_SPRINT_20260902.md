@@ -98,11 +98,24 @@ label 或 outcome。
 prompt、train/dev/frozen split、checkpoint rule、scorer 与资源 stratum 只允许模型规模变化。checkpoint 只看 train-run dev，
 最终 frozen cohort 一次性评估。
 
+新运行的机器契约已经冻结：
+
+- contract：`phase1/critic_scaling_confirmation_contract_v2.json`
+- SHA-256：`c64ab02a20066a9d282de8b3d5a803838e3637e33dd39b53600b52b1dd277642`
+- implementation commit：`977e06aae6812c4fb30555184ccd9fcebadb33fb`
+- exact-checkout verification：31 focused + 2,074 full tests passed，0 failed（48 warnings）
+
+旧 v1 的 0.6B/1.7B/4B/8B × 2 seeds 八-run 矩阵只留作历史兼容，不要再按它提交新训练。v2 会在任何结果计算前
+要求 lock 中有 100% canonical sidecar coverage、sidecar manifest SHA、稳定 public generator release、exact config
+stratum、outcome-before attestation 和 `historical_backfill_used=false`；主分析器和独立 verifier 都会 fail-closed。
+
 我们会在 sidecar/support/closure 通过后另报：每臂 GPU 型号/卡数、实测 wall-clock hard cap、总 GPU·h、磁盘和
 checkpoint/resume 方案，再由用户批准。当前没有启动 GPU 或训练。
 
-预先固定的最低正门是两个 seed 的 `8B−0.6B` 都为正，并同时报告 task/run clustered interval、task-macro、LOTO、
-dominant-task deletion、coverage/tie/missingness 和 init/query/execution 成本。若不过，不加 seed、不换 split、不删任务救结果。
+预先固定的最低正门是三点均值单调、平均 `8B−0.6B≥0.02`、两个 seed 各自为正、task-bootstrap CI 下界为正、
+所有 high-low LOTO 为正、删除主导任务后仍为正。主导任务只按 primary pair 数确定并以 task ID 字典序破平，不看
+outcome。TF-IDF 与 component gain 是分别命名的更强门，不能救失败的容量 primary。若不过，不加 seed、不换 split、
+不删任务救结果。
 
 ## 论文定位与贡献归属
 

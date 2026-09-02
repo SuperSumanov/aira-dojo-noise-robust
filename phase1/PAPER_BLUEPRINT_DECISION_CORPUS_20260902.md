@@ -87,7 +87,11 @@ internal evidence routing；prospective common-support 与 clean scaling 仍是�
 3. `Qwen3 Base 0.6B/4B/8B × seeds 6/7` 六个训练 run 只改变模型规模；context、steps、optimizer、prompt、
    checkpoint rule、scorer 与预算一致。
 4. checkpoint 由 train-run dev 选择，untouched frozen cohort 只评一次。
-5. 两个 seed 的 `8B−0.6B` 均为正，且 task/run 聚类区间、task-macro、LOTO 与 dominant-task deletion 不矛盾。
+5. v2 机器契约固定三点 task-macro 均值单调、平均 `8B−0.6B≥0.02`、两个 seed 各自为正、task-bootstrap
+   CI 下界为正、所有 high-low LOTO 为正，并且删除按 pair 数预定义的主导任务后仍为正。
+
+冻结契约为 `phase1/critic_scaling_confirmation_contract_v2.json`（SHA-256=
+`c64ab02a20066a9d282de8b3d5a803838e3637e33dd39b53600b52b1dd277642`）；旧 v1 八-run 矩阵不再用于新训练。
 
 若任一条件不满足，scaling 只留在探索性附录或 future work，不阻塞 C1--C3 的 D&B 论文。
 

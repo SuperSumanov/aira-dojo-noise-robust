@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0l. 2026-09-02 两张主图已进入主稿并通过独立渲染；不新增结果证据
+
+主稿此前只在正文提到 Figure 1/2，却没有实际嵌入图像，内部审稿包会出现“有图号、无图”的可用性缺口。v0.7 现把
+`figure1_corpus_and_sealed_protocol.png` 和 `figure2_run_to_pair_weighting.png` 各嵌入一次；图注分别把 sealed
+protocol 与 outcome-blind structural weighting diagnostic 的边界写在图旁。Figure 2 明示 240→339 runs 的
+run/pair HHI、max share、`TV=0.337083` 及 run 260 leverage，并同时写清“方向经 temporal/task-deletion 检查保留，
+幅度不具 task-deletion robustness”；不得把它解释为 predictor bias、accuracy、search utility 或 producer behavior
+的因果估计。两张 PNG/SVG 的既有 hash receipt 不变。
+
+公开实现 commit=`7565852e6fa515d8d4bad6d1eeb96725478fa1ec`。远端 fresh detached r1 在 `umask 077` 下
+通过 focused/full=`12/2,166 passed`、48 warnings、0 failures，两个 stderr 0 bytes；changed files=`2`、credential
+filename/content=`0/0`、日志 manifest=`0db3c541...75e1`。本地 Pandoc 3.6 以 citeproc 和 embedded resources
+生成 standalone HTML：629,453 bytes、2 个内嵌 PNG、stderr 0 bytes、SHA-256=`2709607b...0be3`，HTML 不入库。
+本机 full suite 因缺 scipy/sklearn 在 collection 前停止，故只采用远端固定环境的 full 结果。远端清单含绝对路径，
+标准跨机 `sha256sum -c` 不可移植；保留原清单后用独立 basename 重绑定逐项重算，13/13 匹配、0 missing/mismatch，
+再清理精确远端 worktree、日志根和 helpers。
+
+本次只提升稿件可审阅性，`counts_as_distinct_claim_evidence=false`，不改变任何科学数字、sealed slot、config-v2/closure/
+GPU 门。prospective value/identity read=`false/false`，GPU/API/model-fit/base-update=`0/0/0/0`。见
+`phase1/manuscript_figure_embedding_postpush_receipt_20260902.json`。
+
 ## 0L0k. 2026-09-02 主稿公开发布措辞已与未 clearance 状态对齐
 
 可投稿性检查发现主稿 v0.6 同时写着“data release is not yet legally or content-cleared”和 `we release / released unit /

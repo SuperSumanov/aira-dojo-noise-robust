@@ -1,0 +1,85 @@
+{
+  "protocol": "decision-corpus-manuscript-figure-embedding-postpush-receipt-v1",
+  "status": "VERIFIED_FIGURES_EMBEDDED_AND_REVIEW_HTML_RENDERED",
+  "exact_public_commit": "7565852e6fa515d8d4bad6d1eeb96725478fa1ec",
+  "parent_commit": "3c58c8704ff927ef2dbe58d272e87d35e334f151",
+  "scope": {
+    "manuscript_version": "v0.7",
+    "changed_files": 2,
+    "embedded_pngs": [
+      {
+        "path": "phase1/figures/decision_corpus_20260902/figure1_corpus_and_sealed_protocol.png",
+        "sha256": "3a5c0531bcd69d4b74ddbf5cfba7f8a6b0930d01e33b36fb38b4933c3084320a"
+      },
+      {
+        "path": "phase1/figures/decision_corpus_20260902/figure2_run_to_pair_weighting.png",
+        "sha256": "36d647b0fd4d44f39644f3af4fffe72496398cc244c9bff1afffb48b07ad701b"
+      }
+    ],
+    "captions_preserve_claim_boundaries": true,
+    "counts_as_distinct_claim_evidence": false,
+    "scientific_result_changed": false,
+    "sealed_slots_changed": false
+  },
+  "local_render": {
+    "renderer": "pandoc 3.6",
+    "format": "standalone HTML5 with embedded resources and citeproc",
+    "output_committed": false,
+    "output_bytes": 629453,
+    "output_sha256": "2709607bae96d24049470965caefb05ba2d173b7adc42ff95c3e77e6a8620be3",
+    "stderr_bytes": 0,
+    "embedded_png_data_uris": 2,
+    "bibliography_resolved": true
+  },
+  "successful_verification": {
+    "attempt": "r1",
+    "utc_completed": "2026-09-02T10:28:55Z",
+    "fresh_detached_exact_checkout": true,
+    "git_lfs_smudge_disabled": true,
+    "umask": "077",
+    "clean_before_tests": true,
+    "clean_after_tests": true,
+    "focused_tests": {
+      "passed": 12,
+      "failed": 0,
+      "duration_seconds": 0.12
+    },
+    "full_phase1_tests": {
+      "passed": 2166,
+      "failed": 0,
+      "warnings": 48,
+      "duration_seconds": 133.92
+    },
+    "focused_stderr_bytes": 0,
+    "full_stderr_bytes": 0,
+    "changed_paths_sha256": "992e6412cf72e9c32c4e9828d83bf156048b668098f729d137cb91acecbf8f10",
+    "changed_file_hashes_sha256": "04da5aaa43ac2b9c5d0b7eb4b66bad1f969c0c878d3c4ac3ec23863accf9225b",
+    "focused_stdout_sha256": "cbee9c0722fd6a09c9cc31d458a52e1ef59156c120e1c47c8ca9ed985131253a",
+    "full_stdout_sha256": "61c9242b02dd11321d0c82092bd63fb4e303efebf6f7bb8c3b886d33f7d75d8f",
+    "log_manifest_sha256": "0db3c541536dfe447cd76caf05754f81f5c8808f3f9587f5ccb80ea2797f75e1"
+  },
+  "attempt_notes": {
+    "local_full_suite": "Collection stopped before tests because the Windows Python environment lacks scipy and scikit-learn; the remote pinned environment supplied the authoritative full-suite result.",
+    "log_manifest_portability": "The preserved SHA256SUMS uses absolute remote paths, so direct sha256sum -c on Windows was not portable. An independent verifier rebound each entry to its basename and recomputed 13 of 13 local file hashes with zero missing or mismatched files. The original manifest bytes and hash remain unchanged."
+  },
+  "security": {
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0,
+    "prospective_labels_or_outcomes_read": false,
+    "prospective_prediction_values_read": false,
+    "prospective_accuracy_or_utility_computed": false,
+    "prospective_candidate_identities_or_profiles_read": false,
+    "raw_archive_payload_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "cleanup": {
+    "local_log_files_hash_verified": 13,
+    "local_log_files_missing_or_mismatched": 0,
+    "remote_exact_worktree_removed": true,
+    "remote_exact_log_root_removed_after_verified_local_copy": true,
+    "remote_helpers_removed": true
+  }
+}

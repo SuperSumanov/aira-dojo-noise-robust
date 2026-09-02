@@ -8,6 +8,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DRAFT = ROOT / "phase1" / "PAPER_DRAFT_DECISION_CORPUS_20260902.md"
 FIGURES = ROOT / "phase1" / "figures" / "decision_corpus_20260902"
+POSTPUSH = (
+    ROOT / "phase1" / "manuscript_figure_embedding_postpush_receipt_20260902.json"
+)
+CURRENT = ROOT / "phase1" / "CURRENT_DIRECTION.md"
 
 
 def _sha256(path: Path) -> str:
@@ -57,3 +61,23 @@ def test_figure_receipts_attest_no_gpu_api_or_sealed_value_reads() -> None:
     assert security["score_or_prediction_values_opened"] is False
     assert security["outcome_grade_winner_orientation_opened"] is False
     assert security["eligible_blind_manifest_opened"] is False
+
+
+def test_postpush_receipt_binds_exact_commit_render_and_failure_disclosure() -> None:
+    receipt = json.loads(POSTPUSH.read_text(encoding="utf-8"))
+    current = CURRENT.read_text(encoding="utf-8")
+
+    assert receipt["exact_public_commit"] == (
+        "7565852e6fa515d8d4bad6d1eeb96725478fa1ec"
+    )
+    assert receipt["successful_verification"]["focused_tests"]["passed"] == 12
+    assert receipt["successful_verification"]["full_phase1_tests"]["passed"] == 2166
+    assert receipt["successful_verification"]["full_phase1_tests"]["failed"] == 0
+    assert receipt["local_render"]["embedded_png_data_uris"] == 2
+    assert receipt["local_render"]["stderr_bytes"] == 0
+    assert receipt["cleanup"]["local_log_files_hash_verified"] == 13
+    assert receipt["cleanup"]["local_log_files_missing_or_mismatched"] == 0
+    assert "absolute remote paths" in receipt["attempt_notes"]["log_manifest_portability"]
+    assert receipt["scope"]["counts_as_distinct_claim_evidence"] is False
+    assert "## 0L0l." in current
+    assert "13/13 匹配" in current

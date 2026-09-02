@@ -152,3 +152,12 @@ GPU 门。主引用入口为 `phase1/RELATED_WORK_CITATION_MAP_20260902.md`。
 
 我们继续守候 Target-522/first-960、维护 prediction escrow/closure，并写 Table 1--3、Figure 1--2、数据卡、撤回表与
 methods/audit sections。没有新 sidecar 前不再用缺 provenance 的新 runs 冒充 scaling confirmation。
+
+### 2026-09-02 最新防 scoop 增量
+
+- DeltaML-Bench（arXiv:2608.19653v1）已覆盖 48 个真实研究仓库上的 MLE agent benchmark，并加入分层
+  specification-gaming 检查；BAITBENCH（arXiv:2608.30724v1，8 月 31 日提交）已覆盖 planted shortcut、隐藏
+  robust split、canonical run evidence 与多 judge 的 reward-hacking 审计。
+- 因此不得再写“首个可信 MLE-agent benchmark / 首个隐藏 held-out 评测 / 首个 integrity audit”。二者没有把
+  naturally logged sibling choice + common-pool cross-family predictor measurement 作为主单元，故我们的窄定位仍成立。
+- 这是防 scoop 文稿维护，不是新科学结果，也不改变 clean-scaling 的 sidecar/closure 门、GPU 批准门或贡献归属。

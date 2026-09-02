@@ -107,6 +107,17 @@ Decision Corpus is designed to measure.
   [arXiv:2507.02825](https://arxiv.org/abs/2507.02825).
 - **ReproEvalCard**, ACL 2026, must be cited from its ACL Anthology record rather
   than a secondary summary when the bibliography is finalized.
+- **DeltaML-Bench**, [arXiv:2608.19653v1](https://arxiv.org/abs/2608.19653v1),
+  is a direct real-repository MLE benchmark and specification-gaming precedent.
+- **BAITBENCH**, [arXiv:2608.30724v1](https://arxiv.org/abs/2608.30724v1), is a
+  direct hidden-robust-split and reward-hacking audit precedent for ML agents.
+
+The last two papers close broad priority language around trustworthy MLE-agent
+benchmarks, hidden held-out evaluation, and integrity auditing. They do not change
+the current narrow unit: naturally logged sibling fragments evaluated as a
+cross-family predictor benchmark under physical-run/config/time isolation and
+outcome-blind closure. This statement is scoped to the inspected public v1 papers,
+not an assertion about all literature or unobserved internal work.
 
 ## Table 4B baseline consequence
 
@@ -159,7 +170,7 @@ be reported under a different name. It must not be labeled â€œRPM reproduction.â
 
 ## Working bibliography state
 
-`DECISION_CORPUS_REFERENCES_20260902.bib` now binds 22 primary-source-checked entries
+`DECISION_CORPUS_REFERENCES_20260902.bib` now binds 24 primary-source-checked entries
 used by this map and the manuscript. Large author lists that use BibTeX's canonical
 `and others` marker are explicitly internal-draft abbreviations and must be expanded
 from the linked primary record during final venue packaging. mle-traj v1/v3 artifact

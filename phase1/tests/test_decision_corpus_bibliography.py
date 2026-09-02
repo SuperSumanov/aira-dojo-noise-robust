@@ -14,6 +14,8 @@ RECEIPT = ROOT / "phase1" / "bibliography_postpush_receipt_20260902.json"
 REQUIRED_KEYS = {
     "zheng2026foreagent",
     "foster2026rpm",
+    "moukpe2026deltamlbench",
+    "prasad2026baitbench",
     "liu2025mlagent",
     "yang2026frontisma1",
     "jerryyan2026mletrajv1",
@@ -40,7 +42,7 @@ REQUIRED_KEYS = {
 def test_working_bibliography_has_unique_expected_entries() -> None:
     text = BIB.read_text(encoding="utf-8")
     keys = re.findall(r"^@\w+\{([^,]+),", text, flags=re.MULTILINE)
-    assert len(keys) == 22
+    assert len(keys) == 24
     assert len(keys) == len(set(keys))
     assert set(keys) == REQUIRED_KEYS
     assert len(re.findall(r"(?<!\\)\{", text)) == len(re.findall(r"(?<!\\)\}", text))
@@ -51,6 +53,8 @@ def test_primary_identifiers_and_urls_are_bound() -> None:
     required_ids = {
         "2601.05930",
         "2608.13940",
+        "2608.19653",
+        "2608.30724",
         "2505.23723",
         "2607.28568",
         "2502.18407",

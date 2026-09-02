@@ -162,13 +162,21 @@ population is itself produced by an adaptive agent search.
 BenchmarkCards [@sokol2024benchmarkcards], BetterBench [@reuel2024betterbench],
 ReproEvalCard [@pattnayak2026reproevalcard], and agentic benchmark checklists
 [@zhu2025agenticbenchmarks] motivate explicit data statements and reproducibility
-records. We apply
+records. Two recent MLE-agent benchmarks sharpen the integrity boundary.
+DeltaML-Bench [@moukpe2026deltamlbench] evaluates 48 real research repositories
+with layered checks for specification gaming, while BAITBENCH
+[@prasad2026baitbench] uses planted shortcuts, a hidden robust split, canonical run
+evidence, and multiple judges to measure reward hacking. They close broad claims to
+the first trustworthy MLE-agent benchmark, hidden held-out evaluation, or
+specification-gaming audit. Neither makes naturally logged sibling choices and a
+common-pool cross-family predictor study its primary unit; that scoped distinction,
+not generic integrity, is the boundary of our benchmark contribution. We apply
 these principles at artifact level: each claim routes to an evidence entry with an
 exact population, hash, verifier, failure gate, and `does_not_prove` boundary.
 Retracted or superseded claims remain in an append-only ledger.
 
 **Table 1(a): direct MLE data and resources.** “Not reported” denotes scope after
-our 2026-08-28 primary-source audit, not proof of absence.
+our dated primary-source audits through 2026-09-02, not proof of absence.
 
 | Resource | Released unit | Primary objective | True-sibling decision unit | Predictor benchmark | Isolation / closure | Boundary for our claim |
 |---|---|---|---|---|---|---|
@@ -187,6 +195,7 @@ our 2026-08-28 primary-source audit, not proof of absence.
 | AgentRM; Step-Level Q-Value Models | Reward/value learning from agent search or process states; best-of-N/beam use | Tree-derived supervision and value-model boundary | First reward model from a search tree |
 | ReLoc | Parent/sibling local code revisions train a reward model and guide search | Parent-local comparison as an adjacent estimand | First sibling/parent reward model for code search |
 | SELA and related MCTS-AutoML agents | Tree search over automated ML decisions | Search-tree context and end-to-end baseline | First tree-search MLE/AutoML agent |
+| DeltaML-Bench; BAITBENCH | Real-repository MLE evaluation and hidden-split/specification-gaming audits | Integrity controls, canonical run evidence, and conservative claim boundaries | First trustworthy MLE-agent benchmark, hidden held-out evaluation, or integrity audit |
 | NAS predictor benchmarks, including NAS-Bench-360 | Dataset-first multi-task predictor comparison | Predictor families, tabular benchmark form, initialization/query accounting | First performance-predictor benchmark |
 | BenchmarkCards, BetterBench, and ReproEval-style reporting | Benchmark documentation and reproducibility checklists | Evidence index, withdrawal ledger, and data card | First benchmark checklist or card |
 

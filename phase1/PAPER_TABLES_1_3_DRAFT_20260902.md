@@ -22,13 +22,14 @@
 | [AgentRM](https://arxiv.org/abs/2502.18407), Step-Level Q-Value Models | Reward/value learning from agent search or process states; best-of-N/beam use | Tree-derived supervision and value-model evaluation boundary | “First reward model from a search tree” |
 | [ReLoc](https://arxiv.org/abs/2508.07434) | Parent/sibling local code revisions used to train a revision reward model and guide search | Parent-local comparison as an adjacent estimand | “First sibling/parent reward model for code search” |
 | [SELA](https://arxiv.org/abs/2410.17238) and related MCTS-AutoML agents | Tree search over automated ML decisions | Search-tree context and end-to-end baseline | “First tree-search MLE/AutoML agent” |
+| [DeltaML-Bench](https://arxiv.org/abs/2608.19653v1) / [BAITBENCH](https://arxiv.org/abs/2608.30724v1) | Real-repository MLE evaluation and planted-shortcut hidden-split integrity auditing | Integrity controls, canonical run evidence, and conservative claim boundaries | “First trustworthy MLE-agent benchmark,” hidden held-out evaluation, or specification-gaming audit |
 | NAS predictor benchmarks, including [NAS-Bench-360](https://arxiv.org/abs/2110.05668) | Dataset-first multi-task performance-predictor comparison | Predictor families, tabular benchmark form, init/query accounting | “First performance-predictor benchmark” |
 | BenchmarkCards / BetterBench / ReproEval-style reporting | Dataset/benchmark documentation and reproducibility checklists | Machine evidence index, withdrawal ledger, data card | “First benchmark checklist/card” |
 
 **Table 1 caption draft.** Decision Corpus is not positioned as the first or largest MLE trajectory dataset, the first tree-derived
 reward model, or the first critic-guided code search method. Its unit and protocol are different: provenance-bound sibling fragments from
 fixed agent searches, evaluated as an execution-costly decision benchmark under physical-run/time isolation, outcome-blind closure, and
-joint cost/noise/pair-weight auditing. “Not reported” denotes scope after the 2026-08-28 primary-source audit, not a proof of absence.
+joint cost/noise/pair-weight auditing. “Not reported” denotes scope after the dated primary-source audits through 2026-09-02, not a proof of absence.
 
 ## Table 2. Corpus and benchmark population statistics
 
@@ -81,7 +82,7 @@ utility remain unopened.
 
 | Table | Primary local evidence |
 |---|---|
-| Table 1 | `实验记录/2026-08-28/MLE直接数据竞品_MLAgent_OpenMLE_mletraj_防撞审计.md`; `TWENTY_DAY_POSITIVE_RESULT_SPRINT_20260902.md` |
+| Table 1 | `实验记录/2026-08-28/MLE直接数据竞品_MLAgent_OpenMLE_mletraj_防撞审计.md`; `RECENT_MLE_INTEGRITY_COMPETITOR_DELTA_20260902.md`; `TWENTY_DAY_POSITIVE_RESULT_SPRINT_20260902.md` |
 | Table 2 historical | `results/decision_corpus_audit_v11_20260814/`; `results/v11_source_provenance_audit_20260814/`; data card |
 | Table 2 prospective | Evidence Index v10 entries 14/19; `CURRENT_DIRECTION.md` 0L0/0KY |
 | Table 3 | Evidence Index v10; Structural Gate Utility Certificate; v11 schema inventory; release-content tier and generator-provenance postflight receipts |

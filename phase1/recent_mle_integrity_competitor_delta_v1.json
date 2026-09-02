@@ -1,0 +1,67 @@
+{
+  "schema_version": "recent-mle-integrity-competitor-delta-v1",
+  "status": "PRIMARY_SOURCE_SCOPE_DELTA_NOT_SCIENTIFIC_EVIDENCE",
+  "checked_at_utc": "2026-09-02T08:51:32Z",
+  "scope": {
+    "window_start": "2026-08-20",
+    "window_end": "2026-09-02",
+    "queries": [
+      "machine learning engineering agent benchmark",
+      "ML agent search tree benchmark dataset critic",
+      "research agent preference execution",
+      "agent reward hacking ML tasks"
+    ],
+    "source_policy": "Claims below are bound only to the cited arXiv v1 records and papers. The search is a dated scope check, not proof that no other work exists."
+  },
+  "sources": [
+    {
+      "citation_key": "moukpe2026deltamlbench",
+      "title": "DeltaML-Bench: Evaluating Machine Learning Agents on Real-World Research Repositories",
+      "arxiv_id": "2608.19653",
+      "version": "v1",
+      "submitted_utc": "2026-08-20T05:42:39Z",
+      "url": "https://arxiv.org/abs/2608.19653v1",
+      "verified_scope": [
+        "48 tasks sourced from real research repositories",
+        "search-based and modular agent scaffolds under long execution budgets",
+        "layered specification-gaming and integrity checks"
+      ],
+      "claim_boundary": "A direct MLE benchmark and integrity precedent; it does not make a naturally logged true-sibling predictor benchmark its primary released or evaluated unit."
+    },
+    {
+      "citation_key": "prasad2026baitbench",
+      "title": "BAITBENCH: Measuring Agent Reward Hacking with Optional Shortcuts Planted in ML Tasks",
+      "arxiv_id": "2608.30724",
+      "version": "v1",
+      "submitted_utc": "2026-08-31T12:59:33Z",
+      "url": "https://arxiv.org/abs/2608.30724v1",
+      "verified_scope": [
+        "three synthetic tabular ML task families with planted shortcuts",
+        "public-versus-hidden robust split recomputation",
+        "canonical run evidence and a two-judge reward-hacking protocol"
+      ],
+      "claim_boundary": "A direct ML-agent evaluation-integrity precedent; it studies behavioral reward hacking rather than cross-family prediction over logged search-tree sibling decisions."
+    }
+  ],
+  "positioning": {
+    "claims_closed": [
+      "first trustworthy benchmark for ML agents",
+      "first hidden held-out evaluation for ML agents",
+      "first integrity or specification-gaming audit for ML agents",
+      "first benchmark over real research repositories"
+    ],
+    "remaining_narrow_claim": "A provenance-bound benchmark of naturally logged MLE sibling decision fragments with common-pool cross-family predictor measurement, physical-run/config/time isolation, pair-dependence auditing, and one-shot outcome-blind closure.",
+    "absolute_priority_claim_allowed": false,
+    "counts_as_distinct_claim_evidence": false
+  },
+  "security": {
+    "prospective_outcome_read": false,
+    "prospective_label_read": false,
+    "prospective_prediction_value_read": false,
+    "prospective_candidate_identity_or_profile_read": false,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  }
+}

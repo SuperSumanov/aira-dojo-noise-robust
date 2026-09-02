@@ -1,0 +1,127 @@
+{
+  "protocol": "decision-corpus-neurips-checklist-postpush-receipt-v1",
+  "status": "VERIFIED_PROVISIONAL_CHECKLIST_AND_VISUAL_GATE_CLOSED_SUBMISSION_NOT_READY",
+  "exact_public_commit": "9a6477a3a726609e63747d31798642a679fb6899",
+  "parent_commit": "e964554c6be01da5cf682e414911c29be5b44dae",
+  "frozen_assets": {
+    "paper_sha256": "6aca55510465e6efb89fcd7a2c0d9c18f159ef5f432689b5cc7908ce433e565c",
+    "appendix_sha256": "51a88b1cf0d417b45658fb537a4057b4f8b504dd10dec16bbafabbe503d4bc68",
+    "official_checklist_source_sha256": "780ba13c480f652dcc42e69ed61a752ce0ea270f15d332d4a45b059dabad84f6",
+    "normalized_checklist_template_sha256": "414592037db2323611038f3bcf3321b29b5e5183cdc071e90e73e7420a99fbce",
+    "generated_checklist_sha256": "f58a5ca34ca4eb5d0217bcbfe59ed9c0ea52fe51136c1d9cb0a8ad5b1e678cc7",
+    "render_contract_sha256": "8230b6db6def536e92b5bab02d781939c46aa3c8010bd9582490569bd72b0730",
+    "pdf_local_not_committed_sha256": "a0025a12d60ee4dd7ea2caf8da6ace8451227b1f75a89e90775817d74397a359",
+    "pdf_bytes": 500133
+  },
+  "local_render": {
+    "pandoc_version": "3.6",
+    "tectonic_version": "0.16.9",
+    "only_cached_resources": true,
+    "deterministic_mode": true,
+    "independent_build_directories": 2,
+    "byte_identical": true,
+    "total_pages": 16,
+    "last_main_content_page": 7,
+    "references_begin_page": 8,
+    "checklist_begin_page": 9,
+    "visual_pages_inspected": 16,
+    "overfull_box_warnings": 0,
+    "overlap_or_clipping_observed": false
+  },
+  "attempt_chain": [
+    {
+      "attempt": "r1",
+      "status": "FAILED_BEFORE_PREFLIGHT",
+      "cause": "remote environment setup was sourced after strict shell options; the shell exited before writing preflight",
+      "worktree_created": false,
+      "log_root_empty": true,
+      "test_results_produced": false,
+      "scientific_interpretation": "NONE"
+    },
+    {
+      "attempt": "r2",
+      "status": "PASS",
+      "environment_setup_sourced_before_strict_shell_options": true,
+      "fresh_detached_exact_checkout": true,
+      "git_lfs_smudge_disabled": true,
+      "umask": "077",
+      "clean_before_and_after": true
+    }
+  ],
+  "successful_verification": {
+    "attempt": "r2",
+    "utc_locally_hash_verified": "2026-09-02T17:46:34Z",
+    "preflight_items_passed": 11,
+    "changed_files": 11,
+    "builder_independent_runs": 2,
+    "builder_outputs_byte_identical": true,
+    "builder_paper_sha256": "6aca55510465e6efb89fcd7a2c0d9c18f159ef5f432689b5cc7908ce433e565c",
+    "builder_appendix_sha256": "51a88b1cf0d417b45658fb537a4057b4f8b504dd10dec16bbafabbe503d4bc68",
+    "builder_checklist_sha256": "f58a5ca34ca4eb5d0217bcbfe59ed9c0ea52fe51136c1d9cb0a8ad5b1e678cc7",
+    "focused_tests": {
+      "passed": 20,
+      "failed": 0,
+      "pytest_duration_seconds": 0.41,
+      "wrapper_duration_seconds": 13
+    },
+    "full_phase1_tests": {
+      "passed": 2222,
+      "skipped": 1,
+      "failed": 0,
+      "warnings": 48,
+      "pytest_duration_seconds": 183.55,
+      "wrapper_duration_seconds": 188
+    },
+    "focused_stderr_bytes": 0,
+    "full_stderr_bytes": 0,
+    "changed_paths_sha256": "c73b20956b515cae5348cbe0848b1e49e7561dd28a97d25757d83c34eb3f7791",
+    "preflight_sha256": "7a71d2bd295a86fc0fb7a1aa4688309196445b6f5c91ef4092319ee6346ef54f",
+    "builder_stdout_sha256": "fdf47fb9ef6a6e82d25d5a3eb7b963a18ecc46cbab16987da61a5a02e89d356e",
+    "focused_stdout_sha256": "04203b8ff2d2cd277cdf28af34117905d8347a5a3a88cf631d31cba832957705",
+    "full_stdout_sha256": "820abe7e1a925483bcc00d9d1300b94ccb0c4ca119da031c252f0e9c7464a74f",
+    "security_log_sha256": "86f2a1f2c6837a2a0bf12c532e7d3da9d600c77a102735884473bfeb199508d6",
+    "log_manifest_sha256": "ab7a113df0d4949f940b5b50629c970aee036e46ab5665b59cd6ba0f52d55f82"
+  },
+  "checklist_outcome": {
+    "items": 16,
+    "yes": 7,
+    "no": 5,
+    "not_applicable_or_not_available": 4,
+    "hard_submission_blockers": [4, 5, 8, 12, 13],
+    "author_attestation_required": [9],
+    "submission_candidate": false
+  },
+  "interpretation": {
+    "checklist_presence_gate_closed": true,
+    "visual_gate_closed": true,
+    "page_budget_gate_closed": true,
+    "submission_readiness_closed": false,
+    "counts_as_distinct_claim_evidence": false,
+    "scientific_result_changed": false,
+    "must_revalidate_2027_style": true
+  },
+  "security": {
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0,
+    "downloaded_log_secret_hits": 0,
+    "prospective_labels_or_outcomes_read": false,
+    "prospective_prediction_values_read": false,
+    "prospective_accuracy_or_utility_computed": false,
+    "prospective_candidate_identities_or_profiles_read": false,
+    "raw_senior_outcome_content_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "cleanup": {
+    "local_log_files_hash_verified": 19,
+    "local_log_files_missing_or_mismatched": 0,
+    "remote_exact_worktree_removed": true,
+    "remote_exact_log_root_removed_after_verified_local_copy": true,
+    "remote_empty_r1_log_root_removed": true,
+    "remote_helpers_removed": true,
+    "first_cleanup_attempt_failed_on_read_only_logs": true,
+    "second_cleanup_reverified_manifest_before_owner_write_restore": true
+  }
+}

@@ -1,7 +1,30 @@
-# 当前研究方向唯一入口（2026-09-02）
+# 当前研究方向唯一入口（2026-09-03）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0L0s. 2026-09-03 官方 checklist 已进入可视化内审稿；5 个真实投稿阻塞仍不得隐藏
+
+以 2026 NeurIPS 官方 16 项 checklist 作为 2027 E&D 的 provisional 门，已生成并纳入主稿：答案为
+`7 Yes / 5 No / 4 N/A`。No 对应 main-result reproducibility、匿名 data/code access、完整 compute ledger、
+existing-asset licenses 与 new-asset hosting/documentation；第 9 项 Code of Ethics 仍需作者亲自 review/attest。
+这些是提交阻塞，不得由 pipeline 粉饰为 Yes。successor 同时补入 broader impacts/safeguards/LLM-use 和附录中的
+静态 estimator、20,000-bootstrap、CPU worker/fit/warmup/query 细节，但没有改任何科学数字或打开 sealed field。
+
+PDF QA 还发现冻结的 2026-09-02 源稿里 4 个预期 `\rightarrow` 实际被 lone-CR 字节破坏；只在 successor 中做了
+hash-bound 修复，旧源保持不可变，并加了 zero-lone-CR 回归门。Pandoc 3.6 + Tectonic 0.16.9 在两个独立目录、
+cached-only deterministic mode 下得到逐字节相同的 500,133-byte PDF，SHA-256=`a0025a12...a359`。总 16 页：
+正文到 page 7、references 从 page 8、checklist 从独立 page 9 到 16；16/16 页已视觉检查，overfull=`0`，未见
+裁切、重叠、缺图或黑块。它是 internal review candidate，仍不是 submission candidate；2027 style/call 发布后必须重核。
+
+实现公开 commit=`9a6477a3a726609e63747d31798642a679fb6899`。远端 r1 因 env setup 与 strict shell option 的前置交互，
+在 preflight/checkout/tests 前空退出，诚实保留为非科学失败；r2 在 fresh detached exact commit、`umask 077`、
+LFS smudge off 下通过 11 项 preflight、builder A/B、focused/full=`20 / 2,222 passed`，另有 `1 skipped`、
+48 warnings、0 failures，两个 test stderr 均为 0 bytes。changed files=`11`、credential filename/content=`0/0`；
+19/19 日志本地逐项核 hash，manifest=`ab7a113d...5f82`，随后精确远端 worktree、r1/r2 日志根和 helpers 已清理。
+prospective value/identity read=`false/false`，GPU/API/model-fit/base-update=`0/0/0/0`。这只关闭 checklist presence、
+page 与 visual engineering 门，`counts_as_distinct_claim_evidence=false`；见
+`phase1/NEURIPS_CHECKLIST_RENDER_20260903.md` 与 `phase1/neurips_checklist_postpush_receipt_20260903.json`。
 
 ## 0L0r. 2026-09-02 outcome-blind intake 固定续跑已部署并通过首轮独立复验
 

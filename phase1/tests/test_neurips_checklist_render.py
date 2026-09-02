@@ -14,6 +14,8 @@ HEADER = ROOT / "phase1/render/decision_corpus_neurips_2026_header.tex"
 TEMPLATE = ROOT / "phase1/render/neurips_2026_checklist_template.tex"
 CHECKLIST = ROOT / "phase1/render/decision_corpus_neurips_2026_checklist_provisional.tex"
 REPORT = ROOT / "phase1/NEURIPS_CHECKLIST_RENDER_20260903.md"
+RECEIPT = ROOT / "phase1/neurips_checklist_postpush_receipt_20260903.json"
+CURRENT = ROOT / "phase1/CURRENT_DIRECTION.md"
 
 
 def sha256(path: Path) -> str:
@@ -113,3 +115,47 @@ def test_report_and_security_preserve_nonclaim_boundary() -> None:
     assert data["interpretation"]["scientific_result_changed"] is False
     assert data["interpretation"]["submission_readiness_closed"] is False
     assert all(value is False or value == 0 for value in data["security"].values())
+
+
+def test_postpush_receipt_binds_failure_chain_full_suite_and_cleanup() -> None:
+    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+    verification = receipt["successful_verification"]
+    attempts = receipt["attempt_chain"]
+    cleanup = receipt["cleanup"]
+    assert receipt["exact_public_commit"] == (
+        "9a6477a3a726609e63747d31798642a679fb6899"
+    )
+    assert receipt["frozen_assets"]["render_contract_sha256"] == sha256(CONTRACT)
+    assert attempts[0]["status"] == "FAILED_BEFORE_PREFLIGHT"
+    assert attempts[0]["worktree_created"] is False
+    assert attempts[0]["test_results_produced"] is False
+    assert attempts[1]["status"] == "PASS"
+    assert verification["preflight_items_passed"] == 11
+    assert verification["changed_files"] == 11
+    assert verification["builder_outputs_byte_identical"] is True
+    assert verification["focused_tests"]["passed"] == 20
+    assert verification["full_phase1_tests"]["passed"] == 2222
+    assert verification["full_phase1_tests"]["skipped"] == 1
+    assert verification["full_phase1_tests"]["failed"] == 0
+    assert verification["full_phase1_tests"]["warnings"] == 48
+    assert verification["focused_stderr_bytes"] == 0
+    assert verification["full_stderr_bytes"] == 0
+    assert verification["log_manifest_sha256"] == (
+        "ab7a113df0d4949f940b5b50629c970aee036e46ab5665b59cd6ba0f52d55f82"
+    )
+    assert cleanup["local_log_files_hash_verified"] == 19
+    assert cleanup["local_log_files_missing_or_mismatched"] == 0
+    assert cleanup["remote_exact_worktree_removed"] is True
+    assert cleanup["remote_exact_log_root_removed_after_verified_local_copy"] is True
+    assert cleanup["remote_helpers_removed"] is True
+    assert all(value is False or value == 0 for value in receipt["security"].values())
+
+
+def test_current_direction_records_checklist_gate_without_claiming_submission_ready() -> None:
+    text = CURRENT.read_text(encoding="utf-8")
+    assert text.startswith("# 当前研究方向唯一入口（2026-09-03）")
+    assert "## 0L0s." in text
+    assert "7 Yes / 5 No / 4 N/A" in text
+    assert "focused/full=`20 / 2,222 passed`" in text
+    assert "仍不是 submission candidate" in text
+    assert "counts_as_distinct_claim_evidence=false" in text

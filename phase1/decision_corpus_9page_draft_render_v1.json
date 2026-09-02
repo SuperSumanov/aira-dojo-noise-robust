@@ -1,0 +1,112 @@
+{
+  "protocol": "decision-corpus-nine-page-draft-render-v1",
+  "status": "VISUALLY_VERIFIED_INTERNAL_CANDIDATE_PROVISIONAL_2026_TEMPLATE",
+  "source_parent_commit": "fb890a001be176bc5c9d802b35b5fbfdd73e7585",
+  "rendered_utc": "2026-09-02T12:46:47Z",
+  "target_call": {
+    "venue": "NeurIPS Evaluations & Datasets",
+    "year": 2027,
+    "call_published": false,
+    "provisional_template_year": 2026,
+    "must_revalidate_for_2027": true
+  },
+  "source": {
+    "path": "phase1/PAPER_DRAFT_DECISION_CORPUS_9PAGE_20260902.md",
+    "sha256": "cff6ecc97cd82dade64f5f1f0a676bf18c11fcd76066b279befcb9228565ebe8",
+    "words_whitespace_split": 2903,
+    "lines": 349,
+    "bibliography_path": "phase1/DECISION_CORPUS_REFERENCES_20260902.bib",
+    "bibliography_sha256": "63a85ac12aed8bcc5dd9fc4b9352fc71589cee959f16dd9fe2416956f276449b",
+    "embedded_figures": [
+      {
+        "path": "phase1/figures/decision_corpus_20260902/figure1_corpus_and_sealed_protocol.png",
+        "sha256": "3a5c0531bcd69d4b74ddbf5cfba7f8a6b0930d01e33b36fb38b4933c3084320a"
+      },
+      {
+        "path": "phase1/figures/decision_corpus_20260902/figure2_run_to_pair_weighting.png",
+        "sha256": "36d647b0fd4d44f39644f3af4fffe72496398cc244c9bff1afffb48b07ad701b"
+      }
+    ]
+  },
+  "renderer": {
+    "pandoc_version": "3.6",
+    "pandoc_source_format": "markdown+tex_math_single_backslash",
+    "citeproc": true,
+    "tectonic_version": "0.16.9",
+    "tectonic_official_release_url": "https://github.com/tectonic-typesetting/tectonic/releases/tag/tectonic%400.16.9",
+    "tectonic_windows_asset_sha256": "131a24604785a9600989a3d91225f597df52ac06f00aeffe86fd529f99ee5cdd",
+    "official_template_url": "https://media.neurips.cc/Conferences/NeurIPS2026/Formatting_Instructions_For_NeurIPS_2026.zip",
+    "official_template_zip_sha256": "82473931e3ef710fcd3f4a8cd4119b9de32e56825f90f9e5a6d55f2d01b817d9",
+    "official_style_sha256": "c3fc2894e83d2517ca18b66741d6c595986d97957dc08ec08bb2125a7ec4555a",
+    "header_path": "phase1/render/decision_corpus_neurips_2026_header.tex",
+    "header_sha256": "1b87d7a2faa1cb154b69b55109893a458b996e4ac1466e44822368aff83c947a",
+    "submission_style_option": "eandd",
+    "natbib_disabled_because_citeproc_owns_references": true,
+    "tectonic_deterministic_mode": true
+  },
+  "render": {
+    "pdf_path_local_not_committed": "output/pdf/decision_corpus_neurips_ed_9page_draft_20260902.pdf",
+    "pdf_sha256": "61d306c76ce0d6d57cc44547a320266a1853cc678b938adb7a7c23f7b1968df5",
+    "pdf_bytes": 467024,
+    "total_pdf_pages": 8,
+    "last_page_containing_main_content": 7,
+    "references_begin_on_page": 7,
+    "maximum_content_pages": 9,
+    "within_content_page_gate": true,
+    "reference_heading_present": true,
+    "overfull_box_warnings": 0,
+    "underfull_vbox_warnings": 3,
+    "visual_qa_pages_rendered": 8,
+    "visual_qa_pages_inspected": 8,
+    "deterministic_render_pngs_matching_inspected_pass": 8,
+    "deterministic_render_png_mismatches": 0,
+    "high_resolution_spot_checks_across_two_passes": [1, 3, 4, 6, 7, 8],
+    "overlap_or_clipping_observed": false,
+    "independent_build_directories": 2,
+    "independent_pdf_sha256": "61d306c76ce0d6d57cc44547a320266a1853cc678b938adb7a7c23f7b1968df5",
+    "independent_pdf_bytes": 467024,
+    "independent_build_byte_identical": true,
+    "submission_candidate": false,
+    "internal_review_candidate": true,
+    "pdf_committed": false
+  },
+  "measured_change_from_v0_7_baseline": {
+    "baseline_words": 6476,
+    "draft_words": 2903,
+    "word_reduction": 3573,
+    "word_reduction_fraction": 0.551729,
+    "baseline_total_pdf_pages": 17,
+    "draft_total_pdf_pages": 8,
+    "total_page_reduction": 9,
+    "baseline_last_content_page": 16,
+    "draft_last_content_page": 7,
+    "content_page_reduction": 9
+  },
+  "remaining_submission_gates": {
+    "official_2027_call_and_style": "BLOCKED_NOT_PUBLISHED",
+    "paper_checklist": "BLOCKED_NOT_INCLUDED",
+    "anonymous_reviewer_artifact": "BLOCKED",
+    "dataset_access_and_release_clearance": "BLOCKED",
+    "croissant_core_metadata": "BLOCKED",
+    "sealed_prospective_result": "PARTIAL_PENDING_PREREGISTERED_CLOSURE"
+  },
+  "interpretation": {
+    "counts_as_distinct_claim_evidence": false,
+    "scientific_result_changed": false,
+    "page_budget_gate_closed": true,
+    "submission_readiness_closed": false,
+    "must_not_pad_to_nine_pages": true,
+    "must_not_claim_end_to_end_search_utility": true
+  },
+  "security": {
+    "prospective_labels_or_outcomes_read": false,
+    "prospective_prediction_values_read": false,
+    "prospective_accuracy_or_utility_computed": false,
+    "prospective_candidate_identities_or_profiles_read": false,
+    "raw_archive_payload_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  }
+}

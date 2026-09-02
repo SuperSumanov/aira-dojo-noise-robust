@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0p. 2026-09-02 主稿已进入实测 9 页门内；现在的硬阻塞转为 artifact/release 与 sealed confirmation
+
+按 0L0o 冻结的编辑路线完成了真实官方样式压缩，而不是继续用字数猜测。新源稿为 2,903 词；在官方 2026
+`neurips_2026.sty` 的 `eandd` mode、Pandoc 3.6 + Tectonic 0.16.9 下得到 8 个 PDF pages，正文最后页从 16 降到 7，
+references 从 page 7 开始。相对 v0.7 基线净减 3,573 词、总页数和正文最后页各减 9。没有改字体、边距、行距或模板。
+
+最终 8/8 页已转 PNG 检查；跨两次 render 对 pages 1/3/4/6/7/8 做过高清抽查。重复标题、内部治理说明、内部路径、
+未闭合结果占位均已移除；References 有正式标题，overfull box=`0`，只有 3 个非致命 underfull-vbox warnings，未见裁切或
+重叠。Figure 1/2、紧凑 corpus 表、历史结果表和成本表在整页分辨率下可读。源稿、bibliography、两图、官方 template/style、
+renderer asset 与 tracked header 均由 SHA-256 绑定；PDF 只作本地 reviewer artifact，不进 Git。
+Tectonic deterministic mode 在两个独立 build directories 产出逐字节相同的 467,024-byte PDF，SHA-256=
+`61d306c7...8df5`；因此本节的 PDF hash 是已复现产物，不是单次构建偶然值。
+
+这关闭的是 **measured page-budget gate**，不是 submission candidate，也不是新的 predictor/search 正结果；
+`counts_as_distinct_claim_evidence=false`。2027 call/style、checklist、匿名 reviewer artifact、dataset access/release clearance、
+Croissant core 与 sealed prospective confirmation 仍未关闭。剩余版面是审稿修改余量，禁止为了凑 9 页加入不受支持的正面主张。
+本节与源稿/机器契约同提交冻结；精确公开 SHA 与 fresh-checkout 全量复验由下一份 post-push receipt 记录。
+prospective label/outcome/prediction/accuracy/utility/identity/profile 均未读，GPU/API/model-fit/base-update=`0/0/0/0`。见
+`phase1/NEURIPS_ED_9PAGE_DRAFT_RENDER_20260902.md` 与 `phase1/decision_corpus_9page_draft_render_v1.json`。
+
 ## 0L0o. 2026-09-02 主稿官方样式基线为 16 个内容页；9 页压缩路线已冻结
 
 不再用 Markdown 字数猜投稿就绪度。当前 v0.7 的 6,476 词稿已用官方 2026 `neurips_2026.sty` 的 `eandd`

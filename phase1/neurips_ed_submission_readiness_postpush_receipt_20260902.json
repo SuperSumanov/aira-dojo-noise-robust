@@ -1,0 +1,81 @@
+{
+  "protocol": "neurips-ed-provisional-submission-readiness-postpush-receipt-v1",
+  "status": "VERIFIED_PROVISIONAL_GATE_NOT_SUBMISSION_READY",
+  "exact_public_commit": "ec7e9e3a797212075b08bbe0855ff3afe7a7664b",
+  "parent_commit": "7ce093ba1f2058eb24a1fe6d79e9251a58471b6f",
+  "scope": {
+    "latest_official_template_year": 2026,
+    "target_call_year": 2027,
+    "target_call_published": false,
+    "track_fit_gate": "PASS",
+    "main_paper_format_gate": "BLOCKED",
+    "review_anonymity_gate": "BLOCKED",
+    "dataset_access_gate": "BLOCKED_DESK_REJECT_RISK",
+    "croissant_core_gate": "BLOCKED",
+    "paper_checklist_gate": "BLOCKED",
+    "changed_files": 4,
+    "counts_as_distinct_claim_evidence": false,
+    "scientific_result_changed": false
+  },
+  "official_sources": [
+    "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets",
+    "https://neurips.cc/Conferences/2026/EvaluationsDatasetsHosting",
+    "https://neurips.cc/Conferences/2026/EvaluationsDatasetsFAQ",
+    "https://neurips.cc/Conferences/2026/MainTrackHandbook",
+    "https://neurips.cc/public/guides/PaperChecklist"
+  ],
+  "successful_verification": {
+    "attempt": "r1",
+    "utc_completed": "2026-09-02T11:34:02Z",
+    "fresh_detached_exact_checkout": true,
+    "git_lfs_smudge_disabled": true,
+    "umask": "077",
+    "clean_before_tests": true,
+    "focused_tests": {
+      "passed": 16,
+      "failed": 0,
+      "duration_seconds": 0.21
+    },
+    "full_phase1_tests": {
+      "passed": 2178,
+      "failed": 0,
+      "warnings": 48,
+      "duration_seconds": 124.83
+    },
+    "focused_stderr_bytes": 0,
+    "full_stderr_bytes": 0,
+    "changed_paths_sha256": "60e2cea04f06d0abcfe2fd8fd0b26c9c0d2f358704668c7fef6a5e85225b6505",
+    "focused_stdout_sha256": "7d79dbdd92b95508ac801051a21ce47663454c0efdc85fcc1838d3be594f9392",
+    "full_stdout_sha256": "a6f001dbc111f1662ccc9945fe1667f3ebd7bcd48362fc43be51260f39a4b2f2",
+    "log_manifest_sha256": "23092b8b5cd992e23de49e550a5d2f7be45ef3d9eee6ebc33afcd5c7fb43a201"
+  },
+  "interpretation": {
+    "current_project_is_submission_ready": false,
+    "venue_fit_is_positive": true,
+    "accessibility_can_be_evaded_by_analytical_reframing": false,
+    "day20_requires_rendered_nine_page_paper": true,
+    "day20_requires_concrete_anonymous_artifact_or_release_decision": true,
+    "additional_cpu_audits_substitute_for_these_deliverables": false,
+    "must_revalidate_when_2027_call_is_published": true
+  },
+  "security": {
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0,
+    "prospective_labels_or_outcomes_read": false,
+    "prospective_prediction_values_read": false,
+    "prospective_accuracy_or_utility_computed": false,
+    "prospective_candidate_identities_or_profiles_read": false,
+    "raw_archive_payload_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "cleanup": {
+    "local_log_files_hash_verified": 12,
+    "local_log_files_missing_or_mismatched": 0,
+    "remote_exact_worktree_removed": true,
+    "remote_exact_log_root_removed_after_verified_local_copy": true,
+    "remote_helpers_removed": true
+  }
+}

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 
@@ -7,6 +8,8 @@ ROOT = Path(__file__).resolve().parents[2]
 GATE = ROOT / "phase1/NEURIPS_ED_2027_SUBMISSION_READINESS_GATE_20260902.md"
 SPRINT = ROOT / "phase1/TWENTY_DAY_POSITIVE_RESULT_SPRINT_20260902.md"
 HANDOFF = ROOT / "phase1/SENIOR_HANDOFF_20_DAY_SPRINT_20260902.md"
+RECEIPT = ROOT / "phase1/neurips_ed_submission_readiness_postpush_receipt_20260902.json"
+CURRENT = ROOT / "phase1/CURRENT_DIRECTION.md"
 
 
 OFFICIAL_URLS = (
@@ -76,3 +79,21 @@ def test_readiness_gate_is_routed_to_sprint_and_senior_handoff() -> None:
     handoff = HANDOFF.read_text(encoding="utf-8")
     assert "DESK-REJECT" in handoff
     assert "Kaggle" in handoff
+
+
+def test_postpush_receipt_and_direction_preserve_claim_boundary() -> None:
+    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+    current = CURRENT.read_text(encoding="utf-8")
+    assert receipt["status"] == "VERIFIED_PROVISIONAL_GATE_NOT_SUBMISSION_READY"
+    assert receipt["exact_public_commit"] == (
+        "ec7e9e3a797212075b08bbe0855ff3afe7a7664b"
+    )
+    assert receipt["successful_verification"]["focused_tests"]["passed"] == 16
+    assert receipt["successful_verification"]["full_phase1_tests"]["passed"] == 2178
+    assert receipt["successful_verification"]["full_phase1_tests"]["failed"] == 0
+    assert receipt["scope"]["counts_as_distinct_claim_evidence"] is False
+    assert receipt["interpretation"]["current_project_is_submission_ready"] is False
+    assert sum(receipt["security"].values()) == 0
+    assert "## 0L0n." in current
+    assert "submission-ready" in current
+    assert "更多 CPU audit 不可替代" in current

@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0n. 2026-09-02 最新 E&D 官方模板与项目定位高度匹配，但投稿可用性成为 20 天硬主线
+
+2027 call 尚未发布；因此只用最新 2026 NeurIPS Evaluations & Datasets 官方 call、hosting/RAI guidance、FAQ、
+Main Track Handbook 与 paper checklist 作 provisional template，并明确要求 2027 发布后重核。官方范围把 evaluation
+本身的测量对象、假设与解释作为科学贡献，且不要求新模型或刷新 SOTA；这与 Decision Corpus 的 estimand/provenance/
+audit/predictor-study 定位高度一致，是正面的 venue-fit 裁决，而不是“另一个 reward model”。
+
+但 fit 不等于 submission-ready。当前硬门为：官方 LaTeX 9 页正文=`BLOCKED`、匿名 reviewer artifact=`BLOCKED`、
+reviewer-accessible dataset/code=`BLOCKED / DESK-REJECT RISK`、Croissant core=`BLOCKED`、minimal RAI=`PARTIAL`、
+paper checklist=`BLOCKED`。不能靠把论文称为 analytical 来绕开主张所依赖数据的可访问性；也无需再分发 Kaggle 原始
+payload，前提是经许可的 derived artifact、重建清单、provenance/split certificates 与 executable benchmark 足以复现
+headline claims。private holdout 可继续 sealed，但不能替代真正可检查的公开贡献。
+
+20 天交付据此收紧：D0--D7 锁定并托管匿名 artifact/release tier，D3--D9 形成持续 render 的 9 页官方模板稿，
+D10--D17 fresh anonymous reproduction + checklist，D17--D20 做 novelty/statistics/release 三路对抗审稿；未闭合的
+Table 4B/Table 5 必须移出主文，不能留空承诺或用探索结果代替。Day 20 成功必须同时有可内部审稿的 9 页稿和明确的
+artifact/release 决策，更多 CPU audit 不可替代。
+
+公开实现 commit=`ec7e9e3a797212075b08bbe0855ff3afe7a7664b`。远端 fresh detached r1 在 `umask 077` 下通过
+focused/full=`16/2,178 passed`、48 warnings、0 failures，两个 test stderr 0 bytes；changed files=`4`、credential
+filename/content=`0/0`、日志 manifest=`23092b8b...a201`。12/12 日志在本地独立核 hash，随后精确远端 worktree、日志根
+和 helpers 已清理。本次是 submission engineering/claim routing，`counts_as_distinct_claim_evidence=false`，不改变科学
+结果、sealed slot、first-960/config-v2/closure/GPU 门。prospective value/identity read=`false/false`，GPU/API/model-fit/
+base-update=`0/0/0/0`。见 `phase1/NEURIPS_ED_2027_SUBMISSION_READINESS_GATE_20260902.md` 与
+`phase1/neurips_ed_submission_readiness_postpush_receipt_20260902.json`。
+
 ## 0L0m. 2026-09-02 两个缺失 prepared-text task 的下载仍被远端 Kaggle 账号门阻断
 
 网络恢复后，远端 Kaggle credential 对 `aptos2019-blindness-detection` 与

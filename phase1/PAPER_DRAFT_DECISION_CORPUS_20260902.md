@@ -1,6 +1,6 @@
 # Decision Corpus: Auditing Predictors for ML-Engineering Agent Search Trees
 
-> Internal manuscript draft v0.3, 2026-09-02. This draft is governed by
+> Internal manuscript draft v0.4, 2026-09-02. This draft is governed by
 > `CURRENT_DIRECTION.md` and Evidence Index v10. Bracketed result slots are sealed;
 > they must not be filled before the corresponding preregistered gate closes.
 
@@ -130,6 +130,30 @@ these principles at artifact level: each claim routes to an evidence entry with 
 exact population, hash, verifier, failure gate, and `does_not_prove` boundary.
 Retracted or superseded claims remain in an append-only ledger.
 
+**Table 1(a): direct MLE data and resources.** “Not reported” denotes scope after
+our 2026-08-28 primary-source audit, not proof of absence.
+
+| Resource | Released unit | Primary objective | True-sibling decision unit | Predictor benchmark | Isolation / closure | Boundary for our claim |
+|---|---|---|---|---|---|---|
+| ML-Agent | 10,000 linear expert execution trajectories over nine MLE tasks | SFT and step-wise PPO of the actor | Not its primary released/evaluated unit | No systematic cross-family critic benchmark as its primary contribution | Held-out-task transfer; no equivalent of our run/component/chronological decision split reported | Closes first-large-execution-trajectory and actor-learning claims |
+| Frontis-MA1 / OpenMLE | 26,259 public traces over 4,891 task names | Train Draft/Improve/Debug/Crossover operators and long-horizon evolution | Not its primary released/evaluated unit | No predictor-suite measurement study as primary contribution | Actor/search evaluation split; no equivalent one-time outcome-blind closure reported | Closes largest/first MLE training-trace and learned-operator claims |
+| mle-traj | Human/agent code versions, transitions, canonical branches/forest edges, and labels | Behavior, state, action, and intent analysis | Canonical agent tables linearize 13 MLEvolve runs to 189 branches; gated raw true-sibling recoverability remains unknown | No common-pool cross-family critic benchmark as primary contribution | Physical-run IDs exist for a small agent subset; no verified equivalent of our full isolation/closure bundle | Closes first scored MLE trajectory/graph and simple node-count novelty claims |
+| **Decision Corpus** | Provenance-bound recorded-parent sibling fragments | Measure execution-free predictors under leakage/cost/weighting audit | Yes for retained direct siblings; no complete-choice-set claim | Exact-common-support families with initialization/query/execution accounting | Pair/endpoint/parent/run isolation plus append-only chronological closure | Novelty is the combined measurement/audit contract, not first/largest trajectory or first tree RM |
+
+**Table 1(b): adjacent methods and benchmark precedents.**
+
+| Work family | What it already establishes | What we borrow or compare | Claim excluded from this paper |
+|---|---|---|---|
+| AgentRM; Step-Level Q-Value Models | Reward/value learning from agent search or process states; best-of-N/beam use | Tree-derived supervision and value-model boundary | First reward model from a search tree |
+| ReLoc | Parent/sibling local code revisions train a reward model and guide search | Parent-local comparison as an adjacent estimand | First sibling/parent reward model for code search |
+| SELA and related MCTS-AutoML agents | Tree search over automated ML decisions | Search-tree context and end-to-end baseline | First tree-search MLE/AutoML agent |
+| NAS predictor benchmarks, including NAS-Bench-360 | Dataset-first multi-task predictor comparison | Predictor families, tabular benchmark form, initialization/query accounting | First performance-predictor benchmark |
+| BenchmarkCards, BetterBench, and ReproEval-style reporting | Benchmark documentation and reproducibility checklists | Evidence index, withdrawal ledger, and data card | First benchmark checklist or card |
+
+Decision Corpus is therefore positioned as an audit-grade predictor measurement
+resource for fixed ML-engineering searches, not as a priority claim over trajectory
+collection, reward modeling, or critic-guided search.
+
 ## 3. From Search Archives to Decision Corpus
 
 ### 3.1 Units and provenance
@@ -192,6 +216,31 @@ runs, 14,383 endpoints, and 3,447 structural pairs across 45 tasks. The cohort i
 runs short of its first-960 target and has no closure receipt. These are structural
 statements only, not interim performance estimates; no outcome, label, prediction,
 candidate identity, or private profile was opened to produce them.
+
+**Table 2(a): historical v11 populations.** “Run” for the full card release denotes
+the released heuristic segmentation; decision rows use their separately audited
+physical-run references.
+
+| Population | Cards / pairs | Parents | Endpoints | Runs | Tasks | Boundary |
+|---|---:|---:|---:|---:|---:|---|
+| v11 card release | 16,012 cards | -- | -- | 667 heuristic segments | 25 | 14,339 cards have source-truth provenance |
+| all nine decision resources | 8,107 pairs | -- | -- | -- | -- | 7,579 parent-present strict core plus 528 lineage-verifiable orphan-parent rows |
+| b0 train | 4,263 pairs | 2,293 | 5,499 | 333 | 23 | historical development only |
+| b0 frozen | 1,498 pairs | 845 | 2,022 | 92 | 22 | public labeled historical frozen set, not a secret leaderboard test |
+| b0 extension | 136 pairs | 114 | 239 | 15 | 10 | later held-run extension, kept separate from frozen |
+
+**Table 2(b): sealed prospective structural state at the 2026-09-02 snapshot.**
+
+| Population | Archives / runs | Endpoints | Pairs | Closure status | Allowed interpretation |
+|---|---:|---:|---:|---|---|
+| source intake | 296 archives / 559 eligible runs | 14,383 structurally eligible | 3,447 | first-960 remaining 401; closure absent | append-only structural support only |
+| latest independently verified fixed-WL prefix | 517 runs | 13,098 scorer-covered | 3,230 | 494→517 added 23 runs, deleted 0 | fixed-scorer support; not a substitute for the broader 14,383 |
+| Target-522 frozen selection/rank | 522/522 reached | withheld | withheld | Stage-A/rank complete; `LIMITED_SUPPORT` | no value, identity, profile, or post-hoc rescue |
+| canonical producer config-v2 | 0 sidecars | -- | -- | deployment blocker | no exact-stratum clean scaling confirmation |
+
+Historical and prospective rows have different provenance and disclosure rules. The
+14,383 structural endpoints and the 13,098-endpoint scorer-covered prefix are
+different denominators and are never merged.
 
 ## 4. Predictor Benchmark
 
@@ -326,6 +375,25 @@ gates reject 14 events affecting seven competitions in the settled 283-archive s
 Six retain accepted support; the only no-support event links to roots with no
 checkpoint data. Thus the current gate is support-preserving on this observed state,
 not universally lossless.
+
+**Table 3: audit readouts and validity boundaries.** Rows are not assumed to be
+statistically independent; reconstructions and derived certificates are not counted
+again as new scientific evidence.
+
+| Audit axis | Verified readout | Supports | Does not support |
+|---|---|---|---|
+| Physical-run split | same-budget train/frozen overlap is zero in unordered pairs, endpoints, parents, and referenced runs | historical isolation on four explicit axes | pretraining decontamination or public-task secrecy |
+| Recorded-parent lineage | 8,107 direct-sibling rows; 7,579 strict parent-present; 528 orphan-parent; support gates 35/36 | transparent strict-core versus recoverable-fragment reporting | complete source choice sets or causal parent truth |
+| Source provenance | 14,339/16,012 cards map uniquely to 592 journal SHA; 587/667 heuristic runs covered | quantified source coverage and unresolved tail | source-truth coverage for every card |
+| Label repeatability | 207 cards, 10 tasks, 3,017 pair observations; 0.965860 micro and 0.980181 task-macro agreement | substantial stability on the measured subset | universal ceiling absent symmetry/exchangeability assumptions |
+| Deployment cost | lightweight online query p50 is 4,048--6,037× below candidate execution p50 | material query-cost headroom | final-score, wall-clock, or search-utility gain |
+| Pair-induced weighting | run-to-pair task TV 0.337083; opportunity yield explains about 0.645/0.595 of the HHI/TV increment | run-balanced collection can induce pair imbalance | universal causal law; magnitude is deletion-sensitive |
+| Graph-basis sensitivity | 931 rows, incidence rank 787, 144 cycle rows; UST view leaves historical ordering stable | redundant-edge weighting is measurable and auditable | model gain, independent pairs, ESS, or new graph theory |
+| Duplicate scope | no observed cross-run/cross-task groups under fixed exact/token/AST normalizations; AST gate not fully passed | no leakage under declared detectors and covered subset | no fuzzy, semantic, or pretraining duplication |
+| Archive gate utility | 14 reject events over seven competitions; six retain support and one has zero-checkpoint roots | support-preserving behavior on settled 283-archive state | future stationarity or universally lossless filtering |
+| Prospective scorer | 494→517 runs is +23/−0 with prior rows byte-preserved | outcome-blind support accrual and scorer continuity | predictor effect before first-960 closure |
+| Release schema/content | 10 resources / 24,119 rows; 15,174 cards review-eligible and 838 structure-only | machine-readable schema and conservative isolation | content safety, licensing, or release clearance |
+| Generator provenance | model ID 16,012/16,012; exact version-or-model 15,905; provider family 9,901 | complete model-ID axis with uncertainty exposed | serving provider, contracting entity, or rights for 6,111 unresolved rows |
 
 ## 6. Benchmark Results
 

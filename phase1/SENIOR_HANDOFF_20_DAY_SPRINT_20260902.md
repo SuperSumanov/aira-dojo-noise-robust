@@ -68,6 +68,19 @@ model ID，也不要从模型名猜 provider。该结果改善可复现元数据
 - `https://www.kaggle.com/competitions/aptos2019-blindness-detection/rules`
 - `https://www.kaggle.com/competitions/histopathologic-cancer-detection/rules`
 
+### 5. Predictor 主表与一个可守的方法贡献已经成稿
+
+历史 Table 4A 现在只绑定一个可审计入口：931-row exact-common-support development graph，覆盖 28 tasks / 550
+decision parents，incidence rank=787、cycle rows=144。旧 400-pair judge report 因 run bootstrap 只绑定 better endpoint，
+实际 303/400 pairs 跨两个 endpoint runs、涉及 39 runs 而报告写 35，已排除出主表。Table 4A 的 static/TF-IDF 排名没有
+显著突破；我们不会把 null shift 包装成模型增益。
+
+正面的论文方法资产是 graph-basis sensitivity：对 parent-local comparison graph 用标准
+`pi_e=b_e^T L^+ b_e` / uniform-spanning-tree inclusion weight，把 component 总权重固定到 incidence rank，并与
+realized-row estimand 同表报告。它有精确 expected-basis 解释，且明确不是独立性修复、ESS、因果校正或新图论定理。
+fresh exact checkout 已通过 18 focused + 2,082 full tests，0 failures。英文主稿 v0.4 已把 Tables 1--4A 合并到单一
+reviewer packet；Table 4B 和 scaling Table 5 仍封存。
+
 ## 当前最关键阻塞：真实 producer sidecar 仍为 0
 
 source 中 canonical `*.config_v2.jsonl` 仍为 `0`。这意味着接下来即使继续产生几百个 runs，只要没有 outcome-before

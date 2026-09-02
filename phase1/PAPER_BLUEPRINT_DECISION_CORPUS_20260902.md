@@ -4,7 +4,7 @@
 > “Decodable but Not Usable”、HCE、多保真、Probe、score-channel 与 lookahead 叙事均为历史材料，不能复制进新稿。
 > 本文件是写作蓝图，不授权揭盲、GPU、API 或模型训练。
 
-英文正文初稿入口为 `PAPER_DRAFT_DECISION_CORPUS_20260902.md`。该稿已展开 Abstract、Sections 1--8 与
+英文正文初稿入口为 `PAPER_DRAFT_DECISION_CORPUS_20260902.md`。该稿已展开 Abstract、Sections 1--8、Tables 1--4A 与
 internal evidence routing；prospective common-support 与 clean scaling 仍是显式 sealed/conditional slot，不能提前填值。
 
 ## 1. 论文定位

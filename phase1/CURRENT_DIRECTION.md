@@ -34,6 +34,11 @@ task-clustered uncertainty；明确禁止把它称为独立性修复、ESS、因
 两个 stderr 均为 0 bytes；它只形式化既有 931-row UST formal，
 `counts_as_distinct_claim_evidence=false`，也不把 null predictor-ordering shift 包装成模型增益。
 
+英文主稿现已从“正文 + 独立可粘贴表”合并为单一 v0.4 reviewer packet：Table 1 的直接竞品/相邻先例、Table 2 的
+historical/prospective 分母、Table 3 的 readout/does-not-prove 边界和已验证的 Table 4A 均在同一稿内；Table 4B 与
+Table 5 仍分别保持 `SEALED` / `CONDITIONAL`，未填任何前瞻值。该合并只复制既有 Evidence Index 路由，
+不增加科学证据或解除 release/closure/scaling gate。
+
 > **2026-08-24 cohort authority clarification（覆盖下文所有“唯一主实验”旧措辞）**：当前没有已获批的
 > GPU effect 主实验。论文容器仍是 Decision Corpus + Predictor Benchmark。`first-960 + closure` 保留为较早冻结的
 > fixed-scorer critic 时间外确认人口；新的 target-300 identity cohort（保留 boundary-archive overshoot）则只授权 score-channel dual-truth 支持审计、

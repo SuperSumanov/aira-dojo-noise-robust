@@ -1,0 +1,157 @@
+{
+  "status": "PASS_PUBLIC_TOKENIZER_AND_TRANSFER_PREFIX_PACKING_PAPER_ALIGNED_BFS_BLOCKED",
+  "artifact": "RPM-style inference-only transfer public-model binding, tokenizer/chat wrapper, whole-node prefix packer, and independent verifier",
+  "verified_at_utc": "2026-09-02T08:25:52Z",
+  "implementation_commits": {
+    "initial_implementation": "790b3b74cf9ddd76e617da00211869bce820885c",
+    "direct_cli_fix_and_exact_public_head": "7c5447175a5a6e9034670b980fa01ba31fb9b08b",
+    "base_before_this_work": "fb7aac94ba8123d0c7f1b680ff417b6835f42cfb"
+  },
+  "paper_source_correction": {
+    "paper": "AI Research Preference Models",
+    "arxiv": "2608.13940v2",
+    "html_url": "https://arxiv.org/html/2608.13940v2",
+    "paper_reported_context_selection": "parent-rooted breadth-first traversal over up to K earlier non-buggy explored nodes",
+    "frozen_decision_corpus_transfer_selection": "all strict-prior same-run/task scorable nodes ordered by journal step descending and node SHA-256 ascending",
+    "paper_aligned_parent_bfs": false,
+    "exact_non_buggy_predicate_reconstructed": false,
+    "may_be_called_exact_reproduction": false,
+    "required_result_name": "RPM-style inference-only prompt transfer"
+  },
+  "public_model_and_tokenizer_binding": {
+    "model_id": "Qwen/Qwen3.6-27B",
+    "repository_revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9",
+    "checkpoint_status": "PUBLIC_TRANSFER_REVISION_NOT_RPM_PRIVATE_CHECKPOINT",
+    "context_window_tokens": 262144,
+    "output_reserve_tokens": 32768,
+    "prompt_token_limit": 229376,
+    "chat_template_bytes": 7764,
+    "chat_template_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+    "runtime_versions": {
+      "transformers": "4.57.1",
+      "tokenizers": "0.22.1",
+      "huggingface-hub": "0.36.0"
+    },
+    "artifact_hashes": {
+      "config.json": "69db4eb7196bc8190813231b3018ca05d8c2e3abc7b1af19d55c157af44a9d9c",
+      "generation_config.json": "e70c136c1b78ddc1fb0905bac8e733a4dc448d4f852a5dd75143fffc70be550e",
+      "tokenizer_config.json": "5186f0defcd7f232382c7f0aebcd2252d073bb921ab240e407b7ae8745d2b29b",
+      "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+      "README.md": "bb936d6da51014f1edc9aa4cf9abf28d98695b7616ad56adfeeebfa752051d3d"
+    },
+    "snapshot_manifest_sha256": "8e694a0562dea2b4c8b39d5310ea927bf750fb73a3fe13c61622f634edf2a6be",
+    "local_files_only": true,
+    "trust_remote_code": false,
+    "model_weights_downloaded_or_loaded": false
+  },
+  "packing_policy": {
+    "wrapper": "one user message, no system message, official chat template, add_generation_prompt=true, enable_thinking=true",
+    "context_repetitions_counted": 2,
+    "whole_nodes_only": true,
+    "both_ab_and_ba_must_fit": true,
+    "first_overflow_stops": true,
+    "partial_node_truncation": false,
+    "later_node_skipping": false,
+    "empty_source_and_budget_empty_markers_are_distinct": true,
+    "producer": "phase1/rpm_prefix_packing.py",
+    "independent_verifier": "phase1/verify_rpm_prefix_packing.py",
+    "verifier_imports_producer_or_prompt_renderer": false,
+    "existing_output_overwrite_allowed": false
+  },
+  "failed_attempt_audit": {
+    "formal_root": "/research/d7/spc/yzyang4/rpm-prefix-postpush-20260902-790b3b7-r1",
+    "exact_commit": "790b3b74cf9ddd76e617da00211869bce820885c",
+    "snapshot_download_and_hash_manifest_completed": true,
+    "context_builder_ab_byte_identical": true,
+    "failure_stage": "first direct invocation of phase1/rpm_prefix_packing.py",
+    "failure_reason": "Direct script execution did not have the repository root on sys.path, so the package-form phase1 import failed before packing output was written.",
+    "scientific_result_or_prediction_produced": false,
+    "model_call_or_model_weight_load": false,
+    "failure_stderr_sha256": "d5d6c85244813acf937680613397982a1cf553473a101068a30ca3d915f78a1a",
+    "log_file_count": 21,
+    "log_manifest_sha256": "f7b7692a5a926b67d0ec18fc992636a49e4d3aece87d4feef73a3cdbc97720d1",
+    "fix": "Use package import when imported and sibling-module import only for the direct script entry; add a subprocess --help regression test.",
+    "focused_tests_after_fix": 41
+  },
+  "formal_success": {
+    "formal_root": "/research/d7/spc/yzyang4/rpm-prefix-postpush-20260902-7c54471-r2",
+    "checkout_mode": "fresh detached local clone with LFS smudge disabled",
+    "head_exact": true,
+    "checkout_clean_before_and_after": true,
+    "helper_sha256": "e1ed7889c02f12cae03cd92f72135418ebd87129fad3246b32d1a07218404448",
+    "context_builder_ab_byte_identical": true,
+    "packer_ab_byte_identical": true,
+    "independent_verifier_pass": true,
+    "synthetic_smoke": {
+      "eligible_node_count": 3,
+      "included_node_count": 3,
+      "stop_reason": "ALL_ELIGIBLE_CONTEXT_NODES_FIT",
+      "ab_prompt_tokens": 758,
+      "ba_prompt_tokens": 758,
+      "packed_context_sha256": "58f5317a59ad32ba05c88a081f6f736b6d275f422e451cc2bf4369a6519c1c9c",
+      "packing_output_sha256": "857b6716b7805e1d0c851f5028ad3886ad3b7d91e121395501097fde4e24fe54",
+      "verification_output_sha256": "1c4e33a23d229a32d442b26c45aa20370aa1ccf2e94e7340e17114ec13a213fb"
+    },
+    "focused_tests": {
+      "passed": 56,
+      "failed": 0,
+      "duration_seconds": 1.21,
+      "stdout_sha256": "3ca95bc7dfa95e3c501f67766751e5269d73932d7db203eec7a8eb89a66c7c8c",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "full_tests": {
+      "passed": 2147,
+      "failed": 0,
+      "warnings": 48,
+      "duration_seconds": 125.86,
+      "stdout_sha256": "d6f8e4532922c3a068a492000afcbd429b363c0a302f6723faf0c5b1dd3aba31",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "log_file_count": 32,
+    "log_manifest_sha256": "78986563a958647c73056b9d95e4cd7b297168b150f8cac3f766356d3413ffcc"
+  },
+  "changed_files_and_security": {
+    "final_fix_commit_changed_files": 2,
+    "final_fix_commit_manifest_sha256": "f9d4e4404d00e765601c7b7d09ff7460f878eb7b2ca436719cc4577865f7dd17",
+    "full_implementation_changed_files": 10,
+    "full_implementation_manifest_sha256": "6d2780eac9bd6e715cec7b0c6b8554a431118ff5ce74040df1feaa23634d9d6b",
+    "credential_filename_hits": 0,
+    "credential_shape_hits": 0,
+    "prospective_label_outcome_prediction_accuracy_utility_read": false,
+    "prospective_candidate_identity_or_private_profile_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0,
+    "live_calls_authorized": false,
+    "table_4b_state": "SEALED"
+  },
+  "cleanup": {
+    "r1_logs_copied_and_hash_verified_locally": true,
+    "r2_logs_copied_and_hash_verified_locally": true,
+    "synthetic_packing_and_verification_outputs_copied_and_hash_verified": true,
+    "r1_formal_root_removed_after_verification": true,
+    "r2_formal_root_removed_after_verification": true,
+    "remote_helpers_removed": true
+  },
+  "remaining_gates": {
+    "paper_aligned_parent_bfs_and_exact_non_buggy_predicate": false,
+    "exact_rpm_private_checkpoint_and_serving_equivalence": false,
+    "outcome_blind_common_support_panel": false,
+    "candidate_and_context_content_clearance": false,
+    "prediction_escrow": false,
+    "first960_identity_and_accrual_closure": false,
+    "call_token_latency_currency_cap_approval": false,
+    "live_calls_authorized": false,
+    "table_4b_state": "SEALED"
+  },
+  "interpretation": {
+    "counts_as_distinct_claim_evidence": false,
+    "proves_public_tokenizer_and_transfer_prefix_packing_reproducibility": true,
+    "proves_rpm_reproduction": false,
+    "proves_predictor_accuracy_or_search_utility": false,
+    "unblocks_paid_or_gpu_execution": false
+  }
+}

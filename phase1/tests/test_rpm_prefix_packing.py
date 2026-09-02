@@ -19,6 +19,7 @@ CONTRACT = ROOT / "rpm_prefix_packing_contract_v1.json"
 READINESS = ROOT / "RPM_PREFIX_PACKING_READINESS_20260902.md"
 PREFLIGHT = ROOT / "RPM_QWEN_PREFIX_SMOKE_PREFLIGHT_20260902.md"
 DRAFT = ROOT / "PAPER_DRAFT_DECISION_CORPUS_20260902.md"
+POSTPUSH = ROOT / "rpm_prefix_packing_postpush_receipt_20260902.json"
 
 
 class FakeTokenizer:
@@ -302,3 +303,25 @@ def test_manuscript_does_not_yet_claim_completed_tokenizer_baseline() -> None:
     draft = DRAFT.read_text(encoding="utf-8")
     assert "RPM-style inference-only prompt-transfer" in draft
     assert "must not be reported\nas a completed baseline run" in draft
+
+
+def test_postpush_receipt_binds_real_snapshot_failure_chain_and_remaining_gates() -> None:
+    receipt = json.loads(POSTPUSH.read_text(encoding="utf-8"))
+    assert receipt["implementation_commits"]["direct_cli_fix_and_exact_public_head"] == (
+        "7c5447175a5a6e9034670b980fa01ba31fb9b08b"
+    )
+    assert receipt["failed_attempt_audit"]["scientific_result_or_prediction_produced"] is False
+    assert receipt["failed_attempt_audit"]["log_file_count"] == 21
+    assert receipt["formal_success"]["synthetic_smoke"]["eligible_node_count"] == 3
+    assert receipt["formal_success"]["synthetic_smoke"]["included_node_count"] == 3
+    assert receipt["formal_success"]["synthetic_smoke"]["ab_prompt_tokens"] == 758
+    assert receipt["formal_success"]["synthetic_smoke"]["ba_prompt_tokens"] == 758
+    assert receipt["formal_success"]["focused_tests"]["passed"] == 56
+    assert receipt["formal_success"]["full_tests"]["passed"] == 2147
+    assert receipt["formal_success"]["full_tests"]["failed"] == 0
+    assert receipt["changed_files_and_security"]["credential_filename_hits"] == 0
+    assert receipt["changed_files_and_security"]["credential_shape_hits"] == 0
+    assert receipt["remaining_gates"]["paper_aligned_parent_bfs_and_exact_non_buggy_predicate"] is False
+    assert receipt["remaining_gates"]["live_calls_authorized"] is False
+    assert receipt["remaining_gates"]["table_4b_state"] == "SEALED"
+    assert receipt["interpretation"]["counts_as_distinct_claim_evidence"] is False

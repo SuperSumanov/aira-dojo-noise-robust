@@ -3,6 +3,35 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0h. 2026-09-02 RPM transfer 的公开 tokenizer/prefix packing 已复验；paper-aligned BFS 仍是硬阻断
+
+对 RPM v2 正文方法段的逐句复核修正了一个直接竞品边界：论文从当前 parent 对已探索树做 breadth-first traversal，
+最多收集 `K` 个此前 non-buggy 节点；此前冻结的 context v1 则是无 outcome/external-grade 泄漏、但按时间倒序的
+recency transfer。旧 receipt 保持不可变，且不得把 v1 改称 paper-aligned reproduction。当前 cards 未提供足以独立重建
+exact non-buggy predicate 的完整有效提交状态，公开 Qwen revision 也不能证明 RPM 私有 checkpoint/serving equivalence。
+
+为关闭可复核 baseline 的另一个工程缺口，已固定公开 `Qwen/Qwen3.6-27B@6a9e13bd...13e9`、五个非权重
+tokenizer/config/card 文件、7,764-byte chat template、transformers/tokenizers/huggingface-hub=
+`4.57.1/0.22.1/0.36.0`，以及单 user message、thinking-enabled、`262,144−32,768=229,376` prompt token
+budget。装箱只接受 context-v1 完整节点前缀；context 在 prompt 中出现两次并按完整 chat rendering 计数；AB/BA 都能装入
+才接纳节点，第一个 overflow 立即停止，禁止单节点截断或跳过。producer 与不 import producer/prompt renderer 的 verifier
+逐字段复建。
+
+公开实现先在 commit=`790b3b74cf9ddd76e617da00211869bce820885c` 冻结；第一次 fresh detached 验收在五个文件
+下载、hash 与 context A/B 通过后，因直接脚本入口的包导入路径在 packing 输出前 fail-closed。失败链 21 个日志已保留；
+修复 commit=`7c5447175a5a6e9034670b980fa01ba31fb9b08b` 新增 direct-entry subprocess 回归测试。全新 r2 目录重新下载
+snapshot 后通过：合成 eligible/included=`3/3`，AB/BA=`758/758` tokens，producer A/B 逐字节一致，独立 verifier PASS；
+focused/full=`56/2,147 passed`，full warnings/failures=`48/0`、耗时 `125.86s`，两个 stderr 0 bytes；完整实现
+changed files=`10`、manifest=`6d2780ea...9d6b`，credential filename/content=`0/0`。两轮日志复制并逐项核 hash 后，
+两个精确临时 root 与远端 helpers 已安全清理。
+
+这只是直接 baseline 的 public-revision **transfer reproducibility**，不是新 predictor 正结果：paper-aligned parent-BFS/
+non-buggy、RPM 私有 checkpoint/serving、outcome-blind common-support panel、内容审查、prediction escrow、first-960+
+closure 与 call/token/currency 批准仍未关闭。Table 4B=`SEALED`，GPU/API/model fit/base update=`0/0/0/0`，
+prospective label/outcome/prediction/accuracy/utility/candidate identity/profile 均未读，
+`counts_as_distinct_claim_evidence=false`。见 `phase1/RPM_PREFIX_PACKING_READINESS_20260902.md`、
+`phase1/rpm_prefix_packing_contract_v1.json` 与 `phase1/rpm_prefix_packing_postpush_receipt_20260902.json`。
+
 ## 0L0g. 2026-09-02 RPM transfer 的历史 context 已冻结到 decision-time 字段；token packing 与效果仍封存
 
 RPM prompt 的“其他历史解及其分数”存在一个高风险歧义：`label.graded` 是事后 external MLE-bench grade，不能作为

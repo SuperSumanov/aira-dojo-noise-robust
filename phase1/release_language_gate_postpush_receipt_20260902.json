@@ -1,0 +1,67 @@
+{
+  "protocol": "decision-corpus-release-language-gate-postpush-receipt-v1",
+  "status": "VERIFIED_PUBLICATION_LANGUAGE_ALIGNED_WITH_UNCLEARED_PAYLOAD_STATUS",
+  "exact_public_commit": "0f1604e658ac045f9cde9392c5c7981b248c1a7d",
+  "parent_commit": "c3e1f6f8d941acbae55b93369478a4c28c2caeb7",
+  "scope": {
+    "manuscript_version": "v0.7",
+    "changed_files": 5,
+    "internal_build_term": "immutable corpus build",
+    "public_payload_status": "PARTIAL / NOT RELEASE CLEARED",
+    "repository_artifacts_publicly_described": [
+      "reconstruction manifests",
+      "independent verifiers",
+      "claim-withdrawal ledger"
+    ],
+    "content_bearing_payload_publication_conditional": true,
+    "counts_as_distinct_claim_evidence": false,
+    "scientific_result_changed": false,
+    "release_clearance_changed": false
+  },
+  "successful_verification": {
+    "attempt": "r1",
+    "utc_completed": "2026-09-02T10:06:51Z",
+    "fresh_detached_exact_checkout": true,
+    "git_lfs_smudge_disabled": true,
+    "umask": "077",
+    "clean_before_tests": true,
+    "clean_after_tests": true,
+    "focused_tests": {
+      "passed": 22,
+      "failed": 0,
+      "duration_seconds": 0.40
+    },
+    "full_phase1_tests": {
+      "passed": 2161,
+      "failed": 0,
+      "warnings": 48,
+      "duration_seconds": 140.76
+    },
+    "focused_stderr_bytes": 0,
+    "full_stderr_bytes": 0,
+    "changed_paths_sha256": "fa23ccd5136f485e4e877c0b375c63e82509174f12b1c96bc12c0585d955fbee",
+    "changed_file_hashes_sha256": "b42ff7d771963bdf2c50cf9b6dd10c3eb3ad5823339f2211b0f04e92c31ce2a9",
+    "focused_stdout_sha256": "bfb275d05907beab61d61f46575299f65f9fa108cd85ce1701468a9de1eb5d32",
+    "full_stdout_sha256": "27d54f5d01391b5484bb0025a4430cd346c19aabc5c7a5bdecdc02be83543f17",
+    "log_manifest_sha256": "ef4eafd5af1139d5ff57a5ca426540a50e179e8f3cbe9deae26aee9c8cb0f972"
+  },
+  "security": {
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0,
+    "prospective_labels_or_outcomes_read": false,
+    "prospective_prediction_values_read": false,
+    "prospective_accuracy_or_utility_computed": false,
+    "prospective_candidate_identities_or_profiles_read": false,
+    "raw_archive_payload_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "cleanup": {
+    "local_log_manifest_verified": true,
+    "remote_exact_worktree_removed": true,
+    "remote_exact_log_root_removed_after_verified_local_copy": true,
+    "remote_helper_removed": true
+  }
+}

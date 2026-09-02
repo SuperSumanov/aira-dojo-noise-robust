@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0k. 2026-09-02 主稿公开发布措辞已与未 clearance 状态对齐
+
+可投稿性检查发现主稿 v0.6 同时写着“data release is not yet legally or content-cleared”和 `we release / released unit /
+historical v11 release`，会把内部 immutable build ID 误写成已公开 payload，是治理层自相矛盾。主稿 v0.7、蓝图、Table
+1--3 和 data card 现统一三层词汇：`immutable corpus build` 只表示可逐字节重建的内部版本；benchmark unit 只表示评测
+单位；只有 reconstruction manifests、independent verifiers 和 withdrawal ledger 被称为 repository artifacts。content-bearing
+payload 的公开发布仍明确受 content/privacy/provider-terms/license/Croissant 门约束，状态保持
+`PARTIAL / NOT RELEASE CLEARED`。这不是降级数据集主张，而是避免在 clearance 前作错误的公开可得性陈述。
+
+公开实现 commit=`0f1604e658ac045f9cde9392c5c7981b248c1a7d`。远端 fresh detached r1 在 `umask 077` 下
+通过 focused/full=`22/2,161 passed`、48 warnings、0 failures，两个 stderr 0 bytes；changed files=`5`、credential
+filename/content=`0/0`、日志 manifest=`ef4eafd5...f972`。日志本地逐项核 hash 后，精确远端 worktree、日志根和 helper
+已清理。该修订不改变任何科学数字、release clearance、前瞻槽位、config-v2/closure/GPU 门，
+`counts_as_distinct_claim_evidence=false`；prospective value/identity read=`false/false`，GPU/API/model-fit/base-update=
+`0/0/0/0`。见 `phase1/release_language_gate_postpush_receipt_20260902.json`。
+
 ## 0L0j. 2026-09-02 opportunity-yield 主发现已从经验段落提升为正式 estimand map；不新增证据
 
 8 月 26 日已在结果前冻结的 `decision-opportunity-yield-aggregation-audit-v1` 不是旁支小审计，而是当前论文最强

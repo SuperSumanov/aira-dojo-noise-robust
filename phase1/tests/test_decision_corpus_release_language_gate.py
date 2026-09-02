@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -8,6 +9,8 @@ DRAFT = ROOT / "phase1" / "PAPER_DRAFT_DECISION_CORPUS_20260902.md"
 BLUEPRINT = ROOT / "phase1" / "PAPER_BLUEPRINT_DECISION_CORPUS_20260902.md"
 TABLES = ROOT / "phase1" / "PAPER_TABLES_1_3_DRAFT_20260902.md"
 DATACARD = ROOT / "phase1" / "DATACARD_DECISION_CORPUS_DRAFT_20260902.md"
+RECEIPT = ROOT / "phase1" / "release_language_gate_postpush_receipt_20260902.json"
+CURRENT = ROOT / "phase1" / "CURRENT_DIRECTION.md"
 
 
 def test_main_manuscript_does_not_claim_uncleared_payload_release() -> None:
@@ -53,3 +56,30 @@ def test_release_gate_language_remains_explicit_not_silently_deleted() -> None:
     )
     for phrase in required:
         assert phrase in draft
+
+
+def test_postpush_receipt_binds_language_gate_without_granting_clearance() -> None:
+    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+    current = CURRENT.read_text(encoding="utf-8")
+    assert receipt["exact_public_commit"] == (
+        "0f1604e658ac045f9cde9392c5c7981b248c1a7d"
+    )
+    assert receipt["scope"]["manuscript_version"] == "v0.7"
+    assert receipt["scope"]["public_payload_status"] == (
+        "PARTIAL / NOT RELEASE CLEARED"
+    )
+    assert receipt["scope"]["counts_as_distinct_claim_evidence"] is False
+    assert receipt["scope"]["release_clearance_changed"] is False
+    verified = receipt["successful_verification"]
+    assert verified["focused_tests"]["passed"] == 22
+    assert verified["full_phase1_tests"]["passed"] == 2161
+    assert verified["full_phase1_tests"]["failed"] == 0
+    assert sum(
+        value
+        for key, value in receipt["security"].items()
+        if key.endswith("_hits") or key in {
+            "gpu_jobs", "paid_api_calls", "model_fits", "base_llm_updates"
+        }
+    ) == 0
+    assert "## 0L0k." in current
+    assert "PARTIAL / NOT RELEASE CLEARED" in current

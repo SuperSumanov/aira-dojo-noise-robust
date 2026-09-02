@@ -1,0 +1,91 @@
+{
+  "protocol": "opportunity-yield-manuscript-integration-postpush-receipt-v1",
+  "status": "VERIFIED_EXISTING_FROZEN_MECHANISM_INTEGRATED_NOT_NEW_EVIDENCE",
+  "exact_public_commit": "77c0313d5e24e9408a49ae6d20631edb5cd1ee0e",
+  "parent_commit": "2ed8dba3d5c8afbb1597d3068ad984012acba826",
+  "scope": {
+    "manuscript_version": "v0.6",
+    "authoritative_existing_contract": "phase1/opportunity_yield_aggregation_audit_v1.json",
+    "existing_contract_status": "FROZEN_OUTCOME_BLIND_BEFORE_FIRST960_CLOSURE",
+    "integrated_claim": "run-to-structural-pair-to-informative-pair task mixtures obey an exact two-stage size-bias identity with a range-times-total-variation leverage bound and a fail-closed zero-support rule",
+    "counts_as_distinct_claim_evidence": false,
+    "new_predictor_result": false,
+    "new_statistical_theorem_claimed": false,
+    "historical_aggregate_changed": false,
+    "prospective_slot_changed": false
+  },
+  "prior_work_boundary": {
+    "informative_cluster_size": "Williamson, Datta, and Satten (2003), doi:10.1111/1541-0420.00005",
+    "cluster_estimands": "Kahan, Li, Copas, and Harhay (2023), doi:10.1093/ije/dyac131",
+    "novelty_excluded": [
+      "size-biased cluster weighting algebra",
+      "inverse cluster-size weighting",
+      "cluster-average versus unit-average estimands",
+      "macro versus micro averaging in isolation"
+    ]
+  },
+  "changed_files": 8,
+  "failure_chain": [
+    {
+      "attempt": "r1",
+      "reason": "remote name myfork did not exist; the configured public remote is fork",
+      "tests_started": false,
+      "scientific_result_written": false,
+      "log_manifest_sha256": "62028864db2777a2df7cdc9dd173dc758afe0fe742f1d6cdf3528df4b7476bde"
+    },
+    {
+      "attempt": "r2",
+      "reason": "pytest was launched from the caller directory rather than the detached worktree and rejected the relative test path",
+      "tests_started": true,
+      "tests_collected": 0,
+      "scientific_result_written": false,
+      "log_manifest_sha256": "62f1a11c32a9639515bbbe544d2fc02a13c01a9a647edb01d48c86b98ed53077"
+    }
+  ],
+  "successful_verification": {
+    "attempt": "r3",
+    "utc_completed": "2026-09-02T09:45:59Z",
+    "fresh_detached_exact_checkout": true,
+    "git_lfs_smudge_disabled": true,
+    "umask": "077",
+    "clean_before_tests": true,
+    "clean_after_tests": true,
+    "focused_tests": {
+      "passed": 35,
+      "failed": 0,
+      "duration_seconds": 0.42
+    },
+    "full_phase1_tests": {
+      "passed": 2157,
+      "failed": 0,
+      "warnings": 48,
+      "duration_seconds": 145.69
+    },
+    "focused_stderr_bytes": 0,
+    "full_stderr_bytes": 0,
+    "changed_paths_sha256": "14582061d84326a431af1630ffa5bb565e839f7dcedb405e82c7018a87f036da",
+    "changed_file_hashes_sha256": "bb166426f2835f25c19937a53b83e4223f49306fd2cc7b2e85489d5290c2919d",
+    "focused_stdout_sha256": "795e99059012f6ac1ad46d96b8c40f527fcebd2776e62478b31cd9f5b3fb3af4",
+    "full_stdout_sha256": "aeab05d08133aabf70966e68e9a2ccd3ea39c74fcd83abf42c9de949766656c0",
+    "log_manifest_sha256": "778cb44d185c35c2bb1daeb73e931a3593187159880442ab7cc4a3f8efbd392a"
+  },
+  "security": {
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0,
+    "prospective_labels_or_outcomes_read": false,
+    "prospective_prediction_values_read": false,
+    "prospective_accuracy_or_utility_computed": false,
+    "prospective_candidate_identities_or_profiles_read": false,
+    "raw_archive_payload_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "cleanup": {
+    "remote_exact_worktrees_removed": true,
+    "remote_exact_log_roots_removed_after_verified_local_copy": true,
+    "remote_helpers_removed": true,
+    "local_log_manifests_verified": true
+  }
+}

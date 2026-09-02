@@ -11,6 +11,8 @@ DRAFT = ROOT / "phase1" / "PAPER_DRAFT_DECISION_CORPUS_20260902.md"
 APPENDIX = ROOT / "phase1" / "PAPER_REPRODUCIBILITY_APPENDIX_DRAFT_20260902.md"
 MAP = ROOT / "phase1" / "RELATED_WORK_CITATION_MAP_20260902.md"
 BIB = ROOT / "phase1" / "DECISION_CORPUS_REFERENCES_20260902.bib"
+RECEIPT = ROOT / "phase1" / "opportunity_yield_manuscript_postpush_receipt_20260902.json"
+CURRENT = ROOT / "phase1" / "CURRENT_DIRECTION.md"
 
 
 def _normalize(values: list[float]) -> list[float]:
@@ -91,3 +93,32 @@ def test_paper_packet_cites_prior_art_and_preserves_scope() -> None:
     assert "never silently removed" in appendix
     assert "Estimand and informative-cluster-size precedent" in mapping
     assert "now binds 26 primary-source-checked entries" in mapping
+
+
+def test_postpush_receipt_preserves_failures_and_exact_success() -> None:
+    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+    current = CURRENT.read_text(encoding="utf-8")
+    assert receipt["exact_public_commit"] == (
+        "77c0313d5e24e9408a49ae6d20631edb5cd1ee0e"
+    )
+    assert [item["attempt"] for item in receipt["failure_chain"]] == ["r1", "r2"]
+    assert all(
+        item["scientific_result_written"] is False
+        for item in receipt["failure_chain"]
+    )
+    successful = receipt["successful_verification"]
+    assert successful["focused_tests"]["passed"] == 35
+    assert successful["full_phase1_tests"]["passed"] == 2157
+    assert successful["full_phase1_tests"]["failed"] == 0
+    assert successful["focused_stderr_bytes"] == 0
+    assert successful["full_stderr_bytes"] == 0
+    assert receipt["scope"]["counts_as_distinct_claim_evidence"] is False
+    assert sum(
+        value
+        for key, value in receipt["security"].items()
+        if key.endswith("_hits") or key in {
+            "gpu_jobs", "paid_api_calls", "model_fits", "base_llm_updates"
+        }
+    ) == 0
+    assert "## 0L0j." in current
+    assert "config-v2/first-960/closure/GPU 批准门完全不变" in current

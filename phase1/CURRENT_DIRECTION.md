@@ -3,6 +3,31 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0j. 2026-09-02 opportunity-yield 主发现已从经验段落提升为正式 estimand map；不新增证据
+
+8 月 26 日已在结果前冻结的 `decision-opportunity-yield-aggregation-audit-v1` 不是旁支小审计，而是当前论文最强
+measurement 发现的正式解释层。主稿 v0.6 现把它提升到 Predictor Benchmark 方法：对 eligible runs、truth 前 structural
+exact-common pairs 和 frozen evaluability 后 informative pairs 分别定义 `R_t/S_t/I_t`，并逐任务固定
+`q_t=p_tY_t/E_p[Y]` 与 `r_t=q_tE_t/E_q[E]`。因此 pair-micro 的 task mixture 恰是 run mixture 先按
+decision-opportunity yield、再按 evaluability 做两级 size-bias；对应 metric shift 受
+`range(task metric) × TV(task weights)` 约束。若任一 cohort task 的 structural 或 informative support 为 0，
+full-task impact 必须报 `NOT_IDENTIFIABLE_FULL_TASK_UNIVERSE`，不得静默删 task 后继续。
+
+这一代数与 cluster/unit estimand 区别不是新统计定理。正文、citation map 与工作 BibTeX 已补入 Williamson--Datta--Satten
+（2003，`10.1111/1541-0420.00005`）和 Kahan--Li--Copas--Harhay（2023，`10.1093/ije/dyac131`），并明确排除
+size-biased weighting、inverse-size weighting 和 macro/micro 本身的 novelty。可守贡献仍是：在真实 MLE-agent
+chronological search 中 outcome-blind 地证明 opportunity yield 会内生改变 derived sibling-pair benchmark 的 task mixture，
+并把 closure 后影响分析冻结为 non-rescuing machine audit。既有 `TV=0.337083` 与 `0.645/0.595` 分解不变，本次不产生
+新 predictor 结果，`counts_as_distinct_claim_evidence=false`。
+
+公开实现 commit=`77c0313d5e24e9408a49ae6d20631edb5cd1ee0e`。远端 fresh detached r3 在 `umask 077`
+下通过 focused/full=`35/2,157 passed`、48 warnings、0 failures，两个 stderr 均为 0 bytes，changed files=`8`、
+credential filename/content=`0/0`、日志 manifest=`778cb44d...392a`。r1 使用不存在的 remote alias、r2 未切换到
+detached worktree cwd，均在正式结果前 fail-closed 并保留到 receipt；三轮日志本地逐项核 hash 后，精确远端 worktree、
+日志根和 helpers 已清理。prospective label/outcome/prediction/accuracy/utility/identity/profile read 均为 false，
+GPU/API/model-fit/base-update=`0/0/0/0`；config-v2/first-960/closure/GPU 批准门完全不变。见
+`phase1/opportunity_yield_manuscript_postpush_receipt_20260902.json`。
+
 ## 0L0i. 2026-09-02 两个新近 MLE integrity 竞品已补入正文；窄主张保留，实验门不变
 
 对 2026-08-20--09-02 的一手来源做窄范围增量扫描后，当前稿件补入两个此前遗漏的直接 integrity 先例：

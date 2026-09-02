@@ -59,7 +59,10 @@ preference rows，故不是当前 within-physical-run direct-sibling confirmatio
 旧 400-pair judge 报告没有完整 commit/input binding 或 non-importing verifier，且其 run bootstrap 只把 pair 分给 better
 endpoint；结构复核显示 303/400 rows 跨两 endpoint runs、实际涉及 39 runs 而旧报告写 35，故不得进入主表。
 这次只路由既有证据，`counts_as_distinct_claim_evidence=false`，没有读取 prospective value/identity，也没有 GPU/API/
-model fit/base update。正文、边界与精确哈希见 `phase1/HISTORICAL_TABLE4A_EVIDENCE_DECISION_20260902.md`。
+model fit/base update。paper extract commit=`0b26e7dc4e086a02ecec22f6216fd7e6911bbf7f` 的 fresh no-smudge
+exact checkout 已通过 focused/full=`5/2,079 passed`、48 warnings、0 failures，两个 stderr 均为 0 bytes。正文、边界、
+精确哈希与 post-push receipt 见 `phase1/HISTORICAL_TABLE4A_EVIDENCE_DECISION_20260902.md` /
+`phase1/historical_table4a_postpush_receipt_20260902.json`。
 
 release 许可清单的口径已从历史 `22 competitions` 纠正为 v11 精确 `25 tasks`。25/25 官方 Kaggle
 rules URL 都已直接渲染初筛：完整 data+code 模板 / 简化旧模板 / 非标准详细模板=`16/7/2`，

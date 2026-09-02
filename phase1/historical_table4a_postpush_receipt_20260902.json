@@ -1,0 +1,74 @@
+{
+  "protocol": "historical-table4a-postpush-verification-v1",
+  "status": "HISTORICAL_TABLE4A_EXACT_COMMIT_VERIFIED",
+  "verified_commit": "0b26e7dc4e086a02ecec22f6216fd7e6911bbf7f",
+  "public_branch": "phase1-value-critic",
+  "verification_environment": {
+    "host": "linux5.cse.cuhk.edu.hk",
+    "python": "/research/d7/spc/yzyang4/venvs/exp/bin/python",
+    "fresh_detached_worktree": true,
+    "git_lfs_skip_smudge": true,
+    "numeric_library_threads": 1,
+    "worktree_removed_after_success": true
+  },
+  "tests": {
+    "focused": {
+      "passed": 5,
+      "failed": 0,
+      "seconds": 0.03,
+      "stdout_sha256": "0e96d7ca7406320840ee2e704cbada03e2fe4b6d6aea1d667b4f685b07e7e24d",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "full_phase1": {
+      "passed": 2079,
+      "failed": 0,
+      "warnings": 48,
+      "seconds": 92.74,
+      "stdout_sha256": "787d0babe85d6d45b49d201aee589b0f14eaaf6415509edacb3fe7659dc54552",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "preserved_pretest_failures": [
+    {
+      "stage": "environment_load",
+      "reason": "env_setup referenced an unset LD_LIBRARY_PATH while the temporary runner already had nounset enabled",
+      "worktree_created": false,
+      "tests_started": false
+    },
+    {
+      "stage": "remote_fetch",
+      "reason": "temporary runner used the local remote alias myfork instead of the cluster alias fork",
+      "worktree_created": false,
+      "tests_started": false
+    },
+    {
+      "stage": "research_filesystem_checkout",
+      "reason": "user research quota was exhausted during checkout; the zero-file failed root was path-verified and removed",
+      "tests_started": false
+    },
+    {
+      "stage": "temporary_filesystem_checkout",
+      "reason": "default Git LFS smudge requested a historical object absent from the LFS server; the exact temporary root was removed",
+      "tests_started": false
+    }
+  ],
+  "local_environment_note": {
+    "focused_tests_passed": 5,
+    "full_collection_completed": false,
+    "reason": "local Python 3.13 lacks the project SciPy and scikit-learn dependencies",
+    "classified_as_code_or_assertion_failure": false
+  },
+  "security_and_scope": {
+    "staged_filename_secret_hits_before_initial_push": 0,
+    "staged_content_credential_shape_hits_before_initial_push": 0,
+    "prospective_value_or_identity_read": false,
+    "historical_revealed_aggregate_read": true,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "new_model_fits": 0,
+    "base_llm_updates": 0,
+    "counts_as_distinct_claim_evidence": false
+  }
+}

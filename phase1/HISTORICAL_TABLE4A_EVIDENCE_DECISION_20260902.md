@@ -31,6 +31,12 @@ implementation structural check of the bound TF-IDF row file found 787 same-run 
 144 cross-run rows. Therefore this is a historical cross-run preference-graph
 calibration, not the current within-physical-run direct-sibling confirmation estimand.
 
+The paper extract and transcription guards were committed as
+`0b26e7dc4e086a02ecec22f6216fd7e6911bbf7f`. A fresh no-smudge detached checkout of
+that exact commit passed 5 focused and 2,079 full phase1 tests (48 existing warnings,
+zero failures); both stderr files were empty. The post-push receipt is
+`phase1/historical_table4a_postpush_receipt_20260902.json`.
+
 ## What Table 4A contains
 
 Panel (a) reports, for random hash and the five primary learned/text rows:

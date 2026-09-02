@@ -246,6 +246,11 @@ historical development track, chronological confirmation track, and conditional 
 scaling track visually distinct, and shows that prediction escrow and outcome vault
 may be joined only through the one-time closure anchor.
 
+![Figure 1: Corpus units and sealed evaluation protocol. The schematic separates
+historical development, outcome-blind chronological confirmation, and conditional
+clean scaling. It reports protocol structure only—not predictor performance, search
+utility, cohort identities, or a completed scaling result.](figures/decision_corpus_20260902/figure1_corpus_and_sealed_protocol.png)
+
 ### 3.2 Labels and relation types
 
 Numeric quality is computed by an external pristine evaluator rather than workspace
@@ -497,6 +502,17 @@ Figure 2 visualizes this trajectory from run 120 onward. The discontinuity at ru
 the figure caption therefore separates the task-deletion-robust direction from the
 non-robust magnitude. Its PNG/SVG and hash receipt are in
 `phase1/figures/decision_corpus_20260902/`.
+
+![Figure 2: Run-level balance need not imply pair-level balance. From the first 240
+to 339 eligible runs, run-level task HHI decreases from 0.055972 to 0.048877 and its
+maximum share from 0.108333 to 0.091445, while pair-level HHI increases from 0.083038
+to 0.135747 and its maximum share from 0.171499 to 0.312334; the final run-to-pair
+total-variation distance is 0.337083. The largest post-240 pair-HHI jump occurs at
+run 260 and is retained as a visible leverage warning. The directional divergence
+survives temporal and task-deletion checks, whereas its magnitude is not
+task-deletion-robust. This is an outcome-blind structural weighting diagnostic—not
+predictor bias, accuracy, search utility, or a causal estimate of producer
+behavior.](figures/decision_corpus_20260902/figure2_run_to_pair_weighting.png)
 
 ### 5.4 Duplicate, provenance, and structural-gate scope
 

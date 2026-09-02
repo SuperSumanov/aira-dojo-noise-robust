@@ -38,6 +38,16 @@ reproduction 与 sealed confirmation。ZIP 暂不进 Git，避免在 hosting/rel
 见 `phase1/ANONYMOUS_REVIEWER_ARTIFACT_V0_20260902.md` 与
 `phase1/anonymous_reviewer_artifact_v0_build_receipt_20260902.json`。
 
+跨平台修复公开 commit=`db0f7700c86677b13c843a7a030ff813eb783f42`。远端 r2 在 fresh checkout 因用户磁盘
+quota 在测试前 fail-closed；下载上一轮失败证据并精确清理两个临时根后，r3 在新根通过 11 项 preflight。精确依赖
+环境 focused=`8 passed`；共享环境 focused=`15 passed, 1 skipped`，skip 只表示未激活 artifact pins；full phase1=
+`2,201 passed, 1 skipped, 48 warnings, 0 failures`，三个 stderr 均为 0 bytes。changed files=`7`、credential
+filename/content=`0/0`、identity/path=`0`；A/B ZIP 仍为 `79f32689...9352`。31/31 日志下载后本地逐项核 hash，
+manifest=`72df072b...575f`，随后精确远端根已清理。dependency install 使用普通 Python package 网络下载一次，
+artifact self-check 自身 network=`0`；GPU/paid API/model-fit/base-update=`0/0/0/0`，prospective value/identity
+read=`false/false`。完整失败链与成功 receipt 见
+`phase1/anonymous_reviewer_artifact_v0_postpush_receipt_20260902.json`。
+
 ## 0L0p. 2026-09-02 主稿已进入实测 9 页门内；现在的硬阻塞转为 artifact/release 与 sealed confirmation
 
 按 0L0o 冻结的编辑路线完成了真实官方样式压缩，而不是继续用字数猜测。新源稿为 2,903 词；在官方 2026

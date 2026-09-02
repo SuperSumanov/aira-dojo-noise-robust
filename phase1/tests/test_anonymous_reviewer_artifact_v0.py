@@ -17,6 +17,7 @@ BUILDER = ROOT / "phase1/build_anonymous_reviewer_artifact_v0.py"
 VERIFIER = ROOT / "phase1/verify_anonymous_reviewer_artifact_v0.py"
 REPORT = ROOT / "phase1/ANONYMOUS_REVIEWER_ARTIFACT_V0_20260902.md"
 RECEIPT = ROOT / "phase1/anonymous_reviewer_artifact_v0_build_receipt_20260902.json"
+POSTPUSH = ROOT / "phase1/anonymous_reviewer_artifact_v0_postpush_receipt_20260902.json"
 DIRECTION = ROOT / "phase1/CURRENT_DIRECTION.md"
 
 
@@ -259,3 +260,31 @@ def test_report_receipt_and_direction_preserve_preview_not_release_boundary():
     assert "## 0L0q." in direction
     assert expected_zip in direction
     assert "counts_as_distinct_claim_evidence=false" in direction
+
+
+def test_postpush_receipt_preserves_failures_exact_environment_and_cleanup():
+    receipt = json.loads(POSTPUSH.read_text(encoding="utf-8"))
+    assert receipt["tested_public_commit"] == "db0f7700c86677b13c843a7a030ff813eb783f42"
+    assert [row["status"] for row in receipt["predecessor_attempts"]] == [
+        "FAIL_CLOSED",
+        "FAIL_CLOSED_BEFORE_TESTS",
+    ]
+    success = receipt["successful_attempt"]
+    assert success["preflight_items"] == 11
+    assert success["exact_focused"]["passed"] == 8
+    assert success["full_phase1"] == {
+        "passed": 2201,
+        "skipped": 1,
+        "warnings": 48,
+        "failed": 0,
+        "seconds": 152.92,
+        "stderr_bytes": 0,
+    }
+    assert success["artifact"]["zip_sha256"] == (
+        "79f326899dd1dd766493c50433d1820bb5abc09ac45bfcee189b73c994659352"
+    )
+    assert success["artifact"]["png_changed_rgba_values"] == 0
+    assert success["log_manifest"]["downloaded_files_verified"] == 31
+    assert success["remote_root_cleaned"] is True
+    assert receipt["security"]["prospective_values_or_identities_read"] is False
+    assert receipt["security"]["gpu"] == receipt["security"]["paid_api"] == 0

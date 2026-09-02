@@ -1,0 +1,103 @@
+{
+  "protocol": "decision-corpus-anonymous-reviewer-artifact-postpush-receipt-v0",
+  "status": "PASS",
+  "date": "2026-09-02",
+  "tested_public_commit": "db0f7700c86677b13c843a7a030ff813eb783f42",
+  "predecessor_attempts": [
+    {
+      "commit": "370d2c247f8513434f1e0c24efe79b13deae6873",
+      "attempt": "r1",
+      "status": "FAIL_CLOSED",
+      "failure_class": "UNPINNED_SHARED_RUNTIME_THEN_PNG_COMPRESSION_BYTE_CONFUND",
+      "shared_focused": "14 passed, 1 failed",
+      "downloaded_evidence_manifest_sha256": {
+        "shared_logs": "acc8b819113ad2e6ed8e57f5fee742da9639bba90203a0f6a75d8cbb4b750bfb",
+        "exact_environment_logs": "2c1360a961749ee7843d2a9c261e4e6c134c2634da212db0ae724240fc5f8fa9",
+        "cross_platform_figure_diagnostic": "3e5b4249b026b66c5ecff87f51755903be8558dc01a17a9946358469a7dcf979"
+      },
+      "exact_environment_diagnosis": {
+        "svg_byte_exact": 2,
+        "png_shape_exact": 2,
+        "png_changed_rgba_values": 0
+      },
+      "remote_root_cleaned": true
+    },
+    {
+      "commit": "db0f7700c86677b13c843a7a030ff813eb783f42",
+      "attempt": "r2",
+      "status": "FAIL_CLOSED_BEFORE_TESTS",
+      "failure_class": "REMOTE_USER_DISK_QUOTA_DURING_FRESH_CHECKOUT",
+      "remote_root_cleaned": true
+    }
+  ],
+  "successful_attempt": {
+    "attempt": "r3",
+    "fresh_detached_checkout": true,
+    "checkout_clean": true,
+    "preflight_items": 11,
+    "changed_files": 7,
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0,
+    "identity_path_hits": 0,
+    "exact_artifact_runtime": {
+      "python": "3.11.15",
+      "matplotlib": "3.11.0",
+      "numpy": "2.3.0",
+      "pytest": "8.4.0"
+    },
+    "exact_focused": {
+      "passed": 8,
+      "failed": 0,
+      "seconds": 8.63,
+      "stderr_bytes": 0
+    },
+    "shared_focused": {
+      "passed": 15,
+      "skipped": 1,
+      "failed": 0,
+      "seconds": 3.49,
+      "skip_reason": "shared environment does not activate artifact dependency pins",
+      "stderr_bytes": 0
+    },
+    "full_phase1": {
+      "passed": 2201,
+      "skipped": 1,
+      "warnings": 48,
+      "failed": 0,
+      "seconds": 152.92,
+      "stderr_bytes": 0
+    },
+    "artifact": {
+      "package_files": 26,
+      "zip_bytes": 656781,
+      "zip_sha256": "79f326899dd1dd766493c50433d1820bb5abc09ac45bfcee189b73c994659352",
+      "build_a_b_byte_identical": true,
+      "independent_verifier_a": "PASS",
+      "independent_verifier_b": "PASS",
+      "package_self_check": "PASS",
+      "svg_byte_exact_checks": 2,
+      "png_decoded_pixel_exact_checks": 2,
+      "png_changed_rgba_values": 0
+    },
+    "log_manifest": {
+      "entries": 31,
+      "sha256": "72df072b4af99794140e061b4ef580e00933736377169805062e043fe5d6575f",
+      "downloaded_files_verified": 31,
+      "missing": 0,
+      "mismatch": 0,
+      "unsafe_paths": 0,
+      "credential_hits": 0
+    },
+    "remote_root_cleaned": true
+  },
+  "security": {
+    "prospective_values_or_identities_read": false,
+    "artifact_self_check_network": 0,
+    "verification_dependency_install_network": 1,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  },
+  "scientific_claim": "No new predictor or search result; this receipt closes the locally executable anonymous aggregate-preview verification loop only."
+}

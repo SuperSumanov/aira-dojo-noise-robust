@@ -14,7 +14,7 @@
     "builder_sha256": "48bf40129ca8ddf7418179ddc404c25790e0f7c9073559c2d8ade946572d769d",
     "independent_verifier_sha256": "bed0a283e7f92d60097da1549672c2be15c685bd0ce5f29982ca7c1ed3b7d7a0",
     "package_self_check_sha256": "ef8e4cee9dea3e46dd64dcd0935f4ea6e91cd55aaf7479fbfaa82291294bbe00",
-    "focused_test_sha256": "bbfa42efb0ab38e83ae7c332c566ee3b4f41dfb2a30f5cc6abbd99f77b485eb4"
+    "focused_test_sha256": "2a70a2085a02ba0dee082062960babdaf30b7def1647dd1618133c8d2fee2c2c"
   },
   "build_a_b": {
     "resource_bytes": 1841722,
@@ -38,7 +38,7 @@
     "scientific_recompute_from_row_level_inputs": false
   },
   "focused_tests": {
-    "passed": 8,
+    "passed": 9,
     "failed": 0
   },
   "predecessor_remote_failure": {

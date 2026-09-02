@@ -1,0 +1,110 @@
+{
+  "status": "PASS_STRUCTURAL_CONTEXT_POLICY_TOKEN_PACKING_STILL_BLOCKED",
+  "artifact": "RPM-style prompt-transfer decision-time context contract, producer, independent verifier, and manuscript routing",
+  "verified_at_utc": "2026-09-02T06:56:26Z",
+  "exact_public_commit": "bda3de4bddc1d03c13bedd624c86a6492695e33d",
+  "checkout": {
+    "mode": "fresh detached local clone with LFS smudge disabled",
+    "head_exact": true,
+    "worktree_clean_before_tests": true,
+    "formal_root": "/research/d7/spc/yzyang4/rpm-context-postpush-20260902-bda3de4-r1",
+    "formal_log_files": 11,
+    "logs_copied_and_hash_verified_before_cleanup": true,
+    "formal_root_removed_after_verification": true,
+    "remote_helpers_removed_after_verification": true
+  },
+  "split_first_failed_input_gate": {
+    "source": "decision_clean_b0/b1/b2.jsonl",
+    "rows_seen": 2087,
+    "train_rows": 0,
+    "nontrain_rows_skipped_before_endpoint_lookup": 2087,
+    "endpoint_payload_used": false,
+    "classification": "frozen test input refused as a development source"
+  },
+  "historical_train_only_feasibility": {
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "train_view_sha256": "e5ca6dc94f59d54fe31d4b1c4e796deef0006f489fd76a05663410d4911aa6e1",
+    "cluster_manifest_sha256": "a8f328a3972708e52126157774204647698d2f8b00cc5f7ad06fd8b1d38b4035",
+    "train_groups": 2109,
+    "candidate_slots": 5739,
+    "candidate_slots_mapped_to_cards": 5042,
+    "groups_with_run_mapping": 2109,
+    "groups_with_nonempty_task_description": 2109,
+    "groups_with_scorable_prior_context": 2071,
+    "groups_without_scorable_prior_context": 38,
+    "scorable_context_group_share": 0.981981981982,
+    "scorable_prior_node_count_min_median_max": [
+      0,
+      30,
+      506
+    ],
+    "winner_hash_value_consulted": false,
+    "external_grade_value_consulted": false,
+    "frozen_or_extension_model_opened": false,
+    "prospective_rows_opened": false
+  },
+  "focused_tests": {
+    "passed": 43,
+    "failed": 0,
+    "duration_seconds": 1.19,
+    "stdout_sha256": "b10a8d83db921a9d6cb611924e8b636c2d3c9e73fe43fe817fd8793236f35a79",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "full_tests": {
+    "passed": 2134,
+    "failed": 0,
+    "warnings": 48,
+    "duration_seconds": 138.48,
+    "stdout_sha256": "dc90a6912e2a5ec77bbcf75a14e95097d33ef1296da32d0053de17230a8961a2",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "changed_files": {
+    "count": 9,
+    "manifest_sha256": "0f896c9027b838fb50bcaf63cc8cb0dff53e6afbec60ed3e63f35a942b47bfcd",
+    "credential_filename_hits": 0,
+    "credential_shape_hits": 0
+  },
+  "policy": {
+    "score_source": "obs.val_at_low self-reported validation",
+    "external_grade_allowed": false,
+    "candidate_outcome_allowed": false,
+    "scope": "same task and physical run, strictly before the minimum step of the complete sibling set",
+    "same_context_for_all_pairs_and_orientations_under_parent": true,
+    "ordering": "journal step descending, then node SHA-256 ascending",
+    "identity_fields_emitted": false,
+    "credential_hit_action": "fail closed for the entire decision group",
+    "producer_verifier_independent": true,
+    "existing_output_overwrite_allowed": false,
+    "empty_context_reported_explicitly": true
+  },
+  "remaining_gates": {
+    "exact_tokenizer_prefix_packing_frozen": false,
+    "exact_model_provider_checkpoint_and_reasoning_controls_frozen": false,
+    "outcome_blind_common_support_panel_frozen": false,
+    "candidate_and_context_content_clearance_complete": false,
+    "prediction_escrow_complete": false,
+    "first960_identity_and_accrual_closure_complete": false,
+    "call_token_latency_currency_cap_approved": false,
+    "live_calls_authorized": false,
+    "table_4b_row_state": "SEALED"
+  },
+  "security": {
+    "prospective_outcome_read": false,
+    "prospective_label_read": false,
+    "prospective_prediction_value_read": false,
+    "prospective_candidate_identity_or_profile_read": false,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  },
+  "interpretation": {
+    "counts_as_distinct_claim_evidence": false,
+    "proves_context_field_and_temporal-policy_reproducibility": true,
+    "proves_baseline_accuracy_or_search_utility": false,
+    "proves_rpm_reproduction": false,
+    "unblocks_paid_or_gpu_execution": false
+  }
+}

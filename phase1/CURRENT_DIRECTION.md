@@ -3,6 +3,34 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0g. 2026-09-02 RPM transfer 的历史 context 已冻结到 decision-time 字段；token packing 与效果仍封存
+
+RPM prompt 的“其他历史解及其分数”存在一个高风险歧义：`label.graded` 是事后 external MLE-bench grade，不能作为
+候选决策时 context；唯一允许的 score 固定为历史节点执行后当时可见的 `obs.val_at_low` self-report。第一次 split-first
+可行性门发现 `decision_clean_b0/b1/b2` 的 `2,087` 行全部非 train，因而在 endpoint lookup 前全部跳过，没有把冻结 test
+用于开发。正确的 immutable Source Choice train view 含 `2,109` groups / `5,739` candidates；全部 groups 可映射
+physical run 且有 task description，`2,071` groups 有至少两个严格早于候选的 scored context nodes，`38` groups 无可用
+context，固定输出显式 empty marker。覆盖率与历史节点 min/median/max 为 `0.981981981982` / `0/30/506`；这些只是不读
+winner/external grade 的 train-only 工程计数，不是效果证据。
+
+冻结 policy 使用完整 sibling set 的最早 journal step 作 cutoff；只接受同 task/run 且严格更早的节点；同一 parent 的所有
+pair 与 AB/BA 共用相同 context。顺序固定为 step 降序、node SHA 升序；canonical JSON 只发 code、operator、step、
+self-report 及方向，不发 raw/hash identity。candidate record、同/后续 step、跨 run/task、external grade schema、
+credential-shaped payload 和覆盖已有输出都 fail-closed。producer 与不 import producer 的 verifier 双跑逐字节一致。
+
+公开实现 commit=`bda3de4bddc1d03c13bedd624c86a6492695e33d`；fresh detached no-smudge exact checkout 通过
+focused/full=`43/2,134 passed`，full warnings/failures=`48/0`、耗时 `138.48s`，两个 stderr 均为 0 bytes；changed
+files=`9`、manifest=`0f896c90...bfcd`、credential filename/content=`0/0`。日志复制并逐项核 hash 后，精确临时 root
+已安全清理。
+
+这仍不是完成的 RPM baseline：论文没有公开足够实现细节证明 context 节点格式/顺序，而 exact checkpoint、tokenizer、
+system wrapper、window/reasoning/output reserve 均未定；所以只能把上述固定顺序的完整前缀交给未来 tokenizer packer，
+不得用字符/字节预算冒充 token count。Table 4B 继续 `SEALED`，API/GPU/model fit/base update=`0/0/0/0`，prospective
+label/outcome/prediction/accuracy/utility/candidate identity/profile 均未读，`counts_as_distinct_claim_evidence=false`。见
+`phase1/RPM_DECISION_TIME_CONTEXT_READINESS_20260902.md`、
+`phase1/rpm_decision_time_context_contract_v1.json` 与
+`phase1/rpm_decision_time_context_postpush_receipt_20260902.json`。
+
 ## 0L0f. 2026-09-02 RPM v2 inference-only prompt 已逐字固定；只关闭直接竞品 baseline 的来源/实现缺口
 
 Table 4B 预留的 `RPM-style inference-only prompt-transfer` 行此前只有定位边界，没有可复核的原始 prompt。现已从

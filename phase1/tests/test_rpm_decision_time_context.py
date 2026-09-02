@@ -17,6 +17,7 @@ CONTRACT = ROOT / "rpm_decision_time_context_contract_v1.json"
 VERIFIER = ROOT / "verify_rpm_decision_time_context.py"
 READINESS = ROOT / "RPM_DECISION_TIME_CONTEXT_READINESS_20260902.md"
 DRAFT = ROOT / "PAPER_DRAFT_DECISION_CORPUS_20260902.md"
+POSTPUSH = ROOT / "rpm_decision_time_context_postpush_receipt_20260902.json"
 
 
 def h(value: str) -> str:
@@ -244,3 +245,22 @@ def test_readiness_and_manuscript_keep_result_and_packing_sealed() -> None:
     assert "post-hoc external grade" in draft
     assert "tokenizer-based context packing" in draft
     assert "must not be reported\nas a completed baseline run" in draft
+
+
+def test_postpush_receipt_binds_exact_commit_and_remaining_gates() -> None:
+    receipt = json.loads(POSTPUSH.read_text(encoding="utf-8"))
+    assert receipt["exact_public_commit"] == "bda3de4bddc1d03c13bedd624c86a6492695e33d"
+    assert receipt["split_first_failed_input_gate"]["endpoint_payload_used"] is False
+    assert receipt["historical_train_only_feasibility"]["train_groups"] == 2109
+    assert receipt["historical_train_only_feasibility"]["groups_with_scorable_prior_context"] == 2071
+    assert receipt["focused_tests"]["passed"] == 43
+    assert receipt["full_tests"]["passed"] == 2134
+    assert receipt["full_tests"]["failed"] == 0
+    assert receipt["changed_files"]["credential_filename_hits"] == 0
+    assert receipt["changed_files"]["credential_shape_hits"] == 0
+    assert receipt["remaining_gates"]["exact_tokenizer_prefix_packing_frozen"] is False
+    assert receipt["remaining_gates"]["live_calls_authorized"] is False
+    assert receipt["remaining_gates"]["table_4b_row_state"] == "SEALED"
+    assert receipt["security"]["prospective_outcome_read"] is False
+    assert receipt["security"]["paid_api"] == 0
+    assert receipt["interpretation"]["counts_as_distinct_claim_evidence"] is False

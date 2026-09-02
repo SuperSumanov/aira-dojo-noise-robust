@@ -1,0 +1,106 @@
+{
+  "status": "PASS_RECENT_MLE_INTEGRITY_COMPETITOR_ROUTING",
+  "artifact": "Dated primary-source competitor delta, manuscript routing, Table 1 boundary, bibliography, and senior handoff",
+  "exact_public_commit": "9989b562888bfdcd7931568b91de8e82bd8c8567",
+  "primary_sources": [
+    {
+      "arxiv_id": "2608.19653",
+      "version": "v1",
+      "title": "DeltaML-Bench: Evaluating Machine Learning Agents on Real-World Research Repositories"
+    },
+    {
+      "arxiv_id": "2608.30724",
+      "version": "v1",
+      "title": "BAITBENCH: Measuring Agent Reward Hacking with Optional Shortcuts Planted in ML Tasks"
+    }
+  ],
+  "checkout": {
+    "mode": "fresh detached no-smudge worktree",
+    "successful_attempt": "r5",
+    "head_exact": true,
+    "worktree_clean_before_tests": true,
+    "worktree_clean_after_tests": true,
+    "remote_temp_root_removed_after_log_copy": true,
+    "remote_helpers_removed": true,
+    "local_log_manifest_verified": true
+  },
+  "failure_chain": [
+    {
+      "attempt": "r1",
+      "stage": "before changed-file scan or tests",
+      "failure": "The verifier created its own postpush_logs directory before a full untracked-file cleanliness check and rejected that directory.",
+      "tests_started": false,
+      "scientific_result_written": false,
+      "status_before_sha256": "9789352b77a2229c6eaab092741168768816ed58df77cc84da61b68b7757b737"
+    },
+    {
+      "attempt": "r2",
+      "stage": "after focused tests",
+      "failure": "The verifier incorrectly collected the repository root instead of the established phase1/tests full-suite boundary; four unrelated collection errors followed.",
+      "focused_passed": 46,
+      "full_scope_was_valid": false,
+      "scientific_result_written": false,
+      "full_stdout_sha256": "c48b9ab1ec8ba90c6a97cc0c34c980fbe7ffc08a77413149be9cc8f509d9cd44"
+    },
+    {
+      "attempt": "r3",
+      "stage": "checkout before tests",
+      "failure": "Remote user disk quota was reached while materializing a third simultaneous temporary worktree.",
+      "tests_started": false,
+      "scientific_result_written": false,
+      "exact_roots_cleaned_after_prior_logs_were_copied": true
+    },
+    {
+      "attempt": "r4",
+      "stage": "full phase1/tests suite",
+      "failure": "One pre-existing private-file-permission test observed mode 0644 because the verifier shell had not set the project-standard umask 077.",
+      "focused_passed": 46,
+      "full_passed": 2151,
+      "full_failed": 1,
+      "full_warnings": 48,
+      "scientific_result_written": false,
+      "full_stdout_sha256": "8adda28793a1a9c738b4e14639a9bf6eb44eced3240e48a1379c327a6b0b6eb4"
+    }
+  ],
+  "successful_verification": {
+    "changed_files": 9,
+    "changed_paths_sha256": "364988c65e16668772b06c33d294b4e3768c3f02f79550639bee020e8c421b45",
+    "changed_file_hash_manifest_sha256": "577431bc6c17a8fcb193a8ee280bd29ef93d9d607f9b95e899ff416df2fb704c",
+    "credential_filename_hits": 0,
+    "credential_shape_hits": 0,
+    "focused_tests": {
+      "passed": 46,
+      "failed": 0,
+      "seconds": 1.21,
+      "stdout_sha256": "4c66f28b7a41aea94c89ed446f0de39e7f22004c7ff95e8d4771b9638c045f6b",
+      "stderr_bytes": 0
+    },
+    "full_tests": {
+      "scope": "phase1/tests",
+      "passed": 2152,
+      "failed": 0,
+      "warnings": 48,
+      "seconds": 132.91,
+      "stdout_sha256": "1b3d4e24dc071e7e26c78d81a5807faf6142386388b7ef65fc65f58c7928535c",
+      "stderr_bytes": 0
+    },
+    "log_files": 13,
+    "log_manifest_sha256": "3152b47ebec1ffe3c7997055fbc45386a1b8b2dc2bcad9bf68b88902483dfdb4"
+  },
+  "positioning": {
+    "broad_priority_claims_withdrawn": true,
+    "narrow_decision_corpus_claim_retained": true,
+    "clean_scaling_gate_changed": false,
+    "counts_as_distinct_claim_evidence": false
+  },
+  "security": {
+    "prospective_outcome_read": false,
+    "prospective_label_read": false,
+    "prospective_prediction_value_read": false,
+    "prospective_candidate_identity_or_profile_read": false,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  }
+}

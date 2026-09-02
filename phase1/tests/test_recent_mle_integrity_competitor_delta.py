@@ -13,6 +13,8 @@ TABLES = ROOT / "phase1/PAPER_TABLES_1_3_DRAFT_20260902.md"
 MAP = ROOT / "phase1/RELATED_WORK_CITATION_MAP_20260902.md"
 HANDOFF = ROOT / "phase1/SENIOR_HANDOFF_20_DAY_SPRINT_20260902.md"
 BIB = ROOT / "phase1/DECISION_CORPUS_REFERENCES_20260902.bib"
+RECEIPT = ROOT / "phase1/recent_mle_integrity_competitor_postpush_receipt_20260902.json"
+CURRENT = ROOT / "phase1/CURRENT_DIRECTION.md"
 
 
 def test_primary_source_delta_is_version_and_date_bound() -> None:
@@ -59,3 +61,31 @@ def test_claim_boundary_does_not_overreach_or_change_experiment_authority() -> N
     assert "config-v2" in note
     assert "不改变 clean-scaling 的 sidecar/closure 门" in handoff
     assert "first trustworthy MLE-agent benchmark" in note
+
+
+def test_postpush_receipt_preserves_failures_and_final_pass() -> None:
+    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+    current = CURRENT.read_text(encoding="utf-8")
+    assert receipt["exact_public_commit"] == (
+        "9989b562888bfdcd7931568b91de8e82bd8c8567"
+    )
+    assert [item["attempt"] for item in receipt["failure_chain"]] == [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+    ]
+    assert all(
+        item["scientific_result_written"] is False
+        for item in receipt["failure_chain"]
+    )
+    successful = receipt["successful_verification"]
+    assert successful["focused_tests"]["passed"] == 46
+    assert successful["full_tests"]["passed"] == 2152
+    assert successful["full_tests"]["failed"] == 0
+    assert successful["credential_filename_hits"] == 0
+    assert successful["credential_shape_hits"] == 0
+    assert receipt["positioning"]["counts_as_distinct_claim_evidence"] is False
+    assert sum(receipt["security"].values()) == 0
+    assert "## 0L0i." in current
+    assert "不改变\nconfig-v2/closure/GPU 批准门" in current

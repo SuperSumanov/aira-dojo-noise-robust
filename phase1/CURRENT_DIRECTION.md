@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0i. 2026-09-02 两个新近 MLE integrity 竞品已补入正文；窄主张保留，实验门不变
+
+对 2026-08-20--09-02 的一手来源做窄范围增量扫描后，当前稿件补入两个此前遗漏的直接 integrity 先例：
+DeltaML-Bench（`2608.19653v1`）用 48 个真实研究仓库评测 MLE agents，并加入分层 specification-gaming 检查；
+BAITBENCH（`2608.30724v1`，2026-08-31）用三类 planted shortcut、隐藏 robust split、canonical run evidence
+与两阶段 judge 测量 ML-agent reward hacking。它们关闭“首个可信 MLE-agent benchmark / 首个隐藏 held-out 评测 /
+首个 integrity audit / 首个真实研究仓 benchmark”等宽泛表述。
+
+在已检查的公开 v1 范围内，两者都不把 naturally logged true-sibling fragment + common-pool cross-family predictor
+measurement 作为主要发布/评测单元。因此 Decision Corpus 的可守边界仍是 provenance-bound sibling fragments、
+physical-run/config/time isolation、incomplete-choice/pair-dependence/noise/cost audit 与 one-shot outcome-blind closure；
+这不是绝对 priority 声明，也不猜测未公开工作。新增 BibTeX、Related Work、Table 1、机器 scope 契约和给学长交接，
+公开实现 commit=`9989b562888bfdcd7931568b91de8e82bd8c8567`。
+
+远端 exact-commit fresh detached r5 在 `umask 077` 下通过 focused/full=`46/2,152 passed`、48 warnings、0 failures，
+两个 stderr 均为 0 bytes；changed files=`9`、credential filename/content=`0/0`、日志 manifest=
+`3152b47e...fdb4`。r1 自造日志目录误触 clean gate、r2 错收仓库根测试、r3 checkout 配额、r4 缺 `umask 077`
+导致的 1 项权限测试失败均保留在 receipt，且没有被改写为成功。该更新只防 scoop，不是新科学结果，不改变
+config-v2/closure/GPU 批准门；prospective outcome/label/prediction/identity read=`false/false/false/false`，
+GPU/API/model-fit/base-update=`0/0/0/0`，`counts_as_distinct_claim_evidence=false`。见
+`phase1/RECENT_MLE_INTEGRITY_COMPETITOR_DELTA_20260902.md` 与
+`phase1/recent_mle_integrity_competitor_postpush_receipt_20260902.json`。
+
 ## 0L0h. 2026-09-02 RPM transfer 的公开 tokenizer/prefix packing 已复验；paper-aligned BFS 仍是硬阻断
 
 对 RPM v2 正文方法段的逐句复核修正了一个直接竞品边界：论文从当前 parent 对已探索树做 breadth-first traversal，

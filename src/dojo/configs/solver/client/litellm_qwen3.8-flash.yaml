@@ -1,0 +1,6 @@
+_target_: dojo.config_dataclasses.client.base.ClientConfig
+api: litellm
+model_id: "qwen/qwen3.8-flash"
+base_url: "https://openrouter.ai/api/v1"
+use_azure_client: false
+provider: openai

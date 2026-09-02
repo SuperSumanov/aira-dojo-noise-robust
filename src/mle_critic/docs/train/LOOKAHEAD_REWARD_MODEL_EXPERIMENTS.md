@@ -1,8 +1,7 @@
 # Augmented reward model：当前训练流程
 
-本文记录当前仓库里实际使用的 augmented reward 数据和训练入口。旧的学生版 L1/L2、
-rescue、多预算 flip 实验不再是当前主线，相关旧命令不应拿来复现实验。LOTO 仍由当前
-Bradley-Terry trainer 原生支持，但不是 augmented launcher 的默认训练臂。
+本文记录当前仓库里实际使用的 augmented reward 数据和训练入口。LOTO 仍由当前
+Bradley-Terry trainer 原生支持。
 
 ## 1. 当前主线
 
@@ -19,16 +18,12 @@ raw journal
   -> light predictor 对照
 ```
 
-完整操作清单在 tmp/reminder_train。核心产物是：
+完整操作清单，细节，和更多数据选择在`src/mle_critic/docs/data/OVERVIEW_MINE.md`。核心产物是：
 
 ```text
 data/augmented_mle_critic/augmented_cards_current.json
-data/augmented_mle_critic/raw_journal/batch_value_pairs.jsonl
-data/augmented_mle_critic/raw_journal/batch_value_pairs_filtered.jsonl
 data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl
 ```
-
-数据构建细节见[数据说明](../data/OVERVIEW_MINE.md)。
 
 ## 2. 环境和 launcher
 
@@ -64,30 +59,8 @@ bash src/mle_critic/scripts/train/pro6000/train_aug_reward.sh
 bash src/mle_critic/scripts/train/pro6000/train_aug_reward.sh 7
 ```
 
-脚本当前真正执行的只有 Qwen3-8B-Base 这一臂；0.6B、1.7B、4B 的命令保留为注释，没有
-执行。实际参数是：
-
-```text
-accelerate processes       2
-model                      Qwen/Qwen3-8B-Base
-train/test pairs           data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl
-cards                      data/augmented_mle_critic/augmented_cards_current.json
-max_len                    16384
-task_cond                  true
-per-device train batch     2
-per-device eval batch      2
-gradient accumulation      32
-eval_steps                 10
-learning rate              1e-5
-epochs                     1
-seed                       6
-```
-
-日志写到 logs/augmented_mle_critic，checkpoint 写到
-outputs/augmented_mle_critic/Qwen3-8B_reward_seed6。
-
-不要把旧文档中 Qwen2.5-1.5B、N=24000、2048 context 或 train_l1_lookahead.sh 的参数当成
-当前 augmented 配置；它们属于旧实验或已经停用的 launcher。
+由于项目正在积极探索，所以我们不把可复现性作为第一目标。该脚本会经常随着commit修改，
+不要把某时刻的脚本内容当作主要实验。
 
 ## 4. bradley_terry.py 的真实数据流程
 
@@ -212,16 +185,12 @@ bradley_terry.py 每隔 --eval-steps 调用 Trainer 的 eval dataset；当前 la
 eval_strategy             steps
 save_strategy             best
 metric_for_best_model     eval_pair_accuracy
-greater_is_better         false
+greater_is_better         true
 load_best_model_at_end    false
 save_total_limit          1
 ```
 
-因此当前代码会保留 Trainer 认定的 best checkpoint，但 greater_is_better=false 与
-eval_pair_accuracy 的语义并不匹配；如果要按准确率选最好模型，应显式修正配置，而不是
-根据旧文档假设它已经按最高准确率选择。
-
-checkpoint 是 Hugging Face/Trainer 原生目录，通常包含：
+因此当前代码会保留 Trainer 认定的 best checkpoint，checkpoint 是 Hugging Face/Trainer 原生目录，通常包含：
 
 ```text
 <output-dir>/checkpoint-<step>/
@@ -232,36 +201,7 @@ checkpoint 是 Hugging Face/Trainer 原生目录，通常包含：
 训练脚本不会生成一份独立的最终 accuracy CSV。当前增强流程的主要训练输出是日志和
 checkpoint；数据规模、context 长度等比较应在实验记录中显式保存。
 
-## 7. 训练前 context 预检查
-
-不要直接用字符长度估算 context。使用与训练相同的 tokenizer、CardEncoder、PairDataset、
-pair_collate 和 DataLoader：
-
-```bash
-python -m src.mle_critic.src.postprocess.measure_context \
-  --model Qwen/Qwen3-0.6B-Base \
-  --pairs data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl \
-  --cards data/augmented_mle_critic/augmented_cards_current.json \
-  --context-length 16384
-```
-
-脚本会分别报告 train/test/all 的平均 token 数、最大 token 数、超 context 的 sequence 比例，
-以及任一侧超 context 的 pair 比例。测量时暂时把 CardEncoder max_len 提高到很大的值；如果
-真的碰到这个临时上限，脚本会报错，避免把截断后的长度当成真实长度。
-
-已在当前数据和 Qwen3-0.6B tokenizer 上测得：
-
-```text
-all pairs                  6976
-average sequence length    3787.07
-maximum sequence length    27603
-sequences > 16384          9/13952 = 0.06%
-pairs with either > 16384  7/6976   = 0.10%
-```
-
-这个统计是数据检查，不代表 Qwen3-8B 训练已经完成。
-
-## 8. 轻量模型对照
+## 7. 轻量模型对照
 
 为了判断收益是否来自代码字符表面特征，当前流程另外提供 sklearn baseline：
 
@@ -285,7 +225,7 @@ PYTHONPATH=. python -m src.mle_critic.src.train.light_predictor.train \
 --test-cap 覆盖。cards reader 同时支持 grouped JSON 和 flat JSONL，并只读取 pair 需要的
 Card。
 
-## 9. 复现实验时应保存什么
+## 8. 复现实验时应保存什么
 
 至少保存以下版本化产物：
 
@@ -302,3 +242,47 @@ context length、seed、batch size、gradient accumulation
 raw pair 必须从当前 Cards 重建，不能每天直接 append：新后代会改变祖先的 reward/value，
 新 batch 也会改变 cap 采样池。run split 可以增量更新，但已有 physical run 的 train/test
 身份不能漂移。
+
+## 9. TRL RL训练
+
+为了快速测试RL的效果和速度，我们暂时使用了一个比较toy的rl库，trl，而且还用了我自己基于trl做的仓库
+
+```bash
+git clone https://github.com/VOXXXX1874/Hista.git
+```
+
+请在其他的位置clone该仓库，注意不要将源码和`.git`文件混入当前仓库。然后根据`Hista`仓库的指引安装并激活对应的环境。
+在准备好RL相关的数据后，将训练集和测试集复制到同一文件夹下
+
+```bash
+mkdir -p data/augmented_mle_critic/mlejudger_easy
+cp data/augmented_mle_critic/rl_judger_messages_train.jsonl data/augmented_mle_critic/mlejudger_easy/train.jsonl
+cp data/augmented_mle_critic/rl_judger_messages_test.jsonl data/augmented_mle_critic/mlejudger_easy/test.jsonl
+```
+
+随后便可以用以下命令启动训练
+
+```bash
+ACCELERATE_LOG_LEVEL=info \
+accelerate launch \
+--config_file src/mle_critic/recipes/zero3.yaml \
+--main_process_port 29501 \
+--num_processes=2 \
+<PATH_TO_GRPO_SCRIPT> \
+--config src/mle_critic/recipes/trl/Qwen3-4B/GRPO_inst_csipo.yaml \
+> ./outputs/Qwen3-4B/GRPO_mlejudger_easy_inst_csipo_sampling.log 2>&1
+```
+
+将`<PATH_TO_GRPO_SCRIPT>`换成`Hista`仓库的GRPO entrypoint。
+假如你直接把`Hista`仓库下载到当前仓库的`third_party`文件夹中，这可以使用
+
+```bash
+ACCELERATE_LOG_LEVEL=info \
+accelerate launch \
+--config_file src/mle_critic/recipes/zero3.yaml \
+--main_process_port 29501 \
+--num_processes=2 \
+./third_party/Hista/src/rl/grpo.py \
+--config src/mle_critic/recipes/trl/Qwen3-4B/GRPO_inst_csipo.yaml \
+> ./outputs/Qwen3-4B/GRPO_mlejudger_easy_inst_csipo_sampling.log 2>&1
+```

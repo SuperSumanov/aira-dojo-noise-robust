@@ -441,18 +441,6 @@ python -m src.mle_critic.src.postprocess.measure_context \
 它会报告 train/test 的平均 token 长度、最大长度和超出 context 的 sequence/pair 比例；测量
 时暂时把 encoder max_len 设得很大，避免把自身截断当成真实统计。
 
-不依赖大模型的对照基线：
-
-```bash
-PYTHONPATH=. python -m src.mle_critic.src.train.light_predictor.train \
-  --pairs data/augmented_mle_critic/batch_value_pairs_filtered_runsplit.jsonl \
-  --cards data/augmented_mle_critic/augmented_cards_current.json \
-  --output tmp/light_predictor_results.json
-```
-
-它支持 tfidf_lr、static_lr、static_gbm 三个 sklearn pairwise predictor，并默认将 train/test
-分别限制为 24,000/6,000 条。
-
 ## 10. Mixed Pair Dataset
 
 ### 10.1 Global Value Pairs

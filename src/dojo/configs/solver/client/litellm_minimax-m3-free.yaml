@@ -1,0 +1,6 @@
+_target_: dojo.config_dataclasses.client.base.ClientConfig
+api: litellm
+model_id: "minimax/minimax-m3:free"
+base_url: "https://openrouter.ai/api/v1"
+use_azure_client: false
+provider: openai

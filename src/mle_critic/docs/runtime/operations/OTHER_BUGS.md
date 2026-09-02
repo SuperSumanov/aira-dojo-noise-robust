@@ -169,7 +169,8 @@ conda install -c conda-forge cryptography=49.0.0
 很多集群都有乱七八糟的网关和防火墙，可能影响到kaggle的下载。这里没有深究，但
 
 ```bash
+export HTTPS_PROXY=http://proxy.cse.cuhk.edu.hk:8000
 export KAGGLE_PROXY="${HTTPS_PROXY}"
 ```
 
-是有效的。
+在cse server上是有效的。

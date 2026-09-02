@@ -10,6 +10,7 @@ SOURCE = ROOT / "phase1/PAPER_DRAFT_DECISION_CORPUS_9PAGE_20260902.md"
 BIBLIOGRAPHY = ROOT / "phase1/DECISION_CORPUS_REFERENCES_20260902.bib"
 HEADER = ROOT / "phase1/render/decision_corpus_neurips_2026_header.tex"
 CONTRACT = ROOT / "phase1/decision_corpus_9page_draft_render_v1.json"
+RECEIPT = ROOT / "phase1/decision_corpus_9page_draft_postpush_receipt_20260902.json"
 NOTE = ROOT / "phase1/NEURIPS_ED_9PAGE_DRAFT_RENDER_20260902.md"
 CURRENT = ROOT / "phase1/CURRENT_DIRECTION.md"
 
@@ -120,3 +121,24 @@ def test_render_work_did_not_open_sealed_results_or_authorize_compute() -> None:
     assert interpretation["page_budget_gate_closed"] is True
     assert interpretation["submission_readiness_closed"] is False
     assert sum(int(value) for value in security.values()) == 0
+
+
+def test_postpush_receipt_binds_exact_commit_full_suite_and_cleanup() -> None:
+    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+    verification = receipt["successful_verification"]
+    render = receipt["deterministic_render"]
+    assert receipt["exact_public_commit"] == (
+        "b711a600fb45c18a65140f192f8c0e94b97a538a"
+    )
+    assert verification["preflight_items_passed"] == 11
+    assert verification["focused_tests"]["passed"] == 20
+    assert verification["full_phase1_tests"]["passed"] == 2193
+    assert verification["full_phase1_tests"]["failed"] == 0
+    assert verification["focused_stderr_bytes"] == 0
+    assert verification["full_stderr_bytes"] == 0
+    assert render["byte_identical"] is True
+    assert render["pdf_sha256"] == load_contract()["render"]["pdf_sha256"]
+    assert receipt["cleanup"]["local_log_files_hash_verified"] == 13
+    assert receipt["cleanup"]["local_log_files_missing_or_mismatched"] == 0
+    assert receipt["cleanup"]["remote_exact_log_root_removed_after_verified_local_copy"] is True
+    assert sum(int(value) for value in receipt["security"].values()) == 0

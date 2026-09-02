@@ -19,9 +19,13 @@ Tectonic deterministic mode 在两个独立 build directories 产出逐字节相
 这关闭的是 **measured page-budget gate**，不是 submission candidate，也不是新的 predictor/search 正结果；
 `counts_as_distinct_claim_evidence=false`。2027 call/style、checklist、匿名 reviewer artifact、dataset access/release clearance、
 Croissant core 与 sealed prospective confirmation 仍未关闭。剩余版面是审稿修改余量，禁止为了凑 9 页加入不受支持的正面主张。
-本节与源稿/机器契约同提交冻结；精确公开 SHA 与 fresh-checkout 全量复验由下一份 post-push receipt 记录。
-prospective label/outcome/prediction/accuracy/utility/identity/profile 均未读，GPU/API/model-fit/base-update=`0/0/0/0`。见
-`phase1/NEURIPS_ED_9PAGE_DRAFT_RENDER_20260902.md` 与 `phase1/decision_corpus_9page_draft_render_v1.json`。
+源稿与机器契约公开 commit=`b711a600fb45c18a65140f192f8c0e94b97a538a`。远端 fresh detached r1 在
+`umask 077` 下先通过 11 项 preflight，再通过 focused/full=`20/2,193 passed`、48 warnings、0 failures，两个 stderr
+均为 0 bytes；changed files=`6`、credential filename/content=`0/0`、日志 manifest=`71f41bd0...687b`。13/13 日志
+在本地独立核 hash，随后精确远端 worktree、日志根与 helpers 已清理。prospective label/outcome/prediction/accuracy/
+utility/identity/profile 均未读，GPU/API/model-fit/base-update=`0/0/0/0`。见
+`phase1/NEURIPS_ED_9PAGE_DRAFT_RENDER_20260902.md`、`phase1/decision_corpus_9page_draft_render_v1.json` 与
+`phase1/decision_corpus_9page_draft_postpush_receipt_20260902.json`。
 
 ## 0L0o. 2026-09-02 主稿官方样式基线为 16 个内容页；9 页压缩路线已冻结
 

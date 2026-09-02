@@ -1,0 +1,205 @@
+{
+  "protocol": "decision-corpus-anonymous-reviewer-artifact-contract-v0",
+  "package_name": "decision-corpus-reviewer-artifact-v0",
+  "package_version": "0.1.0-preview",
+  "status": "ANONYMOUS_AGGREGATE_PREVIEW_NOT_DATASET_RELEASE",
+  "zip_timestamp_utc": "1980-01-01T00:00:00Z",
+  "source_byte_policy": {
+    "default": "canonical_lf_utf8_text",
+    "binary_exact_suffixes": [
+      ".png"
+    ]
+  },
+  "security": {
+    "anonymous": true,
+    "aggregate_only": true,
+    "public_source_commit_included": false,
+    "git_history_included": false,
+    "prospective_content_included": false,
+    "network_required": false,
+    "gpu_required": false,
+    "paid_api_required": false,
+    "model_fit_required": false,
+    "base_model_update_required": false
+  },
+  "capability_matrix": [
+    {
+      "claim": "protocol_figure",
+      "artifact_operation": "PAPER_EXACT_REGEN",
+      "scientific_recompute": "NOT_APPLICABLE_PROTOCOL_SCHEMATIC"
+    },
+    {
+      "claim": "run_to_pair_weighting_figure",
+      "artifact_operation": "PAPER_EXACT_REGEN_FROM_FROZEN_AGGREGATE_TRAJECTORY",
+      "scientific_recompute": "BLOCKED_UPSTREAM_ROW_LEVEL_INPUTS_NOT_INCLUDED"
+    },
+    {
+      "claim": "historical_table4a_and_cost_panel",
+      "artifact_operation": "PAPER_TRANSCRIPTION_AND_SCOPE_VERIFY",
+      "scientific_recompute": "BLOCKED_931_ROW_LEVEL_INPUTS_NOT_RELEASE_CLEARED"
+    },
+    {
+      "claim": "historical_v11_corpus",
+      "artifact_operation": "DESCRIPTOR_AND_HASH_INSPECT",
+      "scientific_recompute": "BLOCKED_16012_CARD_PAYLOAD_NOT_RELEASE_CLEARED"
+    },
+    {
+      "claim": "sealed_prospective_confirmation",
+      "artifact_operation": "EXCLUDED_AND_SEALED",
+      "scientific_recompute": "NOT_AVAILABLE_BEFORE_CLOSURE"
+    }
+  ],
+  "excluded_content": [
+    "git metadata and author or institution identity",
+    "historical card payloads and competition data",
+    "the 931 historical per-pair records and predictions",
+    "prospective candidate identities, profiles, labels, outcomes, predictions, accuracy, and utility",
+    "credentials, host paths, private selection state, and raw provider outputs"
+  ],
+  "resources": [
+    {
+      "source": "phase1/reviewer_artifact/README.md",
+      "destination": "README.md",
+      "sha256": "524aaac586278ca8431b06e3f0dfc29cf91d5c8f87afc08215d235972dd82711",
+      "role": "reviewer_entrypoint"
+    },
+    {
+      "source": "phase1/reviewer_artifact/requirements.txt",
+      "destination": "requirements.txt",
+      "sha256": "d8c8641ca3fe8b1975a3f5a2e08a0a0b2ee9238c21bf0f1bda04e6fbcc6308ea",
+      "role": "pinned_runtime"
+    },
+    {
+      "source": "phase1/reviewer_artifact/run_reviewer_checks.py",
+      "destination": "tools/run_reviewer_checks.py",
+      "sha256": "62c5acdb08f30fe4aa81f6e1fc8d219e1ad2fc1f18d7e320142f12c4a1e54acb",
+      "role": "offline_self_check"
+    },
+    {
+      "source": "LICENSE",
+      "destination": "LICENSE.code-only",
+      "sha256": "82656a050544ab820c9aa7b61433f5181f8e80cacd042377140962a3e3eb5721",
+      "role": "code_license_boundary"
+    },
+    {
+      "source": "THIRD_PARTY_LICENSES.md",
+      "destination": "THIRD_PARTY_LICENSES.md",
+      "sha256": "e7aceb2b0964d726c72c76efbbc8b5a60feed6d160aa615171deda2e676d7929",
+      "role": "third_party_attribution"
+    },
+    {
+      "source": "phase1/PAPER_DRAFT_DECISION_CORPUS_9PAGE_20260902.md",
+      "destination": "phase1/PAPER_DRAFT_DECISION_CORPUS_9PAGE_20260902.md",
+      "sha256": "3933f0e01db2a006d07baf8086bbcb758e13ad99a9718d07d07079851e08b5da",
+      "role": "paper_source"
+    },
+    {
+      "source": "phase1/DECISION_CORPUS_REFERENCES_20260902.bib",
+      "destination": "phase1/DECISION_CORPUS_REFERENCES_20260902.bib",
+      "sha256": "63a85ac12aed8bcc5dd9fc4b9352fc71589cee959f16dd9fe2416956f276449b",
+      "role": "paper_bibliography"
+    },
+    {
+      "source": "phase1/DATACARD_DECISION_CORPUS_DRAFT_20260902.md",
+      "destination": "phase1/DATACARD_DECISION_CORPUS_DRAFT_20260902.md",
+      "sha256": "60fe581ac61f28490a39b053a0f67e1e274259d05f9c6d0f04baeb1f865ff120",
+      "role": "data_card"
+    },
+    {
+      "source": "phase1/SCHEMA_DICTIONARY_DECISION_CORPUS_V11_20260902.md",
+      "destination": "phase1/SCHEMA_DICTIONARY_DECISION_CORPUS_V11_20260902.md",
+      "sha256": "949544073e6ee41475d073ab8f76163a632ae15232434cf4aea187bd7c3286d1",
+      "role": "schema_dictionary"
+    },
+    {
+      "source": "phase1/GRAPH_BASIS_EVALUATION_METHOD_20260902.md",
+      "destination": "phase1/GRAPH_BASIS_EVALUATION_METHOD_20260902.md",
+      "sha256": "5f6ccd1efaaa0677eb5039887efa2a7334daa4d6ef34ddd45c6f3597c6ccd568",
+      "role": "evaluation_method"
+    },
+    {
+      "source": "phase1/HISTORICAL_TABLE4A_EVIDENCE_DECISION_20260902.md",
+      "destination": "phase1/HISTORICAL_TABLE4A_EVIDENCE_DECISION_20260902.md",
+      "sha256": "36d343261a2af1c2d3a638a721e24ee57dfd2d1eda6430a3460f7f9cbf10f49a",
+      "role": "historical_claim_boundary"
+    },
+    {
+      "source": "phase1/PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md",
+      "destination": "phase1/PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md",
+      "sha256": "31b410f0883047b52daf852b5d5086f67a265dd4fd94718cf24a17d04442dec9",
+      "role": "withdrawal_ledger"
+    },
+    {
+      "source": "phase1/PAPER_REPRODUCIBILITY_APPENDIX_DRAFT_20260902.md",
+      "destination": "phase1/PAPER_REPRODUCIBILITY_APPENDIX_DRAFT_20260902.md",
+      "sha256": "9eeeee078526ef67b1344c2c32417097e5b3c824304044c031266a81a46141a4",
+      "role": "reproducibility_appendix"
+    },
+    {
+      "source": "phase1/plot_paper_figure1_protocol.py",
+      "destination": "phase1/plot_paper_figure1_protocol.py",
+      "sha256": "28f73d9404c1397bd69d4c93775647d58136cf29ca598a48fbb9cacacc2493fa",
+      "role": "figure1_renderer"
+    },
+    {
+      "source": "phase1/plot_paper_figure2_weighting.py",
+      "destination": "phase1/plot_paper_figure2_weighting.py",
+      "sha256": "2d77564028e4b32b2ea14414900a5ab6f6f02f37ea123bb4688d2d3974ed75c7",
+      "role": "figure2_renderer"
+    },
+    {
+      "source": "phase1/figures/decision_corpus_20260902/figure1_corpus_and_sealed_protocol.png",
+      "destination": "phase1/figures/decision_corpus_20260902/figure1_corpus_and_sealed_protocol.png",
+      "sha256": "3a5c0531bcd69d4b74ddbf5cfba7f8a6b0930d01e33b36fb38b4933c3084320a",
+      "role": "figure1_png"
+    },
+    {
+      "source": "phase1/figures/decision_corpus_20260902/figure1_corpus_and_sealed_protocol.svg",
+      "destination": "phase1/figures/decision_corpus_20260902/figure1_corpus_and_sealed_protocol.svg",
+      "sha256": "485f460610d62bc1cf9d83c4ebfe3e36b98b44e833bd565f737ceffb0e30e3e4",
+      "role": "figure1_svg"
+    },
+    {
+      "source": "phase1/figures/decision_corpus_20260902/figure1_receipt.json",
+      "destination": "phase1/figures/decision_corpus_20260902/figure1_receipt.json",
+      "sha256": "92ec2ac11e34416f6a85ed3e78d5b1cd46a3ec5317488f41bf45c70801ce9f6b",
+      "role": "figure1_receipt"
+    },
+    {
+      "source": "phase1/figures/decision_corpus_20260902/figure2_run_to_pair_weighting.png",
+      "destination": "phase1/figures/decision_corpus_20260902/figure2_run_to_pair_weighting.png",
+      "sha256": "36d647b0fd4d44f39644f3af4fffe72496398cc244c9bff1afffb48b07ad701b",
+      "role": "figure2_png"
+    },
+    {
+      "source": "phase1/figures/decision_corpus_20260902/figure2_run_to_pair_weighting.svg",
+      "destination": "phase1/figures/decision_corpus_20260902/figure2_run_to_pair_weighting.svg",
+      "sha256": "326e2f7bcb684214a4d3f2e43fa8efea0933457d38b956fa7db0266b5081b459",
+      "role": "figure2_svg"
+    },
+    {
+      "source": "phase1/figures/decision_corpus_20260902/figure2_receipt.json",
+      "destination": "phase1/figures/decision_corpus_20260902/figure2_receipt.json",
+      "sha256": "d9141e46e13f86ac829de72d6c2cc84b798f593682b411e4374b213ea1e8b7a8",
+      "role": "figure2_receipt"
+    },
+    {
+      "source": "phase1/results/structural_weight_trajectory_7cda_20260826/trajectory.json",
+      "destination": "phase1/results/structural_weight_trajectory_7cda_20260826/trajectory.json",
+      "sha256": "bbdb802711bd2f300725be156c5fd228a79fa0792f8d7317674a6a0bbb419f30",
+      "role": "outcome_blind_aggregate_trajectory"
+    },
+    {
+      "source": "phase1/results/historical_table4a_extract_20260902/table4a.json",
+      "destination": "phase1/results/historical_table4a_extract_20260902/table4a.json",
+      "sha256": "2e5aae98e373c6a32546d5fee4bbf89478b67ca68fda93f9a6da18681b2382c6",
+      "role": "aggregate_table4a_extract"
+    },
+    {
+      "source": "phase1/corpus_releases/v11.json",
+      "destination": "phase1/corpus_releases/v11.json",
+      "sha256": "04398a75698d8e58bf8c13d1e8a0c6a0801fb3a644b00325245ec67a44301ddd",
+      "role": "v11_descriptor"
+    }
+  ]
+}

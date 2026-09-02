@@ -3,6 +3,33 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0q. 2026-09-02 匿名审稿工件已有可执行 aggregate preview；数据发布与科学重算仍未放行
+
+D0--D7 的 anonymous artifact 阻塞已从“没有可执行包”收窄为“本地 aggregate preview 已就绪，公开托管与
+content-bearing release 未决”。新机器契约只允许 24 个固定 SHA-256 资源，生成 2 个 manifest，包内共 26 个文件；
+明确排除 Git history/source commit、作者/机构身份、historical card payload、931 行 pair/prediction payload 与所有
+prospective identity/label/outcome/prediction/accuracy/utility。`LICENSE.code-only` 也明确不是数据发布许可。
+
+能力边界写成机器可检验的五行矩阵：Figure 1 可从代码 exact-regenerate；Figure 2 可从 frozen outcome-blind aggregate
+trajectory exact-regenerate，但不声称重算上游行级结构；Table 4A/cost 只做 paper transcription/support/scope verification，
+没有 931 行 payload 就不能 scientific recompute；v11 只检查 descriptor/hash，没有 16,012-card payload 就不能重建；
+prospective confirmation 继续 `EXCLUDED_AND_SEALED`。因此不得把本包写成完整 dataset release 或 headline result
+reproduction。
+
+最终 r3 A/B 先把文本输入规范为 UTF-8/LF、PNG 保持原字节，再在两个独立目录得到逐字节相同的
+656,274-byte ZIP，SHA-256=`91a74b50a3d1aacdbcb875236c007ec9db62a8126c45b89e927ce192b3112bce`；
+26-file package tree 也逐文件同 hash。该 canonical-byte policy 排除了 Windows CRLF/Git LF checkout confound。
+不 import builder 的 verifier 对两包均 PASS，覆盖 source hash、file set、manifest、ZIP order/timestamp/mode/payload 与
+credential/identity scan。包内 offline self-check 把 Figure 1/2 的 4 个 PNG/SVG 产物全部重生成到冻结 hash，并通过
+Table 4A/v11 的 6 项 aggregate invariants。focused=`7 passed`；tamper 与 source-hash drift 均 fail-closed。
+network/GPU/paid API/model-fit/base-update=`0/0/0/0/0`，prospective value/identity read=`false/false`。
+
+这关闭的是本地 executable-preview 这一项 submission engineering，`counts_as_distinct_claim_evidence=false`；仍未关闭
+anonymous reviewer hosting、dataset access/content-provider-privacy-license clearance、Croissant core、fresh anonymous
+reproduction 与 sealed confirmation。ZIP 暂不进 Git，避免在 hosting/release 裁决前把“可执行预览”偷换为“公开数据”。
+见 `phase1/ANONYMOUS_REVIEWER_ARTIFACT_V0_20260902.md` 与
+`phase1/anonymous_reviewer_artifact_v0_build_receipt_20260902.json`。
+
 ## 0L0p. 2026-09-02 主稿已进入实测 9 页门内；现在的硬阻塞转为 artifact/release 与 sealed confirmation
 
 按 0L0o 冻结的编辑路线完成了真实官方样式压缩，而不是继续用字数猜测。新源稿为 2,903 词；在官方 2026

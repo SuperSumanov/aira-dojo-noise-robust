@@ -1,0 +1,57 @@
+{
+  "protocol": "decision-corpus-anonymous-reviewer-artifact-local-build-receipt-v0",
+  "status": "PASS",
+  "date": "2026-09-02",
+  "public_commit": null,
+  "claim_class": "SUBMISSION_ENGINEERING_NOT_DISTINCT_SCIENTIFIC_EVIDENCE",
+  "contract": {
+    "path": "phase1/anonymous_reviewer_artifact_v0.json",
+    "sha256": "0c526bd577660d62ec139fe1583813dfede2c43123aad2515d60b64b722ce142",
+    "resource_files": 24,
+    "capability_rows": 5
+  },
+  "implementation": {
+    "builder_sha256": "48bf40129ca8ddf7418179ddc404c25790e0f7c9073559c2d8ade946572d769d",
+    "independent_verifier_sha256": "bed0a283e7f92d60097da1549672c2be15c685bd0ce5f29982ca7c1ed3b7d7a0",
+    "package_self_check_sha256": "62c5acdb08f30fe4aa81f6e1fc8d219e1ad2fc1f18d7e320142f12c4a1e54acb",
+    "focused_test_sha256": "d0409d7f96cd2238ad7622d19f20a2a5eb9ae30348e35441dc3981ca3030f011"
+  },
+  "build_a_b": {
+    "resource_bytes": 1840053,
+    "package_files": 26,
+    "manifest_entries": 25,
+    "manifest_bytes": 1847206,
+    "zip_bytes": 656274,
+    "zip_sha256": "91a74b50a3d1aacdbcb875236c007ec9db62a8126c45b89e927ce192b3112bce",
+    "zip_byte_identical": true,
+    "package_tree_hash_identical": true,
+    "independent_verifier_a": "PASS",
+    "independent_verifier_b": "PASS"
+  },
+  "packaged_self_check": {
+    "status": "PASS",
+    "figure_hash_checks": 4,
+    "aggregate_invariant_checks": 6,
+    "scientific_recompute_from_row_level_inputs": false
+  },
+  "focused_tests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "security": {
+    "credential_identity_hits": 0,
+    "prospective_values_or_identities_read": false,
+    "network": 0,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  },
+  "remaining_blockers": [
+    "anonymous reviewer hosting",
+    "content-bearing dataset access and release clearance",
+    "Croissant core completion",
+    "fresh anonymous reproduction",
+    "sealed prospective confirmation"
+  ]
+}

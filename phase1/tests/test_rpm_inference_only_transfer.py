@@ -12,6 +12,7 @@ from phase1 import rpm_inference_only_transfer as rpm
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "rpm_inference_only_transfer_contract_v1.json"
+POSTPUSH_RECEIPT = ROOT / "rpm_inference_only_transfer_postpush_receipt_20260902.json"
 
 
 def test_prompt_is_exact_v2_source_extraction() -> None:
@@ -127,3 +128,22 @@ def test_renderer_has_no_network_or_credential_path() -> None:
     source = Path(rpm.__file__).read_text(encoding="utf-8").lower()
     assert "api_key" not in source
     assert "authorization" not in source
+
+
+def test_postpush_receipt_binds_exact_commit_and_keeps_table_sealed() -> None:
+    receipt = json.loads(POSTPUSH_RECEIPT.read_text(encoding="utf-8"))
+    assert receipt["status"] == "PASS_SOURCE_BOUND_LOCAL_TRANSFER_READINESS"
+    assert receipt["exact_public_commit"] == "0c04c7ed0e2d67437313236520c5c2028530c071"
+    assert receipt["source_binding"]["frozen_prompt_sha256"] == rpm.PROMPT_SHA256
+    assert receipt["focused_tests"]["passed"] == 28
+    assert receipt["full_tests"]["passed"] == 2119
+    assert receipt["full_tests"]["failed"] == 0
+    assert receipt["changed_files"]["credential_filename_hits"] == 0
+    assert receipt["changed_files"]["credential_shape_hits"] == 0
+    assert receipt["implementation_boundary"]["live_calls_authorized"] is False
+    assert receipt["implementation_boundary"]["table_4b_row_state"] == "SEALED"
+    assert receipt["security"]["prospective_outcome_read"] is False
+    assert receipt["security"]["prospective_prediction_value_read"] is False
+    assert receipt["security"]["gpu"] == 0
+    assert receipt["security"]["paid_api"] == 0
+    assert receipt["interpretation"]["counts_as_distinct_claim_evidence"] is False

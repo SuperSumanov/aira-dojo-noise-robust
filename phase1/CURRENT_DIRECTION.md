@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0f. 2026-09-02 RPM v2 inference-only prompt 已逐字固定；只关闭直接竞品 baseline 的来源/实现缺口
+
+Table 4B 预留的 `RPM-style inference-only prompt-transfer` 行此前只有定位边界，没有可复核的原始 prompt。现已从
+*AI Research Preference Models* 最新公开 arXiv `2608.13940v2` TeX source 固定第二个 `lstlisting` optimized prompt：
+source=`458,133` bytes / SHA-256=`9910b62a...50ca0`，prompt source file=`18,814` bytes /
+`f4458539...8c72`，最终 prompt=`1,950` bytes / `d6476317...ff96`；CC BY 4.0 attribution 与 adaptation notice
+均写入机器契约。纯本地 renderer 只实现 hash/schema 校验、无截断 placeholder 填充、AB/BA 双顺序、严格 terminal
+`\\boxed{A/B}` 解析及位置不一致 abstain；没有 network transport、credential loader、panel/context selector、outcome join
+或模型调用路径。
+
+名称必须保守固定为 **transfer**，不得称 exact reproduction：Decision Corpus 不记录 candidate plan，后续两边只能使用同一
+显式 missing-plan marker；我方增加位置偏差双顺序；exact Qwen3.6-27B checkpoint/serving/reasoning/context packing 未匹配；
+离线 sibling fragment 也不是 RPM 的在线 15-child tournament。公开实现 commit=
+`0c04c7ed0e2d67437313236520c5c2028530c071`；远端 fresh detached no-smudge exact checkout 通过
+focused/full=`28/2,119 passed`，full warnings/failures=`48/0`、耗时 `141.12s`，两个 stderr 均为 0 bytes；prompt
+字节/hash、clean checkout、changed-path credential filename/content=`0/0` 均独立通过。正式日志复制并逐项核 hash 后，
+已按验证过的精确绝对路径清理临时 root。
+
+这一步是论文与基线 readiness，不是正向效果结果：Table 4B 继续 `SEALED`，`counts_as_distinct_claim_evidence=false`。
+真实调用前仍须另行冻结 deterministic decision-time context builder + 非导入 verifier、exact model/provider/checkpoint/
+reasoning budget、outcome-blind common-support panel、append-only prediction escrow 与 call/token/currency cap；并须 first-960 +
+accrual closure 后才允许结果 join。GPU/API/model fit/base update=`0/0/0/0`，prospective outcome/label/prediction/accuracy/
+utility/candidate identity/private profile 均未读。见 `phase1/RPM_INFERENCE_ONLY_TRANSFER_READINESS_20260902.md`、
+`phase1/rpm_inference_only_transfer_contract_v1.json` 与
+`phase1/rpm_inference_only_transfer_postpush_receipt_20260902.json`。
+
 ## 0L0e. 2026-09-02 mle-traj v1/v3 制品引用已固定；正式 proceedings 作者身份仍不猜测
 
 此前 bibliography 的唯一 artifact-identity blocker 已用 Hugging Face 主来源关闭，而没有把 repository account 猜成人名。

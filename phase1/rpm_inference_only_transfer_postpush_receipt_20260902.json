@@ -1,0 +1,85 @@
+{
+  "status": "PASS_SOURCE_BOUND_LOCAL_TRANSFER_READINESS",
+  "artifact": "RPM-style inference-only prompt-transfer source, contract, local renderer, and tests",
+  "verified_at_utc": "2026-09-02T06:04:25Z",
+  "exact_public_commit": "0c04c7ed0e2d67437313236520c5c2028530c071",
+  "checkout": {
+    "mode": "fresh detached local clone with LFS smudge disabled",
+    "head_exact": true,
+    "worktree_clean_before_tests": true,
+    "formal_root": "/research/d7/spc/yzyang4/rpm-transfer-postpush-20260902-0c04c7e-r1",
+    "formal_log_files": 11,
+    "logs_copied_and_hash_verified_before_cleanup": true,
+    "formal_root_removed_after_verification": true,
+    "remote_helper_removed_after_verification": true
+  },
+  "source_binding": {
+    "paper": "AI Research Preference Models",
+    "arxiv_id": "2608.13940v2",
+    "source_url": "https://arxiv.org/src/2608.13940v2",
+    "source_bytes": 458133,
+    "source_sha256": "9910b62a9b8c9bb7da864fbb8534b124e697cf397a04103b43a273329e050ca0",
+    "prompt_source_path": "sections/appendices/inference_only.tex",
+    "prompt_source_bytes": 18814,
+    "prompt_source_sha256": "f44585395980052a631d8eef19424759d22aebd3b3745fbfbd84d57b983a8c72",
+    "frozen_prompt_path": "phase1/baselines/rpm_inference_only_optimized_v2.txt",
+    "frozen_prompt_bytes": 1950,
+    "frozen_prompt_sha256": "d64763172087a4243ddfa3ff364fad071c552af0783e5786a301a37bc338ff96",
+    "license": "CC BY 4.0"
+  },
+  "focused_tests": {
+    "passed": 28,
+    "failed": 0,
+    "duration_seconds": 0.40,
+    "stdout_sha256": "44fdb33969fd074d747f642d412e1af811a0419d9c89b7268d149a14b9bdc310",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "full_tests": {
+    "passed": 2119,
+    "failed": 0,
+    "warnings": 48,
+    "duration_seconds": 141.12,
+    "stdout_sha256": "fc97af8b01c1698ab9d621841ab927209c0eb79beff6ed5f6f96a5570a86ef9d",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "changed_files": {
+    "count": 8,
+    "manifest_sha256": "0697ded2b4bff91b802e381a5442b01d153d9f203155569255b6f83299de8fc0",
+    "credential_filename_hits": 0,
+    "credential_shape_hits": 0
+  },
+  "implementation_boundary": {
+    "prompt_hash_and_schema_validation": true,
+    "deterministic_placeholder_rendering": true,
+    "ab_ba_orientation_rendering": true,
+    "strict_terminal_boxed_choice_parser": true,
+    "position_disagreement_abstention": true,
+    "network_transport_implemented": false,
+    "credential_loading_implemented": false,
+    "panel_selection_implemented": false,
+    "context_selection_implemented": false,
+    "outcome_join_implemented": false,
+    "live_calls_authorized": false,
+    "table_4b_row_state": "SEALED"
+  },
+  "security": {
+    "prospective_outcome_read": false,
+    "prospective_label_read": false,
+    "prospective_prediction_value_read": false,
+    "prospective_candidate_identity_or_profile_read": false,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  },
+  "interpretation": {
+    "result_name": "RPM-style inference-only prompt transfer",
+    "may_be_called_exact_reproduction": false,
+    "counts_as_distinct_claim_evidence": false,
+    "proves_source_and_local_rendering_reproducibility": true,
+    "proves_accuracy_or_search_utility": false,
+    "unblocks_paid_or_gpu_execution": false
+  }
+}

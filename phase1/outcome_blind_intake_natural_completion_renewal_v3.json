@@ -1,0 +1,53 @@
+{
+  "protocol": "outcome-blind-intake-natural-completion-renewal-v3",
+  "date": "2026-09-02",
+  "goal": "Invoke one additional fixed 145-poll cycle of the unchanged append-only outcome-blind intake monitor after a verified normal completion.",
+  "frozen_preconditions": {
+    "control_commit": "b20dd2682d609c0236c138c08797678cf31a2fc0",
+    "control_worktree": "/research/d7/spc/yzyang4/worktrees/prospective-intake-control-b20dd268",
+    "monitor_script_sha256": "ef6584493de0f5e14a08bde4cc9501f268e43fb04bfd889af438666b1948eead",
+    "latest_sha256": "bf7674a4a3aec4cde8eec3e3fec31f1410e0445e0096f8e9fada3fae8b0ce0d6",
+    "summary_sha256": "5c00320bae7b97c3c69212a545c5f7658ede9f37e5c8d7f8b41e3cb4be050b6f",
+    "eligible_source_archive_count": 296,
+    "provisional_first960_runs": 559,
+    "old_pid": 4181149,
+    "old_pid_must_be_dead": true,
+    "runner_lock_must_be_free": true,
+    "monitor_log_sha256": "24127e6a3882699ad29aa6395c27d0b2a516387b1e223aa407a4ad19d9ff47d5",
+    "monitor_log_bytes": 516823,
+    "monitor_log_lines": 7740,
+    "normal_completion_sentinels": 14,
+    "last_log_class": "PROSPECTIVE_CONTINUOUS_INTAKE_MONITOR_COMPLETE polls=145 outcomes_read=false",
+    "latest_completion_utc": "2026-09-02T12:55:18Z",
+    "baseline_invalid_must_be_absent": true,
+    "result_root_must_be_absent": true
+  },
+  "allowed_change": "Invoke the same installed exact monitor once in --initialize mode, append one fixed 145-poll cycle to the existing log, and write a separate immutable safe receipt.",
+  "forbidden_changes": [
+    "changing archive order or selecting an archive",
+    "changing intake, scorer, registry, stability, alias, or security configuration",
+    "reading archive identities beyond the installed credential-first structural intake",
+    "reading labels, outcomes, predictions, accuracy, utility, candidate profile, or private selection",
+    "starting GPU work, paid API calls, model fitting, or a base-model update",
+    "overwriting prior logs, receipts, failed attempts, or completion evidence"
+  ],
+  "postconditions": {
+    "new_pid_must_be_live": true,
+    "new_cmdline_must_bind_exact_control_commit": true,
+    "first_new_poll_must_end_rc_zero": true,
+    "baseline_log_must_remain_an_exact_prefix": true,
+    "latest_and_source_count_must_remain_frozen_through_first_poll": true,
+    "independent_non_importing_verifier_must_pass": true,
+    "safe_receipt_required": true
+  },
+  "resources": {
+    "fixed_polls": 145,
+    "poll_interval_seconds": 300,
+    "maximum_nominal_runtime_seconds": 43500,
+    "cpu_only": true,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  }
+}

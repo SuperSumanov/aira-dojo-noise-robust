@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0r. 2026-09-02 outcome-blind intake 正常结束后的固定续跑协议已冻结，尚未执行
+
+旧 continuous-intake 周期已在 `2026-09-02T12:55:18Z` 正常写出第 14 个 145-poll completion sentinel；
+PID=`4181149` 已死、runner lock 空闲、fail-closed sentinel=`0`。冻结时公开 head=
+`82e10e290016dd1205a899df1937d81dc80a7236`，结构状态为 296 个稳定 source archives、559 个 provisional
+first-960 runs、LATEST=`bf7674a4...ce0d6`、summary=`5c00320b...50b6f`；旧日志的 hash/bytes/lines 也被逐项绑定。
+
+续跑 v3 状态为 `FROZEN_NOT_EXECUTED`。唯一允许动作是在所有上述前提仍逐项成立时，对未改动、固定 commit/hash 的
+installed monitor 调用一次 `--initialize`，再追加一个固定 145 polls × 300 seconds 的周期；最大名义运行时间
+43,500 seconds。部署只在新 PID/命令行精确、首个新 poll `rc=0`、旧日志保持逐字节前缀、LATEST/source count
+在首轮内不漂移，并由不 import runner 的独立 verifier 复验后成立。重复根、活旧 PID、占锁、hash/count 漂移或首轮
+失败一律 fail-closed，且只终止本次新 PID；历史日志和 receipt 不覆盖。
+
+本动作只是 append-only、credential-first 的结构摄取维护，不是新实验或停止门；prospective value/identity read=`false/false`，
+GPU/paid API/model-fit/base-update=`0/0/0/0`。first-960+closure、config-v2 与 sealed
+confirmation 门不变，也不得恢复 HCE、多保真、Probe、score-channel 或 K>=1 lookahead。执行前仍须先提交/推送实现，
+在远端 exact public commit 上通过 check mode；见
+`phase1/outcome_blind_intake_natural_completion_renewal_v3.json` 与
+`phase1/OUTCOME_BLIND_INTAKE_NATURAL_RENEWAL_V3_PREFLIGHT_20260902.md`。
+
 ## 0L0q. 2026-09-02 匿名审稿工件已有可执行 aggregate preview；数据发布与科学重算仍未放行
 
 D0--D7 的 anonymous artifact 阻塞已从“没有可执行包”收窄为“本地 aggregate preview 已就绪，公开托管与

@@ -1,0 +1,66 @@
+{
+  "protocol": "outcome-blind-intake-natural-completion-renewal-v3-postpush-receipt",
+  "status": "DEPLOYED_FIRST_POLL_INDEPENDENTLY_VERIFIED",
+  "date": "2026-09-02",
+  "deployment_public_commit": "794c9e90c237464b6bd7e1f4aa28f8c74480beb2",
+  "installed_control_commit": "b20dd2682d609c0236c138c08797678cf31a2fc0",
+  "installed_monitor_script_sha256": "ef6584493de0f5e14a08bde4cc9501f268e43fb04bfd889af438666b1948eead",
+  "deployment": {
+    "renewed_at_utc": "2026-09-02T15:51:44Z",
+    "old_pid": 4181149,
+    "new_pid": 842457,
+    "new_pid_live_at_postcheck": true,
+    "first_new_poll_rc": 0,
+    "fixed_polls": 145,
+    "poll_interval_seconds": 300,
+    "maximum_nominal_runtime_seconds": 43500
+  },
+  "frozen_structural_baseline": {
+    "latest_sha256": "bf7674a4a3aec4cde8eec3e3fec31f1410e0445e0096f8e9fada3fae8b0ce0d6",
+    "summary_sha256": "5c00320bae7b97c3c69212a545c5f7658ede9f37e5c8d7f8b41e3cb4be050b6f",
+    "source_archives": 296,
+    "provisional_first960_runs": 559,
+    "provisional_first960_endpoints": 14383,
+    "provisional_first960_structural_pairs": 3447,
+    "provisional_first960_tasks": 45,
+    "closure_provided": false,
+    "canonical_config_v2_sidecars": 0
+  },
+  "verification": {
+    "exact_commit_focused_tests": "7 passed in 0.09s",
+    "preflight_items": 11,
+    "independent_verifier": "PASS",
+    "baseline_log_exact_prefix": true,
+    "latest_unchanged_through_first_poll": true,
+    "source_archive_count_unchanged_through_first_poll": true,
+    "first_postlaunch_structural_check_utc": "2026-09-02T15:53:15Z",
+    "changed_files": 6,
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0,
+    "downloaded_log_manifest_entries": 16,
+    "downloaded_log_manifest_sha256": "a472b06b677791243375676fbf93bc1286f50929373db695f7bcf4356a8ff9dc",
+    "downloaded_log_manifest_verified": true,
+    "downloaded_log_secret_hits": 0,
+    "renewal_safe_receipt_sha256": "42c4bceecd89e8e18f75417ed7fcc2ca5ae658517821d8050bb79d3d1441702e",
+    "renewal_sha256sums_copy_sha256": "7e48b3bd76c8dc4abaf1c4e1ca255a4dbf85d601c7bb1f99ac69107e12bf0dac"
+  },
+  "implementation_sha256": {
+    "contract": "2230bc98ce52061906979800413ff86a0dddfac4a246d093f08df810085a4fce",
+    "preflight": "0422ee2959ca009e4d50baf608b629fc6ed5a4b7e657de192ecc2e9410ece303",
+    "runner": "4c1809ce45fa1d4e3b08b654f455395d4e8fb2431f7964b28749f83484ce5d80",
+    "independent_verifier": "38c57800f4bf3264f42a7f194baa2cb128846a390172f6d65bf7f96a519ade98",
+    "contract_test": "9f51caf2c68e9d6732b0e14217a511f310f28633656439b23fa8a0abaa536adb"
+  },
+  "security": {
+    "label_vault_opened": false,
+    "outcome_files_opened": false,
+    "prediction_values_opened": false,
+    "accuracy_or_utility_computed": false,
+    "candidate_identity_profile_or_private_selection_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_model_updates": 0
+  },
+  "claim_boundary": "This receipt establishes only safe append-only structural intake renewal. It is not a predictor effect, a search result, cohort closure, config-v2 readiness, or authorization to unseal outcomes."
+}

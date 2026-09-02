@@ -12,6 +12,10 @@ RUNNER = (
     / "phase1/scripts/renew_outcome_blind_intake_after_natural_completion_20260902_v3.sh"
 )
 VERIFIER = ROOT / "phase1/scripts/verify_outcome_blind_intake_renewal_20260902_v3.sh"
+RECEIPT = (
+    ROOT
+    / "phase1/outcome_blind_intake_natural_completion_renewal_v3_postpush_receipt_20260902.json"
+)
 DIRECTION = ROOT / "phase1/CURRENT_DIRECTION.md"
 
 
@@ -142,11 +146,43 @@ def test_independent_verifier_does_not_source_or_import_runner() -> None:
         assert fragment in verifier
 
 
-def test_direction_records_frozen_not_yet_executed_status() -> None:
+def test_postpush_receipt_binds_first_poll_and_downloaded_evidence() -> None:
+    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+    assert receipt["status"] == "DEPLOYED_FIRST_POLL_INDEPENDENTLY_VERIFIED"
+    assert receipt["deployment_public_commit"] == (
+        "794c9e90c237464b6bd7e1f4aa28f8c74480beb2"
+    )
+    assert receipt["deployment"] == {
+        "renewed_at_utc": "2026-09-02T15:51:44Z",
+        "old_pid": 4181149,
+        "new_pid": 842457,
+        "new_pid_live_at_postcheck": True,
+        "first_new_poll_rc": 0,
+        "fixed_polls": 145,
+        "poll_interval_seconds": 300,
+        "maximum_nominal_runtime_seconds": 43500,
+    }
+    verification = receipt["verification"]
+    assert verification["exact_commit_focused_tests"] == "7 passed in 0.09s"
+    assert verification["preflight_items"] == 11
+    assert verification["independent_verifier"] == "PASS"
+    assert verification["downloaded_log_manifest_entries"] == 16
+    assert verification["downloaded_log_manifest_sha256"] == (
+        "a472b06b677791243375676fbf93bc1286f50929373db695f7bcf4356a8ff9dc"
+    )
+    assert verification["downloaded_log_manifest_verified"] is True
+    assert verification["downloaded_log_secret_hits"] == 0
+    assert all(value is False for value in receipt["security"].values() if isinstance(value, bool))
+    assert all(value == 0 for value in receipt["security"].values() if isinstance(value, int))
+
+
+def test_direction_records_deployed_first_poll_verified_status() -> None:
     text = DIRECTION.read_text(encoding="utf-8")
     section = text.split("## 0L0r.", maxsplit=1)[1].split("\n## ", maxsplit=1)[0]
-    assert "FROZEN_NOT_EXECUTED" in section
+    assert "DEPLOYED_FIRST_POLL_INDEPENDENTLY_VERIFIED" in section
     assert "145" in section
     assert "43,500" in section
-    assert "82e10e290016dd1205a899df1937d81dc80a7236" in section
+    assert "794c9e90c237464b6bd7e1f4aa28f8c74480beb2" in section
+    assert "842457" in section
+    assert "a472b06b" in section
     assert "prospective value/identity read=`false/false`" in section

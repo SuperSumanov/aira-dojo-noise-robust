@@ -1,0 +1,52 @@
+{
+  "protocol": "mle-traj-artifact-citation-identity-v1",
+  "checked_at_utc": "2026-09-02T03:40:00Z",
+  "status": "ARTIFACT_CITATIONS_RESOLVED_FORMAL_PROCEEDINGS_AUTHORSHIP_UNRESOLVED",
+  "sources": [
+    {
+      "citation_key": "jerryyan2026mletrajv1",
+      "repository_id": "jerryyan/mle-traj-v1",
+      "api_author_account": "jerryyan",
+      "revision": "4fc7f6e3d2fbd72d80bb75e1a35a9415630f3285",
+      "last_modified_utc": "2026-05-03T19:01:34Z",
+      "card_title": "MLE Trajectory Dataset v1.0",
+      "card_bytes": 9110,
+      "card_sha256": "d5049293ac2c5296804db355f9fc1ad96f820d0439b95673afe2d3fb4a8f263b",
+      "card_license_field": "cc-by-4.0",
+      "gated": "auto",
+      "private": false,
+      "stable_url": "https://huggingface.co/datasets/jerryyan/mle-traj-v1/tree/4fc7f6e3d2fbd72d80bb75e1a35a9415630f3285",
+      "raw_card_url": "https://huggingface.co/datasets/jerryyan/mle-traj-v1/resolve/4fc7f6e3d2fbd72d80bb75e1a35a9415630f3285/README.md",
+      "card_proposed_proceedings_title": "Per-Version Trajectories on the Same Competition: A Dataset for Benchmarking ML Agent Planning Against Human Experts",
+      "card_proposed_proceedings_author_is_placeholder": true
+    },
+    {
+      "citation_key": "jerryyan2026mletrajv3",
+      "repository_id": "jerryyan/mle-traj-v3",
+      "api_author_account": "jerryyan",
+      "revision": "97b1217a6ab98ccb1c1f2d4a5f044b9d03f161d3",
+      "last_modified_utc": "2026-05-04T23:17:55Z",
+      "card_title": "dataset_release/v3 — Forest-of-Trees Human Data",
+      "card_bytes": 6977,
+      "card_sha256": "a61907a65f93fcd1bf76ae71077487f40806805f090034cc59aeafb68a0ddbb6",
+      "card_license_field": null,
+      "gated": "auto",
+      "private": false,
+      "stable_url": "https://huggingface.co/datasets/jerryyan/mle-traj-v3/tree/97b1217a6ab98ccb1c1f2d4a5f044b9d03f161d3",
+      "raw_card_url": "https://huggingface.co/datasets/jerryyan/mle-traj-v3/resolve/97b1217a6ab98ccb1c1f2d4a5f044b9d03f161d3/README.md",
+      "card_has_citation_section": false
+    }
+  ],
+  "publication_rule": {
+    "artifact_citation_allowed": true,
+    "cite_repository_account_as_person": false,
+    "infer_formal_paper_authors": false,
+    "infer_venue_acceptance": false,
+    "claim_v3_license_from_v1": false,
+    "raw_tree_recoverability_inference_allowed": false
+  },
+  "counts_as_distinct_claim_evidence": false,
+  "network_sources": "Hugging Face dataset API and immutable revision-pinned README cards only",
+  "prospective_values_or_identities_read": false,
+  "gpu_paid_api_model_fit_base_update": "0/0/0/0"
+}

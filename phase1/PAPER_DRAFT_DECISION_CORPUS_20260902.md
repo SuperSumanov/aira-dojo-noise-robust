@@ -123,7 +123,9 @@ an inference-only transfer baseline for the sealed common-support table.
 
 ### MLE trajectories and actor learning
 
-ML-Agent [@liu2025mlagent], OpenMLE/Frontis-MA1 [@yang2026frontisma1], and mle-traj
+ML-Agent [@liu2025mlagent], OpenMLE/Frontis-MA1 [@yang2026frontisma1], and the
+revision-pinned mle-traj v1/v3 artifacts
+[@jerryyan2026mletrajv1; @jerryyan2026mletrajv3]
 establish that execution-grounded MLE
 traces can support behavior analysis, supervised actor training, and learned search
 operators. These resources close novelty claims based only on releasing scored
@@ -172,7 +174,7 @@ our 2026-08-28 primary-source audit, not proof of absence.
 | AI Research Preference Models | Online 15-candidate child batches plus a separate 1,000-pair offline sibling set | Inference-only and pilot-based child selection in AIRA-dojo | Yes for the online intervention; offline labels use observed-subtree maxima | Frozen frontier LLMs, prompt/context/reasoning scaling, ensembles, and pilot budgets rather than a reusable cross-family suite | Offline modality split plus 20-task, 10-seed end-to-end evaluation; authors disclose off-policy/subtree opportunity bias | Closes first AIRA-dojo unexecuted-child preference, subtree-future-potential novelty, and candidate-selection speedup |
 | ML-Agent | 10,000 linear expert execution trajectories over nine MLE tasks | SFT and step-wise PPO of the actor | Not its primary released/evaluated unit | No systematic cross-family critic benchmark as its primary contribution | Held-out-task transfer; no equivalent of our run/component/chronological decision split reported | Closes first-large-execution-trajectory and actor-learning claims |
 | Frontis-MA1 / OpenMLE | 26,259 public traces over 4,891 task names | Train Draft/Improve/Debug/Crossover operators and long-horizon evolution | Not its primary released/evaluated unit | No predictor-suite measurement study as primary contribution | Actor/search evaluation split; no equivalent one-time outcome-blind closure reported | Closes largest/first MLE training-trace and learned-operator claims |
-| mle-traj | Human/agent code versions, transitions, canonical branches/forest edges, and labels | Behavior, state, action, and intent analysis | Canonical agent tables linearize 13 MLEvolve runs to 189 branches; gated raw true-sibling recoverability remains unknown | No common-pool cross-family critic benchmark as primary contribution | Physical-run IDs exist for a small agent subset; no verified equivalent of our full isolation/closure bundle | Closes first scored MLE trajectory/graph and simple node-count novelty claims |
+| mle-traj v1/v3 | Human/agent code versions, transitions, canonical branches/forest edges, and labels | Behavior, state, action, and intent analysis | Canonical agent tables linearize 13 MLEvolve runs to 189 branches; gated raw true-sibling recoverability remains unknown | No common-pool cross-family critic benchmark as primary contribution | Physical-run IDs exist for a small agent subset; no verified equivalent of our full isolation/closure bundle | Closes first scored MLE trajectory/graph and simple node-count novelty claims |
 | **Decision Corpus** | Provenance-bound recorded-parent sibling fragments | Measure execution-free predictors under leakage/cost/weighting audit | Yes for retained direct siblings; no complete-choice-set claim | Exact-common-support families with initialization/query/execution accounting | Pair/endpoint/parent/run isolation plus append-only chronological closure | Novelty is the combined measurement/audit contract, not first/largest trajectory or first tree RM |
 
 **Table 1(b): adjacent methods and benchmark precedents.**
@@ -192,9 +194,11 @@ collection, reward modeling, execution-free candidate preference, or critic-guid
 search. The primary-source claim map and version boundaries are frozen in
 `RELATED_WORK_CITATION_MAP_20260902.md`.
 
-The working BibTeX database is `DECISION_CORPUS_REFERENCES_20260902.bib`. The exact
-public `mle-traj` release/card citation remains deliberately unresolved rather than
-being replaced by an inferred paper citation.
+The working BibTeX database is `DECISION_CORPUS_REFERENCES_20260902.bib`. The public
+mle-traj v1/v3 artifacts are cited at immutable Hugging Face revisions under the
+repository account returned by the platform API. We do not cite the v1 card's
+proposed proceedings entry because its author field remains a literal placeholder;
+no person-level authorship or venue acceptance is inferred.
 
 ## 3. From Search Archives to Decision Corpus
 

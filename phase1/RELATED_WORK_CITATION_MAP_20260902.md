@@ -74,8 +74,10 @@ Decision Corpus is designed to measure.
 - Junlin Yang et al., **Frontis-MA1: Training an AI4AI Model towards Recursive
   Self-Improvement in Machine Learning Engineering**,
   [arXiv:2607.28568](https://arxiv.org/abs/2607.28568).
-- `mle-traj`: cite the exact public release/card used by the 2026-08-28 audit; do
-  not infer raw-tree recoverability beyond that inspected object.
+- `mle-traj`: cite the exact v1/v3 Hugging Face artifacts used by the 2026-08-28
+  audit at revisions `4fc7f6e3...f3285` / `97b1217a...161d3`; do not infer
+  raw-tree recoverability beyond those inspected objects. The v1 card's proposed
+  proceedings BibTeX has a literal author placeholder, so it is not a paper citation.
 
 ### Reward/value-guided search
 
@@ -143,9 +145,10 @@ be reported under a different name. It must not be labeled â€œRPM reproduction.â
 
 ## Working bibliography state
 
-`DECISION_CORPUS_REFERENCES_20260902.bib` now binds 20 primary-source-checked entries
+`DECISION_CORPUS_REFERENCES_20260902.bib` now binds 22 primary-source-checked entries
 used by this map and the manuscript. Large author lists that use BibTeX's canonical
 `and others` marker are explicitly internal-draft abbreviations and must be expanded
-from the linked primary record during final venue packaging. The exact public
-`mle-traj` release/card remains the sole known citation-identity blocker; no paper
-citation may be invented for it.
+from the linked primary record during final venue packaging. mle-traj v1/v3 artifact
+identity is now revision-pinned, while the formal proceedings authorship remains
+unresolved because the card itself supplies `<AUTHOR_NAME> et al.`; no paper citation
+may be invented from the repository account.

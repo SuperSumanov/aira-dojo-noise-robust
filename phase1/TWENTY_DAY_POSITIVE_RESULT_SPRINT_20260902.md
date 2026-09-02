@@ -12,6 +12,8 @@ clean critic scaling + 冻结前瞻确认**；同时把已经足够强的数据�
   eligible rate 都可能使其延长。
 - `config-v2` canonical sidecar 文件名数仍为 0。学长分支 `dojo-reproduce` 仍停在
   `5baccb170ce287f9c8eed7b23ccf693a0268515a`，最近没有新的 outcome 文档。
+- 连续 intake 的第二个 145-poll 周期已正常完成，并由结果前冻结的 v2 契约续接为 PID=`4181149`；首轮
+  `rc=0`、独立 verifier PASS。该续接只恢复 CPU outcome-blind 摄取，不改变上述语料计数或任何科学协议。
 - v11 历史 generator provenance 的 model-ID 轴已补齐：16,012/16,012 configured model ID、15,905 exact
   version-or-model；但 provider/contract 轴仍只有 9,901/16,012，不能把历史恢复当成新 producer 的 outcome-before
   config-v2 sidecar，也不能据此提前启动 clean scaling。
@@ -34,6 +36,8 @@ label 或 outcome，且已对学长当前 commit clean-apply 验证。若第 2 �
 2. Target-522 已按冻结 selection 闭合；Stage-A / contrast-rank v2 已 exact-commit/A-B/postflight 完成，但 frozen
    支持要求不足，正式为 `LIMITED_SUPPORT`，不得重选 cohort、改阈值或 rescue。
 3. 不恢复旧 within/lineage/selective/yield/Probe/HCE/多保真/K≥1 路线，不为“再找一个小正数”改 cohort 或门。
+4. 历史 Table 4A 已按 931-row exact-common-support UST formal 填入正文；旧 400-pair judge 报告因 endpoint-run
+   聚类错误与证据绑定不足被排除。它关闭写作缺口，但不计作新的 predictor 正结果。
 
 ### B. D1–D9：让 first-960 真正可用于 clean confirmation
 

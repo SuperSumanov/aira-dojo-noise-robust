@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0a. 2026-09-02 outcome-blind intake 第三个固定周期已按新冻结契约续接
+
+只读健康检查发现 PID=`3451688` 已退出，但不是新故障：append-only 日志最后一项为
+`2026-09-02T00:32:19Z poll_end=144 rc=0`，随后正常写出第 `13` 个 145-poll completion sentinel；runner lock
+为 free，最新尾部没有 fail-closed。source/LATEST/first-960 仍为 `296` archives /
+`bf7674a4a3aec4cde8eec3e3fec31f1410e0445e0096f8e9fada3fae8b0ce0d6` / `559` runs，closure=false，
+canonical config-v2 sidecar=`0`；学长 `dojo-reproduce` 仍为
+`5baccb170ce287f9c8eed7b23ccf693a0268515a`，没有新增 outcome path。
+
+由于 2026-09-01 的 v1 契约只授权一次调用，本次没有直接复用它，而是在结果前另行冻结
+`outcome-blind-intake-natural-completion-renewal-v2`：精确绑定旧 PID、LATEST、source count、完整日志 hash、
+control commit=`b20dd2682d609c0236c138c08797678cf31a2fc0` 与 monitor SHA-256，并保持 archive order、稳定门、
+registry、alias/security contract 全部不变。公开冻结 commit=`81010feea072504274656d0bc1dc4a89c740bbe7`；11 项
+preflight 通过后只调用同一 installed monitor 的 `--initialize`，新 PID=`4181149`，首个新 poll rc=`0`。
+不导入 launcher 的独立 verifier 复核 exact public commit、脚本 hash、cmdline、baseline-log exact prefix、
+LATEST/source count 与只读边界后 PASS。safe receipt / manifest SHA-256=
+`22d43525ef6ae0330f26b228db47843d52178d8864fcc8f484e9be001fb4399e` /
+`541a080b9b51b95f0d29536c037f17c76688301f096d4076a20415165f884ecb`。该动作只恢复 CPU outcome-blind
+守护，不是新数据或科学结果；outcome/label/prediction/accuracy/utility/candidate identity/profile 均未读，
+GPU/API/model fit/base update=`0/0/0/0`。
+
 > **2026-08-24 cohort authority clarification（覆盖下文所有“唯一主实验”旧措辞）**：当前没有已获批的
 > GPU effect 主实验。论文容器仍是 Decision Corpus + Predictor Benchmark。`first-960 + closure` 保留为较早冻结的
 > fixed-scorer critic 时间外确认人口；新的 target-300 identity cohort（保留 boundary-archive overshoot）则只授权 score-channel dual-truth 支持审计、

@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "protocol": "outcome-blind-intake-natural-completion-renewal-v2",
+  "public_freeze_commit": "81010feea072504274656d0bc1dc4a89c740bbe7",
+  "control_commit": "b20dd2682d609c0236c138c08797678cf31a2fc0",
+  "monitor_script_sha256": "ef6584493de0f5e14a08bde4cc9501f268e43fb04bfd889af438666b1948eead",
+  "renewal_script_sha256": "82eb5d623ab57573b810c08c2403289ccf45cca9ea86870cfd45d4b542d9a486",
+  "independent_verifier_sha256": "42a9acfc0d1a9e51a2d040969236028c7ec3a9d912c878a82bafc2d9d7d5a050",
+  "baseline": {
+    "source_archives": 296,
+    "provisional_first960_runs": 559,
+    "latest": "bf7674a4a3aec4cde8eec3e3fec31f1410e0445e0096f8e9fada3fae8b0ce0d6",
+    "summary_sha256": "5c00320bae7b97c3c69212a545c5f7658ede9f37e5c8d7f8b41e3cb4be050b6f",
+    "monitor_log_sha256": "f23d96bf07514144ab40ea9bebb2619a41ce3038e7f71f23d37a931461efc503",
+    "normal_completion_sentinels": 13,
+    "old_pid": 3451688,
+    "old_pid_live": false,
+    "runner_lock": "free"
+  },
+  "deployment": {
+    "new_pid": 4181149,
+    "new_pid_live": true,
+    "first_new_poll_rc": 0,
+    "independent_verifier": "PASS",
+    "latest_unchanged_through_first_poll": true,
+    "source_count_unchanged_through_first_poll": true,
+    "baseline_log_is_exact_prefix": true
+  },
+  "remote_receipt": {
+    "root": "/research/d7/spc/yzyang4/outcome-blind-intake-natural-renewal-20260902-v2",
+    "safe_receipt_sha256": "22d43525ef6ae0330f26b228db47843d52178d8864fcc8f484e9be001fb4399e",
+    "manifest_sha256": "541a080b9b51b95f0d29536c037f17c76688301f096d4076a20415165f884ecb",
+    "initialize_stdout_sha256": "1326bb130dd8e14283c465e7fe26dd831f9dc89106093c326c460772dd2bb9d2",
+    "initialize_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "security": {
+    "outcome_read": false,
+    "label_read": false,
+    "prediction_value_read": false,
+    "accuracy_or_utility_read": false,
+    "candidate_identity_or_profile_read": false,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  },
+  "scientific_claim": "No new scientific result; CPU-only maintenance of the frozen append-only intake contract."
+}

@@ -1,0 +1,56 @@
+{
+  "status": "PASS_INTERNAL_WORKING_BIBLIOGRAPHY",
+  "artifact": "Decision Corpus working BibTeX database and manuscript citation routing",
+  "exact_public_commit": "75eece4f6156f1a6d2300da925ba42c811b06309",
+  "checkout": {
+    "mode": "fresh detached no-smudge worktree",
+    "head_exact": true,
+    "worktree_clean_before_tests": true,
+    "worktree_removed_after_tests": true,
+    "remote_temp_parent_removed_after_log_copy": true
+  },
+  "bibliography": {
+    "entries": 20,
+    "arxiv_primary_records": 19,
+    "acl_anthology_primary_records": 1,
+    "distinct_manuscript_citation_keys": 15,
+    "abbreviated_large_author_lists": 7,
+    "camera_ready_author_expansion_required": true,
+    "unresolved_exact_citation_identities": [
+      "mle-traj public release/card"
+    ],
+    "invented_citations": 0
+  },
+  "focused_tests": {
+    "passed": 18,
+    "failed": 0,
+    "stdout_sha256": "2ff158e0598d4e92245e9df28474438ab9988395c696e6ab3d61327663a2cf7b",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "full_tests": {
+    "passed": 2097,
+    "failed": 0,
+    "warnings": 48,
+    "stdout_sha256": "682eef09cd83bf1c73e462ed323bbf6ffc8ee20c9d6ee059fa71098e477364b5",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "changed_files": {
+    "count": 4,
+    "manifest_sha256": "c4fb197a63f9a1ea7fee06f2690eb83dc2bd10d84cf5858217f34864c4c6ac3f",
+    "credential_filename_hits": 0,
+    "credential_shape_hits": 0
+  },
+  "security": {
+    "prospective_outcome_read": false,
+    "prospective_label_read": false,
+    "prospective_prediction_value_read": false,
+    "prospective_candidate_identity_or_profile_read": false,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  },
+  "scientific_claim": "Bibliographic and manuscript-routing work only; no new experimental evidence."
+}

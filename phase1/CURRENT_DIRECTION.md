@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0c. 2026-09-02 主稿已有可检查 bibliography，但仍明确保留一个引用身份阻塞
+
+主稿 v0.5 的 Related Work 已从裸论文名推进为 15 个可解析 citation key；工作 BibTeX 文件
+`phase1/DECISION_CORPUS_REFERENCES_20260902.bib` 共绑定 `20` 条主来源记录，其中 `19` 条来自 arXiv 原始记录、
+`1` 条 ReproEvalCard 来自 ACL Anthology 正式记录。FOREAGENT、RPM、AIRA-dojo、MLE actor/operator、reward/value、
+NAS predictor 与 benchmark-governance 先例均有固定 key、标题、年份和 URL/DOI。7 条超长作者表暂用 BibTeX 标准
+`and others` 内部缩写，正式 venue 包装时必须从主来源展开；`mle-traj` 的精确 public release/card 仍是唯一已知
+citation-identity blocker，禁止用猜测出的论文条目填补。
+
+公开实现 commit=`75eece4f6156f1a6d2300da925ba42c811b06309`，fresh detached no-smudge exact-checkout
+复验 focused/full=`18/2,097 passed`、48 warnings、0 failures，两个 stderr 均为 0 bytes；worktree 与远端临时目录在
+日志 hash 本地复核后清理。该资产只关闭 bibliography/routing 写作缺口，`counts_as_distinct_claim_evidence=false`；
+prospective outcome/label/prediction/identity read=`false/false/false/false`，GPU/API/model fit/base update=`0/0/0/0`。
+精确 hash 与未决边界见 `phase1/bibliography_postpush_receipt_20260902.json`。
+
 ## 0L0b. 2026-09-02 两个已知直接竞品已进入正文，优先性主张与 Table 4B 基线边界收紧
 
 2026-08-22 已记录但 v0.4 主稿遗漏的两个直接竞品现在被提升到 Related Work、Table 1 和贡献边界：

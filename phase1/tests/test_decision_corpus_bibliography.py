@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 
@@ -8,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BIB = ROOT / "phase1" / "DECISION_CORPUS_REFERENCES_20260902.bib"
 DRAFT = ROOT / "phase1" / "PAPER_DRAFT_DECISION_CORPUS_20260902.md"
 MAP = ROOT / "phase1" / "RELATED_WORK_CITATION_MAP_20260902.md"
+RECEIPT = ROOT / "phase1" / "bibliography_postpush_receipt_20260902.json"
 
 REQUIRED_KEYS = {
     "zheng2026foreagent",
@@ -94,3 +96,18 @@ def test_mle_traj_citation_is_explicitly_unresolved() -> None:
     assert "mle-traj" not in " ".join(REQUIRED_KEYS)
     assert "remains deliberately unresolved" in draft
     assert "sole known citation-identity blocker" in mapping
+
+
+def test_postpush_receipt_binds_exact_commit_and_limitations() -> None:
+    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+    assert receipt["exact_public_commit"] == "75eece4f6156f1a6d2300da925ba42c811b06309"
+    assert receipt["focused_tests"]["passed"] == 18
+    assert receipt["full_tests"]["passed"] == 2097
+    assert receipt["full_tests"]["failed"] == 0
+    assert receipt["bibliography"]["entries"] == 20
+    assert receipt["bibliography"]["abbreviated_large_author_lists"] == 7
+    assert receipt["bibliography"]["unresolved_exact_citation_identities"] == [
+        "mle-traj public release/card"
+    ]
+    assert receipt["bibliography"]["invented_citations"] == 0
+    assert sum(receipt["security"].values()) == 0

@@ -29,6 +29,14 @@ Base model snapshot 与 critic 解释器路径均存在；尚未重新验证全�
 队列为空；这不保证两张卡现在可分配。预算批准后必须先复核完整原预飞，再使用既定共享调度模板；任何漂移停止，
 不得为了运行改数据、模型、硬件或科学配置。后续守护在未获回应、状态无变化时不得反复催同一预算。
 
+**2026-09-03 06:33 香港时间摄取状态（非模型结果）：** source archives=306；已入库的固定快照
+`89bd3caeab41242826b513df79695a41c70f8c1973bf6cb45cbd074a0fd1d862` 有 573/960 provisional runs，
+14,752 endpoints、3,504 structural pairs、46 tasks；较上次 559 runs 增加 14。closure=false、config-v2=0。
+原 snapshot-delta watcher 已于 08-31 正常结束；本轮使用其未修改的 exact control commit
+`2e59423736747f7d806d50a69fd1f312d4927c48` 只补跑 1 poll，A/B 与独立 grounded A/B 全过，
+安全/只读门通过。其较早已认证 anchor 为 494 runs，因此正式 delta=79，不得把这 79 都报成今晚新增。
+对应回执见 `results/prospective_intake_status_20260903_89bd3cae/README.md`；这不授权 model fit 或提前揭盲。
+
 本纠正不授权突破实验完整性或费用门：first-960/Target-300/Target-522 的 sealed values/identities 仍不得读取；
 first-960 + closure、config-v2 outcome-before provenance 与独立复验门不变；不更新 agent 底座，不恢复 HCE、
 多保真、Probe、score-channel effect、K>=1 lookahead 或已关闭的 Target-522 rescue。旧协议中的 GPU/API/model-fit

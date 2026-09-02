@@ -71,6 +71,8 @@ internal evidence routing；prospective common-support 与 clean scaling 仍是�
   certificate 另列适用范围。
 - noise/regrade、choice observability、status partial order、source missingness、query/init/execution cost 与 pair graph
   weighting 使用独立 receipts。
+- 对每个 parent comparison graph 同时报告 row estimand 与 effective-resistance/UST graph-basis sensitivity；后者把
+  component 总权重固定为 incidence rank，但不冒充独立性修复、ESS、因果校正或新的图论定理。
 - outcome-blind append-only intake、prediction escrow、one-time closure anchor、producer/verifier A/B、read-only root、
   file/network/credential trace 与 claim withdrawal ledger。
 - 实证发现不是一般统计定理：在当前 MLE search corpus 中，task-specific decision-opportunity yield 会使 run-level
@@ -128,6 +130,7 @@ internal evidence routing；prospective common-support 与 clean scaling 仍是�
 
 - estimand panel；pair-micro 不是唯一 headline。
 - predictor family、train/dev/frozen 与 common-support join。
+- row-population 与 UST graph-basis 两种 estimand；同一 parent→task 聚合与 task-clustered uncertainty，禁止事后择优。
 - 初始化、query、execution 成本定义。
 - frozen one-shot protocol；所有结果按 seed/run/task 报告。
 

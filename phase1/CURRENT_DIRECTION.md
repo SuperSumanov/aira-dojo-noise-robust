@@ -24,6 +24,14 @@ LATEST/source count 与只读边界后 PASS。safe receipt / manifest SHA-256=
 守护，不是新数据或科学结果；outcome/label/prediction/accuracy/utility/candidate identity/profile 均未读，
 GPU/API/model fit/base update=`0/0/0/0`。
 
+同一写作冲刺把已经冻结的 effective-resistance/UST 评测从 Table 4A 的单列提升为正文方法，而没有生成新 outcome：
+每个 parent-local comparison component 以标准边 inclusion probability
+`pi_e=b_e^T L^+ b_e` 定义 graph-basis sensitivity；Foster identity 把 component 总权重固定为 incidence rank，
+并给出“均匀 spanning basis 上期望 accuracy”的精确解释。正文同时保留 realized-row 与 UST estimand，继续用
+task-clustered uncertainty；明确禁止把它称为独立性修复、ESS、因果校正、唯一正确 headline 或新图论定理。
+方法 note 与稿件一致性测试共 `18 passed`；它只形式化既有 931-row UST formal，
+`counts_as_distinct_claim_evidence=false`，也不把 null predictor-ordering shift 包装成模型增益。
+
 > **2026-08-24 cohort authority clarification（覆盖下文所有“唯一主实验”旧措辞）**：当前没有已获批的
 > GPU effect 主实验。论文容器仍是 Decision Corpus + Predictor Benchmark。`first-960 + closure` 保留为较早冻结的
 > fixed-scorer critic 时间外确认人口；新的 target-300 identity cohort（保留 boundary-archive overshoot）则只授权 score-channel dual-truth 支持审计、

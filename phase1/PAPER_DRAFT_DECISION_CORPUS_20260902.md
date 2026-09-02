@@ -1,6 +1,6 @@
 # Decision Corpus: Auditing Predictors for ML-Engineering Agent Search Trees
 
-> Internal manuscript draft v0.2, 2026-09-02. This draft is governed by
+> Internal manuscript draft v0.3, 2026-09-02. This draft is governed by
 > `CURRENT_DIRECTION.md` and Evidence Index v10. Bracketed result slots are sealed;
 > they must not be filled before the corresponding preregistered gate closes.
 
@@ -80,8 +80,9 @@ Our contributions are:
    and candidate-execution costs kept separate.
 3. **An executable audit protocol.** Physical-run isolation, choice observability,
    label repeatability, source missingness, duplicate scope, pair weighting,
-   outcome-blind closure, independent reconstruction, and claim withdrawal are
-   represented by machine-verifiable receipts rather than prose alone.
+   graph-basis sensitivity, outcome-blind closure, independent reconstruction, and
+   claim withdrawal are represented by machine-verifiable receipts rather than prose
+   alone.
 4. **An empirical measurement finding.** In the observed search distribution,
    task-specific decision-opportunity yield makes run-balanced accrual diverge from
    pair-balanced evaluation. Pair-micro accuracy is consequently a property of the
@@ -227,7 +228,49 @@ TF-IDF online pair queries have median latency 4,048--6,037 times below median
 candidate execution. This establishes room for budget savings; it does not by itself
 show that a predictor improves final search score or end-to-end wall time.
 
-### 4.4 Uncertainty and dependence
+### 4.4 Graph-basis sensitivity for redundant comparisons
+
+Pair rows within one recorded parent form an undirected comparison graph
+
+\[
+G=(V,E), \qquad z_e\in[0,1],
+\]
+
+where \(z_e\) is predictor credit on edge \(e\). A uniform row mean gives every
+observed comparison unit mass, so a dense or cyclic graph receives more total weight
+than a sparse graph even when both span the same endpoint contrasts. We therefore
+report a graph-basis sensitivity based on standard effective-resistance identities.
+For incidence vector \(b_e\) and graph-Laplacian pseudoinverse \(L^+\), define
+
+\[
+\pi_e=b_e^\top L^+b_e.
+\]
+
+For an unweighted connected component, \(\pi_e\) is the probability that edge \(e\)
+appears in a uniform spanning tree. Foster's identity gives
+\(\sum_{e\in E}\pi_e=|V|-1\). Consequently,
+
+\[
+A_{\mathrm{UST}}(G)
+=\frac{1}{|V|-1}\sum_{e\in E}\pi_e z_e
+=\mathbb{E}_{T}\left[\frac{1}{|V|-1}\sum_{e\in T}z_e\right].
+\]
+
+For a disconnected parent graph, we draw one uniform spanning tree per connected
+component and normalize by the total incidence rank \(|V|-C\). Parent scores are
+then aggregated using the same preregistered parent-then-task hierarchy as the row
+mean. Bridges receive inclusion weight one; cyclic alternatives split finite total
+rank mass. This prevents the component's total weight from growing with its raw cycle
+count, but it is not invariant to which extra edges were observed.
+
+UST weighting is a sensitivity estimand--expected accuracy on a uniformly sampled
+graph basis--rather than a universally correct replacement for the realized-row
+estimand. It neither makes pair outcomes independent nor estimates effective sample
+size, and it does not correct adaptive candidate generation, missing choices, label
+noise, or task selection. We therefore show row and UST views together and retain
+task-clustered uncertainty.
+
+### 4.5 Uncertainty and dependence
 
 Pairs sharing tasks, runs, or parents are dependent. Primary uncertainty is therefore
 clustered by task, with run/parent analyses and leave-one-task-out checks reported as
@@ -399,10 +442,11 @@ credible benchmark must also say which choices, runs, tasks, and information sta
 its score represents. Decision Corpus provides provenance-bound sibling fragments,
 a cost-aware common-support predictor suite, and an executable audit trail for that
 measurement problem. Its historical release shows that run isolation, label
-repeatability, and pair-weight accounting materially change the interpretation of
-predictor results. Its sealed temporal cohort is designed to test whether those
-results transport without repeated access to outcomes. The resulting resource is a
-benchmark for predictors and, equally, a benchmark for the claims made about them.
+repeatability, pair-weight accounting, and graph-basis sensitivity change what a
+predictor number means, even when they do not change model ordering. Its sealed
+temporal cohort is designed to test whether those results transport without repeated
+access to outcomes. The resulting resource is a benchmark for predictors and,
+equally, a benchmark for the claims made about them.
 
 ## Internal evidence routing (remove before submission)
 
@@ -410,6 +454,11 @@ benchmark for predictors and, equally, a benchmark for the claims made about the
 - Label agreement: `label_repeatability`.
 - Cost ratios: `deployment_cost`.
 - Pair-weight shift: `structural_weighting_shift`.
+- Graph-basis method and historical sensitivity: `historical_ust_predictor_sensitivity_v2.json`,
+  `historical_ust_predictor_sensitivity_formal_receipt_20260830.json`, and
+  `GRAPH_BASIS_EVALUATION_METHOD_20260902.md`; this is an adaptation of standard
+  effective-resistance/UST identities, not a new graph theorem or independent
+  predictor-performance result.
 - Prospective structural counts: `prospective_structural_status_receipt_20260902.json`;
   outcome/label/prediction/identity/profile remain sealed.
 - Structural gate scope: `archive_rejection_support_census` and the derived utility

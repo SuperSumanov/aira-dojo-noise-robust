@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 NOTE = ROOT / "phase1" / "GRAPH_BASIS_EVALUATION_METHOD_20260902.md"
 DRAFT = ROOT / "phase1" / "PAPER_DRAFT_DECISION_CORPUS_20260902.md"
 RECEIPT = ROOT / "phase1" / "historical_ust_predictor_sensitivity_formal_receipt_20260830.json"
+POSTPUSH = ROOT / "phase1" / "graph_basis_method_postpush_receipt_20260902.json"
 
 
 def test_note_binds_frozen_graph_counts() -> None:
@@ -40,3 +41,13 @@ def test_manuscript_reports_both_estimands_and_clustered_uncertainty() -> None:
     assert "show row and UST views together" in draft
     assert "retain\ntask-clustered uncertainty" in draft
     assert "not a new graph theorem or independent\n  predictor-performance result" in draft
+
+
+def test_postpush_receipt_keeps_verification_and_claim_boundaries() -> None:
+    receipt = json.loads(POSTPUSH.read_text(encoding="utf-8"))
+    assert receipt["exact_public_commit"] == "b757fcc1bceec7687cf6dc45612d9531d70298f7"
+    assert receipt["focused_tests"]["passed"] == 18
+    assert receipt["full_tests"]["passed"] == 2082
+    assert receipt["full_tests"]["failed"] == 0
+    assert not any(receipt["claim_boundary"].values())
+    assert sum(receipt["security"].values()) == 0

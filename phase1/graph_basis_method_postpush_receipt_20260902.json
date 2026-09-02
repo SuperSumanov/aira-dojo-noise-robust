@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "artifact": "graph-basis sensitivity method note and manuscript integration",
+  "exact_public_commit": "b757fcc1bceec7687cf6dc45612d9531d70298f7",
+  "checkout": {
+    "mode": "fresh detached no-smudge worktree",
+    "head_exact": true,
+    "worktree_clean_before_tests": true,
+    "worktree_removed_after_tests": true,
+    "remote_temp_parent_removed_after_log_copy": true
+  },
+  "focused_tests": {
+    "passed": 18,
+    "failed": 0,
+    "stdout_sha256": "aef4a50312e70d0cea3593c16d87830bca01bfa40426feacc302b23fd4676723",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "full_tests": {
+    "passed": 2082,
+    "failed": 0,
+    "warnings": 48,
+    "stdout_sha256": "6c767947d83d72a77e73c69d923c64384de3fcb7981fbd56bd536e7ba386d02f",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "claim_boundary": {
+    "counts_as_distinct_claim_evidence": false,
+    "new_graph_theorem_claimed": false,
+    "predictor_gain_claimed": false,
+    "effective_sample_size_claimed": false,
+    "independence_or_causal_correction_claimed": false
+  },
+  "security": {
+    "prospective_outcome_read": false,
+    "prospective_label_read": false,
+    "prospective_prediction_value_read": false,
+    "prospective_candidate_identity_or_profile_read": false,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  }
+}

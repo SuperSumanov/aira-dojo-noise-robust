@@ -29,7 +29,9 @@ GPU/API/model fit/base update=`0/0/0/0`。
 `pi_e=b_e^T L^+ b_e` 定义 graph-basis sensitivity；Foster identity 把 component 总权重固定为 incidence rank，
 并给出“均匀 spanning basis 上期望 accuracy”的精确解释。正文同时保留 realized-row 与 UST estimand，继续用
 task-clustered uncertainty；明确禁止把它称为独立性修复、ESS、因果校正、唯一正确 headline 或新图论定理。
-方法 note 与稿件一致性测试共 `18 passed`；它只形式化既有 931-row UST formal，
+方法 note 与稿件一致性测试在 fresh no-smudge exact checkout commit=
+`b757fcc1bceec7687cf6dc45612d9531d70298f7` 上通过 focused/full=`18/2,082 passed`、48 warnings、0 failures，
+两个 stderr 均为 0 bytes；它只形式化既有 931-row UST formal，
 `counts_as_distinct_claim_evidence=false`，也不把 null predictor-ordering shift 包装成模型增益。
 
 > **2026-08-24 cohort authority clarification（覆盖下文所有“唯一主实验”旧措辞）**：当前没有已获批的

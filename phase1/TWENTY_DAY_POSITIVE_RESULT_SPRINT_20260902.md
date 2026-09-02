@@ -4,6 +4,19 @@
 同一语料上的微型事后审计，把未来 20 天集中到一条真正能抬高论文上限的确认链——**新配置可追溯语料上的
 clean critic scaling + 冻结前瞻确认**；同时把已经足够强的数据集/审计资产写成论文。
 
+## Venue reality check：20 天交付必须是可审稿产物
+
+2027 call 尚未发布；按当前最新的 2026 NeurIPS Evaluations & Datasets 官方规则作临时模板，本项目把 evaluation 的
+测量对象、假设与解释作为科学贡献，赛道契合度是正面的。但这不等于当前已可投稿：9 页官方 LaTeX 主稿、匿名 reviewer
+artifact、可访问的数据/代码、Croissant core + minimal RAI metadata 和 paper checklist 都是硬门。尤其数据若是主贡献，
+不能仅靠“分析型论文”措辞绕开 reviewer access；Kaggle 原始 payload 不一定要再分发，但经许可的 derived artifact、
+重建清单、split/provenance certificates 与可执行 benchmark 必须足以复现 headline claims。
+
+因此 D0--D20 的另一条同等优先 critical path 是 `phase1/NEURIPS_ED_2027_SUBMISSION_READINESS_GATE_20260902.md`：
+D0--D7 锁定并实际托管匿名 artifact/release tier，D3--D9 形成官方模板 9 页 render，D10--D17 做 fresh anonymous
+reproduction 与 checklist。Day 20 必须同时存在可内部审稿的 9 页论文和明确的 artifact/release 决策；继续增加 CPU
+审计不能替代这两个交付。所有 2026 规则在 2027 call 发布后必须重新核验。
+
 ## 当前起点与唯一关键阻塞
 
 - 最新语料状态为 296 source archives、559 provisional first-960 runs；Target-522 结构目标已闭合，first-960 还差
@@ -74,10 +87,15 @@ producer 与独立 verifier 任一不满足即 fail-closed。
 
 ### D. D0–D20：立即转入论文生产
 
-1. D0–D4：锁定贡献表、数据卡、审计撤回表和 related-work matrix；Evidence Index v10 是唯一 claim ledger。
-2. D4–D10：完成方法/语料构建/评测协议初稿与主表占位，Target-522/first-960 只填冻结槽位，不提前揭盲。
-3. D10–D16：若 clean scaling 获批并完成，加入 capacity confirmation；否则明确降为 future work，不拖延论文容器。
-4. D16–D20：完成完整初稿、可复现说明、limitations、伦理/许可/data statement 与学长内部审稿版。
+1. D0–D3：锁定贡献表、数据卡、撤回表、related-work matrix 与 byte-level artifact/release boundary；Evidence Index v10
+   是唯一 claim ledger。
+2. D2–D7：建立匿名 reviewer repository/hosted artifact，补齐 Croissant core + minimal RAI metadata；若 release owner
+   未批准，就在主稿中收窄为 reviewer 实际能访问和复现的贡献，不能写一个虚构的未来 release。
+3. D3–D9：把 v0.7 主稿移入最新官方 E&D LaTeX 模板并持续 render，正文硬控 9 页；Target-522/first-960 只填冻结
+   槽位，不提前揭盲。
+4. D7–D14：若 prospective/scaling 槽位不能按冻结协议闭合，删出主文空承诺而不是用探索结果代替。
+5. D10–D17：fresh anonymous 环境复现公开表图，完成 checklist、limitations、伦理/许可/data statement。
+6. D17–D20：做 novelty/statistics/release 三路对抗审稿，形成可内部评审的 9 页 PDF 与具体 artifact/release 决策。
 
 从现在起，新的 CPU-only audit 只有在它能关闭以下任一 blocker 时才做：数据可发布性、split/label 完整性、claim
 去重、前瞻 cohort closure 或 clean scaling provenance。仅重新组合已发布 aggregate 的分析必须标
@@ -101,7 +119,8 @@ benchmark 上的强实证发现，不应包装成发明了 reward model。
 
 ## 20 天成功判据
 
-- 最低成功：可发布 corpus/data card + audit protocol + 完整 predictor benchmark + 一份内部完整论文初稿。
+- 最低成功：可审查的匿名 artifact/release tier + data card/audit protocol/predictor benchmark + 官方模板 9 页内部稿；
+  不能用更多审计数量替代 artifact/release 与 render。
 - 目标成功：Target-522 冻结链完成，first-960 closure 完成，clean 0.6B→8B 两 seed primary 通过。
 - 更高成功：在不改主协议的前提下，预先批准的 one-shot deployment/replay 证明 critic 提升固定预算下的真实搜索结果；
   此项必须另做功效与 GPU·时审批，不是本文件自动授权。

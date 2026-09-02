@@ -6,6 +6,19 @@
 最值得共同完成的正结果是：在下一批带 outcome-before config provenance 的新语料上，用未触碰 cohort 严格确认
 0.6B→8B critic scaling，并同时把数据集/审计论文写完。
 
+## 9 月 2 日新增的投稿硬门
+
+2027 call 尚未发布；按最新 2026 NeurIPS Evaluations & Datasets 官方规则临时校准后，我们的 evaluation/audit 定位与
+赛道高度匹配，这是正面判断。但目前并非 submission-ready：官方模板 9 页 render、匿名 reviewer artifact、可访问且
+足以复现主张的数据/代码、Croissant core + minimal RAI metadata 与 checklist 仍缺，其中 dataset access 是明确的
+`BLOCKED / DESK-REJECT RISK`。所以未来 20 天不能只等 first-960 或 sidecar；artifact/release 与论文 render 已提升为
+同等优先 critical path。完整门表与逐日计划在
+`phase1/NEURIPS_ED_2027_SUBMISSION_READINESS_GATE_20260902.md`，2027 call 出来后会重新核验。
+
+另一个立即需要账号侧确认的阻塞仍是 Kaggle：远端 credential 可以列 metadata，但正式固定下载的第一个请求返回规则
+未接受且没有 payload，runner 已 fail-closed；这很像网页接受规则的账号与远端 API credential 账号不一致。它不会被
+自动重试，也不会被误记成 prepared-text 完成。
+
 ## 当前结构状态
 
 - 学长 source=`296` archives；prospective first-960 provisional=`559` physical runs；Target-522 结构目标已达到。

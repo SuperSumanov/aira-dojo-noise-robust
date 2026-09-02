@@ -21,6 +21,14 @@
    0820 scaling 表忽略 0828 的不稳定/过拟合结果，也不能重复已 KILL/NO_UNLOCK 的低容量方案。
 4. intake 与必要结构守护继续作为保障。不要重复组合同一 aggregate、堆微型审计或累计测试数量来替代新效果。
 
+**下一项执行批准待用户回应（G0_BUDGET_REQUEST_PENDING_USER）：** 按现有 G0 契约请求 Qwen3-1.7B Base、
+seed 6、1 run、2×PRO 6000、16,384 context、固定 10 optimizer steps + 一次历史 dev eval，2 小时硬上限，
+最多 4 GPU·h。这只为后续 global→local 五臂效果对照测量真实训练成本，不是效果结论，也不授权五臂训练。
+本次只读复核确认 source HEAD 仍为 `51c7f480a844364a91cf1ee4ebd9dac18f6bb832`，既定 train/dev/cards、
+Base model snapshot 与 critic 解释器路径均存在；尚未重新验证全部内容哈希/依赖。`projgpu39` 为 mix，当前用户
+队列为空；这不保证两张卡现在可分配。预算批准后必须先复核完整原预飞，再使用既定共享调度模板；任何漂移停止，
+不得为了运行改数据、模型、硬件或科学配置。后续守护在未获回应、状态无变化时不得反复催同一预算。
+
 本纠正不授权突破实验完整性或费用门：first-960/Target-300/Target-522 的 sealed values/identities 仍不得读取；
 first-960 + closure、config-v2 outcome-before provenance 与独立复验门不变；不更新 agent 底座，不恢复 HCE、
 多保真、Probe、score-channel effect、K>=1 lookahead 或已关闭的 Target-522 rescue。旧协议中的 GPU/API/model-fit

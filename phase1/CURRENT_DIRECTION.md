@@ -16,12 +16,20 @@ trajectory exact-regenerate，但不声称重算上游行级结构；Table 4A/co
 prospective confirmation 继续 `EXCLUDED_AND_SEALED`。因此不得把本包写成完整 dataset release 或 headline result
 reproduction。
 
-最终 r3 A/B 先把文本输入规范为 UTF-8/LF、PNG 保持原字节，再在两个独立目录得到逐字节相同的
-656,274-byte ZIP，SHA-256=`91a74b50a3d1aacdbcb875236c007ec9db62a8126c45b89e927ce192b3112bce`；
+最终 r4 A/B 先把文本输入规范为 UTF-8/LF、PNG 保持原字节，再在两个独立目录得到逐字节相同的
+656,781-byte ZIP，SHA-256=`79f326899dd1dd766493c50433d1820bb5abc09ac45bfcee189b73c994659352`；
 26-file package tree 也逐文件同 hash。该 canonical-byte policy 排除了 Windows CRLF/Git LF checkout confound。
 不 import builder 的 verifier 对两包均 PASS，覆盖 source hash、file set、manifest、ZIP order/timestamp/mode/payload 与
 credential/identity scan。包内 offline self-check 把 Figure 1/2 的 4 个 PNG/SVG 产物全部重生成到冻结 hash，并通过
-Table 4A/v11 的 6 项 aggregate invariants。focused=`7 passed`；tamper 与 source-hash drift 均 fail-closed。
+Figure 1/2 的 SVG 逐字节一致、PNG 解码后尺寸和每个 RGBA 值一致（允许 OS 相关压缩字节），并通过 Table 4A/v11
+的 6 项 aggregate invariants；tamper 与 source-hash drift 均 fail-closed。包内检查先强制 Matplotlib/NumPy/Pytest
+精确版本，不能用版本漂移冒充图形失败。
+
+第一次远端 post-push（commit=`370d2c2`）诚实保留为 focused=`14 passed, 1 failed`：共享环境是
+Matplotlib/NumPy=`3.10.1/1.26.4`，不是冻结的 `3.11.0/2.3.0`。精确依赖环境复验进一步发现 2 个 SVG
+逐字节一致、2 个 PNG 解码后 shape 相同且 changed RGBA values=`0`，只有 Linux/Windows PNG 压缩字节不同；因此
+最终门改为 SVG byte-exact + PNG pixel-exact，并在渲染前 fail-closed 检查依赖版本。这是修正伪失败，不是放宽数据、
+布局或图中值。
 network/GPU/paid API/model-fit/base-update=`0/0/0/0/0`，prospective value/identity read=`false/false`。
 
 这关闭的是本地 executable-preview 这一项 submission engineering，`counts_as_distinct_claim_evidence=false`；仍未关闭

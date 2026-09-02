@@ -6,23 +6,23 @@
   "claim_class": "SUBMISSION_ENGINEERING_NOT_DISTINCT_SCIENTIFIC_EVIDENCE",
   "contract": {
     "path": "phase1/anonymous_reviewer_artifact_v0.json",
-    "sha256": "0c526bd577660d62ec139fe1583813dfede2c43123aad2515d60b64b722ce142",
+    "sha256": "d27492330585c982c8eadc6084cb68f1fede4967a8091d33a39b2ff1548dff06",
     "resource_files": 24,
     "capability_rows": 5
   },
   "implementation": {
     "builder_sha256": "48bf40129ca8ddf7418179ddc404c25790e0f7c9073559c2d8ade946572d769d",
     "independent_verifier_sha256": "bed0a283e7f92d60097da1549672c2be15c685bd0ce5f29982ca7c1ed3b7d7a0",
-    "package_self_check_sha256": "62c5acdb08f30fe4aa81f6e1fc8d219e1ad2fc1f18d7e320142f12c4a1e54acb",
-    "focused_test_sha256": "d0409d7f96cd2238ad7622d19f20a2a5eb9ae30348e35441dc3981ca3030f011"
+    "package_self_check_sha256": "ef8e4cee9dea3e46dd64dcd0935f4ea6e91cd55aaf7479fbfaa82291294bbe00",
+    "focused_test_sha256": "bbfa42efb0ab38e83ae7c332c566ee3b4f41dfb2a30f5cc6abbd99f77b485eb4"
   },
   "build_a_b": {
-    "resource_bytes": 1840053,
+    "resource_bytes": 1841722,
     "package_files": 26,
     "manifest_entries": 25,
-    "manifest_bytes": 1847206,
-    "zip_bytes": 656274,
-    "zip_sha256": "91a74b50a3d1aacdbcb875236c007ec9db62a8126c45b89e927ce192b3112bce",
+    "manifest_bytes": 1848927,
+    "zip_bytes": 656781,
+    "zip_sha256": "79f326899dd1dd766493c50433d1820bb5abc09ac45bfcee189b73c994659352",
     "zip_byte_identical": true,
     "package_tree_hash_identical": true,
     "independent_verifier_a": "PASS",
@@ -30,13 +30,34 @@
   },
   "packaged_self_check": {
     "status": "PASS",
-    "figure_hash_checks": 4,
+    "figure_regeneration_checks": 6,
+    "svg_byte_exact_checks": 2,
+    "png_decoded_pixel_exact_checks": 2,
+    "packaged_png_receipt_hash_checks": 2,
     "aggregate_invariant_checks": 6,
     "scientific_recompute_from_row_level_inputs": false
   },
   "focused_tests": {
-    "passed": 7,
+    "passed": 8,
     "failed": 0
+  },
+  "predecessor_remote_failure": {
+    "commit": "370d2c247f8513434f1e0c24efe79b13deae6873",
+    "focused_passed": 14,
+    "focused_failed": 1,
+    "shared_runtime": {
+      "python": "3.11.15",
+      "matplotlib": "3.10.1",
+      "numpy": "1.26.4"
+    },
+    "exact_runtime_diagnosis": {
+      "matplotlib": "3.11.0",
+      "numpy": "2.3.0",
+      "svg_byte_exact": 2,
+      "png_shape_exact": 2,
+      "png_changed_rgba_values": 0,
+      "failure_class": "PNG_COMPRESSION_BYTES_DIFFER_ACROSS_OS"
+    }
   },
   "security": {
     "credential_identity_hits": 0,

@@ -25,12 +25,12 @@
   "capability_matrix": [
     {
       "claim": "protocol_figure",
-      "artifact_operation": "PAPER_EXACT_REGEN",
+      "artifact_operation": "PAPER_VISUAL_EXACT_REGEN_SVG_BYTE_PNG_PIXEL",
       "scientific_recompute": "NOT_APPLICABLE_PROTOCOL_SCHEMATIC"
     },
     {
       "claim": "run_to_pair_weighting_figure",
-      "artifact_operation": "PAPER_EXACT_REGEN_FROM_FROZEN_AGGREGATE_TRAJECTORY",
+      "artifact_operation": "PAPER_VISUAL_EXACT_REGEN_SVG_BYTE_PNG_PIXEL_FROM_FROZEN_AGGREGATE_TRAJECTORY",
       "scientific_recompute": "BLOCKED_UPSTREAM_ROW_LEVEL_INPUTS_NOT_INCLUDED"
     },
     {
@@ -60,7 +60,7 @@
     {
       "source": "phase1/reviewer_artifact/README.md",
       "destination": "README.md",
-      "sha256": "524aaac586278ca8431b06e3f0dfc29cf91d5c8f87afc08215d235972dd82711",
+      "sha256": "306fedaabd3c522485228cc2e1131bb88c08e26fdbb8a1bafa24920f7b618dad",
       "role": "reviewer_entrypoint"
     },
     {
@@ -72,7 +72,7 @@
     {
       "source": "phase1/reviewer_artifact/run_reviewer_checks.py",
       "destination": "tools/run_reviewer_checks.py",
-      "sha256": "62c5acdb08f30fe4aa81f6e1fc8d219e1ad2fc1f18d7e320142f12c4a1e54acb",
+      "sha256": "ef8e4cee9dea3e46dd64dcd0935f4ea6e91cd55aaf7479fbfaa82291294bbe00",
       "role": "offline_self_check"
     },
     {

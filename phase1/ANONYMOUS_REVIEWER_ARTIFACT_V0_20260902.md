@@ -30,17 +30,27 @@ The prospective confirmation remains excluded and sealed.
 Two independent output directories were built from the fixed allowlist. Text inputs
 are canonicalized to UTF-8/LF while PNG bytes remain exact, so checkout line-ending
 settings cannot change the package. Their trees and ZIP archives were byte-identical.
-Each archive is 656,274 bytes with SHA-256
-`91a74b50a3d1aacdbcb875236c007ec9db62a8126c45b89e927ce192b3112bce`.
+Each final r4 archive is 656,781 bytes with SHA-256
+`79f326899dd1dd766493c50433d1820bb5abc09ac45bfcee189b73c994659352`.
 The independent verifier passed on both copies, including exact source hashes,
 package file set, manifest coverage, ZIP order/timestamps/modes/payloads, and
 credential/identity scans.
 
-The package's own offline check then regenerated both PNG and SVG versions of Figure
-1 and Figure 2 to their frozen hashes, and checked the Table 4A population/panel/scope,
-cost-panel boundary, and v11 descriptor invariants. It made no network, GPU, paid API,
-model-fit, or base-update call. Seven focused regression tests pass, including tamper
-and source-hash-drift fail-closed controls.
+The package's own offline check first enforces the pinned dependency versions. It then
+regenerates Figure 1 and Figure 2 with byte-exact SVGs and pixel-exact decoded PNGs;
+the latter permits only OS-specific PNG compression bytes, not a single changed RGBA
+value or dimension. It also checks the Table 4A population/panel/scope, cost-panel
+boundary, and v11 descriptor invariants. It makes no network, GPU, paid API,
+model-fit, or base-update call. The focused regressions include tamper and
+source-hash-drift fail-closed controls.
+
+The first remote post-push check of commit `370d2c2` is retained as a failure:
+14 focused tests passed and one failed because the shared environment used unpinned
+Matplotlib/NumPy. Repeating under the exact pins showed that both SVG files were
+byte-identical and both decoded PNG arrays had identical shapes and zero changed RGBA
+values, while only PNG compression bytes differed between Linux and Windows. The r4
+contract therefore checks SVG bytes and decoded PNG pixels separately and rejects a
+dependency-version mismatch before rendering.
 
 ## What this closes and what remains
 

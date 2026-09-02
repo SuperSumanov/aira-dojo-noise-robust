@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.metadata
 import json
 import re
 import subprocess
 import sys
 from pathlib import Path
+
+import pytest
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -102,7 +105,9 @@ def test_contract_is_anonymous_aggregate_only_and_has_explicit_claim_boundaries(
         "binary_exact_suffixes": [".png"],
     }
     claims = {row["claim"]: row for row in contract["capability_matrix"]}
-    assert claims["protocol_figure"]["artifact_operation"] == "PAPER_EXACT_REGEN"
+    assert claims["protocol_figure"]["artifact_operation"] == (
+        "PAPER_VISUAL_EXACT_REGEN_SVG_BYTE_PNG_PIXEL"
+    )
     assert "FROZEN_AGGREGATE" in claims["run_to_pair_weighting_figure"]["artifact_operation"]
     assert claims["historical_table4a_and_cost_panel"]["scientific_recompute"].startswith(
         "BLOCKED_931_ROW_LEVEL"
@@ -144,7 +149,7 @@ def test_builder_and_independent_verifier_are_separate_implementations():
     assert "from phase1" not in verifier_source
 
 
-def test_two_builds_are_byte_identical_and_packaged_self_check_passes(tmp_path: Path):
+def test_two_builds_are_byte_identical_and_independently_verified(tmp_path: Path):
     package_a = tmp_path / "package-a"
     package_b = tmp_path / "package-b"
     zip_a = tmp_path / "artifact-a.zip"
@@ -164,10 +169,24 @@ def test_two_builds_are_byte_identical_and_packaged_self_check_passes(tmp_path: 
     assert verified_a["package_files"] == verified_b["package_files"] == 26
     assert verified_a["credential_identity_hits"] == 0
     assert verified_a["prospective_values_or_identities_read"] is False
+    assert verified_b["prospective_values_or_identities_read"] is False
 
+
+def exact_artifact_runtime_available() -> bool:
+    expected = {"matplotlib": "3.11.0", "numpy": "2.3.0", "pytest": "8.4.0"}
+    return all(importlib.metadata.version(name) == version for name, version in expected.items())
+
+
+@pytest.mark.skipif(
+    not exact_artifact_runtime_available(), reason="artifact dependency pins not active"
+)
+def test_packaged_self_check_regenerates_figures_and_aggregate_checks(tmp_path: Path):
+    package_root = tmp_path / "package"
+    zip_path = tmp_path / "artifact.zip"
+    run_builder(package_root, zip_path)
     self_check = subprocess.run(
-        [sys.executable, str(package_a / "tools/run_reviewer_checks.py")],
-        cwd=package_a,
+        [sys.executable, str(package_root / "tools/run_reviewer_checks.py")],
+        cwd=package_root,
         check=True,
         capture_output=True,
         text=True,
@@ -176,6 +195,11 @@ def test_two_builds_are_byte_identical_and_packaged_self_check_passes(tmp_path: 
     self_result = json.loads(self_check.stdout)
     assert self_result["status"] == "PASS"
     assert self_result["manifest_files"] == 25
+    assert self_result["runtime"] == {
+        "matplotlib": "3.11.0",
+        "numpy": "2.3.0",
+        "pytest": "8.4.0",
+    }
     assert all(self_result["figure_checks"].values())
     assert all(self_result["aggregate_checks"].values())
     assert self_result["scientific_recompute_from_row_level_inputs"] is False
@@ -224,7 +248,7 @@ def test_report_receipt_and_direction_preserve_preview_not_release_boundary():
     report = REPORT.read_text(encoding="utf-8")
     receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
     direction = DIRECTION.read_text(encoding="utf-8")
-    expected_zip = "91a74b50a3d1aacdbcb875236c007ec9db62a8126c45b89e927ce192b3112bce"
+    expected_zip = "79f326899dd1dd766493c50433d1820bb5abc09ac45bfcee189b73c994659352"
     assert "not a dataset release" in report
     assert "cannot be scientifically recomputed" in report
     assert receipt["build_a_b"]["zip_sha256"] == expected_zip

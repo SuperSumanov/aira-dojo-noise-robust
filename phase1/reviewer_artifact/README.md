@@ -37,8 +37,10 @@ python -m pip install -r requirements.txt
 python tools/run_reviewer_checks.py
 ```
 
-The check verifies the package manifest, regenerates both figures in a temporary
-directory, compares their hashes with the frozen receipts, and validates the
+The check first enforces the pinned dependency versions, verifies the package
+manifest, and regenerates both figures in a temporary directory. SVG output must be
+byte-identical; decoded PNG dimensions and every RGBA value must be identical (PNG
+compression bytes may differ across operating systems). It also validates the
 aggregate Table 4A and corpus-descriptor invariants. It performs no network access,
 model fitting, GPU work, or paid API call.
 

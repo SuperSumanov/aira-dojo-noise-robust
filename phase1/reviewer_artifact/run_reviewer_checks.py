@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.metadata
 import json
 import re
 import subprocess
@@ -14,6 +15,7 @@ from pathlib import Path
 
 
 SHA256_RE = re.compile(r"^([0-9a-f]{64})  \./(.+)$")
+PINNED_RUNTIME = {"matplotlib": "3.11.0", "numpy": "2.3.0", "pytest": "8.4.0"}
 
 
 class ReviewerCheckError(RuntimeError):
@@ -33,6 +35,19 @@ def load_json(path: Path) -> dict:
     if not isinstance(value, dict):
         raise ReviewerCheckError(f"expected a JSON object: {path.name}")
     return value
+
+
+def verify_runtime() -> dict[str, str]:
+    observed = {
+        package: importlib.metadata.version(package) for package in PINNED_RUNTIME
+    }
+    if observed != PINNED_RUNTIME:
+        raise ReviewerCheckError(
+            f"dependency version mismatch expected={PINNED_RUNTIME} observed={observed}"
+        )
+    if sys.version_info < (3, 11):
+        raise ReviewerCheckError("Python 3.11 or newer is required")
+    return observed
 
 
 def verify_package_manifest(root: Path) -> tuple[int, int]:
@@ -71,6 +86,9 @@ def verify_package_manifest(root: Path) -> tuple[int, int]:
 
 
 def render_figures(root: Path, temporary: Path) -> dict[str, bool]:
+    import matplotlib.image as mpimg
+    import numpy as np
+
     figure_dir = root / "phase1/figures/decision_corpus_20260902"
     receipt1 = load_json(figure_dir / "figure1_receipt.json")
     receipt2 = load_json(figure_dir / "figure2_receipt.json")
@@ -106,14 +124,34 @@ def render_figures(root: Path, temporary: Path) -> dict[str, bool]:
             raise ReviewerCheckError(
                 f"figure command failed with rc={completed.returncode}"
             )
+    expected_png1 = figure_dir / "figure1_corpus_and_sealed_protocol.png"
+    expected_png2 = figure_dir / "figure2_run_to_pair_weighting.png"
+    observed_png1 = output1 / expected_png1.name
+    observed_png2 = output2 / expected_png2.name
+    expected_pixels1, observed_pixels1 = mpimg.imread(expected_png1), mpimg.imread(
+        observed_png1
+    )
+    expected_pixels2, observed_pixels2 = mpimg.imread(expected_png2), mpimg.imread(
+        observed_png2
+    )
     checks = {
-        "figure1_png": sha256(output1 / "figure1_corpus_and_sealed_protocol.png")
-        == receipt1["outputs"]["figure1_corpus_and_sealed_protocol.png"],
-        "figure1_svg": sha256(output1 / "figure1_corpus_and_sealed_protocol.svg")
+        "figure1_packaged_png_receipt_hash": sha256(expected_png1)
+        == receipt1["outputs"][expected_png1.name],
+        "figure1_regenerated_png_pixel_exact": expected_pixels1.shape
+        == observed_pixels1.shape
+        and bool(np.array_equal(expected_pixels1, observed_pixels1)),
+        "figure1_regenerated_svg_byte_exact": sha256(
+            output1 / "figure1_corpus_and_sealed_protocol.svg"
+        )
         == receipt1["outputs"]["figure1_corpus_and_sealed_protocol.svg"],
-        "figure2_png": sha256(output2 / "figure2_run_to_pair_weighting.png")
-        == receipt2["outputs"]["figure2_run_to_pair_weighting.png"],
-        "figure2_svg": sha256(output2 / "figure2_run_to_pair_weighting.svg")
+        "figure2_packaged_png_receipt_hash": sha256(expected_png2)
+        == receipt2["outputs"][expected_png2.name],
+        "figure2_regenerated_png_pixel_exact": expected_pixels2.shape
+        == observed_pixels2.shape
+        and bool(np.array_equal(expected_pixels2, observed_pixels2)),
+        "figure2_regenerated_svg_byte_exact": sha256(
+            output2 / "figure2_run_to_pair_weighting.svg"
+        )
         == receipt2["outputs"]["figure2_run_to_pair_weighting.svg"],
     }
     if not all(checks.values()):
@@ -157,6 +195,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     root = args.root.resolve(strict=True)
+    runtime = verify_runtime()
     files, total_bytes = verify_package_manifest(root)
     with tempfile.TemporaryDirectory(prefix="decision-corpus-review-") as directory:
         figure_checks = render_figures(root, Path(directory))
@@ -166,6 +205,7 @@ def main() -> int:
         "status": "PASS",
         "manifest_files": files,
         "manifest_bytes": total_bytes,
+        "runtime": runtime,
         "figure_checks": figure_checks,
         "aggregate_checks": aggregate_checks,
         "scientific_recompute_from_row_level_inputs": False,

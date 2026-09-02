@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0b. 2026-09-02 两个已知直接竞品已进入正文，优先性主张与 Table 4B 基线边界收紧
+
+2026-08-22 已记录但 v0.4 主稿遗漏的两个直接竞品现在被提升到 Related Work、Table 1 和贡献边界：
+FOREAGENT / *Can We Predict Before Executing Machine Learning Agents?*（arXiv:2601.05930）以及
+*AI Research Preference Models*（arXiv:2608.13940）。这不是新发现或新科学证据，而是修复会导致审稿时
+致命 priority overclaim 的稿件缺口。此后禁止声称 first pre-execution MLE preference、first MLE preference corpus、
+first unexecuted-child selector in AIRA-dojo、first system speedup 或 subtree-future label novelty。Decision Corpus 的
+可辩护贡献固定为 audit-grade reusable benchmark：physical-run/config/time isolation、incomplete fragments、
+failures/unknown、dependence/noise/cost、graph weighting、撤回链与 outcome-blind closure。RPM 的系统正结果不被本项目
+覆盖；它必须作为直接 baseline/motivation，而非泛泛 related work。
+
+Table 4B 仍为 `SEALED`，但现在预留具名 `RPM-style inference-only prompt-transfer` 行。只有 prompt、model、context、
+tournament、budget 全部精确匹配时才能称 reproduction；否则必须称 transfer，并明确列出偏差。公开实现 commit=
+`397ac77dcfd289361ecdc36dbf8846a2134c9dee`，fresh detached no-smudge exact-checkout 复验为
+focused/full=`13/2,092 passed`、48 warnings、0 failures，两个 stderr 均为 0 bytes。第一次预检因扫描器把
+`task-deletion-robust` 中的 `sk-` 误判为凭据而在测试前 fail-closed；收紧左边界且禁止回显命中行后重跑通过，
+失败临时目录与成功临时目录均按精确路径核验后清理。prospective outcome/label/prediction/identity read=
+`false/false/false/false`，GPU/API/model fit/base update=`0/0/0/0`。精确 hash 与失败审计见
+`phase1/direct_competitor_map_postpush_receipt_20260902.json`。
+
 ## 0L0a. 2026-09-02 outcome-blind intake 第三个固定周期已按新冻结契约续接
 
 只读健康检查发现 PID=`3451688` 已退出，但不是新故障：append-only 日志最后一项为

@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "artifact": "Decision Corpus direct-competitor citation map and manuscript v0.5 positioning",
+  "exact_public_commit": "397ac77dcfd289361ecdc36dbf8846a2134c9dee",
+  "checkout": {
+    "mode": "fresh detached no-smudge worktree",
+    "head_exact": true,
+    "worktree_clean_before_tests": true,
+    "worktree_removed_after_tests": true,
+    "remote_temp_parent_removed_after_log_copy": true
+  },
+  "pretest_false_positive": {
+    "occurred": true,
+    "classification": "credential-shape scanner boundary false positive",
+    "matched_noncredential_text": "task-deletion-robust",
+    "tests_started": false,
+    "prospective_values_read": false,
+    "failed_temp_parent_removed": true,
+    "scanner_fix": "require a non-alphanumeric left boundary before sk- and suppress matched-line output"
+  },
+  "focused_tests": {
+    "passed": 13,
+    "failed": 0,
+    "stdout_sha256": "169cb5382724cae71d783949f50b5598d644b04e469bff86fa50631f3d6254b4",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "full_tests": {
+    "passed": 2092,
+    "failed": 0,
+    "warnings": 48,
+    "stdout_sha256": "de6f2b8a619f5344bcbbdfa67d9faa1b9191cec6f7dc702a65efd02613761800",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e464b934ca495991b7852b855"
+  },
+  "changed_files": {
+    "count": 5,
+    "manifest_sha256": "cad5174a9d5a7845464f9cb54edf7319e762464f7c13937f9cf049e2b1014ae1",
+    "credential_filename_hits": 0,
+    "credential_shape_hits": 0
+  },
+  "positioning_state": {
+    "foreagent_direct_competitor_named": true,
+    "rpm_direct_competitor_named": true,
+    "priority_claims_withdrawn": true,
+    "rpm_style_transfer_reserved_in_table_4b": true,
+    "table_4b_sealed": true,
+    "table_5_conditional": true,
+    "counts_as_distinct_claim_evidence": false
+  },
+  "security": {
+    "prospective_outcome_read": false,
+    "prospective_label_read": false,
+    "prospective_prediction_value_read": false,
+    "prospective_candidate_identity_or_profile_read": false,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  },
+  "scientific_claim": "Citation and novelty-boundary consolidation of competitors already recorded on 2026-08-22; no new experimental evidence."
+}

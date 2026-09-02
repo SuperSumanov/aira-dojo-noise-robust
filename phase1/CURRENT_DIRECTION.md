@@ -37,7 +37,9 @@ task-clustered uncertainty；明确禁止把它称为独立性修复、ESS、因
 英文主稿现已从“正文 + 独立可粘贴表”合并为单一 v0.4 reviewer packet：Table 1 的直接竞品/相邻先例、Table 2 的
 historical/prospective 分母、Table 3 的 readout/does-not-prove 边界和已验证的 Table 4A 均在同一稿内；Table 4B 与
 Table 5 仍分别保持 `SEALED` / `CONDITIONAL`，未填任何前瞻值。该合并只复制既有 Evidence Index 路由，
-不增加科学证据或解除 release/closure/scaling gate。
+不增加科学证据或解除 release/closure/scaling gate。fresh no-smudge exact checkout commit=
+`3076baee2199651d5c2b351728d17aa53bd5c123` 已通过 focused/full=`22/2,086 passed`、48 warnings、0 failures，
+两个 stderr 均为 0 bytes；临时 worktree 与日志根在复制 hash 后已安全清理。
 
 > **2026-08-24 cohort authority clarification（覆盖下文所有“唯一主实验”旧措辞）**：当前没有已获批的
 > GPU effect 主实验。论文容器仍是 Decision Corpus + Predictor Benchmark。`first-960 + closure` 保留为较早冻结的

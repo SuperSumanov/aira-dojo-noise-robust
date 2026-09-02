@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "artifact": "Decision Corpus manuscript v0.4 with Tables 1 through 4A integrated",
+  "exact_public_commit": "3076baee2199651d5c2b351728d17aa53bd5c123",
+  "checkout": {
+    "mode": "fresh detached no-smudge worktree",
+    "head_exact": true,
+    "worktree_clean_before_tests": true,
+    "worktree_removed_after_tests": true,
+    "remote_temp_parent_removed_after_log_copy": true
+  },
+  "focused_tests": {
+    "passed": 22,
+    "failed": 0,
+    "stdout_sha256": "d55b9edecbfab5daacbd85aebb56380fc75911788e01a69d3528633c333b06b6",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "full_tests": {
+    "passed": 2086,
+    "failed": 0,
+    "warnings": 48,
+    "stdout_sha256": "33e65b231b5cd877b7d1d9731f29bd47f4048905a7d023dbbd2c09c36119b7a0",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "table_state": {
+    "tables_1_through_4a_integrated": true,
+    "table_4b_sealed": true,
+    "table_5_conditional": true,
+    "prospective_values_inserted": false
+  },
+  "security": {
+    "prospective_outcome_read": false,
+    "prospective_label_read": false,
+    "prospective_prediction_value_read": false,
+    "prospective_candidate_identity_or_profile_read": false,
+    "gpu": 0,
+    "paid_api": 0,
+    "model_fit": 0,
+    "base_model_update": 0
+  },
+  "scientific_claim": "Writing integration and consistency verification only; no new experimental evidence."
+}

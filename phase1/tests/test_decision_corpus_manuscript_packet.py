@@ -5,6 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 DRAFT = ROOT / "phase1" / "PAPER_DRAFT_DECISION_CORPUS_20260902.md"
+POSTPUSH = ROOT / "phase1" / "manuscript_packet_postpush_receipt_20260902.json"
 
 
 def test_all_current_main_tables_are_in_one_packet() -> None:
@@ -40,3 +41,20 @@ def test_sealed_and_conditional_boundaries_survive_table_merge() -> None:
     assert "Table 4A does not claim prospective generalization" in text
     assert "graph-basis sensitivity" in text
     assert "not a new graph theorem or independent" in text
+
+
+def test_postpush_receipt_binds_packet_and_sealed_slots() -> None:
+    import json
+
+    receipt = json.loads(POSTPUSH.read_text(encoding="utf-8"))
+    assert receipt["exact_public_commit"] == "3076baee2199651d5c2b351728d17aa53bd5c123"
+    assert receipt["focused_tests"]["passed"] == 22
+    assert receipt["full_tests"]["passed"] == 2086
+    assert receipt["full_tests"]["failed"] == 0
+    assert receipt["table_state"] == {
+        "tables_1_through_4a_integrated": True,
+        "table_4b_sealed": True,
+        "table_5_conditional": True,
+        "prospective_values_inserted": False,
+    }
+    assert sum(receipt["security"].values()) == 0

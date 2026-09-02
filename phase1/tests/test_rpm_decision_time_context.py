@@ -243,7 +243,9 @@ def test_readiness_and_manuscript_keep_result_and_packing_sealed() -> None:
     assert "counts_as_distinct_claim_evidence=false" in readiness
     assert "then-visible self-reported" in draft
     assert "post-hoc external grade" in draft
-    assert "tokenizer-based context packing" in draft
+    assert "whole-node prefix packer" in draft
+    assert "parent-rooted breadth-first" in draft
+    assert "private\ncheckpoint and serving controls remain unverified" in draft
     assert "must not be reported\nas a completed baseline run" in draft
 
 

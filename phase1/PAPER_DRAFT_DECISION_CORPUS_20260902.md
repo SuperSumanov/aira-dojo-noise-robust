@@ -106,7 +106,9 @@ executions. AI Research Preference Models (RPMs) [@foster2026rpm]
 children from one parent and an inference-only LLM judge or an agentic pilot system
 selects one for execution. RPM reports positive end-to-end evidence on 20
 AIRS-Bench tasks and therefore establishes the practical value of this intervention,
-not merely an offline correlation.
+not merely an offline correlation. Its inference-only context is assembled by a
+parent-rooted breadth-first traversal over earlier non-buggy explored nodes, rather
+than by an unspecified history sampler.
 
 These works are direct competitors and motivation, not generic adjacent citations.
 Their measurement units nevertheless differ from ours. FOREAGENT constructs many
@@ -318,9 +320,14 @@ The optimized prompt is byte-bound to the latest v2 TeX source. The structural
 context policy is also frozen: it admits only same-run, same-task nodes executed
 strictly before the earliest candidate step, uses the then-visible self-reported
 validation rather than the post-hoc external grade, and is identical for every pair
-and orientation under a parent. The exact model, tokenizer-based context packing,
-and call budget remain unresolved; prompt and context readiness must not be reported
-as a completed baseline run.
+and orientation under a parent. The exact RPM checkpoint/serving stack and call
+budget remain unresolved; prompt and context readiness must not be reported
+as a completed baseline run. We subsequently bind one immutable public
+Qwen3.6-27B repository revision, its tokenizer and chat template, and a deterministic
+whole-node prefix packer. This closes a transfer-reproducibility gap, not the RPM
+reproduction gap: our frozen history is recency ordered, whereas RPM reports
+parent-rooted breadth-first selection of earlier non-buggy nodes, and the private
+checkpoint and serving controls remain unverified.
 
 Historical model development uses train-run development only. A checkpoint cannot be
 selected through repeated evaluation on the frozen temporal cohort. Any future

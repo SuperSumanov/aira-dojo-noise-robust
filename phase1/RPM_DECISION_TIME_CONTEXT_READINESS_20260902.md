@@ -59,3 +59,10 @@ system wrapper、context window、reasoning/output reserve，并且只能取上�
 first-960 + accrual closure、以及单独的 calls/tokens/latency/currency cap 批准。当前
 GPU/API/model fit/base update=`0/0/0/0`，prospective label/outcome/prediction/accuracy/utility 与 candidate identity/profile
 均未读，`counts_as_distinct_claim_evidence=false`。
+
+## Successor 边界（不改写本 v1 receipt）
+
+在本 context-v1 receipt 中，token packing 仍未冻结；后续独立 successor
+`RPM_PREFIX_PACKING_READINESS_20260902.md` 已固定公开 Qwen tokenizer 与 recency-transfer 的完整节点前缀装箱。
+同时，RPM v2 明确采用从当前 parent 出发的 breadth-first traversal 和此前 non-buggy 节点；本 v1 的时间倒序规则并不
+paper-aligned。v1 继续作为无泄漏 transfer 输入，不得被 successor 的 tokenizer readiness 追溯改称 RPM reproduction。

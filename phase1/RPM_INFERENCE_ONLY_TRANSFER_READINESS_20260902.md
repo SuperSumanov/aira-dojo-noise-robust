@@ -35,6 +35,11 @@ RPM v2 报告在线系统使用 self-hosted Qwen3.6-27B，并以 maximum reasoni
 3. exact Qwen3.6-27B checkpoint、serving stack、reasoning control 与 context packing 尚未匹配；
 4. 我方是 recorded sibling-fragment 离线测量，不是 RPM 的在线 15-child tournament 或 end-to-end intervention。
 
+后续对 v2 正文方法段的逐句复核又关闭了一个歧义：RPM 的 context 不是任意历史节点序列，而是从当前 parent 对已探索树做
+breadth-first traversal，最多取 `K` 个此前 non-buggy 节点。Decision Corpus 已冻结的 context v1 是严格 decision-time、
+无 external-grade 泄漏的 recency-ordered transfer，但没有 paper-aligned parent-BFS 与 exact non-buggy predicate；该偏差必须
+保留在 baseline 名称和最终表注中。
+
 因此最终表名固定为 **RPM-style inference-only prompt transfer**。只有 prompt、model/checkpoint、context builder、
 reasoning、tournament 和预算全部精确匹配时才能另称 reproduction；当前不得这样写。
 
@@ -51,3 +56,10 @@ reasoning、tournament 和预算全部精确匹配时才能另称 reproduction�
 
 本次资源与访问均为 GPU/API/model fit/base update=`0/0/0/0`，prospective label/outcome/prediction/accuracy/utility 与
 candidate identity/private profile read=`false/false`，`counts_as_distinct_claim_evidence=false`。
+
+## 2026-09-02 successor：公开 tokenizer 与 transfer packing
+
+`RPM_PREFIX_PACKING_READINESS_20260902.md` 已把公开 `Qwen/Qwen3.6-27B` revision、五个 tokenizer/config/card 文件、
+官方 chat template、`262,144−32,768` token budget 与 AB/BA whole-node prefix packing 逐字节固定。它只关闭
+**public-revision transfer** 的 tokenizer/prefix-packing 缺口；RPM 私有 checkpoint/serving equivalence、parent-BFS/non-buggy、
+真实 panel 与模型调用仍未关闭，Table 4B 继续 `SEALED`。

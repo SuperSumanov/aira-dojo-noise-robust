@@ -1,6 +1,6 @@
 # Decision Corpus: Auditing Predictors for ML-Engineering Agent Search Trees
 
-> Internal manuscript draft v0.6, 2026-09-02. This draft is governed by
+> Internal manuscript draft v0.7, 2026-09-02. This draft is governed by
 > `CURRENT_DIRECTION.md` and Evidence Index v10. Bracketed result slots are sealed;
 > they must not be filled before the corresponding preregistered gate closes.
 
@@ -16,7 +16,7 @@ free baselines. We introduce **Decision Corpus**, a rebuildable benchmark of
 provenance-bound sibling decision fragments from real AIRA-dojo searches
 [@toledo2025aira], together
 with a common-support predictor suite and a machine-verifiable audit protocol. The
-historical v11 release contains 16,012 cards and 8,107 audited direct-sibling rows;
+historical v11 build contains 16,012 cards and 8,107 audited direct-sibling rows;
 7,579 rows form a parent-present strict core. Same-budget training and frozen splits
 have zero overlap in unordered pairs, endpoints, parents, and referenced physical
 runs. On an independently regraded ten-task subset, ordering agreement is 96.6%
@@ -33,8 +33,9 @@ currently contains 559 eligible runs, while its labels and prediction values rem
 hidden pending preregistered closure.
 **[SEALED: one-shot prospective common-support predictor table.]** Decision Corpus
 turns critic evaluation for ML-agent search into a versioned, cost-aware, and
-leakage-resistant measurement problem, and releases reconstruction manifests,
-independent verifiers, and a claim-withdrawal ledger alongside the data.
+leakage-resistant measurement problem. Reconstruction manifests, independent
+verifiers, and the claim-withdrawal ledger are repository artifacts; publication of
+content-bearing corpus payloads remains conditional on the stated review gates.
 
 ## 1. Introduction
 
@@ -64,7 +65,7 @@ The central premise of this work is that a useful predictor benchmark for
 ML-engineering search must make this induced population explicit.
 
 We present Decision Corpus, a dataset and audit protocol built around that premise.
-Its released unit is a provenance-bound recorded-parent sibling fragment, not a
+Its benchmark unit is a provenance-bound recorded-parent sibling fragment, not a
 generic trajectory transition or a claimed-complete choice set. Historical
 development data are separated on four observable leakage axes. A chronological
 confirmation cohort is accumulated outcome-blind: identities are fixed by an
@@ -74,7 +75,7 @@ initialization/query cost are evaluated on exact common support.
 
 Our contributions are:
 
-1. **A decision-level corpus for ML-engineering search.** We release versioned cards,
+1. **A decision-level corpus for ML-engineering search.** We construct versioned cards,
    sibling fragments, run/parent/endpoint provenance, deterministic rebuild
    manifests, and explicit strict-core versus recoverable-fragment tiers.
 2. **A cost-aware predictor benchmark.** Static, text, embedding, reward-model, and
@@ -189,7 +190,7 @@ Retracted or superseded claims remain in an append-only ledger.
 **Table 1(a): direct MLE data and resources.** “Not reported” denotes scope after
 our dated primary-source audits through 2026-09-02, not proof of absence.
 
-| Resource | Released unit | Primary objective | True-sibling decision unit | Predictor benchmark | Isolation / closure | Boundary for our claim |
+| Resource | Data / evaluation unit | Primary objective | True-sibling decision unit | Predictor benchmark | Isolation / closure | Boundary for our claim |
 |---|---|---|---|---|---|---|
 | FOREAGENT | 895 curated solutions expanded to a reported 18,438 within-task comparisons over 26 tasks | Run-free LLM preference and Predict-then-Verify search | No: released rows are combinations from task-level solution pools, not logged choice events | Strong-LLM preference, confidence, and data-report analyses | Within/cross-trajectory analyses; public release is not the same run/component/chronological contract | Closes first MLE preference corpus, first run-free pair prediction, and first preference-driven execution reduction |
 | AI Research Preference Models | Online 15-candidate child batches plus a separate 1,000-pair offline sibling set | Inference-only and pilot-based child selection in AIRA-dojo | Yes for the online intervention; offline labels use observed-subtree maxima | Frozen frontier LLMs, prompt/context/reasoning scaling, ensembles, and pilot budgets rather than a reusable cross-family suite | Offline modality split plus 20-task, 10-seed end-to-end evaluation; authors disclose off-policy/subtree opportunity bias | Closes first AIRA-dojo unexecuted-child preference, subtree-future-potential novelty, and candidate-selection speedup |
@@ -238,7 +239,7 @@ documented segmentation rule otherwise. An endpoint/card records a candidate pro
 and its search context. A decision parent is the recorded parent shared by retained
 children from the same physical run. Pair rows orient two finite-grade children of
 that parent. We use “fragment” deliberately: retained children are fully represented
-within the released graph, but children absent from the archive cannot be recovered.
+within the audited graph, but children absent from the archive cannot be recovered.
 
 Figure 1 summarizes this unit hierarchy and the sealed evaluation path. It keeps the
 historical development track, chronological confirmation track, and conditional clean
@@ -255,10 +256,10 @@ unknown; status dominance is not imputed as a continuous score difference. Runti
 stdout, and self-reported scores are classified as post-execution information and
 are excluded from execution-free predictor inputs.
 
-### 3.3 Historical releases and split isolation
+### 3.3 Historical builds and split isolation
 
-The v11 card release is reconstructed from 29 immutable LFS batches and contains
-16,012 rows across 25 tasks. Its byte length and SHA-256 are fixed by the release
+The v11 card build is reconstructed from 29 immutable LFS batches and contains
+16,012 rows across 25 tasks. Its byte length and SHA-256 are fixed by the build
 descriptor. Nine decision resources cover train, frozen, and extension roles at
 three historical descendant-budget views. Across those resources, 8,107 rows are
 verified direct siblings within a reconstructed physical run. The parent-present
@@ -285,13 +286,13 @@ runs short of its first-960 target and has no closure receipt. These are structu
 statements only, not interim performance estimates; no outcome, label, prediction,
 candidate identity, or private profile was opened to produce them.
 
-**Table 2(a): historical v11 populations.** “Run” for the full card release denotes
-the released heuristic segmentation; decision rows use their separately audited
+**Table 2(a): historical v11 populations.** “Run” for the full card build denotes
+the audited heuristic segmentation; decision rows use their separately audited
 physical-run references.
 
 | Population | Cards / pairs | Parents | Endpoints | Runs | Tasks | Boundary |
 |---|---:|---:|---:|---:|---:|---|
-| v11 card release | 16,012 cards | -- | -- | 667 heuristic segments | 25 | 14,339 cards have source-truth provenance |
+| v11 card build | 16,012 cards | -- | -- | 667 heuristic segments | 25 | 14,339 cards have source-truth provenance |
 | all nine decision resources | 8,107 pairs | -- | -- | -- | -- | 7,579 parent-present strict core plus 528 lineage-verifiable orphan-parent rows |
 | b0 train | 4,263 pairs | 2,293 | 5,499 | 333 | 23 | historical development only |
 | b0 frozen | 1,498 pairs | 845 | 2,022 | 92 | 22 | public labeled historical frozen set, not a secret leaderboard test |
@@ -463,7 +464,7 @@ than inferred from serialized adjacency. The strict-core/recoverable-tier split 
 parent absence visible. Same-budget train/frozen overlap is zero on four explicit
 axes, but one of 36 support gates fails because a frozen descendant-budget resource
 has excessive single-run pair concentration. We therefore do not summarize the
-release as having passed every integrity gate.
+corpus build as having passed every integrity gate.
 
 ### 5.2 Label noise does not explain away the measured signal
 
@@ -606,8 +607,8 @@ content-cleared. The frozen content scan covers prepared data for 23 of 25 tasks
 tests 3,766,518 fixed high-entropy patterns. It finds 173 matched patterns affecting
 419 cards, while the two unscanned tasks contain another 419 cards. A rule frozen
 before task/card disposition therefore routes 15,174 cards to later content review
-and 838 to structure-only release, withholding both code and stdout for every
-matched or unscanned card. Producer A/B, an independently implemented verifier, and
+and 838 to a planned structure-only public tier, withholding both code and stdout
+for every matched or unscanned card. Producer A/B, an independently implemented verifier, and
 an independent postflight reconstruction are byte-exact. “Content-review eligible”
 is deliberately not called clean or cleared: raw-match adjudication, the two missing
 prepared sources, credential/PII/path checks, and legal review remain. All 25
@@ -621,7 +622,7 @@ batches (9,901 rows), leaving five batches (6,111 rows) unresolved on that separ
 axis, while two Qwen-annotated batches also lack a collection-time contracting entity
 and terms record. Provider-output terms, final licenses/notices, and privacy/path
 scanning therefore remain release gates. Croissant 1.1 and Responsible AI 1.0 generation is now backed
-by a value-free, independently checked builder over all 10 release resources, but
+by a value-free, independently checked builder over all 10 candidate resources, but
 the final JSON-LD is deliberately absent until the real license, landing page,
 creator, publication date, and content base URL are fixed and every independent
 release gate closes. The remaining role-separated decisions, acceptable closure
@@ -647,7 +648,7 @@ A useful critic for ML-engineering search must be cheaper than execution, but a
 credible benchmark must also say which choices, runs, tasks, and information states
 its score represents. Decision Corpus provides provenance-bound sibling fragments,
 a cost-aware common-support predictor suite, and an executable audit trail for that
-measurement problem. Its historical release shows that run isolation, label
+measurement problem. Its historical build shows that run isolation, label
 repeatability, exact opportunity-yield size bias, and graph-basis sensitivity change
 what a predictor number means, even when they do not change model ordering. Its sealed
 temporal cohort is designed to test whether those results transport without repeated

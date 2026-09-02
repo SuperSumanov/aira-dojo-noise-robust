@@ -8,7 +8,7 @@
 
 ### Panel A. Direct MLE data/resources
 
-| Resource | Primary released unit | Main research objective | Execution-derived supervision | Canonical true-sibling decision unit | Independent predictor benchmark | Physical-run/time-forward isolation | Outcome-blind closure | Boundary relevant to our claim |
+| Resource | Primary data / evaluation unit | Main research objective | Execution-derived supervision | Canonical true-sibling decision unit | Independent predictor benchmark | Physical-run/time-forward isolation | Outcome-blind closure | Boundary relevant to our claim |
 |---|---|---|---|---|---|---|---|---|
 | [ML-Agent](https://arxiv.org/html/2505.23723v2) | 10,000 linear expert execution trajectories over 9 MLE tasks | SFT + step-wise PPO of the actor | Yes; error/action/success metric-change reward | Not its primary released/evaluated unit | No systematic cross-family critic benchmark reported as its primary contribution | Held-out-task transfer, not our run/component/chronological decision split | Not reported as a primary protocol | Closes “first large execution-grounded MLE trajectories” and actor-learning claims |
 | [Frontis-MA1 / OpenMLE](https://arxiv.org/abs/2607.28568) + [SFT traces](https://huggingface.co/datasets/FrontisAI/OpenMLE-SFT-Traces) | 26,259 public traces over 4,891 task names | Train Draft/Improve/Debug/Crossover operators and long-horizon evolution | Yes | Not its primary released/evaluated unit | No predictor-suite measurement study as primary contribution | Actor/search evaluation split, not our fixed decision-corpus estimand | Not reported as a primary protocol | Closes largest/first MLE training-trace and learned-operator claims |
@@ -33,11 +33,11 @@ joint cost/noise/pair-weight auditing. “Not reported” denotes scope after th
 
 ## Table 2. Corpus and benchmark population statistics
 
-### Panel A. Historical v11 release
+### Panel A. Historical v11 build
 
 | Population | Cards / pairs | Parents | Endpoints | Runs | Tasks | Boundary |
 |---|---:|---:|---:|---:|---:|---|
-| v11 card release | 16,012 cards | — | — | 667 heuristic segments | 25 | 14,339 cards have source-truth provenance; “run” here is the released heuristic segmentation |
+| v11 card build | 16,012 cards | — | — | 667 heuristic segments | 25 | 14,339 cards have source-truth provenance; “run” here is the audited heuristic segmentation |
 | all nine decision resources | 8,107 pairs | — | — | — | — | 7,579 parent-present strict core + 528 lineage-verifiable orphan-parent tier |
 | b0 train | 4,263 pairs | 2,293 | 5,499 | 333 | 23 | historical development only |
 | b0 frozen | 1,498 pairs | 845 | 2,022 | 92 | 22 | public labeled historical frozen set, not a secret leaderboard test |
@@ -63,7 +63,7 @@ leadership by raw node count.
 |---|---|---|---|
 | Physical-run split | same-budget train/frozen overlap is 0 in unordered pairs, endpoints, parents and referenced runs | leakage-resistant historical split on four explicit axes | pretraining decontamination or secrecy of public tasks |
 | Recorded-parent lineage | 8,107 direct-sibling rows; 7,579 strict parent-present; 528 orphan-parent tier; support gates 35/36 | transparent strict-core vs recoverable-fragment reporting | complete source opportunity sets or semantic/causal parent truth |
-| Source provenance | 14,339/16,012 cards (89.5516%) map uniquely to 592 journal SHA; 587/667 heuristic runs covered; 1,673 cards unmapped | quantified provenance coverage and unresolved tail | source-truth coverage for all released cards |
+| Source provenance | 14,339/16,012 cards (89.5516%) map uniquely to 592 journal SHA; 587/667 heuristic runs covered; 1,673 cards unmapped | quantified provenance coverage and unresolved tail | source-truth coverage for every corpus card |
 | Label repeatability | 207 usable cards, 10 tasks, 3,017 pair observations; raw agreement 0.965860; task-macro 0.980181 | labels are substantially more stable than chance on the measured subset | universal noise ceiling without symmetry/exchangeability assumptions |
 | Deployment cost | static LR/GBM/TF-IDF online pair query p50 is 4,048--6,037× below candidate execution p50 | predictors can be materially cheaper to query than executing programs | improved final score, wall-clock, or search utility |
 | Pair-induced weighting | exact pair-share = normalized run-share × opportunity-yield; run→pair task TV=0.337083; yield explains about 0.645/0.595 of HHI/TV increment | run-balanced collection can still yield pair-imbalanced benchmark weights, with explicit leverage bounds | new informative-cluster-size theory, universal causal law, or a deletion-robust magnitude |

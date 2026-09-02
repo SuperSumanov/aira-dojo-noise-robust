@@ -1,5 +1,10 @@
 # Decision Corpus Data Card — Draft v0.1（2026-09-02）
 
+> Vocabulary: historical “release IDs” in manifests denote immutable internal corpus
+> build versions. They do not imply public distribution or legal/content clearance.
+> Public payload status is governed only by Sections 11--12 and is currently
+> **PARTIAL / NOT RELEASE CLEARED**.
+
 > 状态：`INTERNAL_DRAFT_NOT_RELEASE_CLEARED`。本卡服从 `CURRENT_DIRECTION.md`、
 > `PAPER_BLUEPRINT_DECISION_CORPUS_20260902.md` 与 Evidence Index v10。它区分已核验数据事实、前瞻封存状态和
 > 尚未完成的法律/隐私发布门；不得把 draft 当最终许可意见。

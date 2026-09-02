@@ -33,7 +33,7 @@ internal evidence routing；prospective common-support 与 clean scaling 仍是�
 > linearized trajectories, physical-run leakage, incomplete choice sets, pair-induced reweighting, label noise, and
 > post-execution signals presented as free baselines. We introduce **Decision Corpus**, a rebuildable benchmark of
 > provenance-bound sibling decision fragments from real AIRA-dojo searches, paired with a common-support predictor suite
-> and a machine-verifiable audit protocol. The historical v11 release contains 8,107 audited direct-sibling rows under
+> and a machine-verifiable audit protocol. The historical v11 build contains 8,107 audited direct-sibling rows under
 > recorded parent pointers; its parent-present strict core retains 7,579 rows, with zero same-budget train/frozen overlap
 > in pairs, endpoints, parents, or referenced physical runs. An independently regraded ten-task subset reaches 96.6%
 > raw and 98.0% task-macro ordering agreement, while lightweight predictor queries are 4,048--6,037 times cheaper than
@@ -43,7 +43,8 @@ internal evidence routing；prospective common-support 与 clean scaling 仍是�
 > receipt remains the earlier 517-run prefix, while labels and predictions remain hidden until the preregistered first-960 closure.
 > **[CLOSURE SLOT: one-shot common-pool predictor table.] [OPTIONAL CONFIRMATION SLOT: clean 0.6B-to-8B scaling.]**
 > Decision Corpus turns critic evaluation for ML-agent search into a versioned, cost-aware, leakage-resistant measurement
-> problem and releases the data, reconstruction manifests, withdrawal ledger, and independent verifiers needed to audit it.
+> problem. Reconstruction manifests, the withdrawal ledger, and independent verifiers are repository artifacts; public
+> content-bearing payloads remain conditional on the stated review gates.
 
 摘要中的前瞻句在 closure 前只能保留为内部占位；正式投稿不得出现未揭盲效果、accuracy 或 utility。
 
@@ -133,7 +134,7 @@ internal evidence routing；prospective common-support 与 clean scaling 仍是�
 - 数据生产、archive taxonomy 与 credential-first intake。
 - physical run → endpoint → decision parent → sibling relation。
 - finite numeric orientation、status-certified partial order、unknown relation 三者分开。
-- historical release、chronological prospective cohort、prediction escrow 与 closure。
+- historical build、chronological prospective cohort、prediction escrow 与 closure。
 - 数据许可、Kaggle task access、隐私与去标识化。
 
 ### 4 Benchmark Tasks and Predictors

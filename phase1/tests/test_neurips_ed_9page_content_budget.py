@@ -7,6 +7,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT = ROOT / "phase1/neurips_ed_9page_content_budget_v1.json"
 NOTE = ROOT / "phase1/NEURIPS_ED_9PAGE_CONTENT_BUDGET_20260902.md"
+RECEIPT = ROOT / "phase1/neurips_ed_9page_budget_postpush_receipt_20260902.json"
+CURRENT = ROOT / "phase1/CURRENT_DIRECTION.md"
 
 
 def load_contract() -> dict:
@@ -80,3 +82,21 @@ def test_measurement_did_not_open_sealed_results_or_authorize_compute() -> None:
     assert security["paid_api_calls"] == 0
     assert security["model_fits"] == 0
     assert security["base_llm_updates"] == 0
+
+
+def test_postpush_receipt_and_direction_bind_verified_budget() -> None:
+    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+    current = CURRENT.read_text(encoding="utf-8")
+    assert receipt["exact_public_commit"] == (
+        "eff226a40107357ba54262ce7a8512488207d2b5"
+    )
+    assert receipt["successful_verification"]["focused_tests"]["passed"] == 12
+    assert receipt["successful_verification"]["full_phase1_tests"]["passed"] == 2185
+    assert receipt["successful_verification"]["full_phase1_tests"]["failed"] == 0
+    assert receipt["frozen_budget"]["maximum_content_pages"] == 9.0
+    assert receipt["frozen_budget"]["target_prose_words"] == 3980
+    assert receipt["interpretation"]["counts_as_distinct_claim_evidence"] is False
+    assert sum(receipt["security"].values()) == 0
+    assert "## 0L0o." in current
+    assert "16 个内容页" in current
+    assert "9.0 content pages / 3,980 prose words" in current

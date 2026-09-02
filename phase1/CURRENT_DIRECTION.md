@@ -3,6 +3,31 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0o. 2026-09-02 主稿官方样式基线为 16 个内容页；9 页压缩路线已冻结
+
+不再用 Markdown 字数猜投稿就绪度。当前 v0.7 的 6,476 词稿已用官方 2026 `neurips_2026.sty` 的 `eandd`
+submission mode 和摘要校验过的 Tectonic 0.16.9 实际渲染；2027 call/style 尚未发布，故该模板只作 provisional page gate。
+结果为 17 个 PDF pages，正文仍延伸到 page 16、references 从 page 16 下半开始，绝非“只超两页”。PDF=508,714 bytes、
+SHA-256=`d600c931...e760`，本地保留但不进 Git，也不是 submission candidate。
+
+17/17 页视觉检查定位到明确结构缺陷：Markdown H1 与 LaTeX title 重复、内部 governance note 和 evidence routing 出现在
+稿内、abstract 未进入正式环境、Table 1/2 与 full audit matrix 各占近两页且出现一词宽/重叠列、caption 带内部路径，
+checklist 也尚未完成。不得通过缩字号、改边距或挤行修复。
+
+下一稿硬预算固定为 9.0 content pages / 3,980 prose words：abstract+intro=`1.4/780`、related=`0.6/350`、
+corpus+protocol=`1.8/600`、predictor/audit methods=`1.7/700`、audit findings=`1.5/500`、results=`1.2/550`、
+limitations/release/conclusion=`0.8/500`。主文保留 Figure 1/2、一个紧凑语料表、成本小表、opportunity-yield identity、
+精简 audit 边界和 Table 4A；full related-work matrix、详细 population tables、完整 derivation/audit matrix、per-task 与 receipts
+进附录。empty Table 4B 与未闭合 Table 5 不是附录材料，而是从投稿稿删除。
+
+公开实现 commit=`eff226a40107357ba54262ce7a8512488207d2b5`。远端 fresh detached r1 在 `umask 077` 下通过
+focused/full=`12/2,185 passed`、48 warnings、0 failures，两个 test stderr 0 bytes；changed files=`3`、credential
+filename/content=`0/0`、日志 manifest=`b18fcfd4...d565`。12/12 日志在本地独立核 hash，随后精确远端 worktree、日志根
+和 helpers 已清理。本次只形成 submission-engineering 约束，`counts_as_distinct_claim_evidence=false`，不改变科学数字、
+sealed slot、first-960/config-v2/closure/GPU 门。prospective value/identity read=`false/false`，GPU/API/model-fit/base-update=
+`0/0/0/0`。见 `phase1/NEURIPS_ED_9PAGE_CONTENT_BUDGET_20260902.md` 与
+`phase1/neurips_ed_9page_budget_postpush_receipt_20260902.json`。
+
 ## 0L0n. 2026-09-02 最新 E&D 官方模板与项目定位高度匹配，但投稿可用性成为 20 天硬主线
 
 2027 call 尚未发布；因此只用最新 2026 NeurIPS Evaluations & Datasets 官方 call、hosting/RAI guidance、FAQ、

@@ -1,0 +1,82 @@
+{
+  "protocol": "neurips-ed-nine-page-budget-postpush-receipt-v1",
+  "status": "VERIFIED_BASELINE_OVER_BUDGET_AND_EDITORIAL_ROUTE_FROZEN",
+  "exact_public_commit": "eff226a40107357ba54262ce7a8512488207d2b5",
+  "parent_commit": "2844624e8e5a7be0033bc22d2fc7947a81e6de1b",
+  "baseline_render": {
+    "official_template_year": 2026,
+    "target_call_year": 2027,
+    "target_call_published": false,
+    "input_words": 6476,
+    "total_pdf_pages": 17,
+    "last_page_containing_main_content": 16,
+    "references_begin_on_page": 16,
+    "pdf_bytes": 508714,
+    "pdf_sha256": "d600c9313e256ccfd4e4274237ee82ef2750186a6769296d339ae6b79846e760",
+    "visual_qa_pages_rendered": 17,
+    "submission_candidate": false,
+    "pdf_committed": false
+  },
+  "frozen_budget": {
+    "maximum_content_pages": 9.0,
+    "target_prose_words": 3980,
+    "section_page_budget_sum": 9.0,
+    "full_related_work_matrix_in_main": false,
+    "detailed_population_tables_in_main": false,
+    "full_audit_matrix_in_main": false,
+    "empty_prospective_result_placeholder_allowed": false
+  },
+  "successful_verification": {
+    "attempt": "r1",
+    "utc_completed": "2026-09-02T12:11:22Z",
+    "fresh_detached_exact_checkout": true,
+    "git_lfs_smudge_disabled": true,
+    "umask": "077",
+    "clean_before_tests": true,
+    "focused_tests": {
+      "passed": 12,
+      "failed": 0,
+      "duration_seconds": 0.12
+    },
+    "full_phase1_tests": {
+      "passed": 2185,
+      "failed": 0,
+      "warnings": 48,
+      "duration_seconds": 158.01
+    },
+    "focused_stderr_bytes": 0,
+    "full_stderr_bytes": 0,
+    "changed_paths_sha256": "6f379b8f45f044104d7d92cac39cec1905c59bca1863eec6998d4489a3111248",
+    "focused_stdout_sha256": "cbee9c0722fd6a09c9cc31d458a52e1ef59156c120e1c47c8ca9ed985131253a",
+    "full_stdout_sha256": "44a2c94a5c699b332752655e0cbf618da561756b2f79608538e7b42028619074",
+    "log_manifest_sha256": "b18fcfd4e5fa82e063c1f12aca72cfca956b9ae8f25b261f77f9f78eeedbd565"
+  },
+  "interpretation": {
+    "word_count_alone_is_a_page_gate": false,
+    "successful_compile_is_submission_readiness": false,
+    "large_tables_require_main_to_appendix_routing": true,
+    "counts_as_distinct_claim_evidence": false,
+    "scientific_result_changed": false,
+    "must_revalidate_2027_style": true
+  },
+  "security": {
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0,
+    "prospective_labels_or_outcomes_read": false,
+    "prospective_prediction_values_read": false,
+    "prospective_accuracy_or_utility_computed": false,
+    "prospective_candidate_identities_or_profiles_read": false,
+    "raw_archive_payload_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "cleanup": {
+    "local_log_files_hash_verified": 12,
+    "local_log_files_missing_or_mismatched": 0,
+    "remote_exact_worktree_removed": true,
+    "remote_exact_log_root_removed_after_verified_local_copy": true,
+    "remote_helpers_removed": true
+  }
+}

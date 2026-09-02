@@ -1,0 +1,117 @@
+{
+  "protocol": "neurips-ed-nine-page-content-budget-v1",
+  "status": "PROVISIONAL_2026_TEMPLATE_BASELINE_NOT_SUBMISSION_CANDIDATE",
+  "target_call": {
+    "venue": "NeurIPS Evaluations & Datasets",
+    "year": 2027,
+    "call_published": false,
+    "provisional_template_year": 2026,
+    "official_template_url": "https://media.neurips.cc/Conferences/NeurIPS2026/Formatting_Instructions_For_NeurIPS_2026.zip",
+    "official_template_zip_bytes": 20259,
+    "official_template_zip_sha256": "82473931e3ef710fcd3f4a8cd4119b9de32e56825f90f9e5a6d55f2d01b817d9",
+    "official_style_sha256": "c3fc2894e83d2517ca18b66741d6c595986d97957dc08ec08bb2125a7ec4555a",
+    "must_revalidate_for_2027": true
+  },
+  "renderer": {
+    "name": "Tectonic",
+    "version": "0.16.9",
+    "official_release_url": "https://github.com/tectonic-typesetting/tectonic/releases/tag/tectonic%400.16.9",
+    "windows_asset_sha256": "131a24604785a9600989a3d91225f597df52ac06f00aeffe86fd529f99ee5cdd",
+    "pandoc_version": "3.6",
+    "submission_style_option": "eandd",
+    "natbib_disabled_because_citeproc_owns_references": true
+  },
+  "baseline": {
+    "public_commit": "2844624e8e5a7be0033bc22d2fc7947a81e6de1b",
+    "input_path": "phase1/PAPER_DRAFT_DECISION_CORPUS_20260902.md",
+    "input_sha256": "81d24f04c89c2f780d9b1664996dd2572f4bc6bd7e2d1956e2a52283dc92d925",
+    "bibliography_sha256": "63a85ac12aed8bcc5dd9fc4b9352fc71589cee959f16dd9fe2416956f276449b",
+    "input_words": 6476,
+    "pdf_sha256": "d600c9313e256ccfd4e4274237ee82ef2750186a6769296d339ae6b79846e760",
+    "pdf_bytes": 508714,
+    "total_pdf_pages": 17,
+    "last_page_containing_main_content": 16,
+    "references_begin_on_page": 16,
+    "within_nine_content_pages": false,
+    "visual_qa_pages_rendered": 17,
+    "submission_candidate": false
+  },
+  "main_text_budget": {
+    "maximum_content_pages": 9.0,
+    "target_prose_words": 3980,
+    "sections": [
+      {
+        "name": "abstract_and_introduction",
+        "target_pages": 1.4,
+        "target_words": 780
+      },
+      {
+        "name": "related_work",
+        "target_pages": 0.6,
+        "target_words": 350
+      },
+      {
+        "name": "corpus_and_sealed_protocol",
+        "target_pages": 1.8,
+        "target_words": 600
+      },
+      {
+        "name": "predictor_and_audit_methods",
+        "target_pages": 1.7,
+        "target_words": 700
+      },
+      {
+        "name": "audit_findings",
+        "target_pages": 1.5,
+        "target_words": 500
+      },
+      {
+        "name": "benchmark_results",
+        "target_pages": 1.2,
+        "target_words": 550
+      },
+      {
+        "name": "limitations_release_and_conclusion",
+        "target_pages": 0.8,
+        "target_words": 500
+      }
+    ]
+  },
+  "main_text_keep": [
+    "single-paragraph abstract without sealed numerical promise",
+    "problem statement and four scoped contributions",
+    "Figure 1 corpus units and sealed protocol",
+    "one compact historical-plus-prospective structural table",
+    "estimands, exact common support, and dependence-aware uncertainty",
+    "one compact initialization-query-execution cost table",
+    "opportunity-yield identity and Figure 2",
+    "condensed audit findings with explicit non-claims",
+    "historical exact-common-support Table 4A",
+    "prospective protocol status without an empty result promise",
+    "limitations, release state, and conclusion"
+  ],
+  "move_to_appendix": [
+    "full direct-competitor and benchmark-governance matrix",
+    "detailed historical and prospective population tables",
+    "complete graph-basis derivation and proofs",
+    "full audit-readout and validity-boundary matrix",
+    "per-task, task-deletion, and secondary robustness tables",
+    "reconstruction receipts and full claim-withdrawal ledger",
+    "complete evidence routing"
+  ],
+  "remove_from_submission": [
+    "internal draft governance note",
+    "duplicate title heading",
+    "internal filesystem paths from prose and captions",
+    "empty sealed Table 4B promise",
+    "conditional Table 5 promise without a completed frozen gate"
+  ],
+  "security": {
+    "prospective_values_or_identities_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0,
+    "counts_as_distinct_claim_evidence": false
+  }
+}

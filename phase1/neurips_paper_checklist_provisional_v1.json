@@ -1,0 +1,231 @@
+{
+  "protocol": "decision-corpus-neurips-paper-checklist-provisional-v1",
+  "status": "PROVISIONAL_NOT_SUBMISSION_READY",
+  "date": "2026-09-03",
+  "target": {
+    "venue": "NeurIPS Evaluations & Datasets",
+    "target_year": 2027,
+    "target_call_published": false,
+    "provisional_template_year": 2026,
+    "must_revalidate_after_2027_call": true
+  },
+  "official_sources": [
+    "https://neurips.cc/public/guides/PaperChecklist",
+    "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets",
+    "https://neurips.cc/Conferences/2026/EvaluationsDatasetsHosting",
+    "https://neurips.cc/Conferences/2026/MainTrackHandbook"
+  ],
+  "bindings": {
+    "base_paper": "phase1/PAPER_DRAFT_DECISION_CORPUS_9PAGE_20260902.md",
+    "base_paper_sha256": "cff6ecc97cd82dade64f5f1f0a676bf18c11fcd76066b279befcb9228565ebe8",
+    "base_appendix": "phase1/PAPER_REPRODUCIBILITY_APPENDIX_DRAFT_20260902.md",
+    "base_appendix_sha256": "9eeeee078526ef67b1344c2c32417097e5b3c824304044c031266a81a46141a4",
+    "official_checklist_template": "phase1/render/neurips_2026_checklist_template.tex",
+    "official_checklist_source_sha256": "780ba13c480f652dcc42e69ed61a752ce0ea270f15d332d4a45b059dabad84f6",
+    "official_checklist_template_sha256": "414592037db2323611038f3bcf3321b29b5e5183cdc071e90e73e7420a99fbce",
+    "official_checklist_template_normalization": "UTF-8/LF with trailing horizontal whitespace removed",
+    "generated_outputs": {
+      "paper": {
+        "path": "phase1/PAPER_DRAFT_DECISION_CORPUS_CHECKLIST_20260903.md",
+        "sha256": "6aca55510465e6efb89fcd7a2c0d9c18f159ef5f432689b5cc7908ce433e565c"
+      },
+      "appendix": {
+        "path": "phase1/PAPER_REPRODUCIBILITY_APPENDIX_DRAFT_20260903.md",
+        "sha256": "51a88b1cf0d417b45658fb537a4057b4f8b504dd10dec16bbafabbe503d4bc68"
+      },
+      "checklist_tex": {
+        "path": "phase1/render/decision_corpus_neurips_2026_checklist_provisional.tex",
+        "sha256": "f58a5ca34ca4eb5d0217bcbfe59ed9c0ea52fe51136c1d9cb0a8ad5b1e678cc7"
+      }
+    }
+  },
+  "summary": {
+    "items": 16,
+    "yes": 7,
+    "no": 5,
+    "not_applicable_or_not_available": 4,
+    "hard_submission_blockers": [4, 5, 8, 12, 13],
+    "author_attestation_required": [9],
+    "desk_reject_risk_items_for_a_benchmark_submission": [4, 5, 12, 13]
+  },
+  "items": [
+    {
+      "number": 1,
+      "title": "Claims",
+      "question_tex": "Do the main claims made in the abstract and introduction accurately reflect the paper's contributions and scope?",
+      "answer": "Yes",
+      "latex_answer": "\\answerYes{}",
+      "status": "SUPPORTED",
+      "justification": "The abstract and Introduction delimit the contribution to provenance-bound sibling fragments, predictor measurement, cost, and audit protocol, and explicitly exclude complete choice sets, universal transport, and end-to-end search improvement. See the Abstract and Introduction.",
+      "evidence": ["Abstract", "Introduction"]
+    },
+    {
+      "number": 2,
+      "title": "Limitations",
+      "question_tex": "Does the paper discuss the limitations of the work performed by the authors?",
+      "answer": "Yes",
+      "latex_answer": "\\answerYes{}",
+      "status": "SUPPORTED",
+      "justification": "The paper discusses incomplete sibling fragments, reconstructed runs, task and generator dependence, pretraining contamination, release constraints, and non-causal interpretation. See Limitations, governance, and release and Appendix A.1, A.3, A.9, and A.10.",
+      "evidence": ["Limitations, governance, and release", "Appendix A.1", "Appendix A.3", "Appendix A.9", "Appendix A.10"]
+    },
+    {
+      "number": 3,
+      "title": "Theory assumptions and proofs",
+      "question_tex": "For each theoretical result, does the paper provide the full set of assumptions and a complete (and correct) proof?",
+      "answer": "N/A",
+      "latex_answer": "\\answerNA{}",
+      "status": "SUPPORTED_NOT_APPLICABLE",
+      "justification": "The paper makes no theorem or new mathematical-result claim. The opportunity-yield and spanning-tree expressions are algebraic estimand definitions or established identities, are scoped as non-novel, and are checked computationally rather than presented as new theory.",
+      "evidence": ["Predictor benchmark and audit estimands", "Appendix A.9"]
+    },
+    {
+      "number": 4,
+      "title": "Experimental result reproducibility",
+      "question_tex": "Does the paper fully disclose all the information needed to reproduce the main experimental results of the paper to the extent that it affects the main claims and/or conclusions of the paper (regardless of whether the code and data are provided or not)?",
+      "answer": "No",
+      "latex_answer": "\\answerNo{}",
+      "status": "BLOCKED",
+      "justification": "The manuscript discloses populations, estimands, hashes, settings, and inference, but the reviewer-accessible package still lacks the content-bearing v11 rebuild and the 931-row prediction inputs needed to recompute the headline historical table. The aggregate preview can verify scope and regenerate figures but cannot reproduce every main result.",
+      "evidence": ["Appendix A.1-A.13", "Anonymous reviewer artifact capability boundary"]
+    },
+    {
+      "number": 5,
+      "title": "Open access to data and code",
+      "question_tex": "Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?",
+      "answer": "No",
+      "latex_answer": "\\answerNo{}",
+      "status": "BLOCKED_DESK_REJECT_RISK",
+      "justification": "A deterministic anonymous aggregate preview exists locally, but no anonymous reviewer-accessible hosted content-bearing dataset and code URL has been approved. Provider terms, task licenses, privacy and content review, and the minimum legal release tier remain open.",
+      "evidence": ["Limitations, governance, and release", "Appendix A.10"]
+    },
+    {
+      "number": 6,
+      "title": "Experimental setting/details",
+      "question_tex": "Does the paper specify all the training and test details (e.g., data splits, hyperparameters, how they were chosen, type of optimizer) necessary to understand the results?",
+      "answer": "Yes",
+      "latex_answer": "\\answerYes{}",
+      "status": "SUPPORTED",
+      "justification": "The paper and supplement define the physical-run and component splits, development-only selection, exact static and TF-IDF estimator settings, seeds, common support, and cost-measurement protocol. See From search archives to Decision Corpus, Predictor benchmark and audit estimands, and Appendix A.4, A.5, and A.12.",
+      "evidence": ["From search archives to Decision Corpus", "Predictor benchmark and audit estimands", "Appendix A.4", "Appendix A.5", "Appendix A.12"]
+    },
+    {
+      "number": 7,
+      "title": "Experiment statistical significance",
+      "question_tex": "Does the paper report error bars suitably and correctly defined or other appropriate information about the statistical significance of the experiments?",
+      "answer": "Yes",
+      "latex_answer": "\\answerYes{}",
+      "status": "SUPPORTED",
+      "justification": "Headline intervals resample tasks rather than treating dependent pairs as independent; paired contrasts, run and parent sensitivities, and task deletion are reported where applicable. The current historical UST table uses 20,000 percentile replicates with fixed task and parent seeds. See Common support, cost, and dependence and Appendix A.9 and A.12.",
+      "evidence": ["Common support, cost, and dependence", "Appendix A.9", "Appendix A.12"]
+    },
+    {
+      "number": 8,
+      "title": "Experiments compute resources",
+      "question_tex": "For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?",
+      "answer": "No",
+      "latex_answer": "\\answerNo{}",
+      "status": "BLOCKED",
+      "justification": "CPU model, software, affinity, fits, warmups, and query counts are disclosed for the reported deployment-cost attestation, but total corpus-production compute, storage, historical model and judge development, and preliminary or failed GPU/API work have not yet been consolidated. See Appendix A.12.",
+      "evidence": ["Appendix A.12"]
+    },
+    {
+      "number": 9,
+      "title": "Code of ethics",
+      "question_tex": "Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics \\url{https://neurips.cc/public/EthicsGuidelines}?",
+      "answer": "N/A",
+      "latex_answer": "\\answerNA{}",
+      "status": "AUTHOR_ATTESTATION_REQUIRED",
+      "justification": "This is a provisional checklist: the authors have not yet completed and attested a line-by-line review of the NeurIPS Code of Ethics. This answer must be revisited by the authors before submission and may not be auto-promoted by the artifact pipeline.",
+      "evidence": ["Author review required"]
+    },
+    {
+      "number": 10,
+      "title": "Broader impacts",
+      "question_tex": "Does the paper discuss both potential positive societal impacts and negative societal impacts of the work performed?",
+      "answer": "Yes",
+      "latex_answer": "\\answerYes{}",
+      "status": "SUPPORTED",
+      "justification": "The successor draft discusses improved evaluation reliability and reduced wasted execution, together with risks from benchmark overfitting, unsafe code automation, and disclosure of competition, provider, path, or credential content. See Broader impacts, safeguards, and LLM use.",
+      "evidence": ["Broader impacts, safeguards, and LLM use"]
+    },
+    {
+      "number": 11,
+      "title": "Safeguards",
+      "question_tex": "Does the paper describe safeguards that have been put in place for responsible release of data or models that have a high risk for misuse (e.g., pre-trained language models, image generators, or scraped datasets)?",
+      "answer": "Yes",
+      "latex_answer": "\\answerYes{}",
+      "status": "SUPPORTED",
+      "justification": "The paper describes credential-first scanning, path and content review, provider and license clearance, no redistribution of raw competition data, a structure-only fallback, append-only sanitization, and continued sealing of prospective outcomes. See Broader impacts, safeguards, and LLM use and Appendix A.10.",
+      "evidence": ["Broader impacts, safeguards, and LLM use", "Appendix A.10"]
+    },
+    {
+      "number": 12,
+      "title": "Licenses for existing assets",
+      "question_tex": "Are the creators or original owners of assets (e.g., code, data, models), used in the paper, properly credited and are the license and terms of use explicitly mentioned and properly respected?",
+      "answer": "No",
+      "latex_answer": "\\answerNo{}",
+      "status": "BLOCKED",
+      "justification": "The main software and research assets are cited, but per-task competition rules, provider-output terms, derived-artifact licensing, LICENSE/NOTICE, and the final license registry are not complete. No release-clearance claim is made. See Appendix A.10.",
+      "evidence": ["Related work", "Appendix A.10"]
+    },
+    {
+      "number": 13,
+      "title": "New assets",
+      "question_tex": "Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?",
+      "answer": "No",
+      "latex_answer": "\\answerNo{}",
+      "status": "BLOCKED_DESK_REJECT_RISK",
+      "justification": "The corpus has a data card, rebuild contracts, audit appendix, and an aggregate preview, but the final anonymous landing page, content-bearing release, license, Croissant core and RAI record, and reviewer-accessible documentation bundle are not yet complete.",
+      "evidence": ["Appendix A.1-A.13", "Limitations, governance, and release"]
+    },
+    {
+      "number": 14,
+      "title": "Crowdsourcing and research with human subjects",
+      "question_tex": "For crowdsourcing experiments and research with human subjects, does the paper include the full text of instructions given to participants and screenshots, if applicable, as well as details about compensation (if any)?",
+      "answer": "N/A",
+      "latex_answer": "\\answerNA{}",
+      "status": "SUPPORTED_NOT_APPLICABLE",
+      "justification": "The study contains no crowdsourcing and no human-subject experiment. Its evaluated units are agent-generated programs and machine-produced execution records.",
+      "evidence": ["Broader impacts, safeguards, and LLM use"]
+    },
+    {
+      "number": 15,
+      "title": "Institutional review board (IRB) approvals or equivalent for research with human subjects",
+      "question_tex": "Does the paper describe potential risks incurred by study participants, whether such risks were disclosed to the subjects, and whether Institutional Review Board (IRB) approvals (or an equivalent approval/review based on the requirements of your country or institution) were obtained?",
+      "answer": "N/A",
+      "latex_answer": "\\answerNA{}",
+      "status": "SUPPORTED_NOT_APPLICABLE",
+      "justification": "No human participants or crowdsourced workers are involved, so an IRB or equivalent human-subject review is not applicable to the reported study.",
+      "evidence": ["Broader impacts, safeguards, and LLM use"]
+    },
+    {
+      "number": 16,
+      "title": "Declaration of LLM usage",
+      "question_tex": "Does the paper describe the usage of LLMs if it is an important, original, or non-standard component of the core methods in this research? Note that if the LLM is used only for writing, editing, or formatting purposes and does \\emph{not} impact the core methodology, scientific rigor, or originality of the research, declaration is not required.",
+      "answer": "Yes",
+      "latex_answer": "\\answerYes{}",
+      "status": "SUPPORTED",
+      "justification": "The paper identifies the LLM agent as the program generator and independent reward models or external LLM judges as predictor families, states how outputs are externally evaluated, reports provenance gaps, and states that the agent base model is not fine-tuned or RL-updated. See Broader impacts, safeguards, and LLM use.",
+      "evidence": ["Broader impacts, safeguards, and LLM use", "Predictor benchmark and audit estimands"]
+    }
+  ],
+  "security": {
+    "prospective_labels_or_outcomes_read": false,
+    "prospective_prediction_values_read": false,
+    "prospective_accuracy_or_utility_computed": false,
+    "prospective_candidate_identity_or_profile_read": false,
+    "raw_senior_outcome_content_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_model_updates": 0
+  },
+  "interpretation": {
+    "counts_as_distinct_scientific_evidence": false,
+    "checklist_presence_gate_closed": true,
+    "submission_readiness_closed": false,
+    "all_yes_claim_forbidden": true,
+    "provisional_answers_must_be_revalidated": true
+  }
+}

@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0t. 2026-09-03 用户纠正：加快科学进展，不是赶稿或转入审稿
+
+用户明确要求：加快的是实验与研究进度，尽力取得可复验的正面效果或验证正方向结论，不是提前赶稿。
+本节覆盖 0L0n–0L0s 及 `TWENTY_DAY_POSITIVE_RESULT_SPRINT_20260902.md` 中将投稿工件设为最高或同等
+优先级的安排。立即暂停主动推进 manuscript、版式、checklist、compute ledger、anonymous reviewer artifact
+与对抗审稿；已完成文件保留，但不得继续将其计为科学进展或未来 20 天的主要交付。
+
+下一步优先级：
+
+1. 从最新学长 outcome 与已验证失败链出发，选择能直接检验 critic/选择器效果的实验；问题、对照、数据边界、
+   预算与成功/停止条件必须在新输出前固定。解释代码和补测试是实验的必要手段，不能再取代效果验证本身。
+2. 历史开发与前瞻确认分开推进：允许准备新的历史开发实验，不以等待 first-960 为由只做行政工件；
+   但历史测试已经被反复查看，任何新增历史结果必须标为探索，不得冒充未触碰确认。
+3. clean scaling v2 仍是有条件确认线；真实 global supervision 到 local sibling decision 的迁移、独立 verifier
+   的 full-context 诊断是待核验候选，不是已成立正结论。先查最新 outcome、已有协议和运行资产，不能仅凭
+   0820 scaling 表忽略 0828 的不稳定/过拟合结果，也不能重复已 KILL/NO_UNLOCK 的低容量方案。
+4. intake 与必要结构守护继续作为保障。不要重复组合同一 aggregate、堆微型审计或累计测试数量来替代新效果。
+
+本纠正不授权突破实验完整性或费用门：first-960/Target-300/Target-522 的 sealed values/identities 仍不得读取；
+first-960 + closure、config-v2 outcome-before provenance 与独立复验门不变；不更新 agent 底座，不恢复 HCE、
+多保真、Probe、score-channel effect、K>=1 lookahead 或已关闭的 Target-522 rescue。旧协议中的 GPU/API/model-fit
+授权不能由本节推定为已放行。长贵实验仍须 exact matrix、总 runs、硬墙钟/费用上限与用户预算批准。
+
+进展汇报首先回答“新实验实际启动了吗、结果支持还是反对什么、下一步是什么”，不能再以论文页数、回执数或
+测试通过数回答“正方向有什么进展”。若当前只能准备、未启动，应直接写明，不用 readiness 冒充运行。
+
 ## 0L0s. 2026-09-03 官方 checklist 已进入可视化内审稿；5 个真实投稿阻塞仍不得隐藏
 
 以 2026 NeurIPS 官方 16 项 checklist 作为 2027 E&D 的 provisional 门，已生成并纳入主稿：答案为

@@ -314,9 +314,13 @@ explicit RPM-style inference-only prompt-transfer row. It is only a reproduction
 the public prompt, model, context construction, tournament, and inference budget are
 all matched; otherwise it is named as a transfer baseline. Its predictions remain
 escrowed under the same closure and common-support rules as every other family.
-The optimized prompt is byte-bound to the latest v2 TeX source, but the exact model,
-context-node builder, and call budget are not yet frozen; source reproducibility must
-not be reported as a completed baseline run.
+The optimized prompt is byte-bound to the latest v2 TeX source. The structural
+context policy is also frozen: it admits only same-run, same-task nodes executed
+strictly before the earliest candidate step, uses the then-visible self-reported
+validation rather than the post-hoc external grade, and is identical for every pair
+and orientation under a parent. The exact model, tokenizer-based context packing,
+and call budget remain unresolved; prompt and context readiness must not be reported
+as a completed baseline run.
 
 Historical model development uses train-run development only. A checkpoint cannot be
 selected through repeated evaluation on the frozen temporal cohort. Any future

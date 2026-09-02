@@ -71,6 +71,17 @@ def test_render_requires_all_decision_time_fields() -> None:
         )
 
 
+def test_render_refuses_credential_shaped_payload_without_storing_a_key_literal() -> None:
+    fake = "sk-" + "x" * 20
+    with pytest.raises(rpm.RPMTransferError, match="credential-shaped"):
+        rpm.render_prompt(
+            task_desc="task",
+            context_text="context",
+            candidate_a=rpm.CandidateText("plan-a", f"credential = {fake!r}"),
+            candidate_b=rpm.CandidateText("plan-b", "code-b"),
+        )
+
+
 @pytest.mark.parametrize(
     ("content", "choice", "status"),
     [

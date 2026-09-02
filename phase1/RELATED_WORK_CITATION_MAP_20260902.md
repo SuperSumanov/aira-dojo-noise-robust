@@ -125,8 +125,11 @@ source is 458,133 bytes with SHA-256
 Its optimized-prompt block is checked in byte-exact at
 `phase1/baselines/rpm_inference_only_optimized_v2.txt` (1,950 bytes, SHA-256
 `d64763172087a4243ddfa3ff364fad071c552af0783e5786a301a37bc338ff96`).
-The accompanying contract and network-free renderer do not authorize a model call;
-model/context/cost and the outcome-blind panel remain separate pre-run gates.
+The accompanying contract and network-free renderer do not authorize a model call.
+A supplemental context contract now fixes the same-run/task, strictly pre-candidate
+selection rule and permits only then-visible self-reported validation, never the
+post-hoc external grade. Exact tokenizer-based node packing, model, cost, content
+clearance, and the outcome-blind panel remain separate pre-run gates.
 
 Minimum result-time reporting for this row:
 

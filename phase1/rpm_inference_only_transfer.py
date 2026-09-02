@@ -32,6 +32,13 @@ PLACEHOLDER_COUNTS = {
 }
 BOXED_CHOICE = re.compile(r"\\boxed\s*\{\s*([AB])\s*\}", re.IGNORECASE)
 TRAILING_PUNCTUATION = re.compile(r"^[\s.!]*$")
+CREDENTIAL_SHAPE = re.compile(
+    r"(?:^|[^A-Za-z0-9])(?:sk-(?:or-v1-|ws-)?[A-Za-z0-9._-]{16,}|"
+    r"hf_[A-Za-z0-9]{16,}|gh[pousr]_[A-Za-z0-9]{16,}|"
+    r"AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|"
+    r"Bearer\s+[A-Za-z0-9._~-]{20,}|"
+    r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----)"
+)
 
 
 class RPMTransferError(RuntimeError):
@@ -74,6 +81,12 @@ def _required_text(value: object, label: str) -> str:
     return value
 
 
+def _external_text(value: object, label: str) -> str:
+    text = _required_text(value, label)
+    require(CREDENTIAL_SHAPE.search(text) is None, f"{label} contains credential-shaped text")
+    return text
+
+
 def load_frozen_prompt(path: Path = PROMPT_PATH) -> str:
     """Load the exact prompt extracted from the arXiv v2 TeX source."""
 
@@ -104,12 +117,12 @@ def render_prompt(
     for placeholder, expected in PLACEHOLDER_COUNTS.items():
         require(source.count(placeholder) == expected, f"template placeholder drift: {placeholder}")
     replacements: Mapping[str, str] = {
-        "{task_desc}": _required_text(task_desc, "task_desc"),
-        "{context_text}": _required_text(context_text, "context_text"),
-        "{plan_A}": _required_text(candidate_a.plan, "candidate_a.plan"),
-        "{code_A}": _required_text(candidate_a.code, "candidate_a.code"),
-        "{plan_B}": _required_text(candidate_b.plan, "candidate_b.plan"),
-        "{code_B}": _required_text(candidate_b.code, "candidate_b.code"),
+        "{task_desc}": _external_text(task_desc, "task_desc"),
+        "{context_text}": _external_text(context_text, "context_text"),
+        "{plan_A}": _external_text(candidate_a.plan, "candidate_a.plan"),
+        "{code_A}": _external_text(candidate_a.code, "candidate_a.code"),
+        "{plan_B}": _external_text(candidate_b.plan, "candidate_b.plan"),
+        "{code_B}": _external_text(candidate_b.code, "candidate_b.code"),
     }
     rendered = source
     for placeholder, value in replacements.items():

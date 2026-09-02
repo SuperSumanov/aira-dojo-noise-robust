@@ -1,0 +1,112 @@
+{
+  "protocol": "decision-corpus-rpm-decision-time-context-v1",
+  "version": 1,
+  "status": "STRUCTURAL_CONTEXT_POLICY_FROZEN_TOKEN_PACKING_NOT_YET_FROZEN",
+  "frozen_date_utc": "2026-09-02",
+  "purpose": "Build the historical-context placeholder for the source-bound RPM inference-only prompt without using candidate outcomes or external grades.",
+  "source_semantics": {
+    "task_and_run_scope": "same task and same physical run as the complete candidate sibling set",
+    "candidate_set": "all recorded candidates under the decision parent, not only the displayed pair",
+    "cutoff": "strictly before the minimum journal step among all candidates in the sibling set",
+    "candidate_records_in_history_input_allowed": false,
+    "later_or_same_step_history_allowed": false,
+    "cross_run_or_cross_task_history_allowed": false,
+    "required_score_field": "obs.val_at_low",
+    "score_interpretation": "self-reported validation available after the historical node executed",
+    "external_grade_or_label_allowed": false,
+    "runtime_stdout_error_or_posthoc_provenance_allowed": false,
+    "required_node_fields": [
+      "node_id_sha256",
+      "run_id_sha256",
+      "task",
+      "step",
+      "operator",
+      "code",
+      "self_reported_validation",
+      "higher_is_better"
+    ]
+  },
+  "selection": {
+    "eligibility": "finite self-reported validation, nonempty code/operator, and step strictly below the sibling-set cutoff",
+    "ordering": [
+      "journal step descending",
+      "node identity SHA-256 ascending"
+    ],
+    "ordering_uses_external_grade": false,
+    "ordering_uses_candidate_outcome": false,
+    "empty_context_literal": "[{\"context_status\":\"NO_PRIOR_EXECUTED_SCORED_NODE\"}]",
+    "same_context_for_every_pair_and_orientation_within_parent": true
+  },
+  "serialization": {
+    "format": "one canonical compact JSON object per line",
+    "terminal_newline": false,
+    "emitted_fields": [
+      "code",
+      "context_rank",
+      "journal_step",
+      "operator",
+      "optimization_direction",
+      "score_type",
+      "self_reported_validation"
+    ],
+    "score_type_literal": "self_reported_validation",
+    "raw_or_hashed_node_identity_emitted": false,
+    "raw_or_hashed_candidate_identity_emitted": false,
+    "code_truncation_allowed": false,
+    "partial_node_truncation_allowed": false
+  },
+  "packing_boundary": {
+    "status": "NOT_YET_FROZEN",
+    "reason": "Exact model checkpoint, tokenizer, context window, system wrapper, reasoning budget, and output reserve remain unresolved.",
+    "future_rule": "Pack only a prefix of the frozen node order, preserve complete serialized nodes, and bind tokenizer plus exact token counts before any live call.",
+    "character_or_byte_budget_may_substitute_for_tokenizer": false,
+    "empty_context_is_reported_not_silently_dropped": true
+  },
+  "security": {
+    "credential_shape_gate_before_serialization": true,
+    "credential_hit_action": "fail closed for the entire decision group",
+    "candidate_payload_requires_the_same_credential_gate": true,
+    "content_release_clearance_implied": false,
+    "prospective_label_outcome_prediction_accuracy_utility_read": false,
+    "prospective_candidate_identity_or_private_profile_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0,
+    "live_calls_authorized": false
+  },
+  "historical_train_only_feasibility": {
+    "cards_path": "phase1/cards_current_v11.jsonl",
+    "cards_sha256": "6794acbf1dbc21ca75bed5899f4dd071b4b0d1a5b092c2e60bc634a8c5701b75",
+    "train_view_path": "phase1/source_choice_decision_view_v2_3ceb99f/train_model.jsonl",
+    "train_view_sha256": "e5ca6dc94f59d54fe31d4b1c4e796deef0006f489fd76a05663410d4911aa6e1",
+    "cluster_manifest_path": "phase1/source_choice_decision_view_v2_3ceb99f/cluster_manifest.jsonl",
+    "cluster_manifest_sha256": "a8f328a3972708e52126157774204647698d2f8b00cc5f7ad06fd8b1d38b4035",
+    "train_groups": 2109,
+    "candidate_slots": 5739,
+    "candidate_slots_mapped_to_cards": 5042,
+    "groups_with_card_run_mapping": 2109,
+    "groups_with_nonempty_task_description": 2109,
+    "groups_with_scorable_prior_context": 2071,
+    "groups_with_at_least_two_scorable_prior_nodes": 2071,
+    "groups_without_scorable_prior_context": 38,
+    "scorable_context_group_share": 0.981981981982,
+    "scorable_prior_node_count_min": 0,
+    "scorable_prior_node_count_median": 30,
+    "scorable_prior_node_count_max": 506,
+    "winner_hash_value_consulted": false,
+    "external_grade_value_consulted": false,
+    "frozen_or_extension_model_opened": false,
+    "prospective_rows_opened": false,
+    "counts_as_distinct_claim_evidence": false
+  },
+  "activation_gates_remaining": [
+    "exact tokenizer and prefix-packing verifier",
+    "exact model/provider/checkpoint/context window and reasoning controls",
+    "outcome-blind exact-common-support panel",
+    "candidate and historical-context content/security clearance",
+    "append-only prediction escrow",
+    "first-960 identity plus accrual closure before result join",
+    "separate call, token, latency, and currency-cap approval"
+  ]
+}

@@ -4,6 +4,8 @@ import ast
 import hashlib
 import json
 from pathlib import Path
+import subprocess
+import sys
 
 import pytest
 
@@ -249,6 +251,19 @@ def test_tools_are_local_only_and_have_no_model_call_or_credential_loader() -> N
         assert "authorization" not in lowered
         assert "local_files_only=true" in lowered.replace(" ", "")
         assert "trust_remote_code=false" in lowered.replace(" ", "")
+
+
+def test_direct_script_entry_loads_before_any_snapshot_or_model_action() -> None:
+    completed = subprocess.run(
+        [sys.executable, str(Path(packing.__file__).resolve()), "--help"],
+        cwd=ROOT.parent,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0
+    assert "--tokenizer-dir" in completed.stdout
+    assert completed.stderr == ""
 
 
 def test_contract_freezes_transfer_packing_and_keeps_bfs_and_results_blocked() -> None:

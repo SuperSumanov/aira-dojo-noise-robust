@@ -21,7 +21,10 @@ import re
 import struct
 from typing import Any, Mapping, Sequence
 
-from phase1 import rpm_inference_only_transfer as transfer
+if __package__:
+    from phase1 import rpm_inference_only_transfer as transfer
+else:  # Direct ``python phase1/rpm_prefix_packing.py`` entry.
+    import rpm_inference_only_transfer as transfer
 
 
 PROTOCOL = "decision-corpus-rpm-token-packing-v1"

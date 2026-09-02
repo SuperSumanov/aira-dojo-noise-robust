@@ -3,6 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0d. 2026-09-02 v11 发布阻塞已收敛成角色分离行动包；所有 payload tier 仍未 release-cleared
+
+为避免未来 20 天继续以零散清单代替外部决策，现把已经冻结的 content tier、25-task rules、provider provenance、
+license/NOTICE 与 Croissant 门合成一份可执行审查包。机器清单逐项绑定既有 receipt：v11=`16,012 cards / 25 tasks`；
+content scan=`23/25 tasks`、`3,766,518` candidate patterns、`173` matches/`419` cards；保守 whole-card tier=
+`15,174 CONTENT_REVIEW_ELIGIBLE / 838 STRUCTURE_ONLY`，后者由 matched/unscanned=`419/419` 构成。二者的
+`public_release_cleared` 都固定为 false；review-eligible 不等于 clean/licensed，structure-only 也不等于法律或隐私 clearance。
+
+剩余门被固定为五个 owner role 与八步 fail-closed 顺序：学长/历史数据 curator 补两个 prepared source 及五批/6,111 行
+无密钥 provider-contract 元数据；授权 content/security reviewer 私下判定 173 patterns；机构法律 reviewer 裁决 25 项规则、
+provider terms 与 data/code/score/tree 范围；governance owner 固定 LICENSE/NOTICE/licenses.json/creator；release engineer
+只在前述裁决后生成 append-only successor、双实现精确 candidate scan、五项真实 Croissant publication fields 与最终
+postflight。prospective first-960 保持 `SEALED`，competition data 仍为 zero-byte redistribution，v4/v5 仍永久未解析。
+
+公开实现 commit=`aa9e2e5c8c03e55333340fb12700683783e984e8`。本地发布相关 focused=`33 passed`；Windows full suite
+因环境缺 `scipy/sklearn` 在 collection 阶段出现 `11 errors / 7 skipped`，故没有被写成 full pass。远端固定解释器的 fresh
+detached no-smudge exact checkout 正式通过 focused/full=`33/2,106 passed`，full warnings/failures=`48/0`，耗时
+`143.30s`，两个 stderr 均为 0 bytes；独立 postflight 再核 exact commit、clean checkout、六个顶层证据文件、全部 hash、
+manifest fail-closed 状态与 candidate clearance 全 false 后 PASS。第一次远端启动在 root/test 前因 nounset 环境初始化停止，
+第二次 r1 在 tests 前因零命中 grep 的 pipefail 语义停止；两次均未写结果，失败链已保留在 receipt。精确临时 root 在 hash
+固化后按验证过的绝对路径清理。GPU/API/model fit/base update=`0/0/0/0`，prospective value/identity read=`false/false`，
+`counts_as_distinct_claim_evidence=false`。见 `phase1/RELEASE_GATE_ACTION_PACKET_V11_20260902.md`、
+`phase1/release_gate_action_manifest_v11_draft.json` 与 `phase1/release_gate_action_postpush_receipt_20260902.json`。
+
 ## 0L0c. 2026-09-02 主稿已有可检查 bibliography，但仍明确保留一个引用身份阻塞
 
 主稿 v0.5 的 Related Work 已从裸论文名推进为 15 个可解析 citation key；工作 BibTeX 文件

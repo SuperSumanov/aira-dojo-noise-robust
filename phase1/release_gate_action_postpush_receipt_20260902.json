@@ -1,0 +1,92 @@
+{
+  "protocol": "decision-corpus-v11-release-gate-action-postpush-receipt-v1",
+  "status": "PASS_INTERNAL_REVIEW_PACKET_NOT_RELEASE_CLEARED",
+  "source_commit": "aa9e2e5c8c03e55333340fb12700683783e984e8",
+  "source_parent": "3520de7f1dd917022187fb0d6f4627a890e79830",
+  "artifacts": {
+    "human_packet": {
+      "path": "phase1/RELEASE_GATE_ACTION_PACKET_V11_20260902.md",
+      "sha256": "360cad9e04493fee20ec8c0cdd4a7f17bc518b07fe023b5a8e8707ccffad32b8"
+    },
+    "machine_manifest": {
+      "path": "phase1/release_gate_action_manifest_v11_draft.json",
+      "sha256": "9f602869d4f321ebcdf037e8597e76243290899a75be4ec923bfa67e64c7135b"
+    },
+    "contract_test": {
+      "path": "phase1/tests/test_release_gate_action_packet_v11.py",
+      "sha256": "553d0cbda478136bb17f3008f6cc453f8b550700c2b1a29e383f74a5fba047ad"
+    }
+  },
+  "local_verification": {
+    "focused_tests_passed": 33,
+    "focused_duration_seconds": 0.57,
+    "full_suite_attempt_status": "COLLECTION_FAILED_LOCAL_ENVIRONMENT_NOT_A_CODE_FAILURE",
+    "collection_errors": 11,
+    "collection_skipped": 7,
+    "missing_modules": [
+      "scipy",
+      "sklearn"
+    ],
+    "full_suite_claimed_passed": false
+  },
+  "remote_verification": {
+    "environment_python": "/research/d7/spc/yzyang4/venvs/exp/bin/python",
+    "exact_detached_no_smudge_checkout": true,
+    "expected_commit_equals_actual_commit": true,
+    "focused_tests_passed": 33,
+    "focused_duration_seconds": 0.62,
+    "full_tests_passed": 2106,
+    "full_test_warnings": 48,
+    "full_test_failures": 0,
+    "full_duration_seconds": 143.30,
+    "focused_stderr_bytes": 0,
+    "full_stderr_bytes": 0,
+    "runner_sha256": "1ec89baf5fa2741a6ca6eea842a583bec5fbe692ea6d4adcf439fece3dfad895",
+    "postflight_script_sha256": "07fa487bc1349f79cde251adfd03c2ac125df59eceb349597dad142120c36dff",
+    "summary_sha256": "d1d4b2a478517f8a1a952c546313700de0f730fdc7954d367497458eecdc5bfc",
+    "sha256_manifest_sha256": "b43f5c86d93ea0247f2788f0538d3cab02e947569f46c478b07705c3d24e1c0f",
+    "focused_stdout_sha256": "f94c6c1d339436e4b15545cc8b6dbd973c2a2e35b44255841d6b22c5739be072",
+    "focused_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "full_stdout_sha256": "bd39ad41aa495664dc1f4369fda7c139696ef004fa293c95e8a8e601f451e026",
+    "full_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "independent_postflight_passed": true,
+    "postflight_root_mode": "0500",
+    "postflight_top_level_files": 6
+  },
+  "failed_attempts": [
+    {
+      "status": "FAIL_CLOSED_BEFORE_ROOT_OR_TESTS",
+      "cause": "env_setup_read_unbound_LD_LIBRARY_PATH_under_nounset",
+      "tests_started": false,
+      "result_files_written": 0
+    },
+    {
+      "status": "FAIL_CLOSED_BEFORE_TESTS",
+      "formal_root": "/research/d7/spc/yzyang4/release-gate-action-postpush-aa9e2e5-r1",
+      "cause": "zero_credential_match_grep_exit_interpreted_by_pipefail",
+      "exact_commit_checked": true,
+      "clean_checkout_checked": true,
+      "tests_started": false,
+      "top_level_result_files_written": 0
+    }
+  ],
+  "cleanup": {
+    "exact_remote_roots_removed_after_hash_capture": 2,
+    "temporary_remote_scripts_removed": true,
+    "cleanup_status": "PASS"
+  },
+  "security": {
+    "staged_filename_hits_before_push": 0,
+    "commit_content_credential_hits_before_push": 0,
+    "remote_filename_credential_hits": 0,
+    "remote_content_credential_hits": 0
+  },
+  "scope": {
+    "prospective_values_or_identities_read": false,
+    "gpu_paid_api_model_fit_base_update": "0/0/0/0",
+    "competition_data_redistributed_bytes": 0,
+    "counts_as_distinct_claim_evidence": false,
+    "legal_advice": false,
+    "release_clearance": false
+  }
+}

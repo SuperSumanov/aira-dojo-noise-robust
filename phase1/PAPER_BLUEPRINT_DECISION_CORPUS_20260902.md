@@ -142,7 +142,8 @@ internal evidence routing；prospective common-support 与 clean scaling 仍是�
 
 ### 6 Predictor Benchmark Results
 
-- 先放同池历史开发表，再放 first-960 one-shot confirmation。
+- 先放 931-row exact-common-support 的历史开发校准表，但明确其含 cross-run preference edges；
+  再放 first-960 one-shot direct-sibling confirmation。旧 400-pair judge 表不得进入主表。
 - 按 accuracy/calibration/coverage/cost 四轴解释，不用单个 pooled accuracy 排名。
 - clean scaling 只有通过 C4 条件才进入本节主表。
 
@@ -164,7 +165,8 @@ Table 1--3 的可粘贴正文草稿、caption 与 evidence routing 已写入
 | Table 1 | 与 ML-Agent/OpenMLE/mle-traj/NAS predictor benchmark 的单位与协议比较 | 可写；raw mle-traj tree recoverability 保持 unknown | 2026-08-28 直接竞品审计 |
 | Table 2 | Corpus statistics：historical strict core + sealed prospective structural support | 可写结构值；不得写 prospective outcome；v11 schema 已逐字段闭合 | Evidence Index v10 entries 1, 14, 19 + v11 schema inventory |
 | Table 3 | Audit findings 与适用范围/失败门 | 可写 | Evidence Index v10 全 20 distinct entries |
-| Table 4 | Exact-common-support predictor benchmark：accuracy/calibration/coverage/init/query | **等待 first-960 closure** | prospective gate + prediction receipts |
+| Table 4A | 历史 exact-common-support development calibration + 独立 cost panel | 已填；仅 static/TF-IDF primary rows，不冒充 full-family/direct-sibling confirmation | historical UST formal + deployment_cost |
+| Table 4B | 前瞻 exact-common-support full-family predictor benchmark：accuracy/calibration/coverage/init/query | **等待 first-960 closure** | prospective gate + prediction receipts |
 | Table 5 | 0.6B/4B/8B × 2 seeds clean scaling | **等待 sidecar、GPU 审批与训练** | C4 条件 |
 | Figure 1 | archive→run→endpoint→parent→pair + vault/escrow/closure 流程图 | PNG/SVG/receipt 已完成且 value-free 双次渲染一致 |
 | Figure 2 | run-level 与 pair-level task weight 随时间反转；标注单 drop 高 leverage | PNG/SVG/receipt 已完成且双次渲染逐字节一致 | structural_weighting_shift |
@@ -216,7 +218,7 @@ Table 1--3 的可粘贴正文草稿、caption 与 evidence routing 已写入
   appendix 已把 access level、rebuild/split/common-support、one-time closure、no-rescue、release governance 与 failure
   record contract 连成可审稿文本。
 - D4--D8：完成 Sections 1--5 初稿；所有数字从 Evidence Index 路由，不从聊天或旧 paper 抄写。
-- D7--D14：closure/sidecar 到位后填 Table 4；C4 获批才跑 Table 5。
+- D7--D14：Table 4A 已由现有 formal 填入；closure/sidecar 到位后只填 Table 4B；C4 获批才跑 Table 5。
 - D14--D18：Sections 6--7、limitations、ethics/license/data statement、复现说明。
 - D18--D20：形成可给学长逐段批注的完整内部稿；未完成实验保留诚实空槽，不用旧负路线填充。
 

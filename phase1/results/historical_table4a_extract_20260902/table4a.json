@@ -1,0 +1,133 @@
+{
+  "protocol": "historical-table4a-paper-extract-v1",
+  "status": "HISTORICAL_DEVELOPMENT_TABLE_AUTHORIZED_WITH_SCOPE_BOUNDARY",
+  "counts_as_distinct_claim_evidence": false,
+  "source": {
+    "commit": "65b2e2a6669a1ddc41059746c843fab501895190",
+    "formal_result_sha256": "9f0ba71b1be84a79b64edc27b0c625579bb1d2c0a781c3daf43fbbb339f41a7c",
+    "formal_verification_sha256": "4b522f844c6f49429c836986fd5ccd15a9f662ad3660ce480fc2b277a7cbf188",
+    "formal_receipt_path": "phase1/historical_ust_predictor_sensitivity_formal_receipt_20260830.json",
+    "formal_receipt_sha256": "e3b6f2d5fa8a0575dd6c2e90898e0a8796da5c244021ea0a12154718fb6e6808",
+    "human_report_path": "phase1/实验记录/2026-08-30/HistoricalUSTSensitivity_v2正式结果.md",
+    "human_report_sha256": "fac0395ebcb8ab55735c09c89ad498ab0fc924f4b10125989a310fc456c13cd9"
+  },
+  "population": {
+    "pairs": 931,
+    "tasks": 28,
+    "decision_parents": 550,
+    "incidence_rank": 787,
+    "cycle_rows": 144,
+    "same_run_rows": 787,
+    "cross_run_rows": 144,
+    "all_model_support_exact": true
+  },
+  "accuracy_panel": [
+    {
+      "model": "random_hash",
+      "paper_name": "Random hash",
+      "pairs": 931,
+      "ties": 0,
+      "raw_pair_micro": "0.51342642320085929",
+      "raw_task_parent_macro": "0.51687867999177617",
+      "ust_task_parent_macro": "0.51638272074447422",
+      "ust_task_parent_ci95": ["0.45566279033957241", "0.57574514078440864"]
+    },
+    {
+      "model": "static_lr_pooled",
+      "paper_name": "Static LR, pooled",
+      "pairs": 931,
+      "ties": 0,
+      "raw_pair_micro": "0.50053705692803441",
+      "raw_task_parent_macro": "0.4648194101630117",
+      "ust_task_parent_macro": "0.46516752612262768",
+      "ust_task_parent_ci95": ["0.38987995458038771", "0.53482211830613002"]
+    },
+    {
+      "model": "static_lr_task",
+      "paper_name": "Static LR, task-conditioned",
+      "pairs": 931,
+      "ties": 0,
+      "raw_pair_micro": "0.53705692803437166",
+      "raw_task_parent_macro": "0.5027714544544446",
+      "ust_task_parent_macro": "0.50225803762176646",
+      "ust_task_parent_ci95": ["0.43485366651439394", "0.56679251990446677"]
+    },
+    {
+      "model": "static_gbm_pooled",
+      "paper_name": "Static GBM, pooled",
+      "pairs": 931,
+      "ties": 0,
+      "raw_pair_micro": "0.55316863587540277",
+      "raw_task_parent_macro": "0.5354380880702363",
+      "ust_task_parent_macro": "0.53565860219453076",
+      "ust_task_parent_ci95": ["0.48127487033430683", "0.59512853308153169"]
+    },
+    {
+      "model": "static_gbm_task",
+      "paper_name": "Static GBM, task-conditioned (dev-selected)",
+      "pairs": 931,
+      "ties": 0,
+      "raw_pair_micro": "0.56068743286788403",
+      "raw_task_parent_macro": "0.54801174684043918",
+      "ust_task_parent_macro": "0.5483277645334842",
+      "ust_task_parent_ci95": ["0.49819079664424992", "0.60078820168816471"]
+    },
+    {
+      "model": "tfidf_lr",
+      "paper_name": "Character TF-IDF + LR",
+      "pairs": 931,
+      "ties": 0,
+      "raw_pair_micro": "0.5714285714285714",
+      "raw_task_parent_macro": "0.56652923211993333",
+      "ust_task_parent_macro": "0.56658677190961804",
+      "ust_task_parent_ci95": ["0.49839496738586309", "0.63096744282229167"]
+    }
+  ],
+  "paired_champion_readout": {
+    "champion": "static_gbm_task",
+    "reference": "tfidf_lr",
+    "ust_headline_delta": "-0.018259007376133896",
+    "ust_headline_delta_ci95": ["-0.10907272623875371", "0.086268880671008574"],
+    "champion_ust_minus_uniform": "0.00031601769304501204",
+    "champion_ust_minus_uniform_ci95": ["-0.00037747374181428185", "0.001145659286141352"],
+    "primary_model_ranking_discordant_pairs": 0
+  },
+  "cost_panel": {
+    "accuracy_computed": false,
+    "run_a_summary_sha256": "27996594f37bb0c327d7d90e7ba6f49a66b3ce1fb42dbb4e79899f3e4cf458bc",
+    "run_b_summary_sha256": "009b00e49216400370a82ffb9d2c91126aa203423f073d77efa6eb4d88076a4f",
+    "rows": [
+      {
+        "model": "static_lr",
+        "paper_name": "Static LR",
+        "initialization_p50_s": ["153.542809352", "153.092548862"],
+        "query_p50_ms": ["40.909126", "41.00444"],
+        "execution_p50_over_query_p50": ["4879.75568197282", "4868.412787567445"]
+      },
+      {
+        "model": "static_gbm",
+        "paper_name": "Static GBM",
+        "initialization_p50_s": ["154.789307361", "155.037595478"],
+        "query_p50_ms": ["49.3092785", "49.0379345"],
+        "execution_p50_over_query_p50": ["4048.4579396764457", "4070.859469887379"]
+      },
+      {
+        "model": "tfidf_lr",
+        "paper_name": "Character TF-IDF + LR",
+        "initialization_p50_s": ["107.471423483", "98.586651793"],
+        "query_p50_ms": ["33.925568", "33.0667115"],
+        "execution_p50_over_query_p50": ["5884.250487509658", "6037.084759488165"]
+      }
+    ]
+  },
+  "scope": {
+    "historical_development_only": true,
+    "direct_same_physical_run_confirmation": false,
+    "full_predictor_family": false,
+    "prospective_confirmation": false,
+    "task_unseen_generalization": false,
+    "search_utility": false,
+    "prospective_value_or_identity_read": false,
+    "gpu_api_model_fit_base_update": [0, 0, 0, 0]
+  }
+}

@@ -288,10 +288,49 @@ not universally lossless.
 
 ### 6.1 Historical development results
 
-Historical common-support tables are reported as development evidence and retain the
-full predictor family, coverage, cost, and clustered-uncertainty columns. They are not
-used to claim prospective generalization. **[INSERT TABLE 4A FROM THE FINAL
-COMMON-SUPPORT ARTIFACT; DO NOT COPY EARLIER RETRACTED RANKINGS.]**
+Table 4A is a development calibration, not the direct-sibling confirmation. Its
+exact-common-support source is the independently verified 931-row historical
+preference graph: 28 tasks, 550 decision parents, and no support differences among
+the reported rows. The graph has incidence rank 787 and 144 cycle rows. Moreover,
+144 of 931 comparisons span two endpoint runs, so these results must not be relabeled
+as the within-physical-run estimand used by the current corpus.
+
+**Table 4A(a): historical common-support development calibration.** The frozen
+headline averages pair credit within parent, parents within task, and tasks uniformly.
+UST columns weight graph edges by their uniform-spanning-tree inclusion probability.
+Intervals are task-clustered; support is 931/931 and prediction ties are zero for every
+row. The task-conditioned arms are in-task development baselines.
+
+| Predictor | Pair micro | Uniform task→parent→pair | UST task→parent→pair (95% CI) | Support / ties |
+|---|---:|---:|---:|---:|
+| Random hash | 0.5134 | 0.5169 | 0.5164 [0.4557, 0.5757] | 931 / 0 |
+| Static LR, pooled | 0.5005 | 0.4648 | 0.4652 [0.3899, 0.5348] | 931 / 0 |
+| Static LR, task-conditioned | 0.5371 | 0.5028 | 0.5023 [0.4349, 0.5668] | 931 / 0 |
+| Static GBM, pooled | 0.5532 | 0.5354 | 0.5357 [0.4813, 0.5951] | 931 / 0 |
+| Static GBM, task-conditioned (dev-selected) | 0.5607 | 0.5480 | 0.5483 [0.4982, 0.6008] | 931 / 0 |
+| Character TF-IDF + LR | 0.5714 | 0.5665 | 0.5666 [0.4984, 0.6310] | 931 / 0 |
+
+The dev-selected static GBM has a paired UST headline difference of -0.0183 versus
+TF-IDF (95% CI [-0.1091, 0.0863]). UST weighting changes its own headline by only
++0.0003 (95% CI [-0.0004, 0.0011]), and the primary-model ordering has no discordance
+between uniform and UST weighting. Thus the graph correction is structurally
+non-trivial but does not create a predictor-performance breakthrough.
+
+**Table 4A(b): separately measured deployment cost.** These are model-family paths
+on the pinned v11 b0 CPU protocol, not timings inferred from Table 4A(a), and the
+cost run did not compute accuracy. Ranges are the two independent runs.
+
+| Measured path | Initialization p50 (s) | Pair query p50 (ms) | Execution p50 / query p50 |
+|---|---:|---:|---:|
+| Static LR | 153.09--153.54 | 40.91--41.00 | 4,868--4,880× |
+| Static GBM | 154.79--155.04 | 49.04--49.31 | 4,048--4,071× |
+| Character TF-IDF + LR | 98.59--107.47 | 33.07--33.93 | 5,884--6,037× |
+
+Embedding, reward-model, and LLM-judge rows do not have an independently verified
+931-row common-support artifact and are therefore not silently imported from the old
+400-pair report. Their full-family comparison remains in the sealed chronological
+Table 4B. Table 4A does not claim prospective generalization, task-unseen transfer, or
+search utility.
 
 ### 6.2 Sealed chronological confirmation
 

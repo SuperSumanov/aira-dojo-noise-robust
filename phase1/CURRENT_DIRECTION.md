@@ -53,6 +53,14 @@ fresh exact-checkout verification=`31 focused + 2,074 full passed / 0 failed`（
 GPU/API/model fit/base update=`0/0/0/0`，prospective value/identity read=`false/false`，训练仍须来源门、closure、资源矩阵与
 用户批准。readiness receipt 见 `phase1/critic_scaling_confirmation_v2_readiness_receipt_20260902.json`。
 
+历史 Table 4A 的证据入口现已关闭歧义：只允许使用 2026-08-30 exact-commit UST formal 的 931-row
+exact-common-support development calibration，并与 deployment-cost panel 分开呈现。该池含 144/931 cross-run
+preference rows，故不是当前 within-physical-run direct-sibling confirmation；Table 4B 继续 sealed 等 first-960+closure。
+旧 400-pair judge 报告没有完整 commit/input binding 或 non-importing verifier，且其 run bootstrap 只把 pair 分给 better
+endpoint；结构复核显示 303/400 rows 跨两 endpoint runs、实际涉及 39 runs 而旧报告写 35，故不得进入主表。
+这次只路由既有证据，`counts_as_distinct_claim_evidence=false`，没有读取 prospective value/identity，也没有 GPU/API/
+model fit/base update。正文、边界与精确哈希见 `phase1/HISTORICAL_TABLE4A_EVIDENCE_DECISION_20260902.md`。
+
 release 许可清单的口径已从历史 `22 competitions` 纠正为 v11 精确 `25 tasks`。25/25 官方 Kaggle
 rules URL 都已直接渲染初筛：完整 data+code 模板 / 简化旧模板 / 非标准详细模板=`16/7/2`，
 明确私下共享禁止 / 公开 forum 共享语句=`25/25`，明确 OSI 且不限商用条款=`18/25`，精确标准

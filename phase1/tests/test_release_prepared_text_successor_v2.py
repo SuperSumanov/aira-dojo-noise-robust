@@ -20,6 +20,10 @@ RUNNER = (
 PREFLIGHT = (
     ROOT / "phase1" / "V11_RELEASE_PREPARED_TEXT_SUCCESSOR_V2_PREFLIGHT_20260902.md"
 )
+FAILURE_RECEIPT = (
+    ROOT / "phase1" / "release_prepared_text_successor_v2_failure_receipt_20260902.json"
+)
+CURRENT = ROOT / "phase1" / "CURRENT_DIRECTION.md"
 
 
 def contract_sha() -> str:
@@ -124,3 +128,24 @@ def test_preflight_contains_all_thirteen_items_and_interpretation_boundary() -> 
         assert f"{number}. **" in text
     assert "not competition\n    data redistribution permission" in text
     assert "must never enter Git/LFS" in text
+
+
+def test_failure_receipt_preserves_listing_download_distinction() -> None:
+    receipt = json.loads(FAILURE_RECEIPT.read_text(encoding="utf-8"))
+    current = CURRENT.read_text(encoding="utf-8")
+    assert receipt["exact_public_commit"] == (
+        "7b82b182247b54e616124c25d8efbd82785a14f4"
+    )
+    assert receipt["access_probe_before_freeze"]["file_listing_requests_succeeded"] == 2
+    formal = receipt["formal_execution"]
+    assert formal["kaggle_cli_process_rc_for_request_0"] == 0
+    assert formal["application_level_status"] == 403
+    assert formal["downloaded_files"] == 0
+    assert formal["prepared_files"] == 0
+    assert formal["active_prepared_root_modified"] is False
+    assert receipt["interpretation"]["metadata_listing_proves_download_authorization"] is False
+    assert receipt["interpretation"]["automatic_retry_allowed"] is False
+    assert receipt["interpretation"]["prepared_text_coverage_remains"] == "23/25"
+    assert receipt["security"]["prospective_values_or_identities_read"] is False
+    assert "## 0L0m." in current
+    assert "requests/downloaded/prepared=`1/0/0`" in current

@@ -1,0 +1,65 @@
+{
+  "protocol": "release-prepared-text-successor-v2-public-failure-receipt-v1",
+  "status": "FAIL_CLOSED_RULES_ACCOUNT_MISMATCH_OR_ACCEPTANCE_NOT_EFFECTIVE",
+  "exact_public_commit": "7b82b182247b54e616124c25d8efbd82785a14f4",
+  "access_probe_before_freeze": {
+    "file_listing_requests_succeeded": 2,
+    "credential_shape_hits": 0,
+    "download_performed": false
+  },
+  "formal_execution": {
+    "focused_tests_passed": 5,
+    "full_tests_passed": 2172,
+    "full_test_warnings": 48,
+    "request_attempts": 1,
+    "kaggle_cli_process_rc_for_request_0": 0,
+    "application_level_status": 403,
+    "downloaded_files": 0,
+    "prepared_files": 0,
+    "active_prepared_root_modified": false,
+    "raw_csvs_opened_or_copied": false,
+    "credential_shape_hits": 0,
+    "stdout_sha256": "a9143a8c4ab691f251afacbd1012212e971ab75c09eedd3b370211cfd957e85b",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runner_log_sha256": "51f18b5c09c34ecd9d914997014037328b68f4479ca67cfef2652ca18dc3ba1a",
+    "trace_files": 87,
+    "trace_manifest_sha256": "0acde7a7e50f6292a08b58db6e1cdf297e3b43eecbe2a0c5a5c9b8d21b019445"
+  },
+  "implementation_postpush_verification": {
+    "fresh_detached_exact_checkout": true,
+    "focused_tests_passed": 5,
+    "full_tests_passed": 2172,
+    "full_test_warnings": 48,
+    "failures": 0,
+    "focused_stderr_bytes": 0,
+    "full_stderr_bytes": 0,
+    "credential_filename_hits": 0,
+    "credential_content_hits": 0,
+    "log_manifest_sha256": "9d89dfbcefdba5db81cb1a5f69298ec3c28d48890531adcca12df9a683ffcfbf",
+    "local_log_files_hash_verified": 13,
+    "local_log_files_missing_or_mismatched": 0
+  },
+  "interpretation": {
+    "metadata_listing_proves_download_authorization": false,
+    "most_likely_operational_blocker": "The browser account that accepted the rules is not the remote Kaggle API credential account, or the acceptance has not propagated to that credential.",
+    "automatic_retry_allowed": false,
+    "required_next_event": "Confirm rule acceptance while signed into the same Kaggle account represented by the remote API credential, then run a fresh formal root.",
+    "prepared_text_coverage_remains": "23/25",
+    "release_clearance_changed": false,
+    "counts_as_distinct_claim_evidence": false
+  },
+  "security": {
+    "prospective_values_or_identities_read": false,
+    "credential_values_read_or_emitted": false,
+    "raw_competition_csvs_entered_git_or_local_workspace": false,
+    "gpu_jobs": 0,
+    "paid_model_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0
+  },
+  "cleanup": {
+    "formal_failure_root_frozen_read_only": true,
+    "exact_worktree_removed": true,
+    "remote_helpers_removed": true
+  }
+}

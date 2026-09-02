@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0m. 2026-09-02 两个缺失 prepared-text task 的下载仍被远端 Kaggle 账号门阻断
+
+网络恢复后，远端 Kaggle credential 对 `aptos2019-blindness-detection` 与
+`histopathologic-cancer-detection` 的 metadata file listing 均返回 PASS，credential-shape hits=`0`；但这不等于下载授权。
+结果前已冻结 successor v2：APTOS 的 train/test/sample 与 histopathology 的 train-labels/sample 共 5 个 CSV，单文件
+compressed/extracted 上限 64 MiB、总 extracted 上限 128 MiB、每请求 600 秒；新 mode-0700 staging、exact file/header、
+单安全 archive member、独立 verifier A/B、无 overwrite/promotion 和 raw CSV 不进 Git 均为硬门。公开实现 commit=
+`7b82b182247b54e616124c25d8efbd82785a14f4`，远端 post-push focused/full=`5/2,172 passed`、48 warnings、0 failures，
+两个 stderr 0 bytes，credential filename/content=`0/0`，日志 manifest=`9d89dfbc...cfbf`。
+
+正式 exact-commit runner 再次通过 focused/full=`5/2,172` 后发起第一个固定请求；Kaggle CLI 进程错误地返回 rc=0，
+但 application-level 响应为 403（必须接受 competition rules），且没有生成 payload。文件存在门因此 fail-closed：
+requests/downloaded/prepared=`1/0/0`，active prepared root 未修改，raw CSV opened/copied=`false`，credential hits=`0`。
+87 个 private trace 的 manifest=`0acde7a7...9445`；失败根只读冻结，exact worktree/helpers 已清理。metadata listing 不能
+再被当作规则接受证明，也不得自动轮询重试。最可能的操作阻塞是浏览器接受规则的账号与远端 API credential 账号不同，
+或接受尚未传播；必须在同一账号确认后开全新 formal root。
+
+因此 v11 prepared-text coverage 仍为 `23/25`，release clearance 不变；本次是诚实的 gate 结果，
+`counts_as_distinct_claim_evidence=false`。prospective value/identity read=`false/false`，GPU/paid-model-API/model-fit/
+base-update=`0/0/0/0`。见 `phase1/release_prepared_text_successor_v2_failure_receipt_20260902.json`。
+
 ## 0L0l. 2026-09-02 两张主图已进入主稿并通过独立渲染；不新增结果证据
 
 主稿此前只在正文提到 Figure 1/2，却没有实际嵌入图像，内部审稿包会出现“有图号、无图”的可用性缺口。v0.7 现把

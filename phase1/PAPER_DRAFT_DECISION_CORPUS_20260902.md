@@ -13,7 +13,8 @@ the evaluation population is induced by a partially observed search tree, and it
 apparent performance can be confounded by physical-run leakage, incomplete choice
 sets, pair-induced reweighting, label noise, and post-execution signals presented as
 free baselines. We introduce **Decision Corpus**, a rebuildable benchmark of
-provenance-bound sibling decision fragments from real AIRA-dojo searches, together
+provenance-bound sibling decision fragments from real AIRA-dojo searches
+[@toledo2025aira], together
 with a common-support predictor suite and a machine-verifiable audit protocol. The
 historical v11 release contains 16,012 cards and 8,107 audited direct-sibling rows;
 7,579 rows form a parent-present strict core. Same-budget training and frozen splits
@@ -97,11 +98,11 @@ search improvement before the sealed confirmation protocol permits that conclusi
 
 ### Pre-execution preference for ML agents
 
-FOREAGENT (arXiv:2601.05930) formalizes Data-centric Solution Preference, releases
-a corpus reported as 18,438 within-task solution comparisons, and reports a
-Predict-then-Verify agent that uses a strong LLM to avoid some executions. AI
-Research Preference Models (RPMs; arXiv:2608.13940) intervene even closer to our
-setting: AIRA-dojo generates 15 unexecuted
+FOREAGENT [@zheng2026foreagent] (arXiv:2601.05930) formalizes Data-centric Solution
+Preference, releases a corpus reported as 18,438 within-task solution comparisons,
+and reports a Predict-then-Verify agent that uses a strong LLM to avoid some
+executions. AI Research Preference Models (RPMs) [@foster2026rpm]
+(arXiv:2608.13940) intervene even closer to our setting: AIRA-dojo generates 15 unexecuted
 children from one parent and an inference-only LLM judge or an agentic pilot system
 selects one for execution. RPM reports positive end-to-end evidence on 20
 AIRS-Bench tasks and therefore establishes the practical value of this intervention,
@@ -122,7 +123,8 @@ an inference-only transfer baseline for the sealed common-support table.
 
 ### MLE trajectories and actor learning
 
-ML-Agent, OpenMLE/Frontis-MA1, and mle-traj establish that execution-grounded MLE
+ML-Agent [@liu2025mlagent], OpenMLE/Frontis-MA1 [@yang2026frontisma1], and mle-traj
+establish that execution-grounded MLE
 traces can support behavior analysis, supervised actor training, and learned search
 operators. These resources close novelty claims based only on releasing scored
 program trajectories or tree-shaped histories. Decision Corpus instead treats the
@@ -132,7 +134,8 @@ shared across splits, and how the search process weights the resulting benchmark
 
 ### Value and reward models for search
 
-AgentRM, step-level Q-value models, ReLoc, and related code-search systems already
+AgentRM [@xia2025agentrm], step-level Q-value models [@zhai2024stepq], ReLoc
+[@lyu2025reloc], and related code-search systems already
 establish value learning from process states, parent-local revisions, or search
 trees. Our contribution is not the existence of a tree-derived critic. We provide a
 dataset-first comparison of predictor families under a fixed sibling estimand,
@@ -143,15 +146,19 @@ protocol. The agent foundation model is not fine-tuned or updated by this projec
 
 Neural architecture search offers the closest measurement precedent. NAS predictor
 studies distinguish predictor initialization cost from query cost and evaluate
-multiple predictor families on reusable tabular benchmarks. Decision Corpus adopts
+multiple predictor families on reusable tabular benchmarks
+[@white2021predictors; @krishnakumar2022nasbenchsuitezero; @tu2022nasbench360].
+Decision Corpus adopts
 that discipline for generated ML programs, where observations are noisier, failures
 create partial orders, code carries task and generator shortcuts, and the candidate
 population is itself produced by an adaptive agent search.
 
 ### Benchmark governance
 
-BenchmarkCards, BetterBench, ReproEval-style documentation, and agentic benchmark
-checklists motivate explicit data statements and reproducibility records. We apply
+BenchmarkCards [@sokol2024benchmarkcards], BetterBench [@reuel2024betterbench],
+ReproEvalCard [@pattnayak2026reproevalcard], and agentic benchmark checklists
+[@zhu2025agenticbenchmarks] motivate explicit data statements and reproducibility
+records. We apply
 these principles at artifact level: each claim routes to an evidence entry with an
 exact population, hash, verifier, failure gate, and `does_not_prove` boundary.
 Retracted or superseded claims remain in an append-only ledger.
@@ -184,6 +191,10 @@ resource for fixed ML-engineering searches, not as a priority claim over traject
 collection, reward modeling, execution-free candidate preference, or critic-guided
 search. The primary-source claim map and version boundaries are frozen in
 `RELATED_WORK_CITATION_MAP_20260902.md`.
+
+The working BibTeX database is `DECISION_CORPUS_REFERENCES_20260902.bib`. The exact
+public `mle-traj` release/card citation remains deliberately unresolved rather than
+being replaced by an inferred paper citation.
 
 ## 3. From Search Archives to Decision Corpus
 

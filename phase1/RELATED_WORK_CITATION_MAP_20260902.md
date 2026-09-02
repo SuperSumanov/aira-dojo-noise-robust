@@ -140,3 +140,12 @@ be reported under a different name. It must not be labeled “RPM reproduction.�
   lookahead lines.
 - Claims about what another paper “does not report” are scoped to the inspected
   public paper/release version; they are never claims about unobserved internal work.
+
+## Working bibliography state
+
+`DECISION_CORPUS_REFERENCES_20260902.bib` now binds 20 primary-source-checked entries
+used by this map and the manuscript. Large author lists that use BibTeX's canonical
+`and others` marker are explicitly internal-draft abbreviations and must be expanded
+from the linked primary record during final venue packaging. The exact public
+`mle-traj` release/card remains the sole known citation-identity blocker; no paper
+citation may be invented for it.

@@ -540,7 +540,10 @@ scanning therefore remain release gates. Croissant 1.1 and Responsible AI 1.0 ge
 by a value-free, independently checked builder over all 10 release resources, but
 the final JSON-LD is deliberately absent until the real license, landing page,
 creator, publication date, and content base URL are fixed and every independent
-release gate closes. Immutable historical batches are
+release gate closes. The remaining role-separated decisions, acceptable closure
+artifacts, and fail-closed order are fixed in
+`phase1/RELEASE_GATE_ACTION_PACKET_V11_20260902.md`; that internal packet is neither
+legal advice nor release clearance. Immutable historical batches are
 never silently edited. If sanitation
 is required, a new append-only successor and receipt are created while the affected
 version remains documented.

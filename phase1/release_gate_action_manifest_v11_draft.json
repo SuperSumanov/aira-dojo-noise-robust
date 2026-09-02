@@ -1,0 +1,210 @@
+{
+  "schema_version": "decision-corpus-v11-release-gate-action-v1",
+  "audit_date": "2026-09-02",
+  "status": "INTERNAL_DRAFT_NOT_RELEASE_CLEARED",
+  "legal_advice": false,
+  "release_clearance": false,
+  "counts_as_distinct_claim_evidence": false,
+  "source_release": {
+    "version": "v11",
+    "cards": 16012,
+    "tasks": 25,
+    "competition_data_redistributed_bytes": 0
+  },
+  "content_gate": {
+    "status": "PARTIAL_FORMALLY_TIERED_PRIVATE_REVIEW_REQUIRED",
+    "tasks_scanned": 23,
+    "tasks_total": 25,
+    "tasks_unscanned": 2,
+    "candidate_patterns": 3766518,
+    "matched_patterns": 173,
+    "affected_cards": 419,
+    "unscanned_task_cards": 419,
+    "content_review_eligible_cards": 15174,
+    "structure_only_cards": 838,
+    "structure_only_due_matched_pattern": 419,
+    "structure_only_due_unscanned_task": 419,
+    "exact_final_release_candidate_scan_complete": false,
+    "public_release_cleared": false
+  },
+  "competition_rules_gate": {
+    "status": "PARTIAL_RULES_TRIAGE_NOT_LEGAL_CLEARANCE",
+    "rules_pages_visible": 25,
+    "detailed_standard": 16,
+    "compact_legacy": 7,
+    "detailed_legacy_custom": 2,
+    "explicit_private_sharing_prohibition": 25,
+    "public_forum_sharing_statement": 25,
+    "explicit_osi_no_commercial_limit": 18,
+    "exact_standard_data_nonredistribution": 13,
+    "missing_clause_means_permission": false,
+    "public_release_cleared": false
+  },
+  "provider_gate": {
+    "status": "PARTIAL_NOT_RELEASE_CLEARED",
+    "release_batches": 29,
+    "release_rows": 16012,
+    "configured_model_batches": 29,
+    "configured_model_rows": 16012,
+    "exact_version_or_model_rows": 15905,
+    "version_boundary_ambiguous_rows": 107,
+    "provider_family_batches": 24,
+    "provider_family_rows": 9901,
+    "provider_unresolved_batches": 5,
+    "provider_unresolved_rows": 6111,
+    "qwen_collection_time_terms_blocked_batches": 2,
+    "qwen_collection_time_terms_blocked_rows": 44,
+    "configured_model_id_identifies_provider_or_contract_entity": false,
+    "public_release_cleared": false
+  },
+  "governance_gate": {
+    "status": "BLOCKED",
+    "final_license_present": false,
+    "final_notice_present": false,
+    "final_licenses_json_present": false,
+    "institutional_legal_review_complete": false,
+    "public_release_cleared": false
+  },
+  "publication_metadata_gate": {
+    "status": "ENGINEERING_READY_PUBLICATION_FIELDS_BLOCKED",
+    "resources": 10,
+    "rows_across_resources": 24119,
+    "blocked_fields": [
+      "license",
+      "url",
+      "creator",
+      "datePublished",
+      "contentBaseUrl"
+    ],
+    "final_jsonld_generated": false,
+    "public_release_cleared": false
+  },
+  "candidate_payload_classes": [
+    {
+      "id": "code_aggregate_and_reconstruction_package",
+      "cards": 0,
+      "may_prepare_before_dataset_clearance": true,
+      "required_before_publication": [
+        "exact_repository_security_scan",
+        "upstream_attribution_check",
+        "immutable_package_manifest"
+      ],
+      "dataset_payload_release_cleared": false
+    },
+    {
+      "id": "historical_structure_only",
+      "cards": 838,
+      "withheld_fields": [
+        "code",
+        "obs.stdout_tail"
+      ],
+      "public_release_cleared": false
+    },
+    {
+      "id": "historical_content_review_eligible",
+      "cards": 15174,
+      "means_clean_or_licensed": false,
+      "public_release_cleared": false
+    },
+    {
+      "id": "prospective_first960",
+      "status": "SEALED",
+      "labels_outcomes_predictions_identities_utility_read_allowed": false,
+      "public_release_cleared": false
+    }
+  ],
+  "responsibility_matrix": [
+    {
+      "owner_role": "historical_data_curator_or_senior",
+      "action": "supply_two_missing_prepared_sources_and_non_secret_provider_contract_metadata",
+      "closure_artifacts": [
+        "hash_bound_source_coverage_receipt",
+        "credential_scanned_metadata_only_provider_receipt"
+      ]
+    },
+    {
+      "owner_role": "authorized_content_security_reviewer",
+      "action": "privately_adjudicate_173_patterns_affecting_419_cards",
+      "closure_artifacts": [
+        "aggregate_disposition_receipt_bound_to_private_manifest"
+      ]
+    },
+    {
+      "owner_role": "institutional_legal_reviewer",
+      "action": "review_25_competition_rules_provider_terms_and_payload_classes",
+      "closure_artifacts": [
+        "dated_field_scope_and_per_batch_disposition"
+      ]
+    },
+    {
+      "owner_role": "project_governance_owner",
+      "action": "approve_license_notice_attribution_creator_and_withholding_policy",
+      "closure_artifacts": [
+        "LICENSE",
+        "NOTICE",
+        "licenses.json",
+        "creator_and_governance_approval_receipt"
+      ]
+    },
+    {
+      "owner_role": "release_engineer",
+      "action": "build_immutable_successor_run_dual_scans_verify_metadata_and_postflight",
+      "closure_artifacts": [
+        "immutable_release_manifest",
+        "independent_security_receipts",
+        "verified_croissant_rai_jsonld",
+        "final_release_postflight"
+      ]
+    }
+  ],
+  "ordered_release_sequence": [
+    "recover_private_review_inputs",
+    "complete_parallel_content_and_legal_reviews",
+    "freeze_per_unit_disposition",
+    "build_append_only_immutable_candidate",
+    "run_independent_exact_candidate_scans",
+    "finalize_governance_artifacts",
+    "populate_and_verify_publication_metadata",
+    "run_final_release_postflight"
+  ],
+  "pre_clearance_submission_materials": {
+    "may_prepare_subject_to_security_and_attribution": [
+      "paper_and_data_card",
+      "research_code_and_tests",
+      "aggregate_audit_receipts",
+      "schema_dictionary",
+      "immutable_rebuild_instructions",
+      "claim_withdrawal_and_evidence_index_documents"
+    ],
+    "must_not_promise": [
+      "full_v11_payload_availability",
+      "prospective_first960_availability",
+      "legal_or_privacy_clearance"
+    ]
+  },
+  "historical_reproducibility": {
+    "v4_v5_status": "PERMANENTLY_UNRESOLVED_UNLESS_ORIGINAL_PAYLOADS_RECOVERED"
+  },
+  "prohibited_inferences": [
+    "content_review_eligible_means_clean_or_release_cleared",
+    "structure_only_means_legal_or_privacy_cleared",
+    "configured_model_id_identifies_service_provider_or_contract_entity",
+    "missing_rules_clause_means_permission",
+    "croissant_engineering_readiness_means_release_clearance",
+    "this_packet_is_a_new_scientific_result"
+  ],
+  "evidence_paths": [
+    "phase1/corpus_releases/v11.json",
+    "phase1/release_content_scan_postflight_receipt_20260902.json",
+    "phase1/release_content_tier_postflight_receipt_20260902.json",
+    "phase1/KAGGLE_RULES_TRIAGE_V11_20260902.md",
+    "phase1/licenses_v11_draft.json",
+    "phase1/PROVIDER_PROVENANCE_AND_TERMS_TRIAGE_V11_20260902.md",
+    "phase1/provider_terms_v11_draft.json",
+    "phase1/generator_provenance_completion_postflight_receipt_20260902.json",
+    "phase1/CROISSANT_RAI_READINESS_V11_20260902.md",
+    "phase1/croissant_release_config_v11.template.json",
+    "phase1/DATACARD_DECISION_CORPUS_DRAFT_20260902.md",
+    "phase1/CURRENT_DIRECTION.md"
+  ]
+}

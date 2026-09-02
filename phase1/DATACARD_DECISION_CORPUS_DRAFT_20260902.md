@@ -209,6 +209,11 @@ append-only sanitized successor，不能原地覆写 v11。
 | prospective first-960 release | SEALED | closure + one-time result protocol + outcome-independent release decision |
 | v4/v5 reproducibility | PERMANENTLY UNRESOLVED | 只在找回原 payload 时可改变；否则明确排除 |
 
+剩余外部动作、角色边界、可接受 closure artifact 与严格执行顺序已汇总在
+`phase1/RELEASE_GATE_ACTION_PACKET_V11_20260902.md`，机器绑定见
+`phase1/release_gate_action_manifest_v11_draft.json`。两者都是内部审查路由，不是法律意见或 release clearance，
+也不改变上表任何状态。
+
 ## 13. Maintenance and updates
 
 - 新 batch 必须 append-only：先登记 immutable rows/bytes/SHA，再新增版本 descriptor；禁止改旧 registry row。

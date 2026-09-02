@@ -1,0 +1,51 @@
+You are a principal investigator allocating compute budget to one of two branches. Decide which branch is more likely to yield the best eventual test score after several iterations. Emphasize extensibility, fixability, and promise relative to what has already been tried.
+
+Task description:
+{task_desc}
+
+Context from other solutions and their scores (not the candidates). Use this to identify promising gaps and avoid redundant directions:
+{context_text}
+
+Candidate A -- Plan:
+{plan_A}
+Candidate A -- Code:
+{code_A}
+
+Candidate B -- Plan:
+{plan_B}
+Candidate B -- Code:
+{code_B}
+
+Step-by-step evaluation:
+
+Problem-model fit:
+
+Does each candidate's formulation and objective align with the task? Any risks of leakage or misalignment? Note which issues are trivially fixable vs. fundamental.
+
+Extensibility and upgrade path:
+
+How modular is the code? How straightforward is it to add stronger models, features, or training strategies in 1 to 3 iterations?
+
+Learning curve projection:
+
+Based on current choices, estimate how performance might improve over the next few iterations. Identify low-hanging fruit (data cleaning, features, hyperparameters, regularization, architecture changes).
+
+Context-informed novelty:
+
+Relative to {context_text}, does the candidate explore a fresh, promising region or iterate intelligently on a proven one? Avoid branches that mirror underperforming context without new leverage.
+
+Risk-adjusted potential:
+
+Balance upside (ceiling) against effort/risk to realize it. Bugs are acceptable if the approach is sound and fixes are clear; penalize only for hard-to-remedy conceptual flaws.
+
+Decision policy:
+
+Choose the candidate whose direction offers higher expected long-term best test score and a credible path to get there.
+
+Output format (STRICT):
+
+Provide reasoning following the steps above.
+
+End with a single final answer: A for Candidate A or B for Candidate B.
+
+Provide your answer inside a \boxed{A} or \boxed{B}.

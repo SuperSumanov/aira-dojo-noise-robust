@@ -117,6 +117,17 @@ public prompt, model, context construction, tournament, and inference budget are
 matched. Before closure, only prompt/source/model/budget metadata may be frozen;
 no label, outcome, prediction value, accuracy, or utility may be read.
 
+The source binding is now explicit rather than aspirational. The latest v2 TeX
+source is 458,133 bytes with SHA-256
+`9910b62a9b8c9bb7da864fbb8534b124e697cf397a04103b43a273329e050ca0`;
+`sections/appendices/inference_only.tex` is 18,814 bytes with SHA-256
+`f44585395980052a631d8eef19424759d22aebd3b3745fbfbd84d57b983a8c72`.
+Its optimized-prompt block is checked in byte-exact at
+`phase1/baselines/rpm_inference_only_optimized_v2.txt` (1,950 bytes, SHA-256
+`d64763172087a4243ddfa3ff364fad071c552af0783e5786a301a37bc338ff96`).
+The accompanying contract and network-free renderer do not authorize a model call;
+model/context/cost and the outcome-blind panel remain separate pre-run gates.
+
 Minimum result-time reporting for this row:
 
 - exact RPM paper/source version and prompt hash;

@@ -1,0 +1,105 @@
+{
+  "protocol": "decision-corpus-rpm-inference-only-prompt-transfer-v1",
+  "version": 1,
+  "status": "SOURCE_AND_LOCAL_RENDERER_FROZEN_NO_LIVE_CALLS_AUTHORIZED",
+  "frozen_date_utc": "2026-09-02",
+  "source": {
+    "paper": "AI Research Preference Models",
+    "arxiv_id": "2608.13940",
+    "version": "v2",
+    "submitted_date": "2026-08-14",
+    "revised_date": "2026-08-25",
+    "source_url": "https://arxiv.org/src/2608.13940v2",
+    "source_bytes": 458133,
+    "source_sha256": "9910b62a9b8c9bb7da864fbb8534b124e697cf397a04103b43a273329e050ca0",
+    "prompt_source_path": "sections/appendices/inference_only.tex",
+    "prompt_source_bytes": 18814,
+    "prompt_source_sha256": "f44585395980052a631d8eef19424759d22aebd3b3745fbfbd84d57b983a8c72",
+    "prompt_extraction": "second lstlisting block, excluding TeX wrapper and including its terminal newline",
+    "paper_reported_single_model_policy": {
+      "optimized_prompt": true,
+      "maximum_reasoning_effort": true,
+      "maximum_context_nodes_that_fit_model_window": true
+    },
+    "paper_reported_online_backbone": "Qwen3.6-27B",
+    "paper_reported_online_hosting": "self-hosted single-H200 setup",
+    "license": {
+      "name": "CC BY 4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Thomas Simon Foster et al., AI Research Preference Models, arXiv:2608.13940v2",
+      "modification_notice": "The checked-in text is an exact extraction of the optimized prompt; the Decision Corpus wrapper and missing-plan marker are separate adaptations."
+    }
+  },
+  "frozen_prompt": {
+    "path": "phase1/baselines/rpm_inference_only_optimized_v2.txt",
+    "bytes": 1950,
+    "sha256": "d64763172087a4243ddfa3ff364fad071c552af0783e5786a301a37bc338ff96",
+    "placeholders": {
+      "task_desc": 1,
+      "context_text": 2,
+      "plan_A": 1,
+      "code_A": 1,
+      "plan_B": 1,
+      "code_B": 1
+    }
+  },
+  "decision_corpus_transfer": {
+    "result_row_name": "RPM-style inference-only prompt transfer",
+    "may_be_called_exact_reproduction": false,
+    "candidate_plan_policy": "Use the same literal [PLAN_NOT_RECORDED_BY_DECISION_CORPUS] for both candidates; do not synthesize a plan from code or outcomes.",
+    "candidate_code_policy": "Full decision-time candidate code, no execution output and no candidate outcome.",
+    "context_policy_status": "NOT_YET_FROZEN",
+    "context_policy_requirement": "Before any live call, freeze a deterministic builder over only same-task context nodes whose execution information was available before the candidate decision; exclude both candidates, later nodes, labels being predicted, private identities, and any post-decision information.",
+    "orientation_policy": {
+      "requests": [
+        "AB",
+        "BA"
+      ],
+      "same_information_both_orders": true,
+      "parser": "exactly one terminal boxed A or B in final content",
+      "raw_reasoning_salvage": false,
+      "disagreement": "abstain and report as position disagreement"
+    },
+    "known_deviations_from_rpm": [
+      "Decision Corpus does not record candidate plans, so both receive a symmetric explicit missing-plan marker.",
+      "The benchmark uses two deterministic orientations per pair as a position-bias audit.",
+      "The exact Qwen3.6-27B checkpoint, serving stack, context-node packing, and reasoning-control interface are not yet matched.",
+      "This is an offline recorded-fragment benchmark, not RPM's online 15-child tournament or end-to-end intervention."
+    ]
+  },
+  "activation_gates": {
+    "context_builder_and_independent_verifier_frozen_before_calls": true,
+    "exact_model_provider_checkpoint_and_context_window_recorded": true,
+    "temperature_seed_reasoning_budget_and_output_budget_recorded": true,
+    "exact_common_support_panel_frozen_outcome_blind": true,
+    "prediction_escrow_append_only": true,
+    "first_960_identity_and_accrual_closure_required_before_result_join": true,
+    "separate_call_count_token_cost_and_currency_cap_approval_required": true,
+    "smoke_parse_position_latency_and_cost_gates_required_before_full_calls": true,
+    "no_model_task_prompt_or_threshold_selection_after_results": true
+  },
+  "implementation": {
+    "module": "phase1/rpm_inference_only_transfer.py",
+    "network_transport_implemented": false,
+    "credential_loading_implemented": false,
+    "panel_selection_implemented": false,
+    "context_selection_implemented": false,
+    "outcome_join_implemented": false
+  },
+  "security": {
+    "prospective_label_outcome_prediction_accuracy_utility_read": false,
+    "prospective_candidate_identity_or_private_profile_read": false,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0,
+    "live_calls_authorized": false
+  },
+  "interpretation_boundary": {
+    "counts_as_distinct_claim_evidence": false,
+    "proves_source_and_prompt_reproducibility": true,
+    "proves_baseline_accuracy_or_utility": false,
+    "proves_rpm_reproduction": false,
+    "unblocks_paid_or_gpu_execution": false
+  }
+}

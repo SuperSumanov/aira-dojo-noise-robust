@@ -260,3 +260,6 @@ phase1/results/endpoint_budget_influence_bounded_task_reweight_20260830_d768cb2/
 phase1/scripts/guard_outcome_blind_continuity_887_20260830_v5.sh text eol=lf diff
 phase1/scripts/renew_outcome_blind_monitors_887_20260830_v5.sh text eol=lf diff
 phase1/tests/test_outcome_blind_monitor_renewal_20260830.py text eol=lf diff
+
+# The RPM transfer prompt is byte-bound to the arXiv v2 TeX extraction.
+phase1/baselines/rpm_inference_only_optimized_v2.txt text eol=lf diff

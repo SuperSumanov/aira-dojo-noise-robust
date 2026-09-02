@@ -314,6 +314,9 @@ explicit RPM-style inference-only prompt-transfer row. It is only a reproduction
 the public prompt, model, context construction, tournament, and inference budget are
 all matched; otherwise it is named as a transfer baseline. Its predictions remain
 escrowed under the same closure and common-support rules as every other family.
+The optimized prompt is byte-bound to the latest v2 TeX source, but the exact model,
+context-node builder, and call budget are not yet frozen; source reproducibility must
+not be reported as a completed baseline run.
 
 Historical model development uses train-run development only. A checkpoint cannot be
 selected through repeated evaluation on the frozen temporal cohort. Any future
@@ -605,3 +608,6 @@ equally, a benchmark for the claims made about them.
 - Claim-withdrawal appendix: `PAPER_APPENDIX_CLAIM_WITHDRAWALS_20260902.md`.
 - Reproducibility/audit appendix: `PAPER_REPRODUCIBILITY_APPENDIX_DRAFT_20260902.md`;
   prospective result slots remain sealed and no path in this appendix authorizes an L3 read.
+- RPM transfer source/readiness: `RPM_INFERENCE_ONLY_TRANSFER_READINESS_20260902.md` and
+  `rpm_inference_only_transfer_contract_v1.json`; this freezes source/prompt/rendering only,
+  not model calls, predictions, accuracy, utility, or an exact RPM reproduction.

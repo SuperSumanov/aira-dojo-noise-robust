@@ -134,10 +134,19 @@ outcome。TF-IDF 与 component gain 是分别命名的更强门，不能救失�
 
 - 不能再申“首个 MLE trajectory dataset”“首个 tree/sibling reward model”或“首次 critic-guided code search”；
   ML-Agent、OpenMLE、mle-traj、AgentRM、ReLoc、SELA 等已覆盖相邻主张。
+- 更直接地，FOREAGENT（arXiv:2601.05930）已经发布 MLE solution-preference corpus 并报告 Predict-then-Verify
+  加速；AI Research Preference Models（arXiv:2608.13940v2）已经在 AIRA-dojo 同 parent 生成 15 个未执行 child，
+  用 inference-only/agentic RPM 选择一个执行，并给出 20 tasks × 10 seeds 的端到端正结果。因此“首次执行前比较
+  两个 MLE 解”“首次 preference-guided AIRA 加速”“subtree future-potential 新标签”也全部关闭。
 - 可守位置是：真实 MLE search 的 provenance-bound sibling-fragment benchmark，联合 physical-run/config/time split、
   outcome-blind closure、label/noise/cost/missingness/pair-weight audit 与同池 predictor study。
+- Table 4B 会把 RPM-style inference-only prompt transfer 作为必须出现或明确说明缺失原因的直接 baseline；只有 exact
+  prompt/model/context/tournament/budget 全匹配才称 reproduction，否则必须标为 transfer。closure 前仍不读任何结果。
 - 原始前瞻语料生产和 0820 探索性 scaling 信号归学长；run-clean/temporal corpus、sibling estimand、benchmark/audit、
   independent verification 与论文测量主张归我们这边；clean confirmation 联合完成。
+
+本次只把 2026-08-22 已完成的一手竞品审计补进当前英文稿和 citation map，不是新科学结果，也不改变 sidecar/closure/
+GPU 门。主引用入口为 `phase1/RELATED_WORK_CITATION_MAP_20260902.md`。
 
 ## 同步推进
 

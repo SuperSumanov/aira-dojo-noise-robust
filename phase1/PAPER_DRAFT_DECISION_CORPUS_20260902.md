@@ -1,6 +1,6 @@
 # Decision Corpus: Auditing Predictors for ML-Engineering Agent Search Trees
 
-> Internal manuscript draft v0.4, 2026-09-02. This draft is governed by
+> Internal manuscript draft v0.5, 2026-09-02. This draft is governed by
 > `CURRENT_DIRECTION.md` and Evidence Index v10. Bracketed result slots are sealed;
 > they must not be filled before the corresponding preregistered gate closes.
 
@@ -89,10 +89,36 @@ Our contributions are:
    pairing process as well as of the predictor.
 
 We do not claim the first or largest MLE trajectory dataset, the first reward model
-trained from search trees, complete choice sets, or an end-to-end search improvement
-before the sealed confirmation protocol permits that conclusion.
+trained from search trees, the first pre-execution MLE preference mechanism, the
+first preference-guided AIRA-dojo speedup, complete choice sets, or an end-to-end
+search improvement before the sealed confirmation protocol permits that conclusion.
 
 ## 2. Related Work
+
+### Pre-execution preference for ML agents
+
+FOREAGENT (arXiv:2601.05930) formalizes Data-centric Solution Preference, releases
+a corpus reported as 18,438 within-task solution comparisons, and reports a
+Predict-then-Verify agent that uses a strong LLM to avoid some executions. AI
+Research Preference Models (RPMs; arXiv:2608.13940) intervene even closer to our
+setting: AIRA-dojo generates 15 unexecuted
+children from one parent and an inference-only LLM judge or an agentic pilot system
+selects one for execution. RPM reports positive end-to-end evidence on 20
+AIRS-Bench tasks and therefore establishes the practical value of this intervention,
+not merely an offline correlation.
+
+These works are direct competitors and motivation, not generic adjacent citations.
+Their measurement units nevertheless differ from ours. FOREAGENT constructs many
+comparisons from a curated within-task solution pool. RPM's separate offline set
+contains 1,000 sibling pairs, removes normalized-test-gap near-ties below 0.01, and
+uses the maximum observed test score in each candidate's subtree; the authors
+explicitly identify off-policy and subtree-opportunity bias and ground their claims
+in the end-to-end experiment. Decision Corpus instead studies naturally logged
+recorded-parent fragments and asks how predictor comparisons change under explicit
+physical-run identities, incomplete choice observability, failure/unknown relations,
+pair-induced weighting, cost accounting, and outcome-blind temporal transport. It
+does not supersede RPM's system result. RPM becomes a required method reference and
+an inference-only transfer baseline for the sealed common-support table.
 
 ### MLE trajectories and actor learning
 
@@ -135,6 +161,8 @@ our 2026-08-28 primary-source audit, not proof of absence.
 
 | Resource | Released unit | Primary objective | True-sibling decision unit | Predictor benchmark | Isolation / closure | Boundary for our claim |
 |---|---|---|---|---|---|---|
+| FOREAGENT | 895 curated solutions expanded to a reported 18,438 within-task comparisons over 26 tasks | Run-free LLM preference and Predict-then-Verify search | No: released rows are combinations from task-level solution pools, not logged choice events | Strong-LLM preference, confidence, and data-report analyses | Within/cross-trajectory analyses; public release is not the same run/component/chronological contract | Closes first MLE preference corpus, first run-free pair prediction, and first preference-driven execution reduction |
+| AI Research Preference Models | Online 15-candidate child batches plus a separate 1,000-pair offline sibling set | Inference-only and pilot-based child selection in AIRA-dojo | Yes for the online intervention; offline labels use observed-subtree maxima | Frozen frontier LLMs, prompt/context/reasoning scaling, ensembles, and pilot budgets rather than a reusable cross-family suite | Offline modality split plus 20-task, 10-seed end-to-end evaluation; authors disclose off-policy/subtree opportunity bias | Closes first AIRA-dojo unexecuted-child preference, subtree-future-potential novelty, and candidate-selection speedup |
 | ML-Agent | 10,000 linear expert execution trajectories over nine MLE tasks | SFT and step-wise PPO of the actor | Not its primary released/evaluated unit | No systematic cross-family critic benchmark as its primary contribution | Held-out-task transfer; no equivalent of our run/component/chronological decision split reported | Closes first-large-execution-trajectory and actor-learning claims |
 | Frontis-MA1 / OpenMLE | 26,259 public traces over 4,891 task names | Train Draft/Improve/Debug/Crossover operators and long-horizon evolution | Not its primary released/evaluated unit | No predictor-suite measurement study as primary contribution | Actor/search evaluation split; no equivalent one-time outcome-blind closure reported | Closes largest/first MLE training-trace and learned-operator claims |
 | mle-traj | Human/agent code versions, transitions, canonical branches/forest edges, and labels | Behavior, state, action, and intent analysis | Canonical agent tables linearize 13 MLEvolve runs to 189 branches; gated raw true-sibling recoverability remains unknown | No common-pool cross-family critic benchmark as primary contribution | Physical-run IDs exist for a small agent subset; no verified equivalent of our full isolation/closure bundle | Closes first scored MLE trajectory/graph and simple node-count novelty claims |
@@ -144,6 +172,7 @@ our 2026-08-28 primary-source audit, not proof of absence.
 
 | Work family | What it already establishes | What we borrow or compare | Claim excluded from this paper |
 |---|---|---|---|
+| FOREAGENT; AI Research Preference Models | Pre-execution MLE solution preference and positive agent-level execution allocation | Required direct baselines; contrast derived/off-policy comparison units with audited logged fragments | First MLE preference corpus, first pre-execution comparison, first AIRA-dojo preference-guided speedup |
 | AgentRM; Step-Level Q-Value Models | Reward/value learning from agent search or process states; best-of-N/beam use | Tree-derived supervision and value-model boundary | First reward model from a search tree |
 | ReLoc | Parent/sibling local code revisions train a reward model and guide search | Parent-local comparison as an adjacent estimand | First sibling/parent reward model for code search |
 | SELA and related MCTS-AutoML agents | Tree search over automated ML decisions | Search-tree context and end-to-end baseline | First tree-search MLE/AutoML agent |
@@ -152,7 +181,9 @@ our 2026-08-28 primary-source audit, not proof of absence.
 
 Decision Corpus is therefore positioned as an audit-grade predictor measurement
 resource for fixed ML-engineering searches, not as a priority claim over trajectory
-collection, reward modeling, or critic-guided search.
+collection, reward modeling, execution-free candidate preference, or critic-guided
+search. The primary-source claim map and version boundaries are frozen in
+`RELATED_WORK_CITATION_MAP_20260902.md`.
 
 ## 3. From Search Archives to Decision Corpus
 
@@ -262,6 +293,12 @@ reward models; and external LLM judges where cost permits. Each row records whet
 features are available before execution. Predictors are joined to the exact same
 eligible pair pool before paired comparison. Coverage differences are reported and
 are never silently converted into favorable denominators.
+
+Because FOREAGENT and RPM are direct competitors, Table 4B also reserves an
+explicit RPM-style inference-only prompt-transfer row. It is only a reproduction if
+the public prompt, model, context construction, tournament, and inference budget are
+all matched; otherwise it is named as a transfer baseline. Its predictions remain
+escrowed under the same closure and common-support rules as every other family.
 
 Historical model development uses train-run development only. A checkpoint cannot be
 selected through repeated evaluation on the frozen temporal cohort. Any future
@@ -448,7 +485,10 @@ search utility.
 **[SEALED TABLE 4B.]** This subsection will be populated once the preregistered
 identity cohort and accrual-closure receipt permit a one-shot join of escrowed
 predictions and labels. Until then, no accuracy, calibration, utility, candidate
-identity, or private selection profile is inspected or reported.
+identity, or private selection profile is inspected or reported. The final table
+must include or explicitly account for the RPM-style inference-only transfer row;
+model/prompt/source version, position handling, context construction, parse coverage,
+latency, and compute/token cost are fixed before any result is read.
 
 ### 6.3 Conditional clean capacity scaling
 

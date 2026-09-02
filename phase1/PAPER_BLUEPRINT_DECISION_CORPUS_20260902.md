@@ -6,6 +6,8 @@
 
 英文正文初稿入口为 `PAPER_DRAFT_DECISION_CORPUS_20260902.md`。该稿已展开 Abstract、Sections 1--8、Tables 1--4A 与
 internal evidence routing；prospective common-support 与 clean scaling 仍是显式 sealed/conditional slot，不能提前填值。
+直接竞品与主张关闭边界的主引用入口为 `RELATED_WORK_CITATION_MAP_20260902.md`；FOREAGENT 与 RPM 必须出现在
+正文和 Table 1，不能只留在 2026-08-22 实验记录中。
 
 ## 1. 论文定位
 
@@ -107,15 +109,20 @@ internal evidence routing；prospective common-support 与 clean scaling 仍是�
 
 ### 2 Related Work
 
-四组相邻工作必须分别处理：
+五组工作必须分别处理，第一组是直接竞品而非泛相关工作：
 
-1. **MLE trajectories / actor learning**：ML-Agent、OpenMLE/Frontis-MA1、mle-traj。它们关闭“首个/最大 MLE
+1. **Pre-execution MLE preference**：FOREAGENT（arXiv:2601.05930）、AI Research Preference Models
+   （arXiv:2608.13940）。它们已经覆盖 MLE
+   solution-preference corpus、执行前 pairwise prediction、AIRA-dojo 同 parent 未执行 child selection、subtree-future
+   标签与端到端加速；我方差异是 logged fragment 的依赖/缺失/噪声/成本/时间前瞻 audit-grade benchmark，而不是
+   再发明 preference mechanism。
+2. **MLE trajectories / actor learning**：ML-Agent、OpenMLE/Frontis-MA1、mle-traj。它们关闭“首个/最大 MLE
    trajectory”与 operator/actor-learning novelty；我方差异是 decision-time predictor measurement 与 audit contract。
-2. **Tree/reward-model search**：AgentRM、Step-Level Q-Value Models、ReLoc、SELA。它们关闭“首次从树训练 critic”
+3. **Tree/reward-model search**：AgentRM、Step-Level Q-Value Models、ReLoc、SELA。它们关闭“首次从树训练 critic”
    “首次 sibling/parent RM”“首次 critic-guided code search”。
-3. **NAS predictors/benchmarks**：How Powerful are Performance Predictors in NAS?、NAS-Bench-Suite-Zero、
+4. **NAS predictors/benchmarks**：How Powerful are Performance Predictors in NAS?、NAS-Bench-Suite-Zero、
    NAS-Bench-360。借鉴 init/query accounting、跨任务 predictor suite 与 dataset-first 论文形态。
-4. **Benchmark reporting**：Agentic Benchmark Checklist、BetterBench、BenchmarkCards、ReproEvalCard。Evidence Index
+5. **Benchmark reporting**：Agentic Benchmark Checklist、BetterBench、BenchmarkCards、ReproEvalCard。Evidence Index
    是在真实 MLE search distribution 上落实这些原则，不是通用 card/checklist 的发明。
 
 ### 3 From Search Trees to Decision Corpus
@@ -165,11 +172,11 @@ Table 1--3 的可粘贴正文草稿、caption 与 evidence routing 已写入
 
 | 编号 | 内容 | 当前状态 | 绑定证据 |
 |---|---|---|---|
-| Table 1 | 与 ML-Agent/OpenMLE/mle-traj/NAS predictor benchmark 的单位与协议比较 | 可写；raw mle-traj tree recoverability 保持 unknown | 2026-08-28 直接竞品审计 |
+| Table 1 | 与 FOREAGENT/RPM、ML-Agent/OpenMLE/mle-traj 和 NAS predictor benchmark 的单位与协议比较 | 可写；raw mle-traj tree recoverability 保持 unknown | 2026-08-22/28 直接竞品审计 + related-work citation map |
 | Table 2 | Corpus statistics：historical strict core + sealed prospective structural support | 可写结构值；不得写 prospective outcome；v11 schema 已逐字段闭合 | Evidence Index v10 entries 1, 14, 19 + v11 schema inventory |
 | Table 3 | Audit findings 与适用范围/失败门 | 可写 | Evidence Index v10 全 20 distinct entries |
 | Table 4A | 历史 exact-common-support development calibration + 独立 cost panel | 已填；仅 static/TF-IDF primary rows，不冒充 full-family/direct-sibling confirmation | historical UST formal + deployment_cost |
-| Table 4B | 前瞻 exact-common-support full-family predictor benchmark：accuracy/calibration/coverage/init/query | **等待 first-960 closure** | prospective gate + prediction receipts |
+| Table 4B | 前瞻 exact-common-support full-family predictor benchmark：含 RPM-style inference-only transfer 的 accuracy/calibration/coverage/init/query | **等待 first-960 closure**；RPM exact reproduction/transfer 必须分名 | prospective gate + prediction receipts + citation map |
 | Table 5 | 0.6B/4B/8B × 2 seeds clean scaling | **等待 sidecar、GPU 审批与训练** | C4 条件 |
 | Figure 1 | archive→run→endpoint→parent→pair + vault/escrow/closure 流程图 | PNG/SVG/receipt 已完成且 value-free 双次渲染一致 |
 | Figure 2 | run-level 与 pair-level task weight 随时间反转；标注单 drop 高 leverage | PNG/SVG/receipt 已完成且双次渲染逐字节一致 | structural_weighting_shift |
@@ -199,6 +206,7 @@ Table 1--3 的可粘贴正文草稿、caption 与 evidence routing 已写入
 - “first/largest MLE trajectory dataset”；
 - “first reward model trained from a search tree / sibling pairs”；
 - “first critic-guided code or MLE search”；
+- “first pre-execution MLE preference / first AIRA-dojo preference-guided speedup”；
 - “complete choice sets”或“recorded parent is semantic ground truth”；
 - “no contamination / no semantic clones”；
 - “all integrity gates pass”（historical strict core 明确 35/36）；
@@ -219,7 +227,8 @@ Table 1--3 的可粘贴正文草稿、caption 与 evidence routing 已写入
   `DATACARD_DECISION_CORPUS_DRAFT_20260902.md`、v11 schema dictionary 与 claim/withdrawal appendix。
   上述写作件已形成初稿；withdrawal appendix 固定 15 项重大撤回/缩界及禁止复用规则；reproducibility/audit
   appendix 已把 access level、rebuild/split/common-support、one-time closure、no-rescue、release governance 与 failure
-  record contract 连成可审稿文本。
+  record contract 连成可审稿文本。直接竞品 citation map 已补齐；正文必须保留 FOREAGENT/RPM 的正面结果和我方
+  非优先权边界。
 - D4--D8：完成 Sections 1--5 初稿；所有数字从 Evidence Index 路由，不从聊天或旧 paper 抄写。
 - D7--D14：Table 4A 已由现有 formal 填入；closure/sidecar 到位后只填 Table 4B；C4 获批才跑 Table 5。
 - D14--D18：Sections 6--7、limitations、ethics/license/data statement、复现说明。

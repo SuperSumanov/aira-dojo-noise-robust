@@ -296,3 +296,9 @@ phase1/tests/test_global_local_accelerate_checkpoint_gate.py text eol=lf diff
 phase1/tests/test_global_local_accelerate_resume_result.py text eol=lf diff
 phase1/results/global_local_accelerate_resume_20260904/** text eol=lf diff
 phase1/results/global_local_accelerate_resume_20260904/runs.csv -text diff
+phase1/historical_global_local_source_gate.py text eol=lf diff
+phase1/verify_historical_global_local_source_gate.py text eol=lf diff
+phase1/scripts/run_historical_global_local_source_gate_20260904.py text eol=lf diff
+phase1/tests/test_historical_global_local_source_gate.py text eol=lf diff
+phase1/HISTORICAL_GLOBAL_LOCAL_SOURCE_GATE_20260904.md text eol=lf diff
+phase1/results/historical_global_local_source_gate_20260904/** -text diff

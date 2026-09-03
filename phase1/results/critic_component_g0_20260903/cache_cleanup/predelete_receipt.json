@@ -1,0 +1,43 @@
+{
+  "active_slurm_jobs": 0,
+  "allocated_bytes": 14697836544,
+  "current_g0_dependency_reference_hits": 0,
+  "deleted": false,
+  "entries": 545,
+  "host_session_services_metadata_only_not_env_or_maps_inspected": [
+    {
+      "comm": "sshd",
+      "pid": 2718918
+    },
+    {
+      "comm": "systemd",
+      "pid": 2890236
+    },
+    {
+      "comm": "(sd-pam)",
+      "pid": 2890239
+    }
+  ],
+  "inventory_sha256": "895aa563580a34d32e1da97a7392b313e9a92a24c216d247b179b40a303bd807",
+  "live_reference_hits": 0,
+  "manifest_sha256": "fed0649b91372ce6c40d75a64be7b17f87cfc091fb66bc0b53b2d834be3daad0",
+  "manifest_top_keys": [
+    "entries",
+    "entry_count",
+    "equivalence_receipt_sha256",
+    "payload_sha256",
+    "schema_version",
+    "status"
+  ],
+  "outside_symlinks": 0,
+  "regular_files": 214,
+  "regular_hardlinks": 0,
+  "root_device": 128,
+  "root_inode": 32365426219,
+  "same_uid_processes_checked": 8,
+  "status": "PREDELETE_READONLY_PASS",
+  "symlinks": 96,
+  "target": "/research/d7/spc/yzyang4/balanced-e2a-hf-cache-e2d587d-a1",
+  "user_approved_only_this_directory": true,
+  "utc": "2026-09-03T09:45:23.321137+00:00"
+}

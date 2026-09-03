@@ -1,5 +1,10 @@
 {
-  "status": "OFFICIAL_PATH_CONFIRMED_NEAR_ONE_TIB_USAGE_SCAN_COMPLETE_STORAGE_BLOCKED",
+  "status": "APPROVED_CACHE_REMOVED_FOUR_GIB_WRITE_CAPACITY_RESTORED",
+  "latest_write_test_at_utc": "2026-09-03T09:47:04.661125+00:00",
+  "latest_checkpoint_reservation": "PASS",
+  "latest_checkpoint_allocated_bytes": 4294967296,
+  "latest_write_test_receipt": "cache_cleanup/storage_after_cleanup.json",
+  "original_diagnostic_fields_below_are_historical": true,
   "user_supplied_allocation": {
     "path": "/research/d7/spc/yzyang4",
     "quota_as_stated": "1TB",
@@ -65,15 +70,17 @@
   },
   "gpu_retry_submitted": false,
   "sealed_payloads_read": false,
-  "cleanup_candidate_not_yet_authorized": {
+  "approved_cleanup_completed": {
     "path": "/research/d7/spc/yzyang4/balanced-e2a-hf-cache-e2d587d-a1",
     "allocated_bytes_seen_in_primary_scan": 14697836544,
     "top_level_entries": ["e2a_hf_cache_manifest.json", "hub", "torch"],
     "observed_contents_type": "downloaded public Hugging Face and timm backbones for the closed E2-A experiment",
     "not_current_G0_model_snapshot_or_runtime": true,
-    "all_dependency_and_recoverability_checks_completed": false,
-    "deletion_requires_explicit_approval_and_final_reference_checks": true,
-    "deleted": false
+    "user_explicit_approval_received": true,
+    "predelete_checks_and_manifest_preservation_completed": true,
+    "host_session_services_only_metadata_checked": true,
+    "deleted": true,
+    "deletion_receipt": "cache_cleanup/deletion_receipt.json"
   },
-  "next_step": "No more full disk scans or waits on closed sessions. Await explicit approval for the exact historical download-cache candidate; preserve its manifest and prove no active dependency and recoverability before removal. Then revalidate checkpoint reservation capacity before the single approved G0 retry. Providing the official path is not deletion authorization."
+  "next_step": "Storage write test now passes after the exact user-approved cleanup. Complete exact source/control/runtime/input/config preflight and submit at most the already-approved single 117-minute, two-GPU G0 recovery; no other cleanup or training matrix is authorized."
 }

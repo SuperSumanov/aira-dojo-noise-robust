@@ -1,0 +1,12 @@
+{
+  "manifest_sha256": "fed0649b91372ce6c40d75a64be7b17f87cfc091fb66bc0b53b2d834be3daad0",
+  "other_directories_deleted": false,
+  "predelete_receipt_sha256": "54f53fd2607bf2b5a77d50ce70b58c22b076303cdc8714d8b3e4377f5995567e",
+  "prior_allocated_bytes": 14697836544,
+  "raw_corpus_or_trained_checkpoint_deleted": false,
+  "recovery": "Redownload public upstream artifacts using preserved exact cache manifest; no trash copy retained.",
+  "status": "APPROVED_SINGLE_CACHE_DELETED",
+  "target": "/research/d7/spc/yzyang4/balanced-e2a-hf-cache-e2d587d-a1",
+  "target_absent": true,
+  "utc": "2026-09-03T09:46:42.900964+00:00"
+}

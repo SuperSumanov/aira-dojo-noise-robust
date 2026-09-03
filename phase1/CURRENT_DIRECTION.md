@@ -3,7 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0L0w. 2026-09-03 受控重试已批准，CPU 保存回归通过，但研究盘配额阻止提交
+## 0L0w. 2026-09-03 已批准的单缓存清理完成，4 GiB 存储门通过；G0 提交前复核
+
+**09:47 UTC 更新，覆盖下方存储阻碍/待删除授权状态：** 用户明确回复“清理一下吧”，仅批准此前点名的
+`/research/d7/spc/yzyang4/balanced-e2a-hf-cache-e2d587d-a1`。545 项 inventory 和原始模型缓存 manifest
+已先保存到本地并核对哈希；214 regular files 均无额外硬链接，96 symlinks 均只指向该缓存内部，
+无当前 G0 依赖/活动作业引用。SSH/systemd/PAM 登录服务只查身份与命令行，其受系统保护的 env/maps
+未读，不把它们写成完整进程检查通过；其它同 UID workload 检查无引用，Slurm 队列为空。
+该单一目录于 `2026-09-03T09:46:42.900964+00:00` 删除，原 allocated bytes=`14697836544`，其它目录、
+原始语料、训练检查点与 181 MB runtime overlay 均未删。可按保留清单重新下载公开模型；未留整份缓存副本。
+独立存储测试于 `2026-09-03T09:47:04.661125+00:00` 成功：4 GiB fallocate+fsync、文件长度和
+实际 allocated bytes 均为 `4294967296`；只移除本次独占临时诊断文件，旧 EDQUOT 零字节证据保留。
+这是写入能力恢复，不是服务端剩余额度查询，也不是 GPU 结果。回执位于
+`results/critic_component_g0_20260903/cache_cleanup/`，G0 此刻尚未提交，正在固定 exact control/source、
+数据/runtime/config/checkpoint 与 117 分钟/no-requeue/唯一提交门。预算沿用既有批准，不重问或扩大矩阵。
 
 **08:10 UTC 完整占用统计已核验，覆盖下方的扫描中状态：** 既有全目录 session 54816 已 rc=0 结束，
 共 470 个一级目录加 1 个根目录总计行。根目录实际 allocated bytes=`1099371036672`，约

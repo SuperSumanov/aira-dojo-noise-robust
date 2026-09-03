@@ -5,6 +5,24 @@
 
 ## 0L0w. 2026-09-03 受控重试已批准，CPU 保存回归通过，但研究盘配额阻止提交
 
+**08:10 UTC 完整占用统计已核验，覆盖下方的扫描中状态：** 既有全目录 session 54816 已 rc=0 结束，
+共 470 个一级目录加 1 个根目录总计行。根目录实际 allocated bytes=`1099371036672`，约
+`0.9998721331357956 TiB`（以 1 TiB 为分母为 `99.98721331357956%`）。这不是服务端 quota 回执，
+也不是可用空间保证；官方 `1TB` 的计费口径仍未知。但完整目录占用接近 1 TiB，连同已复现的 4 GiB
+EDQUOT，支持“空间/配额不足”而不是“官方路径错误”的诊断。不得把它写成精确剩余 quota。
+独立复验：471 行格式/唯一路径通过，470 个目录之和=`1099368828928` bytes，根下非目录项及根目录
+残差=`2207744` bytes；没有把独立 du 扫描相加。全部三个已有 scan session 均已关闭，不再等待或重扫。
+完整、仅一级目录的规范化 metadata 回执保存于本地 `tmp/official_storage_du_complete_20260903.txt`，
+SHA-256=`e5cee55745be3a95cde347e3f0432bf6b78cf1045251eff05e208ab3cb4b175b`；公开摘要为
+`results/critic_component_g0_20260903/official_storage_diagnostic.json`。未删除或 chmod 任何清理候选，
+旧下载缓存的清理授权仍未收到；G0 重试仍未提交。无需再向用户索要另一个“官方路径”。
+
+同轮远端只读检查（08:10:20 UTC）：LATEST=`55aae3150a3e7b91533bf392d9b3b40fc00a20e33545808f80d11e4a656c6ae7`，
+summary SHA=`eb133a6dbab8b5ddcdb1b75c80b44f65f8d2ccb6d60014be451b443536b652c8`；仍为 306 archives、
+589/960 runs、closure=false、config-v2 sidecars=0。intake PID 1692885 身份核验 live，最近 poll 33 rc=0；
+学长 HEAD 仍为 `b8d095180415957aa1bab31fa53ead1bba261c03`，没有新 commit/outcome。旧 Target-522 rank-v1
+失败标记仍为历史状态，不重试、不读封存值；本轮无 GPU/API/model fit。
+
 **15:11 香港时间存储信息更新：** 用户确认官方 allocation 就是现用路径 `/research/d7/spc/yzyang4`，
 额度原文 `1TB`、到期日 `2026-09-29`。不再要求用户另找路径。路径/属主/写权限检查通过，新建文件及
 64 KiB write+fsync 成功，但同目录 4 GiB allocation 再次 EDQUOT(122)；只移除了本次自己的诊断文件。
@@ -39,7 +57,8 @@ source successor=`5f3bc362db922c8edee2ef134656dfdb9a2b74fb`，基于原 `51c7f48
 **阻碍是存储，不再是预算批准：** 在同一研究盘预留 4,294,967,296 bytes 检查点空间被 EDQUOT(122)
 拒绝，留下的本次 reservation 文件为 0 bytes。共享盘 df 的空闲不是用户配额；本次失败安装只有约 13 MB
 独立残余环境，r1 setup 约 8 KB，无足够可清理缓存。181 MB overlay 是当前有效 runtime 的依赖，不能删。
-没有删除用户文件，也没有提交新 GPU 作业。已请求一个至少 5 GiB 可写目录或明确可删的旧 checkpoint。
+没有删除用户文件，也没有提交新 GPU 作业。最初曾请求可写目录；现已确认官方路径正确，转为等待
+确切旧下载缓存的清理授权及依赖/可恢复性验证，不能把用户提供路径理解为删除授权。
 不得在存储问题未解决时盲目重试或自行删旧模型。为避免 Slurm 秒数向上取整，计划时间保守设为 117 分钟
 （7,020 秒），加上上次 156 秒 allocation 后仍在原 4 GPU·h 内；必须 --no-requeue，唯一提交锁。
 

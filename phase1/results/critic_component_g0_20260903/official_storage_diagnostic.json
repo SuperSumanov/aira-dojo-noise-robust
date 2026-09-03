@@ -1,5 +1,5 @@
 {
-  "status": "OFFICIAL_PATH_CONFIRMED_WRITE_CAPACITY_BLOCKED_USAGE_SCAN_RUNNING",
+  "status": "OFFICIAL_PATH_CONFIRMED_NEAR_ONE_TIB_USAGE_SCAN_COMPLETE_STORAGE_BLOCKED",
   "user_supplied_allocation": {
     "path": "/research/d7/spc/yzyang4",
     "quota_as_stated": "1TB",
@@ -7,6 +7,7 @@
     "actual_server_enforced_quota_observed": false
   },
   "checked_at_utc": "2026-09-03T07:11:45.061881+00:00",
+  "completed_usage_receipt_verified_at_utc": "2026-09-03T08:12:35Z",
   "resolved_path": "/research/d7/spc/yzyang4",
   "owner": "yzyang4",
   "group": "y24",
@@ -27,17 +28,33 @@
     "missing_quota_output_does_not_mean_unlimited": true
   },
   "directory_usage_scan": {
-    "state": "RUNNING_NOT_A_COMPLETE_TOTAL",
+    "state": "COMPLETE_EXIT_ZERO_TOTAL_INDEPENDENTLY_CHECKED",
     "metadata_only": true,
+    "command": "du -x -B1 --max-depth=1 /research/d7/spc/yzyang4",
     "primary_tool_session_id": 54816,
     "primary_remote_pid": 2183640,
+    "primary_exit_code": 0,
+    "primary_numeric_rows": 471,
+    "primary_unique_top_level_directories": 470,
+    "root_allocated_bytes": 1099371036672,
+    "top_level_directory_sum_bytes": 1099368828928,
+    "root_and_non_directory_residual_bytes": 2207744,
+    "root_allocated_decimal_TB": 1.099371036672,
+    "root_allocated_binary_TiB": 0.9998721331357956,
+    "comparison_to_one_TiB_percent_not_server_quota": 99.98721331357956,
+    "actual_quota_remaining_bytes": null,
+    "live_du_traversal_is_not_an_atomic_quota_snapshot": true,
+    "normalized_complete_metadata_receipt_local_path": "tmp/official_storage_du_complete_20260903.txt",
+    "normalized_complete_metadata_receipt_sha256": "e5cee55745be3a95cde347e3f0432bf6b78cf1045251eff05e208ab3cb4b175b",
+    "independent_validation": "PowerShell parsed all 471 numeric rows, verified one root total, 470 unique top-level paths, recomputed the directory sum and root residual, and hashed the complete normalized receipt.",
+    "all_three_tool_sessions_closed": true,
     "worktrees_tool_session_id": 18553,
     "worktrees_remote_pid": 2210458,
     "worktrees_scan_completed_exit_zero": true,
     "worktrees_allocated_bytes_verified_by_both_scans": 281365282816,
-    "primary_completed_subdirectory_rows_observed": 396,
-    "primary_partial_lower_bound_bytes": 1065272762368,
-    "primary_partial_lower_bound_is_complete_total": false,
+    "historical_partial_subdirectory_rows_observed": 396,
+    "historical_partial_lower_bound_bytes": 1065272762368,
+    "historical_partial_lower_bound_is_complete_total": false,
     "scoped_scan_session_36930_completed": true,
     "completed_scoped_allocated_bytes": {
       "aira-dojo-runs": 28464369664,
@@ -58,5 +75,5 @@
     "deletion_requires_explicit_approval_and_final_reference_checks": true,
     "deleted": false
   },
-  "next_step": "Collect existing primary scan without starting another full scan. Review the exact historical download-cache candidate; preserve its manifest and prove no active dependency before any user-approved removal."
+  "next_step": "No more full disk scans or waits on closed sessions. Await explicit approval for the exact historical download-cache candidate; preserve its manifest and prove no active dependency and recoverability before removal. Then revalidate checkpoint reservation capacity before the single approved G0 retry. Providing the official path is not deletion authorization."
 }

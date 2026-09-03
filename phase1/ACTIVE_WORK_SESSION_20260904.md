@@ -98,3 +98,31 @@ G0 12288仍PENDING/Resources，306归档和LATEST55aae315未变。摄取原PID16
 
 当前科学结论仍是：尚无新的clean scaling或跨seed同预算收益。下一个效果结果必须来自已准备的严控真实fit，
 不能用本轮工程通过数代替。G0只计价，不选择模型、不作为scaling证据、不重复提交。
+
+## 实际Accelerate保存/恢复（执行前冻结，进行中）
+
+在上述更新接口上追加真正的`Accelerator.save_state/load_state`验证，不重复手动Gloo保存方案。
+固定world2/4×G/Ghash，合成seed6、两参数CPU float64、AdamW、dropout及三类RNG；G/L为176/209对，
+有效batch128，更新大小128/48/128/81，固定peak1e-5及token-progress规则。每个world/arm执行完整4步、
+前2步→新进程恢复、前3步→新进程恢复；完整轨迹也在2/3处保存，避免保存调用差异成为混杂。
+新进程故意从9600+rank而非600+rank初始化，只有成功恢复才能通过逐组件比较。
+
+直接审查exact Accelerate源码发现RNG恢复异常可能被捕获为日志；因此不能只用`load_state`不报错判成功。
+先验全部rank文件哈希、固定plan/source/runtime/cursor，再读本实验自产checkpoint，加载后立刻核对model、
+optimizer、Python/NumPy/Torch RNG逐位摘要。另一个不导入harness/adapter的只读验证器将直接解码框架文件。
+仅使用本实验产生的安全状态，模型safetensors、其它文件weights_only；hash不是第三方pickle信任证明。
+
+预检26项通过；单rank计算线程1、Gloo仅loopback、最长1200秒，不新建GPU/API/真实model-fit；所有小checkpoint
+保留。最终比较不含尚未实证的ZeRO3/bf16、真实大模型、数据加载器游标或断电恢复。运行根
+`/tmp/gl-accelerate-20260904-XmQYTa/resume-r1`；用独立Python启动器记录rc，避免既有跨shell退出码问题。
+
+18:54:07 UTC结构复查：语料589/960、306 archives、LATEST55aae315、config-v2=0、closure=false均未变；
+摄取3884166 live且最近poll4 rc0。学长b8d0951无新提交/outcome。G0在18:53:31 UTC仍PENDING/Resources。
+旧Target522-rank FAILED_RC=1的时间为9月1日21:52:12 UTC，并非本轮新失败；保持停止，不读私有结果、不擅自恢复。
+
+完成：工作负载与外层启动器均rc0，347.506484746933秒（不是吞吐基准）。20条轨迹、48更新、612次各rank
+forward；独立解码36份框架checkpoint，8组/24rank完整状态和消费事件逐位一致。171份只含合成回执的
+导出文件、3,317,919字节由独立receipt-only路径再验，summary SHA为`99601e0c…bc7b`。
+NumPy1.26兼容命名空间是独立decoder初次失败的原因；原工作负载不变，完成后仅改decoder两行，再读原
+checkpoint通过。source as-run SHA与修正后SHA均保留，测试可逐字重建旧版本。所有实际二进制状态仍在远端。
+新增故障测试与逐轨迹预算账通过；完整相关回归243 passed/2既有skips。未产生或声称新的accuracy/scaling/search utility。

@@ -1,0 +1,90 @@
+{
+  "G0_modified_or_resubmitted": false,
+  "arms": [
+    "G_to_L",
+    "Ghash_to_L"
+  ],
+  "base_commit": "dca429b85507cfcd96b256f65e2df2ac15be7b9a",
+  "checkpoint_selector_used": false,
+  "cuts": [
+    2,
+    3
+  ],
+  "fixed_peak_lr": "0.00001",
+  "formal_protocol_modified": false,
+  "limits": {
+    "API": 0,
+    "CPU_threads_per_rank": 1,
+    "GPU": 0,
+    "research_fits": 0,
+    "seconds": 1200
+  },
+  "power_failure_or_Zero3_bf16_claim": false,
+  "prospective_or_historical_data_read": false,
+  "question": "Does exact Accelerate restore all CPU DDP state at partial/phase boundaries?",
+  "reference": "bitwise final state and exact event prefix; independently decoded framework files",
+  "runtime": {
+    "checkpoint": {
+      "checkpointing_file": "1e934b935bfa308e902dbfa38961b4c4c4021dc62c7047d9fe43494469e73be6",
+      "methods": {
+        "Accelerator.load_state": "05e3e0446edda6ff1b9d268061ee6819677fed5a1478920270dc4384c23e22fd",
+        "Accelerator.save_state": "5a5c62cbfb58ea7742c9b6a5612457fa35ac7eae1d344a34d1ce9bb19e0b41d9",
+        "load": "668382579fd20ad2a632a683f8e923d2481d9370dfe3fe9c1b8ea5905e535753",
+        "load_accelerator_state": "9db725a776fe6cd97a9c638584eee3b26930e4d2f5cfd5b180c9ed3504c9173c",
+        "save_accelerator_state": "ea2719148572cb8d85b42e8d05c82a16136de3c424801cf5b316280b32e64330"
+      }
+    },
+    "updates": {
+      "file_sha256": {
+        "accelerate.accelerator": "47088e0ab3bf21eec97e16afa14595e1db511f6ead9ab85c4eaa5f6f66fe5e61",
+        "accelerate.state": "18e0a2c38bfc745a7bdeb5878ab232c55b4a8256d856699a2825051689e7dce2",
+        "accelerate.utils.deepspeed": "82dfa3c0ea4eb51b3a378b2886e48ed88df1d6a2e83bab986239cfacaa7a664e",
+        "deepspeed.runtime.engine": "e5d1e2642302fc092994dd4a4712a0d4c62c3541c632dcd93528281fd40dd1ec",
+        "transformers.trainer": "c1a56423fcfcf9cfec6847467ffb2e2c8a9a9e8cc1836b82c87ed0c81e504be0"
+      },
+      "method_sha256": {
+        "Accelerator.backward": "fb25ccb046cab6646be1b6ee2ddef9fd0b3f5e9bc924825f19db492ffa1dc515",
+        "DeepSpeedEngine.is_gradient_accumulation_boundary": "a49bef80e4f79efd44fa9e72096db82132ab9510535887732e8117ca91994c3c",
+        "DeepSpeedEngine.set_gradient_accumulation_boundary": "f0a8b49e1dfa6bc1fcc8b70db2821521195c21d39b80b31455d3eb0075b925b8",
+        "DeepSpeedEngine.step": "650173b0513bc0d354bdbdfc3a061d41193f619af766d944cbcbd89d32af4c1d",
+        "DeepSpeedEngineWrapper.backward": "0185cad8f450094b32cfb1014e9ae7a06c3a266f7341c3a5ae673109e36aa536",
+        "GradientState._set_sync_gradients": "c853f24eddceec3c822352eecf8516013a392f4bb2a9b7862b8b0edd0a53feb4",
+        "Trainer._run_epoch": "c704c082dae4b742beb3787afb7636c247294aefbe5803b79f02994ab241221c",
+        "Trainer.training_step": "7acfd3d5040fed7c2ea94cfce8979d1fb8d38bb1f79f4dbb20f729c8bd96863c"
+      },
+      "versions": {
+        "accelerate": "1.14.0",
+        "deepspeed": "0.19.3",
+        "torch": "2.11.0+cu128",
+        "transformers": "5.12.1"
+      }
+    }
+  },
+  "runtime_installed_or_modified": false,
+  "save_calls_mirrored_in_full": true,
+  "scope": "synthetic-two-parameter-cpu-only",
+  "seed": 6,
+  "sources": {
+    "global_local_accelerate_checkpoint_gate.py": "53861f0a9e9153ff82b81f4b26c38380427ff5ed57330db0b9e0a75b196305ee",
+    "global_local_accelerate_resume_validation.py": "db8ffc95695fb6f04a45c39525aa74d477172aba341b08da295757070e82f877",
+    "global_local_accelerate_update_adapter.py": "26ff2a4e4e9c18530ed31c47d87d223bbaa5774a2e88ada6f0aa0ad8229720d2",
+    "global_local_batch_adapter.py": "c1531ccc1b53fc1034c91b413febbf143b981d05610977c2879248eec7677774",
+    "global_local_execution_plan.py": "8e3f3cec45d3456dee6f5c9b8ae8f42d58edc6ace1a40a86447dd97731270954",
+    "global_local_partial_ddp_cpu_validation.py": "b77a7145697ebcc0780455e43aa235908b6e26ce19252caedd016abca9a84b37",
+    "global_local_token_budget_plan.py": "81802b439739f550b0c4ab7291faa0d99bf896d1ab7f2195bc3b0d28cabf6b10",
+    "verify_global_local_accelerate_resume.py": "6791f220e744b51ac7bb3b26bfc69c6eec01d398880cad2576c4c62dffeab4ff",
+    "verify_global_local_execution_trace.py": "ced2abcfa084db3a9f6088fca29c2bc07412ad0ab1f44f6b0bb50a8dc92dd689",
+    "verify_global_local_token_budget_plan.py": "a43965602f8d16dd95ca68130603fdcf1334f880bb89074c3b1701dcf5220a36"
+  },
+  "trajectories_per_world_arm": [
+    "full",
+    "prefix2",
+    "resume2",
+    "prefix3",
+    "resume3"
+  ],
+  "worlds": [
+    2,
+    4
+  ]
+}

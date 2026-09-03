@@ -1,0 +1,57 @@
+{
+  "accelerator_internal_step": 0,
+  "binding": {
+    "arm": "Ghash_to_L",
+    "base_commit": "dca429b85507cfcd96b256f65e2df2ac15be7b9a",
+    "input_sha256": "964dce69783681f68c16235edcb868e0bdab7924947297397420fc520dcbca7b",
+    "plan_sha256": "c20f585ac7f829f43390aa51806e4835ba1f7318308de7cdbe60c84a9e163f41",
+    "runtime_sha256": "4b00dca6de15ca8971d36ea459d20b7593503369dabb387384436b386ef0fd92",
+    "scope": "synthetic-two-parameter-cpu-only",
+    "seed": 6,
+    "sources_sha256": "f8a4ad41cdd1e32b7f3fadd32f5ead0eb3fe73a48ff2c92600a2bed7661c2a2a",
+    "world": 4
+  },
+  "completed_steps": 3,
+  "files": {
+    "model.safetensors": {
+      "bytes": 120,
+      "sha256": "f3c34c8f06a91066676fb2bdbb0101f7500a8ffc3810e7620cd9f4117d61ee6c"
+    },
+    "observed_0.json": {
+      "bytes": 23608,
+      "sha256": "99cefce218c58e4938e186577430f6a0963cf3fe0b4dc93071687a8604357555"
+    },
+    "observed_1.json": {
+      "bytes": 23608,
+      "sha256": "ed577fac6f95fb882c79d96639b4be78336403cd9675079a417e916cd12bebfd"
+    },
+    "observed_2.json": {
+      "bytes": 23608,
+      "sha256": "4d84e9a78061a9bd0cb112729491f57c3d94c08089821931c661c6209814d64b"
+    },
+    "observed_3.json": {
+      "bytes": 23608,
+      "sha256": "dcb29d71425d87ae308af5a00eb6ea263fb26a4fabf9dd36ce59cf5b913e34e3"
+    },
+    "optimizer.bin": {
+      "bytes": 2419,
+      "sha256": "1a40c774c82175a77f984c7d112c17d48b0bbf34661f79a2f79068d0e2c6839e"
+    },
+    "random_states_0.pkl": {
+      "bytes": 14433,
+      "sha256": "9830f4e81a62cfc5643e19161c86b3db58272cb0a52660040467287d8d4d2b01"
+    },
+    "random_states_1.pkl": {
+      "bytes": 14497,
+      "sha256": "c15a8fc3e05264e802ce703261f1a0e84e3cbdba88f4ee63e1a30f4c633baa95"
+    },
+    "random_states_2.pkl": {
+      "bytes": 14561,
+      "sha256": "53ef26d435f9e1d453e72abc864a922d556629eb7877b897778b53af8ce1575a"
+    },
+    "random_states_3.pkl": {
+      "bytes": 14497,
+      "sha256": "650b2363542f46d611bbf3f37a90283311608f6f03e2650d864b454f24d4db58"
+    }
+  }
+}

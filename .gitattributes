@@ -284,3 +284,15 @@ phase1/results/global_local_accelerate_20260904/** text eol=lf diff
 phase1/outcome_blind_intake_natural_completion_renewal_v5.json text eol=lf diff
 phase1/scripts/renew_outcome_blind_intake_after_natural_completion_20260904_v5.sh text eol=lf diff
 phase1/scripts/verify_outcome_blind_intake_renewal_20260904_v5.sh text eol=lf diff
+phase1/global_local_accelerate_checkpoint_gate.py text eol=lf diff
+phase1/global_local_batch_adapter.py text eol=lf diff
+phase1/global_local_execution_plan.py text eol=lf diff
+phase1/verify_global_local_execution_trace.py text eol=lf diff
+phase1/global_local_accelerate_resume_validation.py text eol=lf diff
+phase1/verify_global_local_accelerate_resume.py text eol=lf diff
+phase1/scripts/run_global_local_accelerate_resume_cpu_20260904.py text eol=lf diff
+phase1/scripts/export_global_local_accelerate_resume_20260904.py text eol=lf diff
+phase1/tests/test_global_local_accelerate_checkpoint_gate.py text eol=lf diff
+phase1/tests/test_global_local_accelerate_resume_result.py text eol=lf diff
+phase1/results/global_local_accelerate_resume_20260904/** text eol=lf diff
+phase1/results/global_local_accelerate_resume_20260904/runs.csv -text diff

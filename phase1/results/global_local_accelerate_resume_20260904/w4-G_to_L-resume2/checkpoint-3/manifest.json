@@ -1,0 +1,57 @@
+{
+  "accelerator_internal_step": 0,
+  "binding": {
+    "arm": "G_to_L",
+    "base_commit": "dca429b85507cfcd96b256f65e2df2ac15be7b9a",
+    "input_sha256": "964dce69783681f68c16235edcb868e0bdab7924947297397420fc520dcbca7b",
+    "plan_sha256": "9c71e5865aae9f4868ca13070e56d7fc5890d557e856c02b554b536f59086907",
+    "runtime_sha256": "4b00dca6de15ca8971d36ea459d20b7593503369dabb387384436b386ef0fd92",
+    "scope": "synthetic-two-parameter-cpu-only",
+    "seed": 6,
+    "sources_sha256": "f8a4ad41cdd1e32b7f3fadd32f5ead0eb3fe73a48ff2c92600a2bed7661c2a2a",
+    "world": 4
+  },
+  "completed_steps": 3,
+  "files": {
+    "model.safetensors": {
+      "bytes": 120,
+      "sha256": "d3fb06ad9257bac001d361ce572d4c1832e3a8910b888b833b9b1a763beaf878"
+    },
+    "observed_0.json": {
+      "bytes": 23604,
+      "sha256": "8b9abfee6fd0dadd71b0d44e59f38d67eef80ce164e08388166a63a0927f31d4"
+    },
+    "observed_1.json": {
+      "bytes": 23604,
+      "sha256": "ec1d042ad804af1874f79c30e11c86706b8ec27eaad2676fa71cbf32e8cb046b"
+    },
+    "observed_2.json": {
+      "bytes": 23604,
+      "sha256": "0479b0586a21a93dcf4959fe47d7e9570a3389fa6939021c71c60ef2e19a9102"
+    },
+    "observed_3.json": {
+      "bytes": 23604,
+      "sha256": "e3599d4aa9f4437625865dcb041c4e69e77115b8b24ff861edc6d48ff06b0bad"
+    },
+    "optimizer.bin": {
+      "bytes": 2419,
+      "sha256": "5ddae2fd659034e068f8d46315e0d1e9d9acc97775e7fbb7794393fd6a12528b"
+    },
+    "random_states_0.pkl": {
+      "bytes": 14433,
+      "sha256": "9830f4e81a62cfc5643e19161c86b3db58272cb0a52660040467287d8d4d2b01"
+    },
+    "random_states_1.pkl": {
+      "bytes": 14497,
+      "sha256": "c15a8fc3e05264e802ce703261f1a0e84e3cbdba88f4ee63e1a30f4c633baa95"
+    },
+    "random_states_2.pkl": {
+      "bytes": 14561,
+      "sha256": "53ef26d435f9e1d453e72abc864a922d556629eb7877b897778b53af8ce1575a"
+    },
+    "random_states_3.pkl": {
+      "bytes": 14497,
+      "sha256": "650b2363542f46d611bbf3f37a90283311608f6f03e2650d864b454f24d4db58"
+    }
+  }
+}

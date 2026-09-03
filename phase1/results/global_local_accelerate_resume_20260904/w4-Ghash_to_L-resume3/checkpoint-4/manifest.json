@@ -1,0 +1,57 @@
+{
+  "accelerator_internal_step": 0,
+  "binding": {
+    "arm": "Ghash_to_L",
+    "base_commit": "dca429b85507cfcd96b256f65e2df2ac15be7b9a",
+    "input_sha256": "964dce69783681f68c16235edcb868e0bdab7924947297397420fc520dcbca7b",
+    "plan_sha256": "c20f585ac7f829f43390aa51806e4835ba1f7318308de7cdbe60c84a9e163f41",
+    "runtime_sha256": "4b00dca6de15ca8971d36ea459d20b7593503369dabb387384436b386ef0fd92",
+    "scope": "synthetic-two-parameter-cpu-only",
+    "seed": 6,
+    "sources_sha256": "f8a4ad41cdd1e32b7f3fadd32f5ead0eb3fe73a48ff2c92600a2bed7661c2a2a",
+    "world": 4
+  },
+  "completed_steps": 4,
+  "files": {
+    "model.safetensors": {
+      "bytes": 120,
+      "sha256": "dd2161947340a2d5f552955fe87999db985cf4556ceaea42c7f8d0f323c82c93"
+    },
+    "observed_0.json": {
+      "bytes": 29925,
+      "sha256": "b34ceb4b8609127e8df6d7ad89fde7a9c603ad11842690556ec2ce90639de0bf"
+    },
+    "observed_1.json": {
+      "bytes": 29673,
+      "sha256": "7f9d51b1bba3ed2d0f978485d6966912e9aa7c8933d42424dea7b560b8dd51e9"
+    },
+    "observed_2.json": {
+      "bytes": 29673,
+      "sha256": "5d4014f48b6c6e1244a20f8e05e7c47e0f36f26a05717f406e1dbafd52fd1db4"
+    },
+    "observed_3.json": {
+      "bytes": 29673,
+      "sha256": "84cb975d179d35b242dc7e9cc09577aa3c223c46ef5e4928d8bd1cfd47259e3c"
+    },
+    "optimizer.bin": {
+      "bytes": 2419,
+      "sha256": "4241d416157ccf88441c63e01584a7ea0c0bde4edbbd13533050433ceb3182b1"
+    },
+    "random_states_0.pkl": {
+      "bytes": 14497,
+      "sha256": "4c180518ee6770f86ac118961613190d8b3ba0ec6edfd46f9ec3a7a63c3bb813"
+    },
+    "random_states_1.pkl": {
+      "bytes": 14497,
+      "sha256": "2da44e0030fc02596bd828bdc28f200b6e967ff8f57b818ea056d7af3e3e0999"
+    },
+    "random_states_2.pkl": {
+      "bytes": 14497,
+      "sha256": "6ddda43c85c3e67db522c3de78a478a003934c37a4a06371ef89c4bedbb46560"
+    },
+    "random_states_3.pkl": {
+      "bytes": 14497,
+      "sha256": "c6f499309a607da7537e9eb2ac07ea93ad5f4018fc3280256437f495518efd7d"
+    }
+  }
+}

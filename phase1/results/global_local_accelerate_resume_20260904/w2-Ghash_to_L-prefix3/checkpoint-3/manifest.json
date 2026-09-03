@@ -1,0 +1,41 @@
+{
+  "accelerator_internal_step": 0,
+  "binding": {
+    "arm": "Ghash_to_L",
+    "base_commit": "dca429b85507cfcd96b256f65e2df2ac15be7b9a",
+    "input_sha256": "02ef8d1c539991a0a8535de9c0aff7dcd6f0dc1b28d03f648abfb81bbcd6ff70",
+    "plan_sha256": "7c9a3ea42618a63346beb88550a753d312a4d95364eb83fc37ad097fba292ad6",
+    "runtime_sha256": "4b00dca6de15ca8971d36ea459d20b7593503369dabb387384436b386ef0fd92",
+    "scope": "synthetic-two-parameter-cpu-only",
+    "seed": 6,
+    "sources_sha256": "f8a4ad41cdd1e32b7f3fadd32f5ead0eb3fe73a48ff2c92600a2bed7661c2a2a",
+    "world": 2
+  },
+  "completed_steps": 3,
+  "files": {
+    "model.safetensors": {
+      "bytes": 120,
+      "sha256": "c2f2de0cbb9ba577d849fb1188b54ae256e7e8a984ae60eddfbafbe81ba03d5d"
+    },
+    "observed_0.json": {
+      "bytes": 45838,
+      "sha256": "36759831705e054142b093bc5f23e5444c184f0f8ab44f66a7ebb2e0e9cc7ace"
+    },
+    "observed_1.json": {
+      "bytes": 45838,
+      "sha256": "9136bd1ef592da7d9a0d206abb7d30f9c7bbe3b73b5068fd4e55507d39e52249"
+    },
+    "optimizer.bin": {
+      "bytes": 2419,
+      "sha256": "beeae0b401d73894bf4847559ecff715808d1eddf010af38f02629d7b983f672"
+    },
+    "random_states_0.pkl": {
+      "bytes": 14497,
+      "sha256": "b948eafb7d0f89270e6c1c7f9de7d416a13c8254b95c6c8ed5d2b66bddb8c9db"
+    },
+    "random_states_1.pkl": {
+      "bytes": 14497,
+      "sha256": "a071166aa1e68dd9ca90c71b1e70c3692c84dcae34a3cf1a7ef71c5154141506"
+    }
+  }
+}

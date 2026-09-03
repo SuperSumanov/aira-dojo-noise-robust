@@ -1,0 +1,15 @@
+{
+  "status": "FRESH_WINDOWS_EXPORT_VERIFIED_BEFORE_PUSH",
+  "candidate_git_tree": "0c765ad834e3f6bf6ee6a78a8a9bb011418e1fe0",
+  "export_archive_sha256": "b9ab690f96dfed5cdaea8ba09a25d45b2b94e56e277a7d9c63839b9211cd2700",
+  "clean_export_checks": {"passed": 43, "failed": 0, "skipped": 0},
+  "staged_bound_source_and_artifact_files_byte_exact": 180,
+  "source_or_result_changes_after_candidate_test": false,
+  "post_candidate_addition": "This publication-verification receipt and the already verified raw execution.log, explicitly included despite the repository log-ignore rule",
+  "frozen_v2_sha256": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9",
+  "raw_csv_native_CRLF_preserved": true,
+  "credential_content_hit_files": 0,
+  "filename_env_key_token_secret_regex_matches": 0,
+  "whitespace_check": "blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol",
+  "new_GPU_API_research_fit": [0, 0, 0]
+}

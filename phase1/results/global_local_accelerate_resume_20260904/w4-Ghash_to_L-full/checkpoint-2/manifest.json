@@ -1,0 +1,57 @@
+{
+  "accelerator_internal_step": 0,
+  "binding": {
+    "arm": "Ghash_to_L",
+    "base_commit": "dca429b85507cfcd96b256f65e2df2ac15be7b9a",
+    "input_sha256": "964dce69783681f68c16235edcb868e0bdab7924947297397420fc520dcbca7b",
+    "plan_sha256": "c20f585ac7f829f43390aa51806e4835ba1f7318308de7cdbe60c84a9e163f41",
+    "runtime_sha256": "4b00dca6de15ca8971d36ea459d20b7593503369dabb387384436b386ef0fd92",
+    "scope": "synthetic-two-parameter-cpu-only",
+    "seed": 6,
+    "sources_sha256": "f8a4ad41cdd1e32b7f3fadd32f5ead0eb3fe73a48ff2c92600a2bed7661c2a2a",
+    "world": 4
+  },
+  "completed_steps": 2,
+  "files": {
+    "model.safetensors": {
+      "bytes": 120,
+      "sha256": "4300b167bdf4bee73a4a1838748029d27488395cbb04c60e4ccfd7de91db4c5b"
+    },
+    "observed_0.json": {
+      "bytes": 14177,
+      "sha256": "0ac57c9b28314941f8429441e984144f5c390e5b4098b529828a40065418d2fa"
+    },
+    "observed_1.json": {
+      "bytes": 14177,
+      "sha256": "684c9fee7037a7f12ab0cb0313e15c8af9c77ba019ff64769014a4a77d041afe"
+    },
+    "observed_2.json": {
+      "bytes": 14177,
+      "sha256": "4c26e611fbe530b7e458a448f68f85d58e35dbad4ff2b7437c3ec5ff9ed0f722"
+    },
+    "observed_3.json": {
+      "bytes": 14177,
+      "sha256": "6d5eebba56fe6231ecdaa26ecbbe1703a39da15a21d162db5413bf07f3d1028a"
+    },
+    "optimizer.bin": {
+      "bytes": 2419,
+      "sha256": "271a05b288cf82abe3116f8ba9f9d459d19d0e24af23f27055747ea03edb14a4"
+    },
+    "random_states_0.pkl": {
+      "bytes": 14433,
+      "sha256": "6e2f2df5f4dfa0d0c41a62d0a76bed54a845ea5ef37a17b5834f936e7337a291"
+    },
+    "random_states_1.pkl": {
+      "bytes": 14497,
+      "sha256": "38201018319a11bce83a03d0e33c869d29dee7884a91746af220604c13ac23d9"
+    },
+    "random_states_2.pkl": {
+      "bytes": 14561,
+      "sha256": "d4970accc03b37af4ed8a1e6dc88ff2b44205f5efb88d4340dc77f39997b19bc"
+    },
+    "random_states_3.pkl": {
+      "bytes": 14497,
+      "sha256": "31e63f7872b54f07c9baf97020bc195b93a93cd51a83e63fa0226e84c6deb0f9"
+    }
+  }
+}

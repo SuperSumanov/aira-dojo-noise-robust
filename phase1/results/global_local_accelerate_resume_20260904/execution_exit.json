@@ -1,0 +1,31 @@
+{
+  "GPU": 0,
+  "command": [
+    "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/bin/python",
+    "-B",
+    "/tmp/gl-accelerate-20260904-XmQYTa/phase1/global_local_accelerate_resume_validation.py",
+    "--output",
+    "/tmp/gl-accelerate-20260904-XmQYTa/resume-r1"
+  ],
+  "elapsed_seconds": 347.506484746933,
+  "environment_overrides": {
+    "ACCELERATE_USE_CPU": "true",
+    "CUDA_VISIBLE_DEVICES": "",
+    "GLOO_SOCKET_IFNAME": "lo",
+    "HF_HUB_OFFLINE": "1",
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "/tmp/gl-accelerate-20260904-XmQYTa",
+    "TMPDIR": "/tmp/gl-accelerate-20260904-XmQYTa/tmp",
+    "TOKENIZERS_PARALLELISM": "false",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TRITON_CACHE_DIR": "/tmp/gl-accelerate-20260904-XmQYTa/triton",
+    "WANDB_DISABLED": "true"
+  },
+  "paid_API": 0,
+  "research_model_fits": 0,
+  "returncode": 0,
+  "timed_out": false
+}

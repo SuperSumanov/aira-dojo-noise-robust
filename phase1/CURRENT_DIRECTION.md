@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L3. 2026-09-04 实际Accelerate恢复链已独立验证；scaling仍无新确认
+
+用户插问学长scaling：截至18:54 UTC，学长仍`b8d095180415957aa1bab31fa53ead1bba261c03`，无新outcome。
+0820容量趋势仍属探索性证据；更晚0828混合训练只有seed7明显、seed6未复现，不能说已确认规模律。
+我方推进的是干净验证的执行准备，单pivot Global→Local也不等于多尺寸scaling确认。G0 12288仍排队，
+它只用于计价；不得重复提交或把未启动的正式15fits描述为正在训练。
+
+回答后完成实际`Accelerator.save_state/load_state`接入：world2/4×G/Ghash，G/L边界及局部末批前两处中断，
+20条合成CPU轨迹、48次更新、612次各rank forward；8组恢复对照、24个rank的model/optimizer/三类RNG及
+完整消费事件逐位一致。独立验证器不导入harness/adapter，直接解码36份框架checkpoint复核；本地只发布
+171份JSON/CSV/log结构回执，不上传任何真实模型权重或数据。summary SHA为
+`99601e0ca6440952f789690b5e118a0887cfec54ff2355f376fc849ea2c7bc7b`，详见`results/global_local_accelerate_resume_20260904/`。
+
+加载后必须显式比对RNG，不能只看未抛异常；exact Accelerate的RNG异常会被日志捕获。首次独立decoder
+因NumPy1.26兼容命名空间未导入失败，运行轨迹未受影响；仅修正两个解码入口行后读原文件全部通过，
+旧verifier SHA及字节重建测试保留。组合回归243 passed/2既有skips；缺rank、字节损坏、重算哈希后的
+同步/标签访问/模型状态漂移均拒绝。GPU/API/真实model-fit新增0，冻结v2字节不变。
+
+未验证真实reward-model/ZeRO3/bf16/断电恢复或效果收益，不继续堆已完成玩具测试数。
+下一实质门仍是G0实际计价、G来源exact-config/experiment-closed资格和明确五臂GPU·h授权；
+语料589/960、config-v2=0、closure=false未变，first960/Target300/522保持盲态。旧Target522-rank失败标记
+日期为9月1日21:52 UTC，本轮仅核验其时间和整数rc，未读私有选择或恢复旧失败链。
+
 ## 0L2. 2026-09-04 合理口径修订已批准；真实token计划与Accelerate桥接通过，效果预算仍关闭
 
 用户回复“如果你认为合理的改动就批准吧”，据此采用独立历史开发协议

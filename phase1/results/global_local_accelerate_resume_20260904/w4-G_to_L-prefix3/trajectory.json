@@ -1,0 +1,53 @@
+{
+  "binding": {
+    "arm": "G_to_L",
+    "base_commit": "dca429b85507cfcd96b256f65e2df2ac15be7b9a",
+    "input_sha256": "964dce69783681f68c16235edcb868e0bdab7924947297397420fc520dcbca7b",
+    "plan_sha256": "9c71e5865aae9f4868ca13070e56d7fc5890d557e856c02b554b536f59086907",
+    "runtime_sha256": "4b00dca6de15ca8971d36ea459d20b7593503369dabb387384436b386ef0fd92",
+    "scope": "synthetic-two-parameter-cpu-only",
+    "seed": 6,
+    "sources_sha256": "f8a4ad41cdd1e32b7f3fadd32f5ead0eb3fe73a48ff2c92600a2bed7661c2a2a",
+    "world": 4
+  },
+  "end_step": 3,
+  "new_forwards": 40,
+  "optimizer_updates": 3,
+  "saved": [
+    {
+      "manifest_sha256": "ca83e4c35b17197d7bdcfe6be08bf196cbc6f371ea2cd86b075a5d21ac106148",
+      "step": 2
+    },
+    {
+      "manifest_sha256": "b4f4ef3450f1f03b29d5141a3f6be3524056b9a3c2cdad8fb32d623cac6ea162",
+      "step": 3
+    }
+  ],
+  "start_step": 0,
+  "states": [
+    {
+      "load_check": null,
+      "new_forwards": 10,
+      "rank": 0,
+      "true_target_reads_this_process": 152
+    },
+    {
+      "load_check": null,
+      "new_forwards": 10,
+      "rank": 1,
+      "true_target_reads_this_process": 152
+    },
+    {
+      "load_check": null,
+      "new_forwards": 10,
+      "rank": 2,
+      "true_target_reads_this_process": 152
+    },
+    {
+      "load_check": null,
+      "new_forwards": 10,
+      "rank": 3,
+      "true_target_reads_this_process": 152
+    }
+  ]
+}

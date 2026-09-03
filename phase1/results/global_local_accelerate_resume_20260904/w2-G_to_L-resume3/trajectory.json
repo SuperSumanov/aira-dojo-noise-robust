@@ -1,0 +1,47 @@
+{
+  "binding": {
+    "arm": "G_to_L",
+    "base_commit": "dca429b85507cfcd96b256f65e2df2ac15be7b9a",
+    "input_sha256": "02ef8d1c539991a0a8535de9c0aff7dcd6f0dc1b28d03f648abfb81bbcd6ff70",
+    "plan_sha256": "63ba246e3d435635fa44150dfb87ebfcc26b05afdf99231e5eac20537d624d50",
+    "runtime_sha256": "4b00dca6de15ca8971d36ea459d20b7593503369dabb387384436b386ef0fd92",
+    "scope": "synthetic-two-parameter-cpu-only",
+    "seed": 6,
+    "sources_sha256": "f8a4ad41cdd1e32b7f3fadd32f5ead0eb3fe73a48ff2c92600a2bed7661c2a2a",
+    "world": 2
+  },
+  "end_step": 4,
+  "new_forwards": 12,
+  "optimizer_updates": 1,
+  "saved": [
+    {
+      "manifest_sha256": "c11ca18019b4e23ab3d37118a533982db9b952986c0c48b557c523c0106c659f",
+      "step": 4
+    }
+  ],
+  "start_step": 3,
+  "states": [
+    {
+      "load_check": {
+        "all_components_restored_exactly": true,
+        "preload_rng_all_different": true,
+        "source_manifest_sha256": "31000d1618886fd38adce429a56cd95141a316952dd167b92bb653774c461244",
+        "start_step": 3
+      },
+      "new_forwards": 6,
+      "rank": 0,
+      "true_target_reads_this_process": 82
+    },
+    {
+      "load_check": {
+        "all_components_restored_exactly": true,
+        "preload_rng_all_different": true,
+        "source_manifest_sha256": "31000d1618886fd38adce429a56cd95141a316952dd167b92bb653774c461244",
+        "start_step": 3
+      },
+      "new_forwards": 6,
+      "rank": 1,
+      "true_target_reads_this_process": 80
+    }
+  ]
+}

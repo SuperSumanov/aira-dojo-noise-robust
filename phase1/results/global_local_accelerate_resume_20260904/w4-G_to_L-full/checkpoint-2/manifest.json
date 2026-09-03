@@ -1,0 +1,57 @@
+{
+  "accelerator_internal_step": 0,
+  "binding": {
+    "arm": "G_to_L",
+    "base_commit": "dca429b85507cfcd96b256f65e2df2ac15be7b9a",
+    "input_sha256": "964dce69783681f68c16235edcb868e0bdab7924947297397420fc520dcbca7b",
+    "plan_sha256": "9c71e5865aae9f4868ca13070e56d7fc5890d557e856c02b554b536f59086907",
+    "runtime_sha256": "4b00dca6de15ca8971d36ea459d20b7593503369dabb387384436b386ef0fd92",
+    "scope": "synthetic-two-parameter-cpu-only",
+    "seed": 6,
+    "sources_sha256": "f8a4ad41cdd1e32b7f3fadd32f5ead0eb3fe73a48ff2c92600a2bed7661c2a2a",
+    "world": 4
+  },
+  "completed_steps": 2,
+  "files": {
+    "model.safetensors": {
+      "bytes": 120,
+      "sha256": "4dcf9f18a95f31a53f57faf83faf71159184f0ba2adbfc1dbed592915c58874a"
+    },
+    "observed_0.json": {
+      "bytes": 14173,
+      "sha256": "eb6401be04dca1b0153aa61ed0979652c80c661e862a079e4f0fc22f1b8096d3"
+    },
+    "observed_1.json": {
+      "bytes": 14173,
+      "sha256": "ef40292165eaa54455142a130f39b7f6b6cd3727d30238d8fd38270ba601eb85"
+    },
+    "observed_2.json": {
+      "bytes": 14173,
+      "sha256": "4a14aa5c46dd64c9e0b50147fff4f8cb0b11349dd46815494d2383b85d1992d7"
+    },
+    "observed_3.json": {
+      "bytes": 14173,
+      "sha256": "380ef5ac1850808f64296f38e2338f0beede1b04f7106366c8e6c8c2c74d72f5"
+    },
+    "optimizer.bin": {
+      "bytes": 2419,
+      "sha256": "4292b540748bb422a24ed62987fcdffe94fc2c731a8f75c60d9cc7acbf0bcbb2"
+    },
+    "random_states_0.pkl": {
+      "bytes": 14433,
+      "sha256": "6e2f2df5f4dfa0d0c41a62d0a76bed54a845ea5ef37a17b5834f936e7337a291"
+    },
+    "random_states_1.pkl": {
+      "bytes": 14497,
+      "sha256": "38201018319a11bce83a03d0e33c869d29dee7884a91746af220604c13ac23d9"
+    },
+    "random_states_2.pkl": {
+      "bytes": 14561,
+      "sha256": "d4970accc03b37af4ed8a1e6dc88ff2b44205f5efb88d4340dc77f39997b19bc"
+    },
+    "random_states_3.pkl": {
+      "bytes": 14497,
+      "sha256": "31e63f7872b54f07c9baf97020bc195b93a93cd51a83e63fa0226e84c6deb0f9"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "accelerator_internal_step": 0,
+  "binding": {
+    "arm": "G_to_L",
+    "base_commit": "dca429b85507cfcd96b256f65e2df2ac15be7b9a",
+    "input_sha256": "964dce69783681f68c16235edcb868e0bdab7924947297397420fc520dcbca7b",
+    "plan_sha256": "9c71e5865aae9f4868ca13070e56d7fc5890d557e856c02b554b536f59086907",
+    "runtime_sha256": "4b00dca6de15ca8971d36ea459d20b7593503369dabb387384436b386ef0fd92",
+    "scope": "synthetic-two-parameter-cpu-only",
+    "seed": 6,
+    "sources_sha256": "f8a4ad41cdd1e32b7f3fadd32f5ead0eb3fe73a48ff2c92600a2bed7661c2a2a",
+    "world": 4
+  },
+  "completed_steps": 4,
+  "files": {
+    "model.safetensors": {
+      "bytes": 120,
+      "sha256": "01a18b30b0a0c056f0b610e6341c9ca5e6a81c4e85e8c3fba5997cf3995bf332"
+    },
+    "observed_0.json": {
+      "bytes": 29921,
+      "sha256": "5273ea1a7c274bf026e218606df3ecb38c8ea6717aa319c1b748cea2f52c7fa3"
+    },
+    "observed_1.json": {
+      "bytes": 29669,
+      "sha256": "f9af4cca370f356c58075d1b4f3b9996f5e8a4d649f7d973f277e661c44963b3"
+    },
+    "observed_2.json": {
+      "bytes": 29669,
+      "sha256": "b1632824372d85f06fa305a689f569b2f82a123afa524ffa84801d95a9a6232c"
+    },
+    "observed_3.json": {
+      "bytes": 29669,
+      "sha256": "4c1be1459120189b82012c42203ebdfddaedba4738f5f388f4afb68182b943ff"
+    },
+    "optimizer.bin": {
+      "bytes": 2419,
+      "sha256": "29dff4fed7ac9c3b183d0e134ea2a5959d78fd704170f2f91f91599be62b738c"
+    },
+    "random_states_0.pkl": {
+      "bytes": 14497,
+      "sha256": "4c180518ee6770f86ac118961613190d8b3ba0ec6edfd46f9ec3a7a63c3bb813"
+    },
+    "random_states_1.pkl": {
+      "bytes": 14497,
+      "sha256": "2da44e0030fc02596bd828bdc28f200b6e967ff8f57b818ea056d7af3e3e0999"
+    },
+    "random_states_2.pkl": {
+      "bytes": 14497,
+      "sha256": "6ddda43c85c3e67db522c3de78a478a003934c37a4a06371ef89c4bedbb46560"
+    },
+    "random_states_3.pkl": {
+      "bytes": 14497,
+      "sha256": "c6f499309a607da7537e9eb2ac07ea93ad5f4018fc3280256437f495518efd7d"
+    }
+  }
+}

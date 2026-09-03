@@ -1,0 +1,69 @@
+{
+  "binding": {
+    "arm": "Ghash_to_L",
+    "base_commit": "dca429b85507cfcd96b256f65e2df2ac15be7b9a",
+    "input_sha256": "964dce69783681f68c16235edcb868e0bdab7924947297397420fc520dcbca7b",
+    "plan_sha256": "c20f585ac7f829f43390aa51806e4835ba1f7318308de7cdbe60c84a9e163f41",
+    "runtime_sha256": "4b00dca6de15ca8971d36ea459d20b7593503369dabb387384436b386ef0fd92",
+    "scope": "synthetic-two-parameter-cpu-only",
+    "seed": 6,
+    "sources_sha256": "f8a4ad41cdd1e32b7f3fadd32f5ead0eb3fe73a48ff2c92600a2bed7661c2a2a",
+    "world": 4
+  },
+  "end_step": 4,
+  "new_forwards": 12,
+  "optimizer_updates": 1,
+  "saved": [
+    {
+      "manifest_sha256": "d43a01a4ae034beea6eba2f3301972c08c6d97abe701901ccfea472cf804d2d5",
+      "step": 4
+    }
+  ],
+  "start_step": 3,
+  "states": [
+    {
+      "load_check": {
+        "all_components_restored_exactly": true,
+        "preload_rng_all_different": true,
+        "source_manifest_sha256": "b5a764da49d7d5296f01ad23e6da199b1045bde682725da70ce7a184c70c622d",
+        "start_step": 3
+      },
+      "new_forwards": 3,
+      "rank": 0,
+      "true_target_reads_this_process": 42
+    },
+    {
+      "load_check": {
+        "all_components_restored_exactly": true,
+        "preload_rng_all_different": true,
+        "source_manifest_sha256": "b5a764da49d7d5296f01ad23e6da199b1045bde682725da70ce7a184c70c622d",
+        "start_step": 3
+      },
+      "new_forwards": 3,
+      "rank": 1,
+      "true_target_reads_this_process": 40
+    },
+    {
+      "load_check": {
+        "all_components_restored_exactly": true,
+        "preload_rng_all_different": true,
+        "source_manifest_sha256": "b5a764da49d7d5296f01ad23e6da199b1045bde682725da70ce7a184c70c622d",
+        "start_step": 3
+      },
+      "new_forwards": 3,
+      "rank": 2,
+      "true_target_reads_this_process": 40
+    },
+    {
+      "load_check": {
+        "all_components_restored_exactly": true,
+        "preload_rng_all_different": true,
+        "source_manifest_sha256": "b5a764da49d7d5296f01ad23e6da199b1045bde682725da70ce7a184c70c622d",
+        "start_step": 3
+      },
+      "new_forwards": 3,
+      "rank": 3,
+      "true_target_reads_this_process": 40
+    }
+  ]
+}

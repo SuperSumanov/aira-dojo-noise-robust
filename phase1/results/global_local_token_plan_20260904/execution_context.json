@@ -1,0 +1,55 @@
+{
+  "date_hong_kong": "2026-09-04",
+  "base_commit_before_changes": "58a1bb137a835f42a6c6181ad50ba8015504e6b6",
+  "remote_temporary_root": "/tmp/gl-token-plan-20260904-ZDE7b4",
+  "protocol_sha256": "1964e8e48e998660584c045a7e8fe2a03d61a946ba266d29d74555f934482902",
+  "frozen_v2_sha256": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9",
+  "attempts": [
+    {
+      "id": "r0-import-failure",
+      "status": "FAILED_BEFORE_DATA_ACCESS",
+      "reason": "temporary sparse package omitted verify_global_local_execution_trace.py",
+      "output_root_created": false,
+      "gpu_jobs": 0,
+      "model_fits": 0
+    },
+    {
+      "id": "r1-real-input-plan",
+      "started_at_utc": "2026-09-03T17:39:34Z",
+      "ended_at_utc": "2026-09-03T17:46:38Z",
+      "workload_remote_rc_captured_before_end_timestamp": 0,
+      "workload_status": "PASS_HISTORICAL_TOKEN_PLAN_READINESS_EFFECT_BLOCKED",
+      "outer_ssh_process_rc": 1,
+      "outer_failure_after_workload": "bash numeric exit received a CRLF-derived trailing CR from PowerShell pipeline",
+      "summary_written_before_outer_failure": true,
+      "summary_sha256": "c40f9b696530c2303c5129fa5571a2ffc484986472d1962871170d30a509043b",
+      "wall_seconds_not_throughput_benchmark": 419.89121093414724
+    },
+    {
+      "id": "r1-independent-aggregate-verifier",
+      "status": "PASS_INDEPENDENT_AGGREGATE_RECEIPT",
+      "process_rc": 0,
+      "plans_verified": 30,
+      "cross_arm_relations_verified": 6,
+      "independent_plan_replays_bound": 30,
+      "source_data_files_opened": 0
+    }
+  ],
+  "live_state_checked_before_run": {
+    "prospective_latest_sha256": "55aae3150a3e7b91533bf392d9b3b40fc00a20e33545808f80d11e4a656c6ae7",
+    "eligible_runs": 589,
+    "closure_provided": false,
+    "canonical_config_v2_filename_count": 0,
+    "senior_dojo_reproduce_head": "b8d095180415957aa1bab31fa53ead1bba261c03",
+    "g0_job_12288": "PENDING/Resources"
+  },
+  "scope": {
+    "new_gpu_jobs": 0,
+    "api_calls": 0,
+    "model_fits": 0,
+    "model_weights_loaded": 0,
+    "frozen_or_prospective_outcomes_opened": false,
+    "new_training_pool_materialized": false,
+    "effect_training_authorized": false
+  }
+}

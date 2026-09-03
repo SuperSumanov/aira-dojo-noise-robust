@@ -1,0 +1,33 @@
+{
+  "protocol": "outcome-blind-intake-natural-completion-renewal-v5",
+  "date": "2026-09-04",
+  "status": "RENEWED_INDEPENDENTLY_VERIFIED",
+  "purpose": "Continue the already-authorized append-only corpus intake after verified natural completion; not a recurring chat heartbeat or an effect experiment.",
+  "control_commit": "b20dd2682d609c0236c138c08797678cf31a2fc0",
+  "monitor_script_sha256": "ef6584493de0f5e14a08bde4cc9501f268e43fb04bfd889af438666b1948eead",
+  "latest_sha256": "55aae3150a3e7b91533bf392d9b3b40fc00a20e33545808f80d11e4a656c6ae7",
+  "summary_sha256": "eb133a6dbab8b5ddcdb1b75c80b44f65f8d2ccb6d60014be451b443536b652c8",
+  "source_archives": 306,
+  "provisional_first960_runs": 589,
+  "old_pid": 1692885,
+  "old_pid_observed_dead": true,
+  "same_monitor_live_processes": 0,
+  "runner_lock_observed_free": true,
+  "baseline_log_sha256": "ca372710ea47bb507f7865d49192907c7abf61b30c30e975c9607fbb8dc01618",
+  "baseline_log_bytes": 575024,
+  "baseline_log_lines": 8612,
+  "completion_sentinels": 16,
+  "latest_normal_completion_utc": "2026-09-03T17:36:47Z",
+  "last_poll": {"index": 144, "rc": 0},
+  "allowed_change": "One invocation of the unchanged installed monitor in initialize mode, with a new immutable receipt and the previous log as an exact byte prefix.",
+  "unchanged": ["archive order", "stability gates", "credential-first intake", "scientific/control commits", "rejection registries", "alias rules", "first960 closure", "all frozen outcome protections"],
+  "postconditions": ["new exact monitor PID live", "first new poll rc zero", "old log exact prefix", "LATEST/source count unchanged through first poll", "independent verifier passes"],
+  "resources": {"fixed_polls": 145, "poll_interval_seconds": 300, "GPU": 0, "paid_API": 0, "model_fit": 0, "base_model_update": 0},
+  "chat_heartbeat_resumed": false,
+  "postflight": {
+    "new_pid": 3884166,
+    "first_poll_rc": 0,
+    "independent_verifier": "PASS",
+    "safe_receipt_sha256": "75fa711367a250c87d3cb849e42bbd673fde971489b81eea59c9543233309a1d"
+  }
+}

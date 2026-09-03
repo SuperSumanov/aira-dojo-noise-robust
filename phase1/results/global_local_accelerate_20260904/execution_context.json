@@ -1,0 +1,57 @@
+{
+  "date_hong_kong": "2026-09-04",
+  "base_commit_before_changes": "58a1bb137a835f42a6c6181ad50ba8015504e6b6",
+  "runtime_python": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/bin/python",
+  "python_version": "3.11.15",
+  "validation_script_sha256": "13f1143c757ab23bd9a9b02dde8e93b4523099f16aa1a7eb5c7d121c9c02fa7b",
+  "adapter_sha256": "26ff2a4e4e9c18530ed31c47d87d223bbaa5774a2e88ada6f0aa0ad8229720d2",
+  "independent_verifier_sha256": "256c9a9dd8c44f242f94a524cefd7d0264e55b831b301f688c8484d7dd3254ee",
+  "source_bridge_script_sha256": "f0bfe68ec8c7a17c42b2c3cde8a992e4038cb40b7c6a437804e2d3b71b66d4b5",
+  "command": "timeout 1200s /research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/bin/python -B /tmp/gl-accelerate-20260904-XmQYTa/phase1/global_local_accelerate_cpu_validation.py --output /tmp/gl-accelerate-20260904-XmQYTa/run-r2",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "GLOO_SOCKET_IFNAME": "lo",
+    "PYTHONPATH": "/tmp/gl-accelerate-20260904-XmQYTa",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "WANDB_DISABLED": "true",
+    "TOKENIZERS_PARALLELISM": "false",
+    "TMPDIR": "/tmp/gl-accelerate-20260904-XmQYTa/tmp",
+    "TRITON_CACHE_DIR": "/tmp/gl-accelerate-20260904-XmQYTa/triton"
+  },
+  "preflight": {
+    "question": "Does exact Accelerate DDP preserve planned variable update boundaries and global pair-mean gradients?",
+    "matrix": {"world_sizes": [2, 4], "arms": ["G_to_L", "Ghash_to_L"], "seed": 6, "updates_per_trajectory": 4},
+    "synthetic_sources": {"G_pairs": 176, "L_pairs": 209, "effective_pairs": 128},
+    "numerical_reference": {"rtol": 1e-12, "atol": 1e-12},
+    "runtime_source_bound": true,
+    "maximum_seconds": 1200,
+    "CPU_compute_threads_per_process": 1,
+    "GPU": 0,
+    "paid_API": 0,
+    "real_model_fit": 0,
+    "stop_on_any_hash_trace_scope_or_math_mismatch": true,
+    "no_effect_or_timing_gain_claim": true
+  },
+  "attempts": [
+    {"id": "r1", "workload_rc": 1, "reason": "full-world verifier was called on each rank-local subset", "artifact_complete": false},
+    {"id": "r2", "workload_rc": 0, "outer_wrapper_rc": 1, "outer_failure": "Bash parsed the final case statement after the successful workload as invalid", "artifact_complete": true},
+    {"id": "independent_direct_verifier", "rc": 0, "new_optimization_trajectories": 0},
+    {"id": "source_bridge_r1", "rc": 0, "warning": "scalar conversion from a requires-grad tensor in logging only"},
+    {"id": "source_bridge_r2", "rc": 0, "warning_removed_by_explicit_detach": true}
+  ],
+  "local_regression": {
+    "passed": 213,
+    "skipped": 2,
+    "skip_reasons": ["existing explicit opt-in CPU autograd test", "local Torch unavailable for the partial-DDP module"]
+  },
+  "scope": {
+    "default_senior_trainer_modified": false,
+    "pending_G0_modified_or_resubmitted": false,
+    "frozen_v2_modified": false,
+    "prospective_outcomes_read": false,
+    "DeepSpeed_Zero3_bf16_validated": false,
+    "full_production_reward_model_validated": false
+  }
+}

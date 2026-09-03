@@ -1,0 +1,28 @@
+{
+  "date_hong_kong": "2026-09-04",
+  "base_commit_before_changes": "58a1bb137a835f42a6c6181ad50ba8015504e6b6",
+  "remote_root": "/tmp/gl-token-plan-20260904-ZDE7b4/partial-ddp-r1",
+  "runtime": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/bin/python",
+  "runtime_versions": {"torch": "2.11.0+cu128"},
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "GLOO_SOCKET_IFNAME": "lo",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "command_timeout_seconds": 1200,
+  "process_rc": 0,
+  "script_sha256": "b77a7145697ebcc0780455e43aa235908b6e26ce19252caedd016abca9a84b37",
+  "summary_sha256": "bf488388f8115633862c6cfffae393908b3a4cada3aea7004ec11c26cc60476a",
+  "independent_verifier_process_rc": 0,
+  "fault_cases_rejected": 3,
+  "scope": {
+    "research_model_fits": 0,
+    "real_data_opened": false,
+    "gpu_context_created": false,
+    "api_calls": 0,
+    "real_HF_Trainer_DeepSpeed_bf16_verified": false
+  }
+}

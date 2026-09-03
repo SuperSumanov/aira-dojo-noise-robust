@@ -1,0 +1,11 @@
+{
+  "api_calls": 0,
+  "cross_arm_relations_verified": 6,
+  "gpu_jobs": 0,
+  "independent_plan_replays_bound": 30,
+  "model_fits": 0,
+  "plans_verified": 30,
+  "source_data_files_opened": 0,
+  "status": "PASS_INDEPENDENT_AGGREGATE_RECEIPT",
+  "summary_sha256": "c40f9b696530c2303c5129fa5571a2ffc484986472d1962871170d30a509043b"
+}

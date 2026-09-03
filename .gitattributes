@@ -263,3 +263,23 @@ phase1/tests/test_outcome_blind_monitor_renewal_20260830.py text eol=lf diff
 
 # The RPM transfer prompt is byte-bound to the arXiv v2 TeX extraction.
 phase1/baselines/rpm_inference_only_optimized_v2.txt text eol=lf diff
+
+# Historical Global-to-Local 2026-09-04 source and receipts carry exact SHA-256
+# bindings. Preserve their LF bytes even in Windows core.autocrlf worktrees.
+phase1/global_local_historical_development_protocol_v1.json text eol=lf diff
+phase1/global_local_token_budget_plan.py text eol=lf diff
+phase1/verify_global_local_token_budget_plan.py text eol=lf diff
+phase1/historical_global_local_token_plan_readiness.py text eol=lf diff
+phase1/verify_historical_global_local_token_plan_readiness.py text eol=lf diff
+phase1/global_local_partial_ddp_cpu_validation.py text eol=lf diff
+phase1/verify_global_local_partial_ddp_cpu_state.py text eol=lf diff
+phase1/global_local_accelerate_update_adapter.py text eol=lf diff
+phase1/global_local_accelerate_cpu_validation.py text eol=lf diff
+phase1/verify_global_local_accelerate_cpu_state.py text eol=lf diff
+phase1/global_local_source_loss_bridge_validation.py text eol=lf diff
+phase1/results/global_local_token_plan_20260904/** text eol=lf diff
+phase1/results/global_local_partial_ddp_20260904/** text eol=lf diff
+phase1/results/global_local_accelerate_20260904/** text eol=lf diff
+phase1/outcome_blind_intake_natural_completion_renewal_v5.json text eol=lf diff
+phase1/scripts/renew_outcome_blind_intake_after_natural_completion_20260904_v5.sh text eol=lf diff
+phase1/scripts/verify_outcome_blind_intake_renewal_20260904_v5.sh text eol=lf diff

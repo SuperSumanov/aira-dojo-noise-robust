@@ -1,6 +1,9 @@
-# Global→Local：真实输入验证与预算裁决请求
+# Global→Local：历史开发口径采用与真实输入验证
 
-状态：**提议，尚未采用；不修改冻结v2、不批准模型训练。**
+状态：**历史开发口径和实现已批准；不修改冻结v2、不批准模型训练。**
+用户“如果你认为合理的改动就批准吧”覆盖下列结果前口径裁决，不是新增GPU·h授权。
+机器协议为`global_local_historical_development_protocol_v1.json`，SHA
+`1964e8e48e998660584c045a7e8fe2a03d61a946ba266d29d74555f934482902`。
 本轮没有新accuracy、scaling或search utility结果。
 
 ## 已从真实历史训练输入验证的事实
@@ -35,7 +38,7 @@ G-only多3.8107%—4.0261%，L-only少7.8174%—7.8296%。因此相同pair次数
 六条诊断顺序的完整pair循环前缀均无法恰好达到104863947 tokens；这是这六条顺序的事实，不是所有
 排列都不可能的定理，更没有证明某一种方法效果差。匿名成本文件由不导入producer的循环求和程序独立复验。
 
-## 推荐的结果前修订，需要用户明确同意
+## 已采用的结果前修订（仅历史开发）
 
 优先保持“同资源上限”这一研究问题，并把两个问题分开：
 
@@ -44,8 +47,9 @@ G-only多3.8107%—4.0261%，L-only少7.8174%—7.8296%。因此相同pair次数
 2. **预算下的部署对照**：Lbudget/Gbudget使用同一有效token上限，完整pair不得拆程序或改截断；在再读一对
    将越过上限时停止，实际差额显式报告。它们的更新次数允许不同，必须单列pair次数、有效tokens、padding、
    optimizer updates和实测GPU·h；不能再称“token、step和GPU计算量全部完全一致”。
-3. **保留全部阶段数据**：G→L和L1末批按真实pair数归一化，不丢样、不复制真实程序补齐。多rank空槽如需
-   占位，仅用固定合成输入、loss权重0，单列占位计算；该方案尚未实现或验证，不能直接交给真实Trainer。
+3. **保留全部阶段数据**：G→L和L1末批按真实pair数归一化，不丢样、不复制真实程序补齐。采用最少可容纳
+   microsteps后，将真实pair均衡分到所有rank×microstep槽；每槽至少1对、至多8对。v1不使用合成占位，
+   余数小于world size则fail-closed。每个完整source cycle也结束一次更新，保证L1是Lbudget真实前缀。
 4. **LR与局部过拟合对照**：建议所有臂采用同一token-progress调度规则，warmup占完整预算3%，之后保持
    G0已固定的peak LR=1e-5，不因臂或阶段重启。L1严格复用Lbudget第一遍的顺序、LR与优化器初始状态。
    这是相对于旧cosine的明确事前修订，不冒充配置未变；不得根据dev结果改回、调峰值或挑checkpoint。
@@ -56,7 +60,7 @@ G-only多3.8107%—4.0261%，L-only少7.8174%—7.8296%。因此相同pair次数
 若坚持同时严格匹配有效token和optimizer steps，则应保持现有拒绝门，另行设计预算分配协议；不能只改
 报告措辞后把现有五臂直接开跑。也不能在看过效果后选择两种预算口径中更好看的一种。
 
-## 已完成的多进程工程验证
+## 较早完成的等长多进程工程验证
 
 独立CPU/Gloo两参数模型实跑world2/4×两臂，16条执行轨迹、48次全局更新、288次各rank forward；
 4组跨全新进程组恢复（共12个rank状态比较）逐位相同。确定性DDP与独立整批参考容差1e-12通过，G/Ghash
@@ -70,3 +74,39 @@ G-only多3.8107%—4.0261%，L-only少7.8174%—7.8296%。因此相同pair次数
 
 机器回执见 `results/active_execution_20260904/`。G0 12288在2026-09-03 16:55 UTC仍排队，589/960与学长
 branch均未更新。当前8小时窗口内没有可靠的GPU开跑保证；不得用这些CPU通过替代效果收益。
+
+## 批准后完成：真实token计划与可变末批
+
+按既有`global-local-metadata-plan-v1` SHA顺序实现，未采用上表较早的简化诊断顺序。全量7735个端点逐项
+双编码（1个截断），30份计划=world2/4×seed6/7/8×5臂，30份独立重放及6组跨臂关系通过。
+G→L/Ghash→L均为14081 pair visits、104863947 tokens、111 updates；L1为4689 pairs、32187742 tokens、37 updates。
+
+| seed | Lbudget pair visits | Lbudget token短缺 | Lbudget updates | Gbudget pair visits | Gbudget token短缺 | Gbudget updates |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 6 | 15276 | 2720 | 121 | 13519 | 5367 | 107 |
+| 7 | 15275 | 1937 | 121 | 13557 | 711 | 107 |
+| 8 | 15273 | 2066 | 121 | 13517 | 593 | 107 |
+
+两种world布局的上表pair/token/update值相同，padding成本另报；不能称GPU计算量完全相等。
+原始摘要SHA=`c40f9b696530c2303c5129fa5571a2ffc484986472d1962871170d30a509043b`，见
+`results/global_local_token_plan_20260904/`。工作负载rc0与外层CRLF退出失败分开记录，独立直接verifier rc0。
+
+新增可变末批Gloo案例使用合成G=128+48、L=128+81。world2/4×两臂下16条轨迹、48次更新、612次forward；
+4组新进程恢复共12个rank的model/optimizer/Python+NumPy+Torch RNG及消费事件逐位相同。
+独立saved-state verifier和三项缺rank/缺manifest/损坏字节故障均通过，见`results/global_local_partial_ddp_20260904/`。
+
+## 批准后完成：实际Accelerate与学长loss接口
+
+固定Transformers5.12.1/Accelerate1.14.0/DeepSpeed0.19.3/Torch2.11.0源码SHA。标准Trainer的可变累积仅在
+epoch尾生效；DeepSpeed有显式边界接口且Accelerate将sync_gradients传入。新增独立更新适配层，不修改默认Trainer。
+非DeepSpeed路径抵消Accelerator.backward内置固定GAS除数，再按world×local_pairs/global_pairs归一化；
+DeepSpeed路径显式传`scale_wrt_gas=false`，其真实GPU执行仍未验证。
+
+实际Accelerate+CPU DDP另4条轨迹、16次更新、204次forward通过；各rank末批与独立全量更新参考在1e-12内一致，
+G/Ghash输入/同步边界相同。JSON-only verifier验证原始manifest哈希、128/48/128/81更新数、真标签访问次数和权重。
+结果SHA=`a16b7d3a7935d65a6fdb1de1a56c725f68941f6cbe0d15ec8b8a7c8e20fb7d4a`。
+学长exact AST loss/forward在合成tensor上完成48个损失/梯度案例和8行pooling，未调用真实模型构造器；
+未适配canonical方向的负控确实失败。详见`results/global_local_accelerate_20260904/`。
+
+仍待：真实reward-model执行、ZeRO3/bf16完整状态恢复、global candidate exact-config/experiment-closed资格、
+最终train/dev/frozen物化与零交集、G0实测成本及五臂精确GPU·h授权。工程通过不解除这些门。

@@ -1,0 +1,8 @@
+{
+  "cases": [
+    {"case": "missing-rank", "exception_type": "ValueError", "rejected": true},
+    {"case": "corrupt-rank", "exception_type": "ValueError", "rejected": true},
+    {"case": "manifest-rank-missing", "exception_type": "ValueError", "rejected": true}
+  ],
+  "status": "PASS_FAULTS_REJECTED"
+}

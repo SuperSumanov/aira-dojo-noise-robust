@@ -1,0 +1,14 @@
+{
+  "input_identity_across_label_arms": true,
+  "partial_loss_reference_checks": 4,
+  "research_model_fits": 0,
+  "resume_cases": [
+    {"arm": "G_to_L", "complete_state_bitwise_equal": true, "event_prefix_equal": true, "verified_ranks": 2, "world": 2},
+    {"arm": "Ghash_to_L", "complete_state_bitwise_equal": true, "event_prefix_equal": true, "verified_ranks": 2, "world": 2},
+    {"arm": "G_to_L", "complete_state_bitwise_equal": true, "event_prefix_equal": true, "verified_ranks": 4, "world": 4},
+    {"arm": "Ghash_to_L", "complete_state_bitwise_equal": true, "event_prefix_equal": true, "verified_ranks": 4, "world": 4}
+  ],
+  "status": "PASS_INDEPENDENT_PARTIAL_DDP_SAVED_STATE",
+  "summary_sha256": "bf488388f8115633862c6cfffae393908b3a4cada3aea7004ec11c26cc60476a",
+  "verifier_sha256": "8b02ccb22e10c2a31595c488ccd12a9a505e730c16656d99cbe6e4d4f10449ae"
+}

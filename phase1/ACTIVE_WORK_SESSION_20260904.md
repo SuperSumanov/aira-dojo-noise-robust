@@ -75,5 +75,26 @@ parent-child接受判断，已在此前裁决讨论；不把重新读到它当�
 前三项与追加的真实预算诊断均完成并独立复核；具体数字、r1失败和r2修复在
 `GLOBAL_LOCAL_BUDGET_CLARIFICATION_20260904.md`，机器回执在`results/active_execution_20260904/`。
 L编码4095例、G新增编码3640例、587个L批次、2/4进程16条轨迹均完成，不要循环重跑。
-原冻结v2未改，G0仍排队。下一处真实训练预算/LR/末批修改需要用户明确同意，不能以“八小时自主工作”
+原冻结v2未改，G0仍排队。当时下一处真实训练预算/LR/末批修改需要用户明确同意，不能以“八小时自主工作”
 代替预算授权或继续制造合成通过数。此刻无新效果结论，也没有完成八小时科研执行的声称。
+
+## 用户批准合理修订后的进展
+
+用户随后批准合理口径改动，采用独立历史开发v1；原冻结v2字节不变，模型fit/GPU/API预算不扩大。
+30份真实token计划和30份独立重放、6组跨臂关系通过；可变末批Gloo的16条轨迹/48更新/612forward与
+新进程恢复通过；实际Accelerate的4条轨迹/16更新/204forward另通过。学长loss/forward AST桥接48个
+损失梯度案例、8行pooling通过，并用错误方向负控证实适配不可省略。完整数字、SHA和限制见最新预算报告。
+本地相关组合回归为213 passed、2 skipped；跳过项是既有显式opt-in autograd及本地缺Torch的模块，远端实际CPU验证单列。
+
+失败保留：真实token输入r0缺稀疏模块而在读数据前退出；Accelerate r1把全rank完整性要求用到本rank子集，
+移到all-gather后r2通过。两个工作负载成功后的外层Bash/CRLF退出解析失败不被抹掉，均以直接独立verifier rc0
+确认产物。一次误用worktree默认uv环境安装251包后发现不是实际G0 runtime；本次生成的1,235,908,246字节
+`.venv`经exact-path验证后删除，保留实际selective runtime、模型和源码；不把此失败称作环境验证成功。
+
+18:29 UTC重新fetch：公开HEAD仍58a1bb137a835f42a6c6181ad50ba8015504e6b6，学长仍b8d095180415957aa1bab31fa53ead1bba261c03。
+G0 12288仍PENDING/Resources，306归档和LATEST55aae315未变。摄取原PID1692885已在17:36:47 UTC正常完成145轮；
+没有异常。v5事前绑定log SHA ca372710…/575024 bytes/8612 lines/16个完成标记，沿用同exact脚本续接；
+新PID3884166、首轮rc0、旧日志精确前缀由独立verifier确认。聊天heartbeat保持暂停，不以监控替代会话工作。
+
+当前科学结论仍是：尚无新的clean scaling或跨seed同预算收益。下一个效果结果必须来自已准备的严控真实fit，
+不能用本轮工程通过数代替。G0只计价，不选择模型、不作为scaling证据、不重复提交。

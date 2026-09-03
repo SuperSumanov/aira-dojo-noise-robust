@@ -1,0 +1,408 @@
+{
+  "api_calls": 0,
+  "canonical_sign_vs_winner_first_loss_and_gradient_match": true,
+  "credential_shape_hits": 0,
+  "gpu_context_created": false,
+  "last_valid_token_pooling_exact": true,
+  "loss_gradient_case_count": 48,
+  "loss_gradient_cases": [
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "ordinary",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "ordinary",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "extreme",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "extreme",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "ties",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "ties",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 1.4901161193847656e-08,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "ordinary",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 1.4901161193847656e-08,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "ordinary",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "extreme",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "extreme",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "ties",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "ties",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "ordinary",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 9.313225746154785e-10,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "ordinary",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "extreme",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "extreme",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "ties",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "ties",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "ordinary",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "ordinary",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "extreme",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "extreme",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "ties",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float32",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "ties",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "ordinary",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "ordinary",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "extreme",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "extreme",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "ties",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 1,
+      "scores": "ties",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "ordinary",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 3.469446951953614e-18,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "ordinary",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "extreme",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "extreme",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "ties",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 6,
+      "scores": "ties",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "ordinary",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "ordinary",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "extreme",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "extreme",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "ties",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 7,
+      "scores": "ties",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "ordinary",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "ordinary",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "extreme",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "extreme",
+      "signs": "mixed"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "ties",
+      "signs": "positive"
+    },
+    {
+      "dtype": "torch.float64",
+      "gradient_max_abs_error": 0.0,
+      "loss_max_abs_error": 0.0,
+      "pairs": 8,
+      "scores": "ties",
+      "signs": "mixed"
+    }
+  ],
+  "method_sha256": {
+    "compute_loss": "0ec0740b7a477d9ac763e5dc16a46b4bd05518eccaf9360c8cf282a027bec440",
+    "reward_model_forward": "a66ea0845603568afed3f439899bfedbe341ecdfc36bfeb41f8a5c593f3f6c5b"
+  },
+  "model_fits": 0,
+  "pooling_padding_change_invariant": true,
+  "pooling_rows": 8,
+  "real_data_opened": false,
+  "real_model_constructor_called": false,
+  "script_sha256": "f0bfe68ec8c7a17c42b2c3cde8a992e4038cb40b7c6a437804e2d3b71b66d4b5",
+  "source_logits_dtype": "torch.float32",
+  "source_sha256": "d3cfd12602dc399a456810d4f706124df7117834ebba124813233f77ba043977",
+  "status": "PASS_SOURCE_BOUND_LOSS_AND_POOLING_BRIDGE_NOT_REAL_MODEL",
+  "unadapted_canonical_orientation_negative_control_detected": true
+}

@@ -3,6 +3,35 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L2. 2026-09-04 合理口径修订已批准；真实token计划与Accelerate桥接通过，效果预算仍关闭
+
+用户回复“如果你认为合理的改动就批准吧”，据此采用独立历史开发协议
+`global_local_historical_development_protocol_v1.json`，只批准结果前口径和实现，**不增发GPU/API/model-fit预算**。
+原冻结v2 SHA仍为`3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9`，没有改写或替代。
+新协议保持五臂/seed6,7,8及原效果门；同104863947有效token上限、完整pair前缀停止，允许基线更新数不同；
+不丢样、不复制真实pair、不用合成占位。每个source cycle/阶段边界独立更新，L1为Lbudget第一遍精确前缀。
+所有臂共用token-progress 3% warmup后恒定peak 1e-5，不按效果选择LR或checkpoint。
+
+- 真实历史输入7735个端点全部双编码验证（1个截断），2种卡数布局×3 seeds×5臂共30份计划及30份独立重放通过；
+  6组跨臂关系通过。Lbudget三个seed缺1937–2720 tokens，Gbudget缺593–5367 tokens，全部小于下一完整pair；
+  G/Ghash输入、tokens、更新、LR完全相同。这不是已物化训练池或新确认数据。
+- 可变末批CPU/Gloo：16条轨迹、48次更新、612次各rank forward；4组新进程恢复的12个rank状态逐位相同。
+- 实际G0运行库Accelerate 1.14.0 + Torch 2.11.0的DDP桥接：另4条轨迹、16次更新、204次forward；
+  world2/4末批48/81对与独立整批参考在1e-12内一致。JSON-only独立复验和重算哈希后的缺rank/同步/访问故障测试通过。
+- 学长exact source的loss/forward仅抽取AST方法体，在合成tensor上验证48个损失/梯度案例和8行池化；
+  canonical带符号损失与原winner-first损失一致，故意不适配方向的负控确实被发现。未调用真实模型构造器。
+
+不能把这些称作新accuracy/scaling/search收益，也不能称真实HF reward model、ZeRO3/bf16或生产checkpoint恢复已验证。
+本地相关组合回归213 passed、2 skipped（1个既有显式opt-in autograd、1个本地缺Torch的模块；远端CPU执行证据另列）。
+标准Trainer只处理epoch末尾可变累积，不能直接表达中间G/L边界；新增独立Accelerate更新适配层，不改学长默认Trainer
+或pending G0。r1全rank回执误用于单rank、r2外层Bash解析失败、误建默认venv后清理等均保留在结果README，不隐去。
+详情见`GLOBAL_LOCAL_BUDGET_CLARIFICATION_20260904.md`、`ACTIVE_WORK_SESSION_20260904.md`与三个新增results目录。
+
+18:29 UTC只读复查：G0 12288仍PENDING/Resources，学长HEAD仍`b8d095180415957aa1bab31fa53ead1bba261c03`；
+306 archives、LATEST=`55aae315…`、589/960、config-v2=0、closure=false未变。原摄取PID1692885于17:36:47 UTC
+正常完成145轮，未发生失败；按同exact脚本续接v5，新PID3884166及首轮rc0由独立verifier确认。聊天heartbeat仍暂停。
+下一步接通最终保存/恢复的真实执行接口，并等待G0计价、来源/切分门和明确五臂GPU·h授权；不得重复提交G0或提前揭盲。
+
 ## 0L1. 2026-09-04 会话内推进：真实编码、多进程恢复和候选G边界已验证；预算修订待批准
 
 用户明确不要用八小时定时巡检代替会话内实验；原outcome-blind heartbeat已PAUSED，本轮主动做了下列

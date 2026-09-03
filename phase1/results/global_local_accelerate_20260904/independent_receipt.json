@@ -1,0 +1,69 @@
+{
+  "G_and_Ghash_input_and_boundary_traces_identical": true,
+  "new_optimization_trajectories": 0,
+  "status": "PASS_INDEPENDENT_ACCELERATE_SAVED_ARTIFACT",
+  "summary_sha256": "a16b7d3a7935d65a6fdb1de1a56c725f68941f6cbe0d15ec8b8a7c8e20fb7d4a",
+  "torch_or_adapter_imported": false,
+  "trials": [
+    {
+      "arm": "G_to_L",
+      "global_pairs_per_update": [
+        128,
+        48,
+        128,
+        81
+      ],
+      "manifest_sha256": "d1c59dec05983275ace8d80f281b143851e45351d7576dd1a088e3969470c404",
+      "target_access_count_exact": true,
+      "verified_forward_receipts": 50,
+      "verified_ranks": 2,
+      "weights_match_independent_reference": true,
+      "world": 2
+    },
+    {
+      "arm": "Ghash_to_L",
+      "global_pairs_per_update": [
+        128,
+        48,
+        128,
+        81
+      ],
+      "manifest_sha256": "f5d9d1af5a7a735039504cd93757e248cb764a148ad0e2b7a7b41eb5b97c1b5a",
+      "target_access_count_exact": true,
+      "verified_forward_receipts": 50,
+      "verified_ranks": 2,
+      "weights_match_independent_reference": true,
+      "world": 2
+    },
+    {
+      "arm": "G_to_L",
+      "global_pairs_per_update": [
+        128,
+        48,
+        128,
+        81
+      ],
+      "manifest_sha256": "7f49d28e7029d531731ceeca2093cd7afd06287545961ef444ad92e883e9f1d1",
+      "target_access_count_exact": true,
+      "verified_forward_receipts": 52,
+      "verified_ranks": 4,
+      "weights_match_independent_reference": true,
+      "world": 4
+    },
+    {
+      "arm": "Ghash_to_L",
+      "global_pairs_per_update": [
+        128,
+        48,
+        128,
+        81
+      ],
+      "manifest_sha256": "50f22e42b47f3122aa236f3450055dbaa78d383810c4422f1434559e22b6d454",
+      "target_access_count_exact": true,
+      "verified_forward_receipts": 52,
+      "verified_ranks": 4,
+      "weights_match_independent_reference": true,
+      "world": 4
+    }
+  ]
+}

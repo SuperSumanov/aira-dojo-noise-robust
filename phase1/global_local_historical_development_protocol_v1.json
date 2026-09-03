@@ -1,0 +1,204 @@
+{
+  "protocol": "global-local-historical-development-v1",
+  "status": "APPROVED_PROTOCOL_IMPLEMENTATION_EFFECT_BUDGET_BLOCKED",
+  "approved_at_hong_kong_date": "2026-09-04",
+  "approval_scope": "The user approved reasonable revisions to the historical development protocol; this does not authorize GPU jobs, API calls, model fits, or frozen evaluation access.",
+  "base_commit_before_protocol_implementation": "58a1bb137a835f42a6c6181ad50ba8015504e6b6",
+  "relationship_to_frozen_v2": {
+    "path": "phase1/global_local_calibration_candidate_protocol_v2.json",
+    "sha256": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9",
+    "modified_or_superseded": false,
+    "scope": "historical development only; never confirmatory",
+    "reason_for_successor": "real pair lengths make strict whole-pair valid-token and fixed-step equality jointly unreachable under the six predeclared diagnostic orders"
+  },
+  "evidence_timing": {
+    "new_effect_result_opened_before_approval": false,
+    "new_frozen_or_prospective_outcome_opened": false,
+    "historical_input_counts_and_token_lengths_known": true,
+    "protocol_revision_selected_from_accuracy_or_utility": false
+  },
+  "historical_inputs": {
+    "local_train": {
+      "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e",
+      "pairs": 4689,
+      "unique_endpoints": 4095,
+      "grouped_run_identities": 430,
+      "tasks": 28,
+      "valid_tokens_once": 32187742,
+      "status": "historical train-only input"
+    },
+    "global_source": {
+      "sha256": "d9163bbcde70d8fe1f6f2ead9db266eca7ced932682cdaed9d3a9ece6fa43010",
+      "source_rows": 14206,
+      "identity_projected_candidate_pairs": 9392,
+      "candidate_unique_endpoints": 6698,
+      "candidate_additional_endpoints_over_local": 3640,
+      "candidate_grouped_run_identities": 428,
+      "candidate_tasks": 28,
+      "candidate_valid_tokens_once": 72676205,
+      "status": "identity-only candidate; not materialized, exact-config verified, experiment-closed, or effect eligible"
+    },
+    "grouped_cards_sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb",
+    "encoder_source_sha256": "3e1969499405199a187c12106d9f4d4a5542b4a1ecf094e0bd9f7c71514b4643",
+    "resolved_config_sha256": "ec0ed931e9ace64925451a4792922110253f642462a0f3d732063c07d8af0475",
+    "combined_pairs_once": 14081,
+    "combined_valid_tokens_once": 104863947,
+    "cross_source_unordered_pair_overlap_after_projection": 0,
+    "within_pool_repeated_unordered_pairs": 0
+  },
+  "encoder": {
+    "model_family": "Qwen3-1.7B-Base tokenizer only; model checkpoint remains unresolved",
+    "tokenizer_snapshot": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "tokenizer_files_sha256": {
+      "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+      "tokenizer_config.json": "3c04ed3ca964ea2f6b2b5faf0dc4d31aec1cb1e8b4bcf63f402d295046b422b5",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "config.json": "1bb33a92c3548fbc68b889b490e810440435253598835bd71dff0396060c12db"
+    },
+    "max_len": 16384,
+    "head_frac": 0.25,
+    "task_cond": true,
+    "budget_cond": false,
+    "budget_pos": "head"
+  },
+  "ordering": {
+    "version": "global-local-metadata-plan-v1",
+    "rule": "within each source, sort ascending by digest_records([(version, seed, source, canonical_pair_key)])",
+    "canonical_pair_key": "digest_records([(context_sha256, min_card_id, max_card_id)])",
+    "seeds": [6, 7, 8],
+    "arrival_order_independent": true,
+    "label_or_winner_orientation_used": false,
+    "the_earlier_simplified_diagnostic_order_is_adopted": false
+  },
+  "budget": {
+    "common_valid_token_cap": 104863947,
+    "whole_pairs_only": true,
+    "budget_baseline_stop_rule": "cycle the fixed source order and stop before the first next whole pair that would exceed the common cap",
+    "budget_shortfall_and_next_pair_tokens_reported": true,
+    "optimizer_steps_may_differ_between_arms": true,
+    "token_step_and_gpu_compute_all_claimed_exactly_equal": false,
+    "phase_and_full_source_cycle_boundaries_are_optimizer_boundaries": true,
+    "reason_for_cycle_boundary": "L1 must be an exact optimizer-update prefix of the first Lbudget source pass",
+    "real_pairs_dropped": false,
+    "real_pairs_repeated_for_batch_padding": false,
+    "synthetic_zero_loss_placeholders": false,
+    "remainder_smaller_than_world_size_action": "fail closed under v1",
+    "report_per_arm": [
+      "pair visits",
+      "valid tokens",
+      "token shortfall",
+      "optimizer updates",
+      "padded token slots",
+      "measured GPU hours"
+    ]
+  },
+  "distributed_layout": {
+    "nominal_effective_pairs": 128,
+    "candidate_shapes_not_selected_by_effect": [
+      {"world_size": 2, "pairs_per_rank": 8, "maximum_accumulation_microsteps": 8},
+      {"world_size": 4, "pairs_per_rank": 8, "maximum_accumulation_microsteps": 4}
+    ],
+    "partial_update_assignment": "use the minimum microsteps that fit, then balance consecutive real pairs across all rank-microstep slots with counts differing by at most one",
+    "all_ranks_participate_in_every_used_microstep": true,
+    "partial_update_loss_rule": "multiply each local mean loss by world_size*local_real_pairs/global_update_real_pairs before DDP rank averaging",
+    "phase_mixing_within_optimizer_update": false,
+    "real_HF_Trainer_DeepSpeed_bf16_integration_verified": false
+  },
+  "optimizer": {
+    "optimizer": "AdamW fused where supported",
+    "peak_learning_rate_decimal": "0.00001",
+    "warmup_valid_tokens": 3145919,
+    "warmup_fraction_rational": [3, 100],
+    "per_update_learning_rate": "peak_lr * min(1, cumulative_valid_tokens_including_current_update / warmup_valid_tokens)",
+    "after_warmup": "constant peak learning rate",
+    "stage_or_arm_restart": false,
+    "weight_decay": 0,
+    "max_gradient_norm": 1,
+    "L1_relation": "same initialization, order, optimizer state, update boundaries, and LR values as the first complete L source pass of Lbudget"
+  },
+  "arms": [
+    {
+      "id": "L1",
+      "schedule": "one complete L source pass",
+      "common_token_cap_matched": false,
+      "role": "local-repeat and overtraining diagnostic"
+    },
+    {
+      "id": "Lbudget",
+      "schedule": "cycle L under the no-overshoot token cap",
+      "common_token_cap_matched_up_to_reported_whole_pair_shortfall": true,
+      "role": "local-only deployment baseline"
+    },
+    {
+      "id": "Gbudget",
+      "schedule": "cycle G under the no-overshoot token cap",
+      "common_token_cap_matched_up_to_reported_whole_pair_shortfall": true,
+      "role": "global-only zero-shot baseline"
+    },
+    {
+      "id": "G_to_L",
+      "schedule": "one complete G pass, optimizer boundary, then one complete L pass",
+      "common_token_cap_exact": true,
+      "role": "true global supervision followed by local calibration"
+    },
+    {
+      "id": "Ghash_to_L",
+      "schedule": "byte-identical G_to_L inputs and schedule; replace only G target orientation with endpoint hash utility",
+      "common_token_cap_exact": true,
+      "role": "global-quality-label-information negative control"
+    }
+  ],
+  "hash_control": {
+    "seed": 20260823,
+    "endpoint_utility": "integer value of sha256('20260823|' + card_id)",
+    "pair_level_independent_flips": false,
+    "shared_endpoint_order_is_transitive": true,
+    "G_and_Ghash_inputs_order_tokens_updates_LR_and_save_point_identical": true,
+    "true_global_labels_read_by_hash_arm": false,
+    "collision_action": "fail closed"
+  },
+  "evaluation_and_claim_gates": {
+    "inherits_without_relaxation_from_frozen_v2_sha256": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9",
+    "primary_metric": "local frozen sibling accuracy",
+    "headline_uncertainty": "task-clustered paired 95% CI",
+    "G_to_L_minus_Lbudget_point_minimum": 0.02,
+    "G_to_L_minus_Lbudget_task_ci_lower_strictly_positive": true,
+    "G_to_L_minus_Lbudget_all_seed_signs_positive": true,
+    "G_to_L_minus_Gbudget_task_ci_lower_strictly_positive": true,
+    "G_to_L_minus_Ghash_to_L_tested_only_after_deployment_gain": true,
+    "G_to_L_minus_Ghash_to_L_task_ci_lower_strictly_positive": true,
+    "leave_one_task_out_sign_must_not_flip": true,
+    "single_task_correct_difference_share_maximum": 0.35,
+    "final_step_checkpoint_only": true,
+    "all_checkpoint_hashes_locked_before_one_shot_test": true
+  },
+  "unresolved_effect_gates": [
+    "G0 wall-clock and peak-memory receipt",
+    "exact model checkpoint selected by feasibility rather than accuracy",
+    "global candidate producer provenance and exact-config verification",
+    "experiment-closed train/dev/frozen construction with zero pair/card/run overlap",
+    "materialized train manifests and independent hashes",
+    "checkpoint and receipt storage reservation",
+    "explicit five-arm GPU-hour approval"
+  ],
+  "kill_conditions": [
+    "any frozen v2 byte drift",
+    "any train/dev/frozen pair, card, or physical-run overlap",
+    "any dev/test/vault access by a training process",
+    "G and Ghash input, token, update, LR, or save-point mismatch",
+    "L1 is not the exact first-pass Lbudget prefix",
+    "a partial update has an absent rank, repeated real pair, mixed source, or incorrect DDP normalization",
+    "NaN, OOM, incomplete receipt, or hash drift",
+    "deployment gain gate fails"
+  ],
+  "scope": {
+    "gpu_jobs_authorized": 0,
+    "api_calls": 0,
+    "model_fits_authorized": 0,
+    "base_llm_update": false,
+    "frozen_or_prospective_outcome_access_authorized": false,
+    "first960_target300_target522_access_authorized": false,
+    "effect_submission_authorized": false
+  }
+}

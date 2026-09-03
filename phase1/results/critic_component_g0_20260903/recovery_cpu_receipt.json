@@ -1,0 +1,45 @@
+{
+  "cases": [
+    {
+      "case": "original",
+      "rc": 0
+    },
+    {
+      "case": "recovery",
+      "rc": 0
+    },
+    {
+      "case": "invalid_steps",
+      "rc": 2
+    },
+    {
+      "case": "invalid_eval",
+      "rc": 2
+    },
+    {
+      "case": "invalid_mode",
+      "rc": 2
+    }
+  ],
+  "checkpoint_roundtrip_equal": true,
+  "cpu_hardware_overrides": {
+    "bf16": false,
+    "use_cpu": true
+  },
+  "deepspeed_guard_checked": true,
+  "distributed_save_validated": false,
+  "framework_sha256": "c1a56423fcfcf9cfec6847467ffb2e2c8a9a9e8cc1836b82c87ed0c81e504be0",
+  "gpu_context_created": false,
+  "launcher_sha256": "45c02f177b8760430fa712e76d918c110bd087cda61d1154ad072f319bfa1d7e",
+  "metadata_overwrite_rejected": true,
+  "new_model_fits": 0,
+  "only_scientific_cli_change": {
+    "load_best_model_at_end": [
+      true,
+      false
+    ]
+  },
+  "resolved_cli_sha256": "ec0ed931e9ace64925451a4792922110253f642462a0f3d732063c07d8af0475",
+  "source_commit": "5f3bc362db922c8edee2ef134656dfdb9a2b74fb",
+  "status": "RESOLVED_ARGV_AND_CPU_CHECKPOINT_REGRESSION_PASS"
+}

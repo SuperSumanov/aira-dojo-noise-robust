@@ -224,7 +224,13 @@ def validate_scheduler_allocation(environment: dict[str, str], job_line: str) ->
     require(fields.get("NumCPUs") == str(cpus_per_task), "scontrol CPU count mismatch")
     require(fields.get("CPUs/Task") == str(cpus_per_task), "scontrol CPUs/task mismatch")
     require(fields.get("MinMemoryNode") == contract["min_memory_node"], "unexpected memory request")
-    require(fields.get("TimeLimit") == "02:00:00", "unexpected Slurm time limit")
+    recovery = environment.get("G0_RECOVERY_FINAL_ONLY", "0")
+    require(recovery in {"0", "1"}, "invalid G0 recovery mode")
+    expected_time = "01:57:00" if recovery == "1" else "02:00:00"
+    require(fields.get("TimeLimit") == expected_time, "unexpected Slurm time limit")
+    if recovery == "1":
+        require(fields.get("Requeue") == "0", "recovery must disable requeue")
+        require(fields.get("Restarts") == "0", "recovery must not have restarted")
     require(environment.get("SLURM_JOB_NODELIST") == "projgpu39", "unexpected Slurm node")
     require(fields.get("NodeList") == "projgpu39", "scontrol node mismatch")
     require("gres/gpu=2" in fields.get("TRES", "").split(","), "unexpected GPU allocation")
@@ -599,6 +605,7 @@ def command_preflight(args: argparse.Namespace) -> None:
         "runtime": runtime,
         "cluster": cluster,
         "fixed_config": FIXED_CONFIG,
+        "recovery_final_only": os.environ.get("G0_RECOVERY_FINAL_ONLY", "0") == "1",
     }
     write_json_exclusive(Path(args.receipt), receipt)
 
@@ -627,6 +634,10 @@ def command_verify(args: argparse.Namespace) -> None:
         Path(args.telemetry).resolve(strict=True),
         preflight,
     )
+    if preflight.get("recovery_final_only", False):
+        recovery_log = Path(args.launcher_log).read_text(encoding="utf-8", errors="replace")
+        expected_line = "g0_final_only=1 load_best_model_at_end=false save_only_model=true save_strategy=best"
+        require(recovery_log.count(expected_line) == 1, "G0 recovery resolved configuration receipt mismatch")
     receipt = {
         "status": "G0_ENGINEERING_CALIBRATION_VALID",
         "protocol": PROTOCOL,

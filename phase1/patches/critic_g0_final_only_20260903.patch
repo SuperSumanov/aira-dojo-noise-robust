@@ -1,0 +1,41 @@
+diff --git a/src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh b/src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh
+index 7e86af9..a2da253 100644
+--- a/src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh
++++ b/src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh
+@@ -28,6 +28,19 @@ CONFIRM_EFFECTIVE_PAIR_BATCH=${CONFIRM_EFFECTIVE_PAIR_BATCH:-128}
+ CONFIRM_LR_SCHEDULER_TYPE=${CONFIRM_LR_SCHEDULER_TYPE:-cosine}
+ CONFIRM_WARMUP_RATIO=${CONFIRM_WARMUP_RATIO:-0.03}
+
++# G0 has exactly one evaluation/checkpoint; reloading it is unnecessary and
++# conflicts with DeepSpeed + model-only saving in Transformers 5.12.1.
++CONFIRM_LOAD_BEST_MODEL_AT_END=true
++case ${CONFIRM_G0_FINAL_ONLY:-0} in
++    0) ;;
++    1)
++        [[ $CONFIRM_MAX_STEPS == 10 && $CONFIRM_EVAL_STEPS == 10 ]] \
++            || { echo 'G0 final-only requires max_steps=eval_steps=10' >&2; exit 2; }
++        CONFIRM_LOAD_BEST_MODEL_AT_END=false
++        ;;
++    *) echo 'CONFIRM_G0_FINAL_ONLY must be 0 or 1' >&2; exit 2 ;;
++esac
++
+ [[ ! -e $CONFIRM_OUTPUT_DIR ]] || {
+     echo "refusing to reuse output directory: $CONFIRM_OUTPUT_DIR" >&2
+     exit 2
+@@ -80,6 +93,7 @@ echo "[confirmatory-rm] commit=$AIRA_DOJO_GIT_COMMIT model=$CONFIRM_MODEL seed=$
+ echo "[confirmatory-rm] train_sha256=$CONFIRM_EXPECTED_TRAIN_SHA256 dev_sha256=$CONFIRM_EXPECTED_DEV_SHA256 cards_sha256=$CONFIRM_EXPECTED_CARDS_SHA256"
+ echo "[confirmatory-rm] processes=$CONFIRM_NUM_PROCESSES effective_pair_batch=$actual_effective_batch max_len=$CONFIRM_MAX_LEN epochs=$CONFIRM_EPOCHS"
+ echo "[confirmatory-rm] max_steps=$CONFIRM_MAX_STEPS scheduler=$CONFIRM_LR_SCHEDULER_TYPE warmup_ratio=$CONFIRM_WARMUP_RATIO"
++echo "[confirmatory-rm] g0_final_only=${CONFIRM_G0_FINAL_ONLY:-0} load_best_model_at_end=$CONFIRM_LOAD_BEST_MODEL_AT_END save_only_model=true save_strategy=best"
+
+ accelerate launch \
+     --config_file "$ACCELERATE_CONFIG" \
+@@ -105,7 +119,7 @@ accelerate launch \
+     --report_to none \
+     --dataloader_num_workers 0 \
+     --save_strategy best \
+-    --load_best_model_at_end true \
++    --load_best_model_at_end "$CONFIRM_LOAD_BEST_MODEL_AT_END" \
+     --metric_for_best_model eval_pair_accuracy \
+     --greater_is_better true \
+     2>&1 | tee "$CONFIRM_LOG_PATH"

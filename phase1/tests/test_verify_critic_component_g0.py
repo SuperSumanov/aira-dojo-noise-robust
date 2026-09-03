@@ -213,6 +213,23 @@ def test_shared_scheduler_allocation_contract() -> None:
     assert receipt["min_memory_node"] == "0"
 
 
+def test_recovery_requires_shorter_limit_and_no_requeue() -> None:
+    environment = {
+        "SLURM_JOB_ID": "12345", "SLURM_JOB_PARTITION": "gpu_24h",
+        "SLURM_CPUS_PER_TASK": "12", "SLURM_JOB_NODELIST": "projgpu39",
+        "G0_RECOVERY_FINAL_ONLY": "1",
+    }
+    line = (
+        "JobId=12345 Partition=gpu_24h QOS=gpu NumCPUs=12 CPUs/Task=12 "
+        "MinMemoryNode=0 TimeLimit=01:57:00 NodeList=projgpu39 Requeue=0 Restarts=0 "
+        "TRES=cpu=12,node=1,billing=12,gres/gpu=2"
+    )
+    assert g0.validate_scheduler_allocation(environment, line)["time_limit"] == "01:57:00"
+    for old, new in (("01:57:00", "02:00:00"), ("Requeue=0", "Requeue=1"), ("Restarts=0", "Restarts=1")):
+        with pytest.raises(g0.ContractError):
+            g0.validate_scheduler_allocation(environment, line.replace(old, new))
+
+
 @pytest.mark.parametrize(
     ("field", "replacement", "message"),
     [

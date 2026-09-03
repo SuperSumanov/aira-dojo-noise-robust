@@ -3,6 +3,32 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0w. 2026-09-03 受控重试已批准，CPU 保存回归通过，但研究盘配额阻止提交
+
+用户要求推进跨 seed、同预算收益或干净 scaling，并对“修复后再运行一个双卡 G0、最长 7,044 秒，
+连同失败作业累计不超过 4 GPU·h；不启动五臂正式训练”的问题明确回复“是的是的”。这覆盖下节的
+retry approval pending，但不扩大到五臂训练、scaling 矩阵或任何前瞻揭盲。
+
+source successor=`5f3bc362db922c8edee2ef134656dfdb9a2b74fb`，基于原 `51c7f48…`，只给 launcher
+添加显式 G0 final-only 模式：必须 max_steps=eval_steps=10，保持 save_strategy=best/save_only_model=true，
+仅关闭 load_best_model_at_end；普通训练行为不变。原源码和失败产物未改。完整 launcher argv 对比确认
+唯一训练配置差异是该开关；五个 CPU case 全过，实际 Trainer 的小模型 checkpoint 写入、读回逐 tensor
+一致及元数据禁止覆盖通过。CPU 构造明确使用 bf16=false/use_cpu=true，无 train()，不能称分布式 GPU
+保存通过。回执见 `results/critic_component_g0_20260903/recovery_cpu_receipt.json`。
+
+**阻碍是存储，不再是预算批准：** 在同一研究盘预留 4,294,967,296 bytes 检查点空间被 EDQUOT(122)
+拒绝，留下的本次 reservation 文件为 0 bytes。共享盘 df 的空闲不是用户配额；本次失败安装只有约 13 MB
+独立残余环境，r1 setup 约 8 KB，无足够可清理缓存。181 MB overlay 是当前有效 runtime 的依赖，不能删。
+没有删除用户文件，也没有提交新 GPU 作业。已请求一个至少 5 GiB 可写目录或明确可删的旧 checkpoint。
+不得在存储问题未解决时盲目重试或自行删旧模型。为避免 Slurm 秒数向上取整，计划时间保守设为 117 分钟
+（7,020 秒），加上上次 156 秒 allocation 后仍在原 4 GPU·h 内；必须 --no-requeue，唯一提交锁。
+
+后续科学优先级：先取得 G0 成本，再为既有五臂协议提供至少三个预先固定 seed 的预算矩阵。当前 trainer
+既对 training_records 全池 shuffle，又使用通用 Trainer 采样；直接拼接 global/local 并不落实 staged
+transfer，因此正式效果代码必须显式验证阶段采样与实际预算，不能拿 G0 launcher 直接跑五臂。
+规范 config-v2 sidecar 仍为 0，干净 scaling 仍受数据来源门约束。历史探索与未来确认必须分开；目前无
+新的跨 seed 效果、clean scaling 或搜索收益结论。详情见 `GLOBAL_LOCAL_NEXT_EXECUTION_20260903.md`。
+
 ## 0L0v. 2026-09-03 G0 启动失败已定位；不得沿用排队状态或自动重试
 
 在用户“继续工作并先汇报投稿把握”的本轮只读核验中，Slurm accounting 确认唯一作业 `12181` 于香港时间

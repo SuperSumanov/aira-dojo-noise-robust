@@ -3,6 +3,35 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0v. 2026-09-03 G0 启动失败已定位；不得沿用排队状态或自动重试
+
+在用户“继续工作并先汇报投稿把握”的本轮只读核验中，Slurm accounting 确认唯一作业 `12181` 于香港时间
+11:58:33 开始、12:01:09 结束，`FAILED / 1:0`，双卡 allocation 共 156 秒，即 0.08666666666666667 GPU·h。
+`scontrol` 不再保留该 job 不能解释为仍在排队；不得继续引用下节 11:53/13:53 的排队预估。
+没有 train-begin marker、checkpoint 或有效十步成本结果；源码显示异常发生于 Trainer 构造，尚未调用 `train()`。
+
+原因是冻结 launcher 的 `load_best_model_at_end=true` 与 config 的 `save_only_model=true` 在 DeepSpeed 下
+触发 Transformers 5.12.1 的明确禁止条件。两 rank 报错一致，worker log SHA-256=
+`28745e18359126e444ff49626d1fdce725bf6d18b0ab407e4a557bcfb8f71790`。这是本轮预检只测 import、漏查
+实际配置组合的工程错误，不是方向负结果或硬件 OOM；“依赖/import PASS”不能改写为“训练初始化 PASS”。
+
+CPU-only、无 trainer import/模型 fit 的 source-bound predicate 验证重现原组合拒绝，并确认 G0-only 关闭
+end-of-training reload 可消除此 guard；框架 best-metric/checkpoint 保存函数不依赖该 reload flag。
+这只验证一个具体冲突，**不代表完整 GPU 路径已通过**。建议仅为固定十步、唯一 step-10 checkpoint 的 G0
+添加显式 final-only 模式，保留 save_strategy=best、只保存模型、其它训练旋钮和数据；普通训练默认行为不变。
+修复尚未应用，源 checkout、worker、verifier 和失败产物均保留不变。
+
+当前为 `G0_FAILED_PRE_TRAIN_RECOVERY_APPROVAL_PENDING`。原授权仅一个作业且禁止自动重试；如用户批准一次
+修复后的 successor，双卡墙钟最多 7,044 秒（1:57:24），使两次 allocation 总和仍不超过原 4 GPU·h。
+须先冻结新 source/control commit、完整 resolved-config 检查和 checkpoint/保存回归，再提交唯一新 job；
+本节本身不授权该重试或五臂矩阵。诊断见 `results/critic_component_g0_20260903/failure_diagnostic.json`。
+
+同轮 13:09 香港时间结构检查：学长 source/HEAD 未变，仍 306 archives、589/960 runs、closure=false、
+canonical config-v2=0。intake PID 842457 已在 12:21:44 正常完成第 15 个固定 145-poll 周期，尾部 rc=0；
+不是失败，但现在不能称它 live。仅准备同一 exact monitor/control 与相同摄取规则的自然结束续接，
+新的 baseline log SHA=`ee4630d5ff729718eb99b6bd5a5b1b899cd7657ac1aaa7746a30d81fd3081188`，
+bytes/lines=`546291/8176`。续接成功须另记真实 PID 与独立验证，不以准备脚本冒充运行。
+
 ## 0L0u. 2026-09-03 用户批准启动受控验证；首阶段预算已放行
 
 用户在获知 4 GPU·h 首阶段预算与五臂比较尚未启动后，明确回复“启动受控效果验证吧”。据此放行此前

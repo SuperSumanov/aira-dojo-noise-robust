@@ -1,0 +1,75 @@
+{
+  "allocated_gpus": 2,
+  "allocation_gpu_hours": 0.08666666666666667,
+  "checkpoint_count": 0,
+  "checkpoint_functions_do_not_depend_on_reload": {
+    "_determine_best_metric": true,
+    "_save_checkpoint": true
+  },
+  "cpu_predicate_test_not_full_trainer_or_gpu_validation": true,
+  "framework_guard_reproduced_cpu_only": true,
+  "framework_trainer_sha256": "c1a56423fcfcf9cfec6847467ffb2e2c8a9a9e8cc1836b82c87ed0c81e504be0",
+  "gpu_retry_authorized": false,
+  "guard_expression": "self.args.save_only_model and (self.is_deepspeed_enabled or self.is_fsdp_enabled) and self.args.load_best_model_at_end",
+  "guard_line": 845,
+  "job_id": 12181,
+  "maximum_additional_two_gpu_seconds_within_original_total": 7044,
+  "new_gpu_jobs": 0,
+  "new_model_fits": 0,
+  "original_budget_gpu_hours": 4,
+  "proposal": "G0-only load_best_model_at_end=false; keep save_strategy=best and save_only_model=true",
+  "proposal_applied": false,
+  "scheduler_elapsed_seconds": 156,
+  "status": "FAILED_BEFORE_TRAIN_LOOP",
+  "train_begin_marker_present": false,
+  "truth_table_cases": [
+    {
+      "deepspeed": false,
+      "load_best_model_at_end": false,
+      "rejected_by_installed_guard": false,
+      "save_only_model": false
+    },
+    {
+      "deepspeed": false,
+      "load_best_model_at_end": true,
+      "rejected_by_installed_guard": false,
+      "save_only_model": false
+    },
+    {
+      "deepspeed": false,
+      "load_best_model_at_end": false,
+      "rejected_by_installed_guard": false,
+      "save_only_model": true
+    },
+    {
+      "deepspeed": false,
+      "load_best_model_at_end": true,
+      "rejected_by_installed_guard": false,
+      "save_only_model": true
+    },
+    {
+      "deepspeed": true,
+      "load_best_model_at_end": false,
+      "rejected_by_installed_guard": false,
+      "save_only_model": false
+    },
+    {
+      "deepspeed": true,
+      "load_best_model_at_end": true,
+      "rejected_by_installed_guard": false,
+      "save_only_model": false
+    },
+    {
+      "deepspeed": true,
+      "load_best_model_at_end": false,
+      "rejected_by_installed_guard": false,
+      "save_only_model": true
+    },
+    {
+      "deepspeed": true,
+      "load_best_model_at_end": true,
+      "rejected_by_installed_guard": true,
+      "save_only_model": true
+    }
+  ]
+}

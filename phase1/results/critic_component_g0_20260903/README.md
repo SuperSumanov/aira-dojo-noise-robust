@@ -2,6 +2,22 @@
 
 Recorded 2026-09-03; scientific status: **no new effect result**.
 
+## Updated outcome: failed before training (13:06 Hong Kong check)
+
+Slurm accounting reports job 12181 `FAILED / 1:0`: actual start `11:58:33+08:00`, end `12:01:09+08:00`, elapsed 156 seconds. Two allocated GPUs therefore account for `0.08666666666666667 GPU-hours`. The queued timestamps below are retained as launch history, not current status.
+
+Both ranks raised: `ValueError: DeepSpeed can't be used with save_only_model along with load_best_model_at_end.` This happened in Trainer construction, before `trainer.train()`. No train-begin event, optimizer step, dev evaluation, or checkpoint was produced. No new scientific evidence or training-throughput estimate exists. Source/model/input preflight passed, but import-only runtime testing missed this resolved configuration conflict; that omission is ours.
+
+Evidence: worker log SHA-256 `28745e18359126e444ff49626d1fdce725bf6d18b0ab407e4a557bcfb8f71790`; failure marker `a086f4e9ff61802cf7c08352105b9205948a77581ca54ff5f35e59108e10a7ee`; launcher resource receipt `8c02a9ff1c5ee54f9c93633a9d362bbab727b1bd956ec1ccfdd1da02fe06e502`. All examined evidence had zero credential-shape hits; originals remain remote and unchanged.
+
+### Proposed recovery, not applied or authorized to retry
+
+Add an explicit G0-only mode that requires `max_steps=eval_steps=10`, disables `load_best_model_at_end`, and retains `save_only_model=true` plus `save_strategy=best`. Keep ordinary launcher defaults unchanged. There is only one evaluation/checkpoint in G0, so its unique selected endpoint remains checkpoint-10; no accuracy-driven new selection is introduced. The independent verifier still must enforce exactly one checkpoint/evaluation and all ten optimizer steps.
+
+The CPU diagnostic executes the exact installed framework's incompatibility predicate over all eight DeepSpeed/model-only/reload combinations and inspects checkpoint-selection dependencies. It confirms the specific rejected combination and that the proposed flag resolves that guard. It does **not** instantiate the full Trainer, test DeepSpeed saving, prove numerical equivalence, or validate the complete GPU path. See `failure_diagnostic.json`.
+
+Any successor first requires user retry approval, an exact source/control revision with the proposed bounded mode, full resolved-configuration preflight and checkpoint-saving regression. At most one additional two-GPU allocation of 7,044 seconds (`1:57:24`) would preserve the original cumulative 4-GPU-hour cap. No second GPU job has been submitted; the five-arm effect matrix remains unapproved.
+
 ## Actual submission
 
 - User explicitly approved starting the previously quoted bounded G0 stage.

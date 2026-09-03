@@ -32,6 +32,14 @@ canonical config-v2=0。intake PID 842457 已在 12:21:44 正常完成第 15 个
 新的 baseline log SHA=`ee4630d5ff729718eb99b6bd5a5b1b899cd7657ac1aaa7746a30d81fd3081188`，
 bytes/lines=`546291/8176`。续接成功须另记真实 PID 与独立验证，不以准备脚本冒充运行。
 
+**13:17 香港时间续接已完成：** exact public helper commit=`9924b79a2e5e0987b4b5d31eaa3896ac648df7df`，
+远端 helper SHA=`694dbc3786dbd985f3f9f254276c698089c30776b0274f6aa40fa6e67f6f4a40` 与本地一致；
+旧完整日志前缀、源 archive 数、LATEST/summary、dead PID/free lock、exact control/script 的前置检查均通过。
+同一 monitor 的新 PID=`1692885`，首轮 `poll_end=0 rc=0`，独立 verifier PASS；LATEST、306 archives 与
+589 runs 未改变。续接 root=`/research/d7/spc/yzyang4/outcome-blind-intake-natural-renewal-20260903-v4`，
+safe-receipt SHA=`b92c32c93c680dbf26470a232ef49f3dee229a39d810ec723e6fdccaa23dca9d`；无新 GPU/API/model fit。
+既有 heartbeat 已改为保留 G0 失败/待批准状态并跟踪盲态摄取；用户已获知，不重复报警或自动重试。
+
 ## 0L0u. 2026-09-03 用户批准启动受控验证；首阶段预算已放行
 
 用户在获知 4 GPU·h 首阶段预算与五臂比较尚未启动后，明确回复“启动受控效果验证吧”。据此放行此前

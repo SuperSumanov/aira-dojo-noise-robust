@@ -1,0 +1,47 @@
+{
+  "status": "OFFICIAL_PATH_CONFIRMED_WRITE_CAPACITY_BLOCKED_USAGE_SCAN_RUNNING",
+  "user_supplied_allocation": {
+    "path": "/research/d7/spc/yzyang4",
+    "quota_as_stated": "1TB",
+    "project_expiry_date": "2026-09-29",
+    "actual_server_enforced_quota_observed": false
+  },
+  "checked_at_utc": "2026-09-03T07:11:45.061881+00:00",
+  "resolved_path": "/research/d7/spc/yzyang4",
+  "owner": "yzyang4",
+  "group": "y24",
+  "filesystem": "nfs4",
+  "mount_source": "rdata10:/d/d7/data",
+  "new_file_creation": "PASS",
+  "small_write_fsync_bytes": 65536,
+  "small_write_fsync": "PASS",
+  "checkpoint_reservation_bytes": 4294967296,
+  "checkpoint_reservation": "FAIL",
+  "reservation_errno": 122,
+  "reservation_error": "Disk quota exceeded",
+  "own_diagnostic_file_removed": true,
+  "existing_user_files_modified": false,
+  "quota_query": {
+    "user_query": "Cannot connect to RPC quota service",
+    "group_query": "Cannot connect to RPC quota service",
+    "missing_quota_output_does_not_mean_unlimited": true
+  },
+  "directory_usage_scan": {
+    "state": "RUNNING_NOT_A_COMPLETE_TOTAL",
+    "metadata_only": true,
+    "primary_tool_session_id": 54816,
+    "primary_remote_pid": 2183640,
+    "worktrees_tool_session_id": 18553,
+    "worktrees_remote_pid": 2210458,
+    "scoped_scan_session_36930_completed": true,
+    "completed_scoped_allocated_bytes": {
+      "aira-dojo-runs": 28464369664,
+      "aira-dojo": 87463137280,
+      "external": 239515119616
+    },
+    "do_not_sum_independent_du_scans_as_a_deduplicated_total": true
+  },
+  "gpu_retry_submitted": false,
+  "sealed_payloads_read": false,
+  "next_step": "Collect existing scans before declaring quota exhausted or proposing exact cleanup targets. No deletion without approval."
+}

@@ -37,6 +37,26 @@ Base model snapshot 与 critic 解释器路径均存在；尚未重新验证全�
 安全/只读门通过。其较早已认证 anchor 为 494 runs，因此正式 delta=79，不得把这 79 都报成今晚新增。
 对应回执见 `results/prospective_intake_status_20260903_89bd3cae/README.md`；这不授权 model fit 或提前揭盲。
 
+**2026-09-03 08:04 香港时间更新（替代上面的实时计数，不是效果结果）：** intake PID=`842457` live，
+poll 93=`rc=0`，当前尾部无 fail-closed；306 source archives、156 snapshots、589/960 provisional runs、
+16,010 endpoints、3,733 structural pairs、47 tasks，closure=false、canonical config-v2=0。
+LATEST=`55aae3150a3e7b91533bf392d9b3b40fc00a20e33545808f80d11e4a656c6ae7`，summary SHA-256=
+`eb133a6dbab8b5ddcdb1b75c80b44f65f8d2ccb6d60014be451b443536b652c8`。
+既有 exact-control delta chain 的 `20260902T233818Z_55aae3150a3e` 已 PASS；本轮补完独立 postcheck，
+30 个 manifest entries 全部核 hash、无 writable files，manifest SHA-256=
+`fd344fc6988a8d14db3c985ab244c782b74a6618bb3e94cc8cc375a7757d9a6a`。
+该步 transactions=`155/156/1`、inventory delta=`2/2/24/5/1`；不得当作整批新增。
+
+**Target-300 已知失败，保留现场等待恢复裁决：** attempt 4 在 `2026-09-02T23:30:28Z` 以 rc=2 结束。
+只读诊断定位为 closure-anchor 的 manifest 路径比较错误：52 条路径均带 `./`，raw required missing=12，
+规范化后 missing=0、duplicate=0；producer/verifier reproducibility diff 均为 0 bytes。结果目录有 COMPLETE，
+但闭合 anchor 不存在、最终只读封存未完成，不能称作 accepted closure。manifest/stderr SHA-256 分别为
+`ba84dbd07f2c1cac4a8523e82ece646d8c851454064c705a377e1654598a7a12` /
+`d42b734789297d8ff5daa520a0e15b85ce70237364a4d8f4197a9ddfa58e8cc5`。
+原失败候选禁止自动 retry；未修改 manifest、未重跑 producer、未读取 cohort values/identities。仅路径规范化及
+同一 artifact 的锚定/封存恢复也须先获得独立恢复批准；不能借此重选候选或提前揭盲。用户已获知该失败，
+无变化的后续守护不重复通知。G0 预算仍待回应，新增 GPU/API/model-fit/base-update 均为 0。
+
 本纠正不授权突破实验完整性或费用门：first-960/Target-300/Target-522 的 sealed values/identities 仍不得读取；
 first-960 + closure、config-v2 outcome-before provenance 与独立复验门不变；不更新 agent 底座，不恢复 HCE、
 多保真、Probe、score-channel effect、K>=1 lookahead 或已关闭的 Target-522 rescue。旧协议中的 GPU/API/model-fit

@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0x. 2026-09-03 并行效果准备：源码绑定的阶段/预算诊断；没有新增 fit
+
+用户要求并行推进正方向及监控。本轮 exact source/运行时的合成 CPU 诊断确认：多卡 even-batches
+补齐可能把开头 G 样本补在 L 之后；单次 cosine 的末段局部更新可能很弱；L1/Lbudget 若各自按不同
+总长度生成 LR，不能只归因于训练遍数。另用最小反例证明完整 pair 前缀不一定能精确凑 token 预算。
+这些是正式五臂执行前的可复现问题，不是模型效果负结论，也不说明当前十步 G0 已失败。
+哈希方向翻转在现 collator 中改 batch 行顺序，但端点 token 多重集和 padding 总数不变，避免误报。
+详细证据、文献边界与未采纳的执行修订预览见 `GLOBAL_LOCAL_NEXT_EXECUTION_20260903.md`，结构回执在
+`results/global_local_execution_readiness_20260903/diagnostic.json`。只更新报告，训练代码/v2 均未改；
+CPU 实现审批异步等待中，五臂训练和协议改动仍未授权。近期优先验证跨 seed、同预算的真实 global-label
+到 local-sibling 迁移；不因一般迁移已有文献而伪装成新算法，也不恢复旧方向。
+
+本轮 G0 12288 仍 PENDING/Resources，storage 已通过；11:58:27 UTC 摄取核验仍 306 archives、589/960、
+closure=false、config-v2=0，PID1692885 live，学长 HEAD 未变。沿用已有 monitor，不重复提交 G0。
+
 ## 0L0w. 2026-09-03 单缓存清理及存储门通过；唯一 G0 重试 12288 已提交排队
 
 **17:56 香港时间提交更新：** 修复后的唯一 G0 job=`12288` / `critic_g0_retry_20260903`，状态

@@ -1,0 +1,99 @@
+{
+  "L1_local_repeat_control": {
+    "same_scheduler_name_different_horizon_changes_prefix": true
+  },
+  "budget_counterexample": {
+    "G_to_L_tokens": 10,
+    "exact_local_prefix_budget_possible": false,
+    "global_once_tokens": 4,
+    "local_once_tokens": 6,
+    "local_whole_pair_prefixes": [
+      0,
+      6,
+      12
+    ],
+    "real_data_budget_feasibility_not_measured": true
+  },
+  "cosine_local_exposure": [
+    {
+      "illustrative_total_steps": 1000,
+      "local_start_step": 500,
+      "local_steps": 500,
+      "mean_local_lr_fraction": 0.19212824940713447,
+      "start_lr_fraction": 0.5242811110572242,
+      "warmup_steps": 30
+    },
+    {
+      "illustrative_total_steps": 1000,
+      "local_start_step": 800,
+      "local_steps": 200,
+      "mean_local_lr_fraction": 0.03449247328496857,
+      "start_lr_fraction": 0.1012785947186397,
+      "warmup_steps": 30
+    },
+    {
+      "illustrative_total_steps": 1000,
+      "local_start_step": 900,
+      "local_steps": 100,
+      "mean_local_lr_fraction": 0.008825954842948262,
+      "start_lr_fraction": 0.025995410021864784,
+      "warmup_steps": 30
+    }
+  ],
+  "gpu_jobs_submitted": 0,
+  "kind": "SOURCE_BOUND_SYNTHETIC_CPU_DIAGNOSTIC_NOT_TRAINING_OR_EFFECT",
+  "model_fits": 0,
+  "orientation": {
+    "input_tensor_order_changed": true,
+    "padded_tokens": 16,
+    "same_endpoint_token_multiset": true,
+    "torch_tensor_stub_used_no_numeric_forward_test": true,
+    "valid_tokens": 10
+  },
+  "sharding": {
+    "default_even_batches_illustrative": true,
+    "duplicate_rows": 3,
+    "g0_ten_steps_not_claimed_affected": true,
+    "global_row_after_local": true,
+    "input_rows": 5,
+    "per_rank_batches": [
+      [
+        [
+          0,
+          1
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      [
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    ],
+    "yielded_rows": 8
+  },
+  "source_commit": "5f3bc362db922c8edee2ef134656dfdb9a2b74fb",
+  "source_files_changed": false,
+  "source_sha256": {
+    "accelerate_data_loader": "e08c5f5cd3f7a8b8aaece03ad51f1c37994e390faf47d368281ad49c31bc84d1",
+    "pairs": "3e1969499405199a187c12106d9f4d4a5542b4a1ecf094e0bd9f7c71514b4643",
+    "transformers_optimization": "985f8bef608fa57dd2c01e93869424ad193ffe82f03390f22cfd3d3ca99dad27"
+  },
+  "training_or_data_opened": false,
+  "protocol_regression": {
+    "command": "python -B -m pytest -p no:cacheprovider phase1/tests/test_global_local_calibration_candidate_protocol.py -q",
+    "passed": 5,
+    "elapsed_seconds": 0.32
+  },
+  "public_head_before_documentation": "9a54d854a63b48b10fe882c5c22c206197dfcc4c",
+  "implementation_approval": "REQUESTED_ASYNC_NO_REPLY_AT_RECORDING",
+  "frozen_protocol_modified": false
+}

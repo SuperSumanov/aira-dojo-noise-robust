@@ -3,7 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0L0w. 2026-09-03 已批准的单缓存清理完成，4 GiB 存储门通过；G0 提交前复核
+## 0L0w. 2026-09-03 单缓存清理及存储门通过；唯一 G0 重试 12288 已提交排队
+
+**17:56 香港时间提交更新：** 修复后的唯一 G0 job=`12288` / `critic_g0_retry_20260903`，状态
+`PENDING / Resources`，尚未训练。原失败 job12181 的 allocation 为 156 秒；新作业限定 2×PRO6000、
+projgpu39、117 分钟、Requeue=0/Restarts=0；两作业总 GPU-seconds 上限=`14352`，即
+`3.986666666666667 GPU·h`，未超原 4 GPU·h。不得再次提交或自动重试。调度器目前预计
+`2026-09-04T12:14:15` 香港时间开始；这只是可变化的排队预估，不是训练已开始或结果 ETA 保证。
+pending 的 NumNodes=`1-1` 是 min=max=1 的单节点范围，另以 TRES `node=1,gres/gpu=2` 和
+ReqNodeList=projgpu39 独立复核；不能把其文本格式误判为节点数扩张。
+
+submission=`/research/d7/spc/yzyang4/critic-component-g0/submissions/20260903-g0-r2`；
+run root 将是 `/research/d7/spc/yzyang4/critic-component-g0/runs/job-12288`。
+control=`94ad7dafff1866c6d50eb54927a4bf56547facc2`，位于
+`/research/d7/spc/yzyang4/worktrees/g0_recovery_94ad7da_sparse`；source 仍为下述 `5f3bc36…`，
+runtime 仍为 `critic-blackwell-g0-20260903-selective`。新的 r3 preflight 12 tests PASS，immutable
+train/dev/cards/model hashes、65 package versions、5 critical runtime files 和原 CPU 保存回归全部重新绑定。
+r2 sparse preflight 因少带两份测试 fixture 而停止，日志保留；补齐同 commit 的文件后 r3 通过，未消耗 GPU。
+提交器 SHA=`1c705a623f4d934d54a6e1d912cdb494c56a4e426cc0b92119b26639b595cf27`，原子 intent latch 已占用；
+提交时又完成一次 4 GiB 分配/fsync 测试。公开回执在 `results/critic_component_g0_20260903/recovery_preflight/`，
+相应 helper 在 `launch_helpers/`。原零字节失败证据和旧运行产物保留。下一步只监控 job12288 及既有盲态
+摄取，不把其 dev 数字当方法效果，不读 first-960/Target300/522，不启动五臂矩阵。
 
 **09:47 UTC 更新，覆盖下方存储阻碍/待删除授权状态：** 用户明确回复“清理一下吧”，仅批准此前点名的
 `/research/d7/spc/yzyang4/balanced-e2a-hf-cache-e2d587d-a1`。545 项 inventory 和原始模型缓存 manifest

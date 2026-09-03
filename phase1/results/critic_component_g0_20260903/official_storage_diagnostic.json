@@ -68,7 +68,8 @@
     },
     "do_not_sum_independent_du_scans_as_a_deduplicated_total": true
   },
-  "gpu_retry_submitted": false,
+  "gpu_retry_submitted": true,
+  "gpu_retry_job_id": 12288,
   "sealed_payloads_read": false,
   "approved_cleanup_completed": {
     "path": "/research/d7/spc/yzyang4/balanced-e2a-hf-cache-e2d587d-a1",
@@ -82,5 +83,5 @@
     "deleted": true,
     "deletion_receipt": "cache_cleanup/deletion_receipt.json"
   },
-  "next_step": "Storage write test now passes after the exact user-approved cleanup. Complete exact source/control/runtime/input/config preflight and submit at most the already-approved single 117-minute, two-GPU G0 recovery; no other cleanup or training matrix is authorized."
+  "next_step": "The single approved recovery is now job 12288, pending resources after passing source/control/runtime/input/config/storage preflight. Monitor it; never resubmit. No other cleanup or training matrix is authorized."
 }

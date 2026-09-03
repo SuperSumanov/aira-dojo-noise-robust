@@ -1,0 +1,22 @@
+{
+  "QOS": "gpu",
+  "TresPerNode": "gpu:pro6000:2",
+  "num_nodes_note": "Pending NumNodes=1-1 is the exact min=max one-node request; TRES node=1 and ReqNodeList are checked independently.",
+  "JobState": "PENDING",
+  "Restarts": "0",
+  "NumNodes": "1-1",
+  "independent_scheduler_contract_pass": true,
+  "MinMemoryNode": "0",
+  "JobId": "12288",
+  "NodeList": "(null)",
+  "StartTime": "2026-09-04T12:14:15",
+  "ExcNodeList": "gpu[36,38],projgpu[7-8,33]",
+  "Partition": "gpu_24h",
+  "NumCPUs": "12",
+  "TimeLimit": "01:57:00",
+  "SubmitTime": "2026-09-03T17:56:07",
+  "Requeue": "0",
+  "ReqNodeList": "projgpu39",
+  "TRES": "cpu=12,node=1,billing=12,gres/gpu=2",
+  "Reason": "Resources"
+}

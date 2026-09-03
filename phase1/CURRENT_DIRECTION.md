@@ -1,7 +1,34 @@
-# 当前研究方向唯一入口（2026-09-03）
+# 当前研究方向唯一入口（2026-09-04）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0L1. 2026-09-04 会话内推进：真实编码、多进程恢复和候选G边界已验证；预算修订待批准
+
+用户明确不要用八小时定时巡检代替会话内实验；原outcome-blind heartbeat已PAUSED，本轮主动做了下列
+CPU工作，不是重复已有单CPU案例，也没有新增GPU/API/真实模型fit：
+
+- 固定实际G0 tokenizer/encoder，历史L-train的4095个程序、587个collator批次与独立参考一致；仅1个程序
+  在16384 context被截断。4689 pairs按effective batch128剩81对，换四卡而保持128不能修复末批。
+- G-train身份诊断：14206对中2260缺当前Cards身份、2032在L-train run界外、522与L为同一unordered pair；
+  其余9392对带来3640个额外程序（428 runs、28 tasks）。独立set-based复验通过；没有创建新G训练池，
+  没有核准exact-config/experiment-closed资格，也没有读dev/test/vault值。
+- 只编码新增3640个程序，与source逐项一致且无16384截断，复用之前L长度。假设性G→L为14081次pair消费、
+  104863947有效tokens。同pair次数时，三诊断seed的G-only多3.8107%—4.0261% tokens，L-only少
+  7.8174%—7.8296%；六条事前诊断SHA顺序均无exact-token完整pair前缀。这不是正式采样器或效果结果。
+- world2/4实际CPU Gloo：16条合成轨迹、48次全局更新、288个forward；4组跨进程重启恢复共12个rank
+  完整state逐位一致，独立saved-state复验通过。没有移除原单CPUTrainer保护，不称HF/ZeRO3/bf16已验证。
+  本地156 passed/1原有opt-in skip；11个远端访问/损坏case通过。输入r1 import误拦vaultgemma源码的失败
+  保留；固定运行库只读Python源码例外后r2通过，不放宽真实vault/weights/dev/test/network保护。
+
+详情、确切SHA和边界见 `ACTIVE_WORK_SESSION_20260904.md`、
+`GLOBAL_LOCAL_BUDGET_CLARIFICATION_20260904.md` 和 `results/active_execution_20260904/`。
+下一步需要事前裁决预算/LR/末批：建议独立历史开发协议按同token上限、完整pair停止，明确更新数可不同；
+G/Ghash仍完全同输入/tokens/steps；末批保留按实际pair归一化、所有臂共用token-progress warmup后恒定LR，
+L1为Lbudget真实前缀。这些**只是建议，尚未采用；原v2 SHA未变，正式15fits仍未授权**。
+不可直接把本轮9,392对自动当确认训练池或按新口径跑模型。16:55 UTC G0 12288仍PENDING/Resources，
+唯一4 GPU·h重试额度已占用，不再次提交；语料589/960、config-v2=0、closure=false、学长b8d0951未变。
+目前没有新accuracy/scaling/search收益，不能用CPU通过或数据支持规模制造“正效果”。
 
 ## 0L0z. 2026-09-03 单 CPU Trainer 已接通实际消费与完整状态恢复
 

@@ -1,0 +1,83 @@
+{
+  "api_calls": 0,
+  "assets": {
+    "/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1/config.json": "1bb33a92c3548fbc68b889b490e810440435253598835bd71dff0396060c12db",
+    "/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1/merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1/tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1/tokenizer_config.json": "3c04ed3ca964ea2f6b2b5faf0dc4d31aec1cb1e8b4bcf63f402d295046b422b5",
+    "/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1/vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "/research/d7/spc/yzyang4/critic-component-g0/recovery-20260903-r2/cpu_regression/resolved_cli.json": "ec0ed931e9ace64925451a4792922110253f642462a0f3d732063c07d8af0475",
+    "/research/d7/spc/yzyang4/critic-decision-component-prep/305355e-baf6bdd-v1/producer_1/train.jsonl": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e",
+    "/research/d7/spc/yzyang4/worktrees/critic-g0-final-only-20260903-b/src/mle_critic/src/train/dataset/pairs.py": "3e1969499405199a187c12106d9f4d4a5542b4a1ecf094e0bd9f7c71514b4643",
+    "/research/d7/spc/yzyang4/worktrees/senior_augmented_92a9651_nosmudge/data/augmented_mle_critic/augmented_cards_current.json": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+  },
+  "audit_hook_is_not_os_sandbox": true,
+  "candidate_shapes_not_authorized": [
+    {
+      "accumulation": 8,
+      "complete_steps": 36,
+      "effective_pairs": 128,
+      "pairs_per_rank": 8,
+      "remaining_pairs": 81,
+      "strict_once_through_plan_admissible": false,
+      "world_size": 2
+    },
+    {
+      "accumulation": 4,
+      "complete_steps": 36,
+      "effective_pairs": 128,
+      "pairs_per_rank": 8,
+      "remaining_pairs": 81,
+      "strict_once_through_plan_admissible": false,
+      "world_size": 4
+    }
+  ],
+  "canonical_flipped_pairs": 2347,
+  "data_open_counts": {
+    "/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1/config.json": 3,
+    "/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1/merges.txt": 1,
+    "/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1/tokenizer.json": 2,
+    "/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1/tokenizer_config.json": 4,
+    "/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1/vocab.json": 1,
+    "/research/d7/spc/yzyang4/critic-component-g0/recovery-20260903-r2/cpu_regression/resolved_cli.json": 2,
+    "/research/d7/spc/yzyang4/critic-decision-component-prep/305355e-baf6bdd-v1/producer_1/train.jsonl": 2,
+    "/research/d7/spc/yzyang4/worktrees/critic-g0-final-only-20260903-b/src/mle_critic/src/train/dataset/pairs.py": 2,
+    "/research/d7/spc/yzyang4/worktrees/senior_augmented_92a9651_nosmudge/data/augmented_mle_critic/augmented_cards_current.json": 2
+  },
+  "denied_attempts": {},
+  "dev_test_vault_files_opened": 0,
+  "encoded_pair_visit_valid_tokens": 32187742,
+  "encoded_unique_valid_tokens": 16427692,
+  "encoder_config": {
+    "budget_cond": false,
+    "budget_pos": "head",
+    "head_frac": 0.25,
+    "max_len": 16384,
+    "task_cond": true
+  },
+  "endpoint_length_sha256": "789e87a9d6e6f44a1a526a0bb18330c425216a36f4f75341abf570dd9f11681a",
+  "file_order_microbatches": 587,
+  "file_order_padded_slots": 46396422,
+  "gpu_context_created": false,
+  "model_fits": 0,
+  "model_weights_loaded": 0,
+  "packing_microbatch_pairs": 8,
+  "raw_length_max": 27603,
+  "raw_length_median": 3691,
+  "raw_length_min": 572,
+  "read_scope": "historical released grouped Cards parsed; only train endpoint code/task/run retained; train orientation only for packing equivalence",
+  "released_cards_parsed": 31742,
+  "script_sha256": "23074792ab9f743c5e4f4ace1668136ab5be09890faee37b8f9eb693b371cefe",
+  "source_collator_comparisons": 587,
+  "source_commit": "5f3bc362db922c8edee2ef134656dfdb9a2b74fb",
+  "source_reference_comparisons": 4095,
+  "status": "PASS_INPUT_EQUIVALENCE_NOT_TRAINING_READY",
+  "tokenizer_class": "Qwen2Tokenizer",
+  "torch_version": "2.11.0+cu128",
+  "train_endpoints": 4095,
+  "train_pairs": 4689,
+  "train_physical_runs": 430,
+  "train_tasks": 28,
+  "truncated_unique_endpoints": 1,
+  "wall_seconds_not_throughput_benchmark": 188.80098021868616
+}

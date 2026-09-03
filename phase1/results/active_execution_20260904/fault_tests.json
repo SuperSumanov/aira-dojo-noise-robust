@@ -1,0 +1,60 @@
+{
+  "model_fits": 0,
+  "research_data_content_reads": 0,
+  "script_sha256": "8998264a4160636ff89f4dabfa741b24393be2cf0ea285477bd884f51c13801f",
+  "status": "PASS_FAULT_CASES",
+  "tests": [
+    {
+      "rejected": true,
+      "test": "missing_rank_file"
+    },
+    {
+      "rejected": true,
+      "test": "missing_rank_manifest_entry"
+    },
+    {
+      "rejected": true,
+      "test": "corrupt_rank_bytes"
+    },
+    {
+      "expected_policy_observed": true,
+      "synthetic_audit_event_only": true,
+      "test": "train_read"
+    },
+    {
+      "expected_policy_observed": true,
+      "synthetic_audit_event_only": true,
+      "test": "library_vaultgemma_python_source"
+    },
+    {
+      "expected_policy_observed": true,
+      "synthetic_audit_event_only": true,
+      "test": "future_vault_read"
+    },
+    {
+      "expected_policy_observed": true,
+      "synthetic_audit_event_only": true,
+      "test": "dev_read"
+    },
+    {
+      "expected_policy_observed": true,
+      "synthetic_audit_event_only": true,
+      "test": "test_read"
+    },
+    {
+      "expected_policy_observed": true,
+      "synthetic_audit_event_only": true,
+      "test": "model_weights"
+    },
+    {
+      "rejected": true,
+      "synthetic_audit_event_only": true,
+      "test": "train_write"
+    },
+    {
+      "rejected": true,
+      "synthetic_audit_event_only": true,
+      "test": "network"
+    }
+  ]
+}

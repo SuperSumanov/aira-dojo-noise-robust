@@ -1,0 +1,99 @@
+{
+  "session_date_hong_kong": "2026-09-04",
+  "base_commit_before_changes": "7677501b66859284f41545f39a1f00469b20ee4f",
+  "execution_binding": "Uncommitted helper bytes bound by SHA before each remote run; published commit must be checked against these bytes. No claim that the future publication commit existed at execution time.",
+  "research_model_fits": 0,
+  "new_gpu_jobs": 0,
+  "paid_api_calls": 0,
+  "prospective_results_opened": false,
+  "real_historical_train_orientation_use": "L packing equivalence only; G pool and budget diagnostics project unordered endpoint identities and never inspect grade/gap fields.",
+  "runtime": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/bin/python",
+  "package_versions_rechecked_after_runs": {
+    "accelerate": "1.14.0",
+    "numpy": "1.26.4",
+    "safetensors": "0.5.3",
+    "tokenizers": "0.22.1",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.12.1"
+  },
+  "runtime_file_sha256_rechecked_after_runs": {
+    "torch/nn/parallel/distributed.py": "cb4a5fbb455e9915a35951ea160fa1bf1d9a2803ad9aaebf372c05f67bcf0b1c",
+    "transformers/models/auto/tokenization_auto.py": "b9fa06f36b3e97771b099a569c6c267a366c10a24a8b9d1d1f7ca24c921a6bba",
+    "transformers/models/qwen2/tokenization_qwen2.py": "fac4e6576bfe2369731be147a4e530f262bdf32f2ac50436f96f0d8bdd2fc628"
+  },
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "GLOO_SOCKET_IFNAME_for_ddp_only": "lo"
+  },
+  "input": {
+    "root": "/tmp/historical-input-20260904-12Eo0Z8F",
+    "command": "RUNTIME -B check-r2.py --output-root /tmp/historical-input-20260904-12Eo0Z8F/run-r2 --limit-seconds 1200",
+    "script_sha256": "23074792ab9f743c5e4f4ace1668136ab5be09890faee37b8f9eb693b371cefe",
+    "summary_sha256": "7977d9c89d72f1168f6624037ec468fc8eb77c2c22ae3790f7ba4579b52dbe57",
+    "failure_r1_retained": "run-r1 stopped at offline_runtime_import on a false-positive vaultgemma Python library path. check.py/run-r1.log retained; no tokenization or model fit in r1.",
+    "r2_fix": "Allow read-only .py/.pyc in exact Transformers package only with both lexical and resolved containment. All writes outside owned output forbidden. TMPDIR redirected to owned output. Protected data/weights/network remain forbidden.",
+    "timing_scope": "Whole process diagnostic duration, not a controlled throughput benchmark. No warmup/performance claim."
+  },
+  "ddp": {
+    "cwd": "/tmp/global-local-ddp-20260904-sfYGISUT",
+    "command": "RUNTIME -B -m phase1.global_local_ddp_cpu_validation --output-root /tmp/global-local-ddp-20260904-sfYGISUT/run-r1",
+    "script_sha256": "9d1a7c6af8db4b43b5db32ed1aecaab2abd9551f8db3daca6cc89176ebfb2c28",
+    "summary_sha256": "bcd74e991393ab4d9e714fbde10908c44f78c8dea5b97c1c3e9caf78a7724c2c",
+    "seed": 6,
+    "rank_rng_seed_rule": "600 + rank",
+    "loopback_network_used": true,
+    "synthetic_model_parameters": 2,
+    "synthetic_global_optimizer_updates": 48,
+    "synthetic_rank_forward_calls": 288,
+    "real_hf_trainer_or_zero3_verified": false,
+    "checkpoints": "Own synthetic checkpoints retained under run-r1; not copied to Git.",
+    "whole_process_timeout_seconds": 1200
+  },
+  "pool": {
+    "command": "python3 -B -m phase1.historical_global_local_pool_readiness",
+    "cwd": "/tmp/global-local-ddp-20260904-sfYGISUT",
+    "report": "/tmp/global-local-ddp-20260904-sfYGISUT/pool-readiness-r1.json",
+    "summary_sha256": "4207497ef7d1f6ce7cebe4a3158e20e64ecfc225879c48ba5f09ac442c4f7d13",
+    "new_train_pool_created": false,
+    "confirmation_provenance_verified": false
+  },
+  "budget": {
+    "command": "RUNTIME -B -m phase1.historical_global_local_budget_diagnostic --output-root /tmp/global-local-ddp-20260904-sfYGISUT/budget-r1",
+    "cwd": "/tmp/global-local-ddp-20260904-sfYGISUT",
+    "summary_sha256": "8caf95e3e4ce07117d51d38e7c35ac8249bdb3bfcf55ee86313fb8587b6b3c32",
+    "ordering_seeds_not_training_seeds": [6, 7, 8],
+    "sampler_adopted": false,
+    "frozen_v2_changed": false,
+    "new_endpoints_encoded": 3640,
+    "local_endpoint_lengths_reused": 4095
+  },
+  "verification": {
+    "local_targeted_regression_passed": 156,
+    "local_existing_opt_in_skipped": 1,
+    "remote_fault_cases_passed": 11,
+    "independent_receipts": ["input_independent.json", "ddp_independent.json", "pool_independent.json", "budget_independent.json"],
+    "limitations": "Input/budget arithmetic verifier replays anonymous length/cost receipts, not a second independent tokenizer. Python audit hook is not OS-level instrumentation. DDP checks do not establish bf16/ZeRO3, arbitrary crash consistency, or scientific effects."
+  },
+  "last_live_status": {
+    "checked_at_utc": "2026-09-03T16:55:04.724309+00:00",
+    "job": 12288,
+    "state": "PENDING",
+    "runtime": "00:00:00",
+    "gpu": 2,
+    "node": "projgpu39",
+    "time_limit": "01:57:00",
+    "requeue": false,
+    "eligible_runs": 589,
+    "closure": false,
+    "config_v2": 0,
+    "senior_head": "b8d095180415957aa1bab31fa53ead1bba261c03",
+    "automation": "outcome-blind PAUSED at user's request for active in-session work"
+  }
+}

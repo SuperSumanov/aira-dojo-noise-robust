@@ -1,0 +1,107 @@
+{
+  "status": "CPU_IMPLEMENTATION_AND_SYNTHETIC_VALIDATION_COMPLETE_NOT_EFFECT_RESULT",
+  "base_public_commit": "31a5087e99efcbb622aaddb137748bc930fc08ed",
+  "authorization": "User continued after the displayed bounded CPU implementation preview; then said 按照你的推荐推进工作吧.",
+  "local": {
+    "python_version": "3.13.4",
+    "command": "python -B -m pytest -p no:cacheprovider phase1/tests/test_global_local_execution_plan.py phase1/tests/test_global_local_calibration_candidate_protocol.py phase1/tests/test_verify_critic_component_g0.py -q",
+    "passed": 102,
+    "skipped": 1,
+    "elapsed_seconds": 0.79,
+    "skip_reason": "Explicit opt-in PyTorch test not run by local pytest; independent remote CPU autograd validation passed.",
+    "test_source_sha256": "3c905f72b6470f751f8d925b0905ba1b501bd139eb451543bb3fdb84c2faab50",
+    "demo_sha256": "ceec67c7cf406525303301be8b8b6ed817cd07740717d958f422de59b3d35d03"
+  },
+  "remote": {
+    "actual_training_batches_observed": 0,
+    "autograd": {
+      "atol": 1e-12,
+      "cuda_context_initialized": false,
+      "device": "cpu",
+      "model_fits": 0,
+      "models_loaded": 0,
+      "rtol": 1e-12,
+      "score_pairs_checked": 10,
+      "status": "PASS",
+      "torch_version": "2.11.0+cu128"
+    },
+    "cross_platform_demo_digest_matches": true,
+    "demo_sha256": "ceec67c7cf406525303301be8b8b6ed817cd07740717d958f422de59b3d35d03",
+    "frozen_or_train_data_files_opened": 0,
+    "gpu_jobs": 0,
+    "model_fits": 0,
+    "optimizer_state_restored": false,
+    "python_version": "3.11.15",
+    "remote_validation_root": "/tmp/global-local-cpu-verify-20260903-YjuJYk",
+    "resume_boundaries_checked": 54,
+    "seeds": [
+      6,
+      7,
+      8
+    ],
+    "source_copy_hashes_verified": true,
+    "source_sha256": {
+      "global_local_cpu_validation.py": "8c17a65eba162cb5532a9c83090fcb723201cb5fb49c1c5b41895397522e04ab",
+      "global_local_execution_plan.py": "8e3f3cec45d3456dee6f5c9b8ae8f42d58edc6ace1a40a86447dd97731270954",
+      "verify_global_local_execution_trace.py": "ced2abcfa084db3a9f6088fca29c2bc07412ad0ab1f44f6b0bb50a8dc92dd689"
+    },
+    "status": "SYNTHETIC_CPU_VALIDATION_ONLY",
+    "synthetic_plans": 15,
+    "training_authorized": false
+  },
+  "frozen_protocol_sha256_unchanged": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9",
+  "g0_status_check": {
+    "checked_at_utc": "2026-09-03T14:25:36.871446+00:00",
+    "job_id": 12288,
+    "state": "PENDING",
+    "reason": "Resources",
+    "run_time": "00:00:00",
+    "estimated_start_hk_not_guaranteed": "2026-09-04T12:14:15",
+    "resource_contract_pass": true
+  },
+  "intake_status_check": {
+    "checked_at_utc": "2026-09-03T14:25:33Z",
+    "archives": 306,
+    "eligible_runs": 589,
+    "target_runs": 960,
+    "closure": false,
+    "config_v2_sidecars": 0,
+    "intake_pid": 1692885,
+    "pid_identity_live": true,
+    "latest": "55aae3150a3e7b91533bf392d9b3b40fc00a20e33545808f80d11e4a656c6ae7",
+    "summary_sha256": "eb133a6dbab8b5ddcdb1b75c80b44f65f8d2ccb6d60014be451b443536b652c8",
+    "senior_head": "b8d095180415957aa1bab31fa53ead1bba261c03",
+    "new_senior_commits_observed": false
+  },
+  "reconnection_check": {
+    "checked_at_utc": "2026-09-03T15:36:12.364289+00:00",
+    "g0_job_id": 12288,
+    "g0_state": "PENDING",
+    "g0_reason": "Resources",
+    "g0_runtime": "00:00:00",
+    "resource_contract_pass": true,
+    "intake_checked_at_utc": "2026-09-03T15:36:05Z",
+    "intake_pid_identity_live": true,
+    "intake_poll": 120,
+    "intake_poll_rc": 0,
+    "archives": 306,
+    "eligible_runs": 589,
+    "closure": false,
+    "config_v2_sidecars": 0,
+    "snapshot_and_summary_hashes_unchanged": true,
+    "senior_head_unchanged": true,
+    "existing_automation_id": "outcome-blind",
+    "automation_stale_cpu_approval_wait_removed": true,
+    "prepush_regression": {"passed": 102, "skipped": 1, "elapsed_seconds": 1.49},
+    "new_gpu_jobs_submitted": 0
+  },
+  "limitations": [
+    "No real data or model consumed by this implementation validation",
+    "No Trainer integration or real batch-consumption receipts",
+    "No optimizer/scheduler/RNG checkpoint resume validated",
+    "No LR/budget protocol amendment adopted",
+    "No five-arm or additional GPU/model-fit authorization",
+    "Metadata token counts are not verified tokenization or measured compute",
+    "Cross-source duplicate-pair and partial-boundary policies remain unresolved; prototype rejects rather than choosing a policy"
+  ]
+}

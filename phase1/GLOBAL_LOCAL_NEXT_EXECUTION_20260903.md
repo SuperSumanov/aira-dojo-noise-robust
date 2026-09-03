@@ -2,6 +2,11 @@
 
 2026-09-03；执行准备，不是效果结果或正式五臂预算授权。
 
+**当日晚间更新：CPU 实现已获用户继续指示并完成，不再等待此前相同问题。** 下文诊断和未采用的协议
+修订保留原含义；最新实现、测试与尚未打通的训练接口见“CPU 实现与复现”一节。G0/五臂预算边界未扩大。
+15:36 UTC 重连成功，job12288 仍 PENDING/Resources、RunTime=00:00:00；摄取 poll120 rc=0，
+语料306 archives、589/960，学长 HEAD 未变。原有守护已同步 CPU 完成状态；排队及无新数据时保持安静。
+
 优先验证真实 global 质量监督是否改善 local sibling 决策，并排除“只是多训练”“只是多见代码”及局部过拟合。
 遵循 `global_local_calibration_candidate_protocol_v2.json` 的五臂，不恢复更早的 interleaved arm。
 
@@ -109,7 +114,8 @@ token 总数 10 或 padded-token 数 16；这里每个端点独立编码，不�
 更严格的控制接口预览：端点 A/B 按与 grade 无关的顺序固定，目标 sign 独立传入，loss 使用
 `softplus(-sign * (score_A - score_B))`。真实与 hash 两臂只换全局 sign；局部阶段保持完全相同。
 哈希仍严格使用 v2 的共享端点效用 `sha256('20260823|' + card_id)`，不是逐 pair 独立随机翻转。
-此接口尚未落代码；需先验证真标签路径与旧损失/梯度等价，且不能影响已排队 G0 的 exact source。
+此接口在本日晚间已实现为独立 CPU target API 与 scalar loss oracle，并完成实际 PyTorch 固定 CPU
+score vectors 的新旧损失/梯度等价检查；尚未接入正式 Trainer，不影响已排队 G0 的 exact source。
 
 ## 正方向的推荐执行顺序与边界
 
@@ -149,11 +155,59 @@ poll 78 rc=0。这不是无数据资产，而是规范确认数据的来源门�
 可复现的 MLE decision corpus 上得到跨 seed、同预算、抗混淆的实测迁移收益，并在另行批准和冻结的实验
 中证明真实 execution-label 效率；目前尚未取得这两项效果结论。
 
-## 当前改动范围和下一批准点
+## CPU 实现与复现（当日晚间更新）
+
+用户在预览后回复“继续你的工作”“按照你的推荐推进工作吧”，本轮据此落实 CPU 实现，不将其扩大为
+新 GPU、模型 fit、真实数据读取、协议 LR/budget 改动或 agent 底座更新授权。
+
+- `global_local_execution_plan.py`：只收元数据、不读数据文件、不加载模型。使用与标签无关的端点
+  canonical identity 和 seed/hash 顺序；生成明确的 optimizer-step / micro-step / rank 计划。G 与
+  Ghash 输入完全一致；hash-global 不访问真实标签提供器。预算不可精确满足、阶段末批不整齐或未知
+  跨来源重复时明确拒绝，不偷偷采用“补齐/丢弃/近似预算”的新协议。有效 tokens、padded slots 与真实
+  compute 分开；最后一项返回未知，而不是伪造匹配。
+- `verify_global_local_execution_trace.py`：不调用计划器的排序/循环/批处理函数，从源元数据重推 seed
+  顺序，并独立验证计划布局和回执。可识别缺失/重复/错序、编码顺序交换、预算漂移和错误计划恢复。
+  不同 rank 的异步回执交错允许，但单 rank 消费顺序必须一致。来源真实性、正确 tokenizer 产物与
+  实际消费 hook 仍是调用者必须另证的事情，不能把自造回执当真实 batch 观察。
+- `global_local_cpu_validation.py`：可独立复现的、仅合成数据 CPU 验证器；可选固定 CPU score vectors
+  的 PyTorch/autograd 检查，不依赖 pytest，不安装包。所有计划标记 `METADATA_PLAN_ONLY_NOT_TRAINING_READY`。
+
+本地实跑命令：
+
+```text
+python -B -m pytest -p no:cacheprovider phase1/tests/test_global_local_execution_plan.py phase1/tests/test_global_local_calibration_candidate_protocol.py phase1/tests/test_verify_critic_component_g0.py -q
+python -B -m phase1.global_local_cpu_validation
+```
+
+本地最终 **102 passed, 1 skipped / 0.79s**；跳过的是显式 opt-in 的 PyTorch 检查，未假装本地已跑。
+另将三份实现代码按精确 SHA 复制到远端独占 `/tmp/global-local-cpu-verify-20260903-YjuJYk`，在
+G0 的 runtime 用 CPU 执行独立验证。复现时从该目录运行：
+
+```bash
+CUDA_VISIBLE_DEVICES='' PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 /research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/bin/python -B -m phase1.global_local_cpu_validation --torch
+```
+
+远端 **PASS**：PyTorch `2.11.0+cu128`，device=cpu、models_loaded=0、model_fits=0、CUDA context=false；
+10 个固定 score-pair/sign 组合的新旧 loss 与梯度用 rtol/atol=`1e-12` 对照通过。没有构造真实 RM、没有
+bf16/ZeRO 训练或 checkpoint 保存验证。该 runtime 没有 pytest，未安装它，改用已提交的独立 CPU 验证器。
+
+两平台 Python 3.13.4 / 3.11.15 的 15 份合成五臂×seed6/7/8 计划摘要都为
+`ceec67c7cf406525303301be8b8b6ed817cd07740717d958f422de59b3d35d03`，54 个恢复边界通过。
+**这些是元数据计划、不是 15 次训练或 54 次真实 checkpoint 恢复**。元数据/编码 hash 绑定可防漂移，
+但没有证实外部传入的 token count 正确；正式使用前要从实际 tokenizer/消费端产生并独立核对。
+完整来源 SHA、命令、范围与限制见 `results/global_local_execution_readiness_20260903/implementation_validation.json`。
+
+下一项可推进实现：独立的 Trainer 消费接口与 CPU 模拟消费，继续不修改 pending G0。正式接口必须验证
+列保留、无二次 sampler/sharder、真实 token 编码摘要、target sign、梯度累积归一化、final checkpoint 与
+optimizer/scheduler/RNG 状态恢复；计划切片复现不能替代这些验证。LR 表、末批与 exact-budget 不可达时的
+处理仍需事前决议，未偷偷采用本报告中的建议。正式 15 fits 仍须 G0 成本及新确认数据/预算批准。
+
+## 历史诊断阶段的改动范围（已由上节覆盖 CPU 等待状态）
 
 本轮只记录诊断与执行预览，没有改训练代码、冻结 v2、G0 source/runtime 或任何模型；现有协议回归
 `python -B -m pytest -p no:cacheprovider phase1/tests/test_global_local_calibration_candidate_protocol.py -q`
-实跑为 5 passed。CPU 计划生成器/测试的具体落代码批准已通过异步问题请求，尚未收到回复。
+实跑为 5 passed。当时 CPU 计划生成器/测试的具体落代码批准通过异步问题请求，彼时未收到回复；用户
+后续同意继续，CPU 实现现已完成，不能再沿用“等待 CPU 批准”作为阻碍。
 连同 `phase1/tests/test_verify_critic_component_g0.py` 的第二次组合回归实跑为 17 passed / 0.39 秒。
 预算口径和 LR 契约的上述修订是另一项事前协议决定；不能把 CPU 实现批准理解成采纳修订或准许 15 fits。
 正式训练还需 producer/split 身份门、G0 成本和精确 GPU·h 授权，任何一项不能用“希望正结果”替代。

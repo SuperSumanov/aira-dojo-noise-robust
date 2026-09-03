@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0y. 2026-09-03 用户同意继续；CPU 阶段计划与独立验证已实现
+
+用户在 CPU 实现预览后回复“继续你的工作”“按照你的推荐推进工作吧”，据此完成该范围，不再等待
+同一项 CPU 落代码确认。新增 `global_local_execution_plan.py`、`verify_global_local_execution_trace.py`、
+`global_local_cpu_validation.py` 及测试；**没有修改已排队 G0 的 source/runtime、冻结 v2 或学习率契约**。
+五臂按标签独立的端点身份/顺序生成每 rank、每 micro-step 计划；完整 pair 不能达到 exact valid-token
+与 step 预算时拒绝，不补样、丢样或重截程序；未知跨来源重复与不整齐阶段边界仍明确报告待定策略。
+独立验证器从源元数据重推顺序，并核对消费回执、编码顺序、预算与恢复计划绑定。
+
+本地组合回归 **102 passed / 1 skipped**（显式 opt-in PyTorch 测试）；远端在 G0 的实际 PyTorch
+2.11.0+cu128 runtime 完成固定 CPU score vectors 的 loss/autograd 等价检查，models_loaded=0、
+CUDA context=false。Windows/Python3.13.4 与 Linux/Python3.11.15 的 **15 份合成计划**摘要相同，
+**54 个计划恢复位置**均验证；这些不是 15 次模型训练、不是分布式 checkpoint 恢复或方法效果。
+回执见 `results/global_local_execution_readiness_20260903/implementation_validation.json`。
+
+下一步是独立 Trainer 消费适配、完整 optimizer/scheduler/RNG 恢复与事前 LR/预算口径决议；不能仅凭
+此 CPU 验证放行真实训练。15-fit 矩阵仍需 G0 成本、来源/切分门和精确 GPU·h 批准。15:36 UTC 重连核验
+job12288 仍 PENDING/Resources；语料仍306 archives、589/960、closure=false、config-v2=0，摄取live，
+学长 HEAD 未变。已有 outcome-blind 守护已更新，移除旧“等待 CPU 批准”提示，未另建重复任务。
+不恢复旧方向、不重复提交 G0、不重复跑已完成的合成检查制造进度。
+
 ## 0L0x. 2026-09-03 并行效果准备：源码绑定的阶段/预算诊断；没有新增 fit
 
 用户要求并行推进正方向及监控。本轮 exact source/运行时的合成 CPU 诊断确认：多卡 even-batches

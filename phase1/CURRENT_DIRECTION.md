@@ -3,6 +3,28 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L4. 2026-09-04 真实L/G来源适用性已量化；不得把候选直接升级为训练池
+
+按用户继续推进主线的要求，本轮转向真实数据来源门，不重复恢复/合成测试。exact source
+`7cd5862746e32a4e435fb592c6af2f93158e4f56` 双生产、非导入式set-based独立双验证均rc0且分别逐字节一致；
+source receipt SHA=`e34d9f1432fe71bc4c9de8e9074dc47eaf84569f94478e06f1070c778146bb07`。
+L4689/G9392候选中，G有415对记录配置不一致，G/L有676/365对来源batch未唯一确认；L记录配置全一致。
+两池均有19个歧义run、6个缺失run。109个已知L-train batch中79个与其外部共享；外部未分类为dev/test，
+所以不把它报成新测得的测试泄漏。旧20260821 S0仍失败，不删问题对、不改划分、不重选或恢复S1。
+
+附加LFS pointer-only检查确认，当前执行诊断组合了92a9651旧Cards与ac008af batch-value G，不是一个经验证的
+同版本producer包。当前G的真实源名是`batch_value_pairs_filtered_runsplit.jsonl`，不能换成另一个hardware/time
+过滤value文件。尚未证明版本差是全部415不一致的原因；最新b8d0951 Cards没有被下载或读入。既有30份token计划
+仅是候选执行可行性，若未来来源修复导致身份变化，需结果前重冻结并重新计价，不准沿用旧预算冒充同一实验。
+
+下一动作是同版本历史开发包+精确source/config+experiment-closed划分；维护者的来源确认或新producer交付不可
+由本地猜测替代。给学长的最小解锁清单：`SENIOR_GLOBAL_LOCAL_UNBLOCK_20260904.md`。现成config-v2 hook
+仍未部署；最新学长head的相关四个路径与此前5baccb1相同，只复验Git对象，不重复声称新19项测试。不得自动改写
+学长分支或部署producer。G0 12288仍PENDING/Resources；19:17 UTC语料589/960、306归档、config-v2=0、closure=false，
+摄取3884166 live/poll8 rc0，学长b8d0951无新commit。正式15fits/GPU·h仍未授权，无新accuracy/scaling/search收益。
+冻结v2与历史开发v1字节未变，first960/Target300/522盲态不变。详情及本轮宽泛检索/SSH格式错误见结果README，
+不能声称整个会话从未遇到旧Cards内容；新核验进程精确白名单、dev/test/vault文件打开为0。
+
 ## 0L3. 2026-09-04 实际Accelerate恢复链已独立验证；scaling仍无新确认
 
 用户插问学长scaling：截至18:54 UTC，学长仍`b8d095180415957aa1bab31fa53ead1bba261c03`，无新outcome。

@@ -302,3 +302,4 @@ phase1/scripts/run_historical_global_local_source_gate_20260904.py text eol=lf d
 phase1/tests/test_historical_global_local_source_gate.py text eol=lf diff
 phase1/HISTORICAL_GLOBAL_LOCAL_SOURCE_GATE_20260904.md text eol=lf diff
 phase1/results/historical_global_local_source_gate_20260904/** -text diff
+phase1/scripts/check_historical_lfs_bindings_20260904.py text eol=lf diff

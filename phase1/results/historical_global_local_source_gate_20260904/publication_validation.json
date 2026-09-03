@@ -1,0 +1,23 @@
+{
+  "status": "VALIDATED_FOR_PUBLICATION_NOT_EFFECT_ELIGIBLE",
+  "execution_commit": "7cd5862746e32a4e435fb592c6af2f93158e4f56",
+  "prepublication_tested_tree": "c7a63d662c38301d718abc544bd673c490d8fe12",
+  "producer_receipt_sha256": "e34d9f1432fe71bc4c9de8e9074dc47eaf84569f94478e06f1070c778146bb07",
+  "source_archive_sha256": "5efc0f99056966acc2323f7b52a603d191423fe7f588fd22658eb28b7e06e97f",
+  "producer_a_b_byte_identical": true,
+  "independent_verifier_a_b_byte_identical": true,
+  "copied_manifest_file_hashes_matched": 6,
+  "local_focused_tests_passed": 13,
+  "clean_git_export_focused_tests_passed": 13,
+  "focused_tests_failed": 0,
+  "prepublication_staged_filename_hits": 0,
+  "prepublication_staged_credential_files": 0,
+  "raw_csv_crlf_preserved": true,
+  "frozen_v2_sha256": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9",
+  "historical_development_v1_sha256": "1964e8e48e998660584c045a7e8fe2a03d61a946ba266d29d74555f934482902",
+  "publication_payload_addition_after_tested_tree": "this receipt only",
+  "new_gpu_jobs": 0,
+  "new_api_calls": 0,
+  "new_model_fits": 0,
+  "effect_claim": false
+}

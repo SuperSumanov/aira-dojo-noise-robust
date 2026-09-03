@@ -1,0 +1,50 @@
+{
+  "bindings": [
+    {
+      "commit": "92a9651f2e13a9e43623235b82c07c19721bc2ee",
+      "lfs_bytes": 604190866,
+      "lfs_oid": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb",
+      "path": "data/augmented_mle_critic/augmented_cards_current.json",
+      "pointer_sha256": "a96f973092830b9720ccbe36416e2ad89dd62f0d1219e360d213419143a47193",
+      "status": "lfs_pointer_only"
+    },
+    {
+      "commit": "92a9651f2e13a9e43623235b82c07c19721bc2ee",
+      "path": "data/augmented_mle_critic/value_pairs_hardware_timelimit_gap_filtered_runsplit.jsonl",
+      "status": "missing"
+    },
+    {
+      "commit": "ac008af8b907d319b694f26b0ba9cf4053b3bf69",
+      "lfs_bytes": 779146574,
+      "lfs_oid": "5e0f38075d841b2e0d9406898f17ac1cc6e6d63667b256fd2880a9ba4266c343",
+      "path": "data/augmented_mle_critic/augmented_cards_current.json",
+      "pointer_sha256": "446c7261e4176bd32bc9ef929b368e3b80c6cacbcf5fd061c480964be774aad1",
+      "status": "lfs_pointer_only"
+    },
+    {
+      "commit": "ac008af8b907d319b694f26b0ba9cf4053b3bf69",
+      "lfs_bytes": 3807175,
+      "lfs_oid": "60e9bbfba56ef94dfd70bb717694fa5b3b400f9458a13b92321bb1cb2ecdf3d9",
+      "path": "data/augmented_mle_critic/value_pairs_hardware_timelimit_gap_filtered_runsplit.jsonl",
+      "pointer_sha256": "ed3825319bbcb2f2b64b431feb95dcbb6b00bf3e70013fee7716764505cffa66",
+      "status": "lfs_pointer_only"
+    },
+    {
+      "commit": "b8d095180415957aa1bab31fa53ead1bba261c03",
+      "lfs_bytes": 979839759,
+      "lfs_oid": "90ffba2c4768608452256c54580241e68722806ac9f623cb040754054a8b1fa7",
+      "path": "data/augmented_mle_critic/augmented_cards_current.json",
+      "pointer_sha256": "136da6fa03c1f95838c6058ef175c25aa806d29013c405d4260ea52a8d903b0b",
+      "status": "lfs_pointer_only"
+    },
+    {
+      "commit": "b8d095180415957aa1bab31fa53ead1bba261c03",
+      "lfs_bytes": 4037649,
+      "lfs_oid": "e610ddabaf7cd1454db65f73a141cc8590edff96310d9465caac1f0f2e2676df",
+      "path": "data/augmented_mle_critic/value_pairs_hardware_timelimit_gap_filtered_runsplit.jsonl",
+      "pointer_sha256": "d8ad4ac518df6babe7fdc9105fc80fc882843597bd214458ca0f0f6adb638f14",
+      "status": "lfs_pointer_only"
+    }
+  ],
+  "status": "POINTER_ONLY_NO_PAYLOAD_OPENED"
+}

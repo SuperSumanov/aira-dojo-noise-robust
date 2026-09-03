@@ -126,3 +126,14 @@ forward；独立解码36份框架checkpoint，8组/24rank完整状态和消费�
 NumPy1.26兼容命名空间是独立decoder初次失败的原因；原工作负载不变，完成后仅改decoder两行，再读原
 checkpoint通过。source as-run SHA与修正后SHA均保留，测试可逐字重建旧版本。所有实际二进制状态仍在远端。
 新增故障测试与逐轨迹预算账通过；完整相关回归243 passed/2既有skips。未产生或声称新的accuracy/scaling/search utility。
+
+## 当前续接：真实来源门已完成适用性诊断
+
+exact implementation `7cd5862746e32a4e435fb592c6af2f93158e4f56`，双生产+独立双验证均通过且分别byte-identical。
+G9392中415对记录配置不一致；G/L有676/365对来源batch无法唯一确认。未删样本、改划分或物化候选训练池。
+109个已知L-train batch中79个还有边界外run；外部不是已确认dev/test，因此不把它当测试泄漏测量。
+附加pointer-only核验识别旧Cards和G来自不同版本包，不能用ID可join替代producer一致性。方法效果仍未知。
+完整回执SHA `e34d9f1432fe71bc4c9de8e9074dc47eaf84569f94478e06f1070c778146bb07`；本轮13项相关回归通过。
+给学长的最小解锁交付写在`SENIOR_GLOBAL_LOCAL_UNBLOCK_20260904.md`；不自动部署其producer或扩GPU预算。
+19:17 UTC G0仍PENDING/Resources；589/960、306归档、config-v2=0、closure=false、学长b8d0951未变。
+不再重复已完成的合成验证；下一处关键依赖是同版本来源包与精确experiment/config绑定，并等待G0计价。

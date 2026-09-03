@@ -72,3 +72,36 @@ def test_duplicate_candidate_never_silently_deduped():
     grouped, rows, g, l = fixture()
     g.append(g[0])
     with pytest.raises(ValueError): compare(grouped, rows, g, l)
+
+
+def test_recorded_receipts_and_independent_results():
+    import hashlib
+    import json
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1] / 'results/historical_global_local_source_gate_20260904'
+    manifest = json.loads((root / 'manifest.json').read_text())
+    for name, digest in manifest.items():
+        assert hashlib.sha256((root / name).read_bytes()).hexdigest() == digest
+    assert (root / 'producer_a.json').read_bytes() == (root / 'producer_b.json').read_bytes()
+    assert (root / 'verifier_a.json').read_bytes() == (root / 'verifier_b.json').read_bytes()
+    producer = json.loads((root / 'producer_a.json').read_text())
+    verifier = json.loads((root / 'verifier_a.json').read_text())
+    assert producer['metrics'] == verifier['metrics']
+    assert verifier['receipt_sha256'] == 'e34d9f1432fe71bc4c9de8e9074dc47eaf84569f94478e06f1070c778146bb07'
+    assert not producer['metrics']['effect_authorized']
+    assert producer['access']['dev_test_vault_files_opened'] == 0
+    assert producer['metrics']['global_candidate']['unequal_observed_config_pairs'] == 415
+    assert producer['metrics']['local']['unequal_observed_config_pairs'] == 0
+
+
+def test_source_version_bindings_are_not_interchangeable():
+    import json
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1] / 'results/historical_global_local_source_gate_20260904'
+    rows = json.loads((root / 'pointer_check_with_batch.json').read_text())['bindings']
+    by_commit_name = {(r['commit'], Path(r['path']).name): r for r in rows}
+    old = '92a9651f2e13a9e43623235b82c07c19721bc2ee'
+    global_source = 'ac008af8b907d319b694f26b0ba9cf4053b3bf69'
+    assert by_commit_name[(old, 'augmented_cards_current.json')]['lfs_oid'] != by_commit_name[(global_source, 'augmented_cards_current.json')]['lfs_oid']
+    assert by_commit_name[(global_source, 'batch_value_pairs_filtered_runsplit.jsonl')]['lfs_oid'] == '8a01dfb90c2c3d8498174ebe78df43ee21d6d0eac9f4ff81f63700b315473405'
+    assert by_commit_name[(global_source, 'value_pairs_hardware_timelimit_gap_filtered_runsplit.jsonl')]['lfs_oid'] != '8a01dfb90c2c3d8498174ebe78df43ee21d6d0eac9f4ff81f63700b315473405'

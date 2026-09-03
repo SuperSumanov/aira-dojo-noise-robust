@@ -1,0 +1,18 @@
+{
+  "api_calls": 0,
+  "child_timeout_seconds": 180,
+  "cpu_math_threads": 1,
+  "gpu_jobs": 0,
+  "model_fits": 0,
+  "platform": "Linux-6.8.0-100-generic-x86_64-with-glibc2.39",
+  "python": "3.11.15 (main, Jun 11 2026, 04:03:40) [Clang 22.1.3 ]",
+  "source_commit": "7cd5862746e32a4e435fb592c6af2f93158e4f56",
+  "source_hashes": {
+    "phase1/historical_global_local_pool_readiness.py": "e35d6f7cb91ef26300ff676242f9e861d5f343821d56c16494bf19edd239691e",
+    "phase1/historical_global_local_source_gate.py": "1f537d5dfebd2dfb4aba6afd32d0388b5345a2bb9264aace3af005f4ddd2b249",
+    "phase1/historical_train_encoding_readiness.py": "ab84d5614719204cc9d03d1639326cab1021b183809612525194b8e299816f6e",
+    "phase1/scripts/run_historical_global_local_source_gate_20260904.py": "e6664169b3c7e11cfdd7ef3456875af072b94472876f956ec18831d355bbf6c9",
+    "phase1/verify_historical_global_local_source_gate.py": "c5d712a1c9d8a1d511abcdb0d02df63140f441c9701b9a51dc1641dd8b6a36e9"
+  },
+  "started_at_utc": "2026-09-03T19:17:04.142085+00:00"
+}

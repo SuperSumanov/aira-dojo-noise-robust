@@ -3,6 +3,33 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0u. 2026-09-03 用户批准启动受控验证；首阶段预算已放行
+
+用户在获知 4 GPU·h 首阶段预算与五臂比较尚未启动后，明确回复“启动受控效果验证吧”。据此放行此前
+报过的单个 G0 作业：Qwen3-1.7B Base、seed 6、2×PRO 6000、16,384 context、10 optimizer steps、
+一次完整历史 dev evaluation，单作业 2 小时硬上限、总计最多 4 GPU·h；不自动重试或增加作业。
+G0 仍仅为后续五臂效果比较测量训练成本，不把十步 dev accuracy 称作方法效果；五臂总预算及新确认
+数据身份仍需锁定后另报，不能由本次启动指令推定无限制训练授权。
+
+当前执行阶段为 `G0_SUBMITTED_PENDING_RESOURCES`：已于 2026-09-03 11:12:49 香港时间提交唯一作业
+`12181` / `critic_g0_20260903`；核实请求为 projgpu39、2×PRO6000、2 小时，尚未开始训练。调度器当前
+预计 11:53:25 开始、13:53:25 到硬时限，但排队预估不是保证。自动 requeue 已在作业仍 pending 时关为 0，
+Restarts=0；不得重提或自动 retry。作业输出根为 `/research/d7/spc/yzyang4/critic-component-g0/runs/job-12181`，
+提交锁与 job-id 回执在 `/research/d7/spc/yzyang4/critic-component-g0/submissions/20260903-g0-r1`。
+复用已冻结且与当前版本逐 blob 一致的 control `a99bf8a78ee25fc0257dce5aabdc947ef0725839`，训练 source
+仍为 `51c7f480a844364a91cf1ee4ebd9dac18f6bb832`；配置、数据、模型、checkpoint 与终止规则不变。
+预检日志根为 `/research/d7/spc/yzyang4/critic-component-g0/preflight-20260903-r1`；输入/模型完整哈希、
+源码与 split 检查、11 项 focused tests 通过。原 critic 环境 Torch 2.5.1+cu121 缺 sm_120，不用于该作业。
+新装 CUDA 环境 r1 因研究盘配额失败；全站点 overlay r2 因无关依赖冲突失败，均保留日志、没有 GPU fit。
+最终 selective runtime r3 只链接所需 65 个依赖，pip check 和冻结 trainer import PASS：Python 3.11.15、
+Torch 2.11.0+cu128（含 sm_120）、Transformers 5.12.1、Accelerate 1.14.0、DeepSpeed 0.19.3、NumPy 1.26.4。
+依赖版本/来源和关键二进制 hash 已固定；现有环境未覆盖，只删除了本次 r1 的可重新下载缓存及空临时目录。
+GPU 执行兼容性尚须在实际分配中验证。runtime 路径为
+`/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective`，不得换回旧 critic venv。
+既有 `outcome-blind` 守护已更新为跟踪这唯一作业；完成后依据十步和一次 dev 的真实耗时提出五臂预算，
+不得用该 dev 数值选择模型或声称方法效果。运行记录见 `results/critic_component_g0_20260903/README.md`。
+本节仅覆盖下文 G0 的“预算待回应”状态；Target-300 恢复未获批、前瞻封存边界与暂停审稿的裁决保持。
+
 ## 0L0t. 2026-09-03 用户纠正：加快科学进展，不是赶稿或转入审稿
 
 用户明确要求：加快的是实验与研究进度，尽力取得可复验的正面效果或验证正方向结论，不是提前赶稿。

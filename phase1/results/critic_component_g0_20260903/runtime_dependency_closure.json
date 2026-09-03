@@ -1,0 +1,528 @@
+{
+  "console_scripts": {
+    "accelerate": "accelerate.commands.accelerate_cli:main",
+    "accelerate-config": "accelerate.commands.config:main",
+    "accelerate-estimate-memory": "accelerate.commands.estimate:main",
+    "accelerate-launch": "accelerate.commands.launch:main",
+    "accelerate-merge-weights": "accelerate.commands.merge:main",
+    "cpuinfo": "cpuinfo:main",
+    "f2py": "numpy.f2py.f2py2e:main",
+    "hf": "huggingface_hub.cli.hf:main",
+    "hjson": "hjson.tool:main",
+    "httpx": "httpx:main",
+    "huggingface-cli": "huggingface_hub.cli.deprecated_cli:main",
+    "isympy": "isympy:main",
+    "markdown-it": "markdown_it.cli.parse:main",
+    "pip": "pip._internal.cli.main:main",
+    "pip3": "pip._internal.cli.main:main",
+    "pip3.10": "pip._internal.cli.main:main",
+    "proton": "triton.profiler.proton:main",
+    "proton-viewer": "triton.profiler.viewer:main",
+    "pygmentize": "pygments.cmdline:main",
+    "tiny-agents": "huggingface_hub.inference._mcp.cli:app",
+    "torchfrtrace": "torch.distributed.flight_recorder.fr_trace:main",
+    "torchrun": "torch.distributed.run:main",
+    "tqdm": "tqdm.cli:main",
+    "transformers": "transformers.cli.transformers:main",
+    "typer": "typer.cli:main"
+  },
+  "links": {
+    "MarkupSafe-3.0.2.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/MarkupSafe-3.0.2.dist-info",
+    "PyYAML-6.0.2.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/PyYAML-6.0.2.dist-info",
+    "_cuda_bindings_redirector.pth": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/_cuda_bindings_redirector.pth",
+    "_cuda_bindings_redirector.py": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/_cuda_bindings_redirector.py",
+    "_distutils_hack": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/_distutils_hack",
+    "_yaml": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/_yaml",
+    "accelerate": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/accelerate",
+    "accelerate-1.14.0.dist-info": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/accelerate-1.14.0.dist-info",
+    "annotated_types": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/annotated_types",
+    "annotated_types-0.7.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/annotated_types-0.7.0.dist-info",
+    "anyio": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/anyio",
+    "anyio-4.12.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/anyio-4.12.0.dist-info",
+    "certifi": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/certifi",
+    "certifi-2025.1.31.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/certifi-2025.1.31.dist-info",
+    "click": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/click",
+    "click-8.5.0.dist-info": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/click-8.5.0.dist-info",
+    "cpuinfo": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cpuinfo",
+    "cuda/bindings": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/bindings",
+    "cuda/ccuda.cpp": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/ccuda.cpp",
+    "cuda/ccuda.cpython-311-x86_64-linux-gnu.so": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/ccuda.cpython-311-x86_64-linux-gnu.so",
+    "cuda/ccuda.pxd": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/ccuda.pxd",
+    "cuda/ccuda.pyx": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/ccuda.pyx",
+    "cuda/ccudart.cpp": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/ccudart.cpp",
+    "cuda/ccudart.cpython-311-x86_64-linux-gnu.so": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/ccudart.cpython-311-x86_64-linux-gnu.so",
+    "cuda/ccudart.pxd": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/ccudart.pxd",
+    "cuda/ccudart.pyx": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/ccudart.pyx",
+    "cuda/cnvrtc.cpp": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/cnvrtc.cpp",
+    "cuda/cnvrtc.cpython-311-x86_64-linux-gnu.so": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/cnvrtc.cpython-311-x86_64-linux-gnu.so",
+    "cuda/cnvrtc.pxd": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/cnvrtc.pxd",
+    "cuda/cnvrtc.pyx": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/cnvrtc.pyx",
+    "cuda/cuda.cpp": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/cuda.cpp",
+    "cuda/cuda.cpython-311-x86_64-linux-gnu.so": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/cuda.cpython-311-x86_64-linux-gnu.so",
+    "cuda/cuda.pyx": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/cuda.pyx",
+    "cuda/cudart.cpp": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/cudart.cpp",
+    "cuda/cudart.cpython-311-x86_64-linux-gnu.so": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/cudart.cpython-311-x86_64-linux-gnu.so",
+    "cuda/cudart.pyx": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/cudart.pyx",
+    "cuda/nvrtc.cpp": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/nvrtc.cpp",
+    "cuda/nvrtc.cpython-311-x86_64-linux-gnu.so": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/nvrtc.cpython-311-x86_64-linux-gnu.so",
+    "cuda/nvrtc.pyx": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/nvrtc.pyx",
+    "cuda/pathfinder": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda/pathfinder",
+    "cuda_bindings-12.9.4.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda_bindings-12.9.4.dist-info",
+    "cuda_pathfinder-1.2.2.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda_pathfinder-1.2.2.dist-info",
+    "cuda_toolkit-12.8.1.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/cuda_toolkit-12.8.1.dist-info",
+    "deepspeed": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/deepspeed",
+    "deepspeed-0.19.3.dist-info": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/deepspeed-0.19.3.dist-info",
+    "distutils-precedence.pth": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/distutils-precedence.pth",
+    "einops": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/einops",
+    "einops-0.8.1.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/einops-0.8.1.dist-info",
+    "filelock": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/filelock",
+    "filelock-3.18.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/filelock-3.18.0.dist-info",
+    "fsspec": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/fsspec",
+    "fsspec-2025.3.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/fsspec-2025.3.0.dist-info",
+    "functorch": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/functorch",
+    "h11": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/h11",
+    "h11-0.14.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/h11-0.14.0.dist-info",
+    "hf_xet": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/hf_xet",
+    "hf_xet-1.6.0.dist-info": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/hf_xet-1.6.0.dist-info",
+    "hjson": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/hjson",
+    "hjson-3.1.0.dist-info": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/hjson-3.1.0.dist-info",
+    "httpcore": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/httpcore",
+    "httpcore-1.0.7.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/httpcore-1.0.7.dist-info",
+    "httpx": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/httpx",
+    "httpx-0.28.1.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/httpx-0.28.1.dist-info",
+    "huggingface_hub": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/huggingface_hub",
+    "huggingface_hub-1.29.0.dist-info": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/huggingface_hub-1.29.0.dist-info",
+    "idna": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/idna",
+    "idna-3.7.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/idna-3.7.dist-info",
+    "isympy.py": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/isympy.py",
+    "jinja2": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/jinja2",
+    "jinja2-3.1.6.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/jinja2-3.1.6.dist-info",
+    "markdown_it": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/markdown_it",
+    "markdown_it_py-3.0.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/markdown_it_py-3.0.0.dist-info",
+    "markupsafe": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/markupsafe",
+    "mdurl": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/mdurl",
+    "mdurl-0.1.2.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/mdurl-0.1.2.dist-info",
+    "mpmath": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/mpmath",
+    "mpmath-1.3.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/mpmath-1.3.0.dist-info",
+    "msgpack": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/msgpack",
+    "msgpack-1.1.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/msgpack-1.1.0.dist-info",
+    "networkx": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/networkx",
+    "networkx-3.4.2.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/networkx-3.4.2.dist-info",
+    "ninja": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/ninja",
+    "ninja-1.13.0.dist-info": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/ninja-1.13.0.dist-info",
+    "numpy": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/numpy",
+    "numpy-1.26.4.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/numpy-1.26.4.dist-info",
+    "numpy.libs": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/numpy.libs",
+    "nvidia/__init__.py": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/__init__.py",
+    "nvidia/cublas": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/cublas",
+    "nvidia/cuda_cupti": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/cuda_cupti",
+    "nvidia/cuda_nvrtc": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/cuda_nvrtc",
+    "nvidia/cuda_runtime": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/cuda_runtime",
+    "nvidia/cudnn": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/cudnn",
+    "nvidia/cufft": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/cufft",
+    "nvidia/cufile": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/cufile",
+    "nvidia/curand": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/curand",
+    "nvidia/cusolver": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/cusolver",
+    "nvidia/cusparse": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/cusparse",
+    "nvidia/cusparselt": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/cusparselt",
+    "nvidia/nccl": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/nccl",
+    "nvidia/nvjitlink": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/nvjitlink",
+    "nvidia/nvshmem": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/nvshmem",
+    "nvidia/nvtx": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia/nvtx",
+    "nvidia_cublas_cu12-12.8.4.1.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_cublas_cu12-12.8.4.1.dist-info",
+    "nvidia_cuda_cupti_cu12-12.8.90.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_cuda_cupti_cu12-12.8.90.dist-info",
+    "nvidia_cuda_nvrtc_cu12-12.8.93.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_cuda_nvrtc_cu12-12.8.93.dist-info",
+    "nvidia_cuda_runtime_cu12-12.8.90.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_cuda_runtime_cu12-12.8.90.dist-info",
+    "nvidia_cudnn_cu12-9.19.0.56.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_cudnn_cu12-9.19.0.56.dist-info",
+    "nvidia_cufft_cu12-11.3.3.83.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_cufft_cu12-11.3.3.83.dist-info",
+    "nvidia_cufile_cu12-1.13.1.3.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_cufile_cu12-1.13.1.3.dist-info",
+    "nvidia_curand_cu12-10.3.9.90.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_curand_cu12-10.3.9.90.dist-info",
+    "nvidia_cusolver_cu12-11.7.3.90.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_cusolver_cu12-11.7.3.90.dist-info",
+    "nvidia_cusparse_cu12-12.5.8.93.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_cusparse_cu12-12.5.8.93.dist-info",
+    "nvidia_cusparselt_cu12-0.7.1.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_cusparselt_cu12-0.7.1.dist-info",
+    "nvidia_nccl_cu12-2.28.9.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_nccl_cu12-2.28.9.dist-info",
+    "nvidia_nvjitlink_cu12-12.8.93.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_nvjitlink_cu12-12.8.93.dist-info",
+    "nvidia_nvshmem_cu12-3.4.5.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_nvshmem_cu12-3.4.5.dist-info",
+    "nvidia_nvtx_cu12-12.8.90.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/nvidia_nvtx_cu12-12.8.90.dist-info",
+    "packaging": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/packaging",
+    "packaging-24.2.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/packaging-24.2.dist-info",
+    "pip": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/pip",
+    "pip-24.0.dist-info": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/pip-24.0.dist-info",
+    "pkg_resources": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/pkg_resources",
+    "psutil": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/psutil",
+    "psutil-7.0.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/psutil-7.0.0.dist-info",
+    "py_cpuinfo-9.0.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/py_cpuinfo-9.0.0.dist-info",
+    "pydantic": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/pydantic",
+    "pydantic-2.12.5.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/pydantic-2.12.5.dist-info",
+    "pydantic_core": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/pydantic_core",
+    "pydantic_core-2.41.5.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/pydantic_core-2.41.5.dist-info",
+    "pygments": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/pygments",
+    "pygments-2.19.1.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/pygments-2.19.1.dist-info",
+    "regex": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/regex",
+    "regex-2026.9.3.dist-info": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/regex-2026.9.3.dist-info",
+    "rich": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/rich",
+    "rich-13.7.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/rich-13.7.0.dist-info",
+    "safetensors": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/safetensors",
+    "safetensors-0.5.3.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/safetensors-0.5.3.dist-info",
+    "setuptools": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/setuptools",
+    "setuptools-79.0.1.dist-info": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/setuptools-79.0.1.dist-info",
+    "shellingham": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/shellingham",
+    "shellingham-1.5.4.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/shellingham-1.5.4.dist-info",
+    "sympy": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/sympy",
+    "sympy-1.14.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/sympy-1.14.0.dist-info",
+    "tokenizers": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/tokenizers",
+    "tokenizers-0.22.1.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/tokenizers-0.22.1.dist-info",
+    "torch": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/torch",
+    "torch-2.11.0+cu128.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/torch-2.11.0+cu128.dist-info",
+    "torchgen": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/torchgen",
+    "tqdm": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/tqdm",
+    "tqdm-4.66.3.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/tqdm-4.66.3.dist-info",
+    "transformers": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/transformers",
+    "transformers-5.12.1.dist-info": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages/transformers-5.12.1.dist-info",
+    "triton": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/triton",
+    "triton-3.6.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/triton-3.6.0.dist-info",
+    "typer": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/typer",
+    "typer-0.15.2.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/typer-0.15.2.dist-info",
+    "typing_extensions-4.15.0.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/typing_extensions-4.15.0.dist-info",
+    "typing_extensions.py": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/typing_extensions.py",
+    "typing_inspection": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/typing_inspection",
+    "typing_inspection-0.4.2.dist-info": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/typing_inspection-0.4.2.dist-info",
+    "yaml": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/yaml"
+  },
+  "packages": {
+    "accelerate": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+      "record_sha256": "066a65e85cb5d435cfdaeee548e3648d45fa19eb7dd09be4134c4ee580ed8e64",
+      "version": "1.14.0"
+    },
+    "annotated-types": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "e247b25692f5a87cf4ed0abfe7c4843740ac88bc34ec4921dcdb68542f6dd410",
+      "version": "0.7.0"
+    },
+    "anyio": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "f2ff2378445d3905a8d6b6695952cd515f2f68bd43229fa58bbb08304f012bda",
+      "version": "4.12.0"
+    },
+    "certifi": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "064f7495e993cfaa9890ab441ee4c1b1d559f05e04090be70423164bbf0174ee",
+      "version": "2025.1.31"
+    },
+    "click": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+      "record_sha256": "4a422099194046f68c30cc3d7ef8eea6f91185842623182989406a652fe69272",
+      "version": "8.5.0"
+    },
+    "cuda-bindings": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "187a31d46015b3220afa2e54ae8d2b446671929e28a17578693727ab9ccbb072",
+      "version": "12.9.4"
+    },
+    "cuda-pathfinder": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "3a204ec0681ebe42eec7be21706c64373376e9530f955d84f357200d8c5d2aa1",
+      "version": "1.2.2"
+    },
+    "cuda-toolkit": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "e0c13d04c5856e4eba9cafca3cc67db7687f9b050221811e5a883c52a62fff97",
+      "version": "12.8.1"
+    },
+    "deepspeed": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+      "record_sha256": "ea6cfaad05c4ec5c3ab1eeea3a3d5d34ac9dd2d70ce6d74cbdd0110cdcfbb0a4",
+      "version": "0.19.3"
+    },
+    "einops": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "ef851ba2e24ca967d6d225266ad9c861e94d3f0edd25f6612765a4d2fa20ac3c",
+      "version": "0.8.1"
+    },
+    "filelock": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "4298e9b0c52be580eb3437845dcdc0da1ce972dab15bb61d7e92ffdb3a652865",
+      "version": "3.18.0"
+    },
+    "fsspec": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "728348b40e559478cea7afec8cc2803802cba79d221b86736888eabf781d7dbd",
+      "version": "2025.3.0"
+    },
+    "h11": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "17c7d3d95666109b6564821a85b2977fdcb32a3d5852e300881886c543f2b232",
+      "version": "0.14.0"
+    },
+    "hf-xet": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+      "record_sha256": "9b6b49c4a6f44126bd56139d96ff0c4be8f76a1b5f2e7cd3955254a2ee3fbebe",
+      "version": "1.6.0"
+    },
+    "hjson": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+      "record_sha256": "c7e59c8d583a46b52b1a2ffe51916555bbc6a24a53d9f618f41aaed140367eb6",
+      "version": "3.1.0"
+    },
+    "httpcore": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "1d25293e153fa92b0673c86941811d6fdf5e31c676e94ecc5458104bda8f2bf4",
+      "version": "1.0.7"
+    },
+    "httpx": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "71e58d64faec47fce317b0b455fa7e12d1dd995f25ec80b2935a0f60b6726a4b",
+      "version": "0.28.1"
+    },
+    "huggingface-hub": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+      "record_sha256": "b941221c291683c4421834a01d7d0feb7f377e0b07ffd981b3beefc42796741e",
+      "version": "1.29.0"
+    },
+    "idna": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "f651cfe1965ab1232cb4371e9a927e8342f2ff498ea1829ad64bf87cae8a99b3",
+      "version": "3.7"
+    },
+    "jinja2": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "4551b3fb657b85a9f01e961c0f8a235da65d758149b619400211964b3ac02bdc",
+      "version": "3.1.6"
+    },
+    "markdown-it-py": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "580f33f1462b7c4fed3dc33b0cfae9c30831319c8eb6a3b2decf3edaaf64c95e",
+      "version": "3.0.0"
+    },
+    "markupsafe": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "499ec4c12b3d599f342c425fc8d3c91df55b0abc7ee101622cf87272ca0e71dc",
+      "version": "3.0.2"
+    },
+    "mdurl": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "dfab60b026b9e9fe78dc0383aaf6482a94b30489bbb4436d3eeae97cb20c3afc",
+      "version": "0.1.2"
+    },
+    "mpmath": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "09cbd04e87d0c5ab64aab08291b31883e4ea27e8d2c640710e0beb1995e86b9b",
+      "version": "1.3.0"
+    },
+    "msgpack": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "f861d0ef1f330f2c9910587756af54550f6976d1023d04be8d540cc546b902b9",
+      "version": "1.1.0"
+    },
+    "networkx": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "744c227a4f8812c582fcacd8c98d41120f8ee81a70e117cb137e4ff9d76506dd",
+      "version": "3.4.2"
+    },
+    "ninja": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+      "record_sha256": "929c89ba62848ae8012fa24a6ca227dbde2b02ef1b5232b1abfb02a9c283af02",
+      "version": "1.13.0"
+    },
+    "numpy": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "36852bca4aa6068dbd549e4bd02a4c44dfde1ff8465e3c1e88372900f535ebe0",
+      "version": "1.26.4"
+    },
+    "nvidia-cublas-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "32609e27f052bcf38ac86325906fcc17a92d10aba57bc67f5017d8271d137b48",
+      "version": "12.8.4.1"
+    },
+    "nvidia-cuda-cupti-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "bebc6905f6331672653650ef186a05fb1cb4da8d4d59a93cd1f905796b94f680",
+      "version": "12.8.90"
+    },
+    "nvidia-cuda-nvrtc-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "e3c6d179dab8453950ad1e44acc4747b1a4ea1997e46326873731742a4ab5d22",
+      "version": "12.8.93"
+    },
+    "nvidia-cuda-runtime-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "a880e64bcd71ca45cae1c821771e8fcee673e043bffd1464b1aefa5f127bec90",
+      "version": "12.8.90"
+    },
+    "nvidia-cudnn-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "20cfbe5e89bd055db705285a7440edad648628dc8ccae77143aa3e8b02144d92",
+      "version": "9.19.0.56"
+    },
+    "nvidia-cufft-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "fc6ade9f8e7229dbce075027292a7ee3f803bfc8dbf93449f37d9c05c3f38c5a",
+      "version": "11.3.3.83"
+    },
+    "nvidia-cufile-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "25f214d2e17ec175717dfeaf5c1690e1f3348a8ada171500b948ab09e23b2256",
+      "version": "1.13.1.3"
+    },
+    "nvidia-curand-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "8f6ff30756082b4f128f521cad94b97cf821be7617d942cd7aba53401f318030",
+      "version": "10.3.9.90"
+    },
+    "nvidia-cusolver-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "0c498bbd7fb47d82f861476973ccfd7d039d7d95c559ed673ecad98af48d6278",
+      "version": "11.7.3.90"
+    },
+    "nvidia-cusparse-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "c621d96e99b26549698cd2d8f5044245727928d7855cb20a5ef787006311f3d7",
+      "version": "12.5.8.93"
+    },
+    "nvidia-cusparselt-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "a0d0794ea5e6fbf009a350cd345b93b49c5ce40a57270eecbf0c96233bac8ee0",
+      "version": "0.7.1"
+    },
+    "nvidia-nccl-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "547619e86b9b9c3424c2f3a115fdc7f692adfce29db2935b02a3cfdc1c6abac3",
+      "version": "2.28.9"
+    },
+    "nvidia-nvjitlink-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "778c44b7415819751cfe4c68919ac4e7db9f384c80db22f2cadd6cd9d6a5cc1a",
+      "version": "12.8.93"
+    },
+    "nvidia-nvshmem-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "7a627d8939071037225418f0cc848ee8dbb149d82f5fb33d74e1900649cbd0eb",
+      "version": "3.4.5"
+    },
+    "nvidia-nvtx-cu12": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "1c4cae5ca6bd6c1f87f1e2e91215412ca30626e4b552896dc8317c85f0659257",
+      "version": "12.8.90"
+    },
+    "packaging": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "3b8cabe6982c439ab1482cd9bf962d11273b7304f6acc7d476b06dd896d45ddf",
+      "version": "24.2"
+    },
+    "pip": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+      "record_sha256": "8471fdefd3891760c5f05d20a147896b94786a717d7af9ff0ada98a80a31a696",
+      "version": "24.0"
+    },
+    "psutil": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "4b97637fb855ed8ee735cdc0da1f60311d598d655271862aed64b1b7cd327af5",
+      "version": "7.0.0"
+    },
+    "py-cpuinfo": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "8833437bc2d18f80d0389ab4e96e23a65624517cd51b4d69899fa27c97ac8786",
+      "version": "9.0.0"
+    },
+    "pydantic": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "1fc67a98db19ee837e3362c0a3d188b919914fe240c206a8529917f0b9e9fb7d",
+      "version": "2.12.5"
+    },
+    "pydantic-core": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "87e4266941c57a45420d8227c738fdb20f4b9c166d57dc521fc33c456b9ffb66",
+      "version": "2.41.5"
+    },
+    "pygments": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "953ec72a3a895c269aea086d50c3193a5532285d951426288ed814df4c1f1133",
+      "version": "2.19.1"
+    },
+    "pyyaml": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "6e8272f220f43493a64b83920f5ef7440a4635df985db6bbed5dcc02acdcc95b",
+      "version": "6.0.2"
+    },
+    "regex": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+      "record_sha256": "ef4ef441779ba66b13d8dc22d2bd07124550c5e5a1ce8e249eda721c3dde7e28",
+      "version": "2026.9.3"
+    },
+    "rich": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "eeb2f87cccf038abc33c44b0ab12d9ec003f036ad32f5bee853387f8dae4cdd5",
+      "version": "13.7.0"
+    },
+    "safetensors": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "3fc8494821a79a48f344cd63edf4c186beeba84b9fe346cd6dd88615d74db07f",
+      "version": "0.5.3"
+    },
+    "setuptools": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+      "record_sha256": "1502c7cf29900fe22505e616345266a0deb0330ad03b9bb8b4d07a82fdb997dc",
+      "version": "79.0.1"
+    },
+    "shellingham": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "4341c9714d3eddf4b1312c5b373ef98fcb21c65c74adaa14f451204df82ff3bd",
+      "version": "1.5.4"
+    },
+    "sympy": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "0a5a05f11b149c5eb6d43d270beee20250b92df21a18361616f530077f3079e4",
+      "version": "1.14.0"
+    },
+    "tokenizers": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "8cc4d9df443469ab8abb88e43ca087eb97f1c94a821440d18022dbcd00a103a9",
+      "version": "0.22.1"
+    },
+    "torch": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "0069405447ef73f95c52057d3387e5cc10305fec696b172750fcd113c136316b",
+      "version": "2.11.0+cu128"
+    },
+    "tqdm": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "839d34c649a00c8686824137719c20da31b71906833a61d3f51dbd34f463497a",
+      "version": "4.66.3"
+    },
+    "transformers": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+      "record_sha256": "16de5cb4740f6b46a5f69d7775f35c7067a19795bd8629e9c979e5043819eeb4",
+      "version": "5.12.1"
+    },
+    "triton": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "c854862c7fa424ee7e3eca025776ba2be335dcacc3a7b196cbee8a4f04858581",
+      "version": "3.6.0"
+    },
+    "typer": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "452227dcc6182bc9a8923a29beb33e16f7e68ed6bef35016838dd8888100052b",
+      "version": "0.15.2"
+    },
+    "typing-extensions": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "c42db5851c3a20efb41dbe1a0d03c18db577a5449c7e685f6b139df34b98e62f",
+      "version": "4.15.0"
+    },
+    "typing-inspection": {
+      "backing_site": "/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages",
+      "record_sha256": "be869d955d24f62826a901c4db4d0fe9f0583b03bd1d3a77483ae7b68cf309d2",
+      "version": "0.4.2"
+    }
+  },
+  "roots": [
+    "torch==2.11.0+cu128",
+    "numpy==1.26.4",
+    "transformers==5.12.1",
+    "accelerate==1.14.0",
+    "deepspeed==0.19.3",
+    "ninja==1.13.0",
+    "pip==24.0"
+  ]
+}

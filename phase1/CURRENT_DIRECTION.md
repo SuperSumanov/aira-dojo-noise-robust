@@ -15,6 +15,16 @@
 直接断言 1TB 已满。状态见 `results/critic_component_g0_20260903/official_storage_diagnostic.json`。
 存储尚未解决，GPU 不提交；确认可回收对象后仍须明确删除授权。后续长期产物须关注 9 月 29 日的续期/备份。
 
+**07:34 UTC heartbeat 的占用进展：** worktrees 范围扫描已以 rc=0 完成，独立全目录扫描也给出相同
+`281365282816` bytes（约 281.4 GB）。不要再次等待已关闭的 session 18553。全目录 session 54816 仍在
+运行；截至已收取的 396 个一级目录，单次遍历的部分和为 `1065272762368` bytes。这是下界，不是完整总量；
+也不能忽略 TB/TiB 与服务端计费方式差异而直接断言官方配额错误。已收集的原始 metadata 行另存本地
+`tmp/official_storage_du_partial_20260903.txt`，续接须合并后续输出，不能丢掉先前行或重新全盘扫描。
+初筛发现已关闭 E2-A 的下载缓存 `/research/d7/spc/yzyang4/balanced-e2a-hf-cache-e2d587d-a1` 占
+`14697836544` bytes，根下仅 manifest、hub、torch；它不是当前 G0 的模型/runtime。该目录只列为待审查
+清理候选，尚未完成全部依赖/可恢复性验证，未获删除授权、未 chmod/删除。删除前必须保留清单并核验
+引用、活动进程、符号链接/硬链接及确切目标；原始语料、训练检查点与前瞻封存数据不得跟着清理。
+
 用户要求推进跨 seed、同预算收益或干净 scaling，并对“修复后再运行一个双卡 G0、最长 7,044 秒，
 连同失败作业累计不超过 4 GPU·h；不启动五臂正式训练”的问题明确回复“是的是的”。这覆盖下节的
 retry approval pending，但不扩大到五臂训练、scaling 矩阵或任何前瞻揭盲。

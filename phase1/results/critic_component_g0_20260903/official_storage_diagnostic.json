@@ -33,6 +33,11 @@
     "primary_remote_pid": 2183640,
     "worktrees_tool_session_id": 18553,
     "worktrees_remote_pid": 2210458,
+    "worktrees_scan_completed_exit_zero": true,
+    "worktrees_allocated_bytes_verified_by_both_scans": 281365282816,
+    "primary_completed_subdirectory_rows_observed": 396,
+    "primary_partial_lower_bound_bytes": 1065272762368,
+    "primary_partial_lower_bound_is_complete_total": false,
     "scoped_scan_session_36930_completed": true,
     "completed_scoped_allocated_bytes": {
       "aira-dojo-runs": 28464369664,
@@ -43,5 +48,15 @@
   },
   "gpu_retry_submitted": false,
   "sealed_payloads_read": false,
-  "next_step": "Collect existing scans before declaring quota exhausted or proposing exact cleanup targets. No deletion without approval."
+  "cleanup_candidate_not_yet_authorized": {
+    "path": "/research/d7/spc/yzyang4/balanced-e2a-hf-cache-e2d587d-a1",
+    "allocated_bytes_seen_in_primary_scan": 14697836544,
+    "top_level_entries": ["e2a_hf_cache_manifest.json", "hub", "torch"],
+    "observed_contents_type": "downloaded public Hugging Face and timm backbones for the closed E2-A experiment",
+    "not_current_G0_model_snapshot_or_runtime": true,
+    "all_dependency_and_recoverability_checks_completed": false,
+    "deletion_requires_explicit_approval_and_final_reference_checks": true,
+    "deleted": false
+  },
+  "next_step": "Collect existing primary scan without starting another full scan. Review the exact historical download-cache candidate; preserve its manifest and prove no active dependency before any user-approved removal."
 }

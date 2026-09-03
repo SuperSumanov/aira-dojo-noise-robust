@@ -4,6 +4,8 @@
 
 **当日晚间更新：CPU 实现已获用户继续指示并完成，不再等待此前相同问题。** 下文诊断和未采用的协议
 修订保留原含义；最新实现、测试与尚未打通的训练接口见“CPU 实现与复现”一节。G0/五臂预算边界未扩大。
+**后续进展：单进程 CPU Trainer 已完成真实批次消费、梯度累积和完整状态恢复验证，见新增章节。**
+范围是两个参数的合成模型，不是研究 critic 的训练或效果结果，正式多卡接口仍未放行。
 15:36 UTC 重连成功，job12288 仍 PENDING/Resources、RunTime=00:00:00；摄取 poll120 rc=0，
 语料306 archives、589/960，学长 HEAD 未变。原有守护已同步 CPU 完成状态；排队及无新数据时保持安静。
 
@@ -197,10 +199,61 @@ bf16/ZeRO 训练或 checkpoint 保存验证。该 runtime 没有 pytest，未安
 但没有证实外部传入的 token count 正确；正式使用前要从实际 tokenizer/消费端产生并独立核对。
 完整来源 SHA、命令、范围与限制见 `results/global_local_execution_readiness_20260903/implementation_validation.json`。
 
-下一项可推进实现：独立的 Trainer 消费接口与 CPU 模拟消费，继续不修改 pending G0。正式接口必须验证
+当日晚间后续已推进独立的 Trainer 消费接口与 CPU 合成优化，继续不修改 pending G0；详细结果在下节。正式接口必须验证
 列保留、无二次 sampler/sharder、真实 token 编码摘要、target sign、梯度累积归一化、final checkpoint 与
 optimizer/scheduler/RNG 状态恢复；计划切片复现不能替代这些验证。LR 表、末批与 exact-budget 不可达时的
 处理仍需事前决议，未偷偷采用本报告中的建议。正式 15 fits 仍须 G0 成本及新确认数据/预算批准。
+
+## 单 CPU Trainer 消费与状态恢复（后续已完成）
+
+目标是检验计划能否实际进入训练器，以及完整状态恢复是否保持同一轨迹。不是继续生成更多计划回执。
+用户在上一轮明确下一步后回复“按照你的推荐推进工作吧”；据此实施限 CPU、合成数据的接入验证。
+代码独立于 pending G0，协议 v2 SHA 仍为 `3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9`。
+
+实现包括：
+
+- 从实际输入 token IDs 和 mask 重算编码摘要、token数和padding，在 Trainer 调用模型时生成消费回执；
+  再用模型 forward 内独立记录的输入反查。按固定批次采样，不再次随机打乱、补末批或做二次分片。
+- A/B端点固定，sign独立；Ghash全局阶段的真实标签提供器禁止访问，局部阶段维持真标签。
+- 实际保存 model/optimizer/scheduler/RNG/trainer state及其哈希、计划/配置绑定；恢复前检查所有文件，
+  缺失状态、文件损坏、换seed/臂/累积形状/学习率/随机模型配置均拒绝，构造后改配置也拒绝。
+- 适配器当前仅允许单进程CPU、合成身份、最多128个pair visits、最多4096个参数，主动拒绝GPU/ZeRO。
+  这不是正式训练入口；不能删掉保护开关就称双卡已验证。
+
+固定测试环境：torch `2.11.0+cu128`、Transformers `5.12.1`、Accelerate `1.14.0`；Trainer源文件SHA
+`c1a56423fcfcf9cfec6847467ffb2e2c8a9a9e8cc1836b82c87ed0c81e504be0`。模型只有2个float64参数，
+合成G/L各8pairs，microbatch2、accumulation2；L1两步，其余四步。测试LR=0.02、AdamW、linear调度，
+逐步保存只为了测试中断，**没有更改研究协议的LR、最终checkpoint或评估规则**。随机恢复案例含
+Python、NumPy随机扰动及torch dropout0.25。只在CPU，禁网络，无模型下载、真实数据/GPU/API调用。
+
+最终 r2 实跑34.83075638022274秒（整个进程墙钟，非训练吞吐基准），结论如下：
+
+| 检查 | 证据 |
+| --- | --- |
+| 实际消费 | 27条合成轨迹，76次Trainer优化更新，152个forward microbatches均与计划一致 |
+| 真/哈希输入公平性 | seed6/7/8，两臂的模型输入逐元素一致，仅全局sign改变 |
+| 完整状态恢复 | 两臂×3个中断点=6例；参数、优化器、调度器与三类RNG逐位一致 |
+| 累积归一化 | 与独立整批AdamW计算一致，rtol/atol=1e-12；另有4次参考更新 |
+| 非空转验证 | 14个损坏/缺失/漂移案例被拒绝；3类RNG各自扰动均导致参数差异 |
+| 独立复验 | 不导入adapter/主验证器，直接核保存文件及状态；6例恢复+3例RNG敏感性通过 |
+| 本地回归 | 139 passed、1显式opt-in skip；实际Trainer测试在远端另跑，不冒充本地全通过 |
+
+回执与逐案例表：`trainer_validation_r2.json`、`trainer_independent_saved_state.json`、
+`trainer_validation_context.json`、`synthetic_trainer_cases.csv`，均在
+`results/global_local_execution_readiness_20260903/`。来源代码SHA和确切复现命令随回执保存。
+r1也通过；之后补了构造后变更保护、真正改变配置的LR对照、缺失状态及RNG敏感性测试，旧产物保留，未覆盖。
+
+复现：在含本次代码的repo根目录，固定上述runtime/CPU环境，运行：
+
+```text
+python -B -m phase1.global_local_trainer_cpu_validation --output-root NEW_EMPTY_OUTPUT_DIRECTORY
+python -B -m phase1.verify_global_local_cpu_saved_state --root SAME_OUTPUT_DIRECTORY
+```
+
+限制与后续：目前只是单CPU、两参数模型、优化器步边界的受控中断，不验证实际进程死亡/断电的原子保存，
+也不验证真实tokenizer、来源隔离、大模型bf16、多rank RNG或ZeRO3分片。模型效果、跨seed收益和clean
+scaling均未新增结论。下一步准备真实输入接口与分布式验证方案；G0完成后再用实际成本提交正式矩阵。
+不靠重复这些CPU案例制造科学进展，不提前读前瞻cohort，也不自动采用尚未批准的预算/LR修订。
 
 ## 历史诊断阶段的改动范围（已由上节覆盖 CPU 等待状态）
 

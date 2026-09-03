@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L0z. 2026-09-03 单 CPU Trainer 已接通实际消费与完整状态恢复
+
+用户继续批准推荐的下一项 CPU 接入。新增独立 `global_local_batch_adapter.py` 与
+`global_local_trainer_adapter.py`，没有修改 G0 source/runtime、冻结 v2 或实际研究学习率。
+这次不只是元数据计划：在固定 Transformers 5.12.1 / PyTorch 2.11.0+cu128 中，使用 **两个参数的
+合成 CPU 模型**实跑消费、梯度累积、保存和恢复。适配器明确拒绝多进程/GPU/大模型与非合成身份。
+
+本地组合回归 **139 passed / 1 skipped**。最终 r2 有 **27 条合成执行轨迹、76 次 Trainer optimizer
+updates、152 个实际 forward microbatches**，另有4次独立整批优化用于累积梯度对照；不是27次研究训练。
+G_to_L/Ghash 的 seed6/7/8 输入在模型边界一致；两臂 seed6 在全局内、阶段边界、局部内共 **6 个恢复
+案例**的模型/optimizer/scheduler/Python+NumPy+torch RNG 全部逐位相同。14个损坏/缺失/漂移案例拒绝，
+3个刻意扰动 RNG 的敏感性案例确实改变最终参数。独立只读 verifier 不导入主验证器/adapter，复验6个
+恢复案例与3个敏感性案例通过。详见 `GLOBAL_LOCAL_NEXT_EXECUTION_20260903.md` 与
+`results/global_local_execution_readiness_20260903/trainer_validation_r2.json`。
+
+**未证明**：真实 RM、双卡 ZeRO3/bf16 的保存恢复、真实 tokenizer/provenance、断电时原子持久化，以及
+任何 accuracy/search/scaling 收益。合成 LR=0.02、逐步保存只是单元测试，不是正式协议变更或选 checkpoint。
+下一步只准备真实数据接口及分布式验证方案，并等 G0 完成后按实测成本核预算；正式15fits、LR/budget
+修订仍需事前授权。15:42 UTC 最新实查 G0 12288 仍PENDING/Resources，589/960与学长分支未变。
+不要重复运行已完成合成案例；继续既有监控，既不重复提交G0，也不因期待正结果而放宽确认门。
+
 ## 0L0y. 2026-09-03 用户同意继续；CPU 阶段计划与独立验证已实现
 
 用户在 CPU 实现预览后回复“继续你的工作”“按照你的推荐推进工作吧”，据此完成该范围，不再等待

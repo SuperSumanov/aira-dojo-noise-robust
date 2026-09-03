@@ -1,0 +1,54 @@
+{
+  "distributed_validation": false,
+  "gpu_context_created": false,
+  "primary_receipt_sha256": "77d4257a63dc5d8ca5de1002a5e2c39b8ec1871a2b5c3a2ec52c6aa81e0fac21",
+  "read_only": true,
+  "resume_checks": [
+    {
+      "all_four_states_bitwise_equal": true,
+      "arm": "G_to_L",
+      "cut_step": 1
+    },
+    {
+      "all_four_states_bitwise_equal": true,
+      "arm": "G_to_L",
+      "cut_step": 2
+    },
+    {
+      "all_four_states_bitwise_equal": true,
+      "arm": "G_to_L",
+      "cut_step": 3
+    },
+    {
+      "all_four_states_bitwise_equal": true,
+      "arm": "Ghash_to_L",
+      "cut_step": 1
+    },
+    {
+      "all_four_states_bitwise_equal": true,
+      "arm": "Ghash_to_L",
+      "cut_step": 2
+    },
+    {
+      "all_four_states_bitwise_equal": true,
+      "arm": "Ghash_to_L",
+      "cut_step": 3
+    }
+  ],
+  "rng_canaries": [
+    {
+      "final_parameter_divergence_confirmed": true,
+      "rng": "python"
+    },
+    {
+      "final_parameter_divergence_confirmed": true,
+      "rng": "numpy"
+    },
+    {
+      "final_parameter_divergence_confirmed": true,
+      "rng": "torch"
+    }
+  ],
+  "source_sha256": "f96996cbbef4ee73356bff16d069b650f0074999d9f1ce19b3d912eba4bf2674",
+  "status": "INDEPENDENT_SAVED_CPU_STATE_PASS"
+}

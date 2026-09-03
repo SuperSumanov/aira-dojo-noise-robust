@@ -1,0 +1,66 @@
+{
+  "scope": "AUTHORIZED_BOUNDED_CPU_TRAINER_INTEGRATION_NOT_RESEARCH_FIT",
+  "base_public_commit": "963e86e5a838ce7a16b5ace1d928c7e3f1cb3cb1",
+  "command": "CUDA_VISIBLE_DEVICES='' PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false /research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/bin/python -B -m phase1.global_local_trainer_cpu_validation --output-root NEW_EMPTY_OUTPUT_DIRECTORY",
+  "working_directory": "/tmp/global-local-consumer-r2-20260903-85xvqZ",
+  "validation_timeout_seconds": 150,
+  "wrapper_wall_seconds": 34.83075638022274,
+  "local_regression": {
+    "passed": 139,
+    "skipped": 1,
+    "seconds": 0.96,
+    "command": "python -B -m pytest -p no:cacheprovider phase1/tests/test_global_local_batch_adapter.py phase1/tests/test_global_local_execution_plan.py phase1/tests/test_global_local_calibration_candidate_protocol.py phase1/tests/test_verify_critic_component_g0.py -q",
+    "skip_reason": "prior test suite's explicit opt-in torch case; actual Trainer CPU validation ran separately remotely"
+  },
+  "initial_r1": {
+    "status": "PASS",
+    "root": "/tmp/global-local-consumer-20260903-0gDryV/run-r1",
+    "synthetic_trainer_trajectories": 24,
+    "synthetic_trainer_optimizer_updates": 70,
+    "actual_toy_forward_microbatches": 140,
+    "adapter_sha256": "2ad5a9ff9333514cc53bf5df1a14252e8de3345008ba1347105f45617495cc4b",
+    "validation_sha256": "d9ef920c7c46162577c90483d2e86b01b1a422c8173298a5a965b1555208b6c1",
+    "superseded_by_r2": "Added constructor-mutation guard, actual changed-LR contract, missing-state tests and three RNG sensitivity controls; r1 outputs retained, not overwritten"
+  },
+  "synthetic_settings": {
+    "model_parameters": 2,
+    "device": "cpu",
+    "dtype": "float64",
+    "optimizer": "AdamW",
+    "lr": 0.02,
+    "weight_decay": 0,
+    "max_grad_norm": 0,
+    "scheduler": "linear",
+    "warmup_steps": 0,
+    "accumulation": 2,
+    "pairs_per_microbatch": 2,
+    "g_rows": 8,
+    "l_rows": 8,
+    "max_length": 8,
+    "full_steps": 4,
+    "L1_steps": 2,
+    "stochastic_resume": {
+      "python": true,
+      "numpy": true,
+      "torch_dropout": 0.25
+    }
+  },
+  "frozen_protocol_sha256_unchanged": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9",
+  "research_safety": {
+    "pending_g0_modified": false,
+    "new_gpu_jobs": 0,
+    "research_model_fits": 0,
+    "paid_api_calls": 0,
+    "base_llm_updates": 0,
+    "real_data_opened": false,
+    "network_blocked_after_imports": true
+  },
+  "limitations": [
+    "Synthetic two-parameter CPU optimization only, not a real critic or scaling/effect evidence",
+    "CPU single-process only; distributed/ZeRO3, bf16, rank-sharded RNG and optimizer recovery not validated",
+    "No real tokenizer, serialization or provenance/materialization integration",
+    "LR schedule is a unit-test fixture, not amendment of the frozen research contract",
+    "Controlled optimizer-boundary stop, not process death, partial-checkpoint or fsync/crash-durability verification",
+    "Checkpoint receipts are integrity checks for locally trusted artifacts, not authentication of third-party checkpoints"
+  ]
+}

@@ -23,6 +23,7 @@
 
 不能把这些称作新accuracy/scaling/search收益，也不能称真实HF reward model、ZeRO3/bf16或生产checkpoint恢复已验证。
 本地相关组合回归213 passed、2 skipped（1个既有显式opt-in autograd、1个本地缺Torch的模块；远端CPU执行证据另列）。
+首次推送后Windows导出发现旧v2缺LF属性（48pass/1fail/1skip），Git原blob未变；仅补精确属性后新导出49pass/1skip，失败与修复均留档。
 标准Trainer只处理epoch末尾可变累积，不能直接表达中间G/L边界；新增独立Accelerate更新适配层，不改学长默认Trainer
 或pending G0。r1全rank回执误用于单rank、r2外层Bash解析失败、误建默认venv后清理等均保留在结果README，不隐去。
 详情见`GLOBAL_LOCAL_BUDGET_CLARIFICATION_20260904.md`、`ACTIVE_WORK_SESSION_20260904.md`与三个新增results目录。

@@ -266,6 +266,7 @@ phase1/baselines/rpm_inference_only_optimized_v2.txt text eol=lf diff
 
 # Historical Global-to-Local 2026-09-04 source and receipts carry exact SHA-256
 # bindings. Preserve their LF bytes even in Windows core.autocrlf worktrees.
+phase1/global_local_calibration_candidate_protocol_v2.json text eol=lf diff
 phase1/global_local_historical_development_protocol_v1.json text eol=lf diff
 phase1/global_local_token_budget_plan.py text eol=lf diff
 phase1/verify_global_local_token_budget_plan.py text eol=lf diff

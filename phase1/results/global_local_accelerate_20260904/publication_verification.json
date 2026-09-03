@@ -1,0 +1,29 @@
+{
+  "status": "WINDOWS_EXPORT_REPRODUCIBILITY_RECOVERED",
+  "scientific_payload_commit": "a6e4221f13dac29af2ecc488796104d82fa9a089",
+  "first_postpush_export": {
+    "passed": 48,
+    "failed": 1,
+    "skipped": 1,
+    "failure": "The frozen v2 Git blob was unchanged but Windows core.autocrlf converted its archive export to CRLF because it lacked an explicit LF attribute.",
+    "exported_sha256": "5f8edca0570951dd79b23c2f9119f99402a5ef714d4c2fd122d178abf56e70f7",
+    "git_blob_and_LF_normalized_sha256": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9",
+    "failed_export_retained": true
+  },
+  "fix": {
+    "changed_file": ".gitattributes",
+    "exact_rule": "phase1/global_local_calibration_candidate_protocol_v2.json text eol=lf diff",
+    "frozen_protocol_content_changed": false,
+    "research_source_or_result_bytes_changed": false
+  },
+  "verified_candidate": {
+    "git_tree": "effa208362114312935b11257534b2bc77c57fa1",
+    "archive_sha256": "2ac17319bc879987cc49accd9983570e3d5fdfd3bb721d86415b6879c78994ff",
+    "passed": 49,
+    "failed": 0,
+    "skipped": 1,
+    "skip_reason": "local Torch unavailable for the partial-DDP module",
+    "frozen_v2_export_sha256": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9"
+  },
+  "new_model_fits_or_effect_reads": 0
+}

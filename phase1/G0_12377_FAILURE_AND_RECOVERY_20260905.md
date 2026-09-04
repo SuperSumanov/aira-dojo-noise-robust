@@ -42,7 +42,8 @@ cosine、LR、source commit 和 final-only 逻辑都不改。学长 launcher 与
 
 先在真实只读 source 上执行 0-GPU smoke：source 原共享环境脚本，但注入上述外部目录；要求只有外部
 shared-env-output 被创建，正式 output 仍不存在，source Git 前后 clean/commit/hash 不变。另以源码测试绑定
-两 export 位于真实 launcher 调用前。失败则不申请重试。
+两 export 位于真实 launcher 调用前。随后用同一原 launcher、真实 train/dev/cards 哈希及固定双进程/16K/十步
+参数做 fake-accelerate dry-run：只记录最终 argv，不导入训练代码或模型。两层任一失败都不申请重试。
 
 即使 smoke 通过，也只解决已观察到的第一个故障，不证明后续模型路径。任何新 GPU job 都须以一个全新
 submission/result root、不可重试 latch、相同两卡最多 117 分钟说明并重新取得明确授权；本报告本身不提交。

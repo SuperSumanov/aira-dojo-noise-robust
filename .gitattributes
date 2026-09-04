@@ -368,3 +368,5 @@ phase1/results/g_reuse_record_consistent_e4d89b0_20260905/** text eol=lf diff
 phase1/G0_12377_FAILURE_AND_RECOVERY_20260905.md text eol=lf diff
 phase1/g0_output_isolation_smoke.py text eol=lf diff
 phase1/tests/test_g0_output_isolation_smoke.py text eol=lf diff
+phase1/g0_launcher_fake_accelerate_smoke.py text eol=lf diff
+phase1/tests/test_g0_launcher_fake_accelerate_smoke.py text eol=lf diff

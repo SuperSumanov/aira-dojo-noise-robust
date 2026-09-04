@@ -17,6 +17,11 @@ optimistic/reference/stress假设下功效为99.60%/61.40%/25.10%，80%约需12/
 我们把方法候选收窄为：在同一批已执行L端点上，增加由已有执行分数导出的global比较，再适配local sibling。
 这叫G-reuse→L，仍待模型效果验证。
 
+最新scoop补检需再收窄措辞：ACL Findings 2025的JPO已有跨instruction-response联合偏好胜同context DPO；
+EMNLP 2025的Licht等已有连通comparison graph上的pointwise/pairwise微调、edge-count控制和vertex split讨论。
+因此不再说首次跨context/global preference或首次连通图微调。我们的区别只能是固定agent底座的MLE critic、
+同执行程序人口global→local顺序、执行成本/physical-run来源和前瞻盲审计组合；效果不通过就没有方法正主张。
+
 1. 原3058条G-reuse对L图增加924 incidence rank；结果前的跨任务门全部通过：28/28任务正gain，
    最大任务只占8.55%，删除最强任务仍保留91.45%。这排除“总体增益由少数任务制造”。
 2. 再排除143条observed config不等或193条旧source projection未解析边的并集，只留既有四格中的2745条，

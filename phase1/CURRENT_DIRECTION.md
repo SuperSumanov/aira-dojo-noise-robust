@@ -3,6 +3,18 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L32. 2026-09-05 05:53：JPO与连通comparison-graph微调进一步关闭过宽方法首创
+
+第二轮窄检索找到两个更直接的先例。ACL Findings 2025的JPO明确从同instruction局部偏好扩到跨
+instruction-response联合偏好，并报告胜DPO；因此“跨context/global preference有益”不能申首创。EMNLP 2025
+Licht等已在连通comparison graph上比较pointwise/pairwise微调，控制edge count并讨论train/test vertex exposure；
+因此“连通图监督、控边数微调或图aware split concern”也不能申首创。
+
+尚未被二者覆盖的窄组合仍是：agent底座不变的独立MLE critic、同一已执行程序/外部评分记录人口、global约束后local
+sibling适配、固定token与执行成本、physical-run-clean决策评测及append-only outcome-blind审计。故G-reuse若有效，
+只能定位为Decision Corpus内的受控机制发现，不是通用新偏好学习范式。这是基于已检索公开文献的边界推断，不证明无
+未索引工作。详见`GLOBAL_LOCAL_RELATED_WORK_BOUNDARY_20260905.md`；不改0L25矩阵/GPU门，无fit/API/protected read。
+
 ## 0L31. 2026-09-05 05:47：同producer包级验收接口已就绪；声明通过仍不等于效果资格
 
 为避免学长交付后再人工拼版本，新增包级manifest门：Cards/G/L/split/source provenance/producer receipt/

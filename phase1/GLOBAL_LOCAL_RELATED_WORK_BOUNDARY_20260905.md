@@ -48,13 +48,26 @@ The broad ideas are established:
   from MCTS-derived step-level Q values and use the learned value model to guide an agent's
   next action. It is a direct step-value precedent, though not an MLE experiment corpus with
   execution-cost, physical-run provenance, and prospective audit controls.
+- [Bansal et al., ACL Findings 2025](https://aclanthology.org/2025.findings-acl.39/) explicitly
+  contrast ordinary preferences among responses to one fixed instruction with joint preferences
+  across instruction-response pairs. Their JPO objective reports gains over DPO. This is a direct
+  precedent for useful cross-context/global preference supervision, although it updates a policy
+  with a joint objective rather than pretraining an independent critic and adapting it to local
+  search-tree siblings.
+- [Licht et al., EMNLP 2025](https://aclanthology.org/2025.emnlp-main.1635/) study pointwise and
+  pairwise fine-tuning on connected comparison graphs, explicitly vary edge count while trying to
+  hold average degree and clustering comparable, and discuss train/test vertex exposure. This
+  closes broad novelty claims for connected pairwise graph supervision, edge-count-controlled
+  fine-tuning, or graph-aware split concerns outside MLE agents.
 
 Therefore this project must not claim first global-to-local training, first pointwise-to-
-pairwise adaptation, first use of a comparison graph, first D-optimal/effective-resistance
+pairwise adaptation, first useful cross-context preference supervision, first use of a connected
+comparison graph, first edge-count-controlled pairwise fine-tuning, first D-optimal/effective-resistance
 pair selector, first information-gain spanning-tree batch, first reuse of cached scalar labels
 as ranking supervision, first gap-stratified preference diagnosis, or a new generic ranking algorithm.
 The paper's novelty remains the Decision Corpus, cost/provenance accounting, and the audit
-protocol. A successful G-reuse experiment is a mechanism result inside that paper.
+protocol. A successful G-reuse experiment is a mechanism result inside that paper, not a new
+general preference-learning paradigm.
 
 ## What remains defensible after the direct-overlap check
 
@@ -65,6 +78,14 @@ population reorganized into global and local constraints under a fixed training-
 and a prospective append-only, outcome-blind audit with leakage retractions and one-shot
 frozen evaluation. This is an inference from the cited works, not proof that no unpublished
 or unindexed work exists.
+
+The distinction from JPO must be stated positively and narrowly: JPO learns a generator policy
+from joint cross-instruction preferences with a new optimization objective; G-reuse keeps the
+agent base fixed, trains an independent value critic, reuses external execution records from one
+program population, stages global constraints before local sibling adaptation, and evaluates
+run-clean search decisions under fixed token and execution-cost accounting. The distinction from
+Licht et al. is likewise domain and protocol, not graph theory: their connected text-item graphs
+are not MLE search trees and do not provide the execution/provenance/audit package above.
 
 Consequently the safest positive paper claim is not a new ranking primitive. It is a dataset
 and controlled empirical finding: whether supervision geometry extracted from already-paid

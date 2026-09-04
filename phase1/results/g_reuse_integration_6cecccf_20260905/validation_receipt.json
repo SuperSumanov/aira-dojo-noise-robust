@@ -1,0 +1,20 @@
+{
+  "base_archive_sha256": "187adbb476948f4ab97e5668ae441cf7742deac3710dd8c4348781fab0e1de5d",
+  "classification": "COMPLETE_SOFTWARE_REGRESSION_NOT_MODEL_EFFECT",
+  "deployment_root": "/research/d7/spc/yzyang4/g-reuse-integration/formal-6cecccf-v1",
+  "gpu_jobs": 0,
+  "model_fits": 0,
+  "overlay_archive_sha256": "20656f1b5ddcd3150bf0b1493f3a451046a70ccab67f116b4f5193425d27cda3",
+  "paid_api_calls": 0,
+  "protected_values_read": 0,
+  "source_archive_sha256": "96b660ebd8eb39f31f7edc102a69f0ea4cb65afe8d89346e5746996575220dd3",
+  "source_commit": "6cecccfcb5731ff46be560306f5add4e11a76c3a",
+  "source_file_count": 74,
+  "source_manifest_sha256": "accbd8461482e30f46bb64bad69ded87ea9ce0003e7e2b570131513a37e248c6",
+  "stderr_bytes": [0, 0],
+  "test_pass_counts": [134, 134],
+  "test_stdout_sha256": [
+    "4dc11d00dfff4d19273e6ec2eaf0c6c7f87caba7c643017b96e90813ae2a71fd",
+    "86af22e02cfae44c0942f388e4290fe496de94ae832979fa0255a8746cb94d1c"
+  ]
+}

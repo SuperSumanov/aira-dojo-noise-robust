@@ -3,6 +3,19 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L39. 2026-09-05 06:54：匿名join已纳入全G-reuse组合回归
+
+公开head=`6cecccfcb5731ff46be560306f5add4e11a76c3a`上，以既有完整G-reuse依赖根为基底，叠加该head的
+四个anonymous-join文件后执行18个测试模块。Linux A/B分别`134 passed in 20.38s`/
+`134 passed in 21.48s`，两个stderr均0 bytes。只含74个`.py/.json`的确定性source archive SHA=
+`96b660ebd8eb39f31f7edc102a69f0ea4cb65afe8d89346e5746996575220dd3`；冻结根=
+`/research/d7/spc/yzyang4/g-reuse-integration/formal-6cecccf-v1`。
+
+这只证明source-package→materializer→escrow→匿名join→producer/独立统计在同一Linux环境中没有接口回归，
+不是production unseal、checkpoint合格或critic效果。缺少的production caller不得在pristine truth package schema
+冻结前自行发明；protected read/GPU/API/model fit继续均0。证据见
+`results/g_reuse_integration_6cecccf_20260905/README.md`。
+
 ## 0L38. 2026-09-05 06:46：匿名prediction--truth join语义已冻结；仍不是生产揭盲caller
 
 结果前commit=`7c0786a295dd9b56e85a4f81c505770d8ab3c417`冻结纯内存join kernel：prediction只含

@@ -20,6 +20,19 @@ Linux archive omitted an indirect source dependency and stopped with nine collec
 the Windows attempt likewise stopped at collection because SciPy is absent. Both are retained
 and neither is a scientific assertion failure. No real score or model was used.
 
+## 06:54 Hong Kong update
+
+The anonymous join was added to the complete G-reuse Linux regression at public head
+`6cecccfcb5731ff46be560306f5add4e11a76c3a`. Eighteen test modules passed twice: 134 tests
+in each run, with zero-byte stderr. The deterministic 74-file source archive SHA-256 is
+`96b660ebd8eb39f31f7edc102a69f0ea4cb65afe8d89346e5746996575220dd3`; the frozen root is
+`/research/d7/spc/yzyang4/g-reuse-integration/formal-6cecccf-v1`.
+
+This closes a software compatibility gap only. A production caller remains intentionally
+blocked until the pristine truth-package schema is frozen; inventing that schema now would
+create outcome-aware degrees of freedom. No real prediction, truth, model or protected value
+was read.
+
 ## Boundaries
 
 - Entry HEAD 072a88ac0c3b6f931cc57b15f848110bed949444; fetched public direction first.

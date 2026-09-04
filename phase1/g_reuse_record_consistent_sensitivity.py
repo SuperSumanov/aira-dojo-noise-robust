@@ -52,6 +52,11 @@ def decide(full_metrics, filtered_metrics):
     }
 
 
+def attach_pair_count(metrics, edges):
+    check('reuse_pairs' not in metrics, 'unexpected_pair_count')
+    return {**metrics, 'reuse_pairs': len(edges)}
+
+
 def main():
     opened = install_guard([p for p, _ in EXTRA.values()])
     for path, digest in [*INPUTS.values(), *EXTRA.values()]:
@@ -69,8 +74,8 @@ def main():
     reuse = derive_reuse(local, global_all, run_of, task_of)
     filtered = record_consistent(reuse, cards, batches)
     check(len(reuse) == 3058 and len(filtered) == 2745, 'known_edge_count_drift')
-    full_metrics = summarize(local, reuse, task_of)
-    filtered_metrics = summarize(local, filtered, task_of)
+    full_metrics = attach_pair_count(summarize(local, reuse, task_of), reuse)
+    filtered_metrics = attach_pair_count(summarize(local, filtered, task_of), filtered)
     metrics = decide(full_metrics, filtered_metrics)
     for path, digest in [*INPUTS.values(), *EXTRA.values()]:
         checked(path, digest, scan=False)

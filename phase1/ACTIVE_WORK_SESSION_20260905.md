@@ -85,3 +85,10 @@ matched two historical v11 Cards rows plus old result rows, producing excessive 
 content. It did not touch prospective vaults or drive any selection, fit or scientific
 conclusion, but it repeated a previously documented search-scope mistake. All later searches
 must use explicit source/report/code paths and exclude Cards/data/result payloads.
+
+The first formal record-consistent sensitivity attempt at source commit `fe9aec1` failed
+closed before producing metrics: `producer_a` returned a `KeyError`, stderr was empty,
+and no B run or verifier was started. Diagnosis found that the new caller expected an
+explicit `reuse_pairs` count that the already-tested task summarizer intentionally does
+not return. Gates and inputs were unchanged; the fix adds an explicit count-binding helper
+and an integration regression test before any retry. The failed root is preserved.

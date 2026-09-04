@@ -219,12 +219,14 @@ def backward_local_pair_mean(accelerator, local_mean_loss, batch) -> float:
     return float(scaled.detach().cpu())
 
 
-def finish_non_deepspeed_update(accelerator, model, optimizer, *, max_grad_norm: float) -> dict:
+def finish_non_deepspeed_update(accelerator, model, optimizer, *, max_grad_norm: float,
+                               deepspeed_before=None) -> dict:
     """Finish a DDP update; DeepSpeed already steps inside its boundary backward."""
     if not bool(getattr(accelerator, "sync_gradients", False)):
         raise PlanError("optimizer_step_without_sync_boundary")
     if _is_deepspeed(accelerator):
-        return {"owner": "deepspeed_boundary_backward", "optimizer_step_skipped": False}
+        from phase1.global_local_ds_completion import finish_deepspeed_update
+        return finish_deepspeed_update(accelerator, model, optimizer, deepspeed_before)
     if not isinstance(max_grad_norm, (int, float)) or max_grad_norm <= 0:
         raise PlanError("invalid_max_gradient_norm")
     norm = accelerator.clip_grad_norm_(model.parameters(), float(max_grad_norm))

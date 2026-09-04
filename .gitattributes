@@ -337,3 +337,9 @@ phase1/scripts/run_fixed_forward_20260905.py text eol=lf diff
 phase1/tests/test_fixed_forward_rewire.py text eol=lf diff
 phase1/FIXED_FORWARD_REWIRE_PREFLIGHT_20260905.md text eol=lf diff
 phase1/results/fixed_forward_20260905/** -text diff
+phase1/global_local_ds_completion.py text eol=lf diff
+phase1/validate_ds_completion_source.py text eol=lf diff
+phase1/tests/test_global_local_ds_completion.py text eol=lf diff
+phase1/scripts/run_ds_completion_20260905.py text eol=lf diff
+phase1/DS_COMPLETION_PREFLIGHT_20260905.md text eol=lf diff
+phase1/results/ds_completion_20260905/** -text diff

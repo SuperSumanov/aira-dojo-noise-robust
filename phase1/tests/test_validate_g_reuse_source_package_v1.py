@@ -91,7 +91,40 @@ def test_hardlink_alias_rejected(tmp_path: Path):
     item["bytes"] = len(raw)
     item["sha256"] = hashlib.sha256(raw).hexdigest()
     write_json(manifest_path, manifest)
-    with pytest.raises(PackageDeclarationError, match="artifact_alias"):
+    with pytest.raises(PackageDeclarationError, match="artifact_not_regular"):
+        validate(root, manifest_path)
+
+
+def test_unlisted_hardlink_target_rejected(tmp_path: Path):
+    root, manifest_path, manifest = make_package(tmp_path)
+    outside = tmp_path / "outside.bin"
+    outside.write_bytes(b"outside")
+    linked = root / "linked.bin"
+    linked.hardlink_to(outside)
+    item = next(x for x in manifest["artifacts"] if x["role"] == "global_pairs")
+    item["path"] = linked.name
+    raw = linked.read_bytes()
+    item["bytes"] = len(raw)
+    item["sha256"] = hashlib.sha256(raw).hexdigest()
+    write_json(manifest_path, manifest)
+    with pytest.raises(PackageDeclarationError, match="artifact_not_regular"):
+        validate(root, manifest_path)
+
+
+def test_symlink_artifact_rejected(tmp_path: Path):
+    root, manifest_path, manifest = make_package(tmp_path)
+    linked = root / "linked.bin"
+    try:
+        linked.symlink_to(root / "cards.bin")
+    except OSError:
+        pytest.skip("symlink creation unavailable")
+    item = next(x for x in manifest["artifacts"] if x["role"] == "global_pairs")
+    item["path"] = linked.name
+    raw = linked.read_bytes()
+    item["bytes"] = len(raw)
+    item["sha256"] = hashlib.sha256(raw).hexdigest()
+    write_json(manifest_path, manifest)
+    with pytest.raises(PackageDeclarationError, match="artifact_symlink"):
         validate(root, manifest_path)
 
 

@@ -75,9 +75,12 @@ def safe_member(root: Path, relative: str) -> Path:
     require(isinstance(relative, str) and "\\" not in relative, "invalid_relative_path")
     pure = PurePosixPath(relative)
     require(not pure.is_absolute() and relative == pure.as_posix() and ".." not in pure.parts, "path_traversal")
-    path = root.joinpath(*pure.parts)
+    path = root
+    for part in pure.parts:
+        path = path / part
+        require(not path.is_symlink(), "artifact_symlink")
     require(path.resolve(strict=True).is_relative_to(root), "path_escape")
-    require(path.is_file() and not path.is_symlink(), "artifact_not_regular")
+    require(path.is_file() and path.stat().st_nlink == 1, "artifact_not_regular")
     return path
 
 
@@ -86,6 +89,7 @@ def validate(root: Path, manifest_path: Path) -> dict:
     root = root.resolve(strict=True)
     require(manifest_path.exists() and manifest_path.is_file() and not manifest_path.is_symlink(),
             "unsafe_manifest")
+    require(manifest_path.stat().st_nlink == 1, "unsafe_manifest")
     manifest_path = manifest_path.resolve(strict=True)
     require(manifest_path.is_relative_to(root), "manifest_outside_root")
     manifest, raw_manifest = load_small_json(manifest_path)

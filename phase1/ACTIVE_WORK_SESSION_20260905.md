@@ -13,6 +13,13 @@ both passed 10 tests. It enforces canonical left-minus-right orientation, exact 
 support and anonymous hash-only output, with a separate recomputing verifier. This is
 software readiness only: zero real scores, model fits, GPUs, paid APIs or protected reads.
 
+At public successor `6d3997f91e37328e66307164bd57977956a68bc3`, the combined G-reuse
+source/package/materializer/escrow/readout suite passed 125 Linux tests from exact archive
+`187adbb476948f4ab97e5668ae441cf7742deac3710dd8c4348781fab0e1de5d`. The first narrow
+Linux archive omitted an indirect source dependency and stopped with nine collection errors;
+the Windows attempt likewise stopped at collection because SciPy is absent. Both are retained
+and neither is a scientific assertion failure. No real score or model was used.
+
 ## Boundaries
 
 - Entry HEAD 072a88ac0c3b6f931cc57b15f848110bed949444; fetched public direction first.

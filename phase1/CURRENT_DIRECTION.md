@@ -22,6 +22,14 @@ extra endpoint、NaN、hash漂移、重复与输出篡改均fail-closed。
 矩阵批准与15个合法final checkpoint。详见`results/g_reuse_blinded_margins_47b8360_20260905/README.md`；
 GPU/API/model fit/protected read均0。
 
+同一公开后继head=`6d3997f91e37328e66307164bd57977956a68bc3`又对全部G-reuse source/tests做组合
+Linux回归。首个窄archive漏打包`historical_label_reuse_support.py`，9项在collection时报依赖缺失，未执行测试体并
+保留失败根。只补齐递归源码依赖的新根
+`/research/d7/spc/yzyang4/g-reuse-integration/formal-6d3997f-v2`完整`125 passed`；exact archive SHA=
+`187adbb476948f4ab97e5668ae441cf7742deac3710dd8c4348781fab0e1de5d`。effect/readout/escrow/margin四协议SHA
+逐项仍为`2e95b73c...80ed5/3e82858a...b2d5/5384ceae...55f/1b13bd11...2edd`。这是跨模块兼容性回归，
+不提升effect分类。
+
 ## 0L36. 2026-09-05 06:25：label-blind prediction escrow合同与验收器就绪；真实scorer仍未实现
 
 源码审查确认学长`b8d0951`的现成trainer/evaluator不能原样进入G-reuse：训练期把test split作eval，当前scale脚本

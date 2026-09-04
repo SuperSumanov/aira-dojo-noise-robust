@@ -18,6 +18,13 @@ Linux exact deployment：
 - producer SHA-256：`1c936389e8fd8eab288be0f9e9a92733285f66209d666a58768b2a9e0a108248`
 - independent verifier SHA-256：`108c697160b6fff8258dff687d06341f601cb7c7dd7d05b8c135c16519c8ece7`
 
+随后在公开后继 `6d3997f91e37328e66307164bd57977956a68bc3` 做全G-reuse组合回归。本地Windows因
+缺SciPy在collection停止；首个Linux窄包又因漏打一个间接源码依赖产生9个collection error，两者均不是断言
+失败且均保留。仅补递归依赖的新exact archive
+`187adbb476948f4ab97e5668ae441cf7742deac3710dd8c4348781fab0e1de5d`在
+`/research/d7/spc/yzyang4/g-reuse-integration/formal-6d3997f-v2`取得`125 passed`。四个核心协议SHA与各自
+正式回执一致；这只证明当前source/package/materializer/escrow/readout模块组合可收集并通过回归。
+
 合成负控覆盖 orientation、truth字段、missing/extra endpoint、NaN、pair hash、重复 endpoint score
 和输出 margin 篡改。producer 与 verifier 分别解析、核 hash 和重算差值。
 

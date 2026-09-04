@@ -1,0 +1,49 @@
+{
+  "protocol": "g-reuse-effect-power-envelope-v1",
+  "frozen_at_utc": "2026-09-04T21:36:00Z",
+  "status": "FROZEN_BEFORE_POWER_READOUT",
+  "purpose": "outcome-blind sensitivity analysis for the task-clustered CI gate; not a power guarantee",
+  "input": {
+    "path": "phase1/results/g_reuse_decision_context_reach_d379f00_20260905/producer_a.json",
+    "sha256": "c9f17ba4e7354aea19288f3ef58f2a8f25f979f962e0872bbda5e01ce1312bfe",
+    "allowed_field": "metrics.arms.full.anonymous_task_rows[*].local_pairs",
+    "forbidden_fields": [
+      "labels",
+      "predictions",
+      "accuracy",
+      "utility",
+      "task identities",
+      "parent identities",
+      "protected cohort data"
+    ]
+  },
+  "estimand": {
+    "delta_grid": [0.01, 0.02, 0.03, 0.04, 0.05],
+    "paired_discordance_grid": [0.1, 0.2, 0.3, 0.4],
+    "between_task_sd_grid": [0.0, 0.01, 0.02, 0.04],
+    "seed_correlation_grid": [0.0, 0.5, 1.0],
+    "training_seeds": 3,
+    "two_sided_ci_level": 0.95,
+    "target_power": 0.8,
+    "maximum_required_tasks_search": 1000
+  },
+  "named_scenarios": {
+    "optimistic": {"paired_discordance": 0.1, "between_task_sd": 0.0, "seed_correlation": 0.0},
+    "reference": {"paired_discordance": 0.2, "between_task_sd": 0.01, "seed_correlation": 0.5},
+    "stress": {"paired_discordance": 0.4, "between_task_sd": 0.02, "seed_correlation": 1.0}
+  },
+  "calculation": {
+    "task_weighting": "equal task macro",
+    "within_task_model": "paired correctness difference in {-1,0,1}, variance q-delta^2",
+    "three_seed_variance_factor": "(1+(S-1)*rho)/S",
+    "ci_approximation": "noncentral t with df=T-1 and two-sided 95 percent lower-bound gate",
+    "unequal_task_sizes": "mean inverse task pair count",
+    "required_tasks": "hold the observed mean inverse pair count fixed"
+  },
+  "classification": {
+    "always": "SENSITIVITY_ONLY_NOT_POWER_GUARANTEE",
+    "warning_if_reference_power_at_2pp_below": 0.8,
+    "no_change_to_effect_threshold": true,
+    "no_model_fit_authorized": true
+  }
+}

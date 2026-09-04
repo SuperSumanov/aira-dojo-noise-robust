@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L15. 2026-09-05 02:36：G-reuse 图秩增益通过预注册跨任务集中度三门
+
+在结果前提交 `39aee477e6adc3d6284926b5f0a2a896c841d1de` 冻结三个同时成立的门：至少 20 个任务
+有正 gain、最大单任务占比不超过 0.20、删除任一任务后至少保留 0.80。远端固定历史 L/G/Cards 三输入后，
+producer A/B 与不 import producer 的 verifier A/B 共四次运行均 rc=0、stderr=0；本地下载后 manifest 和
+producer/verifier aggregate 逐字节/逐字段一致。
+
+正式结果为：28/28 个任务都有正 incidence-rank gain，总 gain=924；最大单任务 gain=79，占
+`0.0854978354978355`；删除该任务仍保留 `0.914502164502164`。三门全部通过，状态仅称
+`HISTORICAL_G_REUSE_TASK_BREADTH_STRUCTURALLY_SUPPORTED`。producer receipt SHA-256 为
+`1f52670c0138a5ef8f222092c801f07a70863ae940ff4af77fd0231e6e16eb10`；GPU/API/model fit 均为 0。
+
+这排除了“924 的结构增益由少数任务制造”，但不证明 accuracy、有效独立样本量、clean scaling、模型收益
+或搜索收益。143 config mismatch、193 source unresolved、experiment closure、G0 计价和正式训练预算门继续有效；
+不得据此启动训练。正式产物见 `results/g_reuse_task_breadth_39aee47_20260905/README.md`。
+
 ## 0L14. 2026-09-05 02:22：新branching web-agent数据关闭通用多备选首创
 
 2026-09-02刚提交的[Discriminative World Models for Web Agents](https://arxiv.org/abs/2609.02885)明确用

@@ -1,0 +1,34 @@
+{
+  "protocol": "g-reuse-target-a50-development-v1",
+  "status": "POST_0L28_DEVELOPMENT_FROZEN_BEFORE_TARGET_A50_READOUT",
+  "frozen_at_utc": "2026-09-04T21:12:00Z",
+  "arms": ["basis", "targetA50", "spectral50", "cheapest50", "hash50", "full"],
+  "matched_arms": ["targetA50", "spectral50", "cheapest50", "hash50"],
+  "objective": "per-token Sherman-Morrison reduction in sum of fixed local-edge effective resistances",
+  "score_quantization_digits": 15,
+  "budget": "task-wise floor((full_g_tokens-basis_g_tokens)/2)",
+  "gates": {
+    "targetA_pair_relative_reduction_vs_spectral_minimum": 0.01,
+    "targetA_pair_relative_reduction_vs_each_simple_baseline_minimum": 0.03,
+    "targetA_task_macro_strictly_lower_than_all_matched_controls": true,
+    "targetA_pooled_p90_not_higher_than_all_matched_controls": true,
+    "targetA_nonworse_tasks_vs_spectral_minimum": 20,
+    "targetA_strictly_better_tasks_vs_spectral_minimum": 15,
+    "maximum_single_task_positive_reduction_share_vs_spectral": 0.20,
+    "targetA_budget_utilization_minimum": 0.95
+  },
+  "timing_classification": "post-failure method development, not independent confirmation",
+  "forbidden": [
+    "real orientation score prediction code or protected cohort",
+    "post-readout threshold budget task or objective changes",
+    "selected identity output",
+    "GPU paid API neural model load or fit base-model update"
+  ],
+  "authorization": {
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "neural_model_loads": 0,
+    "neural_model_fits": 0,
+    "base_model_updates": 0
+  }
+}

@@ -28,6 +28,7 @@ def test_invalid_parameters_rejected():
 
 def test_unbound_protocol_rejected(tmp_path: Path):
     protocol = json.loads(Path("phase1/g_reuse_effect_power_protocol_v1.json").read_text(encoding="utf-8"))
+    protocol["input"]["sha256"] = "TO_BE_BOUND_BEFORE_EXECUTION"
     protocol_path = tmp_path / "protocol.json"
     protocol_path.write_text(json.dumps(protocol), encoding="utf-8")
     source_path = tmp_path / "source.json"

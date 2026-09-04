@@ -4,6 +4,15 @@ Requested: stay in this conversation and advance the current research for six ho
 checking the senior's new corpus. Window: 2026-09-04 17:53:04--23:53:04 UTC.
 This file is a plan, not evidence that the full six hours have elapsed.
 
+## 06:29 Hong Kong update
+
+The label-blind endpoint-score-to-margin layer was frozen before any real score was read.
+Commit `47b83604e489309f6221b3b3770c6667160733b8` deployed as exact archive
+`5b26287690d0c39b62a21d3b7e62f8935c1257020c65fd96c4d002b234e07088`; two Linux runs
+both passed 10 tests. It enforces canonical left-minus-right orientation, exact endpoint
+support and anonymous hash-only output, with a separate recomputing verifier. This is
+software readiness only: zero real scores, model fits, GPUs, paid APIs or protected reads.
+
 ## Boundaries
 
 - Entry HEAD 072a88ac0c3b6f931cc57b15f848110bed949444; fetched public direction first.

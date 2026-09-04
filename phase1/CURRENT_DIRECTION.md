@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L37. 2026-09-05 06:29：label-blind endpoint score到匿名margin的确定性物化层已冻结
+
+结果前commit=`47b83604e489309f6221b3b3770c6667160733b8`新增canonical物化协议、producer与不导入
+producer的独立verifier。正式输入不允许oriented pair：pair只含按字典序排列的左右endpoint ID及pair/task/parent/run
+SHA，endpoint scorer只交五臂×三seed与TF-IDF共16个有限scalar；support必须恰等于pair endpoint并集。
+输出固定为`score(left)-score(right)`，且只写匿名cluster SHA与margin，不写raw endpoint或truth/outcome。
+
+exact archive=`5b26287690d0c39b62a21d3b7e62f8935c1257020c65fd96c4d002b234e07088`，部署根
+`/research/d7/spc/yzyang4/g-reuse-blinded-margins/formal-47b8360-v1`；Linux A/B均10 tests pass。
+协议/producer/verifier SHA=`1b13bd111f074d9f4a703fe2e04a1dc06a46eb3d5dbd329daa85fcd45e122edd/
+1c936389e8fd8eab288be0f9e9a92733285f66209d666a58768b2a9e0a108248/
+108c697160b6fff8258dff687d06341f601cb7c7dd7d05b8c135c16519c8ece7`。orientation、truth字段、missing/
+extra endpoint、NaN、hash漂移、重复与输出篡改均fail-closed。
+
+这只关闭“合法endpoint inference如何不看标签变成正式pair margin”的接口缺口，不认证checkpoint、推理进程访问或真实
+模型效果；尚未读取任何真实score，更不是accuracy/scaling正结论。下一实质阻塞仍是同producer来源包、G0、正式GPU
+矩阵批准与15个合法final checkpoint。详见`results/g_reuse_blinded_margins_47b8360_20260905/README.md`；
+GPU/API/model fit/protected read均0。
+
 ## 0L36. 2026-09-05 06:25：label-blind prediction escrow合同与验收器就绪；真实scorer仍未实现
 
 源码审查确认学长`b8d0951`的现成trainer/evaluator不能原样进入G-reuse：训练期把test split作eval，当前scale脚本

@@ -311,3 +311,9 @@ phase1/results/g0_source_repair_20260904/** -text diff
 phase1/scripts/submit_g0_source_repaired_once_20260904.sh text eol=lf diff
 phase1/results/g0_retry_r3_20260904/** -text diff
 phase1/scripts/check_g0_retry_r3_readonly_20260904.py text eol=lf diff
+phase1/validate_senior_source_provenance_v2.py text eol=lf diff
+phase1/tests/test_senior_source_provenance_v2.py text eol=lf diff
+phase1/scripts/audit_historical_source_dates_20260904.py text eol=lf diff
+phase1/scripts/verify_historical_source_dates_20260904.py text eol=lf diff
+phase1/SOURCE_DECLARATION_V2_20260904.md text eol=lf diff
+phase1/results/source_declaration_v2_20260904/** -text diff

@@ -317,3 +317,9 @@ phase1/scripts/audit_historical_source_dates_20260904.py text eol=lf diff
 phase1/scripts/verify_historical_source_dates_20260904.py text eol=lf diff
 phase1/SOURCE_DECLARATION_V2_20260904.md text eol=lf diff
 phase1/results/source_declaration_v2_20260904/** -text diff
+phase1/historical_label_reuse_support.py text eol=lf diff
+phase1/verify_historical_label_reuse_support.py text eol=lf diff
+phase1/tests/test_historical_label_reuse_support.py text eol=lf diff
+phase1/LABEL_REUSE_MECHANISM_PLAN_20260904.md text eol=lf diff
+phase1/scripts/run_historical_label_reuse_support_20260904.py text eol=lf diff
+phase1/results/historical_label_reuse_support_20260904/** -text diff

@@ -1,0 +1,50 @@
+{
+  "protocol": "g-reuse-target-contrast-variance-v1",
+  "status": "FROZEN_BEFORE_VARIANCE_READOUT",
+  "frozen_at_utc": "2026-09-04T20:51:47Z",
+  "population": {
+    "local_pairs": 4689,
+    "record_consistent_full_g_pairs": 2745,
+    "minimum_token_basis_g_pairs": 790,
+    "tasks": 28,
+    "historical_train_structure_only": true
+  },
+  "arms": ["basis", "spectral50", "cheapest50", "hash50", "full"],
+  "matched_arms": ["spectral50", "cheapest50", "hash50"],
+  "matched_budget": "task-wise floor((full_g_tokens-basis_g_tokens)/2)",
+  "training_graph": "unit-weight local edges plus selected G edges",
+  "target_contrasts": "all fixed local sibling edges",
+  "estimand": "b_e^T pseudoinverse(L) b_e under unit independent edge noise",
+  "aggregates": ["pair_weighted_mean", "task_macro_mean", "pooled_p90"],
+  "gates": {
+    "spectral_relative_reduction_vs_each_baseline_minimum": 0.03,
+    "spectral_pair_weighted_strictly_lower_than_each_baseline": true,
+    "spectral_task_macro_strictly_lower_than_each_baseline": true,
+    "spectral_pooled_p90_strictly_lower_than_each_baseline": true,
+    "spectral_nonworse_tasks_vs_each_baseline_minimum": 20,
+    "spectral_strictly_better_tasks_vs_each_baseline_minimum": 15,
+    "maximum_single_task_positive_reduction_share": 0.20,
+    "full_pair_and_task_macro_strictly_lower_than_basis": true
+  },
+  "selector_contract": {
+    "score": "round(log1p(effective_resistance)/valid_tokens, 15)",
+    "tie_break": "lexicographic canonical endpoint edge",
+    "edge_indivisible": true,
+    "unused_task_budget_not_transferred": true
+  },
+  "forbidden": [
+    "real pair orientation",
+    "score grade gap prediction or accuracy",
+    "dev test first960 Target300 Target522",
+    "task run card component or selected edge identity output",
+    "post-result threshold budget weight or task changes",
+    "GPU paid API neural model fit or base-model update"
+  ],
+  "authorization": {
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "neural_model_loads": 0,
+    "neural_model_fits": 0,
+    "base_model_updates": 0
+  }
+}

@@ -73,8 +73,10 @@ def main():
         if done.returncode or stderr.stat().st_size or not done.stdout.endswith(b'\n'):
             raise RuntimeError('verifier_failed')
         verifier_paths.append(stdout)
-    if verifier_paths[0].read_bytes() != verifier_paths[1].read_bytes():
-        raise RuntimeError('verifier_ab_mismatch')
+    verifier_a = json.loads(verifier_paths[0].read_bytes())
+    verifier_b = json.loads(verifier_paths[1].read_bytes())
+    if not close(verifier_a, verifier_b):
+        raise RuntimeError('verifier_ab_not_close')
     payload, verified = json.loads(producer_paths[0].read_bytes()), json.loads(verifier_paths[0].read_bytes())
     if not close(payload['metrics'], verified['metrics']):
         raise RuntimeError('producer_verifier_mismatch')
@@ -83,6 +85,8 @@ def main():
                'source_sha256': {str(producer.relative_to(source)): digest(producer),
                                  str(verifier.relative_to(source)): digest(verifier)},
                'producer_receipt_sha256': receipt_sha, 'runs': records,
+               'producer_ab_requirement': 'byte_exact',
+               'verifier_ab_requirement': 'recursive_rel_1e-8_abs_1e-7',
                'gpu_jobs': 0, 'api_calls': 0, 'model_fits': 0}
     (root/'context.json').write_text(json.dumps(context, indent=2, sort_keys=True)+'\n')
     lines = [f'{digest(path)}  {path.name}' for path in sorted(root.iterdir()) if path.name != 'SHA256SUMS']

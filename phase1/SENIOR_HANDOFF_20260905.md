@@ -41,6 +41,12 @@ Probe或底座训练，也没有读取first960/Target300/Target522结果。最�
    27个cycle任务中24个不劣于两baseline。但预注册绝对门是D≥75%、任务中位≥70%，实得72.68%/68.70%，
    所以总状态记为NOT SUPPORTED，不能降门。可用信息是“相对简单baseline更有效”，不能写成达到预定保真度。
    见`results/g_reuse_spectral_midpoint_7648451_20260905/README.md`。
+4. 事前固定25%/50%/75%三个同预算点后，spectral在每一点的D与A capture都严格高于cheapest和SHA-order；
+   三点spectral D为47.09%/72.68%/89.52%，A为68.45%/87.44%/96.15%，D同时不劣两baseline的任务数
+   为26/24/26（分母27）。七项相对优势门全过，producer A/B、独立verifier和下载hash复验通过。
+   这把“中点偶然胜出”升级为跨固定预算曲线的相对正结果，但不撤回中点D≥75%与任务中位≥70%的绝对门失败。
+   因此spectral可作为后续模型效果实验的成本challenger，仍不能称critic效果或算法首创。见
+   `results/g_reuse_spectral_frontier_8ab7d3c_20260905/README.md`。
 
 ## 2. G0 12377 没有训练，已修到真实launcher边界
 

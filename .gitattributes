@@ -402,3 +402,4 @@ phase1/g_reuse_spectral_frontier.py text eol=lf diff
 phase1/tests/test_g_reuse_spectral_frontier.py text eol=lf diff
 phase1/verify_g_reuse_spectral_frontier.py text eol=lf diff
 phase1/scripts/run_g_reuse_spectral_frontier_20260905.py text eol=lf diff
+phase1/results/g_reuse_spectral_frontier_8ab7d3c_20260905/** text eol=lf diff

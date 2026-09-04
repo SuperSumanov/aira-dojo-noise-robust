@@ -1,0 +1,50 @@
+{
+  "api_calls": 0,
+  "commit": "8ab7d3c24aa68f46ba2920a6dad988657358a0cf",
+  "executable": "/research/d7/spc/yzyang4/venvs/exp/bin/python",
+  "gpu_jobs": 0,
+  "model_fits": 0,
+  "producer_ab_requirement": "byte_exact",
+  "producer_receipt_sha256": "92c0c0bb0d92ac47dd69719e02a6cdbf0397840b4155abef7619fec2c56555ed",
+  "python": "3.11.15 (main, Jun 11 2026, 04:03:40) [Clang 22.1.3 ]",
+  "runs": [
+    {
+      "elapsed_seconds": 52.17533764615655,
+      "returncode": 0,
+      "role": "producer_a",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "92c0c0bb0d92ac47dd69719e02a6cdbf0397840b4155abef7619fec2c56555ed"
+    },
+    {
+      "elapsed_seconds": 49.40614543296397,
+      "returncode": 0,
+      "role": "producer_b",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "92c0c0bb0d92ac47dd69719e02a6cdbf0397840b4155abef7619fec2c56555ed"
+    },
+    {
+      "elapsed_seconds": 51.50542357284576,
+      "returncode": 0,
+      "role": "verifier_a",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "198f9e37ea1567e82ce9863e8165ebc8a7d5f4cfae8a161759849f0ca153bf26"
+    },
+    {
+      "elapsed_seconds": 47.58843978960067,
+      "returncode": 0,
+      "role": "verifier_b",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "24112c24b6dd983eda12cb09c314ae3e672d2a16abc947bc6d7402b6ed01e5e2"
+    }
+  ],
+  "source_sha256": {
+    "phase1/g_reuse_spectral_frontier.py": "d81f265b9a294d4efcf72c0b8f15de066f1e9b5e1ad9aadf19d542351266788e",
+    "phase1/verify_g_reuse_spectral_frontier.py": "f139ebcc1dc988c9ff0a4acfef17b35aab68952798a08079c6aa9ab7079fcd07"
+  },
+  "status": "G_REUSE_SPECTRAL_FRONTIER_RUN_COMPLETE",
+  "verifier_ab_requirement": "recursive_rel_1e-8_abs_1e-7"
+}

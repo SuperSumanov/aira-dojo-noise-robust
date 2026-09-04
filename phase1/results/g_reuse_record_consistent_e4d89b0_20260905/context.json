@@ -1,0 +1,48 @@
+{
+  "api_calls": 0,
+  "commit": "e4d89b0f3a6a42d1b019676c1a970b202856c022",
+  "executable": "/research/d7/spc/yzyang4/venvs/exp/bin/python",
+  "gpu_jobs": 0,
+  "model_fits": 0,
+  "producer_receipt_sha256": "efdc900685a892cf5b623f365d76faa93f8762e088efa5799abf04568d810ad2",
+  "python": "3.11.15 (main, Jun 11 2026, 04:03:40) [Clang 22.1.3 ]",
+  "runs": [
+    {
+      "elapsed_seconds": 48.60402034036815,
+      "returncode": 0,
+      "role": "producer_a",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "efdc900685a892cf5b623f365d76faa93f8762e088efa5799abf04568d810ad2"
+    },
+    {
+      "elapsed_seconds": 41.526617406867445,
+      "returncode": 0,
+      "role": "producer_b",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "efdc900685a892cf5b623f365d76faa93f8762e088efa5799abf04568d810ad2"
+    },
+    {
+      "elapsed_seconds": 41.36693617794663,
+      "returncode": 0,
+      "role": "verifier_a",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "6f6254fd923f4bcaec4c82152b762c6c5c0949e57db8ca7a6346e5d71dd43905"
+    },
+    {
+      "elapsed_seconds": 40.97685407474637,
+      "returncode": 0,
+      "role": "verifier_b",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "6f6254fd923f4bcaec4c82152b762c6c5c0949e57db8ca7a6346e5d71dd43905"
+    }
+  ],
+  "source_sha256": {
+    "phase1/g_reuse_record_consistent_sensitivity.py": "3d674d74467819bc067a8d24ca9a522b47ef7edc5fddc3c8ba01a078dc739485",
+    "phase1/verify_g_reuse_record_consistent_sensitivity.py": "e2773bf7ace7e1f582fcad469d6b7c9fec243b9a9b17565f05b2ebe57450c471"
+  },
+  "status": "G_REUSE_RECORD_CONSISTENT_RUN_COMPLETE"
+}

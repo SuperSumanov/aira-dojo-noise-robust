@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L16. 2026-09-05 02:48：排除已知记录缺陷后保留85.50% G-reuse图秩增益
+
+结果前提交 `fe9aec186a6a1e67d5764e59126549b39155a3e5` 固定保守敏感性：从3058条G-reuse中排除
+observed card config不等或旧source projection非unique的并集，仅保留既有四格中的2745条
+`equal observed config + unique projected source`；三门为rank gain保留率≥0.80、正gain任务≥20、
+最大单任务占比≤0.20。首个正式根因caller漏绑`reuse_pairs`字段而在任何metrics产生前以KeyError fail-closed；
+失败根保留。修复提交`e4d89b0f3a6a42d1b019676c1a970b202856c022`只显式绑定边数并加集成回归，门与输入未变。
+
+全新根的producer A/B及独立verifier A/B均rc=0、stderr=0，下载后archive、manifest、A/B与aggregate复验通过。
+结果为filtered gain=790、full gain=924，retention=`0.854978354978355`；28/28任务正gain；最大任务gain=72，
+占`0.09113924050632911`，三门全过。producer receipt SHA-256为
+`efdc900685a892cf5b623f365d76faa93f8762e088efa5799abf04568d810ad2`，GPU/API/model fit=0。
+
+只允许说当前full-reuse结构增益不由313条已知记录问题边支撑。`equal observed config`不是producer配置证明，
+`unique projected source`不是权威来源修复；旧Cards/G仍非同一完整包，experiment closure未证。因此2745不得
+物化/命名为clean训练池，不解锁训练。正式产物见
+`results/g_reuse_record_consistent_e4d89b0_20260905/README.md`。
+
 ## 0L15. 2026-09-05 02:36：G-reuse 图秩增益通过预注册跨任务集中度三门
 
 在结果前提交 `39aee477e6adc3d6284926b5f0a2a896c841d1de` 冻结三个同时成立的门：至少 20 个任务

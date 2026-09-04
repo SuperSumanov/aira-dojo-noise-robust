@@ -308,3 +308,5 @@ phase1/scripts/g0_readonly_asset_recheck_20260904.sh text eol=lf diff
 phase1/scripts/repair_g0_untracked_lock_20260904.py text eol=lf diff
 phase1/scripts/verify_g0_source_repair_20260904.py text eol=lf diff
 phase1/results/g0_source_repair_20260904/** -text diff
+phase1/scripts/submit_g0_source_repaired_once_20260904.sh text eol=lf diff
+phase1/results/g0_retry_r3_20260904/** -text diff

@@ -1,0 +1,14 @@
+{
+  "archive_sha256": "f0a44472c4fef017388ab605757fc4e75fdf806e4d19e1c90e8bef4a0642e82a",
+  "classification": "ANONYMOUS_JOIN_KERNEL_READY_NOT_AUTHORIZED_FOR_PRODUCTION_UNSEAL",
+  "deployment_root": "/research/d7/spc/yzyang4/g-reuse-anonymous-join/formal-7c0786a-v1",
+  "gpu_jobs": 0,
+  "independent_verifier_sha256": "57f2423b4fe75577d5863146d6185db7888fbf4c246934cb512749bacd56febd",
+  "model_fits": 0,
+  "paid_api_calls": 0,
+  "producer_sha256": "90ecaf8bda2014d450bcb54a7350dfe8d39c459ec0dde6feec83340bb09dd263",
+  "protected_values_read": 0,
+  "protocol_sha256": "d6a0540b3a78cae15827d88dddb2419bef599be2fdf936e51abb74201212d7f9",
+  "source_commit": "7c0786a295dd9b56e85a4f81c505770d8ab3c417",
+  "test_pass_counts": [9, 9]
+}

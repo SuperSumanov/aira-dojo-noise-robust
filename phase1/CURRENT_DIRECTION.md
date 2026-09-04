@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L38. 2026-09-05 06:46：匿名prediction--truth join语义已冻结；仍不是生产揭盲caller
+
+结果前commit=`7c0786a295dd9b56e85a4f81c505770d8ab3c417`冻结纯内存join kernel：prediction只含
+pair/task/parent/run SHA+margins，truth只含同四SHA+±1；pair support必须exact相等，同pair的三类cluster SHA也必须
+逐项一致，按pair SHA排序后才进入0L34--35双统计实现。输出只含canonical input SHA、计数与聚合统计，不写joined
+rows、truth signs或raw identity。协议明确要求未来caller先认证15-checkpoint escrow，再认证closure/pristine truth，
+且本kernel自身不读文件、不定位或授权vault。
+
+exact archive=`f0a44472c4fef017388ab605757fc4e75fdf806e4d19e1c90e8bef4a0642e82a`，Linux根
+`/research/d7/spc/yzyang4/g-reuse-anonymous-join/formal-7c0786a-v1`，A/B均9 tests pass；协议/producer/
+independent verifier SHA=`d6a0540b3a78cae15827d88dddb2419bef599be2fdf936e51abb74201212d7f9/
+90ecaf8bda2014d450bcb54a7350dfe8d39c459ec0dde6feec83340bb09dd263/
+57f2423b4fe75577d5863146d6185db7888fbf4c246934cb512749bacd56febd`。这是揭盲语义和双实现就绪，
+不是checkpoint认证、真实unseal、accuracy或正效果；protected read/GPU/API/model fit均0。正式记录见
+`results/g_reuse_anonymous_truth_join_7c0786a_20260905/README.md`。
+
 ## 0L37. 2026-09-05 06:29：label-blind endpoint score到匿名margin的确定性物化层已冻结
 
 结果前commit=`47b83604e489309f6221b3b3770c6667160733b8`新增canonical物化协议、producer与不导入

@@ -14,6 +14,12 @@ optimistic/reference/stress task-CI门功效为98.94%/63.61%/27.47%；reference�
 `results/g_reuse_effect_power_b27115a_20260905/README.md`和
 `results/g_reuse_power_mc_adeb668_20260905/README.md`；这不是critic负结果，而是防止花完15 fits才发现CI先天过宽。
 
+效果读出细节也已在真实结果前冻结：任务内pair-micro、seed平均、任务等权，20,000次task bootstrap，
+parent/run两层敏感性，TF-IDF同池配对、tie/LOTO/单任务35%分母均已机器定义。尤其若L1显著胜Lbudget，full还必须
+显著胜L1；否则不能把避免local重复训练误写成global transfer。前级通过后才计算hash对照。Linux合成回归10项通过，
+见`results/g_reuse_effect_readout_946dcdc_20260905/README.md`。它仍只是统计核，不会打开vault；正式caller/独立复算器
+尚需完成，不能叫模型效果。
+
 ## 1. 今天得到的三个正结构结果
 
 我们把方法候选收窄为：在同一批已执行L端点上，增加由已有执行分数导出的global比较，再适配local sibling。

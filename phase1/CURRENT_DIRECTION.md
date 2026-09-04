@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L34. 2026-09-05 06:14：效果读出分析自由度已前置冻结，但尚非可揭盲caller
+
+五臂协议此前未机器定义task CI算法、TF-IDF与三seed配对、tie、LOTO、单任务35%分母及L1混淆层级；若等
+结果后补会留下分析自由度。结果前commit=`946dcdca08dda0eca1e40fe1af022bc5fa9ec5b9`现固定：任务内
+pair-micro→seed平均→任务等权；20,000次task percentile bootstrap；各5,000次task→parent/run两层敏感性；
+同池TF-IDF从每个full seed相减；tie=0.5；单任务份额按正向未归一化pair×seed正确数增益计算。
+
+层级也收紧：若L1的task-CI下界胜Lbudget，full必须再胜L1，否则不得把“少做local重复训练”写成global transfer；
+deployment和该层先全过才允许计算full-vs-hash。Linux exact archive
+`9b39e554b69abfd14d0a8bec2523744b29fa6e0d061e5a4f923608688a8b7896`上10 tests pass、stderr0；协议/
+统计核SHA=`3e82858a9b66e5deb9f96efb27968259823470106d86dc0b439b11c666bfb2d5/
+2b66495684a9fce110eb436110802f04166250fd4c3210d2aceb9780782689d7`。当前只是合成fixture验证的统计核，
+不会认证escrow或开vault；仍需独立复算器和正式caller，因此不叫effect-ready，更不是正效果。详见
+`results/g_reuse_effect_readout_946dcdc_20260905/README.md`；GPU/API/model fit/protected read均0。
+
 ## 0L33. 2026-09-05 06:02：功效解析近似未过1pp校准门，但偏差方向保守
 
 结果前commit=`adeb668dbb80a4d0addc133220b7e2e92f27df11`冻结异方差Monte Carlo：只读28个匿名任务的

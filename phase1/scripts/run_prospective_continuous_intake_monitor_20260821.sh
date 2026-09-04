@@ -144,6 +144,13 @@ runner() {
   )
 }
 
+if [[ "${mode}" == --run-once ]]; then
+  # Foreground transaction for an active session; no PID file or background loop.
+  verify_contracts
+  runner --require-strace
+  exit 0
+fi
+
 if [[ "${mode}" == --initialize ]]; then
   verify_contracts
   mkdir -p "${log_root}"

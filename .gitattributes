@@ -343,3 +343,7 @@ phase1/tests/test_global_local_ds_completion.py text eol=lf diff
 phase1/scripts/run_ds_completion_20260905.py text eol=lf diff
 phase1/DS_COMPLETION_PREFLIGHT_20260905.md text eol=lf diff
 phase1/results/ds_completion_20260905/** -text diff
+phase1/scripts/run_prospective_continuous_intake_monitor_20260821.sh text eol=lf diff
+phase1/scripts/foreground_intake_session_20260905.py text eol=lf diff
+phase1/tests/test_foreground_intake_dispatch.py text eol=lf diff
+phase1/ACTIVE_WORK_SESSION_20260905.md text eol=lf diff

@@ -17,6 +17,11 @@
 - 只有deployment与L1层级先通过才计算full-vs-hash，后级不能救前级；
 - 单任务35%门固定为“一个任务的正向未归一化pair×seed正确数增益/所有正向任务增益”。
 
-当前模块只是统计核，明确不会打开label vault或认证checkpoint/prediction escrow。正式使用前仍需独立实现复算器和
+随后在结果前commit=`b53cb84b544d6fbe86d98a172fe2d2bf60a5eae5`补齐不导入producer的独立复算器；新exact
+archive SHA-256=`639701021b714467c52fd731e96882c465aee5189db480e54aafb54d560ded7f`，Linux 15项测试通过、
+stderr为0，verifier源码SHA-256=`f1678e435abbd64eb98f0848152f148554bc25f109b09f81f3e5b4e9b2c9c8d4`。
+非均匀任务、不同parent/run簇、ties及三种层级状态下，两实现逐字段一致；篡改gate会被拒绝。
+
+当前模块仍只是统计核，明确不会打开label vault或认证checkpoint/prediction escrow。正式使用前仍需
 outcome-aware caller；同producer来源、split、G0、checkpoint/manifest及GPU批准的阻断全部不变。synthetic test、
 测试数量或readiness均不能称critic accuracy/scaling/正效果。GPU/API/model fit/protected read均为0。

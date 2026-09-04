@@ -17,8 +17,9 @@ optimistic/reference/stress task-CI门功效为98.94%/63.61%/27.47%；reference�
 效果读出细节也已在真实结果前冻结：任务内pair-micro、seed平均、任务等权，20,000次task bootstrap，
 parent/run两层敏感性，TF-IDF同池配对、tie/LOTO/单任务35%分母均已机器定义。尤其若L1显著胜Lbudget，full还必须
 显著胜L1；否则不能把避免local重复训练误写成global transfer。前级通过后才计算hash对照。Linux合成回归10项通过，
-见`results/g_reuse_effect_readout_946dcdc_20260905/README.md`。它仍只是统计核，不会打开vault；正式caller/独立复算器
-尚需完成，不能叫模型效果。
+见`results/g_reuse_effect_readout_946dcdc_20260905/README.md`。独立复算器随后也已完成：Linux 15项测试覆盖
+非均匀任务/parent/run簇/tie和层级阻断，producer/verifier逐字段一致、篡改gate被拒绝。它仍不会打开vault；
+正式checkpoint/prediction认证与outcome-aware caller尚需完成，不能叫模型效果。
 
 ## 1. 今天得到的三个正结构结果
 

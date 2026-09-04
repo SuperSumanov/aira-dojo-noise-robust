@@ -3,6 +3,19 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L35. 2026-09-05 06:18：效果统计独立复算器完成；剩余是认证caller与上游材料
+
+结果前commit=`b53cb84b544d6fbe86d98a172fe2d2bf60a5eae5`新增不导入producer的独立复算器，重新实现
+task/seed聚合、20k task bootstrap、两种5k nested cluster bootstrap、LOTO、任务贡献及条件性hash层级。
+Linux exact archive SHA=`639701021b714467c52fd731e96882c465aee5189db480e54aafb54d560ded7f`上15 tests pass、
+stderr0；verifier SHA=`f1678e435abbd64eb98f0848152f148554bc25f109b09f81f3e5b4e9b2c9c8d4`。非均匀任务/
+parent/run簇/tie与正、deployment失败、L1阻断三种层级均逐字段一致，篡改gate被拒绝。
+
+因此统计定义不再依赖单实现自证；但这仍不是可揭盲执行器。缺少的最后软件层是：先认证全部checkpoint、prediction
+escrow和same-pool身份，再一次性连接pristine truth、把原始身份替换成SHA后调用双实现，且输出不得含row truth。
+同producer包、真实G0、GPU预算批准也仍阻断；本节不能称accuracy/scaling/正效果。正式边界见
+`results/g_reuse_effect_readout_946dcdc_20260905/README.md`；GPU/API/model fit/protected read均0。
+
 ## 0L34. 2026-09-05 06:14：效果读出分析自由度已前置冻结，但尚非可揭盲caller
 
 五臂协议此前未机器定义task CI算法、TF-IDF与三seed配对、tie、LOTO、单任务35%分母及L1混淆层级；若等

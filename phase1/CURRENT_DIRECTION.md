@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L21. 2026-09-05 04:15：谱中点selector显著胜简单baseline，但两项绝对门未过
+
+结果前commit `76484510fbee05c8bbd16df476209e30e9671c82`固定：逐任务额外token预算为
+`floor((full-basis)/2)`，spectral按15位量化的`log1p(R_eff)/token`贪心，与cheapest和SHA-order使用同一上限；
+六项科学门不得结果后改。主实现为shifted Laplacian inverse，独立verifier为grounded Laplacian inverse。
+
+producer A/B byte-exact；verifier A/B与producer/verifier均在冻结close内，最大绝对差分别为
+`1.8189894035458565e-12`和`1.127773430198431e-10`，非浮点差均0；四次rc0/stderr0。下载archive SHA=
+`d14c51f261796e070e5d755f2acb0005d9c3882512a27ab322836ade667b6a84`，receipt SHA=
+`fd474f1c23dca9d3ee9547710e656aa59cbfc737b8bb6bd7841e0069fb0664f2`，manifest/credential/身份门通过。
+
+在同一额外预算`6913983`下，spectral/cheapest/hash实际使用`6836387/6822756/6857649` tokens，利用率
+`0.9887769466601234/0.9868054347255409/0.9918521639408139`。spectral D-capture
+`0.7268336658528469`显著高于`0.599808606698623/0.6222128940985481`，A-capture
+`0.8744405497929161`也高于`0.5923756743213272/0.7365262129330473`；27个cycle任务中24个D不劣于
+两baseline。这四类比较门均过。
+
+但冻结绝对门要求D-capture≥0.75且任务中位≥0.70，实得`0.7268336658528469`与
+`0.68697301897845`，故总状态必须是`G_REUSE_SPECTRAL_MIDPOINT_NOT_SUPPORTED`，不得降门救回。
+可保留的正结论只是：**在固定中点token上限下，该已有理论指导selector比两个简单baseline更高效，且优势迁移到A-opt**；
+不能称达到预定信息保真度。下一项若做25/50/75完整曲线，只能检验跨预算相对优势，不能把高预算点拿来覆盖本失败。
+正式产物见`results/g_reuse_spectral_midpoint_7648451_20260905/README.md`，GPU/API/fit=0。
+
 ## 0L20. 2026-09-05 03:45：full G的cycle广泛降低55.33%有效电阻，五门全过
 
 结果前commit `6976358740943b9c3dede20c27da4a77443a7cbb`固定endpoint-level无权图、最终G-touched

@@ -36,6 +36,11 @@ Probe或底座训练，也没有读取first960/Target300/Target522结果。最�
    只按事前容差修复后全新根通过。这个结果说明cycle不只是rank冗余，因此full G应保留为效果主臂，basis只作
    成本challenger；它仍不是critic accuracy。见
    `results/g_reuse_cycle_information_782a7c7_20260905/README.md`。
+3. 固定每任务full与basis之间一半额外token预算后，cost-aware spectral selector的D-opt capture为72.68%，
+   高于cheapest 59.98%和SHA-order 62.22%；未直接优化的A-opt capture为87.44%，也高于59.24%/73.65%；
+   27个cycle任务中24个不劣于两baseline。但预注册绝对门是D≥75%、任务中位≥70%，实得72.68%/68.70%，
+   所以总状态记为NOT SUPPORTED，不能降门。可用信息是“相对简单baseline更有效”，不能写成达到预定保真度。
+   见`results/g_reuse_spectral_midpoint_7648451_20260905/README.md`。
 
 ## 2. G0 12377 没有训练，已修到真实launcher边界
 

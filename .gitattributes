@@ -370,3 +370,4 @@ phase1/g0_output_isolation_smoke.py text eol=lf diff
 phase1/tests/test_g0_output_isolation_smoke.py text eol=lf diff
 phase1/g0_launcher_fake_accelerate_smoke.py text eol=lf diff
 phase1/tests/test_g0_launcher_fake_accelerate_smoke.py text eol=lf diff
+phase1/results/g0_output_isolation_c5d2b9b_20260905/** text eol=lf diff

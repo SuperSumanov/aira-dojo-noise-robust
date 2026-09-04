@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L17. 2026-09-05 03:01：G0 12377两卡仅占131秒失败；输出隔离修复通过0-GPU真实launcher边界
+
+Slurm accounting确认12377为FAILED/exit1，start 02:26:33、end 02:28:44、elapsed 131秒、2 GPUs，
+本次262 GPU-seconds；加此前320后累计582 GPU-seconds。run无output/checkpoint/verification/COMPLETE，训练命令
+仅0.02秒：学长launcher顶部source共享env，默认在只读source下`mkdir outputs`而permission denied。故本次没有
+模型加载、双卡训练、DeepSpeed/NCCL、显存或十步成本结论。失败run/submission archive SHA分别为
+`ab4059d8...bc1d5`/`1a2f5245...fc9b`，下载后credential scan clean。
+
+控制侧commit `1487bab052335dc787084b6b51b2b39ff5b59705`只把共享env的默认OUTPUT/LOG重定向到
+`G0_RUN_ROOT/shared-env-*`，不改原CONFIRM output、launcher、source、数据、模型或训练参数。真实只读source smoke A/B
+均pass，worker SHA=`38244d3c...00d2`，source仍`5f3bc362...c022` clean。随后exact senior launcher以fake accelerate
+核真实train/dev/cards SHA和全参数；早期A/B raw argv hash因scratch path不同而不同，未冒充逐字节一致。
+commit `c5d2b9ba5d9469df60819408a4f2272399da3612`加入只归一化scratch前缀的hash后，C/D均pass，
+normalized argv SHA=`4fea5ab1fc547c794e15def2c10ca63caa947cd8ee7701540b4bdc6d1731fa03`，stdout SHA也一致；
+2 processes/16384/max_steps10/effective batch128，无test参数、model import、GPU job、fit或API。
+
+这只修复并穿过已知首故障至accelerate边界，不证明真实分布式执行。原授权的一次新job已消耗，**不得自动重投**；
+若用户另行批准，successor仍限定一项双卡G0、最长117分钟、全新submission/run root、不requeue，累计上界需在
+提交前按已消耗582 GPU-seconds重算。详见`results/g0_output_isolation_c5d2b9b_20260905/README.md`。
+
 ## 0L16. 2026-09-05 02:48：排除已知记录缺陷后保留85.50% G-reuse图秩增益
 
 结果前提交 `fe9aec186a6a1e67d5764e59126549b39155a3e5` 固定保守敏感性：从3058条G-reuse中排除

@@ -47,3 +47,18 @@ shared-env-output 被创建，正式 output 仍不存在，source Git 前后 cle
 
 即使 smoke 通过，也只解决已观察到的第一个故障，不证明后续模型路径。任何新 GPU job 都须以一个全新
 submission/result root、不可重试 latch、相同两卡最多 117 分钟说明并重新取得明确授权；本报告本身不提交。
+
+## 5. 已完成的 0-GPU 结果
+
+source 初始化 smoke A/B 均通过：worker SHA-256 为
+`38244d3cc3cc16d86baa8dffdabdf4148243382623d8ae231cb16d4f055700d2`，共享 output 只在外部新根创建，
+正式 output 与 source/outputs 均未创建，source commit/status 前后不变。
+
+exact launcher fake-accelerate 的最初 A/B 也均通过，但 raw argv SHA 因各自 scratch/output 路径不同而不同；
+未将其误记为逐字节重复。随后提交 `c5d2b9ba5d9469df60819408a4f2272399da3612` 只增加 scratch 前缀
+归一化哈希，C/D 在全新根再次通过，normalized argv SHA-256 均为
+`4fea5ab1fc547c794e15def2c10ca63caa947cd8ee7701540b4bdc6d1731fa03`，launcher stdout SHA-256 均为
+`9f101800d81c88cdea09ff7bcb6aa23fb9c79bc2f67f7e61b3d7f10b80f151ef`。真实三输入 SHA、source commit、
+双进程、16K、有效 pair batch 128、十步、seed 6、final-only 与无 test 参数全部通过；模型未导入。
+
+因此已知路径错误已修至真实 `accelerate launch` 调用边界，仍没有真实 GPU/DeepSpeed 执行证明，successor 未提交。

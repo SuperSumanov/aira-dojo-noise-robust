@@ -18,7 +18,8 @@ from phase1.global_local_execution_plan import BatchShape, Endpoint, Pair, PlanE
 from phase1.global_local_token_budget_plan import _layout
 
 ROOT=Path(__file__).resolve().parents[1]
-SITE=Path('/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/lib/python3.11/site-packages')
+ALIASED_SITE=Path('/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/lib/python3.11/site-packages')
+SITE=Path('/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages')
 FILES={
  'accelerator':(SITE/'accelerate/accelerator.py','47088e0ab3bf21eec97e16afa14595e1db511f6ead9ab85c4eaa5f6f66fe5e61'),
  'wrapper':(SITE/'accelerate/utils/deepspeed.py','82dfa3c0ea4eb51b3a378b2886e48ed88df1d6a2e83bab986239cfacaa7a664e'),
@@ -99,6 +100,8 @@ def main():
     opened=guard()
     texts={}
     for name,(path,expected) in FILES.items():
+        if name!='legacy' and (ALIASED_SITE/path.relative_to(SITE)).resolve()!=path:
+            raise ValueError('runtime_alias_target_drift')
         raw=path.read_bytes()
         if hashlib.sha256(raw).hexdigest()!=expected or PATTERN.search(raw):raise ValueError('source_integrity_or_security')
         texts[name]=raw.decode()
@@ -153,12 +156,15 @@ def main():
         try:finish_non_deepspeed_update(a,e,o,max_grad_norm=1.0,deepspeed_before=before)
         except PlanError:fault_checks.append(fault)
         else:raise ValueError('fault_not_detected')
-    for path,expected in FILES.values():
+    for name,(path,expected) in FILES.items():
+        if name!='legacy' and (ALIASED_SITE/path.relative_to(SITE)).resolve()!=path:
+            raise ValueError('runtime_alias_target_drift')
         if hashlib.sha256(path.read_bytes()).hexdigest()!=expected:raise ValueError('source_drift')
     return dict(status='SOURCE_CONTROL_FLOW_VERIFIED_NOT_NUMERICAL_DEEPSPEED',
         runtime_file_sha256={k:s for k,(_,s) in FILES.items()},method_sha256=method_hashes,
         cases=rows,case_count=len(rows),legacy_false_success_detected_cases=negative_control_hits,
         injected_faults_detected=fault_checks,data_open_counts=opened,
+        selective_runtime_alias_and_exact_overlay_target_bound=True,
         imported_gpu_training_libraries=False,real_backend_executed=False,
         runtime_sources_are_executed_with_explicit_stubs=True,real_data_opened=False,
         model_fits=0,new_gpu_jobs=0,api_calls=0,protected_cohort_opened=False)

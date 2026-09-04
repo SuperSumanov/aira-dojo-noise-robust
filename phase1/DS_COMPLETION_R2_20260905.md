@@ -1,0 +1,11 @@
+# r2：精确绑定既有运行库链接目标，不改源码或运行环境
+
+94976ec的r1在读取第一个运行库时被read-only guard拒绝：PermissionError linked_source，rc1，
+没有进入方法体用例。此前18项单元回归通过；正式结果不得记成成功。原始输出保留在
+/tmp/ds-completion-20260905-oC3EhX/results，receipt SHA
+6218d3a00d52fc05a1a1408e7295bb590704f5924fbfaa17e45cb1fb682b5bf2。
+
+只读readlink确认selective运行库的三个既有路径实际解析到critic-blackwell-g0-20260903-overlay的
+同名site-packages文件。r2将实际解析路径作为精确白名单，并在读取前后验证selective别名仍指向
+此确切目标；原3个文件SHA完全不变。不接受任意symlink，不执行环境安装，不改G0运行库或源码。
+这是诊断器遗漏既有别名绑定的修正，不是训练根因或模型结果。方法、矩阵、门槛和后端stub不变。

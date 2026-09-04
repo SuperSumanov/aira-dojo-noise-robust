@@ -59,6 +59,11 @@ Probe或底座训练，也没有读取first960/Target300/Target522结果。最�
 16项攻击/回归通过。它不会自行把pending来源或G0改成通过，也不授权GPU；因此材料到达时可以直接验收、
 材料未到时会拒绝开跑，避免把旧9392-row文件临时改名为新方法输入。
 
+最新scoop核验需补一个重要边界：RecSys 2026已有“固定候选池每个候选带离线标量标签、pairwise LambdaRank以五seed
+胜single-action RL”；ACL Findings 2026已有“标量MOS转pair、gap分层和难对奖励”；UAI 2025已有absolute+comparative
+组合。因此我们不能声称稠密复用标量标签、gap分层或一般混合监督首创。仍可防守的是MLE执行成本/physical-run来源、
+同执行人口global→local受控消融和前瞻盲审计的组合；见`GLOBAL_LOCAL_RELATED_WORK_BOUNDARY_20260905.md`。
+
 随后更贴近部署语义的结构检查显示：full有96.76%边跨local parent context，触达928/1473 contexts，双端覆盖
 1934/4689 local pairs；parent-rank gain=787且28/28任务为正。spectral50省35.67% G token并完整保留parent-rank
 和context coverage，但双端local-pair coverage只保留full的70.73%，未过预注册75%门；总状态必须NOT SUPPORTED。

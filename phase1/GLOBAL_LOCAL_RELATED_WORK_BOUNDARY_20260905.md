@@ -31,12 +31,47 @@ The broad ideas are established:
   already studies accelerated D-optimal greedy selection for pairwise comparisons, and
   [Mikhailiuk et al., 2020](https://arxiv.org/abs/2004.05691) combines information-gain
   selection with a minimum spanning tree construction.
+- The closest newly found label-reuse analogue is
+  [Chowdhury and Esfahani, RecSys 2026](https://arxiv.org/abs/2608.18531): every candidate
+  in a fixed offline explanation pool already has a scalar BERTScore label, and a five-seed
+  LambdaRank system exploits all candidate labels better than several single-action RL
+  formulations. This directly precludes a broad novelty claim that converting an already
+  labelled candidate pool into dense ranking supervision is new.
+- [Cao et al., ACL Findings 2026](https://aclanthology.org/2026.findings-acl.1638/) convert
+  scalar mean-opinion scores into a preference benchmark, stratify by score gap, and add a
+  gap-aware reward for difficult pairs. This precludes novelty claims for scalar-score to
+  pair conversion or gap-stratified reward-model diagnosis in general.
+- [Fathullah and Gales, UAI 2025](https://proceedings.mlr.press/v286/fathullah25a.html)
+  combine absolute and comparative scoring and report more efficient comparison selection.
+  Thus even a future P-to-L result cannot be sold as the first absolute/comparative hybrid.
+- [Zhai et al., AAAI 2025](https://doi.org/10.1609/AAAI.V39I25.34924) construct preferences
+  from MCTS-derived step-level Q values and use the learned value model to guide an agent's
+  next action. It is a direct step-value precedent, though not an MLE experiment corpus with
+  execution-cost, physical-run provenance, and prospective audit controls.
 
 Therefore this project must not claim first global-to-local training, first pointwise-to-
 pairwise adaptation, first use of a comparison graph, first D-optimal/effective-resistance
-pair selector, first information-gain spanning-tree batch, or a new generic ranking algorithm.
+pair selector, first information-gain spanning-tree batch, first reuse of cached scalar labels
+as ranking supervision, first gap-stratified preference diagnosis, or a new generic ranking algorithm.
 The paper's novelty remains the Decision Corpus, cost/provenance accounting, and the audit
 protocol. A successful G-reuse experiment is a mechanism result inside that paper.
+
+## What remains defensible after the direct-overlap check
+
+No inspected paper combines the following package: full-program MLE-agent search trees;
+external execution grades whose generation cost is separated from predictor initialization
+and query cost; physical-run-clean local sibling decisions; the same execution-record
+population reorganized into global and local constraints under a fixed training-token budget;
+and a prospective append-only, outcome-blind audit with leakage retractions and one-shot
+frozen evaluation. This is an inference from the cited works, not proof that no unpublished
+or unindexed work exists.
+
+Consequently the safest positive paper claim is not a new ranking primitive. It is a dataset
+and controlled empirical finding: whether supervision geometry extracted from already-paid
+MLE executions changes decision quality and training cost once execution population, token
+budget, split provenance, and evaluation access are held fixed. The five-arm hash/G-only/
+local-repeat controls and the prospective audit are what distinguish that finding from the
+closest RecSys and speech-score precedents.
 
 The post-0L21 selector is consequently fixed as an **existing-theory cost challenger**, not
 the headline method. The only model-stage cost point is 50% because it was frozen before the

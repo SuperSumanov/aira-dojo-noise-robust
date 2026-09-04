@@ -3,6 +3,19 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L26. 2026-09-05 04:38：最新直接先例收紧方法novelty；正贡献转为MLE执行语境下的受控机制证据
+
+最新primary-source核验发现两个必须正面引用的直接邻居：RecSys 2026的Chowdhury--Esfahani在固定候选池中
+复用每个候选已有BERTScore标量标签，以五seed LambdaRank胜过多种single-action RL；ACL Findings 2026的
+Cao等把MOS标量改造成pairwise benchmark并做gap分层/难对奖励。因此不能再声称“已有标量执行分数变成稠密pair监督”
+或“gap分层”本身新。UAI 2025还已有absolute+comparative组合，AAAI 2025已有MCTS step-Q偏好训练value model。
+
+未被这些工作覆盖、仍可防守的是组合贡献：MLE-agent完整程序搜索树、执行成本与predictor init/query分账、physical-run-clean
+sibling决策、同执行记录人口下global/local关系的固定token五臂受控消融，以及append-only outcome-blind前瞻审计。
+这是基于已检索文献的边界推断，不是“全世界无人做过”的证明。G-reuse若得到正效应，应定位为Decision Corpus上的机制发现，
+不能定位为通用pairwise算法首创；若要主张正方法收益，0L25全部严格门仍必须通过。详见
+`GLOBAL_LOCAL_RELATED_WORK_BOUNDARY_20260905.md`。
+
 ## 0L25. 2026-09-05 04:36：G-reuse效果矩阵已机器冻结；仍被来源、G0和GPU批准阻断
 
 `g_reuse_effect_protocol_v1.json`现把0L23变为拒绝式机器协议：core严格固定

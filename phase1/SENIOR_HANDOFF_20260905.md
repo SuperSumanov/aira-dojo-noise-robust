@@ -3,6 +3,15 @@
 这是一页状态交接。主线仍是 Decision Corpus + Predictor Benchmark + Audit Protocol；没有恢复HCE、多保真、
 Probe或底座训练，也没有读取first960/Target300/Target522结果。最新公开入口为`CURRENT_DIRECTION.md`顶部。
 
+## 0. 开正式15-fit前新增一个功效门
+
+只用历史评测结构的28个匿名task pair-count做了结果盲敏感性。真实+2pp时，task-CI门在事前
+optimistic/reference/stress假设下功效为99.60%/61.40%/25.10%，80%约需12/43/126个同结构任务。
+这只是CI门；主协议还要求观测点差≥2pp、三seed同向和多个比较门，所以整体通过概率更低，真实效应恰为2pp时
+仅点差门就至多约50%。因此同producer包交付时，请同时给exact frozen evaluation的匿名逐task pair数；我们会在
+训练前重算，不降2pp门，也不在揭盲后补样本。当前语料总体51任务不等于评测支持51任务。完整回执见
+`results/g_reuse_effect_power_b27115a_20260905/README.md`；这不是critic负结果，而是防止花完15 fits才发现CI先天过宽。
+
 ## 1. 今天得到的三个正结构结果
 
 我们把方法候选收窄为：在同一批已执行L端点上，增加由已有执行分数导出的global比较，再适配local sibling。

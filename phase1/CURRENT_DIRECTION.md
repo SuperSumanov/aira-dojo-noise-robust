@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L30. 2026-09-05 05:48：15-fit方案在28任务下未证明有足够功效；来源到达后先按匿名结构复算
+
+结果前commit=`26a9bfa`冻结只读匿名task pair-count的CI功效敏感性；`b27115a`只修测试副本未显式恢复
+占位SHA的问题。首个formal根在数值计算前为3 pass/1 fail并保留；正式v2为4 tests pass，producer/verifier
+A/B各自逐字节一致，240格最大跨实现差=`3.3306690738754696e-16`。协议SHA=
+`604dc77095a0f467185d3b4304e52b835f12ba063a2303b133041046cf007c04`，source archive SHA=
+`09c50ffc662eada8553216858e6774de69f67f8ed07a043cf32f770aa398f87e`。
+
+历史4,689 local pairs/28 tasks、调和平均67.99 pairs/task下，真实+0.02效应让双侧95% task-CI下界>0的
+功效，在事前optimistic/reference/stress三假设中为`0.9960097410888751/0.6140229368856638/
+0.2509513139916863`；80%功效约需`12/43/126`个同结构任务，reference触发设计警告。它们是对q、任务SD和
+seed相关性的假设敏感性，不是从结果估出的power guarantee；parent/run内额外相关未建模，可能更乐观。
+
+更重要的是，这只覆盖CI门。core还要求观测点差≥+0.02、三seed同向及多个比较/LOTO门；若估计量对称且真实效应
+恰为+0.02，仅点差门的通过概率就至多约1/2。因此不得把15 fits说成“对2pp有80%把握”，也不降低2pp门或在揭盲后
+加评测样本。权威来源到达后，GPU批准前必须对exact frozen evaluation的匿名task support重算；当前总体51个语料任务
+不等于效果评测有51任务。此结果不否定full G机制，也不是model/accuracy/scaling结果；它避免一轮可能先天歧义的昂贵训练。
+详见`results/g_reuse_effect_power_b27115a_20260905/README.md`，GPU/API/model fit/protected read均为0。
+
 ## 0L29. 2026-09-05 05:28：target-aware选边广泛但增益仍太小；停止雕selector，回到full G core
 
 看到0L28后另冻的post-result development commit=`4903f068fce66ea6b70a8dbb75c68fc8f37706a2`，直接按

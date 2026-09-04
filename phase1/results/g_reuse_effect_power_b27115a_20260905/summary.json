@@ -1,0 +1,17 @@
+{
+  "classification": "SENSITIVITY_ONLY_NOT_POWER_GUARANTEE",
+  "design_warning": true,
+  "fixture_only_repair_commit": "b27115a",
+  "formal_root": "/research/d7/spc/yzyang4/g-reuse-effect-power/formal-b27115a-v2",
+  "named_scenarios": {
+    "optimistic": {"power_at_0_02": 0.9960097410888751, "mde_at_target_power": 0.012152429412517401, "tasks_required_at_0_02": 12},
+    "reference": {"power_at_0_02": 0.6140229368856638, "mde_at_target_power": 0.024898444570800576, "tasks_required_at_0_02": 43},
+    "stress": {"power_at_0_02": 0.2509513139916863, "mde_at_target_power": 0.043440676045891524, "tasks_required_at_0_02": 126}
+  },
+  "protocol_commit": "26a9bfa",
+  "protocol_sha256": "604dc77095a0f467185d3b4304e52b835f12ba063a2303b133041046cf007c04",
+  "resources": {"gpu_jobs": 0, "model_fits": 0, "paid_api_calls": 0, "protected_values_read": 0},
+  "source_archive_sha256": "09c50ffc662eada8553216858e6774de69f67f8ed07a043cf32f770aa398f87e",
+  "structure": {"pairs": 4689, "tasks": 28, "harmonic_mean_pairs_per_task": 67.98842369774268},
+  "verification": {"grid_rows": 240, "maximum_power_difference": 3.3306690738754696e-16, "tests_passed": 4}
+}

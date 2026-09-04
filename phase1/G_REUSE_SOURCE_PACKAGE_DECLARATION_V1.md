@@ -19,4 +19,3 @@ instance_manifest_sha256,run_count,executed_at_utc`；它必须与manifest三项
 不能证明producer commit真的执行、config真实、run实例独立、evaluator pristine或split确实按whole experiment隔离。
 后续仍必须运行`validate_senior_source_provenance_v2.py`、解析物化文件并做pair/card/run零交集、config与执行回执核验，
 再做结果盲功效检查。任何一项缺失都不能把`g_reuse_effect_protocol_v1.json`的pending contract改成true。
-

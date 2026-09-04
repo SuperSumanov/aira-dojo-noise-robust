@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L25. 2026-09-05 04:36：G-reuse效果矩阵已机器冻结；仍被来源、G0和GPU批准阻断
+
+`g_reuse_effect_protocol_v1.json`现把0L23变为拒绝式机器协议：core严格固定
+`L1/Lbudget/G-reuse-budget/G-reuse-to-L-full/Ghash-reuse-to-L-full`五臂×seeds 6/7/8=15 fits；
+主门仍为full相对Lbudget至少+0.02、task-cluster CI下界>0、三seed同向、胜G-only与同池TF-IDF，
+并保留hash标签负控、LOTO与单任务贡献上限。只有core全过才允许spectral50三个追加fit；失败后禁止试25%/75%救回。
+
+主验证器与不导入它的独立验证器对protocol SHA
+`2e95b73ca6a21c45502bc64919dd1dc5f447bd5f21f61f939dbbcfd97f080ed5`、15+3 fit算术及blocked状态一致；
+16项攻击/回归覆盖seed/arm/阈值/授权/pending自证/hash-control/未知字段/重复JSON key并全部通过。
+协议本身授权GPU/API/model-fit/base-update=`0/0/0/0`，明确禁止first960、Target300/522及旧9392-row改名输入。
+当前学长分支仍为`b8d095180415957aa1bab31fa53ead1bba261c03`，无新来源声明；G0 12377仍是131秒失败，
+因此状态必须为`FROZEN_AWAITING_SOURCE_G0_AND_GPU_APPROVAL`，不是效果、accuracy或scaling结果。
+
 ## 0L24. 2026-09-05 04:28：full广泛连接local context；spectral50双端pair保留门未过
 
 结果前科学commit `8da7fd6b9972e278f1ec2afc8aaefd82dbc70df9`固定local `(task,parent)` context、

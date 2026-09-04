@@ -54,6 +54,11 @@ Probe或底座训练，也没有读取first960/Target300/Target522结果。最�
 旧历史输入下50%预计G-stage省35.67%、总量省13.50%，但权威同producer包到来后必须在看效果前重算。
 完整边界见`G_REUSE_EFFECT_TRANSLATION_DECISION_20260905.md`。
 
+这套15+3层级矩阵现已固化为`g_reuse_effect_protocol_v1.json`。主/独立验证器对协议SHA
+`2e95b73ca6a21c45502bc64919dd1dc5f447bd5f21f61f939dbbcfd97f080ed5`、臂数、seed数和blocked状态一致；
+16项攻击/回归通过。它不会自行把pending来源或G0改成通过，也不授权GPU；因此材料到达时可以直接验收、
+材料未到时会拒绝开跑，避免把旧9392-row文件临时改名为新方法输入。
+
 随后更贴近部署语义的结构检查显示：full有96.76%边跨local parent context，触达928/1473 contexts，双端覆盖
 1934/4689 local pairs；parent-rank gain=787且28/28任务为正。spectral50省35.67% G token并完整保留parent-rank
 和context coverage，但双端local-pair coverage只保留full的70.73%，未过预注册75%门；总状态必须NOT SUPPORTED。

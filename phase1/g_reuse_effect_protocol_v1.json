@@ -1,0 +1,152 @@
+{
+  "protocol": "g-reuse-effect-v1",
+  "status": "FROZEN_AWAITING_SOURCE_G0_AND_GPU_APPROVAL",
+  "frozen_at_utc": "2026-09-04T20:33:00Z",
+  "supersedes_for_effect_execution": "global-local-calibration-candidate-v2 arms; frozen prospective evaluation protocols remain unchanged",
+  "question": "under one executed-program population and a common valid-token budget, does record-consistent global comparison reuse followed by local sibling adaptation improve run-clean local decision accuracy",
+  "claim_scope": {
+    "execution_label_reuse_effect": true,
+    "new_execution_labels_claimed": false,
+    "general_pair_selection_novelty_claimed": false,
+    "single_pivot_confirms_capacity_scaling": false,
+    "base_llm_updated": false
+  },
+  "evidence_timing": {
+    "protocol_frozen_before_authoritative_source_delivery": true,
+    "protected_evaluation_values_opened": false,
+    "new_model_effect_opened": false,
+    "historical_structural_development_results_known": true,
+    "historical_outer_test_touched": true
+  },
+  "authorization": {
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "model_fits": 0,
+    "base_llm_updates": 0,
+    "effect_or_replay_submissions": 0
+  },
+  "pending_contract": {
+    "same_producer_cards_global_local_split_source_received": false,
+    "whole_experiment_train_dev_frozen_closed": false,
+    "pair_card_physical_run_overlap_zero_verified": false,
+    "exact_generator_config_stratum_verified": false,
+    "g0_walltime_peak_memory_checkpoint_receipt_verified": false,
+    "core_manifests_producer_ab_and_independent_verifier_passed": false,
+    "exact_pivot_checkpoint": null,
+    "exact_common_valid_token_cap": null,
+    "exact_gpu_hours": null,
+    "explicit_gpu_hour_approval_received": false
+  },
+  "fixed_across_compute_matched_arms": [
+    "pivot checkpoint",
+    "tokenizer prompt serialization and context length",
+    "optimizer learning-rate schedule warmup and weight decay",
+    "effective pair batch and gradient normalization",
+    "seed set",
+    "eligible local and global row identities",
+    "common valid-token cap",
+    "final-checkpoint evaluation policy"
+  ],
+  "forbidden_inputs": [
+    "first-960 evaluation population",
+    "Target-300 evaluation population",
+    "Target-522 evaluation population",
+    "historical 9392-row global file renamed as authoritative reuse input",
+    "previously withdrawn frozen checkpoints"
+  ],
+  "core_stage": {
+    "seeds": [6, 7, 8],
+    "arms": [
+      {
+        "id": "L1",
+        "role": "one complete local pass; repeat-training diagnostic, not the compute-matched headline",
+        "uses_true_global_orientation": false,
+        "uses_true_local_orientation": true,
+        "common_valid_token_cap": false
+      },
+      {
+        "id": "Lbudget",
+        "role": "local-only compute-matched baseline",
+        "uses_true_global_orientation": false,
+        "uses_true_local_orientation": true,
+        "common_valid_token_cap": true
+      },
+      {
+        "id": "G-reuse-budget",
+        "role": "record-consistent reuse-global-only zero-shot baseline",
+        "uses_true_global_orientation": true,
+        "uses_true_local_orientation": false,
+        "common_valid_token_cap": true
+      },
+      {
+        "id": "G-reuse-to-L-full",
+        "role": "all eligible record-consistent reuse-global comparisons followed by one complete local pass",
+        "uses_true_global_orientation": true,
+        "uses_true_local_orientation": true,
+        "common_valid_token_cap": true
+      },
+      {
+        "id": "Ghash-reuse-to-L-full",
+        "role": "same rows order tokens updates and local phase as full, with only global orientation replaced by endpoint-consistent hash utility",
+        "uses_true_global_orientation": false,
+        "uses_true_local_orientation": true,
+        "common_valid_token_cap": true
+      }
+    ],
+    "planned_fits": 15,
+    "checkpoint_policy": "all final checkpoints and hashes locked before one-shot untouched evaluation",
+    "primary_metric": "run-clean local sibling accuracy",
+    "primary_uncertainty": "task-clustered paired 95% confidence interval",
+    "secondary_uncertainty": [
+      "parent-clustered paired 95% confidence interval",
+      "physical-run-clustered paired 95% confidence interval"
+    ],
+    "same_pool_tfidf_required": true,
+    "draft_improve_reported_separately": true
+  },
+  "core_gates": {
+    "full_minus_lbudget_point_minimum": 0.02,
+    "full_minus_lbudget_task_ci_lower_strictly_positive": true,
+    "full_minus_lbudget_all_seed_signs_positive": true,
+    "full_minus_g_reuse_budget_task_ci_lower_strictly_positive": true,
+    "full_minus_tfidf_task_ci_lower_strictly_positive": true,
+    "quality_hash_control_tested_only_after_deployment_gates": true,
+    "full_minus_hash_task_ci_lower_strictly_positive": true,
+    "leave_one_task_out_sign_must_not_flip": true,
+    "single_task_correct_difference_share_maximum": 0.35,
+    "nan_oom_incomplete_or_access_violation_allowed": false
+  },
+  "hash_control": {
+    "seed": 20260823,
+    "endpoint_utility": "integer value of sha256('20260823|' + canonical endpoint id)",
+    "pair_level_independent_flips": false,
+    "shared_endpoint_order_is_transitive": true,
+    "global_rows_order_tokens_updates_match_full": true,
+    "local_phase_byte_identical_to_full": true,
+    "true_global_orientation_read": false,
+    "collision_action": "fail closed"
+  },
+  "conditional_cost_stage": {
+    "enabled_only_if_all_core_gates_pass": true,
+    "arm": "G-reuse-to-L-spectral50",
+    "seeds": [6, 7, 8],
+    "planned_additional_fits": 3,
+    "selection_reads_train_structure_and_token_cost_only": true,
+    "selected_identity_manifest_public": false,
+    "selected_identity_manifest_hash_and_counts_public": true,
+    "try_other_budget_points_after_failure": false,
+    "g_valid_token_reduction_minimum": 0.25,
+    "total_valid_token_reduction_minimum": 0.10,
+    "spectral_minus_full_task_ci_lower_strictly_greater_than": -0.01,
+    "each_seed_point_difference_minimum": -0.02,
+    "leave_one_task_out_point_difference_minimum": -0.01,
+    "single_task_absolute_difference_share_maximum": 0.35
+  },
+  "failure_policy": {
+    "any_pending_contract_field_blocks_fit": true,
+    "unknown_duplicate_hash_drift_or_access_violation": "fail closed",
+    "gate_thresholds_may_not_be_lowered_after_results": true,
+    "failed_spectral50_may_not_be_rescued_with_25_or_75_percent": true,
+    "structural_results_do_not_substitute_for_model_effect": true
+  }
+}

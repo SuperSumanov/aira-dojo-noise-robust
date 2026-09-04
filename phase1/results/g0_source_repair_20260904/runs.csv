@@ -1,0 +1,3 @@
+job_id,seed,source_commit,allocated_gpus,elapsed_seconds,allocated_gpu_seconds,state,training_started,role
+12181,6,51c7f480a844364a91cf1ee4ebd9dac18f6bb832,2,156,312,FAILED,false,engineering_calibration
+12288,6,5f3bc362db922c8edee2ef134656dfdb9a2b74fb,2,4,8,FAILED,false,engineering_calibration

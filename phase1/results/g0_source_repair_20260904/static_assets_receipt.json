@@ -1,0 +1,106 @@
+{
+  "api_calls": 0,
+  "created_at_utc": "2026-09-04T05:01:28.601226+00:00",
+  "fixed_config": {
+    "bf16": true,
+    "budget_cond": false,
+    "effective_pair_batch_size": 128,
+    "eval_on_start": false,
+    "eval_steps": 10,
+    "expected_dev_evaluations": 1,
+    "gradient_accumulation_steps": 8,
+    "head_frac": 0.25,
+    "learning_rate": 1e-05,
+    "lr_scheduler_type": "cosine",
+    "max_len": 16384,
+    "max_steps": 10,
+    "model_repo": "Qwen/Qwen3-1.7B-Base",
+    "model_revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "num_processes": 2,
+    "per_device_eval_batch_size": 8,
+    "per_device_train_batch_size": 8,
+    "seed": 6,
+    "task_cond": true,
+    "warmup_ratio": 0.03,
+    "zero_stage": 3
+  },
+  "gpu_jobs": 0,
+  "inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "cards": 31742,
+      "path": "/research/d7/spc/yzyang4/worktrees/senior_augmented_92a9651_nosmudge/data/augmented_mle_critic/augmented_cards_current.json",
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "dev": {
+      "bytes": 376635,
+      "pairs": 551,
+      "path": "/research/d7/spc/yzyang4/critic-decision-component-prep/305355e-baf6bdd-v1/producer_1/dev.jsonl",
+      "sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4"
+    },
+    "train": {
+      "bytes": 3208089,
+      "pairs": 4689,
+      "path": "/research/d7/spc/yzyang4/critic-decision-component-prep/305355e-baf6bdd-v1/producer_1/train.jsonl",
+      "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+    }
+  },
+  "model": {
+    "bytes": 3452692285,
+    "files": 10,
+    "manifest": "/research/d7/spc/yzyang4/worktrees/g0_recovery_94ad7da_sparse/phase1/manifests/qwen3-1.7b-base-ea980cb0a6c2ae4b936e82123acc929f1cec04c1.sha256",
+    "manifest_sha256": "ceb388235719297e3647478ad2d96486a41d1f84e4c3fd8301c4772d6840e148",
+    "repo_id": "Qwen/Qwen3-1.7B-Base",
+    "revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "snapshot": "/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1"
+  },
+  "protocol": "critic-component-g0-engineering-calibration-v1",
+  "runtime": {
+    "model_config": {
+      "hidden_size": 2048,
+      "model_type": "qwen3",
+      "tokenizer_size": 151669
+    },
+    "versions": {
+      "accelerate": "1.14.0",
+      "deepspeed": "0.19.3",
+      "python": "3.11.15",
+      "torch": "2.11.0+cu128",
+      "transformers": "5.12.1"
+    }
+  },
+  "source": {
+    "artifacts": {
+      "src/mle_critic/recipes/zero3.yaml": {
+        "bytes": 521,
+        "sha256": "aef00939c41d0fdba1e5bd90e246e4eaf6e53744c210065461b1b50602bb0ef1"
+      },
+      "src/mle_critic/scripts/train/pro6000/train_rm_confirmatory_one.sh": {
+        "bytes": 5402,
+        "sha256": "45c02f177b8760430fa712e76d918c110bd087cda61d1154ad072f319bfa1d7e"
+      },
+      "src/mle_critic/src/train/bradley_terry.py": {
+        "bytes": 9480,
+        "sha256": "d3cfd12602dc399a456810d4f706124df7117834ebba124813233f77ba043977"
+      },
+      "src/mle_critic/src/train/config/bradley_terry_config.py": {
+        "bytes": 3572,
+        "sha256": "5706b70369727e93830c229651a55608ec844153554fc1572ad0dcc698a0e971"
+      },
+      "src/mle_critic/test/test_wall_clock_receipt_callback.py": {
+        "bytes": 1608,
+        "sha256": "d17b0050a356e8260607e57d2086a41e6bca9bb24ac3e79fa656e8ce1232bba6"
+      }
+    },
+    "clean": true,
+    "commit": "5f3bc362db922c8edee2ef134656dfdb9a2b74fb",
+    "path": "/research/d7/spc/yzyang4/worktrees/critic-g0-final-only-20260903-b"
+  },
+  "status": "G0_STATIC_ASSETS_PASS",
+  "test_pair_reads": 0,
+  "verifier": {
+    "bytes": 28786,
+    "path": "/research/d7/spc/yzyang4/worktrees/g0_recovery_94ad7da_sparse/phase1/verify_critic_component_g0.py",
+    "sha256": "527dfd8c4ddea8240701bdde420b7e3c695a19d0a45f0ca9c887534797e8d734"
+  }
+}

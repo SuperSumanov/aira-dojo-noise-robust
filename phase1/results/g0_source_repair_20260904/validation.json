@@ -1,0 +1,31 @@
+{
+  "scope": "Operational repair receipts; not an effect experiment",
+  "local_pytest": {
+    "tests": [
+      "phase1/tests/test_g0_source_repair_receipts.py",
+      "phase1/tests/test_verify_critic_component_g0.py",
+      "phase1/tests/test_global_local_historical_development_protocol.py",
+      "phase1/tests/test_global_local_calibration_candidate_protocol.py"
+    ],
+    "exit_code": 0,
+    "passed": 27,
+    "seconds": 0.55
+  },
+  "clean_index_export_receipt_tests": {
+    "index_tree_before_adding_this_validation_file": "e16522f1b1c25c45b20d08c5d7c34fa15ab35e65",
+    "exit_code": 0,
+    "passed": 5,
+    "seconds": 0.15,
+    "scope": "New receipts plus two prior reference receipts; not a full project export or GPU test"
+  },
+  "remote_independent_verification_runs": 2,
+  "remote_independent_outputs_byte_identical": true,
+  "remote_recheck_exit_code": 0,
+  "staged_filename_scan_hits": 0,
+  "staged_credential_shape_hits": 0,
+  "invalid_initial_filename_scan_discarded": "Git-Bash/Linux git could not resolve the Windows worktree .git link; its printed zero was not accepted. Windows git exit code checked and native grep repeated successfully.",
+  "frozen_protocol_sha256_unchanged": true,
+  "new_gpu_jobs": 0,
+  "new_paid_api_calls": 0,
+  "new_model_fits": 0
+}

@@ -3,6 +3,31 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L5. 2026-09-04 13时实查：G0启动前失败已修复，尚未重投或取得计价
+
+本节覆盖下文12288仍PENDING的旧状态。Slurm确认12288于香港12:19:37获配2卡，12:19:41失败（4秒，1:0）。
+worker唯一错误是固定源码目录存在未跟踪`uv.lock`；未到训练、显存/通信检查、dev评估或checkpoint阶段。
+这不是新的双卡计算错误，也不是双卡已跑通。残留文件时间与此前误建默认uv环境吻合；清理`.venv`后
+遗漏全目录干净复查是我方流程疏漏。预检正确拦截，未放宽检查。
+
+对exact 1035259-byte文件验SHA/owner/inode后，原样移到独占隔离目录，未删除，原inode和SHA保留；仅将
+专用checkout根权限0700改0500，防止再次在根创建`.venv`/`uv.lock`，不声称整个目录树不可变。源码仍
+`5f3bc362db922c8edee2ef134656dfdb9a2b74fb`，tracked改动0。静态assets重验通过，除时间戳外与原回执完全相同；
+65项依赖版本、5项关键运行库哈希与原CPU保存回归重新绑定一致。独立只读验证A/B逐字节一致，27项本地回归通过。
+新静态回执SHA=`fc68a2602429e42d6096f800646dfd9df5b071cafccbd780c5925fd7bf8f4cd8`。
+详情：`results/g0_source_repair_20260904/README.md`；旧worker日志/失败和隔离备份仍在远端，不把修复记作训练成功。
+
+目前队列为空，未再次提交；先前“一个successor”的授权已由12288使用。12181与12288合计320 GPU秒；
+建议再申请**一次2卡117分钟**，若用满，累计14360 GPU秒=3.988888888888889 GPU·h，仍低于原4 GPU·h。
+预算余量不自动等于另一作业授权；获准后还需提交前存储/队列/固定源复查和新的独占提交锁，禁止重用旧提交器。
+正式五臂15 fits仍无预算授权、G来源门仍未过；不自动恢复旧S1或过滤问题pair。
+
+05:00:24 UTC outcome-blind实查：316归档、645 physical/619 eligible runs、16844 endpoints、3910 structural pairs、
+51 tasks；LATEST=`bc9833d834fba65adbbf174301fe968c2c12da4eb8190a8f418ece58d0219456`，config-v2=0、closure=false。
+摄取3884166 live/命令绑定、poll119 rc0；学长仍`b8d095180415957aa1bab31fa53ead1bba261c03`，无新commit/outcome。
+原Target522-rank失败标记保留未恢复。first960/Target300/522盲态及冻结v2/历史开发v1字节保持；无新accuracy、
+clean scaling或search收益。最短正方向仍是同版本来源包+G0实测计价→获准后的跨seed同预算Global→Local验证。
+
 ## 0L4. 2026-09-04 真实L/G来源适用性已量化；不得把候选直接升级为训练池
 
 按用户继续推进主线的要求，本轮转向真实数据来源门，不重复恢复/合成测试。exact source

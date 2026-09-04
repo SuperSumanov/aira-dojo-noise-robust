@@ -1,0 +1,16 @@
+{
+  "credential_shape_hits": 0,
+  "exact_status": "?? uv.lock",
+  "git_tracked_diff_paths": 0,
+  "lock_bytes": 1035259,
+  "lock_device": 128,
+  "lock_inode": 56392124919,
+  "lock_mode": 420,
+  "lock_mtime_ns": 1788458633877038445,
+  "lock_sha256": "e4ce9bf353c905d9c360e9bd3eb869f7db3281f4cb23ef203cd590253feaeb0d",
+  "queue_empty": true,
+  "source_commit": "5f3bc362db922c8edee2ef134656dfdb9a2b74fb",
+  "source_root": "/research/d7/spc/yzyang4/worktrees/critic-g0-final-only-20260903-b",
+  "source_root_mode_before": 448,
+  "utc": "2026-09-04T04:59:30.677192+00:00"
+}

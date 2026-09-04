@@ -1,0 +1,19 @@
+{
+  "frozen_protocols_changed": false,
+  "known_failure_gate_disabled": false,
+  "model_fits": 0,
+  "new_gpu_jobs": 0,
+  "quarantine_path": "/research/d7/spc/yzyang4/critic-component-g0/source-repair-12288-20260904/quarantined-uv.lock",
+  "quarantine_sha256": "e4ce9bf353c905d9c360e9bd3eb869f7db3281f4cb23ef203cd590253feaeb0d",
+  "reversible": true,
+  "root_writable_by_current_process": false,
+  "source_clean": true,
+  "source_commit": "5f3bc362db922c8edee2ef134656dfdb9a2b74fb",
+  "source_root": "/research/d7/spc/yzyang4/worktrees/critic-g0-final-only-20260903-b",
+  "source_root_mode_after": 320,
+  "source_root_original_mode": 448,
+  "status": "EXACT_LOCK_QUARANTINED_SOURCE_CLEAN_NOT_GPU_VALIDATED",
+  "tracked_source_files_changed": 0,
+  "training_config_changed": false,
+  "whole_tree_immutable_claim": false
+}

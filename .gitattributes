@@ -303,3 +303,8 @@ phase1/tests/test_historical_global_local_source_gate.py text eol=lf diff
 phase1/HISTORICAL_GLOBAL_LOCAL_SOURCE_GATE_20260904.md text eol=lf diff
 phase1/results/historical_global_local_source_gate_20260904/** -text diff
 phase1/scripts/check_historical_lfs_bindings_20260904.py text eol=lf diff
+phase1/scripts/g0_failure_12288_readonly_20260904.py text eol=lf diff
+phase1/scripts/g0_readonly_asset_recheck_20260904.sh text eol=lf diff
+phase1/scripts/repair_g0_untracked_lock_20260904.py text eol=lf diff
+phase1/scripts/verify_g0_source_repair_20260904.py text eol=lf diff
+phase1/results/g0_source_repair_20260904/** -text diff

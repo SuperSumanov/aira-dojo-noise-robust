@@ -137,3 +137,22 @@ G9392中415对记录配置不一致；G/L有676/365对来源batch无法唯一确
 给学长的最小解锁交付写在`SENIOR_GLOBAL_LOCAL_UNBLOCK_20260904.md`；不自动部署其producer或扩GPU预算。
 19:17 UTC G0仍PENDING/Resources；589/960、306归档、config-v2=0、closure=false、学长b8d0951未变。
 不再重复已完成的合成验证；下一处关键依赖是同版本来源包与精确experiment/config绑定，并等待G0计价。
+
+## 香港13时续接：G0已失败，修复阻塞但未重投
+
+上文PENDING为历史。12288在12:19:37获配2卡，4秒后源码干净门失败；残留`uv.lock`来自此前默认uv环境过程，
+不属于双卡计算报错。它未执行训练或生成成本回执。记录我方清理后未重验git状态的疏漏，不重写失败历史。
+验明exact文件SHA/owner/inode后移到`critic-component-g0/source-repair-12288-20260904/quarantined-uv.lock`；
+可恢复、未删除。仅专用checkout根0700→0500；tracked代码/训练配置不变，clean gate保留。
+
+原runtime进行静态assets重验（哈希输入和10个模型文件，只加载config/tokenizer，CUDA隐藏，不构造权重/fit），
+另重绑定65项依赖版本及5项关键文件；source/inputs/model/runtime/config与9月3日原回执完全一致（只排除时间戳）。
+独立验证器不导入修复器或producer；检查原失败日志、源状态、隔离inode/SHA、两次作业记账和空队列。
+独立A/B同字节，本地27项相关回归通过。报告及完整结构回执：`results/g0_source_repair_20260904/`。
+没有重复已完成的CPU合成训练，也没有重新占GPU或付费API。应用experiment-prompting的固定变量和验证边界，
+把“静态修复通过”与“GPU训练验证通过”分开记录。
+
+两失败作业累计320 GPU秒；待用户另批一次2卡117分钟，累计上限14360 GPU秒（3.988888888888889 GPU·h）。
+旧一次successor授权已用，不自动重试；新作业需要新提交锁、提交前存储和完整11项预检。正式15 fits仍不启动。
+05:00 UTC结构619/960、316归档、config-v2=0、closure=false；摄取3884166 live/poll119 rc0。学长b8d0951无新提交。
+继续正方向的关键依赖不变：同版本历史来源包、experiment/config边界、G0真实计价；不能用修复或数据增长代替效果。

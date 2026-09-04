@@ -1,0 +1,11 @@
+{
+  "public_base_commit": "bbc860f221671348540929fb6d72ec5847902ccd",
+  "repair_g0_untracked_lock_20260904.py": "5ad741a21f3f94453d906bb6c8a786f678bdc730b9cddd75c3248741f736a4c6",
+  "g0_readonly_asset_recheck_20260904.sh": "86f99cfad66d275797962022e0433ebebee7497792462e4cfc74b92d8fdd7c49",
+  "verify_g0_source_repair_20260904.py": "df348985a6836ca8a3eb6e7d2d9e8999b9510571165feeb39f0a8214db0982cd",
+  "g0_recovery_bound_recheck_20260903.py": "bbe028018590d92251021f201658493157767466175b9ebd31458ac447a76d94",
+  "runtime_python": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/bin/python",
+  "operational_verifier_python": "/research/d7/spc/yzyang4/venvs/exp/bin/python",
+  "frozen_v2_sha256": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9",
+  "historical_development_v1_sha256": "1964e8e48e998660584c045a7e8fe2a03d61a946ba266d29d74555f934482902"
+}

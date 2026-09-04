@@ -14,7 +14,7 @@ def digest(path):
         return hashlib.file_digest(handle, "sha256").hexdigest()
 
 
-def execute(command):
+def execute(command, cwd):
     start = time.monotonic()
     done = subprocess.run(
         command,
@@ -22,6 +22,7 @@ def execute(command):
         stderr=subprocess.PIPE,
         timeout=300,
         check=False,
+        cwd=cwd,
         env={
             **os.environ,
             "PYTHONDONTWRITEBYTECODE": "1",
@@ -47,7 +48,7 @@ def main():
     verifier = source / "phase1/verify_g_reuse_decision_context_reach.py"
     records, producer_paths = [], []
     for label in ("a", "b"):
-        done, elapsed = execute([sys.executable, "-B", str(producer)])
+        done, elapsed = execute([sys.executable, "-B", str(producer)], source)
         stdout, stderr = root / f"producer_{label}.json", root / f"producer_{label}.stderr"
         stdout.write_bytes(done.stdout)
         stderr.write_bytes(done.stderr)
@@ -80,7 +81,8 @@ def main():
                 str(producer_paths[0]),
                 "--sha256",
                 receipt_sha,
-            ]
+            ],
+            source,
         )
         stdout, stderr = root / f"verifier_{label}.json", root / f"verifier_{label}.stderr"
         stdout.write_bytes(done.stdout)

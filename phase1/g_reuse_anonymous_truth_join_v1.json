@@ -1,0 +1,33 @@
+{
+  "protocol": "g-reuse-anonymous-truth-join-v1",
+  "status": "FROZEN_BEFORE_PROTECTED_TRUTH_READ_NOT_AN_UNSEAL_CALLER",
+  "frozen_at_utc": "2026-09-04T22:43:00Z",
+  "parent_prediction_escrow_contract_sha256": "5384ceae001952d7aee225cebf09c277f7d92e404ec330a4ec436098b29fc55f",
+  "parent_margin_materialization_protocol_sha256": "1b13bd111f074d9f4a703fe2e04a1dc06a46eb3d5dbd329daa85fcd45e122edd",
+  "parent_effect_readout_protocol_sha256": "3e82858a9b66e5deb9f96efb27968259823470106d86dc0b439b11c666bfb2d5",
+  "prediction_fields": ["pair_sha256", "task_sha256", "parent_sha256", "run_sha256", "margins"],
+  "truth_fields": ["pair_sha256", "task_sha256", "parent_sha256", "run_sha256", "truth_sign"],
+  "join_contract": {
+    "key": "pair_sha256",
+    "prediction_and_truth_pair_support_exactly_equal": true,
+    "task_parent_run_sha_must_match_for_each_pair": true,
+    "truth_sign_values": [-1, 1],
+    "canonical_sort_before_statistics": "pair_sha256"
+  },
+  "output_contract": {
+    "aggregate_statistics_only": true,
+    "joined_rows_written": false,
+    "truth_signs_written": false,
+    "raw_identifiers_written": false,
+    "input_rows_represented_only_by_sha256_and_counts": true
+  },
+  "future_caller_order": [
+    "authenticate complete prediction escrow and all checkpoints",
+    "authenticate frozen evaluation closure and pristine truth package",
+    "join in memory with this kernel",
+    "run producer and independent statistics",
+    "write aggregate result and verification receipts atomically"
+  ],
+  "classification": "ANONYMOUS_JOIN_KERNEL_READY_NOT_AUTHORIZED_FOR_PRODUCTION_UNSEAL",
+  "resources": {"gpu_jobs": 0, "paid_api_calls": 0, "model_fits": 0, "protected_values_read": 0}
+}

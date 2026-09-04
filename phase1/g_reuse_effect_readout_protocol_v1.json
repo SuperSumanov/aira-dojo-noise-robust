@@ -1,7 +1,7 @@
 {
   "protocol": "g-reuse-effect-readout-v1",
   "status": "FROZEN_BEFORE_EFFECT_OUTCOME_NOT_AN_UNSEAL_IMPLEMENTATION",
-  "frozen_at_utc": "2026-09-04T22:08:00Z",
+  "frozen_at_utc": "2026-09-04T22:12:00Z",
   "parent_effect_protocol_sha256": "2e95b73ca6a21c45502bc64919dd1dc5f447bd5f21f61f939dbbcfd97f080ed5",
   "input_contract": {
     "row_unit": "one frozen run-clean local sibling pair",
@@ -29,6 +29,15 @@
       "index": "uint64_big_endian_first8_sha256(seed\\0comparison\\0replicate\\0position)_mod_n_tasks",
       "quantiles": [0.025, 0.975],
       "quantile_algorithm": "Hyndman-Fan type 7 linear interpolation"
+    },
+    "sensitivity_intervals": {
+      "methods": ["task-then-parent nested paired bootstrap", "task-then-physical-run nested paired bootstrap"],
+      "estimand": "task-equal pair-micro seed-average difference, with sampled within-task clusters contributing all their observed pairs",
+      "replicates": 5000,
+      "parent_seed": 20260906,
+      "physical_run_seed": 20260907,
+      "quantiles": [0.025, 0.975],
+      "may_rescue_primary": false
     },
     "leave_one_task_out": "equal-task effect after dropping each task",
     "single_task_correct_difference_share": "maximum positive unnormalised pair-by-seed correct-credit gain from one task divided by the sum of positive task gains"

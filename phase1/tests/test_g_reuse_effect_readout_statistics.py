@@ -3,7 +3,9 @@ from pathlib import Path
 
 import pytest
 
-from phase1.g_reuse_effect_readout_statistics import ReadoutError, credit, evaluate, load_protocol
+from phase1.g_reuse_effect_readout_statistics import (
+    ReadoutError, credit, evaluate, load_protocol, nested_cluster_bootstrap,
+)
 
 
 PROTOCOL = Path("phase1/g_reuse_effect_readout_protocol_v1.json")
@@ -44,6 +46,9 @@ def test_clear_positive_passes_full_hierarchy():
     assert result["gates"]["local_repeat_confound"] == {"triggered": False, "pass": True}
     assert result["gates"]["quality_label_information"]["pass"] is True
     assert result["gates"]["core_positive"] is True
+    main = result["comparisons"]["full_minus_lbudget"]
+    assert main["nested_parent_cluster_bootstrap_ci95"] == [1.0, 1.0]
+    assert main["nested_physical_run_cluster_bootstrap_ci95"] == [1.0, 1.0]
 
 
 def test_failed_deployment_omits_hash_comparison():
@@ -83,3 +88,13 @@ def test_protocol_threshold_drift_is_rejected():
     protocol["hierarchy"]["deployment"]["full_minus_lbudget_point_minimum"] = 0.0
     with pytest.raises(ReadoutError):
         evaluate(fixture(), protocol)
+
+
+def test_nested_cluster_bootstrap_is_deterministic_and_field_checked():
+    rows = fixture()
+    args = dict(left="G-reuse-to-L-full", right="Lbudget", cluster_field="parent_sha256",
+                comparison="test", seed=19, replicates=100)
+    assert nested_cluster_bootstrap(rows, **args) == nested_cluster_bootstrap(rows, **args)
+    args["cluster_field"] = "task_sha256"
+    with pytest.raises(ReadoutError):
+        nested_cluster_bootstrap(rows, **args)

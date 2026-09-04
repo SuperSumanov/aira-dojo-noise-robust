@@ -42,6 +42,7 @@ def validate_protocol(value: dict[str, Any]) -> None:
     inp = value.get("input_contract", {})
     estimand = value.get("primary_estimand", {})
     interval = value.get("primary_estimand", {}).get("task_cluster_interval", {})
+    sensitivity = estimand.get("sensitivity_intervals", {})
     hierarchy = value.get("hierarchy", {})
     deployment = hierarchy.get("deployment", {})
     repeat = hierarchy.get("local_repeat_confound", {})
@@ -62,6 +63,16 @@ def validate_protocol(value: dict[str, Any]) -> None:
             "bootstrap_index")
     require(interval.get("quantiles") == [0.025, 0.975], "bootstrap_quantiles")
     require(interval.get("quantile_algorithm") == "Hyndman-Fan type 7 linear interpolation", "quantile")
+    require(sensitivity == {
+        "methods": ["task-then-parent nested paired bootstrap",
+                    "task-then-physical-run nested paired bootstrap"],
+        "estimand": "task-equal pair-micro seed-average difference, with sampled within-task clusters contributing all their observed pairs",
+        "replicates": 5000,
+        "parent_seed": 20260906,
+        "physical_run_seed": 20260907,
+        "quantiles": [0.025, 0.975],
+        "may_rescue_primary": False,
+    }, "sensitivity_intervals")
     require(estimand.get("single_task_correct_difference_share")
             == "maximum positive unnormalised pair-by-seed correct-credit gain from one task divided by the sum of positive task gains",
             "task_share_definition")
@@ -158,6 +169,55 @@ def key(arm: str, seed: int) -> str:
     return f"{arm}|{seed}"
 
 
+def row_difference(row: dict[str, Any], left: str, right: str) -> float:
+    values = []
+    for seed in SEEDS:
+        left_credit = credit(float(row["margins"][key(left, seed)]), row["truth_sign"])
+        right_margin = row["margins"]["tfidf"] if right == "tfidf" else row["margins"][key(right, seed)]
+        values.append(left_credit - credit(float(right_margin), row["truth_sign"]))
+    return sum(values) / len(values)
+
+
+def nested_cluster_bootstrap(
+    rows: list[dict[str, Any]], left: str, right: str, *, cluster_field: str,
+    comparison: str, seed: int, replicates: int,
+) -> list[float]:
+    require(cluster_field in ("parent_sha256", "run_sha256"), "nested_cluster_field")
+    task_clusters: dict[str, dict[str, tuple[float, int]]] = {}
+    staged: dict[str, dict[str, list[float]]] = defaultdict(lambda: defaultdict(list))
+    for row in rows:
+        staged[row["task_sha256"]][row[cluster_field]].append(row_difference(row, left, right))
+    for task, clusters in staged.items():
+        task_clusters[task] = {
+            cluster: (sum(values), len(values)) for cluster, values in clusters.items()
+        }
+    tasks = sorted(task_clusters)
+    require(len(tasks) >= 2 and replicates > 0, "nested_bootstrap_input")
+    estimates: list[float] = []
+    for replicate in range(replicates):
+        task_total = 0.0
+        for task_position in range(len(tasks)):
+            task_payload = f"{seed}\0{comparison}\0task\0{replicate}\0{task_position}".encode()
+            task = tasks[int.from_bytes(hashlib.sha256(task_payload).digest()[:8], "big") % len(tasks)]
+            clusters = sorted(task_clusters[task])
+            value_total = 0.0
+            pair_total = 0
+            for cluster_position in range(len(clusters)):
+                cluster_payload = (
+                    f"{seed}\0{comparison}\0{cluster_field}\0{replicate}\0{task_position}\0{cluster_position}"
+                ).encode()
+                cluster = clusters[
+                    int.from_bytes(hashlib.sha256(cluster_payload).digest()[:8], "big") % len(clusters)
+                ]
+                subtotal, count = task_clusters[task][cluster]
+                value_total += subtotal
+                pair_total += count
+            require(pair_total > 0, "empty_nested_cluster")
+            task_total += value_total / pair_total
+        estimates.append(task_total / len(tasks))
+    return [type7(estimates, 0.025), type7(estimates, 0.975)]
+
+
 def compare(rows: list[dict[str, Any]], left: str, right: str, protocol: dict[str, Any], name: str) -> dict[str, Any]:
     grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
@@ -224,6 +284,15 @@ def evaluate(rows: list[dict[str, Any]], protocol: dict[str, Any]) -> dict[str, 
         "full_minus_l1": compare(rows, FULL, "L1", protocol, "full_minus_l1"),
     }
     main = comparisons["full_minus_lbudget"]
+    sensitivity = protocol["primary_estimand"]["sensitivity_intervals"]
+    main["nested_parent_cluster_bootstrap_ci95"] = nested_cluster_bootstrap(
+        rows, FULL, "Lbudget", cluster_field="parent_sha256", comparison="full_minus_lbudget_parent",
+        seed=sensitivity["parent_seed"], replicates=sensitivity["replicates"],
+    )
+    main["nested_physical_run_cluster_bootstrap_ci95"] = nested_cluster_bootstrap(
+        rows, FULL, "Lbudget", cluster_field="run_sha256", comparison="full_minus_lbudget_run",
+        seed=sensitivity["physical_run_seed"], replicates=sensitivity["replicates"],
+    )
     deploy_rule = protocol["hierarchy"]["deployment"]
     deployment = {
         "point": main["point"] >= deploy_rule["full_minus_lbudget_point_minimum"],

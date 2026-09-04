@@ -6,7 +6,8 @@
 2. **输入范围**：统计核只接受匿名SHA cluster ID、严格非tie truth sign及完整同池margin；正式caller尚未实现。
 3. **禁止输入**：本轮不读取任何真实label、prediction、accuracy、utility、原始身份或保护cohort。
 4. **估计量**：每任务先做pair-micro、再平均seed，最后任务等权；TF-IDF同池单预测从每个full seed分别相减。
-5. **不确定性**：固定20,000次task-cluster percentile bootstrap、固定hash索引和type-7分位；不使用pair-i.i.d.区间。
+5. **不确定性**：固定20,000次task-cluster percentile bootstrap；另做各5,000次task→parent与task→run两层
+   paired bootstrap敏感性，均固定hash索引和type-7分位；不使用pair-i.i.d.区间。
 6. **稳健性**：同时给三个seed符号、全部LOTO及按未归一化正确数增益定义的单任务正贡献份额。
 7. **层级**：deployment与L1重复训练混淆先过，之后才允许计算hash质量对照；后级不能救前级。
 8. **成功定义**：只在全部deployment、必要的full>L1以及full>hash门通过时给core positive；synthetic pass不算效果。

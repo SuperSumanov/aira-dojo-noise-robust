@@ -1,5 +1,10 @@
 # G-reuse anonymous prediction--truth join kernel
 
+> **Superseded hash-binding claim:** later adversarial review found that this implementation
+> checked only the shape of a caller-supplied protocol SHA. Its semantic/synthetic test result
+> remains valid, but it is not accepted as a hash-bound receipt. Commit `80ed704` and
+> `results/g_reuse_anonymous_truth_join_80ed704_20260905/` supersede that claim.
+
 状态：`ANONYMOUS_JOIN_KERNEL_READY_NOT_AUTHORIZED_FOR_PRODUCTION_UNSEAL`。
 
 结果前 commit `7c0786a295dd9b56e85a4f81c505770d8ab3c417`固定了纯内存 join：prediction 与 truth

@@ -33,6 +33,25 @@ blocked until the pristine truth-package schema is frozen; inventing that schema
 create outcome-aware degrees of freedom. No real prediction, truth, model or protected value
 was read.
 
+At 07:04 Hong Kong, a single-request metadata-only re-list of the shared Drive root reported
+43 children and 37 plain date folders, with `0903` still the newest and no `0904` or `0905`.
+No payload file was downloaded and no file ID was emitted. The local append-only source mirror
+therefore correctly remains at 325 archives, including the nine already hash-bound `0903`
+archives awaiting their fixed maturity time.
+
+## 07:13 Hong Kong correction
+
+Static adversarial review found that the first anonymous join accepted a caller-supplied
+64-hex protocol hash without proving it matched the supplied protocol object. The 7c0786a and
+6cecccf semantic/software tests remain informative, but their hash-bound receipt wording is
+withdrawn. No real input had been read.
+
+Commit `80ed7044f2b09b0ae9d70413ad43a4ebece7f36d` now makes both independent implementations
+hash raw join/readout protocol bytes before parsing. Semantic and whitespace-only mutations
+are rejected at the SHA gate. Formal focused A/B each passed 11 tests; full 18-module A/B each
+passed 136 tests; all four stderr files are empty. The deterministic 74-file source archive is
+`eccdab6db627e49722d60572f09bc07c427784db76bacc052b8a758f9082a39a`.
+
 ## Boundaries
 
 - Entry HEAD 072a88ac0c3b6f931cc57b15f848110bed949444; fetched public direction first.

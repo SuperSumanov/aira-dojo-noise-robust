@@ -21,6 +21,13 @@ Probe或底座训练，也没有读取first960/Target300/Target522结果。最�
 `125 passed`，exact archive=`187adbb476948f4ab97e5668ae441cf7742deac3710dd8c4348781fab0e1de5d`。
 因此软件接口已基本串通，当前真正阻塞不是再写validator，而是同producer来源、成功G0和精确GPU预算。
 
+后续已把只接受匿名pair/task/parent/run SHA的prediction--truth join语义冻结。静态对抗审查又发现
+初版只检查caller自报SHA的形状，没绑所传protocol bytes；因此初版的hash-bound描述已撤回。
+修复commit=`80ed7044f2b09b0ae9d70413ad43a4ebece7f36d`要求producer与独立verifier都先核raw
+join/readout SHA再parse；语义及纯空白变动均fail-closed。focused A/B各11 tests，18模块full A/B
+各136 tests，source archive=`eccdab6db627e49722d60572f09bc07c427784db76bacc052b8a758f9082a39a`。
+join仍只在内存中连接且只输出聚合统计；production caller必须等pristine truth-package schema先冻结。
+
 G0 12377的131秒失败及输出隔离修复状态未变：已知permission故障已穿过到真实`accelerate launch`边界，但没有
 真实模型加载/显存/十步成本。原一次授权已消耗，不应自动重投；若要再跑，仍需用户按累计4 GPU·h上限重新批准。
 

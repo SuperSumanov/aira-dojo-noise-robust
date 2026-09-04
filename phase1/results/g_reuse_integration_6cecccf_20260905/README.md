@@ -1,5 +1,9 @@
 # Complete G-reuse integration after anonymous join
 
+> **Superseded for hash binding:** the 134-test integration remains a valid interface regression,
+> but the included join accepted an unbound caller-supplied protocol SHA. The corrected 136-test
+> integration at commit `80ed704` is the only hash-binding evidence.
+
 Classification: `COMPLETE_SOFTWARE_REGRESSION_NOT_MODEL_EFFECT`.
 
 At public head `6cecccfcb5731ff46be560306f5add4e11a76c3a`, the previously verified complete

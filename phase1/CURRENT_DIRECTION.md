@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L40. 2026-09-05 07:13：anonymous join的协议SHA绑定缺口已修复
+
+对抗检查发现`7c0786a`的kernel虽验证protocol语义，但只检查caller传入的
+`join_protocol_sha256`是64位hex，没有证明它是所传protocol字节的SHA。因此0L38--39的行为/接口
+回归仍有效，但其“hash-bound回执”表述正式撤回。未读取真实prediction/truth，未污染效果结果。
+
+结果前commit=`80ed7044f2b09b0ae9d70413ad43a4ebece7f36d`改为两个独立实现均接收raw join/readout
+protocol bytes，先核exact frozen SHA、拒绝重复JSON key，再解析语义；不再接收caller自报SHA。
+exact overlay archive=`6e8cd9655b12de5098d2229c953f39660f203fb368a8cca312274cb2ff8a33f0`，根=
+`/research/d7/spc/yzyang4/g-reuse-anonymous-join/formal-80ed704-v1`。focused A/B均`11 passed`；
+全G-reuse 18模块A/B均`136 passed`；四个stderr均0 bytes。74-file deterministic source archive SHA=
+`eccdab6db627e49722d60572f09bc07c427784db76bacc052b8a758f9082a39a`。
+
+新攻击覆盖join语义改动及join/readout仅空白变动，producer和independent verifier均在对应SHA门拒绝。
+这只修复软件回执真实性，仍不是production unseal或critic正效果；GPU/API/model fit/protected read均0。
+见`results/g_reuse_anonymous_truth_join_80ed704_20260905/README.md`。
+
 ## 0L39. 2026-09-05 06:54：匿名join已纳入全G-reuse组合回归
 
 公开head=`6cecccfcb5731ff46be560306f5add4e11a76c3a`上，以既有完整G-reuse依赖根为基底，叠加该head的

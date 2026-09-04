@@ -1,0 +1,24 @@
+{
+  "classification": "HASH_BINDING_REPAIRED_SOFTWARE_ONLY_NOT_MODEL_EFFECT",
+  "deployment_root": "/research/d7/spc/yzyang4/g-reuse-anonymous-join/formal-80ed704-v1",
+  "focused_pass_counts": [11, 11],
+  "full_pass_counts": [136, 136],
+  "gpu_jobs": 0,
+  "join_protocol_sha256": "d6a0540b3a78cae15827d88dddb2419bef599be2fdf936e51abb74201212d7f9",
+  "model_fits": 0,
+  "overlay_archive_sha256": "6e8cd9655b12de5098d2229c953f39660f203fb368a8cca312274cb2ff8a33f0",
+  "paid_api_calls": 0,
+  "protected_values_read": 0,
+  "readout_protocol_sha256": "3e82858a9b66e5deb9f96efb27968259823470106d86dc0b439b11c666bfb2d5",
+  "source_archive_sha256": "eccdab6db627e49722d60572f09bc07c427784db76bacc052b8a758f9082a39a",
+  "source_commit": "80ed7044f2b09b0ae9d70413ad43a4ebece7f36d",
+  "source_file_count": 74,
+  "source_manifest_sha256": "accbd8461482e30f46bb64bad69ded87ea9ce0003e7e2b570131513a37e248c6",
+  "stderr_bytes": [0, 0, 0, 0],
+  "test_stdout_sha256": {
+    "focused_a": "cc8b7e73c92370446e9359d9688dd704adb3b9c97590d18bbe4507226b0b3132",
+    "focused_b": "3023844bd8571d844baa1e096993f5855d85cc81f98f415f973fdfcf41b6c1a7",
+    "full_a": "fdb10ef5562d1b70d452013f1187d2cb3d0e71e414c30f657407d911d702150d",
+    "full_b": "b59fa86722996c1d09672fa142d17078daeb12013350fba01d7dbb16654483c2"
+  }
+}

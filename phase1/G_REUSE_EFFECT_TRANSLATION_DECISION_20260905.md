@@ -87,3 +87,20 @@ valid tokens，相对 full `19601875` 减少 `0.3566797564008545`；加同一 L 
 5. 用户对精确矩阵与总 GPU·时另行批准。
 
 任一项缺失都 fail-closed；当前结构正结果不能替代这些门。
+
+## 6. 结果前解释图：失败也不临时换故事
+
+以下只是既定五臂比较的解释顺序，不新增指标、门或 fit，也不能 rescue 第 2 节的 primary：
+
+1. `G-reuse-to-L-full > Lbudget`且`> G-reuse-budget`才支持“global复用后local适配”的组合效应；
+   只胜其中一个不得缩写成主方法成功。
+2. 若truth-global与hash-global均相似地胜`Lbudget`，只支持更多输入/更多更新的正则效应，
+   不支持方向性执行标签有信息。
+3. 若`G-reuse-budget`有利而`G-reuse-to-L-full`被local阶段抹平，当前sequential protocol仍判失败。
+   只能把“遗忘/目标冲突”作为下一个全新、结果前冻结协议的候选，不得本次改成mixing救回。
+4. 若`L1 > Lbudget`，表明local重复至同token cap可能过拟合；因此full除了胜`Lbudget`，还必须按
+   已冻结层级胜`L1`，否则不得把少做local重复误写成global transfer。
+5. 若点差为正但任务CI、LOTO或单任务35%门失败，只报效应异质/证据不足；不增seed、
+   删任务、改权重或改切分。
+
+这个解释图的作用是把后续方法决策与本次确认结论分开；它不提高当前功效，也不改变 2pp 主门。

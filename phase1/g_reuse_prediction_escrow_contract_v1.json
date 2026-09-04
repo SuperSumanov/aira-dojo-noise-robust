@@ -1,0 +1,33 @@
+{
+  "protocol": "g-reuse-prediction-escrow-contract-v1",
+  "status": "FROZEN_BEFORE_MODEL_EFFECT_NOT_A_SCORER",
+  "frozen_at_utc": "2026-09-04T22:22:00Z",
+  "parent_effect_protocol_sha256": "2e95b73ca6a21c45502bc64919dd1dc5f447bd5f21f61f939dbbcfd97f080ed5",
+  "parent_readout_protocol_sha256": "3e82858a9b66e5deb9f96efb27968259823470106d86dc0b439b11c666bfb2d5",
+  "required_artifacts": ["pair_predictions", "checkpoint_manifest", "access_receipt", "summary"],
+  "prediction_rows": {
+    "unit": "one canonical label-blind frozen local sibling pair",
+    "identifiers": ["pair_sha256", "task_sha256", "parent_sha256", "run_sha256"],
+    "required_seeded_arms": ["L1", "Lbudget", "G-reuse-budget", "G-reuse-to-L-full", "Ghash-reuse-to-L-full"],
+    "required_seeds": [6, 7, 8],
+    "required_unseeded_arms": ["tfidf"],
+    "margin": "finite canonical-left-minus-right scalar",
+    "truth_label_fields_allowed": false,
+    "raw_identity_fields_allowed": false
+  },
+  "checkpoint_gate": {
+    "expected_checkpoints": 15,
+    "all_final_steps_and_hashes_locked_before_scoring": true,
+    "dev_or_test_selected_checkpoint_allowed": false,
+    "incomplete_nan_oom_or_access_violation_allowed": false
+  },
+  "access_gate": {
+    "model_process_reads_only_blinded_pairs_cards_and_locked_checkpoints": true,
+    "label_outcome_vault_or_oriented_pair_reads_allowed": false,
+    "accuracy_or_utility_computed": false,
+    "receipt_is_hash_bound_self_attestation_not_os_level_proof": true
+  },
+  "classification": "PREDICTION_ESCROW_HASH_BOUND_NOT_EFFECT_READOUT_ELIGIBLE",
+  "resources": {"validator_gpu_jobs": 0, "validator_api_calls": 0, "validator_model_fits": 0,
+                "validator_protected_values_read": 0}
+}

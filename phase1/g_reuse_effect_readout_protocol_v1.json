@@ -1,0 +1,71 @@
+{
+  "protocol": "g-reuse-effect-readout-v1",
+  "status": "FROZEN_BEFORE_EFFECT_OUTCOME_NOT_AN_UNSEAL_IMPLEMENTATION",
+  "frozen_at_utc": "2026-09-04T22:08:00Z",
+  "parent_effect_protocol_sha256": "2e95b73ca6a21c45502bc64919dd1dc5f447bd5f21f61f939dbbcfd97f080ed5",
+  "input_contract": {
+    "row_unit": "one frozen run-clean local sibling pair",
+    "truth_sign": "plus1 iff canonical-left has strictly higher pristine external score, minus1 otherwise; exact score ties are excluded before this kernel",
+    "margin": "finite canonical-left-minus-right scalar",
+    "pair_and_cluster_identifiers": "lowercase sha256 only; no raw task parent run or endpoint identity",
+    "required_seeded_arms": ["L1", "Lbudget", "G-reuse-budget", "G-reuse-to-L-full", "Ghash-reuse-to-L-full"],
+    "required_seeds": [6, 7, 8],
+    "required_unseeded_arms": ["tfidf"],
+    "same_pair_support_required": true,
+    "prediction_tie_credit": 0.5
+  },
+  "primary_estimand": {
+    "aggregation": [
+      "compute pair credit separately for every seeded checkpoint",
+      "within task average pair credits",
+      "within task average the three seed-specific differences",
+      "average task differences with equal task weight"
+    ],
+    "tfidf_pairing": "subtract the one frozen same-pool tfidf credit from each full-model seed before seed averaging",
+    "task_cluster_interval": {
+      "method": "deterministic nonparametric percentile bootstrap over task effects",
+      "replicates": 20000,
+      "seed": 20260905,
+      "index": "uint64_big_endian_first8_sha256(seed\\0comparison\\0replicate\\0position)_mod_n_tasks",
+      "quantiles": [0.025, 0.975],
+      "quantile_algorithm": "Hyndman-Fan type 7 linear interpolation"
+    },
+    "leave_one_task_out": "equal-task effect after dropping each task",
+    "single_task_correct_difference_share": "maximum positive unnormalised pair-by-seed correct-credit gain from one task divided by the sum of positive task gains"
+  },
+  "hierarchy": {
+    "deployment": {
+      "full_minus_lbudget_point_minimum": 0.02,
+      "full_minus_lbudget_task_ci_lower_strictly_positive": true,
+      "full_minus_lbudget_all_seed_signs_positive": true,
+      "full_minus_g_reuse_budget_task_ci_lower_strictly_positive": true,
+      "full_minus_tfidf_task_ci_lower_strictly_positive": true,
+      "full_minus_lbudget_loto_minimum": 0.0,
+      "full_minus_lbudget_single_task_positive_gain_share_maximum": 0.35
+    },
+    "local_repeat_confound": {
+      "trigger": "L1-minus-Lbudget task-ci lower strictly positive",
+      "if_triggered_require": "full-minus-L1 task-ci lower strictly positive",
+      "failure_interpretation": "full may avoid repeated-local overtraining but global-to-local transfer is not established"
+    },
+    "quality_label_information": {
+      "evaluated_only_if_deployment_and_repeat_gates_pass": true,
+      "full_minus_hash_task_ci_lower_strictly_positive": true
+    },
+    "core_positive_requires_all_hierarchy_levels": true
+  },
+  "output_contract": {
+    "row_level_truth_written": false,
+    "row_level_predictions_written": false,
+    "raw_identifiers_written": false,
+    "hash_comparison_omitted_when_hierarchy_blocks_it": true,
+    "structural_readiness_or_synthetic_test_counts_as_effect": false
+  },
+  "resources": {"gpu_jobs": 0, "paid_api_calls": 0, "model_fits": 0, "base_llm_updates": 0},
+  "stop_rules": [
+    "reject duplicate pairs non-sha identifiers nonfinite margins missing arms or score ties",
+    "authenticate every checkpoint and the complete prediction escrow before an outcome-aware caller constructs rows",
+    "do not alter aggregation bootstrap hierarchy thresholds or task support after outcome opening",
+    "this statistics kernel does not itself authorize or implement label-vault opening"
+  ]
+}

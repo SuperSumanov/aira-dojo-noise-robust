@@ -1,0 +1,15 @@
+{
+  "child_timeout_seconds": 300,
+  "python": "3.11.15 (main, Jun 11 2026, 04:03:40) [Clang 22.1.3 ]",
+  "source_commit": "064f48a312a9e2f43ca3b9822cb1bfdbc2942caf",
+  "source_sha256": {
+    "phase1/FIXED_FORWARD_REWIRE_PREFLIGHT_20260905.md": "de1653dbab120d899618ea3eda6dc174b95e27e54c5ad16c8fdfad60d3280a69",
+    "phase1/fixed_forward_rewire.py": "85295bec891019458f3aaf08dd829af729584b3512d31a12a42db6e9a0efa96e",
+    "phase1/global_local_execution_plan.py": "8e3f3cec45d3456dee6f5c9b8ae8f42d58edc6ace1a40a86447dd97731270954",
+    "phase1/global_local_token_budget_plan.py": "81802b439739f550b0c4ab7291faa0d99bf896d1ab7f2195bc3b0d28cabf6b10",
+    "phase1/historical_fixed_forward_readiness.py": "88d50ad3c36f0a13fbef7ee46c173f98678f59502e419309db907e565245d9bc",
+    "phase1/historical_label_reuse_support.py": "7acecdc225d4922177d38df8060b9cfa28aac1cdbb9b39549fde36c0c3ba2a87",
+    "phase1/scripts/run_fixed_forward_20260905.py": "c194258f32244d7e12802b9bacbfa1ba8d70e4ba82beee76f32d6c9374ec2512"
+  },
+  "started_at_utc": "2026-09-04T17:15:44.278262+00:00"
+}

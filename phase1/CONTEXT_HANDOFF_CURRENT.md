@@ -1,15 +1,27 @@
 # Context handoff：Decision Corpus + Predictor Benchmark
 
-**Last updated:** 2026-09-04
+**Last updated:** 2026-09-05
 
-**Dynamic status timestamp:** 2026-09-04 14:27 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-09-05 01:20 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
 **Authority warning:** 本文件不是科学方向的最高权威。开始任何实验前必须先 fetch Git，再读
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
-## 2026-09-04 最新入口，覆盖下文所有动态状态
+## 2026-09-05 最新入口，覆盖下文所有动态状态
+
+先读CURRENT_DIRECTION.md 0L10。固定前向微批次换边已完成并按事前门关闭：分组后seed6/7/8仅改变
+122/118/112对，各仅2个task达到20对；双生产+独立验证相符。不放宽规则再试、不申请其训练。
+code064f48a、receipt10b5d604…b8850，结果目录results/fixed_forward_20260905；无模型效果。
+G-reuse→L仍待同版本来源包、config/experiment-closed及正式预算。只可主张整体监督组织方案，
+不把端点集合相同说成频次相同，不把Ghash受损说成正迁移；旧五臂和收益门未改。
+17:16UTC G0 12377仍PENDING/Resources、Runtime0、sourceclean；估计香港12:39:11非保证。
+学长fetch成功b8d0951无变，316archives/619eligible、LATEST bc9833d8…19456未变。
+摄取3884166在9月4日07:04:03UTC正常完成145轮已退出，六小时heartbeat窗口已过期；不得称仍在持续摄取。
+当前无新GPU/API/fit、无新clean scaling或跨seed收益；不要重跑已有候选诊断或自动重投G0。
+
+## 2026-09-04历史入口，动态状态已被上节覆盖
 
 先fetch，再读CURRENT_DIRECTION.md顶部0L9及更新的ACTIVE_WORK_SESSION_20260904.md。
 当前唯一已提交GPU作业是G0 12377，2卡117分钟只计价；06:02UTC仍PENDING/Resources，估计香港9月5日12:38:50，

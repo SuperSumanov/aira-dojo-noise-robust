@@ -1,0 +1,14 @@
+{
+  "primary_percentages": [
+    2.6,
+    2.52,
+    2.39
+  ],
+  "receipt_sha256": "10b5d604e5f66a3ac4ea6537fc13d12118707263c1f202d95781fa8adb6b8850",
+  "cells": 12,
+  "source_commit": "064f48a312a9e2f43ca3b9822cb1bfdbc2942caf",
+  "frozen_unchanged": true,
+  "source_blobs_verified": 7,
+  "all_primary_gates_failed": true,
+  "manifest_files_verified": 5
+}

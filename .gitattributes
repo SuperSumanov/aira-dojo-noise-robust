@@ -331,3 +331,9 @@ phase1/historical_reuse_execution_readiness.py text eol=lf
 phase1/tests/test_historical_reuse_execution_readiness.py text eol=lf
 phase1/results/historical_reuse_execution_20260904/** -text diff
 phase1/scripts/run_historical_reuse_execution_20260904.py text eol=lf
+phase1/fixed_forward_rewire.py text eol=lf diff
+phase1/historical_fixed_forward_readiness.py text eol=lf diff
+phase1/scripts/run_fixed_forward_20260905.py text eol=lf diff
+phase1/tests/test_fixed_forward_rewire.py text eol=lf diff
+phase1/FIXED_FORWARD_REWIRE_PREFLIGHT_20260905.md text eol=lf diff
+phase1/results/fixed_forward_20260905/** -text diff

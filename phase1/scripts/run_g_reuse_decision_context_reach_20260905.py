@@ -29,6 +29,7 @@ def execute(command, cwd):
             "OMP_NUM_THREADS": "1",
             "MKL_NUM_THREADS": "1",
             "OPENBLAS_NUM_THREADS": "1",
+            "PYTHONPATH": str(cwd),
         },
     )
     return done, time.monotonic() - start

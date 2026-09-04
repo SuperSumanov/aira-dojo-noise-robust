@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L19. 2026-09-05 03:30：最小basis总体成本跨cap稳健，但任务广度门19/28未过
+
+结果前commit `d06c1dd159c1f84a6ca11da612ee23ce51ce641a`固定4K/8K/16K/raw四种长度口径及五门；
+不得结果后改20/28阈值。正式producer A/B与独立verifier A/B均rc0、stderr0，二者metrics完全一致；本地下载
+archive SHA=`37a4d04c01b9bef435d006be93abcc51456c0c36adb76691d956c2388084cf19`，manifest、A/B、
+credential与身份字段扫描均通过。receipt SHA=`0ec3423748fba065d7233a4f14b8a07f31502049eaa8810973c86fc00acf3061`。
+
+四种cap的basis均为790条并逐任务保留790/790 rank gain；G-token reduction依次为4K
+`0.7147615808349292`、8K `0.7043122727789066`、16K `0.7054416478015496`、raw
+`0.7056101398382122`。删除任一任务后的最小reduction依次为`0.693619695137129`、
+`0.6813034232846982`、`0.6808470077027935`、`0.6810519823461714`；最大单任务saved-token share
+依次为`0.17799686722712507`、`0.16760872000505017`、`0.16608797279776025`、
+`0.165953330532593`。这些四门通过，说明总体约70%节省不依赖16K截断或单一任务。
+
+但是四种cap下都达到逐任务至少50%节省的只有19/28，低于冻结的20/28，因此总状态必须是
+`G_REUSE_MIN_TOKEN_BASIS_COST_NOT_ROBUST`。不能降门救回，也不能说“逐任务普遍节省”；九个任务中至少一个
+甚至没有cycle edge可删。保留的正主张只能是**总体与leave-one-task聚合成本稳健**。这仍不是模型效果；full G-reuse
+继续作为效果主候选/对照，basis只作成本challenger。正式产物见
+`results/g_reuse_min_token_robustness_d06c1dd_20260905/README.md`，GPU/API/fit=0。
+
 ## 0L18. 2026-09-05 03:11：最小token comparison basis保留全部790增益并降低70.54% G输入
 
 结果前commit `319ba302015491a638c0af5bfec3f7ee2a63d442`固定：以L图分量为初始并查集，对0L16的
@@ -39,8 +59,9 @@ normalized argv SHA=`4fea5ab1fc547c794e15def2c10ca63caa947cd8ee7701540b4bdc6d173
 2 processes/16384/max_steps10/effective batch128，无test参数、model import、GPU job、fit或API。
 
 这只修复并穿过已知首故障至accelerate边界，不证明真实分布式执行。原授权的一次新job已消耗，**不得自动重投**；
-若用户另行批准，successor仍限定一项双卡G0、最长117分钟、全新submission/run root、不requeue，累计上界需在
-提交前按已消耗582 GPU-seconds重算。详见`results/g0_output_isolation_c5d2b9b_20260905/README.md`。
+若用户另行批准，successor仍限定一项双卡G0、最长6909秒（1:55:09）、全新submission/run root、不requeue；
+加已消耗582 GPU-seconds后累计上界恰为14400 GPU-seconds。详见
+`results/g0_output_isolation_c5d2b9b_20260905/README.md`。
 
 ## 0L16. 2026-09-05 02:48：排除已知记录缺陷后保留85.50% G-reuse图秩增益
 

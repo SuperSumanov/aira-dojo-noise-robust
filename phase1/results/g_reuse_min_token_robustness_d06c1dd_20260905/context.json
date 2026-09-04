@@ -1,0 +1,48 @@
+{
+  "api_calls": 0,
+  "commit": "d06c1dd159c1f84a6ca11da612ee23ce51ce641a",
+  "executable": "/research/d7/spc/yzyang4/venvs/exp/bin/python",
+  "gpu_jobs": 0,
+  "model_fits": 0,
+  "producer_receipt_sha256": "0ec3423748fba065d7233a4f14b8a07f31502049eaa8810973c86fc00acf3061",
+  "python": "3.11.15 (main, Jun 11 2026, 04:03:40) [Clang 22.1.3 ]",
+  "runs": [
+    {
+      "elapsed_seconds": 50.226677573286,
+      "returncode": 0,
+      "role": "producer_a",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "0ec3423748fba065d7233a4f14b8a07f31502049eaa8810973c86fc00acf3061"
+    },
+    {
+      "elapsed_seconds": 43.62042587902397,
+      "returncode": 0,
+      "role": "producer_b",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "0ec3423748fba065d7233a4f14b8a07f31502049eaa8810973c86fc00acf3061"
+    },
+    {
+      "elapsed_seconds": 42.782744362019,
+      "returncode": 0,
+      "role": "verifier_a",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "6dabdd83217c2aa0e370d0106d09e4ea705ada352c9371bb9f0367c929c88a9a"
+    },
+    {
+      "elapsed_seconds": 42.13935154583305,
+      "returncode": 0,
+      "role": "verifier_b",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "6dabdd83217c2aa0e370d0106d09e4ea705ada352c9371bb9f0367c929c88a9a"
+    }
+  ],
+  "source_sha256": {
+    "phase1/g_reuse_min_token_robustness.py": "802459fcb6e6649993a7030b48635dc651c73729e999cc08673571166b9bd3f3",
+    "phase1/verify_g_reuse_min_token_robustness.py": "f463a6514403e60b21ef385c10ee19aedeb97a492778d930988c353ec451e3ec"
+  },
+  "status": "G_REUSE_MIN_TOKEN_ROBUSTNESS_RUN_COMPLETE"
+}

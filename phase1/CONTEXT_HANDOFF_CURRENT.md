@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-04
 
-**Dynamic status timestamp:** 2026-09-04 14:09 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-09-04 14:27 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -11,7 +11,7 @@
 
 ## 2026-09-04 最新入口，覆盖下文所有动态状态
 
-先fetch，再读CURRENT_DIRECTION.md顶部0L8及更新的ACTIVE_WORK_SESSION_20260904.md。
+先fetch，再读CURRENT_DIRECTION.md顶部0L9及更新的ACTIVE_WORK_SESSION_20260904.md。
 当前唯一已提交GPU作业是G0 12377，2卡117分钟只计价；06:02UTC仍PENDING/Resources，估计香港9月5日12:38:50，
 不保证。旧12288启动前失败已保留；新作业不要重投。正式五臂15fits未获预算，不能把G0说成收益实验。
 新候选是同一已执行端点集合上的G-reuse→L；两个历史train真实诊断支持3058个新增比较/28tasks，
@@ -21,7 +21,11 @@
 最新结构619/960eligible、645physical、316归档、16844endpoints/3910pairs/51tasks，closure=false、config-v2=0。
 LATEST=bc9833d834fba65adbbf174301fe968c2c12da4eb8190a8f418ece58d0219456；摄取PID3884166在06:02UTC存活。
 学长head=b8d095180415957aa1bab31fa53ead1bba261c03，无新outcome。首次960/Target300/522仍盲态；旧失败链不恢复。
-没有新clean scaling或跨seed同预算模型收益。用户要求会话内工作，原heartbeat暂停，不能用反复巡检冒充实验。
+复用候选的30个消费计划、独立重放和6组跨臂前缀检查已完成，receipt5a8ddba9…ff12a88，不再重跑。
+L1是Lbudget前37次更新；未来若真实checkpoint绑定验证，可保留15评估单元、以12训练流少约12.9%重复tokens，
+未验证真实GPU节约或模型收益。详见results/historical_reuse_execution_20260904/README.md。
+没有新clean scaling或跨seed同预算模型收益。六小时窗口06:12:22—12:12:22UTC内原heartbeat已更新并恢复，
+只做接力，不以巡检或重复已完成计划冒充实验；正式source/config/split及fit预算门不变。
 
 ## 0N. 09:53 动态覆盖（历史记录，已由2026-09-04状态覆盖）
 

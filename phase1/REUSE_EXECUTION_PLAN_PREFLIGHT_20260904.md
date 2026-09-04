@@ -30,3 +30,9 @@ G0静态配置已核：双卡、每卡8pairs、累积8、16384ctx、bf16/ZeRO3�
 前缀共享只是在同初始化、输入、优化器、LR、RNG及实际训练/保存完整状态均一致时的计算复用机会。
 共享时L1只保存、不在Lbudget继续前评估；必须额外计入中间checkpoint存储和I/O、不得据此删L1评估。
 先核元数据必要条件，真实ZeRO3/bf16条件未满足前不改原15fit预算申请或宣称已节省实际训练。
+
+后续阅读现有checkpoint gate进一步确认：该工具只允许two-parameter CPU、G/Ghash和seed6，尚不是生产检查点
+入口。不能放宽它的保护来接L1/Lbudget，也不能把Lbudget的plan hash改写成L1。若将来采用共享，须额外提供
+只读的派生评估记录：原parent-plan、原checkpoint/状态hash、固定第一遍边界、child-L1输入前缀证明；
+保留原保存清单，禁止在继续Lbudget之前评估L1。训练流数减少也不等于评估单元或模型检查点数减少，
+需要分别核算存储与I/O；G0的单个4GiB空间检查不覆盖整套正式对照的检查点需求。

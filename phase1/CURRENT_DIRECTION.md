@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L9. 2026-09-04 14:27：复用候选的消费计划可行；前缀共享仍待真实验证
+
+用户离开六小时，窗口06:12:22—12:12:22UTC，原heartbeat更新当前边界后恢复，只用于续接而不是代替会话工作。
+本轮将3058对复用候选接入既有预算planner，复用全部L端点缓存编码，未重复图/来源分析或模型fit。
+exact code=`586cdc94a13fd0f8467d32d4bf246df4b0dd0a85`；双生产同字节、30份独立描述器重放、6组跨臂对照通过。
+receipt SHA=`5a8ddba9d8d1cf4acbf62a31d7ec06cfdcc9d9ff3f11c2fcb53872c52ff12a88`，详见
+`results/historical_reuse_execution_20260904/README.md`；5个下载回执与6个源码blob核验，预检25项通过。
+
+在既定seed6/7/8、2×8×8及4×8×4形状下：L1/Lbudget/Gbudget/G-reuse→L/Ghash分别37/63/59/61/61次更新；
+完整pair不补样/不丢样，不足预算的末pair拒绝并报余量。L1是Lbudget前37步精确输入/归一化/LR前缀，
+未来若实际checkpoint状态可证明，保留15个评估单元但用12条训练流，可免每seed32187742个重复tokens，
+比例约12.9%。目前只证明计划必要条件，不证明真实ZeRO3状态/恢复或GPU节约，不能直接把15fit申请改成已批准12fit。
+既有checkpoint gate仅支持合成CPU；不得改plan hash/改名复用，不中途评估L1，须另外绑定派生评估证明并核存储/I/O。
+
+G0静态批量形状与双卡计划相符，但G0原Trainer/cosine十步不验证新阶段adapter/constant LR/四卡执行。
+06:22:52UTC 12377仍PENDING/Resources，RunTime0、source_clean，估计香港9月5日12:38:50非保证。
+06:14:53UTC摄取619/960、316归档、closure=false/config-v2=0，3884166 live/poll134 rc0；学长b8d0951未变。
+来源/config/split、模型拟合预算门均未解除；旧冻结v2/历史开发v1不改，未物化新训练池，保护cohort未读。
+没有新增GPU/API/model-fit或accuracy/clean scaling/真实搜索收益。不要重跑本次矩阵制造进度；
+后续只接新权威来源交付、G0实际完成和必要的生产接口/预算验证，不能用数据重用或token节省冒充模型正效应。
+
 ## 0L8. 2026-09-04 14:09：收窄到同执行标签集合的Global→Local候选
 
 用户要求会话内深入迭代。本轮不是继续堆合成通过数，而是完成两轮历史train真实结构/成本诊断：原G相对L

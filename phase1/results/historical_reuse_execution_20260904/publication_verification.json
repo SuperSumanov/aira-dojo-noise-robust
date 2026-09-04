@@ -1,0 +1,36 @@
+{
+  "checked_at_utc": "2026-09-04T06:27:34.9478230Z",
+  "source_commit": "586cdc94a13fd0f8467d32d4bf246df4b0dd0a85",
+  "receipt_sha256": "5a8ddba9d8d1cf4acbf62a31d7ec06cfdcc9d9ff3f11c2fcb53872c52ff12a88",
+  "artifact_files_verified": 5,
+  "source_blobs_verified": 6,
+  "plans_verified": 30,
+  "independent_replays_bound": 30,
+  "cross_arm_relations": 6,
+  "actual_gpu_savings_verified": false,
+  "model_fits": 0,
+  "tokens": [
+    {
+      "seed": 6,
+      "five_stream_tokens": 249805197,
+      "four_stream_tokens": 217617455,
+      "avoided_tokens": 32187742,
+      "avoided_fraction": 0.12885137053413664
+    },
+    {
+      "seed": 7,
+      "five_stream_tokens": 249791993,
+      "four_stream_tokens": 217604251,
+      "avoided_tokens": 32187742,
+      "avoided_fraction": 0.12885818161513288
+    },
+    {
+      "seed": 8,
+      "five_stream_tokens": 249812090,
+      "four_stream_tokens": 217624348,
+      "avoided_tokens": 32187742,
+      "avoided_fraction": 0.12884781517179572
+    }
+  ],
+  "verification_scope": "Independent aggregate arithmetic and published-source binding; per-plan raw descriptor replay occurred inside each guarded producer."
+}

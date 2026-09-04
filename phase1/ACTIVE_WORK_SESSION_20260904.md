@@ -1,5 +1,30 @@
 # 2026-09-04 会话内实验推进
 
+## 六小时续接窗口：2026-09-04 06:12:22—12:12:22 UTC
+
+用户要求离开六小时期间推进实质正方向。原outcome-blind heartbeat已更新当前job/数据/边界并恢复，
+每30分钟接力，到12:12:22 UTC停止产生新计划触发；不是新建重复任务，也不声称已做满六小时。
+会话内先做新复用候选的消费/前缀可行性，不重跑两轮已完成的图/来源诊断或CPU模型拟合。
+
+exact新诊断commit=`586cdc94a13fd0f8467d32d4bf246df4b0dd0a85`，code archive SHA
+`dcb47e0b24ecc41b0a5b74a5bdcdfb9b14373a2e2ee4c0b1aabb12c406335df1`；12个导出文件与Git blob逐字节相同。
+运行根`/tmp/reuse-execution-plan-20260904-SOMkBg`，输出`results`，A/B各最多300秒，现已全部完成rc0；
+**不要重启同一矩阵**。只读消费计划，不拟合模型，不改旧冻结文件。
+矩阵五臂×seed6/7/8×双/四卡形状共30个假设计划，复用缓存编码；检查完整pair末批、独立重放及L1前缀共享条件。
+即使通过也只量化未来预算机会，不能把4条训练流/5个评估单元当作已验证的真实ZeRO3 checkpoint复用。
+新接口和现有planner预检25项通过。设计与13项预检见REUSE_EXECUTION_PLAN_PREFLIGHT_20260904.md。
+
+06:22:52UTC G0 12377仍PENDING/Resources、Runtime0、source_clean；估计香港9月5日12:38:50，不保证。
+静态G0双卡8pairs/rank×accum8与拟议双卡形状吻合；G0的原Trainer/cosine不证明新阶段adapter可用。
+06:14:53UTC摄取619/960、316归档、closure=false/config-v2=0，PID3884166 live/poll134 rc0；学长b8d0951未更新。
+既有19个歧义run/6个缺失run、同版本包缺口和正式fit预算门仍在，不因六小时自主许可自动放宽。
+
+完成回执SHA=`5a8ddba9d8d1cf4acbf62a31d7ec06cfdcc9d9ff3f11c2fcb53872c52ff12a88`。30个计划/独立重放、
+6组跨臂检查均通过，A/B逐字节相同。L1是Lbudget前37次更新；假设保留15评估单元、用12训练流共享前缀，
+每seed可免32187742重复tokens（约12.9%），不是已测GPU节约。真实模型checkpoint状态、派生评估记录及存储尚未验证。
+各臂更新数37/63/59/61/61；5个下载回执和6个源码blob核验通过。详见results/historical_reuse_execution_20260904/README.md。
+下一步不重跑上述计划；仅接来源包、G0完成与必要生产接口，不改既有合成checkpoint gate来冒充生产验证。
+
 ## 最新续接：14:09同执行标签预算候选，两轮真实诊断已完成
 
 不再重跑下方已完成工程/合成工作。原G候选多3640端点，因而同训练token不等于同执行标签成本；本轮

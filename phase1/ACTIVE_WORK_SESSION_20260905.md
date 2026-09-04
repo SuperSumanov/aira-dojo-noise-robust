@@ -86,6 +86,17 @@ content. It did not touch prospective vaults or drive any selection, fit or scie
 conclusion, but it repeated a previously documented search-scope mistake. All later searches
 must use explicit source/report/code paths and exclude Cards/data/result payloads.
 
+## Independent Linux protocol regression
+
+At scientific commit `06d868a1a43b2f1b86254790c4de21fafefb4903`, a final explicit,
+data-free dependency archive with SHA-256
+`00f2a417127d413ac4226b068f6533a713660e3077fb1f193daae16cbeedfd78` produced
+`118 passed, 1 skipped` in the independent Linux environment. The skipped check is the
+existing opt-in CPU torch autograd test. Two broad archive attempts stopped before tests on
+already documented historical LFS 404s; the first narrow attempt had one missing source
+dependency and is also retained. This validates protocol software only and does not alter
+the source/G0/GPU block or constitute a model-effect result.
+
 The first formal record-consistent sensitivity attempt at source commit `fe9aec1` failed
 closed before producing metrics: `producer_a` returned a `KeyError`, stderr was empty,
 and no B run or verifier was started. Diagnosis found that the new caller expected an

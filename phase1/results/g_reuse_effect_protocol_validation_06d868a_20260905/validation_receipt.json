@@ -1,0 +1,62 @@
+{
+  "status": "PASS_TARGETED_INDEPENDENT_LINUX_REGRESSION",
+  "scientific_commit": "06d868a1a43b2f1b86254790c4de21fafefb4903",
+  "protocol_sha256": "2e95b73ca6a21c45502bc64919dd1dc5f447bd5f21f61f939dbbcfd97f080ed5",
+  "valid_export": {
+    "archive_sha256": "00f2a417127d413ac4226b068f6533a713660e3077fb1f193daae16cbeedfd78",
+    "contains_git_lfs_pointer": false,
+    "scope": "explicit protocol and four targeted regression test dependency closures"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "pytest": "7.4.3",
+    "python_path": "/research/d7/spc/yzyang4/venvs/exp/bin/python"
+  },
+  "test_command_scope": [
+    "phase1/tests/test_g_reuse_effect_protocol.py",
+    "phase1/tests/test_global_local_calibration_candidate_protocol.py",
+    "phase1/tests/test_global_local_execution_plan.py",
+    "phase1/tests/test_verify_critic_component_g0.py"
+  ],
+  "tests": {
+    "passed": 118,
+    "failed": 0,
+    "skipped": 1,
+    "skip_reason": "explicit opt-in CPU torch autograd check",
+    "elapsed_seconds_reported_by_pytest": 0.99
+  },
+  "failed_attempts_preserved": [
+    {
+      "attempt": "r1",
+      "stage": "broad git archive / remote extraction",
+      "cause": "pre-existing unavailable Git LFS object phase1/budget_pairs_v3_runsplit.jsonl",
+      "tests_started": 0
+    },
+    {
+      "attempt": "r2",
+      "stage": "broad git archive",
+      "cause": "pre-existing unavailable Git LFS object phase1/perpair_decision.json",
+      "tests_started": 0
+    },
+    {
+      "attempt": "r3",
+      "archive_sha256": "976bc677de812308524c28230c8e8554fbc6dc64421006f56e26131bf366164e",
+      "stage": "targeted pytest",
+      "cause": "dependency-closure omission: phase1/global_local_cpu_validation.py",
+      "tests": {
+        "passed": 117,
+        "failed": 1,
+        "skipped": 1
+      }
+    }
+  ],
+  "access_accounting": {
+    "protected_cohort_values_or_identities_read": 0,
+    "training_or_evaluation_data_files_in_export": 0,
+    "models_loaded": 0,
+    "model_fits": 0,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0
+  },
+  "interpretation": "This closes targeted software/protocol validation only. It is not a model-effect, accuracy, scaling, or search-utility result."
+}

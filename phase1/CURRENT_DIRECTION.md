@@ -3,6 +3,18 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L27. 2026-09-05 04:47：G-reuse冻结协议通过独立Linux关键回归；效果阻断不变
+
+固定科学commit `06d868a1a43b2f1b86254790c4de21fafefb4903`以显式依赖闭包导出；最终归档
+SHA=`00f2a417127d413ac4226b068f6533a713660e3077fb1f193daae16cbeedfd78`，不含LFS pointer或训练/评测数据。
+独立Linux环境Python 3.11.15/pytest 7.4.3上四个关键测试文件为`118 passed, 1 skipped`；skip是既有显式
+opt-in CPU torch autograd检查。前两次宽归档分别被已记录的历史LFS 404挡在测试前；r3因最小闭包漏一份
+纯CPU源码为`117 passed, 1 skipped, 1 failed`，补齐唯一依赖后科学commit、测试集与协议未变。
+
+这只解除协议/软件回归疑问，不是accuracy、scaling、search utility或模型效果。GPU/API/fit均为0；
+`FROZEN_AWAITING_SOURCE_G0_AND_GPU_APPROVAL`状态及0L25的15+3 fit严格门不变。正式回执见
+`results/g_reuse_effect_protocol_validation_06d868a_20260905/validation_receipt.json`。
+
 ## 0L26. 2026-09-05 04:38：最新直接先例收紧方法novelty；正贡献转为MLE执行语境下的受控机制证据
 
 最新primary-source核验发现两个必须正面引用的直接邻居：RecSys 2026的Chowdhury--Esfahani在固定候选池中

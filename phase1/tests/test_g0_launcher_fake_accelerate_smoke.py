@@ -2,7 +2,9 @@ from pathlib import Path
 
 import pytest
 
-from phase1.g0_launcher_fake_accelerate_smoke import INPUTS, MODEL, flag_value, verify_argv
+from phase1.g0_launcher_fake_accelerate_smoke import (
+    INPUTS, MODEL, flag_value, normalized_argv_digest, verify_argv,
+)
 
 
 def valid_argv(output):
@@ -42,3 +44,11 @@ def test_duplicate_missing_and_test_arguments_fail():
         verify_argv(missing, output)
     with pytest.raises(ValueError):
         verify_argv(argv+['--test_pairs', '/tmp/heldout.jsonl'], output)
+
+
+def test_normalized_hash_ignores_only_scratch_prefix():
+    left = ['launch', '--output_dir', '/tmp/a/output', '--seed', '6']
+    right = ['launch', '--output_dir', '/tmp/b/output', '--seed', '6']
+    assert normalized_argv_digest(left, '/tmp/a') == normalized_argv_digest(right, '/tmp/b')
+    changed = ['launch', '--output_dir', '/tmp/b/output', '--seed', '7']
+    assert normalized_argv_digest(left, '/tmp/a') != normalized_argv_digest(changed, '/tmp/b')

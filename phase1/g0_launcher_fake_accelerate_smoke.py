@@ -65,6 +65,11 @@ def verify_argv(argv, output_dir):
     return observed
 
 
+def normalized_argv_digest(argv, scratch):
+    normalized = [value.replace(str(scratch), '<SCRATCH>') for value in argv]
+    return hashlib.sha256(('\n'.join(normalized)+'\n').encode()).hexdigest()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--source-root', type=Path, required=True)
@@ -122,6 +127,7 @@ def main():
             'source_status_clean': True, 'launcher_sha256': LAUNCHER_SHA,
             'input_sha256': {name: digest for name, (_, digest) in INPUTS.items()},
             'argv_sha256': hashlib.sha256(fake_args.read_bytes()).hexdigest(),
+            'normalized_argv_sha256': normalized_argv_digest(argv, scratch),
             'stdout_sha256': hashlib.sha256(completed.stdout).hexdigest(), 'stderr_bytes': 0,
             'effective_pair_batch': 128, 'num_processes': 2, 'max_len': 16384,
             'max_steps': 10, 'shared_output_outside_source': True,

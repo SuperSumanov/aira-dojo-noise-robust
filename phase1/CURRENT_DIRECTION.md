@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L18. 2026-09-05 03:11：最小token comparison basis保留全部790增益并降低70.54% G输入
+
+结果前commit `319ba302015491a638c0af5bfec3f7ee2a63d442`固定：以L图分量为初始并查集，对0L16的
+2745条记录相符G-reuse边按两端cached valid-token和endpoint-ID tie-break做确定性Kruskal；门为逐任务rank gain
+完全相等、总gain=790、G-stage token至少减少60%。producer A/B与不import producer的verifier A/B均rc0、
+stderr0；下载archive SHA=`8a4e551186a91b96175588d6d8a6843c99d3c0626c08147288d97cce2cc36523`。
+首次本地manifest命令因PowerShell函数名缺空格产生语法错误，未构成验证；随后以ErrorAction=Stop的纠正版重跑通过，
+不能把首次错误输出算一次pass。A/B、producer/verifier aggregate与credential scan亦独立通过。
+
+正式结果：basis=790/2745 pairs，逐任务28/28和总790 rank gain完全保留；G token从19601875降至5773896，
+reduction=`0.7054416478015496`；L+G从51789617降至37961638，三门全过。非门描述中，endpoint visits
+5490→1580、unique endpoints 2022→1258、max degree 14→6、top-decile visit share
+`0.31785063752276865`→`0.20822784810126582`。receipt SHA=
+`ac92bc10c856ccea6c3cd864fd7941eecc841655d6cd0d18a1dc0dccfd637005`，GPU/API/fit=0。
+
+这提供一个更便宜、较少曝光集中的**待效果验证候选**，不是新图算法、训练加速实测或模型无损证明；cycle边可能
+有噪声鲁棒/优化价值。basis身份未输出、训练池未物化，source/config/experiment/G0和GPU批准门均不解除。
+正式产物见`results/g_reuse_min_token_basis_319ba30_20260905/README.md`。
+
 ## 0L17. 2026-09-05 03:01：G0 12377两卡仅占131秒失败；输出隔离修复通过0-GPU真实launcher边界
 
 Slurm accounting确认12377为FAILED/exit1，start 02:26:33、end 02:28:44、elapsed 131秒、2 GPUs，

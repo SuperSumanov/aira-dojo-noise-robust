@@ -376,3 +376,4 @@ phase1/g_reuse_min_token_basis.py text eol=lf diff
 phase1/verify_g_reuse_min_token_basis.py text eol=lf diff
 phase1/tests/test_g_reuse_min_token_basis.py text eol=lf diff
 phase1/scripts/run_g_reuse_min_token_basis_20260905.py text eol=lf diff
+phase1/results/g_reuse_min_token_basis_319ba30_20260905/** text eol=lf diff

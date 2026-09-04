@@ -48,6 +48,12 @@ Probe或底座训练，也没有读取first960/Target300/Target522结果。最�
    因此spectral可作为后续模型效果实验的成本challenger，仍不能称critic效果或算法首创。见
    `results/g_reuse_spectral_frontier_8ab7d3c_20260905/README.md`。
 
+效果实验现已收敛为两级、避免臂膨胀：先用full G-reuse做原五臂×seed6/7/8 core，只有主部署门通过才增加
+3个spectral50 fit；50%因为它在完整曲线前已冻结，不按75%更漂亮的结构数事后换点。cost stage要求G token
+至少省25%、总token至少省10%，且相对full的task-CI下界>-1个百分点；不通过就停，不试另两个点救回。
+旧历史输入下50%预计G-stage省35.67%、总量省13.50%，但权威同producer包到来后必须在看效果前重算。
+完整边界见`G_REUSE_EFFECT_TRANSLATION_DECISION_20260905.md`。
+
 ## 2. G0 12377 没有训练，已修到真实launcher边界
 
 Slurm记账：12377为FAILED/exit1，双卡131秒，即262 GPU-seconds。失败发生在真实launcher开始后0.02秒：

@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L23. 2026-09-05 04:38：效果路径收敛为full core，50% spectral只作条件式成本challenger
+
+0L20--0L22之后的结果盲执行裁决见`G_REUSE_EFFECT_TRANSLATION_DECISION_20260905.md`。现有冻结v2和历史开发v1
+均不覆盖；任何GPU/API/fit/评测访问仍未授权。权威同producer包通过后，core候选仍是L1、Lbudget、
+G-reuse-budget、G-reuse-to-L-full、Ghash-reuse-to-L-full五臂×seed6/7/8；不得把历史9392-row G直接改名，
+也不得把当前3058/2745/790身份直接物化为训练池。主收益门保持delta≥0.02、task-CI下界>0、三seed同向及
+既有leave-one/concentration层级门。
+
+只有core deployment gate通过，才新增三个`G-reuse-to-L-spectral50` fit；50%因它在完整25/50/75曲线之前
+最先冻结，而不是因效果最好。cost stage事前门为G-stage token至少省25%、总G+L至少省10%、相对full的
+task-clustered 95% CI下界>-0.01、每seed点差≥-0.02、leave-one点差≥-0.01且单任务贡献≤0.35；失败后不得试
+25%/75%救回。旧历史长度下50% G token=`12610283`、相对full省`0.3566797564008545`，总token=
+`44798025`、省`0.13499987845053962`，但新包必须结果前重算。
+
+相关工作已明确覆盖D-optimal比较收集、Laplacian拓扑误差、有效电阻、D-opt greedy和信息增益+MST；因此spectral
+只能定位为已有理论指导的成本challenger，不是算法novelty。真正待证正主张仍是MLE执行标签账、监督关系重组、
+run-clean评测与来源/成本/泄漏审计共同构成的机制结果。来源、experiment closure、G0实测和精确GPU·时批准门不变。
+
 ## 0L22. 2026-09-05 04:25：谱选择器在25/50/75%三点相对优势全部通过
 
 结果前commit `8ab7d3c24aa68f46ba2920a6dad988657358a0cf`固定逐任务25%/50%/75%额外token预算、

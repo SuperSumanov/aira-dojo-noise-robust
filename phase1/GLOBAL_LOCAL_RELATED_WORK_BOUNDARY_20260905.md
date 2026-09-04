@@ -23,11 +23,26 @@ The broad ideas are established:
 - Pointwise and pairwise objectives in one model, followed by pointwise initialization and
   pairwise local refinement, already appear in
   [Efficient Pointwise-Pairwise Learning-to-Rank for News Recommendation](https://aclanthology.org/2024.findings-emnlp.723/).
+- D-optimal pairwise data collection and graph connectivity are established by
+  [Osting et al., JMLR 2014](https://www.jmlr.org/papers/v15/osting14a.html), while
+  [Shah et al., JMLR 2016](https://www.jmlr.org/papers/v17/15-189.html) gives topology-dependent
+  minimax bounds for BTL/Thurstone estimation.
+- [Guo et al., SDM 2019](https://ece.northeastern.edu/fac-ece/ioannidis/static/pdf/2019/C_Guo_Accelerated_SDM_Submit_2019.pdf)
+  already studies accelerated D-optimal greedy selection for pairwise comparisons, and
+  [Mikhailiuk et al., 2020](https://arxiv.org/abs/2004.05691) combines information-gain
+  selection with a minimum spanning tree construction.
 
 Therefore this project must not claim first global-to-local training, first pointwise-to-
-pairwise adaptation, first use of a comparison graph, or a new generic ranking algorithm.
+pairwise adaptation, first use of a comparison graph, first D-optimal/effective-resistance
+pair selector, first information-gain spanning-tree batch, or a new generic ranking algorithm.
 The paper's novelty remains the Decision Corpus, cost/provenance accounting, and the audit
 protocol. A successful G-reuse experiment is a mechanism result inside that paper.
+
+The post-0L21 selector is consequently fixed as an **existing-theory cost challenger**, not
+the headline method. The only model-stage cost point is 50% because it was frozen before the
+25/50/75 frontier was observed; the better-looking 75% point may not be selected post hoc.
+The exact stage ordering and non-inferiority boundary are recorded in
+`G_REUSE_EFFECT_TRANSLATION_DECISION_20260905.md`.
 
 ## Current candidate and estimand
 

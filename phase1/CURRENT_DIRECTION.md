@@ -3,6 +3,36 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L14. 2026-09-05 02:22：新branching web-agent数据关闭通用多备选首创
+
+2026-09-02刚提交的[Discriminative World Models for Web Agents](https://arxiv.org/abs/2609.02885)明确用
+branching WebArena Go-Browse数据：每个decision point含多个alternative actions及其resulting states；其predicted-state
+matching在held-out matching、PRM-style action ranking和WebArena-Lite端到端选择上均报告优于相应baseline。因此通用
+“首次alternative-bearing agent decision dataset/首次用分支结果训练选择器”的说法也关闭，不能只靠有siblings申新颖性。
+
+它是web action/state prediction，不是MLE完整程序候选的连续pristine grader benchmark；公开摘要也未覆盖我们的
+physical-run/config/time isolation、gap/regrade-noise、source missingness、pair-weighting、init/query/execution成本与
+outcome-blind temporal closure。可守主张进一步收窄为**MLE-domain的真实程序决策语料+跨family predictor measurement+
+联合审计与前瞻确认**。这仍是基于公开v1的边界，不推断未检查附件。不得自动恢复旧parent-patch/world-model路线；
+若以后借鉴predicted-state matching，必须作为已有方法baseline/extension另冻协议，不能打断G-reuse当前解锁路径。
+
+## 0L13. 2026-09-05 02:21：TOFFEE关闭宽轨迹首创，反而收紧Decision Corpus差异
+
+最新原始论文/官方仓库核验发现VLDB 2026 demo TOFFEE已用执行落地MCTS、跨任务prefix DAG复用和在线
+contextual-bandit cost model合成data-agent轨迹，并公开TOFFEE-30K供SFT/ICL。因此不得再讲首次MCTS data-agent
+trajectory corpus、首次adaptive model/context/branching controller、首次prefix reuse或首次轨迹规模化；DataPRM和
+KompeteAI也分别关闭data-analysis PRM与MLE early predictive scoring的宽首创。
+
+这不杀死当前论文容器。TOFFEE官方release把每个sample描述为一条完整multi-turn trajectory；当前公开说明没有证明
+其发布搜索时被拒绝/替代的sibling choice set、physical-run-clean critic split、连续pristine外部分数的gap/regrade noise、
+endpoint reuse/pair weighting、prediction escrow及query/init/execution联合成本审计。以上是基于公开artifact说明的边界判断，
+不是证明其内部系统从未记录分支。我们的可守差异应明确写成**多分支决策记录与critic benchmark**，不能夸成完整无缺搜索树：
+现有语料本身有orphan-parent/missingness，必须继续显式发布和审计。
+
+最近实证优先级不因此换线：先完成新归档摄取和G0计价，解锁同执行标签账的G-reuse→L；同时把“path-only SFT corpus
+vs alternative-bearing decision corpus”的机器可审计字段加入dataset card/related-work表。不得为了对抗TOFFEE恢复底座SFT/RL、
+LCM、HCE或旧多保真。详见`实验记录/2026-09-05/TOFFEE30K_直接邻居与DecisionCorpus边界.md`。
+
 ## 0L12. 2026-09-05 02:12：发现并限界同步0903九个新归档；尚未进入语料
 
 用户指出学长可能已上传新语料。旧镜像确实停在316个归档；对公开Drive根做受限元数据检查后发现

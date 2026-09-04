@@ -79,3 +79,9 @@ Local full-suite collection was attempted after these documentation changes and 
 11 import errors because the Windows Python lacks SciPy/scikit-learn; no test body ran and no
 scientific assertion failed. The focused foreground-intake suite remains 4/4 passing. A clean
 Linux export with the established dependency environment is required before publication.
+
+One subsequent read-only `rg` status search was scoped to the whole `phase1` directory and
+matched two historical v11 Cards rows plus old result rows, producing excessive historical
+content. It did not touch prospective vaults or drive any selection, fit or scientific
+conclusion, but it repeated a previously documented search-scope mistake. All later searches
+must use explicit source/report/code paths and exclude Cards/data/result payloads.

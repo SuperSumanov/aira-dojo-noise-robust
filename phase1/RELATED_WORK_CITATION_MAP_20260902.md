@@ -58,6 +58,43 @@ an offline archival benchmark. Conversely, an online positive result does not by
 itself answer the release, leakage, weighting, noise, and transport questions that
 Decision Corpus is designed to measure.
 
+## 2026-09-05 direct trajectory-system addendum: TOFFEE
+
+**TOFFEE** ([arXiv:2607.06233v3](https://arxiv.org/abs/2607.06233),
+[official artifact](https://github.com/wang0702/toffee)) is a direct neighbor that
+must be cited, not hidden under generic data-agent work. It is a VLDB 2026 demo with
+execution-grounded MCTS, cross-task prefix reuse, a learned contextual-bandit cost
+model, and a released 30K trajectory corpus for SFT/ICL. It closes broad claims for
+the first MCTS data-agent trajectory corpus, first large public data-agent trajectory
+release, first adaptive model/context/branching controller, and first cross-task
+prefix reuse.
+
+The artifact card describes each released sample as one full multi-turn trajectory.
+It does not state that the release includes rejected sibling alternatives or complete
+search-time choice sets. Record those fields as `unknown/not stated`, not `absent`;
+the paper's internal system may retain information that the public trajectory format
+does not expose. Decision Corpus should be contrasted on the released evaluation
+unit: naturally logged alternative-bearing MLE code decisions, not SFT trajectories.
+
+Add the following columns to the manuscript's resource comparison table and require
+an artifact citation for every non-unknown cell: released unit; alternative candidates;
+choice-set identity; physical-run identity; external continuous score; failure/unknown
+retention; repeat grading; endpoint/pair dependence; init/query/execution cost split;
+and outcome-blind temporal escrow. This is a schema comparison, not a claim that more
+columns imply a better agent system.
+
+**Discriminative World Models for Web Agents**
+([arXiv:2609.02885v1](https://arxiv.org/abs/2609.02885)) is an even newer direct
+boundary. Its abstract explicitly describes a branching WebArena Go-Browse dataset
+where every decision point has multiple alternative actions and resulting states,
+then reports gains on held-out predicted-state matching, PRM-style action ranking,
+and end-to-end WebArena-Lite selection. It closes generic priority claims for an
+alternative-bearing agent decision dataset and for learning a selector from branch
+outcomes. Decision Corpus must be positioned as an MLE-program domain measurement
+resource with external continuous grading, physical-run isolation, cost/noise/
+missingness/dependence audit, and temporal escrow—not as the first branching corpus.
+This comparison is limited to the public v1 materials inspected on 2026-09-05.
+
 ## Required manuscript citations
 
 ### Direct competitors
@@ -69,6 +106,9 @@ Decision Corpus is designed to measure.
 
 ### MLE trajectories and actor/operator learning
 
+- Ziting Wang et al., **Demonstrating TOFFEE: A Learned System for Synthesizing
+  Data Agent Trajectories at Scale**, [arXiv:2607.06233v3](https://arxiv.org/abs/2607.06233),
+  VLDB 2026 demo; cite the official TOFFEE-30K artifact separately.
 - Zexi Liu et al., **ML-Agent: Reinforcing LLM Agents for Autonomous Machine
   Learning Engineering**, [arXiv:2505.23723](https://arxiv.org/abs/2505.23723).
 - Junlin Yang et al., **Frontis-MA1: Training an AI4AI Model towards Recursive
@@ -81,6 +121,8 @@ Decision Corpus is designed to measure.
 
 ### Reward/value-guided search
 
+- Kelvin Li et al., **Discriminative World Models for Web Agents**,
+  [arXiv:2609.02885v1](https://arxiv.org/abs/2609.02885).
 - Yu Xia et al., **AgentRM: Enhancing Agent Generalization with Reward Modeling**,
   [arXiv:2502.18407](https://arxiv.org/abs/2502.18407).
 - Yuanzhao Zhai et al., **Enhancing Decision-Making for LLM Agents via Step-Level

@@ -64,8 +64,8 @@ def validate_protocol(value: dict[str, Any]) -> None:
     require(interval.get("quantiles") == [0.025, 0.975], "bootstrap_quantiles")
     require(interval.get("quantile_algorithm") == "Hyndman-Fan type 7 linear interpolation", "quantile")
     require(sensitivity == {
-        "methods": ["task-then-parent nested paired bootstrap",
-                    "task-then-physical-run nested paired bootstrap"],
+        "methods": ["parent-within-task nested paired bootstrap",
+                    "physical-run-within-task nested paired bootstrap"],
         "estimand": "task-equal pair-micro seed-average difference, with sampled within-task clusters contributing all their observed pairs",
         "replicates": 5000,
         "parent_seed": 20260906,

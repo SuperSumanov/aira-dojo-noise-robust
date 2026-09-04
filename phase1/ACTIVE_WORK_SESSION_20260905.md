@@ -112,6 +112,20 @@ pair-weighted local-target variance over cheapest/hash by only about 1.49%/1.54%
 3% gate; pooled p90 is unchanged at 1.0; and cheapest-control gain concentration is 23.78%.
 Broad task-level improvements are descriptive only and do not rescue the failed gates.
 
+## Target-aware selector development result
+
+After 0L28, a separate post-result development protocol directly optimized per-token reduction
+in the fixed local-target variance sum. It was committed and pushed before its readout. Formal
+v1 stopped in pytest before data access because one prior protocol JSON was absent from the
+export; v2 retained the same commit and gates and completed 28 tests, producer/verifier A/B,
+46 manifest checks and zero stderr.
+
+TargetA50 is nonworse on all 28 tasks versus spectral50 and strictly better on 25, but its
+pair-weighted reduction is only 0.776%, below the frozen 1% gate; reductions against cheapest
+and hash are 2.251%/2.304%, below the frozen 3% gates. Therefore the development status is
+NOT_SUPPORTED. This closes further selector tuning and redirects effort to the full G-reuse
+core effect rather than manufacturing a graph-selection headline.
+
 The first formal record-consistent sensitivity attempt at source commit `fe9aec1` failed
 closed before producing metrics: `producer_a` returned a `KeyError`, stderr was empty,
 and no B run or verifier was started. Diagnosis found that the new caller expected an

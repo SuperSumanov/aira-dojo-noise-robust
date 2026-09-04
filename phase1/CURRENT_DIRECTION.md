@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L29. 2026-09-05 05:28：target-aware选边广泛但增益仍太小；停止雕selector，回到full G core
+
+看到0L28后另冻的post-result development commit=`4903f068fce66ea6b70a8dbb75c68fc8f37706a2`，直接按
+`每token减少local target variance总和`贪心。正式v2通过28 tests/46项manifest，producer/verifier A/B均逐字节一致，
+654个数值最大跨实现差=`2.1316282072803006e-14`、stderr=0；v1只因漏打包旧协议JSON停在pytest前并保留。
+
+targetA50预算利用率=`0.9915838670705438`，对spectral为28/28不劣、25/28严格更好，最大单任务正贡献仅
+`0.1018258959319476`；但pair-weighted相对降幅只有`0.007764850748195218`，未过冻结1%。相对cheapest/hash也只有
+`0.02251392474746483/0.023035926141722785`，未过冻结3%。所以唯一失败门虽是effect size，总状态仍必须为
+`TARGET_A50_DEVELOPMENT_NOT_SUPPORTED`，不得改目标/预算/阈值救回。
+
+方法裁决：同预算selector选择在目标解析方差上只有二阶差异；停止继续雕刻spectral/targetA selector。最值得押注的正主线仍是
+0L25的full `G-reuse-to-L`监督重组与真实critic效果，而不是把图选边包装成方法突破。0L28--0L29不撤回full相对basis
+14.13%/17.85%的解析headroom，但后者也不是模型效果。GPU/API/neural fit/protected read均为0。正式回执见
+`results/g_reuse_target_a50_4903f06_20260905/validation_receipt.json`。
+
 ## 0L28. 2026-09-05 05:10：spectral50目标local方差仅小幅广泛改善，严格门未过
 
 结果前commit=`7650c48adfaa184a32b0c615ccd106abc586e0be`冻结单位edge-noise下4689条local sibling

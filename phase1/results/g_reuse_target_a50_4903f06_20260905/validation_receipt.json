@@ -1,0 +1,114 @@
+{
+  "status": "TARGET_A50_DEVELOPMENT_NOT_SUPPORTED",
+  "scientific_commit": "4903f068fce66ea6b70a8dbb75c68fc8f37706a2",
+  "protocol_canonical_json_sha256": "ffd04c96b0433cdf917798e6169d79b0341c19a9846025311c1d3038b237f448",
+  "source_archive_sha256": "92c2b2c8612c078ae759920d9667e290ee56402a45d5d4f13cbd76f130624375",
+  "formal_root": "/research/d7/spc/yzyang4/g-reuse-target-a50/formal-4903f06-v2",
+  "producer_receipt_sha256": "b3971f73e1621d7130c66447018c31bcb19f711d4aa74cf73c0091d13d594777",
+  "selected_manifest_sha256": "73389038cbf0390ab30da6bd99c3450427dc78594f9e31a48fc14b6771b3da87",
+  "downloaded_top_archive_sha256": "d511ed858bc4c57b38e7bc1993ad308954edfe2a095d633b84e3dd7776af37ea",
+  "verification": {
+    "focused_tests_passed": 28,
+    "focused_tests_failed": 0,
+    "producer_ab_byte_exact": true,
+    "verifier_ab_byte_exact": true,
+    "producer_verifier_selection_manifest_exact": true,
+    "producer_verifier_numeric_values_compared": 654,
+    "producer_verifier_max_absolute_difference": 2.1316282072803006e-14,
+    "producer_verifier_nonnumeric_mismatches": 0,
+    "sha256_manifest_entries": 46,
+    "sha256_manifest_bad_or_missing": 0,
+    "total_stderr_bytes": 0,
+    "elapsed_seconds": {
+      "focused_tests": 19,
+      "producer_a": 49,
+      "producer_b": 52,
+      "verifier_a": 63,
+      "verifier_b": 65
+    }
+  },
+  "population": {
+    "local_pairs": 4689,
+    "full_g_pairs": 2745,
+    "basis_g_pairs": 790,
+    "tasks": 28
+  },
+  "g_pairs": {
+    "basis": 790,
+    "targetA50": 1827,
+    "spectral50": 1811,
+    "cheapest50": 1949,
+    "hash50": 1763,
+    "full": 2745
+  },
+  "g_valid_tokens": {
+    "basis": 5773896,
+    "targetA50": 12629690,
+    "spectral50": 12610283,
+    "cheapest50": 12596652,
+    "hash50": 12631545,
+    "full": 19601875
+  },
+  "target_budget_utilization": 0.9915838670705438,
+  "aggregates": {
+    "basis": {"pair_weighted_mean": 0.5553422904670511, "task_macro_mean": 0.587336161711317, "pooled_p90": 1.0},
+    "targetA50": {"pair_weighted_mean": 0.4958380019114381, "task_macro_mean": 0.5089987008134093, "pooled_p90": 1.0},
+    "spectral50": {"pair_weighted_mean": 0.4997182394569724, "task_macro_mean": 0.5131756836741661, "pooled_p90": 1.0},
+    "cheapest50": {"pair_weighted_mean": 0.5072583788810879, "task_macro_mean": 0.5226343030419458, "pooled_p90": 1.0},
+    "hash50": {"pair_weighted_mean": 0.507529411960103, "task_macro_mean": 0.5236597492430303, "pooled_p90": 1.0},
+    "full": {"pair_weighted_mean": 0.4768851597500516, "task_macro_mean": 0.48247200333855406, "pooled_p90": 1.0}
+  },
+  "comparisons": {
+    "targetA50_vs_spectral50": {
+      "pair_weighted_relative_reduction": 0.007764850748195218,
+      "task_macro_relative_reduction": 0.008139479312135434,
+      "nonworse_tasks": 28,
+      "strictly_better_tasks": 25,
+      "maximum_single_task_positive_reduction_share": 0.1018258959319476
+    },
+    "targetA50_vs_cheapest50": {
+      "pair_weighted_relative_reduction": 0.02251392474746483,
+      "task_macro_relative_reduction": 0.026090140178652188,
+      "nonworse_tasks": 27,
+      "strictly_better_tasks": 25,
+      "maximum_single_task_positive_reduction_share": 0.19863377054671807
+    },
+    "targetA50_vs_hash50": {
+      "pair_weighted_relative_reduction": 0.023035926141722785,
+      "task_macro_relative_reduction": 0.02799727962825882,
+      "nonworse_tasks": 27,
+      "strictly_better_tasks": 25,
+      "maximum_single_task_positive_reduction_share": 0.17086803113393056
+    }
+  },
+  "gates": {
+    "fixed_population_budget_and_finite_variances": true,
+    "target_pair_mean_effect_sizes_pass": false,
+    "target_task_macro_strictly_lower_than_all_controls": true,
+    "target_p90_not_higher_than_all_controls": true,
+    "target_task_breadth_vs_spectral": true,
+    "target_gain_not_task_concentrated_vs_spectral": true,
+    "full_strictly_below_basis_pair_and_task_macro": true,
+    "all_gates_pass": false
+  },
+  "failed_attempts_preserved": [
+    {
+      "root": "formal-4903f06-v1",
+      "stage": "pytest before data readout",
+      "cause": "source archive omitted the prior target-variance protocol JSON required by a regression test",
+      "tests_passed_before_failure": 27
+    }
+  ],
+  "access_accounting": {
+    "timing_classification": "post-0L28 development, not independent confirmation",
+    "real_pair_orientation_used": false,
+    "selected_edge_identities_emitted": false,
+    "protected_cohort_files_opened": 0,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "neural_model_loads": 0,
+    "neural_model_fits": 0,
+    "base_model_updates": 0
+  },
+  "interpretation": "TargetA50 improves the directly optimized aggregate and broad task diagnostics, but misses every frozen minimum effect-size threshold. The selector is not supported and must not be rescued by changing the objective, budget, thresholds, or task set."
+}

@@ -1,4 +1,5 @@
 import hashlib
+import random
 from pathlib import Path
 
 import pytest
@@ -6,6 +7,7 @@ import pytest
 from phase1.g_reuse_effect_readout_statistics import (
     ReadoutError, credit, evaluate, load_protocol, nested_cluster_bootstrap,
 )
+from phase1.verify_g_reuse_effect_readout_statistics import IndependentReadoutError, verify
 
 
 PROTOCOL = Path("phase1/g_reuse_effect_readout_protocol_v1.json")
@@ -98,3 +100,44 @@ def test_nested_cluster_bootstrap_is_deterministic_and_field_checked():
     args["cluster_field"] = "task_sha256"
     with pytest.raises(ReadoutError):
         nested_cluster_bootstrap(rows, **args)
+
+
+@pytest.mark.parametrize("full,baseline,l1", [(1.0, -1.0, -1.0), (1.0, 1.0, -1.0), (1.0, -1.0, 1.0)])
+def test_independent_recomputation_matches_hierarchy(full, baseline, l1):
+    rows = fixture(full=full, baseline=baseline, l1=l1)
+    protocol = load_protocol(PROTOCOL)
+    observed = evaluate(rows, protocol)
+    receipt = verify(rows, observed, protocol)
+    assert receipt["verification_pass"] is True
+    assert receipt["maximum_numeric_absolute_difference"] <= 1e-12
+
+
+def test_independent_recomputation_rejects_tampered_gate():
+    rows = fixture()
+    protocol = load_protocol(PROTOCOL)
+    observed = evaluate(rows, protocol)
+    observed["gates"]["deployment"]["point"] = False
+    with pytest.raises(IndependentReadoutError):
+        verify(rows, observed, protocol)
+
+
+def test_independent_recomputation_matches_irregular_ties_and_clusters():
+    rng = random.Random(20260905)
+    rows = []
+    for task, pair_count in enumerate((2, 3, 5, 7, 4, 6)):
+        for pair in range(pair_count):
+            margins = {"tfidf": rng.choice((-2.0, 0.0, 2.0))}
+            for arm in ("L1", "Lbudget", "G-reuse-budget", "G-reuse-to-L-full",
+                        "Ghash-reuse-to-L-full"):
+                for seed in (6, 7, 8):
+                    margins[f"{arm}|{seed}"] = rng.choice((-3.0, -1.0, 0.0, 1.0, 3.0))
+            rows.append({
+                "pair_sha256": h(f"irregular-pair:{task}:{pair}"),
+                "task_sha256": h(f"irregular-task:{task}"),
+                "parent_sha256": h(f"irregular-parent:{task}:{pair // 2}"),
+                "run_sha256": h(f"irregular-run:{task}:{pair // 3}"),
+                "truth_sign": rng.choice((-1, 1)), "margins": margins,
+            })
+    protocol = load_protocol(PROTOCOL)
+    receipt = verify(rows, evaluate(rows, protocol), protocol)
+    assert receipt["maximum_numeric_absolute_difference"] <= 1e-12

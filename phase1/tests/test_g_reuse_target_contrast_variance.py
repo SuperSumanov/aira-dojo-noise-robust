@@ -42,7 +42,10 @@ def toy():
 def test_protocol_constants_are_frozen() -> None:
     raw = PROTOCOL.read_bytes()
     protocol = json.loads(raw)
-    assert hashlib.sha256(raw).hexdigest() == PROTOCOL_SHA256
+    canonical = json.dumps(
+        protocol, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+    ).encode()
+    assert hashlib.sha256(canonical).hexdigest() == PROTOCOL_SHA256
     assert protocol["protocol"] == "g-reuse-target-contrast-variance-v1"
     assert protocol["status"] == "FROZEN_BEFORE_VARIANCE_READOUT"
     assert protocol["arms"] == list(ALL_ARMS)

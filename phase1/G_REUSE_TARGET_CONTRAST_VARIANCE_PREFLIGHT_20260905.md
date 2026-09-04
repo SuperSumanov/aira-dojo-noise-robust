@@ -1,7 +1,8 @@
 # G-reuse target-local contrast variance：结果前预检
 
 日期：2026-09-05。状态：0L22之后的解析机制检验；尚未读取本项任何 variance 结果。
-机器协议 SHA-256=`8c5b2f74cf7d84de899d2b8b00649564f450fb9517cc5978dcf68faa305460b5`。
+机器协议 canonical-JSON SHA-256=`203f7bc0a29a9d26fda82759f8bc5c7357d17c09e10729a03db62050baf336ab`；
+该绑定不受 Git LF / Windows CRLF checkout 影响。
 
 ## 1. 问题与可证伪假设
 

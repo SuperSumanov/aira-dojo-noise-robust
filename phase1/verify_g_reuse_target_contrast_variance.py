@@ -17,7 +17,7 @@ from phase1.verify_g_reuse_spectral_midpoint import GroundedState, IndependentTa
 MATCHED = ("spectral50", "cheapest50", "hash50")
 ALL_ARMS = ("basis",) + MATCHED + ("full",)
 TOLERANCE = 1e-10
-PROTOCOL_SHA256 = "8c5b2f74cf7d84de899d2b8b00649564f450fb9517cc5978dcf68faa305460b5"
+PROTOCOL_SHA256 = "203f7bc0a29a9d26fda82759f8bc5c7357d17c09e10729a03db62050baf336ab"
 
 
 def independent_quantile(values, probability):

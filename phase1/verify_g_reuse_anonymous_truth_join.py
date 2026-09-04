@@ -22,6 +22,7 @@ PREDICTION_FIELDS = {"pair_sha256", "task_sha256", "parent_sha256", "run_sha256"
 TRUTH_FIELDS = {"pair_sha256", "task_sha256", "parent_sha256", "run_sha256", "truth_sign"}
 CLUSTERS = ("task_sha256", "parent_sha256", "run_sha256")
 READOUT_SHA = "3e82858a9b66e5deb9f96efb27968259823470106d86dc0b439b11c666bfb2d5"
+JOIN_SHA = "d6a0540b3a78cae15827d88dddb2419bef599be2fdf936e51abb74201212d7f9"
 ESCROW_SHA = "5384ceae001952d7aee225cebf09c277f7d92e404ec330a4ec436098b29fc55f"
 MARGIN_PROTOCOL_SHA = "1b13bd111f074d9f4a703fe2e04a1dc06a46eb3d5dbd329daa85fcd45e122edd"
 
@@ -33,6 +34,25 @@ def check(ok: bool, reason: str) -> None:
 
 def sha(value: Any) -> bool:
     return isinstance(value, str) and len(value) == 64 and not (set(value) - set("0123456789abcdef"))
+
+
+def unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    value: dict[str, Any] = {}
+    for key, item in pairs:
+        check(key not in value, "duplicate_protocol_key")
+        value[key] = item
+    return value
+
+
+def protocol(raw: bytes, expected_sha256: str, reason: str) -> dict[str, Any]:
+    check(isinstance(raw, bytes) and 0 < len(raw) <= 100_000, reason + "_bytes")
+    check(hashlib.sha256(raw).hexdigest() == expected_sha256, reason + "_sha")
+    try:
+        value = json.loads(raw.decode("utf-8"), object_pairs_hook=unique_object)
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise IndependentJoinError(reason + "_json") from exc
+    check(isinstance(value, dict), reason + "_object")
+    return value
 
 
 def digest(rows: list[dict[str, Any]]) -> str:
@@ -107,13 +127,13 @@ def rejoin(predictions: list[dict[str, Any]], truths: list[dict[str, Any]]) -> l
 
 
 def verify(predictions: list[dict[str, Any]], truths: list[dict[str, Any]], observed: dict[str, Any],
-           join_protocol: dict[str, Any], readout_protocol: dict[str, Any],
-           join_protocol_sha256: str) -> dict[str, Any]:
+           join_protocol_raw: bytes, readout_protocol_raw: bytes) -> dict[str, Any]:
+    join_protocol = protocol(join_protocol_raw, JOIN_SHA, "join_protocol")
+    readout_protocol = protocol(readout_protocol_raw, READOUT_SHA, "readout_protocol")
     validate_join_protocol(join_protocol)
-    check(sha(join_protocol_sha256), "join_protocol_sha")
     rows = rejoin(predictions, truths)
     check(observed.get("protocol") == "g-reuse-anonymous-truth-join-result-v1", "result_protocol")
-    check(observed.get("join_protocol_sha256") == join_protocol_sha256, "result_join_protocol")
+    check(observed.get("join_protocol_sha256") == JOIN_SHA, "result_join_protocol")
     check(observed.get("effect_readout_protocol_sha256") == READOUT_SHA, "result_readout_protocol")
     check(observed.get("prediction_rows_canonical_sha256") == digest(predictions), "prediction_digest")
     check(observed.get("truth_rows_canonical_sha256") == digest(truths), "truth_digest")

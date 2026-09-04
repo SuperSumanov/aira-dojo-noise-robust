@@ -5,7 +5,6 @@ from pathlib import Path
 import pytest
 
 from phase1.g_reuse_anonymous_truth_join import AnonymousJoinError, compose
-from phase1.g_reuse_effect_readout_statistics import load_protocol
 from phase1.verify_g_reuse_anonymous_truth_join import IndependentJoinError, verify
 
 
@@ -36,14 +35,13 @@ def inputs(full=1.0, baseline=-1.0):
 
 
 def protocols():
-    raw = JOIN_PATH.read_bytes()
-    return json.loads(raw), load_protocol(READOUT_PATH), hashlib.sha256(raw).hexdigest()
+    return JOIN_PATH.read_bytes(), READOUT_PATH.read_bytes()
 
 
 def test_positive_join_and_independent_recomputation_hide_rows():
-    predictions, truths = inputs(); join_protocol, readout, join_sha = protocols()
-    observed = compose(list(reversed(predictions)), truths, join_protocol, readout, join_sha)
-    receipt = verify(predictions, list(reversed(truths)), observed, join_protocol, readout, join_sha)
+    predictions, truths = inputs(); join_protocol, readout = protocols()
+    observed = compose(list(reversed(predictions)), truths, join_protocol, readout)
+    receipt = verify(predictions, list(reversed(truths)), observed, join_protocol, readout)
     assert receipt["verification_pass"] is True and receipt["pair_count"] == 12
     assert observed["statistics"]["gates"]["core_positive"] is True
     raw = json.dumps(observed, sort_keys=True)
@@ -52,7 +50,7 @@ def test_positive_join_and_independent_recomputation_hide_rows():
 
 @pytest.mark.parametrize("case", ["missing", "extra", "cluster", "duplicate", "truth_field", "nan"])
 def test_join_fail_closed(case):
-    predictions, truths = inputs(); join_protocol, readout, join_sha = protocols()
+    predictions, truths = inputs(); join_protocol, readout = protocols()
     if case == "missing": truths.pop()
     elif case == "extra":
         extra = dict(truths[-1]); extra["pair_sha256"] = h("extra"); truths.append(extra)
@@ -61,25 +59,41 @@ def test_join_fail_closed(case):
     elif case == "truth_field": truths[0]["score"] = 1.0
     else: predictions[0]["margins"]["L1|6"] = float("nan")
     with pytest.raises(AnonymousJoinError):
-        compose(predictions, truths, join_protocol, readout, join_sha)
+        compose(predictions, truths, join_protocol, readout)
 
 
 def test_protocol_drift_and_tampered_aggregate_rejected():
-    predictions, truths = inputs(); join_protocol, readout, join_sha = protocols()
-    drift = json.loads(json.dumps(join_protocol)); drift["join_contract"]["truth_sign_values"] = [0, 1]
-    with pytest.raises(AnonymousJoinError, match="join_contract"):
-        compose(predictions, truths, drift, readout, join_sha)
-    observed = compose(predictions, truths, join_protocol, readout, join_sha)
+    predictions, truths = inputs(); join_protocol, readout = protocols()
+    drift = join_protocol.replace(b'"truth_sign_values": [-1, 1]', b'"truth_sign_values": [0, 1]')
+    assert drift != join_protocol
+    with pytest.raises(AnonymousJoinError, match="join_protocol_sha"):
+        compose(predictions, truths, drift, readout)
+    observed = compose(predictions, truths, join_protocol, readout)
     observed["statistics"]["gates"]["deployment"]["point"] = False
     with pytest.raises(IndependentJoinError):
-        verify(predictions, truths, observed, join_protocol, readout, join_sha)
+        verify(predictions, truths, observed, join_protocol, readout)
+
+
+@pytest.mark.parametrize("target", ["join", "readout"])
+def test_whitespace_only_protocol_drift_is_hash_rejected(target):
+    predictions, truths = inputs(); join_protocol, readout = protocols()
+    if target == "join":
+        join_protocol += b"\n"
+    else:
+        readout += b"\n"
+    with pytest.raises(AnonymousJoinError, match=target + "_protocol_sha"):
+        compose(predictions, truths, join_protocol, readout)
+    observed_join, observed_readout = protocols()
+    observed = compose(predictions, truths, observed_join, observed_readout)
+    with pytest.raises(IndependentJoinError, match=target + "_protocol_sha"):
+        verify(predictions, truths, observed, join_protocol, readout)
 
 
 def test_blocked_hierarchy_is_also_independently_recomputed():
     predictions, truths = inputs(full=1.0, baseline=1.0)
-    join_protocol, readout, join_sha = protocols()
-    observed = compose(predictions, truths, join_protocol, readout, join_sha)
-    receipt = verify(predictions, truths, observed, join_protocol, readout, join_sha)
+    join_protocol, readout = protocols()
+    observed = compose(predictions, truths, join_protocol, readout)
+    receipt = verify(predictions, truths, observed, join_protocol, readout)
     assert receipt["verification_pass"] is True
     assert observed["statistics"]["gates"]["core_positive"] is False
     assert observed["statistics"]["gates"]["quality_label_information"]["comparison"] is None

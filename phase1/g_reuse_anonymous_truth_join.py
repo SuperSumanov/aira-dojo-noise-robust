@@ -15,6 +15,7 @@ class AnonymousJoinError(RuntimeError):
 
 JOIN_PROTOCOL = "g-reuse-anonymous-truth-join-v1"
 READOUT_SHA = "3e82858a9b66e5deb9f96efb27968259823470106d86dc0b439b11c666bfb2d5"
+JOIN_SHA = "d6a0540b3a78cae15827d88dddb2419bef599be2fdf936e51abb74201212d7f9"
 ESCROW_SHA = "5384ceae001952d7aee225cebf09c277f7d92e404ec330a4ec436098b29fc55f"
 MARGIN_PROTOCOL_SHA = "1b13bd111f074d9f4a703fe2e04a1dc06a46eb3d5dbd329daa85fcd45e122edd"
 PREDICTION_FIELDS = {"pair_sha256", "task_sha256", "parent_sha256", "run_sha256", "margins"}
@@ -31,6 +32,25 @@ def require(ok: bool, reason: str) -> None:
 
 def is_sha(value: Any) -> bool:
     return isinstance(value, str) and len(value) == 64 and not (set(value) - set("0123456789abcdef"))
+
+
+def no_duplicates(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    value: dict[str, Any] = {}
+    for key, item in pairs:
+        require(key not in value, "duplicate_protocol_key")
+        value[key] = item
+    return value
+
+
+def protocol_object(raw: bytes, expected_sha256: str, reason: str) -> dict[str, Any]:
+    require(isinstance(raw, bytes) and 0 < len(raw) <= 100_000, reason + "_bytes")
+    require(hashlib.sha256(raw).hexdigest() == expected_sha256, reason + "_sha")
+    try:
+        value = json.loads(raw.decode("utf-8"), object_pairs_hook=no_duplicates)
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise AnonymousJoinError(reason + "_json") from exc
+    require(isinstance(value, dict), reason + "_object")
+    return value
 
 
 def validate_join_protocol(value: dict[str, Any]) -> None:
@@ -107,17 +127,17 @@ def anonymous_rows(predictions: list[dict[str, Any]], truths: list[dict[str, Any
 
 
 def compose(predictions: list[dict[str, Any]], truths: list[dict[str, Any]],
-            join_protocol: dict[str, Any], readout_protocol: dict[str, Any],
-            join_protocol_sha256: str) -> dict[str, Any]:
+            join_protocol_raw: bytes, readout_protocol_raw: bytes) -> dict[str, Any]:
+    join_protocol = protocol_object(join_protocol_raw, JOIN_SHA, "join_protocol")
+    readout_protocol = protocol_object(readout_protocol_raw, READOUT_SHA, "readout_protocol")
     validate_join_protocol(join_protocol)
     validate_readout(readout_protocol)
-    require(is_sha(join_protocol_sha256), "join_protocol_sha")
     rows = anonymous_rows(predictions, truths)
     statistics = evaluate(rows, readout_protocol)
     return {
         "protocol": "g-reuse-anonymous-truth-join-result-v1",
         "status": statistics["status"],
-        "join_protocol_sha256": join_protocol_sha256,
+        "join_protocol_sha256": JOIN_SHA,
         "effect_readout_protocol_sha256": READOUT_SHA,
         "prediction_rows_canonical_sha256": canonical_digest(predictions),
         "truth_rows_canonical_sha256": canonical_digest(truths),

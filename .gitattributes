@@ -412,3 +412,4 @@ phase1/tests/test_g_reuse_decision_context_reach.py text eol=lf diff
 phase1/G_REUSE_DECISION_CONTEXT_REACH_R2_20260905.md text eol=lf diff
 phase1/G_REUSE_DECISION_CONTEXT_REACH_R3_20260905.md text eol=lf diff
 phase1/G_REUSE_DECISION_CONTEXT_REACH_R4_20260905.md text eol=lf diff
+phase1/results/g_reuse_decision_context_reach_d379f00_20260905/** text eol=lf diff

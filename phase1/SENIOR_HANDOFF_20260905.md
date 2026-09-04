@@ -54,6 +54,12 @@ Probe或底座训练，也没有读取first960/Target300/Target522结果。最�
 旧历史输入下50%预计G-stage省35.67%、总量省13.50%，但权威同producer包到来后必须在看效果前重算。
 完整边界见`G_REUSE_EFFECT_TRANSLATION_DECISION_20260905.md`。
 
+随后更贴近部署语义的结构检查显示：full有96.76%边跨local parent context，触达928/1473 contexts，双端覆盖
+1934/4689 local pairs；parent-rank gain=787且28/28任务为正。spectral50省35.67% G token并完整保留parent-rank
+和context coverage，但双端local-pair coverage只保留full的70.73%，未过预注册75%门；总状态必须NOT SUPPORTED。
+因此full主臂得到更直接结构支撑，而spectral50风险也被提前暴露：只允许core成功后真实训练检验，不能凭谱数字称无损。
+见`results/g_reuse_decision_context_reach_d379f00_20260905/README.md`。
+
 ## 2. G0 12377 没有训练，已修到真实launcher边界
 
 Slurm记账：12377为FAILED/exit1，双卡131秒，即262 GPU-seconds。失败发生在真实launcher开始后0.02秒：

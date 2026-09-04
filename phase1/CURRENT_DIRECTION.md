@@ -3,7 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
-## 0L23. 2026-09-05 04:38：效果路径收敛为full core，50% spectral只作条件式成本challenger
+## 0L24. 2026-09-05 04:28：full广泛连接local context；spectral50双端pair保留门未过
+
+结果前科学commit `8da7fd6b9972e278f1ec2afc8aaefd82dbc70df9`固定local `(task,parent)` context、
+full/basis/spectral50三臂及十门。前三个正式根均在读输入/metrics前因source archive import绑定/漏依赖失败并保留；
+`39b8e4d...`仅显式绑定exact source root，`d379f00...`仅记录并补齐两个tracked间接依赖，科学代码和门不变。
+
+正式r4中，4,689个L pairs对应1,473个contexts且endpoint均唯一归属。full的2,656/2,745边跨context，比例
+`0.9675774134790528`；触达928 contexts，coverage=`0.6300067888662594`；any/both端local-pair coverage为
+`0.672851354233312/0.41245468116869266`；parent-rank gain=787，28/28任务正gain，最大任务share
+`0.09148665819567979`。所有full门通过，说明full的endpoint图收益确实广泛落到local decision contexts。
+
+spectral50以12,610,283对19,601,875 G tokens，reduction=`0.3566797564008545`，保留`1.0` parent-rank和
+`1.0` context coverage；但both-endpoint local-pair coverage只从full的1,934降至1,368，retention=
+`0.7073422957600828`，低于冻结0.75。故总状态必须为`G_REUSE_DECISION_CONTEXT_REACH_NOT_SUPPORTED`，
+不能降门或改试75%。这不撤回0L22相对谱优势，但表明rank/谱保留不等于pair exposure保留：full继续是效果主臂，
+0L23的spectral50只能在core通过后用真实模型非劣门检验，不能凭结构结果称Pareto。
+
+producer/verifier各A/B逐字节一致且metrics完全相同，四次rc0/stderr0；source archive SHA=
+`188e56c06ccee016d252951ea5489174592288e08e5e803f9b5ecdd1ba4bcfda`，结果archive SHA=
+`8e370024ccc4200d63cb7ad0dbc35919e2dcf52ac1289586e53f4d9c1b0bce77`，receipt SHA=
+`c9f17ba4e7354aea19288f3ef58f2a8f25f979f962e0872bbda5e01ce1312bfe`；manifest/credential/身份门通过。
+正式产物见`results/g_reuse_decision_context_reach_d379f00_20260905/README.md`，GPU/API/fit=0。
+
+## 0L23. 2026-09-05 04:12：效果路径收敛为full core，50% spectral只作条件式成本challenger
 
 0L20--0L22之后的结果盲执行裁决见`G_REUSE_EFFECT_TRANSLATION_DECISION_20260905.md`。现有冻结v2和历史开发v1
 均不覆盖；任何GPU/API/fit/评测访问仍未授权。权威同producer包通过后，core候选仍是L1、Lbudget、

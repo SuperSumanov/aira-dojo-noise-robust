@@ -3,6 +3,27 @@
 这是一页状态交接。主线仍是 Decision Corpus + Predictor Benchmark + Audit Protocol；没有恢复HCE、多保真、
 Probe或底座训练，也没有读取first960/Target300/Target522结果。最新公开入口为`CURRENT_DIRECTION.md`顶部。
 
+## 06:39 香港更新：现在最短的正式效果交付路径
+
+不要直接沿用当前`b8d0951`的`train_scale_reward.sh`或oriented evaluator做正式G-reuse结果。最短路径是一次性交付：
+
+1. 按第3节格式给同producer的Cards/G/L/split/source七角色包，并额外给**冻结评测的匿名逐task pair数**；后者只用于
+   训练前功效复算，不含task名、标签、预测或分数。
+2. trainer只读train/dev，禁止outer frozen/test作周期eval；五臂×seed6/7/8都保存事前固定的final checkpoint，
+   checkpoint/hash/config/training manifest共15格完整后才允许评分。
+3. scorer不要读`better/worse`顺序，也不要算accuracy。每个endpoint只写五臂×三seed的scalar；TF-IDF另写同池scalar。
+   新冻结物化器会用canonical endpoint顺序确定性生成left-minus-right margin，再交给escrow validator。
+4. escrow通过后仍不直接看结果；冻结统计链只接受匿名pair/task/parent/run SHA并一次连接pristine truth，执行task等权、
+   双聚类敏感性、LOTO、三seed和hash-control层级。
+
+新物化协议的结果前commit=`47b83604e489309f6221b3b3770c6667160733b8`；Linux双跑各10 tests。
+公开后继`6d3997f91e37328e66307164bd57977956a68bc3`把来源包验收、物化、escrow与双统计实现合并跑通
+`125 passed`，exact archive=`187adbb476948f4ab97e5668ae441cf7742deac3710dd8c4348781fab0e1de5d`。
+因此软件接口已基本串通，当前真正阻塞不是再写validator，而是同producer来源、成功G0和精确GPU预算。
+
+G0 12377的131秒失败及输出隔离修复状态未变：已知permission故障已穿过到真实`accelerate launch`边界，但没有
+真实模型加载/显存/十步成本。原一次授权已消耗，不应自动重投；若要再跑，仍需用户按累计4 GPU·h上限重新批准。
+
 ## 0. 开正式15-fit前新增一个功效门
 
 只用历史评测结构的28个匿名task pair-count做了结果盲敏感性。随后结果前冻结的异方差Monte Carlo显示，

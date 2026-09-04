@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L20. 2026-09-05 03:45：full G的cycle广泛降低55.33%有效电阻，五门全过
+
+结果前commit `6976358740943b9c3dede20c27da4a77443a7cbb`固定endpoint-level无权图、最终G-touched
+连通块、Kirchhoff/平均有效电阻estimand及四个科学门；主实现用Laplacian eig，独立verifier用移位Laplacian inverse。
+首个正式根四次计算均rc0/stderr0且顶层PASS已在诊断时可见，但外层错误要求inverse verifier A/B JSON逐字节相同，
+因10个浮点末位差异而RuntimeError fail-closed；最大绝对/相对差仅`1.8189894035458565e-12`/
+`5.033757779443083e-16`，非浮点差0。首根保留且不算成功。commit
+`782a7c7486a91d6d291569b44be714398ac7edc4`只把该外层门改成预检已固定的`rel=1e-8, abs=1e-7`，
+不改输入、公式、population、阈值或producer byte-exact门；全新根重跑。
+
+正式retry四次均rc0、stderr0；producer A/B byte-exact，inverse verifier A/B最大绝对差
+`3.637978807091713e-12`，eig/inverse metrics最大绝对差`8.440110832452774e-10`，非浮点差均0且全部在冻结
+容差内。下载archive SHA=`585f6093539c1443d2ebd17351df08e306b53f4cd58acb982840df9ff215dd2d`，
+receipt SHA=`c238a08cf34b3e5321cf4fe01556ceac79ee49015f0de31addf3613074a2cea5`；manifest、credential和
+身份字段扫描通过。
+
+结果：full 2745 G边相对同rank的790-edge basis，把汇总Kirchhoff从`164865.8708564815`降到
+`73638.03544197977`，有效电阻下降`0.5533457891592195`；任务中位下降
+`0.6132619063449083`，27/28任务严格下降，最大等权任务贡献仅`0.05919087827267576`，五门全过。
+这说明1955条不增rank的cycle在真实comparison graph上不是纯冗余，而是广泛改善谱条件；full应保持效果主臂，
+basis只作成本challenger。有效电阻是已有pairwise-ranking理论下的拓扑代理，不是accuracy、训练收益或新算法。
+正式产物见`results/g_reuse_cycle_information_782a7c7_20260905/README.md`，GPU/API/fit=0。
+
 ## 0L19. 2026-09-05 03:30：最小basis总体成本跨cap稳健，但任务广度门19/28未过
 
 结果前commit `d06c1dd159c1f84a6ca11da612ee23ce51ce641a`固定4K/8K/16K/raw四种长度口径及五门；

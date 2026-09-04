@@ -25,6 +25,18 @@ Probe或底座训练，也没有读取first960/Target300/Target522结果。最�
 - `results/g_reuse_record_consistent_e4d89b0_20260905/`；
 - `results/g_reuse_min_token_basis_319ba30_20260905/`。
 
+## 1.5 本交接提交后的两项补充
+
+1. 4K/8K/16K/raw四种长度口径下，790-edge basis的总体G-token reduction均为70.43%--71.48%，
+   leave-one-task最差仍为68.08%--69.36%，最大任务saved-token share为16.60%--17.80%。但四种口径下都达到
+   单任务50%节省的只有19/28，低于预注册20/28门；总状态诚实记为NOT ROBUST，不能说逐任务普遍节省。
+2. 更关键的正结果：在endpoint-level comparison graph上，full 2745边相对同rank的790-edge basis把汇总
+   有效电阻降低55.33%；任务中位降低61.33%，27/28任务严格下降，最大等权任务贡献5.92%，预注册五门全过。
+   主实现用Laplacian eig，独立verifier用inverse公式；首次outer byte-exact门因`1.82e-12`浮点抖动失败并保留，
+   只按事前容差修复后全新根通过。这个结果说明cycle不只是rank冗余，因此full G应保留为效果主臂，basis只作
+   成本challenger；它仍不是critic accuracy。见
+   `results/g_reuse_cycle_information_782a7c7_20260905/README.md`。
+
 ## 2. G0 12377 没有训练，已修到真实launcher边界
 
 Slurm记账：12377为FAILED/exit1，双卡131秒，即262 GPU-seconds。失败发生在真实launcher开始后0.02秒：

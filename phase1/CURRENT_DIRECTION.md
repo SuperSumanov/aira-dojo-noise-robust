@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L31. 2026-09-05 05:47：同producer包级验收接口已就绪；声明通过仍不等于效果资格
+
+为避免学长交付后再人工拼版本，新增包级manifest门：Cards/G/L/split/source provenance/producer receipt/
+evaluator receipt七角色各一次，固定bytes/SHA/LFS OID；拒绝重复JSON key、credential shape、路径穿越、symlink、
+listed hardlink alias、hash/size漂移，并要求manifest与producer小回执中的commit/release/exact config stratum一致。
+只解析manifest和两份固定schema小回执，不解析Cards/pair/split/provenance payload。
+
+exact code=`005d0d2`，本地与Linux各9 tests pass。正式双跑raw只因pytest时长字段不同而首门正确停住；新根保留raw，
+仅规范化显式duration token后A/B逐字节一致，normalized SHA=
+`9111e3399a60f0407a09454c983a83ea24085e8b78f61a8d656e9bf1f77ddb4a`，archive SHA=
+`dd5ddd7dd8c15e6cd5ff7127af586479aee09bed8d3a7685dfb74e90d905cf56`。
+
+成功状态故意为`PACKAGE_DECLARATION_HASH_BOUND_NOT_EFFECT_ELIGIBLE`：它不证明commit/config真实执行、实例独立、
+evaluator pristine或whole-experiment split真实。来源v2、payload零交集/config、0L30功效、G0和GPU批准仍全部必需。
+这项只缩短合法上游到达后的验收时间，不是model/accuracy/scaling正结果。详见
+`results/g_reuse_source_package_validator_005d0d2_20260905/README.md`，GPU/API/fit/protected read均为0。
+
 ## 0L30. 2026-09-05 05:48：15-fit方案在28任务下未证明有足够功效；来源到达后先按匿名结构复算
 
 结果前commit=`26a9bfa`冻结只读匿名task pair-count的CI功效敏感性；`b27115a`只修测试副本未显式恢复

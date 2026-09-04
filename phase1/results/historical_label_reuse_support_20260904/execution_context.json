@@ -1,0 +1,21 @@
+{
+  "api_calls": 0,
+  "child_timeout_seconds": 180,
+  "learning_seed": "not_applicable",
+  "model_fits": 0,
+  "new_gpu_jobs": 0,
+  "planned_executions": [
+    "producer_a",
+    "producer_b",
+    "independent"
+  ],
+  "python": "3.11.15 (main, Jun 11 2026, 04:03:40) [Clang 22.1.3 ]",
+  "source_commit": "9faaed1adde62de4ac87655e009232127b141d08",
+  "source_sha256": {
+    "phase1/historical_label_reuse_support.py": "7acecdc225d4922177d38df8060b9cfa28aac1cdbb9b39549fde36c0c3ba2a87",
+    "phase1/scripts/run_historical_label_reuse_support_20260904.py": "9d5c26975b80bd63794541b05779c4451f47a208488f715ddf06ff89435926e4",
+    "phase1/verify_historical_label_reuse_support.py": "4375a4a26949506907302c467ccd87f5070d0613521e96ea2cbe7f3721b32548"
+  },
+  "started_at_utc": "2026-09-04T05:56:41.778398+00:00",
+  "warmup": "not_applicable"
+}

@@ -1,15 +1,29 @@
 # Context handoff：Decision Corpus + Predictor Benchmark
 
-**Last updated:** 2026-08-27
+**Last updated:** 2026-09-04
 
-**Dynamic status timestamp:** 2026-08-27 09:53 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-09-04 14:09 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
 **Authority warning:** 本文件不是科学方向的最高权威。开始任何实验前必须先 fetch Git，再读
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
-## 0N. 09:53 动态覆盖（覆盖下文所有旧 snapshot、sidecar、学长 HEAD 与结构机制状态）
+## 2026-09-04 最新入口，覆盖下文所有动态状态
+
+先fetch，再读CURRENT_DIRECTION.md顶部0L8及更新的ACTIVE_WORK_SESSION_20260904.md。
+当前唯一已提交GPU作业是G0 12377，2卡117分钟只计价；06:02UTC仍PENDING/Resources，估计香港9月5日12:38:50，
+不保证。旧12288启动前失败已保留；新作业不要重投。正式五臂15fits未获预算，不能把G0说成收益实验。
+新候选是同一已执行端点集合上的G-reuse→L；两个历史train真实诊断支持3058个新增比较/28tasks，
+假设54407806validtokens，但143配置不一致/193来源未明，不能物化成训练池或说有模型收益。
+完整来源、双验证、hash与方法限制见LABEL_REUSE_FINDINGS_20260904.md；旧冻结v2和历史开发v1字节不改。
+需要同版本producer包+权威来源/config+experiment-closed划分、G0实测和新预算；不得自行过滤问题样本。
+最新结构619/960eligible、645physical、316归档、16844endpoints/3910pairs/51tasks，closure=false、config-v2=0。
+LATEST=bc9833d834fba65adbbf174301fe968c2c12da4eb8190a8f418ece58d0219456；摄取PID3884166在06:02UTC存活。
+学长head=b8d095180415957aa1bab31fa53ead1bba261c03，无新outcome。首次960/Target300/522仍盲态；旧失败链不恢复。
+没有新clean scaling或跨seed同预算模型收益。用户要求会话内工作，原heartbeat暂停，不能用反复巡检冒充实验。
+
+## 0N. 09:53 动态覆盖（历史记录，已由2026-09-04状态覆盖）
 
 - 当前唯一主线仍是 Decision Corpus + Predictor Benchmark + Audit Protocol；旧 HCE/多保真/probe/score-channel
   effect/K≥1 lookahead/conformal stop 均关闭，不得恢复。

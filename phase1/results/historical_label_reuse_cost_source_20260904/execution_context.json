@@ -1,0 +1,18 @@
+{
+  "api_calls": 0,
+  "launcher_sha256": "80f287d7f698be32d97de0b4c5125153d9304c50d9019659d044624573574c87",
+  "model_fits": 0,
+  "new_gpu_jobs": 0,
+  "per_child_timeout_seconds": 180,
+  "python": "3.11.15 (main, Jun 11 2026, 04:03:40) [Clang 22.1.3 ]",
+  "source_commit": "9d4a70a20c43de5f1613dd87629e1cb4996628f2",
+  "source_sha256": {
+    "phase1/historical_global_local_pool_readiness.py": "294ef29f8df216fcf84891f4df881a3b31ed18408552a6b904bdf898b708f966",
+    "phase1/historical_global_local_source_gate.py": "1f537d5dfebd2dfb4aba6afd32d0388b5345a2bb9264aace3af005f4ddd2b249",
+    "phase1/historical_label_reuse_cost_source.py": "94e38cb130e65478792e7ef4f8090896416b096a93988eb65e932d84ddce3100",
+    "phase1/historical_label_reuse_support.py": "7acecdc225d4922177d38df8060b9cfa28aac1cdbb9b39549fde36c0c3ba2a87",
+    "phase1/historical_train_encoding_readiness.py": "23074792ab9f743c5e4f4ace1668136ab5be09890faee37b8f9eb693b371cefe",
+    "phase1/verify_historical_global_local_source_gate.py": "c5d712a1c9d8a1d511abcdb0d02df63140f441c9701b9a51dc1641dd8b6a36e9"
+  },
+  "started_at_utc": "2026-09-04T06:02:48.262100+00:00"
+}

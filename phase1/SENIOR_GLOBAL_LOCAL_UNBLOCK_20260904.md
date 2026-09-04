@@ -11,7 +11,7 @@
 这些是执行准备，**尚无新增跨seed正收益，也没有新的干净scaling确认**。香港9月4日13时更新：双卡G0
 （job12288）在获配4秒后被源码干净门拦截，尚未训练；原因是我们之前清理默认环境后遗漏未跟踪锁文件。
 该文件已原样隔离保留，源码/模型/输入/运行库重新验证不变。用户新批准后13:16提交12377，双卡117分钟，
-13:18核验PENDING/Resources，预计9月5日12:38开跑（非保证）；双卡实际训练仍未验证。
+13:36核验仍PENDING/Resources，最新估计9月5日13:35开跑（非保证）；双卡实际训练仍未验证。
 G0只用于估算真实训练成本；正式15 fits尚未启动。接口可复用，不再重复堆合成测试。
 
 ## 今天在真实候选数据上查清的阻塞
@@ -34,9 +34,12 @@ G0只用于估算真实训练成本；正式15 fits尚未启动。接口可复�
 
 1. Cards、G、L、split及生成命令/配置各自的完整SHA/LFS OID、producer commit；所有输入属于同一明确来源。
    G/L物理train-only文件与dev/test文件分开。需要说明哪些旧实验曾接触评测，不能把它们改叫全新确认集。
-2. `run_id → source-date、batch-id、archive path/SHA、producer commit`的不可变映射。
-   对旧缺失/歧义来源作显式修复或声明无法修复；不要从task/date/config猜身份。已有验收器：
-   `phase1/validate_senior_source_provenance_manifest.py`。
+2. 每run一行的不可变来源声明：`run_id, task, launch_date, source_date, batch_id, archive_path,
+   archive_sha256, journal_member, producer_commit, producer_instance_id`，按run_id排序，无额外字段。
+   `launch_date`是run后缀日期，`source_date`是归档日期，**二者允许不同**；journal_member给出完整路径。
+   producer_instance_id须来自实际执行记录，不能由我们临时按日期/run名生成替代；没有权威记录就声明无法修复。
+   新入口`phase1/validate_senior_source_provenance_v2.py`；字段说明见`phase1/SOURCE_DECLARATION_V2_20260904.md`。
+   旧验收器不改；v2只验声明的唯一header与哈希，不替代执行配置和物理实例的权威证明，不自动解除旧S0。
 3. 实际生成配置的来源绑定，并按完整experiment划分train/dev/frozen；配对后仍验证pair/card/run零交集。
    本轮不会替你删除问题样本；如果需要新历史开发子集，我们先固定新协议再物化，不改旧S0裁决。
 
@@ -45,6 +48,10 @@ G0只用于估算真实训练成本；正式15 fits尚未启动。接口可复�
 本次确认最新b8d0951的四个相关目标路径与此前已验证5baccb1无差异；hook仍未并入。既有19项兼容测试是之前的，
 这次只复查Git路径/对象，不把它说成重新跑过测试。补丁不更改搜索策略、模型或预算；它本身不提供历史来源修复。
 请对**今后的新run**启用并标明稳定generator release，不要事后回填成outcome-before。
+
+本次修正不是凭空放宽日期门：已有636个唯一来源中99个的两种日期确实不同，双生产和独立复算一致。
+它们原本已有唯一来源，**不是多恢复99个run**；当前候选中的19个歧义/6个缺失run仍需真实来源补齐。
+新接口在Linux上36项检查通过，未读取真实归档payload或前瞻评测。尚没有收到新真实来源声明并通过验收。
 
 来源门通过后，我方重算实际token预算，拿G0实测成本列出正式矩阵/GPU·h，再申请一次明确授权。
 保留原效果门：跨seed方向一致、同预算paired任务聚类区间、全局标签负控和单任务主导检查。

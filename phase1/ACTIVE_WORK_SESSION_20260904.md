@@ -166,3 +166,23 @@ PENDING/Resources、Runtime0，预计9月5日12:38:50开跑；这不是立即训
 累计最坏上限含两次失败为14360 GPU秒；新独占提交锁与完整证据保留在`submissions/20260904-g0-r3`。
 只读后验首次NumNodes=1-1格式拒绝保留，兼容精确单节点范围后通过；未改Slurm作业或放宽资源门。
 见`results/g0_retry_r3_20260904/`。不得复跑旧repair verifier（它要求空队列）；当前用新的job12377只读检查器。
+
+## 不空等：来源声明日期契约修复已验证
+
+预先限定只读历史header映射，不读真实归档、Cards/pairs/前瞻值；新v2入口与旧S0/旧验收器并存，不改冻结
+科学协议。本轮experiment-prompting技能促使把问题限定为“旧日期约束是否会误拒已有唯一来源”，不把它
+与训练增益混为一谈。对固定676行映射复算，636唯一来源中537同日、99异日，-1天73、+1天26；32歧义/8缺失未解。
+新v2要求显式launch_date/source_date、完整journal路径和权威实例声明；只提供header绑定，不能证明执行真伪。
+
+源码提交7083668352f924860da4613c4dd2724cd3570c37，远端独占`/tmp/source-declaration-v2-20260904-CYEGWQ`，
+Python3.11.15，CUDA隐藏、数学线程1。旧/新接口Linux36项全部通过；Windows组合回归55 passed/1 skipped
+（系统不允许创建符号链接，Linux实际执行该项）。真实日期双生产byte-identical、独立实现复算一致，SHA
+6c7ce58883fb451e1be9d7f6646ff4129d0fa387f52b7894da85e5df3e956b07。没有真实新producer声明，不能报验收新语料成功。
+旧验收器和旧测试Git对象/Windows工作区字节不变；发布核验首次拒绝旧验收器的Git blob/as-run哈希不同。
+独立检查证明Git blob与当前工作区均LF，而Windows生成的Git archive将未指定eol的旧文件转为CRLF；不是反过来。
+对该exact旧文件验证整个archive member等于blob逐行LF→CRLF，无其它差异；as-run清单中的新代码三文件则逐字节相同。
+原哈希拒绝保留，按明确的as-run archive SHA发布，不把两份原始字节说成相同。冻结v2/历史开发v1 SHA仍不变。
+
+05:36:11 UTC G0独立只读复验仍PENDING/Resources，估计香港9月5日13:35:41开始，比13:18的估计延后；不保证。
+原source/runtime/预算和唯一作业均不改，无新GPU/API/模型fit。更新给学长的最小交付清单，未代发消息或改其分支。
+当前工作成果是修正真实误拒风险、使维护者交付可验；不是新accuracy、clean scaling或同预算正收益。

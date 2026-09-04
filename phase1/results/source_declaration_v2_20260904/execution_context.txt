@@ -1,0 +1,4 @@
+source_commit=7083668352f924860da4613c4dd2724cd3570c37
+model_fits=0
+new_gpu_jobs=0
+archive_payloads=synthetic_test_fixtures_only

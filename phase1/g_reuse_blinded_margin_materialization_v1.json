@@ -1,0 +1,26 @@
+{
+  "protocol": "g-reuse-blinded-margin-materialization-v1",
+  "status": "FROZEN_BEFORE_ENDPOINT_SCORE_OR_EFFECT_READOUT",
+  "frozen_at_utc": "2026-09-04T22:26:00Z",
+  "parent_escrow_contract_sha256": "5384ceae001952d7aee225cebf09c277f7d92e404ec330a4ec436098b29fc55f",
+  "canonical_pair_hash": "sha256(utf8(left_endpoint_id + NUL + right_endpoint_id)) with left_endpoint_id lexicographically smaller",
+  "required_seeded_arms": ["L1", "Lbudget", "G-reuse-budget", "G-reuse-to-L-full", "Ghash-reuse-to-L-full"],
+  "required_seeds": [6, 7, 8],
+  "required_unseeded_arms": ["tfidf"],
+  "input_contract": {
+    "blinded_pair_fields": ["left_endpoint_id", "right_endpoint_id", "pair_sha256", "task_sha256", "parent_sha256", "run_sha256"],
+    "endpoint_score_fields": ["endpoint_id", "scores"],
+    "endpoint_score_support": "exact union of pair endpoints, no missing or extra endpoint",
+    "oriented_truth_score_label_accuracy_or_utility_field_allowed": false,
+    "all_scores_finite": true
+  },
+  "output_contract": {
+    "fields": ["pair_sha256", "task_sha256", "parent_sha256", "run_sha256", "margins"],
+    "margin": "endpoint_score(left)-endpoint_score(right)",
+    "raw_endpoint_identity_written": false,
+    "truth_or_outcome_written": false,
+    "canonical_sort": ["pair_sha256"]
+  },
+  "classification": "LABEL_BLIND_MARGIN_MATERIALIZER_READY_NOT_MODEL_SCORED",
+  "resources": {"gpu_jobs": 0, "api_calls": 0, "model_fits": 0, "protected_values_read": 0}
+}

@@ -34,6 +34,8 @@ exec > "$worker_log" 2>&1
 
 readonly output_dir="$G0_RUN_ROOT/output"
 readonly launcher_log="$G0_RUN_ROOT/accelerate.log"
+readonly shared_env_output="$G0_RUN_ROOT/shared-env-output"
+readonly shared_env_logs="$G0_RUN_ROOT/shared-env-logs"
 readonly resource_usage="$G0_RUN_ROOT/resource_usage.txt"
 readonly telemetry="$G0_RUN_ROOT/gpu_telemetry.csv"
 readonly preflight="$G0_RUN_ROOT/preflight.json"
@@ -47,6 +49,13 @@ export TOKENIZERS_PARALLELISM=false
 export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-16}"
 export NCCL_DEBUG=WARN
 export PYTHONHASHSEED=6
+
+# The senior launcher sources experiment_env_augmented_data.sh before it checks
+# CONFIRM_OUTPUT_DIR.  Its historical defaults point inside the immutable source
+# checkout, so bind those unused shared defaults to this run before launch.
+test ! -e "$shared_env_output" && test ! -e "$shared_env_logs"
+export MLE_CRITIC_OUTPUT_DIR="$shared_env_output"
+export MLE_CRITIC_LOG_DIR="$shared_env_logs"
 
 scratch_base=${SLURM_TMPDIR:-/tmp}
 readonly scratch_root="$scratch_base/critic-g0-$SLURM_JOB_ID"

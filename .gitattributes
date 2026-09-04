@@ -323,3 +323,7 @@ phase1/tests/test_historical_label_reuse_support.py text eol=lf diff
 phase1/LABEL_REUSE_MECHANISM_PLAN_20260904.md text eol=lf diff
 phase1/scripts/run_historical_label_reuse_support_20260904.py text eol=lf diff
 phase1/results/historical_label_reuse_support_20260904/** -text diff
+phase1/historical_label_reuse_cost_source.py text eol=lf diff
+phase1/tests/test_historical_label_reuse_cost_source.py text eol=lf diff
+phase1/LABEL_REUSE_FOLLOWUP_PLAN_20260904.md text eol=lf diff
+phase1/results/historical_label_reuse_cost_source_20260904/** -text diff

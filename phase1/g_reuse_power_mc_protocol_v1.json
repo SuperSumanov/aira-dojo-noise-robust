@@ -1,0 +1,29 @@
+{
+  "protocol": "g-reuse-power-heteroskedastic-mc-v1",
+  "frozen_at_utc": "2026-09-04T22:00:00Z",
+  "status": "FROZEN_BEFORE_MONTE_CARLO_READOUT",
+  "input": {
+    "path": "phase1/results/g_reuse_decision_context_reach_d379f00_20260905/producer_a.json",
+    "sha256": "c9f17ba4e7354aea19288f3ef58f2a8f25f979f962e0872bbda5e01ce1312bfe",
+    "allowed_field": "metrics.arms.full.anonymous_task_rows[*].local_pairs"
+  },
+  "fixed": {
+    "delta": 0.02,
+    "training_seeds": 3,
+    "task_ci_t_critical_df27": 2.0518305164802833,
+    "trials_per_replication": 250000,
+    "simulation_seeds": [20260905, 20260906],
+    "batch_size": 5000
+  },
+  "scenarios": {
+    "optimistic": {"paired_discordance": 0.1, "between_task_sd": 0.0, "seed_correlation": 0.0, "analytic_power": 0.9960097410888751},
+    "reference": {"paired_discordance": 0.2, "between_task_sd": 0.01, "seed_correlation": 0.5, "analytic_power": 0.6140229368856638},
+    "stress": {"paired_discordance": 0.4, "between_task_sd": 0.02, "seed_correlation": 1.0, "analytic_power": 0.2509513139916863}
+  },
+  "gates": {
+    "maximum_replication_absolute_difference": 0.01,
+    "maximum_mean_mc_vs_analytic_absolute_difference": 0.01,
+    "maximum_wilson_95_half_width": 0.005
+  },
+  "classification": "OUTCOME_BLIND_POWER_APPROXIMATION_CALIBRATION_ONLY"
+}

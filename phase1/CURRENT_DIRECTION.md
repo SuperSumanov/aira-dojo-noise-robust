@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L12. 2026-09-05 02:12：发现并限界同步0903九个新归档；尚未进入语料
+
+用户指出学长可能已上传新语料。旧镜像确实停在316个归档；对公开Drive根做受限元数据检查后发现
+纯日期目录`0903`有9个文件且本地均缺失。全根递归的首次尝试在固定80请求上限处fail-closed，未下载
+payload、未作为清单使用；随后只列根及0901/0902/0903，明确排除checkpoint与mlebench。
+
+事前预检后只下载并原子提升这9个压缩归档：299168545字节、22个HTTP请求、73.9418秒；不解包、
+不解压、不读member、不覆盖原316个文件，也未加载模型/保护值或使用GPU/API。私有exact-nine manifest
+SHA=`e048e074ea70ae78c17d37f4ad49cac76aad0fd7d4e19caa876928e295962377`；同步代码commit
+`12d4579168e6dadfc745ef5479922b4d77c1512d`。下载保留新mtime，不借远端时间绕过六小时稳定门，故九文件
+最早于`2026-09-05T00:09:48.832417+00:00`才可摄取，晚于本次六小时会话原定截止23:53:04UTC。
+当前只能写source archive count=325；正式eligible仍为619/960、LATEST及closure不变，不能提前加数。
+
+旧摄取器只增加`--run-once`前台分支，复用原credential-first verifier/runner/stability/strace并由会话按不短于
+300秒调用，不建新后台PID；实现commit=`1e17fa3bf110ca509214fb6ff562fabbbb2e89b0`。任何未知重复、凭据命中、
+hash/trace漂移或控制状态变化均fail-closed。first960/Target300/Target522继续盲态。
+
+方法线上，通用global-to-local、pointwise-to-pairwise、比较图及两阶段ranking均已有先例，不申方法首创。
+G-reuse→L仍是主候选，论文主张是同一昂贵执行标签账下的监督组织收益。另记录P→L（外部连续分数预训练
+再局部BT适配）为待来源门后的挑战臂：它可能比把分数先二值化更充分，但不改冻结五臂、不是已批准fit，
+且只有同版本执行身份、精确task/config stratum、train-run归一化及明确GPU·时齐备后才可进入历史开发筛选。
+详见`GLOBAL_LOCAL_RELATED_WORK_BOUNDARY_20260905.md`。以上均不是accuracy、clean scaling或搜索收益。
+
 ## 0L11. 2026-09-05 01:42：补齐DeepSpeed更新完成状态，不是新效果结果
 
 用户要求等待时同步推进。本轮发现未投产适配器DS分支恒报未跳步，但固定库源码overflow后仍增加global_steps；

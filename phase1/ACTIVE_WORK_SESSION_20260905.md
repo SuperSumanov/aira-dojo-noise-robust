@@ -47,3 +47,35 @@ No new model loader/fit CLI or scientific parameter grid. Receive any new source
 through credential-first metadata checks before deciding how to validate it.
 
 Progress will distinguish software correctness, corpus accrual and measured model effect.
+
+## New senior drop discovered and bounded synchronization
+
+The old mirror was stale rather than the source being unchanged. A bounded, metadata-first
+listing of the Google Drive root found nine files under the plain date directory `0903` and
+zero local counterparts. The check did not traverse or download `checkpoint` or `mlebench`.
+An earlier whole-root metadata attempt hit its fixed request ceiling and failed closed; its
+partial directory was preserved and was not used as a source manifest.
+
+After a written preflight and a clean-code commit, an exact-nine synchronizer downloaded and
+atomically promoted only those nine compressed archives. It reserved and released its own
+1 GiB quota probe, retained fresh local modification times, did not extract/decompress/read
+members, did not overwrite the existing 316 archives, and did not load protected values,
+models, GPUs, or paid APIs. Verified outcome:
+
+- 9 new archives; 299168545 compressed bytes; 22 HTTP requests; 73.9418 seconds;
+- source archive count 316 to 325;
+- private exact-nine manifest SHA-256
+  `e048e074ea70ae78c17d37f4ad49cac76aad0fd7d4e19caa876928e295962377`;
+- all nine satisfy the six-hour age gate no earlier than
+  `2026-09-05T00:09:48.832417+00:00`;
+- therefore they are downloaded but not yet intake-eligible during the originally fixed
+  six-hour window ending `2026-09-04T23:53:04+00:00`.
+
+No eligibility or corpus statistic is incremented before the original credential-first,
+stability, trace/security, independent-verifier and atomic-promotion transaction succeeds.
+Foreground checks continue to record safe structural receipts only.
+
+Local full-suite collection was attempted after these documentation changes and stopped with
+11 import errors because the Windows Python lacks SciPy/scikit-learn; no test body ran and no
+scientific assertion failed. The focused foreground-intake suite remains 4/4 passing. A clean
+Linux export with the established dependency environment is required before publication.

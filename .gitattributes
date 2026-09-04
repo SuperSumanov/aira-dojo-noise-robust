@@ -349,3 +349,5 @@ phase1/tests/test_foreground_intake_dispatch.py text eol=lf diff
 phase1/ACTIVE_WORK_SESSION_20260905.md text eol=lf diff
 phase1/SENIOR_DROP_SYNC_20260905.md text eol=lf diff
 phase1/scripts/sync_senior_0903_bounded_20260905.py text eol=lf diff
+phase1/CURRENT_DIRECTION.md text eol=lf diff
+phase1/GLOBAL_LOCAL_RELATED_WORK_BOUNDARY_20260905.md text eol=lf diff

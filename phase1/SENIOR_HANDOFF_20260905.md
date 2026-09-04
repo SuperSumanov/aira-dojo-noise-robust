@@ -5,12 +5,14 @@ Probe或底座训练，也没有读取first960/Target300/Target522结果。最�
 
 ## 0. 开正式15-fit前新增一个功效门
 
-只用历史评测结构的28个匿名task pair-count做了结果盲敏感性。真实+2pp时，task-CI门在事前
-optimistic/reference/stress假设下功效为99.60%/61.40%/25.10%，80%约需12/43/126个同结构任务。
+只用历史评测结构的28个匿名task pair-count做了结果盲敏感性。随后结果前冻结的异方差Monte Carlo显示，
+原解析近似在reference/stress偏低2.20/2.37个百分点，超过1pp校准门，因此解析数字已降级。校准后的
+optimistic/reference/stress task-CI门功效为98.94%/63.61%/27.47%；reference仍明显低于80%。
 这只是CI门；主协议还要求观测点差≥2pp、三seed同向和多个比较门，所以整体通过概率更低，真实效应恰为2pp时
 仅点差门就至多约50%。因此同producer包交付时，请同时给exact frozen evaluation的匿名逐task pair数；我们会在
 训练前重算，不降2pp门，也不在揭盲后补样本。当前语料总体51任务不等于评测支持51任务。完整回执见
-`results/g_reuse_effect_power_b27115a_20260905/README.md`；这不是critic负结果，而是防止花完15 fits才发现CI先天过宽。
+`results/g_reuse_effect_power_b27115a_20260905/README.md`和
+`results/g_reuse_power_mc_adeb668_20260905/README.md`；这不是critic负结果，而是防止花完15 fits才发现CI先天过宽。
 
 ## 1. 今天得到的三个正结构结果
 

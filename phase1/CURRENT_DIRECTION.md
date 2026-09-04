@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L33. 2026-09-05 06:02：功效解析近似未过1pp校准门，但偏差方向保守
+
+结果前commit=`adeb668dbb80a4d0addc133220b7e2e92f27df11`冻结异方差Monte Carlo：只读28个匿名任务的
+`local_pairs`，每个事前场景两次各250,000 trials。Linux 6 tests pass；producer A/B同字节，SHA=
+`668c1e5a36c73ad3c7ca057d7690470c014557a02534190ca0184d5a4a1a9c1b`；不导入模拟器的独立verifier从
+成功次数重算功效、Wilson区间和门，A/B回执也同字节，SHA=
+`e0044b8ff8b646941ed7f770f64e8a5c79a997d1d294b24a11499ceae4866463`；所有stderr为空。
+
+optimistic/reference/stress的Monte Carlo CI-gate功效为`0.989412/0.636072/0.27466`。重复稳定性和
+Wilson精度均通过，但reference/stress与0L30解析近似绝对差`0.022049063114336187/
+0.023708686008313717`，超过冻结0.01门，故总状态`all_gates_pass=false`，0L30解析值降级。偏差方向是解析
+近似保守而非乐观；但reference校准后仍只有约63.61%，未到80%，且仍只覆盖CI下界>0，不覆盖观测点差≥2pp、
+三seed同向和其他core门。不能写成overall power、critic效果或正scaling。详见
+`results/g_reuse_power_mc_adeb668_20260905/README.md`；GPU/API/model fit/protected read均为0。
+
 ## 0L32. 2026-09-05 05:53：JPO与连通comparison-graph微调进一步关闭过宽方法首创
 
 第二轮窄检索找到两个更直接的先例。ACL Findings 2025的JPO明确从同instruction局部偏好扩到跨

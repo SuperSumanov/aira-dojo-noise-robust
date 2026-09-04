@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L28. 2026-09-05 05:10：spectral50目标local方差仅小幅广泛改善，严格门未过
+
+结果前commit=`7650c48adfaa184a32b0c615ccd106abc586e0be`冻结单位edge-noise下4689条local sibling
+contrast的解析方差门。正式v3的producer A/B、grounded verifier A/B各自逐字节一致，531个数值最大跨实现差
+`3.3306690738754696e-16`，23 tests、42项manifest、stderr均通过/为0；前两个根都停在data readout前并保留。
+
+同task-wise 50% G-token预算下，spectral50对cheapest/hash的pair-weighted variance只降低
+`0.014864494581139476/0.01539058095759116`，低于冻结3%门；三者pooled p90均为`1.0`，且对cheapest的
+最大单任务正贡献share=`0.23784625440737536`高于0.20。因此正式状态是
+`G_REUSE_SPECTRAL50_TARGET_CONTRAST_VARIANCE_NOT_SUPPORTED`，不得降门或改25/75%救回。
+
+保留但不rescue的描述性信号是：对cheapest/hash分别有23/22与25/24个任务不劣/严格更好，task-macro相对降
+`0.018097968910051776/0.020020758868748767`；full相对basis的pair/task-macro方差降
+`0.1412770683302651/0.17854197512242564`。这说明full cycle信息对local target有明显headroom，但50% spectral
+压缩的额外局部收益只有约1.5%且不改善桥边尾部。它不撤回0L22的全图D/A相对优势，也不能升级为critic效果；
+0L25 core效果主线不变，spectral成本stage的机制支持变弱。GPU/API/neural fit/protected read均为0。正式回执见
+`results/g_reuse_target_contrast_variance_7650c48_20260905/validation_receipt.json`。
+
 ## 0L27. 2026-09-05 04:47：G-reuse冻结协议通过独立Linux关键回归；效果阻断不变
 
 固定科学commit `06d868a1a43b2f1b86254790c4de21fafefb4903`以显式依赖闭包导出；最终归档

@@ -1,0 +1,131 @@
+{
+  "status": "G_REUSE_SPECTRAL50_TARGET_CONTRAST_VARIANCE_NOT_SUPPORTED",
+  "scientific_commit": "7650c48adfaa184a32b0c615ccd106abc586e0be",
+  "protocol_canonical_json_sha256": "203f7bc0a29a9d26fda82759f8bc5c7357d17c09e10729a03db62050baf336ab",
+  "source_archive_sha256": "32f00ef5be1852028e3c6140c5d0818fe14baf41dd9947ff7cd24fee3a9583fb",
+  "formal_root": "/research/d7/spc/yzyang4/g-reuse-target-contrast-variance/formal-7650c48-v3",
+  "producer_receipt_sha256": "cd25306ad994044778c58a4c277cedb828ce52f7f4255a58ed94be7254e68d8e",
+  "selected_manifest_sha256": "da845754fc3685abc333ffd21bedebc2de7eb0991f5ff04397ca4798075f4af1",
+  "downloaded_top_archive_sha256": "1734bcb39dfcdc5b276f6dd93f0dd0de8966cc1595e48c5be92dfcca51018712",
+  "verification": {
+    "focused_tests_passed": 23,
+    "focused_tests_failed": 0,
+    "producer_ab_byte_exact": true,
+    "verifier_ab_byte_exact": true,
+    "producer_verifier_selection_manifest_exact": true,
+    "producer_verifier_numeric_values_compared": 531,
+    "producer_verifier_max_absolute_difference": 3.3306690738754696e-16,
+    "producer_verifier_nonnumeric_mismatches": 0,
+    "sha256_manifest_entries": 42,
+    "sha256_manifest_bad_or_missing": 0,
+    "total_stderr_bytes": 0,
+    "elapsed_seconds": {
+      "focused_tests": 18,
+      "producer_a": 58,
+      "producer_b": 44,
+      "verifier_a": 46,
+      "verifier_b": 48
+    }
+  },
+  "population": {
+    "local_pairs": 4689,
+    "full_g_pairs": 2745,
+    "basis_g_pairs": 790,
+    "tasks": 28
+  },
+  "g_pairs": {
+    "basis": 790,
+    "spectral50": 1811,
+    "cheapest50": 1949,
+    "hash50": 1763,
+    "full": 2745
+  },
+  "g_valid_tokens": {
+    "basis": 5773896,
+    "spectral50": 12610283,
+    "cheapest50": 12596652,
+    "hash50": 12631545,
+    "full": 19601875
+  },
+  "aggregates": {
+    "basis": {
+      "pair_weighted_mean": 0.5553422904670511,
+      "task_macro_mean": 0.587336161711317,
+      "pooled_p90": 1.0
+    },
+    "spectral50": {
+      "pair_weighted_mean": 0.4997182394569724,
+      "task_macro_mean": 0.5131756836741661,
+      "pooled_p90": 1.0
+    },
+    "cheapest50": {
+      "pair_weighted_mean": 0.5072583788810879,
+      "task_macro_mean": 0.5226343030419458,
+      "pooled_p90": 1.0
+    },
+    "hash50": {
+      "pair_weighted_mean": 0.507529411960103,
+      "task_macro_mean": 0.5236597492430303,
+      "pooled_p90": 1.0
+    },
+    "full": {
+      "pair_weighted_mean": 0.4768851597500516,
+      "task_macro_mean": 0.48247200333855406,
+      "pooled_p90": 1.0
+    }
+  },
+  "comparisons": {
+    "spectral50_vs_cheapest50": {
+      "pair_weighted_relative_reduction": 0.014864494581139476,
+      "task_macro_relative_reduction": 0.018097968910051776,
+      "nonworse_tasks": 23,
+      "strictly_better_tasks": 22,
+      "maximum_single_task_positive_reduction_share": 0.23784625440737536
+    },
+    "spectral50_vs_hash50": {
+      "pair_weighted_relative_reduction": 0.01539058095759116,
+      "task_macro_relative_reduction": 0.020020758868748767,
+      "nonworse_tasks": 25,
+      "strictly_better_tasks": 24,
+      "maximum_single_task_positive_reduction_share": 0.1970615068225254
+    },
+    "full_vs_basis": {
+      "pair_weighted_relative_reduction": 0.1412770683302651,
+      "task_macro_relative_reduction": 0.17854197512242564
+    }
+  },
+  "gates": {
+    "fixed_population_and_finite_variances": true,
+    "spectral_pair_weighted_strictly_lower_and_reduction_at_least_0_03": false,
+    "spectral_task_macro_strictly_lower_than_both": true,
+    "spectral_pooled_p90_strictly_lower_than_both": false,
+    "spectral_task_breadth_vs_both": true,
+    "spectral_gain_not_task_concentrated": false,
+    "full_strictly_below_basis_pair_and_task_macro": true,
+    "matched_task_budgets_and_spectral_known_token_total": true,
+    "all_gates_pass": false
+  },
+  "failed_attempts_preserved": [
+    {
+      "root": "formal-5fabc26-v1",
+      "stage": "pytest collection before data readout",
+      "cause": "omitted g_reuse_spectral_frontier.py from source archive"
+    },
+    {
+      "root": "formal-5fabc26-v2",
+      "stage": "pytest before data readout",
+      "cause": "raw-byte protocol digest differed under LF versus CRLF checkout"
+    }
+  ],
+  "access_accounting": {
+    "real_pair_orientation_used": false,
+    "selected_edge_identities_emitted": false,
+    "protected_cohort_files_opened": 0,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "neural_model_loads": 0,
+    "neural_model_fits": 0,
+    "base_model_updates": 0
+  },
+  "interpretation": "Spectral50 has broad but small mean target-contrast variance advantages. It misses the frozen 3 percent effect-size gate, pooled-p90 gate, and cheapest-control concentration gate, so the formal result is not supported and thresholds must not be changed."
+}

@@ -97,6 +97,21 @@ already documented historical LFS 404s; the first narrow attempt had one missing
 dependency and is also retained. This validates protocol software only and does not alter
 the source/G0/GPU block or constitute a model-effect result.
 
+## Target-local contrast variance result
+
+A new result-blind protocol was frozen and pushed before any variance readout. The first
+formal root stopped at pytest collection because one test dependency was omitted. The second
+stopped in pytest because raw-byte JSON hashes differ across LF/CRLF checkouts; this was
+corrected to canonical-JSON hashing and pushed before data access. Both roots are retained.
+
+At corrected commit `7650c48adfaa184a32b0c615ccd106abc586e0be`, formal v3 completed
+producer A/B and an independent grounded-Laplacian verifier A/B. All 23 focused tests and 42
+manifest entries pass, stderr is empty, and 531 numeric values agree within
+`3.3306690738754696e-16`. The frozen overall status is NOT_SUPPORTED: spectral50 improves
+pair-weighted local-target variance over cheapest/hash by only about 1.49%/1.54%, below the
+3% gate; pooled p90 is unchanged at 1.0; and cheapest-control gain concentration is 23.78%.
+Broad task-level improvements are descriptive only and do not rescue the failed gates.
+
 The first formal record-consistent sensitivity attempt at source commit `fe9aec1` failed
 closed before producing metrics: `producer_a` returned a `KeyError`, stderr was empty,
 and no B run or verifier was started. Diagnosis found that the new caller expected an

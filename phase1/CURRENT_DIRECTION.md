@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L36. 2026-09-05 06:25：label-blind prediction escrow合同与验收器就绪；真实scorer仍未实现
+
+源码审查确认学长`b8d0951`的现成trainer/evaluator不能原样进入G-reuse：训练期把test split作eval，当前scale脚本
+同文件传train/test且`save_strategy=no`，standalone evaluator按`better/worse`标签顺序输入并直接打印accuracy/task。
+它们可保留作探索性scaling，但不满足正式whole-experiment split、final checkpoint和label-blind escrow。
+
+结果前commit=`3d75d2eb8f7b955cfae12a2a77e068bb658be19e`新增escrow contract/validator：要求15个final
+checkpoint完整绑定；pair输出只含匿名cluster SHA与15+TF-IDF margins，拒绝truth/raw identity、NaN、缺臂、重复pair、
+凭据、路径/hardlink/symlink/hash及布尔值伪装零读取。Linux exact archive
+`ac35506413bf2c9553cc4f6a60970f7f13633ff3d586e90a08d854dbdba2382f`上13 tests pass、stderr0；协议/
+validator SHA=`5384ceae001952d7aee225cebf09c277f7d92e404ec330a4ec436098b29fc55f/
+8ee28337074e87b0f66c5899c00df1c0419eeebaa6b12a0b1d3d9772d46b7aaa`。
+
+通过仍只叫hash-bound self-attestation，不是OS访问证明或effect eligibility。真实scorer必须等同producer包/G0格式锁定后
+实现，不能从旧accuracy反推margin。详见`SENIOR_TRAINER_G_REUSE_COMPATIBILITY_20260905.md`和
+`results/g_reuse_prediction_escrow_3d75d2e_20260905/README.md`；GPU/API/model fit/protected read均0。
+
 ## 0L35. 2026-09-05 06:18：效果统计独立复算器完成；剩余是认证caller与上游材料
 
 结果前commit=`b53cb84b544d6fbe86d98a172fe2d2bf60a5eae5`新增不导入producer的独立复算器，重新实现

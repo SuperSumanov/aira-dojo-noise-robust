@@ -21,6 +21,12 @@ parent/run两层敏感性，TF-IDF同池配对、tie/LOTO/单任务35%分母均�
 非均匀任务/parent/run簇/tie和层级阻断，producer/verifier逐字段一致、篡改gate被拒绝。它仍不会打开vault；
 正式checkpoint/prediction认证与outcome-aware caller尚需完成，不能叫模型效果。
 
+进一步核对你当前公开`b8d0951`源码后，现成scaling trainer会把test split作训练期eval，当前8000/16000脚本同文件
+传train/test且`save_strategy=no`；standalone evaluator按`better/worse`标签顺序输入并直接算accuracy。因此它们可保留
+作探索性scaling，但不能原样作为G-reuse正式训练/escrow。我们已冻结label-blind escrow合同和验收器：15个final
+checkpoint必须先锁，模型进程只输出canonical pair margins、不接truth；Linux 13项攻击测试通过。注意目前真实scorer
+还未实现，validator通过也只是hash-bound自证。详见`SENIOR_TRAINER_G_REUSE_COMPATIBILITY_20260905.md`。
+
 ## 1. 今天得到的三个正结构结果
 
 我们把方法候选收窄为：在同一批已执行L端点上，增加由已有执行分数导出的global比较，再适配local sibling。

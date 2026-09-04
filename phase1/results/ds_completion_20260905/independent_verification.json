@@ -1,0 +1,13 @@
+{
+  "status": "INDEPENDENT_RESULT_ARITHMETIC_AND_GIT_BINDINGS_PASS",
+  "verified_manifest_files": 9,
+  "verified_source_blobs": 14,
+  "cases": 48,
+  "normal_cases": 24,
+  "overflow_cases": 24,
+  "injected_failures": 3,
+  "preserved_failed_attempts": 1,
+  "receipt_sha256": "6a2e8c835b1dc65ee7a4c079218a03de11ea462d0e018ce9bb9eb663412f056b",
+  "frozen_files_unchanged": 2,
+  "numerical_or_real_gpu_validation": false
+}

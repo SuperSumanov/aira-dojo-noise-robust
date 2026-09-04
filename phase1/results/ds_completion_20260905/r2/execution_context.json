@@ -1,0 +1,16 @@
+{
+  "child_timeout_seconds": 120,
+  "legacy_commit": "9e9ba2dae1e02b4167c0d65bf5eb0adbf1d79371",
+  "python": "3.11.15 (main, Jun 11 2026, 04:03:40) [Clang 22.1.3 ]",
+  "source_commit": "d6b569e9ee5b77e40565f5c86db47650e6011ab4",
+  "source_sha256": {
+    "phase1/DS_COMPLETION_PREFLIGHT_20260905.md": "0279102cee8de3945e21da0de2c67118bc387559e45c297cd86a48ab1e85cf2c",
+    "phase1/global_local_accelerate_update_adapter.py": "444c55726ca00c44dca25833108f6d73054b939463ca85ec287a49e965b40d80",
+    "phase1/global_local_ds_completion.py": "956e3d445d51c65fce39e11b403ae3993140ca03da24ceee91cd2b57ec4dcf03",
+    "phase1/global_local_execution_plan.py": "8e3f3cec45d3456dee6f5c9b8ae8f42d58edc6ace1a40a86447dd97731270954",
+    "phase1/global_local_token_budget_plan.py": "81802b439739f550b0c4ab7291faa0d99bf896d1ab7f2195bc3b0d28cabf6b10",
+    "phase1/scripts/run_ds_completion_20260905.py": "fd2808ef01010191d876ebb672a16d450447dfa517fd6a7bcc6c347d91f383c1",
+    "phase1/validate_ds_completion_source.py": "554d6ea29b9e9eb4a759fc1e5aee4a0fa58063d27ec642a004711603ca1a405c"
+  },
+  "started_at_utc": "2026-09-04T17:39:50.819003+00:00"
+}

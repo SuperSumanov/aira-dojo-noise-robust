@@ -1,0 +1,3 @@
+name,source_commit,command,seed,rc,seconds,stderr_bytes,stderr_sha256,new_gpu_jobs,model_fits,api_calls
+producer_a,d6b569e9ee5b77e40565f5c86db47650e6011ab4,"[""/research/d7/spc/yzyang4/venvs/exp/bin/python"", ""-B"", ""-m"", ""phase1.validate_ds_completion_source""]",6,0,0.7529901685193181,0,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,0,0,0
+producer_b,d6b569e9ee5b77e40565f5c86db47650e6011ab4,"[""/research/d7/spc/yzyang4/venvs/exp/bin/python"", ""-B"", ""-m"", ""phase1.validate_ds_completion_source""]",6,0,0.5782220726832747,0,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,0,0,0

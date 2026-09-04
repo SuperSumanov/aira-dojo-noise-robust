@@ -1,0 +1,2 @@
+name,source_commit,command,seed,rc,seconds,stderr_bytes,stderr_sha256,new_gpu_jobs,model_fits,api_calls
+producer_a,94976ec0aba086cca22bf7dc13eae420ae624b35,"[""/research/d7/spc/yzyang4/venvs/exp/bin/python"", ""-B"", ""-m"", ""phase1.validate_ds_completion_source""]",6,1,0.22712031472474337,0,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,0,0,0

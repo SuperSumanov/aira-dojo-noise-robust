@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-05
 
-**Dynamic status timestamp:** 2026-09-05 01:20 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-09-05 01:42 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,12 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-05 最新入口，覆盖下文所有动态状态
+
+先读CURRENT_DIRECTION.md 0L11：DS分支恒报未skip已修，新begin/finish核验步前后状态且不自动重试。
+code d6b569e，18回归、48源方法体+非数值stub控制流、24旧假成功负控、3类注入异常通过；receipt6a2e8c83…2f056b。
+r1路径guard拒绝保留，r2只绑定已观察的selective→overlay目标和原源码SHA。没有真实模型/数据/GPU数值运行，
+不把旧CPU恢复回执迁移到新源码。G0源仍5f3bc36未动，17:42UTC排队、估计香港12:39:11非保证。
+学长head/316归档/619eligible未变；下一步仍实际GPU数值与保存恢复、同版本来源/config/split和正式fit预算。
 
 先读CURRENT_DIRECTION.md 0L10。固定前向微批次换边已完成并按事前门关闭：分组后seed6/7/8仅改变
 122/118/112对，各仅2个task达到20对；双生产+独立验证相符。不放宽规则再试、不申请其训练。

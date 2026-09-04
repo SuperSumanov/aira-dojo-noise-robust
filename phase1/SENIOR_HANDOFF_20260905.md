@@ -102,7 +102,7 @@ Slurm记账：12377为FAILED/exit1，双卡131秒，即262 GPU-seconds。失败�
 - 实际完整generator/config绑定，并按whole experiment做train/dev/frozen，之后再验pair/card/run零交集。
 
 包级交付格式和验收器现已在`G_REUSE_SOURCE_PACKAGE_DECLARATION_V1.md`与
-`validate_g_reuse_source_package_v1.py`就绪（Linux 9项攻击测试通过）。它先核七个角色、hash/LFS、路径安全及
+`validate_g_reuse_source_package_v1.py`就绪（安全加固版Linux 11项攻击测试通过）。它先核七个角色、hash/LFS、路径安全及
 producer receipt一致性；即使通过也只叫hash-bound declaration，仍需下面的逐run来源v2和真实payload隔离核验。
 
 已有验收字段和脚本在`SOURCE_DECLARATION_V2_20260904.md`及

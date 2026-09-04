@@ -21,3 +21,14 @@ It does not attest that the declared producer commit/config ran, that instances 
 that the evaluator is pristine, or that the split is experiment-closed. Existing source-v2,
 payload overlap/config, outcome-blind power, G0, and explicit GPU-budget gates remain mandatory.
 GPU jobs, paid API calls, model fits, and protected-value reads were all zero.
+
+## Link-safety hardening
+
+Code review after the first receipt found that the validator rejected aliases among listed
+artifacts but did not reject a hardlink to an unlisted file, and an in-root intermediate symlink
+was not explicitly rejected. Commit `9bc90cc` now rejects every symlink path component and requires
+link count one for the manifest and every artifact. Linux formal root `formal-9bc90cc-v3` passed
+11 tests twice with empty stderr; duration-normalized outputs are byte-identical with SHA-256
+`bc8e66bc8b6559e106b228ab58cd0c82f48b32471aa5f218546aa0cc65d1012b`. The hardened source
+archive SHA-256 is `b7118f16488417ab707ee2b13004e208f893c64e47b384c84085e7710aabe24a`.
+This supersedes the nine-test security surface above without changing the declaration-only status.

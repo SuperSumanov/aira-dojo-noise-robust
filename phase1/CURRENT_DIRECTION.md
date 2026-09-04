@@ -10,10 +10,12 @@ evaluator receipt七角色各一次，固定bytes/SHA/LFS OID；拒绝重复JSON
 listed hardlink alias、hash/size漂移，并要求manifest与producer小回执中的commit/release/exact config stratum一致。
 只解析manifest和两份固定schema小回执，不解析Cards/pair/split/provenance payload。
 
-exact code=`005d0d2`，本地与Linux各9 tests pass。正式双跑raw只因pytest时长字段不同而首门正确停住；新根保留raw，
-仅规范化显式duration token后A/B逐字节一致，normalized SHA=
-`9111e3399a60f0407a09454c983a83ea24085e8b78f61a8d656e9bf1f77ddb4a`，archive SHA=
-`dd5ddd7dd8c15e6cd5ff7127af586479aee09bed8d3a7685dfb74e90d905cf56`。
+exact code=`005d0d2`的首版Linux 9 tests pass。随后代码审查发现它只拒绝已列artifact相互hardlink，未拒绝到
+清单外文件的hardlink，也未逐级拒绝包内中间symlink；`9bc90cc`补成manifest/artifact link-count=1且每级无symlink。
+本地10 passed/1 skipped（Windows不能建symlink），Linux正式双跑均11 passed、stderr空；raw只差pytest时长，
+明确只规范化duration后A/B逐字节一致，normalized SHA=
+`bc8e66bc8b6559e106b228ab58cd0c82f48b32471aa5f218546aa0cc65d1012b`，hardened archive SHA=
+`b7118f16488417ab707ee2b13004e208f893c64e47b384c84085e7710aabe24a`。安全面以11-test版为准。
 
 成功状态故意为`PACKAGE_DECLARATION_HASH_BOUND_NOT_EFFECT_ELIGIBLE`：它不证明commit/config真实执行、实例独立、
 evaluator pristine或whole-experiment split真实。来源v2、payload零交集/config、0L30功效、G0和GPU批准仍全部必需。

@@ -8,6 +8,7 @@ import argparse
 from dataclasses import asdict, replace
 from datetime import timedelta
 import hashlib
+from itertools import combinations
 import json
 import os
 from pathlib import Path
@@ -33,12 +34,28 @@ class Tokenizer:
         return {'input_ids': [1+ord(c)%127 for c in text]}
 
 
-def write_fixture(root):
+def fixture_layout(layout):
+    if layout == 'tiny':
+        cards = [{'endpoint_id': f'synthetic{i}', 'task_name': 'synthetic-task', 'code': f'x={i}\n'} for i in range(8)]
+        g = [(f'synthetic{i}', f'synthetic{i+2}') for i in (0, 1, 4, 5)]
+        l = [(f'synthetic{i}', f'synthetic{i+1}') for i in (0, 2, 4, 6)]
+        return cards, g, l
+    assert layout == 'accum8'
+    cards = [{'endpoint_id': f'synthetic{i:02}', 'task_name': 'synthetic-task', 'code': f'x={i:02}\n'} for i in range(32)]
+    edges = list(combinations([c['endpoint_id'] for c in cards], 2))
+    # All endpoints occur in L. Disjoint G edges reuse only those endpoints.
+    return cards, edges[134:264], edges[:134]
+
+
+def cases_for(layout):
+    complete = (1, 2, 3, 4) if layout == 'tiny' else (1, 2)
+    return [(i, 'full') for i in complete]+[(i, m) for i in (1, 2) for m in ('prefix', 'resume')]
+
+
+def write_fixture(root, layout='tiny'):
     root.mkdir(mode=0o700)
     header = {'role': 'train', 'source_package_sha256': 'a'*64, 'split_receipt_sha256': 'b'*64}
-    cards = [{'endpoint_id': f'synthetic{i}', 'task_name': 'synthetic-task', 'code': f'x={i}\n'} for i in range(8)]
-    g = [(f'synthetic{i}', f'synthetic{i+2}') for i in (0, 1, 4, 5)]
-    l = [(f'synthetic{i}', f'synthetic{i+1}') for i in (0, 2, 4, 6)]
+    cards, g, l = fixture_layout(layout)
     def put(name, obj):
         atomic_json(root/name, obj)
         raw = (root/name).read_bytes()
@@ -84,7 +101,7 @@ def worker(args):
     reader.read_pinned = observed
     initial = {}
     def setup(plan, pools, encode, truth, *, training_contract_sha256):
-        assert len({encode(r.context_sha256, e.card_id) for pool in pools for r in pool for e in (r.a, r.b)}) == 8
+        assert len({encode(r.context_sha256, e.card_id) for pool in pools for r in pool for e in (r.a, r.b)}) == (8 if args.layout == 'tiny' else 32)
         torch.manual_seed(plan.seed)
         cls = reference['BradleyTerryRewardModel']
         model = cls.__new__(cls); nn.Module.__init__(model)
@@ -110,11 +127,17 @@ def worker(args):
         protocol_sha256=PROTOCOL, sequence=args.sequence, setup=setup, training_contract_sha256=contract)
     assert opened == (['topology.json', 'local.json'] if fit.plan.arm == 'Lbudget' else
                        ['topology.json', 'local.json', 'global.json'])
-    assert fit.plan.steps == 2
-    resume = args.root/f'fit{args.sequence}-prefix'/'checkpoint-1' if args.mode == 'resume' else None
+    final_step = 2 if args.layout == 'tiny' else 4
+    prefix_step = 1 if args.layout == 'tiny' else 2
+    assert fit.plan.steps == final_step
+    if args.layout == 'accum8':
+        for rank in (0, 1):
+            assert [len([b for b in fit.plan.batches if b.rank == rank and b.optimizer_step == s])
+                    for s in range(final_step)] == [8, 1, 8, 1]
+    resume = args.root/f'fit{args.sequence}-prefix'/f'checkpoint-{prefix_step}' if args.mode == 'resume' else None
     sha = None if resume is None else hashlib.sha256((resume/'manifest.json').read_bytes()).hexdigest()
-    end = 1 if args.mode == 'prefix' else 2
-    stops = [2] if resume is not None else list(range(1, end+1))
+    end = prefix_step if args.mode == 'prefix' else final_step
+    stops = list(range(prefix_step+1, end+1)) if resume is not None else list(range(1, end+1))
     out = args.root/f'fit{args.sequence}-{args.mode}'
     result = run_session(session, fit, out, stop_after=end, checkpoint_steps=stops,
         resume=resume, resume_manifest_sha256=sha)
@@ -137,20 +160,21 @@ def main():
     parser.add_argument('--worker', action='store_true')
     parser.add_argument('--sequence', type=int, choices=(1, 2, 3, 4))
     parser.add_argument('--mode', choices=('full', 'prefix', 'resume'))
+    parser.add_argument('--layout', choices=('tiny', 'accum8'), default='tiny')
     args = parser.parse_args()
     assert os.environ.get('CUDA_VISIBLE_DEVICES') == '' and len(os.environ.get('CRITIC_ENTRY_COMMIT', '')) == 40
     if args.worker:
         return worker(args)
     assert args.root.is_absolute() and args.root.parent == Path('/tmp') and not args.root.exists()
     assert args.root.name.startswith('critic-entry-cpu-')
-    args.root.mkdir(mode=0o700); write_fixture(args.root/'inputs')
+    args.root.mkdir(mode=0o700); write_fixture(args.root/'inputs', args.layout)
     started = time.monotonic()
-    for sequence, mode in [(i, 'full') for i in (1, 2, 3, 4)]+[(i, m) for i in (1, 2) for m in ('prefix', 'resume')]:
+    for sequence, mode in cases_for(args.layout):
         assert time.monotonic()-started < 900, 'CPU_budget_exceeded'
         env = dict(os.environ, OMP_NUM_THREADS='1', ACCELERATE_USE_CPU='true', GLOO_SOCKET_IFNAME='lo')
         argv = [sys.executable, '-m', 'torch.distributed.run', '--standalone', '--nnodes=1', '--nproc_per_node=2',
             '-m', 'phase1.scripts.validate_critic_entry_cpu_20260906', '--worker', '--root', str(args.root),
-            '--source-root', args.source_root, '--sequence', str(sequence), '--mode', mode]
+            '--source-root', args.source_root, '--sequence', str(sequence), '--mode', mode, '--layout', args.layout]
         log = args.root/f'fit{sequence}-{mode}.log'
         with log.open('xb') as out:
             p = subprocess.Popen(argv, env=env, stdout=out, stderr=subprocess.STDOUT, start_new_session=True)
@@ -166,8 +190,9 @@ def main():
         print(json.dumps({'completed': f'fit{sequence}-{mode}'}), flush=True)
     summary = {'classification': 'PINNED_TRAIN_FILES_TO_RANDOM_QWEN_CPU_LIFECYCLE_NOT_EFFECT',
         'code_commit': os.environ['CRITIC_ENTRY_COMMIT'], 'parameters': 4433, 'world': 2,
-        'matrix_complete_trajectories': 4, 'additional_prefix_resume_trajectories': 4,
-        'seeds': [6, 7], 'dtype': 'float32', 'optimizer': 'AdamW', 'weight_decay': 0.0,
+        'layout': args.layout,
+        'matrix_complete_trajectories': 4 if args.layout == 'tiny' else 2, 'additional_prefix_resume_trajectories': 4,
+        'seeds': [6, 7] if args.layout == 'tiny' else [6], 'dtype': 'float32', 'optimizer': 'AdamW', 'weight_decay': 0.0,
         'max_len_contract': 16384, 'tiny_fixture_not_16k_memory_test': True,
         'gpu_used': False, 'production_release_admitted': False, 'real_data_read': False,
         'independent_verification_still_required': True}

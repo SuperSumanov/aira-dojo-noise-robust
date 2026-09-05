@@ -85,6 +85,31 @@ screen有信号后才进入原五臂×seeds6/7/8：L1、Lbudget、G-only、G→L
 
 不缩短执行到1/6、不引入多保真或隐藏lookahead。只做当前候选完成执行后的质量预测，不恢复被关闭路线。
 
+#### 9月6日执行设计补充：历史siblings不等于同时未执行的候选池
+
+代码审查固定在`f9aecab8149b2055a96de1ec02bcca59cfd2b5b9`，不据此断言所有历史run实际执行了该版本或默认配置。
+`src/dojo/solvers/mcts/mcts.py:_expand_leaf_and_backprop`在循环内依次生成、执行、分析、写journal，再生成下一子节点。
+默认MLE配置用`simple_memory`且`only_plans=false`；`get_node_summary`会把已完成节点的analysis及`node.metric.value`
+放入记忆，而`improve_op`每次从当前journal构造memory。因此同父候选可能是在不同信息条件下生成的。
+这里的`node.metric.value`不一概等于pristine external score，实际来源还取决于运行配置。
+`sibling_memory`的默认`only_plans=true`不含指标，不能混称为同样的成绩暴露；但已有候选的plan仍会改变后续上下文。
+
+代码证据：MCTS blob SHA `c4839bb8c0da6ad09eb6107e7c465cc5d0be1b4ca41f69b3ca2de208af9b6d68`；
+memory blob SHA `368b222ca36e5a4ec5c1858afc7ded8be5cb40643c5ac8b23615359e1abb2e37`；
+improve blob SHA `b0b9bc561f26682ce84701287bd3c92a57b58ed37d2664a31eae4b56c5aab5e0`。
+这些是Git blob SHA，不是Windows换行后的工作副本SHA，更不是历史生产环境认证。
+
+这不改变旧pair accuracy/冻结utility的定义，也不重新裁决其结果；但限制部署解释：在历史候选上重放排序，
+只得到该已生成候选分布上的离线价值，不能据此推出“原搜索本可只执行其中一个”。生成后面的候选可能已支付前面执行成本。
+
+后续**另行冻结**的新候选选择实验应在同一pre-decision状态上，先固定各槽位的有效prompt、memory、
+模型/解码参数及随机性安排，再完成整个候选批次的生成和预测锁定；本批任何候选的执行反馈都不得进入同批后续生成。
+需核实际渲染的prompt，不只复制parent ID；动态时间、包列表shuffle及其它调用输入也必须显式记录。
+各选择臂共用相同批次生成规则和信息权限，**批次随机选择/廉价selector/critic之间**才是只改选择器的主要对照。
+若另与原逐节点即时反馈的AIRA比较，那是整体系统对照，不能把上下文和调度差异全部归因于critic。
+所有生成、critic推理、真实执行和状态准备成本仍计入预算；不足以完成既定完整执行时按事前规则停止，
+不靠缩短候选训练时间制造收益，也不复用另一策略未来分支。此处未启动新生产、未改原scorer或第一960人口。
+
 ## 3. 哪些正方向值得做，哪些暂缓
 
 |候选|本月定位|依据与风险|

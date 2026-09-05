@@ -63,6 +63,10 @@ mkdir -m 0700 -p "$scratch_root/triton" "$scratch_root/torch-extensions"
 export TRITON_CACHE_DIR="$scratch_root/triton"
 export TORCH_EXTENSIONS_DIR="$scratch_root/torch-extensions"
 
+if [[ ${G0_BUDGET_REVISION:-legacy} == 20260905-r5 ]]; then
+  "$python_bin" -B "$G0_CONTROL_ROOT/phase1/check_g0_r5_build_tools.py"
+fi
+
 "$python_bin" "$verifier" preflight \
   --run-root "$G0_RUN_ROOT" \
   --output-dir "$output_dir" \

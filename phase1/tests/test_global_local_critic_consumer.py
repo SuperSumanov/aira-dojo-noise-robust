@@ -54,7 +54,7 @@ class FakeAccelerator:
         return value
 
 
-def setup(monkeypatch, arm='G_to_L'):
+def make_consumer(monkeypatch, arm='G_to_L'):
     monkeypatch.setattr(consumer, 'runtime_binding', lambda: {'unit_double': True})
     old, pools, encoded, truth = synthetic_fixture(accumulation=3)
     plan = build_plan(arm, *pools, seed=6, shape=old.shape, encoder=old.encoder,
@@ -75,7 +75,7 @@ def setup(monkeypatch, arm='G_to_L'):
 
 @pytest.mark.parametrize('arm', ['L1', 'Lbudget', 'Gbudget', 'G_to_L', 'Ghash_to_L'])
 def test_all_arms_equal_whole_update_reference(monkeypatch, arm):
-    obj, encoded, target = setup(monkeypatch, arm)
+    obj, encoded, target = make_consumer(monkeypatch, arm)
     reference = deepcopy(obj.model)
     opt = torch.optim.SGD(reference.parameters(), lr=1e-5)
     events = []
@@ -105,8 +105,7 @@ def test_all_arms_equal_whole_update_reference(monkeypatch, arm):
 
 
 def test_encoding_drift_rejected_before_model_and_poisoned(monkeypatch):
-    obj, encoded, _ = setup(monkeypatch)
-    key = next(iter(encoded))
+    obj, encoded, _ = make_consumer(monkeypatch)
     for key in encoded:
         encoded[key] = (99,)
     with pytest.raises(PlanError, match='provider_encoding_mismatch'):
@@ -117,7 +116,7 @@ def test_encoding_drift_rejected_before_model_and_poisoned(monkeypatch):
 
 
 def test_skip_never_commits_cursor(monkeypatch):
-    obj, _, _ = setup(monkeypatch)
+    obj, _, _ = make_consumer(monkeypatch)
     obj.accelerator.optimizer_step_was_skipped = True
     with pytest.raises(PlanError, match='optimizer_update_skipped_cursor_not_committed'):
         obj.run_next_update()
@@ -126,7 +125,7 @@ def test_skip_never_commits_cursor(monkeypatch):
 
 @pytest.mark.parametrize('drift', ['mode', 'gas', 'rank', 'world', 'scheduler'])
 def test_drift_rejected_before_forward(monkeypatch, drift):
-    obj, _, _ = setup(monkeypatch)
+    obj, _, _ = make_consumer(monkeypatch)
     if drift == 'mode':
         obj.model.eval()
     elif drift == 'gas':
@@ -144,7 +143,7 @@ def test_drift_rejected_before_forward(monkeypatch, drift):
 
 @pytest.mark.parametrize('kind', ['nan', 'detached', 'shape', 'dtype', 'missing'])
 def test_bad_forward_output_rejected(monkeypatch, kind):
-    obj, _, _ = setup(monkeypatch)
+    obj, _, _ = make_consumer(monkeypatch)
     old = obj.model.forward
     def broken(**kwargs):
         logits = old(**kwargs)['logits']
@@ -160,7 +159,7 @@ def test_bad_forward_output_rejected(monkeypatch, kind):
 
 
 def test_changing_truth_rejected_before_forward(monkeypatch):
-    obj, _, target = setup(monkeypatch)
+    obj, _, target = make_consumer(monkeypatch)
     counts = {}
     def inconsistent(key):
         counts[key] = counts.get(key, 0) + 1

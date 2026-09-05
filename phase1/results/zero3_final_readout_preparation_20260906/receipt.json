@@ -1,0 +1,12 @@
+{
+  "actual_job_12535_checkpoint_opened": false,
+  "classification": "CPU_FINAL_READOUT_HELPER_TESTS_NOT_ACTUAL_GPU_CHECKPOINT_ACCEPTANCE",
+  "code_commit": "ac445531b9e797a3c12eb94bb9a4c94d5248e028",
+  "credential_shape_hits": 0,
+  "elapsed_seconds": 15.627409677021205,
+  "log_sha256": "5258542f36a68ac8eb9187ee3392eb0f36ccc1e7df3129d63d55c2a4e4328111",
+  "new_gpu_jobs": 0,
+  "real_corpus_opened": false,
+  "returncode": 0,
+  "source_archive_sha256": "999890686892f6d648c189d63359a5be5a5a6b071b493e90742fa63d2e88a097"
+}

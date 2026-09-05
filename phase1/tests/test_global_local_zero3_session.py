@@ -116,3 +116,33 @@ def test_ddp_guard_unchanged():
 def test_nonfinite_master_rejected():
     c=fake_state();c.model.optimizer.fp32_partitioned_groups_flat[0].data[0]=float('nan')
     with pytest.raises(PlanError,match='nonfinite'):z.current_state(c)
+
+
+@pytest.mark.parametrize('case',['success','zero','state','sample_counter','boundary'])
+def test_restore_cursor_commits_only_after_last_check(tmp_path,monkeypatch,case):
+    root=tmp_path/'cp';binding,h=bundle(root)
+    row=z.read_small(root/'observed_0.json')
+    raw=NS(micro_step_id=0)
+    e=NS(global_steps=0,micro_steps=0,global_samples=0,skipped_steps=0,lr_scheduler=None,optimizer=raw)
+    o=NS(optimizer=raw)
+    a=NS(distributed_type='DEEPSPEED',deepspeed_engine_wrapped=NS(engine=e),_optimizers=[o])
+    c=NS(model=e,optimizer=o,accelerator=a,rank=0,completed_steps=0,poisoned=False)
+    expected={'binding':binding,'completed_steps':2,'cumulative_valid_tokens':88,'counters':row['counters']}
+    e._load_zero_checkpoint=lambda *args,**kwargs:case!='zero'
+    def load(path,tag,**kwargs):
+        e.global_steps=2;e.global_samples=17 if case=='sample_counter' else 16
+        e._load_zero_checkpoint()
+        return str(root/z.TAG),{'critic_session':expected}
+    e.load_checkpoint=load
+    a.load_state=lambda path,**kwargs:e.load_checkpoint(path,z.TAG,**kwargs)
+    s=z.DeepSpeedCriticSession.__new__(z.DeepSpeedCriticSession);s.consumer=c;s.binding=binding;s._tokens=lambda n:88
+    def boundary(**kwargs):
+        if case=='boundary' and kwargs.get('expected_steps')==2:raise PlanError('injected_final_boundary_failure')
+    s._boundary=boundary
+    monkeypatch.setattr(z,'current_state',lambda c: {**row['state'],'adamw':'c'*64} if case=='state' else row['state'])
+    if case=='success':
+        assert s.restore(root,manifest_sha256=h)['completed_steps']==c.completed_steps==2
+        assert not c.poisoned and z.counters(e)==row['counters']
+    else:
+        with pytest.raises((ValueError,PlanError)):s.restore(root,manifest_sha256=h)
+        assert c.poisoned and c.completed_steps==0

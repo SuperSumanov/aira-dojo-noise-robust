@@ -136,10 +136,18 @@ def current_state(consumer):
 
 def runtime_binding():
     from deepspeed.runtime.zero.stage3 import DeepSpeedZeroOptimizer_Stage3
+    from deepspeed.runtime.checkpoint_engine.torch_checkpoint_engine import TorchCheckpointEngine
     from phase1.global_local_accelerate_update_adapter import runtime_binding as update_runtime
     from phase1.global_local_accelerate_resume_validation import checkpoint_runtime
     require(file_sha(Path(inspect.getsourcefile(DeepSpeedZeroOptimizer_Stage3))) == ZERO_FILE_SHA, 'zero3_runtime_drift')
-    return {'update':update_runtime(),'checkpoint':checkpoint_runtime(),'zero3_file_sha256':ZERO_FILE_SHA}
+    import hashlib
+    io_methods = {name:hashlib.sha256(inspect.getsource(getattr(TorchCheckpointEngine,name)).encode()).hexdigest()
+                  for name in ('save','load')}
+    require(io_methods == {'save':'85c17d05c806c95d9efcd176c8a17a9ea22740fbdc71d51721f47f0652070466',
+                            'load':'634b7e06db58550c2088a2aed8f176a66e92e929f0f8ba3266006858fcb87ef7'},
+            'zero3_checkpoint_io_drift')
+    return {'update':update_runtime(),'checkpoint':checkpoint_runtime(),'zero3_file_sha256':ZERO_FILE_SHA,
+            'checkpoint_io':io_methods}
 
 
 class DeepSpeedCriticSession(CriticSession):
@@ -190,10 +198,11 @@ class DeepSpeedCriticSession(CriticSession):
             'source_sha256':file_sha(Path(__file__))}
         current_state(c)
 
-    def _boundary(self):
+    def _boundary(self, *, expected_steps=None):
         c = self.consumer; e, a = c.model,c.accelerator
         require(not c.poisoned and e.training and a.step == 0 and a.sync_gradients, 'zero3_not_clean_boundary')
-        require(e.global_steps == c.completed_steps and e.skipped_steps == 0, 'zero3_engine_cursor_drift')
+        step = c.completed_steps if expected_steps is None else expected_steps
+        require(e.global_steps == step and e.skipped_steps == 0, 'zero3_engine_cursor_drift')
         require(not e.optimizer.overflow and not a.optimizer_step_was_skipped, 'zero3_skipped_update')
         require(all(p.grad is None or not bool(torch.count_nonzero(p.grad)) for p in
                     [*e.module.parameters(),*e.optimizer.fp32_partitioned_groups_flat]), 'zero3_pending_gradient')
@@ -254,8 +263,8 @@ class DeepSpeedCriticSession(CriticSession):
             z.micro_step_id = row['counters']['micro_step_id']
             e._step_applied = row['counters']['step_applied']
             require(counters(e) == row['counters'], 'zero3_restored_counters')
+            self._boundary(expected_steps=step)
             c.completed_steps = step
-            self._boundary()
             return {'completed_steps':step,'cumulative_valid_tokens':self._tokens(step),
                     'all_state_components_restored':True,'manifest_sha256':manifest_sha256}
         except BaseException:

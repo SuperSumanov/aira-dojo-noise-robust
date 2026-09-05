@@ -19,7 +19,8 @@ def fixture():
     fields = {'JobId': '99991', 'JobState': 'RUNNING', 'Requeue': '0', 'Restarts': '0', 'NumCPUs': '12',
         'CPUs/Task': '12', 'Partition': 'gpu_24h', 'QOS': 'gpu', 'NumTasks': '1', 'NumNodes': '1',
         'MinMemoryNode': '0', 'TresPerNode': 'gpu:pro6000:2', 'NodeList': 'projgpu39', 'ReqNodeList': 'projgpu39',
-        'WorkDir': job['control_root'], 'Command': job['script'], 'TimeLimit': '00:26:00', 'RunTime': '00:00:05'}
+        'WorkDir': job['control_root'], 'Command': job['script'], 'TimeLimit': '00:26:00', 'RunTime': '00:00:05',
+        'TRES': 'cpu=12,node=1,billing=12,gres/gpu=2'}
     raw = '99990|FAILED|149|cpu=12,gres/gpu=2,node=1|1:0|\n'
     return fields, job, raw
 
@@ -34,7 +35,7 @@ def test_same_budget_includes_failure_and_exit_allowances():
 
 
 @pytest.mark.parametrize('change', ['cap', 'grace', 'requeued', 'pending', 'wrong_node', 'too_late', 'wall',
-                                    'missing_prior', 'active_prior', 'double_row', 'unknown_job', 'current_in_prior'])
+                                    'missing_prior', 'active_prior', 'double_row', 'unknown_job', 'current_in_prior', 'allocated_four'])
 def test_invalid_allocations_cannot_start(change):
     fields, job, raw = fixture()
     if change == 'cap': job['total_gpu_seconds_cap'] = 3657
@@ -42,6 +43,7 @@ def test_invalid_allocations_cannot_start(change):
     if change == 'requeued': fields['Restarts'] = '1'
     if change == 'pending': fields['JobState'] = 'PENDING'
     if change == 'wrong_node': fields['NodeList'] = 'projgpu7'
+    if change == 'allocated_four': fields['TRES'] = fields['TRES'].replace('gres/gpu=2', 'gres/gpu=4')
     if change == 'too_late': fields['RunTime'] = '00:05:00'
     if change == 'wall': fields['TimeLimit'] = '01:00:00'
     if change == 'missing_prior': raw = ''

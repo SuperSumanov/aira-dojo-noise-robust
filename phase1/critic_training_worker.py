@@ -90,6 +90,12 @@ def allocation_budget(fields, job, prior_raw):
         'NodeList': 'projgpu39', 'ReqNodeList': 'projgpu39',
         'WorkDir': job['control_root'], 'Command': job['script']}
     require(type(fields) is dict and all(fields.get(k) == v for k, v in exact.items()), 'worker_allocation_mismatch')
+    resources = [x.split('=', 1) for x in fields.get('TRES', '').split(',')]
+    require(all(len(x) == 2 for x in resources) and len({x[0] for x in resources}) == len(resources),
+            'worker_allocation_tres_schema')
+    resources = dict(resources)
+    require(all(resources.get(k) == v for k, v in {'cpu': '12', 'node': '1', 'gres/gpu': '2'}.items()),
+            'worker_allocated_resource_count')
     require(duration(fields.get('TimeLimit')) == job['walltime_seconds'], 'worker_walltime_mismatch')
     elapsed = duration(fields.get('RunTime'))
     used = accounting(prior_raw, job['prior_jobs'])

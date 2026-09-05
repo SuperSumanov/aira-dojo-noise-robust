@@ -1,0 +1,20 @@
+# 历史实际 launcher 清单恢复（结果前冻结）
+
+8-run corrected leaf archive中已发现真实srun_pool manifest，task-set目录hash、执行目录、Slurm step与固定配置匹配。
+下一步全量恢复固定旧历史范围；不依据覆盖率挑归档，不以合成测试代替生产证据。
+
+- 输入：676-run source ledger SHA `8e48b4c6598cf8efe205fc6cba5cdd27d14621eb13fad42a7fd4180953da00d1`。
+- 范围：该账本对应143种压缩SHA，旧archive manifest及单独corrected leaf；不扩入新0904或任何protected cohort。
+- 每archive前后hash/stat核验；只读严格`batch/srun_pool/<hash12>/manifest.json`。其他manifest仅统计headers。
+- 原文先credential scan、重复JSON key/schema/日期/目录检查，private仅保留调度来源字段；journal/env/log payload不读。
+- 同archive+batch+config.id+experiment_dir绑定历史run。step不匹配单列，不悄悄改写。未匹配任务保留未解决计数。
+- 真实launcher实例由created_at/snapshot/python/pool_dir/完整task集合定义；只是记录实例，不保证完整科学experiment。
+- 新launcher联系只能合并旧保守组件，不能拆开旧hold闭包或释放任何留出run。输出全676行，不训练、不取效果。
+- 两CPU，1500秒内部上限，逐archive落盘；任何未知schema/重复/漂移停止最终成功产物，保留失败。无GPU/API/fit。
+- 先便宜负控制、固定Git代码；执行记录真实命令/时刻/Python/输入输出hash。独立实现复查membership和闭包。
+- 样本量/统计功效/模型seed不适用：没有科学效果检验或随机抽样。字节确定性通过相同冻结输入重复运行验证。
+- 源码README确有MLE-bench安装版本d0f60ad0d3b2287469ac3c8ac9767330c928c980，包含cache patch；
+  这是安装recipe，不是当时已安装环境证明。已知snapshot与python路径无权限，不绕过，不补造pristine声明。
+- 原S0失败、原hold、first960/Target300/522盲态、GPU12535配置与预算保持不变。
+
+预期实物扫描约4—10分钟（不是保证）。A/B若任何未知schema失败，先保存失败，仅凭源代码验证schema后才考虑修复。

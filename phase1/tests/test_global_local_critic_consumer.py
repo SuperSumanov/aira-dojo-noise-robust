@@ -1,5 +1,6 @@
 from contextlib import nullcontext
 from copy import deepcopy
+from dataclasses import replace
 from types import SimpleNamespace
 
 import pytest
@@ -56,8 +57,8 @@ class FakeAccelerator:
 
 def make_consumer(monkeypatch, arm='G_to_L'):
     monkeypatch.setattr(consumer, 'runtime_binding', lambda: {'unit_double': True})
-    old, pools, encoded, truth = synthetic_fixture(accumulation=3)
-    plan = build_plan(arm, *pools, seed=6, shape=old.shape, encoder=old.encoder,
+    old, pools, encoded, truth = synthetic_fixture()
+    plan = build_plan(arm, *pools, seed=6, shape=replace(old.shape, accumulation=3), encoder=old.encoder,
                       protocol_sha256=old.protocol_sha256)
     model = Model()
     optimizer = torch.optim.SGD(model.parameters(), lr=1e-5)

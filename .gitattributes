@@ -436,3 +436,8 @@ phase1/scripts/zero3_session_engineering_20260905.sbatch text eol=lf diff
 phase1/results/zero3_session_f4d5834_20260905/** -text diff
 # Preserve pytest's exact failure traceback bytes, including its trailing spaces.
 phase1/results/zero3_session_f4d5834_20260905/r2_failure/tests.txt -whitespace
+phase1/results/zero3_engineering_12510_20260905/** -text diff
+phase1/global_local_training_inputs.py text eol=lf diff
+phase1/tests/test_global_local_training_inputs.py text eol=lf diff
+phase1/scripts/verify_zero3_engineering_20260905.py text eol=lf diff
+phase1/tests/test_verify_zero3_engineering.py text eol=lf diff

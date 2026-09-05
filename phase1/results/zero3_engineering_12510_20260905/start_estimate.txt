@@ -1,0 +1,2 @@
+             JOBID PARTITION     NAME     USER ST          START_TIME  NODES SCHEDNODES           NODELIST(REASON)
+             12510   gpu_24h critic_z  yzyang4 PD 2026-09-06T15:19:29      1 projgpu39            (Resources)

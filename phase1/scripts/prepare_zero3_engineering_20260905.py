@@ -147,7 +147,7 @@ def release(control,commit):
         'ReqNodeList':'projgpu39','Partition':'gpu_24h','QOS':'gpu','NumTasks':'1',
         'TresPerNode':'gpu:pro6000:2','Command':str(control/SCRIPT),'WorkDir':str(control)}
     require(all(fields.get(k)==v for k,v in exact.items()),'held_resource_mismatch')
-    # Slurm 22 emits the pending min-max range even when both bounds equal 1.
+    # Slurm can emit the pending min-max range even when both bounds equal 1.
     require(fields.get('NumNodes') in ('1','1-1') and 'node=1' in fields.get('TRES','').split(','),'held_node_mismatch')
     require('gres/gpu=2' in fields.get('TRES','').split(','),'held_gpu_mismatch')
     record('VERIFIED_HELD.json',{'fields':fields,'gpu_seconds_upper_bound':4320,'controller_sha256':sha(__file__)})

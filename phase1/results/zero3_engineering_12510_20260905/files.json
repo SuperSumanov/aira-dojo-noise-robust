@@ -1,0 +1,66 @@
+{
+  "accounting.txt": {
+    "bytes": 21,
+    "sha256": "4cc3127e16dacb53606623f3c25aed29f9db22255113bc43d1a129396bd850af"
+  },
+  "launch/READY.json": {
+    "bytes": 3478,
+    "sha256": "e87e58b04e61a316fcd893f0e8005484d9ccd8b00339f50bbb9fe0e6ae156138"
+  },
+  "launch/RELEASED.json": {
+    "bytes": 125,
+    "sha256": "e190cd44735a0880b9975fb22ac6886c6624b01b73d90fef205dc3f2ecbc76d6"
+  },
+  "launch/SUBMISSION_INTENT.json": {
+    "bytes": 129,
+    "sha256": "36966528ecb1318d773029f1a836ad7dbd1daeb47eacd2ace524ee7a8312ea6e"
+  },
+  "launch/SUBMITTED.json": {
+    "bytes": 80,
+    "sha256": "29b46b36550e864d192d27a7aeb1a9097b42da0fe452f6c88133d7242f4b0576"
+  },
+  "launch/VERIFIED_HELD.json": {
+    "bytes": 2085,
+    "sha256": "2d791275848d28a171da078fc83e8f15e6dc6c23dde0d4a46cbb12e3aa274dbe"
+  },
+  "launch/command.json": {
+    "bytes": 776,
+    "sha256": "adf5553d779ae9c27ab277320775a2f19319aba586a4a242c93d274597e2d6e4"
+  },
+  "launch/prepare_intent.json": {
+    "bytes": 195,
+    "sha256": "3f6feef82f9d0bf25d09e7a8d8a379c926e67cb101f387183ae3fe0ab9df6f33"
+  },
+  "launch/runtime.json": {
+    "bytes": 2891,
+    "sha256": "ad47f5c803e5a84a4fc951e76c501743c88b1522ce510635e913a45c73002e08"
+  },
+  "launch/sbatch.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "launch/sbatch.stdout": {
+    "bytes": 6,
+    "sha256": "03a932a9eced8abd77c29606b708d54139d60f249f195d1c7e6fe143cba2c413"
+  },
+  "launch/sbatch_status.json": {
+    "bytes": 22,
+    "sha256": "1e3f6691f455051e8adb15d961e4bf3c7a17e83dd88b2afdd13315cc288250bb"
+  },
+  "launch/storage.json": {
+    "bytes": 92,
+    "sha256": "2e47f8578fd62d7572e0323af5b8d78f690d9a9d2a0a946a7e1c32e79edaac7c"
+  },
+  "launch/tests.log": {
+    "bytes": 181,
+    "sha256": "a5b0d960f36aa525498baa816f7015a006021e2f3202939d8792061579632a3b"
+  },
+  "scheduler.txt": {
+    "bytes": 1419,
+    "sha256": "c5daca95b369ca23380f6f5f233d368c47bbc52952ebc1408e1e53627ed7cd00"
+  },
+  "start_estimate.txt": {
+    "bytes": 225,
+    "sha256": "a65fda3e17f06d4736684d105b1302909907e88538919904066cd908aab5bd53"
+  }
+}

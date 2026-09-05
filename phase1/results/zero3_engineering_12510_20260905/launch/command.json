@@ -1,0 +1,12 @@
+[
+  "sbatch",
+  "--parsable",
+  "--hold",
+  "--no-requeue",
+  "--time=00:30:00",
+  "--chdir=/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6",
+  "--output=/research/d7/spc/yzyang4/critic-zero3-engineering/submission-20260905-r2/slurm-%j.out",
+  "--error=/research/d7/spc/yzyang4/critic-zero3-engineering/submission-20260905-r2/slurm-%j.out",
+  "--export=PATH=/usr/local/bin:/usr/bin:/bin,ZERO3_CONTROL_ROOT=/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6,ZERO3_CODE_COMMIT=d22a17f3f6e676432f59f46dcfd8e4418548267d,ZERO3_GPU_APPROVAL_RECEIPT_SHA=5e8dca606f335dde507422afadf49f8d704c6325ce5a2ec259ac7478d191682b",
+  "/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6/phase1/scripts/zero3_session_engineering_20260905.sbatch"
+]

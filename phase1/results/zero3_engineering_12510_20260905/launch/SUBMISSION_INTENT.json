@@ -1,0 +1,6 @@
+{
+  "commit": "d22a17f3f6e676432f59f46dcfd8e4418548267d",
+  "gpu_seconds_upper_bound": 4320,
+  "max_jobs": 1,
+  "retry": false
+}

@@ -20,6 +20,11 @@
 但它是**待另行明确预算审批的提案**，不改动原五臂15-fit、确认成功门、first960/Target300/522或既有盲态。
 P-to-L仅保留为后续候选，没有新增方法臂或训练授权。G0现有控制、时限及守护不变。
 
+代码实查进一步明确：现有Trainer adapter和Accelerate恢复路径仍限合成CPU；真实模型的token-plan生产消费、
+ZeRO3/bfloat16及恢复集成不是G0已经覆盖的能力，必须单列为后续实现项，不直接去掉原型guard。
+数学exact-commit核验见`results/derived_comparison_covariance_b5f39cc_20260905/`。
+本轮Drive根metadata复查最新0903、无0904/0905，0 payload下载；不代表其它共享位置没有更新。
+
 ## 0L44. 2026-09-05 12:26：补齐无标签endpoint推理适配器，G0仍排队
 
 结果前code=`4b3f5bc3f493d25c63d237fd79b3e459c1f2f8f9`新增内存中的无标签编码→模型前向→完整score matrix接口，

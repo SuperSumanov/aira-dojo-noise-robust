@@ -31,6 +31,8 @@ NAS predictor 研究已强调初始化/查询成本和不同预测器的适用�
 
 623/649/3919 是当日 08:13 的已核验收集快照，不冒充本轮再次摄取或全项目历史语料总量。
 学长的结论与我方分析分开归因；不得把他发现的 scaling 写成我方新发现。
+本轮另以已核验脚本做一次共享 Drive 根目录 metadata 请求：43 children、37 日期目录，最新仍为 `0903`，
+没有 `0904/0905`；payload 下载为 0。这只覆盖该已知共享入口，不能断言学长没有在别处上传。
 
 ## 3. 本轮实质复核：谱改善不等于同源派生标签的统计信息改善
 
@@ -78,6 +80,17 @@ G0 只回答真实训练能否加载、前向/反向、保存 checkpoint，及�
 12486 已获批准的两卡预算继续执行，不重复投递。如果学长提供可实际登录/调度的 PRO6000 窗口，再核对预算与
 原作业状态，设计迁移，不能仅凭口头资源存在就开第二个作业。
 
+**另一个代码阻塞必须单独列明**：`global_local_trainer_adapter.py` 明确仅允许 synthetic IDs、CPU、
+最多 128 pairs/4096 parameters；Accelerate 恢复验证也仅是 synthetic 两参数 CPU DDP。
+`results/global_local_accelerate_20260904/README.md` 明确没有验证真实 ZeRO-3/bfloat16 模型集成和恢复。
+因此“G0跑通+来源包到位→立刻开15-fit”不完整；还必须接通既有 token planner 到真实 critic 的生产消费路径。
+
+接下来该写/验的具体入口是：同源 train/dev 白名单→已有 encoder 与 budget plan→真实 scalar critic forward/BT loss→
+按实际 valid tokens 推进 LR 与阶段→保存/恢复 optimizer、scheduler、RNG 和 plan cursor→锁定 final checkpoint。
+复用现有实现与已确认的数学归一化，不再建立平行 validator 框架。生产端应拒绝不被协议支持的 world-size/末批/恢复组合，
+并给出可定位原因；不能把 CPU 原型的 guard 直接删掉当作已具备多卡正确性。
+该入口对真实模型的最小集成运行需要单独绑定配置和预算，不擅改正在排队的 G0 来捎带执行。
+
 真实数据包到位后，应先完成最小**开发效果闭环**，再进入昂贵确认矩阵；不是必须等待 first-960 才能做开发。
 不过当前冻结协议没有批准这个新增 pilot，所以这里是提交审批的设计，**不是擅自修改 15-fit 协议**：
 
@@ -118,3 +131,6 @@ NAS 中损失类别的适用性与组合已有系统性研究：[Ji et al., ICCV
 
 本轮已经实际完成：Git/方向/关键源码审视、G0 只读核验、相关原始文献检查、一个无数据无拟合的依赖结构反例，
 以及上述执行裁决。没有声称新 critic/scaling/search 效果，没有修改 GPU 作业或保护 cohort。
+
+数学核验的 exact-commit 复跑与原始结果位于
+`results/derived_comparison_covariance_b5f39cc_20260905/`；这是结论边界核验，不是另一个“模型正结果”。

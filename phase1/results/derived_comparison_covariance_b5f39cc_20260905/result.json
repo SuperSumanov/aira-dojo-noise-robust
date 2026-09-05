@@ -1,0 +1,93 @@
+{
+  "cases": [
+    {
+      "covariance_aware_mean_contrast_variance": 2.000000000000001,
+      "derived_rows": 3,
+      "endpoint_noise": "homoscedastic",
+      "fisher_difference_from_forest": 0.0,
+      "graph": "forest",
+      "independent_execution_vectors": 1,
+      "naive_mean_contrast_variance": 3.3333333333333326
+    },
+    {
+      "covariance_aware_mean_contrast_variance": 2.0,
+      "derived_rows": 6,
+      "endpoint_noise": "homoscedastic",
+      "fisher_difference_from_forest": 6.661338147750939e-16,
+      "graph": "complete",
+      "independent_execution_vectors": 1,
+      "naive_mean_contrast_variance": 1.0
+    },
+    {
+      "covariance_aware_mean_contrast_variance": 2.000000000000001,
+      "derived_rows": 60,
+      "endpoint_noise": "homoscedastic",
+      "fisher_difference_from_forest": 8.326672684688674e-16,
+      "graph": "forest_copied_20_times",
+      "independent_execution_vectors": 1,
+      "naive_mean_contrast_variance": 0.1666666666666666
+    },
+    {
+      "covariance_aware_mean_contrast_variance": 1.0000000000000004,
+      "derived_rows": 6,
+      "endpoint_noise": "homoscedastic",
+      "fisher_difference_from_forest": null,
+      "graph": "forest_two_independent_execution_vectors",
+      "independent_execution_vectors": 2,
+      "naive_mean_contrast_variance": null
+    },
+    {
+      "covariance_aware_mean_contrast_variance": 3.7499999999999982,
+      "derived_rows": 3,
+      "endpoint_noise": "heteroscedastic",
+      "fisher_difference_from_forest": 0.0,
+      "graph": "forest",
+      "independent_execution_vectors": 1,
+      "naive_mean_contrast_variance": 5.749999999999999
+    },
+    {
+      "covariance_aware_mean_contrast_variance": 3.75,
+      "derived_rows": 6,
+      "endpoint_noise": "heteroscedastic",
+      "fisher_difference_from_forest": 9.992007221626409e-16,
+      "graph": "complete",
+      "independent_execution_vectors": 1,
+      "naive_mean_contrast_variance": 1.722164948453609
+    },
+    {
+      "covariance_aware_mean_contrast_variance": 3.7500000000000013,
+      "derived_rows": 60,
+      "endpoint_noise": "heteroscedastic",
+      "fisher_difference_from_forest": 4.440892098500626e-16,
+      "graph": "forest_copied_20_times",
+      "independent_execution_vectors": 1,
+      "naive_mean_contrast_variance": 0.2874999999999999
+    },
+    {
+      "covariance_aware_mean_contrast_variance": 1.8749999999999991,
+      "derived_rows": 6,
+      "endpoint_noise": "heteroscedastic",
+      "fisher_difference_from_forest": null,
+      "graph": "forest_two_independent_execution_vectors",
+      "independent_execution_vectors": 2,
+      "naive_mean_contrast_variance": null
+    }
+  ],
+  "classification": "ANALYTIC_COUNTEREXAMPLE_NOT_EMPIRICAL_EFFECT",
+  "largest_covariance_aware_fisher_invariance_error": 9.992007221626409e-16,
+  "noise_model": "z=theta+epsilon, epsilon~N(0,Sigma); continuous differences Bz have covariance=B Sigma B^T",
+  "numpy": "1.26.4",
+  "ordinal_control": {
+    "forest_signs_do_not_determine_full_signs": true,
+    "same_independent_execution_count": true
+  },
+  "parent_subtraction_control": "same-parent subtraction preserves sibling ranking",
+  "scope": {
+    "bt_binary_efficiency_theorem_claimed": false,
+    "full_global_comparisons_declared_useless": false,
+    "gpu_jobs": 0,
+    "model_fits": 0,
+    "real_data_read": false
+  },
+  "source_sha256": "d4873b18655cc648c9f103db223a2c4b1c773c6e178ea8019f21b5a7a62026ca"
+}

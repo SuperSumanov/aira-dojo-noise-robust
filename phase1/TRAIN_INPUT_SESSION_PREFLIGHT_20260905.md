@@ -19,7 +19,9 @@
 - 使用8-token head/tail截断，与原CardEncoder逐条独立比较；不加载预训练模型或真实语料。
 - G_to_L与Ghash_to_L各full4、prefix2/resume2、prefix3/resume3，执行A/B两次；20条工程轨迹。
 - 复用已有CriticSession生命周期worker，只增加显式inputs_factory，不重写训练/保存逻辑。
-- 单个远端CPU wrapper上限600秒（含两次完整运行、检查与退出）；不增加GPU/API预算。
+- 修订后单个远端CPU wrapper上限1200秒（含两次完整运行、检查与退出）；每次A/B启动新轨迹前
+  检查480秒累计墙钟，外层timeout提供总硬限；不增加GPU/API预算。两CPU进程不并行叠加。
+  Triton/编译缓存固定在本轮/tmp目录，不使用研究盘或home NFS缓存。
 
 ## 验收
 
@@ -35,3 +37,7 @@ c0dc128已启动的首轮使用共同代码尾部，经静态检查发现48端�
 在模型初始化前强制48种不同编码；原seed、参数、算法、轨迹和逐位验收标准不改。
 开发单元测试曾因外来plan被TokenPlanVerificationError拒绝、而测试期待PlanError而失败1项；
 接口已统一转换成固定reason的PlanError，23项本地测试通过。
+
+c0dc128首轮远端63项单测通过，但真实轨迹只完成G_to_L五条和Ghash_to_L full一条，
+随后CPU_subrun_budget=240秒触发，退出码1；B和独立复验未运行。观察到各新进程框架初始化约38秒，
+原600秒总估计不足。保留该失败，不移除预算门；将A/B总CPU墙钟上限明确修正为20分钟。

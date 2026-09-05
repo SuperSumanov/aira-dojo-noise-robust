@@ -78,7 +78,7 @@ def main():
     for arm in ('G_to_L','Ghash_to_L'):
         full=None
         for name,end,cut in [('full',4,None),('prefix2',2,None),('resume2',4,2),('prefix3',3,None),('resume3',4,3)]:
-            assert time.monotonic()-started<240,'CPU_subrun_budget'
+            assert time.monotonic()-started<480,'CPU_subrun_budget'
             out=root/(arm+'-'+name);out.mkdir(mode=0o700)
             resume=None if cut is None else str(root/(arm+f'-prefix{cut}')/f'checkpoint-{cut}')
             with socket.socket() as sock:sock.bind(('127.0.0.1',0));port=sock.getsockname()[1]

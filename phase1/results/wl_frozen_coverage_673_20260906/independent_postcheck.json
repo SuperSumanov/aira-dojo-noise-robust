@@ -1,0 +1,52 @@
+{
+  "added_runs": 156,
+  "api_calls": 0,
+  "chain_receipt_sha256": "d8fcfea1461920a083fa001d5d557bb169db7a14291dfcd2fda1edc6c0a13794",
+  "credential_hits": 0,
+  "current_runs": 673,
+  "effect_metrics_computed": [],
+  "forbidden_trace_hits": 0,
+  "formal_manifest_sha256": "8de59dc34f5ec86dc38b12c23b8b6c6c629e749fb0ca272a3ae1b339d773c1da",
+  "gpu_jobs": 0,
+  "label_or_outcome_values_read": false,
+  "manifested_files_verified": 50,
+  "model_fits": 0,
+  "numerical_verifier_receipt_sha256": "2d390e36b1938c7d5c7627ae60b8525770154c2d3155be18ea7400f7edceabf6",
+  "observed_epoch": 1788649058.1290727,
+  "original_manifest_check_sha256": "de8f0015149930912b32974091ba0b9b5784288816419c6ab68249f5984df3d8",
+  "prediction_values_deserialized": false,
+  "prior_runs": 517,
+  "read_only_files_verified": 52,
+  "removed_runs": 0,
+  "resources": [
+    {
+      "peak_rss_kbytes": 10303912,
+      "returncode": 0,
+      "stage": "producer",
+      "system_seconds": 221.35,
+      "user_seconds": 1989.79
+    },
+    {
+      "peak_rss_kbytes": 10336332,
+      "returncode": 0,
+      "stage": "independent_verifier",
+      "system_seconds": 64.83,
+      "user_seconds": 2061.5
+    },
+    {
+      "peak_rss_kbytes": 99716,
+      "returncode": 0,
+      "stage": "snapshot_chain",
+      "system_seconds": 0.34,
+      "user_seconds": 1.18
+    }
+  ],
+  "shared_pairs_preserved": 3325,
+  "snapshot_sha256": "cdae57a622cfa8e83b40e93f60dbd90045b4670c4e9050bf552ef689745a25f2",
+  "status": "WL_FROZEN_COVERAGE_INDEPENDENT_POSTCHECK_PASSED",
+  "support_is_provisional": true,
+  "trace_files_scanned": 24,
+  "verification_source_sha256": "a0ca6ef31b4b6a3c26979fe1168f4ed2e874472f474089810911af71939707e1",
+  "wall_seconds": 4350.789625179023,
+  "wrapper_commit": "4395e1800bf8350cecc0ecd6513bf0c11722d3c2"
+}

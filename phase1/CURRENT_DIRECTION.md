@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L72. 2026-09-06：冻结WL实际覆盖完成，仍未揭盲
+
+原517→673补算已正常完成：新增156、移除0，共同3325pairs保持；producer/独立数值verifier/chain均rc0。
+原wrapper4350.789625179023秒；独立postcheck重hash50manifest成员、核52只读文件、24trace，安全0命中。
+结果见results/wl_frozen_coverage_673_20260906/README.md，12份安全原始回执+manifest逐字节导入。
+postcheck SHA=15afa0003c11f6a274d1c44a832c42edc97308ce5745c46d820162fa41674449；
+formal manifest=8de59dc34f5ec86dc38b12c23b8b6c6c629e749fb0ca272a3ae1b339d773c1da；
+WL summary=1d7a63c7338673233432a26ae5c3b8dc1b745997ce5d8696fae5af038d2fc059。
+中途SSHreset仅为连接中断，远端原child及7200秒wrapper存活到成功终点；没有重启/重复投递。
+原child现已退出，不再等待本地43756或重复执行wrapper/postcheck exporter。
+0GPU/API/model-fit；这是冻结benchmark覆盖补齐，不是模型收益，673/960、closure=false、仍盲态。
+本夜新增语料50eligible与WL追赶156不是同一个统计量，不能加在一起。transition/receipt state/log旧SHA未变。
+06:52核12535仍PENDING/Resources、学长head b8d095180415957aa1bab31fa53ead1bba261c03未变，Drive最新0904。
+四fit训练仍未启动；实际来源、experiment/开发资格、GPU生产验收和预算存储门不放宽。
+
 ## 0L71. 2026-09-06 05:59：WL实际运行中；来源备份路径进一步排查
 
 冻结WL已实际启动，remote child2896379，output=20260905T214440Z_cdae57a622cf，仍在producer阶段。

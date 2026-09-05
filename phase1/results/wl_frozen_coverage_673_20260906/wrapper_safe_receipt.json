@@ -1,0 +1,13 @@
+{
+  "added_runs": 156,
+  "artifact": "/research/d7/spc/yzyang4/wl-graph-escrow-snapshot-chain/20260905T214440Z_cdae57a622cf",
+  "current_runs": 673,
+  "elapsed_seconds": 4350.789625179023,
+  "manifest_sha256": "8de59dc34f5ec86dc38b12c23b8b6c6c629e749fb0ca272a3ae1b339d773c1da",
+  "model_fits": 0,
+  "outcomes_read": false,
+  "prediction_values_emitted": false,
+  "prior_runs": 517,
+  "status": "WL_COVERAGE_PROMOTED_PENDING_INDEPENDENT_POSTCHECK",
+  "wrapper_sha256": "99ef4064a70f49cec33ad4911c29404d0ac903f9a19d9b0d29a4de339a0dfd34"
+}

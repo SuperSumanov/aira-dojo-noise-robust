@@ -1,0 +1,16 @@
+{
+  "fixed_inputs": {
+    "prediction-receipt-common-support/monitor_9f2cbe9_v1/monitor.log": "72f4fb13605a2aa6cc092f625799e671f140b39a79313a03f1f1847f70d84a22",
+    "prediction-receipt-common-support/monitor_9f2cbe9_v1/state.tsv": "6a1ac64a49221f3879a165e608b3cb8298aab221f3ff1bcd20764c1fe47d38bc",
+    "transition-future-escrow/monitor_7458f09_snapshot_chain_v1/monitor.log": "a23e382f0a8ccb2684dbd29bed68ae0ea1d61c7a6a1727f03195033697f9ec43",
+    "transition-future-escrow/monitor_7458f09_snapshot_chain_v1/state.tsv": "ac66b2deb9054b05e9fab803587d1ee38478f88cbadc86aebfa9f4a9f7ebad4e",
+    "wl-graph-escrow-snapshot-chain/monitor_3932b38_v1/monitor.log": "3d5a84a7cecef55f513789d02e2fb0d1744a30303a6a36cf7d04bfab5ff69f0e",
+    "wl-graph-escrow-snapshot-chain/monitor_3932b38_v1/state.tsv": "98155113b3921d7126d5fe5bd0b26715167b3a96c42cd9de41d74cb485a5d3c8"
+  },
+  "gpu_api_model_fit": 0,
+  "latest": "cdae57a622cfa8e83b40e93f60dbd90045b4670c4e9050bf552ef689745a25f2",
+  "prior": "e9e12c639fdeb54f3c18ef9d55841db60332baedfe8149774006e458ab8e8a6d",
+  "public_commit": "4395e1800bf8350cecc0ecd6513bf0c11722d3c2",
+  "wall_cap_seconds": 7200,
+  "wrapper_sha256": "99ef4064a70f49cec33ad4911c29404d0ac903f9a19d9b0d29a4de339a0dfd34"
+}

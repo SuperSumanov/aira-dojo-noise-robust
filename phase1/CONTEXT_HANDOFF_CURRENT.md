@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-06
 
-**Dynamic status timestamp:** 2026-09-06 05:53 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-09-06 06:59 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -11,7 +11,7 @@
 
 ## 2026-09-06 当前入口，覆盖下文所有历史动态状态
 
-先fetch并读CURRENT_DIRECTION顶部0L70及以后。用户约02:29入睡，要求本会话持续工作；
+先fetch并读CURRENT_DIRECTION顶部0L72及以后。用户约02:29入睡，要求本会话持续工作；
 约10:20–10:29才到八小时，不能提前声称已工作八小时。不要新增heartbeat或任务。
 
 - 本夜摄取已真正完成：14事务（0903八档、0904六档）+最后空队列检查，623→673 eligible。
@@ -19,17 +19,18 @@
   LATEST=cdae57a622cfa8e83b40e93f60dbd90045b4670c4e9050bf552ef689745a25f2。
   results/intake_backlog_session_20260906保存154份安全原始回执，A/B、独立验证和逐字节发布复核完成。
   两个旧intake session均已终止；不得再调用其wrapper/export/import或把ready=0当确认关闭。
-- 正在运行冻结WL覆盖补算517→673，0GPU/API/model-fit，原模型/协议不变。
-  source4395e1800bf8350cecc0ecd6513bf0c11722d3c2；本地exec session43756；remote child PID2896379。
-  action=/research/d7/spc/yzyang4/wl-catchup-session-673-20260906。
-  单次foreground、7200秒硬上限，不重复启动。完成后仍需独立只读/hash/trace安全复验，再发布安全汇总。
-- 原12535仍PENDING/Resources（05:35实查），26min双PRO6000 tiny ZeRO3工程验证，不能称1.7B/16K生产验收。
+- 冻结WL覆盖517→673已完成，新增156/移除0/共同3325pairs保持。原模型/协议不变，0GPU/API/model-fit。
+  source4395e1800bf8350cecc0ecd6513bf0c11722d3c2；原child2896379退出，三个阶段rc0，实耗4350.789625179023秒。
+  本地43756早前SSHreset，原远端wrapper存活并完成；不要再等待该本地session或重复启动。
+  独立postcheck已通过：50manifest成员/52只读文件/24trace，安全0命中；安全13文件已导入
+  results/wl_frozen_coverage_673_20260906。补算、exclusive postcheck/export/import都已完成，不得重跑。
+- 原12535仍PENDING/Resources（06:52实查），26min双PRO6000 tiny ZeRO3工程验证，不能称1.7B/16K生产验收。
   不更改/重复提交。独立双3090尝试12570已失败：gpu28缺固定CUDA12.8 nvcc，1秒、2GPU秒，模型未启动。
   失败见results/zero3_3090_portability_12570；无自动重试或环境修补，不能称硬件本身不支持。
 - 正式训练ADMITTED_RELEASES仍空。唯一神经主候选full G-reuse→L；四fit开发screen尚未开始。
   学长24份真实snapshot/评分/experiment事实、合格开发范围和可用GPU窗口仍未到位。
   不用新增确认语料当训练集，不用合成/工程测试冒充critic或scaling正收益。
-- 05:30学长head仍b8d095180415957aa1bab31fa53ead1bba261c03，Drive无0905。
+- 06:52学长head仍b8d095180415957aa1bab31fa53ead1bba261c03，Drive无0905。
   新metadata helper用站点env_setup现行代理；旧hardcoded代理helper已失效，勿重用。
   不读取protected值/候选身份；旧receipt/transition PID号被其它uid复用，不得signal。
 - 研究盘官方到期2026-09-29。quota RPC不可用；共享磁盘free不是个人quota。

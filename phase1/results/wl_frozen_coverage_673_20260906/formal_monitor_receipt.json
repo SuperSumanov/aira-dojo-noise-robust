@@ -1,0 +1,12 @@
+{
+  "added_runs": 156,
+  "artifact_summary_sha256": "1d7a63c7338673233432a26ae5c3b8dc1b745997ce5d8696fae5af038d2fc059",
+  "common_pairs": 3325,
+  "effect_metrics_computed": [],
+  "independent_verification_sha256": "2d390e36b1938c7d5c7627ae60b8525770154c2d3155be18ea7400f7edceabf6",
+  "outcomes_read": false,
+  "removed_runs": 0,
+  "selected_runs": 673,
+  "snapshot_sha256": "cdae57a622cfa8e83b40e93f60dbd90045b4670c4e9050bf552ef689745a25f2",
+  "support_gate_is_provisional_until_closure": true
+}

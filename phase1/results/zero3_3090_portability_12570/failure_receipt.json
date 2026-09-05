@@ -1,0 +1,18 @@
+{
+  "CPU_tests_passed": 124,
+  "allocated_gpu_seconds": 2,
+  "automatic_retry": false,
+  "cap_gpu_seconds": 3120,
+  "checkpoints_created": false,
+  "classification": "TOOLCHAIN_PREFLIGHT_FAILURE_NOT_GPU_ACCEPTANCE",
+  "code_commit": "97306120a1c203bb6e72a2b7468a21acbf44371a",
+  "existing_12535_modified": false,
+  "job": "12570",
+  "limit": "No general hardware compatibility, production qualification or effect conclusion.",
+  "missing_required_tool": "/usr/local/cuda-12.8/bin/nvcc",
+  "model_loaded": false,
+  "node": "gpu28",
+  "source_files_unchanged": 33,
+  "training_driver_started": false,
+  "wall_seconds": 1
+}

@@ -1,0 +1,70 @@
+{
+  "failure_receipt.json": {
+    "bytes": 621,
+    "sha256": "9e30ef8381ac026c530924e1bb5f58f26a0104e43371662b6b1856e7dce7dca5"
+  },
+  "job/exit_status.txt": {
+    "bytes": 2,
+    "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+  },
+  "job/sacct.txt": {
+    "bytes": 55,
+    "sha256": "51a53e67ecc4d1bda5649e7f5d86d35fd23bceebaf47e368a66316a357c4f96a"
+  },
+  "job/worker.log": {
+    "bytes": 524,
+    "sha256": "23314a58c1bc345ce4d5f9a688086fd2cfbade2e970b262607227134c06cf7dc"
+  },
+  "submission/READY.json": {
+    "bytes": 4329,
+    "sha256": "aceb1a5c45360aa206f6d74e2f6f1508e5a01262815e1be46ac4cb7e09b6d3ca"
+  },
+  "submission/RELEASED.json": {
+    "bytes": 80,
+    "sha256": "71f17bc41313a4bbf9410a0e64e6a2101aced27c666fa0957000703c4e0f8e2e"
+  },
+  "submission/SUBMISSION_INTENT.json": {
+    "bytes": 150,
+    "sha256": "5d54cade9b68a2ef9570b4e93660c4388e0c3913ce97db60403450031930ed87"
+  },
+  "submission/SUBMITTED.json": {
+    "bytes": 80,
+    "sha256": "71f17bc41313a4bbf9410a0e64e6a2101aced27c666fa0957000703c4e0f8e2e"
+  },
+  "submission/VERIFIED_HELD.json": {
+    "bytes": 1984,
+    "sha256": "09589f8543e5a600aac37d80918ca6dc228314e1f478f001aa550aa4fa4b7df4"
+  },
+  "submission/command.json": {
+    "bytes": 735,
+    "sha256": "2fe77dd29dac1da75f2aa3c9448152ed5a152a2d2c54d1ca448b95cb783815d0"
+  },
+  "submission/cpu-tests.log": {
+    "bytes": 180,
+    "sha256": "753f99eb4ea483e1107cdb14998b2fd2a89db24827c440fc06bc446b6ae03085"
+  },
+  "submission/prepare_intent.json": {
+    "bytes": 174,
+    "sha256": "2031d1af59fcfc5ecf709711d2096993eb6cba97392782f9df1cf892bee4fb46"
+  },
+  "submission/runtime.json": {
+    "bytes": 3048,
+    "sha256": "d8930c78dada90432c383a6279493c2c2e66e0e473706b4a6be1ceebfba60710"
+  },
+  "submission/sbatch.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "submission/sbatch.stdout": {
+    "bytes": 6,
+    "sha256": "933c1b17d7576d39acfeffc0aca4d4c61a2d9fbc6ae85c1c1eab87368ec02748"
+  },
+  "submission/sbatch_status.json": {
+    "bytes": 22,
+    "sha256": "1e3f6691f455051e8adb15d961e4bf3c7a17e83dd88b2afdd13315cc288250bb"
+  },
+  "submission/storage.json": {
+    "bytes": 93,
+    "sha256": "2956ea50d37ded717f947d5f06b401f77d230519699cc423186f3edffa4287bf"
+  }
+}

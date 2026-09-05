@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/research/d7/spc/yzyang4/worktrees/zero3-3090-97306120a1c2/phase1/scripts/check_zero3_3090_tools_20260906.py", line 5, in <module>
+    main(expected_host='gpu28')
+  File "/research/d7/spc/yzyang4/worktrees/zero3-3090-97306120a1c2/phase1/check_g0_r5_build_tools.py", line 23, in main
+    assert (cuda/rel).is_file(),rel
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: bin/nvcc

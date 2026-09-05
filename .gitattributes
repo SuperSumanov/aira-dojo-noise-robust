@@ -497,3 +497,10 @@ phase1/results/0904_intake_session_20260906/** -text diff
 phase1/results/0904_intake_session_20260906/runs.csv whitespace=cr-at-eol
 phase1/results/0904_intake_session_20260906/README.md text eol=lf diff
 phase1/results/0904_intake_session_20260906/operations/*.py text eol=lf diff
+phase1/results/zero3_3090_portability_12570/** -text diff whitespace=cr-at-eol
+phase1/results/zero3_3090_portability_12570/README.md text eol=lf diff
+phase1/results/zero3_3090_portability_12570/operations/*.py text eol=lf diff
+phase1/scripts/zero3_3090_portability_20260906.sbatch text eol=lf diff
+phase1/results/intake_backlog_session_20260906/** -text diff whitespace=cr-at-eol
+phase1/results/intake_backlog_session_20260906/README.md text eol=lf diff
+phase1/results/intake_backlog_session_20260906/operations/*.py text eol=lf diff

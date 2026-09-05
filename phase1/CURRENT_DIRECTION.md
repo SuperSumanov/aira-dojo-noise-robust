@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L68. 2026-09-06 05:29：真实积压摄取至673；3090尝试被工具链预检拦截
+
+原7次0903摄取加successor前7次后，当前699physical/673eligible/18696endpoints/4275structural pairs/57tasks，
+closure=false。LATEST=cdae57a622cfa8e83b40e93f60dbd90045b4670c4e9050bf552ef689745a25f2，
+summary=b70da317b36949cba2db91edcfc5ce1af85f19fa0378a63d0b5587a4989b7d56，
+最新delta审计manifest=f54bffbb686fd70b4597eead09c7298ba97c8392b996aebed4fe060d828defc7。
+从本会话623基线累计新增50eligible/1771endpoints/356pairs/6tasks，另一次旧anchor补验34不算新增。
+只读A/B、grounded A/B、30文件重hash通过。仍等最后真实ready=0观察，不能提前宣布摄取关闭。
+
+按用户总授权，预先公布独立双3090工程检查矩阵、20min/no-requeue/3120GPU秒上限；
+source97306120a1c203bb6e72a2b7468a21acbf44371a，124Linux CPU测试通过，held资源独立核验后放行12570。
+gpu28缺/usr/local/cuda-12.8/bin/nvcc，1秒预检失败，实际2GPU秒；模型driver未启动，无checkpoint。
+没有修改环境、自动重试、变更原12535，也没有把小模型工程尝试当1.7B/16K或PRO6000验收。
+见results/zero3_3090_portability_12570/README.md。原12535仍单独等待；真实训练来源/预算存储仍未合格，
+ADMITTED_RELEASES保持空，无模型正收益或scaling新结论，不用合成验证替代这些事实。
+
 ## 0L67. 2026-09-06 04:40：纠正摄取日期归属；按实测积压续接
 
 撤回本会话“六次完成=0904六档案全部入库”的叙述。metadata-only核实原session前7次全部处理0903，

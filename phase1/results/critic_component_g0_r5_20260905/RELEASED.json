@@ -1,0 +1,20 @@
+{
+  "budget": {
+    "allocated_gpu_seconds": 965,
+    "elapsed_seconds": {
+      "12181": 156,
+      "12288": 4,
+      "12377": 131,
+      "12486": 191,
+      "12497": 1
+    },
+    "exit_grace_seconds": 300,
+    "new_walltime_seconds": 6300,
+    "scheduler_margin_seconds": 60,
+    "total_gpu_seconds_upper_bound": 14285
+  },
+  "control_commit": "90cd91058fd03e86185d42c14704845827259655",
+  "job_id": 12499,
+  "status": "RELEASED",
+  "utc": "2026-09-05T05:41:28.822527+00:00"
+}

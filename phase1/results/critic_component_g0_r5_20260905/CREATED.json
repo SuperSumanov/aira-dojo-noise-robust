@@ -1,0 +1,12 @@
+{
+  "console_script_count": 25,
+  "link_count": 161,
+  "native_executables_added": [
+    "ninja"
+  ],
+  "ninja_sha256": "696f9628a79d9ce50314cf9556d7cd1a1d1ec52b8fd52828f6f9db1719565b67",
+  "old_runtime_modified": false,
+  "package_count": 65,
+  "script_sha256": "f2d94bb149fe3a25942057a62e8b30bdb498116dedf22eb37fc41f8f695d9f2b",
+  "status": "RUNTIME_CREATED_NOT_GPU_CERTIFIED"
+}

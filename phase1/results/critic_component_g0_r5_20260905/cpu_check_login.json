@@ -1,0 +1,25 @@
+{
+  "compiled_cache_not_reused_for_gpu_job": true,
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "cuda_home_detected": null,
+  "deepspeed_builder_sha256": "78890e08fcfc4385b4bc03f266e6c9c42a9d9093a38b24173ecdb5e8db5464b2",
+  "elapsed_seconds": 145.09968986734748,
+  "gpu_context_created": false,
+  "gpu_execution_validated": false,
+  "hostname": "linux5",
+  "max_absolute_error_by_update": [
+    1.1920928955078125e-07,
+    2.384185791015625e-07,
+    3.5762786865234375e-07
+  ],
+  "model_fits": 0,
+  "ninja_sha256": "696f9628a79d9ce50314cf9556d7cd1a1d1ec52b8fd52828f6f9db1719565b67",
+  "ninja_version": "1.13.0.git.kitware.jobserver-pipe-1",
+  "package_count": 65,
+  "script_sha256": "f2d94bb149fe3a25942057a62e8b30bdb498116dedf22eb37fc41f8f695d9f2b",
+  "seed": 6,
+  "status": "REAL_CPU_ADAM_COMPILE_INIT_UPDATE_PASS",
+  "tensor_elements": 32,
+  "tolerance": 1e-06,
+  "updates": 3
+}

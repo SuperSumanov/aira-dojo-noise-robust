@@ -1,0 +1,14 @@
+{
+  "checkpoint_reservation": "PASS",
+  "create_file": "PASS",
+  "diagnostic_file": "/research/d7/spc/yzyang4/critic-component-g0/recovery-20260903-r2/storage-check-20260903-ax4xiwpc",
+  "existing_user_files_modified": false,
+  "official_root": "/research/d7/spc/yzyang4",
+  "own_diagnostic_file_removed": true,
+  "reservation_bytes": 4294967296,
+  "resulting_allocated_bytes": 4294967296,
+  "resulting_file_bytes": 4294967296,
+  "small_write_bytes": 65536,
+  "small_write_fsync": "PASS",
+  "utc": "2026-09-05T05:38:52.493033+00:00"
+}

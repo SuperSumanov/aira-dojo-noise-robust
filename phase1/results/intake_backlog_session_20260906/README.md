@@ -46,3 +46,10 @@ AtHK05:30, seniorGithead remainsb8d095180415957aa1bab31fa53ead1bba261c03;
 Drive root metadata has44children/38datefolders,latest0904,no0905. The original
 hardcoded proxy check failed withconnection-refused; site-configured proxy then
 successfully recovered metadata-only checking. No source package was admitted for training.
+
+Publication note: the generic filename scan initially rejected15files named
+environment.txt. Each was independently checked to contain EXACTLY6source/commit/
+snapshot-hash fields, not environment-variable values. A narrow path+schema+manifest
+review accepted these known benign receipts; all credential/binary/size and other
+restricted-filename checks remained active. The generic scanner was not modified;
+the exact triage checker is preserved inoperations/. No failure was silently called a pass.

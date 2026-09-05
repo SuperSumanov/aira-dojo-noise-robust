@@ -44,6 +44,20 @@
 
 ## 可以缩短交接，但不能跳过的三项事实
 
+### 22:44补查：value目标不是由文件名决定
+
+已读`build_subtree_pairs.py`全部源码，SHA为
+`3121b14703bcb67007c8070adb6e7a7dd8d4844c00a9d7de8621161fce7a73cf`，credential-shape命中0。
+`budget_steps=-1`排除所有后代，只比较节点自身成绩；`0`在这个构建器里是不限后代深度，不能直接映射为口语K=0。
+批处理默认显式传`-1`。固定checker `7967ced39996173c0c921cedd3f1bcca7c260262`只执行`-1`的合成检查，
+两任务10节点18pair与独立当前成绩比较相同，A/B回执字节相同；未执行lookahead或读取真实语料。
+源码实际保留有成绩的叶节点，与其排除叶节点的文字描述不一致；`-1`仍先遍历lineage/runtime后过滤，
+所以不能将该脚本当作保护全集上的结果盲工具。
+
+另核上述三个构建器与三个value/draft/improve批处理脚本：当前b8d0951与候选LFS发布5baccb1源码逐字节相同。
+**同发布树源码不等于历史实际执行版本或参数证明**；下面三项来源事实仍未齐备。
+回执与复现方式见`results/source_target_semantics_7967ced_20260905/README.md`。
+
 仍沿用[SENIOR_MINIMUM_SOURCE_HANDOFF_20260905.md](SENIOR_MINIMUM_SOURCE_HANDOFF_20260905.md)，不用手工编七份JSON。
 我们需要生产方提供现成记录的位置：
 

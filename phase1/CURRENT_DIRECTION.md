@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L59. 2026-09-05 22:46：补清current-score参数语义；GPU与来源资格仍未过门
+
+固定学长源码b8d0951的value构建器确认：`budget_steps=-1`只用节点自身成绩，`0`是不限后代深度，
+不能把两者都叫K=0。其batch默认显式传-1。checker结果前commit为7967ced39996173c0c921cedd3f1bcca7c260262，
+只在合成数据执行-1：两任务10节点18pair与独立当前成绩比较一致；A/B回执逐字节相同，重复Card/跨run父子负控制拒绝。
+无真实语料、lookahead、GPU或模型效果实验。三个builder与三个batch脚本在b8d0951和候选LFS发布5baccb1字节相同；
+这不能证明历史实际命令/输入。未补造开发资格、experiment映射或生成/评分回执，完整训练包仍未合格。
+见`results/source_target_semantics_7967ced_20260905/README.md`与更新后的`PRODUCTION_SOURCE_FACTS_20260905.md`。
+
+22:44双卡12535仍PENDING/Resources/0秒，无新提交或重跑G0；22:45只读核查学长head未变，无新outcome。
+LATEST仍76a2d7d426b1da88f30d28449506fea78208f9ca5cd012ba6316efe346462285，623 eligible/649 physical，closure=false。
+0904六归档已接收但未摄取，最早香港9月6日03:44:48满足年龄；旧守护已结束，本轮没有新建守护。
+现有Target522 rank失败标记为旧已知状态，不自动恢复。科学主线和冻结门不变，无新accuracy/scaling/方法收益结论。
+
 ## 0L58. 2026-09-05 21:47：修复重试12535已放行；新0904六归档已接收、尚待成熟
 
 GPU固定code=`09911b15ca065442386120707dccf036e262dadd`。真实DS分片方法的CPU A/B复现相同，

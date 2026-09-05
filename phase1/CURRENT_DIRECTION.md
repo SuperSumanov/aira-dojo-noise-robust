@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L66. 2026-09-06 04:07：新语料开始摄取；修复续跑身份，仍无模型收益
+
+0904成熟后已完成3次foreground调用，每次之间至少300秒；合格runs 623→625→627→632，
+当前658 physical/632 eligible/17093 endpoints/3944 structural pairs/53 tasks，closure=false。
+LATEST=1d5dcfe96a91984f28c785b28cd20259cbd9d7409aa82f5b722eb46dff3dced4；
+summary SHA=e099a37165912b4183be0fcd4112a562ca158c9bd421272028263ede08b3ea77。
+每次新快照都执行既有2e59423736747f7d806d50a69fd1f312d4927c48 delta链的单次foreground A/B+grounded A/B，
+最新审计manifest=6d30d3f81f73b898eb72b7f8a960215aa907ec7e8fd3e065a7b7168bd9652157，独立重hash30文件并核只读。
+另补验589→623的旧anchor累计增量34，**不计为本次新增**；本次新增截至此处9 eligible runs。
+生产LATEST与独立审计state是不同promotion，SESSION_0904预检第8项已勘误，科学runner未改。
+剩余归档继续按原稳定/成熟规则处理；没有读保护标签、prediction值或accuracy/utility。
+
+发现原production entry把mutable launch SHA当training身份，合法新目录续跑会被binding拒绝。
+cfee2b099fa4524892463c9d8c95f4e98f6e05d3分开固定training definition与单次launch；各臂三个launch SHA不同，
+实际12 CPU轨迹/32checkpoint的model、AdamW、RNG和消费拼接仍一致，独立回执
+69d8879fb3d3e1ab2a93ee0e4c62acdef49008bbe1d0d7261120764276cd7353。
+首次e5c9b69因工程读取清单漏definition而失败已保留；未放宽访问或修改数值容差。
+b361b5b988d72556f15eb0ceb9efda4080bf8c24增加已分配作业内的预算/进程worker，Linux 56测试通过；不含投递器。
+ADMITTED_RELEASES仍空，不把schema/工程测试当来源、实际GPU或模型效果；见results/critic_stable_worker_20260906/README.md。
+
+04:00前后核12535仍PENDING/Resources/0秒，未改作业。04:03核学长head仍b8d095180415957aa1bab31fa53ead1bba261c03，
+Drive最新0904/无0905。真实开发来源、实际GPU入口、量化预算/存储仍是正式四fit前提；未启动新GPU/API/model-effect-fit。
+
 ## 0L65. 2026-09-06 03:36：完整累积与分片final读出补齐；不是模型效果
 
 继续当前会话，无新automation/GPU/API。064da23b6643437d8f7aca4dc393e7b58989c456将同一TRAIN入口

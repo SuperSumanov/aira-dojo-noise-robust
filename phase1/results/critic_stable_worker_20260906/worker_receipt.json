@@ -1,0 +1,22 @@
+{
+  "actual_Slurm_allocation_started": false,
+  "actual_model_fit_started": false,
+  "classification": "CPU_WORKER_GUARDS_NOT_SLURM_OR_GPU_QUALIFICATION",
+  "code_commit": "b361b5b988d72556f15eb0ceb9efda4080bf8c24",
+  "command": [
+    "/research/d7/spc/yzyang4/venvs/exp/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "phase1/tests/test_critic_training_worker.py",
+    "phase1/tests/test_critic_training_definition.py",
+    "phase1/tests/test_critic_training_entry.py"
+  ],
+  "credential_shape_hits": 0,
+  "elapsed_seconds": 14.868327834643424,
+  "log_sha256": "eea662d0211de87ffefe14dbfb329281ad0a012c43f383bd7e8c4cd7955cffe7",
+  "returncode": 0,
+  "source_archive_sha256": "1e79cbb400711a0db5514e695e293a343ac64a9572326dd19f72651c3d3da15e"
+}

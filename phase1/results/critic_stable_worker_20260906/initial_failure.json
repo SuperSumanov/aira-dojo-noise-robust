@@ -1,0 +1,7 @@
+{
+  "before_training_updates": true,
+  "checkpoint_directories": 0,
+  "commit": "e5c9b6935cde07849ab4a9067a9fb0ad16c3a038",
+  "failure": "fixture observed-read expectation omitted newly opened definition.json",
+  "log_sha256": "3847c057e72cbb93b428715026f204ce86086813a1745a0bdbbe76c54b1e9f5d"
+}

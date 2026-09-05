@@ -1,0 +1,17 @@
+[
+  {
+    "archive": "critic_stable_resume_e5c9b69.tar",
+    "sha256": "d78cbdecc4c6535aa00b5c2aca64fc2a0bd1b0ff900c15783a62cda333bbe841",
+    "source_files_verified": 23
+  },
+  {
+    "archive": "critic_stable_resume_cfee2b0.tar",
+    "sha256": "f2ec10ae954abd7dfb71837726b8fa96e40bf1c1d08c0a477d30678873105a7b",
+    "source_files_verified": 23
+  },
+  {
+    "archive": "critic_worker_b361b5b.tar",
+    "sha256": "1e79cbb400711a0db5514e695e293a343ac64a9572326dd19f72651c3d3da15e",
+    "source_files_verified": 31
+  }
+]

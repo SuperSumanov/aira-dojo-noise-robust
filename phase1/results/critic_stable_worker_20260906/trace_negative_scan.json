@@ -1,0 +1,39 @@
+{
+  "OS_or_network_isolation_claim": false,
+  "checks": [
+    {
+      "bytes": 267578431,
+      "forbidden_literal_path_hits": {
+        "/d_test/": 0,
+        "/external/senior_data/": 0,
+        "/prospective_decision_v1/": 0,
+        "cards_current_": 0,
+        "decision_clean_": 0,
+        "decision_pairs_runsplit": 0,
+        "label_vault.jsonl": 0
+      },
+      "lines": 2518115,
+      "repeat": "a",
+      "sentinel_read_open_hits": 0,
+      "sha256": "80d75a60a16b32727f2bbb5b82c595dc1c94ceede86ee50d46cf505fdffaa2cf"
+    },
+    {
+      "bytes": 270319139,
+      "forbidden_literal_path_hits": {
+        "/d_test/": 0,
+        "/external/senior_data/": 0,
+        "/prospective_decision_v1/": 0,
+        "cards_current_": 0,
+        "decision_clean_": 0,
+        "decision_pairs_runsplit": 0,
+        "label_vault.jsonl": 0
+      },
+      "lines": 2574785,
+      "repeat": "b",
+      "sentinel_read_open_hits": 0,
+      "sha256": "9cc8aeb6bcdbc610c253c096bbed0b00e7e830cd4ff44e547f1e2e064e45cb31"
+    }
+  ],
+  "scope": "literal file/process path negative checks only",
+  "worker_tests_straced": false
+}

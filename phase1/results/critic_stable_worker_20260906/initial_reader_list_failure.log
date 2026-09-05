@@ -1,0 +1,69 @@
+[2026-09-06 03:51:58,076] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[2026-09-06 03:51:58,091] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+Warning: The cache directory for DeepSpeed Triton autotune, /uac/y24/yzyang4/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.Warning: The cache directory for DeepSpeed Triton autotune, /uac/y24/yzyang4/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank1]:   File "<frozen runpy>", line 88, in _run_code
+[rank1]:   File "/tmp/critic-stable-resume-code-e5c9b69/phase1/scripts/validate_critic_entry_cpu_20260906.py", line 258, in <module>
+[rank1]:     main()
+[rank1]:   File "/tmp/critic-stable-resume-code-e5c9b69/phase1/scripts/validate_critic_entry_cpu_20260906.py", line 218, in main
+[rank1]:     return worker(args)
+[rank1]:            ^^^^^^^^^^^^
+[rank1]:   File "/tmp/critic-stable-resume-code-e5c9b69/phase1/scripts/validate_critic_entry_cpu_20260906.py", line 172, in worker
+[rank1]:     assert opened == (['topology.json', 'local.json'] if fit.plan.arm == 'Lbudget' else
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]: AssertionError
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank0]:   File "<frozen runpy>", line 88, in _run_code
+[rank0]:   File "/tmp/critic-stable-resume-code-e5c9b69/phase1/scripts/validate_critic_entry_cpu_20260906.py", line 258, in <module>
+[rank0]:     main()
+[rank0]:   File "/tmp/critic-stable-resume-code-e5c9b69/phase1/scripts/validate_critic_entry_cpu_20260906.py", line 218, in main
+[rank0]:     return worker(args)
+[rank0]:            ^^^^^^^^^^^^
+[rank0]:   File "/tmp/critic-stable-resume-code-e5c9b69/phase1/scripts/validate_critic_entry_cpu_20260906.py", line 172, in worker
+[rank0]:     assert opened == (['topology.json', 'local.json'] if fit.plan.arm == 'Lbudget' else
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]: AssertionError
+W0906 03:52:15.823000 2831293 /research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:1012] Sending process 2831354 closing signal SIGTERM
+E0906 03:52:15.944000 2831293 /research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:986] failed (exitcode: 1) local_rank: 1 (pid: 2831355) of binary: /research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/bin/python
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/distributed/run.py", line 994, in <module>
+    main()
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 362, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/distributed/run.py", line 990, in main
+    run(args)
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/distributed/run.py", line 981, in run
+    elastic_launch(
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 317, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+phase1.scripts.validate_critic_entry_cpu_20260906 FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-09-06_03:52:15
+  host      : localhost
+  rank      : 0 (local_rank: 0)
+  exitcode  : -15 (pid: 2831354)
+  error_file: <N/A>
+  traceback : Signal 15 (SIGTERM) received by PID 2831354
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-06_03:52:15
+  host      : localhost
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 2831355)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

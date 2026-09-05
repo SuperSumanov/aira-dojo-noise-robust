@@ -16,7 +16,10 @@
 5. 到期、调用上限、未完成旧调用或未知结构问题都fail-closed；不改mtime、不补造观测。
 6. credential-first由固定runner执行；raw/env/live-event不向模型或公开回执输出。
 7. 不打开label/outcome vault、保护集值、accuracy/utility或候选身份，不做模型效果分析。
-8. 新snapshot仍必须固定代码的A/B、独立verifier、hash、trace和只读门完成才提升LATEST。
+8. 执行语义勘误（09-06）：固定runner先按既有事务校验原子提升生产LATEST；随后用原snapshot-delta链
+   对该快照做primary A/B、独立grounded A/B、hash/trace及审计产物只读门，才提升独立审计state。
+   原句将两次promotion混为一谈，不能据此宣称每次生产LATEST前都重新运行全部A/B或生产目录全部只读。
+   科学runner/准入/顺序没有修改；新增快照独立复核失败时保持关闭、不作已验收声明。
 9. CPU-only、GPU/API/base更新=0；不改变排队12535，不调用sbatch。
 10. 单次外层限制45分钟，失败保留未完成poll阻止下一次调用；不自动重启失败流程。
 11. 公开只报告SHA、结构runs/pairs/tasks、closure状态，不把采集增长叫方法收益。

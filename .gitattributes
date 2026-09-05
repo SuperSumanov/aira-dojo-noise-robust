@@ -474,3 +474,14 @@ phase1/tests/test_critic_entry_accum8_fixture.py text eol=lf diff
 phase1/results/critic_training_boundaries_20260906/gradient/*/cases.csv whitespace=cr-at-eol
 phase1/results/critic_training_boundaries_20260906/gradient/manifest.json whitespace=cr-at-eol
 phase1/scripts/validate_global_local_critic_consumer_20260905.py text eol=lf diff
+phase1/critic_training_definition.py text eol=lf diff
+phase1/critic_training_worker.py text eol=lf diff
+phase1/tests/test_critic_training_definition.py text eol=lf diff
+phase1/tests/test_critic_training_worker.py text eol=lf diff
+phase1/tests/test_critic_training_entry.py text eol=lf diff
+phase1/results/critic_stable_worker_20260906/** -text diff
+phase1/results/critic_stable_worker_20260906/runs.csv whitespace=cr-at-eol
+phase1/results/critic_stable_worker_20260906/README.md text eol=lf diff
+phase1/results/critic_stable_worker_20260906/operations/*.py text eol=lf diff
+# Original PyTorch exception log includes one trailing space; preserve its hash.
+phase1/results/critic_stable_worker_20260906/initial_reader_list_failure.log whitespace=-blank-at-eol

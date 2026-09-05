@@ -29,3 +29,13 @@
 期望同臂各cut的最终模型、AdamW、Python/NumPy/Torch RNG及累计tokens与未中断路径**逐位相同**，不设置可重选误差。
 完整/截断轨迹在同样step保存，避免保存改变随机状态造成对照不一致；恢复进程故意用不同初始RNG作负控制。
 这只证明新入口的CPU-DDP模型生命周期，不是生产ZeRO3/bf16或方法效果认证。
+
+## 实查后新增的DS恢复拦截（独立于上述DDP轨迹）
+
+精确DS `load_checkpoint` SHA=`5728d3dfa42a3d6c44836873002f5ccfb9e72091c98029b3843b30ec5651161f`：
+若`_load_zero_checkpoint`返回False，框架会调用`_restore_from_bit16_weights`。Accelerate又丢弃load的返回值。
+在既有`global_local_ds_completion.py`增加观察器：失败在fallback之前抛出；要求单次调用、完整optimizer/
+strict加载标志、client binding与恢复step一致；用过的engine不可就地重试，退出恢复原方法属性。
+它仍不是完整DS checkpoint管理器，不放开CriticSession对DS的拒绝。
+先以单元测试覆盖故障，再以精确真实`DeepSpeedEngine.load_checkpoint`方法+CPU测试接收器复核实际拦截位置；
+最多180秒，无真实engine、checkpoint读取、GPU或模型拟合。不得把该方法控制流检查写成双卡恢复通过。

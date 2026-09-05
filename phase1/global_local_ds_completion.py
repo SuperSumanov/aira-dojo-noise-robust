@@ -5,6 +5,8 @@ Callers still need runtime_binding(), source/split and budget authorization.
 Snapshots are process-local, not serializable checkpoint admission receipts.
 """
 from dataclasses import dataclass
+from contextlib import contextmanager
+from copy import deepcopy
 import math
 
 from phase1.global_local_execution_plan import PlanError
@@ -103,3 +105,73 @@ DeepSpeed global_samples is not consumed-pair accounting for partial updates.
                 attempted_update_delta=step_delta, applied_update_delta=int(applied),
                 skipped_update_delta=skipped_delta, can_commit_plan_cursor=applied,
                 actual_pair_count_source='frozen_consumption_receipts_not_engine_global_samples')
+
+
+@contextmanager
+def observe_deepspeed_restore(accelerator, engine, optimizer, *, completed_steps, client_binding):
+    """Expose DS restore failures hidden by Accelerate's discarded return value.
+
+    The caller MUST verify checkpoint files/hashes before entering, and verify
+    actual restored partition/RNG fingerprints before advancing a token cursor.
+    This observer alone is NOT checkpoint admission or production validation.
+    It blocks DS's weight-only fallback when _load_zero_checkpoint returns False.
+    The engine must be fresh; no retry on a partially restored live engine.
+    """
+    _ownership(accelerator, engine, optimizer)
+    _require(type(completed_steps) is int and completed_steps > 0, 'invalid_restore_step')
+    _require(isinstance(client_binding, dict) and bool(client_binding), 'missing_restore_client_binding')
+    _require(_count(engine, 'global_steps') == 0 and _count(engine, 'skipped_steps') == 0,
+             'restore_requires_fresh_engine')
+    _require(not getattr(engine, '_critic_restore_attempted', False), 'restore_engine_already_attempted')
+    _require(getattr(engine, 'lr_scheduler', None) is None, 'restore_second_lr_owner')
+    load, zero = getattr(engine, 'load_checkpoint', None), getattr(engine, '_load_zero_checkpoint', None)
+    _require(callable(load) and callable(zero), 'restore_methods_unavailable')
+    expected = deepcopy(client_binding)
+    observed = {'load_calls': 0, 'zero_calls': 0, 'restore_completed': False}
+    previous = {key: (key in vars(engine), vars(engine).get(key))
+                for key in ('load_checkpoint', '_load_zero_checkpoint')}
+
+    def checked_zero(*args, **kwargs):
+        observed['zero_calls'] += 1
+        _require(observed['zero_calls'] == 1 and observed['load_calls'] == 1,
+                 'unexpected_zero_restore_call')
+        result = zero(*args, **kwargs)
+        # Raise INSIDE engine.load_checkpoint, before its weight-only fallback.
+        _require(result is True, 'zero_optimizer_restore_failed_no_weight_only_fallback')
+        return result
+
+    def checked_load(*args, **kwargs):
+        observed['load_calls'] += 1
+        _require(observed['load_calls'] == 1, 'duplicate_engine_restore_call')
+        # Only save_dir and explicit tag may be positional; no hidden flags.
+        _require(1 <= len(args) <= 2, 'explicit_restore_arguments_required')
+        _require((len(args) == 2 and isinstance(args[1], str) and bool(args[1]))
+                 or (isinstance(kwargs.get('tag'), str) and bool(kwargs['tag'])), 'explicit_restore_tag_required')
+        _require(kwargs.get('load_optimizer_states', True) is True
+                 and kwargs.get('load_module_only', False) is False
+                 and kwargs.get('load_module_strict', True) is True,
+                 'weight_only_or_non_strict_restore_forbidden')
+        result = load(*args, **kwargs)
+        _require(isinstance(result, tuple) and len(result) == 2 and isinstance(result[0], str) and bool(result[0]),
+                 'engine_restore_returned_no_checkpoint')
+        _require(observed['zero_calls'] == 1, 'optimizer_partition_restore_not_observed')
+        _require(isinstance(result[1], dict) and result[1].get('critic_session') == expected,
+                 'restored_client_binding_mismatch')
+        _require(_count(engine, 'global_steps') == completed_steps and _count(engine, 'skipped_steps') == 0,
+                 'restored_engine_cursor_mismatch')
+        observed['restore_completed'] = True
+        return result
+
+    engine._critic_restore_attempted = True
+    engine.load_checkpoint, engine._load_zero_checkpoint = checked_load, checked_zero
+    try:
+        yield observed
+        _ownership(accelerator, engine, optimizer)
+        _require(observed['restore_completed'] and observed['load_calls'] == observed['zero_calls'] == 1,
+                 'engine_restore_not_executed_exactly_once')
+    finally:
+        for key, (existed, value) in previous.items():
+            if existed:
+                setattr(engine, key, value)
+            else:
+                delattr(engine, key)

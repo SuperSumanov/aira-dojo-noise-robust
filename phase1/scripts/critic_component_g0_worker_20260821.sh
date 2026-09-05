@@ -137,7 +137,11 @@ export CONFIRM_EXPECTED_CARDS_SHA256=5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a
 "$python_bin" -c \
   'import datetime as d,json,time; print("[g0-worker-timing] "+json.dumps({"event":"launcher_start","monotonic_ns":time.monotonic_ns(),"utc":d.datetime.now(d.timezone.utc).isoformat()},sort_keys=True),flush=True)'
 set +e
-/usr/bin/time -v -o "$resource_usage" bash "$launcher"
+if [[ ${G0_TRACE_FILES:-0} == 1 ]]; then
+  /usr/bin/time -v -o "$resource_usage" /usr/bin/strace -f -qq -s 4096 -e trace=%file -o "$G0_RUN_ROOT/file_access.strace" bash "$launcher"
+else
+  /usr/bin/time -v -o "$resource_usage" bash "$launcher"
+fi
 training_rc=$?
 set -e
 stop_telemetry

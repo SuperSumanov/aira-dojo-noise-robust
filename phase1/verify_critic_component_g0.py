@@ -227,6 +227,11 @@ def validate_scheduler_allocation(environment: dict[str, str], job_line: str) ->
     recovery = environment.get("G0_RECOVERY_FINAL_ONLY", "0")
     require(recovery in {"0", "1"}, "invalid G0 recovery mode")
     expected_time = "01:57:00" if recovery == "1" else "02:00:00"
+    budget_revision = environment.get("G0_BUDGET_REVISION", "legacy")
+    require(budget_revision in {"legacy", "20260905-r4"}, "unknown G0 budget revision")
+    if budget_revision == "20260905-r4":
+        require(recovery == "1", "R4 budget requires final-only recovery")
+        expected_time = "01:55:09"
     require(fields.get("TimeLimit") == expected_time, "unexpected Slurm time limit")
     if recovery == "1":
         require(fields.get("Requeue") == "0", "recovery must disable requeue")
@@ -242,6 +247,7 @@ def validate_scheduler_allocation(environment: dict[str, str], job_line: str) ->
         "cpus_per_task": cpus_per_task,
         "min_memory_node": fields["MinMemoryNode"],
         "time_limit": fields["TimeLimit"],
+        "budget_revision": budget_revision,
     }
 
 

@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L65. 2026-09-06 03:36：完整累积与分片final读出补齐；不是模型效果
+
+继续当前会话，无新automation/GPU/API。064da23b6643437d8f7aca4dc393e7b58989c456将同一TRAIN入口
+实际跑到2×8×8累积和阶段短末批：A/B12工程轨迹、32checkpoint，8组实际model/AdamW/RNG状态相同，
+消费序列精确拼接；回执SHA=ded24aa6a16af3ae1f33a50ecf466be0cbd640ebcd8a9558a43c81f0ef9d1bf4。
+4433参数随机CPU模型，非1.7B/16K实卡。另以decfcb4f571f81134fcef0f9208f9fad8edd1ac4完成
+8-microbatch独立整批gradient oracle：A/B各38个rank-update，最大grad差4.76837158203125e-07，
+参数差9.313225746154785e-10，原容差不变；SGD仅作梯度参照，生产仍AdamW。
+
+8f96819c2361fe752c3c25063fdaa6e57fde9ac7补上final ZeRO-3→独立CPU推理模型接口；只接受锁定final
+step/token/hash，不执行checkpoint内脚本或猜latest。实际固定DS converter在自有格式fixture上9测试通过；
+不是DS engine保存的真实GPU分片。R5首次缺pytest而失败，在测试进程末尾追加已有pytest后通过，未改安装环境。
+真实12535checkpoint仍须再验；新入口注册表仍为空，来源/实际训练包/预算/存储未伪造。
+
+03:32核12535仍PENDING/Resources/0秒。研究盘总量查询240秒超时，没有据partial推算剩余quota；
+没有清理原始语料、checkpoint或封存/固定source。完整resume空间仍待实际预留。
+0904六归档仍按03:45及冻结三次稳定观察门处理，未提前入库或读取保护值。
+见results/critic_training_boundaries_20260906/README.md；只计新增工程连接，不计模型收益/干净scaling。
+
 ## 0L64. 2026-09-06 03:08：训练至开发读出CPU贯通；来源与GPU门保持关闭
 
 本次睡眠期间继续会话内推进，不新挂automation。`95e72f37c1b745ca101390c887c41eed6e9b6f28`

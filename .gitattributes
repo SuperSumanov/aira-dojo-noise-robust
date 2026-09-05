@@ -465,3 +465,12 @@ phase1/scripts/validate_critic_entry_cpu_20260906.py text eol=lf diff
 phase1/scripts/verify_critic_entry_cpu_20260906.py text eol=lf diff
 phase1/scripts/validate_development_final_pipeline_cpu_20260906.py text eol=lf diff
 phase1/scripts/session_0904_maturity_intake_once_20260906.py text eol=lf diff
+phase1/results/critic_training_boundaries_20260906/** -text diff
+phase1/results/critic_training_boundaries_20260906/runs.csv whitespace=cr-at-eol
+phase1/results/critic_training_boundaries_20260906/README.md text eol=lf diff
+phase1/critic_zero3_final_state.py text eol=lf diff
+phase1/tests/test_critic_zero3_final_state.py text eol=lf diff
+phase1/tests/test_critic_entry_accum8_fixture.py text eol=lf diff
+phase1/results/critic_training_boundaries_20260906/gradient/*/cases.csv whitespace=cr-at-eol
+phase1/results/critic_training_boundaries_20260906/gradient/manifest.json whitespace=cr-at-eol
+phase1/scripts/validate_global_local_critic_consumer_20260905.py text eol=lf diff

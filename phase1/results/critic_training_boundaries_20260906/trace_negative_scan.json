@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "bytes": 266488283,
+      "forbidden_literal_path_hits": {
+        "/d_test/": 0,
+        "/external/senior_data/": 0,
+        "/prospective_decision_v1/": 0,
+        "cards_current_": 0,
+        "decision_clean_": 0,
+        "decision_pairs_runsplit": 0,
+        "label_vault.jsonl": 0
+      },
+      "lines": 2498448,
+      "repeat": "a",
+      "sha256": "ef5ca909db81da19c691fb26bf1b92b74bcfe64e8cfd7b410cf26bb25f61b658"
+    },
+    {
+      "bytes": 263516895,
+      "forbidden_literal_path_hits": {
+        "/d_test/": 0,
+        "/external/senior_data/": 0,
+        "/prospective_decision_v1/": 0,
+        "cards_current_": 0,
+        "decision_clean_": 0,
+        "decision_pairs_runsplit": 0,
+        "label_vault.jsonl": 0
+      },
+      "lines": 2436618,
+      "repeat": "b",
+      "sha256": "0e12032113d50d2b039d679b07d49fe5302bb26e725a8ac1bb0803a3e67cbb22"
+    }
+  ],
+  "converter_tests_not_straced": true,
+  "not_OS_or_network_isolation": true,
+  "scope": "accum8 file/process literal path checks only"
+}

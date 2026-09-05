@@ -1,0 +1,18 @@
+{
+  "a/cases.csv": {
+    "bytes": 2960,
+    "sha256": "b15e83db6e9e9d4d7b48c6beb7291b19993aad7cf35dd9201b913f4c609c9dd6"
+  },
+  "a/summary.json": {
+    "bytes": 2875,
+    "sha256": "eee2f008e4874541780d6897bcab38d66cf6df712ade15ddc2922fd62cc14891"
+  },
+  "b/cases.csv": {
+    "bytes": 2960,
+    "sha256": "b15e83db6e9e9d4d7b48c6beb7291b19993aad7cf35dd9201b913f4c609c9dd6"
+  },
+  "b/summary.json": {
+    "bytes": 2875,
+    "sha256": "eee2f008e4874541780d6897bcab38d66cf6df712ade15ddc2922fd62cc14891"
+  }
+}

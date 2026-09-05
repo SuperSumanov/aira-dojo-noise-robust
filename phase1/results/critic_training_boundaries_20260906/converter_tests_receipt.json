@@ -1,0 +1,11 @@
+{
+  "GPU_used": false,
+  "actual_deepspeed_engine": false,
+  "code_commit": "8f96819c2361fe752c3c25063fdaa6e57fde9ac7",
+  "installed_environments_modified": false,
+  "pinned_converter_tests_passed": true,
+  "prior_failure_did_not_execute_converter": true,
+  "returncode": 0,
+  "test_log_bytes": 183,
+  "test_log_sha256": "fc5b74caa1986d859cc22287cd268a92d964e965d13143e936c40a6055f1a808"
+}

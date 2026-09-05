@@ -1,0 +1,9 @@
+{
+  "GPU_used": false,
+  "actual_deepspeed_converter": true,
+  "actual_deepspeed_engine": false,
+  "code_commit": "8f96819c2361fe752c3c25063fdaa6e57fde9ac7",
+  "returncode": 1,
+  "test_log_bytes": 98,
+  "test_log_sha256": "2af30ece6fd47af4b0f8491d078c89ae357e2c091e002ce42a93282db338c358"
+}

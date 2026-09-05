@@ -21,7 +21,7 @@ SHA-256=`3121b14703bcb67007c8070adb6e7a7dd8d4844c00a9d7de8621161fce7a73cf`。
 
 Checker字节SHA为`dfbd94a674d47a15fd55c4f80a2fcdd6b09e4a20a9ddf71fb7d18b349255e5be`，
 上传前Git blob、远端文件和A/B回执内自报hash一致。执行环境为现有远端`venvs/exp/bin/python`，
-只需标准库、无模型/张量训练。两次命令分别为：
+现场读取版本为Python 3.11.15；只需标准库、无模型/张量训练。两次命令分别为：
 
 ```text
 /research/d7/spc/yzyang4/venvs/exp/bin/python -B /tmp/source-target-7967ced.py --output /tmp/source-target-7967ced-A.json

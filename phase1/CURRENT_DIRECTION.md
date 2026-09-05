@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L41. 2026-09-05 08:13：0903九归档成熟后的唯一摄取已原子提升
+
+原六小时foreground租约自然完成到poll 64，65次事务均PASS且LATEST未变。Drive单请求根元数据复查
+显示43个children、37个纯日期目录，最新仍为0903，没有0904/0905；未下载payload。固定成熟点
+`2026-09-05T00:09:48.832417Z`之后，UTC 00:10:05执行且只执行一次post-session wrapper。
+
+事务rc=0，150.19056317210197s，新LATEST=
+`76a2d7d426b1da88f30d28449506fea78208f9ca5cd012ba6316efe346462285`，summary SHA=
+`71907e82a8c3f8ffb6d88c54766725f44f672f97e04de1caa4e0ed8d37a991c0`，receipt SHA=
+`605af92b0132a33ceca8798f8aca482f0e9f82405e13c4399802c6e16446ff92`。结构库由
+645/619 physical/eligible runs升至649/623，endpoints 16844→16925，pairs 3910→3919，tasks仍51；
+first-960尚差337 runs，closure=false。
+
+独立安全回执核对LATEST/summary/receipt字节、模式、单poll根、无18项`SHA256SUMS`全OK；
+runner=`PROSPECTIVE_ARCHIVE_TRANSACTION_COMMITTED`，label vault未打开，outcome/prediction文件打开数为0，无credential
+shape hit、9个archive只按实际验收增4个eligible run。两次嵌套shell复核曾被本地PowerShell提前展开并
+未得到远端证据；后续固定脚本复核PASS，前两次不计通过。本节无任何protected value/identity输出，
+GPU/API/model fit=0。见`results/post_session_maturity_intake_20260905/README.md`。
+
 ## 0L40. 2026-09-05 07:13：anonymous join的协议SHA绑定缺口已修复
 
 对抗检查发现`7c0786a`的kernel虽验证protocol语义，但只检查caller传入的

@@ -160,5 +160,8 @@ producer receipt一致性；即使通过也只叫hash-bound declaration，仍需
 ## 4. 新语料
 
 Drive中发现并原样同步0903目录的9个新压缩归档，共299,168,545字节；未解包/读member/覆盖旧文件。
-它们要到UTC 2026-09-05 00:09:48.832417后才满足固定六小时稳定门，当前source archive=325、eligible仍619/960。
-稳定门过后继续走原credential-first intake和独立结构复核，不能提前加数。
+成熟门后的唯一credential-first事务已rc=0并原子提升：eligible runs 619→623，endpoints
+16844→16925，structural pairs 3910→3919，tasks仍51，first-960还差337，closure=false。
+新LATEST=`76a2d7d426b1da88f30d28449506fea78208f9ca5cd012ba6316efe346462285`；18项snapshot hash、
+模式、receipt和runner committed状态独立复核通过，label vault未打开，outcome/prediction打开数0。
+Drive根同期复查最新仍只有0903，没有0904/0905，所以当前没有本地漏同步的更新日期目录。

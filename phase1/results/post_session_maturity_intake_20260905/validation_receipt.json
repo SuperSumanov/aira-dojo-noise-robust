@@ -1,0 +1,36 @@
+{
+  "after": {
+    "all_physical_runs": 649,
+    "closure_provided": false,
+    "eligible_endpoints": 16925,
+    "eligible_runs": 623,
+    "eligible_structural_pairs": 3919,
+    "eligible_tasks": 51,
+    "latest": "76a2d7d426b1da88f30d28449506fea78208f9ca5cd012ba6316efe346462285",
+    "summary_sha256": "71907e82a8c3f8ffb6d88c54766725f44f672f97e04de1caa4e0ed8d37a991c0"
+  },
+  "before": {
+    "all_physical_runs": 645,
+    "eligible_endpoints": 16844,
+    "eligible_runs": 619,
+    "eligible_structural_pairs": 3910,
+    "eligible_tasks": 51
+  },
+  "classification": "OUTCOME_BLIND_CORPUS_SNAPSHOT_ATOMICALLY_PROMOTED",
+  "elapsed_seconds": 150.19056317210197,
+  "gpu_jobs": 0,
+  "label_vault_opened": false,
+  "model_fits": 0,
+  "outcome_files_opened": 0,
+  "paid_api_calls": 0,
+  "postcheck_script_sha256": "6cc93424c268b3709c88c21c3ca3bcaafa77bde604fabad3093b03bd4c1e5556",
+  "prediction_files_opened": 0,
+  "protected_values_or_identities_emitted": false,
+  "receipt_sha256": "605af92b0132a33ceca8798f8aca482f0e9f82405e13c4399802c6e16446ff92",
+  "returncode": 0,
+  "runner_status": "PROSPECTIVE_ARCHIVE_TRANSACTION_COMMITTED",
+  "sha256sums_entries_verified": 18,
+  "source_archives": 325,
+  "stream_credential_shape_hits": 0,
+  "wrapper_invocations": 1
+}

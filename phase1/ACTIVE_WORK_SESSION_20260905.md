@@ -61,6 +61,26 @@ passed 136 tests; all four stderr files are empty. The deterministic 74-file sou
   fit budget are still required. The fixed-forward rewiring candidate remains closed.
 - No rerun of completed DS stub or historical structure matrices to manufacture progress.
 
+## Post-session maturity successor
+
+The foreground lease completed naturally after poll 64 with no failure or LATEST change. The
+separately frozen successor was rechecked twice and invoked once, at 00:10:05 UTC after the
+exact maturity gate. It completed in 150.19056317210197 seconds with return code zero and
+atomically promoted LATEST
+`76a2d7d426b1da88f30d28449506fea78208f9ca5cd012ba6316efe346462285`.
+
+Independent safe-receipt checks bound the summary SHA
+`71907e82a8c3f8ffb6d88c54766725f44f672f97e04de1caa4e0ed8d37a991c0` and wrapper receipt
+SHA `605af92b0132a33ceca8798f8aca482f0e9f82405e13c4399802c6e16446ff92`, checked all 18
+listed snapshot hashes, modes and the single-poll root, and observed committed runner status,
+zero credential hits, no label-vault open and no outcome/prediction-file opens. The nine archives
+yielded four accepted physical/eligible runs, 81 endpoints and nine structural pairs: totals are
+649 physical, 623 eligible, 16,925 endpoints, 3,919 pairs and 51 tasks. Closure remains false.
+
+Two attempted inline SSH postchecks were intercepted by local PowerShell expansion and produced
+no usable remote evidence. They are retained as failed checks; the fixed uploaded verifier script
+is the only accepted independent postcheck. No retry of the intake occurred.
+
 ## Initial live checks
 
 2026-09-04 17:53:46--47 UTC: G0 PENDING/Resources, runtime zero, source clean;

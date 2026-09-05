@@ -8,7 +8,7 @@ Scientific inputs, runtime/code bindings and all four plans remain in that file.
 from pathlib import Path
 import re
 
-from phase1.critic_train_projection import PinnedFile, read_pinned
+from phase1.critic_train_projection import PinnedFile
 from phase1.global_local_execution_plan import PlanError
 
 
@@ -35,7 +35,8 @@ def load_definition(root, admitted_launch):
     require(type(record) is dict and set(record) == {'name', 'sha256', 'size'},
             'training_definition_file_binding')
     pinned = PinnedFile(**record)
-    obj = read_pinned(Path(root), pinned)
+    from phase1 import critic_train_projection
+    obj = critic_train_projection.read_pinned(Path(root), pinned)
     require(set(obj) == DEFINITION_KEYS
             and obj['protocol'] == 'critic-development-training-definition-v1',
             'training_definition_schema')

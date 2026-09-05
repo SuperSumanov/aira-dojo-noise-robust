@@ -169,8 +169,9 @@ def worker(args):
             'launch_contract_sha256': hashlib.sha256(raw).hexdigest(), 'admitted_production_release': False}
     fit, session = connect_training(args.root/'inputs', spec, Tokenizer(), encoder=ENCODER,
         protocol_sha256=PROTOCOL, sequence=args.sequence, setup=setup, training_contract_sha256=contract)
-    assert opened == (['topology.json', 'local.json'] if fit.plan.arm == 'Lbudget' else
-                       ['topology.json', 'local.json', 'global.json'])
+    assert opened == (['definition.json'] if args.contract_mode == 'split' else []) + (
+        ['topology.json', 'local.json'] if fit.plan.arm == 'Lbudget' else
+        ['topology.json', 'local.json', 'global.json'])
     final_step = 2 if args.layout == 'tiny' else 4
     prefix_step = 1 if args.layout == 'tiny' else 2
     assert fit.plan.steps == final_step

@@ -41,6 +41,19 @@ def test_old_whole_launch_binding_changes_on_a_legal_resume(tmp_path):
     assert launch_attempt(prefix, before, 1) != launch_attempt(resume, after, 1)
 
 
+def test_definition_read_is_visible_even_if_module_already_imported(tmp_path, monkeypatch):
+    from phase1 import critic_train_projection as reader
+    _, launch = fixture(tmp_path)
+    seen = []
+    original = reader.read_pinned
+    def observed(root, pinned):
+        seen.append(pinned.name)
+        return original(root, pinned)
+    monkeypatch.setattr(reader, 'read_pinned', observed)
+    load_definition(tmp_path, launch)
+    assert seen == ['definition.json']
+
+
 @pytest.mark.parametrize('field', ['model', 'projection', 'encoder', 'shape', 'fits',
     'screen_protocol_sha256', 'training_source_manifest_sha256', 'runtime_manifest_sha256'])
 def test_changed_science_cannot_keep_the_checkpoint_identity(tmp_path, field):

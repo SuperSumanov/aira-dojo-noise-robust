@@ -1,7 +1,28 @@
-# 当前研究方向唯一入口（2026-09-05）
+# 当前研究方向唯一入口（2026-09-06）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0L61. 2026-09-06 00:43：676个run已定位真实launcher；执行环境证据仍缺，非训练准入
+
+沿固定676-run实际ledger继续恢复生产事实。先发现corrected leaf中的真实srun_pool manifest，再全量核143 archive SHA。
+首阶段14e38d2恢复85清单/448run；扩入源码确认的local_gpu_pool后，e7244fb247cd68bea7b827071691e7f42897f608
+恢复144份清单、143个记录实例，676/676run全部定位。447条Slurm step匹配、1条不一致；228条local execution_id有记录，
+未将local伪称Slurm核验。A/B实际183/186秒、回执字节相同，独立图遍历核membership/旧hold闭包通过。
+lineage SHA=fe05dddcd4fe8a3f2208652ce51c9b06df9b9b8f57a5fa655d2029caddcf9981。
+
+160条本归档未绑定记录中，8条已在同实例其它归档绑定，2条只有目录候选、未确认实例，150条仍无匹配来源（140种config ID）。
+不能把unmatched一律称范围外，也不能据目录候选改写实例。98份全成员在固定范围的清单涉及495run；
+原hold和全部未解决关联保守闭包后，84run所在组件没有旧hold/缺失成员/执行标识异常，覆盖24个recorded配置strata。
+**84不是已合格训练集**。完整scientific experiment语义、historical development资格、实际generator/evaluator环境仍不能补造。
+旧139组件/538run hold阻断不变；原S0失败不改判。未读journal/env/log payload、protected cohort或嵌入result的内容，未构建Cards/G/L。
+
+143个recorded snapshot路径实际检查：85 permission denied、58 absent。22个可读recorded commit的README确有MLE-bench版本
+d0f60ad0d3b2287469ac3c8ac9767330c928c980及cache patch，这是安装recipe，不是当时已执行环境证明；两个缺失commit按准确SHA fetch仍失败。
+首次local阶段53a6b21因43份attempt包含未识别result字段fail-closed；补读_finish_task/main_local_worker后只接受并忽略此进程退出对象，
+未知其它字段继续拒绝，失败目录保留。无新GPU/API/fit，12535最后只读检查仍PENDING/Resources。无新模型收益结论。
+证据和最小交接见`results/historical_pool_lineage_20260906/README.md`。下一步解决可访问实际快照/外部评分记录，不能再说“没有runner清单”，
+也不能将本来源恢复回执替代正式Cards/G/L的新构建实录。
 
 ## 0L60. 2026-09-05 23:28：真实来源676/676恢复；完整账本与旧hold闭包落地，非训练准入
 

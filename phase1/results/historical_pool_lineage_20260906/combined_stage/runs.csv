@@ -1,0 +1,3 @@
+leg,commit,seed,started_at_utc,ended_at_utc,elapsed_seconds,exit_code,runs,linked_runs,manifests,lineage_sha256
+A,e7244fb247cd68bea7b827071691e7f42897f608,not_applicable_no_sampling,2026-09-05T16:36:23Z,2026-09-05T16:39:26Z,183.0,0,676,676,144,fe05dddcd4fe8a3f2208652ce51c9b06df9b9b8f57a5fa655d2029caddcf9981
+B,e7244fb247cd68bea7b827071691e7f42897f608,not_applicable_no_sampling,2026-09-05T16:39:26Z,2026-09-05T16:42:32Z,186.0,0,676,676,144,fe05dddcd4fe8a3f2208652ce51c9b06df9b9b8f57a5fa655d2029caddcf9981

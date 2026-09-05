@@ -20,6 +20,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--a', type=Path, required=True); p.add_argument('--b', type=Path, required=True)
     p.add_argument('--layout', choices=('tiny', 'accum8'), default='tiny')
+    p.add_argument('--contract-mode', choices=('legacy', 'split'), default='legacy')
     args = p.parse_args()
     assert os.environ.get('CUDA_VISIBLE_DEVICES') == ''
     import torch
@@ -39,6 +40,12 @@ def main():
             directory = root/f'fit{seq}-{mode}'
             receipt = read(directory/'run_receipt.json')
             states = read(directory/'engineering_state.json')
+            if args.contract_mode == 'split':
+                contract_dir = root/f'contract-fit{seq}-{mode}'
+                binding = read(directory/'launch_binding_receipt.json')
+                assert binding['training_definition_sha256'] == sha(contract_dir/'definition.json')
+                assert binding['launch_contract_sha256'] == sha(contract_dir/'launch.json')
+                assert binding['admitted_production_release'] is False
             stop = prefix_step if mode == 'prefix' else final_step
             assert receipt['status'] == ('CHECKPOINTED_NOT_COMPLETED' if mode == 'prefix' else 'COMPLETED')
             assert receipt['sequence'] == seq and receipt['stop_step'] == stop
@@ -46,6 +53,8 @@ def main():
             for step in expected_saves:
                 cp = directory/f'checkpoint-{step}'
                 manifest = read(cp/'manifest.json')
+                if args.contract_mode == 'split':
+                    assert manifest['binding']['training_contract_sha256'] == binding['training_definition_sha256']
                 assert set(manifest['files']) == files and {p.name for p in cp.iterdir()} == files|{'manifest.json'}
                 for name, descriptor in manifest['files'].items():
                     path = cp/name
@@ -83,6 +92,10 @@ def main():
             assert read(root/'fit1-full'/'engineering_state.json')['ranks'][0]['initial_model_sha256'] != read(root/'fit4-full'/'engineering_state.json')['ranks'][0]['initial_model_sha256']
         for seq in (1, 2):
             paths = {mode: root/f'fit{seq}-{mode}' for mode in ('full', 'prefix', 'resume')}
+            if args.contract_mode == 'split':
+                bindings = [read(path/'launch_binding_receipt.json') for path in paths.values()]
+                assert len({x['training_definition_sha256'] for x in bindings}) == 1
+                assert len({x['launch_contract_sha256'] for x in bindings}) == 3
             for rank in (0, 1):
                 logs = {mode: [json.loads(x) for x in (path/f'rank_{rank}_updates.jsonl').read_text().splitlines()]
                         for mode, path in paths.items()}
@@ -107,6 +120,7 @@ def main():
     result = {'classification': 'INDEPENDENT_PINNED_TRAIN_CPU_LIFECYCLE_NOT_EFFECT',
         'verifier_sha256': sha(Path(__file__)), 'trajectories': len(cases)*2,
         'layout': args.layout,
+        'contract_mode': args.contract_mode,
         'checkpoint_bundles': len(checkpoints), 'actual_state_comparisons': actual_compares,
         'rank_final_state_comparisons': state_compares, 'exact_resumed_consumption': True,
         'AB_engineering_state_bytes_equal': True, 'timings_not_expected_equal': True,

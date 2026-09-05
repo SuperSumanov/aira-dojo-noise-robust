@@ -29,7 +29,7 @@ def select_fit(prepared, sequence):
 
 def connect_training(root, spec, tokenizer, *, encoder, protocol_sha256, sequence,
                      setup, training_contract_sha256, expected_plan_sha256=None,
-                     expected_shape=None):
+                     expected_shape=None, expected_totals=None):
     """Load topology -> plan -> only required labels -> model, in that order."""
     data = load_training_inputs(root, spec, tokenizer, encoder=encoder, protocol_sha256=protocol_sha256)
     fit = select_fit(data, sequence)
@@ -37,6 +37,9 @@ def connect_training(root, spec, tokenizer, *, encoder, protocol_sha256, sequenc
         require(fit.plan.sha256 == expected_plan_sha256, 'production_encoded_plan_drift')
     if expected_shape is not None:
         require(asdict(fit.plan.shape) == expected_shape, 'production_encoded_shape_drift')
+    if expected_totals is not None:
+        require(expected_totals == {'total_steps': fit.plan.steps, 'valid_tokens': fit.plan.planned_valid_tokens},
+                'production_definition_plan_totals')
     truth = load_training_targets(root, spec, data, plan=fit.plan)
     # A failed input never constructs a model or an optimizer.
     session = setup(fit.plan, data.pools, data.encoding_provider, truth,

@@ -74,6 +74,40 @@ def write_fixture(root, layout='tiny'):
     atomic_json(root/'forbidden_dev.json', {'must_not_open': True})
 
 
+def write_split_launch(args, sequence, mode):
+    """Our synthetic contract fixture, never registered as a production release."""
+    from phase1.g_reuse_development_screen_plan import prepare_screen
+    root = args.root
+    obj = json.loads((root/'inputs'/'spec.json').read_bytes())
+    spec = TrainProjectionSpec(obj['source_package_sha256'], obj['split_receipt_sha256'],
+        **{k: PinnedFile(**obj[k]) for k in ('topology', 'local_targets', 'global_targets')})
+    data = load_training_inputs(root/'inputs', spec, Tokenizer(), encoder=ENCODER, protocol_sha256=PROTOCOL)
+    plans = prepare_screen(data)
+    definition = {'protocol': 'critic-development-training-definition-v1',
+        'model': {'fixture': 'random-Qwen-4433-not-pretrained', 'dropout': 0.1, 'optimizer': 'AdamW'},
+        'projection': asdict(spec), 'encoder': asdict(ENCODER), 'screen_protocol_sha256': PROTOCOL,
+        'shape': asdict(plans[0].plan.shape),
+        'fits': {str(x.sequence): {'plan_sha256': x.plan.sha256, 'total_steps': x.plan.steps,
+                                 'valid_tokens': x.plan.planned_valid_tokens} for x in plans},
+        'training_source_manifest_sha256': hashlib.sha256(('engineering:'+os.environ['CRITIC_ENTRY_COMMIT']).encode()).hexdigest(),
+        'runtime_manifest_sha256': hashlib.sha256(b'engineering-r5-cpu-not-production-runtime-attestation').hexdigest()}
+    contract_root = root/f'contract-fit{sequence}-{mode}'
+    contract_root.mkdir(mode=0o700)
+    atomic_json(contract_root/'definition.json', definition)
+    raw = (contract_root/'definition.json').read_bytes()
+    prefix, final = (1, 2) if args.layout == 'tiny' else (2, 4)
+    resume = root/f'fit{sequence}-prefix'/f'checkpoint-{prefix}' if mode == 'resume' else None
+    stop = prefix if mode == 'prefix' else final
+    entry = {'output': str(root/f'fit{sequence}-{mode}'), 'stop_after': stop,
+        'checkpoint_steps': list(range(prefix+1, final+1)) if resume else list(range(1, stop+1)),
+        'resume': str(resume) if resume else None,
+        'resume_manifest_sha256': hashlib.sha256((resume/'manifest.json').read_bytes()).hexdigest() if resume else None}
+    atomic_json(contract_root/'launch.json', {'protocol': 'critic-development-launch-v2',
+        'release_id': f'ENGINEERING-NOT-ADMITTED-{sequence}-{mode}',
+        'training_definition': asdict(PinnedFile('definition.json', hashlib.sha256(raw).hexdigest(), len(raw))),
+        'fits': {str(sequence): entry}})
+
+
 def worker(args):
     assert os.environ['CUDA_VISIBLE_DEVICES'] == '' and os.environ['WORLD_SIZE'] == '2'
     import numpy as np
@@ -123,6 +157,16 @@ def worker(args):
         random.seed(seed); np.random.seed(seed); torch.manual_seed(seed)
         return session
     contract = hashlib.sha256(('entry-fixture:'+os.environ['CRITIC_ENTRY_COMMIT']).encode()).hexdigest()
+    launch_record = None
+    if args.contract_mode == 'split':
+        from phase1.critic_training_definition import load_definition, launch_attempt
+        contract_root = args.root/f'contract-fit{args.sequence}-{args.mode}'
+        raw = (contract_root/'launch.json').read_bytes()
+        launch = json.loads(raw)
+        definition, contract = load_definition(contract_root, launch)
+        attempt = launch_attempt(launch, definition, args.sequence)
+        launch_record = {'training_definition_sha256': contract,
+            'launch_contract_sha256': hashlib.sha256(raw).hexdigest(), 'admitted_production_release': False}
     fit, session = connect_training(args.root/'inputs', spec, Tokenizer(), encoder=ENCODER,
         protocol_sha256=PROTOCOL, sequence=args.sequence, setup=setup, training_contract_sha256=contract)
     assert opened == (['topology.json', 'local.json'] if fit.plan.arm == 'Lbudget' else
@@ -139,6 +183,10 @@ def worker(args):
     end = prefix_step if args.mode == 'prefix' else final_step
     stops = list(range(prefix_step+1, end+1)) if resume is not None else list(range(1, end+1))
     out = args.root/f'fit{args.sequence}-{args.mode}'
+    if launch_record is not None:
+        assert attempt == {'output': str(out), 'stop_after': end, 'checkpoint_steps': stops,
+                           'resume': str(resume) if resume else None, 'resume_manifest_sha256': sha}
+        assert definition['fits'][str(args.sequence)]['plan_sha256'] == fit.plan.sha256
     result = run_session(session, fit, out, stop_after=end, checkpoint_steps=stops,
         resume=resume, resume_manifest_sha256=sha)
     state = current_state(session.consumer)
@@ -147,6 +195,8 @@ def worker(args):
            'final_state': state, 'projection_files_opened': opened, 'status': result['status']}
     gathered = [None, None]; dist.all_gather_object(gathered, row)
     if session.consumer.rank == 0:
+        if launch_record is not None:
+            atomic_json(out/'launch_binding_receipt.json', launch_record)
         atomic_json(out/'engineering_state.json', {'sequence': args.sequence, 'seed': fit.plan.seed,
             'arm': fit.reported_arm, 'plan_sha256': fit.plan.sha256, 'reference_tokens': fit.plan.reference_valid_tokens,
             'tokens': fit.plan.planned_valid_tokens, 'ranks': sorted(gathered, key=lambda x: x['rank'])})
@@ -161,6 +211,7 @@ def main():
     parser.add_argument('--sequence', type=int, choices=(1, 2, 3, 4))
     parser.add_argument('--mode', choices=('full', 'prefix', 'resume'))
     parser.add_argument('--layout', choices=('tiny', 'accum8'), default='tiny')
+    parser.add_argument('--contract-mode', choices=('legacy', 'split'), default='legacy')
     args = parser.parse_args()
     assert os.environ.get('CUDA_VISIBLE_DEVICES') == '' and len(os.environ.get('CRITIC_ENTRY_COMMIT', '')) == 40
     if args.worker:
@@ -171,10 +222,12 @@ def main():
     started = time.monotonic()
     for sequence, mode in cases_for(args.layout):
         assert time.monotonic()-started < 900, 'CPU_budget_exceeded'
+        if args.contract_mode == 'split': write_split_launch(args, sequence, mode)
         env = dict(os.environ, OMP_NUM_THREADS='1', ACCELERATE_USE_CPU='true', GLOO_SOCKET_IFNAME='lo')
         argv = [sys.executable, '-m', 'torch.distributed.run', '--standalone', '--nnodes=1', '--nproc_per_node=2',
             '-m', 'phase1.scripts.validate_critic_entry_cpu_20260906', '--worker', '--root', str(args.root),
-            '--source-root', args.source_root, '--sequence', str(sequence), '--mode', mode, '--layout', args.layout]
+            '--source-root', args.source_root, '--sequence', str(sequence), '--mode', mode, '--layout', args.layout,
+            '--contract-mode', args.contract_mode]
         log = args.root/f'fit{sequence}-{mode}.log'
         with log.open('xb') as out:
             p = subprocess.Popen(argv, env=env, stdout=out, stderr=subprocess.STDOUT, start_new_session=True)
@@ -191,6 +244,7 @@ def main():
     summary = {'classification': 'PINNED_TRAIN_FILES_TO_RANDOM_QWEN_CPU_LIFECYCLE_NOT_EFFECT',
         'code_commit': os.environ['CRITIC_ENTRY_COMMIT'], 'parameters': 4433, 'world': 2,
         'layout': args.layout,
+        'contract_mode': args.contract_mode,
         'matrix_complete_trajectories': 4 if args.layout == 'tiny' else 2, 'additional_prefix_resume_trajectories': 4,
         'seeds': [6, 7] if args.layout == 'tiny' else [6], 'dtype': 'float32', 'optimizer': 'AdamW', 'weight_decay': 0.0,
         'max_len_contract': 16384, 'tiny_fixture_not_16k_memory_test': True,

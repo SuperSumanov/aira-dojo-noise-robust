@@ -61,12 +61,13 @@ def test_connection_supplies_baseline_only_local_labels(tmp_path):
     assert fit.plan == session.consumer.plan and fit.reported_arm == 'Lbudget'
 
 
-@pytest.mark.parametrize('binding', [{'expected_plan_sha256': '0'*64}, {'expected_shape': {}}])
+@pytest.mark.parametrize('binding', [{'expected_plan_sha256': '0'*64}, {'expected_shape': {}},
+                                   {'expected_totals': {'total_steps': 999, 'valid_tokens': 1}}])
 def test_wrong_launch_plan_rejected_before_targets_and_model(tmp_path, binding):
     spec, _ = inputs(tmp_path)
     (tmp_path/'local.json').unlink()
     def forbidden(*a, **k):
         raise AssertionError('model_loaded_before_plan_check')
-    with pytest.raises(PlanError, match='production_encoded_'):
+    with pytest.raises(PlanError, match='production_(encoded_|definition_plan_totals)'):
         connect_training(tmp_path, spec, Tokenizer(), encoder=EncoderBinding('d'*64, 'e'*64, 16384),
             protocol_sha256='f'*64, sequence=1, setup=forbidden, training_contract_sha256='1'*64, **binding)

@@ -1,0 +1,18 @@
+{
+  "archives": 24,
+  "archives_with_candidate_headers": 0,
+  "candidate_header_counts": {},
+  "compressed_bytes": 849243182,
+  "elapsed_seconds": 41.95562523882836,
+  "member_headers": 1489,
+  "member_names_printed": false,
+  "payloads_extracted_or_parsed": 0,
+  "private_inventory_sha256": "0daaca84983a34dfd6ff3a0a009ca88c2f6a6164e69055db62859a31742d3729",
+  "protected_cohort_reads": 0,
+  "scope": "fixed 24 archives only; path signatures are not an exhaustive guarantee that no backup exists anywhere",
+  "selected_historical_runs": 84,
+  "source_sha256": "ae7de5cd4f1fa03ed45b547b17547c07ab88755b74d835df8eb9960ef4980294",
+  "status": "FIXED_HISTORICAL_BACKUP_HEADERS_INSPECTED_NOT_PROVENANCE_ATTESTATION",
+  "stream_boundary": "gzip traversal decompresses/skips member bytes; no zero-byte OS-isolation claim",
+  "training_source_qualified": false
+}

@@ -504,3 +504,7 @@ phase1/scripts/zero3_3090_portability_20260906.sbatch text eol=lf diff
 phase1/results/intake_backlog_session_20260906/** -text diff whitespace=cr-at-eol
 phase1/results/intake_backlog_session_20260906/README.md text eol=lf diff
 phase1/results/intake_backlog_session_20260906/operations/*.py text eol=lf diff
+phase1/scripts/verify_wl_673_completion_20260906.py text eol=lf diff
+phase1/scripts/inspect_historical_backup_headers_20260906.py text eol=lf diff
+phase1/tests/test_wl_673_completion_20260906.py text eol=lf diff
+phase1/results/historical_runtime_evidence_20260906/backup_header_inventory.json -text diff

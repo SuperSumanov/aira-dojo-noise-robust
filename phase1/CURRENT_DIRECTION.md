@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L51. 2026-09-05 14:40：G0真实双卡完整跑通；会话内终态验收，停止定时守护
+
+用户要求当前会话连续推进，`g0-r5`已暂停且未新建守护。12499香港13:58:30—14:35:02，COMPLETED/0:0、
+2192秒、两PRO6000、Requeue/Restarts=0；原control=`90cd91058fd03e86185d42c14704845827259655`、
+source=`5f3bc362db922c8edee2ef134656dfdb9a2b74fb`和seed6/16K/10步/唯一551-pair dev均未改。
+十步、dev、train_end和COMPLETE齐全，3441190802字节权重的312个BF16张量结构/哈希/finite复验通过；
+SHA=`c66dea53f96795438f82a0950027fee996054bacb431216a50d3e184ef74daad`，输入和底座重新核SHA无漂移。
+累计5349 GPU-seconds=1.4858333333333333 GPU·h，原预算剩9051秒，不自动用于新fit。
+
+真实训练十步1709.861369923秒、dev169.536428516秒；单次工程测量不是跨seed速度或方法效果。
+dev采样显存峰值97059/97887 MiB，未来生产dev批量应先保守验证、全臂一致；本轮未改配置或加GPU作业。
+终态trace 1378483行，无未解析syscall或未知既存数据文件open；保留4个编译创建cwd未解析及%file覆盖局限，
+不是完整OS隔离证书。final-only权重不是optimizer/RNG resume认证。详见`results/critic_component_g0_r5_20260905/terminal/README.md`。
+
+本轮学长fetch仍b8d0951，已知Drive根metadata最新0903、无0904/0905、0 payload下载。
+正式来源包及新consumer的production/恢复接入仍未通过；G0原Trainer成功不能冒充新consumer成功。
+不启动15-fit/另一个pilot，不读取保护cohort。0L45科学主假设不变，此次是确实消除了G0执行阻塞，尚无新效果正结论。
+
 ## 0L50. 2026-09-05 14:16：补齐token-plan到critic的更新接入；G0已到4/10
 
 结果前code=`6020d8f5c252bb16fa3e587de54f60629676c88c`新增`global_local_critic_consumer.py`，

@@ -1,0 +1,137 @@
+{
+  "checked_utc": "2026-09-05T06:36:36.934639+00:00",
+  "checkpoint_artifacts": {
+    "model.safetensors": {
+      "bytes": 3441190802,
+      "sha256": "c66dea53f96795438f82a0950027fee996054bacb431216a50d3e184ef74daad"
+    },
+    "rm_meta.json": {
+      "bytes": 1039,
+      "sha256": "14f61b7de779e07a92bc97e9f8732625cf4f606c458b10b05b217d0e0f3189c8"
+    },
+    "trainer_state.json": {
+      "bytes": 2912,
+      "sha256": "f3dad7dd19a09531cc85bbefaa2a3e2d900525626ca88eace7e9786a9ab403a4"
+    },
+    "training_args.bin": {
+      "bytes": 7185,
+      "sha256": "a81512399072c7b87a6b222271e6a58809a2f34acbbf125f0bf636700aa2126c"
+    }
+  },
+  "checkpoint_resume_claim": false,
+  "control_commit": "90cd91058fd03e86185d42c14704845827259655",
+  "cumulative_gpu_hours": 1.4858333333333333,
+  "cumulative_gpu_seconds": 5349,
+  "dev_evaluations": 1,
+  "dev_values_disclosed": false,
+  "global_steps": 10,
+  "gnu_elapsed_seconds": 2055.59,
+  "job_id": 12499,
+  "jobs": {
+    "12181": {
+      "elapsed_seconds": 156,
+      "exit_code": "1:0",
+      "gpus": 2,
+      "state": "FAILED"
+    },
+    "12288": {
+      "elapsed_seconds": 4,
+      "exit_code": "1:0",
+      "gpus": 2,
+      "state": "FAILED"
+    },
+    "12377": {
+      "elapsed_seconds": 131,
+      "exit_code": "1:0",
+      "gpus": 2,
+      "state": "FAILED"
+    },
+    "12486": {
+      "elapsed_seconds": 191,
+      "exit_code": "1:0",
+      "gpus": 2,
+      "state": "FAILED"
+    },
+    "12497": {
+      "elapsed_seconds": 1,
+      "exit_code": "0:0",
+      "gpus": 1,
+      "state": "COMPLETED"
+    },
+    "12499": {
+      "elapsed_seconds": 2192,
+      "exit_code": "0:0",
+      "gpus": 2,
+      "requeue": 0,
+      "restarts": 0,
+      "state": "COMPLETED"
+    }
+  },
+  "parameter_count": 1720577025,
+  "peak_gpu_memory_mib": 97059,
+  "preflight_sha256": "0f5c83cb3dcd8ec73e5d6aefc0c42fa34619d73bcc0e6f1464861e1a4b6347ad",
+  "remaining_gpu_seconds_in_existing_cap": 9051,
+  "scientific_claim": "none; G0 engineering calibration only",
+  "source_commit": "5f3bc362db922c8edee2ef134656dfdb9a2b74fb",
+  "status": "G0_TERMINAL_CHECKPOINT_SCHEMA_HASH_PASS",
+  "tensor_count": 312,
+  "tensor_values_inspected": false,
+  "timing": {
+    "events": [
+      {
+        "event": "launcher_start",
+        "monotonic_ns": 360528610963195,
+        "utc": "2026-09-05T06:00:13.002991+00:00"
+      },
+      {
+        "event": "train_begin",
+        "global_step": 0,
+        "max_steps": 10,
+        "monotonic_ns": 360662443843338,
+        "utc": "2026-09-05T06:02:26.835874+00:00"
+      },
+      {
+        "event": "optimizer_step_1",
+        "global_step": 1,
+        "max_steps": 10,
+        "monotonic_ns": 360812934687854,
+        "utc": "2026-09-05T06:04:57.326720+00:00"
+      },
+      {
+        "event": "optimizer_step_final",
+        "global_step": 10,
+        "max_steps": 10,
+        "monotonic_ns": 362372305213261,
+        "utc": "2026-09-05T06:30:56.697249+00:00"
+      },
+      {
+        "event": "dev_evaluate_complete",
+        "global_step": 10,
+        "max_steps": 10,
+        "monotonic_ns": 362541841641777,
+        "utc": "2026-09-05T06:33:46.233673+00:00"
+      },
+      {
+        "event": "train_end",
+        "global_step": 10,
+        "max_steps": 10,
+        "monotonic_ns": 362579696672568,
+        "utc": "2026-09-05T06:34:24.088702+00:00"
+      }
+    ],
+    "seconds": {
+      "dev_evaluation": 169.536428516,
+      "launcher_to_train_begin": 133.832880143,
+      "launcher_to_train_end": 2051.085709373,
+      "step1_to_step10": 1559.370525407,
+      "train_begin_to_step1": 150.490844516,
+      "train_begin_to_train_end": 1917.25282923
+    }
+  },
+  "trace_scope_certified": false,
+  "verification_sha256": "196a52e27775b56972b26c94129a0986651a4cf1f35d49694dcb59f531bb9d41",
+  "weight_dtypes": [
+    "BF16"
+  ],
+  "weight_file_count": 1
+}

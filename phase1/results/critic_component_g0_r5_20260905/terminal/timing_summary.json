@@ -1,0 +1,64 @@
+{
+  "allocation_gpu_hours": 1.2177777777777778,
+  "allocation_wall_seconds": 2192,
+  "dev_551_pairs_seconds": 169.536428516,
+  "dev_end_to_train_end_includes_save_seconds": 37.855029,
+  "first_optimizer_update_seconds": 150.490844516,
+  "full_training_gpu_hour_estimate_available": false,
+  "job_id": 12499,
+  "launcher_to_train_begin_seconds": 133.832880143,
+  "limits": [
+    "single engineering run; no cross-seed uncertainty estimate",
+    "no actual valid-token workload for authoritative future source package",
+    "sampled memory peaks can underestimate instantaneous peaks",
+    "final-only weights checkpoint, not optimizer/RNG resume acceptance"
+  ],
+  "next_nine_updates_mean_seconds_not_seed_estimate": 173.2633917118889,
+  "next_nine_updates_seconds": 1559.370525407,
+  "pair_visits": 1280,
+  "phase_telemetry": {
+    "dev_0": {
+      "memory_total_mib": 97887,
+      "peak_memory_mib": 97059,
+      "samples": 33
+    },
+    "dev_1": {
+      "memory_total_mib": 97887,
+      "peak_memory_mib": 92107,
+      "samples": 33
+    },
+    "save_and_exit_0": {
+      "memory_total_mib": 97887,
+      "peak_memory_mib": 66135,
+      "samples": 8
+    },
+    "save_and_exit_1": {
+      "memory_total_mib": 97887,
+      "peak_memory_mib": 61831,
+      "samples": 8
+    },
+    "startup_0": {
+      "memory_total_mib": 97887,
+      "peak_memory_mib": 1819,
+      "samples": 27
+    },
+    "startup_1": {
+      "memory_total_mib": 97887,
+      "peak_memory_mib": 1819,
+      "samples": 27
+    },
+    "training_0": {
+      "memory_total_mib": 97887,
+      "peak_memory_mib": 87455,
+      "samples": 338
+    },
+    "training_1": {
+      "memory_total_mib": 97887,
+      "peak_memory_mib": 79145,
+      "samples": 338
+    }
+  },
+  "seed": 6,
+  "successful_g0_runs": 1,
+  "training_ten_updates_seconds": 1709.861369923
+}

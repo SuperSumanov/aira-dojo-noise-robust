@@ -1,0 +1,30 @@
+{
+  "all_saved_tensors_finite": true,
+  "audit_script_sha256": "6599c5c0c966a910bdf519a15d3554125b34143f111d018758dcfc5328e19f2a",
+  "base_manifest_sha256": "ceb388235719297e3647478ad2d96486a41d1f84e4c3fd8301c4772d6840e148",
+  "base_model_files": 10,
+  "checkpoint_sha256": "c66dea53f96795438f82a0950027fee996054bacb431216a50d3e184ef74daad",
+  "data_payloads_parsed": false,
+  "gpu_used": false,
+  "inputs": {
+    "cards": {
+      "bytes": 604190866,
+      "sha256": "5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb"
+    },
+    "dev": {
+      "bytes": 376635,
+      "sha256": "3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4"
+    },
+    "train": {
+      "bytes": 3208089,
+      "sha256": "0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e"
+    }
+  },
+  "job_id": 12499,
+  "model_effect_claim": false,
+  "parameter_count": 1720577025,
+  "protected_outcomes_read": false,
+  "status": "G0_INPUT_BASE_REHASH_AND_SAVED_TENSOR_FINITE_PASS",
+  "tensor_count": 312,
+  "trace_sha256": "49ab143f4b4c28531cc945c4202823256e85a06c8aa4a245f8aa0e4624a186ca"
+}

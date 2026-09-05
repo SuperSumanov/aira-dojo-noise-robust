@@ -3,6 +3,19 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L50. 2026-09-05 14:16：补齐token-plan到critic的更新接入；G0已到4/10
+
+结果前code=`6020d8f5c252bb16fa3e587de54f60629676c88c`新增`global_local_critic_consumer.py`，
+复用已有encoder摘要/真实tensor观测、带符号BT、partial-update权重、token-progress LR及Accelerate更新适配器。
+不改G0，不删旧CPU/恢复guard。两CPU进程、随机4433参数Qwen3、五臂、seed6的38条梯度/SGD更新检查A/B均通过，
+summary/cases逐字节一致；最大梯度误差9.5367431640625e-07，参数误差1.8189894035458565e-12；单元18项通过。
+前两轮测试fixture错误及修复已保留，容差未重选。详见`results/global_local_critic_consumer_6020d8f_20260905/README.md`。
+
+这补的是真实模型调用链，不是方法效果或production准入：SGD仅用作梯度参照，尚未验证该接入的真实AdamW/ZeRO3/bf16、
+完整保存/恢复或合格数据caller；不授权15-fit/新pilot/GPU/API，不读取保护cohort。学长fetch仍b8d0951，来源事实仍缺。
+14:16:12香港G0 12499 RUNNING，17分42秒，日志4/10且真实step1计时回执存在，无FAILED或checkpoint-10/COMPLETE。
+0L49以来无G0源码/环境改变，守护继续；工程正确性不能累加为新的科研正结果。
+
 ## 0L49. 2026-09-05 14:02：R5双卡12499已启动，尚未完成训练验收
 
 06:00:57 UTC现场squeue/sacct与scontrol一致：12499于香港时间13:58:30开始，RUNNING、两PRO6000/projgpu39、

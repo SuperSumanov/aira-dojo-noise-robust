@@ -1,0 +1,23 @@
+{
+  "cases_per_replay": 38,
+  "code_commit": "6020d8f5c252bb16fa3e587de54f60629676c88c",
+  "credential_shape_hits": 0,
+  "files": {
+    "qwen_a.log": "e3f5f07f8e915f89a6f1c310f97ba19901f0ebc9822035d07167bc9b7e58ef2c",
+    "qwen_a/cases.csv": "090010a203a6b838cff3e1f905714b570aa0645d536c7c393de481bce2f67178",
+    "qwen_a/summary.json": "5acc15a4c5717e7f03d7c70e32d4694d2c1773144014c6840866ba2343e68222",
+    "qwen_b.log": "f965bdb1c29452b26716e9e9db1c3ac6caf1da759e8a9a9571af75fa3f4eb95d",
+    "qwen_b/cases.csv": "090010a203a6b838cff3e1f905714b570aa0645d536c7c393de481bce2f67178",
+    "qwen_b/summary.json": "5acc15a4c5717e7f03d7c70e32d4694d2c1773144014c6840866ba2343e68222",
+    "tests.stdout": "84f6bd72ca885a39dc6288496b460c75f374ccfd1c0ec653f5e9e4d4713cfb44"
+  },
+  "max_abs_gradient_error": 9.5367431640625e-07,
+  "max_abs_parameter_error": 1.8189894035458565e-12,
+  "model_effect_claim": false,
+  "status": "SYNTHETIC_PARITY_A_B_AND_EXPORT_SCAN_PASS",
+  "summary_and_cases_byte_identical": true,
+  "unchanged_g0_commits": {
+    "g0_control": "90cd91058fd03e86185d42c14704845827259655",
+    "g0_source": "5f3bc362db922c8edee2ef134656dfdb9a2b74fb"
+  }
+}

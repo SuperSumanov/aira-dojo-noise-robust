@@ -447,3 +447,6 @@ phase1/scripts/verify_training_input_session_cpu_20260905.py text eol=lf diff
 phase1/tests/test_training_input_session_fixture.py text eol=lf diff
 phase1/results/training_input_session_5b6e0bd_20260905/** -text diff
 phase1/results/training_input_session_5b6e0bd_20260905/**/runs.csv whitespace=cr-at-eol
+# Preserve remote receipts verbatim; csv.writer emitted CRLF for this ledger.
+phase1/results/historical_source_recovery_20260905/ledger/** -text diff
+phase1/results/historical_source_recovery_20260905/ledger/runs.csv whitespace=cr-at-eol

@@ -67,6 +67,8 @@ prompt/client、资源与interpreter image保留；139个recorded strata也不�
   原执行SHA f75ad3539ea71c637a363505625169f434eef8abc47579b3230b8fd917bc0b6b；后续Git导出SHA
   3b5be4fbbc42f2d41665330631a4207848944eeb9256d672dc794c227c885d36。没有用一个SHA冒充另一个。
 - 文件open trace支持核验访问范围，但不是完整OS隔离证书；独立ledger verifier重算存储证据，不声称第二次独立重扫全部原始归档。
+- 发布前Git对象校验发现CSV被换行归一化，manifest不匹配，未推送该状态。针对本ledger设置原样保存后，
+  重新核对Git中的四个receipt哈希；保留远端CSV原始字节，不改原manifest以掩盖差异。
 
 ## 不可变定位
 

@@ -3,6 +3,27 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L63. 2026-09-06 01:52：批准四fit开发准备；84run任务支持不足以作为唯一来源路径
+
+用户批准按一个月正方向推荐推进。首轮单独登记`g_reuse_development_screen_v1.json`：
+Qwen3-1.7B-Base、16K、Lbudget与full G-reuse→L、seeds6/7，4fit；仅资格完整的开发范围。
+保留原五臂×3seed及全部确认门，不把screen当原协议缩减或确认结果。精确GPU预算和来源尚缺，不自动提交。
+准备代码复用现有token planner/consumer映射，额外G执行endpoint直接拒绝；67相关本地测试通过，
+不是训练收益、GPU完成或生产来源资格。训练仍须同初始化/序列化、token cap及完整final锁定后统一开发读出。
+
+固定84run的实际历史元数据核对：15tasks、24保守组件/24recorded strata；仅6tasks至少两个组件，
+3tasks至少三个，最大task run占比0.11904761904761904。这仅是同task train/dev覆盖的必要支持检查，
+未看pair yield/结果、未选择split，未证明完整experiment语义；不能据24snapshot可恢复就承诺合格广覆盖训练包。
+因此立即并行向生产端索取已有合格、更广的开发来源，不等48小时才启动替代来源协调。
+
+24snapshot定位清单已在远端从固定ledger/lineage/84scope导出，并以SHA核验副本供用户私下转发：
+8 permission denied、16 absent-on-linux5；没有打开snapshot/归档/journal。私有路径不进入Git。
+见`SENIOR_MINIMUM_SOURCE_HANDOFF_20260905.md`顶部及`results/development_screen_preparation_20260906/README.md`。
+
+01:52核12535仍PENDING/Resources/0秒，暂估19:38:15；学长head仍b8d095180415957aa1bab31fa53ead1bba261c03。
+0904六归档最早03:44:48成熟，本轮未提前摄取。无新GPU/API/model fit，无模型收益或scaling确认。
+研究盘2026-09-29到期早于一个月目标，需用户办理续期或提供授权迁移目的地。
+
 ## 0L62. 2026-09-06 01:22：worker证据解释唯一Slurm异常；84run运行版本仍未认证
 
 固定676-run ledger/lineage不变。真实两份worker identity独立重读通过：第二次worker身份与config一致，

@@ -1,0 +1,58 @@
+{
+  "protocol": "g-reuse-development-screen-v1",
+  "decision_date_hong_kong": "2026-09-06",
+  "status": "USER_APPROVED_PREPARATION_SOURCE_AND_COST_NOT_READY",
+  "purpose": "Decide whether full label-reuse-to-local merits the existing confirmatory investment; never a confirmatory result itself.",
+  "parent_effect_protocol_sha256": "2e95b73ca6a21c45502bc64919dd1dc5f447bd5f21f61f939dbbcfd97f080ed5",
+  "historical_development_protocol_sha256": "1964e8e48e998660584c045a7e8fe2a03d61a946ba266d29d74555f934482902",
+  "frozen_calibration_v2_sha256": "3e0785a13f9d9fc3638a222e78fd74010757b1201249ebd0ad7a5597c224a2e9",
+  "existing_protocols_modified": false,
+  "model": {"family": "Qwen3-1.7B-Base", "context_length": 16384, "agent_base_updated": false, "checkpoint_binding": null},
+  "matrix": [
+    {"sequence": 1, "arm": "Lbudget", "consumer_arm": "Lbudget", "seed": 6},
+    {"sequence": 2, "arm": "G-reuse-to-L-full", "consumer_arm": "G_to_L", "seed": 6},
+    {"sequence": 3, "arm": "G-reuse-to-L-full", "consumer_arm": "G_to_L", "seed": 7},
+    {"sequence": 4, "arm": "Lbudget", "consumer_arm": "Lbudget", "seed": 7}
+  ],
+  "planned_fits": 4,
+  "data": {
+    "source_package_binding": null,
+    "required": ["actual production and evaluator provenance", "whole-experiment and physical-run train/dev isolation", "all existing holds and protected cohorts excluded with closure", "exact task and generator/resource stratum", "record-consistent global edges drawn only from local execution endpoints", "same-version actual Cards/G/L build and hashes"],
+    "historical_84_run_range_is_qualified": false,
+    "prospective_first960_target300_target522_access": false,
+    "new_training_role_by_folder_rename_allowed": false
+  },
+  "training": {
+    "consumer": "global_local_training_inputs -> global_local_token_budget_plan -> existing critic session",
+    "shape": {"world_size": 2, "pairs_per_rank": 8, "maximum_accumulation_microsteps": 8},
+    "common_cap": "one complete eligible record-consistent G pass plus one complete L pass",
+    "baseline": "cycle fixed L order; stop before the next whole pair exceeds common cap",
+    "inherited": ["fixed task-conditioned head25-tail75 serialization without score or execution feedback", "effective pair batch 128 with the existing verified partial-update normalization", "AdamW peak learning rate 0.00001", "ceil(0.03*valid-token cap) warmup then constant learning rate", "no optimizer or learning-rate restart at G/L boundary", "final checkpoint only; restart from identical initial checkpoint for each fit"],
+    "equal_valid_token_cap_is_not_equal_measured_gpu_time": true,
+    "actual_tokens_and_updates": null,
+    "measured_cost_and_memory_binding": null,
+    "exact_total_gpu_hours": null,
+    "expensive_submission_authorized_by_this_file": false
+  },
+  "readout": {
+    "population": "separately admitted development local siblings, not protected confirmation",
+    "timing": "complete and hash-lock all four final checkpoints and same-pool predictions before the joint development readout",
+    "no_periodic_dev_checkpoint_selection": true,
+    "score_ties": "preserve frozen source eligibility; no outcome-dependent removal",
+    "prediction_tie_credit": 0.5,
+    "primary": "within-task pair-average credit difference; equal-task average per seed; average the two seed effects",
+    "uncertainty": "descriptive task-clustered paired 95% interval and leave-one-task-out; training seeds are not independent tasks",
+    "interval_definition": "inherit the parent readout task bootstrap algorithm with seed 20260905 and 20000 replicates, aggregating exactly the two registered screen seeds; do not feed this screen into the five-arm confirmatory verdict",
+    "same_pool_tfidf": "required train-only fixed baseline, initialization/query cost counted; no dev tuning",
+    "never_called_confirmatory": true
+  },
+  "investment_decision": {
+    "positive_screen": "all four fits finish without integrity faults, both seed effects strictly positive, two-seed task-macro mean at least 0.02, and leave-one-task-out mean never negative",
+    "meaning": "candidate worth further confirmation, not proof of mechanism, significance, scaling or agent improvement",
+    "both_nonpositive": "do not escalate to larger models or the 15-fit stage",
+    "mixed_sign_small_effect_or_uncertain": "inconclusive; no automatic matrix expansion or seed rescue",
+    "optimization_failure": "report separately from lack of method effect; preserve failures; any changed optimizer/token plan is a new development version",
+    "confirmation": "original five arms and three seeds, same-pool TF-IDF and all hierarchy gates remain unchanged; independent untouched cohort access still separately required"
+  },
+  "execution_blockers": ["source qualification", "exact checkpoint and consumer GPU acceptance", "real encoded plan counts and peak memory", "checkpoint-resume/storage reservation", "quantified matrix and GPU-hour cap", "actual train-only loader and dev isolation", "independent source/plan verification"]
+}

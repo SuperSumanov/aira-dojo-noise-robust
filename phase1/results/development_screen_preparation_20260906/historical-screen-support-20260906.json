@@ -1,0 +1,65 @@
+{
+  "classification": "HISTORICAL_METADATA_NECESSARY_SUPPORT_ONLY_NOT_ADMISSION_OR_POWER",
+  "component_count_by_run_size": {
+    "2": 10,
+    "4": 10,
+    "6": 4
+  },
+  "conservative_components": 24,
+  "created_at_utc": "2026-09-05T17:51:57.734682+00:00",
+  "fixed_runs": 84,
+  "full_experiment_semantics_verified": false,
+  "largest_task_run_share": 0.11904761904761904,
+  "model_fits": 0,
+  "notes": [
+    "Two components per task is only necessary for same-task train/dev coverage; not sufficient for full experiment isolation or statistical power.",
+    "No equal-stratum pair yield, finite label yield, code diversity or model performance is inferred."
+  ],
+  "pair_support_inspected": false,
+  "recorded_config_strata": 24,
+  "script_sha256": "b8de09c7b1fd96660a13e466b77e5fe416adda6a91f3a101e9b3e6747bea1440",
+  "sorted_components_per_task": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3
+  ],
+  "sorted_runs_per_task": [
+    2,
+    4,
+    4,
+    4,
+    4,
+    4,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    8,
+    8,
+    10
+  ],
+  "split_selected": false,
+  "stratum_count_by_run_size": {
+    "2": 10,
+    "4": 10,
+    "6": 4
+  },
+  "tasks": 15,
+  "tasks_with_at_least_three_conservative_components": 3,
+  "tasks_with_at_least_two_conservative_components": 6,
+  "training_qualified": false
+}

@@ -1,0 +1,31 @@
+{
+  "access_counts": {
+    "absent_on_linux5": 16,
+    "permission_denied_on_linux5": 8
+  },
+  "classification": "PRODUCER_SOURCE_LOCATION_REQUEST_NOT_TRAINING_ADMISSION",
+  "created_at_utc": "2026-09-05T17:48:57.232866+00:00",
+  "files": {
+    "snapshot_locations_for_senior.private.json": {
+      "bytes": 19661,
+      "sha256": "7ccc2a066fc32956cb81b471d508a973a63f457a871babce01aa9f9f51591b1b"
+    },
+    "snapshot_locations_for_senior.private.md": {
+      "bytes": 12012,
+      "sha256": "94a8a1f50bb0c6aa919ef2ad0940b6375a225b104f7c980c4175b64f60dc7495"
+    }
+  },
+  "fixed_runs": 84,
+  "input_sha256": {
+    "ledger": "8e48b4c6598cf8efe205fc6cba5cdd27d14621eb13fad42a7fd4180953da00d1",
+    "lineage": "fe05dddcd4fe8a3f2208652ce51c9b06df9b9b8f57a5fa655d2029caddcf9981",
+    "scope": "fc13d25745c1c8ea408374741358137e9eb374b3b214e0c9f6d4b856b071464b"
+  },
+  "journal_payloads_opened": 0,
+  "model_fits_started": 0,
+  "raw_archives_opened": 0,
+  "script_sha256": "9e20a84361114f30307b5b224d97ebdd04ad769891d85a7607280b11c7a3c3c3",
+  "snapshots": 24,
+  "source_snapshots_opened": 0,
+  "training_qualified": false
+}

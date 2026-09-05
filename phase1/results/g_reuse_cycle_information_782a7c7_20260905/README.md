@@ -1,5 +1,12 @@
 # G-reuse cycle information via effective resistance
 
+> Interpretation update, 2026-09-05: the measured graph numbers and frozen gates
+> below remain unchanged. They do not establish statistical information gain for
+> comparisons derived from the same noisy endpoint score records. Shared-record
+> dependence must be modeled; the independent-edge proxy is not that model.
+> See `phase1/PROJECT_REASSESSMENT_20260905.md`, section 3. This does not show that
+> binary full-G supervision is useless, or change any frozen effect decision.
+
 Date: 2026-09-05 Hong Kong. Frozen scientific source commit:
 `6976358740943b9c3dede20c27da4a77443a7cbb`. Numeric-gate retry commit:
 `782a7c7486a91d6d291569b44be714398ac7edc4`.

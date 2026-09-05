@@ -1,0 +1,2 @@
+stage,source_commit,seed,workers,start_utc,end_utc,exit_code,runs,cards_pairs_built,training_qualified
+historical-source-ledger,faf04cc5e3f8193652041674fff86e569062540f,not_randomized,2,2026-09-05T15:21:32Z,2026-09-05T15:24:56Z,0,676,False,False

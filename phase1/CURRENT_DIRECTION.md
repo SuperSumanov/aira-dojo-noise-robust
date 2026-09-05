@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L60. 2026-09-05 23:28：真实来源676/676恢复；完整账本与旧hold闭包落地，非训练准入
+
+按用户要求解决生产来源阻塞，直接检查固定旧历史归档，不再只做合成验收。
+14f8da6先恢复668run；发现共享0811 leaf已更正，3044f0a在隔离副本补回缺失8run，A/B mapping逐字节相同，
+独立重读8配置与journal header通过。完整固定676run无遗漏；683条配置出现记录中的7个重复是同archive/member/hash副本。
+完整ledger code=faf04cc5e3f8193652041674fff86e569062540f，复核145物理副本/143 archive SHA；
+actual ledger SHA=8e48b4c6598cf8efe205fc6cba5cdd27d14621eb13fad42a7fd4180953da00d1。
+独立4806e32另用图遍历重算：139保守archive/config关联组件，旧hold闭包阻断101组件/538run；
+其余38组件/138run覆盖21任务、14个recorded版本，仅是无该hold关联的候选范围，尚非合格同源train包。
+
+两份旧错误archive与旧S0失败不改判，所有旧hold保留；无journal/env成绩payload解析、无保护cohort读取。
+修复archive已另存研究盘只读副本，完整ledger目录500/文件400。新回执记录真实代码/命令/时间，
+**它是来源账本构建回执，不是Cards/G/L构建回执，不能替代实际数据生产**。
+剩余需生产端证据：真实experiment/runner范围是否有未记录跨目录联系，以及当时执行环境/外部评分版本记录。
+24个recorded commit中22可读；9个recorded base_path均不可访问（5不存在、4无权），不绕过、不补造clean执行证明。
+旧pair构建命令不必追填，资格完整后可从固定原始输入做一次新构建并记录当次实际执行。
+12535最新仍PENDING/Resources/0秒，无新GPU/API/fit。无新的模型收益结论。
+完整证据、失败记录和最小交接见`results/historical_source_recovery_20260905/README.md`。
+
 ## 0L59. 2026-09-05 22:46：补清current-score参数语义；GPU与来源资格仍未过门
 
 固定学长源码b8d0951的value构建器确认：`budget_steps=-1`只用节点自身成绩，`0`是不限后代深度，

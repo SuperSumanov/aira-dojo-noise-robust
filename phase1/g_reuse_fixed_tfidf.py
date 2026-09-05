@@ -7,7 +7,6 @@ TRAIN pair pool it supplies. A dictionary is not a source-qualification proof.
 from dataclasses import dataclass
 import hashlib
 import json
-import math
 import time
 
 
@@ -22,7 +21,8 @@ def validate_codes(codes):
 
 def fingerprint(vectorizer, model):
     h = hashlib.sha256()
-    h.update(json.dumps(sorted(vectorizer.vocabulary_.items()), separators=(',', ':')).encode())
+    # sklearn may store vocabulary indices as numpy.int64 after pruning.
+    h.update(json.dumps(sorted((k, int(v)) for k, v in vectorizer.vocabulary_.items()), separators=(',', ':')).encode())
     for x in (vectorizer.idf_, model.coef_, model.intercept_, model.n_iter_):
         h.update(str(x.dtype).encode()); h.update(str(x.shape).encode()); h.update(x.tobytes())
     h.update(json.dumps(vectorizer.get_params(), sort_keys=True, default=str).encode())

@@ -93,7 +93,8 @@ def same(a,b):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--job',required=True);parser.add_argument('--submission',required=True)
     args=parser.parse_args();require(re.fullmatch('[0-9]+',args.job),'job_id')
-    portability=args.submission=='submission-20260906-3090'
+    private_portability=args.submission=='submission-20260906-3090-private'
+    portability=args.submission=='submission-20260906-3090' or private_portability
     require(portability or re.fullmatch('submission-20260905-r[0-9]+',args.submission),'submission_id')
     require(os.environ.get('CUDA_VISIBLE_DEVICES')=='','CPU_only')
     root=BASE/('job-'+args.job);control=BASE/args.submission;trajectories=root/'trajectories'
@@ -120,10 +121,24 @@ def main():
                 and 298+2*int(elapsed)<=budget['original_cap_gpu_seconds']==4320,'cumulative_actual_budget')
     summary=read(trajectories/'summary.json')
     if portability:
-        require(ready['gpu_seconds_upper_bound']==3120 and int(elapsed)<=1560,'portability_budget')
+        expected_cap=2880 if private_portability else 3120
+        require(ready['gpu_seconds_upper_bound']==expected_cap and 2*int(elapsed)<=expected_cap,'portability_budget')
         require(summary['expected_gpu']=='RTX 3090' and len(summary['gpu_names'])==2
                 and all('RTX 3090' in n for n in summary['gpu_names']),'portability_devices')
         require(read(root/'build_tools.json')['hostname'].split('.')[0]=='gpu28','portability_host')
+        if private_portability:
+            from phase1.scripts.check_zero3_private_tools_20260906 import ROOT,RECOVERY,INDEPENDENT,MANIFEST
+            require(digest(ROOT/'RECOVERY_COMPLETE.json')==RECOVERY and digest(ROOT/'INDEPENDENT_VERIFIED.json')==INDEPENDENT
+                    and digest(ROOT/'installed_manifest.json')==MANIFEST,'private_toolchain_binding')
+            build=read(root/'build_tools.json')
+            require(build['toolkit_manifest_sha256']==MANIFEST and build['toolkit_recovery_sha256']==RECOVERY
+                and build['toolkit_independent_sha256']==INDEPENDENT and build['cuda_home']==str(ROOT/'prefix'), 'allocated_private_toolchain')
+            for previous, expected in [('12570',('FAILED','1','1:0',2)),('12571',('COMPLETED','5','0:0',1))]:
+                row=subprocess.check_output(['sacct','-X','-n','-P','-j',previous,
+                    '--format=JobIDRaw,State,ElapsedRaw,AllocTRES,ExitCode'],env=env).decode().strip().split('|')
+                state0,seconds0,code0,gpus0=expected
+                require(row[:3]==[previous,state0,seconds0] and row[4]==code0 and f'gres/gpu={gpus0}' in row[3].split(','),'prior_private_budget')
+            require(7+2*int(elapsed)<=3120,'aggregate_private_budget')
     require(summary['code_commit']==ready['commit'] and summary['slurm_job_id']==args.job
             and summary['approval_receipt_sha256']==ready['approval_sha256'],'driver_binding')
     require(summary['trajectories']==5 and summary['resume_comparisons']==4 and summary['parameters']==4433,'driver_matrix')

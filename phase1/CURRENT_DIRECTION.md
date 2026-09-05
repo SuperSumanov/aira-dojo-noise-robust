@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L73. 2026-09-06：私有CUDA12.8修复完成，准备独立双3090短验收
+
+12571节点元数据诊断COMPLETED，5秒/1GPU，和12570共7实际GPU秒；没有模型或CUDA context。
+前置0GPU sbatch被QOSMinGRES拒绝且无job，未把拒绝伪装成运行。诊断确认gpu28缺系统12.8。
+官方四组件在独立私有prefix组装；7c0c06e首次对象编译因默认gcc9缺cc1plus失败，原回执保留。
+2aaa9bdaac55878170c4f9660e3592540ffcc32f显式g++13修复后CPU编译成功；Linux CPU测试20项通过，
+4归档→1728文件/7链接逐字节与只读复核成功，没有GPU/模型或系统/venv修改。
+工具链manifest=ce7f9f18218799db0776d08a2c3e2342e51273bcaccae61c1ebab8e340e959f1；
+recovery=8701d0fc275c5c0f7a124d05e622bbe0a1e7f5313b7260911000326808b5730a；
+independent=6732f4045503fb658cce9a0fbf7c449985ecee41f01886d3e4f2a704463dd2fe。
+安装器/修复器/独立验收均已到终点，不得再次执行；旧原安装FAILURE不能解释为修复后仍失败。
+
+准备单独1job×2RTX3090×18min，同4433参数/seed6/五恢复轨迹，新prefix+显式CXX，driver900s。
+仅工程：预计上限2880GPU秒，组合保守3062≤原独立3120；无自动重试，held前后核验，原12535不动。
+此刻尚未提交此新job，不能称真实GPU检查通过；见ZERO3_PRIVATE_CUDA128_PREFLIGHT_20260906.md。
+原12535仍PENDING/Resources，学长head b8d095180415957aa1bab31fa53ead1bba261c03本次fetch未变。
+语料673、WL覆盖673均已完成，四fit训练准入仍空，无新增方法/scaling收益，真实来源门不放宽。
+
 ## 0L72. 2026-09-06：冻结WL实际覆盖完成，仍未揭盲
 
 原517→673补算已正常完成：新增156、移除0，共同3325pairs保持；producer/独立数值verifier/chain均rc0。

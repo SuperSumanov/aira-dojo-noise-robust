@@ -1,0 +1,46 @@
+{
+  "commands": [
+    [
+      "C:\\Users\\yanze\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-m",
+      "pytest",
+      "phase1/tests/test_development_screen_operating_characteristics.py",
+      "-q"
+    ],
+    [
+      "C:\\Users\\yanze\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-m",
+      "phase1.development_screen_operating_characteristics",
+      "--protocol",
+      "phase1/development_screen_operating_characteristics_v1.json",
+      "--output",
+      "tmp\\screen-sensitivity-48f58fe\\simulation",
+      "--commit",
+      "48f58fe7eff0ea31b1f8764696e25fad5408ff32"
+    ],
+    [
+      "C:\\Users\\yanze\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-m",
+      "phase1.verify_development_screen_operating_characteristics",
+      "--protocol",
+      "phase1/development_screen_operating_characteristics_v1.json",
+      "--result",
+      "tmp\\screen-sensitivity-48f58fe\\simulation\\result.json",
+      "--output",
+      "tmp\\screen-sensitivity-48f58fe\\verification.json"
+    ]
+  ],
+  "commit": "48f58fe7eff0ea31b1f8764696e25fad5408ff32",
+  "elapsed_seconds": 20.244198700005654,
+  "returncodes": [
+    0,
+    0,
+    0
+  ],
+  "source_sha256": {
+    "phase1/development_screen_operating_characteristics.py": "fcb2a106c3621e367a24d679c21fe81f81d65e9b4ac5fddce40999c6454a3fd7",
+    "phase1/development_screen_operating_characteristics_v1.json": "aec18af08d6ff7c6a845f393d9a5298f52eceae83f6025ef6f62fef48c566859",
+    "phase1/tests/test_development_screen_operating_characteristics.py": "8f879f5e26e145852d43ac7456b26c6e6c91ec50faac6a2c53434e6a50dfa07f",
+    "phase1/verify_development_screen_operating_characteristics.py": "f875d705b0d39ff01de59ec271a2dd56de18e2179c5217f5b25ae3951d1587d3"
+  }
+}

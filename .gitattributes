@@ -485,3 +485,15 @@ phase1/results/critic_stable_worker_20260906/README.md text eol=lf diff
 phase1/results/critic_stable_worker_20260906/operations/*.py text eol=lf diff
 # Original PyTorch exception log includes one trailing space; preserve its hash.
 phase1/results/critic_stable_worker_20260906/initial_reader_list_failure.log whitespace=-blank-at-eol
+phase1/development_screen_operating_characteristics.py text eol=lf diff
+phase1/verify_development_screen_operating_characteristics.py text eol=lf diff
+phase1/development_screen_operating_characteristics_v1.json text eol=lf diff
+phase1/tests/test_development_screen_operating_characteristics.py text eol=lf diff
+phase1/results/development_screen_sensitivity_20260906/** -text diff whitespace=cr-at-eol
+phase1/results/development_screen_sensitivity_20260906/runs.csv whitespace=cr-at-eol
+phase1/results/development_screen_sensitivity_20260906/tests.txt -whitespace
+phase1/results/development_screen_sensitivity_20260906/README.md text eol=lf diff
+phase1/results/0904_intake_session_20260906/** -text diff
+phase1/results/0904_intake_session_20260906/runs.csv whitespace=cr-at-eol
+phase1/results/0904_intake_session_20260906/README.md text eol=lf diff
+phase1/results/0904_intake_session_20260906/operations/*.py text eol=lf diff

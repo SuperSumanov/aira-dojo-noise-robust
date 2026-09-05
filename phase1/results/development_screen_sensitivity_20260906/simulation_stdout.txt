@@ -1,0 +1,1 @@
+{"cells": 27, "replications": 54, "result_sha256": "58f148b830a06726e60fa36cb58dec2e6d2644c66ca54b3c01d9ce792713af6f", "elapsed_seconds": 18.621554300014395, "classification": "SYNTHETIC_GAUSSIAN_SENSITIVITY_NOT_EMPIRICAL_POWER_OR_METHOD_EFFECT"}

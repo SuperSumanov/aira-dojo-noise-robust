@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L67. 2026-09-06 04:40：纠正摄取日期归属；按实测积压续接
+
+撤回本会话“六次完成=0904六档案全部入库”的叙述。metadata-only核实原session前7次全部处理0903，
+当时尚余0903一档、0904六档，均ready；不是重复交易，未改科学规则。原session停在7次，不再调用。
+当前已复验674 physical/648 eligible/17772 endpoints/4081 structural pairs/55 tasks，closure=false；
+LATEST=db4ba10d1441d4305666cbb67fd2f2dd31a9c79aab2c7720055e985a9b1bcfd9，
+summary SHA=24a724d7819c6dd7c71415d4094c69cadd0a5f058c7adabcb2ef31e8a74f67fc。
+对应delta审计manifest=0a15bba959c3f7410fdced8fbd3ef4ae8a2f78eb8dbe4578998eb936ec6b3ee4。
+源统计331档=baseline128+committed174+rejected22+pending7；积压回执
+474d458845b97fda6f527a764bdebd4044dc4350ed7c5a7e2fcf90563d719cf3，无归档payload或保护值读取。
+
+b2123c3883940fefae06d6437a89e32dae87c988启动单独foreground续接，最多8次（7事务+1次空队列检查），
+新root=session-intake-backlog-successor-20260906；旧root=session-0904-maturity-intake-20260906保留不改。
+最早UTC20:39:13、最晚2026-09-06 UTC02:20，300秒间隔，原成熟/稳定/拒绝/身份规则完全不变。
+source wrapper SHA=08006e4ca6ed17bdc8cf19900c7806a5897da1cb34141a9e2f1f303e7e68e21c。
+不得按预期次数宣布完成；应以实际日期交易记录和ready=0为准。原错误假设的导出器未执行。
+
+另完成固定两seed开发门的源外Gaussian敏感性：48f58fe7eff0ea31b1f8764696e25fad5408ff32，
+27格×2模拟、7测试及独立解析/MC核验通过；见results/development_screen_sensitivity_20260906/README.md。
+训练全局随机性大的假设情景下，28任务/真实零收益仍10.173%通过开发投资门；不是本项目实测误报率。
+所以screen仍仅决定投入，不能当显著性确认；门槛/seed/原五臂均未改，无模型效果或实际功效结论。
+04:30核12535仍PENDING/Resources/0秒，两PRO6000都已被占；未改排队作业，未新增GPU/API/model fit。
+
 ## 0L66. 2026-09-06 04:07：新语料开始摄取；修复续跑身份，仍无模型收益
 
 0904成熟后已完成3次foreground调用，每次之间至少300秒；合格runs 623→625→627→632，

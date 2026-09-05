@@ -1,0 +1,34 @@
+{
+  "execution.json": {
+    "bytes": 1808,
+    "sha256": "9bc52c967b1ec77f2c96592497e3f0692122514c27a0f33bca61639d06ee4fc3"
+  },
+  "result.json": {
+    "bytes": 69363,
+    "sha256": "58f148b830a06726e60fa36cb58dec2e6d2644c66ca54b3c01d9ce792713af6f"
+  },
+  "run_exact_source.py": {
+    "bytes": 2007,
+    "sha256": "ec3ab554bd5b51e23268f64137cd4ebedb331c6b721beda8e807d11986b13935"
+  },
+  "runs.csv": {
+    "bytes": 7780,
+    "sha256": "a91531ca8cac75216b7f5ac3219055b44d80c4a2037324cef75f39f2c276d688"
+  },
+  "simulation_stdout.txt": {
+    "bytes": 248,
+    "sha256": "97d1619eac30ed2316daf93e0ac96bee9084317d520bbbde7c0495ae0ede0e17"
+  },
+  "tests.txt": {
+    "bytes": 100,
+    "sha256": "92f6c2556fec3698d875d7d0fca86d73af480f2496deb52ae62f62b3a42a37e3"
+  },
+  "verification.json": {
+    "bytes": 522,
+    "sha256": "dc5abab6de9adfcd9bc5730049763b6e17fb1947211c33e5f1ee43751ea8ede4"
+  },
+  "verification_stdout.txt": {
+    "bytes": 494,
+    "sha256": "7114415b2d5b65300271343f194d5b6314f14f69d6507040cf2f179d53cfa4dc"
+  }
+}

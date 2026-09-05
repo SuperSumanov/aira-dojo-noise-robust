@@ -40,7 +40,7 @@ LOCAL_TASK_KEYS = {'attempt','attempts','config_path','execution_id','exit_code'
 LOCAL_ATTEMPT_KEYS = {'attempt','ended_at','exit_code','identity_path','result_path','started_at',
                       'status','stderr','stdout','execution_id','pid','pgid','process_start_ticks',
                       'container_pid','container_pgid','container_process_start_ticks',
-                      'gpu_uuids','gpu_indices','devices','hardware_description','reason'}
+                      'gpu_uuids','gpu_indices','devices','hardware_description','reason','result'}
 
 
 def parse_manifest(raw, member, sha, origins):
@@ -74,6 +74,8 @@ def parse_manifest(raw, member, sha, origins):
         attempts=[]
         for a in t['attempts']:
             require(isinstance(a,dict) and set(a)<=(LOCAL_ATTEMPT_KEYS if local else ATTEMPT_KEYS), 'attempt_schema')
+            # _finish_task embeds worker process-exit metadata under result.
+            # Never inspect/project that object or its exception_summary text.
             fields=('attempt','started_at','ended_at','execution_id','identity_path','gpu_uuids') if local else ('attempt','started_at','ended_at','step_id','identity_path')
             attempts.append({k:a.get(k) for k in fields})
         candidates=[(rid,o) for rid,o in origins if rid.rsplit('__',1)[0]==cid

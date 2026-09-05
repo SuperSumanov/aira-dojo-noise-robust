@@ -96,5 +96,8 @@ def test_local_pool_is_not_a_slurm_attestation():
     assert result['identity']['launcher_type']=='local_gpu_pool'
     assert all(t['step_matches_recorded_config'] is None for t in result['tasks'])
     assert all(t['recorded_launcher_execution_id']=='host:123:45:a1' for t in result['tasks'])
+    obj['tasks']['a']['attempts'][0]['result']={'exception_summary':'ignored process text','status':'failed'}
+    changed=p.parse_manifest(json.dumps(obj).encode(),member,'sha',origins)
+    assert result['tasks']==changed['tasks'] and result['identity']==changed['identity']
     obj['tasks']['a']['attempts'][0]['unknown_runtime_value']=1
     with pytest.raises(Exception):p.parse_manifest(json.dumps(obj).encode(),member,'sha',origins)

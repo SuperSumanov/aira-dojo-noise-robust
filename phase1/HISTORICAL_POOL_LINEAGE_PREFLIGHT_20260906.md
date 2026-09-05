@@ -28,3 +28,9 @@
 local有独立task/attempt schema，记录execution_id/GPU分配而不是伪造Slurm对应；不读取results文件或GPU日志。
 每次仍两CPU/1500秒上限，另固定新code及A/B输出。原首轮结果与异常保留，不覆盖。
 必须将完整清单中不在676范围的任务计为未解决范围，不能凭已匹配部分宣称whole-experiment完成。
+
+53a6b21第一次local阶段在43归档遇attempt_schema并fail-closed，无最终lineage，无B轮。
+独立最小archive键名核查发现未知字段仅result；生产方_finish_task确将worker进程退出记录嵌入该键。
+main_local_worker源码SHA `f3a56cc5d39867b0c2e99ccd9f8e673bf85ed88af54bd136c96040c48abe4ee2`确认它记录进程状态/异常，
+不是评分器接口。修复仅接受此键但完全不访问或投影其对象/exception_summary；未知其它字段继续拒绝。
+旧失败目录保留；固定新commit后同143输入A/B重跑，不改分组/筛选条件。

@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L52. 2026-09-05：新consumer普通DDP保存恢复接通；合格数据与ZeRO3生产接入仍有明确缺口
+
+按用户指定的来源包/新入口方向，在当前会话实现并验证，不新建守护。结果前code=
+`33ad8baca0f23fd54ea4e79c5c23f3c44bbef2ec`：CriticSession直接驱动已有consumer，保存model/AdamW/
+各rank RNG与token cursor；加载前核全文件、加载后核实际状态，再推进cursor，失败不原地重试。
+固定随机4433参数Qwen3、float32、AdamW、dropout0.1、seed6、两CPU进程；G_to_L/Ghash_to_L各完整、
+prefix2/resume2、prefix3/resume3，A/B每次10轨迹。40单元测试通过，A/B summary/CSV/trajectory逐字节一致。
+独立加载实际检查点的16组状态比较完全相同，36个checkpoint哈希完整；前缀+恢复消费顺序精确等于完整运行。
+
+另发现实际DS恢复源码在优化器分片失败时可退回权重恢复，Accelerate又丢弃上层返回值；不是G0已触发该路径。
+`6d425476aff3394f10442befc4d1f7c7bccd4e04`在既有适配器增加失败前拦截与client/cursor核验，25测试通过，
+真实DS方法+CPU测试接收器的成功/失败控制流验证通过。**未初始化真实DS engine，session仍拒绝DS/FSDP**；
+不等于ZeRO3/bf16或普通GPU-DDP恢复通过，尚需生产分片接入及单独预算的真实硬件验收。
+
+学长再次fetch仍`b8d095180415957aa1bab31fa53ead1bba261c03`，四LFS仍同发布`5baccb1`，未解析payload。
+已非阻塞请求可用历史开发范围、experiment实际定义/映射、真实生成评分出处；不能把同发布或声明hash当作来源资格。
+完整训练包未物化，正式15-fit/开发pilot未启动，未新增GPU/API/真实语料fit或保护cohort读取。
+详见`results/critic_session_33ad8ba_20260905/README.md`。0L45科学假设不变；本轮没有新的方法效果结论。
+
 ## 0L51. 2026-09-05 14:40：G0真实双卡完整跑通；会话内终态验收，停止定时守护
 
 用户要求当前会话连续推进，`g0-r5`已暂停且未新建守护。12499香港13:58:30—14:35:02，COMPLETED/0:0、

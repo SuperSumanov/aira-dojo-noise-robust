@@ -1,0 +1,20 @@
+{
+  "attention_dropout": 0.1,
+  "classification": "RANDOM_QWEN_ADAMW_DDP_SESSION_LIFECYCLE_NOT_EFFECT",
+  "code_commit": "33ad8baca0f23fd54ea4e79c5c23f3c44bbef2ec",
+  "deepspeed_or_bf16_gpu_validated": false,
+  "dtype": "float32",
+  "final_rank_resume_comparisons": 8,
+  "final_state_bitwise_equal": true,
+  "gpu_used": false,
+  "optimizer": "AdamW",
+  "parameters": 4433,
+  "real_data_opened": false,
+  "resumed_consumption_exact_suffix": true,
+  "seed": 6,
+  "session_sha256": "7937446ee0b597460bcc1147963e5c69b59720c7132a4fcec05c67efc8c34f0b",
+  "source_commit": "5f3bc362db922c8edee2ef134656dfdb9a2b74fb",
+  "trajectories": 10,
+  "validation_sha256": "ff7ee218f9b9885ec5cffef57abe80d979ce692af038b0862c1f64ba232f198f",
+  "world": 2
+}

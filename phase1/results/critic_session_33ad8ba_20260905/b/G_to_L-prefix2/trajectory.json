@@ -1,0 +1,65 @@
+{
+  "arm": "G_to_L",
+  "planned_tokens": 192,
+  "ranks": [
+    {
+      "end": 2,
+      "rank": 0,
+      "records": [
+        {
+          "completed_steps": 1,
+          "cumulative_global_valid_tokens": 64,
+          "event_sha256": "b57a45a126412c937b39dbff4f066f187df2e4fcad669ef2511009864d613677",
+          "local_pair_visits": 4,
+          "local_valid_tokens": 32
+        },
+        {
+          "completed_steps": 2,
+          "cumulative_global_valid_tokens": 88,
+          "event_sha256": "8627fa67f204a0cc3866658881e6808f387a9a5408df103bd317bcfb726f1587",
+          "local_pair_visits": 2,
+          "local_valid_tokens": 16
+        }
+      ],
+      "restored": false,
+      "start": 0,
+      "state": {
+        "model": "7245f4a5f5a42728aa8deaa71fb3d174abcf06c2e8ce296500bcfd112c2f2590",
+        "numpy_rng": "e00436fe1dcca92e71556c3b1223ec76e01d1ad87c7970e5777d2c3f8df7cf55",
+        "optimizer": "5a6f14c89aba2fb7f50337875f8447108ebe1f6d1b2dca550fc425b1988f2c09",
+        "python_rng": "8232f338aa695f1a046faf94cdc2566425e8342087418394c87f460574b62ebb",
+        "torch_rng": "6d348ab959df2bd0cd5ba6532fdf53d6f1550d17b6ea92fbe5a3e73a14669796"
+      }
+    },
+    {
+      "end": 2,
+      "rank": 1,
+      "records": [
+        {
+          "completed_steps": 1,
+          "cumulative_global_valid_tokens": 64,
+          "event_sha256": "62b5ea8fbd3352a74c44bb669f63aebf4c26e7194567e1ed9bba0bd5c007def3",
+          "local_pair_visits": 4,
+          "local_valid_tokens": 32
+        },
+        {
+          "completed_steps": 2,
+          "cumulative_global_valid_tokens": 88,
+          "event_sha256": "02474104a757a6bee5e266d373d2c34aeaae08dddc5808e1a4d89cede8f0ae88",
+          "local_pair_visits": 1,
+          "local_valid_tokens": 8
+        }
+      ],
+      "restored": false,
+      "start": 0,
+      "state": {
+        "model": "7245f4a5f5a42728aa8deaa71fb3d174abcf06c2e8ce296500bcfd112c2f2590",
+        "numpy_rng": "2ec96522f6f3afde5d7633beee9fa976c75523f41a58d1266b917efd66354300",
+        "optimizer": "5a6f14c89aba2fb7f50337875f8447108ebe1f6d1b2dca550fc425b1988f2c09",
+        "python_rng": "6bfe2de58cb178ef8b82fc3637953d9a9ebebfc1672c56317dfa439184d0153a",
+        "torch_rng": "513a704f7b56f37d1708798352b58b0fc0d223c82ce973236cb99d7db712e680"
+      }
+    }
+  ],
+  "seed": 6
+}

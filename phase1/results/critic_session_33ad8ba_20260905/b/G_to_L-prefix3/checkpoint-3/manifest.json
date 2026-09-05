@@ -1,0 +1,48 @@
+{
+  "binding": {
+    "arm": "G_to_L",
+    "backend": "MULTI_CPU",
+    "initial_optimizer_groups_sha256": "84cda641772e2c96692d192e62b4705ece23fabab6e268723ce7c0c4fefe2cc4",
+    "input_sha256": "ea30ee7b62bc364cc6f39d47f987bb11b2da9319b0a3f0cedecaa2e3dc1bc43e",
+    "mixed_precision": "no",
+    "model_schema_sha256": "ab709f12398fa329d4ac557c215e58bdfb89628c1da1301f4468224db884a367",
+    "optimizer_type": "torch.optim.adamw.AdamW",
+    "plan_sha256": "70df48399c7e26550e85354fc6905cba265cd135051f9c7513c6f97e5ed2f0ce",
+    "protocol": "critic-session-ddp-v1",
+    "runtime_sha256": "32c3e3ae78c2380f4b90a521f4826fb4e3ef45b20a9ec3eb9b99e11cabf4a129",
+    "seed": 6,
+    "session_source_sha256": "7937446ee0b597460bcc1147963e5c69b59720c7132a4fcec05c67efc8c34f0b",
+    "total_steps": 4,
+    "training_contract_sha256": "b43303518487ca57184fded40810ee972a21a9b2efc3fdce60d1750f3bdb2df2",
+    "world": 2
+  },
+  "completed_steps": 3,
+  "cumulative_valid_tokens": 152,
+  "files": {
+    "model.safetensors": {
+      "bytes": 19220,
+      "sha256": "e8295219a994a890241c255ba158fd2ca170987c611547e9aeebb48878e4819d"
+    },
+    "observed_0.json": {
+      "bytes": 1417,
+      "sha256": "fdce93063f8cf05882a15fbefe58557887ad253af092f5d1ff6f30391891f8c9"
+    },
+    "observed_1.json": {
+      "bytes": 1417,
+      "sha256": "fee416bf890153751c9912521110086f8b3b3b41b73cbb57ef0d54ded8b63c38"
+    },
+    "optimizer.bin": {
+      "bytes": 48258,
+      "sha256": "227fba1331e50cb8d18acb271b43d5cebfc5f5d3006751f287935716278001e3"
+    },
+    "random_states_0.pkl": {
+      "bytes": 14433,
+      "sha256": "e701e43d7aa2114152a073c3a007f8af78e243e87a6be9169ffc9926f262849a"
+    },
+    "random_states_1.pkl": {
+      "bytes": 14433,
+      "sha256": "ac63c3a0c2643ded10f3539d8312e05d07e3e622fe2b7adbe9f96c9aee0b4e17"
+    }
+  },
+  "protocol": "critic-session-ddp-checkpoint-v1"
+}

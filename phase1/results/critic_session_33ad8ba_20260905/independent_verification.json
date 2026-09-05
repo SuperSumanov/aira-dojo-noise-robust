@@ -1,0 +1,25 @@
+{
+  "a_b_summary_csv_trajectory_bytes_equal": true,
+  "all_checkpoint_manifests_verified": 36,
+  "auditor_sha256": "2f15bb6adc59bc01d9dbbe315b9cbf6397816ce471b9b322c0bf511922981fbb",
+  "classification": "INDEPENDENT_SYNTHETIC_CHECKPOINT_RECHECK_NOT_PRODUCTION",
+  "code_commit": "33ad8baca0f23fd54ea4e79c5c23f3c44bbef2ec",
+  "code_files_unchanged": {
+    "ddp": 18,
+    "ds_observer": 6
+  },
+  "deserialized_only_own_hash_checked_synthetic_checkpoints": true,
+  "direct_checkpoint_state_comparisons": 16,
+  "gpu_initialized": false,
+  "observer_commit": "6d425476aff3394f10442befc4d1f7c7bccd4e04",
+  "packages": {
+    "accelerate": "1.14.0",
+    "deepspeed": "0.19.3",
+    "numpy": "1.26.4",
+    "safetensors": "0.5.3",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.12.1"
+  },
+  "rank_prefix_plus_resume_equals_full": 16,
+  "real_data_opened": false
+}

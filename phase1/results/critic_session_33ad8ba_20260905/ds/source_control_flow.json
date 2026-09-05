@@ -1,0 +1,23 @@
+{
+  "cases": [
+    {
+      "mock_partition_restore_succeeds": false,
+      "pass": true,
+      "real_ds_control_flow_used": true,
+      "stopped_before_fallback": true
+    },
+    {
+      "mock_partition_restore_succeeds": true,
+      "pass": true,
+      "real_ds_control_flow_used": true,
+      "stopped_before_fallback": false
+    }
+  ],
+  "checkpoint_files_read": 0,
+  "classification": "PINNED_DS_SOURCE_OBSERVER_CHECK_NOT_HARDWARE_RESTORE",
+  "code_commit": "6d425476aff3394f10442befc4d1f7c7bccd4e04",
+  "gpu_used": false,
+  "load_checkpoint_sha256": "5728d3dfa42a3d6c44836873002f5ccfb9e72091c98029b3843b30ec5651161f",
+  "real_engine_initialized": false,
+  "unguarded_failure_invoked_fallback": true
+}

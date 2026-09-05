@@ -28,7 +28,7 @@ def projected_fixture():
             for side in range(2):
                 name=f'synthetic:bridge:{source}:{i:02d}:{side}'
                 cards.append({'endpoint_id':name,'task_name':'synthetic-task',
-                    'code':f'# synthetic {source} {i}\nx = {i*2+side}\nprint(x)\n'})
+                    'code':f'# synthetic {source} {i}\nx = {i*2+side}\nprint(x)\n# {source}{i:02d}{side}'})
                 names.append(name)
             edges.append(tuple(names));winners[tuple(names)]=names[i%2]
         pools.append(edges)
@@ -43,6 +43,8 @@ def prepared_fixture(arm,ref=None):
         protocol_sha256=hashlib.sha256(b'synthetic-input-session-engineering-v1').hexdigest())
     plan=prepared.plan(arm,6,BatchShape(2,2,2))
     assert plan.steps==4 and plan.planned_valid_tokens==384
+    assert len({prepared.encoding_provider(r.context_sha256,e.card_id)
+                for pool in prepared.pools for r in pool for e in (r.a,r.b)})==48,'collapsed_synthetic_encodings'
     # Compare actual supplied token arrays to the hash-bound reference encoder.
     if ref is not None:
         code={r['endpoint_id']:r['code'] for r in cards};tasks={r['endpoint_id']:r['task_name'] for r in cards}
@@ -98,7 +100,7 @@ def main():
         'code_commit':os.environ['CRITIC_SESSION_COMMIT'],'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         'projection_to_reference_encoder_equal':True,'actual_model_parameters':4433,'dtype':'float32',
         'optimizer':'AdamW','seed':6,'world':2,'endpoints':48,'global_pairs':11,'local_pairs':13,
-        'planned_valid_tokens':384,'trajectories':len(cases),'rank_resume_comparisons':comparisons,
+        'planned_valid_tokens':384,'distinct_encoded_endpoints':48,'trajectories':len(cases),'rank_resume_comparisons':comparisons,
         'bitwise_final_state_equal':True,'exact_consumption':True,'hash_arm_true_global_labels_supplied':0,
         'GPU_or_Zero3_validated':False,'real_data_loaded':False}
     with (root/'summary.json').open('x') as f:json.dump(result,f,sort_keys=True,indent=2)

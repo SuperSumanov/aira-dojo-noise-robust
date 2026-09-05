@@ -9,6 +9,7 @@ def test_projection_fixture_reaches_four_updates_without_model():
     for arm in ('G_to_L','Ghash_to_L'):
         plan,pools,encoded,truth=prepared_fixture(arm)
         assert plan.steps==4 and plan.planned_valid_tokens==384
+        assert len({encoded(r.context_sha256,e.card_id) for pool in pools for r in pool for e in (r.a,r.b)})==48
         count=0
         for batch in plan.batches:
             value=pack_batch(plan,batch,encoded,truth,pad_id=0)

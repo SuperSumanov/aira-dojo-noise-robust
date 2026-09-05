@@ -27,3 +27,11 @@
 prefix+resume消费序列等于完整训练、模型/AdamW/各rank RNG逐位一致、A/B结构产物逐字节一致。
 独立验收读取已核SHA的自生成checkpoint实际张量，不只相信driver的hash或PASS；保留失败、trace和确切commit。
 来源资格仍由外部真实生产记录决定；这一步通过不代表合格数据包或BF16 ZeRO3 GPU验证通过。
+
+## 首轮诊断后的样例修正
+
+c0dc128已启动的首轮使用共同代码尾部，经静态检查发现48端点截断后只剩1种编码。
+该轮仅保留为退化输入诊断，不作为新输入桥接的正式通过证据。修改尾部保留来源/序号/端点标识，
+在模型初始化前强制48种不同编码；原seed、参数、算法、轨迹和逐位验收标准不改。
+开发单元测试曾因外来plan被TokenPlanVerificationError拒绝、而测试期待PlanError而失败1项；
+接口已统一转换成固定reason的PlanError，23项本地测试通过。

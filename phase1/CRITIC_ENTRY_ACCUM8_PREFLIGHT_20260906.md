@@ -21,3 +21,12 @@
 
 运行前固定commit并按Git blob逐文件核导出包；原tiny模式保持默认。trace局限与上一轮一致，
 仅文件调用证据，不声称OS/网络强隔离。不是新增方法实验或四fit真实数据效果确认。
+
+## 同日补充：8-microbatch独立梯度参照
+
+上面的AdamW恢复一致本身不能证明梯度归一化正确。因此另用此前固定的独立整批gradient oracle，
+仅将其合成布局扩大为G130/L134、world2×8pairs×8accum；仍为4433参数Qwen、float32、dropout0、seed6，
+SGD只作为透明梯度/参数参照，不改生产AdamW。原五臂逐更新与winner-first整批梯度比较，
+保持结果前既有grad atol=3e-6/rtol=5e-5、param atol=1e-7不变；A/B各≤600秒。
+这是消费器数学等价性检查，非有效来源包或五臂研究实验；G/L端点在该旧oracle fixture中不复用。
+不修改任何训练、padding、checkpoint或排队作业代码；验证两个不同功能：梯度正确性与完整恢复一致。

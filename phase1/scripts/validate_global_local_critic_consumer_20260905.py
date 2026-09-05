@@ -32,10 +32,12 @@ ARMS = ('L1', 'Lbudget', 'Gbudget', 'G_to_L', 'Ghash_to_L')
 GRAD_ATOL, GRAD_RTOL, PARAM_ATOL = 3e-6, 5e-5, 1e-7
 
 
-def fixture(arm):
+def fixture(arm, layout='original'):
+    assert layout in ('original', 'accum8')
     h = lambda x: hashlib.sha256(x.encode()).hexdigest()
     context, encoded, truth, pools = h('synthetic:qwen-consumer'), {}, {}, []
-    for source, count in (('G', 11), ('L', 13)):
+    counts = (('G', 11), ('L', 13)) if layout == 'original' else (('G', 130), ('L', 134))
+    for source, count in counts:
         rows = []
         for i in range(count):
             ends = []
@@ -49,7 +51,8 @@ def fixture(arm):
             truth[row.key] = 1 if i % 2 else -1
             rows.append(row)
         pools.append(tuple(rows))
-    plan = build_plan(arm, *pools, seed=6, shape=BatchShape(2, 2, 2),
+    shape = BatchShape(2, 2, 2) if layout == 'original' else BatchShape(2, 8, 8)
+    plan = build_plan(arm, *pools, seed=6, shape=shape,
                       encoder=EncoderBinding(h('synthetic:integer'), h('synthetic:serialization'), 8),
                       protocol_sha256=h('synthetic:qwen-gradient-oracle-not-research'))
     return plan, pools, encoded, truth
@@ -69,7 +72,7 @@ def flat_grads(model):
                       for p in model.parameters()])
 
 
-def worker(rank, port, output, source_root):
+def worker(rank, port, output, source_root, layout='original'):
     os.environ.update(RANK=str(rank), LOCAL_RANK=str(rank), WORLD_SIZE='2', MASTER_ADDR='127.0.0.1',
                       MASTER_PORT=str(port), GLOO_SOCKET_IFNAME='lo', ACCELERATE_USE_CPU='true',
                       OMP_NUM_THREADS='1')
@@ -91,13 +94,13 @@ def worker(rank, port, output, source_root):
         model.train()
         reference = deepcopy(model)
         reference_optimizer = torch.optim.SGD(reference.parameters(), lr=1e-5)
-        plan, pools, encoded, truth = fixture(arm)
+        plan, pools, encoded, truth = fixture(arm, layout)
         global_keys = {r.key for r in pools[0]}
         def target(key):
             if arm == 'Ghash_to_L' and key in global_keys:
                 raise RuntimeError('forbidden_true_global_label_read')
             return truth[key]
-        accelerator = Accelerator(cpu=True, mixed_precision='no', gradient_accumulation_steps=2)
+        accelerator = Accelerator(cpu=True, mixed_precision='no', gradient_accumulation_steps=plan.shape.accumulation)
         optimizer = torch.optim.SGD(model.parameters(), lr=1e-5)
         model, optimizer = accelerator.prepare(model, optimizer)
         obj = PlannedCriticConsumer(plan=plan, pools=pools, accelerator=accelerator, model=model,
@@ -151,7 +154,7 @@ def worker(rank, port, output, source_root):
     if rank == 0:
         results = [row for group in all_records for row in group]
         for arm in ARMS:
-            plan, _, _, _ = fixture(arm)
+            plan, _, _, _ = fixture(arm, layout)
             subset = [r for r in results if r['arm'] == arm]
             assert sum(r['local_valid_tokens'] for r in subset) == plan.planned_valid_tokens
             assert sum(r['local_pair_visits'] for r in subset) == plan.planned_pair_visits
@@ -162,6 +165,7 @@ def worker(rank, port, output, source_root):
             'source_commit': SOURCE_COMMIT, 'source_hashes': SOURCE_HASHES,
             'code_commit': os.environ['CONSUMER_CODE_COMMIT'], 'runtime': obj.runtime,
             'arms': list(ARMS), 'seeds': [6], 'world_size': 2, 'dtype': 'float32',
+            'layout': layout, 'batch_shape': asdict(plan.shape),
             'parameters': sum(p.numel() for p in reference.parameters()), 'optimizer': 'SGD-gradient-oracle-only',
             'cases': len(results), 'grad_atol': GRAD_ATOL, 'grad_rtol': GRAD_RTOL, 'param_atol': PARAM_ATOL,
             'max_abs_gradient_error': max(r['max_abs_gradient_error'] for r in results),
@@ -180,6 +184,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--source-root', required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--layout', choices=('original', 'accum8'), default='original')
     args = parser.parse_args()
     if (os.environ.get('CUDA_VISIBLE_DEVICES') != '' or torch.cuda.is_initialized()
             or not os.environ.get('CONSUMER_CODE_COMMIT')):
@@ -189,7 +194,7 @@ def main():
     args.output.mkdir(mode=0o700)
     with socket.socket() as sock:
         sock.bind(('127.0.0.1', 0)); port = sock.getsockname()[1]
-    mp.spawn(worker, args=(port, str(args.output), args.source_root), nprocs=2, join=True)
+    mp.spawn(worker, args=(port, str(args.output), args.source_root, args.layout), nprocs=2, join=True)
 
 
 if __name__ == '__main__':

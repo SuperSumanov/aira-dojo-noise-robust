@@ -519,3 +519,5 @@ phase1/scripts/inspect_gpu28_cuda_toolchains_20260906.sbatch text eol=lf diff
 phase1/scripts/inspect_gpu28_cuda_toolchains_r2_20260906.py text eol=lf diff
 phase1/scripts/inspect_gpu28_cuda_toolchains_r2_20260906.sbatch text eol=lf diff
 phase1/tests/test_toolchain_inventory_20260906.py text eol=lf diff
+phase1/scripts/install_private_cuda128_20260906.py text eol=lf diff
+phase1/tests/test_private_cuda128_installer.py text eol=lf diff

@@ -1,0 +1,21 @@
+{
+  "protocol": "development-screen-operating-characteristics-v1",
+  "classification": "SYNTHETIC_GAUSSIAN_SENSITIVITY_NOT_EMPIRICAL_POWER_OR_METHOD_EFFECT",
+  "development_screen_sha256": "d599bbc74c7ca93f970bc5eb746e099f6edcba29f10d176307d6482f0bfdff59",
+  "external_data_inputs": [],
+  "task_counts": [6, 15, 28],
+  "synthetic_pairs_per_task": 100,
+  "true_macro_effects": [0.0, 0.02, 0.04],
+  "training_seeds_per_screen": 2,
+  "scenarios": {
+    "independent_training": {"paired_discordance": 0.2, "shared_task_sd": 0.01, "global_training_seed_sd": 0.0, "within_task_seed_noise_correlation": 0.0},
+    "correlated_measurement": {"paired_discordance": 0.2, "shared_task_sd": 0.01, "global_training_seed_sd": 0.005, "within_task_seed_noise_correlation": 0.5},
+    "training_instability": {"paired_discordance": 0.2, "shared_task_sd": 0.02, "global_training_seed_sd": 0.02, "within_task_seed_noise_correlation": 0.5}
+  },
+  "model": "d[t,s] = delta + task_effect[t] + training_effect[s] + shared_measurement[t] + independent_measurement[t,s]; all centered Gaussian components independent before the indicated sharing",
+  "not_assumed": ["actual task support", "actual variance", "independent pairs in real data", "Gaussian approximation is valid on the production corpus", "two training seeds estimate training variance reliably"],
+  "fixed_screen_gate": "both seed task-macro effects > 0 AND two-seed macro mean >= 0.02 AND minimum leave-one-task-out two-seed macro mean >= 0",
+  "simulations": {"replicate_seeds": [202609061, 202609062], "trials_per_cell_replication": 250000, "batch_size": 2500},
+  "verification": {"point_gate_vs_analytic_absolute_tolerance": 0.005, "replication_probability_difference_tolerance": 0.01, "maximum_mc_wilson_half_width": 0.005},
+  "decision": "Report all cells including null false-positive-screen frequency and alternatives; never change the development or confirmation protocol, enlarge seeds, select tasks, or authorize model fits from this simulation."
+}

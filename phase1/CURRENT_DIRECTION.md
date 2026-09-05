@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L43. 2026-09-05 11:45：G0 12486已release；同源候选锁定但正式包未合格
+
+实际有效control=`adbfa80180e44805a6c0231e55c000b4718ad23b`，仍位于`g0_r4_46cd8f4_sparse`。
+最终TimeLimit=01:49:00，Requeue/Restarts=0，两卡/12CPU/mem0/projgpu39不变；27项远端检查通过。
+CORRECTED_READY SHA=`0868a21175204dd0e93fe0d29afb8d0eaee66c8988717054f3663286f4274929`；
+RELEASED SHA=`c325b07a27f8db850f8098cb3b9ef03861a5beb1d68c2e09bfc2c21ba6a93441`。
+当前PENDING/Resources、0秒；排程估计9月6日11:47:17香港开始，不保证。没有新GPU效果或成功checkpoint。
+记录见`results/critic_component_g0_r4_20260905/README.md`；过期守护已改为30分钟只读跟踪此job。
+
+学长当前b8d0951下Cards/G/L/split四个LFS对象同在5baccb1发布更新，这是可用的统一候选起点，
+不是实际同producer或完整experiment隔离的证明。当前split源码仅physical-run train/test，无独立dev；
+尚缺真实run/experiment映射、开发资格、实际生成/评分出处。仅核元数据/脱敏源码，未读数据payload。
+最小交接见`SENIOR_MINIMUM_SOURCE_HANDOFF_20260905.md`；不得擅自补来源或揭盲来重建。
+
 ## 0L42. 2026-09-05：用户指定优先真实G0与同源隔离包
 
 本轮用户明确要求推进这两项。仅准备一次R4真实双卡G0，累计GPU成本上限仍为14400 GPU-seconds；

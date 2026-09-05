@@ -1,0 +1,28 @@
+{
+  "budget_gpu_seconds_with_margin": 14382,
+  "control_commit": "adbfa80180e44805a6c0231e55c000b4718ad23b",
+  "control_hashes": {
+    "phase1/g0_launcher_fake_accelerate_smoke.py": "72b61c54598dfbd59ad273914c41d05190917bc1131873d0564f1f20cfbaa01a",
+    "phase1/g0_output_isolation_smoke.py": "2b66b78d50f762261085e269e8188c682d36b4bde846b13f9839667e01e4d7b3",
+    "phase1/manifests/qwen3-1.7b-base-ea980cb0a6c2ae4b936e82123acc929f1cec04c1.sha256": "ceb388235719297e3647478ad2d96486a41d1f84e4c3fd8301c4772d6840e148",
+    "phase1/scripts/audit_critic_component_g0_shared_scheduler_20260821.sh": "370d6ef5c41902991894009240d281ebcd956f7a965f4c93552216bea77c326b",
+    "phase1/scripts/critic_component_g0_pro6000_20260821.sbatch": "ae3cb6da0fbd5ae4190a4c75eb40054d71a4d18e312c08ee409affb7d9d4bb22",
+    "phase1/scripts/critic_component_g0_shared_pro6000_20260821.sbatch": "feff1243ddc96f6b5ff6787c929b3dc3c498e6a554293a65e7ab37a036d061c7",
+    "phase1/scripts/critic_component_g0_worker_20260821.sh": "e2d454dd0f677e60e7f08fa01fd31fdc09f740010f1f827690a353350e2fa60f",
+    "phase1/scripts/prepare_submit_g0_r4_20260905.py": "95fbd21345c3ea7cfaefa80f20b9ee6c621a390bf0f8437e0ab80f7b0373cbf6",
+    "phase1/tests/test_g0_launcher_fake_accelerate_smoke.py": "4bc1583b5af7a693a66b2ba552124cbaaecd075312b4d07257cd43a7ae23fa99",
+    "phase1/tests/test_g0_output_isolation_smoke.py": "0d43d9a05ce21f5da13f810968cd7072f9148f01f6494cad3d98fbff64c4e3f5",
+    "phase1/tests/test_g0_r4_budget.py": "b0e33d06a1f84ea4f73377b6a589c944cb77833ae26353ad68dd203e5ae00730",
+    "phase1/tests/test_verify_critic_component_g0.py": "bfddc81c8097187396d449b475c6d936a9ae33e76dbbd926c121b544a9373755",
+    "phase1/verify_critic_component_g0.py": "c84a0deee65d13db46f941eabb4304879c1b0340b0a01092f4c1abccbaf954c6"
+  },
+  "exit_grace_seconds": 300,
+  "job_id": 12486,
+  "new_jobs_in_correction": 0,
+  "preallocation_runtime_seconds": 0,
+  "scheduler_margin_seconds": 60,
+  "source_unchanged": true,
+  "status": "CORRECTED_READY_HELD",
+  "walltime_seconds": 6540,
+  "worker_and_training_config_unchanged": true
+}

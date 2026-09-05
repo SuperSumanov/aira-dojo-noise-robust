@@ -24,6 +24,10 @@ d0f60ad0d3b2287469ac3c8ac9767330c928c980及cache patch，这是安装recipe，�
 证据和最小交接见`results/historical_pool_lineage_20260906/README.md`。下一步解决可访问实际快照/外部评分记录，不能再说“没有runner清单”，
 也不能将本来源恢复回执替代正式Cards/G/L的新构建实录。
 
+发布前Git源码hash门拒绝了一次：Windows core.autocrlf=true使git-archive导出CRLF，而Git blob为LF。
+两次固定包全部Python逐文件归一化字节/AST一致，实跑SHA与固定包一致；原回执未改，双SHA已记录。
+**后续导出必须显式`git -c core.autocrlf=false archive`，执行前逐文件核导出字节与Git，而非只核tar包SHA。**
+
 ## 0L60. 2026-09-05 23:28：真实来源676/676恢复；完整账本与旧hold闭包落地，非训练准入
 
 按用户要求解决生产来源阻塞，直接检查固定旧历史归档，不再只做合成验收。

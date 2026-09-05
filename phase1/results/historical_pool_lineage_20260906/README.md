@@ -66,6 +66,11 @@ code `e7244fb247cd68bea7b827071691e7f42897f608`；lineage SHA
 这些辅助脚本失败不与正式A/B成功混称。独立核验是存储回执连接、另一个图算法与A/B字节核对；
 不是独立重解析全部tar，也不是OS沙箱证明。文件访问trace只作辅助证据。
 
+发布前严格Git-blob对实跑源码SHA检查曾拒绝，未推送。核查发现Windows git-archive输出CRLF，Git blob为LF；
+已对两个实际固定源码包的全部Python文件验证：包SHA等于结果前固定值，主脚本SHA等于实跑回执，
+逐文件换行归一化字节完全相同且AST相同。原始回执未改写；完整双SHA见`source_export_integrity.json`。
+后续导出显式`git -c core.autocrlf=false archive`，并在执行前比对导出文件与Git字节，不再只核包SHA。
+
 第一次local扩展53a6b21在43归档遇attempt_schema拒绝，仅A轮、无最终lineage。遗漏来自只读了创建/启动函数，
 没有先覆盖_finish_task写入的result字段。补读实际生产源码确认该字段是worker退出元数据；
 e7244fb仅接受此键，不访问/投影其内部对象。未知其它字段继续拒绝，旧失败保留，不按成功任务挑来源。

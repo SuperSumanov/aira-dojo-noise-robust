@@ -1,0 +1,88 @@
+{
+  "adapter_sha256": "43b38c0e0c377cd7e78e4c91c50b5ff1a4e3790b3162dcd20f6ee132fb2188ae",
+  "classification": "CPU_REFERENCE_FORWARD_PARITY_NOT_CRITIC_EFFECT",
+  "cuda_initialized": false,
+  "forward_parity_cases": 18,
+  "gpu_used": false,
+  "max_abs_margin_difference": 1.4901161193847656e-08,
+  "model_fits": 0,
+  "protected_inputs_read": false,
+  "real_checkpoint_loaded": false,
+  "reference_commit": "5f3bc362db922c8edee2ef134656dfdb9a2b74fb",
+  "reference_source_sha256": {
+    "src/mle_critic/src/train/bradley_terry.py": "d3cfd12602dc399a456810d4f706124df7117834ebba124813233f77ba043977",
+    "src/mle_critic/src/train/dataset/pairs.py": "3e1969499405199a187c12106d9f4d4a5542b4a1ecf094e0bd9f7c71514b4643"
+  },
+  "runtime": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.12.1"
+  },
+  "seeds": [
+    6,
+    7,
+    8
+  ],
+  "token_parity_cases": [
+    {
+      "endpoints": 5,
+      "max_len": 1,
+      "tokenizer": "byte",
+      "tokens_equal": true
+    },
+    {
+      "endpoints": 5,
+      "max_len": 3,
+      "tokenizer": "byte",
+      "tokens_equal": true
+    },
+    {
+      "endpoints": 5,
+      "max_len": 16,
+      "tokenizer": "byte",
+      "tokens_equal": true
+    },
+    {
+      "endpoints": 5,
+      "max_len": 64,
+      "tokenizer": "byte",
+      "tokens_equal": true
+    },
+    {
+      "endpoints": 5,
+      "max_len": 16384,
+      "tokenizer": "byte",
+      "tokens_equal": true
+    },
+    {
+      "endpoints": 5,
+      "max_len": 1,
+      "tokenizer": "pinned_qwen",
+      "tokens_equal": true
+    },
+    {
+      "endpoints": 5,
+      "max_len": 3,
+      "tokenizer": "pinned_qwen",
+      "tokens_equal": true
+    },
+    {
+      "endpoints": 5,
+      "max_len": 16,
+      "tokenizer": "pinned_qwen",
+      "tokens_equal": true
+    },
+    {
+      "endpoints": 5,
+      "max_len": 64,
+      "tokenizer": "pinned_qwen",
+      "tokens_equal": true
+    },
+    {
+      "endpoints": 5,
+      "max_len": 16384,
+      "tokenizer": "pinned_qwen",
+      "tokens_equal": true
+    }
+  ],
+  "validation_script_sha256": "046596db9ba5116e837b7f84514f336331d384bfbe7e494cff4a0b6f4740c2d0"
+}

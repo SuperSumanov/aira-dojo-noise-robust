@@ -1,0 +1,21 @@
+{
+  "a_b_summary_and_case_bytes_equal": true,
+  "archive_sha256": "148135c4cba3c2d86c28b2fe01e0e9dfb251a8a86fadd5629265ea0ad4b5b24a",
+  "artifact_hashes_verified": true,
+  "code_commit": "4b3f5bc3f493d25c63d237fd79b3e459c1f2f8f9",
+  "first_attempt": "v1 stopped before tests: the immutable G0 runtime has no pytest; no dependencies installed",
+  "pytest_runtime": {
+    "pytest": "7.4.3",
+    "python": "3.11.15",
+    "torch": "2.11.0+cu128"
+  },
+  "remote_root": "/research/d7/spc/yzyang4/g-reuse-endpoint-inference/formal-4b3f5bc-v2",
+  "tokenizer_check_timing": "postflight only; no claim of pre/post tokenizer stability measurement",
+  "tokenizer_postflight_sha256": {
+    "config.json": "1bb33a92c3548fbc68b889b490e810440435253598835bd71dff0396060c12db",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "tokenizer_config.json": "3c04ed3ca964ea2f6b2b5faf0dc4d31aec1cb1e8b4bcf63f402d295046b422b5",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  }
+}

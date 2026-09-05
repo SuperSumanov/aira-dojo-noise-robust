@@ -3,6 +3,23 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L44. 2026-09-05 12:26：补齐无标签endpoint推理适配器，G0仍排队
+
+结果前code=`4b3f5bc3f493d25c63d237fd79b3e459c1f2f8f9`新增内存中的无标签编码→模型前向→完整score matrix接口，
+接入既有margin物化与独立verifier。未改旧trainer、G0 source/control/runtime或任何冻结效果协议。
+Linux A/B各59 tests通过；精确训练源码CardEncoder的10组tokenizer/context组合逐token一致；随机tiny Qwen3的
+18组CPU前向与原pair_collate/原reward forward最大margin差`1.4901161193847656e-08`，低于事前容差。
+A/B summary/cases逐字节一致，四项stderr均0；参数未变，无model fit/GPU/API/protected read。
+
+这只补推理代码，不认证真实checkpoint、数据权限或OS访问隔离，不是实际critic效果/完整production caller。
+仅支持task条件、不支持pair-budget条件；不能把endpoint-only cache用于依赖budget的编码。
+首轮因G0精简环境无pytest在测试前停止；保留失败后改用现有exp跑测试，真实forward对照仍用G0原环境。
+证据见`results/g_reuse_endpoint_inference_4b3f5bc_20260905/README.md`。
+
+12:25核验job12486仍PENDING/Resources、0秒、预计9月6日11:47:17香港开始（非保证）；
+effective control=`adbfa80180e44805a6c0231e55c000b4718ad23b`和CORRECTED_READY hash不变。
+学长分支fetch仍`b8d095180415957aa1bab31fa53ead1bba261c03`；同源正式包仍需生产端三项事实，不能自行补造。
+
 ## 0L43. 2026-09-05 11:45：G0 12486已release；同源候选锁定但正式包未合格
 
 实际有效control=`adbfa80180e44805a6c0231e55c000b4718ad23b`，仍位于`g0_r4_46cd8f4_sparse`。

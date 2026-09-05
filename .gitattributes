@@ -514,3 +514,5 @@ phase1/scripts/verify_zero3_final_readout_12535_20260906.py text eol=lf diff
 phase1/tests/test_zero3_final_readout_12535.py text eol=lf diff
 phase1/results/zero3_final_readout_preparation_20260906/** -text diff
 phase1/results/zero3_final_readout_preparation_20260906/README.md text eol=lf diff
+phase1/scripts/inspect_gpu28_cuda_toolchains_20260906.py text eol=lf diff
+phase1/scripts/inspect_gpu28_cuda_toolchains_20260906.sbatch text eol=lf diff

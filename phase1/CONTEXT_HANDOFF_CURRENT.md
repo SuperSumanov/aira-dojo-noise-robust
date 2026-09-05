@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-06
 
-**Dynamic status timestamp:** 2026-09-06 07:46 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-09-06 07:55 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -11,7 +11,7 @@
 
 ## 2026-09-06 当前入口，覆盖下文所有历史动态状态
 
-先fetch并读CURRENT_DIRECTION顶部0L73及以后。用户约02:29入睡，要求本会话持续工作；
+先fetch并读CURRENT_DIRECTION顶部0L74及以后。用户约02:29入睡，要求本会话持续工作；
 约10:20–10:29才到八小时，不能提前声称已工作八小时。不要新增heartbeat或任务。
 
 - 本夜摄取已真正完成：14事务（0903八档、0904六档）+最后空队列检查，623→673 eligible。
@@ -24,11 +24,17 @@
   本地43756早前SSHreset，原远端wrapper存活并完成；不要再等待该本地session或重复启动。
   独立postcheck已通过：50manifest成员/52只读文件/24trace，安全0命中；安全13文件已导入
   results/wl_frozen_coverage_673_20260906。补算、exclusive postcheck/export/import都已完成，不得重跑。
-- 新12572已通过134项Linux CPU测试、35源文件及独立held核验并释放，source11ff14a7f6fe9a4a2ab9b830a9829f07b0249b2c。
+- 最新12573 Socket作业已放行，sourceb84e8baea4de65a16038b4136cee094d29716964；137项Linux CPU/38源文件/独立held核验通过。
+  submission-20260906-3090-socket；2RTX3090/18min/driver900s；同4433参数5轨迹，NCCL_NET=Socket/IB_DISABLE=1。
+  新作业上限2880GPU秒，原已结束12570+12571+12572实际153，合计上限3033≤原3120。
+  12572最终FAILED 73秒/146GPU秒，两个rank在RDMA枚举后SIGSEGV，0checkpoint/0完成轨迹；不得再等原12572或重启。
+  独立failure audit/export/import均已完成；安全原始记录results/zero3_private_failure_12572，真实失败不可抹去。
+  Socket是工作假设下的transport workaround，不是驱动修复，也不是模型收益；等待真实终点再独立检查payload/trace。
+- 旧12572提交时通过134项Linux CPU测试、35源文件，source11ff14a7f6fe9a4a2ab9b830a9829f07b0249b2c。
   2RTX3090/18min/driver900s，同4433参数5轨迹；私有CUDA12.8修复成功，prefix1728files/7links独立核验。
   安装与修复均终止，不能重复执行；原默认gcc9编译失败回执保留。原始证据见results/private_cuda128_toolchain_20260906。
-  新submission=.../critic-zero3-engineering/submission-20260906-3090-private，07:44:57实际开始，当前RUNNING，首full轨迹已启动。
-  GPU工具链预检通过，等待实际GPU终点及payload/trace独立复验。
+  旧submission=.../critic-zero3-engineering/submission-20260906-3090-private，07:44:57实际开始、07:46:10失败；不再运行。
+  GPU工具链预检通过，不等于实际GPU恢复通过。
   新job上限2880GPU秒；此前12570+12571实际7、组合保守3062≤原独立3120。不自动重试。
 - 原12535仍PENDING/Resources（07:38实查），26min双PRO6000 tiny ZeRO3工程验证，不能称1.7B/16K生产验收。
   不更改/重复提交。独立双3090尝试12570已失败：gpu28缺固定CUDA12.8 nvcc，1秒、2GPU秒，模型未启动。

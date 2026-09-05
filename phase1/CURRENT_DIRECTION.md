@@ -15,7 +15,11 @@
 其余模型/数学/seed/五轨迹/容差相同；这是单机通信workaround，不是RDMA驱动修复，不产生算法收益。
 1job×2RTX3090×18min/driver900s，上限2880GPU秒；所有前次均已终止、实际累计153，组合3033≤原3120。
 见ZERO3_SOCKET_RECOVERY_PREFLIGHT_20260906.md；仍先Linux CPU→held独立复核→release，无自动重试。
-原12535不动；673语料/WL工作已完成，四fit来源准入仍空。当前尚未提交这个Socket作业。
+原12535不动；673语料/WL工作已完成，四fit来源准入仍空。
+07:55更新：137项Linux CPU检查、38文件、独立held资源复验通过，source b84e8baea4de65a16038b4136cee094d29716964。
+Socket作业12573已释放，等待真实运行/终点；不是自动重跑12572。source/control继续exact-commit绑定。
+12572独立failure receipt=4e2b7fe6caac2e756f9762be2b2a20535d5126d83a4454139824f45cf501b963，
+23份原始安全文件逐字节导入results/zero3_private_failure_12572。该audit/export/import均已结束，不得重跑exclusive路径。
 
 ## 0L73. 2026-09-06：私有CUDA12.8修复完成，准备独立双3090短验收
 

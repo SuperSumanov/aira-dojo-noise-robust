@@ -526,3 +526,5 @@ phase1/results/private_cuda128_toolchain_20260906/README.md text eol=lf diff
 phase1/results/private_cuda128_toolchain_20260906/cuda/recovery_host_compiler_version.txt -whitespace
 phase1/scripts/zero3_3090_private_20260906.sbatch text eol=lf diff
 phase1/scripts/zero3_3090_socket_20260906.sbatch text eol=lf diff
+phase1/results/zero3_private_failure_12572/** -text diff
+phase1/results/zero3_private_failure_12572/README.md text eol=lf diff

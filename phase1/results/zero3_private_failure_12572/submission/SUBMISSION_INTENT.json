@@ -1,0 +1,6 @@
+{
+  "automatic_retries": 0,
+  "commit": "11ff14a7f6fe9a4a2ab9b830a9829f07b0249b2c",
+  "max_new_jobs": 1,
+  "separate_gpu_seconds_upper_bound": 2880
+}

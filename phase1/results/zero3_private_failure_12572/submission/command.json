@@ -1,0 +1,11 @@
+[
+  "sbatch",
+  "--parsable",
+  "--hold",
+  "--no-requeue",
+  "--chdir=/research/d7/spc/yzyang4/worktrees/zero3-3090-private-11ff14a7f6fe",
+  "--output=/research/d7/spc/yzyang4/critic-zero3-engineering/submission-20260906-3090-private/slurm-%j.out",
+  "--error=/research/d7/spc/yzyang4/critic-zero3-engineering/submission-20260906-3090-private/slurm-%j.out",
+  "--export=PATH=/usr/local/bin:/usr/bin:/bin,ZERO3_CONTROL_ROOT=/research/d7/spc/yzyang4/worktrees/zero3-3090-private-11ff14a7f6fe,ZERO3_CODE_COMMIT=11ff14a7f6fe9a4a2ab9b830a9829f07b0249b2c,ZERO3_GPU_APPROVAL_RECEIPT_SHA=7993e65394ca684388ae464bd5b34762cbdcefde61412395aaab38674c557ebe",
+  "/research/d7/spc/yzyang4/worktrees/zero3-3090-private-11ff14a7f6fe/phase1/scripts/zero3_3090_private_20260906.sbatch"
+]

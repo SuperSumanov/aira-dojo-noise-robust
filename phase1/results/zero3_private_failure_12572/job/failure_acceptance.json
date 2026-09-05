@@ -1,0 +1,99 @@
+{
+  "aggregate_prior_gpu_seconds_including_this_job": 153,
+  "allocated_gpu_seconds": 146,
+  "audit_source_sha256": "803242e43a01425ef8f928cad08f10d3d1405b60ca2b15d29323eb0b24718287",
+  "automatic_retry": false,
+  "checkpoint_manifests": 0,
+  "completed_trajectories": 0,
+  "credential_scan_hits": 0,
+  "elapsed_seconds": 73,
+  "faulted_process_tails": {
+    "876825": [
+      "876825 openat(AT_FDCWD, \"/usr/lib/x86_64-linux-gnu/libibverbs/libmlx4-rdmav34.so\", O_RDONLY|O_CLOEXEC <unfinished ...>",
+      "876825 <... openat resumed>)            = 73",
+      "876825 openat(AT_FDCWD, \"/usr/lib/x86_64-linux-gnu/libibverbs/libvmw_pvrdma-rdmav34.so\", O_RDONLY|O_CLOEXEC) = 73",
+      "876825 openat(AT_FDCWD, \"/dev/infiniband/uverbs0\", O_RDWR|O_CLOEXEC) = 73",
+      "876825 openat(AT_FDCWD, \"/dev/infiniband/uverbs1\", O_RDWR|O_CLOEXEC) = 73",
+      "876825 readlink(\"/sys\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 readlink(\"/sys/class\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 readlink(\"/sys/class/infiniband\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 readlink(\"/sys/class/infiniband/irdma1\", \"../../devices/pci0000:5d/0000:5d\"..., 1023) = 94",
+      "876825 readlink(\"/sys/devices\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 readlink(\"/sys/devices/pci0000:5d\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0/0000:60:00.0\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0/0000:60:00.0/infiniband\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0/0000:60:00.0/infiniband/irdma1\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0/0000:60:00.0/infiniband/irdma1/device\", \"../../../0000:60:00.0\", 1023) = 21",
+      "876825 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0/0000:60:00.0\", 0x7ffe85d6a4b0, 1023) = -1 EINVAL (Invalid argument)",
+      "876825 --- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_MAPERR, si_addr=0x7} ---"
+    ],
+    "876826": [
+      "876826 openat(AT_FDCWD, \"/usr/lib/x86_64-linux-gnu/libibverbs/libvmw_pvrdma-rdmav34.so\", O_RDONLY|O_CLOEXEC <unfinished ...>",
+      "876826 <... openat resumed>)            = 57",
+      "876826 openat(AT_FDCWD, \"/dev/infiniband/uverbs0\", O_RDWR|O_CLOEXEC <unfinished ...>",
+      "876826 <... openat resumed>)            = 57",
+      "876826 openat(AT_FDCWD, \"/dev/infiniband/uverbs1\", O_RDWR|O_CLOEXEC) = 57",
+      "876826 readlink(\"/sys\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 readlink(\"/sys/class\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 readlink(\"/sys/class/infiniband\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 readlink(\"/sys/class/infiniband/irdma1\", \"../../devices/pci0000:5d/0000:5d\"..., 1023) = 94",
+      "876826 readlink(\"/sys/devices\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 readlink(\"/sys/devices/pci0000:5d\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0/0000:60:00.0\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0/0000:60:00.0/infiniband\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0/0000:60:00.0/infiniband/irdma1\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0/0000:60:00.0/infiniband/irdma1/device\", \"../../../0000:60:00.0\", 1023) = 21",
+      "876826 readlink(\"/sys/devices/pci0000:5d/0000:5d:02.0/0000:5e:00.0/0000:5f:03.0/0000:60:00.0\", 0x7ffeba3aeef0, 1023) = -1 EINVAL (Invalid argument)",
+      "876826 --- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_MAPERR, si_addr=0x7} ---"
+    ]
+  },
+  "job_id": "12572",
+  "model_benefit_measured": false,
+  "original_file_hashes": {
+    "build_tools.json": {
+      "bytes": 1300,
+      "sha256": "2f6dbf8ac1926569e95b0bbdd5cf83c5f4cb0525651da7231fd70a833d9eabd7"
+    },
+    "driver.log": {
+      "bytes": 1557,
+      "sha256": "b4a671d60224fad6ad3cfacdb42a0927f3b3737ab7c52baa30b962201d833dfa"
+    },
+    "exit_status.txt": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "file_trace.log": {
+      "bytes": 46036239,
+      "sha256": "39c71ce4e6b3584b782d20efa65d7d68dd5ce780b9f580b976b19e479ff90fce"
+    },
+    "resource_usage.txt": {
+      "bytes": 1212,
+      "sha256": "9bad2a3a84cd2797758257db89f9e8ba92d876bd47d29390687fbc01705fac55"
+    },
+    "telemetry.txt": {
+      "bytes": 1299,
+      "sha256": "4592017e93d93d420a9f1a5417a88fe71529a6eb28a2d2802acc667cacb88919"
+    },
+    "worker.log": {
+      "bytes": 1265,
+      "sha256": "e8a94d7c1dc7db7fab049794286dea16d25a1f7ffe7a7c0dd104bbd56001cd85"
+    }
+  },
+  "protected_path_markers_found": 0,
+  "python_execs": [
+    "876796 execve(\"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/bin/python\", [\"/research/d7/spc/yzyang4/venvs/c\"..., \"-B\", \"-m\", \"phase1.scripts.validate_zero3_30\"..., \"--output\", \"/research/d7/spc/yzyang4/critic-\"..., \"--source-root\", \"/research/d7/spc/yzyang4/worktre\"...], 0x7ffdd9c77f78 /* 82 vars */) = 0",
+    "876824 execve(\"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/bin/python\", [\"/research/d7/spc/yzyang4/venvs/c\"..., \"-B\", \"-c\", \"from multiprocessing.resource_tr\"...], 0x5bfbbc9a8d70 /* 82 vars */) = 0",
+    "876825 execve(\"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/bin/python\", [\"/research/d7/spc/yzyang4/venvs/c\"..., \"-B\", \"-c\", \"from multiprocessing.spawn impor\"..., \"--multiprocessing-fork\"], 0x5bfbbc9a8d70 /* 82 vars */) = 0",
+    "876826 execve(\"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/bin/python\", [\"/research/d7/spc/yzyang4/venvs/c\"..., \"-B\", \"-c\", \"from multiprocessing.spawn impor\"..., \"--multiprocessing-fork\"], 0x5bfbbc9a8d70 /* 82 vars */ <unfinished ...>"
+  ],
+  "source_commit": "11ff14a7f6fe9a4a2ab9b830a9829f07b0249b2c",
+  "status": "TERMINAL_GPU_INITIALIZATION_FAILURE_RECORDED",
+  "toolchain_precheck_passed": true,
+  "working_hypothesis": "RDMA enumeration initialization fault; filesystem tail alone is not a native stack or causal proof"
+}

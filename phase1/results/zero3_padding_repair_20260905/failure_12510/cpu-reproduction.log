@@ -1,0 +1,21 @@
+[2026-09-05 21:33:12,898] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/tmp/zero3-padding-check-e48Jh3/code-r2/phase1/scripts/check_zero3_initial_padding_20260905.py", line 93, in <module>
+    main()
+  File "/tmp/zero3-padding-check-e48Jh3/code-r2/phase1/scripts/check_zero3_initial_padding_20260905.py", line 49, in main
+    original(owner(rank), raw)
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/deepspeed/utils/nvtx.py", line 33, in wrapped_fn
+    ret_val = func(*args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/deepspeed/runtime/zero/partition_parameters.py", line 1687, in _partition_param
+    print_rank_0(f"Param id {param.ds_id} status is {param.ds_status}", force=False)
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/deepspeed/runtime/zero/partition_parameters.py", line 113, in print_rank_0
+    rank = dist.get_rank()
+           ^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/deepspeed/comm/comm.py", line 724, in get_rank
+    assert cdb is not None and cdb.is_initialized(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: DeepSpeed backend not set, please initialize it using init_process_group()
+Warning: The cache directory for DeepSpeed Triton autotune, /uac/y24/yzyang4/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.

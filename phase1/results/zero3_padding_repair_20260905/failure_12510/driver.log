@@ -1,0 +1,44 @@
+W0905 19:31:54.105000 96935 /research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/torch/multiprocessing/spawn.py:165] Terminating process 96963 via signal SIGTERM
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6/phase1/scripts/validate_zero3_session_gpu_20260905.py", line 144, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6/phase1/scripts/validate_zero3_session_gpu_20260905.py", line 119, in main
+    mp.spawn(worker,args=(port,str(out),end,resume,args.source_root),nprocs=2,join=True)
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/multiprocessing/spawn.py", line 340, in spawn
+    return start_processes(fn, args, nprocs, join, daemon, start_method="spawn")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/multiprocessing/spawn.py", line 296, in start_processes
+    while not context.join():
+              ^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/multiprocessing/spawn.py", line 211, in join
+    raise ProcessRaisedException(msg, error_index, failed_process.pid)
+torch.multiprocessing.spawn.ProcessRaisedException: 
+
+-- Process 1 terminated with the following error:
+Traceback (most recent call last):
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/multiprocessing/spawn.py", line 87, in _wrap
+    fn(i, *args)
+  File "/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6/phase1/scripts/validate_zero3_session_gpu_20260905.py", line 76, in worker
+    session=DeepSpeedCriticSession(c,training_contract_sha256=os.environ['ZERO3_GPU_APPROVAL_RECEIPT_SHA'])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6/phase1/global_local_zero3_session.py", line 207, in __init__
+    current_state(c)
+  File "/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6/phase1/global_local_zero3_session.py", line 141, in current_state
+    for key in ('model_shards','master_shards','adamw'):_finite_tensors(values[key])
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6/phase1/global_local_zero3_session.py", line 113, in _finite_tensors
+    for item in value.values():_finite_tensors(item)
+                               ^^^^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6/phase1/global_local_zero3_session.py", line 113, in _finite_tensors
+    for item in value.values():_finite_tensors(item)
+                               ^^^^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6/phase1/global_local_zero3_session.py", line 111, in _finite_tensors
+    require(bool(torch.isfinite(chunk).all()), 'zero3_nonfinite_checkpoint_state')
+  File "/research/d7/spc/yzyang4/worktrees/zero3-engineering-d22a17f3f6e6/phase1/global_local_zero3_session.py", line 30, in require
+    if not ok: raise PlanError(reason)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+phase1.global_local_execution_plan.PlanError: zero3_nonfinite_checkpoint_state
+

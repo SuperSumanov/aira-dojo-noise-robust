@@ -12,7 +12,8 @@ import re
 from phase1.g_reuse_endpoint_inference import encode_endpoints
 from phase1.global_local_batch_adapter import encoding_digest
 from phase1.global_local_execution_plan import EncoderBinding,Endpoint,Pair,PlanError,digest_records
-from phase1.global_local_token_budget_plan import build_plan
+from phase1.global_local_token_budget_plan import Plan,build_plan
+from phase1.verify_global_local_token_budget_plan import TokenPlanVerificationError,verify_plan
 
 
 def require(ok,reason):
@@ -35,9 +36,22 @@ class PreparedTrainingInputs:
         return build_plan(arm,*self.pools,seed=seed,shape=shape,encoder=self.encoder,
                           protocol_sha256=self.protocol_sha256)
 
-    def true_sign_provider(self,winner_by_pair):
-        """Bind authorized TRAIN labels after planning, without winner-first inputs."""
-        rows={row.key:row for pool in self.pools for row in pool}
+    def _required_label_rows(self,plan):
+        require(type(plan) is Plan and plan.encoder==self.encoder
+            and plan.protocol_sha256==self.protocol_sha256,'training_label_plan_binding')
+        try:verify_plan(plan,*self.pools)
+        except TokenPlanVerificationError:
+            raise PlanError('training_label_plan_invalid') from None
+        return {r.key:r for batch in plan.batches for r in batch.rows
+                if not (plan.arm=='Ghash_to_L' and r.source=='G')}
+
+    def required_label_keys(self,plan):
+        """Caller can project exactly these train labels, before reading values."""
+        return tuple(sorted(self._required_label_rows(plan)))
+
+    def true_sign_provider(self,winner_by_pair,*,plan):
+        """Bind only the planned arm's true TRAIN labels; Ghash never admits G."""
+        rows=self._required_label_rows(plan)
         require(type(winner_by_pair) is dict and set(winner_by_pair)==set(rows),'training_label_support_mismatch')
         signs={}
         for key,row in rows.items():
@@ -56,6 +70,7 @@ def prepare_training_inputs(cards,global_edges,local_edges,tokenizer,*,encoder,p
             and re.fullmatch('[0-9a-f]{64}',protocol_sha256),'training_encoder_protocol_binding')
     require(type(cards) is list and bool(cards),'training_projection_required')
     require(all(type(c) is dict and set(c)=={'endpoint_id','task_name','code'} for c in cards),'training_card_projection_schema')
+    require(all(type(c['endpoint_id']) is str and bool(c['endpoint_id']) for c in cards),'training_card_identity')
     by_id={c['endpoint_id']:c for c in cards}
     require(len(by_id)==len(cards),'duplicate_training_card')
     pools=[];used=set();seen=set()

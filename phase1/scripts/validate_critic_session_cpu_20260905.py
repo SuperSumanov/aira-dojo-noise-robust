@@ -26,7 +26,7 @@ from phase1.scripts.validate_global_local_critic_consumer_20260905 import fixtur
 from phase1.scripts.validate_g_reuse_endpoint_inference_cpu_20260905 import source_definitions,SOURCE_COMMIT
 
 
-def worker(rank,port,arm,output,end_step,resume,source_root):
+def worker(rank,port,arm,output,end_step,resume,source_root,inputs_factory=None):
     os.environ.update(RANK=str(rank),LOCAL_RANK=str(rank),WORLD_SIZE='2',MASTER_ADDR='127.0.0.1',
                       MASTER_PORT=str(port),GLOO_SOCKET_IFNAME='lo',ACCELERATE_USE_CPU='true',OMP_NUM_THREADS='1')
     assert os.environ['CUDA_VISIBLE_DEVICES']==''
@@ -42,18 +42,23 @@ def worker(rank,port,arm,output,end_step,resume,source_root):
     model.head=nn.Linear(16,1,dtype=torch.float32)
     model.train()
     assert sum(p.numel() for p in model.parameters())==4433
-    plan,pools,encoded,truth=fixture(arm)
+    if inputs_factory is None:
+        plan,pools,encoded,truth=fixture(arm)
+        encoding_provider=lambda ctx,card:encoded[(ctx,card)]
+        truth_provider=lambda key:truth[key]
+    else:
+        plan,pools,encoding_provider,truth_provider=inputs_factory(arm,ref)
     global_keys={r.key for r in pools[0]}
     def target(key):
         if arm=='Ghash_to_L' and key in global_keys:
             raise RuntimeError('true_global_target_read_forbidden')
-        return truth[key]
+        return truth_provider(key)
     accelerator=Accelerator(cpu=True,mixed_precision='no',gradient_accumulation_steps=plan.shape.accumulation,
         kwargs_handlers=[InitProcessGroupKwargs(timeout=timedelta(seconds=60))])
     optimizer=torch.optim.AdamW(model.parameters(),lr=1e-5,weight_decay=0.01)
     model,optimizer=accelerator.prepare(model,optimizer)
     c=PlannedCriticConsumer(plan=plan,pools=pools,accelerator=accelerator,model=model,optimizer=optimizer,
-        encoding_provider=lambda ctx,card:encoded[(ctx,card)],true_sign=target,pad_id=0)
+        encoding_provider=encoding_provider,true_sign=target,pad_id=0)
     contract=hashlib.sha256(('synthetic-critic-session:'+os.environ['CRITIC_SESSION_COMMIT']).encode()).hexdigest()
     session=CriticSession(c,training_contract_sha256=contract)
     initial_seed=(600 if resume is None else 9600)+rank

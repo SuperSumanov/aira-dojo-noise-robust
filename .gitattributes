@@ -516,3 +516,6 @@ phase1/results/zero3_final_readout_preparation_20260906/** -text diff
 phase1/results/zero3_final_readout_preparation_20260906/README.md text eol=lf diff
 phase1/scripts/inspect_gpu28_cuda_toolchains_20260906.py text eol=lf diff
 phase1/scripts/inspect_gpu28_cuda_toolchains_20260906.sbatch text eol=lf diff
+phase1/scripts/inspect_gpu28_cuda_toolchains_r2_20260906.py text eol=lf diff
+phase1/scripts/inspect_gpu28_cuda_toolchains_r2_20260906.sbatch text eol=lf diff
+phase1/tests/test_toolchain_inventory_20260906.py text eol=lf diff

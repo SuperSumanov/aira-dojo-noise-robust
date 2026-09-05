@@ -6,17 +6,14 @@ from pathlib import Path
 import re
 import socket
 import subprocess
+import time
 
 OUT = Path('/research/d7/spc/yzyang4/toolchain-metadata-gpu28-20260906')
 ROOTS = (Path('/usr/local'), Path('/opt'), Path('/opt1'))
 
 
-def main():
-    assert os.environ.get('SLURM_JOB_ID', '').isdigit()
-    assert os.environ.get('CUDA_VISIBLE_DEVICES') == '' and socket.gethostname().split('.')[0] == 'gpu28'
-    commit = os.environ.get('TOOLCHAIN_SOURCE_COMMIT', '')
-    assert re.fullmatch('[0-9a-f]{40}', commit)
-    assert OUT.is_dir() and OUT.resolve() == OUT and not (OUT/'observed.json').exists()
+def discover_toolchains():
+    deadline = time.monotonic()+40
     candidates = set()
     # Fixed shallow CUDA-prefix inventory. Never recurse home/project/data trees.
     for parent in ROOTS:
@@ -32,7 +29,9 @@ def main():
                  ('bin/nvcc', 'include/cuda.h', 'include/cuda_runtime.h', 'lib64/libcudart.so', 'lib64/libcurand.so')}
         release, rc, digest = None, None, None
         if nvcc.is_file():
-            command = subprocess.run([str(nvcc), '--version'], capture_output=True, timeout=10)
+            remaining = deadline-time.monotonic()
+            assert remaining > 0 and nvcc.stat().st_size < 128*1024*1024
+            command = subprocess.run([str(nvcc), '--version'], capture_output=True, timeout=min(10,remaining))
             rc = command.returncode
             # No arbitrary compiler stdout/stderr is emitted.
             matches = re.findall(rb'\brelease ([0-9]+\.[0-9]+)[,\s]', command.stdout)
@@ -41,6 +40,17 @@ def main():
             digest = hashlib.sha256(nvcc.read_bytes()).hexdigest()
         rows.append({'prefix': str(p), 'resolved_prefix': str(p.resolve()), 'files_present': files,
                      'nvcc_release': release, 'nvcc_returncode': rc, 'nvcc_sha256': digest})
+    assert time.monotonic() <= deadline
+    return rows
+
+
+def main():
+    assert os.environ.get('SLURM_JOB_ID', '').isdigit()
+    assert os.environ.get('CUDA_VISIBLE_DEVICES') == '' and socket.gethostname().split('.')[0] == 'gpu28'
+    commit = os.environ.get('TOOLCHAIN_SOURCE_COMMIT', '')
+    assert re.fullmatch('[0-9a-f]{40}', commit)
+    assert OUT.is_dir() and OUT.resolve() == OUT and not (OUT/'observed.json').exists()
+    rows = discover_toolchains()
     result = {'classification': 'CPU_ONLY_INSTALLED_CUDA_METADATA_NOT_GPU_QUALIFICATION',
         'job_id': os.environ['SLURM_JOB_ID'], 'host': 'gpu28', 'source_commit': commit,
         'source_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),

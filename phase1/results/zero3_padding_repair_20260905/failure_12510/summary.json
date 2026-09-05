@@ -1,0 +1,59 @@
+{
+  "actual_gpu_seconds": 298,
+  "budget_cap": 4320,
+  "budget_margin": 182,
+  "checked_at_utc": "2026-09-05T13:37:26.420926+00:00",
+  "checkpoint_manifests": 0,
+  "files": [
+    {
+      "bytes": 721,
+      "credential_shape_hits": 0,
+      "name": "build_tools.json",
+      "sha256": "b0ed759b32314c3f11d484b07ca5f3f9267d69860e69450c836695806c9e68c1"
+    },
+    {
+      "bytes": 3679,
+      "credential_shape_hits": 0,
+      "name": "driver.log",
+      "sha256": "a20738370cc87abaef18cf6d52c134251d477471593b0f2d5d32dc5b858811f8"
+    },
+    {
+      "bytes": 2,
+      "credential_shape_hits": 0,
+      "name": "exit_status.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "bytes": 116555593,
+      "credential_shape_hits": 0,
+      "name": "file_trace.log",
+      "sha256": "9c9c0b1c1f93e93fc0dedcb5e354dbe67d1b5d22fd60b94048b3630bed173ca1"
+    },
+    {
+      "bytes": 1223,
+      "credential_shape_hits": 0,
+      "name": "resource_usage.txt",
+      "sha256": "1fba24c0cdb4c5d741b25b600ff5c940be6f7a6d02eb47f18151176ca6a8ab6b"
+    },
+    {
+      "bytes": 3445,
+      "credential_shape_hits": 0,
+      "name": "telemetry.txt",
+      "sha256": "d0239965436b7611b298954916e37ac51c0e1c49aa1d3d06281d70a876f911e2"
+    },
+    {
+      "bytes": 167,
+      "credential_shape_hits": 0,
+      "name": "worker.log",
+      "sha256": "d5676e31d35c92119ca0c906cce7ebfd5515cae0624d34e7ff57f40bb093d1f2"
+    }
+  ],
+  "finished_trajectories": 0,
+  "job_id": 12510,
+  "original_control_commit": "d22a17f3f6e676432f59f46dcfd8e4418548267d",
+  "payload_reads": 0,
+  "retry_inclusive_cumulative_bound": 4138,
+  "same_scope_retry_wall_seconds": 1560,
+  "state_observer_failure_before_first_update": true,
+  "status": "FAILED"
+}

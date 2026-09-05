@@ -1,0 +1,14 @@
+{
+  "all_files_six_hour_age_at_utc": "2026-09-05T19:44:48.903091+00:00",
+  "archive_contents_parsed": false,
+  "archives": 6,
+  "checked_at_utc": "2026-09-05T13:46:57.972051+00:00",
+  "compressed_bytes": 179805006,
+  "intake_eligible_now": false,
+  "private_inventory_sha256": "d28687893ec0cc5f3003e559e01e4b7ea3726dd51471b7b1ac93dd063400f723",
+  "private_manifest_sha256": "a81456945ce0ba1ac5a1321e5bc0e91bc38025a76497f7c19d5bc1b4b04a16dd",
+  "safe_receipt_sha256": "282ae8972a9153e15cdffe1c3f0a8e3deb05b6d84769af4243548fd71d89a4c1",
+  "source_archives": 331,
+  "status": "INDEPENDENT_OPAQUE_0904_COPY_VERIFIED",
+  "training_source_qualified": false
+}

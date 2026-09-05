@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L58. 2026-09-05 21:47：修复重试12535已放行；新0904六归档已接收、尚待成熟
+
+GPU固定code=`09911b15ca065442386120707dccf036e262dadd`。真实DS分片方法的CPU A/B复现相同，
+101单测通过；独立验收器A/B各17测试通过。新12535已held资源核验并release，两PRO6000、26分钟、
+no-requeue；原失败298加重试和退出余量累计上界4138<=4320 GPU-seconds，没有追加预算。
+30源码无漂移、1GiB真实空间分配通过。当前PENDING/Resources/0GPU秒，排程暂估9月6日19:38:15香港，非保证。
+这仍不是GPU恢复验收完成，不能把旧G0真实1.7B执行成功与新consumer的恢复资格混为一谈。
+
+Drive刚出现0904六归档。固定下载code=`88e5f9fec01a74828b27b8d16df5b5be5f992138`，
+只接收压缩文件、hash/fsync/原子提升，独立复核共179805006字节，原始归档325→331，无旧文件覆盖。
+最早六小时年龄为香港9月6日03:44:48；尚未执行该批摄取，不解包/不读保护值。
+LATEST仍76a2d7d426b1da88f30d28449506fea78208f9ca5cd012ba6316efe346462285，
+649 physical/623 eligible、3919 structural pairs、51 tasks、closure=false。旧摄取守护自然结束，没有新守护。
+
+学长fetch仍b8d0951，无新outcome；补查batch构建脚本明确run-group目录→Cards→draft/improve/value链，
+但不能据默认脚本推断发布实际执行版本、whole-experiment映射或开发资格。这三个生产事实仍不能代填。
+详见`PRODUCTION_SOURCE_FACTS_20260905.md`与`results/zero3_padding_repair_20260905/README.md`。
+正式15-fit/pilot未启动，科学主线/冻结门不变，无新accuracy/scaling/方法收益结论。
+
 ## 0L57. 2026-09-05：12510初始化失败；原始分片padding复现，有界修复准备中
 
 12510实际两卡149秒、FAILED/1:0，消耗298 GPU-seconds；全状态观察器在初始化后报非有限值，

@@ -1,0 +1,18 @@
+{
+  "budget": {
+    "cumulative_gpu_seconds_upper_bound": 4138,
+    "original_cap_gpu_seconds": 4320,
+    "previous_allocated_gpu_seconds": 298,
+    "previous_elapsed_seconds": 149,
+    "previous_exit": "1:0",
+    "previous_job_id": "12510",
+    "previous_state": "FAILED",
+    "remaining_after_worst_case": 182,
+    "retry_gpu_seconds_upper_bound": 3840,
+    "retry_walltime_seconds": 1560
+  },
+  "commit": "09911b15ca065442386120707dccf036e262dadd",
+  "controller_sha256": "c8dde2e52052a8c414a327cd31ecc96bade673fe7ba030a1aa93178db01cbb1c",
+  "cpu_AB_equal": true,
+  "ready_sha256": "1aa4c42bba2be988b16ea5d3677e0c3b7a78042c27b6e19123dda76e845e49c9"
+}

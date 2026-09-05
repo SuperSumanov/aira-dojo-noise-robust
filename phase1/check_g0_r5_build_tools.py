@@ -8,7 +8,8 @@ import shutil
 import subprocess
 
 
-def main():
+def main(expected_host='projgpu39'):
+    assert expected_host in ('projgpu39','gpu28')
     root=Path(os.environ['G0_VENV'])
     assert os.environ['G0_BUDGET_REVISION']=='20260905-r5'
     assert os.environ['SLURM_JOB_ID'].isdigit()
@@ -30,7 +31,7 @@ def main():
             'compiler_version':output(['g++','--version']).splitlines()[0],
             'nvcc_version':version,'nvcc_sha256':hashlib.sha256((cuda/'bin/nvcc').read_bytes()).hexdigest(),
             'cuda_home':str(cuda),'model_load':False,'gpu_context_created':False}
-    assert result['hostname'].split('.')[0]=='projgpu39'
+    assert result['hostname'].split('.')[0]==expected_host
     with (Path(os.environ['G0_RUN_ROOT'])/'build_tools.json').open('x') as fh:
         json.dump(result,fh,sort_keys=True,indent=2)
         fh.write('\n')

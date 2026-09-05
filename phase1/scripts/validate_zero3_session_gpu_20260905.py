@@ -30,7 +30,12 @@ def allocation_gate(environ):
         if environ.get(k)!=v:raise ValueError('fixed_engineering_environment_required:'+k)
 
 
-def worker(rank,port,output,end,resume,source_root):
+def device_gate(name,expected):
+    if expected not in ('PRO 6000','RTX 3090') or expected not in name:
+        raise ValueError('unapproved_gpu_profile')
+
+
+def worker(rank,port,output,end,resume,source_root,expected_gpu):
     allocation_gate(os.environ)
     os.environ.update(RANK=str(rank),LOCAL_RANK=str(rank),WORLD_SIZE='2',MASTER_ADDR='127.0.0.1',MASTER_PORT=str(port))
     import random
@@ -50,7 +55,8 @@ def worker(rank,port,output,end,resume,source_root):
     from phase1.scripts.validate_g_reuse_endpoint_inference_cpu_20260905 import source_definitions
     allocation_gate(os.environ)  # imports must not erase/change the allocation
     torch.set_num_threads(1);torch.set_num_interop_threads(1);torch.cuda.set_device(rank)
-    assert torch.cuda.device_count()==2 and '6000' in torch.cuda.get_device_name(rank)
+    assert torch.cuda.device_count()==2
+    device_gate(torch.cuda.get_device_name(rank),expected_gpu)
     torch.use_deterministic_algorithms(True);torch.backends.cuda.matmul.allow_tf32=False
     torch.backends.cudnn.allow_tf32=False;torch.manual_seed(6)
     ref=source_definitions(source_root);cls=ref['BradleyTerryRewardModel']
@@ -96,6 +102,7 @@ def worker(rank,port,output,end,resume,source_root):
     gathered=[None,None]
     dist.all_gather_object(gathered,{'rank':rank,'start':start,'end':c.completed_steps,'state':current_state(c),
         'counters':counters(model),'records':records,'step_times':timings,'initial_padding':padding_receipt,
+        'gpu_name':torch.cuda.get_device_name(rank),'expected_gpu':expected_gpu,
         'peak_allocated_bytes':torch.cuda.max_memory_allocated(rank),'peak_reserved_bytes':torch.cuda.max_memory_reserved(rank)})
     if rank==0:
         with (Path(output)/'trajectory.json').open('x') as f:
@@ -104,8 +111,9 @@ def worker(rank,port,output,end,resume,source_root):
     a.wait_for_everyone();dist.destroy_process_group()
 
 
-def main():
+def main(expected_gpu='PRO 6000'):
     allocation_gate(os.environ)  # refuse before importing CUDA-capable packages
+    device_gate(expected_gpu,expected_gpu)
     parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--source-root',required=True);args=parser.parse_args()
     root=args.output
@@ -119,7 +127,7 @@ def main():
         out=root/name;out.mkdir(mode=0o700)
         resume=None if cut is None else str(root/f'prefix{cut}'/f'checkpoint-{cut}')
         with socket.socket() as sock:sock.bind(('127.0.0.1',0));port=sock.getsockname()[1]
-        mp.spawn(worker,args=(port,str(out),end,resume,args.source_root),nprocs=2,join=True)
+        mp.spawn(worker,args=(port,str(out),end,resume,args.source_root,expected_gpu),nprocs=2,join=True)
         result=json.loads((out/'trajectory.json').read_text())
         if name=='full':
             full=result
@@ -137,7 +145,8 @@ def main():
     summary={'classification':'TINY_BF16_ZERO3_CPUADAM_GPU_ENGINEERING_NOT_EFFECT','seed':6,
              'code_commit':os.environ['ZERO3_CODE_COMMIT'],'slurm_job_id':os.environ['SLURM_JOB_ID'],
              'approval_receipt_sha256':os.environ['ZERO3_GPU_APPROVAL_RECEIPT_SHA'],'trajectories':len(cases),
-             'corpus_reads':0,'parameters':4433,'world':2,'resume_comparisons':4,'bitwise_state_equal':True}
+             'corpus_reads':0,'parameters':4433,'world':2,'resume_comparisons':4,'bitwise_state_equal':True,
+             'expected_gpu':expected_gpu,'gpu_names':[r['gpu_name'] for r in full['ranks']]}
     with (root/'summary.json').open('x') as f:json.dump(summary,f,sort_keys=True,indent=2)
     with (root/'runs.csv').open('x',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=list(cases[0]));writer.writeheader();writer.writerows(cases)

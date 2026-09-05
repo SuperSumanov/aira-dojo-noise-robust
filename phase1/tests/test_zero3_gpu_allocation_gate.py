@@ -11,6 +11,20 @@ def env():
 def test_bound_call_configuration():allocation_gate(env())
 
 
+@pytest.mark.parametrize('actual,expected,ok',[
+    ('NVIDIA RTX PRO 6000 Blackwell Workstation Edition','PRO 6000',True),
+    ('NVIDIA GeForce RTX 3090','RTX 3090',True),
+    ('NVIDIA RTX 6000 Ada','PRO 6000',False),
+    ('NVIDIA GeForce RTX 3090','PRO 6000',False),
+    ('NVIDIA RTX PRO 6000 Blackwell Workstation Edition','RTX 3090',False),
+    ('NVIDIA GeForce RTX 3090','3090',False)])
+def test_device_profile_is_explicit(actual,expected,ok):
+    from phase1.scripts.validate_zero3_session_gpu_20260905 import device_gate
+    if ok:device_gate(actual,expected)
+    else:
+        with pytest.raises(ValueError):device_gate(actual,expected)
+
+
 @pytest.mark.parametrize('key',list(env()))
 def test_missing_field_cannot_start(key):
     e=env();del e[key]

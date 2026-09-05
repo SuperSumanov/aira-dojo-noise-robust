@@ -93,7 +93,8 @@ def same(a,b):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--job',required=True);parser.add_argument('--submission',required=True)
     args=parser.parse_args();require(re.fullmatch('[0-9]+',args.job),'job_id')
-    require(re.fullmatch('submission-20260905-r[0-9]+',args.submission),'submission_id')
+    portability=args.submission=='submission-20260906-3090'
+    require(portability or re.fullmatch('submission-20260905-r[0-9]+',args.submission),'submission_id')
     require(os.environ.get('CUDA_VISIBLE_DEVICES')=='','CPU_only')
     root=BASE/('job-'+args.job);control=BASE/args.submission;trajectories=root/'trajectories'
     require((root/'exit_status.txt').read_text().strip()=='0','worker_not_successful')
@@ -118,6 +119,11 @@ def main():
                 and 2*int(elapsed)<=budget['retry_gpu_seconds_upper_bound']==3840
                 and 298+2*int(elapsed)<=budget['original_cap_gpu_seconds']==4320,'cumulative_actual_budget')
     summary=read(trajectories/'summary.json')
+    if portability:
+        require(ready['gpu_seconds_upper_bound']==3120 and int(elapsed)<=1560,'portability_budget')
+        require(summary['expected_gpu']=='RTX 3090' and len(summary['gpu_names'])==2
+                and all('RTX 3090' in n for n in summary['gpu_names']),'portability_devices')
+        require(read(root/'build_tools.json')['hostname'].split('.')[0]=='gpu28','portability_host')
     require(summary['code_commit']==ready['commit'] and summary['slurm_job_id']==args.job
             and summary['approval_receipt_sha256']==ready['approval_sha256'],'driver_binding')
     require(summary['trajectories']==5 and summary['resume_comparisons']==4 and summary['parameters']==4433,'driver_matrix')
@@ -130,7 +136,7 @@ def main():
         d=data[name];require(d['binding']==binding and d['seed']==6 and d['arm']=='G_to_L','trajectory_binding')
         require([r['rank'] for r in d['ranks']]==[0,1],'ranks')
         for r in d['ranks']:
-            if retry is not None:
+            if retry is not None or portability:
                 padding=r['initial_padding']
                 require(padding['partition_source_sha256']=='8b3c65d20fada0fc85c3685615b0da65247f4e8739313ca1de01b1a3102f2500'
                         and padding['new_partitions']>0 and padding['padding_elements_initialized']==r['rank']

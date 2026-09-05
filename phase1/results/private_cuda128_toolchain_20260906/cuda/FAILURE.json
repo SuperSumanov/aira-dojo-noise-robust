@@ -1,0 +1,5 @@
+{
+  "automatic_retry": false,
+  "reason": "compiler_validation_failed",
+  "status": "CUDA128_INSTALL_FAILED_CLOSED"
+}

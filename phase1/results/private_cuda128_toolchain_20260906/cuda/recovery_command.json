@@ -1,0 +1,1 @@
+["/research/d7/spc/yzyang4/private-cuda128-toolchain-20260906/prefix/bin/nvcc", "-ccbin", "/usr/bin/g++", "-arch=sm_86", "-std=c++17", "-c", "/research/d7/spc/yzyang4/private-cuda128-toolchain-20260906/validation/headers_and_kernel.cu", "-o", "/research/d7/spc/yzyang4/private-cuda128-toolchain-20260906/validation/headers_and_kernel_r2.o"]

@@ -1,0 +1,116 @@
+{
+  "actual_gpu_seconds": "REQUIRES_TERMINAL_SACCT",
+  "allocated_gpus": 1,
+  "archive_or_checkpoint_reads": 0,
+  "classification": "INSTALLED_TOOLCHAIN_METADATA_ONE_GPU_ALLOCATION_NO_MODEL_RUN",
+  "gpu_context_or_framework_imports": 0,
+  "host": "gpu28",
+  "installation_or_environment_changes": false,
+  "inventory_source_sha256": "313ccc1f02fb58c556d118076d692537c46f63cd9564fb6e7ce479d1dcbb140b",
+  "job_id": "12571",
+  "model_runs": 0,
+  "scope_limitation": "Three shallow system prefixes, not every possible toolkit location.",
+  "source_commit": "5f9eece10537b55daf70cd2ec1388034f52fa534",
+  "source_sha256": "d88fcf3987671dac970becb06c27695de3fc571ab03f2ad59aa3642efeb2c1a9",
+  "toolchains": [
+    {
+      "files_present": {
+        "bin/nvcc": false,
+        "include/cuda.h": false,
+        "include/cuda_runtime.h": false,
+        "lib64/libcudart.so": false,
+        "lib64/libcurand.so": false
+      },
+      "nvcc_release": null,
+      "nvcc_returncode": null,
+      "nvcc_sha256": null,
+      "prefix": "/opt1/cuda",
+      "resolved_prefix": "/opt1/cuda"
+    },
+    {
+      "files_present": {
+        "bin/nvcc": true,
+        "include/cuda.h": true,
+        "include/cuda_runtime.h": true,
+        "lib64/libcudart.so": true,
+        "lib64/libcurand.so": true
+      },
+      "nvcc_release": "13.3",
+      "nvcc_returncode": 0,
+      "nvcc_sha256": "0d3511aa5fe86ae6565618aeebbdd2a7e4fe8affa1980787071199e1cdae07dc",
+      "prefix": "/usr/local/cuda",
+      "resolved_prefix": "/usr/local/cuda-13.3"
+    },
+    {
+      "files_present": {
+        "bin/nvcc": true,
+        "include/cuda.h": true,
+        "include/cuda_runtime.h": true,
+        "lib64/libcudart.so": true,
+        "lib64/libcurand.so": true
+      },
+      "nvcc_release": "10.2",
+      "nvcc_returncode": 0,
+      "nvcc_sha256": "086ed0c878659cb4776ccc1ab6c0695d5532120994c037620f5cb7faa1db3011",
+      "prefix": "/usr/local/cuda-10.2",
+      "resolved_prefix": "/opt1/cuda/cuda-10.2"
+    },
+    {
+      "files_present": {
+        "bin/nvcc": true,
+        "include/cuda.h": false,
+        "include/cuda_runtime.h": false,
+        "lib64/libcudart.so": true,
+        "lib64/libcurand.so": true
+      },
+      "nvcc_release": "11.6",
+      "nvcc_returncode": 0,
+      "nvcc_sha256": "cfe47e09b7edacbb498a381911f073c07e23c6a9a988b681a6375ed2223d4b0d",
+      "prefix": "/usr/local/cuda-11.6",
+      "resolved_prefix": "/opt1/cuda/cuda-11.6"
+    },
+    {
+      "files_present": {
+        "bin/nvcc": true,
+        "include/cuda.h": true,
+        "include/cuda_runtime.h": true,
+        "lib64/libcudart.so": true,
+        "lib64/libcurand.so": true
+      },
+      "nvcc_release": "11.8",
+      "nvcc_returncode": 0,
+      "nvcc_sha256": "e85eeb9af396e7aba7d92fd35539a94721ede321f5d2de27a6d1857507dfd1dc",
+      "prefix": "/usr/local/cuda-11.8",
+      "resolved_prefix": "/opt1/cuda/cuda-11.8"
+    },
+    {
+      "files_present": {
+        "bin/nvcc": true,
+        "include/cuda.h": true,
+        "include/cuda_runtime.h": true,
+        "lib64/libcudart.so": true,
+        "lib64/libcurand.so": true
+      },
+      "nvcc_release": "12.1",
+      "nvcc_returncode": 0,
+      "nvcc_sha256": "4a874b07e9f1a9298b0e7cbaa2d1db649d9399d5ddc836dcfd3c1deb955aea22",
+      "prefix": "/usr/local/cuda-12.1",
+      "resolved_prefix": "/opt1/cuda/cuda-12.1"
+    },
+    {
+      "files_present": {
+        "bin/nvcc": true,
+        "include/cuda.h": true,
+        "include/cuda_runtime.h": true,
+        "lib64/libcudart.so": true,
+        "lib64/libcurand.so": true
+      },
+      "nvcc_release": "13.3",
+      "nvcc_returncode": 0,
+      "nvcc_sha256": "0d3511aa5fe86ae6565618aeebbdd2a7e4fe8affa1980787071199e1cdae07dc",
+      "prefix": "/usr/local/cuda-13.3",
+      "resolved_prefix": "/usr/local/cuda-13.3"
+    }
+  ],
+  "wall_cap_seconds": 60
+}

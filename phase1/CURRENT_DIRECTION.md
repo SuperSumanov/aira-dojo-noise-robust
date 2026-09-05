@@ -17,7 +17,10 @@ independent=6732f4045503fb658cce9a0fbf7c449985ecee41f01886d3e4f2a704463dd2fe。
 
 准备单独1job×2RTX3090×18min，同4433参数/seed6/五恢复轨迹，新prefix+显式CXX，driver900s。
 仅工程：预计上限2880GPU秒，组合保守3062≤原独立3120；无自动重试，held前后核验，原12535不动。
-此刻尚未提交此新job，不能称真实GPU检查通过；见ZERO3_PRIVATE_CUDA128_PREFLIGHT_20260906.md。
+后续实际134项Linux CPU测试/35源文件/独立held核验通过，source11ff14a7f6fe9a4a2ab9b830a9829f07b0249b2c。
+新job12572已释放，07:44:57在gpu28开始，当前RUNNING；实际节点工具链预检通过，full轨迹启动。
+不能提前称真实GPU恢复检查通过；见ZERO3_PRIVATE_CUDA128_PREFLIGHT_20260906.md。
+私有CUDA原始安全37文件及manifest已逐字节导入results/private_cuda128_toolchain_20260906。
 原12535仍PENDING/Resources，学长head b8d095180415957aa1bab31fa53ead1bba261c03本次fetch未变。
 语料673、WL覆盖673均已完成，四fit训练准入仍空，无新增方法/scaling收益，真实来源门不放宽。
 

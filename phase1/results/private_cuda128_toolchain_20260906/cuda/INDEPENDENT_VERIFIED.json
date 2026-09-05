@@ -1,0 +1,16 @@
+{
+  "archives_verified": 4,
+  "compiled_object_sha256": "647012ffb8a714995f0e9aaa7cc86976a178abb6c50016bf6ac3e1a5225b631b",
+  "files_verified": 1728,
+  "gpu_context_created": false,
+  "install_complete_sha256": "8701d0fc275c5c0f7a124d05e622bbe0a1e7f5313b7260911000326808b5730a",
+  "installed_manifest_sha256": "ce7f9f18218799db0776d08a2c3e2342e51273bcaccae61c1ebab8e340e959f1",
+  "links_verified": 7,
+  "model_fit": false,
+  "nvcc_sha256": "3aadf006f53dd288a372b2c4fabd46df1caa25aacd2e60964d7a26af25e91517",
+  "production_training_admitted": false,
+  "recovered_original_failure": true,
+  "source_commit": "7c0c06e1a1bdb355d35ab052da16e3454fde9198",
+  "status": "INDEPENDENT_ARCHIVE_PREFIX_MATCH_NOT_GPU_QUALIFICATION",
+  "verifier_sha256": "ce0a304b7f37210b58a25be5ccc1314ad7287ea1d6f62d4fdc1e8e569e73c23b"
+}

@@ -1,0 +1,15 @@
+{
+  "actual_toolchain_root_allocated_bytes_at_export": 1413439488,
+  "disk_cap_bytes": 1610612736,
+  "explicit_host_compiler_recovery_succeeded": true,
+  "exporter_sha256": "9b4fcabe99acc10be8561874e991cbacd7b2481333b8e5db0867eaa9cf7c0df3",
+  "gpu_models_trained": 0,
+  "initial_launcher_failures_before_install": [
+    "legacy_env_nounset",
+    "git_archive_top_directory_assertion"
+  ],
+  "initial_real_install_failed": true,
+  "protected_corpus_reads": false,
+  "raw_archive_or_compiler_binaries_exported": false,
+  "status": "SAFE_FIXED_RECEIPT_EXPORT"
+}

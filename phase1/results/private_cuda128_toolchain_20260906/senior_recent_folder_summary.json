@@ -1,0 +1,33 @@
+{
+  "archive_payloads_downloaded": 0,
+  "archive_payloads_opened": 0,
+  "checked_at_utc": "2026-09-05T23:04:54.672704+00:00",
+  "folders": [
+    {
+      "date": "0903",
+      "extra_local_names": 0,
+      "local_archive_names": 9,
+      "missing_local_names": 0,
+      "nonarchive_files": 0,
+      "remote_archives": 9,
+      "same_name_changed_drive_ids": null,
+      "subfolders": 0
+    },
+    {
+      "date": "0904",
+      "extra_local_names": 0,
+      "local_archive_names": 6,
+      "missing_local_names": 0,
+      "nonarchive_files": 0,
+      "remote_archives": 6,
+      "same_name_changed_drive_ids": 0,
+      "subfolders": 0
+    }
+  ],
+  "latest_date": "0904",
+  "limitation": "Names only plus prior Drive IDs for 0904; not content hashes, same-ID edits, or all-history coverage.",
+  "private_inventory_sha256": "a0f37831c7450cdd13388495861c03888e9a27dd787fafd19f9bb662d79774b1",
+  "requests": 3,
+  "root_children": 44,
+  "status": "RECENT_FOLDER_NAME_METADATA_CHECK_COMPLETE"
+}

@@ -1,0 +1,11 @@
+{
+  "allocated_bytes": 1610612736,
+  "error": null,
+  "installation_started": false,
+  "not_a_training_checkpoint_reservation": true,
+  "own_empty_check_file_removed": true,
+  "packages_downloaded": 0,
+  "requested_bytes": 1610612736,
+  "reservation_released_after_check": true,
+  "status": "CUDA_TOOLCHAIN_SPACE_CHECK_PASSED"
+}

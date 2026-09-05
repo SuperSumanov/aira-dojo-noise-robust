@@ -1,0 +1,10 @@
+{
+  "disk_cap_bytes": 1610612736,
+  "gpu_jobs": 0,
+  "installer_sha256": "91a1589d6a207182dd970d173c4f31ba98e59b5f2933d15b56865a7bb6ad4afd",
+  "manifest_sha256": "daa0d766b36feaa933592162c27be5fb63b68fc547ca6886c160a35d96ee8891",
+  "model_runs": 0,
+  "modify_system_or_venv": false,
+  "source_commit": "7c0c06e1a1bdb355d35ab052da16e3454fde9198",
+  "wall_cap_seconds": 900
+}

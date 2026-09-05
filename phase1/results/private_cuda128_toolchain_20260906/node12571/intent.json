@@ -1,0 +1,21 @@
+{
+  "automatic_retries": 0,
+  "combined_cap": 3120,
+  "commit": "5f9eece10537b55daf70cd2ec1388034f52fa534",
+  "cpus": 6,
+  "existing_12535_unchanged": true,
+  "files": {
+    "phase1/TOOLCHAIN_METADATA_GPU28_R2_PREFLIGHT_20260906.md": "05e36298c90df107792c16e6631c113af9eaaac9d37f4d4483bc2dea4a410245",
+    "phase1/scripts/inspect_gpu28_cuda_toolchains_20260906.py": "313ccc1f02fb58c556d118076d692537c46f63cd9564fb6e7ce479d1dcbb140b",
+    "phase1/scripts/inspect_gpu28_cuda_toolchains_r2_20260906.py": "d88fcf3987671dac970becb06c27695de3fc571ab03f2ad59aa3642efeb2c1a9",
+    "phase1/scripts/inspect_gpu28_cuda_toolchains_r2_20260906.sbatch": "0dfd0f50777b9c129bdadf5a97b1bce92dcca9e08ad77968134bbdd89f57379a",
+    "phase1/tests/test_toolchain_inventory_20260906.py": "a0c8f6912dd0271ffb0cec3985b68f4e398226fc348ed90b5ae067acd1fb5421"
+  },
+  "gpus": 1,
+  "model_runs": 0,
+  "possible_later_trial_upper_bound": 2880,
+  "prior_12570_gpu_seconds": 2,
+  "source_archive_sha256": "13b732f559d13b661398b9877ed5ed6eeaa877d921da03af029df5bc775a294b",
+  "upper_bound_gpu_seconds": 180,
+  "walltime_seconds": 60
+}

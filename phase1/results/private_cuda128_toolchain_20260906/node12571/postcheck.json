@@ -1,0 +1,14 @@
+{
+  "allocated_gpu_seconds": 5,
+  "cumulative_3090_engineering_gpu_seconds": 7,
+  "elapsed_seconds": 5,
+  "existing_12535_unchanged_by_this_action": true,
+  "full_cuda_12_8_prefixes": 0,
+  "job_id": "12571",
+  "new_model_runs": 0,
+  "observed_sha256": "24c02b0d987131afa3f80389d7c78c387b64528287e14fa902706139f319b6b3",
+  "original_3120_cap_unchanged": true,
+  "source_commit": "5f9eece10537b55daf70cd2ec1388034f52fa534",
+  "source_files_unchanged": true,
+  "status": "TOOLCHAIN_METADATA_INDEPENDENT_POSTCHECK_PASSED"
+}

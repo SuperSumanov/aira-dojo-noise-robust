@@ -1,0 +1,14 @@
+{
+  "archives_reused": true,
+  "compile_seconds_cap": 60,
+  "gpu_jobs": 0,
+  "host_compiler": "/usr/bin/g++",
+  "host_compiler_sha256": "1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769",
+  "host_frontend_sha256": "840b332fb62ec6f694ac77d91fe69ef7f80b0d69512ed89374af0ee7a506255d",
+  "model_runs": 0,
+  "new_downloads": 0,
+  "original_failure_sha256": "c2f5c35968dc6ca3d7c35f0a3341a5a83f15f9e23f238ac708eb8faba0ce8a8c",
+  "recovery_commit": "2aaa9bdaac55878170c4f9660e3592540ffcc32f",
+  "recovery_script_sha256": "6cf5dedad708068c8a6b299d465de3f7f8dbe6e0065d8abd62dfc692736fb224",
+  "source_commit": "7c0c06e1a1bdb355d35ab052da16e3454fde9198"
+}

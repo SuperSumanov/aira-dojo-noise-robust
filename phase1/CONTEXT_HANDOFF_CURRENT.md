@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-06
 
-**Dynamic status timestamp:** 2026-09-06 06:59 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-09-06 07:46 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -11,7 +11,7 @@
 
 ## 2026-09-06 当前入口，覆盖下文所有历史动态状态
 
-先fetch并读CURRENT_DIRECTION顶部0L72及以后。用户约02:29入睡，要求本会话持续工作；
+先fetch并读CURRENT_DIRECTION顶部0L73及以后。用户约02:29入睡，要求本会话持续工作；
 约10:20–10:29才到八小时，不能提前声称已工作八小时。不要新增heartbeat或任务。
 
 - 本夜摄取已真正完成：14事务（0903八档、0904六档）+最后空队列检查，623→673 eligible。
@@ -24,17 +24,23 @@
   本地43756早前SSHreset，原远端wrapper存活并完成；不要再等待该本地session或重复启动。
   独立postcheck已通过：50manifest成员/52只读文件/24trace，安全0命中；安全13文件已导入
   results/wl_frozen_coverage_673_20260906。补算、exclusive postcheck/export/import都已完成，不得重跑。
-- 原12535仍PENDING/Resources（06:52实查），26min双PRO6000 tiny ZeRO3工程验证，不能称1.7B/16K生产验收。
+- 新12572已通过134项Linux CPU测试、35源文件及独立held核验并释放，source11ff14a7f6fe9a4a2ab9b830a9829f07b0249b2c。
+  2RTX3090/18min/driver900s，同4433参数5轨迹；私有CUDA12.8修复成功，prefix1728files/7links独立核验。
+  安装与修复均终止，不能重复执行；原默认gcc9编译失败回执保留。原始证据见results/private_cuda128_toolchain_20260906。
+  新submission=.../critic-zero3-engineering/submission-20260906-3090-private，07:44:57实际开始，当前RUNNING，首full轨迹已启动。
+  GPU工具链预检通过，等待实际GPU终点及payload/trace独立复验。
+  新job上限2880GPU秒；此前12570+12571实际7、组合保守3062≤原独立3120。不自动重试。
+- 原12535仍PENDING/Resources（07:38实查），26min双PRO6000 tiny ZeRO3工程验证，不能称1.7B/16K生产验收。
   不更改/重复提交。独立双3090尝试12570已失败：gpu28缺固定CUDA12.8 nvcc，1秒、2GPU秒，模型未启动。
-  失败见results/zero3_3090_portability_12570；无自动重试或环境修补，不能称硬件本身不支持。
+  失败见results/zero3_3090_portability_12570；其原授权无自动重试。后来显式私有环境修复见上，不改写原失败。
 - 正式训练ADMITTED_RELEASES仍空。唯一神经主候选full G-reuse→L；四fit开发screen尚未开始。
   学长24份真实snapshot/评分/experiment事实、合格开发范围和可用GPU窗口仍未到位。
   不用新增确认语料当训练集，不用合成/工程测试冒充critic或scaling正收益。
-- 06:52学长head仍b8d095180415957aa1bab31fa53ead1bba261c03，Drive无0905。
+- 07:38学长head仍b8d095180415957aa1bab31fa53ead1bba261c03；07:04目录名检查0903/0904无新增，未下载/打开新payload。
   新metadata helper用站点env_setup现行代理；旧hardcoded代理helper已失效，勿重用。
   不读取protected值/候选身份；旧receipt/transition PID号被其它uid复用，不得signal。
 - 研究盘官方到期2026-09-29。quota RPC不可用；共享磁盘free不是个人quota。
-  无新清理/大预留。原4GiB不足完整1.7B AdamW resume checkpoint。
+  私有CUDA1.5GiB分配检查通过并释放，实际工具链约1.4GB，不表示完整训练quota解决。原4GiB不足完整1.7B AdamW resume checkpoint。
 
 ## 2026-09-05 历史入口，已由上节覆盖
 

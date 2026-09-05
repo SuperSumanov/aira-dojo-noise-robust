@@ -1,0 +1,7 @@
+{
+  "elapsed_seconds": 87.73902740608901,
+  "log_sha256": "e4223d7cb0d754b0955756123f25075d1d1cf0d22f473b878fe21b49fda26c99",
+  "returncode": 1,
+  "source_commit": "7c0c06e1a1bdb355d35ab052da16e3454fde9198",
+  "stage": "install"
+}

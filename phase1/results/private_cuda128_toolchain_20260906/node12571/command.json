@@ -1,0 +1,11 @@
+[
+  "sbatch",
+  "--parsable",
+  "--hold",
+  "--no-requeue",
+  "--chdir=/research/d7/spc/yzyang4/toolchain-metadata-gpu28-20260906-r2/code",
+  "--output=/research/d7/spc/yzyang4/toolchain-metadata-gpu28-20260906-r2/slurm-%j.out",
+  "--error=/research/d7/spc/yzyang4/toolchain-metadata-gpu28-20260906-r2/slurm-%j.out",
+  "--export=PATH=/usr/local/bin:/usr/bin:/bin,TOOLCHAIN_SOURCE_COMMIT=5f9eece10537b55daf70cd2ec1388034f52fa534",
+  "/research/d7/spc/yzyang4/toolchain-metadata-gpu28-20260906-r2/code/phase1/scripts/inspect_gpu28_cuda_toolchains_r2_20260906.sbatch"
+]

@@ -1,0 +1,7 @@
+{
+  "elapsed_seconds": 8.445244458504021,
+  "log_sha256": "04fae3f623048e6f858be0a5d8db9c1b94039b5a780b644ba7c16e73474c8565",
+  "returncode": 0,
+  "source_commit": "2aaa9bdaac55878170c4f9660e3592540ffcc32f",
+  "stage": "tests"
+}

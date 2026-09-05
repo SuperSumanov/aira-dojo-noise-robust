@@ -1,0 +1,146 @@
+{
+  "cpu0_rejected/submit.stderr.private": {
+    "bytes": 219,
+    "sha256": "b33b8b0f616b83541b6022de667611a6909044d0ca8edb6d9e7f2ea1d691410c"
+  },
+  "cpu0_rejected/submit_returncode.json": {
+    "bytes": 17,
+    "sha256": "64a1526b099d75eed9d9da41a5562dcc164b6ffddeb729dd371c4496bbcded05"
+  },
+  "cuda/FAILURE.json": {
+    "bytes": 117,
+    "sha256": "c2f5c35968dc6ca3d7c35f0a3341a5a83f15f9e23f238ac708eb8faba0ce8a8c"
+  },
+  "cuda/INDEPENDENT_VERIFIED.json": {
+    "bytes": 809,
+    "sha256": "6732f4045503fb658cce9a0fbf7c449985ecee41f01886d3e4f2a704463dd2fe"
+  },
+  "cuda/RECOVERY_COMPLETE.json": {
+    "bytes": 1172,
+    "sha256": "8701d0fc275c5c0f7a124d05e622bbe0a1e7f5313b7260911000326808b5730a"
+  },
+  "cuda/archive_inventory.json": {
+    "bytes": 148,
+    "sha256": "253d03afb28bee70fc5610adf418f8e391980d39d6678b466a3af681d8fb4d94"
+  },
+  "cuda/compile_only.rc.json": {
+    "bytes": 21,
+    "sha256": "0b2eabe584457faab9ce76edc31b4090730dbb54f1deb2a88179f1794516275e"
+  },
+  "cuda/compile_only.txt": {
+    "bytes": 164,
+    "sha256": "bf884438d3f211e0e40fe13245616d5a1ea7522e8825bbc20c2c47d601b4b5af"
+  },
+  "cuda/compile_only_r2.rc.json": {
+    "bytes": 48,
+    "sha256": "b9ccb8a099b327deda43f2ae58ae6f559d7a7213e3d1b6d8a0dad15c977eaf72"
+  },
+  "cuda/compile_only_r2.txt": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "cuda/installed_manifest.json": {
+    "bytes": 330897,
+    "sha256": "ce7f9f18218799db0776d08a2c3e2342e51273bcaccae61c1ebab8e340e959f1"
+  },
+  "cuda/intent.json": {
+    "bytes": 373,
+    "sha256": "bc82e3cd9a85200e5b64668a8c3577985ccb5c9d8378f4b2f38e9c26db3af188"
+  },
+  "cuda/nvcc_version.rc.json": {
+    "bytes": 21,
+    "sha256": "a02d222e1be4a3d356cac5372aa177b9048c9baaa90b42f86d8cfae4569f1286"
+  },
+  "cuda/nvcc_version.txt": {
+    "bytes": 208,
+    "sha256": "fc8ae1e160e2c922233faf6c9c15d04074acc08e24a94f8ec9b057ceaf3d2381"
+  },
+  "cuda/original_install.receipt.json": {
+    "bytes": 230,
+    "sha256": "9436d576dc9c47275bd589739a7443b39873169a9001ac5ef3b5fe9c5aef2874"
+  },
+  "cuda/original_tests.log": {
+    "bytes": 99,
+    "sha256": "2e7359278a3ddbcdcac04b10012e312304df9ea151a5dd23c920b9c3e3c6fa13"
+  },
+  "cuda/original_tests.receipt.json": {
+    "bytes": 229,
+    "sha256": "6dcef5518ece5d1dfd83a59398042a48c9738c20a2568a889b7ea22ceec82ef8"
+  },
+  "cuda/recovery_command.json": {
+    "bytes": 340,
+    "sha256": "003eb82c087bcfa4287045c7ae9cab3061ecded7714ebe9a11e25dd2a1df2bc3"
+  },
+  "cuda/recovery_host_compiler_version.txt": {
+    "bytes": 246,
+    "sha256": "59d1cbef41d4ae78d5063d525b7aa13d18dc0493ea00537efc19b2ee398cb5a8"
+  },
+  "cuda/recovery_intent.json": {
+    "bytes": 660,
+    "sha256": "43347375b22217a5a35b7c92a6e51a55c47f3aeec2040d118f2284a0ce4e20c3"
+  },
+  "cuda/repaired_independent.receipt.json": {
+    "bytes": 234,
+    "sha256": "bbe11c344153c9776fc700099c37c3d2b9dfec112608785b77320e9abfe86ccf"
+  },
+  "cuda/repaired_recovery.receipt.json": {
+    "bytes": 231,
+    "sha256": "ad87130ef4e2f53b2ffb0157a2158f624c4c8550bf3d59928221081ffe54be4d"
+  },
+  "cuda/repaired_tests.log": {
+    "bytes": 99,
+    "sha256": "04fae3f623048e6f858be0a5d8db9c1b94039b5a780b644ba7c16e73474c8565"
+  },
+  "cuda/repaired_tests.receipt.json": {
+    "bytes": 228,
+    "sha256": "366a21925253b213ab8ded630564cc80ea3d1878cf2cc110429afd8cdce0cf30"
+  },
+  "cuda/storage_allocation_receipt.json": {
+    "bytes": 329,
+    "sha256": "6989ff298b58f1d2f43e67e2b4f87ac1147413f6cad168b84dddb8a68877d67d"
+  },
+  "export_scope.json": {
+    "bytes": 558,
+    "sha256": "fb3351d4ca26242259f11e0c01a20f5cba5e0193d102a9c194f45600dea46adb"
+  },
+  "node12571/RELEASED.json": {
+    "bytes": 111,
+    "sha256": "4b88e4ff213a6c28993cdd699ea7240cce6f1301d0498e5d2c1a76bb9b992163"
+  },
+  "node12571/SUBMITTED.json": {
+    "bytes": 79,
+    "sha256": "570fbb934ae1af4d6485c91c4511226aafc292fe4ec0b8bd2fdde83cb6944b23"
+  },
+  "node12571/VERIFIED_HELD.json": {
+    "bytes": 1503,
+    "sha256": "bb8fc2ebdc6d6887e33b22c20cbed556a0edb5b65c488fb5136e910ee1435c7a"
+  },
+  "node12571/command.json": {
+    "bytes": 566,
+    "sha256": "740fc7c76a1d5ea2cee05fc6ab096e4e9398bdf3b7c3bab1563065764cd8e802"
+  },
+  "node12571/cpu_tests.txt": {
+    "bytes": 98,
+    "sha256": "651660ff45a517b93320a7926cbcdfb6876945d52ae47af2cf59fadd66ba8bc0"
+  },
+  "node12571/intent.json": {
+    "bytes": 1100,
+    "sha256": "131d790f3dc9abb105c0c6c8b951a26e5901cd7e3db8b26ff29ee34bb7214492"
+  },
+  "node12571/observed.json": {
+    "bytes": 3811,
+    "sha256": "24c02b0d987131afa3f80389d7c78c387b64528287e14fa902706139f319b6b3"
+  },
+  "node12571/postcheck.json": {
+    "bytes": 519,
+    "sha256": "49e5fb73b81f72fdcd52745cba55319237340c8082cf76da11db9f3e8a1b36b0"
+  },
+  "node12571/sacct.txt": {
+    "bytes": 56,
+    "sha256": "02e703598579adcb969f083eafdf5c4e3a12a0286d74e130b430c4b28dae148f"
+  },
+  "senior_recent_folder_summary.json": {
+    "bytes": 987,
+    "sha256": "efe81a9af835b17f26d2c9a86d55aa5524ba0c96f205cc54c8af5df2cf9c929b"
+  }
+}

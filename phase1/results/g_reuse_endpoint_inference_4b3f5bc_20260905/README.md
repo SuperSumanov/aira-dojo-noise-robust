@@ -53,7 +53,10 @@ source archive SHA：`148135c4cba3c2d86c28b2fe01e0e9dfb251a8a86fadd5629265ea0ad4
 adapter SHA：`43b38c0e0c377cd7e78e4c91c50b5ff1a4e3790b3162dcd20f6ee132fb2188ae`。
 tokenizer 的五个文件在 postflight 与既有 manifest 一致；没有把事后校验声称为这次运行的前后双哈希测量。
 详见 `postflight.json`、`reference_a/summary.json`、`reference_a/cases.csv` 和 `SHA256SUMS`。
-SHA256SUMS 中源码项相对于远端根；可从上述 exact commit 重建。结果文件在 Git blob 中保持 LF 原始字节。
+SHA256SUMS 中源码项相对于远端根；可从上述 exact commit 重建。本目录用局部 `-text` 保留原始字节：
+JSON/log 使用 LF，CSV 为 csv.DictWriter 默认的 CRLF。初次发布 `8892d97` 的两个 CSV 被 Git 自动归一化为 LF，
+数值未变但 raw SHA 不符；发布后原始 blob 比较发现后，在后继提交恢复下载的原始 CRLF 字节并限定本目录不做换行转换。
+没有重写历史、改数值或重跑结果；初次发布的 CSV blob 不应作为 raw-byte 复现凭据。
 
 在上述 exact checkout/root，设置 `CUDA_VISIBLE_DEVICES=''`、`HF_HUB_OFFLINE=1`、`TRANSFORMERS_OFFLINE=1`、
 `TOKENIZERS_PARALLELISM=false`、`OMP_NUM_THREADS=1`、`MKL_NUM_THREADS=1`、`OPENBLAS_NUM_THREADS=1`、

@@ -417,3 +417,12 @@ phase1/g_reuse_effect_protocol_v1.json text eol=lf diff
 phase1/validate_g_reuse_effect_protocol.py text eol=lf diff
 phase1/verify_g_reuse_effect_protocol.py text eol=lf diff
 phase1/tests/test_g_reuse_effect_protocol.py text eol=lf diff
+phase1/global_local_critic_session.py text eol=lf diff
+phase1/scripts/validate_critic_session_cpu_20260905.py text eol=lf diff
+phase1/scripts/validate_ds_restore_source_20260905.py text eol=lf diff
+phase1/scripts/audit_critic_session_result_20260905.py text eol=lf diff
+phase1/tests/test_global_local_critic_session.py text eol=lf diff
+phase1/tests/test_global_local_ds_restore_observer.py text eol=lf diff
+phase1/CRITIC_SESSION_INTEGRATION_PREFLIGHT_20260905.md text eol=lf diff
+phase1/results/critic_session_33ad8ba_20260905/** -text diff
+phase1/results/critic_session_33ad8ba_20260905/**/runs.csv whitespace=cr-at-eol

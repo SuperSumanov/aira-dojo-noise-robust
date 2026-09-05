@@ -1,6 +1,6 @@
 # 完整梯度累积与阶段末批：CPU接入边界预检
 
-2026-09-06 03:24香港。仅补当前TRAIN文件入口未实际走过的8-microbatch边界。
+2026-09-06 03:16香港。仅补当前TRAIN文件入口未实际走过的8-microbatch边界。
 已有consumer曾验证world2/pairs2/accum2；本次不把旧证据重报为新突破。
 不改consumer、optimizer、输入生产资格或任一冻结研究协议，只扩展合成driver/verifier。
 

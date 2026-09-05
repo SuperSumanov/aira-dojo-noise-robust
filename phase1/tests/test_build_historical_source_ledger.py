@@ -6,7 +6,7 @@ import time
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from build_historical_source_ledger import components, config_stratum, stream_fingerprint
+from build_historical_source_ledger import components, config_stratum, origin_index, stream_fingerprint
 from recover_historical_production_configs import RecoveryError
 
 
@@ -37,3 +37,10 @@ def test_credential_across_chunk_boundary():
 
 def test_truncation_refused():
     with pytest.raises(RecoveryError):stream_fingerprint(io.BytesIO(b'ab'),3,time.monotonic()+10)
+
+
+def test_exact_archive_member_copies_are_not_new_origins():
+    row={'archive_sha256':'a','config_member':'b/run/dojo_config.json','config_sha256':'c'}
+    assert origin_index({'run':[row,row]})=={'a':{'b/run/dojo_config.json':('run','c')}}
+    with pytest.raises(RecoveryError):origin_index({'run':[row],'different_run':[row]})
+    with pytest.raises(RecoveryError):origin_index({'run':[row,dict(row,config_sha256='changed')]})

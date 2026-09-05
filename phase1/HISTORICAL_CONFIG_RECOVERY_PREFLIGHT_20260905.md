@@ -58,3 +58,8 @@ task.results_output_dir；所有输入路径、prompt/client/resource/image与re
 另固定保守关联组件：同一archive-hash+顶层batch目录，或同recorded meta_id的run必须同组；
 组件任一run原hold=true，则整个组件不能用于train。只写这一结构闭包，不新分dev/test、不宣称真实experiment已获生产方认证。
 本轮发现历史代码base_path无可访问目录（5不存在、4无权）；不得绕过权限或据Git字段补造pristine执行证明。
+
+首次ledger入口64ba4b9在读归档前因reused_config_origin拒绝，未产生ledger。独立只读复核固定mapping发现：
+7个多份配置run全部是相同archive SHA+同member+同config SHA的副本，不是不同origin；
+全676run对应676个唯一origin，跨run origin冲突0。重试只合并这一精确等价键，所有物理archive副本都重新核hash，
+原始出现次数保留。不同run或config SHA冲突仍拒绝；不存在distinct-origin重复时不额外读取journal字节。

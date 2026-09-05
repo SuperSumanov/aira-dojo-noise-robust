@@ -118,6 +118,20 @@ def components(mapping):
     return sorted(groups.values())
 
 
+def origin_index(mapping):
+    wanted = defaultdict(dict)
+    for rid, rows in mapping.items():
+        for row in rows:
+            bucket = wanted[row['archive_sha256']]
+            binding = (rid, row['config_sha256'])
+            old = bucket.get(row['config_member'])
+            require(old is None or old == binding, 'conflicting_config_origin')
+            # Same compressed bytes + exact member + config hash is an observed
+            # archive copy, not a second independent run. Keep all rows in ledger.
+            bucket[row['config_member']] = binding
+    return wanted
+
+
 def build(output):
     os.umask(0o077)
     require(not output.exists() and output.parent.resolve(strict=True) == output.parent, 'output_exists_or_parent')
@@ -129,19 +143,21 @@ def build(output):
         if row['status'] == 'ok':
             paths[row['sha256']].append(SOURCE.joinpath(*safe_parts(row['relative_path'])))
     paths[CANDIDATE_SHA].append(CANDIDATE)
-    wanted = defaultdict(dict)
-    duplicates = {rid for rid, rows in mapping.items() if len(rows) > 1}
+    wanted = origin_index(mapping)
+    duplicates = {rid for rid, rows in mapping.items()
+                  if len({(r['archive_sha256'], r['config_member']) for r in rows}) > 1}
     for rid, rows in mapping.items():
         for row in rows:
             require(row['archive_sha256'] in paths, 'unknown_archive')
-            bucket = wanted[row['archive_sha256']]
-            require(row['config_member'] not in bucket, 'reused_config_origin')
-            bucket[row['config_member']] = (rid, row['config_sha256'])
     output.mkdir(mode=0o700)
     deadline = time.monotonic() + 1500
     def work(item):
         sha, wanted_rows = item
+        for source_path in paths[sha]:
+            regular(source_path)
+            require(hash_file(source_path, deadline) == sha, 'physical_archive_copy_hash_drift')
         result = scan(sorted(paths[sha])[0], sha, wanted_rows, duplicates, deadline)
+        result['physical_archive_copies_verified'] = len(paths[sha])
         (output / ('archive-' + sha + '.private.json')).write_bytes(canonical(result))
         return result
     with ThreadPoolExecutor(max_workers=2) as pool:
@@ -180,6 +196,8 @@ def build(output):
         input_mapping_sha256=MAPPING_SHA, ledger_sha256=digest(raw), runs=len(ledger),
         config_journal_origin_bindings=sum(len(r['origins']) for r in ledger.values()),
         referenced_archive_hashes=len(wanted), verified_duplicate_run_copies=len(duplicates),
+        identical_archive_member_copy_runs=sum(len(rows)>1 for rid, rows in mapping.items() if rid not in duplicates),
+        physical_archive_copies_verified=sum(r['physical_archive_copies_verified'] for r in results),
         duplicate_journal_payloads_opaquely_hashed=sum(len(mapping[rid]) for rid in duplicates),
         old_error_archives_not_silently_reclassified=2, old_S0_overridden=False,
         conservative_components=len(grouped), run_old_hold_closure=dict(role_counts),

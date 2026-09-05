@@ -119,6 +119,9 @@ def verify_formal(root):
             require(s.st_nlink == 1 and path.resolve() == path, 'file_alias')
             files[path.relative_to(root).as_posix()] = path
     require(set(files) == set(entries) | {'SHA256SUMS', 'manifest_verification.txt'}, 'unmanifested_file')
+    expected_manifest_check = ''.join('./' + name + ': OK\n' for name in entries).encode('utf-8')
+    require(safe_raw(root / 'manifest_verification.txt', 1_000_000) == expected_manifest_check,
+            'original_manifest_check_mismatch')
     trace_count = 0
     for name, digest in entries.items():
         path = files[name]
@@ -132,7 +135,8 @@ def verify_formal(root):
         require(original == (s.st_dev, s.st_ino, s.st_mode, s.st_size, s.st_mtime_ns), 'artifact_changed_during_check')
     return {'manifested_files_verified': len(entries), 'read_only_files_verified': len(files),
             'trace_files_scanned': trace_count, 'credential_hits': 0, 'forbidden_trace_hits': 0,
-            'formal_manifest_sha256': sha(root / 'SHA256SUMS')}
+            'formal_manifest_sha256': sha(root / 'SHA256SUMS'),
+            'original_manifest_check_sha256': sha(root / 'manifest_verification.txt')}
 
 
 def stage_resources(root, name):

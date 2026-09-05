@@ -1,4 +1,6 @@
 import importlib.util
+import hashlib
+import os
 from pathlib import Path
 import pytest
 
@@ -69,3 +71,43 @@ def test_no_numerical_payload_deserialization():
     assert "safe_json(FORMAL / 'independent_verification.json')" not in text
     assert "safe_json(FORMAL / 'snapshot_chain_receipt.json')" not in text
     assert 'sbatch' not in text and 'subprocess.Popen' not in text
+
+
+@pytest.mark.skipif(os.name != 'posix', reason='actual POSIX permissions required')
+@pytest.mark.parametrize('fault', [None, 'tamper', 'extra', 'manifest_receipt', 'forbidden_trace', 'writable'])
+def test_real_file_manifest_boundary(tmp_path, fault):
+    root = tmp_path / 'formal'
+    root.mkdir()
+    payloads = {'COMPLETE': b'', 'aggregate.json': b'{}\n',
+                'producer.strace.1': b'close(1) = 0\n',
+                'independent_verifier.strace.2': b'close(1) = 0\n',
+                'snapshot_chain.strace.3': b'close(1) = 0\n'}
+    if fault == 'forbidden_trace':
+        payloads['producer.strace.1'] = b'open("/synthetic/label_vault", O_RDONLY) = 3\n'
+    for name, raw in payloads.items():
+        (root / name).write_bytes(raw)
+    manifest = ''.join(hashlib.sha256(raw).hexdigest() + '  ./' + name + '\n' for name, raw in payloads.items())
+    (root / 'SHA256SUMS').write_text(manifest)
+    (root / 'manifest_verification.txt').write_text(''.join('./' + name + ': OK\n' for name in payloads))
+    if fault == 'tamper':
+        (root / 'aggregate.json').write_text('{"changed":true}\n')
+    elif fault == 'extra':
+        (root / 'extra.txt').write_text('unlisted\n')
+    elif fault == 'manifest_receipt':
+        (root / 'manifest_verification.txt').write_text('not verified\n')
+    for p in root.iterdir():
+        p.chmod(0o400)
+    root.chmod(0o500 if fault != 'writable' else 0o700)
+    try:
+        if fault is None:
+            result = m.verify_formal(root)
+            assert result['manifested_files_verified'] == 5
+            assert result['read_only_files_verified'] == 7
+        else:
+            with pytest.raises(RuntimeError):
+                m.verify_formal(root)
+    finally:
+        # Only this test's private temporary fixture; never a real artifact.
+        root.chmod(0o700)
+        for p in root.iterdir():
+            p.chmod(0o600)

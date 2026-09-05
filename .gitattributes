@@ -450,3 +450,18 @@ phase1/results/training_input_session_5b6e0bd_20260905/**/runs.csv whitespace=cr
 # Preserve remote receipts verbatim; csv.writer emitted CRLF for this ledger.
 phase1/results/historical_source_recovery_20260905/ledger/** -text diff
 phase1/results/historical_source_recovery_20260905/ledger/runs.csv whitespace=cr-at-eol
+# Exact CPU lifecycle receipts include the original CRLF csv.writer output.
+phase1/results/critic_entry_lifecycle_20260906/** -text diff
+phase1/results/critic_entry_lifecycle_20260906/runs.csv whitespace=cr-at-eol
+phase1/results/critic_entry_lifecycle_20260906/README.md text eol=lf diff
+phase1/critic_train_projection.py text eol=lf diff
+phase1/critic_training_run.py text eol=lf diff
+phase1/critic_training_entry.py text eol=lf diff
+phase1/critic_offline_setup.py text eol=lf diff
+phase1/g_reuse_development_readout.py text eol=lf diff
+phase1/g_reuse_fixed_tfidf.py text eol=lf diff
+phase1/g_reuse_development_predictions.py text eol=lf diff
+phase1/scripts/validate_critic_entry_cpu_20260906.py text eol=lf diff
+phase1/scripts/verify_critic_entry_cpu_20260906.py text eol=lf diff
+phase1/scripts/validate_development_final_pipeline_cpu_20260906.py text eol=lf diff
+phase1/scripts/session_0904_maturity_intake_once_20260906.py text eol=lf diff

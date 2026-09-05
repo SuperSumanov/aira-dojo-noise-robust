@@ -1,0 +1,33 @@
+{
+  "independent_receipt_sha256": "5b444b055eeb40fc60b618ec6cfcd1c0e66ed94b1d2c32807afb31d380073786",
+  "models": [
+    {
+      "arm": "Lbudget",
+      "manifest_sha256": "8b237ac50882b7c4254bfc222bd6813bb0c1c9c012a03ae0d7e493d850af1d7e",
+      "seed": 6,
+      "sequence": 1,
+      "weights_sha256": "c51be30b619e74d99648f7b7053ae30e6baab963697fbb5ac36a417940e257ae"
+    },
+    {
+      "arm": "G-reuse-to-L-full",
+      "manifest_sha256": "ff03c45bb6eae0b08433a3224d9efa79af098d0dbbbca0c91948a464387a4cc0",
+      "seed": 6,
+      "sequence": 2,
+      "weights_sha256": "50c78ada0485cc56384cc6865d3804dd916f45d707c0cee77b8ad061ae653461"
+    },
+    {
+      "arm": "G-reuse-to-L-full",
+      "manifest_sha256": "b5b2489b74346efdcfd6c6ec023f966dda5d902e7fe34ad4fc39b70f9cd42e60",
+      "seed": 7,
+      "sequence": 3,
+      "weights_sha256": "d5b9e3ec1adad03fb6c326c48223491495954cde8b4edc8a3fbc5951c1571b8d"
+    },
+    {
+      "arm": "Lbudget",
+      "manifest_sha256": "60a0f32538774dd6549ba864e6ca7049bcd4dfebbca7d0a5a5aa8acec0f202f4",
+      "seed": 7,
+      "sequence": 4,
+      "weights_sha256": "93e024f6ad567829bcb48e03b85ba12c5ca40d5d2a1df7e347a5627edc2d09b8"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "additional_prefix_resume_trajectories": 4,
+  "classification": "PINNED_TRAIN_FILES_TO_RANDOM_QWEN_CPU_LIFECYCLE_NOT_EFFECT",
+  "code_commit": "95e72f37c1b745ca101390c887c41eed6e9b6f28",
+  "dtype": "float32",
+  "gpu_used": false,
+  "independent_verification_still_required": true,
+  "matrix_complete_trajectories": 4,
+  "max_len_contract": 16384,
+  "optimizer": "AdamW",
+  "parameters": 4433,
+  "production_release_admitted": false,
+  "real_data_read": false,
+  "seeds": [
+    6,
+    7
+  ],
+  "tiny_fixture_not_16k_memory_test": true,
+  "weight_decay": 0.0,
+  "world": 2
+}

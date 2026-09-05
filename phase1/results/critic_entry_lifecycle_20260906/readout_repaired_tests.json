@@ -1,0 +1,8 @@
+{
+  "GPU_used": false,
+  "code_commit": "6394e3763dbcbbc67389eeb94eae17d5748dc3ff",
+  "real_data_read": false,
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "........................                                                 [100%]\n=============================== warnings summary ===============================\nphase1/tests/test_g_reuse_fixed_tfidf.py::test_transform_never_fits_query_vocabulary_and_scores_antisymmetrically\nphase1/tests/test_g_reuse_fixed_tfidf.py::test_exact_reference_recipe_parity\nphase1/tests/test_g_reuse_fixed_tfidf.py::test_exact_reference_recipe_parity\nphase1/tests/test_g_reuse_fixed_tfidf.py::test_input_order_invariant_and_both_label_orientations_supported\nphase1/tests/test_g_reuse_fixed_tfidf.py::test_input_order_invariant_and_both_label_orientations_supported\nphase1/tests/test_g_reuse_fixed_tfidf.py::test_input_order_invariant_and_both_label_orientations_supported\nphase1/tests/test_g_reuse_fixed_tfidf.py::test_bad_support_or_modified_model_rejected[mutated]\n  /research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:451: DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.\n    opt_res = optimize.minimize(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n24 passed, 7 warnings in 4.83s\n"
+}

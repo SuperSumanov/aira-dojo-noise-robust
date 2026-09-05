@@ -1,0 +1,42 @@
+{
+  "cpu_a_summary.json": {
+    "bytes": 577,
+    "sha256": "61d7ab506d66834a4213ac29b9b480f4f4d80db59441b947f90b05be34558780"
+  },
+  "cpu_b_summary.json": {
+    "bytes": 577,
+    "sha256": "61d7ab506d66834a4213ac29b9b480f4f4d80db59441b947f90b05be34558780"
+  },
+  "development_final_model_lock.json": {
+    "bytes": 1177,
+    "sha256": "d76699398c3c2e8dd4e9c1f2840c7ba4bbbf7b66de32984bc88aae91e4238358"
+  },
+  "development_pipeline_summary.json": {
+    "bytes": 1671,
+    "sha256": "fe0a09d66629e3b970f6b0d21aeade7957803eb3e56939fc91f0e7f99b5c52c5"
+  },
+  "independent_verification.json": {
+    "bytes": 5330,
+    "sha256": "5b444b055eeb40fc60b618ec6cfcd1c0e66ed94b1d2c32807afb31d380073786"
+  },
+  "readout_initial_failure.json": {
+    "bytes": 11188,
+    "sha256": "4b1c34bc937e54a4f79d2ac35779302e8facbf3ef50ecd0debf71350f1db185e"
+  },
+  "readout_repaired_tests.json": {
+    "bytes": 1406,
+    "sha256": "bf5491b2c85f80b82f1e194f61b2ebe803020ee34f2bc5d31db6d44b3e41f1ee"
+  },
+  "runs.csv": {
+    "bytes": 4978,
+    "sha256": "12b9b89562834d7356b09fd08a017d9c211b1e3b6869ae65159aaa4e09b3f26c"
+  },
+  "source_verification.json": {
+    "bytes": 280,
+    "sha256": "3548067bda3fca809ce6877eda81b973490be850ef0521c45f681c282bd1e736"
+  },
+  "trace_negative_scan.json": {
+    "bytes": 1966,
+    "sha256": "85bb6086ea3ef1d8ea60ca8270c17c05827a3af4db6603c90fefaf05bf3bda67"
+  }
+}

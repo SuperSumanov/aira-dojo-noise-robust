@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L64. 2026-09-06 03:08：训练至开发读出CPU贯通；来源与GPU门保持关闭
+
+本次睡眠期间继续会话内推进，不新挂automation。`95e72f37c1b745ca101390c887c41eed6e9b6f28`
+接入固定TRAIN文件→四fit计划→实际CPU critic/AdamW→完整checkpoint/新进程恢复。
+A/B共16工程轨迹、24checkpoint；独立实际状态8组、rank最终状态8次及消费序列均通过；
+回执SHA=5b444b055eeb40fc60b618ec6cfcd1c0e66ed94b1d2c32807afb31d380073786。
+4433参数、短合成序列，**不是1.7B/16K压力测试或模型收益**。Lbudget不读G标签；未合格生产注册表保持空。
+
+`0d0bcb70a6ae688f263b0224f945cd4d543f4f8e`实际将这4个final模型+train-only TF-IDF接到同池盲预测和
+单独四fit开发统计；8合成endpoint/4pair，先锁全模型和预测再合成truth join；独立逐seed重数相同。
+pipeline summary SHA=fe0a09d66629e3b970f6b0d21aeade7957803eb3e56939fc91f0e7f99b5c52c5。
+原5臂×3seed确认协议不变。90相关本地测试通过；TF-IDF初测4失败已修复，远端24通过。
+trace只是禁止路径字面负扫描，不宣称完整OS/网络隔离。详见results/critic_entry_lifecycle_20260906/README.md。
+
+实际生产/evaluator/experiment隔离与Cards/G/L构建事实仍缺，84run不可冒充已合格训练。
+03:08核12535仍PENDING/Resources/0秒；新ZeRO3/FA2/16K生产入口尚未实卡验收，不能据CPU结果开注册表。
+新完整resume checkpoint需要重新核空间：仅FP32 master+两个moment原始数组为19.228946696966887GiB/份；
+这不是实测大小或成功预留，旧4GiB仅权重标准不可照搬。未分配大额空间或删除数据。
+
+学长head仍b8d095180415957aa1bab31fa53ead1bba261c03，无新outcome；Drive最新0904、无0905。
+0904六档案最早香港03:44:48.903091成熟，尚未提前处理；冻结三观察/300秒间隔/600秒跨度仍需满足。
+本会话准备最多9次手动foreground调用，最早03:45、最晚10:20香港，无后台循环；失败保持关闭。
+
 ## 0L63. 2026-09-06 01:52：批准四fit开发准备；84run任务支持不足以作为唯一来源路径
 
 用户批准按一个月正方向推荐推进。首轮单独登记`g_reuse_development_screen_v1.json`：

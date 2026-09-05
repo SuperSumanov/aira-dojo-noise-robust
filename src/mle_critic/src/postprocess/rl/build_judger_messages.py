@@ -107,6 +107,7 @@ def build_messages(
             timeout_b = card_b.get("execution_timeout")
             hardware_a = card_a.get("hardware")
             hardware_b = card_b.get("hardware")
+            task = card_a.get("task").get("name")
             if timeout_a is None or timeout_b is None or hardware_a is None or hardware_b is None:
                 raise ValueError(f"Missing execution constraints for pair {pair!r}")
             user_prompt = (
@@ -125,6 +126,7 @@ def build_messages(
                     {"role": "user", "content": user_prompt},
                 ],
                 "solution": better_position,
+                "task": task,
             }
             output_file = train_file if split == "train" else test_file
             output_file.write(json.dumps(record, ensure_ascii=False) + "\n")

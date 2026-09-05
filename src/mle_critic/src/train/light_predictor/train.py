@@ -59,6 +59,36 @@ def accuracy(model: Any, matrix: Any, better: np.ndarray, worse: np.ndarray) -> 
     return float(np.mean(model.decision_function(differences) > 0))
 
 
+def task_accuracy(
+    card_to_task: dict[str, str],
+    test_better: np.ndarray,
+    test_correct: np.ndarray,
+    card_ids: list[str],
+) -> dict[str, dict[str, int | float]]:
+    """Return pair counts and accuracy grouped by the better card's task."""
+    correct_by_task: dict[str, int] = {}
+    total_by_task: dict[str, int] = {}
+    for better_index, is_correct in zip(test_better, test_correct):
+        task = card_to_task[card_ids[better_index]]
+        total_by_task[task] = total_by_task.get(task, 0) + 1
+        correct_by_task[task] = correct_by_task.get(task, 0) + int(is_correct)
+    return {
+        task: {
+            "total": total_by_task[task],
+            "correct": correct_by_task[task],
+            "accuracy": correct_by_task[task] / max(total_by_task[task], 1),
+        }
+        for task in sorted(total_by_task)
+    }
+
+
+def accuracy_metrics(correct: np.ndarray) -> dict[str, int | float]:
+    """Return total, correct count, and accuracy for pair predictions."""
+    total = int(len(correct))
+    n_correct = int(np.sum(correct))
+    return {"total": total, "correct": n_correct, "accuracy": n_correct / max(total, 1)}
+
+
 def train_static_models(
     cards: dict[str, dict[str, Any]],
     card_ids: list[str],
@@ -70,6 +100,9 @@ def train_static_models(
     if not selected.intersection({"static_lr", "static_gbm"}):
         return []
     position = {card_id: index for index, card_id in enumerate(card_ids)}
+    card_to_task = {
+        card_id: cards[card_id]["task"]["name"] for card_id in card_ids
+    }
     train_better, train_worse = pair_indices(train_pairs, position)
     test_better, test_worse = pair_indices(test_pairs, position)
     matrix = static_feature_matrix(cards, card_ids)
@@ -82,13 +115,15 @@ def train_static_models(
         scaled_train_x = scaler.transform(train_x)
         model = LogisticRegression(max_iter=4_000, C=1.0).fit(scaled_train_x, train_y)
         test_differences = matrix[test_better] - matrix[test_worse]
-        test_accuracy = float(
-            np.mean(model.decision_function(scaler.transform(test_differences)) > 0)
-        )
+        test_predictions = model.decision_function(scaler.transform(test_differences))
+        test_correct = test_predictions > 0
         results.append(
             {
                 "model": "static_lr",
-                "accuracy": test_accuracy,
+                **accuracy_metrics(test_correct),
+                "task_accuracy": task_accuracy(
+                    card_to_task, test_better, test_correct, card_ids
+                ),
                 "train_seconds": time.perf_counter() - start,
                 "n_features": len(FEATURE_NAMES),
             }
@@ -99,10 +134,16 @@ def train_static_models(
         model = HistGradientBoostingClassifier(
             max_iter=300, learning_rate=0.08, random_state=7
         ).fit(train_x, train_y)
+        test_differences = matrix[test_better] - matrix[test_worse]
+        test_predictions = model.decision_function(test_differences)
+        test_correct = test_predictions > 0
         results.append(
             {
                 "model": "static_gbm",
-                "accuracy": accuracy(model, matrix, test_better, test_worse),
+                **accuracy_metrics(test_correct),
+                "task_accuracy": task_accuracy(
+                    card_to_task, test_better, test_correct, card_ids
+                ),
                 "train_seconds": time.perf_counter() - start,
                 "n_features": len(FEATURE_NAMES),
             }
@@ -119,6 +160,9 @@ def train_tfidf_model(
     """Fit the student's train-only char 3-5 gram TF-IDF logistic ranker."""
     start = time.perf_counter()
     position = {card_id: index for index, card_id in enumerate(card_ids)}
+    card_to_task = {
+        card_id: cards[card_id]["task"]["name"] for card_id in card_ids
+    }
     train_better, train_worse = pair_indices(train_pairs, position)
     test_better, test_worse = pair_indices(test_pairs, position)
     train_ids = sorted(required_card_ids(train_pairs))
@@ -135,9 +179,15 @@ def train_tfidf_model(
     )
     train_x, train_y = antisymmetric_training_data(matrix, train_better, train_worse)
     model = LogisticRegression(max_iter=1_500, C=0.5).fit(train_x, train_y)
+    test_differences = matrix[test_better] - matrix[test_worse]
+    test_predictions = model.decision_function(test_differences)
+    test_correct = test_predictions > 0
     return {
         "model": "tfidf_lr",
-        "accuracy": accuracy(model, matrix, test_better, test_worse),
+        **accuracy_metrics(test_correct),
+        "task_accuracy": task_accuracy(
+            card_to_task, test_better, test_correct, card_ids
+        ),
         "train_seconds": time.perf_counter() - start,
         "n_features": len(vectorizer.vocabulary_),
     }
@@ -185,10 +235,17 @@ def main(argv: list[str] | None = None) -> list[dict[str, Any]]:
     results.sort(key=lambda result: args.models.index(result["model"]))
     for result in results:
         print(
-            f"{result['model']:12s} accuracy={result['accuracy']:.4f} "
+            f"{result['model']:12s} {result['correct']}/{result['total']} "
+            f"accuracy={result['accuracy']:.4f} "
             f"features={result['n_features']} train_s={result['train_seconds']:.2f}",
             flush=True,
         )
+        for task, task_score in result["task_accuracy"].items():
+            print(
+                f"  task={task} {task_score['correct']}/{task_score['total']} "
+                f"accuracy={task_score['accuracy']:.4f}",
+                flush=True,
+            )
 
     if args.output:
         output = Path(args.output)

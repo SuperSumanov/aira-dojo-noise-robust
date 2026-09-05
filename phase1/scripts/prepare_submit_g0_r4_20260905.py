@@ -65,10 +65,11 @@ def accounting():
         jobs[jid] = int(elapsed)
     require(len(jobs) == 3, 'accounting_cardinality')
     used = sum(jobs.values())*2
-    require(used == 582 and used + 2*6909 == 14400, 'budget')
+    require(used == 582 and used + 2*(6540+300+60) == 14382 < 14400, 'budget')
     require(not run(['squeue','-h','-u','yzyang4','-o','%i']).strip(), 'queue_nonempty')
     return {'elapsed_seconds':jobs, 'allocated_gpu_seconds':used,
-            'new_walltime_seconds':6909, 'total_gpu_seconds_upper_bound':used+2*6909}
+            'new_walltime_seconds':6540, 'exit_grace_seconds':300, 'scheduler_margin_seconds':60,
+            'total_gpu_seconds_upper_bound':used+2*(6540+300+60)}
 
 
 def bind(control, commit):
@@ -135,7 +136,7 @@ def submit(control, commit):
     exported = ','.join(['PATH=/usr/local/bin:/usr/bin:/bin',f'G0_CONTROL_ROOT={control}',f'G0_SOURCE_ROOT={SOURCE}',
         f'G0_EXPECTED_SOURCE_COMMIT={SOURCE_COMMIT}',f'G0_VENV={RUNTIME}','G0_RECOVERY_FINAL_ONLY=1',
         'G0_BUDGET_REVISION=20260905-r4','G0_TRACE_FILES=1','PYTHONDONTWRITEBYTECODE=1','MAX_JOBS=2'])
-    command = ['sbatch','--parsable','--no-requeue','--time=01:55:09','--job-name=critic_g0_r4_20260905',
+    command = ['sbatch','--parsable','--no-requeue','--time=01:49:00','--job-name=critic_g0_r4_20260905',
                f'--output={OUT}/slurm-%j.out',f'--error={OUT}/slurm-%j.out',f'--export={exported}',
                str(control/'phase1/scripts/critic_component_g0_shared_pro6000_20260821.sbatch')]
     record('command.json', command)

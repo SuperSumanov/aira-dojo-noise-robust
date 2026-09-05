@@ -4,7 +4,7 @@ from pathlib import Path
 from phase1.verify_critic_component_g0 import ContractError, validate_scheduler_allocation
 
 
-def allocation(time="01:55:09", revision="20260905-r4", recovery="1"):
+def allocation(time="01:49:00", revision="20260905-r4", recovery="1"):
     env = {"SLURM_JOB_ID": "90000", "SLURM_JOB_PARTITION": "gpu_24h",
            "SLURM_CPUS_PER_TASK": "12", "SLURM_JOB_NODELIST": "projgpu39",
            "G0_RECOVERY_FINAL_ONLY": recovery, "G0_BUDGET_REVISION": revision}
@@ -16,11 +16,12 @@ def allocation(time="01:55:09", revision="20260905-r4", recovery="1"):
 
 def test_r4_exact_budget():
     result = validate_scheduler_allocation(*allocation())
-    assert result["time_limit"] == "01:55:09"
-    assert 582 + 2 * (3600 + 55 * 60 + 9) == 14400
+    assert result["time_limit"] == "01:49:00"
+    assert ((14400-582)//2-300-60)//60*60 == 6540
+    assert 582 + 2 * (6540 + 300 + 60) == 14382 < 14400
 
 
-@pytest.mark.parametrize("time", ["01:57:00", "02:00:00", "01:55:10", "01:55:08"])
+@pytest.mark.parametrize("time", ["01:57:00", "02:00:00", "01:56:00", "01:55:00", "01:55:09"])
 def test_r4_rejects_other_walltimes(time):
     with pytest.raises(ContractError, match="time limit"):
         validate_scheduler_allocation(*allocation(time=time))

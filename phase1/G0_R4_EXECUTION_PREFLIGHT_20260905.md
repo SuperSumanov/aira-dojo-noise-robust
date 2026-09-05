@@ -38,3 +38,20 @@ R4最长6909秒（01:55:09），最多13818 GPU-seconds；最坏累计14400 GPU-
 13. 先保存失败/成功日志与hash，独立复核再报告；不读前瞻vault，不运行正式效果模型。
 
 本文件替代旧报告中“本次仍未获授权”的操作状态，不修改历史失败或科学资格。
+
+## 提交后、运行前的调度粒度修正
+
+12486首次提交后仍PENDING/0秒，独立读取scontrol发现请求01:55:09实际变为01:56:00。
+这是[Slurm一分钟时限粒度、秒数向上取整](https://slurm.schedmd.com/sbatch.html)的行为，
+首版预检没有建模这一点。立即hold原job并收紧为01:55:00，没有取消/重投或产生新job。
+本次有效请求上限改为6900秒，申请预算582+2*6900=14382 GPU-seconds，小于14400；
+旧6909秒推导保留作失败历史，不再作为有效调度契约。真实消耗最终以sacct记账，非请求时限。
+先在held/未分配状态更新新建control到修正commit，保留旧READY/command/SUBMITTED字节，
+另写修正receipt，再核worker/trainer/model/data不变、测试通过后release原12486。
+只有budget verifier和同预算helper/test改变；trace和训练参数不变。
+
+进一步读取实际集群配置为KillWait=300s、OverTimeLimit=0、CompleteWait=305s。
+因此01:55:00仅为中间修正，不能把退出宽限算成零：最终time limit再收紧为01:49:00（6540秒），
+加300秒退出宽限及60秒调度余量后，总预算582+2*(6540+300+60)=14382 GPU-seconds。
+CompleteWait是集群调度等待参数，不另称实际GPU计算；真实终态仍以sacct核算。
+这只是缩短授权上限、给退出预留预算，不改变10步目标；超时不算成功，不自动重投。

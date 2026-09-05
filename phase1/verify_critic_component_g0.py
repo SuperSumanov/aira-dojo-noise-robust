@@ -231,7 +231,7 @@ def validate_scheduler_allocation(environment: dict[str, str], job_line: str) ->
     require(budget_revision in {"legacy", "20260905-r4"}, "unknown G0 budget revision")
     if budget_revision == "20260905-r4":
         require(recovery == "1", "R4 budget requires final-only recovery")
-        expected_time = "01:55:09"
+        expected_time = "01:49:00"
     require(fields.get("TimeLimit") == expected_time, "unexpected Slurm time limit")
     if recovery == "1":
         require(fields.get("Requeue") == "0", "recovery must disable requeue")

@@ -1,0 +1,29 @@
+{
+  "binding": {
+    "arm": "G_to_L",
+    "backend": "MULTI_CPU",
+    "initial_optimizer_groups_sha256": "84cda641772e2c96692d192e62b4705ece23fabab6e268723ce7c0c4fefe2cc4",
+    "input_sha256": "6217e86ba8861bec024149314f074d9cc0a2177b485084ae3642c429185a6e48",
+    "mixed_precision": "no",
+    "model_schema_sha256": "ab709f12398fa329d4ac557c215e58bdfb89628c1da1301f4468224db884a367",
+    "optimizer_type": "torch.optim.adamw.AdamW",
+    "plan_sha256": "6231cd090bee4eeb6ed8da6fc18fc5db4a2d71f233b99f1c4e4fd2d3240bdbe0",
+    "protocol": "critic-session-ddp-v1",
+    "runtime_sha256": "32c3e3ae78c2380f4b90a521f4826fb4e3ef45b20a9ec3eb9b99e11cabf4a129",
+    "seed": 6,
+    "session_source_sha256": "57cc4b4e8eb023e91f12da5fa53c868cff77224c216c41c59d141c0a01ec6e02",
+    "total_steps": 4,
+    "training_contract_sha256": "05e87b3d9841617350ccf0a8ae385f3d577dfa690b566d4398ffc46340ed6e32",
+    "world": 2
+  },
+  "completed_steps": 4,
+  "cumulative_valid_tokens": 384,
+  "rank": 0,
+  "state": {
+    "model": "bfc6026eb302d37082a14b22fd97f76e0ac1ecc082f975cd8f8bc44c9f77b978",
+    "numpy_rng": "0710498f1c3c9f54192836adc3d690fff57c93ef142fefdebe9934718f365d26",
+    "optimizer": "0804d5080b827ea2756ee2c547d6acc508ff0dacbfa68af8bc1bef70acb24f98",
+    "python_rng": "d30f79956d6a63a2133dc38031bb2203ead6cfa1a6947921e9bafed26a8f942f",
+    "torch_rng": "8df4d18a4442c70b6b1401eb6394e1226fb842e540b89cede753ef6d3118e4ae"
+  }
+}

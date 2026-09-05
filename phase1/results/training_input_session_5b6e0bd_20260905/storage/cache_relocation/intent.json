@@ -1,0 +1,1 @@
+{"utc": "2026-09-05T10:49:23.663289+00:00", "strategy": "copy fsync sha256 verify before unlink; remote tmp backup retained", "files": 11, "research_target": "/research/d7/spc/yzyang4/cache/pip/http-v2"}

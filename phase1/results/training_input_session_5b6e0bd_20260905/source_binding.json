@@ -1,0 +1,112 @@
+{
+  "archive_sha256": "5f53119b6dea831cfd5352bd6a3c62d4143cb3bbf4f72c98147a28919455d567",
+  "code_commit": "5b6e0bdd65f3e42860fd40e2d28120de90ed6d7e",
+  "code_files_unchanged": [
+    {
+      "path": "phase1/g_reuse_endpoint_inference.py",
+      "sha256": "43b38c0e0c377cd7e78e4c91c50b5ff1a4e3790b3162dcd20f6ee132fb2188ae"
+    },
+    {
+      "path": "phase1/global_local_accelerate_checkpoint_gate.py",
+      "sha256": "53861f0a9e9153ff82b81f4b26c38380427ff5ed57330db0b9e0a75b196305ee"
+    },
+    {
+      "path": "phase1/global_local_accelerate_resume_validation.py",
+      "sha256": "db8ffc95695fb6f04a45c39525aa74d477172aba341b08da295757070e82f877"
+    },
+    {
+      "path": "phase1/global_local_accelerate_update_adapter.py",
+      "sha256": "444c55726ca00c44dca25833108f6d73054b939463ca85ec287a49e965b40d80"
+    },
+    {
+      "path": "phase1/global_local_batch_adapter.py",
+      "sha256": "c1531ccc1b53fc1034c91b413febbf143b981d05610977c2879248eec7677774"
+    },
+    {
+      "path": "phase1/global_local_critic_consumer.py",
+      "sha256": "1ac6d8e4d8a55092bb45273d73df33a35887a9d2c27d3ac4e9db1b7297b12854"
+    },
+    {
+      "path": "phase1/global_local_critic_session.py",
+      "sha256": "57cc4b4e8eb023e91f12da5fa53c868cff77224c216c41c59d141c0a01ec6e02"
+    },
+    {
+      "path": "phase1/global_local_ds_completion.py",
+      "sha256": "a8f5aa24c5f373bf23463ca08be235401f83e9e7abfe41b5749c571865eb959d"
+    },
+    {
+      "path": "phase1/global_local_execution_plan.py",
+      "sha256": "8e3f3cec45d3456dee6f5c9b8ae8f42d58edc6ace1a40a86447dd97731270954"
+    },
+    {
+      "path": "phase1/global_local_partial_ddp_cpu_validation.py",
+      "sha256": "b77a7145697ebcc0780455e43aa235908b6e26ce19252caedd016abca9a84b37"
+    },
+    {
+      "path": "phase1/global_local_token_budget_plan.py",
+      "sha256": "81802b439739f550b0c4ab7291faa0d99bf896d1ab7f2195bc3b0d28cabf6b10"
+    },
+    {
+      "path": "phase1/global_local_training_inputs.py",
+      "sha256": "bc32ba3b1ccf1f4dfa61716931a67817b9a3f905357d9ba2a6038b670e67c918"
+    },
+    {
+      "path": "phase1/scripts/validate_critic_session_cpu_20260905.py",
+      "sha256": "a8c10fd0da30329cd27c10757ec14944cfb30b45e9a74dd62547bb05d44a3b0a"
+    },
+    {
+      "path": "phase1/scripts/validate_g_reuse_endpoint_inference_cpu_20260905.py",
+      "sha256": "74bbd18a6fb1887825149e658ae08e4032b5afd5f4f41e2698087ad6640f5d7c"
+    },
+    {
+      "path": "phase1/scripts/validate_global_local_critic_consumer_20260905.py",
+      "sha256": "3cfb956cee88ae6f380e08577e198fa3cc1490e988c81a96e52bb20dda91c623"
+    },
+    {
+      "path": "phase1/scripts/validate_training_input_session_cpu_20260905.py",
+      "sha256": "f4a1132835b52fc75bd1f4cd6a075562a088c038e7292fe14b142bc30a33abb7"
+    },
+    {
+      "path": "phase1/scripts/verify_training_input_session_cpu_20260905.py",
+      "sha256": "dd7c70a1a7966791911fbf1adf49248322f9fcf3fe853a68068fc83f5439dff9"
+    },
+    {
+      "path": "phase1/scripts/verify_zero3_engineering_20260905.py",
+      "sha256": "1624ca728b002e964829702b00bac5c30cd1349b23b5e7d7c59c4a7a0844e9f4"
+    },
+    {
+      "path": "phase1/tests/test_global_local_critic_consumer.py",
+      "sha256": "94e62d970e16e304b9c8843af0b1c7b81f9c6b539ce6d9b69e2a84dee1049d56"
+    },
+    {
+      "path": "phase1/tests/test_global_local_critic_session.py",
+      "sha256": "7f9dc2b0c4bdda4436ed4d6d7d44ff2a8e21a5bd22a5525fa35b3ed7a9f1d2d8"
+    },
+    {
+      "path": "phase1/tests/test_global_local_training_inputs.py",
+      "sha256": "6b399684d242e4ad141c4486eef15785c4d9c50598b0623c968d07f428eea3f2"
+    },
+    {
+      "path": "phase1/tests/test_training_input_session_fixture.py",
+      "sha256": "6962b1df3b2446a85cfd79822941d3c65244aad927e890ad6dd74fc4f24cff8b"
+    },
+    {
+      "path": "phase1/verify_global_local_execution_trace.py",
+      "sha256": "ced2abcfa084db3a9f6088fca29c2bc07412ad0ab1f44f6b0bb50a8dc92dd689"
+    },
+    {
+      "path": "phase1/verify_global_local_token_budget_plan.py",
+      "sha256": "a43965602f8d16dd95ca68130603fdcf1334f880bb89074c3b1701dcf5220a36"
+    }
+  ],
+  "packages": {
+    "accelerate": "1.14.0",
+    "deepspeed": "0.19.3",
+    "numpy": "1.26.4",
+    "safetensors": "0.5.3",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.12.1"
+  },
+  "trace_scope_is_not_os_isolation": true,
+  "utc": "2026-09-05T11:02:33.432668+00:00"
+}

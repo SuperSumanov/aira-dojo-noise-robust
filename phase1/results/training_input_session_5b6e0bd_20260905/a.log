@@ -1,0 +1,31 @@
+[2026-09-05 18:47:43,066] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[2026-09-05 18:47:43,066] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"completed": "G_to_L-full"}
+[2026-09-05 18:48:22,791] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[2026-09-05 18:48:22,799] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"completed": "G_to_L-prefix2"}
+[2026-09-05 18:49:00,450] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[2026-09-05 18:49:00,450] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"completed": "G_to_L-resume2"}
+[2026-09-05 18:49:49,552] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[2026-09-05 18:49:49,552] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"completed": "G_to_L-prefix3"}
+[2026-09-05 18:50:48,699] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[2026-09-05 18:50:48,699] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"completed": "G_to_L-resume3"}
+[2026-09-05 18:51:25,022] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[2026-09-05 18:51:25,059] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"completed": "Ghash_to_L-full"}
+[2026-09-05 18:52:02,325] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[2026-09-05 18:52:02,325] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"completed": "Ghash_to_L-prefix2"}
+[2026-09-05 18:52:40,349] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[2026-09-05 18:52:40,350] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"completed": "Ghash_to_L-resume2"}
+[2026-09-05 18:53:19,004] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[2026-09-05 18:53:19,004] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"completed": "Ghash_to_L-prefix3"}
+[2026-09-05 18:53:56,900] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+[2026-09-05 18:53:56,901] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"completed": "Ghash_to_L-resume3"}
+{"GPU_or_Zero3_validated": false, "actual_model_parameters": 4433, "bitwise_final_state_equal": true, "classification": "PROJECTED_INPUT_TO_ACTUAL_CRITIC_CPU_LIFECYCLE_NOT_EFFECT", "code_commit": "5b6e0bdd65f3e42860fd40e2d28120de90ed6d7e", "distinct_encoded_endpoints": 48, "dtype": "float32", "endpoints": 48, "exact_consumption": true, "global_pairs": 11, "hash_arm_true_global_labels_supplied": 0, "local_pairs": 13, "optimizer": "AdamW", "planned_valid_tokens": 384, "projection_to_reference_encoder_equal": true, "rank_resume_comparisons": 8, "real_data_loaded": false, "script_sha256": "f4a1132835b52fc75bd1f4cd6a075562a088c038e7292fe14b142bc30a33abb7", "seed": 6, "trajectories": 10, "world": 2}

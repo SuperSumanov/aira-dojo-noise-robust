@@ -1,0 +1,36 @@
+{
+  "categories": {
+    "devices": 295,
+    "fixed_runtime_or_backing": 255401,
+    "fixed_source_git_pointer": 40,
+    "git_config": 120,
+    "observed_created_or_truncated_temporary": 281,
+    "own_synthetic_code_and_outputs": 1638,
+    "process_metadata": 629,
+    "python_temporary": 160,
+    "runtime_backing": 5093,
+    "source_git_metadata": 1400,
+    "system": 2919,
+    "system_config": 549,
+    "system_metadata": 4323
+  },
+  "credential_shape_hits": 0,
+  "limitations": [
+    "file syscalls only, no inherited descriptors/network/content coverage",
+    "fd/cwd tracking is observational and not complete lifetime tracking",
+    "Python temp directory accesses not a proof of absence of other files",
+    "not actual provenance qualification or unblinding permission"
+  ],
+  "lines": 4173602,
+  "observed_opens_categorized": true,
+  "parse_issues": {
+    "signal_or_exit": 340
+  },
+  "pending": 0,
+  "protected_literal_hits": 0,
+  "scope_certificate": false,
+  "trace_bytes": 422112084,
+  "trace_sha256": "3f54d3ffe6a8eb69092048e13102e1da87b2cc159a82ae3e92a4594fb2a1ce1b",
+  "unknown": [],
+  "unknown_unique": 0
+}

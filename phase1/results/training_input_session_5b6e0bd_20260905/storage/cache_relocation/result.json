@@ -1,0 +1,11 @@
+{
+  "all_backups_sha256_verified": true,
+  "backup_root": "/tmp/research-pip-cache-backup-svbm2hko",
+  "bytes": 3217056793,
+  "files": 11,
+  "installed_environments_modified": false,
+  "recovery": "Copy from remote temporary backup or redownload exact public package/version; tmp is not permanent storage.",
+  "removed_allocated_bytes": 3217080320,
+  "status": "REVIEWED_PUBLIC_PIP_BODIES_RELOCATED",
+  "trained_checkpoints_or_corpus_touched": false
+}

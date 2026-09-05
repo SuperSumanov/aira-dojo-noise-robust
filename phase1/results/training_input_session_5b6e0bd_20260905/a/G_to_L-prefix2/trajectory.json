@@ -1,0 +1,65 @@
+{
+  "arm": "G_to_L",
+  "planned_tokens": 384,
+  "ranks": [
+    {
+      "end": 2,
+      "rank": 0,
+      "records": [
+        {
+          "completed_steps": 1,
+          "cumulative_global_valid_tokens": 128,
+          "event_sha256": "1f75ce03e50fe6a478353cc8ce0308f8bcb6fbdeead7d900200bfedde44b8e26",
+          "local_pair_visits": 4,
+          "local_valid_tokens": 64
+        },
+        {
+          "completed_steps": 2,
+          "cumulative_global_valid_tokens": 176,
+          "event_sha256": "ec67743c5e23cb273738920a9ab410baf848cfbca7cd52ae8caeaf3e57020883",
+          "local_pair_visits": 2,
+          "local_valid_tokens": 32
+        }
+      ],
+      "restored": false,
+      "start": 0,
+      "state": {
+        "model": "b5fd9c5a5c309fbbcfae318bc337add0917e1467d1f0fa5bf98ac075c5d7651b",
+        "numpy_rng": "e00436fe1dcca92e71556c3b1223ec76e01d1ad87c7970e5777d2c3f8df7cf55",
+        "optimizer": "5e6c06261db4c32b344c456499ee29cb2e3eb64685439794b0458ee34be617b5",
+        "python_rng": "8232f338aa695f1a046faf94cdc2566425e8342087418394c87f460574b62ebb",
+        "torch_rng": "9f691298ceaacc0d1fafea80fff8758e0a4e314f6bbd375be2448167c1582330"
+      }
+    },
+    {
+      "end": 2,
+      "rank": 1,
+      "records": [
+        {
+          "completed_steps": 1,
+          "cumulative_global_valid_tokens": 128,
+          "event_sha256": "cd8359efc5f2aeed7e1b3be9df54ed89efbbe3e6d439b43eef7cf05b04820c0c",
+          "local_pair_visits": 4,
+          "local_valid_tokens": 64
+        },
+        {
+          "completed_steps": 2,
+          "cumulative_global_valid_tokens": 176,
+          "event_sha256": "bb5fa275f8a1b802f9bca043c509d813b59231b3599300e211c3e7e79fde16a0",
+          "local_pair_visits": 1,
+          "local_valid_tokens": 16
+        }
+      ],
+      "restored": false,
+      "start": 0,
+      "state": {
+        "model": "b5fd9c5a5c309fbbcfae318bc337add0917e1467d1f0fa5bf98ac075c5d7651b",
+        "numpy_rng": "2ec96522f6f3afde5d7633beee9fa976c75523f41a58d1266b917efd66354300",
+        "optimizer": "5e6c06261db4c32b344c456499ee29cb2e3eb64685439794b0458ee34be617b5",
+        "python_rng": "6bfe2de58cb178ef8b82fc3637953d9a9ebebfc1672c56317dfa439184d0153a",
+        "torch_rng": "af5b1f462e7c040b25e3ad77cabbfd64b1534dd1d693d6b3b49772040384ff6f"
+      }
+    }
+  ],
+  "seed": 6
+}

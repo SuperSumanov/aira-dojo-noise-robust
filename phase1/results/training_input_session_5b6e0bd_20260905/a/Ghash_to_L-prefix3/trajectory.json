@@ -1,0 +1,79 @@
+{
+  "arm": "Ghash_to_L",
+  "planned_tokens": 384,
+  "ranks": [
+    {
+      "end": 3,
+      "rank": 0,
+      "records": [
+        {
+          "completed_steps": 1,
+          "cumulative_global_valid_tokens": 128,
+          "event_sha256": "6eb649795846fc12e92b10e8448ba502b98b2b3249003e557bb1b8a36a426220",
+          "local_pair_visits": 4,
+          "local_valid_tokens": 64
+        },
+        {
+          "completed_steps": 2,
+          "cumulative_global_valid_tokens": 176,
+          "event_sha256": "4fd13ae285e9d1a6e6876e5a902a313f85fa47ba9e922f3b65994115bf1f2626",
+          "local_pair_visits": 2,
+          "local_valid_tokens": 32
+        },
+        {
+          "completed_steps": 3,
+          "cumulative_global_valid_tokens": 304,
+          "event_sha256": "2e301d6641f07af6b29de4ae1f152b3071b5de6fae942bb01c7858aebe0ce4cc",
+          "local_pair_visits": 4,
+          "local_valid_tokens": 64
+        }
+      ],
+      "restored": false,
+      "start": 0,
+      "state": {
+        "model": "e96ac97fe16d708676cbc1fe030325b787f03e203baf1d25b92cc2122ef37792",
+        "numpy_rng": "d8cf46609db40ae6e927ca1d0ec8f14876226bab44ecd4bbea0ccedd95283d68",
+        "optimizer": "dee51f95cddf63047e181ddcfe326ccd3ac34d1cad7d93d4324ba7dc9fc21cdf",
+        "python_rng": "52c6036dd641d8b537a9ca81c430ecfd7063d07370df0388afa0ce4020ee0124",
+        "torch_rng": "8d18d4a61068fe7573f8eb96e7e52b61010641f930e2a3882e23da3810fa04a4"
+      }
+    },
+    {
+      "end": 3,
+      "rank": 1,
+      "records": [
+        {
+          "completed_steps": 1,
+          "cumulative_global_valid_tokens": 128,
+          "event_sha256": "912ef19ab48d349732d389333862abf472c745c6b3e58760ac5a3e9067397d75",
+          "local_pair_visits": 4,
+          "local_valid_tokens": 64
+        },
+        {
+          "completed_steps": 2,
+          "cumulative_global_valid_tokens": 176,
+          "event_sha256": "31691ccd35ee55c9ee3f2081f28bf19063161bb4c3ccb7b4b40d29ddb3fb52d0",
+          "local_pair_visits": 1,
+          "local_valid_tokens": 16
+        },
+        {
+          "completed_steps": 3,
+          "cumulative_global_valid_tokens": 304,
+          "event_sha256": "6885222296cde36c377610fac356d5cbcb49a84f58fb1b8e12495b8751d844a8",
+          "local_pair_visits": 4,
+          "local_valid_tokens": 64
+        }
+      ],
+      "restored": false,
+      "start": 0,
+      "state": {
+        "model": "e96ac97fe16d708676cbc1fe030325b787f03e203baf1d25b92cc2122ef37792",
+        "numpy_rng": "ef8409a59ff69fe2efb7ac6cea4dfaeb3c3fd81b31be0d98ad3c03e0c266e97c",
+        "optimizer": "dee51f95cddf63047e181ddcfe326ccd3ac34d1cad7d93d4324ba7dc9fc21cdf",
+        "python_rng": "ab68601795a7dfa859a5d609e1a71e115adda212071a70dbf43578f2586f443b",
+        "torch_rng": "d9f46611afd075a4d036edfcb8f4151c5c8395dd78e5fe337ecde3eb03cb3c2d"
+      }
+    }
+  ],
+  "seed": 6
+}

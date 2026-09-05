@@ -14,7 +14,7 @@ REPO=BASE/'aira-dojo'
 SOURCE=BASE/'worktrees/critic-g0-final-only-20260903-b'
 SOURCE_SHA='5f3bc362db922c8edee2ef134656dfdb9a2b74fb'
 RUNTIME=BASE/'venvs/critic-blackwell-g0-20260905-r5'
-OUT=BASE/'critic-zero3-engineering/submission-20260905-r1'
+OUT=BASE/'critic-zero3-engineering/submission-20260905-r2'
 APPROVAL='phase1/manifests/zero3_engineering_approval_20260905.json'
 SCRIPT='phase1/scripts/zero3_session_engineering_20260905.sbatch'
 ENV=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf',GIT_LFS_SKIP_SMUDGE='1',

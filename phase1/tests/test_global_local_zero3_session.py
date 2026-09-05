@@ -36,6 +36,16 @@ def test_valid_complete(tmp_path):
     assert z.verify_bundle(root,binding,h)['completed_steps']==2
 
 
+@pytest.mark.parametrize('key',sorted(z.STATE_KEYS))
+def test_restore_comparison_requires_every_zero3_role(key):
+    expected={k:'a'*64 for k in z.STATE_KEYS}
+    z.verify_restored(expected,dict(expected))
+    with pytest.raises(PlanError,match='restored_state_mismatch'):
+        z.verify_restored(expected,{**expected,key:'b'*64})
+    with pytest.raises(PlanError,match='component_set'):
+        z.verify_restored(expected,{k:v for k,v in expected.items() if k!=key})
+
+
 @pytest.mark.parametrize('name', sorted(z.expected_files()))
 def test_every_shard_and_rng_hash_checked(tmp_path,name):
     root=tmp_path/'cp';binding,h=bundle(root)

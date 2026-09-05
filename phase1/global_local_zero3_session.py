@@ -15,7 +15,7 @@ import numpy as np
 import torch
 
 from phase1.global_local_critic_session import (
-    CriticSession, atomic_json, file_sha, read_small, state_fingerprint, verify_restored,
+    CriticSession, atomic_json, file_sha, read_small, state_fingerprint,
 )
 from phase1.global_local_ds_completion import _ownership, observe_deepspeed_restore
 from phase1.global_local_execution_plan import PlanError, digest_records
@@ -28,6 +28,14 @@ COUNTER_KEYS = {'global_steps','global_samples','skipped_steps','micro_steps','m
 
 def require(ok, reason):
     if not ok: raise PlanError(reason)
+
+
+def verify_restored(expected, actual):
+    # Do not repurpose the old DDP/prototype checker: its fixed field set is
+    # intentionally different. ZeRO-3 must compare every shard/state role here.
+    require(set(expected) == set(actual) == STATE_KEYS, 'zero3_restored_component_set')
+    for key in sorted(STATE_KEYS):
+        require(expected[key] == actual[key], 'zero3_restored_state_mismatch:'+key)
 
 
 def expected_files(world=2):

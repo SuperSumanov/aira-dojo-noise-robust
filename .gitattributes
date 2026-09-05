@@ -426,3 +426,7 @@ phase1/tests/test_global_local_ds_restore_observer.py text eol=lf diff
 phase1/CRITIC_SESSION_INTEGRATION_PREFLIGHT_20260905.md text eol=lf diff
 phase1/results/critic_session_33ad8ba_20260905/** -text diff
 phase1/results/critic_session_33ad8ba_20260905/**/runs.csv whitespace=cr-at-eol
+phase1/global_local_zero3_session.py text eol=lf diff
+phase1/tests/test_global_local_zero3_session.py text eol=lf diff
+phase1/scripts/check_zero3_partition_roundtrip_20260905.py text eol=lf diff
+phase1/ZERO3_SESSION_INTEGRATION_PREFLIGHT_20260905.md text eol=lf diff

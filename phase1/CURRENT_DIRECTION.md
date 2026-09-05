@@ -3,6 +3,17 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L70. 2026-09-06 05:45：补齐本次新语料的冻结WL覆盖，不新增方法网格
+
+元数据实核WL仍在517-run快照e9e12c63，当前673，冻结baseline托管落后156runs；锁空闲，全部WL旧PID不存在。
+按用户会话内总授权，准备单次foreground沿用原bc362dfe/031edb34控制与scorer，以及原模型/activation/protocol哈希。
+仅WL，1producer+1independent verifier+1chain verifier，0GPU/API/model-fit，预计60–95分钟，7200秒硬上限，无自动重试。
+新wrapper只固定当前输入、单次poll、进程组清理与安全结构回执，不修改原科学runner/最低增量12/seed/成员。
+见WL_CATCHUP_673_PREFLIGHT_20260906.md；27项wrapper/原协议检查通过，但此刻尚未产生新覆盖结果。
+transition及receipt-common-support不启动；它们两个旧PID号目前被其它uid新进程复用，已用创建时刻独立辨认，
+未给任何旧PID发信号。state/log旧SHA未变。所有protected值/身份仍对agent封闭，原数值verifier仅按冻结协议内部核验。
+这项工作补齐benchmark必要覆盖，不是critic/scaling效应，也不替代仍待学长补齐的正式开发来源。
+
 ## 0L69. 2026-09-06 05:34：本批摄取真正完成；不等于确认人口关闭
 
 15次foreground完成14事务并最后真实ready=0；原session7次+successor8次均到终点，不再调用或扩期限。

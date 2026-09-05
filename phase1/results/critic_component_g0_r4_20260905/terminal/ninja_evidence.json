@@ -1,0 +1,102 @@
+{
+  "actual_ninja_exec_attempts": [
+    "84023 execve(\"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/bin/ninja\", [\"ninja\", \"--version\"], 0x56a65b659280 /* 139 vars */) = -1 ENOENT (No such file or directory)",
+    "84023 execve(\"/usr/local/bin/ninja\", [\"ninja\", \"--version\"], 0x56a65b659280 /* 139 vars */) = -1 ENOENT (No such file or directory)",
+    "84023 execve(\"/usr/bin/ninja\", [\"ninja\", \"--version\"], 0x56a65b659280 /* 139 vars */) = -1 ENOENT (No such file or directory)",
+    "84023 execve(\"/bin/ninja\", [\"ninja\", \"--version\"], 0x56a65b659280 /* 139 vars */) = -1 ENOENT (No such file or directory)",
+    "84029 execve(\"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/bin/ninja\", [\"ninja\", \"--version\"], 0x601f5b3745f0 /* 139 vars */) = -1 ENOENT (No such file or directory)",
+    "84029 execve(\"/usr/local/bin/ninja\", [\"ninja\", \"--version\"], 0x601f5b3745f0 /* 139 vars */) = -1 ENOENT (No such file or directory)",
+    "84029 execve(\"/usr/bin/ninja\", [\"ninja\", \"--version\"], 0x601f5b3745f0 /* 139 vars */) = -1 ENOENT (No such file or directory)",
+    "84029 execve(\"/bin/ninja\", [\"ninja\", \"--version\"], 0x601f5b3745f0 /* 139 vars */) = -1 ENOENT (No such file or directory)"
+  ],
+  "checkpoint_present": false,
+  "complete_present": false,
+  "exit_status_matches": true,
+  "failed_marker_matches": true,
+  "gpu_submissions": 0,
+  "installed_torch_cpp_extension_sha256": "1517eb2ac276065210d7c861becc5bf3a5404796da16d35af9b9466667fef904",
+  "installed_torch_ninja_check": "def is_ninja_available() -> bool:\n    \"\"\"Return ``True`` if the `ninja <https://ninja-build.org/>`_ build system is available on the system, ``False`` otherwise.\"\"\"\n    try:\n        subprocess.check_output(['ninja', '--version'])\n    except Exception:\n        return False\n    else:\n        return True\n\n\ndef verify_ninja_availability() -> None:\n    \"\"\"Raise ``RuntimeError`` if `ninja <https://ninja-build.org/>`_ build system is not available on the system, does nothing otherwise.\"\"\"\n    if not is_ninja_available():\n        raise RuntimeError(\"Ninja is required to load C++ extensions (pip install ninja to get it)\")\n\n",
+  "job_id": 12486,
+  "log_credential_shape_hits": 0,
+  "log_head_safe": [
+    "[g0-recovery] final_only=1 load_best_model_at_end=false max_steps=10 eval_steps=10",
+    "[g0-worker-timing] {\"event\": \"launcher_start\", \"monotonic_ns\": 357464538377651, \"utc\": \"2026-09-05T05:09:08.930406+00:00\"}",
+    "[confirmatory-rm] commit=5f3bc362db922c8edee2ef134656dfdb9a2b74fb model=/research/d7/spc/yzyang4/cache/huggingface/hub/models--Qwen--Qwen3-1.7B-Base/snapshots/ea980cb0a6c2ae4b936e82123acc929f1cec04c1 seed=6",
+    "[confirmatory-rm] train_sha256=0ec49d76a896accf8e85a2556ca7ed12b9379b1867247d99c6be5e4c83bea98e dev_sha256=3b3fb53f84277e935c66d3b3d1646d7a7d33624fb916e3f9bcc15f689904cfa4 cards_sha256=5fd24c8e545a67e1048f8a67b23bcb64605b9ad584a4fbaa44aa1b1f1b6e1afb",
+    "[confirmatory-rm] processes=2 effective_pair_batch=128 max_len=16384 epochs=1",
+    "[confirmatory-rm] max_steps=10 scheduler=cosine warmup_ratio=0.03",
+    "[confirmatory-rm] g0_final_only=1 load_best_model_at_end=false save_only_model=true save_strategy=best",
+    "[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.",
+    "[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.",
+    "NCCL version 2.28.9+cuda12.9",
+    "[rm-hf] split=in-task-train-run-dev train=4689 dev=551 separation={'train_pairs': 4689, 'dev_pairs': 551, 'train_endpoints': 4095, 'dev_endpoints': 626, 'train_runs': 430, 'dev_runs': 81}",
+    "[rm-hf] split=in-task-train-run-dev train=4689 dev=551 separation={'train_pairs': 4689, 'dev_pairs': 551, 'train_endpoints': 4095, 'dev_endpoints': 626, 'train_runs': 430, 'dev_runs': 81}",
+    "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!",
+    "[transformers] `torch_dtype` is deprecated! Use `dtype` instead!",
+    "[RANK 0] Gradient accumulation steps mismatch: GradientAccumulationPlugin has 1, DeepSpeed config has 8. Using DeepSpeed's value.",
+    "[rank1]: Traceback (most recent call last):",
+    "[rank1]:   File \"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/lib/python3.11/site-packages/deepspeed/ops/op_builder/builder.py\", line 552, in jit_load",
+    "[rank1]:     verify_ninja_availability()",
+    "[rank1]:   File \"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/lib/python3.11/site-packages/torch/utils/cpp_extension.py\", line 2448, in verify_ninja_availability",
+    "[rank1]:     raise RuntimeError(\"Ninja is required to load C++ extensions (pip install ninja to get it)\")",
+    "[rank1]: RuntimeError: Ninja is required to load C++ extensions (pip install ninja to get it)",
+    "",
+    "[rank1]: The above exception was the direct cause of the following exception:",
+    "",
+    "[rank1]: Traceback (most recent call last):",
+    "[rank1]:   File \"/research/d7/spc/yzyang4/worktrees/critic-g0-final-only-20260903-b/src/mle_critic/src/train/bradley_terry.py\", line 255, in <module>",
+    "[rank1]:     main()",
+    "[rank1]:   File \"/research/d7/spc/yzyang4/worktrees/critic-g0-final-only-20260903-b/src/mle_critic/src/train/bradley_terry.py\", line 216, in main",
+    "[rank1]:     trainer.train()",
+    "[rank1]:   File \"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/lib/python3.11/site-packages/transformers/trainer.py\", line 1433, in train",
+    "[rank1]:     return inner_training_loop(",
+    "[rank1]:            ^^^^^^^^^^^^^^^^^^^^",
+    "[rank1]:   File \"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/lib/python3.11/site-packages/transformers/trainer.py\", line 1472, in _inner_training_loop",
+    "[rank1]:     model, train_dataloader = self._prepare_for_training(max_steps, train_dataloader, resume_from_checkpoint)",
+    "[rank1]:                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "[rank1]:   File \"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/lib/python3.11/site-packages/transformers/trainer.py\", line 1608, in _prepare_for_training",
+    "[rank1]:     model, self.optimizer = self.accelerator.prepare(self.model, self.optimizer)",
+    "[rank1]:                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "[rank1]:   File \"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/lib/python3.11/site-packages/accelerate/accelerator.py\", line 1549, in prepare",
+    "[rank1]:     result = self._prepare_deepspeed(*args)",
+    "[rank1]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "[rank1]:   File \"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/lib/python3.11/site-packages/accelerate/accelerator.py\", line 2374, in _prepare_deepspeed",
+    "[rank1]:     optimizer = map_pytorch_optim_to_deepspeed(optimizer)",
+    "[rank1]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "[rank1]:   File \"/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/lib/python3.11/site-packages/accelerate/utils/deepspeed.py\", line 97, in map_pytorch_optim_to_deepspeed"
+  ],
+  "ninja_distribution_metadata": [
+    "ninja",
+    "ninja-1.13.0.dist-info"
+  ],
+  "ninja_locations_now": {
+    "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-selective/bin/ninja": {
+      "executable": false,
+      "exists": false
+    },
+    "/research/d7/spc/yzyang4/venvs/exp/bin/ninja": {
+      "executable": false,
+      "exists": false
+    },
+    "/usr/bin/ninja": {
+      "executable": false,
+      "exists": false
+    },
+    "/usr/local/bin/ninja": {
+      "executable": false,
+      "exists": false
+    }
+  },
+  "protected_root_marker_lines": 0,
+  "r1_boundaryless_sk_false_positive_count": 2,
+  "rank0_ninja_failure": true,
+  "rank1_ninja_failure": true,
+  "read_only": true,
+  "runtime_mutations": 0,
+  "sacct_terminal": [
+    "12486|FAILED|191|2026-09-05T13:07:12|2026-09-05T13:10:23|1:0|billing=12,cpu=12,gres/gpu=2,node=1",
+    "12486.batch|FAILED|191|2026-09-05T13:07:12|2026-09-05T13:10:23|1:0|cpu=12,mem=0,node=1",
+    "12486.extern|COMPLETED|191|2026-09-05T13:07:12|2026-09-05T13:10:23|0:0|billing=12,cpu=12,gres/gpu=2,node=1"
+  ],
+  "trace_scope_limit": "Marker scan only, not complete PID/cwd/symlink-resolved access certification."
+}

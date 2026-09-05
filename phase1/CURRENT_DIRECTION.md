@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L46. 2026-09-05 13:10：G0 12486失败终态；运行环境遗漏ninja可执行入口
+
+守护独立核验：实际13:07:12开始、13:10:23结束，两卡191秒，FAILED/1:0；Requeue/Restarts均0。
+两rank在DeepSpeed CPUAdam初始化阶段找不到ninja，未进入训练更新；无checkpoint-10/verification/COMPLETE。
+strace记录八次ninja执行尝试均ENOENT。ninja包元数据在selective runtime中，但其RECORD的
+`../../../bin/ninja`被既有环境重建脚本跳过，且该包没有console_scripts；原overlay二进制仍在。
+因此是我方环境重建/真实依赖预检缺口，不能称GPU已跑通，也不能归因于语料或已观察到的OOM。
+
+四次G0累计964 GPU-seconds（0.2677777777777778 GPU·h），原上限剩13436 GPU-seconds；
+剩余额度不授权自动重试。本轮只读诊断，没有改source/control/runtime，没有新GPU提交或保护数据读取。
+终态证据见`results/critic_component_g0_r4_20260905/terminal/README.md`；到此结束12486守护。
+后续应补齐确切工具入口并核实际PATH/CPUAdam初始化，再审批新作业；本轮不实施修复或重投。
+0L45科学路线不变；G0失败不是方法效果负结果，也不恢复任何关闭路线。
+
 ## 0L45. 2026-09-05：重新审视主线；收紧谱机制解释，优先真实效果闭环
 
 用户要求重新仔细审视现状并推进正方向。本轮不换题，不启动未经预算批准的fit，不恢复旧路线。

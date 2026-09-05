@@ -1,0 +1,24 @@
+{
+  "backing_binary_metadata": [
+    {
+      "exists": true,
+      "path": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/bin/ninja",
+      "sha256": "696f9628a79d9ce50314cf9556d7cd1a1d1ec52b8fd52828f6f9db1719565b67"
+    }
+  ],
+  "closure_has_ninja_console_entry": false,
+  "closure_ninja_package": {
+    "backing_site": "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260903-overlay/lib/python3.11/site-packages",
+    "record_sha256": "929c89ba62848ae8012fa24a6ca227dbde2b02ef1b5232b1abfb02a9c283af02",
+    "version": "1.13.0"
+  },
+  "closure_sha256": "5fad91f03344543e5389d0bf85438256b3eb4fed5aa0e8928f7c36e9875bf017",
+  "entry_points_file_exists": false,
+  "job_id": 12486,
+  "ninja_binary_RECORD_rows": [
+    "../../../bin/ninja,sha256=aW-WKKednOUDFM-VVtfNGh0exSuP1Sgo9vnbFxlWW2c,372384"
+  ],
+  "record_sha256": "929c89ba62848ae8012fa24a6ca227dbde2b02ef1b5232b1abfb02a9c283af02",
+  "relative_binary_entries_skipped_by_rebuilder": true,
+  "runtime_modified": false
+}

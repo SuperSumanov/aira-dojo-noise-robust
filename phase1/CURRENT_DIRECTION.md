@@ -3,6 +3,28 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L62. 2026-09-06 01:22：worker证据解释唯一Slurm异常；84run运行版本仍未认证
+
+固定676-run ledger/lineage不变。真实两份worker identity独立重读通过：第二次worker身份与config一致，
+第二次controller step字段为空，故是“447 controller匹配+1 worker支持的缺字段例外”，不是448原记录全一致。
+具体缺字段原因未证实；原hold、原lineage不改写，未扩大训练范围。两条目录候选实际snapshot/step不同，
+不因目录复用强行合并实例；它们已在既有保守组件内。配置launch日期也不能一律当作worker真实开始日期。
+
+固定84结构较完整run的启动前缀审计code=79164e047b46f7d76db38a89407d1b008c19221a：
+24归档、168前缀全部遇首个未知消息停止，完整来源记录0；A/B各61秒、字节相同、独立范围/绑定复核通过。
+private SHA=fc13d25745c1c8ea408374741358137e9eb374b3b214e0c9f6d4b856b071464b。
+**没有补到实际运行版本，不放宽前缀重选。** 该84范围需24snapshot，本机8无权限/16不存在；不能推断其它机器也没有。
+
+原summary的task_phase_log_reads=0不成立为字节级保证：未知首行已被读入且阶段未知。独立回执明确勘误，
+原产物保留，后续源码改为unknown_for_first_unrecognized_line；仅保证停止/不解析成绩/不输出原文。
+trace初检因中文路径转义误解码及目录本身未分类而失败；旧失败保留，修正Linux字节语义后A/B各24固定archive路径，
+无未分类成功open或意外写入项。不是OS隔离或tar成员零字节证明。32相关测试通过，未重跑原实验。
+
+12535在01:22仍PENDING/Resources/0秒；仅projgpu39有所需PRO6000，排程先前暂估19:38:15，非保证。
+学长head仍b8d095180415957aa1bab31fa53ead1bba261c03；0904最早03:44:48成熟，未提前摄取。
+无新GPU/API/fit或模型收益、未构建Cards/G/L。下一步优先补24实际snapshot/评分环境和experiment开发资格，
+不能把本身份核验当正式训练包。见`results/historical_runtime_evidence_20260906/README.md`及最小交接更新。
+
 ## 0L61. 2026-09-06 00:43：676个run已定位真实launcher；执行环境证据仍缺，非训练准入
 
 沿固定676-run实际ledger继续恢复生产事实。先发现corrected leaf中的真实srun_pool manifest，再全量核143 archive SHA。

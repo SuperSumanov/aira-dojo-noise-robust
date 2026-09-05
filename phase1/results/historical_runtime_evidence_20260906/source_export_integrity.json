@@ -1,0 +1,29 @@
+{
+  "source_commit": "79164e047b46f7d76db38a89407d1b008c19221a",
+  "source_bundle_sha256": "1e301af024cc3e56eab29d116162ebe69a3a710c82a47598edd8540fe6676d01",
+  "byte_identical_export": true,
+  "files": [
+    {"path":"phase1/audit_historical_runtime_prefix.py","sha256":"8cb3ae6db049bfdd550ebfeb087934c3b2ad373efff61f20236c1726be266624","bytes":9529},
+    {"path":"phase1/recover_historical_pool_lineage.py","sha256":"462f69661375f038965b28b6184c4d0945275a1f3f71d633edb53973a7025d31","bytes":13231},
+    {"path":"phase1/recover_historical_production_configs.py","sha256":"f75ad3539ea71c637a363505625169f434eef8abc47579b3230b8fd917bc0b6b","bytes":12345},
+    {"path":"phase1/recover_historical_repair_config.py","sha256":"7c8bf6369d8f9307952a055625e32180d8c4575956607178e4fd47af66309398","bytes":5458},
+    {"path":"phase1/tests/test_audit_historical_runtime_prefix.py","sha256":"fa6eca640db50748873fddfd3450df08a8658c799e735b2d8cab3fe11c7855ca","bytes":2464}
+  ],
+  "independent_prefix_verifier": {
+    "commit":"a5677a919fb2516f94c810977d23a60bd2f414e5",
+    "path":"phase1/scripts/verify_runtime_prefix_receipts_20260906.py",
+    "executed_sha256":"7a83e42de93238f154f5df5e7583b341637d15a770bb2b049aa8e8b4fa57d7ce"
+  },
+  "worker_identity_verifier": {
+    "commit":"eabf24ade438384f0407dd680d6154192cb97e74",
+    "path":"phase1/scripts/verify_worker_identity_evidence_20260906.py",
+    "executed_sha256":"2ae85cfd9c381c88c6166833747cabbb12a5c60b69f8bab046c3ae978fa2ae28"
+  },
+  "trace_verifier": {
+    "commit":"767e351b2218b9e81637e773fd0a3ea0ed6c7e62",
+    "path":"phase1/scripts/audit_runtime_prefix_opens_20260906.py",
+    "executed_sha256":"84fa2e39ab9f49d3bd19826f4a3b1cd3e7078500975eb724f35be2f9a0dd01e8"
+  },
+  "recorded_remote_wrapper_sha256":"062736a0a53900e499a1e43b177713690b1a16c9a4c2d714b4c5b511be3250b0",
+  "original_identity_helper_sha256":"8c52dd14bade90167f488414113cf0ee5853d55b435194e8c8e39f52fefca96b"
+}

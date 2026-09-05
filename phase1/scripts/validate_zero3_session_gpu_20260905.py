@@ -47,6 +47,7 @@ def worker(rank,port,output,end,resume,source_root):
     from phase1.global_local_zero3_session import DeepSpeedCriticSession,current_state,counters,file_sha,state_fingerprint
     from phase1.scripts.validate_global_local_critic_consumer_20260905 import fixture
     from phase1.scripts.validate_g_reuse_endpoint_inference_cpu_20260905 import source_definitions
+    allocation_gate(os.environ)  # imports must not erase/change the allocation
     torch.set_num_threads(1);torch.set_num_interop_threads(1);torch.cuda.set_device(rank)
     assert torch.cuda.device_count()==2 and '6000' in torch.cuda.get_device_name(rank)
     torch.use_deterministic_algorithms(True);torch.backends.cuda.matmul.allow_tf32=False

@@ -12,10 +12,14 @@ from pathlib import Path
 import subprocess
 from typing import Any, Sequence
 
-os.environ["CUDA_VISIBLE_DEVICES"] = ""
-os.environ["HF_HUB_OFFLINE"] = "1"
-os.environ["TRANSFORMERS_OFFLINE"] = "1"
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
+if __name__ == "__main__":
+    # Standalone CPU validation hides GPUs before torch import. Importing shared
+    # definitions must preserve the GPU driver's Slurm allocation instead.
+    # Spawned CPU workers inherit their parent's environment.
+    os.environ["CUDA_VISIBLE_DEVICES"] = ""
+    os.environ["HF_HUB_OFFLINE"] = "1"
+    os.environ["TRANSFORMERS_OFFLINE"] = "1"
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 import torch
 from torch import nn

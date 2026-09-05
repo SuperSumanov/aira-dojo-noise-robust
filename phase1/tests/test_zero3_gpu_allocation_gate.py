@@ -21,3 +21,27 @@ def test_missing_field_cannot_start(key):
 def test_wrong_world_cannot_start(devices):
     e=env();e['CUDA_VISIBLE_DEVICES']=devices
     with pytest.raises(ValueError):allocation_gate(e)
+
+
+def test_cpu_reference_import_preserves_gpu_allocation():
+    import ast
+    import os
+    from pathlib import Path
+    from unittest.mock import patch
+    source = Path(__file__).parents[1]/'scripts/validate_g_reuse_endpoint_inference_cpu_20260905.py'
+    tree = ast.parse(source.read_text(encoding='utf-8'))
+    statements = []
+    for node in tree.body:
+        if isinstance(node, ast.Import) and any(a.name == 'torch' for a in node.names):
+            break
+        if isinstance(node, ast.If):statements.append(node)
+    code = compile(ast.Module(body=statements,type_ignores=[]),str(source),'exec')
+    for name in ('imported_reference','__mp_main__'):
+        with patch.dict(os.environ,env(),clear=True):
+            before=dict(os.environ)
+            exec(code,{'__name__':name,'os':os})
+            assert dict(os.environ)==before
+            allocation_gate(os.environ)
+    with patch.dict(os.environ,env(),clear=True):
+        exec(code,{'__name__':'__main__','os':os})
+        assert os.environ['CUDA_VISIBLE_DEVICES']==''

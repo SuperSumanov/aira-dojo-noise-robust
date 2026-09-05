@@ -144,10 +144,13 @@ def release(control,commit):
     raw=run(['scontrol','show','job','-o',jid]);fields=dict(p.split('=',1) for p in raw.decode().split() if '=' in p)
     exact={'JobId':jid,'JobState':'PENDING','Reason':'JobHeldUser','RunTime':'00:00:00','TimeLimit':'00:30:00',
         'Requeue':'0','Restarts':'0','NumCPUs':'12','CPUs/Task':'12','MinMemoryNode':'0',
-        'ReqNodeList':'projgpu39','Partition':'gpu_24h','QOS':'gpu','NumNodes':'1'}
+        'ReqNodeList':'projgpu39','Partition':'gpu_24h','QOS':'gpu','NumTasks':'1',
+        'TresPerNode':'gpu:pro6000:2','Command':str(control/SCRIPT),'WorkDir':str(control)}
     require(all(fields.get(k)==v for k,v in exact.items()),'held_resource_mismatch')
+    # Slurm 22 emits the pending min-max range even when both bounds equal 1.
+    require(fields.get('NumNodes') in ('1','1-1') and 'node=1' in fields.get('TRES','').split(','),'held_node_mismatch')
     require('gres/gpu=2' in fields.get('TRES','').split(','),'held_gpu_mismatch')
-    record('VERIFIED_HELD.json',{'fields':fields,'gpu_seconds_upper_bound':4320})
+    record('VERIFIED_HELD.json',{'fields':fields,'gpu_seconds_upper_bound':4320,'controller_sha256':sha(__file__)})
     run(['scontrol','release',jid])
     record('RELEASED.json',{'job_id':jid,'commit':commit,'utc':dt.datetime.now(dt.timezone.utc).isoformat()})
     print(json.dumps({'status':'RELEASED','job_id':jid,'gpu_seconds_upper_bound':4320}))

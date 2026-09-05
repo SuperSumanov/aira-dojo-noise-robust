@@ -44,3 +44,17 @@ AIRA源码中meta_id来自RunnerConfig.id，是配置分组hash，**不是天然
 单次300秒、A/B各一次、单CPU，无GPU/API。单元测试先验证重复成员、链接、凭据、日期错配、hash漂移拒绝。
 独立核汇总与原668-run映射保持不变。此处是历史修复证据，非摄取/训练准入；不改变0904成熟期，
 不覆盖旧S0或静默删除错误档案。journal/env只可查成员名，不读payload。
+
+## 完整来源账本（在配置补齐后，读取journal字节前固定）
+
+配置恢复已覆盖全部676run；本阶段仍不构建Cards/pairs，不解析成绩，不取“干净子集”追认旧S0。
+固定combined mapping SHA=`fd8e0769f4561937f2959c055da18120e3715aaf3b772364cca72e1a4268aec6`。
+重核其全部已知来源的配置SHA与对应regular checkpoint journal header；每个run全部来源都写入新私有ledger。
+仅7个多来源run的journal做流式字节hash+credential-shape scan，不解析任何JSON字段；必须所有副本同hash，
+否则停止，不按成绩/日期挑副本。此授权范围扩展仅为旧历史副本内容核对，不接触任何protected cohort。
+两CPU，单次25分钟上限；每归档独立保存结构证据。新账本不等于旧S0改判或训练资格。
+recorded-stratum仅删除明确的实例输出路径：solver.exp_name/checkpoint_path、interpreter.working_dir、
+task.results_output_dir；所有输入路径、prompt/client/resource/image与recorded Git版本保留。
+另固定保守关联组件：同一archive-hash+顶层batch目录，或同recorded meta_id的run必须同组；
+组件任一run原hold=true，则整个组件不能用于train。只写这一结构闭包，不新分dev/test、不宣称真实experiment已获生产方认证。
+本轮发现历史代码base_path无可访问目录（5不存在、4无权）；不得绕过权限或据Git字段补造pristine执行证明。

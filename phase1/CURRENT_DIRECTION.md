@@ -3,6 +3,18 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L69. 2026-09-06 05:34：本批摄取真正完成；不等于确认人口关闭
+
+15次foreground完成14事务并最后真实ready=0；原session7次+successor8次均到终点，不再调用或扩期限。
+交易日期实核0903八档/0904六档；本会话新增50eligible（0903为30、0904为20），当前673/960，仍差287且closure=false。
+699physical/18696endpoints/4275structural pairs/57tasks。不是提前揭盲门，不是模型/scaling正收益。
+最终LATEST与0L68相同；空队列回执ed40bae9788f14442dcefc7bf688c662acec7e087ceca709a0310b57887ed1a9。
+15distinct snapshots的A/B、grounded A/B、hash、trace/security、只读独立复核完成，154份安全原始回执逐字节核验，
+见results/intake_backlog_session_20260906/README.md，公开summarySHA e619b9b300940f629a27a4bc25eb4b558eb21c8178c796091ed00ebd506d339e。
+导出SHA0ebfee8e47bb071f4eae7c149e99785a1b6d2ad5f0d2812c0e7e9025217ec9d9；旧anchor补验34严格不算本次新增。
+05:30学长head无变化、Drive无0905；旧代理检查连接拒绝后改用站点现行配置，元数据查询恢复，无payload读取。
+源资格、PRO6000窗口与真实训练存储仍是阻塞；不要继续以一般性审计/合成测试数量代替首个真实效果闭环。
+
 ## 0L68. 2026-09-06 05:29：真实积压摄取至673；3090尝试被工具链预检拦截
 
 原7次0903摄取加successor前7次后，当前699physical/673eligible/18696endpoints/4275structural pairs/57tasks，

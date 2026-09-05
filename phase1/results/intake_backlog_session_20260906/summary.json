@@ -1,0 +1,134 @@
+{
+  "after": {
+    "all_physical_runs": 699,
+    "closure_provided": false,
+    "eligible_endpoints": 18696,
+    "eligible_runs": 673,
+    "eligible_structural_pairs": 4275,
+    "eligible_tasks": 57,
+    "latest": "cdae57a622cfa8e83b40e93f60dbd90045b4670c4e9050bf552ef689745a25f2",
+    "summary_sha256": "b70da317b36949cba2db91edcfc5ce1af85f19fa0378a63d0b5587a4989b7d56"
+  },
+  "before": {
+    "all_physical_runs": 649,
+    "closure_provided": false,
+    "eligible_endpoints": 16925,
+    "eligible_runs": 623,
+    "eligible_structural_pairs": 3919,
+    "eligible_tasks": 51,
+    "latest": "76a2d7d426b1da88f30d28449506fea78208f9ca5cd012ba6316efe346462285",
+    "summary_sha256": "71907e82a8c3f8ffb6d88c54766725f44f672f97e04de1caa4e0ed8d37a991c0"
+  },
+  "chain": [
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T194411Z_76a2d7d426b1",
+      "manifest_sha256": "faf2319cc132022815ba3997e0d80e644019bf97d91eb6d26299ce22d68311af",
+      "role": "prior_anchor_catchup_not_new_accrual",
+      "snapshot": "76a2d7d426b1da88f30d28449506fea78208f9ca5cd012ba6316efe346462285"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T194847Z_72d334412d32",
+      "manifest_sha256": "436b5d0af1480fd6c56ac85ca065628b2c42417771576c8fdd81bd8917ded2aa",
+      "role": "new_accrual",
+      "snapshot": "72d334412d32b126cdcbe68c67de469ecde9b65bbf4f04f5e8d95f27ccea05eb"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T195621Z_0a283e84ea33",
+      "manifest_sha256": "e7f693d1eabba459d471de45fec133e2825445c00509985f4b8bd16e7f2b487b",
+      "role": "new_accrual",
+      "snapshot": "0a283e84ea33f5b487494da4107b2d70af8cf33eaf1591006c2c28eed9f3881b"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T200355Z_1d5dcfe96a91",
+      "manifest_sha256": "6d30d3f81f73b898eb72b7f8a960215aa907ec7e8fd3e065a7b7168bd9652157",
+      "role": "new_accrual",
+      "snapshot": "1d5dcfe96a91984f28c785b28cd20259cbd9d7409aa82f5b722eb46dff3dced4"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T201227Z_e6a16a1ea829",
+      "manifest_sha256": "fd3e96e3f5143af06f1f7dca15dcc6079767b7284e1baaf8fa26b1e7a10d85ad",
+      "role": "new_accrual",
+      "snapshot": "e6a16a1ea829ef3e048285b830dc5e4ccff8e3acc669a351fdef061f9a35414e"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T202229Z_d48e129bdb79",
+      "manifest_sha256": "8c38a01e5d528d0d7b6af72b0c71affa50d3d99e88e406ba7d16f812cd48476d",
+      "role": "new_accrual",
+      "snapshot": "d48e129bdb796b6882d0cd7d34dcd3796b0404446f42397c6b11cb5067a53125"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T202725Z_fc8b894d9e6a",
+      "manifest_sha256": "b0ab1317783aeac259114f9ceb6632a0e9d2bf04dd36297113ade60893798911",
+      "role": "new_accrual",
+      "snapshot": "fc8b894d9e6a74746a94832dc0030bd7ac24fd03abb02a7ed830509d4a047406"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T203436Z_db4ba10d1441",
+      "manifest_sha256": "0a15bba959c3f7410fdced8fbd3ef4ae8a2f78eb8dbe4578998eb936ec6b3ee4",
+      "role": "new_accrual",
+      "snapshot": "db4ba10d1441d4305666cbb67fd2f2dd31a9c79aab2c7720055e985a9b1bcfd9"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T204256Z_462cc9a107d2",
+      "manifest_sha256": "5a6fff5ab28f766bc6404ff0660a7deb0b5931a1f4bbef55b4d5032d944835a4",
+      "role": "new_accrual",
+      "snapshot": "462cc9a107d2cc518e87a586a7f613b448988aa4c53360933e912d83a1b0d23f"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T204935Z_3ccbda5479a6",
+      "manifest_sha256": "01f1a2f7ed8fd735d6dfa4795598cd67e229629cba36c5b37ca203fe0bdbb701",
+      "role": "new_accrual",
+      "snapshot": "3ccbda5479a6bfce3872167fbca2e77f531bc9010f1b83cc95a1af58a455162d"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T205701Z_17e3831ca97f",
+      "manifest_sha256": "e1be5aa807f358da8a2a9cf27890cbb1528f268b7a6845ec6af8c40a489d7039",
+      "role": "new_accrual",
+      "snapshot": "17e3831ca97f2ba58217f044df30468b5455f92dd26f15febd65d8e820ecec54"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T210348Z_0e8dd9f1e692",
+      "manifest_sha256": "dfbf4f15b189967632253c3258a8eb877d099ddfc465e7344bd9faa88ce575cc",
+      "role": "new_accrual",
+      "snapshot": "0e8dd9f1e692caf6cf5422d202c2fa12c9140160a26364ee66ab6cfadfd5f64d"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T211333Z_ef7d0470f5bc",
+      "manifest_sha256": "b65c44b5c481afeae2b2cdcf24dd3a77a866f63a401d670255932f77b5b3f5f7",
+      "role": "new_accrual",
+      "snapshot": "ef7d0470f5bc8ddce881800432b673b2bef53d253435634dd6d0280fa27eccc2"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T212139Z_ca8fd7a9b2a5",
+      "manifest_sha256": "eb7fd73ad0b0fe12cd8481875050402f75ae7c5a2c0fdba1f9a5eee2c37f890e",
+      "role": "new_accrual",
+      "snapshot": "ca8fd7a9b2a5460c5eab48f5cb08b30a1094d14a0043427ee1d66fe768a13f5b"
+    },
+    {
+      "artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260905T212751Z_cdae57a622cf",
+      "manifest_sha256": "f54bffbb686fd70b4597eead09c7298ba97c8392b996aebed4fe060d828defc7",
+      "role": "new_accrual",
+      "snapshot": "cdae57a622cfa8e83b40e93f60dbd90045b4670c4e9050bf552ef689745a25f2"
+    }
+  ],
+  "classification": "OUTCOME_BLIND_ACCRUAL_NOT_METHOD_EFFECT",
+  "closure_provided": false,
+  "correction": "First seven calls were 0903 backlog; six calls did not prove the six 0904 downloads were processed.",
+  "current_archives": 331,
+  "current_transactions": 181,
+  "foreground_calls": 15,
+  "labels_or_predictions_read": false,
+  "new_transactions": 14,
+  "new_transactions_by_archive_date": {
+    "0903": 8,
+    "0904": 6
+  },
+  "ready_after_last_observation": 0,
+  "total_delta": {
+    "all_physical_runs": 50,
+    "eligible_endpoints": 1771,
+    "eligible_runs": 50,
+    "eligible_structural_pairs": 356,
+    "eligible_tasks": 6
+  }
+}

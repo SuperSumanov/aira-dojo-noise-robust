@@ -1,0 +1,11 @@
+{
+  "background_process_started": false,
+  "backlog_receipt_sha256": "474d458845b97fda6f527a764bdebd4044dc4350ed7c5a7e2fcf90563d719cf3",
+  "base_driver_sha256": "d0769998335115694302d50b39799e91d39fb2aabb77ddd9d59f7d7f1bf70c43",
+  "foreground_receipt_sha256": "51e42d9e762909960b5e5fa32d3a38af89683f5e441e413a273b91ed1ff6e4fc",
+  "poll": 3,
+  "predecessor_final_receipt_sha256": "e2235374374ff3b6cb99fa1f7d8b092d0e88a11de9b9b3607cbefd33b296122b",
+  "scientific_or_stability_rules_changed": false,
+  "session_end_utc": "2026-09-06T02:20:00+00:00",
+  "wrapper_sha256": "08006e4ca6ed17bdc8cf19900c7806a5897da1cb34141a9e2f1f303e7e68e21c"
+}

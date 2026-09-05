@@ -1,0 +1,49 @@
+{
+  "current_snapshot_sha256": "462cc9a107d2cc518e87a586a7f613b448988aa4c53360933e912d83a1b0d23f",
+  "inventory": {
+    "current": {
+      "all_physical_runs": 679,
+      "eligible_endpoints": 18171,
+      "eligible_runs": 653,
+      "eligible_structural_pairs": 4199,
+      "eligible_tasks": 56
+    },
+    "delta": {
+      "all_physical_runs": 5,
+      "eligible_endpoints": 399,
+      "eligible_runs": 5,
+      "eligible_structural_pairs": 118,
+      "eligible_tasks": 1
+    },
+    "prior": {
+      "all_physical_runs": 674,
+      "eligible_endpoints": 17772,
+      "eligible_runs": 648,
+      "eligible_structural_pairs": 4081,
+      "eligible_tasks": 55
+    }
+  },
+  "payload_manifest_entries": {
+    "current": 18,
+    "prior": 18
+  },
+  "prior_snapshot_sha256": "db4ba10d1441d4305666cbb67fd2f2dd31a9c79aab2c7720055e985a9b1bcfd9",
+  "protocol": "prospective-snapshot-delta-receipt-v1",
+  "registry_projections": {
+    "intake_exact_and_prefix_preserved": true,
+    "score_exact_and_prefix_preserved": true
+  },
+  "security": {
+    "archive_drop_run_endpoint_pair_candidate_identities_emitted": false,
+    "label_vault_opened": false,
+    "outcomes_predictions_accuracy_utility_read": false,
+    "score_prediction_files_opened": false
+  },
+  "status": "PROSPECTIVE_SNAPSHOT_APPEND_ONLY_DELTA_VERIFIED",
+  "transactions": {
+    "appended": 1,
+    "current": 175,
+    "prior": 174,
+    "prior_exact_byte_prefix": true
+  }
+}

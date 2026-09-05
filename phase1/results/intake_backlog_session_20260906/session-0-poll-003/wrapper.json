@@ -1,0 +1,10 @@
+{
+  "background_process_started": false,
+  "base_driver_sha256": "d0769998335115694302d50b39799e91d39fb2aabb77ddd9d59f7d7f1bf70c43",
+  "foreground_receipt_sha256": "4af4d215816cfb55779b01c8b5f290fec99964913fb79d7afaf1261435737dd6",
+  "maturity_utc": "2026-09-05T19:44:48.903091+00:00",
+  "poll": 3,
+  "session_end_utc": "2026-09-06T02:20:00+00:00",
+  "sync_receipt_sha256": "282ae8972a9153e15cdffe1c3f0a8e3deb05b6d84769af4243548fd71d89a4c1",
+  "wrapper_sha256": "f780e525f0c060ea417f4ab0a1357f52d8a859e43846c2cfdaadf4e1ce2158f6"
+}

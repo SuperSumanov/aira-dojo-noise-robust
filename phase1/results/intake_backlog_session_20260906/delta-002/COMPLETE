@@ -1,0 +1,6 @@
+status=PROSPECTIVE_SNAPSHOT_DELTA_CHAIN_PASS
+transactions=168/169/1
+inventory_delta=2/2/69/4/1
+values_read=false
+identities_emitted=false
+gpu_api_fit_base=0/0/0/0

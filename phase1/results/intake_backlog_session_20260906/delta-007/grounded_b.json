@@ -1,0 +1,29 @@
+{
+  "candidate_receipt_sha256": "58909870c72924539349912777fca599dd180a417a4792eadf6307c9b7bbca12",
+  "current_snapshot_sha256": "db4ba10d1441d4305666cbb67fd2f2dd31a9c79aab2c7720055e985a9b1bcfd9",
+  "inventory_delta": {
+    "all_physical_runs": 4,
+    "eligible_endpoints": 338,
+    "eligible_runs": 4,
+    "eligible_structural_pairs": 79,
+    "eligible_tasks": 1
+  },
+  "payload_manifest_entries": {
+    "current": 18,
+    "prior": 18
+  },
+  "prior_snapshot_sha256": "fc8b894d9e6a74746a94832dc0030bd7ac24fd03abb02a7ed830509d4a047406",
+  "security": {
+    "archive_drop_run_endpoint_pair_candidate_identities_emitted": false,
+    "label_vault_opened": false,
+    "outcomes_predictions_accuracy_utility_read": false,
+    "score_prediction_files_opened": false
+  },
+  "status": "GROUNDED_PROSPECTIVE_SNAPSHOT_DELTA_VERIFIED",
+  "transactions": {
+    "appended": 1,
+    "current": 174,
+    "prior": 173,
+    "prior_exact_byte_prefix": true
+  }
+}

@@ -23,7 +23,8 @@ def decode_path_literal(quoted):
     # strace prints non-ASCII filesystem bytes as C octal escapes. Decoding
     # these as a Python str would produce Latin-1 mojibake, not UTF-8 paths.
     assert quoted.isascii(), 'unexpected_literal_non_ascii_trace'
-    return os.fsdecode(ast.literal_eval('b'+quoted))
+    # The recorded trace is from Linux UTF-8, independent of verifier host OS.
+    return ast.literal_eval('b'+quoted).decode('utf-8',errors='surrogateescape')
 
 
 def run():

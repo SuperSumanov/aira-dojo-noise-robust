@@ -432,3 +432,7 @@ phase1/scripts/check_zero3_partition_roundtrip_20260905.py text eol=lf diff
 phase1/ZERO3_SESSION_INTEGRATION_PREFLIGHT_20260905.md text eol=lf diff
 phase1/scripts/validate_zero3_session_gpu_20260905.py text eol=lf diff
 phase1/tests/test_zero3_gpu_allocation_gate.py text eol=lf diff
+phase1/scripts/zero3_session_engineering_20260905.sbatch text eol=lf diff
+phase1/results/zero3_session_f4d5834_20260905/** -text diff
+# Preserve pytest's exact failure traceback bytes, including its trailing spaces.
+phase1/results/zero3_session_f4d5834_20260905/r2_failure/tests.txt -whitespace

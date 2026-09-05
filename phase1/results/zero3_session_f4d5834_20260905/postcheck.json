@@ -1,0 +1,20 @@
+{
+  "actual_checkpoint_comparisons": [
+    {
+      "actual_checkpoint_sha256": "a251c8cff2341f1df59c45afe1b2c14151013719e3a3a95c085311080722ab55",
+      "bytes_equal": true,
+      "synthetic_rank": 0
+    },
+    {
+      "actual_checkpoint_sha256": "deb9204afdd92d55a81821c6aed6b91c525fad4a504f73fa3be040109aa82c13",
+      "bytes_equal": true,
+      "synthetic_rank": 1
+    }
+  ],
+  "classification": "SYNTHETIC_PARTITION_ARTIFACT_POSTCHECK_NOT_GPU",
+  "new_gpu_jobs": 0,
+  "payload_reads": 0,
+  "source_archive_sha256": "ef997ea48cbd3dd944d037d12db7ea55ea14ea007c559ec9e6d9e7c7f09d250a",
+  "source_commit": "f4d58348330a70c1d3c8634e8c419bab472fb932",
+  "source_files_unchanged": 22
+}

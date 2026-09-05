@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L53. 2026-09-05：ZeRO3 session主体及GPU验收入口已实现；硬件预算待批准，尚非production ready
+
+按用户“继续推进剩余工作，不要停”继续会话内实现，未创建守护/新GPU作业。
+新增显式DeepSpeedCriticSession：固定两路dense BF16 ZeRO3+CPU-offload AdamW，完整分片清单、
+FP32 master/AdamW/RNG实际内容、client与计数器恢复、最后提交token cursor；不改consumer科学旋钮或旧DDP guard。
+真实DS源码未完整恢复micro_steps等计数器，新增保存并在内容核验后恢复；不把框架global_samples当真实消费量。
+
+R1 `9c5179b` 69单元测试与真实Stage3方法的CPU tensor round-trip通过；扩展整体恢复调用测试后，
+R2 `bd1673c`出现1 failed/92 passed：误用了旧DDP固定字段比较器，是我方接入错误，合法DS恢复也被拒绝。
+已保留失败；R3 `f4d58348330a70c1d3c8634e8c419bab472fb932`独立严格比较全部DS角色，100 tests passed，
+实际分片保存/恢复及继续更新再次通过，缺AdamW的负控制可识别。两次自生成checkpoint各rank字节SHA一致，
+22个导出源码无漂移。**CPU测试接收器+Torch AdamW不是DS engine/GPU/DeepSpeedCPUAdam验收**。
+
+真实GPU driver与独立sbatch入口已准备，尚未提交。已询问：一作业两PRO6000、30分钟、含退出余量上界1.2 GPU·h，
+随机4433参数、BF16/ZeRO3、seed6、五个完整/截断/恢复轨迹，无真实语料。未收到新预算批准，不挪用G0余额。
+批准后仍须control/storage/source/runtime及held资源核验，不因脚本存在就跳过。来源包仍待生产事实，15-fit/pilot未启动。
+学长fetch仍b8d0951；已知Drive根43 children/37日期目录、最新0903，无0904/0905，0语料payload下载。
+详见`results/zero3_session_f4d5834_20260905/README.md`。主线和保护cohort不变，无新方法收益结论。
+
 ## 0L52. 2026-09-05：新consumer普通DDP保存恢复接通；合格数据与ZeRO3生产接入仍有明确缺口
 
 按用户指定的来源包/新入口方向，在当前会话实现并验证，不新建守护。结果前code=

@@ -1,0 +1,53 @@
+..................................F..................................... [ 77%]
+.....................                                                    [100%]
+=================================== FAILURES ===================================
+__________ test_restore_cursor_commits_only_after_last_check[success] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-yzyang4/pytest-1146/test_restore_cursor_commits_on0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x785dc7ba65d0>
+case = 'success'
+
+    @pytest.mark.parametrize('case',['success','zero','state','sample_counter','boundary'])
+    def test_restore_cursor_commits_only_after_last_check(tmp_path,monkeypatch,case):
+        root=tmp_path/'cp';binding,h=bundle(root)
+        row=z.read_small(root/'observed_0.json')
+        raw=NS(micro_step_id=0)
+        e=NS(global_steps=0,micro_steps=0,global_samples=0,skipped_steps=0,lr_scheduler=None,optimizer=raw)
+        o=NS(optimizer=raw)
+        a=NS(distributed_type='DEEPSPEED',deepspeed_engine_wrapped=NS(engine=e),_optimizers=[o])
+        c=NS(model=e,optimizer=o,accelerator=a,rank=0,completed_steps=0,poisoned=False)
+        expected={'binding':binding,'completed_steps':2,'cumulative_valid_tokens':88,'counters':row['counters']}
+        e._load_zero_checkpoint=lambda *args,**kwargs:case!='zero'
+        def load(path,tag,**kwargs):
+            e.global_steps=2;e.global_samples=17 if case=='sample_counter' else 16
+            e._load_zero_checkpoint()
+            return str(root/z.TAG),{'critic_session':expected}
+        e.load_checkpoint=load
+        a.load_state=lambda path,**kwargs:e.load_checkpoint(path,z.TAG,**kwargs)
+        s=z.DeepSpeedCriticSession.__new__(z.DeepSpeedCriticSession);s.consumer=c;s.binding=binding;s._tokens=lambda n:88
+        def boundary(**kwargs):
+            if case=='boundary' and kwargs.get('expected_steps')==2:raise PlanError('injected_final_boundary_failure')
+        s._boundary=boundary
+        monkeypatch.setattr(z,'current_state',lambda c: {**row['state'],'adamw':'c'*64} if case=='state' else row['state'])
+        if case=='success':
+>           assert s.restore(root,manifest_sha256=h)['completed_steps']==c.completed_steps==2
+
+phase1/tests/test_global_local_zero3_session.py:144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+phase1/global_local_zero3_session.py:257: in restore
+    verify_restored(row['state'],current_state(c))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+expected = {'adamw': 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', 'master_shards': 'bbbbbbbbbbbbbbbbbbbbbb...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', 'numpy_rng': 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', ...}
+actual = {'adamw': 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', 'master_shards': 'bbbbbbbbbbbbbbbbbbbbbb...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', 'numpy_rng': 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', ...}
+
+    def verify_restored(expected, actual):
+        """Do not trust load_state returning: its RNG loader catches exceptions."""
+        if set(expected) != set(COMPONENTS) or set(actual) != set(COMPONENTS):
+>           raise ValueError("restored_state_component_set_mismatch")
+E           ValueError: restored_state_component_set_mismatch
+
+phase1/global_local_accelerate_checkpoint_gate.py:121: ValueError
+=========================== short test summary info ============================
+FAILED phase1/tests/test_global_local_zero3_session.py::test_restore_cursor_commits_only_after_last_check[success]
+1 failed, 92 passed in 8.60s

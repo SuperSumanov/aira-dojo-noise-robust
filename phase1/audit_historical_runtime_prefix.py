@@ -1,4 +1,8 @@
-"""Bounded pre-task startup provenance only; never inspect task execution logs."""
+"""Bounded startup-prefix parser; stop after the first unrecognized line.
+
+The rejected line has been read and can be task-phase content. This parser
+does not claim a zero-task-byte boundary or an operating-system sandbox.
+"""
 from __future__ import annotations
 import argparse
 from collections import Counter,defaultdict
@@ -23,6 +27,10 @@ ANSI=re.compile(rb'\x1b\[[0-?]*[ -/]*[@-~]')
 MESSAGES={'Current working directory: ':'cwd','`dojo` package source path: ':'dojo',
           '`aira_core` package source path: ':'aira_core','`mlebench` package source path: ':'mlebench',
           'Saving experiment artifacts to: ':'ignored_output','Output dir: ':'ignored_output'}
+
+def read_scope_statement():
+    return {'task_phase_byte_read_count':'unknown_for_first_unrecognized_line',
+            'guard_scope':'stop after first unrecognized line or recognized task boundary; no score parsing or raw line emission'}
 
 def prefix(stream):
     """No scan-ahead: the first unknown message or task-start is terminal."""
@@ -148,7 +156,8 @@ def build(out):
         'private_sha256':digest(private),'source_sha256':digest(Path(__file__).read_bytes()),
         'input_lineage_sha256':LINEAGE_SHA,'model_fits':0,'protected_cohort_reads':0,
         'last_manifest_attempt_only':True,
-        'task_phase_log_reads':0,'journal_env_payload_reads':0,'installed_revision_attested':False,'training_qualified':False}
+        **read_scope_statement(),
+        'journal_env_payload_reads':0,'installed_revision_attested':False,'training_qualified':False}
     (out/'summary.json').write_bytes(canonical(summary));print(json.dumps(summary,sort_keys=True))
 
 if __name__=='__main__':

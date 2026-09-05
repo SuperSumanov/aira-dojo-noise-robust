@@ -1,4 +1,23 @@
-# G0 R5：ninja修复与真实CPUAdam通过；双卡12499已放行、仍排队
+# G0 R5：ninja修复与真实CPUAdam通过；双卡12499已启动，待完整验收
+
+## 2026-09-05 14:02 Hong Kong 更新
+
+只读调度核验时间06:00:57 UTC：job12499已于香港时间13:58:30实际开始，RUNNING、两PRO6000/projgpu39、
+12CPU、01:45:00、Requeue/Restarts=0。历史预计次日开始不是实际开始时间。READY与RELEASED哈希未变。
+
+06:02:22 UTC的固定文件结构检查（不输出原始日志/dev指标，credential-shape命中0）确认：
+
+- build_tools.json为ALLOCATED_NODE_BUILD_TOOLS_PASS，job12499、Ninja哈希和CUDA_HOME精确匹配。
+- build_tools.json SHA为`1cbea12f7caec6fbb7be07781a335b60b74dcb93084e84d94cafdf0f40d1a7a3`。
+- preflight.json SHA为`0f5c83cb3dcd8ec73e5d6aefc0c42fa34619d73bcc0e6f1464861e1a4b6347ad`。
+- worker出现launcher_start；两GPU各26条遥测，均已观察到1819 MiB显存占用。
+- 暂未观察到完成步数计数；checkpoint-10、verification、COMPLETE均不存在，FAILED/退出状态亦不存在。
+
+上述仅证实资源已分配、工具检查通过并已启动训练进程，不证明CPUAdam的目标节点实际编译完成、
+训练更新或完整保存通过。私有文件访问trace未做终态范围审查。未改运行中的源码/环境，没有新GPU提交。
+守护继续按原10步、唯一dev、完整checkpoint、资产哈希和访问范围的全部条件验收。
+
+## 以下为13:42提交时记录（历史排队状态）
 
 2026-09-05 13:42 Hong Kong现场核验。用户明确批准修复与受控重试。
 

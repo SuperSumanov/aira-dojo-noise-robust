@@ -3,6 +3,16 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L49. 2026-09-05 14:02：R5双卡12499已启动，尚未完成训练验收
+
+06:00:57 UTC现场squeue/sacct与scontrol一致：12499于香港时间13:58:30开始，RUNNING、两PRO6000/projgpu39、
+12CPU、01:45:00、Requeue/Restarts=0；原预计次日启动已被实际开始时间替代。READY/RELEASED SHA与0L48完全一致。
+14:02:22结构检查确认allocated-node build_tools PASS，Ninja SHA与CUDA_HOME均匹配；两卡各有26条遥测，
+均观察到1819 MiB显存占用。worker已记录launcher_start，但日志尚无完成步数；无checkpoint-10/verification/COMPLETE，
+亦无FAILED/退出状态。不得以RUNNING、显存活动或工具检查替代真实10步与保存验收。
+新只读检查不输出原始日志或dev指标，已读取文件credential-shape命中0；未读取保护cohort或修改运行中代码/环境。
+本次工具回执SHA见R5报告；预算与科学配置、盲态和守护边界不变。
+
 ## 0L48. 2026-09-05 13:42：R5真实双卡12499已放行；仍PENDING/Resources
 
 control=`90cd91058fd03e86185d42c14704845827259655`，新runtime=`critic-blackwell-g0-20260905-r5`；

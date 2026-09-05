@@ -19,6 +19,13 @@ def h(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
+def decode_path_literal(quoted):
+    # strace prints non-ASCII filesystem bytes as C octal escapes. Decoding
+    # these as a Python str would produce Latin-1 mojibake, not UTF-8 paths.
+    assert quoted.isascii(), 'unexpected_literal_non_ascii_trace'
+    return os.fsdecode(ast.literal_eval('b'+quoted))
+
+
 def run():
     os.umask(0o077)
     raw = (ROOT/'historical-pool-lineage-e7244fb-20260906-A/pool_lineage.private.json').read_bytes()
@@ -58,7 +65,7 @@ def run():
                 if '--- ' in line or '+++ ' in line: continue
                 issues['unparsed_line'] += 1; continue
             quoted = QUOTED.findall(m[2]); assert quoted
-            path = ast.literal_eval(quoted[0])
+            path = decode_path_literal(quoted[0])
             assert not BLOCK.search(path), 'protected_path_observed'
             if m[3].startswith('-1 '): counts['failed_open'] += 1; continue
             if not path.startswith('/'):
@@ -67,7 +74,7 @@ def run():
             if path in paths: category='fixed_archive'; archives_seen.add(path)
             elif path in inputs: category='fixed_structural_input'
             elif any(path == p or path.startswith(p+'/') for p in outputs): category='this_audit_output'
-            elif path.startswith(str(CONTROL)+'/'): category='fixed_code_bundle'
+            elif path == str(CONTROL) or path.startswith(str(CONTROL)+'/'): category='fixed_code_bundle'
             elif path.startswith(str(ROOT/'venvs/exp')+'/'): category='python_runtime'
             elif any(path == p or path.startswith(p+'/') for p in ('/usr','/lib','/lib64','/etc','/proc','/dev','/sys','/bin')): category='system_runtime'
             elif any(path.startswith(p) for p in ('/uac/y24/yzyang4/.local/share/uv/python/', '/data/d0/y24/yzyang4/.local/share/uv/python/')): category='python_backing'
@@ -82,7 +89,7 @@ def run():
               'records':records,'source_sha256':h(Path(__file__).read_bytes()),
               'scope':'observed open/openat only; not OS isolation, tar-member byte tracing, or a proof of zero task-phase bytes',
               'producer_commit':'79164e047b46f7d76db38a89407d1b008c19221a'}
-    out = ROOT/'historical-runtime-prefix-trace-20260906.json'
+    out = ROOT/'historical-runtime-prefix-trace-v2-20260906.json'
     with out.open('x') as f: json.dump(result,f,sort_keys=True); f.write('\n')
     out.chmod(0o400)
     print(json.dumps(result,sort_keys=True))

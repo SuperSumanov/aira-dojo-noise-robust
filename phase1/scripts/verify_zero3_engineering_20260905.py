@@ -93,7 +93,8 @@ def same(a,b):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--job',required=True);parser.add_argument('--submission',required=True)
     args=parser.parse_args();require(re.fullmatch('[0-9]+',args.job),'job_id')
-    private_portability=args.submission=='submission-20260906-3090-private'
+    socket_portability=args.submission=='submission-20260906-3090-socket'
+    private_portability=args.submission=='submission-20260906-3090-private' or socket_portability
     portability=args.submission=='submission-20260906-3090' or private_portability
     require(portability or re.fullmatch('submission-20260905-r[0-9]+',args.submission),'submission_id')
     require(os.environ.get('CUDA_VISIBLE_DEVICES')=='','CPU_only')
@@ -133,12 +134,18 @@ def main():
             build=read(root/'build_tools.json')
             require(build['toolkit_manifest_sha256']==MANIFEST and build['toolkit_recovery_sha256']==RECOVERY
                 and build['toolkit_independent_sha256']==INDEPENDENT and build['cuda_home']==str(ROOT/'prefix'), 'allocated_private_toolchain')
-            for previous, expected in [('12570',('FAILED','1','1:0',2)),('12571',('COMPLETED','5','0:0',1))]:
+            prior_jobs=[('12570',('FAILED','1','1:0',2)),('12571',('COMPLETED','5','0:0',1))]
+            if socket_portability:
+                prior_jobs.append(('12572',('FAILED','73','1:0',2)))
+                require(build['nccl_ib_disable']=='1' and build['nccl_net']=='Socket'
+                    and build['nccl_debug']=='INFO' and build['python_faulthandler']=='1','socket_profile_binding')
+                require(b'Using network Socket' in (root/'driver.log').read_bytes(),'socket_transport_unverified')
+            for previous, expected in prior_jobs:
                 row=subprocess.check_output(['sacct','-X','-n','-P','-j',previous,
                     '--format=JobIDRaw,State,ElapsedRaw,AllocTRES,ExitCode'],env=env).decode().strip().split('|')
                 state0,seconds0,code0,gpus0=expected
                 require(row[:3]==[previous,state0,seconds0] and row[4]==code0 and f'gres/gpu={gpus0}' in row[3].split(','),'prior_private_budget')
-            require(7+2*int(elapsed)<=3120,'aggregate_private_budget')
+            require((153 if socket_portability else 7)+2*int(elapsed)<=3120,'aggregate_private_budget')
     require(summary['code_commit']==ready['commit'] and summary['slurm_job_id']==args.job
             and summary['approval_receipt_sha256']==ready['approval_sha256'],'driver_binding')
     require(summary['trajectories']==5 and summary['resume_comparisons']==4 and summary['parameters']==4433,'driver_matrix')

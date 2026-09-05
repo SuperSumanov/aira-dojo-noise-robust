@@ -42,6 +42,8 @@ def main():
         'host_compiler_path':str(compiler.resolve()),'host_compiler_sha256':digest_file(compiler),
         'host_compiler_version':output([str(compiler),'--version']).splitlines()[0],
         'host_frontend_sha256':digest_file(frontend),'ninja_sha256':digest_file(ninja),
+        'nccl_ib_disable':os.environ.get('NCCL_IB_DISABLE'),'nccl_net':os.environ.get('NCCL_NET'),
+        'nccl_debug':os.environ.get('NCCL_DEBUG'),'python_faulthandler':os.environ.get('PYTHONFAULTHANDLER'),
         'verified_files_and_links':len(observed),'model_load':False,'gpu_context_created':False}
     with (Path(os.environ['G0_RUN_ROOT'])/'build_tools.json').open('x') as out:json.dump(result,out,sort_keys=True,indent=2)
     print(json.dumps(result,sort_keys=True))

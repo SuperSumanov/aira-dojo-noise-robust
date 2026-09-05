@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L74. 2026-09-06：12572初始化失败，准备Socket故障隔离
+
+12572最终FAILED 73秒/146GPU秒，零完成轨迹/零checkpoint；0L73运行中快照由此终态覆盖。
+工具链GPU节点核验通过；两个rank在irdma1/RDMA枚举后SIGSEGV，trace SHA
+39c71ce4e6b3584b782d20efa65d7d68dd5ce780b9f580b976b19e479ff90fce。文件尾部只支持工作假设，不是native因果证明。
+全部父/子execve为R5Python；CPU检查R5 Torch经符号链接共享exp的同一2.11.0+cu128包，不能凭路径断言混版本。
+12572已结束，不再等待/重启原job。原失败正单独核验保存，不称真实恢复验收成功。
+
+按用户总授权明确准备新Socket通信profile（NCCL_NET=Socket、IB_DISABLE=1），并加INFO/faulthandler。
+其余模型/数学/seed/五轨迹/容差相同；这是单机通信workaround，不是RDMA驱动修复，不产生算法收益。
+1job×2RTX3090×18min/driver900s，上限2880GPU秒；所有前次均已终止、实际累计153，组合3033≤原3120。
+见ZERO3_SOCKET_RECOVERY_PREFLIGHT_20260906.md；仍先Linux CPU→held独立复核→release，无自动重试。
+原12535不动；673语料/WL工作已完成，四fit来源准入仍空。当前尚未提交这个Socket作业。
+
 ## 0L73. 2026-09-06：私有CUDA12.8修复完成，准备独立双3090短验收
 
 12571节点元数据诊断COMPLETED，5秒/1GPU，和12570共7实际GPU秒；没有模型或CUDA context。

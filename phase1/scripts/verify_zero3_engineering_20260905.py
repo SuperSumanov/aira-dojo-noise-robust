@@ -104,6 +104,19 @@ def main():
     jid,state,elapsed,tres,exitcode=raw.split('|')[:5]
     require(jid==args.job and state=='COMPLETED' and exitcode=='0:0' and 'gres/gpu=2' in tres.split(','),'scheduler_terminal')
     require(2*int(elapsed)<=ready['gpu_seconds_upper_bound'],'actual_budget')
+    retry=None
+    if (control/'RETRY_READY.json').exists():
+        retry=read(control/'RETRY_READY.json')
+        require(retry['commit']==ready['commit'] and retry['ready_sha256']==digest(control/'READY.json'),
+                'retry_binding')
+        budget=retry['budget']
+        prior=subprocess.check_output(['sacct','-X','-n','-P','-j',budget['previous_job_id'],
+            '--format=JobIDRaw,State,ElapsedRaw,AllocTRES,ExitCode'],env=env).decode().strip().split('|')
+        require(prior[:3]==['12510','FAILED','149'] and prior[4]=='1:0' and 'gres/gpu=2' in prior[3].split(','),
+                'prior_accounting_drift')
+        require(2*int(prior[2])==budget['previous_allocated_gpu_seconds']==298
+                and 2*int(elapsed)<=budget['retry_gpu_seconds_upper_bound']==3840
+                and 298+2*int(elapsed)<=budget['original_cap_gpu_seconds']==4320,'cumulative_actual_budget')
     summary=read(trajectories/'summary.json')
     require(summary['code_commit']==ready['commit'] and summary['slurm_job_id']==args.job
             and summary['approval_receipt_sha256']==ready['approval_sha256'],'driver_binding')
@@ -117,6 +130,11 @@ def main():
         d=data[name];require(d['binding']==binding and d['seed']==6 and d['arm']=='G_to_L','trajectory_binding')
         require([r['rank'] for r in d['ranks']]==[0,1],'ranks')
         for r in d['ranks']:
+            if retry is not None:
+                padding=r['initial_padding']
+                require(padding['partition_source_sha256']=='8b3c65d20fada0fc85c3685615b0da65247f4e8739313ca1de01b1a3102f2500'
+                        and padding['new_partitions']>0 and padding['padding_elements_initialized']==r['rank']
+                        and padding['nonfinite_padding_before_initialization']==r['rank'],'initial_padding_receipt')
             require(r['start']==start and r['end']==end and set(r['state'])==ROLES,'trajectory_steps')
             require([x['step'] for x in r['records']]==list(range(start+1,end+1)),'consumption_steps')
     for cut in (2,3):

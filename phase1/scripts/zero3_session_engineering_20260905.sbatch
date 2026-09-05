@@ -10,7 +10,7 @@
 #SBATCH --gres=gpu:pro6000:2
 #SBATCH --nodelist=projgpu39
 #SBATCH --exclude=projgpu7,projgpu8,projgpu33,gpu36,gpu38
-#SBATCH --time=00:30:00
+#SBATCH --time=00:26:00
 #SBATCH --no-requeue
 #SBATCH --output=/tmp/critic-zero3-resume-%j.out
 #SBATCH --error=/tmp/critic-zero3-resume-%j.out
@@ -63,7 +63,7 @@ trap finish EXIT
 telemetry_pid=$!
 /usr/bin/time -v -o "$run_root/resource_usage.txt" \
   /usr/bin/strace -f -qq -e trace=%file -o "$run_root/file_trace.log" \
-  timeout --kill-after=60s 1680s "$runtime/bin/python" -B -m phase1.scripts.validate_zero3_session_gpu_20260905 \
+  timeout --kill-after=60s 1440s "$runtime/bin/python" -B -m phase1.scripts.validate_zero3_session_gpu_20260905 \
   --output "$run_root/trajectories" --source-root "$source_root" > "$run_root/driver.log" 2>&1
 test -f "$run_root/trajectories/summary.json"
 printf 'ZERO3_GPU_DRIVER_COMPLETE_PENDING_INDEPENDENT_ACCEPTANCE\n'

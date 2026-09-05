@@ -45,6 +45,7 @@ def worker(rank,port,output,end,resume,source_root):
     from transformers import Qwen3Config,Qwen3Model
     from phase1.global_local_critic_consumer import PlannedCriticConsumer
     from phase1.global_local_zero3_session import DeepSpeedCriticSession,current_state,counters,file_sha,state_fingerprint
+    from phase1.global_local_zero3_padding import initialized_partition_padding
     from phase1.scripts.validate_global_local_critic_consumer_20260905 import fixture
     from phase1.scripts.validate_g_reuse_endpoint_inference_cpu_20260905 import source_definitions
     allocation_gate(os.environ)  # imports must not erase/change the allocation
@@ -70,7 +71,9 @@ def worker(rank,port,output,end,resume,source_root):
                   deepspeed_plugin=DeepSpeedPlugin(hf_ds_config=config),
                   kwargs_handlers=[InitProcessGroupKwargs(timeout=timedelta(seconds=300))])
     opt=torch.optim.AdamW(model.parameters(),lr=1e-5,weight_decay=0.01)
-    model,opt=a.prepare(model,opt)
+    with initialized_partition_padding() as padding_receipt:
+        model,opt=a.prepare(model,opt)
+    print(json.dumps({'rank':rank,'initial_padding':padding_receipt}),flush=True)
     c=PlannedCriticConsumer(plan=plan,pools=pools,accelerator=a,model=model,optimizer=opt,
         encoding_provider=lambda ctx,card:encoded[(ctx,card)],true_sign=lambda k:truth[k],pad_id=0)
     session=DeepSpeedCriticSession(c,training_contract_sha256=os.environ['ZERO3_GPU_APPROVAL_RECEIPT_SHA'])
@@ -92,7 +95,7 @@ def worker(rank,port,output,end,resume,source_root):
         if completed in (2,3,4):session.save(Path(output)/f'checkpoint-{completed}')
     gathered=[None,None]
     dist.all_gather_object(gathered,{'rank':rank,'start':start,'end':c.completed_steps,'state':current_state(c),
-        'counters':counters(model),'records':records,'step_times':timings,
+        'counters':counters(model),'records':records,'step_times':timings,'initial_padding':padding_receipt,
         'peak_allocated_bytes':torch.cuda.max_memory_allocated(rank),'peak_reserved_bytes':torch.cuda.max_memory_reserved(rank)})
     if rank==0:
         with (Path(output)/'trajectory.json').open('x') as f:

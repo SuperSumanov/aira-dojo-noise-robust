@@ -105,14 +105,14 @@ def verify_bundle(root, binding, manifest_sha256):
     return m
 
 
-def _finite_tensors(value):
+def _finite_tensors(value, path='state'):
     if isinstance(value,torch.Tensor) and value.is_floating_point():
         for chunk in value.detach().reshape(-1).split(1 << 20):
-            require(bool(torch.isfinite(chunk).all()), 'zero3_nonfinite_checkpoint_state')
+            require(bool(torch.isfinite(chunk).all()), 'zero3_nonfinite_checkpoint_state:'+path)
     elif isinstance(value,dict):
-        for item in value.values():_finite_tensors(item)
+        for key,item in value.items():_finite_tensors(item,path+'/'+str(key))
     elif isinstance(value,(list,tuple)):
-        for item in value:_finite_tensors(item)
+        for index,item in enumerate(value):_finite_tensors(item,path+'/'+str(index))
 
 
 def current_state(consumer):
@@ -138,11 +138,12 @@ def current_state(consumer):
                   'param_groups':[{k:v for k,v in g.items() if k != 'params'} for g in z.optimizer.param_groups]},
         'scaler':{'dynamic':z.dynamic_loss_scale,'overflow':z.overflow,'loss_scale':float(z.loss_scale)},
         'python_rng':random.getstate(),'numpy_rng':np.random.get_state(),'torch_rng':rng}
-    for key in ('model_shards','master_shards','adamw'):_finite_tensors(values[key])
+    for key in ('model_shards','master_shards','adamw'):_finite_tensors(values[key],key)
     return {k:state_fingerprint(v) for k,v in values.items()}
 
 
 def runtime_binding():
+    from phase1 import global_local_zero3_padding as padding
     from deepspeed.runtime.zero.stage3 import DeepSpeedZeroOptimizer_Stage3
     from deepspeed.runtime.checkpoint_engine.torch_checkpoint_engine import TorchCheckpointEngine
     from phase1.global_local_accelerate_update_adapter import runtime_binding as update_runtime
@@ -154,8 +155,11 @@ def runtime_binding():
     require(io_methods == {'save':'85c17d05c806c95d9efcd176c8a17a9ea22740fbdc71d51721f47f0652070466',
                             'load':'634b7e06db58550c2088a2aed8f176a66e92e929f0f8ba3266006858fcb87ef7'},
             'zero3_checkpoint_io_drift')
+    from deepspeed.runtime.zero.partition_parameters import Init
+    require(file_sha(Path(inspect.getsourcefile(Init))) == padding.PARTITION_FILE_SHA, 'zero3_partition_runtime_drift')
     return {'update':update_runtime(),'checkpoint':checkpoint_runtime(),'zero3_file_sha256':ZERO_FILE_SHA,
-            'checkpoint_io':io_methods}
+            'checkpoint_io':io_methods,'partition_file_sha256':padding.PARTITION_FILE_SHA,
+            'initial_padding_policy_sha256':file_sha(Path(padding.__file__))}
 
 
 class DeepSpeedCriticSession(CriticSession):

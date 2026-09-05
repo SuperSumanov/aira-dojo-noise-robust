@@ -48,7 +48,7 @@ def verify(a,b,control):
             if not matches:assert task['run_id'] is None;continue
             rid=matches.pop();assert task['run_id']==rid
             assert all(task['experiment_dir'].endswith('/'+str(PurePosixPath(o['config_member']).parent)) for _,o in origins)
-            same=all(str(task['step_id'])==o['recorded_slurm_id'] for _,o in origins)
+            same=None if ident.get('launcher_type')=='local_gpu_pool' else all(str(task['step_id'])==o['recorded_slurm_id'] for _,o in origins)
             assert same==task['step_matches_recorded_config']
             step_counts[str(same)]+=1;covered.add(rid)
             groups[('pool',m['instance_sha256'])].add(rid)

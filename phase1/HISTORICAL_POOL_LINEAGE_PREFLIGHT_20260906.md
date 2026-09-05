@@ -18,3 +18,13 @@
 - 原S0失败、原hold、first960/Target300/522盲态、GPU12535配置与预算保持不变。
 
 预期实物扫描约4—10分钟（不是保证）。A/B若任何未知schema失败，先保存失败，仅凭源代码验证schema后才考虑修复。
+
+## 00:30追加：local_gpu_pool，同一固定输入，不放宽未知schema
+
+首轮14e38d2已经恢复85个srun manifest、448个run，59个其它manifest仅查headers。
+最小归档header显示local_gpu_pool；已先读取生产方b8d0951的实际生成函数，源码SHA
+`c2b494bc78f1b079086c5cbf428c1dd8ff2fdaaf2a3bed2dc5057f5a1103156e`。
+第二阶段同样固定143归档/676run，仅增加严格`batch/local_gpu_pool/<hash12>/manifest.json`。
+local有独立task/attempt schema，记录execution_id/GPU分配而不是伪造Slurm对应；不读取results文件或GPU日志。
+每次仍两CPU/1500秒上限，另固定新code及A/B输出。原首轮结果与异常保留，不覆盖。
+必须将完整清单中不在676范围的任务计为未解决范围，不能凭已匹配部分宣称whole-experiment完成。

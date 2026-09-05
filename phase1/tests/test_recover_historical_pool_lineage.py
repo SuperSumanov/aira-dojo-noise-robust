@@ -83,3 +83,18 @@ def test_duplicate_manifest_rejected(tmp_path):
         for _ in range(2):
             m=tarfile.TarInfo(member);m.size=len(raw);tar.addfile(m,io.BytesIO(raw))
     with pytest.raises(Exception):p.scan(path,hashlib.sha256(path.read_bytes()).hexdigest(),origins,time.monotonic()+10)
+
+def test_local_pool_is_not_a_slurm_attestation():
+    obj,member,origins=fixture()
+    for key in ('allocations','allocation_id','node_list'):obj.pop(key)
+    obj['launcher_type']='local_gpu_pool';obj['pool_dir']=obj['pool_dir'].replace('srun_pool','local_gpu_pool')
+    member=member.replace('srun_pool','local_gpu_pool')
+    for task in obj['tasks'].values():
+        task.pop('step_id');task['execution_id']='host:123:45:a1'
+        task['attempts']=[{'attempt':1,'execution_id':'host:123:45:a1','gpu_uuids':['test-device']}]
+    result=p.parse_manifest(json.dumps(obj).encode(),member,'sha',origins)
+    assert result['identity']['launcher_type']=='local_gpu_pool'
+    assert all(t['step_matches_recorded_config'] is None for t in result['tasks'])
+    assert all(t['recorded_launcher_execution_id']=='host:123:45:a1' for t in result['tasks'])
+    obj['tasks']['a']['attempts'][0]['unknown_runtime_value']=1
+    with pytest.raises(Exception):p.parse_manifest(json.dumps(obj).encode(),member,'sha',origins)

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=critic_fa2_build
-#SBATCH --partition=batch_72h
-#SBATCH --qos=ex_batch
+#SBATCH --partition=gpu_24h
+#SBATCH --qos=gpu
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4

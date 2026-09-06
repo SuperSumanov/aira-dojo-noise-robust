@@ -1,5 +1,9 @@
 # FA2缺失修复：固定环境、独立附加目录
 
+执行前权限修正：首次batch_72h/ex_batch提交被Invalid qos specification拒绝，未产生job；
+实际sacctmgr显示账号仅有gpu QOS。因此后继只将调度入口改为gpu_24h/gpu，仍无GRES、0GPU、
+4CPU/24GiB/40min，旧sbatch返回码与stderr保留。独立新提交目录，不重用失败SUBMISSION_INTENT。
+
 用户2026-09-07要求积极推进critic收益准备；本轮只解决12577明确缺失的attention依赖，
 不换FA2为SDPA、不改变1.7B/16K/双卡/8×8/seed6、优化器或数据准入。
 
@@ -13,7 +17,7 @@
 
 ## 实际矩阵与验收
 
-1. **CPU构建一次**：batch_72h / ex_batch，4CPU、24GiB、40min上限、0GPU。
+1. **CPU构建一次**：gpu_24h / gpu（不申请GPU），4CPU、24GiB、40min上限、0GPU。
    只用固定FA2 2.8.3官方sdist和wheel0.45.1构建工具，2个编译worker、各2个nvcc线程。
    编译阶段最多2100秒；失败保留，不自动重试。训练/模型权重/语料/保护评测集均不读。
 2. 安装到`flash-attn-build-20260907/overlay`，不写原r5环境；同一Torch/CUDA编译，

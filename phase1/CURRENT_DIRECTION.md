@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L77. 2026-09-06 08:36：原生缓存修复已过CPU独立复核，准备有界GPU复验
+
+实际时钟08:35:59核验。生产helper30f179505af15ca81862d5448e820739b76a13c8已在真实CPUAdam上
+完成A/B×四预定cut共八case；最终状态相等、参数/矩/RNG不被重建操作改变、重复restore拒绝。
+result75cb6581e3016ab259c35df06a69eb19cbcecd0e9272025dc631b743064b75f9，
+独立receiptba7e811a397fbb246fc5ca85a624daa88c9e853af48545184750b87fe7041184，18源文件绑定、trace安全0命中。
+CPU判等为torch.equal，不区分signed zero；不能据此替代GPU严格fingerprint和uint8 payload验收。
+新单次矩阵见ZERO3_NATIVE_CACHE_PREFLIGHT_20260906.md：2RTX3090/gpu28/12min，仍同4433参数、seed6、
+原五轨迹；仅重建未序列化native缓存并增加静态优化器选项与实际restore receipt门，绝不清梯度或放宽容差。
+新上限2160GPU秒；此前五作业实际817，组合2977≤原3120，无自动重试。此刻尚未提交。
+12574已FAILED199秒，原controller/audit/CPU诊断均完成；不得跑其payload验收或FINAL。
+12535为PENDING/JobHeldUser，旧源码已知错误，禁止直接release；可逆hold不等于取消或修改原配置。
+673语料/WL已完成，ADMITTED_RELEASES仍空，没有四fit或模型/scaling收益。用户工作窗口仍到约10:20–10:29。
+
 ## 0L76. 2026-09-06：真实恢复比较仍失败，进入CPUAdam原生状态诊断
 
 12574 source09c322bf82cc62ce67babb7e2bfee51633e40710 FAILED199秒/398GPU秒，当前可选组累计817。

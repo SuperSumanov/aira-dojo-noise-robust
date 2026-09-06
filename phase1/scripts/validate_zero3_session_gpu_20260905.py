@@ -85,9 +85,10 @@ def worker(rank,port,output,end,resume,source_root,expected_gpu):
     session=DeepSpeedCriticSession(c,training_contract_sha256=os.environ['ZERO3_GPU_APPROVAL_RECEIPT_SHA'])
     rng_seed=(600 if resume is None else 9600)+rank
     random.seed(rng_seed);np.random.seed(rng_seed);torch.manual_seed(rng_seed);torch.cuda.manual_seed_all(rng_seed)
+    restore_receipt=None
     if resume is not None:
         root=Path(resume);old=current_state(c)
-        session.restore(root,manifest_sha256=file_sha(root/'manifest.json'))
+        restore_receipt=session.restore(root,manifest_sha256=file_sha(root/'manifest.json'))
         now=current_state(c)
         assert all(old[k]!=now[k] for k in ('python_rng','numpy_rng','torch_rng'))
     start=c.completed_steps;records=[];timings=[]
@@ -102,6 +103,7 @@ def worker(rank,port,output,end,resume,source_root,expected_gpu):
     gathered=[None,None]
     dist.all_gather_object(gathered,{'rank':rank,'start':start,'end':c.completed_steps,'state':current_state(c),
         'counters':counters(model),'records':records,'step_times':timings,'initial_padding':padding_receipt,
+        'restore_receipt':restore_receipt,
         'gpu_name':torch.cuda.get_device_name(rank),'expected_gpu':expected_gpu,
         'peak_allocated_bytes':torch.cuda.max_memory_allocated(rank),'peak_reserved_bytes':torch.cuda.max_memory_reserved(rank)})
     if rank==0:

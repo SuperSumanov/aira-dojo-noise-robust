@@ -239,6 +239,8 @@ class DeepSpeedCriticSession(CriticSession):
                 and not a._custom_objects and len(a._models) == 1 and a._models[0] is e
                 and not a.project_configuration.automatic_checkpoint_naming, 'zero3_initial_state')
         self.runtime = runtime_binding()
+        from phase1.global_local_cpu_adam_resume import replay_spec
+        self.native_static_options={k:v for k,v in replay_spec(z.optimizer.param_groups,1).items() if k!='lr'}
         # No full state_dict() on a ZeRO-3 model: its parameter tensors may be placeholders.
         schema = [(n,list(p.ds_shape),str(p.dtype),p.requires_grad) for n,p in e.module.named_parameters()]
         self.binding = {'protocol':'critic-zero3-session-v1','world':2,'total_steps':c.plan.steps,
@@ -257,6 +259,9 @@ class DeepSpeedCriticSession(CriticSession):
         step = c.completed_steps if expected_steps is None else expected_steps
         require(e.global_steps == step and e.skipped_steps == 0, 'zero3_engine_cursor_drift')
         require(not e.optimizer.overflow and not a.optimizer_step_was_skipped, 'zero3_skipped_update')
+        from phase1.global_local_cpu_adam_resume import replay_spec
+        require({k:v for k,v in replay_spec(e.optimizer.optimizer.param_groups,1).items() if k!='lr'}
+                == self.native_static_options,'zero3_native_optimizer_options_changed')
         validate_consumed_cpu_gradients(e,step)
 
     def save(self, root):
@@ -311,6 +316,9 @@ class DeepSpeedCriticSession(CriticSession):
             # This engine was fresh before load (see initial and restore gates).
             # Reproduce the consumed cache history without touching coefficients.
             from phase1.global_local_cpu_adam_resume import restore_native_cache
+            from phase1.global_local_cpu_adam_resume import replay_spec
+            require({k:v for k,v in replay_spec(c.model.optimizer.optimizer.param_groups,step).items() if k!='lr'}
+                    == self.native_static_options,'zero3_restored_native_options_changed')
             native_cache=restore_native_cache(c.model.optimizer.optimizer,step)
             verify_restored(row['state'],current_state(c))
             e,z = c.model,c.model.optimizer

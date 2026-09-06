@@ -132,7 +132,8 @@ def test_nonfinite_master_rejected():
 def test_restore_cursor_commits_only_after_last_check(tmp_path,monkeypatch,case):
     root=tmp_path/'cp';binding,h=bundle(root)
     row=z.read_small(root/'observed_0.json')
-    raw=NS(micro_step_id=0,optimizer=NS())
+    opts={'params':[],'lr':1e-5,'betas':(.9,.999),'eps':1e-8,'weight_decay':.01,'bias_correction':True}
+    raw=NS(micro_step_id=0,optimizer=NS(param_groups=[opts]))
     e=NS(global_steps=0,micro_steps=0,global_samples=0,skipped_steps=0,lr_scheduler=None,optimizer=raw)
     o=NS(optimizer=raw)
     a=NS(distributed_type='DEEPSPEED',deepspeed_engine_wrapped=NS(engine=e),_optimizers=[o])
@@ -146,6 +147,7 @@ def test_restore_cursor_commits_only_after_last_check(tmp_path,monkeypatch,case)
     e.load_checkpoint=load
     a.load_state=lambda path,**kwargs:e.load_checkpoint(path,z.TAG,**kwargs)
     s=z.DeepSpeedCriticSession.__new__(z.DeepSpeedCriticSession);s.consumer=c;s.binding=binding;s._tokens=lambda n:88
+    s.native_static_options={k:v for k,v in opts.items() if k not in ('lr','params')}
     def boundary(**kwargs):
         if case=='boundary' and kwargs.get('expected_steps')==2:raise PlanError('injected_final_boundary_failure')
     s._boundary=boundary

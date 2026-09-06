@@ -90,10 +90,31 @@ def same(a,b):
         require(type(a)==type(b) and type(a).__module__=='deepspeed.runtime.fp16.loss_scaler','unknown_pickle_state')
         same(vars(a),vars(b))
 
+
+def verify_native_restore_receipt(row,start,helper_sha):
+    receipt=row.get('restore_receipt')
+    if start==0:
+        require('restore_receipt' in row and receipt is None,'unexpected_initial_native_restore')
+        return None
+    require(isinstance(receipt,dict) and receipt.get('completed_steps')==start
+            and receipt.get('all_state_components_restored') is True,'native_restore_receipt')
+    cache=receipt.get('native_cpu_adam_cache')
+    require(isinstance(cache,dict) and cache.get('policy')=='replay_native_bias_powers_on_empty_tensors_v1'
+        and type(cache.get('completed_steps')) is int and cache['completed_steps']==start
+        and type(cache.get('empty_native_calls')) is int and cache['empty_native_calls']==start
+        and type(cache.get('parameter_elements_passed')) is int and cache['parameter_elements_passed']==0
+        and type(cache.get('python_optimizer_step_calls')) is int and cache['python_optimizer_step_calls']==0,
+        'native_cache_replay_scope')
+    require(cache.get('policy_sha256')==helper_sha,'native_cache_helper_binding')
+    native=cache.get('native_extension_sha256')
+    require(isinstance(native,str) and re.fullmatch('[0-9a-f]{64}',native),'native_binary_binding')
+    return native
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--job',required=True);parser.add_argument('--submission',required=True)
     args=parser.parse_args();require(re.fullmatch('[0-9]+',args.job),'job_id')
-    consumed_portability=args.submission=='submission-20260906-3090-consumed'
+    native_portability=args.submission=='submission-20260906-3090-native-cache'
+    consumed_portability=args.submission=='submission-20260906-3090-consumed' or native_portability
     socket_portability=args.submission=='submission-20260906-3090-socket' or consumed_portability
     private_portability=args.submission=='submission-20260906-3090-private' or socket_portability
     portability=args.submission=='submission-20260906-3090' or private_portability
@@ -123,7 +144,7 @@ def main():
                 and 298+2*int(elapsed)<=budget['original_cap_gpu_seconds']==4320,'cumulative_actual_budget')
     summary=read(trajectories/'summary.json')
     if portability:
-        expected_cap=2520 if consumed_portability else (2880 if private_portability else 3120)
+        expected_cap=2160 if native_portability else (2520 if consumed_portability else (2880 if private_portability else 3120))
         require(ready['gpu_seconds_upper_bound']==expected_cap and 2*int(elapsed)<=expected_cap,'portability_budget')
         require(summary['expected_gpu']=='RTX 3090' and len(summary['gpu_names'])==2
                 and all('RTX 3090' in n for n in summary['gpu_names']),'portability_devices')
@@ -143,12 +164,15 @@ def main():
                 require(b'Using network Socket' in (root/'driver.log').read_bytes(),'socket_transport_unverified')
             if consumed_portability:
                 prior_jobs.append(('12573',('FAILED','133','1:0',2)))
+            if native_portability:
+                prior_jobs.append(('12574',('FAILED','199','1:0',2)))
             for previous, expected in prior_jobs:
                 row=subprocess.check_output(['sacct','-X','-n','-P','-j',previous,
                     '--format=JobIDRaw,State,ElapsedRaw,AllocTRES,ExitCode'],env=env).decode().strip().split('|')
                 state0,seconds0,code0,gpus0=expected
                 require(row[:3]==[previous,state0,seconds0] and row[4]==code0 and f'gres/gpu={gpus0}' in row[3].split(','),'prior_private_budget')
-            require((419 if consumed_portability else (153 if socket_portability else 7))+2*int(elapsed)<=3120,'aggregate_private_budget')
+            prior_actual=817 if native_portability else (419 if consumed_portability else (153 if socket_portability else 7))
+            require(prior_actual+2*int(elapsed)<=3120,'aggregate_private_budget')
     require(summary['code_commit']==ready['commit'] and summary['slurm_job_id']==args.job
             and summary['approval_receipt_sha256']==ready['approval_sha256'],'driver_binding')
     require(summary['trajectories']==5 and summary['resume_comparisons']==4 and summary['parameters']==4433,'driver_matrix')
@@ -157,10 +181,17 @@ def main():
     require(binding['training_contract_sha256']==ready['approval_sha256'] and binding['world']==2,'session_binding')
     require(sum(e['local_valid_tokens'] for r in data['full']['ranks'] for e in r['records'])
         ==data['full']['planned_tokens'],'full_consumed_tokens')
+    native_binaries=[]
     for name,(start,end) in CASES.items():
         d=data[name];require(d['binding']==binding and d['seed']==6 and d['arm']=='G_to_L','trajectory_binding')
         require([r['rank'] for r in d['ranks']]==[0,1],'ranks')
         for r in d['ranks']:
+            if native_portability:
+                native=verify_native_restore_receipt(r,start,ready['hashes']['phase1/global_local_cpu_adam_resume.py'])
+                if native is not None:
+                    native_binaries.append(native)
+                    require(r['restore_receipt']['manifest_sha256']==digest(trajectories/f'prefix{start}'/f'checkpoint-{start}'/'manifest.json'),
+                            'native_restore_checkpoint_identity')
             if retry is not None or portability:
                 padding=r['initial_padding']
                 require(padding['partition_source_sha256']=='8b3c65d20fada0fc85c3685615b0da65247f4e8739313ca1de01b1a3102f2500'
@@ -168,6 +199,8 @@ def main():
                         and padding['nonfinite_padding_before_initialization']==r['rank'],'initial_padding_receipt')
             require(r['start']==start and r['end']==end and set(r['state'])==ROLES,'trajectory_steps')
             require([x['step'] for x in r['records']]==list(range(start+1,end+1)),'consumption_steps')
+    if native_portability:
+        require(len(native_binaries)==4 and len(set(native_binaries))==1,'native_binary_consistency')
     for cut in (2,3):
         for rank in range(2):
             full=data['full']['ranks'][rank];prefix=data[f'prefix{cut}']['ranks'][rank];resumed=data[f'resume{cut}']['ranks'][rank]

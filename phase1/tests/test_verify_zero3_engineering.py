@@ -66,3 +66,23 @@ def test_actual_tensor_payloads_not_only_reported_digests(failure):
     elif failure=='optimizer_missing':del b['optimizer']['state']
     elif failure=='rng':b['rng'][0]=5
     with pytest.raises(ValueError):v.same(a,b)
+
+
+def native_fixture():
+    return {'restore_receipt':{'completed_steps':2,'all_state_components_restored':True,
+        'native_cpu_adam_cache':{'policy':'replay_native_bias_powers_on_empty_tensors_v1','completed_steps':2,
+            'empty_native_calls':2,'parameter_elements_passed':0,'python_optimizer_step_calls':0,
+            'policy_sha256':'a'*64,'native_extension_sha256':'b'*64}}}
+
+
+def test_native_receipt_covers_real_scope():
+    assert v.verify_native_restore_receipt(native_fixture(),2,'a'*64)=='b'*64
+    assert v.verify_native_restore_receipt({'restore_receipt':None},0,'a'*64) is None
+
+
+@pytest.mark.parametrize('field,value',[('empty_native_calls',1),('empty_native_calls',True),
+    ('parameter_elements_passed',1),('python_optimizer_step_calls',1),('policy_sha256','c'*64),
+    ('native_extension_sha256','bad'),('completed_steps',3)])
+def test_native_receipt_rejects_unqualified_replay(field,value):
+    row=native_fixture();row['restore_receipt']['native_cpu_adam_cache'][field]=value
+    with pytest.raises(ValueError):v.verify_native_restore_receipt(row,2,'a'*64)

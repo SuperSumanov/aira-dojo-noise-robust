@@ -11,8 +11,10 @@ import sys
 import time
 
 BASE = Path('/research/d7/spc/yzyang4')
-ROOT = BASE / 'flash-attn-build-20260907'
+ROOT = BASE / 'flash-attn-build-20260907-r2'
 RUNTIME = BASE / 'venvs/critic-blackwell-g0-20260905-r5'
+HOST_CXX = '/usr/bin/g++'
+HOST_SHA = '1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769'
 SDIST_SHA = '1e71dd64a9e0280e0447b8a0c2541bad4bf6ac65bdeaa2f90e51a9e57de0370d'
 WHEEL_SHA = '708e7481cc80179af0e556bbf0cc00b8444c7321e2700b8d8580231d13017248'
 
@@ -52,6 +54,27 @@ def invoke(name, args, env, seconds, cwd=ROOT):
         raise RuntimeError(name + '_failed')
 
 
+def compiler_check(tag):
+    """Compile only; explicitly select the previously verified C++ driver."""
+    assert re.fullmatch(r'(?:cpu|job-[0-9]+)', tag)
+    assert sha(HOST_CXX) == HOST_SHA, 'host_compiler_changed'
+    root = ROOT / ('compiler-' + tag)
+    root.mkdir()
+    src = root / 'sanity.cu'
+    src.write_text('#include <cuda_runtime.h>\n#include <cuda_bf16.h>\n#include <string>\n'
+                   '__global__ void add(float* x) { x[threadIdx.x] += 1.f; }\n'
+                   'std::string host_string() { return "compile-only"; }\n')
+    cuda = BASE/'private-cuda128-toolchain-20260906/prefix'
+    env = dict(os.environ, CUDA_VISIBLE_DEVICES='', PATH='/usr/bin:/bin',
+               CC=HOST_CXX, CXX=HOST_CXX, NVCC_CCBIN=HOST_CXX)
+    command = [str(cuda/'bin/nvcc'), '-ccbin', HOST_CXX, '-arch=sm_120',
+               '-std=c++17', '-c', str(src), '-o', str(root/'sanity.o')]
+    invoke('compiler-'+tag, command, env, 45, root)
+    record('compiler-'+tag+'-verified.json', {'command':command,
+           'host_compiler_sha256':sha(HOST_CXX), 'source_sha256':sha(src),
+           'object_sha256':sha(root/'sanity.o'), 'gpu_context_created':False})
+
+
 def main():
     os.umask(0o077)
     assert ROOT.resolve() == ROOT and not ROOT.is_symlink()
@@ -60,6 +83,7 @@ def main():
     assert not os.environ.get('CUDA_VISIBLE_DEVICES')
     assert os.environ.get('SLURM_CPUS_PER_TASK') == '4'
     assert sys.executable == str(RUNTIME/'bin/python')
+    compiler_check('job-'+os.environ['SLURM_JOB_ID'])
     assert sha(ROOT/'flash_attn-2.8.3.tar.gz') == SDIST_SHA
     assert sha(ROOT/'wheel-0.45.1-py3-none-any.whl') == WHEEL_SHA
     source = ROOT/'source/flash_attn-2.8.3'
@@ -81,6 +105,7 @@ def main():
                PATH=str(RUNTIME/'bin')+':'+str(cuda/'bin')+':/usr/bin:/bin',
                PYTHONPATH=str(ROOT/'build_deps'), PYTHONDONTWRITEBYTECODE='1',
                MAX_JOBS='2', NVCC_THREADS='2', FLASH_ATTENTION_FORCE_BUILD='TRUE',
+               CC=HOST_CXX, CXX=HOST_CXX, NVCC_CCBIN=HOST_CXX,
                FLASH_ATTN_CUDA_ARCHS='120', TMPDIR=str(ROOT/'temp'),
                PIP_NO_INDEX='1', PIP_DISABLE_PIP_VERSION_CHECK='1',
                HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1',
@@ -103,4 +128,8 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    if sys.argv[1:] == ['--compiler-check-cpu']:
+        compiler_check('cpu')
+    else:
+        assert len(sys.argv) == 1, 'unexpected_arguments'
+        main()

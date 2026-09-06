@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L84. 2026-09-07：FA2 host compiler修复通过CPU编译门，R2待提交
+
+12577缺FA2之后的12635已FAILED：保留1卡/4CPU运行89秒，nvcc默认gcc无法启动cc1plus。
+显式/usr/bin/g++13（固定hash）已通过sm120/CUDA/bf16/C++实际对象编译，6.143286120146513秒。
+新R2源码和输出专属目录保留旧失败，不换FA2/模型/16K/批大小；GPU kernel与1.7B正式尺寸仍未验收。
+新增FA2 overlay哈希、数学参考与错误数值负控的8项Linux CPU测试通过，不等于GPU通过。
+真实累计费用7291GPU秒；R2上限2760加原双卡尺寸上限3840，合计13891≤14400；不自动retry。
+详细矩阵、13项预检适用性和既往队列失败见FA2_REPAIR_PREFLIGHT_20260907.md。
+
+固定84run独立复验：12记录commit的全部Dojo blobs可达，9种源码清单；24记录exact strata，
+每个仅1个保守组件。同task跨stratum的12种配对，没有只差commit的配对，存在真实时限/生成器等配置差异。
+原代码范围回执af04ac8f26d7937186c88167e2022782c5c8a899141bcf18fdb3558eb2222ed6，
+原配置差异回执749111383fa1e8e5acf6d614aa1badbc02cf3424ae51496a8238910a82990baa；独立校验完成。
+解释边界：缺同配置重复不等于禁止所有跨配置开发；pair内exact-stratum与train/dev同分布不是一回事。
+不擅自新增门，也不放松完整experiment/evaluator/来源准入；跨配置开发不能冒称干净同配置scaling确认。
+ADMITTED_RELEASES仍空，未选新split、未读保护cohort/真实标签、未启动四fit，没有新的critic收益结论。
+学长branch未修改；本轮尚未刷新共享盘语料，不能把旧intake计数说成实时状态。
+
 ## 0L83. 2026-09-07：metadata可恢复固定84run的代码；12577已因缺少FA2失败
 
 学长说明多数旧snapshot已删除，直接使用metadata.git_commit_id；projgpu39可排两卡、最长24h。

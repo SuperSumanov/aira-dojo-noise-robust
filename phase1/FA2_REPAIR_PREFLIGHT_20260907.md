@@ -1,5 +1,33 @@
 # FA2缺失修复：固定环境、独立附加目录
 
+## 2026-09-07 R2：覆盖下文构建状态与旧预算
+
+12635实际运行89秒后FAILED 1:0，编译日志明确为默认gcc无法启动cc1plus；
+不是CUDA架构不支持或模型失败。默认gcc9与可用g++13不一致，未复用已有显式C++绑定是本次预检漏项。
+新尝试固定CC/CXX/NVCC_CCBIN及nvcc -ccbin为/usr/bin/g++，并绑定其SHA
+1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769。
+已在Linux纯CPU实际编译含CUDA/bf16/C++标准库的sm120对象成功，6.143286120146513秒。
+对象SHA d96f6e40bcf21a74a562e1d63556a07e9ce9de2bd802a7fe0fc5ba37a23d895b；未创建CUDA context。
+每个真实构建节点开跑后必须重复同一编译器哈希和编译门，失败即停，不自动换compiler。
+
+新目录flash-attn-build-20260907-r2，固定官方包重新解压；旧构建/日志完整保留，不清理或覆盖。
+矩阵仍1保留GPU/4CPU/gpu37/mem0/40min，内层源码编译2100秒；无CUDA kernel、模型或语料读写。
+实际历史费用7291GPU秒（此前7202加12635的89）；新构建保守2760，加后续双卡尺寸3840，
+组合13891≤14400GPU秒。0秒取消的12634未计执行费用。尚不提交四fit效果训练。
+
+完整预检逐项：固定源码/host compiler/Torch2.11/cu128/ABI/架构；CPU正负控；
+无数据故去重/分布/配平/统计功效项不适用且不宣称收益；新专属输出/有界超时/无重试；
+哈希与退出码回执；发布凭据扫描；冻结评测不读；后续真实尺寸仍需checkpoint与64GiB容量门。
+FA2 GPU检验预先固定bf16 GQA/causal dense和varlen数学参考，forward/dq/dk/dv同时要求
+relative-L2≤0.02且max-absolute≤0.05；16K只检查实际kernel前后向及有限性，不冒称全量数学对照。
+Linux CPU的overlay/漂移/参考/负控8项已通过；GPU数值检查尚未运行。
+
+数据解释校正：24个exact strata均只有一个保守组件，只排除“现成同配置独立组件重复”这一窄条件。
+冻结协议的pair两端配置一致，不自动等于train/dev必须同配置；跨配置开发是一种不同estimand，
+不能冒称同配置确认，也不能因此自动合并配置或绕过evaluator/完整experiment来源门。
+
+## 历史调度记录（保留，不代表当前运行状态）
+
 调度校正：12634未启动，因节点RealMemory=1占位值与24GiB请求冲突，处于BadConstraints。
 本轮自行scontrol hold后，Slurm19.05写入JobHeldAdmin；release被拒，未尝试修改priority或越权解除。
 已取消我方这个从未启动的作业，保留0秒记录。后继改为已核验空闲ubuntu24节点gpu37、mem=0，

@@ -1,5 +1,14 @@
 # 官方FA2构建：有界续编，不重跑科学实验
 
+## 准备阶段格式纠正（尚未提交）
+
+首次R4准备被ninja_log_version门挡住：实际固定ninja 1.13.0日志是v7，检查器误假定v5。
+本机原日志有32完成对象，旧partial submission目录和副本保留，不覆盖；无新增job/GPU费用。
+修复只接受实际v7，保持五字段严格解析、未知版本拒绝与完整hash门。
+[官方v1.13.0 build_log.cc](https://github.com/ninja-build/ninja/blob/v1.13.0/src/build_log.cc)
+定义v7签名和五字段写入格式；不将v5转换成v7或重写原ninja日志。
+新submission-v7采用独立源码目录，只有验证旧准备未达到READY/提交后才能接续。
+
 2026-09-07六小时会话内。12641实际FAILED/1:0，2126秒、1保留GPU；
 真实原因为compile阶段2100秒超时，并非新的CUDA编译错误。原始失败日志与回执保留。
 CPU目标仍是补齐12577缺少的FA2依赖；不能把构建称为真实模型收益。

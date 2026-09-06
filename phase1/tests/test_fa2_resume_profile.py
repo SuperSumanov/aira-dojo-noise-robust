@@ -8,7 +8,7 @@ def fixture(tmp_path,monkeypatch):
     if not hasattr(os,'getuid'):monkeypatch.setattr(os,'getuid',lambda:0,raising=False)
     root=tmp_path/'build';root.mkdir();p=root/'a.o';p.write_bytes(b'\x7fELFsynthetic-not-real-compile')
     line=f'0\t5\t6\t{p}\tabc123\n'
-    return root,p,'# ninja log v5\n'+line
+    return root,p,'# ninja log v7\n'+line
 
 
 def test_completed_hashes(tmp_path,monkeypatch):
@@ -19,7 +19,7 @@ def test_completed_hashes(tmp_path,monkeypatch):
 @pytest.mark.parametrize('bad',['version','duplicate','missing','nonelf','outside','extension','times','command','malformed'])
 def test_completed_rejects(tmp_path,monkeypatch,bad):
     root,p,log=fixture(tmp_path,monkeypatch)
-    if bad=='version':log=log.replace('v5','v4')
+    if bad=='version':log=log.replace('v7','v5')
     elif bad=='duplicate':log+=log.splitlines(True)[1]
     elif bad=='missing':p.unlink()
     elif bad=='nonelf':p.write_bytes(b'not-an-ELF-object')

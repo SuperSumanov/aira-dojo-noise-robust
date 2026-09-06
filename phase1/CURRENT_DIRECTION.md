@@ -5,6 +5,11 @@
 
 ## 0L92. 2026-09-07：12641编译超时，准备保留已完成对象的有界续编
 
+UTC22:49新增事实：poll2及原snapshot-delta双生产/独立双验证已完成，新149bb30afb5ab43df35ba917aea0398381c9ff6bc07dde7e09d9ff12af40988b，
+701physical/675eligible/4283pairs/57tasks/closure=false；下一poll最早UTC22:52:27.882817。
+Linux payload13测试及tiny18个checkpoint-rank的六role实物检查通过，结果SHA2126a6faffb96ef5586dbddb6b95c1ef74f33a35bfa90ca1ee7c3f6834f3b402。
+R4准备因检查器误假定ninja v5被挡住，实际v7/32完成对象；未提交新GPU。旧partial保留，新submission-v7修正后另验。
+
 Slurm实际12641 FAILED/1:0/2126秒，compile-timeout记录为2100秒；非新的编译器错误。
 R3未产生BUILT，未提交后继双卡。失败日志保留，拟新R4回执目录、只续原编译工作目录。
 原成功对象/ninja命令图将先hash、完成后须不变，官方源代码不改；未执行自动重试。

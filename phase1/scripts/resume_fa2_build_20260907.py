@@ -58,7 +58,7 @@ def old_source():
 def completed_objects(log,build):
     """Only completed outputs in the original ninja log are reusable inputs."""
     build=Path(build);seen={}
-    require(log.startswith('# ninja log v5\n'),'ninja_log_version')
+    require(log.startswith('# ninja log v7\n'),'ninja_log_version')
     for line in log.splitlines()[1:]:
         if not line:continue
         fields=line.split('\t');require(len(fields)==5,'ninja_record_schema')

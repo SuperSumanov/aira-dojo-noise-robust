@@ -1,0 +1,1 @@
+12575|COMPLETED|271|billing=12,cpu=12,gres/gpu=2,node=1|0:0

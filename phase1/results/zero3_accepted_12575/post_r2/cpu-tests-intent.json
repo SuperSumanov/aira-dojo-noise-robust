@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/bin/python",
+    "-B",
+    "-c",
+    "import sys; sys.path.append('/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages'); import pytest; raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'phase1/tests/test_zero3_final_readout_12575.py', 'phase1/tests/test_zero3_final_readout_12535.py', 'phase1/tests/test_verify_zero3_engineering.py', 'phase1/tests/test_critic_zero3_final_state.py']))"
+  ],
+  "limit_seconds": 180,
+  "source_commit": "c3eb1d546ac5314a8685bc692817b6cfde534c68"
+}

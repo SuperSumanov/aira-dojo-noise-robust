@@ -1,0 +1,140 @@
+{
+  "arm": "G_to_L",
+  "binding": {
+    "arm": "G_to_L",
+    "ds_config_sha256": "d889ef6fb21e9d7827e8883e9720aaab5001721de18af575157d881aa8297945",
+    "initial_optimizer_groups_sha256": "fd0e16f7eddf2265ef9d77ff8198c3626802371789df43dcc3ec1892ed1616d2",
+    "input_sha256": "ea30ee7b62bc364cc6f39d47f987bb11b2da9319b0a3f0cedecaa2e3dc1bc43e",
+    "model_schema_sha256": "132e6c60b5dbc09ba72c722119d8d2ebaaedc1398d8b1ee3f1f2526d21f52e5d",
+    "plan_sha256": "70df48399c7e26550e85354fc6905cba265cd135051f9c7513c6f97e5ed2f0ce",
+    "protocol": "critic-zero3-session-v1",
+    "runtime_sha256": "58518eda09b6950d53e72c15c99f2dbfcb3f6c624897a13ec26712d1afcfac21",
+    "seed": 6,
+    "source_sha256": "bbc50a0dc985fd1d9ef9861c640a932bfc968598bf9b57ba7694554bd194dcaf",
+    "total_steps": 4,
+    "training_contract_sha256": "d66e0d91499b9bae3a006fe71bf17f7e0137481c1b05bfdaf6470b6803649312",
+    "world": 2
+  },
+  "planned_tokens": 192,
+  "ranks": [
+    {
+      "counters": {
+        "global_samples": 16,
+        "global_steps": 2,
+        "micro_step_id": 0,
+        "micro_steps": 2,
+        "skipped_steps": 0,
+        "step_applied": true
+      },
+      "end": 2,
+      "expected_gpu": "RTX 3090",
+      "gpu_name": "NVIDIA GeForce RTX 3090",
+      "initial_padding": {
+        "new_partitions": 15,
+        "nonfinite_padding_before_initialization": 0,
+        "padding_elements_initialized": 0,
+        "partition_source_sha256": "8b3c65d20fada0fc85c3685615b0da65247f4e8739313ca1de01b1a3102f2500"
+      },
+      "peak_allocated_bytes": 69176320,
+      "peak_reserved_bytes": 90177536,
+      "rank": 0,
+      "records": [
+        {
+          "local_pair_visits": 4,
+          "local_valid_tokens": 32,
+          "receipt_sha256": "b606a5e3651452496d6bfd56244b0cb9d04df50e3140d4f7b84d77f83ce5a674",
+          "step": 1
+        },
+        {
+          "local_pair_visits": 2,
+          "local_valid_tokens": 16,
+          "receipt_sha256": "584df77838299b338ffea60d3b01a9c083b01ac1e0d8bc71b170649c7c24820a",
+          "step": 2
+        }
+      ],
+      "restore_receipt": null,
+      "start": 0,
+      "state": {
+        "adamw": "effc9b64d823b7fd9b8747eb2ef37eff972c5b54c5e76fc1db4b80aa042b8548",
+        "master_shards": "8e77ccdb827a1c86e358c29c57a69b323c381df086b6f80732c83c30617b8e3b",
+        "model_shards": "d6c82bc1c5a26b01a5c9d73f3cb643d95aca34ae5eb10bedff344e10a63129ee",
+        "numpy_rng": "e00436fe1dcca92e71556c3b1223ec76e01d1ad87c7970e5777d2c3f8df7cf55",
+        "python_rng": "8232f338aa695f1a046faf94cdc2566425e8342087418394c87f460574b62ebb",
+        "scaler": "b76fcfa5440f6accc88ca7f2e3b44fb564dc6dfdbcc9f758b552ae8e5078a697",
+        "torch_rng": "fa3d82afd15caab04791c2cb39322d917c30fbf6e621a4a64039605c406eb852"
+      },
+      "step_times": [
+        {
+          "seconds": 1.111699400935322,
+          "step": 1,
+          "warmup": true
+        },
+        {
+          "seconds": 0.06084628798998892,
+          "step": 2,
+          "warmup": false
+        }
+      ]
+    },
+    {
+      "counters": {
+        "global_samples": 16,
+        "global_steps": 2,
+        "micro_step_id": 0,
+        "micro_steps": 2,
+        "skipped_steps": 0,
+        "step_applied": true
+      },
+      "end": 2,
+      "expected_gpu": "RTX 3090",
+      "gpu_name": "NVIDIA GeForce RTX 3090",
+      "initial_padding": {
+        "new_partitions": 15,
+        "nonfinite_padding_before_initialization": 1,
+        "padding_elements_initialized": 1,
+        "partition_source_sha256": "8b3c65d20fada0fc85c3685615b0da65247f4e8739313ca1de01b1a3102f2500"
+      },
+      "peak_allocated_bytes": 69175296,
+      "peak_reserved_bytes": 90177536,
+      "rank": 1,
+      "records": [
+        {
+          "local_pair_visits": 4,
+          "local_valid_tokens": 32,
+          "receipt_sha256": "be3c91a913c75996d2f539e64dfe018f951e8c41e970d05c65293479521748d5",
+          "step": 1
+        },
+        {
+          "local_pair_visits": 1,
+          "local_valid_tokens": 8,
+          "receipt_sha256": "4a6a6e0b7f3754d214db19ee433fe10eadd7db6e386a2a1811cc8e81d47c9fab",
+          "step": 2
+        }
+      ],
+      "restore_receipt": null,
+      "start": 0,
+      "state": {
+        "adamw": "1c3ac73eb924b3a9f720606c73a1987a02e12db6c89993ba734991ed709f599b",
+        "master_shards": "8519c0335cf05606672549e69ad03079f0879982804c70d49bec39b6f21a3dc6",
+        "model_shards": "0195611949996283aa9d90c52d32e24fde6ae734c7ce84f2d0e0605ca411c7a8",
+        "numpy_rng": "2ec96522f6f3afde5d7633beee9fa976c75523f41a58d1266b917efd66354300",
+        "python_rng": "6bfe2de58cb178ef8b82fc3637953d9a9ebebfc1672c56317dfa439184d0153a",
+        "scaler": "b76fcfa5440f6accc88ca7f2e3b44fb564dc6dfdbcc9f758b552ae8e5078a697",
+        "torch_rng": "d7595b4cd27a35d4ef154094e8672a78f38c6bb1599586afb125a47bb1399a8b"
+      },
+      "step_times": [
+        {
+          "seconds": 1.1180311110801995,
+          "step": 1,
+          "warmup": true
+        },
+        {
+          "seconds": 0.06081471196375787,
+          "step": 2,
+          "warmup": false
+        }
+      ]
+    }
+  ],
+  "seed": 6
+}

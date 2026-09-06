@@ -1,0 +1,184 @@
+{
+  "arm": "G_to_L",
+  "binding": {
+    "arm": "G_to_L",
+    "ds_config_sha256": "d889ef6fb21e9d7827e8883e9720aaab5001721de18af575157d881aa8297945",
+    "initial_optimizer_groups_sha256": "fd0e16f7eddf2265ef9d77ff8198c3626802371789df43dcc3ec1892ed1616d2",
+    "input_sha256": "ea30ee7b62bc364cc6f39d47f987bb11b2da9319b0a3f0cedecaa2e3dc1bc43e",
+    "model_schema_sha256": "132e6c60b5dbc09ba72c722119d8d2ebaaedc1398d8b1ee3f1f2526d21f52e5d",
+    "plan_sha256": "70df48399c7e26550e85354fc6905cba265cd135051f9c7513c6f97e5ed2f0ce",
+    "protocol": "critic-zero3-session-v1",
+    "runtime_sha256": "58518eda09b6950d53e72c15c99f2dbfcb3f6c624897a13ec26712d1afcfac21",
+    "seed": 6,
+    "source_sha256": "bbc50a0dc985fd1d9ef9861c640a932bfc968598bf9b57ba7694554bd194dcaf",
+    "total_steps": 4,
+    "training_contract_sha256": "d66e0d91499b9bae3a006fe71bf17f7e0137481c1b05bfdaf6470b6803649312",
+    "world": 2
+  },
+  "planned_tokens": 192,
+  "ranks": [
+    {
+      "counters": {
+        "global_samples": 32,
+        "global_steps": 4,
+        "micro_step_id": 0,
+        "micro_steps": 4,
+        "skipped_steps": 0,
+        "step_applied": true
+      },
+      "end": 4,
+      "expected_gpu": "RTX 3090",
+      "gpu_name": "NVIDIA GeForce RTX 3090",
+      "initial_padding": {
+        "new_partitions": 15,
+        "nonfinite_padding_before_initialization": 0,
+        "padding_elements_initialized": 0,
+        "partition_source_sha256": "8b3c65d20fada0fc85c3685615b0da65247f4e8739313ca1de01b1a3102f2500"
+      },
+      "peak_allocated_bytes": 69176320,
+      "peak_reserved_bytes": 90177536,
+      "rank": 0,
+      "records": [
+        {
+          "local_pair_visits": 4,
+          "local_valid_tokens": 32,
+          "receipt_sha256": "b606a5e3651452496d6bfd56244b0cb9d04df50e3140d4f7b84d77f83ce5a674",
+          "step": 1
+        },
+        {
+          "local_pair_visits": 2,
+          "local_valid_tokens": 16,
+          "receipt_sha256": "584df77838299b338ffea60d3b01a9c083b01ac1e0d8bc71b170649c7c24820a",
+          "step": 2
+        },
+        {
+          "local_pair_visits": 4,
+          "local_valid_tokens": 32,
+          "receipt_sha256": "170c49a139349ca14bd484ba6ad6066cba3d4eba8947af6f46f875fca23037b6",
+          "step": 3
+        },
+        {
+          "local_pair_visits": 3,
+          "local_valid_tokens": 24,
+          "receipt_sha256": "e31e607ed85b68f3076c72d49c5a591bd7448c503b49b5c447a7a657e7d81ac0",
+          "step": 4
+        }
+      ],
+      "restore_receipt": null,
+      "start": 0,
+      "state": {
+        "adamw": "d8df8cce78c6718ae435f30c417f162ef891de20ee49004b8388d66ac4f538e0",
+        "master_shards": "100610c33be1d4c2d4632542274e9f3da3a8124d9d096341db745f09e9e54060",
+        "model_shards": "f645467d6a4b9449fea68b298d9dff05ade008afcb1a1c61af02335005280f3d",
+        "numpy_rng": "0710498f1c3c9f54192836adc3d690fff57c93ef142fefdebe9934718f365d26",
+        "python_rng": "d30f79956d6a63a2133dc38031bb2203ead6cfa1a6947921e9bafed26a8f942f",
+        "scaler": "b76fcfa5440f6accc88ca7f2e3b44fb564dc6dfdbcc9f758b552ae8e5078a697",
+        "torch_rng": "b034be82a5feabdeff4ca72ead53ac21890d0284fdc69bd82ec79fe6dcb999ca"
+      },
+      "step_times": [
+        {
+          "seconds": 1.4206892838701606,
+          "step": 1,
+          "warmup": true
+        },
+        {
+          "seconds": 0.0640003599692136,
+          "step": 2,
+          "warmup": false
+        },
+        {
+          "seconds": 0.142137142829597,
+          "step": 3,
+          "warmup": false
+        },
+        {
+          "seconds": 0.16529455804266036,
+          "step": 4,
+          "warmup": false
+        }
+      ]
+    },
+    {
+      "counters": {
+        "global_samples": 32,
+        "global_steps": 4,
+        "micro_step_id": 0,
+        "micro_steps": 4,
+        "skipped_steps": 0,
+        "step_applied": true
+      },
+      "end": 4,
+      "expected_gpu": "RTX 3090",
+      "gpu_name": "NVIDIA GeForce RTX 3090",
+      "initial_padding": {
+        "new_partitions": 15,
+        "nonfinite_padding_before_initialization": 1,
+        "padding_elements_initialized": 1,
+        "partition_source_sha256": "8b3c65d20fada0fc85c3685615b0da65247f4e8739313ca1de01b1a3102f2500"
+      },
+      "peak_allocated_bytes": 69176320,
+      "peak_reserved_bytes": 90177536,
+      "rank": 1,
+      "records": [
+        {
+          "local_pair_visits": 4,
+          "local_valid_tokens": 32,
+          "receipt_sha256": "be3c91a913c75996d2f539e64dfe018f951e8c41e970d05c65293479521748d5",
+          "step": 1
+        },
+        {
+          "local_pair_visits": 1,
+          "local_valid_tokens": 8,
+          "receipt_sha256": "4a6a6e0b7f3754d214db19ee433fe10eadd7db6e386a2a1811cc8e81d47c9fab",
+          "step": 2
+        },
+        {
+          "local_pair_visits": 4,
+          "local_valid_tokens": 32,
+          "receipt_sha256": "f6d8b020c15fbcfd5ebf5545596eb0b143be4145825b919f8b0a0838c65e99b2",
+          "step": 3
+        },
+        {
+          "local_pair_visits": 2,
+          "local_valid_tokens": 16,
+          "receipt_sha256": "41e7e883dfd4f480163c212551f6b9b473eeaac1625f6daab83c0cc78ea6837a",
+          "step": 4
+        }
+      ],
+      "restore_receipt": null,
+      "start": 0,
+      "state": {
+        "adamw": "ee9019f0768e4aaeb83f34c1552aca3b92b1094b2f66e1c1d0af84af7b11253d",
+        "master_shards": "80da8def574a7e211dc350cde8220ae3b4d426b9b3ed42265d6e4c3f33754aa7",
+        "model_shards": "ba2f9f6bd11561139fdc4ec249206b68337a5631deb40072ba4f23875241911b",
+        "numpy_rng": "772cb56862388a4543190e14504366f8559f690ceaca905d2827e5c412469557",
+        "python_rng": "bc8e3211dfb5f21512d04bb1e164fd658b0b107e6b446045dd6a7ecd03f30079",
+        "scaler": "b76fcfa5440f6accc88ca7f2e3b44fb564dc6dfdbcc9f758b552ae8e5078a697",
+        "torch_rng": "6fc26d4a2b331bf99066a27be11565ea8c522fba6bc585528e9d3e981ca69daa"
+      },
+      "step_times": [
+        {
+          "seconds": 1.4206280070357025,
+          "step": 1,
+          "warmup": true
+        },
+        {
+          "seconds": 0.06407232605852187,
+          "step": 2,
+          "warmup": false
+        },
+        {
+          "seconds": 0.14273574203252792,
+          "step": 3,
+          "warmup": false
+        },
+        {
+          "seconds": 0.16957184090279043,
+          "step": 4,
+          "warmup": false
+        }
+      ]
+    }
+  ],
+  "seed": 6
+}

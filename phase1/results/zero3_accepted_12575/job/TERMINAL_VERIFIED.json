@@ -1,0 +1,338 @@
+{
+  "actual_checkpoint_payload_comparisons": 12,
+  "allocated_gpu_seconds": 542,
+  "checked_text": {
+    "final/receipt.json": {
+      "bytes": 2879,
+      "sha256": "4ec2ce740ce017b8ce6945139683cfe368923dc04d4b75667f31c8824db92b73"
+    },
+    "gpu/build_tools.json": {
+      "bytes": 1404,
+      "sha256": "e26041be03f1bfa29c0c72cd5e0fd31c7eb7412135cf3a7eb996c3ce36f5dd8e"
+    },
+    "gpu/driver.log": {
+      "bytes": 80437,
+      "sha256": "ed03a7fabe29c314ccd9a2419ab8d46231e3455af1e85be20918765117ad7c00"
+    },
+    "gpu/exit_status.txt": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "gpu/file_trace.log": {
+      "bytes": 283846062,
+      "sha256": "e8b6dd2c8ad9fcf80cd3137d364e2e9efa46d1cbc3e63ca4185e3248acc790f4"
+    },
+    "gpu/independent_acceptance.json": {
+      "bytes": 3750,
+      "sha256": "c33ab65db5b359cffc7a20071086ec2e44a2588822dca6496da5a527f96a2153"
+    },
+    "gpu/payload_type_diagnosis.json": {
+      "bytes": 2497,
+      "sha256": "36ba59f3ba589565b858332f1e4758c1a02477625be78308e049eaad075670ed"
+    },
+    "gpu/resource_usage.txt": {
+      "bytes": 1180,
+      "sha256": "0bb0fa93452dd80a3d92ed4ae1c79fa6ec0bf6857c222709ff8ecac14151f73c"
+    },
+    "gpu/telemetry.txt": {
+      "bytes": 5060,
+      "sha256": "99333c79b04d5a4b9a77ce685468732d0b5cd04cb637223dfd6c55e4478b324f"
+    },
+    "gpu/trajectories/full/checkpoint-2/manifest.json": {
+      "bytes": 2414,
+      "sha256": "b2f543c5b6d9bc924c8f4e1f150d39ee23efbd99341cd57622bff2ec2d9376a3"
+    },
+    "gpu/trajectories/full/checkpoint-2/observed_0.json": {
+      "bytes": 1735,
+      "sha256": "0f911dbd34ec6f170d4fced23502bf92b7beb944bb8b5821bd1bc71c1f50f2b0"
+    },
+    "gpu/trajectories/full/checkpoint-2/observed_1.json": {
+      "bytes": 1735,
+      "sha256": "2d06e55d7b5beff7017c6dd9295d216e7cd2194b7a43df844b3152813d261740"
+    },
+    "gpu/trajectories/full/checkpoint-2/zero_to_fp32.py": {
+      "bytes": 34918,
+      "sha256": "2859057b959683c8aff715cec1691c9c46bf75b14859003202f561df2be3b1fb"
+    },
+    "gpu/trajectories/full/checkpoint-3/manifest.json": {
+      "bytes": 2415,
+      "sha256": "735e113d20ec278625761c9a640f9d6cc0891cb0ebac87197c5d5843b6107672"
+    },
+    "gpu/trajectories/full/checkpoint-3/observed_0.json": {
+      "bytes": 1736,
+      "sha256": "a6c17bbd63be5b81fb21fba8360e5bfaac7b8586e192ad6e4dcdd7314d14a9e8"
+    },
+    "gpu/trajectories/full/checkpoint-3/observed_1.json": {
+      "bytes": 1736,
+      "sha256": "9975c8c2c18db3c11130eab854c210bee17fde185a5d0b307ff537c068cb4fce"
+    },
+    "gpu/trajectories/full/checkpoint-3/zero_to_fp32.py": {
+      "bytes": 34918,
+      "sha256": "2859057b959683c8aff715cec1691c9c46bf75b14859003202f561df2be3b1fb"
+    },
+    "gpu/trajectories/full/checkpoint-4/manifest.json": {
+      "bytes": 2415,
+      "sha256": "ff3961d67883886b8e583ffb1cf2c30baf48eb53c828f63b6e3aad81a433bfec"
+    },
+    "gpu/trajectories/full/checkpoint-4/observed_0.json": {
+      "bytes": 1736,
+      "sha256": "711d8319501ea8b7cf7c65deba54ba55bf8fd66bff1891a217961bca6019a389"
+    },
+    "gpu/trajectories/full/checkpoint-4/observed_1.json": {
+      "bytes": 1736,
+      "sha256": "62c8bd6d985faad9f6e554684e25f348b187f756dd02adc8043310624c79ccc3"
+    },
+    "gpu/trajectories/full/checkpoint-4/zero_to_fp32.py": {
+      "bytes": 34918,
+      "sha256": "2859057b959683c8aff715cec1691c9c46bf75b14859003202f561df2be3b1fb"
+    },
+    "gpu/trajectories/full/trajectory.json": {
+      "bytes": 6328,
+      "sha256": "be3c3f5a2a379c9056646084d7bca870bfaf678c7731a4e72c1845dfb7558b49"
+    },
+    "gpu/trajectories/prefix2/checkpoint-2/manifest.json": {
+      "bytes": 2414,
+      "sha256": "b2f543c5b6d9bc924c8f4e1f150d39ee23efbd99341cd57622bff2ec2d9376a3"
+    },
+    "gpu/trajectories/prefix2/checkpoint-2/observed_0.json": {
+      "bytes": 1735,
+      "sha256": "0f911dbd34ec6f170d4fced23502bf92b7beb944bb8b5821bd1bc71c1f50f2b0"
+    },
+    "gpu/trajectories/prefix2/checkpoint-2/observed_1.json": {
+      "bytes": 1735,
+      "sha256": "2d06e55d7b5beff7017c6dd9295d216e7cd2194b7a43df844b3152813d261740"
+    },
+    "gpu/trajectories/prefix2/checkpoint-2/zero_to_fp32.py": {
+      "bytes": 34918,
+      "sha256": "2859057b959683c8aff715cec1691c9c46bf75b14859003202f561df2be3b1fb"
+    },
+    "gpu/trajectories/prefix2/trajectory.json": {
+      "bytes": 5062,
+      "sha256": "a9aa6a0f36a0012ad4de7383730498959157cc8e8a2e1f7159b54da3eef248e9"
+    },
+    "gpu/trajectories/prefix3/checkpoint-2/manifest.json": {
+      "bytes": 2414,
+      "sha256": "b2f543c5b6d9bc924c8f4e1f150d39ee23efbd99341cd57622bff2ec2d9376a3"
+    },
+    "gpu/trajectories/prefix3/checkpoint-2/observed_0.json": {
+      "bytes": 1735,
+      "sha256": "0f911dbd34ec6f170d4fced23502bf92b7beb944bb8b5821bd1bc71c1f50f2b0"
+    },
+    "gpu/trajectories/prefix3/checkpoint-2/observed_1.json": {
+      "bytes": 1735,
+      "sha256": "2d06e55d7b5beff7017c6dd9295d216e7cd2194b7a43df844b3152813d261740"
+    },
+    "gpu/trajectories/prefix3/checkpoint-2/zero_to_fp32.py": {
+      "bytes": 34918,
+      "sha256": "2859057b959683c8aff715cec1691c9c46bf75b14859003202f561df2be3b1fb"
+    },
+    "gpu/trajectories/prefix3/checkpoint-3/manifest.json": {
+      "bytes": 2415,
+      "sha256": "735e113d20ec278625761c9a640f9d6cc0891cb0ebac87197c5d5843b6107672"
+    },
+    "gpu/trajectories/prefix3/checkpoint-3/observed_0.json": {
+      "bytes": 1736,
+      "sha256": "a6c17bbd63be5b81fb21fba8360e5bfaac7b8586e192ad6e4dcdd7314d14a9e8"
+    },
+    "gpu/trajectories/prefix3/checkpoint-3/observed_1.json": {
+      "bytes": 1736,
+      "sha256": "9975c8c2c18db3c11130eab854c210bee17fde185a5d0b307ff537c068cb4fce"
+    },
+    "gpu/trajectories/prefix3/checkpoint-3/zero_to_fp32.py": {
+      "bytes": 34918,
+      "sha256": "2859057b959683c8aff715cec1691c9c46bf75b14859003202f561df2be3b1fb"
+    },
+    "gpu/trajectories/prefix3/trajectory.json": {
+      "bytes": 5697,
+      "sha256": "b6d418dfab41ba93cc7ad6f7107b4760647367da22c065c78b63bf7d3de92ebb"
+    },
+    "gpu/trajectories/resume2/checkpoint-3/manifest.json": {
+      "bytes": 2415,
+      "sha256": "735e113d20ec278625761c9a640f9d6cc0891cb0ebac87197c5d5843b6107672"
+    },
+    "gpu/trajectories/resume2/checkpoint-3/observed_0.json": {
+      "bytes": 1736,
+      "sha256": "a6c17bbd63be5b81fb21fba8360e5bfaac7b8586e192ad6e4dcdd7314d14a9e8"
+    },
+    "gpu/trajectories/resume2/checkpoint-3/observed_1.json": {
+      "bytes": 1736,
+      "sha256": "9975c8c2c18db3c11130eab854c210bee17fde185a5d0b307ff537c068cb4fce"
+    },
+    "gpu/trajectories/resume2/checkpoint-3/zero_to_fp32.py": {
+      "bytes": 34918,
+      "sha256": "2859057b959683c8aff715cec1691c9c46bf75b14859003202f561df2be3b1fb"
+    },
+    "gpu/trajectories/resume2/checkpoint-4/manifest.json": {
+      "bytes": 2415,
+      "sha256": "ff3961d67883886b8e583ffb1cf2c30baf48eb53c828f63b6e3aad81a433bfec"
+    },
+    "gpu/trajectories/resume2/checkpoint-4/observed_0.json": {
+      "bytes": 1736,
+      "sha256": "711d8319501ea8b7cf7c65deba54ba55bf8fd66bff1891a217961bca6019a389"
+    },
+    "gpu/trajectories/resume2/checkpoint-4/observed_1.json": {
+      "bytes": 1736,
+      "sha256": "62c8bd6d985faad9f6e554684e25f348b187f756dd02adc8043310624c79ccc3"
+    },
+    "gpu/trajectories/resume2/checkpoint-4/zero_to_fp32.py": {
+      "bytes": 34918,
+      "sha256": "2859057b959683c8aff715cec1691c9c46bf75b14859003202f561df2be3b1fb"
+    },
+    "gpu/trajectories/resume2/trajectory.json": {
+      "bytes": 7176,
+      "sha256": "ce786b1a293307bc887744b4a3edebdd7b93378c56b5ba55a76f5c8519fb56b2"
+    },
+    "gpu/trajectories/resume3/checkpoint-4/manifest.json": {
+      "bytes": 2415,
+      "sha256": "ff3961d67883886b8e583ffb1cf2c30baf48eb53c828f63b6e3aad81a433bfec"
+    },
+    "gpu/trajectories/resume3/checkpoint-4/observed_0.json": {
+      "bytes": 1736,
+      "sha256": "711d8319501ea8b7cf7c65deba54ba55bf8fd66bff1891a217961bca6019a389"
+    },
+    "gpu/trajectories/resume3/checkpoint-4/observed_1.json": {
+      "bytes": 1736,
+      "sha256": "62c8bd6d985faad9f6e554684e25f348b187f756dd02adc8043310624c79ccc3"
+    },
+    "gpu/trajectories/resume3/checkpoint-4/zero_to_fp32.py": {
+      "bytes": 34918,
+      "sha256": "2859057b959683c8aff715cec1691c9c46bf75b14859003202f561df2be3b1fb"
+    },
+    "gpu/trajectories/resume3/trajectory.json": {
+      "bytes": 6543,
+      "sha256": "9beb145a9ab36448e4f32b5cb6a6affab6c34039a63fa4be0114058370fc885e"
+    },
+    "gpu/trajectories/runs.csv": {
+      "bytes": 522,
+      "sha256": "330bd10edd047dbc6755eb3707a0055612951601a3d75995eb0835fcf981f011"
+    },
+    "gpu/trajectories/summary.json": {
+      "bytes": 523,
+      "sha256": "92876aa4ab02441722b533396edb5ecb47280acd0438c396d8d712317796d78b"
+    },
+    "gpu/worker.log": {
+      "bytes": 1419,
+      "sha256": "e99c0a74602a8ee6929f9613e4770976014f70d69ce82f18561d57ca201d2f62"
+    },
+    "post_original/READY.json": {
+      "bytes": 63,
+      "sha256": "c3ae5e2d1ea8f3fac072ced5e2138939e16006900cece71ad6969bd1950ab8a1"
+    },
+    "post_original/cpu-tests-intent.json": {
+      "bytes": 589,
+      "sha256": "68a6059d8289c7c44a42b2b22874f17f6e4982032485e350807f60a2b05b4bec"
+    },
+    "post_original/cpu-tests-status.json": {
+      "bytes": 80,
+      "sha256": "1490bc5139d245e5f7a477dda367f907b4d41464bb9435c2406c37fdea1bac41"
+    },
+    "post_original/cpu-tests.log": {
+      "bytes": 100,
+      "sha256": "6663d35f218acaef09a4c764e743109b48d21417857945c98a516d78ceed1c4a"
+    },
+    "post_original/payload-intent.json": {
+      "bytes": 523,
+      "sha256": "ab4ac36fc75fbd89bef58db1b21b64bf92e7b2fb6a7380923e6501eb02d5d5cb"
+    },
+    "post_original/payload-status.json": {
+      "bytes": 81,
+      "sha256": "de83c2f8432219adb02e5ba8e30e4c450021ce03638c43c57a18ab57d6d21534"
+    },
+    "post_original/payload.log": {
+      "bytes": 1990,
+      "sha256": "eaa80d4b5d7d7e14180f4ff4f2d972b37f666ebdd9e21d12c34acd2c51045866"
+    },
+    "post_original/payload.trace": {
+      "bytes": 15339971,
+      "sha256": "044ec5de7a8e43273bb7ef165d553e72a8781eeb0a90bac4ecf5f1cfc206c5c9"
+    },
+    "post_original/source.json": {
+      "bytes": 3312,
+      "sha256": "358fb3a253bae83b81dc31ec00d6206add54194dfcda240c1788fd31bc7e2345"
+    },
+    "post_r2/READY.json": {
+      "bytes": 63,
+      "sha256": "c3ae5e2d1ea8f3fac072ced5e2138939e16006900cece71ad6969bd1950ab8a1"
+    },
+    "post_r2/cpu-tests-intent.json": {
+      "bytes": 589,
+      "sha256": "a29c75204bd5e8b7de672dffeefee90fd8afae7e86a6228b9c21f5d93c570d84"
+    },
+    "post_r2/cpu-tests-status.json": {
+      "bytes": 80,
+      "sha256": "8b65dc0cb7efe1be8cb61a23b74aeb6cd1e992ac63fdaa71353e5bc85556eb11"
+    },
+    "post_r2/cpu-tests.log": {
+      "bytes": 110,
+      "sha256": "89522db8e4643999a0980d3052ecef45f81fcf63d0b291f9d8e1c5f762d0653d"
+    },
+    "post_r2/payload-intent.json": {
+      "bytes": 526,
+      "sha256": "33656bd6ee4e59e947688a2fda521cab17d6e58391c73c07a1f98ca23d663265"
+    },
+    "post_r2/payload-status.json": {
+      "bytes": 80,
+      "sha256": "af6385cad84db3163517786f163b32175845eecf2f713242587aac73fb416e44"
+    },
+    "post_r2/payload.log": {
+      "bytes": 307,
+      "sha256": "ae2de01371ad707d5a96b32886a73405bcd17de0a8b749667642fda371b5187d"
+    },
+    "post_r2/payload.trace": {
+      "bytes": 15341286,
+      "sha256": "3c9da50196cd0626dc94755bc468e627c413a7741523ed199738f7912f11f2f7"
+    },
+    "post_r2/readout-intent.json": {
+      "bytes": 542,
+      "sha256": "b9fdf052418c069413869820d9bb76f6693056d6866c80ddfa0d8e988ae5961d"
+    },
+    "post_r2/readout-status.json": {
+      "bytes": 80,
+      "sha256": "afd67b921b224ea05d1f356b1ed117501c999b2d97d62aec4ea3006a8cde035d"
+    },
+    "post_r2/readout.log": {
+      "bytes": 343,
+      "sha256": "49ad5b8e55a61e2a12e1bd91ce0dd86a07e0f1950c4de137ac46dbda2a66ae90"
+    },
+    "post_r2/readout.trace": {
+      "bytes": 17459409,
+      "sha256": "f99e969196fd5e490b38632d17c690137639f4e1d94f3a892465cf88a2c1b258"
+    },
+    "post_r2/source.json": {
+      "bytes": 3312,
+      "sha256": "37e6fdf5fe6ebb8ee198641ce0badbc620e662e93c10d064abbe31751f5789aa"
+    }
+  },
+  "checker_commit": "c3eb1d546ac5314a8685bc692817b6cfde534c68",
+  "checkpoint_bundles": 9,
+  "classification": "REAL_TINY_ZERO3_RESTART_AND_FINAL_READOUT_ACCEPTED_NOT_PIVOT_OR_EFFECT",
+  "credential_shape_hits": 0,
+  "final_models": 3,
+  "final_readout_sha256": "4ec2ce740ce017b8ce6945139683cfe368923dc04d4b75667f31c8824db92b73",
+  "gpu_elapsed_seconds": 271,
+  "is_1p7b_or_16k_qualification": false,
+  "job_id": "12575",
+  "manifest_sha256": {
+    "full/checkpoint-2": "b2f543c5b6d9bc924c8f4e1f150d39ee23efbd99341cd57622bff2ec2d9376a3",
+    "full/checkpoint-3": "735e113d20ec278625761c9a640f9d6cc0891cb0ebac87197c5d5843b6107672",
+    "full/checkpoint-4": "ff3961d67883886b8e583ffb1cf2c30baf48eb53c828f63b6e3aad81a433bfec",
+    "prefix2/checkpoint-2": "b2f543c5b6d9bc924c8f4e1f150d39ee23efbd99341cd57622bff2ec2d9376a3",
+    "prefix3/checkpoint-2": "b2f543c5b6d9bc924c8f4e1f150d39ee23efbd99341cd57622bff2ec2d9376a3",
+    "prefix3/checkpoint-3": "735e113d20ec278625761c9a640f9d6cc0891cb0ebac87197c5d5843b6107672",
+    "resume2/checkpoint-3": "735e113d20ec278625761c9a640f9d6cc0891cb0ebac87197c5d5843b6107672",
+    "resume2/checkpoint-4": "ff3961d67883886b8e583ffb1cf2c30baf48eb53c828f63b6e3aad81a433bfec",
+    "resume3/checkpoint-4": "ff3961d67883886b8e583ffb1cf2c30baf48eb53c828f63b6e3aad81a433bfec"
+  },
+  "model_effect_measured": false,
+  "new_gpu_jobs_started": 0,
+  "optional_group_actual_gpu_seconds": 1359,
+  "original_failed_postcheck_preserved": true,
+  "postcheck_source_files": 26,
+  "prior_payload_acceptance_sha256": "c33ab65db5b359cffc7a20071086ec2e44a2588822dca6496da5a527f96a2153",
+  "protected_path_marker_hits": 0,
+  "read_only_files": 129,
+  "source_commit": "1c211b87880a1110e3a67cc1dc7d277e5db18441",
+  "source_files": 45,
+  "utc": "2026-09-06T01:00:06.577211+00:00",
+  "verifier_sha256": "5eb7119cb256fdc89dd9917392112c64a53d35ecf88cf6a2fa91d191cddef193"
+}

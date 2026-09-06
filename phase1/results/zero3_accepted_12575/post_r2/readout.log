@@ -1,0 +1,2 @@
+[2026-09-06 08:57:00,774] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"status": "ACTUAL_TINY_ZERO3_FINAL_READOUT_NOT_1P7B_OR_EFFECT", "receipt_sha256": "4ec2ce740ce017b8ce6945139683cfe368923dc04d4b75667f31c8824db92b73", "final_models": 3}

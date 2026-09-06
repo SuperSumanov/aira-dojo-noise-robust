@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/usr/bin/strace",
+    "-f",
+    "-qq",
+    "-e",
+    "trace=%file",
+    "-o",
+    "/research/d7/spc/yzyang4/critic-zero3-postcheck-12575-20260906/payload.trace",
+    "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/bin/python",
+    "-B",
+    "-m",
+    "phase1.scripts.verify_zero3_engineering_20260905",
+    "--job",
+    "12575",
+    "--submission",
+    "submission-20260906-3090-native-cache"
+  ],
+  "limit_seconds": 180,
+  "source_commit": "e256cdf99376e481731c2cee8f5e216a586c053e"
+}

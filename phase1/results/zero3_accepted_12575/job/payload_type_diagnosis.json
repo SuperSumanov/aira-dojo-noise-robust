@@ -1,0 +1,67 @@
+{
+  "checkpoint_hashes_unchanged": true,
+  "classification": "OWN_SYNTHETIC_PICKLE_TYPE_INVENTORY_NOT_ACCEPTANCE",
+  "inspector_sha256": "9072ae9617fcddc9792c32a31c108eebddbb1ea6b55346a6b5b1fa61cc7bdf63",
+  "unsupported_values": [
+    {
+      "module": "builtins",
+      "path": "full/pytorch_model/zero_pp_rank_0_mp_rank_00_model_states.pt/sparse_tensor_module_names",
+      "type": "set"
+    },
+    {
+      "module": "deepspeed.runtime.zero.config",
+      "path": "full/pytorch_model/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt/optimizer_state_dict/zero_stage",
+      "type": "ZeroStageEnum"
+    },
+    {
+      "module": "builtins",
+      "path": "resume2/pytorch_model/zero_pp_rank_0_mp_rank_00_model_states.pt/sparse_tensor_module_names",
+      "type": "set"
+    },
+    {
+      "module": "deepspeed.runtime.zero.config",
+      "path": "resume2/pytorch_model/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt/optimizer_state_dict/zero_stage",
+      "type": "ZeroStageEnum"
+    },
+    {
+      "module": "builtins",
+      "path": "resume3/pytorch_model/zero_pp_rank_0_mp_rank_00_model_states.pt/sparse_tensor_module_names",
+      "type": "set"
+    },
+    {
+      "module": "deepspeed.runtime.zero.config",
+      "path": "resume3/pytorch_model/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt/optimizer_state_dict/zero_stage",
+      "type": "ZeroStageEnum"
+    },
+    {
+      "module": "builtins",
+      "path": "full/pytorch_model/zero_pp_rank_1_mp_rank_00_model_states.pt/sparse_tensor_module_names",
+      "type": "set"
+    },
+    {
+      "module": "deepspeed.runtime.zero.config",
+      "path": "full/pytorch_model/bf16_zero_pp_rank_1_mp_rank_00_optim_states.pt/optimizer_state_dict/zero_stage",
+      "type": "ZeroStageEnum"
+    },
+    {
+      "module": "builtins",
+      "path": "resume2/pytorch_model/zero_pp_rank_1_mp_rank_00_model_states.pt/sparse_tensor_module_names",
+      "type": "set"
+    },
+    {
+      "module": "deepspeed.runtime.zero.config",
+      "path": "resume2/pytorch_model/bf16_zero_pp_rank_1_mp_rank_00_optim_states.pt/optimizer_state_dict/zero_stage",
+      "type": "ZeroStageEnum"
+    },
+    {
+      "module": "builtins",
+      "path": "resume3/pytorch_model/zero_pp_rank_1_mp_rank_00_model_states.pt/sparse_tensor_module_names",
+      "type": "set"
+    },
+    {
+      "module": "deepspeed.runtime.zero.config",
+      "path": "resume3/pytorch_model/bf16_zero_pp_rank_1_mp_rank_00_optim_states.pt/optimizer_state_dict/zero_stage",
+      "type": "ZeroStageEnum"
+    }
+  ]
+}

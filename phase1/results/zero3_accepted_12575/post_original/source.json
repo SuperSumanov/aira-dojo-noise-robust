@@ -1,0 +1,32 @@
+{
+  "archive_sha256": "6d1c2f03737e3df073dc121103124c0e8bf28ad1890382f21ee0d031e44d99fa",
+  "commit": "e256cdf99376e481731c2cee8f5e216a586c053e",
+  "files": {
+    "phase1/critic_zero3_final_state.py": "f139c3b871018e89de6efa04ea2589667b958ec3fa822d215310131bf7b5a2f9",
+    "phase1/g_reuse_endpoint_inference.py": "6af7d018f99f07ea6dcf04828af06adbf29f6193c49c40106e57a993193595e7",
+    "phase1/global_local_accelerate_checkpoint_gate.py": "53861f0a9e9153ff82b81f4b26c38380427ff5ed57330db0b9e0a75b196305ee",
+    "phase1/global_local_accelerate_resume_validation.py": "db8ffc95695fb6f04a45c39525aa74d477172aba341b08da295757070e82f877",
+    "phase1/global_local_accelerate_update_adapter.py": "444c55726ca00c44dca25833108f6d73054b939463ca85ec287a49e965b40d80",
+    "phase1/global_local_batch_adapter.py": "c1531ccc1b53fc1034c91b413febbf143b981d05610977c2879248eec7677774",
+    "phase1/global_local_cpu_adam_resume.py": "b7b037bfcae04ea10e1185099bf5339f7724d4371f45d562b58ee72944041fc7",
+    "phase1/global_local_critic_session.py": "57cc4b4e8eb023e91f12da5fa53c868cff77224c216c41c59d141c0a01ec6e02",
+    "phase1/global_local_ds_completion.py": "a8f5aa24c5f373bf23463ca08be235401f83e9e7abfe41b5749c571865eb959d",
+    "phase1/global_local_execution_plan.py": "8e3f3cec45d3456dee6f5c9b8ae8f42d58edc6ace1a40a86447dd97731270954",
+    "phase1/global_local_partial_ddp_cpu_validation.py": "b77a7145697ebcc0780455e43aa235908b6e26ce19252caedd016abca9a84b37",
+    "phase1/global_local_token_budget_plan.py": "81802b439739f550b0c4ab7291faa0d99bf896d1ab7f2195bc3b0d28cabf6b10",
+    "phase1/global_local_zero3_padding.py": "994b68a0dff08c3f478e47fce5cdc56ecce61fce298a4f8c9e939f8d49130e1d",
+    "phase1/global_local_zero3_session.py": "bbc50a0dc985fd1d9ef9861c640a932bfc968598bf9b57ba7694554bd194dcaf",
+    "phase1/scripts/check_zero3_private_tools_20260906.py": "a2c899b15b98d49a35b4e4c68895ab6cb95984d15c2cf202f4fb2cea5531c806",
+    "phase1/scripts/validate_g_reuse_endpoint_inference_cpu_20260905.py": "023653e715b03859660719e5a68491bb6f3093fa49c97c8aa1b2aed3c43cdeaa",
+    "phase1/scripts/verify_private_cuda128_20260906.py": "ce0a304b7f37210b58a25be5ccc1314ad7287ea1d6f62d4fdc1e8e569e73c23b",
+    "phase1/scripts/verify_zero3_engineering_20260905.py": "7bb2c0fb991e7afa3fabc5d842d861841c66f5b0d1196ffa5533bcae410cbff2",
+    "phase1/scripts/verify_zero3_final_readout_12535_20260906.py": "a066a831ab05fdac0ce7d85e06d179d05b525ae3536335a8a38fa3393f9f5017",
+    "phase1/scripts/verify_zero3_final_readout_12575_20260906.py": "2fe239aafc88336940cc2243c453faae9e8ecd7201e9b5a666267ccf86dbef43",
+    "phase1/tests/test_critic_zero3_final_state.py": "2dc3c66b35372a884b0a0e00e2c7d44167cf8b71c8b4c787d3be30ec622194e2",
+    "phase1/tests/test_verify_zero3_engineering.py": "ee004ad711d01b54afef422afa9f9bb09f49f97f9e04744b6b16d3e9ca1a9168",
+    "phase1/tests/test_zero3_final_readout_12535.py": "b06fe034ea0e11b7f9d284b1aa71ca2b7170f5e420df30500f6647f4fe77cb35",
+    "phase1/tests/test_zero3_final_readout_12575.py": "0669c4f39376956c462171eb3e4c87a46ba0b118707852b227a1c9e8921cd7d7",
+    "phase1/verify_global_local_execution_trace.py": "ced2abcfa084db3a9f6088fca29c2bc07412ad0ab1f44f6b0bb50a8dc92dd689",
+    "phase1/verify_global_local_token_budget_plan.py": "a43965602f8d16dd95ca68130603fdcf1334f880bb89074c3b1701dcf5220a36"
+  }
+}

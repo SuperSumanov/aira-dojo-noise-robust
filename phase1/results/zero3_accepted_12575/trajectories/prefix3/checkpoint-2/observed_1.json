@@ -1,0 +1,37 @@
+{
+  "binding": {
+    "arm": "G_to_L",
+    "ds_config_sha256": "d889ef6fb21e9d7827e8883e9720aaab5001721de18af575157d881aa8297945",
+    "initial_optimizer_groups_sha256": "fd0e16f7eddf2265ef9d77ff8198c3626802371789df43dcc3ec1892ed1616d2",
+    "input_sha256": "ea30ee7b62bc364cc6f39d47f987bb11b2da9319b0a3f0cedecaa2e3dc1bc43e",
+    "model_schema_sha256": "132e6c60b5dbc09ba72c722119d8d2ebaaedc1398d8b1ee3f1f2526d21f52e5d",
+    "plan_sha256": "70df48399c7e26550e85354fc6905cba265cd135051f9c7513c6f97e5ed2f0ce",
+    "protocol": "critic-zero3-session-v1",
+    "runtime_sha256": "58518eda09b6950d53e72c15c99f2dbfcb3f6c624897a13ec26712d1afcfac21",
+    "seed": 6,
+    "source_sha256": "bbc50a0dc985fd1d9ef9861c640a932bfc968598bf9b57ba7694554bd194dcaf",
+    "total_steps": 4,
+    "training_contract_sha256": "d66e0d91499b9bae3a006fe71bf17f7e0137481c1b05bfdaf6470b6803649312",
+    "world": 2
+  },
+  "completed_steps": 2,
+  "counters": {
+    "global_samples": 16,
+    "global_steps": 2,
+    "micro_step_id": 0,
+    "micro_steps": 2,
+    "skipped_steps": 0,
+    "step_applied": true
+  },
+  "cumulative_valid_tokens": 88,
+  "rank": 1,
+  "state": {
+    "adamw": "1c3ac73eb924b3a9f720606c73a1987a02e12db6c89993ba734991ed709f599b",
+    "master_shards": "8519c0335cf05606672549e69ad03079f0879982804c70d49bec39b6f21a3dc6",
+    "model_shards": "0195611949996283aa9d90c52d32e24fde6ae734c7ce84f2d0e0605ca411c7a8",
+    "numpy_rng": "2ec96522f6f3afde5d7633beee9fa976c75523f41a58d1266b917efd66354300",
+    "python_rng": "6bfe2de58cb178ef8b82fc3637953d9a9ebebfc1672c56317dfa439184d0153a",
+    "scaler": "b76fcfa5440f6accc88ca7f2e3b44fb564dc6dfdbcc9f758b552ae8e5078a697",
+    "torch_rng": "d7595b4cd27a35d4ef154094e8672a78f38c6bb1599586afb125a47bb1399a8b"
+  }
+}

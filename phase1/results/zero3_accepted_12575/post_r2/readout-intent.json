@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/usr/bin/strace",
+    "-f",
+    "-qq",
+    "-e",
+    "trace=%file",
+    "-o",
+    "/research/d7/spc/yzyang4/critic-zero3-postcheck-12575-r2-20260906/readout.trace",
+    "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/bin/python",
+    "-B",
+    "-m",
+    "phase1.scripts.verify_zero3_final_readout_12575_20260906",
+    "--acceptance-sha256",
+    "c33ab65db5b359cffc7a20071086ec2e44a2588822dca6496da5a527f96a2153"
+  ],
+  "limit_seconds": 180,
+  "source_commit": "c3eb1d546ac5314a8685bc692817b6cfde534c68"
+}

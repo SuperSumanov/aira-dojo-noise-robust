@@ -1,0 +1,2 @@
+[2026-09-06 08:54:42,836] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+{"status": "PAYLOAD_COMPARISONS_PASS_TRACE_REVIEW_PENDING", "comparisons": 12, "checkpoint_bundles": 9, "allocated_gpu_seconds": 542}

@@ -1,0 +1,22 @@
+[2026-09-06 08:47:31,534] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/research/d7/spc/yzyang4/critic-zero3-postcheck-12575-20260906/code/phase1/scripts/verify_zero3_engineering_20260905.py", line 234, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/research/d7/spc/yzyang4/critic-zero3-postcheck-12575-20260906/code/phase1/scripts/verify_zero3_engineering_20260905.py", line 222, in main
+    same(reference,actual)
+  File "/research/d7/spc/yzyang4/critic-zero3-postcheck-12575-20260906/code/phase1/scripts/verify_zero3_engineering_20260905.py", line 80, in same
+    for k in a:same(a[k],b[k])
+               ^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/critic-zero3-postcheck-12575-20260906/code/phase1/scripts/verify_zero3_engineering_20260905.py", line 80, in same
+    for k in a:same(a[k],b[k])
+               ^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/critic-zero3-postcheck-12575-20260906/code/phase1/scripts/verify_zero3_engineering_20260905.py", line 90, in same
+    require(type(a)==type(b) and type(a).__module__=='deepspeed.runtime.fp16.loss_scaler','unknown_pickle_state')
+  File "/research/d7/spc/yzyang4/critic-zero3-postcheck-12575-20260906/code/phase1/scripts/verify_zero3_engineering_20260905.py", line 20, in require
+    if not ok:raise ValueError(why)
+              ^^^^^^^^^^^^^^^^^^^^^
+ValueError: unknown_pickle_state
+Warning: The cache directory for DeepSpeed Triton autotune, /research/d7/spc/yzyang4/critic-zero3-postcheck-12575-20260906/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.

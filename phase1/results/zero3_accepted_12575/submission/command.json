@@ -1,0 +1,11 @@
+[
+  "sbatch",
+  "--parsable",
+  "--hold",
+  "--no-requeue",
+  "--chdir=/research/d7/spc/yzyang4/worktrees/zero3-3090-native-cache-1c211b87880a",
+  "--output=/research/d7/spc/yzyang4/critic-zero3-engineering/submission-20260906-3090-native-cache/slurm-%j.out",
+  "--error=/research/d7/spc/yzyang4/critic-zero3-engineering/submission-20260906-3090-native-cache/slurm-%j.out",
+  "--export=PATH=/usr/local/bin:/usr/bin:/bin,ZERO3_CONTROL_ROOT=/research/d7/spc/yzyang4/worktrees/zero3-3090-native-cache-1c211b87880a,ZERO3_CODE_COMMIT=1c211b87880a1110e3a67cc1dc7d277e5db18441,ZERO3_GPU_APPROVAL_RECEIPT_SHA=d66e0d91499b9bae3a006fe71bf17f7e0137481c1b05bfdaf6470b6803649312",
+  "/research/d7/spc/yzyang4/worktrees/zero3-3090-native-cache-1c211b87880a/phase1/scripts/zero3_3090_native_cache_20260906.sbatch"
+]

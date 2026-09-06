@@ -1,0 +1,131 @@
+{
+  "actual_checkpoint_payload_comparisons": [
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume2",
+      "file": "pytorch_model/zero_pp_rank_0_mp_rank_00_model_states.pt",
+      "rank": 0
+    },
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume3",
+      "file": "pytorch_model/zero_pp_rank_0_mp_rank_00_model_states.pt",
+      "rank": 0
+    },
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume2",
+      "file": "pytorch_model/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt",
+      "rank": 0
+    },
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume3",
+      "file": "pytorch_model/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt",
+      "rank": 0
+    },
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume2",
+      "file": "random_states_0.pkl",
+      "rank": 0
+    },
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume3",
+      "file": "random_states_0.pkl",
+      "rank": 0
+    },
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume2",
+      "file": "pytorch_model/zero_pp_rank_1_mp_rank_00_model_states.pt",
+      "rank": 1
+    },
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume3",
+      "file": "pytorch_model/zero_pp_rank_1_mp_rank_00_model_states.pt",
+      "rank": 1
+    },
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume2",
+      "file": "pytorch_model/bf16_zero_pp_rank_1_mp_rank_00_optim_states.pt",
+      "rank": 1
+    },
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume3",
+      "file": "pytorch_model/bf16_zero_pp_rank_1_mp_rank_00_optim_states.pt",
+      "rank": 1
+    },
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume2",
+      "file": "random_states_1.pkl",
+      "rank": 1
+    },
+    {
+      "all_payload_bits_equal": true,
+      "case": "resume3",
+      "file": "random_states_1.pkl",
+      "rank": 1
+    }
+  ],
+  "allocated_gpu_seconds": 542,
+  "classification": "INDEPENDENT_TINY_ZERO3_RESUME_ACCEPTANCE_NOT_EFFECT",
+  "code_commit": "1c211b87880a1110e3a67cc1dc7d277e5db18441",
+  "elapsed_seconds": 271,
+  "gpu_initialized": false,
+  "job_id": "12575",
+  "manifests": [
+    {
+      "files": 9,
+      "manifest_sha256": "b2f543c5b6d9bc924c8f4e1f150d39ee23efbd99341cd57622bff2ec2d9376a3",
+      "path": "full/checkpoint-2"
+    },
+    {
+      "files": 9,
+      "manifest_sha256": "735e113d20ec278625761c9a640f9d6cc0891cb0ebac87197c5d5843b6107672",
+      "path": "full/checkpoint-3"
+    },
+    {
+      "files": 9,
+      "manifest_sha256": "ff3961d67883886b8e583ffb1cf2c30baf48eb53c828f63b6e3aad81a433bfec",
+      "path": "full/checkpoint-4"
+    },
+    {
+      "files": 9,
+      "manifest_sha256": "b2f543c5b6d9bc924c8f4e1f150d39ee23efbd99341cd57622bff2ec2d9376a3",
+      "path": "prefix2/checkpoint-2"
+    },
+    {
+      "files": 9,
+      "manifest_sha256": "735e113d20ec278625761c9a640f9d6cc0891cb0ebac87197c5d5843b6107672",
+      "path": "resume2/checkpoint-3"
+    },
+    {
+      "files": 9,
+      "manifest_sha256": "ff3961d67883886b8e583ffb1cf2c30baf48eb53c828f63b6e3aad81a433bfec",
+      "path": "resume2/checkpoint-4"
+    },
+    {
+      "files": 9,
+      "manifest_sha256": "b2f543c5b6d9bc924c8f4e1f150d39ee23efbd99341cd57622bff2ec2d9376a3",
+      "path": "prefix3/checkpoint-2"
+    },
+    {
+      "files": 9,
+      "manifest_sha256": "735e113d20ec278625761c9a640f9d6cc0891cb0ebac87197c5d5843b6107672",
+      "path": "prefix3/checkpoint-3"
+    },
+    {
+      "files": 9,
+      "manifest_sha256": "ff3961d67883886b8e583ffb1cf2c30baf48eb53c828f63b6e3aad81a433bfec",
+      "path": "resume3/checkpoint-4"
+    }
+  ],
+  "trace_acceptance": "SEPARATE_REVIEW_REQUIRED",
+  "verifier_sha256": "ff5fdd8b3834c3a129306b1cd642dba9b295f051d0b12f80df4bff16d3075fe7"
+}

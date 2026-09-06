@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/research/d7/spc/yzyang4/private-cuda128-toolchain-20260906/prefix/bin/nvcc",
+    "-ccbin",
+    "/usr/bin/g++",
+    "-arch=sm_120",
+    "-std=c++17",
+    "-c",
+    "/research/d7/spc/yzyang4/fa2-node-compiler-20260907/job-12639/sanity.cu",
+    "-o",
+    "/research/d7/spc/yzyang4/fa2-node-compiler-20260907/job-12639/sanity.o"
+  ],
+  "elapsed_seconds": 2.776373267173767,
+  "gpu_context_created": false,
+  "inventory_sha256": "ff9aeca3e3040388cffd4b12a2b2a19fd05a0c12bba8d67eeb2250b143b9a9de",
+  "object_sha256": "3c670edcdc39b8ccd4fa2f3df874fd11181319b39fb8a273591e54621425d106",
+  "returncode": 0,
+  "source_sha256": "5397d9b51f44158e0f61a0ec633e8a7f6dc0a58da34d101c73f9282c564d0f13",
+  "stderr": "",
+  "stdout": ""
+}

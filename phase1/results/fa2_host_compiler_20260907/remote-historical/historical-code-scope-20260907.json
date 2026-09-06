@@ -1,0 +1,116 @@
+{
+  "classification": "RECORDED_EXACT_STRATUM_SUPPORT_NOT_TRAINING_ADMISSION",
+  "code_records": [
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 881483,
+      "blob_count": 202,
+      "commit": "27a2d6b5fd4d4791f507aa563e8237c5e53f3a74",
+      "recorded_dojo_inventory_sha256": "d5e038fbd0075989ed35e32db5a546205b502e7e562a458ea77c9402cd68a460"
+    },
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 881483,
+      "blob_count": 202,
+      "commit": "3a4cd5fff64c7aeaeacd3eac25411a43c7de695f",
+      "recorded_dojo_inventory_sha256": "d5e038fbd0075989ed35e32db5a546205b502e7e562a458ea77c9402cd68a460"
+    },
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 869665,
+      "blob_count": 199,
+      "commit": "3f58bf4c43c2ad4ef2655ce3cdcb3e08349786d8",
+      "recorded_dojo_inventory_sha256": "0b726eb7f0888954107b1f0c0362aafed5bc9096665a79d58d50bd921d7f878f"
+    },
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 869665,
+      "blob_count": 199,
+      "commit": "5ca65338053be9fac481316f0631f75b91dde653",
+      "recorded_dojo_inventory_sha256": "0b726eb7f0888954107b1f0c0362aafed5bc9096665a79d58d50bd921d7f878f"
+    },
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 877146,
+      "blob_count": 199,
+      "commit": "8a94154375b91cfa4b9d3d676c9896f285ab0bd3",
+      "recorded_dojo_inventory_sha256": "266c36e4d0c22230d235c350baf99224723ea62ead50bbf54698bf26d8569ecc"
+    },
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 881850,
+      "blob_count": 204,
+      "commit": "8c57b7580e22fdbb2cbab350bc34475d084fe5ee",
+      "recorded_dojo_inventory_sha256": "17fab580773d0a3ceaefb54415f2675af42ecbb416dd6b18fb02ae9e1ec2d1e6"
+    },
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 881483,
+      "blob_count": 202,
+      "commit": "a40ba567d9ec74010f084b3d84fd034c0a436645",
+      "recorded_dojo_inventory_sha256": "d5e038fbd0075989ed35e32db5a546205b502e7e562a458ea77c9402cd68a460"
+    },
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 834052,
+      "blob_count": 187,
+      "commit": "b76c13435a5b59632849a327a2516d1c6fa37d03",
+      "recorded_dojo_inventory_sha256": "8d4b532d20547b610b35ff0f1d4d39547bd60ffb9ed3a9d1cc5cd95f2b774a8a"
+    },
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 835398,
+      "blob_count": 187,
+      "commit": "c417367168cf949d46130e32f919b5352a53aedb",
+      "recorded_dojo_inventory_sha256": "1f28c05546c210ca965d8209e436474066189582e075703ee5099b8261ced861"
+    },
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 877275,
+      "blob_count": 197,
+      "commit": "d552300b11e6761f2821fcd1498f7b7dd35418d4",
+      "recorded_dojo_inventory_sha256": "c4577c9717b5703415040c6a04ce5d0fc10f4f3ebd94a562dd9334d56295007a"
+    },
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 876808,
+      "blob_count": 197,
+      "commit": "d92a00f45195aba237c53fd67b1b101c7b709fe5",
+      "recorded_dojo_inventory_sha256": "90f478c3cf3bdb5ff1a8601f730d079ac1bbc5bcff6616ce3dc02dfad9145daf"
+    },
+    {
+      "all_source_blobs_present": true,
+      "blob_bytes": 835708,
+      "blob_count": 187,
+      "commit": "ddcce36c3022f75b4de6bcef93a7450bca8e04a8",
+      "recorded_dojo_inventory_sha256": "ef68080c1c5e1976173847fd87a3323bfd8a1aba72fd5649ccfa43af7653e83f"
+    }
+  ],
+  "exact_strata_with_three_components": 0,
+  "exact_strata_with_two_components": 0,
+  "experiment_identity_attested": false,
+  "fixed_runs": 84,
+  "input_sha256": {
+    "ledger": "8e48b4c6598cf8efe205fc6cba5cdd27d14621eb13fad42a7fd4180953da00d1",
+    "lineage": "fe05dddcd4fe8a3f2208652ce51c9b06df9b9b8f57a5fa655d2029caddcf9981",
+    "scope": "fc13d25745c1c8ea408374741358137e9eb374b3b214e0c9f6d4b856b071464b"
+  },
+  "journal_or_label_reads": 0,
+  "protected_cohort_reads": 0,
+  "recorded_commits": 12,
+  "recorded_exact_strata": 24,
+  "runs_in_two_component_exact_strata": 0,
+  "runtime_attested": false,
+  "script_sha256": "0f638891ddeda31aacbfa435c7cda4f37192a5cc32094357528db4958cefef09",
+  "source_admission": false,
+  "source_blob_payloads_read": 0,
+  "source_inventory_groups": 9,
+  "split_selected": false,
+  "stratum_component_histogram": {
+    "1": 24
+  },
+  "tasks": 15,
+  "tasks_with_three_components_in_one_exact_stratum": 0,
+  "tasks_with_two_components_in_one_exact_stratum": 0,
+  "utc": "2026-09-06T18:45:54.378192+00:00"
+}

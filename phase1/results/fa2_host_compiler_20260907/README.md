@@ -1,5 +1,25 @@
 # FA2实际节点编译器与来源核验进展
 
+## 2026-09-07恢复后的原始回执补齐
+
+以下覆盖下文“尚未导出”的动态状态，不改动停机历史：已将远端安全回执逐字节复制至
+`remote-node/`与`remote-historical/`并独立复算5个SHA，全部匹配原值。
+inventory/compile及3份历史来源核验均为原文件；其余原有内容仍是终端观测整理。
+真实FA2全量构建12641已经释放并于UTC22:09:01观测RUNNING/gpu37；不是完成或GPU验收。
+
+|原文件|SHA256|
+|---|---|
+|remote-node/inventory.json|ff9aeca3e3040388cffd4b12a2b2a19fd05a0c12bba8d67eeb2250b143b9a9de|
+|remote-node/compile.json|100131462fbcc9b55ed1eff2d6fac03e254080cbbf44977b0c4d7cd80993c0a0|
+|remote-historical/historical-stratum-independent-20260907.json|0371cd61a8d5cd08748c5b96eb33b092d1e6005f5c5a50fac5306018340486b0|
+|remote-historical/historical-code-scope-20260907.json|af04ac8f26d7937186c88167e2022782c5c8a899141bcf18fdb3558eb2222ed6|
+|remote-historical/summary.json|749111383fa1e8e5acf6d614aa1badbc02cf3424ae51496a8238910a82990baa|
+
+固定84run/24archive的header-only A/B完成，5项实际Linux CPU测试通过，未打开member payload。
+仅发现84个可能grading记录，未发现扫描格式内的预测表/依赖清单；该结论只限固定归档范围，
+不是证明生产机其它位置没有文件。不能从grading文件名推出可重评分、版本完整或训练资格。
+独立aggregate复验与安全原回执导出尚待完成，未重建Cards/G/L。
+
 2026-09-07。本目录只保存本会话终端观测的整理，不冒充远端原文件的逐字节导出。
 远端停机前已完成核验；原文件仍在各自专属目录，恢复后需复制安全回执并独立重hash。
 

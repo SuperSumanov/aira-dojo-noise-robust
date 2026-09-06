@@ -1,0 +1,70 @@
+{
+  "compilers": {
+    "/usr/bin/g++": {
+      "cc1plus": {
+        "command": [
+          "/usr/bin/g++",
+          "-print-prog-name=cc1plus"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus\n"
+      },
+      "full_version": {
+        "command": [
+          "/usr/bin/g++",
+          "-dumpfullversion"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "13.3.0\n"
+      },
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-g++-13",
+      "sha256": "52f1ddb33fe78b9441e0f42e9cd22c571f1101938e046c8a26582494e041cc73",
+      "version": {
+        "command": [
+          "/usr/bin/g++",
+          "--version"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+      }
+    },
+    "/usr/bin/gcc": {
+      "cc1plus": {
+        "command": [
+          "/usr/bin/gcc",
+          "-print-prog-name=cc1plus"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "cc1plus\n"
+      },
+      "full_version": {
+        "command": [
+          "/usr/bin/gcc",
+          "-dumpfullversion"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "9.5.0\n"
+      },
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-gcc-9",
+      "sha256": "0a1e22136403f4473223ffaaae2d8af5b708ea6e2a50d7e159cdd4597cd6771a",
+      "version": {
+        "command": [
+          "/usr/bin/gcc",
+          "--version"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "gcc (Ubuntu 9.5.0-6ubuntu2) 9.5.0\nCopyright (C) 2019 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+      }
+    }
+  },
+  "gpu_context_created": false,
+  "hostname": "gpu37",
+  "job_id": "12639",
+  "script_sha256": "4cf4fc168279a3e85854a0eac9b3532bd65a59534f2c1bbe631d83c50e2db44d"
+}

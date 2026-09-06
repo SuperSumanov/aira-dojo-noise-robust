@@ -3,6 +3,18 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L88. 2026-09-07：R3真实开跑，FA2绑定尺寸入口准备中
+
+12641已在独立held复核后释放，UTC22:09:01观测RUNNING/gpu37，source f1f4741a233ba5308037cafb81bb486240af9286。
+不能称FA2已构建成功/双卡已验收。新后继尺寸入口保持1.7B/16K/8×8/seed6/2PRO6000及原driver，
+只接入隔离FA2 overlay、两卡数值门和补齐实际占卡费用；尚未提交，见PIVOT_FA2_SHAPE_PREFLIGHT_20260907.md。
+本地相关测试52通过/3无Torch跳过；Linux和真实GPU仍分别需验。5份原始安全回执已独立复制核hash。
+
+固定84run/24archive的header-only A/B完成，5项Linux CPU检查通过、0member payload打开。
+只发现84个可能grading文件，未发现已支持格式的预测表/依赖清单；独立aggregate复验待完成。
+不能因此新做pristine评分或追认来源；保护cohort未读，ADMITTED_RELEASES仍空，四fit未执行。
+继续补来源与实际训练准备，不把工程/结构进展写成critic收益。学长branch未修改。
+
 ## 0L87. 2026-09-07：六小时会话继续，远端已恢复，R3先补完整源码门
 
 用户授权继续六小时会话推进。UTC21:58:03远端恢复登录，仅12535仍held，覆盖0L86停机动态状态。

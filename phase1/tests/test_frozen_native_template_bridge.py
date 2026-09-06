@@ -27,6 +27,13 @@ def test_native_template_and_generic_llm_wire_match(complexity, monkeypatch):
     backend = ModuleType('dojo.core.solvers.llm_helpers.backends.utils')
     backend.get_client = forbidden_client
     monkeypatch.setitem(sys.modules, backend.__name__, backend)
+    # Telemetry is outside this no-network wire test. Keep Dojo's real logger,
+    # but reject every attempted W&B operation rather than importing its SDK.
+    # This does not qualify W&B, a provider SDK, or a complete agent rollout.
+    telemetry = ModuleType('wandb')
+    for name in ('init', 'log', 'save', 'finish'):
+        setattr(telemetry, name, forbidden_client)
+    monkeypatch.setitem(sys.modules, 'wandb', telemetry)
     from dojo.core.solvers.operators import improve
     from dojo.core.solvers.llm_helpers import generic_llm
     from dojo.core.solvers.llm_helpers.prompt_template import JinjaPrompt

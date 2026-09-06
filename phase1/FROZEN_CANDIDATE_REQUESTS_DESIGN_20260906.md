@@ -41,6 +41,9 @@ improve_op、JinjaPrompt及GenericLLM.__call__，只把client替换为无网络�
 修订后的3f346a9远端检查仍失败：无网络审计记录一次socket.bind并拒绝，pytest_rc=1；
 原始回执保留在/tmp/frozen-request-native-3f346a9b92ba，不算原生桥接通过。
 后续本地范围/并发保护检查通过，但Windows原生桥接仍缺OmegaConf，不能替代Linux验收。
+进一步核对原始日志，首个导入失败为W&B缺sentry_sdk，其余为部分初始化的W&B模块错误。
+新修订只在测试中将外部W&B遥测入口替换为拒绝调用的模块；Dojo真实logger、算子、Jinja和
+GenericLLM.__call__仍执行，网络审计仍保留。它不验收W&B/provider SDK或完整rollout。
 该检查也明确保留接口差别：此层返回原始usage，未提供GenericLLM的cumulative_num_llm_calls包装。
 原模板写死1RTX3090/6CPU；测试匹配这些字面值不代表未来agent实际资源已匹配。
 

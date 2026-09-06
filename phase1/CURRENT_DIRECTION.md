@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L93. 2026-09-07：R4实际运行，新语料已独立入库；后继尺寸重新绑定
+
+12648独立held复核通过并已release，source15402474dec5b5da1e376d3c812f53fe416c5c0b。
+UTC23:01观测RUNNING/gpu37；32旧成功对象与6608源码核验，旧12641 FAILED/2126秒不掩盖。
+未完成FA2构建/两卡数学/1.7B验收，不重复提交。旧12535仍held。
+后继未运行入口显式改为R4，独立resumed artifact binder及负控；65本地通过/3平台依赖跳过，Linux待验。
+保持原模型16K/8×8/seed6/两PRO6000/26min，来源门不变；工程上限19023≤21600GPU秒。
+
+0905 foreground poll4及原snapshot-delta双生产/独立双验证已完成：
+47b1b594d1785eb78d6cf83d2094cd9dce1455a83a3db93b07d9175461cd85c2，
+707physical/681eligible/18812endpoints/4300pairs/57tasks，closure=false。
+summary b2c6e9c907df5ff9e8ea4ae28e75e2c16fec7fa25ce0738ab2053ff40736801e；下次最早UTC23:08:40.711460。
+不读保护cohort，不把新增结构资产称模型收益。ADMITTED_RELEASES仍空，四fit未做。
+六小时会话继续至UTC03:53:36，前台intake最多16次、每次2700秒、保持原稳定门与逐次post-audit。
+
 ## 0L92. 2026-09-07：12641编译超时，准备保留已完成对象的有界续编
 
 UTC22:49新增事实：poll2及原snapshot-delta双生产/独立双验证已完成，新149bb30afb5ab43df35ba917aea0398381c9ff6bc07dde7e09d9ff12af40988b，

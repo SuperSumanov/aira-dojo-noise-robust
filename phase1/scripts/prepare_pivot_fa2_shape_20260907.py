@@ -13,25 +13,26 @@ from pathlib import Path
 import re
 
 BASE=Path('/research/d7/spc/yzyang4')
-OUT=BASE/'critic-pivot-shape/submission-20260907-fa2'
-BUILD=BASE/'flash-attn-build-20260907-r3'
-BUILD_JOB='12641'
-BUILD_COMMIT='f1f4741a233ba5308037cafb81bb486240af9286'
-BUILD_SCRIPT_SHA='b0e3b1ed8bb7003f41f8d307cda36cca97f08867bd66ca89ffc3d1d5128ee889'
+OUT=BASE/'critic-pivot-shape/submission-20260907-fa2-r4'
+BUILD=BASE/'flash-attn-build-20260907-r4'
+BUILD_JOB='12648'
+BUILD_COMMIT='15402474dec5b5da1e376d3c812f53fe416c5c0b'
+BUILD_SCRIPT_SHA='15353d409ceb52c25a9aa7f6080a90849839d5f571bab359b132d29489055893'
+BUILD_PRIOR_SHA='43def888311cc5156a91980af6fb1ce46381fcf70a8d769d45e7e5441a0bac7d'
 SCRIPT='phase1/scripts/pivot_fa2_shape_20260907.sbatch'
 APPROVAL='phase1/manifests/pivot_fa2_shape_approval_20260907.json'
-EXTRA_TESTS=['test_critic_fa2_preflight','test_critic_fa2_build_receipt','test_pivot_fa2_shape_profile']
-RECENT=[('12577','FAILED',98,2),('12635','FAILED',89,1),('12638','FAILED',1,1),('12639','COMPLETED',5,1)]
-BUILD_CAP=2760
+EXTRA_TESTS=['test_critic_fa2_preflight','test_critic_fa2_build_receipt','test_critic_fa2_resumed_receipt','test_pivot_fa2_shape_profile']
+RECENT=[('12577','FAILED',98,2),('12635','FAILED',89,1),('12638','FAILED',1,1),('12639','COMPLETED',5,1),('12641','FAILED',2126,1)]
+BUILD_CAP=5760
 CAP=3840
 EVIDENCE=('cpu-tests.log','runtime-plan.log','runtime-plan.json','space-probe.json',
           'space-probe-released.json','fa2-build-binding.json','fa2-cpu.json')
 
 
 def build_binding():
-    from phase1.critic_fa2_build_receipt import bind_completed_build
-    return bind_completed_build(BUILD,expected_commit=BUILD_COMMIT,
-        expected_job=BUILD_JOB,expected_script_sha=BUILD_SCRIPT_SHA)
+    from phase1.critic_fa2_build_receipt import bind_resumed_build
+    return bind_resumed_build(BUILD,expected_commit=BUILD_COMMIT,
+        expected_job=BUILD_JOB,expected_script_sha=BUILD_SCRIPT_SHA,expected_prior_sha=BUILD_PRIOR_SHA)
 
 
 def parse_accounting(raw,prior):
@@ -53,9 +54,9 @@ def parse_accounting(raw,prior):
                 raise RuntimeError('prior_accounting_drift')
             total+=t*g
         else:raise RuntimeError('unknown_accounting')
-    if seen!=set(expected)|{BUILD_JOB} or sum(t*g for _,_,t,g in prior)!=7297:
+    if seen!=set(expected)|{BUILD_JOB} or sum(t*g for _,_,t,g in prior)!=9423:
         raise RuntimeError('incomplete_accounting')
-    if total+CAP>14400:raise RuntimeError('engineering_envelope_exceeded')
+    if total+CAP>21600:raise RuntimeError('engineering_envelope_exceeded')
     return total
 
 
@@ -103,8 +104,10 @@ def configured_profile():
         a=json.loads((control/APPROVAL).read_bytes())
         c.require(a['fa2_build_job']==BUILD_JOB and a['fa2_build_commit']==BUILD_COMMIT
             and a['fa2_build_script_sha256']==BUILD_SCRIPT_SHA and a['fa2_overlay_isolated'] is True
-            and a['fa2_gpu_check_seconds']==120 and a['enumerated_prior_actual_gpu_seconds_excluding_build']==7297
-            and a['build_gpu_seconds_upper_bound']==BUILD_CAP and a['enumerated_combined_upper_bound_gpu_seconds']==13897,
+            and a['fa2_build_prior_sha256']==BUILD_PRIOR_SHA
+            and a['fa2_gpu_check_seconds']==120 and a['enumerated_prior_actual_gpu_seconds_excluding_build']==9423
+            and a['build_gpu_seconds_upper_bound']==BUILD_CAP and a['enumerated_combined_upper_bound_gpu_seconds']==19023
+            and a['enumerated_engineering_envelope_gpu_seconds']==21600,
             'fa2_approval_drift')
         build_binding()
         return hashes

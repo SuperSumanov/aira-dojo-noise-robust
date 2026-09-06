@@ -19,7 +19,7 @@ umask 077
 : "${ZERO3_CODE_COMMIT:?}"
 : "${ZERO3_GPU_APPROVAL_RECEIPT_SHA:?}"
 readonly runtime=/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5
-readonly overlay=/research/d7/spc/yzyang4/flash-attn-build-20260907-r3/overlay
+readonly overlay=/research/d7/spc/yzyang4/flash-attn-build-20260907-r4/overlay
 readonly run_root=/research/d7/spc/yzyang4/critic-pivot-shape/job-$SLURM_JOB_ID
 test "$(readlink -m "$run_root")" = "$run_root"
 test ! -e "$run_root"

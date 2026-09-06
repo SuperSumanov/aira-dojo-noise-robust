@@ -36,7 +36,7 @@ def test_same_scientific_matrix_distinct_dependency_authority():
                 'real_corpus_reads','pretrained_critic_weights_allowed','agent_base_update_allowed','source_admission',
                 'model_effect_measured','tiny_terminal_sha256','model_manifest_sha256'):
         assert new[key]==old[key]
-    assert new['enumerated_prior_actual_gpu_seconds_excluding_build']+m.BUILD_CAP+m.CAP==13897<=14400
+    assert new['enumerated_prior_actual_gpu_seconds_excluding_build']+m.BUILD_CAP+m.CAP==19023<=21600
     assert new['fa2_build_job']==m.BUILD_JOB and new['fa2_build_commit']==m.BUILD_COMMIT
     assert new['automatic_retries']==0 and not new['requeue']
 
@@ -51,9 +51,9 @@ def accounting_fixture(build_elapsed=100):
 
 def test_build_fee_is_actual_and_bounded():
     rows,prior=accounting_fixture()
-    assert m.parse_accounting(rows,prior)==7397
+    assert m.parse_accounting(rows,prior)==9523
     rows,prior=accounting_fixture(m.BUILD_CAP)
-    assert m.parse_accounting(rows,prior)+m.CAP==13897
+    assert m.parse_accounting(rows,prior)+m.CAP==19023
 
 
 @pytest.mark.parametrize('mutation',['duplicate','missing','running','failed','oversized','zero','prior_drift','extra'])
@@ -63,7 +63,7 @@ def test_accounting_fails_closed(mutation):
     elif mutation=='missing':rows='\n'.join(rows.splitlines()[:-1])
     elif mutation=='running':rows=rows.replace(m.BUILD_JOB+'|COMPLETED',m.BUILD_JOB+'|RUNNING')
     elif mutation=='failed':rows=rows.replace(m.BUILD_JOB+'|COMPLETED',m.BUILD_JOB+'|FAILED')
-    elif mutation=='oversized':rows=rows.replace('|100|cpu=4','|2761|cpu=4')
+    elif mutation=='oversized':rows=rows.replace('|100|cpu=4',f'|{m.BUILD_CAP+1}|cpu=4')
     elif mutation=='zero':rows=rows.replace('|100|cpu=4','|0|cpu=4')
     elif mutation=='prior_drift':rows=rows.replace('12577|FAILED|98','12577|FAILED|99')
     else:rows+='\n99999|COMPLETED|1|gres/gpu=1|0:0'

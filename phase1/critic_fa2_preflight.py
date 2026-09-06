@@ -25,7 +25,10 @@ def verify_overlay(overlay, manifest, expected_sha):
     if sha(manifest) != expected_sha:
         raise ValueError('build_receipt_drift')
     value = json.loads(manifest.read_bytes())
-    if value.get('classification') != 'ISOLATED_FA2_CPU_BUILD_NOT_GPU_ACCEPTANCE':
+    # This is byte/ABI binding, not authority to accept a build. The separate
+    # build-receipt checker distinguishes fresh and explicitly resumed chains.
+    if value.get('classification') not in ('ISOLATED_FA2_CPU_BUILD_NOT_GPU_ACCEPTANCE',
+                                         'ISOLATED_FA2_RESUMED_BUILD_NOT_GPU_ACCEPTANCE'):
         raise ValueError('wrong_build_classification')
     files = value.get('overlay_files')
     if not isinstance(files, dict) or not files:

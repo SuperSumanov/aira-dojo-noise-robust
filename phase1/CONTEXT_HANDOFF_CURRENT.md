@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-07
 
-**Dynamic status timestamp:** 2026-09-07；当前0L89覆盖下文停机历史。
+**Dynamic status timestamp:** 2026-09-07；当前0L93覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,20 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-07 当前入口，覆盖下文所有历史动态状态
+
+UTC23:07更新：12641已FAILED/2126秒；不是仍运行。12648 R4续编已独立核验6608原源码/32对象并release，
+UTC23:01 RUNNING/gpu37。ROOT flash-attn-build-20260907-r4，submission-v7，source15402474dec5b5da1e376d3c812f53fe416c5c0b。
+不重复submit/release，旧12535held。构建≤4800秒，后继双卡尚未准备/提交，须先完成独立构建/Slurm核验。
+新后继入口已显式改R4/12648、submission-20260907-fa2-r4、6GPUh工程上限；模型/driver/数学容差不变。
+本地65通过/3平台依赖跳过，实际Linux待做；不能调用旧R3绑定入口。
+0905原12压缩字节全部与Drive相同且原位0400只读；manifest6b84ee91f1c0652842db57635942f8ebc85ff15c039e4041883302ef7b3582be。
+foreground dispatcher /tmp/dispatch_0905_foreground_20260907.py保持现有hash，不重部署。
+out=session-0905-intake-20260907，source78fdd47；poll4已完成独立postaudit，681eligible/707physical/4300pairs/57tasks。
+LATEST47b1b594d1785eb78d6cf83d2094cd9dce1455a83a3db93b07d9175461cd85c2，closurefalse，下次最早UTC23:08:40.711460。
+tiny实际payload独立18个checkpoint-rank/六role通过，e5756c4，actual-tiny SHA2126a6faffb96ef5586dbddb6b95c1ef74f33a35bfa90ca1ee7c3f6834f3b402；不是1.7B验收。
+固定84run无已支持预测表可重评分，ADMITTED_RELEASES仍空，未实际四fit。不得因此放宽门/读取保护cohort。
+
+以下0L89为历史记录，仅保留追溯，不作为实时状态：
 
 当前六小时会话用户已批准，UTC开始09-06T21:53:36、到09-07T03:53:36（香港11:53）；未到期不能因job运行就结束。
 远端已恢复，/tmp重启清空过。12641已独立释放并在gpu37运行，f1f4741固定官方FA2构建。

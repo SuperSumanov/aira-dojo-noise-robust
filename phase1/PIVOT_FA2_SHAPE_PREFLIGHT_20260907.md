@@ -1,5 +1,21 @@
 # FA2修复后的同尺寸验收：执行前矩阵
 
+## UTC23:07修订：原未运行后继入口改为显式R4续编绑定
+
+以下旧12641成功前提已失败，不得据旧段提交。12641实际FAILED/2126秒，保留完整失败证据；
+12648在独立held核验6608源码/32对象后释放，UTC23:01观测gpu37 RUNNING。本段不声称它已构建完成。
+后继改用flash-attn-build-20260907-r4，source15402474dec5b5da1e376d3c812f53fe416c5c0b，
+构建脚本15353d409ceb52c25a9aa7f6080a90849839d5f571bab359b132d29489055893，
+PRIOR_VERIFIED 43def888311cc5156a91980af6fb1ce46381fcf70a8d769d45e7e5441a0bac7d。
+新exclusive后继目录submission-20260907-fa2-r4，原从未执行的R3后继入口由本次commit取代。
+使用单独resumed binder，原fresh binder明确拒绝resumed classification；generic overlay仅绑定字节/ABI，不授予成功资格。
+完整核32旧对象、13失败证据、15副本、ninja graph、独立held回执及3个续编stage；Slurm成功与GPU数学仍分开验证。
+实际9423GPU秒，加续编保守5760及双卡3840，19023≤21600（本轮明确扩为6GPUh工程上限）。
+模型/上下文/批次/seed/数值容差/driver/真实来源规则逐项未变；双卡尚未提交。
+本地65通过/3跳过（两项无Torch、一项Windows symlink），实际Linux仍须复测，不能据本地称GPU通过。
+
+## 以下为修订前的历史设计记录
+
 2026-09-07。用户授权六小时会话内合理决策。本文件不授权真实效果数据、保护确认人口或底座更新。
 构建12641与后继尺寸作业分别核验，不能把前者编译成功当作后者通过。
 

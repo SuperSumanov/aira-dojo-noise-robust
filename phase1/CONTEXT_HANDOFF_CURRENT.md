@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-07
 
-**Dynamic status timestamp:** 2026-09-07；当前停机状态见0L86，较早02:37动态状态已覆盖。
+**Dynamic status timestamp:** 2026-09-07；当前0L89覆盖下文停机历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,27 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-07 当前入口，覆盖下文所有历史动态状态
+
+当前六小时会话用户已批准，UTC开始09-06T21:53:36、到09-07T03:53:36（香港11:53）；未到期不能因job运行就结束。
+远端已恢复，/tmp重启清空过。12641已独立释放并在gpu37运行，f1f4741固定官方FA2构建。
+不要重投/再次release；ROOT=flash-attn-build-20260907-r3。真实构建限2100秒，保留1GPU/4CPU/40min。
+后继双卡入口785c329：prepare_pivot_fa2_shape_20260907.py及新approval/sbatch；56文件/196真实Linux测试通过。
+它保留原1.7B/16K/8×8/seed6/2PRO6000/26min driver，新增绑定FA2 overlay及两卡kernel数值门。
+必须先12641成功及独立artifact/Slurm核验，才能新exclusive准备/提交后继；当前尚未提交。
+旧12535仍held，12577失败记录保留；工程实际7297加当前构建实际，后续总上限13897≤14400。
+
+固定84run/24archive已有预测文件header诊断已完成，5Linux测试、A/B与48回执/24archive独立复验通过。
+只发现84grading JSON，扫描格式内无预测表，不支持现成预测重评分捷径。12commit/9代码清单事实保持。
+5份早先安全来源/compiler回执及本轮header/CPU回执已安全复制并hash，不再是尚未导出。
+ADMITTED_RELEASES仍空，不改来源门，不把新前瞻run当历史训练。
+
+UTC22:17:51 metadata刷新：Drive0905有12包，本地同名12；本轮不是下载者，不能假定字节同一或下载来源。
+新verify_senior_0905_existing_bytes_20260907.py先做固定清单压缩字节hash-only GET比对，≤1GiB/900秒，无payload解析/覆盖。
+11项CPU检查通过，固定metadata SHA4da094a253a9e635c21d709e88ff7b38310486cae6971360923e1a2e65c4c992。
+通过后再原credential-first稳定摄取；此时尚未执行字节检查。最新LATEST仍cdae57...25f2，673eligible，closure=false。
+学长head40d7dea...22a3无变化，未改branch/未读新outcome。无新critic/scaling收益。
+
+下文0L86仅作历史：
 
 最新CURRENT_DIRECTION 0L86：远端SSH返回pam_nologin系统停机；不得绕过，R3准备/提交和header诊断上传均未执行。
 12635FAILED89秒(cc1plus)；12638FAILED1秒(login/node compiler hash不同)；12639COMPLETED5秒，

@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L89. 2026-09-07：后继入口Linux通过；发现0905已有文件，先核字节来源
+
+785c32940b5aaa6d4226e06b98b9ac04d2f79671的后继尺寸入口实际Linux196测试通过/56源文件核验，0GPU上下文。
+12641仍构建中，完整FA2/双卡数值/模型尺寸尚未通过，后继GPU未提交。不要把CPU通过写成训练完成。
+84run header扫描的独立复验完成：48回执、24归档重hash、A/B一致；原安全summary/independent已逐字节导出核hash。
+
+UTC22:17:51刷新共享Drive：0905有12归档，本地同名12；0904仍6，未见config-v2 sidecar。
+本轮未下载本地0905文件，来源时刻未知，先做固定Drive清单对应的压缩字节流式hash比对，不解压/不覆盖/不改mtime。
+先发布代码及11项CPU检查，再执行≤1GiB/900秒的源字节检查；见SENIOR_0905_BYTE_COMPARE_PREFLIGHT_20260907.md。
+最新快照实测仍cdae57a622cfa8e83b40e93f60dbd90045b4670c4e9050bf552ef689745a25f2：
+699physical、673eligible、4275pairs、57tasks，closure=false，0905不是已验收新增run。
+学长head仍40d7dea10738f159fc97cad8487ab4ada88022a3，无新outcome路径变化；branch未改。
+训练来源资格空/四fit未做/保护cohort不读，六小时会话继续到UTC03:53:36，不新建monitor。
+
 ## 0L88. 2026-09-07：R3真实开跑，FA2绑定尺寸入口准备中
 
 12641已在独立held复核后释放，UTC22:09:01观测RUNNING/gpu37，source f1f4741a233ba5308037cafb81bb486240af9286。

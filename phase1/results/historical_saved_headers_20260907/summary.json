@@ -1,0 +1,21 @@
+{
+  "A_B_identical": true,
+  "archives_per_pass": 24,
+  "classification": "SAVED_OUTPUT_HEADER_READINESS_NOT_SCORE_OR_SOURCE_ADMISSION",
+  "code_commit": "34343b8ff7dbe4107ccced6781df627afce7c988",
+  "counts": {
+    "possible_grading_record": 84
+  },
+  "cpu_tests_passed": 5,
+  "evaluator_rerun": false,
+  "fixed_runs": 84,
+  "member_payloads_opened": 0,
+  "passes": 2,
+  "private_counts_sha256": "a6e4d6331b8800894998d6b2171c9950cd0cf94f6b104f24796b36ac5e432a03",
+  "protected_cohort_parses": 0,
+  "run_coverage": {
+    "possible_grading_record": 84
+  },
+  "script_sha256": "949373b12abc2143de703db094d4029bfd09466becc50fb8bd32bc2fecc7cb94",
+  "source_admitted": false
+}

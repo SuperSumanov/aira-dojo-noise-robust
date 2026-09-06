@@ -1,0 +1,19 @@
+{
+  "A_B_identical": true,
+  "archives_rehashed": 24,
+  "classification": "INDEPENDENT_HEADER_RECEIPT_REDUCTION_NOT_SOURCE_ADMISSION",
+  "counts": {
+    "possible_grading_record": 84
+  },
+  "fixed_runs": 84,
+  "member_payloads_opened": 0,
+  "private_receipt_inventory_sha256": "35a32c9efdbe3bcf2dcb3bcb41b00af087b7af46336b95eda1875a530bcb9d27",
+  "receipt_files_verified": 48,
+  "run_coverage": {
+    "possible_grading_record": 84
+  },
+  "summary_sha256": "c8bbefcf6a0f7df5da8a26f3e49af3fe41f6fb665c54c5b2313eb1c9e0526eb7",
+  "training_admitted": false,
+  "utc": "2026-09-06T22:13:45.524143+00:00",
+  "verifier_sha256": "6b75623fd1c25a8f0ea7d0b94e79331a42e994cd35a09107dbb530ebc82b3f4e"
+}

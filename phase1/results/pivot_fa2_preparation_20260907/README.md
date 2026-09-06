@@ -1,0 +1,10 @@
+# FA2后继尺寸入口：真实Linux CPU核验
+
+source785c32940b5aaa6d4226e06b98b9ac04d2f79671，56源文件与Git blob逐一核对，196测试通过，耗时23.94秒。
+运行于实际r5环境的Torch2.11.0+cu128，未创建GPU上下文；pytest仅从已有exp环境提供。
+CPU结果不能证明FA2完整构建/双卡kernel/实际模型保存恢复成功，后继作业尚未提交。
+
+linux_cpu.json为远端原始VERIFIED.json逐字节副本，SHA
+fc9cebbb342bbb3b7bb8a9c5a865e618d6252cbea50bfa65c2f294210af83ee1。
+测试log SHA 6d6ba9f52cc2892307d9a7f7203b5c63808dc294d01061f1000ffadae723a850。
+原始log/source仍在远端critic-pivot-fa2-cpu-785c329-20260907；本目录未伪称保存完整log。

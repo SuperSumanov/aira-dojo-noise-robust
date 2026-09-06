@@ -3,7 +3,11 @@ import argparse,ast,hashlib,json,os,re,subprocess
 from pathlib import Path
 from phase1.scripts import prepare_zero3_engineering_20260905 as c
 
-c.OUT=c.BASE/'critic-pivot-shape/submission-20260906'
+c.OUT=c.BASE/'critic-pivot-shape/submission-20260906-capacity-recovered'
+PREVIOUS_OUT=c.BASE/'critic-pivot-shape/submission-20260906'
+PREVIOUS_COMMIT='ef19d100ac6cb1a747c332eb1b8596051f47a695'
+CLEANUP_RECEIPT=c.BASE/'storage-cleanup-receipts-20260906/SUMMARY.json'
+CLEANUP_SHA='b5cd4dd02f8c5418106bbc0966371496b1d937e1bc5be04734f3df75bf3d9564'
 SCRIPT='phase1/scripts/pivot_zero3_shape_20260906.sbatch'
 APPROVAL='phase1/manifests/pivot_zero3_shape_approval_20260906.json'
 MANIFEST='phase1/manifests/qwen3-1.7b-base-ea980cb0a6c2ae4b936e82123acc929f1cec04c1.sha256'
@@ -92,16 +96,41 @@ def bind(control,commit):
     return hashes
 
 
+def previous_preparation():
+    """Fresh preparation only after the fixed, never-submitted capacity failure."""
+    c.safe_root(PREVIOUS_OUT)
+    c.require(c.OUT!=PREVIOUS_OUT,'previous_failed_root_must_be_preserved')
+    c.require(not any((PREVIOUS_OUT/n).exists() for n in ('READY.json','SUBMISSION_INTENT.json',
+        'SUBMITTED.json','RELEASED.json')),'previous_preparation_may_have_submitted')
+    previous=json.loads((PREVIOUS_OUT/'prepare_intent.json').read_text())
+    probe=json.loads((PREVIOUS_OUT/'space-probe.json').read_text())
+    released=json.loads((PREVIOUS_OUT/'space-probe-released.json').read_text())
+    c.require(previous['commit']==PREVIOUS_COMMIT and probe['passed'] is False
+        and probe['requested_bytes']==68719476736 and probe['allocated_bytes']==0
+        and probe['error']=={'errno':122,'type':'OSError'},'previous_failure_drift')
+    c.require(released['own_inode_removed'] is True and not (PREVIOUS_OUT/'own-checkpoint-space-probe.bin').exists()
+        and (released['device'],released['inode'])==(probe['device'],probe['inode']),'previous_probe_not_released')
+    c.require(c.sha(CLEANUP_RECEIPT)==CLEANUP_SHA,'cleanup_receipt_drift')
+    cleanup=json.loads(CLEANUP_RECEIPT.read_text())
+    c.require(cleanup['real_64GiB_allocation_passed'] is True and cleanup['real_probe_allocated_bytes']==68719476736
+        and cleanup['probe_own_inode_released'] is True and cleanup['protected_fingerprints_equal'] is True,'cleanup_not_accepted')
+    return {'previous_commit':PREVIOUS_COMMIT,'previous_output':str(PREVIOUS_OUT),'cleanup_summary_sha256':CLEANUP_SHA,
+        'previous_evidence_sha256':{n:c.sha(PREVIOUS_OUT/n) for n in
+            ('prepare_intent.json','space-probe.json','space-probe-released.json')},
+        'prior_gpu_job_submitted':False,'fresh_space_probe_still_required':True}
+
+
 def prepare(control,commit):
-    queue();c.safe_root(c.BASE);c.OUT.parent.mkdir(mode=0o700,exist_ok=True);c.safe_root(c.OUT.parent)
+    queue();previous=previous_preparation();c.safe_root(c.BASE);c.OUT.parent.mkdir(mode=0o700,exist_ok=True);c.safe_root(c.OUT.parent)
     c.OUT.mkdir(mode=0o700);c.record('prepare_intent.json',{'commit':commit,'gpu_seconds_upper_bound':CAP,'controller_sha256':c.sha(__file__)})
+    c.record('PREVIOUS_CAPACITY_FAILURE.json',previous)
     c.run(['git','-C',c.REPO,'fetch','--no-tags','https://github.com/SuperSumanov/aira-dojo-noise-robust.git',commit],timeout=240)
     c.require(not control.exists(),'control_exists')
     c.run(['git','-C',c.REPO,'worktree','add','--detach','--no-checkout',control,commit])
     c.run(['git','-C',control,'sparse-checkout','set','--no-cone','--stdin'],data=('\n'.join('/'+n for n in files(commit))+'\n').encode())
     c.run(['git','-C',control,'checkout','--detach',commit]);hashes=bind(control,commit)
     c.run(['bash','-n',control/SCRIPT])
-    env=dict(c.ENV,PYTHONPATH=str(control),TRITON_CACHE_DIR='/tmp/critic-pivot-shape-prepare-triton')
+    env=dict(c.ENV,PYTHONPATH=str(control),TRITON_CACHE_DIR='/tmp/critic-pivot-shape-capacity-recovered-triton')
     Path(env['TRITON_CACHE_DIR']).mkdir(mode=0o700)
     command="import sys; sys.path.append('/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages'); import pytest; raise SystemExit(pytest.main("+repr(['-q','-p','no:cacheprovider',*['phase1/tests/'+t+'.py' for t in TESTS]])+"))"
     (c.OUT/'cpu-tests.log').write_bytes(c.run([c.RUNTIME/'bin/python','-B','-c',command],env=env,cwd=control,timeout=240))

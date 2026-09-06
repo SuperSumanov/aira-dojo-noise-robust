@@ -35,6 +35,59 @@ def test_profile_no_fallback_no_old_job_release():
     assert '12535' not in script and 'scontrol release' not in script
 
 
+def _previous_fixture(tmp_path,monkeypatch):
+    old=tmp_path/'failed';old.mkdir();cleanup=tmp_path/'cleanup.json'
+    monkeypatch.setattr(m,'PREVIOUS_OUT',old)
+    monkeypatch.setattr(m.c,'OUT',tmp_path/'fresh')
+    monkeypatch.setattr(m,'CLEANUP_RECEIPT',cleanup)
+    objects={
+        'prepare_intent.json':{'commit':m.PREVIOUS_COMMIT},
+        'space-probe.json':{'passed':False,'requested_bytes':68719476736,'allocated_bytes':0,
+            'device':1,'inode':2,'error':{'errno':122,'type':'OSError'}},
+        'space-probe-released.json':{'own_inode_removed':True,'device':1,'inode':2}}
+    for name,value in objects.items():(old/name).write_text(json.dumps(value))
+    cleanup.write_text(json.dumps({'real_64GiB_allocation_passed':True,'real_probe_allocated_bytes':68719476736,
+        'probe_own_inode_released':True,'protected_fingerprints_equal':True}))
+    monkeypatch.setattr(m,'CLEANUP_SHA',m.c.sha(cleanup))
+    return old,cleanup
+
+
+def test_capacity_successor_fixed_scope():
+    assert m.PREVIOUS_COMMIT=='ef19d100ac6cb1a747c332eb1b8596051f47a695'
+    assert m.c.OUT.name=='submission-20260906-capacity-recovered'
+    assert m.PREVIOUS_OUT.name=='submission-20260906'
+    assert m.CLEANUP_SHA=='b5cd4dd02f8c5418106bbc0966371496b1d937e1bc5be04734f3df75bf3d9564'
+
+
+def test_capacity_successor_preserves_failure_and_requires_fresh_probe(tmp_path,monkeypatch):
+    old,_=_previous_fixture(tmp_path,monkeypatch)
+    before={p.name:p.read_bytes() for p in old.iterdir()}
+    result=m.previous_preparation()
+    assert result['prior_gpu_job_submitted'] is False and result['fresh_space_probe_still_required'] is True
+    assert before=={p.name:p.read_bytes() for p in old.iterdir()}
+
+
+@pytest.mark.parametrize('marker',['READY.json','SUBMISSION_INTENT.json','SUBMITTED.json','RELEASED.json'])
+def test_capacity_successor_rejects_possible_previous_submission(tmp_path,monkeypatch,marker):
+    old,_=_previous_fixture(tmp_path,monkeypatch);(old/marker).write_text('{}')
+    with pytest.raises(RuntimeError,match='may_have_submitted'):m.previous_preparation()
+
+
+@pytest.mark.parametrize('mutation',['same_root','changed_error','released_identity','cleanup_hash','cleanup_failed'])
+def test_capacity_successor_rejects_changed_evidence(tmp_path,monkeypatch,mutation):
+    old,cleanup=_previous_fixture(tmp_path,monkeypatch)
+    if mutation=='same_root':monkeypatch.setattr(m.c,'OUT',old)
+    elif mutation=='changed_error':
+        path=old/'space-probe.json';value=json.loads(path.read_text());value['error']['errno']=28;path.write_text(json.dumps(value))
+    elif mutation=='released_identity':
+        path=old/'space-probe-released.json';value=json.loads(path.read_text());value['inode']=3;path.write_text(json.dumps(value))
+    elif mutation=='cleanup_hash':cleanup.write_text(cleanup.read_text()+'\n')
+    else:
+        value=json.loads(cleanup.read_text());value['real_64GiB_allocation_passed']=False;cleanup.write_text(json.dumps(value))
+        monkeypatch.setattr(m,'CLEANUP_SHA',m.c.sha(cleanup))
+    with pytest.raises(RuntimeError):m.previous_preparation()
+
+
 def test_resume_receipt_survives_run_header(tmp_path,monkeypatch):
     # Exercise the production run-loop reporting with a fake already-qualified
     # one-rank CPU session. This is a unit check, not distributed qualification.

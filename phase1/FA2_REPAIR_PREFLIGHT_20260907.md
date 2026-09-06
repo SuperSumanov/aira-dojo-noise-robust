@@ -1,5 +1,11 @@
 # FA2缺失修复：固定环境、独立附加目录
 
+第二项调度实证：gpu_24h/gpu拒绝0GPU请求（QOSMinGRES），仍未产生job。
+最终后继遵守最少GPU规则，申请gpu28一张卡并**按占卡时间计费**；编译仍纯CPU、不创建CUDA context。
+矩阵为1保留GPU/4CPU/24GiB/40min，保守2760GPU秒（含300秒退出与60秒余量），不把未执行kernel当免费。
+此前工程实际7202GPU秒，连本构建与后续双卡尺寸上限3840，组合保守13802≤14400GPU秒。
+两次被拒的提交回执保留；新的submission-single-gpu目录不能与旧失败目录混用。
+
 执行前权限修正：首次batch_72h/ex_batch提交被Invalid qos specification拒绝，未产生job；
 实际sacctmgr显示账号仅有gpu QOS。因此后继只将调度入口改为gpu_24h/gpu，仍无GRES、0GPU、
 4CPU/24GiB/40min，旧sbatch返回码与stderr保留。独立新提交目录，不重用失败SUBMISSION_INTENT。
@@ -17,7 +23,7 @@
 
 ## 实际矩阵与验收
 
-1. **CPU构建一次**：gpu_24h / gpu（不申请GPU），4CPU、24GiB、40min上限、0GPU。
+1. **CPU构建一次**：gpu_24h / gpu / gpu28，保留1GPU、4CPU、24GiB、40min上限。
    只用固定FA2 2.8.3官方sdist和wheel0.45.1构建工具，2个编译worker、各2个nvcc线程。
    编译阶段最多2100秒；失败保留，不自动重试。训练/模型权重/语料/保护评测集均不读。
 2. 安装到`flash-attn-build-20260907/overlay`，不写原r5环境；同一Torch/CUDA编译，

@@ -56,7 +56,8 @@ def main():
     os.umask(0o077)
     assert ROOT.resolve() == ROOT and not ROOT.is_symlink()
     assert os.environ.get('SLURM_JOB_ID', '').isdigit()
-    assert not os.environ.get('SLURM_JOB_GPUS') and not os.environ.get('CUDA_VISIBLE_DEVICES')
+    assert len(os.environ.get('SLURM_JOB_GPUS', '').split(',')) == 1 and os.environ.get('SLURM_JOB_GPUS')
+    assert not os.environ.get('CUDA_VISIBLE_DEVICES')
     assert os.environ.get('SLURM_CPUS_PER_TASK') == '4'
     assert sys.executable == str(RUNTIME/'bin/python')
     assert sha(ROOT/'flash_attn-2.8.3.tar.gz') == SDIST_SHA
@@ -69,7 +70,8 @@ def main():
     original = {str(p): sha(p) for p in [RUNTIME/'pyvenv.cfg', Path(torch.__file__)]}
     record('BUILD_INTENT.json', {'job_id': os.environ['SLURM_JOB_ID'], 'hostname': os.uname().nodename,
            'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'source_script_sha256': sha(__file__),
-           'torch': torch.__version__, 'cuda': torch.version.cuda, 'arch': '120', 'gpu_count': 0,
+           'torch': torch.__version__, 'cuda': torch.version.cuda, 'arch': '120', 'reserved_gpu_count': 1,
+           'cuda_context_created': False, 'gpu_reservation_upper_bound_seconds': 2760,
            'original_fingerprints': original, 'source_commit': os.environ['FA2_BUILD_CODE_COMMIT'],
            'sdist_sha256': SDIST_SHA, 'automatic_retries': 0})
     for name in ('build_deps', 'wheels', 'overlay', 'temp'):

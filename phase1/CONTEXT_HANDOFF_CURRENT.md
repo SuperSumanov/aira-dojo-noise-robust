@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-06
 
-**Dynamic status timestamp:** 2026-09-06 09:31 Asia/Hong_Kong (clock verified 09:31:29)
+**Dynamic status timestamp:** 2026-09-06 10:57 Asia/Hong_Kong (remote status UTC02:57:20)
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,21 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-06 当前入口，覆盖下文所有历史动态状态
+
+最新覆盖：CURRENT_DIRECTION 0L82。容量恢复后的新job12577已经独立held核验并release，
+现PENDING/Resources；暂估19:38:15开跑，非保证，旧12535继续held。
+训练源码固定50f2967ad2637850742075454440aea2c5fa8a28，准备目录submission-20260906-capacity-recovered；
+171项Linux CPU/49源文件/真实64GiB分配通过。单次2PRO6000/projgpu39、26min；不自动retry。
+这是1.7B/16K纯合成G→L两更新保存/新进程恢复资格检查，不是模型效果或干净scaling；尚无GPU验收。
+状态脚本/tmp/status_pivot_12577.py只读该作业；submit/release都已完成，不再运行。
+真实四fit仍因ADMITTED_RELEASES为空而未启动；必须等学长真实历史snapshot/experiment/evaluator事实和开发范围。
+学长head b8d095180415957aa1bab31fa53ead1bba261c03、上传日期最新0904，本轮未见新payload。
+清理已完成：85旧Git副本+pip缓存，合计69931454464分配bytes，64GiB真实分配通过；不要重跑cleanup。
+0L80空间失败与下面旧运行中/未提交动态状态均仅作历史，不能覆盖本段。
+可选共同候选请求层wire验证已完成：f5b3f6f4e262e19f0045d15957f93d8223d03af2，34项Linux通过，
+210源文件独立核对，0网络/保护路径尝试；仅client/遥测/凭据加载边界替代，无默认solver变更。
+完整回执results/frozen_native_wire_20260906，先前失败均保留；不要重跑完成的exclusive检查。
+12577已释放到Slurm后不依赖本地连接；当前未新建heartbeat，也未承诺本回合结束后由会话持续轮询。
 
 最新覆盖：CURRENT_DIRECTION 0L80。新1.7B/16K shape准备已因64GiB实际分配EDQUOT停止，未提交GPU。
 source ef19d100ac6cb1a747c332eb1b8596051f47a695；160项真实Linux CPU及模型哈希门通过，但空间门没有通过。

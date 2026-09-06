@@ -1,0 +1,31 @@
+{
+  "actual_space_probe_bytes": 68719476736,
+  "enumerated_combined_upper_bound_gpu_seconds": 10846,
+  "enumerated_prior_actual_gpu_seconds": 7006,
+  "fields": {
+    "CPUs/Task": "12",
+    "Command": "/research/d7/spc/yzyang4/worktrees/critic-pivot-shape-50f2967ad263/phase1/scripts/pivot_zero3_shape_20260906.sbatch",
+    "JobId": "12577",
+    "JobState": "PENDING",
+    "MinMemoryNode": "0",
+    "NumCPUs": "12",
+    "NumTasks": "1",
+    "Partition": "gpu_24h",
+    "QOS": "gpu",
+    "Reason": "JobHeldUser",
+    "ReqNodeList": "projgpu39",
+    "Requeue": "0",
+    "Restarts": "0",
+    "RunTime": "00:00:00",
+    "TimeLimit": "00:26:00",
+    "TresPerNode": "gpu:pro6000:2",
+    "WorkDir": "/research/d7/spc/yzyang4/worktrees/critic-pivot-shape-50f2967ad263"
+  },
+  "inspector_sha256": "6ffd6baddbf8c7b96c88dcc646f9d5092135a4d6d77d394d7325d3c4a539c136",
+  "job_id": "12577",
+  "maximum_new_job_gpu_seconds": 3840,
+  "original_12535_unchanged": true,
+  "source_commit": "50f2967ad2637850742075454440aea2c5fa8a28",
+  "source_files_verified": 49,
+  "status": "INDEPENDENT_HELD_PRE_RELEASE_VERIFIED"
+}

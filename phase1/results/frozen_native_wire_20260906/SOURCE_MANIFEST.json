@@ -1,0 +1,842 @@
+{
+  "phase1/FROZEN_CANDIDATE_REQUESTS_DESIGN_20260906.md": {
+    "bytes": 5578,
+    "sha256": "65d77fb498e9e6f2713f06fcac39393f287288b884c2fa5f4e734335f7692248"
+  },
+  "phase1/frozen_candidate_requests.py": {
+    "bytes": 10526,
+    "sha256": "497efa117ed1ee2c400f41442fe84cfae543f2be816db310f8d176d9457aaf5a"
+  },
+  "phase1/tests/test_frozen_candidate_requests.py": {
+    "bytes": 7022,
+    "sha256": "968c018220fd692bdbcb89803858790568f6cf38d83ca4eeda42f08d3d336572"
+  },
+  "phase1/tests/test_frozen_improve_operator_bridge.py": {
+    "bytes": 3760,
+    "sha256": "dd96507c12ce53258e2a6be720aa39f7fff8c0fbdf56cddc86e49362a3aa6465"
+  },
+  "phase1/tests/test_frozen_native_template_bridge.py": {
+    "bytes": 5504,
+    "sha256": "ce8e0ed1175f4837f73e7e37c3084bc1b1f2a233d4cc8465ffb6b130f56c01de"
+  },
+  "src/aira_core/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/aira_core/config/base.py": {
+    "bytes": 3718,
+    "sha256": "f115778080e36c048d4d14f916fbde11810e8161ae2f0525a5277c56badb6817"
+  },
+  "src/dojo/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/analysis_utils/journal_to_tree.py": {
+    "bytes": 9117,
+    "sha256": "70baaeea78f39495459e63e1e52fa1935a57b8ef1dadc27f37aa407a13fac2ec"
+  },
+  "src/dojo/analysis_utils/meta_data_wrangling.py": {
+    "bytes": 70067,
+    "sha256": "02beb5c0b3dae04092ceff248de006c324496cfa721174c1a26a7dff3a26b23c"
+  },
+  "src/dojo/analysis_utils/meta_error_summary.py": {
+    "bytes": 11749,
+    "sha256": "deaef7002605a1ae7dbb411d6f6e7ab979fb276332c1d10104e3e36b56c29771"
+  },
+  "src/dojo/analysis_utils/meta_tree_analysis.py": {
+    "bytes": 14151,
+    "sha256": "958b9a22e778591929bdde3b46df1bb7e66181435dbb1731cc2e033cd85be5cc"
+  },
+  "src/dojo/config_dataclasses/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/config_dataclasses/benchmark.py": {
+    "bytes": 1893,
+    "sha256": "3d48f04cc6070ad4c892f0e04d925cc29bd1e20813cc374a5f4ea57157adeb45"
+  },
+  "src/dojo/config_dataclasses/client/base.py": {
+    "bytes": 1587,
+    "sha256": "1e9839735687ccd5552ed95842e884f031ea3a0d026f8f98af12c5ec217c7fc8"
+  },
+  "src/dojo/config_dataclasses/interpreter/__init__.py": {
+    "bytes": 469,
+    "sha256": "75f99bbd93acc1b857bbb33f9adab4a8a738867c624726c06dd362864ff77aa7"
+  },
+  "src/dojo/config_dataclasses/interpreter/base.py": {
+    "bytes": 792,
+    "sha256": "e203405efc2464551c4103244542aa22e983599b7e6581ca75fac0eb578c9188"
+  },
+  "src/dojo/config_dataclasses/interpreter/jupyter.py": {
+    "bytes": 2171,
+    "sha256": "c2ec5683fcedb6fd0cbc5545e729fb5e5719ff5631e3df5c046a0d5e5a46aeca"
+  },
+  "src/dojo/config_dataclasses/interpreter/python.py": {
+    "bytes": 846,
+    "sha256": "fc8c207c276c385cc91d19550019e532c8f6b9a9e60d019d7267b3ce2dff067f"
+  },
+  "src/dojo/config_dataclasses/launcher/base.py": {
+    "bytes": 1271,
+    "sha256": "c57cd05a6e199a94089bde7c91eb0f7842b41ff949bed16d72e22bda4922cf9c"
+  },
+  "src/dojo/config_dataclasses/launcher/slurm.py": {
+    "bytes": 2553,
+    "sha256": "5bbb8f85fc242ceef2d5194d01b36ebc6b3785108cd0ae66df5ab1b9fe27bdc7"
+  },
+  "src/dojo/config_dataclasses/llm/generic_llm.py": {
+    "bytes": 823,
+    "sha256": "c7b7da38cd5a96860524e07d53e057cd9537eea7c6d49f158ee9bca8dcd17225"
+  },
+  "src/dojo/config_dataclasses/llm/jinjaprompt.py": {
+    "bytes": 875,
+    "sha256": "04a1117ac08da3e8d170a0755a00122539edb4a5428196f452b2b1a07f9338be"
+  },
+  "src/dojo/config_dataclasses/logger.py": {
+    "bytes": 2607,
+    "sha256": "84d3a2368f10e9763025675ee57b4ff9abdfc25604d7cebe24e9079db1236b82"
+  },
+  "src/dojo/config_dataclasses/metadata.py": {
+    "bytes": 2415,
+    "sha256": "edc46c70a8045e13f6253d2e35386b65a0e5b1ea54b968065484f632c61acd43"
+  },
+  "src/dojo/config_dataclasses/omegaconf/resolvers.py": {
+    "bytes": 2541,
+    "sha256": "94dbd0e8669de5c795b401a689415039ec48c49e4dd8b7535947c2dcd00d6aa7"
+  },
+  "src/dojo/config_dataclasses/operators/base.py": {
+    "bytes": 1066,
+    "sha256": "18f7d83a51b70166b1d956565b20a4ec24a0473ef1ac0abf8b09d59f4640cdb6"
+  },
+  "src/dojo/config_dataclasses/operators/memory.py": {
+    "bytes": 895,
+    "sha256": "77add81974a040e354b76a074da5d39c76760f0994ec9d07b75840316cb2d8a1"
+  },
+  "src/dojo/config_dataclasses/run.py": {
+    "bytes": 2363,
+    "sha256": "9660a74fbc35955d909c55264d7f23541fc3f6490e0d9289ed7dabedd9776a50"
+  },
+  "src/dojo/config_dataclasses/runner.py": {
+    "bytes": 3124,
+    "sha256": "9da6818f5b0f1f3a65a06b6ebcac257197a69ad4486b980cddb655bef3aef66b"
+  },
+  "src/dojo/config_dataclasses/solver/__init__.py": {
+    "bytes": 428,
+    "sha256": "4d326699447b2b6c6264f584f10bd856ff256ced1aaca39827afda3fb33e6c42"
+  },
+  "src/dojo/config_dataclasses/solver/base.py": {
+    "bytes": 4149,
+    "sha256": "e0c93c56bcfa6ee71c0d9cd33a1e14ac7238bd1401c06f99c33c92a16624e08d"
+  },
+  "src/dojo/config_dataclasses/solver/evo.py": {
+    "bytes": 2640,
+    "sha256": "991db2faa1f69ecbed36712b325c72476a8fbe30873146a2cfd82ad363fa2616"
+  },
+  "src/dojo/config_dataclasses/solver/greedy.py": {
+    "bytes": 1551,
+    "sha256": "361cf647a61af84686c11d440bb72f74baa9d8868c7b994cddeef0ccb7139402"
+  },
+  "src/dojo/config_dataclasses/solver/mcts.py": {
+    "bytes": 1444,
+    "sha256": "597e70597d88bc9b74cab071243b200b3c2022b50002bc94dbdff0ccff8c2d9c"
+  },
+  "src/dojo/config_dataclasses/task/__init__.py": {
+    "bytes": 298,
+    "sha256": "46dd2f559ee1e994950dc737653532e8ce3f6be0a1fc20540910a12b606661ba"
+  },
+  "src/dojo/config_dataclasses/task/base.py": {
+    "bytes": 961,
+    "sha256": "d2786d351ece389e48810de18584ef43a27e6933bd1777819b27c2f10e0abb07"
+  },
+  "src/dojo/config_dataclasses/task/mlebench.py": {
+    "bytes": 9289,
+    "sha256": "70d48aa9b0e6084f10b18904eb178af50c03941b9e55e5c9c329045ef0738c6a"
+  },
+  "src/dojo/config_dataclasses/utils.py": {
+    "bytes": 939,
+    "sha256": "c0e6b29168bfb1ff800fe5852b4725c8b3b3a160b23ad0fc1379cbc1a8fcce05"
+  },
+  "src/dojo/configs/_exp/mlebench/aide_greedy_o3.yaml": {
+    "bytes": 934,
+    "sha256": "562a6efd669319dc12cb45106eeb019d51c0443e75233c5ff9d07e7a448e8420"
+  },
+  "src/dojo/configs/_exp/mlebench/aira_evo_o3.yaml": {
+    "bytes": 1583,
+    "sha256": "482f6336ab7d914d9d2d768a20b4ceb8f1cea3972f4a674b2a37f8d0c1d0ebf7"
+  },
+  "src/dojo/configs/_exp/mlebench/aira_greedy_o3.yaml": {
+    "bytes": 562,
+    "sha256": "1be91adbacbd535cdb6c9957dc1830083c74cd2fe6a9b3b3a06ad3178ae57b35"
+  },
+  "src/dojo/configs/_exp/mlebench/aira_mcts_o3.yaml": {
+    "bytes": 1349,
+    "sha256": "bf8450ef52cde72a450d54434a84065c83f4322771984b6f4f03b0e2dacf6ebe"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_greedy_hce_nomad.yaml": {
+    "bytes": 908,
+    "sha256": "234a6af622a66316fcae3d86dbb2deaddd7f68202c6ee5d5834ca27387e62fc0"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_greedy_hce_s3e18.yaml": {
+    "bytes": 919,
+    "sha256": "e2428993b79aeb767f88646cdab0317b1b8629551e03d2d9ad8e2d4f9832cc6d"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_greedy_hce_spaceship.yaml": {
+    "bytes": 992,
+    "sha256": "eff8b98bcc499950156b8148aaf5b4a5560e28f4920dd43976a6095373b0379e"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_greedy_spaceship.yaml": {
+    "bytes": 728,
+    "sha256": "bbbb8e571d114af3da0823cfb4b648f733f8dcb0b4b3c276f76044de684c8835"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts.yaml": {
+    "bytes": 838,
+    "sha256": "1d5613f96b975cad907c4264e313e142681215256af82ac4402daf031af82e8a"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts_aerial_cactus_identification.yaml": {
+    "bytes": 709,
+    "sha256": "c337e6a72c69c6b5831417843909c495bfa38faf098f245fac00b62b06f5419d"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts_denoising_dirty_documents.yaml": {
+    "bytes": 700,
+    "sha256": "2790b35c323d9ae6dde932133e910dee0ee68484710270178e90c8484b423d46"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts_detecting_insults_in_social_commentary.yaml": {
+    "bytes": 739,
+    "sha256": "cbbdb55de25bbaf9d7f6132050d6cdb26e675b5823c71a9c49f0a4ad41fd607d"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts_leaf_classification.yaml": {
+    "bytes": 682,
+    "sha256": "c66f41419e3b9f517c91e316a9aa38c554e679261af4bfae0bd4cd87d244c40b"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts_nomad.yaml": {
+    "bytes": 869,
+    "sha256": "94831d6f6c630e7ef63e968ebe6f8e2797d48b76b1582b7912378a85aa227f93"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts_random_acts_of_pizza.yaml": {
+    "bytes": 685,
+    "sha256": "7ebaef83c1e8e5e3893bc28809b2c06a1ea24b9177ec59d854cca55eb17158de"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts_s3e18.yaml": {
+    "bytes": 841,
+    "sha256": "ec2803e3fccb9e6d56f384e001fdbe07b8137b21c2c806c5d040210498853ec6"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts_spooky_author_identification.yaml": {
+    "bytes": 709,
+    "sha256": "1d7b96719e1faef313820072fe15a99d394d27479b72b492641dc6c6c0f451f3"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts_tps_dec.yaml": {
+    "bytes": 675,
+    "sha256": "0901d11a31dbf29db1089a5d9d20db83372f72eb3a976edb7ec3959dae37d7c2"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts_tps_may.yaml": {
+    "bytes": 675,
+    "sha256": "15060ed33d2b6eb60678939520d944e5ababddbadbcd4c2db686aaab910aeccc"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_mcts_tweet_sentiment_extraction.yaml": {
+    "bytes": 586,
+    "sha256": "d441dfb052c8e35c359af296a95da0e0ffafc1f5643074f13dd35dbd5ff2b291"
+  },
+  "src/dojo/configs/_exp/mlebench/deepseek_smoke.yaml": {
+    "bytes": 734,
+    "sha256": "4060482366a75df08f4c281239af0755f49701f1701578e6d63e29b1c46053c7"
+  },
+  "src/dojo/configs/_exp/run_example.yaml": {
+    "bytes": 616,
+    "sha256": "b89ad66dd6feafdd2214339ba5b58100076897eb92ca81dff6084b8901d22cd0"
+  },
+  "src/dojo/configs/_exp/runner_example.yaml": {
+    "bytes": 656,
+    "sha256": "15e2e1ac80089fb5e4776755008f4f4122219f75024e3677de9ed792e2247065"
+  },
+  "src/dojo/configs/_exp/runner_multi_example.yaml": {
+    "bytes": 406,
+    "sha256": "e34644e7d23f319dc9e91227616df0c4d6404d5839aef7a91f2d6cb886ddd0fd"
+  },
+  "src/dojo/configs/benchmark/mlebench/all.yaml": {
+    "bytes": 2479,
+    "sha256": "4c45ab52f0ed45eb400730804d97feec28633eeea5fedce1f0a5c43d14f7c33c"
+  },
+  "src/dojo/configs/benchmark/mlebench/debug.yaml": {
+    "bytes": 107,
+    "sha256": "64fc3ef53f9053570c018df9bcd17e189a0d3446031d88aed50a7c073077a4a9"
+  },
+  "src/dojo/configs/benchmark/mlebench/dev.yaml": {
+    "bytes": 202,
+    "sha256": "9798e466e95b0c3e9ce5c6c8de176a1948f8b9c75d3379b6fadf1625363085ae"
+  },
+  "src/dojo/configs/benchmark/mlebench/lite.yaml": {
+    "bytes": 908,
+    "sha256": "3411e2015921f76986342477fde5c70049a5a3ca5144b91abccfd4d3fa03c52b"
+  },
+  "src/dojo/configs/default_run.yaml": {
+    "bytes": 162,
+    "sha256": "ad503d5db98978332e085896f64fee36ec7201e4f31ff03c7cc1a3fb460b7537"
+  },
+  "src/dojo/configs/default_runner.yaml": {
+    "bytes": 193,
+    "sha256": "cadbde35d86603a45a05b3e47580bb6d8cb9d5a4018ae6662a6ac70dba6b5051"
+  },
+  "src/dojo/configs/interpreter/jupyter.yaml": {
+    "bytes": 281,
+    "sha256": "6f3302a1553e954c387ffe8d99ed091d741eb62dfe3c9fefe205c8271845b1b6"
+  },
+  "src/dojo/configs/interpreter/python.yaml": {
+    "bytes": 122,
+    "sha256": "f58c6f85743ca46c411b11f22857c247020ad2d18a1917585c9666028dca0315"
+  },
+  "src/dojo/configs/launcher/slurm.yaml": {
+    "bytes": 253,
+    "sha256": "fbc652544d601273204ae8289eb18f66691f761cb06e24427cca677d4b5bd111"
+  },
+  "src/dojo/configs/logger/base_logger.yaml": {
+    "bytes": 651,
+    "sha256": "e4d8a0afadc904eea30b00e479bd2acaaa9f9beb4d85fad9749c993a616d9f9d"
+  },
+  "src/dojo/configs/metadata/base_metadata.yaml": {
+    "bytes": 114,
+    "sha256": "a9d0ff10a528c4407cb8917f07af2031fb02ea100a689c6e82d61b9eceb3121b"
+  },
+  "src/dojo/configs/solver/client/default_litellm.yaml": {
+    "bytes": 179,
+    "sha256": "7f39bc208c8967c4632f8b7bbde44d4101b05338f750fd951fd9573367eed50d"
+  },
+  "src/dojo/configs/solver/client/gdm.yaml": {
+    "bytes": 146,
+    "sha256": "a65f0271589182fba9f4c571e622d740628120b2284b6a02500f5fef3434ad70"
+  },
+  "src/dojo/configs/solver/client/litellm_4o.yaml": {
+    "bytes": 194,
+    "sha256": "f37973dfd71c905346f1f241afe3f7fd33d1914970604cffb372116322efff55"
+  },
+  "src/dojo/configs/solver/client/litellm_deepseek_flash.yaml": {
+    "bytes": 180,
+    "sha256": "a2db07fd801b2464a49687db5aedec1b72b0884fcfb33a46dc74420ca7dd007d"
+  },
+  "src/dojo/configs/solver/client/litellm_deepseek_pro.yaml": {
+    "bytes": 178,
+    "sha256": "f05462c5229e03a2a1fbaf3a88dffc67a0de264ea79830af22fedc58b154e5ec"
+  },
+  "src/dojo/configs/solver/client/litellm_gen2.yaml": {
+    "bytes": 205,
+    "sha256": "d4e2f1b3d8243b2918b680062b2f7a75ff429b8a8f8a5e9b1855337391f87fd0"
+  },
+  "src/dojo/configs/solver/client/litellm_gen3.yaml": {
+    "bytes": 193,
+    "sha256": "e61303cd0e3c3f9b7052631de046ced32e901de571f2d6bc2ee36690ce620082"
+  },
+  "src/dojo/configs/solver/client/litellm_o1.yaml": {
+    "bytes": 197,
+    "sha256": "ff66e96911ba3d5c6a0d944de20e0622f8efff19140eeb56c2737ce510d1bbf9"
+  },
+  "src/dojo/configs/solver/client/litellm_o1_real.yaml": {
+    "bytes": 190,
+    "sha256": "7ab5851f3496db23d96203db53ae44db2a335bb2b9c153de1a0a13fe9c2d3657"
+  },
+  "src/dojo/configs/solver/client/litellm_o3.yaml": {
+    "bytes": 190,
+    "sha256": "9f537e7e2acdf78ac37d78d25cf2f0d49c55a13d3af67ff4f4ab53ffe80bd571"
+  },
+  "src/dojo/configs/solver/client/litellm_o3_mini.yaml": {
+    "bytes": 196,
+    "sha256": "31e825f2a495936d0ebbae7a7bd7a567f5616919b2cc036d6e743c3e8d554eb7"
+  },
+  "src/dojo/configs/solver/client/litellm_r1.yaml": {
+    "bytes": 203,
+    "sha256": "5102bf6a9125baecfe9b8e5e745e5d6ed40b81d9ac3c3fbeb806c8359fc10ae3"
+  },
+  "src/dojo/configs/solver/evo.yaml": {
+    "bytes": 3001,
+    "sha256": "444f2db7bcb5df499d563e27ec18eccb94c4b301bd49564160fae98485d3b1f4"
+  },
+  "src/dojo/configs/solver/greedy.yaml": {
+    "bytes": 2052,
+    "sha256": "4fa80b045ab63defc11f359be62fdf54b04dcf461eeac8679371a6786d0a0bd2"
+  },
+  "src/dojo/configs/solver/mcts.yaml": {
+    "bytes": 2136,
+    "sha256": "81b6460fbd4d54b29e909506eac2fd252785eeee2990245093b64ac225dfe382"
+  },
+  "src/dojo/configs/solver/memory/debug_memory.yaml": {
+    "bytes": 103,
+    "sha256": "97d2b814cd2e1872bed7fe61f773ac31510cbb745e8ca82f9e0ce1736f1a8c2a"
+  },
+  "src/dojo/configs/solver/memory/no_memory.yaml": {
+    "bytes": 96,
+    "sha256": "7d4e23d035a90dea719944dae36f983b473fd6fd5209a59d6e5769904c2c5e87"
+  },
+  "src/dojo/configs/solver/memory/sibling_memory.yaml": {
+    "bytes": 187,
+    "sha256": "199f561b1105e7b84a05aeb9a5e4b231b8c3b4cc5ed334b34cbf76a4820e2bae"
+  },
+  "src/dojo/configs/solver/memory/simple_memory.yaml": {
+    "bytes": 167,
+    "sha256": "d9f026947df2adf80db95273f6389e7d7207b3bb0132f3f31fdbe6c86bba9638"
+  },
+  "src/dojo/configs/solver/memory/simple_memory_only_plans.yaml": {
+    "bytes": 164,
+    "sha256": "f1bbe6641a2174fd40ea5b1e7db38bc03ad15df9aaa64be00445262ac34672f9"
+  },
+  "src/dojo/configs/solver/mlebench/evo.yaml": {
+    "bytes": 1187,
+    "sha256": "b1edb9bde10cda5bf4556cfd7821360dae3a83c031b26c0355945c21235b8416"
+  },
+  "src/dojo/configs/solver/mlebench/greedy.yaml": {
+    "bytes": 1085,
+    "sha256": "e7151d509c1a0cdfe106a66dab8129ae228e18add094a1c35825fc315820c3d8"
+  },
+  "src/dojo/configs/solver/mlebench/mcts.yaml": {
+    "bytes": 1280,
+    "sha256": "fd254d1c93a580b0aa700d15393d58f8f6ae2009c22f914113330072897347e3"
+  },
+  "src/dojo/configs/solver/mlebench/mcts_schema_probe.yaml": {
+    "bytes": 1315,
+    "sha256": "ca8c04ef0db18c27d75a0344f0db9116034181411d2c8824711d5370196a4ff0"
+  },
+  "src/dojo/configs/solver/operators/mlebench/aide_operators/analyze.yaml": {
+    "bytes": 896,
+    "sha256": "7062acb852ecb721e8413a84eae4af6f4b94722aceab1191975619ab95f3afe5"
+  },
+  "src/dojo/configs/solver/operators/mlebench/aide_operators/crossover.yaml": {
+    "bytes": 3789,
+    "sha256": "50557eb6b25a3eda34f90e344021fc2cfa9b61582da494b77bb34360476963e9"
+  },
+  "src/dojo/configs/solver/operators/mlebench/aide_operators/debug.yaml": {
+    "bytes": 4085,
+    "sha256": "0a91ee6f9519d5e51b7ae220f1e35d454005826ae41cd109d47181f2e4cc0ad8"
+  },
+  "src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml": {
+    "bytes": 3756,
+    "sha256": "561c2fb1cf701e48015197464c758be56f738db24a56321c8e2afde472765e09"
+  },
+  "src/dojo/configs/solver/operators/mlebench/aide_operators/improve.yaml": {
+    "bytes": 3675,
+    "sha256": "7225442bed7db2dc557fe1bae2d9c0fd115f711118861044cd3074a84b3196fb"
+  },
+  "src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml": {
+    "bytes": 4177,
+    "sha256": "eecc5a30fae2fc2ea456fab4ea773aeefa9a8cfb6d2924e68a14e406260014b2"
+  },
+  "src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml": {
+    "bytes": 4038,
+    "sha256": "e494c97e97baa704cb4f082d670819c934050e3f78eaa5494f0baea37d837e89"
+  },
+  "src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml": {
+    "bytes": 6511,
+    "sha256": "9fbdb64ec1f74e86587479d33978e6c79adbeab8bcb590cf75c05394cbc55447"
+  },
+  "src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml": {
+    "bytes": 6186,
+    "sha256": "e647754aefce4c4a332b4c4d57986da2c82a344418ca14e9b232afe69acfe7aa"
+  },
+  "src/dojo/configs/solver/operators/mlebench/aira_operators/schema_probe_draft.yaml": {
+    "bytes": 8208,
+    "sha256": "f81c86c6ee3758055031bc3807a3315ffbf14f6ae9b7eefdec7d86ac690321f0"
+  },
+  "src/dojo/configs/task/mlebench/_default.yaml": {
+    "bytes": 736,
+    "sha256": "857bad55955ef892f11dca6b2ef49557677bcb2c85679ad16480616955d97b48"
+  },
+  "src/dojo/configs/task/mlebench/aerial-cactus-identification.yaml": {
+    "bytes": 84,
+    "sha256": "60fd6e3065fcc18f67324cae54b541607d762dbc8df7344299e37f52ca876221"
+  },
+  "src/dojo/configs/task/mlebench/denoising-dirty-documents.yaml": {
+    "bytes": 81,
+    "sha256": "b01d5bc72f1273975e8554fbb6fdebcba44b1a2d3794450b5af36564436dccf3"
+  },
+  "src/dojo/configs/task/mlebench/detecting-insults-in-social-commentary.yaml": {
+    "bytes": 94,
+    "sha256": "538726b52d116598f8a08bb756440cd1c06dcbf8d3132760cff01741b96ee60c"
+  },
+  "src/dojo/configs/task/mlebench/leaf-classification.yaml": {
+    "bytes": 75,
+    "sha256": "36935007313fc8dc155b06f87803f9f003bbceb40aaf2883f489ac03344c2088"
+  },
+  "src/dojo/configs/task/mlebench/nomad2018-predict-transparent-conductors.yaml": {
+    "bytes": 96,
+    "sha256": "5a622e8c6750624608dd109508b586c8730ac3372a7293d3576ba818441f5404"
+  },
+  "src/dojo/configs/task/mlebench/playground-series-s3e18.yaml": {
+    "bytes": 79,
+    "sha256": "10f9e56c4e10c32cb471bccb23373be78195a69c575a14213d689f25c7484789"
+  },
+  "src/dojo/configs/task/mlebench/random-acts-of-pizza.yaml": {
+    "bytes": 76,
+    "sha256": "8b79da0f30c8d7f2142cae7c3baecbed78eeedf5e6afd0850061274b4c1fbc44"
+  },
+  "src/dojo/configs/task/mlebench/spaceship-titanic.yaml": {
+    "bytes": 73,
+    "sha256": "a9eef322ce824080870bb3ba4bd59fee9c321c4ecd8cb5d1f5168084b42d07ea"
+  },
+  "src/dojo/configs/task/mlebench/spooky-author-identification.yaml": {
+    "bytes": 84,
+    "sha256": "8ca2a91ea436b72ad6578f62872b09db77a3a22d1205da97821a03fb2feadaac"
+  },
+  "src/dojo/configs/task/mlebench/tabular-playground-series-dec-2021.yaml": {
+    "bytes": 89,
+    "sha256": "d39cad10ef9f072a8eb82717efe2749fc29f16a330a5b7d5744cbb7e495abddd"
+  },
+  "src/dojo/configs/task/mlebench/tabular-playground-series-may-2022.yaml": {
+    "bytes": 89,
+    "sha256": "a0ee817aa5e4bfd20df3f1f1b9f589fdd0c99ba8aa52fe0741437e4f04c89fb7"
+  },
+  "src/dojo/configs/task/mlebench/tweet-sentiment-extraction.yaml": {
+    "bytes": 82,
+    "sha256": "82c563ddfa0e71f58af9ad1b4f751f39990e62db2040485d0dcd2b1feec1b68e"
+  },
+  "src/dojo/core/interpreters/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/core/interpreters/base.py": {
+    "bytes": 3585,
+    "sha256": "355a8831986c753f46a5c3e13597ebf67a2060142a5986f25b4cbbdfd216b529"
+  },
+  "src/dojo/core/interpreters/jupyter/__init__.py": {
+    "bytes": 278,
+    "sha256": "d0f4cced822618662b0616d088d298c6d091c26b14e43a8b3f2336c6583cb716"
+  },
+  "src/dojo/core/interpreters/jupyter/apptainer_jupyter_server.py": {
+    "bytes": 6696,
+    "sha256": "9138af9bff30d57894a3c2d7e62ca78657496cccd42bba4142a60a72b96ac221"
+  },
+  "src/dojo/core/interpreters/jupyter/base.py": {
+    "bytes": 3961,
+    "sha256": "b6b16d58b0b3d7d62929bdec8cf0a441f12e3226af9894b3ae5722f2141d28da"
+  },
+  "src/dojo/core/interpreters/jupyter/jupyter_client.py": {
+    "bytes": 11582,
+    "sha256": "a6c6abdca37745ce8d5137f48595a3c0e6332c113e8133b0782425b7bbb291bf"
+  },
+  "src/dojo/core/interpreters/jupyter/jupyter_code_executor.py": {
+    "bytes": 9317,
+    "sha256": "99681e6a519a14bcdcc0c56caacfb108760b73e98af71c5b054efe5dead9efc0"
+  },
+  "src/dojo/core/interpreters/jupyter/jupyter_interpreter.py": {
+    "bytes": 8981,
+    "sha256": "c33c6256b2cb07f1d02610d2052106729679b126060bf96c7b1d057f257e825c"
+  },
+  "src/dojo/core/interpreters/jupyter/sand": {
+    "bytes": 5688,
+    "sha256": "e5f39b943e3853ce207e54248443c78d6494582b40aa7913d98e8179fafd5ef6"
+  },
+  "src/dojo/core/interpreters/jupyter/singularity_jupyter_server.py": {
+    "bytes": 14157,
+    "sha256": "ed5012837e8b513fee495ad0ed014cf7b5a8888624677fda263855f5948449a9"
+  },
+  "src/dojo/core/interpreters/python.py": {
+    "bytes": 16948,
+    "sha256": "ec6729561e751976ca01e3cdb66cb8741d448bdc7bcd5cf687efc757e3d53849"
+  },
+  "src/dojo/core/interpreters/utils.py": {
+    "bytes": 11609,
+    "sha256": "c58e04bafb6a1251e0e04f46a37f008b055f0f6998da313120e6cfd86451dc2f"
+  },
+  "src/dojo/core/runners/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/core/runners/slurm/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/core/runners/slurm/slurm_utils.py": {
+    "bytes": 8957,
+    "sha256": "007136fc53f292e9e9ba4b6344b73ffe9e802b4ef10a0a2426b5831f28ee1827"
+  },
+  "src/dojo/core/runners/slurm/submitit.py": {
+    "bytes": 1054,
+    "sha256": "f71ed10832c69724202217183e42a3d24ffd37de97b64358e452487281f7aa63"
+  },
+  "src/dojo/core/solvers/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/core/solvers/base.py": {
+    "bytes": 1710,
+    "sha256": "8eb152e94884dd3e0b27cc117a6e822aa9126e79bfae9524bb53cd0e5de339d7"
+  },
+  "src/dojo/core/solvers/llm_helpers/__init__.py": {
+    "bytes": 276,
+    "sha256": "71d7f1a1add6529a88fb5da4db2968b18212cfd2755409430cd940ae9e07cb2f"
+  },
+  "src/dojo/core/solvers/llm_helpers/backends/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/core/solvers/llm_helpers/backends/data_types.py": {
+    "bytes": 2059,
+    "sha256": "bc03db6b2ca7161142779c3cc985bce8b0f9dd8e5260e4dc536b5482dd233181"
+  },
+  "src/dojo/core/solvers/llm_helpers/backends/gdm.py": {
+    "bytes": 11690,
+    "sha256": "be55886b34a072dca6d668e0278cf9d7d52fe8d20bc4e7b052bb33801870f76a"
+  },
+  "src/dojo/core/solvers/llm_helpers/backends/lite_llm.py": {
+    "bytes": 11530,
+    "sha256": "a6001429ef7f477f663a9a3b2e3a1103700c5dc0bab43dc9a69956471860658e"
+  },
+  "src/dojo/core/solvers/llm_helpers/backends/open_ai.py": {
+    "bytes": 7476,
+    "sha256": "7a098335151fa5038a744e1ebf082053607e2bbf3f52c986e420e678a50cb812"
+  },
+  "src/dojo/core/solvers/llm_helpers/backends/utils.py": {
+    "bytes": 744,
+    "sha256": "3e1587e83fdbac9d1383516d9964e606dba62a62a7ca519e2f4d39ead50e2a4a"
+  },
+  "src/dojo/core/solvers/llm_helpers/generic_llm.py": {
+    "bytes": 6231,
+    "sha256": "62e4e431a82e6eb2aa175951a1383bdace2cc6fe89eb85c3b81ecfed49d0848c"
+  },
+  "src/dojo/core/solvers/llm_helpers/prompt_template.py": {
+    "bytes": 1779,
+    "sha256": "243520485e939c3b68a071e8b7cb90dee40431ee47a71524fc711655502f34fe"
+  },
+  "src/dojo/core/solvers/operators/analyze.py": {
+    "bytes": 2417,
+    "sha256": "0bf82aa3106c29f9c39a4ff259598266bd3bc9620930e8e682b643ffa71ba02f"
+  },
+  "src/dojo/core/solvers/operators/core.py": {
+    "bytes": 1284,
+    "sha256": "2d0f819a7b661e5b841b0a24baaa804b511cbb498b383008de6319e2f25fe612"
+  },
+  "src/dojo/core/solvers/operators/crossover.py": {
+    "bytes": 1918,
+    "sha256": "5c4a3c01fb606f17a6227f1e5660cc23d6fa23f9735f2863167943c23f62a16d"
+  },
+  "src/dojo/core/solvers/operators/debug.py": {
+    "bytes": 2001,
+    "sha256": "097a2077769770d4fa30426c4969def7b5f3786da5fc2bab98e09c0590b464a2"
+  },
+  "src/dojo/core/solvers/operators/draft.py": {
+    "bytes": 1971,
+    "sha256": "3aaa70e0fef6b05bba0057f8b8bb0d9026f3c3b2e275742411b60b62948882ff"
+  },
+  "src/dojo/core/solvers/operators/improve.py": {
+    "bytes": 2151,
+    "sha256": "b0b9bc561f26682ce84701287bd3c92a57b58ed37d2664a31eae4b56c5aab5e0"
+  },
+  "src/dojo/core/solvers/operators/memory.py": {
+    "bytes": 6347,
+    "sha256": "368b222ca36e5a4ec5c1858afc7ded8be5cb40643c5ac8b23615359e1abb2e37"
+  },
+  "src/dojo/core/solvers/utils/data_preview.py": {
+    "bytes": 6904,
+    "sha256": "c153a875e5517b32a78aebf11da88efe2170d80d14db427451e7570859860d27"
+  },
+  "src/dojo/core/solvers/utils/journal.py": {
+    "bytes": 16724,
+    "sha256": "7c847a1c40541537b1cbefd3f84951d98bb7d406e68cee0ae790839b1023ac22"
+  },
+  "src/dojo/core/solvers/utils/metric.py": {
+    "bytes": 3027,
+    "sha256": "c629bd051180ff1ff287a466ecd9466d60638e7986cb9624e651ef39f7421e83"
+  },
+  "src/dojo/core/solvers/utils/response.py": {
+    "bytes": 4250,
+    "sha256": "2f552cc8a32795621db8111b1b93647b4a6989c0e02982111622bcc6c5033061"
+  },
+  "src/dojo/core/solvers/utils/search_exporter.py": {
+    "bytes": 18166,
+    "sha256": "b82474f83bd93c4818863a765bce0c8a94b838d2b444110eb1c63d5e41eb76fb"
+  },
+  "src/dojo/core/solvers/utils/search_utils.py": {
+    "bytes": 5930,
+    "sha256": "53af32059e1613cbd3aa45cca9702c33dc0cdfb451f1f65aad282eb3799130dc"
+  },
+  "src/dojo/core/solvers/utils/tree_export.py": {
+    "bytes": 4280,
+    "sha256": "02e9d5b2ed8426ad9a0d016f532509c11a24f5460268fd26e7b4a3d883f26aa8"
+  },
+  "src/dojo/core/solvers/utils/viz_templates/template.html": {
+    "bytes": 6353,
+    "sha256": "dfeac3c44dce4663feea03cdb2426bae30e994788cceb58bb15d0f531cc57ea0"
+  },
+  "src/dojo/core/solvers/utils/viz_templates/template.js": {
+    "bytes": 26163,
+    "sha256": "9e07da74a64fa14c4db28548d9a9a896b600b19a43500d221de584b03594ac4b"
+  },
+  "src/dojo/core/tasks/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/core/tasks/base.py": {
+    "bytes": 3980,
+    "sha256": "243e6b91813d6b553b5bb8dc3e17c2778ac0d92fe7d445690938d1be963c76bc"
+  },
+  "src/dojo/core/tasks/constants.py": {
+    "bytes": 471,
+    "sha256": "5f99f643106431677ffeae415010e6376d5954e798700866064908cc5693ef29"
+  },
+  "src/dojo/grade_code.py": {
+    "bytes": 5540,
+    "sha256": "c77043b60ab671c94516c64a7489220d7c28ab16eb0ff748a706e9e6d0331473"
+  },
+  "src/dojo/main_run.py": {
+    "bytes": 5210,
+    "sha256": "5e48c33866f30d3570f55f3fc442c5dffc6ba03257e36b532a9d6268ab92eb0d"
+  },
+  "src/dojo/main_runner_job_array.py": {
+    "bytes": 8487,
+    "sha256": "2dd72b8d2e3bb815d053c538c5643105aacaa61976a6d3451fc139c9d1e6f735"
+  },
+  "src/dojo/solvers/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/solvers/evo/__init__.py": {
+    "bytes": 229,
+    "sha256": "4c637b3df0f2bbc9ec98a16ae96696d2cae0f6d0c80cf44fbf0a6f3129350c40"
+  },
+  "src/dojo/solvers/evo/evo.py": {
+    "bytes": 47946,
+    "sha256": "6a2565be9d5b182fe38e546c1e0ba0f023168692651bfb82b3ba75afa3fb8837"
+  },
+  "src/dojo/solvers/greedy/__init__.py": {
+    "bytes": 226,
+    "sha256": "dc81163d7a22b8d0650e8a4f9ae2808c87730c348c21870cd2cb68d0dff5b2f0"
+  },
+  "src/dojo/solvers/greedy/greedy.py": {
+    "bytes": 22969,
+    "sha256": "1c75fb5e97f93d7aa6e8c1676b7c490380df44c20854ebcd25fce5f54dc78f13"
+  },
+  "src/dojo/solvers/mcts/__init__.py": {
+    "bytes": 222,
+    "sha256": "07b86817d8e6dee4727e44fcc60e53552d2ffdb33f5f411b2e6a5f52ce3f3b5f"
+  },
+  "src/dojo/solvers/mcts/mcts.py": {
+    "bytes": 26536,
+    "sha256": "c4839bb8c0da6ad09eb6107e7c465cc5d0be1b4ca41f69b3ca2de208af9b6d68"
+  },
+  "src/dojo/solvers/utils.py": {
+    "bytes": 1204,
+    "sha256": "c9a2729fdf8338801723079abc07b48acac390a8c81fdf2f982ec4e5bd8bdbb4"
+  },
+  "src/dojo/tasks/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/tasks/mlebench/README.md": {
+    "bytes": 1891,
+    "sha256": "6fa4b5c49febdca6fca9c3c6418fab802f00ced8879ce1b2145f4ddad9974e0b"
+  },
+  "src/dojo/tasks/mlebench/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/tasks/mlebench/evaluate.py": {
+    "bytes": 3539,
+    "sha256": "ae96be16b4e9c71174bb22dcdb2165e542281d626948970b7601b9a9b100877b"
+  },
+  "src/dojo/tasks/mlebench/hce_eval.py": {
+    "bytes": 5165,
+    "sha256": "0d0abac264a79152924e1fcae8ee2349946f35ffaebe91cf9102c02846712637"
+  },
+  "src/dojo/tasks/mlebench/instructions.txt": {
+    "bytes": 3254,
+    "sha256": "49f429f75fe2ed59bc1aa8e2ccde726affbee983e851dc515f53a65876714058"
+  },
+  "src/dojo/tasks/mlebench/splits/all.txt": {
+    "bytes": 2397,
+    "sha256": "476200c64ad0e57f52076d0e5522f56f832fc6726d3a6d6db2af31f7331a3860"
+  },
+  "src/dojo/tasks/mlebench/splits/high.txt": {
+    "bytes": 529,
+    "sha256": "a3c8b502211a6acc914e352b840412febf32f07029cde99b3dbe19d8ac988adb"
+  },
+  "src/dojo/tasks/mlebench/splits/low.txt": {
+    "bytes": 650,
+    "sha256": "29347e27f9d21337a653cdff48916b5000a69881d0fd651e90343ec8630d4484"
+  },
+  "src/dojo/tasks/mlebench/splits/low_dev.txt": {
+    "bytes": 169,
+    "sha256": "9dc3c29112007a7502e720b8cd2aa28e17c7909ca8509bebdef78340e815f238"
+  },
+  "src/dojo/tasks/mlebench/splits/medium.txt": {
+    "bytes": 1132,
+    "sha256": "de4f94b6daeb10ed5fb543305f0ef4342ee070759b73fd78eddd7072a30a2d9c"
+  },
+  "src/dojo/tasks/mlebench/task.py": {
+    "bytes": 11937,
+    "sha256": "bd8c58483496e5663c0b73b6aedd1da571f6f4b6f3679a722c9c711965adaa38"
+  },
+  "src/dojo/tasks/mlebench/utils/data.py": {
+    "bytes": 3814,
+    "sha256": "4a7f4c88e92ebd4ea27936a16ff0858a02b2211b39a4e6159eaf1b856e76857b"
+  },
+  "src/dojo/tasks/mlebench/utils/generate_manual_overrides.py": {
+    "bytes": 793,
+    "sha256": "42a7a816787bc15252d98537e3261035c9fed82f3d9463dcd0ac634963a6f220"
+  },
+  "src/dojo/tasks/mlebench/utils/prepare.py": {
+    "bytes": 5238,
+    "sha256": "547784d5adeb9208e675b194bc0f318a21abb444424b0915fbcefe0858647a6b"
+  },
+  "src/dojo/ui/README.md": {
+    "bytes": 1643,
+    "sha256": "5ebbf5e48f54bab9027be184f06acfc8f46d454c3320a1de9f975d20517c841a"
+  },
+  "src/dojo/ui/components/exp_analysis.py": {
+    "bytes": 12550,
+    "sha256": "f18af598deeeb1f22a3de107af4e745c998b0a97c14f2ff766096ededed9e238"
+  },
+  "src/dojo/ui/lightweight_dashboard.py": {
+    "bytes": 26295,
+    "sha256": "03644b8a0548b324c1af5b9bdbaeb2b6a6de3e225cab1172f8bcec973d72139c"
+  },
+  "src/dojo/ui/requirements.txt": {
+    "bytes": 214,
+    "sha256": "219aa26757c8526f9fe7b2cdf6e58e257347543bce0162a69b44f277523ece35"
+  },
+  "src/dojo/ui/style.css": {
+    "bytes": 8561,
+    "sha256": "27d1d1f93adf81dbc671966bbbd861b877baa96082396cf304b09871e659ed0b"
+  },
+  "src/dojo/ui/viz_utils.py": {
+    "bytes": 10784,
+    "sha256": "f93927b2fcd665af89287804c4db3943075cacfb4081b93940e3c81e62bbf2fd"
+  },
+  "src/dojo/utils/__init__.py": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "src/dojo/utils/code_parsing.py": {
+    "bytes": 4055,
+    "sha256": "f9add2b491522a01f2fc773ef6c5b59e464f2b61a5e4d7638d221ec699531185"
+  },
+  "src/dojo/utils/config.py": {
+    "bytes": 301,
+    "sha256": "0e1efc12d73dd95969c2e342bba258b750e0f4206b7907ca1ca38913969eff77"
+  },
+  "src/dojo/utils/environment.py": {
+    "bytes": 3843,
+    "sha256": "85d3545147aa70050915e11bb76d120adb2d8758086324697598f08f2d9b9b4f"
+  },
+  "src/dojo/utils/experiment_logs.py": {
+    "bytes": 1012,
+    "sha256": "a60be8b1b46744433f9dd15edaf5a44915abfacf052a28099a07622664c3107e"
+  },
+  "src/dojo/utils/git.py": {
+    "bytes": 2573,
+    "sha256": "8a164296ab430ff647646cc3f39ed0d95ba26a4a98bbaf45ed9bd03bea16c8ad"
+  },
+  "src/dojo/utils/helpers.py": {
+    "bytes": 1332,
+    "sha256": "4fc6911e995200ab88a5ce21b8951388927643c30841ccfdc5765b4446bc2f77"
+  },
+  "src/dojo/utils/logger.py": {
+    "bytes": 12151,
+    "sha256": "269e0e246730760adaa2af349ea946c814ec9d100ad642f91fcfe70179e9f22c"
+  },
+  "src/dojo/utils/rich_utils.py": {
+    "bytes": 5443,
+    "sha256": "0b2787a785c9498b9aea3b40516b4a54ecdba2da22d6a8d4b6e7f3e09a8d0a59"
+  },
+  "src/dojo/utils/slurm.py": {
+    "bytes": 440,
+    "sha256": "3fdcf9a2aa279f6cd67d1610acc00cddc5026e8e1b244fabc8e1e8daae20b5fb"
+  },
+  "src/dojo/utils/state.py": {
+    "bytes": 2272,
+    "sha256": "4eaddbdb2fc9dc598aed1dd76df487f8c9f418c2f8af93eeaf1fa65d3f57353d"
+  }
+}

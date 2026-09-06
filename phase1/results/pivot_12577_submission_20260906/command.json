@@ -1,0 +1,11 @@
+[
+  "sbatch",
+  "--parsable",
+  "--hold",
+  "--no-requeue",
+  "--chdir=/research/d7/spc/yzyang4/worktrees/critic-pivot-shape-50f2967ad263",
+  "--output=/research/d7/spc/yzyang4/critic-pivot-shape/submission-20260906-capacity-recovered/slurm-%j.out",
+  "--error=/research/d7/spc/yzyang4/critic-pivot-shape/submission-20260906-capacity-recovered/slurm-%j.out",
+  "--export=PATH=/usr/local/bin:/usr/bin:/bin,ZERO3_CONTROL_ROOT=/research/d7/spc/yzyang4/worktrees/critic-pivot-shape-50f2967ad263,ZERO3_CODE_COMMIT=50f2967ad2637850742075454440aea2c5fa8a28,ZERO3_GPU_APPROVAL_RECEIPT_SHA=de2be066da708bfab24561aa48f162f6ddfa405dd31d67d1826620cde591a03a",
+  "/research/d7/spc/yzyang4/worktrees/critic-pivot-shape-50f2967ad263/phase1/scripts/pivot_zero3_shape_20260906.sbatch"
+]

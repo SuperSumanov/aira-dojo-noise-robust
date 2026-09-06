@@ -1,0 +1,26 @@
+{
+  "SOURCE_MANIFEST.json": {
+    "bytes": 33129,
+    "sha256": "d992a733d8119dac4a7e9748ffc98ab5d52fff35b01e21cdca6f42da743658f0"
+  },
+  "SUMMARY.json": {
+    "bytes": 476,
+    "sha256": "b14c1060fba753c92882180340cd2a739bab1b71a3484c99868e798f38899275"
+  },
+  "child_receipt.json": {
+    "bytes": 415,
+    "sha256": "aa5e84b51085c5526fc1d3d1c7ff5242f5562883fb1183ed466aaaea6570ed38"
+  },
+  "junit.xml": {
+    "bytes": 5198,
+    "sha256": "f246e2475634366056851725bad18e68e5a9695602f44dc0b6987607068a7ef6"
+  },
+  "stderr.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout.log": {
+    "bytes": 180,
+    "sha256": "46da13dfad0587fb6f06b7c79967a2a38582c5d672d97bbd76b12fbe1c544dc5"
+  }
+}

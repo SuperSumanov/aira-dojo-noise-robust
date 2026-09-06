@@ -1,0 +1,12 @@
+{
+  "cleanup_summary_sha256": "b5cd4dd02f8c5418106bbc0966371496b1d937e1bc5be04734f3df75bf3d9564",
+  "fresh_space_probe_still_required": true,
+  "previous_commit": "ef19d100ac6cb1a747c332eb1b8596051f47a695",
+  "previous_evidence_sha256": {
+    "prepare_intent.json": "d160b1f1b56e4763693c12657068d02e00e6020680cffb81d564d90a459042c0",
+    "space-probe-released.json": "424e456524846c1e54dbbf3d5a6b067b6c9625a3d46897c33ab7b61328ef04c1",
+    "space-probe.json": "52ccb081fd39ecc54a09c47d9ccc0a4ee6671fa9091ff7876da918ead81471d3"
+  },
+  "previous_output": "/research/d7/spc/yzyang4/critic-pivot-shape/submission-20260906",
+  "prior_gpu_job_submitted": false
+}

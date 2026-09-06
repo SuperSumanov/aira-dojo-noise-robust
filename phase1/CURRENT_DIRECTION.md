@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L82. 2026-09-06：容量恢复后的新尺寸作业12577已放行，真实收益四fit仍待来源
+
+用户要求推进新critic收益/干净scaling。固定source50f2967ad2637850742075454440aea2c5fa8a28，
+新exclusive目录submission-20260906-capacity-recovered；旧EDQUOT准备目录和证据保留。
+171项Linux CPU检查、49源文件/模型运行时绑定、68719476736bytes真实分配与释放、
+独立held资源/预算核验通过后，仅提交并release新job12577。12535继续held，不重复提交或自动重试。
+UTC02:57:20观测12577为PENDING/Resources/0秒；调度暂估香港19:38:15，不保证。
+矩阵未改：2PRO6000/projgpu39、1.7B/16384、26min，纯合成G一步保存→新进程恢复L一步保存。
+新作业保守上限3840GPU秒；此前13个实际作业7006GPU秒，组合上限10846≤14400。
+19份提交原始回执已逐字节导入results/pivot_12577_submission_20260906；不是GPU终态或方法效果验收。
+学长branch仍b8d095180415957aa1bab31fa53ead1bba261c03；安全目录检查最新0904，未见0905，未打开新payload。
+主方法仍为同有效token上限的Lbudget对full G-reuse→L、seeds6/7四fit开发screen，之后才按既定协议确认。
+ADMITTED_RELEASES仍空；实际历史snapshot/evaluator/experiment事实和独立开发范围未齐，不能填true绕过、
+不能把新前瞻run改名用于训练，亦不能声称已有新critic/scaling收益。
+并行完成可选共同候选请求层的原生wire检查：source f5b3f6f4e262e19f0045d15957f93d8223d03af2，
+34项真实Linux测试通过；210源文件独立匹配、0网络/保护路径尝试、0真实API/MLE执行。
+测试禁用外部遥测/凭据加载、替换client，真实Dojo算子/Jinja/GenericLLM调用不改；
+默认solver未接入，不能称provider、完整rollout或搜索收益。此前导入/fixture失败全部保留，见results/frozen_native_wire_20260906。
+
 ## 0L81. 2026-09-06：安全清理完成，64GiB真实容量复验通过，未恢复实验
 
 用户明确授权清理过期实验存储。本次移除85个可按精确Git提交恢复的旧验证副本与pip下载缓存，

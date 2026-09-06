@@ -1,0 +1,19 @@
+{
+  "exporter_sha256": "7cb1532f3d96f3a6e6cccfc98abc1f9c487ee63c8eeddfbf8f917eb9ee1a4b97",
+  "model_effect_measured": false,
+  "queue": {
+    "JobId": "12577",
+    "JobState": "PENDING",
+    "Reason": "Resources",
+    "ReqNodeList": "projgpu39",
+    "Restarts": "0",
+    "RunTime": "00:00:00",
+    "StartTime": "2026-09-06T19:38:15",
+    "TimeLimit": "00:26:00",
+    "TresPerNode": "gpu:pro6000:2"
+  },
+  "source_admission": false,
+  "source_commit": "50f2967ad2637850742075454440aea2c5fa8a28",
+  "source_files_verified": 49,
+  "utc": "2026-09-06T02:57:20.187249+00:00"
+}

@@ -1,0 +1,70 @@
+{
+  "INDEPENDENT_PRE_RELEASE.json": {
+    "bytes": 1098,
+    "sha256": "f2effc1f6fb5490d0d2dfc3b397eb06f1588a135eccc4863801ad2bb965bf79b"
+  },
+  "PREVIOUS_CAPACITY_FAILURE.json": {
+    "bytes": 656,
+    "sha256": "7f11f9e6cb6f380e084a06c3df1016d5361040ce8b4682c8bbb7f7d808b50228"
+  },
+  "READY.json": {
+    "bytes": 6662,
+    "sha256": "9e44b0c0ea7852a0ea8143ac364784e775427cefec37379cac8ac9915f68c7c4"
+  },
+  "RELEASED.json": {
+    "bytes": 80,
+    "sha256": "dbf110ff0b91749a0a6dd32d76796956796374e31938cb7400d76dfb5bfccfec"
+  },
+  "SUBMISSION_INTENT.json": {
+    "bytes": 100,
+    "sha256": "d7338460241eceaebe2cf1730659062fd9358e262282bc63b88eb5f0370ba647"
+  },
+  "SUBMITTED.json": {
+    "bytes": 80,
+    "sha256": "dbf110ff0b91749a0a6dd32d76796956796374e31938cb7400d76dfb5bfccfec"
+  },
+  "VERIFIED_HELD.json": {
+    "bytes": 2003,
+    "sha256": "97800b3e5d53cf5a41de6b97c575c648eb24825125c7fee21dfbbec318f4cf51"
+  },
+  "command.json": {
+    "bytes": 770,
+    "sha256": "c14e440d07fa984da05acb0e6e25173a2e4b65c20aed04d7cd8f7aa55d9c2992"
+  },
+  "cpu-tests.log": {
+    "bytes": 261,
+    "sha256": "7a992575686a30ebfc5871f3e1e16298d4c1148d3e117ffae8e67464676a1310"
+  },
+  "prepare_intent.json": {
+    "bytes": 185,
+    "sha256": "b531fd449fa23ce401d06feac82e38f638d543dd4718c303ce9f4009294055dd"
+  },
+  "runtime-plan.json": {
+    "bytes": 4055,
+    "sha256": "b76621fb2958b1d97f37ca854feb2148c020799b57ca62f58d72368b86c20b81"
+  },
+  "runtime-plan.log": {
+    "bytes": 3837,
+    "sha256": "193fe524ec0ac5a399ac43af11bfc7ef74fe5137299d838628fe5fa381f135ea"
+  },
+  "sbatch.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "sbatch.stdout": {
+    "bytes": 6,
+    "sha256": "1be5de97a9c0d678976eeaef165229554930072ce0d0b4721c30010cb307d02d"
+  },
+  "sbatch_status.json": {
+    "bytes": 22,
+    "sha256": "1e3f6691f455051e8adb15d961e4bf3c7a17e83dd88b2afdd13315cc288250bb"
+  },
+  "space-probe-released.json": {
+    "bytes": 64,
+    "sha256": "e9054f91650a707131a45ef172541197c8eaad63a89f288b97e2dbb19bfca7f1"
+  },
+  "space-probe.json": {
+    "bytes": 363,
+    "sha256": "b338b5fcb1b545bd31b756d6ca4effca63aa391dbac34a2667c77261abf06b77"
+  }
+}

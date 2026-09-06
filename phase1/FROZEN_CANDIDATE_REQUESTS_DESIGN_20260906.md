@@ -46,6 +46,9 @@ improve_op、JinjaPrompt及GenericLLM.__call__，只把client替换为无网络�
 GenericLLM.__call__仍执行，网络审计仍保留。它不验收W&B/provider SDK或完整rollout。
 随后两次远端检查分别因导出包漏带已跟踪aira_core、合成fixture未设LOGGING_DIR而停止（均31通过/3失败）。
 修订补上同一提交的aira_core源码和测试自有日志路径，显式禁用dotenv文件加载；不读取用户配置或密钥。
+最终source f5b3f6f4e262e19f0045d15957f93d8223d03af2实际Linux检查34项通过，无跳过；
+210源文件与Git原始blob独立核对一致，网络/保护路径尝试均0，真实API/MLE执行均0。
+原始回执及测试日志见results/frozen_native_wire_20260906；该有限范围验收不抹去前述失败。
 该检查也明确保留接口差别：此层返回原始usage，未提供GenericLLM的cumulative_num_llm_calls包装。
 原模板写死1RTX3090/6CPU；测试匹配这些字面值不代表未来agent实际资源已匹配。
 

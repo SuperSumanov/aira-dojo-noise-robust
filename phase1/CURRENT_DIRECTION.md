@@ -3,6 +3,14 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L91. 2026-09-07：会话内两次摄取观测正常，实尺寸payload验收准备
+
+78fdd47固定的单次wrapper在Linux7测试通过后，已完成poll0/1及对应post-audit；LATEST未变，仍673eligible。
+下一次最早UTC22:41:34.487720；不缩短稳定性门，不把12文件称新增run，closure仍false。
+12641在UTC22:37:54为RUNNING/1877秒，ninja日志28已完成对象，尚未完整构建。后继双卡未提交。
+补充CPU-only检查点六role实际payload核验，区别于训练程序自报恢复；见PIVOT_PAYLOAD_ACCEPTANCE_PREFLIGHT_20260907.md。
+本地1测试通过/12无Torch跳过；实际Linux/tiny payload待做。无真实训练准入、新critic收益或scaling结论。
+
 ## 0L90. 2026-09-07：0905字节来源已核；只读封存后准备单次摄取
 
 12归档与Drive流式压缩字节SHA全部相等，138941950bytes、25请求、84.66913139899998秒，0解压/新副本。

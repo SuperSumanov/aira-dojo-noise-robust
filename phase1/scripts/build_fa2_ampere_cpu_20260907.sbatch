@@ -8,6 +8,7 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --gres=gpu:1
 #SBATCH --nodelist=gpu37
+#SBATCH --constraint=highcpucount
 #SBATCH --mem=0
 #SBATCH --time=01:30:00
 #SBATCH --exclude=projgpu7,projgpu8,projgpu33,gpu36,gpu38

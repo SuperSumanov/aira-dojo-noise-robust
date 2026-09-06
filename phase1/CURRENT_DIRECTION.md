@@ -5,6 +5,10 @@
 
 ## 0L95. 2026-09-07：PRO双卡被占用，准备独立Ampere工程备用路线
 
+UTC23:49补充：Ampere首次提交因缺highcpucount声明被调度器拒绝，rc1、无job ID、无GPU消耗。
+gpu37确有该feature；保留原submission失败记录，仅补constraint后另建提交目录核验，不自动重试。
+主12648仍RUNNING，70完成对象，不声称已完整构建。
+
 UTC23:34 Slurm证实projgpu39 AllocTRES含gres/gpu=2，无空闲单卡；不重复提交或干扰别人作业。
 根据用户本轮自主授权，新增独立sm80构建与2RTX3090/micro1/accum64备用工程配置，保持1.7B/16K/FA2/全局128。
 显式变更硬件与micro形状，不伪称原PRO6000配置未变；原源/门/输出独立保留，最多一个尺寸作业同时执行。

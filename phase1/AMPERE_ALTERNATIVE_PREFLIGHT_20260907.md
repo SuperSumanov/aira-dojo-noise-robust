@@ -1,5 +1,11 @@
 # 双RTX3090备用工程路线：不更换科学问题，不冒称PRO6000验收
 
+UTC23:49：首次sbatch被CPU:GPU>6:1政策拒绝，未获job ID，stdout为空，rc1；
+stderr SHA7cdff6fa6cd79f0f019d663e9e683a6336555b4e2ff96ab9b1a3d9d17cce085c。
+原submission目录和意图保留。Slurm节点元数据证实gpu37 Available/ActiveFeatures均含highcpucount；
+仅补该显式constraint，另建submission-highcpu尝试，源码/8CPU/1GPU/90min/预算不变。
+不是自动重试；先核无job被接受、旧12535仍held、主12648正常，再held/独立核验后释放。
+
 2026-09-07。用户当前六小时会话批准自主合理决策；UTC23:34实际Slurm显示projgpu39两张GPU均在用，
 仅CPU部分空闲，因此MIXED不代表有空闲GPU。单卡抢先核验没有条件，未提交该方案。
 备用路线不读取真实数据、不训练agent底座，不解除来源准入。原PRO6000源/矩阵/门保持；最多一条尺寸轨迹同时运行，

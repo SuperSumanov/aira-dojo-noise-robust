@@ -27,7 +27,7 @@ def test_explicit_ampere_configuration_and_bounds():
 def test_batch_script_is_one_reserved_gpu_not_model_job():
     p=Path(new.__file__).with_suffix('.sbatch');s=p.read_text()
     for item in ('--cpus-per-task=8','--gres=gpu:1','--nodelist=gpu37','--time=01:30:00',
-                 '--mem=0','--no-requeue',"CUDA_VISIBLE_DEVICES=''",'FA2_BUILD_SCRIPT'):
+                 '--mem=0','--constraint=highcpucount','--no-requeue',"CUDA_VISIBLE_DEVICES=''",'FA2_BUILD_SCRIPT'):
         assert item in s
     assert '--gres=gpu:2' not in s
 

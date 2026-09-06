@@ -77,6 +77,41 @@ def counters(engine):
             'micro_step_id':engine.optimizer.micro_step_id,'step_applied':engine._step_applied}
 
 
+def validate_consumed_cpu_gradients(engine, steps):
+    """Observe, never clear, the pinned Stage3 CPU-offload scratch buffers.
+
+    Stage3 initializes persistent master .grad buffers, consumes them in CPUAdam,
+    and deliberately retains them in _release_sub_group when offload is enabled.
+    Next boundary's partition_grads COPYs the new accumulation into those buffers.
+    Thus nonzero master .grad is not evidence of a pending update. Model grads,
+    epilogue/cursor state, subgroup ownership and each actual Adam step still are.
+    Only dense, no-swap CPU-offload with the exact runtime binding is supported.
+    """
+    z = engine.optimizer
+    validate_counters(counters(engine), steps)
+    require(z.offload_optimizer is True and z.swap_optimizer is False, 'zero3_gradient_mode')
+    require(z.micro_step_id == 0 and z._epilogue_ran_this_backward is False
+            and z.norm_for_param_grads == {}, 'zero3_pending_accumulation')
+    require(all(p.grad is None for p in engine.module.parameters()), 'zero3_pending_model_gradient')
+    masters = z.fp32_partitioned_groups_flat
+    require(isinstance(masters,list) and bool(masters)
+            and all(not g['params'] for g in z.optimizer.param_groups), 'zero3_unclosed_optimizer_group')
+    require(set(z.optimizer.state).issubset(set(masters)), 'zero3_unknown_optimizer_parameter')
+    for p in masters:
+        g = p.grad
+        require(p.device.type == 'cpu' and p.dtype == torch.float32
+                and isinstance(g,torch.Tensor) and g.device.type == 'cpu'
+                and g.dtype == torch.float32 and g.shape == p.shape and g.is_contiguous(),
+                'zero3_persistent_gradient_buffer')
+        _finite_tensors(g, 'consumed_gradient_buffer')
+        state = z.optimizer.state.get(p,{})
+        if steps == 0:
+            require(not state and not bool(torch.count_nonzero(g)), 'zero3_nonfresh_gradient_state')
+        else:
+            require(type(state.get('step')) is int and state['step'] == steps,
+                    'zero3_adam_step_not_consumed')
+
+
 def verify_bundle(root, binding, manifest_sha256):
     require(type(binding.get('world')) is int and binding['world'] == 2, 'zero3_world_not_qualified')
     require(re.fullmatch('[0-9a-f]{64}', str(manifest_sha256)), 'zero3_manifest_sha_required')
@@ -146,9 +181,13 @@ def runtime_binding():
     from phase1 import global_local_zero3_padding as padding
     from deepspeed.runtime.zero.stage3 import DeepSpeedZeroOptimizer_Stage3
     from deepspeed.runtime.checkpoint_engine.torch_checkpoint_engine import TorchCheckpointEngine
+    from deepspeed.ops.adam import DeepSpeedCPUAdam
     from phase1.global_local_accelerate_update_adapter import runtime_binding as update_runtime
     from phase1.global_local_accelerate_resume_validation import checkpoint_runtime
     require(file_sha(Path(inspect.getsourcefile(DeepSpeedZeroOptimizer_Stage3))) == ZERO_FILE_SHA, 'zero3_runtime_drift')
+    cpu_adam_sha=file_sha(Path(inspect.getsourcefile(DeepSpeedCPUAdam)))
+    require(cpu_adam_sha=='8a65f2a4b90df3e25cc0d21f81c53e10c3f5fffffa5178c2a7bd91c065641cac',
+            'zero3_cpu_adam_runtime_drift')
     import hashlib
     io_methods = {name:hashlib.sha256(inspect.getsource(getattr(TorchCheckpointEngine,name)).encode()).hexdigest()
                   for name in ('save','load')}
@@ -159,7 +198,8 @@ def runtime_binding():
     require(file_sha(Path(inspect.getsourcefile(Init))) == padding.PARTITION_FILE_SHA, 'zero3_partition_runtime_drift')
     return {'update':update_runtime(),'checkpoint':checkpoint_runtime(),'zero3_file_sha256':ZERO_FILE_SHA,
             'checkpoint_io':io_methods,'partition_file_sha256':padding.PARTITION_FILE_SHA,
-            'initial_padding_policy_sha256':file_sha(Path(padding.__file__))}
+            'initial_padding_policy_sha256':file_sha(Path(padding.__file__)),
+            'cpu_adam_file_sha256':cpu_adam_sha}
 
 
 class DeepSpeedCriticSession(CriticSession):
@@ -216,8 +256,7 @@ class DeepSpeedCriticSession(CriticSession):
         step = c.completed_steps if expected_steps is None else expected_steps
         require(e.global_steps == step and e.skipped_steps == 0, 'zero3_engine_cursor_drift')
         require(not e.optimizer.overflow and not a.optimizer_step_was_skipped, 'zero3_skipped_update')
-        require(all(p.grad is None or not bool(torch.count_nonzero(p.grad)) for p in
-                    [*e.module.parameters(),*e.optimizer.fp32_partitioned_groups_flat]), 'zero3_pending_gradient')
+        validate_consumed_cpu_gradients(e,step)
 
     def save(self, root):
         c, root = self.consumer,Path(root)

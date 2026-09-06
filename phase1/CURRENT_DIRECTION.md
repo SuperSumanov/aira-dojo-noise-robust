@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L75. 2026-09-06：Socket越过初始化，修正CPU-offload梯度生命周期检查
+
+12573最终FAILED133秒/266GPU秒，零完成轨迹/checkpoint；其运行中状态由此覆盖。
+Socket实际初始化成功，无SIGSEGV，第一保存边界触发zero3_pending_gradient。
+精确Stage3源码明确保留已经消费的CPU FP32.grad，旧零值检查错误；不是证据显示少做了optimizer step。
+现准备只读生命周期检查，核engine/Adam实际步数、epilogue/累积状态、model梯度、缓冲shape/finite；
+不清空缓冲、不加step、不改容差。必须通过CPU负控与实际五轨迹及独立payload验证后才称工程通过。
+见ZERO3_CONSUMED_GRADIENT_PREFLIGHT_20260906.md；新1job×2RTX3090×15min，2520GPU秒上限，
+此前实际419，组合2939≤原3120；无自动重试，旧12535不动。此刻尚未提交新job。
+12573failure receipt=a79b966c57a5fbd115712fb821c472b533bb34daf04f268873daef353af1403d；
+trace=7a2b1f7ecce4962776738bb38a3392261b970e90e827be9149c3b3febbf232cb，已独立扫描无保护路径/凭据命中。
+08:12远端学长Drive根元数据仍最新0904，无0905；没有打开新payload。
+语料/WL673已完成，正式四fit来源仍未准入，没有新增方法或scaling效果。
+
 ## 0L74. 2026-09-06：12572初始化失败，准备Socket故障隔离
 
 12572最终FAILED 73秒/146GPU秒，零完成轨迹/零checkpoint；0L73运行中快照由此终态覆盖。

@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-06
 
-**Dynamic status timestamp:** 2026-09-06 07:55 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-09-06 08:17 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -11,7 +11,11 @@
 
 ## 2026-09-06 当前入口，覆盖下文所有历史动态状态
 
-先fetch并读CURRENT_DIRECTION顶部0L74及以后。用户约02:29入睡，要求本会话持续工作；
+先fetch并读CURRENT_DIRECTION顶部0L75及以后。12573已FAILED133秒，不能再等待或重跑原controller。
+Socket初始化已过；旧zero3_pending_gradient检查误判CPU-offload消费后保留的master缓冲。
+正在准备严格只读生命周期修正（不是zero_grad掩盖）及新15min双3090一次验证，尚未提交。
+实际419GPU秒，新上限2520，组合2939≤3120；新来源/冻结协议未放宽。以下12573运行中描述均过期。
+用户约02:29入睡，要求本会话持续工作；
 约10:20–10:29才到八小时，不能提前声称已工作八小时。不要新增heartbeat或任务。
 
 - 本夜摄取已真正完成：14事务（0903八档、0904六档）+最后空队列检查，623→673 eligible。

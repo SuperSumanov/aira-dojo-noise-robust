@@ -1,5 +1,19 @@
 # 实际检查点内容核验：结果前限定
 
+## 2026-09-07后续：tiny实物通过，准备完整尺寸独立验收
+
+e5756c4实际Linux13测试通过，已验收tiny的九checkpoint×两rank共18次六role payload核验通过。
+actual-tiny SHA2126a6faffb96ef5586dbddb6b95c1ef74f33a35bfa90ca1ee7c3f6834f3b402，不代表1.7B通过。
+实尺寸独立checker在任何本尺寸GPU结果之前编写：固定原plan/seed/两阶段、重新构造实际tensor-boundary消费摘要，
+核对全部rank计数/状态/后端/内存/检查点，先Slurm终态/源码/文本credential/保护路径marker门、全文件hash和只读封存，
+再CPU mmap加载自有检查点四rank六role。单独的postflight新目录、CPU单线程、外层≤900秒，无新GPU/API或真实数据。
+这是自有hash-bound pickle检查，不是任意pickle沙箱；%file trace不含network syscalls，不声称网络取证。
+两个segment各只有每rank首个更新，明确steady-state测量为0，不能拿它预测持续吞吐或四fit耗时。
+没有同尺寸uninterrupted对照，最终分类仍为工程save/restore，不是bitwise final parity/方法收益/来源准入。
+本地新检查23通过、2无Torch跳过，远端实际tensor-boundary复测待做；后继GPU尚未提交。
+
+## 以下为最初预检与当时状态
+
 2026-09-07，六小时会话工作，补齐1.7B/16K双卡尺寸验收的独立读取端。
 不改训练、FA2构建/数值门、真实数据准入或科学矩阵，不新增GPU/API/model-fit。
 

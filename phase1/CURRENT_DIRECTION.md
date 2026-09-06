@@ -17,6 +17,14 @@ BF16模型、AdamW、scaler、三类RNG、计数及完整消费记录一致。�
 原12535核实仍PENDING、源码09911b1包含已知错误的旧梯度检查，现可逆hold为JobHeldUser，未取消、改配置或运行。
 receipt32726eaee7570d3bdd5a5a82ab00bc8916350f0fe62ee3be8d127d5deb09e3f4；覆盖早前“继续原排队”安排，
 防止旧版本重复耗卡。两作业保留原源码和证据，正式四fit准入仍空，无模型/scaling收益。
+08:24时钟后更新：真实CPUAdam固定四case实验已完成，wrapper164.64046154823154秒、native段109.67070739436895秒。
+普通恢复在cut2/end4、cut31/end33分别133/192个master元素不同，最大2.3283064365386963e-10；
+另两case普通恢复本已一致，完整保留。空tensor按历史步数重建原生bias-power缓存后，四case全部逐位一致，
+且不改变任何参数、已序列化Adam状态或Python optimizer步数。这支持native缓存原因，不是模型效果。
+源1b6b8372b83f68038bf964547bf4b6e8b7e2c661；新生产helper仍待独立A/B验证和真实GPU复验，不能只凭诊断宣布验收。
+12574真实差异最大3.725290298461914e-09、BF16投影0，不作为旧critic随机表现的解释。
+12574failure receipt0c67e794bf08175755bbd4c77611bd61d27709833fe1e437b213a6234911ad80；
+trace196677173bytes/bd860db3cb768f1f6530331280a8234aa7a593c47ebc4d77ba5ac2b0b523139c，已安全扫描并保存失败。
 
 ## 0L75. 2026-09-06：Socket越过初始化，修正CPU-offload梯度生命周期检查
 

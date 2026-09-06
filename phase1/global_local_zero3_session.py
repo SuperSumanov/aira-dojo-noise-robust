@@ -179,6 +179,7 @@ def current_state(consumer):
 
 def runtime_binding():
     from phase1 import global_local_zero3_padding as padding
+    from phase1.global_local_cpu_adam_resume import source_binding as native_cache_binding
     from deepspeed.runtime.zero.stage3 import DeepSpeedZeroOptimizer_Stage3
     from deepspeed.runtime.checkpoint_engine.torch_checkpoint_engine import TorchCheckpointEngine
     from deepspeed.ops.adam import DeepSpeedCPUAdam
@@ -199,7 +200,7 @@ def runtime_binding():
     return {'update':update_runtime(),'checkpoint':checkpoint_runtime(),'zero3_file_sha256':ZERO_FILE_SHA,
             'checkpoint_io':io_methods,'partition_file_sha256':padding.PARTITION_FILE_SHA,
             'initial_padding_policy_sha256':file_sha(Path(padding.__file__)),
-            'cpu_adam_file_sha256':cpu_adam_sha}
+            'cpu_adam_file_sha256':cpu_adam_sha,'native_cpu_adam_cache':native_cache_binding()}
 
 
 class DeepSpeedCriticSession(CriticSession):
@@ -306,6 +307,12 @@ class DeepSpeedCriticSession(CriticSession):
                 c.accelerator.load_state(str(root),load_module_strict=True,load_optimizer_states=True,
                                          load_module_only=False,load_lr_scheduler_states=False)
             verify_restored(row['state'],current_state(c))
+            # CPUAdam's native step/beta-power cache is NOT in state_dict().
+            # This engine was fresh before load (see initial and restore gates).
+            # Reproduce the consumed cache history without touching coefficients.
+            from phase1.global_local_cpu_adam_resume import restore_native_cache
+            native_cache=restore_native_cache(c.model.optimizer.optimizer,step)
+            verify_restored(row['state'],current_state(c))
             e,z = c.model,c.model.optimizer
             require(e.global_samples == row['counters']['global_samples'], 'zero3_restored_sample_counter')
             # Pinned DS does NOT save/restore these counters. Set only after the
@@ -317,7 +324,8 @@ class DeepSpeedCriticSession(CriticSession):
             self._boundary(expected_steps=step)
             c.completed_steps = step
             return {'completed_steps':step,'cumulative_valid_tokens':self._tokens(step),
-                    'all_state_components_restored':True,'manifest_sha256':manifest_sha256}
+                    'all_state_components_restored':True,'manifest_sha256':manifest_sha256,
+                    'native_cpu_adam_cache':native_cache}
         except BaseException:
             c.poisoned = True
             raise

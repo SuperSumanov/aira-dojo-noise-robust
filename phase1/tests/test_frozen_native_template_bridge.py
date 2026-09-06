@@ -17,9 +17,13 @@ from phase1.frozen_candidate_requests import GenerationOnlyBatch, capture_improv
 
 
 @pytest.mark.parametrize('complexity', ['simple', 'normal', 'complex'])
-def test_native_template_and_generic_llm_wire_match(complexity, monkeypatch):
+def test_native_template_and_generic_llm_wire_match(complexity, monkeypatch, tmp_path):
     from omegaconf import OmegaConf
     import yaml
+    import dotenv
+    # The wire fixture has no credentials and must never import a user's .env.
+    monkeypatch.setattr(dotenv, 'load_dotenv', lambda *args, **kwargs: False)
+    monkeypatch.setenv('LOGGING_DIR', str(tmp_path/'synthetic-logs'))
     # The test owns the client boundary, including factory import. Do not import
     # optional provider SDKs merely to substitute the client immediately after.
     def forbidden_client(*args, **kwargs):

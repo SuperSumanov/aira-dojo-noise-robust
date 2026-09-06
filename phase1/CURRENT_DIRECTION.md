@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L76. 2026-09-06：真实恢复比较仍失败，进入CPUAdam原生状态诊断
+
+12574 source09c322bf82cc62ce67babb7e2bfee51633e40710 FAILED199秒/398GPU秒，当前可选组累计817。
+full、prefix2、resume2三条轨迹完成，六个真实checkpoint保存；新生命周期检查已越过，但最终严格比较未通过。
+两rank的prefix2/checkpoint2与full/checkpoint2七类状态完全相同；resume2最终仅master_shards不同，
+BF16模型、AdamW、scaler、三类RNG、计数及完整消费记录一致。不能删掉master比较或称恢复通过。
+原生CPUAdam头文件含未序列化的step/beta-power缓存；连续乘法与恢复跳步pow分支可能造成差异，尚为假设。
+准备0GPU/最多480秒CPU诊断，固定四个(end,cut)=(4,2),(4,3),(9,7),(33,31)，真实CPUAdam比较普通恢复
+及空tensor重建缓存。该候选不能未经证明接入生产；当前不再自动投GPU，不运行12574正式验收/FINAL读出。
+12574的postcheck CPU准备完成不等于payload通过，后续payload/readout两个命令均禁止在此失败job上执行。
+
+原12535核实仍PENDING、源码09911b1包含已知错误的旧梯度检查，现可逆hold为JobHeldUser，未取消、改配置或运行。
+receipt32726eaee7570d3bdd5a5a82ab00bc8916350f0fe62ee3be8d127d5deb09e3f4；覆盖早前“继续原排队”安排，
+防止旧版本重复耗卡。两作业保留原源码和证据，正式四fit准入仍空，无模型/scaling收益。
+
 ## 0L75. 2026-09-06：Socket越过初始化，修正CPU-offload梯度生命周期检查
 
 12573最终FAILED133秒/266GPU秒，零完成轨迹/checkpoint；其运行中状态由此覆盖。

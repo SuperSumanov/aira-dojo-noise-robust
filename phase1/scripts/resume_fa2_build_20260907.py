@@ -84,6 +84,8 @@ def verify_prior(value):
     require(not (OLD/'BUILT.json').exists(),'prior_already_completed')
     require(read(OLD/'compile-timeout.json')['timeout_seconds']==2100,'wrong_prior_failure')
     for relative,h in value['preserved_receipts'].items():safe(OLD/relative);require(sha(OLD/relative)==h,'prior_evidence_drift')
+    for relative,h in value['copied_evidence'].items():safe(ROOT/'previous'/relative);require(sha(ROOT/'previous'/relative)==h,'copied_evidence_drift')
+    require(completed_objects((ROOT/'previous/ninja.log').read_text(),BUILD)==value['objects'],'original_completion_record_drift')
     require(sha(BUILD/'build.ninja')==value['ninja_graph_sha256'],'ninja_commands_drift')
     for relative,entry in value['objects'].items():
         p=BUILD/relative;safe(p)

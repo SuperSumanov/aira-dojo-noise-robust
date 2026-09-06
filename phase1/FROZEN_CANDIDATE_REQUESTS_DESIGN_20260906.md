@@ -34,7 +34,10 @@
 
 另提供真实Dojo环境的`test_frozen_native_template_bridge.py`：真实Node/Journal、OmegaConf、
 improve_op、JinjaPrompt及GenericLLM.__call__，只把client替换为无网络记录器并绕过其构造函数。
-它比较三个既有complexity分支的实际messages/解码kwargs。当前尚待远端执行，不能把测试文件存在当通过。
+它比较三个既有complexity分支的实际messages/解码kwargs。首轮实际Linux检查30通过/3失败：
+三项原生桥接均在可选provider SDK litellm缺失处停止，未执行到请求比较。此失败原样保留。
+后续在测试拥有的client边界提前替换factory import，仍执行原生算子、Jinja和GenericLLM.__call__，
+不安装SDK、不调用真实factory；该测试从不声称provider SDK/routing已经验收。修订后仍待远端执行。
 该检查也明确保留接口差别：此层返回原始usage，未提供GenericLLM的cumulative_num_llm_calls包装。
 原模板写死1RTX3090/6CPU；测试匹配这些字面值不代表未来agent实际资源已匹配。
 

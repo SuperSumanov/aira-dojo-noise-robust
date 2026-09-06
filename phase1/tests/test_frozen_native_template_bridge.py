@@ -8,6 +8,8 @@ from copy import deepcopy
 import json
 from pathlib import Path
 import random
+import sys
+from types import ModuleType
 
 import pytest
 
@@ -18,6 +20,13 @@ from phase1.frozen_candidate_requests import GenerationOnlyBatch, capture_improv
 def test_native_template_and_generic_llm_wire_match(complexity, monkeypatch):
     from omegaconf import OmegaConf
     import yaml
+    # The test owns the client boundary, including factory import. Do not import
+    # optional provider SDKs merely to substitute the client immediately after.
+    def forbidden_client(*args, **kwargs):
+        raise AssertionError('native provider construction forbidden')
+    backend = ModuleType('dojo.core.solvers.llm_helpers.backends.utils')
+    backend.get_client = forbidden_client
+    monkeypatch.setitem(sys.modules, backend.__name__, backend)
     from dojo.core.solvers.operators import improve
     from dojo.core.solvers.llm_helpers import generic_llm
     from dojo.core.solvers.llm_helpers.prompt_template import JinjaPrompt
@@ -58,8 +67,6 @@ def test_native_template_and_generic_llm_wire_match(complexity, monkeypatch):
             self.calls.append(deepcopy((messages,kwargs)))
             return 'SYNTHETIC_OUTPUT_ONLY', {'prompt_tokens':1, 'completion_tokens':1}
 
-    def forbidden_client(*args, **kwargs):
-        raise AssertionError('native provider construction forbidden')
     monkeypatch.setattr(generic_llm, 'get_client', forbidden_client)
     # Execute the actual __call__, deliberately bypassing the network constructor.
     llm = object.__new__(generic_llm.GenericLLM)

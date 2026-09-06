@@ -155,3 +155,16 @@ SHA-256=`17317a2d239cb862ec16d57aa0a2fa168f2c1a6cd841117950d8ee8127129ad6`。原
   verifier 或轻量选择器，并在相同 execution 预算下测 label efficiency。
 - **RL trajectory 审计只收脱敏导出**：outcome 的 W&B 链接含访问凭据，不能点击或自动使用。必须由学长先轮换凭据并导出
   脱敏 prompt/final answer/reward/metadata/run receipt；隐藏 chain-of-thought 不进入 Git，也不作为论文可复核证据。
+
+## J. 2026-09-07：metadata版本入口与PRO6000双卡排队
+
+- 学长原话：「直接看metadata里面的git_commit_id吧，snapshot大多数我都删掉了」。
+  → 从原metadata记录的确切commit恢复已提交代码，不再反复索要已删除snapshot，也不以今天HEAD代填历史版本。
+  本轮固定84run的12commit全部可读并独立核验；其余两条缺失commit均不在该范围。
+  Git HEAD不自动证明未提交文件/外部evaluator，剩余事实逐项确认；不因此放弃experiment/开发隔离或保护评测门。
+- 学长给出的命令：`srun -c 12 -p gpu_24h -w projgpu39 --gres=gpu:2 --pty /bin/bash`，
+  并明确「只有两张，最多24h」。
+  → 这是该节点双卡交互式资源请求，不是四卡承诺、无需排队的窗口或任意实验24h预算。
+  我方可用等价batch分配做可恢复作业，继续设置正确SLURM_CONF，核对队列与实际预算，禁止重复提交同一实验。
+- 本轮查明12577已双卡启动而非继续排队，98秒后因环境缺FlashAttention2失败；我方预检漏项由我方修复。
+  不把学长新排队命令或已恢复存储当作此依赖问题的解决。详见results/recorded_commit_recovery_20260907。

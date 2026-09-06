@@ -1,15 +1,29 @@
 # Context handoff：Decision Corpus + Predictor Benchmark
 
-**Last updated:** 2026-09-06
+**Last updated:** 2026-09-07
 
-**Dynamic status timestamp:** 2026-09-06 10:57 Asia/Hong_Kong (remote status UTC02:57:20)
+**Dynamic status timestamp:** 2026-09-07 02:37 Asia/Hong_Kong (remote status UTC 09-06 18:37:11)
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
 **Authority warning:** 本文件不是科学方向的最高权威。开始任何实验前必须先 fetch Git，再读
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
-## 2026-09-06 当前入口，覆盖下文所有历史动态状态
+## 2026-09-07 当前入口，覆盖下文所有历史动态状态
+
+最新覆盖CURRENT_DIRECTION 0L83。学长说大多数snapshot已删除，metadata.git_commit_id可用；
+独立核验固定84候选run对应12commit全部Git可读，不再等待24物理snapshot恢复已提交代码。
+676历史run/24commit中22可读，两个缺失均在84范围之外；resolver只记录HEAD，不证明未提交文件/实际evaluator。
+ADMITTED_RELEASES仍空；后续按确切Git版本补experiment/开发隔离和同版本构建，不能把代码恢复当训练收益。
+12577已FAILED 1:0：UTC09-06 08:09:11—08:10:49，projgpu39两卡98秒/196GPU秒，缺FlashAttention2。
+在模型初始化失败，没有轨迹summary；171CPU检查漏掉真实attention依赖，不重投旧路径/不自动降级后端。
+12535仍PENDING/JobHeldUser。本轮没提交GPU/安装环境/训练/API。12575 tiny验收维持，不等于1.7B尺寸验收。
+学长提供projgpu39两卡最长24h的srun入口；已有batch实际获配，不再重复申请交互任务。
+学长branch fetch到40d7dea10738f159fc97cad8487ab4ada88022a3（09-05提交）；路径变化无新outcome，未读新train/test。
+回执results/recorded_commit_recovery_20260907，两个独立脚本exclusive输出均已完成，禁止重跑覆盖。
+本轮未检查新共享盘语料/实时intake，不能把下文旧673/960称为本轮新核验；保护cohort保持不揭盲。
+
+## 2026-09-06 历史入口（已被上文覆盖）
 
 最新覆盖：CURRENT_DIRECTION 0L82。容量恢复后的新job12577已经独立held核验并release，
 现PENDING/Resources；暂估19:38:15开跑，非保证，旧12535继续held。

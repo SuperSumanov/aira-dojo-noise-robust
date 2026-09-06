@@ -1,5 +1,14 @@
 # 生产来源事实：已追到哪里，还缺什么
 
+## 2026-09-07：用metadata恢复代码，不再等待24份已删除snapshot
+
+学长确认metadata.git_commit_id是记录版本入口，多数snapshot已删除。我方固定原84run范围重核并独立验证：
+涉及12commit全部Git可读，84/84覆盖；完整676run中的两个不可读commit在该范围均无成员。
+**下文“实际需要24snapshot”不再作为恢复已提交代码的必需条件。** 不要求学长重新交付不存在的副本。
+Git树及清单hash已验证，metadata只记录HEAD；未提交改动和实际evaluator仍不凭空填成已确认。
+后续从确切metadata版本推进来源闭包和同版本新构建；experiment/开发隔离仍独立检查，当前尚无新增训练准入。
+详见[版本恢复与独立回执](results/recorded_commit_recovery_20260907/README.md)。没有读取新的journal/成绩或保护cohort。
+
 ## 2026-09-06 01:22：唯一Slurm异常由worker记录解释，实际环境仍不能补造
 
 两份原worker身份JSON独立重读通过，第二次身份与config相同，controller最新step为空；

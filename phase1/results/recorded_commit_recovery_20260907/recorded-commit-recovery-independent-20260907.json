@@ -1,0 +1,58 @@
+{
+  "fixed_scope_commits": 12,
+  "fixed_scope_runs": 84,
+  "fixed_scope_runs_with_readable_commit": 84,
+  "held_job_queue": "12535|PENDING|JobHeldUser",
+  "historical_runs": 676,
+  "job": {
+    "allocated_gpus": 2,
+    "artifacts": {
+      "allocation.json": {
+        "bytes": 2253,
+        "sha256": "fd9889d1b63bd6c6e3288854fc7cc31a2b4ef712caeef1a1ca768565a9608653"
+      },
+      "build_tools.json": {
+        "bytes": 721,
+        "sha256": "ffe7b619a2a6f58b7566190b2afbe779e59990ee37ad4c1290be78db561448d2"
+      },
+      "driver.log": {
+        "bytes": 4888,
+        "sha256": "ce49cc318bfc0d111fa6a0b9e731fc0c4f1ee7f60413a2cf5924ca256549b457"
+      },
+      "exit_status.txt": {
+        "bytes": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+      },
+      "space-probe.json": {
+        "bytes": 364,
+        "sha256": "23cded5b1c911d1f9d16e859c74fce5bfe57312c37ba4b1f3d6d5530f2efa36f"
+      },
+      "worker.log": {
+        "bytes": 200,
+        "sha256": "db12d9fe1754498d41d78919676130321590d6594bcc5c6872cd810e034c2879"
+      }
+    },
+    "elapsed_seconds": 98,
+    "end": "2026-09-06T08:10:49",
+    "error": "ImportError: FlashAttention2 has been toggled on, but it cannot be used due to the following error: the package for FlashAttention2 doesn't seem to be installed.",
+    "exit_code": "1:0",
+    "gpu_seconds": 196,
+    "id": "12577",
+    "node": "projgpu39",
+    "requested_display_timezone": "UTC",
+    "start": "2026-09-06T08:09:11",
+    "state": "FAILED",
+    "trajectory_summary_present": false
+  },
+  "journal_or_outcome_payload_reads": 0,
+  "missing_commits_in_fixed_scope": 0,
+  "new_gpu_submission": false,
+  "protected_cohort_reads": 0,
+  "readable_commits": 22,
+  "recorded_commits": 24,
+  "runtime_or_uncommitted_changes_attested": false,
+  "script_sha256": "f2dca236f2416785787141a1376d35847fa8b8c20be7b6b1bf2940b9572fe9cc",
+  "training_admission": false,
+  "utc": "2026-09-06T18:37:11.548543+00:00",
+  "verified_receipt_sha256": "428db130b5eff7016469867c5d6c98288909449feceb087e9057c968e03b65cb"
+}

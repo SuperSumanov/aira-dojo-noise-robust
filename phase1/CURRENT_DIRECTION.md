@@ -1,7 +1,25 @@
-# 当前研究方向唯一入口（2026-09-06）
+# 当前研究方向唯一入口（2026-09-07）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0L83. 2026-09-07：metadata可恢复固定84run的代码；12577已因缺少FA2失败
+
+学长说明多数旧snapshot已删除，直接使用metadata.git_commit_id；projgpu39可排两卡、最长24h。
+本轮据固定旧账本/范围独立核验：676历史run记录24commit，其中22可读；固定84run的12commit全部可读，
+覆盖84/84，两条缺失commit在本范围均为0。Git树对象和清单hash一致；不再要求恢复24物理snapshot才能恢复已提交代码。
+metadata resolver只记录git rev-parse HEAD，不自动证明未提交文件/外部evaluator。代码版本恢复与实际运行环境、
+experiment关联、完整隔离和Cards/G/L构建分别核验；ADMITTED_RELEASES仍空，未扩选历史范围或触碰保护cohort。
+证据results/recorded_commit_recovery_20260907：原结果428db130b5eff7016469867c5d6c98288909449feceb087e9057c968e03b65cb，
+独立结果ecb4ae0d00b04dcfb060f6a299b1505fe2c3b32d176558b8301a79e7f47ab1ab。
+
+纠正0L82旧状态：12577已在UTC09-06 08:09:11到08:10:49于projgpu39运行98秒/两卡，
+FAILED 1:0、196GPU秒。固定环境缺FlashAttention2，在模型初始化失败，无轨迹完成summary；不是仍排队/存储失败。
+171CPU检查漏掉真实attention依赖；尺寸验收未过，更无critic/scaling收益。失败回执/目录保留，不原地重跑或降后端掩盖。
+12535仍PENDING/JobHeldUser；本轮没有提交GPU、安装依赖、模型训练或API。学长的交互排队命令与已获配双卡不冲突，
+不因此重复排队或把24h当本实验预算。后续另立修复/有界尝试，实际四fit仍待干净来源包，不改科学对照。
+学长head已fetch到40d7dea10738f159fc97cad8487ab4ada88022a3（提交日期09-05），路径差异无新outcome；
+未打开新train/test payload，未修改学长branch。这里取代0L82的排队/旧head描述，旧记录保留为历史。
 
 ## 0L82. 2026-09-06：容量恢复后的新尺寸作业12577已放行，真实收益四fit仍待来源
 

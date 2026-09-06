@@ -15,7 +15,9 @@
 12574完成full/prefix2/resume2及六checkpoint，但FP32 master最终差异最大3.725290298461914e-09，严格验收失败。
 真实CPUAdam诊断找到未序列化native beta-power缓存；生产helper已过A/B八case独立验证，仍不能替代GPU逐字节验证。
 准备新submission-20260906-3090-native-cache，2RTX3090/12min，2160GPU秒上限；此前817，合计2977≤3120。
-此刻尚未提交；先Linux CPU→held→独立核验→release，只一次。12535旧源码已可逆hold为JobHeldUser，不得直接放行。
+08:43核验：source1c211b87880a1110e3a67cc1dc7d277e5db18441已通过Linux CPU/45源文件/独立held门。
+新job12575在08:42:00开始RUNNING，仅一次；等待实际五轨迹及独立payload/FINAL/trace验收，不能提前称通过。
+12535旧源码已可逆hold为JobHeldUser，不得直接放行。
 以下12573/12574运行中、12535普通排队及旧预算均为历史状态，不能作为当前任务。
 用户约02:29入睡，要求本会话持续工作；
 约10:20–10:29才到八小时，不能提前声称已工作八小时。不要新增heartbeat或任务。

@@ -1,0 +1,22 @@
+{
+  "classification": "NATIVE_CPU_DIAGNOSIS_AND_HELPER_EXPORT_VERIFIED_NOT_GPU_OR_EFFECT",
+  "comparator_scope": "torch.equal does not distinguish signed zero; actual GPU acceptance must retain byte equality.",
+  "credential_hits": 0,
+  "exporter_sha256": "dc2872eedadf8dd733890ea873e870765c07adbe330ea0e5602430972e5c6ae6",
+  "protected_markers": 0,
+  "trace_hashes": {
+    "diagnosis/file_trace.log": {
+      "bytes": 79696887,
+      "sha256": "e0432ad9112fc5318a647ff597d384269d5c252cffe53fc3acd90d8aae2bb5e0"
+    },
+    "validation/native.trace": {
+      "bytes": 26156016,
+      "sha256": "4b9d82b0c6cd1f253225b4cc3637666a16630d2db8858349ff66ca0a3aa2f366"
+    },
+    "validation/unit.trace": {
+      "bytes": 12491570,
+      "sha256": "79b68e2c2001da7911ce423f05ecf4ae00d2995ffab374921f454cb45a53c033"
+    }
+  },
+  "validation_source_files": 18
+}

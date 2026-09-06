@@ -1,0 +1,54 @@
+{
+  "EXPORT_VERIFIED.json": {
+    "bytes": 850,
+    "sha256": "fe1433698543f20bf30989c8b14980046f55c7620ab9e4aab79e0876fe796f9a"
+  },
+  "diagnosis/driver.log": {
+    "bytes": 3083,
+    "sha256": "a8d5e5f1971f31d3eb8abd5a1eafb524f19879bc50625f5d32ecb05e91d57a7b"
+  },
+  "diagnosis/exit_status.json": {
+    "bytes": 81,
+    "sha256": "bcb2c2c7fbe5294a80a58c4084320ee76a639e2f54e15c94deb9ad6dd938cfda"
+  },
+  "diagnosis/intent.json": {
+    "bytes": 352,
+    "sha256": "d5a1f9e136fc4654930e4e286ab7d6544293391622b9f44cd29076af1ef07adb"
+  },
+  "diagnosis/resource_usage.txt": {
+    "bytes": 980,
+    "sha256": "902635bd6fb7217913a83c8c771c2a1e43945b1f4c3f7fbe21fe27e39313b1a9"
+  },
+  "diagnosis/result.json": {
+    "bytes": 2898,
+    "sha256": "f5dec024e6d32d15422d4d1849674844c8d0ed55361cf7b4aa57911693ade878"
+  },
+  "validation/INDEPENDENT.json": {
+    "bytes": 1522,
+    "sha256": "ba7e811a397fbb246fc5ca85a624daa88c9e853af48545184750b87fe7041184"
+  },
+  "validation/native-status.json": {
+    "bytes": 83,
+    "sha256": "de8f4d233af90f99a94ab1aa35fdbe05127ed66354cfb4101516d426f3ad9fb1"
+  },
+  "validation/native.log": {
+    "bytes": 933,
+    "sha256": "e3fd984493d895093a080593c508aa864e1d16d30ac305ed44c52e0004a77158"
+  },
+  "validation/result.json": {
+    "bytes": 8407,
+    "sha256": "75cb6581e3016ab259c35df06a69eb19cbcecd0e9272025dc631b743064b75f9"
+  },
+  "validation/source.json": {
+    "bytes": 2307,
+    "sha256": "6d74d63dea87d7edfd83b4bdb3b8feddbfb75d72c6f4dfb7c2a98f1980155041"
+  },
+  "validation/unit-status.json": {
+    "bytes": 83,
+    "sha256": "b3ab95208d9b82083b7d1e5a54128267e1d0561297ec21f0436598bc107ef40a"
+  },
+  "validation/unit.log": {
+    "bytes": 180,
+    "sha256": "193bf1d197e0eed3eedcf94e60aad56637de5d29a2eb09933f2cb0322e864ed6"
+  }
+}

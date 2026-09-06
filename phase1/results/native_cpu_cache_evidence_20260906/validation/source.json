@@ -1,0 +1,24 @@
+{
+  "archive_sha256": "daf72db54eeac849ae29bf4f5590e23cde185d4d8d176d082ea039e8ce37bf69",
+  "commit": "30f179505af15ca81862d5448e820739b76a13c8",
+  "files": {
+    "phase1/global_local_accelerate_checkpoint_gate.py": "53861f0a9e9153ff82b81f4b26c38380427ff5ed57330db0b9e0a75b196305ee",
+    "phase1/global_local_accelerate_resume_validation.py": "db8ffc95695fb6f04a45c39525aa74d477172aba341b08da295757070e82f877",
+    "phase1/global_local_accelerate_update_adapter.py": "444c55726ca00c44dca25833108f6d73054b939463ca85ec287a49e965b40d80",
+    "phase1/global_local_batch_adapter.py": "c1531ccc1b53fc1034c91b413febbf143b981d05610977c2879248eec7677774",
+    "phase1/global_local_cpu_adam_resume.py": "b7b037bfcae04ea10e1185099bf5339f7724d4371f45d562b58ee72944041fc7",
+    "phase1/global_local_critic_session.py": "57cc4b4e8eb023e91f12da5fa53c868cff77224c216c41c59d141c0a01ec6e02",
+    "phase1/global_local_ds_completion.py": "a8f5aa24c5f373bf23463ca08be235401f83e9e7abfe41b5749c571865eb959d",
+    "phase1/global_local_execution_plan.py": "8e3f3cec45d3456dee6f5c9b8ae8f42d58edc6ace1a40a86447dd97731270954",
+    "phase1/global_local_partial_ddp_cpu_validation.py": "b77a7145697ebcc0780455e43aa235908b6e26ce19252caedd016abca9a84b37",
+    "phase1/global_local_token_budget_plan.py": "81802b439739f550b0c4ab7291faa0d99bf896d1ab7f2195bc3b0d28cabf6b10",
+    "phase1/global_local_zero3_padding.py": "994b68a0dff08c3f478e47fce5cdc56ecce61fce298a4f8c9e939f8d49130e1d",
+    "phase1/global_local_zero3_session.py": "124f5c22c3fd8cae631bfa8af19cc82bb624084a0b4b8a53ca8e277c774d5e47",
+    "phase1/scripts/validate_cpu_adam_native_cache_20260906.py": "0f937cfa1d64e06c3139a548507c6fb55b6f7c35b4b7cc164bab0ef046d944d5",
+    "phase1/tests/test_cpu_adam_native_cache.py": "a0f3725442870c6c4578c756c6da07ba5fc385102e6575af4086ccaee87ed1d1",
+    "phase1/tests/test_global_local_zero3_session.py": "f48f1406decced74574f691f6328ff0e67c731facd1df43bccc415a5b89870c9",
+    "phase1/tests/test_zero3_consumed_gradients.py": "77df42ef49b598a33c88e517b7b9a2ce47d246c57812771f1db990d1c13ca729",
+    "phase1/verify_global_local_execution_trace.py": "ced2abcfa084db3a9f6088fca29c2bc07412ad0ab1f44f6b0bb50a8dc92dd689",
+    "phase1/verify_global_local_token_budget_plan.py": "a43965602f8d16dd95ca68130603fdcf1334f880bb89074c3b1701dcf5220a36"
+  }
+}

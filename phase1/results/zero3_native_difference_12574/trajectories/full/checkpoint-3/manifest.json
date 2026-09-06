@@ -1,0 +1,58 @@
+{
+  "binding": {
+    "arm": "G_to_L",
+    "ds_config_sha256": "d889ef6fb21e9d7827e8883e9720aaab5001721de18af575157d881aa8297945",
+    "initial_optimizer_groups_sha256": "fd0e16f7eddf2265ef9d77ff8198c3626802371789df43dcc3ec1892ed1616d2",
+    "input_sha256": "ea30ee7b62bc364cc6f39d47f987bb11b2da9319b0a3f0cedecaa2e3dc1bc43e",
+    "model_schema_sha256": "132e6c60b5dbc09ba72c722119d8d2ebaaedc1398d8b1ee3f1f2526d21f52e5d",
+    "plan_sha256": "70df48399c7e26550e85354fc6905cba265cd135051f9c7513c6f97e5ed2f0ce",
+    "protocol": "critic-zero3-session-v1",
+    "runtime_sha256": "af4c153663f023c2bbdb73088790b08b4a798abf674b0720c472345f46c37b81",
+    "seed": 6,
+    "source_sha256": "3ebe541ae6d0dd22f09b8c69ec1ba343aece735b85b4e091515557f438bdbbc0",
+    "total_steps": 4,
+    "training_contract_sha256": "d472b81c7125f3f34dc2b42a341966e79512f9bf8bb0b678115dd66c08b784fe",
+    "world": 2
+  },
+  "completed_steps": 3,
+  "cumulative_valid_tokens": 152,
+  "files": {
+    "observed_0.json": {
+      "bytes": 1736,
+      "sha256": "6a4fab9f46d1f7576ec6b41b6f283ad44908d7d11d35b5f8df2290c1513fd4c6"
+    },
+    "observed_1.json": {
+      "bytes": 1736,
+      "sha256": "7fd2183be6ff74822a71c7654d75ec1843d298f7df9460873da3a24d1b8ae047"
+    },
+    "pytorch_model/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt": {
+      "bytes": 30565,
+      "sha256": "0c7b18fccfa7643d511beb08cefd290b27a1d89b54bbd18f0a4347bbbcaf3716"
+    },
+    "pytorch_model/bf16_zero_pp_rank_1_mp_rank_00_optim_states.pt": {
+      "bytes": 30565,
+      "sha256": "9eea5a3c3781141744cf07eb4948e76ddf00b0abb73fa84ef1c6fa5fd4b18d84"
+    },
+    "pytorch_model/zero_pp_rank_0_mp_rank_00_model_states.pt": {
+      "bytes": 10561,
+      "sha256": "5932865d81959b7f69c8979d6540640fdadeb257c6f7ccfddc6ae3b1c9b041b3"
+    },
+    "pytorch_model/zero_pp_rank_1_mp_rank_00_model_states.pt": {
+      "bytes": 10561,
+      "sha256": "6cf259ac0afde3c3d3d21a80dd01eb14d4c3b5a40c3640fc8c04069846920ad6"
+    },
+    "random_states_0.pkl": {
+      "bytes": 15017,
+      "sha256": "306904793526b94bf327834e1a03b574561de7e8bffc391516affa4d51d52e19"
+    },
+    "random_states_1.pkl": {
+      "bytes": 15017,
+      "sha256": "08539d4b1c9ee0d3ebfa406033983c8a8cf1193446b7b28c219fd572cb73968d"
+    },
+    "zero_to_fp32.py": {
+      "bytes": 34918,
+      "sha256": "2859057b959683c8aff715cec1691c9c46bf75b14859003202f561df2be3b1fb"
+    }
+  },
+  "protocol": "critic-zero3-checkpoint-v1"
+}

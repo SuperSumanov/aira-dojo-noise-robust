@@ -1,0 +1,4 @@
+[2026-09-06 08:28:13,142] [WARNING] [real_accelerator.py:199:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+W0906 08:28:56.921000 2955891 /research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/torch/utils/cpp_extension.py:140] No CUDA runtime is found, using CUDA_HOME='/research/d7/spc/yzyang4/private-cuda128-toolchain-20260906/prefix'
+Warning: The cache directory for DeepSpeed Triton autotune, /research/d7/spc/yzyang4/cpu-adam-native-cache-validation-20260906/triton, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+{"status": "REAL_NATIVE_CPUADAM_HELPER_AB_VALIDATION_NOT_GPU_OR_EFFECT", "cases": 8, "receipt_sha256": "75cb6581e3016ab259c35df06a69eb19cbcecd0e9272025dc631b743064b75f9"}

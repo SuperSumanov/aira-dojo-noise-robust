@@ -1,0 +1,44 @@
+{
+  "cases": 8,
+  "checker_sha256": "2012a07cf2732f450aff77e9e69a09a1a3dc89921ca30a5f46a629730c5c2db9",
+  "credential_hits": 0,
+  "gpu_jobs": 0,
+  "original_file_hashes": {
+    "native-status.json": {
+      "bytes": 83,
+      "sha256": "de8f4d233af90f99a94ab1aa35fdbe05127ed66354cfb4101516d426f3ad9fb1"
+    },
+    "native.log": {
+      "bytes": 933,
+      "sha256": "e3fd984493d895093a080593c508aa864e1d16d30ac305ed44c52e0004a77158"
+    },
+    "native.trace": {
+      "bytes": 26156016,
+      "sha256": "4b9d82b0c6cd1f253225b4cc3637666a16630d2db8858349ff66ca0a3aa2f366"
+    },
+    "result.json": {
+      "bytes": 8407,
+      "sha256": "75cb6581e3016ab259c35df06a69eb19cbcecd0e9272025dc631b743064b75f9"
+    },
+    "source.json": {
+      "bytes": 2307,
+      "sha256": "6d74d63dea87d7edfd83b4bdb3b8feddbfb75d72c6f4dfb7c2a98f1980155041"
+    },
+    "unit-status.json": {
+      "bytes": 83,
+      "sha256": "b3ab95208d9b82083b7d1e5a54128267e1d0561297ec21f0436598bc107ef40a"
+    },
+    "unit.log": {
+      "bytes": 180,
+      "sha256": "193bf1d197e0eed3eedcf94e60aad56637de5d29a2eb09933f2cb0322e864ed6"
+    },
+    "unit.trace": {
+      "bytes": 12491570,
+      "sha256": "79b68e2c2001da7911ce423f05ecf4ae00d2995ffab374921f454cb45a53c033"
+    }
+  },
+  "protected_path_marker_hits": 0,
+  "scope": "CPU vector comparisons use torch.equal, which does not distinguish signed zero; strict payload-byte equality remains required in actual GPU trial.",
+  "source_files": 18,
+  "status": "NATIVE_CACHE_CPU_AB_VERIFIED_WITH_SCOPE_LIMIT"
+}

@@ -1,0 +1,24 @@
+Command exited with non-zero status 1
+	Command being timed: "/usr/bin/strace -f -qq -e trace=%file -o /research/d7/spc/yzyang4/critic-zero3-engineering/job-12574/file_trace.log timeout --kill-after=60s 720s /research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/bin/python -B -m phase1.scripts.validate_zero3_3090_20260906 --output /research/d7/spc/yzyang4/critic-zero3-engineering/job-12574/trajectories --source-root /research/d7/spc/yzyang4/worktrees/critic-g0-final-only-20260903-b"
+	User time (seconds): 177.55
+	System time (seconds): 110.97
+	Percent of CPU this job got: 151%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:10.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 2240508
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 6981
+	Minor (reclaiming a frame) page faults: 4853448
+	Voluntary context switches: 8868344
+	Involuntary context switches: 576
+	Swaps: 0
+	File system inputs: 1731640
+	File system outputs: 644736
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

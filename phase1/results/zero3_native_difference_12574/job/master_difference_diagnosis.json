@@ -1,0 +1,68 @@
+{
+  "gpu_initialized": false,
+  "job_id": "12574",
+  "manifests": {
+    "trajectories/full/checkpoint-2": "26322dac875e0fc64ccc33ed35ac024fe35129f2f9dbb37fd278489a9aeacc8b",
+    "trajectories/full/checkpoint-3": "9230cdf76f6b13efe841679fd16b6c5f0275364655509b9d578d15926cc09342",
+    "trajectories/full/checkpoint-4": "b5099e845e101dd7f510dfbff0f36f4fc48430b3daac2293807bdc06bd93d24a",
+    "trajectories/prefix2/checkpoint-2": "26322dac875e0fc64ccc33ed35ac024fe35129f2f9dbb37fd278489a9aeacc8b",
+    "trajectories/resume2/checkpoint-3": "b105a1b00d1f32248b5e12e4f7fe7fe3b2bb376314723bfec014f280deeb2d45",
+    "trajectories/resume2/checkpoint-4": "70704a16f0bc667b7e49256b38263c228ec0f43ff6e8fe34f7708d6f20d30a26"
+  },
+  "rows": [
+    {
+      "changed_tensors": [
+        {
+          "different_elements": 214,
+          "elements": 2217,
+          "field": "/optimizer_state_dict/fp32_flat_groups/0",
+          "max_absolute_difference": 3.725290298461914e-09,
+          "max_bfloat16_difference": 0.0
+        }
+      ],
+      "rank": 0,
+      "step": 3
+    },
+    {
+      "changed_tensors": [
+        {
+          "different_elements": 303,
+          "elements": 2217,
+          "field": "/optimizer_state_dict/fp32_flat_groups/0",
+          "max_absolute_difference": 3.725290298461914e-09,
+          "max_bfloat16_difference": 0.0
+        }
+      ],
+      "rank": 0,
+      "step": 4
+    },
+    {
+      "changed_tensors": [
+        {
+          "different_elements": 159,
+          "elements": 2217,
+          "field": "/optimizer_state_dict/fp32_flat_groups/0",
+          "max_absolute_difference": 3.725290298461914e-09,
+          "max_bfloat16_difference": 0.0
+        }
+      ],
+      "rank": 1,
+      "step": 3
+    },
+    {
+      "changed_tensors": [
+        {
+          "different_elements": 226,
+          "elements": 2217,
+          "field": "/optimizer_state_dict/fp32_flat_groups/0",
+          "max_absolute_difference": 3.725290298461914e-09,
+          "max_bfloat16_difference": 0.0
+        }
+      ],
+      "rank": 1,
+      "step": 4
+    }
+  ],
+  "source_sha256": "ada4b5df3f45985de42e4942c2a5842e1b6ce3a1075a034a4e20c67396dfd124",
+  "status": "ACTUAL_MASTER_DIFFERENCE_DIAGNOSIS_NOT_ACCEPTANCE"
+}

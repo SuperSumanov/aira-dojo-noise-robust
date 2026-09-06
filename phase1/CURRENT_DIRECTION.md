@@ -16,6 +16,11 @@ CPU判等为torch.equal，不区分signed zero；不能据此替代GPU严格fing
 12574已FAILED199秒，原controller/audit/CPU诊断均完成；不得跑其payload验收或FINAL。
 12535为PENDING/JobHeldUser，旧源码已知错误，禁止直接release；可逆hold不等于取消或修改原配置。
 673语料/WL已完成，ADMITTED_RELEASES仍空，没有四fit或模型/scaling收益。用户工作窗口仍到约10:20–10:29。
+08:43实际核验：新job12575已在08:42:00于gpu28启动，source1c211b87880a1110e3a67cc1dc7d277e5db18441。
+Linux CPU准备、45源文件绑定、独立held检查均通过；当前RUNNING，不能提前称真实恢复通过。
+本次云盘根目录核验仍最新0904、无0905，未读payload；只代表元数据视角。
+12574失败原始34安全文件及CPU诊断/验证14文件已逐字节导入，分别见results/zero3_native_difference_12574
+和results/native_cpu_cache_evidence_20260906。原audit/export/import均完成，不得重跑exclusive路径。
 
 ## 0L76. 2026-09-06：真实恢复比较仍失败，进入CPUAdam原生状态诊断
 

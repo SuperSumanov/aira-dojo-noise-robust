@@ -3,6 +3,16 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L85. 2026-09-07：计算节点compiler实测通过，R3待构建
+
+R2 job12638在1秒内被login/node编译器hash差异拦下，未进入完整构建；证据保留。
+专用诊断12639在gpu37实际COMPLETED/5秒，显式g++13.3.0完成sm120对象编译。
+R3固定这个实际节点compiler SHA52f1ddb33fe78b9441e0f42e9cd22c571f1101938e046c8a26582494e041cc73，
+不是放宽哈希门；新专属目录，保持原模型/科学配置。费用7297+2760+3840=13897≤14400GPU秒。
+FA2全量构建、两卡数值验收和正式尺寸仍未通过，四fit未启动；详见FA2_REPAIR_PREFLIGHT_20260907.md。
+同时准备只读固定84run归档headers的已有预测文件可用性检查，探查能否通过新pristine评分补历史evaluator缺口。
+只查header、无payload/label读取、不执行评分，不把“文件存在”当完整来源资格；保护cohort不动。
+
 ## 0L84. 2026-09-07：FA2 host compiler修复通过CPU编译门，R2待提交
 
 12577缺FA2之后的12635已FAILED：保留1卡/4CPU运行89秒，nvcc默认gcc无法启动cc1plus。

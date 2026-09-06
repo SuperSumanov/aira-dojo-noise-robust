@@ -11,10 +11,10 @@ import sys
 import time
 
 BASE = Path('/research/d7/spc/yzyang4')
-ROOT = BASE / 'flash-attn-build-20260907-r2'
+ROOT = BASE / 'flash-attn-build-20260907-r3'
 RUNTIME = BASE / 'venvs/critic-blackwell-g0-20260905-r5'
 HOST_CXX = '/usr/bin/g++'
-HOST_SHA = '1353e9bdd29a7295c7226bf6c63abccce056d8cac31f112e5cdbecc3f28c2769'
+HOST_SHA = '52f1ddb33fe78b9441e0f42e9cd22c571f1101938e046c8a26582494e041cc73'
 SDIST_SHA = '1e71dd64a9e0280e0447b8a0c2541bad4bf6ac65bdeaa2f90e51a9e57de0370d'
 WHEEL_SHA = '708e7481cc80179af0e556bbf0cc00b8444c7321e2700b8d8580231d13017248'
 

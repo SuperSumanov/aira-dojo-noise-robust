@@ -32,7 +32,7 @@ def test_unsafe_compiler_tag_rejected(tag):
 
 
 def test_new_attempt_preserves_old_build():
-    assert m.ROOT.name=='flash-attn-build-20260907-r2'
+    assert m.ROOT.name=='flash-attn-build-20260907-r3'
     source=Path(m.__file__).read_text()
     assert 'CC=HOST_CXX, CXX=HOST_CXX, NVCC_CCBIN=HOST_CXX' in source
     assert "FLASH_ATTN_CUDA_ARCHS='120'" in source

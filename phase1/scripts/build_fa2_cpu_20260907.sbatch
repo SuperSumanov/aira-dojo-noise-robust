@@ -6,8 +6,8 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --gres=gpu:1
-#SBATCH --nodelist=gpu28
-#SBATCH --mem=24G
+#SBATCH --nodelist=gpu37
+#SBATCH --mem=0
 #SBATCH --time=00:40:00
 #SBATCH --exclude=projgpu7,projgpu8,projgpu33,gpu36,gpu38
 #SBATCH --no-requeue

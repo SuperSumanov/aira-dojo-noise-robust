@@ -1,5 +1,11 @@
 # FA2缺失修复：固定环境、独立附加目录
 
+调度校正：12634未启动，因节点RealMemory=1占位值与24GiB请求冲突，处于BadConstraints。
+本轮自行scontrol hold后，Slurm19.05写入JobHeldAdmin；release被拒，未尝试修改priority或越权解除。
+已取消我方这个从未启动的作业，保留0秒记录。后继改为已核验空闲ubuntu24节点gpu37、mem=0，
+同样保留1卡/4CPU/40min；从新的提交目录重新创建user-held作业，避免重复排队。
+mem=0是本集群已有作业的调度方式，不声称得到了24GiB内存硬限额；编译并发仍固定2×2。
+
 第二项调度实证：gpu_24h/gpu拒绝0GPU请求（QOSMinGRES），仍未产生job。
 最终后继遵守最少GPU规则，申请gpu28一张卡并**按占卡时间计费**；编译仍纯CPU、不创建CUDA context。
 矩阵为1保留GPU/4CPU/24GiB/40min，保守2760GPU秒（含300秒退出与60秒余量），不把未执行kernel当免费。

@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-07
 
-**Dynamic status timestamp:** 2026-09-07 02:37 Asia/Hong_Kong (remote status UTC 09-06 18:37:11)
+**Dynamic status timestamp:** 2026-09-07；当前停机状态见0L86，较早02:37动态状态已覆盖。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,21 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-07 当前入口，覆盖下文所有历史动态状态
+
+最新CURRENT_DIRECTION 0L86：远端SSH返回pam_nologin系统停机；不得绕过，R3准备/提交和header诊断上传均未执行。
+12635FAILED89秒(cc1plus)；12638FAILED1秒(login/node compiler hash不同)；12639COMPLETED5秒，
+实际gpu37 /usr/bin/g++13.3.0 SHA52f1ddb33fe78b9441e0f42e9cd22c571f1101938e046c8a26582494e041cc73，sm120对象编译成功。
+固定新构建commit34343b8ff7dbe4107ccced6781df627afce7c988；目录flash-attn-build-20260907-r3尚未准备。
+本地tmp/prepare_fa2_r3_20260907.py和submit_fa2_r3_20260907.py已上传/tmp；运行被登录限制拒绝。
+本地tmp/run_historical_saved_headers_20260907.py上传失败，尚不在远端；固定84run/24归档A/B header-only待做。
+先恢复后只读核对目录/队列/终态；不重投12635/12638/12639，不release12535。
+Linux15项CPU检查通过；FA2完整构建/两GPU数学/1.7B尺寸均未过。费用实际7297，后续保守合计13897≤14400GPU秒。
+数据独立核验完成：84run/12commit/9代码清单/24strata；每stratum1组件、12种同task配置组合均有非commit差异。
+不要误加“train/dev必须同配置”门；跨配置开发有不同estimand，仍必须满足完整experiment/evaluator/来源与隔离，不能冒充同配置scaling。
+私有投影留远端，不下载；新安全原始回执因停机未复制。结果目录fa2_host_compiler_20260907仅终端观测整理。
+本轮没有修改学长branch、读保护cohort、启动效果四fit、刷新共享盘语料或创建monitor。
+
+下文0L83仅作历史：
 
 最新覆盖CURRENT_DIRECTION 0L83。学长说大多数snapshot已删除，metadata.git_commit_id可用；
 独立核验固定84候选run对应12commit全部Git可读，不再等待24物理snapshot恢复已提交代码。

@@ -1,0 +1,36 @@
+{
+  "classification": "SESSION_TERMINAL_OBSERVATIONS_NOT_BYTEWISE_REMOTE_EXPORT",
+  "observation_date_hong_kong": "2026-09-07",
+  "jobs": [
+    {"job_id": "12635", "state": "FAILED", "exit_code": "1:0", "elapsed_seconds": 89, "reserved_gpus": 1, "failure": "default gcc cannot execute cc1plus during nvcc compilation"},
+    {"job_id": "12638", "state": "FAILED", "exit_code": "1:0", "elapsed_seconds": 1, "reserved_gpus": 1, "failure": "login-host compiler hash differs from gpu37; stopped before full build"},
+    {"job_id": "12639", "state": "COMPLETED", "exit_code": "0:0", "elapsed_seconds": 5, "reserved_gpus": 1, "scope": "CPU-only CUDA object compilation inside reserved allocation, no model or CUDA context"}
+  ],
+  "node_compiler": {
+    "node": "gpu37",
+    "path": "/usr/bin/g++",
+    "resolved_path": "/usr/bin/x86_64-linux-gnu-g++-13",
+    "version": "13.3.0",
+    "package_version": "Ubuntu 13.3.0-6ubuntu2~24.04",
+    "sha256": "52f1ddb33fe78b9441e0f42e9cd22c571f1101938e046c8a26582494e041cc73",
+    "cuda_arch": "sm_120",
+    "object_sha256": "3c670edcdc39b8ccd4fa2f3df874fd11181319b39fb8a273591e54621425d106",
+    "compile_returncode": 0
+  },
+  "cpu_tests": {"code_commit": "e5938f8a76bee74a9fcd6fc78e66a6a4f33d698a", "linux_passed": 15, "linux_skipped": 0},
+  "build_ready_commit": "34343b8ff7dbe4107ccced6781df627afce7c988",
+  "r3_submitted": false,
+  "r3_preparation_started": false,
+  "connection_blocker": "pam_nologin: System is going down. Unprivileged users are not permitted to log in anymore.",
+  "prior_actual_gpu_seconds": 7297,
+  "next_build_upper_gpu_seconds": 2760,
+  "future_pivot_shape_upper_gpu_seconds": 3840,
+  "combined_reserved_gpu_seconds": 13897,
+  "approved_engineering_envelope_gpu_seconds": 14400,
+  "full_fa2_build_passed": false,
+  "gpu_fa2_kernel_check_passed": false,
+  "pivot_size_accepted": false,
+  "effect_fits_started": 0,
+  "protected_cohort_reads": 0,
+  "senior_branch_modified": false
+}

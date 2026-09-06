@@ -1,0 +1,38 @@
+{
+  "SUMMARY.json": {
+    "bytes": 828,
+    "sha256": "3019313ba58dc773a52b61e7b88cb2c215602662249b98f9e198befbab700fb1"
+  },
+  "cpu-tests.log": {
+    "bytes": 261,
+    "sha256": "39e58221eae50f4d59da11a26dad7a0023e20383e9e6b1dae07a0aaea62a334f"
+  },
+  "failed-011203133764.stderr": {
+    "bytes": 404,
+    "sha256": "fe6d22c43d9b6778ace6ad137c40a55cc46a8fd8f9124ef13d268896773c1cf9"
+  },
+  "failed-011203133764.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prepare_intent.json": {
+    "bytes": 185,
+    "sha256": "d160b1f1b56e4763693c12657068d02e00e6020680cffb81d564d90a459042c0"
+  },
+  "runtime-plan.json": {
+    "bytes": 4055,
+    "sha256": "b76621fb2958b1d97f37ca854feb2148c020799b57ca62f58d72368b86c20b81"
+  },
+  "runtime-plan.log": {
+    "bytes": 3837,
+    "sha256": "f7950300fda2ef6ce8828f253140e6f88516b6560a305e6d6dd1139a97fa3f42"
+  },
+  "space-probe-released.json": {
+    "bytes": 65,
+    "sha256": "424e456524846c1e54dbbf3d5a6b067b6c9625a3d46897c33ab7b61328ef04c1"
+  },
+  "space-probe.json": {
+    "bytes": 386,
+    "sha256": "52ccb081fd39ecc54a09c47d9ccc0a4ee6671fa9091ff7876da918ead81471d3"
+  }
+}

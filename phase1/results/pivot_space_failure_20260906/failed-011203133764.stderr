@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/research/d7/spc/yzyang4/worktrees/critic-pivot-shape-ef19d100ac6c/phase1/pivot_checkpoint_space.py", line 35, in probe
+    if not passed:raise ValueError('full_checkpoint_capacity_probe_failed')
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: full_checkpoint_capacity_probe_failed

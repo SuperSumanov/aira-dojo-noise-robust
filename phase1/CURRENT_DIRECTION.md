@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L80. 2026-09-06：新尺寸准备被真实研究盘配额阻断，未提交GPU
+
+0L79的tiny验收维持有效。新1.7B/16K shape source ef19d100ac6cb1a747c332eb1b8596051f47a695
+在实际Linux环境通过160项CPU检查及官方模型完整哈希/运行时验证；但UTC01:12:03的64GiB真实空间分配
+收到EDQUOT(errno122)。68719476736 bytes请求实际分配0；只删除本次自建的空probe inode，没有清理用户资产。
+submission-20260906未产生READY、SUBMISSION_INTENT或SUBMITTED，没有新GPU job。原exclusive准备已失败结束，
+不得原地重复运行、直接sbatch或放行旧12535绕过空间门。只能实际解决容量后登记新的准备路径再复核。
+原始10文件见results/pivot_space_failure_20260906，manifest SHA6475b8bab8ff24ab4ab48287c5625f6a1944ccd3b1d173355a95afa47d3cc134。
+只读排查63个旧checkout候选，仅4个满足干净旧祖先条件；3123566361是tracked Git blob bytes，不是可回收空间证明。
+未做清理，不能以整盘df剩余或官方1TB总额度宣称已有64GiB可用；官方项目存储到期2026-09-29。
+
+并行准备可选的同批候选请求冻结层：在任何生成调用前锁定全批请求，隔离动态journal/parent/config污染。
+目前仅本地合成与原improve_op AST桥接检查通过；未接入默认AIRA、未运行API/真实MLE任务、没有新ranking或搜索收益。
+ADMITTED_RELEASES仍空，四fit仍未启动。来源资格和空间是两个独立阻塞，修好其一不能替代另一个。
+673/960与冻结WL覆盖673维持，不揭盲；学长b8d0951/云盘最新0904的安全元数据检查尚无新来源。
+
 ## 0L79. 2026-09-06：tiny真实恢复正式验收，准备正式尺寸工程接入
 
 12575九checkpoint、十二项实际payload比较与三份最终模型独立读出全部通过；原enum检查器失败原样保留。

@@ -1,0 +1,20 @@
+{
+  "actual_allocated_bytes": 0,
+  "classification": "PIVOT_PREPARATION_STOPPED_BEFORE_SUBMISSION_STORAGE_QUOTA",
+  "clean_old_ancestor_copies": 4,
+  "clean_tracked_git_blob_bytes_not_free_space": 3123566361,
+  "new_gpu_jobs": 0,
+  "old_checkout_candidates": 63,
+  "other_files_deleted": 0,
+  "quota_rpc_not_available_in_prior_readonly_diagnostic": true,
+  "real_corpus_reads": 0,
+  "real_linux_cpu_tests_passed": 160,
+  "requested_bytes": 68719476736,
+  "source_commit": "ef19d100ac6cb1a747c332eb1b8596051f47a695",
+  "source_qualification_or_method_effect": false,
+  "space_error_errno": 122,
+  "storage_permission_expiry": "2026-09-29",
+  "temporary_probe_inode_removed": true,
+  "worktree_candidate_inventory_sha256": "be619ca12556d28275b32fcae497372b4ad7dbd2950f20b0aa17e4d2058bedc4",
+  "worktree_cleanup_performed": false
+}

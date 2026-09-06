@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-06
 
-**Dynamic status timestamp:** 2026-09-06 08:36 Asia/Hong_Kong (clock verified 08:35:59)
+**Dynamic status timestamp:** 2026-09-06 09:31 Asia/Hong_Kong (clock verified 09:31:29)
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -11,10 +11,15 @@
 
 ## 2026-09-06 当前入口，覆盖下文所有历史动态状态
 
-最新覆盖：CURRENT_DIRECTION 0L79，12575已完成独立payload/FINAL/trace/只读全部验收，不能再等或重跑。
+最新覆盖：CURRENT_DIRECTION 0L80。新1.7B/16K shape准备已因64GiB实际分配EDQUOT停止，未提交GPU。
+source ef19d100ac6cb1a747c332eb1b8596051f47a695；160项真实Linux CPU及模型哈希门通过，但空间门没有通过。
+原submission-20260906是完成的失败路径，不重跑、不手工绕过。只清理自己的空probe，没有清理其他资产。
+证据results/pivot_space_failure_20260906；正式四fit仍因来源未准入而不能启动。
+12575已完成独立payload/FINAL/trace/只读全部验收，不能再等或重跑。
 终端SHA14dae4dbc7e1497695d1081517a1603833f4a6f97bd8ac3d534b5e0debdffaa2，原失败检查器证据保留。
-新pivot shape代码准备中（尚未提交）：实际1.7B/16K/2PRO6000、64GiB实际分配、26min单作业；纯合成token/目标，
-G更新保存→新进程恢复L更新保存；不读真实数据，不是四fit/源准入/方法收益。12535保持held。
+新pivot shape代码已发布、准备失败（不是排队）：实际1.7B/16K/2PRO6000、26min单作业；纯合成token/目标，
+目标为G更新保存→新进程恢复L更新保存，但尚未发生。不读真实数据，不是四fit/源准入/方法收益。12535保持held。
+可选frozen_candidate_requests原型正在本地核对，仅请求准备，无默认solver修改、API或GPU。
 以下08:36/08:43的12575运行中状态已由上面终态覆盖。
 
 先fetch并读CURRENT_DIRECTION顶部0L77及以后。12573、12574均FAILED，禁止重跑旧controller或FINAL。

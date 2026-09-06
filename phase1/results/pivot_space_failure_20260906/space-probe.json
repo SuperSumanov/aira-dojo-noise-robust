@@ -1,0 +1,16 @@
+{
+  "actual_size": 0,
+  "allocated_bytes": 0,
+  "classification": "OWN_FULL_CHECKPOINT_CAPACITY_PROBE_NOT_FUTURE_GUARANTEE",
+  "device": 128,
+  "error": {
+    "errno": 122,
+    "type": "OSError"
+  },
+  "inode": 183064212442,
+  "other_files_removed": 0,
+  "own_inode_to_be_removed": true,
+  "passed": false,
+  "requested_bytes": 68719476736,
+  "utc": "2026-09-06T01:12:03.113460+00:00"
+}

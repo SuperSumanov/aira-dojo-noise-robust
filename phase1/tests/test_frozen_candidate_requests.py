@@ -117,3 +117,22 @@ def test_invalid_binding_seed_and_sink_rejected_before_events():
                     replace(batch,requests=(batch.requests[0],replace(batch.requests[1],preparation_seed=[])))):
         with pytest.raises(FrozenRequestError):GenerationOnlyBatch(invalid,durable_event=lambda e:None)
     with pytest.raises(FrozenRequestError):GenerationOnlyBatch(batch,durable_event=None)
+
+
+def test_concurrent_dispatch_does_not_duplicate_the_batch():
+    import threading
+    batch,_,_=fixture()
+    runner=GenerationOnlyBatch(batch,durable_event=lambda e:None)
+    start=threading.Barrier(3)
+    calls=[]; statuses=[]
+    def query(*args,**kwargs):calls.append(1);return 'synthetic',{}
+    def attempt():
+        start.wait(timeout=5)
+        try:runner.generate(query=query);statuses.append('completed')
+        except FrozenRequestError:statuses.append('rejected')
+    workers=[threading.Thread(target=attempt) for _ in range(2)]
+    for worker in workers:worker.start()
+    start.wait(timeout=5)
+    for worker in workers:worker.join(timeout=5)
+    assert not any(w.is_alive() for w in workers)
+    assert sorted(statuses)==['completed','rejected'] and len(calls)==3

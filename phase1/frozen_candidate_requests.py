@@ -58,7 +58,7 @@ def wire(messages, generation_kwargs):
                           ('presence_penalty',-2,2),('frequency_penalty',-2,2)):
         if key in generation_kwargs:
             value = generation_kwargs[key]
-            require(type(value) in (int,float) and math.isfinite(value) and low <= value <= high
+            require(type(value) in (int,float) and low <= value <= high and math.isfinite(value)
                     and (key != 'top_p' or value > 0), 'decoding_range_contract')
     require('seed' not in generation_kwargs or type(generation_kwargs['seed']) is int
             and 0 <= generation_kwargs['seed'] < 2**32, 'decoding_seed_contract')
@@ -172,10 +172,12 @@ an exactly-once remote service or a budget/deadline enforcement layer.
         self.events = durable_event
         self.started = False
         self.completed = False
+        self._attempt_lock = threading.Lock()
 
     def generate(self, *, query):
-        require(not self.started, 'batch_already_attempted_no_automatic_retry')
-        self.started = True
+        with self._attempt_lock:
+            require(not self.started, 'batch_already_attempted_no_automatic_retry')
+            self.started = True
         self.events({'event': 'BATCH_LOCKED', 'batch_sha256': self.batch.sha256, 'receipt': self.batch.receipt()})
         outputs = []
         for r in self.batch.requests:

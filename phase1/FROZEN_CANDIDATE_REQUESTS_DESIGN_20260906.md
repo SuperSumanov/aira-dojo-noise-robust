@@ -37,7 +37,10 @@ improve_op、JinjaPrompt及GenericLLM.__call__，只把client替换为无网络�
 它比较三个既有complexity分支的实际messages/解码kwargs。首轮实际Linux检查30通过/3失败：
 三项原生桥接均在可选provider SDK litellm缺失处停止，未执行到请求比较。此失败原样保留。
 后续在测试拥有的client边界提前替换factory import，仍执行原生算子、Jinja和GenericLLM.__call__，
-不安装SDK、不调用真实factory；该测试从不声称provider SDK/routing已经验收。修订后仍待远端执行。
+不安装SDK、不调用真实factory；该测试从不声称provider SDK/routing已经验收。
+修订后的3f346a9远端检查仍失败：无网络审计记录一次socket.bind并拒绝，pytest_rc=1；
+原始回执保留在/tmp/frozen-request-native-3f346a9b92ba，不算原生桥接通过。
+后续本地范围/并发保护检查通过，但Windows原生桥接仍缺OmegaConf，不能替代Linux验收。
 该检查也明确保留接口差别：此层返回原始usage，未提供GenericLLM的cumulative_num_llm_calls包装。
 原模板写死1RTX3090/6CPU；测试匹配这些字面值不代表未来agent实际资源已匹配。
 

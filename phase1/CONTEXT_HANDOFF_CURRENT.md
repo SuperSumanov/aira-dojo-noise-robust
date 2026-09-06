@@ -11,6 +11,12 @@
 
 ## 2026-09-06 当前入口，覆盖下文所有历史动态状态
 
+最新覆盖：CURRENT_DIRECTION 0L79，12575已完成独立payload/FINAL/trace/只读全部验收，不能再等或重跑。
+终端SHA14dae4dbc7e1497695d1081517a1603833f4a6f97bd8ac3d534b5e0debdffaa2，原失败检查器证据保留。
+新pivot shape代码准备中（尚未提交）：实际1.7B/16K/2PRO6000、64GiB实际分配、26min单作业；纯合成token/目标，
+G更新保存→新进程恢复L更新保存；不读真实数据，不是四fit/源准入/方法收益。12535保持held。
+以下08:36/08:43的12575运行中状态已由上面终态覆盖。
+
 先fetch并读CURRENT_DIRECTION顶部0L77及以后。12573、12574均FAILED，禁止重跑旧controller或FINAL。
 12574完成full/prefix2/resume2及六checkpoint，但FP32 master最终差异最大3.725290298461914e-09，严格验收失败。
 真实CPUAdam诊断找到未序列化native beta-power缓存；生产helper已过A/B八case独立验证，仍不能替代GPU逐字节验证。

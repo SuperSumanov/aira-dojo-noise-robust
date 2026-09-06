@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L79. 2026-09-06：tiny真实恢复正式验收，准备正式尺寸工程接入
+
+12575九checkpoint、十二项实际payload比较与三份最终模型独立读出全部通过；原enum检查器失败原样保留。
+R2检查源码c3eb1d546ac5314a8685bc692817b6cfde534c68，终端检查源码30a507d26478a7819ae8469d872a8a7651719d80。
+TERMINAL_VERIFIED SHA=14dae4dbc7e1497695d1081517a1603833f4a6f97bd8ac3d534b5e0debdffaa2；129原始文件只读，
+45训练源文件、26复核源文件及九manifest/81成员重核。严格字节比较不放宽，原始大trace/checkpoint留远端。
+这是4433参数的实际ZeRO3工程通过，不是1.7B、16K或模型/scaling收益。原12575/controller/postcheck均结束，不得重跑。
+
+接下来按新独立授权矩阵PIVOT_ZERO3_SHAPE_PREFLIGHT_20260906.md，准备唯一1.7B-Base/16K、2PRO6000、
+2×8×8、seed6、26min有界合成尺寸验收。原生产factory与新consumer，G更新/保存→全新进程恢复/L更新/保存。
+不读取任何真实语料或dev/test，不把合成token当实际代码编码资格；不是四fit，也不额外声称本尺寸不中断最终等价。
+提交前实际64GiB分配（初稿44GiB只覆盖优化器下界，尚未执行即修正）；失败不清理用户资产、不提交GPU。
+前序13工程job实际7006GPU秒，新增保守3840，组合10846≤14400；无自动重试/降batch/attention fallback。
+尚未提交新尺寸job，12535继续held/旧源码不放行；ADMITTED_RELEASES仍空，来源事实仍等学长补齐。
+语料673/960、closure=false，冻结WL覆盖673已完成；不揭盲，未得到新的方法收益。
+
 ## 0L78. 2026-09-06：五条GPU轨迹完成，独立payload检查器enum覆盖待修正
 
 12575 source1c211b87880a1110e3a67cc1dc7d277e5db18441 COMPLETED271秒/542GPU秒，五轨迹/九checkpoint，

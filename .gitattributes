@@ -538,3 +538,4 @@ phase1/results/zero3_native_difference_12574/README.md text eol=lf diff
 phase1/results/zero3_native_difference_12574/job/driver.log -whitespace
 phase1/results/native_cpu_cache_evidence_20260906/** -text diff
 phase1/results/native_cpu_cache_evidence_20260906/README.md text eol=lf diff
+phase1/scripts/pivot_zero3_shape_20260906.sbatch text eol=lf diff

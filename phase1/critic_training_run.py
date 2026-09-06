@@ -85,8 +85,9 @@ def run_session(session, fit, output, *, stop_after, checkpoint_steps,
         output.mkdir(mode=0o700)
     c.accelerator.wait_for_everyone()
     started = time.monotonic()
+    restore_receipt = None
     if resume is not None:
-        session.restore(Path(resume), manifest_sha256=resume_manifest_sha256)
+        restore_receipt = session.restore(Path(resume), manifest_sha256=resume_manifest_sha256)
     start = c.completed_steps
     require(start < stop_after, 'training_no_new_updates')
     require(all(s > start for s in checkpoint_steps), 'training_save_schedule_before_resume')
@@ -102,6 +103,7 @@ def run_session(session, fit, output, *, stop_after, checkpoint_steps,
         'start_step': start, 'stop_step': stop_after, 'full_plan_steps': c.plan.steps,
         'checkpoint_steps': list(checkpoint_steps),
         'resume_manifest_sha256': resume_manifest_sha256,
+        'restore_receipt': restore_receipt,
         'dev_or_test_reader_present': False,
     }
     atomic_json(output/f'rank_{c.rank}_context.json', header)

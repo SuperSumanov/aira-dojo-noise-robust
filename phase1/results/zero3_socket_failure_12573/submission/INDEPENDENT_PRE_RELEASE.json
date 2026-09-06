@@ -1,0 +1,29 @@
+{
+  "conservative_group_gpu_seconds": 3033,
+  "fields": {
+    "CPUs/Task": "12",
+    "Command": "/research/d7/spc/yzyang4/worktrees/zero3-3090-socket-b84e8baea4de/phase1/scripts/zero3_3090_socket_20260906.sbatch",
+    "JobId": "12573",
+    "JobState": "PENDING",
+    "MinMemoryNode": "0",
+    "NumCPUs": "12",
+    "NumTasks": "1",
+    "Partition": "gpu_24h",
+    "QOS": "gpu",
+    "Reason": "JobHeldUser",
+    "ReqNodeList": "gpu28",
+    "Requeue": "0",
+    "Restarts": "0",
+    "RunTime": "00:00:00",
+    "TimeLimit": "00:18:00",
+    "TresPerNode": "gpu:rtx3090:2",
+    "WorkDir": "/research/d7/spc/yzyang4/worktrees/zero3-3090-socket-b84e8baea4de"
+  },
+  "inspector_sha256": "e66ca721e68fde8aa7082f7bca8de665255f9dabc08db5de9b70d2c2236487b0",
+  "job_id": "12573",
+  "maximum_new_job_gpu_seconds": 2880,
+  "original_12535_unchanged": true,
+  "source_commit": "b84e8baea4de65a16038b4136cee094d29716964",
+  "source_files_verified": 38,
+  "status": "INDEPENDENT_HELD_PRE_RELEASE_VERIFIED"
+}

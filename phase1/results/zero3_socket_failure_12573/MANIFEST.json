@@ -1,0 +1,90 @@
+{
+  "job/build_tools.json": {
+    "bytes": 1404,
+    "sha256": "0bccf45cbe5de8310ac7152287364fb4e0c4f9f805156e1def238c7cc00f8067"
+  },
+  "job/driver.log": {
+    "bytes": 18289,
+    "sha256": "dc3fa1b6778e1c75b61595b72218a40c37c253fd422b277882672c1fcbb77da6"
+  },
+  "job/exit_status.txt": {
+    "bytes": 2,
+    "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+  },
+  "job/failure_acceptance.json": {
+    "bytes": 1648,
+    "sha256": "a79b966c57a5fbd115712fb821c472b533bb34daf04f268873daef353af1403d"
+  },
+  "job/failure_sacct.txt": {
+    "bytes": 57,
+    "sha256": "afa9a7da2349de14d1d30800c166e3880c51a4b74d96556da242ec271a0e0c96"
+  },
+  "job/resource_usage.txt": {
+    "bytes": 1216,
+    "sha256": "18f30bf5c90a971b17d73b8fb2eee5dfc68a100c1094ee34f6372126e2d3b672"
+  },
+  "job/telemetry.txt": {
+    "bytes": 2441,
+    "sha256": "9b5bd157124a7263c3b7f48f29d97a73fa78a973c4f9846c881da813b2c5d196"
+  },
+  "job/worker.log": {
+    "bytes": 1361,
+    "sha256": "a90d3f7ff515851a1b889c3152417138809e7ace48531c6442b1793b5f316f84"
+  },
+  "submission/INDEPENDENT_PRE_RELEASE.json": {
+    "bytes": 988,
+    "sha256": "d4897ae0271cb54806d5f48ea97c32e53bee70fda32042c23a29dfe31a6516b7"
+  },
+  "submission/READY.json": {
+    "bytes": 4965,
+    "sha256": "f2f7fd2869ac75fda4a202f3b7a4c53bf7adbe7cc17f213824df4f79331da71a"
+  },
+  "submission/RELEASED.json": {
+    "bytes": 80,
+    "sha256": "47d4e074f4e712c96e0d83e5ebce908ebfbe0b802a0870ae67d422709f4b8d94"
+  },
+  "submission/SUBMISSION_INTENT.json": {
+    "bytes": 150,
+    "sha256": "34a702615c7ab17c51a25a43644b659c98923acae1d21f6fb004527350fa5ff5"
+  },
+  "submission/SUBMITTED.json": {
+    "bytes": 80,
+    "sha256": "47d4e074f4e712c96e0d83e5ebce908ebfbe0b802a0870ae67d422709f4b8d94"
+  },
+  "submission/VERIFIED_HELD.json": {
+    "bytes": 2009,
+    "sha256": "a02f9769e9a297bff1f833a3060f684fc16fb592b7f67743e695f082b3fb15ae"
+  },
+  "submission/command.json": {
+    "bytes": 765,
+    "sha256": "e46c83f006cdb467f6b03756e4251dddbe72e1c84095f5b6ee41416e130fdcb3"
+  },
+  "submission/cpu-tests.log": {
+    "bytes": 181,
+    "sha256": "91bb8b69bd0fd05d180295a5dbb71fc860318c0bd494de6b52bd434570b86c83"
+  },
+  "submission/prepare_intent.json": {
+    "bytes": 174,
+    "sha256": "1ab4c908bdd58fb30f6826c5bfe1ebd8ff364047337156f29c0f4c9186931cff"
+  },
+  "submission/runtime.json": {
+    "bytes": 3048,
+    "sha256": "c06fd25f931cd9f7029c9e4d2378e4785d7ab90a76681effdb75c6ae0d67c43a"
+  },
+  "submission/sbatch.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "submission/sbatch.stdout": {
+    "bytes": 6,
+    "sha256": "6d51cf1443b8c88f5b53224864f77715dd65ea92ff27c17694f958c7c01030ef"
+  },
+  "submission/sbatch_status.json": {
+    "bytes": 22,
+    "sha256": "1e3f6691f455051e8adb15d961e4bf3c7a17e83dd88b2afdd13315cc288250bb"
+  },
+  "submission/storage.json": {
+    "bytes": 93,
+    "sha256": "2956ea50d37ded717f947d5f06b401f77d230519699cc423186f3edffa4287bf"
+  }
+}

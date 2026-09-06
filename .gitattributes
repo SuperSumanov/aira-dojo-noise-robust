@@ -528,3 +528,7 @@ phase1/scripts/zero3_3090_private_20260906.sbatch text eol=lf diff
 phase1/scripts/zero3_3090_socket_20260906.sbatch text eol=lf diff
 phase1/results/zero3_private_failure_12572/** -text diff
 phase1/results/zero3_private_failure_12572/README.md text eol=lf diff
+phase1/results/zero3_socket_failure_12573/** -text diff
+phase1/results/zero3_socket_failure_12573/README.md text eol=lf diff
+phase1/results/zero3_socket_failure_12573/job/driver.log -whitespace
+phase1/scripts/zero3_3090_consumed_20260906.sbatch text eol=lf diff

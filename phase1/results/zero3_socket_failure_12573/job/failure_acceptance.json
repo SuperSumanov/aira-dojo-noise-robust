@@ -1,0 +1,48 @@
+{
+  "aggregate_gpu_seconds": 419,
+  "allocated_gpu_seconds": 266,
+  "audit_source_sha256": "1efcd09e9d0534395abbf380c832e8c3c0ee2c66504b557a63ed341ae2b08dc3",
+  "automatic_retry": false,
+  "checkpoint_manifests": 0,
+  "completed_trajectories": 0,
+  "credential_scan_hits": 0,
+  "elapsed_seconds": 133,
+  "failure": "zero3_pending_gradient at first full-trajectory checkpoint boundary",
+  "job_id": "12573",
+  "model_benefit_measured": false,
+  "original_file_hashes": {
+    "build_tools.json": {
+      "bytes": 1404,
+      "sha256": "0bccf45cbe5de8310ac7152287364fb4e0c4f9f805156e1def238c7cc00f8067"
+    },
+    "driver.log": {
+      "bytes": 18289,
+      "sha256": "dc3fa1b6778e1c75b61595b72218a40c37c253fd422b277882672c1fcbb77da6"
+    },
+    "exit_status.txt": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "file_trace.log": {
+      "bytes": 108033194,
+      "sha256": "7a2b1f7ecce4962776738bb38a3392261b970e90e827be9149c3b3febbf232cb"
+    },
+    "resource_usage.txt": {
+      "bytes": 1216,
+      "sha256": "18f30bf5c90a971b17d73b8fb2eee5dfc68a100c1094ee34f6372126e2d3b672"
+    },
+    "telemetry.txt": {
+      "bytes": 2441,
+      "sha256": "9b5bd157124a7263c3b7f48f29d97a73fa78a973c4f9846c881da813b2c5d196"
+    },
+    "worker.log": {
+      "bytes": 1361,
+      "sha256": "a90d3f7ff515851a1b889c3152417138809e7ace48531c6442b1793b5f316f84"
+    }
+  },
+  "protected_path_markers_found": 0,
+  "sigsegv_events": 0,
+  "socket_initialization_completed": true,
+  "source_commit": "b84e8baea4de65a16038b4136cee094d29716964",
+  "status": "TERMINAL_CPU_OFFLOAD_BOUNDARY_FAILURE_RECORDED"
+}

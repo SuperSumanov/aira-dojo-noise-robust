@@ -12,9 +12,13 @@ Socket实际初始化成功，无SIGSEGV，第一保存边界触发zero3_pending
 不清空缓冲、不加step、不改容差。必须通过CPU负控与实际五轨迹及独立payload验证后才称工程通过。
 见ZERO3_CONSUMED_GRADIENT_PREFLIGHT_20260906.md；新1job×2RTX3090×15min，2520GPU秒上限，
 此前实际419，组合2939≤原3120；无自动重试，旧12535不动。此刻尚未提交新job。
+08:10实际时钟核验：162项Linux CPU测试11.30秒通过，41源文件及独立held核验通过，
+source09c322bf82cc62ce67babb7e2bfee51633e40710；新job12574已释放，尚待真实五轨迹终态。
+12573原始23安全文件已逐字节导入results/zero3_socket_failure_12573；原audit/export/import均已完成。
 12573failure receipt=a79b966c57a5fbd115712fb821c472b533bb34daf04f268873daef353af1403d；
 trace=7a2b1f7ecce4962776738bb38a3392261b970e90e827be9149c3b3febbf232cb，已独立扫描无保护路径/凭据命中。
-08:12远端学长Drive根元数据仍最新0904，无0905；没有打开新payload。
+本轮远端学长Drive根元数据仍最新0904，无0905；没有打开新payload。
+时间勘误：0L75初版08:12及handoff08:17是手写时间错误，已按实际时钟08:10更正；job实际Start=08:09:21。
 语料/WL673已完成，正式四fit来源仍未准入，没有新增方法或scaling效果。
 
 ## 0L74. 2026-09-06：12572初始化失败，准备Socket故障隔离

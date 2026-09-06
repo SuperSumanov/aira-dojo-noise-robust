@@ -1,0 +1,11 @@
+[
+  "sbatch",
+  "--parsable",
+  "--hold",
+  "--no-requeue",
+  "--chdir=/research/d7/spc/yzyang4/worktrees/zero3-3090-socket-b84e8baea4de",
+  "--output=/research/d7/spc/yzyang4/critic-zero3-engineering/submission-20260906-3090-socket/slurm-%j.out",
+  "--error=/research/d7/spc/yzyang4/critic-zero3-engineering/submission-20260906-3090-socket/slurm-%j.out",
+  "--export=PATH=/usr/local/bin:/usr/bin:/bin,ZERO3_CONTROL_ROOT=/research/d7/spc/yzyang4/worktrees/zero3-3090-socket-b84e8baea4de,ZERO3_CODE_COMMIT=b84e8baea4de65a16038b4136cee094d29716964,ZERO3_GPU_APPROVAL_RECEIPT_SHA=cd023d2598a76756a48b07ec06cdb5049e362d59531840554f65b6e0a3bb6489",
+  "/research/d7/spc/yzyang4/worktrees/zero3-3090-socket-b84e8baea4de/phase1/scripts/zero3_3090_socket_20260906.sbatch"
+]

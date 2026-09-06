@@ -1,0 +1,1 @@
+12573|FAILED|133|billing=12,cpu=12,gres/gpu=2,node=1|1:0

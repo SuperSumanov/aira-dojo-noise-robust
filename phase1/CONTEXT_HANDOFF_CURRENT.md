@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-06
 
-**Dynamic status timestamp:** 2026-09-06 08:17 Asia/Hong_Kong
+**Dynamic status timestamp:** 2026-09-06 08:10 Asia/Hong_Kong
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -13,7 +13,8 @@
 
 先fetch并读CURRENT_DIRECTION顶部0L75及以后。12573已FAILED133秒，不能再等待或重跑原controller。
 Socket初始化已过；旧zero3_pending_gradient检查误判CPU-offload消费后保留的master缓冲。
-正在准备严格只读生命周期修正（不是zero_grad掩盖）及新15min双3090一次验证，尚未提交。
+严格只读生命周期修正已过162项Linux CPU测试，12574于08:09:21开始新15min双3090一次验证。
+source09c322bf82cc62ce67babb7e2bfee51633e40710，41文件/独立held核验已过。尚未完成真实GPU恢复比较。
 实际419GPU秒，新上限2520，组合2939≤3120；新来源/冻结协议未放宽。以下12573运行中描述均过期。
 用户约02:29入睡，要求本会话持续工作；
 约10:20–10:29才到八小时，不能提前声称已工作八小时。不要新增heartbeat或任务。

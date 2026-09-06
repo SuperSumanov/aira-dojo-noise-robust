@@ -1,0 +1,184 @@
+gpu28:877123:877123 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+gpu28:877123:877123 [0] NCCL INFO Bootstrap: Using eno0np0:137.189.88.75<0>
+gpu28:877123:877123 [0] NCCL INFO cudaDriverVersion 13030
+gpu28:877123:877123 [0] NCCL INFO NCCL version 2.28.9+cuda12.9
+gpu28:877123:877123 [0] NCCL INFO Comm config Blocking set to 1
+gpu28:877123:877123 [0] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+gpu28:877123:877123 [0] NCCL INFO NET/Socket : Using [0]eno0np0:137.189.88.75<0>
+gpu28:877123:877123 [0] NCCL INFO Initialized NET plugin Socket
+gpu28:877123:877123 [0] NCCL INFO Assigned NET plugin Socket to comm
+gpu28:877123:877123 [0] NCCL INFO Using network Socket
+gpu28:877123:877123 [0] NCCL INFO ncclCommInitRankConfig comm 0x6084a284d900 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 1c000 commId 0x3e4455c1251e08a0 - Init START
+
+[2026-09-06 07:56:16] gpu28:877123:877123 [0] ras/client_support.cc:179 NCCL WARN Call to bind failed: Address already in use
+gpu28:877123:877123 [0] NCCL INFO RAS failed to establish a client listening socket at localhost:28028
+gpu28:877123:877123 [0] NCCL INFO Bootstrap timings total 0.015970 (create 0.000456, send 0.000670, recv 0.001364, ring 0.010036, delay 0.000001)
+gpu28:877123:877123 [0] NCCL INFO P2P is disabled between connected GPUs 1 and 0. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877123:877123 [0] NCCL INFO P2P is disabled between connected GPUs 0 and 1. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877123:877123 [0] NCCL INFO P2P is disabled between connected GPUs 1 and 0. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877123:877123 [0] NCCL INFO P2P is disabled between connected GPUs 0 and 1. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877123:877123 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 4-9,28-33. (GPU affinity = 0-11,24-35 ; CPU affinity = 4-9,28-33).
+gpu28:877123:877123 [0] NCCL INFO NVLS multicast support is not available on dev 0 (NVLS_NCHANNELS 0)
+gpu28:877123:877123 [0] NCCL INFO comm 0x6084a284d900 rank 0 nRanks 2 nNodes 1 localRanks 2 localRank 0 MNNVL 0
+gpu28:877123:877123 [0] NCCL INFO Channel 00/02 : 0 1
+gpu28:877123:877123 [0] NCCL INFO Channel 01/02 : 0 1
+gpu28:877123:877123 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1
+gpu28:877123:877123 [0] NCCL INFO P2P Chunksize set to 131072
+gpu28:877123:877123 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+gpu28:877123:877123 [0] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 0
+gpu28:877123:877226 [0] NCCL INFO [Proxy Service] Device 0 CPU core 9
+gpu28:877123:877229 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 6
+gpu28:877123:877123 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+gpu28:877123:877123 [0] NCCL INFO NCCL_ALGO set by environment to ^NVLS
+gpu28:877123:877123 [0] NCCL INFO Enabled NCCL Func/Proto/Algo Matrix:
+     Function |       LL     LL128    Simple   |          Tree           Ring  CollNetDirect   CollNetChain           NVLS       NVLSTree            PAT  
+    Broadcast |        1         2         1   |             1              1              1              1              0              1              1  
+       Reduce |        1         2         1   |             1              1              1              1              0              1              1  
+    AllGather |        1         2         1   |             1              1              1              1              0              1              1  
+ReduceScatter |        1         2         1   |             1              1              1              1              0              1              1  
+    AllReduce |        1         2         1   |             1              1              1              1              0              1              1  
+
+gpu28:877123:877123 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+gpu28:877123:877123 [0] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gpu28:877123:877123 [0] NCCL INFO CC Off, workFifoBytes 1048576
+gpu28:877123:877123 [0] NCCL INFO ncclCommInitRankConfig comm 0x6084a284d900 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 1c000 commId 0x3e4455c1251e08a0 - Init COMPLETE
+gpu28:877123:877123 [0] NCCL INFO Init timings - ncclCommInitRankConfig: rank 0 nranks 2 total 0.38 (kernels 0.32, alloc 0.01, bootstrap 0.02, allgathers 0.00, topo 0.03, graphs 0.00, connections 0.00, rest 0.00)
+gpu28:877123:877123 [0] NCCL INFO Comm config Blocking set to 1
+gpu28:877123:877123 [0] NCCL INFO Initialized NET plugin Socket
+gpu28:877123:877123 [0] NCCL INFO Assigned NET plugin Socket to comm
+gpu28:877123:877123 [0] NCCL INFO Using network Socket
+gpu28:877123:877123 [0] NCCL INFO ncclCommSplit comm 0x6084a73d0650 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 1c000 parent 0x6084a284d900 splitCount 1 color 2130503744 key 0- Init START
+gpu28:877123:877123 [0] NCCL INFO P2P is disabled between connected GPUs 1 and 0. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877123:877123 [0] NCCL INFO P2P is disabled between connected GPUs 0 and 1. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877123:877123 [0] NCCL INFO P2P is disabled between connected GPUs 1 and 0. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877123:877123 [0] NCCL INFO P2P is disabled between connected GPUs 0 and 1. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877123:877123 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 4-9,28-33. (GPU affinity = 0-11,24-35 ; CPU affinity = 4-9,28-33).
+gpu28:877123:877123 [0] NCCL INFO NVLS multicast support is not available on dev 0 (NVLS_NCHANNELS 0)
+gpu28:877123:877123 [0] NCCL INFO comm 0x6084a73d0650 rank 0 nRanks 2 nNodes 1 localRanks 2 localRank 0 MNNVL 0
+gpu28:877123:877123 [0] NCCL INFO Channel 00/02 : 0 1
+gpu28:877123:877123 [0] NCCL INFO Channel 01/02 : 0 1
+gpu28:877123:877123 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1
+gpu28:877123:877123 [0] NCCL INFO P2P Chunksize set to 131072
+gpu28:877123:877123 [0] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 0
+gpu28:877123:877358 [0] NCCL INFO [Proxy Service] Device 0 CPU core 8
+gpu28:877123:877360 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 31
+gpu28:877123:877123 [0] NCCL INFO NCCL_ALGO set by environment to ^NVLS
+gpu28:877123:877123 [0] NCCL INFO Enabled NCCL Func/Proto/Algo Matrix:
+     Function |       LL     LL128    Simple   |          Tree           Ring  CollNetDirect   CollNetChain           NVLS       NVLSTree            PAT  
+    Broadcast |        1         2         1   |             1              1              1              1              0              1              1  
+       Reduce |        1         2         1   |             1              1              1              1              0              1              1  
+    AllGather |        1         2         1   |             1              1              1              1              0              1              1  
+ReduceScatter |        1         2         1   |             1              1              1              1              0              1              1  
+    AllReduce |        1         2         1   |             1              1              1              1              0              1              1  
+
+gpu28:877123:877123 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+gpu28:877123:877123 [0] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gpu28:877123:877123 [0] NCCL INFO CC Off, workFifoBytes 1048576
+gpu28:877123:877123 [0] NCCL INFO ncclCommSplit comm 0x6084a73d0650 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 1c000 parent 0x6084a284d900 splitCount 1 color 2130503744 key 0 - Init COMPLETE
+gpu28:877123:877123 [0] NCCL INFO Init timings - ncclCommSplit: rank 0 nranks 2 total 0.08 (kernels 0.00, alloc 0.00, bootstrap 0.01, allgathers 0.00, topo 0.05, graphs 0.00, connections 0.01, rest 0.00)
+gpu28:877123:877123 [0] NCCL INFO Channel 00 : 0[{"rank": 1, "initial_padding": {"partition_source_sha256": "8b3c65d20fada0fc85c3685615b0da65247f4e8739313ca1de01b1a3102f2500", "new_partitions": 15, "padding_elements_initialized": 1, "nonfinite_padding_before_initialization": 1}}
+{"rank": 0, "initial_padding": {"partition_source_sha256": "8b3c65d20fada0fc85c3685615b0da65247f4e8739313ca1de01b1a3102f2500", "new_partitions": 15, "padding_elements_initialized": 0, "nonfinite_padding_before_initialization": 0}}
+gpu28:877124:877124 [1] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+gpu28:877124:877124 [1] NCCL INFO cudaDriverVersion 13030
+gpu28:877124:877124 [1] NCCL INFO Bootstrap: Using eno0np0:137.189.88.75<0>
+gpu28:877124:877124 [1] NCCL INFO NCCL version 2.28.9+cuda12.9
+gpu28:877124:877124 [1] NCCL INFO Comm config Blocking set to 1
+gpu28:877124:877124 [1] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+gpu28:877124:877124 [1] NCCL INFO NET/Socket : Using [0]eno0np0:137.189.88.75<0>
+gpu28:877124:877124 [1] NCCL INFO Initialized NET plugin Socket
+gpu28:877124:877124 [1] NCCL INFO Assigned NET plugin Socket to comm
+gpu28:877124:877124 [1] NCCL INFO Using network Socket
+gpu28:877124:877124 [1] NCCL INFO ncclCommInitRankConfig comm 0x57fca738bff0 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 1d000 commId 0x3e4455c1251e08a0 - Init START
+
+[2026-09-06 07:56:16] gpu28:877124:877124 [1] ras/client_support.cc:179 NCCL WARN Call to bind failed: Address already in use
+gpu28:877124:877124 [1] NCCL INFO RAS failed to establish a client listening socket at localhost:28028
+gpu28:877124:877124 [1] NCCL INFO Bootstrap timings total 0.016199 (create 0.000471, send 0.000566, recv 0.001188, ring 0.000190, delay 0.000001)
+gpu28:877124:877124 [1] NCCL INFO P2P is disabled between connected GPUs 1 and 0. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877124:877124 [1] NCCL INFO P2P is disabled between connected GPUs 0 and 1. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877124:877124 [1] NCCL INFO P2P is disabled between connected GPUs 1 and 0. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877124:877124 [1] NCCL INFO P2P is disabled between connected GPUs 0 and 1. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877124:877124 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 4-9,28-33. (GPU affinity = 0-11,24-35 ; CPU affinity = 4-9,28-33).
+gpu28:877124:877124 [1] NCCL INFO NVLS multicast support is not available on dev 1 (NVLS_NCHANNELS 0)
+gpu28:877124:877124 [1] NCCL INFO comm 0x57fca738bff0 rank 1 nRanks 2 nNodes 1 localRanks 2 localRank 1 MNNVL 0
+gpu28:877124:877124 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0
+gpu28:877124:877124 [1] NCCL INFO P2P Chunksize set to 131072
+gpu28:877124:877124 [1] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+gpu28:877124:877124 [1] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 0
+gpu28:877124:877227 [0] NCCL INFO [Proxy Service] Device 1 CPU core 8
+gpu28:877124:877228 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 29
+gpu28:877124:877124 [1] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+gpu28:877124:877124 [1] NCCL INFO NCCL_ALGO set by environment to ^NVLS
+gpu28:877124:877124 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+gpu28:877124:877124 [1] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gpu28:877124:877124 [1] NCCL INFO ncclCommInitRankConfig comm 0x57fca738bff0 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 1d000 commId 0x3e4455c1251e08a0 - Init COMPLETE
+gpu28:877124:877124 [1] NCCL INFO Init timings - ncclCommInitRankConfig: rank 1 nranks 2 total 0.37 (kernels 0.31, alloc 0.01, bootstrap 0.02, allgathers 0.00, topo 0.03, graphs 0.00, connections 0.00, rest 0.00)
+gpu28:877124:877124 [1] NCCL INFO Comm config Blocking set to 1
+gpu28:877124:877124 [1] NCCL INFO Initialized NET plugin Socket
+gpu28:877124:877124 [1] NCCL INFO Assigned NET plugin Socket to comm
+gpu28:877124:877124 [1] NCCL INFO Using network Socket
+gpu28:877124:877124 [1] NCCL INFO ncclCommSplit comm 0x57fcabf0c320 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 1d000 parent 0x57fca738bff0 splitCount 1 color 2130503744 key 1- Init START
+gpu28:877124:877124 [1] NCCL INFO P2P is disabled between connected GPUs 1 and 0. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877124:877124 [1] NCCL INFO P2P is disabled between connected GPUs 0 and 1. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877124:877124 [1] NCCL INFO P2P is disabled between connected GPUs 1 and 0. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877124:877124 [1] NCCL INFO P2P is disabled between connected GPUs 0 and 1. You can repress this message with NCCL_IGNORE_DISABLED_P2P=1.
+gpu28:877124:877124 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 4-9,28-33. (GPU affinity = 0-11,24-35 ; CPU affinity = 4-9,28-33).
+gpu28:877124:877124 [1] NCCL INFO NVLS multicast support is not available on dev 1 (NVLS_NCHANNELS 0)
+gpu28:877124:877124 [1] NCCL INFO comm 0x57fcabf0c320 rank 1 nRanks 2 nNodes 1 localRanks 2 localRank 1 MNNVL 0
+gpu28:877124:877124 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0
+gpu28:877124:877124 [1] NCCL INFO P2P Chunksize set to 131072
+gpu28:877124:877124 [1] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 0
+gpu28:877124:877357 [0] NCCL INFO [Proxy Service] Device 1 CPU core 28
+gpu28:877124:877359 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 5
+gpu28:877124:877124 [1] NCCL INFO NCCL_ALGO set by environment to ^NVLS
+gpu28:877124:877124 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+gpu28:877124:877124 [1] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gpu28:877124:877124 [1] NCCL INFO ncclCommSplit comm 0x57fcabf0c320 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 1d000 parent 0x57fca738bff0 splitCount 1 color 2130503744 key 1 - Init COMPLETE
+gpu28:877124:877124 [1] NCCL INFO Init timings - ncclCommSplit: rank 1 nranks 2 total 0.08 (kernels 0.00, alloc 0.00, bootstrap 0.01, allgathers 0.00, topo 0.05, graphs 0.00, connections 0.01, rest 0.01)
+gpu28:877124:877124 [1] NCCL INFO Channel 00 : 1[1] -> 0[0] via SHM/direct/direct
+gpu28:877124:877124 [1] NCCL INFO Channel 01 : 1[1] -> 0[0] via SHM/direct/direct
+gpu28:877124:877124 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+gpu28:877124:877124 [1] NCCL INFO Channel 00 : 1[1] -> 0[0] via SHM/direct/direct
+gpu28:877124:877124 [1] NCCL INFO Channel 01 : 1[1] -> 0[0] via SHM/direct/direct
+gpu28:877124:877124 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+0] -> 1[1] via SHM/direct/direct
+gpu28:877123:877123 [0] NCCL INFO Channel 01 : 0[0] -> 1[1] via SHM/direct/direct
+gpu28:877123:877123 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+gpu28:877123:877123 [0] NCCL INFO Channel 00 : 0[0] -> 1[1] via SHM/direct/direct
+gpu28:877123:877123 [0] NCCL INFO Channel 01 : 0[0] -> 1[1] via SHM/direct/direct
+gpu28:877123:877123 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+gpu28:877124:877124 [1] NCCL INFO ENV/Plugin: Closing env plugin ncclEnvDefault
+gpu28:877123:877123 [0] NCCL INFO ENV/Plugin: Closing env plugin ncclEnvDefault
+W0906 07:57:38.617000 877100 /research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages/torch/multiprocessing/spawn.py:165] Terminating process 877123 via signal SIGTERM
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/research/d7/spc/yzyang4/worktrees/zero3-3090-socket-b84e8baea4de/phase1/scripts/validate_zero3_3090_20260906.py", line 5, in <module>
+    main(expected_gpu='RTX 3090')
+  File "/research/d7/spc/yzyang4/worktrees/zero3-3090-socket-b84e8baea4de/phase1/scripts/validate_zero3_session_gpu_20260905.py", line 130, in main
+    mp.spawn(worker,args=(port,str(out),end,resume,args.source_root,expected_gpu),nprocs=2,join=True)
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/multiprocessing/spawn.py", line 340, in spawn
+    return start_processes(fn, args, nprocs, join, daemon, start_method="spawn")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/multiprocessing/spawn.py", line 296, in start_processes
+    while not context.join():
+              ^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/multiprocessing/spawn.py", line 211, in join
+    raise ProcessRaisedException(msg, error_index, failed_process.pid)
+torch.multiprocessing.spawn.ProcessRaisedException: 
+
+-- Process 1 terminated with the following error:
+Traceback (most recent call last):
+  File "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/lib/python3.11/site-packages/torch/multiprocessing/spawn.py", line 87, in _wrap
+    fn(i, *args)
+  File "/research/d7/spc/yzyang4/worktrees/zero3-3090-socket-b84e8baea4de/phase1/scripts/validate_zero3_session_gpu_20260905.py", line 101, in worker
+    if completed in (2,3,4):session.save(Path(output)/f'checkpoint-{completed}')
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/worktrees/zero3-3090-socket-b84e8baea4de/phase1/global_local_zero3_session.py", line 225, in save
+    self._boundary()
+  File "/research/d7/spc/yzyang4/worktrees/zero3-3090-socket-b84e8baea4de/phase1/global_local_zero3_session.py", line 219, in _boundary
+    require(all(p.grad is None or not bool(torch.count_nonzero(p.grad)) for p in
+  File "/research/d7/spc/yzyang4/worktrees/zero3-3090-socket-b84e8baea4de/phase1/global_local_zero3_session.py", line 30, in require
+    if not ok: raise PlanError(reason)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+phase1.global_local_execution_plan.PlanError: zero3_pending_gradient
+

@@ -1,0 +1,29 @@
+{
+  "classification": "FIXED_HISTORICAL_RESOURCE_METADATA_NOT_EXECUTION_MATRIX_OR_QUALIFICATION",
+  "fixed_runs": 84,
+  "gpu_jobs_submitted": 0,
+  "helper_sha256": "4c4589a4f2ebb5c5eab6a314967dd0570bb6edab90ff86a80de4af6bf837c8c6",
+  "historical_projection_sha256": "3b2dc5237b5d9bf26bb413f5132a3cb390e8fc178527ad8e4f689faca0495d49",
+  "journal_payloads_read": 0,
+  "label_values_used": 0,
+  "programs_selected": 0,
+  "resource_field_histograms": {
+    ".interpreter.timeout": {
+      "10800": 6,
+      "14400": 14,
+      "1800": 4,
+      "3600": 32,
+      "4800": 6,
+      "7200": 22
+    },
+    ".solver.execution_timeout": {
+      "10800": 6,
+      "14400": 14,
+      "1800": 4,
+      "3600": 32,
+      "4800": 6,
+      "7200": 22
+    }
+  },
+  "utc": "2026-09-06T23:26:52.480411+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "classification": "BENIGN_CONTAINER_ISOLATION_CHECK_NOT_GENERAL_SANDBOX_PROOF_OR_METHOD_RESULT",
+  "gpu_context_created": false,
+  "helper_sha256": "bf0eaecfe0fe1480abb93dc8dde19c663366cdaf5b18e99651f46bf4d0a71470",
+  "historical_programs_executed": 0,
+  "image_content_hashed": false,
+  "interfaces_loopback_only": true,
+  "known_api_variables_absent": true,
+  "labels_read": 0,
+  "negative_paths_hidden": 5,
+  "network_namespace_distinct": true,
+  "positive_read": true,
+  "programs_executed": 0,
+  "read_only_bind_enforced": true,
+  "utc": "2026-09-06T23:23:01.959889+00:00"
+}

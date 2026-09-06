@@ -1,0 +1,28 @@
+{
+  "classification": "REEXECUTION_INFRASTRUCTURE_HINTS_NOT_PROGRAM_SELECTION_OR_EXECUTION",
+  "container_image_bytes": 19717783552,
+  "container_image_content_hashed": false,
+  "container_network_none_bin_true_returncode": 0,
+  "container_version": "singularity-ce version 4.3.0+77-g2244f30fe",
+  "earlier_capability_checks_repeated": false,
+  "gpu_context_created": false,
+  "grader_current_git_commit": "507f92e1138bb6e40dac5c6ee7a6758e6424bf97",
+  "grader_current_worktree_clean": null,
+  "grader_installed": true,
+  "grader_status_error_markers": [
+    "git-lfs",
+    "filter-process"
+  ],
+  "historical_runs": 84,
+  "historical_runtime_attested": false,
+  "labels_or_outcomes_read": 0,
+  "original_final_metadata_stage_failed": true,
+  "programs_executed": 0,
+  "script_sha256": "34d2e093a45bb01621e488d91e2f03f515b61e6c0cd7ca4b766ca795436fa00d",
+  "task_availability_sha256": "a7392d56bc1cbde54ee26311abf29d7449c0b610de9e18c1f0db642accb510ab",
+  "task_private_directories": 14,
+  "task_public_directories": 14,
+  "tasks": 15,
+  "user_network_namespace_available": false,
+  "utc": "2026-09-06T23:18:50.829396+00:00"
+}

@@ -3,6 +3,28 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L94. 2026-09-07：两组实际Linux验收通过，来源替代路径已有实测条件
+
+4cb39e0的R4绑定后继在实际Linux224测试通过；6b2af78的独立消费/检查点验收38测试通过。
+原始回执已逐字节安全导出至results/session_progress_20260907；不是GPU数学、1.7B或效果验收。
+12648在UTC09-06T23:25附近仍RUNNING/gpu37（Slurm1548秒）；完整编译未完成，后继双卡未提交，旧12535held。
+矩阵与6GPUh工程上限不变，不重复提交或降低数学/来源门。
+
+foreground poll6及原snapshot-delta双生产/独立双验证完成：
+8fbc640c2c86f171509fb072dd30f2c46550a6eb639efb1e89f42403cc1e38eb，
+711physical/685eligible/18884endpoints/4320pairs/58tasks，closure=false。
+summary 8bd2b46a99d766bf2206336eb030ec504c8d2b41f8910c249e55c2217438bd87；下次最早UTC23:30:22.708955。
+一次过早调用在poll5创建前被interval门拒绝；错误日志保留为rejected-early-dispatch-005.log，
+独立核锁/计数/LATEST不变后仅重命名日志，未改间隔/runner；合法时间的poll5/6均完成。错误不抹除。
+
+新完整执行的benign隔离测试实际通过：readonly绑定、5个宿主路径不可见、网络独立且仅loopback；
+没有运行历史程序或GPU。现有grader的187个Python文件均与507f92e1138bb6e40dac5c6ee7a6758e6424bf97相同；
+git status失败为git-lfs缺失，不宣称全工作区干净或旧runtime已认证。固定15任务中14有public/private目录。
+历史单程序timeout为1800—14400秒，完整重执行不能冒充便宜的短时probe；尚未选程序/启动新执行。
+下一便宜检查仅对固定84历史run的grading JSON检测来源字段存在，不用成绩选择，不涉及保护cohort。
+来源准入仍空，四fit未做，没有新的critic收益/scaling结论；六小时会话仍推进到UTC03:53:36。
+旧文“UTC23:07修订”是编辑时间误写，4cb39e0实际提交UTC23:04:29；以下动态以原回执为准。
+
 ## 0L93. 2026-09-07：R4实际运行，新语料已独立入库；后继尺寸重新绑定
 
 12648独立held复核通过并已release，source15402474dec5b5da1e376d3c812f53fe416c5c0b。

@@ -1,0 +1,20 @@
+{
+  "classification": "EVALUATOR_CODE_GIT_COMPARISON_NOT_HISTORICAL_RUNTIME_ATTESTATION",
+  "different_python_files": 0,
+  "git_status_failure_reason_flags": {
+    "filter_process_error": true,
+    "git_lfs_missing": true
+  },
+  "helper_sha256": "d9ba7bd2946ec490d94a6ce8716a2a2aa32b8934e8be4459c035424fd635d5f8",
+  "historical_programs_executed": 0,
+  "historical_programs_selected": 0,
+  "label_payloads_read": 0,
+  "missing_python_files": 0,
+  "python_code_files": 187,
+  "scoring_executed": false,
+  "source_commit": "507f92e1138bb6e40dac5c6ee7a6758e6424bf97",
+  "source_inventory_sha256": "a0cb54af0c9c604bde76fd9b3d9a1f838f65462f47e4931b01b0d0c8093c3045",
+  "task_public_and_private_available": 14,
+  "utc": "2026-09-06T23:25:07.850564+00:00",
+  "whole_worktree_clean_attested": false
+}

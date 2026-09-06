@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-07
 
-**Dynamic status timestamp:** 2026-09-07；当前0L93覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-07；当前0L94覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -11,7 +11,16 @@
 
 ## 2026-09-07 当前入口，覆盖下文所有历史动态状态
 
-UTC23:07更新：12641已FAILED/2126秒；不是仍运行。12648 R4续编已独立核验6608原源码/32对象并release，
+最新覆盖：actual Linux 224+38测试分别通过，源码4cb39e0/6b2af78，6份原始安全回执已导出results/session_progress_20260907。
+poll6实际完成，685eligible/711physical/4320pairs/58tasks，LATEST8fbc640c2c86f171509fb072dd30f2c46550a6eb639efb1e89f42403cc1e38eb，
+下一最早UTC09-06T23:30:22.708955。保留过早调用错误及独立日志重命名证据，runner/科学门未变。
+12648仍RUNNING，后继双卡未准备；终态检查器/tmp/verify_fa2_r4_terminal_20260907.py已上传但未执行。
+无重复submit/release。确认构建及独立核验后用4cb39e0入口prepare/held独立review/release；不使用旧R3入口。
+benign隔离通过、187grader代码与记录Git一致，14/15任务数据目录可用；历史timeout30分钟—4小时，不能缩成probe。
+历史来源与四fit仍未准入；准备grading JSON来源字段检查，只有已核84旧run，成绩不参与选择，不碰保护cohort。
+此前“UTC23:07更新”系编辑时间误写，4cb39e0提交实际UTC23:04:29，旧状态下文保留。
+
+以下为0L93历史状态：12641已FAILED/2126秒；不是仍运行。12648 R4续编已独立核验6608原源码/32对象并release，
 UTC23:01 RUNNING/gpu37。ROOT flash-attn-build-20260907-r4，submission-v7，source15402474dec5b5da1e376d3c812f53fe416c5c0b。
 不重复submit/release，旧12535held。构建≤4800秒，后继双卡尚未准备/提交，须先完成独立构建/Slurm核验。
 新后继入口已显式改R4/12648、submission-20260907-fa2-r4、6GPUh工程上限；模型/driver/数学容差不变。

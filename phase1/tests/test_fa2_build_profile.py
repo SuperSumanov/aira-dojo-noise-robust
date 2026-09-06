@@ -1,4 +1,6 @@
 from pathlib import Path
+import io
+import tarfile
 import pytest
 from phase1.scripts import build_fa2_cpu_20260907 as m
 
@@ -37,3 +39,36 @@ def test_new_attempt_preserves_old_build():
     assert 'CC=HOST_CXX, CXX=HOST_CXX, NVCC_CCBIN=HOST_CXX' in source
     assert "FLASH_ATTN_CUDA_ARCHS='120'" in source
     assert "'automatic_retries': 0" in source
+
+
+def source_fixture(tmp_path,monkeypatch):
+    source=tmp_path/'flash_attn-2.8.3';source.mkdir()
+    archive=tmp_path/'source.tar.gz'
+    inputs={'setup.py':b'fixed setup','csrc/kernel.cu':b'fixed code','PKG-INFO':b'old metadata'}
+    with tarfile.open(archive,'w:gz') as tar:
+        for name,data in inputs.items():
+            p=source/name;p.parent.mkdir(exist_ok=True,parents=True);p.write_bytes(data)
+            info=tarfile.TarInfo('flash_attn-2.8.3/'+name);info.size=len(data);tar.addfile(info,io.BytesIO(data))
+    monkeypatch.setattr(m,'SDIST_SHA',m.sha(archive))
+    return archive,source
+
+
+def test_whole_source_before_and_after_build(tmp_path,monkeypatch):
+    archive,source=source_fixture(tmp_path,monkeypatch)
+    assert m.verify_source_contents(archive,source)['original_files_verified']==3
+    (source/'PKG-INFO').write_bytes(b'generated metadata')
+    (source/'build').mkdir();(source/'build/generated.o').write_bytes(b'new build object')
+    r=m.verify_source_contents(archive,source,after_build=True)
+    assert r['original_files_verified']==2 and r['packaging_metadata_excluded_after_build']==['PKG-INFO']
+
+
+@pytest.mark.parametrize('change',['kernel','extra','metadata_before','archive'])
+def test_source_drift_rejected(tmp_path,monkeypatch,change):
+    archive,source=source_fixture(tmp_path,monkeypatch)
+    if change=='kernel':(source/'csrc/kernel.cu').write_bytes(b'changed code')
+    if change=='extra':(source/'extra.py').write_bytes(b'new code')
+    if change=='metadata_before':(source/'PKG-INFO').write_bytes(b'changed metadata')
+    if change=='archive':monkeypatch.setattr(m,'SDIST_SHA','0'*64)
+    with pytest.raises(AssertionError):m.verify_source_contents(archive,source)
+    if change=='kernel':
+        with pytest.raises(AssertionError,match='extracted_source_drift'):m.verify_source_contents(archive,source,after_build=True)

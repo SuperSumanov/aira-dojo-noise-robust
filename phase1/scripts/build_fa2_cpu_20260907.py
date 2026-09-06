@@ -8,6 +8,7 @@ import re
 import signal
 import subprocess
 import sys
+import tarfile
 import time
 
 BASE = Path('/research/d7/spc/yzyang4')
@@ -30,6 +31,41 @@ def sha(path):
 def record(name, data):
     with (ROOT / name).open('x') as f:
         json.dump(data, f, sort_keys=True, indent=2)
+
+
+def verify_source_contents(archive, source, *, after_build=False):
+    """Bind original extracted inputs, not just setup.py; never extract here."""
+    archive, source = Path(archive), Path(source)
+    assert sha(archive) == SDIST_SHA, 'source_archive_drift'
+    assert source.is_absolute() and source.resolve() == source and not source.is_symlink()
+    expected = {}; ignored_metadata = []
+    with tarfile.open(archive, 'r:gz') as tar:
+        seen = set()
+        for member in tar:
+            parts = Path(member.name).parts
+            assert parts and parts[0] == 'flash_attn-2.8.3' and '..' not in parts
+            assert not Path(member.name).is_absolute() and member.name not in seen
+            assert member.isdir() or member.isfile(), 'unsupported_source_member'
+            seen.add(member.name)
+            if member.isdir():continue
+            relative = Path(*parts[1:])
+            # setuptools rewrites its own distribution metadata while building.
+            packaging_metadata = any(p.endswith('.egg-info') for p in relative.parts) or relative.as_posix() == 'PKG-INFO'
+            if after_build and packaging_metadata:
+                ignored_metadata.append(relative.as_posix());continue
+            actual = source/relative
+            assert actual.is_file() and not any(p.is_symlink() for p in (actual,*actual.parents)), 'source_member_missing_or_linked'
+            with tar.extractfile(member) as stream:
+                h = hashlib.sha256()
+                for block in iter(lambda:stream.read(1024**2), b''):h.update(block)
+            assert sha(actual) == h.hexdigest(), 'extracted_source_drift'
+            expected[relative.as_posix()] = h.hexdigest()
+    assert expected and 'setup.py' in expected, 'empty_source_inventory'
+    if not after_build:
+        actual_names = {p.relative_to(source).as_posix() for p in source.rglob('*') if p.is_file()}
+        assert actual_names == set(expected), 'unexpected_extracted_source_files'
+    return {'original_files_verified':len(expected), 'packaging_metadata_excluded_after_build':ignored_metadata,
+            'inventory_sha256':hashlib.sha256(json.dumps(expected,sort_keys=True,separators=(',',':')).encode()).hexdigest()}
 
 
 def invoke(name, args, env, seconds, cwd=ROOT):
@@ -70,6 +106,7 @@ def compiler_check(tag):
     command = [str(cuda/'bin/nvcc'), '-ccbin', HOST_CXX, '-arch=sm_120',
                '-std=c++17', '-c', str(src), '-o', str(root/'sanity.o')]
     invoke('compiler-'+tag, command, env, 45, root)
+    assert sha(HOST_CXX) == HOST_SHA, 'host_compiler_changed_during_check'
     record('compiler-'+tag+'-verified.json', {'command':command,
            'host_compiler_sha256':sha(HOST_CXX), 'source_sha256':sha(src),
            'object_sha256':sha(root/'sanity.o'), 'gpu_context_created':False})
@@ -88,6 +125,7 @@ def main():
     assert sha(ROOT/'wheel-0.45.1-py3-none-any.whl') == WHEEL_SHA
     source = ROOT/'source/flash_attn-2.8.3'
     assert sha(source/'setup.py') == 'd089d876c34366979708a87abe051bf3e30f81ee4ee685e4bb446c11f0940a73'
+    record('SOURCE_PRE_VERIFIED.json', verify_source_contents(ROOT/'flash_attn-2.8.3.tar.gz', source))
     import torch
     assert torch.__version__ == '2.11.0+cu128' and torch.version.cuda == '12.8'
     assert torch._C._GLIBCXX_USE_CXX11_ABI and not torch.cuda.is_initialized()
@@ -113,6 +151,8 @@ def main():
     pip = [sys.executable, '-m', 'pip']
     invoke('build-dependency', pip+['install','--no-deps','--no-index','--no-compile','--target',ROOT/'build_deps',ROOT/'wheel-0.45.1-py3-none-any.whl'],env,60)
     invoke('compile', pip+['wheel','--no-deps','--no-index','--no-build-isolation','--no-cache-dir','--wheel-dir',ROOT/'wheels',source],env,2100,source)
+    record('SOURCE_POST_VERIFIED.json', verify_source_contents(ROOT/'flash_attn-2.8.3.tar.gz', source, after_build=True))
+    assert sha(HOST_CXX) == HOST_SHA, 'host_compiler_changed_during_build'
     wheels = list((ROOT/'wheels').glob('*.whl'))
     assert len(wheels) == 1 and re.fullmatch(r'flash_attn-2\.8\.3[^/]*cp311[^/]*linux_x86_64\.whl', wheels[0].name)
     invoke('overlay-install', pip+['install','--no-deps','--no-index','--no-compile','--target',ROOT/'overlay',wheels[0]],env,90)

@@ -86,3 +86,17 @@ def test_native_receipt_covers_real_scope():
 def test_native_receipt_rejects_unqualified_replay(field,value):
     row=native_fixture();row['restore_receipt']['native_cpu_adam_cache'][field]=value
     with pytest.raises(ValueError):v.verify_native_restore_receipt(row,2,'a'*64)
+
+
+def test_real_deepspeed_metadata_types_are_compared_not_ignored():
+    pytest.importorskip('torch');pytest.importorskip('deepspeed')
+    from deepspeed.runtime.zero.config import ZeroStageEnum
+    v.same({'sparse_tensor_module_names':set(),'zero_stage':ZeroStageEnum.weights},
+           {'sparse_tensor_module_names':set(),'zero_stage':ZeroStageEnum.weights})
+    v.same({'sparse_tensor_module_names':{'module.a'}},{'sparse_tensor_module_names':{'module.a'}})
+    for a,b in ((set(),{'module.a'}),({'a'},{'b'}),({True},{True}),(set(),[]),
+                (ZeroStageEnum.weights,ZeroStageEnum.gradients),(ZeroStageEnum.weights,3)):
+        with pytest.raises(ValueError):v.same(a,b)
+    class Unsupported:
+        pass
+    with pytest.raises(ValueError):v.same(Unsupported(),Unsupported())

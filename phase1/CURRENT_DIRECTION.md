@@ -3,6 +3,17 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L78. 2026-09-06：五条GPU轨迹完成，独立payload检查器enum覆盖待修正
+
+12575 source1c211b87880a1110e3a67cc1dc7d277e5db18441 COMPLETED271秒/542GPU秒，五轨迹/九checkpoint，
+训练端两rank×两cut的严格最终状态与消费检查通过。可选组实际817+542=1359，原cap3120未超。
+独立CPU payload首轮失败unknown_pickle_state，原log SHA=eaa80d4b5d7d7e14180f4ff4f2d972b37f666ebdd9e21d12c34acd2c51045866。
+实际九manifest重核后定位ZeroStageEnum尚未支持；类型盘点还列出set，但原检查器已支持set，不是该失败原因。
+仅增加精确原生enum类型/成员比较，保留全部参数字节检查，不忽略字段、不复跑GPU。
+原postcheck路径失败保留；新CPU验收须另立r2，旧payload命令不得重跑。FINAL尚未运行，也未最终验收。
+187项Linux CPU预检10.28秒，45源文件，12535继续held。学长本次fetch仍b8d095180415957aa1bab31fa53ead1bba261c03，无新提交。
+独立helper/12574失败原始证据已发布e256cdf99376e481731c2cee8f5e216a586c053e；模型/scaling效果仍未测。
+
 ## 0L77. 2026-09-06 08:36：原生缓存修复已过CPU独立复核，准备有界GPU复验
 
 实际时钟08:35:59核验。生产helper30f179505af15ca81862d5448e820739b76a13c8已在真实CPUAdam上

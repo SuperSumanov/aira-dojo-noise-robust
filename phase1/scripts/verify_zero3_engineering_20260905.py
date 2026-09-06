@@ -85,6 +85,9 @@ def same(a,b):
         require(type(b) is set and all(type(x) in (str,int) for x in a|b) and a==b,'metadata_set')
     elif type(a) in (int,str,bool,float,type(None)):
         require(type(a)==type(b) and (a.hex()==b.hex() if type(a) is float else a==b),'scalar_state')
+    elif type(a).__module__=='deepspeed.runtime.zero.config' and type(a).__qualname__=='ZeroStageEnum':
+        from deepspeed.runtime.zero.config import ZeroStageEnum
+        require(type(a) is ZeroStageEnum and type(b) is ZeroStageEnum and a is b,'zero_stage_enum')
     else:
         # DS static LossScaler is a Python class; compare all actual attributes.
         require(type(a)==type(b) and type(a).__module__=='deepspeed.runtime.fp16.loss_scaler','unknown_pickle_state')

@@ -209,7 +209,7 @@ def submit(control,commit):
 def allocation(control,jid,state):
     f=fields(jid);wanted={'JobId':jid,'JobState':state,'Requeue':'0','Restarts':'0','TimeLimit':'01:00:00',
       'NumCPUs':'12','CPUs/Task':'12','MinMemoryNode':'0','NumTasks':'1','ReqNodeList':'gpu28','TresPerNode':'gpu:rtx3090:2',
-      'Partition':'gpu_24h','QOS':'gpu','Command':str(control/SCRIPT),'WorkDir':str(control)}
+      'Partition':'gpu_24h','QOS':'gpu','Features':'highcpucount','Command':str(control/SCRIPT),'WorkDir':str(control)}
     if state=='PENDING':wanted.update(Reason='JobHeldUser',RunTime='00:00:00')
     else:wanted.update(NodeList='gpu28')
     require(all(f.get(k)==v for k,v in wanted.items()) and f.get('NumNodes') in ('1','1-1')

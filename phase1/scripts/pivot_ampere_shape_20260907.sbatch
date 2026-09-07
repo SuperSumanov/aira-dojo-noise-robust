@@ -9,6 +9,7 @@
 #SBATCH --mem=0
 #SBATCH --gres=gpu:rtx3090:2
 #SBATCH --nodelist=gpu28
+#SBATCH --constraint=highcpucount
 #SBATCH --exclude=projgpu7,projgpu8,projgpu33,gpu36,gpu38
 #SBATCH --time=01:00:00
 #SBATCH --no-requeue

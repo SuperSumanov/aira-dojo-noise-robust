@@ -8,6 +8,12 @@ verify_critic_component_g0.py:465，匹配前为字母；原有规范扫描器�
 同时覆盖AWS形状，增加五类凭据阳性/普通标识阴性回归。未回显命中内容，原失败CPU目录保留，另新目录运行。
 先前备选路线现细化为独立入口，原PRO源/矩阵/冻结结果均不修改。失败记录原样保留，不自动重试。
 
+UTC01:00准备前补查：gpu28为IDLE，支持highcpucount；12CPU/2GPU入口显式声明该feature，
+held及实际allocation均验证。不改科学矩阵/预算，重新固定source并做真实Linux CPU检查后才提交。
+12649构建COMPLETED/3874秒；首次独立终验被现有Torch目录软链与文件硬链布局拒绝，
+两个原环境文件SHA都与构建前相同。另版终验只对明确Torch目标/UID/inode/nlink/byteSHA进行精确绑定，
+仍保留原失败INTENT与原verifier；wheel/source/新回执维持原有无链接门，未重跑构建。
+
 问题：在实际可排到的两张RTX3090上，独立critic能否完成最长输入的G更新/全状态保存，
 然后新进程恢复全部状态并完成L更新/第二次保存？不检验accuracy、不比较两个方法，不声称完整尺寸最终参数等价。
 

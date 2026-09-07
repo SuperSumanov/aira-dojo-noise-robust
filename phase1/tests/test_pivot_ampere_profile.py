@@ -118,7 +118,8 @@ def test_kernel_rejects_drift(mutation):
 def test_batch_script_binds_ampere_profile_and_full_time():
     s=(ROOT/m.SCRIPT).read_text()
     for x in ('--gres=gpu:rtx3090:2','--nodelist=gpu28','--time=01:00:00','--cpus-per-task=12',
-      'expected_host="gpu28"','timeout --kill-after=60s 3000s','timeout --kill-after=20s 180s','--no-requeue'):
+      'expected_host="gpu28"','timeout --kill-after=60s 3000s','timeout --kill-after=20s 180s','--no-requeue','--constraint=highcpucount'):
         assert x in s
+    assert "'Features':'highcpucount'" in inspect.getsource(m.allocation)
     assert s.index('pivot_checkpoint_space')<s.index(' kernel --commit')<s.index(' allocated --commit')<s.index('validate_pivot_ampere_shape')
     assert 'pro6000' not in s.lower() and '12535' not in s

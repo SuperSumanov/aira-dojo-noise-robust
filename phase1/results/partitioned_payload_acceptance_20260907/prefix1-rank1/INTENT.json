@@ -1,0 +1,11 @@
+{
+  "binding": {
+    "audit_commit": "c7c0aa4a0181be51d7c38dfa1942c6b68ca353e9",
+    "authenticated_receipt_sha256": "522cf8f5e8d3a4ca4f033494e11dc8c7526c2035eb623469b58d30661729e7ce",
+    "job_id": "12664",
+    "source_receipt_sha256": "9328c4fefebb2f92302a06c166ce318a39759ec128f77ece595ec89caa5bdbbf",
+    "training_commit": "88522f74cafcd45778751c5315fa0a89a1704965"
+  },
+  "case": "prefix1",
+  "rank": 1
+}

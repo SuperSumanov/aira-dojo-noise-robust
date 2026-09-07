@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "strace",
+    "-f",
+    "-qq",
+    "-e",
+    "trace=%file",
+    "-o",
+    "/research/d7/spc/yzyang4/critic-pivot-ampere-partitioned-postflight-20260907/final-filetrace.log",
+    "/research/d7/spc/yzyang4/venvs/critic-blackwell-g0-20260905-r5/bin/python",
+    "-B",
+    "-m",
+    "phase1.scripts.partitioned_pivot_postflight_20260907",
+    "--finalize"
+  ],
+  "audit_commit": "c7c0aa4a0181be51d7c38dfa1942c6b68ca353e9",
+  "limit_seconds": 900,
+  "pid": 2047883,
+  "stage": "final",
+  "utc": "2026-09-07T10:01:10.362771+00:00"
+}

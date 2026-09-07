@@ -1,0 +1,22 @@
+{
+  "audit_commit": "c7c0aa4a0181be51d7c38dfa1942c6b68ca353e9",
+  "checkpoint_bytes_rehashed_by_this_review": 0,
+  "classification": "INDEPENDENT_RECEIPT_COVERAGE_HASH_BINDING_AND_TRACE_REVIEW_NOT_TENSOR_REIMPLEMENTATION",
+  "completed_stages": 5,
+  "final_sha256": "0886d832747c1f5ac5e9db80d8f516f271987df6a3b348f2379a44d3be03f9d8",
+  "full_size_uninterrupted_final_parity_measured": false,
+  "helper_sha256": "0154d7a5b1b9040b4cebe5dd64af6dff5e51330a77a7bc64d4b5f4f4406859e9",
+  "model_effect_measured": false,
+  "new_gpu_jobs": 0,
+  "original_timeout_and_prepare_failure_preserved": true,
+  "payload_metadata_checked": true,
+  "real_linux_tests": 43,
+  "source_admission": false,
+  "source_files": 68,
+  "source_sha256": "9328c4fefebb2f92302a06c166ce318a39759ec128f77ece595ec89caa5bdbbf",
+  "tensor_deserializations_by_this_review": 0,
+  "trace_security_recomputed": true,
+  "training_commit": "88522f74cafcd45778751c5315fa0a89a1704965",
+  "unique_parts": 4,
+  "utc": "2026-09-07T10:03:48.769155+00:00"
+}

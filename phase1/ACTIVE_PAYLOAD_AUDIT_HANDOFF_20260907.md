@@ -1,5 +1,17 @@
 # 中断恢复入口：12664的CPU分段实物复验
 
+## 最新状态：已完成，不再续跑
+
+2026-09-07 10:03 UTC，四组及final全部通过，前台supervisor正常退出。
+FINAL SHA `0886d832747c1f5ac5e9db80d8f516f271987df6a3b348f2379a44d3be03f9d8`；
+独立证据链复核SHA `f8174e863b3621d989c27118c803f1e4e02a4e8001229b039b94aafc4d3793d8`。
+完整回执已导出至`results/partitioned_payload_acceptance_20260907/`。五阶段新增GPU秒0。
+恢复会话应先核验这些完成记录；不要重复启动run、重新提交12664或释放旧12535。
+数据来源准入仍为空，模型收益/clean scaling/完整尺寸不间断final parity均未验证。
+下一步入口是CURRENT_DIRECTION 0L103和NEXT_REAL_DATA_ROUTE_20260907.md，而非重新开展工程验收。
+
+## 以下保留启动时记录及故障恢复规则
+
 2026-09-07 09:43 UTC启动。恢复会话先fetch/读CURRENT_DIRECTION，再读本页；不要重新提交GPU。
 用户要求在会话中持续工作，不建立定时任务。旧六小时语料摄取租约已经到期，本次没有延长它。
 

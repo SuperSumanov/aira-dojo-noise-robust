@@ -1,0 +1,49 @@
+{
+  "archive_payload_downloaded": false,
+  "archive_payload_opened": false,
+  "checked_folders": [
+    {
+      "date": "0904",
+      "entries": 6,
+      "local_archives": 6,
+      "local_extra_names": 0,
+      "missing_archives": 0,
+      "remote_archives": 6,
+      "sidecar_files": 0,
+      "subfolders": 0
+    },
+    {
+      "date": "0905",
+      "entries": 12,
+      "local_archives": 12,
+      "local_extra_names": 0,
+      "missing_archives": 0,
+      "remote_archives": 12,
+      "sidecar_files": 0,
+      "subfolders": 0
+    }
+  ],
+  "classification": "CURRENT_SAFE_METADATA_NOT_NEW_RUN_OR_EFFECT_EVIDENCE",
+  "closure_provided": false,
+  "latest": "6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116",
+  "name_equality_is_not_content_equality": true,
+  "private_inventory_sha256": "4da094a253a9e635c21d709e88ff7b38310486cae6971360923e1a2e65c4c992",
+  "requests": 3,
+  "root_entries": 45,
+  "script_sha256": "04e4bef4875857275059ad2e8edb32da3a263eb6d6ae047dcc1a21098ef40895",
+  "september_date_folders": [
+    "0901",
+    "0902",
+    "0903",
+    "0904",
+    "0905"
+  ],
+  "snapshot_inventory": {
+    "all_physical_runs": 737,
+    "eligible_runs": 711,
+    "eligible_structural_pairs": 4380,
+    "eligible_tasks": 58
+  },
+  "snapshot_summary_sha256": "77572010daa7af2255084e35b41ae76da50f2f213838c047b4d99c052ce980f3",
+  "utc": "2026-09-07T10:01:19.984787+00:00"
+}

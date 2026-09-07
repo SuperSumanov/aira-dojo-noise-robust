@@ -1,0 +1,10 @@
+{
+  "elapsed_seconds": 254.87131867100106,
+  "returncode": 0,
+  "stage": "resume2-rank0",
+  "stdout_sha256": "8c7ac53e897c18522e1fec1b919b99081745222aac3c1ec5c00d068dfc2aeb39",
+  "timed_out": false,
+  "trace_lines": 112338,
+  "trace_security_passed": true,
+  "trace_sha256": "a00b2b8681d354a903f4a13aec5c4a68f23e4bf2d59120396bd8c9602f9023c1"
+}

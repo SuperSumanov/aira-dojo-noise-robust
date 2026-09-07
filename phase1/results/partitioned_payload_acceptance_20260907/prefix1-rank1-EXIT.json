@@ -1,0 +1,10 @@
+{
+  "elapsed_seconds": 203.3937761920024,
+  "returncode": 0,
+  "stage": "prefix1-rank1",
+  "stdout_sha256": "b34801cfd88facf7c8dfcd62d858c5ceaf7d131ce4f29a2e61fdbbb6c74cc4cb",
+  "timed_out": false,
+  "trace_lines": 112338,
+  "trace_security_passed": true,
+  "trace_sha256": "08e96cdeb5607bb2c9fc9600bfaa54fea4a9e26649c21828ec8be29c15f83779"
+}

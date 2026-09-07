@@ -3,6 +3,26 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L103. 2026-09-07：CPU四组实物与最终整包通过，不再重复GPU验收
+
+10:03 UTC，12664的四个rank事务及final均returncode=0、无timeout、访问trace门通过；
+原六role检查器未改，前后完整payload hash及最终两个整包hash均通过。
+FINAL SHA0886d832747c1f5ac5e9db80d8f516f271987df6a3b348f2379a44d3be03f9d8；
+独立回执/源码/metadata/trace复核SHAf8174e863b3621d989c27118c803f1e4e02a4e8001229b039b94aafc4d3793d8。
+后者是独立证据链复核，不是另一套tensor算法或又一次全payload读取；这些边界已写入回执。
+audit source仍c7c0aa4a0181be51d7c38dfa1942c6b68ca353e9，training source仍88522f74cafcd45778751c5315fa0a89a1704965。
+五阶段合计1190.3012236970098 CPU墙钟秒，新增GPU秒0；原900秒超时和R5缺pytest的首次准备失败保留。
+因此两RTX3090、1.7B/16K的G更新/保存→新进程恢复→L更新/保存工程路径与四组六role实物核验已完成。
+这不是critic收益、clean scaling、完整尺寸不间断final parity或真实数据准入；ADMITTED_RELEASES仍为空、四fit未启动。
+当前不再运行本CPU监督器，不重跑12664、不改变旧12535，不建立定时任务或延长旧摄取窗口。
+
+10:01 UTC公开目录元数据复查：最新可见日期0905，0904/0905各6/12归档名与本地相同，sidecar均0；
+未下载/打开任何archive payload，名称一致不证明内容一致。snapshot仍737physical/711eligible/4380pairs/58tasks、closure=false，
+LATEST6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116，summary SHA77572010daa7af2255084e35b41ae76da50f2f213838c047b4d99c052ce980f3。
+本轮myfork fetch成功、学长branch仍40d7dea10738f159fc97cad8487ab4ada88022a3；上游origin fetch的TLS失败另记，不伪称全部fetch成功。
+下一条实质依赖是可认证的新开发标签来源，而非再次做G0；保持NEXT_REAL_DATA_ROUTE_20260907.md的来源边界及既定四fit。
+安全原始回执、逐阶段CSV、实际helper与给学长的说明见results/partitioned_payload_acceptance_20260907/README.md。
+
 ## 0L102. 2026-09-07：按用户续行要求恢复CPU实物复验，准备分段事务
 
 用户要求中断后继续在会话内工作。本轮只处理12664未完成CPU实物验收：原900秒失败/原AUTH不改，

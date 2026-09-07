@@ -1,0 +1,6 @@
+{"elapsed_seconds": 2.50100129051134e-06, "phase": "hash_pre_start", "utc": "2026-09-07T09:56:40.008990+00:00"}
+{"elapsed_seconds": 161.63548120099586, "phase": "hash_pre_done", "utc": "2026-09-07T09:59:21.644490+00:00"}
+{"elapsed_seconds": 168.22979276000115, "phase": "load_start", "utc": "2026-09-07T09:59:28.238783+00:00"}
+{"elapsed_seconds": 195.68635299499874, "phase": "load_done", "utc": "2026-09-07T09:59:55.695343+00:00"}
+{"elapsed_seconds": 233.9518491589988, "phase": "payload_checks_done", "utc": "2026-09-07T10:00:33.960832+00:00"}
+{"elapsed_seconds": 267.35698846299783, "phase": "hash_post_done", "utc": "2026-09-07T10:01:07.365972+00:00"}

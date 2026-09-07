@@ -1,0 +1,12 @@
+{
+  "audit_commit": "c7c0aa4a0181be51d7c38dfa1942c6b68ca353e9",
+  "classification": "INDEPENDENT_SOURCE_AND_TEST_OVERLAY_REVIEW_NOT_PAYLOAD_ACCEPTANCE",
+  "gpu_jobs_submitted": 0,
+  "helper_sha256": "6e120d8af85bce23033c4b115f2ef6e35314528ee8afc7366e7b1148c0f48df0",
+  "linux_tests": 43,
+  "previous_failed_prepare_preserved": true,
+  "source_files": 68,
+  "source_receipt_sha256": "9328c4fefebb2f92302a06c166ce318a39759ec128f77ece595ec89caa5bdbbf",
+  "test_overlay_files": 104,
+  "test_runtime_sha256": "6adc5e739d809697748a36586767d6674a2e9c02321ffbf40831689903ce305e"
+}

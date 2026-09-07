@@ -1,0 +1,62 @@
+{
+  "binding": {
+    "audit_commit": "c7c0aa4a0181be51d7c38dfa1942c6b68ca353e9",
+    "authenticated_receipt_sha256": "522cf8f5e8d3a4ca4f033494e11dc8c7526c2035eb623469b58d30661729e7ce",
+    "job_id": "12664",
+    "source_receipt_sha256": "9328c4fefebb2f92302a06c166ce318a39759ec128f77ece595ec89caa5bdbbf",
+    "training_commit": "88522f74cafcd45778751c5315fa0a89a1704965"
+  },
+  "case": "resume2",
+  "classification": "ONE_AUTHENTICATED_PAYLOAD_PART_NOT_FINAL_ACCEPTANCE",
+  "elapsed_seconds": 267.359237607001,
+  "input_fingerprints": {
+    "pytorch_model/bf16_zero_pp_rank_1_mp_rank_00_optim_states.pt": {
+      "bytes": 10323466129,
+      "ctime_ns": 1788772323803975961,
+      "dev": 125,
+      "inode": 64501875168,
+      "mtime_ns": 1788748926332484684
+    },
+    "pytorch_model/zero_pp_rank_1_mp_rank_00_model_states.pt": {
+      "bytes": 162897,
+      "ctime_ns": 1788772323803975961,
+      "dev": 125,
+      "inode": 64501875166,
+      "mtime_ns": 1788748898136920448
+    },
+    "random_states_1.pkl": {
+      "bytes": 15081,
+      "ctime_ns": 1788772323799976019,
+      "dev": 125,
+      "inode": 62416006764,
+      "mtime_ns": 1788748936416329019
+    }
+  },
+  "payload_check": {
+    "classification": "ACTUAL_ZERO3_PAYLOAD_SIX_ROLE_OBSERVATION_CHECK_NOT_RESTART_PARITY",
+    "completed_steps": 2,
+    "cumulative_valid_tokens": 8388608,
+    "direct_roles_verified": [
+      "adamw",
+      "master_shards",
+      "numpy_rng",
+      "python_rng",
+      "scaler",
+      "torch_rng"
+    ],
+    "direct_state_sha256": {
+      "adamw": "1318097b60137277902926930a257d514e2befb105b864714a7bcaa631cf7b9a",
+      "master_shards": "930a2a6815583953ee522e6609ea83dfe1596ad58b92f3d12db50bde2f24a136",
+      "numpy_rng": "8cbd14fda483f9a6d9b2318799fda068fc0aea3770c8eb62c68c8500be02a309",
+      "python_rng": "2ff2691e7707d3b7c5b7695e72bc3a989c5c766317c248a55e97a1f3ac94dc12",
+      "scaler": "b76fcfa5440f6accc88ca7f2e3b44fb564dc6dfdbcc9f758b552ae8e5078a697",
+      "torch_rng": "7ab8e8122c69a2193fc29d54c328a69f988039c67c6ff2e7f5c7cc32deec8223"
+    },
+    "gpu_initialized": false,
+    "live_model_shards_independently_reconstructed": false,
+    "local_master_elements": 860288513,
+    "master_groups": 1,
+    "parameters": 1720577025
+  },
+  "rank": 1
+}

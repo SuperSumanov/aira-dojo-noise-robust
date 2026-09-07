@@ -9,7 +9,8 @@
 - 旧 launcher/run 来源已建立保守关联，但记录 HEAD 不证明当时未提交改动或外部评分版本。
 - 原 G0 的真实 1.7B／16K 双卡十步已经成功；新 token-plan consumer 的完整尺寸保存/恢复要单独验收。
 - Blackwell与Ampere依赖构建均已完成并独立核验。12664已真实完成1.7B/16K更新、保存、新进程恢复和再次保存。
-  独立CPU实物终验在900秒界限停止，只有AUTHENTICATED、没有VERIFIED；GPU完成不能替代这一验收。
+  原CPU实物终验900秒超时保留；10:03 UTC分段后四组原六role核验、最终整包及独立证据链复核全部通过。
+  这是保存/恢复工程验收，不是完整尺寸不间断训练final parity或critic收益，不应再重复G0来等待来源。
 - 当前完整执行镜像的两个独立内容哈希一致：
   `801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda`，
   `19717783552` 字节；16 项实际 Linux 测试和 benign 隔离检查通过。
@@ -51,7 +52,7 @@ worker 只见 public 输入、private 答案仅供外部 scorer，才能实际�
 因此先争取后续明确用于开发的生产记录直接保留实际runtime/evaluator出处，另冻结有界完整重执行范围。
 不从旧成绩挑样本、不把几条程序的工程运行当成足够训练或统计确认，不修改既定监督关系对照。
 
-依次完成完整尺寸 consumer 验收、真实来源资格、同版本 Cards/G/L 构建和 whole-experiment 隔离后，
+完整尺寸 consumer 保存/恢复工程验收已完成；后续仍须真实来源资格、同版本 Cards/G/L 构建和 whole-experiment 隔离，
 先运行既定 `Lbudget` 对 `G-reuse→L-full`、seeds 6/7 的四 fit 开发筛查。
 输入 endpoint population 与 token 预算对齐，区别只在监督关系/阶段；正式确认仍继承原五臂和独立冻结评测门。
 不因某个 seed 漂亮而省掉控制，不把旧 test 改名为 untouched。

@@ -27,3 +27,12 @@
 - 每项文件访问trace及credential/protected-marker门，只有自身合成检查点可读。
   pickle仅限预先全hash认证的自有产物，不声称通用恶意pickle沙箱。
 - ADMITTED_RELEASES、四fit、first960/Target300/522及旧12535不变；不新增定时任务。
+
+## 实际终验结果（10:03 UTC）
+
+四组与final共五阶段均正常退出，原六role函数不改，最终两整包重hash通过。
+FINAL SHA为0886d832747c1f5ac5e9db80d8f516f271987df6a3b348f2379a44d3be03f9d8。
+独立证据链复核通过；它独立核对68源码、四项唯一覆盖、五EXIT、metadata及trace，未重新反序列化payload，
+不能把它称作第二套tensor算法验证。原900秒超时与第一次pytest缺失的准备失败均保留。
+五阶段墙钟合计1190.3012236970098秒；这是审计耗时，不是跨seed性能测量。新增GPU秒0。
+完整原始回执和逐阶段耗时见results/partitioned_payload_acceptance_20260907/README.md。

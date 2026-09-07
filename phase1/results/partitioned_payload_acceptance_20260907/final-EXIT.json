@@ -1,0 +1,10 @@
+{
+  "elapsed_seconds": 139.78460082300444,
+  "returncode": 0,
+  "stage": "final",
+  "stdout_sha256": "48dae671e3296ee6a5729e48d8a894864c82dd427fd389baab7c98821fe02eee",
+  "timed_out": false,
+  "trace_lines": 7394,
+  "trace_security_passed": true,
+  "trace_sha256": "e423c7cc661e3b31512f4bdd235d9946aa7f052dee9911db1982476998914b8d"
+}

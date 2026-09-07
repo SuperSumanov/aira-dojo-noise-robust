@@ -1,0 +1,62 @@
+{
+  "binding": {
+    "audit_commit": "c7c0aa4a0181be51d7c38dfa1942c6b68ca353e9",
+    "authenticated_receipt_sha256": "522cf8f5e8d3a4ca4f033494e11dc8c7526c2035eb623469b58d30661729e7ce",
+    "job_id": "12664",
+    "source_receipt_sha256": "9328c4fefebb2f92302a06c166ce318a39759ec128f77ece595ec89caa5bdbbf",
+    "training_commit": "88522f74cafcd45778751c5315fa0a89a1704965"
+  },
+  "case": "prefix1",
+  "classification": "ONE_AUTHENTICATED_PAYLOAD_PART_NOT_FINAL_ACCEPTANCE",
+  "elapsed_seconds": 312.018847608997,
+  "input_fingerprints": {
+    "pytorch_model/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt": {
+      "bytes": 10323466129,
+      "ctime_ns": 1788772323795976077,
+      "dev": 125,
+      "inode": 75189091211,
+      "mtime_ns": 1788747570939965565
+    },
+    "pytorch_model/zero_pp_rank_0_mp_rank_00_model_states.pt": {
+      "bytes": 162897,
+      "ctime_ns": 1788772323795976077,
+      "dev": 125,
+      "inode": 75188484653,
+      "mtime_ns": 1788747542476588306
+    },
+    "random_states_0.pkl": {
+      "bytes": 15017,
+      "ctime_ns": 1788772323791976133,
+      "dev": 125,
+      "inode": 73102836258,
+      "mtime_ns": 1788747580127766851
+    }
+  },
+  "payload_check": {
+    "classification": "ACTUAL_ZERO3_PAYLOAD_SIX_ROLE_OBSERVATION_CHECK_NOT_RESTART_PARITY",
+    "completed_steps": 1,
+    "cumulative_valid_tokens": 4194304,
+    "direct_roles_verified": [
+      "adamw",
+      "master_shards",
+      "numpy_rng",
+      "python_rng",
+      "scaler",
+      "torch_rng"
+    ],
+    "direct_state_sha256": {
+      "adamw": "33314697cd304d1662b3f4867a92e479d5cf1c88318753ab4613a1afdda54183",
+      "master_shards": "eff1c99bb87df430c1671d797974496de21883367f8950f96aa07058aadcfadf",
+      "numpy_rng": "e246f74181b2aa788ee722007a9f33cb3ddb0cf623c7fa67f54eb5d97d7d7a56",
+      "python_rng": "2693e795cd0f0ee46e2998b86f05b74e79be3c09fe9e78af3573d7982897ec07",
+      "scaler": "b76fcfa5440f6accc88ca7f2e3b44fb564dc6dfdbcc9f758b552ae8e5078a697",
+      "torch_rng": "5a25f1eb5e57d1aba16f453325a9c911e77100a1cdaba0f143d096da65eebfc6"
+    },
+    "gpu_initialized": false,
+    "live_model_shards_independently_reconstructed": false,
+    "local_master_elements": 860288513,
+    "master_groups": 1,
+    "parameters": 1720577025
+  },
+  "rank": 0
+}

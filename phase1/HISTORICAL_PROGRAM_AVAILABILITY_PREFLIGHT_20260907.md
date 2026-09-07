@@ -5,8 +5,13 @@
 
 固定原84run范围、24archive、原ledger及完整component闭包；不扩大到保护cohort或按旧成绩过滤。
 最新header-only实查为168个journal JSONL/覆盖84run，无独立Python文件。这仅是文件可用性。
-新读取严格限这些run根内名为journal.jsonl（大小写不敏感）的成员，每成员32MiB、每行集合10000条，
-整轮最多512MiB/900秒/单CPU；先凭据形状扫描，命中整轮停止且不回显。无解压目录、API或GPU。
+新读取严格限这些run根内名为journal.jsonl（大小写不敏感）的成员，每成员256MiB、每行集合10000条，
+整轮最多3GiB/900秒/单CPU；先凭据形状扫描，命中整轮停止且不回显。无解压目录、API或GPU。
+
+UTC01:52容量修订：第一版32MiB/member及512MiB总量在实际读取中停止，原失败目录与trace保留，未有完整结果。
+随后独立header-only普查：168文件，一遍1409646674bytes、两遍2819293348bytes，最大185585223bytes。
+因此新增r2读取预算如上，仅由全范围文件尺寸决定，不用成绩、不缩小或改选范围；不复用或覆盖原输出。
+两遍实际payload累计必须与上述header总量相等；读取900秒硬门与所有结构/凭据/重复检查保持。
 
 只投影step、parents、code字节SHA/长度/是否非空及id的SHA；原JSON里的历史成绩字节会进入解析器，
 但不访问metric/is_buggy/exit_code/current_best_node等值，不将失败程序排除。原code不回显、不本地落盘。

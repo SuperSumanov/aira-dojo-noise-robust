@@ -17,7 +17,7 @@ def unique(pairs):
         d[k]=v
     return d
 def project(raw):
-    if type(raw) is not bytes or not 0<len(raw)<=32*2**20:raise ValueError('journal_member_size')
+    if type(raw) is not bytes or not 0<len(raw)<=256*2**20:raise ValueError('journal_member_size')
     if SECRET.search(raw):raise ValueError('journal_credential_shape')
     lines=raw.splitlines()
     if not lines or len(lines)>10000:raise ValueError('journal_line_cap')

@@ -174,8 +174,14 @@ def bind(control,commit):
     require(sha(tiny)==TINY_SHA and read(tiny)['classification']=='REAL_TINY_ZERO3_RESTART_AND_FINAL_READOUT_ACCEPTED_NOT_PIVOT_OR_EFFECT','tiny_drift')
     build_binding();accounting();return hashes
 
+def prepare_cache_path(commit):
+    require(isinstance(commit,str) and re.fullmatch('[0-9a-f]{40}',commit),'cache_exact_commit')
+    return Path('/tmp')/('critic-pivot-ampere-'+commit+'-triton')
+
 def prepare(control,commit):
     queue();accounting();b=build_binding();safe_root(BASE);previous=previous_failed_preparation()
+    cache=prepare_cache_path(commit)
+    require(not cache.exists() and not cache.is_symlink(),'prepare_cache_already_exists')
     OUT.parent.mkdir(mode=0o700,exist_ok=True);safe_root(OUT.parent);OUT.mkdir(mode=0o700)
     record('prepare_intent.json',{'commit':commit,'gpu_seconds_upper_bound':CAP,'controller_sha256':sha(__file__),'real_corpus_reads':0})
     record('previous-failed-preparation.json',previous)
@@ -184,7 +190,7 @@ def prepare(control,commit):
     run(['git','-C',REPO,'worktree','add','--detach','--no-checkout',control,commit])
     run(['git','-C',control,'sparse-checkout','set','--no-cone','--stdin'],data=('\n'.join('/'+n for n in files(commit))+'\n').encode())
     run(['git','-C',control,'checkout','--detach',commit]);hashes=bind(control,commit);run(['bash','-n',control/SCRIPT])
-    env=dict(ENV,PYTHONPATH=str(BUILD/'overlay')+os.pathsep+str(control),TRITON_CACHE_DIR='/tmp/critic-pivot-ampere-20260907-triton')
+    env=dict(ENV,PYTHONPATH=str(BUILD/'overlay')+os.pathsep+str(control),TRITON_CACHE_DIR=str(cache))
     Path(env['TRITON_CACHE_DIR']).mkdir(mode=0o700)
     tests=['-q','--tb=short','-p','no:cacheprovider',*['phase1/tests/'+n+'.py' for n in TESTS]]
     code="import sys;sys.path.append('/research/d7/spc/yzyang4/venvs/exp/lib/python3.11/site-packages');import pytest;raise SystemExit(pytest.main("+repr(tests)+"))"

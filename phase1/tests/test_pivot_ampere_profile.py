@@ -154,3 +154,14 @@ def test_batch_script_binds_ampere_profile_and_full_time():
     assert "'Features':'highcpucount'" in inspect.getsource(m.allocation)
     assert s.index('pivot_checkpoint_space')<s.index(' kernel --commit')<s.index(' allocated --commit')<s.index('validate_pivot_ampere_shape')
     assert 'pro6000' not in s.lower() and '12535' not in s
+
+def test_prepare_cache_is_commit_specific_and_checked_before_output_creation():
+    a=m.prepare_cache_path('a'*40);b=m.prepare_cache_path('b'*40)
+    assert a!=b and str(a).replace('\\','/')=='/tmp/critic-pivot-ampere-'+('a'*40)+'-triton'
+    body=inspect.getsource(m.prepare)
+    assert body.index('prepare_cache_already_exists')<body.index('OUT.mkdir')
+    assert "TRITON_CACHE_DIR=str(cache)" in body and 'mkdir(mode=0o700)' in body
+
+@pytest.mark.parametrize('bad',['a'*39,'../outside','A'*40,123])
+def test_prepare_cache_rejects_noncommit(bad):
+    with pytest.raises(RuntimeError,match='cache_exact_commit'):m.prepare_cache_path(bad)

@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L100. 2026-09-07：备用两卡真实运行，历史canonical角色冲突已定位
+
+12664已在gpu28实际RUNNING；source88522f74cafcd45778751c5315fa0a89a1704965。
+260 Linux测试/64文件、1735私有工具链项与held独立复核通过后才释放；实际节点工具/64GiB/两卡FA2数学门均过。
+完整1.7B已载入，更新/保存/新进程恢复尚未完整验收；不能写critic收益或clean scaling。
+12662失败和原12535held不改，最多一个尺寸job、原10GPUh工程边界不变。
+
+poll13原摄取及独立post-audit完成：737physical/711eligible/19351endpoints/4380pairs/58tasks，closure=false。
+LATEST6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116；
+summary77572010daa7af2255084e35b41ae76da50f2f213838c047b4d99c052ce980f3。保护评测仍不揭盲。
+
+历史清点r2在合并两个不同role时失败，不能据此称语料坏。新source3b593af角色诊断实际27Linux测试、
+A/B逐字节一致、336独立member解析：84run的checkpoint3547节点，0重复step/未知格式；
+live仅1run有10冲突step，另有174个live-only step。原intake/历史ledger本来就只取checkpoint，不受新适配器误合并影响。
+诊断投影SHA052777ca3ab0ff2c2b265bd91d7488b561a3c708261418e37ccf1092d34cabad，耗时361.9844179610009秒。
+下一步只按原canonical角色清点同父程序和完整执行成本，不删除live证据，不使用旧成绩、不改变来源准入。
+新外部评分boundary是今天重执行的准备；20本地测试过，实际Linux原grader六任务fixture还在核验。
+ADMITTED_RELEASES为空，正式四fit未启动；六小时会话截止仍UTC03:53:36。
+
 ## 0L99. 2026-09-07：双卡获配但备用worker工具链路径错误，单次替代准备
 
 源码b04a0be真实Linux248项/62文件，实际64GiB准备、独立held复核均过，12662释放后获配gpu28双卡。

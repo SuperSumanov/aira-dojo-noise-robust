@@ -1,7 +1,29 @@
-# 当前研究方向唯一入口（2026-09-07）
+# 当前研究方向唯一入口（2026-09-08）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0L104. 2026-09-08：0906新上传已安全复制，尚未经过摄取时龄门
+
+香港05:41独立复核完成：0906新11归档、118981762压缩字节；source归档343→354。
+原脚本的有界下载、fsync、0400、完整SHA和清单重列后才原子提升；另一实现及GNU/Python SHA一致。
+source commit cef7ac01b1fa5745a733bc2b3dad3af42bb1c6d6；本地/实际Linux均20项测试通过。
+私有manifest SHAc960d1e4c59cffcb5c571f08a7d87792e89c178758bff6982bad719e9088a48b；
+独立复制回执SHAb449fa2b6e6998b0fefe9db29d9f29b5a3a4bf70448713c1b8da6ae548bed7ee。
+固定目录11项全为归档，独立sidecar为0；未解压或读tar成员。旧343归档元数据相同，未重新hash全部旧payload。
+1GiB真实空间预留通过；仅移除本次自身探测inode，未删除用户数据、未覆盖旧归档。
+
+最晚文件本地mtime+6h为UTC2026-09-08T03:40:45.566210，即香港11:40:45.566210。
+这只是时龄下界，不等于3次观测/300秒间隔/600秒跨度已完成，更不是已摄取或训练资格。
+本轮没有启动新intake/monitor、延长旧lease或改mtime。恢复后须重核成熟与锁/PID/源码/LATEST，再在新明确窗口内复用原科学摄取和逐次独立delta链；不能调用已过期0905窗口。
+
+当前结构snapshot仍737physical/711eligible/19351endpoints/4380pairs/58tasks、closure=false，
+LATEST6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116，summary SHA77572010daa7af2255084e35b41ae76da50f2f213838c047b4d99c052ce980f3。
+12664完成与原CPU验收hash未变，不重跑；Slurm仅12535为JobHeldUser，不释放、不宣称模型训练在跑。
+myfork fetch成功；学长branch仍40d7dea10738f159fc97cad8487ab4ada88022a3、无新outcome。
+既有config-v2 hook在隔离临时index上对该head的apply-check通过，但未应用/部署，也不能认证历史evaluator/runtime。
+ADMITTED_RELEASES仍空，既定Lbudget与G-reuse→L-full seeds6/7四fit仍未开始；保护评测未揭盲，GPU/API/模型fit新增0。
+原始安全回执和继续入口见results/senior_0906_copy_20260908/README.md；本节覆盖所有较早的动态状态，不改变科学主线。
 
 ## 0L103. 2026-09-07：CPU四组实物与最终整包通过，不再重复GPU验收
 

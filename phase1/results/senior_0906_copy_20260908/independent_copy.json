@@ -1,0 +1,21 @@
+{
+  "all_files_six_hour_age_at_utc": "2026-09-08T03:40:45.566210+00:00",
+  "archive_contents_parsed": false,
+  "archives": 11,
+  "commit": "cef7ac01b1fa5745a733bc2b3dad3af42bb1c6d6",
+  "compressed_bytes": 118981762,
+  "gnu_and_python_hash_agree": true,
+  "gpu_jobs": 0,
+  "intake_age_satisfied": false,
+  "latest_unchanged": "6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116",
+  "observed_utc": "2026-09-07T21:41:05.925809+00:00",
+  "old_archive_metadata_unchanged": true,
+  "old_archive_payloads_rehashed": false,
+  "paid_api_calls": 0,
+  "private_manifest_sha256": "c960d1e4c59cffcb5c571f08a7d87792e89c178758bff6982bad719e9088a48b",
+  "protected_outcome_values_read": false,
+  "safe_receipt_sha256": "95fd1f3179591757e46675750cdbe92a6cd219e43fb386c0ee6a8e71d348b2ef",
+  "source_archives": 354,
+  "status": "INDEPENDENT_OPAQUE_COPY_VERIFIED_NOT_INTAKE_OR_TRAINING",
+  "training_source_qualified": false
+}

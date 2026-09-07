@@ -1,0 +1,12 @@
+{
+  "commit": "cef7ac01b1fa5745a733bc2b3dad3af42bb1c6d6",
+  "linux_tests": 20,
+  "original_archives": 343,
+  "package_sha256": "3cf86fcc11d89749f543e7c10850d3d42a76c8897ff549a4a5ed41a524cc2305",
+  "source_files": {
+    "phase1/SENIOR_0906_COPY_PREFLIGHT_20260908.md": "5d3d9466c83e610e87caeb96dd5bfbddfde2827143f433caa0df07814ef6262b",
+    "phase1/scripts/sync_senior_0906_bounded_20260908.py": "d11cb372480bd360bf0fcc30759d070241e537f6b0518edb192f160c820e2b6d",
+    "phase1/tests/test_sync_senior_0906.py": "07c47fbfdc28db97997cb425de59e0881b5edb2d83727f8cd01410a727457b72"
+  },
+  "test_log_sha256": "db3988c5aa61c1f984246df6ea9d0e2032da7e891357d094b54e240a3ea50fe1"
+}

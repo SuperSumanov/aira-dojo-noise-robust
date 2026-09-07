@@ -1,0 +1,35 @@
+{
+  "status": "ALLOWLISTED_SAFE_EXPORT",
+  "files": [
+    {
+      "bytes": 400,
+      "name": "metadata.json",
+      "sha256": "fac59e01cba87a8257cb4925b42484957978e3566303eb995a036d026a56c341"
+    },
+    {
+      "bytes": 670,
+      "name": "source_ready.json",
+      "sha256": "3c25fd4cb5d76890d837d2afe33a35aae66ec422501727324b00bad48c7bc631"
+    },
+    {
+      "bytes": 131,
+      "name": "space.json",
+      "sha256": "1ce410ecc97d04b4c2d54ad975e219cc0540b8eca83beb6f8c0326ceaf7b4150"
+    },
+    {
+      "bytes": 881,
+      "name": "copy.json",
+      "sha256": "95fd1f3179591757e46675750cdbe92a6cd219e43fb386c0ee6a8e71d348b2ef"
+    },
+    {
+      "bytes": 162,
+      "name": "copy_exit.json",
+      "sha256": "77aebaa7e11f2c827b04c1a5b0a884683728df968263ecde1e04eca60f5f9454"
+    },
+    {
+      "bytes": 922,
+      "name": "independent_copy.json",
+      "sha256": "b449fa2b6e6998b0fefe9db29d9f29b5a3a4bf70448713c1b8da6ae548bed7ee"
+    }
+  ]
+}

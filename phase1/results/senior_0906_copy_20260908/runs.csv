@@ -1,0 +1,2 @@
+stage,source_commit,completed_utc,archives,compressed_bytes,wall_seconds,gpu_jobs,paid_api_calls,model_fits,archive_contents_parsed,training_source_qualified
+opaque_archive_copy,cef7ac01b1fa5745a733bc2b3dad3af42bb1c6d6,2026-09-07T21:40:48.147316+00:00,11,118981762,80.72552082699258,0,0,0,false,false

@@ -1,15 +1,28 @@
 # Context handoff：Decision Corpus + Predictor Benchmark
 
-**Last updated:** 2026-09-07
+**Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-07；当前0L94覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-08香港05:41；当前0L104覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
 **Authority warning:** 本文件不是科学方向的最高权威。开始任何实验前必须先 fetch Git，再读
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
-## 2026-09-07 当前入口，覆盖下文所有历史动态状态
+## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+首先fetch并读CURRENT_DIRECTION 0L104。12664及CPU分段验收全部已完成，不重跑构建/G0/验收。
+旧12535仍JobHeldUser，不释放；正式四fit尚未开始，ADMITTED_RELEASES为空。
+本轮0906新增11归档已复制/独立SHA与0400复核，总118981762bytes、归档总量354。
+所有文件六小时时龄下界UTC09-08T03:40:45.566210（香港11:40:45.566210），不倒填mtime。
+未调用摄取，旧0905 lease已过期，未另建monitor。恢复后先核当前状态，满足时龄并明确新有界窗口后才复用原intake/delta链。
+现snapshot仍737physical/711eligible/4380pairs/58tasks、closure=false，LATEST6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116。
+source cef7ac01b1fa5745a733bc2b3dad3af42bb1c6d6，回执results/senior_0906_copy_20260908/README.md。
+学长branch40d7dea无新outcome；旧config-v2补丁可无冲突apply-check，但未部署且不解决历史评分环境认证。
+主线仍Lbudget对G-reuse→L-full四fit开发筛查；不能拿新前瞻包填训练、把历史test重命名或恢复HCE/Probe等旧路线。
+来源解锁见NEXT_REAL_DATA_ROUTE_20260907.md和SENIOR_MINIMUM_SOURCE_HANDOFF_20260905.md顶部；不再追已删除snapshot。
+
+## 2026-09-07 历史入口，仅保留追溯
 
 最新覆盖：actual Linux 224+38测试分别通过，源码4cb39e0/6b2af78，6份原始安全回执已导出results/session_progress_20260907。
 poll6实际完成，685eligible/711physical/4320pairs/58tasks，LATEST8fbc640c2c86f171509fb072dd30f2c46550a6eb639efb1e89f42403cc1e38eb，

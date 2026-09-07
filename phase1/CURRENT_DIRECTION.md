@@ -8,7 +8,10 @@
 用户要求中断后继续在会话内工作。本轮只处理12664未完成CPU实物验收：原900秒失败/原AUTH不改，
 新四个rank事务逐项完整前后hash并调用原六role函数，最后整包重hash及四项唯一覆盖后才允许FINAL。
 各项900秒、串行；含测试/清理总上限4800秒，0GPU/0API/0真实训练；不延长旧语料摄取窗口或建立定时任务。
-当前只有本地代码/负控准备，真实Linux及四组payload尚未完成，不能写完整验收或效果通过。
+后续09:43 UTC：43实际Linux测试及独立部署复核已过，68源码绑定，已启动四组CPU实物复验的第一组。
+audit source c7c0aa4a0181be51d7c38dfa1942c6b68ca353e9；SOURCE SHA9328c4fefebb2f92302a06c166ce318a39759ec128f77ece595ec89caa5bdbbf。
+首次准备因R5缺pytest失败，旧目录全字节保留；新r2只给测试进程私有104工具文件，未改训练环境/原核验函数。
+仍未完成全部payload，不写验收或效果通过。中断后先读ACTIVE_PAYLOAD_AUDIT_HANDOFF_20260907.md，先核现有进程而非重复运行。
 详见PARTITIONED_PAYLOAD_POSTFLIGHT_20260907.md；主线、数据准入和既定四fit均不改。
 
 ## 0L101. 2026-09-07：完整尺寸GPU作业完成；CPU实物终验超时，不冒充已验收

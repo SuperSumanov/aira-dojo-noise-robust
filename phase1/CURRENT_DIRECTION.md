@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L101. 2026-09-07：完整尺寸GPU作业完成；CPU实物终验超时，不冒充已验收
+
+12664实际COMPLETED/0:0，2729秒、5458 GPU秒；source88522f74cafcd45778751c5315fa0a89a1704965。
+两RTX3090、1.7B/16K、G更新/保存→新进程恢复→L更新/保存的worker已完整退出，两个checkpoint存在。
+09:04 UTC恢复收尾时启动原固定CPU终验；源码/trace/全文件hash/逐rank消费门通过并生成AUTHENTICATED，
+但实际payload阶段未在900秒内生成VERIFIED。精确PID守界器于age=900停止该CPU进程；不重跑GPU、不改检查阈值。
+因此只称GPU工程轨迹完成，独立实物验收仍未完成，更不能称critic收益、clean scaling或完整尺寸final parity。
+累计工程21960 GPU秒；旧12535不改，正式四fit未启动，ADMITTED_RELEASES仍为空。
+
+固定84历史run的只读程序包已A/B和独立Python/GNU hash通过：3547文件、64857637字节、3447非空。
+3422非空程序在exp/Python3.11可编译，25项失败保留；不是目标镜像兼容或安全执行证明。
+canonical保留1579对不同代码的同父候选。原包失败由helper变量覆盖造成，失败243文件保留，r2另目录成功。
+今天外部grader六任务31fixture、A/B/C和1024模块来源核验完成；没有执行真实候选或生成新标签。
+按每程序1GPU、全部原完整时限，全量3447非空程序条件cap为22912800 GPU秒（6364.666666666667 GPU小时），
+不含初始化/评分/IO/critic训练，不是实际花费预测；不默认全量重跑、不按旧成绩挑廉价成功样本。
+下一步优先补可认证的新开发生产记录与有界完整重执行范围；独立payload复验需分段留进度，无需重跑训练。
+
+09:21 UTC只读复核仍737physical/711eligible/19351endpoints/4380pairs/58tasks、closure=false，
+LATEST6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116。
+15次foreground调用均有post-audit；最后完成02:29:24.764646 UTC。原03:53:36截止未延长，第16次未运行。
+归档数量343与最后摄取相同，仅元数据检查，不能据此认证全部archive内容未变；config-v2 sidecar元数据数量0。
+安全原始回执、运行CSV和边界见results/session_completion_20260907/README.md；仅推我方分支。
+
 ## 0L100. 2026-09-07：备用两卡真实运行，历史canonical角色冲突已定位
 
 12664已在gpu28实际RUNNING；source88522f74cafcd45778751c5315fa0a89a1704965。

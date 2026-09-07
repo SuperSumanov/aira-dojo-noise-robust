@@ -1,0 +1,36 @@
+{
+  "credential_shape_hits": 0,
+  "files": {
+    "ampere_authentication.json": {
+      "bytes": 6744,
+      "original_relative_path": "critic-pivot-ampere-postflight-12664-20260907/AUTHENTICATED.json",
+      "sha256": "522cf8f5e8d3a4ca4f033494e11dc8c7526c2035eb623469b58d30661729e7ce"
+    },
+    "program_pack.json": {
+      "bytes": 1018,
+      "original_relative_path": "historical-program-pack-f702ba2-r2-20260907/SUMMARY.json",
+      "sha256": "8384d2824c4105ea14c49d35ba20840713eaa5f3555924abc563e0918e7401fb"
+    },
+    "program_pack_independent.json": {
+      "bytes": 831,
+      "original_relative_path": "historical-program-pack-independent-20260907/VERIFIED.json",
+      "sha256": "a5ea6898677f35d924ea7f481a6530867d2997fc5aabe99e4077805e73e94f15"
+    },
+    "reexecution_cost_caps.json": {
+      "bytes": 2660,
+      "original_relative_path": null,
+      "sha256": "270f4fd974d68da07132fc50b272d7a4cb617f0deb2f4ef26f674aaafcb79f90"
+    },
+    "runs.csv": {
+      "bytes": 727,
+      "original_relative_path": null,
+      "sha256": "1086c55a4b867c702d8641d6f14ca3bb72fa6ccb19b68902e26d311809b8b2b1"
+    },
+    "session_observation.json": {
+      "bytes": 1734,
+      "original_relative_path": null,
+      "sha256": "3a94ca7378130f446591cd844ea236331f5009ded8871ff742b5bf8acf26ea4f"
+    }
+  },
+  "helper_sha256": "3b54873b9f993e49d7f8dd2d0bbfa9fdcfe8996da5a7bf992ef8ecdd53530b6b"
+}

@@ -1,0 +1,18 @@
+{
+  "all_readonly": true,
+  "bytes": 64857637,
+  "classification": "INDEPENDENT_READONLY_PROGRAM_BYTES_NOT_EXECUTION_OR_TRAINING_ADMISSION",
+  "file_trace_sha256": "ac7e0b2aba7209e4796901c6edb9341b30a2a4524970371b736b2dab42ba828d",
+  "files": 3547,
+  "helper_sha256": "9f745f11e9ce8323df2999fed9a7cd9e401d5de739933d189e152f1113cc4843",
+  "manifest_sha256": "0912a2e6cf8342fe6c209645d2d1b56c142f91a066197fcd5e37d07f8c0955e7",
+  "producer_summary_sha256": "8384d2824c4105ea14c49d35ba20840713eaa5f3555924abc563e0918e7401fb",
+  "programs_executed": 0,
+  "python_and_gnu_hashes_agree": true,
+  "runs": 84,
+  "source_admitted": false,
+  "source_commit": "f702ba2167c5f1add15035fe6aefc4c7f36dea65",
+  "trace_lines": 67777,
+  "trace_scope": "known protected path markers, not general sandbox",
+  "utc": "2026-09-07T02:45:15.951919+00:00"
+}

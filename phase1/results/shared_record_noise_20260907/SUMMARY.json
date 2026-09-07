@@ -1,0 +1,23 @@
+{
+  "api_calls": 0,
+  "classification": "SYNTHETIC_SHARED_RECORD_MECHANISM_BOUNDARY_VERIFIED_NOT_MODEL_GAIN",
+  "commit": "01ad9466aa9bffe6b0a220c4e33c191cd6724599",
+  "execution_sha256": "67f04f5215544ef584b62e6503750b9984289c1866467412841a9592e1ebd660",
+  "gpu_count": 0,
+  "independent_verifier_AB_identical": true,
+  "producer_AB_identical": true,
+  "producer_sha256": "ebb5af516b6c3d560193f1430b390dc08794d23508824c7f650e538a75120e78",
+  "real_corpus_reads": 0,
+  "utc": "2026-09-07T00:17:24.916073+00:00",
+  "verification": {
+    "cases": 2,
+    "classification": "INDEPENDENT_SYNTHETIC_GLS_COUNTEREXAMPLE_VERIFIED_NOT_REAL_GAIN",
+    "fully_shared_record_cycle_gain_zero": true,
+    "independent_edge_positive_control": true,
+    "max_absolute_error": 1.3322676295501878e-15,
+    "model_effect_measured": false,
+    "real_noise_level_estimated": false,
+    "rho_points": 5
+  },
+  "verifier_sha256": "addd81f5962c1c6c71a01845fa871fb212ed95252e2334f85244be18f38eb574"
+}

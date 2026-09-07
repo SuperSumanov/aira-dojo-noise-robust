@@ -1,0 +1,41 @@
+{
+  "credential_shape_hits": 0,
+  "files": {
+    "EXECUTION.json": {
+      "bytes": 2064,
+      "original_relative_path": "shared-record-noise-01ad946-20260907/EXECUTION.json",
+      "sha256": "67f04f5215544ef584b62e6503750b9984289c1866467412841a9592e1ebd660"
+    },
+    "SUMMARY.json": {
+      "bytes": 974,
+      "original_relative_path": "shared-record-noise-01ad946-20260907/SUMMARY.json",
+      "sha256": "3c91c6d6a06e49288fb33c9890399e1ec018895892f93d472d15ad43df66ea24"
+    },
+    "producer_A.json": {
+      "bytes": 3791,
+      "original_relative_path": "shared-record-noise-01ad946-20260907/producer_A.json",
+      "sha256": "ebb5af516b6c3d560193f1430b390dc08794d23508824c7f650e538a75120e78"
+    },
+    "producer_B.json": {
+      "bytes": 3791,
+      "original_relative_path": "shared-record-noise-01ad946-20260907/producer_B.json",
+      "sha256": "ebb5af516b6c3d560193f1430b390dc08794d23508824c7f650e538a75120e78"
+    },
+    "runs.csv": {
+      "bytes": 2697,
+      "original_relative_path": "shared-record-noise-01ad946-20260907/runs.csv",
+      "sha256": "ff7ac6966fb07cfe11f7c873a516f1938174c0b229375c4003d1742c2eeea717"
+    },
+    "verifier_A.json": {
+      "bytes": 303,
+      "original_relative_path": "shared-record-noise-01ad946-20260907/verifier_A.json",
+      "sha256": "addd81f5962c1c6c71a01845fa871fb212ed95252e2334f85244be18f38eb574"
+    },
+    "verifier_B.json": {
+      "bytes": 303,
+      "original_relative_path": "shared-record-noise-01ad946-20260907/verifier_B.json",
+      "sha256": "addd81f5962c1c6c71a01845fa871fb212ed95252e2334f85244be18f38eb574"
+    }
+  },
+  "real_corpus_reads": 0
+}

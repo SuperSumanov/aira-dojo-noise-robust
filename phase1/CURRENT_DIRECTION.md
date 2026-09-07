@@ -5,6 +5,11 @@
 
 ## 0L96. 2026-09-07：主依赖构建及独立终验完成，备用尺寸入口准备
 
+UTC00:17正式共享噪声诊断已完成：18Linux测试、生产A/B及独立A/B逐字节一致，
+两实现最大差1.3322676295501878e-15；七原始产物已导出results/shared_record_noise_20260907。
+完全共享record噪声时cycle不增加独立标签信息；不等于global连接/神经critic无收益，不改变任何已冻结效果门。
+以下“正式Linux矩阵待做”仅为此前状态。source01ad9466aa9bffe6b0a220c4e33c191cd6724599。
+
 911886a真实Linux237检查已通过/62源文件，testlog SHA3fba3d7163ef56aa8ca690946189e1cb5636861e4d797ee8b5b9cd371c200f89。
 三份原始安全回执已按bytes/SHA导出至results/session_builds_20260907，含R4终验和历史grading metadata缺失结论。
 另准备纯合成共享record噪声反例，校准cycle谱代理解释，不读取真实数据、不改任何训练/selector/确认门。

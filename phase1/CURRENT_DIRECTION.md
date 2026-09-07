@@ -3,6 +3,19 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L99. 2026-09-07：双卡获配但备用worker工具链路径错误，单次替代准备
+
+源码b04a0be真实Linux248项/62文件，实际64GiB准备、独立held复核均过，12662释放后获配gpu28双卡。
+实际FAILED/1:0/3秒/6 GPU秒；worker在bin/nvcc检查退出，未有build_tools/数学/模型/检查点。
+worker SHAfc62214cd4dad5a84fc540ca2be970a237bc6e146ceac35c656243bc64a8ac53。
+此前已知gpu28无本地12.8；我方新worker误接PRO路径是遗漏。改回原已验私有12.8工具链，不降低FA2或数学门。
+新r3仅一个手工登记的替代job，保持2GPU/60min，原12662/r2全文件绑定保存，10GPUh工程上限不变。
+仍未有完整尺寸验收或critic效果，原12535保持held，ADMITTED_RELEASES为空。
+
+固定84历史run的header检查有168个JOURNAL.jsonl；新的代码/父关系检查未完成，读数不作程序可用性结论。
+第一次实跑在512MiB整轮读取上限停止，旧输出保留；应先只读header核实际规模，再另裁决CPU读取上限。
+不选择程序、不执行、不使用旧成绩；保护评测与来源准入均不改变。
+
 ## 0L98. 2026-09-07：空间实测恢复，准备缓存须与失败版本隔离
 
 UTC01:36，64GiB实际fallocate/fsync/allocated-blocks检查通过：68719476736bytes，

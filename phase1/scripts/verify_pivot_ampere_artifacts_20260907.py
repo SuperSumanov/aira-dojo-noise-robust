@@ -15,7 +15,7 @@ import subprocess
 from phase1.pivot_ampere_artifact_check import (PARAMETERS,expected_plan,verify_binding,verify_segment,require)
 
 B=Path('/research/d7/spc/yzyang4')
-SUB=B/'critic-pivot-ampere/submission-20260907-r2'
+SUB=B/'critic-pivot-ampere/submission-20260907-r3'
 SECRET=re.compile(rb'(?i)(?<![A-Za-z0-9])(?:sk-(?:or-v1-)?[A-Za-z0-9_.-]{12,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|hf_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16}|Bearer[ \t]+[A-Za-z0-9._-]{20,})')
 FORBIDDEN=(b'/prospective_decision_v1/',b'decision_frozen_v11_',b'/target522-',b'/target300-',
     b'/label_vault/',b'/outcome_vault/',b'/prediction_escrow/',b'/external/senior_data/',b'first-960',b'first960')
@@ -102,6 +102,12 @@ def main():
     require(kernel_receipt_valid(read(root/'fa2-kernel.json'),job=a.job,commit=a.training_commit,
         build_sha=ready['fa2_build_receipt_sha256']),'postflight_kernel_math')
     allocated=read(root/'allocation.json');f=allocated['fields']
+    tools=read(root/'build_tools.json');toolkit=read(SUB/'private-toolchain.json')
+    require(tools['status']=='ALLOCATED_PRIVATE_CUDA128_BUILD_TOOLS_PASS' and tools['job_id']==a.job
+        and tools['hostname'].split('.')[0]=='gpu28' and tools['cuda_home']==toolkit['cuda_home']
+        and tools['toolkit_manifest_sha256']==toolkit['receipt_hashes']['installed_manifest.json']
+        and tools['verified_files_and_links']==toolkit['files_and_links']
+        and tools['model_load'] is False and tools['gpu_context_created'] is False,'postflight_private_toolchain')
     require(allocated['source_commit']==a.training_commit and allocated['approval_sha256']==ready['approval_sha256']
         and f['NodeList']=='gpu28' and f['TresPerNode']=='gpu:rtx3090:2'
         and allocated['prior_gpu_seconds']+2*int(elapsed)<=36000,'postflight_allocation')

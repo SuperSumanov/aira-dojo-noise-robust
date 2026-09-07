@@ -36,8 +36,9 @@ finish() {
 trap finish EXIT
 test "$(git -C "$ZERO3_CONTROL_ROOT" rev-parse HEAD)" = "$ZERO3_CODE_COMMIT"
 test -z "$(git -C "$ZERO3_CONTROL_ROOT" status --porcelain --untracked-files=all)"
-export PATH="$runtime/bin:/usr/local/cuda-12.8/bin:/usr/local/bin:/usr/bin:/bin"
-export VIRTUAL_ENV="$runtime" PYTHONPATH="$overlay:$ZERO3_CONTROL_ROOT" CUDA_HOME=/usr/local/cuda-12.8
+export PATH="$runtime/bin:/research/d7/spc/yzyang4/private-cuda128-toolchain-20260906/prefix/bin:/usr/local/bin:/usr/bin:/bin"
+export VIRTUAL_ENV="$runtime" PYTHONPATH="$overlay:$ZERO3_CONTROL_ROOT" CUDA_HOME=/research/d7/spc/yzyang4/private-cuda128-toolchain-20260906/prefix
+export CXX=/usr/bin/g++ NVCC_CCBIN=/usr/bin/g++
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONDONTWRITEBYTECODE=1 TOKENIZERS_PARALLELISM=false
 export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MAX_JOBS=2
 export PYTHONHASHSEED=6 CUBLAS_WORKSPACE_CONFIG=:4096:8 NCCL_DEBUG=INFO
@@ -47,7 +48,7 @@ scratch=$(mktemp -d /tmp/critic-pivot-ampere-$SLURM_JOB_ID-XXXXXX)
 mkdir "$scratch/triton" "$scratch/extensions"
 export TRITON_CACHE_DIR="$scratch/triton" TORCH_EXTENSIONS_DIR="$scratch/extensions"
 export G0_VENV="$runtime" G0_BUDGET_REVISION=20260905-r5 G0_RUN_ROOT="$run_root"
-"$runtime/bin/python" -B -c 'from phase1.check_g0_r5_build_tools import main;main(expected_host="gpu28")'
+"$runtime/bin/python" -B -m phase1.scripts.check_zero3_private_tools_20260906
 "$runtime/bin/python" -B -c 'from phase1.pivot_checkpoint_space import probe; import sys; probe(sys.argv[1])' "$run_root"
 timeout --kill-after=20s 180s "$runtime/bin/python" -B -m phase1.scripts.prepare_pivot_ampere_shape_20260907 kernel --commit "$ZERO3_CODE_COMMIT"
 # Recheck the remaining wall clock AFTER dependency math; no shortened driver.

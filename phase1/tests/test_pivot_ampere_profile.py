@@ -35,7 +35,7 @@ def test_space_failure_successor_preserves_previous_attempt(tmp_path,monkeypatch
 
 def test_space_failure_successor_has_new_namespace_and_prior_evidence():
     from phase1.scripts import verify_pivot_ampere_artifacts_20260907 as post
-    assert m.OUT==post.SUB and m.OUT.name=='submission-20260907-r2' and m.PREVIOUS!=m.OUT
+    assert m.OUT==post.SUB and m.OUT.name=='submission-20260907-r3' and m.PREVIOUS!=m.OUT
     assert 'previous-failed-preparation.json' in m.EVIDENCE
     assert inspect.getsource(m.prepare).index('previous_failed_preparation()')<inspect.getsource(m.prepare).index('OUT.mkdir')
 
@@ -88,8 +88,8 @@ def test_math_checks_unchanged_except_explicit_device_identity():
 def test_approval_and_budget_are_distinct_not_model_effect():
     a=json.loads((ROOT/m.APPROVAL).read_bytes());assert m.approval_valid(a)
     assert m.CAP==2*(3600+300+60)==7920 and m.DRIVER==3000
-    assert sum(t*g for _,_,t,g in m.PRIOR)==9423
-    assert 9423+5760+3840+5760+m.CAP==32703<=36000
+    assert sum(t*g for _,_,t,g in m.PRIOR)==9429
+    assert 9429+5760+3840+5760+m.CAP==32709<=36000
 
 @pytest.mark.parametrize('key,value',[('source_admission',True),('real_corpus_reads',1),('automatic_retries',1),
  ('microbatch_per_rank',8),('accumulation',8),('node','projgpu39'),('gpu_type','pro6000'),
@@ -103,7 +103,7 @@ def accounting_fixture():
 
 def test_accounting_counts_both_builds_and_keeps_pro_headroom():
     # Last build elapsed is a synthetic parser fixture, not a measured result.
-    assert m.parse_accounting(accounting_fixture())==9423+3199+1000
+    assert m.parse_accounting(accounting_fixture())==9429+3199+1000
 
 @pytest.mark.parametrize('mutation',['missing','duplicate','unknown','state','exit','duration','gpus','old_failure'])
 def test_accounting_failure_closed(mutation):
@@ -149,11 +149,14 @@ def test_kernel_rejects_drift(mutation):
 def test_batch_script_binds_ampere_profile_and_full_time():
     s=(ROOT/m.SCRIPT).read_text()
     for x in ('--gres=gpu:rtx3090:2','--nodelist=gpu28','--time=01:00:00','--cpus-per-task=12',
-      'expected_host="gpu28"','timeout --kill-after=60s 3000s','timeout --kill-after=20s 180s','--no-requeue','--constraint=highcpucount'):
+      'phase1.scripts.check_zero3_private_tools_20260906','timeout --kill-after=60s 3000s','timeout --kill-after=20s 180s','--no-requeue','--constraint=highcpucount'):
         assert x in s
     assert "'Features':'highcpucount'" in inspect.getsource(m.allocation)
     assert s.index('pivot_checkpoint_space')<s.index(' kernel --commit')<s.index(' allocated --commit')<s.index('validate_pivot_ampere_shape')
     assert 'pro6000' not in s.lower() and '12535' not in s
+    assert 'CUDA_HOME=/research/d7/spc/yzyang4/private-cuda128-toolchain-20260906/prefix' in s
+    assert 'CXX=/usr/bin/g++ NVCC_CCBIN=/usr/bin/g++' in s
+    assert '/usr/local/cuda-12.8' not in s
 
 def test_prepare_cache_is_commit_specific_and_checked_before_output_creation():
     a=m.prepare_cache_path('a'*40);b=m.prepare_cache_path('b'*40)
@@ -165,3 +168,28 @@ def test_prepare_cache_is_commit_specific_and_checked_before_output_creation():
 @pytest.mark.parametrize('bad',['a'*39,'../outside','A'*40,123])
 def test_prepare_cache_rejects_noncommit(bad):
     with pytest.raises(RuntimeError,match='cache_exact_commit'):m.prepare_cache_path(bad)
+
+@pytest.mark.parametrize('mutation',['none','recovery','independent','manifest'])
+def test_private_toolchain_receipts_and_actual_prefix_are_bound(monkeypatch,mutation):
+    from phase1.scripts import check_zero3_private_tools_20260906 as tools
+    expected={'RECOVERY_COMPLETE.json':tools.RECOVERY,'INDEPENDENT_VERIFIED.json':tools.INDEPENDENT,'installed_manifest.json':tools.MANIFEST}
+    key={'recovery':'RECOVERY_COMPLETE.json','independent':'INDEPENDENT_VERIFIED.json','manifest':'installed_manifest.json'}.get(mutation)
+    monkeypatch.setattr(m,'sha',lambda p:'0'*64 if p.name==key else expected[p.name])
+    inventory={'bin/nvcc':{'kind':'file'}};monkeypatch.setattr(m,'read',lambda p:inventory)
+    calls=[]
+    def verified(prefix,value):calls.append((prefix,value));return value
+    monkeypatch.setattr(tools,'verify_prefix',verified)
+    if mutation!='none':
+        with pytest.raises(RuntimeError,match='toolchain_receipt'):m.toolchain_binding(full=True)
+        assert not calls
+    else:
+        v=m.toolchain_binding(full=True);assert len(calls)==1 and v['files_and_links']==1
+        assert m.toolchain_binding()==v and len(calls)==1
+
+def test_toolchain_failure_is_explicit_in_budget_and_fresh_preparation():
+    assert ('12662','FAILED',3,2) in m.PRIOR
+    assert {'failed-toolchain-job.json','private-toolchain.json'}<=set(m.EVIDENCE)
+    code=inspect.getsource(m.prepare)
+    assert code.index('failed_toolchain_job()')<code.index('OUT.mkdir')
+    assert code.index('toolchain_binding(full=True)')<code.index('OUT.mkdir')
+    a=json.loads((ROOT/m.APPROVAL).read_bytes());assert a['replaces_pre_model_job']=='12662' and a['automatic_retries']==0

@@ -1,0 +1,22 @@
+{
+  "candidate_programs_executed": 0,
+  "dataset_payloads_read": 0,
+  "isolated_loopback_only_network": true,
+  "known_api_variables_absent": true,
+  "negative_paths_hidden": 5,
+  "package_version_metadata_only": true,
+  "python": "3.12.8",
+  "read_only_bind_enforced": true,
+  "versions": {
+    "catboost": "1.2.10",
+    "lightgbm": "4.6.0",
+    "mlebench": null,
+    "numpy": "1.26.4",
+    "pandas": "2.1.4",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.11.4",
+    "torch": "2.5.1+cu124",
+    "transformers": "4.57.6",
+    "xgboost": "2.1.4"
+  }
+}

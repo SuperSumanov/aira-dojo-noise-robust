@@ -1,0 +1,9 @@
+{
+  "bytes": 19717783552,
+  "candidate_programs_executed": 0,
+  "classification": "CURRENT_RUNTIME_CONTENT_IDENTITY_NOT_HISTORICAL_ATTESTATION",
+  "historical_execution_attested": false,
+  "sha256": "801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda",
+  "source_admission": false,
+  "two_hash_implementations_equal": true
+}

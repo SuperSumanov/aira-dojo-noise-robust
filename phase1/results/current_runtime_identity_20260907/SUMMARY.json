@@ -1,0 +1,48 @@
+{
+  "api_calls": 0,
+  "candidate_programs_executed": 0,
+  "classification": "CURRENT_CONTENT_ADDRESSED_RUNTIME_PREPARATION_NOT_HISTORICAL_PROOF_OR_EXECUTION_GAIN",
+  "code_commit": "d045abbddfd64ebabedf3cd919343bc68810db29",
+  "container": {
+    "candidate_programs_executed": 0,
+    "dataset_payloads_read": 0,
+    "isolated_loopback_only_network": true,
+    "known_api_variables_absent": true,
+    "negative_paths_hidden": 5,
+    "package_version_metadata_only": true,
+    "python": "3.12.8",
+    "read_only_bind_enforced": true,
+    "versions": {
+      "catboost": "1.2.10",
+      "lightgbm": "4.6.0",
+      "mlebench": null,
+      "numpy": "1.26.4",
+      "pandas": "2.1.4",
+      "scikit-learn": "1.9.0",
+      "scipy": "1.11.4",
+      "torch": "2.5.1+cu124",
+      "transformers": "4.57.6",
+      "xgboost": "2.1.4"
+    }
+  },
+  "gpu_count": 0,
+  "helper_sha256": "f4b75d3fbe1f7e9450624e12ffa3c395212caa9db65ddf1af3e287b9f4e7664f",
+  "image": {
+    "bytes": 19717783552,
+    "candidate_programs_executed": 0,
+    "classification": "CURRENT_RUNTIME_CONTENT_IDENTITY_NOT_HISTORICAL_ATTESTATION",
+    "historical_execution_attested": false,
+    "sha256": "801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda",
+    "source_admission": false,
+    "two_hash_implementations_equal": true
+  },
+  "real_dataset_reads": 0,
+  "seconds": 237.57036226499986,
+  "source_admission": false,
+  "source_hashes": {
+    "phase1/fresh_runtime_fingerprint.py": "fdaa382416ac3fffbe6589dabcbc881f1b3977a3b68bcc3833b9a7192683a496",
+    "phase1/tests/test_fresh_runtime_fingerprint.py": "8188e619c96df4e53fb234915b274ca635caad78a47601a5fd744402ca4424de"
+  },
+  "tests_passed": 16,
+  "utc": "2026-09-07T00:32:01.445225+00:00"
+}

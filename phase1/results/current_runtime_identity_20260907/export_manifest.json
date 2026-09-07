@@ -1,0 +1,20 @@
+{
+  "credential_shape_hits": 0,
+  "files": {
+    "CONTAINER_VERSIONS.json": {
+      "bytes": 549,
+      "original_relative_path": "fresh-runtime-fingerprint-d045abb-20260907/CONTAINER_VERSIONS.json",
+      "sha256": "334a4f566ff3026d9c84852d738b4e4b995b38a8470b64b80c6bca7905835377"
+    },
+    "IMAGE_VERIFIED.json": {
+      "bytes": 338,
+      "original_relative_path": "fresh-runtime-fingerprint-d045abb-20260907/IMAGE_VERIFIED.json",
+      "sha256": "a4f60fa4f4048d6af77798166e062872a396d391c9252636ac1e497f9693a9b3"
+    },
+    "SUMMARY.json": {
+      "bytes": 1719,
+      "original_relative_path": "fresh-runtime-fingerprint-d045abb-20260907/SUMMARY.json",
+      "sha256": "66327bb7a86b6a9901732eb169d88b0e2f1a64a23e40e18348d7927d6981f31c"
+    }
+  }
+}

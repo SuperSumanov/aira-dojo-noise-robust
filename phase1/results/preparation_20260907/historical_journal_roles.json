@@ -1,0 +1,56 @@
+{
+  "A_B_identical": true,
+  "archives_per_pass": 24,
+  "classification": "HISTORICAL_ROLE_DIAGNOSTIC_NOT_AVAILABILITY_OR_ADMISSION",
+  "cpu_tests_passed": 27,
+  "cross_role_totals": {
+    "checkpoint_only_steps": 0,
+    "field_difference_steps": {
+      "code_bytes": 10,
+      "code_sha256": 10,
+      "node_id_sha256": 10,
+      "nonempty_code": 1,
+      "parents": 3
+    },
+    "live_only_steps": 174,
+    "runs_with_cross_role_difference": 1,
+    "shared_steps": 3547,
+    "unequal_projected_steps": 10
+  },
+  "fixed_runs": 84,
+  "helper_sha256": "77fc955e9624d44ce5ac2406cdd521578db2f716316c3b15a8025dab63c69aa6",
+  "independent_member_decoder_checks": 336,
+  "model_effect_measured": false,
+  "old_outcome_bytes_entered_json_parser": true,
+  "old_outcome_values_used": false,
+  "passes": 2,
+  "payload_bytes_both_passes": 2819293348,
+  "program_executions": 0,
+  "programs_selected": 0,
+  "projection_sha256": "052777ca3ab0ff2c2b265bd91d7488b561a3c708261418e37ccf1092d34cabad",
+  "protected_cohort_payloads_opened": 0,
+  "role_totals": {
+    "checkpoint": {
+      "conflicting_steps": 0,
+      "duplicate_step_rows": 0,
+      "identical_repeated_rows": 0,
+      "rows": 3547,
+      "runs_with_conflicts": 0,
+      "unique_steps": 3547,
+      "unsupported_lines": 0
+    },
+    "live": {
+      "conflicting_steps": 10,
+      "duplicate_step_rows": 10,
+      "identical_repeated_rows": 0,
+      "rows": 3731,
+      "runs_with_conflicts": 1,
+      "unique_steps": 3721,
+      "unsupported_lines": 0
+    }
+  },
+  "seconds": 361.9844179610009,
+  "source_admitted": false,
+  "source_commit": "3b593af2491fcd21d99c63bd1e2988fce98081ae",
+  "utc": "2026-09-07T02:15:13.125242+00:00"
+}

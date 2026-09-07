@@ -1,0 +1,223 @@
+{
+  "A_B_identical": true,
+  "canonical_sha256": "25e4fc1cbfbb2bb97c4ab3e0550c221cd2ab591fcb0157b55c43663f8eb651ca",
+  "classification": "CANONICAL_HISTORICAL_PROGRAM_AVAILABILITY_NOT_EXECUTABILITY_OR_LABEL_ADMISSION",
+  "fixed_runs": 84,
+  "helper_sha256": "3409eb871625a3250e85ecc1283b6b994612ef53d1df23accd0edfecacba7c00",
+  "independent_pair_enumeration_runs": 168,
+  "model_effect_measured": false,
+  "original_role_trace_sha256": "ee1cb5f652f448a4f26cf1c317bb6106264e21532eba4f0fcfd7c2c753853a79",
+  "programs_executed": 0,
+  "programs_selected": 0,
+  "raw_programs_read": 0,
+  "role_summary_sha256": "d26928b6aa255133bebe862e65b17ad35e90b83841710f5e258fabd21ee2dc53",
+  "seconds": 1.525639207000495,
+  "source_admitted": false,
+  "source_commit": "346c87fb1aa1c6da2289dc2abd94ff410141a4c9",
+  "task_support": [
+    {
+      "components": 1,
+      "components_with_retained_distinct_sibling_programs": 1,
+      "distinct_sibling_pairs_with_retained_parents": 27,
+      "nonempty_programs": 159,
+      "runs": 6,
+      "shortest_full_cap_per_supported_component": [
+        3600
+      ],
+      "task": "denoising-dirty-documents",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": null
+    },
+    {
+      "components": 2,
+      "components_with_retained_distinct_sibling_programs": 2,
+      "distinct_sibling_pairs_with_retained_parents": 120,
+      "nonempty_programs": 185,
+      "runs": 8,
+      "shortest_full_cap_per_supported_component": [
+        3600,
+        14400
+      ],
+      "task": "dog-breed-identification",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": 36000
+    },
+    {
+      "components": 1,
+      "components_with_retained_distinct_sibling_programs": 1,
+      "distinct_sibling_pairs_with_retained_parents": 23,
+      "nonempty_programs": 56,
+      "runs": 4,
+      "shortest_full_cap_per_supported_component": [
+        7200
+      ],
+      "task": "dogs-vs-cats-redux-kernels-edition",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": null
+    },
+    {
+      "components": 3,
+      "components_with_retained_distinct_sibling_programs": 3,
+      "distinct_sibling_pairs_with_retained_parents": 92,
+      "nonempty_programs": 379,
+      "runs": 6,
+      "shortest_full_cap_per_supported_component": [
+        1800,
+        7200,
+        14400
+      ],
+      "task": "google-quest-challenge",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": 18000
+    },
+    {
+      "components": 3,
+      "components_with_retained_distinct_sibling_programs": 3,
+      "distinct_sibling_pairs_with_retained_parents": 65,
+      "nonempty_programs": 190,
+      "runs": 6,
+      "shortest_full_cap_per_supported_component": [
+        3600,
+        7200,
+        7200
+      ],
+      "task": "histopathologic-cancer-detection",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": 21600
+    },
+    {
+      "components": 3,
+      "components_with_retained_distinct_sibling_programs": 3,
+      "distinct_sibling_pairs_with_retained_parents": 41,
+      "nonempty_programs": 254,
+      "runs": 6,
+      "shortest_full_cap_per_supported_component": [
+        1800,
+        3600,
+        4800
+      ],
+      "task": "kuzushiji-recognition",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": 10800
+    },
+    {
+      "components": 1,
+      "components_with_retained_distinct_sibling_programs": 1,
+      "distinct_sibling_pairs_with_retained_parents": 168,
+      "nonempty_programs": 241,
+      "runs": 6,
+      "shortest_full_cap_per_supported_component": [
+        10800
+      ],
+      "task": "leaf-classification",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": null
+    },
+    {
+      "components": 1,
+      "components_with_retained_distinct_sibling_programs": 1,
+      "distinct_sibling_pairs_with_retained_parents": 380,
+      "nonempty_programs": 299,
+      "runs": 4,
+      "shortest_full_cap_per_supported_component": [
+        14400
+      ],
+      "task": "mlsp-2013-birds",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": null
+    },
+    {
+      "components": 1,
+      "components_with_retained_distinct_sibling_programs": 1,
+      "distinct_sibling_pairs_with_retained_parents": 138,
+      "nonempty_programs": 582,
+      "runs": 4,
+      "shortest_full_cap_per_supported_component": [
+        4800
+      ],
+      "task": "nomad2018-predict-transparent-conductors",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": null
+    },
+    {
+      "components": 1,
+      "components_with_retained_distinct_sibling_programs": 1,
+      "distinct_sibling_pairs_with_retained_parents": 156,
+      "nonempty_programs": 181,
+      "runs": 4,
+      "shortest_full_cap_per_supported_component": [
+        7200
+      ],
+      "task": "random-acts-of-pizza",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": null
+    },
+    {
+      "components": 2,
+      "components_with_retained_distinct_sibling_programs": 2,
+      "distinct_sibling_pairs_with_retained_parents": 72,
+      "nonempty_programs": 285,
+      "runs": 10,
+      "shortest_full_cap_per_supported_component": [
+        3600,
+        7200
+      ],
+      "task": "tabular-playground-series-dec-2021",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": 21600
+    },
+    {
+      "components": 2,
+      "components_with_retained_distinct_sibling_programs": 2,
+      "distinct_sibling_pairs_with_retained_parents": 219,
+      "nonempty_programs": 285,
+      "runs": 8,
+      "shortest_full_cap_per_supported_component": [
+        3600,
+        14400
+      ],
+      "task": "tabular-playground-series-may-2022",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": 36000
+    },
+    {
+      "components": 1,
+      "components_with_retained_distinct_sibling_programs": 1,
+      "distinct_sibling_pairs_with_retained_parents": 6,
+      "nonempty_programs": 54,
+      "runs": 2,
+      "shortest_full_cap_per_supported_component": [
+        7200
+      ],
+      "task": "text-normalization-challenge-english-language",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": null
+    },
+    {
+      "components": 1,
+      "components_with_retained_distinct_sibling_programs": 1,
+      "distinct_sibling_pairs_with_retained_parents": 63,
+      "nonempty_programs": 215,
+      "runs": 6,
+      "shortest_full_cap_per_supported_component": [
+        3600
+      ],
+      "task": "text-normalization-challenge-russian-language",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": null
+    },
+    {
+      "components": 1,
+      "components_with_retained_distinct_sibling_programs": 1,
+      "distinct_sibling_pairs_with_retained_parents": 9,
+      "nonempty_programs": 82,
+      "runs": 4,
+      "shortest_full_cap_per_supported_component": [
+        3600
+      ],
+      "task": "tweet-sentiment-extraction",
+      "two_programs_each_two_components_full_execution_gpu_seconds_upper_bound": null
+    }
+  ],
+  "totals": {
+    "distinct_pairs_with_retained_parents": 1579,
+    "duplicate_log_rows": 0,
+    "families_with_two_nonempty_children": 712,
+    "missing_parent_steps": 0,
+    "nonempty_programs": 3447,
+    "same_parent_distinct_program_pairs": 1579,
+    "same_parent_nonempty_pairs": 1579,
+    "unique_nonempty_program_bytes": 3437,
+    "unique_steps": 3547,
+    "unsupported_lines": 0
+  },
+  "trace_lines": 43685,
+  "trace_scope": "protected-path marker check, not full sandbox",
+  "utc": "2026-09-07T02:20:44.622515+00:00"
+}

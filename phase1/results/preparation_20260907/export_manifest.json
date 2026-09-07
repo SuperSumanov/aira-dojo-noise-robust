@@ -1,0 +1,25 @@
+{
+  "credential_shape_hits": 0,
+  "files": {
+    "fresh_grader_boundary.json": {
+      "bytes": 26731,
+      "original_relative_path": "fresh-grader-boundary-2d6fc73-20260907/SUMMARY.json",
+      "sha256": "0b6963380063b3517d710b9df0ffb103c8d388c6ca709a908833823db5211e42"
+    },
+    "fresh_grader_independent.json": {
+      "bytes": 1011,
+      "original_relative_path": "fresh-grader-boundary-independent-20260907/VERIFIED.json",
+      "sha256": "89aa369396666402571281a20a9d0a4846633a8efdf7d7f2eaefecbb91d680cc"
+    },
+    "historical_canonical_programs.json": {
+      "bytes": 7699,
+      "original_relative_path": "historical-canonical-programs-346c87f-20260907/SUMMARY.json",
+      "sha256": "c0b15ce26549ddae3f8ae85dfa13059d14db9999e2eccb1423f7e5f246cfc7e7"
+    },
+    "historical_journal_roles.json": {
+      "bytes": 1681,
+      "original_relative_path": "historical-journal-roles-3b593af-20260907/SUMMARY.json",
+      "sha256": "d26928b6aa255133bebe862e65b17ad35e90b83841710f5e258fabd21ee2dc53"
+    }
+  }
+}

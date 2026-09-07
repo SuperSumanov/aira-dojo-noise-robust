@@ -1,0 +1,18 @@
+{
+  "A_B_C_equal": true,
+  "classification": "INDEPENDENT_FRESH_GRADER_FIXTURES_AND_IMPORT_ORIGINS_NOT_REAL_LABELS",
+  "fixture_cases": 31,
+  "grader_commit": "507f92e1138bb6e40dac5c6ee7a6758e6424bf97",
+  "helper_sha256": "0d45596ed26ad08a0ba28672fdd8d7447b7a48bcfa8e2f492554506419be4486",
+  "imports_sha256": "b2f81ea202612e9bab83c57b9320dc44e952cba5e9257236b1e2a479169ec24c",
+  "loaded_modules_fingerprinted": 1024,
+  "mlebench_imports_from_readonly_source": true,
+  "model_effect_measured": false,
+  "original_file_trace_sha256": "798f648ec881e6d2ba4a005123482e31c1c4dc7ebf59546a38c3ba990f4c74d6",
+  "producer_summary_sha256": "0b6963380063b3517d710b9df0ffb103c8d388c6ca709a908833823db5211e42",
+  "real_dataset_payloads_read": 0,
+  "source_commit": "2d6fc73ea89362e7050b092653188aa85dff86b5",
+  "third_fixture_sha256": "86fb763e1c1fb1a5d44dc8a817a306b2e4038ea6bb08a74c2d312060dc7f441e",
+  "trace_scope": "known protected-path marker checks; not general sandbox",
+  "utc": "2026-09-07T02:27:31.560531+00:00"
+}

@@ -15,7 +15,7 @@ import subprocess
 from phase1.pivot_ampere_artifact_check import (PARAMETERS,expected_plan,verify_binding,verify_segment,require)
 
 B=Path('/research/d7/spc/yzyang4')
-SUB=B/'critic-pivot-ampere/submission-20260907'
+SUB=B/'critic-pivot-ampere/submission-20260907-r2'
 SECRET=re.compile(rb'(?i)(?<![A-Za-z0-9])(?:sk-(?:or-v1-)?[A-Za-z0-9_.-]{12,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|hf_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16}|Bearer[ \t]+[A-Za-z0-9._-]{20,})')
 FORBIDDEN=(b'/prospective_decision_v1/',b'decision_frozen_v11_',b'/target522-',b'/target300-',
     b'/label_vault/',b'/outcome_vault/',b'/prediction_escrow/',b'/external/senior_data/',b'first-960',b'first960')

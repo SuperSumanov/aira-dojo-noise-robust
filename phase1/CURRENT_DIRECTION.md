@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L97. 2026-09-07：备用构建终验通过，尺寸准备仍被实际配额阻断
+
+12649实际COMPLETED/3874秒；独立终验验证6608源码/104wheel payload/1扩展。
+BUILT SHAa56c237f1df89d835d645e416c02d75de091372457550d2d4f7d82fafa6f5c6e；
+wheel SHA22b9a35c9c09c0d626f2d69c98b804ec724395a73605f8b523c03fd5d52ccc4e。
+首次终验被原Torch软链/硬链布局拦住，两文件内容SHA不变；另版只接受精确目标/inode/UID/nlink，旧INTENT保留。
+源码b5b995cf2823d0cd25c404d2a7cbe2a2f8e29ab3补highcpucount，237真实Linux检查通过/62文件。
+实际准备在UTC01:10完成模型及runtime检查后，64GiB fallocate再次EDQUOT(122)，不提交GPU。
+旧submission-20260907失败10文件保留；仅在解决容量后使用新r2目录并复验，不降空间/数学/输入门。
+当前只检查可Git精确恢复的8月mock副本；尚不宣称清理完成。所有结果仍不是critic效果/scaling确认。
+
+poll12原摄取+独立post-audit完成：733physical/707eligible/19212endpoints/4360pairs/58tasks，closure=false。
+LATEST b8bcfd13e686e283df4b8605ac583d320fe17f9b0f9f2dba9883233db55599a2；
+summary 8c3ebc1f14bfcebb5fa0fc33dbfadabf75b927f64dfa43447afe021e2c2e404e。
+完整历史重执行成本元数据明确：1800秒4run分属两任务各1组件，不能作独立train/dev。
+最便宜的两个组件、每个两程序的条件上限为10800执行GPU秒，尚未核程序存在或选择/运行。
+不能把该元数据成本规划称可执行训练矩阵；保护cohort不读取，ADMITTED_RELEASES仍空。
+六小时会话截止UTC03:53:36，不新建monitor；GPU工程总上限36000秒与最多一个尺寸job不变。
+
 ## 0L96. 2026-09-07：主依赖构建及独立终验完成，备用尺寸入口准备
 
 UTC00:33，poll11及独立post-audit完成：729physical/703eligible/19137endpoints/4344pairs/58tasks，closure=false。

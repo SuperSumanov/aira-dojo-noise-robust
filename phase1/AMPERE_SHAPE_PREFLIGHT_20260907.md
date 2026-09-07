@@ -14,6 +14,12 @@ held及实际allocation均验证。不改科学矩阵/预算，重新固定sourc
 两个原环境文件SHA都与构建前相同。另版终验只对明确Torch目标/UID/inode/nlink/byteSHA进行精确绑定，
 仍保留原失败INTENT与原verifier；wheel/source/新回执维持原有无链接门，未重跑构建。
 
+UTC01:10，b5b995c准备已通过237 Linux检查、FA2绑定、完整模型SHA及runtime-plan，但64GiB真实分配
+再次返回EDQUOT(122)/0bytes；没有SUBMITTED。先解决容量，再用`submission-20260907-r2`新目录，
+每个阶段绑定前次完整10文件及精确失败SHA；旧namespace不可重试或覆盖。64GiB门、完整模型/两更新矩阵、
+预算与数学阈值均不放宽。外层初始化曾因交互env脚本与strict-shell选项不兼容而两次提前退出，
+当时未创建submission/control；新外层只在source时关闭e/u，并验证最终rc0及proxy变量存在后恢复严格模式。
+
 问题：在实际可排到的两张RTX3090上，独立critic能否完成最长输入的G更新/全状态保存，
 然后新进程恢复全部状态并完成L更新/第二次保存？不检验accuracy、不比较两个方法，不声称完整尺寸最终参数等价。
 

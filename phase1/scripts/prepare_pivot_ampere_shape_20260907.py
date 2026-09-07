@@ -10,7 +10,8 @@ BASE=Path('/research/d7/spc/yzyang4');REPO=BASE/'aira-dojo'
 RUNTIME=BASE/'venvs/critic-blackwell-g0-20260905-r5'
 SOURCE=BASE/'worktrees/critic-g0-final-only-20260903-b'
 SOURCE_SHA='5f3bc362db922c8edee2ef134656dfdb9a2b74fb'
-OUT=BASE/'critic-pivot-ampere/submission-20260907'
+OUT=BASE/'critic-pivot-ampere/submission-20260907-r2'
+PREVIOUS=BASE/'critic-pivot-ampere/submission-20260907'
 BUILD=BASE/'flash-attn-build-ampere-20260907-r1'
 BUILD_JOB='12649';BUILD_COMMIT='41da8a97e876055b8136595891db1457ff4f44bf'
 BUILD_SCRIPT_SHA='c5b578e51f1fe05cf1b3a4a98f9ecbad0a6dfddd2bca48008cc95eab85e42275'
@@ -31,7 +32,7 @@ TESTS=['test_pivot_ampere_profile','test_critic_ampere_build_receipt','test_pivo
  'test_critic_training_worker','test_global_local_zero3_session','test_cpu_adam_native_cache',
  'test_zero3_consumed_gradients','test_critic_fa2_preflight']
 EVIDENCE=('cpu-tests.log','runtime-plan.log','runtime-plan.json','space-probe.json',
- 'space-probe-released.json','fa2-build-binding.json','fa2-cpu.json')
+ 'space-probe-released.json','fa2-build-binding.json','fa2-cpu.json','previous-failed-preparation.json')
 ENV=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf',GIT_LFS_SKIP_SMUDGE='1',
  PYTHONDONTWRITEBYTECODE='1',CUDA_VISIBLE_DEVICES='',OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',
  MKL_NUM_THREADS='1',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1')
@@ -69,6 +70,25 @@ def record(name,value):
 def read(p):
     from phase1.critic_fa2_build_receipt import read as safe_read
     return safe_read(p.parent,p.name)
+
+
+def previous_failed_preparation():
+    """Preserve the failed full-capacity check; never reuse its output namespace."""
+    safe_root(PREVIOUS)
+    expected={'cpu-tests.log','fa2-build-binding.json','fa2-cpu.json','failed-011017455867.stderr',
+      'failed-011017455867.stdout','prepare_intent.json','runtime-plan.json','runtime-plan.log',
+      'space-probe-released.json','space-probe.json'}
+    require({p.name for p in PREVIOUS.iterdir()}==expected,'previous_preparation_changed')
+    hashes={}
+    for name in sorted(expected):
+        p=PREVIOUS/name
+        require(p.is_file() and not p.is_symlink() and p.stat().st_nlink==1 and p.stat().st_uid==os.getuid(),'unsafe_previous_file')
+        hashes[name]=sha(p)
+    require(hashes['space-probe.json']=='a4bee335c062f3947ece6f52b513e6b88f82b5f612412b729e3ab4f165b2607e'
+        and hashes['space-probe-released.json']=='396c306b45a2fc8b58eb44b63aec65433f5b67bcd123aca734a4e21513cef840'
+        and hashes['failed-011017455867.stderr']=='c3a2e2828ea4778eaaf470593cb3b1cc8164c5b82ac9fc9122238a4d468a63be','prior_space_failure_drift')
+    require(read(PREVIOUS/'prepare_intent.json')['commit']=='b5b995cf2823d0cd25c404d2a7cbe2a2f8e29ab3','prior_preparation_identity')
+    return {'classification':'PRESERVED_EDQUOT_BEFORE_ANY_GPU_SUBMISSION','path':str(PREVIOUS),'files':hashes}
 
 def fields(jid):return dict(x.split('=',1) for x in run(['scontrol','show','job','-o',jid]).decode().split() if '=' in x)
 
@@ -155,9 +175,10 @@ def bind(control,commit):
     build_binding();accounting();return hashes
 
 def prepare(control,commit):
-    queue();accounting();b=build_binding();safe_root(BASE)
+    queue();accounting();b=build_binding();safe_root(BASE);previous=previous_failed_preparation()
     OUT.parent.mkdir(mode=0o700,exist_ok=True);safe_root(OUT.parent);OUT.mkdir(mode=0o700)
     record('prepare_intent.json',{'commit':commit,'gpu_seconds_upper_bound':CAP,'controller_sha256':sha(__file__),'real_corpus_reads':0})
+    record('previous-failed-preparation.json',previous)
     record('fa2-build-binding.json',b);require(not control.exists(),'control_exists')
     run(['git','-C',REPO,'fetch','--no-tags','https://github.com/SuperSumanov/aira-dojo-noise-robust.git',commit],timeout=240)
     run(['git','-C',REPO,'worktree','add','--detach','--no-checkout',control,commit])
@@ -185,6 +206,7 @@ def prepare(control,commit):
 def ready(control,commit):
     r=read(OUT/'READY.json');require(r['commit']==commit and r['hashes']==bind(control,commit),'ready_drift')
     require(set(r['evidence_hashes'])==set(EVIDENCE) and all(sha(OUT/n)==h for n,h in r['evidence_hashes'].items()),'preparation_drift')
+    require(read(OUT/'previous-failed-preparation.json')==previous_failed_preparation(),'prior_failure_changed')
     b=build_binding();require(read(OUT/'fa2-build-binding.json')==b and r['fa2_build_receipt_sha256']==b['build_receipt_sha256'],'build_changed')
     cpu=read(OUT/'fa2-cpu.json');require(cpu['classification']=='FA2_CPU_BINDING_NOT_GPU_ACCEPTANCE'
         and cpu['binding']['build_sha256']==b['build_receipt_sha256'],'cpu_binding_changed')

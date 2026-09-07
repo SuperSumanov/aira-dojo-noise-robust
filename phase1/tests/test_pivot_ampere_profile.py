@@ -8,6 +8,37 @@ from phase1.scripts import prepare_pivot_ampere_shape_20260907 as m
 
 ROOT=Path(__file__).resolve().parents[2]
 
+
+@pytest.mark.parametrize('mutation',['none','missing','extra','hash','head'])
+def test_space_failure_successor_preserves_previous_attempt(tmp_path,monkeypatch,mutation):
+    previous=tmp_path/'previous';previous.mkdir();monkeypatch.setattr(m,'PREVIOUS',previous)
+    monkeypatch.setattr(m.os,'getuid',lambda:previous.stat().st_uid,raising=False)
+    names={'cpu-tests.log','fa2-build-binding.json','fa2-cpu.json','failed-011017455867.stderr',
+        'failed-011017455867.stdout','prepare_intent.json','runtime-plan.json','runtime-plan.log',
+        'space-probe-released.json','space-probe.json'}
+    for n in names:(previous/n).write_text('{}')
+    (previous/'prepare_intent.json').write_text(json.dumps({'commit':'b5b995cf2823d0cd25c404d2a7cbe2a2f8e29ab3'}))
+    hashes={'space-probe.json':'a4bee335c062f3947ece6f52b513e6b88f82b5f612412b729e3ab4f165b2607e',
+        'space-probe-released.json':'396c306b45a2fc8b58eb44b63aec65433f5b67bcd123aca734a4e21513cef840',
+        'failed-011017455867.stderr':'c3a2e2828ea4778eaaf470593cb3b1cc8164c5b82ac9fc9122238a4d468a63be'}
+    original=m.sha;monkeypatch.setattr(m,'sha',lambda p:hashes.get(p.name,original(p)))
+    if mutation=='missing':(previous/'cpu-tests.log').unlink()
+    elif mutation=='extra':(previous/'SUBMITTED.json').write_text('{}')
+    elif mutation=='hash':hashes['space-probe.json']='0'*64
+    elif mutation=='head':(previous/'prepare_intent.json').write_text(json.dumps({'commit':'0'*40}))
+    if mutation!='none':
+        with pytest.raises(RuntimeError):m.previous_failed_preparation()
+    else:
+        result=m.previous_failed_preparation()
+        assert result['classification']=='PRESERVED_EDQUOT_BEFORE_ANY_GPU_SUBMISSION' and set(result['files'])==names
+
+
+def test_space_failure_successor_has_new_namespace_and_prior_evidence():
+    from phase1.scripts import verify_pivot_ampere_artifacts_20260907 as post
+    assert m.OUT==post.SUB and m.OUT.name=='submission-20260907-r2' and m.PREVIOUS!=m.OUT
+    assert 'previous-failed-preparation.json' in m.EVIDENCE
+    assert inspect.getsource(m.prepare).index('previous_failed_preparation()')<inspect.getsource(m.prepare).index('OUT.mkdir')
+
 def test_security_pattern_equals_existing_canonical_source_gate():
     from phase1.validate_g_reuse_source_package_v1 import SECRET
     assert m.SECRET.pattern==SECRET.pattern and m.SECRET.flags==SECRET.flags

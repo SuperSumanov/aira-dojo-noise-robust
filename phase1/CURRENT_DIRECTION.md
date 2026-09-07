@@ -3,6 +3,28 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L96. 2026-09-07：主依赖构建及独立终验完成，备用尺寸入口准备
+
+12648实际COMPLETED/0:0/3199秒；独立核验6608源文件、57consumer文件、104wheel payload、1扩展。
+BUILT SHA41635a05cda01cdc533406c84f9310495740ada8b445b5aa6907891b60f78fd6；
+wheel SHAe17e2f649e94e4cd8b7c2c4edfdb27e7e31c4c6cdee9081ae263184334ee1374。
+累计旧18job+R4为12622 GPU秒；构建不是GPU数学或训练效果。
+
+备用构建12649经41da8a97e876055b8136595891db1457ff4f44bf、22Linux测试/6614源文件/held独立核验后释放，
+已实际RUNNING/gpu37；此前缺highcpucount的失败提交保留，无job/无GPU消耗。
+新增单独2RTX3090/micro1/accum64的synthetic-only尺寸入口、FA2门、独立消费/payload checker。
+保持1.7B/16K/global128/G128L128/8388608tokens；原PRO入口不改，不能称其已过GPU验收。
+总工程10GPUh边界、最多一个尺寸job；不训练真实数据/不改变准入。详见AMPERE_SHAPE_PREFLIGHT_20260907.md。
+新路径本地71测试通过/2需Torch跳过，含sm120误接入拒绝负控；真实Linux/提交/完整模型效果均未完成。
+
+poll9及原snapshot-delta独立链已完成：721physical/695eligible/19002endpoints/4333pairs/58tasks；closure=false。
+LATEST ab1325b32a6544042785d80bb43b80af34aa0dfe0b06298f82356d2c9c77a56c；
+summary cab99f60d8ae0109b69943ba7861136ee45ab696b12cbbd1b2eab7dcf3292ea9。
+poll10随后独立完成725physical/699eligible/19096endpoints/4339pairs/58tasks，closure=false；
+LATEST477510727f54b8746be89f679fa12f7b9a08f157c5f15d2ffdd9538956c2108f，
+summary e3d9823be3af3ad27f18221478bb35fe709fa66304621fae1dcb11694a32a539。
+six-hour会话继续至UTC03:53:36。ADMITTED_RELEASES仍空，无新critic收益/scaling确认。
+
 ## 0L95. 2026-09-07：PRO双卡被占用，准备独立Ampere工程备用路线
 
 UTC23:49补充：Ampere首次提交因缺highcpucount声明被调度器拒绝，rc1、无job ID、无GPU消耗。

@@ -8,7 +8,8 @@ canonical投影25e4fc1cbfbb2bb97c4ab3e0550c221cd2ab591fcb0157b55c43663f8eb651ca�
 每个run只读旧ledger已固定的checkpoint/journal.jsonl；精确成员、凭据扫描、归档前后hash/stat、原5输入SHA。
 兩遍原member读取各自投影，必须与已完成的role/canonical节点逐条相等；第一遍原code写private文件，第二遍逐字节复核。
 程序存成opaque run hash/step文件，不改代码、不导出本地/Git；UTF8 bytes SHA与code_bytes全部对齐原投影。
-仅ast.parse和compile-to-code-object（不执行）检查语法，两实现一致，失败只记录类型/hash，不输出source文本。
+仅ast.parse和compile-to-code-object（不执行）检查语法，失败只记录类型/hash，不输出source文本。
+AST两接口一致不冒称独立解析器；AST可接受但code-object compile失败的代码原样保留、分别报告。
 原code=None与空字符串分别在manifest标记；全部节点、parents、recorded commit、component/完整timeout绑定，不含旧结果值。
 
 CPU1/900秒、原日志累计3GiB/member256MiB、新code总bytes≤128MiB、零GPU/API/model-fit。

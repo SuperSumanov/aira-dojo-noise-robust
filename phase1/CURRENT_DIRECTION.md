@@ -5,6 +5,10 @@
 
 ## 0L96. 2026-09-07：主依赖构建及独立终验完成，备用尺寸入口准备
 
+新CPU准备在测试前因扫描器误报停止：唯一命中是代码普通标识内部的sk-，不是规范边界下凭据形状；
+位置/长度/hash已远端核对，不回显内容。新入口与既有source-package扫描规则对齐并加正负控，另目录CPU复验。
+原bf43062失败目录保留，未提交模型job，不能计为Linux测试完成。
+
 12648实际COMPLETED/0:0/3199秒；独立核验6608源文件、57consumer文件、104wheel payload、1扩展。
 BUILT SHA41635a05cda01cdc533406c84f9310495740ada8b445b5aa6907891b60f78fd6；
 wheel SHAe17e2f649e94e4cd8b7c2c4edfdb27e7e31c4c6cdee9081ae263184334ee1374。

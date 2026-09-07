@@ -35,7 +35,10 @@ EVIDENCE=('cpu-tests.log','runtime-plan.log','runtime-plan.json','space-probe.js
 ENV=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf',GIT_LFS_SKIP_SMUDGE='1',
  PYTHONDONTWRITEBYTECODE='1',CUDA_VISIBLE_DEVICES='',OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',
  MKL_NUM_THREADS='1',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1')
-SECRET=re.compile(rb'(?i)(?:sk-[A-Za-z0-9_.-]{12,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|hf_[A-Za-z0-9]{20,}|Bearer[ \t]+[A-Za-z0-9._-]{20,})')
+SECRET=re.compile(
+    rb"(?i)(?<![A-Za-z0-9])(?:sk-(?:or-v1-)?[A-Za-z0-9_.-]{12,}|gh[pousr]_[A-Za-z0-9]{20,}|"
+    rb"github_pat_[A-Za-z0-9_]{20,}|hf_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16}|Bearer[ \t]+[A-Za-z0-9._-]{20,})"
+)
 
 def require(ok,reason):
     if not ok:raise RuntimeError(reason)

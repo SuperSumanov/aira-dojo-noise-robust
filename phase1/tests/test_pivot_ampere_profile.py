@@ -8,6 +8,18 @@ from phase1.scripts import prepare_pivot_ampere_shape_20260907 as m
 
 ROOT=Path(__file__).resolve().parents[2]
 
+def test_security_pattern_equals_existing_canonical_source_gate():
+    from phase1.validate_g_reuse_source_package_v1 import SECRET
+    assert m.SECRET.pattern==SECRET.pattern and m.SECRET.flags==SECRET.flags
+
+@pytest.mark.parametrize('value',[b'sk-'+b'x'*16,b'Bearer '+b'x'*24,b'ghp_'+b'x'*24,b'hf_'+b'x'*24,b'AKIA'+b'X'*16],
+    ids=['api','bearer','github','hub','aws'])
+def test_credential_shapes_still_block(value):assert m.SECRET.search(value)
+
+def test_hyphenated_task_or_disk_identifier_is_not_a_key():
+    assert not m.SECRET.search(b'--requested-disk-space-bytes')
+    assert not m.SECRET.search(b'task-resource-fingerprint')
+
 def test_explicit_distinct_shape_same_global_work():
     from phase1.pivot_zero3_shape_fixture import fixture
     p,pools,encoder,truth=f.fixture();old,oldpools,oldencoder,oldtruth=fixture()

@@ -1,0 +1,19 @@
+{
+  "actual_engineering_gpu_seconds": 12622,
+  "build_receipt_sha256": "41635a05cda01cdc533406c84f9310495740ada8b445b5aa6907891b60f78fd6",
+  "classification": "INDEPENDENT_FA2_RESUMED_BUILD_ACCEPTED_NOT_GPU_NUMERICS_OR_MODEL_EFFECT",
+  "consumer_source_files_checked": 57,
+  "elapsed_seconds": 3199,
+  "envelope_gpu_seconds": 21600,
+  "gpu_math_verified": false,
+  "helper_sha256": "679f366755702e4be9c8513f378a913cdaedcaa608e91aa8a999eb78873a48e8",
+  "job_id": "12648",
+  "prior_receipt_sha256": "43def888311cc5156a91980af6fb1ce46381fcf70a8d769d45e7e5441a0bac7d",
+  "source_files_checked": 6608,
+  "state": "COMPLETED",
+  "utc": "2026-09-06T23:57:02.576337+00:00",
+  "wheel_extension_files_checked": 1,
+  "wheel_payload_files_checked": 104,
+  "wheel_sha256": "e17e2f649e94e4cd8b7c2c4edfdb27e7e31c4c6cdee9081ae263184334ee1374",
+  "with_pivot_upper_bound_gpu_seconds": 16462
+}

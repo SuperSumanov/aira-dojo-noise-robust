@@ -5,6 +5,11 @@
 
 ## 0L96. 2026-09-07：主依赖构建及独立终验完成，备用尺寸入口准备
 
+911886a真实Linux237检查已通过/62源文件，testlog SHA3fba3d7163ef56aa8ca690946189e1cb5636861e4d797ee8b5b9cd371c200f89。
+三份原始安全回执已按bytes/SHA导出至results/session_builds_20260907，含R4终验和历史grading metadata缺失结论。
+另准备纯合成共享record噪声反例，校准cycle谱代理解释，不读取真实数据、不改任何训练/selector/确认门。
+见SHARED_RECORD_NOISE_PREFLIGHT_20260907.md；本地18测试通过，正式Linux矩阵待做。
+
 新CPU准备在测试前因扫描器误报停止：唯一命中是代码普通标识内部的sk-，不是规范边界下凭据形状；
 位置/长度/hash已远端核对，不回显内容。新入口与既有source-package扫描规则对齐并加正负控，另目录CPU复验。
 原bf43062失败目录保留，未提交模型job，不能计为Linux测试完成。

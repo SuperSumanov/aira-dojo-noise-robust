@@ -1,0 +1,20 @@
+{
+  "credential_shape_hits": 0,
+  "files": {
+    "ampere_entry_cpu.json": {
+      "bytes": 7852,
+      "original_relative_path": "critic-ampere-cpu-911886a-20260907/VERIFIED.json",
+      "sha256": "aaa21ef77fa5224c74c14af93f6a9b2bbe19cdd300aaca69a31d907c820f23b9"
+    },
+    "historical_grader_metadata.json": {
+      "bytes": 856,
+      "original_relative_path": "historical-grader-metadata-c26bca9-20260907/SUMMARY.json",
+      "sha256": "8c4c3082078c56d7c4503631b2e6c49367a8a6ebf3855684770f34328e5ad57b"
+    },
+    "r4_terminal_independent.json": {
+      "bytes": 875,
+      "original_relative_path": "flash-attn-build-20260907-r4/terminal-independent/VERIFIED.json",
+      "sha256": "386e8dc0c04a9fee81b9bd7ebf50aba6a1913a5c8df37024dfe0b90b750b4161"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "A_B_identical": true,
+  "archives_per_pass": 24,
+  "classification": "HISTORICAL_GRADING_METADATA_PRESENCE_NOT_TRAINING_ADMISSION",
+  "code_commit": "c26bca9fdc37b713dd2f8d712b85dd20e39da27c",
+  "cpu_tests_passed": 13,
+  "evaluator_identity_attested": false,
+  "helper_sha256": "b1225036e25a93d6a97160bb69c790f42c0486380fe74e37c8baf693cd62961c",
+  "independent_key_decoder_checks": 168,
+  "journal_payloads_opened": 0,
+  "model_fits_started": 0,
+  "outcome_bytes_may_enter_json_parser": true,
+  "outcome_values_used_for_selection": false,
+  "passes": 2,
+  "possible_provenance_field_counts": {},
+  "projection_sha256": "3544620d6e78501f11baeb59c39651f44a2c465949f3943d2393f421551da3b7",
+  "protected_cohort_payloads_opened": 0,
+  "records": 84,
+  "records_with_possible_provenance": 0,
+  "scope_runs": 84,
+  "utc": "2026-09-06T23:33:57.051541+00:00"
+}

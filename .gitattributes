@@ -544,3 +544,5 @@ phase1/results/zero3_accepted_12575/README.md text eol=lf diff
 phase1/results/zero3_accepted_12575/job/driver.log -whitespace
 phase1/results/pivot_space_failure_20260906/** -text diff
 phase1/results/pivot_space_failure_20260906/README.md text eol=lf diff
+phase1/results/session_builds_20260907/*.json -text diff
+phase1/results/session_builds_20260907/README.md text eol=lf diff

@@ -1,0 +1,18 @@
+{
+  "api_calls": 0,
+  "checks": [
+    "normal_completion_private_output_unknown_cost",
+    "nonzero_not_success",
+    "hard_timeout_then_kill",
+    "leader_exit_reclaims_same_group_child",
+    "existing_run_refused",
+    "supervisor_term_reclaims_worker"
+  ],
+  "checks_passed": 6,
+  "gpu_requested": false,
+  "limitation": "setsid escape and supervisor SIGKILL require cluster-side cgroups/time limit",
+  "protected_data_read": false,
+  "real_task_executed": false,
+  "slurm_containment_verified": false,
+  "status": "CPU_PROCESS_CHECK_PASS"
+}

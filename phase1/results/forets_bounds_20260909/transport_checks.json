@@ -1,0 +1,20 @@
+{
+  "actual_provider_retries_verified": false,
+  "api_calls": 0,
+  "checks": [
+    "one_attempt_no_sdk_retry_unpriced_not_zero",
+    "unknown_usage_missing",
+    "unknown_usage_boolean",
+    "no_retry_or_fallback_schema",
+    "no_retry_or_fallback_transport",
+    "no_retry_or_fallback_unsupported_json",
+    "await_deadline_cancels_local_call",
+    "legacy_without_opt_in_unchanged",
+    "safe_attempt_events_include_failed_usage"
+  ],
+  "checks_passed": 9,
+  "gpu_requested": false,
+  "monetary_cap_verified": false,
+  "protected_data_read": false,
+  "status": "CPU_TRANSPORT_CHECK_PASS"
+}

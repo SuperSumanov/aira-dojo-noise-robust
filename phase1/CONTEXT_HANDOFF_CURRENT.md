@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09香港时间，0L119覆盖下文；离线loader/新上游集成已通过CPU检查，等API对应关系。
+**Dynamic status timestamp:** 2026-09-09香港时间，0L120覆盖下文；本地硬停止/单次传输检查完成，API对应关系仍等待。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,17 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L120：用户睡眠6小时并要求中断后续接，g0-r5已更新，截止2026-09-09 02:10 UTC后暂停。
+新增forets_bounded_process.py及最终6项Linux进程检查通过；它只包POSIX进程组，不是Slurm/cgroup保证。
+残留子进程回收后不能把父进程0当完整成功；初版已修为completed_with_leftovers。预算计两段grace。
+新增0011显式单次传输补丁接0010，tree73fe9803cab2d325373dcc656842dfa35cf7d682。单独新backend已通过9项人工检查，
+真实SDK+本机HTTP服务的4种情况各1次HTTP；0外部API/GPU/fit。未知cost=null，不是美元cap或provider取消证明。
+结果results/forets_bounds_20260909；源码/测试位于远端forets-bounded-20260909-79jvTk，未改生产或学长分支。
+后续只补未完：四算子统一显式配置、全run请求/费用上限、Slurm硬限/真实8B预算。不要重跑6/9/4、10/8、G0或旧审计。
+API平台/地址/模型仍待学长，不能试送PRIMARY_KEY；无价格时不把费用0写成已核实免费。
+
+### 此前已完成接入（0L119）
 
 先读CURRENT_DIRECTION0L119。模型已到位，用户明确“我等一下学长回复”API对应关系；不要再问或发送PRIMARY_KEY试错。
 0009离线raw loader的10项CPU检查已完成：真实tiny Qwen3 seed6/7前向/RewardScorer一致，真实8B仅400键/形状及tokenizer。

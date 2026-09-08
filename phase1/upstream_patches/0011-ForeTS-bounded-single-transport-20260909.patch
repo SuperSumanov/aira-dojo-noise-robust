@@ -1,0 +1,98 @@
+diff --git a/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py b/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
+index eb4c3e27..63b3dc4e 100644
+--- a/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
++++ b/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
+@@ -4,7 +4,9 @@
+ # This source code is licensed under the license found in the
+ # LICENSE file in the root directory of this source tree.
+ 
++import asyncio
+ import json
++import math
+ import logging
+ import os
+ import time
+@@ -233,6 +235,61 @@ class LiteLLMClient:
+         jsonschema.Draft7Validator(func_spec.json_schema).validate(output)
+         return output
+ 
++    async def _query_once_bounded(self, messages, request_kwargs, func_spec, transport, timeout_seconds):
++        """Opt-in single adapter attempt, no fallback/parse/SDK retries.
++
++        This is not proof of provider billing or cancellation. Safe intent/return
++        records go to the private run log; unpriced usage always has cost=None.
++        A separate whole-run cap and provider-confirmed price envelope are needed.
++        """
++        if type(timeout_seconds) not in (int, float) or not math.isfinite(timeout_seconds) or not 0 < timeout_seconds <= 300:
++            raise ValueError('bounded request timeout must be in (0, 300] seconds')
++        if type(request_kwargs.get('max_tokens')) is not int or request_kwargs['max_tokens'] <= 0:
++            raise ValueError('bounded transport requires explicit positive max_tokens')
++        kwargs = request_kwargs.copy()
++        kwargs.update(max_retries=0, num_retries=0, request_timeout=httpx.Timeout(timeout_seconds))
++        if func_spec is not None:
++            if transport == 'json':
++                messages = self._messages_with_json_schema(messages, func_spec)
++                kwargs['response_format'] = {'type': 'json_object'}
++            else:
++                kwargs['tools'] = [func_spec.as_openai_tool_dict]
++                kwargs['tool_choice'] = func_spec.openai_tool_choice_dict
++        import uuid
++        event = dict(attempt_id=uuid.uuid4().hex, state='intent', adapter_attempts=1,
++                     cost=None, cost_status='unpriced', prompt_tokens=None, completion_tokens=None,
++                     success=False, provider_cancellation_verified=False)
++        logger.info('bounded_transport %s', json.dumps(event, sort_keys=True))
++        start = time.monotonic()
++        completion = None
++        try:
++            completion = await asyncio.wait_for(completion_fn(messages=messages, **kwargs), timeout_seconds)
++            event['state'] = 'response_returned'
++            usage = completion.to_dict().get('usage') or {}
++            for name in ('prompt_tokens', 'completion_tokens'):
++                value = usage.get(name)
++                event[name] = value if type(value) is int and value >= 0 else None
++            if func_spec is None:
++                output = completion.choices[0].message.content
++            else:
++                output = self._parse_structured_output(completion, func_spec, transport)
++            event['success'] = True
++        except Exception as exc:
++            event.update(state='transport_unknown' if completion is None else 'response_invalid',
++                         error_type=type(exc).__name__)
++            # Never expose provider response/body/credentials in a retry error.
++            raise RuntimeError('bounded API attempt failed: ' + type(exc).__name__) from None
++        finally:
++            event['latency'] = time.monotonic() - start
++            logger.info('bounded_transport %s', json.dumps(event, sort_keys=True))
++        stats = dict(event)
++        p, c = stats['prompt_tokens'], stats['completion_tokens']
++        stats['total_tokens'] = p + c if p is not None and c is not None else None
++        stats['token_usage_source'] = 'provider' if p is not None and c is not None else 'provider_incomplete'
++        if func_spec is not None:
++            stats.update(structured_output_transport=transport, structured_output_requests=1)
++        return output, stats
++
+     async def _query_client(
+         self,
+         messages: List[Dict[str, str]],
+@@ -242,6 +299,10 @@ class LiteLLMClient:
+         function_description: Optional[str] = None,
+     ) -> Tuple[OutputType, Dict[str, Any]]:
+         model_kwargs = dict(model_kwargs or {})
++        bounded = model_kwargs.pop('bounded_transport', False)
++        bounded_timeout = model_kwargs.pop('bounded_request_timeout_seconds', 60.)
++        if type(bounded) is not bool:
++            raise ValueError('bounded_transport must be boolean')
+ 
+         # Prepare function specifications if provided
+         func_spec = None
+@@ -272,6 +333,10 @@ class LiteLLMClient:
+         model_kwargs["api_key"] = self.api_key
+         filtered_kwargs = {k: v for k, v in model_kwargs.items() if v is not None}
+ 
++        if bounded:
++            return await self._query_once_bounded(messages, filtered_kwargs, func_spec,
++                                                   structured_output_mode, bounded_timeout)
++
+         filtered_kwargs["max_retries"] = NUM_RETRIES
+         filtered_kwargs["num_retries"] = NUM_RETRIES
+         filtered_kwargs["request_timeout"] = httpx.Timeout(timeout=TIMEOUT)

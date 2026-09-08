@@ -1,0 +1,35 @@
+{
+  "actual_provider_billing_verified": false,
+  "external_api_calls": 0,
+  "gpu_requested": false,
+  "local_http_requests": 4,
+  "protected_data_read": false,
+  "rows": [
+    {
+      "case": "success",
+      "elapsed_seconds": 0.38302979100262746,
+      "observed_http_requests": 1
+    },
+    {
+      "case": "http429",
+      "elapsed_seconds": 0.17018090898636729,
+      "observed_http_requests": 1
+    },
+    {
+      "case": "http500",
+      "elapsed_seconds": 0.05155494500650093,
+      "observed_http_requests": 1
+    },
+    {
+      "case": "invalid_schema",
+      "elapsed_seconds": 0.022232969000469893,
+      "observed_http_requests": 1
+    }
+  ],
+  "status": "LOOPBACK_HTTP_PASS",
+  "versions": {
+    "httpx": "0.28.1",
+    "litellm": "1.65.7",
+    "openai": "1.72.0"
+  }
+}

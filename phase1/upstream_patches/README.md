@@ -5,6 +5,27 @@
 
 ## 当前ForeTS探索入口（2026-09-09，0L119）
 
+### 可选后续：0011有界传输（0L120）
+
+0011是接在0010后的增量，组合tree `73fe9803cab2d325373dcc656842dfa35cf7d682`，只改LiteLLM backend。
+在四个算子各自的`llm.generation_kwargs`中显式设置`bounded_transport: true`、
+`bounded_request_timeout_seconds: 60`及正整数`max_tokens`后才启用；默认行为不变。
+模式只允许一次adapter调用，不做SDK重试、JSON→tools fallback或格式重试。intent/return日志只含安全用量字段，
+错误日志不带响应正文，失败仍保留记录。未知token/cost为null，不能当0或已证明免费。
+
+9项人工completion检查通过；实际SDK连接本机HTTP模拟服务，200/429/500/schema-invalid各恰好1请求。
+版本LiteLLM1.65.7/OpenAI1.72.0/httpx0.28.1；4次本机请求，0外部API。详见
+`phase1/results/forets_bounds_20260909/{transport_checks,loopback_checks}.json`及同名脚本。
+全run调用上限、美元上限、真正endpoint/代理重试及provider端超时取消仍需另验证，不能直接拿此声称同预算。
+
+配套`phase1/forets_bounded_process.py`通过6项真实Linux无害进程检查；不提交Slurm，只有本地进程组控制。
+它会回收同组后代，残留被回收时不把父进程0当完整成功；不覆盖旧运行。grace需计TERM等待和最终wait两段。
+setsid逃逸/监督进程SIGKILL/不可中断IO需要集群側cgroup/step/allocation硬限，尚未替代这些设置。
+结果`phase1/results/forets_bounds_20260909/process_checks.json`，无GPU/真实任务/受保护数据。
+这些是预算入口的组成部分，不是整个GPU运行入口或模型效果已经验收。
+
+### 0010累计基座
+
 **只对独立、干净的`dojo-reproduce@065b0fbaa89e0eb663f2834ec768081f5d56394d`应用0010。**
 不要改写活动生产checkout，不要再叠ForeTS的0005、0006、0007、0008、0009。
 

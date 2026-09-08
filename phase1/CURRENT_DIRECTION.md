@@ -3,6 +3,33 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L120. 2026-09-09：六小时中断后备已更新，新增本地硬停止与显式单次请求模式
+
+用户睡眠六小时并授权中断后继续。既有g0-r5后备已更新为ForeTS有界集成，每15分钟续接检查；
+本次窗口截止2026-09-09 02:10 UTC，到时停止新工作并暂停后备。它不是后台实验已运行的证明。
+API仍等学长回复，不重复索要、不试送密钥。本轮GPU/外部API/fit为0，保护集未读。
+
+新增forets_bounded_process.py：单次POSIX worker、独立进程组、超时TERM后KILL、私有日志、不覆盖旧运行。
+6项真实Linux无害进程测试通过，包括父进程先退出的残留子进程和中断监督进程。初版把“父进程0但清理了残留”
+仍标成功，复核后已改为completed_with_leftovers并返回非成功；最终6项重验通过。TERM等待和最后wait各可用一次grace，
+不能只计一个grace。setsid逃逸、监督进程SIGKILL、不可中断IO不由该包装保证；GPU仍须Slurm step/allocation硬限。
+
+实际上游后端仍有内部10次重试、结构化重试/格式降级，费用helper默认0；外层两次不是实际请求上限。
+新增opt-in累计后续0011，精确接0010得到tree73fe9803cab2d325373dcc656842dfa35cf7d682，只变LiteLLM backend：
+bounded_transport=true时，显式max_tokens、请求deadline（<=300秒）、SDK重试0、无格式fallback/parse重试，
+安全记录请求intent/完成或失败；provider未给的token不猜，未核价的cost=null，失败/超时不假装免费。
+不传flag仍旧行为；全局请求次数上限、美元上限、供应商端取消与内部重试均不由该补丁单独保证。
+
+9项人工completion检查通过；另以真实LiteLLM1.65.7/OpenAI SDK1.72.0/httpx0.28.1连接本机HTTP模拟服务，
+成功、429、500、schema-invalid四种情况各观测1次HTTP，共4次本机请求、0外部API。
+这是实际SDK链路，不是用mock次数充当HTTP次数；但不证明真实供应商计费或行为。
+脚本与结果见results/forets_bounds_20260909、upstream_patches/README.md。远端隔离目录
+/research/d7/spc/yzyang4/forets-bounded-20260909-79jvTk；仅测试新backend文件，尚未给正式四算子统一启用。
+
+下一步有意义的未完成项：统一draft/improve/debug/analyze的有界配置、整run请求/费用上限与实际Slurm硬限接入，
+准备一次真实8B GPU集成的准确预算。接口/价格事实未回前不请求真实服务；不以重复6/9/4、10/8检查填满六小时。
+G0/旧来源审计已完，原严格四fit门不变，但不将其套到另立的现成critic探索。暂无真实任务或模型收益结论。
+
 ## 0L119. 2026-09-09：离线loader通过CPU检查，接入学长最新ForeTS并修复重试导出/JSON改码
 
 继续0L115的e2e优先，不恢复G0、corpus审计或原严格四fit。用户说API对应关系等学长回复；不重复询问，

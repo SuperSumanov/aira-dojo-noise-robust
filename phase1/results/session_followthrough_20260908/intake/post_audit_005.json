@@ -1,0 +1,12 @@
+{
+  "audit_artifact": "/research/d7/spc/yzyang4/prospective-snapshot-delta-chain/artifacts_v1/20260908T042809Z_6be4c9ab8154",
+  "audit_manifest_sha256": "4219bab74181e33216b5305cb059812fcbf80302f2c91fe2a6949293359d4e99",
+  "audit_readonly_verified": true,
+  "foreground_receipt_sha256": "f6bfd46266a1bb4b9194ff94e8e08c6b8b7a57542fdd88a1c6e0e53be7dea94b",
+  "next_call_not_before_epoch": 1788841987.5438402,
+  "outcome_values_read": false,
+  "poll": 5,
+  "snapshot": "6be4c9ab81545e88c3bea1dc453c05d790125193ae2dfe53927d332a58f43563",
+  "source_commit": "28a139f481764951485ad6d278920a2fa3efe62c",
+  "wrapper_sha256": "0fe1834f7b3ff5fc293fcf03df9c9b35bd11920be375c1e0a529e749a64b8cb9"
+}

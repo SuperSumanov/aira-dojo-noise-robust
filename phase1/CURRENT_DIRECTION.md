@@ -22,13 +22,19 @@ summary SHA dd0fcde699234fce9de30d200ebed33a1c97a784b66eef26e3b4ae02f6199eec；
 29个初始化错误保留；改名后新commit/新目录同矩阵验证，不改评分逻辑。此前Windows临时只读fixture删除故障也记录。
 
 0906既有窗口不变：UTC03:40:46–05:40:46，总最多8调用；每次含独立delta链2700秒、至少间隔300秒。
-已完成poll000至005及对应独立post-audit，前两次观察，后四次新事务。当前751physical/725eligible/
-19503endpoints/4407pairs/58tasks，closure=false。
-LATEST6be4c9ab81545e88c3bea1dc453c05d790125193ae2dfe53927d332a58f43563，
-summary9430bc49c562a417a80fc18563be90391314b1166c503b1f9e159c790d89989f。
-下一次最早UTC04:33:07.543840，最多再两次且必须留完整时限；没有后台任务、保护集揭盲、训练或paid API。
-唯一入口仍/tmp/dispatch_0906_foreground_r2_20260908.py；恢复先核当前post-audit，不能重复已完成事务或延长窗口。
-达到8次后停，不声称11新包全部处理完，也不自动再开lease。来源未明确时，不再追加通用验证器拖延模型问题。
+04:42 UTC已完成poll000至007及对应独立post-audit，前两次观察、后六次新事务。当前759physical/733eligible/
+19609endpoints/4426pairs/59tasks，closure=false。相对本窗口起点711eligible新增22runs、258endpoints、46pairs，离960还有227runs。
+LATEST1b44e898bbae7ffc9098bbfa584ba842e0db2be5ae6bb8b5da0475d8ab34239f，
+snapshot summary971d5bf25df0824ac69d28c7c88900218992b5fdb41e2e12e80403733f489baa。
+8次额度已用完，当前无未完成调用，不再调用该dispatcher；即便输出给出04:47:10.936892的时间下界，也不等于允许第9次。
+没有后台任务、保护集揭盲、训练或paid API。不声称11新包全部处理完，不自动再开lease。
+results/session_followthrough_20260908/intake包含8组安全原始回执及逐次独立post-audit，export manifest
+a4d0d0f0a8a01f3e26dae52ea80fefdb1029964fe6f61ea9208010ce40c43662；会话summary3f8ccf17ae17743068ae59193446789c0f4e78c8f4b833dd0e597af28dac6e4f。
+
+04:36 UTC仅用2个目录请求重核共享Drive：最新可见日期0906、11归档、本地同名11，无0907/0908目录、无config-v2 sidecar。
+只证明当时目录/名字，不是再次下载验证内容或新source准入；冻结摄取输入未改变。安全summary
+c38e0559551d19ddc4a8198437416abcbca85a28c561002fa43acc3623d67caf，实际runner与回执存于上述followthrough目录。
+来源未明确时，不再追加通用验证器拖延模型问题。下一关键动作是获得实际独立开发记录位置，或明确无记录后冻结新开发生产范围。
 
 ## 0L105. 2026-09-08：用户批准研究方案；执行有界摄取与输入诊断
 

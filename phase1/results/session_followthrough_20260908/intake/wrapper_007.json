@@ -1,0 +1,13 @@
+{
+  "archive_bytes_or_mtime_modified": false,
+  "background_process_started": false,
+  "base_driver_sha256": "d0769998335115694302d50b39799e91d39fb2aabb77ddd9d59f7d7f1bf70c43",
+  "foreground_receipt_sha256": "40dd53352db1a8f7d06c98bab0fce2b6226ea2d167443422332522b43b823eb0",
+  "poll": 7,
+  "readonly_source_manifest_sha256": "c960d1e4c59cffcb5c571f08a7d87792e89c178758bff6982bad719e9088a48b",
+  "scientific_or_stability_rules_changed": false,
+  "session_end_utc": "2026-09-08T05:40:46+00:00",
+  "source_fingerprint_sha256": "29c1cc70c615c5b9d559585ec382cd28cdfa6ea27eca968f07890b83bb272de1",
+  "training_source_qualified": false,
+  "wrapper_sha256": "ee0d86a685ff54f8df2d3dcee009584a948e4b9015bced67b960546a0f6d95d3"
+}

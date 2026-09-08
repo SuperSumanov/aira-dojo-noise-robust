@@ -1,0 +1,33 @@
+{
+  "archive_payloads_downloaded": 0,
+  "archive_payloads_opened": 0,
+  "checked_folders": [
+    {
+      "config_v2_sidecars": 0,
+      "date": "0906",
+      "entries": 11,
+      "local_archives": 11,
+      "local_extra_names": 0,
+      "missing_archives": 0,
+      "other_non_archive_files": 0,
+      "remote_archives": 11,
+      "subfolders": 0
+    }
+  ],
+  "classification": "SAFE_UPLOAD_METADATA_ONLY_NOT_CONTENT_OR_TRAINING_ADMISSION",
+  "frozen_intake_inputs_changed": false,
+  "name_equality_is_not_content_equality": true,
+  "private_inventory_sha256": "d58ff07b4ff797ae91f2f11a9bfd74b6f2f47afaea86dc7f6fca8701825d0a38",
+  "requests": 2,
+  "root_entries": 46,
+  "script_sha256": "340473c3bab28c8372c536837e30644db323e6e5813d2630ae30f6528f6de41c",
+  "september_date_folders": [
+    "0901",
+    "0902",
+    "0903",
+    "0904",
+    "0905",
+    "0906"
+  ],
+  "utc": "2026-09-08T04:36:32.668046+00:00"
+}

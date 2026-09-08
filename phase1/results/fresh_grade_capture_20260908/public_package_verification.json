@@ -1,0 +1,9 @@
+{
+  "status": "PUBLIC_CAPTURE_PACKAGE_COMPLETE",
+  "commit": "2c3b55cd90cf401904928509fa80ac95437bd22f",
+  "manifest_files_verified": 13,
+  "senior_branch_unchanged": true,
+  "senior_branch_commit": "40d7dea10738f159fc97cad8487ab4ada88022a3",
+  "manifest_sha256": "b3c02859aa95155bbc940722a492e2b904247494bf5d506f97a6791c290ad98a",
+  "scope": "Published branch ref and exact Git blobs; this later receipt is outside the original export manifest."
+}

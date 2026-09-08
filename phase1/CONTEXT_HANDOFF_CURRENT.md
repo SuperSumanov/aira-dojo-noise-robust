@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08香港12:28；当前0L106覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-08香港12:42；当前0L106覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -18,11 +18,14 @@ summary dd0fcde699234fce9de30d200ebed33a1c97a784b66eef26e3b4ae02f6199eec；resul
 首轮33ebc8dc测试setup命名冲突导致29初始化错误，改名后同矩阵新目录成功，失败保留。
 不重跑G0/输入分词/通用测试。下一关键动作实际独立开发来源，或明确无记录后冻结新开发生产范围；不能拿前瞻包填训练。
 
-0906poll000–005及各自post-audit已完成，751physical/725eligible/19503endpoints/4407pairs/58tasks，closure=false。
-LATEST6be4c9ab81545e88c3bea1dc453c05d790125193ae2dfe53927d332a58f43563，summary9430bc49c562a417a80fc18563be90391314b1166c503b1f9e159c790d89989f。
+0906poll000–007及各自post-audit全部完成，759physical/733eligible/19609endpoints/4426pairs/59tasks，closure=false。
+LATEST1b44e898bbae7ffc9098bbfa584ba842e0db2be5ae6bb8b5da0475d8ab34239f，summary971d5bf25df0824ac69d28c7c88900218992b5fdb41e2e12e80403733f489baa。
 入口/tmp/dispatch_0906_foreground_r2_20260908.py，output session-0906-intake-20260908，source28a139f481764951485ad6d278920a2fa3efe62c。
-原窗口UTC03:40:46–05:40:46/max8/2700秒每call不变；下一call最早04:33:07.543840，最多再2次，不后台续跑/自动扩lease。
-每次先核已完成post-audit，不能重跑已完成call。完成8次后再导出tmp/export_0906_eight_calls_20260908.py；未完成8次不得运行导出器。
+原窗口UTC03:40:46–05:40:46/max8/2700秒每call不变；8次额度已用完，无未完成调用，禁止第9次/自动扩lease/后台续跑。
+tmp/export_0906_eight_calls_20260908.py已执行，远端safe-0906-eight-calls-20260908保留，不能覆盖或重复运行导出器。
+原始回执results/session_followthrough_20260908/intake，manifest a4d0d0f0a8a01f3e26dae52ea80fefdb1029964fe6f61ea9208010ce40c43662。
+本窗口新增22eligible、258endpoints、46pairs；共733/960，还差227，6新事务不等于11归档全部完成。
+04:36 UTC共享Drive最新可见仍0906，11归档本地同名齐、无0907/0908目录/新config-v2；只是元数据检查，不声称新内容认证。
 
 ### 当日此前记录，动态状态由0L106覆盖
 

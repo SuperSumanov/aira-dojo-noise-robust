@@ -168,3 +168,14 @@ SHA-256=`17317a2d239cb862ec16d57aa0a2fa168f2c1a6cd841117950d8ee8127129ad6`。原
   我方可用等价batch分配做可恢复作业，继续设置正确SLURM_CONF，核对队列与实际预算，禁止重复提交同一实验。
 - 本轮查明12577已双卡启动而非继续排队，98秒后因环境缺FlashAttention2失败；我方预检漏项由我方修复。
   不把学长新排队命令或已恢复存储当作此依赖问题的解决。详见results/recorded_commit_recovery_20260907。
+
+## K. 2026-09-08：学长ForeTS端到端接入代码与使用说明
+
+- 只读head `8b621851a87d20382feefe8c8458a7db2a1fabea`，新增ForeTS与
+  `src/mle_critic/docs/evaluation/E2E_EVALUATION.md`。先批量生成、critic取top-k、再随机选若干执行，
+  继续原MCTS/debug流程。该实现归学长；我方复用接入，不另造相同功能或归为我方方法成果。
+- 这是代码/使用说明更新，不是新outcome或scaling收益；更新data文件未读payload，不能推断来源合格。
+- 文档projgpu7/6卡示例不覆盖我方节点排除与预算；示例checkpoint也没有自动取得评估准入。
+  同节点critic和worker各自占卡，已知双卡PRO6000不能被当成2卡critic加1卡worker的三卡资源。
+- 我方有限hotfix与残留的未执行节点journal问题见PARALLEL_EXECUTION_AND_FORETS_20260908.md；
+  补丁只放我方分支，不修改学长分支，不以模拟HTTP测试代替真实集成或在线模型收益。

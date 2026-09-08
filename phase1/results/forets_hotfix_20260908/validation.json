@@ -1,0 +1,87 @@
+{
+  "applied_git_tree": "c180d1358bc03a9893b1a3a5c5678d3b006be08b",
+  "classification": "EXACT_UPSTREAM_DIRECTED_HOTFIX_TESTS_NOT_DEPLOYMENT_OR_MODEL_EFFECT",
+  "deletions": 11,
+  "files": {
+    "phase1/PARALLEL_EXECUTION_AND_FORETS_20260908.md": {
+      "bytes": 10230,
+      "sha256": "62d03116f38b3782d9f41c10005f8651b823f4d1aff6ec696ab9e27712c260b7"
+    },
+    "phase1/forets_upstream_hotfix_20260908.py": {
+      "bytes": 7478,
+      "sha256": "277254d1d89ac83738cc94b459a8bbb8b32780396da40cfd85fdbcc1d4964609"
+    },
+    "phase1/results/forets_hotfix_20260908/applied_tree_tests.xml": {
+      "bytes": 4220,
+      "sha256": "bc7f1f9d467b2595216ac937a553dfbbe3cbdd9102cf1851156c9318b041cd81"
+    },
+    "phase1/results/forets_hotfix_20260908/builder_final_tests.xml": {
+      "bytes": 4220,
+      "sha256": "5ae8d7312689ef335addabbdac4fe6827e295f4514fe9902a5833da230278c3a"
+    },
+    "phase1/scripts/inspect_parallel_source_budget_20260908.py": {
+      "bytes": 5142,
+      "sha256": "40f50f08718937fe91de87e971196c80d66dfbd20b725b2c35dc0d2236dae576"
+    },
+    "phase1/tests/test_forets_upstream_hotfix_20260908.py": {
+      "bytes": 10597,
+      "sha256": "12a6e3b98b18455661ad77b4c28554eba5d5bd3371f679ae6978775db66c34fe"
+    },
+    "phase1/upstream_patches/0002-ForeTS-startup-and-step-boundary-20260908.patch": {
+      "bytes": 6830,
+      "sha256": "ac867b6f9c9c5ce52925c0e308a278c0872ce695a6d9dc334007f50fab8c20a6"
+    }
+  },
+  "gpu_jobs": 0,
+  "insertions": 42,
+  "model_fits": 0,
+  "paid_api_calls": 0,
+  "patched_file_count": 4,
+  "platform": "Windows",
+  "production_ready": false,
+  "protected_payloads_read": false,
+  "python": "3.13.4",
+  "remaining_blockers": [
+    "unexecuted journal memory crash",
+    "candidate ledger and restart semantics",
+    "frozen prompt and selector RNG isolation",
+    "checkpoint and source-role qualification",
+    "actual cost matrix and real environment integration"
+  ],
+  "remote_ssh_attempts_this_turn": 2,
+  "remote_ssh_successes": 0,
+  "senior_branch_modified": false,
+  "source_admitted": false,
+  "source_budget_join_executed": false,
+  "test_suites": {
+    "applied_tree_tests.xml": {
+      "errors": "0",
+      "failures": "0",
+      "hostname": "TankYoung",
+      "name": "pytest",
+      "skipped": "0",
+      "tests": "28",
+      "time": "1.036",
+      "timestamp": "2026-09-08T13:59:38.589490+08:00"
+    },
+    "builder_final_tests.xml": {
+      "errors": "0",
+      "failures": "0",
+      "hostname": "TankYoung",
+      "name": "pytest",
+      "skipped": "0",
+      "tests": "28",
+      "time": "1.020",
+      "timestamp": "2026-09-08T14:02:05.992624+08:00"
+    }
+  },
+  "upstream_commit": "8b621851a87d20382feefe8c8458a7db2a1fabea",
+  "upstream_source_sha256": {
+    "src/dojo/config_dataclasses/solver/fore_ts.py": "c7755696a30103b06567dcbe7cf9f7ee720887620f77fdc7156e6d9ce0546ad6",
+    "src/dojo/configs/solver/mlebench/fore_ts.yaml": "663e1046737ea3541a5fb88fb2a0380930c6958b51678f0f1cf1f12ee2c8923d",
+    "src/dojo/core/solvers/operators/memory.py": "368b222ca36e5a4ec5c1858afc7ded8be5cb40643c5ac8b23615359e1abb2e37",
+    "src/dojo/solvers/fore_ts/fore_ts.py": "7c3263e40f2c9d2fb450f5109f59bd010bd26404b44c7fab22bafa56d74431c5",
+    "src/dojo/solvers/mcts/mcts.py": "5582e89dfdfd30a4a8971f82a2a5b93f8c0d055fb5a0fcf8841fbb7db98d64a7",
+    "src/dojo/tasks/mlebench/task.py": "3beec5506196912f8074206880d2feb0cbb80b6da7c2e209b09c89c6ad944306"
+  }
+}

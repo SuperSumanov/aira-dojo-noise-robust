@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08香港12:42；当前0L106覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-08香港14:03；当前0L107覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,17 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先fetch并读CURRENT_DIRECTION 0L107。学长新head8b621851a87d20382feefe8c8458a7db2a1fabea新增ForeTS/E2E说明，
+无新outcome，数据payload未读。现有候选框架归学长，不重复造；我方有精确提交的可选hotfix与28项定向复现。
+真实临时Git index应用4文件42增11删，tree c180d1358bc03a9893b1a3a5c5678d3b006be08b，加载该tree同28例通过。
+未修改学长分支/部署/启动GPU/API；测试仅Windows模拟I/O函数体，不是端到端验收。
+仍有未执行节点进入journal的memory空值崩溃；下一步候选台账、已执行状态、恢复和公平批次输入接入，禁止伪造失败标签。
+来源优先实际独立开发记录，备选另登弱监督训练+新标签dev，不改严格四fit准入；融合暂不拟合，保留同池TF-IDF。
+本轮SSH两次关闭，scripts/inspect_parallel_source_budget_20260908.py尚未实际运行，预算角色未冻结。
+详细事实与原始日志见PARALLEL_EXECUTION_AND_FORETS_20260908.md与results/forets_hotfix_20260908。
+
+### 此前状态（0L106）
 
 先fetch并读CURRENT_DIRECTION 0L106。用户回复“可以”不是开发记录路径；严格四fit仍无已准入实际来源。
 fresh_grade_capture opt-in helper实际Linux29测试、6真实grader×31-case×A/B及各自独立重评分通过；

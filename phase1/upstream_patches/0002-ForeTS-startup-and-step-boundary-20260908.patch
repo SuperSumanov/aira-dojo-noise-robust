@@ -1,0 +1,152 @@
+--- a/src/dojo/solvers/fore_ts/fore_ts.py
++++ b/src/dojo/solvers/fore_ts/fore_ts.py
+@@ -14,6 +14,7 @@
+ import urllib.request as _rq
+ import json
+ import random
++import math
+ 
+ class ForeTS(MCTS):
+     """Tree search that enquiry a critic before expanding a node."""
+@@ -21,12 +22,16 @@
+     search_name = "ForeTS"
+ 
+     def __init__(self, cfg: ForeTSSolverConfig, task_info):
++        cfg.validate()
++        task_name = task_info.get("name", task_info.get("competition_id"))
++        if not isinstance(task_name, str) or not task_name.strip():
++            raise ValueError("ForeTS requires the actual task name before generation")
+         super().__init__(cfg, task_info)
+         self.critic_host = cfg.critic_host
+         self.critic_port = cfg.critic_port
+         self.critic_top_k = cfg.critic_top_k
+         self.num_children_to_choose = cfg.num_children_to_choose
+-        self.task_name = str(task_info.get("name", task_info.get("competition_id", "")))
++        self.task_name = task_name
+         self.critic_max_attempts = cfg.critic_max_attempts
+ 
+     def _expand_leaf_and_backprop(self, path: List[MCTSNode], state: Any, task: Any) -> Tuple[Any, int]:
+@@ -46,6 +51,8 @@
+         
+         leaf_node = path[-1]
+         num_children_to_create = min(self.cfg.num_children, self.remaining_steps)
++        if num_children_to_create <= 0:
++            return state
+         
+         # Generate num_children_to_create childrens at the same time
+         # If root node, we draft otherwise we improve
+@@ -65,7 +72,9 @@
+         top_k_child_nodes = [child_nodes[i] for i in top_k_indices]
+ 
+         # Finally, randomly select num_children_to_choose from the top k child nodes
+-        chosen_child_nodes = random.sample(top_k_child_nodes, self.num_children_to_choose)
++        # Tail batches can contain fewer candidates than the configured count.
++        choose_count = min(self.num_children_to_choose, len(top_k_child_nodes))
++        chosen_child_nodes = random.sample(top_k_child_nodes, choose_count)
+ 
+         # Log the chosen child nodes
+         for chosen_node in chosen_child_nodes:
+@@ -77,8 +86,10 @@
+             self.journal.append(unselected_node)
+             self.log_journal()
+ 
+-        for i in range(self.num_children_to_choose):
+-            child_node = chosen_child_nodes[i]
++        for child_node in chosen_child_nodes:
++            # A previous selected child may have consumed steps in debug.
++            if self.remaining_steps <= 0:
++                break
+             # Evaluate the code
+             self.logger.debug(f"Step {self.state.current_step}: Executing generated code")
+             state, eval_result = task.step_task(state, extract_code(child_node.code))
+@@ -102,7 +113,7 @@
+                     self.set_global_q_values(fixed_metric)
+ 
+             # If we have used up all the steps we break
+-            if self.state.current_step > self.cfg.step_limit:
++            if self.state.current_step >= self.cfg.step_limit:
+                 self.logger.info(f"Step limit reached: {self.state.current_step} steps")
+                 break
+ 
+@@ -117,24 +128,32 @@
+         """
+         # Query the critic for a value estimate of the node
+         key = id(node)
+-        for _ in range(self.critic_max_attempts):
++        for attempt in range(self.critic_max_attempts):
+             try:
+                 request = _rq.Request(
+                     f"http://{self.critic_host}:{self.critic_port}/score",
+                     json.dumps({
+-                        "task": self._rm_task_name,
++                        "task": self.task_name,
+                         "code": (node.code or "")[:40000],
+                     }).encode(),
+                     {"Content-Type": "application/json"},
+                 )
+                 with _rq.urlopen(request, timeout=600) as response:
+                     response_data = json.loads(response.read().decode())
+-                    value_estimate = float(response_data["score"])
++                    raw_score = response_data["score"]
++                    if isinstance(raw_score, bool):
++                        raise ValueError("critic score must be numeric, not boolean")
++                    value_estimate = float(raw_score)
++                    if not math.isfinite(value_estimate):
++                        raise ValueError("critic score must be finite")
+                 return value_estimate
+             except Exception as e:
+-                self.logger.warning(f"Critic query failed for node {key}: {e}. Retrying...")
+-                await asyncio.sleep(1)  # Wait a bit before retrying
+-                continue
++                self.logger.warning(
++                    f"Critic query failed for node {key}: {type(e).__name__}")
++                if attempt + 1 == self.critic_max_attempts:
++                    raise RuntimeError("critic attempts exhausted; no selection executed") from None
++                await asyncio.sleep(1)
++        raise RuntimeError("critic_max_attempts must be positive")
+                 
+     async def _draft(self, parent: Optional[MCTSNode] = None) -> MCTSNode:
+         """
+--- a/src/dojo/config_dataclasses/solver/fore_ts.py
++++ b/src/dojo/config_dataclasses/solver/fore_ts.py
+@@ -13,6 +13,7 @@
+ 
+ @dataclass
+ class ForeTSSolverConfig(SolverConfig):
++    uct_c: float = field(default=MISSING)
+     num_children: int = field(
+         default=MISSING, metadata={"description": "Number of child nodes expanded per search step"}
+     )
+@@ -42,3 +43,12 @@
+ 
+     def validate(self) -> None:
+         super().validate()
++        for name in ("num_children", "critic_top_k", "num_children_to_choose", "critic_max_attempts"):
++            value = getattr(self, name)
++            if type(value) is not int or value <= 0:
++                raise ValueError(f"{name} must be a positive integer")
++        if not self.num_children_to_choose <= self.critic_top_k <= self.num_children:
++            raise ValueError("require choose <= top_k <= num_children")
++        import math
++        if isinstance(self.uct_c, bool) or not isinstance(self.uct_c, (int, float)) or not math.isfinite(self.uct_c) or self.uct_c < 0:
++            raise ValueError("uct_c must be finite and nonnegative")
+--- a/src/dojo/configs/solver/mlebench/fore_ts.yaml
++++ b/src/dojo/configs/solver/mlebench/fore_ts.yaml
+@@ -14,6 +14,7 @@
+ 
+ step_limit: 10000
+ num_children: 5
++uct_c: 0.25
+ max_debug_depth: 20
+ data_preview: true
+ max_debug_time: 1e9
+--- a/src/dojo/tasks/mlebench/task.py
++++ b/src/dojo/tasks/mlebench/task.py
+@@ -90,6 +90,7 @@
+         # Prepare the task info object
+         lower_is_better = evaluate.is_lower_better(self.competition)
+         task_info = {
++            "name": self.cfg.name,
+             TASK_DESCRIPTION: self.task_description,
+             "lower_is_better": lower_is_better,
+         }

@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09香港时间，0L122覆盖下文；Slurm参数/worker预算接入已检查，真实GPU与接口仍等待。
+**Dynamic status timestamp:** 2026-09-09香港时间，0L123覆盖下文；单GPU验收入口/预算已准备，未批准/提交，接口仍等待。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,17 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L123：forets_8b_acceptance.py及FORETS_8B_ACCEPTANCE_PLAN_20260909.md已准备；批脚本prepare_forets_8b_acceptance_20260909.sbatch未提交。
+独立待批矩阵1GPU/projgpu39/6CPU/80GiB主存，allocation20分钟/step19分钟/process1050秒/两段5秒cleanup，
+名义0.3333333333333333 GPUh，加已观测KillWait为0.4166666666666667。不是此前G0或9GPUh条件规划已授权。
+0真实GPU/API/model-load/任务/保护集；仅4项准备检查+shell语法过，执行分支没有验收，回执名acceptance_preparation_checks.json。
+固定现成8B+16K/BF16/batch1，人工short/long、seed6/7，warmup后测两次及本机HTTP；不是科学收益/新训练。
+GPU包元数据torch2.11.0+cu128/transformers4.57.1/accelerate1.11.0/safetensors0.5.3，模型和loader原位置不变。
+等待独立GPU预算批准以及学长API对应事实；不要重复要key/模型、试送endpoint、重跑检查或扩展工程审计消磨时间。
+必要准备已完成，等待期间只查有意义的新回复/上游变更；02:10 UTC后备暂停，不延长。还不能说真实8B或e2e已开跑。
+
+### 此前worker接入（0L122）
 
 最新0L122：0013接0010+0011+0012，tree059328196ca359965732308eebf7e57eb9c9ecd8。
 新worker独立预算库/排他标记、进程限时、正常及本地超时后归档；Slurm launch显式step时间，重放在dispatch前拒绝。

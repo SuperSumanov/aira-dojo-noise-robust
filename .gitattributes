@@ -52,6 +52,7 @@ phase1/results/raw_choice_set_completeness_v11_20260815_6610618/*.json text eol=
 phase1/results/source_opportunity_identity_recovery_v11_20260815_3faf001/*.json text eol=lf
 phase1/results/source_opportunity_journal_status_v11_20260815_42cb6b1/*.json text eol=lf
 phase1/upstream_patches/*.patch -text -diff
+phase1/scripts/prepare_forets_8b_acceptance_20260909.sbatch text eol=lf
 phase1/manifests/*.sha256 text eol=lf
 phase1/scripts/critic_component_g0_* text eol=lf
 phase1/scripts/audit_critic_component_g0_shared_scheduler_20260821.sh text eol=lf

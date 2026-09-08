@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L123. 2026-09-09：一次真实8B验收的入口/独立预算已准备，尚未获批执行
+
+继续ForeTS e2e，f258814f公开10blob已核对；学长065b0fba未变、远端无遗留实验进程。没有新模型/API对应事实。
+这轮只准备一次真实GPU验收，不提交Slurm、不加载8B、不读保护数据。模型下载/旧tiny loader/G0不再重跑。
+
+新入口forets_8b_acceptance.py与FORETS_8B_ACCEPTANCE_PLAN_20260909.md：projgpu39、1GPU、6CPU、80GiB主存；
+allocation20分钟、step19分钟、进程1050秒、TERM等待/最终wait各5秒；名义0.3333333333333333 GPUh，
+加已观测KillWait300秒为0.4166666666666667，仍非故障下绝对结束保证。0自动重试/外部API/训练/任务执行。
+单模型batch1、短人工代码与恰16384编码token长人工代码，seed6/7，每形状warmup后各2次测量，再测本机HTTP。
+只做加载/有限值/显存/耗时/服务验收，饱和标记仅诊断，不声称准确率/scaling/e2e收益。默认task_cond/head_frac仍非训练来源获证。
+
+GPU环境路径存在，仅读包元数据固定torch2.11.0+cu128、transformers4.57.1、accelerate1.11.0、safetensors0.5.3。
+实际执行会核对source blobs、本地base三文件及收到的模型SHA；本轮未重复读取15GB权重。禁止CPU fallback、多可见GPU、
+未经复核新sidecar、旧输出覆盖和环境导出；批脚本已准备、固定LF，必须先获该矩阵批准，执行flag不是授权。
+4项准备检查及bash语法通过：标准库导入、方案核算、缺执行flag/缺Slurm在读取模型前拒绝。GPU执行分支**未测试**。
+回执results/forets_bounds_20260909/acceptance_preparation_checks.json明确status为PREPARATION，不是8B验收PASS。
+脚本在远端forets-bounded-worker-20260909-xobxuu内，模型/源码旧位置不动；未修改生产checkout或学长branch。
+
+当前无需外部事实的必要准备已就绪。下一步需要该独立GPU矩阵/预算批准；生成器API平台/地址/模型及价格仍等学长，
+不重复催问、不试送key、不擅自替换endpoint。等待期间只检查有意义的新回复/上游变更，勿新增微型审计、重跑已过人工检查
+或另造大量harness充当科学进度。还不能称critic可用、模型变好或真e2e开跑；用户新授权后先做真实GPU验收。
+后备到2026-09-09 02:10 UTC仍暂停，不因这轮准备延时。
+
 ## 0L122. 2026-09-09：作业入口与预算归档接入，冷启动缺陷已修；真实集群/GPU仍未验收
 
 已读最新入口并fetch；此前0057d650公开8blob已核对。本轮仍0外部API/GPU/模型load/真实任务，接口等学长，

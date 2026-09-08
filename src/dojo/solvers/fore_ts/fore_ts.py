@@ -5,6 +5,7 @@
 # LICENSE file in the root directory of this source tree.
 
 import asyncio
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 from dojo.core.solvers.utils.response import extract_code
 from dojo.solvers.mcts.mcts import MCTS, MCTSNode
@@ -14,6 +15,7 @@ from dojo.config_dataclasses.solver.fore_ts import ForeTSSolverConfig
 import urllib.request as _rq
 import json
 import random
+from dojo.core.solvers.utils.journal import Journal
 
 class ForeTS(MCTS):
     """Tree search that enquiry a critic before expanding a node."""
@@ -22,6 +24,7 @@ class ForeTS(MCTS):
 
     def __init__(self, cfg: ForeTSSolverConfig, task_info):
         super().__init__(cfg, task_info)
+        self.journal_for_unselected = Journal()
         self.critic_host = cfg.critic_host
         self.critic_port = cfg.critic_port
         self.critic_top_k = cfg.critic_top_k
@@ -74,8 +77,7 @@ class ForeTS(MCTS):
         # Log the unselected child nodes for debugging purposes
         unselected_child_nodes = [child_nodes[i] for i in range(len(child_nodes)) if i not in top_k_indices or child_nodes[i] not in chosen_child_nodes]
         for unselected_node in unselected_child_nodes:
-            self.journal.append(unselected_node)
-            self.log_journal()
+            self.journal_for_unselected.append(unselected_node)
 
         for i in range(self.num_children_to_choose):
             child_node = chosen_child_nodes[i]
@@ -196,3 +198,22 @@ class ForeTS(MCTS):
         self.logger.info(f"One Improve Node Created - Estimated Value: {value_estimate}, Metrics: {metrics}")
 
         return node, value_estimate
+
+    def save_checkpoint(self):
+        super().save_checkpoint()
+
+        # Write the journal to a jsonl file
+        journal_sd = self.journal.node_list()
+        journal_path = Path(self.cfg.checkpoint_path) / "journal.jsonl"
+        with open(journal_path, "w") as f:
+            for node in journal_sd:
+                f.write(json.dumps(node) + "\n")
+
+        # Write the unselected journal to a jsonl file
+        journal_for_unselected_sd = self.journal_for_unselected.node_list()
+        journal_for_unselected_path = Path(self.cfg.checkpoint_path) / "journal_for_unselected.jsonl"
+        with open(journal_for_unselected_path, "w") as f:
+            for node in journal_for_unselected_sd:
+                f.write(json.dumps(node) + "\n")
+
+        self.logger.info(f"Checkpoint saved to {journal_path}")

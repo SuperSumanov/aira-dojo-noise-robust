@@ -118,6 +118,8 @@ python -m dojo.main_runner_job_array \
 
 当前 ForeTS 的 critic 请求流程是：每个候选 node 生成完成后向 `/score` 发送 `{task, code}`；所有候选评分完成后排序和抽样；未选中的候选写入 journal，选中的候选执行并参与回传。critic 只影响候选选择，代码执行、错误 debug 和最终任务评分仍由 Dojo 原有流程负责。
 
+如果当前主要在debug，建议使用一个较轻的任务和一个免费的模型endpoint，以免浪费时间和credit。
+
 ## 资源和并发关系
 
 这里有两层并发：ForeTS 在一次扩展中并发生成多个候选；当前 `_query_critic` 使用同步 `urllib`，因此同一个 ForeTS 进程内的 critic 请求实际会逐个发送。server 用 `batch-size` 控制来自多个任务或客户端的请求在一次模型前向中的数量。`launcher.max_parallel` 控制同时运行的任务数，`launcher.gpus_per_step` 控制每个任务使用的 GPU 数。若 4 个任务同时运行、每个任务一次产生 8 个 child，server 的队列可能持续积压 32 个请求；这不会并发执行 32 次 forward，但会增加等待时间。实际使用时先固定 `max_parallel=1` 验证流程，再逐步提高并发。

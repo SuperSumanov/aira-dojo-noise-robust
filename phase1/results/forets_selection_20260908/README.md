@@ -43,13 +43,25 @@
 
 ## 新增验证
 
+最终源码 `82242e68e6d5f5584972ae7f892236d0454e64b1`：Linux新选择器矩阵16项全通过，
+0 failures/errors/skips，2.483947792003164秒（测试运行器墙钟，不是性能结论）。
+Python3.11.15 / pytest7.4.3。新进程独立核16唯一case、7源码等于Git、8输入前后不变、
+零stderr及零遗留ledger锁；原生回执复制后逐字节匹配。未收集或重跑被复用fixture模块的旧测试。
+远端 `/research/d7/spc/yzyang4/forets-selection-20260908-YyGg83UH`，新私有目录，270秒测试上限，
+必要时只终止本次进程组（两级清理各10秒）；实际正常退出。
+archive SHA `cc53a41c407d005f4b8239d145bee53705449fb564a5ffc2436d8a6446500e97`，92160字节。
+receipt SHA `84c2fd00c33ba35b34f0dc3e0bb81ccfd5ed9c477cdbfd8fafc0d2afcc7c7cdb`；
+XML SHA `fe614a46c1894567bb64b014c9e963ce585c02d17a739686c0991a15d3102164`。
+见 `linux_validation_receipt.json`、`linux_test_summary.json`、`linux_tests.xml`、`independent_verification.json`。
+
 Windows新增16项通过。包括真实修订 batch 函数体的零critic随机路径、评分前全池冻结、
 top-k全池逐选择一致控制、失败不执行/不重试、评分不能篡改候选、已知选择复用及policy漂移拒绝。
 生成/backend/task/config基础均人工构造，未运行真实LLM、GPU、程序或MLE评分。
 
 Git独立应用tree：`6f7e650e5ecfd8dac7369a954ac16e01f258daa1`，5文件95新增20删除。
-实际tree及Linux验证状态见后续回执；不重复此前task-return16项或request69项来堆测试数量。
-下一步冻结源码后在独立Linux目录仅跑本矩阵，最多300秒CPU，0GPU/API/model fit。
+同16项从实际Git应用tree读取通过，见 `windows_applied_tree.xml`；Linux状态见本节顶部。
+不把同矩阵两种加载方式/跨平台重测当独立科学实验；不重复此前task-return16项或request69项。
+本项已完成，不应再重跑本项当作新进展；0GPU/API/model fit。
 
 本轮是让正面结论有公平对照入口的工程贡献，不是新方法或模型正收益。production_ready=false。
 正式数据与四fit仍等待实际独立开发来源原记录；用户要求外部事实不足时等待。

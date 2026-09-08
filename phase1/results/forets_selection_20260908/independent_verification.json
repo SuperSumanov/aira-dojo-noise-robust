@@ -1,0 +1,18 @@
+{
+  "errors": 0,
+  "failures": 0,
+  "ledger_locks": 0,
+  "production_ready": false,
+  "receipt_sha256": "84c2fd00c33ba35b34f0dc3e0bb81ccfd5ed9c477cdbfd8fafc0d2afcc7c7cdb",
+  "skipped": 0,
+  "source_commit": "82242e68e6d5f5584972ae7f892236d0454e64b1",
+  "source_files_equal_git": 7,
+  "summary_sha256": "71c6ea096fd75a0bc3599fd83a4cb634dd2682af8dfb2538698751805278e241",
+  "synthetic_null_control_passed": true,
+  "tests": 16,
+  "unchanged_inputs": 8,
+  "unique_cases": 16,
+  "verified": true,
+  "xml_sha256": "fe614a46c1894567bb64b014c9e963ce585c02d17a739686c0991a15d3102164",
+  "zero_critic_baseline_passed": true
+}

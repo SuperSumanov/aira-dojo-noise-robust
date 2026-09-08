@@ -5,6 +5,12 @@
 
 ## 0L113. 2026-09-08：真正零critic调用的随机基线与评分前候选冻结
 
+最终源码82242e68e6d5f5584972ae7f892236d0454e64b1，Linux新选择器16项全过，2.483947792003164秒。
+独立新进程核16唯一case、7源文件等于Git、8输入不变、零stderr/ledger锁；不是旧task-return16重跑。
+receipt84c2fd00c33ba35b34f0dc3e0bb81ccfd5ed9c477cdbfd8fafc0d2afcc7c7cdb，
+XMLfe614a46c1894567bb64b014c9e963ce585c02d17a739686c0991a15d3102164。
+远端forets-selection-20260908-YyGg83UH。本项完成，后续不重复；原始回执与界限见下述记录。
+
 新增0007接在0005+0006之后，学长head仍54929。必填policy为uniform_random或critic_topk_random；
 原top-k=全池仍会调用critic，不能当零critic成本随机臂。新随机路径不取任何critic分数，不伪造未执行标签。
 全批生成完成后冻结有序pool SHA，再评分/选择；评分前后和执行前检查候选未被改动。
@@ -12,7 +18,7 @@
 因此不能用新规则重选旧冻结批次，或与旧交错生成/评分、逐节点MCTS冒称只有selector不同。
 pool SHA不证明共同父状态，独立API调用不因同seed自动同池；在线分叉不共享未来轨迹。
 Windows新16项通过；独立应用tree6f7e650e5ecfd8dac7369a954ac16e01f258daa1同16项通过，5文件95增20删。
-只是人工backend/task的实际batch函数体，无真实模型/程序收益。Linux新矩阵待冻结源码后300秒内CPU验证。
+只是人工backend/task的实际batch函数体，无真实模型/程序收益。Linux新矩阵已按300秒内CPU上限完成。
 不重复旧task-return16/request69/G0。完整费用/实际资源/模型身份与TF-IDF adapter仍待补，production_ready=false。
 未改学长分支或生产checkout；严格四fit仍等外部独立开发原记录，保护集未读。
 记录results/forets_selection_20260908，当前不可启动GPU/API/fit或用新pipeline绕过来源门。

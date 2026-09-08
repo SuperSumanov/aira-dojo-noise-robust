@@ -563,3 +563,5 @@ phase1/results/partitioned_payload_acceptance_20260907/README.md text eol=lf dif
 # Preserve native task-return test receipts across Windows/Linux checkouts.
 phase1/results/forets_execution_witness_20260908/** -text diff
 phase1/results/forets_execution_witness_20260908/README.md text eol=lf diff
+phase1/results/forets_selection_20260908/** -text diff
+phase1/results/forets_selection_20260908/README.md text eol=lf diff

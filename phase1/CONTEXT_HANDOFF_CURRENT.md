@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08；当前0L113覆盖下文历史，新选择器Linux矩阵未完成。
+**Dynamic status timestamp:** 2026-09-08；当前0L113覆盖下文历史，新选择器Linux矩阵已完成。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -13,8 +13,10 @@
 
 先读CURRENT_DIRECTION0L113。0007新增uniform_random/critic_topk_random必填policy，前者零critic调用；
 先整批生成冻结再评分，候选篡改拒绝。selector v2的同池k=全池控制精确一致，旧批次不得重选。
-新16项Windows+实际Git tree6f7e650e5ecfd8dac7369a954ac16e01f258daa1通过；新Linux矩阵待做，
-不重复旧16/69/G0，最多300秒CPU、不执行实际模型/程序；不改学长branch/生产checkout。
+新16项Windows+实际Git tree6f7e650e5ecfd8dac7369a954ac16e01f258daa1通过；源码82242e68e6d5f5584972ae7f892236d0454e64b1的Linux16项全过，
+2.483947792003164秒，独立核16唯一case、7源码/8输入hash、零stderr/锁。本项完成，不重复新16或旧16/69/G0。
+远端forets-selection-20260908-YyGg83UH，receipt84c2fd00c33ba35b34f0dc3e0bb81ccfd5ed9c477cdbfd8fafc0d2afcc7c7cdb。
+不执行实际模型/程序、不改学长branch/生产checkout；详见results/forets_selection_20260908。
 pool hash不能代替相同父状态或自动证明真实同池，成本/资源/TF-IDF adapter未齐、正式来源仍等外部事实。
 
 ### 此前状态（0L112）

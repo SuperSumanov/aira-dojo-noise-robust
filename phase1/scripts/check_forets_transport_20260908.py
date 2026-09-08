@@ -5,7 +5,8 @@ import subprocess
 import sys
 import tarfile
 
-COMMIT = '73fbb82252309e40456f879650cb8c4a7c410fbe'
+COMMIT = sys.argv[2] if len(sys.argv) == 3 else '73fbb82252309e40456f879650cb8c4a7c410fbe'
+assert len(COMMIT) == 40 and all(c in '0123456789abcdef' for c in COMMIT)
 with tarfile.open(sys.argv[1]) as archive:
     rows = []
     for member in archive.getmembers():

@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08香港14:27；当前0L108覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-08香港14:39；当前0L109覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,18 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先fetch/read CURRENT_DIRECTION 0L109。源码ed14932b740b6ac9790ccaf5ebe000dd80989b0b已实际Linux55项通过，
+7.792306003000704秒，7个源文件逐字节等于Git，8输入hash不变，独立新进程核XML55唯一case全通过。
+远端/research/d7/spc/yzyang4/forets-state-final-20260908-2sFlhEkg；
+receipt1fa4a9c66d4dcd55bf51da6b4cb50a9b61d4723561359bfa63cce3e29f9199c4，
+XML4f229573cc39d89d9b88093eb9d35718b19467715e046bb4d181f4d462d12ce7。
+结果results/forets_candidate_state_20260908，首次CRLF-only运输和旧别名2失败都保留，修复未部署学长branch。
+候选批次定向验收完成，不重复测试冒充进展；完整搜索/解释器恢复与实际渲染prompt/全成本边界仍未验收。
+下一安全项固定批次实际输入/成本接入；外部开发来源事实不足则等待，不打开原四fit或保护集。
+后备已ACTIVE/15分钟，只用于中断续接，不重跑G0、不续旧摄取lease。本轮无GPU/API/fit和新语料观测。
+
+### 此前状态（0L108）
 
 最新补充：73fbb822初版Linux52项已通过；Git archive需命令级core.autocrlf=false才与Git blob字节相同，
 首轮CRLF转换和修复回执均保留。后续发现我方候选台账list别名，已在旧tree复现2失败并深拷贝修复；

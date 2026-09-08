@@ -1,5 +1,22 @@
 # ForeTS 候选隔离与有界开发成本（2026-09-08）
 
+## 最终状态
+
+源码 **ed14932b740b6ac9790ccaf5ebe000dd80989b0b**：Windows/Linux相同55项定向测试通过，
+27新增候选状态检查+28既有hotfix回归。Linux Python3.11.15，7.792306003000704秒；
+独立进程验证55唯一case、零failure/error/skip、7源码与Git blob逐字节一致、8输入前后hash不变。
+不是110个独立试验，也不是完整Dojo/Jupyter/GPU或critic效果验收。
+
+- 正式回执 `linux_final.json`，原始XML `linux_final_tests.xml`，独立验证 `independent_verification.json`。
+- 远端目录 `/research/d7/spc/yzyang4/forets-state-final-20260908-2sFlhEkg`。
+- 远端receipt SHA256 `1fa4a9c66d4dcd55bf51da6b4cb50a9b61d4723561359bfa63cce3e29f9199c4`。
+- XML SHA256 `4f229573cc39d89d9b88093eb9d35718b19467715e046bb4d181f4d462d12ce7`；下载后独立hash相同。
+- 传输包 SHA256 `bcd7b6333c703dcaf37248265700b733c3cc4a197fc968cf0c1950a4f23cf7a9`；139264 bytes。
+
+测试/源码/补丁和失败证据均留存；未启动GPU/付费API/model fit，未修改学长分支，未读保护集。
+原严格四fit仍缺实际独立开发记录；用户要求外部事实缺失时等待，未做来源替换或宽松准入。
+接下来推进批次真实输入与成本边界，不重复本轮测试代替科学进展；完整恢复仍是生产阻断。
+
 ## 后续审查更正（覆盖下文初版验收状态）
 
 初版73fbb822的52项在Linux通过，但首次Git archive受Windows autocrlf影响，7个源码文件均多了CRLF；
@@ -11,7 +28,7 @@
 已在初版实际tree上用2例明确复现失败（prior_alias_failure.xml），不是学长原实现的问题。
 新实现对写入和恢复均做深拷贝，新增3项覆盖；现在27个state测试+28个原回归=55项在Windows通过。
 修订后的实际Git应用tree为e2c7bcd42c69b6dac00602758bf6dda4c0c93a4c，同27项全部通过。
-本段修订尚待最终Linux55项回执；初版52项不能替代新版本测试，0002仍保持不变。
+本段修订已完成顶部最终Linux55项回执；初版52项不替代新版本测试，0002仍保持不变。
 
 这是我方对学长 `8b621851a87d20382feefe8c8458a7db2a1fabea` 的未部署接入补丁。
 不修改学长分支/生产 checkout，不是 critic 收益、clean scaling 或端到端验收。
@@ -45,7 +62,7 @@ Windows Python 3.13.4：24 个新增定向测试，28 个既有 0002 回归，�
 测试运行真实补丁的函数体与真实 Node/Journal 的数据结构函数体，模型、HTTP、执行器、分析和部分框架依赖为 stub。
 不是实测 prompt 等价、实际总成本、模型收益、Hydra/Dojo 全栈或完整重启验收。
 还需：完整恢复原子边界；实际渲染 prompt/available_packages 隔离；operator 内部重试的全部成本；
-critic 同步 HTTP/40,000 字符截断及真机批次验收。Linux 复测待本目录后续 receipt，不能预先称通过。
+critic 同步 HTTP/40,000 字符截断及真机批次验收。Linux 结果由顶部最终 receipt 覆盖此前待验状态。
 
 ## 开发成本
 

@@ -5,6 +5,7 @@ import argparse
 import json
 import os
 import queue
+import subprocess
 import threading
 import time
 from dataclasses import dataclass
@@ -60,6 +61,9 @@ class BatchScoringQueue:
         self.scorer = scorer
         self.batch_size = batch_size
         self.requests: queue.Queue[PendingRequest] = queue.Queue()
+        self.completed = 0
+        self.completed_lock = threading.Lock()
+        self.started_at = time.monotonic()
         self.worker = threading.Thread(target=self._run, name="rm-batch-worker", daemon=True)
         self.worker.start()
 
@@ -94,8 +98,44 @@ class BatchScoringQueue:
                 for request in batch:
                     request.error = exc
             finally:
+                with self.completed_lock:
+                    self.completed += len(batch)
                 for request in batch:
                     request.done.set()
+
+    def stats(self) -> tuple[int, float, int]:
+        with self.completed_lock:
+            completed = self.completed
+        elapsed = max(time.monotonic() - self.started_at, 1e-6)
+        return completed, completed / elapsed, self.requests.qsize()
+
+
+def _gpu_stats() -> str:
+    if not torch.cuda.is_available():
+        return "gpu=unavailable"
+    try:
+        device = torch.cuda.current_device()
+        name = torch.cuda.get_device_name(device)
+        allocated = torch.cuda.memory_allocated(device) / 1024**3
+        reserved = torch.cuda.memory_reserved(device) / 1024**3
+        util = "?"
+        result = subprocess.run(
+            ["nvidia-smi", "--query-gpu=utilization.gpu", "--format=csv,noheader,nounits", "-i", str(device)],
+            capture_output=True, text=True, timeout=1, check=False,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            util = result.stdout.strip().splitlines()[0]
+        total = torch.cuda.get_device_properties(device).total_memory / 1024**3
+        return f"gpu={name} util={util}% mem={allocated:.2f}/{total:.2f}GiB reserved={reserved:.2f}GiB"
+    except Exception as exc:
+        return f"gpu=error({exc})"
+
+
+def _stats_loop(batch_queue: BatchScoringQueue, interval: float = 10.0) -> None:
+    while True:
+        time.sleep(interval)
+        completed, rate, pending = batch_queue.stats()
+        print(f"[rm_server] stats throughput={rate:.2f} req/s completed={completed} pending={pending} {_gpu_stats()}", flush=True)
 
 
 def make_handler(batch_queue: BatchScoringQueue):
@@ -141,6 +181,7 @@ def main() -> None:
         parser.error("--batch-size must be positive")
     scorer = RewardScorer(args.checkpoint, args.base_model)
     batch_queue = BatchScoringQueue(scorer, args.batch_size)
+    threading.Thread(target=_stats_loop, args=(batch_queue,), name="rm-stats", daemon=True).start()
     print(f"[rm_server] loaded {args.checkpoint} (max_len={scorer.max_len}, task_cond={scorer.task_cond}, batch_size={args.batch_size})", flush=True)
     server = ThreadingHTTPServer((args.host, args.port), make_handler(batch_queue))
     print(f"[rm_server] listening on {args.host}:{args.port}", flush=True)

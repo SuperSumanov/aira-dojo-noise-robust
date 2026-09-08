@@ -122,7 +122,7 @@ class ForeTS(MCTS):
                 request = _rq.Request(
                     f"http://{self.critic_host}:{self.critic_port}/score",
                     json.dumps({
-                        "task": self._rm_task_name,
+                        "task": self.task_name,
                         "code": (node.code or "")[:40000],
                     }).encode(),
                     {"Content-Type": "application/json"},

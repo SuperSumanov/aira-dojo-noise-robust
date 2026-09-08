@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08香港14:39；当前0L109覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-08香港15:00；当前0L110覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,15 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先fetch/read CURRENT_DIRECTION 0L110。新增0004把guarded包顺序固定并核对实际client.query输入，
+留请求前意图和每次逻辑返回usage，未知成本不记0；原0002/0003不变，schema2不混用旧ledger。
+Windows69项（14新+55旧）通过；实际应用tree34424d6a137729df6f9d6e0e0fcd5b63bce57262同14项通过。
+下一步在新独立远端目录固定commit/hash后复测69项CPU，300秒上限，不安装环境、不启动GPU/paid/fit。
+不是完整费用/真实生产模板/搜索恢复/模型效果；实际开发来源依然等外部事实。正式对照两臂必须共用包顺序契约。
+记录results/forets_request_boundary_20260908。避免再重跑已结束的0L109或G0；学长分支未改。
+
+### 此前状态（0L109）
 
 先fetch/read CURRENT_DIRECTION 0L109。源码ed14932b740b6ac9790ccaf5ebe000dd80989b0b已实际Linux55项通过，
 7.792306003000704秒，7个源文件逐字节等于Git，8输入hash不变，独立新进程核XML55唯一case全通过。

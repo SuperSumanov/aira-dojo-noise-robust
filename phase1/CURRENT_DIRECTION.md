@@ -3,6 +3,21 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L110. 2026-09-08：推进生成请求一致性与逐次逻辑用量留存
+
+沿0L109安全下一步工作，新增未部署0004补丁，不重复旧验收代替进展。学长head无变化，分支未改。
+源码确认draft/improve原地shuffle共享包列表；提取重试最终只返回最后一次metrics。
+guarded批次固定配置包顺序、核对实际GenericLLM→client.query的messages/kwargs，
+先留请求意图、逐次保留返回usage，未知异常usage不记零；首个请求锚定后漂移的下一调用在发送前停止。
+私有请求副本不与transport/analysis共享引用，credential形状命中在保存/派发前停止；旧ledger schema不混用。
+
+包顺序规则是guarded生成契约变化，未来random/critic两臂必须共用，不能与原未guarded MCTS宣称单旋钮公平。
+这是逻辑调用边界，不覆盖SDK/provider内部重试、critic/执行/analysis全成本，不是美元预算或生产准入。
+Windows14新+55旧=69项通过；实际Git应用tree34424d6a137729df6f9d6e0e0fcd5b63bce57262同14新项通过，
+6文件120增10删。Jinja2引擎真实，模板/后端/任务人工构造，部分框架stub；不是实际生产模板/模型效果。
+Linux复测待后续固定源码回执，上限300秒CPU。原严格四fit仍待外部独立开发原记录，不启动GPU/API/fit或读保护集。
+记录与剩余边界见results/forets_request_boundary_20260908/README.md。
+
 ## 0L109. 2026-09-08：候选状态接入完成跨平台定向验收，未解锁正式训练
 
 源码ed14932b740b6ac9790ccaf5ebe000dd80989b0b在独立远端Linux目录完成55项测试（27候选状态+28既有hotfix），

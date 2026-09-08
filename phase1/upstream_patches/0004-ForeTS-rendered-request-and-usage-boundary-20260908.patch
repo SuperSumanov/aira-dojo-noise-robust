@@ -1,0 +1,235 @@
+--- a/src/dojo/solvers/fore_ts/candidate_ledger.py
++++ b/src/dojo/solvers/fore_ts/candidate_ledger.py
+@@ -57,7 +57,7 @@
+             self.conn.execute('PRAGMA journal_mode=DELETE')
+             if new:
+                 self.conn.execute('CREATE TABLE snapshot (id INTEGER PRIMARY KEY CHECK(id=1), payload TEXT NOT NULL, sha256 TEXT NOT NULL)')
+-                self.data = dict(schema=1, binding=json.loads(canonical(binding)), phase='collecting', selected=None,
++                self.data = dict(schema=2, llm_requests=[], prompt_sha256=None, prompt_snapshot=None, binding=json.loads(canonical(binding)), phase='collecting', selected=None,
+                                  candidates=[dict(state='pending', node=None, score=None) for _ in range(count)])
+                 self._write()
+             else:
+@@ -68,7 +68,7 @@
+                 if hashlib.sha256(payload.encode()).hexdigest() != sha:
+                     raise LedgerError('ledger hash drift')
+                 self.data = json.loads(payload)
+-                if (self.data['schema'] != 1 or self.data['binding'] != binding
++                if (self.data['schema'] != 2 or self.data['binding'] != binding
+                         or len(self.data['candidates']) != count):
+                     raise LedgerError('batch binding mismatch')
+         except BaseException:
+@@ -174,3 +174,34 @@
+                 self.data['candidates'][i]['state'] = 'skipped_budget'
+         self.data['phase'] = 'complete'
+         self._write()
++
++    def begin_llm_request(self, slot, request_hash, request, cap):
++        if type(slot) is not int or not 0 <= slot < len(self.data['candidates']):
++            raise LedgerError('invalid request slot')
++        if digest(request) != request_hash:
++            raise LedgerError('request payload hash mismatch')
++        if self.data['phase'] != 'collecting' or self.data['candidates'][slot]['state'] != 'generating':
++            raise LedgerError('LLM request outside candidate generation')
++        calls = self.data['llm_requests']
++        if len(calls) >= cap:
++            raise LedgerError('logical-call cap exhausted before dispatch')
++        if self.data['prompt_sha256'] not in (None, request_hash):
++            raise LedgerError('rendered batch prompt or generation kwargs drift before dispatch')
++        self.data['prompt_sha256'] = request_hash
++        if self.data['prompt_snapshot'] is None:
++            self.data['prompt_snapshot'] = json.loads(canonical(request))
++        call_id = len(calls)
++        calls.append(dict(call_id=call_id, slot=slot, request_sha256=request_hash,
++                          state='started', usage=None, error_type=None))
++        self._write()
++        return call_id
++
++    def finish_llm_request(self, call_id, status, usage, error_type):
++        if status not in {'returned', 'ambiguous', 'invalid_usage'}:
++            raise LedgerError('invalid LLM completion status')
++        call = self.data['llm_requests'][call_id]
++        if call['state'] != 'started':
++            raise LedgerError('LLM request already finalized')
++        frozen = json.loads(canonical(usage))
++        call.update(state=status, usage=frozen, error_type=error_type)
++        self._write()
+--- a/src/dojo/solvers/fore_ts/batch_runtime.py
++++ b/src/dojo/solvers/fore_ts/batch_runtime.py
+@@ -5,6 +5,7 @@
+ """
+ import asyncio
+ import copy
++from dojo.solvers.fore_ts.request_guard import BatchRequestGuard
+ import random
+ from pathlib import Path
+ 
+@@ -29,7 +30,7 @@
+               for n in solver.journal.nodes],
+         global_q=[solver.global_min_q_val, solver.global_max_q_val],
+     )
+-    binding = dict(schema=1, boundary_sha256=digest(boundary), parent_id=parent.id,
++    binding = dict(schema=2, request_contract="same-rendered-request-v1", boundary_sha256=digest(boundary), parent_id=parent.id,
+                    task=solver.task_name, step=solver.state.current_step)
+     root = Path(solver.cfg.checkpoint_path)
+     root.mkdir(parents=True, exist_ok=True)
+@@ -37,11 +38,14 @@
+     with CandidateLedger(file, binding, count) as ledger:
+         ledger.ensure_preexecution()  # Check EVERY slot before any possible paid call.
+ 
++        guard = BatchRequestGuard(ledger, count * solver.cfg.max_llm_call_retries)
++
+         async def obtain(slot):
+             c = ledger.data['candidates'][slot]
+             if c['state'] == 'pending':
+                 ledger.begin_generation(slot)
+-                node = await (solver._draft(parent) if not parent.parents else solver._improve(parent))
++                with guard.slot(slot):
++                    node = await (solver._draft(parent) if not parent.parents else solver._improve(parent))
+                 if node.parents or node.children or node.metric is not None or node.is_buggy is not None:
+                     raise LedgerError('generated candidate attached or labeled before execution')
+                 ledger.generated(slot, {k: getattr(node, k) for k in
+--- a/src/dojo/core/solvers/llm_helpers/generic_llm.py
++++ b/src/dojo/core/solvers/llm_helpers/generic_llm.py
+@@ -17,6 +17,7 @@
+ from dojo.config_dataclasses.client.base import ClientConfig
+ 
+ import logging
++from dojo.solvers.fore_ts.request_guard import audited_query
+ 
+ log = logging.getLogger(__name__)
+ 
+@@ -95,7 +96,7 @@
+ 
+         # If query_data is not provided, directly query the client with the provided messages
+         if query_data is None:
+-            output, usage_stats = await self.client.query(
++            output, usage_stats = await audited_query(self.client,
+                 messages,
+                 json_schema=json_schema,
+                 function_name=function_name,
+@@ -130,7 +131,7 @@
+         messages.append(user_message)
+ 
+         # Query the client with the updated messages
+-        output, usage_stats = await self.client.query(
++        output, usage_stats = await audited_query(self.client,
+             messages,
+             json_schema=json_schema,
+             function_name=function_name,
+--- a/src/dojo/core/solvers/operators/draft.py
++++ b/src/dojo/core/solvers/operators/draft.py
+@@ -6,6 +6,7 @@
+ 
+ import os
+ import random
++from dojo.solvers.fore_ts.request_guard import package_order
+ import time
+ from typing import Callable, Optional
+ 
+@@ -29,8 +30,7 @@
+     complexity: Optional[Complexity] = None,
+     parent_node: Optional[Node] = None,
+ ) -> str:
+-    pkgs = cfg.available_packages
+-    random.shuffle(pkgs)
++    pkgs = package_order(cfg.available_packages)
+     pkg_str = ", ".join([f"`{p}`" for p in pkgs])
+ 
+     if memory_op is not None:
+--- a/src/dojo/core/solvers/operators/improve.py
++++ b/src/dojo/core/solvers/operators/improve.py
+@@ -6,6 +6,7 @@
+ 
+ import os
+ import random
++from dojo.solvers.fore_ts.request_guard import package_order
+ import time
+ from typing import Callable, Optional
+ 
+@@ -30,8 +31,7 @@
+     complexity: Optional[Complexity] = None,
+     data_preview: Optional[str] = None,
+ ) -> str:
+-    pkgs = cfg.available_packages
+-    random.shuffle(pkgs)
++    pkgs = package_order(cfg.available_packages)
+     pkg_str = ", ".join([f"`{p}`" for p in pkgs])
+ 
+     if memory_op is not None:
+--- /dev/null
++++ b/src/dojo/solvers/fore_ts/request_guard.py
+@@ -0,0 +1,74 @@
++"""Opt-in ForeTS logical-request audit; not a provider billing or sandbox proof."""
++import copy
++import hashlib
++import json
++import random
++import re
++from contextlib import contextmanager
++from contextvars import ContextVar
++
++ACTIVE = ContextVar('forets_request_guard', default=None)
++CREDENTIAL = re.compile(r'(?i)(?<![A-Za-z0-9])(?:sk-(?:or-v1-)?[A-Za-z0-9_.-]{12,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|hf_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16}|Bearer[ \t]+[A-Za-z0-9._-]{20,})')
++
++
++def fingerprint(value):
++    encoded = json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
++    return hashlib.sha256(encoded.encode()).hexdigest()
++
++
++def package_order(packages):
++    if ACTIVE.get() is None:
++        # Preserve upstream default semantics outside the explicitly audited batch.
++        random.shuffle(packages)
++        return packages
++    # The same configured order for all candidates/retries; never mutate config.
++    return list(packages)
++
++
++class BatchRequestGuard:
++    def __init__(self, ledger, max_calls):
++        if type(max_calls) is not int or max_calls <= 0:
++            raise ValueError('positive logical-call cap required')
++        self.ledger, self.max_calls = ledger, max_calls
++
++    @contextmanager
++    def slot(self, slot):
++        if ACTIVE.get() is not None:
++            raise RuntimeError('nested request guard')
++        token = ACTIVE.set((self, slot))
++        try:
++            yield
++        finally:
++            ACTIVE.reset(token)
++
++
++async def audited_query(client, messages, **kwargs):
++    ctx = ACTIVE.get()
++    if ctx is None:
++        return await client.query(messages, **kwargs)
++    guard, slot = ctx
++    # Copy both sides: transport mutation must not alter a retained request snapshot.
++    request = copy.deepcopy(dict(messages=messages, kwargs=kwargs,
++                                client_class=type(client).__module__ + '.' + type(client).__qualname__))
++    request_hash = fingerprint(request)  # Reject unserializable/nonfinite requests before dispatch.
++    if CREDENTIAL.search(json.dumps(request, sort_keys=True, allow_nan=False)):
++        raise RuntimeError('credential-shaped request blocked before storage or dispatch')
++    call_id = guard.ledger.begin_llm_request(slot, request_hash, request, guard.max_calls)
++    outgoing = copy.deepcopy(request)
++    try:
++        output, usage = await client.query(outgoing['messages'], **outgoing['kwargs'])
++    except BaseException as exc:
++        # Request may have reached the server. Unknown usage is not free; never retry it here.
++        guard.ledger.finish_llm_request(call_id, 'ambiguous', None, type(exc).__name__)
++        raise
++    # Do not silently retry billing / account for a malformed return as zero usage.
++    try:
++        frozen_usage = copy.deepcopy(usage)
++        fingerprint(frozen_usage)
++    except Exception:
++        guard.ledger.finish_llm_request(call_id, 'invalid_usage', None, 'UnserializableUsage')
++        raise RuntimeError('provider usage cannot be audited') from None
++    guard.ledger.finish_llm_request(call_id, 'returned', frozen_usage, None)
++    if fingerprint(outgoing) != request_hash:
++        raise RuntimeError('client mutated dispatched request; no automatic retry')
++    return output, usage

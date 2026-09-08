@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09香港时间，0L120覆盖下文；本地硬停止/单次传输检查完成，API对应关系仍等待。
+**Dynamic status timestamp:** 2026-09-09香港时间，0L121覆盖下文；共享run额度/四算子配置已检查，API对应关系仍等待。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,18 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L121：新增0012接0010+0011，tree49fd8698e6a5a3377224a2d92c65f354cb1eefa0。
+node-local SQLite共享adapter-attempt额度，dispatch前落intent，不因失败/取消/重启退款，不自动建库/重置。
+四算子统一bounded且required-budget；8份真实Hydra完整配置4组仅selector不同，metadata.seed=6/7确实落位。
+新6项CPU检查PASS，4进程24次竞争仅7次放行；没有GPU/外部API/模型load/任务/保护数据。远端exit0已捕获。
+目录/research/d7/spc/yzyang4/forets-runbudget-20260909-cyPIf2，回执results/forets_bounds_20260909/run_budget_checks.json。
+准备入口forets_pilot_plan.py不是launch脚本；正式max_attempts/美元上限未定，8192/120为配置验证提议值。
+worker每run独立初始化/保留同一预算库、Slurm step硬限及真实8B预算还未接入。不要把节点本地库当跨节点/跨allocation恢复。
+上游重复log handler会重复显示event，按DB或attempt_id去重，不按日志行数计API。本轮未改上游handler。
+不重跑本轮6项或下文旧检查。接口等学长，不重复问；g0-r5原截止02:10 UTC不延长。
+
+### 此前有界入口（0L120）
 
 最新0L120：用户睡眠6小时并要求中断后续接，g0-r5已更新，截止2026-09-09 02:10 UTC后暂停。
 新增forets_bounded_process.py及最终6项Linux进程检查通过；它只包POSIX进程组，不是Slurm/cgroup保证。

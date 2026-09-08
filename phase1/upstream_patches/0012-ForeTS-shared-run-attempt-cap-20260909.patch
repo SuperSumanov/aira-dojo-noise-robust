@@ -1,0 +1,142 @@
+diff --git a/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py b/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
+index 63b3dc4e..629adcaa 100644
+--- a/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
++++ b/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
+@@ -259,6 +259,10 @@ class LiteLLMClient:
+         event = dict(attempt_id=uuid.uuid4().hex, state='intent', adapter_attempts=1,
+                      cost=None, cost_status='unpriced', prompt_tokens=None, completion_tokens=None,
+                      success=False, provider_cancellation_verified=False)
++        budget_path = os.environ.get('FORETS_RUN_BUDGET_PATH')
++        if budget_path:
++            from dojo.core.solvers.llm_helpers.backends.run_budget import reserve
++            event['run_attempt_ordinal'] = reserve(budget_path, event['attempt_id'], kwargs['max_tokens'])
+         logger.info('bounded_transport %s', json.dumps(event, sort_keys=True))
+         start = time.monotonic()
+         completion = None
+@@ -274,6 +278,9 @@ class LiteLLMClient:
+             else:
+                 output = self._parse_structured_output(completion, func_spec, transport)
+             event['success'] = True
++        except asyncio.CancelledError:
++            event.update(state='transport_unknown', error_type='CancelledError')
++            raise
+         except Exception as exc:
+             event.update(state='transport_unknown' if completion is None else 'response_invalid',
+                          error_type=type(exc).__name__)
+@@ -301,8 +308,15 @@ class LiteLLMClient:
+         model_kwargs = dict(model_kwargs or {})
+         bounded = model_kwargs.pop('bounded_transport', False)
+         bounded_timeout = model_kwargs.pop('bounded_request_timeout_seconds', 60.)
++        budget_required = model_kwargs.pop('bounded_run_budget_required', False)
++        if type(budget_required) is not bool:
++            raise ValueError('bounded_run_budget_required must be boolean')
+         if type(bounded) is not bool:
+             raise ValueError('bounded_transport must be boolean')
++        if budget_required and not os.environ.get('FORETS_RUN_BUDGET_PATH'):
++            raise ValueError('bounded run requires an initialized run budget')
++        if (budget_required or os.environ.get('FORETS_RUN_BUDGET_PATH')) and not bounded:
++            raise ValueError('run budget forbids unbounded transport')
+ 
+         # Prepare function specifications if provided
+         func_spec = None
+diff --git a/src/dojo/core/solvers/llm_helpers/backends/run_budget.py b/src/dojo/core/solvers/llm_helpers/backends/run_budget.py
+new file mode 100644
+index 00000000..9ea5269c
+--- /dev/null
++++ b/src/dojo/core/solvers/llm_helpers/backends/run_budget.py
+@@ -0,0 +1,95 @@
++"""Single-host, persistent adapter-attempt cap; NOT a dollar/billing cap.
++
++Initialize once before starting a worker, on node-local storage (not NFS).
++Point FORETS_RUN_BUDGET_PATH at this database for every operator/worker.
++Reservations are never refunded: a crash or unknown transport may be billable.
++No prompts, responses, credentials, or outcome values are stored here.
++"""
++import argparse
++from contextlib import closing
++import json
++import os
++from pathlib import Path
++import sqlite3
++import time
++
++
++class RunBudgetError(RuntimeError):
++    pass
++
++
++def _positive(value):
++    if type(value) is not int or value <= 0:
++        raise RunBudgetError('budget bounds must be positive integers')
++    return value
++
++
++def initialize(path, max_attempts, max_output_tokens):
++    path = Path(path)
++    if not path.is_absolute():
++        raise RunBudgetError('absolute node-local budget path required')
++    _positive(max_attempts)
++    _positive(max_output_tokens)
++    # Exclusive creation prevents accidental reset/replay. Failed creation is
++    # retained and cannot silently become a fresh budget on the next launch.
++    fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
++    os.close(fd)
++    with closing(sqlite3.connect(path)) as db:
++        db.execute('PRAGMA synchronous=FULL')
++        db.executescript('''
++            CREATE TABLE policy (id INTEGER PRIMARY KEY CHECK(id=1),
++                version INTEGER NOT NULL, max_attempts INTEGER NOT NULL,
++                max_output_tokens INTEGER NOT NULL);
++            CREATE TABLE attempts (ordinal INTEGER PRIMARY KEY,
++                attempt_id TEXT UNIQUE NOT NULL, created_ns INTEGER NOT NULL,
++                max_output_tokens INTEGER NOT NULL);
++        ''')
++        db.execute('INSERT INTO policy VALUES (1,1,?,?)', (max_attempts, max_output_tokens))
++        db.commit()
++
++
++def reserve(path, attempt_id, max_output_tokens):
++    path = Path(path)
++    _positive(max_output_tokens)
++    if not path.is_absolute() or path.is_symlink():
++        raise RunBudgetError('absolute non-symlink budget path required')
++    if not isinstance(attempt_id, str) or len(attempt_id) != 32 or any(c not in '0123456789abcdef' for c in attempt_id):
++        raise RunBudgetError('opaque attempt ID required')
++    # mode=rw prohibits SQLite from silently creating a replacement database.
++    try:
++        with closing(sqlite3.connect(path.as_uri() + '?mode=rw', uri=True, timeout=5)) as db:
++            db.execute('PRAGMA synchronous=FULL')
++            db.execute('BEGIN IMMEDIATE')
++            rows = db.execute('SELECT version,max_attempts,max_output_tokens FROM policy').fetchall()
++            if len(rows) != 1 or rows[0][0] != 1:
++                raise RunBudgetError('unsupported budget policy')
++            _, cap, output_cap = rows[0]
++            _positive(cap)
++            _positive(output_cap)
++            if max_output_tokens > output_cap:
++                raise RunBudgetError('request output limit exceeds run policy')
++            used = db.execute('SELECT COUNT(*) FROM attempts').fetchone()[0]
++            if used >= cap:
++                raise RunBudgetError('run adapter-attempt budget exhausted')
++            ordinal = used + 1
++            db.execute('INSERT INTO attempts VALUES (?,?,?,?)',
++                       (ordinal, attempt_id, time.time_ns(), max_output_tokens))
++            db.commit()  # durable intent BEFORE the adapter/network call
++            return ordinal
++    except sqlite3.Error:
++        raise RunBudgetError('budget reservation failed; no dispatch allowed') from None
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--path', required=True)
++    parser.add_argument('--max-attempts', type=int, required=True)
++    parser.add_argument('--max-output-tokens', type=int, required=True)
++    args = parser.parse_args()
++    initialize(args.path, args.max_attempts, args.max_output_tokens)
++    print(json.dumps(dict(status='initialized', max_attempts=args.max_attempts,
++                          max_output_tokens=args.max_output_tokens, api_cost_cap_usd=None)))
++
++
++if __name__ == '__main__':
++    main()

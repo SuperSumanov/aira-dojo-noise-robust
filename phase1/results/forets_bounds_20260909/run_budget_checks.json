@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "source_tree": "49fd8698e6a5a3377224a2d92c65f354cb1eefa0",
+  "checks": [
+    "eight_actual_hydra_configs_four_paired_hashes_only_selector_differs",
+    "real_genericllm_four_operators_share_cap_and_block_before_fifth_dispatch",
+    "missing_or_bypassed_budget_and_output_limit_rejected_before_dispatch",
+    "timeout_cancellation_and_client_restart_never_refund_or_reset_budget",
+    "corrupt_budget_fails_closed",
+    "four_processes_twentyfour_attempts_exactly_seven_reservations"
+  ],
+  "evidence": {
+    "paired_normalized_config_sha256": [
+      "3b867657c37a6d8979dd1e5a9af7aee7cd19ba66685b5174efab6f74c92035dc",
+      "236f98c8cf4e459c526e35019e3a589a47962a0e7e3b29800bb1f8aec6777fad",
+      "3adbc8822a35952563f72cb8a2d093c697e78113b9e68b3ba1433420599230de",
+      "bd1e4d091d7512c2b1241bdeb3a745d5fddcbafe027aa495525e2c6c25f87ddd"
+    ],
+    "run_order": [
+      [
+        "leaf-classification",
+        6,
+        "uniform_random"
+      ],
+      [
+        "leaf-classification",
+        6,
+        "critic_topk_random"
+      ],
+      [
+        "leaf-classification",
+        7,
+        "critic_topk_random"
+      ],
+      [
+        "leaf-classification",
+        7,
+        "uniform_random"
+      ],
+      [
+        "spaceship-titanic",
+        6,
+        "critic_topk_random"
+      ],
+      [
+        "spaceship-titanic",
+        6,
+        "uniform_random"
+      ],
+      [
+        "spaceship-titanic",
+        7,
+        "uniform_random"
+      ],
+      [
+        "spaceship-titanic",
+        7,
+        "critic_topk_random"
+      ]
+    ],
+    "concurrent_attempts": {
+      "processes": 4,
+      "attempted": 24,
+      "admitted": 7
+    }
+  },
+  "api_cost_cap_usd": null,
+  "external_api_requests": 0,
+  "gpu_jobs": 0,
+  "model_loads": 0,
+  "protected_data_read": false,
+  "interpretation": "engineering preparation; no e2e or model benefit",
+  "versions": {
+    "hydra-core": "1.3.2",
+    "litellm": "1.65.7",
+    "openai": "1.72.0"
+  }
+}

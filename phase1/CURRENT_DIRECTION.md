@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L121. 2026-09-09：整轮请求额度与四算子配置接入完成，尚非美元cap或真实效果
+
+继续ForeTS e2e优先，API平台/地址/模型仍等学长，不重复询问、不试送密钥。远端无遗留测试进程后，
+仅部署独立forets-runbudget-20260909-cyPIf2目录；未改生产checkout或学长branch。本轮GPU/真实API/模型load为0。
+
+新增0012增量接0010+0011：tree `49fd8698e6a5a3377224a2d92c65f354cb1eefa0`，只改后端并新增run_budget.py。
+节点本地SQLite在dispatch前原子持久化intent，跨客户端/同节点进程共享额度；失败、超时、取消不退款，
+客户端重建不重置。budget已存在时拒绝重新初始化；缺失/损坏或试图绕回unbounded路径均在dispatch前拒绝。
+不是NFS/多节点方案；worker须继承同一FORETS_RUN_BUDGET_PATH，每个run单独初始化一次，不能整批8run误共用一个库。
+node-local文件不能充当跨allocation恢复凭证；本探索launcher重试仍0，丢失库时停止，不自动重建。
+没有美元硬cap、输入token界、provider计费保证；生产max_attempts及价格仍待最终预算，不用测试里的7次冒充批准值。
+
+新增forets_pilot_plan.py为准备入口（不提交任务），统一draft/improve/debug/analyze显式bounded及required-budget。
+两任务×seed6/7×两臂共8份真实Hydra配置，4组比较的完整resolved配置仅selection_policy不同，且metadata.seed确实落位。
+检查采用8192 output tokens、120秒request的提议值；这不是已批准真实endpoint配置或准确费用表。
+通过6项新CPU检查：四算子真实GenericLLM共用额度、guard缺失/绕过/越界、失败/取消/重启、损坏库、
+4进程24次竞争精确放行7次；0网络连接/真实任务/保护数据。远端捕获exit0，回执results/forets_bounds_20260909/run_budget_checks.json。
+日志存在上游多handler重复输出，不能按日志行数计请求；以持久intent或去重attempt_id计数，本测试据数据库与实际调用计数。
+
+下一步只补未完成的Slurm step硬限及worker级budget初始化/归档、真实8B一次验收的预算；接口和价格未确认仍不请求服务。
+6项本轮检查与此前6/9/4、10/8均不因等待重复。没有e2e胜出/新critic收益/scaling结论，原严格四fit及保护集门不变。
+中断后备截止仍为2026-09-09 02:10 UTC，不因本次heartbeat延长。
+
 ## 0L120. 2026-09-09：六小时中断后备已更新，新增本地硬停止与显式单次请求模式
 
 用户睡眠六小时并授权中断后继续。既有g0-r5后备已更新为ForeTS有界集成，每15分钟续接检查；

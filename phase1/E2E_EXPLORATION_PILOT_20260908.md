@@ -10,6 +10,19 @@
 
 ## 已落实
 
+### 最新状态：共享请求额度与完整两臂配置（0L121）
+
+0012接0010+0011；完整tree49fd8698e6a5a3377224a2d92c65f354cb1eefa0。
+四算子统一有界请求，并要求同一run预算数据库；节点本地持久intent在dispatch前计数，
+失败、超时、取消不退款，客户端重建不重置，缺库/损坏拒绝。并不是NFS/跨allocation恢复方案。
+新6项CPU检查通过：真实GenericLLM四算子共享额度、多进程竞争无超额、8份完整Hydra配置4组只差selector。
+配置准备模块forets_pilot_plan.py的输出token上限/请求deadline须显式传入；本次仅以8192输出token、120秒验证结构。
+没有生产费用价目，真实max_attempts未定；不能把测试用7次额度或cost=null当批准预算。
+Slurm worker每run独立初始化/归档预算库、step硬限和真实8B GPU验收仍未接入；无真实API/任务/模型收益。
+source-only tar SHA256 31cb7f9d9bab502e7cc37fcd041fd2a0ba33b6411c05b150d1c61ec054639b40。
+目录/research/d7/spc/yzyang4/forets-runbudget-20260909-cyPIf2；回执results/forets_bounds_20260909/run_budget_checks.json。
+学长API对应关系仍等待，不重复催问；不要按重复日志行数计请求，使用DB或attempt_id去重。
+
 ### 最新状态：离线loader与065b上游集成（0L119，覆盖以下历史描述）
 
 - 模型接收不再阻塞。0009新增`offline_base_dir`/`--offline-base-dir`，从本地固定config/tokenizer和完整raw state加载，

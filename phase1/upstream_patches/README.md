@@ -3,7 +3,31 @@
 这里保存针对其他现有分支、但不直接改写对方分支的可审计补丁。补丁必须注明精确 base commit、测试结果与
 迁移边界；只有维护者审阅后才 cherry-pick。
 
-## 当前ForeTS探索入口（2026-09-09，0L119）
+## 当前ForeTS探索入口（2026-09-09，0L121）
+
+### 可选后续：0012整轮共享请求额度（接0011）
+
+065b0fba + 0010 + 0011 + 0012的完整tree为`49fd8698e6a5a3377224a2d92c65f354cb1eefa0`，已独立apply复建。
+新模块`dojo.core.solvers.llm_helpers.backends.run_budget`用节点本地SQLite（不要NFS）先落dispatch intent，
+在所有客户端/同节点进程间共享max_attempts和max_output_tokens。失败/超时/取消不返还，旧库不覆盖。
+通过`FORETS_RUN_BUDGET_PATH`把同一绝对路径传给一run的所有worker调用；有该变量时unbounded调用禁止。
+四算子应同时设置`bounded_run_budget_required=true`，没有预算库则拒绝发请求。
+预算模块CLI只能初始化一次，参数`--path`、`--max-attempts`、`--max-output-tokens`均必填。
+每run使用独立库和相同policy，不是8run共用库；节点本地文件丢失或切换allocation停止，不自动重建额度。
+尚未自动接入Slurm worker初始化/归档；这里只验证手动提供库的实际调用路径，不把补丁称为完整运行器。
+
+`phase1/forets_pilot_plan.py`生成统一四算子提议配置，不做模型调用或任务提交。
+6项新CPU检查通过：8份真实Hydra配置4组完整哈希仅selector不同，实际GenericLLM四算子共享额度，
+缺失/绕过/超限拒绝，失败/取消/重启无退款，损坏库拒绝，4进程24次竞争仅7次获额度。
+回执`phase1/results/forets_bounds_20260909/run_budget_checks.json`。真实网络/API/GPU/任务均0。
+API费用保持null；这里没有输入token界或供应商计费规则，不能声称美元cap。真实max_attempts尚未冻结批准。
+日志可能被上游多handler重复输出，统计使用DB intent或attempt_id去重，不能数日志行。
+
+实际检查命令（aira CPU环境，隔离目录；已完成，不因等待重跑）：
+
+```bash
+/research/d7/spc/yzyang4/venvs/aira/bin/python /research/d7/spc/yzyang4/forets-runbudget-20260909-cyPIf2/check_forets_run_budget_20260909.py --dojo-root /research/d7/spc/yzyang4/forets-runbudget-20260909-cyPIf2 --plan-root /research/d7/spc/yzyang4/forets-runbudget-20260909-cyPIf2 --source-tree 49fd8698e6a5a3377224a2d92c65f354cb1eefa0 --output /research/d7/spc/yzyang4/forets-runbudget-20260909-cyPIf2/checks.json
+```
 
 ### 可选后续：0011有界传输（0L120）
 

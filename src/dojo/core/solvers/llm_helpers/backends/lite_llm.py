@@ -17,6 +17,8 @@ import litellm
 from dataclasses_json import DataClassJsonMixin
 from litellm import acompletion as completion_fn
 
+from dojo.utils.code_parsing import parse_json_output
+
 litellm.api_version = "2024-12-01-preview"
 litellm.set_verbose = False
 
@@ -225,7 +227,7 @@ class LiteLLMClient:
                 raise TypeError(
                     f"Structured output must be a JSON string or object, got {type(raw_output).__name__}"
                 )
-            output = json.loads(raw_output)
+            output = parse_json_output(raw_output)
         if not isinstance(output, dict):
             raise TypeError(f"Structured output must be an object, got {type(output).__name__}")
         jsonschema.Draft7Validator(func_spec.json_schema).validate(output)
@@ -330,6 +332,7 @@ class LiteLLMClient:
                     attempts,
                     error,
                 )
+                logger.warning("Raw output: %s", completion.choices[0].message.content)
 
         # Calculate latency
         latency = time.monotonic() - start_time

@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08香港11:55；当前0L105覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-08香港12:28；当前0L106覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,21 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先fetch并读CURRENT_DIRECTION 0L106。用户回复“可以”不是开发记录路径；严格四fit仍无已准入实际来源。
+fresh_grade_capture opt-in helper实际Linux29测试、6真实grader×31-case×A/B及各自独立重评分通过；
+未部署producer、未改学长分支、无模型效果。源码6b945b6e5af738d702f493f988d7e3f10b011bd1，
+summary dd0fcde699234fce9de30d200ebed33a1c97a784b66eef26e3b4ae02f6199eec；results/fresh_grade_capture_20260908。
+首轮33ebc8dc测试setup命名冲突导致29初始化错误，改名后同矩阵新目录成功，失败保留。
+不重跑G0/输入分词/通用测试。下一关键动作实际独立开发来源，或明确无记录后冻结新开发生产范围；不能拿前瞻包填训练。
+
+0906poll000–005及各自post-audit已完成，751physical/725eligible/19503endpoints/4407pairs/58tasks，closure=false。
+LATEST6be4c9ab81545e88c3bea1dc453c05d790125193ae2dfe53927d332a58f43563，summary9430bc49c562a417a80fc18563be90391314b1166c503b1f9e159c790d89989f。
+入口/tmp/dispatch_0906_foreground_r2_20260908.py，output session-0906-intake-20260908，source28a139f481764951485ad6d278920a2fa3efe62c。
+原窗口UTC03:40:46–05:40:46/max8/2700秒每call不变；下一call最早04:33:07.543840，最多再2次，不后台续跑/自动扩lease。
+每次先核已完成post-audit，不能重跑已完成call。完成8次后再导出tmp/export_0906_eight_calls_20260908.py；未完成8次不得运行导出器。
+
+### 当日此前记录，动态状态由0L106覆盖
 
 首先fetch并读CURRENT_DIRECTION 0L105。用户已批准研究汇报后直接执行；报告SENIOR_STRATEGY_AND_EXECUTION_20260908.md已推送。
 原四fit仍缺合格独立开发来源/实际评分记录，尚未训练；不重新做已完成G0/CPU验收，不挪用保护人口。

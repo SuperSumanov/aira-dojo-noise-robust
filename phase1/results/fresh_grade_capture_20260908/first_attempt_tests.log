@@ -1,0 +1,149 @@
+EEEEEEEEEEEEEEEEEEEEEEEEEEEEE                                            [100%]
+==================================== ERRORS ====================================
+_____ ERROR at setup of test_persists_before_grade_and_returns_same_object _____
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_______________ ERROR at setup of test_collision_never_regrades ________________
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_ ERROR at setup of test_post_call_failure_preserved_and_never_retried[source_mutates] _
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_ ERROR at setup of test_post_call_failure_preserved_and_never_retried[submission_mutates] _
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_ ERROR at setup of test_post_call_failure_preserved_and_never_retried[grade_error] _
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_ ERROR at setup of test_post_call_failure_preserved_and_never_retried[nonfinite] _
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_ ERROR at setup of test_post_call_failure_preserved_and_never_retried[result_secret] _
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+______ ERROR at setup of test_pre_call_faults_do_not_grade[extra_binding] ______
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+______ ERROR at setup of test_pre_call_faults_do_not_grade[bad_reference] ______
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_______ ERROR at setup of test_pre_call_faults_do_not_grade[code_secret] _______
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+______ ERROR at setup of test_pre_call_faults_do_not_grade[source_secret] ______
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+____ ERROR at setup of test_pre_call_faults_do_not_grade[submission_secret] ____
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_____ ERROR at setup of test_pre_call_faults_do_not_grade[workspace_vault] _____
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+______ ERROR at setup of test_pre_call_faults_do_not_grade[source_alias] _______
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+__ ERROR at setup of test_absent_submission_preserved_without_inventing_score __
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+____________ ERROR at setup of test_submission_size_cap_is_pre_call ____________
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+________________ ERROR at setup of test_source_symlink_rejected ________________
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+______ ERROR at setup of test_callback_archive_mutation_rejected[code.py] ______
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+____ ERROR at setup of test_callback_archive_mutation_rejected[intent.json] ____
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+__ ERROR at setup of test_callback_archive_mutation_rejected[submission.csv] ___
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_ ERROR at setup of test_callback_archive_mutation_rejected[sources/grader.txt] _
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+____ ERROR at setup of test_callback_archive_mutation_rejected[unexpected] _____
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_ ERROR at setup of test_callback_archive_mutation_rejected[unexpected_source] _
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_____ ERROR at setup of test_consumer_rejects_post_commit_change[code.py] ______
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_____ ERROR at setup of test_consumer_rejects_post_commit_change[COMPLETE] _____
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+______ ERROR at setup of test_consumer_rejects_post_commit_change[extra] _______
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+___ ERROR at setup of test_consumer_rejects_post_commit_change[FAILED.json] ____
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+__ ERROR at setup of test_consumer_rejects_post_commit_change[missing_source] __
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+_______ ERROR at setup of test_failure_after_complete_is_never_accepted ________
+phase1/tests/test_fresh_grade_capture.py:9: in setup
+    workspace=tmp_path/'workspace';workspace.mkdir()
+E   TypeError: unsupported operand type(s) for /: 'module' and 'str'
+=========================== short test summary info ============================
+ERROR phase1/tests/test_fresh_grade_capture.py::test_persists_before_grade_and_returns_same_object
+ERROR phase1/tests/test_fresh_grade_capture.py::test_collision_never_regrades
+ERROR phase1/tests/test_fresh_grade_capture.py::test_post_call_failure_preserved_and_never_retried[source_mutates]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_post_call_failure_preserved_and_never_retried[submission_mutates]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_post_call_failure_preserved_and_never_retried[grade_error]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_post_call_failure_preserved_and_never_retried[nonfinite]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_post_call_failure_preserved_and_never_retried[result_secret]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_pre_call_faults_do_not_grade[extra_binding]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_pre_call_faults_do_not_grade[bad_reference]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_pre_call_faults_do_not_grade[code_secret]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_pre_call_faults_do_not_grade[source_secret]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_pre_call_faults_do_not_grade[submission_secret]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_pre_call_faults_do_not_grade[workspace_vault]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_pre_call_faults_do_not_grade[source_alias]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_absent_submission_preserved_without_inventing_score
+ERROR phase1/tests/test_fresh_grade_capture.py::test_submission_size_cap_is_pre_call
+ERROR phase1/tests/test_fresh_grade_capture.py::test_source_symlink_rejected
+ERROR phase1/tests/test_fresh_grade_capture.py::test_callback_archive_mutation_rejected[code.py]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_callback_archive_mutation_rejected[intent.json]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_callback_archive_mutation_rejected[submission.csv]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_callback_archive_mutation_rejected[sources/grader.txt]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_callback_archive_mutation_rejected[unexpected]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_callback_archive_mutation_rejected[unexpected_source]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_consumer_rejects_post_commit_change[code.py]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_consumer_rejects_post_commit_change[COMPLETE]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_consumer_rejects_post_commit_change[extra]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_consumer_rejects_post_commit_change[FAILED.json]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_consumer_rejects_post_commit_change[missing_source]
+ERROR phase1/tests/test_fresh_grade_capture.py::test_failure_after_complete_is_never_accepted
+29 errors in 0.63s

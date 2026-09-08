@@ -3,6 +3,33 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L106. 2026-09-08：新评分留存兼容性通过，继续既有有界摄取
+
+继续已批准研究方案，不重跑G0或输入诊断，不将工程成果称作critic收益。
+用户对独立开发来源问题回复“可以”，尚未给出实际原记录位置；不能解释为已有来源合格证明。
+ADMITTED_RELEASES仍为空，四fit未启动。学长branch仍40d7dea10738f159fc97cad8487ab4ada88022a3，未修改。
+
+新增可选fresh_grade_capture，默认Dojo不导入、不启用：评分前保存代码/submission/显式源码，
+原评分callback只调用一次，返回原对象；原文件与归档副本均须不变；失败留证且禁止自动重试。
+FAILED优先于COMPLETE，自哈希不是签名，0400/0700不是同UID sandbox；该helper不认证历史来源/实际执行环境。
+真实producer尚未接线或部署，不将新回执写入器当成已获得开发标签。
+
+source6b945b6e5af738d702f493f988d7e3f10b011bd1实际Linux29测试通过；6个原MLE-bench grader的固定31-case，
+A/B各一次capture及独立进程枚举/hash/留存CSV重评分全部通过，fixture只用人工生成小表。
+总42.724059098996804秒、6536622测试字节；193源码重新核hash，0网络/真实数据访问尝试、0GPU/API/fit。
+summary SHA dd0fcde699234fce9de30d200ebed33a1c97a784b66eef26e3b4ae02f6199eec；
+回执results/fresh_grade_capture_20260908/README.md。首轮旧pytest将setup辅助函数当xunit钩子，
+29个初始化错误保留；改名后新commit/新目录同矩阵验证，不改评分逻辑。此前Windows临时只读fixture删除故障也记录。
+
+0906既有窗口不变：UTC03:40:46–05:40:46，总最多8调用；每次含独立delta链2700秒、至少间隔300秒。
+已完成poll000至005及对应独立post-audit，前两次观察，后四次新事务。当前751physical/725eligible/
+19503endpoints/4407pairs/58tasks，closure=false。
+LATEST6be4c9ab81545e88c3bea1dc453c05d790125193ae2dfe53927d332a58f43563，
+summary9430bc49c562a417a80fc18563be90391314b1166c503b1f9e159c790d89989f。
+下一次最早UTC04:33:07.543840，最多再两次且必须留完整时限；没有后台任务、保护集揭盲、训练或paid API。
+唯一入口仍/tmp/dispatch_0906_foreground_r2_20260908.py；恢复先核当前post-audit，不能重复已完成事务或延长窗口。
+达到8次后停，不声称11新包全部处理完，也不自动再开lease。来源未明确时，不再追加通用验证器拖延模型问题。
+
 ## 0L105. 2026-09-08：用户批准研究方案；执行有界摄取与输入诊断
 
 给学长的完整研究汇报SENIOR_STRATEGY_AND_EXECUTION_20260908.md已公开（b41f722a273b0b7c2b20503366f44a3301544395）。

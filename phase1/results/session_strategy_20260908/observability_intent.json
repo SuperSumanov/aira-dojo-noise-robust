@@ -1,0 +1,27 @@
+{
+  "cpu_timeout_seconds": 1200,
+  "helper_sha256": "d78a6047e2554498f3b2e909cd60689e96aa5aefd8c26825aa0fcf5ee68315f2",
+  "labels_read": false,
+  "limits": [
+    2048,
+    8192,
+    16384
+  ],
+  "manifest_sha256": "0912a2e6cf8342fe6c209645d2d1b56c142f91a066197fcd5e37d07f8c0955e7",
+  "model_weights_loaded": false,
+  "protected_reads": false,
+  "scope_runs": 84,
+  "source_commit": "5d9feb7435cc3bc9d4765b1d4f67d49337e7a303",
+  "source_hashes": {
+    "phase1/g_reuse_endpoint_inference.py": "6af7d018f99f07ea6dcf04828af06adbf29f6193c49c40106e57a993193595e7",
+    "phase1/historical_encoding_observability.py": "f77adfcabd17181316465279f99b68fd6ec2350461ce386b79481e1c72d4d1dd",
+    "phase1/tests/test_historical_encoding_observability.py": "ce846a9dad0381fc5fadc666d0252e48be1286eedd52a6f34f12e3eb5198f0fb"
+  },
+  "tokenizer_hashes": {
+    "config.json": "1bb33a92c3548fbc68b889b490e810440435253598835bd71dff0396060c12db",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "tokenizer_config.json": "3c04ed3ca964ea2f6b2b5faf0dc4d31aec1cb1e8b4bcf63f402d295046b422b5",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  }
+}

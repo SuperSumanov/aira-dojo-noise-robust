@@ -1,0 +1,13 @@
+{
+  "commit": "28a139f481764951485ad6d278920a2fa3efe62c",
+  "cpu_log_sha256": "e8826ddf071536d75e282d791d15a7e1d8c8d6b92c8b22ddeaf8b6d4ea1e8182",
+  "cpu_tests_passed": 8,
+  "dispatcher_sha256": "3dceeca0e73d0262896bd10d5db86d3634ac08f699470aa4f130e3e5a0229660",
+  "hashes": {
+    "phase1/scripts/foreground_intake_session_20260905.py": "d0769998335115694302d50b39799e91d39fb2aabb77ddd9d59f7d7f1bf70c43",
+    "phase1/scripts/run_prospective_continuous_intake_monitor_20260821.sh": "f7af6bbbd3d253f3b8608a38293c7e750487f2ae72571db0b2ef07b3d1d3e599",
+    "phase1/scripts/session_0906_intake_once_20260908.py": "ee0d86a685ff54f8df2d3dcee009584a948e4b9015bced67b960546a0f6d95d3",
+    "phase1/tests/test_session_0906_intake_once.py": "c7c8f6efca173d617df1e7699fd666c1b55d5b2ff491efd8bde3824701828bdd"
+  },
+  "scientific_body_derivation_verified": true
+}

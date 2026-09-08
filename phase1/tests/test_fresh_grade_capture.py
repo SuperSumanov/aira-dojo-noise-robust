@@ -5,7 +5,7 @@ import pytest
 from phase1 import fresh_grade_capture as m
 
 
-def setup(tmp_path):
+def make_case(tmp_path):
     workspace=tmp_path/'workspace';workspace.mkdir()
     submission=workspace/'submission.csv';submission.write_bytes(b'id,pred\na,0.7\n')
     source=tmp_path/'grader.py';source.write_bytes(b'def grade(): return 0.7\n')
@@ -15,7 +15,7 @@ def setup(tmp_path):
 
 
 def test_persists_before_grade_and_returns_same_object(tmp_path):
-    kw=setup(tmp_path); expected={'score':0.7,'extra':{'x':[1,2]}};calls=[]
+    kw=make_case(tmp_path); expected={'score':0.7,'extra':{'x':[1,2]}};calls=[]
     def grade():
         assert (kw['output']/'submission.csv').read_bytes()==kw['submission_path'].read_bytes()
         assert (kw['output']/'intent.json').exists() and not (kw['output']/'COMPLETE').exists()
@@ -32,7 +32,7 @@ def test_persists_before_grade_and_returns_same_object(tmp_path):
 
 
 def test_collision_never_regrades(tmp_path):
-    kw=setup(tmp_path);calls=[]
+    kw=make_case(tmp_path);calls=[]
     m.capture_grade(**kw,evaluate=lambda:calls.append(1))
     with pytest.raises(m.CaptureError,match='new_transaction_required'):
         m.capture_grade(**kw,evaluate=lambda:calls.append(2))
@@ -41,7 +41,7 @@ def test_collision_never_regrades(tmp_path):
 
 @pytest.mark.parametrize('case',['source_mutates','submission_mutates','grade_error','nonfinite','result_secret'])
 def test_post_call_failure_preserved_and_never_retried(tmp_path,case):
-    kw=setup(tmp_path);calls=[]
+    kw=make_case(tmp_path);calls=[]
     def grade():
         calls.append(1)
         if case=='source_mutates':kw['sources']['grader'].write_text('changed')
@@ -61,7 +61,7 @@ def test_post_call_failure_preserved_and_never_retried(tmp_path,case):
 
 @pytest.mark.parametrize('case',['extra_binding','bad_reference','code_secret','source_secret','submission_secret','workspace_vault','source_alias'])
 def test_pre_call_faults_do_not_grade(tmp_path,case):
-    kw=setup(tmp_path);calls=[]
+    kw=make_case(tmp_path);calls=[]
     if case=='extra_binding':kw['binding']['label']=1
     if case=='bad_reference':kw['binding']['execution_receipt_sha256']='unknown'
     if case=='code_secret':kw['code']=('sk-'+'x'*32).encode()
@@ -74,7 +74,7 @@ def test_pre_call_faults_do_not_grade(tmp_path,case):
 
 
 def test_absent_submission_preserved_without_inventing_score(tmp_path):
-    kw=setup(tmp_path);kw['submission_path'].unlink()
+    kw=make_case(tmp_path);kw['submission_path'].unlink()
     expected={'score':None,'submission_exists':False}
     assert m.capture_grade(**kw,evaluate=lambda:expected) is expected
     assert not (kw['output']/'submission.csv').exists()
@@ -82,13 +82,13 @@ def test_absent_submission_preserved_without_inventing_score(tmp_path):
 
 
 def test_submission_size_cap_is_pre_call(tmp_path,monkeypatch):
-    kw=setup(tmp_path);monkeypatch.setattr(m,'MAX_SUBMISSION',2);calls=[]
+    kw=make_case(tmp_path);monkeypatch.setattr(m,'MAX_SUBMISSION',2);calls=[]
     with pytest.raises(m.CaptureError):m.capture_grade(**kw,evaluate=lambda:calls.append(1))
     assert not calls and not kw['output'].exists()
 
 
 def test_source_symlink_rejected(tmp_path):
-    kw=setup(tmp_path);link=tmp_path/'link.py'
+    kw=make_case(tmp_path);link=tmp_path/'link.py'
     try:link.symlink_to(kw['sources']['grader'])
     except OSError:pytest.skip('symlinks unavailable')
     kw['sources']['grader']=link
@@ -97,7 +97,7 @@ def test_source_symlink_rejected(tmp_path):
 
 @pytest.mark.parametrize('case',['code.py','intent.json','submission.csv','sources/grader.txt','unexpected','unexpected_source'])
 def test_callback_archive_mutation_rejected(tmp_path,case):
-    kw=setup(tmp_path)
+    kw=make_case(tmp_path)
     def grade():
         path=kw['output']/('sources/new.txt' if case=='unexpected_source' else case)
         if path.exists():path.chmod(0o600)
@@ -109,7 +109,7 @@ def test_callback_archive_mutation_rejected(tmp_path,case):
 
 @pytest.mark.parametrize('case',['code.py','COMPLETE','extra','FAILED.json','missing_source'])
 def test_consumer_rejects_post_commit_change(tmp_path,case):
-    kw=setup(tmp_path);m.capture_grade(**kw,evaluate=lambda:1)
+    kw=make_case(tmp_path);m.capture_grade(**kw,evaluate=lambda:1)
     path=kw['output']/case
     if case=='missing_source':
         target=kw['output']/'sources/grader.txt';target.chmod(0o600);target.unlink()
@@ -120,7 +120,7 @@ def test_consumer_rejects_post_commit_change(tmp_path,case):
 
 
 def test_failure_after_complete_is_never_accepted(tmp_path,monkeypatch):
-    kw=setup(tmp_path);original=m.sync_directory
+    kw=make_case(tmp_path);original=m.sync_directory
     def late_failure(path):
         if (kw['output']/'COMPLETE').exists() and not (kw['output']/'FAILED.json').exists():
             raise OSError('fixture fsync failure')

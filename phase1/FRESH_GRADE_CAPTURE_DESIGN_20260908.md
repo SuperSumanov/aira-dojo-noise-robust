@@ -30,6 +30,10 @@
 本地首轮删除只读fixture的跨平台测试曾失败：Windows须先解除该测试文件只读位，Linux删除语义不同；
 仅调整临时测试fixture，没有修改真实产物权限或科学协议。
 
+首轮实际Linux在全部测试初始化处失败：该环境pytest把辅助函数setup当作xunit模块钩子，传入module而非Path。
+保留33ebc8dc运行目录、tests.log和FAILED.json；新commit将辅助函数改名make_case，在全新目录重跑相同矩阵。
+失败发生在测试setup、真实grader fixture调用之前，不存在未知评分状态下的重复评分。capture算法未因此修改。
+
 单事务硬上限：提交64MiB，代码4MiB，显式源码总8MiB，结果2MiB。生产上限需根据事前容量矩阵另行冻结；
 超过上限在评分前拒绝，不能根据成绩删除提交或只保存漂亮案例。每次保存源码有额外空间成本，未宣称存储最优。
 

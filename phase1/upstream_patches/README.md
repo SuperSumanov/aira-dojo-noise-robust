@@ -3,6 +3,38 @@
 这里保存针对其他现有分支、但不直接改写对方分支的可审计补丁。补丁必须注明精确 base commit、测试结果与
 迁移边界；只有维护者审阅后才 cherry-pick。
 
+## 当前ForeTS探索入口（2026-09-09，0L119）
+
+**只对独立、干净的`dojo-reproduce@065b0fbaa89e0eb663f2834ec768081f5d56394d`应用0010。**
+不要改写活动生产checkout，不要再叠ForeTS的0005、0006、0007、0008、0009。
+
+```bash
+git apply --check /path/to/0010-ForeTS-cumulative-for-065b0fba-20260909.patch
+git apply /path/to/0010-ForeTS-cumulative-for-065b0fba-20260909.patch
+```
+
+补丁是普通Git diff，不是mailbox patch。该exact base的完整应用树已复建核对为
+`83ffe50f517dde409baba3a73e69ef5872dab1ac`，18个源码文件变化。
+保留最新上游MCTS配置继承、uct_c=0.25、独立未选日志、JSON解析；同时保留我方共同候选批次、
+零critic随机基线、预执行恢复边界、任务返回记录和离线raw critic加载。不是新方法/收益宣称。
+
+修复了接入中的未选候选重试重复导出，以及JSON尾逗号修复误改字符串内容/原文日志。
+真实源码、人工响应的8项定向CPU检查通过；两臂seed6/7的配置差异仅selection_policy。
+`phase1/scripts/check_forets_upstream_065b_20260909.py`可复现修前/修后检查，结果见
+`phase1/results/forets_e2e_pilot_20260908/upstream_065b_{before,after}.json`。
+人工task/critic替身不等于真实端到端执行，不重复已完成旧测试作为进展。
+
+`0009-ForeTS-offline-raw-critic-loader-20260908.patch`只保留为加载器的独立变更记录，已经包含在0010中。
+显式参数`load_checkpoint(..., offline_base_dir=...)`及server的`--offline-base-dir`接受本地config/tokenizer目录，
+要求组合的backbone.* / head.* safetensors、最多一个可见GPU；拒绝独立pickle head/不匹配state。
+不传参数仍走旧入口。当前原始checkpoint没有rm_meta，服务沿用16384长度、0.25头部比例、task条件化默认值；
+这不是从原训练记录重新证实的全部超参数。固定底座资料/权重位置见E2E_EXPLORATION_PILOT_20260908.md。
+
+10项CPU加载检查已完成（真实小Qwen3 seed6/7与RewardScorer一致、异常拒绝、旧入口）；真实8B只有400键/形状与
+分词器兼容性检查，未加载8B数值/执行8B前向。脚本`phase1/scripts/check_forets_offline_critic_20260908.py`及同目录回执。
+GPU推理、HTTP实际服务、生成器API和真实任务尚待有界集成；本补丁不自行启动作业、授权费用或开放保护集。
+用户在等学长回复API平台/地址/模型；不要把PRIMARY_KEY发送到猜测的服务。
+
 ## Prospective config-v2 producer hook（2026-08-27）
 
 `0001-Add-prospective-config-v2-producer-hook-18-tests.patch` 精确基于学长

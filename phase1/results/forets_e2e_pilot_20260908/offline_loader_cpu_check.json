@@ -1,0 +1,29 @@
+{
+  "checks": [
+    "tiny_qwen3_load_and_scorer_equal_seed_6",
+    "tiny_qwen3_load_and_scorer_equal_seed_7",
+    "legacy_path_unchanged",
+    "missing_head_bias",
+    "extra_tensor",
+    "head_shape_mismatch",
+    "local_metadata_required",
+    "multiple_visible_gpus_rejected",
+    "separate_pickle_head_rejected_without_load",
+    "real_8b_header_matches_meta_architecture_and_tokenizer_loads_offline"
+  ],
+  "checks_passed": 10,
+  "gpu_requested": false,
+  "inference_api_calls": 0,
+  "protected_data_read": false,
+  "real_8b_forward": false,
+  "real_8b_weights_loaded": false,
+  "real_header_keys_and_shapes_equal": true,
+  "real_header_tensor_count": 400,
+  "real_tokenizer_offline_ready": true,
+  "status": "CPU_LOADER_REGRESSION_AND_HEADER_COMPATIBILITY_PASS",
+  "tiny_fixture_seeds": [
+    6,
+    7
+  ],
+  "torch_version": "2.11.0+cu128"
+}

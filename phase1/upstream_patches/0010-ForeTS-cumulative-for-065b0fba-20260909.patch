@@ -1,0 +1,1176 @@
+diff --git a/src/dojo/config_dataclasses/solver/fore_ts.py b/src/dojo/config_dataclasses/solver/fore_ts.py
+index 49fc996a..73407fca 100644
+--- a/src/dojo/config_dataclasses/solver/fore_ts.py
++++ b/src/dojo/config_dataclasses/solver/fore_ts.py
+@@ -13,6 +13,8 @@ from dojo.config_dataclasses.solver.mcts import MCTSSolverConfig
+ 
+ @dataclass
+ class ForeTSSolverConfig(MCTSSolverConfig):
++    selector_seed: int = field(default=MISSING)
++    selection_policy: str = field(default=MISSING)
+     critic_host: str = field(
+         default=MISSING, metadata={"description": "Host address for the critic service"}
+     )
+@@ -31,3 +33,16 @@ class ForeTSSolverConfig(MCTSSolverConfig):
+ 
+     def validate(self) -> None:
+         super().validate()
++        if self.selection_policy not in ("uniform_random", "critic_topk_random"):
++            raise ValueError("explicit supported selection_policy required")
++        if type(self.selector_seed) is not int:
++            raise ValueError("explicit integer selector_seed required")
++        for name in ("num_children", "critic_top_k", "num_children_to_choose", "critic_max_attempts"):
++            value = getattr(self, name)
++            if type(value) is not int or value <= 0:
++                raise ValueError(f"{name} must be a positive integer")
++        if not self.num_children_to_choose <= self.critic_top_k <= self.num_children:
++            raise ValueError("require choose <= top_k <= num_children")
++        import math
++        if isinstance(self.uct_c, bool) or not isinstance(self.uct_c, (int, float)) or not math.isfinite(self.uct_c) or self.uct_c < 0:
++            raise ValueError("uct_c must be finite and nonnegative")
+diff --git a/src/dojo/configs/solver/mlebench/fore_ts.yaml b/src/dojo/configs/solver/mlebench/fore_ts.yaml
+index ce4a077c..b7d0a96f 100644
+--- a/src/dojo/configs/solver/mlebench/fore_ts.yaml
++++ b/src/dojo/configs/solver/mlebench/fore_ts.yaml
+@@ -15,6 +15,8 @@ export_search_results: true
+ step_limit: 10000
+ num_children: 5
+ uct_c: 0.25
++selector_seed: ???  # Must be frozen explicitly in all comparison arms.
++selection_policy: ???  # uniform_random or critic_topk_random; freeze before running.
+ max_debug_depth: 20
+ data_preview: true
+ max_debug_time: 1e9
+diff --git a/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py b/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
+index d4ecaf69..eb4c3e27 100644
+--- a/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
++++ b/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
+@@ -332,7 +332,6 @@ class LiteLLMClient:
+                     attempts,
+                     error,
+                 )
+-                logger.warning("Raw output: %s", completion.choices[0].message.content)
+ 
+         # Calculate latency
+         latency = time.monotonic() - start_time
+diff --git a/src/dojo/core/solvers/llm_helpers/generic_llm.py b/src/dojo/core/solvers/llm_helpers/generic_llm.py
+index f27a9a05..79d79ad9 100644
+--- a/src/dojo/core/solvers/llm_helpers/generic_llm.py
++++ b/src/dojo/core/solvers/llm_helpers/generic_llm.py
+@@ -17,6 +17,7 @@ from dojo.config_dataclasses.operators.base import OperatorConfig
+ from dojo.config_dataclasses.client.base import ClientConfig
+ 
+ import logging
++from dojo.solvers.fore_ts.request_guard import audited_query
+ 
+ log = logging.getLogger(__name__)
+ 
+@@ -95,7 +96,7 @@ class GenericLLM:
+ 
+         # If query_data is not provided, directly query the client with the provided messages
+         if query_data is None:
+-            output, usage_stats = await self.client.query(
++            output, usage_stats = await audited_query(self.client,
+                 messages,
+                 json_schema=json_schema,
+                 function_name=function_name,
+@@ -130,7 +131,7 @@ class GenericLLM:
+         messages.append(user_message)
+ 
+         # Query the client with the updated messages
+-        output, usage_stats = await self.client.query(
++        output, usage_stats = await audited_query(self.client,
+             messages,
+             json_schema=json_schema,
+             function_name=function_name,
+diff --git a/src/dojo/core/solvers/operators/draft.py b/src/dojo/core/solvers/operators/draft.py
+index 29191f32..0eed6495 100644
+--- a/src/dojo/core/solvers/operators/draft.py
++++ b/src/dojo/core/solvers/operators/draft.py
+@@ -6,6 +6,7 @@
+ 
+ import os
+ import random
++from dojo.solvers.fore_ts.request_guard import package_order
+ import time
+ from typing import Callable, Optional
+ 
+@@ -29,8 +30,7 @@ async def draft_op(
+     complexity: Optional[Complexity] = None,
+     parent_node: Optional[Node] = None,
+ ) -> str:
+-    pkgs = cfg.available_packages
+-    random.shuffle(pkgs)
++    pkgs = package_order(cfg.available_packages)
+     pkg_str = ", ".join([f"`{p}`" for p in pkgs])
+ 
+     if memory_op is not None:
+diff --git a/src/dojo/core/solvers/operators/improve.py b/src/dojo/core/solvers/operators/improve.py
+index 847e0101..06f9f416 100644
+--- a/src/dojo/core/solvers/operators/improve.py
++++ b/src/dojo/core/solvers/operators/improve.py
+@@ -6,6 +6,7 @@
+ 
+ import os
+ import random
++from dojo.solvers.fore_ts.request_guard import package_order
+ import time
+ from typing import Callable, Optional
+ 
+@@ -30,8 +31,7 @@ async def improve_op(
+     complexity: Optional[Complexity] = None,
+     data_preview: Optional[str] = None,
+ ) -> str:
+-    pkgs = cfg.available_packages
+-    random.shuffle(pkgs)
++    pkgs = package_order(cfg.available_packages)
+     pkg_str = ", ".join([f"`{p}`" for p in pkgs])
+ 
+     if memory_op is not None:
+diff --git a/src/dojo/solvers/fore_ts/__init__.py b/src/dojo/solvers/fore_ts/__init__.py
+index 4234e5a4..56241877 100644
+--- a/src/dojo/solvers/fore_ts/__init__.py
++++ b/src/dojo/solvers/fore_ts/__init__.py
+@@ -4,6 +4,13 @@
+ # This source code is licensed under the license found in the
+ # LICENSE file in the root directory of this source tree.
+ 
+-from .fore_ts import ForeTS
+-
+ __all__ = ["ForeTS"]
++
++
++def __getattr__(name):
++    # GenericLLM imports request_guard; eagerly loading the solver here creates
++    # GenericLLM -> ForeTS -> MCTS -> analyze_op -> GenericLLM cycles.
++    if name == "ForeTS":
++        from .fore_ts import ForeTS
++        return ForeTS
++    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+diff --git a/src/dojo/solvers/fore_ts/batch_runtime.py b/src/dojo/solvers/fore_ts/batch_runtime.py
+new file mode 100644
+index 00000000..3592afc8
+--- /dev/null
++++ b/src/dojo/solvers/fore_ts/batch_runtime.py
+@@ -0,0 +1,136 @@
++"""ForeTS batch integration, pre-execution recovery only; no result labels here.
++
++Intended for an isolated upstream patch, NOT the active producer. Operator-internal
++retries/cost traces, rendered prompt isolation and full search recovery remain open.
++"""
++import asyncio
++import copy
++from dojo.solvers.fore_ts.execution_witness import ExecutionWitness
++from dojo.core.tasks.constants import EXECUTION_OUTPUT
++from dojo.solvers.fore_ts.request_guard import BatchRequestGuard
++from dojo.solvers.fore_ts.selection import POLICIES, choose_slots
++from pathlib import Path
++
++from dojo.solvers.fore_ts.candidate_ledger import CandidateLedger, LedgerError, digest
++
++
++def assert_candidate_unchanged(ledger, slot, node):
++    record = {k: getattr(node, k) for k in
++              ("id", "ctime", "code", "plan", "operators_used", "operators_metrics")}
++    if (digest(record) != digest(ledger.data["candidates"][slot]["node"]) or
++            node.parents or node.children or node.metric is not None or node.is_buggy is not None):
++        raise LedgerError("candidate changed after generation freeze")
++
++
++def expand_batch(solver, path, state, task, node_type, extract_code, config_snapshot):
++    count = min(solver.cfg.num_children, solver.remaining_steps)
++    if count <= 0:
++        return state
++    if type(solver.cfg.selector_seed) is not int:
++        raise LedgerError('explicit independent selector seed required')
++    policy = solver.cfg.selection_policy
++    if policy not in POLICIES:
++        raise LedgerError("explicit selection policy required before generation")
++    parent = path[-1]
++    # Bind the actual in-memory boundary, not merely its step or parent identity.
++    boundary = dict(
++        task=solver.task_name, task_description=solver.task_desc,
++        config=config_snapshot, state=vars(solver.state), preview=solver.data_preview,
++        journal=solver.journal.node_list(), path=[n.id for n in path],
++        tree=[dict(id=n.id, parents=[p.id for p in n.parents],
++                   children=sorted(c.id for c in n.children),
++                   explore_count=n.explore_count, node_value=n.node_value)
++              for n in solver.journal.nodes],
++        global_q=[solver.global_min_q_val, solver.global_max_q_val],
++    )
++    binding = dict(schema=4, selection_policy=policy, execution_contract="task-return-receipt-v1", request_contract="same-rendered-request-v1", boundary_sha256=digest(boundary), parent_id=parent.id,
++                   task=solver.task_name, step=solver.state.current_step)
++    root = Path(solver.cfg.checkpoint_path)
++    root.mkdir(parents=True, exist_ok=True)
++    file = root / 'forets-candidates-private' / f'batch-{solver.state.current_step}.sqlite'
++    with CandidateLedger(file, binding, count) as ledger:
++        ledger.ensure_preexecution()  # Check EVERY slot before any possible paid call.
++
++        guard = BatchRequestGuard(ledger, count * solver.cfg.max_llm_call_retries)
++
++        witness = ExecutionWitness(ledger, task, solver.remaining_steps,
++                                   solver.cfg.execution_timeout, EXECUTION_OUTPUT)
++
++        async def obtain(slot):
++            c = ledger.data['candidates'][slot]
++            if c['state'] == 'pending':
++                ledger.begin_generation(slot)
++                with guard.slot(slot):
++                    node = await (solver._draft(parent) if not parent.parents else solver._improve(parent))
++                if node.parents or node.children or node.metric is not None or node.is_buggy is not None:
++                    raise LedgerError('generated candidate attached or labeled before execution')
++                ledger.generated(slot, {k: getattr(node, k) for k in
++                    ('id', 'ctime', 'code', 'plan', 'operators_used', 'operators_metrics')})
++            else:
++                # Analysis appends operator records; it must not edit the pre-execution ledger.
++                node = node_type(**copy.deepcopy(c['node']), parents=[])
++            return node
++
++        async def gather():
++            return await asyncio.gather(*(obtain(i) for i in range(count)))
++
++        nodes = asyncio.run(gather())
++        for slot, node in enumerate(nodes):
++            assert_candidate_unchanged(ledger, slot, node)
++        ledger.freeze_pool()  # All generation finishes before ANY critic request.
++        if policy == 'critic_topk_random':
++            async def score_all():
++                for slot, node in enumerate(nodes):
++                    if ledger.data['candidates'][slot]['state'] == 'generated':
++                        assert_candidate_unchanged(ledger, slot, node)
++                        ledger.begin_score(slot)
++                        score = await solver._query_critic(node)
++                        assert_candidate_unchanged(ledger, slot, node)
++                        ledger.scored(slot, score)
++            asyncio.run(score_all())
++        if ledger.data['selected'] is None:
++            scores = ([c['score'] for c in ledger.data['candidates']]
++                      if policy == 'critic_topk_random' else None)
++            ledger.select(choose_slots(count, solver.critic_top_k, solver.num_children_to_choose,
++                          policy, solver.cfg.selector_seed, solver.task_name,
++                          solver.state.current_step, scores))
++
++        # Upstream's unselected journal is an export-only view. It must never
++        # enter executed memory/UCT, the selection pool, or task execution.
++        exported = {node.id: node for node in solver.journal_for_unselected.nodes}
++        if len(exported) != len(solver.journal_for_unselected.nodes):
++            raise LedgerError('duplicate unselected export identities')
++        for slot, node in enumerate(nodes):
++            if slot not in ledger.data['selected']:
++                if node.id in exported:
++                    # A known pre-execution retry must not duplicate its export.
++                    assert_candidate_unchanged(ledger, slot, exported[node.id])
++                else:
++                    solver.journal_for_unselected.append(node)
++                    exported[node.id] = node
++
++        for slot in ledger.data['selected']:
++            if solver.remaining_steps <= 0:
++                break
++            child = nodes[slot]
++            assert_candidate_unchanged(ledger, slot, child)
++            ledger.begin_execution(slot)  # Durable intent BEFORE external effects.
++            state, eval_result = witness.task_for(slot, "candidate").step_task(state, extract_code(child.code))
++            solver.parse_eval_result(node=child, eval_result=eval_result)
++            # Only executed and parsed nodes enter memory/UCT. Never synthesize a score.
++            child.parents = [parent]
++            parent.children.add(child)
++            solver.journal.append(child)
++            solver.log_journal()
++            solver.state.current_step += 1
++            if not child.is_buggy:
++                solver._backprop_step(path=path + [child], value_estimate=child.metric.value)
++                solver.set_global_q_values(child.metric.value)
++            else:
++                state, debug_path, fixed_metric = solver.debug_cycle(state, witness.task_for(slot, "debug"), child)
++                if fixed_metric is not None:
++                    solver._backprop_step(path=path + debug_path, value_estimate=fixed_metric)
++                    solver.set_global_q_values(fixed_metric)
++            ledger.execution_completed(slot)
++        ledger.finish()
++    return state
+diff --git a/src/dojo/solvers/fore_ts/candidate_ledger.py b/src/dojo/solvers/fore_ts/candidate_ledger.py
+new file mode 100644
+index 00000000..7babd55c
+--- /dev/null
++++ b/src/dojo/solvers/fore_ts/candidate_ledger.py
+@@ -0,0 +1,264 @@
++"""Private, single-writer batch ledger; NOT an agent/interpreter checkpoint.
++
++No automatic retry of an ambiguous generation, score request, or execution.
++SQLite commits preserve completed records. A stale writer lock requires review.
++Hashes detect accidental drift, not tampering by the same OS user.
++"""
++import hashlib
++import json
++import math
++import os
++import sqlite3
++from pathlib import Path
++
++
++class LedgerError(RuntimeError):
++    pass
++
++
++def canonical(value):
++    return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
++
++
++def digest(value):
++    return hashlib.sha256(canonical(value).encode()).hexdigest()
++
++
++class CandidateLedger:
++    """Callers must close normally; never delete a lock to recover automatically."""
++
++    def __init__(self, path, binding, count):
++        if type(count) is not int or count <= 0:
++            raise LedgerError('invalid candidate count')
++        if binding.get('selection_policy') not in ('uniform_random', 'critic_topk_random'):
++            raise LedgerError('selection policy missing from ledger binding')
++        self.path = Path(path)
++        self.conn = None
++        self.lock = self.path.with_suffix(self.path.suffix + '.lock')
++        if self.path.is_symlink() or self.path.parent.is_symlink():
++            raise LedgerError('symlink storage is not supported')
++        # Only a new private leaf directory is created; missing ancestors fail.
++        self.path.parent.mkdir(mode=0o700, exist_ok=True)
++        if os.name != 'nt' and self.path.parent.stat().st_mode & 0o077:
++            raise LedgerError('ledger directory must be private')
++        try:
++            fd = os.open(self.lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
++        except FileExistsError:
++            raise LedgerError('writer lock present; inspect before recovery') from None
++        os.close(fd)
++        self.owns_lock = True
++        try:
++            new = not self.path.exists()
++            if new:
++                fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
++                os.close(fd)
++            elif os.name != 'nt' and self.path.stat().st_mode & 0o077:
++                raise LedgerError('ledger database must be private')
++            self.conn = sqlite3.connect(self.path, timeout=0)
++            self.conn.execute('PRAGMA synchronous=FULL')
++            self.conn.execute('PRAGMA journal_mode=DELETE')
++            if new:
++                self.conn.execute('CREATE TABLE snapshot (id INTEGER PRIMARY KEY CHECK(id=1), payload TEXT NOT NULL, sha256 TEXT NOT NULL)')
++                self.data = dict(schema=4, pool_sha256=None, task_calls=[], llm_requests=[], prompt_sha256=None, prompt_snapshot=None, binding=json.loads(canonical(binding)), phase='collecting', selected=None,
++                                 candidates=[dict(state='pending', node=None, score=None) for _ in range(count)])
++                self._write()
++            else:
++                rows = self.conn.execute('SELECT payload,sha256 FROM snapshot WHERE id=1').fetchall()
++                if len(rows) != 1:
++                    raise LedgerError('missing ledger snapshot')
++                payload, sha = rows[0]
++                if hashlib.sha256(payload.encode()).hexdigest() != sha:
++                    raise LedgerError('ledger hash drift')
++                self.data = json.loads(payload)
++                if (self.data['schema'] != 4 or self.data['binding'] != binding
++                        or len(self.data['candidates']) != count):
++                    raise LedgerError('batch binding mismatch')
++        except BaseException:
++            self.close()
++            raise
++
++    def _write(self):
++        payload = canonical(self.data)
++        with self.conn:
++            self.conn.execute('INSERT OR REPLACE INTO snapshot VALUES (1,?,?)',
++                              (payload, hashlib.sha256(payload.encode()).hexdigest()))
++
++    def close(self):
++        if self.conn is not None:
++            self.conn.close()
++            self.conn = None
++        if self.owns_lock:
++            self.lock.unlink(missing_ok=True)
++            self.owns_lock = False
++
++    def __enter__(self):
++        return self
++
++    def __exit__(self, *args):
++        self.close()
++
++    def ensure_preexecution(self):
++        """Only a fully known, pre-execution batch may be continued automatically."""
++        if self.data['phase'] not in {'collecting', 'selected'}:
++            raise LedgerError('execution or completed batch requires checkpoint reconciliation')
++        if any(c['state'] not in {'pending', 'generated', 'scored'} for c in self.data['candidates']):
++            raise LedgerError('ambiguous in-flight operation; no automatic retry')
++
++    def _transition(self, slot, before, after, **fields):
++        if type(slot) is not int or not 0 <= slot < len(self.data['candidates']):
++            raise LedgerError('invalid slot')
++        c = self.data['candidates'][slot]
++        if c['state'] != before:
++            raise LedgerError('unexpected candidate state; no retry')
++        c.update(state=after, **fields)
++        self._write()
++
++    def begin_generation(self, slot):
++        if self.data['phase'] != 'collecting':
++            raise LedgerError('selection already locked')
++        self._transition(slot, 'pending', 'generating')
++
++    def generated(self, slot, node):
++        # The only node fields admitted here are PRE-execution data.
++        if (set(node) != {'id', 'ctime', 'code', 'plan', 'operators_used', 'operators_metrics'}
++                or not isinstance(node['id'], str) or not node['id']
++                or not isinstance(node['code'], str)
++                or node['plan'] is not None and not isinstance(node['plan'], str)):
++            raise LedgerError('invalid pre-execution node schema')
++        # Reject invalid metadata AND sever aliases before later analysis mutates the node.
++        frozen_node = json.loads(canonical(node))
++        if any(c['node'] and c['node']['id'] == node['id'] for c in self.data['candidates']):
++            raise LedgerError('duplicate candidate identity')
++        self._transition(slot, 'generating', 'generated', node=frozen_node)
++
++    def begin_score(self, slot):
++        if self.data['binding']['selection_policy'] != 'critic_topk_random' or self.data['pool_sha256'] is None:
++            raise LedgerError('critic request outside frozen ranked pool')
++        if self.data['phase'] != 'collecting':
++            raise LedgerError('selection already locked')
++        self._transition(slot, 'generated', 'scoring')
++
++    def scored(self, slot, score):
++        if type(score) not in (int, float) or not math.isfinite(score):
++            raise LedgerError('nonfinite or nonnumeric critic score')
++        self._transition(slot, 'scoring', 'scored', score=score)
++
++    def select(self, slots):
++        if (self.data['phase'] != 'collecting' or not slots
++                or self.data['pool_sha256'] is None
++                or any(c['state'] != self.ready_state() for c in self.data['candidates'])
++                or any(type(i) is not int or not 0 <= i < len(self.data['candidates']) for i in slots)
++                or len(set(slots)) != len(slots)):
++            raise LedgerError('invalid or repeated selection')
++        self.data.update(phase='selected', selected=list(slots))
++        self._write()
++
++    def begin_execution(self, slot):
++        if self.data['phase'] not in {'selected', 'executing'} or slot not in self.data['selected']:
++            raise LedgerError('execution outside locked selection')
++        pending = [i for i in self.data['selected'] if self.data['candidates'][i]['state'] == self.ready_state()]
++        if (not pending or pending[0] != slot or
++                any(c['state'] == 'executing' for c in self.data['candidates'])):
++            raise LedgerError('execution order or in-flight mismatch')
++        self.data['phase'] = 'executing'
++        self._transition(slot, self.ready_state(), 'executing')
++
++    def execution_completed(self, slot):
++        # Means task + parse + journal + debug/backprop returned, not a durable solver checkpoint.
++        calls = [c for c in self.data['task_calls'] if c['slot'] == slot]
++        if not calls or any(c['state'] != 'returned' for c in calls):
++            raise LedgerError('task return receipts incomplete')
++        self._transition(slot, 'executing', 'completed')
++
++    def finish(self):
++        if self.data['phase'] not in {'selected', 'executing'}:
++            raise LedgerError('batch not selected')
++        for i in self.data['selected']:
++            c = self.data['candidates'][i]
++            if c['state'] not in {self.ready_state(), 'completed'}:
++                raise LedgerError('unfinished execution')
++        for i in self.data['selected']:
++            if self.data['candidates'][i]['state'] == self.ready_state():
++                self.data['candidates'][i]['state'] = 'skipped_budget'
++        self.data['phase'] = 'complete'
++        self._write()
++
++    def begin_llm_request(self, slot, request_hash, request, cap):
++        if type(slot) is not int or not 0 <= slot < len(self.data['candidates']):
++            raise LedgerError('invalid request slot')
++        if digest(request) != request_hash:
++            raise LedgerError('request payload hash mismatch')
++        if self.data['phase'] != 'collecting' or self.data['candidates'][slot]['state'] != 'generating':
++            raise LedgerError('LLM request outside candidate generation')
++        calls = self.data['llm_requests']
++        if len(calls) >= cap:
++            raise LedgerError('logical-call cap exhausted before dispatch')
++        if self.data['prompt_sha256'] not in (None, request_hash):
++            raise LedgerError('rendered batch prompt or generation kwargs drift before dispatch')
++        self.data['prompt_sha256'] = request_hash
++        if self.data['prompt_snapshot'] is None:
++            self.data['prompt_snapshot'] = json.loads(canonical(request))
++        call_id = len(calls)
++        calls.append(dict(call_id=call_id, slot=slot, request_sha256=request_hash,
++                          state='started', usage=None, error_type=None))
++        self._write()
++        return call_id
++
++    def finish_llm_request(self, call_id, status, usage, error_type):
++        if status not in {'returned', 'ambiguous', 'invalid_usage'}:
++            raise LedgerError('invalid LLM completion status')
++        call = self.data['llm_requests'][call_id]
++        if call['state'] != 'started':
++            raise LedgerError('LLM request already finalized')
++        frozen = json.loads(canonical(usage))
++        call.update(state=status, usage=frozen, error_type=error_type)
++        self._write()
++
++    def begin_task_call(self, slot, intent, cap):
++        if (type(slot) is not int or not 0 <= slot < len(self.data['candidates']) or
++                self.data['phase'] != 'executing' or slot not in self.data['selected'] or
++                self.data['candidates'][slot]['state'] != 'executing'):
++            raise LedgerError('task call outside selected execution')
++        calls = self.data['task_calls']
++        if type(cap) is not int or cap <= 0 or len(calls) >= cap:
++            raise LedgerError('execution-call cap exhausted before dispatch')
++        if any(c['state'] != 'returned' for c in calls):
++            raise LedgerError('unknown previous task call; no retry')
++        same_slot = [c for c in calls if c['slot'] == slot]
++        expected_role = 'debug' if same_slot else 'candidate'
++        if intent['role'] != expected_role:
++            raise LedgerError('candidate/debug task order mismatch')
++        frozen = json.loads(canonical(intent))
++        call_id = len(calls)
++        calls.append(dict(call_id=call_id, slot=slot, intent=frozen, state='started',
++                          task_wall_ns=None, execution_metadata=None, error_type=None))
++        self._write()
++        return call_id
++
++    def finish_task_call(self, call_id, status, elapsed_ns, metadata, error_type):
++        calls = self.data['task_calls']
++        if type(call_id) is not int or not 0 <= call_id < len(calls):
++            raise LedgerError('invalid task call id')
++        call = calls[call_id]
++        if (call['state'] != 'started' or status not in {'returned', 'raised', 'invalid_return'} or
++                type(elapsed_ns) is not int or elapsed_ns < 0):
++            raise LedgerError('invalid task completion')
++        call.update(state=status, task_wall_ns=elapsed_ns,
++                    execution_metadata=json.loads(canonical(metadata)), error_type=error_type)
++        self._write()
++
++    def ready_state(self):
++        return 'generated' if self.data['binding']['selection_policy'] == 'uniform_random' else 'scored'
++
++    def freeze_pool(self):
++        if any(c['state'] not in {'generated', 'scored'} for c in self.data['candidates']):
++            raise LedgerError('complete known candidate pool required')
++        current = digest([c['node'] for c in self.data['candidates']])
++        saved = self.data['pool_sha256']
++        if saved is None:
++            if any(c['state'] != 'generated' for c in self.data['candidates']):
++                raise LedgerError('pool must be frozen before scoring')
++            self.data['pool_sha256'] = current
++            self._write()
++        elif saved != current:
++            raise LedgerError('frozen candidate pool drift')
+diff --git a/src/dojo/solvers/fore_ts/execution_witness.py b/src/dojo/solvers/fore_ts/execution_witness.py
+new file mode 100644
+index 00000000..a9f3ab44
+--- /dev/null
++++ b/src/dojo/solvers/fore_ts/execution_witness.py
+@@ -0,0 +1,92 @@
++"""Private task-call receipts, not full cost accounting or checkpoint recovery.
++
++The caller's task and interpreter are unchanged. Wall time includes whatever the
++task actually does (execution, fetching and grading); interpreter-reported time
++is kept separately and is not assumed to include startup or cleanup. No scores,
++terminal output, labels or exception messages enter these receipts.
++"""
++import hashlib
++import math
++import re
++import time
++from datetime import datetime, timezone
++
++
++class ExecutionWitnessError(RuntimeError):
++    pass
++
++
++SECRET = re.compile(r'sk-[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|'
++                    r'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----')
++
++
++def finite_nonnegative(value):
++    return type(value) in (int, float) and math.isfinite(value) and value >= 0
++
++
++class ExecutionWitness:
++    def __init__(self, ledger, task, max_calls, execution_timeout, output_key,
++                 clock_ns=time.monotonic_ns):
++        if type(max_calls) is not int or max_calls <= 0:
++            raise ExecutionWitnessError('positive execution-call cap required')
++        if not finite_nonnegative(execution_timeout) or execution_timeout <= 0:
++            raise ExecutionWitnessError('finite positive configured execution timeout required')
++        self.ledger, self.task = ledger, task
++        self.max_calls, self.timeout = max_calls, execution_timeout
++        self.output_key, self.clock_ns = output_key, clock_ns
++
++    def task_for(self, slot, role):
++        if role not in {'candidate', 'debug'}:
++            raise ExecutionWitnessError('invalid execution role')
++        return _TaskProxy(self, slot, role)
++
++    def call(self, slot, role, state, action):
++        if not isinstance(action, str) or not action.strip() or SECRET.search(action):
++            raise ExecutionWitnessError('execution code security/schema gate')
++        interpreter = state['solver_interpreter']
++        runtime_timeout = getattr(interpreter, 'timeout', None)
++        if (not finite_nonnegative(runtime_timeout) or runtime_timeout != self.timeout):
++            raise ExecutionWitnessError('runtime and configured execution timeout mismatch')
++        # These are observed attributes, not evidence of physical GPU allocation,
++        # model/evaluator identity, sandbox isolation, or a hard wall-clock bound.
++        runtime = dict(interpreter_class=type(interpreter).__module__ + '.' + type(interpreter).__qualname__,
++                       execution_timeout=runtime_timeout)
++        intent = dict(role=role, code=action,
++                      code_sha256=hashlib.sha256(action.encode()).hexdigest(),
++                      runtime=runtime, utc_intent=datetime.now(timezone.utc).isoformat())
++        call_id = self.ledger.begin_task_call(slot, intent, self.max_calls)
++        start = self.clock_ns()  # After durable intent, before the real task call.
++        try:
++            result = self.task.step_task(state, action)
++        except BaseException as exc:
++            elapsed = self.clock_ns() - start
++            self.ledger.finish_task_call(call_id, 'raised', elapsed, None, type(exc).__name__)
++            raise
++        elapsed = self.clock_ns() - start
++        try:
++            if not isinstance(result, tuple) or len(result) != 2 or not isinstance(result[1], dict):
++                raise ExecutionWitnessError('invalid task return shape')
++            output = result[1][self.output_key]
++            exit_code, timed_out, exec_time = output.exit_code, output.timed_out, output.exec_time
++            if (exit_code is not None and type(exit_code) is not int or
++                    type(timed_out) is not bool or not finite_nonnegative(exec_time)):
++                raise ExecutionWitnessError('invalid execution metadata')
++            metadata = dict(exit_code_reported=exit_code, timed_out_reported=timed_out,
++                            exec_time_reported_seconds=exec_time)
++        except (ExecutionWitnessError, KeyError, AttributeError, TypeError):
++            self.ledger.finish_task_call(call_id, 'invalid_return', elapsed, None, None)
++            raise ExecutionWitnessError('task returned without valid execution metadata') from None
++        # This commit precedes analysis, journal mutation and further debug calls.
++        self.ledger.finish_task_call(call_id, 'returned', elapsed, metadata, None)
++        return result  # Preserve the task's actual state/result objects and values.
++
++
++class _TaskProxy:
++    def __init__(self, witness, slot, role):
++        self._witness, self._slot, self._role = witness, slot, role
++
++    def __getattr__(self, name):
++        return getattr(self._witness.task, name)
++
++    def step_task(self, state, action):
++        return self._witness.call(self._slot, self._role, state, action)
+diff --git a/src/dojo/solvers/fore_ts/fore_ts.py b/src/dojo/solvers/fore_ts/fore_ts.py
+index 6f4d8317..96d06e04 100644
+--- a/src/dojo/solvers/fore_ts/fore_ts.py
++++ b/src/dojo/solvers/fore_ts/fore_ts.py
+@@ -5,9 +5,9 @@
+ # LICENSE file in the root directory of this source tree.
+ 
+ import asyncio
+-from pathlib import Path
+ from typing import Any, Dict, List, Optional, Tuple, Union
+ from dojo.core.solvers.utils.response import extract_code
++from dojo.core.solvers.utils.journal import Journal
+ from dojo.solvers.mcts.mcts import MCTS, MCTSNode
+ from dojo.solvers.utils import get_complextiy_level
+ from dojo.core.solvers.operators.core import async_execute_op_plan_code
+@@ -15,7 +15,10 @@ from dojo.config_dataclasses.solver.fore_ts import ForeTSSolverConfig
+ import urllib.request as _rq
+ import json
+ import random
+-from dojo.core.solvers.utils.journal import Journal
++import math
++from pathlib import Path
++from omegaconf import OmegaConf
++from dojo.solvers.fore_ts.batch_runtime import expand_batch
+ 
+ class ForeTS(MCTS):
+     """Tree search that enquiry a critic before expanding a node."""
+@@ -23,92 +26,22 @@ class ForeTS(MCTS):
+     search_name = "ForeTS"
+ 
+     def __init__(self, cfg: ForeTSSolverConfig, task_info):
++        cfg.validate()
++        task_name = task_info.get("name", task_info.get("competition_id"))
++        if not isinstance(task_name, str) or not task_name.strip():
++            raise ValueError("ForeTS requires the actual task name before generation")
+         super().__init__(cfg, task_info)
+         self.journal_for_unselected = Journal()
+         self.critic_host = cfg.critic_host
+         self.critic_port = cfg.critic_port
+         self.critic_top_k = cfg.critic_top_k
+         self.num_children_to_choose = cfg.num_children_to_choose
+-        self.task_name = str(task_info.get("name", task_info.get("competition_id", "")))
++        self.task_name = task_name
+         self.critic_max_attempts = cfg.critic_max_attempts
+ 
+-    def _expand_leaf_and_backprop(self, path: List[MCTSNode], state: Any, task: Any) -> Tuple[Any, int]:
+-        """
+-        Expand a leaf node and backpropagate results.
+-
+-        Args:
+-            path: List of nodes from root to leaf
+-            state: Current state object
+-            task: Task object for evaluation
+-
+-        Returns:
+-            Tuple of (updated state, number of trials performed)
+-        """
+-        async def _gather():
+-            return await asyncio.gather(*child_nodes_evalue)
+-        
+-        leaf_node = path[-1]
+-        num_children_to_create = min(self.cfg.num_children, self.remaining_steps)
+-        
+-        # Generate num_children_to_create childrens at the same time
+-        # If root node, we draft otherwise we improve
+-        if not leaf_node.parents:
+-            child_nodes_evalue = [self._draft(leaf_node) for _ in range(num_children_to_create)]
+-        else:
+-            child_nodes_evalue = [self._improve(leaf_node) for _ in range(num_children_to_create)]
+-
+-        # Wait for all child nodes to be created
+-        child_nodes_evalue = asyncio.run(_gather())
+-
+-        # Query the critic for value estimates of all child nodes
+-        child_nodes, critic_values = zip(*child_nodes_evalue)
+-
+-        # Get the top k child nodes based on critic's evaluation
+-        top_k_indices = sorted(range(len(critic_values)), key=lambda i: critic_values[i], reverse=True)[:self.critic_top_k]
+-        top_k_child_nodes = [child_nodes[i] for i in top_k_indices]
+-
+-        # Finally, randomly select num_children_to_choose from the top k child nodes
+-        chosen_child_nodes = random.sample(top_k_child_nodes, self.num_children_to_choose)
+-
+-        # Log the chosen child nodes
+-        for chosen_node in chosen_child_nodes:
+-            self.logger.info(f"Chosen Child Node - Code: {chosen_node.code}")
+-
+-        # Log the unselected child nodes for debugging purposes
+-        unselected_child_nodes = [child_nodes[i] for i in range(len(child_nodes)) if i not in top_k_indices or child_nodes[i] not in chosen_child_nodes]
+-        for unselected_node in unselected_child_nodes:
+-            self.journal_for_unselected.append(unselected_node)
+-
+-        for i in range(self.num_children_to_choose):
+-            child_node = chosen_child_nodes[i]
+-            # Evaluate the code
+-            self.logger.debug(f"Step {self.state.current_step}: Executing generated code")
+-            state, eval_result = task.step_task(state, extract_code(child_node.code))
+-            self.parse_eval_result(node=child_node, eval_result=eval_result)
+-
+-            # Add the child to the journal
+-            self.journal.append(child_node)
+-            self.log_journal()
+-            self.state.current_step += 1
+-
+-            # If the child node is not buggy, we backpropagate
+-            if not child_node.is_buggy:
+-                self._backprop_step(path=path + [child_node], value_estimate=child_node.metric.value)
+-                self.set_global_q_values(child_node.metric.value)
+-            else:
+-                # Execute debug cycle
+-                state, debug_path, fixed_metric = self.debug_cycle(state, task, child_node)
+-                # We now exclude the child node from the path and backprop the fixed metric up the rest of the tree
+-                if fixed_metric is not None:
+-                    self._backprop_step(path=path + debug_path, value_estimate=fixed_metric)
+-                    self.set_global_q_values(fixed_metric)
+-
+-            # If we have used up all the steps we break
+-            if self.state.current_step > self.cfg.step_limit:
+-                self.logger.info(f"Step limit reached: {self.state.current_step} steps")
+-                break
+-
+-        return state
++    def _expand_leaf_and_backprop(self, path, state, task):
++        return expand_batch(self, path, state, task, MCTSNode, extract_code,
++                            OmegaConf.to_container(OmegaConf.structured(self.cfg), resolve=True))
+ 
+     async def _query_critic(self, node: MCTSNode) -> float:
+         """
+@@ -119,7 +52,7 @@ class ForeTS(MCTS):
+         """
+         # Query the critic for a value estimate of the node
+         key = id(node)
+-        for _ in range(self.critic_max_attempts):
++        for attempt in range(self.critic_max_attempts):
+             try:
+                 request = _rq.Request(
+                     f"http://{self.critic_host}:{self.critic_port}/score",
+@@ -131,12 +64,20 @@ class ForeTS(MCTS):
+                 )
+                 with _rq.urlopen(request, timeout=600) as response:
+                     response_data = json.loads(response.read().decode())
+-                    value_estimate = float(response_data["score"])
++                    raw_score = response_data["score"]
++                    if isinstance(raw_score, bool):
++                        raise ValueError("critic score must be numeric, not boolean")
++                    value_estimate = float(raw_score)
++                    if not math.isfinite(value_estimate):
++                        raise ValueError("critic score must be finite")
+                 return value_estimate
+             except Exception as e:
+-                self.logger.warning(f"Critic query failed for node {key}: {e}. Retrying...")
+-                await asyncio.sleep(1)  # Wait a bit before retrying
+-                continue
++                self.logger.warning(
++                    f"Critic query failed for node {key}: {type(e).__name__}")
++                if attempt + 1 == self.critic_max_attempts:
++                    raise RuntimeError("critic attempts exhausted; no selection executed") from None
++                await asyncio.sleep(1)
++        raise RuntimeError("critic_max_attempts must be positive")
+                 
+     async def _draft(self, parent: Optional[MCTSNode] = None) -> MCTSNode:
+         """
+@@ -159,12 +100,9 @@ class ForeTS(MCTS):
+             self.root_node,
+             max_operator_tries=self.cfg.max_llm_call_retries,
+         )
+-        node = MCTSNode(plan=plan, code=code, parents=[parent], operators_used=["draft"], operators_metrics=[metrics])
+-
+-        value_estimate = await self._query_critic(node)
+-        self.logger.info(f"One Draft Node Created - Metrics: {metrics}, Estimated Value: {value_estimate}")
++        node = MCTSNode(plan=plan, code=code, parents=[], operators_used=["draft"], operators_metrics=[metrics])
+ 
+-        return node, value_estimate
++        return node
+ 
+     async def _improve(self, parent_node: MCTSNode) -> MCTSNode:
+         """
+@@ -191,29 +129,25 @@ class ForeTS(MCTS):
+             max_operator_tries=self.cfg.max_llm_call_retries,
+         )
+         node = MCTSNode(
+-            plan=plan, code=code, parents=[parent_node], operators_used=["improve"], operators_metrics=[metrics]
++            plan=plan, code=code, parents=[], operators_used=["improve"], operators_metrics=[metrics]
+         )
+ 
+-        value_estimate = await self._query_critic(node)
+-        self.logger.info(f"One Improve Node Created - Estimated Value: {value_estimate}, Metrics: {metrics}")
++        return node
+ 
+-        return node, value_estimate
++    def load_checkpoint(self):
++        # Parent restore loses MCTS statistics and interpreter state; do not replay.
++        root = Path(self.cfg.checkpoint_path)
++        if any((root / name).exists() for name in
++               ("state.json", "journal.jsonl", "forets-candidates-private")):
++            raise RuntimeError("ForeTS full checkpoint reconciliation not implemented")
++        return super().load_checkpoint()
+ 
+     def save_checkpoint(self):
+         super().save_checkpoint()
+-
+-        # Write the journal to a jsonl file
+-        journal_sd = self.journal.node_list()
+-        journal_path = Path(self.cfg.checkpoint_path) / "journal.jsonl"
+-        with open(journal_path, "w") as f:
+-            for node in journal_sd:
+-                f.write(json.dumps(node) + "\n")
+-
+-        # Write the unselected journal to a jsonl file
+-        journal_for_unselected_sd = self.journal_for_unselected.node_list()
+-        journal_for_unselected_path = Path(self.cfg.checkpoint_path) / "journal_for_unselected.jsonl"
+-        with open(journal_for_unselected_path, "w") as f:
+-            for node in journal_for_unselected_sd:
+-                f.write(json.dumps(node) + "\n")
+-
+-        self.logger.info(f"Checkpoint saved to {journal_path}")
+\ No newline at end of file
++        # Preserve upstream's separate, non-executed journal as an export view.
++        for filename, journal in (("journal.jsonl", self.journal),
++                                  ("journal_for_unselected.jsonl", self.journal_for_unselected)):
++            path = Path(self.cfg.checkpoint_path) / filename
++            with path.open("w") as output:
++                for node_data in journal.node_list():
++                    output.write(json.dumps(node_data) + "\n")
+diff --git a/src/dojo/solvers/fore_ts/request_guard.py b/src/dojo/solvers/fore_ts/request_guard.py
+new file mode 100644
+index 00000000..6c8f2a46
+--- /dev/null
++++ b/src/dojo/solvers/fore_ts/request_guard.py
+@@ -0,0 +1,74 @@
++"""Opt-in ForeTS logical-request audit; not a provider billing or sandbox proof."""
++import copy
++import hashlib
++import json
++import random
++import re
++from contextlib import contextmanager
++from contextvars import ContextVar
++
++ACTIVE = ContextVar('forets_request_guard', default=None)
++CREDENTIAL = re.compile(r'(?i)(?<![A-Za-z0-9])(?:sk-(?:or-v1-)?[A-Za-z0-9_.-]{12,}|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|hf_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16}|Bearer[ \t]+[A-Za-z0-9._-]{20,})')
++
++
++def fingerprint(value):
++    encoded = json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
++    return hashlib.sha256(encoded.encode()).hexdigest()
++
++
++def package_order(packages):
++    if ACTIVE.get() is None:
++        # Preserve upstream default semantics outside the explicitly audited batch.
++        random.shuffle(packages)
++        return packages
++    # The same configured order for all candidates/retries; never mutate config.
++    return list(packages)
++
++
++class BatchRequestGuard:
++    def __init__(self, ledger, max_calls):
++        if type(max_calls) is not int or max_calls <= 0:
++            raise ValueError('positive logical-call cap required')
++        self.ledger, self.max_calls = ledger, max_calls
++
++    @contextmanager
++    def slot(self, slot):
++        if ACTIVE.get() is not None:
++            raise RuntimeError('nested request guard')
++        token = ACTIVE.set((self, slot))
++        try:
++            yield
++        finally:
++            ACTIVE.reset(token)
++
++
++async def audited_query(client, messages, **kwargs):
++    ctx = ACTIVE.get()
++    if ctx is None:
++        return await client.query(messages, **kwargs)
++    guard, slot = ctx
++    # Copy both sides: transport mutation must not alter a retained request snapshot.
++    request = copy.deepcopy(dict(messages=messages, kwargs=kwargs,
++                                client_class=type(client).__module__ + '.' + type(client).__qualname__))
++    request_hash = fingerprint(request)  # Reject unserializable/nonfinite requests before dispatch.
++    if CREDENTIAL.search(json.dumps(request, sort_keys=True, allow_nan=False)):
++        raise RuntimeError('credential-shaped request blocked before storage or dispatch')
++    call_id = guard.ledger.begin_llm_request(slot, request_hash, request, guard.max_calls)
++    outgoing = copy.deepcopy(request)
++    try:
++        output, usage = await client.query(outgoing['messages'], **outgoing['kwargs'])
++    except BaseException as exc:
++        # Request may have reached the server. Unknown usage is not free; never retry it here.
++        guard.ledger.finish_llm_request(call_id, 'ambiguous', None, type(exc).__name__)
++        raise
++    # Do not silently retry billing / account for a malformed return as zero usage.
++    try:
++        frozen_usage = copy.deepcopy(usage)
++        fingerprint(frozen_usage)
++    except Exception:
++        guard.ledger.finish_llm_request(call_id, 'invalid_usage', None, 'UnserializableUsage')
++        raise RuntimeError('provider usage cannot be audited') from None
++    guard.ledger.finish_llm_request(call_id, 'returned', frozen_usage, None)
++    if fingerprint(outgoing) != request_hash:
++        raise RuntimeError('client mutated dispatched request; no automatic retry')
++    return output, usage
+diff --git a/src/dojo/solvers/fore_ts/selection.py b/src/dojo/solvers/fore_ts/selection.py
+new file mode 100644
+index 00000000..b066788f
+--- /dev/null
++++ b/src/dojo/solvers/fore_ts/selection.py
+@@ -0,0 +1,31 @@
++"""Common batch selector; pure function, no model calls or result-label reads."""
++import hashlib
++import json
++import math
++import random
++
++POLICIES = ('uniform_random', 'critic_topk_random')
++
++
++def choose_slots(count, top_k, choose, policy, seed, task, step, scores=None):
++    if policy not in POLICIES:
++        raise ValueError('explicit supported selection policy required')
++    if any(type(v) is not int or v <= 0 for v in (count, top_k, choose)) or choose > top_k:
++        raise ValueError('invalid candidate/top-k/choose contract')
++    if type(seed) is not int or type(step) is not int or step < 0 or not isinstance(task, str) or not task:
++        raise ValueError('invalid independent selector identity')
++    if policy == 'uniform_random':
++        if scores is not None:
++            raise ValueError('random baseline must not receive critic scores')
++        eligible = list(range(count))
++    else:
++        if (not isinstance(scores, (list, tuple)) or len(scores) != count or
++                any(type(s) not in (int, float) or not math.isfinite(s) for s in scores)):
++            raise ValueError('complete finite score vector required')
++        # Preserve stable slot-order ties. Sort the eligible set back into slot
++        # order before drawing, so top-k==pool exactly couples to the random arm.
++        ranked = sorted(range(count), key=lambda i: scores[i], reverse=True)
++        eligible = sorted(ranked[:min(top_k, count)])
++    identity = dict(domain='forets-selector-v2', seed=seed, task=task, step=step)
++    key = hashlib.sha256(json.dumps(identity, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
++    return random.Random(key).sample(eligible, min(choose, len(eligible)))
+diff --git a/src/dojo/solvers/mcts/mcts.py b/src/dojo/solvers/mcts/mcts.py
+index e59e7585..0a25c2ef 100644
+--- a/src/dojo/solvers/mcts/mcts.py
++++ b/src/dojo/solvers/mcts/mcts.py
+@@ -221,7 +221,7 @@ class MCTS(Solver):
+         self.create_root_node()
+ 
+         # Run the search
+-        while self.state.current_step <= self.cfg.step_limit:
++        while self.state.current_step < self.cfg.step_limit:
+             start_time = time.monotonic()
+             state = self.step(task, state)
+             self.state.running_time += time.monotonic() - start_time
+diff --git a/src/dojo/tasks/mlebench/task.py b/src/dojo/tasks/mlebench/task.py
+index a2036285..52a2e906 100644
+--- a/src/dojo/tasks/mlebench/task.py
++++ b/src/dojo/tasks/mlebench/task.py
+@@ -90,6 +90,7 @@ class MLEBenchTask(Task):
+         # Prepare the task info object
+         lower_is_better = evaluate.is_lower_better(self.competition)
+         task_info = {
++            "name": self.cfg.name,
+             TASK_DESCRIPTION: self.task_description,
+             "lower_is_better": lower_is_better,
+         }
+diff --git a/src/dojo/utils/code_parsing.py b/src/dojo/utils/code_parsing.py
+index 5ce9248d..acbd19ad 100644
+--- a/src/dojo/utils/code_parsing.py
++++ b/src/dojo/utils/code_parsing.py
+@@ -96,13 +96,11 @@ def parse_json_output(response_text):
+     contain a leading "json" prefix, or include trailing commas.
+     """
+     if isinstance(response_text, str):
+-        original_text = response_text  # Keep the original for logging.
+-
+         # Try simply load it
+         try:
+             return json.loads(response_text)
+         except json.decoder.JSONDecodeError as e:
+-            log.info("JSON decode error: " + str(e) + " | Original response: " + original_text)
++            log.debug("JSON wrapper parsing required (%s)", type(e).__name__)
+ 
+         # 1. Extract JSON from markdown/code block wrappers (```json ... ```).
+         code_block_pattern = re.compile(r"```(?:json)?\s*([\s\S]+?)\s*```", re.IGNORECASE)
+@@ -113,18 +111,19 @@ def parse_json_output(response_text):
+         # 2. Remove any leading "json" prefix (case-insensitive).
+         response_text = re.sub(r"^json\s*", "", response_text, flags=re.IGNORECASE)
+ 
+-        # 3. Remove trailing commas before closing objects or arrays.
+-        # This regex finds a comma followed by optional whitespace and a closing }.
+-        response_text = re.sub(r",\s*(\})", r"\1", response_text)
++        # 3. Repair trailing commas OUTSIDE strings only. Generated code inside
++        # JSON strings must remain byte-for-byte unchanged (including `, }`).
++        response_text = re.sub(r'("(?:\\.|[^"\\])*")|,\s*(?=[}\]])',
++                               lambda match: match.group(1) or "", response_text)
+ 
+         try:
+             return json.loads(response_text)
+         except json.decoder.JSONDecodeError as e:
+-            log.info("JSON decode error: " + str(e) + " | Original response: " + original_text)
++            log.info("JSON parsing failed (%s); raw response omitted", type(e).__name__)
+             return {}
+     else:
+         try:
+             return dict(response_text)
+         except Exception as e:
+-            log.info("Error converting non-string response to dict: " + str(e))
++            log.info("Non-string JSON conversion failed (%s)", type(e).__name__)
+             return {}
+diff --git a/src/mle_critic/src/evaluation/bradley_terry_evaluation.py b/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
+index 2754d21f..14687d05 100644
+--- a/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
++++ b/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
+@@ -37,11 +37,59 @@ class _RewardModel(torch.nn.Module):
+         return {"logits": self.head(pooled).squeeze(-1).float()}
+ 
+ 
++def _load_raw_checkpoint_offline(checkpoint_path, base_dir, meta, device_map):
++    """Strict raw-state loading on one device, with no pretrained download/init.
++
++    This opt-in path accepts local configuration/tokenizer files and a combined
++    backbone.* / head.* safetensors state. It does not support adapters, separate
++    pickle heads, or multi-device dispatch. Metadata provenance is recorded by
++    the caller; training/evaluation state is never needed here.
++    """
++    from accelerate import init_empty_weights
++    from safetensors.torch import load_file
++    from transformers import AutoConfig, AutoModel, AutoTokenizer
++
++    base_dir = Path(base_dir)
++    if not base_dir.is_dir() or not (base_dir / "config.json").is_file():
++        raise ValueError("offline_base_dir must be a local directory containing config.json")
++    if (checkpoint_path / "head.pt").exists():
++        raise ValueError("offline loading requires a combined raw safetensors checkpoint")
++    if device_map not in (None, "auto"):
++        raise ValueError("offline loading supports only one device, not a custom device map")
++    cuda = torch.cuda.is_available()
++    if cuda and torch.cuda.device_count() != 1:
++        raise ValueError("offline loading requires exactly one visible GPU; set CUDA_VISIBLE_DEVICES")
++    dtype = torch.bfloat16 if cuda else torch.float32
++    device = torch.device("cuda:0" if cuda else "cpu")
++    config = AutoConfig.from_pretrained(str(base_dir), local_files_only=True, trust_remote_code=False)
++    tokenizer = AutoTokenizer.from_pretrained(str(base_dir), local_files_only=True, trust_remote_code=False)
++    if tokenizer.pad_token is None:
++        tokenizer.pad_token = tokenizer.eos_token
++    if tokenizer.pad_token_id is None:
++        raise ValueError("tokenizer needs a pad or EOS token")
++
++    # Parameters stay on meta; non-persistent buffers (e.g. rotary frequencies)
++    # are built normally from the config, then moved together with the model.
++    with init_empty_weights(include_buffers=False):
++        model = _RewardModel(AutoModel.from_config(config, torch_dtype=dtype, trust_remote_code=False))
++    state = load_file(str(checkpoint_path / "model.safetensors"), device="cpu")
++    if "head.weight" not in state or not any(key.startswith("backbone.") for key in state):
++        raise ValueError("offline loading requires backbone.* and head.* in model.safetensors")
++    model.load_state_dict(state, strict=True, assign=True)
++    del state
++    model = model.to(device=device, dtype=dtype)
++    if any(value.is_meta for value in (*model.parameters(), *model.buffers())):
++        raise RuntimeError("offline model contains unmaterialized tensors")
++    model.eval()
++    return model, tokenizer, meta
++
++
+ def load_checkpoint(
+     checkpoint: str,
+     *,
+     base_model: str | None = None,
+     device_map: str | dict[str, Any] | None = "auto",
++    offline_base_dir: str | None = None,
+ ):
+     """Load a full-FT Trainer checkpoint or full backbone plus linear head."""
+     from safetensors.torch import load_file
+@@ -53,6 +101,8 @@ def load_checkpoint(
+         raise FileNotFoundError(f"expected full backbone weights at {weights_path}")
+     meta_path = checkpoint_path / "rm_meta.json"
+     meta = json.loads(meta_path.read_text()) if meta_path.exists() else {}
++    if offline_base_dir is not None:
++        return _load_raw_checkpoint_offline(checkpoint_path, offline_base_dir, meta, device_map)
+     base_name = meta.get("base_model") or base_model
+     if not base_name:
+         raise ValueError("checkpoint has no rm_meta.json; pass --base-model")
+diff --git a/src/mle_critic/src/evaluation/bradley_terry_server.py b/src/mle_critic/src/evaluation/bradley_terry_server.py
+index 3d319d6e..fca0f2e6 100644
+--- a/src/mle_critic/src/evaluation/bradley_terry_server.py
++++ b/src/mle_critic/src/evaluation/bradley_terry_server.py
+@@ -20,9 +20,9 @@ from .bradley_terry_evaluation import _score_sequences, load_checkpoint
+ class RewardScorer:
+     """Tokenize and score one task/code request."""
+ 
+-    def __init__(self, checkpoint: str, base_model: str | None = None):
++    def __init__(self, checkpoint: str, base_model: str | None = None, *, offline_base_dir: str | None = None):
+         self.model, self.tokenizer, self.meta = load_checkpoint(
+-            checkpoint, base_model=base_model, device_map="auto"
++            checkpoint, base_model=base_model, device_map="auto", offline_base_dir=offline_base_dir
+         )
+         self.max_len = int(self.meta.get("max_len", 16384))
+         self.head_frac = float(self.meta.get("head_frac", 0.25))
+@@ -170,6 +170,8 @@ def main() -> None:
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--checkpoint", default=os.environ.get("RM_DIR"))
+     parser.add_argument("--base-model", default=os.environ.get("RM_BASE_MODEL"))
++    parser.add_argument("--offline-base-dir", default=os.environ.get("RM_OFFLINE_BASE_DIR"),
++                        help="opt-in: local config/tokenizer for strict single-device raw-state loading")
+     parser.add_argument("--host", default=os.environ.get("RM_HOST", "127.0.0.1"))
+     parser.add_argument("--port", type=int, default=int(os.environ.get("RM_PORT", "8765")))
+     parser.add_argument("--batch-size", type=int, default=int(os.environ.get("RM_BATCH_SIZE", "1")),
+@@ -179,7 +181,7 @@ def main() -> None:
+         parser.error("--checkpoint or RM_DIR is required")
+     if args.batch_size < 1:
+         parser.error("--batch-size must be positive")
+-    scorer = RewardScorer(args.checkpoint, args.base_model)
++    scorer = RewardScorer(args.checkpoint, args.base_model, offline_base_dir=args.offline_base_dir)
+     batch_queue = BatchScoringQueue(scorer, args.batch_size)
+     threading.Thread(target=_stats_loop, args=(batch_queue,), name="rm-stats", daemon=True).start()
+     print(f"[rm_server] loaded {args.checkpoint} (max_len={scorer.max_len}, task_cond={scorer.task_cond}, batch_size={args.batch_size})", flush=True)

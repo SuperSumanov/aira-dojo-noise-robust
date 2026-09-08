@@ -1,0 +1,107 @@
+diff --git a/src/mle_critic/src/evaluation/bradley_terry_evaluation.py b/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
+index 2754d21f..14687d05 100644
+--- a/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
++++ b/src/mle_critic/src/evaluation/bradley_terry_evaluation.py
+@@ -37,11 +37,59 @@ class _RewardModel(torch.nn.Module):
+         return {"logits": self.head(pooled).squeeze(-1).float()}
+ 
+ 
++def _load_raw_checkpoint_offline(checkpoint_path, base_dir, meta, device_map):
++    """Strict raw-state loading on one device, with no pretrained download/init.
++
++    This opt-in path accepts local configuration/tokenizer files and a combined
++    backbone.* / head.* safetensors state. It does not support adapters, separate
++    pickle heads, or multi-device dispatch. Metadata provenance is recorded by
++    the caller; training/evaluation state is never needed here.
++    """
++    from accelerate import init_empty_weights
++    from safetensors.torch import load_file
++    from transformers import AutoConfig, AutoModel, AutoTokenizer
++
++    base_dir = Path(base_dir)
++    if not base_dir.is_dir() or not (base_dir / "config.json").is_file():
++        raise ValueError("offline_base_dir must be a local directory containing config.json")
++    if (checkpoint_path / "head.pt").exists():
++        raise ValueError("offline loading requires a combined raw safetensors checkpoint")
++    if device_map not in (None, "auto"):
++        raise ValueError("offline loading supports only one device, not a custom device map")
++    cuda = torch.cuda.is_available()
++    if cuda and torch.cuda.device_count() != 1:
++        raise ValueError("offline loading requires exactly one visible GPU; set CUDA_VISIBLE_DEVICES")
++    dtype = torch.bfloat16 if cuda else torch.float32
++    device = torch.device("cuda:0" if cuda else "cpu")
++    config = AutoConfig.from_pretrained(str(base_dir), local_files_only=True, trust_remote_code=False)
++    tokenizer = AutoTokenizer.from_pretrained(str(base_dir), local_files_only=True, trust_remote_code=False)
++    if tokenizer.pad_token is None:
++        tokenizer.pad_token = tokenizer.eos_token
++    if tokenizer.pad_token_id is None:
++        raise ValueError("tokenizer needs a pad or EOS token")
++
++    # Parameters stay on meta; non-persistent buffers (e.g. rotary frequencies)
++    # are built normally from the config, then moved together with the model.
++    with init_empty_weights(include_buffers=False):
++        model = _RewardModel(AutoModel.from_config(config, torch_dtype=dtype, trust_remote_code=False))
++    state = load_file(str(checkpoint_path / "model.safetensors"), device="cpu")
++    if "head.weight" not in state or not any(key.startswith("backbone.") for key in state):
++        raise ValueError("offline loading requires backbone.* and head.* in model.safetensors")
++    model.load_state_dict(state, strict=True, assign=True)
++    del state
++    model = model.to(device=device, dtype=dtype)
++    if any(value.is_meta for value in (*model.parameters(), *model.buffers())):
++        raise RuntimeError("offline model contains unmaterialized tensors")
++    model.eval()
++    return model, tokenizer, meta
++
++
+ def load_checkpoint(
+     checkpoint: str,
+     *,
+     base_model: str | None = None,
+     device_map: str | dict[str, Any] | None = "auto",
++    offline_base_dir: str | None = None,
+ ):
+     """Load a full-FT Trainer checkpoint or full backbone plus linear head."""
+     from safetensors.torch import load_file
+@@ -53,6 +101,8 @@ def load_checkpoint(
+         raise FileNotFoundError(f"expected full backbone weights at {weights_path}")
+     meta_path = checkpoint_path / "rm_meta.json"
+     meta = json.loads(meta_path.read_text()) if meta_path.exists() else {}
++    if offline_base_dir is not None:
++        return _load_raw_checkpoint_offline(checkpoint_path, offline_base_dir, meta, device_map)
+     base_name = meta.get("base_model") or base_model
+     if not base_name:
+         raise ValueError("checkpoint has no rm_meta.json; pass --base-model")
+diff --git a/src/mle_critic/src/evaluation/bradley_terry_server.py b/src/mle_critic/src/evaluation/bradley_terry_server.py
+index 3d319d6e..fca0f2e6 100644
+--- a/src/mle_critic/src/evaluation/bradley_terry_server.py
++++ b/src/mle_critic/src/evaluation/bradley_terry_server.py
+@@ -20,9 +20,9 @@ from .bradley_terry_evaluation import _score_sequences, load_checkpoint
+ class RewardScorer:
+     """Tokenize and score one task/code request."""
+ 
+-    def __init__(self, checkpoint: str, base_model: str | None = None):
++    def __init__(self, checkpoint: str, base_model: str | None = None, *, offline_base_dir: str | None = None):
+         self.model, self.tokenizer, self.meta = load_checkpoint(
+-            checkpoint, base_model=base_model, device_map="auto"
++            checkpoint, base_model=base_model, device_map="auto", offline_base_dir=offline_base_dir
+         )
+         self.max_len = int(self.meta.get("max_len", 16384))
+         self.head_frac = float(self.meta.get("head_frac", 0.25))
+@@ -170,6 +170,8 @@ def main() -> None:
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--checkpoint", default=os.environ.get("RM_DIR"))
+     parser.add_argument("--base-model", default=os.environ.get("RM_BASE_MODEL"))
++    parser.add_argument("--offline-base-dir", default=os.environ.get("RM_OFFLINE_BASE_DIR"),
++                        help="opt-in: local config/tokenizer for strict single-device raw-state loading")
+     parser.add_argument("--host", default=os.environ.get("RM_HOST", "127.0.0.1"))
+     parser.add_argument("--port", type=int, default=int(os.environ.get("RM_PORT", "8765")))
+     parser.add_argument("--batch-size", type=int, default=int(os.environ.get("RM_BATCH_SIZE", "1")),
+@@ -179,7 +181,7 @@ def main() -> None:
+         parser.error("--checkpoint or RM_DIR is required")
+     if args.batch_size < 1:
+         parser.error("--batch-size must be positive")
+-    scorer = RewardScorer(args.checkpoint, args.base_model)
++    scorer = RewardScorer(args.checkpoint, args.base_model, offline_base_dir=args.offline_base_dir)
+     batch_queue = BatchScoringQueue(scorer, args.batch_size)
+     threading.Thread(target=_stats_loop, args=(batch_queue,), name="rm-stats", daemon=True).start()
+     print(f"[rm_server] loaded {args.checkpoint} (max_len={scorer.max_len}, task_cond={scorer.task_cond}, batch_size={args.batch_size})", flush=True)

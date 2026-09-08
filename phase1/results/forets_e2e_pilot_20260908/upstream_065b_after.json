@@ -1,0 +1,51 @@
+{
+  "api_calls": 0,
+  "checks": [
+    "retry_export_uniform_random",
+    "retry_export_critic_topk_random",
+    "changed_export_rejected",
+    "wrapped_json_preserves_string_and_no_raw_log",
+    "actual_config_inheritance_and_fairness_seed_6",
+    "actual_config_inheritance_and_fairness_seed_7",
+    "actual_backend_plain_fenced_tools_and_trailing_comma",
+    "actual_backend_schema_rejection"
+  ],
+  "checks_passed": 8,
+  "evidence": {
+    "critic_topk_random": {
+      "artificial_executions": 2,
+      "critic_calls": 5,
+      "duplicate": false,
+      "exported": 3,
+      "generated": 5,
+      "unique": 3
+    },
+    "drift": {
+      "drift_rejected_before_execution": true
+    },
+    "json_before_or_after": {
+      "code_changed": false,
+      "raw_response_logged": false
+    },
+    "uniform_random": {
+      "artificial_executions": 2,
+      "critic_calls": 0,
+      "duplicate": false,
+      "exported": 3,
+      "generated": 5,
+      "unique": 3
+    }
+  },
+  "gpu_requested": false,
+  "model_loaded": false,
+  "protected_data_read": false,
+  "real_task_executed": false,
+  "source_tree": "83ffe50f517dde409baba3a73e69ef5872dab1ac",
+  "status": "TARGETED_CPU_PASS",
+  "upstream_commit": "065b0fbaa89e0eb663f2834ec768081f5d56394d",
+  "versions": {
+    "hydra-core": "1.3.2",
+    "litellm": "1.65.7",
+    "torch": "2.12.1+cpu"
+  }
+}

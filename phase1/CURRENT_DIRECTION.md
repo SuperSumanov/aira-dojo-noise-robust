@@ -1,7 +1,35 @@
-# 当前研究方向唯一入口（2026-09-08）
+# 当前研究方向唯一入口（2026-09-09）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0L119. 2026-09-09：离线loader通过CPU检查，接入学长最新ForeTS并修复重试导出/JSON改码
+
+继续0L115的e2e优先，不恢复G0、corpus审计或原严格四fit。用户说API对应关系等学长回复；不重复询问，
+不把PRIMARY_KEY试送未知服务，不从聊天复制密钥。模型位置已解决，不再下载/索要。
+
+新增opt-in `--offline-base-dir`：按固定本地配置构造raw critic并strict加载完整state，避免再下载底座权重。
+真实小Qwen3在seed6/7的state、前向与RewardScorer输出一致；含异常拒绝/默认旧入口共10项CPU检查通过。
+真实8B仅做400个tensor名称/形状与meta架构匹配，以及本地tokenizer加载；没有读取真实权重数值或做8B前向。
+前一连接在回执完成后reset，本轮取到完整回执并确认无遗留测试进程；不能把本地SSH退出1说成捕获到远端退出0。
+loader源文件未再改，不重复这10项。结果：results/forets_e2e_pilot_20260908/offline_loader_cpu_check.json。
+
+fetch后学长head为065b0fbaa89e0eb663f2834ec768081f5d56394d，新6文件credential-shape scan为0。
+保留MCTS配置继承、uct_c=0.25、未选候选单独导出及结构化JSON解析修复；旧0005与3文件冲突，不能直接套用。
+当前独立累计补丁0010精确基于065b，已在私有Git index完整应用并得到tree
+`83ffe50f517dde409baba3a73e69ef5872dab1ac`，不要再叠0005—0009。
+只部署到forets-e2e-dev-20260908-IMuJx6/upstream-065b0fba，未改学长分支或活动生产目录。
+
+实际源码人工输入复现两类缺陷：首次执行前重试使3个未选候选导出6条；带代码块的JSON尾逗号修复会改掉
+代码字符串里的`, }`，且helper记录完整响应。已分别改为身份匹配的幂等导出、字符串感知修复及不记录原文。
+修后8项定向CPU检查通过：两臂重试/实际checkpoint导出、篡改拒绝、JSON内容保持及schema拒绝、seed6/7下真实
+Hydra配置继承与仅selection_policy不同。未选节点不进入执行journal/UCT，随机臂0次critic请求。
+首次测试因测试脚本未显式关闭SQLite读连接导致NFS临时目录清理失败；修正读连接关闭并在/tmp运行人工夹具后重试通过。
+前后回执upstream_065b_before/after.json保留；这是工程缺陷修复，不是端到端收益或新方法结论。
+
+下一步：按学长最新文档建议，先用轻任务/免费endpoint做有界真实集成（地址和模型仍待回复，不能擅自认定免费），
+再锁定生成器、硬时间/API费用上限执行探索两臂。真实8B GPU推理、硬cap、最终预算均尚未完成，当前GPU/API/fit为0。
+条件8runs/9GPU小时仍是规划，不是已启动任务。保护集不动，不以已完成检查数量替代真实效果。
 
 ## 0L118. 2026-09-08：critic权重已接收并解压，原始checkpoint格式确认，待实际加载
 

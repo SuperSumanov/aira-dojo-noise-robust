@@ -1,15 +1,33 @@
-# Context handoff：Decision Corpus + Predictor Benchmark
+# Context handoff：ForeTS e2e探索（corpus与predictor为支撑）
 
-**Last updated:** 2026-09-08
+**Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-08，0L118覆盖下文；模型已下载并解压、原始checkpoint格式确认，待真实加载/API路由。
+**Dynamic status timestamp:** 2026-09-09香港时间，0L119覆盖下文；离线loader/新上游集成已通过CPU检查，等API对应关系。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
 **Authority warning:** 本文件不是科学方向的最高权威。开始任何实验前必须先 fetch Git，再读
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
-## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+## 2026-09-09 当前入口，覆盖下文历史状态
+
+先读CURRENT_DIRECTION0L119。模型已到位，用户明确“我等一下学长回复”API对应关系；不要再问或发送PRIMARY_KEY试错。
+0009离线raw loader的10项CPU检查已完成：真实tiny Qwen3 seed6/7前向/RewardScorer一致，真实8B仅400键/形状及tokenizer。
+回执已取到，但旧SSH连接reset退出1；无遗留进程，不重复旧测试，也不宣称真实8B已加载/前向。
+
+学长最新065b0fbaa89e0eb663f2834ec768081f5d56394d。用累计0010独立应用于该commit；**不叠0005—0009**。
+完整集成tree83ffe50f517dde409baba3a73e69ef5872dab1ac，Dojo在远端独立
+forets-e2e-dev-20260908-IMuJx6/upstream-065b0fba；critic两文件仍在该根的critic-offline-v1中，逐blob等于新tree。
+修复了新集成的未选候选重试重复导出，以及JSON helper误改代码字符串/原文日志；人工前后复现+修后8项通过。
+真实Hydra seed6/7仅selection_policy不同，实际save_checkpoint分离执行/未选日志；无GPU/API/真实任务/新收益。
+脚本与结果见scripts/check_forets_upstream_065b_20260909.py和results/forets_e2e_pilot_20260908。
+首次测试脚本SQLite读连接未显式关闭导致NFS清理异常，已修正，非生产ledger连接泄漏；详情0L119。
+
+不要把等待变成G0/旧选择器/来源/语料审计循环。接下来先按学长建议轻任务+确认的免费endpoint做真实集成，
+完成硬预算后运行小型e2e随机/critic对照。endpoint未回复；真实8B GPU推理及8run硬cap/费用表尚未完成。
+当前候选9GPU小时只是规划；不释放旧12535，不恢复已关闭方向，不动保护集，不改学长分支。
+
+## 2026-09-08 历史入口（0L118，加载状态已由上文更新）
 
 先读CURRENT_DIRECTION0L118。用户已给模型下载链接；Qwen3-8B.tar.gz完整下载12051153651 bytes，
 SHA256 01dda87a6dfaf77a6c454efcb1a9d5a88964f11f7b4dd88edea1f331be84f1d6，远端目录

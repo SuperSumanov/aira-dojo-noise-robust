@@ -1,6 +1,6 @@
 # ForeTS 真实端到端探索：首轮配置与实际缺项
 
-2026-09-08，按用户转达学长反馈执行。此页是待完成的探索运行表，不是已开跑或收益报告。
+2026-09-08建立，2026-09-09更新，按用户转达学长反馈执行。此页是待完成的探索运行表，不是已开跑或收益报告。
 
 ## 要回答的问题
 
@@ -9,6 +9,29 @@
 不要求补造旧环境；但保护集不开放，探索看过的数据不再作为未触碰确认。
 
 ## 已落实
+
+### 最新状态：离线loader与065b上游集成（0L119，覆盖以下历史描述）
+
+- 模型接收不再阻塞。0009新增`offline_base_dir`/`--offline-base-dir`，从本地固定config/tokenizer和完整raw state加载，
+  不需第二份base pretrained权重。10项CPU检查通过；其中tiny真实Qwen3 seed6/7的state/前向/RewardScorer与参考一致。
+  真8B只验证400键/形状及分词器，不是8B加载/推理。中断的SSH退出1，但完整回执已落盘并取回，进程已结束。
+- 最新学长commit `065b0fbaa89e0eb663f2834ec768081f5d56394d`；新增6文件先凭据形状扫描0。
+  集成配置继承/独立未选日志/JSON解析改进。旧补丁冲突不强套，最新入口为独立累计
+  `0010-ForeTS-cumulative-for-065b0fba-20260909.patch`，不用再叠旧0005—0009。
+- 完整tree `83ffe50f517dde409baba3a73e69ef5872dab1ac`；独立应用复建完全一致。
+  Dojo source-only tar SHA256 `9b890878a5d5597582ca216ff6dc061e0d1e965e6fee415e8236ca3988897444`，
+  部署于`/research/d7/spc/yzyang4/forets-e2e-dev-20260908-IMuJx6/upstream-065b0fba`。
+  critic两个文件在同一根目录`critic-offline-v1`中，与新tree完全相同；未覆盖生产源码或学长分支。
+- 修前实际源码人工输入：两臂首次执行前中断重试均把3个未选候选导成6条；JSON修复会改动字符串内`, }`，并记录原响应。
+  修后8项定向检查通过：导出幂等、改变已有导出内容则拒绝、执行树不含未选、字符串内容保持/schema拒绝，
+  实际Hydra在seed6/7下都只差selection_policy，继承MCTSSolverConfig且uct_c=0.25。
+  测试使用真实ForeTS/MCTS/Journal/后端解析/配置代码，生成器、critic响应和task返回为人工替身，无实际API或任务。
+  初次测试因测试自身未关闭SQLite读连接触发NFS清理异常；显式关闭并改用/tmp夹具后通过，未改生产ledger。
+- 回执：`offline_loader_cpu_check.json`、`upstream_065b_before.json`、`upstream_065b_after.json`，位于本页同名results目录。
+  不重跑已完成loader/旧矩阵。这些结果是接入修复，不支持模型变好、scaling或端到端胜出。
+
+用户正等学长确认API对应关系；不重复询问。采纳新文档的轻任务/免费endpoint调试建议，但不可擅自换路由/模型。
+真实8B GPU推理、外部硬停止和准确费用表尚未完成；下面8runs/9GPU小时仍是条件规划，不是已启动或最终预算。
 
 ### 用户提供模型链接后：实际权重已接收（0L118）
 
@@ -91,11 +114,11 @@ leaf seed6随机先、seed7 critic先；spaceship seed6 critic先、seed7随机�
 
 1. 权重已接收，不再索要链接或重传。底座Qwen/Qwen3-8B-Base、上下文16384由学长确认，
    用于现成旧critic的新探索，不等待RL/重新训练，不称最佳模型或干净scaling；不恢复具体已撤回冻结确认。
-   我方接着处理本地加载入口和有界GPU验证；文件头结构符合不代表全模型实际运行成功。
+   本地加载入口的CPU检查已完成（0L119），接下来是有界GPU验证；结构符合不代表真8B运行成功。
 2. 实际LiteLLM backend使用模型专属 `PRIMARY_KEY_...` 或 `PRIMARY_KEY`。远端.env有后者，
    没有该OpenRouter模型专属变量，也没有OPENROUTER_API_KEY；fallback不呈OpenRouter凭据形状，
    .env中未找到可说明路由的URL/ENDPOINT字段。形状不是凭据有效性验证，禁止把它试送错误服务。
-   已询问正确服务地址，或请学长直接在远端0600.env安装对应凭据；未回显/传输密钥、未发账户或推理请求。
+   用户已回复“我等一下学长回复”；不再询问相同问题。未回显/传输密钥、未发账户或推理请求。
 
 本轮小失败：打包检查最初漏允许顶层src目录；随后辅助导入写错ForeTSSolver类名，改为实际ForeTS。
 两处均已修正；Hydra仍提示上游default_runner缺_self_，当前真实配置成功，不为此展开框架重构。

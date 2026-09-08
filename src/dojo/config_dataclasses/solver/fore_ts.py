@@ -8,22 +8,11 @@ from dataclasses import dataclass, field
 
 from omegaconf import MISSING
 
-from dojo.config_dataclasses.solver.base import SolverConfig
+from dojo.config_dataclasses.solver.mcts import MCTSSolverConfig
 
 
 @dataclass
-class ForeTSSolverConfig(SolverConfig):
-    num_children: int = field(
-        default=MISSING, metadata={"description": "Number of child nodes expanded per search step"}
-    )
-    max_debug_depth: int = field(default=MISSING, metadata={"description": "Maximum depth of debugging analysis"})
-    max_debug_time: float = field(
-        default=MISSING, metadata={"description": "Maximum time allowed for debugging analysis"}
-    )
-    data_preview: bool = field(
-        default=MISSING,
-        metadata={"description": "Whether to provide the agent with a preview of the data before execution"},
-    )
+class ForeTSSolverConfig(MCTSSolverConfig):
     critic_host: str = field(
         default=MISSING, metadata={"description": "Host address for the critic service"}
     )

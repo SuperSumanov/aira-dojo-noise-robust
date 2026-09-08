@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08香港15:16；当前0L111覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-08；当前0L112覆盖下文历史，Linux验证未完成。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,13 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先读CURRENT_DIRECTION0L112。新增0006独立task-return回执接在0005后；主执行/debug分别记录，
+在analysis之前落盘，未知执行不重试。15 Windows通过/1 Linux-only跳过，真实tree a999d8aaf8e9278e4e1eab57e5e45d2b0f87aa48相同。
+下一步只做新矩阵Linux CPU上限300秒、一个人工print真实解释器进程；不重跑69项/G0，不开GPU/API/fit。
+未部署，不是模型效果/全成本/完整恢复；严格四fit外部开发原记录仍待事实。
+
+### 此前状态（0L111）
 
 先fetch/read CURRENT_DIRECTION 0L111。学长新head54929de4ac92cb1a1a2fd75e31843a223c10c859，
 只改ForeTS的task_name引用+critic server统计，无新outcome/data；4个blob先scan0再读diff。

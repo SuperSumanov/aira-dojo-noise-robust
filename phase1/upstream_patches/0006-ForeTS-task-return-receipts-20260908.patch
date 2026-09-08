@@ -1,0 +1,210 @@
+--- a/src/dojo/solvers/fore_ts/candidate_ledger.py
++++ b/src/dojo/solvers/fore_ts/candidate_ledger.py
+@@ -57,7 +57,7 @@
+             self.conn.execute('PRAGMA journal_mode=DELETE')
+             if new:
+                 self.conn.execute('CREATE TABLE snapshot (id INTEGER PRIMARY KEY CHECK(id=1), payload TEXT NOT NULL, sha256 TEXT NOT NULL)')
+-                self.data = dict(schema=2, llm_requests=[], prompt_sha256=None, prompt_snapshot=None, binding=json.loads(canonical(binding)), phase='collecting', selected=None,
++                self.data = dict(schema=3, task_calls=[], llm_requests=[], prompt_sha256=None, prompt_snapshot=None, binding=json.loads(canonical(binding)), phase='collecting', selected=None,
+                                  candidates=[dict(state='pending', node=None, score=None) for _ in range(count)])
+                 self._write()
+             else:
+@@ -68,7 +68,7 @@
+                 if hashlib.sha256(payload.encode()).hexdigest() != sha:
+                     raise LedgerError('ledger hash drift')
+                 self.data = json.loads(payload)
+-                if (self.data['schema'] != 2 or self.data['binding'] != binding
++                if (self.data['schema'] != 3 or self.data['binding'] != binding
+                         or len(self.data['candidates']) != count):
+                     raise LedgerError('batch binding mismatch')
+         except BaseException:
+@@ -160,6 +160,9 @@
+ 
+     def execution_completed(self, slot):
+         # Means task + parse + journal + debug/backprop returned, not a durable solver checkpoint.
++        calls = [c for c in self.data['task_calls'] if c['slot'] == slot]
++        if not calls or any(c['state'] != 'returned' for c in calls):
++            raise LedgerError('task return receipts incomplete')
+         self._transition(slot, 'executing', 'completed')
+ 
+     def finish(self):
+@@ -205,3 +208,36 @@
+         frozen = json.loads(canonical(usage))
+         call.update(state=status, usage=frozen, error_type=error_type)
+         self._write()
++
++    def begin_task_call(self, slot, intent, cap):
++        if (type(slot) is not int or not 0 <= slot < len(self.data['candidates']) or
++                self.data['phase'] != 'executing' or slot not in self.data['selected'] or
++                self.data['candidates'][slot]['state'] != 'executing'):
++            raise LedgerError('task call outside selected execution')
++        calls = self.data['task_calls']
++        if type(cap) is not int or cap <= 0 or len(calls) >= cap:
++            raise LedgerError('execution-call cap exhausted before dispatch')
++        if any(c['state'] != 'returned' for c in calls):
++            raise LedgerError('unknown previous task call; no retry')
++        same_slot = [c for c in calls if c['slot'] == slot]
++        expected_role = 'debug' if same_slot else 'candidate'
++        if intent['role'] != expected_role:
++            raise LedgerError('candidate/debug task order mismatch')
++        frozen = json.loads(canonical(intent))
++        call_id = len(calls)
++        calls.append(dict(call_id=call_id, slot=slot, intent=frozen, state='started',
++                          task_wall_ns=None, execution_metadata=None, error_type=None))
++        self._write()
++        return call_id
++
++    def finish_task_call(self, call_id, status, elapsed_ns, metadata, error_type):
++        calls = self.data['task_calls']
++        if type(call_id) is not int or not 0 <= call_id < len(calls):
++            raise LedgerError('invalid task call id')
++        call = calls[call_id]
++        if (call['state'] != 'started' or status not in {'returned', 'raised', 'invalid_return'} or
++                type(elapsed_ns) is not int or elapsed_ns < 0):
++            raise LedgerError('invalid task completion')
++        call.update(state=status, task_wall_ns=elapsed_ns,
++                    execution_metadata=json.loads(canonical(metadata)), error_type=error_type)
++        self._write()
+--- a/src/dojo/solvers/fore_ts/batch_runtime.py
++++ b/src/dojo/solvers/fore_ts/batch_runtime.py
+@@ -5,6 +5,8 @@
+ """
+ import asyncio
+ import copy
++from dojo.solvers.fore_ts.execution_witness import ExecutionWitness
++from dojo.core.tasks.constants import EXECUTION_OUTPUT
+ from dojo.solvers.fore_ts.request_guard import BatchRequestGuard
+ import random
+ from pathlib import Path
+@@ -30,7 +32,7 @@
+               for n in solver.journal.nodes],
+         global_q=[solver.global_min_q_val, solver.global_max_q_val],
+     )
+-    binding = dict(schema=2, request_contract="same-rendered-request-v1", boundary_sha256=digest(boundary), parent_id=parent.id,
++    binding = dict(schema=3, execution_contract="task-return-receipt-v1", request_contract="same-rendered-request-v1", boundary_sha256=digest(boundary), parent_id=parent.id,
+                    task=solver.task_name, step=solver.state.current_step)
+     root = Path(solver.cfg.checkpoint_path)
+     root.mkdir(parents=True, exist_ok=True)
+@@ -39,6 +41,9 @@
+         ledger.ensure_preexecution()  # Check EVERY slot before any possible paid call.
+ 
+         guard = BatchRequestGuard(ledger, count * solver.cfg.max_llm_call_retries)
++
++        witness = ExecutionWitness(ledger, task, solver.remaining_steps,
++                                   solver.cfg.execution_timeout, EXECUTION_OUTPUT)
+ 
+         async def obtain(slot):
+             c = ledger.data['candidates'][slot]
+@@ -77,7 +82,7 @@
+                 break
+             child = nodes[slot]
+             ledger.begin_execution(slot)  # Durable intent BEFORE external effects.
+-            state, eval_result = task.step_task(state, extract_code(child.code))
++            state, eval_result = witness.task_for(slot, "candidate").step_task(state, extract_code(child.code))
+             solver.parse_eval_result(node=child, eval_result=eval_result)
+             # Only executed and parsed nodes enter memory/UCT. Never synthesize a score.
+             child.parents = [parent]
+@@ -89,7 +94,7 @@
+                 solver._backprop_step(path=path + [child], value_estimate=child.metric.value)
+                 solver.set_global_q_values(child.metric.value)
+             else:
+-                state, debug_path, fixed_metric = solver.debug_cycle(state, task, child)
++                state, debug_path, fixed_metric = solver.debug_cycle(state, witness.task_for(slot, "debug"), child)
+                 if fixed_metric is not None:
+                     solver._backprop_step(path=path + debug_path, value_estimate=fixed_metric)
+                     solver.set_global_q_values(fixed_metric)
+--- /dev/null
++++ b/src/dojo/solvers/fore_ts/execution_witness.py
+@@ -0,0 +1,92 @@
++"""Private task-call receipts, not full cost accounting or checkpoint recovery.
++
++The caller's task and interpreter are unchanged. Wall time includes whatever the
++task actually does (execution, fetching and grading); interpreter-reported time
++is kept separately and is not assumed to include startup or cleanup. No scores,
++terminal output, labels or exception messages enter these receipts.
++"""
++import hashlib
++import math
++import re
++import time
++from datetime import datetime, timezone
++
++
++class ExecutionWitnessError(RuntimeError):
++    pass
++
++
++SECRET = re.compile(r'sk-[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|'
++                    r'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----')
++
++
++def finite_nonnegative(value):
++    return type(value) in (int, float) and math.isfinite(value) and value >= 0
++
++
++class ExecutionWitness:
++    def __init__(self, ledger, task, max_calls, execution_timeout, output_key,
++                 clock_ns=time.monotonic_ns):
++        if type(max_calls) is not int or max_calls <= 0:
++            raise ExecutionWitnessError('positive execution-call cap required')
++        if not finite_nonnegative(execution_timeout) or execution_timeout <= 0:
++            raise ExecutionWitnessError('finite positive configured execution timeout required')
++        self.ledger, self.task = ledger, task
++        self.max_calls, self.timeout = max_calls, execution_timeout
++        self.output_key, self.clock_ns = output_key, clock_ns
++
++    def task_for(self, slot, role):
++        if role not in {'candidate', 'debug'}:
++            raise ExecutionWitnessError('invalid execution role')
++        return _TaskProxy(self, slot, role)
++
++    def call(self, slot, role, state, action):
++        if not isinstance(action, str) or not action.strip() or SECRET.search(action):
++            raise ExecutionWitnessError('execution code security/schema gate')
++        interpreter = state['solver_interpreter']
++        runtime_timeout = getattr(interpreter, 'timeout', None)
++        if (not finite_nonnegative(runtime_timeout) or runtime_timeout != self.timeout):
++            raise ExecutionWitnessError('runtime and configured execution timeout mismatch')
++        # These are observed attributes, not evidence of physical GPU allocation,
++        # model/evaluator identity, sandbox isolation, or a hard wall-clock bound.
++        runtime = dict(interpreter_class=type(interpreter).__module__ + '.' + type(interpreter).__qualname__,
++                       execution_timeout=runtime_timeout)
++        intent = dict(role=role, code=action,
++                      code_sha256=hashlib.sha256(action.encode()).hexdigest(),
++                      runtime=runtime, utc_intent=datetime.now(timezone.utc).isoformat())
++        call_id = self.ledger.begin_task_call(slot, intent, self.max_calls)
++        start = self.clock_ns()  # After durable intent, before the real task call.
++        try:
++            result = self.task.step_task(state, action)
++        except BaseException as exc:
++            elapsed = self.clock_ns() - start
++            self.ledger.finish_task_call(call_id, 'raised', elapsed, None, type(exc).__name__)
++            raise
++        elapsed = self.clock_ns() - start
++        try:
++            if not isinstance(result, tuple) or len(result) != 2 or not isinstance(result[1], dict):
++                raise ExecutionWitnessError('invalid task return shape')
++            output = result[1][self.output_key]
++            exit_code, timed_out, exec_time = output.exit_code, output.timed_out, output.exec_time
++            if (exit_code is not None and type(exit_code) is not int or
++                    type(timed_out) is not bool or not finite_nonnegative(exec_time)):
++                raise ExecutionWitnessError('invalid execution metadata')
++            metadata = dict(exit_code_reported=exit_code, timed_out_reported=timed_out,
++                            exec_time_reported_seconds=exec_time)
++        except (ExecutionWitnessError, KeyError, AttributeError, TypeError):
++            self.ledger.finish_task_call(call_id, 'invalid_return', elapsed, None, None)
++            raise ExecutionWitnessError('task returned without valid execution metadata') from None
++        # This commit precedes analysis, journal mutation and further debug calls.
++        self.ledger.finish_task_call(call_id, 'returned', elapsed, metadata, None)
++        return result  # Preserve the task's actual state/result objects and values.
++
++
++class _TaskProxy:
++    def __init__(self, witness, slot, role):
++        self._witness, self._slot, self._role = witness, slot, role
++
++    def __getattr__(self, name):
++        return getattr(self._witness.task, name)
++
++    def step_task(self, state, action):
++        return self._witness.call(self._slot, self._role, state, action)

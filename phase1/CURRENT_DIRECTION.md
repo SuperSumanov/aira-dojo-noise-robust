@@ -3,6 +3,19 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L112. 2026-09-08：主执行/debug独立task-return回执，真实CPU验证待完成
+
+新增0006在0005后接入：每次task调用先存意图，返回即存墙钟与interpreter reported结构信息，
+再进入analysis/journal/debug；后处理异常不再丢失task已返回的区分，但仍不支持完整恢复/自动重放。
+主候选及debug共同计入入口remaining_steps的调用cap；timeout与实际属性核对，不缩时限、不改选择器。
+抛异常保留观测墙钟、内部执行未知null，不留score/terminal/异常全文；保护集未读。
+原全局时限只在step后检查、解释器reported时间和timed_out并非完整实际成本，均未宣称解决。
+Windows15过/1 Linux-only跳过；真实Git应用tree a999d8aaf8e9278e4e1eab57e5e45d2b0f87aa48同矩阵通过，
+3文件138增5删。绑定54929和base tree08d78，学长分支/生产checkout不改。
+下一步冻结源码，在新私有Linux目录最多300秒CPU完成新矩阵（含1个真实解释器人工print程序）。
+Linux结果尚未完成，不能提前称通过；不重跑已完69项/G0，不开GPU/API/fit。
+严格四fit仍等待外部实际独立开发原记录；生产ready=false。记录results/forets_execution_witness_20260908。
+
 ## 0L111. 2026-09-08：学长新提交54929，兼容包已准备，旧验收不冒充新实测
 
 post-push fetch观察学长更新至54929de4ac92cb1a1a2fd75e31843a223c10c859（commit时间香港14:58:36）。

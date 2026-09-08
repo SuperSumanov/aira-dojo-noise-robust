@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08；当前0L113覆盖下文历史，新选择器Linux矩阵已完成。
+**Dynamic status timestamp:** 2026-09-08 UTC08:11:55；当前0L114覆盖下文历史，小sibling预算核查已完成。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,15 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先读CURRENT_DIRECTION0L114。共享Drive最新可见仍0906（46项/40日期），学长head54929无变化；只有旧12535 PENDING。
+小sibling成本已用排序与独立子集DP核对，固定84run/24组件/15任务，不读程序/成绩/保护集；库存712组/1757程序实例。
+6个双组件支持任务，每任务一个假设dev组件内1/2/4组的执行cap为39600—218400 /79200—436800 /158400—873600 GPU秒。
+对应11.00—60.67 /22.00—121.33 /44.00—242.67 GPU小时，仅假设1GPU/程序，不含初始化/评分/IO/祖先重放/训练。
+无角色/程序选择、无准入/执行；小工作量备选不是加速，组数不等于独立样本数。原严格四fit仍待外部事实。
+记录results/sibling_reexecution_bounds_20260908，本项完成别重跑；后续可推进未完TF-IDF/身份/全成本，不启动GPU/API/fit。
+
+### 此前状态（0L113）
 
 先读CURRENT_DIRECTION0L113。0007新增uniform_random/critic_topk_random必填policy，前者零critic调用；
 先整批生成冻结再评分，候选篡改拒绝。selector v2的同池k=全池控制精确一致，旧批次不得重选。

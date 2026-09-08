@@ -1,0 +1,183 @@
+{
+  "classification": "INDEPENDENT_SUBSET_DP_METADATA_BOUNDS",
+  "executed_programs": 0,
+  "input_sha256": {
+    "lineage": "fe05dddcd4fe8a3f2208652ce51c9b06df9b9b8f57a5fa655d2029caddcf9981",
+    "pack": "0912a2e6cf8342fe6c209645d2d1b56c142f91a066197fcd5e37d07f8c0955e7",
+    "scope": "fc13d25745c1c8ea408374741358137e9eb374b3b214e0c9f6d4b856b071464b"
+  },
+  "program_instances_in_qualified_groups": 1757,
+  "qualified_complete_nonempty_sibling_groups": 712,
+  "scenarios": [
+    {
+      "groups_per_hypothetical_dev_component": 1,
+      "max_sum_cap_gpu_seconds": 218400,
+      "min_sum_cap_gpu_seconds": 39600,
+      "supported_tasks": 6,
+      "task_rows": [
+        {
+          "available_complete_groups": 21,
+          "conservative_components": 2,
+          "max_cap_gpu_seconds": 72000,
+          "min_cap_gpu_seconds": 7200,
+          "possible_dev_components": 2,
+          "task": "dog-breed-identification"
+        },
+        {
+          "available_complete_groups": 92,
+          "conservative_components": 3,
+          "max_cap_gpu_seconds": 28800,
+          "min_cap_gpu_seconds": 3600,
+          "possible_dev_components": 3,
+          "task": "google-quest-challenge"
+        },
+        {
+          "available_complete_groups": 65,
+          "conservative_components": 3,
+          "max_cap_gpu_seconds": 14400,
+          "min_cap_gpu_seconds": 7200,
+          "possible_dev_components": 3,
+          "task": "histopathologic-cancer-detection"
+        },
+        {
+          "available_complete_groups": 41,
+          "conservative_components": 3,
+          "max_cap_gpu_seconds": 9600,
+          "min_cap_gpu_seconds": 3600,
+          "possible_dev_components": 3,
+          "task": "kuzushiji-recognition"
+        },
+        {
+          "available_complete_groups": 24,
+          "conservative_components": 2,
+          "max_cap_gpu_seconds": 21600,
+          "min_cap_gpu_seconds": 10800,
+          "possible_dev_components": 2,
+          "task": "tabular-playground-series-dec-2021"
+        },
+        {
+          "available_complete_groups": 57,
+          "conservative_components": 2,
+          "max_cap_gpu_seconds": 72000,
+          "min_cap_gpu_seconds": 7200,
+          "possible_dev_components": 2,
+          "task": "tabular-playground-series-may-2022"
+        }
+      ]
+    },
+    {
+      "groups_per_hypothetical_dev_component": 2,
+      "max_sum_cap_gpu_seconds": 436800,
+      "min_sum_cap_gpu_seconds": 79200,
+      "supported_tasks": 6,
+      "task_rows": [
+        {
+          "available_complete_groups": 21,
+          "conservative_components": 2,
+          "max_cap_gpu_seconds": 144000,
+          "min_cap_gpu_seconds": 14400,
+          "possible_dev_components": 2,
+          "task": "dog-breed-identification"
+        },
+        {
+          "available_complete_groups": 92,
+          "conservative_components": 3,
+          "max_cap_gpu_seconds": 57600,
+          "min_cap_gpu_seconds": 7200,
+          "possible_dev_components": 3,
+          "task": "google-quest-challenge"
+        },
+        {
+          "available_complete_groups": 65,
+          "conservative_components": 3,
+          "max_cap_gpu_seconds": 28800,
+          "min_cap_gpu_seconds": 14400,
+          "possible_dev_components": 3,
+          "task": "histopathologic-cancer-detection"
+        },
+        {
+          "available_complete_groups": 41,
+          "conservative_components": 3,
+          "max_cap_gpu_seconds": 19200,
+          "min_cap_gpu_seconds": 7200,
+          "possible_dev_components": 3,
+          "task": "kuzushiji-recognition"
+        },
+        {
+          "available_complete_groups": 24,
+          "conservative_components": 2,
+          "max_cap_gpu_seconds": 43200,
+          "min_cap_gpu_seconds": 21600,
+          "possible_dev_components": 2,
+          "task": "tabular-playground-series-dec-2021"
+        },
+        {
+          "available_complete_groups": 57,
+          "conservative_components": 2,
+          "max_cap_gpu_seconds": 144000,
+          "min_cap_gpu_seconds": 14400,
+          "possible_dev_components": 2,
+          "task": "tabular-playground-series-may-2022"
+        }
+      ]
+    },
+    {
+      "groups_per_hypothetical_dev_component": 4,
+      "max_sum_cap_gpu_seconds": 873600,
+      "min_sum_cap_gpu_seconds": 158400,
+      "supported_tasks": 6,
+      "task_rows": [
+        {
+          "available_complete_groups": 21,
+          "conservative_components": 2,
+          "max_cap_gpu_seconds": 288000,
+          "min_cap_gpu_seconds": 28800,
+          "possible_dev_components": 2,
+          "task": "dog-breed-identification"
+        },
+        {
+          "available_complete_groups": 92,
+          "conservative_components": 3,
+          "max_cap_gpu_seconds": 115200,
+          "min_cap_gpu_seconds": 14400,
+          "possible_dev_components": 3,
+          "task": "google-quest-challenge"
+        },
+        {
+          "available_complete_groups": 65,
+          "conservative_components": 3,
+          "max_cap_gpu_seconds": 57600,
+          "min_cap_gpu_seconds": 28800,
+          "possible_dev_components": 3,
+          "task": "histopathologic-cancer-detection"
+        },
+        {
+          "available_complete_groups": 41,
+          "conservative_components": 3,
+          "max_cap_gpu_seconds": 38400,
+          "min_cap_gpu_seconds": 14400,
+          "possible_dev_components": 3,
+          "task": "kuzushiji-recognition"
+        },
+        {
+          "available_complete_groups": 24,
+          "conservative_components": 2,
+          "max_cap_gpu_seconds": 86400,
+          "min_cap_gpu_seconds": 43200,
+          "possible_dev_components": 2,
+          "task": "tabular-playground-series-dec-2021"
+        },
+        {
+          "available_complete_groups": 57,
+          "conservative_components": 2,
+          "max_cap_gpu_seconds": 288000,
+          "min_cap_gpu_seconds": 28800,
+          "possible_dev_components": 2,
+          "task": "tabular-playground-series-may-2022"
+        }
+      ]
+    }
+  ],
+  "selected_programs": 0,
+  "source_admitted": false
+}

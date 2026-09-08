@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08 UTC08:11:55；当前0L114覆盖下文历史，小sibling预算核查已完成。
+**Dynamic status timestamp:** 2026-09-08 UTC08:21前后；当前0L115覆盖下文历史，学长新反馈改变工作优先级。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,17 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先读CURRENT_DIRECTION0L115和ADVISOR_DIRECTIVES的L节。用户转达学长：corpus只作proxy，最终目标e2e；
+探索阶段提速，GPU用一次有界交互分配连续debug，停止过细的shard/失败回执/恢复重复验收。
+我方已暂停本轮未开始的TF-IDF扩展，下一步先查未撤回的可用critic与真实开发任务，准备小型e2e探索预算表。
+共同batch随机vs critic只改选择器，固定底座/资源/执行规则，观察实际任务成绩与整体成本；不能用pair准确率代替。
+不再把历史完整provenance作为所有探索的前置，但不解除原严格四fit门，不触保护集，不将探索数据洗成确认集。
+必须保留最小config/seed/成本/结果/失败说明；额外审计要针对具体风险，不能继续占据主线。
+SSH实查12535 PENDING/JobHeldUser、Priority0、RunTime0，是过时恢复测试，未释放/取消；G0已完成不再运行。
+学长head仍54929；本轮无GPU/API/fit、无新语料观测或模型收益，未修改学长分支。
+
+### 此前状态（0L114）
 
 先读CURRENT_DIRECTION0L114。共享Drive最新可见仍0906（46项/40日期），学长head54929无变化；只有旧12535 PENDING。
 小sibling成本已用排序与独立子集DP核对，固定84run/24组件/15任务，不读程序/成绩/保护集；库存712组/1757程序实例。

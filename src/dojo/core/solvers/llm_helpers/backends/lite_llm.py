@@ -15,7 +15,7 @@ import httpx
 import jsonschema
 import litellm
 from dataclasses_json import DataClassJsonMixin
-from litellm import completion as completion_fn
+from litellm import acompletion as completion_fn
 
 litellm.api_version = "2024-12-01-preview"
 litellm.set_verbose = False
@@ -231,7 +231,7 @@ class LiteLLMClient:
         jsonschema.Draft7Validator(func_spec.json_schema).validate(output)
         return output
 
-    def _query_client(
+    async def _query_client(
         self,
         messages: List[Dict[str, str]],
         model_kwargs: Optional[Dict[str, Any]] = None,
@@ -297,7 +297,7 @@ class LiteLLMClient:
                 request_kwargs["tool_choice"] = func_spec.openai_tool_choice_dict
 
             try:
-                completion = completion_fn(messages=request_messages, **request_kwargs)
+                completion = await completion_fn(messages=request_messages, **request_kwargs)
                 completed_requests.append(completion)
             except litellm.BadRequestError as error:
                 if func_spec is not None and transport == "json" and self._json_mode_is_unsupported(error):
@@ -309,7 +309,7 @@ class LiteLLMClient:
                     request_kwargs["tools"] = [func_spec.as_openai_tool_dict]
                     request_kwargs["tool_choice"] = func_spec.openai_tool_choice_dict
                     request_messages = messages
-                    completion = completion_fn(messages=messages, **request_kwargs)
+                    completion = await completion_fn(messages=messages, **request_kwargs)
                     completed_requests.append(completion)
                 else:
                     raise
@@ -366,7 +366,7 @@ class LiteLLMClient:
 
         return output, usage_stats
 
-    def query(
+    async def query(
         self,
         messages: List[Dict[str, str]],
         json_schema: Optional[str] = None,
@@ -396,7 +396,7 @@ class LiteLLMClient:
             if "temperature" in model_kwargs:
                 model_kwargs.pop("temperature")
 
-        output, usage_stats = self._query_client(
+        output, usage_stats = await self._query_client(
             messages=messages,
             model_kwargs=model_kwargs,
             json_schema=json_schema,

@@ -18,7 +18,7 @@ from dojo.core.solvers.utils.response import wrap_code
 from dojo.solvers.utils import Complexity
 
 
-def improve_op(
+async def improve_op(
     improve_llm: GenericLLM,
     cfg: DictConfig,
     memory_op: Optional[Callable[[Journal, Optional[Node]], str]],
@@ -68,4 +68,4 @@ def improve_op(
     else:
         improve_data["data_overview"] = "(No data preview available)"
 
-    return improve_llm(query_data=improve_data)
+    return await improve_llm(query_data=improve_data)

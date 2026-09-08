@@ -49,6 +49,7 @@ class NodeValue:
     best_subtree_grade: float
     reachable_descendant_count: int
     steps_to_best: int
+    tree_depth: int
 
 
 def flatten_runs(
@@ -212,6 +213,7 @@ def compute_node_values(
 
         values_by_card_id[card_id] = NodeValue(
             card_id=card_id,
+            tree_depth = card.lineage.tree_depth,
             task_name=card.task.name,
             current_grade=current_grade,
             best_subtree_grade=best_subtree_grade,
@@ -296,6 +298,7 @@ def build_value_pairs(
     seed: int = 7,
     budget_steps: int = 0,
     budget_seconds: float = 0.0,
+    control_depth: bool = False,
 ) -> tuple[list[dict], dict[str, dict[str, int]]]:
     """Build capped, same-task raw value pairs and summary counts."""
     cards_by_id, _ = flatten_runs(cards_by_run_id)
@@ -324,18 +327,20 @@ def build_value_pairs(
             if pair[0].best_subtree_grade != pair[1].best_subtree_grade
         ]
         random_generator.shuffle(candidate_pairs)
-        candidate_pairs = candidate_pairs[:cap_per_task]
 
         for left, right in candidate_pairs:
-            records.append(
-                make_pair_record(
-                    left,
-                    right,
-                    directions[task_name],
-                    budget_steps,
-                    budget_seconds,
+            if abs(left.tree_depth - right.tree_depth) <= control_depth:
+                records.append(
+                    make_pair_record(
+                        left,
+                        right,
+                        directions[task_name],
+                        budget_steps,
+                        budget_seconds,
+                    )
                 )
-            )
+            if cap_per_task and len(records) >= cap_per_task:
+                break
 
         summaries[task_name] = {
             "eligible_nodes": len(task_node_values),
@@ -363,6 +368,12 @@ def parse_args() -> argparse.Namespace:
         help="maximum cumulative descendant runtime; 0 means unlimited",
     )
     parser.add_argument(
+        "--control-depth",
+        type=int,
+        default=999,
+        help="only pair nodes at the same tree depth (default: 999, effectively off)"
+    )
+    parser.add_argument(
         "--cap",
         type=int,
         default=20_000,
@@ -388,6 +399,7 @@ def main() -> None:
         seed=arguments.seed,
         budget_steps=arguments.budget_steps,
         budget_seconds=arguments.budget_secs,
+        control_depth=arguments.control_depth,
     )
 
     arguments.out.parent.mkdir(parents=True, exist_ok=True)

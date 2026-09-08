@@ -28,10 +28,21 @@ class _RewardModel(torch.nn.Module):
         hidden = self.backbone(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state
         indices = attention_mask.sum(1) - 1
         pooled = hidden[torch.arange(hidden.size(0), device=hidden.device), indices]
+        # ``device_map=\"auto\"`` may leave the scalar head on a different
+        # device from the final backbone block.  Move only this tiny tensor;
+        # the large backbone stays sharded across all visible GPUs.
+        head_device = self.head.weight.device
+        if pooled.device != head_device:
+            pooled = pooled.to(head_device)
         return {"logits": self.head(pooled).squeeze(-1).float()}
 
 
-def load_checkpoint(checkpoint: str, *, base_model: str | None = None):
+def load_checkpoint(
+    checkpoint: str,
+    *,
+    base_model: str | None = None,
+    device_map: str | dict[str, Any] | None = "auto",
+):
     """Load a full-FT Trainer checkpoint or full backbone plus linear head."""
     from safetensors.torch import load_file
     from transformers import AutoModel, AutoTokenizer
@@ -50,11 +61,17 @@ def load_checkpoint(checkpoint: str, *, base_model: str | None = None):
         tokenizer.pad_token = tokenizer.eos_token
 
     dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
+    # ``auto`` uses Transformers/Accelerate pipeline parallelism.  On CPU,
+    # explicitly disable it because an auto map is only meaningful for GPUs.
+    if not torch.cuda.is_available():
+        device_map = None
     head_path = checkpoint_path / "head.pt"
     if head_path.is_file():
         # Full-FT export: model.safetensors is a normal HF backbone and head.pt
         # contains only the learned scalar projection. No adapter is involved.
-        backbone = AutoModel.from_pretrained(str(checkpoint_path), torch_dtype=dtype)
+        backbone = AutoModel.from_pretrained(
+            str(checkpoint_path), torch_dtype=dtype, device_map=device_map
+        )
         model = _RewardModel(backbone)
         model.head.to(dtype=dtype)
         try:
@@ -69,13 +86,16 @@ def load_checkpoint(checkpoint: str, *, base_model: str | None = None):
             raise ValueError(
                 "checkpoint must either include head.pt or contain backbone.* and head.* in model.safetensors"
             )
-        backbone = AutoModel.from_pretrained(base_name, torch_dtype=dtype)
+        backbone = AutoModel.from_pretrained(
+            base_name, torch_dtype=dtype, device_map=device_map
+        )
         model = _RewardModel(backbone)
         model.head.to(dtype=dtype)
         model.load_state_dict(state, strict=True)
     model.eval()
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    return model.to(device), tokenizer, meta
+    if device_map is None:
+        model = model.to(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+    return model, tokenizer, meta
 
 
 def _make_encoder(cards_path: str, tokenizer, meta: dict[str, Any]):
@@ -129,7 +149,14 @@ def pair_accuracy_metrics(eval_prediction) -> dict[str, float]:
 def _score_sequences(model, sequences: Sequence[list[int]], pad_token_id: int) -> list[float]:
     if not sequences:
         return []
-    device = next(model.parameters()).device
+    # Inputs for a sharded model belong on its first device.  Accelerate adds
+    # ``hf_device_map`` to the backbone; otherwise use the model's parameter.
+    device_map = getattr(getattr(model, "backbone", model), "hf_device_map", None)
+    if device_map:
+        first = next(iter(device_map.values()))
+        device = torch.device(first if first != "disk" else "cpu")
+    else:
+        device = next(model.parameters()).device
     width = max(len(sequence) for sequence in sequences)
     input_ids = torch.tensor(
         [sequence + [pad_token_id] * (width - len(sequence)) for sequence in sequences],

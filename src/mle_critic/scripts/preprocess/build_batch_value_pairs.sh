@@ -9,6 +9,7 @@ shift
 CAP=200
 SEED=7
 BUDGET_STEPS=-1
+CONTROL_DEPTH=999
 while (( $# )); do
     case $1 in
         --cap)
@@ -21,6 +22,10 @@ while (( $# )); do
             ;;
         --budget-steps)
             BUDGET_STEPS=${2:?expected a value after --budget-steps}
+            shift 2
+            ;;
+        --control-depth)
+            CONTROL_DEPTH=${2:?expected a value after --control-depth}
             shift 2
             ;;
         *)
@@ -54,7 +59,8 @@ while IFS= read -r -d '' cards_path; do
         "$cards_path" \
         --cap "$CAP" \
         --seed "$SEED" \
-        --budget-steps "$BUDGET_STEPS"
+        --budget-steps "$BUDGET_STEPS" \
+        --control-depth "$CONTROL_DEPTH"
     cat "$output_path" >> "$aggregate_tmp"
 done < <(find "$DIRECTORY" -type f -name batch_cards.json -print0 | sort -z)
 

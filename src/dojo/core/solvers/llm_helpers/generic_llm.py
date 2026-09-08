@@ -63,7 +63,7 @@ class GenericLLM:
         self.init_user_message_prompt_template = JinjaPrompt(self.cfg.init_user_message_prompt_template)
         self.user_message_prompt_template = JinjaPrompt(self.cfg.user_message_prompt_template)
 
-    def __call__(
+    async def __call__(
         self,
         query_data: Optional[Dict[str, Any]] = None,
         messages: Optional[List[Dict[str, str]]] = None,
@@ -95,7 +95,7 @@ class GenericLLM:
 
         # If query_data is not provided, directly query the client with the provided messages
         if query_data is None:
-            output, usage_stats = self.client.query(
+            output, usage_stats = await self.client.query(
                 messages,
                 json_schema=json_schema,
                 function_name=function_name,
@@ -130,7 +130,7 @@ class GenericLLM:
         messages.append(user_message)
 
         # Query the client with the updated messages
-        output, usage_stats = self.client.query(
+        output, usage_stats = await self.client.query(
             messages,
             json_schema=json_schema,
             function_name=function_name,

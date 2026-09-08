@@ -1,0 +1,15 @@
+# @package _global_
+defaults:
+  - override /benchmark: mlebench/dev
+  - override /interpreter: jupyter
+  - override /solver: mlebench/fore_ts
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_flash
+
+metadata:
+  git_issue_id: to_be_determined
+
+vars:
+  metadata.seed: [1,2,3,4,5,6,7,8]

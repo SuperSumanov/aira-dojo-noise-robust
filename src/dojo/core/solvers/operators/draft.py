@@ -17,7 +17,7 @@ from dojo.core.solvers.utils.journal import Journal, Node
 from dojo.solvers.utils import Complexity
 
 
-def draft_op(
+async def draft_op(
     draft_llm: GenericLLM,
     cfg: DictConfig,
     memory_op: Optional[Callable[[Journal, Optional[Node]], str]],
@@ -65,4 +65,4 @@ def draft_op(
     if complexity is not None:
         draft_data["draft_complexity"] = complexity.value
 
-    return draft_llm(query_data=draft_data)
+    return await draft_llm(query_data=draft_data)

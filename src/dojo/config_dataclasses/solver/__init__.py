@@ -8,6 +8,7 @@ from dojo.utils.config import LazyFactory
 
 SOLVER_MAP = {
     "BlindTSSolverConfig": LazyFactory("dojo.solvers.blind_ts", "BlindTS"),
+    "ForeTSSolverConfig": LazyFactory("dojo.solvers.fore_ts", "ForeTS"),
     "GreedySolverConfig": LazyFactory("dojo.solvers.greedy", "Greedy"),
     "MCTSSolverConfig": LazyFactory("dojo.solvers.mcts", "MCTS"),
     "EvolutionarySolverConfig": LazyFactory("dojo.solvers.evo", "Evolutionary"),

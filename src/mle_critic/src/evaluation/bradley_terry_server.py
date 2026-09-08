@@ -1,56 +1,156 @@
-"""Value-RM sidecar: scores (task, code) with a full-FT Bradley–Terry model. CPU, stdlib HTTP.
-POST /score {"task": str, "code": str} -> {"score": float in [0,1]}   (sigmoid of the BT logit)
-Env: RM_DIR (checkpoint dir), RM_BASE_MODEL when rm_meta.json is absent, RM_PORT (default 8765).
-Fail-safe by design: any error returns 500; the MCTS client fails open to vanilla UCT.
-"""
-import json, math, os
-from http.server import BaseHTTPRequestHandler, HTTPServer
+"""HTTP service for scoring MLE-bench code with a Bradley--Terry reward model."""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import queue
+import threading
+import time
+from dataclasses import dataclass
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from typing import Any
 
 import torch
 
-from .bradley_terry_evaluation import load_checkpoint
+from .bradley_terry_evaluation import _score_sequences, load_checkpoint
 
-RM_DIR = os.environ.get("RM_DIR")
-if not RM_DIR:
-    raise RuntimeError("RM_DIR must point to a saved reward-model checkpoint directory")
-PORT = int(os.environ.get("RM_PORT", "8765"))
-model, tok, meta = load_checkpoint(RM_DIR, base_model=os.environ.get("RM_BASE_MODEL"))
-MAXLEN = int(meta.get("max_len", 2048)); HEADFRAC = float(meta.get("head_frac", 0.25))
-TASK_COND = bool(meta.get("task_cond", True))
-print(f"[rm_server] loaded {RM_DIR} (max_len={MAXLEN})", flush=True)
 
-def fit(ids):
-    if len(ids) <= MAXLEN: return ids
-    h = int(MAXLEN * HEADFRAC)
-    return ids[:h] + ids[len(ids) - (MAXLEN - h):]
+class RewardScorer:
+    """Tokenize and score one task/code request."""
 
-@torch.no_grad()
-def score(task, code):
-    text = (f"# MLE-bench task: {task}\n{code}") if TASK_COND else code
-    ids = fit(tok(text, add_special_tokens=False)["input_ids"])
-    t = torch.tensor([ids]); m = torch.ones_like(t)
-    logit = model(input_ids=t, attention_mask=m)["logits"][0]
-    return 1.0 / (1.0 + math.exp(-float(logit)))
+    def __init__(self, checkpoint: str, base_model: str | None = None):
+        self.model, self.tokenizer, self.meta = load_checkpoint(
+            checkpoint, base_model=base_model, device_map="auto"
+        )
+        self.max_len = int(self.meta.get("max_len", 16384))
+        self.head_frac = float(self.meta.get("head_frac", 0.25))
+        self.task_cond = bool(self.meta.get("task_cond", True))
 
-REQ_COUNT = [0]
+    def _truncate(self, ids: list[int]) -> list[int]:
+        if len(ids) <= self.max_len:
+            return ids
+        head = int(self.max_len * self.head_frac)
+        return ids[:head] + ids[-(self.max_len - head) :]
 
-class H(BaseHTTPRequestHandler):
-    def log_message(self, *a): pass
-    def do_POST(self):
-        try:
-            d = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
-            s = score(d.get("task", ""), d.get("code", ""))
-            REQ_COUNT[0] += 1
-            if REQ_COUNT[0] % 10 == 1:
-                print(f"[rm_server] served {REQ_COUNT[0]} scores", flush=True)
-            b = json.dumps({"score": s}).encode()
-            self.send_response(200)
-        except Exception as e:
-            b = json.dumps({"error": str(e)[:200]}).encode()
-            self.send_response(500)
-        self.send_header("Content-Type", "application/json")
-        self.send_header("Content-Length", str(len(b)))
-        self.end_headers(); self.wfile.write(b)
+    def encode(self, task: str, code: str) -> list[int]:
+        prefix = f"# MLE-bench task: {task}\n" if self.task_cond else ""
+        return self._truncate(self.tokenizer(prefix + code, add_special_tokens=False)["input_ids"])
 
-print(f"[rm_server] listening :{PORT}", flush=True)
-HTTPServer(("127.0.0.1", PORT), H).serve_forever()
+    @torch.no_grad()
+    def score_batch(self, requests: list[tuple[str, str]]) -> list[float]:
+        ids = [self.encode(task, code) for task, code in requests]
+        logits = _score_sequences(self.model, ids, self.tokenizer.pad_token_id)
+        return [float(torch.sigmoid(torch.tensor(logit)).item()) for logit in logits]
+
+
+@dataclass
+class PendingRequest:
+    task: str
+    code: str
+    done: threading.Event
+    score: float | None = None
+    error: Exception | None = None
+
+
+class BatchScoringQueue:
+    """Serialize model calls and process up to ``batch_size`` requests at once."""
+
+    def __init__(self, scorer: RewardScorer, batch_size: int):
+        self.scorer = scorer
+        self.batch_size = batch_size
+        self.requests: queue.Queue[PendingRequest] = queue.Queue()
+        self.worker = threading.Thread(target=self._run, name="rm-batch-worker", daemon=True)
+        self.worker.start()
+
+    def submit(self, task: str, code: str) -> float:
+        request = PendingRequest(task, code, threading.Event())
+        self.requests.put(request)
+        request.done.wait()
+        if request.error is not None:
+            raise request.error
+        assert request.score is not None
+        return request.score
+
+    def _run(self) -> None:
+        while True:
+            batch = [self.requests.get()]
+            # Give requests already arriving in the same burst a short window
+            # to join the batch, without adding noticeable latency when idle.
+            deadline = time.monotonic() + 0.01
+            while len(batch) < self.batch_size:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                try:
+                    batch.append(self.requests.get(timeout=remaining))
+                except queue.Empty:
+                    break
+            try:
+                scores = self.scorer.score_batch([(r.task, r.code) for r in batch])
+                for request, score in zip(batch, scores):
+                    request.score = score
+            except Exception as exc:
+                for request in batch:
+                    request.error = exc
+            finally:
+                for request in batch:
+                    request.done.set()
+
+
+def make_handler(batch_queue: BatchScoringQueue):
+    class ScoreHandler(BaseHTTPRequestHandler):
+        def log_message(self, *_args: Any) -> None:
+            return
+
+        def do_POST(self) -> None:  # noqa: N802 (stdlib API name)
+            try:
+                if self.path != "/score":
+                    self._respond(404, {"error": "not found"})
+                    return
+                length = int(self.headers.get("Content-Length", "0"))
+                payload = json.loads(self.rfile.read(length))
+                value = batch_queue.submit(str(payload.get("task", "")), str(payload.get("code", "")))
+                self._respond(200, {"score": value})
+            except Exception as exc:
+                self._respond(500, {"error": str(exc)[:200]})
+
+        def _respond(self, status: int, payload: dict[str, Any]) -> None:
+            body = json.dumps(payload).encode("utf-8")
+            self.send_response(status)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+    return ScoreHandler
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--checkpoint", default=os.environ.get("RM_DIR"))
+    parser.add_argument("--base-model", default=os.environ.get("RM_BASE_MODEL"))
+    parser.add_argument("--host", default=os.environ.get("RM_HOST", "127.0.0.1"))
+    parser.add_argument("--port", type=int, default=int(os.environ.get("RM_PORT", "8765")))
+    parser.add_argument("--batch-size", type=int, default=int(os.environ.get("RM_BATCH_SIZE", "1")),
+                        help="maximum number of requests in one model forward pass")
+    args = parser.parse_args()
+    if not args.checkpoint:
+        parser.error("--checkpoint or RM_DIR is required")
+    if args.batch_size < 1:
+        parser.error("--batch-size must be positive")
+    scorer = RewardScorer(args.checkpoint, args.base_model)
+    batch_queue = BatchScoringQueue(scorer, args.batch_size)
+    print(f"[rm_server] loaded {args.checkpoint} (max_len={scorer.max_len}, task_cond={scorer.task_cond}, batch_size={args.batch_size})", flush=True)
+    server = ThreadingHTTPServer((args.host, args.port), make_handler(batch_queue))
+    print(f"[rm_server] listening on {args.host}:{args.port}", flush=True)
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        server.server_close()
+
+
+if __name__ == "__main__":
+    main()

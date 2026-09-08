@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08 UTC08:21前后；当前0L115覆盖下文历史，学长新反馈改变工作优先级。
+**Dynamic status timestamp:** 2026-09-08，0L116覆盖下文；真实ForeTS配置通过，外部模型/路由事实等待中。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,16 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先读CURRENT_DIRECTION0L116和E2E_EXPLORATION_PILOT_20260908.md。集成tree6f7e650在远端独立目录
+forets-e2e-dev-20260908-IMuJx6，真实aira环境已导入ForeTS、两臂配置validate通过，仅selection_policy不同。
+候选首轮leaf/ spaceship，seed6/7、两臂8runs；完整300秒执行、4次执行含debug、软搜索1800秒。
+条件9GPU小时尚非硬限/批准预算，API费用未定；未运行模型/任务，GPU/API调用0，不能称e2e已跑通。
+已问用户转学长：可用未撤回critic共享路径/底座/上下文；正确API服务或远端安装OpenRouter凭据。
+文档checkpoint本地对应位置不存在；.env PRIMARY_KEY不能无验证地发往OpenRouter。秘密未回显/传输。
+外部事实未回等待，不重复同一路径、G0、旧测试或语料预算。回复后继续有界真实集成；不重启严格四fit。
+
+### 此前状态（0L115）
 
 先读CURRENT_DIRECTION0L115和ADVISOR_DIRECTIVES的L节。用户转达学长：corpus只作proxy，最终目标e2e；
 探索阶段提速，GPU用一次有界交互分配连续debug，停止过细的shard/失败回执/恢复重复验收。

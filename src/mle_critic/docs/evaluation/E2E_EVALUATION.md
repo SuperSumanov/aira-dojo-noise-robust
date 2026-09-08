@@ -62,7 +62,7 @@ PYTHONPATH=src/mle_critic srun \
 启动日志应出现类似内容：
 
 ```text
-[rm_server] loaded ... (max_len=2048, task_cond=True, batch_size=1)
+[rm_server] loaded ... (max_len=16384, task_cond=True, batch_size=1)
 [rm_server] listening on 127.0.0.1:8765
 ```
 
@@ -76,7 +76,7 @@ curl -sS -X POST http://127.0.0.1:8765/score \
   -d '{"task":"us-patent-phrase-to-phrase-matching","code":"print(1)"}'
 ```
 
-成功响应是 `{"score": ...}`，其中 score 是 reward model logit 的 sigmoid。server 默认从 `rm_meta.json` 读取 `max_len` 和 task conditioning；没有该文件时使用 `max_len=2048`、`head_frac=0.25`、`task_cond=true`。server 不接受预算 conditioning 参数。需要更长输入时，应在 checkpoint 中提供正确的 `rm_meta.json`，或修改 server 的配置逻辑；ForeTS 请求还会先把代码截到 40000 个字符。
+成功响应是 `{"score": ...}`，其中 score 是 reward model logit 的 sigmoid。server 默认从 `rm_meta.json` 读取 `max_len` 和 task conditioning；没有该文件时使用 `max_len=16384`、`head_frac=0.25`、`task_cond=true`。server 不接受预算 conditioning 参数。需要更长输入时，应在 checkpoint 中提供正确的 `rm_meta.json`，或修改 server 的配置逻辑；ForeTS 请求还会先把代码截到 40000 个字符。
 
 ## 运行 ForeTS
 

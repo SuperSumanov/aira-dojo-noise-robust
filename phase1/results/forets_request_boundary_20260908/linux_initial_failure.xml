@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="69" time="12.197" timestamp="2026-09-08T15:02:07.549823" hostname="linux5"><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_original_operator_mutates_shared_config_and_renders_different_prompt" time="0.010"><failure message="subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7a5d242c4190&gt;
+
+    def test_original_operator_mutates_shared_config_and_renders_different_prompt(monkeypatch):
+        monkeypatch.setattr(random, 'shuffle', lambda xs: xs.reverse())
+        backend = Backend()
+&gt;       model = llm(backend, False)
+
+phase1/tests/test_forets_request_boundary_20260908.py:131: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+phase1/tests/test_forets_request_boundary_20260908.py:98: in llm
+    definitions(extra_source('src/dojo/core/solvers/llm_helpers/prompt_template.py'), {'JinjaPrompt'}, renderer_env)
+phase1/tests/test_forets_request_boundary_20260908.py:54: in extra_source
+    raw = subprocess.check_output(['git', 'show', f'{UPSTREAM}:{path}'], cwd=ROOT)
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py'],)
+kwargs = {'cwd': PosixPath('/research/d7/spc/yzyang4/forets-request-20260908-lfC8VhL1'), 'stdout': -1}
+process = &lt;Popen: returncode: 128 args: ['git', 'show', '8b621851a87d20382feefe8c8458a...&gt;
+stdout = b'', stderr = None, retcode = 128
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.
+
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:571: CalledProcessError</failure></testcase><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_guarded_real_jinja_and_operator_keep_config_and_messages_fixed[src/dojo/core/solvers/operators/draft.py]" time="0.011"><failure message="subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.">tmp_path = PosixPath('/tmp/pytest-of-yzyang4/pytest-23/test_guarded_real_jinja_and_op0')
+path = 'src/dojo/core/solvers/operators/draft.py'
+
+    @pytest.mark.parametrize('path', [DRAFT, IMPROVE])
+    def test_guarded_real_jinja_and_operator_keep_config_and_messages_fixed(tmp_path, path):
+        backend, conf = Backend(), cfg()
+&gt;       model = llm(backend)
+
+phase1/tests/test_forets_request_boundary_20260908.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+phase1/tests/test_forets_request_boundary_20260908.py:98: in llm
+    definitions(extra_source('src/dojo/core/solvers/llm_helpers/prompt_template.py'), {'JinjaPrompt'}, renderer_env)
+phase1/tests/test_forets_request_boundary_20260908.py:54: in extra_source
+    raw = subprocess.check_output(['git', 'show', f'{UPSTREAM}:{path}'], cwd=ROOT)
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py'],)
+kwargs = {'cwd': PosixPath('/research/d7/spc/yzyang4/forets-request-20260908-lfC8VhL1'), 'stdout': -1}
+process = &lt;Popen: returncode: 128 args: ['git', 'show', '8b621851a87d20382feefe8c8458a...&gt;
+stdout = b'', stderr = None, retcode = 128
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.
+
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:571: CalledProcessError</failure></testcase><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_guarded_real_jinja_and_operator_keep_config_and_messages_fixed[src/dojo/core/solvers/operators/improve.py]" time="0.009"><failure message="subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.">tmp_path = PosixPath('/tmp/pytest-of-yzyang4/pytest-23/test_guarded_real_jinja_and_op1')
+path = 'src/dojo/core/solvers/operators/improve.py'
+
+    @pytest.mark.parametrize('path', [DRAFT, IMPROVE])
+    def test_guarded_real_jinja_and_operator_keep_config_and_messages_fixed(tmp_path, path):
+        backend, conf = Backend(), cfg()
+&gt;       model = llm(backend)
+
+phase1/tests/test_forets_request_boundary_20260908.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+phase1/tests/test_forets_request_boundary_20260908.py:98: in llm
+    definitions(extra_source('src/dojo/core/solvers/llm_helpers/prompt_template.py'), {'JinjaPrompt'}, renderer_env)
+phase1/tests/test_forets_request_boundary_20260908.py:54: in extra_source
+    raw = subprocess.check_output(['git', 'show', f'{UPSTREAM}:{path}'], cwd=ROOT)
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py'],)
+kwargs = {'cwd': PosixPath('/research/d7/spc/yzyang4/forets-request-20260908-lfC8VhL1'), 'stdout': -1}
+process = &lt;Popen: returncode: 128 args: ['git', 'show', '8b621851a87d20382feefe8c8458a...&gt;
+stdout = b'', stderr = None, retcode = 128
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.
+
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:571: CalledProcessError</failure></testcase><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_drift_stops_before_second_backend_call[memory]" time="0.008"><failure message="subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.">tmp_path = PosixPath('/tmp/pytest-of-yzyang4/pytest-23/test_drift_stops_before_second0')
+drift = 'memory'
+
+    @pytest.mark.parametrize('drift', ['memory', 'temperature'])
+    def test_drift_stops_before_second_backend_call(tmp_path, drift):
+        backend, model = Backend(), None
+&gt;       model = llm(backend)
+
+phase1/tests/test_forets_request_boundary_20260908.py:169: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+phase1/tests/test_forets_request_boundary_20260908.py:98: in llm
+    definitions(extra_source('src/dojo/core/solvers/llm_helpers/prompt_template.py'), {'JinjaPrompt'}, renderer_env)
+phase1/tests/test_forets_request_boundary_20260908.py:54: in extra_source
+    raw = subprocess.check_output(['git', 'show', f'{UPSTREAM}:{path}'], cwd=ROOT)
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py'],)
+kwargs = {'cwd': PosixPath('/research/d7/spc/yzyang4/forets-request-20260908-lfC8VhL1'), 'stdout': -1}
+process = &lt;Popen: returncode: 128 args: ['git', 'show', '8b621851a87d20382feefe8c8458a...&gt;
+stdout = b'', stderr = None, retcode = 128
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.
+
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:571: CalledProcessError</failure></testcase><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_drift_stops_before_second_backend_call[temperature]" time="0.009"><failure message="subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.">tmp_path = PosixPath('/tmp/pytest-of-yzyang4/pytest-23/test_drift_stops_before_second1')
+drift = 'temperature'
+
+    @pytest.mark.parametrize('drift', ['memory', 'temperature'])
+    def test_drift_stops_before_second_backend_call(tmp_path, drift):
+        backend, model = Backend(), None
+&gt;       model = llm(backend)
+
+phase1/tests/test_forets_request_boundary_20260908.py:169: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+phase1/tests/test_forets_request_boundary_20260908.py:98: in llm
+    definitions(extra_source('src/dojo/core/solvers/llm_helpers/prompt_template.py'), {'JinjaPrompt'}, renderer_env)
+phase1/tests/test_forets_request_boundary_20260908.py:54: in extra_source
+    raw = subprocess.check_output(['git', 'show', f'{UPSTREAM}:{path}'], cwd=ROOT)
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py'],)
+kwargs = {'cwd': PosixPath('/research/d7/spc/yzyang4/forets-request-20260908-lfC8VhL1'), 'stdout': -1}
+process = &lt;Popen: returncode: 128 args: ['git', 'show', '8b621851a87d20382feefe8c8458a...&gt;
+stdout = b'', stderr = None, retcode = 128
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.
+
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:571: CalledProcessError</failure></testcase><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_extraction_retry_preserves_every_returned_usage" time="0.008"><failure message="subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.">tmp_path = PosixPath('/tmp/pytest-of-yzyang4/pytest-23/test_extraction_retry_preserve0')
+
+    def test_extraction_retry_preserves_every_returned_usage(tmp_path):
+        backend = Backend([('this is not valid python!', {'total_tokens': 11}),
+                           ('plan\n```python\nprint(1)\n```', {'total_tokens': 17})])
+&gt;       model = llm(backend)
+
+phase1/tests/test_forets_request_boundary_20260908.py:198: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+phase1/tests/test_forets_request_boundary_20260908.py:98: in llm
+    definitions(extra_source('src/dojo/core/solvers/llm_helpers/prompt_template.py'), {'JinjaPrompt'}, renderer_env)
+phase1/tests/test_forets_request_boundary_20260908.py:54: in extra_source
+    raw = subprocess.check_output(['git', 'show', f'{UPSTREAM}:{path}'], cwd=ROOT)
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py'],)
+kwargs = {'cwd': PosixPath('/research/d7/spc/yzyang4/forets-request-20260908-lfC8VhL1'), 'stdout': -1}
+process = &lt;Popen: returncode: 128 args: ['git', 'show', '8b621851a87d20382feefe8c8458a...&gt;
+stdout = b'', stderr = None, retcode = 128
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.
+
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:571: CalledProcessError</failure></testcase><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_call_cap_prevents_extra_dispatch" time="0.008"><failure message="subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.">tmp_path = PosixPath('/tmp/pytest-of-yzyang4/pytest-23/test_call_cap_prevents_extra_d0')
+
+    def test_call_cap_prevents_extra_dispatch(tmp_path):
+        backend = Backend([('not valid python!', {'total_tokens': 11})] * 3)
+&gt;       model = llm(backend)
+
+phase1/tests/test_forets_request_boundary_20260908.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+phase1/tests/test_forets_request_boundary_20260908.py:98: in llm
+    definitions(extra_source('src/dojo/core/solvers/llm_helpers/prompt_template.py'), {'JinjaPrompt'}, renderer_env)
+phase1/tests/test_forets_request_boundary_20260908.py:54: in extra_source
+    raw = subprocess.check_output(['git', 'show', f'{UPSTREAM}:{path}'], cwd=ROOT)
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py'],)
+kwargs = {'cwd': PosixPath('/research/d7/spc/yzyang4/forets-request-20260908-lfC8VhL1'), 'stdout': -1}
+process = &lt;Popen: returncode: 128 args: ['git', 'show', '8b621851a87d20382feefe8c8458a...&gt;
+stdout = b'', stderr = None, retcode = 128
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.
+
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:571: CalledProcessError</failure></testcase><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_unknown_usage_remains_ambiguous_and_error_text_not_logged" time="0.107" /><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_backend_mutation_does_not_corrupt_retained_prompt_and_stops" time="0.105" /><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_credential_shape_blocks_before_private_storage_and_network" time="0.062" /><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_concurrent_slots_keep_separate_call_receipts" time="0.192" /><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_inactive_guard_preserves_backend_forwarding" time="0.002" /><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_guard_requires_explicit_positive_cap" time="0.065" /><testcase classname="phase1.tests.test_forets_request_boundary_20260908" name="test_actual_forets_batch_wires_guard_and_reuses_completed_requests" time="0.151"><failure message="subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.">tmp_path = PosixPath('/tmp/pytest-of-yzyang4/pytest-23/test_actual_forets_batch_wires0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7a5d2419fd50&gt;
+
+    def test_actual_forets_batch_wires_guard_and_reuses_completed_requests(tmp_path, monkeypatch):
+        from phase1.tests import test_forets_candidate_state_20260908 as state_tests
+        from phase1.forets_request_patch_20260908 import revised as request_revised
+        module = types.ModuleType('dojo.solvers.fore_ts.request_guard')
+        module.BatchRequestGuard = BatchRequestGuard
+        module.package_order = package_order
+        module.audited_query = audited_query
+        monkeypatch.setitem(sys.modules, module.__name__, module)
+        monkeypatch.setattr(state_tests, 'build_revised', request_revised)
+        solver, task, _, batch_env = state_tests.runtime(tmp_path)
+        solver.cfg.available_packages = ['numpy', 'pandas', 'sklearn']
+        solver.cfg.execution_timeout = 10
+        solver.cfg.data_preview = True
+        backend = Backend()
+&gt;       solver.draft_fn = partial(operator(DRAFT), llm(backend), solver.cfg, None)
+
+phase1/tests/test_forets_request_boundary_20260908.py:313: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+phase1/tests/test_forets_request_boundary_20260908.py:98: in llm
+    definitions(extra_source('src/dojo/core/solvers/llm_helpers/prompt_template.py'), {'JinjaPrompt'}, renderer_env)
+phase1/tests/test_forets_request_boundary_20260908.py:54: in extra_source
+    raw = subprocess.check_output(['git', 'show', f'{UPSTREAM}:{path}'], cwd=ROOT)
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:466: in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py'],)
+kwargs = {'cwd': PosixPath('/research/d7/spc/yzyang4/forets-request-20260908-lfC8VhL1'), 'stdout': -1}
+process = &lt;Popen: returncode: 128 args: ['git', 'show', '8b621851a87d20382feefe8c8458a...&gt;
+stdout = b'', stderr = None, retcode = 128
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output &amp; stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+&gt;               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['git', 'show', '8b621851a87d20382feefe8c8458a7db2a1fabea:src/dojo/core/solvers/llm_helpers/prompt_template.py']' returned non-zero exit status 128.
+
+/data/d0/y24/yzyang4/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/subprocess.py:571: CalledProcessError</failure></testcase><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_durable_slots_and_selection" time="4.718" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_unknown_operation_cannot_auto_retry[generating]" time="0.059" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_unknown_operation_cannot_auto_retry[scoring]" time="0.107" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_unknown_operation_cannot_auto_retry[executing]" time="0.166" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_single_writer_and_idempotent_close" time="0.046" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_binding_change_refused" time="0.050" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_accidental_snapshot_drift_refused" time="0.074" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_bad_scores_remain_unknown_not_silently_negative[True]" time="0.120" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_bad_scores_remain_unknown_not_silently_negative[nan]" time="0.120" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_bad_scores_remain_unknown_not_silently_negative[inf]" time="0.119" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_bad_scores_remain_unknown_not_silently_negative[None]" time="0.123" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_bad_scores_remain_unknown_not_silently_negative[0.5]" time="0.090" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_selection_cannot_use_partial_batch_or_resample" time="0.182" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_duplicate_identity_and_label_fields_refused" time="0.121" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_preexecution_record_does_not_alias_caller_lists" time="0.070" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_actual_generation_methods_detach_then_only_executed_enters_journal" time="0.396" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_critic_failure_keeps_generated_code_without_journal_pollution" time="0.164" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_known_scored_batch_reuses_selection_without_calls_or_resampling" time="0.390" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_analysis_cannot_rewrite_persisted_generation_record[False]" time="0.404" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_analysis_cannot_rewrite_persisted_generation_record[True]" time="0.403" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_execution_failure_never_replays_or_attaches" time="0.207" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_selector_ignores_output_directory_and_global_generation_rng" time="1.134" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_zero_remaining_steps_makes_no_ledger_or_calls" time="0.084" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_journal_change_prevents_recovery_before_any_more_calls" time="0.298" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_debug_consumes_tail_marks_budget_skip" time="0.331" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_unimplemented_full_restore_is_explicitly_blocked" time="0.404" /><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_upstream_loop_boundary_is_strict_in_common_mcts" time="0.041" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_original_undefined_task_name_prevents_every_http_request" time="0.015" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_query_sends_real_task_name" time="0.015" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_original_exhaustion_returns_none_even_if_task_field_is_injected" time="0.012" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_exhaustion_stops_with_bounded_attempts" time="0.013" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_original_accepts_nan" time="0.010" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_score_stops[nan]" time="0.010" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_score_stops[inf]" time="0.010" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_score_stops[-inf]" time="0.009" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_score_stops[True]" time="0.009" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_score_stops[None]" time="0.008" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_score_stops[bad]" time="0.008" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_original_tail_sampling_fails_with_one_remaining_step" time="0.007" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_tail_executes_one" time="0.008" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_zero_budget_does_not_generate" time="0.006" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_original_debug_then_execution_exceeds_step_limit" time="0.007" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_debug_consumption_prevents_next_execution" time="0.007" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_original_config_omits_uct_c_and_accepts_invalid_selection" time="0.003" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_valid_config" time="0.004" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_config_stops[num_children_to_choose-9]" time="0.003" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_config_stops[critic_top_k-6]" time="0.003" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_config_stops[critic_max_attempts-0]" time="0.004" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_config_stops[num_children-True]" time="0.003" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_config_stops[critic_top_k-1.5]" time="0.003" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_fixed_invalid_config_stops[uct_c-nan]" time="0.004" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_actual_task_prepare_identity_handoff[False-False]" time="0.004" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_actual_task_prepare_identity_handoff[True-True]" time="0.005" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_residual_unexecuted_node_memory_failure_is_not_claimed_fixed" time="0.005" /><testcase classname="phase1.tests.test_forets_upstream_hotfix_20260908" name="test_patch_retains_existing_critic_char_limit_and_batch_information_boundary" time="0.003" /></testsuite></testsuites>

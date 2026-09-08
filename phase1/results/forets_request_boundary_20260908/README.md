@@ -28,7 +28,11 @@ humanize、Black格式化和部分框架初始化stub。不是实际生产模板
 测试含真实批次接线和执行前复用：3个完成请求恢复后不重发；含原输入shuffle混杂的可控复现。
 人工11/17等token数字仅检查保存逻辑，不能当成本测量。
 
-Linux复测待后续回执：最多300秒CPU子进程，0 GPU/API/fit，不安装库，不改活动环境。
+Linux首轮486ff8f7为61 passed/8 failed，12.306021220996627秒。8项均在测试helper读取Jinja源文件时
+错误使用git show（独立目录不是Git repo），未走已校验source cache；并非请求guard被这些case验证通过。
+失败XML linux_initial_failure.xml SHA0417f9bc84e8efae98e750a80e7945b8f00c2e1473e7804478fc03db86e3f155。
+后续显式按环境读取固定缓存，不再依赖在测试收集前替换某个测试模块对象；guard/0004内容不变。
+修改后的Linux复测待后续回执：最多300秒CPU子进程，0 GPU/API/fit，不安装库，不改活动环境。
 只传固定源文件和人工测试，源文件打包用命令级core.autocrlf=false并核对Git blob字节。
 
 ## 不支持的结论与下一步

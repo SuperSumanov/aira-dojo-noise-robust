@@ -23,8 +23,6 @@ def main():
     state_patch.source = cached_source
     from phase1 import forets_request_patch_20260908 as request_patch
     request_patch.upstream = cached_source
-    from phase1.tests import test_forets_request_boundary_20260908 as request_tests
-    request_tests.extra_source = cached_source
     start = time.monotonic()
     rc = pytest.main(['phase1/tests/test_forets_request_boundary_20260908.py',
                      'phase1/tests/test_forets_candidate_state_20260908.py',

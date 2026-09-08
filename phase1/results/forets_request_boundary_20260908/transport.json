@@ -1,0 +1,127 @@
+{
+  "all_exact": true,
+  "files": [
+    {
+      "archive_bytes": 4994,
+      "archive_crlf": 0,
+      "archive_sha256": "3879cf22243076b28c04098bcfc49f9cc01b5e68fa2e346f8b227873c1c1b91e",
+      "byte_equal": true,
+      "git_bytes": 4994,
+      "git_crlf": 0,
+      "git_sha256": "3879cf22243076b28c04098bcfc49f9cc01b5e68fa2e346f8b227873c1c1b91e",
+      "lf_equal": true,
+      "path": "phase1/forets_batch_runtime_20260908.py"
+    },
+    {
+      "archive_bytes": 8130,
+      "archive_crlf": 0,
+      "archive_sha256": "83a75a47feab3953d1cd8a31a4ed1e0af3685a497dbea73eb1f00fb3eb09e4ae",
+      "byte_equal": true,
+      "git_bytes": 8130,
+      "git_crlf": 0,
+      "git_sha256": "83a75a47feab3953d1cd8a31a4ed1e0af3685a497dbea73eb1f00fb3eb09e4ae",
+      "lf_equal": true,
+      "path": "phase1/forets_candidate_ledger_20260908.py"
+    },
+    {
+      "archive_bytes": 2463,
+      "archive_crlf": 0,
+      "archive_sha256": "f2419243eaaaede19a7768c616046f9cef79ecb36bf45cc752ac016357698daf",
+      "byte_equal": true,
+      "git_bytes": 2463,
+      "git_crlf": 0,
+      "git_sha256": "f2419243eaaaede19a7768c616046f9cef79ecb36bf45cc752ac016357698daf",
+      "lf_equal": true,
+      "path": "phase1/forets_linux_validation_20260908.py"
+    },
+    {
+      "archive_bytes": 3230,
+      "archive_crlf": 0,
+      "archive_sha256": "0197d6fdb61ff001341cec9eaf62dff0a9c31e288b41aced1a1a5c4d913abf5d",
+      "byte_equal": true,
+      "git_bytes": 3230,
+      "git_crlf": 0,
+      "git_sha256": "0197d6fdb61ff001341cec9eaf62dff0a9c31e288b41aced1a1a5c4d913abf5d",
+      "lf_equal": true,
+      "path": "phase1/forets_request_guard_20260908.py"
+    },
+    {
+      "archive_bytes": 1952,
+      "archive_crlf": 0,
+      "archive_sha256": "fe8038e49a96e300bbf55cc6820df72e5a25673e4f9651ad154fbe21691672bd",
+      "byte_equal": true,
+      "git_bytes": 1952,
+      "git_crlf": 0,
+      "git_sha256": "fe8038e49a96e300bbf55cc6820df72e5a25673e4f9651ad154fbe21691672bd",
+      "lf_equal": true,
+      "path": "phase1/forets_request_linux_validation_20260908.py"
+    },
+    {
+      "archive_bytes": 5542,
+      "archive_crlf": 0,
+      "archive_sha256": "2708cba8de5a434747cba1927512e33092e3e4cdc0b68d6aa3d1dc13da602ffb",
+      "byte_equal": true,
+      "git_bytes": 5542,
+      "git_crlf": 0,
+      "git_sha256": "2708cba8de5a434747cba1927512e33092e3e4cdc0b68d6aa3d1dc13da602ffb",
+      "lf_equal": true,
+      "path": "phase1/forets_request_patch_20260908.py"
+    },
+    {
+      "archive_bytes": 5024,
+      "archive_crlf": 0,
+      "archive_sha256": "dbda7c87be2e2ce86827d1cdf36ef2eda32a89f781f1407a5bf96fdf7cfb502b",
+      "byte_equal": true,
+      "git_bytes": 5024,
+      "git_crlf": 0,
+      "git_sha256": "dbda7c87be2e2ce86827d1cdf36ef2eda32a89f781f1407a5bf96fdf7cfb502b",
+      "lf_equal": true,
+      "path": "phase1/forets_state_patch_20260908.py"
+    },
+    {
+      "archive_bytes": 7478,
+      "archive_crlf": 0,
+      "archive_sha256": "277254d1d89ac83738cc94b459a8bbb8b32780396da40cfd85fdbcc1d4964609",
+      "byte_equal": true,
+      "git_bytes": 7478,
+      "git_crlf": 0,
+      "git_sha256": "277254d1d89ac83738cc94b459a8bbb8b32780396da40cfd85fdbcc1d4964609",
+      "lf_equal": true,
+      "path": "phase1/forets_upstream_hotfix_20260908.py"
+    },
+    {
+      "archive_bytes": 18445,
+      "archive_crlf": 0,
+      "archive_sha256": "195d52026764fe3d8f4c3169ace60f1a05dab986ce2a3891e5986a7971a76055",
+      "byte_equal": true,
+      "git_bytes": 18445,
+      "git_crlf": 0,
+      "git_sha256": "195d52026764fe3d8f4c3169ace60f1a05dab986ce2a3891e5986a7971a76055",
+      "lf_equal": true,
+      "path": "phase1/tests/test_forets_candidate_state_20260908.py"
+    },
+    {
+      "archive_bytes": 14952,
+      "archive_crlf": 0,
+      "archive_sha256": "e2a2bd1365e527a7b847fca80d2d1678c7ce62b1958d5880cf53d6a344423acf",
+      "byte_equal": true,
+      "git_bytes": 14952,
+      "git_crlf": 0,
+      "git_sha256": "e2a2bd1365e527a7b847fca80d2d1678c7ce62b1958d5880cf53d6a344423acf",
+      "lf_equal": true,
+      "path": "phase1/tests/test_forets_request_boundary_20260908.py"
+    },
+    {
+      "archive_bytes": 10597,
+      "archive_crlf": 0,
+      "archive_sha256": "12a6e3b98b18455661ad77b4c28554eba5d5bd3371f679ae6978775db66c34fe",
+      "byte_equal": true,
+      "git_bytes": 10597,
+      "git_crlf": 0,
+      "git_sha256": "12a6e3b98b18455661ad77b4c28554eba5d5bd3371f679ae6978775db66c34fe",
+      "lf_equal": true,
+      "path": "phase1/tests/test_forets_upstream_hotfix_20260908.py"
+    }
+  ],
+  "source_commit": "486ff8f7afdf6b35b9d2175b9b87328d3aced01f"
+}

@@ -51,6 +51,9 @@ def extra_source(path):
     assert path in {'src/dojo/core/solvers/llm_helpers/prompt_template.py',
                     'src/dojo/core/solvers/utils/response.py',
                     'src/dojo/core/solvers/operators/core.py'}
+    if os.environ.get('FORETS_SOURCE_CACHE'):
+        from phase1.forets_linux_validation_20260908 import cached_source
+        return cached_source(path)
     raw = subprocess.check_output(['git', 'show', f'{UPSTREAM}:{path}'], cwd=ROOT)
     assert len(raw) < 1048576 and not SECRET.search(raw)
     return raw.decode()

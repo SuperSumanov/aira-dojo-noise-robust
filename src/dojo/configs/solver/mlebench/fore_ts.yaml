@@ -14,6 +14,7 @@ export_search_results: true
 
 step_limit: 10000
 num_children: 5
+uct_c: 0.25
 max_debug_depth: 20
 data_preview: true
 max_debug_time: 1e9

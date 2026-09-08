@@ -1,0 +1,249 @@
+--- a/src/dojo/solvers/fore_ts/candidate_ledger.py
++++ b/src/dojo/solvers/fore_ts/candidate_ledger.py
+@@ -30,6 +30,8 @@
+     def __init__(self, path, binding, count):
+         if type(count) is not int or count <= 0:
+             raise LedgerError('invalid candidate count')
++        if binding.get('selection_policy') not in ('uniform_random', 'critic_topk_random'):
++            raise LedgerError('selection policy missing from ledger binding')
+         self.path = Path(path)
+         self.conn = None
+         self.lock = self.path.with_suffix(self.path.suffix + '.lock')
+@@ -57,7 +59,7 @@
+             self.conn.execute('PRAGMA journal_mode=DELETE')
+             if new:
+                 self.conn.execute('CREATE TABLE snapshot (id INTEGER PRIMARY KEY CHECK(id=1), payload TEXT NOT NULL, sha256 TEXT NOT NULL)')
+-                self.data = dict(schema=3, task_calls=[], llm_requests=[], prompt_sha256=None, prompt_snapshot=None, binding=json.loads(canonical(binding)), phase='collecting', selected=None,
++                self.data = dict(schema=4, pool_sha256=None, task_calls=[], llm_requests=[], prompt_sha256=None, prompt_snapshot=None, binding=json.loads(canonical(binding)), phase='collecting', selected=None,
+                                  candidates=[dict(state='pending', node=None, score=None) for _ in range(count)])
+                 self._write()
+             else:
+@@ -68,7 +70,7 @@
+                 if hashlib.sha256(payload.encode()).hexdigest() != sha:
+                     raise LedgerError('ledger hash drift')
+                 self.data = json.loads(payload)
+-                if (self.data['schema'] != 3 or self.data['binding'] != binding
++                if (self.data['schema'] != 4 or self.data['binding'] != binding
+                         or len(self.data['candidates']) != count):
+                     raise LedgerError('batch binding mismatch')
+         except BaseException:
+@@ -130,6 +132,8 @@
+         self._transition(slot, 'generating', 'generated', node=frozen_node)
+ 
+     def begin_score(self, slot):
++        if self.data['binding']['selection_policy'] != 'critic_topk_random' or self.data['pool_sha256'] is None:
++            raise LedgerError('critic request outside frozen ranked pool')
+         if self.data['phase'] != 'collecting':
+             raise LedgerError('selection already locked')
+         self._transition(slot, 'generated', 'scoring')
+@@ -141,7 +145,8 @@
+ 
+     def select(self, slots):
+         if (self.data['phase'] != 'collecting' or not slots
+-                or any(c['state'] != 'scored' for c in self.data['candidates'])
++                or self.data['pool_sha256'] is None
++                or any(c['state'] != self.ready_state() for c in self.data['candidates'])
+                 or any(type(i) is not int or not 0 <= i < len(self.data['candidates']) for i in slots)
+                 or len(set(slots)) != len(slots)):
+             raise LedgerError('invalid or repeated selection')
+@@ -151,12 +156,12 @@
+     def begin_execution(self, slot):
+         if self.data['phase'] not in {'selected', 'executing'} or slot not in self.data['selected']:
+             raise LedgerError('execution outside locked selection')
+-        pending = [i for i in self.data['selected'] if self.data['candidates'][i]['state'] == 'scored']
++        pending = [i for i in self.data['selected'] if self.data['candidates'][i]['state'] == self.ready_state()]
+         if (not pending or pending[0] != slot or
+                 any(c['state'] == 'executing' for c in self.data['candidates'])):
+             raise LedgerError('execution order or in-flight mismatch')
+         self.data['phase'] = 'executing'
+-        self._transition(slot, 'scored', 'executing')
++        self._transition(slot, self.ready_state(), 'executing')
+ 
+     def execution_completed(self, slot):
+         # Means task + parse + journal + debug/backprop returned, not a durable solver checkpoint.
+@@ -170,10 +175,10 @@
+             raise LedgerError('batch not selected')
+         for i in self.data['selected']:
+             c = self.data['candidates'][i]
+-            if c['state'] not in {'scored', 'completed'}:
++            if c['state'] not in {self.ready_state(), 'completed'}:
+                 raise LedgerError('unfinished execution')
+         for i in self.data['selected']:
+-            if self.data['candidates'][i]['state'] == 'scored':
++            if self.data['candidates'][i]['state'] == self.ready_state():
+                 self.data['candidates'][i]['state'] = 'skipped_budget'
+         self.data['phase'] = 'complete'
+         self._write()
+@@ -241,3 +246,19 @@
+         call.update(state=status, task_wall_ns=elapsed_ns,
+                     execution_metadata=json.loads(canonical(metadata)), error_type=error_type)
+         self._write()
++
++    def ready_state(self):
++        return 'generated' if self.data['binding']['selection_policy'] == 'uniform_random' else 'scored'
++
++    def freeze_pool(self):
++        if any(c['state'] not in {'generated', 'scored'} for c in self.data['candidates']):
++            raise LedgerError('complete known candidate pool required')
++        current = digest([c['node'] for c in self.data['candidates']])
++        saved = self.data['pool_sha256']
++        if saved is None:
++            if any(c['state'] != 'generated' for c in self.data['candidates']):
++                raise LedgerError('pool must be frozen before scoring')
++            self.data['pool_sha256'] = current
++            self._write()
++        elif saved != current:
++            raise LedgerError('frozen candidate pool drift')
+--- a/src/dojo/solvers/fore_ts/batch_runtime.py
++++ b/src/dojo/solvers/fore_ts/batch_runtime.py
+@@ -8,10 +8,18 @@
+ from dojo.solvers.fore_ts.execution_witness import ExecutionWitness
+ from dojo.core.tasks.constants import EXECUTION_OUTPUT
+ from dojo.solvers.fore_ts.request_guard import BatchRequestGuard
+-import random
++from dojo.solvers.fore_ts.selection import POLICIES, choose_slots
+ from pathlib import Path
+ 
+ from dojo.solvers.fore_ts.candidate_ledger import CandidateLedger, LedgerError, digest
++
++
++def assert_candidate_unchanged(ledger, slot, node):
++    record = {k: getattr(node, k) for k in
++              ("id", "ctime", "code", "plan", "operators_used", "operators_metrics")}
++    if (digest(record) != digest(ledger.data["candidates"][slot]["node"]) or
++            node.parents or node.children or node.metric is not None or node.is_buggy is not None):
++        raise LedgerError("candidate changed after generation freeze")
+ 
+ 
+ def expand_batch(solver, path, state, task, node_type, extract_code, config_snapshot):
+@@ -20,6 +28,9 @@
+         return state
+     if type(solver.cfg.selector_seed) is not int:
+         raise LedgerError('explicit independent selector seed required')
++    policy = solver.cfg.selection_policy
++    if policy not in POLICIES:
++        raise LedgerError("explicit selection policy required before generation")
+     parent = path[-1]
+     # Bind the actual in-memory boundary, not merely its step or parent identity.
+     boundary = dict(
+@@ -32,7 +43,7 @@
+               for n in solver.journal.nodes],
+         global_q=[solver.global_min_q_val, solver.global_max_q_val],
+     )
+-    binding = dict(schema=3, execution_contract="task-return-receipt-v1", request_contract="same-rendered-request-v1", boundary_sha256=digest(boundary), parent_id=parent.id,
++    binding = dict(schema=4, selection_policy=policy, execution_contract="task-return-receipt-v1", request_contract="same-rendered-request-v1", boundary_sha256=digest(boundary), parent_id=parent.id,
+                    task=solver.task_name, step=solver.state.current_step)
+     root = Path(solver.cfg.checkpoint_path)
+     root.mkdir(parents=True, exist_ok=True)
+@@ -58,29 +69,37 @@
+             else:
+                 # Analysis appends operator records; it must not edit the pre-execution ledger.
+                 node = node_type(**copy.deepcopy(c['node']), parents=[])
+-            if c['state'] == 'generated':
+-                ledger.begin_score(slot)
+-                ledger.scored(slot, await solver._query_critic(node))
+             return node
+ 
+         async def gather():
+             return await asyncio.gather(*(obtain(i) for i in range(count)))
+ 
+         nodes = asyncio.run(gather())
++        for slot, node in enumerate(nodes):
++            assert_candidate_unchanged(ledger, slot, node)
++        ledger.freeze_pool()  # All generation finishes before ANY critic request.
++        if policy == 'critic_topk_random':
++            async def score_all():
++                for slot, node in enumerate(nodes):
++                    if ledger.data['candidates'][slot]['state'] == 'generated':
++                        assert_candidate_unchanged(ledger, slot, node)
++                        ledger.begin_score(slot)
++                        score = await solver._query_critic(node)
++                        assert_candidate_unchanged(ledger, slot, node)
++                        ledger.scored(slot, score)
++            asyncio.run(score_all())
+         if ledger.data['selected'] is None:
+-            top = sorted(range(count), key=lambda i: ledger.data['candidates'][i]['score'],
+-                         reverse=True)[:solver.critic_top_k]
+-            # Batch-local selector stream: generation/global RNG calls cannot advance it.
+-            # Output paths / critic arm settings bind recovery, but must not seed selection.
+-            rng = random.Random(digest(dict(domain='forets-selector-v1',
+-                                           seed=solver.cfg.selector_seed,
+-                                           task=solver.task_name, step=solver.state.current_step)))
+-            ledger.select(rng.sample(top, min(solver.num_children_to_choose, len(top))))
++            scores = ([c['score'] for c in ledger.data['candidates']]
++                      if policy == 'critic_topk_random' else None)
++            ledger.select(choose_slots(count, solver.critic_top_k, solver.num_children_to_choose,
++                          policy, solver.cfg.selector_seed, solver.task_name,
++                          solver.state.current_step, scores))
+ 
+         for slot in ledger.data['selected']:
+             if solver.remaining_steps <= 0:
+                 break
+             child = nodes[slot]
++            assert_candidate_unchanged(ledger, slot, child)
+             ledger.begin_execution(slot)  # Durable intent BEFORE external effects.
+             state, eval_result = witness.task_for(slot, "candidate").step_task(state, extract_code(child.code))
+             solver.parse_eval_result(node=child, eval_result=eval_result)
+--- /dev/null
++++ b/src/dojo/solvers/fore_ts/selection.py
+@@ -0,0 +1,31 @@
++"""Common batch selector; pure function, no model calls or result-label reads."""
++import hashlib
++import json
++import math
++import random
++
++POLICIES = ('uniform_random', 'critic_topk_random')
++
++
++def choose_slots(count, top_k, choose, policy, seed, task, step, scores=None):
++    if policy not in POLICIES:
++        raise ValueError('explicit supported selection policy required')
++    if any(type(v) is not int or v <= 0 for v in (count, top_k, choose)) or choose > top_k:
++        raise ValueError('invalid candidate/top-k/choose contract')
++    if type(seed) is not int or type(step) is not int or step < 0 or not isinstance(task, str) or not task:
++        raise ValueError('invalid independent selector identity')
++    if policy == 'uniform_random':
++        if scores is not None:
++            raise ValueError('random baseline must not receive critic scores')
++        eligible = list(range(count))
++    else:
++        if (not isinstance(scores, (list, tuple)) or len(scores) != count or
++                any(type(s) not in (int, float) or not math.isfinite(s) for s in scores)):
++            raise ValueError('complete finite score vector required')
++        # Preserve stable slot-order ties. Sort the eligible set back into slot
++        # order before drawing, so top-k==pool exactly couples to the random arm.
++        ranked = sorted(range(count), key=lambda i: scores[i], reverse=True)
++        eligible = sorted(ranked[:min(top_k, count)])
++    identity = dict(domain='forets-selector-v2', seed=seed, task=task, step=step)
++    key = hashlib.sha256(json.dumps(identity, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
++    return random.Random(key).sample(eligible, min(choose, len(eligible)))
+--- a/src/dojo/config_dataclasses/solver/fore_ts.py
++++ b/src/dojo/config_dataclasses/solver/fore_ts.py
+@@ -15,6 +15,7 @@
+ class ForeTSSolverConfig(SolverConfig):
+     uct_c: float = field(default=MISSING)
+     selector_seed: int = field(default=MISSING)
++    selection_policy: str = field(default=MISSING)
+     num_children: int = field(
+         default=MISSING, metadata={"description": "Number of child nodes expanded per search step"}
+     )
+@@ -44,6 +45,8 @@
+ 
+     def validate(self) -> None:
+         super().validate()
++        if self.selection_policy not in ("uniform_random", "critic_topk_random"):
++            raise ValueError("explicit supported selection_policy required")
+         if type(self.selector_seed) is not int:
+             raise ValueError("explicit integer selector_seed required")
+         for name in ("num_children", "critic_top_k", "num_children_to_choose", "critic_max_attempts"):
+--- a/src/dojo/configs/solver/mlebench/fore_ts.yaml
++++ b/src/dojo/configs/solver/mlebench/fore_ts.yaml
+@@ -16,6 +16,7 @@
+ num_children: 5
+ uct_c: 0.25
+ selector_seed: ???  # Must be frozen explicitly in all comparison arms.
++selection_policy: ???  # uniform_random or critic_topk_random; freeze before running.
+ max_debug_depth: 20
+ data_preview: true
+ max_debug_time: 1e9

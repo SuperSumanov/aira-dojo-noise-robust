@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L113. 2026-09-08：真正零critic调用的随机基线与评分前候选冻结
+
+新增0007接在0005+0006之后，学长head仍54929。必填policy为uniform_random或critic_topk_random；
+原top-k=全池仍会调用critic，不能当零critic成本随机臂。新随机路径不取任何critic分数，不伪造未执行标签。
+全批生成完成后冻结有序pool SHA，再评分/选择；评分前后和执行前检查候选未被改动。
+两臂共同使用新批处理规则，selector domain v2、eligible按槽位顺序后抽样；同池top-k=全池精确耦合。
+因此不能用新规则重选旧冻结批次，或与旧交错生成/评分、逐节点MCTS冒称只有selector不同。
+pool SHA不证明共同父状态，独立API调用不因同seed自动同池；在线分叉不共享未来轨迹。
+Windows新16项通过；独立应用tree6f7e650e5ecfd8dac7369a954ac16e01f258daa1同16项通过，5文件95增20删。
+只是人工backend/task的实际batch函数体，无真实模型/程序收益。Linux新矩阵待冻结源码后300秒内CPU验证。
+不重复旧task-return16/request69/G0。完整费用/实际资源/模型身份与TF-IDF adapter仍待补，production_ready=false。
+未改学长分支或生产checkout；严格四fit仍等外部独立开发原记录，保护集未读。
+记录results/forets_selection_20260908，当前不可启动GPU/API/fit或用新pipeline绕过来源门。
+
 ## 0L112. 2026-09-08：主执行/debug独立task-return回执，Linux新矩阵已完成
 
 最终源码28531549eb34fee78c4d198112688b250ab6cda4，Linux16项全过（含真实解释器人工CPU进程），

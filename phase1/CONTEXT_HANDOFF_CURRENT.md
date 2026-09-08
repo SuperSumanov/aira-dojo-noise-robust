@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08；当前0L112覆盖下文历史，Linux16项已完成。
+**Dynamic status timestamp:** 2026-09-08；当前0L113覆盖下文历史，新选择器Linux矩阵未完成。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,14 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先读CURRENT_DIRECTION0L113。0007新增uniform_random/critic_topk_random必填policy，前者零critic调用；
+先整批生成冻结再评分，候选篡改拒绝。selector v2的同池k=全池控制精确一致，旧批次不得重选。
+新16项Windows+实际Git tree6f7e650e5ecfd8dac7369a954ac16e01f258daa1通过；新Linux矩阵待做，
+不重复旧16/69/G0，最多300秒CPU、不执行实际模型/程序；不改学长branch/生产checkout。
+pool hash不能代替相同父状态或自动证明真实同池，成本/资源/TF-IDF adapter未齐、正式来源仍等外部事实。
+
+### 此前状态（0L112）
 
 先读CURRENT_DIRECTION0L112。新增0006独立task-return回执接在0005后；主执行/debug分别记录，
 在analysis之前落盘，未知执行不重试。15 Windows通过/1 Linux-only跳过，真实tree a999d8aaf8e9278e4e1eab57e5e45d2b0f87aa48相同。

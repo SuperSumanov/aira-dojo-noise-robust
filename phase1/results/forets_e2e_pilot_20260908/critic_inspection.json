@@ -1,0 +1,36 @@
+{
+  "archive_bytes": 12051153651,
+  "archive_declared_file_bytes": 15136894154,
+  "archive_sha256": "01dda87a6dfaf77a6c454efcb1a9d5a88964f11f7b4dd88edea1f331be84f1d6",
+  "checkpoint_path": "/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq/unpacked/Qwen3-8B_reward_seed1/checkpoint-100",
+  "credentials_disclosed": false,
+  "elapsed_seconds": 338.4,
+  "extracted_files": [
+    {
+      "bytes": 15136866890,
+      "path": "Qwen3-8B_reward_seed1/checkpoint-100/model.safetensors",
+      "sha256": "bb0c6a1801cf0a753bb1f8aa1c923f9fcc7fff81fd654ae9d3a932ee280dfb74"
+    }
+  ],
+  "gpu_requested": false,
+  "model_loads": 0,
+  "skipped_files": 2,
+  "status": "WEIGHTS_AND_CONFIG_EXTRACTED_NOT_LOADED",
+  "training_state_interpreted": false,
+  "utc": "2026-09-08T12:10:06.067841+00:00",
+  "weight_headers": [
+    {
+      "backbone_prefixed": true,
+      "dtypes": [
+        "BF16"
+      ],
+      "file": "Qwen3-8B_reward_seed1/checkpoint-100/model.safetensors",
+      "head_weight_shape": [
+        1,
+        4096
+      ],
+      "metadata_interpreted": false,
+      "tensors": 400
+    }
+  ]
+}

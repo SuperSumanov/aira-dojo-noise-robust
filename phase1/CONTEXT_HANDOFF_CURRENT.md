@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08，0L117覆盖下文；学长analyze新修复和我方循环导入修复完成，外部模型/路由等待。
+**Dynamic status timestamp:** 2026-09-08，0L118覆盖下文；模型已下载并解压、原始checkpoint格式确认，待真实加载/API路由。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,19 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先读CURRENT_DIRECTION0L118。用户已给模型下载链接；Qwen3-8B.tar.gz完整下载12051153651 bytes，
+SHA256 01dda87a6dfaf77a6c454efcb1a9d5a88964f11f7b4dd88edea1f331be84f1d6，远端目录
+/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq。不要再次索要模型链接或重复下载。
+解压已exit0（338.4秒，中途研究盘I/O等待），不重复启动。实际路径为本目录
+unpacked/Qwen3-8B_reward_seed1/checkpoint-100，15136866890-byte model.safetensors SHA256
+bb0c6a1801cf0a753bb1f8aa1c923f9fcc7fff81fd654ae9d3a932ee280dfb74；400 BF16 tensors，backbone.*与head.weight [1,4096]。
+未读训练状态/评测值，另2个非必要文件跳过。没有随包rm_meta/config/tokenizer；底座配置/分词器已按
+49e3418fbbbca6ecbdf9608b4d22e5a407081db4只下载约7MB到base-metadata，无底座权重重复下载。
+上游raw loader仍会先取底座权重；完整state从固定配置构造的strict本地加载入口尚待接入/实际验证。
+尚无模型load/GPU/API；API路由和有界运行预算仍未完成。三份简要回执见results/forets_e2e_pilot_20260908/critic_*.json。
+
+### 此前模型回复（下载位置现已由0L118补齐）
 
 最新用户交接：学长确认Qwen/Qwen3-8B-Base/16384；RL没得到更好模型，当前只是任选现成旧critic试运行。
 不等RL/不重训，不称最佳checkpoint或scaling结果；仍未提供共享绝对路径/下载地址，API路由也待回复。

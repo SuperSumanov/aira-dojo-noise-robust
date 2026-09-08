@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L118. 2026-09-08：critic权重已接收并解压，原始checkpoint格式确认，待实际加载
+
+用户提供学长共享的Qwen3-8B.tar.gz下载链接；不再将“缺模型下载位置”作为阻塞项，不再重复索要该链接。
+已完整下载12051153651 bytes，SHA256 01dda87a6dfaf77a6c454efcb1a9d5a88964f11f7b4dd88edea1f331be84f1d6，
+实际耗时312.1秒；先对实际目标文件预留空间成功。仅远端独立目录：
+`/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq`，未覆盖模型/生产源码，链接不推公共Git。
+解压任务已exit0，耗时338.4秒；中途等待研究盘I/O，不是GPU排队，不重复运行。
+实际checkpoint：本目录`unpacked/Qwen3-8B_reward_seed1/checkpoint-100`，仅提取model.safetensors，
+15136866890 bytes，SHA256 bb0c6a1801cf0a753bb1f8aa1c923f9fcc7fff81fd654ae9d3a932ee280dfb74。
+安全格式头显示400个BF16 tensors、backbone.*与head.weight [1,4096]，符合上游raw Trainer checkpoint入口的结构；
+没有rm_meta/config/tokenizer随包提供。另2个非模型必需文件未提取/解读，未读训练日志的任何评测值。
+默认缓存缺底座资料，已只补约7MB公开配置/分词器，固定Qwen/Qwen3-8B-Base revision
+49e3418fbbbca6ecbdf9608b4d22e5a407081db4；未下载第二份底座权重。当前上游raw-checkpoint loader会先加载底座
+pretrained权重；下一步可用现有完整state从固定配置构造并strict加载，避免重复下载底座权重，但该入口本轮未实现/验证。
+不能用safetensors头检查冒充真实模型加载或forward。三份简要回执在results/forets_e2e_pilot_20260908/critic_*.json。
+现阶段GPU/API/model-load均0；真实效果未开始。API路由/凭据与硬预算仍待完成，不恢复G0或原严格四fit。
+学长口头配置及现成critic探索用途不变，不宣称RL胜出、最优checkpoint、干净scaling或新的冻结确认资格。
+
 ## 0L117. 2026-09-08：接入学长analyze修复，并修正我方循环导入；外部交接仍等待
 
 用户最新补充：学长确认Qwen/Qwen3-8B-Base、16384上下文，并说明RL未训出更好模型，只选了现成旧模型试运行。

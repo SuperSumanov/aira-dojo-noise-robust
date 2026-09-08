@@ -1,0 +1,13 @@
+{
+  "archive": "/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq/Qwen3-8B.tar.gz",
+  "archive_expected_bytes": 12051153651,
+  "archive_sha256": "01dda87a6dfaf77a6c454efcb1a9d5a88964f11f7b4dd88edea1f331be84f1d6",
+  "bytes_received": 12051153651,
+  "elapsed_seconds": 312.1,
+  "extraction": false,
+  "gpu_requested": false,
+  "inference_api_calls": 0,
+  "model_loads": 0,
+  "status": "DOWNLOADED_NOT_EXTRACTED",
+  "utc": "2026-09-08T12:04:44.528844+00:00"
+}

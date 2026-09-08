@@ -10,6 +10,27 @@
 
 ## 已落实
 
+### 用户提供模型链接后：实际权重已接收（0L118）
+
+Qwen3-8B.tar.gz完整下载12051153651 bytes（312.1秒），SHA256
+`01dda87a6dfaf77a6c454efcb1a9d5a88964f11f7b4dd88edea1f331be84f1d6`。下载前对实际目标预留空间成功，
+文件只落远端，未改生产目录，私人下载链接不入公共Git。仅提取模型必需文件，解压338.4秒，exit0；
+中途研究盘I/O等待，不是GPU排队。实际checkpoint绝对路径：
+
+`/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq/unpacked/Qwen3-8B_reward_seed1/checkpoint-100`
+
+唯一提取文件model.safetensors为15136866890 bytes，SHA256
+`bb0c6a1801cf0a753bb1f8aa1c923f9fcc7fff81fd654ae9d3a932ee280dfb74`。
+格式头400 BF16 tensors，含backbone.*及head.weight [1,4096]，对应上游原始Trainer checkpoint分支；
+未读取tensor数值或评测结果，另2个非必需文件未提取/解读。包内没有rm_meta/config/tokenizer。
+已按学长确认的底座，单独下载公开config/tokenizer_config/tokenizer共7042052 bytes，固定revision
+`49e3418fbbbca6ecbdf9608b4d22e5a407081db4`，位于incoming目录的base-metadata。
+默认环境缓存中这些文件原本均缺，不等于遍历所有自定义缓存；未重复下载任何底座权重。
+
+这解决了模型位置与文件接收，并非实际模型load/forward或e2e收益。上游raw loader会先from_pretrained底座权重；
+下一步接入完整state从固定配置构造并strict加载，避免重复下载，再做有界GPU集成。该新入口本轮未实现/验证。
+API路由、硬限与最终预算仍待完成；不恢复冻结确认资格或原严格四fit。回执在本页同名results目录的critic_*.json。
+
 ### 09:24 UTC后的运行修复，覆盖下方旧集成版本
 
 学长新head `c428549973beb4a3289bf669675fac13f64e63b8` 修复MCTS._analyze未等待coroutine的错误；
@@ -52,7 +73,7 @@
 |搜索|软限制1800秒；必须补外部硬停止后，才能按以下费用上限提交|
 |资源设想|同节点2GPU，1卡critic/1卡worker，串行；两臂都计入整个已分配资源|
 |底座API|学长配置默认deepseek/deepseek-v4-flash-0731 via OpenRouter，尚未确认可用；不得自动换模型|
-|critic|等学长提供现成可访问位置；不加载已撤回旧checkpoint，不使用G0工程checkpoint冒充有效critic|
+|critic|现成Qwen3-8B_reward_seed1/checkpoint-100已收到，路径见上；不使用G0工程checkpoint，不恢复已撤回冻结确认|
 
 矩阵共8个agent runs。若每run实际硬限30分钟、两卡，并额外共30分钟两卡初始化/debug，
 条件总cap为8.0+1.0=9.0 GPU小时；这是计算值，不是已批准/已实现的硬预算。现有solver软限会在step后检查，
@@ -66,12 +87,11 @@ leaf seed6随机先、seed7 critic先；spaceship seed6 critic先、seed7随机�
 300秒是本次新声明环境的统一完整执行上限，不是按早期结果续时的多保真方案，也不声称复现历史时限。
 后续确认再扩任务/seed和强基线；这8run只能判断是否值得继续，不能选最好seed或最佳跨run提交报喜。
 
-## 现在真正等外部的两项
+## 当前剩余接入项（模型下载位置已解决）
 
-1. 学长文档的相对示例 `outputs/augmented_mle_critic/Qwen3-8B_reward_seed1/checkpoint-100` 在我方repo下不存在。
-   用户已转达确认底座Qwen/Qwen3-8B-Base、上下文16384：RL没训出更好模型，只是选现成旧模型测试。
-   不等待RL/重新训练，不称最佳模型或新scaling；仍需要共享绝对路径或可访问下载地址，不再重复问模型/上下文，
-   不要求补历史审计。权重文件尚未实查，具体已撤回checkpoint的禁用不因此自动解除。
+1. 权重已接收，不再索要链接或重传。底座Qwen/Qwen3-8B-Base、上下文16384由学长确认，
+   用于现成旧critic的新探索，不等待RL/重新训练，不称最佳模型或干净scaling；不恢复具体已撤回冻结确认。
+   我方接着处理本地加载入口和有界GPU验证；文件头结构符合不代表全模型实际运行成功。
 2. 实际LiteLLM backend使用模型专属 `PRIMARY_KEY_...` 或 `PRIMARY_KEY`。远端.env有后者，
    没有该OpenRouter模型专属变量，也没有OPENROUTER_API_KEY；fallback不呈OpenRouter凭据形状，
    .env中未找到可说明路由的URL/ENDPOINT字段。形状不是凭据有效性验证，禁止把它试送错误服务。

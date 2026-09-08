@@ -10,6 +10,19 @@
 
 ## 已落实
 
+### 最新状态：有界作业入口（0L122）
+
+0013继续接0010→0011→0012，tree059328196ca359965732308eebf7e57eb9c9ecd8。
+step时间/worker墙钟/每run预算初始化与归档、环境导出禁用、重复启动拦截已接入；7项新CPU检查通过。
+首次预算模块冷启动超过8秒且0intent，保留失败诊断；将同一逻辑移到轻量utils模块后原时限通过，不导入litellm/torch。
+这是人工输入与无害进程测试，不是真Slurm强制结束/GPU/真实API/e2e验收。归档无法保证覆盖SIGKILL/节点故障。
+只读Slurm确认KillWait300秒/OverTimeLimit0，故9GPUh只能称名义270分钟2GPU；若加终止宽限为9.166666666666666GPUh，
+也不保证故障/不可中断IO下绝对结束。官方时间语义：https://slurm.schedmd.com/srun.html。
+提议worker1740秒、step30分钟、剩余时间至少2130秒；真实矩阵和费用仍待冻结，测试cap40次请求不是批准预算。
+源码仅隔离forets-bounded-worker-20260909-xobxuu/source-v2；tar SHA256
+fd34ba0e454d90b3f9857882269ee1aa9fcf52b2ffe004715bff63c1d614196d。
+后续一次真实8B验收须单独给资源预算/预检；接口对应关系及价格仍等待，不发送现有key试错。
+
 ### 最新状态：共享请求额度与完整两臂配置（0L121）
 
 0012接0010+0011；完整tree49fd8698e6a5a3377224a2d92c65f354cb1eefa0。

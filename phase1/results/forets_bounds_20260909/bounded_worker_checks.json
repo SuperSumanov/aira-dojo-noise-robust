@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "source_tree": "059328196ca359965732308eebf7e57eb9c9ecd8",
+  "checks": [
+    "full_bounded_launcher_config_pairs_only_selector_differs",
+    "partial_limits_retry_and_missing_cleanup_allowance_rejected",
+    "actual_launch_argv_has_step_time_and_worker_limits_no_slurm_dispatch",
+    "unbounded_default_prefix_and_unknown_endtime_behavior_unchanged",
+    "real_cpu_child_gets_private_budget_archival_and_repeat_claim_rejected",
+    "timed_out_cpu_child_keeps_dispatch_reservation_and_archives_budget",
+    "environment_export_rejected_before_worker_start"
+  ],
+  "evidence": {
+    "paired_config_sha256": [
+      "546b5aad1cd56179758b31b296e9f29068cc5d65d5327acc1261d1b532277b13",
+      "6afb8f883c087e2abad3f24123c9113157dc0a0ba55c8273af319ba2e29b4d81",
+      "9991cddb8fc3475b737e57a30880823bc56844b85f795921bda8a5fe33bc5c46",
+      "56c7d797bd0ac4d11d66fc52ec1f307486cd4a76b7973a83dc5999880d388135"
+    ],
+    "launch_argv_without_paths": [
+      "srun",
+      "--time=30",
+      "--kill-on-bad-exit=1",
+      "dojo.main_bounded_srun_worker",
+      "--wall-seconds",
+      "1740",
+      "--max-api-attempts",
+      "40"
+    ]
+  },
+  "real_slurm_dispatches": 0,
+  "external_api_requests": 0,
+  "gpu_jobs": 0,
+  "model_loads": 0,
+  "protected_data_read": false,
+  "note": "fake Slurm identity, actual harmless local child processes; no cluster enforcement proof"
+}

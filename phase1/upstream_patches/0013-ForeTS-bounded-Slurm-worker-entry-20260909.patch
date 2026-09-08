@@ -1,0 +1,547 @@
+diff --git a/src/dojo/config_dataclasses/launcher/srun_pool.py b/src/dojo/config_dataclasses/launcher/srun_pool.py
+index fe29d701..5fab289d 100644
+--- a/src/dojo/config_dataclasses/launcher/srun_pool.py
++++ b/src/dojo/config_dataclasses/launcher/srun_pool.py
+@@ -19,6 +19,12 @@ class SrunPoolConfig(LauncherConfig):
+     min_remaining_seconds_to_launch: int = field(default=1800, metadata={"exclude_from_hash": True})
+     shutdown_grace_seconds: int = field(default=30, metadata={"exclude_from_hash": True})
+     validate_paths_on_node: bool = field(default=True, metadata={"exclude_from_hash": True})
++    # Opt-in exploratory limits, kept together; defaults preserve upstream behavior.
++    step_time_limit_minutes: int | None = None
++    worker_wall_seconds: int | None = None
++    forets_max_api_attempts: int | None = None
++    forets_max_output_tokens: int | None = None
++    step_termination_allowance_seconds: int = 0
+ 
+     def validate(self) -> None:
+         super().validate()
+@@ -42,3 +48,17 @@ class SrunPoolConfig(LauncherConfig):
+             raise ValueError("shutdown_grace_seconds cannot be negative")
+         if not self.await_completion or not self.monitor_jobs:
+             raise ValueError("srun_pool must await and monitor its steps; detached pool controllers are not supported")
++        bounds = (self.step_time_limit_minutes, self.worker_wall_seconds,
++                  self.forets_max_api_attempts, self.forets_max_output_tokens)
++        if any(value is not None for value in bounds):
++            if any(type(value) is not int or value <= 0 for value in bounds):
++                raise ValueError('bounded worker requires all four positive integer limits')
++            if self.max_retries != 0:
++                raise ValueError('bounded exploratory worker forbids automatic replay')
++            if self.worker_wall_seconds + 30 > self.step_time_limit_minutes * 60:
++                raise ValueError('step must allow at least 30 seconds beyond worker deadline')
++            if type(self.step_termination_allowance_seconds) is not int or self.step_termination_allowance_seconds <= 0:
++                raise ValueError('explicit cluster termination allowance required')
++            required = self.step_time_limit_minutes * 60 + self.step_termination_allowance_seconds
++            if self.min_remaining_seconds_to_launch < required:
++                raise ValueError('remaining-allocation launch gate does not include step and termination allowance')
+diff --git a/src/dojo/core/runners/slurm/bounded_process.py b/src/dojo/core/runners/slurm/bounded_process.py
+new file mode 100644
+index 00000000..ab8617ee
+--- /dev/null
++++ b/src/dojo/core/runners/slurm/bounded_process.py
+@@ -0,0 +1,141 @@
++"""Bound a local POSIX worker process group; not a Slurm/cgroup substitute.
++
++Run the worker INSIDE an approved Slurm step for GPU work. A process can escape
++POSIX groups with setsid(), and SIGKILL of this supervisor bypasses its cleanup.
++Cluster-side allocation/step time limits remain required. This module submits
++no job, authorizes no budget, and makes no claim about provider-side cancellation.
++"""
++import argparse
++import hashlib
++import json
++import math
++import os
++from pathlib import Path
++import signal
++import subprocess
++import time
++
++
++class InterruptedRun(Exception):
++    pass
++
++
++def _positive(value):
++    if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
++        raise ValueError('positive finite time limit required')
++    return float(value)
++
++
++def _group_signal(group, sig):
++    try:
++        os.killpg(group, sig)
++        return True
++    except ProcessLookupError:
++        return False
++
++
++def _group_exists(group):
++    try:
++        os.killpg(group, 0)
++        return True
++    except ProcessLookupError:
++        return False
++
++
++def _private_file(path):
++    return os.fdopen(os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), 'wb')
++
++
++def run_bounded(command, *, cwd, output_dir, wall_seconds, grace_seconds=2., environment=None):
++    """Run exactly once, store private raw logs and a non-result summary.
++
++    wall_seconds begins immediately before process creation. TERM grace and the
++    final leader wait may each consume grace_seconds; count both in the budget.
++    Unknown API charge is never zero. OS uninterruptible sleep is not bounded here.
++    """
++    if os.name != 'posix':
++        raise RuntimeError('POSIX worker required; Windows process groups differ')
++    wall_seconds, grace_seconds = _positive(wall_seconds), _positive(grace_seconds)
++    if not command or not all(isinstance(arg, str) and arg and '\x00' not in arg for arg in command):
++        raise ValueError('nonempty argv required; shell commands are not supported')
++    cwd, output_dir = Path(cwd).resolve(strict=True), Path(output_dir)
++    if not cwd.is_dir():
++        raise ValueError('cwd must be a directory')
++    # Exclusive run directory prevents accidental replay/overwriting after interruption.
++    output_dir.mkdir(mode=0o700, parents=False, exist_ok=False)
++    identity = json.dumps(dict(argv=command, cwd=str(cwd)), sort_keys=True).encode()
++    summary = dict(schema=1, command_sha256=hashlib.sha256(identity).hexdigest(),
++                   wall_seconds=wall_seconds, grace_seconds=grace_seconds,
++                   api_cost_usd=None, provider_cancellation_verified=False,
++                   containment='posix_process_group_only', started=False)
++    # Neither environment nor command contents nor child output enter the summary.
++    started = time.monotonic()
++    process = None
++    handlers = {}
++    def interrupted(signum, frame):
++        raise InterruptedRun('supervisor interrupted')
++    try:
++        for sig in (signal.SIGINT, signal.SIGTERM):
++            handlers[sig] = signal.signal(sig, interrupted)
++        with _private_file(output_dir / 'stdout.private.log') as stdout, _private_file(output_dir / 'stderr.private.log') as stderr:
++            process = subprocess.Popen(command, cwd=cwd, env=environment,
++                                       stdout=stdout, stderr=stderr, stdin=subprocess.DEVNULL,
++                                       start_new_session=True, shell=False)
++            summary.update(started=True, pid=process.pid)
++            try:
++                remaining = max(0., wall_seconds - (time.monotonic() - started))
++                code = process.wait(timeout=remaining)
++                summary['status'] = 'completed' if code == 0 else 'failed'
++            except subprocess.TimeoutExpired:
++                summary['status'] = 'timed_out'
++    except InterruptedRun:
++        summary['status'] = 'interrupted'
++    except Exception as exc:
++        summary.update(status='launch_or_supervisor_failed', error_type=type(exc).__name__)
++    finally:
++        # Ignore repeated interrupts while reclaiming only the group we created.
++        for sig in handlers:
++            signal.signal(sig, signal.SIG_IGN)
++        try:
++            if process is not None:
++                summary['term_sent'] = _group_signal(process.pid, signal.SIGTERM)
++                if summary['status'] == 'completed' and summary['term_sent']:
++                    # Parent exit zero does not establish that its background
++                    # work finished. Reclaim it but do not claim a clean success.
++                    summary['status'] = 'completed_with_leftovers'
++                cleanup_deadline = time.monotonic() + grace_seconds
++                while _group_exists(process.pid) and time.monotonic() < cleanup_deadline:
++                    process.poll()
++                    time.sleep(min(.02, max(0., cleanup_deadline - time.monotonic())))
++                summary['kill_sent'] = _group_signal(process.pid, signal.SIGKILL)
++                try:
++                    summary['returncode'] = process.wait(timeout=grace_seconds)
++                except subprocess.TimeoutExpired:
++                    summary['status'] = 'cleanup_unconfirmed'
++                    summary['returncode'] = None
++            summary['elapsed_seconds'] = time.monotonic() - started
++            with _private_file(output_dir / 'summary.json') as output:
++                output.write((json.dumps(summary, sort_keys=True, indent=2) + '\n').encode())
++        finally:
++            for sig, handler in handlers.items():
++                signal.signal(sig, handler)
++    return summary
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--cwd', type=Path, required=True)
++    parser.add_argument('--output-dir', type=Path, required=True)
++    parser.add_argument('--wall-seconds', type=float, required=True)
++    parser.add_argument('--grace-seconds', type=float, default=2.)
++    parser.add_argument('command', nargs=argparse.REMAINDER)
++    args = parser.parse_args()
++    argv = args.command[1:] if args.command[:1] == ['--'] else args.command
++    summary = run_bounded(argv, cwd=args.cwd, output_dir=args.output_dir,
++                          wall_seconds=args.wall_seconds, grace_seconds=args.grace_seconds)
++    print(json.dumps(summary, sort_keys=True))
++    raise SystemExit(0 if summary['status'] == 'completed' else 1)
++
++
++if __name__ == '__main__':
++    main()
+diff --git a/src/dojo/core/runners/slurm/srun_pool.py b/src/dojo/core/runners/slurm/srun_pool.py
+index bee4da25..c0b55c6e 100644
+--- a/src/dojo/core/runners/slurm/srun_pool.py
++++ b/src/dojo/core/runners/slurm/srun_pool.py
+@@ -350,7 +350,7 @@ class SrunPoolLauncher:
+             )
+ 
+     def _srun_prefix(self, *, job_name: str) -> list[str]:
+-        return [
++        command = [
+             "srun",
+             f"--jobid={self.allocation.job_id}",
+             "--exclusive",
+@@ -361,10 +361,15 @@ class SrunPoolLauncher:
+             f"--job-name={job_name}",
+             f"--chdir={self.snapshot_path}",
+         ]
++        if self.cfg.step_time_limit_minutes is not None:
++            command += [f'--time={self.cfg.step_time_limit_minutes}', '--kill-on-bad-exit=1']
++        return command
+ 
+     def _launch(self, run_id: str) -> RunningStep:
+         task = self.manifest["tasks"][run_id]
+         attempt = int(task["attempt"]) + 1
++        if self.cfg.worker_wall_seconds is not None and attempt != 1:
++            raise RuntimeError('bounded exploration refuses replay before Slurm dispatch')
+         stdout_path, stderr_path = self._log_paths(run_id, attempt)
+         identity_path = self._identity_path(run_id, attempt)
+         job_name = f"dojo-{hashlib.sha256(run_id.encode()).hexdigest()[:8]}-a{attempt}"
+@@ -373,7 +378,7 @@ class SrunPoolLauncher:
+             f"--error={stderr_path}",
+             str(self.python_executable),
+             "-m",
+-            "dojo.main_srun_worker",
++            "dojo.main_bounded_srun_worker" if self.cfg.worker_wall_seconds is not None else "dojo.main_srun_worker",
+             task["config_path"],
+             str(identity_path),
+             "--run-id",
+@@ -381,6 +386,10 @@ class SrunPoolLauncher:
+             "--attempt",
+             str(attempt),
+         ]
++        if self.cfg.worker_wall_seconds is not None:
++            command += ['--wall-seconds', str(self.cfg.worker_wall_seconds),
++                        '--max-api-attempts', str(self.cfg.forets_max_api_attempts),
++                        '--max-output-tokens', str(self.cfg.forets_max_output_tokens)]
+         attempt_data = {
+             "attempt": attempt,
+             "job_name": job_name,
+@@ -710,6 +719,8 @@ class SrunPoolLauncher:
+ 
+     def _can_launch(self) -> bool:
+         remaining = self._remaining_seconds()
++        if self.cfg.step_time_limit_minutes is not None and remaining is None:
++            return False
+         return remaining is None or remaining >= self.cfg.min_remaining_seconds_to_launch
+ 
+     def _signal_handler(self, signum: int, frame: FrameType | None) -> None:
+diff --git a/src/dojo/core/solvers/llm_helpers/backends/run_budget.py b/src/dojo/core/solvers/llm_helpers/backends/run_budget.py
+index 9ea5269c..d083d3dd 100644
+--- a/src/dojo/core/solvers/llm_helpers/backends/run_budget.py
++++ b/src/dojo/core/solvers/llm_helpers/backends/run_budget.py
+@@ -1,94 +1,11 @@
+-"""Single-host, persistent adapter-attempt cap; NOT a dollar/billing cap.
++"""Compatibility import; new supervisors use dojo.utils.run_budget directly.
+ 
+-Initialize once before starting a worker, on node-local storage (not NFS).
+-Point FORETS_RUN_BUDGET_PATH at this database for every operator/worker.
+-Reservations are never refunded: a crash or unknown transport may be billable.
+-No prompts, responses, credentials, or outcome values are stored here.
++Importing the llm_helpers package initializes the LLM stack. Keep budget-only
++bootstrap outside that package so its deadline does not depend on ML imports.
+ """
+-import argparse
+-from contextlib import closing
+-import json
+-import os
+-from pathlib import Path
+-import sqlite3
+-import time
++from dojo.utils.run_budget import RunBudgetError, initialize, reserve, main
+ 
+-
+-class RunBudgetError(RuntimeError):
+-    pass
+-
+-
+-def _positive(value):
+-    if type(value) is not int or value <= 0:
+-        raise RunBudgetError('budget bounds must be positive integers')
+-    return value
+-
+-
+-def initialize(path, max_attempts, max_output_tokens):
+-    path = Path(path)
+-    if not path.is_absolute():
+-        raise RunBudgetError('absolute node-local budget path required')
+-    _positive(max_attempts)
+-    _positive(max_output_tokens)
+-    # Exclusive creation prevents accidental reset/replay. Failed creation is
+-    # retained and cannot silently become a fresh budget on the next launch.
+-    fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+-    os.close(fd)
+-    with closing(sqlite3.connect(path)) as db:
+-        db.execute('PRAGMA synchronous=FULL')
+-        db.executescript('''
+-            CREATE TABLE policy (id INTEGER PRIMARY KEY CHECK(id=1),
+-                version INTEGER NOT NULL, max_attempts INTEGER NOT NULL,
+-                max_output_tokens INTEGER NOT NULL);
+-            CREATE TABLE attempts (ordinal INTEGER PRIMARY KEY,
+-                attempt_id TEXT UNIQUE NOT NULL, created_ns INTEGER NOT NULL,
+-                max_output_tokens INTEGER NOT NULL);
+-        ''')
+-        db.execute('INSERT INTO policy VALUES (1,1,?,?)', (max_attempts, max_output_tokens))
+-        db.commit()
+-
+-
+-def reserve(path, attempt_id, max_output_tokens):
+-    path = Path(path)
+-    _positive(max_output_tokens)
+-    if not path.is_absolute() or path.is_symlink():
+-        raise RunBudgetError('absolute non-symlink budget path required')
+-    if not isinstance(attempt_id, str) or len(attempt_id) != 32 or any(c not in '0123456789abcdef' for c in attempt_id):
+-        raise RunBudgetError('opaque attempt ID required')
+-    # mode=rw prohibits SQLite from silently creating a replacement database.
+-    try:
+-        with closing(sqlite3.connect(path.as_uri() + '?mode=rw', uri=True, timeout=5)) as db:
+-            db.execute('PRAGMA synchronous=FULL')
+-            db.execute('BEGIN IMMEDIATE')
+-            rows = db.execute('SELECT version,max_attempts,max_output_tokens FROM policy').fetchall()
+-            if len(rows) != 1 or rows[0][0] != 1:
+-                raise RunBudgetError('unsupported budget policy')
+-            _, cap, output_cap = rows[0]
+-            _positive(cap)
+-            _positive(output_cap)
+-            if max_output_tokens > output_cap:
+-                raise RunBudgetError('request output limit exceeds run policy')
+-            used = db.execute('SELECT COUNT(*) FROM attempts').fetchone()[0]
+-            if used >= cap:
+-                raise RunBudgetError('run adapter-attempt budget exhausted')
+-            ordinal = used + 1
+-            db.execute('INSERT INTO attempts VALUES (?,?,?,?)',
+-                       (ordinal, attempt_id, time.time_ns(), max_output_tokens))
+-            db.commit()  # durable intent BEFORE the adapter/network call
+-            return ordinal
+-    except sqlite3.Error:
+-        raise RunBudgetError('budget reservation failed; no dispatch allowed') from None
+-
+-
+-def main():
+-    parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('--path', required=True)
+-    parser.add_argument('--max-attempts', type=int, required=True)
+-    parser.add_argument('--max-output-tokens', type=int, required=True)
+-    args = parser.parse_args()
+-    initialize(args.path, args.max_attempts, args.max_output_tokens)
+-    print(json.dumps(dict(status='initialized', max_attempts=args.max_attempts,
+-                          max_output_tokens=args.max_output_tokens, api_cost_cap_usd=None)))
++__all__ = ['RunBudgetError', 'initialize', 'reserve']
+ 
+ 
+ if __name__ == '__main__':
+diff --git a/src/dojo/main_bounded_srun_worker.py b/src/dojo/main_bounded_srun_worker.py
+new file mode 100644
+index 00000000..7392a41e
+--- /dev/null
++++ b/src/dojo/main_bounded_srun_worker.py
+@@ -0,0 +1,96 @@
++"""One bounded exploratory worker inside a Slurm step; no automatic replay.
++
++Slurm --time/allocation limits are still required. SIGKILL or a node failure can
++prevent budget archival; the persistent exclusive claim then remains ambiguous.
++Never reconstruct a fresh allowance from a missing node-local database.
++"""
++import argparse
++from contextlib import closing
++import hashlib
++import json
++import os
++from pathlib import Path
++import re
++import sqlite3
++import sys
++import tempfile
++
++from dojo.core.runners.slurm.bounded_process import run_bounded
++from dojo.utils.run_budget import initialize
++
++
++def _write_new(path, value):
++    with os.fdopen(os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600), 'w') as file:
++        json.dump(value, file, sort_keys=True, indent=2)
++        file.write('\n')
++        file.flush()
++        os.fsync(file.fileno())
++
++
++def run_worker(args, *, worker_command=None):
++    allocation, step = os.environ.get('SLURM_JOB_ID', ''), os.environ.get('SLURM_STEP_ID', '')
++    if not re.fullmatch(r'[0-9]+', allocation) or not re.fullmatch(r'[0-9]+', step):
++        raise RuntimeError('bounded worker requires a numeric Slurm allocation and step')
++    if args.attempt != 1:
++        raise RuntimeError('bounded exploration does not automatically replay runs')
++    for value in (args.wall_seconds, args.max_api_attempts, args.max_output_tokens):
++        if type(value) is not int or value <= 0:
++            raise ValueError('positive integer bounds required')
++    if os.environ.get('FORETS_RUN_BUDGET_PATH'):
++        raise RuntimeError('refusing inherited budget from another run')
++    identity = args.identity.resolve()
++    config = args.config.resolve(strict=True)
++    config_bytes = config.read_bytes()
++    if json.loads(config_bytes).get('logger', {}).get('write_env_vars') is not False:
++        raise RuntimeError('bounded worker requires explicit disabled environment export')
++    # Persistent marker is created before any dispatch. An interrupted attempt
++    # cannot be retried by silently creating another node-local budget.
++    claim = identity.with_suffix('.bounded')
++    claim.mkdir(mode=0o700, parents=False, exist_ok=False)
++    local = Path(tempfile.mkdtemp(prefix='forets-worker-', dir='/tmp'))
++    budget = local / 'attempts.sqlite'
++    initialize(budget, args.max_api_attempts, args.max_output_tokens)
++    _write_new(claim/'started.json', dict(allocation_id=allocation, step_id=step,
++        run_id_sha256=hashlib.sha256(args.run_id.encode()).hexdigest(),
++        config_sha256=hashlib.sha256(config_bytes).hexdigest(),
++        local_budget=str(budget), wall_seconds=args.wall_seconds,
++        max_api_attempts=args.max_api_attempts, max_output_tokens=args.max_output_tokens,
++        api_cost_cap_usd=None, automated_resume_allowed=False))
++    command = worker_command or [sys.executable, '-m', 'dojo.main_srun_worker', str(config),
++        str(identity), '--run-id', args.run_id, '--attempt', str(args.attempt)]
++    environment = os.environ.copy()
++    environment['FORETS_RUN_BUDGET_PATH'] = str(budget)
++    summary = run_bounded(command, cwd=Path.cwd(), output_dir=claim/'execution',
++        wall_seconds=args.wall_seconds, grace_seconds=2., environment=environment)
++    receipt = dict(worker_status=summary['status'], budget_archived=False,
++                   api_cost_usd=None, reserved_adapter_attempts=None)
++    try:
++        archive = claim/'attempts.sqlite'
++        fd = os.open(archive, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
++        os.close(fd)
++        with closing(sqlite3.connect(budget.as_uri() + '?mode=ro', uri=True, timeout=5)) as source:
++            with closing(sqlite3.connect(archive, timeout=5)) as target:
++                source.backup(target)
++            receipt['reserved_adapter_attempts'] = source.execute('SELECT COUNT(*) FROM attempts').fetchone()[0]
++        receipt['budget_archived'] = True
++    except Exception as exc:
++        receipt['archive_error_type'] = type(exc).__name__
++    _write_new(claim/'finished.json', receipt)
++    # Keep node-local evidence. It is small and not an automatic-resume source.
++    return 0 if summary['status'] == 'completed' and receipt['budget_archived'] else 1
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('config', type=Path)
++    parser.add_argument('identity', type=Path)
++    parser.add_argument('--run-id', required=True)
++    parser.add_argument('--attempt', required=True, type=int)
++    parser.add_argument('--wall-seconds', required=True, type=int)
++    parser.add_argument('--max-api-attempts', required=True, type=int)
++    parser.add_argument('--max-output-tokens', required=True, type=int)
++    raise SystemExit(run_worker(parser.parse_args()))
++
++
++if __name__ == '__main__':
++    main()
+diff --git a/src/dojo/utils/run_budget.py b/src/dojo/utils/run_budget.py
+new file mode 100644
+index 00000000..9ea5269c
+--- /dev/null
++++ b/src/dojo/utils/run_budget.py
+@@ -0,0 +1,95 @@
++"""Single-host, persistent adapter-attempt cap; NOT a dollar/billing cap.
++
++Initialize once before starting a worker, on node-local storage (not NFS).
++Point FORETS_RUN_BUDGET_PATH at this database for every operator/worker.
++Reservations are never refunded: a crash or unknown transport may be billable.
++No prompts, responses, credentials, or outcome values are stored here.
++"""
++import argparse
++from contextlib import closing
++import json
++import os
++from pathlib import Path
++import sqlite3
++import time
++
++
++class RunBudgetError(RuntimeError):
++    pass
++
++
++def _positive(value):
++    if type(value) is not int or value <= 0:
++        raise RunBudgetError('budget bounds must be positive integers')
++    return value
++
++
++def initialize(path, max_attempts, max_output_tokens):
++    path = Path(path)
++    if not path.is_absolute():
++        raise RunBudgetError('absolute node-local budget path required')
++    _positive(max_attempts)
++    _positive(max_output_tokens)
++    # Exclusive creation prevents accidental reset/replay. Failed creation is
++    # retained and cannot silently become a fresh budget on the next launch.
++    fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
++    os.close(fd)
++    with closing(sqlite3.connect(path)) as db:
++        db.execute('PRAGMA synchronous=FULL')
++        db.executescript('''
++            CREATE TABLE policy (id INTEGER PRIMARY KEY CHECK(id=1),
++                version INTEGER NOT NULL, max_attempts INTEGER NOT NULL,
++                max_output_tokens INTEGER NOT NULL);
++            CREATE TABLE attempts (ordinal INTEGER PRIMARY KEY,
++                attempt_id TEXT UNIQUE NOT NULL, created_ns INTEGER NOT NULL,
++                max_output_tokens INTEGER NOT NULL);
++        ''')
++        db.execute('INSERT INTO policy VALUES (1,1,?,?)', (max_attempts, max_output_tokens))
++        db.commit()
++
++
++def reserve(path, attempt_id, max_output_tokens):
++    path = Path(path)
++    _positive(max_output_tokens)
++    if not path.is_absolute() or path.is_symlink():
++        raise RunBudgetError('absolute non-symlink budget path required')
++    if not isinstance(attempt_id, str) or len(attempt_id) != 32 or any(c not in '0123456789abcdef' for c in attempt_id):
++        raise RunBudgetError('opaque attempt ID required')
++    # mode=rw prohibits SQLite from silently creating a replacement database.
++    try:
++        with closing(sqlite3.connect(path.as_uri() + '?mode=rw', uri=True, timeout=5)) as db:
++            db.execute('PRAGMA synchronous=FULL')
++            db.execute('BEGIN IMMEDIATE')
++            rows = db.execute('SELECT version,max_attempts,max_output_tokens FROM policy').fetchall()
++            if len(rows) != 1 or rows[0][0] != 1:
++                raise RunBudgetError('unsupported budget policy')
++            _, cap, output_cap = rows[0]
++            _positive(cap)
++            _positive(output_cap)
++            if max_output_tokens > output_cap:
++                raise RunBudgetError('request output limit exceeds run policy')
++            used = db.execute('SELECT COUNT(*) FROM attempts').fetchone()[0]
++            if used >= cap:
++                raise RunBudgetError('run adapter-attempt budget exhausted')
++            ordinal = used + 1
++            db.execute('INSERT INTO attempts VALUES (?,?,?,?)',
++                       (ordinal, attempt_id, time.time_ns(), max_output_tokens))
++            db.commit()  # durable intent BEFORE the adapter/network call
++            return ordinal
++    except sqlite3.Error:
++        raise RunBudgetError('budget reservation failed; no dispatch allowed') from None
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--path', required=True)
++    parser.add_argument('--max-attempts', type=int, required=True)
++    parser.add_argument('--max-output-tokens', type=int, required=True)
++    args = parser.parse_args()
++    initialize(args.path, args.max_attempts, args.max_output_tokens)
++    print(json.dumps(dict(status='initialized', max_attempts=args.max_attempts,
++                          max_output_tokens=args.max_output_tokens, api_cost_cap_usd=None)))
++
++
++if __name__ == '__main__':
++    main()

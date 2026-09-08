@@ -3,7 +3,27 @@
 这里保存针对其他现有分支、但不直接改写对方分支的可审计补丁。补丁必须注明精确 base commit、测试结果与
 迁移边界；只有维护者审阅后才 cherry-pick。
 
-## 当前ForeTS探索入口（2026-09-09，0L121）
+## 当前ForeTS探索入口（2026-09-09，0L122）
+
+### 可选后续：0013有界Slurm worker（接0012）
+
+完整组合065b0fba+0010→0011→0012→0013：tree`059328196ca359965732308eebf7e57eb9c9ecd8`，独立apply复建一致。
+launcher显式成组提供step_time_limit_minutes、worker_wall_seconds、forets_max_api_attempts、forets_max_output_tokens，
+另给step_termination_allowance_seconds，max_retries必须0。未知allocation结束时间/不够剩余时间不启动，attempt>1在srun前拒绝。
+生成`--time`并改用`dojo.main_bounded_srun_worker`；未启用时旧入口不变。计划模块新增bounded_launcher_overrides，不提交任务。
+新worker在节点本地独立初始化预算，持久目录排他标记，复制0L120相同进程包装执行原worker，之后保存预算副本和结构计数。
+环境导出必须显式false。SIGKILL/节点故障可能无法保存副本，旧claim保留，不能重新初始化获得新额度。
+预算实现原样移到`dojo.utils.run_budget`，旧backend路径保持兼容；这样轻量bootstrap不会隐式加载LLM依赖。
+
+7项新检查通过，使用伪Slurm identity/Popen和真实无害CPU子进程，未提交任何作业：完整配置4组仅selector不同、
+非法limits/retry拒绝、实际argv与launch门、默认兼容、预算传递/归档/重复拒绝、超时保留计数、环境导出阻止。
+初版8秒期限被LLM包冷启动耗尽，0intent；诊断复现后移到轻量模块，以原时限通过，child断言未导入litellm/torch。
+失败和通过回执分别`bounded_worker_initial_failure.json`与`bounded_worker_checks.json`，并非只保留成功记录。
+
+实际Slurm只读值KillWait=300秒/OverTimeLimit=0，时间参数按分钟向上取整（[官方说明](https://slurm.schedmd.com/srun.html)）。
+step30分钟/worker1740秒/终止余量330秒/remaining门2130秒为提议值；40次请求/8192输出只用于CPU配置检查，美元cap未定。
+2GPU×270分钟=9GPUh为名义值，另加KillWait为9.166666666666666；不可中断IO/故障仍无严格结束保证，不声称集群已验收。
+远端源码仅forets-bounded-worker-20260909-xobxuu/source-v2，未改生产目录或学长分支，0GPU/API/model-load/真实任务。
 
 ### 可选后续：0012整轮共享请求额度（接0011）
 

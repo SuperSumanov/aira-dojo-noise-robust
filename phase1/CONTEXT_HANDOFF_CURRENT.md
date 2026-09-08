@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09香港时间，0L121覆盖下文；共享run额度/四算子配置已检查，API对应关系仍等待。
+**Dynamic status timestamp:** 2026-09-09香港时间，0L122覆盖下文；Slurm参数/worker预算接入已检查，真实GPU与接口仍等待。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,20 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L122：0013接0010+0011+0012，tree059328196ca359965732308eebf7e57eb9c9ecd8。
+新worker独立预算库/排他标记、进程限时、正常及本地超时后归档；Slurm launch显式step时间，重放在dispatch前拒绝。
+需要明确关闭logger.write_env_vars；默认不启用的入口不变。source在forets-bounded-worker-20260909-xobxuu/source-v2。
+新7项检查PASS（真实无害CPU子进程+伪Slurm identity/Popen），0真正Slurm/GPU/API/model-load/任务；不等于集群验收。
+初版子进程8秒启动超时、0intent，诊断复现一次后把预算逻辑从重LLM包移到dojo.utils，旧import留兼容，不增加时限。
+最终轻量child未导入litellm/torch，正常/超时都保留预算；失败诊断及最终结果在results/forets_bounds_20260909/bounded_worker_*.json。
+只读Slurm config：KillWait300、OverTimeLimit0、cgroup、UnkillableStepTimeout180；270分钟2卡9GPUh是名义值，
+加KillWait为9.166666666666666但仍无故障下绝对结束保证。step30分钟/worker1740/终止余量330/剩余门2130是提议。
+测试cap40请求/8192输出非正式批准或美元cap。预算归档不覆盖SIGKILL/节点故障，标记未知，不自动恢复/重建。
+下一步只准备一次8B真实GPU验收的明确预算/预检；API映射和价格等学长，不催问、不试送密钥。不重跑旧检查填时间。
+后备截止02:10 UTC不变。暂无实际模型收益或e2e结果。
+
+### 此前整轮额度（0L121）
 
 最新0L121：新增0012接0010+0011，tree49fd8698e6a5a3377224a2d92c65f354cb1eefa0。
 node-local SQLite共享adapter-attempt额度，dispatch前落intent，不因失败/取消/重启退款，不自动建库/重置。

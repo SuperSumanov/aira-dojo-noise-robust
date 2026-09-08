@@ -1,0 +1,32 @@
+{
+  "status": "FAIL",
+  "stage": "harmless_child",
+  "checks_completed": [
+    "full_bounded_launcher_config_pairs_only_selector_differs",
+    "partial_limits_retry_and_missing_cleanup_allowance_rejected",
+    "actual_launch_argv_has_step_time_and_worker_limits_no_slurm_dispatch",
+    "unbounded_default_prefix_and_unknown_endtime_behavior_unchanged"
+  ],
+  "worker": {
+    "api_cost_usd": null,
+    "budget_archived": true,
+    "reserved_adapter_attempts": 0,
+    "worker_status": "timed_out"
+  },
+  "process": {
+    "api_cost_usd": null,
+    "command_sha256": "acbcf9e7ffa781289fad31250b436ab44cdc0a0a7a6e7905430a3acd798772d6",
+    "containment": "posix_process_group_only",
+    "elapsed_seconds": 8.061324984999374,
+    "grace_seconds": 2.0,
+    "kill_sent": false,
+    "pid": 592257,
+    "provider_cancellation_verified": false,
+    "returncode": -15,
+    "schema": 1,
+    "started": true,
+    "status": "timed_out",
+    "term_sent": true,
+    "wall_seconds": 8.0
+  }
+}

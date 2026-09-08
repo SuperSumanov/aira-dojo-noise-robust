@@ -3,6 +3,36 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L122. 2026-09-09：作业入口与预算归档接入，冷启动缺陷已修；真实集群/GPU仍未验收
+
+已读最新入口并fetch；此前0057d650公开8blob已核对。本轮仍0外部API/GPU/模型load/真实任务，接口等学长，
+没有修改学长branch或生产checkout。新增0013接0010+0011+0012，完整tree
+`059328196ca359965732308eebf7e57eb9c9ecd8`，独立apply复建一致。隔离目录
+`/research/d7/spc/yzyang4/forets-bounded-worker-20260909-xobxuu/source-v2`。
+
+新增显式Slurm step分钟限、worker墙钟限、整run请求/输出token限，默认上游入口不变；预算配置必须成组提供，
+自动retry为0，剩余allocation时间需覆盖step及终止宽限；未知结束时间不启动。重放attempt在srun dispatch前拒绝。
+新worker只在Slurm step内使用，每run创建持久排他标记和节点本地预算库，再通过0L120进程包装执行原worker。
+正常/普通异常/本地超时后归档预算库；SIGKILL、节点故障或不可中断IO可能不归档，旧标记保持未知，不自动重建额度。
+显式禁止环境变量导出；预算计数是dispatch intent，不冒充供应商收到的HTTP数或真实账单。
+
+首次人工子进程检查失败（随后一次诊断复现）：8秒时限内仍0次预算登记，budget成功保存，进程被TERM终止。
+源码确认原预算模块位于会提前导入GenericLLM/LiteLLM的包中。将相同预算实现移到轻量dojo.utils.run_budget，
+旧路径保留兼容转出；不增加测试时限。新子进程断言不导入litellm/torch，正常8秒、超时1秒两项成功。
+完整新7项检查PASS，含带预算的8份完整配置4组仅selector不同、真实launch argv（Popen替身，无Slurm提交）、
+缺限/重试拒绝、默认兼容、真实无害CPU子进程预算/归档/重复阻止、超时保留额度、环境导出拦截。
+首次失败诊断和最终通过均在results/forets_bounds_20260909/bounded_worker_*.json；远端最终exit0已捕获。
+
+只读集群配置得到KillWait=300秒、OverTimeLimit=0分钟、proctrack/cgroup、task/cgroup、UnkillableStepTimeout=180秒。
+Slurm --time按分钟向上取整。故旧9GPU小时只是2GPU×270分钟名义值；另算KillWait为9.166666666666666 GPU小时，
+仍不是不可中断IO/故障下绝对结束保证。证据slurm_policy_readonly.json及官方https://slurm.schedmd.com/srun.html。
+提议step30分钟、worker1740秒、termination allowance330秒、剩余时间门2130秒；测试max_api_attempts40/输出8192，
+均尚非真实endpoint/费用批准表。Slurm参数构造通过不等于实际集群强制终止已验收。
+
+剩余：一次真实8B GPU加载/前向/服务验收的独立预算与预检；学长接口/模型对应关系及价格事实回来后，
+才冻结API费用和小型e2e矩阵。别重跑已完成人工检查、G0/来源审计来填时间。新critic收益/e2e胜出仍未验证。
+后备截止仍2026-09-09 02:10 UTC，不因本轮延长。
+
 ## 0L121. 2026-09-09：整轮请求额度与四算子配置接入完成，尚非美元cap或真实效果
 
 继续ForeTS e2e优先，API平台/地址/模型仍等学长，不重复询问、不试送密钥。远端无遗留测试进程后，

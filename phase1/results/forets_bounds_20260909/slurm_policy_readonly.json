@@ -1,0 +1,18 @@
+{
+  "observed_date_utc": "2026-09-08",
+  "host_alias": "linux5",
+  "slurm_conf": "/opt1/slurm/gpu-slurm.conf",
+  "method": "read-only scontrol show config, allowlisted fields only",
+  "KillWait_seconds": 300,
+  "OverTimeLimit_minutes": 0,
+  "ProctrackType": "proctrack/cgroup",
+  "TaskPlugin": "task/cgroup",
+  "UnkillableStepTimeout_seconds": 180,
+  "real_slurm_dispatches": 0,
+  "gpu_jobs": 0,
+  "enforcement_tested": false,
+  "nominal_two_gpu_270_minute_allocation_gpu_hours": 9.0,
+  "two_gpu_270_minutes_plus_KillWait_gpu_hours": 9.166666666666666,
+  "not_a_universal_runtime_or_billing_guarantee": true,
+  "reference": "https://slurm.schedmd.com/srun.html"
+}

@@ -43,3 +43,21 @@ def run_order():
             policies = POLICIES if (task_index + seed) % 2 == 0 else tuple(reversed(POLICIES))
             for policy in policies:
                 yield task, seed, policy
+
+
+def bounded_launcher_overrides(*, max_api_attempts, max_output_tokens, step_minutes=30, worker_wall_seconds=1740,
+                               termination_allowance_seconds=330):
+    """Proposal only. 330 seconds reflects observed KillWait=300 plus 30 margin.
+
+    Re-check actual cluster policy before submission. No allocation is requested.
+    """
+    values = (max_api_attempts, max_output_tokens, step_minutes, worker_wall_seconds, termination_allowance_seconds)
+    if any(type(value) is not int or value <= 0 for value in values):
+        raise ValueError('explicit positive bounded launch limits required')
+    return ['++launcher.step_time_limit_minutes=' + str(step_minutes),
+            '++launcher.worker_wall_seconds=' + str(worker_wall_seconds),
+            '++launcher.forets_max_api_attempts=' + str(max_api_attempts),
+            '++launcher.forets_max_output_tokens=' + str(max_output_tokens),
+            '++launcher.step_termination_allowance_seconds=' + str(termination_allowance_seconds),
+            'launcher.min_remaining_seconds_to_launch=' + str(step_minutes * 60 + termination_allowance_seconds),
+            'logger.write_env_vars=false']

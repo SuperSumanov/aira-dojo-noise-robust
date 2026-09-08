@@ -37,6 +37,16 @@ summary SHA60d9a16adc0eb606a28551148ce8ac9acc593417f686a42de126f40052b37709。
 可以排除这个固定历史范围在既定16K下的代码截断，不能外推到其它人口或称模型收益。
 安全原始回执与实际runner见results/session_strategy_20260908/README.md。
 
+03:55 UTC第三次foreground调用及独立delta链完成，得到新稳定snapshot：
+740physical/714eligible/19382endpoints/4384pairs/58tasks、closure=false。
+LATEST76da588f6d4bc2a981f0697d0c95c0e3fdb5873dc58484516e61f4319701a706，
+summary SHA85207d638b909cbf7ee1f1facaf4d49250fc90b1edec0273f3da2a4f68487735；
+独立delta manifest SHA9974731fd5a8286479e54e6d49e287abf58119188921b037fafd9e5e17d6032c。
+三次调用均有wrapper/post-audit；前两次仅观察，第三次原摄取耗时149.80316368800413秒。
+没有声称11个新归档全部完成。下一次最早UTC03:59:57.196054；只能在原窗口剩余时限足够时继续，
+最多总计8次，未启动第四次/后台monitor。恢复先核poll/post-audit和LATEST，不重复第三次。
+本轮不再需要G0、分词诊断或旧CPU验收；训练仍等待实际独立开发来源，不将新前瞻包挪入训练。
+
 ## 0L104. 2026-09-08：0906新上传已安全复制，尚未经过摄取时龄门
 
 香港05:41独立复核完成：0906新11归档、118981762压缩字节；source归档343→354。

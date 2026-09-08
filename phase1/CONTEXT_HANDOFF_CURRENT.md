@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08香港05:41；当前0L104覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-08香港11:55；当前0L105覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,20 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+首先fetch并读CURRENT_DIRECTION 0L105。用户已批准研究汇报后直接执行；报告SENIOR_STRATEGY_AND_EXECUTION_20260908.md已推送。
+原四fit仍缺合格独立开发来源/实际评分记录，尚未训练；不重新做已完成G0/CPU验收，不挪用保护人口。
+本轮84历史run全部3447非空代码输入诊断完成：16K零截断，最长12533 tokens；原始安全回执results/session_strategy_20260908。
+0GPU/API/model fit；这是输入事实，不是模型收益。学长最新代码的候选执行与task评分环境需要分别留记录，已写入报告，未改学长branch。
+0906原协议foreground已完成poll000/001/002及各自独立post-audit；最新740physical/714eligible/19382endpoints/4384pairs/58tasks、closure=false。
+LATEST76da588f6d4bc2a981f0697d0c95c0e3fdb5873dc58484516e61f4319701a706，summary85207d638b909cbf7ee1f1facaf4d49250fc90b1edec0273f3da2a4f68487735。
+摄取source28a139f481764951485ad6d278920a2fa3efe62c，入口/tmp/dispatch_0906_foreground_r2_20260908.py，
+输出/research/d7/spc/yzyang4/session-0906-intake-20260908。新窗口UTC03:40:46–05:40:46，2700秒/调用含核验，最多8次。
+下一次最早UTC03:59:57.196054；未启动第四次/后台任务。恢复先核当前poll/post-audit/PID/锁/LATEST，不能重跑已完成事务或调用旧0905窗口。
+本轮source deployment首失败因bundle缺祖先，另r2补齐；输入诊断首失败因私有manifest0600不符错误0400假设，另r2只读副本成功，旧证据保留。
+这里只完成一次新摄取事务，不声称0906全部11归档均已入库。
+
+### 当日早前记录，已由上文覆盖
 
 首先fetch并读CURRENT_DIRECTION 0L104。12664及CPU分段验收全部已完成，不重跑构建/G0/验收。
 旧12535仍JobHeldUser，不释放；正式四fit尚未开始，ADMITTED_RELEASES为空。

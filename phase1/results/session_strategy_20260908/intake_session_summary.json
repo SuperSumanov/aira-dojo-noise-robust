@@ -1,0 +1,96 @@
+{
+  "background_monitor_started": false,
+  "calls": [
+    {
+      "after": {
+        "all_physical_runs": 737,
+        "closure_provided": false,
+        "eligible_endpoints": 19351,
+        "eligible_runs": 711,
+        "eligible_structural_pairs": 4380,
+        "eligible_tasks": 58,
+        "latest": "6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116",
+        "summary_sha256": "77572010daa7af2255084e35b41ae76da50f2f213838c047b4d99c052ce980f3"
+      },
+      "audit_manifest_sha256": "36416e8895a15c807561cda87ea8564e0d4636af021edd18f8a63f2d1cf86761",
+      "before": {
+        "all_physical_runs": 737,
+        "closure_provided": false,
+        "eligible_endpoints": 19351,
+        "eligible_runs": 711,
+        "eligible_structural_pairs": 4380,
+        "eligible_tasks": 58,
+        "latest": "6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116",
+        "summary_sha256": "77572010daa7af2255084e35b41ae76da50f2f213838c047b4d99c052ce980f3"
+      },
+      "finished_epoch": 1788838890.4310641,
+      "intake_seconds": 22.154530861007515,
+      "poll": 0,
+      "snapshot_changed": false,
+      "started_epoch": 1788838866.8149965
+    },
+    {
+      "after": {
+        "all_physical_runs": 737,
+        "closure_provided": false,
+        "eligible_endpoints": 19351,
+        "eligible_runs": 711,
+        "eligible_structural_pairs": 4380,
+        "eligible_tasks": 58,
+        "latest": "6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116",
+        "summary_sha256": "77572010daa7af2255084e35b41ae76da50f2f213838c047b4d99c052ce980f3"
+      },
+      "audit_manifest_sha256": "36416e8895a15c807561cda87ea8564e0d4636af021edd18f8a63f2d1cf86761",
+      "before": {
+        "all_physical_runs": 737,
+        "closure_provided": false,
+        "eligible_endpoints": 19351,
+        "eligible_runs": 711,
+        "eligible_structural_pairs": 4380,
+        "eligible_tasks": 58,
+        "latest": "6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116",
+        "summary_sha256": "77572010daa7af2255084e35b41ae76da50f2f213838c047b4d99c052ce980f3"
+      },
+      "finished_epoch": 1788839217.0101585,
+      "intake_seconds": 8.906190244990285,
+      "poll": 1,
+      "snapshot_changed": false,
+      "started_epoch": 1788839206.712757
+    },
+    {
+      "after": {
+        "all_physical_runs": 740,
+        "closure_provided": false,
+        "eligible_endpoints": 19382,
+        "eligible_runs": 714,
+        "eligible_structural_pairs": 4384,
+        "eligible_tasks": 58,
+        "latest": "76da588f6d4bc2a981f0697d0c95c0e3fdb5873dc58484516e61f4319701a706",
+        "summary_sha256": "85207d638b909cbf7ee1f1facaf4d49250fc90b1edec0273f3da2a4f68487735"
+      },
+      "audit_manifest_sha256": "9974731fd5a8286479e54e6d49e287abf58119188921b037fafd9e5e17d6032c",
+      "before": {
+        "all_physical_runs": 737,
+        "closure_provided": false,
+        "eligible_endpoints": 19351,
+        "eligible_runs": 711,
+        "eligible_structural_pairs": 4380,
+        "eligible_tasks": 58,
+        "latest": "6db37288ac0fe2ca1b833ff63c3b10318cd13610c023a9d2412c194a67dfd116",
+        "summary_sha256": "77572010daa7af2255084e35b41ae76da50f2f213838c047b4d99c052ce980f3"
+      },
+      "finished_epoch": 1788839697.196054,
+      "intake_seconds": 149.80316368800413,
+      "poll": 2,
+      "snapshot_changed": true,
+      "started_epoch": 1788839546.4440446
+    }
+  ],
+  "next_call_not_before_utc": "2026-09-08T03:59:57.196054+00:00",
+  "protected_values_read": false,
+  "session_end_utc": "2026-09-08T05:40:46+00:00",
+  "source_archives": 354,
+  "source_commit": "28a139f481764951485ad6d278920a2fa3efe62c",
+  "status": "THREE_FOREGROUND_CALLS_WITH_POSTAUDITS_COMPLETE",
+  "training_started": false
+}

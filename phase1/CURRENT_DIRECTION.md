@@ -5,6 +5,13 @@
 
 ## 0L110. 2026-09-08：推进生成请求一致性与逐次逻辑用量留存
 
+最终源码2920b14ddc471942ba19972f687458d339adff62，Linux69项全部通过，8.896084904001327秒；
+独立核69唯一case、11源码等于Git、12输入hash不变，零failure/error/skip。
+receipt6f031733de0e2a5074c9ced68f35bcb4bb80e1a65261324172649bdcc6a6d7b3，
+XML0e72d38e1f8c08de6d0ab73c8ded42036ff4a419f125ba0ec3b10ec8a0fe26de。
+首轮61过/8失败属于测试源码缓存读取未接线，失败保留；修订只改测试读取器，guard/0004不变。
+完整search恢复、实际资源和全成本依旧待验；生成逻辑边界完成，不再重复本轮测试冒充进展。
+
 沿0L109安全下一步工作，新增未部署0004补丁，不重复旧验收代替进展。学长head无变化，分支未改。
 源码确认draft/improve原地shuffle共享包列表；提取重试最终只返回最后一次metrics。
 guarded批次固定配置包顺序、核对实际GenericLLM→client.query的messages/kwargs，
@@ -15,7 +22,7 @@ guarded批次固定配置包顺序、核对实际GenericLLM→client.query的mes
 这是逻辑调用边界，不覆盖SDK/provider内部重试、critic/执行/analysis全成本，不是美元预算或生产准入。
 Windows14新+55旧=69项通过；实际Git应用tree34424d6a137729df6f9d6e0e0fcd5b63bce57262同14新项通过，
 6文件120增10删。Jinja2引擎真实，模板/后端/任务人工构造，部分框架stub；不是实际生产模板/模型效果。
-Linux复测待后续固定源码回执，上限300秒CPU。原严格四fit仍待外部独立开发原记录，不启动GPU/API/fit或读保护集。
+Linux最终回执见本节顶部，上限300秒CPU。原严格四fit仍待外部独立开发原记录，不启动GPU/API/fit或读保护集。
 记录与剩余边界见results/forets_request_boundary_20260908/README.md。
 
 ## 0L109. 2026-09-08：候选状态接入完成跨平台定向验收，未解锁正式训练

@@ -1,5 +1,16 @@
 # ForeTS 实际请求与逻辑调用成本边界（2026-09-08）
 
+## 最终验收状态
+
+源码2920b14ddc471942ba19972f687458d339adff62：Linux 3.11.15/pytest7.4.3/Jinja23.1.6，
+69项通过（14新+55旧），8.896084904001327秒；Windows同矩阵通过，不重复计成独立科学试验。
+独立新进程核69唯一case、0失败/错误/跳过、11源码等于Git blob及12输入前后hash不变。
+远端/research/d7/spc/yzyang4/forets-request-r2-20260908-Uah5sBkn。
+receipt SHA256 6f031733de0e2a5074c9ced68f35bcb4bb80e1a65261324172649bdcc6a6d7b3；
+XML SHA256 0e72d38e1f8c08de6d0ab73c8ded42036ff4a419f125ba0ec3b10ec8a0fe26de，下载后相同。
+见linux_r2.json、linux_r2_tests.xml、independent_verification_r2.json、transport_r2.json。
+初轮8失败保留，没有覆盖原目录；只改测试缓存读取，不改guard或科学配置。
+
 未部署的0004补丁，接在已有0002/0003之后；不修改学长分支，不宣称模型效果。
 权威upstream仍为8b621851a87d20382feefe8c8458a7db2a1fabea。目标：防止同批次输入混杂及提取重试费用漏计。
 
@@ -32,12 +43,13 @@ Linux首轮486ff8f7为61 passed/8 failed，12.306021220996627秒。8项均在测
 错误使用git show（独立目录不是Git repo），未走已校验source cache；并非请求guard被这些case验证通过。
 失败XML linux_initial_failure.xml SHA0417f9bc84e8efae98e750a80e7945b8f00c2e1473e7804478fc03db86e3f155。
 后续显式按环境读取固定缓存，不再依赖在测试收集前替换某个测试模块对象；guard/0004内容不变。
-修改后的Linux复测待后续回执：最多300秒CPU子进程，0 GPU/API/fit，不安装库，不改活动环境。
+修改后的Linux复测已完成，见顶部最终回执；最多300秒CPU子进程，0 GPU/API/fit，不安装库，不改活动环境。
 只传固定源文件和人工测试，源文件打包用命令级core.autocrlf=false并核对Git blob字节。
 
 ## 不支持的结论与下一步
 
 完整search/interpreter恢复、critic HTTP费用/同步阻塞/截断、执行与analysis成本、SDK内部重试及真实资源绑定仍未解决。
+client类名不认证模型权重或实际provider路由；私有请求留存也不是同UID对手防篡改或完整网络访问审计。
 只能称“生成逻辑请求的输入一致性与已知返回用量留存”，不能称完整计费、完整恢复、生产就绪或正模型收益。
 正式四fit仍等待独立开发原记录；本轮不读保护数据，不用新guard代替来源事实。
 下一步应把这套固定输入契约写入同候选批次random/critic对照，并解决真实执行状态和资源预算，不反复重跑本轮测试。

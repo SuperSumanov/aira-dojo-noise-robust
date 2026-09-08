@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08香港15:00；当前0L110覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-08香港15:09；当前0L110覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -14,7 +14,11 @@
 先fetch/read CURRENT_DIRECTION 0L110。新增0004把guarded包顺序固定并核对实际client.query输入，
 留请求前意图和每次逻辑返回usage，未知成本不记0；原0002/0003不变，schema2不混用旧ledger。
 Windows69项（14新+55旧）通过；实际应用tree34424d6a137729df6f9d6e0e0fcd5b63bce57262同14项通过。
-下一步在新独立远端目录固定commit/hash后复测69项CPU，300秒上限，不安装环境、不启动GPU/paid/fit。
+Linux最终源码2920b14ddc471942ba19972f687458d339adff62已69项通过，8.896084904001327秒；
+11源码等于Git、12输入hash不变、69唯一case全通过。远端forets-request-r2-20260908-Uah5sBkn，
+receipt6f031733de0e2a5074c9ced68f35bcb4bb80e1a65261324172649bdcc6a6d7b3，
+XML0e72d38e1f8c08de6d0ab73c8ded42036ff4a419f125ba0ec3b10ec8a0fe26de。初轮61过/8失败为测试缓存接线，原记录保留，guard/0004未改。
+这项完成，不再重复验收；后续真实执行/恢复与资源边界仍待处理，来源事实不足等待外部。
 不是完整费用/真实生产模板/搜索恢复/模型效果；实际开发来源依然等外部事实。正式对照两臂必须共用包顺序契约。
 记录results/forets_request_boundary_20260908。避免再重跑已结束的0L109或G0；学长分支未改。
 

@@ -1,0 +1,17 @@
+{
+  "archive_sha256": "fd782936e7b4eb091ac57b9083d33f2914177cf627b0e660a14d084eaf888de7",
+  "classification": "INDEPENDENT_REQUEST_BOUNDARY_VERIFICATION_NOT_MODEL_EFFECT",
+  "errors": 0,
+  "exact_payload_files": 12,
+  "failures": 0,
+  "gpu_jobs": 0,
+  "heldout_inputs_opened": false,
+  "model_fits": 0,
+  "production_ready": false,
+  "receipt_sha256": "6f031733de0e2a5074c9ced68f35bcb4bb80e1a65261324172649bdcc6a6d7b3",
+  "skipped": 0,
+  "source_cache_sha256": "7a85be5a6accc0b4022af6c59a35a331dce5a92fefff05d7880e1b6fc40a9be7",
+  "source_commit": "2920b14ddc471942ba19972f687458d339adff62",
+  "tests": 69,
+  "xml_sha256": "0e72d38e1f8c08de6d0ab73c8ded42036ff4a419f125ba0ec3b10ec8a0fe26de"
+}

@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08香港14:03；当前0L107覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-08香港14:27；当前0L108覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,19 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先fetch/read CURRENT_DIRECTION 0L108。SSH恢复且有界成本核算两次一致，安全receipt已存
+results/forets_candidate_state_20260908/development_cost.json；六任务双完整组件最小条件cap2091.6666666666665GPU小时，
+不走默认全量路线、不把组件隔离等同全量重执行；真实开发来源仍等外部记录，原四fit不准入。
+ForeTS原0002不变，新增0003候选台账/已执行journal分离、执行前有限恢复/未知状态停机，
+24新测试+28旧回归通过；独立Git应用tree af2489d55e174a73f9f92dbb416062f43dd55994，同24项通过。
+没有生产部署/新GPU/API/fit/学长branch更改。完整checkpoint恢复被明确阻止，不能启动长实验。
+下一步在远端新隔离目录传7个hash-pinned source blobs和测试模块，以300秒CPU上限复测，
+不改生产checkout、不复制真实数据。Linux runner为phase1/forets_linux_validation_20260908.py，结果未完成时不声称通过。
+中断后备automation g0-r5已更新为当前主线提示并ACTIVE/15分钟；不得执行已废弃G0提示/旧12535/过期摄取lease。
+733eligible未在本轮重新观测。
+
+### 此前状态（0L107）
 
 先fetch并读CURRENT_DIRECTION 0L107。学长新head8b621851a87d20382feefe8c8458a7db2a1fabea新增ForeTS/E2E说明，
 无新outcome，数据payload未读。现有候选框架归学长，不重复造；我方有精确提交的可选hotfix与28项定向复现。

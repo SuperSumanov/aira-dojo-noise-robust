@@ -1,0 +1,147 @@
+{
+  "checked_start_utc": "2026-09-08 06:22:06 UTC",
+  "checked_end_utc": "2026-09-08 06:22:12 UTC",
+  "source_commit": "2157f7f7dbf00440fcc65e92cb52a24c7ff4c424",
+  "script_sha256": "40f50f08718937fe91de87e971196c80d66dfbd20b725b2c35dc0d2236dae576",
+  "command": "Get-Content -Raw phase1/scripts/inspect_parallel_source_budget_20260908.py | ssh -o BatchMode=yes -o ConnectTimeout=12 linux5 /research/d7/spc/yzyang4/venvs/exp/bin/python -B -",
+  "exit_code": 0,
+  "wall_time_seconds": 5.936666,
+  "result": {
+    "classification": "METADATA_ONLY_BUDGET_FRONTIER_NOT_SOURCE_ADMISSION_OR_SELECTION",
+    "input_sha256": {
+      "lineage": "fe05dddcd4fe8a3f2208652ce51c9b06df9b9b8f57a5fa655d2029caddcf9981",
+      "pack": "0912a2e6cf8342fe6c209645d2d1b56c142f91a066197fcd5e37d07f8c0955e7",
+      "scope": "fc13d25745c1c8ea408374741358137e9eb374b3b214e0c9f6d4b856b071464b"
+    },
+    "limitations": [
+      "Each admitted component would need all its nonempty programs at their original full caps.",
+      "One GPU per program is a planning assumption, not a measured resource need.",
+      "This minimizes the sum of conditional caps; it is not actual cost or time prediction.",
+      "Task minimization is diagnostic only: no tasks, components or train/dev roles are selected.",
+      "Two conservative components are necessary coverage, not experiment independence or power.",
+      "Excludes queue, environment startup, grading, IO and critic training."
+    ],
+    "minimum_full_component_cap_by_task_count": {
+      "1": 133.66666666666666,
+      "2": 279.66666666666663,
+      "3": 536.6666666666666,
+      "4": 970.6666666666666,
+      "5": 1437.6666666666665,
+      "6": 2091.6666666666665
+    },
+    "model_fits": 0,
+    "old_outcomes_read": false,
+    "programs_executed": 0,
+    "programs_selected": 0,
+    "protected_inputs_opened": false,
+    "source_admitted": false,
+    "task_rows": [
+      {
+        "all_programs_cap_gpu_hours": 159,
+        "components": 1,
+        "minimum_two_complete_components_cap_gpu_hours": null,
+        "runs": 6,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "all_programs_cap_gpu_hours": 434,
+        "components": 2,
+        "minimum_two_complete_components_cap_gpu_hours": 434,
+        "runs": 8,
+        "task": "dog-breed-identification"
+      },
+      {
+        "all_programs_cap_gpu_hours": 112,
+        "components": 1,
+        "minimum_two_complete_components_cap_gpu_hours": null,
+        "runs": 4,
+        "task": "dogs-vs-cats-redux-kernels-edition"
+      },
+      {
+        "all_programs_cap_gpu_hours": 557,
+        "components": 3,
+        "minimum_two_complete_components_cap_gpu_hours": 257,
+        "runs": 6,
+        "task": "google-quest-challenge"
+      },
+      {
+        "all_programs_cap_gpu_hours": 316,
+        "components": 3,
+        "minimum_two_complete_components_cap_gpu_hours": 146,
+        "runs": 6,
+        "task": "histopathologic-cancer-detection"
+      },
+      {
+        "all_programs_cap_gpu_hours": 203.66666666666666,
+        "components": 3,
+        "minimum_two_complete_components_cap_gpu_hours": 133.66666666666666,
+        "runs": 6,
+        "task": "kuzushiji-recognition"
+      },
+      {
+        "all_programs_cap_gpu_hours": 723,
+        "components": 1,
+        "minimum_two_complete_components_cap_gpu_hours": null,
+        "runs": 6,
+        "task": "leaf-classification"
+      },
+      {
+        "all_programs_cap_gpu_hours": 1196,
+        "components": 1,
+        "minimum_two_complete_components_cap_gpu_hours": null,
+        "runs": 4,
+        "task": "mlsp-2013-birds"
+      },
+      {
+        "all_programs_cap_gpu_hours": 776,
+        "components": 1,
+        "minimum_two_complete_components_cap_gpu_hours": null,
+        "runs": 4,
+        "task": "nomad2018-predict-transparent-conductors"
+      },
+      {
+        "all_programs_cap_gpu_hours": 362,
+        "components": 1,
+        "minimum_two_complete_components_cap_gpu_hours": null,
+        "runs": 4,
+        "task": "random-acts-of-pizza"
+      },
+      {
+        "all_programs_cap_gpu_hours": 467,
+        "components": 2,
+        "minimum_two_complete_components_cap_gpu_hours": 467,
+        "runs": 10,
+        "task": "tabular-playground-series-dec-2021"
+      },
+      {
+        "all_programs_cap_gpu_hours": 654,
+        "components": 2,
+        "minimum_two_complete_components_cap_gpu_hours": 654,
+        "runs": 8,
+        "task": "tabular-playground-series-may-2022"
+      },
+      {
+        "all_programs_cap_gpu_hours": 108,
+        "components": 1,
+        "minimum_two_complete_components_cap_gpu_hours": null,
+        "runs": 2,
+        "task": "text-normalization-challenge-english-language"
+      },
+      {
+        "all_programs_cap_gpu_hours": 215,
+        "components": 1,
+        "minimum_two_complete_components_cap_gpu_hours": null,
+        "runs": 6,
+        "task": "text-normalization-challenge-russian-language"
+      },
+      {
+        "all_programs_cap_gpu_hours": 82,
+        "components": 1,
+        "minimum_two_complete_components_cap_gpu_hours": null,
+        "runs": 4,
+        "task": "tweet-sentiment-extraction"
+      }
+    ]
+  },
+  "interpretation_note": "The first limitations sentence describes this hypothetical full-component costing only, not a source admission rule. Holding out a whole development component does NOT require executing all its programs. Sampling within held-out components needs a separate prospective scope and cost freeze."
+}

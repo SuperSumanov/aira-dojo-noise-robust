@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08；当前0L112覆盖下文历史，Linux验证未完成。
+**Dynamic status timestamp:** 2026-09-08；当前0L112覆盖下文历史，Linux16项已完成。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -13,7 +13,10 @@
 
 先读CURRENT_DIRECTION0L112。新增0006独立task-return回执接在0005后；主执行/debug分别记录，
 在analysis之前落盘，未知执行不重试。15 Windows通过/1 Linux-only跳过，真实tree a999d8aaf8e9278e4e1eab57e5e45d2b0f87aa48相同。
-下一步只做新矩阵Linux CPU上限300秒、一个人工print真实解释器进程；不重跑69项/G0，不开GPU/API/fit。
+源码28531549eb34fee78c4d198112688b250ab6cda4已Linux16全过，包含人工print真实解释器进程，3.9597221879957942秒，
+独立核16唯一case/4源文件等于Git/5输入不变/0遗留子进程；receipt dbafd1f906e5d0ca5829230cc745ec08d825fc9f279844c59771aede513f9873。
+远端forets-execution-20260908-dw7WTqrL，本项完成，不再重跑16/69/G0；不开GPU/API/fit。
+下一步完整费用/实际资源和来源事实仍待补，未知外部事实等待，不用工程通过当科学收益。
 未部署，不是模型效果/全成本/完整恢复；严格四fit外部开发原记录仍待事实。
 
 ### 此前状态（0L111）

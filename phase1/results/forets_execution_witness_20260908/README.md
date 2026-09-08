@@ -29,14 +29,28 @@
 
 ## 当前验证
 
+最终源码 `28531549eb34fee78c4d198112688b250ab6cda4` 在独立远端 Linux 目录完成
+16 项新测试，全部通过，0 failures/errors/skips，3.9597221879957942 秒（测试运行器墙钟，非性能指标）。
+Python 3.11.15 / pytest 7.4.3；真实人工 CPU 子进程项通过，退出时 active_test_children=0。
+新进程独立核对 16 唯一 case、4 源文件等于 Git、5 输入前后 hash 不变及零测试 stderr。
+该新矩阵绑定上文明确的 54929/base tree；未重跑旧 69 项，也不把跨平台重测当独立科学实验。
+
+远端目录 `/research/d7/spc/yzyang4/forets-execution-20260908-dw7WTqrL`；270 秒执行上限，
+必要时只终止本次创建的进程组，两级清理各至多 10 秒，整体低于预定 300 秒。
+archive SHA256 `6b1af042e2b946a0625eb840c44dbba0254b033fd6a5a4dee29fd393efa712cb`，112640 字节。
+receipt SHA256 `dbafd1f906e5d0ca5829230cc745ec08d825fc9f279844c59771aede513f9873`；
+XML SHA256 `be463797dccfc7e4954828d50186494481893c04a8c91b491cb16db47576bfde`。
+见 `linux_validation_receipt.json`、`linux_test_summary.json`、`linux_tests.xml`、`independent_verification.json`。
+
 Windows 新增定向测试：15 passed / 1 Linux-only skipped，见 `windows_initial.xml`。
 真实 Git index 应用得到 tree `a999d8aaf8e9278e4e1eab57e5e45d2b0f87aa48`，
-3 文件、138 新增、5 删除。实际 tree 验证及 Linux 新验证的状态以后续回执为准。
+3 文件、138 新增、5 删除。同 15 项从实际 Git 应用 tree 函数体通过 / 1 Linux-only skipped，
+见 `windows_applied_tree.xml`；Linux 最终状态见本节顶部。
 不会重跑此前 69 项再当成新进展；本矩阵仅验证新增 task-return 接线。
 
 Linux 预定最多 300 秒 CPU、零 GPU/付费 API/模型训练，只跑新增定向测试。
 一项使用固定源码 PythonInterpreter 的真实子进程执行人工 print 程序，导入路由、
-logger/config 注入；其余 task/backend 人工构造。即使通过，也不是完整 Dojo/MLE 评分
+logger/config 注入；其余 task/backend 人工构造。已通过，但不是完整 Dojo/MLE 评分
 或真实任务收益，更不验证外部开发来源。
 
 ## 未完成边界

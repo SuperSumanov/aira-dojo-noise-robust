@@ -1,0 +1,17 @@
+{
+  "active_test_children": 0,
+  "errors": 0,
+  "failures": 0,
+  "production_ready": false,
+  "real_benign_cpu_case_passed": true,
+  "receipt_sha256": "dbafd1f906e5d0ca5829230cc745ec08d825fc9f279844c59771aede513f9873",
+  "skipped": 0,
+  "source_commit": "28531549eb34fee78c4d198112688b250ab6cda4",
+  "source_files_equal_git": 4,
+  "summary_sha256": "64632a3ba223b843a3b7620cabbfa5bc64566532cf1e927c8906828f7abca8c9",
+  "tests": 16,
+  "unchanged_inputs": 5,
+  "unique_cases": 16,
+  "verified": true,
+  "xml_sha256": "be463797dccfc7e4954828d50186494481893c04a8c91b491cb16db47576bfde"
+}

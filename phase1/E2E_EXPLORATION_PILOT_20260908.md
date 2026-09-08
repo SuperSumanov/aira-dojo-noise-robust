@@ -10,6 +10,20 @@
 
 ## 已落实
 
+### 09:24 UTC后的运行修复，覆盖下方旧集成版本
+
+学长新head `c428549973beb4a3289bf669675fac13f64e63b8` 修复MCTS._analyze未等待coroutine的错误；
+文档critic示例改1GPU/5workers，但没有新的checkpoint路径，不证明8B在我方卡上已运行。
+在该head上应用现有0005/0006/0007后tree为22ed3b437bdd027cba0759c001261538f50d046b；配置与选择器不变。
+实际Linux定向检查另发现我方request_guard接入引入循环导入：analyze→GenericLLM→ForeTS→MCTS→analyze。
+初次从分析模块导入时ImportError，先前ForeTS-first导入没暴露。新增0008使包级ForeTS延迟导入，保留公开接口。
+当前应使用 **c4285499 + 0005→0006→0007→0008**（不叠0002/3/4），集成tree
+`b146ac436fbd6616ed7573ee48df5eb5140dfe17`；源码在原隔离目录的 `upstream-c4285499/` 子目录，旧副本保留。
+两个全新CPU进程分别从analyzer/solver入口导入，均通过实际_analyze→analyze_op配人工异步LLM的定向检查：
+旧TypeError复现，新等待/结果登记正常，异常保留不伪装成功。无真实API/模型/数据，不是e2e验收。
+执行脚本scripts/check_forets_analyze_c4285499.py，简要结果results/forets_e2e_pilot_20260908/analyze_regression.json。
+外部模型/路由缺项未变，不重复既有矩阵；下面的6f7旧tree仅记录此前配置检查。
+
 - 学长 head `54929de4ac92cb1a1a2fd75e31843a223c10c859`，加我方0005→0006→0007，实际集成 tree
   `6f7e650e5ecfd8dac7369a954ac16e01f258daa1`。仅224个Dojo源码/配置文件打包，无outcomes、训练数据或凭据。
 - 独立远端目录：`/research/d7/spc/yzyang4/forets-e2e-dev-20260908-IMuJx6`；未改活动生产目录/学长分支。

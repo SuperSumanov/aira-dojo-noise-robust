@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08，0L116覆盖下文；真实ForeTS配置通过，外部模型/路由事实等待中。
+**Dynamic status timestamp:** 2026-09-08，0L117覆盖下文；学长analyze新修复和我方循环导入修复完成，外部模型/路由等待。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,15 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先读CURRENT_DIRECTION0L117。学长c4285499新增asyncio.run等待分析；我方新0008修复request_guard触发的循环导入。
+新组合c4285499+0005/6/7/8，tree b146ac436fbd6616ed7573ee48df5eb5140dfe17，源码位于
+forets-e2e-dev-20260908-IMuJx6/upstream-c4285499；旧源码未覆盖，不改学长branch或生产目录。
+两种导入入口的新CPU进程均过实际_analyze/analyze_op人工异步LLM检查；旧TypeError复现，新正常返回和异常透传。
+初次循环导入ImportError属于我方问题，已记录；非真实API/模型/e2e收益，不重复旧验证。
+外部模型路径/API路由仍未回复，继续等待；收到事实后才完成硬预算/有界GPU集成。新文档未给新模型路径。
+
+### 此前状态（0L116）
 
 先读CURRENT_DIRECTION0L116和E2E_EXPLORATION_PILOT_20260908.md。集成tree6f7e650在远端独立目录
 forets-e2e-dev-20260908-IMuJx6，真实aira环境已导入ForeTS、两臂配置validate通过，仅selection_policy不同。

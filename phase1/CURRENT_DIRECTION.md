@@ -3,6 +3,20 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L117. 2026-09-08：接入学长analyze修复，并修正我方循环导入；外部交接仍等待
+
+09:24 UTC fetch发现学长c428549973beb4a3289bf669675fac13f64e63b8（17:15香港提交），只改MCTS分析等待及E2E文档。
+新旧4个blob先credential-shape scan0；没有新outcome/模型位置。doc示例critic改1GPU，不等于实际8B已验收。
+现有0005/6/7在新head应用成功；实际CPU检查暴露我方request_guard引入循环导入，初次analyzer-first ImportError。
+新增0008延迟导入包级ForeTS，未通过调整测试加载顺序掩盖。当前组合c4285499+0005→0006→0007→0008，
+tree b146ac436fbd6616ed7573ee48df5eb5140dfe17，隔离源码forets-e2e-dev-20260908-IMuJx6/upstream-c4285499。
+两个新CPU进程分别analyzer-first/solver-first都通过：旧coroutine解包TypeError复现、新分析等待成功、异常透传。
+使用实际MCTS/ForeTS/analyze_op但人工异步LLM；无模型/API/任务数据，无GPU，不是端到端效果或全栈验收。
+配置/候选选择规则未改，不重跑旧矩阵；未修改学长分支或生产目录。
+详情E2E_EXPLORATION_PILOT_20260908.md及results/forets_e2e_pilot_20260908/analyze_regression.json。
+现成critic共享路径与正确API路由仍等已发出的外部问题；不重复索问/定位旧模型，不开启GPU空等。
+9GPU小时仍是待硬限及API费用完成的条件计划，不是本轮提交；0L115的e2e优先与保护边界继续有效。
+
 ## 0L116. 2026-09-08：真实ForeTS配置已接入隔离环境，等现成模型位置与正确API路由
 
 执行0L115，不恢复corpus优先。最新集成tree6f7e650e5ecfd8dac7369a954ac16e01f258daa1的224个Dojo文件

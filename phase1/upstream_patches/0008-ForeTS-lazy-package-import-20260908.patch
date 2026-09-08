@@ -1,0 +1,20 @@
+diff --git a/src/dojo/solvers/fore_ts/__init__.py b/src/dojo/solvers/fore_ts/__init__.py
+--- a/src/dojo/solvers/fore_ts/__init__.py
++++ b/src/dojo/solvers/fore_ts/__init__.py
+@@ -4,6 +4,13 @@
+ # This source code is licensed under the license found in the
+ # LICENSE file in the root directory of this source tree.
+ 
+-from .fore_ts import ForeTS
+-
+-__all__ = ["ForeTS"]
++__all__ = ["ForeTS"]
++
++
++def __getattr__(name):
++    # GenericLLM imports request_guard; eagerly loading the solver here creates
++    # GenericLLM -> ForeTS -> MCTS -> analyze_op -> GenericLLM cycles.
++    if name == "ForeTS":
++        from .fore_ts import ForeTS
++        return ForeTS
++    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

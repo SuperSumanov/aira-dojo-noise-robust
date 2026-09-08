@@ -1,0 +1,20 @@
+{
+  "classification": "TARGETED_CPU_ANALYZER_REGRESSION_WITH_ARTIFICIAL_LLM_NOT_E2E_RESULT",
+  "upstream": "c428549973beb4a3289bf669675fac13f64e63b8",
+  "integration_tree": "b146ac436fbd6616ed7573ee48df5eb5140dfe17",
+  "mcts_sha256": "b652a02700de97974b08046de20fbe2dff31be7f681b1a8e73369b6d5d27508c",
+  "package_init_sha256": "0ae903af4441f324a584b65ed5d0b97c327095912c16685f5788a8812f08b66d",
+  "initial_attempt": {"status": "FAILED", "exception": "ImportError", "cause": "Our request_guard import triggered eager ForeTS/MCTS/analyze circular import"},
+  "after_package_fix": [
+    {"import_order": "analyzer_first", "exit_code": 0, "old_failure": "TypeError", "fixed_async_path_pass": true, "analyzer_exception_propagated": true},
+    {"import_order": "solver_first", "exit_code": 0, "old_failure": "TypeError", "fixed_async_path_pass": true, "analyzer_exception_propagated": true}
+  ],
+  "actual_analyze_op_used": true,
+  "actual_generic_llm_is_async": true,
+  "artificial_llm_response": true,
+  "model_or_api_called": false,
+  "task_or_data_access": false,
+  "gpu_requested": false,
+  "source_root": "/research/d7/spc/yzyang4/forets-e2e-dev-20260908-IMuJx6/upstream-c4285499",
+  "command": "env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 timeout 240 /research/d7/spc/yzyang4/venvs/aira/bin/python -B - [--solver-first]; stdin=phase1/scripts/check_forets_analyze_c4285499.py"
+}

@@ -192,6 +192,11 @@ SHA-256=`17317a2d239cb862ec16d57aa0a2fa168f2c1a6cd841117950d8ee8127129ad6`。原
 
 ## K. 2026-09-08：学长ForeTS端到端接入代码与使用说明
 
+- 09:24 UTC发现新head `c428549973beb4a3289bf669675fac13f64e63b8`：学长修复分析函数coroutine未等待，
+  文档critic示例从2GPU改1GPU。归因属于学长，不称新模型效果或在我方硬件上的8B实测。
+  我方随后修复自身request_guard接入引入的循环导入（0008）；两种真实导入顺序及人工异步分析回归通过。
+  没有新的checkpoint位置/训练outcome，仍等待已发出的最小交接问题；当前集成见CURRENT_DIRECTION0L117。
+
 - 只读head `8b621851a87d20382feefe8c8458a7db2a1fabea`，新增ForeTS与
   `src/mle_critic/docs/evaluation/E2E_EVALUATION.md`。先批量生成、critic取top-k、再随机选若干执行，
   继续原MCTS/debug流程。该实现归学长；我方复用接入，不另造相同功能或归为我方方法成果。

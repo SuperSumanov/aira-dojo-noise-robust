@@ -4,6 +4,7 @@
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 
+import asyncio
 import math
 from functools import partial
 from pathlib import Path
@@ -382,7 +383,7 @@ class MCTS(Solver):
         Returns:
             Union[str, dict]: Analysis results, either as a string or dictionary
         """
-        analysis, metrics = self.analyze_fn(self.task_desc, node)
+        analysis, metrics = asyncio.run(self.analyze_fn(self.task_desc, node))
         node.operators_used.append("analysis")
         node.operators_metrics.append(metrics)
         self.logger.info(f"Node Analysis Performed - Metrics: {metrics}")

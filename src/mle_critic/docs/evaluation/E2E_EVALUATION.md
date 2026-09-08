@@ -45,7 +45,7 @@ mkdir -p tmp
 PYTHONPATH=src/mle_critic srun \
   -J criticserve \
   --ntasks 1 \
-  --gres=gpu:2 \
+  --gres=gpu:1 \
   --cpus-per-task=4 \
   -o tmp/critic_%j.log \
   -e tmp/critic_%j.err \
@@ -108,7 +108,7 @@ python -m dojo.main_runner_job_array \
   solver.num_children_to_choose=2 \
   launcher=srun_pool \
   launcher.debug=false \
-  launcher.max_parallel=4 \
+  launcher.max_parallel=5 \
   launcher.cpus_per_step=6 \
   launcher.gpus_per_step=1 \
   logger.use_wandb=false

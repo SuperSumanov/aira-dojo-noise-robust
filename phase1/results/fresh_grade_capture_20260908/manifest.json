@@ -1,0 +1,54 @@
+{
+  "A-capture.log": {
+    "bytes": 842,
+    "sha256": "de7ca708b6a3a1479104b7f3ac6aa3e00325969ca97e556cc70f6d0628c41cb6"
+  },
+  "A-verify.log": {
+    "bytes": 528,
+    "sha256": "17ee69c62a86afc3789ac2cc1985c9874f9feffe80e1e629e3b4204b8c10085e"
+  },
+  "A_capture.json": {
+    "bytes": 6416,
+    "sha256": "36a50956cdd6f74e5a3bbd22631cab0ad160c866116ceeef0a2102124f808728"
+  },
+  "A_independent_regrade.json": {
+    "bytes": 6416,
+    "sha256": "36a50956cdd6f74e5a3bbd22631cab0ad160c866116ceeef0a2102124f808728"
+  },
+  "B-capture.log": {
+    "bytes": 842,
+    "sha256": "de7ca708b6a3a1479104b7f3ac6aa3e00325969ca97e556cc70f6d0628c41cb6"
+  },
+  "B-verify.log": {
+    "bytes": 528,
+    "sha256": "17ee69c62a86afc3789ac2cc1985c9874f9feffe80e1e629e3b4204b8c10085e"
+  },
+  "B_capture.json": {
+    "bytes": 6416,
+    "sha256": "25ea03eb496d05315328ca476ef3ca378dbf61c1ca8408bc72a3d2b4468034d2"
+  },
+  "B_independent_regrade.json": {
+    "bytes": 6416,
+    "sha256": "25ea03eb496d05315328ca476ef3ca378dbf61c1ca8408bc72a3d2b4468034d2"
+  },
+  "INTENT.json": {
+    "bytes": 26801,
+    "sha256": "d8a95bb816520887b72cf46bdd89792d537d886fb6cb01c160e957f35f5eab2c"
+  },
+  "SUMMARY.json": {
+    "bytes": 27407,
+    "sha256": "dd0fcde699234fce9de30d200ebed33a1c97a784b66eef26e3b4ae02f6199eec"
+  },
+  "first_attempt_FAILED.json": {
+    "bytes": 192,
+    "sha256": "2a91216a7b032fd1e290a8e383a10e71097fa5da573340a8f79125b79e096835"
+  },
+  "first_attempt_tests.log": {
+    "bytes": 10628,
+    "sha256": "652bd46e13dfb400431d296931502bd5ba24bda815fa7bf6be4d97374601c975"
+  },
+  "tests.log": {
+    "bytes": 99,
+    "sha256": "bf8889602bf85c8088c130c0e2099f83a3fc6abced599fed008bb1cd126f80f4"
+  }
+}

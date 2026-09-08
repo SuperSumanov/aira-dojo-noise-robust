@@ -1,0 +1,6 @@
+{
+  "automatic_retry_allowed": false,
+  "error_text_sha256": "36c5843082d1ebe3480fcfe49e456395ac93144f1b0d5593e6b1cd988feb5a71",
+  "error_type": "AssertionError",
+  "source_admission": false
+}

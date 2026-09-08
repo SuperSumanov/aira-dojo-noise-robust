@@ -1,0 +1,166 @@
+{
+  "cases": 31,
+  "classification": "CAPTURE_COMPATIBILITY_FIXTURES_NOT_PRODUCTION_OR_MODEL_GAIN",
+  "model_effect_measured": false,
+  "network_attempts": 0,
+  "real_data_attempts": 0,
+  "rows": [
+    {
+      "compatibility_pass": true,
+      "fixture": "dog-breed-identification__ordered",
+      "receipt_sha256": "04b2bc0b6c6c8f687640aa4819a5f10978d347ee49579d23ae715dd212bf71ae"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "dog-breed-identification__permuted",
+      "receipt_sha256": "cc900ffb3cf67cfa8e8de2f668cb3d02a7dfeff6115ad7bf231bdaf2c15044e2"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "dog-breed-identification__wrong_ids",
+      "receipt_sha256": "d335453f3cb8ff2089311779f8bebdbdc0abc88809ef4fb4800da914066941cc"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "dog-breed-identification__duplicate_ids",
+      "receipt_sha256": "5ccf26f51364e393f510ff042cd93fc6670fcb584ffd29318742b8ba1a7def76"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "dog-breed-identification__missing_target",
+      "receipt_sha256": "5174639430c7ec22ff651994ac44f2781420d96559787ded60150e52890f061d"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "google-quest-challenge__ordered",
+      "receipt_sha256": "cd08be709e9c13024c35c1abbe625d278f3dd00379181d3e73e4b140cd169434"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "google-quest-challenge__permuted",
+      "receipt_sha256": "fbf971dea1a87100cdcf906b156b5c61eff08f7c5580415731d4f64f3404546c"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "google-quest-challenge__wrong_ids",
+      "receipt_sha256": "4161c92ee5285a76510ced64376f7009fad6be9f0d31789235ca2465380bd2a4"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "google-quest-challenge__duplicate_ids",
+      "receipt_sha256": "287b6e378b41b41cf7e1eff74cc85c171b8a69decf528edb4326814daf0fec70"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "google-quest-challenge__missing_target",
+      "receipt_sha256": "58b2e131020afb19a24aa43f5808d2186b460f3501dbb1adf8280797325035e6"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "google-quest-challenge__constant_spearman",
+      "receipt_sha256": "012f89c62f7eba718348660ea9b61fc07e774127e0972fd10024ba5229dd4c4f"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "histopathologic-cancer-detection__ordered",
+      "receipt_sha256": "2c57748f7bbf4cf9a7fb269f2894a3afa2fca3bbe7379534b1e628d06ec10c50"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "histopathologic-cancer-detection__permuted",
+      "receipt_sha256": "567da957716157a6ae58b17cf1d4dcf38dc396047c5918ca8f6fe1a63de3ba4c"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "histopathologic-cancer-detection__wrong_ids",
+      "receipt_sha256": "4ccddb9bcc9032ab9d17d065432a59f6e36ca800ad683f62e38886c1dc1a83fd"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "histopathologic-cancer-detection__duplicate_ids",
+      "receipt_sha256": "39490aecf34400c3715a897d7eb075ab3dfaa0df11b727dce955f608db1a68ff"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "histopathologic-cancer-detection__missing_target",
+      "receipt_sha256": "b8990397921e194c47fa933d61852a1227a33a18326e198e571393c52291ec44"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "kuzushiji-recognition__ordered",
+      "receipt_sha256": "ab03c42c7858a70ed1a3bc40a9a907671abf7f36ba8919c465f6d9e92bdc8073"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "kuzushiji-recognition__permuted",
+      "receipt_sha256": "237385f29e028042e230c1487dd902fb14678ac72a52a9e4d6d1a47b5c8b1e89"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "kuzushiji-recognition__wrong_ids",
+      "receipt_sha256": "9b902cf4b88a30ef6d030131b4754452ec3439f34372c93a0095a2f21134c5a7"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "kuzushiji-recognition__duplicate_ids",
+      "receipt_sha256": "ffde33d24246529fe617230e6ec16a37eef00c1970bd2f6e6a3fde6e87c6c77c"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "kuzushiji-recognition__missing_target",
+      "receipt_sha256": "82fa8d70928f0452a1e5a82a933c643a5e9f69558c5a8e3e84440f4e00ecfe3f"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "tabular-playground-series-dec-2021__ordered",
+      "receipt_sha256": "ad3c32a9f2f170aefa9f1130872c3388ebdaef88ff9a82bfdebf8df41359c22a"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "tabular-playground-series-dec-2021__permuted",
+      "receipt_sha256": "2fdd71d332dfc5e723749e3824d2f3ea4e7f8992502cebad22a59fdd784aeca9"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "tabular-playground-series-dec-2021__wrong_ids",
+      "receipt_sha256": "6f4ef11bcdf94fd1d68b92355fe852deb0e0fbb4a48d6708359ad1ae4a598691"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "tabular-playground-series-dec-2021__duplicate_ids",
+      "receipt_sha256": "0e784a3f8da7e7125934274a71bf52e71c40c53d013dd1ebe80eb6feeda487fa"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "tabular-playground-series-dec-2021__missing_target",
+      "receipt_sha256": "230832d2aa5d0fca1d70ef5f565284ca91b9cba46b5be6b32c572975ec8d8ce6"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "tabular-playground-series-may-2022__ordered",
+      "receipt_sha256": "22bca667503ac2ef8a6e184ee5014656a1c2428a85166ae042a9e5edfb2db4d7"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "tabular-playground-series-may-2022__permuted",
+      "receipt_sha256": "868afe07a279fe6625ef1885725d42277e97565a79feaf5736fdf0a6eaf4f016"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "tabular-playground-series-may-2022__wrong_ids",
+      "receipt_sha256": "19ee0ce9c1bf211d5583627d4d75e94fd4f2f5b90ad961737766e8b11f0ff26f"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "tabular-playground-series-may-2022__duplicate_ids",
+      "receipt_sha256": "1f8ba61aced3a134d7b5fdf0e03aadf6f6eb7f85ff8cc0cc1aa57895cf15d817"
+    },
+    {
+      "compatibility_pass": true,
+      "fixture": "tabular-playground-series-may-2022__missing_target",
+      "receipt_sha256": "bf7b98cefb69b5d2576428524a846d8d6f897b09080dd94ec6cbee96d04ca723"
+    }
+  ],
+  "source_admission": false,
+  "tasks": 6
+}

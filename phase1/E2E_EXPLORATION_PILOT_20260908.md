@@ -69,7 +69,9 @@ leaf seed6随机先、seed7 critic先；spaceship seed6 critic先、seed7随机�
 ## 现在真正等外部的两项
 
 1. 学长文档的相对示例 `outputs/augmented_mle_critic/Qwen3-8B_reward_seed1/checkpoint-100` 在我方repo下不存在。
-   需要共享绝对路径或可访问下载地址，以及底座/上下文设置。已发简短问题，不要求补历史审计。
+   用户已转达确认底座Qwen/Qwen3-8B-Base、上下文16384：RL没训出更好模型，只是选现成旧模型测试。
+   不等待RL/重新训练，不称最佳模型或新scaling；仍需要共享绝对路径或可访问下载地址，不再重复问模型/上下文，
+   不要求补历史审计。权重文件尚未实查，具体已撤回checkpoint的禁用不因此自动解除。
 2. 实际LiteLLM backend使用模型专属 `PRIMARY_KEY_...` 或 `PRIMARY_KEY`。远端.env有后者，
    没有该OpenRouter模型专属变量，也没有OPENROUTER_API_KEY；fallback不呈OpenRouter凭据形状，
    .env中未找到可说明路由的URL/ENDPOINT字段。形状不是凭据有效性验证，禁止把它试送错误服务。

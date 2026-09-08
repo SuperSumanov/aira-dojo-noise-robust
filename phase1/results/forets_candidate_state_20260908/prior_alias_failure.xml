@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="0.850" timestamp="2026-09-08T14:34:04.664095+08:00" hostname="TankYoung"><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_analysis_cannot_rewrite_persisted_generation_record[False]" time="0.204"><failure message="AssertionError: assert ['draft', 'analysis'] == ['draft']&#10;  &#10;  Left contains one more item: 'analysis'&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/yanze/AppData/Local/Temp/pytest-of-yanze/pytest-1327/test_analysis_cannot_rewrite_p0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000015B6F88A3F0&gt;
+resume = False
+
+    @pytest.mark.parametrize('resume', [False, True])
+    def test_analysis_cannot_rewrite_persisted_generation_record(tmp_path, monkeypatch, resume):
+        solver, task, _, env = runtime(tmp_path)
+        original_parse = solver.parse_eval_result
+        def parse(node, eval_result):
+            original_parse(node, eval_result)
+            node.operators_used.append('analysis')
+            node.operators_metrics.append({'synthetic_analysis_tokens': 7})
+        solver.parse_eval_result = parse
+        if resume:
+            original_begin = env['CandidateLedger'].begin_execution
+            monkeypatch.setattr(env['CandidateLedger'], 'begin_execution', lambda *a: (_ for _ in ()).throw(RuntimeError('before intent')))
+            with pytest.raises(RuntimeError, match='before intent'):
+                solver._expand_leaf_and_backprop([solver.root_node], {}, task)
+            monkeypatch.setattr(env['CandidateLedger'], 'begin_execution', original_begin)
+        solver._expand_leaf_and_backprop([solver.root_node], {}, task)
+        for candidate in stored(tmp_path)['candidates']:
+&gt;           assert candidate['node']['operators_used'] == ['draft']
+E           AssertionError: assert ['draft', 'analysis'] == ['draft']
+E             
+E             Left contains one more item: 'analysis'
+E             Use -v to get more diff
+
+phase1\tests\test_forets_candidate_state_20260908.py:309: AssertionError</failure></testcase><testcase classname="phase1.tests.test_forets_candidate_state_20260908" name="test_analysis_cannot_rewrite_persisted_generation_record[True]" time="0.190"><failure message="AssertionError: assert ['draft', 'analysis'] == ['draft']&#10;  &#10;  Left contains one more item: 'analysis'&#10;  Use -v to get more diff">tmp_path = WindowsPath('C:/Users/yanze/AppData/Local/Temp/pytest-of-yanze/pytest-1327/test_analysis_cannot_rewrite_p1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000015B6DE59940&gt;
+resume = True
+
+    @pytest.mark.parametrize('resume', [False, True])
+    def test_analysis_cannot_rewrite_persisted_generation_record(tmp_path, monkeypatch, resume):
+        solver, task, _, env = runtime(tmp_path)
+        original_parse = solver.parse_eval_result
+        def parse(node, eval_result):
+            original_parse(node, eval_result)
+            node.operators_used.append('analysis')
+            node.operators_metrics.append({'synthetic_analysis_tokens': 7})
+        solver.parse_eval_result = parse
+        if resume:
+            original_begin = env['CandidateLedger'].begin_execution
+            monkeypatch.setattr(env['CandidateLedger'], 'begin_execution', lambda *a: (_ for _ in ()).throw(RuntimeError('before intent')))
+            with pytest.raises(RuntimeError, match='before intent'):
+                solver._expand_leaf_and_backprop([solver.root_node], {}, task)
+            monkeypatch.setattr(env['CandidateLedger'], 'begin_execution', original_begin)
+        solver._expand_leaf_and_backprop([solver.root_node], {}, task)
+        for candidate in stored(tmp_path)['candidates']:
+&gt;           assert candidate['node']['operators_used'] == ['draft']
+E           AssertionError: assert ['draft', 'analysis'] == ['draft']
+E             
+E             Left contains one more item: 'analysis'
+E             Use -v to get more diff
+
+phase1\tests\test_forets_candidate_state_20260908.py:309: AssertionError</failure></testcase></testsuite></testsuites>

@@ -11,6 +11,11 @@
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
 
+最新补充：73fbb822初版Linux52项已通过；Git archive需命令级core.autocrlf=false才与Git blob字节相同，
+首轮CRLF转换和修复回执均保留。后续发现我方候选台账list别名，已在旧tree复现2失败并深拷贝修复；
+当前Windows55项（27新+28旧），新tree e2c7bcd42c69b6dac00602758bf6dda4c0c93a4c同27项通过。
+下一步冻结新commit后在新远端私有目录复测55项，不能重复使用旧52项证明新代码；无GPU/paid/fit。
+
 先fetch/read CURRENT_DIRECTION 0L108。SSH恢复且有界成本核算两次一致，安全receipt已存
 results/forets_candidate_state_20260908/development_cost.json；六任务双完整组件最小条件cap2091.6666666666665GPU小时，
 不走默认全量路线、不把组件隔离等同全量重执行；真实开发来源仍等外部记录，原四fit不准入。

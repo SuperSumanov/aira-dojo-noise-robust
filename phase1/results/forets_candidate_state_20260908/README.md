@@ -1,5 +1,18 @@
 # ForeTS 候选隔离与有界开发成本（2026-09-08）
 
+## 后续审查更正（覆盖下文初版验收状态）
+
+初版73fbb822的52项在Linux通过，但首次Git archive受Windows autocrlf影响，7个源码文件均多了CRLF；
+逐个字节比对证明仅换行转换，不能称exact Git bytes。原日志保留为linux_initial.json/transport_initial.json。
+使用 `git -c core.autocrlf=false archive` 新包后，7文件逐字节等于Git blob，另目录52项通过，见linux_lf.json。
+不改全局Git设置、不覆盖首轮产物；两个300秒CPU测试上限没有用于GPU/模型训练。
+
+进一步审查发现初版候选记录的list与活节点共享引用，执行后analysis会回写本应固定的生成元数据。
+已在初版实际tree上用2例明确复现失败（prior_alias_failure.xml），不是学长原实现的问题。
+新实现对写入和恢复均做深拷贝，新增3项覆盖；现在27个state测试+28个原回归=55项在Windows通过。
+修订后的实际Git应用tree为e2c7bcd42c69b6dac00602758bf6dda4c0c93a4c，同27项全部通过。
+本段修订尚待最终Linux55项回执；初版52项不能替代新版本测试，0002仍保持不变。
+
 这是我方对学长 `8b621851a87d20382feefe8c8458a7db2a1fabea` 的未部署接入补丁。
 不修改学长分支/生产 checkout，不是 critic 收益、clean scaling 或端到端验收。
 

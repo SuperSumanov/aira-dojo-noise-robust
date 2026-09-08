@@ -57,7 +57,7 @@ class CandidateLedger:
             self.conn.execute('PRAGMA journal_mode=DELETE')
             if new:
                 self.conn.execute('CREATE TABLE snapshot (id INTEGER PRIMARY KEY CHECK(id=1), payload TEXT NOT NULL, sha256 TEXT NOT NULL)')
-                self.data = dict(schema=1, binding=binding, phase='collecting', selected=None,
+                self.data = dict(schema=1, binding=json.loads(canonical(binding)), phase='collecting', selected=None,
                                  candidates=[dict(state='pending', node=None, score=None) for _ in range(count)])
                 self._write()
             else:
@@ -123,10 +123,11 @@ class CandidateLedger:
                 or not isinstance(node['code'], str)
                 or node['plan'] is not None and not isinstance(node['plan'], str)):
             raise LedgerError('invalid pre-execution node schema')
-        canonical(node)  # Reject non-JSON / nonfinite operator metadata before mutation.
+        # Reject invalid metadata AND sever aliases before later analysis mutates the node.
+        frozen_node = json.loads(canonical(node))
         if any(c['node'] and c['node']['id'] == node['id'] for c in self.data['candidates']):
             raise LedgerError('duplicate candidate identity')
-        self._transition(slot, 'generating', 'generated', node=node)
+        self._transition(slot, 'generating', 'generated', node=frozen_node)
 
     def begin_score(self, slot):
         if self.data['phase'] != 'collecting':

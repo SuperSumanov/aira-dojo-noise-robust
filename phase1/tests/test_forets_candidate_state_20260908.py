@@ -149,6 +149,16 @@ def test_duplicate_identity_and_label_fields_refused(tmp_path):
             ledger.generated(1, node_record(1) | {'metric': 0})
 
 
+def test_preexecution_record_does_not_alias_caller_lists(tmp_path):
+    record = node_record()
+    with CandidateLedger(tmp_path / 'private' / 'batch.sqlite', {}, 1) as ledger:
+        ledger.begin_generation(0)
+        ledger.generated(0, record)
+        record['operators_used'].append('analysis')
+        record['operators_metrics'][0]['tokens'] = 999
+        assert ledger.data['candidates'][0]['node'] == node_record()
+
+
 def real_data_classes():
     path = 'src/dojo/core/solvers/utils/journal.py'
     if os.environ.get('FORETS_SOURCE_CACHE'):
@@ -277,6 +287,28 @@ def test_known_scored_batch_reuses_selection_without_calls_or_resampling(tmp_pat
     solver._expand_leaf_and_backprop([solver.root_node], {}, task)
     assert calls == dict(generation=3, critic=3, execution=1)
     assert stored(tmp_path)['selected'] == selected
+
+
+@pytest.mark.parametrize('resume', [False, True])
+def test_analysis_cannot_rewrite_persisted_generation_record(tmp_path, monkeypatch, resume):
+    solver, task, _, env = runtime(tmp_path)
+    original_parse = solver.parse_eval_result
+    def parse(node, eval_result):
+        original_parse(node, eval_result)
+        node.operators_used.append('analysis')
+        node.operators_metrics.append({'synthetic_analysis_tokens': 7})
+    solver.parse_eval_result = parse
+    if resume:
+        original_begin = env['CandidateLedger'].begin_execution
+        monkeypatch.setattr(env['CandidateLedger'], 'begin_execution', lambda *a: (_ for _ in ()).throw(RuntimeError('before intent')))
+        with pytest.raises(RuntimeError, match='before intent'):
+            solver._expand_leaf_and_backprop([solver.root_node], {}, task)
+        monkeypatch.setattr(env['CandidateLedger'], 'begin_execution', original_begin)
+    solver._expand_leaf_and_backprop([solver.root_node], {}, task)
+    for candidate in stored(tmp_path)['candidates']:
+        assert candidate['node']['operators_used'] == ['draft']
+        assert candidate['node']['operators_metrics'] == [{'tokens': 3}]
+    assert solver.journal.nodes[-1].operators_used == ['draft', 'analysis']
 
 
 def test_execution_failure_never_replays_or_attaches(tmp_path):

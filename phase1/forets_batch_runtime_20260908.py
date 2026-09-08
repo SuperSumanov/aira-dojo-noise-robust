@@ -4,6 +4,7 @@ Intended for an isolated upstream patch, NOT the active producer. Operator-inter
 retries/cost traces, rendered prompt isolation and full search recovery remain open.
 """
 import asyncio
+import copy
 import random
 from pathlib import Path
 
@@ -46,7 +47,8 @@ def expand_batch(solver, path, state, task, node_type, extract_code, config_snap
                 ledger.generated(slot, {k: getattr(node, k) for k in
                     ('id', 'ctime', 'code', 'plan', 'operators_used', 'operators_metrics')})
             else:
-                node = node_type(**c['node'], parents=[])
+                # Analysis appends operator records; it must not edit the pre-execution ledger.
+                node = node_type(**copy.deepcopy(c['node']), parents=[])
             if c['state'] == 'generated':
                 ledger.begin_score(slot)
                 ledger.scored(slot, await solver._query_critic(node))

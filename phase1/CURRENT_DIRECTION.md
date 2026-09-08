@@ -3,6 +3,22 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L111. 2026-09-08：学长新提交54929，兼容包已准备，旧验收不冒充新实测
+
+post-push fetch观察学长更新至54929de4ac92cb1a1a2fd75e31843a223c10c859（commit时间香港14:58:36）。
+仅改ForeTS task_name引用和Bradley-Terry server统计；无新outcome/data文件。
+新旧两个文件的4个blob credential-shape scan为0后才读diff，未读取语料/模型预测。
+学长独立修复了_rm_task_name未定义引用；实际task.prepare名称传递、候选状态与成本边界等仍需我方接入。
+server的completed含异常批次，throughput为服务uptime均值，不能拿它直接作正式成功吞吐或query-cost实测。
+
+原0002/0003/0004仍严格绑定8b621，不能直接套在54929。新0005是对54929的单独累计补丁，
+必须单独应用，不叠加0002–0004。实际Git index应用tree08d78ba2b0cf71c44cbd9eda34df15ae60049409，
+11接入文件与此前已测tree34424d6a137729df6f9d6e0e0fcd5b63bce57262逐字节相同，
+其余文件无改动，学长新server完整保留。仅兼容性/字节验证，没在新head上运行69项或真实server/GPU。
+0L110的69项继续只属于其明确旧upstream和2920b14源码，production_ready=false。
+结果见results/forets_request_boundary_20260908/upstream_54929_compatibility.json；学长分支未被我方修改。
+下一步先按最新upstream审视真实执行/资源边界；缺独立开发原记录时等待，不开原四fit、不动保护集。
+
 ## 0L110. 2026-09-08：推进生成请求一致性与逐次逻辑用量留存
 
 最终源码2920b14ddc471942ba19972f687458d339adff62，Linux69项全部通过，8.896084904001327秒；

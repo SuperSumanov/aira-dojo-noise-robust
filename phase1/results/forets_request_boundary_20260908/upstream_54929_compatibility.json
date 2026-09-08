@@ -1,0 +1,25 @@
+{
+  "applied_tree": "08d78ba2b0cf71c44cbd9eda34df15ae60049409",
+  "classification": "NEW_UPSTREAM_PATCH_COMPATIBILITY_NOT_RUNTIME_VALIDATION",
+  "matched_source_files": 11,
+  "new_outcome_files": 0,
+  "new_runtime_tests_run": 0,
+  "prior_validated_tree": "34424d6a137729df6f9d6e0e0fcd5b63bce57262",
+  "production_ready": false,
+  "senior_server_preserved_sha256": "20309551ddef34c8d1ed3f77d7865196ed1a170db140cc6023070799b0cc535d",
+  "source_sha256": {
+    "src/dojo/config_dataclasses/solver/fore_ts.py": "c91edbccdcb8b33b70f5ea9524e03c1eab6f7416a4952d53c5a600d55ae9d3b8",
+    "src/dojo/configs/solver/mlebench/fore_ts.yaml": "e6762a53c047e66d52a15ea7130d653e3c73b7d22a49f8fdf927677f69d03fad",
+    "src/dojo/core/solvers/llm_helpers/generic_llm.py": "e90d8269eb178606f0b601b039959cf44bcf00923560d2031d51cd86b7259bbb",
+    "src/dojo/core/solvers/operators/draft.py": "01ff02dfeb654c24df3df49172fd7e3c4ce16d19270210c174df6bab6b220a10",
+    "src/dojo/core/solvers/operators/improve.py": "8209676a7541639ea1a43eca3942fcc7618ad91e0c78658dd847565cd16725e6",
+    "src/dojo/solvers/fore_ts/batch_runtime.py": "1e5924b1f304e703b6a612d32e8a2c761bf63b19ccf2f7e177a2983767767990",
+    "src/dojo/solvers/fore_ts/candidate_ledger.py": "9598d631b7004524627de401cff451e60a721931cfce8569143a496b0c074b37",
+    "src/dojo/solvers/fore_ts/fore_ts.py": "8dc4eb71230e6f79f1a526e5255ab3fddabcecda006af4b04a99d695b293a80a",
+    "src/dojo/solvers/fore_ts/request_guard.py": "0197d6fdb61ff001341cec9eaf62dff0a9c31e288b41aced1a1a5c4d913abf5d",
+    "src/dojo/solvers/mcts/mcts.py": "5582d2a329de22b4c1b412db1fcf98283a66d29b4d56a6a58898d4b4e8c3d5af",
+    "src/dojo/tasks/mlebench/task.py": "879e303d909ba4455ad4c3b9ad7ca77840e8a99fc73aa342c5456c442a6b1fc4"
+  },
+  "upstream": "54929de4ac92cb1a1a2fd75e31843a223c10c859",
+  "checked_at": "2026-09-08 07:17:07 UTC"
+}

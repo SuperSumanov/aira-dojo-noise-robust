@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-08
 
-**Dynamic status timestamp:** 2026-09-08香港15:09；当前0L110覆盖下文历史。
+**Dynamic status timestamp:** 2026-09-08香港15:16；当前0L111覆盖下文历史。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,15 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-08 当前入口，覆盖下文所有历史动态状态
+
+先fetch/read CURRENT_DIRECTION 0L111。学长新head54929de4ac92cb1a1a2fd75e31843a223c10c859，
+只改ForeTS的task_name引用+critic server统计，无新outcome/data；4个blob先scan0再读diff。
+已准备0005累计兼容补丁，针对54929单独应用，不能再叠0002/3/4；实际tree08d78ba2b0cf71c44cbd9eda34df15ae60049409，
+11接入文件等于此前验证tree34424...、新server保持学长原样、其余文件无改动。
+此为Git应用/字节兼容性，不是新head运行69项/server/GPU；此前69项仍绑定旧8b621/2920b14。
+后续先读最新upstream，再推进真实执行/资源边界；独立开发原记录仍待外部，不改原四fit来源门。
+
+### 此前状态（0L110）
 
 先fetch/read CURRENT_DIRECTION 0L110。新增0004把guarded包顺序固定并核对实际client.query输入，
 留请求前意图和每次逻辑返回usage，未知成本不记0；原0002/0003不变，schema2不混用旧ledger。

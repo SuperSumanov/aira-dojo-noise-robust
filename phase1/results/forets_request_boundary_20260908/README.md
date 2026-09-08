@@ -1,5 +1,15 @@
 # ForeTS 实际请求与逻辑调用成本边界（2026-09-08）
 
+## 学长新版本兼容性提醒
+
+推送后fetch发现学长更新至54929de4ac92cb1a1a2fd75e31843a223c10c859，仅修task_name引用、增加server统计。
+无新outcome/data；4个源blob先scan0后读diff。此更新不是我方修改学长分支。
+对新head应单独应用0005-ForeTS-cumulative-for-54929de4-20260908.patch，不再叠加0002/3/4。
+新Git应用tree08d78ba2b0cf71c44cbd9eda34df15ae60049409的11接入文件与已验证tree逐字节相同，
+server新代码完整保留，未改其它文件。见upstream_54929_compatibility.json。
+**没有在新head重新运行69项或启动真实server。** 下文69项只属于明确标出的旧upstream/源码。
+server completed含失败批次、速率按uptime计；不是正式成功吞吐/暖机分离的query-cost结果。
+
 ## 最终验收状态
 
 源码2920b14ddc471942ba19972f687458d339adff62：Linux 3.11.15/pytest7.4.3/Jinja23.1.6，

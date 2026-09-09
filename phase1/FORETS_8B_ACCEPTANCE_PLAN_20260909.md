@@ -4,7 +4,10 @@
 该批准只适用于一次作业，不是重试或额外实验授权；本文件本身不是已提交/已加载模型/已完成8B前向的证据。
 新预检发现原80G主存申报不可调度：projgpu39的Slurm RealMemory登记为1MiB；原sbatch --test-only拒绝，覆盖--mem=0则通过。
 批脚本及入口资源回执同步改为--mem=0（不再保留调度器80GiB主存硬限），GPU/CPU/时限及验收逻辑不变。
-test-only的12890不是已提交job；实际队列仅旧held job12535，未释放。详情见gpu_acceptance_scheduler_preflight.json。
+实际执行记录：2026-09-09 08:24:49 UTC提交**12892**，08:25 UTC为PENDING(Resources)，尚未加载模型。
+调度器核实1GPU/6CPU/20分钟/MinMemoryNode=0/Requeue=0；test-only编号12890/12891均不是实际作业。
+输出根/research/d7/spc/yzyang4/forets-8b-acceptance-20260909-yhg2vq1o；执行版本e3a66a71c63377cfc139957081a72c5aa42ef4d6。
+提交回执gpu_acceptance_submission.json，调度初始回执gpu_acceptance_initial_state.json；旧12535未释放。
 本项不需要生成器API。OpenRouter对应已确认，剩余凭据安装不阻塞这项无API验收；不借用旧G0或9GPUh条件规划批准。
 
 ## 唯一问题与范围

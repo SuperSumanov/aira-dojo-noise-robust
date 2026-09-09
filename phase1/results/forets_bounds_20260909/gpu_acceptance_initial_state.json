@@ -1,0 +1,21 @@
+{
+  "JobId": "12892",
+  "JobName": "forets-8b-accept",
+  "JobState": "PENDING",
+  "Reason": "None",
+  "Requeue": "0",
+  "Partition": "gpu_24h",
+  "ReqNodeList": "projgpu39",
+  "NumNodes": "1-1",
+  "NumCPUs": "6",
+  "TimeLimit": "00:20:00",
+  "MinMemoryNode": "0",
+  "TRES": "cpu=6,node=1,billing=6,gres/gpu=1",
+  "TresPerNode": "gpu:1",
+  "StartTime": "Unknown",
+  "EndTime": "Unknown",
+  "SubmitTime": "2026-09-09T16:24:49",
+  "StdOut": "/research/d7/spc/yzyang4/forets-8b-acceptance-20260909-yhg2vq1o/slurm-12892.out",
+  "StdErr": "/research/d7/spc/yzyang4/forets-8b-acceptance-20260909-yhg2vq1o/slurm-12892.err",
+  "checked_at_utc": "2026-09-09T08:24:49.996513+00:00"
+}

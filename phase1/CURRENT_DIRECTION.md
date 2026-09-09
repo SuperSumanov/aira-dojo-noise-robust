@@ -3,6 +3,29 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L127. 2026-09-09：主存申报获准，真实单GPU验收已提交12892，当前等资源
+
+用户对明确的--mem=0变更回复“是的”。仅改sbatch主存申报及入口资源说明，验收逻辑、单GPU/6CPU/20分钟、
+step19分钟/process1050秒/0自动重试均不变。执行版本e3a66a71c63377cfc139957081a72c5aa42ef4d6已推送。
+新sbatch SHA256为5df7eac84e1d2bcda990ed67c106e3ffd0fb70cedc3249bbc3d04e238e1e4c77，
+入口SHA256为26ca7848f148ff184bf50d0738d58310eeaa4c952197a7c922ee7cb1f96ec4aa；远端一致，bash语法和调度预检通过。
+未重复旧CPU/G0/模型hash检查，未改生产目录或学长分支（仍065b0fba）。
+
+2026-09-09 08:24:49 UTC实际sbatch退出0，返回**12892**；不是test-only虚拟编号12891或上轮12890。
+独立scontrol确认projgpu39/gpu_24h、gres/gpu=1、6CPU、00:20:00、MinMemoryNode=0、Requeue=0。
+08:25 UTC再查为PENDING(Resources)，正式StartTime=N/A。远端时区已确认+08:00；test-only曾预测
+2026-09-10 02:15:39当地时间，但正式队列未给启动承诺。当前两卡由同一运行作业占用，剩余时限9:50:24，可能提前释放。
+名义0.3333333333333333GPUh，计已观测KillWait为0.4166666666666667；不追加作业、不提高预算、不自动重投。
+
+唯一输出根：/research/d7/spc/yzyang4/forets-8b-acceptance-20260909-yhg2vq1o。
+提交/初始状态回执已取回results/forets_bounds_20260909/gpu_acceptance_submission.json与gpu_acceptance_initial_state.json；
+后者记录提交瞬间Reason=None，不覆盖随后Resources的事实。日志slurm-12892.out/.err，入口产物acceptance/finished.json，
+进程产物process/；断线先查原12892及该目录，禁止因没看到finished就重投。
+
+这只是现成8B的离线加载/16K/本机服务验收；截至08:25 UTC仍未分配GPU、未加载模型、无API/训练/保护数据读取，
+不是模型收益或真e2e已经运行。旧12535仍held，不释放；g0-r5保持暂停，不创建自动任务。
+下一步只读跟进12892；成功后再衔接已准备的同生成器critic-vs-random探索方案，OpenRouter远端安装仍是独立缺项。
+
 ## 0L126. 2026-09-09：单GPU预算已获批准，提交预检发现80GiB主存申报不可调度
 
 用户在明确提出1GPU/20分钟（计KillWait约0.417GPUh）验收后回复“OK按照你的推荐来”，该GPU矩阵批准已收到，

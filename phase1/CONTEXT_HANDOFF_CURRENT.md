@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09 08:15 UTC，0L126覆盖下文；单GPU20分钟已获批，80G主存申报被调度预检拒绝，仅改--mem=0待确认；尚未提交，g0-r5暂停。
+**Dynamic status timestamp:** 2026-09-09 08:25 UTC，0L127覆盖下文；--mem=0已获批准，实际单GPU验收12892已提交，PENDING(Resources)，尚未加载8B，g0-r5暂停。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,16 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L127：用户批准--mem=0；仅更新sbatch和入口资源说明，代码版本e3a66a71c63377cfc139957081a72c5aa42ef4d6。
+实际job12892，1GPU/projgpu39/6CPU/20分钟、Requeue=0；08:25 UTC状态PENDING(Resources)，正式启动时间N/A。
+当前两卡占用作业剩余9:50:24；test-only预测次日02:15:39（远端+08:00），不是保证。12890/12891均为虚拟预检编号。
+唯一输出/research/d7/spc/yzyang4/forets-8b-acceptance-20260909-yhg2vq1o，日志slurm-12892.out/.err；
+验收结果acceptance/finished.json、外层process/。提交和初始状态已复制到results/forets_bounds_20260909/gpu_acceptance_*.json。
+仅跟进原12892，不重复提交、不释放旧12535、不恢复g0-r5。无模型load/API/保护数据/收益结论；OpenRouter安装仍缺。
+入口SHA26ca7848f148ff184bf50d0738d58310eeaa4c952197a7c922ee7cb1f96ec4aa，
+sbatch SHA5df7eac84e1d2bcda990ed67c106e3ffd0fb70cedc3249bbc3d04e238e1e4c77。
+下文“未提交/待确认内存”为历史，不再重复询问批准。
 
 最新0L126：用户“OK按照你的推荐来”已批准1GPU/20分钟验收，不再重复索要该GPU预算批准。
 原--mem=80G在projgpu39被sbatch --test-only拒绝：该节点RealMemory仅登记1MiB，尽管物理可用约478820MiB。

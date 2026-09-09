@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09 10:45 UTC，0L128覆盖下文；单GPU验收12892仍PENDING(Resources)，尚未加载8B；最终评分日志静默丢失已在隔离source-v4修复，g0-r5暂停。
+**Dynamic status timestamp:** 2026-09-09 10:49 UTC，0L129覆盖下文；12892仍PENDING(Resources)；用户授权三小时监护，g0-r5已启用每5分钟检查，截止13:48 UTC；最终评分日志修复不重复。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,13 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L129：用户说学长稍后释放卡并离开三小时，要求开跑后监视。g0-r5已复用为“ForeTS 12892：三小时运行监护”，
+每5分钟、截至2026-09-09 13:48 UTC/香港21:48，正式工具更新后已核ACTIVE及UNTIL，不重复建任务。
+仅通知开跑/完成/失败/实质进展/需处理；12892目前还是Resources等待，不能说学长已释放卡。
+原12892/输出路径/20分钟/no-requeue不变；不追加GPU或自动8run，不释放12535，凭据安装仍缺。
+离队看sacct，完成核真实finished、process/summary和退出码；通过仅称真实8B接入，失败不自动重试。
+下文“g0-r5暂停”为历史状态；到期停止后续工作，不额外取消仍运行的12892。
 
 最新0L128：0015仅将main_run最终logger.log的标量改为score+selected_node_id映射，旧行为是静默写{}，不是本环境必然报错。
 新treeead8fae34441801eea8e40d5642b6995ae6e0c14，main_run blob224a3b675ea7eea95610301ce594805899320dda。

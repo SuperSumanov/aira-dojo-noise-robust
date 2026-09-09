@@ -1,0 +1,21 @@
+diff --git a/src/dojo/core/solvers/llm_helpers/generic_llm.py b/src/dojo/core/solvers/llm_helpers/generic_llm.py
+--- a/src/dojo/core/solvers/llm_helpers/generic_llm.py
++++ b/src/dojo/core/solvers/llm_helpers/generic_llm.py
+@@ -41,7 +41,16 @@ class GenericLLM:
+         self.client = get_client(self.cfg.llm.client)
+ 
+         # LLM Generation Arguments
+-        self.generation_kwargs = self.cfg.llm.generation_kwargs
++        generation_kwargs = self.cfg.llm.generation_kwargs
++        if generation_kwargs.get("bounded_transport") is True:
++            # Hydra nested DictConfig/ListConfig values are not JSON-serializable.
++            # Materialize the resolved values at the config/API boundary, before
++            # **kwargs makes only a shallow plain dict. Preserve the legacy path.
++            if OmegaConf.is_config(generation_kwargs):
++                generation_kwargs = OmegaConf.to_container(
++                    generation_kwargs, resolve=True, throw_on_missing=True
++                )
++        self.generation_kwargs = generation_kwargs
+ 
+         # Set up the prompt templates based on the configuration
+         self._set_up_prompts()

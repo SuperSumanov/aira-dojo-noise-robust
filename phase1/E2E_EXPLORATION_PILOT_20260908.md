@@ -10,6 +10,17 @@
 
 ## 已落实
 
+### 最新状态：免费路由准备接入通过本机请求检查（0L125）
+
+显式组合forets_pilot_plan.overrides(...)、bounded_launcher_overrides(...)、free_route_overrides(client_name)。
+最后一项统一四算子使用选定免费client、tools、零价格请求过滤和禁fallback；不能只换key而继承原DeepSeek配置。
+初次真实SDK检查因嵌套DictConfig无法JSON序列化而在发送前失败；0014只在有界GenericLLM入口解析配置为普通容器。
+补丁组合tree0d64733e34f287e44df838accef3e082dcd423f9，远端仅forets-free-route-20260909-6627x2/source-v3。
+4项新检查通过；16份配置验证两个可选路由，8次请求仅到本机人工服务，完整两臂配置仍仅selector不同。
+失败/通过回执分别free_route_initial_failure.json和free_route_checks.json，见results/forets_bounds_20260909。
+没有外部模型推理、真实任务、GPU或收益；32输出token/4次额度/5秒deadline是测试值，不是批准的e2e预算。
+此改动只解决接入，凭据安装与独立GPU批准仍缺；免费端点数据边界沿用下节，不能发私有语料/保护集。
+
 ### 最新状态：生成器对应已确认，凭据安装尚缺（0L124）
 
 用户已转达：使用此前OpenRouter key。学长065b源码中两个免费client分别是

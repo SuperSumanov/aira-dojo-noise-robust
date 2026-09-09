@@ -3,6 +3,36 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L125. 2026-09-09：免费路由已接入待运行配置，修复嵌套配置导致的发送前失败
+
+用户要求继续推进；fetch确认我方3c01c06bae2de1b693a04aae27f4e64bda92dc77、学长065b0fba未变。
+两远端工作目录.env复查仍无OpenRouter变量/形状值，没有搬运或试送聊天key。未提交GPU、模型load或真实任务。
+本轮围绕新确认的免费client做必要接入，不恢复旧方向，不重复旧G0/loader/来源审计。
+
+实际发现：forets_pilot_plan原模板继承aira_forets_dsf_mle，四算子仍为DeepSeek；有界backend默认JSON模式，
+不能仅添加OpenRouter key就宣称免费路线已生效。新增显式free_route_overrides(client_name)，只接受学长确认的两个client，
+四算子统一替换、tools模式、SDK/格式重试0、禁provider/model fallback、require_parameters=true、prompt/completion/request的max_price均0，禁环境导出。
+solver原有有限重试策略未改变，仍须受每run共享请求额度约束；不能把单次SDK无重试说成整轮不会重试。
+用法为overrides(...) + bounded_launcher_overrides(...) + free_route_overrides(选定client)。这是准备函数，不是launcher；
+每次两臂只能选同一个生成器，不因为测试检查了两模型就授权模型扫参或额外运行。原默认方案保持不变，仍不可直接作为免费方案启动。
+
+真实SDK本机检查首次失败，诊断确认APIError: Object of type DictConfig is not JSON serializable；0本机HTTP/0外部请求。
+原生**kwargs只浅转dict，嵌套extra_body仍是Hydra对象。0014补丁只在GenericLLM的bounded路径将配置解析为普通容器，
+保留参数值与旧默认行为；没有在测试里替换生产配置来掩盖问题。修后通过真实GenericLLM→LiteLLM→本机HTTP→schema解析路径。
+完整tree为0d64733e34f287e44df838accef3e082dcd423f9；0014接065b+0010→0011→0012→0013，独立重建一致。
+修改的generic_llm.py blob为f8aaefbb9578f20d184b75da271653de0826c625，远端隔离副本hash已核对。
+
+4项新检查通过：未确认/付费alias拒绝，四算子路由一致，完整两臂配置仅selector不同，真实SDK请求体包含tools/零价格且无JSON模式或模型fallback。
+16份配置是两种路由的静态检查，8次HTTP均到本机人工服务，不是16个实验或8次外部模型推理。
+receipt: results/forets_bounds_20260909/free_route_checks.json；失败诊断free_route_initial_failure.json一并保留。
+plan/test SHA256分别1f6667641725662b10c59d7563368fe47eac19eecd79d92a87ed0e162ddaddf6、
+5b67b203ca606ae7296ccbf31fc23e80712c148e68c46f0ebc45527a7d907d7d；实际远端exit0，未把重复handler日志当请求计数。
+部署仅/research/d7/spc/yzyang4/forets-free-route-20260909-6627x2/source-v3，生产checkout、学长branch、旧验收模型路径均未修改。
+
+不能声称外部免费端点可用、供应商计费已验证或critic有收益；零价格字段是在真实本机请求体中获证的请求限制，不是账单证明。
+还需要用户/学长直接安装远端OpenRouter凭据；0L123单GPU20分钟矩阵仍待明确批准。免费提供商的数据使用边界沿用0L124。
+已通过的新检查不再因等待重跑。g0-r5保持暂停，不新建监控或后台实验。
+
 ## 0L124. 2026-09-09：OpenRouter映射已获学长确认，剩余缺项是远端凭据安装
 
 用户转达学长：PRIMARY_KEY应使用之前提供的OpenRouter凭据，litellm_nemotron-3-ultra和litellm_laguna-s-2.1可免费调试，

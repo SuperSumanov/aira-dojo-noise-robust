@@ -1,12 +1,40 @@
 """Preparation-only paired ForeTS plan; no launcher, credentials, or API calls.
 
-Route/model, pricing envelope and final Slurm budget must be resolved before
-launch. Explicit output/deadline bounds below are proposals, not approved cost.
+The optional free route uses the senior-confirmed OpenRouter clients. Credentials,
+current catalog/account readiness and the final Slurm budget are still required.
+Explicit output/deadline bounds below are proposals, not approved cost.
 """
 OPERATORS = ('draft', 'improve', 'debug', 'analyze')
 POLICIES = ('uniform_random', 'critic_topk_random')
 TASKS = ('leaf-classification', 'spaceship-titanic')
 SEEDS = (6, 7)
+FREE_CLIENTS = {
+    'litellm_nemotron-3-ultra': 'nvidia/nemotron-3-ultra-550b-a55b:free',
+    'litellm_laguna-s-2.1': 'poolside/laguna-s-2.1:free',
+}
+
+
+def free_route_overrides(client_name):
+    """Append to the paired plan, never launch. Only public artificial inputs
+    are cleared for initial endpoint checks; free providers may retain/train data.
+    This selects ONE generator for BOTH arms, not a model fallback or a sweep.
+    The zero price filter is an upstream request constraint, not billing evidence.
+    """
+    if client_name not in FREE_CLIENTS:
+        raise ValueError('choose an explicitly confirmed free client')
+    values = ['logger.write_env_vars=false']
+    for op in OPERATORS:
+        values.append('solver/client@solver.operators.' + op + '.llm.client=' + client_name)
+        prefix = '++solver.operators.' + op + '.llm.generation_kwargs.'
+        values.extend([
+            prefix + 'structured_output_mode=tools',
+            prefix + 'structured_output_retries=0',
+            prefix + 'bounded_transport=true',
+            prefix + 'bounded_run_budget_required=true',
+            prefix + 'extra_body.provider={allow_fallbacks:false,require_parameters:true,'
+                     'max_price:{prompt:0,completion:0,request:0}}',
+        ])
+    return values
 
 
 def overrides(task, seed, policy, *, max_output_tokens, request_timeout_seconds):

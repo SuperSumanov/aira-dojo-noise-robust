@@ -3,7 +3,26 @@
 这里保存针对其他现有分支、但不直接改写对方分支的可审计补丁。补丁必须注明精确 base commit、测试结果与
 迁移边界；只有维护者审阅后才 cherry-pick。
 
-## 当前ForeTS探索入口（2026-09-09，0L122）
+## 当前ForeTS探索入口（2026-09-09，0L125）
+
+### 可选后续：0014有界生成参数序列化（接0013）
+
+组合065b+0010→0011→0012→0013→0014的tree为`0d64733e34f287e44df838accef3e082dcd423f9`，独立重建一致。
+仅改GenericLLM：bounded_transport=true时将OmegaConf生成参数解析为普通容器；默认路径不变，不改变参数值。
+修复真实LiteLLM/OpenAI SDK遇到嵌套extra_body DictConfig时的JSON序列化失败，不绕过工具schema或价格约束。
+generic_llm.py blob：`f8aaefbb9578f20d184b75da271653de0826c625`。
+我方forets_pilot_plan.py的free_route_overrides显式选择两种已确认free client之一，统一四算子、tools、零价格和禁fallback。
+按基础overrides + bounded_launcher_overrides + free_route_overrides组合；这是待运行配置，不会自动调用API/Slurm。
+16份完整Hydra配置逐对仅selector不同；8次真实GenericLLM/SDK请求到本机人工HTTP，验证model/tools/provider价格字段。
+首轮失败和通过结果保留在`phase1/results/forets_bounds_20260909/free_route_{initial_failure,checks}.json`。
+0外部API/GPU/model-load/任务，不证明endpoint可用、计费或模型收益；已通过不重跑。
+隔离部署：`/research/d7/spc/yzyang4/forets-free-route-20260909-6627x2/source-v3`；不得覆盖生产checkout或学长branch。
+
+本次实际成功命令（已完成，不因等待重跑；r3文件内容与公开检查脚本SHA一致）：
+
+```bash
+timeout --signal=TERM --kill-after=5s 120s /research/d7/spc/yzyang4/venvs/aira/bin/python -B /research/d7/spc/yzyang4/forets-free-route-20260909-6627x2/check_route_r3.py --dojo-root /research/d7/spc/yzyang4/forets-free-route-20260909-6627x2/source-v3 --source-tree 0d64733e34f287e44df838accef3e082dcd423f9 --plan-root /research/d7/spc/yzyang4/forets-free-route-20260909-6627x2 --output /research/d7/spc/yzyang4/forets-free-route-20260909-6627x2/checks_r3.json
+```
 
 ### 可选后续：0013有界Slurm worker（接0012）
 

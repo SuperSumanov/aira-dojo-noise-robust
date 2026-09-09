@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09 06:14 UTC，0L124覆盖下文；OpenRouter映射已确认，远端凭据尚未安装；单GPU验收仍未批准/提交，g0-r5已暂停。
+**Dynamic status timestamp:** 2026-09-09 06:28 UTC，0L125覆盖下文；免费路由及嵌套配置修复通过本机检查；远端凭据尚缺、单GPU仍未批准，g0-r5暂停。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,16 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L125：forets_pilot_plan.py新增free_route_overrides(显式client)，接在基础/有界launcher overrides后；四算子统一免费模型、
+tools、零prompt/completion/request价格上限、禁fallback和环境导出。静态检查两模型不等于授权双模型真实扫参。
+真实SDK发现嵌套DictConfig不可JSON序列化，在发HTTP前失败；0014仅把bounded GenericLLM生成参数解析成原生容器。
+新组合tree0d64733e34f287e44df838accef3e082dcd423f9；接原059328树，generic blob f8aaefbb9578f20d184b75da271653de0826c625。
+隔离source=/research/d7/spc/yzyang4/forets-free-route-20260909-6627x2/source-v3；未改学长/生产目录。
+4项新检查通过：16份配置逐对仅selector不同；8次真实SDK→本机人工HTTP请求有正确free模型/tools/零价格请求体。
+回执free_route_checks.json及free_route_initial_failure.json，位于phase1/results/forets_bounds_20260909。
+0外部API/GPU/model-load/真实任务；不是收益或供应商账单获证。不再重复这些检查。
+远端两.env复查仍无OpenRouter凭据，必须用户/学长直接安装；单GPU20分钟矩阵仍待明确批准，g0-r5继续暂停。
 
 最新0L124：学长已确认PRIMARY_KEY应使用此前OpenRouter key。学长065b两client配置映射为
 nvidia/nemotron-3-ultra-550b-a55b:free和poolside/laguna-s-2.1:free，base_url=https://openrouter.ai/api/v1。

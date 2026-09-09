@@ -38,8 +38,10 @@ EXPECTED_VERSIONS = dict(torch='2.11.0+cu128', transformers='4.57.1', accelerate
 
 
 def describe():
-    return dict(status='PREPARATION_ONLY_NOT_EXECUTED', requires_new_gpu_budget_approval=True,
-        node='projgpu39', gpus=1, cpus=6, host_memory_gib=80, allocation_minutes=20,
+    return dict(status='PLAN_ONLY_NOT_EXECUTED', requires_new_gpu_budget_approval=False,
+        approval_scope='one allocation; memory declaration change confirmed 2026-09-09',
+        node='projgpu39', gpus=1, cpus=6, host_memory_gib=None,
+        slurm_memory_argument='--mem=0', scheduler_80gib_memory_limit=False, allocation_minutes=20,
         step_minutes=19, process_seconds=1050, process_kill_grace_seconds=10,
         process_cleanup_grace_each_seconds=5, expected_versions=EXPECTED_VERSIONS,
         observed_cluster_KillWait_seconds=300,

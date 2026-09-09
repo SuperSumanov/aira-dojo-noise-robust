@@ -1,8 +1,9 @@
-# ForeTS 8B：GPU预算已批准，主存申报变更待确认
+# ForeTS 8B：单GPU预算及主存申报变更均已批准
 
-状态（2026-09-09 08:15 UTC）：用户已批准下述单GPU20分钟矩阵，**未提交、未加载真实模型、未做8B前向**。
+状态（2026-09-09）：用户已批准下述单GPU20分钟矩阵，并在明确解释内存边界变化后回复“是的”，批准--mem=0。
+该批准只适用于一次作业，不是重试或额外实验授权；本文件本身不是已提交/已加载模型/已完成8B前向的证据。
 新预检发现原80G主存申报不可调度：projgpu39的Slurm RealMemory登记为1MiB；原sbatch --test-only拒绝，覆盖--mem=0则通过。
-现仅等待是否接受--mem=0（取消调度器80GiB主存硬限），GPU/CPU/时限不变；不能继续笼统称单GPU预算未获批准。
+批脚本及入口资源回执同步改为--mem=0（不再保留调度器80GiB主存硬限），GPU/CPU/时限及验收逻辑不变。
 test-only的12890不是已提交job；实际队列仅旧held job12535，未释放。详情见gpu_acceptance_scheduler_preflight.json。
 本项不需要生成器API。OpenRouter对应已确认，剩余凭据安装不阻塞这项无API验收；不借用旧G0或9GPUh条件规划批准。
 
@@ -14,10 +15,10 @@ test-only的12890不是已提交job；实际队列仅旧held job12535，未释�
 
 ## 一次矩阵和资源边界
 
-| 项 | 待批准设置 |
+| 项 | 已批准设置 |
 |---|---|
 | 作业/卡 | 1 allocation，projgpu39，1 GPU；运行时要求至少80GiB显存，否则退出 |
-| CPU/主存 | 6核、80GiB主存；不写新checkpoint，不下载权重 |
+| CPU/主存 | 6核、--mem=0；不再有原80GiB调度器主存限制，不写新checkpoint、不下载权重 |
 | 时间 | allocation20分钟；step19分钟；外层进程1050秒，TERM等待及最终wait各5秒；0自动重试 |
 | GPU小时 | 名义0.3333333333333333；另计已观测KillWait300秒为0.4166666666666667 |
 | 模型 | Qwen3-8B_reward_seed1/checkpoint-100，现成探索critic；不声称RL胜者或最优checkpoint |
@@ -33,7 +34,7 @@ test-only的12890不是已提交job；实际队列仅旧held job12535，未释�
 ## 固定输入与入口
 
 - 入口：`phase1/forets_8b_acceptance.py`，默认不执行；`--describe`只用标准库输出方案。
-- 待批准批脚本：`phase1/scripts/prepare_forets_8b_acceptance_20260909.sbatch`，只准备不提交。
+- 已批准批脚本：`phase1/scripts/prepare_forets_8b_acceptance_20260909.sbatch`，仅允许本次单作业提交。
   应从新输出父目录调用并保留Slurm日志；FORETS_ACCEPTANCE_APPROVED开关不是预算授权。
 - GPU Python固定`/research/d7/spc/yzyang4/venvs/exp/bin/python`；只读包元数据确认torch2.11.0+cu128、
   transformers4.57.1、accelerate1.11.0、safetensors0.5.3；入口强制核对，未加载这些包或申请GPU来查询版本。

@@ -1,0 +1,13 @@
+{
+  "status": "ARTIFICIAL_LOGGER_INTEGRATION_PASS",
+  "artificial_run_records": 8,
+  "artificial_pairs": 4,
+  "real_task_runs": 0,
+  "gpu_jobs": 0,
+  "model_loads": 0,
+  "external_api_calls": 0,
+  "protected_data_read": false,
+  "reader_sha256": "0f832951336926522a93d915b28aa6e068cf3f58308580a2f293d2d383f063c4",
+  "logger_sha256": "b7d59139f1445c8990e357cd9285cdbf856745c62f0bd7a138886c8a1eb8c91f",
+  "scope": "actual JsonLogger + new reader, artificial events and process summaries; not real e2e"
+}

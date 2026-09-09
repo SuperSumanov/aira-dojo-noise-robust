@@ -1,0 +1,89 @@
+{
+  "status": "INDEPENDENT_ACCEPTANCE_RECEIPT_PASS",
+  "checked_utc": "2026-09-09T11:22:19.712427+00:00",
+  "job_id": "12892",
+  "slurm_records": [
+    [
+      "12892",
+      "COMPLETED",
+      "0:0",
+      "307",
+      "billing=6,cpu=6,gres/gpu=1,node=1",
+      "2026-09-09T19:14:24",
+      "2026-09-09T19:19:31"
+    ],
+    [
+      "12892.batch",
+      "COMPLETED",
+      "0:0",
+      "307",
+      "cpu=6,mem=0,node=1",
+      "2026-09-09T19:14:24",
+      "2026-09-09T19:19:31"
+    ],
+    [
+      "12892.extern",
+      "COMPLETED",
+      "0:0",
+      "307",
+      "billing=6,cpu=6,gres/gpu=1,node=1",
+      "2026-09-09T19:14:24",
+      "2026-09-09T19:19:31"
+    ],
+    [
+      "12892.0",
+      "COMPLETED",
+      "0:0",
+      "307",
+      "cpu=6,gres/gpu=1,mem=0,node=1",
+      "2026-09-09T19:14:24",
+      "2026-09-09T19:19:31"
+    ]
+  ],
+  "allocation_seconds": 307,
+  "allocation_gpu_hours": 0.08527777777777777,
+  "process_seconds": 303.34536765899975,
+  "model_load_seconds": 104.44614779495168,
+  "observations": 8,
+  "local_http_requests": 2,
+  "timings": {
+    "short": {
+      "measurements": 4,
+      "median_seconds": 0.03131592302815989,
+      "sample_stdev_seconds": 0.007455975607529184,
+      "by_seed": {
+        "6": {
+          "median_seconds": 0.03876697953091934,
+          "sample_stdev_seconds": 0.010509851825922227
+        },
+        "7": {
+          "median_seconds": 0.03126261802390218,
+          "sample_stdev_seconds": 4.785132567516734e-05
+        }
+      }
+    },
+    "context_16k": {
+      "measurements": 4,
+      "median_seconds": 1.1678589479997754,
+      "sample_stdev_seconds": 0.003712193004087962,
+      "by_seed": {
+        "6": {
+          "median_seconds": 1.1678589479997754,
+          "sample_stdev_seconds": 0.0027455980004171083
+        },
+        "7": {
+          "median_seconds": 1.1690081019769423,
+          "sample_stdev_seconds": 0.005699321666274504
+        }
+      }
+    }
+  },
+  "max_peak_allocated_gib": 18.01268482208252,
+  "max_peak_reserved_gib": 18.814453125,
+  "saturated_observations": 0,
+  "finished_sha256": "c879ea05d18a48931585c952740c43446d893eaee8a15dff621d29b47538e220",
+  "process_sha256": "2af25f24e425955c1d65011f18a974fc8329b63e5f64981df1d13581311f31a4",
+  "inference_executed_by_this_verifier": false,
+  "scientific_benefit_claim": false,
+  "limitation": "Independent recomputation of receipts/scheduler/logs, not independent repeated inference; synthetic workloads only."
+}

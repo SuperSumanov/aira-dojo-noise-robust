@@ -1,0 +1,16 @@
+{
+  "api_cost_usd": null,
+  "command_sha256": "9e47e3658337dd5c320c9de67fe311d32e4897594a684f6f5d71aa7db319d461",
+  "containment": "posix_process_group_only",
+  "elapsed_seconds": 303.34536765899975,
+  "grace_seconds": 5.0,
+  "kill_sent": false,
+  "pid": 174063,
+  "provider_cancellation_verified": false,
+  "returncode": 0,
+  "schema": 1,
+  "started": true,
+  "status": "completed",
+  "term_sent": false,
+  "wall_seconds": 1050.0
+}

@@ -61,3 +61,30 @@ task/solver是人工替身，未运行真实模型或任务；修复不是收益
 
 当前实际GPU验收12892仍为PENDING(Resources)。OpenRouter安装及之后的公开人工输入端点检查未完成。
 以上读出规则不扩大已批准的单GPU20分钟验收，后续8run资源与API矩阵仍须单独明确。
+
+## 6. 只读汇总入口（等待真实e2e产物，不是启动器）
+
+`forets_e2e_readout.py`接收显式development manifest和隔离开发根目录，不搜索历史目录、不运行grader/模型、
+不读中间候选或grading_report。输出runs.csv、pairs.csv和summary.json；缺分在CSV留空、JSON保留null。
+全部8个计划run必须在manifest里，不能先删除失败run再汇总；未开始的run仍保留缺项。
+
+manifest顶层：schema=1、role=forets_e2e_development、source_tree=实际实验40位Git tree、runs=完整8项。
+每项含run_id、task、seed、policy、run_dir、process_summary、config_sha256。
+两个路径均相对同一隔离开发根目录；run_dir中的固定读取位置为json/eval.jsonl，process_summary指向该run的有界进程summary。
+源码/配置SHA是**调用者声明**，读出工具不会凭它们宣布配置公平性获证；实际配置需在运行侧核对。禁止用占位SHA作为真实实验记录。
+不能以此入口读取first-960/Target-300/Target-522；role标识不是数据来源或授权的独立证明。
+
+调用方式：
+
+```text
+python -B phase1/forets_e2e_readout.py --development-root <隔离开发根目录> --manifest <明确列出的8run清单.json> --output-dir <尚不存在的汇总目录>
+```
+
+只有单一合法最终EVAL且有界进程started=true/status=completed/returncode=0，才进入有效配对。
+进程失败但已写出的最终分仍保留在final_score_observed，不悄悄删除；不进入条件有效分差。
+重复/残缺/非有限事件不自动选最后一个或最好一个；缺EVAL只记录缺失，不猜测是无解还是服务故障。
+每任务保留两个seed、方向统一的原始分差、中位数和样本标准差；只有一个有效配对时标准差为null，而不是0。
+
+这里只汇总进程秒数及未知项计数，**尚不计算分配GPU时、加载摊销或API费用**。进程完成不等于Slurm分配已结束。
+真实完整报告仍须补调度器分配账及API实际用量，不能把本工具作为成本获胜或统计确认的自动裁判。
+入口只补齐现有读出规则；未改变两臂搜索策略、生成器、预算或默认关闭的省critic调用开关。

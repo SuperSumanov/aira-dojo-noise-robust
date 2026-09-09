@@ -1,0 +1,155 @@
+{
+  "absolute_failure_runtime_guaranteed": false,
+  "allocation_id": "12892",
+  "allocation_minutes": 20,
+  "approval_scope": "one allocation; memory declaration change confirmed 2026-09-09",
+  "attention_implementation": "sdpa",
+  "batch_size": 1,
+  "blocked_external_connection_attempts": 0,
+  "context": 16384,
+  "cpus": 6,
+  "entry_sha256": "26ca7848f148ff184bf50d0738d58310eeaa4c952197a7c922ee7cb1f96ec4aa",
+  "expected_versions": {
+    "accelerate": "1.11.0",
+    "safetensors": "0.5.3",
+    "torch": "2.11.0+cu128",
+    "transformers": "4.57.1"
+  },
+  "external_connections": 0,
+  "fixtures": "fixed synthetic code, never executed",
+  "generator_api_requests": 0,
+  "gpu_hours_including_observed_KillWait": 0.4166666666666667,
+  "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "gpu_total_memory_bytes": 101984763904,
+  "gpus": 1,
+  "host_memory_gib": null,
+  "load_seconds": 104.44614779495168,
+  "local_http_requests": 2,
+  "measurement_repetitions_per_seed": 2,
+  "median_seconds_by_fixture": {
+    "context_16k": 1.1678589479997754,
+    "short": 0.03131592302815989
+  },
+  "model": "Qwen/Qwen3-8B-Base",
+  "model_loaded": true,
+  "node": "projgpu39",
+  "nominal_gpu_hours": 0.3333333333333333,
+  "observations": [
+    {
+      "encoded_tokens": 16,
+      "fixture": "short",
+      "peak_allocated_bytes": 15175514624,
+      "peak_reserved_bytes": 15328083968,
+      "repetition": 0,
+      "seconds": 0.04619856702629477,
+      "seed": 6,
+      "sigmoid_saturated": false
+    },
+    {
+      "encoded_tokens": 16,
+      "fixture": "short",
+      "peak_allocated_bytes": 15175514624,
+      "peak_reserved_bytes": 15328083968,
+      "repetition": 1,
+      "seconds": 0.03133539203554392,
+      "seed": 6,
+      "sigmoid_saturated": false
+    },
+    {
+      "encoded_tokens": 16384,
+      "fixture": "context_16k",
+      "peak_allocated_bytes": 19340973056,
+      "peak_reserved_bytes": 20201865216,
+      "repetition": 0,
+      "seconds": 1.1698003789642826,
+      "seed": 6,
+      "sigmoid_saturated": false
+    },
+    {
+      "encoded_tokens": 16384,
+      "fixture": "context_16k",
+      "peak_allocated_bytes": 19340973056,
+      "peak_reserved_bytes": 20201865216,
+      "repetition": 1,
+      "seconds": 1.1659175170352682,
+      "seed": 6,
+      "sigmoid_saturated": false
+    },
+    {
+      "encoded_tokens": 16,
+      "fixture": "short",
+      "peak_allocated_bytes": 15175514624,
+      "peak_reserved_bytes": 20201865216,
+      "repetition": 0,
+      "seconds": 0.031296454020775855,
+      "seed": 7,
+      "sigmoid_saturated": false
+    },
+    {
+      "encoded_tokens": 16,
+      "fixture": "short",
+      "peak_allocated_bytes": 15175514624,
+      "peak_reserved_bytes": 20201865216,
+      "repetition": 1,
+      "seconds": 0.0312287820270285,
+      "seed": 7,
+      "sigmoid_saturated": false
+    },
+    {
+      "encoded_tokens": 16384,
+      "fixture": "context_16k",
+      "peak_allocated_bytes": 19340973056,
+      "peak_reserved_bytes": 20201865216,
+      "repetition": 0,
+      "seconds": 1.1730381309753284,
+      "seed": 7,
+      "sigmoid_saturated": false
+    },
+    {
+      "encoded_tokens": 16384,
+      "fixture": "context_16k",
+      "peak_allocated_bytes": 19340973056,
+      "peak_reserved_bytes": 20201865216,
+      "repetition": 1,
+      "seconds": 1.1649780729785562,
+      "seed": 7,
+      "sigmoid_saturated": false
+    }
+  ],
+  "observed_cluster_KillWait_seconds": 300,
+  "process_cleanup_grace_each_seconds": 5,
+  "process_kill_grace_seconds": 10,
+  "process_seconds": 1050,
+  "protected_data_read": false,
+  "requires_new_gpu_budget_approval": false,
+  "runtime_meta": {
+    "head_frac": 0.25,
+    "max_len": 16384,
+    "task_cond": true
+  },
+  "sample_stdev_seconds_by_fixture": {
+    "context_16k": 0.003712193004087962,
+    "short": 0.007455975607529184
+  },
+  "scheduler_80gib_memory_limit": false,
+  "scope": "load/forward/loopback service only, not accuracy/scaling/e2e utility",
+  "seeds": [
+    6,
+    7
+  ],
+  "slurm_memory_argument": "--mem=0",
+  "source_blobs": {
+    "bradley_terry_evaluation.py": "14687d0596d529e6235ccddce08c671227a81feb",
+    "bradley_terry_server.py": "fca0f2e6d6bd6bc6e11cf32876f67f5dceacea7f"
+  },
+  "status": "PASS",
+  "step_id": "0",
+  "step_minutes": 19,
+  "versions": {
+    "accelerate": "1.11.0",
+    "safetensors": "0.5.3",
+    "torch": "2.11.0+cu128",
+    "transformers": "4.57.1"
+  },
+  "weights_sha256": "bb0c6a1801cf0a753bb1f8aa1c923f9fcc7fff81fd654ae9d3a932ee280dfb74"
+}

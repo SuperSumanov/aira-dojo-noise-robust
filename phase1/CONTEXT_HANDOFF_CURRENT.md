@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09 10:58 UTC，0L130覆盖下文；12892仍PENDING(Resources)；新增默认关闭的全池省critic调用优化，未改验收入口；g0-r5每5分钟监护至13:48 UTC。
+**Dynamic status timestamp:** 2026-09-09 11:22 UTC，0L131覆盖下文；12892真实单GPU/8B/16K/本机HTTP验收完成，COMPLETED 0:0；g0-r5原13:48 UTC截止不变，不重复验收。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,17 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L131：12892香港19:14:24–19:19:31，307秒、0.08527777777777777GPUh；真实8B模型加载/单卡BF16/16K输入/2本机HTTP通过。
+短输入中位0.03131592302815989秒、16K中位1.1678589479997754秒；最大allocated18.01268482208252GiB。
+8条人工输入重复计时；不是真实任务效果。11:22 UTC独立核对调度/finished/process/日志并重算，未重跑模型。
+报告FORETS_GPU_ACCEPTANCE_RESULT_20260909.md；results/forets_bounds_20260909/gpu_acceptance_finished、process、independent.json。
+最新只读汇总forets_e2e_readout.py已做10项人工测试和实际JsonLogger格式对接，输出完整8run/4pair、失败保留、缺分不填0、无混合指标均值。
+只读显式开发manifest，声明source/config SHA不自动等于身份验证，尚不计算实际GPU/API账；不得拿它读取保护集。
+部署forets-readout-20260909-axc4xo；source-v5和默认false省调用开关未动。
+OpenRouter远端安装仍缺（11:22UTC两个.env只读形状检查）；平台/模型已知，不再问、不试送未知key。
+后续8run未获精确矩阵预算，不自动开跑；不再重复下载/G0/8B验收，不修改学长分支或生产。
+g0-r5监护仍至13:48UTC，但原job已完成，仅实质新状态可触发后续工作。暂无模型收益/scaling/e2e正效应。
 
 最新0L130：0016新增默认false的skip_redundant_critic，只在count<=top_k且critic臂时跳过无用评分。
 现有selector已canonicalize全池slot顺序，固定输入/task/step/seed的选中槽位完全一致；不做错误后fallback，不填假预测。

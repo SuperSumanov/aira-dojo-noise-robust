@@ -3,6 +3,34 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L131. 2026-09-09：真实8B单GPU验收12892完成；结果汇总入口已接好
+
+覆盖下文排队/运行状态：12892于香港19:14:24启动、19:19:31结束，allocation/step/batch全部COMPLETED、0:0。
+唯一输出根仍/research/d7/spc/yzyang4/forets-8b-acceptance-20260909-yhg2vq1o；未重投、未改变原单卡20分钟预算。
+实际307秒=0.08527777777777777 GPUh，进程303.34536765899975秒。用户“学长释放资源”现在有真实启动/完成证据。
+代码e3a66a71、模型bb0c6a18...已由原入口核对；真实全参数单卡BF16、16K输入、SDPA、8观测+2本机HTTP均PASS。
+模型加载104.44614779495168秒；短输入中位0.03131592302815989秒/stdev0.007455975607529184，
+16K中位1.1678589479997754秒/stdev0.003712193004087962；峰值allocated18.01268482208252GiB/reserved18.814453125GiB。
+只用2个人工输入；8条是重复计时、不是独立任务。sigmoid端点饱和0/8不证明真实排序有用。
+
+11:22 UTC用调度记录、真实finished/process和日志做一次独立复核，并重算计时/显存/分配GPUh；无第二次模型执行。
+安全产物gpu_acceptance_finished.json、gpu_acceptance_process.json、gpu_acceptance_independent.json已取回。
+finished SHA c879ea05d18a48931585c952740c43446d893eaee8a15dff621d29b47538e220；
+process SHA 2af25f24e425955c1d65011f18a974fc8329b63e5f64981df1d13581311f31a4。
+详见FORETS_GPU_ACCEPTANCE_RESULT_20260909.md。日志第三方CUDA注册/弃用警告未致失败，不为它们重跑GPU。
+
+同步补forets_e2e_readout.py，只消费显式8run开发清单、各run最终EVAL及进程summary，不遍历语料或读取grading_report。
+失败但已有最终分保留为observed、不能进入条件有效配对；缺失不填0，重复事件不挑最后/最好；不跨任务混合指标。
+10项本地人工测试+真实JsonLogger格式对接通过。readout_logger_check.json明确0真实task/GPU/API，不是收益实验。
+读出保留声明的source tree/config SHA但不冒充独立配置验证，尚未整合实际GPU/API账，不自动判赢家。
+部署仅/research/d7/spc/yzyang4/forets-readout-20260909-axc4xo；不改原12892入口、生产目录或学长branch。
+读源码时远端rg缺失及误把logger.py当目录导致两次只读命令失败，随后读确切文件成功；不是实验失败/额外GPU。
+
+11:22 UTC两处远端.env形状检查仍无OpenRouter凭据。模型/GPU接入阻塞已解除，剩余是凭据安装、
+有界公开人工输入端点连接及后续8run精确预算。不得重复平台/模型问题，不使用聊天密钥或未知PRIMARY_KEY。
+g0-r5原13:48 UTC截止不变；12892已完成，不再重验模型或反复统计同一结果，只跟进实质新状态。
+当前source-v5/0016默认关闭不变。没有新的critic收益、clean scaling或e2e正效应，不自动追加GPU/API/模型训练。
+
 ## 0L130. 2026-09-09：准备精确省调用开关，固定人工轨迹10→7且选择不变
 
 用户要求继续。12892在10:51及10:58 UTC仍PENDING(Resources)，无started/finished/Slurm日志，不能称模型已跑。

@@ -10,6 +10,14 @@
 
 ## 已落实
 
+### 最新状态：可选省调用优化准备（0L130，当前未启用）
+
+0016新增默认false的skip_redundant_critic：仅top-k覆盖整个实际候选池时省去评分，保持固定池/seed选中槽位完全一致。
+既有4步无debug的真实候选数是4/3/2/1，不是每批恒定4；人工轨迹中critic10→7、生成10/执行4不变。
+5项定向检查通过，不是实际模型收益或整轮加速；说明FORETS_NONPRUNING_OPT_20260909.md。
+新tree2ff5277ba17327c6c03326a018b59f704402af6b位于独立source-v5；默认与本计划均未启用，后续两臂必须同开关。
+12892仍等待，不修改该验收入口，不追加预算或自动启动8run。
+
 ### 最新状态：GPU验收已排队；最终结果记录修复（0L128）
 
 12892已按批准的1GPU/20分钟/--mem=0提交，仍PENDING(Resources)，不重复提交；GPU验收不是下述8run批准。
@@ -155,7 +163,7 @@ API路由、硬限与最终预算仍待完成；不恢复冻结确认资格或�
 |任务|leaf-classification、spaceship-titanic；都是已知开发任务，不称新任务泛化|
 |seed|6、7|
 |两臂|uniform_random / critic_topk_random|
-|候选与执行|每批4个候选，critic top-2中选1个；random全4个中选1个|
+|候选与执行|每批min(4,剩余执行步)个候选；critic top-min(2,池大小)中选1个，random全池选1个；无debug四批为4/3/2/1|
 |执行|每程序统一300秒完整上限；最多4次执行，debug计入，max_debug_depth=1|
 |重试|max_llm_call_retries=2，critic_max_attempts=1，launcher.max_retries=0|
 |搜索|软限制1800秒；必须补外部硬停止后，才能按以下费用上限提交|

@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09 10:49 UTC，0L129覆盖下文；12892仍PENDING(Resources)；用户授权三小时监护，g0-r5已启用每5分钟检查，截止13:48 UTC；最终评分日志修复不重复。
+**Dynamic status timestamp:** 2026-09-09 10:58 UTC，0L130覆盖下文；12892仍PENDING(Resources)；新增默认关闭的全池省critic调用优化，未改验收入口；g0-r5每5分钟监护至13:48 UTC。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,15 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L130：0016新增默认false的skip_redundant_critic，只在count<=top_k且critic臂时跳过无用评分。
+现有selector已canonicalize全池slot顺序，固定输入/task/step/seed的选中槽位完全一致；不做错误后fallback，不填假预测。
+实际批处理源码配人工生成/评分/执行的5项检查通过：seed6/7的4/3/2/1轨迹，生成10/执行4不变，critic10→7；随机臂不变。
+这不是30%整轮加速或新模型收益；真实多步剩余时间prompt/API随机性可能改变后续轨迹。
+新tree2ff5277ba17327c6c03326a018b59f704402af6b，隔离/research/d7/spc/yzyang4/forets-nonpruning-20260909-Wmfn3x/source-v5；
+组合0010→0016，默认与当前8run计划均未启用，不修改12892或生产/学长branch。
+说明FORETS_NONPRUNING_OPT_20260909.md，回执nonpruning_checks.json；run_budget输出token限是单次，不是整run总额。
+10:58 UTC12892仍Resources等待。g0-r5原13:48 UTC到期不变；OpenRouter安装仍缺，无新GPU/API/训练。
 
 最新0L129：用户说学长稍后释放卡并离开三小时，要求开跑后监视。g0-r5已复用为“ForeTS 12892：三小时运行监护”，
 每5分钟、截至2026-09-09 13:48 UTC/香港21:48，正式工具更新后已核ACTIVE及UNTIL，不重复建任务。

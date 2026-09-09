@@ -1,0 +1,165 @@
+{
+  "status": "TARGETED_PASS",
+  "source_tree": "2ff5277ba17327c6c03326a018b59f704402af6b",
+  "checks": [
+    "opt_in_default_false",
+    "actual_batch_runtime_same_selected_slots_10_to_7_synthetic_critic_calls",
+    "random_arm_unchanged",
+    "pruning_pool_boolean_k_unknown_bypass_rejected",
+    "bypass_forbids_scoring_no_fake_predictions"
+  ],
+  "artificial_trajectories": [
+    {
+      "seed": 6,
+      "enabled": false,
+      "policy": "critic_topk_random",
+      "counts": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "selected_slots": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "calls": {
+        "generate": 10,
+        "critic": 10,
+        "execute": 4
+      },
+      "bypassed": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "seed": 6,
+      "enabled": true,
+      "policy": "critic_topk_random",
+      "counts": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "selected_slots": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          0
+        ]
+      ],
+      "calls": {
+        "generate": 10,
+        "critic": 7,
+        "execute": 4
+      },
+      "bypassed": [
+        false,
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "seed": 7,
+      "enabled": false,
+      "policy": "critic_topk_random",
+      "counts": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "selected_slots": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "calls": {
+        "generate": 10,
+        "critic": 10,
+        "execute": 4
+      },
+      "bypassed": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "seed": 7,
+      "enabled": true,
+      "policy": "critic_topk_random",
+      "counts": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "selected_slots": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "calls": {
+        "generate": 10,
+        "critic": 7,
+        "execute": 4
+      },
+      "bypassed": [
+        false,
+        false,
+        true,
+        true
+      ]
+    }
+  ],
+  "synthetic_call_reduction_fraction": 0.3,
+  "model_runtime_speedup": null,
+  "model_quality_effect": null,
+  "external_api_calls": 0,
+  "gpu_jobs": 0,
+  "real_task_programs_executed": 0,
+  "protected_data_read": false,
+  "scope": "fixed artificial candidates/returns; equal per-batch selection, not full stochastic e2e equivalence"
+}

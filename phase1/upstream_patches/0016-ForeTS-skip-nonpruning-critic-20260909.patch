@@ -1,0 +1,76 @@
+diff --git a/src/dojo/config_dataclasses/solver/fore_ts.py b/src/dojo/config_dataclasses/solver/fore_ts.py
+--- a/src/dojo/config_dataclasses/solver/fore_ts.py
++++ b/src/dojo/config_dataclasses/solver/fore_ts.py
+@@ -17,3 +17,4 @@ class ForeTSSolverConfig(MCTSSolverConfig):
+     selector_seed: int = field(default=MISSING)
+     selection_policy: str = field(default=MISSING)
++    skip_redundant_critic: bool = False
+     critic_host: str = field(
+@@ -42,3 +43,5 @@ class ForeTSSolverConfig(MCTSSolverConfig):
+         if type(self.selector_seed) is not int:
+             raise ValueError("explicit integer selector_seed required")
++        if type(self.skip_redundant_critic) is not bool:
++            raise ValueError("skip_redundant_critic must be boolean")
+         for name in ("num_children", "critic_top_k", "num_children_to_choose", "critic_max_attempts"):
+diff --git a/src/dojo/solvers/fore_ts/candidate_ledger.py b/src/dojo/solvers/fore_ts/candidate_ledger.py
+--- a/src/dojo/solvers/fore_ts/candidate_ledger.py
++++ b/src/dojo/solvers/fore_ts/candidate_ledger.py
+@@ -33,3 +33,9 @@ class CandidateLedger:
+         if binding.get('selection_policy') not in ('uniform_random', 'critic_topk_random'):
+             raise LedgerError('selection policy missing from ledger binding')
++        if binding.get('score_bypass') is not None:
++            if (binding['score_bypass'] != 'full_pool_no_pruning'
++                    or binding['selection_policy'] != 'critic_topk_random'
++                    or type(binding.get('critic_top_k')) is not int
++                    or binding['critic_top_k'] < count):
++                raise LedgerError('score bypass requires the whole candidate pool')
+         self.path = Path(path)
+@@ -134,2 +140,4 @@ class CandidateLedger:
+     def begin_score(self, slot):
++        if self.data['binding'].get('score_bypass') is not None:
++            raise LedgerError('critic scoring disabled for this full-pool selection')
+         if self.data['binding']['selection_policy'] != 'critic_topk_random' or self.data['pool_sha256'] is None:
+@@ -250,4 +258,6 @@ class CandidateLedger:
+     def ready_state(self):
+-        return 'generated' if self.data['binding']['selection_policy'] == 'uniform_random' else 'scored'
++        binding = self.data['binding']
++        return ('generated' if binding['selection_policy'] == 'uniform_random'
++                or binding.get('score_bypass') == 'full_pool_no_pruning' else 'scored')
+ 
+     def freeze_pool(self):
+diff --git a/src/dojo/solvers/fore_ts/batch_runtime.py b/src/dojo/solvers/fore_ts/batch_runtime.py
+--- a/src/dojo/solvers/fore_ts/batch_runtime.py
++++ b/src/dojo/solvers/fore_ts/batch_runtime.py
+@@ -31,4 +31,9 @@ def expand_batch(solver, path, state, task, node_type, extract_code, config_snapshot):
+     policy = solver.cfg.selection_policy
+     if policy not in POLICIES:
+         raise LedgerError("explicit selection policy required before generation")
++    skip_redundant = getattr(solver.cfg, 'skip_redundant_critic', False)
++    if type(skip_redundant) is not bool:
++        raise LedgerError('skip_redundant_critic must be boolean')
++    bypass = (skip_redundant and policy == 'critic_topk_random'
++              and count <= solver.critic_top_k)
+     parent = path[-1]
+@@ -46,3 +51,5 @@ def expand_batch(solver, path, state, task, node_type, extract_code, config_snapshot):
+     binding = dict(schema=4, selection_policy=policy, execution_contract="task-return-receipt-v1", request_contract="same-rendered-request-v1", boundary_sha256=digest(boundary), parent_id=parent.id,
+                    task=solver.task_name, step=solver.state.current_step)
++    if bypass:
++        binding.update(score_bypass='full_pool_no_pruning', critic_top_k=solver.critic_top_k)
+     root = Path(solver.cfg.checkpoint_path)
+@@ -81,2 +88,2 @@ def expand_batch(solver, path, state, task, node_type, extract_code, config_snapshot):
+-        if policy == 'critic_topk_random':
++        if policy == 'critic_topk_random' and not bypass:
+             async def score_all():
+@@ -91,6 +98,10 @@ def expand_batch(solver, path, state, task, node_type, extract_code, config_snapshot):
+         if ledger.data['selected'] is None:
+             scores = ([c['score'] for c in ledger.data['candidates']]
+-                      if policy == 'critic_topk_random' else None)
++                      if policy == 'critic_topk_random' and not bypass else None)
++            # choose_slots canonicalizes full top-k into original slot order.
++            # This uses exactly the same RNG identity and selected slot(s),
++            # without inventing scores or treating missing predictions as zero.
++            effective_policy = 'uniform_random' if bypass else policy
+             ledger.select(choose_slots(count, solver.critic_top_k, solver.num_children_to_choose,
+-                          policy, solver.cfg.selector_seed, solver.task_name,
++                          effective_policy, solver.cfg.selector_seed, solver.task_name,
+                           solver.state.current_step, scores))

@@ -3,6 +3,30 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L130. 2026-09-09：准备精确省调用开关，固定人工轨迹10→7且选择不变
+
+用户要求继续。12892在10:51及10:58 UTC仍PENDING(Resources)，无started/finished/Slurm日志，不能称模型已跑。
+没有重复投递、额外GPU或真实API调用。g0-r5三小时监护继续，原13:48 UTC截止不延长；上游仍065b0fba。
+
+针对后续实际成本发现：batch候选数为min(num_children, remaining_steps)，4步无debug路径为4/3/2/1，
+最后2批top-2已覆盖全池，打分不改变候选资格。当前selector先恢复slot顺序且随机源不含policy，故全池时可逐槽位精确耦合随机选择。
+0016新增默认false的solver.skip_redundant_critic；只在critic臂且count<=top_k时跳过评分，不做失败后随机fallback。
+台账保留原policy并明确bypass原因/top_k，所有score仍None而不是假0；需筛选时仍完整评分，非法绕过被拒绝。
+当前8run计划未启用开关，12892文件不变；正式用前两臂同开关并固定实际配置。优化只准备，不借此扩预算。
+
+新组合tree2ff5277ba17327c6c03326a018b59f704402af6b（065b+0010→0011→0012→0013→0014→0015→0016），
+config/batch_runtime/ledger blobs分别b0bee89f7623703f642a228abc5a337dd745845a、c0267a5b2aa6060c5e8f72b6181c6b17906678f4、
+d6ff6aa6d76ac8f8391bb8993401946d3d5f0652，远端部署逐文件核对。
+仅隔离/research/d7/spc/yzyang4/forets-nonpruning-20260909-Wmfn3x/source-v5，生产/学长branch未修改。
+实际batch_runtime+ledger+selector+Journal，配人工生成/critic/执行返回，5项定向检查通过、exit0：默认关闭、
+seed6/7开关前后所选槽位全同且10→7次critic、随机臂不变、非法bypass拒绝、bypass不造假分数。
+回执results/forets_bounds_20260909/nonpruning_checks.json。是调用数优化，不是30%整轮加速或模型质量收益。
+同池选择等价不意味着真实多步轨迹相同：时间节省会影响后续剩余时间prompt，API也不保证确定性。
+
+说明FORETS_NONPRUNING_OPT_20260909.md补充短4步pilot筛选效应被后半段稀释的限制。
+同时核实run_budget输出token字段是单次上限，整run条件上界为max_attempts乘该值；未发现第一调用耗尽整run额度的实现问题，
+不能将测试40×8192误报为整run8192。后续真实e2e仍等当前8B验收和远端OpenRouter安装，不重跑已过测试填时间。
+
 ## 0L129. 2026-09-09：用户离开三小时，监护原12892，禁止重复投递
 
 用户告知学长稍后释放资源，要求发现开跑后监视，并在离开三小时期间推进正方向。

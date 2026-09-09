@@ -1,7 +1,10 @@
-# ForeTS 8B：待批准的一次 GPU 接入验收
+# ForeTS 8B：GPU预算已批准，主存申报变更待确认
 
-状态：仅准备入口，**未提交、未加载真实模型、未做8B前向**。API对应关系继续等学长，不重复索要。
-本项不需要生成器API；但这是独立GPU预算，不用较早G0批准或“9GPUh条件规划”冒充批准。
+状态（2026-09-09 08:15 UTC）：用户已批准下述单GPU20分钟矩阵，**未提交、未加载真实模型、未做8B前向**。
+新预检发现原80G主存申报不可调度：projgpu39的Slurm RealMemory登记为1MiB；原sbatch --test-only拒绝，覆盖--mem=0则通过。
+现仅等待是否接受--mem=0（取消调度器80GiB主存硬限），GPU/CPU/时限不变；不能继续笼统称单GPU预算未获批准。
+test-only的12890不是已提交job；实际队列仅旧held job12535，未释放。详情见gpu_acceptance_scheduler_preflight.json。
+本项不需要生成器API。OpenRouter对应已确认，剩余凭据安装不阻塞这项无API验收；不借用旧G0或9GPUh条件规划批准。
 
 ## 唯一问题与范围
 

@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09 06:28 UTC，0L125覆盖下文；免费路由及嵌套配置修复通过本机检查；远端凭据尚缺、单GPU仍未批准，g0-r5暂停。
+**Dynamic status timestamp:** 2026-09-09 08:15 UTC，0L126覆盖下文；单GPU20分钟已获批，80G主存申报被调度预检拒绝，仅改--mem=0待确认；尚未提交，g0-r5暂停。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,15 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L126：用户“OK按照你的推荐来”已批准1GPU/20分钟验收，不再重复索要该GPU预算批准。
+原--mem=80G在projgpu39被sbatch --test-only拒绝：该节点RealMemory仅登记1MiB，尽管物理可用约478820MiB。
+已有本项目脚本使用--mem=0；本轮test-only用它通过，但它取消调度器80GiB硬限，因此**只等该主存申报变化确认**。
+没有真正提交，test-only虚拟编号12890不是作业；当前实际用户队列只有旧12535 JobHeldUser，不释放。
+两卡均占用、现有作业剩余上限约10小时，不保证等待时长。入口/模型身份预检正常，未重跑CPU/G0/15GBhash。
+回执gpu_acceptance_scheduler_preflight.json在results/forets_bounds_20260909，实际0GPU/0模型load/API。
+若用户同意--mem=0，先更新原脚本/方案资源语义，再在原单卡20分钟预算内提交一次；不要创建更多重复准备任务。
+以下“单GPU尚未批准”为历史状态，已被本段覆盖。OpenRouter安装仍缺，与无API的GPU验收分开处理。
 
 最新0L125：forets_pilot_plan.py新增free_route_overrides(显式client)，接在基础/有界launcher overrides后；四算子统一免费模型、
 tools、零prompt/completion/request价格上限、禁fallback和环境导出。静态检查两模型不等于授权双模型真实扫参。

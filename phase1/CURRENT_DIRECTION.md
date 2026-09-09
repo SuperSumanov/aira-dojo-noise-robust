@@ -3,6 +3,24 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L126. 2026-09-09：单GPU预算已获批准，提交预检发现80GiB主存申报不可调度
+
+用户在明确提出1GPU/20分钟（计KillWait约0.417GPUh）验收后回复“OK按照你的推荐来”，该GPU矩阵批准已收到，
+不得再笼统写“用户尚未批准GPU”。本轮按验收而非模型收益实验推进；fetch后我方64628e0a、学长065b0fba未变。
+入口/批脚本/进程包装身份一致；checkpoint仍15136866890bytes、无新rm_meta sidecar；未重复CPU测试或提前读取15GB做hash。
+
+预检发现原方案自己的配置错误：projgpu39的RealMemory=1、CfgTRES mem=1M，物理FreeMem却为478820MiB。
+实际sbatch --test-only原80G脚本退出1：Requested node configuration is not available。这不是已经提交后排队或模型失败。
+本项目已有critic_component_g0_shared_pro6000_20260821.sbatch明确该节点需--mem=0；本轮仅test-only覆盖--mem=0后退出0。
+替代方案保持1GPU/6CPU/20分钟，但不再有调度器80GiB主存硬限，不能静默视为原80GiB申报已获准。
+**仅该主存申报变更待用户确认**；不追加卡数、时长、重试或外部API。批脚本暂未改，实际提交数0。
+
+test-only打印的12890不是实际作业；后查用户队列仅旧12535 JobHeldUser，未释放。节点两卡均占用，
+现有作业剩余上限约10小时；test-only预测原样为2026-09-10T02:15:39，时区未核实，不据此承诺准确启动时间。
+KillWait仍300秒、OverTimeLimit仍0。回执results/forets_bounds_20260909/gpu_acceptance_scheduler_preflight.json。
+本轮0GPU allocation/0模型load/0外部API/0保护数据读取。下一步获准主存变更后更新准确资源表，仅提交一次，记录真实job_id；
+不要把12890用于监控/取消/恢复，也不要再重复询问已经批准的单卡20分钟GPU预算。远端OpenRouter安装仍是独立后续缺项。
+
 ## 0L125. 2026-09-09：免费路由已接入待运行配置，修复嵌套配置导致的发送前失败
 
 用户要求继续推进；fetch确认我方3c01c06bae2de1b693a04aae27f4e64bda92dc77、学长065b0fba未变。

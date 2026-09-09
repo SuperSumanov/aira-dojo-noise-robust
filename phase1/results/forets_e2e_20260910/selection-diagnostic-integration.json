@@ -1,0 +1,23 @@
+{
+  "status": "ARTIFICIAL_INTEGRATION_PASS",
+  "utc": "2026-09-09T22:36:06.087167+00:00",
+  "checks": [
+    "critic_distinct",
+    "critic_all_ties",
+    "critic_cutoff_tie",
+    "critic_full_pool",
+    "random_no_scores",
+    "partial_generation"
+  ],
+  "check_count": 6,
+  "real_frozen_ledger_writer_sha256": "f0bba9b9887f03197fd3def8e5c479d4c8b98f160398c46ae1d6ce7ba109e4eb",
+  "diagnostic_sha256": "759f43fadd88767b531239c3fa542f84302e5c67e2a1dc727315e80d0d4454b1",
+  "pending_campaign_gate": "refused_before_any_development_ledger_read",
+  "real_task_executions": 0,
+  "model_loads": 0,
+  "gpu_jobs": 0,
+  "external_api_calls": 0,
+  "protected_data_read": false,
+  "real_candidate_ledgers_read": false,
+  "scope": "Actual schema-4 writer, artificial candidates/scores; not model benefit or execution evidence."
+}

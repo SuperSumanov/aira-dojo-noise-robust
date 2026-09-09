@@ -7,6 +7,20 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L135. 2026-09-10：补充只读选择机制诊断，12933仍等资源，未改冻结实验
+
+用户要求继续。2026-09-09 22:34:35 UTC（香港9月10日06:34:35）核12933仍PENDING(Resources)、RunTime0，
+无campaign.started/finished；暂估香港19:59:12，非承诺。学长分支065b0fba未更新，未修改学长/生产代码。
+不重复12892/G0/端点检查、不重投、不增加GPU/API；原8run、source-v5及预算不变。
+
+新增forets_selection_diagnostic.py：只在本轮开发包结束并独立核终态后读固定账本路径，保留全部8run和缺项，
+区分top-k边界打平、全分相同、全池无筛选、部分生成和已选择未执行；不读最终分或保护集。
+同批次随机槽位重放不是另一臂的反事实成绩；全打平仍可能因位置规则改变选择，不能当作模型区分力。
+本地12项人工测试与远端实际schema-4写入器的6项人工记录检查通过；0真实task/模型/API，尚未读真实候选。
+部署在forets-selection-diagnostic-20260910-6uwXNX，未修改12933任何冻结入口；不以诊断挽救主指标或换参数。
+详见FORETS_SELECTION_DIAGNOSTIC_20260910.md及selection-diagnostic-integration.json。
+下一步仍是12933真实同预算结果，没有新critic收益/scaling/e2e正结论；不再扩充无必要的验收流程。
+
 ## 0L134. 2026-09-10：真实同预算8run已提交12933，当前PENDING(Resources)
 
 2026-09-09 18:14:51 UTC（香港2026-09-10 02:14:51）实际sbatch退出0，返回12933；不是test-only的12932。入口commit

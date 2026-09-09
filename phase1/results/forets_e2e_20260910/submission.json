@@ -1,0 +1,20 @@
+{
+  "allocation_minutes": 270,
+  "entry_commit": "8366208fb7e6329627dce90173d0e9583f1200c1",
+  "entry_sha256": {
+    "forets_e2e_campaign.py": "7a21d74119243723e6271d273446c2aa65a2d6669d9c32634cd40b5d10a115e6",
+    "forets_e2e_critic_service.py": "a4abfb5f71e19276f0f2c6f8a06b856d8f14661eb9aba7573218403af4e6ce13",
+    "prepare_forets_e2e_20260910.sbatch": "957a9ad3ff66f2da1fe7754875e6fcd2a0683452091124429418bd8633c0987b"
+  },
+  "gpu_hours_with_observed_killwait": 9.166666666666666,
+  "job_id": "12933",
+  "nominal_gpu_hours": 9.0,
+  "requested_cpus": 12,
+  "requested_gpus": 2,
+  "returncode": 0,
+  "run_count": 8,
+  "source_tree": "2ff5277ba17327c6c03326a018b59f704402af6b",
+  "stderr": "",
+  "stdout": "12933",
+  "utc": "2026-09-09T18:14:51.095777+00:00"
+}

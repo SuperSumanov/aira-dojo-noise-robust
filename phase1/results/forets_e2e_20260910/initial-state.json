@@ -1,0 +1,24 @@
+{
+  "campaign_finished": false,
+  "campaign_started": false,
+  "scheduler": {
+    "Command": "/research/d7/spc/yzyang4/forets-e2e-package-20260910-SWMoh2/prepare_forets_e2e_20260910.sbatch",
+    "EndTime": "2026-09-11T00:29:12",
+    "JobId": "12933",
+    "JobState": "PENDING",
+    "NodeList": "(null)",
+    "NumCPUs": "12",
+    "NumNodes": "1-1",
+    "Reason": "Resources",
+    "ReqNodeList": "projgpu39",
+    "Requeue": "0",
+    "RunTime": "00:00:00",
+    "StartTime": "2026-09-10T19:59:12",
+    "StdErr": "/research/d7/spc/yzyang4/forets-e2e-package-20260910-SWMoh2/package-c/slurm-12933.err",
+    "StdOut": "/research/d7/spc/yzyang4/forets-e2e-package-20260910-SWMoh2/package-c/slurm-12933.out",
+    "TRES": "cpu=12,node=1,billing=12,gres/gpu=2",
+    "TimeLimit": "04:30:00",
+    "TresPerNode": "gpu:2"
+  },
+  "utc": "2026-09-09T18:15:23.698575+00:00"
+}

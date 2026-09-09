@@ -3,6 +3,25 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L134. 2026-09-10：真实同预算8run已提交12933，当前PENDING(Resources)
+
+18:14:51 UTC实际sbatch退出0，返回12933；不是test-only的12932。入口commit
+8366208fb7e6329627dce90173d0e9583f1200c1，源码仍source-v5/tree2ff5277ba17327c6c03326a018b59f704402af6b。
+18:15:23 UTC独立scontrol核对：projgpu39、2GPU/12CPU、04:30:00、Requeue=0、RunTime=0。
+状态PENDING(Resources)，预计香港2026-09-10 19:59:12启动，2026-09-11 00:29:12结束；这些是调度估计，不是承诺。
+节点当前12901占用两卡，不能干预他人作业；旧12535保持held。没有重复投递、G0或额外模型验收。
+
+唯一实验根/research/d7/spc/yzyang4/forets-e2e-package-20260910-SWMoh2/package-c。
+submission.claim.json防止断线后重复投递；submission.json和initial-state.json已取回安全结果目录。
+断线恢复先查12933与该根，不能因没有campaign.finished.json就重投。
+后续产物为campaign.started/finished、critic.ready、runtime-manifest、runs/srun_pool及readout。
+当前started/finished均不存在，不能称已执行任务、已有critic收益或clean scaling。
+模型只会为实际搜索加载一次；两任务×seed6/7×random/critic，全部失败/未运行项也保留。
+生成器仍同一个免费Nemotron，无付费fallback；已执行2个公开端点检查不混作task run。
+
+g0-r5维持暂停，未新建自动任务。队列等待不消耗本次GPU分配时长；实际资源账等allocation结束后核验。
+只能按此实际作业继续监督、诊断和读出，不能再说凭据缺失或重复已完成的模型验收。
+
 ## 0L133. 2026-09-10：用户提供凭据并要求继续；远端安装及真实免费端点复查通过，准备同预算对照提交
 
 用户在已展示8run/双卡270分钟矩阵后提供OpenRouter凭据并明确继续，本轮按该矩阵推进，不追加训练/验收。

@@ -3,11 +3,15 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+> 2026-09-10交接约定：每次关键状态或裁决变化同步更新短入口
+> [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
+> 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
+
 ## 0L134. 2026-09-10：真实同预算8run已提交12933，当前PENDING(Resources)
 
-18:14:51 UTC实际sbatch退出0，返回12933；不是test-only的12932。入口commit
+2026-09-09 18:14:51 UTC（香港2026-09-10 02:14:51）实际sbatch退出0，返回12933；不是test-only的12932。入口commit
 8366208fb7e6329627dce90173d0e9583f1200c1，源码仍source-v5/tree2ff5277ba17327c6c03326a018b59f704402af6b。
-18:15:23 UTC独立scontrol核对：projgpu39、2GPU/12CPU、04:30:00、Requeue=0、RunTime=0。
+2026-09-09 18:15:23 UTC独立scontrol核对：projgpu39、2GPU/12CPU、04:30:00、Requeue=0、RunTime=0。
 状态PENDING(Resources)，预计香港2026-09-10 19:59:12启动，2026-09-11 00:29:12结束；这些是调度估计，不是承诺。
 节点当前12901占用两卡，不能干预他人作业；旧12535保持held。没有重复投递、G0或额外模型验收。
 

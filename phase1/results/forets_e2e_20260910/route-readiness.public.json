@@ -1,0 +1,92 @@
+{
+  "checks": [
+    {
+      "account_http_status": 200,
+      "catalog_http_status": 200,
+      "check": "live-route-a",
+      "error_type": "RuntimeError",
+      "failure_stage": "bounded_generation",
+      "generation_attempts": 1,
+      "generation_request_cap": 1,
+      "gpu_jobs": 0,
+      "max_output_tokens": 8192,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "model_available": true,
+      "pricing": {
+        "completion": "0",
+        "prompt": "0"
+      },
+      "protected_data_read": false,
+      "public_artificial_input_only": true,
+      "reserved_attempts": 1,
+      "status": "NOT_READY",
+      "supported_parameters": [
+        "include_reasoning",
+        "max_tokens",
+        "reasoning",
+        "reasoning_effort",
+        "seed",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_p"
+      ],
+      "task_runs": 0,
+      "timeout_seconds": 120,
+      "utc": "2026-09-09T18:08:46.157918+00:00"
+    },
+    {
+      "account_http_status": 200,
+      "catalog_http_status": 200,
+      "check": "live-route-b",
+      "elapsed_seconds": 4.406812197004911,
+      "generation_attempts": 1,
+      "generation_request_cap": 1,
+      "gpu_jobs": 0,
+      "max_output_tokens": 8192,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "model_available": true,
+      "parsed_public_fixture": true,
+      "pricing": {
+        "completion": "0",
+        "prompt": "0"
+      },
+      "protected_data_read": false,
+      "public_artificial_input_only": true,
+      "reserved_attempts": 1,
+      "response_structure": {
+        "choice_count": 1,
+        "finish_reason": "tool_calls",
+        "tool_call_count": 1
+      },
+      "status": "READY",
+      "supported_parameters": [
+        "include_reasoning",
+        "max_tokens",
+        "reasoning",
+        "reasoning_effort",
+        "seed",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_p"
+      ],
+      "task_runs": 0,
+      "timeout_seconds": 120,
+      "usage": {
+        "completion_tokens": 48,
+        "cost": null,
+        "prompt_tokens": 292,
+        "structured_output_transport": "tools",
+        "total_tokens": 340
+      },
+      "utc": "2026-09-09T18:11:09.309731+00:00"
+    }
+  ],
+  "credentials_in_artifact": false,
+  "endpoint_code_sha256": "e22b68aa1dbebe317b7955577dbad1161b0b2dc639540f2204d934201da4881b",
+  "env_mode": "0o600",
+  "private_account_fields_omitted": true,
+  "total_generation_attempts": 2,
+  "utc": "2026-09-09T18:13:10.302984+00:00"
+}

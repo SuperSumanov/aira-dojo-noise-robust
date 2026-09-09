@@ -1,0 +1,18 @@
+{
+  "actual_gpu_jobs": 0,
+  "actual_task_runs": 0,
+  "campaign_sha256": "7a21d74119243723e6271d273446c2aa65a2d6669d9c32634cd40b5d10a115e6",
+  "checks": [
+    "actual_eight_worker_configs_and_order_verified",
+    "missing_authorization_route_or_credential_refuses_execution",
+    "batch_controller_identity_allowed_but_nested_numeric_step_rejected",
+    "one_arm_budget_change_rejected_even_with_updated_hash",
+    "one_service_and_actual_pool_config_mapping_with_fake_scheduler",
+    "not_started_runs_kept_and_readout_uses_actual_pool_paths"
+  ],
+  "external_api_calls": 0,
+  "limits": "Fake service and fake Slurm; no live coallocation, endpoint, model or task execution.",
+  "model_loads": 0,
+  "real_slurm_commands": 0,
+  "status": "CAMPAIGN_WIRING_CHECK_PASS"
+}

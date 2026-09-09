@@ -69,7 +69,7 @@ def require_execution_ready(*, approved, route_checked, environment):
         raise RuntimeError('exact matrix approval and live route check are required')
     if not re.fullmatch(r'sk-or-v1-[A-Za-z0-9_-]+', environment.get('OPENROUTER_API_KEY', '')):
         raise RuntimeError('remote OpenRouter credential not installed; no GPU/API work started')
-    if not environment.get('SLURM_JOB_ID', '').isdigit() or environment.get('SLURM_STEP_ID'):
+    if not environment.get('SLURM_JOB_ID', '').isdigit() or environment.get('SLURM_STEP_ID', '') not in ('', 'batch'):
         raise RuntimeError('controller belongs in the approved sbatch allocation, not a GPU step')
 
 

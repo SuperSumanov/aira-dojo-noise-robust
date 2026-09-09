@@ -44,6 +44,16 @@ def main():
             except RuntimeError: pass
             else: raise AssertionError('missing gate accepted')
         checks.append('missing_authorization_route_or_credential_refuses_execution')
+        identity_env=dict(SLURM_JOB_ID='987654321', OPENROUTER_API_KEY='sk-'+'or-'+'v1-'+'synthetic')
+        for step in ('','batch'):
+            campaign.require_execution_ready(approved=True,route_checked=True,
+                environment=dict(identity_env,SLURM_STEP_ID=step))
+        try:
+            campaign.require_execution_ready(approved=True,route_checked=True,
+                environment=dict(identity_env,SLURM_STEP_ID='0'))
+        except RuntimeError:pass
+        else:raise AssertionError('nested GPU step accepted as controller')
+        checks.append('batch_controller_identity_allowed_but_nested_numeric_step_rejected')
         from dojo.core.runners.slurm.srun_pool import SrunPoolLauncher, AllocationInfo
         allocation=AllocationInfo('987654321','projgpu39',1,12,2,datetime.now()+timedelta(minutes=269))
         with tempfile.TemporaryDirectory(prefix='forets-campaign-check-',dir='/tmp') as tmp:

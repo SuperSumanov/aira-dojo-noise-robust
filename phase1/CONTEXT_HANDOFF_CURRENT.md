@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09香港时间，0L123覆盖下文；单GPU验收入口/预算已准备，未批准/提交，接口仍等待。
+**Dynamic status timestamp:** 2026-09-09 06:14 UTC，0L124覆盖下文；OpenRouter映射已确认，远端凭据尚未安装；单GPU验收仍未批准/提交，g0-r5已暂停。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,16 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L124：学长已确认PRIMARY_KEY应使用此前OpenRouter key。学长065b两client配置映射为
+nvidia/nemotron-3-ultra-550b-a55b:free和poolside/laguna-s-2.1:free，base_url=https://openrouter.ai/api/v1。
+不再重复询问平台/模型。两个工作目录aira-dojo与aira-dojo-reproduce的.env只读形状检查显示没有OpenRouter变量/形状值，
+PRIMARY_KEY均不是该形状；不能把说明使用哪把key当作已安装。需用户/学长直接安装远端OPENROUTER_API_KEY，
+未来只在隔离进程内映射PRIMARY_KEY，不能覆盖生产全局配置，也不把聊天凭据经命令/本地文件搬运。
+官方免费端点会记录/可能训练输入，初始接口检查只用公开人工样例；无私有语料或保护集。
+零价格上限、禁付费/模型fallback、失败照记；两臂保持同生成器。0L123GPU矩阵仍待批准。
+本轮0真实生成请求/GPU/model-load/任务；只是新事实核验。g0-r5已实际暂停并验证PAUSED，未准点暂停，不能声称02:10准点完成。
+无自动任务续期，无学长branch/生产代码改动。以下0L123及更早“接口对应仍等学长”为历史状态，被此段覆盖。
 
 最新0L123：forets_8b_acceptance.py及FORETS_8B_ACCEPTANCE_PLAN_20260909.md已准备；批脚本prepare_forets_8b_acceptance_20260909.sbatch未提交。
 独立待批矩阵1GPU/projgpu39/6CPU/80GiB主存，allocation20分钟/step19分钟/process1050秒/两段5秒cleanup，

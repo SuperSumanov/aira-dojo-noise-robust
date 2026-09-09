@@ -10,6 +10,17 @@
 
 ## 已落实
 
+### 最新状态：生成器对应已确认，凭据安装尚缺（0L124）
+
+用户已转达：使用此前OpenRouter key。学长065b源码中两个免费client分别是
+`nvidia/nemotron-3-ultra-550b-a55b:free`和`poolside/laguna-s-2.1:free`，接口`https://openrouter.ai/api/v1`。
+远端aira-dojo/.env与aira-dojo-reproduce/.env均未发现OPENROUTER_API_KEY或OpenRouter形状值，不能直接试送现有PRIMARY_KEY。
+请由用户/学长直接安装远端独立变量，未来隔离进程内映射，不覆盖其它实验凭据。
+官方页面说明免费输入可能记录/用于训练；第一步仅公开人工样例连接检查，不能发送私有语料/保护集。
+固定免费slug，禁止自动切付费/换模型；运行前核价，设置零token/request价格上限；两臂同模型、同预算，单独记录服务故障。
+本轮尚无生成请求、GPU加载或e2e效果。单GPU验收预算仍待批准。旧g0-r5已暂停，未延长期限。
+该段覆盖下文历史“平台/模型对应仍未知”，不覆盖其它尚未完成的真实验收。
+
 ### 最新状态：独立GPU验收准备（0L123）
 
 详见FORETS_8B_ACCEPTANCE_PLAN_20260909.md。1GPU/20分钟allocation的单次8B离线加载、完整16K和本机服务检查，

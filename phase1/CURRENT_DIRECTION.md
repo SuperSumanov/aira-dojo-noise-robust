@@ -3,6 +3,36 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L124. 2026-09-09：OpenRouter映射已获学长确认，剩余缺项是远端凭据安装
+
+用户转达学长：PRIMARY_KEY应使用之前提供的OpenRouter凭据，litellm_nemotron-3-ultra和litellm_laguna-s-2.1可免费调试，
+但能力和服务稳定性有限。此消息补齐平台/模型对应事实，不等于新的GPU预算批准，也不证明凭据已安装或接口已可用。
+fetch后我方公开/本地仍为8f9a33adc5309b58b79cf65b03813da9f00c7adc，学长仍为065b0fbaa89e0eb663f2834ec768081f5d56394d。
+学长两份client配置先做凭据形状检查（均0），核实如下，不需修改学长branch：
+
+- litellm_nemotron-3-ultra → nvidia/nemotron-3-ultra-550b-a55b:free；配置blob 2307fa14c542ba650cde35d71586855f2efe5ac6。
+- litellm_laguna-s-2.1 → poolside/laguna-s-2.1:free；配置blob 32b5818c2cee9cbfce16841ad2ec5013fa61e5c5。
+- 二者base_url均为 https://openrouter.ai/api/v1，api=litellm，provider=openai（兼容协议，不是OpenAI计费平台）。
+
+2026-09-09 06:14 UTC前只读检查aira-dojo/.env与aira-dojo-reproduce/.env：均存在，但PRIMARY_KEY不呈OpenRouter形状，
+OPENROUTER_API_KEY均不存在，OpenRouter形状值计数均0。只输出布尔值/计数，不回显、转移或试送凭据；未读其它项目凭据。
+首个只读检查因远端heredoc终止符失败（exit1），改为直接Python标准输入后两个检查均exit0；没有外部API请求。
+因此不能说“平台仍未知”，也不能说“接口已接通”。需要用户/学长直接在远端安装凭据，建议单独OPENROUTER_API_KEY；
+未来隔离启动时仅在进程内映射为PRIMARY_KEY，不覆盖可能供其它任务使用的生产全局PRIMARY_KEY。聊天里的值不经命令/本地文件搬运。
+
+官方免费页本日核实为零token价格，但不是永久价格/可用性保证：
+[Nemotron free](https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free)、
+[Laguna free](https://openrouter.ai/poolside/laguna-s-2.1:free)。前者明确不应上传保密/个人数据且记录请求用于改进，
+后者说明免费输入输出可能用于训练。初始连接检查只可发送公开人工样例，不发送私有语料/保护集；正式e2e数据范围需另外确认。
+两个页面均不保证response_format的JSON强制约束，不能把兼容OpenAI等同于严格结构化输出已验收。
+后续必须固定:free模型、禁模型fallback/自动付费升级，SDK重试0，并按
+[provider routing](https://openrouter.ai/docs/guides/routing/provider-selection)设置零prompt/completion/request价格上限；
+不可用则记失败，不静默更换模型。两臂同生成器、同预算，服务故障独立于critic科学收益记录。
+
+本轮仅事实核验及文档更新：0生成请求/0GPU/0模型load/0训练/0真实任务；未改变生产代码或学长分支。
+过期g0-r5后备在本轮实际暂停并复核PAUSED（原截止02:10 UTC，不能声称准点暂停）；不新建、不延长自动任务。
+0L123单GPU验收仍待该矩阵批准。下一步是远端安装凭据后的最小人工输入接口检查，以及获批后的真实8B验收；不重复已过的人工测试。
+
 ## 0L123. 2026-09-09：一次真实8B验收的入口/独立预算已准备，尚未获批执行
 
 继续ForeTS e2e，f258814f公开10blob已核对；学长065b0fba未变、远端无遗留实验进程。没有新模型/API对应事实。

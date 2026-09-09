@@ -1,0 +1,114 @@
+{
+  "actual_run_configs": [
+    {
+      "config_sha256": "0b784d2eb9f7291e23120bb8c295006e3a3299b98577a38478682170c9c79d37",
+      "data_dir": "/research/d7/spc/yzyang4/mle-bench-data/leaf-classification/prepared/public",
+      "generator": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+      "max_steps": 4,
+      "roundtrip": true,
+      "run_id": "00-leaf-classification-s6-uniform_random",
+      "selection_policy": "uniform_random",
+      "selector_seed": 6
+    },
+    {
+      "config_sha256": "351bdaed8031dc8e3b92572133313d39de5d476cf79f48416a34e5ba99ed97b6",
+      "data_dir": "/research/d7/spc/yzyang4/mle-bench-data/leaf-classification/prepared/public",
+      "generator": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+      "max_steps": 4,
+      "roundtrip": true,
+      "run_id": "01-leaf-classification-s6-critic_topk_random",
+      "selection_policy": "critic_topk_random",
+      "selector_seed": 6
+    },
+    {
+      "config_sha256": "cc17ea3acfe3b2e9fcf037a1b7dc3da409faa55fef9b7d839eb9071898bc20a1",
+      "data_dir": "/research/d7/spc/yzyang4/mle-bench-data/leaf-classification/prepared/public",
+      "generator": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+      "max_steps": 4,
+      "roundtrip": true,
+      "run_id": "02-leaf-classification-s7-critic_topk_random",
+      "selection_policy": "critic_topk_random",
+      "selector_seed": 7
+    },
+    {
+      "config_sha256": "207f09b909254dc2298abe286c1dc46553d27a9a42460cac15eadfc30c3fe723",
+      "data_dir": "/research/d7/spc/yzyang4/mle-bench-data/leaf-classification/prepared/public",
+      "generator": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+      "max_steps": 4,
+      "roundtrip": true,
+      "run_id": "03-leaf-classification-s7-uniform_random",
+      "selection_policy": "uniform_random",
+      "selector_seed": 7
+    },
+    {
+      "config_sha256": "bde4cb0877358a42463ff7e8885ab862191247fb542de877ed61c4e92bf2a87c",
+      "data_dir": "/research/d7/spc/yzyang4/mle-bench-data/spaceship-titanic/prepared/public",
+      "generator": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+      "max_steps": 4,
+      "roundtrip": true,
+      "run_id": "04-spaceship-titanic-s6-critic_topk_random",
+      "selection_policy": "critic_topk_random",
+      "selector_seed": 6
+    },
+    {
+      "config_sha256": "c88adf99575d160da4381a25d639ec04ef1d0ff623931968ba876ac007cab29a",
+      "data_dir": "/research/d7/spc/yzyang4/mle-bench-data/spaceship-titanic/prepared/public",
+      "generator": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+      "max_steps": 4,
+      "roundtrip": true,
+      "run_id": "05-spaceship-titanic-s6-uniform_random",
+      "selection_policy": "uniform_random",
+      "selector_seed": 6
+    },
+    {
+      "config_sha256": "438883a88060bbbcca31bd4be4244225caa14ea568a3df6febebfa61c2110a3d",
+      "data_dir": "/research/d7/spc/yzyang4/mle-bench-data/spaceship-titanic/prepared/public",
+      "generator": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+      "max_steps": 4,
+      "roundtrip": true,
+      "run_id": "06-spaceship-titanic-s7-uniform_random",
+      "selection_policy": "uniform_random",
+      "selector_seed": 7
+    },
+    {
+      "config_sha256": "06cf0af538c40be8a5ce574ac4ea4546aafe9de0bc60308588f9bdcf5e024fec",
+      "data_dir": "/research/d7/spc/yzyang4/mle-bench-data/spaceship-titanic/prepared/public",
+      "generator": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+      "max_steps": 4,
+      "roundtrip": true,
+      "run_id": "07-spaceship-titanic-s7-critic_topk_random",
+      "selection_policy": "critic_topk_random",
+      "selector_seed": 7
+    }
+  ],
+  "declared_source_tree": "2ff5277ba17327c6c03326a018b59f704402af6b",
+  "external_api_calls": 0,
+  "model_loads": 0,
+  "paired_config_sha256": [
+    "8162d13a66f3991b93db64312fbeeea0a81c8b35ecd010cb87c4dc15ac608efb",
+    "d9f3e9e04bac279b0094d7957e6eb6737d0c0325d985d90986c3702ee1a74c42",
+    "125b263a7610a02c756b67596b462590e18368ea6c13c8470fcd70631959b44c",
+    "fd6f024d1b6a3810d320652a84abcdb7034295be8fe5f5b9dacba9346504990d"
+  ],
+  "private_data_contents_read": false,
+  "remaining": [
+    "remote credential installation",
+    "public-input live endpoint readiness",
+    "bounded critic-service plus worker coordination",
+    "approved two-GPU allocation and actual runtime cost accounting"
+  ],
+  "run_count": 8,
+  "slurm_dispatches": 0,
+  "source_full_tree_rehashed": false,
+  "status": "ACTUAL_RUN_CONFIGS_PREPARED_NOT_EXECUTED",
+  "task_executions": 0,
+  "upstream_commit": "065b0fbaa89e0eb663f2834ec768081f5d56394d"
+}

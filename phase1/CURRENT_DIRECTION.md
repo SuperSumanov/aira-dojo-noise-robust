@@ -1,7 +1,28 @@
-# 当前研究方向唯一入口（2026-09-09）
+# 当前研究方向唯一入口（2026-09-10）
 
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
+
+## 0L132. 2026-09-10：推进同预算真实成绩，实际8run配置与协调入口已准备，凭据仍缺
+
+用户要求六小时在会话中推进，不重复G0或模型验收。本轮未启动GPU、外部API、模型加载、任务执行或训练。
+fetch后我方8425cffa、学长065b0fba未变。17:47 UTC两处远端.env仍无OPENROUTER_API_KEY，未知PRIMARY_KEY未使用。
+旧12535仍held未释放。g0-r5已于上一状态检查中暂停，不恢复过期监控，也不新建六小时自动任务。
+
+保持leaf/spaceship×seed6/7×random/critic的8run；每run30分钟step/1740秒worker，40次请求、8192单请求输出token。
+双卡270分钟名义9GPUh，计实查300秒KillWait为9.166666666666666GPUh；免费端点检查额度和实际提交仍须明确。
+免费路由固定Nemotron，不选择看过结果后更好的生成器，0016省调用开关仍false。
+
+新forets_e2e_package.py生成实际RunConfig、保存typed JSON并用真实worker配置类型往返读取；四组配置只允许
+选择策略和run身份/派生路径不同。两个任务准备目录存在，仅查元数据，未读数据内容或任何保护集。
+发现原aira-dojo .env的容器目录没有sif；新包显式固定已存在的生产同款镜像目录，不修改原.env/生产/学长branch。
+package-a因Hydra新增metadata语法失败；package-b因派生exp_name身份比较失败；修复后package-c成功，失败目录保留。
+
+新增campaign协调入口复用现有bounded srun pool，服务仅为搜索加载现成critic，不执行验收fixtures；
+真实pool配置/identity路径绑定最终读出，服务退出或缺凭据时停止启动，失败和未开始run保留。
+CPU接线检查通过；Slurm和服务为替身，不能称双step实跑、e2e已运行或已有收益。
+隔离根/research/d7/spc/yzyang4/forets-e2e-package-20260910-SWMoh2，准备包package-c。
+详见FORETS_E2E_CAMPAIGN_20260910.md。下一步是真实远端凭据/免费端点与有界同预算实验，不重复已过验收或另开旧方向。
 
 ## 0L131. 2026-09-09：真实8B单GPU验收12892完成；结果汇总入口已接好
 

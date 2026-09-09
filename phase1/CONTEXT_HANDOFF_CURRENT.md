@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-09-09
 
-**Dynamic status timestamp:** 2026-09-09 08:25 UTC，0L127覆盖下文；--mem=0已获批准，实际单GPU验收12892已提交，PENDING(Resources)，尚未加载8B，g0-r5暂停。
+**Dynamic status timestamp:** 2026-09-09 10:45 UTC，0L128覆盖下文；单GPU验收12892仍PENDING(Resources)，尚未加载8B；最终评分日志静默丢失已在隔离source-v4修复，g0-r5暂停。
 
 **Purpose:** 给上下文压缩或新会话一个短入口，防止恢复已经关闭的旧方向。
 
@@ -10,6 +10,15 @@
 `phase1/CURRENT_DIRECTION.md` 的最新日期段；若两者冲突，以后者和用户最新指示为准。
 
 ## 2026-09-09 当前入口，覆盖下文历史状态
+
+最新0L128：0015仅将main_run最终logger.log的标量改为score+selected_node_id映射，旧行为是静默写{}，不是本环境必然报错。
+新treeead8fae34441801eea8e40d5642b6995ae6e0c14，main_run blob224a3b675ea7eea95610301ce594805899320dda。
+隔离源码/research/d7/spc/yzyang4/forets-final-log-20260909-jBeE40/source-v4；组合065b+0010→0011→0012→0013→0014→0015。
+3项实际_main函数/JsonLogger配人工任务模型前后对照，修后正确保留最终选中解外部评分/身份、0分、无解；不是实际agent运行。
+回执final_log_before.json/final_log_after.json；读出规则FORETS_E2E_READOUT_20260909.md。
+不能读覆盖式grading_report作为最终选解；use_test_score=false不变；两任务原始指标不平均，4组探索不能当确认。
+12892仍PENDING(Resources)，验收脚本/模型路径均未动。远端OpenRouter变量/形状值仍无，需用户或学长直接安装。
+生产与学长branch未改，无新增GPU/API/模型fit；不再重跑已通过检查。完整状态以CURRENT_DIRECTION顶部为准。
 
 最新0L127：用户批准--mem=0；仅更新sbatch和入口资源说明，代码版本e3a66a71c63377cfc139957081a72c5aa42ef4d6。
 实际job12892，1GPU/projgpu39/6CPU/20分钟、Requeue=0；08:25 UTC状态PENDING(Resources)，正式启动时间N/A。

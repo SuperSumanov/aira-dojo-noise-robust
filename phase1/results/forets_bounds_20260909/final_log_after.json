@@ -1,0 +1,30 @@
+{
+  "status": "TARGETED_PASS",
+  "source_tree": "ead8fae34441801eea8e40d5642b6995ae6e0c14",
+  "main_run_sha256": "bb3cfddebf94fe59e7f90fdb4419857a1035db194317a61955d01a8556bd258a",
+  "cases": [
+    {
+      "name": "selected_not_last_or_self_report",
+      "event_count": 1,
+      "final_score_present": true,
+      "task_cleanup_called": true
+    },
+    {
+      "name": "zero_is_valid_score",
+      "event_count": 1,
+      "final_score_present": true,
+      "task_cleanup_called": true
+    },
+    {
+      "name": "no_solution_no_fabricated_score",
+      "event_count": 0,
+      "final_score_present": false,
+      "task_cleanup_called": true
+    }
+  ],
+  "gpu_jobs": 0,
+  "model_loads": 0,
+  "external_api_calls": 0,
+  "protected_data_read": false,
+  "executed": "unmodified _main AST function + real JsonLogger; artificial task/solver/config"
+}

@@ -10,6 +10,16 @@
 
 ## 已落实
 
+### 最新状态：GPU验收已排队；最终结果记录修复（0L128）
+
+12892已按批准的1GPU/20分钟/--mem=0提交，仍PENDING(Resources)，不重复提交；GPU验收不是下述8run批准。
+OpenRouter映射已确认，但远端两工作目录仍无相应凭据，未进行真实生成。
+0015修复main_run最终把标量写成空EVAL事件的问题，记录选中节点的外部score及身份；不改选择器/最终选解规则。
+基于0014完整tree的新tree为ead8fae34441801eea8e40d5642b6995ae6e0c14，仅在独立source-v4部署。
+实际_main函数配真实JsonLogger的3个定向用例通过，任务/模型是人工替身，不是3个真实实验。
+读出约定见FORETS_E2E_READOUT_20260909.md：不能把覆盖式grading_report当最终所选解，不能平均两个不同任务的原始指标，
+不能把随机臂闲置第二张卡的两臂对照称资源最优成本证明。下方“GPU尚未批准/未提交”均为历史状态。
+
 ### 最新状态：免费路由准备接入通过本机请求检查（0L125）
 
 显式组合forets_pilot_plan.overrides(...)、bounded_launcher_overrides(...)、free_route_overrides(client_name)。

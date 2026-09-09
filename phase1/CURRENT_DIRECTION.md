@@ -3,6 +3,33 @@
 > 本文件按日期与撤回链整理，覆盖最近两周的实验记录与 Git 提交。后续实验先读本文件，
 > 不得用更早报告、旧 `AGENTS.md` 摘要或旧 HCE 配置覆盖这里的裁决。
 
+## 0L128. 2026-09-09：等待GPU期间修复最终评分静默丢失，补齐真实收益读出
+
+用户要求并行推进。fetch后我方39bb37db、学长065b0fba未变；实际12892仍PENDING(Resources)，未启动新GPU/API/模型fit。
+仅读当前任务/运行/日志源码和公开grader代码，未读first-960/Target-300/Target-522或任何答案。
+
+实际发现main_run._main最后logger.log(fitness, EVAL)传入标量，当前JsonLogger/ConsoleLogger规范化为空字典，
+即使有合法分数也写空事件。最初静态判断“可能报错”已被实测纠正为静默丢失；不把错误预判写成已复现异常。
+初始诊断还因测试遗漏LOGGING_DIR在import前失败，第二次因预期只有一个事件而断言失败；随后实际打印确认
+旧标量产生{}、字段映射产生正确score/selected_node_id。诊断无GPU/模型/外部API/保护数据。
+
+0015仅改最终日志一行，记录原best_node.metric.info['score']和best_node.id；不改变最终选解/搜索/评分/资源契约。
+基于0d64733e34f287e44df838accef3e082dcd423f9应用后tree为ead8fae34441801eea8e40d5642b6995ae6e0c14，
+main_run.py blob为224a3b675ea7eea95610301ce594805899320dda。只在
+/research/d7/spc/yzyang4/forets-final-log-20260909-jBeE40/source-v4应用，生产、学长分支及排队12892入口均不动。
+原/新实际_main AST函数+真实JsonLogger各运行同3个定向用例：选中解非最后解/非自报分、合法0分、无解不造分。
+原静默丢失获复现，新日志正确，cleanup仍调用；这是3个用例的前后对照，不是6个科学实验或全栈运行。
+前/后exit均0（前者意为复现断言成功），回执results/forets_bounds_20260909/final_log_before.json、final_log_after.json。
+
+新增FORETS_E2E_READOUT_20260909.md：实际grading_report每次覆盖，不能替代最终选中节点；leaf log loss低好、spaceship accuracy高好，
+任务原始分不混合平均。完整8run/4组配对同时报失败/覆盖/成本；随机臂闲置critic卡照计，不声称资源最优强基线已击败。
+正面投资信号优先看有效提交率及同预算最终选解质量；无需先重训或改top-k。4对全赢也不构成充分统计确认。
+仅读远端MLE-bench公开config/grade.py核实指标，未运行grader或读取数据内容。
+
+远端两个.env本轮再次只输出布尔/形状计数：OPENROUTER_API_KEY均缺、OpenRouter形状值均0；映射已知，安装仍缺。
+后续先跟进原12892，拿到结果后再衔接已准备的两臂；不重复旧G0/已过CPU检查，不新增自动任务。
+本轮是实质结果交付修复和实验读出准备，仍没有新的模型收益/clean scaling/e2e正效应。
+
 ## 0L127. 2026-09-09：主存申报获准，真实单GPU验收已提交12892，当前等资源
 
 用户对明确的--mem=0变更回复“是的”。仅改sbatch主存申报及入口资源说明，验收逻辑、单GPU/6CPU/20分钟、

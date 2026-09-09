@@ -1,0 +1,12 @@
+diff --git a/src/dojo/main_run.py b/src/dojo/main_run.py
+--- a/src/dojo/main_run.py
++++ b/src/dojo/main_run.py
+@@ -160,7 +160,7 @@ def _main(cfg: RunConfig):
+             else:
+                 raise ValueError("This should not be reached and happening.")
+ 
+-            logger.log(fitness, LogEvent.EVAL)
++            logger.log({"score": fitness, "selected_node_id": best_node.id}, LogEvent.EVAL)
+     finally:
+         log.info("Clean up...")
+         try:

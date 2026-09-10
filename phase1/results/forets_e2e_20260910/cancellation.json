@@ -1,0 +1,41 @@
+{
+  "record_type": "transcribed_remote_tool_observations",
+  "job_id": "12933",
+  "job_name": "forets-e2e-paired",
+  "entry_commit": "8366208fb7e6329627dce90173d0e9583f1200c1",
+  "package": "/research/d7/spc/yzyang4/forets-e2e-package-20260910-SWMoh2/package-c",
+  "reason": "User reported task-image Torch incompatible with projgpu39 GPU; host critic acceptance did not validate task container.",
+  "compatibility_failure_reproduced_this_turn": false,
+  "precheck_utc": "2026-09-10T06:09:18.866213+00:00",
+  "precheck_identity_matches": true,
+  "precheck_state": "PENDING",
+  "precheck_reason": "Resources",
+  "precheck_runtime": "00:00:00",
+  "precheck_node_list": "(null)",
+  "cancellation_utc": "2026-09-10T06:09:40.423595+00:00",
+  "scancel_returncode": 0,
+  "independent_check_utc": "2026-09-10T06:10:10.534222+00:00",
+  "squeue_returncode": 0,
+  "squeue_stdout": "",
+  "sacct_returncode": 0,
+  "sacct_stdout": "12933|CANCELLED by 7542|0:0|00:00:00|2026-09-10T14:09:40|2026-09-10T14:09:40|12|\n",
+  "sacct_fields": ["JobID", "State", "ExitCode", "Elapsed", "Start", "End", "AllocCPUS", "AllocTRES"],
+  "sacct_time_note": "Scheduler timestamps are Hong Kong local time. Start and End equal cancellation time; not evidence of actual execution.",
+  "artifact_exists": {
+    "campaign.started.json": false,
+    "campaign.finished.json": false,
+    "critic.ready.json": false,
+    "runtime-manifest.json": false,
+    "slurm-12933.out": false,
+    "slurm-12933.err": false
+  },
+  "entry_sha256_unchanged": {
+    "forets_e2e_campaign.py": "7a21d74119243723e6271d273446c2aa65a2d6669d9c32634cd40b5d10a115e6",
+    "forets_e2e_critic_service.py": "a4abfb5f71e19276f0f2c6f8a06b856d8f14661eb9aba7573218403af4e6ce13",
+    "prepare_forets_e2e_20260910.sbatch": "957a9ad3ff66f2da1fe7754875e6fcd2a0683452091124429418bd8633c0987b"
+  },
+  "replacement_job_submitted": false,
+  "image_modified": false,
+  "upstream_or_production_modified": false,
+  "prior_start_estimate_valid": false
+}

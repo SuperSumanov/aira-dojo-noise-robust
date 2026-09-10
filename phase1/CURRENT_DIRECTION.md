@@ -7,6 +7,24 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L137. 2026-09-10：用户指出MLE镜像与projgpu39不兼容；12933未启动即取消
+
+用户明确指出现有MLE-bench image的Torch与projgpu39 GPU架构不兼容。12933不是critic训练：
+它将现成critic推理和MLE任务执行各放到同一projgpu39分配的一张卡。12892只验证宿主venvs/exp中的
+critic，未验证任务SIF；我方漏查了另一套运行环境，先前“只剩排队”的判断撤回。
+此兼容性故障由用户报告，本轮未重现容器CUDA报错，不伪造版本或错误栈；作业与两套环境分离已由代码确认。
+
+06:09:18 UTC核作业身份/路径吻合、PENDING/RunTime0；06:09:40 UTC只scancel12933，返回0。
+06:10:10 UTC独立sacct：CANCELLED by 7542、Elapsed00:00:00、无分配TRES、无started/runtime/日志；
+sacct把取消时刻写入Start/End，不代表实际执行。无本作业GPU运行或生成器请求，原配置/入口hash和失败前证据保留。
+没有更改学长/生产代码、镜像、运行入口，也没有提交替代作业。原19:59启动估计失效。
+证据见results/forets_e2e_20260910/cancellation.json，恢复见CONTEXT_HANDOFF_CURRENT.md。
+
+后续优先保留任务镜像，选择两臂统一且经镜像验证兼容的GPU部署；空闲3090/4090标签不是兼容性证明。
+critic是否同机还需显存/实际执行核验；跨节点HTTP是另一种部署变更，不直接套用当前loopback服务。
+不能只改nodelist重投，不升级镜像Torch/CPU fallback掩盖问题，不重做已过的projgpu39 critic验收。
+当前8run仍未执行，无e2e效果结论；先解决这项具体兼容性缺口，再给替代配置/资源预算。
+
 ## 0L136. 2026-09-10：相关工作约束与后续信息负对照草案，不改12933
 
 2026-09-09 22:38:47 UTC核12933仍PENDING(Resources)、RunTime0，无实际运行产物；暂估香港19:59:12。

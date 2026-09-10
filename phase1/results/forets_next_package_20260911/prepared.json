@@ -1,0 +1,144 @@
+{
+  "api_requests": 0,
+  "blocks": 2,
+  "checkpoint_training_template": "UNRESOLVED_NO_RENDERING_OVERRIDE",
+  "launch_commands_written": false,
+  "launcher": {
+    "allocation_job_id": null,
+    "await_completion": true,
+    "cpus_per_step": 6,
+    "debug": false,
+    "fail_fast": false,
+    "forets_max_api_attempts": 100,
+    "forets_max_output_tokens": 8192,
+    "gpus_per_step": 1,
+    "max_parallel": 1,
+    "max_retries": 0,
+    "min_remaining_seconds_to_launch": 3930,
+    "monitor_jobs": true,
+    "ntasks_per_step": 1,
+    "poll_interval_seconds": 5.0,
+    "shutdown_grace_seconds": 30,
+    "step_termination_allowance_seconds": 330,
+    "step_time_limit_minutes": 60,
+    "validate_paths_on_node": true,
+    "worker_wall_seconds": 3540
+  },
+  "model_framework_imports": 0,
+  "model_loads": 0,
+  "nominal_gpu_hours": 17.0,
+  "original_image_changed": false,
+  "output": "/research/d7/spc/yzyang4/forets-next-config-20260911-4h_0y6b4",
+  "paired_config_sha256": [
+    "4692c725b26770fc6ccb80c83a80e56eddba46ef19745c3e644f8277f70c74dc",
+    "2b2211194b24e4db797430cae9715446b154d80d755c58c5b5b0c8a4372cf4fc",
+    "564b1cf42c8c553a32c0e360ded6ce0e3ab8b0b7cec9ade3ce0c4ddbcf6e409b",
+    "445b2424daaddafc53eb83a7ef2e97aaf9444a69f89ab52eb0173a6aa10b6277"
+  ],
+  "paired_configs": 4,
+  "plan_sha256": "39ac7b7c185f052b4d82508a3c41a019789d54ca1327dff420e599c50b07b915",
+  "preparation_files_sha256": {
+    "forets_e2e_package.py": "1d7d0af7f198c0597fb9d0e34f43ede72d255088d4a0a01112c002b12f68063c",
+    "forets_next_package_20260911.py": "1694c1392c13a52b1997b987e44871da2fcd728f03302276b269d5ecf0fc3291",
+    "forets_pilot_plan.py": "1f6667641725662b10c59d7563368fe47eac19eecd79d92a87ed0e162ddaddf6"
+  },
+  "private_or_public_data_contents_read": false,
+  "readiness": false,
+  "remaining": [
+    "supported OpenCL allocation isolation",
+    "checkpoint historical training template",
+    "new bounded campaign controller matched to this matrix",
+    "fresh fixed-route readiness within explicit budget"
+  ],
+  "run_configs": [
+    {
+      "arm": "uniform_random",
+      "block": 1,
+      "concrete_solver_type": "ForeTSSolverConfig",
+      "config_sha256": "7c5105055c632f375f453484c76ffee4109b7e7c0365b630586a78f4bbac2303",
+      "roundtrip": true,
+      "run_id": "00-leaf-classification-s8-uniform_random",
+      "seed": 8,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 1,
+      "concrete_solver_type": "ForeTSSolverConfig",
+      "config_sha256": "2cf3d9705c21002295ec32792d7b7f1217db653f5cc8a26cb40ac6b69cdee6eb",
+      "roundtrip": true,
+      "run_id": "01-leaf-classification-s8-critic_topk_random",
+      "seed": 8,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 1,
+      "concrete_solver_type": "ForeTSSolverConfig",
+      "config_sha256": "aa9099596f1a949d85783f605d9f6b4a397c456f4aefbb0bee8cad23f3ae2cc5",
+      "roundtrip": true,
+      "run_id": "02-spaceship-titanic-s8-critic_topk_random",
+      "seed": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "block": 1,
+      "concrete_solver_type": "ForeTSSolverConfig",
+      "config_sha256": "1a29bb56be6864add04a7e3862e5bca3e80d2dbdfbcd529895aebf15116e36af",
+      "roundtrip": true,
+      "run_id": "03-spaceship-titanic-s8-uniform_random",
+      "seed": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 2,
+      "concrete_solver_type": "ForeTSSolverConfig",
+      "config_sha256": "5846ac8465eaddd46bf56a2d44aa1acbe0d16a93b70ec7ccea98cd607f1eb669",
+      "roundtrip": true,
+      "run_id": "04-leaf-classification-s9-critic_topk_random",
+      "seed": 9,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "block": 2,
+      "concrete_solver_type": "ForeTSSolverConfig",
+      "config_sha256": "3a53c827b403992d16d32cc4566c491c018f80b1ca15964a217c8143f39e049e",
+      "roundtrip": true,
+      "run_id": "05-leaf-classification-s9-uniform_random",
+      "seed": 9,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "block": 2,
+      "concrete_solver_type": "ForeTSSolverConfig",
+      "config_sha256": "7263e21b3f22c13ba43c179bdf56fcdbc9fd99e1de67987d020d3fa011d2d480",
+      "roundtrip": true,
+      "run_id": "06-spaceship-titanic-s9-uniform_random",
+      "seed": 9,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 2,
+      "concrete_solver_type": "ForeTSSolverConfig",
+      "config_sha256": "365c287d485728f9347da16b29d3330d7773dea394aa2fd511f2e1f1a218f1b1",
+      "roundtrip": true,
+      "run_id": "07-spaceship-titanic-s9-critic_topk_random",
+      "seed": 9,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "run_count": 8,
+  "selection_coupling": "common_priority_v1",
+  "slurm_dispatches": 0,
+  "source_archive_sha256": "6f37040627a7a4b0b83b2f2fa5419d4812d00d4e90c74f31e3e3340fbfdc49fd",
+  "source_files": 231,
+  "source_production_changed": false,
+  "source_tree": "3aae90ae26b5ae7b65e6efed14fb49f2907c9c42",
+  "status": "ACTUAL_CONFIGS_VERIFIED_NOT_READY",
+  "step_limit": 6
+}

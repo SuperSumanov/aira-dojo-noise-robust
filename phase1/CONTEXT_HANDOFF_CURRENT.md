@@ -1,6 +1,15 @@
 # 当前会话交接：ForeTS 同预算端到端探索
 
 记录更新：2026-09-11（香港）。这是恢复索引，不是新的实验结果。
+最新21:13:42 UTC/香港05:13：本轮队列仍仅12535 held；学长fetch仍065b0fba。
+完整8份新RunConfig已在远端真实类生成/往返，4对独立逐字段核对通过，未派发GPU/API/模型。
+唯一新包/research/d7/spc/yzyang4/forets-next-config-20260911-4h_0y6b4，源码tree3aae90ae...；不再重复生成。
+关键预算修正：原255分钟漏每step退出余量，建议280分钟/块；两块名义18.666666666666668GPUh、含allocation KillWait19.0。
+8份config未改，原prepared.json里的17.0仅历史值；当下以PACKAGE_STATE.json及allocation-budget-correction.json为准。
+NOT_READY：OpenCL隔离/历史训练模板待外界，下一项可做新矩阵匹配控制器CPU准备；旧campaign不能直接启动新包。
+见CURRENT_DIRECTION0L148与FORETS_CONFIG_PACKAGE_20260911.md；以下“未生成完整RunConfig”均已成为旧状态。
+
+上一轮05:02交接：
 最新20:57:07 UTC/香港04:57：队列仅12535 held，学长head仍065b0fba，无新GPU/API/model-fit。
 六小时委托已复用g0-r5启用每20分钟续跑，到香港10:38截止，先读NIGHT_WORK_20260911.md完成状态。
 四例CPU真实tokenizer确认当前训练指令前缀与服务不同；checkpoint历史模板未知，已留定向问题，禁止直接改生产。

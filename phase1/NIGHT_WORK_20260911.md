@@ -18,15 +18,19 @@
    32份配置已扫描通过不等于env/journal整包脱敏；不打开后两者或保护集，不因六小时成熟就自动取得准入。
    统一step_limit10000、children2、执行7200秒/总86400秒；29份有journal成员头、3未见、4含未开链接。
    不能和当前300秒短预算直接混合；budget-metadata.json已保存，无physical-run准入结论。
-3. **下一轮选择控制与资源预算（人工集成/预算/独立源码已完成，未部署）**：common-priority原型已完成50项相关测试，不重跑；
+3. **下一轮选择控制与资源预算（独立源码/真实8配置已完成，未部署）**：common-priority原型已完成50项相关测试，不重跑；
    需要时做真实现有生成/选择入口的独立人工集成，默认保持旧入口，不静默替换13004。
    基于实际短配对时间/完成率和源代码核算更长搜索的生成、执行、分析、重试上限，形成明确矩阵与总GPU小时，
    不把人工测试或预算表写成收益，不在新GPU环境确认前提交，不新增付费API、fit或底座更新。
    本轮人工集成与metadata/算术共13测试通过；6步、两任务×seed8/9×两臂=8run，两块名义17.0GPUh草案已写。
    21:02 UTC：0018显式选择开关/恢复绑定已在独立tree3aae90ae26b5ae7b65e6efed14fb49f2907c9c42准备，7新测试通过。
    默认保留旧选择器，未知值与跨模式复用拒绝；不重复此接入或测试。未改远端源或当前RunConfig。
-   后续可继续完整新config包准备：只按next-budget.json已列旋钮对称生成；source精确绑定0018，
-   模板仍未知就明确NOT_READY、不赋予提交能力。必要真实类加载可用远端CPU，不加载模型/任务数据/凭据。
+   21:13 UTC：完整8配置已在forets-next-config-20260911-4h_0y6b4生成，真实类往返/独立4配对均通过；不要重复。
+   当下状态见results/forets_next_package_20260911/PACKAGE_STATE.json与FORETS_CONFIG_PACKAGE_20260911.md。
+   原255min/块漏计step退出余量，追加更正为280min/块；两块名义18.666666666666668GPUh，含allocation KillWait19.0。
+   旧next-budget.json/prepared.json保留，但其17.0不是当前建议预算；8份config字节不变，不为此重生成。
+   下一项可做与新矩阵/两块顺序/修正余量匹配的控制器CPU准备。旧入口4步/40次请求/旧seed不可直接复用。
+   模板/隔离仍未知就NOT_READY，不赋予提交能力；不加载模型、任务数据、凭据或启动有资源的子进程。
    不把代码准备当成已部署；不为没有回复的模板猜默认值，不重写旧包。详见FORETS_NIGHT_PROGRESS_20260911.md。
 4. **外部动态（按需）**：每轮fetch并查学长新commit/outcome安全元数据；仅新内容才脱敏阅读。
    OpenCL GPU9共享/单卡暴露方式等待学长/管理员，无回复不重试已失败的/dev/null绑定。
@@ -40,6 +44,7 @@
   67ac5406b789fa7a5a39f41e9483a095f671f2d25ba47ccf69af4f98264c7cb4。
 - 20:40:44 UTC实查：队列仅旧12535 JobHeldUser，LATEST未变，隔离下载完成且无FAILED。
 - 20:57:07 UTC复查：队列仍仅12535；学长head未变；未新增GPU/API/模型前向。上列CPU准备已保存，不再重复。
+- 21:13:42 UTC复查：队列仍仅12535；真实新配置已完成，外层预算更正已追加，没有实际实验开跑。
 - LATEST=1b44e898bbae7ffc9098bbfa584ba842e0db2be5ae6bb8b5da0475d8ab34239f，733 eligible，closure=false。
 - 13004首对已完成且critic负向；不重新选seed、改最终读出或隐瞒失败。12892/G0验收不再重复。
 

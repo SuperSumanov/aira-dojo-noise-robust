@@ -7,6 +7,19 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L148. 2026-09-11：新8份真实配置与独立配对核对完成；修正外层预算，未启动
+
+21:13:42 UTC（香港05:13）队列仅12535 held；本轮fetch学长仍065b0fba，无新GPU/API/model-fit。
+独立新根forets-next-config-20260911-4h_0y6b4/source绑定3aae90ae...，8份真实RunConfig通过往返，4对逐字段相等
+（除selection_policy和机械身份/路径）；独立核对231份源码，四个配置负控被拒绝，旧启动器验证函数拒绝新包。
+6步/common_priority_v1/100请求上限已进入实际配置，仍不是模型或MLE实验；保护集与任务数据内容未打开。
+准备中发现旧255分钟外层预算漏计每step退出预留；8份config不变，追加预算修正建议280分钟/块，
+两块名义18.666666666666668 GPUh，含已观察allocation KillWait为19.0 GPUh；只是草案，没有追加实际用量。
+原prepared.json的17.0是历史提案值，已由PACKAGE_STATE.json指向的allocation-budget-correction.json覆盖。
+当前NOT_READY：仍缺OpenCL隔离事实、checkpoint历史模板、新矩阵匹配控制器及新鲜路由证据；旧入口不可直接重用。
+见FORETS_CONFIG_PACKAGE_20260911.md和results/forets_next_package_20260911；不重复已完成的配置生成/验证。
+六小时守护截止香港10:38不变，后续仅推进未完成控制器的独立CPU准备与有变化的外部状态。
+
 ## 0L147. 2026-09-11：发现训练/服务输入差异；六小时续跑已启，GPU仍等外部隔离事实
 
 20:57:07 UTC（香港04:57）fetch学长仍065b0fba，队列仅12535 held，无本轮GPU任务。

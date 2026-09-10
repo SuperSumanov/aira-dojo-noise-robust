@@ -1,0 +1,74 @@
+{
+  "api_requests": 0,
+  "blocks": 2,
+  "computed_minimum_minutes": 278,
+  "corrected_bound_trace": [
+    {
+      "can_launch": true,
+      "remaining_seconds": 15900,
+      "run_index": 0
+    },
+    {
+      "can_launch": true,
+      "remaining_seconds": 11965,
+      "run_index": 1
+    },
+    {
+      "can_launch": true,
+      "remaining_seconds": 8030,
+      "run_index": 2
+    },
+    {
+      "can_launch": true,
+      "remaining_seconds": 4095,
+      "run_index": 3
+    }
+  ],
+  "final_cleanup_allowance_seconds": 30,
+  "gpu_submissions": 0,
+  "gpus": 2,
+  "limits": [
+    "arithmetic under stated bounded timings, not a completion guarantee",
+    "controller must explicitly enforce preparation/step/cleanup bounds before any actual launch",
+    "retains all old proposal records; never overwrite actual usage or claim new experimental results"
+  ],
+  "old_block_minutes": 255,
+  "old_bound_trace": [
+    {
+      "can_launch": true,
+      "remaining_seconds": 14400,
+      "run_index": 0
+    },
+    {
+      "can_launch": true,
+      "remaining_seconds": 10465,
+      "run_index": 1
+    },
+    {
+      "can_launch": true,
+      "remaining_seconds": 6530,
+      "run_index": 2
+    },
+    {
+      "can_launch": false,
+      "remaining_seconds": 2595,
+      "run_index": 3
+    }
+  ],
+  "original_plan_sha256": "39ac7b7c185f052b4d82508a3c41a019789d54ca1327dff420e599c50b07b915",
+  "per_step_seconds": 3600,
+  "per_step_termination_allowance_seconds": 330,
+  "poll_allowance_seconds": 5,
+  "prepared_receipt_sha256": "d6fcf987924bf696c8a6ea7fb252a6a634ad3fdac9de192a24eb07ec63fee76d",
+  "proposed_all_blocks_including_observed_300s_allocation_killwait_gpu_hours": 19.0,
+  "proposed_all_blocks_nominal_gpu_hours": 18.666666666666668,
+  "proposed_block_minutes": 280,
+  "proposed_block_nominal_gpu_hours": 9.333333333333334,
+  "readiness": false,
+  "run_config_bytes_changed": false,
+  "runs_per_block": 4,
+  "source_sha256": "12fcf5fc727de820a208ca88ee1bd82c58f97842653c3ce463f8b171903d2b79",
+  "source_tree": "3aae90ae26b5ae7b65e6efed14fb49f2907c9c42",
+  "startup_allowance_seconds": 900,
+  "status": "OUTER_BUDGET_CORRECTION_NOT_AUTHORIZATION_OR_RUNTIME"
+}

@@ -1,0 +1,129 @@
+{
+  "role": "actual_jupyter_gpu_adapter_integration_not_effect",
+  "index": 1,
+  "allocation": "13042",
+  "step": "2",
+  "slurm_step_gpus": "1",
+  "api_calls": 0,
+  "task_runs": 0,
+  "model_calls": 0,
+  "source_tree": "3aae90ae26b5ae7b65e6efed14fb49f2907c9c42",
+  "integration_commit": "ef6a4d04213c4f65904f42877f54af8b84be8e00",
+  "binding": {
+    "role": "explicit_step_gpu_binding",
+    "utc": "2026-09-10T22:36:25.652732+00:00",
+    "allocation": "13042",
+    "step": "2",
+    "minor": 9,
+    "uuid": "GPU-73f78acc-94c4-fe2d-968f-2d2ddc1c66f8",
+    "gate": {
+      "exact_device_namespace": true,
+      "minor": 9,
+      "readonly_driver_libraries": 52
+    },
+    "driver_version": "610.57.04",
+    "adapter_sha256": "6fd20c526f82d677c21f4393334ba63091f50e56408302cf889e55449c46b3fb",
+    "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+    "libraries": {
+      "libnvidia-wayland-client.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-wayland-client.so.610.57.04",
+      "libnvidia-vksc-core.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-vksc-core.so.610.57.04",
+      "libnvidia-vksc-core.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-vksc-core.so.610.57.04",
+      "libnvidia-tls.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-tls.so.610.57.04",
+      "libnvidia-tileiras.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-tileiras.so.610.57.04",
+      "libnvidia-sandboxutils.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-sandboxutils.so.610.57.04",
+      "libnvidia-sandboxutils.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-sandboxutils.so.610.57.04",
+      "libnvidia-rtcore.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.610.57.04",
+      "libnvidia-ptxjitcompiler.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.610.57.04",
+      "libnvidia-ptxjitcompiler.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.610.57.04",
+      "libnvidia-present.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-present.so.610.57.04",
+      "libnvidia-pkcs11-openssl3.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so.610.57.04",
+      "libnvidia-opticalflow.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.610.57.04",
+      "libnvidia-opticalflow.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.610.57.04",
+      "libnvidia-opencl.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.610.57.04",
+      "libnvidia-opencl.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.610.57.04",
+      "libnvidia-nvvm70.so.4": "/usr/lib/x86_64-linux-gnu/libnvidia-nvvm70.so.4",
+      "libnvidia-nvvm.so.4": "/usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.610.57.04",
+      "libnvidia-nvvm.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.610.57.04",
+      "libnvidia-ngx.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.610.57.04",
+      "libnvidia-ngx.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.610.57.04",
+      "libnvidia-ml.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.610.57.04",
+      "libnvidia-ml.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.610.57.04",
+      "libnvidia-gtk3.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-gtk3.so.610.57.04",
+      "libnvidia-gpucomp.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-gpucomp.so.610.57.04",
+      "libnvidia-glvkspirv.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.610.57.04",
+      "libnvidia-glsi.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.610.57.04",
+      "libnvidia-glcore.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.610.57.04",
+      "libnvidia-fbc.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.610.57.04",
+      "libnvidia-fbc.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.610.57.04",
+      "libnvidia-encode.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-encode.so.610.57.04",
+      "libnvidia-encode.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-encode.so.610.57.04",
+      "libnvidia-encode.so": "/usr/lib/x86_64-linux-gnu/libnvidia-encode.so.610.57.04",
+      "libnvidia-eglcore.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.610.57.04",
+      "libnvidia-egl-xlib.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-egl-xlib.so.1.0.5",
+      "libnvidia-egl-xlib.so.1.0.5": "/usr/lib/x86_64-linux-gnu/libnvidia-egl-xlib.so.1.0.5",
+      "libnvidia-egl-xcb.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-egl-xcb.so.1.0.5",
+      "libnvidia-egl-xcb.so.1.0.5": "/usr/lib/x86_64-linux-gnu/libnvidia-egl-xcb.so.1.0.5",
+      "libnvidia-egl-wayland2.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-egl-wayland2.so.1.0.1",
+      "libnvidia-egl-wayland2.so.1.0.1": "/usr/lib/x86_64-linux-gnu/libnvidia-egl-wayland2.so.1.0.1",
+      "libnvidia-egl-gbm.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so.1.1.3",
+      "libnvidia-egl-gbm.so.1.1.3": "/usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so.1.1.3",
+      "libnvidia-cfg.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.610.57.04",
+      "libnvidia-cfg.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.610.57.04",
+      "libnvidia-api.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-api.so.1",
+      "libnvidia-allocator.so.1": "/usr/lib/x86_64-linux-gnu/libnvidia-allocator.so.610.57.04",
+      "libnvidia-allocator.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libnvidia-allocator.so.610.57.04",
+      "libcuda.so.1": "/usr/lib/x86_64-linux-gnu/libcuda.so.610.57.04",
+      "libcuda.so.610.57.04": "/usr/lib/x86_64-linux-gnu/libcuda.so.610.57.04",
+      "libcuda.so": "/usr/lib/x86_64-linux-gnu/libcuda.so.610.57.04",
+      "libOpenCL.so.1": "/usr/local/cuda-13.3/targets/x86_64-linux/lib/libOpenCL.so.1.0.0",
+      "libOpenCL.so.1.0.0": "/usr/local/cuda-13.3/targets/x86_64-linux/lib/libOpenCL.so.1.0.0"
+    },
+    "source_commit": "ef6a4d04213c4f65904f42877f54af8b84be8e00"
+  },
+  "kernel_ok": true,
+  "kernel_timed_out": false,
+  "records": [
+    {
+      "exact_device_namespace": true,
+      "minor": 9,
+      "readonly_driver_libraries": 52
+    },
+    {
+      "version": "2.5.1+cu124",
+      "device": "NVIDIA GeForce RTX 3090",
+      "devices": 1,
+      "arithmetic_correct": true
+    },
+    {
+      "accessible_gpu_minors": [
+        9
+      ],
+      "allocated_gpu_minors": [
+        9
+      ],
+      "chosen_platform_index": 0,
+      "critic_calls": 0,
+      "gpu_isolation_verified": true,
+      "icd_files": [
+        "nvidia.icd"
+      ],
+      "lightgbm_version": "4.6.0",
+      "loader_loaded": true,
+      "non_gpu_device_placeholders": [],
+      "platform_count": 1,
+      "platform_devices": [
+        {
+          "gpu_devices": 1,
+          "rc": 0
+        }
+      ],
+      "platform_rc": 0,
+      "role": "synthetic_opencl_library_diagnostic_not_task_result",
+      "synthetic_fit_started": true,
+      "synthetic_gpu_fit_completed": true,
+      "task_runs": 0,
+      "vendor_directory_exists": true
+    }
+  ],
+  "seconds": 20.49568940512836
+}

@@ -6,12 +6,17 @@
 
 ## 目标与实测
 
+- **最新停止事项**：13042非零step被程序映射到设备9并实际做了人工GPU运算；该映射没有独立分配证据。
+  “精确可见设备”只是对程序自选minor自洽，不足以证明Slurm分配正确。接入验证作废，泛化隔离解决声明撤回。
+  当前adapter/新诊断在GPU查询前关闭；13042已主动释放。不可复用旧未关闭副本或按旧0L152开跑。
+  /etc/slurm/gres.conf只读被拒绝，未绕过；等权威GPU ID→设备路径/UUID映射。见FORETS_GPU_MAPPING_ERRATUM_20260911.md。
+
 - 科学目标：**同预算下，critic是否改善最终选中解的外部成绩**。Corpus/predictor/audit是支撑。
 - 13004首对已完成：leaf-classification/seed6，random logloss **0.66022**，critic **2.5208**；
   random−critic **−1.86058**。critic此次更差，仅一个探索seed，不能外推普遍无效。
   [实测与读出](FORETS_FIRST_PAIR_20260910.md)；旧包、失败记录和未启动槽位保持不变。
 - 当前没有新的critic收益或干净scaling结论。配置、人工测试、输入编码差异均不是效果结果。
-- 最近队列实查：**2026-09-10 22:06:19 UTC / 香港9月11日06:06:19**，只有12535 PENDING/JobHeldUser。
+- 最近队列实查：**2026-09-10 22:40:20 UTC / 香港9月11日06:40:20**，只有12535 PENDING/JobHeldUser。
   它不会自己开跑；不释放/取消。无本轮运行中的GPU作业；这是观察时间，不是永久实时状态。
 
 ## 已完成，不再重复
@@ -48,16 +53,16 @@
 
 ## 未解决与下一步
 
-1. **隔离/OpenCL已实测通过**：13040，原SIF、3090、仅分配GPU0可见，有ICD的LightGBM GPU拟合与原Torch CUDA通过。
-   无ICD为0平台/-1001；13037/38/39失败均保留。直接单进程证据，不等于Jupyter实际任务入口已通过。
-   接入外置显式adapter，两臂相同，源码/8配置不改；一个双卡最多5分钟实际Jupyter双step人工验证准备中。
-   证据根forets-opencl-allowlist-r4-20260911-Z61pJp；[报告](FORETS_EXPLICIT_DEVICE_PLAN_20260911.md)。8-run release仍关闭。
+1. **GPU映射硬阻塞**：13040只证明指定物理设备0上库能运行；13042真实Jupyter的非零编号步骤选了设备9。
+   adapter把Slurm ID直接用作NVML index，没有独立映射依据，已撤回并关闭；**不要重跑、猜编号或放行8-run**。
+   13041还暴露登录/计算节点Singularity路径不同；已修代码，但路径修复不解决GPU映射。
+   最近新根forets-gpu-adapter-20260911-DosPND保留原错误实现/回执，禁止执行；当前Git入口已关闭。
    GPU9共享约定仍未知，已问学长/管理员未回复；新路径不绑定设备9、不依赖放宽共享约定。
    设备可打开不证明13004使用过它，不据此改写旧结果。原镜像/任务代码不改，不升级Torch、不退CPU。
    自查已知gpu28登记9卡、Slurm19.05.4；计算节点配置SSH被主机身份校验挡住，现有信任记录无匹配，不绕过。
 2. **等外界**：checkpoint-100历史训练输入是否含预测指令；当前分支含指令不能证明历史模板。
    权重只读header已证实仅format=pt，不能自行恢复历史模板。问题已留给用户转学长，不再索要权重/密钥。
-3. **控制器/读出准备完成**：用户已批准的实现不再索批或重写。缺硬件/输入事实及实际发行绑定，不能打开release。
+3. **控制器/读出准备完成**：用户已批准的实现不再索批或重写。缺已独立核实的设备映射/输入事实及实际发行绑定，不能打开release。
    当前无真实runtime manifest；不造终态/成绩，不复用旧execute()。每块需各自新鲜路由回执，不能沿用上块旧检查。
 4. 外部事实就绪后固定新协议包、检查免费路由，再按明确矩阵/预算进入真实同预算对照；不追加训练或旧G0。
    读最终选中节点的外部分数，失败与完成率分开；不取轨迹最大分，不拿自报分替代，不跨任务混合原始指标。
@@ -78,7 +83,7 @@
 
 - 本地Git：C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；外层MLEvolve不是Git仓库。
   只push myfork HEAD:phase1-value-critic。学长branch dojo-reproduce最近fetch仍065b0fba，不改它。
-  本轮起点HEAD为d866c85e20b68b37d872bc37598134aa52196182；最新HEAD每次fetch核实。
+  13042测试代码ef6a4d04现已撤回；最新关闭入口/勘误HEAD每次fetch核实，不以旧成功回执恢复。
 - linux5；SLURM_CONF=/opt1/slurm/gpu-slurm.conf；CPU Python=/research/d7/spc/yzyang4/venvs/aira/bin/python。
   模型Python为同根venvs/exp/bin/python；复杂SSH用脚本/scp，避免引号被剥离。
 - MLE worker只在兼容gpu27/gpu28（不是projgpu28/39）；两臂同硬件/原镜像；QOS4jobs/8GPU。

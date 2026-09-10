@@ -22,9 +22,10 @@
 1. **已完成接线，未发行**：新读出、runtime、独立collector都已完成CPU准备，见FORETS_RUNTIME_AND_UNBLOCK_20260911.md。
    不再拆模块重复实现或索批；CPU边界不等于真实调度器/模型实测。硬件/输入事实未补齐时入口保持关闭。
    两块各4run固定顺序、不自动retry/resume、不看结果选下个seed，保留失败/未开始槽位；每块单独新鲜路由回执。
-2. **隔离新解已通过13040**：不使用--nv、仅绑定已分配设备和只读驱动/loader/ICD；原Torch与OpenCL GPU实测通过。
-   正在把相同adapter接到实际Jupyter入口，双卡至多5分钟、两个单卡步骤人工验证；不重复13040直调测试。
-   **仍等待外部问题**：checkpoint历史指令前缀。GPU9共享事实仍未知，但新路径不使用它。
+2. **停止GPU映射排障，待权威事实**：13042实际Jupyter非零step用了设备9；Slurm ID与NVML index直接对应假设无证据。
+   对照0L153及FORETS_GPU_MAPPING_ERRATUM_20260911.md，adapter/新诊断已关闭，不复用旧远端副本。
+   13040设备0库可运行不代表完整分配隔离通过；不得再次按“已经解决”开跑。
+   计算节点/etc/slurm/gres.conf不可读，不绕过；等GPU ID→File/UUID权威映射。checkpoint历史前缀问题也仍待外界。
    未回复不重复追问、不猜事实、不重复失败的/dev/null遮蔽。不改任务SIF、Torch或退CPU。
    自主已查权重header无历史记录、gpu28登记9卡/Slurm19.05.4；计算节点只读SSH缺已验证主机身份，未绕过。
 3. **有变化才查外部动态**：fetch学长branch，新outcome先扫描再脱敏；新网盘metadata才触发增量下载。

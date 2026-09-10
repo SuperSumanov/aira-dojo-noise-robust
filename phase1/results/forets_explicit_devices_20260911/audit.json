@@ -1,0 +1,26 @@
+{
+  "role": "withdrawn_gpu_mapping_integration_audit",
+  "observed_utc": "2026-09-10T22:40:20.911365+00:00",
+  "authoritative_mapping_verified": false,
+  "e2e_release_allowed": false,
+  "actual_physical_device_9_compute_occurred": true,
+  "device_9_step_allocation_independently_verified": false,
+  "raw_namespace_flags_mean": "self-consistency with software-selected minor, NOT independent Slurm allocation verification",
+  "blocked_before_new_gpu_queries": true,
+  "new_generator_api_calls": 0,
+  "new_critic_calls": 0,
+  "new_e2e_runs": 0,
+  "queue_remaining": [{"job_id": "12535", "state": "PENDING", "reason": "JobHeldUser", "modified": false}],
+  "allocation_usage": [
+    {"job_id": "13037", "state": "COMPLETED", "seconds": 4, "gpus": 1, "accepted_integration": false},
+    {"job_id": "13038", "state": "COMPLETED", "seconds": 1, "gpus": 1, "accepted_integration": false},
+    {"job_id": "13039", "state": "COMPLETED", "seconds": 21, "gpus": 1, "accepted_integration": false},
+    {"job_id": "13040", "state": "COMPLETED", "seconds": 23, "gpus": 1, "accepted_integration": false},
+    {"job_id": "13041", "state": "COMPLETED", "seconds": 9, "gpus": 2, "accepted_integration": false},
+    {"job_id": "13042", "state": "FAILED", "seconds": 155, "gpus": 2, "accepted_integration": false}
+  ],
+  "gpu_seconds": 377,
+  "gpu_hours": 0.10472222222222222,
+  "required_fact": "gpu28 Slurm GPU global IDs to physical File/minor/UUID mapping from an independent authoritative source",
+  "metadata_access_failure": "/etc/slurm/gres.conf PermissionError; not bypassed"
+}

@@ -109,6 +109,9 @@ def bounded_container(command, env, timeout):
 
 
 def main():
+    # Do not rerun: the nonzero-step integration exposed an ungrounded global
+    # Slurm-ID -> visible NVML-index assumption. Old results remain immutable.
+    raise RuntimeError('diagnostic withdrawn: physical allocation mapping unverified')
     here = Path(__file__).resolve().parent
     output = here / 'result.json'
     job = os.environ.get('SLURM_JOB_ID', '')

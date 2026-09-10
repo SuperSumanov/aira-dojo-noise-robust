@@ -76,27 +76,10 @@ def rewrite(args, *, minor, uuid, libraries, vendors):
 
 
 def observed_binding(env, runner=subprocess.run):
-    if (env.get('FORETS_GPU_BINDING')!='explicit_step_v1'
-            or not re.fullmatch(r'\d+',env.get('SLURM_JOB_ID',''))
-            or env.get('SLURM_JOB_ID') in {'12535','13004'}
-            or not re.fullmatch(r'\d+',env.get('SLURM_STEP_ID',''))
-            or not re.fullmatch(r'\d+',env.get('SLURM_STEP_GPUS',''))
-            or socket.gethostname().split('.')[0]!='gpu28'):
-        raise RuntimeError('explicit single-GPU gpu28 step required')
-    def query(cmd):return runner(cmd,capture_output=True,text=True,check=True,timeout=10).stdout
-    csv=query(['nvidia-smi','--query-gpu=index,uuid','--format=csv,noheader,nounits'])
-    ids={int(x.split(',')[0]):x.split(',')[1].strip() for x in csv.splitlines()}
-    uuid=ids[int(env['SLURM_STEP_GPUS'])]
-    xml=ET.fromstring(query(['nvidia-smi','-q','-x']))
-    gpu=next(g for g in xml.findall('gpu') if g.findtext('uuid')==uuid)
-    minor=int(gpu.findtext('minor_number'))
-    for name in (f'nvidia{minor}','nvidiactl','nvidia-uvm'):
-        s=Path('/dev',name).stat()
-        if not stat.S_ISCHR(s.st_mode):raise RuntimeError('missing device node')
-    s=Path('/dev',f'nvidia{minor}').stat()
-    if os.major(s.st_rdev)!=195 or os.minor(s.st_rdev)!=minor:raise RuntimeError('device mapping mismatch')
-    libraries=driver_binds(query(['/sbin/ldconfig','-p']))
-    return minor,uuid,libraries,xml.findtext('driver_version')
+    # The flawed Slurm-ID -> NVML-index implementation is removed, not hidden
+    # behind a boolean/hash that could accidentally re-enable it. Keep the old
+    # evidence in Git; a future implementation needs independent mapping facts.
+    raise RuntimeError('Slurm-to-physical mapping unverified; adapter withdrawn')
 
 
 def main(args=None):

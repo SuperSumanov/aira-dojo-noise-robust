@@ -1,0 +1,14 @@
+{
+  "role": "actual_jupyter_gpu_adapter_integration_not_effect",
+  "index": 1,
+  "allocation": "13041",
+  "step": "1",
+  "slurm_step_gpus": "1",
+  "api_calls": 0,
+  "task_runs": 0,
+  "model_calls": 0,
+  "source_tree": "3aae90ae26b5ae7b65e6efed14fb49f2907c9c42",
+  "integration_commit": "c9be4c8d33fed4c834fce37e296513b800890073",
+  "error_type": "RuntimeError",
+  "seconds": 0.6929110060445964
+}

@@ -7,6 +7,19 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L153. 2026-09-11：撤回“隔离已解决”的泛化；非零步骤用了设备9，映射未核实，停止GPU
+
+13042真实Jupyter双step能运行，但step GPU ID=1被程序映射为physical minor9；minor9也在仅分配0的旧检查中可见。
+这暴露了“Slurm全局GPU ID可直接作NVML可见index”的未证实假设。两份成功回执仅证实对**程序自己选的设备**自洽，
+不能独立证明用了Slurm分配卡。设备9在此步是否真正获分配仍未知；不猜测它必然对应全局ID1或物理设备1。
+**13041/13042接入检查不合格，0L152的部署/隔离解决泛化撤回。** 原SIF在设备0上的OpenCL/CUDA可运行事实保留，
+但不得以此放行8-run、认定完整环境合格或报告critic收益。此次确实对设备9做了人工GPU运算，不能只写成metadata检查。
+已停止后续GPU；13042分配已主动释放。adapter与新诊断入口在任何GPU查询/绑定前关闭，旧包/旧日志保留不可重用。
+只读实查计算节点/etc/slurm/gres.conf遭PermissionError，未绕过。需学长/管理员提供gpu28的
+Slurm GPU ID→设备File路径/UUID的权威映射或受支持的确定方法；未知时不得再猜编号或重投。
+计算节点Singularity实际为/usr/bin/singularity，登录节点/usr/local/bin路径不能直接照搬。
+新8-run release从未打开；无新API、模型前向、任务数据或冻结集读取。详见[映射撤回报告](FORETS_GPU_MAPPING_ERRATUM_20260911.md)。
+
 ## 0L152. 2026-09-11：用受支持的精确设备绑定独立短检；不放行e2e
 
 CPU原SIF核实无--nv时不暴露GPU、同路径device绑定可用，支持新的更窄排障路线。

@@ -12,6 +12,10 @@
 #SBATCH --no-requeue
 set -euo pipefail
 umask 077
+printf '%s\n' 'FORETS_BATCH_ENTERED'
+# Compute-node batch shells may omit this variable; env_setup appends to it.
+# Preserve an existing value and avoid an unbound-variable exit under set -u.
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:-}"
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 if [[ ${FORETS_E2E_MATRIX_APPROVED:-} != 1 || ${FORETS_FREE_ROUTE_CHECKED:-} != 1 ]]; then
     printf '%s\n' 'Missing exact matrix approval or live-route readiness; refusing execution.' >&2
@@ -30,5 +34,6 @@ fi
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 # Credentials must be installed/injected remotely; never put their value in this file.
 # The Python entry refuses to load a critic if OPENROUTER_API_KEY is absent.
+printf '%s\n' 'FORETS_ENV_READY'
 exec /research/d7/spc/yzyang4/venvs/aira/bin/python -B "$1/forets_e2e_campaign.py" \
     --package "$2" --execute-approved-matrix --live-route-checked --execution-node gpu28

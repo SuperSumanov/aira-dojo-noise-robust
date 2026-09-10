@@ -11,7 +11,7 @@
   random−critic **−1.86058**。critic此次更差，仅一个探索seed，不能外推普遍无效。
   [实测与读出](FORETS_FIRST_PAIR_20260910.md)；旧包、失败记录和未启动槽位保持不变。
 - 当前没有新的critic收益或干净scaling结论。配置、人工测试、输入编码差异均不是效果结果。
-- 最近队列实查：**2026-09-10 21:19:52 UTC / 香港9月11日05:19:52**，只有12535 PENDING/JobHeldUser。
+- 最近队列实查：**2026-09-10 21:32:51 UTC / 香港9月11日05:32:51**，只有12535 PENDING/JobHeldUser。
   它不会自己开跑；不释放/取消。无本轮运行中的GPU作业；这是观察时间，不是永久实时状态。
 
 ## 已完成，不再重复
@@ -49,8 +49,8 @@
    设备可打开不证明13004使用过它，不据此改写旧结果。原镜像/任务代码不改，不升级Torch、不退CPU。
 2. **等外界**：checkpoint-100历史训练输入是否含预测指令；当前分支含指令不能证明历史模板。
    问题已留给用户转学长，不重复索要权重/密钥，不猜模板并改生产默认。
-3. **可独立推进**：新控制器真实适配层与新矩阵读出。已有核心不用重做；服务启动/退出要真正受时限约束，
-   新入口先检查事实与包再接凭据，不复用旧execute()的旧预算/seed。尚不能称完整控制器已部署。
+3. **待实现方案批准**：旧reader拒绝seed8/9已只读复现；[新读出设计](FORETS_BLOCK_READOUT_DESIGN_20260911.md)待按最新AGENTS获批再改代码，不重复索批。
+   新控制器服务启动/退出的实际限时仍未完成；核心不用重做，不复用旧execute()，不能称完整控制器已部署。
 4. 外部事实就绪后固定新协议包、检查免费路由，再按明确矩阵/预算进入真实同预算对照；不追加训练或旧G0。
    读最终选中节点的外部分数，失败与完成率分开；不取轨迹最大分，不拿自报分替代，不跨任务混合原始指标。
 
@@ -67,7 +67,7 @@
 
 - 本地Git：C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；外层MLEvolve不是Git仓库。
   只push myfork HEAD:phase1-value-critic。学长branch dojo-reproduce最近fetch仍065b0fba，不改它。
-  本次整理前我方HEAD为aac4acc0d74c3ac27a64f4959b1225ee9df54951；最新HEAD每次fetch核实。
+  本轮起点HEAD为dbadcc4b1a81838d14bc82a9f45faea8782344b7；最新HEAD每次fetch核实。
 - linux5；SLURM_CONF=/opt1/slurm/gpu-slurm.conf；CPU Python=/research/d7/spc/yzyang4/venvs/aira/bin/python。
   模型Python为同根venvs/exp/bin/python；复杂SSH用脚本/scp，避免引号被剥离。
 - MLE worker只在兼容gpu27/gpu28（不是projgpu28/39）；两臂同硬件/原镜像；QOS4jobs/8GPU。

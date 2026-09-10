@@ -18,6 +18,10 @@
 下一项是新控制器实际适配及新矩阵最终读出准备；不能靠改readiness布尔值或复用旧campaign启动。
 见FORETS_BLOCK_CONTROLLER_20260911.md；没有新的critic/scaling/e2e正结果，保护集不打开。
 
+21:32:51 UTC后续只读核验：旧reader固定seed6/7，拒绝新8/9矩阵，未读取任何成绩。
+新增FORETS_BLOCK_READOUT_DESIGN_20260911.md仅为实现前设计；按用户最新AGENTS等待方案批准，不改旧reader或实际运行代码。
+队列仍仅12535 held，无新GPU/API。下一轮不重复此拒绝测试或再次索批；科学方向与配置/预算均未改变。
+
 ## 0L148. 2026-09-11：新8份真实配置与独立配对核对完成；修正外层预算，未启动
 
 21:13:42 UTC（香港05:13）队列仅12535 held；本轮fetch学长仍065b0fba，无新GPU/API/model-fit。

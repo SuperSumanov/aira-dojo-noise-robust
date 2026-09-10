@@ -7,6 +7,17 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L149. 2026-09-11：新固定分块控制器核心与短交接整理完成，仍无新GPU/收益
+
+新控制器核心已按seed8/9固定两块顺序绑定远端已有8份配置；真实pinned pool方法配人工OS边界及输入保护13测试通过。
+补入路径检查后dispatch前时限复核、最后run服务存活检查；下一步时间不足不提前取消当前有效运行。
+只读inspect返回NOT_LAUNCHABLE；服务启动/清理与硬件适配层尚未完成，不冒充生产入口或实测。
+预算仍为280分钟/块，两块名义18.666666666666668GPUh，含allocation KillWait为19.0；未新增实际消耗。
+两份恢复索引已改为当前事实/未完成任务，不再叠加旧17GPUh、未生成配置或旧monitor状态；历史全文留aac4acc0 Git。
+21:19:52 UTC实查仅12535 held；学长branch仍065b0fba。OpenCL隔离/历史模板仍待外界，不重复G0或failed mask。
+下一项是新控制器实际适配及新矩阵最终读出准备；不能靠改readiness布尔值或复用旧campaign启动。
+见FORETS_BLOCK_CONTROLLER_20260911.md；没有新的critic/scaling/e2e正结果，保护集不打开。
+
 ## 0L148. 2026-09-11：新8份真实配置与独立配对核对完成；修正外层预算，未启动
 
 21:13:42 UTC（香港05:13）队列仅12535 held；本轮fetch学长仍065b0fba，无新GPU/API/model-fit。

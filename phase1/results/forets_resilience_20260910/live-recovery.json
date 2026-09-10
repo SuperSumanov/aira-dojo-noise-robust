@@ -1,0 +1,61 @@
+{
+  "utc": "2026-09-10T13:49:55.058491+00:00",
+  "status": "READY",
+  "generation_attempt_cap": 2,
+  "logical_request_cap": 2,
+  "timeout_per_attempt_seconds": 120,
+  "output_tokens_per_attempt": 8192,
+  "gpu_jobs": 0,
+  "task_runs": 0,
+  "public_artificial_input_only": true,
+  "calls": [
+    {
+      "index": 0,
+      "fixture_matched": true,
+      "usage": {
+        "adapter_attempts": 1,
+        "prompt_tokens": 292,
+        "completion_tokens": 42,
+        "total_tokens": 334,
+        "cost": null
+      }
+    },
+    {
+      "index": 1,
+      "fixture_matched": true,
+      "usage": {
+        "adapter_attempts": 1,
+        "prompt_tokens": 292,
+        "completion_tokens": 47,
+        "total_tokens": 339,
+        "cost": null
+      }
+    }
+  ],
+  "source_hashes": {
+    "lite_llm.py": "b58fd9603d8712928c1195da75b6fb2ed701129a54a6f530c4df44048fd9c2ec",
+    "bounded_retry.py": "41c62d7526cd287c248a6626994675c01c79bbf54be6f5c65d6f98c721feb33f"
+  },
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "transport_events": [
+    {
+      "state": "response_returned",
+      "success": true,
+      "error_type": null,
+      "http_status": null,
+      "retryable": null,
+      "latency": 10.786883877008222,
+      "run_attempt_ordinal": 1
+    },
+    {
+      "state": "response_returned",
+      "success": true,
+      "error_type": null,
+      "http_status": null,
+      "retryable": null,
+      "latency": 11.093857528991066,
+      "run_attempt_ordinal": 2
+    }
+  ],
+  "reserved_attempts": 2
+}

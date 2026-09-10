@@ -18,6 +18,7 @@ def main():
     p.add_argument('--source', type=Path, required=True)
     p.add_argument('--package', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--max-attempts', type=int, choices=(1, 3), default=3)
     args = p.parse_args()
     args.output.mkdir(mode=0o700, exist_ok=False)
     os.environ.update(CUDA_VISIBLE_DEVICES='', PYTHON_DOTENV_DISABLED='1',
@@ -26,7 +27,7 @@ def main():
         DEFAULT_SLURM_PARTITION='gpu_24h', DEFAULT_SLURM_ACCOUNT='gpu', DEFAULT_SLURM_QOS='gpu')
     sys.path.insert(0, str(args.source/'src'))
     report = dict(utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        status='NOT_READY', generation_attempt_cap=6, logical_request_cap=2,
+        status='NOT_READY', generation_attempt_cap=2*args.max_attempts, logical_request_cap=2,
         timeout_per_attempt_seconds=120, output_tokens_per_attempt=8192,
         gpu_jobs=0, task_runs=0, public_artificial_input_only=True, calls=[])
     report['source_hashes'] = {name:hashlib.sha256((args.source/'src/dojo/core/solvers/llm_helpers/backends'/name).read_bytes()).hexdigest()
@@ -53,9 +54,9 @@ def main():
             cfg = RunConfig.load_from_json(args.package/'configs'/(manifest['runs'][0]['run_id']+'.json'))
             report['model'] = cfg.solver.operators['draft'].llm.client.model_id
             llm = GenericLLM(cfg.solver.operators['draft'])
-            llm.generation_kwargs['bounded_max_attempts'] = 3
+            llm.generation_kwargs['bounded_max_attempts'] = args.max_attempts
             budget = Path(tempfile.mkdtemp(prefix='forets-resilience-live-',dir='/tmp'))/'attempts.sqlite'
-            initialize(budget, 6, 8192)
+            initialize(budget, 2*args.max_attempts, 8192)
             os.environ['FORETS_RUN_BUDGET_PATH'] = str(budget)
             async def exercise():
                 for index in range(2):

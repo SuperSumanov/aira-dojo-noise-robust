@@ -1,0 +1,39 @@
+{
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--chdir=/research/d7/spc/yzyang4/forets-resilience-20260910-4LGN21",
+    "--output=/research/d7/spc/yzyang4/forets-resilience-20260910-4LGN21/stage-%j.out",
+    "--error=/research/d7/spc/yzyang4/forets-resilience-20260910-4LGN21/stage-%j.err",
+    "/research/d7/spc/yzyang4/forets-resilience-20260910-4LGN21/prepare_forets_resilience_stage_20260910.sbatch",
+    "/research/d7/spc/yzyang4/forets-resilience-20260910-4LGN21",
+    "/research/d7/spc/yzyang4/forets-resilience-20260910-4LGN21/package",
+    "/research/d7/spc/yzyang4/forets-resilience-20260910-4LGN21/live-recovery/finished.json"
+  ],
+  "entry_commit": "0656869fc6863d056a23cac0b2f9f41a59f2f6ad",
+  "files_sha256": {
+    "forets_e2e_campaign.py": "60d3215d68b534165e0d963cc08784023be5828847c81c08190a9bced6250bd7",
+    "forets_e2e_critic_service.py": "5d20773a9aed11c1e1b1a8a8471822b5242bc5561e3032262b045cc83d72b399",
+    "forets_e2e_package.py": "1d7d0af7f198c0597fb9d0e34f43ede72d255088d4a0a01112c002b12f68063c",
+    "forets_stage_gate.py": "65614904a148a87cb97fb0c2a4ec8821eb1349d7816409c06b9b5323ab735f21",
+    "prepare_forets_resilience_stage_20260910.sbatch": "8e2463ba25a880741636d3db02a3610b71023486dcca2b0f1932d75f8cb49fd3"
+  },
+  "gpus": 2,
+  "job_id": "13004",
+  "maximum_minutes": 75,
+  "nominal_gpu_hours": 2.5,
+  "planned_slots_retained": 8,
+  "returncode": 0,
+  "role": "first_paired_development_retry_not_confirmation",
+  "route": {
+    "note": "Two public requests do not prove long-term endpoint reliability.",
+    "observed_utc": "2026-09-10T13:49:55.058491+00:00",
+    "receipt_sha256": "635c64bd705833a2bb6bb08e3c935a3e057b20018713861276ca0c25d4e1c079"
+  },
+  "run_limit": 2,
+  "source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+  "stderr": "",
+  "stdout": "13004",
+  "utc": "2026-09-10T13:52:03.207596+00:00",
+  "with_300s_cleanup_gpu_hours": 2.6666666666666665
+}

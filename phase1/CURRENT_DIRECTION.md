@@ -7,6 +7,17 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L142. 2026-09-10：预算内恢复检查通过，真实首配对13004已启动
+
+13:49:55 UTC在原本6次公开验证预算的剩余2次中做一次恢复检查，每个逻辑请求最多1次；两次均成功。
+本轮公开实网合计6attempt（3成功/3个502），失败仍保留；不宣称服务已稳定，未增加付费/其他模型调用。
+新回执绑定当前transport两模块hash，成功门通过；只允许先跑原矩阵首配对，不自动扩展。
+13:52:03 UTC实际提交13004，入口0656869fc6863d056a23cac0b2f9f41a59f2f6ad，源码仍bbd22e323d6321925a145c12bdc02445c1ad80f4。
+13:52:25 UTC独立squeue/sacct：RUNNING/gpu28/22秒，critic服务step0运行，复用兼容性证据，未人工GPU前向。
+香港21:52:03启动，75分钟正常时限23:07:03；清理可能额外延迟。当前尚无任务完成或新成绩。
+唯一当前根forets-resilience-20260910-4LGN21/package；submission.claim防重复，test-only13003不是实际作业。
+见results/forets_resilience_20260910/{live-recovery,submission}.json；旧NOT_READY条目只作为历史，不能误称仍未提交。
+
 ## 0L141. 2026-09-10：传输重试修复已验证，免费实网502仍阻止新GPU提交
 
 用户批准按推荐持续推进。新增0017增量补丁，组合树bbd22e323d6321925a145c12bdc02445c1ad80f4；

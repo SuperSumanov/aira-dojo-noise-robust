@@ -5,6 +5,7 @@ import json
 import logging
 import os
 from pathlib import Path
+import re
 import signal
 import subprocess
 import sys
@@ -86,7 +87,9 @@ def step(root,index):
                 for line in text.splitlines():
                     for marker in ('ALLOWLIST_GATE ','CUDA_ALLOWLIST ','OPENCL_DIAGNOSTIC '):
                         if line.startswith(marker):report['records'].append(json.loads(line[len(marker):]))
-    except Exception as exc:report['error_type']=type(exc).__name__
+    except Exception as exc:
+        report['error_type']=type(exc).__name__
+        report['adapter_error_tags']=re.findall(r'FORETS_GPU_BINDING_FAILED [A-Za-z]+',str(exc))
     finally:
         signal.alarm(0)
         if srv is not None:

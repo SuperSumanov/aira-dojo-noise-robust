@@ -20,7 +20,8 @@ import xml.etree.ElementTree as ET
 
 from forets_opencl_allowlist_20260911 import IMAGE, GATE, driver_binds
 
-REAL_SINGULARITY='/usr/local/bin/singularity'
+# gpu28 was checked INSIDE Slurm: login linux5 has a different installation path.
+REAL_SINGULARITY='/usr/bin/singularity'
 DEV_ROOT=Path('/research/d7/spc/yzyang4/forets-next-config-20260911-4h_0y6b4')
 
 

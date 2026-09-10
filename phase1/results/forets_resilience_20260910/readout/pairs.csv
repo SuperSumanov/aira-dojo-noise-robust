@@ -1,0 +1,5 @@
+task,seed,metric,comparable,random_run_id,critic_run_id,improvement
+leaf-classification,6,log_loss,True,00-leaf-classification-s6-uniform_random,01-leaf-classification-s6-critic_topk_random,-1.86058
+leaf-classification,7,log_loss,False,03-leaf-classification-s7-uniform_random,02-leaf-classification-s7-critic_topk_random,
+spaceship-titanic,6,accuracy,False,05-spaceship-titanic-s6-uniform_random,04-spaceship-titanic-s6-critic_topk_random,
+spaceship-titanic,7,accuracy,False,06-spaceship-titanic-s7-uniform_random,07-spaceship-titanic-s7-critic_topk_random,

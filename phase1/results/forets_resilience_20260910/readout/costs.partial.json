@@ -1,0 +1,55 @@
+{
+  "allocation_gpu_hours": null,
+  "initialization_gpu_hours": null,
+  "note": "Wait for allocation sacct after job exit. Reservation counts are not successful API calls.",
+  "runs": [
+    {
+      "api_cost_usd": null,
+      "budget_archived": true,
+      "reserved_adapter_attempts": 12,
+      "run_id": "00-leaf-classification-s6-uniform_random"
+    },
+    {
+      "api_cost_usd": null,
+      "budget_archived": true,
+      "reserved_adapter_attempts": 12,
+      "run_id": "01-leaf-classification-s6-critic_topk_random"
+    },
+    {
+      "api_cost_usd": null,
+      "budget_archived": null,
+      "reserved_adapter_attempts": null,
+      "run_id": "02-leaf-classification-s7-critic_topk_random"
+    },
+    {
+      "api_cost_usd": null,
+      "budget_archived": null,
+      "reserved_adapter_attempts": null,
+      "run_id": "03-leaf-classification-s7-uniform_random"
+    },
+    {
+      "api_cost_usd": null,
+      "budget_archived": null,
+      "reserved_adapter_attempts": null,
+      "run_id": "04-spaceship-titanic-s6-critic_topk_random"
+    },
+    {
+      "api_cost_usd": null,
+      "budget_archived": null,
+      "reserved_adapter_attempts": null,
+      "run_id": "05-spaceship-titanic-s6-uniform_random"
+    },
+    {
+      "api_cost_usd": null,
+      "budget_archived": null,
+      "reserved_adapter_attempts": null,
+      "run_id": "06-spaceship-titanic-s7-uniform_random"
+    },
+    {
+      "api_cost_usd": null,
+      "budget_archived": null,
+      "reserved_adapter_attempts": null,
+      "run_id": "07-spaceship-titanic-s7-critic_topk_random"
+    }
+  ]
+}

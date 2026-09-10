@@ -1,0 +1,246 @@
+{
+  "comparable_pairs": 1,
+  "limitations": [
+    "Exploratory, two tasks; not a confirmation result.",
+    "Manifest identity and fairness need independent config checks.",
+    "Process completion is not Slurm allocation completion.",
+    "No cross-task average; conditional valid pairs are not all-run utility.",
+    "Process seconds exclude some setup/idle allocation time; not GPU hours.",
+    "Allocation GPU hours, initialization cost and API cost are not computed."
+  ],
+  "pairs": [
+    {
+      "comparable": true,
+      "critic_run_id": "01-leaf-classification-s6-critic_topk_random",
+      "improvement": -1.86058,
+      "metric": "log_loss",
+      "random_run_id": "00-leaf-classification-s6-uniform_random",
+      "seed": 6,
+      "task": "leaf-classification"
+    },
+    {
+      "comparable": false,
+      "critic_run_id": "02-leaf-classification-s7-critic_topk_random",
+      "improvement": null,
+      "metric": "log_loss",
+      "random_run_id": "03-leaf-classification-s7-uniform_random",
+      "seed": 7,
+      "task": "leaf-classification"
+    },
+    {
+      "comparable": false,
+      "critic_run_id": "04-spaceship-titanic-s6-critic_topk_random",
+      "improvement": null,
+      "metric": "accuracy",
+      "random_run_id": "05-spaceship-titanic-s6-uniform_random",
+      "seed": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "comparable": false,
+      "critic_run_id": "07-spaceship-titanic-s7-critic_topk_random",
+      "improvement": null,
+      "metric": "accuracy",
+      "random_run_id": "06-spaceship-titanic-s7-uniform_random",
+      "seed": 7,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "planned_pairs": 4,
+  "planned_runs": 8,
+  "reader_sha256": "0f832951336926522a93d915b28aa6e068cf3f58308580a2f293d2d383f063c4",
+  "role": "forets_e2e_development",
+  "runs": [
+    {
+      "comparable_final": true,
+      "comparable_score": 0.66022,
+      "declared_config_sha256": "e3a382d93c4a348db064dd0e73b718d98dad00b4dca706ba9fe0b48f4a43c62f",
+      "declared_source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+      "final_event_issue": null,
+      "final_score_observed": 0.66022,
+      "metric": "log_loss",
+      "policy": "uniform_random",
+      "process_elapsed_seconds": 1041.0410418610554,
+      "process_returncode": 0,
+      "process_status": "completed",
+      "run_id": "00-leaf-classification-s6-uniform_random",
+      "seed": 6,
+      "selected_node_id": "01539f03b0314bf388f111ce2298f50d",
+      "task": "leaf-classification"
+    },
+    {
+      "comparable_final": true,
+      "comparable_score": 2.5208,
+      "declared_config_sha256": "30637b6bb7f973deede5f7f5b0dff57d035b38446aa90150dc1fa8a336be3887",
+      "declared_source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+      "final_event_issue": null,
+      "final_score_observed": 2.5208,
+      "metric": "log_loss",
+      "policy": "critic_topk_random",
+      "process_elapsed_seconds": 1348.9142407530453,
+      "process_returncode": 0,
+      "process_status": "completed",
+      "run_id": "01-leaf-classification-s6-critic_topk_random",
+      "seed": 6,
+      "selected_node_id": "211c5cbf1d884d0a9ad4fcb08cc3bb0c",
+      "task": "leaf-classification"
+    },
+    {
+      "comparable_final": false,
+      "comparable_score": null,
+      "declared_config_sha256": "351e2dc12b3d84ff9555f9886f7932a4bf883cd75c6409521798507376b50ec3",
+      "declared_source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+      "final_event_issue": "missing_final_event",
+      "final_score_observed": null,
+      "metric": "log_loss",
+      "policy": "critic_topk_random",
+      "process_elapsed_seconds": null,
+      "process_returncode": null,
+      "process_status": "missing_process_summary",
+      "run_id": "02-leaf-classification-s7-critic_topk_random",
+      "seed": 7,
+      "selected_node_id": null,
+      "task": "leaf-classification"
+    },
+    {
+      "comparable_final": false,
+      "comparable_score": null,
+      "declared_config_sha256": "780be8f5f76758bd422f3d59df11f45048a3d753651161bf9df9e4e9ac3d7cfb",
+      "declared_source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+      "final_event_issue": "missing_final_event",
+      "final_score_observed": null,
+      "metric": "log_loss",
+      "policy": "uniform_random",
+      "process_elapsed_seconds": null,
+      "process_returncode": null,
+      "process_status": "missing_process_summary",
+      "run_id": "03-leaf-classification-s7-uniform_random",
+      "seed": 7,
+      "selected_node_id": null,
+      "task": "leaf-classification"
+    },
+    {
+      "comparable_final": false,
+      "comparable_score": null,
+      "declared_config_sha256": "e27fc5adc35636398f7cac5b90c522d68f584882b2abcd5d1dfa6a7c6e0e3c82",
+      "declared_source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+      "final_event_issue": "missing_final_event",
+      "final_score_observed": null,
+      "metric": "accuracy",
+      "policy": "critic_topk_random",
+      "process_elapsed_seconds": null,
+      "process_returncode": null,
+      "process_status": "missing_process_summary",
+      "run_id": "04-spaceship-titanic-s6-critic_topk_random",
+      "seed": 6,
+      "selected_node_id": null,
+      "task": "spaceship-titanic"
+    },
+    {
+      "comparable_final": false,
+      "comparable_score": null,
+      "declared_config_sha256": "5e103192be813641cb9efd244d2d45a2d9ec1f46b033c129e41b0c86b3135305",
+      "declared_source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+      "final_event_issue": "missing_final_event",
+      "final_score_observed": null,
+      "metric": "accuracy",
+      "policy": "uniform_random",
+      "process_elapsed_seconds": null,
+      "process_returncode": null,
+      "process_status": "missing_process_summary",
+      "run_id": "05-spaceship-titanic-s6-uniform_random",
+      "seed": 6,
+      "selected_node_id": null,
+      "task": "spaceship-titanic"
+    },
+    {
+      "comparable_final": false,
+      "comparable_score": null,
+      "declared_config_sha256": "341c8138c667abadc5fa575b396747c1a49e6faa4411165b96df2a583419f69f",
+      "declared_source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+      "final_event_issue": "missing_final_event",
+      "final_score_observed": null,
+      "metric": "accuracy",
+      "policy": "uniform_random",
+      "process_elapsed_seconds": null,
+      "process_returncode": null,
+      "process_status": "missing_process_summary",
+      "run_id": "06-spaceship-titanic-s7-uniform_random",
+      "seed": 7,
+      "selected_node_id": null,
+      "task": "spaceship-titanic"
+    },
+    {
+      "comparable_final": false,
+      "comparable_score": null,
+      "declared_config_sha256": "8100b824aa331afe2377ce91d82c2916cb3d738dfc278be53358f16e15d565d1",
+      "declared_source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+      "final_event_issue": "missing_final_event",
+      "final_score_observed": null,
+      "metric": "accuracy",
+      "policy": "critic_topk_random",
+      "process_elapsed_seconds": null,
+      "process_returncode": null,
+      "process_status": "missing_process_summary",
+      "run_id": "07-spaceship-titanic-s7-critic_topk_random",
+      "seed": 7,
+      "selected_node_id": null,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "schema": 1,
+  "tasks": [
+    {
+      "by_policy": {
+        "critic_topk_random": {
+          "comparable_finals": 1,
+          "known_process_seconds": 1348.9142407530453,
+          "observed_final_events": 1,
+          "planned_runs": 2,
+          "unknown_process_seconds_runs": 1
+        },
+        "uniform_random": {
+          "comparable_finals": 1,
+          "known_process_seconds": 1041.0410418610554,
+          "observed_final_events": 1,
+          "planned_runs": 2,
+          "unknown_process_seconds_runs": 1
+        }
+      },
+      "comparable_pairs": 1,
+      "improvements": [
+        -1.86058
+      ],
+      "median_improvement": -1.86058,
+      "metric": "log_loss",
+      "planned_pairs": 2,
+      "sample_stdev_improvement": null,
+      "task": "leaf-classification"
+    },
+    {
+      "by_policy": {
+        "critic_topk_random": {
+          "comparable_finals": 0,
+          "known_process_seconds": 0,
+          "observed_final_events": 0,
+          "planned_runs": 2,
+          "unknown_process_seconds_runs": 2
+        },
+        "uniform_random": {
+          "comparable_finals": 0,
+          "known_process_seconds": 0,
+          "observed_final_events": 0,
+          "planned_runs": 2,
+          "unknown_process_seconds_runs": 2
+        }
+      },
+      "comparable_pairs": 0,
+      "improvements": [],
+      "median_improvement": null,
+      "metric": "accuracy",
+      "planned_pairs": 2,
+      "sample_stdev_improvement": null,
+      "task": "spaceship-titanic"
+    }
+  ]
+}

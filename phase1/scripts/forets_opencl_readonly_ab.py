@@ -17,6 +17,7 @@ import socket
 import subprocess
 import sys
 import time
+import xml.etree.ElementTree as ET
 
 IMAGE = Path('/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif')
 
@@ -24,9 +25,14 @@ PROBE = r'''
 import ctypes as C, ctypes.util, json, os, pathlib, re
 r = dict(role='synthetic_opencl_library_diagnostic_not_task_result', task_runs=0, critic_calls=0)
 expected = {int(x) for x in os.environ['EXPECTED_GPU_MINORS'].split(',')}
+expected_major = int(os.environ['EXPECTED_GPU_MAJOR'])
 accessible = []
+masked = []
 for p in pathlib.Path('/dev').glob('nvidia[0-9]*'):
     if not re.fullmatch(r'nvidia[0-9]+', p.name): continue
+    if os.major(p.stat().st_rdev) != expected_major:
+        masked.append(str(p))
+        continue
     try:
         fd = os.open(p, os.O_RDONLY | os.O_CLOEXEC)
     except OSError:
@@ -36,6 +42,7 @@ for p in pathlib.Path('/dev').glob('nvidia[0-9]*'):
         accessible.append(os.minor(p.stat().st_rdev))
 r['accessible_gpu_minors'] = sorted(accessible)
 r['allocated_gpu_minors'] = sorted(expected)
+r['non_gpu_device_placeholders'] = sorted(masked)
 r['gpu_isolation_verified'] = set(accessible) == expected and len(expected) == 1
 r['vendor_directory_exists'] = pathlib.Path('/etc/OpenCL/vendors').is_dir()
 r['icd_files'] = sorted(p.name for p in pathlib.Path('/etc/OpenCL/vendors').glob('*.icd'))
@@ -86,6 +93,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--launch', action='store_true', help='One bounded srun, only after the paired job is terminal')
+    p.add_argument('--mask-unallocated', action='store_true', help='Read-only /dev/null masks, identically in both variants')
     args = p.parse_args()
     here = Path(__file__).resolve().parent
     if args.output.resolve().parent != here:
@@ -108,6 +116,8 @@ def main():
             '--time=00:05:00', '--job-name=forets-opencl-ab', '--kill-on-bad-exit=1',
             '--output='+str(here/'opencl-%j.out'), '--error='+str(here/'opencl-%j.err'),
             sys.executable, str(Path(__file__).resolve()), '--output', str(args.output.resolve())]
+        if args.mask_unallocated:
+            command.append('--mask-unallocated')
         with (here/'launch.claim.json').open('x') as f:
             json.dump(dict(command=command, observed_utc=datetime.now(timezone.utc).isoformat(),
                 previous_job_states=states, automatic_retry=False), f, indent=2)
@@ -120,10 +130,20 @@ def main():
     if args.output.exists():
         raise FileExistsError('preserve prior diagnostic output')
     print(json.dumps(dict(status='OPENCL_DIAGNOSTIC_STARTED', job_id=job, step_id=step, node='gpu28')), flush=True)
-    mapping = subprocess.run(['nvidia-smi', '--query-gpu=index,minor_number', '--format=csv,noheader,nounits'],
+    mapping = subprocess.run(['nvidia-smi', '--query-gpu=index,uuid', '--format=csv,noheader,nounits'],
         capture_output=True, text=True, check=True, timeout=15)
-    minors = dict(tuple(int(v.strip()) for v in line.split(',')) for line in mapping.stdout.splitlines())
+    xml = subprocess.run(['nvidia-smi', '-q', '-x'], capture_output=True, text=True, check=True, timeout=15)
+    by_uuid = {g.findtext('uuid'):int(g.findtext('minor_number')) for g in ET.fromstring(xml.stdout).findall('gpu')}
+    minors = {int(line.split(',')[0]):by_uuid[line.split(',')[1].strip()] for line in mapping.stdout.splitlines()}
     minor = minors[int(assigned)]
+    gpu_major = os.major(Path(f'/dev/nvidia{minor}').stat().st_rdev)
+    masked_devices = []
+    if args.mask_unallocated:
+        for device in sorted(Path('/dev').glob('nvidia[0-9]*')):
+            if (re.fullmatch(r'nvidia[0-9]+', device.name)
+                    and os.major(device.stat().st_rdev) == gpu_major
+                    and os.minor(device.stat().st_rdev) != minor):
+                masked_devices.append(str(device))
     vendors = Path(__file__).with_name('opencl-vendors')
     icd = vendors / 'nvidia.icd'
     if icd.read_text().strip() != 'libnvidia-opencl.so.1':
@@ -133,12 +153,16 @@ def main():
         image=str(IMAGE), image_bytes=before.st_size, image_mtime_ns=before.st_mtime_ns,
         icd_sha256=hashlib.sha256(icd.read_bytes()).hexdigest(),
         script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), variants=[])
+    report['common_readonly_device_masks'] = masked_devices
+    report['baseline_is_original_image_with_common_device_masks'] = bool(masked_devices)
     env = {k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ('KEY','TOKEN','SECRET','PASSWORD'))}
     for variant in ('original', 'readonly_icd'):
         command = [shutil.which('singularity') or 'singularity', 'exec', '--containall', '--cleanenv', '--no-home', '--nv']
+        for device in masked_devices:
+            command += ['--bind', f'/dev/null:{device}:ro']
         if variant == 'readonly_icd':
             command += ['--bind', f'{vendors}:/etc/OpenCL/vendors:ro']
-        command += [str(IMAGE), 'env', f'EXPECTED_GPU_MINORS={minor}',
+        command += [str(IMAGE), 'env', f'EXPECTED_GPU_MINORS={minor}', f'EXPECTED_GPU_MAJOR={gpu_major}',
             'CUDA_VISIBLE_DEVICES='+os.environ.get('CUDA_VISIBLE_DEVICES', assigned),
             'OMP_NUM_THREADS=1', 'python', '-c', PROBE]
         start = time.monotonic()

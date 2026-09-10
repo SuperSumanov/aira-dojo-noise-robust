@@ -1,0 +1,19 @@
+{
+  "completed": false,
+  "controller_elapsed_seconds": 2573.7178086589556,
+  "execution_node": "gpu28",
+  "execution_run_limit": 2,
+  "pool": {
+    "allocation_id": "13004",
+    "counts": {
+      "completed": 2,
+      "pending": 6
+    },
+    "manifest_path": "/research/d7/spc/yzyang4/forets-resilience-20260910-4LGN21/package/runs/srun_pool/b3e0510df6c4/manifest.json",
+    "successful": false
+  },
+  "service_cleanup_confirmed": false,
+  "service_srun_exited": true,
+  "service_startup_seconds": 162.9721515569836,
+  "status": "first_pair_completed_rest_not_started"
+}

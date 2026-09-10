@@ -1,0 +1,237 @@
+{
+  "role": "forets_e2e_development_diagnostic",
+  "job_id": "13004",
+  "source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+  "runs": [
+    {
+      "run_id": "00-leaf-classification-s6-uniform_random",
+      "task": "leaf-classification",
+      "seed": 6,
+      "policy": "uniform_random",
+      "observed_ledgers": 2,
+      "missing_step_files": [
+        0,
+        3
+      ],
+      "invalid_ledgers": 0,
+      "recorded_selections": 2,
+      "critic_pruning_selections": 0,
+      "cutoff_tied_pruning_selections": 0,
+      "all_equal_pruning_selections": 0,
+      "coupled_random_different_selections": 0,
+      "batches": [
+        {
+          "step": 1,
+          "phase": "complete",
+          "candidate_count": 3,
+          "known_score_count": 0,
+          "selection_recorded": true,
+          "selected_execution_completed": true,
+          "replay_matches": true,
+          "full_pool_no_pruning": false,
+          "cutoff_tie": null,
+          "all_scores_equal": null,
+          "strictly_separated_cutoff": null,
+          "coupled_random_slot_differs": false,
+          "coupled_random_excluded": null,
+          "issue": null
+        },
+        {
+          "step": 2,
+          "phase": "complete",
+          "candidate_count": 2,
+          "known_score_count": 0,
+          "selection_recorded": true,
+          "selected_execution_completed": true,
+          "replay_matches": true,
+          "full_pool_no_pruning": true,
+          "cutoff_tie": null,
+          "all_scores_equal": null,
+          "strictly_separated_cutoff": null,
+          "coupled_random_slot_differs": false,
+          "coupled_random_excluded": null,
+          "issue": null
+        }
+      ]
+    },
+    {
+      "run_id": "01-leaf-classification-s6-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 6,
+      "policy": "critic_topk_random",
+      "observed_ledgers": 2,
+      "missing_step_files": [
+        0,
+        2
+      ],
+      "invalid_ledgers": 0,
+      "recorded_selections": 2,
+      "critic_pruning_selections": 1,
+      "cutoff_tied_pruning_selections": 0,
+      "all_equal_pruning_selections": 0,
+      "coupled_random_different_selections": 1,
+      "batches": [
+        {
+          "step": 1,
+          "phase": "complete",
+          "candidate_count": 3,
+          "known_score_count": 3,
+          "selection_recorded": true,
+          "selected_execution_completed": true,
+          "replay_matches": true,
+          "full_pool_no_pruning": false,
+          "cutoff_tie": false,
+          "all_scores_equal": false,
+          "strictly_separated_cutoff": true,
+          "coupled_random_slot_differs": true,
+          "coupled_random_excluded": false,
+          "issue": null
+        },
+        {
+          "step": 3,
+          "phase": "complete",
+          "candidate_count": 1,
+          "known_score_count": 1,
+          "selection_recorded": true,
+          "selected_execution_completed": true,
+          "replay_matches": true,
+          "full_pool_no_pruning": true,
+          "cutoff_tie": null,
+          "all_scores_equal": true,
+          "strictly_separated_cutoff": null,
+          "coupled_random_slot_differs": false,
+          "coupled_random_excluded": false,
+          "issue": null
+        }
+      ]
+    },
+    {
+      "run_id": "02-leaf-classification-s7-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 7,
+      "policy": "critic_topk_random",
+      "observed_ledgers": 0,
+      "missing_step_files": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "invalid_ledgers": 0,
+      "recorded_selections": 0,
+      "critic_pruning_selections": 0,
+      "cutoff_tied_pruning_selections": 0,
+      "all_equal_pruning_selections": 0,
+      "coupled_random_different_selections": 0,
+      "batches": []
+    },
+    {
+      "run_id": "03-leaf-classification-s7-uniform_random",
+      "task": "leaf-classification",
+      "seed": 7,
+      "policy": "uniform_random",
+      "observed_ledgers": 0,
+      "missing_step_files": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "invalid_ledgers": 0,
+      "recorded_selections": 0,
+      "critic_pruning_selections": 0,
+      "cutoff_tied_pruning_selections": 0,
+      "all_equal_pruning_selections": 0,
+      "coupled_random_different_selections": 0,
+      "batches": []
+    },
+    {
+      "run_id": "04-spaceship-titanic-s6-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 6,
+      "policy": "critic_topk_random",
+      "observed_ledgers": 0,
+      "missing_step_files": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "invalid_ledgers": 0,
+      "recorded_selections": 0,
+      "critic_pruning_selections": 0,
+      "cutoff_tied_pruning_selections": 0,
+      "all_equal_pruning_selections": 0,
+      "coupled_random_different_selections": 0,
+      "batches": []
+    },
+    {
+      "run_id": "05-spaceship-titanic-s6-uniform_random",
+      "task": "spaceship-titanic",
+      "seed": 6,
+      "policy": "uniform_random",
+      "observed_ledgers": 0,
+      "missing_step_files": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "invalid_ledgers": 0,
+      "recorded_selections": 0,
+      "critic_pruning_selections": 0,
+      "cutoff_tied_pruning_selections": 0,
+      "all_equal_pruning_selections": 0,
+      "coupled_random_different_selections": 0,
+      "batches": []
+    },
+    {
+      "run_id": "06-spaceship-titanic-s7-uniform_random",
+      "task": "spaceship-titanic",
+      "seed": 7,
+      "policy": "uniform_random",
+      "observed_ledgers": 0,
+      "missing_step_files": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "invalid_ledgers": 0,
+      "recorded_selections": 0,
+      "critic_pruning_selections": 0,
+      "cutoff_tied_pruning_selections": 0,
+      "all_equal_pruning_selections": 0,
+      "coupled_random_different_selections": 0,
+      "batches": []
+    },
+    {
+      "run_id": "07-spaceship-titanic-s7-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 7,
+      "policy": "critic_topk_random",
+      "observed_ledgers": 0,
+      "missing_step_files": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "invalid_ledgers": 0,
+      "recorded_selections": 0,
+      "critic_pruning_selections": 0,
+      "cutoff_tied_pruning_selections": 0,
+      "all_equal_pruning_selections": 0,
+      "coupled_random_different_selections": 0,
+      "batches": []
+    }
+  ],
+  "limitations": [
+    "No final score, candidate code, prompt, identity or critic score values exported.",
+    "Missing step files may reflect debug jumps, early stop, failure or no start; not inferred.",
+    "Same-pool coupled random slot is not the other arm or its unobserved final score.",
+    "Ties can change selected slots through slot-order tie breaking, not learned discrimination.",
+    "Recorded selection is not completed execution; no ranking accuracy or utility claim.",
+    "The original full eight-run final-score readout remains primary."
+  ]
+}

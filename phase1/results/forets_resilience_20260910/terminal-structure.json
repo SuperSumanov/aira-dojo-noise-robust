@@ -1,0 +1,106 @@
+{
+  "observed_utc": "2026-09-10T14:44:19.352429+00:00",
+  "job_id": 13004,
+  "role": "development_live_structure_only",
+  "manifest_sha256": "8c2183670209f51a9a6bc4c14225cab51145d007f6a95e8a515a28b157f36d1e",
+  "sacct": [
+    "13004|COMPLETED|2577|billing=12,cpu=12,gres/gpu=2,node=1|0:0|2026-09-10T21:52:03|2026-09-10T22:35:00",
+    "13004.batch|COMPLETED|2577|cpu=12,mem=0,node=1|0:0|2026-09-10T21:52:03|2026-09-10T22:35:00",
+    "13004.extern|COMPLETED|2577|billing=12,cpu=12,gres/gpu=2,node=1|0:0|2026-09-10T21:52:03|2026-09-10T22:35:00",
+    "13004.0|CANCELLED by 7542|2574|cpu=6,gres/gpu=1,mem=0,node=1|0:15|2026-09-10T21:52:06|2026-09-10T22:35:00",
+    "13004.1|COMPLETED|0|cpu=6,gres/gpu=1,mem=0,node=1|0:0|2026-09-10T21:54:52|2026-09-10T21:54:52",
+    "13004.2|COMPLETED|1041|cpu=6,gres/gpu=1,mem=0,node=1|0:0|2026-09-10T21:54:52|2026-09-10T22:12:13",
+    "13004.3|COMPLETED|1350|cpu=6,gres/gpu=1,mem=0,node=1|0:0|2026-09-10T22:12:22|2026-09-10T22:34:52"
+  ],
+  "runs": [
+    {
+      "run_id": "00-leaf-classification-s6-uniform_random",
+      "status": "completed",
+      "malformed_transport_lines": 0,
+      "transport_counts": {
+        "APIError": 2,
+        "success": 9,
+        "TimeoutError": 1
+      },
+      "http_status_counts": {
+        "502": 2
+      },
+      "opencl_error_seen": true,
+      "batches": [
+        {
+          "step": 1,
+          "phase": "complete",
+          "candidate_count": 3,
+          "task_call_states": {
+            "returned": 1
+          }
+        },
+        {
+          "step": 2,
+          "phase": "complete",
+          "candidate_count": 2,
+          "task_call_states": {
+            "returned": 2
+          }
+        }
+      ]
+    },
+    {
+      "run_id": "01-leaf-classification-s6-critic_topk_random",
+      "status": "completed",
+      "malformed_transport_lines": 0,
+      "transport_counts": {
+        "success": 8,
+        "TimeoutError": 2,
+        "APIError": 2
+      },
+      "http_status_counts": {
+        "502": 2
+      },
+      "opencl_error_seen": false,
+      "batches": [
+        {
+          "step": 1,
+          "phase": "complete",
+          "candidate_count": 3,
+          "task_call_states": {
+            "returned": 2
+          }
+        },
+        {
+          "step": 3,
+          "phase": "complete",
+          "candidate_count": 1,
+          "task_call_states": {
+            "returned": 1
+          }
+        }
+      ]
+    },
+    {
+      "run_id": "02-leaf-classification-s7-critic_topk_random",
+      "status": "pending"
+    },
+    {
+      "run_id": "03-leaf-classification-s7-uniform_random",
+      "status": "pending"
+    },
+    {
+      "run_id": "04-spaceship-titanic-s6-critic_topk_random",
+      "status": "pending"
+    },
+    {
+      "run_id": "05-spaceship-titanic-s6-uniform_random",
+      "status": "pending"
+    },
+    {
+      "run_id": "06-spaceship-titanic-s7-uniform_random",
+      "status": "pending"
+    },
+    {
+      "run_id": "07-spaceship-titanic-s7-critic_topk_random",
+      "status": "pending"
+    }
+  ],
+  "campaign_finished_exists": true
+}

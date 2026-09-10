@@ -1,0 +1,10 @@
+#!/research/d7/spc/yzyang4/venvs/aira/bin/python
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parent.parent))
+from forets_gpu_binding_20260911 import main
+try:
+    main()
+except Exception as exc:
+    print('FORETS_GPU_BINDING_FAILED '+type(exc).__name__,file=sys.stderr)
+    raise SystemExit(70)

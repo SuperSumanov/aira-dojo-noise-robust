@@ -48,10 +48,10 @@
 
 ## 未解决与下一步
 
-1. **新隔离门已实际通过**：13037在gpu28，两条件仅暴露/可打开分配的GPU0，50个驱动库实际ro；无设备9。
-   原SIF无libOpenCL.so.1已CPU实证；13037两条件均OSError，未拟合/未Torch，不称OpenCL通过。
-   按[显式设备短检](FORETS_EXPLICIT_DEVICE_PLAN_20260911.md)给两条件同加宿主现有loader只读绑定，独立单卡最多5分钟完成A/B。
-   这不是已失败的/dev/null遮蔽；8-run release仍不打开。
+1. **隔离/OpenCL已实测通过**：13040，原SIF、3090、仅分配GPU0可见，有ICD的LightGBM GPU拟合与原Torch CUDA通过。
+   无ICD为0平台/-1001；13037/38/39失败均保留。直接单进程证据，不等于Jupyter实际任务入口已通过。
+   接入外置显式adapter，两臂相同，源码/8配置不改；一个双卡最多5分钟实际Jupyter双step人工验证准备中。
+   证据根forets-opencl-allowlist-r4-20260911-Z61pJp；[报告](FORETS_EXPLICIT_DEVICE_PLAN_20260911.md)。8-run release仍关闭。
    GPU9共享约定仍未知，已问学长/管理员未回复；新路径不绑定设备9、不依赖放宽共享约定。
    设备可打开不证明13004使用过它，不据此改写旧结果。原镜像/任务代码不改，不升级Torch、不退CPU。
    自查已知gpu28登记9卡、Slurm19.05.4；计算节点配置SSH被主机身份校验挡住，现有信任记录无匹配，不绕过。

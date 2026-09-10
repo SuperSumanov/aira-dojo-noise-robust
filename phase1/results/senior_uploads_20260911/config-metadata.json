@@ -1,0 +1,59 @@
+{
+  "archives_extracted": 0,
+  "cross_group_config_parent_path_overlap": 0,
+  "groups": {
+    "0907": {
+      "archives": 2,
+      "commits": {
+        "61459c0a1248900079dafed7c505afa87e476b40": 8
+      },
+      "configs_opened": 8,
+      "credential_refused": 0,
+      "distinct_config_parent_paths": 8,
+      "header_counts": {
+        "dojo_config.json": 8,
+        "env_variables.json": 8,
+        "journal.jsonl": 5
+      },
+      "solver_configs": [
+        {
+          "configs": 8,
+          "fields": {
+            "num_children": 2
+          }
+        }
+      ]
+    },
+    "0909/mcts": {
+      "archives": 6,
+      "commits": {
+        "065b0fbaa89e0eb663f2834ec768081f5d56394d": 16,
+        "61459c0a1248900079dafed7c505afa87e476b40": 8
+      },
+      "configs_opened": 24,
+      "credential_refused": 0,
+      "distinct_config_parent_paths": 24,
+      "header_counts": {
+        "dojo_config.json": 24,
+        "env_variables.json": 24,
+        "journal.jsonl": 24,
+        "link_members_not_opened": 4
+      },
+      "solver_configs": [
+        {
+          "configs": 24,
+          "fields": {
+            "num_children": 2
+          }
+        }
+      ]
+    }
+  },
+  "journals_env_code_outcomes_opened": false,
+  "manifest_sha256": "67ac5406b789fa7a5a39f41e9483a095f671f2d25ba47ccf69af4f98264c7cb4",
+  "production_source_changed": false,
+  "protected_values_read": false,
+  "script_sha256": "abed99ab4b22a89b5f12e49d750440b1a609e958ef30a959eeffab0e941b682b",
+  "status": "CONFIG_METADATA_ONLY_NOT_RUN_VALIDATION_OR_TRAINING",
+  "utc": "2026-09-10T20:27:37.299572+00:00"
+}

@@ -1,0 +1,29 @@
+{
+  "folders": [
+    {
+      "archives": 2,
+      "files": 2,
+      "relative": "0907",
+      "subfolders": 0
+    },
+    {
+      "archives": 0,
+      "files": 0,
+      "relative": "0909",
+      "subfolders": 1
+    },
+    {
+      "archives": 6,
+      "config_v2_sidecars": 0,
+      "files": 6,
+      "relative": "0909/mcts",
+      "subfolders": 0
+    }
+  ],
+  "manifest_sha256": "dd10aa4b2463d851d5a12184595af5f3681880894d483392ae6ffbaca711266d",
+  "payloads_opened": 0,
+  "requests": 4,
+  "root": "/research/d7/spc/yzyang4/senior-discovery-20260911-bye8978l",
+  "status": "DISCOVERY_METADATA_ONLY",
+  "utc": "2026-09-10T20:23:34.377755+00:00"
+}

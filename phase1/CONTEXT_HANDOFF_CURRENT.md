@@ -1,6 +1,16 @@
 # 当前会话交接：ForeTS 同预算端到端探索
 
-记录更新：2026-09-10（香港）。这是恢复索引，不是新的实验结果。
+记录更新：2026-09-11（香港）。这是恢复索引，不是新的实验结果。
+最新核查20:30:10 UTC/香港04:30：Git学长head仍065b0fba；网盘有0907两包、0909/mcts六包，均已隔离下载。
+隔离根/research/d7/spc/yzyang4/senior-quarantine-20260911-v1，manifest SHA67ac5406b789fa7a5a39f41e9483a095f671f2d25ba47ccf69af4f98264c7cb4。
+八包205,912,386 bytes；配置目录8+24，不是32个新增physical runs，含61459c0a/065b0fba两个代码版本。
+只打开凭据扫描通过的dojo_config.json与成员头，没有env/journal/结果值；新包未入production source/训练。
+LATEST仍1b44e898...、733 eligible/759总runs、closure=false。原run边界/冻结保护继续保留。
+独立未部署原型forets_common_priority.py实现同池共同随机排列；50项新旧测试通过，不改原selector/13004，不是效果结果。
+只见12535 JobHeldUser；OpenCL外部事实仍等待，未新增GPU/API/fit/monitor。先看CURRENT_DIRECTION 0L146和9月11日报告。
+不要重跑下载（输出已有），不要把新包目录名或配置数当来源资格；后续必要读取仍credential-first并保持盲态。
+
+以下是上一轮配对与OpenCL诊断的真实终态：
 最新作业核验：**2026-09-10 14:53:38 UTC / 香港22:53:38**。
 **13004已于香港22:35:00 COMPLETED；首对2/2有效，critic这次更差。** 不再等待原23:07时限。
 leaf/seed6最终log loss：random=0.66022、critic=2.5208；random−critic=-1.86058。
@@ -103,7 +113,7 @@ CPU复现明确警告：/dev绑定要求来源/目的路径相同。13007/13009/
 
 ## 中断后下一步
 
-1. 先读0L145。13004已完成且首对负向；结果已复验，别重复该对或把其余6项自动补跑。
+1. 先读0L146。新语料在隔离区，未入库；13004已完成且首对负向，别重复该对或把其余6项自动补跑。
 2. 13007/13009/13010均结束；等待GPU9/单卡OpenCL外部事实，不能重投失败的/dev/null绑定方案或放宽门。
 3. 12977与package-r2已终态FAILED；保留全部8项失败及原包，不把旧运行记录当当前状态。
 4. 容器计算和critic16K检查已通过，不重复；候选OpenCL错误尚未解决，不手改候选或退到CPU。

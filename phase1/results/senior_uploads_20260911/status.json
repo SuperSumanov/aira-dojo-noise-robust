@@ -1,0 +1,18 @@
+{
+  "closure_provided": false,
+  "inventory": {
+    "all_physical_runs": 759,
+    "eligible_endpoints": 19609,
+    "eligible_runs": 733,
+    "eligible_structural_pairs": 4426,
+    "eligible_tasks": 59
+  },
+  "latest": "1b44e898bbae7ffc9098bbfa584ba842e0db2be5ae6bb8b5da0475d8ab34239f",
+  "protected_values_read": false,
+  "queue": [
+    "12535|critic_zero3_resume|PENDING|0:00|(JobHeldUser)"
+  ],
+  "queue_rc": 0,
+  "summary_sha256": "971d5bf25df0824ac69d28c7c88900218992b5fdb41e2e12e80403733f489baa",
+  "utc": "2026-09-10T20:30:10.245351+00:00"
+}

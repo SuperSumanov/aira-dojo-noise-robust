@@ -1,0 +1,22 @@
+{
+  "archive_contents_opened": false,
+  "archives": 8,
+  "bytes": 205912386,
+  "elapsed_seconds": 54.84518298902549,
+  "gpu_jobs": 0,
+  "groups": {
+    "0907": 2,
+    "0909/mcts": 6
+  },
+  "latest_unchanged": "1b44e898bbae7ffc9098bbfa584ba842e0db2be5ae6bb8b5da0475d8ab34239f",
+  "manifest_sha256": "67ac5406b789fa7a5a39f41e9483a095f671f2d25ba47ccf69af4f98264c7cb4",
+  "model_calls": 0,
+  "nested_mcts_kept_separate": true,
+  "production_source_changed": false,
+  "protected_values_read": false,
+  "requests": 20,
+  "script_sha256": "3eec064178bac99ccdef538a8390928da95b2454a79514c694a84790a38f004b",
+  "stability_mtime_backdated": false,
+  "status": "DOWNLOADED_QUARANTINED_NOT_INTAKE_OR_TRAINING",
+  "utc": "2026-09-10T20:26:06.628095+00:00"
+}

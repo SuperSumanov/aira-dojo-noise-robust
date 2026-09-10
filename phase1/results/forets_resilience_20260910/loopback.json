@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "transient_recovers",
+      "observed_http_requests": 2,
+      "reserved": 2
+    },
+    {
+      "case": "rate_limit_recovers",
+      "observed_http_requests": 2,
+      "reserved": 2
+    },
+    {
+      "case": "permanent_auth",
+      "observed_http_requests": 1,
+      "reserved": 1
+    },
+    {
+      "case": "permanent_parameter",
+      "observed_http_requests": 1,
+      "reserved": 1
+    },
+    {
+      "case": "exhausts_three",
+      "observed_http_requests": 3,
+      "reserved": 3
+    },
+    {
+      "case": "budget_stops_retry",
+      "observed_http_requests": 1,
+      "reserved": 1
+    },
+    {
+      "case": "default_one_attempt",
+      "observed_http_requests": 1,
+      "reserved": 1
+    },
+    {
+      "case": "invalid_response_no_retry",
+      "observed_http_requests": 1,
+      "reserved": 1
+    }
+  ],
+  "cases_passed": 8,
+  "external_api_calls": 0,
+  "gpu_jobs": 0,
+  "protected_data_read": false
+}

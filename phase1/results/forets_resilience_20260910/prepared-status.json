@@ -1,0 +1,19 @@
+{
+  "checked_utc": "2026-09-10T13:44:02.473622+00:00",
+  "status": "PREPARED_NOT_SUBMITTED_LIVE_GATE_BLOCKED",
+  "source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+  "prepared_runs": 8,
+  "planned_first_stage_runs": 2,
+  "generator_attempt_limit_per_run": 40,
+  "first_stage_attempt_limit": 80,
+  "first_stage_minutes": 75,
+  "first_stage_gpus": 2,
+  "first_stage_gpu_hours_nominal": 2.5,
+  "first_stage_gpu_hours_with_300s_cleanup": 2.6666666666666665,
+  "external_api_attempts_this_turn": 4,
+  "gpu_jobs_submitted_this_turn": 0,
+  "prior_receipts_reused": true,
+  "private_protected_data_read": false,
+  "live_gate": "NOT_READY",
+  "receipt_path_normalization": "Copied CR-suffixed directory to live-first; original bytes preserved."
+}

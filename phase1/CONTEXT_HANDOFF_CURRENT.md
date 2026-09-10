@@ -1,13 +1,27 @@
 # 当前会话交接：ForeTS 同预算端到端探索
 
 记录更新：2026-09-10（香港）。这是恢复索引，不是新的实验结果。
-最近一次作业观察：**2026-09-10 06:33:39 UTC / 2026-09-10 14:33:39 香港**。
-**12977已在gpu28运行。** 原SIF的CUDA前向/反向、critic单3090/16K/全参数CUDA-BF16均已通过。
-critic同次加载后供搜索。首个随机run在draft阶段APIError失败，第二个critic run运行且已有4个成功接口响应；
-其余待执行，无完成run或最终成绩。不是CUDA失败；错误具体HTTP原因未知，不换生成器或重跑有利seed。
+最新工作核验：**2026-09-10 13:44:02 UTC / 香港21:44:02**。
+**传输容错补丁及首配对准备完成，但固定免费服务实测502，尚未重投GPU。**
+本地53项回归+8组真实SDK本机HTTP通过。两次公开实网输入共4个attempt：1成功、第二次连续3个502；NOT_READY。
+新组合树`bbd22e323d6321925a145c12bdc02445c1ad80f4`，仅在独立source应用0017，旧12977包保持。
+新准备根`/research/d7/spc/yzyang4/forets-resilience-20260910-4LGN21`，包`package`；首阶段2run/双3090/75分钟，
+名义2.5 GPUh。其余6槽位保留但不启动；无论首对成败都停止，不自动扩展。原镜像/critic16K证据复用，不重复验收。
+首次实网结果在`live-first/finished.json`，缺后来新增的源hash字段且状态失败，不允许复用为READY。
+当前入口要求新鲜、成功且代码绑定的实网回执；拒绝旧布尔“已检查”作为充分条件。
+详情：[修复报告](FORETS_RESILIENCE_20260910.md)。无新的模型收益/干净scaling结论。
+
+以下为最近真实GPU作业的终态证据（不是新准备包在运行）：
+最近一次作业观察：**2026-09-10 13:04:22 UTC / 2026-09-10 21:04:22 香港**。
+**12977已于香港14:44:01 FAILED，不再运行。** 8run全部失败，0有效配对，无最终分或critic收益结论。
+逐run终止原因：5个生成接口APIError、3个请求TimeoutError；26个去重transport记录中9成功/17非成功，
+后者含9个随之取消的请求；具体HTTP原因与远端取消/账单未知。
+01号run另有候选LightGBM找不到OpenCL设备；原SIF基础CUDA前反向及critic16K通过，不等于所有任务库可用。
+实际分配18分37秒×2GPU=0.6205555555555555 GPUh。当前无本轮运行任务；旧12535仍pending，不能释放。
+安全证据：[terminal-status.json](results/forets_3090_20260910/terminal-status.json)。本次仅诊断/记录，未重投。
 12933因PRO6000/任务镜像不兼容在排队时取消；12974启动失败，保留；12973只是test-only预检号。
 用户明确指定gpu27/gpu28可跑MLE。原镜像、8run与270分钟不变，不升级Torch、不CPU卸载、不跨节点服务。
-新唯一运行根 `/research/d7/spc/yzyang4/forets-e2e-3090-20260910-j6zb6d6i/package-r2`。
+已结束12977的原始根 `/research/d7/spc/yzyang4/forets-e2e-3090-20260910-j6zb6d6i/package-r2`，只读保留。
 
 ## 恢复先读与权威顺序
 
@@ -23,13 +37,13 @@ critic同次加载后供搜索。首个随机run在draft阶段APIError失败，�
 - OpenRouter 平台、地址、模型已经确认；凭据已经按用户明确授权安装在远端，别再问同一问题。
 - 两次公开人工输入端点检查：第一次失败已保留，第二次成功；不是 task run，也不是长期服务稳定性证明。
 - 8-run 包曾提交12933，后因任务镜像兼容性遗漏在PENDING时取消；不能当作已执行或可直接重投的包。
-- 不要重复 G0、下载、projgpu39 critic验收或端点检查填时间；缺的是任务镜像在目标GPU的实际兼容性。
+- 不要重复 G0、下载、critic16K或基础CUDA验收；这些已通过。尚缺可靠生成与真实任务成功闭环。
 - 尚无新的 critic 收益、干净 scaling 或 e2e 正效果结论。学长旧 scaling 是探索信号，不是本轮发现。
 
 ## 当前作业与历史尝试
 
-- 当前实际job：**12977**，入口commit `60bad03096b3340d4fea8dc221f142c965369995`；
-  香港14:25:24启动gpu28、2×RTX3090/12CPU、270分钟/no-requeue；正常时限18:55:24，清理可能延迟。
+- 最近实际job：**12977，FAILED**，入口commit `60bad03096b3340d4fea8dc221f142c965369995`；
+  香港14:25:24启动gpu28、2×RTX3090/12CPU，14:44:01结束；原18:55:24时限不再是等待ETA。
   证据：[submission12977.json](results/forets_3090_20260910/submission12977.json)、
   [容器实测](results/forets_3090_20260910/container.compatibility.json)、[初始状态](results/forets_3090_20260910/deployment.initial-state.json)。
 - 原SIF Torch2.5.1+cu124/CUDA12.4，3090能力8.6，CUDA矩阵前向/反向通过；无数据/生成器调用，不等于MLE整轮成功。
@@ -73,12 +87,13 @@ critic同次加载后供搜索。首个随机run在draft阶段APIError失败，�
 
 ## 中断后下一步
 
-1. 只核12977与package-r2；先squeue/sacct，再看critic.ready/campaign.finished/runtime-manifest与runs/srun_pool。
-2. 容器计算和critic16K检查已通过，不重复。当前直接跟进实际MLE worker的运行/失败/最终成绩。
-3. 旧12933/12974/12973不是当前运行对象。新submission.claim防重复，不因没有finished盲目重投。
-4. 运行日志先脱敏；不读保护集、不重跑端点、不加新臂/模型/任务/seed。故障先定位，保留全部8run。
-5. 仍保持原镜像和同3090硬件；不能CPU卸载、升级Torch或临时跨节点绕过失败。
-6. 作业终态后按 [读出定义](FORETS_E2E_READOUT_20260909.md) 核真实结果/失败/成本；完成率与分差分开报告。
+1. 先读0L141及新修复报告。0017和首配对包已准备，实网NOT_READY，尚未提交；不要重复写同一修复或重跑人工验收。
+2. 先处理固定免费路由502或取得稳定同模型路由所需授权，不能忽略失败/暗改模型或付费fallback。
+3. 12977与package-r2已终态FAILED；保留全部8项失败及原包，不把旧运行记录当当前状态。
+4. 容器计算和critic16K检查已通过，不重复；候选OpenCL错误尚未解决，不手改候选或退到CPU。
+5. 旧12933/12974/12973不得重投；不因没有finished就提交重复作业。新包没有job_id，不冒充排队。
+6. 日志先脱敏、不读保护集；原镜像/3090硬件不变，不升级Torch、CPU卸载或跨节点绕过失败。
+7. 取得真实终态后按 [读出定义](FORETS_E2E_READOUT_20260909.md) 核最终分/失败/成本；完成率与分差分开报告。
 
 候选后续方案见 [信息负对照与相关工作](FORETS_INFORMATION_CONTROL_AND_RELATED_WORK_20260910.md)：
 新seed块比较随机/真实critic/置换分数，区分学习信息与完整策略净收益。仅设计、未实现/提交/新增预算，

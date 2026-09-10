@@ -170,3 +170,10 @@ confirmation。
 better/worse scalar scores 连同 margin 写入 one-shot receipt，并检查三者一致，不改变模型、输入或预测。该通过只证明工程 overlay 与精确
 base commit 兼容，不证明模型效果，也不解除 source-batch provenance、全新 experiment-closed dev/frozen、Cards
 LFS 和单旋钮门禁。当前不得直接运行 mixed launcher。
+## 0017：ForeTS瞬时传输错误的有界重试（2026-09-10）
+
+接在0010—0016组成的source-v5树`2ff5277ba17327c6c03326a018b59f704402af6b`之后，
+组合树为`bbd22e323d6321925a145c12bdc02445c1ad80f4`；不能直接叠到未应用前序补丁的学长分支。
+新增安全数字HTTP诊断与显式`bounded_max_attempts`（默认1、上限3），每次都经过同一个run预算；
+只重试白名单瞬时故障。完整批次保留成功兄弟但不容许部分池选择。53本地回归及8组真实SDK本机HTTP通过。
+新实网出现连续502，未启动GPU；详见`phase1/FORETS_RESILIENCE_20260910.md`。这不是服务已修复或模型收益。

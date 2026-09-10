@@ -17,6 +17,7 @@ import time
 
 from forets_e2e_package import SOURCE, SOURCE_TREE, PYTHON, write_new, common_config
 from forets_pilot_plan import run_order
+from forets_stage_gate import prior_compatibility, stage_reached, validate_route_receipt
 
 GPU_PYTHON = '/research/d7/spc/yzyang4/venvs/exp/bin/python'
 
@@ -73,11 +74,14 @@ def require_execution_ready(*, approved, route_checked, environment):
         raise RuntimeError('controller belongs in the approved sbatch allocation, not a GPU step')
 
 
-def execute(root, *, approved, route_checked, execution_node):
+def execute(root, *, approved, route_checked, execution_node, route_receipt, run_limit=2):
+    route = validate_route_receipt(route_receipt, SOURCE)
     # This only reads the explicitly named remote credential fields, not chat history.
     install_process_credential()
     require_execution_ready(approved=approved, route_checked=route_checked, environment=os.environ)
     manifest, typed = validate_inputs(root)
+    if type(run_limit) is not int or run_limit not in (2, 8):
+        raise ValueError('run_limit must be 2 or 8')
     runtime = json.loads((root/'runtime.NOT_CREDENTIALS.json').read_text())
     runtime.pop('credential_instruction')
     os.environ.update(runtime, PRIMARY_KEY=os.environ['OPENROUTER_API_KEY'],
@@ -97,8 +101,8 @@ def execute(root, *, approved, route_checked, execution_node):
         step_termination_allowance_seconds=330, min_remaining_seconds_to_launch=2130)
     launcher.validate()
     write_new(root/'campaign.started.json', dict(allocation_id=os.environ['SLURM_JOB_ID'],
-        source_tree=SOURCE_TREE, planned_runs=8, automatic_resume=False,
-        approval_switch=True, route_readiness_declared=True))
+        source_tree=SOURCE_TREE, planned_runs=8, execution_run_limit=run_limit, automatic_resume=False,
+        approval_switch=True, route_readiness_declared=True, route=route))
     service = None
     pool = None
     status = dict(status='failed', completed=False, service_cleanup_confirmed=False)
@@ -111,6 +115,10 @@ def execute(root, *, approved, route_checked, execution_node):
             def _can_launch(self):
                 if service is None or service.poll() is not None:
                     raise RuntimeError('critic service stopped; no further runs will launch')
+                if run_limit < 8 and stage_reached(self.manifest['tasks'], run_limit):
+                    self._stop_requested = True
+                    self._stop_reason = 'fixed diagnostic first-pair boundary; no automatic expansion'
+                    return True  # Let the pool preserve this explicit stop reason.
                 return super()._can_launch()
         pool = WatchedPool(configs, launcher, SOURCE, python_executable=PYTHON)
         a = pool.allocation
@@ -133,29 +141,14 @@ def execute(root, *, approved, route_checked, execution_node):
                 process_summary=str((identity.with_suffix('.bounded')/'execution/summary.json').relative_to(root))))
         write_new(root/'runtime-manifest.json', actual_manifest)
         status['execution_node'] = execution_node
-        # First inspect the actual task SIF on the assigned GPU, not the host venv.
-        check_command = ['srun', '--jobid='+a.job_id, '--exclusive', '--nodes=1', '--ntasks=1',
-            '--cpus-per-task=6', '--gres=gpu:1', '--time=4', '--kill-on-bad-exit=1',
-            PYTHON, str(Path(__file__).with_name('forets_deployment_precheck.py')),
-            '--package', str(root), '--node', execution_node]
-        check_env = os.environ.copy()
-        for name in tuple(check_env):
-            if any(word in name.upper() for word in ('KEY','TOKEN','PASSWORD','SECRET')):
-                check_env.pop(name)
-        with os.fdopen(os.open(root/'container-check.private.log', os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600),'wb') as log:
-            checked = subprocess.run(check_command, stdout=log, stderr=subprocess.STDOUT,
-                                     stdin=subprocess.DEVNULL, env=check_env, timeout=600)
-        if checked.returncode != 0:
-            raise RuntimeError('task-image compatibility failed; no model or task runs launched')
-        compatibility = json.loads((root/'container.compatibility.json').read_text())
-        if (compatibility['allocation_id'] != a.job_id or compatibility['node'] != execution_node
-                or compatibility.get('forward_backward_cuda') is not True):
-            raise RuntimeError('container compatibility identity mismatch')
+        from forets_e2e_package import IMAGES, IMAGE_VERSION
+        reused = prior_compatibility(execution_node, IMAGES/('superimage.root.'+IMAGE_VERSION+'.sif'))
+        write_new(root/'deployment.reused.json', reused)
         ready = root/'critic.ready.json'
         command = ['srun', '--jobid='+a.job_id, '--exclusive', '--nodes=1', '--ntasks=1',
-            '--cpus-per-task=6', '--gres=gpu:1', '--time=265', '--kill-on-bad-exit=1',
+            '--cpus-per-task=6', '--gres=gpu:1', '--time='+str(max(1, int(remaining//60)-1)), '--kill-on-bad-exit=1',
             GPU_PYTHON, str(Path(__file__).with_name('forets_e2e_critic_service.py')),
-            '--ready', str(ready), '--verify-3090-context']
+            '--ready', str(ready)]
         service_env = os.environ.copy()
         for name in tuple(service_env):
             if name.startswith('PRIMARY_KEY') or name in ('OPENROUTER_API_KEY','OPENAI_API_KEY'):
@@ -171,12 +164,14 @@ def execute(root, *, approved, route_checked, execution_node):
         service_identity = json.loads(ready.read_text())
         if service_identity['allocation_id'] != a.job_id or not service_identity['step_id'].isdigit():
             raise RuntimeError('service identity does not belong to this allocation')
-        if not service_identity.get('deployment_check', {}).get('all_parameters_cuda_bf16'):
-            raise RuntimeError('replacement GPU context check is absent')
+        if not service_identity.get('runtime_check', {}).get('all_parameters_cuda_bf16'):
+            raise RuntimeError('loaded model runtime check is absent')
         status['service_startup_seconds'] = service_identity['model_load_and_bind_seconds']
         result = pool.run()
         status.update(status='completed' if result['successful'] else 'incomplete',
-                      completed=result['successful'], pool=result)
+                      completed=result['successful'], pool=result, execution_run_limit=run_limit)
+        if run_limit == 2 and result['counts'].get('completed', 0) == 2:
+            status['status'] = 'first_pair_completed_rest_not_started'
     except Exception as exc:
         status['error_type'] = type(exc).__name__
         # Exception text/command/environment remain private, never credential-bearing summaries.
@@ -241,6 +236,8 @@ def main():
     p.add_argument('--execute-approved-matrix', action='store_true')
     p.add_argument('--live-route-checked', action='store_true')
     p.add_argument('--execution-node', choices=('gpu27','gpu28'))
+    p.add_argument('--run-limit', type=int, choices=(2, 8), default=2)
+    p.add_argument('--route-receipt', type=Path)
     args = p.parse_args()
     root = args.package.resolve(strict=True)
     if not args.execute_approved_matrix:
@@ -250,13 +247,15 @@ def main():
         return
     if not args.execution_node:
         p.error('replacement deployment requires an explicit reviewed 3090 node')
+    if not args.route_receipt:
+        p.error('execution requires a fresh successful route receipt')
     try:
         result = execute(root, approved=args.execute_approved_matrix, route_checked=args.live_route_checked,
-                         execution_node=args.execution_node)
+                         execution_node=args.execution_node, run_limit=args.run_limit, route_receipt=args.route_receipt)
     finally:
         if (root/'runtime-manifest.json').is_file() and not (root/'readout').exists():
             collect(root)
-    raise SystemExit(0 if result['completed'] else 1)
+    raise SystemExit(0 if result['completed'] or result['status']=='first_pair_completed_rest_not_started' else 1)
 
 
 if __name__ == '__main__':

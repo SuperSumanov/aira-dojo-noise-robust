@@ -38,15 +38,17 @@ def main():
     service = sys.modules[package.__name__+'.bradley_terry_server']
     scorer = service.RewardScorer(str(INCOMING/'unpacked/Qwen3-8B_reward_seed1/checkpoint-100'),
                                  offline_base_dir=str(INCOMING/'base-metadata'))
+    import torch
+    if torch.cuda.device_count() != 1 or '3090' not in torch.cuda.get_device_name(0):
+        raise RuntimeError('replacement critic requires one real RTX3090')
+    if scorer.max_len != 16384 or scorer.model.training:
+        raise RuntimeError('critic context or inference mode changed')
+    if any(p.device.type != 'cuda' or p.dtype != torch.bfloat16 for p in scorer.model.parameters()):
+        raise RuntimeError('critic was offloaded or changed precision; no fallback allowed')
+    runtime_check = dict(context=scorer.max_len, all_parameters_cuda_bf16=True,
+                         gpu_name=torch.cuda.get_device_name(0), model_training=False)
     deployment_check = None
     if args.verify_3090_context:
-        import torch
-        if torch.cuda.device_count() != 1 or '3090' not in torch.cuda.get_device_name(0):
-            raise RuntimeError('replacement critic requires one real RTX3090')
-        if scorer.max_len != 16384 or scorer.model.training:
-            raise RuntimeError('critic context or inference mode changed')
-        if any(p.device.type != 'cuda' or p.dtype != torch.bfloat16 for p in scorer.model.parameters()):
-            raise RuntimeError('critic was offloaded or changed precision; no fallback allowed')
         code = 'x = 1\n' * 20000
         if len(scorer.encode('deployment-compatibility', code)) != 16384:
             raise RuntimeError('deployment check did not exercise full context')
@@ -68,7 +70,7 @@ def main():
     value = dict(allocation_id=os.environ['SLURM_JOB_ID'], step_id=os.environ['SLURM_STEP_ID'],
                  host='127.0.0.1', port=8765, model_load_and_bind_seconds=time.monotonic()-started,
                  visible_gpu=os.environ.get('CUDA_VISIBLE_DEVICES'), pid=os.getpid(),
-                 acceptance_repeated=False, deployment_check=deployment_check)
+                 acceptance_repeated=False, deployment_check=deployment_check, runtime_check=runtime_check)
     # Rename a completed file so the controller never reads a half-written marker.
     temporary = args.ready.with_suffix('.pending')
     with os.fdopen(os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), 'w') as f:

@@ -7,6 +7,34 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L141. 2026-09-10：传输重试修复已验证，免费实网502仍阻止新GPU提交
+
+用户批准按推荐持续推进。新增0017增量补丁，组合树bbd22e323d6321925a145c12bdc02445c1ad80f4；
+修复两臂共同的瞬时传输异常处理，显式最多3次、逐次计入40/run预算，无SDK/模型/路由fallback。
+完整候选池全部结束后才传播异常，不因一项失败取消兄弟，也不从残缺池选择。
+本地53项回归及8组真实SDK本机HTTP检查通过；这是代码修复，不是模型收益。
+13:35 UTC实网两逻辑请求实际4次：1成功、随后3次502；NOT_READY。数字状态来自新记录，不能反推旧错误全为502。
+固定免费目录仅列Nvidia一个端点；目录在线不能抵消实测502。无付费调用、无新增GPU/训练/保护集读取。
+13:44 UTC远端新包8配置通过，首阶段只计划leaf/seed6/随机与critic共2run，gpu28双卡75分钟，
+名义2.5 GPUh（含300秒清理2.6666666666666665）；首对结束不自动扩展，其余6项不启动。
+复用12977原镜像/16K兼容性证据，不再人工GPU前向；NOT_READY在新启动门被拒绝，**未提交**。
+新根forets-resilience-20260910-4LGN21；见FORETS_RESILIENCE_20260910.md及results/forets_resilience_20260910。
+下一步需固定免费路由恢复或获准使用稳定同模型路由；不得暗改生成器、付费fallback、提高上限或忽略失败。
+
+## 0L140. 2026-09-10：12977终态FAILED，8run均失败，无有效收益对照
+
+2026-09-10 13:04:22 UTC（香港21:04:22）只读复核：12977已于香港14:44:01结束，
+sacct FAILED/1:0，分配18分37秒、双3090，实际计0.6205555555555555 GPUh。
+8run全部failed，4个计划配对中0个可比较；所有最终分缺失，不能作为critic有效或无效的证据。
+逐run终止栈为5个bounded APIError、3个bounded TimeoutError；具体HTTP错误原因未保留，不能猜401或限流。
+按attempt_id去重26次transport记录：9个成功响应、5个APIError、3个TimeoutError、9个CancelledError；
+取消的远端完成/账单未知，成功响应不等于成功任务。01号run还出现候选LightGBM No OpenCL device错误，
+这是额外任务库问题；基础Torch CUDA前反向及critic16K部署通过不等于整个任务环境通过。
+service_srun_exited=true，但service_cleanup_confirmed=false，不把退出冒充完整清理回执。
+当前squeue无本轮运行任务，仅旧12535 pending；未释放held任务、未新投GPU/API、未改镜像/CPU回退。
+安全终态摘要见results/forets_3090_20260910/terminal-status.json。保留8项失败，不覆盖原实验。
+下一步建议先诊断生成接口与对称、有预算上限的错误处理，再处理OpenCL任务错误；不重复G0或模型验收。
+
 ## 0L139. 2026-09-10：替代12977在gpu28运行，原任务镜像CUDA计算已通过
 
 首次替代12974获得分配后启动阶段FAILED/Elapsed0、无Python/容器产物；保留原包和提交。

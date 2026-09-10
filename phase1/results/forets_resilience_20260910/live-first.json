@@ -1,0 +1,72 @@
+{
+  "utc": "2026-09-10T13:35:11.229018+00:00",
+  "status": "NOT_READY",
+  "generation_attempt_cap": 6,
+  "logical_request_cap": 2,
+  "timeout_per_attempt_seconds": 120,
+  "output_tokens_per_attempt": 8192,
+  "gpu_jobs": 0,
+  "task_runs": 0,
+  "public_artificial_input_only": true,
+  "calls": [
+    {
+      "index": 0,
+      "fixture_matched": true,
+      "usage": {
+        "adapter_attempts": 1,
+        "prompt_tokens": 292,
+        "completion_tokens": 68,
+        "total_tokens": 360,
+        "cost": null
+      }
+    },
+    {
+      "index": 1,
+      "fixture_matched": false,
+      "error": {
+        "error_type": "APIError",
+        "http_status": 502,
+        "retryable": true
+      }
+    }
+  ],
+  "transport_events": [
+    {
+      "state": "response_returned",
+      "success": true,
+      "error_type": null,
+      "http_status": null,
+      "retryable": null,
+      "latency": 9.35326372704003,
+      "run_attempt_ordinal": 1
+    },
+    {
+      "state": "transport_unknown",
+      "success": false,
+      "error_type": "APIError",
+      "http_status": 502,
+      "retryable": true,
+      "latency": 8.671669029979967,
+      "run_attempt_ordinal": 2
+    },
+    {
+      "state": "transport_unknown",
+      "success": false,
+      "error_type": "APIError",
+      "http_status": 502,
+      "retryable": true,
+      "latency": 6.619067671010271,
+      "run_attempt_ordinal": 3
+    },
+    {
+      "state": "transport_unknown",
+      "success": false,
+      "error_type": "APIError",
+      "http_status": 502,
+      "retryable": true,
+      "latency": 8.697631132032257,
+      "run_attempt_ordinal": 4
+    }
+  ],
+  "reserved_attempts": 4
+}

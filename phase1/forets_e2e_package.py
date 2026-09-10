@@ -15,9 +15,9 @@ from unittest.mock import patch
 from forets_pilot_plan import (OPERATORS, FREE_CLIENTS, run_order, overrides,
                               free_route_overrides, bounded_launcher_overrides)
 
-SOURCE_TREE = '2ff5277ba17327c6c03326a018b59f704402af6b'
+SOURCE_TREE = 'bbd22e323d6321925a145c12bdc02445c1ad80f4'
 UPSTREAM_COMMIT = '065b0fbaa89e0eb663f2834ec768081f5d56394d'
-SOURCE = Path('/research/d7/spc/yzyang4/forets-nonpruning-20260909-Wmfn3x/source-v5')
+SOURCE = Path('/research/d7/spc/yzyang4/forets-resilience-20260910-4LGN21/source')
 DATA = Path('/research/d7/spc/yzyang4/mle-bench-data')
 IMAGES = Path('/research/d7/spc/yzyang4/aira-dojo/build/superimage')
 PYTHON = '/research/d7/spc/yzyang4/venvs/aira/bin/python'
@@ -94,6 +94,8 @@ def prepare(output, *, source=SOURCE, data=DATA, images=IMAGES):
             ov = overrides(task, seed, policy, max_output_tokens=8192, request_timeout_seconds=120)
             ov += bounded_launcher_overrides(max_api_attempts=40, max_output_tokens=8192)
             ov += free_route_overrides(CLIENT)
+            ov += ['++solver.operators.' + op + '.llm.generation_kwargs.bounded_max_attempts=3'
+                   for op in OPERATORS]
             ov += ['metadata.git_issue_id=forets-e2e-development-20260910',
                    '++metadata.git_commit_id=' + UPSTREAM_COMMIT,
                    '++metadata.description=upstream-plus-patches-tree-' + SOURCE_TREE,

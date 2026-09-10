@@ -1,6 +1,15 @@
 # 当前会话交接：ForeTS 同预算端到端探索
 
 记录更新：2026-09-11（香港）。这是恢复索引，不是新的实验结果。
+最新20:57:07 UTC/香港04:57：队列仅12535 held，学长head仍065b0fba，无新GPU/API/model-fit。
+六小时委托已复用g0-r5启用每20分钟续跑，到香港10:38截止，先读NIGHT_WORK_20260911.md完成状态。
+四例CPU真实tokenizer确认当前训练指令前缀与服务不同；checkpoint历史模板未知，已留定向问题，禁止直接改生产。
+新八包预算单次7200秒/总86400秒，与短预算不等价；32配置、29有journal头，不是29/32合格runs，仍隔离。
+common-priority已走13004真实批处理的人工fixture，13项新增测试通过，未生产部署、未产生收益。
+新草案两任务×seed8/9×两臂，6步，8run/两块名义17.0GPUh；只是预算草案，不提交、不开旧剩余6项。
+完整证据/限制见FORETS_NIGHT_PROGRESS_20260911.md；CURRENT_DIRECTION顶部0L147覆盖以下旧“未开monitor”状态。
+
+以下为上一轮新语料下载交接：
 最新核查20:30:10 UTC/香港04:30：Git学长head仍065b0fba；网盘有0907两包、0909/mcts六包，均已隔离下载。
 隔离根/research/d7/spc/yzyang4/senior-quarantine-20260911-v1，manifest SHA67ac5406b789fa7a5a39f41e9483a095f671f2d25ba47ccf69af4f98264c7cb4。
 八包205,912,386 bytes；配置目录8+24，不是32个新增physical runs，含61459c0a/065b0fba两个代码版本。
@@ -95,7 +104,7 @@ CPU复现明确警告：/dev绑定要求来源/目的路径相同。13007/13009/
   [initial-state.json](results/forets_e2e_20260910/initial-state.json)、
   [route-readiness.public.json](results/forets_e2e_20260910/route-readiness.public.json)。
   精确入口文件hash在submission中，不在摘要重复维护。
-- g0-r5 已暂停，未新建自动任务。不能声称离开会话后有新监控在运行。
+- 历史状态（9月10日）：g0-r5曾暂停。9月11日六小时续跑已重新启用，当前截止/范围见顶部及NIGHT_WORK。
 
 ## 固定矩阵与结论边界
 

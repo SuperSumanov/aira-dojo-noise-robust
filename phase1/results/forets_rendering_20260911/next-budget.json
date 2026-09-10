@@ -1,0 +1,110 @@
+{
+  "all_blocks_nominal_gpu_hours": 17.0,
+  "all_blocks_with_observed_300s_killwait_gpu_hours": 17.333333333333332,
+  "all_runs_api_attempt_cap": 800,
+  "all_runs_output_token_cap": 6553600,
+  "api_requests": 0,
+  "base_source_tree": "bbd22e323d6321925a145c12bdc02445c1ad80f4",
+  "block_nominal_gpu_hours": 8.5,
+  "block_time_limit_minutes": 255,
+  "blocks": 2,
+  "choose": 1,
+  "cpus_per_allocation": 12,
+  "critic_attempts_per_candidate": 1,
+  "debug_depth": 1,
+  "execution_slots_at_most": 5,
+  "execution_timeout_seconds": 300,
+  "gpu_submissions": 0,
+  "gpus_per_allocation": 2,
+  "known_operator_attempt_ceiling": 99,
+  "limitations": [
+    "planning caps, not measured runtime or a promise all runs complete",
+    "operator ceiling covers source-visible draft/improve/debug/analyze only",
+    "global request/wall caps win over completion; no extra uncounted retries",
+    "both blocks predefined; never choose later seeds/tasks based on observed scores",
+    "pause unfinished blocks for infrastructure failures, not unfavorable results",
+    "do not merge this new protocol with 13004; exploratory, not untouched confirmation"
+  ],
+  "matrix": [
+    {
+      "arm": "uniform_random",
+      "block": 1,
+      "seed": 8,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 1,
+      "seed": 8,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 1,
+      "seed": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "block": 1,
+      "seed": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 2,
+      "seed": 9,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "block": 2,
+      "seed": 9,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "block": 2,
+      "seed": 9,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 2,
+      "seed": 9,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "max_api_attempts_per_run": 100,
+  "max_output_tokens_per_attempt": 8192,
+  "model_fits": 0,
+  "no_debug_candidate_count": 14,
+  "no_debug_pool_sizes": [
+    4,
+    4,
+    3,
+    2,
+    1
+  ],
+  "no_debug_pruning_decisions": 3,
+  "node_candidate": "gpu28",
+  "operator_tries": 2,
+  "pairs": 4,
+  "request_timeout_seconds": 120,
+  "runs": 8,
+  "selector_prototype_sha256": "d9d0447a7a151c0268f662cc02e6ed4bc4e43fc0200feb27131c6b489d33b6a4",
+  "slurm_step_minutes": 60,
+  "solver_time_limit_secs": 3600,
+  "status": "DRAFT_NOT_SUBMITTABLE",
+  "step_limit": 6,
+  "top_k": 2,
+  "transport_tries": 3,
+  "unresolved": [
+    "supported OpenCL allocation isolation",
+    "checkpoint historical instruction/head-tail template",
+    "new exact source/config package and common-priority ledger binding",
+    "fresh fixed free-route availability within explicit check budget"
+  ],
+  "width": 4,
+  "worker_wall_seconds": 3540
+}

@@ -1,0 +1,87 @@
+{
+  "archive_links_opened": false,
+  "archives_extracted": 0,
+  "byte_identical_config_duplicate_groups": 0,
+  "cross_existing_corpus_dedup_performed": false,
+  "groups": {
+    "0907": {
+      "archives": 2,
+      "configs_with_journal_header": 5,
+      "configs_with_unopened_link": 0,
+      "configs_without_journal_header": 3,
+      "configurations": [
+        {
+          "config_count": 8,
+          "fields": {
+            "critic_top_k": null,
+            "declared_solver_type_fields": {},
+            "execution_timeout": 7200,
+            "git_commit_id": "61459c0a1248900079dafed7c505afa87e476b40",
+            "max_debug_depth": 20,
+            "max_debug_time": 1000000000.0,
+            "max_llm_call_retries": 3,
+            "num_children": 2,
+            "num_children_to_choose": null,
+            "step_limit": 10000,
+            "time_limit_secs": 86400,
+            "uct_c": 0.25,
+            "uct_c_field_present": true
+          }
+        }
+      ],
+      "orphan_headers": {}
+    },
+    "0909/mcts": {
+      "archives": 6,
+      "configs_with_journal_header": 24,
+      "configs_with_unopened_link": 4,
+      "configs_without_journal_header": 0,
+      "configurations": [
+        {
+          "config_count": 16,
+          "fields": {
+            "critic_top_k": null,
+            "declared_solver_type_fields": {},
+            "execution_timeout": 7200,
+            "git_commit_id": "065b0fbaa89e0eb663f2834ec768081f5d56394d",
+            "max_debug_depth": 20,
+            "max_debug_time": 1000000000.0,
+            "max_llm_call_retries": 3,
+            "num_children": 2,
+            "num_children_to_choose": null,
+            "step_limit": 10000,
+            "time_limit_secs": 86400,
+            "uct_c": 0.25,
+            "uct_c_field_present": true
+          }
+        },
+        {
+          "config_count": 8,
+          "fields": {
+            "critic_top_k": null,
+            "declared_solver_type_fields": {},
+            "execution_timeout": 7200,
+            "git_commit_id": "61459c0a1248900079dafed7c505afa87e476b40",
+            "max_debug_depth": 20,
+            "max_debug_time": 1000000000.0,
+            "max_llm_call_retries": 3,
+            "num_children": 2,
+            "num_children_to_choose": null,
+            "step_limit": 10000,
+            "time_limit_secs": 86400,
+            "uct_c": 0.25,
+            "uct_c_field_present": true
+          }
+        }
+      ],
+      "orphan_headers": {}
+    }
+  },
+  "journal_env_code_or_values_opened": false,
+  "manifest_sha256": "67ac5406b789fa7a5a39f41e9483a095f671f2d25ba47ccf69af4f98264c7cb4",
+  "physical_runs_validated": false,
+  "production_files_changed": false,
+  "script_sha256": "42ab7e99a64e6eb823e94c1ac96cc04f1703b87c42469dbab0ba1dde3a0c8aeb",
+  "status": "BUDGET_METADATA_ONLY_NOT_RUNTIME_OR_TRAINING_ADMISSION",
+  "utc": "2026-09-10T20:53:59.387823+00:00"
+}

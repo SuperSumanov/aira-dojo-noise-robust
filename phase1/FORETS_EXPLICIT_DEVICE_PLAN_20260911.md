@@ -51,3 +51,10 @@ critic 4段最长8777字符，均未越阈值；不外推未存root/debug，也�
 这不是按运行结果挑库，也不声称与原--nv的具体loader字节相同。第三次独立单卡至多5分钟完成诊断。
 三次名义总上限0.25 GPUh，含各30秒KillWait为0.275 GPUh；前两次实际仅秒级，按独立sacct报告。
 一次申请0GPU的节点纯元数据查询被集群CPU:GPU比例规则拒绝，无新运行/数据返回；不绕过规则。
+
+13039：无ICD为0 platform/-1001；有ICD进入GPU拟合后native abort(rc134)，不是通过。
+发现本短检沿用旧诊断的HOME=/root，和真实任务server设置HOME=/workspace/.home不同，日志报不可写cache。
+新独立短检使两条件均采用真实server的可写workspace/home语义，各自新目录；仅可写home是否解决abort待实测。
+同时在进入native拟合前flush结构阶段，避免abort吞掉前置信息；CUDA对新绑定作为独立控制，无论LightGBM是否成功。
+第四次单卡至多5分钟，总名义上限0.3333333333333333 GPUh，计各30秒KillWait0.36666666666666664。
+前三个allocation实际4/1/21秒，合计0.007222222222222222 GPUh；不是COMPLETED就等于实验通过。

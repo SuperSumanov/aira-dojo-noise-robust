@@ -20,6 +20,13 @@ from datetime import datetime, timezone
 
 from forets_opencl_readonly_ab import IMAGE, PROBE
 
+# Save the reached stage before a native-library abort could bypass Python's
+# exception handler. The original diagnostic remains unchanged.
+OBSERVABLE_PROBE = PROBE.replace(
+    "r['chosen_platform_index'] = platform_index",
+    "r['chosen_platform_index'] = platform_index\n"
+    "                print('OPENCL_STAGE ' + json.dumps(r, sort_keys=True), flush=True)")
+
 
 def run(command, timeout=15):
     return subprocess.run(command, capture_output=True, text=True,
@@ -156,6 +163,7 @@ def main():
             cmd += ['--bind',f'{p}:/run/forets-driverlibs/{name}:ro']
         env = {'PATH':'/usr/local/bin:/usr/bin:/bin', 'HOME':os.environ['HOME']}
         inside = [str(IMAGE),'env','LD_LIBRARY_PATH=/run/forets-driverlibs',
+                  'HOME=/workspace/.home','PYTHONUSERBASE=/workspace/.local','PYTHONUNBUFFERED=1',
                   'CUDA_VISIBLE_DEVICES='+uuid,'CUDA_DEVICE_ORDER=PCI_BUS_ID',
                   f'EXPECTED_GPU_MINORS={minor}',f'EXPECTED_GPU_MAJOR={os.major(s.st_rdev)}',
                   'OMP_NUM_THREADS=1','python','-c']
@@ -163,14 +171,19 @@ def main():
         if (vendors/'nvidia.icd').read_text().strip() != 'libnvidia-opencl.so.1':
             raise RuntimeError('unexpected ICD')
         for variant in ('no_icd','readonly_icd'):
-            case = cmd + (['--bind',f'{vendors}:/etc/OpenCL/vendors:ro'] if variant=='readonly_icd' else [])
-            command = case+inside+[GATE+'\n'+PROBE]
+            workspace=here/('workspace-'+variant)
+            (workspace/'.home/.local/share/jupyter/runtime').mkdir(parents=True)
+            (workspace/'.local').mkdir()
+            case = cmd + ['--bind',f'{workspace}:/workspace:rw','--pwd','/workspace']
+            if variant=='readonly_icd': case+=['--bind',f'{vendors}:/etc/OpenCL/vendors:ro']
+            command = case+inside+[GATE+'\n'+OBSERVABLE_PROBE]
             rc,out,err = bounded_container(command,env,min(95, max(1,260-(time.monotonic()-started))))
             # No arbitrary logs/credentials; print only our machine-readable lines.
             gates = [json.loads(x.removeprefix('ALLOWLIST_GATE ')) for x in out.splitlines() if x.startswith('ALLOWLIST_GATE ')]
             probes = [json.loads(x.removeprefix('OPENCL_DIAGNOSTIC ')) for x in out.splitlines() if x.startswith('OPENCL_DIAGNOSTIC ')]
             row = dict(variant=variant,rc=rc,gates=gates,probes=probes,
-                       command=command[:-1]+['<fixed source GATE + PROBE>'],
+                       stages=[json.loads(x.removeprefix('OPENCL_STAGE ')) for x in out.splitlines() if x.startswith('OPENCL_STAGE ')],
+                       command=command[:-1]+['<fixed source GATE + OBSERVABLE_PROBE>'],
                        timed_out=(err=='bounded_timeout'))
             if rc or len(gates)!=1 or len(probes)!=1:
                 row['error_tail'] = (err[-1500:] if not re.search(r'(?i)(?:sk-[a-z0-9_.-]{12,}|Bearer\s+)',err) else 'WITHHELD')
@@ -178,9 +191,14 @@ def main():
             print(json.dumps(row),flush=True)
             if rc or len(gates)!=1 or len(probes)!=1 or not probes[0].get('gpu_isolation_verified'):
                 report['blocked']='namespace_or_diagnostic_failure';break
-        if (not report.get('blocked') and len(report['variants'])==2
-                and report['variants'][-1]['probes'][0].get('synthetic_gpu_fit_completed')):
-            rc,out,err=bounded_container(cmd+inside+[GATE+'\n'+CUDA_CHECK],env,min(30,max(1,280-(time.monotonic()-started))))
+        if any(v['gates'] for v in report['variants']):
+            # Independent control for the changed driver binding, even when an
+            # OpenCL native library failed. This new process rechecks isolation.
+            workspace=here/'workspace-cuda'
+            (workspace/'.home').mkdir(parents=True)
+            (workspace/'.local').mkdir()
+            cuda_cmd=cmd+['--bind',f'{workspace}:/workspace:rw','--pwd','/workspace']
+            rc,out,err=bounded_container(cuda_cmd+inside+[GATE+'\n'+CUDA_CHECK],env,min(30,max(1,280-(time.monotonic()-started))))
             report['cuda_rc']=rc
             report['cuda']=[json.loads(x.removeprefix('CUDA_ALLOWLIST ')) for x in out.splitlines() if x.startswith('CUDA_ALLOWLIST ')]
             if rc: report['cuda_error_type']='bounded_timeout' if err=='bounded_timeout' else 'container_failed'

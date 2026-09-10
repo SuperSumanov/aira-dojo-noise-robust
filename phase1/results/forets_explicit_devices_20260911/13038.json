@@ -1,0 +1,21 @@
+{
+  "role": "explicit_device_opencl_diagnostic_not_effect",
+  "job_id": "13038",
+  "source_commit": "e2f453d932290e836b3130a6f055fe7d7833c3d5",
+  "step_id": "0",
+  "observed_utc": "2026-09-10T22:22:31.902847+00:00",
+  "node": "gpu28",
+  "variants": [],
+  "api_calls": 0,
+  "task_runs": 0,
+  "critic_calls": 0,
+  "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+  "image_size": 19717783552,
+  "image_mtime_ns": 1784638286000000000,
+  "script_sha256": "573b1c8e0e309ec3ead769f1ed20cd784fc8361a5c7a4f0b0e284b75259cec69",
+  "shared_probe_sha256": "b0546c7a81b11eaa558c197cc05cf576adbe014ae5878eb5ba0782c212575b6c",
+  "blocked": "ValueError",
+  "error": "ambiguous driver library",
+  "image_metadata_unchanged": true,
+  "diagnostic_seconds": 0.3678814440499991
+}

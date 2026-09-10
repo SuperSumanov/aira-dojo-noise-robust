@@ -33,6 +33,7 @@ def driver_binds(cache):
     site's loader read-only, in BOTH conditions; do not install a new version.
     """
     paths = {}
+    selected_loader = None
     for line in cache.splitlines():
         fields = line.split()
         if len(fields) < 4 or 'x86-64' not in line or '=>' not in fields:
@@ -40,6 +41,13 @@ def driver_binds(cache):
         soname, path = fields[0], Path(fields[-1])
         if not (soname.startswith('libnvidia-') or soname.startswith(('libcuda.so','libOpenCL.so'))):
             continue
+        if soname.startswith('libOpenCL.so'):
+            # Freeze one existing SONAME-1 implementation in ldconfig's reported
+            # order. Do not combine aliases belonging to different installations.
+            # Same selection in both fresh containers, never outcome-based.
+            if soname != 'libOpenCL.so.1' or selected_loader is not None:
+                continue
+            selected_loader = path
         resolved = path.resolve(strict=True)
         if not resolved.is_file() or any(c in str(resolved) for c in ',:\n'):
             raise ValueError('unsafe library path')
@@ -130,7 +138,9 @@ def main():
         s = device.stat()
         if not stat.S_ISCHR(s.st_mode) or os.minor(s.st_rdev) != minor:
             raise RuntimeError('host device inconsistent')
-        libs = driver_binds(run(['/sbin/ldconfig','-p']).stdout)
+        cache = run(['/sbin/ldconfig','-p']).stdout
+        report['loader_cache_entries']=[x.strip() for x in cache.splitlines() if 'libOpenCL.so' in x]
+        libs = driver_binds(cache)
         report.update(slurm_step_gpu=assigned, allocated_uuid=uuid, allocated_minor=minor,
                       driver_version=xml.findtext('driver_version'),
                       driver_libraries={k:str(v) for k,v in libs.items()})

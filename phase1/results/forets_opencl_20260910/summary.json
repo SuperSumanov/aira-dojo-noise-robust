@@ -1,0 +1,31 @@
+{
+  "role": "bounded_environment_diagnosis_not_critic_effect",
+  "observed_utc": "2026-09-10T14:53:38.316372+00:00",
+  "all_current_jobs_terminal": true,
+  "jobs": [
+    {"job_id": "13007", "state": "FAILED", "elapsed_seconds": 1, "allocated_gpus": 1, "failure": "unsupported_nvidia_smi_minor_number_query"},
+    {"job_id": "13009", "state": "COMPLETED", "elapsed_seconds": 217, "allocated_gpus": 1, "result": "blocked_before_opencl_unallocated_gpu_9_accessible"},
+    {"job_id": "13010", "state": "COMPLETED", "elapsed_seconds": 2, "allocated_gpus": 1, "result": "blocked_before_opencl_requested_device_masks_not_effective"}
+  ],
+  "diagnostic_gpu_hours": 0.06111111111111111,
+  "current_pair_plus_diagnostic_gpu_hours": 1.4927777777777778,
+  "including_previous_12977_gpu_hours": 2.1133333333333333,
+  "opencl_calls_executed": 0,
+  "synthetic_lightgbm_fits_executed": 0,
+  "task_runs_in_diagnosis": 0,
+  "generator_calls_in_diagnosis": 0,
+  "host_or_image_modified": false,
+  "cpu_only_mount_reproduction": {
+    "host": "linux5",
+    "runtime": "singularity-ce version 4.3.0+77-g2244f30fe",
+    "nv_flag": false,
+    "original_dev_zero": {"major": 1, "minor": 5},
+    "requested_bind": "/dev/null:/dev/zero:ro",
+    "after_requested_bind": {"major": 1, "minor": 5},
+    "warning": "WARNING: Skipping /dev/null bind mount: source and destination must be identical when binding to /dev",
+    "login_nvidia_container_cli_found": false,
+    "compute_node_nvidia_container_cli_availability": "not_verified"
+  },
+  "pending_external_question": "Is gpu28 GPU9 intentionally shared, and what is the supported way to expose only the Slurm-assigned device to OpenCL?",
+  "limitation": "Device accessibility is not proof that the paired task used GPU9. No OpenCL repair or additional critic benefit is claimed."
+}

@@ -153,8 +153,9 @@ def main():
         image=str(IMAGE), image_bytes=before.st_size, image_mtime_ns=before.st_mtime_ns,
         icd_sha256=hashlib.sha256(icd.read_bytes()).hexdigest(),
         script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), variants=[])
-    report['common_readonly_device_masks'] = masked_devices
-    report['baseline_is_original_image_with_common_device_masks'] = bool(masked_devices)
+    # Requested binds are not evidence that the runtime honored them. 13010
+    # demonstrated that /dev bind restrictions can silently leave real devices.
+    report['requested_common_readonly_device_masks'] = masked_devices
     env = {k:v for k,v in os.environ.items() if not any(s in k.upper() for s in ('KEY','TOKEN','SECRET','PASSWORD'))}
     for variant in ('original', 'readonly_icd'):
         command = [shutil.which('singularity') or 'singularity', 'exec', '--containall', '--cleanenv', '--no-home', '--nv']
@@ -169,10 +170,12 @@ def main():
         process = subprocess.Popen(command, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                    text=True, start_new_session=True)
         try:
-            stdout, _ = process.communicate(timeout=100)
+            stdout, stderr = process.communicate(timeout=100)
             lines = [s for s in stdout.splitlines() if s.startswith('OPENCL_DIAGNOSTIC ')]
             row = json.loads(lines[0].split(' ', 1)[1]) if len(lines) == 1 else dict(error='missing_diagnostic_record')
             row['returncode'] = process.returncode
+            row['dev_bind_requires_identical_paths_warning'] = (
+                'source and destination must be identical when binding to /dev' in stderr)
         except subprocess.TimeoutExpired:
             os.killpg(process.pid, signal.SIGKILL)
             process.communicate(timeout=10)

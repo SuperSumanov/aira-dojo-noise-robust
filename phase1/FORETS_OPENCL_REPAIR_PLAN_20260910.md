@@ -1,5 +1,13 @@
 # 定向解决真实候选的OpenCL错误，不重复G0
 
+> 14:53 UTC终态更新：13007/13009/13010均结束；未执行任何OpenCL调用或人工LightGBM拟合。
+> 13007查询字段不兼容退出；修复后的13009发现仅分配0仍可打开真实GPU9而停止。
+> 13010请求相同的只读设备遮蔽后，0和9仍可打开，门再次停止；其requested masks字段不等于遮蔽生效。
+> CPU无--nv复现确认Singularity拒绝把/dev/null绑定到不同/dev路径（source/destination必须一致）。
+> 不是再加重试就能消失的错误；已向用户提出学长/管理员的技术确认问题，未修改宿主、镜像或放宽门。
+> 三次检查实际共0.06111111111111111 GPUh；详细证据在results/forets_opencl_20260910。
+> 下面是原设计与解释边界，不是新的自动启动指令。暂不继续投GPU，也不重投13004。
+
 13004随机臂及12977都出现过`No OpenCL device`。原SIF只读检查发现没有`/etc/OpenCL/vendors`。
 这是一条具体根因线索，不足以直接宣布“驱动配置一补就好”；基础Torch CUDA可用也不能替代这项检查。
 
@@ -23,7 +31,7 @@
 新的、双方一致的实验环境；13004始终保持原配置，其失败/结果不改、不拼入新环境的确认数字。
 若B也失败，就按具体loader/平台/设备/库错误继续诊断，不先增加critic规模或反复重投整个矩阵。
 
-这一诊断尚未启动。脚本`scripts/forets_opencl_readonly_ab.py`显式拒绝在13004分配内运行。
+原设计的脚本`scripts/forets_opencl_readonly_ab.py`显式拒绝在13004分配内运行。
 原SIF保持原地只读；尺寸/mtime检查不冒充完整内容hash验证。
 
 依据：[Singularity官方OpenCL说明](https://docs.sylabs.io/guides/3.7/user-guide/gpu.html#opencl-applications)、

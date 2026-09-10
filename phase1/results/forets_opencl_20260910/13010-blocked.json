@@ -1,0 +1,48 @@
+{
+  "job_id": "13010",
+  "step_id": "0",
+  "node": "gpu28",
+  "observed_utc": "2026-09-10T14:46:43.726381+00:00",
+  "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+  "image_bytes": 19717783552,
+  "image_mtime_ns": 1784638286000000000,
+  "icd_sha256": "4ad07f8afc189894374aecb91023e6ff16bbceedf82496c04c0fdb0e2fe81e73",
+  "script_sha256": "4d3218ab750d0ca8bfd64f7dd5dcdc2894c481ac43c9821282e0ac7be3105cc4",
+  "variants": [
+    {
+      "accessible_gpu_minors": [
+        0,
+        9
+      ],
+      "allocated_gpu_minors": [
+        0
+      ],
+      "blocked": "assigned_gpu_isolation_not_verified_no_opencl_calls",
+      "critic_calls": 0,
+      "gpu_isolation_verified": false,
+      "icd_files": [],
+      "non_gpu_device_placeholders": [],
+      "role": "synthetic_opencl_library_diagnostic_not_task_result",
+      "task_runs": 0,
+      "vendor_directory_exists": false,
+      "returncode": 0,
+      "variant": "original",
+      "wall_seconds": 0.7664009958971292
+    }
+  ],
+  "common_readonly_device_masks": [
+    "/dev/nvidia1",
+    "/dev/nvidia2",
+    "/dev/nvidia3",
+    "/dev/nvidia4",
+    "/dev/nvidia5",
+    "/dev/nvidia6",
+    "/dev/nvidia7",
+    "/dev/nvidia8",
+    "/dev/nvidia9"
+  ],
+  "baseline_is_original_image_with_common_device_masks": true,
+  "blocked": "isolation_or_diagnostic_failure_no_further_variant",
+  "image_metadata_unchanged": true,
+  "limitation": "Synthetic library result only; no real-task improvement or full environment validity claim."
+}

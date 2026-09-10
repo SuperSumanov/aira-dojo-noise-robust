@@ -61,3 +61,15 @@ service_srun_exited=true、原controller的service_cleanup_confirmed=false；后
 - campaign.finished SHA256：37cc6748fab3def3d2a68b14dfc420a9262c39321601f14867f5e244e92d82da。
 
 不修改学长dojo-reproduce分支；本报告及代码只发布我方phase1-value-critic。
+
+## 同日晚间环境排查终态
+
+13007、13009、13010已结束，分别分配1、217、2秒单卡，实际共0.06111111111111111 GPUh。
+13007修正了诊断查询字段不兼容；后两次发现只分配GPU0却仍可打开GPU9，所以都在OpenCL调用前停止。
+请求的只读遮蔽未生效。无GPU的设备绑定复现给出明确警告：绑定到/dev时，来源与目的路径必须相同。
+当前运行时为Singularity CE 4.3.0+77-g2244f30fe；登录机没有找到nvidia-container-cli，计算节点是否有尚未确认。
+
+这些证据不说明13004曾使用GPU9，也不能把设备可访问性当已发生的硬件混用。它们说明原定的
+OpenCL单卡隔离验证尚未通过；未执行OpenCL或新增模型/任务训练，未升级镜像或CPU回退。
+已请用户向学长/管理员确认GPU9是否按集群约定共享、以及受支持的单卡OpenCL暴露方式。
+等待此项外部事实，不再用新GPU作业反复撞同一限制。结果与失败均保留，不称作修复成功。

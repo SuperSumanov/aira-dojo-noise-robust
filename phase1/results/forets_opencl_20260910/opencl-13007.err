@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/research/d7/spc/yzyang4/forets-opencl-20260910-pzQhOh/forets_opencl_readonly_ab.py", line 170, in <module>
+    main()
+  File "/research/d7/spc/yzyang4/forets-opencl-20260910-pzQhOh/forets_opencl_readonly_ab.py", line 123, in main
+    mapping = subprocess.run(['nvidia-smi', '--query-gpu=index,minor_number', '--format=csv,noheader,nounits'],
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/d7/spc/yzyang4/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['nvidia-smi', '--query-gpu=index,minor_number', '--format=csv,noheader,nounits']' returned non-zero exit status 2.

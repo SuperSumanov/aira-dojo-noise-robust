@@ -1,13 +1,12 @@
 # 当前会话交接：ForeTS 同预算端到端探索
 
 记录更新：2026-09-10（香港）。这是恢复索引，不是新的实验结果。
-最近一次作业观察：**2026-09-10 06:10:10 UTC / 2026-09-10 14:10:10 香港**。
-**12933已取消，未运行。** 用户指出MLE-bench镜像Torch与projgpu39架构不兼容；此前仅验证宿主critic，
-没有验证任务容器。旧“只剩排队”和19:59启动预估作废；尚未提交替代作业。
-
-用户随后指定gpu27/gpu28的3090可跑MLE-bench；已准备gpu28双卡替代包（见FORETS_3090_DEPLOYMENT_20260910.md），
-原镜像/8run/270分钟不变，新根 `/research/d7/spc/yzyang4/forets-e2e-3090-20260910-j6zb6d6i/package`。
-已通过CPU配置对等与test-only；12973只是预检编号。准备完成不代表GPU实际兼容检查完成。
+最近一次作业观察：**2026-09-10 06:29:38 UTC / 2026-09-10 14:29:38 香港**。
+**12977已在gpu28运行。** 原SIF的CUDA前向/反向、critic单3090/16K/全参数CUDA-BF16均已通过。
+critic同次加载后供搜索，首个MLE run(12977.3)运行；1running/7pending，无完成run或最终成绩。
+12933因PRO6000/任务镜像不兼容在排队时取消；12974启动失败，保留；12973只是test-only预检号。
+用户明确指定gpu27/gpu28可跑MLE。原镜像、8run与270分钟不变，不升级Torch、不CPU卸载、不跨节点服务。
+新唯一运行根 `/research/d7/spc/yzyang4/forets-e2e-3090-20260910-j6zb6d6i/package-r2`。
 
 ## 恢复先读与权威顺序
 
@@ -26,18 +25,28 @@
 - 不要重复 G0、下载、projgpu39 critic验收或端点检查填时间；缺的是任务镜像在目标GPU的实际兼容性。
 - 尚无新的 critic 收益、干净 scaling 或 e2e 正效果结论。学长旧 scaling 是探索信号，不是本轮发现。
 
-## 已取消作业与证据
+## 当前作业与历史尝试
 
-- 实际 job：**12933**；2026-09-09 18:14:51 UTC提交，2026-09-10 06:09:40 UTC取消；
+- 当前实际job：**12977**，入口commit `60bad03096b3340d4fea8dc221f142c965369995`；
+  香港14:25:24启动gpu28、2×RTX3090/12CPU、270分钟/no-requeue；正常时限18:55:24，清理可能延迟。
+  证据：[submission12977.json](results/forets_3090_20260910/submission12977.json)、
+  [容器实测](results/forets_3090_20260910/container.compatibility.json)、[初始状态](results/forets_3090_20260910/deployment.initial-state.json)。
+- 原SIF Torch2.5.1+cu124/CUDA12.4，3090能力8.6，CUDA矩阵前向/反向通过；无数据/生成器调用，不等于MLE整轮成功。
+- critic16K一次前向通过，peak reserved18.80078125GiB，无CPU卸载；
+  [实际搜索启动状态](results/forets_3090_20260910/deployment.search-started.json)含完整8run状态与sacct。
+- 12974于香港14:22:06分配后立即FAILED/Elapsed0，无Python产物、日志为空。
+  CPU复现并修复缺LD_LIBRARY_PATH导致bash -u初始化退出；原变量未捕获，不宣称原rc的根因完整实证。
+  新batch日志含FORETS_BATCH_ENTERED与FORETS_ENV_READY，两阶段已到达。原入口/包不覆盖。
+
+- 更早job：**12933**；2026-09-09 18:14:51 UTC提交，2026-09-10 06:09:40 UTC取消；
   独立sacct确认CANCELLED by 7542、Elapsed=0，无started/runtime/运行日志；没有实际执行或生成器请求。
   [取消证据](results/forets_e2e_20260910/cancellation.json)。取消前核对唯一作业身份/路径及PENDING状态。
 - projgpu39 / gpu_24h，2GPU、12CPU、270分钟、no-requeue；名义9.0 GPUh，
   加已观测300秒KillWait为9.166666666666666 GPUh；这是原预算，作业未启动，不是已消耗资源。
 - 原香港2026-09-10 19:59:12启动预估已作废。sacct的Start=End=取消时刻不代表实际启动。
 - 12932 是 test-only 编号，不是本轮作业。旧12535保持held；不释放、不干预他人12901。
-- 代码根：`/research/d7/spc/yzyang4/forets-e2e-package-20260910-SWMoh2`
-- 唯一运行根：上述代码根的 `package-c`。
-- 提交入口 commit：`8366208fb7e6329627dce90173d0e9583f1200c1`。
+- 12933旧代码根：`/research/d7/spc/yzyang4/forets-e2e-package-20260910-SWMoh2`，旧包`package-c`，不得重投。
+- 12933旧入口commit：`8366208fb7e6329627dce90173d0e9583f1200c1`。
 - source-v5 tree：`2ff5277ba17327c6c03326a018b59f704402af6b`。
 - 提交证据已发布 commit：`684e1c6c4c5ce35ff8e2ecfb6eebdddbb75f9df7`，当时 push/fetch HEAD 一致。
   这不是永久的“最新HEAD”；恢复时以 fetch 为准。
@@ -63,13 +72,12 @@
 
 ## 中断后下一步
 
-1. 不再等12933开跑；它已终态取消。保留原package-c和submission.claim，不改旧入口、不删除后重投。
-2. 阅读CURRENT_DIRECTION 0L137的兼容性纠正；区分宿主venvs/exp的critic和任务SIF中的Torch。
-3. 替代选择gpu28双3090，两臂硬件/镜像一致；用户确认可用，实际检查仍在同一分配首段完成。
-4. 新部署需实际容器GPU计算检查，不能只查torch.cuda.is_available；critic同机的显存余量亦待核。
-   若拆到两个节点，当前loopback服务/单节点launcher需另改并计总成本，不能假定网络已通。
-5. 先给替代部署/预算，再做范围内修订；不擅自升级镜像、退到CPU或改task/seed/模型来绕过问题。
-6. 无新实验结果；后续仍按 [读出定义](FORETS_E2E_READOUT_20260909.md) 完整保留8run/失败/成本。
+1. 只核12977与package-r2；先squeue/sacct，再看critic.ready/campaign.finished/runtime-manifest与runs/srun_pool。
+2. 容器计算和critic16K检查已通过，不重复。当前直接跟进实际MLE worker的运行/失败/最终成绩。
+3. 旧12933/12974/12973不是当前运行对象。新submission.claim防重复，不因没有finished盲目重投。
+4. 运行日志先脱敏；不读保护集、不重跑端点、不加新臂/模型/任务/seed。故障先定位，保留全部8run。
+5. 仍保持原镜像和同3090硬件；不能CPU卸载、升级Torch或临时跨节点绕过失败。
+6. 作业终态后按 [读出定义](FORETS_E2E_READOUT_20260909.md) 核真实结果/失败/成本；完成率与分差分开报告。
 
 候选后续方案见 [信息负对照与相关工作](FORETS_INFORMATION_CONTROL_AND_RELATED_WORK_20260910.md)：
 新seed块比较随机/真实critic/置换分数，区分学习信息与完整策略净收益。仅设计、未实现/提交/新增预算，
@@ -78,7 +86,8 @@
 辅助选择机制诊断已准备，见 [说明](FORETS_SELECTION_DIAGNOSTIC_20260910.md)。本地12项人工测试、远端真实账本
 写入器6项人工记录检查通过，不再重跑；尚未读取真实候选，不是模型收益。独立部署目录
 `/research/d7/spc/yzyang4/forets-selection-diagnostic-20260910-6uwXNX`，未改12933入口。
-12933未执行，不运行此诊断制造空结果。未来仍需独立核实终态；全打平槽位变化不当成区分力，同池重放不当最终分。
+旧诊断绑定12933/旧包，不能直接套到12977；实际产物就绪后先显式更新部署身份，不绕过门。
+未来仍需独立核实终态；全打平槽位变化不当成区分力，同池重放不当最终分。
 
 ## 远端操作与安全速查
 

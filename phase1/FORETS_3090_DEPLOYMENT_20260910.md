@@ -3,6 +3,15 @@
 2026-09-10。用户明确提供gpu27/gpu28作为现有MLE-bench镜像可用节点，并要求两臂同硬件、不升级Torch、不退CPU。
 本次选择gpu28；06:15 UTC其状态IDLE，gpu27为MIXED。节点状态不是执行证明。
 
+最新：修复启动后的12977于香港14:25:24启动；06:29:38 UTC仍RUNNING。任务SIF的真实CUDA计算已通过，
+critic单3090全参数CUDA-BF16及16K一次前向也已通过，未CPU卸载；首个MLE run已启动，1running/7pending、无最终结果。
+原8run入口60bad030，唯一运行根为本目录的package-r2，而非首次失败的package。
+正常分配时限18:55:24，不含可能的清理延迟。提交与容器实测见results/forets_3090_20260910。
+
+实测任务镜像torch2.5.1+cu124/CUDA12.4，3090能力8.6，25秒步骤完成。critic仍为宿主torch2.11.0+cu128，
+加载/绑定164.63458847487345秒，16K一次前向7.913172740023583秒，peak reserved18.80078125GiB；
+不是重复计时基准，也不代表真实candidate排序有效。一次加载完成后同服务直接供搜索。
+
 ## 固定范围与预算
 
 - 原leaf-classification/spaceship-titanic × seed6/7 × random/critic，8run、4配对，顺序不变。

@@ -1,0 +1,93 @@
+{
+  "utc": "2026-09-10T06:29:38.658428+00:00",
+  "job_id": "12977",
+  "sacct_returncode": 0,
+  "sacct_stdout": "12977|RUNNING|0:0|00:04:14|2026-09-10T14:25:24|Unknown|billing=12,cpu=12,gres/gpu=2,node=1\n12977.batch|RUNNING|0:0|00:04:14|2026-09-10T14:25:24|Unknown|cpu=12,mem=0,node=1\n12977.extern|RUNNING|0:0|00:04:14|2026-09-10T14:25:24|Unknown|billing=12,cpu=12,gres/gpu=2,node=1\n12977.0|COMPLETED|0:0|00:00:25|2026-09-10T14:25:28|2026-09-10T14:25:53|cpu=6,gres/gpu=1,mem=0,node=1\n12977.1|RUNNING|0:0|00:03:45|2026-09-10T14:25:53|Unknown|cpu=6,gres/gpu=1,mem=0,node=1\n12977.2|COMPLETED|0:0|00:00:00|2026-09-10T14:28:48|2026-09-10T14:28:48|cpu=6,gres/gpu=1,mem=0,node=1\n12977.3|RUNNING|0:0|00:00:50|2026-09-10T14:28:48|Unknown|cpu=6,gres/gpu=1,mem=0,node=1\n",
+  "critic_ready": {
+    "allocation_id": "12977",
+    "step_id": "1",
+    "host": "127.0.0.1",
+    "port": 8765,
+    "model_load_and_bind_seconds": 164.63458847487345,
+    "visible_gpu": "0",
+    "pid": 1119963,
+    "acceptance_repeated": false,
+    "deployment_check": {
+      "gpu_name": "NVIDIA GeForce RTX 3090",
+      "torch_version": "2.11.0+cu128",
+      "cuda_version": "12.8",
+      "gpu_total_memory_bytes": 25295323136,
+      "context": 16384,
+      "forward_seconds": 7.913172740023583,
+      "peak_allocated_bytes": 19315938304,
+      "peak_reserved_bytes": 20187185152,
+      "all_parameters_cuda_bf16": true,
+      "synthetic_forwards": 1,
+      "model_loads": 1
+    }
+  },
+  "container_compatibility": {
+    "allocation_id": "12977",
+    "capability": [
+      8,
+      6
+    ],
+    "cuda_version": "12.4",
+    "forward_backward_cuda": true,
+    "generator_calls": 0,
+    "gpu_name": "NVIDIA GeForce RTX 3090",
+    "gpu_total_memory_bytes": 25295323136,
+    "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+    "image_bytes": 19717783552,
+    "image_content_rehashed": false,
+    "image_mtime_ns": 1784638286000000000,
+    "node": "gpu28",
+    "step_id": "0",
+    "task_data_read": false,
+    "torch_version": "2.5.1+cu124",
+    "visible_gpu": "0"
+  },
+  "pool_runs": [
+    {
+      "run_id": "00-leaf-classification-s6-uniform_random",
+      "status": "running",
+      "step_id": "12977.3"
+    },
+    {
+      "run_id": "01-leaf-classification-s6-critic_topk_random",
+      "status": "pending",
+      "step_id": ""
+    },
+    {
+      "run_id": "02-leaf-classification-s7-critic_topk_random",
+      "status": "pending",
+      "step_id": ""
+    },
+    {
+      "run_id": "03-leaf-classification-s7-uniform_random",
+      "status": "pending",
+      "step_id": ""
+    },
+    {
+      "run_id": "04-spaceship-titanic-s6-critic_topk_random",
+      "status": "pending",
+      "step_id": ""
+    },
+    {
+      "run_id": "05-spaceship-titanic-s6-uniform_random",
+      "status": "pending",
+      "step_id": ""
+    },
+    {
+      "run_id": "06-spaceship-titanic-s7-uniform_random",
+      "status": "pending",
+      "step_id": ""
+    },
+    {
+      "run_id": "07-spaceship-titanic-s7-critic_topk_random",
+      "status": "pending",
+      "step_id": ""
+    }
+  ],
+  "campaign_finished": false
+}

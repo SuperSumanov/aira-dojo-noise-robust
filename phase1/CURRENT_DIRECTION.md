@@ -7,6 +7,21 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L139. 2026-09-10：替代12977在gpu28运行，原任务镜像CUDA计算已通过
+
+首次替代12974获得分配后启动阶段FAILED/Elapsed0、无Python/容器产物；保留原包和提交。
+CPU复现env_setup在缺LD_LIBRARY_PATH且bash -u时静默退出，默认空值修复通过；原job未保存变量，未冒充完整根因捕获。
+修复入口60bad03096b3340d4fea8dc221f142c965369995，新package-r2于06:25:23 UTC实际提交12977；
+香港14:25:24已启动gpu28双3090/12CPU、04:30:00，无新模型训练；最晚正常时限18:55:24，不含可能清理延迟。
+截至06:29:38 UTC仍RUNNING，任务容器检查step0已25秒COMPLETED，critic已ready，首个MLE run的step3运行中。
+critic同次加载及绑定164.63458847487345秒，单3090全参数CUDA/BF16、16K前向7.913172740023583秒，
+peak reserved18.80078125GiB；仅一次人工前向，不是时延基准或任务分数。随后同服务直接用于搜索，未CPU卸载。
+全部8run中1running/7pending/0completed；无最终成绩或收益结论。
+原SIF实测torch2.5.1+cu124/CUDA12.4、RTX3090/compute capability8.6，单GPU矩阵前向/反向结果有限；
+无镜像修改、无task数据或生成器请求。只证明基础CUDA计算，不冒充全部MLE库或端到端成功。
+真实回执见results/forets_3090_20260910；当前唯一运行根forets-e2e-3090-20260910-j6zb6d6i/package-r2。
+12933取消、12974失败、12973预检号均不得重投/作为当前作业。后续跟进12977，不新建GPU验收或自动任务。
+
 ## 0L138. 2026-09-10：用户指定3090可用节点，准备gpu28同镜像替代部署
 
 用户明确指出MLE-bench可在gpu27/gpu28这类3090节点运行，并要求原镜像/两臂同硬件、不升级Torch或CPU回退。

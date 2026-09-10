@@ -1,0 +1,34 @@
+{
+  "allocation_minutes": 270,
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--output=/research/d7/spc/yzyang4/forets-e2e-3090-20260910-j6zb6d6i/package-r2/slurm-%j.out",
+    "--error=/research/d7/spc/yzyang4/forets-e2e-3090-20260910-j6zb6d6i/package-r2/slurm-%j.err",
+    "/research/d7/spc/yzyang4/forets-e2e-3090-20260910-j6zb6d6i/prepare_forets_e2e_3090_r2.sbatch",
+    "/research/d7/spc/yzyang4/forets-e2e-3090-20260910-j6zb6d6i",
+    "/research/d7/spc/yzyang4/forets-e2e-3090-20260910-j6zb6d6i/package-r2"
+  ],
+  "configs_unchanged_except_paths": true,
+  "entry_commit": "60bad03096b3340d4fea8dc221f142c965369995",
+  "entry_sha256": {
+    "forets_deployment_precheck.py": "f0cc7f62c7882c1328fee07f72ce02e8df1fa2d170671bbb8417be3e7a1d8cdf",
+    "forets_e2e_campaign.py": "4ec728a5fe6c57778ef2ed903a72eee256e906ac04449d6f028e2478a6833b23",
+    "forets_e2e_critic_service.py": "d300dd0ab9a7c95d965eb821aced071d9a0e4a55eb41b60c8286ec5b1a03c877",
+    "prepare_forets_e2e_3090_r2.sbatch": "3719595cb412bc3e7968ce220a93537c435730f9aa9db21c9b07f3b01d07e2d3"
+  },
+  "gpu_hours_with_observed_killwait": 9.166666666666666,
+  "job_id": "12977",
+  "nominal_gpu_hours": 9.0,
+  "prior_elapsed_accounting_seconds": 0,
+  "replaces_failed_job": "12974",
+  "requested_cpus": 12,
+  "requested_gpus": 2,
+  "requested_node": "gpu28",
+  "returncode": 0,
+  "run_count": 8,
+  "source_tree": "2ff5277ba17327c6c03326a018b59f704402af6b",
+  "stderr": "",
+  "stdout": "12977\n",
+  "utc": "2026-09-10T06:25:23.311076+00:00"
+}

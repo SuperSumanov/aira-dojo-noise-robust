@@ -1,0 +1,33 @@
+{
+  "utc": "2026-09-10T06:26:44.413911+00:00",
+  "job_id": "12977",
+  "sacct": {
+    "returncode": 0,
+    "stdout": "12977|RUNNING|0:0|00:01:20|2026-09-10T14:25:24|Unknown|billing=12,cpu=12,gres/gpu=2,node=1\n12977.batch|RUNNING|0:0|00:01:20|2026-09-10T14:25:24|Unknown|cpu=12,mem=0,node=1\n12977.extern|RUNNING|0:0|00:01:20|2026-09-10T14:25:24|Unknown|billing=12,cpu=12,gres/gpu=2,node=1\n12977.0|COMPLETED|0:0|00:00:25|2026-09-10T14:25:28|2026-09-10T14:25:53|cpu=6,gres/gpu=1,mem=0,node=1\n12977.1|RUNNING|0:0|00:00:51|2026-09-10T14:25:53|Unknown|cpu=6,gres/gpu=1,mem=0,node=1\n",
+    "stderr": ""
+  },
+  "container.compatibility.json": {
+    "allocation_id": "12977",
+    "capability": [
+      8,
+      6
+    ],
+    "cuda_version": "12.4",
+    "forward_backward_cuda": true,
+    "generator_calls": 0,
+    "gpu_name": "NVIDIA GeForce RTX 3090",
+    "gpu_total_memory_bytes": 25295323136,
+    "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+    "image_bytes": 19717783552,
+    "image_content_rehashed": false,
+    "image_mtime_ns": 1784638286000000000,
+    "node": "gpu28",
+    "step_id": "0",
+    "task_data_read": false,
+    "torch_version": "2.5.1+cu124",
+    "visible_gpu": "0"
+  },
+  "container.compatibility.failed.json": null,
+  "critic.ready.json": null,
+  "campaign.finished.json": null
+}

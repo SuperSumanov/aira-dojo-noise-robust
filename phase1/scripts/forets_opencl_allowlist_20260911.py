@@ -27,14 +27,18 @@ def run(command, timeout=15):
 
 
 def driver_binds(cache):
-    """Only NVIDIA compute driver libs; retain the image's OpenCL loader."""
+    """Explicit driver + OpenCL-loader subset of the site's legacy --nv list.
+
+    The original SIF has no OpenCL loader (verified without --nv). Bind the
+    site's loader read-only, in BOTH conditions; do not install a new version.
+    """
     paths = {}
     for line in cache.splitlines():
         fields = line.split()
         if len(fields) < 4 or 'x86-64' not in line or '=>' not in fields:
             continue
         soname, path = fields[0], Path(fields[-1])
-        if not (soname.startswith('libnvidia-') or soname.startswith('libcuda.so')):
+        if not (soname.startswith('libnvidia-') or soname.startswith(('libcuda.so','libOpenCL.so'))):
             continue
         resolved = path.resolve(strict=True)
         if not resolved.is_file() or any(c in str(resolved) for c in ',:\n'):
@@ -43,7 +47,7 @@ def driver_binds(cache):
             if name in paths and paths[name] != resolved:
                 raise ValueError('ambiguous driver library')
             paths[name] = resolved
-    for required in ('libcuda.so.1', 'libnvidia-opencl.so.1', 'libnvidia-ml.so.1'):
+    for required in ('libcuda.so.1', 'libnvidia-opencl.so.1', 'libnvidia-ml.so.1','libOpenCL.so.1'):
         if required not in paths:
             raise ValueError('required host driver library absent: ' + required)
     return paths

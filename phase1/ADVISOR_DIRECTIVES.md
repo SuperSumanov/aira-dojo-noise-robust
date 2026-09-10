@@ -12,6 +12,8 @@ metadata:
 
 ## M. 2026-09-10：用户直接指出projgpu39任务镜像不兼容
 
+- 用户随后明确：「mlebench可以到gpu27，gpu28这些3090节点上跑」。替代部署优先这些实际节点，
+  同镜像、两臂同硬件、不升级Torch或CPU回退；节点名gpu28不是projgpu28。
 - 用户原意：MLE-bench在projgpu39上不能运行，因为任务image的Torch与GPU架构不兼容。
   这是用户直接纠正，不冒充我方新实测；本轮未执行容器CUDA故障复现。
 - 12892只证明宿主venvs/exp的现成critic能运行，不是MLE-bench容器验收。12933将两者同节点部署是我方漏项。

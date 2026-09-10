@@ -5,6 +5,10 @@
 **12933已取消，未运行。** 用户指出MLE-bench镜像Torch与projgpu39架构不兼容；此前仅验证宿主critic，
 没有验证任务容器。旧“只剩排队”和19:59启动预估作废；尚未提交替代作业。
 
+用户随后指定gpu27/gpu28的3090可跑MLE-bench；已准备gpu28双卡替代包（见FORETS_3090_DEPLOYMENT_20260910.md），
+原镜像/8run/270分钟不变，新根 `/research/d7/spc/yzyang4/forets-e2e-3090-20260910-j6zb6d6i/package`。
+已通过CPU配置对等与test-only；12973只是预检编号。准备完成不代表GPU实际兼容检查完成。
+
 ## 恢复先读与权威顺序
 
 1. fetch Git；读 [CURRENT_DIRECTION.md](CURRENT_DIRECTION.md) 顶部最新裁决及最新用户指示。
@@ -61,7 +65,7 @@
 
 1. 不再等12933开跑；它已终态取消。保留原package-c和submission.claim，不改旧入口、不删除后重投。
 2. 阅读CURRENT_DIRECTION 0L137的兼容性纠正；区分宿主venvs/exp的critic和任务SIF中的Torch。
-3. 先为现有任务镜像选兼容GPU，两臂硬件/镜像一致；不能仅凭节点空闲或型号标签声称兼容。
+3. 替代选择gpu28双3090，两臂硬件/镜像一致；用户确认可用，实际检查仍在同一分配首段完成。
 4. 新部署需实际容器GPU计算检查，不能只查torch.cuda.is_available；critic同机的显存余量亦待核。
    若拆到两个节点，当前loopback服务/单节点launcher需另改并计总成本，不能假定网络已通。
 5. 先给替代部署/预算，再做范围内修订；不擅自升级镜像、退到CPU或改task/seed/模型来绕过问题。

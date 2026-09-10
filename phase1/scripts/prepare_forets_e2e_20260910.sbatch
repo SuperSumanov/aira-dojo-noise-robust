@@ -1,8 +1,8 @@
 #!/bin/bash
-# PREPARATION ONLY: submit once only after route readiness and exact budget review.
+# Replacement deployment: same image/matrix/budget, actual GPU checks inside allocation.
 #SBATCH --job-name=forets-e2e-paired
 #SBATCH --partition=gpu_24h
-#SBATCH --nodelist=projgpu39
+#SBATCH --nodelist=gpu28
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=12
@@ -31,4 +31,4 @@ export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 # Credentials must be installed/injected remotely; never put their value in this file.
 # The Python entry refuses to load a critic if OPENROUTER_API_KEY is absent.
 exec /research/d7/spc/yzyang4/venvs/aira/bin/python -B "$1/forets_e2e_campaign.py" \
-    --package "$2" --execute-approved-matrix --live-route-checked
+    --package "$2" --execute-approved-matrix --live-route-checked --execution-node gpu28

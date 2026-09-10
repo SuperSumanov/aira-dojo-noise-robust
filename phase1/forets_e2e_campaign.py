@@ -73,7 +73,7 @@ def require_execution_ready(*, approved, route_checked, environment):
         raise RuntimeError('controller belongs in the approved sbatch allocation, not a GPU step')
 
 
-def execute(root, *, approved, route_checked):
+def execute(root, *, approved, route_checked, execution_node):
     # This only reads the explicitly named remote credential fields, not chat history.
     install_process_credential()
     require_execution_ready(approved=approved, route_checked=route_checked, environment=os.environ)
@@ -114,8 +114,9 @@ def execute(root, *, approved, route_checked):
                 return super()._can_launch()
         pool = WatchedPool(configs, launcher, SOURCE, python_executable=PYTHON)
         a = pool.allocation
-        if a.num_gpus != 2 or a.num_cpus != 12 or a.node_list != 'projgpu39':
-            raise RuntimeError('requires the reviewed two-GPU, twelve-CPU allocation on projgpu39')
+        if (execution_node not in ('gpu27','gpu28') or a.num_gpus != 2 or a.num_cpus != 12
+                or a.node_list != execution_node):
+            raise RuntimeError('requires the reviewed two-GPU, twelve-CPU allocation on the selected 3090 node')
         remaining = pool._remaining_seconds()
         if remaining is None or remaining > 270*60 or remaining < 2130:
             raise RuntimeError('allocation deadline outside the reviewed budget')
@@ -131,11 +132,30 @@ def execute(root, *, approved, route_checked):
             actual_manifest['runs'].append(dict(row, config_sha256=hashlib.sha256(raw).hexdigest(),
                 process_summary=str((identity.with_suffix('.bounded')/'execution/summary.json').relative_to(root))))
         write_new(root/'runtime-manifest.json', actual_manifest)
+        status['execution_node'] = execution_node
+        # First inspect the actual task SIF on the assigned GPU, not the host venv.
+        check_command = ['srun', '--jobid='+a.job_id, '--exclusive', '--nodes=1', '--ntasks=1',
+            '--cpus-per-task=6', '--gres=gpu:1', '--time=4', '--kill-on-bad-exit=1',
+            PYTHON, str(Path(__file__).with_name('forets_deployment_precheck.py')),
+            '--package', str(root), '--node', execution_node]
+        check_env = os.environ.copy()
+        for name in tuple(check_env):
+            if any(word in name.upper() for word in ('KEY','TOKEN','PASSWORD','SECRET')):
+                check_env.pop(name)
+        with os.fdopen(os.open(root/'container-check.private.log', os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600),'wb') as log:
+            checked = subprocess.run(check_command, stdout=log, stderr=subprocess.STDOUT,
+                                     stdin=subprocess.DEVNULL, env=check_env, timeout=600)
+        if checked.returncode != 0:
+            raise RuntimeError('task-image compatibility failed; no model or task runs launched')
+        compatibility = json.loads((root/'container.compatibility.json').read_text())
+        if (compatibility['allocation_id'] != a.job_id or compatibility['node'] != execution_node
+                or compatibility.get('forward_backward_cuda') is not True):
+            raise RuntimeError('container compatibility identity mismatch')
         ready = root/'critic.ready.json'
         command = ['srun', '--jobid='+a.job_id, '--exclusive', '--nodes=1', '--ntasks=1',
             '--cpus-per-task=6', '--gres=gpu:1', '--time=265', '--kill-on-bad-exit=1',
             GPU_PYTHON, str(Path(__file__).with_name('forets_e2e_critic_service.py')),
-            '--ready', str(ready)]
+            '--ready', str(ready), '--verify-3090-context']
         service_env = os.environ.copy()
         for name in tuple(service_env):
             if name.startswith('PRIMARY_KEY') or name in ('OPENROUTER_API_KEY','OPENAI_API_KEY'):
@@ -143,14 +163,16 @@ def execute(root, *, approved, route_checked):
         with os.fdopen(os.open(root/'critic.private.log', os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600),'wb') as log:
             service = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT,
                                        stdin=subprocess.DEVNULL, env=service_env)
-        ready_deadline = time.monotonic()+300
+        ready_deadline = time.monotonic()+600
         while not ready.exists():
             if service.poll() is not None or time.monotonic() >= ready_deadline:
-                raise RuntimeError('critic service failed to become ready in five minutes')
+                raise RuntimeError('critic service failed to become ready in ten minutes')
             time.sleep(1)
         service_identity = json.loads(ready.read_text())
         if service_identity['allocation_id'] != a.job_id or not service_identity['step_id'].isdigit():
             raise RuntimeError('service identity does not belong to this allocation')
+        if not service_identity.get('deployment_check', {}).get('all_parameters_cuda_bf16'):
+            raise RuntimeError('replacement GPU context check is absent')
         status['service_startup_seconds'] = service_identity['model_load_and_bind_seconds']
         result = pool.run()
         status.update(status='completed' if result['successful'] else 'incomplete',
@@ -218,6 +240,7 @@ def main():
     p.add_argument('--package', type=Path, required=True)
     p.add_argument('--execute-approved-matrix', action='store_true')
     p.add_argument('--live-route-checked', action='store_true')
+    p.add_argument('--execution-node', choices=('gpu27','gpu28'))
     args = p.parse_args()
     root = args.package.resolve(strict=True)
     if not args.execute_approved_matrix:
@@ -225,8 +248,11 @@ def main():
         print(json.dumps(dict(status='PACKAGE_VALID_ONLY', planned_runs=len(manifest['runs']),
                               model_loads=0, external_api_calls=0, slurm_dispatches=0)))
         return
+    if not args.execution_node:
+        p.error('replacement deployment requires an explicit reviewed 3090 node')
     try:
-        result = execute(root, approved=args.execute_approved_matrix, route_checked=args.live_route_checked)
+        result = execute(root, approved=args.execute_approved_matrix, route_checked=args.live_route_checked,
+                         execution_node=args.execution_node)
     finally:
         if (root/'runtime-manifest.json').is_file() and not (root/'readout').exists():
             collect(root)

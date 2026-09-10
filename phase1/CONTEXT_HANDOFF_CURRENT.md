@@ -11,7 +11,7 @@
   random−critic **−1.86058**。critic此次更差，仅一个探索seed，不能外推普遍无效。
   [实测与读出](FORETS_FIRST_PAIR_20260910.md)；旧包、失败记录和未启动槽位保持不变。
 - 当前没有新的critic收益或干净scaling结论。配置、人工测试、输入编码差异均不是效果结果。
-- 最近队列实查：**2026-09-10 21:32:51 UTC / 香港9月11日05:32:51**，只有12535 PENDING/JobHeldUser。
+- 最近队列实查：**2026-09-10 22:06:19 UTC / 香港9月11日06:06:19**，只有12535 PENDING/JobHeldUser。
   它不会自己开跑；不释放/取消。无本轮运行中的GPU作业；这是观察时间，不是永久实时状态。
 
 ## 已完成，不再重复
@@ -24,7 +24,8 @@
 - 当前训练/服务编码差异已用真实tokenizer人工输入复现。checkpoint历史模板仍未知，不能归因负结果。
 - common_priority_v1已准备为显式可选源码补丁；保留旧默认，只保证同池耦合，不是新算法或最终分改善。
 - 新8份真实RunConfig已生成、往返和独立配对核对；**不要再次生成或执行旧campaign**。
-- 新控制器核心13项CPU测试已通过；新读出20项通过并与远端8配置核对，均勿重做。真实服务/硬件入口仍未完成。
+- 新控制器核心13项、新读出20项、新runtime/collector 22项CPU测试通过，均勿重做。Linux计时/中断清理及实际pool导入已核。
+  生产接线已实现但未发行可执行release、未做真实Slurm生命周期实测；不把准备算模型收益。
 
 ## 当前唯一新方案与产物
 
@@ -41,16 +42,19 @@
   prepared SHA：d6fcf987924bf696c8a6ea7fb252a6a634ad3fdac9de192a24eb07ec63fee76d。
   预算更正SHA：2137b4e96c365351af1fe1b0d104b71dc15b67831e485ce5641142578b9bb408。
 - 控制器独立CPU根：/research/d7/spc/yzyang4/forets-block-controller-20260911-t7d8kr。
-  这里只有inspect入口；未加载服务/模型、未派发worker。不能通过改readiness布尔值取得实际启动能力。
+  最新runtime/collector根：/research/d7/spc/yzyang4/forets-block-runtime-20260911-75kVIA。
+  CLI仍仅inspect；未加载服务/模型、未派发worker。不能通过改readiness布尔值取得实际启动能力。
+  见[运行接线与排障](FORETS_RUNTIME_AND_UNBLOCK_20260911.md)；新采集先独立查两块终态，再读pool，最后才交reader。
 
 ## 未解决与下一步
 
 1. **等外界**：GPU9共享约定及受支持的单卡OpenCL暴露方式。已问学长/管理员，未回复；不重复试/dev/null绑定。
    设备可打开不证明13004使用过它，不据此改写旧结果。原镜像/任务代码不改，不升级Torch、不退CPU。
+   自查已知gpu28登记9卡、Slurm19.05.4；计算节点配置SSH被主机身份校验挡住，现有信任记录无匹配，不绕过。
 2. **等外界**：checkpoint-100历史训练输入是否含预测指令；当前分支含指令不能证明历史模板。
-   问题已留给用户转学长，不重复索要权重/密钥，不猜模板并改生产默认。
-3. **读出已完成**：用户明确批准后的[新读出实现](FORETS_BLOCK_READOUT_20260911.md)已验证，不改旧reader、不再索批。当前缺真实runtime manifest，不造终态/成绩。
-   新控制器服务启动/退出的实际限时仍未完成；核心不用重做，不复用旧execute()，不能称完整控制器已部署。
+   权重只读header已证实仅format=pt，不能自行恢复历史模板。问题已留给用户转学长，不再索要权重/密钥。
+3. **控制器/读出准备完成**：用户已批准的实现不再索批或重写。缺硬件/输入事实及实际发行绑定，不能打开release。
+   当前无真实runtime manifest；不造终态/成绩，不复用旧execute()。每块需各自新鲜路由回执，不能沿用上块旧检查。
 4. 外部事实就绪后固定新协议包、检查免费路由，再按明确矩阵/预算进入真实同预算对照；不追加训练或旧G0。
    读最终选中节点的外部分数，失败与完成率分开；不取轨迹最大分，不拿自报分替代，不跨任务混合原始指标。
 
@@ -65,9 +69,12 @@
 
 ## 操作边界与续跑
 
+- 用户最新要求：在当前会话连续完成可推进的工作，先自主排障再集中求助；不要每完成小模块就结束让用户续催。
+  关键决定/证据及时更新本短交接；不拿重复验收、轮询或新增长审计冒充实质进展。
+
 - 本地Git：C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；外层MLEvolve不是Git仓库。
   只push myfork HEAD:phase1-value-critic。学长branch dojo-reproduce最近fetch仍065b0fba，不改它。
-  本轮起点HEAD为a2c3fcde5d4bf6167cef51771f6083cf9a249e57；最新HEAD每次fetch核实。
+  本轮起点HEAD为d866c85e20b68b37d872bc37598134aa52196182；最新HEAD每次fetch核实。
 - linux5；SLURM_CONF=/opt1/slurm/gpu-slurm.conf；CPU Python=/research/d7/spc/yzyang4/venvs/aira/bin/python。
   模型Python为同根venvs/exp/bin/python；复杂SSH用脚本/scp，避免引号被剥离。
 - MLE worker只在兼容gpu27/gpu28（不是projgpu28/39）；两臂同硬件/原镜像；QOS4jobs/8GPU。

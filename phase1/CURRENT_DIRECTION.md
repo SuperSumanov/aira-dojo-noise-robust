@@ -7,6 +7,19 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L151. 2026-09-11：服务/池/收尾接线完成准备；自主排障已收窄，未发行执行release
+
+用户要求在同一会话连续完成可做事项、自行排障后再求助；不再把每个小模块完成当作结束点。
+新增runtime层与独立collector；启动从allocation开始计时，路径检查不再额外占GPU，worker/critic共用30秒清理。
+22项新CPU测试通过；22:05:14 UTC Linux实际导入pinned pool并核定时中断/启动SIGTERM清理、8配置绑定。
+collector先查allocation终态再读pool，避免查询前旧状态；未打开真实分数、未生成正式runtime manifest。
+入口仍inspect-only，缺release先于资源/凭据访问拒绝；生产代码接线不是实际Slurm运行或新模型收益。
+权重header仅format=pt，无法恢复历史输入；gpu28登记9卡、Slurm19.05.4，仍未知设备9实际GRES映射/共享约定。
+只读计算节点SSH被主机身份验证挡住，既有信任记录无匹配；未绕过校验、未投GPU替代查询。
+22:06:19 UTC队列仍仅12535 held；学长branch仍065b0fba。未新GPU/API/model，原负向结果与保护集边界不变。
+见[运行接线与排障报告](FORETS_RUNTIME_AND_UNBLOCK_20260911.md)。现在缺实际设备隔离/历史输入事实与发行绑定，
+不再重写控制器、重跑已过测试/G0或重复索要模型/凭据；六小时窗口/矩阵/预算不变。
+
 ## 0L150. 2026-09-11：获批的新seed8/9读出模块完成；无新实测成绩
 
 用户明确全部批准后新增独立reader，旧reader/旧seed计划/13004结果不改；20项CPU人工测试通过。

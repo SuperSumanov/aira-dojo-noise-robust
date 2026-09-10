@@ -14,20 +14,23 @@
   prepared.json里的17.0是旧提案；当下入口为results/forets_next_package_20260911/PACKAGE_STATE.json。
 - 新两块控制器核心13项CPU测试通过，并绑定远端已有8配置；不是GPU部署、模型验收或新收益。
 - 新读出模块20项CPU测试通过，并用人工关闭状态核过8份真实config；没有正式runtime manifest/实际成绩，不重复校验。
+- 新runtime/collector接线22项CPU测试通过，Linux阻塞计时与SIGTERM清理已核；未发行可执行release，不重复写核心。
 - 13004首对有效但负向；全部旧GPU尝试终态。G0/12892/16K/基础CUDA不再重复。
 
 ## 剩余工作，按依赖推进
 
-1. **控制器适配**：用户已明确批准的新读出模块完成，接口见FORETS_BLOCK_READOUT_20260911.md，不再索批或重做。
-   现有BlockPoolControl只是核心，不得冒充完整production入口；CPU人工边界通过不等于调度器或模型实测。
-   保持两块各4run固定顺序、不自动retry/resume、不看结果选下一个seed，保留失败/未开始槽位。
-   仅推进已批准范围的CPU实现；已有拒绝校验不重跑。未具备实际环境事实时不启动资源型子进程、API、模型或训练。
+1. **已完成接线，未发行**：新读出、runtime、独立collector都已完成CPU准备，见FORETS_RUNTIME_AND_UNBLOCK_20260911.md。
+   不再拆模块重复实现或索批；CPU边界不等于真实调度器/模型实测。硬件/输入事实未补齐时入口保持关闭。
+   两块各4run固定顺序、不自动retry/resume、不看结果选下个seed，保留失败/未开始槽位；每块单独新鲜路由回执。
 2. **等待已发外部问题**：GPU9共享/受支持单卡OpenCL方式；checkpoint历史指令前缀。
    未回复不重复追问、不猜事实、不重复失败的/dev/null遮蔽。不改任务SIF、Torch或退CPU。
+   自主已查权重header无历史记录、gpu28登记9卡/Slurm19.05.4；计算节点只读SSH缺已验证主机身份，未绕过。
 3. **有变化才查外部动态**：fetch学长branch，新outcome先扫描再脱敏；新网盘metadata才触发增量下载。
    已有八包不重扫、不打开env/journal结果；first-960/Target-300/Target-522继续保护。
 
 ## 最小记录规则
+
+- 用户要求优先在当前会话连续处理，不在每个小模块后结束。先尽力自行排障，再集中报告确实需外界的事实。
 
 - 真实变化写短交接；精确证据写一次dated报告，旧版本留Git。不要再向恢复索引叠加多轮相互矛盾摘要。
 - queue最后观察时点与SHA在短交接；没有复查不得写“现在仍然”。不干预12535/他人作业。

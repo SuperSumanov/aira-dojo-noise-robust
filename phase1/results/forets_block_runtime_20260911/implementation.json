@@ -1,0 +1,65 @@
+{
+  "role": "forets_runtime_preparation_and_read_only_unblock_evidence",
+  "date_hk": "2026-09-11",
+  "starting_commit": "d866c85e20b68b37d872bc37598134aa52196182",
+  "senior_commit": "065b0fbaa89e0eb663f2834ec768081f5d56394d",
+  "remote_stage": "/research/d7/spc/yzyang4/forets-block-runtime-20260911-75kVIA",
+  "unit_test": {
+    "command": "python -m pytest phase1/tests/test_forets_block_runtime_20260911.py -q",
+    "passed": 22,
+    "seconds": 0.67,
+    "kind": "artificial_OS_boundaries_no_task_results"
+  },
+  "linux_verification": {
+    "actual_configs_bound": 8,
+    "actual_pool_import_and_mro_verified": true,
+    "api_calls": 0,
+    "blocking_timer_interrupted": true,
+    "gpu_submissions": 0,
+    "model_loads": 0,
+    "module_sha256": {
+      "forets_block_collect_20260911.py": "c0955c5f1d6866e6fc0a72ef1f51d57b3bb4d5b5f41e695baf3d4aceb54359d6",
+      "forets_block_runtime_20260911.py": "169c549893697411a41ec16c57b3e0786e9afec0a1e6824a7d67fe7afbdc204b"
+    },
+    "observed_utc": "2026-09-10T22:05:14.148115+00:00",
+    "pool_instances": 0,
+    "python": "3.12.13",
+    "release_denied_before_resources": true,
+    "role": "linux_cpu_runtime_wiring_not_model_or_scheduler_result",
+    "source_tree": "3aae90ae26b5ae7b65e6efed14fb49f2907c9c42",
+    "startup_sigterm_cleanup_verified": true,
+    "timer_elapsed_seconds": 0.05026380799245089
+  },
+  "metadata_checks": {
+    "checkpoint_header_bytes": 47680,
+    "checkpoint_tensor_entries": 400,
+    "checkpoint_metadata": {
+      "format": "pt"
+    },
+    "checkpoint_metadata_credential_hits": 0,
+    "checkpoint_package_files": 1,
+    "training_template_recoverable": false,
+    "cluster_task_plugin": "task/cgroup",
+    "cluster_proctrack_plugin": "proctrack/cgroup",
+    "gpu28_scheduled_gpus": 9,
+    "gpu28_node_version": "19.05.4",
+    "compute_metadata_ssh": "HOST_KEY_VERIFICATION_FAILED_NO_BYPASS",
+    "trusted_host_match_local_or_login": false,
+    "compute_nvidia_container_cli": "NOT_OBSERVED",
+    "compute_gres_device_file_mapping": "NOT_OBSERVED"
+  },
+  "old_allocation_parser_check": {
+    "role": "13004_resource_fields_only_not_new_result",
+    "state": "COMPLETED",
+    "elapsed_seconds": 2577,
+    "allocated_gpus": 2,
+    "collector_sha256": "c0955c5f1d6866e6fc0a72ef1f51d57b3bb4d5b5f41e695baf3d4aceb54359d6"
+  },
+  "development_note": "First remote CPU import check lacked LOGGING_DIR; fixed only verification environment before final pass. No GPU/model attempt failed.",
+  "gpu_submissions": 0,
+  "api_calls": 0,
+  "model_loads": 0,
+  "new_effect_results": 0,
+  "release_available": false,
+  "protected_cohorts_read": false
+}

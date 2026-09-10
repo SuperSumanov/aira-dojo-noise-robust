@@ -6,6 +6,8 @@
 四例CPU真实tokenizer确认当前训练指令前缀与服务不同；checkpoint历史模板未知，已留定向问题，禁止直接改生产。
 新八包预算单次7200秒/总86400秒，与短预算不等价；32配置、29有journal头，不是29/32合格runs，仍隔离。
 common-priority已走13004真实批处理的人工fixture，13项新增测试通过，未生产部署、未产生收益。
+21:02 UTC后续：0018显式coupling开关已完成隔离源码接入（tree3aae90ae...），新增7测试通过；
+默认旧选择保持，恢复绑定记录模式并拒绝跨模式复用。尚未生成完整新RunConfig，不等于远端部署。
 新草案两任务×seed8/9×两臂，6步，8run/两块名义17.0GPUh；只是预算草案，不提交、不开旧剩余6项。
 完整证据/限制见FORETS_NIGHT_PROGRESS_20260911.md；CURRENT_DIRECTION顶部0L147覆盖以下旧“未开monitor”状态。
 

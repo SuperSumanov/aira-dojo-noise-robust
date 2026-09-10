@@ -1,0 +1,64 @@
+diff --git a/src/dojo/config_dataclasses/solver/fore_ts.py b/src/dojo/config_dataclasses/solver/fore_ts.py
+--- a/src/dojo/config_dataclasses/solver/fore_ts.py
++++ b/src/dojo/config_dataclasses/solver/fore_ts.py
+@@ -17,3 +17,4 @@ class ForeTSSolverConfig(MCTSSolverConfig):
+     selector_seed: int = field(default=MISSING)
+     selection_policy: str = field(default=MISSING)
++    selection_coupling: str = 'independent_subset_v2'
+     skip_redundant_critic: bool = False
+@@ -39,4 +40,6 @@ class ForeTSSolverConfig(MCTSSolverConfig):
+         super().validate()
+         if self.selection_policy not in ("uniform_random", "critic_topk_random"):
+             raise ValueError("explicit supported selection_policy required")
++        if self.selection_coupling not in ('independent_subset_v2', 'common_priority_v1'):
++            raise ValueError('unsupported selection coupling')
+         if type(self.selector_seed) is not int:
+diff --git a/src/dojo/solvers/fore_ts/selection.py b/src/dojo/solvers/fore_ts/selection.py
+--- a/src/dojo/solvers/fore_ts/selection.py
++++ b/src/dojo/solvers/fore_ts/selection.py
+@@ -9,4 +9,7 @@
+-def choose_slots(count, top_k, choose, policy, seed, task, step, scores=None):
++def choose_slots(count, top_k, choose, policy, seed, task, step, scores=None, *,
++                 coupling='independent_subset_v2'):
++    if coupling not in ('independent_subset_v2', 'common_priority_v1'):
++        raise ValueError('unsupported selection coupling')
+     if policy not in POLICIES:
+         raise ValueError('explicit supported selection policy required')
+@@ -29,3 +32,13 @@
++    if coupling == 'common_priority_v1':
++        # Shuffle the whole pool before the score-based eligibility filter.
++        # The stream is shared across arms and matches the tested prototype.
++        identity = dict(version='forets-common-priority-v1', seed=seed,
++                        task=task, step=step, purpose='selection_order')
++        key = hashlib.sha256(json.dumps(identity, sort_keys=True,
++                                       separators=(',', ':')).encode()).hexdigest()
++        order = list(range(count))
++        random.Random(key).shuffle(order)
++        return [slot for slot in order if slot in eligible][:min(choose, len(eligible))]
+     identity = dict(domain='forets-selector-v2', seed=seed, task=task, step=step)
+     key = hashlib.sha256(json.dumps(identity, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+     return random.Random(key).sample(eligible, min(choose, len(eligible)))
+diff --git a/src/dojo/solvers/fore_ts/batch_runtime.py b/src/dojo/solvers/fore_ts/batch_runtime.py
+--- a/src/dojo/solvers/fore_ts/batch_runtime.py
++++ b/src/dojo/solvers/fore_ts/batch_runtime.py
+@@ -29,4 +29,7 @@ def expand_batch(solver, path, state, task, node_type, extract_code, config_snapshot):
+     policy = solver.cfg.selection_policy
+     if policy not in POLICIES:
+         raise LedgerError("explicit selection policy required before generation")
++    coupling = getattr(solver.cfg, 'selection_coupling', 'independent_subset_v2')
++    if coupling not in ('independent_subset_v2', 'common_priority_v1'):
++        raise LedgerError('unsupported selection coupling before generation')
+     skip_redundant = getattr(solver.cfg, 'skip_redundant_critic', False)
+@@ -50,3 +53,4 @@ def expand_batch(solver, path, state, task, node_type, extract_code, config_snapshot):
+     binding = dict(schema=4, selection_policy=policy, execution_contract="task-return-receipt-v1", request_contract="same-rendered-request-v1", boundary_sha256=digest(boundary), parent_id=parent.id,
+                    task=solver.task_name, step=solver.state.current_step)
++    binding.update(selection_coupling=coupling)
+     if bypass:
+@@ -110,6 +114,6 @@ def expand_batch(solver, path, state, task, node_type, extract_code, config_snapshot):
+             ledger.select(choose_slots(count, solver.critic_top_k, solver.num_children_to_choose,
+                           effective_policy, solver.cfg.selector_seed, solver.task_name,
+-                          solver.state.current_step, scores))
++                          solver.state.current_step, scores, coupling=coupling))
+ 
+         # Upstream's unselected journal is an export-only view. It must never
+         # enter executed memory/UCT, the selection pool, or task execution.

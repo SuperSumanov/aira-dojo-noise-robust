@@ -1,0 +1,26 @@
+{
+  "check": "ARTIFICIAL_CLOSEOUT_ON_REAL_CONFIGS_ONLY",
+  "utc": "2026-09-10T21:45:39.692954+00:00",
+  "actual_config_files_bound": 8,
+  "planned_pairs": 4,
+  "runtime_manifest_written": false,
+  "actual_results_read": false,
+  "gpu_jobs": 0,
+  "api_requests": 0,
+  "model_calls": 0,
+  "production_readiness": false,
+  "source_sha256": "7a0efc73323ce549da2c05704dce7a6f7ce26b67d0026e3fcb667790f61b0f1b",
+  "helper_sha256": {
+    "forets_e2e_readout.py": "0f832951336926522a93d915b28aa6e068cf3f58308580a2f293d2d383f063c4",
+    "forets_block_controller_20260911.py": "3d111b66678e656a7a1699f5b15c1ba8213fe0cc56ac6f693601ac45a97d0831",
+    "forets_pilot_plan.py": "1f6667641725662b10c59d7563368fe47eac19eecd79d92a87ed0e162ddaddf6"
+  },
+  "python": "3.12.13",
+  "local_cpu_tests": {
+    "passed": 20,
+    "elapsed_seconds": 1.52,
+    "command": "python -m pytest phase1/tests/test_forets_block_readout_20260911.py -q --disable-warnings --maxfail=1"
+  },
+  "remote_code_directory": "/research/d7/spc/yzyang4/forets-block-readout-20260911-dKurmv",
+  "scope": "Readout implementation only; artificial fixtures are not new model/e2e results."
+}

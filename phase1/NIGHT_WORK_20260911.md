@@ -13,14 +13,15 @@
 - 外层预算更正已追加：280分钟/块；两块名义18.666666666666668 GPUh，含allocation KillWait为19.0。
   prepared.json里的17.0是旧提案；当下入口为results/forets_next_package_20260911/PACKAGE_STATE.json。
 - 新两块控制器核心13项CPU测试通过，并绑定远端已有8配置；不是GPU部署、模型验收或新收益。
+- 新读出模块20项CPU测试通过，并用人工关闭状态核过8份真实config；没有正式runtime manifest/实际成绩，不重复校验。
 - 13004首对有效但负向；全部旧GPU尝试终态。G0/12892/16K/基础CUDA不再重复。
 
 ## 剩余工作，按依赖推进
 
-1. **控制器适配与读出**：新读出设计见FORETS_BLOCK_READOUT_DESIGN_20260911.md；按最新AGENTS先等实现方案批准，不反复索批。
+1. **控制器适配**：用户已明确批准的新读出模块完成，接口见FORETS_BLOCK_READOUT_20260911.md，不再索批或重做。
    现有BlockPoolControl只是核心，不得冒充完整production入口；CPU人工边界通过不等于调度器或模型实测。
    保持两块各4run固定顺序、不自动retry/resume、不看结果选下一个seed，保留失败/未开始槽位。
-   新代码未获批前只读准备；已有拒绝校验不重跑。未具备实际环境事实时不启动资源型子进程、API、模型或训练。
+   仅推进已批准范围的CPU实现；已有拒绝校验不重跑。未具备实际环境事实时不启动资源型子进程、API、模型或训练。
 2. **等待已发外部问题**：GPU9共享/受支持单卡OpenCL方式；checkpoint历史指令前缀。
    未回复不重复追问、不猜事实、不重复失败的/dev/null遮蔽。不改任务SIF、Torch或退CPU。
 3. **有变化才查外部动态**：fetch学长branch，新outcome先扫描再脱敏；新网盘metadata才触发增量下载。

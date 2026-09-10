@@ -1,0 +1,13 @@
+{
+  "role": "image_filesystem_inspection_not_gpu_execution",
+  "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+  "gpu_requested": false,
+  "task_executions": 0,
+  "source_image_unchanged": true,
+  "returncode": 0,
+  "image_opencl": {
+    "vendor_directory_exists": false,
+    "icd_files": [],
+    "loader_library": null
+  }
+}

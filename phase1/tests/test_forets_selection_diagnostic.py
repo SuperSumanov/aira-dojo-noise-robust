@@ -163,6 +163,18 @@ class DiagnosticTests(unittest.TestCase):
                 (root/'campaign.finished.json').unlink()
                 with self.assertRaises(ValueError):diagnostic.analyze_package(root)
 
+    def test_current_deployment_rejects_unfinished_before_ledger_reads(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            (root/'campaign.started.json').write_text(json.dumps(dict(allocation_id='13004')))
+            with patch.object(diagnostic,'RESILIENCE_PACKAGE',root):
+                with self.assertRaisesRegex(ValueError,'not ready'):
+                    diagnostic.analyze_package(root,deployment='13004')
+
+    def test_unknown_deployment_rejected_before_path_resolution(self):
+        with self.assertRaisesRegex(ValueError,'unknown reviewed'):
+            diagnostic.analyze_package('not-a-real-path',deployment='arbitrary-corpus')
+
 
 if __name__=='__main__':
     unittest.main()

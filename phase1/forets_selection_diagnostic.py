@@ -17,6 +17,8 @@ from forets_selection_20260908 import choose_slots
 PACKAGE = Path('/research/d7/spc/yzyang4/forets-e2e-package-20260910-SWMoh2/package-c')
 SOURCE_TREE = '2ff5277ba17327c6c03326a018b59f704402af6b'
 SELECTOR_SHA = '6f5d1b3c4f02abc78a0cab652f4b3edc6f7dbf1419bf375a07760ea3172050e5'
+RESILIENCE_PACKAGE = Path('/research/d7/spc/yzyang4/forets-resilience-20260910-4LGN21/package')
+RESILIENCE_TREE = 'bbd22e323d6321925a145c12bdc02445c1ad80f4'
 
 
 def diagnose_snapshot(data, *, task, seed, policy, step):
@@ -106,24 +108,33 @@ def read_snapshot(path):
     return _json(payload)
 
 
-def analyze_package(root):
+def analyze_package(root, *, deployment='12933'):
+    # An explicit allowlist, not an arbitrary corpus/path override. Neither
+    # deployment changes the frozen selector, top-k or four-step semantics.
+    if deployment == '12933':
+        expected_root, source_tree = PACKAGE, SOURCE_TREE
+    elif deployment == '13004':
+        expected_root, source_tree = RESILIENCE_PACKAGE, RESILIENCE_TREE
+    else:
+        raise ValueError('unknown reviewed development deployment')
     root = Path(root).resolve(strict=True)
-    if root != PACKAGE.resolve(strict=True):
+    if root != expected_root.resolve(strict=True):
         raise ValueError('only the explicit development package is admitted')
     # This is not a scheduler-terminal proof. Caller must separately check sacct.
-    for filename in ('campaign.started.json', 'campaign.finished.json', 'submission.json'):
+    for filename in ('campaign.started.json', 'campaign.finished.json'):
         if not (root/filename).is_file():
             raise ValueError('campaign is not ready for post-run reading')
-    if (_json((root/'submission.json').read_text())['job_id'] != '12933' or
-            _json((root/'campaign.started.json').read_text())['allocation_id'] != '12933'):
+    submission = (root if deployment == '12933' else root.parent) / 'submission.json'
+    if (_json(submission.read_text())['job_id'] != deployment or
+            _json((root/'campaign.started.json').read_text())['allocation_id'] != deployment):
         raise ValueError('wrong allocation')
     manifest = _json((root/'runtime-manifest.json').read_text())
-    if manifest['source_tree'] != SOURCE_TREE:
+    if manifest['source_tree'] != source_tree:
         raise ValueError('wrong experiment source')
     validate_manifest(manifest, root)  # Checks all eight paths before ledger reads.
     prepared = _json((root/'manifest.json').read_text())
     validate_manifest(prepared, root)
-    if prepared['source_tree'] != SOURCE_TREE:
+    if prepared['source_tree'] != source_tree:
         raise ValueError('wrong prepared source')
     prepared_by_id = {r['run_id']: r for r in prepared['runs']}
     runs = []
@@ -172,7 +183,7 @@ def analyze_package(root):
             all_equal_pruning_selections=sum(b['all_scores_equal'] for b in pruning),
             coupled_random_different_selections=sum(b['coupled_random_slot_differs'] for b in valid),
             batches=batches))
-    return dict(role='forets_e2e_development_diagnostic', job_id='12933', source_tree=SOURCE_TREE,
+    return dict(role='forets_e2e_development_diagnostic', job_id=deployment, source_tree=source_tree,
         runs=runs, limitations=[
             'No final score, candidate code, prompt, identity or critic score values exported.',
             'Missing step files may reflect debug jumps, early stop, failure or no start; not inferred.',
@@ -186,11 +197,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--package', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--deployment', choices=('12933', '13004'), default='12933')
     args = parser.parse_args()
     selector_path = Path(__file__).with_name('forets_selection_20260908.py')
     if hashlib.sha256(selector_path.read_bytes()).hexdigest() != SELECTOR_SHA:
         raise ValueError('local replay selector differs from the frozen production file')
-    result = analyze_package(args.package)
+    result = analyze_package(args.package, deployment=args.deployment)
     with args.output.open('x', encoding='utf-8') as stream:
         json.dump(result, stream, indent=2, allow_nan=False)
         stream.write('\n')

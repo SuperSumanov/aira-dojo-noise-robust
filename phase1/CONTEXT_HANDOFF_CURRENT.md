@@ -1,8 +1,14 @@
 # 当前会话交接：ForeTS 同预算端到端探索
 
 记录更新：2026-09-10（香港）。这是恢复索引，不是新的实验结果。
-最新作业核验：**2026-09-10 13:52:25 UTC / 香港21:52:25**。
-**首配对13004已在gpu28 RUNNING，当前加载critic用于真实搜索。** 香港21:52:03启动，正常75分钟时限23:07:03。
+最新作业核验：**2026-09-10 14:14:55 UTC / 香港22:14:55**。
+**13004仍在gpu28 RUNNING：随机臂已完成，critic臂执行中。** 香港21:52:03启动，正常75分钟时限23:07:03。
+随机臂step2于22:12:13正常结束（1041秒），critic臂step3于22:12:22启动；未读最终分，尚无收益结论。
+随机臂9成功/2个502/1个Timeout，但任务中仍出现OpenCL错误；进程完成不等于有效任务分。
+critic臂2成功/1个Timeout/1请求未返回，其余6项尚未启动，首对结束停止，不自动扩大。
+只读状态脚本为新根/status_forets_13004.py；选择诊断在postrun-diagnostic，**必须独立核终态后才运行**。
+选择诊断命令需--deployment 13004（默认旧12933不得误用），原实验入口不变；本地共67项回归通过。
+结构发现见FORETS_SHORT_HORIZON_20260910.md：3/2/1候选池意味着top2最多一次筛选，尚未修改下一轮。
 入口commit `0656869fc6863d056a23cac0b2f9f41a59f2f6ad`；实际job13004，test-only13003不是作业。
 本地53项回归+8组真实SDK本机HTTP通过。首次实网4attempt为1成功/3个502；剩余2次恢复检查均成功。
 公开实网总6attempt全部保留，不宣称稳定；13:49:55 UTC成功回执在live-recovery/finished.json并绑定传输源hash。
@@ -19,7 +25,7 @@
 逐run终止原因：5个生成接口APIError、3个请求TimeoutError；26个去重transport记录中9成功/17非成功，
 后者含9个随之取消的请求；具体HTTP原因与远端取消/账单未知。
 01号run另有候选LightGBM找不到OpenCL设备；原SIF基础CUDA前反向及critic16K通过，不等于所有任务库可用。
-实际分配18分37秒×2GPU=0.6205555555555555 GPUh。当前无本轮运行任务；旧12535仍pending，不能释放。
+实际分配18分37秒×2GPU=0.6205555555555555 GPUh。该次13:04核验时无本轮运行任务；后来13004已启动，见顶部。
 安全证据：[terminal-status.json](results/forets_3090_20260910/terminal-status.json)。本次仅诊断/记录，未重投。
 12933因PRO6000/任务镜像不兼容在排队时取消；12974启动失败，保留；12973只是test-only预检号。
 用户明确指定gpu27/gpu28可跑MLE。原镜像、8run与270分钟不变，不升级Torch、不CPU卸载、不跨节点服务。
@@ -44,7 +50,7 @@
 
 ## 当前作业与历史尝试
 
-- 最近实际job：**12977，FAILED**，入口commit `60bad03096b3340d4fea8dc221f142c965369995`；
+- 上一次失败job：**12977，FAILED**，入口commit `60bad03096b3340d4fea8dc221f142c965369995`；
   香港14:25:24启动gpu28、2×RTX3090/12CPU，14:44:01结束；原18:55:24时限不再是等待ETA。
   证据：[submission12977.json](results/forets_3090_20260910/submission12977.json)、
   [容器实测](results/forets_3090_20260910/container.compatibility.json)、[初始状态](results/forets_3090_20260910/deployment.initial-state.json)。
@@ -89,7 +95,7 @@
 
 ## 中断后下一步
 
-1. 先读0L142。13004已运行，查squeue/sacct和新package/campaign.started、critic.ready、runs/srun_pool；不要再次提交。
+1. 先读0L143。13004随机臂已结束、critic臂运行；查sacct和新package/runs/srun_pool；不要再次提交。
 2. 继续监视首配对真实执行；API仍可能502，最多3次重试且每run40次预算不变，不能暗改模型/付费fallback。
 3. 12977与package-r2已终态FAILED；保留全部8项失败及原包，不把旧运行记录当当前状态。
 4. 容器计算和critic16K检查已通过，不重复；候选OpenCL错误尚未解决，不手改候选或退到CPU。

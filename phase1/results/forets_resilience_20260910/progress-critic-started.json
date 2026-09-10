@@ -1,0 +1,94 @@
+{
+  "observed_utc": "2026-09-10T14:16:10.796753+00:00",
+  "job_id": 13004,
+  "role": "development_live_structure_only",
+  "manifest_sha256": "69f318e2423779f46241a6b7f912c172bf51934c162bd44e9a366b3681cf91fa",
+  "sacct": [
+    "13004|RUNNING|1447|billing=12,cpu=12,gres/gpu=2,node=1|0:0|2026-09-10T21:52:03|Unknown",
+    "13004.batch|RUNNING|1447|cpu=12,mem=0,node=1|0:0|2026-09-10T21:52:03|Unknown",
+    "13004.extern|RUNNING|1447|billing=12,cpu=12,gres/gpu=2,node=1|0:0|2026-09-10T21:52:03|Unknown",
+    "13004.0|RUNNING|1444|cpu=6,gres/gpu=1,mem=0,node=1|0:0|2026-09-10T21:52:06|Unknown",
+    "13004.1|COMPLETED|0|cpu=6,gres/gpu=1,mem=0,node=1|0:0|2026-09-10T21:54:52|2026-09-10T21:54:52",
+    "13004.2|COMPLETED|1041|cpu=6,gres/gpu=1,mem=0,node=1|0:0|2026-09-10T21:54:52|2026-09-10T22:12:13",
+    "13004.3|RUNNING|228|cpu=6,gres/gpu=1,mem=0,node=1|0:0|2026-09-10T22:12:22|Unknown"
+  ],
+  "runs": [
+    {
+      "run_id": "00-leaf-classification-s6-uniform_random",
+      "status": "completed",
+      "malformed_transport_lines": 0,
+      "transport_counts": {
+        "APIError": 2,
+        "success": 9,
+        "TimeoutError": 1
+      },
+      "http_status_counts": {
+        "502": 2
+      },
+      "opencl_error_seen": true,
+      "batches": [
+        {
+          "step": 1,
+          "phase": "complete",
+          "candidate_count": 3,
+          "task_call_states": {
+            "returned": 1
+          }
+        },
+        {
+          "step": 2,
+          "phase": "complete",
+          "candidate_count": 2,
+          "task_call_states": {
+            "returned": 2
+          }
+        }
+      ]
+    },
+    {
+      "run_id": "01-leaf-classification-s6-critic_topk_random",
+      "status": "running",
+      "malformed_transport_lines": 0,
+      "transport_counts": {
+        "success": 2,
+        "TimeoutError": 1,
+        "intent": 1
+      },
+      "http_status_counts": {},
+      "opencl_error_seen": false,
+      "batches": [
+        {
+          "step": 1,
+          "phase": "collecting",
+          "candidate_count": 3,
+          "task_call_states": {}
+        }
+      ]
+    },
+    {
+      "run_id": "02-leaf-classification-s7-critic_topk_random",
+      "status": "pending"
+    },
+    {
+      "run_id": "03-leaf-classification-s7-uniform_random",
+      "status": "pending"
+    },
+    {
+      "run_id": "04-spaceship-titanic-s6-critic_topk_random",
+      "status": "pending"
+    },
+    {
+      "run_id": "05-spaceship-titanic-s6-uniform_random",
+      "status": "pending"
+    },
+    {
+      "run_id": "06-spaceship-titanic-s7-uniform_random",
+      "status": "pending"
+    },
+    {
+      "run_id": "07-spaceship-titanic-s7-critic_topk_random",
+      "status": "pending"
+    }
+  ],
+  "campaign_finished_exists": false
+}

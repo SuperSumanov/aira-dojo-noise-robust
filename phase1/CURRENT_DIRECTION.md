@@ -17,6 +17,10 @@ CPU复现env_setup在缺LD_LIBRARY_PATH且bash -u时静默退出，默认空值�
 critic同次加载及绑定164.63458847487345秒，单3090全参数CUDA/BF16、16K前向7.913172740023583秒，
 peak reserved18.80078125GiB；仅一次人工前向，不是时延基准或任务分数。随后同服务直接用于搜索，未CPU卸载。
 全部8run中1running/7pending/0completed；无最终成绩或收益结论。
+06:33:39 UTC后续：首个随机run在draft生成阶段失败；唯一完成记录为1个APIError及2个随之取消的请求，
+共3个reserved adapter attempts、provider实际取消/账单未知。第二个critic run运行中，已见4个成功响应；
+这不是CUDA故障，也不是critic胜出。HTTP状态/具体APIError原因未记录，不能凭类名断言401/限流/网络。
+保持原矩阵、生成器与失败分母，不为这一个失败换模型或重跑seed；见early-transport-status.json。
 原SIF实测torch2.5.1+cu124/CUDA12.4、RTX3090/compute capability8.6，单GPU矩阵前向/反向结果有限；
 无镜像修改、无task数据或生成器请求。只证明基础CUDA计算，不冒充全部MLE库或端到端成功。
 真实回执见results/forets_3090_20260910；当前唯一运行根forets-e2e-3090-20260910-j6zb6d6i/package-r2。

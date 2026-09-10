@@ -1,0 +1,29 @@
+{
+  "record_type": "transcribed_remote_log_summary",
+  "utc": "2026-09-10T06:33:39.771007+00:00",
+  "job_id": "12977",
+  "deduplication": "attempt_id within each run; repeated logger copies are not new calls",
+  "first_run": {
+    "run_id": "00-leaf-classification-s6-uniform_random",
+    "status": "failed",
+    "failure_stage": "draft generation before candidate execution",
+    "exception": "bounded API attempt failed: APIError",
+    "http_status": null,
+    "underlying_provider_cause": null,
+    "reserved_adapter_attempts": 3,
+    "observed_apierror_attempts": 1,
+    "observed_cancelled_attempts": 2,
+    "provider_cancellation_verified": false,
+    "api_cost_usd": null
+  },
+  "second_run": {
+    "run_id": "01-leaf-classification-s6-critic_topk_random",
+    "status": "running",
+    "observed_successful_response_attempts": 4,
+    "observed_inflight_intents": 1
+  },
+  "final_score_available": false,
+  "generator_changed": false,
+  "failed_seed_replayed": false,
+  "model_benefit_claim": false
+}

@@ -8,6 +8,10 @@ critic单3090全参数CUDA-BF16及16K一次前向也已通过，未CPU卸载；�
 原8run入口60bad030，唯一运行根为本目录的package-r2，而非首次失败的package。
 正常分配时限18:55:24，不含可能的清理延迟。提交与容器实测见results/forets_3090_20260910。
 
+06:33:39 UTC跟进：首个随机run在draft的生成接口失败，1个APIError及2个CancelledError（按attempt_id去重），
+reserved attempts=3，provider实际取消与费用未知；不是3个独立APIError。第二个critic run已有4个成功响应、仍运行。
+首个失败早于该批候选执行，不能当作critic优于random的证据。HTTP细因未知，不擅自换路由或重跑seed。
+
 实测任务镜像torch2.5.1+cu124/CUDA12.4，3090能力8.6，25秒步骤完成。critic仍为宿主torch2.11.0+cu128，
 加载/绑定164.63458847487345秒，16K一次前向7.913172740023583秒，peak reserved18.80078125GiB；
 不是重复计时基准，也不代表真实candidate排序有效。一次加载完成后同服务直接供搜索。

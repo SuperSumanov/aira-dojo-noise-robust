@@ -1,0 +1,17 @@
+{
+  "accounted_usd": 0.000113724,
+  "authorization_sha256": "c274cfc456296b85a8cb2b85ba9f66d28f738132462119e6fbb7f58d6c2e5c1e",
+  "calls": 2,
+  "scopes": [
+    {
+      "calls": 2,
+      "held_usd": 0.000113724,
+      "scope": "route",
+      "settled_usd": 0.000113724,
+      "unresolved": 0
+    }
+  ],
+  "settled_usd": 0.000113724,
+  "stopped": false,
+  "unresolved": 0
+}

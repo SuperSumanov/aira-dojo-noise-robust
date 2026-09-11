@@ -1,0 +1,13 @@
+{
+  "authorization_sha256": "c274cfc456296b85a8cb2b85ba9f66d28f738132462119e6fbb7f58d6c2e5c1e",
+  "base_package_unchanged": true,
+  "commit": "f051cfded55259d5320407a9e0269ab9141ab345",
+  "configs": 8,
+  "package": "/research/d7/spc/yzyang4/forets-paid-20260911-oh3np7b8",
+  "paired": 4,
+  "prepared_sha256": "58558eed5abe1f793c77049572549c66de8c104255f8a13fa3c48e0a8b4d3593",
+  "release_sha256": "819621d75c9c95efe1e337866884b8701ad5f3f71cf5ea7e849f2b6ab0dd8798",
+  "source_inventory_sha256": "6857f18c60fecaa745710960c0f2f9dfd50d485717ca8a7e86faa47dedc10c1b",
+  "source_tree": "f9087ae47470f7f1868c61405c3b827327f31c2c",
+  "status": "PAID_SUCCESSOR_PREPARED_NO_CALLS_NO_GPU"
+}

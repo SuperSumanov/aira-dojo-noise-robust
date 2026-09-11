@@ -61,3 +61,10 @@ release SHA：`819621d75c9c95efe1e337866884b8701ad5f3f71cf5ea7e849f2b6ab0dd8798`
 第一块实际作业 **13088**，2026-09-11 11:02:18 UTC观察RUNNING/gpu28，已用23秒、上限4:40。
 控制器started.json记录11:01:58.232757UTC，code commit f051cfde；启动的是固定seed8的四run，非训练/G0。
 第二块seed9未提交；两块须依次运行避免服务端口冲突，并共用同一paid.sqlite。此时尚无新效果结论。
+
+11:07:27.950776 UTC：现成critic在单张RTX3090、16K、BF16就绪（加载215.88420586613938秒）。
+leaf/seed8/random进入真实worker13088.1，原SIF native-binding回执已存在；其它三项pending。
+任务生成实际派发4次，其中3次已结算、1次尚在进行；加接口检查共6次，已结算0.006374277 USD，
+另持有0.70 USD预留，预留不是实际扣费。无完整配对效果结果。
+独立旧新配置差异核对只见40处机械路径、32处共同模型、32个费用开关、64个价格字段，
+并逐一验证32个only Alibaba限制；任务/seed/算子prompt/selector/critic/镜像/预算均未额外改动。

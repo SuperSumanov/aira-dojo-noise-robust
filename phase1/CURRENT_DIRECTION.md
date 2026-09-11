@@ -7,6 +7,17 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L165. 2026-09-12：首次真实可比对出现正差值，冻结同版本seed12复验
+
+13115整组COMPLETED后独立核对：2/4有效最终解、1/2可比对。Spaceship accuracy random0.74368、
+critic0.79655，差5.28700个百分点；Leaf两臂无有效最终解，不补零、不称打平。单seed不能称稳定收益或clean scaling。
+62新增API、0.152156823USD，本块2.5355555555555553GPUh；累计240API/0.574500927USD已结算，
+另有历史0.70USD未知保留。当前校验是最终选中节点与外部grade一致性，不是原始submission的数值重评分。
+按揭盲前的条件计划，保持原生成器/critic/镜像/6step/300秒，原两任务×seed12×两臂共4run复验；
+不只重复获胜任务、不改变选择规则、不切Plus。新增最多10GPUh与2USD责任，累计责任上限3.274500927USD，
+仍在原100人民币/10USD总授权内。旧账逐行结转、旧scope封存；不重跑旧槽位。实际提交见短交接。
+见[完整收尾](FORETS_REVIEW_CLOSEOUT_20260912.md)、[seed12固定方案](FORETS_SEED12_REPLICATION_20260912.md)。
+
 ## 0L164. 2026-09-12：确认metric字符串接纳缺陷；修复后新seed11四run验证
 
 人工真实API诊断确认metric:string不符合number/null；v1成功例过、失败例未过，v2两例均接纳且语义正确。

@@ -48,6 +48,13 @@
 
 任何后续新矩阵须先核本轮实际GPU/API耗费和累计剩余预算；本文不额外启动GPU、API或训练。
 
+补充研究判断（2026-09-12，只读查重）：CodeScaler已在编程题/代码基准做奖励排序，不能把这一本身当新颖性；
+其文中五个代码任务基准不等同于本项目的MLE训练程序评估。若现成MLE critic出现可重复e2e收益，
+还须纳入通用代码RM，才能区分“任何代码RM都能做到”与“MLE执行经验带来额外作用”。
+官方已公开1.7B/4B/8B模型；目前只核查资料，未下载、训练或新增本轮臂。
+来源：[CodeScaler正文](https://arxiv.org/html/2602.17684v1)、[官方模型集合](https://huggingface.co/collections/LARK-Lab/codescaler)。
+这种差异只是候选研究空间，不是已证明的创新、更不是当前正结果；不因更换模型而事后改读数标准。
+
 ## 2026-09-12补充：当前结果验证与原始提交留存的区别
 
 13115运行期间只读源码核实：原MLEBenchTask评分后删除submission.csv，evaluate覆盖单一grading_report.json。

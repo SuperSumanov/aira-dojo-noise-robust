@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "role": "forets_e2e_fixed_blocks_runtime_v1",
+  "source_tree": "6ca01fba9892a350cbb24152054b5296dc7095f1",
+  "prepared_sha256": "e6ec9d4c6664a98a6c069b13cb85624ece78b864adf036591ed34f4c8df18718",
+  "controller_commit": "a383c2abb5fa9def7e85e7b3313c3894159e7be3",
+  "blocks": [
+    {
+      "block": 1,
+      "allocation_id": "13115",
+      "node": "gpu28",
+      "state": "COMPLETED",
+      "elapsed_seconds": 4564,
+      "allocated_gpus": 2,
+      "service_startup_seconds": 165.62534028897062,
+      "observed_utc": "2026-09-11T22:57:34.496299+00:00"
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "00-leaf-classification-s11-critic_topk_random",
+      "block": 1,
+      "task": "leaf-classification",
+      "seed": 11,
+      "arm": "critic_topk_random",
+      "run_dir": "runs/00-leaf-classification-s11-critic_topk_random",
+      "prepared_config_sha256": "ecc51299f7d5740ba2df98d2099a9b46de38a6824e2c044c790ca457f9d71292",
+      "runtime_config_path": "runs/srun_pool/56bc63d4b218/configs/00-leaf-classification-s11-critic_topk_random-3f81a66657.json",
+      "runtime_config_sha256": "711db0a218065039b4304a7bc6aeeb662fe3c7ce5213e8f1286b64033c2cbab1",
+      "process_summary": "runs/srun_pool/56bc63d4b218/identities/00-leaf-classification-s11-critic_topk_random-3f81a66657.attempt-1.bounded/execution/summary.json",
+      "runtime_status": "completed"
+    },
+    {
+      "run_id": "01-leaf-classification-s11-uniform_random",
+      "block": 1,
+      "task": "leaf-classification",
+      "seed": 11,
+      "arm": "uniform_random",
+      "run_dir": "runs/01-leaf-classification-s11-uniform_random",
+      "prepared_config_sha256": "d6d7d5ffb94aedca55cd685a04659124972f96ca931f2b2be767568900632bef",
+      "runtime_config_path": "runs/srun_pool/56bc63d4b218/configs/01-leaf-classification-s11-uniform_random-165da75a0e.json",
+      "runtime_config_sha256": "790594f2537a5e05f080c33a30fca5db1393f690d96d6a4159bd23426c741610",
+      "process_summary": "runs/srun_pool/56bc63d4b218/identities/01-leaf-classification-s11-uniform_random-165da75a0e.attempt-1.bounded/execution/summary.json",
+      "runtime_status": "completed"
+    },
+    {
+      "run_id": "02-spaceship-titanic-s11-uniform_random",
+      "block": 1,
+      "task": "spaceship-titanic",
+      "seed": 11,
+      "arm": "uniform_random",
+      "run_dir": "runs/02-spaceship-titanic-s11-uniform_random",
+      "prepared_config_sha256": "c60e25a00fe1185fc57776664f3629efc939e8c118cb57abb8b683d6a5d228bf",
+      "runtime_config_path": "runs/srun_pool/56bc63d4b218/configs/02-spaceship-titanic-s11-uniform_random-5a37dc4107.json",
+      "runtime_config_sha256": "6959c0b06986e1d811a5606594a179cd8cec08a50e022e60c5ab9ad4d45b4585",
+      "process_summary": "runs/srun_pool/56bc63d4b218/identities/02-spaceship-titanic-s11-uniform_random-5a37dc4107.attempt-1.bounded/execution/summary.json",
+      "runtime_status": "completed"
+    },
+    {
+      "run_id": "03-spaceship-titanic-s11-critic_topk_random",
+      "block": 1,
+      "task": "spaceship-titanic",
+      "seed": 11,
+      "arm": "critic_topk_random",
+      "run_dir": "runs/03-spaceship-titanic-s11-critic_topk_random",
+      "prepared_config_sha256": "ec30bff407d6866f9faa179a5af44282d1f783a94265afe9b8dbdb5a7bebf5c1",
+      "runtime_config_path": "runs/srun_pool/56bc63d4b218/configs/03-spaceship-titanic-s11-critic_topk_random-724758709b.json",
+      "runtime_config_sha256": "2b75bdb15fcf34cbe5a21806da05a44e3bfb4b6e79df5d442c34aa18e5123476",
+      "process_summary": "runs/srun_pool/56bc63d4b218/identities/03-spaceship-titanic-s11-critic_topk_random-724758709b.attempt-1.bounded/execution/summary.json",
+      "runtime_status": "completed"
+    }
+  ],
+  "evidence_sha256": {
+    "block-1.runtime/started.json": "ccb281b6c85a1e8dcc123295634e1b7b0c245f99e4056e89b0b739431aded68f",
+    "runs/srun_pool/56bc63d4b218/manifest.json": "193859573b3233aeb22951aecde9a4d47d98eaffffcc7866c5eb18a8049c3978",
+    "block-1.runtime/finished.json": "ed1b4c552f05f666efdf66dad8fae096ebb831cacb1c4dd80f68edd50693b91f"
+  },
+  "scope": "metadata_only_no_score_reads"
+}

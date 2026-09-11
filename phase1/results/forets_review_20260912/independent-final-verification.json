@@ -1,0 +1,80 @@
+{
+  "utc": "2026-09-11T22:59:03.981628+00:00",
+  "job": "13115",
+  "state": "COMPLETED",
+  "verification": "selected-node/external-grade consistency passed",
+  "independent_numerical_regrade": false,
+  "source_tree": "6ca01fba9892a350cbb24152054b5296dc7095f1",
+  "valid_finals": 2,
+  "rows": [
+    {
+      "run_id": "00-leaf-classification-s11-critic_topk_random",
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "seed": 11,
+      "comparable_final": false,
+      "external_final_score": null,
+      "final_event_present": false,
+      "executed_nodes": 5,
+      "exit_zero_nodes": 0
+    },
+    {
+      "run_id": "01-leaf-classification-s11-uniform_random",
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "seed": 11,
+      "comparable_final": false,
+      "external_final_score": null,
+      "final_event_present": false,
+      "executed_nodes": 5,
+      "exit_zero_nodes": 0
+    },
+    {
+      "run_id": "02-spaceship-titanic-s11-uniform_random",
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "seed": 11,
+      "comparable_final": true,
+      "external_final_score": 0.74368,
+      "final_event_present": true,
+      "executed_nodes": 5,
+      "exit_zero_nodes": 1
+    },
+    {
+      "run_id": "03-spaceship-titanic-s11-critic_topk_random",
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "seed": 11,
+      "comparable_final": true,
+      "external_final_score": 0.79655,
+      "final_event_present": true,
+      "executed_nodes": 5,
+      "exit_zero_nodes": 2
+    }
+  ],
+  "new_api_calls": 62,
+  "cumulative_api_calls": 240,
+  "cumulative_settled_usd": "0.574500927",
+  "cumulative_accounted_usd": "1.274500927",
+  "unresolved_calls": 1,
+  "allocation_gpu_hours": 2.5355555555555553,
+  "evidence_sha256": {
+    "prepared.json": "e6ec9d4c6664a98a6c069b13cb85624ece78b864adf036591ed34f4c8df18718",
+    "final-readout/summary.json": "fb79cce76cdb691cc40eb874d29a5a489b223c5417787b86370092cc54345cf2",
+    "diagnostics.json": "6e5ac2fd158841d7117a8677593ba202edc392d39d831902b01164ec27478c52",
+    "runs/00-leaf-classification-s11-critic_topk_random/checkpoint/journal.jsonl": "85c7d760466b2e3668bcdab8d2e670c7b9742f667243ed51d85c88a00c64df06",
+    "runs/01-leaf-classification-s11-uniform_random/checkpoint/journal.jsonl": "7755ec443ff85840add03af0be392d14f23f26506c687a43bd10733480bd040f",
+    "runs/02-spaceship-titanic-s11-uniform_random/checkpoint/journal.jsonl": "e9ae7a9111c63984830d12aceed582437e9425f930fdfdce4672ea3070961deb",
+    "runtime-manifest.json": "2ce881a445737ee8d94cdbdeebf40dd32056bdd826b0c9ebd0c11d9214966d24",
+    "runs/srun_pool/56bc63d4b218/identities/02-spaceship-titanic-s11-uniform_random-5a37dc4107.attempt-1.bounded/execution/summary.json": "81a27c79a6ea475cd2e589e05f804ffdc19c21beb5bbeec6efbc56eb6764c78a",
+    "runs/02-spaceship-titanic-s11-uniform_random/json/eval.jsonl": "d2eeb96930c5c2ba3f685d8cd63d5418dce762cda11368fd484a7209f06e1fda",
+    "runs/03-spaceship-titanic-s11-critic_topk_random/checkpoint/journal.jsonl": "b580676455d7f314663f75818eb6a087164f28493351bc0b09624dba5bfee24d",
+    "runs/srun_pool/56bc63d4b218/identities/03-spaceship-titanic-s11-critic_topk_random-724758709b.attempt-1.bounded/execution/summary.json": "02ad6d3dc0b66164b9cf03e983baf721a20df6db29cbfe55c11b319ab052ebeb",
+    "runs/03-spaceship-titanic-s11-critic_topk_random/json/eval.jsonl": "d02b68cb61116e67dc33b357916fe2aa255cef39ebed2f69fc3b0c4a8de21ee5"
+  },
+  "verifier_sha256": "37e453bfba90e85616f704c92ecc809093c823a247026597ab49ef0d5e78cd5e",
+  "limitations": [
+    "Task deletes submission files; no independent numerical regrade is claimed.",
+    "A single development seed is not a cross-seed benefit or clean scaling result."
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "observed_utc": "2026-09-11T22:57:34.934300+00:00",
+  "billing": {
+    "new_api_calls": 62,
+    "cumulative_api_calls": 240,
+    "new_settled_usd": "0.152156823",
+    "cumulative_settled_usd": 0.574500927,
+    "unresolved_api_calls": 1,
+    "stopped": false
+  },
+  "valid_final_solutions": 2,
+  "comparable_pairs": 1,
+  "total_task_calls": 20,
+  "exit_zero_calls": 3,
+  "failure_categories": {
+    "execution_timeout": 8,
+    "other_code_error": 6,
+    "missing_target_column": 2,
+    "experimental_import": 1
+  },
+  "allocation_gpu_hours": 2.5355555555555553,
+  "runs": [
+    {
+      "run_id": "00-leaf-classification-s11-critic_topk_random",
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "seed": 11,
+      "source_tree": "6ca01fba9892a350cbb24152054b5296dc7095f1",
+      "controller_commit": "a383c2abb5fa9def7e85e7b3313c3894159e7be3",
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540,
+      "api_calls": 15,
+      "settled_api_cost_usd": 0.033476859,
+      "unresolved_api_calls": 0,
+      "accounted_api_liability_usd": 0.033476859,
+      "total_api_cost_usd": 0.033476859,
+      "task_calls": 5,
+      "exit_zero_calls": 0,
+      "buggy_nodes": 5,
+      "generated_candidates": 8,
+      "failure_categories": {
+        "execution_timeout": 4,
+        "other_code_error": 1
+      },
+      "comparable_final": false
+    },
+    {
+      "run_id": "01-leaf-classification-s11-uniform_random",
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "seed": 11,
+      "source_tree": "6ca01fba9892a350cbb24152054b5296dc7095f1",
+      "controller_commit": "a383c2abb5fa9def7e85e7b3313c3894159e7be3",
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540,
+      "api_calls": 15,
+      "settled_api_cost_usd": 0.036235446,
+      "unresolved_api_calls": 0,
+      "accounted_api_liability_usd": 0.036235446,
+      "total_api_cost_usd": 0.036235446,
+      "task_calls": 5,
+      "exit_zero_calls": 0,
+      "buggy_nodes": 5,
+      "generated_candidates": 8,
+      "failure_categories": {
+        "execution_timeout": 4,
+        "other_code_error": 1
+      },
+      "comparable_final": false
+    },
+    {
+      "run_id": "02-spaceship-titanic-s11-uniform_random",
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "seed": 11,
+      "source_tree": "6ca01fba9892a350cbb24152054b5296dc7095f1",
+      "controller_commit": "a383c2abb5fa9def7e85e7b3313c3894159e7be3",
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540,
+      "api_calls": 15,
+      "settled_api_cost_usd": 0.045580002,
+      "unresolved_api_calls": 0,
+      "accounted_api_liability_usd": 0.045580002,
+      "total_api_cost_usd": 0.045580002,
+      "task_calls": 5,
+      "exit_zero_calls": 1,
+      "buggy_nodes": 4,
+      "generated_candidates": 8,
+      "failure_categories": {
+        "missing_target_column": 1,
+        "other_code_error": 3
+      },
+      "comparable_final": true
+    },
+    {
+      "run_id": "03-spaceship-titanic-s11-critic_topk_random",
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "seed": 11,
+      "source_tree": "6ca01fba9892a350cbb24152054b5296dc7095f1",
+      "controller_commit": "a383c2abb5fa9def7e85e7b3313c3894159e7be3",
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540,
+      "api_calls": 15,
+      "settled_api_cost_usd": 0.036710856,
+      "unresolved_api_calls": 0,
+      "accounted_api_liability_usd": 0.036710856,
+      "total_api_cost_usd": 0.036710856,
+      "task_calls": 5,
+      "exit_zero_calls": 2,
+      "buggy_nodes": 3,
+      "generated_candidates": 8,
+      "failure_categories": {
+        "missing_target_column": 1,
+        "other_code_error": 1,
+        "experimental_import": 1
+      },
+      "comparable_final": true
+    }
+  ],
+  "limitations": [
+    "Single-seed development viability, not replicated critic benefit.",
+    "Old eight failed runs are not repaired or retrospectively rescored."
+  ]
+}

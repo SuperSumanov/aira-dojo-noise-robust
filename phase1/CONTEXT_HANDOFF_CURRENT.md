@@ -1,10 +1,23 @@
-# 当前交接：analyzer修复后新seed11四run已在gpu28运行
+# 当前交接：seed11闭合有单次正差值；准备同版本seed12复验
 
-更新2026-09-12香港；新作业最后观察2026-09-11 22:12:27.527430 UTC。
-恢复：fetch→CURRENT_DIRECTION.md最新0L164→本文件→核现场。学长指导ADVISOR_DIRECTIVES.md L/M/N。
+更新2026-09-12香港；整块最后观察2026-09-11 22:57:34 UTC，独立核对22:59:03 UTC。
+恢复：fetch→CURRENT_DIRECTION.md最新0L165→本文件→核现场。学长指导ADVISOR_DIRECTIVES.md L/M/N。
 用户要会话内实质推进，不新增自动任务；不把旧队列、计划、mock或进程完成冒充当前结果。
 
-## 新seed11现场操作（优先读，禁止重复启动）
+## 当前闭合事实与接续（优先于下文运行期观察）
+
+- **13115 COMPLETED/gpu28**，4564秒双卡=2.5355555555555553GPUh，PTY19866已正常结束并自动完成primary closeout。
+- 独立验证已实际执行，根下independent-final-verification.json；不是数值重评分，禁止重复写入。
+- 2/4有效最终解、1/2可比对；Spaceship random0.74368、critic0.79655，差5.28700pp；Leaf两臂无有效final。
+  这是第一条单seed探索信号，不是跨seed稳定收益或clean scaling；详见FORETS_REVIEW_CLOSEOUT_20260912.md。
+- 新增62API/0.152156823USD；累计240API、0.574500927USD已结算，旧0.70未知仍保留，总责任1.274500927USD。
+- 收尾JSON/CSV已复制到results/forets_review_20260912，远端扫描0凭据命中、本地SHA逐项匹配。
+- seed12两任务四run同配方方案已写；新入口forets_repeat_build_20260912.py已准备，**尚未构建/激活/提交**。
+  新预算/源码接线6测试、真实controller/readout/route派生2测试通过；不运行Plus或被动submission留档新路径。
+- 父账事实已冻结stage/seed12-parent-facts.json：117rows、ledger SHA190dc0f754f6aa4acd0d7e5f147701dc4b966a10320a93f0a5f3d6cc88043e59。
+  facts模式已消费该输出，不覆盖。计划新增责任2USD/最多10GPUh，累计上限3.274500927USD；旧unknown完整保留。
+
+## 已关闭seed11包定位及历史运行期观察（禁止重复启动）
 
 - 新包 **/research/d7/spc/yzyang4/forets-review-20260912-csh5q4i8**，source tree
   6ca01fba9892a350cbb24152054b5296dc7095f1；controller **a383c2abb5fa9def7e85e7b3313c3894159e7be3**。
@@ -16,10 +29,14 @@
 - 55账本行已完整复制（含1未知预留和历史合并行），dgzmkcqh旧账已sealed。
   新总责任上限3.122344104USD，其中新增最多2USD；旧scope全关闭，route改route_s11，四新scope各1.50USD。
   route检查只容忍相同的历史unknown IDs，任何新unknown都拒绝，不把历史未知当零或初始化掉。
-- **13115 RUNNING/gpu28**，提交2026-09-11 21:41:20.187089 UTC；leaf/critic进程completed、leaf/random运行、spaceship两项pending。
+- **13115 RUNNING/gpu28**，提交2026-09-11 21:41:20.187089 UTC；两leaf及spaceship/random进程completed，spaceship/critic运行。
   route两次已通过且结算；工具PTY46886整条正常完成。新根submission/submit-intent已存在，绝不能重跑route/submit/activate。
-  新旧累计195实际API，已结算0.455974623USD；1未结仍为历史未知预留，不等于新失败。
-  22:13:18 UTC仅执行元数据：首run五次执行全返回、0exit0，其中4次超时；未读本组final或据中途成绩改配置。
+  新旧累计226实际API，已结算0.537790071USD；观察时2未结包含历史未知及可能在途，不能当作2次失败。
+  22:42:46 UTC仅执行元数据：两leaf各五次执行全返回、各0exit0、各4次超时；未读本组final或据中途成绩改配置。
+  22:42:52 UTC两个完成run各15个实际API和15个终态事件逐一对应，全部response_returned，无ValidationError。
+  原schema问题在这两个真实run未复现，但程序本身仍不能成功，不能称critic收益。
+  22:51:26 UTC执行元数据：spaceship/random五次返回有1exit0；critic两次返回0exit0。
+  此处只核执行状态，整组final仍未读，不能据此声称有效最终解或两臂差值。
 - 新包下forets_environment_session_20260912.py已派生为seed11；billing扣55旧rows计新增，累计仍扣合并1条加历史124。
   会话内watch已启动，工具PTY **19866**；已从启动期转入首个worker。
   优先poll此session；它在整块终态后自动closeout，禁止第二个收尾写入者。
@@ -27,6 +44,8 @@
   原SIF/critic/步骤/超时不动；源代码只变lite_llm.py、review_metric.py、paid_budget.py。
 - 收尾后追加独立验证器verify_forets_review_final_20260912.py（当前未运行）：独立sacct终态门、
   最终选中节点/外部grade一致性及累计费用。原task评分后删submission.csv，不能声称本轮数值重评分。
+  已scp到上述stage同名文件，SHA37e453bfba90e85616f704c92ecc809093c823a247026597ab49ef0d5e78cd5e；
+  等watch 19866完成primary closeout后再运行一次，不作为第二个primary写入者。
   forets_submission_archive_20260912.py仅为未来批次准备的host-only被动留档，尚未部署；不改13115。
   7项本地人工测试通过，原evaluator精确patch锚点/语法也通过；不是新端到端结果。
 - 实际source tree不随公开分支可达，已导出纯代码/config capsule（276文件，334064字节），
@@ -35,6 +54,8 @@
   不是完整Git历史或跨机器复跑证明，不直接执行历史submit/route。
 - 条件后继投资顺序见FORETS_POST_REPAIR_DECISION_20260912.md：尚未选择/提交后继块。
   Plus官方metadata已只读核价；最坏请求责任2.517372USD，不能套用当前0.70预留。未调用Plus。
+  forets_successor_budget_20260912.py只做未来源码/预算准备，6项定向测试通过，包含实际发布源码接线；
+  未激活新账本、未选择新模型。第一次广域unittest discovery误导入无关包失败，改定向调用后通过，未改无关包。
 
 ## 刚完成的真实对照
 
@@ -97,7 +118,7 @@
 - 学长分支未改，dojo-reproduce最后fetch065b0fbaa89e0eb663f2834ec768081f5d56394d；
   0907/0909/0909-mcts最后文件清单21:48:14 UTC无变化，不代表其他目录无新语料。
   quarantine32配置不等于32runs；LATEST最后759physical/733eligible、closure=false，未重算。
-- 只push myfork HEAD:phase1-value-critic；远端最后独立核对50ff249c135818559287e6500230b292900f9a8a。
+- 只push myfork HEAD:phase1-value-critic；远端最后独立核对7b1468d89f36d106ca58d485b19ee6e5a758ae08。
   每次push前扫待推文件内容和env/key/token/secret文件名，仅输出计数。学长branch不改。
 - repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；保留用户untracked codex_tmp/output/tmp/旧报告。
 - SSH linux5；CPU研究根venvs/aira/bin/python，GPUvenvs/exp/bin/python；网络/uac/y24/yzyang4/env_setup.sh。

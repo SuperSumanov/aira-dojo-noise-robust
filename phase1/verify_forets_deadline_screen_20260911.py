@@ -3,6 +3,7 @@ import argparse
 from collections import defaultdict
 import csv
 import hashlib
+import itertools
 import json
 import math
 from pathlib import Path
@@ -35,17 +36,25 @@ def verify(root):
         for k,v in actual.items():
             if isinstance(v,float):assert math.isclose(v,expected[k],rel_tol=1e-12,abs_tol=1e-12)
             else:assert v==expected[k]
-    gate=True
+    gate=True; exact_intervals={}
     for baseline in ('prior','eventual'):
         deltas=[r[baseline+'_brier']-r['deadline_brier'] for r in recomputed]
         mean=statistics.mean(deltas);positive=sum(d>0 for d in deltas)
         assert math.isclose(mean,summary['comparisons'][baseline]['brier_improvement'],rel_tol=1e-12,abs_tol=1e-12)
         assert positive==summary['comparisons'][baseline]['positive_tasks']
         gate &= mean>=.01 and positive>=4
+        # Enumerate all 6^6 bootstrap task draws, independently of NumPy RNG.
+        draws=sorted(statistics.mean(deltas[i] for i in draw)
+                     for draw in itertools.product(range(6),repeat=6))
+        def quantile(p):
+            x=(len(draws)-1)*p;left=math.floor(x);right=math.ceil(x)
+            return draws[left]+(draws[right]-draws[left])*(x-left)
+        exact_intervals[baseline]=[quantile(.025),quantile(.975)]
     assert gate==summary['investment_signal']
     return dict(status='PASS_NUMERICAL_AGGREGATION',rows=len(seen),tasks=len(by_task),
                 components=sum(map(len,by_task.values())),investment_signal=gate,
-                imports_producer=False,source_label_validation=False,bootstrap_recomputed=False,
+                imports_producer=False,source_label_validation=False,
+                exact_task_bootstrap_draws=6**6,exact_task_bootstrap_95=exact_intervals,
                 summary_sha256=hashlib.sha256((root/'summary.json').read_bytes()).hexdigest(),
                 verifier_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
 

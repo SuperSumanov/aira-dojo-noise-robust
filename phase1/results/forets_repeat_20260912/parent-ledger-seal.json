@@ -1,0 +1,16 @@
+{
+  "authorization_sha256": "0b74ccfd16ae8e5f5bb3d255ee3d5200e133e6016b0ae6128a3c72504164795a",
+  "diagnostics_sha256": "6e5ac2fd158841d7117a8677593ba202edc392d39d831902b01164ec27478c52",
+  "facts": {
+    "accounted": 1274500927,
+    "authorization": "4bbac52d02eb1109aded9aeca4d73cd670fb7893afe5988973ace34a7204d98e",
+    "calls": 117,
+    "seed": 12,
+    "settled": 574500927,
+    "unknown": 1
+  },
+  "ledger_rows_sha256": "190dc0f754f6aa4acd0d7e5f147701dc4b966a10320a93f0a5f3d6cc88043e59",
+  "parent": "/research/d7/spc/yzyang4/forets-review-20260912-csh5q4i8",
+  "parent_allocation_gpu_hours": 2.5355555555555553,
+  "verification_sha256": "9ce5809bbe4a937e9f66fa786ee534f068b53dbe599c1f5f10175b3548b0eea9"
+}

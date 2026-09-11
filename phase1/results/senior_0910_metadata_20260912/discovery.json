@@ -1,0 +1,32 @@
+{
+  "utc": "2026-09-11T23:20:41.540574+00:00",
+  "output": "/research/d7/spc/yzyang4/senior-root-metadata-20260912-nr5ioaoh",
+  "root_entries": 50,
+  "september_directories": [
+    "0901",
+    "0902",
+    "0903",
+    "0904",
+    "0905",
+    "0906",
+    "0907",
+    "0909",
+    "0910"
+  ],
+  "newer_than_known_0909": [
+    "0910"
+  ],
+  "inspected_recent": [
+    {
+      "relative": "0910",
+      "entries": 6,
+      "child_folders": 0
+    }
+  ],
+  "requests": 2,
+  "inventory_sha256": "379259f9dadecb27adb49e744bd83e6d4f21c389698208a3ef00cb2e05a98254",
+  "archives_downloaded": 0,
+  "archive_contents_opened": false,
+  "production_or_latest_changed": false,
+  "caveat": "Folder names are not verified production dates; no corpus or run admission."
+}

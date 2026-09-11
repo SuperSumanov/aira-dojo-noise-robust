@@ -16,6 +16,9 @@ import sqlite3
 import subprocess
 
 ROOT=Path('/research/d7/spc/yzyang4/forets-review-20260912-csh5q4i8')
+JOB='13115'
+CARRIED_ROWS=55
+MAX_ACCOUNTED_NANO=3122344104
 PREPARED='e6ec9d4c6664a98a6c069b13cb85624ece78b864adf036591ed34f4c8df18718'
 TREE='6ca01fba9892a350cbb24152054b5296dc7095f1'
 SECRET=re.compile(r'(?i)(?<![a-z0-9])(?:sk-[a-z0-9_.-]{12,}|hf_[a-z0-9]{16,}|gh[pousr]_[a-z0-9]{16,}|github_pat_[a-z0-9_]{20,}|Bearer\s+[a-z0-9_.-]{20,})')
@@ -44,13 +47,13 @@ def main():
     # Require the primary closeout AND a fresh, independent scheduler observation.
     if not (ROOT/'diagnostics.json').is_file():raise ValueError('whole-block closeout not yet available')
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
-    text=subprocess.run(['sacct','-X','-nP','-j','13115','-o',
+    text=subprocess.run(['sacct','-X','-nP','-j',JOB,'-o',
         'JobIDRaw,State%32,NodeList,ElapsedRaw,AllocTRES%256,User'],
         check=True,capture_output=True,text=True,timeout=20,env=env).stdout.strip()
     lines=text.splitlines()
     if len(lines)!=1:raise ValueError('ambiguous allocation')
     job,state,node,seconds,tres,user=lines[0].split('|')
-    if (job!='13115' or node!='gpu28' or user!='yzyang4' or state.split()[0].rstrip('+') not in
+    if (job!=JOB or node!='gpu28' or user!='yzyang4' or state.split()[0].rstrip('+') not in
         {'COMPLETED','FAILED','TIMEOUT','CANCELLED','OUT_OF_MEMORY','NODE_FAIL','PREEMPTED'}):
         raise ValueError('allocation not independently closed')
     resources=dict(x.split('=',1) for x in tres.split(',') if '=' in x)
@@ -88,17 +91,19 @@ def main():
             exit_zero_nodes=sum(n['exit_code']==0 for n in nodes)))
     with closing(sqlite3.connect((ROOT/'paid.sqlite').as_uri()+'?mode=ro',uri=True)) as db:
         calls=db.execute('SELECT scope,held,cost,state FROM calls').fetchall()
-    if len(calls)<55:raise ValueError('historical API charges lost')
+    if len(calls)<CARRIED_ROWS:raise ValueError('historical API charges lost')
     settled=sum(r[2] or 0 for r in calls);accounted=sum(r[1] for r in calls)
     if settled!=round(diagnostic['billing']['cumulative_settled_usd']*10**9):raise ValueError('billing disagreement')
-    if accounted>3122344104:raise ValueError('authorized liability exceeded')
+    if accounted>MAX_ACCOUNTED_NANO:raise ValueError('authorized liability exceeded')
     report=dict(utc=datetime.now(timezone.utc).isoformat(),job=job,state=state,
         verification='selected-node/external-grade consistency passed',independent_numerical_regrade=False,
         source_tree=TREE,valid_finals=sum(r['comparable_final'] for r in rows),rows=rows,
-        new_api_calls=len(calls)-55,cumulative_api_calls=len(calls)-1+124,
+        new_api_calls=len(calls)-CARRIED_ROWS,cumulative_api_calls=len(calls)-1+124,
         cumulative_settled_usd=str(Decimal(settled)/10**9),cumulative_accounted_usd=str(Decimal(accounted)/10**9),
         unresolved_calls=sum(r[3]=='unresolved' for r in calls),allocation_gpu_hours=int(seconds)*2/3600,
         evidence_sha256=evidence,verifier_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        binding=dict(root=str(ROOT),job=JOB,prepared_sha256=PREPARED,source_tree=TREE,
+                     carried_rows=CARRIED_ROWS,max_accounted_nano=MAX_ACCOUNTED_NANO),
         limitations=['Task deletes submission files; no independent numerical regrade is claimed.',
                     'A single development seed is not a cross-seed benefit or clean scaling result.'])
     with (ROOT/'independent-final-verification.json').open('x') as stream:

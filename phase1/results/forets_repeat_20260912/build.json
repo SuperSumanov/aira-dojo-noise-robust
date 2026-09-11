@@ -1,0 +1,18 @@
+{
+  "authorization_sha256": "0b74ccfd16ae8e5f5bb3d255ee3d5200e133e6016b0ae6128a3c72504164795a",
+  "commit": "aa4f13c2cc480f7ead84b1970b3511c5b6dd6a30",
+  "inventory_sha256": "67516a4d01ddb6093ad405da538add47fbe0f9e64016df1b9b35036d306b9545",
+  "maximum_incremental_usd": 2,
+  "maximum_new_gpu_hours": 10,
+  "package": "/research/d7/spc/yzyang4/forets-repeat-20260912-zuvnt3oa",
+  "prepared_sha256": "963418d10d5645f7401a85da42d6fc3d5b2f7553e76cf44eecbeb342f17d44d5",
+  "release_sha256": "a64e8b24afc538a9446060cf847a5310288a3041ffa6a700b132949340b86bc0",
+  "run_ids": [
+    "00-leaf-classification-s12-uniform_random",
+    "01-leaf-classification-s12-critic_topk_random",
+    "02-spaceship-titanic-s12-critic_topk_random",
+    "03-spaceship-titanic-s12-uniform_random"
+  ],
+  "source_tree": "35711518b3b7262bccd3bebfdd2b4a4b7c726715",
+  "status": "BUILT_NOT_ACTIVE"
+}

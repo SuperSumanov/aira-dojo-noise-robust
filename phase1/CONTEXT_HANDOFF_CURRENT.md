@@ -10,7 +10,15 @@
   正在实施Qwen3 Coder Flash / OpenRouter Alibaba收费后继版本；不是缺密钥或缺费用批准。
   全账本10USD，8run各1.10、route共1.20，保守折算含费用88人民币；旧8run/19GPUh不扩。
   旧免费配置/失败不覆盖，两臂共同用新生成器及串行收费传输；只按原始usage.cost核销，未知保留0.70USD预留。
-  尚未新增真实API/GPU/效果。见FORETS_PAID_SUCCESSOR_20260911.md；以下“需费用范围”是已被本条覆盖的历史阻塞。
+  11:01 UTC收费路由真实2/2通过、2传输、0未结，0.000113724USD。两块静态预检/8配置/4配对通过。
+  新根/research/d7/spc/yzyang4/forets-paid-20260911-oh3np7b8；入口code/forets_native_run_20260911.py。
+  代码f051cfded55259d5320407a9e0269ab9141ab345，组合tree f9087ae47470f7f1868c61405c3b827327f31c2c。
+  账本paid.sqlite不可重建/复制初始化；第一块route.json已存在，不重复route --block 1。
+  **第一块13088已提交并运行**：2026-09-11 11:02:18 UTC观察RUNNING/gpu28，已运行23秒，时限4:40。
+  started.json时间11:01:58.232757UTC，四run池runs/srun_pool/74b760b75c87/manifest.json；critic服务启动中。
+  这是真实seed8两任务×两臂端到端探索，不是训练/G0。第二块seed9尚未提交，不重复第一块或旧route。
+  第一次费用观察仍仅人工检查2请求/0.000113724USD，无新效果结论；12535不动。
+  见FORETS_PAID_SUCCESSOR_20260911.md；以下“需费用范围/免费路由阻塞”已被本条覆盖。
 
 - **本轮完成并停止：限时完成预测CPU筛查，无投资信号。** 09:59:16 UTC独立核算完成，代码643938e7910653b3fca9693243bd0168e5f0234e；
   根/research/d7/spc/yzyang4/forets-deadline-screen-20260911-TeDok5zC/actual-r2，无正在执行的本轮进程。

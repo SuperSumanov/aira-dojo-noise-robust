@@ -1,7 +1,7 @@
-# 当前交接：四run收尾，零GPU定位analyzer接纳错误
+# 当前交接：analyzer类型缺陷已定位/人工修复通过，准备新seed11真实验证
 
 更新2026-09-12香港；最后独立观察2026-09-11 21:14:16.028371 UTC。
-恢复：fetch→CURRENT_DIRECTION.md最新0L163→本文件→核现场。学长指导ADVISOR_DIRECTIVES.md L/M/N。
+恢复：fetch→CURRENT_DIRECTION.md最新0L164→本文件→核现场。学长指导ADVISOR_DIRECTIVES.md L/M/N。
 用户要会话内实质推进，不新增自动任务；不把旧队列、计划、mock或进程完成冒充当前结果。
 
 ## 刚完成的真实对照
@@ -32,7 +32,7 @@
   300秒超时存在退出开销，实际耗时不裁短。
 - 收尾见FORETS_ENVIRONMENT_CLOSEOUT_20260912.md；本地结果results/forets_environment_20260912。
 
-## 正在推进：人工schema诊断，不占GPU
+## 已完成的人工schema诊断；下一真实矩阵待提交
 
 - phase1/forets_analyzer_diagnostic_20260912.py：最多两个公共人工示例成功/失败，同现有analyze提示及schema，
   原生成模型/路由、8192输出、每次120秒、单尝试无retry，0GPU/任务数据/保护集。
@@ -43,8 +43,18 @@
 - --mock已经两个示例通过，不等于线上通过；3项预算/安全字段测试通过。
   首次Windows测试发现sqlite连接未显式关闭，已修复并复测，不是忽略失败。
 - 远端脚本stage /research/d7/spc/yzyang4/forets-env-stage-20260912-N2yAD0/forets_analyzer_diagnostic_20260912.py。
-  真实接口尚未启动；先核intent，已有则找报告，不重新开窗。
-- 若schema确有问题，只在新版本修复并先有界验收；旧0final完整保留。没有方法正收益时不扩大GPU矩阵。
+  原人工示例两次均metric:string失败；v1成功例过、失败例未过；v2两例全部通过，历史结果仍不补分。
+  修复helper=forets_review_metric_20260912.py，SHA aa919e2635ff866d382c49fcb297aac752651163079a968f93cbb113042fde77。
+  明确is_bug=True时文本metric置null，仍是坏节点；其余仅合法JSON数字/null恢复，其他字段/无效值不松动。
+- 最新账本根 **/research/d7/spc/yzyang4/forets-analyzer-live-dgzmkcqh**；AUTH
+  581f1c378636728df93c6502a4e45513847eed29b86de5a577309d72967f21b5。
+  55行包括历史124call的1条合并行，真实累计178API；settled=422344104 nanoUSD，held=1122344104 nanoUSD，1未知。
+  ko8vhkcz/lizj2miy两前诊断账本已sealed；新矩阵须完整复制dgzmkcqh所有rows，不能初始化丢掉未知责任。
+  初次凭据安装顺序、v1加载类内类型别名两处前置失败均0真实API，已修复；不重复那些窗口。
+- 正在准备forets_review_build_20260912.py：seed11两任务四run，leaf critic→random、spaceship random→critic。
+  原gpu28/双卡/镜像/critic/6step/300秒；仅共同parser兼容+每run责任预留cap1.50USD，新增全块cap2USD。
+  新增GPU上限10h，加历史实耗4.331666666666667GPUh；原API100人民币/10USD不重置。未提交，不照旧13113重投。
+  构建/类型兼容/账本共11项本地测试通过；生产方法人工fixture也过。计划FORETS_REVIEW_REPAIR_PLAN_20260912.md。
 
 ## 不重做/不越界
 
@@ -55,7 +65,7 @@
 - 学长分支未改，dojo-reproduce最后fetch065b0fbaa89e0eb663f2834ec768081f5d56394d；
   0907/0909/0909-mcts最后文件清单19:51:45 UTC无变化，不代表其他目录无新语料。
   quarantine32配置不等于32runs；LATEST最后759physical/733eligible、closure=false，未重算。
-- 只push myfork HEAD:phase1-value-critic；远端最后独立核对7eb85f68d81aad74e578ceb049365867a940b652。
+- 只push myfork HEAD:phase1-value-critic；远端最后独立核对d87a45988ae619fa90de89a34baa3df404f45526。
   每次push前扫待推文件内容和env/key/token/secret文件名，仅输出计数。学长branch不改。
 - repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；保留用户untracked codex_tmp/output/tmp/旧报告。
 - SSH linux5；CPU研究根venvs/aira/bin/python，GPUvenvs/exp/bin/python；网络/uac/y24/yzyang4/env_setup.sh。

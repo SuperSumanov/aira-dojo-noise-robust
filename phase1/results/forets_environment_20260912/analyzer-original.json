@@ -1,0 +1,160 @@
+{
+  "mock": false,
+  "root": "/research/d7/spc/yzyang4/forets-analyzer-live-ko8vhkcz",
+  "calls": [
+    {
+      "fixture": "fixture_success",
+      "accepted": false,
+      "error_type": "ValidationError"
+    },
+    {
+      "fixture": "fixture_failure",
+      "accepted": false,
+      "error_type": "ValidationError"
+    }
+  ],
+  "schema_errors": [
+    {
+      "validator": "type",
+      "instance_type": "str",
+      "path": [
+        "metric"
+      ],
+      "schema_path": [
+        "properties",
+        "metric",
+        "type"
+      ],
+      "missing_required": [],
+      "object_field_types": null
+    },
+    {
+      "validator": "type",
+      "instance_type": "str",
+      "path": [
+        "metric"
+      ],
+      "schema_path": [
+        "properties",
+        "metric",
+        "type"
+      ],
+      "missing_required": [],
+      "object_field_types": null
+    }
+  ],
+  "source_tree": "0a587f6b220b1aa0bd154f537f36594bc0690cb3",
+  "artificial_input_only": true,
+  "task_or_score_reads": false,
+  "gpu_jobs": 0,
+  "handover": {
+    "parent_authorization_sha256": "942afbfc8864bb07dd6580c1d85a71743e35fea47bc1bdc71081666cab32ecb2",
+    "parent_calls": 49,
+    "parent_accounted_nano": 1121563831,
+    "parent_settled_nano": 421563831,
+    "parent_unresolved": 1,
+    "new_authorization": {
+      "version": 3,
+      "currency": "USD",
+      "total": 1871563831,
+      "user_cny_cap": 100,
+      "conservative_cny_per_usd": 8,
+      "fee_multiplier": "1.10",
+      "accounted_cny_ceiling": "16.4697617128",
+      "model": "qwen/qwen3-coder-flash",
+      "provider": {
+        "only": [
+          "alibaba"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true,
+        "max_price": {
+          "prompt": 0.65,
+          "completion": 2.6,
+          "request": 0
+        }
+      },
+      "reservation": 700000000,
+      "context_tokens": 1000000,
+      "output_tokens": 8192,
+      "run_limit": 1100000000,
+      "route_limit": 1200000000,
+      "serial_transport_per_worker": true,
+      "predecessor_cost": 318775548,
+      "incremental_cap": 750000000,
+      "predecessor_authorization": "942afbfc8864bb07dd6580c1d85a71743e35fea47bc1bdc71081666cab32ecb2",
+      "experiment": "artificial-analyzer-diagnostic",
+      "predecessor_accounted": 1121563831,
+      "predecessor_settled": 421563831,
+      "logical_request_cap": 2
+    },
+    "new_authorization_sha256": "9d775af6f654c1abfc4681c9cf0d135c9316ece8e90492710ab10c08348d72cb"
+  },
+  "billing": {
+    "authorization_sha256": "9d775af6f654c1abfc4681c9cf0d135c9316ece8e90492710ab10c08348d72cb",
+    "stopped": false,
+    "accounted_usd": 1.121799898,
+    "settled_usd": 0.421799898,
+    "unresolved": 1,
+    "calls": 51,
+    "scopes": [
+      {
+        "scope": "00-leaf-classification-s10-uniform_random",
+        "calls": 15,
+        "held_usd": 0.030800835,
+        "settled_usd": 0.030800835,
+        "unresolved": 0
+      },
+      {
+        "scope": "01-leaf-classification-s10-critic_topk_random",
+        "calls": 3,
+        "held_usd": 0.704222023,
+        "settled_usd": 0.004222023,
+        "unresolved": 1
+      },
+      {
+        "scope": "02-spaceship-titanic-s10-critic_topk_random",
+        "calls": 16,
+        "held_usd": 0.037944933,
+        "settled_usd": 0.037944933,
+        "unresolved": 0
+      },
+      {
+        "scope": "03-spaceship-titanic-s10-uniform_random",
+        "calls": 12,
+        "held_usd": 0.029666832,
+        "settled_usd": 0.029666832,
+        "unresolved": 0
+      },
+      {
+        "scope": "closed_predecessor",
+        "calls": 1,
+        "held_usd": 0.318775548,
+        "settled_usd": 0.318775548,
+        "unresolved": 0
+      },
+      {
+        "scope": "fixture_failure",
+        "calls": 1,
+        "held_usd": 9.8553e-05,
+        "settled_usd": 9.8553e-05,
+        "unresolved": 0
+      },
+      {
+        "scope": "fixture_success",
+        "calls": 1,
+        "held_usd": 0.000137514,
+        "settled_usd": 0.000137514,
+        "unresolved": 0
+      },
+      {
+        "scope": "route",
+        "calls": 2,
+        "held_usd": 0.00015366,
+        "settled_usd": 0.00015366,
+        "unresolved": 0
+      }
+    ]
+  },
+  "script_sha256": "32ace4618928664b24fd22a0faee7a23ee0dc35130da0a8784134bdcc9a508b0"
+}

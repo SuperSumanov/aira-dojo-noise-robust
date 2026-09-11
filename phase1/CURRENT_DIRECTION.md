@@ -7,6 +7,17 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L164. 2026-09-12：确认metric字符串接纳缺陷；修复后新seed11四run验证
+
+人工真实API诊断确认metric:string不符合number/null；v1成功例过、失败例未过，v2两例均接纳且语义正确。
+v2仅合法数字/null字符串恢复原类型；明确is_bug=True的文本metric置null，其他格式/字段仍严格拒绝。
+旧两个exit0节点在正确metric_info字段下确认外部valid_submission=1.0且有有限分数，却被标is_buggy。
+不回填旧final，不以人工示例当MLE端到端正结果。三轮6实际API，累计已结算0.422344104USD，旧0.70未知不释放。
+继承用户自主推进授权，准备两任务×新seed11×两臂4run，原gpu28/镜像/critic/6step/300秒，最多新增10GPUh。
+两臂共用类型修复和每run1.50USD责任上限，全块新增最多2USD，旧全部费用/未知项逐行结转；
+原100人民币/10USD总授权不重置。完整关闭后一起读结果；不做训练/scaling确认，不恢复关闭方向。
+计划：[新版本四run边界与预检](FORETS_REVIEW_REPAIR_PLAN_20260912.md)。实际提交仍以短交接为准。
+
 ## 0L163. 2026-09-12：四run闭合仍无final；先定位分析器schema，不扩GPU矩阵
 
 13113已独立终态，实际1.0733333333333333GPUh；14次程序执行有2次exit0，但有效最终解0/4、可比成绩对0/2。

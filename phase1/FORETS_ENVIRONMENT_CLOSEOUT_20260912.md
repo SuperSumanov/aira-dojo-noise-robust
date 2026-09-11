@@ -40,5 +40,23 @@ API新增责任上限0.75USD，连同旧已结算费用与未知预留累计，�
 两个人工示例离线通过；预算/脱敏测试首次因Windows连接句柄未关闭失败，补显式close后3项通过。
 真实接口诊断仍需其独立回执，不能以mock宣称线上修好。
 
+## 后续实际诊断与修复（不回写上表）
+
+原人工成功/失败两例均在metric:string处失败；v1只做合法JSON数字/null字符串恢复，成功例过、失败例仍拒绝。
+v2增加明确is_bug=True时文本metric置null，不能把坏节点变好；两个真实人工示例均被接纳，期望语义均匹配。
+其他字段仍严格校验；未明确失败时百分号、布尔、非有限数、说明文字仍拒绝。
+三轮共6实际API，无新增GPU；最新累计已结算0.422344104USD、旧0.70USD未知责任仍在。
+诊断最初凭据映射在client构造后才设置，零真实请求，修复后仅执行原两次；
+v1首个生产方法加载因class内类型别名缺失而在任何请求前失败，离线复现修复后再执行。
+这些前置失败没有删除，也没有重新请求用户密钥。
+
+journal实际存储的外部分数信息位于metric_info，而非嵌套metric.info；依正确字段复验：
+两个exit0节点均外部submission_exists=1.0、valid_submission=1.0、有限分数，但analysis空、is_buggy=True。
+这是接纳缺陷的实证，不是允许我们补写final或声称critic收益。接下来另用seed11四run验证。
+
+回执：[原接口](results/forets_environment_20260912/analyzer-original.json)、
+[v1未全过](results/forets_environment_20260912/analyzer-compat-v1.json)、
+[v2人工示例通过](results/forets_environment_20260912/analyzer-compat-v2.json)。
+
 证据：[结构与费用回执](results/forets_environment_20260912/diagnostics.json)、
 [固定四run主表](results/forets_environment_20260912/final-readout/runs.csv)。

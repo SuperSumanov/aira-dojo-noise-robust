@@ -1,0 +1,155 @@
+{
+  "source_commit": "643938e7910653b3fca9693243bd0168e5f0234e",
+  "source_sha256": "2050ad5e6a409221cd4a594808fe458eb3c0423ae55bc43b240344e49a7d4c0b",
+  "seed": 20260911,
+  "python": "3.12.13",
+  "sklearn": "1.6.1",
+  "numpy": "2.2.4",
+  "started_at_utc": "2026-09-11T09:55:10.411385+00:00",
+  "cpu_limit_seconds": 400,
+  "pack_sha256": "0912a2e6cf8342fe6c209645d2d1b56c142f91a066197fcd5e37d07f8c0955e7",
+  "target_seconds": 300,
+  "gpu": 0,
+  "api": 0,
+  "base_model_updates": 0,
+  "classification": "WEAK_HISTORICAL_DEADLINE_SCREEN_NOT_E2E",
+  "counts": {
+    "credential_shapes_redacted": 0,
+    "nonempty_programs": 3447,
+    "missing_invalid_duration": 25
+  },
+  "available_rows": 3422,
+  "evaluated_rows": 1554,
+  "model_fits": 25,
+  "per_task": [
+    {
+      "task": "dog-breed-identification",
+      "components": 2,
+      "rows": 185,
+      "prior_brier": 0.00011543196290002253,
+      "prior_logloss": 0.01074818427936983,
+      "eventual_brier": 0.00018239989165734106,
+      "eventual_logloss": 0.010899337180297152,
+      "deadline_brier": 0.0001154319629000225,
+      "deadline_logloss": 0.01074818427936983,
+      "deadline_prevalence": 0.0
+    },
+    {
+      "task": "google-quest-challenge",
+      "components": 3,
+      "rows": 357,
+      "prior_brier": 0.04079834446222059,
+      "prior_logloss": 0.1851119571851948,
+      "eventual_brier": 0.04084891064366341,
+      "eventual_logloss": 0.2267393038578431,
+      "deadline_brier": 0.06168026599480255,
+      "deadline_logloss": 0.3705371334739211,
+      "deadline_prevalence": 0.041368986868068315
+    },
+    {
+      "task": "histopathologic-cancer-detection",
+      "components": 3,
+      "rows": 190,
+      "prior_brier": 6.407891820522491e-05,
+      "prior_logloss": 0.007959153509844512,
+      "eventual_brier": 8.115850256215815e-05,
+      "eventual_logloss": 0.008679741179135836,
+      "deadline_brier": 6.407891820522491e-05,
+      "deadline_logloss": 0.007959153509844512,
+      "deadline_prevalence": 0.0
+    },
+    {
+      "task": "kuzushiji-recognition",
+      "components": 3,
+      "rows": 254,
+      "prior_brier": 0.019013780979600107,
+      "prior_logloss": 0.09998472224869788,
+      "eventual_brier": 0.019455080598308427,
+      "eventual_logloss": 0.11050321648525835,
+      "deadline_brier": 0.019573205943160962,
+      "deadline_logloss": 0.21254978832800833,
+      "deadline_prevalence": 0.0191044776119403
+    },
+    {
+      "task": "tabular-playground-series-dec-2021",
+      "components": 2,
+      "rows": 285,
+      "prior_brier": 0.029807614271220757,
+      "prior_logloss": 0.1405649092198792,
+      "eventual_brier": 0.03163432650944237,
+      "eventual_logloss": 0.14731092228464815,
+      "deadline_brier": 0.02834795650326599,
+      "deadline_logloss": 0.12167159310197515,
+      "deadline_prevalence": 0.03040648671716633
+    },
+    {
+      "task": "tabular-playground-series-may-2022",
+      "components": 2,
+      "rows": 283,
+      "prior_brier": 0.026499028397663948,
+      "prior_logloss": 0.1288914181365315,
+      "eventual_brier": 0.02596218537507622,
+      "eventual_logloss": 0.1187132086678647,
+      "deadline_brier": 0.02607612544260543,
+      "deadline_logloss": 0.11803038368763505,
+      "deadline_prevalence": 0.026880081300813007
+    }
+  ],
+  "comparisons": {
+    "prior": {
+      "brier_improvement": -0.0032597976288549217,
+      "positive_tasks": 3,
+      "task_bootstrap_95": [
+        -0.010393230608531617,
+        0.0006980040668475152
+      ]
+    },
+    "eventual": {
+      "brier_improvement": -0.002948833874038376,
+      "positive_tasks": 3,
+      "task_bootstrap_95": [
+        -0.010442496376619754,
+        0.0016080515779712749
+      ]
+    }
+  },
+  "investment_signal": false,
+  "source_admitted": false,
+  "independent_e2e_gain": false,
+  "elapsed_seconds": 157.2408217440243,
+  "predictions_sha256": "25c8704d9e0883068be941eb37dfd97726813235f17c22ac899a471a15d93adb",
+  "diagnostic_support": {
+    "folds": 15,
+    "empty_train_folds": 0,
+    "deadline_single_class_fallbacks": 5,
+    "deadline_positive_rows": 38,
+    "by_task": {
+      "dog-breed-identification": {
+        "rows": 185,
+        "deadline_positive_rows": 0
+      },
+      "google-quest-challenge": {
+        "rows": 357,
+        "deadline_positive_rows": 16
+      },
+      "histopathologic-cancer-detection": {
+        "rows": 190,
+        "deadline_positive_rows": 0
+      },
+      "kuzushiji-recognition": {
+        "rows": 254,
+        "deadline_positive_rows": 6
+      },
+      "tabular-playground-series-dec-2021": {
+        "rows": 285,
+        "deadline_positive_rows": 8
+      },
+      "tabular-playground-series-may-2022": {
+        "rows": 283,
+        "deadline_positive_rows": 8
+      }
+    },
+    "prior_positive_above_1e_minus_12": 2,
+    "observed_at_utc": "2026-09-11T09:59:16.207842+00:00"
+  }
+}

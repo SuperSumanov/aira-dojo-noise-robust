@@ -1,0 +1,22 @@
+{
+  "status": "PASS_NUMERICAL_AGGREGATION",
+  "rows": 1554,
+  "tasks": 6,
+  "components": 15,
+  "investment_signal": false,
+  "imports_producer": false,
+  "source_label_validation": false,
+  "exact_task_bootstrap_draws": 46656,
+  "exact_task_bootstrap_95": {
+    "prior": [
+      -0.010440960766290978,
+      0.0006980040668475169
+    ],
+    "eventual": [
+      -0.010421357314192614,
+      0.0016080515779712719
+    ]
+  },
+  "summary_sha256": "93ff3521f32ad984fcf4c85e9ee60d4fabe9ef8d86019881dd0f5b28a46fc509",
+  "verifier_sha256": "fcbcdf5a9323e6c93d8044a6f536ceab266ba495950bc6929aadb50b634d59d6"
+}

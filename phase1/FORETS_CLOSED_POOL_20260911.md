@@ -40,4 +40,14 @@ pool SHA：`557f6233667328b4d662774f229da19a721f165137b644d69d3aedabc3eceb2e`。
 训练容量、checkpoint保存、训练集去重/任务平衡不适用（没有新模型拟合或多任务训练）。
 两次执行只检稳定性，不伪造独立run。基础设施已有13076真实验证，不重复G0或人工GPU检查。
 
-状态：方案固定，尚未提交；运行与读出后追加事实。
+## 提交与运行
+
+2026-09-11 09:08:24 UTC提交 **13085**，09:08:48 UTC观察RUNNING/gpu28，首个真实候选容器绑定已产生。
+根 `/research/d7/spc/yzyang4/forets-closed-pool-20260911-pDXbiZ93`。
+执行代码commit `eb173ba00656721b095cf9e38e99c13f8f5dbc4c`；原task/Jupyter源码tree `3aae90ae26b5ae7b65e6efed14fb49f2907c9c42`。
+12文件控制包逐字节与Git相同；3个直接使用的原Jupyter/评分源码与tree相同。
+archive SHA `08a1bb957f091eaaeabcd575585397726bf73e97b2ba0d1d0db5f7c94684da8e`；
+部署manifest SHA `cb5c43cf212c48807fc42298592d45b5ddb44ed6466596a5ddad3c695c6ed002`。
+10项新增CPU测试通过；新增fake-kernel测试首试两例因Windows路径断言失败，改成as_posix后通过，
+不是GPU失败或新增效果。远端真实依赖导入及原snapshot代码校验通过，无额外人工GPU检查。
+还没有完成结果，不能称正向收益；完成后统一读出并独立核验。

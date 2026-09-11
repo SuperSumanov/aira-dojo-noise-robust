@@ -6,10 +6,13 @@
 
 ## 目标与实测
 
-- **正在推进：无API候选池全执行诊断（未提交）**。13004 leaf/seed6/step1完整三候选代码/历史分数保留；
+- **正在推进：无API候选池全执行诊断13085**。13004 leaf/seed6/step1完整三候选代码/历史分数保留；
   原样各执行两次，顺序0/1/2/2/1/0，gpu28原SIF、每次300秒，总≤1GPUh含KillWait。
   不重新生成/重算critic，不恢复旧pool，不拿这个单池即时排序冒充e2e收益。原负结果及8-run计划不变。
-  [固定方案/预检](FORETS_CLOSED_POOL_20260911.md)、代码forets_closed_pool_20260911.py；首次运行后更新确切job/root。
+  香港2026-09-11 17:08:24提交；17:08:48最后观察RUNNING/gpu28，已有首个真实程序容器binding。
+  根/research/d7/spc/yzyang4/forets-closed-pool-20260911-pDXbiZ93；commit eb173ba00656721b095cf9e38e99c13f8f5dbc4c。
+  [固定方案/预检](FORETS_CLOSED_POOL_20260911.md)、代码forets_closed_pool_20260911.py；10项新增CPU测试通过。
+  尚无结果结论；只看状态/完成后统一读出，不重投或复用旧入口。原无GPU状态仅为先前观察。
 - **本轮继续实施**：用户要求继续推进，按CURRENT_DIRECTION 0L156固定现成checkpoint/既有部署输入做探索。
   历史模板仍未知，不改模板、不试选、不冒充训练匹配或干净scaling；不再因该未知无限等待。
   原8配置不变，两任务×seed8/9×两臂，280分钟/双GPU每块、两块含KillWait上限19GPUh。

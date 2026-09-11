@@ -1,89 +1,79 @@
-# 当前交接：ForeTS 同预算端到端探索
+# 当前交接：收费ForeTS八run已失败收尾，优先修共同生成可运行性
 
-更新：2026-09-12香港。动态状态均为注明时刻的最后观察，不能冒充实时。
-恢复：fetch → CURRENT_DIRECTION.md最新节 → 本文件 → 核现场。学长指导见ADVISOR_DIRECTIVES.md L/M/N。
+更新：2026-09-12香港；本轮独立终态复核2026-09-11 20:23:45.591463 UTC。
+恢复：fetch → CURRENT_DIRECTION.md最新0L161 → 本文件 → 核现场。学长指导见ADVISOR_DIRECTIVES.md L/M/N。
+所有动态数值为注明时刻的最后观察；不要把旧“控制器completed”当模型/候选程序成功。
 
-## 当前目标与授权
+## 最新真实结论
 
-- 科学问题：同预算下，固定现成critic是否改善最终选中解的外部成绩；不是训练/G0或干净scaling。
-- 固定8run：leaf-classification / spaceship-titanic × seed8/9 × uniform_random / critic_topk_random。
-  两臂共同Qwen3 Coder Flash（OpenRouter / Alibaba）、原SIF、gpu28 RTX3090、6步上限、width4、top2选1、
-  common_priority_v1、执行300秒、worker3540秒、每run最多100传输/8192输出；只变选择规则及机械身份路径。
-  步数上限含root，不能未经实际计数称每run执行6个程序。历史critic训练模板未知，固定既有部署输入，不途中改。
-- 用户2026-09-11批准100人民币生成API总上限，包括检查/失败/重试/正式生成。
-  现有唯一paid.sqlite总10USD、每run1.10USD、route共1.20USD；完整上下文每请求预留0.70USD。
-  原始usage.cost核销，未知费用保留预留；禁止重建/复制初始化账本、fallback或绕过停机门。
-- 原8run共19GPUh封顶，不扩矩阵。第一块实际3135秒双卡=1.7416666666666667GPUh；
-  连同第二块280分钟及300秒KillWait最坏合计11.241666666666667GPUh，仍在原批准内。
+- 13088与13112均COMPLETED / gpu28 / 0:0，8个worker进程completed、各1attempt；两块均已释放。
+- 但是24次候选执行+16次debug执行全部exit1；0/8有效最终解、0/4可比成绩对。
+  无最终eval事件，不是文件名误读。不能补零、报打平、选中途submission补分或只保留成功子集。
+- 64生成候选；每run三个池宽4/3/1、5次实际执行（6步上限包含root且debug占步）。
+  4个critic run共有8个可剪枝池，top2边界全部非打平；并非没有发生实际评分/筛选机会。
+- 失败分类：14 LightGBM移除/错误参数，6超时，6 categorical赋值，2混合类型编码，
+  2实验性导入，2缺目标列，8其他代码错误。独立journal与task-call回执一致。
+- 这是本配置端到端有效率失败；无法估计critic相对最终成绩收益，不是正结果，也不否定所有critic。
+  科学目标仍是同预算最终解收益，不恢复旧benchmark-only或G0循环。
+- 详见FORETS_PAID_E2E_CLOSEOUT_20260912.md及results/forets_paid_e2e_20260912/。
+  两块最终成绩只在全部终态后一起读取；没有用第一块结果重选第二块。
 
-## 实际进度（不读取第一块成绩后调整第二块）
+## 费用与边界
 
-- 第一块seed8 / 13088：2026-09-11 19:29:53.826635 UTC独立查询COMPLETED/gpu28/0:0，
-  allocation实际3135秒；4run均completed、各1attempt。控制器completed，清理issues为空，
-  local_srun_exited与remote_step_cleanup_confirmed均true。终态回执19:30:23.122596 UTC。
-  pool：runs/srun_pool/74b760b75c87/manifest.json。最终成绩尚未读取。
-- 第二块seed9 / 13112：已提交，started时间19:31:50.001290 UTC。
-  20:02:42.950856 UTC观察pool：04/05 completed，各1attempt，06 running，07 pending；共6/8run完成。
-  pool：runs/srun_pool/b7f9c9287661/manifest.json。
-  使用同一源码/模型/镜像/预算；第二块路由2/2 READY，不再检查或重提。
-- 20:02:42.950856 UTC现有账本：94次全部结算0.233775672USD，0未结，stopped=false。
-  含90真实生成调用及两块4路由检查。这是当时费用，不是最终账单。
-- 两块都已提交；禁止重复route、submit、execute或恢复旧campaign。当前在会话监督第二块，
-  两块独立终态后统一读取全部8槽位最终结果；失败不删，不取轨迹最大分。
+- 用户2026-09-11批准100人民币生成API总上限，固定8run/19GPUh。
+- 实际13088=3135秒双卡，13112=2730秒双卡；总3.2583333333333333GPUh。
+- 124次API（120真实operator传输+4 route），全部结算0.318775548USD，0未结，未触发停机。
+- 保留唯一paid.sqlite与原授权：10USD全账本、8run各1.10、route共1.20，每请求0.70预留。
+  不重建/复制初始化、不复用旧scope追加新实验、不改已完成矩阵或隐式fallback。
+  原预算尚有余额不等于自动扩大8run；后继版本须明确新矩阵和跨版本总预算。
+- 两块route/submit/execute/collect/readout都完成，禁止重复。会话监督/收尾链session25007已正常退出。
+  没有新增自动监控；g0-r5仍PAUSED；不要干预12535 JobHeldUser。
 
-## 唯一活跃根与冻结身份
+## 下一项实质工作
 
-- /research/d7/spc/yzyang4/forets-paid-20260911-oh3np7b8
-- 入口code/forets_native_run_20260911.py；controller commit f051cfded55259d5320407a9e0269ab9141ab345。
-- source tree f9087ae47470f7f1868c61405c3b827327f31c2c。
-- prepared SHA 58558eed5abe1f793c77049572549c66de8c104255f8a13fa3c48e0a8b4d3593。
-- source inventory SHA 6857f18c60fecaa745710960c0f2f9dfd50d485717ca8a7e86faa47dedc10c1b。
-- release SHA 819621d75c9c95efe1e337866884b8701ad5f3f71cf5ea7e849f2b6ab0dd8798。
-- monetary authorization SHA c274cfc456296b85a8cb2b85ba9f66d28f738132462119e6fbb7f58d6c2e5c1e。
-- 我方公开HEAD最新push核实为35d291ec4de0dcf8f66b256db87c5e4e766a78d0；不要将报告commit当执行commit。
+1. 原任务镜像只读核实：LightGBM4.6.0、pandas2.1.4、sklearn1.9.0、numpy1.26.4、
+   catboost1.2.10、xgboost2.1.4、torch2.5.1+cu124；见image-api-facts.json。
+   四项错误LightGBM参数的签名绑定均拒绝，接口支持callbacks；没有GPU运算或模型拟合。
+2. 当前生成提示只列包名，未给版本/API信息。优先准备所有生成/修复臂共同使用的真实环境信息，
+   原SIF/Torch/critic不变。该信息尚未接入新生产包，未证明能提高可运行率；不能把接口核对当修复成功。
+3. 独立开发可运行性检查先于下一组新seed效果对照。不要通过手改旧候选、延长旧超时、反转critic、
+   调k、挑任务或补中途成绩“救跑”。API参数之外还有类型/逻辑/超时失败，不能只修一个词就宣称全部解决。
+4. 不再做G0/12892/13076或下载权重；不要把100人民币重新解释为缺密钥/缺费用批准。
+   后续若需新增GPU/API，先更新新版本范围、累计成本和配置矩阵；不启动未经界定的长贵实验。
 
-## 收尾方式与结论边界
+## 已冻结产物与身份
 
-1. 只核作业/控制器/pool结构状态、现有账本；不在第二块完成前看第一块结果。
-2. 两块终态后用本根code/forets_block_collect_20260911.py生成独立runtime-manifest，
-   再code/forets_block_readout_20260911.py在新目录统一读最终eval.jsonl；本地旧版本绑定旧根，不能混用。
-   20:04:52 UTC本会话已启动最多30分钟的只读等待/收尾链，session25007（不是新GPU或自动任务）。
-   两块独立终态后生成runtime-manifest-20260912.json、final-readout-20260912/和cost-work-20260912/。
-   恢复先查这三处及链是否结束，不能并发/重复写同一读出；超时只退出观察，不取消13112。
-3. 独立复核最终selected-node外评分、进程成功、配对方向；leaf用random−critic，spaceship用critic−random。
-   按任务报告两seed差值/中位数/样本标准差、有效配对和失败；不混平均原始指标、不声称确认性结论。
-4. 只读实际调用/执行次数、打平/剪枝机会及费用补充已准备；6项小测试在本地和Linux通过。
-   代码在本根post-closeout-20260912/forets_paid_measurements_20260912.py；只在两块终态后运行。
-   不改运行代码、不读取保护集、不加GPU/API。
-   候选ledger只作该开发包结束后的计数核算，私有代码/中间critic分不导出；配置步数不是实际执行量。
+- 根 /research/d7/spc/yzyang4/forets-paid-20260911-oh3np7b8。
+- 执行controller commit f051cfded55259d5320407a9e0269ab9141ab345；
+  source tree f9087ae47470f7f1868c61405c3b827327f31c2c。
+- prepared SHA 58558eed5abe1f793c77049572549c66de8c104255f8a13fa3c48e0a8b4d3593；
+  inventory SHA 6857f18c60fecaa745710960c0f2f9dfd50d485717ca8a7e86faa47dedc10c1b；
+  release SHA 819621d75c9c95efe1e337866884b8701ad5f3f71cf5ea7e849f2b6ab0dd8798。
+- runtime-manifest-20260912.json、final-readout-20260912/、cost-work-20260912/均已完整生成。
+- post-closeout-20260912/independent-failure-verification.json：不导入主reader，重新核sacct、
+  原journal、task-call及SQLite整数费用。verifier SHA d82f878ad2d0efcb1f4aca5cff9a7553268c2b727e488c6043dee9afdd049dd2。
+- post-closeout-20260912/image-api-facts.json：原镜像只读版本/签名，脚本SHA
+  41fbecfa5e675902ea5fde9febe6d26281dcbd803507093fe2fa9b34679c4d37。
+- 已将9份安全结果文件取回本地results/forets_paid_e2e_20260912；没有下载原始journal、代码、prompt或密钥。
+  成本/执行量辅助6项测试本地与Linux通过。测试不是模型收益。
+- 我方公开HEAD最后已核push为0f8d7daf；本次收尾报告的最终push另核Git，不把报告commit当执行commit。
 
-## 已关闭与不能重做
+## 仍关闭与操作规则
 
-- G0/12892、critic8B/16K接入、13076原SIF双步骤CUDA/OpenCL隔离已完成。不再索要gres.conf或重验。
-  旧设备9误映射adapter已撤回；当前native UUID→minor适配是新验证版本，不能恢复旧副本。
-- 13004单开发对照及13085全池诊断负结果保留；不反转分数、事后选k或救跑。
-  CPU限时完成筛查25-fit无投资信号已关闭，不重训/部署。详见20260910/11对应报告。
-- 免费Nemotron/Laguna失败窗口已关闭；本轮100人民币收费后继已替代阻塞，不能再说缺API授权/密钥。
-- first-960/Target-300/Target-522标签、结果、预测及私有选择仍隔离；
-  HCE、多保真、Probe、score-channel、K≥1 lookahead不恢复；agent底座不更新。
-- 12535 JobHeldUser不释放/取消；g0-r5自动监控已PAUSED，不恢复或新建，当前按用户要求会话内推进。
-
-## 语料与操作
-
-- 新包最后安全检查：senior-quarantine-20260911-v1，manifest SHA
-  67ac5406b789fa7a5a39f41e9483a095f671f2d25ba47ccf69af4f98264c7cb4。
-  32配置头不等于32合格physical runs，未读env/journal/结果、未并入训练。
-  2026-09-11 19:51:45.958128 UTC复查已知0907、0909、0909/mcts网盘目录，三者列表均无变化；未扫描其他新目录。
-- LATEST最后759总physical / 733 eligible，closure=false；本轮未重新计数。
-  SHA 1b44e898bbae7ffc9098bbfa584ba842e0db2be5ae6bb8b5da0475d8ab34239f。
+- 13004首对及13085闭池负结果保留；CPU期限筛查25-fit无投资信号已停止。免费模型失败窗口关闭。
+  旧设备9误映射adapter撤回，不复用；当前gpu28 native UUID绑定已验证，无需再索要gres.conf。
+- first-960/Target-300/Target-522标签、结果、预测及私有选择继续隔离。
+  HCE、多保真、Probe、score-channel、K≥1 lookahead不恢复；不更新agent底座。
+- 学长dojo-reproduce最后fetch 065b0fbaa89e0eb663f2834ec768081f5d56394d，未修改其分支。
+  19:51:45.958128 UTC已知0907、0909、0909/mcts网盘列表无变化，未覆盖其他目录。
+  senior-quarantine-20260911-v1的32配置不等于32合格runs，未并入训练。
+  LATEST最后759总physical/733 eligible，closure=false；本轮未重算，不解封。
 - repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；只push myfork HEAD:phase1-value-critic。
-  学长dojo-reproduce最后fetch 065b0fbaa89e0eb663f2834ec768081f5d56394d，不改学长分支。
+  凭据仅远端.env OPENROUTER_API_KEY→worker PRIMARY_KEY；不写本地/Git/输出、不再索要。
 - SSH linux5；网络先source /uac/y24/yzyang4/env_setup.sh；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
-  CPU Python=/research/d7/spc/yzyang4/venvs/aira/bin/python，模型同根venvs/exp/bin/python。
-  复杂SSH用脚本/scp。归档只取src/aira_core src/dojo，core.autocrlf=false；禁止整树archive触发无关大LFS。
-- 凭据仅远端.env OPENROUTER_API_KEY→worker PRIMARY_KEY，绝不写本地/Git/输出，不再索取。
-  新outcome先credential-shape scan；push前扫描明确暂存名单及完整内容。
-- 不升级任务Torch/SIF、不静默CPU回退；MLE用gpu28，不是projgpu28/39；两臂同硬件。
-  QOS4jobs/8GPU；排除projgpu7/8/33、gpu36/38；保留用户未跟踪codex_tmp/output/tmp等。
-- 官方研究盘1TB，/research/d7/spc/yzyang4，到期2026-09-29，续期未知。
-- 旧交接全文留Git5cbf2a6a；详细失败/撤回留dated报告，不把无变化轮询重新堆入交接。
+  CPU Python=/research/d7/spc/yzyang4/venvs/aira/bin/python；模型同根venvs/exp/bin/python。
+- 复杂SSH脚本/scp；代码归档仅src/aira_core、src/dojo且core.autocrlf=false，不能整树archive触发大LFS。
+  Windows用rg -g过滤文件，不把未展开的通配符当路径；读文件设置错误即停，不能把缺文件的null算作0。
+- 两臂同硬件/原镜像；gpu28不是projgpu28/39。QOS4jobs/8GPU；排除projgpu7/8/33、gpu36/38。
+  保留未跟踪codex_tmp/output/tmp等用户文件。官方研究盘1TB，到期2026-09-29，续期未知。
+- 历史交接保留Git5cbf2a6a与dated报告；短入口覆盖当前事实，不追加无变化轮询。

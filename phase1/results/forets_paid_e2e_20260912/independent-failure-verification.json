@@ -1,0 +1,165 @@
+{
+  "role": "independent_failed_matrix_closeout",
+  "utc": "2026-09-11T20:23:45.591463+00:00",
+  "jobs": {
+    "13088": 3135,
+    "13112": 2730
+  },
+  "processes_completed": 8,
+  "comparable_pairs": 0,
+  "task_calls": 40,
+  "exit_zero_task_calls": 0,
+  "final_events": 0,
+  "failure_categories": {
+    "lightgbm_removed_or_invalid_keyword": 14,
+    "execution_timeout": 6,
+    "missing_target_column": 2,
+    "other_code_error": 8,
+    "mixed_type_encoding": 2,
+    "pandas_categorical_assignment": 6,
+    "experimental_import": 2
+  },
+  "api_calls": 124,
+  "route_calls": 4,
+  "api_cost_usd": "0.318775548",
+  "unresolved_api_calls": 0,
+  "allocation_gpu_hours": 3.2583333333333333,
+  "rows": [
+    {
+      "run_id": "00-leaf-classification-s8-uniform_random",
+      "task": "leaf-classification",
+      "seed": 8,
+      "arm": "uniform_random",
+      "process_completed": true,
+      "final_event_present": false,
+      "task_calls": 5,
+      "exit_zero_task_calls": 0,
+      "failure_categories": {
+        "lightgbm_removed_or_invalid_keyword": 4,
+        "execution_timeout": 1
+      }
+    },
+    {
+      "run_id": "01-leaf-classification-s8-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 8,
+      "arm": "critic_topk_random",
+      "process_completed": true,
+      "final_event_present": false,
+      "task_calls": 5,
+      "exit_zero_task_calls": 0,
+      "failure_categories": {
+        "lightgbm_removed_or_invalid_keyword": 2,
+        "execution_timeout": 3
+      }
+    },
+    {
+      "run_id": "02-spaceship-titanic-s8-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 8,
+      "arm": "critic_topk_random",
+      "process_completed": true,
+      "final_event_present": false,
+      "task_calls": 5,
+      "exit_zero_task_calls": 0,
+      "failure_categories": {
+        "missing_target_column": 1,
+        "lightgbm_removed_or_invalid_keyword": 2,
+        "other_code_error": 2
+      }
+    },
+    {
+      "run_id": "03-spaceship-titanic-s8-uniform_random",
+      "task": "spaceship-titanic",
+      "seed": 8,
+      "arm": "uniform_random",
+      "process_completed": true,
+      "final_event_present": false,
+      "task_calls": 5,
+      "exit_zero_task_calls": 0,
+      "failure_categories": {
+        "mixed_type_encoding": 1,
+        "pandas_categorical_assignment": 1,
+        "experimental_import": 2,
+        "other_code_error": 1
+      }
+    },
+    {
+      "run_id": "04-leaf-classification-s9-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 9,
+      "arm": "critic_topk_random",
+      "process_completed": true,
+      "final_event_present": false,
+      "task_calls": 5,
+      "exit_zero_task_calls": 0,
+      "failure_categories": {
+        "lightgbm_removed_or_invalid_keyword": 3,
+        "other_code_error": 1,
+        "execution_timeout": 1
+      }
+    },
+    {
+      "run_id": "05-leaf-classification-s9-uniform_random",
+      "task": "leaf-classification",
+      "seed": 9,
+      "arm": "uniform_random",
+      "process_completed": true,
+      "final_event_present": false,
+      "task_calls": 5,
+      "exit_zero_task_calls": 0,
+      "failure_categories": {
+        "other_code_error": 2,
+        "lightgbm_removed_or_invalid_keyword": 2,
+        "execution_timeout": 1
+      }
+    },
+    {
+      "run_id": "06-spaceship-titanic-s9-uniform_random",
+      "task": "spaceship-titanic",
+      "seed": 9,
+      "arm": "uniform_random",
+      "process_completed": true,
+      "final_event_present": false,
+      "task_calls": 5,
+      "exit_zero_task_calls": 0,
+      "failure_categories": {
+        "mixed_type_encoding": 1,
+        "pandas_categorical_assignment": 3,
+        "other_code_error": 1
+      }
+    },
+    {
+      "run_id": "07-spaceship-titanic-s9-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 9,
+      "arm": "critic_topk_random",
+      "process_completed": true,
+      "final_event_present": false,
+      "task_calls": 5,
+      "exit_zero_task_calls": 0,
+      "failure_categories": {
+        "missing_target_column": 1,
+        "pandas_categorical_assignment": 2,
+        "lightgbm_removed_or_invalid_keyword": 1,
+        "other_code_error": 1
+      }
+    }
+  ],
+  "evidence_sha256": {
+    "runs/00-leaf-classification-s8-uniform_random/checkpoint/journal.jsonl": "c4bd334b571ce360ca3dcc118b8a044f56f00da7e930ed9b6a3924a00b10b169",
+    "runs/01-leaf-classification-s8-critic_topk_random/checkpoint/journal.jsonl": "cbdedd594b248bc24c34a05a91b3687b0c73a0e02276b653c25360bae283d510",
+    "runs/02-spaceship-titanic-s8-critic_topk_random/checkpoint/journal.jsonl": "a8633426f473f30fd650cd90f81738de9fd6abc32a097ba6c1ad69ca6c5d6da7",
+    "runs/03-spaceship-titanic-s8-uniform_random/checkpoint/journal.jsonl": "f1b9bf0dc7386756bbeffecd05d10fafb515d75cc0926ecb3b45fe6511e8e43d",
+    "runs/04-leaf-classification-s9-critic_topk_random/checkpoint/journal.jsonl": "9d7189f8385b9937a7d02005acca687521934e0699671b94b0cc9c49c20cf569",
+    "runs/05-leaf-classification-s9-uniform_random/checkpoint/journal.jsonl": "4ddd6615e13083aca324456bd499f900067967d3dc271dab869cb5a7643668df",
+    "runs/06-spaceship-titanic-s9-uniform_random/checkpoint/journal.jsonl": "ac9dc1ae4b1ee727f0e9446a49e2dc7cb4a5eef29690d73da96a574696c05d91",
+    "runs/07-spaceship-titanic-s9-critic_topk_random/checkpoint/journal.jsonl": "131992b033899730816dfa6eb39d09f7329910bebc35327a1a3774aa387733e5"
+  },
+  "verifier_sha256": "d82f878ad2d0efcb1f4aca5cff9a7553268c2b727e488c6043dee9afdd049dd2",
+  "limitations": [
+    "No final score can be assigned; missing is not zero.",
+    "Failure classes are diagnostic and not a proof that fixing one API makes a whole program succeed.",
+    "No partial submission selected, task replay, GPU or API generation was performed."
+  ]
+}

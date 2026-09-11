@@ -1,0 +1,51 @@
+{
+  "role": "original_image_api_facts_not_runtime_repair",
+  "observed_utc": "2026-09-11T20:21:51.252547+00:00",
+  "image": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+  "image_size": 19717783552,
+  "image_mtime_ns": 1784638286000000000,
+  "script_sha256": "41fbecfa5e675902ea5fde9febe6d26281dcbd803507093fe2fa9b34679c4d37",
+  "facts": {
+    "versions": {
+      "numpy": "1.26.4",
+      "pandas": "2.1.4",
+      "scikit-learn": "1.9.0",
+      "lightgbm": "4.6.0",
+      "catboost": "1.2.10",
+      "xgboost": "2.1.4",
+      "torch": "2.5.1+cu124"
+    },
+    "signatures": {
+      "lightgbm.train": "(params: Dict[str, Any], train_set: lightgbm.basic.Dataset, num_boost_round: int = 100, valid_sets: Optional[List[lightgbm.basic.Dataset]] = None, valid_names: Optional[List[str]] = None, feval: Union[Callable[[numpy.ndarray, lightgbm.basic.Dataset], Tuple[str, float, bool]], Callable[[numpy.ndarray, lightgbm.basic.Dataset], List[Tuple[str, float, bool]]], List[Union[Callable[[numpy.ndarray, lightgbm.basic.Dataset], Tuple[str, float, bool]], Callable[[numpy.ndarray, lightgbm.basic.Dataset], List[Tuple[str, float, bool]]]]], NoneType] = None, init_model: Union[str, pathlib.Path, lightgbm.basic.Booster, NoneType] = None, keep_training_booster: bool = False, callbacks: Optional[List[Callable]] = None) -> lightgbm.basic.Booster",
+      "lightgbm.LGBMClassifier.fit": "(self, X: Union[lightgbm.compat.dt_DataTable, List[Union[List[float], List[int]]], numpy.ndarray, pandas.core.frame.DataFrame, scipy.sparse._matrix.spmatrix], y: Union[List[float], List[int], numpy.ndarray, pandas.core.series.Series, pandas.core.frame.DataFrame, pyarrow.lib.Array, pyarrow.lib.ChunkedArray], sample_weight: Union[List[float], List[int], numpy.ndarray, pandas.core.series.Series, pyarrow.lib.Array, pyarrow.lib.ChunkedArray, NoneType] = None, init_score: Union[List[float], List[List[float]], numpy.ndarray, pandas.core.series.Series, pandas.core.frame.DataFrame, pyarrow.lib.Table, pyarrow.lib.Array, pyarrow.lib.ChunkedArray, NoneType] = None, eval_set: Optional[List[Tuple[Union[lightgbm.compat.dt_DataTable, List[Union[List[float], List[int]]], numpy.ndarray, pandas.core.frame.DataFrame, scipy.sparse._matrix.spmatrix], Union[List[float], List[int], numpy.ndarray, pandas.core.series.Series, pandas.core.frame.DataFrame, pyarrow.lib.Array, pyarrow.lib.ChunkedArray]]]] = None, eval_names: Optional[List[str]] = None, eval_sample_weight: Optional[List[Union[List[float], List[int], numpy.ndarray, pandas.core.series.Series, pyarrow.lib.Array, pyarrow.lib.ChunkedArray]]] = None, eval_class_weight: Optional[List[float]] = None, eval_init_score: Optional[List[Union[List[float], List[List[float]], numpy.ndarray, pandas.core.series.Series, pandas.core.frame.DataFrame, pyarrow.lib.Table, pyarrow.lib.Array, pyarrow.lib.ChunkedArray]]] = None, eval_metric: Union[str, Callable[[Optional[numpy.ndarray], numpy.ndarray], Tuple[str, float, bool]], Callable[[Optional[numpy.ndarray], numpy.ndarray], List[Tuple[str, float, bool]]], Callable[[Optional[numpy.ndarray], numpy.ndarray, Optional[numpy.ndarray]], Tuple[str, float, bool]], Callable[[Optional[numpy.ndarray], numpy.ndarray, Optional[numpy.ndarray]], List[Tuple[str, float, bool]]], Callable[[Optional[numpy.ndarray], numpy.ndarray, Optional[numpy.ndarray], Optional[numpy.ndarray]], Tuple[str, float, bool]], Callable[[Optional[numpy.ndarray], numpy.ndarray, Optional[numpy.ndarray], Optional[numpy.ndarray]], List[Tuple[str, float, bool]]], List[Union[str, Callable[[Optional[numpy.ndarray], numpy.ndarray], Tuple[str, float, bool]], Callable[[Optional[numpy.ndarray], numpy.ndarray], List[Tuple[str, float, bool]]], Callable[[Optional[numpy.ndarray], numpy.ndarray, Optional[numpy.ndarray]], Tuple[str, float, bool]], Callable[[Optional[numpy.ndarray], numpy.ndarray, Optional[numpy.ndarray]], List[Tuple[str, float, bool]]], Callable[[Optional[numpy.ndarray], numpy.ndarray, Optional[numpy.ndarray], Optional[numpy.ndarray]], Tuple[str, float, bool]], Callable[[Optional[numpy.ndarray], numpy.ndarray, Optional[numpy.ndarray], Optional[numpy.ndarray]], List[Tuple[str, float, bool]]]]], NoneType] = None, feature_name: Union[List[str], ForwardRef(\"Literal['auto']\")] = 'auto', categorical_feature: Union[List[str], List[int], ForwardRef(\"Literal['auto']\")] = 'auto', callbacks: Optional[List[Callable]] = None, init_model: Union[str, pathlib.Path, lightgbm.basic.Booster, lightgbm.sklearn.LGBMModel, NoneType] = None) -> 'LGBMClassifier'",
+      "lightgbm.early_stopping": "(stopping_rounds: int, first_metric_only: bool = False, verbose: bool = True, min_delta: Union[float, List[float]] = 0.0) -> lightgbm.callback._EarlyStoppingCallback",
+      "lightgbm.log_evaluation": "(period: int = 1, show_stdv: bool = True) -> lightgbm.callback._LogEvaluationCallback",
+      "sklearn.preprocessing.OneHotEncoder": "(*, categories='auto', drop=None, sparse_output=True, dtype=<class 'numpy.float64'>, handle_unknown='error', min_frequency=None, max_categories=None, feature_name_combiner='concat')"
+    },
+    "binding_checks": [
+      {
+        "function": "train",
+        "keyword": "verbose_eval",
+        "signature_accepts": false
+      },
+      {
+        "function": "train",
+        "keyword": "early_stopping_rounds",
+        "signature_accepts": false
+      },
+      {
+        "function": "classifier.fit",
+        "keyword": "verbose",
+        "signature_accepts": false
+      },
+      {
+        "function": "classifier.fit",
+        "keyword": "early_stopping_rounds",
+        "signature_accepts": false
+      }
+    ],
+    "model_fits": 0,
+    "task_executions": 0,
+    "gpu_computations": 0
+  }
+}

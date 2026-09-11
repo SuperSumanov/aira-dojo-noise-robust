@@ -1,0 +1,144 @@
+{
+  "blocks": [
+    {
+      "allocated_gpus": 2,
+      "allocation_id": "13088",
+      "block": 1,
+      "elapsed_seconds": 3135,
+      "node": "gpu28",
+      "observed_utc": "2026-09-11T20:17:25.421359+00:00",
+      "service_startup_seconds": 222.3228821347002,
+      "state": "COMPLETED"
+    },
+    {
+      "allocated_gpus": 2,
+      "allocation_id": "13112",
+      "block": 2,
+      "elapsed_seconds": 2730,
+      "node": "gpu28",
+      "observed_utc": "2026-09-11T20:17:25.611096+00:00",
+      "service_startup_seconds": 237.09508771984838,
+      "state": "COMPLETED"
+    }
+  ],
+  "controller_commit": "f051cfded55259d5320407a9e0269ab9141ab345",
+  "evidence_sha256": {
+    "block-1.runtime/finished.json": "27311c09e524d061cb1d3de654125a94516788acff87a3e4f47d913c1dbd702c",
+    "block-1.runtime/started.json": "e9863b82a7da5c9c05e9b309ab69e821cdb3e4b1fe884c7b6a1f27e186f771b3",
+    "block-2.runtime/finished.json": "57cb3cac91f0f354b2e666c364f0bf027659d93cd9bb98d459f46f973d8eae8b",
+    "block-2.runtime/started.json": "4874a74689add936521e3dff84ead4c50fdc7e07328d1c7822a20ea6a555ff78",
+    "runs/srun_pool/74b760b75c87/manifest.json": "7b73ac538366822db25c671c7ee2cd5241f6e1d6d83cbbc689eaf5df2edaf39e",
+    "runs/srun_pool/b7f9c9287661/manifest.json": "19922384f06bdc9d4fa649b6a205798bc61ea0b2b2bc069cef9560a75d00e819"
+  },
+  "prepared_sha256": "58558eed5abe1f793c77049572549c66de8c104255f8a13fa3c48e0a8b4d3593",
+  "role": "forets_e2e_fixed_blocks_runtime_v1",
+  "runs": [
+    {
+      "arm": "uniform_random",
+      "block": 1,
+      "prepared_config_sha256": "df9eec24a3a176d9f484a7569018d2fc19f63c1a883f8df050a5ed852ab6b9f9",
+      "process_summary": "runs/srun_pool/74b760b75c87/identities/00-leaf-classification-s8-uniform_random-5b99c21e38.attempt-1.bounded/execution/summary.json",
+      "run_dir": "runs/00-leaf-classification-s8-uniform_random",
+      "run_id": "00-leaf-classification-s8-uniform_random",
+      "runtime_config_path": "runs/srun_pool/74b760b75c87/configs/00-leaf-classification-s8-uniform_random-5b99c21e38.json",
+      "runtime_config_sha256": "cf3fd0c725dc4ac429785aacd91ff259b67b3ef80096484ed1dbdbe2c542c42e",
+      "runtime_status": "completed",
+      "seed": 8,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 1,
+      "prepared_config_sha256": "8879e05689988c994e07eab5788871b71d1a874386d0ce074d43bb48823cde43",
+      "process_summary": "runs/srun_pool/74b760b75c87/identities/01-leaf-classification-s8-critic_topk_random-dbe04369b6.attempt-1.bounded/execution/summary.json",
+      "run_dir": "runs/01-leaf-classification-s8-critic_topk_random",
+      "run_id": "01-leaf-classification-s8-critic_topk_random",
+      "runtime_config_path": "runs/srun_pool/74b760b75c87/configs/01-leaf-classification-s8-critic_topk_random-dbe04369b6.json",
+      "runtime_config_sha256": "c78cf2ffa0ac140e0860ab6ded0c84fb0a8ad3f56e952d3965a0be62b9f6c5cc",
+      "runtime_status": "completed",
+      "seed": 8,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 1,
+      "prepared_config_sha256": "af3a96d63381adbb0c6a83bcda5c6506a79b9bdd546ca34ed76bc3ffcf482472",
+      "process_summary": "runs/srun_pool/74b760b75c87/identities/02-spaceship-titanic-s8-critic_topk_random-a92607921a.attempt-1.bounded/execution/summary.json",
+      "run_dir": "runs/02-spaceship-titanic-s8-critic_topk_random",
+      "run_id": "02-spaceship-titanic-s8-critic_topk_random",
+      "runtime_config_path": "runs/srun_pool/74b760b75c87/configs/02-spaceship-titanic-s8-critic_topk_random-a92607921a.json",
+      "runtime_config_sha256": "b5ad89275e3827a4038efe35c3a3e3eda86358f7f96d9bbe0ffafdc9ca4e3ebb",
+      "runtime_status": "completed",
+      "seed": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "block": 1,
+      "prepared_config_sha256": "c057070e19eedfd2569b175ba0c4c3a0965b73955d1f432b0b0ca3476193a6f5",
+      "process_summary": "runs/srun_pool/74b760b75c87/identities/03-spaceship-titanic-s8-uniform_random-030363390b.attempt-1.bounded/execution/summary.json",
+      "run_dir": "runs/03-spaceship-titanic-s8-uniform_random",
+      "run_id": "03-spaceship-titanic-s8-uniform_random",
+      "runtime_config_path": "runs/srun_pool/74b760b75c87/configs/03-spaceship-titanic-s8-uniform_random-030363390b.json",
+      "runtime_config_sha256": "f7ac212a58289221519089dc32d707d4f13005faf9685dcfe6e970affa4b54d8",
+      "runtime_status": "completed",
+      "seed": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 2,
+      "prepared_config_sha256": "18561e98603ee7c27b81de0e29016a1a1aec37b0d07df02e91befaa026976048",
+      "process_summary": "runs/srun_pool/b7f9c9287661/identities/04-leaf-classification-s9-critic_topk_random-36406a0833.attempt-1.bounded/execution/summary.json",
+      "run_dir": "runs/04-leaf-classification-s9-critic_topk_random",
+      "run_id": "04-leaf-classification-s9-critic_topk_random",
+      "runtime_config_path": "runs/srun_pool/b7f9c9287661/configs/04-leaf-classification-s9-critic_topk_random-36406a0833.json",
+      "runtime_config_sha256": "a5c94cb11c69691d791a650e93cb33c97456ea0639620153194d95652b10ae27",
+      "runtime_status": "completed",
+      "seed": 9,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "block": 2,
+      "prepared_config_sha256": "507508b713c66cebe8442fda4da421cb67489255e5aaa1ab18d6bfc9d24e2c25",
+      "process_summary": "runs/srun_pool/b7f9c9287661/identities/05-leaf-classification-s9-uniform_random-775770ca82.attempt-1.bounded/execution/summary.json",
+      "run_dir": "runs/05-leaf-classification-s9-uniform_random",
+      "run_id": "05-leaf-classification-s9-uniform_random",
+      "runtime_config_path": "runs/srun_pool/b7f9c9287661/configs/05-leaf-classification-s9-uniform_random-775770ca82.json",
+      "runtime_config_sha256": "55e622e38e763dfbdf226237b3071a0c3fdd0341899e73376acc02013c3624e1",
+      "runtime_status": "completed",
+      "seed": 9,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "block": 2,
+      "prepared_config_sha256": "28ceb36b26cc86d2c5afdfe05db1f0830aef189592751f0528cf054895b0e1c6",
+      "process_summary": "runs/srun_pool/b7f9c9287661/identities/06-spaceship-titanic-s9-uniform_random-c80fd898b5.attempt-1.bounded/execution/summary.json",
+      "run_dir": "runs/06-spaceship-titanic-s9-uniform_random",
+      "run_id": "06-spaceship-titanic-s9-uniform_random",
+      "runtime_config_path": "runs/srun_pool/b7f9c9287661/configs/06-spaceship-titanic-s9-uniform_random-c80fd898b5.json",
+      "runtime_config_sha256": "f491da44b1c1a8bd9f436d5487e36ca6ab4ffe036df2b9ca4a52eb1858e35e0d",
+      "runtime_status": "completed",
+      "seed": 9,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "block": 2,
+      "prepared_config_sha256": "b7fd6492336d9ce9b3bc401e310596afd86a0d22d4931c3493bca6266620a207",
+      "process_summary": "runs/srun_pool/b7f9c9287661/identities/07-spaceship-titanic-s9-critic_topk_random-9b4b4d14a1.attempt-1.bounded/execution/summary.json",
+      "run_dir": "runs/07-spaceship-titanic-s9-critic_topk_random",
+      "run_id": "07-spaceship-titanic-s9-critic_topk_random",
+      "runtime_config_path": "runs/srun_pool/b7f9c9287661/configs/07-spaceship-titanic-s9-critic_topk_random-9b4b4d14a1.json",
+      "runtime_config_sha256": "b45ecc249f38f3f04599cc0c0fc5041e764d7a3f7bba24e2e69281294de4cc4c",
+      "runtime_status": "completed",
+      "seed": 9,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "schema": 1,
+  "scope": "metadata_only_no_score_reads",
+  "source_tree": "f9087ae47470f7f1868c61405c3b827327f31c2c"
+}

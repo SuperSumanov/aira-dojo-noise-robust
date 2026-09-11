@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euo pipefail
+root="$(dirname "$(dirname "$(readlink -f "$0")")")"
+exec /research/d7/spc/yzyang4/venvs/aira/bin/python "$root/forets_current_pool_native_20260912.py" "$@"

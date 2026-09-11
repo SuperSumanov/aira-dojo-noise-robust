@@ -1,0 +1,17 @@
+{
+  "archive_contents_opened": false,
+  "archives": 6,
+  "bytes": 115079888,
+  "elapsed_seconds": 61.72906395996688,
+  "gpu_jobs": 0,
+  "group": "0910",
+  "manifest_sha256": "536251cce2d7aa0324f2e5b5ad638cbeced5e33b76166f2dc02f2e491b802c2c",
+  "model_calls": 0,
+  "production_source_changed": false,
+  "protected_values_read": false,
+  "requests": 16,
+  "root_listing_may_be_paginated": true,
+  "script_sha256": "3d9d8d63703235c466bbde18828eab9d54bc001e11e6b7ad8c05eb9c9a7ecaf9",
+  "status": "QUARANTINED_NOT_INTAKE_OR_TRAINING",
+  "utc": "2026-09-11T23:24:16.345518+00:00"
+}

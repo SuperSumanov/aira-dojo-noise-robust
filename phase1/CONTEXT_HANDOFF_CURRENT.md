@@ -1,6 +1,6 @@
 # 当前交接：seed11观测差尚非critic收益；seed12的13118正在运行
 
-更新2026-09-12香港；13118最后现场观察2026-09-11 23:16:38.137831 UTC。
+更新2026-09-12香港；13118最后现场观察2026-09-11 23:30:00.875864 UTC。
 恢复：fetch→CURRENT_DIRECTION.md最新0L165→本文件→核现场。学长指导ADVISOR_DIRECTIVES.md L/M/N。
 用户要会话内实质推进，不新增自动任务；不把旧队列、计划、mock或进程完成冒充当前结果。
 
@@ -17,7 +17,8 @@
 - 收尾JSON/CSV已复制到results/forets_review_20260912，远端扫描0凭据命中、本地SHA逐项匹配。
 - seed12两任务四run同配方包已构建、STATIC_READY、账本已激活、route两次通过，**已提交13118**。
   提交2026-09-11 23:05:37.194035 UTC，gpu28；23:07:25 UTC已RUNNING、首个leaf/random worker运行。
-  当前会话watch PTY **34987**，整块终态后自动primary closeout；禁止启动第二收尾写入者。
+  原watch PTY **34987**因SSH reset结束，但23:29 UTC远端watch PID3678839仍存活；不重启第二写入者。
+  若后续原watch退出且无diagnostics，先核全部终态/已有部分输出再恢复收尾，不重复提交。
   旧账117rows逐字复制并封存；新账本为唯一活动账本。两route已结算，累计242实际API/0.574654587USD，仍1旧unknown。
   初始串行启动末行因Windows回车被解析为submit\\r，发生在argparse且未提交；只补执行submit一次。
   submit-intent/submission/route均已存在；禁止重复activate/route/submit。不是重新开API窗口。
@@ -35,9 +36,10 @@
 
 ## 当前收尾接口与已关闭证据
 
-- 当前会话watch PTY34987；13118整块终态后自动primary closeout，不启动第二写入者。
-- 最后现场：13118 RUNNING/gpu28，首个leaf/random运行，其余pending。本块8API、累计248，
-  累计已结算0.587169648USD、1历史unknown、stopped=false；不是实时余额承诺。
+- 原watch远端PID3678839；13118整块终态后自动primary closeout，不启动第二写入者。SSH连接已断，需只读核现场。
+- 最后现场：13118 RUNNING/gpu28，leaf/random completed、leaf/critic running，两个Spaceship pending。
+  本块18API、累计258，累计已结算0.606074898USD、2未结（含旧unknown及运行期请求）、stopped=false。
+  运行期间未读取最终成绩；这些不是实时余额承诺。
 - 13118结束后运行新stage/verify_forets_repeat_final_20260912.py一次（尚未执行）。
   wrapper SHA2853f59cf205fbe0ff942a2c336cb73c6f6ba7e3c513be43ce7890854d0305f8；
   同stage helper verify_forets_review_final_20260912.py SHA13ef06dc5ceabe22eaecd7682b428ae357f60cfe504c26ff2f35e377ed3dd114。
@@ -56,6 +58,19 @@
   Plus只核公开价格与静态预算，未调用；最坏请求责任2.517372USD，不能沿用Flash的0.70预留。
   top1、完整候选池诊断、submission留档helper均未部署/启动。当前seed12不因中途观察而改变。
 
+## 等待当前复验时完成的条件准备
+
+- 新首池诊断已于23:38:35 UTC仅prepare，未提交GPU/API：两任务seed11首池全部8程序原字节，重复slot保留。
+  根/research/d7/spc/yzyang4/forets-current-pool-20260912-wnm9cxd0；plan.private SHA
+  08ac4d511382e78efb1a1c66e5cd4c4b12c3a92712e632068d9c15fb2f9773d9。
+  stage/research/d7/spc/yzyang4/forets-current-pool-stage-20260912-awArkuah；不要重prepare。
+  仅在13118整体及独立收尾后仍需分辨生成/选择质量才启动，方案FORETS_CURRENT_POOL_PLAN_20260912.md。
+  原镜像/300秒/6CPU/1GPU，8执行最多1.5GPUh、0API/critic；当前还无launch.json，不是已在跑。
+  本地人工边界检查37 passed，不是正结果；执行器仅增加显式task/seed/hash参数，旧13085不重跑/不改回执。
+- seed12独立选择重放wrapper已放同一新stage（verify_forets_repeat_selection_20260912.py及helper）。
+  须在整组关闭及独立final通过后才执行；额外区分slot改选与原字节/AST改选，不输出候选代码或critic值。
+  原seed11选择回执不重写；运行中13118源码/参数完全不变。
+
 ## 不重做、边界和外部状态
 
 - 13113 seed10已闭合：0/4final、14执行2exit0、1.0733333333333333GPUh；analyzer字符串metric接纳故障及0.70未知来源。
@@ -64,9 +79,11 @@
   13004/13085和旧CPU期限筛查负结果保留，不再G0/12892/13076或免费窗口。
 - first-960/Target-300/522仍封闭；不恢复HCE/多保真/Probe/score-channel/K>=1lookahead，不更新agent底座。
 - 学长branch未改。最后head：dojo-reproduce065b0fbaa89e0eb663f2834ec768081f5d56394d，
-  collect4029f62688b28f2bb979b5dc18a500cc6d669a79。22:46:42 UTC仅0907/0909/0909-mcts清单无变，
-  未检查所有目录，不能说全盘无新语料。quarantine32配置≠32runs；LATEST最后759physical/733eligible、closure=false。
-- 只push myfork HEAD:phase1-value-critic；最后公开核对aa4f13c2cc480f7ead84b1970b3511c5b6dd6a30，后续修改待push。
+  collect4029f62688b28f2bb979b5dc18a500cc6d669a79。23:20新增发现0910，6包/115079888bytes已隔离；
+  23:26配置检查24份、2commit、num_children=2/3，不等于24新增physical runs。未开journal/env/outcome、未摄取。
+  根列表50项可能分页，不能称全盘最新完整。见SENIOR_0910_INTAKE_STATUS_20260912.md；不重下载/重写隔离输出。
+  LATEST最后759physical/733eligible、closure=false，未因上述元数据发现改变。
+- 只push myfork HEAD:phase1-value-critic；最后公开核对04e3ee8599170c8891bb1f950c35a6f5c0adb094，后续修改待push。
   每push扫内容与env/key/token/secret文件名；不把用户untracked codex_tmp/output/tmp/旧报告全add。
 - repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5；venvs/aira CPU控制，venvs/exp GPU/gdown。
   网络/uac/y24/yzyang4/env_setup.sh；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。gpu28不是projgpu28/39，原MLE镜像不投39。

@@ -46,7 +46,8 @@ def test_wrong_root_never_opens_protected_cohort(tmp_path):
     with pytest.raises(ValueError):c.checked_root(tmp_path)
 
 @pytest.mark.parametrize('timeout',[False,True])
-def test_actual_runner_boundary_with_fake_kernel(tmp_path,monkeypatch,timeout):
+@pytest.mark.parametrize('task',['leaf-classification','spaceship-titanic'])
+def test_actual_runner_boundary_with_fake_kernel(tmp_path,monkeypatch,timeout,task):
     calls=[];code=b'print(1)';(tmp_path/'codes').mkdir();(tmp_path/'codes/0.py').write_bytes(code)
     monkeypatch.setattr(c,'CODES',(c.digest(code),)+c.CODES[1:])
     monkeypatch.setenv('FORETS_SOURCE_COMMIT','a'*40);monkeypatch.setenv('SLURM_JOB_ID','999')
@@ -61,10 +62,12 @@ def test_actual_runner_boundary_with_fake_kernel(tmp_path,monkeypatch,timeout):
     class Server:
         def __init__(self,**kw):
             calls.append(kw)
-            assert kw['startup_timeout']==90 and kw['bind_inputs_dir'].as_posix().endswith('/prepared/public')
+            assert kw['startup_timeout']==90 and kw['bind_inputs_dir'].as_posix().endswith('/'+task+'/prepared/public')
         def get_client(self):return SimpleNamespace(start_kernel=lambda _: 'k',get_kernel_client=lambda _:Kernel())
         def stop(self):calls.append('stopped')
-    def grade(*args):calls.append('graded');return .25,{}
+    def grade(*args):
+        assert args[2]==task
+        calls.append('graded');return .25,{}
     registry=SimpleNamespace(set_data_dir=lambda _:SimpleNamespace(get_competition=lambda _:object()))
     modules={
         'dojo.core.interpreters.jupyter.singularity_jupyter_server':SimpleNamespace(SingularityJupyterServer=Server),
@@ -73,7 +76,8 @@ def test_actual_runner_boundary_with_fake_kernel(tmp_path,monkeypatch,timeout):
         'mlebench.registry':SimpleNamespace(registry=registry),
         'forets_opencl_allowlist_20260911':SimpleNamespace(IMAGE=Path('/original.sif'))}
     for key,value in modules.items():monkeypatch.setitem(sys.modules,key,value)
-    row=c.execute_one(tmp_path,0)
+    row=c.execute_one(tmp_path,0,task=task)
+    assert row['task']==task
     assert row['status']==('program_timeout' if timeout else 'valid')
     assert ('graded' in calls)==(not timeout)
     assert calls[-1]=='stopped'

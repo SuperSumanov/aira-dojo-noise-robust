@@ -1,0 +1,16 @@
+{
+  "role": "all_seed11_first_pools_immediate_quality_not_e2e",
+  "root": "/research/d7/spc/yzyang4/forets-current-pool-20260912-wnm9cxd0",
+  "plan_sha256": "08ac4d511382e78efb1a1c66e5cd4c4b12c3a92712e632068d9c15fb2f9773d9",
+  "source_tree": "6ca01fba9892a350cbb24152054b5296dc7095f1",
+  "programs": 8,
+  "tasks": [
+    "leaf-classification",
+    "spaceship-titanic"
+  ],
+  "seed": 11,
+  "api_calls": 0,
+  "gpu_jobs": 0,
+  "status": "PREPARED_NOT_LAUNCHABLE",
+  "created_utc": "2026-09-11T23:38:35.823358+00:00"
+}

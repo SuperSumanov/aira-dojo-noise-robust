@@ -14,6 +14,7 @@ import tarfile
 
 ROOT = Path('/research/d7/spc/yzyang4/senior-quarantine-20260911-v1')
 MANIFEST_SHA = '67ac5406b789fa7a5a39f41e9483a095f671f2d25ba47ccf69af4f98264c7cb4'
+ARCHIVE_COUNT = 8
 SECRET = re.compile(rb'(?i)(?:^|[^a-z0-9])(?:sk-[a-z0-9._-]{12,}|hf_[a-z0-9]{16,}|gh[pousr]_[a-z0-9]{16,}|github_pat_[a-z0-9_]{20,}|AKIA[0-9A-Z]{16}|AIza[0-9a-z_-]{30,}|Bearer\s+[a-z0-9._-]{20,}|BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY)')
 
 
@@ -85,7 +86,7 @@ def main():
     manifest = ROOT / 'private_manifest.json'
     if digest(manifest) != MANIFEST_SHA: raise ValueError('manifest_drift')
     rows = json.loads(manifest.read_bytes())['records']
-    if len(rows) != 8: raise ValueError('scope_count')
+    if len(rows) != ARCHIVE_COUNT: raise ValueError('scope_count')
     groups = {}; all_dirs = set()
     for r in rows:
         rel = PurePosixPath(r['relative'])
@@ -110,6 +111,7 @@ def main():
         item['distinct_config_parent_paths'] = len(item.pop('config_parent_paths'))
         item['solver_configs'] = [{'fields': json.loads(k), 'configs': n} for k, n in sorted(item['solver_configs'].items())]
     result = {'status': 'CONFIG_METADATA_ONLY_NOT_RUN_VALIDATION_OR_TRAINING',
+              'quarantine_root': str(ROOT), 'archive_count_expected': ARCHIVE_COUNT,
               'utc': dt.datetime.now(dt.timezone.utc).isoformat(), 'manifest_sha256': MANIFEST_SHA,
               'script_sha256': digest(Path(__file__)), 'groups': groups,
               'cross_group_config_parent_path_overlap': sum(x['distinct_config_parent_paths'] for x in groups.values()) - len(all_dirs),

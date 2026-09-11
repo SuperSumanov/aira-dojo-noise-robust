@@ -99,26 +99,29 @@ def setup(root):
         NO_PROXY='localhost,127.0.0.1,0.0.0.0')
     sys.path[:0]=[str(root),str(SOURCE/'src')]
 
-def execute_one(root,index):
+def execute_one(root,index,*,task='leaf-classification',seed=6,source_tree=TREE,
+                code_hashes=None,order=None,device_label=None):
     from dojo.core.interpreters.jupyter.singularity_jupyter_server import SingularityJupyterServer
     from dojo.tasks.mlebench.evaluate import evaluate_submission
     from mlebench.grade import validate_submission
     from mlebench.registry import registry
     from forets_opencl_allowlist_20260911 import IMAGE
-    slot,repeat=ORDER[index];work=root/f'work-{index}';work.mkdir()
+    code_hashes=CODES if code_hashes is None else code_hashes
+    order=ORDER if order is None else order
+    slot,repeat=order[index];work=root/f'work-{index}';work.mkdir()
     identity=root/f'identity-{index}.json';write(identity,{})
     os.environ['DOJO_WORKER_IDENTITY_PATH']=str(identity)
-    result=dict(index=index,slot=slot,repeat=repeat,code_sha256=CODES[slot],started_utc=now(),
-        source_commit=os.environ['FORETS_SOURCE_COMMIT'],source_tree=TREE,job=os.environ['SLURM_JOB_ID'],
-        task='leaf-classification',original_search_seed=6,node='gpu28',allocated_gpu_count=1,allocated_cpus=6,
+    result=dict(index=index,slot=slot,repeat=repeat,code_sha256=code_hashes[slot],started_utc=now(),
+        source_commit=os.environ['FORETS_SOURCE_COMMIT'],source_tree=source_tree,job=os.environ['SLURM_JOB_ID'],
+        task=task,original_search_seed=seed,node='gpu28',allocated_gpu_count=1,allocated_cpus=6,
         code_time_limit=300,image=str(IMAGE),image_version='2026-07-macos-v1',
         status='infrastructure_error',valid=False,score=None,execution_seconds=None,
-        program_device='gpu' if slot==0 else 'original_default_cpu')
+        program_device=device_label or ('gpu' if slot==0 else 'original_default_cpu'))
     started=time.monotonic();srv=None
     try:
         code=(root/'codes'/f'{slot}.py').read_bytes()
-        if digest(code)!=CODES[slot]:raise ValueError('code changed')
-        srv=SingularityJupyterServer(working_dir=work,bind_inputs_dir=BASE/'mle-bench-data/leaf-classification/prepared/public',
+        if digest(code)!=code_hashes[slot]:raise ValueError('code changed')
+        srv=SingularityJupyterServer(working_dir=work,bind_inputs_dir=BASE/'mle-bench-data'/task/'prepared/public',
             superimage_directory=IMAGE.parent,superimage_version='2026-07-macos-v1',startup_timeout=90,
             env={'HF_HUB_OFFLINE':'0','NLTK_DATA':'/root/.nltk_data'})
         client=srv.get_client();kernel=client.start_kernel('python3')
@@ -139,10 +142,10 @@ def execute_one(root,index):
             else:
                 if submission.is_symlink():raise ValueError('submission symlink')
                 result['submission_sha256']=digest(submission.read_bytes())
-                competition=registry.set_data_dir(BASE/'mle-bench-data').get_competition('leaf-classification')
+                competition=registry.set_data_dir(BASE/'mle-bench-data').get_competition(task)
                 valid,_=validate_submission(submission,competition)
                 if valid:
-                    score,report=evaluate_submission(submission,BASE/'mle-bench-data','leaf-classification',root/f'grade-{index}')
+                    score,report=evaluate_submission(submission,BASE/'mle-bench-data',task,root/f'grade-{index}')
                     if score is not None and math.isfinite(float(score)):
                         result.update(status='valid',valid=True,score=float(score))
                     else:result['status']='invalid_submission'

@@ -6,13 +6,19 @@
 
 ## 目标与实测
 
-- **正在推进：无API候选池全执行诊断13085**。13004 leaf/seed6/step1完整三候选代码/历史分数保留；
-  原样各执行两次，顺序0/1/2/2/1/0，gpu28原SIF、每次300秒，总≤1GPUh含KillWait。
-  不重新生成/重算critic，不恢复旧pool，不拿这个单池即时排序冒充e2e收益。原负结果及8-run计划不变。
-  香港2026-09-11 17:08:24提交；17:08:48最后观察RUNNING/gpu28，已有首个真实程序容器binding。
+- **已完成：无生成API候选池全执行诊断13085，未得正收益。** 全部3代码各2次；slot0/1有效、slot2两次超时。
+  历史critic排序2>1>0，却排除了最好且最快的slot0（logloss0.73093/0.73156），保留slot1（0.76995两次）及超时slot2。
+  原top2内随机实测有效比例0.5、条件logloss0.76995；全3随机0.6666666666666666、0.7505975。
+  独立NumPy从submission重算与官方五位小数一致；同一3090/原SIF；实际1243秒单卡=0.3452777777777778GPUh。
+  香港2026-09-11 17:29:24观察COMPLETED/0:0，已释放。单开发池、非跨seed/e2e正收益；禁止倒转score/按结果选k或救跑。
+  单改argmax会选超时slot2；只过滤超时也不能修正另外两份可执行程序的错误排序。现行服务单调sigmoid/降序无明显符号接反；
+  checkpoint历史训练语义仍未知，不能据此宣布已排除所有训练/部署问题。原负结果及8-run计划不变。
   根/research/d7/spc/yzyang4/forets-closed-pool-20260911-pDXbiZ93；commit eb173ba00656721b095cf9e38e99c13f8f5dbc4c。
-  [固定方案/预检](FORETS_CLOSED_POOL_20260911.md)、代码forets_closed_pool_20260911.py；10项新增CPU测试通过。
-  尚无结果结论；只看状态/完成后统一读出，不重投或复用旧入口。原无GPU状态仅为先前观察。
+  [完整结果/边界](FORETS_CLOSED_POOL_20260911.md)；[学长可取最小候选包](results/forets_closed_pool_20260911/README.md)，无任务数据/答案/key。
+  10项runner+4项数值新测试通过，数值4项在远端复验；reader commit a1606bcb179215a7fa650cbbc45cde35d3228fb2。
+  此池已看结果，仅可作开发查错，不能用于调参后再称独立评测。不重跑13085，不恢复旧pool。
+  额外只读接口GET两尝试：首试漏网络设置ConnectError，source env_setup后HTTP200；key限额未耗尽/未过期，
+  免费请求剩余额度未暴露，旧429/生成超时仍未知；零新增生成请求，不因此放行8-run或再索取同一key。
 - **本轮继续实施**：用户要求继续推进，按CURRENT_DIRECTION 0L156固定现成checkpoint/既有部署输入做探索。
   历史模板仍未知，不改模板、不试选、不冒充训练匹配或干净scaling；不再因该未知无限等待。
   原8配置不变，两任务×seed8/9×两臂，280分钟/双GPU每块、两块含KillWait上限19GPUh。

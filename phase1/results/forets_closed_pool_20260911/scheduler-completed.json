@@ -1,0 +1,6 @@
+{
+  "raw": "13085|COMPLETED|1243|billing=6,cpu=6,gres/gpu=1,node=1|0:0",
+  "actual_allocated_gpu_hours": 0.3452777777777778,
+  "allocation_elapsed_seconds": 1243,
+  "source_commit": "eb173ba00656721b095cf9e38e99c13f8f5dbc4c"
+}

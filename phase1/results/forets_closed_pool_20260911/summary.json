@@ -1,0 +1,29 @@
+{
+  "role": "single_development_pool_only",
+  "historical_scores": [
+    0.2186693549156189,
+    0.45544081926345825,
+    0.5554351806640625
+  ],
+  "top2": {
+    "slots": [
+      2,
+      1
+    ],
+    "valid_probability": 0.5,
+    "conditional_mean_logloss": 0.76995,
+    "n_executions": 4
+  },
+  "uniform3": {
+    "slots": [
+      0,
+      1,
+      2
+    ],
+    "valid_probability": 0.6666666666666666,
+    "conditional_mean_logloss": 0.7505975,
+    "n_executions": 6
+  },
+  "independent_search_seeds": 1,
+  "no_generality_or_e2e_claim": true
+}

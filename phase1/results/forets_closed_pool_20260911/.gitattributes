@@ -1,0 +1,4 @@
+# Preserve transferred experiment receipts and CSV bytes on Windows checkouts.
+*.json -text
+*.csv -text -diff
+*.zip binary

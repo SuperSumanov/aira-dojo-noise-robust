@@ -1,0 +1,23 @@
+{
+  "role": "poststart_current_public_input_fingerprint_not_historical_certification",
+  "files": [
+    {
+      "file": "train.csv",
+      "bytes": 1481500,
+      "mtime_ns": 1784445523428658495,
+      "sha256": "14a1f3f49692d0843d556f802b798b089e0d090752526d8a4b4fc476fa7429c3"
+    },
+    {
+      "file": "test.csv",
+      "bytes": 164691,
+      "mtime_ns": 1784445523468658008,
+      "sha256": "0b5165de0f0fcae712900e2a4fae491ec8cd1d1a38b691cbaa59ee6d0b030f39"
+    },
+    {
+      "file": "sample_submission.csv",
+      "bytes": 208005,
+      "mtime_ns": 1784445523504657569,
+      "sha256": "eda4dbc07a075c2bc5441e151e20927a7a06a16bdc03abe0d95a031e4f19079c"
+    }
+  ]
+}

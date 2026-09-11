@@ -1,0 +1,8 @@
+{
+  "role": "read_only_route_metadata_not_generation",
+  "http_get_cap": 1,
+  "generation_requests": 0,
+  "gpu_jobs": 0,
+  "utc": "2026-09-11T09:33:14.933353+00:00",
+  "error_type": "ConnectError"
+}

@@ -1,0 +1,15 @@
+{
+  "role": "read_only_route_metadata_not_generation",
+  "http_get_cap": 1,
+  "generation_requests": 0,
+  "source_env_setup": true,
+  "prior_unconfigured_connection_failure_preserved": true,
+  "utc": "2026-09-11T09:33:53.873490+00:00",
+  "http_status": 200,
+  "spending_limit_present": true,
+  "spending_limit_exhausted": false,
+  "expired": false,
+  "free_request_quota_remaining_exposed": false,
+  "deprecated_rate_limit_present": true,
+  "generation_readiness_proven": false
+}

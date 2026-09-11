@@ -15,3 +15,13 @@ Nemotron免费模型、tools、禁fallback、原实际config与transport不变�
 
 若通过：执行原固定8-run协议的第一块，仍两块顺序、相同硬件/原镜像、19GPUh总上限，不重复G0。
 实际结果与作业号待执行后记录；本文件不代表已运行或正收益。
+
+实际额外窗口：08:37:44 UTC开始，两个请求均120秒超时，0/2成功；NOT_READY，无GPU、无生产runtime。
+新finished SHA=21bb4857cf01c8fe07de97af2de3e9f248f2f93e2b1d5768140195df9507d3b6。
+不再继续同配置重试。代码检查确认这不是GPU问题；目录访问/账户认证通过不能证明生成通路稳定。
+
+接着只检查学长已明确推荐的另一个免费client：poolside/laguna-s-2.1:free。
+独立人工可行性窗口最多2次请求、无重试、仍120秒/8192token；原配置仅在内存改model并去掉未声明支持的top_p。
+保留tools、temperature、零价格筛选、禁fallback与实际bounded transport；不修改任何原8份配置或release。
+结果即使通过也只写FEASIBLE_NOT_RELEASED，不能作为Nemotron READY；更换生产生成器须明确建立新版本并让两臂一致。
+这不是选择效果最好的模型，不读取任务成绩；只是停止对故障免费接口的无限等待。

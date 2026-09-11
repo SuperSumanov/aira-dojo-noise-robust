@@ -1,0 +1,51 @@
+diff --git a/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py b/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
+--- a/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
++++ b/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py
+@@ -235,7 +235,7 @@
+         jsonschema.Draft7Validator(func_spec.json_schema).validate(output)
+         return output
+ 
+-    async def _query_once_bounded(self, messages, request_kwargs, func_spec, transport, timeout_seconds):
++    async def _query_once_bounded(self, messages, request_kwargs, func_spec, transport, timeout_seconds, tool_choice_mode='named'):
+         """Opt-in single adapter attempt, no fallback/parse/SDK retries.
+ 
+         This is not proof of provider billing or cancellation. Safe intent/return
+@@ -254,7 +254,7 @@
+                 kwargs['response_format'] = {'type': 'json_object'}
+             else:
+                 kwargs['tools'] = [func_spec.as_openai_tool_dict]
+-                kwargs['tool_choice'] = func_spec.openai_tool_choice_dict
++                kwargs['tool_choice'] = 'auto' if tool_choice_mode == 'auto' else func_spec.openai_tool_choice_dict
+         import uuid
+         event = dict(attempt_id=uuid.uuid4().hex, state='intent', adapter_attempts=1,
+                      cost=None, cost_status='unpriced', prompt_tokens=None, completion_tokens=None,
+@@ -310,6 +310,11 @@
+         model_kwargs = dict(model_kwargs or {})
+         bounded = model_kwargs.pop('bounded_transport', False)
+         bounded_timeout = model_kwargs.pop('bounded_request_timeout_seconds', 60.)
++        tool_choice_mode = model_kwargs.pop('bounded_tool_choice_mode', 'named')
++        if tool_choice_mode not in ('named', 'auto'):
++            raise ValueError('tool choice mode must be named or auto')
++        if tool_choice_mode != 'named' and bounded is not True:
++            raise ValueError('auto tool choice requires explicit bounded transport')
+         bounded_attempts = model_kwargs.pop('bounded_max_attempts', 1)
+         if type(bounded_attempts) is not int or not 1 <= bounded_attempts <= 3:
+             raise ValueError('bounded_max_attempts must be an integer in [1, 3]')
+@@ -334,6 +339,8 @@
+         structured_output_retries = model_kwargs.pop(
+             "structured_output_retries", STRUCTURED_OUTPUT_RETRIES
+         )
++        if tool_choice_mode == 'auto' and (structured_output_mode != 'tools' or func_spec is None):
++            raise ValueError('auto tool choice requires the tools schema path')
+         if structured_output_mode not in {"json", "tools"}:
+             raise ValueError("structured_output_mode must be either 'json' or 'tools'")
+         if not isinstance(structured_output_retries, int) or structured_output_retries < 0:
+@@ -358,7 +365,7 @@
+             from dojo.core.solvers.llm_helpers.backends.bounded_retry import query_with_retries
+             return await query_with_retries(
+                 lambda: self._query_once_bounded(messages, filtered_kwargs, func_spec,
+-                                                 structured_output_mode, bounded_timeout), bounded_attempts)
++                                                 structured_output_mode, bounded_timeout, tool_choice_mode), bounded_attempts)
+ 
+         filtered_kwargs["max_retries"] = NUM_RETRIES
+         filtered_kwargs["num_retries"] = NUM_RETRIES

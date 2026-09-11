@@ -1,6 +1,7 @@
 """Submit once, observe metadata, then close all four development runs together."""
 import argparse
 from collections import Counter
+import csv
 import datetime as dt
 from decimal import Decimal
 import hashlib
@@ -10,6 +11,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import time
 
 ROOT = Path('/research/d7/spc/yzyang4/forets-env-20260912-edcpizid')
 PREPARED = '1e0f29be3f48fb376a2ce4a2740da583d5c39fcdefa9c5f6d2bceac7b100eda9'
@@ -56,7 +58,7 @@ def billing():
         stopped=state['stopped'])
 
 
-def status():
+def status(emit=True):
     job = read(ROOT/'submission.json')['job_id']
     scheduling = command(['sacct','-X','-j',job,'-nP','--format=JobIDRaw,State,NodeList,ElapsedRaw,ExitCode']).strip()
     start_path = ROOT/'block-1.runtime/started.json'
@@ -65,7 +67,26 @@ def status():
         start = read(start_path); pool = read(ROOT/start['pool_manifest'])
         states = [dict(run_id=name, status=row['status'], attempt=row['attempt']) for name,row in pool['tasks'].items()]
     result = dict(observed_utc=dt.datetime.now(dt.timezone.utc).isoformat(), job=scheduling, runs=states, billing=billing())
-    print(json.dumps(result))
+    if emit: print(json.dumps(result),flush=True)
+    return result
+
+
+def watch():
+    """In-session observer, not a scheduled task; no resubmit or paid requests."""
+    previous=None
+    while True:
+        result=status(emit=False)
+        key=([(r['run_id'],r['status'],r['attempt']) for r in result['runs']],
+             result['job'].split('|')[1],result['billing']['stopped'])
+        if key!=previous:
+            print(json.dumps(result),flush=True);previous=key
+        state=result['job'].split('|')[1].split(' ',1)[0].rstrip('+')
+        if state in ('COMPLETED','FAILED','CANCELLED','TIMEOUT','NODE_FAIL','OUT_OF_MEMORY','PREEMPTED','BOOT_FAIL'):
+            if (ROOT/'diagnostics.json').exists():
+                print('CLOSEOUT_ALREADY_EXISTS',flush=True)
+            else: closeout()
+            return
+        time.sleep(45)
 
 
 def closeout():
@@ -73,11 +94,14 @@ def closeout():
     from forets_block_readout_20260911 import summarize, write_report
     from forets_paid_measurements_20260912 import read_batch
     from forets_paid_failure_verify_20260912 import SECRET, classify
+    from forets_paid_budget_20260911 import snapshot
     raw = (ROOT/'prepared.json').read_bytes()
     if hashlib.sha256(raw).hexdigest()!=PREPARED: raise ValueError('preparation drift')
     prepared=json.loads(raw)
     manifest=collect_metadata(ROOT,prepared)  # independent allocation closure first
     result=summarize(manifest,prepared,ROOT)
+    ledger_before=snapshot(ROOT/'paid.sqlite')
+    scopes={row['scope']:row for row in ledger_before['scopes']}
     costs=billing(); totals=Counter(); diagnostics=[]
     for run, final in zip(manifest['runs'],result['runs']):
         base=ROOT/run['run_dir']; journal=base/'checkpoint/journal.jsonl'
@@ -102,11 +126,19 @@ def closeout():
             selected=[n for n in nodes if n['id']==event['selected_node_id']]
             if len(selected)!=1 or selected[0]['exit_code']!=0 or selected[0]['is_buggy'] is not False:
                 raise ValueError('final selection is not a successful executed node')
+        charge=scopes.get(run['run_id'], {'calls':0,'settled_usd':0,'held_usd':0,'unresolved':0})
         diagnostics.append(dict(run_id=run['run_id'],task=run['task'],arm=run['arm'],seed=10,
+            source_tree=manifest['source_tree'],controller_commit=manifest['controller_commit'],
+            execution_timeout_seconds=300,step_limit=6,worker_wall_cap_seconds=3540,
+            api_calls=charge['calls'],settled_api_cost_usd=charge['settled_usd'],
+            unresolved_api_calls=charge['unresolved'],accounted_api_liability_usd=charge['held_usd'],
+            total_api_cost_usd=charge['settled_usd'] if charge['unresolved']==0 else None,
             task_calls=calls, exit_zero_calls=zero, buggy_nodes=sum(n['is_buggy'] is True for n in nodes),
             generated_candidates=sum(b['generated_candidates'] for b in batches), failure_categories=dict(failures),
             comparable_final=final['comparable_final']))
         totals.update(failures)
+    if snapshot(ROOT/'paid.sqlite')!=ledger_before:
+        raise ValueError('API ledger changed during closed readout')
     write(ROOT/'runtime-manifest.json',manifest)
     write_report(result,ROOT/'final-readout')
     report=dict(observed_utc=dt.datetime.now(dt.timezone.utc).isoformat(), billing=costs,
@@ -117,9 +149,12 @@ def closeout():
         limitations=['Single-seed development viability, not replicated critic benefit.',
                     'Old eight failed runs are not repaired or retrospectively rescored.'])
     write(ROOT/'diagnostics.json',report)
+    with (ROOT/'runs_cost_work.csv').open('x', newline='') as stream:
+        writer=csv.DictWriter(stream,fieldnames=list(diagnostics[0]))
+        writer.writeheader();writer.writerows(diagnostics)
     print(json.dumps({k:v for k,v in report.items() if k!='runs'}))
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('mode',choices=('submit','status','closeout'));a=p.parse_args()
-    {'submit':submit,'status':status,'closeout':closeout}[a.mode]()
+    p=argparse.ArgumentParser();p.add_argument('mode',choices=('submit','status','closeout','watch'));a=p.parse_args()
+    {'submit':submit,'status':status,'closeout':closeout,'watch':watch}[a.mode]()

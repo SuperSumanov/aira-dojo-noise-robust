@@ -1,0 +1,2 @@
+block,allocation_id,node,state,observed_utc,elapsed_seconds,allocated_gpus,gpu_hours,service_startup_seconds,proposed_allocation_minutes,nominal_budget_exceeded
+1,13113,gpu28,FAILED,2026-09-11T21:14:15.714326+00:00,1932,2,1.0733333333333333,58.958493226906285,280,False

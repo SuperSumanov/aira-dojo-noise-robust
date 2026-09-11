@@ -7,6 +7,17 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L163. 2026-09-12：四run闭合仍无final；先定位分析器schema，不扩GPU矩阵
+
+13113已独立终态，实际1.0733333333333333GPUh；14次程序执行有2次exit0，但有效最终解0/4、可比成绩对0/2。
+leaf/critic生成期间ReadError及未知预留导致预算拒绝；spaceship/random后续也预算拒绝。
+13次独立已结算response_invalid/ValidationError揭示分析器接纳路径阻塞；源码异常回退is_bug=True。
+只确认传播路径，原始失败响应没保存，具体字段待人工示例诊断；不补旧final或把程序exit0当最终有效。
+本轮48实际API、已结算0.102788283USD；旧新累计172次/已结算0.421563831USD，另保留一次0.70USD未知责任。
+先做两次人工analyzer示例，零GPU/训练/任务数据，新增API责任最多0.75USD，旧费用及未知项完整结转。
+这是系统修复，不是新方法或critic收益。原保护集、旧关闭方向和底座不更新约束继续有效。
+见[真实收尾与诊断界限](FORETS_ENVIRONMENT_CLOSEOUT_20260912.md)。
+
 ## 0L162. 2026-09-12：共同环境提示修复，固定四run开发可运行性验证
 
 用户继续推进授权下，先实施两任务×新seed10×两selector共4run，单块gpu28双卡280分钟；

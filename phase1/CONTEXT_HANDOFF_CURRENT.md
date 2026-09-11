@@ -1,80 +1,65 @@
-# 当前交接：共同环境修复四run已在gpu28启动
+# 当前交接：四run收尾，零GPU定位analyzer接纳错误
 
-更新：2026-09-12香港；最后现场观察2026-09-11 20:42:11.521165 UTC。
-恢复：fetch → CURRENT_DIRECTION.md最新0L162 → 本文件 → 核现场。学长指导见ADVISOR_DIRECTIVES.md L/M/N。
-没有重查的状态不得称实时；进程completed不等于有效最终解。用户要求会话内推进，不新增自动任务。
+更新2026-09-12香港；最后独立观察2026-09-11 21:14:16.028371 UTC。
+恢复：fetch→CURRENT_DIRECTION.md最新0L163→本文件→核现场。学长指导ADVISOR_DIRECTIVES.md L/M/N。
+用户要会话内实质推进，不新增自动任务；不把旧队列、计划、mock或进程完成冒充当前结果。
 
-## 当前实际作业
+## 刚完成的真实对照
 
-- **13113 RUNNING / gpu28**，2026-09-11 20:41:55.022896 UTC提交，20:42:11已运行16秒。
-  此时四worker尚pending、critic启动中，不能声称MLE候选已成功。
-- 新版本两任务leaf-classification、spaceship-titanic；新seed10，两臂random/critic，共4run。
-  顺序leaf random→critic，spaceship critic→random；四run全闭合后一起读最终成绩。
-- 只改共同生成上下文：draft/improve/debug系统提示补原镜像版本/API和原300秒总程序时限；
-  analyze、critic/输入编码、模型/路由、原SIF/Torch、5-fold、6步、width4/top2择1均不改。
-  旧draft/improve已有部分early_stopping提醒；此次补verbose_eval/sklearn fit等遗漏，不是“此前完全没提示”。
-- 角色是开发可运行性，不是跨seed正收益确认。用有效最终解数/4与逐任务配对，不用worker退出码代替。
-  如仍失败保留全4run，禁止重跑失败槽位、手修旧候选、挑中途submission、翻转critic或调k。
+- **13113已FAILED并释放/gpu28**，1932秒双卡、1.0733333333333333GPUh；会话watch PTY3061正常完成收尾。
+- 两任务leaf/spaceship、新seed10、两selector四run；顺序leaf random→critic，spaceship critic→random。
+  worker状态completed/failed/completed/failed；全部保留，未重跑槽位，未改变运行配置。
+- 14程序执行、2exit0，但0/4有效最终解、0/2可比成绩对。不是critic打平或收益。
+  leaf/random5执行1exit0，leaf/critic0执行，spaceship/critic5执行0exit0，spaceship/random4执行1exit0。
+- 环境修复只共同改draft/improve/debug版本/API/原300秒事实；analyze、critic、原镜像/Torch、5fold及预算未改。
+- leaf/critic先ReadError，0.70USD预留未知，后两次BudgetStopped没有真正发出API；spaceship/random也预算停止。
+  终态48新增真实API（含route2），加前124共172；本轮已结算0.102788283USD，累计已结算0.421563831USD。
+  另保留一次0.70USD未知责任，不释放、不当零费用；运行时unresolved会包括在途，不等于全是失败。
+- 13个独立ValidationError/response_invalid已结算；重复日志按attempt_id去重。
+  MCTS分析异常回退is_bug=True，可能阻断exit0程序进入final；尚不知具体schema字段，历史失败响应未保存。
+  禁止补造响应、重分析旧run补分、中途submission挽救或归因critic选择错误。
 
-## 新版本定位与预算（不要重复提交）
+## 本次执行证据（不可重提）
 
-- 新根：/research/d7/spc/yzyang4/forets-env-20260912-edcpizid
-- 实际执行controller commit **dfad1bba2171b62f6d476129e661de66d3c4801b**；
-  source tree **0a587f6b220b1aa0bd154f537f36594bc0690cb3**。
+- 根 /research/d7/spc/yzyang4/forets-env-20260912-edcpizid
+- controller dfad1bba2171b62f6d476129e661de66d3c4801b；source tree 0a587f6b220b1aa0bd154f537f36594bc0690cb3。
 - prepared SHA 1e0f29be3f48fb376a2ce4a2740da583d5c39fcdefa9c5f6d2bceac7b100eda9；
-  inventory SHA 0342f6feb8ff7c6fd94b3a04e18d151422ce7738a3fda255d61f030b7f6714c7；
-  release SHA 0ddfbdd870d005d9123b8fbcb58c6bb614501db830d373ac3683662517f39e45；
-  context SHA 0e1a197fab7c8f6bafd5170e6f634c11095a78a07c4ccac19702b635e01ba8b8。
-- 新增单块280分钟双GPU，含退出余量上限10GPUh；原实耗3.2583333333333333GPUh另计。
-- 用户100人民币总API授权不重置。新版新增最多1.50USD，显式预扣旧0.318775548USD，
-  累积上限1.818775548USD（低于原10USD上限）。新auth SHA
-  942afbfc8864bb07dd6580c1d85a71743e35fea47bc1bdc71081666cab32ecb2。
-- 旧账124call全部结算、0未结；本轮只把旧auth.stopped设1防重复花费，旧calls/费用/结果没有删除。
-  新账closed_predecessor一条为124call费用结转，**不是一次新API请求**；计数必须扣这1条再加历史124。
-  新旧全部实际调用最后126次（新route2次），总已结算0.318929208USD、0未结。
-- 新root/submit-intent.json、submission.json、block-1.route.json已存在；**不能重跑submit/route/activate**。
-  新账不可初始化或复制绕过上限。每请求0.70USD预留、未知费用保持预留并停机；无模型/路由fallback。
-- 无新增自动监控，g0-r5仍PAUSED；12535 JobHeldUser旧作业不要释放/取消。
+  inventory0342f6feb8ff7c6fd94b3a04e18d151422ce7738a3fda255d61f030b7f6714c7；
+  release0ddfbdd870d005d9123b8fbcb58c6bb614501db830d373ac3683662517f39e45。
+- 旧本轮AUTH942afbfc8864bb07dd6580c1d85a71743e35fea47bc1bdc71081666cab32ecb2，总1.818775548USD。
+  submit-intent/submission/block-1.route、runtime-manifest、final-readout、diagnostics、runs_cost_work均已存在；不能重跑submit/activate/closeout。
+- 独立sacct闭合后统一读数，journal/task-call一致；最终入口复用best_node已外评分，不重跑最终程序。
+  300秒超时存在退出开销，实际耗时不裁短。
+- 收尾见FORETS_ENVIRONMENT_CLOSEOUT_20260912.md；本地结果results/forets_environment_20260912。
 
-## 会话操作
+## 正在推进：人工schema诊断，不占GPU
 
-远端新根下：
-- forets_environment_session_20260912.py status：只看排程、pool状态和费用，不看最终成绩。
-- 四run整块关闭后调用同脚本closeout：独立sacct→派生固定4run reader→journal/task-call复验。
-  生成runtime-manifest.json、final-readout/{summary.json,runs.csv,pairs.csv,blocks.csv}、diagnostics.json。
-  尚未运行closeout；若读取/字段校验失败，修reader并保留事实，不改已执行配置或补分。
-- 状态命令：/research/d7/spc/yzyang4/venvs/aira/bin/python -B 新根/forets_environment_session_20260912.py status
-- 本轮6项测试本地/Linux通过；12个真实GenericLLM渲染（替代网络边界）确认系统信息实际到达请求；
-  源码233文件仅paid_budget.py改变，实验环境信息位于配置模板；测试和route均不证明MLE可运行。
-- 最初unittest discover误扫phase1子包出两个相对导入错误，改为直接执行指定测试，6项通过；
-  没有修改那些无关包，也没有忽略新测试失败。
-- 计划与预检见FORETS_ENVIRONMENT_REPAIR_PLAN_20260912.md；实际提交脚本scripts/forets_environment_20260912.sbatch。
-  交接/监督脚本后续commit不冒充实际controller dfad1bba。推送前扫描完整待推文件。
+- phase1/forets_analyzer_diagnostic_20260912.py：最多两个公共人工示例成功/失败，同现有analyze提示及schema，
+  原生成模型/路由、8192输出、每次120秒、单尝试无retry，0GPU/任务数据/保护集。
+  仅输出validator、字段路径/类型；不打印响应或密钥，不改变生产源文件。
+- 真实运行须先验证整块关闭；固定analyzer-diagnostic-intent.json防重复窗口。
+  完整复制终态calls（含closed_predecessor和未结项），父账仅stopped=1，子账旧scope cap收紧防重复花费。
+  新责任上限0.75USD，含旧全部责任仍<=原100人民币/10USD授权。未知预留不可释放或重置。
+- --mock已经两个示例通过，不等于线上通过；3项预算/安全字段测试通过。
+  首次Windows测试发现sqlite连接未显式关闭，已修复并复测，不是忽略失败。
+- 远端脚本stage /research/d7/spc/yzyang4/forets-env-stage-20260912-N2yAD0/forets_analyzer_diagnostic_20260912.py。
+  真实接口尚未启动；先核intent，已有则找报告，不重新开窗。
+- 若schema确有问题，只在新版本修复并先有界验收；旧0final完整保留。没有方法正收益时不扩大GPU矩阵。
 
-## 前版本已封闭的事实
+## 不重做/不越界
 
-- 13088/13112均completed并释放：8/8进程结束，但0/8有效最终解、0/4可比成绩对。
-- 64生成候选，24候选执行+16debug全exit1；无final eval，不能补零或声称打平。
-- 4critic run共8个可剪枝池，top2边界非打平；不是没有发生评分/筛选。
-- 失败分类14 LightGBM接口、6超时、6categorical赋值、2混合编码、2实验性导入、2缺目标列、8其他。
-- 旧根forets-paid-20260911-oh3np7b8，实际controller f051cfde，source f9087ae4；
-  收尾完整报告/安全结果已push **133618ba**。见FORETS_PAID_E2E_CLOSEOUT_20260912.md和results/forets_paid_e2e_20260912。
-- 原镜像确认numpy1.26.4/pandas2.1.4/sklearn1.9.0/lightgbm4.6.0/catboost1.2.10/xgboost2.1.4/torch2.5.1+cu124。
-- 这是否定该配置有效率，不是新critic正结果，不推出所有critic无用。
-
-## 仍关闭与操作规则
-
-- 13004/13085负结果、CPU期限25-fit无投资信号保留；不重开免费模型失败窗口或G0/12892/13076。
-- first-960/Target-300/Target-522标签、结果、预测与私有选择继续隔离；
-  HCE、多保真、Probe、score-channel、K>=1 lookahead不恢复；不更新agent底座。
-- 学长dojo-reproduce最后fetch 065b0fbaa89e0eb663f2834ec768081f5d56394d，未修改。
-  2026-09-11 19:51:45.958128UTC已知0907/0909/0909-mcts列表无变化，未覆盖其他目录。
-  senior-quarantine-20260911-v1的32配置不等于32合格runs；LATEST最后759physical/733eligible，closure=false，未重算。
-- repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813，只push myfork HEAD:phase1-value-critic。
-- 凭据仅远端.env OPENROUTER_API_KEY→worker PRIMARY_KEY，绝不本地/Git/输出或再次索要。
-- SSH linux5；网络source /uac/y24/yzyang4/env_setup.sh；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
-  CPU Python同研究根venvs/aira/bin/python，模型venvs/exp/bin/python。
-- 两臂同硬件/原镜像；gpu28不是projgpu28/39；现有MLE镜像不能投projgpu39。QOS4jobs/8GPU。
-- 不索要gres.conf、不猜设备9、不启用失修pool恢复路径。fresh-start失败保留，不冒充续跑。
-- 复杂SSH用脚本/scp；源码只archive src/aira_core src/dojo，core.autocrlf=false，避免大LFS404。
-- 保留用户未跟踪codex_tmp/output/tmp等。官方研究盘1TB、2026-09-29到期，续期未知。
+- 前13088/13112已封闭：8/8worker完成但0/8final、40执行全exit1；124API已结算0.318775548USD，3.2583333333333333GPUh。
+  根forets-paid-20260911-oh3np7b8；报告FORETS_PAID_E2E_CLOSEOUT_20260912.md，公开133618ba。
+- 13004/13085负结果、旧CPU期限筛查无信号保留；不重开免费失败窗口/G0/12892/13076。
+- first-960/Target-300/Target-522标签、结果、预测、私有选择继续封闭；不恢复HCE/多保真/Probe/score-channel/K>=1lookahead，不更新agent底座。
+- 学长分支未改，dojo-reproduce最后fetch065b0fbaa89e0eb663f2834ec768081f5d56394d；
+  0907/0909/0909-mcts最后文件清单19:51:45 UTC无变化，不代表其他目录无新语料。
+  quarantine32配置不等于32runs；LATEST最后759physical/733eligible、closure=false，未重算。
+- 只push myfork HEAD:phase1-value-critic；远端最后独立核对7eb85f68d81aad74e578ceb049365867a940b652。
+  每次push前扫待推文件内容和env/key/token/secret文件名，仅输出计数。学长branch不改。
+- repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；保留用户untracked codex_tmp/output/tmp/旧报告。
+- SSH linux5；CPU研究根venvs/aira/bin/python，GPUvenvs/exp/bin/python；网络/uac/y24/yzyang4/env_setup.sh。
+  SLURM_CONF=/opt1/slurm/gpu-slurm.conf；gpu28不是projgpu28/39，原MLE镜像禁止投projgpu39。
+- 凭据仅远端aira-dojo/.env OPENROUTER_API_KEY→worker PRIMARY_KEY，不本地/Git/输出或再次索要。
+- g0-r5 PAUSED，无新自动任务；12535 JobHeldUser不碰；不索要gres.conf，不用失修恢复pool或猜设备9。
+- 官方研究盘1TB、2026-09-29到期，续期未知。报告/审计应轻量，不替代真实实验。

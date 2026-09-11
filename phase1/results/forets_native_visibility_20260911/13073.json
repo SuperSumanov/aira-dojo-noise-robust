@@ -1,0 +1,126 @@
+{
+  "api_calls": 0,
+  "error_type": "RuntimeError",
+  "gpu_compute_calls": 0,
+  "job_id": "13073",
+  "model_loads": 0,
+  "role": "device_visibility_metadata_only",
+  "script_sha256": "e68aedd1da9d6159f4d0ff7607171c65c82471ef61428d96ec2454ed09a7cecc",
+  "source_commit": "ed82f953562a88d547d6fa06f1913fb3bb316ef0",
+  "status": "failed",
+  "steps": {
+    "one_a": {
+      "command": [
+        "srun",
+        "--jobid=13073",
+        "--exclusive",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=1",
+        "--gres=gpu:1",
+        "--time=00:01:00",
+        "--job-name=forets-meta-one_a",
+        "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+        "/research/d7/spc/yzyang4/forets-visibility-meta-20260911-5Oms2Q/forets_visibility_metadata_20260911.py",
+        "--root",
+        "/research/d7/spc/yzyang4/forets-visibility-meta-20260911-5Oms2Q",
+        "--role",
+        "one_a"
+      ],
+      "rc": 137
+    },
+    "zero": {
+      "command": [
+        "srun",
+        "--jobid=13073",
+        "--exclusive",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=1",
+        "--gres=gpu:0",
+        "--time=00:01:00",
+        "--job-name=forets-meta-zero",
+        "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+        "/research/d7/spc/yzyang4/forets-visibility-meta-20260911-5Oms2Q/forets_visibility_metadata_20260911.py",
+        "--root",
+        "/research/d7/spc/yzyang4/forets-visibility-meta-20260911-5Oms2Q",
+        "--role",
+        "zero"
+      ],
+      "observation": {
+        "device_nodes": [
+          {
+            "major": 195,
+            "minor": 0,
+            "path": "/dev/nvidia0"
+          },
+          {
+            "major": 195,
+            "minor": 1,
+            "path": "/dev/nvidia1"
+          },
+          {
+            "major": 195,
+            "minor": 2,
+            "path": "/dev/nvidia2"
+          },
+          {
+            "major": 195,
+            "minor": 3,
+            "path": "/dev/nvidia3"
+          },
+          {
+            "major": 195,
+            "minor": 4,
+            "path": "/dev/nvidia4"
+          },
+          {
+            "major": 195,
+            "minor": 5,
+            "path": "/dev/nvidia5"
+          },
+          {
+            "major": 195,
+            "minor": 6,
+            "path": "/dev/nvidia6"
+          },
+          {
+            "major": 195,
+            "minor": 7,
+            "path": "/dev/nvidia7"
+          },
+          {
+            "major": 195,
+            "minor": 8,
+            "path": "/dev/nvidia8"
+          },
+          {
+            "major": 195,
+            "minor": 9,
+            "path": "/dev/nvidia9"
+          }
+        ],
+        "devices_cgroup": "/sys/fs/cgroup/devices/slurm/uid_7542/job_13073/step_0",
+        "env": {
+          "CUDA_DEVICE_ORDER": null,
+          "CUDA_VISIBLE_DEVICES": null,
+          "SLURM_JOB_GPUS": null,
+          "SLURM_JOB_ID": "13073",
+          "SLURM_STEP_GPUS": null,
+          "SLURM_STEP_ID": "0"
+        },
+        "gpu_compute_calls": 0,
+        "gpu_device_opens": 0,
+        "gpu_library_loads": 0,
+        "node": "gpu28",
+        "role": "zero",
+        "rules": [
+          "a *:* rwm"
+        ],
+        "utc": "2026-09-11T07:36:45.034615+00:00"
+      },
+      "rc": 0,
+      "stderr": ""
+    }
+  }
+}

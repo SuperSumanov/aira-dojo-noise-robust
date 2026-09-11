@@ -14,8 +14,13 @@ CUDA Driver API各见一张RTX3090，返回不同UUID/PCI地址，/proc驱动记
 没有CUDA上下文创建/算术或模型/API。此证据来自原生CUDA选卡，不要求STEP_ID等于GPU编号，也不以NVML下标反查。
 据此用新的native adapter记录CUDA实际选中的UUID，通过同UUID的/proc驱动记录解析device minor；
 旧错误adapter仍关闭，保留原镜像和任务payload，只让OpenCL与CUDA看到同一张原生选中卡。
-下一项限gpu28双卡5分钟、两个真实Jupyter步骤，人工CUDA算术与LightGBM OpenCL短检，无模型/API/任务数据。
-只开放独立integration根，8-run入口仍不开放。通过前不称完整接入完成；不重做G0或旧恢复逻辑。
+13076已完成gpu28双卡、两个真实Jupyter步骤：原SIF下Torch2.5.1+cu124算术正确，LightGBM4.6.0 OpenCL GPU拟合完成；
+每步只见原生CUDA实选的一张卡，分别minor0/1，没有再选到9。完整字段独立复核与5份回执SHA比对通过。
+执行commit4a7fae18e8dcbd256ccbae13e37c86264fc2d314；07:58:51 UTC观察分配已释放、队列仅12535 held。
+本轮13073—13076四次有界诊断合计284 GPU秒/0.07888888888888888GPUh，含失败；无critic/API/真实MLE任务。
+只开放独立integration根，8-run入口仍不开放；限定该节点/镜像的Jupyter接入通过，不泛化为全节点或模型收益。
+不再要求管理员配置、不重做G0或旧恢复逻辑。下一步固定接入生产控制器，历史输入未知裁决/新鲜路由及release仍待补。
+详见[原生设备接入结果](FORETS_NATIVE_VISIBILITY_20260911.md)。
 13073只读检查超时失败保留；13074双步骤metadata完成。devices.list的a *:* rwm不证明无限访问：
 Linux cgroup-v1默认allow模式可能不在此输出拒绝项，不能据此判定Slurm隔离失效或成功。
 

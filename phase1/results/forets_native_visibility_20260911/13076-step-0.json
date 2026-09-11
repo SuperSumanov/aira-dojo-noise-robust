@@ -1,0 +1,90 @@
+{
+  "job": "13076",
+  "step": "0",
+  "slot": 0,
+  "source_commit": "4a7fae18e8dcbd256ccbae13e37c86264fc2d314",
+  "source_tree": "3aae90ae26b5ae7b65e6efed14fb49f2907c9c42",
+  "role": "native_device_actual_jupyter_integration_not_effect",
+  "api_calls": 0,
+  "model_calls": 0,
+  "task_runs": 0,
+  "binding": {
+    "role": "native_cuda_selected_device_binding_not_effect",
+    "utc": "2026-09-11T07:49:15.532537+00:00",
+    "native_identity": {
+      "node": "gpu28",
+      "job": "13076",
+      "step": "0",
+      "slurm_step_gpus": "0",
+      "cuda_visible_devices": "0",
+      "device_count": 1,
+      "selected_uuid": "GPU-842fd553-b591-78de-8e8b-035f5b12d3ad",
+      "pci_bus_id": "0000:1A:00.0",
+      "device_name": "NVIDIA GeForce RTX 3090",
+      "cuda_driver_version": 13030,
+      "driver_metadata_matches": [
+        {
+          "path": "/proc/driver/nvidia/gpus/0000:1a:00.0/information",
+          "device_minor": "0",
+          "bus_location": "0000:1a:00.0"
+        }
+      ],
+      "gpu_arithmetic_calls": 0,
+      "cuda_contexts_created_by_script": 0,
+      "utc": "2026-09-11T07:49:14.604522+00:00"
+    },
+    "namespace": {
+      "exact_device_namespace": true,
+      "minor": 0,
+      "readonly_driver_libraries": 52
+    },
+    "source_commit": "4a7fae18e8dcbd256ccbae13e37c86264fc2d314",
+    "adapter_sha256": "30feeb303352530077d97f1297ba84658295e04ba226654136436eb3c0005383"
+  },
+  "kernel_ok": true,
+  "kernel_timed_out": false,
+  "records": [
+    {
+      "exact_device_namespace": true,
+      "minor": 0,
+      "readonly_driver_libraries": 52
+    },
+    {
+      "version": "2.5.1+cu124",
+      "device": "NVIDIA GeForce RTX 3090",
+      "devices": 1,
+      "arithmetic_correct": true
+    },
+    {
+      "accessible_gpu_minors": [
+        0
+      ],
+      "allocated_gpu_minors": [
+        0
+      ],
+      "chosen_platform_index": 0,
+      "critic_calls": 0,
+      "gpu_isolation_verified": true,
+      "icd_files": [
+        "nvidia.icd"
+      ],
+      "lightgbm_version": "4.6.0",
+      "loader_loaded": true,
+      "non_gpu_device_placeholders": [],
+      "platform_count": 1,
+      "platform_devices": [
+        {
+          "gpu_devices": 1,
+          "rc": 0
+        }
+      ],
+      "platform_rc": 0,
+      "role": "synthetic_opencl_library_diagnostic_not_task_result",
+      "synthetic_fit_started": true,
+      "synthetic_gpu_fit_completed": true,
+      "task_runs": 0,
+      "vendor_directory_exists": true
+    }
+  ],
+  "seconds": 34.15130350016989
+}

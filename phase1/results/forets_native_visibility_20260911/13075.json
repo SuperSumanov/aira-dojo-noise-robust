@@ -1,0 +1,99 @@
+{
+  "api_calls": 0,
+  "distinct_native_devices": true,
+  "distinct_slurm_gpu_lists": true,
+  "gpu_arithmetic_calls": 0,
+  "job": "13075",
+  "model_loads": 0,
+  "role": "native_cuda_identity_not_effect",
+  "script_sha256": "f2c0bc0845796f280fe535e334cb03537e4c704e54db72ed56ff177caeb1cd84",
+  "simultaneously_active": true,
+  "source_commit": "13f28a42aa7e89f262c63454c50ae34341458534",
+  "status": "identity_observed_not_compute_qualified",
+  "steps": [
+    {
+      "command": [
+        "srun",
+        "--jobid=13075",
+        "--exclusive",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=6",
+        "--gres=gpu:1",
+        "--time=00:04:00",
+        "--job-name=forets-native-id-0",
+        "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+        "/research/d7/spc/yzyang4/forets-native-identity-20260911-Xjij0g/forets_native_cuda_identity_20260911.py",
+        "--root",
+        "/research/d7/spc/yzyang4/forets-native-identity-20260911-Xjij0g",
+        "--role=worker"
+      ],
+      "identity": {
+        "cuda_contexts_created_by_script": 0,
+        "cuda_driver_version": 13030,
+        "cuda_visible_devices": "0",
+        "device_count": 1,
+        "device_name": "NVIDIA GeForce RTX 3090",
+        "driver_metadata_matches": [
+          {
+            "bus_location": "0000:1a:00.0",
+            "device_minor": "0",
+            "path": "/proc/driver/nvidia/gpus/0000:1a:00.0/information"
+          }
+        ],
+        "gpu_arithmetic_calls": 0,
+        "job": "13075",
+        "node": "gpu28",
+        "pci_bus_id": "0000:1A:00.0",
+        "selected_uuid": "GPU-842fd553-b591-78de-8e8b-035f5b12d3ad",
+        "slurm_step_gpus": "0",
+        "step": "0",
+        "utc": "2026-09-11T07:44:36.418629+00:00"
+      },
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "command": [
+        "srun",
+        "--jobid=13075",
+        "--exclusive",
+        "--nodes=1",
+        "--ntasks=1",
+        "--cpus-per-task=6",
+        "--gres=gpu:1",
+        "--time=00:04:00",
+        "--job-name=forets-native-id-1",
+        "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+        "/research/d7/spc/yzyang4/forets-native-identity-20260911-Xjij0g/forets_native_cuda_identity_20260911.py",
+        "--root",
+        "/research/d7/spc/yzyang4/forets-native-identity-20260911-Xjij0g",
+        "--role=worker"
+      ],
+      "identity": {
+        "cuda_contexts_created_by_script": 0,
+        "cuda_driver_version": 13030,
+        "cuda_visible_devices": "0",
+        "device_count": 1,
+        "device_name": "NVIDIA GeForce RTX 3090",
+        "driver_metadata_matches": [
+          {
+            "bus_location": "0000:1b:00.0",
+            "device_minor": "1",
+            "path": "/proc/driver/nvidia/gpus/0000:1b:00.0/information"
+          }
+        ],
+        "gpu_arithmetic_calls": 0,
+        "job": "13075",
+        "node": "gpu28",
+        "pci_bus_id": "0000:1B:00.0",
+        "selected_uuid": "GPU-7d12e891-ef4f-5e91-6aca-e0fc68e4e045",
+        "slurm_step_gpus": "1",
+        "step": "1",
+        "utc": "2026-09-11T07:44:36.311333+00:00"
+      },
+      "rc": 0,
+      "stderr": ""
+    }
+  ]
+}

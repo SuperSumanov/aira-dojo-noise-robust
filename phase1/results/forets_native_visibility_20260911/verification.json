@@ -1,0 +1,40 @@
+{
+  "role": "independent_readout_of_native_jupyter_receipts_not_effect",
+  "observation_utc": "2026-09-11T07:58:51.483300+00:00",
+  "independent_receipt_checks": "PASS",
+  "source_file_hashes_match_remote": 5,
+  "receipt_sha256": {
+    "13073.json": "2f08e85a45a361cb12ed5c630963058b51bdef5cb2f0c2bad57a1d9693c79247",
+    "13074.json": "a52d4641674def2769b00694d126b120ae311149595436ccdcf8fd1ebfdd0d4e",
+    "13075.json": "cf4e75a3765cbfc733ac1e21ff1fc50111745e7f320ca9cd9f5bf83e376bfd51",
+    "13076-step-0.json": "97b05b64ae985dfcf38c4368548eb31f3ba89d0f2678653f0da72d7fca86e8cc",
+    "13076-step-1.json": "b12c301fd7ad10586a35555f75b1c3905a7eaf0cd30d738259f214bb1d02121f"
+  },
+  "steps": [
+    {"slot": 0, "physical_minor": 0, "cuda_arithmetic_correct": true, "opencl_gpu_fit_completed": true},
+    {"slot": 1, "physical_minor": 1, "cuda_arithmetic_correct": true, "opencl_gpu_fit_completed": true}
+  ],
+  "allocation_accounting": [
+    {"job": "13073", "state": "FAILED", "elapsed_seconds": 30, "allocated_gpus": 2, "exit_code": "1:0"},
+    {"job": "13074", "state": "COMPLETED", "elapsed_seconds": 64, "allocated_gpus": 2, "exit_code": "0:0"},
+    {"job": "13075", "state": "COMPLETED", "elapsed_seconds": 4, "allocated_gpus": 2, "exit_code": "0:0"},
+    {"job": "13076", "state": "COMPLETED", "elapsed_seconds": 44, "allocated_gpus": 2, "exit_code": "0:0"}
+  ],
+  "diagnostic_allocated_gpu_seconds": 284,
+  "diagnostic_gpu_hours": 0.07888888888888888,
+  "original_image_size": 19717783552,
+  "original_image_mtime_ns": 1784638286000000000,
+  "original_image_stat_matches": true,
+  "full_image_rehash_performed": false,
+  "raw_receipt_credential_shape_hits": 0,
+  "eight_run_execution_allowed": false,
+  "remaining": [
+    "Bind tested native adapter into the fixed fresh-start production controller",
+    "Resolve or explicitly adjudicate unknown checkpoint historical input template",
+    "Fresh fixed-route readiness and concrete bounded production release"
+  ],
+  "api_calls": 0,
+  "critic_model_calls": 0,
+  "real_mle_task_runs": 0,
+  "new_e2e_effect_result": false
+}

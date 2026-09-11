@@ -1,0 +1,9 @@
+{
+  "completion_price_zero": true,
+  "controller_commit": "5c8c07b711e7d3846fc5eda978f1efd6cd0b64ea",
+  "credential_http_status": 200,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "prompt_price_zero": true,
+  "tools_supported": true,
+  "utc": "2026-09-11T08:13:48.751097+00:00"
+}

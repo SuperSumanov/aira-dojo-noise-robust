@@ -16,6 +16,12 @@
 原8配置/source tree/原SIF不变，只将已测试native适配接入fresh-start worker并固定现有服务源码/输入设置。
 两块顺序执行避免同机8765端口冲突；每块必须新鲜免费路由检查与具体release。当前只是接入实施，未称已开跑。
 
+08:29:04 UTC实际收尾：生产接线10项新CPU检查通过；新代码根forets-native-release-20260911-dAKj2b，
+commit5c8c07b711e7d3846fc5eda978f1efd6cd0b64ea。22文件对应Git、231原源码无漂移、两块静态预检通过。
+固定免费路由2个人工请求仅1个成功，6次传输中5次超时；NOT_READY，未写READY回执、未提交GPU、无MLE运行。
+该检查预算已用完，失败目录/回执不可覆盖或假作成功；后续需新有界路由检查窗口，不重做G0/13076或改旧任务。
+见[生产接线与接口结果](FORETS_NATIVE_PRODUCTION_20260911.md)。没有新增critic收益，学长分支未改。
+
 ## 0L155. 2026-09-11：原生CUDA实选设备已核对，限定新Jupyter接入验证
 
 13075在gpu28标准双卡分配内同时运行两个单卡步骤，均继承CUDA_VISIBLE_DEVICES=0；

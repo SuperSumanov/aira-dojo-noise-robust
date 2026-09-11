@@ -1,0 +1,28 @@
+{
+  "commit": "5c8c07b711e7d3846fc5eda978f1efd6cd0b64ea",
+  "archive_sha256": "d5b4ce057f50e418fb231cdb57ba6ada858b55a95a401f3b960e6d0afff92fc5",
+  "files": {
+    "forets_block_collect_20260911.py": "c0955c5f1d6866e6fc0a72ef1f51d57b3bb4d5b5f41e695baf3d4aceb54359d6",
+    "forets_block_controller_20260911.py": "3d111b66678e656a7a1699f5b15c1ba8213fe0cc56ac6f693601ac45a97d0831",
+    "forets_block_readout_20260911.py": "7a0efc73323ce549da2c05704dce7a6f7ce26b67d0026e3fcb667790f61b0f1b",
+    "forets_block_runtime_20260911.py": "aeca46c3883613918c4519233963cca0bbe158971dac42df0496b7dc12a1d503",
+    "forets_e2e_campaign.py": "60d3215d68b534165e0d963cc08784023be5828847c81c08190a9bced6250bd7",
+    "forets_e2e_critic_service.py": "92e6820484d08b259c893db83f2d9ed38645fe496449e37de039b77a4d089790",
+    "forets_e2e_package.py": "1d7d0af7f198c0597fb9d0e34f43ede72d255088d4a0a01112c002b12f68063c",
+    "forets_e2e_readout.py": "0f832951336926522a93d915b28aa6e068cf3f58308580a2f293d2d383f063c4",
+    "forets_gpu_binding_20260911.py": "71cb57678490c098c20553b1a278ea76adc9ee775eae725c1057fb4995d46f8b",
+    "forets_native_context_20260911.py": "4d80545a58a46d56040a246ba31640b0b5d29fffaec0bbf789ba485237ff1b4e",
+    "forets_native_e2e_release_20260911.json": "e7c64f43032901716f4f3d5abf75a3e7d15f6417bd44e7e6e37b5fc5f8983706",
+    "bin/singularity": "de985b470792ce15c10eb6de3d9cdbb9b622185454442f6fd51e729cfa03a442",
+    "forets_native_gpu_binding_20260911.py": "01fc0908dea6a4119e04948ea5641a602e36336c5e1a7ab1780f48996cbdb88e",
+    "forets_native_run_20260911.py": "58d2b7c3a82dc2a87755f9e1315c46d07d4982fb96788f19d2daf1ccde5579cd",
+    "forets_pilot_plan.py": "1f6667641725662b10c59d7563368fe47eac19eecd79d92a87ed0e162ddaddf6",
+    "forets_stage_gate.py": "65614904a148a87cb97fb0c2a4ec8821eb1349d7816409c06b9b5323ab735f21",
+    "check_forets_resilience_live_20260910.py": "967bf84d7fc38672c032e1999dd8146859e0e520a4790930c1c7d7525765611b",
+    "forets_native_block_20260911.sbatch": "0089d4f64e74a83eb186bf6b80b9d36d491f6f13df1bd4dea8658d6b6afe0a7c",
+    "forets_native_cuda_identity_20260911.py": "f2c0bc0845796f280fe535e334cb03537e4c704e54db72ed56ff177caeb1cd84",
+    "forets_opencl_allowlist_20260911.py": "5f99d7142a2203f29a6abe706117ce8ea0748516845109cf309b872a359d13c4",
+    "forets_opencl_readonly_ab.py": "b0546c7a81b11eaa558c197cc05cf576adbe014ae5878eb5ba0782c212575b6c",
+    "opencl-vendors/nvidia.icd": "4ad07f8afc189894374aecb91023e6ff16bbceedf82496c04c0fdb0e2fe81e73"
+  }
+}

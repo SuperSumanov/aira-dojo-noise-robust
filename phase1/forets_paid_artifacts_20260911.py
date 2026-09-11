@@ -11,6 +11,7 @@ from forets_paid_patch_20260911 import patch
 
 BASE='3aae90ae26b5ae7b65e6efed14fb49f2907c9c42'
 PREFIX='src/dojo/core/solvers/llm_helpers/backends/'
+CODE_PATHS=('src/aira_core','src/dojo')
 
 
 def git(*args, data=None, env=None):
@@ -32,13 +33,15 @@ def main():
             digest=git('hash-object','-w','--stdin',data=raw).decode().strip()
             git('update-index','--add','--cacheinfo','100644,'+digest+','+name,env=env)
         tree=git('write-tree',env=env).decode().strip()
-    archive=git('-c','core.autocrlf=false','archive','--format=tar',tree)
+    archive=git('-c','core.autocrlf=false','archive','--format=tar',tree,*CODE_PATHS,
+                env=dict(os.environ,GIT_LFS_SKIP_SMUDGE='1'))
     (a.output/'source.tar').write_bytes(archive)
     inventory={}
-    for row in git('ls-tree','-r',tree).decode().splitlines():
+    for row in git('ls-tree','-r',tree,'--',*CODE_PATHS).decode().splitlines():
         header,name=row.split('\t'); mode,kind,blob=header.split()
         if kind!='blob':raise ValueError('unexpected tree entry')
         inventory[name]=hashlib.sha256(git('cat-file','blob',blob)).hexdigest()
+    if len(inventory)!=233:raise ValueError('unexpected code inventory')
     info=dict(base_tree=BASE,source_tree=tree,commit=commit,archive_sha256=hashlib.sha256(archive).hexdigest(),
               source_files=inventory)
     (a.output/'artifact.json').write_text(json.dumps(info,sort_keys=True,indent=2)+'\n')

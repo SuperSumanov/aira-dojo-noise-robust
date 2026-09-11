@@ -1,6 +1,6 @@
 # 当前交接：analyzer修复后新seed11四run已在gpu28运行
 
-更新2026-09-12香港；新作业最后观察2026-09-11 21:44:38.556070 UTC。
+更新2026-09-12香港；新作业最后观察2026-09-11 22:01:19.627077 UTC。
 恢复：fetch→CURRENT_DIRECTION.md最新0L164→本文件→核现场。学长指导ADVISOR_DIRECTIVES.md L/M/N。
 用户要会话内实质推进，不新增自动任务；不把旧队列、计划、mock或进程完成冒充当前结果。
 
@@ -16,14 +16,19 @@
 - 55账本行已完整复制（含1未知预留和历史合并行），dgzmkcqh旧账已sealed。
   新总责任上限3.122344104USD，其中新增最多2USD；旧scope全关闭，route改route_s11，四新scope各1.50USD。
   route检查只容忍相同的历史unknown IDs，任何新unknown都拒绝，不把历史未知当零或初始化掉。
-- **13115 RUNNING/gpu28**，提交2026-09-11 21:41:20.187089 UTC，最后观察运行198秒、leaf/critic真实worker运行，其余三项pending。
+- **13115 RUNNING/gpu28**，提交2026-09-11 21:41:20.187089 UTC，最后观察运行1199秒、leaf/critic真实worker运行，其余三项pending。
   route两次已通过且结算；工具PTY46886整条正常完成。新根submission/submit-intent已存在，绝不能重跑route/submit/activate。
-  新旧累计181实际API，已结算0.422497764USD；当时2未结=历史1未知+新scope1在途，不等于两次失败。
+  新旧累计190实际API，已结算0.446167566USD；1未结仍为历史未知预留，不等于新失败。
+  21:59:18 UTC仅执行元数据：首run两次超时、第三次执行中；未读本组final或据中途成绩改配置。
 - 新包下forets_environment_session_20260912.py已派生为seed11；billing扣55旧rows计新增，累计仍扣合并1条加历史124。
   会话内watch已启动，工具PTY **19866**；已从启动期转入首个worker。
   优先poll此session；它在整块终态后自动closeout，禁止第二个收尾写入者。
 - Stage /research/d7/spc/yzyang4/forets-review-stage-20260912-fQzyb0；本地artifact codex_tmp/forets-review-artifact-20260912。
   原SIF/critic/步骤/超时不动；源代码只变lite_llm.py、review_metric.py、paid_budget.py。
+- 收尾后追加独立验证器verify_forets_review_final_20260912.py（当前未运行）：独立sacct终态门、
+  最终选中节点/外部grade一致性及累计费用。原task评分后删submission.csv，不能声称本轮数值重评分。
+  forets_submission_archive_20260912.py仅为未来批次准备的host-only被动留档，尚未部署；不改13115。
+  7项本地人工测试通过，原evaluator精确patch锚点/语法也通过；不是新端到端结果。
 
 ## 刚完成的真实对照
 
@@ -37,7 +42,7 @@
   终态48新增真实API（含route2），加前124共172；本轮已结算0.102788283USD，累计已结算0.421563831USD。
   另保留一次0.70USD未知责任，不释放、不当零费用；运行时unresolved会包括在途，不等于全是失败。
 - 13个独立ValidationError/response_invalid已结算；重复日志按attempt_id去重。
-  MCTS分析异常回退is_bug=True，可能阻断exit0程序进入final；尚不知具体schema字段，历史失败响应未保存。
+  MCTS分析异常回退is_bug=True；随后人工API诊断已定位metric字符串类型，历史失败响应本身未保存。
   禁止补造响应、重分析旧run补分、中途submission挽救或归因critic选择错误。
 
 ## 本次执行证据（不可重提）
@@ -53,7 +58,7 @@
   300秒超时存在退出开销，实际耗时不裁短。
 - 收尾见FORETS_ENVIRONMENT_CLOSEOUT_20260912.md；本地结果results/forets_environment_20260912。
 
-## 已完成的人工schema诊断；下一真实矩阵待提交
+## 已完成的人工schema诊断与新矩阵构建（不重做）
 
 - phase1/forets_analyzer_diagnostic_20260912.py：最多两个公共人工示例成功/失败，同现有analyze提示及schema，
   原生成模型/路由、8192输出、每次120秒、单尝试无retry，0GPU/任务数据/保护集。
@@ -84,9 +89,9 @@
 - 13004/13085负结果、旧CPU期限筛查无信号保留；不重开免费失败窗口/G0/12892/13076。
 - first-960/Target-300/Target-522标签、结果、预测、私有选择继续封闭；不恢复HCE/多保真/Probe/score-channel/K>=1lookahead，不更新agent底座。
 - 学长分支未改，dojo-reproduce最后fetch065b0fbaa89e0eb663f2834ec768081f5d56394d；
-  0907/0909/0909-mcts最后文件清单19:51:45 UTC无变化，不代表其他目录无新语料。
+  0907/0909/0909-mcts最后文件清单21:48:14 UTC无变化，不代表其他目录无新语料。
   quarantine32配置不等于32runs；LATEST最后759physical/733eligible、closure=false，未重算。
-- 只push myfork HEAD:phase1-value-critic；远端最后独立核对a383c2abb5fa9def7e85e7b3313c3894159e7be3。
+- 只push myfork HEAD:phase1-value-critic；远端最后独立核对50ff249c135818559287e6500230b292900f9a8a。
   每次push前扫待推文件内容和env/key/token/secret文件名，仅输出计数。学长branch不改。
 - repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；保留用户untracked codex_tmp/output/tmp/旧报告。
 - SSH linux5；CPU研究根venvs/aira/bin/python，GPUvenvs/exp/bin/python；网络/uac/y24/yzyang4/env_setup.sh。

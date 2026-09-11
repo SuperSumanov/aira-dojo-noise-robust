@@ -1,0 +1,12 @@
+{
+  "source_tree": "6ca01fba9892a350cbb24152054b5296dc7095f1",
+  "controller_commit": "a383c2abb5fa9def7e85e7b3313c3894159e7be3",
+  "files": 276,
+  "source_files": 234,
+  "controller_files": 28,
+  "archive_bytes": 334064,
+  "archive_sha256": "2a33f870ac88b1bf2a2902d7bde7900a18aba8b1c61feb737761bbeb3d3d1f3b",
+  "credential_shape_hits": 0,
+  "contains_model_or_task_data": false,
+  "contains_results": false
+}

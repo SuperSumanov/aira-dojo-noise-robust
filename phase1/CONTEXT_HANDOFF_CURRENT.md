@@ -1,6 +1,6 @@
 # 当前交接：analyzer修复后新seed11四run已在gpu28运行
 
-更新2026-09-12香港；新作业最后观察2026-09-11 22:01:19.627077 UTC。
+更新2026-09-12香港；新作业最后观察2026-09-11 22:12:27.527430 UTC。
 恢复：fetch→CURRENT_DIRECTION.md最新0L164→本文件→核现场。学长指导ADVISOR_DIRECTIVES.md L/M/N。
 用户要会话内实质推进，不新增自动任务；不把旧队列、计划、mock或进程完成冒充当前结果。
 
@@ -16,10 +16,10 @@
 - 55账本行已完整复制（含1未知预留和历史合并行），dgzmkcqh旧账已sealed。
   新总责任上限3.122344104USD，其中新增最多2USD；旧scope全关闭，route改route_s11，四新scope各1.50USD。
   route检查只容忍相同的历史unknown IDs，任何新unknown都拒绝，不把历史未知当零或初始化掉。
-- **13115 RUNNING/gpu28**，提交2026-09-11 21:41:20.187089 UTC，最后观察运行1199秒、leaf/critic真实worker运行，其余三项pending。
+- **13115 RUNNING/gpu28**，提交2026-09-11 21:41:20.187089 UTC；leaf/critic进程completed、leaf/random运行、spaceship两项pending。
   route两次已通过且结算；工具PTY46886整条正常完成。新根submission/submit-intent已存在，绝不能重跑route/submit/activate。
-  新旧累计190实际API，已结算0.446167566USD；1未结仍为历史未知预留，不等于新失败。
-  21:59:18 UTC仅执行元数据：首run两次超时、第三次执行中；未读本组final或据中途成绩改配置。
+  新旧累计195实际API，已结算0.455974623USD；1未结仍为历史未知预留，不等于新失败。
+  22:13:18 UTC仅执行元数据：首run五次执行全返回、0exit0，其中4次超时；未读本组final或据中途成绩改配置。
 - 新包下forets_environment_session_20260912.py已派生为seed11；billing扣55旧rows计新增，累计仍扣合并1条加历史124。
   会话内watch已启动，工具PTY **19866**；已从启动期转入首个worker。
   优先poll此session；它在整块终态后自动closeout，禁止第二个收尾写入者。
@@ -29,6 +29,12 @@
   最终选中节点/外部grade一致性及累计费用。原task评分后删submission.csv，不能声称本轮数值重评分。
   forets_submission_archive_20260912.py仅为未来批次准备的host-only被动留档，尚未部署；不改13115。
   7项本地人工测试通过，原evaluator精确patch锚点/语法也通过；不是新端到端结果。
+- 实际source tree不随公开分支可达，已导出纯代码/config capsule（276文件，334064字节），
+  本地独立核验全部成员/hash，234个source逐字节匹配Git对象；0凭据命中，无模型/数据/候选/结果。
+  见phase1/releases/forets-review-20260912；archive SHA2a33f870ac88b1bf2a2902d7bde7900a18aba8b1c61feb737761bbeb3d3d1f3b。
+  不是完整Git历史或跨机器复跑证明，不直接执行历史submit/route。
+- 条件后继投资顺序见FORETS_POST_REPAIR_DECISION_20260912.md：尚未选择/提交后继块。
+  Plus官方metadata已只读核价；最坏请求责任2.517372USD，不能套用当前0.70预留。未调用Plus。
 
 ## 刚完成的真实对照
 

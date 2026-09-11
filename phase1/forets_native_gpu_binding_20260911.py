@@ -42,13 +42,23 @@ def main(args=None):
     args=list(sys.argv[1:] if args is None else args)
     if args==['--version']:os.execv(REAL_SINGULARITY,[REAL_SINGULARITY,'--version'])
     split_command(args)
-    root=Path(os.environ.get('FORETS_NATIVE_INTEGRATION_ROOT','')).resolve(strict=True)
-    if (root.parent!=Path('/research/d7/spc/yzyang4')
-            or not root.name.startswith('forets-native-gpu-adapter-20260911-')):
-        raise ValueError('only the new bounded integration root is enabled')
-    receipt=Path(os.environ.get('DOJO_WORKER_IDENTITY_PATH',''))
-    if not receipt.is_absolute() or receipt.is_symlink() or receipt.parent.resolve()!=root:
-        raise ValueError('receipt outside integration root')
+    integration=os.environ.get('FORETS_NATIVE_INTEGRATION_ROOT')
+    if integration:
+        if os.environ.get('FORETS_NATIVE_RELEASE'):raise ValueError('ambiguous execution mode')
+        root=Path(integration).resolve(strict=True)
+        if (root.parent!=Path('/research/d7/spc/yzyang4')
+                or not root.name.startswith('forets-native-gpu-adapter-20260911-')):
+            raise ValueError('only the new bounded integration root is enabled')
+        receipt=Path(os.environ.get('DOJO_WORKER_IDENTITY_PATH',''))
+        if not receipt.is_absolute() or receipt.is_symlink() or receipt.parent.resolve()!=root:
+            raise ValueError('receipt outside integration root')
+        binding_path=receipt.with_suffix('.native-binding.json')
+    else:
+        from forets_native_context_20260911 import context
+        receipt=context(os.environ)
+        # Multiple fresh interpreters in ONE worker are not task replay.
+        # Keep each child binding rather than overwrite/reject its first receipt.
+        binding_path=receipt.with_name(receipt.name+f'.native-binding-{os.getpid()}.json')
     observed=native_identity()
     minor,uuid=resolve_native(observed)
     cache=subprocess.run(['/sbin/ldconfig','-p'],capture_output=True,text=True,timeout=10,check=True).stdout
@@ -66,7 +76,7 @@ def main(args=None):
         utc=datetime.now(timezone.utc).isoformat(),native_identity=observed,namespace=rows[0],
         source_commit=os.environ.get('FORETS_SOURCE_COMMIT'),
         adapter_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
-    with receipt.with_suffix('.native-binding.json').open('x') as f:json.dump(report,f,indent=2)
+    with binding_path.open('x') as f:json.dump(report,f,indent=2)
     os.execve(REAL_SINGULARITY,final,clean)
 
 

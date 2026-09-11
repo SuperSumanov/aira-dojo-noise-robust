@@ -1,5 +1,6 @@
 """Load once for search; optionally check full context on a replacement GPU."""
 import argparse
+import hashlib
 import importlib.util
 import json
 import math
@@ -30,6 +31,13 @@ def main():
     package.__path__ = [str(SOURCE)]
     sys.modules[package.__name__] = package
     started = time.monotonic()
+    frozen_service = {
+        'bradley_terry_server.py': 'ebe289b5d22ac8186c8a13c9462aa62782d12cd32c628283081b488468d35fad',
+        'bradley_terry_evaluation.py': '31ecf62ecd92a88ee2a4a7b9a3f723081c8075adb448c592b4c62cd2303bd99d',
+    }
+    for name, expected in frozen_service.items():
+        if hashlib.sha256((SOURCE/name).read_bytes()).hexdigest()!=expected:
+            raise RuntimeError('as-delivered critic service changed')
     for name in ('bradley_terry_evaluation', 'bradley_terry_server'):
         spec = importlib.util.spec_from_file_location(package.__name__+'.'+name, SOURCE/(name+'.py'))
         module = importlib.util.module_from_spec(spec)
@@ -43,6 +51,8 @@ def main():
         raise RuntimeError('replacement critic requires one real RTX3090')
     if scorer.max_len != 16384 or scorer.model.training:
         raise RuntimeError('critic context or inference mode changed')
+    if scorer.head_frac != 0.25 or scorer.task_cond is not True:
+        raise RuntimeError('fixed deployed encoder settings changed')
     if any(p.device.type != 'cuda' or p.dtype != torch.bfloat16 for p in scorer.model.parameters()):
         raise RuntimeError('critic was offloaded or changed precision; no fallback allowed')
     runtime_check = dict(context=scorer.max_len, all_parameters_cuda_bf16=True,
@@ -70,7 +80,10 @@ def main():
     value = dict(allocation_id=os.environ['SLURM_JOB_ID'], step_id=os.environ['SLURM_STEP_ID'],
                  host='127.0.0.1', port=8765, model_load_and_bind_seconds=time.monotonic()-started,
                  visible_gpu=os.environ.get('CUDA_VISIBLE_DEVICES'), pid=os.getpid(),
-                 acceptance_repeated=False, deployment_check=deployment_check, runtime_check=runtime_check)
+                 acceptance_repeated=False, deployment_check=deployment_check, runtime_check=runtime_check,
+                 encoder=dict(max_len=16384,head_frac=0.25,task_cond=True,
+                     historical_template='unknown',mode='fixed_existing_deployed_encoder'),
+                 source_sha256=frozen_service)
     # Rename a completed file so the controller never reads a half-written marker.
     temporary = args.ready.with_suffix('.pending')
     with os.fdopen(os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), 'w') as f:

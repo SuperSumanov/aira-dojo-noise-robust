@@ -1,9 +1,9 @@
 """Bounded service/pool wiring for the fixed seed8/9 development blocks.
 
 No submit command, credential loader, model acceptance or automatic retry.
-The public CLI remains inspection-only: the hardware/input release is absent.
-The lifecycle functions are preparation for that release, not permission to
-run the draft. CPU tests replace process/clock boundaries, not outcome values.
+This module's CLI remains inspection-only. The separate native entry binds the
+fixed as-delivered exploratory release; unknown historical template is declared,
+not silently assumed correct. CPU tests replace OS boundaries, not outcomes.
 """
 from __future__ import annotations
 
@@ -30,7 +30,7 @@ POOL_SHA = '12fcf5fc727de820a208ca88ee1bd82c58f97842653c3ce463f8b171903d2b79'
 PYTHON = '/research/d7/spc/yzyang4/venvs/aira/bin/python'
 GPU_PYTHON = '/research/d7/spc/yzyang4/venvs/exp/bin/python'
 # No boolean CLI switch or editable draft field can stand in for missing facts.
-RELEASE_SHA = None
+RELEASE_SHA = 'e7c64f43032901716f4f3d5abf75a3e7d15f6417bd44e7e6e37b5fc5f8983706'
 SOURCE_FILES_SHA = 'e72e6f7ad5f500967e1ea243a05afc016a2ae7ad35c9262dedd80bd43d89b84f'
 
 
@@ -302,13 +302,15 @@ def run_lifecycle(pool, service, *, interrupt=interrupt_at, cleanup=cleanup_owne
 
 
 def execute_block(root, block, release_raw, *, node, controller_commit):
-    """Dormant production front door. Missing release is checked FIRST.
+    """Production front door bound to the exact exploratory release FIRST.
 
-    No CLI exposes this. A reviewed future commit must pin the concrete hardware
-    and input release, including any source/environment change it requires.
-    Merely giving generic approval or changing PACKAGE_STATE does not do that.
+    Exposed only by forets_native_run_20260911, not the old campaign. Merely
+    changing PACKAGE_STATE or passing a boolean does not release another plan.
     """
     require_release(release_raw)
+    from forets_native_context_20260911 import NativeWorkerEnvironment, release
+    spec_release=release(release_raw)
+    if node!=spec_release['node']:raise ValueError('only native-qualified gpu28 is released')
     from forets_block_readout_20260911 import ROOT, _inside, _load, _canonical
     from forets_stage_gate import validate_route_receipt
     from types import SimpleNamespace
@@ -350,8 +352,11 @@ def execute_block(root, block, release_raw, *, node, controller_commit):
     if (imported_pool != source/'src/dojo/core/runners/slurm/srun_pool.py'
             or hashlib.sha256(imported_pool.read_bytes()).hexdigest()!=POOL_SHA):
         raise RuntimeError('pool imported from another checkout')
-    class Pool(RuntimePoolControl,SrunPoolLauncher):
+    class Pool(NativeWorkerEnvironment,RuntimePoolControl,SrunPoolLauncher):
         runtime_budget=budget
+        native_code_dir=Path(__file__).resolve().parent
+        native_release_path=native_code_dir/'forets_native_e2e_release_20260911.json'
+        native_controller_commit=controller_commit
         def _discover_allocation(self):
             return SimpleNamespace(job_id=job,node_list=node,num_nodes=1,num_cpus=12,
                 num_gpus=2,end_time=dt.datetime.fromtimestamp(time.time()+budget.end-budget.now()))

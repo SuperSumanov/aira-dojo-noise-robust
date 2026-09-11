@@ -59,11 +59,14 @@ def observe():
 
 
 def worker(root, role):
+    save(root / (role+'.started.json'), dict(
+        utc=dt.datetime.now(dt.timezone.utc).isoformat(),
+        node=socket.gethostname(), step=os.environ.get('SLURM_STEP_ID')))
     record = observe()
     record['role'] = role
     save(root / (role+'.json'), record)
     if role != 'zero':
-        end = time.monotonic()+45
+        end = time.monotonic()+130
         while not (root/'release-workers').exists():
             if time.monotonic() >= end:
                 raise TimeoutError('metadata peer barrier expired')
@@ -87,7 +90,8 @@ def controller(root):
         for name in ('SLURM_STEP_GPUS','SLURM_STEP_ID','CUDA_VISIBLE_DEVICES','GPU_DEVICE_ORDINAL'):
             env.pop(name, None)
         cmd = ['srun','--jobid='+job,'--exclusive','--nodes=1','--ntasks=1',
-               '--cpus-per-task=1','--gres=gpu:'+str(count),'--time=00:01:00',
+               '--cpus-per-task='+str(6 if count else 1),
+               '--gres=gpu:'+str(count),'--time=00:03:00',
                '--job-name=forets-meta-'+role, sys.executable, str(Path(__file__).resolve()),
                '--root',str(root),'--role',role]
         p = subprocess.Popen(cmd, env=env, stdin=subprocess.DEVNULL,
@@ -101,13 +105,13 @@ def controller(root):
         result['steps']['zero'].update(rc=zero.returncode, stderr=err[-1000:])
         if zero.returncode: raise RuntimeError('zero GPU metadata step failed')
         first=start('one_a',1)
-        end=time.monotonic()+25
+        end=time.monotonic()+90
         while not (root/'one_a.json').exists():
             if first.poll() is not None or time.monotonic() >= end:
                 raise RuntimeError('first single GPU step did not become ready')
             time.sleep(.2)
         second=start('one_b',1)
-        end=time.monotonic()+25
+        end=time.monotonic()+90
         while not (root/'one_b.json').exists():
             if second.poll() is not None or first.poll() is not None or time.monotonic() >= end:
                 raise RuntimeError('concurrent single GPU step did not become ready')
@@ -126,13 +130,19 @@ def controller(root):
         for role,p in children:
             if p.poll() is None:
                 p.terminate()
-                try:p.communicate(timeout=10)
+                try:_,err=p.communicate(timeout=10)
                 except subprocess.TimeoutExpired:
-                    p.kill();p.communicate(timeout=5)
+                    p.kill();_,err=p.communicate(timeout=5)
+                result['steps'][role]['stderr']=err[-1000:]
+            elif 'stderr' not in result['steps'][role]:
+                _,err=p.communicate(timeout=5)
+                result['steps'][role]['stderr']=err[-1000:]
             result['steps'][role]['rc']=p.returncode
         for role in ('zero','one_a','one_b'):
             path=root/(role+'.json')
             if path.exists():result['steps'][role]['observation']=json.loads(path.read_text())
+            started=root/(role+'.started.json')
+            if started.exists():result['steps'][role]['python_started']=json.loads(started.read_text())
         save(root/'result.json',result)
         print(json.dumps(result,sort_keys=True))
     return 0 if result['status']=='metadata_collected_not_compute_qualified' else 1

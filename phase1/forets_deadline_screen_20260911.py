@@ -18,6 +18,7 @@ import re
 import signal
 import tarfile
 import time
+import warnings
 
 ROOT = Path('/research/d7/spc/yzyang4')
 PACK = 'historical-program-pack-f702ba2-r2-20260907/A-pack.private.json'
@@ -34,6 +35,8 @@ WORDS = ('lightgbm','xgboost','catboost','torch','transformers','tensorflow',
          'num_boost_round','n_estimators','epochs','early_stopping','gpu','cuda',
          'num_threads','n_jobs','train_test_split','standardscaler','pca','polynomialfeatures')
 SEED = 20260911
+MEMBER_CAP = 256*1024**2
+CPU_CAP = 400  # Repair window; first no-fit attempt used <89 seconds.
 
 def sha(raw):
     return hashlib.sha256(raw).hexdigest()
@@ -63,7 +66,9 @@ def code_features(code):
     features = {'log_chars': math.log1p(len(code)), 'log_lines': math.log1p(len(code.splitlines()))}
     features.update({f'word:{w}': math.log1p(low.count(w)) for w in WORDS})
     try:
-        tree = ast.parse(code)
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore', SyntaxWarning)
+            tree = ast.parse(code)
         counts = Counter(type(n).__name__ for n in ast.walk(tree))
         for name in ('Call','For','While','ListComp','DictComp','If','FunctionDef','Import','ImportFrom','Try'):
             features[f'ast:{name}'] = math.log1p(counts[name])
@@ -95,6 +100,7 @@ def read_rows():
         if r['source_admitted'] is not False or closure[rid]['old_hold_closure_blocks_train'] is not False: raise ValueError('role_changed')
         if closure[rid]['component_sha256'] != r['component_sha256']: raise ValueError('component_changed')
         if ledger[rid]['old_hold_closure_blocks_train'] is not False: raise ValueError('ledger_hold')
+        if type(r['full_execution_timeout']) is not int or r['full_execution_timeout']<300: raise ValueError('deadline_exceeds_historical_cap')
     if {rid for rid, c in closure.items() if c['component_sha256'] in components} != set(pack): raise ValueError('partial_component')
     paths = {o['sha256']: ROOT/'external/senior_data/mle'/o['relative_path'] for o in locked(ARCHIVES, ARCHIVES_SHA, True) if o['status'] == 'ok'}
     paths['8ade376fb045aa47bffa63b493fa5e4b02d376815d7700c9c9f441c1848edfa4'] = Path('/tmp/historical-source-repair-download-20260905/candidate-02.tar.gz')
@@ -113,7 +119,9 @@ def read_rows():
         with tarfile.open(path, 'r|gz') as arc:
             for m in arc:
                 if m.name not in members: continue
-                if m.name in seen or not m.isfile() or m.size > 32*1024**2: raise ValueError('bad_member')
+                if m.name in seen: raise ValueError('duplicate_member')
+                if not m.isfile(): raise ValueError('nonfile_member')
+                if m.size > MEMBER_CAP: raise ValueError('member_size_cap')
                 seen.add(m.name)
                 rid, r = members[m.name]
                 raw = arc.extractfile(m).read()
@@ -177,11 +185,11 @@ def estimate(rows, indices, test, label):
 def run(out, commit):
     import numpy as np
     import sklearn
-    start = time.monotonic(); signal.alarm(600); os.umask(0o077)
+    start = time.monotonic(); signal.alarm(CPU_CAP); os.umask(0o077)
     out.mkdir(exist_ok=False)
     intent = dict(source_commit=commit, source_sha256=sha(Path(__file__).read_bytes()), seed=SEED,
                   python=platform.python_version(), sklearn=sklearn.__version__, numpy=np.__version__,
-                  started_at_utc=datetime.now(timezone.utc).isoformat(), cpu_limit_seconds=600,
+                  started_at_utc=datetime.now(timezone.utc).isoformat(), cpu_limit_seconds=CPU_CAP,
                   pack_sha256=PACK_SHA, target_seconds=300, gpu=0, api=0, base_model_updates=0)
     (out/'intent.json').write_text(json.dumps(intent, indent=2)+'\n')
     rows, counts, eligible = read_rows()

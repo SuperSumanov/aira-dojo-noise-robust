@@ -6,6 +6,12 @@
 
 ## 目标与实测
 
+- **本轮正在执行：限时完成预测的CPU筛查（不是GPU/e2e）。** 代码8e94d9bdb3b4dddd9ebac67b3d6054d76eaa226d；
+  根/research/d7/spc/yzyang4/forets-deadline-screen-20260911-TeDok5zC；同会话前台进程，600秒上限。
+  固定84旧开发run，以来源组件留出，字节/AST重复从训练清除；task先验/一般成功经期限校准/直接期限三个预测器。
+  本地4项边界测试通过，远端同4项通过（不当8项独立测试）；真实结果尚未读取。
+  仅用旧journal的exec_time/exit_code，不用数字成绩；source_admitted=false、保护集隔离和旧8-run/19GPUh均不改。
+  见FORETS_DEADLINE_SCREEN_20260911.md。若会话恢复先检查actual/summary.json或execution.log，不重复提交。
 - **已完成：无生成API候选池全执行诊断13085，未得正收益。** 全部3代码各2次；slot0/1有效、slot2两次超时。
   历史critic排序2>1>0，却排除了最好且最快的slot0（logloss0.73093/0.73156），保留slot1（0.76995两次）及超时slot2。
   原top2内随机实测有效比例0.5、条件logloss0.76995；全3随机0.6666666666666666、0.7505975。

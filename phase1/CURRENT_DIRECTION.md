@@ -7,6 +7,19 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L162. 2026-09-12：共同环境提示修复，固定四run开发可运行性验证
+
+用户继续推进授权下，先实施两任务×新seed10×两selector共4run，单块gpu28双卡280分钟；
+新增上限10GPUh、API1.50USD，与旧0.318775548USD累计，不另开10USD额度。
+旧124次已结算账本停止追加，新账显式预扣旧款；旧8run失败结果不重写、不补分。
+唯一共同生成改动：draft/improve/debug系统提示加入原镜像版本/API与300秒端到端程序时限事实；
+analyze、critic输入/模型、原SIF、生成模型/路由、5-fold要求、选择规则、执行预算不改。
+纠正此前宽描述：原draft/improve已有early_stopping_rounds提醒，不是完全没有API指引；
+此次补未覆盖的verbose_eval/sklearn fit等错误。不是新算法，也不保证所有运行错误都消失。
+以4run闭合后的真实最终解有效率判断可运行性，不能用控制器退出码宣称成功；
+单seed不得称跨seed效果或clean scaling，保护集/旧关闭方向保持不动。
+具体计划：[环境修复开发矩阵](FORETS_ENVIRONMENT_REPAIR_PLAN_20260912.md)。现场状态以短交接为准。
+
 ## 0L161. 2026-09-12：收费八run已关闭，端到端有效率为零；先修共同生成可运行性
 
 13088、13112均COMPLETED并释放；两块独立终态后才统一读最终结果，没有看第一块成绩改第二块。

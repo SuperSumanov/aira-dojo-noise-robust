@@ -2,14 +2,17 @@
 
 更新：2026-09-11香港。只维护当前事实，不在顶部继续叠加历史交接。
 恢复顺序：fetch → [CURRENT_DIRECTION](CURRENT_DIRECTION.md) 最新节 → 本文件 → 所需证据。
-实验前对照 [ADVISOR_DIRECTIVES](ADVISOR_DIRECTIVES.md) L/M；历史在dated reports与Git。
+实验前对照 [ADVISOR_DIRECTIVES](ADVISOR_DIRECTIVES.md) L/M/N；历史在dated reports与Git。
 
 ## 目标与实测
 
 - **最新停止事项**：13042非零step被程序映射到设备9并实际做了人工GPU运算；该映射没有独立分配证据。
   “精确可见设备”只是对程序自选minor自洽，不足以证明Slurm分配正确。接入验证作废，泛化隔离解决声明撤回。
   当前adapter/新诊断在GPU查询前关闭；13042已主动释放。不可复用旧未关闭副本或按旧0L152开跑。
-  /etc/slurm/gres.conf只读被拒绝，未绕过；等权威GPU ID→设备路径/UUID映射。见FORETS_GPU_MAPPING_ERRATUM_20260911.md。
+  /etc/slurm/gres.conf只读被拒绝，未绕过；原错误事实见FORETS_GPU_MAPPING_ERRATUM_20260911.md。
+  最新学长反馈与0L154已取消“必须取得管理员配置”的单一路径：标准fresh-start、实际隔离验证即可；
+  STEP_ID仅作身份，不要求等于GPU编号，原Jupyter未做STEP_GPUS映射。新控制器已绕开旧恢复功能，不重修resume。
+  计划单次双卡最多5分钟仅读设备范围；尚未提交，不加载GPU库/模型/API，不自动放行8-run。
 
 - 科学目标：**同预算下，critic是否改善最终选中解的外部成绩**。Corpus/predictor/audit是支撑。
 - 13004首对已完成：leaf-classification/seed6，random logloss **0.66022**，critic **2.5208**；
@@ -57,12 +60,12 @@
    adapter把Slurm ID直接用作NVML index，没有独立映射依据，已撤回并关闭；**不要重跑、猜编号或放行8-run**。
    13041还暴露登录/计算节点Singularity路径不同；已修代码，但路径修复不解决GPU映射。
    最近新根forets-gpu-adapter-20260911-DosPND保留原错误实现/回执，禁止执行；当前Git入口已关闭。
-   GPU9共享约定仍未知，已问学长/管理员未回复；新路径不绑定设备9、不依赖放宽共享约定。
+   GPU9用途仍未知；新检查先比较零卡与单卡步骤的实际设备访问规则，不绑定/打开设备9，不依赖放宽共享约定。
    设备可打开不证明13004使用过它，不据此改写旧结果。原镜像/任务代码不改，不升级Torch、不退CPU。
    自查已知gpu28登记9卡、Slurm19.05.4；计算节点配置SSH被主机身份校验挡住，现有信任记录无匹配，不绕过。
 2. **等外界**：checkpoint-100历史训练输入是否含预测指令；当前分支含指令不能证明历史模板。
    权重只读header已证实仅format=pt，不能自行恢复历史模板。问题已留给用户转学长，不再索要权重/密钥。
-3. **控制器/读出准备完成**：用户已批准的实现不再索批或重写。缺已独立核实的设备映射/输入事实及实际发行绑定，不能打开release。
+3. **控制器/读出准备完成**：用户已批准的实现不再索批或重写。缺已独立核实的有效设备隔离/输入事实及实际发行绑定，不能打开release。
    当前无真实runtime manifest；不造终态/成绩，不复用旧execute()。每块需各自新鲜路由回执，不能沿用上块旧检查。
 4. 外部事实就绪后固定新协议包、检查免费路由，再按明确矩阵/预算进入真实同预算对照；不追加训练或旧G0。
    读最终选中节点的外部分数，失败与完成率分开；不取轨迹最大分，不拿自报分替代，不跨任务混合原始指标。

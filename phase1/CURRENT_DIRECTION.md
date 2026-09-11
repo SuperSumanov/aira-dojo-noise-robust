@@ -7,6 +7,19 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L154. 2026-09-11：学长澄清原生隔离与失修恢复；改查实际边界，不再强求管理员配置
+
+学长指出STEP_ID与GPU编号无需对应，原sandbox/Jupyter不依赖这种对应；pool恢复逻辑久未维护可忽略。
+代码复核dojo-reproduce@065b0fba：Jupyter传递CUDA_VISIBLE_DEVICES/CUDA_DEVICE_ORDER，无STEP_GPUS映射；
+main_srun_worker的STEP_ID仅记录步骤身份。我方13042错误则确实来自新增adapter读取STEP_GPUS并索引NVML，
+并非要求STEP_ID等于GPU编号。该adapter保持撤回，不能把此次澄清写成13042已合格。
+现有BlockPoolControl._recover已仅接受全新pending/零attempt，未调用父类恢复；不再修理失修的恢复功能。
+不再以可读/etc/slurm/gres.conf为唯一前提，也不绕过文件权限。下一项为新的有界只读现场验证：
+gpu28单次双卡allocation至多5分钟，零卡步骤与两个同时占位的单卡步骤仅读本进程cgroup设备规则、
+Slurm/CUDA可见性变量及设备节点stat；不加载GPU库、不打开GPU设备、不运行模型/API/任务，不改镜像。
+这是设备范围诊断，资源申请仍计GPU时间；不能据此自动开放8-run。实际计算前仍须有可靠分配/隔离依据。
+用户本轮要求继续推进并转达上述简化建议；原六小时monitor不自动恢复。旧负结果、保护集及两臂预算不变。
+
 ## 0L153. 2026-09-11：撤回“隔离已解决”的泛化；非零步骤用了设备9，映射未核实，停止GPU
 
 13042真实Jupyter双step能运行，但step GPU ID=1被程序映射为physical minor9；minor9也在仅分配0的旧检查中可见。

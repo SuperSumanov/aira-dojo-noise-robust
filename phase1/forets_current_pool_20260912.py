@@ -190,7 +190,7 @@ def readout(root):
     p=plan(root);launch=json.loads((root/'launch.json').read_text())
     os.environ['SLURM_CONF']='/opt1/slurm/gpu-slurm.conf'
     text=subprocess.check_output(['sacct','-X','-j',launch['job'],'-nP',
-        '--format=JobIDRaw,State,ElapsedRaw,AllocTRES'],text=True,timeout=25)
+        '--format=JobIDRaw,State,ElapsedRaw,AllocTRES%256'],text=True,timeout=25)
     records=[s.split('|') for s in text.splitlines() if s.strip()]
     if len(records)!=1 or records[0][0]!=launch['job'] or records[0][1]!='COMPLETED':
         raise ValueError('allocation not cleanly closed')

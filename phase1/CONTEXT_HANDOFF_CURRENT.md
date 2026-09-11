@@ -1,6 +1,6 @@
 # 当前交接：seed11观测差尚非critic收益；seed12的13118正在运行
 
-更新2026-09-12香港；13118最后现场观察2026-09-11 23:30:00.875864 UTC。
+更新2026-09-12香港；13118最后现场观察2026-09-11 23:49:25.701023 UTC。
 恢复：fetch→CURRENT_DIRECTION.md最新0L165→本文件→核现场。学长指导ADVISOR_DIRECTIVES.md L/M/N。
 用户要会话内实质推进，不新增自动任务；不把旧队列、计划、mock或进程完成冒充当前结果。
 
@@ -37,8 +37,8 @@
 ## 当前收尾接口与已关闭证据
 
 - 原watch远端PID3678839；13118整块终态后自动primary closeout，不启动第二写入者。SSH连接已断，需只读核现场。
-- 最后现场：13118 RUNNING/gpu28，leaf/random completed、leaf/critic running，两个Spaceship pending。
-  本块18API、累计258，累计已结算0.606074898USD、2未结（含旧unknown及运行期请求）、stopped=false。
+- 最后现场：13118 RUNNING/gpu28，两个Leaf completed、Spaceship/critic running、Spaceship/random pending。
+  本块40API、累计280，累计已结算0.648879036USD、2未结（含旧unknown及运行期请求）、stopped=false。
   运行期间未读取最终成绩；这些不是实时余额承诺。
 - 13118结束后运行新stage/verify_forets_repeat_final_20260912.py一次（尚未执行）。
   wrapper SHA2853f59cf205fbe0ff942a2c336cb73c6f6ba7e3c513be43ce7890854d0305f8；
@@ -67,6 +67,10 @@
   仅在13118整体及独立收尾后仍需分辨生成/选择质量才启动，方案FORETS_CURRENT_POOL_PLAN_20260912.md。
   原镜像/300秒/6CPU/1GPU，8执行最多1.5GPUh、0API/critic；当前还无launch.json，不是已在跑。
   本地人工边界检查37 passed，不是正结果；执行器仅增加显式task/seed/hash参数，旧13085不重跑/不改回执。
+  新根已安装执行/原生绑定/数值校验代码，仍缺launch.json，不是已运行；不要再mkdir已存在bin/opencl-vendors。
+  6份继承GPU绑定文件逐一匹配父code-manifest，10Python解析及真实依赖导入通过，sbatch语法检查通过。
+  数值校验按实际sklearn1.6.1不额外归一化Leaf概率；4人工例与原评分函数一致，未读真实truth。
+  verify_forets_current_pool_20260912.py数值回执只能在完整8槽闭合后运行；诊断GPU尚未提交。
 - seed12独立选择重放wrapper已放同一新stage（verify_forets_repeat_selection_20260912.py及helper）。
   须在整组关闭及独立final通过后才执行；额外区分slot改选与原字节/AST改选，不输出候选代码或critic值。
   原seed11选择回执不重写；运行中13118源码/参数完全不变。
@@ -83,7 +87,7 @@
   23:26配置检查24份、2commit、num_children=2/3，不等于24新增physical runs。未开journal/env/outcome、未摄取。
   根列表50项可能分页，不能称全盘最新完整。见SENIOR_0910_INTAKE_STATUS_20260912.md；不重下载/重写隔离输出。
   LATEST最后759physical/733eligible、closure=false，未因上述元数据发现改变。
-- 只push myfork HEAD:phase1-value-critic；最后公开核对04e3ee8599170c8891bb1f950c35a6f5c0adb094，后续修改待push。
+- 只push myfork HEAD:phase1-value-critic；最后公开核对76beba2d4d760fad8eaac4a9ac6c3dfdf7a520c3，后续修改待push。
   每push扫内容与env/key/token/secret文件名；不把用户untracked codex_tmp/output/tmp/旧报告全add。
 - repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5；venvs/aira CPU控制，venvs/exp GPU/gdown。
   网络/uac/y24/yzyang4/env_setup.sh；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。gpu28不是projgpu28/39，原MLE镜像不投39。

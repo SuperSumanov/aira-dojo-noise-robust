@@ -36,6 +36,14 @@ def reduce_payload(payload, *, task, arm, step):
     calls = payload['task_calls']
     if not 1 <= len(candidates) <= 4:
         raise ValueError('candidate width outside fixed experiment')
+    scores = [c.get('score') for c in candidates]
+    known_scores = [s for s in scores if s is not None]
+    if any(type(s) not in (int, float) or not math.isfinite(s) for s in known_scores):
+        raise ValueError('invalid recorded critic score')
+    if arm == 'uniform_random' and known_scores:
+        raise ValueError('unexpected critic score in random arm')
+    fully_scored = bool(known_scores) and len(known_scores) == len(candidates)
+    ranked_scores = sorted(known_scores, reverse=True)
     states, roles = Counter(), Counter()
     walls, interpreter_times = [], []
     timed_out = exited_zero = missing_metadata = 0
@@ -65,6 +73,10 @@ def reduce_payload(payload, *, task, arm, step):
             exited_zero += int(code == 0 and not timeout)
             interpreter_times.append(duration)
     return dict(step=step, phase=payload['phase'], pool_width=len(candidates),
+        potential_pruning_pool=len(candidates) > 2, known_critic_score_count=len(known_scores),
+        critic_all_scores_tied=(len(set(known_scores)) == 1) if fully_scored else None,
+        critic_top2_cutoff_tied=(ranked_scores[1] == ranked_scores[2])
+            if fully_scored and len(candidates) > 2 else None,
         generated_candidates=sum(c['node'] is not None for c in candidates),
         candidate_task_calls=roles['candidate'], debug_task_calls=roles['debug'],
         total_task_calls=len(calls), returned_task_calls=states['returned'],
@@ -144,6 +156,9 @@ def main():
             'measured_task_calls', 'task_wall_seconds_observed', 'interpreter_seconds_observed')
         row.update({k: sum(e[k] for e in entries) for k in totals})
         row['complete_batch_receipts'] = all(e['phase'] == 'complete' and not e['writer_lock_remains'] for e in entries)
+        row['potential_pruning_pools'] = sum(e['potential_pruning_pool'] for e in entries)
+        row['all_tied_scored_pruning_pools'] = sum(e['potential_pruning_pool'] and e['critic_all_scores_tied'] is True for e in entries)
+        row['strictly_separated_scored_pruning_pools'] = sum(e['potential_pruning_pool'] and e['critic_top2_cutoff_tied'] is False for e in entries)
         rows.append(row)
         batches.extend(entries)
     if snapshot(root / 'paid.sqlite') != budget_before:

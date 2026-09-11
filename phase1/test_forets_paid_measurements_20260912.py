@@ -17,14 +17,29 @@ class MeasurementTests(unittest.TestCase):
             task_wall_ns=2_000_000_000, execution_metadata=dict(exit_code_reported=0,
                 timed_out_reported=False, exec_time_reported_seconds=1.5))
         self.payload = dict(schema=4, binding=dict(task=self.bind['task'], selection_policy=self.bind['arm'], step=1),
-            phase='complete', candidates=[dict(node={'code':'DO_NOT_EXPORT'}, score=.99)], task_calls=[call])
+            phase='complete', candidates=[dict(node={'code':'DO_NOT_EXPORT'}, score=None)], task_calls=[call])
 
     def test_count_and_no_private_payload(self):
         result = reduce_payload(self.payload, **self.bind)
         self.assertEqual(result['interpreter_exit_zero_calls'], 1)
         self.assertEqual(result['task_wall_seconds_observed'], 2)
         self.assertNotIn('DO_NOT_EXPORT', json.dumps(result))
-        self.assertNotIn('score', json.dumps(result))
+        self.assertNotIn('0.99', json.dumps(result))
+
+    def test_tie_and_pruning_counts_not_scores(self):
+        self.bind['arm'] = 'critic_topk_random'
+        self.payload['binding']['selection_policy'] = self.bind['arm']
+        self.payload['candidates'] *= 4
+        self.payload['candidates'] = copy.deepcopy(self.payload['candidates'])
+        for c in self.payload['candidates']:
+            c['score'] = .99
+        result = reduce_payload(self.payload, **self.bind)
+        self.assertTrue(result['potential_pruning_pool'])
+        self.assertTrue(result['critic_top2_cutoff_tied'])
+        self.assertTrue(result['critic_all_scores_tied'])
+        self.assertNotIn('0.99', json.dumps(result))
+        self.payload['candidates'] = [dict(node={}, score=s) for s in (4., 3., 2., 1.)]
+        self.assertFalse(reduce_payload(self.payload, **self.bind)['critic_top2_cutoff_tied'])
 
     def test_timeout_debug_and_unresolved(self):
         c = copy.deepcopy(self.payload['task_calls'][0])

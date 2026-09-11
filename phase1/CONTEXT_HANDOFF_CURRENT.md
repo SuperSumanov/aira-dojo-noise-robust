@@ -23,11 +23,11 @@
   local_srun_exited与remote_step_cleanup_confirmed均true。终态回执19:30:23.122596 UTC。
   pool：runs/srun_pool/74b760b75c87/manifest.json。最终成绩尚未读取。
 - 第二块seed9 / 13112：已提交，started时间19:31:50.001290 UTC。
-  19:36:44.580168 UTC观察RUNNING/gpu28，elapsed299秒、时限4:40；04运行，05/06/07 pending。
+  20:02:42.950856 UTC观察pool：04/05 completed，各1attempt，06 running，07 pending；共6/8run完成。
   pool：runs/srun_pool/b7f9c9287661/manifest.json。
   使用同一源码/模型/镜像/预算；第二块路由2/2 READY，不再检查或重提。
-- 19:36:44.580168 UTC现有账本：64次全部结算0.165564867USD，0未结，stopped=false。
-  含第一块60真实生成调用及两块4路由检查。这是当时费用，不是最终账单。
+- 20:02:42.950856 UTC现有账本：94次全部结算0.233775672USD，0未结，stopped=false。
+  含90真实生成调用及两块4路由检查。这是当时费用，不是最终账单。
 - 两块都已提交；禁止重复route、submit、execute或恢复旧campaign。当前在会话监督第二块，
   两块独立终态后统一读取全部8槽位最终结果；失败不删，不取轨迹最大分。
 
@@ -40,16 +40,21 @@
 - source inventory SHA 6857f18c60fecaa745710960c0f2f9dfd50d485717ca8a7e86faa47dedc10c1b。
 - release SHA 819621d75c9c95efe1e337866884b8701ad5f3f71cf5ea7e849f2b6ab0dd8798。
 - monetary authorization SHA c274cfc456296b85a8cb2b85ba9f66d28f738132462119e6fbb7f58d6c2e5c1e。
-- 本地公开HEAD最后fetch为5cbf2a6a3aaaa53199e1d2da3b5e8bab54c83748；不要将报告commit当执行commit。
+- 我方公开HEAD最新push核实为35d291ec4de0dcf8f66b256db87c5e4e766a78d0；不要将报告commit当执行commit。
 
 ## 收尾方式与结论边界
 
 1. 只核作业/控制器/pool结构状态、现有账本；不在第二块完成前看第一块结果。
 2. 两块终态后用本根code/forets_block_collect_20260911.py生成独立runtime-manifest，
    再code/forets_block_readout_20260911.py在新目录统一读最终eval.jsonl；本地旧版本绑定旧根，不能混用。
+   20:04:52 UTC本会话已启动最多30分钟的只读等待/收尾链，session25007（不是新GPU或自动任务）。
+   两块独立终态后生成runtime-manifest-20260912.json、final-readout-20260912/和cost-work-20260912/。
+   恢复先查这三处及链是否结束，不能并发/重复写同一读出；超时只退出观察，不取消13112。
 3. 独立复核最终selected-node外评分、进程成功、配对方向；leaf用random−critic，spaceship用critic−random。
    按任务报告两seed差值/中位数/样本标准差、有效配对和失败；不混平均原始指标、不声称确认性结论。
-4. 并行准备只读实际调用/执行次数和费用补充；不改运行代码、不读取保护集、不加GPU/API。
+4. 只读实际调用/执行次数、打平/剪枝机会及费用补充已准备；6项小测试在本地和Linux通过。
+   代码在本根post-closeout-20260912/forets_paid_measurements_20260912.py；只在两块终态后运行。
+   不改运行代码、不读取保护集、不加GPU/API。
    候选ledger只作该开发包结束后的计数核算，私有代码/中间critic分不导出；配置步数不是实际执行量。
 
 ## 已关闭与不能重做
@@ -68,6 +73,7 @@
 - 新包最后安全检查：senior-quarantine-20260911-v1，manifest SHA
   67ac5406b789fa7a5a39f41e9483a095f671f2d25ba47ccf69af4f98264c7cb4。
   32配置头不等于32合格physical runs，未读env/journal/结果、未并入训练。
+  2026-09-11 19:51:45.958128 UTC复查已知0907、0909、0909/mcts网盘目录，三者列表均无变化；未扫描其他新目录。
 - LATEST最后759总physical / 733 eligible，closure=false；本轮未重新计数。
   SHA 1b44e898bbae7ffc9098bbfa584ba842e0db2be5ae6bb8b5da0475d8ab34239f。
 - repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；只push myfork HEAD:phase1-value-critic。

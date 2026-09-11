@@ -11,9 +11,12 @@
   原8配置不变，两任务×seed8/9×两臂，280分钟/双GPU每块、两块含KillWait上限19GPUh。
   新production worker身份/PATH接线已实现，10项新增CPU检查通过（含实际pinned pool派发边界）。
   远端两块静态预检、22文件发布包/Git及231份原源码核对通过；代码commit5c8c07b711e7d3846fc5eda978f1efd6cd0b64ea。
-  **当前阻塞：免费路由NOT_READY**。2人工请求只1成功，6次传输5超时；无READY回执、无GPU提交、无MLE运行。
-  本次检查预算已用完，不覆盖block-1.route-check/catalog.json；后续需新有界窗口，不能复用失败回执或静默换模型。
-  详见 [生产接线结果](FORETS_NATIVE_PRODUCTION_20260911.md)。API实际费用未知，不补0。
+  **当前阻塞：两个免费入口均无有效生成**。原6尝试5超时/1成功保留；本轮Nemotron额外2次均超时，
+  Laguna指定函数2次404、改显式auto工具2次429。各窗口预算用完，不覆盖、不继续循环重试或静默转付费。
+  新发现：Laguna只声明auto工具支持，不支持强制function/required；0019补丁默认named不变、解析/函数/schema不放宽。
+  8项新增CPU检查通过，独立副本真实auto仍429；不是已恢复，限流来源/重置时间未知。
+  无READY回执、无GPU提交、无MLE运行；原生产包不变，auto尚未接入生产。
+  详见 [当前路由检查/兼容修复](FORETS_ROUTE_RECHECK_20260911.md)。API实际费用未知，不补0。
 - **最新实测修复**：13076的两个真实Jupyter步骤在gpu28原SIF均通过CUDA算术与LightGBM OpenCL GPU拟合。
   原生CUDA分别选中物理卡0/1，按UUID→驱动/proc信息绑定，各容器仅见各自单卡；不再将STEP_GPUS作NVML下标。
   执行commit4a7fae18e8dcbd256ccbae13e37c86264fc2d314；根/research/d7/spc/yzyang4/forets-native-gpu-adapter-20260911-y8jOwZ。
@@ -30,7 +33,7 @@
   random−critic **−1.86058**。critic此次更差，仅一个探索seed，不能外推普遍无效。
   [实测与读出](FORETS_FIRST_PAIR_20260910.md)；旧包、失败记录和未启动槽位保持不变。
 - 当前没有新的critic收益或干净scaling结论。配置、人工测试、输入编码差异均不是效果结果。
-- 最近队列实查：**2026-09-11 08:29:04 UTC / 香港9月11日16:29:04**，只有12535 PENDING/JobHeldUser。
+- 最近队列实查：**2026-09-11 08:51:14 UTC / 香港9月11日16:51:14**，只有12535 PENDING/JobHeldUser。
   它不会自己开跑；不释放/取消。无本轮运行中的GPU作业；这是观察时间，不是永久实时状态。
 
 ## 已完成，不再重复
@@ -75,10 +78,19 @@
    原SIF/任务代码不改；gpu27未做本次验证，不能把gpu28实测泛化到所有节点。设备9用途无需作为当前启动前提。
 2. **历史模板未知已作探索裁决**：保留当前服务输入，不冒充历史匹配；如学长后来提供新事实，另记版本，不途中改臂。
    不重下权重/重复问密钥；本轮可回答固定现成系统的e2e问题，不能据此确认干净scaling或最佳能力。
-3. **控制器/读出/native生产接线已完成准备**：代码根dAKj2b、固定release均在；只剩新的合格路由窗口/回执后才能提交。
+3. **控制器/读出/native生产接线已完成准备**：代码根dAKj2b、固定release均在；需稳定生成入口，不循环消耗失败检查。
    当前无真实runtime manifest；不造终态/成绩，不复用旧execute()。每块需各自新鲜路由回执，不能沿用上块旧检查。
-4. 外部事实就绪后固定新协议包、检查免费路由，再按明确矩阵/预算进入真实同预算对照；不追加训练或旧G0。
+4. 待用户/学长给稳定入口及本轮费用范围，或免费入口恢复；不重复问密钥。不能把历史泛化批准当作无限付费API预算。
+   如换生成器/采样参数，明确新协议并让两臂共同固定，不能在现有Nemotron矩阵中静默混用。
    读最终选中节点的外部分数，失败与完成率分开；不取轨迹最大分，不拿自报分替代，不跨任务混合原始指标。
+
+本轮检查产物与禁止重做：
+- 原额外窗口：forets-next-config-20260911-4h_0y6b4/block-1.route-recheck-1，SHA21bb4857...；2次均TimeoutError。
+- Laguna原模式：/research/d7/spc/yzyang4/forets-laguna-feasibility-20260911-v1，SHA4b8bf0af...；2次404。
+- Laguna auto：/research/d7/spc/yzyang4/forets-laguna-feasibility-20260911-auto-v1，SHAa332ff7b...；2次429。
+- 完整SHA/安全本地摘要见FORETS_ROUTE_RECHECK_20260911.md及results/forets_route_recheck_20260911。
+- 独立auto后端SHA5cf4f2d5...；补丁生成器forets_auto_tools_patch_20260911.py固定TREE3aae90ae，不能应用到未知源码。
+- 三窗口都结束；无后台检查/新monitor。下一次先看用户是否补齐稳定入口/费用范围，不复跑失败窗口或GPU验收。
 
 ## 语料与运行位置
 

@@ -25,3 +25,42 @@ Nemotron免费模型、tools、禁fallback、原实际config与transport不变�
 保留tools、temperature、零价格筛选、禁fallback与实际bounded transport；不修改任何原8份配置或release。
 结果即使通过也只写FEASIBLE_NOT_RELEASED，不能作为Nemotron READY；更换生产生成器须明确建立新版本并让两臂一致。
 这不是选择效果最好的模型，不读取任务成绩；只是停止对故障免费接口的无限等待。
+
+## 实际结果与收尾（08:51:14 UTC）
+
+| 独立检查 | 尝试 | 有效生成 | 观察结果 |
+|---|---:|---:|---|
+| 原Nemotron配置额外窗口 | 2 | 0 | 两次120秒超时 |
+| Laguna、去掉top_p、仍指定函数 | 2 | 0 | 两次404 |
+| Laguna、去掉top_p、显式auto工具 | 2 | 0 | 两次429 |
+
+本轮共6次额外人工生成尝试、零GPU/真实MLE；加上上轮6次共12次，但分别保留窗口，不合成伪成功率。
+所有窗口均NOT_READY，API实际用量/账单不完整，费用仍未知。不再无界重试，不改限流/隐私/价格筛选或转付费。
+08:51:14 UTC队列仍仅12535 held；原block-1.route.json与block-1.runtime都不存在。
+
+### 确切兼容性发现与修复
+
+官方[模型端点信息接口](https://openrouter.ai/docs/api/api-reference/endpoints/list-endpoints)的现场读数：
+Laguna工具模式支持auto=true、required=false、function=false，同时不声明top_p支持。
+这比仅看supported_parameters含tools/tool_choice更细；初检漏查强制指定函数能力，两个404不可写成“模型不存在”。
+去掉top_p后仍404，随后仅改变工具选择为auto得到429；与强制函数不兼容的判断相符，
+但请求发生在不同时刻、429可能来自账户或上游，**不能称已唯一确定404根因或证明生成可用**。
+没有读取429原始响应，限流层级与重置时间未知，不能猜是余额不足/日限额或擅自改账户设置。
+
+补丁0019只增加bounded_tool_choice_mode=auto的显式选项，默认named不变；非tools/无schema/非bounded拒绝。
+实际JSON解析、函数名、schema验证保持原样；无工具响应不能视为有效候选，无文本fallback。
+8项新增CPU检查通过；首次测试夹具缺类型别名导致8个setup error，补齐夹具后8项通过，不称两轮16项。
+真实auto检查是在独立source副本上执行；后端SHA=5cf4f2d5ce1190e1f758137f0468c4eb6b09625b260dc95f037b4ecd9377ed9f。
+它未接入生产、未放行8run、未改学长分支；源package与现成模型均不改。
+
+### 证据与下一项真正依赖
+
+安全摘要在results/forets_route_recheck_20260911/：
+- nemotron.json：21bb4857cf01c8fe07de97af2de3e9f248f2f93e2b1d5768140195df9507d3b6。
+- laguna-named.json：4b8bf0af4c6aa597828f4dc369b5c6d6176344a65e823185f0d53e2843a82e86。
+- laguna-auto.json：a332ff7bd510f8141f50639b7af1eea4a719aa23e6f8f212fb2347635ea79152。
+
+若免费入口恢复，需重新明确有界检查窗口，不能重用失败目录、加长超时或更换模型假冒旧READY。
+更实际的解阻是学长/用户提供稳定生成入口及可用的本轮费用上限（只需平台/模型/预算，不再发密钥）。
+若改变生成器，以新版本让两臂共同固定；不在未获明确费用范围时启用收费fallback。
+当前没有新的critic最终成绩/干净scaling正结论；13004原负向探索结果不变。

@@ -17,7 +17,10 @@ OUTPUT = Path('/research/d7/spc/yzyang4/forets-laguna-feasibility-20260911-v1')
 MODEL = 'poolside/laguna-s-2.1:free'
 
 
-def main():
+def main(auto=False):
+    global OUTPUT
+    if auto:
+        OUTPUT = OUTPUT.with_name('forets-laguna-feasibility-20260911-auto-v1')
     OUTPUT.mkdir(mode=0o700, exist_ok=False)
     os.environ.update(PYTHON_DOTENV_DISABLED='1', PYTHONDONTWRITEBYTECODE='1',
         CUDA_VISIBLE_DEVICES='', HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1',
@@ -28,12 +31,32 @@ def main():
     from forets_native_run_20260911 import static_ready, write_once
     from forets_e2e_campaign import install_process_credential
     _, commit = static_ready(CODE, 1)
+    source = ROOT/'source'
+    if auto:
+        # Build only reviewed code files into this artificial-only output root.
+        from forets_auto_tools_patch_20260911 import revised, BACKEND
+        inventory_raw = (ROOT/'source-files.json').read_bytes()
+        if hashlib.sha256(inventory_raw).hexdigest() != 'e72e6f7ad5f500967e1ea243a05afc016a2ae7ad35c9262dedd80bd43d89b84f':
+            raise RuntimeError('source inventory changed')
+        source = OUTPUT/'source'
+        for relative, digest in json.loads(inventory_raw).items():
+            old = ROOT/'source'/relative
+            if old.is_symlink() or not old.resolve().is_relative_to((ROOT/'source').resolve()):
+                raise RuntimeError('source path escapes')
+            data = old.read_bytes()
+            if hashlib.sha256(data).hexdigest() != digest: raise RuntimeError('source changed')
+            if relative == BACKEND: data = revised(data).encode()
+            new = source/relative
+            new.parent.mkdir(parents=True, exist_ok=True)
+            with new.open('xb') as stream: stream.write(data)
     report = dict(utc=datetime.now(timezone.utc).isoformat(), status='NOT_READY',
         role='alternate_free_route_feasibility_not_production_release', model=MODEL,
         controller_commit=commit, checker_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         logical_request_cap=2, generation_attempt_cap=2, timeout_per_attempt_seconds=120,
         output_tokens_per_attempt=8192, public_artificial_input_only=True,
-        production_config_modified=False, gpu_jobs=0, task_runs=0, calls=[])
+        production_config_modified=False, gpu_jobs=0, task_runs=0, calls=[],
+        tool_choice_mode='auto' if auto else 'named',
+        backend_sha256=hashlib.sha256((source/'src/dojo/core/solvers/llm_helpers/backends/lite_llm.py').read_bytes()).hexdigest())
     write_once(OUTPUT/'started.json', report)
     captured = io.StringIO()
     budget = None
@@ -53,10 +76,12 @@ def main():
                 eligible = [e for e in endpoints if required <= set(e.get('supported_parameters', []))
                     and all(float(e.get('pricing', {}).get(k, 'nan')) == 0 for k in ('prompt', 'completion'))]
                 if not eligible: raise RuntimeError('free compatible endpoint absent')
+                if auto and not all(e.get('supports_tool_choice', {}).get('auto') is True for e in eligible):
+                    raise RuntimeError('auto tool choice not supported')
                 report['catalog'] = dict(credential_http_status=200, free_compatible_endpoints=len(eligible),
                     required_parameters=sorted(required), top_p_omitted=True,
                     endpoint_metadata_utc=datetime.now(timezone.utc).isoformat())
-            sys.path.insert(0, str(ROOT/'source/src'))
+            sys.path.insert(0, str(source/'src'))
             from dojo.config_dataclasses.run import RunConfig
             from dojo.core.solvers.llm_helpers.generic_llm import GenericLLM
             from dojo.core.solvers.llm_helpers.backends.run_budget import initialize
@@ -69,6 +94,7 @@ def main():
             op.llm.client.model_id = MODEL
             op.llm.generation_kwargs.pop('top_p', None)
             op.llm.generation_kwargs['bounded_max_attempts'] = 1
+            if auto: op.llm.generation_kwargs['bounded_tool_choice_mode'] = 'auto'
             llm = GenericLLM(op)
             report['input_changes'] = dict(model_id=MODEL, top_p='omitted',
                 max_attempts=1, original_config_sha256=hashlib.sha256(before).hexdigest())
@@ -117,7 +143,9 @@ def main():
 
 
 if __name__ == '__main__':
-    try: raise SystemExit(main())
+    try:
+        if sys.argv[1:] not in ([], ['--auto']): raise ValueError('only fixed auto option allowed')
+        raise SystemExit(main(auto=sys.argv[1:] == ['--auto']))
     except Exception as exc:
         print(json.dumps(dict(status='STOPPED_NO_GPU',error_type=type(exc).__name__)),flush=True)
         raise SystemExit(2)

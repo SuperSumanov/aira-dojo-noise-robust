@@ -1,0 +1,78 @@
+{
+  "backend_sha256": "5cf4f2d5ce1190e1f758137f0468c4eb6b09625b260dc95f037b4ecd9377ed9f",
+  "calls": [
+    {
+      "error": {
+        "error_type": "RateLimitError",
+        "http_status": 429,
+        "retryable": true
+      },
+      "fixture_matched": false,
+      "index": 0
+    },
+    {
+      "error": {
+        "error_type": "RateLimitError",
+        "http_status": 429,
+        "retryable": true
+      },
+      "fixture_matched": false,
+      "index": 1
+    }
+  ],
+  "catalog": {
+    "credential_http_status": 200,
+    "endpoint_metadata_utc": "2026-09-11T08:49:34.564603+00:00",
+    "free_compatible_endpoints": 1,
+    "required_parameters": [
+      "max_tokens",
+      "temperature",
+      "tool_choice",
+      "tools"
+    ],
+    "top_p_omitted": true
+  },
+  "checker_sha256": "f3b1fd78373270fa9bc253bc4a3e902cc54f3356c1f97341723c34fdf2db3ba0",
+  "controller_commit": "5c8c07b711e7d3846fc5eda978f1efd6cd0b64ea",
+  "finished_utc": "2026-09-11T08:49:45.926772+00:00",
+  "generation_attempt_cap": 2,
+  "gpu_jobs": 0,
+  "input_changes": {
+    "max_attempts": 1,
+    "model_id": "poolside/laguna-s-2.1:free",
+    "original_config_sha256": "7c5105055c632f375f453484c76ffee4109b7e7c0365b630586a78f4bbac2303",
+    "top_p": "omitted"
+  },
+  "logical_request_cap": 2,
+  "model": "poolside/laguna-s-2.1:free",
+  "output_tokens_per_attempt": 8192,
+  "production_config_modified": false,
+  "public_artificial_input_only": true,
+  "reserved_attempts": 2,
+  "role": "alternate_free_route_feasibility_not_production_release",
+  "status": "NOT_READY",
+  "task_runs": 0,
+  "timeout_per_attempt_seconds": 120,
+  "tool_choice_mode": "auto",
+  "transport_events": [
+    {
+      "error_type": "RateLimitError",
+      "http_status": 429,
+      "latency": 0.8100602159975097,
+      "retryable": true,
+      "run_attempt_ordinal": 1,
+      "state": "transport_unknown",
+      "success": false
+    },
+    {
+      "error_type": "RateLimitError",
+      "http_status": 429,
+      "latency": 0.3983030940289609,
+      "retryable": true,
+      "run_attempt_ordinal": 2,
+      "state": "transport_unknown",
+      "success": false
+    }
+  ],
+  "utc": "2026-09-11T08:49:33.217892+00:00"
+}

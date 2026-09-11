@@ -1,0 +1,76 @@
+{
+  "calls": [
+    {
+      "error": {
+        "error_type": "NotFoundError",
+        "http_status": 404,
+        "retryable": false
+      },
+      "fixture_matched": false,
+      "index": 0
+    },
+    {
+      "error": {
+        "error_type": "NotFoundError",
+        "http_status": 404,
+        "retryable": false
+      },
+      "fixture_matched": false,
+      "index": 1
+    }
+  ],
+  "catalog": {
+    "credential_http_status": 200,
+    "endpoint_metadata_utc": "2026-09-11T08:44:11.309002+00:00",
+    "free_compatible_endpoints": 1,
+    "required_parameters": [
+      "max_tokens",
+      "temperature",
+      "tool_choice",
+      "tools"
+    ],
+    "top_p_omitted": true
+  },
+  "checker_sha256": "3df1fb2c1d4b0b0e10ec5c89d12f5cf3e3c7d4069e7629da0a47d23779d387e5",
+  "controller_commit": "5c8c07b711e7d3846fc5eda978f1efd6cd0b64ea",
+  "finished_utc": "2026-09-11T08:44:21.040209+00:00",
+  "generation_attempt_cap": 2,
+  "gpu_jobs": 0,
+  "input_changes": {
+    "max_attempts": 1,
+    "model_id": "poolside/laguna-s-2.1:free",
+    "original_config_sha256": "7c5105055c632f375f453484c76ffee4109b7e7c0365b630586a78f4bbac2303",
+    "top_p": "omitted"
+  },
+  "logical_request_cap": 2,
+  "model": "poolside/laguna-s-2.1:free",
+  "output_tokens_per_attempt": 8192,
+  "production_config_modified": false,
+  "public_artificial_input_only": true,
+  "reserved_attempts": 2,
+  "role": "alternate_free_route_feasibility_not_production_release",
+  "status": "NOT_READY",
+  "task_runs": 0,
+  "timeout_per_attempt_seconds": 120,
+  "transport_events": [
+    {
+      "error_type": "NotFoundError",
+      "http_status": 404,
+      "latency": 0.24338610999984667,
+      "retryable": false,
+      "run_attempt_ordinal": 1,
+      "state": "transport_unknown",
+      "success": false
+    },
+    {
+      "error_type": "NotFoundError",
+      "http_status": 404,
+      "latency": 0.05459843698190525,
+      "retryable": false,
+      "run_attempt_ordinal": 2,
+      "state": "transport_unknown",
+      "success": false
+    }
+  ],
+  "utc": "2026-09-11T08:44:10.344959+00:00"
+}

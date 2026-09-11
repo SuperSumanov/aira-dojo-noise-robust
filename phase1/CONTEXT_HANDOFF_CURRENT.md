@@ -16,7 +16,7 @@
   random−critic **−1.86058**。critic此次更差，仅一个探索seed，不能外推普遍无效。
   [实测与读出](FORETS_FIRST_PAIR_20260910.md)；旧包、失败记录和未启动槽位保持不变。
 - 当前没有新的critic收益或干净scaling结论。配置、人工测试、输入编码差异均不是效果结果。
-- 最近队列实查：**2026-09-10 22:40:20 UTC / 香港9月11日06:40:20**，只有12535 PENDING/JobHeldUser。
+- 最近队列实查：**2026-09-11 02:38:44 UTC / 香港9月11日10:38:44**，只有12535 PENDING/JobHeldUser。
   它不会自己开跑；不释放/取消。无本轮运行中的GPU作业；这是观察时间，不是永久实时状态。
 
 ## 已完成，不再重复
@@ -92,7 +92,9 @@
 - first-960/Target-300/Target-522的标签、结果、预测及私有选择继续隔离；不更新agent底座。
   不恢复HCE、多保真、Probe、score-channel、K≥1 lookahead。保留未跟踪codex_tmp/output/tmp等用户文件。
 - 研究盘1TB /research/d7/spc/yzyang4；已知到期2026-09-29，续期未知。
-- 已有g0-r5每20分钟续跑，到 **香港2026-09-11 10:38** 截止；不创建重复monitor。
-  任务读 [NIGHT_WORK](NIGHT_WORK_20260911.md)；仅有变化才处理，不重跑成功检查填时间。
+- 六小时窗口已于 **香港2026-09-11 10:38** 截止，已有g0-r5已通过应用工具暂停并独立读回PAUSED；
+  未新增监控、未取消无关作业。收尾fetch：我方公开b018f05d109ede628cb07cbff78bf5a46e699cfc，
+  学长dojo-reproduce仍065b0fbaa89e0eb663f2834ec768081f5d56394d；没有新提交或可据以开跑的外部事实。
+  窗口后不自动恢复GPU/API或扩大预算；等权威设备映射与历史输入事实。完成项见 [NIGHT_WORK](NIGHT_WORK_20260911.md)。
 - 旧交接全文保留在Git aac4acc0:phase1/CONTEXT_HANDOFF_CURRENT.md；更早869行版在684e1c6c。
   即时状态覆盖本文件；历史/失败/撤回保留dated报告与Git，不把每次轮询堆回本入口。

@@ -1,8 +1,29 @@
-# 当前交接：analyzer类型缺陷已定位/人工修复通过，准备新seed11真实验证
+# 当前交接：analyzer修复后新seed11四run已在gpu28运行
 
-更新2026-09-12香港；最后独立观察2026-09-11 21:14:16.028371 UTC。
+更新2026-09-12香港；新作业最后观察2026-09-11 21:44:38.556070 UTC。
 恢复：fetch→CURRENT_DIRECTION.md最新0L164→本文件→核现场。学长指导ADVISOR_DIRECTIVES.md L/M/N。
 用户要会话内实质推进，不新增自动任务；不把旧队列、计划、mock或进程完成冒充当前结果。
+
+## 新seed11现场操作（优先读，禁止重复启动）
+
+- 新包 **/research/d7/spc/yzyang4/forets-review-20260912-csh5q4i8**，source tree
+  6ca01fba9892a350cbb24152054b5296dc7095f1；controller **a383c2abb5fa9def7e85e7b3313c3894159e7be3**。
+- prepared e6ec9d4c6664a98a6c069b13cb85624ece78b864adf036591ed34f4c8df18718；
+  inventory9fbd2e1a336a96c241a03a837649854b38e1fd0d12991d3bac3f94367df28a6a；
+  releasecf87a4c186d04c4021d69844c8698de11a80b4c5cf9cc18beaa0c3582f6e4f36；
+  AUTH4bbac52d02eb1109aded9aeca4d73cd670fb7893afe5988973ace34a7204d98e。
+- 构建成功、STATIC_READY；实际MCTS接纳方法7个CPU人工案例通过，旧错误也复现，不是新GPU/G0。
+- 55账本行已完整复制（含1未知预留和历史合并行），dgzmkcqh旧账已sealed。
+  新总责任上限3.122344104USD，其中新增最多2USD；旧scope全关闭，route改route_s11，四新scope各1.50USD。
+  route检查只容忍相同的历史unknown IDs，任何新unknown都拒绝，不把历史未知当零或初始化掉。
+- **13115 RUNNING/gpu28**，提交2026-09-11 21:41:20.187089 UTC，最后观察运行198秒、leaf/critic真实worker运行，其余三项pending。
+  route两次已通过且结算；工具PTY46886整条正常完成。新根submission/submit-intent已存在，绝不能重跑route/submit/activate。
+  新旧累计181实际API，已结算0.422497764USD；当时2未结=历史1未知+新scope1在途，不等于两次失败。
+- 新包下forets_environment_session_20260912.py已派生为seed11；billing扣55旧rows计新增，累计仍扣合并1条加历史124。
+  会话内watch已启动，工具PTY **19866**；已从启动期转入首个worker。
+  优先poll此session；它在整块终态后自动closeout，禁止第二个收尾写入者。
+- Stage /research/d7/spc/yzyang4/forets-review-stage-20260912-fQzyb0；本地artifact codex_tmp/forets-review-artifact-20260912。
+  原SIF/critic/步骤/超时不动；源代码只变lite_llm.py、review_metric.py、paid_budget.py。
 
 ## 刚完成的真实对照
 
@@ -46,14 +67,14 @@
   原人工示例两次均metric:string失败；v1成功例过、失败例未过；v2两例全部通过，历史结果仍不补分。
   修复helper=forets_review_metric_20260912.py，SHA aa919e2635ff866d382c49fcb297aac752651163079a968f93cbb113042fde77。
   明确is_bug=True时文本metric置null，仍是坏节点；其余仅合法JSON数字/null恢复，其他字段/无效值不松动。
-- 最新账本根 **/research/d7/spc/yzyang4/forets-analyzer-live-dgzmkcqh**；AUTH
+- 上轮诊断账本（已被新seed11完整结转并sealed）**/research/d7/spc/yzyang4/forets-analyzer-live-dgzmkcqh**；AUTH
   581f1c378636728df93c6502a4e45513847eed29b86de5a577309d72967f21b5。
   55行包括历史124call的1条合并行，真实累计178API；settled=422344104 nanoUSD，held=1122344104 nanoUSD，1未知。
   ko8vhkcz/lizj2miy两前诊断账本已sealed；新矩阵须完整复制dgzmkcqh所有rows，不能初始化丢掉未知责任。
   初次凭据安装顺序、v1加载类内类型别名两处前置失败均0真实API，已修复；不重复那些窗口。
-- 正在准备forets_review_build_20260912.py：seed11两任务四run，leaf critic→random、spaceship random→critic。
+- forets_review_build_20260912.py已构建/激活：seed11两任务四run，leaf critic→random、spaceship random→critic。
   原gpu28/双卡/镜像/critic/6step/300秒；仅共同parser兼容+每run责任预留cap1.50USD，新增全块cap2USD。
-  新增GPU上限10h，加历史实耗4.331666666666667GPUh；原API100人民币/10USD不重置。未提交，不照旧13113重投。
+  新增GPU上限10h，加历史实耗4.331666666666667GPUh；原API100人民币/10USD不重置。提交状态看顶部，不照旧13113重投。
   构建/类型兼容/账本共11项本地测试通过；生产方法人工fixture也过。计划FORETS_REVIEW_REPAIR_PLAN_20260912.md。
 
 ## 不重做/不越界
@@ -65,7 +86,7 @@
 - 学长分支未改，dojo-reproduce最后fetch065b0fbaa89e0eb663f2834ec768081f5d56394d；
   0907/0909/0909-mcts最后文件清单19:51:45 UTC无变化，不代表其他目录无新语料。
   quarantine32配置不等于32runs；LATEST最后759physical/733eligible、closure=false，未重算。
-- 只push myfork HEAD:phase1-value-critic；远端最后独立核对d87a45988ae619fa90de89a34baa3df404f45526。
+- 只push myfork HEAD:phase1-value-critic；远端最后独立核对a383c2abb5fa9def7e85e7b3313c3894159e7be3。
   每次push前扫待推文件内容和env/key/token/secret文件名，仅输出计数。学长branch不改。
 - repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；保留用户untracked codex_tmp/output/tmp/旧报告。
 - SSH linux5；CPU研究根venvs/aira/bin/python，GPUvenvs/exp/bin/python；网络/uac/y24/yzyang4/env_setup.sh。

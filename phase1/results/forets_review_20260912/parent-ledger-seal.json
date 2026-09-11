@@ -1,0 +1,46 @@
+{
+  "authorization": {
+    "accounted_cny_ceiling": "27.4766281152",
+    "conservative_cny_per_usd": 8,
+    "context_tokens": 1000000,
+    "currency": "USD",
+    "experiment": "review-type-repair-seed11",
+    "fee_multiplier": "1.10",
+    "incremental_cap": 2000000000,
+    "model": "qwen/qwen3-coder-flash",
+    "output_tokens": 8192,
+    "predecessor_accounted": 1122344104,
+    "predecessor_authorization": "581f1c378636728df93c6502a4e45513847eed29b86de5a577309d72967f21b5",
+    "predecessor_calls": 55,
+    "predecessor_cost": 318775548,
+    "predecessor_settled": 422344104,
+    "predecessor_unresolved": 1,
+    "provider": {
+      "allow_fallbacks": false,
+      "max_price": {
+        "completion": 2.6,
+        "prompt": 0.65,
+        "request": 0
+      },
+      "only": [
+        "alibaba"
+      ],
+      "require_parameters": true
+    },
+    "reservation": 700000000,
+    "route_limit": 1200000000,
+    "run_limit": 1500000000,
+    "serial_transport_per_worker": true,
+    "total": 3122344104,
+    "user_cny_cap": 100,
+    "version": 4
+  },
+  "authorization_sha256": "4bbac52d02eb1109aded9aeca4d73cd670fb7893afe5988973ace34a7204d98e",
+  "carried_accounted_nano": 1122344104,
+  "carried_actual_api_calls": 178,
+  "carried_rows": 55,
+  "carried_settled_nano": 422344104,
+  "parent": "/research/d7/spc/yzyang4/forets-analyzer-live-dgzmkcqh",
+  "parent_authorization_sha256": "581f1c378636728df93c6502a4e45513847eed29b86de5a577309d72967f21b5",
+  "unknown_preserved": 1
+}

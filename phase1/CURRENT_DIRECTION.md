@@ -7,6 +7,18 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L155. 2026-09-11：原生CUDA实选设备已核对，限定新Jupyter接入验证
+
+13075在gpu28标准双卡分配内同时运行两个单卡步骤，均继承CUDA_VISIBLE_DEVICES=0；
+CUDA Driver API各见一张RTX3090，返回不同UUID/PCI地址，/proc驱动记录对应物理minor0和1，不是设备9。
+没有CUDA上下文创建/算术或模型/API。此证据来自原生CUDA选卡，不要求STEP_ID等于GPU编号，也不以NVML下标反查。
+据此用新的native adapter记录CUDA实际选中的UUID，通过同UUID的/proc驱动记录解析device minor；
+旧错误adapter仍关闭，保留原镜像和任务payload，只让OpenCL与CUDA看到同一张原生选中卡。
+下一项限gpu28双卡5分钟、两个真实Jupyter步骤，人工CUDA算术与LightGBM OpenCL短检，无模型/API/任务数据。
+只开放独立integration根，8-run入口仍不开放。通过前不称完整接入完成；不重做G0或旧恢复逻辑。
+13073只读检查超时失败保留；13074双步骤metadata完成。devices.list的a *:* rwm不证明无限访问：
+Linux cgroup-v1默认allow模式可能不在此输出拒绝项，不能据此判定Slurm隔离失效或成功。
+
 ## 0L154. 2026-09-11：学长澄清原生隔离与失修恢复；改查实际边界，不再强求管理员配置
 
 学长指出STEP_ID与GPU编号无需对应，原sandbox/Jupyter不依赖这种对应；pool恢复逻辑久未维护可忽略。

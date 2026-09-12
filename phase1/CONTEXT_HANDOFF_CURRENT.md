@@ -46,6 +46,9 @@
   不再build/activate/route/submit。实际session为本根forets_environment_session_20260912.py，status只读。
   原session watch会自动closeout，不使用；只读observe_forets_context_e2e_20260912.py --watch已在会话PTY86012观察，不写结果。
   独立verify_forets_context_e2e_20260912.py已准备，16项相关测试通过；stage已部署、未执行读数。全4终态后单次session closeout，再独立验证。
+  已在揭盲前公开FORETS_CONTEXT_REPLICATION_GATE_20260912.md（c001e3c8）：技术可靠且≥1可比对即完整复验seed14，不按输赢选任务。
+  forets_context_repeat_20260912.py为后继入口，继承旧构建器哈希绑定、单卡/同模型/同规则，3测试通过；未facts/build/activate/submit。
+  新seed14最多另5GPUh/3.50USD责任且累计≤原10USD；当前13123关闭前不得结转/变更账本。
 - 已读真正父版13118根/code与seed11公开capsule。本地forets_block_runtime等有旧draft文本，不能直接部署旧本地副本。
   当前ForeTS逐候选HTTP取分；新全池裁判应接在batch_runtime完整生成并freeze_pool后，不能假装旧接口已支持。
 - 设计新版本不加载8B服务，API裁判在worker内；1GPU/6CPU同硬件两臂，不伪造CUDA服务marker。
@@ -75,6 +78,9 @@
   SLURM_CONF=/opt1/slurm/gpu-slurm.conf；MLE用gpu28/27，不是projgpu28/39；镜像不升级、不退CPU。
 - key只在远端aira-dojo/.env OPENROUTER_API_KEY→worker PRIMARY_KEY；不回显/本地/Git、不再索要。
 - 只push myfork HEAD:phase1-value-critic；最近成功4c00af32133c411827a0f3d9678ccec0e1318656，完整池/通用裁判结果和新seed13固定实现已公开。
+  后续798f1db9公开开跑与独立核验代码；3c374bb7公开实际source capsule v3，284文件/237源码/28controller与原Git/部署哈希一致。
+  capsule SHA302e5b703846fc40fc7f7e8e14127a86c58131db24e50189d88e43eb7d142a82；v1/v2许可证CRLF差异未发布、未改运行源码。
+  人工平分性质分析未读真实池/调用API，不能称真实效果/新颖性；多顺序聚合已有NAACL2024/PCFJudge2026先例。不得据此改13123或seed14规则。
   staged文件名+内容扫描，不全add用户untracked codex_tmp/output/tmp/旧报告。
 - g0-r5 PAUSED，无新automation；12535 held不碰，不索要gres.conf或使用失修pool恢复。
 - 研究盘1TB/2026-09-29到期，续期未知；共享df不是个人quota。

@@ -45,6 +45,10 @@
 - [共享模型 Cache 工程计划](runtime/operations/ENGNEERING_PLAN.md)
 - [已知问题记录](runtime/operations/OTHER_BUGS.md)：端口冲突和 `CUDA_VISIBLE_DEVICES` 相关问题。
 
+### 本地 LLM server
+
+- [本地 vLLM server（Qwen3.8-27B 4bit）+ MLE-bench 端到端测试](evaluation/LOCAL_VLLM_SERVER.md)：在 salloc 出来的 3090 节点上用 `build/vllm/vllm.sif` 起 Qwen3.8-27B 4bit server，连接/性能测试脚本，`.env` 与 client 配置，以及 spaceship-titanic 端到端冒烟测试的完整命令。
+
 ## LLM 后端与结构化输出
 
 - [DeepSeek 结构化输出兼容性与修复记录](llm/AIRA_DOJO_DS_STRUCTURED_OUTPUT.md)

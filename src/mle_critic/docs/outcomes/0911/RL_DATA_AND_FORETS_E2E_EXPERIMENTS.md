@@ -27,7 +27,7 @@
 - 训练基建
 
 完整训练配置和奖励曲线在
-https://wandb.ai/zizhechen-the-chinese-university-of-hong-kong/mle-critic-rl/reports/mle-critic-rl---VmlldzoxNzkxMzA0Ng
+https://api.wandb.ai/links/zizhechen-the-chinese-university-of-hong-kong/1uwihamy
 
 ### 1.2 训练结果
 

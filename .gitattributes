@@ -572,3 +572,5 @@ phase1/results/forets_pool_completion_20260912/*.json -text diff
 phase1/results/forets_pool_completion_20260912/*.csv -text diff whitespace=cr-at-eol
 phase1/results/forets_singlevote_s26_s27_20260913/*.json -text diff
 phase1/results/forets_singlevote_s26_s27_20260913/*.csv -text diff whitespace=cr-at-eol
+phase1/results/forets_common_start_s28_s29_20260913/*.json -text diff
+phase1/results/forets_common_start_s28_s29_20260913/*.csv -text diff whitespace=cr-at-eol

@@ -1,0 +1,22 @@
+{
+  "baseline_executed_within_search_budget": true,
+  "no_missing_to_zero": true,
+  "prepared_sha256": "2fcde0dd017124ab20c73a7bb505462185525d7b377d890c4e66e08f801986b5",
+  "primary": "paired final score and matched-start improvement",
+  "readers": {
+    "attribute_forets_wallclock_20260912.py": "c0758cfb7f6f615aae9b8ca8ed217301914ddcf1027d7f1c5d3280503614d342",
+    "readout_forets_common_start_20260913.py": "baad587865601d8e924597faae766e92ac5b5afd494887afa171d04f7fb7c41b",
+    "readout_forets_generation_capacity_20260912.py": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+    "readout_forets_single_vote_20260913.py": "4a00f5296e5241811df9227ce44ac60966ef87604748169d4bff581c696859c3",
+    "readout_forets_wallclock_20260912.py": "d800d3986a9d88251c30a0194df413d302183a714bbfcd4f7b137d4aa3726b0e",
+    "verify_forets_review_selection_20260912.py": "2fc9cae3ac3fe31f38916da7009a7cc72d2dcbb7fccd1db25be67a443b193216",
+    "verify_single_vote_selection_20260913.py": "dda8e03db5f4e0a98a9b65f005d3941ac680d213a69ddaad78cb8b42b41985e0"
+  },
+  "seeds": [
+    28,
+    29
+  ],
+  "source_tree": "1ec18564f176d58a3a7ac3a46852ad92044777b5",
+  "utc": "2026-09-12T19:28:38.721400+00:00",
+  "whole_matrix_before_readout": true
+}

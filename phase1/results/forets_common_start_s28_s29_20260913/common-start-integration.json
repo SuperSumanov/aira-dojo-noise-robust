@@ -1,0 +1,36 @@
+{
+  "actual_batch_paths": [
+    {
+      "arm": "uniform_random",
+      "execution": 2,
+      "first_generation_calls": 0,
+      "first_ranking_calls": 0,
+      "generation": 4,
+      "rank": 0
+    },
+    {
+      "arm": "critic_topk_random",
+      "execution": 2,
+      "first_generation_calls": 0,
+      "first_ranking_calls": 0,
+      "generation": 4,
+      "rank": 1
+    }
+  ],
+  "api_requests": 0,
+  "baseline_programs": [
+    {
+      "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+      "synthetic_rows": 7,
+      "task": "leaf-classification"
+    },
+    {
+      "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+      "synthetic_rows": 7,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "gpu_dispatches": 0,
+  "source_tree": "1ec18564f176d58a3a7ac3a46852ad92044777b5",
+  "status": "PASS_SYNTHETIC_NOT_REAL_TASK_RESULT"
+}

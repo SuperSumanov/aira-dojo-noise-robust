@@ -3,6 +3,10 @@ import json
 import sys
 from pathlib import Path
 import unittest
+import sqlite3
+import tempfile
+from unittest.mock import patch
+from contextlib import closing
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import forets_generation_capacity_20260912 as target
@@ -36,5 +40,31 @@ class GenerationTests(unittest.TestCase):
     def test_no_silent_response_salvage(self):
         value=dict(model=target.MODELS[1],provider='Alibaba',choices=[dict(finish_reason='stop',message=dict(content='```python\nprint(1)\n```'))])
         with self.assertRaises(ValueError):target.extract(value,target.MODELS[1])
+    def test_transfer_preserves_stopped_failed_copy_and_unknown_liability(self):
+        saved={k:getattr(target.budget,k) for k in ('AUTH','AUTH_RAW','AUTH_SHA','RESERVE')}
+        try:
+            with tempfile.TemporaryDirectory() as temp:
+                parent,failed,root=[Path(temp)/x for x in ('parent','failed','new')]
+                for d in (parent,failed,root):d.mkdir()
+                target.budget.initialize(parent/'paid.sqlite',[f'gen-cap-{i}' for i in range(8)])
+                target.budget.reserve(parent/'paid.sqlite','gen-cap-0','gen-cap-0')
+                with closing(sqlite3.connect(parent/'paid.sqlite')) as db:
+                    db.execute('UPDATE auth SET stopped=1');db.commit()
+                    with closing(sqlite3.connect(failed/'paid.sqlite')) as out:db.backup(out)
+                (failed/'generation-intent.json').write_text('{}')
+                with patch.object(target,'PARENT',parent),patch.object(target,'FAILED_TRANSFER',failed),patch.object(target,'PARENT_AUTH',saved['AUTH_SHA']):
+                    target.transfer(root)
+                report=target.budget.snapshot(root/'paid.sqlite')
+                self.assertEqual(report['unresolved'],1);self.assertEqual(report['accounted_usd'],.7)
+                with closing(sqlite3.connect(root/'paid.sqlite')) as db:
+                    names={r[0] for r in db.execute('SELECT scope FROM scopes')}
+                    self.assertIn('gen-cap-0',names);self.assertIn(target.scope(root,0),names)
+                for path in (parent,failed):
+                    with closing(sqlite3.connect(path/'paid.sqlite')) as db:self.assertEqual(db.execute('SELECT stopped FROM auth').fetchone()[0],1)
+                another=Path(temp)/'another';another.mkdir()
+                with patch.object(target,'PARENT',parent),patch.object(target,'FAILED_TRANSFER',failed),patch.object(target,'PARENT_AUTH',saved['AUTH_SHA']):
+                    with self.assertRaises(FileExistsError):target.transfer(another)
+        finally:
+            for k,v in saved.items():setattr(target.budget,k,v)
 
 if __name__=='__main__':unittest.main()

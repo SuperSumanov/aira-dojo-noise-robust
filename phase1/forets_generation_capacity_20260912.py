@@ -24,6 +24,7 @@ import forets_paid_budget_20260911 as budget
 BASE=Path('/research/d7/spc/yzyang4')
 PARENT=BASE/'forets-generation-capacity-20260912-ngtb47lk'
 PARENT_AUTH='6229ed384de7c46139cf0c6c24e67a849fb0a54fb997133ead0464569f7e21b5'
+FAILED_TRANSFER=BASE/'forets-generation-capacity-20260912-vkgl8inm'
 ADAPTER=BASE/'forets-current-pool-20260912-0hz06xtj'
 SOURCE_ROOT=BASE/'forets-readiness-source-20260912-BQletMGi'
 TREE='900fa3bdf6971381c37a9792723dba42c63e5ac6'
@@ -169,8 +170,21 @@ def checked(root,commit=None):
 def transfer(root):
     with closing(sqlite3.connect((PARENT/'paid.sqlite').as_uri()+'?mode=rw',uri=True)) as old:
         old.execute('BEGIN IMMEDIATE')
-        if old.execute('SELECT digest,stopped FROM auth').fetchall()!=[(PARENT_AUTH,0)]:raise ValueError('old ledger state')
+        state=old.execute('SELECT digest,stopped FROM auth').fetchall()
         rows=old.execute('SELECT * FROM calls ORDER BY id').fetchall();held=sum(r[2] for r in rows)
+        if state==[(PARENT_AUTH,1)]:
+            # One explicit pre-dispatch migration failure. Both copies must still
+            # be stopped, carry identical rows, and have no new calls or authority.
+            if (not (FAILED_TRANSFER/'generation-intent.json').is_file()
+                or (FAILED_TRANSFER/'authorization.json').exists()
+                or (FAILED_TRANSFER/'generation-finished.json').exists()
+                or list(FAILED_TRANSFER.glob('generation-[0-9]*.json'))):raise ValueError('not the known pre-dispatch failure')
+            with closing(sqlite3.connect((FAILED_TRANSFER/'paid.sqlite').as_uri()+'?mode=ro',uri=True)) as failed:
+                if (failed.execute('SELECT digest,body,stopped FROM auth').fetchall()!=old.execute('SELECT digest,body,stopped FROM auth').fetchall()
+                    or failed.execute('SELECT * FROM calls ORDER BY id').fetchall()!=rows):raise ValueError('failed transfer has new/different liabilities')
+            write(FAILED_TRANSFER/'recovery-claim.json',dict(successor=str(root),utc=now(),
+                  calls_sha256=digest(json.dumps(rows).encode())))  # Exclusive single successor, never two active clones.
+        elif state!=[(PARENT_AUTH,0)]:raise ValueError('old ledger state')
         if held+3_000_000_000>10_000_000_000 or (root/'paid.sqlite').exists():raise ValueError('campaign budget/duplicate')
         old.execute('UPDATE auth SET stopped=1');old.commit()
         with closing(sqlite3.connect(root/'paid.sqlite')) as new:old.backup(new)
@@ -178,15 +192,20 @@ def transfer(root):
     budget.AUTH=dict(budget.AUTH,version=11,total=held+3_000_000_000,model=None,models=list(MODELS),
         provider=PROVIDER,reservation=budget.RESERVE,run_limit=3_000_000_000,
         incremental_cap=3_000_000_000,predecessor_authorization=PARENT_AUTH,predecessor_calls=len(rows),
-        predecessor_accounted=held,experiment='generation-capacity-eight-calls',logical_request_cap=8,
+        predecessor_accounted=held,experiment='generation-capacity-eight-calls',scope_id=root.name,logical_request_cap=8,
         accounted_cny_ceiling=str(Decimal(held+3_000_000_000)/10**9*Decimal('8.8')))
     budget.AUTH_RAW=json.dumps(budget.AUTH,sort_keys=True,separators=(',',':')).encode();budget.AUTH_SHA=digest(budget.AUTH_RAW)
     with closing(sqlite3.connect(root/'paid.sqlite')) as new:
         new.execute('UPDATE auth SET digest=?,body=?,stopped=0',(budget.AUTH_SHA,budget.AUTH_RAW.decode()))
         new.execute('UPDATE scopes SET cap=COALESCE((SELECT SUM(held) FROM calls WHERE calls.scope=scopes.scope),0)')
-        new.executemany('INSERT INTO scopes VALUES (?,?)',[(f'gen-cap-{i}',3_000_000_000) for i in range(8)]);new.commit()
+        new.executemany('INSERT INTO scopes VALUES (?,?)',[(scope(root,i),3_000_000_000) for i in range(8)]);new.commit()
         if new.execute('SELECT * FROM calls ORDER BY id').fetchall()!=rows:raise ValueError('ledger carry-forward')
     write(root/'authorization.json',budget.AUTH)
+
+
+def scope(root,index):
+    if index not in range(8):raise ValueError('request index outside fixed matrix')
+    return 'gen-cap:'+root.name+':'+str(index)
 
 
 def generate(root,commit):
@@ -204,9 +223,9 @@ def generate(root,commit):
         write(root/'catalogs.json',catalogs);write(root/'generation-intent.json',dict(utc=now(),commit=commit))
         transfer(root);records=[]
         for item in p['requests']:
-            i=item['index'];scope=f'gen-cap-{i}';record=item|dict(status='not_sent');sent=False
+            i=item['index'];scope_id=scope(root,i);record=item|dict(status='not_sent');sent=False
             try:
-                budget.reserve(root/'paid.sqlite',scope,scope);sent=True
+                budget.reserve(root/'paid.sqlite',scope_id,scope_id);sent=True
                 def expired(signum,frame):raise TimeoutError('fixed 180s generation timeout')
                 handler=signal.signal(signal.SIGALRM,expired);signal.setitimer(signal.ITIMER_REAL,180)
                 try:
@@ -215,7 +234,7 @@ def generate(root,commit):
                         headers={'Authorization':'Bearer '+key},timeout=(10,180),allow_redirects=False)
                 finally:signal.setitimer(signal.ITIMER_REAL,0);signal.signal(signal.SIGALRM,handler)
                 response.raise_for_status();data=response.json()
-                cost=budget.settle(root/'paid.sqlite',scope,data.get('usage'))
+                cost=budget.settle(root/'paid.sqlite',scope_id,data.get('usage'))
                 if SECRET.search(response.content):raise ValueError('unsafe response')
                 (root/f'response-{i}.private.json').write_bytes(response.content)
                 code=extract(data,item['model']);(root/'codes'/f'{i}.py').write_bytes(code)

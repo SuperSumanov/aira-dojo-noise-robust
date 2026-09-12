@@ -10,6 +10,25 @@ metadata:
 
 **用法:每次设计实验、下结论、写汇报前,逐条过一遍这个清单。我已经因为漏掉其中一条(「免费」)白做两天。**
 
+## O. 2026-09-12：后续主要用本地Qwen3.8-27B量化生成，历史API语料继续利用
+
+- 用户转述学长：后续绝大部分run改用本地部署的“qwen3.8 27B AWQ INT4”，减少API支出，方便后续训练/部署；
+  已有API语料在模型/任务上已有覆盖，继续用于分析、训练、对比。模型覆盖“差不多”是学长判断，不是我方重新完成的覆盖审计。
+- 已fetch并credential-first远端脱敏读取`dojo-reproduce@113e25e7fa2570cb5f60401d051a1de3cce307c2`。
+  新`LOCAL_VLLM_SERVER.md`和client YAML确认served名`qwen3.8-27b`、selfhosted、节点本地接口；
+  两卡示例为`cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4`，单卡为`cyankiwi/Qwen3.8-27B-AWQ-INT4`，不能互换身份。
+  文档有3处凭据形状命中，仅远端脱敏后阅读，不复制/使用；不访问带权训练报告链接。
+- 这是生成器/来源转变，不是我方critic收益、干净scaling或方法新颖性的证据。继续用历史API训练/开发数据，
+  但保留physical-run/experiment隔离和已冻结cohort封闭；新本地run标独立generator/量化/运行配置来源。
+- 本地生成免API账单不等于免费：服务GPU、排队、初始化、长thinking/输出都须计成本。
+  不把学长方便后续训练理解为我方获准微调agent底座；独立critic与agent更新仍有明确边界。
+- 当前API对照13156已全8闭合，未中途换模型。今后若接本地生成，两臂同时冻结相同模型revision、量化、
+  serving配置/资源、prompt/采样和时间预算；不得用跨来源旧新均值冒充critic或量化的因果效果。
+- 本轮只读检查：学长文档镜像和两份权重snapshot目录对我方均PermissionError，未绕过权限。
+  localhost接口不是登录节点可直连的共享endpoint；已请求可读共享路径或共用服务安排，不重复索要密钥。
+  文档命令131072与表格262144上下文不一致；实际部署值待核，不选更漂亮的数字代填。
+  详见`LOCAL_GENERATOR_TRANSITION_20260912.md`。本次只读取更新资料，未修改学长分支或启动新GPU/API作业。
+
 ## N. 2026-09-11：原生设备隔离即可，放弃失修pool恢复路径
 
 - 学长明确STEP_ID与GPU编号不要求一致，sandbox/Jupyter不依赖该对应；原代码未使用/设置STEP_GPUS。

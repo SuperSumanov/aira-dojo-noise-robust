@@ -1,0 +1,9 @@
+{
+  "job": "13156",
+  "status": "verified",
+  "readout_called": true,
+  "readout_exit_code": 0,
+  "summary_sha256": "a127831408688b545e3d666b790fe1f75b65e82f9324d21c8c4cfc0243d39e90",
+  "csv_sha256": "b535b6a439cefdcb29ada9d5ef26baeb3e8b0793f90bca0fa31c5c79bda37f81",
+  "utc": "2026-09-12T11:55:43.131348+00:00"
+}

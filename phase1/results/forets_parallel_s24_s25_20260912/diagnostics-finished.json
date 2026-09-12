@@ -1,0 +1,13 @@
+{
+  "job": "13156",
+  "reader_sha256": "594144ba11e51a80b66f605f4845cf611428d44dda87280169a61a1d33d1b81a",
+  "command": [
+    "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+    "-B",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/recovery-tools/collect_forets_parallel_diagnostics_20260912.py"
+  ],
+  "status": "complete",
+  "exit_code": 0,
+  "utc": "2026-09-12T12:00:05.673814+00:00",
+  "sha256": "c1bb304c8d1ffa4be487100bf14c75d67eb93eef63984ec8235e79c0e0b79a36"
+}

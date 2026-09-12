@@ -1,0 +1,25 @@
+{
+  "job": "13156",
+  "seeds": [
+    24,
+    25
+  ],
+  "mode": "first_readout_after_accounting_connection_failure",
+  "original_failure_sha256": "012a08c40e3560aaa137c967e067bf4adf4ec2daa91a3ccb71f4a770d6574d6b",
+  "pinned_files": {
+    "attribute_forets_wallclock_20260912.py": "cbb58ad7d41067a6eba2f4aa7496021ec9934954afa88e84aac43c9548a6bc0e",
+    "closeout_forets_wallclock_20260912.py": "96f99d782d4acb0ede17aa200aba2a9bf2a915ce9f4564d8958c6b062f66d2e2",
+    "readout_forets_generation_capacity_20260912.py": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+    "readout_forets_wallclock_20260912.py": "e94420d87ee613e88811ea118f3ffd68970b77c4c70ca3ddbba11c16e6cee6af"
+  },
+  "command": [
+    "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+    "-B",
+    "/research/d7/spc/yzyang4/forets-parallel-stage-20260912-ykh87_no/readout_forets_wallclock_20260912.py",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og",
+    "--seeds",
+    "24",
+    "25"
+  ],
+  "utc": "2026-09-12T11:55:32.174468+00:00"
+}

@@ -1,0 +1,149 @@
+{
+  "job": "13156",
+  "summary_sha256": "a127831408688b545e3d666b790fe1f75b65e82f9324d21c8c4cfc0243d39e90",
+  "rows": [
+    {
+      "run_id": "00-leaf-classification-s24-uniform_random",
+      "log_sha256": {
+        "stderr.private.log": "ceee9c9eb9b81bcdde3bbc2a209dd4eea313683a4e4ec620c7d8269da2f1c9cc",
+        "stdout.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "handshake_events": 5,
+      "handshake_successes": 5,
+      "failed_handshakes": [],
+      "request_traces": 13,
+      "billed_requests": 13,
+      "client_peak_inflight": 4,
+      "per_request_median_seconds": 16.231789424084127
+    },
+    {
+      "run_id": "01-leaf-classification-s24-critic_topk_random",
+      "log_sha256": {
+        "stderr.private.log": "c07a699052497158a71675dcc9c9226541770f4cd4a6c1ad93d6ec08d5db0158",
+        "stdout.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "handshake_events": 6,
+      "handshake_successes": 6,
+      "failed_handshakes": [],
+      "request_traces": 11,
+      "billed_requests": 15,
+      "client_peak_inflight": 4,
+      "per_request_median_seconds": 23.332635052967817
+    },
+    {
+      "run_id": "02-spaceship-titanic-s24-critic_topk_random",
+      "log_sha256": {
+        "stderr.private.log": "78f07bc34e6b1e5046928251eb41feba425993177d8f538168fcef2974618185",
+        "stdout.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "handshake_events": 10,
+      "handshake_successes": 10,
+      "failed_handshakes": [],
+      "request_traces": 28,
+      "billed_requests": 37,
+      "client_peak_inflight": 4,
+      "per_request_median_seconds": 39.99599901144393
+    },
+    {
+      "run_id": "03-spaceship-titanic-s24-uniform_random",
+      "log_sha256": {
+        "stderr.private.log": "0b1c725f8c1eb8b99f2322ba13455134e8f5647850b49da849e06214e783fcc5",
+        "stdout.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "handshake_events": 6,
+      "handshake_successes": 6,
+      "failed_handshakes": [],
+      "request_traces": 16,
+      "billed_requests": 16,
+      "client_peak_inflight": 4,
+      "per_request_median_seconds": 26.370485245482996
+    },
+    {
+      "run_id": "04-leaf-classification-s25-critic_topk_random",
+      "log_sha256": {
+        "stderr.private.log": "4ad00fb49368d344ad8647e10f8afd057468d5c3f3989f34ab0822427a00da58",
+        "stdout.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "handshake_events": 8,
+      "handshake_successes": 8,
+      "failed_handshakes": [],
+      "request_traces": 24,
+      "billed_requests": 32,
+      "client_peak_inflight": 4,
+      "per_request_median_seconds": 19.813774801092222
+    },
+    {
+      "run_id": "05-leaf-classification-s25-uniform_random",
+      "log_sha256": {
+        "stderr.private.log": "c5b24426d597c22494d0af3624803247c74f28f4ee62d71e0772ab3107265e22",
+        "stdout.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "handshake_events": 3,
+      "handshake_successes": 2,
+      "failed_handshakes": [
+        {
+          "received": 3,
+          "foreign_parent": 3,
+          "shell_reply": 0,
+          "idle_status": 0,
+          "other_type": 0,
+          "sent": 120,
+          "matched_reply": 0,
+          "matched_idle": 0,
+          "paired": 0,
+          "elapsed_seconds": 120.00011139595881,
+          "success": false
+        }
+      ],
+      "request_traces": 6,
+      "billed_requests": 6,
+      "client_peak_inflight": 4,
+      "per_request_median_seconds": 19.549675671034493
+    },
+    {
+      "run_id": "06-spaceship-titanic-s25-uniform_random",
+      "log_sha256": {
+        "stderr.private.log": "eee9951d269adc7fb9a0dc2251a921f20a4369c80d3111198500622bf8bc0712",
+        "stdout.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "handshake_events": 11,
+      "handshake_successes": 11,
+      "failed_handshakes": [],
+      "request_traces": 27,
+      "billed_requests": 27,
+      "client_peak_inflight": 4,
+      "per_request_median_seconds": 27.996341176098213
+    },
+    {
+      "run_id": "07-spaceship-titanic-s25-critic_topk_random",
+      "log_sha256": {
+        "stderr.private.log": "1fa9617ef66cd920db9e63376cad4927fc709328426a3c210ac8fa2f5bcd1271",
+        "stdout.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "handshake_events": 2,
+      "handshake_successes": 1,
+      "failed_handshakes": [
+        {
+          "received": 3,
+          "foreign_parent": 3,
+          "shell_reply": 0,
+          "idle_status": 0,
+          "other_type": 0,
+          "sent": 120,
+          "matched_reply": 0,
+          "matched_idle": 0,
+          "paired": 0,
+          "elapsed_seconds": 120.00014304090291,
+          "success": false
+        }
+      ],
+      "request_traces": 4,
+      "billed_requests": 6,
+      "client_peak_inflight": 4,
+      "per_request_median_seconds": 21.116301865433343
+    }
+  ],
+  "reader_sha256": "594144ba11e51a80b66f605f4845cf611428d44dda87280169a61a1d33d1b81a",
+  "role": "posthoc_safe_transport_and_handshake_diagnostics",
+  "limitation": "Request durations overlap and include transport/settlement; not provider inference speed or causal speedup. No kernel response does not identify the underlying server/transport cause."
+}

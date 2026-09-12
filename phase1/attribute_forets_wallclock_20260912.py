@@ -112,11 +112,29 @@ def read(path, root):
     return json.loads(contained(path, root).read_bytes())
 
 
-def analyze(root):
+def completion_receipt(root, receipt_name):
+    if receipt_name not in ('closeout-finished.json', 'recovery-readout-finished.json'):
+        raise ValueError('explicit completion receipt only')
+    finish = read(root/receipt_name, root)
+    if receipt_name == 'recovery-readout-finished.json':
+        original_raw = contained(root/'closeout-finished.json', root).read_bytes()
+        original = json.loads(original_raw)
+        intent = read(root/'recovery-readout-intent.json', root)
+        if (original.get('status') != 'failed_closed' or original.get('readout_called') is not False
+                or intent.get('original_failure_sha256') != sha(original_raw)
+                or original.get('job') != finish.get('job') or intent.get('job') != finish.get('job')
+                or intent.get('mode') != 'first_readout_after_accounting_connection_failure'):
+            raise ValueError('recovery is not a first readout after preserved monitor failure')
+    if finish.get('status') != 'verified':
+        raise ValueError('independent readout has not verified')
+    return finish
+
+
+def analyze(root, receipt_name='closeout-finished.json'):
     root = root.resolve(strict=True)
     if root not in ROOTS:
         raise ValueError('only the fixed new development experiment')
-    finish = read(root/'closeout-finished.json', root)
+    finish = completion_receipt(root, receipt_name)
     launch = read(root/'launch.json', root)
     if finish['status'] != 'verified' or finish['job'] != launch['job']:
         raise ValueError('wait for successful independent whole-allocation readout')
@@ -158,6 +176,7 @@ def analyze(root):
             rows.append(dict(run_id=rid, task=original['task'], seed=original['seed'], arm=original['arm'],
                              worker_elapsed_seconds=elapsed, timing=partition, fees=fees))
     return dict(job=finish['job'], summary_sha256=finish['summary_sha256'], rows=rows,
+                completion_receipt=receipt_name,
                 role='posthoc_mechanism_description_not_new_effect_test',
                 reader_sha256=sha(Path(__file__).read_bytes()),
                 limitation='Task-call time includes fetching/grading/startup, not pure kernel compute. Remainder includes initialization, generation, ranking, analysis and other work; an unfinished task is explicitly included when present. Ranking latency is unmeasured. No time-saving causal attribution or outcome-based selection.')
@@ -166,8 +185,10 @@ def analyze(root):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('root', type=Path)
+    parser.add_argument('--receipt', default='closeout-finished.json',
+                        choices=('closeout-finished.json', 'recovery-readout-finished.json'))
     args = parser.parse_args()
-    result = analyze(args.root)
+    result = analyze(args.root, args.receipt)
     with (args.root/'wallclock-attribution.json').open('x') as stream:
         json.dump(result, stream, indent=2, allow_nan=False)
     print(json.dumps(result, allow_nan=False))

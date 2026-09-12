@@ -1,0 +1,3 @@
+# Receipts hash exact remote bytes, including the CSV writer's CRLF records.
+*.json -text diff
+*.csv -text diff whitespace=cr-at-eol

@@ -1,0 +1,7 @@
+{
+  "error_type": "CalledProcessError",
+  "job": "13156",
+  "readout_called": false,
+  "status": "failed_closed",
+  "utc": "2026-09-12T08:38:53.003135+00:00"
+}

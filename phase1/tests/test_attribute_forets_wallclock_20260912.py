@@ -1,13 +1,45 @@
 from copy import deepcopy
 from pathlib import Path
+import hashlib
+import json
 import sys
+import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from attribute_forets_wallclock_20260912 import task_partition, fee_partition
+from attribute_forets_wallclock_20260912 import task_partition, fee_partition, completion_receipt
 
 
 class AttributionTests(unittest.TestCase):
+    def test_recovery_requires_preserved_unread_failure(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            original = dict(job='13156', status='failed_closed', readout_called=False)
+            raw = json.dumps(original).encode()
+            (root/'closeout-finished.json').write_bytes(raw)
+            (root/'recovery-readout-finished.json').write_text(json.dumps(dict(job='13156', status='verified')))
+            intent = dict(job='13156', mode='first_readout_after_accounting_connection_failure',
+                          original_failure_sha256=hashlib.sha256(raw).hexdigest())
+            (root/'recovery-readout-intent.json').write_text(json.dumps(intent))
+            self.assertEqual(completion_receipt(root, 'recovery-readout-finished.json')['status'], 'verified')
+            self.assertEqual((root/'closeout-finished.json').read_bytes(), raw)
+            original['readout_called'] = True
+            raw = json.dumps(original).encode()
+            (root/'closeout-finished.json').write_bytes(raw)
+            intent['original_failure_sha256'] = hashlib.sha256(raw).hexdigest()
+            (root/'recovery-readout-intent.json').write_text(json.dumps(intent))
+            with self.assertRaises(ValueError):
+                completion_receipt(root, 'recovery-readout-finished.json')
+
+    def test_receipt_cannot_bypass_failure_or_use_arbitrary_path(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            (root/'closeout-finished.json').write_text(json.dumps(dict(status='failed_closed')))
+            with self.assertRaises(ValueError):
+                completion_receipt(root, 'closeout-finished.json')
+            with self.assertRaises(ValueError):
+                completion_receipt(root, '../other.json')
+
     def pool(self):
         return dict(schema=4, binding=dict(step=1), phase='executing',
                     llm_requests=[dict(state='returned'), dict(state='started')],

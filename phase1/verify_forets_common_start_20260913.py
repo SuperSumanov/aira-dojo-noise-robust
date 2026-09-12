@@ -1,5 +1,6 @@
 """Actual imported first/later expansion paths with synthetic task boundaries."""
 import argparse
+from contextlib import closing
 import copy
 import json
 import os
@@ -14,8 +15,18 @@ from forets_environment_build_20260912 import read,write,encode,sha
 
 
 def run(root):
+    os.environ.update(PYTHON_DOTENV_DISABLED='1',PYTHONDONTWRITEBYTECODE='1',LITELLM_LOCAL_MODEL_COST_MAP='True',
+        LOGGING_DIR=str(root),MLE_BENCH_DATA_DIR='/research/d7/spc/yzyang4/mle-bench-data',
+        SUPERIMAGE_DIR='/research/d7/spc/yzyang4/aira-dojo/build/superimage',
+        DEFAULT_SLURM_PARTITION='gpu_24h',DEFAULT_SLURM_ACCOUNT='gpu',DEFAULT_SLURM_QOS='gpu')
+    sys.path[:0]=[str(root/'source/src'),str(root/'code')]
     import verify_forets_wallclock_20260912 as common
-    common.run(root,blocks=(1,2))
+    if (root/'integration-check.json').exists():
+        proof=read(root/'integration-check.json')
+        if proof['status']!='PASSED_CPU_INTEGRATION_NOT_GPU_ACCEPTANCE' or proof['source_tree']!=read(root/'build.json')['source_tree']:
+            raise ValueError('previous common integration proof mismatches')
+    else:
+        common.run(root,blocks=(1,2))
     from dojo.solvers.fore_ts.batch_runtime import expand_batch
     from dojo.solvers.fore_ts.common_start import code_for,digest
     from dojo.core.solvers.utils.response import extract_code
@@ -73,7 +84,7 @@ def run(root):
                 expand_batch(s,[node],state,NS(step_task=step),MCTSNode,extract_code,cfg)
                 assert counters==dict(generation=0,rank=0,execution=1)
                 first_path=Path(c.checkpoint_path)/'forets-candidates-private/batch-1.sqlite'
-                with sqlite3.connect(first_path) as db:first=json.loads(db.execute('select payload from snapshot').fetchone()[0])
+                with closing(sqlite3.connect(first_path)) as db:first=json.loads(db.execute('select payload from snapshot').fetchone()[0])
                 assert len(first['candidates'])==1 and not first['llm_requests']
                 assert first['binding']['common_start']['code_sha256']==digest('leaf-classification')
                 assert first['task_calls'][0]['intent']['code_sha256']==digest('leaf-classification')

@@ -39,6 +39,15 @@ class EffectsTests(unittest.TestCase):
         for r in rows:r['seed']+=4
         self.assertEqual(len(effects(rows,seeds=(26,27))['pairs']),4)
         with self.assertRaises(ValueError):effects(rows[:-1],seeds=(26,27))
+    def test_common_start_complete_seeds(self):
+        rows=self.rows()
+        for r in rows:r['seed']+=6
+        self.assertEqual(len(effects(rows,seeds=(28,29))['pairs']),4)
+        with self.assertRaises(ValueError):effects(rows[:-1],seeds=(28,29))
+        from readout_forets_common_start_20260913 import oriented
+        self.assertAlmostEqual(oriented('leaf-classification',.7,.6),.1)
+        self.assertAlmostEqual(oriented('spaceship-titanic',.7,.6),-.1)
+        with self.assertRaises(ValueError):oriented('unknown',.7,.6)
 
 
 if __name__=='__main__':unittest.main()

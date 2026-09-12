@@ -28,7 +28,7 @@ def read(path):
 
 
 def effects(rows, seeds=(22,23)):
-    if tuple(seeds) not in ((22,23),(24,25),(26,27)):
+    if tuple(seeds) not in ((22,23),(24,25),(26,27),(28,29)):
         raise ValueError('explicit frozen seed pair required')
     expected={(t,s,a) for t in TASKS for s in seeds for a in ARMS}
     if len(rows)!=8 or {(r['task'],r['seed'],r['arm']) for r in rows}!=expected:
@@ -66,7 +66,7 @@ def verify(root, seeds=(22,23), blocks=(1,)):
     if root.parent!=Path('/research/d7/spc/yzyang4') or not root.name.startswith('forets-wallclock-20260912-'):
         raise ValueError('explicit new development package only')
     if (root/'wallclock-summary.json').exists():raise ValueError('readout already complete')
-    if (tuple(seeds),tuple(blocks)) not in (((22,23),(1,)),((24,25),(1,)),((26,27),(1,2))):
+    if (tuple(seeds),tuple(blocks)) not in (((22,23),(1,)),((24,25),(1,)),((26,27),(1,2)),((28,29),(1,2))):
         raise ValueError('explicit frozen seed/allocation layout required')
     build=read(root/'build.json')
     launches={b:read(root/(f'launch-b{b}.json' if len(blocks)>1 else 'launch.json')) for b in blocks}
@@ -114,7 +114,7 @@ def verify(root, seeds=(22,23), blocks=(1,)):
             provider='alibaba',image_version='2026-07-macos-v1',node='gpu28',allocated_gpus=1,allocated_cpus=6,
             program_timeout_seconds=300,selection_top_k=2,selection_coupling='common_priority_v1',
             search_budget_seconds=600,planned_step_cap=64,runtime_status=task['status'],
-            critic_ranking_votes=(1 if tuple(seeds)==(26,27) else 2) if planned['arm']==ARMS[1] else 0,
+            critic_ranking_votes=(1 if tuple(seeds) in ((26,27),(28,29)) else 2) if planned['arm']==ARMS[1] else 0,
             api_cost_usd=scope.get('settled_usd',0),api_responsibility_usd=scope.get('held_usd',0),
             valid=False,score=None,independent_score=None,selected_step=None,selected_code_sha256=None,
             worker_elapsed_seconds=None,technical_eligible=False,termination_reason='not_started')

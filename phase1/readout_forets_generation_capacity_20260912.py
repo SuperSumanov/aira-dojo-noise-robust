@@ -1,0 +1,122 @@
+"""Complete-matrix readout + independent numeric regrade, no extra executions."""
+import argparse
+import csv
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import statistics
+import subprocess
+import sys
+
+TASKS=('leaf-classification','spaceship-titanic')
+MODELS=('qwen/qwen3-coder-flash','qwen/qwen3-coder-plus')
+MATRIX=((0,16,0),(0,16,1),(1,16,1),(1,16,0),(0,17,1),(0,17,0),(1,17,0),(1,17,1))
+ALLOWED={'valid','program_error','program_timeout','missing_submission','invalid_submission'}
+
+
+def summarize(rows):
+    expected={(TASKS[t],s,MODELS[m]) for t,s,m in MATRIX}
+    if len(rows)!=8 or {(r['task'],r['replicate'],r['model']) for r in rows}!=expected:
+        raise ValueError('complete unique matrix required')
+    for r in rows:
+        if r['status'] not in ALLOWED or r['valid']!=(r['status']=='valid'):
+            raise ValueError('infrastructure/misclassified result')
+        if r['valid']:
+            if type(r['score']) not in (int,float) or not math.isfinite(r['score']):raise ValueError('score missing')
+        elif r['score'] is not None:raise ValueError('invalid imputation')
+    groups=[];pairs=[]
+    for task in TASKS:
+        for model in MODELS:
+            rs=[r for r in rows if (r['task'],r['model'])==(task,model)]
+            values=[r['score'] for r in rs if r['valid']]
+            times=[r['execution_seconds'] for r in rs]
+            groups.append(dict(task=task,model=model,n=len(rs),valid=len(values),
+                valid_probability=len(values)/len(rs),conditional_median_score=statistics.median(values) if values else None,
+                conditional_sample_std_score=statistics.stdev(values) if len(values)>1 else None,
+                median_execution_seconds=statistics.median(times),sample_std_execution_seconds=statistics.stdev(times),
+                api_cost_usd=sum(r['api_cost_usd'] for r in rs)))
+        for seed in (16,17):
+            a,b=[next(r for r in rows if (r['task'],r['replicate'],r['model'])==(task,seed,m)) for m in MODELS]
+            comparable=a['valid'] and b['valid']
+            gain=((a['score']-b['score']) if task==TASKS[0] else (b['score']-a['score'])) if comparable else None
+            pairs.append(dict(task=task,replicate=seed,flash_valid=a['valid'],plus_valid=b['valid'],
+                comparable=comparable,plus_oriented_score_gain=gain))
+    totals=[dict(model=m,valid=sum(r['valid'] for r in rows if r['model']==m),programs=4,
+                 api_cost_usd=sum(r['api_cost_usd'] for r in rows if r['model']==m)) for m in MODELS]
+    return dict(groups=groups,pairs=pairs,totals=totals,
+        limitation='Two requested program seeds per task; API sampling not guaranteed deterministic. Not critic/e2e or equal-dollar advantage.')
+
+
+def numerical(task,pred,truth):
+    import numpy as np
+    idcol='id' if task==TASKS[0] else 'PassengerId'
+    if set(pred.columns)!=set(truth.columns) or idcol not in pred:raise ValueError('columns')
+    if (pred[idcol].duplicated().any() or truth[idcol].duplicated().any() or pred[idcol].isna().any()
+        or truth[idcol].isna().any() or set(pred[idcol])!=set(truth[idcol]) or len(truth)==0):raise ValueError('ids')
+    columns=sorted(set(truth.columns)-{idcol})
+    p=pred.set_index(idcol).sort_index()[columns];y=truth.set_index(idcol).sort_index()[columns]
+    if task==TASKS[0]:
+        p,y=p.to_numpy(dtype=float),y.to_numpy(dtype=float)
+        if not np.isfinite(p).all() or not ((p>=0)&(p<=1)).all() or not np.allclose(p.sum(axis=1),1,rtol=1e-5,atol=1e-6):raise ValueError('probabilities')
+        if not ((y==0)|(y==1)).all() or not (y.sum(axis=1)==1).all():raise ValueError('onehot')
+        p=np.clip(p,np.finfo(float).eps,1-np.finfo(float).eps)
+        return float(-np.mean(np.sum(y*np.log(p),axis=1)))
+    lookup={'true':True,'false':False,'1':True,'0':False,'1.0':True,'0.0':False}
+    if columns!=['Transported']:raise ValueError('prediction columns')
+    a=[lookup[str(v).lower()] for v in p.Transported];b=[lookup[str(v).lower()] for v in y.Transported]
+    return sum(x==z for x,z in zip(a,b))/len(a)
+
+
+def verify(root):
+    import pandas as pd
+    os.environ['SLURM_CONF']='/opt1/slurm/gpu-slurm.conf'
+    root=root.resolve(strict=True);sys.path.insert(0,str(root))
+    import forets_generation_capacity_20260912 as worker
+    root,prepared=worker.checked(root);_,g=worker.programs(root)
+    launch=json.loads((root/'launch.json').read_text());intent=json.loads((root/'submit-intent.json').read_text())
+    if intent['generation_sha256']!=hashlib.sha256((root/'generation-finished.json').read_bytes()).hexdigest():raise ValueError('generation changed')
+    state=subprocess.check_output(['sacct','-X','-j',launch['job'],'-nP','--format=JobIDRaw,State,ElapsedRaw'],text=True,timeout=25).strip().split('|')
+    if len(state)!=3 or state[:2]!=[launch['job'],'COMPLETED']:raise ValueError('not completed allocation')
+    done=json.loads((root/'execution-finished.json').read_text())
+    if not done['complete'] or done['completed']!=8 or not all((root/f'result-{i}.json').is_file() for i in range(8)):
+        raise ValueError('whole matrix not closed')
+    from mlebench.registry import registry
+    registry=registry.set_data_dir(worker.BASE/'mle-bench-data')
+    rows=[];proofs=[];uuids=set();truth={}
+    for i,item in enumerate(prepared['requests']):
+        row=json.loads((root/f'result-{i}.json').read_text())
+        if (row['index'],row['job'],row['task'],row['original_search_seed'],row['source_tree'],row['code_sha256'])!=(
+            i,launch['job'],item['task'],item['replicate'],worker.TREE,g['records'][i]['code_sha256']):raise ValueError('row binding')
+        if row['status'] not in ALLOWED:raise ValueError('infrastructure failure')
+        binding=json.loads((root/f'identity-{i}.native-binding.json').read_text())
+        if binding['native_identity']['job']!=launch['job'] or binding['namespace']['exact_device_namespace'] is not True:raise ValueError('native GPU binding')
+        uuids.add(binding['native_identity']['selected_uuid']);value=None
+        if row['valid']:
+            submission=root/f'work-{i}/submission.csv'
+            if submission.is_symlink() or hashlib.sha256(submission.read_bytes()).hexdigest()!=row['submission_sha256']:raise ValueError('submission changed')
+            task=item['task']
+            if task not in truth:truth[task]=pd.read_csv(registry.get_competition(task).answers)
+            value=numerical(task,pd.read_csv(submission),truth[task])
+            official=json.loads((root/f'grade-{i}/grading_report.json').read_text())
+            if round(value,5)!=row['score'] or official['score']!=row['score'] or official['valid_submission'] is not True:
+                raise ValueError('independent numerical mismatch')
+        proofs.append(dict(index=i,status=row['status'],official_score=row['score'],independent_score=value))
+        rows.append(dict(row,model=item['model'],replicate=item['replicate'],api_cost_usd=g['records'][i]['cost_usd']))
+    if len(uuids)!=1:raise ValueError('hardware differed within matrix')
+    summary=summarize(rows)
+    summary.update(role='paired_generator_capacity_development_diagnostic',job=launch['job'],utc=worker.now(),
+        controller_commit=prepared['controller_commit'],source_tree=worker.TREE,
+        prepared_sha256=hashlib.sha256((root/'prepared.json').read_bytes()).hexdigest(),
+        same_native_gpu=True,independent_numerical_regrades=sum(p['independent_score'] is not None for p in proofs),
+        all_program_slots_included=True,rows=proofs,billing=g['billing'],allocation_gpu_hours=int(state[2])/3600,
+        verifier_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),protected_cohort_read=False)
+    with (root/'generation-capacity-summary.json').open('x') as f:json.dump(summary,f,indent=2,allow_nan=False)
+    with (root/'generation-capacity-runs.csv').open('x',newline='') as f:
+        writer=csv.DictWriter(f,fieldnames=sorted(set().union(*(r.keys() for r in rows))));writer.writeheader();writer.writerows(rows)
+    print(json.dumps({k:v for k,v in summary.items() if k not in ('billing','rows')}))
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser();parser.add_argument('--root',type=Path,required=True);args=parser.parse_args();verify(args.root)

@@ -22,8 +22,8 @@ from forets_environment_context_20260912 import CONTEXT
 import forets_paid_budget_20260911 as budget
 
 BASE=Path('/research/d7/spc/yzyang4')
-PARENT=BASE/'forets-information-ablation-20260912-rwohlohw'
-PARENT_AUTH='f799ccb82373b1a3d4bcaf5ea1031b5cc67207f30270f8b25212d95a693f3344'
+PARENT=BASE/'forets-generation-capacity-20260912-ngtb47lk'
+PARENT_AUTH='6229ed384de7c46139cf0c6c24e67a849fb0a54fb997133ead0464569f7e21b5'
 ADAPTER=BASE/'forets-current-pool-20260912-0hz06xtj'
 SOURCE_ROOT=BASE/'forets-readiness-source-20260912-BQletMGi'
 TREE='900fa3bdf6971381c37a9792723dba42c63e5ac6'
@@ -47,7 +47,7 @@ def root_checked(root):
 
 def payload(task,description,replicate,model):
     system='''Write one complete standalone Python ML program for the supplied task.
-Read task files only from /input; write the final submission to /workspace/submission.csv.
+Read task files only from /workspace/data; write the final submission to /workspace/submission.csv.
 Follow the requested submission format. Use an internal validation split from the training data;
 never access any external evaluator, held-out labels or private files. No internet/package install.
 Use the installed environment and fit/validate/write within 300 seconds total. Available resources:
@@ -100,13 +100,30 @@ def source_check():
     if info['source_tree']!=TREE:raise ValueError('wrong source')
     for name,sha in info['source_files'].items():
         if digest((SOURCE_ROOT/'source'/name).read_bytes())!=sha:raise ValueError('source drift')
+    os.environ.update(PYTHON_DOTENV_DISABLED='1',SUPERIMAGE_DIR=str(BASE/'aira-dojo/build/superimage'),
+        LOGGING_DIR=str(SOURCE_ROOT),MLE_BENCH_DATA_DIR=str(BASE/'mle-bench-data'))
+    sys.path.insert(0,str(SOURCE_ROOT/'source/src'))
+    from dojo.core.interpreters.jupyter.singularity_jupyter_server import _build_singularity_command
+    public=BASE/'mle-bench-data'/TASKS[0]/'prepared/public'
+    work=SOURCE_ROOT/'command-contract-only'
+    argv=_build_singularity_command(runtime_executable='singularity',image_path=BASE/'aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif',
+        working_dir=work,bind_inputs_dir=public,read_only_overlays=[],read_only_binds={},container_env={},token='protocol-fixture-not-a-credential')
+    if f'{public}:/workspace/data:ro' not in argv or f'{work}:/workspace:rw' not in argv:
+        raise ValueError('actual container input/output contract differs')
+    request=payload(TASKS[0],'public specification',16,MODELS[0])
+    if '/workspace/data' not in request['messages'][0]['content'] or '/input' in request['messages'][0]['content']:
+        raise ValueError('prompt/container path disagreement')
 
 
 def prepare(commit):
     if not re.fullmatch('[a-f0-9]{40}',commit):raise ValueError('exact controller')
     source_check()
-    if not json.loads((PARENT/'finished.json').read_text())['complete'] or not (PARENT/'summary.json').is_file():
-        raise ValueError('prior experiment not closed')
+    invalidation=json.loads((PARENT/'controller-path-invalidation.json').read_text())
+    if invalidation['job']!='13141' or not invalidation['whole_matrix_invalidated'] or invalidation['outcomes_read']:
+        raise ValueError('technical invalidation boundary')
+    env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
+    terminal=subprocess.check_output(['sacct','-X','-j','13141','-nP','--format=JobIDRaw,State'],env=env,text=True,timeout=25).strip()
+    if not terminal.startswith('13141|CANCELLED'):raise ValueError('old allocation not closed')
     root=Path(tempfile.mkdtemp(prefix='forets-generation-capacity-20260912-',dir=BASE));os.chmod(root,0o700)
     (root/'codes').mkdir();items=[]
     for i,(taskno,replicate,modelno) in enumerate(MATRIX):

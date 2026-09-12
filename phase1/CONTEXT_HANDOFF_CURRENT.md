@@ -1,6 +1,6 @@
 # 短交接：截止预算e2e 13152已在gpu28开跑
 
-2026-09-12最后更新06:25 UTC。用户05:36继续推进；旧三小时轮次已闭合，新轮为600秒预算e2e。
+2026-09-12最后更新06:28 UTC。用户05:36继续推进；旧三小时轮次已闭合，新轮为600秒预算e2e。
 恢复先fetch→CURRENT_DIRECTION顶部→本文件→现场；主线同预算MLE-bench最终收益，不以旧状态替代当前事实。
 
 ## 当前接续：正在进行，不可重复提交
@@ -14,6 +14,9 @@
   06:07:51单次提交 **13152**；06:08现场RUNNING gpu28，第一worker **13152.0**，其余7pending。
   06:18确认13152.0终态FAILED/468秒，已只检查固定SearchBudgetExpired标记，为预设135秒API准入余量退出，不是新基础设施异常。
   第二worker13152.1运行，未读任何新run成绩；全8闭合再读。时间资格文件当时0，缺失不补0。
+  **06:27最新现场**：前两worker均结束（第二501.210939秒），两者均命中固定SearchBudgetExpired准入余量退出；
+  第二未命中缺失submission绑定/代码漂移错误。第三worker **13152.2 Space s22 critic** 正在运行，其余5待执行。
+  这些是预算终止元数据，不是“模型效果失败”或额外GPU验收；没有读取新成绩。
   source/controller/plan已冻结，不在运行中改源码/选择器；预计80–110分钟，全8闭合后独立读出。
   POSIX只杀进程组，Slurm终态/额外清理资源必须另报；不宣称物理用量精确相等。
 - 预算已从thgk111r排他转交 **0t4odqpn/paid.sqlite**，旧ledger stopped1，完整继承402calls/两旧未知。
@@ -29,6 +32,7 @@
   06:24现场仍13152 RUNNING第二条，417累计API记录/两旧未知，责任2.757976529USD、结算1.357976529USD；不是结果闭合。
 - 原分享报告/24程序包结论仍有效：仅有效性局部线索，无e2e质量收益。我方本轮已push并ls-remote核对
   **9d8d7c57c28d3a6aa82505f098c9d271dbcbc8b4**；06:16学长dojo-reproduce仍9c46cca1dccd7633b556374d33c6c76390d1d061，未改他的分支。
+  后续收尾与机制诊断已push到 **440d0cc4c8e309b3cc3a99d2c8c9223d8d8f65fe**，06:26 ls-remote一致；原无关untracked完整保留。
 - 等待期间新增零GPU/API事后上限分析：两混合池均已达到top2有效数上限，两个Leaf质量仍距同有效数边界0.059675/0.013250。
   其余两池全有效/全无效是平凡上限，不是跨池独立复现；成本G/R未测，不用mtime猜latency。
   结果results/forets_selection_ceiling_20260912.json；说明FORETS_SELECTION_MECHANISM_20260912.md；3测试含穷举通过，不影响13152。

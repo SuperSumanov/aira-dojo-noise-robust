@@ -1,0 +1,109 @@
+{
+  "api_calls": 0,
+  "blind_rank_requests": 4,
+  "controller_commit": "4fc38fe60e44db8e2cdcc811e185924aa4496f29",
+  "cpu": 6,
+  "execution_timeout": 300,
+  "files": {
+    "bin/singularity": "08c609ebdb7b720e05d5dbadfc1e4fb872378f7c3fb8f8d0b78fd0285d5bb9dc",
+    "forets_closed_pool_20260911.py": "b3d24d82e94e8d7d014c96685e1afcf6c99b94e283b17ac184724ceedf3546fd",
+    "forets_closed_pool_native_20260911.py": "2afb152cfcc7f1c76ca9a99aeee43d81bc684f6639509ee654231e22d24ae6a6",
+    "forets_context_judge_20260912.py": "f66c5434297346f3e22503820b488e76111ad0e27b7941cd03aca88247aaf5b2",
+    "forets_current_pool_20260912.py": "f4758f2726e0ad40c735a59a48f7209a7ef50e4b9f7f49a1dc035b1cedf8ba65",
+    "forets_current_pool_native_20260912.py": "64e45fee135d023fa802ba9bcbf8eafa9e3cc0b693084ac7aee9c34a3447f9e1",
+    "forets_environment_context_20260912.py": "b5878cf30fd58cabfa2c4e58c7cef4451d6103a80ca8922934dcd6e02c205d11",
+    "forets_generation_capacity_20260912.py": "34825100f172e4f4bc9b712a82565611abbeb4dc31afd06795e7e56f21d3dd7a",
+    "forets_generation_capacity_20260912.sbatch": "6c47b1776180a867c6557f1eefae7e6750feba2f06d5f31c16a87edfc19946ec",
+    "forets_gpu_binding_20260911.py": "8f31fee796d89a63381810a8a6663d50e9ce988226885bf7b4498d17338c0d8d",
+    "forets_native_cuda_identity_20260911.py": "f2c0bc0845796f280fe535e334cb03537e4c704e54db72ed56ff177caeb1cd84",
+    "forets_native_gpu_binding_20260911.py": "01fc0908dea6a4119e04948ea5641a602e36336c5e1a7ab1780f48996cbdb88e",
+    "forets_opencl_allowlist_20260911.py": "5f99d7142a2203f29a6abe706117ce8ea0748516845109cf309b872a359d13c4",
+    "forets_opencl_readonly_ab.py": "b0546c7a81b11eaa558c197cc05cf576adbe014ae5878eb5ba0782c212575b6c",
+    "forets_paid_budget_20260911.py": "96ef46a35c9e83ed075d0ff30c8b6a0b5bbe4f0a7785783e846dd43a25c41492",
+    "opencl-vendors/nvidia.icd": "4ad07f8afc189894374aecb91023e6ff16bbceedf82496c04c0fdb0e2fe81e73"
+  },
+  "gpu": 1,
+  "incremental_api_nano": 3000000000,
+  "kernels": 8,
+  "max_gpu_hours": 1.25,
+  "ranking_model": "qwen/qwen3-coder-plus",
+  "ranking_orders": [
+    [
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      3,
+      2,
+      1,
+      0
+    ]
+  ],
+  "requests": [
+    {
+      "index": 0,
+      "model": "qwen/qwen3-coder-flash",
+      "replicate": 18,
+      "request_sha256": "f606a0ca8044cfd191dd23ebf9848acf5440b3a134aabcbf204dc8ead0fe0fae",
+      "task": "leaf-classification"
+    },
+    {
+      "index": 1,
+      "model": "qwen/qwen3-coder-plus",
+      "replicate": 18,
+      "request_sha256": "5803a776053af6ec9d12c0fdbe810cf45854692800fedbb2bdd1275fee2d811f",
+      "task": "leaf-classification"
+    },
+    {
+      "index": 2,
+      "model": "qwen/qwen3-coder-plus",
+      "replicate": 18,
+      "request_sha256": "5f977ec6deb0bc3a69a8a7b00944f8dd923e82dee0233056162db415e6ae04eb",
+      "task": "spaceship-titanic"
+    },
+    {
+      "index": 3,
+      "model": "qwen/qwen3-coder-flash",
+      "replicate": 18,
+      "request_sha256": "10d9e208f0edc025beef089c74d598adb82e44205e5f20ce1a35bf3316974ac2",
+      "task": "spaceship-titanic"
+    },
+    {
+      "index": 4,
+      "model": "qwen/qwen3-coder-plus",
+      "replicate": 19,
+      "request_sha256": "fa563ab58a4fcb58f38ab9598a1b764c3d93797c399eea761215544b6cffa5e5",
+      "task": "leaf-classification"
+    },
+    {
+      "index": 5,
+      "model": "qwen/qwen3-coder-flash",
+      "replicate": 19,
+      "request_sha256": "bf6041022bed95aa6f1d36cd6c91152e8cef8db62d6f7a3d6bc030e70b7bb7e8",
+      "task": "leaf-classification"
+    },
+    {
+      "index": 6,
+      "model": "qwen/qwen3-coder-flash",
+      "replicate": 19,
+      "request_sha256": "90e4b45f560a761ff27bb74ca8853b5148e5e46d86aeac507833b84eec6cfa93",
+      "task": "spaceship-titanic"
+    },
+    {
+      "index": 7,
+      "model": "qwen/qwen3-coder-plus",
+      "replicate": 19,
+      "request_sha256": "f7bc0aa49273958102a8b74002398eae4872a35127893ecf3f276a548d9704d2",
+      "task": "spaceship-titanic"
+    }
+  ],
+  "role": "generator_replication_with_blind_mixedpool_selection",
+  "root": "/research/d7/spc/yzyang4/forets-generation-capacity-20260912-hp7jtagu",
+  "source_tree": "900fa3bdf6971381c37a9792723dba42c63e5ac6",
+  "task_executions": 0,
+  "tie_rule": "slot_ascending",
+  "top_k": 2,
+  "utc": "2026-09-12T05:03:40.078608+00:00"
+}

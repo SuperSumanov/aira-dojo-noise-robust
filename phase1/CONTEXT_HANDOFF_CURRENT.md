@@ -1,25 +1,24 @@
 # 短交接：e2e未确认收益，8程序生成器单变量诊断准备
 
-2026-09-12最后更新04:47 UTC。用户本轮02:44起要求三小时有价值证据，目标05:44 UTC；留在会话，不新建automation。
+2026-09-12最后更新04:51 UTC。用户本轮02:44起要求三小时有价值证据，目标05:44 UTC；留在会话，不新建automation。
 先fetch→CURRENT_DIRECTION顶部→本文件→现场，不把旧状态当实时。主线同预算MLE-bench最终收益。
 
-## 生成器对照当前正在生成，尚未提交GPU
+## 生成器对照13143正在GPU执行，未读结果
 
 - 当前root **/research/d7/spc/yzyang4/forets-generation-capacity-20260912-asl_0ytg**。
   stage forets-generation-stage-20260912-fyGr0bRP；controller **f3b2c68551b9eea728b67781e630cb5bb0426810**。
   preparedSHA **ab7bfcd9d1c93b14fbb6f65c04995d9ec3faca42299aba1120f2f9dd4e2fad06**。
-  04:46启动generate，当前exec session21780，待8/8闭合才能submit；无重试/改代码/补槽。
+  04:48:14全部8生成完成，session21780已结束；04:50:22单次提交13143，04:50:53确认RUNNING/gpu28、0/8结果回执。
 - 矩阵两任务×replicate16/17×Flash/Plus=8全新程序；同JSON/描述/环境/采样/原镜像/gpu28单3090/6CPU/300秒配置。
   实际路径/workspace/data；prepare已调用真实容器命令构造器核对，2条件只改model。7本地生成/账本测试+4读出测试。
   75分钟1.25GPUh、额外API责任≤3USD，原100人民币/保守10USD累计不变；候选支持诊断，不是critic/e2e或等费用优势。
-- 全生成完成后运行当前root里的forets_generation_capacity_20260912.py submit --root本根 --commit上述f3b完整SHA；
-  程序源码tree900fa3bdf6971381c37a9792723dba42c63e5ac6。不得重复prepare/generate/submit。
+- prepare/generate/submit均完成，不得重复；程序源码tree900fa3bdf6971381c37a9792723dba42c63e5ac6。
   全8执行闭合且sacct COMPLETED后，用stage的readout_forets_generation_capacity_20260912.py --root本根，单次排他输出。
 - **旧尝试不能恢复**：tps3pbrw在catalog门0调用停止；ngtb47lk生成8次后提交13141，但我方prompt错写/input，
   与真实挂载/workspace/data不符，04:38整组CANCELLED/46秒，3结果文件均未读值；8程序不重跑，费用.021790639USD照计。
   vkgl8inm迁移账本scope重名，0新调用；两个旧副本均stopped。修复使用root唯一scope和failed根排他recovery-claim防多活克隆。
   失败事实见FORETS_GENERATION_CAPACITY_PLAN_20260912.md，不把这几项当模型失败。
-- 04:38后唯一旧队列是held12535，暂未再核；提交新GPU后覆盖此段。报告草稿FORETS_PROGRESS_FOR_ADVISOR_20260912.md待新结果补齐。
+- 报告FORETS_PROGRESS_FOR_ADVISOR_20260912.md待新结果补齐；已闭合结果/source capsule已push f4bfce1e5a6f7809a5e006096c03e41f8696d0ef。
 
 ## 已完成，禁止重复读出/作业
 
@@ -52,11 +51,11 @@
   普通代码错误仍原样返回。控制流测试不是故障率/e2e正结果。archive/artifact/receipt已本地下载。
 - 新生成器诊断两条件用同修复源；旧效果根不动、旧paid授权不改、不重新加载8B/G0。
 
-## API账（新generate正在执行）
+## 唯一当前API账（全部生成已完成，无正在请求）
 
-当前有效账应在asl_0ytg（查看其authorization.json和paid.sqlite只读统计核实），不得继续使用信息消融/旧生成器根。
-最新继承370行、settled1.235371007USD/accounted2.635371007USD、旧两个.70未知；
-新费用以generation-finished.json为准。上限继承责任+3USD，原100人民币/保守10USD不重置。
+有效账在asl_0ytg，AUTH f2ee650241a1f96f7038d9580cb5aef77bf5a58542993925cbd3173ebe7c3abe，其他根不得使用。
+378行；settled1.256268156USD/accounted2.656268156USD、旧两个.70未知保留；本批8API .020897149USD。
+上限继承责任+3USD，原100人民币/保守10USD不重置；metadata以generation-finished.json为准。
 父ngtb47lk及失败迁移副本vkgl8inm均stopped；恢复只能单一后继，失败副本应有recovery-claim绑定asl_0ytg。
 
 ## 学长新提交已安全阅读

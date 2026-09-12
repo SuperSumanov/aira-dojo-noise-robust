@@ -52,10 +52,16 @@ def summarize(rows):
 def numerical(task,pred,truth):
     import numpy as np
     idcol='id' if task==TASKS[0] else 'PassengerId'
-    if set(pred.columns)!=set(truth.columns) or idcol not in pred:raise ValueError('columns')
+    if task==TASKS[0]:
+        if set(pred.columns)!=set(truth.columns) or idcol not in pred:raise ValueError('columns')
+        columns=sorted(set(truth.columns)-{idcol})
+    else:
+        # Official Spaceship answers retain input features alongside the target.
+        # Only PassengerId + Transported participate in accuracy.
+        if not {idcol,'Transported'}<=set(pred.columns) or not {idcol,'Transported'}<=set(truth.columns):raise ValueError('columns')
+        columns=['Transported']
     if (pred[idcol].duplicated().any() or truth[idcol].duplicated().any() or pred[idcol].isna().any()
         or truth[idcol].isna().any() or set(pred[idcol])!=set(truth[idcol]) or len(truth)==0):raise ValueError('ids')
-    columns=sorted(set(truth.columns)-{idcol})
     p=pred.set_index(idcol).sort_index()[columns];y=truth.set_index(idcol).sort_index()[columns]
     if task==TASKS[0]:
         p,y=p.to_numpy(dtype=float),y.to_numpy(dtype=float)

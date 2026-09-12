@@ -124,7 +124,7 @@ def derive(name, text):
     return text
 
 
-def build(stage, *, block_minutes=180, block_ids=(1,)):
+def build(stage, *, block_minutes=180, block_ids=(1,), config_transform=None):
     if (block_minutes, block_ids) not in ((180,(1,)), (90,(1,2))):
         raise ValueError('explicit supported allocation layout required')
     info=read(stage/'artifact.json'); old=read(PARENT/'prepared.json',PREPARED); calls=parent_calls()
@@ -157,6 +157,8 @@ def build(stage, *, block_minutes=180, block_ids=(1,)):
         cfg=replace(read(PARENT/'configs'/(prior['run_id']+'.json'),prior['config_sha256']),{str(PARENT):str(root),prior['run_id']:rid})
         cfg['metadata'].update(seed=seed,git_commit_id=info['commit'],description='wallclock-source-'+info['source_tree'])
         cfg['solver'].update(selector_seed=seed,step_limit=64,time_limit_secs=600)
+        if config_transform is not None:
+            cfg = config_transform(cfg)
         typed=RunConfig.from_dict(cfg); typed.validate()
         if typed.to_typed_dict()!=cfg: raise ValueError('typed config roundtrip')
         digest=write(root/'configs'/(rid+'.json'),encode(cfg))

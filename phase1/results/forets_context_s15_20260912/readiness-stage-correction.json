@@ -1,0 +1,421 @@
+{
+  "role": "additive_failure_stage_correction_not_rescoring",
+  "utc": "2026-09-12T03:54:11.622897+00:00",
+  "invocations": 40,
+  "totals": {
+    "candidate_code_error": 23,
+    "reported_execution_timeout_after_readiness": 4,
+    "exit_zero": 9,
+    "kernel_readiness_failure_before_candidate_dispatch": 4
+  },
+  "rows": [
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "invocation_index": 0,
+      "stage": "candidate_code_error",
+      "reported_seconds": 86.40744650713168
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "invocation_index": 1,
+      "stage": "candidate_code_error",
+      "reported_seconds": 86.86776349809952
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "invocation_index": 2,
+      "stage": "reported_execution_timeout_after_readiness",
+      "reported_seconds": 305.6888808510266
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "invocation_index": 3,
+      "stage": "candidate_code_error",
+      "reported_seconds": 26.210821934975684
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "invocation_index": 4,
+      "stage": "exit_zero",
+      "reported_seconds": 213.59964681603014
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "invocation_index": 0,
+      "stage": "candidate_code_error",
+      "reported_seconds": 30.03766979300417
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "invocation_index": 1,
+      "stage": "reported_execution_timeout_after_readiness",
+      "reported_seconds": 300.16826846892945
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "invocation_index": 2,
+      "stage": "candidate_code_error",
+      "reported_seconds": 28.064813788048923
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "invocation_index": 3,
+      "stage": "exit_zero",
+      "reported_seconds": 240.83084997418337
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "invocation_index": 4,
+      "stage": "exit_zero",
+      "reported_seconds": 241.166440238012
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "invocation_index": 0,
+      "stage": "candidate_code_error",
+      "reported_seconds": 6.317528835032135
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "invocation_index": 1,
+      "stage": "kernel_readiness_failure_before_candidate_dispatch",
+      "reported_seconds": 120.05295742396265
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "invocation_index": 2,
+      "stage": "candidate_code_error",
+      "reported_seconds": 6.193864631000906
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "invocation_index": 3,
+      "stage": "candidate_code_error",
+      "reported_seconds": 6.2119311899878085
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "invocation_index": 4,
+      "stage": "exit_zero",
+      "reported_seconds": 142.14497628202662
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "invocation_index": 0,
+      "stage": "candidate_code_error",
+      "reported_seconds": 2.629053913988173
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "invocation_index": 1,
+      "stage": "candidate_code_error",
+      "reported_seconds": 8.947608217131346
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "invocation_index": 2,
+      "stage": "candidate_code_error",
+      "reported_seconds": 9.029846872901544
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "invocation_index": 3,
+      "stage": "candidate_code_error",
+      "reported_seconds": 9.025494769914076
+    },
+    {
+      "job": "13124",
+      "seed": 14,
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "invocation_index": 4,
+      "stage": "candidate_code_error",
+      "reported_seconds": 14.899535257834941
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "invocation_index": 0,
+      "stage": "kernel_readiness_failure_before_candidate_dispatch",
+      "reported_seconds": 120.05751344002783
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "invocation_index": 1,
+      "stage": "exit_zero",
+      "reported_seconds": 61.653373290086165
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "invocation_index": 2,
+      "stage": "kernel_readiness_failure_before_candidate_dispatch",
+      "reported_seconds": 120.05268936604261
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "invocation_index": 3,
+      "stage": "candidate_code_error",
+      "reported_seconds": 5.3841811830643564
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "invocation_index": 4,
+      "stage": "exit_zero",
+      "reported_seconds": 23.435211658943444
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "invocation_index": 0,
+      "stage": "reported_execution_timeout_after_readiness",
+      "reported_seconds": 337.12174979620613
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "invocation_index": 1,
+      "stage": "exit_zero",
+      "reported_seconds": 224.19045235193335
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "invocation_index": 2,
+      "stage": "candidate_code_error",
+      "reported_seconds": 5.706875625066459
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "invocation_index": 3,
+      "stage": "candidate_code_error",
+      "reported_seconds": 3.486093173036352
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "invocation_index": 4,
+      "stage": "kernel_readiness_failure_before_candidate_dispatch",
+      "reported_seconds": 120.05511965602636
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "invocation_index": 0,
+      "stage": "candidate_code_error",
+      "reported_seconds": 6.7484010078478605
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "invocation_index": 1,
+      "stage": "exit_zero",
+      "reported_seconds": 10.711197756929323
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "invocation_index": 2,
+      "stage": "candidate_code_error",
+      "reported_seconds": 2.632669494021684
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "invocation_index": 3,
+      "stage": "candidate_code_error",
+      "reported_seconds": 6.13848960888572
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "invocation_index": 4,
+      "stage": "candidate_code_error",
+      "reported_seconds": 2.6347882950212806
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "invocation_index": 0,
+      "stage": "candidate_code_error",
+      "reported_seconds": 5.968464892124757
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "invocation_index": 1,
+      "stage": "candidate_code_error",
+      "reported_seconds": 137.5439370330423
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "invocation_index": 2,
+      "stage": "candidate_code_error",
+      "reported_seconds": 5.764482890954241
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "invocation_index": 3,
+      "stage": "exit_zero",
+      "reported_seconds": 35.81826651794836
+    },
+    {
+      "job": "13128",
+      "seed": 15,
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "invocation_index": 4,
+      "stage": "reported_execution_timeout_after_readiness",
+      "reported_seconds": 317.8335039578378
+    }
+  ],
+  "source_proofs": [
+    {
+      "job": "13124",
+      "source_tree": "f70eb4859c48c61bba37b298fbf8e32e367644ae",
+      "actual_source_control_flow_reproduced": true,
+      "candidate_dispatch_calls": 0,
+      "fake_readiness_seconds": 120,
+      "configured_candidate_seconds": 300,
+      "outer_code_timeout_message_is_misleading": true,
+      "source_sha256": {
+        "jupyter_code_executor.py": "99681e6a519a14bcdcc0c56caacfb108760b73e98af71c5b054efe5dead9efc0",
+        "jupyter_interpreter.py": "d60eb92f48457b6f1f1e8a69665a2c689b3340be1efa8f66a7b9cc242446e47c"
+      }
+    },
+    {
+      "job": "13128",
+      "source_tree": "54e353963a6899965896b2e8ea492207829b3cbd",
+      "actual_source_control_flow_reproduced": true,
+      "candidate_dispatch_calls": 0,
+      "fake_readiness_seconds": 120,
+      "configured_candidate_seconds": 300,
+      "outer_code_timeout_message_is_misleading": true,
+      "source_sha256": {
+        "jupyter_code_executor.py": "99681e6a519a14bcdcc0c56caacfb108760b73e98af71c5b054efe5dead9efc0",
+        "jupyter_interpreter.py": "d60eb92f48457b6f1f1e8a69665a2c689b3340be1efa8f66a7b9cc242446e47c"
+      }
+    }
+  ],
+  "evidence_sha256": {
+    "forets-repeat-20260912-x3pkniqp/runs/00-leaf-classification-s14-uniform_random/checkpoint/journal.jsonl": "9104ba7ffe7b374406629e6c948bd37c3d39458647da86a8206275ddde6fd998",
+    "forets-repeat-20260912-x3pkniqp/runs/01-leaf-classification-s14-critic_topk_random/checkpoint/journal.jsonl": "3beb9d227a73dd7ce99136749a40a0be7e58fcda6991c93aa704e392e337516a",
+    "forets-repeat-20260912-x3pkniqp/runs/02-spaceship-titanic-s14-critic_topk_random/checkpoint/journal.jsonl": "ae7dcc45dec97a62a8abbce3be96573106ccffbf5aa898c83ca662d9fad56da1",
+    "forets-repeat-20260912-x3pkniqp/runs/03-spaceship-titanic-s14-uniform_random/checkpoint/journal.jsonl": "1d51e8d9991364715fc17cab212e4965e1f7065a48e1a1573d9607909e000a01",
+    "forets-repeat-20260912-3no2iopd/runs/00-leaf-classification-s15-critic_topk_random/checkpoint/journal.jsonl": "c2fcacbefd309348c8d1711ed8a0931ee5ebd0a85935e3a5f21c4d52a6d097ed",
+    "forets-repeat-20260912-3no2iopd/runs/01-leaf-classification-s15-uniform_random/checkpoint/journal.jsonl": "6965259aa53ae790bb1b4a7022416a8fc2fc11e29bd9f98e8a31e5a9fa1e07bc",
+    "forets-repeat-20260912-3no2iopd/runs/02-spaceship-titanic-s15-uniform_random/checkpoint/journal.jsonl": "1e72b646e4d0a70bf293ef4a4ac143f1f6221259003d36ae6e9cbb7a25e44915",
+    "forets-repeat-20260912-3no2iopd/runs/03-spaceship-titanic-s15-critic_topk_random/checkpoint/journal.jsonl": "2816c536d445f3c9dc210eb52f0583f1b8fd3bd67750529c3efba4951315698c"
+  },
+  "candidate_reruns": 0,
+  "new_api_calls": 0,
+  "gpu_jobs": 0,
+  "protected_cohort_read": false,
+  "limitations": [
+    "Readiness failure cause remains undiagnosed; source reproduction is not a live GPU fix.",
+    "Final submissions and numeric scores are unchanged; trajectories may be affected asymmetrically.",
+    "Prior execution_timeout totals included readiness failures and are not pure candidate-runtime failures.",
+    "Do not remove affected runs, impute scores or replay failed slots."
+  ]
+}

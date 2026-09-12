@@ -1,12 +1,12 @@
 # 短交接：两seed质量不支持收益，完整池13129运行
 
-2026-09-12，最后更新03:55 UTC。恢复：fetch→CURRENT_DIRECTION顶部→本文件→现场。
+2026-09-12，最后更新03:56 UTC。恢复：fetch→CURRENT_DIRECTION顶部→本文件→现场。
 用户要求约02:44→05:44 UTC三小时内真实有价值证据；留在会话，不新建automation。
 主线同预算上限真实MLE-bench最终收益，不重复G0/模型验收、不补失败槽。
 
 ## 唯一运行GPU作业
 
-- 13129单次03:43:10.736990 UTC提交，03:47观察RUNNING/gpu28，2/8结果文件，仅看结构。
+- 13129单次03:43:10.736990 UTC提交，03:56观察RUNNING/gpu28，6/8结果文件，仅看结构。
   root /research/d7/spc/yzyang4/forets-current-pool-20260912-0hz06xtj。
   stage forets-context-pool-s14-stage-20260912-5DgFYoKM。
   controller d3331edafc4ca3277131e5a5a4f44a1189a72940；source f70eb4859c48c61bba37b298fbf8e32e367644ae。
@@ -37,6 +37,14 @@
 
 ## 已闭合真实结果，禁止重复读出/校验器运行
 
+重要：03:54审计发现40解释器调用中4次kernel-readiness失败，错误附加代码5分钟超时。
+seed14一次、seed15三次；源方法控制流假内核复现证明候选execute未进入，未调用GPU/API。
+原分数保持，收回“技术完全干净”的解释，不据此宣称critic纯能力负结果，未来e2e先修启动阶段。
+新脚本forets_readiness_failure_audit_20260912.py，3测试通过；远端单次审计已执行，勿重复写：
+/research/d7/spc/yzyang4/forets-readiness-failure-audit-20260912.json，已下载results/.../readiness-stage-correction.json。
+握手偶发失败根因尚未确认；旧client只发一次kernel_info，官方jupyter_client采用有总deadline的重发握手。
+当前13129协议另有kernel-startup基础设施门，不改其运行代码。完整池和信息消融继续，非e2e补跑。
+
 - 13128 seed15 root forets-repeat-20260912-3no2iopd，stage forets-context-s15-stage-20260912-BQv6QexP。
   COMPLETED，2873秒/.7980555555555555GPUh；4attempt1完成，4有效final，20程序/5正常退出。
   closeout03:42:39、独立原submission数值复验03:42:55通过，汇总已生成，不再运行。
@@ -56,7 +64,7 @@
 
 ## 发布与约束
 
-- 最近已push c8b91882f0d54efed0fd47b6b46a1a312ef68791；本次新报告/交接/结果待下一push，查git status。
+- 最近已push fdc984ed（完整SHA用git核），两seed报告/交接/6公共结果已发布；后续变动查git status。
   seed15源码capsule已公开284文件，不重导出；无任务数据/模型/候选/响应/key。
 - 相关工作FORETS_METHOD_POSITION_CHECK_20260912.md：CEB经验critic、ReASearch经验搜索、CHIME分离记忆有强重叠；
   强裁判/环境说明/双序Borda或泛称经验记忆不是新颖性证明；未据此更改当前冻结协议。

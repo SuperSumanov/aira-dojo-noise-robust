@@ -133,13 +133,17 @@ def verify(root):
                     conditional_mean_score=sum(valid)/len(valid) if valid else None)
             slots=sorted(range(4),key=lambda s:(sum(rank.index(s) for rank in ranks),s))[:2]
             a,b=stats(list(range(4))),stats(slots)
+            flash=stats([i for i,r in enumerate(rs) if r['model']==MODELS[0]])
             selection.append(dict(task=task,uniform4=a,blind_borda_top2=b,
+                prior_batch_metadata_flash=flash,
+                validity_difference_vs_prior_batch_flash=b['valid_probability']-flash['valid_probability'],
                 validity_probability_difference=b['valid_probability']-a['valid_probability'],
                 individual_order_top2=[rank[:2] for rank in ranks],
                 order_top2_invariant=set(ranks[0][:2])==set(ranks[1][:2])))
         summary['blind_selection']=selection
         summary['ranking_api_cost_usd']=sum(r['cost_usd'] for r in g['rank_records'])
         summary['selection_limitation']='Finite mixed-generator development pools, each code executed once. Not single-generator production/e2e confirmation; ranking fees are additional.'
+        summary['metadata_baseline_registration']='Secondary always-Flash rule added at 05:09 UTC after execution closure but before any current outcome/ranking readout; chosen only from prior batch, not an original primary endpoint.'
     summary.update(role='paired_generator_capacity_development_diagnostic',job=launch['job'],utc=worker.now(),
         controller_commit=prepared['controller_commit'],source_tree=worker.TREE,
         prepared_sha256=hashlib.sha256((root/'prepared.json').read_bytes()).hexdigest(),

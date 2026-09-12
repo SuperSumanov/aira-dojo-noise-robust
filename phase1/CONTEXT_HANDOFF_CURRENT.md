@@ -1,24 +1,33 @@
 # 短交接：e2e未确认收益，8程序生成器单变量诊断准备
 
-2026-09-12最后更新04:51 UTC。用户本轮02:44起要求三小时有价值证据，目标05:44 UTC；留在会话，不新建automation。
+2026-09-12最后更新05:08 UTC。用户本轮02:44起要求三小时有价值证据，目标05:44 UTC；留在会话，不新建automation。
 先fetch→CURRENT_DIRECTION顶部→本文件→现场，不把旧状态当实时。主线同预算MLE-bench最终收益。
 
-## 生成器对照13143正在GPU执行，未读结果
+## 当前新采样18/19：12API全完成，13148已提交
 
-- 当前root **/research/d7/spc/yzyang4/forets-generation-capacity-20260912-asl_0ytg**。
-  stage forets-generation-stage-20260912-fyGr0bRP；controller **f3b2c68551b9eea728b67781e630cb5bb0426810**。
-  preparedSHA **ab7bfcd9d1c93b14fbb6f65c04995d9ec3faca42299aba1120f2f9dd4e2fad06**。
-  04:48:14全部8生成完成，session21780已结束；04:50:22单次提交13143，04:50:53确认RUNNING/gpu28、0/8结果回执。
-- 矩阵两任务×replicate16/17×Flash/Plus=8全新程序；同JSON/描述/环境/采样/原镜像/gpu28单3090/6CPU/300秒配置。
-  实际路径/workspace/data；prepare已调用真实容器命令构造器核对，2条件只改model。7本地生成/账本测试+4读出测试。
-  75分钟1.25GPUh、额外API责任≤3USD，原100人民币/保守10USD累计不变；候选支持诊断，不是critic/e2e或等费用优势。
-- prepare/generate/submit均完成，不得重复；程序源码tree900fa3bdf6971381c37a9792723dba42c63e5ac6。
-  全8执行闭合且sacct COMPLETED后，用stage的readout_forets_generation_capacity_20260912.py --root本根，单次排他输出。
-- **旧尝试不能恢复**：tps3pbrw在catalog门0调用停止；ngtb47lk生成8次后提交13141，但我方prompt错写/input，
-  与真实挂载/workspace/data不符，04:38整组CANCELLED/46秒，3结果文件均未读值；8程序不重跑，费用.021790639USD照计。
-  vkgl8inm迁移账本scope重名，0新调用；两个旧副本均stopped。修复使用root唯一scope和failed根排他recovery-claim防多活克隆。
-  失败事实见FORETS_GENERATION_CAPACITY_PLAN_20260912.md，不把这几项当模型失败。
-- 报告FORETS_PROGRESS_FOR_ADVISOR_20260912.md待新结果补齐；已闭合结果/source capsule已push f4bfce1e5a6f7809a5e006096c03e41f8696d0ef。
+- root **/research/d7/spc/yzyang4/forets-generation-capacity-20260912-hp7jtagu**；
+  stage **forets-generation-stage-20260912-of10HVJs**；
+  controller **4fc38fe60e44db8e2cdcc811e185924aa4496f29**；
+  preparedSHA **a86b55bbfebd80f71e06a6b277db82137b989e94daa14d0bef17e39642226328**。
+- 05:05:22全部8生成+4盲排名完成，session73124已结束；05:06:44单次提交13148，等待全8闭合，不读排名/执行值。
+  新矩阵两任务×replicate18/19×Flash/Plus=8新程序；同提示/JSON/环境/原镜像/gpu28单3090/6CPU/配置300秒。
+  额外Plus/Alibaba每任务正逆序排名4调用，隐去生成模型名/replicate/结果；固定Borda/top2/槽位升序平分。
+  全部12调用完成、generation-finished.complete=true才能提交一次，所有8程序仍完整执行。
+- prepare/generate/submit均已完成，不再运行；本root运行controller为上述4fc完整SHA。
+  原source900fa3bdf6971381c37a9792723dba42c63e5ac6；最多75分钟1.25GPUh、额外API责任≤3USD，原100人民币/10USD累计继承。
+  不重试/改代码/补槽。任何生成/排名/基础设施失败整组停止，不能只报有利子集。
+- 全8执行结束且sacct COMPLETED后：stage/readout_forets_generation_capacity_20260912.py --root本根，单次排他写summary/CSV。
+  会同时输出全部生成器复验和盲排名同池差；新脚本从冻结worker.MATRIX取新seed，旧16/17读出已闭合不可再写。
+  混合生成器池的有限即时选择诊断，不是单生成器production/e2e/新算法确认。
+- 13143已完成125秒，root asl_0ytg；Flash4/4有效，Plus0/4。
+  Flash Leaf .62195/.54568，Space .81264/.81379，4个submission独立数值复验通过。
+  summarySHA **1ab23e7ff96910cdd3a73a671e9139c20edbc2856abf237060d6f4fa0c1d23e2**；
+  verifierSHA8703a7b4c54de80d422314c8e158bbfbe8ace7131076f9642cf36283302c576d。
+  初次独立验证Space表头过严（答案带输入特征），已按官方只对PassengerId/Transported修正；不改提交/成绩、不重新执行。
+- 旧失败不可恢复：tps3pbrw catalog门0调用；ngtb47lk的13141因我方提示/input与实际/workspace/data不符，整组取消46秒，
+  3结果文件未读，8代码不重跑，.021790639USD照计。vkgl8inm迁移scope重名0新调用，两个旧副本均stopped，
+  排他recovery-claim仅指向asl_0ytg；新scope以root唯一，不克隆多活账。详见生成器冻结方案。
+- 给学长报告FORETS_PROGRESS_FOR_ADVISOR_20260912.md已更新16/17结果，新盲排名待补；还需push本轮下载结果/最新交接。
 
 ## 已完成，禁止重复读出/作业
 
@@ -51,12 +60,12 @@
   普通代码错误仍原样返回。控制流测试不是故障率/e2e正结果。archive/artifact/receipt已本地下载。
 - 新生成器诊断两条件用同修复源；旧效果根不动、旧paid授权不改、不重新加载8B/G0。
 
-## 唯一当前API账（全部生成已完成，无正在请求）
+## 唯一当前API账（12调用闭合，无正在进行的API）
 
-有效账在asl_0ytg，AUTH f2ee650241a1f96f7038d9580cb5aef77bf5a58542993925cbd3173ebe7c3abe，其他根不得使用。
-378行；settled1.256268156USD/accounted2.656268156USD、旧两个.70未知保留；本批8API .020897149USD。
-上限继承责任+3USD，原100人民币/保守10USD不重置；metadata以generation-finished.json为准。
-父ngtb47lk及失败迁移副本vkgl8inm均stopped；恢复只能单一后继，失败副本应有recovery-claim绑定asl_0ytg。
+有效账在hp7jtagu，AUTH d2340cc16e04870a76f09938419e6adb98a971b15edf5cdbfa26a919ee99605b；父asl_0ytg已封存。
+390行，settled1.291528875USD/accounted2.691528875USD、两个旧.70未知保留；
+本批生成.020848919USD、排名.0144118USD；累计cap继承责任+3USD，原100人民币/保守10USD不重置。
+ngtb47lk/vkgl8inm及所有更旧账均停止；只允许一个当前后继，无正在执行的旧API进程。
 
 ## 学长新提交已安全阅读
 

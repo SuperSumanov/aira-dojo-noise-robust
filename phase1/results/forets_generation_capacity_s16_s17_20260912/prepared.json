@@ -1,0 +1,91 @@
+{
+  "api_calls": 0,
+  "controller_commit": "f3b2c68551b9eea728b67781e630cb5bb0426810",
+  "cpu": 6,
+  "execution_timeout": 300,
+  "files": {
+    "bin/singularity": "08c609ebdb7b720e05d5dbadfc1e4fb872378f7c3fb8f8d0b78fd0285d5bb9dc",
+    "forets_closed_pool_20260911.py": "b3d24d82e94e8d7d014c96685e1afcf6c99b94e283b17ac184724ceedf3546fd",
+    "forets_closed_pool_native_20260911.py": "2afb152cfcc7f1c76ca9a99aeee43d81bc684f6639509ee654231e22d24ae6a6",
+    "forets_context_judge_20260912.py": "f66c5434297346f3e22503820b488e76111ad0e27b7941cd03aca88247aaf5b2",
+    "forets_current_pool_20260912.py": "f4758f2726e0ad40c735a59a48f7209a7ef50e4b9f7f49a1dc035b1cedf8ba65",
+    "forets_current_pool_native_20260912.py": "64e45fee135d023fa802ba9bcbf8eafa9e3cc0b693084ac7aee9c34a3447f9e1",
+    "forets_environment_context_20260912.py": "b5878cf30fd58cabfa2c4e58c7cef4451d6103a80ca8922934dcd6e02c205d11",
+    "forets_generation_capacity_20260912.py": "7712882ecb99129450c02c1ff0e4ce4ec80c00943f2f74c66a5f3aae248de414",
+    "forets_generation_capacity_20260912.sbatch": "6c47b1776180a867c6557f1eefae7e6750feba2f06d5f31c16a87edfc19946ec",
+    "forets_gpu_binding_20260911.py": "8f31fee796d89a63381810a8a6663d50e9ce988226885bf7b4498d17338c0d8d",
+    "forets_native_cuda_identity_20260911.py": "f2c0bc0845796f280fe535e334cb03537e4c704e54db72ed56ff177caeb1cd84",
+    "forets_native_gpu_binding_20260911.py": "01fc0908dea6a4119e04948ea5641a602e36336c5e1a7ab1780f48996cbdb88e",
+    "forets_opencl_allowlist_20260911.py": "5f99d7142a2203f29a6abe706117ce8ea0748516845109cf309b872a359d13c4",
+    "forets_opencl_readonly_ab.py": "b0546c7a81b11eaa558c197cc05cf576adbe014ae5878eb5ba0782c212575b6c",
+    "forets_paid_budget_20260911.py": "96ef46a35c9e83ed075d0ff30c8b6a0b5bbe4f0a7785783e846dd43a25c41492",
+    "opencl-vendors/nvidia.icd": "4ad07f8afc189894374aecb91023e6ff16bbceedf82496c04c0fdb0e2fe81e73"
+  },
+  "gpu": 1,
+  "incremental_api_nano": 3000000000,
+  "kernels": 8,
+  "max_gpu_hours": 1.25,
+  "requests": [
+    {
+      "index": 0,
+      "model": "qwen/qwen3-coder-flash",
+      "replicate": 16,
+      "request_sha256": "6603b82e3126189566f72478a952b071fd058f70a150364ccff270f7fc6f9a6c",
+      "task": "leaf-classification"
+    },
+    {
+      "index": 1,
+      "model": "qwen/qwen3-coder-plus",
+      "replicate": 16,
+      "request_sha256": "670b0628f145e264834b18c62e9004b6e5129a849ccba583cc809e6e68b0a3cd",
+      "task": "leaf-classification"
+    },
+    {
+      "index": 2,
+      "model": "qwen/qwen3-coder-plus",
+      "replicate": 16,
+      "request_sha256": "305eb545e7d3a2f35f83d733bbc9a36a20129d6658f20f80604d50ca0a996171",
+      "task": "spaceship-titanic"
+    },
+    {
+      "index": 3,
+      "model": "qwen/qwen3-coder-flash",
+      "replicate": 16,
+      "request_sha256": "4fb109ffc829e69fc9bd31c48a5f4d35457d2128806a55fe8583bf1c36a0ab5b",
+      "task": "spaceship-titanic"
+    },
+    {
+      "index": 4,
+      "model": "qwen/qwen3-coder-plus",
+      "replicate": 17,
+      "request_sha256": "6b9c82635dc0b5b39a7ba917820bc143657531d95bc25068b0c25332ec1e84cb",
+      "task": "leaf-classification"
+    },
+    {
+      "index": 5,
+      "model": "qwen/qwen3-coder-flash",
+      "replicate": 17,
+      "request_sha256": "d698d675378b303c41edd1e48456fc5cb8f0fd08b4715d233d206a6bad5fd3c6",
+      "task": "leaf-classification"
+    },
+    {
+      "index": 6,
+      "model": "qwen/qwen3-coder-flash",
+      "replicate": 17,
+      "request_sha256": "04f60d32ca25699be1d8864ba67c1bbd371829ff4c9c410676426b3aea702ba2",
+      "task": "spaceship-titanic"
+    },
+    {
+      "index": 7,
+      "model": "qwen/qwen3-coder-plus",
+      "replicate": 17,
+      "request_sha256": "e05a434e130fa057b498af52f431605ba1a4f3e51e6dad02ae15ae9bbe969433",
+      "task": "spaceship-titanic"
+    }
+  ],
+  "role": "generator_capacity_not_critic_e2e",
+  "root": "/research/d7/spc/yzyang4/forets-generation-capacity-20260912-asl_0ytg",
+  "source_tree": "900fa3bdf6971381c37a9792723dba42c63e5ac6",
+  "task_executions": 0,
+  "utc": "2026-09-12T04:46:35.881852+00:00"
+}

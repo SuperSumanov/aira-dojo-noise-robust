@@ -1,0 +1,21 @@
+{
+  "accounted_usd": 2.656268156,
+  "actual_container_command_input": "/workspace/data",
+  "api_calls": 8,
+  "authorization_sha256": "f2ee650241a1f96f7038d9580cb5aef77bf5a58542993925cbd3173ebe7c3abe",
+  "gpu_hours_cap": 1.25,
+  "input_readonly": true,
+  "native_adapter_import": true,
+  "new_api_cost_usd": 0.020897149,
+  "only_model_diff_pairs": 4,
+  "outcomes_read": false,
+  "output_directory": "/workspace",
+  "program_hashes_unchanged": true,
+  "protected_cohort_read": false,
+  "requests_generated": 8,
+  "settled_usd": 1.256268156,
+  "source_hashes_checked": true,
+  "source_tree": "900fa3bdf6971381c37a9792723dba42c63e5ac6",
+  "unresolved": 2,
+  "utc": "2026-09-12T04:50:22.227856+00:00"
+}

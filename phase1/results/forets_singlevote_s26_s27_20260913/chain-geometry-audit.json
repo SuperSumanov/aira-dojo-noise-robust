@@ -1,0 +1,206 @@
+{
+  "inspector_sha256": "72cc1691033d42a6948ec118b1d77512a29465e6c00b3070dde7f7741b79e967",
+  "limitation": "Missing journals are not empty trees. Internal is_buggy is not external grade. No alternative parent executed, no efficacy claim.",
+  "role": "posthoc_saved_graph_and_parent_diagnostic",
+  "rows": [
+    {
+      "arm": "uniform_random",
+      "journal_present": false,
+      "run_id": "00-leaf-classification-s26-uniform_random",
+      "seed": 26,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "journal_present": false,
+      "run_id": "01-leaf-classification-s26-critic_topk_random",
+      "seed": 26,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "branching_nodes": 0,
+      "buggy_parent_despite_nonbuggy_history": 0,
+      "journal_present": true,
+      "journal_sha256": "edf5f7539763b23349391bedfea87bd84f81965e1c5ed53fa9e6367dab28cbf4",
+      "max_saved_children": 1,
+      "persisted_nodes": 7,
+      "post_initial_parents": [
+        {
+          "internally_nonbuggy_history_available": false,
+          "parent_in_journal": true,
+          "parent_internally_buggy": true,
+          "step": 3
+        },
+        {
+          "internally_nonbuggy_history_available": false,
+          "parent_in_journal": true,
+          "parent_internally_buggy": true,
+          "step": 5
+        },
+        {
+          "internally_nonbuggy_history_available": false,
+          "parent_in_journal": true,
+          "parent_internally_buggy": true,
+          "step": 7
+        }
+      ],
+      "roots": 1,
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "task": "spaceship-titanic",
+      "unpersisted_child_references": 6,
+      "unreachable_saved_nodes": 6
+    },
+    {
+      "arm": "uniform_random",
+      "branching_nodes": 0,
+      "buggy_parent_despite_nonbuggy_history": 0,
+      "journal_present": true,
+      "journal_sha256": "1e7f7e57bc81eb8f009dd50a648e3031d5a587b9bd1adfd4fc75823bc6abf0a5",
+      "max_saved_children": 1,
+      "persisted_nodes": 8,
+      "post_initial_parents": [
+        {
+          "internally_nonbuggy_history_available": false,
+          "parent_in_journal": true,
+          "parent_internally_buggy": true,
+          "step": 3
+        },
+        {
+          "internally_nonbuggy_history_available": true,
+          "parent_in_journal": true,
+          "parent_internally_buggy": false,
+          "step": 4
+        },
+        {
+          "internally_nonbuggy_history_available": true,
+          "parent_in_journal": true,
+          "parent_internally_buggy": false,
+          "step": 5
+        },
+        {
+          "internally_nonbuggy_history_available": true,
+          "parent_in_journal": true,
+          "parent_internally_buggy": false,
+          "step": 6
+        },
+        {
+          "internally_nonbuggy_history_available": true,
+          "parent_in_journal": true,
+          "parent_internally_buggy": false,
+          "step": 7
+        },
+        {
+          "internally_nonbuggy_history_available": true,
+          "parent_in_journal": true,
+          "parent_internally_buggy": false,
+          "step": 8
+        }
+      ],
+      "roots": 1,
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "task": "spaceship-titanic",
+      "unpersisted_child_references": 7,
+      "unreachable_saved_nodes": 7
+    },
+    {
+      "arm": "critic_topk_random",
+      "journal_present": false,
+      "run_id": "04-leaf-classification-s27-critic_topk_random",
+      "seed": 27,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "journal_present": false,
+      "run_id": "05-leaf-classification-s27-uniform_random",
+      "seed": 27,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "branching_nodes": 0,
+      "buggy_parent_despite_nonbuggy_history": 1,
+      "journal_present": true,
+      "journal_sha256": "fc7e950086b20349896c8af61904638a0341ed9d22f7b443318f88c1d89476fc",
+      "max_saved_children": 1,
+      "persisted_nodes": 7,
+      "post_initial_parents": [
+        {
+          "internally_nonbuggy_history_available": true,
+          "parent_in_journal": true,
+          "parent_internally_buggy": false,
+          "step": 2
+        },
+        {
+          "internally_nonbuggy_history_available": true,
+          "parent_in_journal": true,
+          "parent_internally_buggy": false,
+          "step": 3
+        },
+        {
+          "internally_nonbuggy_history_available": true,
+          "parent_in_journal": true,
+          "parent_internally_buggy": true,
+          "step": 5
+        },
+        {
+          "internally_nonbuggy_history_available": true,
+          "parent_in_journal": true,
+          "parent_internally_buggy": false,
+          "step": 7
+        }
+      ],
+      "roots": 1,
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "task": "spaceship-titanic",
+      "unpersisted_child_references": 6,
+      "unreachable_saved_nodes": 6
+    },
+    {
+      "arm": "critic_topk_random",
+      "branching_nodes": 0,
+      "buggy_parent_despite_nonbuggy_history": 0,
+      "journal_present": true,
+      "journal_sha256": "1f29d64dfde40ad22fbcb52b94f7f2fb6a3e4648bd72384bbbc9f0de7468cd7b",
+      "max_saved_children": 1,
+      "persisted_nodes": 9,
+      "post_initial_parents": [
+        {
+          "internally_nonbuggy_history_available": false,
+          "parent_in_journal": true,
+          "parent_internally_buggy": true,
+          "step": 3
+        },
+        {
+          "internally_nonbuggy_history_available": false,
+          "parent_in_journal": true,
+          "parent_internally_buggy": true,
+          "step": 5
+        },
+        {
+          "internally_nonbuggy_history_available": false,
+          "parent_in_journal": true,
+          "parent_internally_buggy": true,
+          "step": 7
+        },
+        {
+          "internally_nonbuggy_history_available": false,
+          "parent_in_journal": true,
+          "parent_internally_buggy": true,
+          "step": 9
+        }
+      ],
+      "roots": 1,
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "task": "spaceship-titanic",
+      "unpersisted_child_references": 8,
+      "unreachable_saved_nodes": 8
+    }
+  ],
+  "summary_sha256": "e1722e9277dda73a9c73471f2cb2c53703e260d107e8bdaa31311fe48259cdab"
+}

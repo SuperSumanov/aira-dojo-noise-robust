@@ -1,0 +1,27 @@
+{
+  "actual_forets_inherits_mcts": true,
+  "api_calls": 0,
+  "deployed": false,
+  "gpu_dispatches": 0,
+  "inspector_sha256": "2b716d69c57808870dded6d4bccdccd08b4a6d6a0a2a1b4ef5fb0d4e9d51a4d2",
+  "reference_sha256": "5fdfd16be3056a4f543d88673472137e876d0d67903871d171e0332047ecaf4d",
+  "source_tree": "fb2c041c8ec8e352847881ee6fe2fb56d9561aec",
+  "status": "CPU_STRUCTURE_ONLY_NOT_EFFICACY",
+  "trials": [
+    {
+      "actual_leaf_step": 2,
+      "reference_parent_step": 1,
+      "uct_c": 0.0
+    },
+    {
+      "actual_leaf_step": 2,
+      "reference_parent_step": 1,
+      "uct_c": 1.0
+    },
+    {
+      "actual_leaf_step": 2,
+      "reference_parent_step": 1,
+      "uct_c": 100.0
+    }
+  ]
+}

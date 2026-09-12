@@ -1,11 +1,12 @@
 # 短交接：共同起点改进实验正在运行，全8结束前不读成绩
 
-2026-09-13 HK / 09-12 19:30 UTC。恢复先fetch→CURRENT_DIRECTION顶部0L187→核现场。
+2026-09-13 HK / 09-12 19:45 UTC。恢复先fetch→CURRENT_DIRECTION顶部0L187→核现场。
 用户希望本会话一小时内有价值结果；本轮始于19:12 UTC，预计20:06–20:12 UTC收齐/复验，不启动新的automation。
 
 ## 活跃实验（不是G0/训练，也不覆盖冷启动）
 
-- 13190/13191于19:28:51 UTC提交；19:30观察两份均RUNNING/gpu28，各首条Leaf搜索running。
+- 13190/13191于19:28:51 UTC提交；19:44观察两份均RUNNING/gpu28，各第一条已退出（控制器exit1），第二条running，Space四条pending。
+  控制器exit1不直接等同无效提交，预算截止也可如此；须全矩阵闭合后按冻结读出核技术资格和成绩。
 - seed28/29×Leaf/Space×random/单票Plus critic，共8；两份各单3090/6CPU、90分钟，总最多3GPUh。
   每搜索600秒/程序300秒/原镜像/Flash生成/相同操作提示，臂间仅选择规则不同。
 - 第一扩展只执行同一固定RandomForest，0生成/排名调用，实际训练内80/20验证再全量拟合、评分分析都计入600秒。
@@ -34,6 +35,11 @@ readout-plan SHA 0a8abf4ccd5d76d70f2d59e8f95a6aca4e22b37c053b11d692e9fa4d896c5cb
 
 ## 最近已闭合结果与禁止事项
 
+- 等待中另核旧bll4ghfa：四份Space保存图确实为单链，零分叉/悬空边/不可达节点；四份Leaf无完整journal，不当空树。
+  实际ForeTS继承MCTS，CPU示例uct_c=0/1/100同选坏叶，incumbent参考选旧好父；无GPU/API/反事实收益。
+  旧图审计v1曾把整数step引用误当UUID，错误悬空/不可达数作废；v2纠正，原件保留。
+  v2 SHA92ba7283c81fd8b3fa817ec667260859170e596e8382083b2132770a5199a434；详情FORETS_PARENT_TOPOLOGY_FINDING_20260913.md。
+  parent-only参考/默认不变patch已准备、本地测试通过，但未投放；不改13190/13191，未激活下一矩阵。
 - 上轮13184/13185 source fb2c041c8ec8e352847881ee6fe2fb56d9561aec已闭合，8/8技术合格、
   random有效2/4、critic0/4；Space random .80230/.81034。无双有效配对；不重跑旧readers或追seed。
   报告FORETS_SINGLE_VOTE_RESULTS_20260913.md，旧summary e1722e9277dda73a9c73471f2cb2c53703e260d107e8bdaa31311fe48259cdab。

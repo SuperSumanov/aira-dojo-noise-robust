@@ -4,6 +4,7 @@ No selection, grading, training or paid calls. Missing scores stay missing.
 Seed13 and older eight-billion-parameter critic runs cannot enter this table.
 """
 from collections import defaultdict
+import csv
 from decimal import Decimal
 import hashlib
 import json
@@ -44,7 +45,7 @@ def combine(blocks):
             if r['seed']!=seed or r['run_id'] not in costs:raise ValueError('cost row mismatch')
             c=costs[r['run_id']]
             if (c['seed'],c['task'],c['arm'])!=(seed,r['task'],r['arm']):raise ValueError('cost binding differs')
-            rows.append(r|{k:c[k] for k in ('api_calls','settled_api_cost_usd','unresolved_api_calls',
+            rows.append(r|dict(source_tree=tree,job=job)|{k:c[k] for k in ('api_calls','settled_api_cost_usd','unresolved_api_calls',
                 'task_calls','execution_timeout_seconds','step_limit','worker_wall_cap_seconds')})
         billing.append(dict(seed=seed,job=job,allocation_gpu_hours=verified['allocation_gpu_hours'],
             new_api_calls_including_route=diagnostic['billing']['new_api_calls'],
@@ -88,6 +89,9 @@ def main():
     report=combine(blocks)|dict(evidence_sha256=hashes,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
     output=BASE/SPECS[1][2]/'two-seed-contextual-summary.json'
     with output.open('x') as f:json.dump(report,f,indent=2,allow_nan=False)
+    with output.with_suffix('.csv').open('x',newline='') as f:
+        writer=csv.DictWriter(f,fieldnames=list(report['rows'][0]))
+        writer.writeheader();writer.writerows(report['rows'])
     print(json.dumps({k:v for k,v in report.items() if k not in ('rows','evidence_sha256')}))
 
 

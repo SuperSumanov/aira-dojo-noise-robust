@@ -6,8 +6,8 @@
 
 ## 当前唯一e2e作业
 
-- 13128 seed15，两任务×两臂；02:53:37单次提交，最后03:07:11观察RUNNING/gpu28。
-  Leaf critic完成/attempt1，Leaf random运行；Space random/critic尚待跑。未读seed15最终值。
+- 13128 seed15，两任务×两臂；02:53:37单次提交，最后03:29:12观察RUNNING/gpu28。
+  Leaf两臂和Space random均完成，Space critic运行；全为attempt1。未读seed15最终值。
 - 根 /research/d7/spc/yzyang4/forets-repeat-20260912-3no2iopd；stage forets-context-s15-stage-20260912-BQv6QexP。
   controller f53ed6693d029070662c50f81ea7146f0a9e4d35；source54e353963a6899965896b2e8ea492207829b3cbd。
   prepared883062309b6edeee43ac93be26042c9376279ab712948e034bceb39dc67dae1e。
@@ -21,7 +21,8 @@
 - 唯一ACTIVE账在此根，seed14已SEALED。继承284行、结算1.007137235/责任2.407137235USD/未知2；
   路由后286行。03:07新25API含路由、新结算0.051994787USD，未知3含在途，不释放责任。
   本窗口累计≤5.907137235USD，原100人民币/保守10USD累计不重置。
-- 只读观察器exec session6844（observe_forets_context_s15_20260912.py --watch）。
+- 只读观察器exec session88689（observe_forets_context_s15_20260912.py --watch）。
+  旧6844于03:29前SSH连接重置结束；立即重连确认真实作业未中断，不重投/补跑。
   实际session为根/forets_environment_session_20260912.py：status只读，watch自动closeout不要用。
   全4终态后单次closeout → stage/verify_forets_context_s15_20260912.py →
   summarize_forets_context_repetition_20260912.py（须两块COMPLETED且独立通过）。
@@ -39,7 +40,11 @@
   全8闭合才readout，再本根/verify_forets_current_pool_20260912.py --root 本根。
 - 新同池信息消融：2任务×full/omitted说明包×正逆=8个新Plus请求，0GPU，说明包是唯一变化。
   方案FORETS_CONTEXT_INFORMATION_ABLATION_20260912.md；脚本forets_context_information_ablation_20260912.py。
-  尚未prepare/activate/API。13128正常关闭且独立通过后才seal/carry账，新≤3USD且原10USD不重置。
+  03:16:46已prepare，根forets-information-ablation-20260912-rwohlohw，stage forets-information-stage-20260912-FN8R41vW。
+  commit65f0228d54ac93e281fb6607d84e6b2bac9080b7，prepared SHA42cacb1ed94c71ca09edfb8f7b62c4c8dab68fa9d5512a9d5fc34465964984b6；
+  script SHA5915660edbd5a926adb7f59d242a5bf796468533bfe6d6e54bc72492ac5bc60e。
+  实际4组配对输入/8请求hash检查通过，仅说明包字段不同；未activate/API，paid.sqlite不存在，不重prepare。
+  13128正常关闭且独立通过后才本stage脚本run --root本根 --commit上述65f完整SHA，seal/carry账，新≤3USD且原10USD不重置。
   新8程序结果和裁判排名须完整闭合后合并；已知开发池，不是未触碰确认，不按seed15符号挑任务。
 
 ## 已完成实证，不重做
@@ -58,7 +63,7 @@
 
 ## 发布、语料、边界
 
-- 最新已push d3331edafc4ca3277131e5a5a4f44a1189a72940；后续待commit项看git status。
+- 最新已push 65f0228d54ac93e281fb6607d84e6b2bac9080b7；后续待commit项看git status。
   seed15 capsule phase1/releases/forets-context-s15-20260912/release-code-capsule-s15-v1.tar.gz，
   SHA784a535057aad68b1712feedf3f927d50a7b943f4ff77f728f2f721d988b0808，284文件/237真实Git源码/28controller/2许可证。
   已公开，不是待push；无候选/模型/数据/响应/密钥，不重导出。

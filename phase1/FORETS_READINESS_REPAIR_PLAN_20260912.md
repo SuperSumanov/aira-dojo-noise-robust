@@ -18,3 +18,8 @@
 输出每kernel的ready布尔、耗时、marker结果；先汇总全部12再判断，不因早期正数增加样本。
 若旧版本次不复现故障，只能报告新实现能在真实镜像接通，不能声称降低了故障率。
 若仍失败，保留证据继续定位；不启动新e2e效果确认，不用“测试通过”冒充正向模型收益。
+
+提交前失败记录：首次sbatch被Requested node configuration is not available拒绝，没有作业ID/实际执行。
+核实gpu28登记RealMemory=1MB，物理FreeMem约231908MB；额外mem=8G字段无法匹配此节点。
+改用刚成功完成13129的提交约定（不额外指定mem、原6CPU/1GPU/35分钟保持），
+并与成功脚本一致去掉非必要--exact、加单节点/单task/no-requeue。未改变握手矩阵或运行结果。

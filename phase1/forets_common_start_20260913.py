@@ -9,6 +9,8 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import OrdinalEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import log_loss, accuracy_score
 train = pd.read_csv('./data/train.csv')
 test = pd.read_csv('./data/test.csv')
 '''
@@ -22,7 +24,6 @@ preprocess = ColumnTransformer([
     ('cat', OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1), categorical)
 ])
 model = make_pipeline(preprocess, RandomForestClassifier(n_estimators=100, max_depth=12, random_state=0, n_jobs=6))
-model.fit(X, y)
 '''
 
 
@@ -30,12 +31,15 @@ def code_for(task):
     if task == 'leaf-classification':
         body = "y = train['species'].astype(str)\nX = train.drop(columns=['id', 'species']).copy()\nZ = test.drop(columns=['id']).copy()\n"
         end = "out = pd.DataFrame(model.predict_proba(Z), columns=model.classes_)\nout.insert(0, 'id', test['id'].to_numpy())\nout.to_csv('submission.csv', index=False)\n"
+        metric = "print('Validation log loss:', log_loss(y_valid, model.predict_proba(X_valid), labels=model.classes_))\n"
     elif task == 'spaceship-titanic':
         body = "y = train['Transported'].astype(str).str.lower().map({'true': 1, 'false': 0})\nassert not y.isna().any()\ny = y.astype(int)\nX = train.drop(columns=['PassengerId', 'Name', 'Transported']).copy()\nZ = test.drop(columns=['PassengerId', 'Name']).copy()\n"
         end = "out = pd.DataFrame({'PassengerId': test['PassengerId'], 'Transported': model.predict(Z).astype(bool)})\nout.to_csv('submission.csv', index=False)\n"
+        metric = "print('Validation accuracy:', accuracy_score(y_valid, model.predict(X_valid)))\n"
     else:
         raise ValueError('unregistered common-start task')
-    return PREFIX + body + TAIL + end + "print('Common starting model wrote submission.csv')\n"
+    validation = "X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2, random_state=0, stratify=y)\nmodel.fit(X_train, y_train)\n"
+    return PREFIX + body + TAIL + validation + metric + "model.fit(X, y)\n" + end + "print('Common starting model wrote submission.csv')\n"
 
 
 def initial(solver, path):

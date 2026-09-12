@@ -100,7 +100,7 @@ def setup(root):
     sys.path[:0]=[str(root),str(SOURCE/'src')]
 
 def execute_one(root,index,*,task='leaf-classification',seed=6,source_tree=TREE,
-                code_hashes=None,order=None,device_label=None):
+                code_hashes=None,order=None,device_label=None,ready_timeout=10):
     from dojo.core.interpreters.jupyter.singularity_jupyter_server import SingularityJupyterServer
     from dojo.tasks.mlebench.evaluate import evaluate_submission
     from mlebench.grade import validate_submission
@@ -126,7 +126,7 @@ def execute_one(root,index,*,task='leaf-classification',seed=6,source_tree=TREE,
             env={'HF_HUB_OFFLINE':'0','NLTK_DATA':'/root/.nltk_data'})
         client=srv.get_client();kernel=client.start_kernel('python3')
         with client.get_kernel_client(kernel) as k:
-            if not k.wait_for_ready(timeout_seconds=10):raise TimeoutError('kernel startup')
+            if not k.wait_for_ready(timeout_seconds=ready_timeout):raise TimeoutError('kernel startup')
             ts=time.monotonic();answer=k.execute(code.decode(),timeout_seconds=300)
             result['execution_seconds']=time.monotonic()-ts
             result.update(kernel_ok=bool(answer.is_ok),timed_out=bool(answer.timed_out))

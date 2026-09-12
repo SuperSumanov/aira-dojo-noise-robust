@@ -1,0 +1,943 @@
+{
+  "job": "13161",
+  "commit": "316667d0e5bbac31f7d286c3f847c966170de4f6",
+  "source_tree": "e07cb8c61bca347c61bb8253c84eda826b1add6a",
+  "rows": [
+    {
+      "index": 0,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06941849109716713,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 1,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06124458904378116,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 2,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.056207197019830346,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 3,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.05743862013332546,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 4,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.059085378888994455,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 5,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06246140506118536,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 6,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.060000416124239564,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 7,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0537466979585588,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 8,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06065463903360069,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 9,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06389820179902017,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 10,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.05750816105864942,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 11,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.05943395500071347,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 12,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06371390004642308,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 13,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.062244050204753876,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 14,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.059602501103654504,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 15,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.05920416209846735,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 16,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06068116310052574,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 17,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06152228615246713,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 18,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.07027498097158968,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 19,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0563206949736923,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 20,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.05812118295580149,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 21,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.05837878002785146,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 22,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.05787042109295726,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 23,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.060310490196570754,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 24,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.05963658704422414,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 25,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.060817963909357786,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 26,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0578389479778707,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 27,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06308693997561932,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 28,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06113434792496264,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 29,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0591805309522897,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 30,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.05541364289820194,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    },
+    {
+      "index": 31,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06424870202317834,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      },
+      "trace_complete": {
+        "events": 1,
+        "event_counts": {
+          "instrumentation_loaded": 1
+        },
+        "ingress": {},
+        "matched_egress": {},
+        "unmatched_egress": {},
+        "session_match_counts": {}
+      }
+    }
+  ],
+  "stop_reason": "fixed_matrix_complete_without_reproduction",
+  "seconds": 108.51050017005764,
+  "utc": "2026-09-12T12:23:41.454050+00:00",
+  "api_calls": 0,
+  "models": 0,
+  "task_dataset_reads": 0,
+  "historical_candidate_reruns": 0,
+  "limitation": "Targeted fresh-gateway reproduction with passive server hooks and fixed markers; not a model/e2e result or unbiased failure-rate comparison. Secondary checks never relabel the first failure."
+}

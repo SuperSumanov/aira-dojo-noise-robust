@@ -1,6 +1,6 @@
 # 短交接：定向内核排障；e2e已闭合，本地生成器待共享访问
 
-2026-09-12 12:28 UTC更新；恢复先fetch→CURRENT_DIRECTION顶部0L182→本文件→核现场。
+2026-09-12 12:39 UTC更新；恢复先fetch→CURRENT_DIRECTION顶部0L183→本文件→核现场。
 最新用户：继续工作，并转达学长后续多数run用本地qwen3.8 27B AWQ INT4、旧API数据继续利用。
 不得重跑13156、首次读出或已闭合生成池；不得重复G0/旧模型验收。
 
@@ -10,9 +10,19 @@
 - 13161单卡gpu28诊断已COMPLETED/114秒，root /research/d7/spc/yzyang4/forets-kernel-wire-20260912-joepk5ej。
   commit316667d0e5bbac31f7d286c3f847c966170de4f6；32次fresh gateway均ready/marker，但通道trace仅loaded。
   generic jupyter CLI换进程导致hook丢失；不能算有效通道诊断或故障修复，原回执保留。
-  正修正独立诊断入口为同一kernel_gateway模块直接启动，并要求真incoming/reply事件；尚未提交修正版。
+  修正独立诊断入口后13164 COMPLETED/101秒，32次均ready/marker且真incoming/reply可见，仍未复现，不扩循环。
+  修正版root /research/d7/spc/yzyang4/forets-kernel-wire-20260912-qSZRVKYS，commit c22250b39ea94eef3ee5addab9e74db3e6963eef。
+  result SHA 0b2b236e2623546116674d2b2553439b167fbdc6cf1a401c56c9ee90488ac6a7。不是根因修复或e2e验收。
   两次原ZMQ non-socket发生在握手超时和开始清理之后，不能说是失败原因。旧12次测试只复用一个gateway。
 - 旧并发e2e和本地模型状态见下；队列动态以重新检查为准。
+- 12:39:15单次提交13165：补齐13156全部四个critic首池中未尝试的12个程序，不重跑旧选中项（含握手失败）。
+  root /research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4
+  source e07cb8c61bca347c61bb8253c84eda826b1add6a，controller7b706ab1c69469b4c6c31bdd52161c441466476c
+  prepared959590741963d55dc60d53d45b604bd5e0344fb31b221e0a2d2deb34812d4d16。
+  gpu28单3090/6CPU，原镜像，300秒程序/120秒握手，最多90分钟allocation，0API；首infra错误停止、不重试。
+  四项本地隔离/无重复/旧执行默认值测试和实际生产导入通过；不拿这些称模型结果。
+  当时冻结的排名不变、全12闭合后独立数值复验；新reader尚在准备，不运行旧readout。
+  原Space25选中项仍unknown，不能补0/冒充完整池。是开发机制分析，不是新e2e/干净scaling。
 
 ## 本轮真实结果
 

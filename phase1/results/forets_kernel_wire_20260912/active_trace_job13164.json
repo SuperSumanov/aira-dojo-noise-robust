@@ -1,0 +1,1903 @@
+{
+  "job": "13164",
+  "commit": "c22250b39ea94eef3ee5addab9e74db3e6963eef",
+  "source_tree": "e07cb8c61bca347c61bb8253c84eda826b1add6a",
+  "rows": [
+    {
+      "index": 0,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06820313818752766,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 2,
+          "shell:kernel_info_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 4,
+          "shell:kernel_info_reply": 1,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 1,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06283371895551682,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 2,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06684971577487886,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "shell:execute_reply": 1,
+          "iopub:stream": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 3,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0628662989474833,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "shell:execute_reply": 1,
+          "iopub:stream": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 4,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06437638495117426,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 2,
+          "shell:kernel_info_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 4,
+          "shell:kernel_info_reply": 1,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 5,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06492557795718312,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 6,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0696824009064585,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "shell:execute_reply": 1,
+          "iopub:stream": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 7,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06178339896723628,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 2,
+          "shell:kernel_info_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 4,
+          "shell:kernel_info_reply": 1,
+          "iopub:execute_input": 1,
+          "shell:execute_reply": 1,
+          "iopub:stream": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 8,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.07024072716012597,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 9,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0764905191026628,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 10,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06993695697747171,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "shell:execute_reply": 1,
+          "iopub:stream": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 11,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06664834404364228,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 2,
+          "shell:kernel_info_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 4,
+          "shell:kernel_info_reply": 1,
+          "iopub:execute_input": 1,
+          "shell:execute_reply": 1,
+          "iopub:stream": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 12,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06933678686618805,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 13,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.07198892906308174,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 14,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.07320951111614704,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 15,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.07390376599505544,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 2,
+          "shell:kernel_info_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 4,
+          "shell:kernel_info_reply": 1,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 16,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.07649853709153831,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 2,
+          "shell:kernel_info_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 4,
+          "shell:kernel_info_reply": 1,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 17,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.07596160797402263,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 2,
+          "shell:kernel_info_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 4,
+          "shell:kernel_info_reply": 1,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 18,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06471478380262852,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 2,
+          "shell:kernel_info_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 4,
+          "shell:kernel_info_reply": 1,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 19,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06992090004496276,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "shell:execute_reply": 1,
+          "iopub:stream": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 20,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0687537700869143,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 21,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06522983312606812,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 2,
+          "shell:kernel_info_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 4,
+          "shell:kernel_info_reply": 1,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 22,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.07278234302066267,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 23,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0660917570348829,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 24,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06807251204736531,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "shell:execute_reply": 1,
+          "iopub:stream": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 25,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.07623090292327106,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 26,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.07254564808681607,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 2,
+          "shell:kernel_info_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "iopub:status": 4,
+          "shell:kernel_info_reply": 1,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 27,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.06250439607538283,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 28,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0705064800567925,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 29,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0631851120851934,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 30,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.0734890999738127,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    },
+    {
+      "index": 31,
+      "ready": true,
+      "marker_ok": true,
+      "handshake_seconds": 0.07279299502260983,
+      "websocket_thread_alive": true,
+      "websocket_connected": true,
+      "server_alive": true,
+      "trace_before_secondary_checks": {
+        "events": 10,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 1,
+          "server_outgoing": 6
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 2
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 1
+        }
+      },
+      "trace_complete": {
+        "events": 16,
+        "event_counts": {
+          "instrumentation_loaded": 1,
+          "server_connect": 1,
+          "server_connect_finished": 1,
+          "server_incoming": 2,
+          "server_outgoing": 11
+        },
+        "ingress": {
+          "shell:kernel_info_request": 1,
+          "shell:execute_request": 1
+        },
+        "matched_egress": {
+          "shell:kernel_info_reply": 1,
+          "iopub:status": 4,
+          "iopub:execute_input": 1,
+          "iopub:stream": 1,
+          "shell:execute_reply": 1
+        },
+        "unmatched_egress": {
+          "status": 3
+        },
+        "session_match_counts": {
+          "False": 2
+        }
+      }
+    }
+  ],
+  "stop_reason": "fixed_matrix_complete_without_reproduction",
+  "seconds": 98.11394977010787,
+  "utc": "2026-09-12T12:29:24.901876+00:00",
+  "api_calls": 0,
+  "models": 0,
+  "task_dataset_reads": 0,
+  "historical_candidate_reruns": 0,
+  "limitation": "Targeted fresh-gateway reproduction with passive server hooks and fixed markers; not a model/e2e result or unbiased failure-rate comparison. Secondary checks never relabel the first failure."
+}

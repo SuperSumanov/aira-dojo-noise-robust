@@ -9,6 +9,11 @@
 
 ## 0L170. 2026-09-12：更正小池接入缺陷，13123整组取消，准备显式开关修复
 
+01:33:03 UTC修复新seed14已单次提交13124，01:33:35确认gpu28 RUNNING。
+实际四配置×全部池宽16/16通过，旧flag4个小池负对照复现故障；inspect/路由/catalog后才提交。
+controller4394d89ff9d7b31ab5953ac9d4fbc4514beeb84a，sourcef70eb4859c48c61bba37b298fbf8e32e367644ae。
+未读取最终分；完整边界与未揭盲前的后继条件见[开跑记录](FORETS_SMALLPOOL_S14_LAUNCH_20260912.md)。
+
 01:17定位真实配置skip_redundant_critic=false，而新rank_pool只接受宽3/4；Leaf critic在宽1池因此失败。
 此前typed/import预检没有覆盖真实配置×全部池宽度，不能称端到端接入完整；我方预检结论相应收窄。
 01:17:52主动整组取消13123；01:18:27确认CANCELLED，未读最终成绩、不补槽，不作为critic好坏证据。

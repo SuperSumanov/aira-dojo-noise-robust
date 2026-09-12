@@ -22,6 +22,10 @@ JOB='13123'
 PREPARED='aa8fcffdfefe12e7bd93ce0c1925b28bc03f296b593ee6f321f1c4a7130566a1'
 TREE='5950c7d3acf1e03173ba2ea7081d8ba6593279d9'
 AUTH='f38b37f695e122d8f5df7a26fe781b80952708d8701dec22ab9dbca17ad70613'
+SEED=13
+MIN_CALLS=187
+MAX_ACCOUNTED_NANO=4942593566
+EXPECTED_SKIP=False
 
 
 def parsed_report(report):
@@ -112,13 +116,14 @@ def main():
     with closing(sqlite3.connect((ROOT/'paid.sqlite').as_uri()+'?mode=ro',uri=True)) as db:
         if db.execute('SELECT digest FROM auth').fetchall()!=[(AUTH,)]:raise ValueError('budget identity')
         calls=db.execute('SELECT * FROM calls ORDER BY id').fetchall()
-    if len(calls)<187 or sum(c[2] for c in calls)>4942593566:raise ValueError('lost carryover or exceeded budget')
+    if len(calls)<MIN_CALLS or sum(c[2] for c in calls)>MAX_ACCOUNTED_NANO:raise ValueError('lost carryover or exceeded budget')
     by_call={r[0]:r for r in calls};rows=[];pools=[];numeric=[]
     for spec,primary in zip(expected,summary['runs']):
         rid=spec['run_id'];base=ROOT/'runs'/rid;checkpoint=base/'checkpoint'
         cfg=read(ROOT/'configs'/(rid+'.json'));solver=cfg['solver']
-        if (spec['seed'],solver['selector_seed'],solver['critic_top_k'],solver['num_children_to_choose'])!=(13,13,2,1):
+        if (spec['seed'],solver['selector_seed'],solver['critic_top_k'],solver['num_children_to_choose'])!=(SEED,SEED,2,1):
             raise ValueError('selector config')
+        if solver['skip_redundant_critic'] is not EXPECTED_SKIP:raise ValueError('small-pool config drift')
         nodes=[];journal=checkpoint/'journal.jsonl'
         if journal.exists():
             text=bytes_read(journal).decode()
@@ -156,7 +161,7 @@ def main():
                 raise ValueError('final numerical regrade mismatch')
             numeric.append(rid)
         elif primary['comparable_score'] is not None:raise ValueError('missing final imputed')
-        rows.append(dict(run_id=rid,task=spec['task'],arm=spec['arm'],seed=13,
+        rows.append(dict(run_id=rid,task=spec['task'],arm=spec['arm'],seed=SEED,
             comparable_final=primary['comparable_final'],official_final_score=score,independent_score=number,
             archived_submissions=len(archives),executed_nodes=len(nodes)))
         directory=checkpoint/'forets-candidates-private'
@@ -194,17 +199,17 @@ def main():
                 order_invariant=set(ranks[0][:2])==set(ranks[1][:2])
             elif any(s is not None for s in scores):raise ValueError('unplanned scores')
             effective='critic_topk_random' if ranked else 'uniform_random'
-            selected=replay(n,scores,effective,binding['selection_coupling'],13,spec['task'],step)
+            selected=replay(n,scores,effective,binding['selection_coupling'],SEED,spec['task'],step)
             if selected!=pool['selected']:raise ValueError('actual selection differs')
             task_calls=pool['task_calls'];original=[c for c in task_calls if c['intent']['role']=='candidate']
             if len(original)!=1 or original[0]['slot']!=selected[0] or any(c['slot']!=selected[0] or c['state']!='returned' for c in task_calls):
                 raise ValueError('different actual execution')
-            uniform=replay(n,None,'uniform_random',binding['selection_coupling'],13,spec['task'],step)
+            uniform=replay(n,None,'uniform_random',binding['selection_coupling'],SEED,spec['task'],step)
             pools.append(dict(run_id=rid,step=step,completed=True,pool_width=n,context_ranked=ranked,
                 order_top2_invariant=order_invariant,changed_same_pool_choice=selected!=uniform,
                 **code_contrast([c['node']['code'] for c in candidates],selected[0],uniform[0])))
             if hashlib.sha256(path.read_bytes()).hexdigest()!=before:raise ValueError('ledger changed during verification')
-    report=dict(utc=datetime.now(timezone.utc).isoformat(),job=JOB,source_tree=TREE,seed=13,
+    report=dict(utc=datetime.now(timezone.utc).isoformat(),job=JOB,source_tree=TREE,seed=SEED,
         verification='passed',numerical_final_regrades=len(numeric),rows=rows,pools=pools,pairs=complete_pair_outcomes(rows),
         valid_finals=sum(r['comparable_final'] for r in rows),
         cumulative_settled_usd=str(Decimal(sum(c[3] or 0 for c in calls))/10**9),

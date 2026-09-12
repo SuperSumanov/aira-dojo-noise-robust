@@ -36,6 +36,15 @@ def test_response_reverse_mapping_and_incomplete_rejection():
         with pytest.raises(ValueError):independent_rank(bad,[2,1,0])
 
 
+def test_proven_solver_feedback_is_not_a_missing_grader_field():
+    report=dict(score=.4,valid_submission=True,created_at='t',submission_path='/x')
+    metric=dict(parsed_report(report),validity_feedback='Submission is valid.')
+    assert match_archive(metric,[('original',report)])[0]=='original'
+    for altered in (dict(metric,unknown_extra=True),dict(metric,created_at='u'),
+                    dict(metric,validity_feedback='Submission is invalid.'),dict(metric,submission_path='/y')):
+        with pytest.raises(ValueError):match_archive(altered,[('original',report)])
+
+
 def test_all_planned_pairs_keep_missingness_outside_score_arithmetic():
     def row(arm,score,task='leaf-classification'):
         return dict(task=task,seed=13,arm=arm,comparable_final=score is not None,official_final_score=score)

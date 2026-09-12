@@ -1,7 +1,23 @@
-# 当前交接：13124修复版seed14已在gpu28运行
+# 当前交接：13124已闭合且数值通过，准备同版本seed15
 
-最后现场核验：2026-09-12 01:33:35 UTC / 香港09:33:35。
-恢复顺序：fetch → CURRENT_DIRECTION最新0L170 → 本文件 → 现场。用户要求持续会话工作，不增自动任务。
+## 最新现场（覆盖下文早先运行观察）
+
+- 2026-09-12 02:48:17 UTC：13124 COMPLETED，四槽正常结束、12池完整，3个final独立原submission数值一致。
+  Leaf random0.50877 / critic1.42793（critic差）；Space random缺失 / critic0.81839。不得补零或称稳定整体收益。
+  两critic的step1确实改选不同代码；两个末端宽1池正确旁路。0.8955555555555555 GPUh。
+- session closeout已成功；independent-context-verification.json已成功，SHA93313ffb7777a549397c08d98716b2373a38224b2d28c7b473e0510fb61571b2。
+  不再对13124运行closeout/verifier/submit。只读PTY23406已结束。
+  verifier首次因框架添加validity_feedback而拒绝；已对照固定mcts.py限定该单一已知注释，其余report字段仍精确匹配。
+  另补齐forets_closed_pool_20260911间接依赖，未改实验/主分/提交；细节见FORETS_SMALLPOOL_S14_RESULTS_20260912.md。
+- 当前账仍seed14根ACTIVE：284行、结算1.007137235、责任2.407137235USD、未知2；不要再次运行旧activate。
+  新seed15 facts已在stage/seed14-parent-facts.json一次生成，ledger SHA d9f9109e4522378d342be117efb2497d39d749a7f13f5f35b144df3d39d82aba。
+  forets_context_s15_repeat已完成条件门：两原任务均复验、只seed与顺序改变，最多新增5GPUh/3.50USD且原总10USD不重置。
+  本地codex_tmp/forets-context-s15-artifact-20260912已创建，正在收取parent-facts与seed14公开结果（SCP PTY92106待确认）。
+  下一步commit含实际结果→artifact→新stage build→实际inspect/全宽度检查→activate→route/catalog→单次submit。
+  seed15尚未build/activate/API/GPU，禁止把准备说成开跑。
+
+早先运行现场：2026-09-12 01:33:35 UTC / 香港09:33:35。
+恢复顺序：fetch → CURRENT_DIRECTION最新0L171 → 本文件 → 现场。用户要求持续会话工作，不增自动任务。
 目标：真实同预算MLE-bench最终收益；不重复G0/模型验收，不把准备或人工测试称效果。
 
 ## 活跃作业与不可重复动作
@@ -38,6 +54,9 @@
   共用verify_forets_context_e2e_20260912.py独立核对排序/选择/原submission数值。
   须全4终态后才单次session closeout，再独立验证；当前未读取最终成绩、未closeout。
   原seed13 verifier不可误用。原submission留档在host-only，不读保护集。
+- 只读observer已在本会话PTY23406运行；无自动closeout或重投。后继forets_context_s15_repeat已准备，
+  尚未facts/build/activate/API/GPU；须13124完整正常闭合及独立核验、至少1可比任务后按公开门运行。
+  无论收益正负都重复同两任务，绝不把seed13基础设施失败混入均值。
 - rejected构建根forets-repeat-20260912-c36qpa1h从未activate/API/GPU：
   prepared行seed仍12被inspect拒绝；4394d89修复metadata与实际config均14，新根x3通过。
   留存失败构建，不覆盖、不使用。
@@ -73,6 +92,6 @@
   gpu28/27可跑原任务镜像，不是projgpu28/39；不升级Torch或退CPU，不索要gres.conf。
 - key仅远端aira-dojo/.env OPENROUTER_API_KEY→worker PRIMARY_KEY；不得回显/本地/Git，不再次索要。
 - repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813。
-  只push myfork HEAD:phase1-value-critic，不碰学长分支；最后成功4394d89ff9d7b31ab5953ac9d4fbc4514beeb84a。
+  只push myfork HEAD:phase1-value-critic，不碰学长分支；最后成功6ab23c32（开跑与预先后继门）。
   每次staged文件名/内容安全扫描，保留用户untracked codex_tmp/output/tmp/旧报告。
 - g0-r5 PAUSED，无新automation；held12535不碰。研究盘1TB/2026-09-29到期，续期未知。

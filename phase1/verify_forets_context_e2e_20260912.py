@@ -33,8 +33,20 @@ def parsed_report(report):
 
 
 def match_archive(metric, archives):
-    """Match all original report fields, including timestamp; not score alone."""
-    matches=[item for item in archives if parsed_report(item[1])==metric]
+    """Match every grader field; accept only the proven solver-only annotation.
+
+    mcts.py appends validity_feedback after the grader report is returned. It
+    is not in Report.to_dict() archived by the task. Never ignore unknown keys,
+    timestamps, paths or scores, and never join on a score alone.
+    """
+    matches=[]
+    for item in archives:
+        report=parsed_report(item[1]);extra=set(metric)-set(report)
+        if set(report)-set(metric):continue
+        if extra:
+            if (extra!={'validity_feedback'} or report.get('valid_submission')!=1
+                or metric['validity_feedback']!='Submission is valid.'):continue
+        if all(metric[k]==v for k,v in report.items()):matches.append(item)
     if len(matches)!=1:raise ValueError('selected report missing or ambiguous in submission archive')
     return matches[0]
 

@@ -1,0 +1,90 @@
+{
+  "utc": "2026-09-12T00:03:24.045159+00:00",
+  "job": "13118",
+  "state": "COMPLETED",
+  "verification": "selected-node/external-grade consistency passed",
+  "independent_numerical_regrade": false,
+  "source_tree": "35711518b3b7262bccd3bebfdd2b4a4b7c726715",
+  "valid_finals": 3,
+  "rows": [
+    {
+      "run_id": "00-leaf-classification-s12-uniform_random",
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "seed": 12,
+      "comparable_final": false,
+      "external_final_score": null,
+      "final_event_present": false,
+      "executed_nodes": 5,
+      "exit_zero_nodes": 0
+    },
+    {
+      "run_id": "01-leaf-classification-s12-critic_topk_random",
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "seed": 12,
+      "comparable_final": true,
+      "external_final_score": 0.37782,
+      "final_event_present": true,
+      "executed_nodes": 5,
+      "exit_zero_nodes": 3
+    },
+    {
+      "run_id": "02-spaceship-titanic-s12-critic_topk_random",
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "seed": 12,
+      "comparable_final": true,
+      "external_final_score": 0.61839,
+      "final_event_present": true,
+      "executed_nodes": 5,
+      "exit_zero_nodes": 1
+    },
+    {
+      "run_id": "03-spaceship-titanic-s12-uniform_random",
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "seed": 12,
+      "comparable_final": true,
+      "external_final_score": 0.80805,
+      "final_event_present": true,
+      "executed_nodes": 5,
+      "exit_zero_nodes": 1
+    }
+  ],
+  "new_api_calls": 64,
+  "cumulative_api_calls": 304,
+  "cumulative_settled_usd": "0.718421106",
+  "cumulative_accounted_usd": "1.418421106",
+  "unresolved_calls": 1,
+  "allocation_gpu_hours": 1.853888888888889,
+  "evidence_sha256": {
+    "prepared.json": "963418d10d5645f7401a85da42d6fc3d5b2f7553e76cf44eecbeb342f17d44d5",
+    "final-readout/summary.json": "b79db1b3072ce762699efd232460d19a776d00d32208c601b17d0fae0a03d1ba",
+    "diagnostics.json": "716de64904a88252fd8a5cfdf7fa640a953ba7c7e0d8cfe1b34b30251d1a5ca7",
+    "runs/00-leaf-classification-s12-uniform_random/checkpoint/journal.jsonl": "d14aa3f21cd6e16ec0fd997e816f2cad95b62eb540557195cb2f347c1de62f36",
+    "runs/01-leaf-classification-s12-critic_topk_random/checkpoint/journal.jsonl": "3b445f9d9c017cbc26e76ec0b80b118a11cd3a834ee3a6f40e7a6b82e0cfc3e1",
+    "runtime-manifest.json": "77a70ee98373cff77957261b4a2d094bfbd480b9e3dfd4ce4655e6d53b8a6d3c",
+    "runs/srun_pool/d70d08871875/identities/01-leaf-classification-s12-critic_topk_random-932cfdf173.attempt-1.bounded/execution/summary.json": "4036cba64e04b5ac39a127e4157c056e0671cf0513cf1b9cf5f2409b84f0f5fc",
+    "runs/01-leaf-classification-s12-critic_topk_random/json/eval.jsonl": "f50a758bc26d420195aee1fe9f2a4e5fcc4be7913a6c52ea9ee58fe118a4974d",
+    "runs/02-spaceship-titanic-s12-critic_topk_random/checkpoint/journal.jsonl": "61cb851873660a8e4240239141306add5767b5ef1c6357101150b7ed302f64f5",
+    "runs/srun_pool/d70d08871875/identities/02-spaceship-titanic-s12-critic_topk_random-253400253b.attempt-1.bounded/execution/summary.json": "aa732e72a010875777e1f6fc0d2c7d8fba93b02d44c830eb5b84d4935da42e62",
+    "runs/02-spaceship-titanic-s12-critic_topk_random/json/eval.jsonl": "eb94fd77ade0f6637e785ff6648c0d8bdad20cc9ada919d70f8bd0118eb9faf9",
+    "runs/03-spaceship-titanic-s12-uniform_random/checkpoint/journal.jsonl": "62f8ef79dd9686e9af3cabb8e54b6782ca2b89f928aee57165683112d918d7d4",
+    "runs/srun_pool/d70d08871875/identities/03-spaceship-titanic-s12-uniform_random-77a38acb14.attempt-1.bounded/execution/summary.json": "93d51662faafa15671c4f82399a654a968ed4489b2b34cf377512be297abd65e",
+    "runs/03-spaceship-titanic-s12-uniform_random/json/eval.jsonl": "ca17a1bd8e9b09540468e4ea05398aef99523ad4e6a924eddc475a5b24533ac0"
+  },
+  "verifier_sha256": "13ef06dc5ceabe22eaecd7682b428ae357f60cfe504c26ff2f35e377ed3dd114",
+  "binding": {
+    "root": "/research/d7/spc/yzyang4/forets-repeat-20260912-zuvnt3oa",
+    "job": "13118",
+    "prepared_sha256": "963418d10d5645f7401a85da42d6fc3d5b2f7553e76cf44eecbeb342f17d44d5",
+    "source_tree": "35711518b3b7262bccd3bebfdd2b4a4b7c726715",
+    "carried_rows": 117,
+    "max_accounted_nano": 3274500927
+  },
+  "limitations": [
+    "Task deletes submission files; no independent numerical regrade is claimed.",
+    "A single development seed is not a cross-seed benefit or clean scaling result."
+  ]
+}

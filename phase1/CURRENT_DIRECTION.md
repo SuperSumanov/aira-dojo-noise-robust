@@ -7,6 +7,19 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L166. 2026-09-12：第二seed未复现收益，转入已固定全首池诊断
+
+13118整组COMPLETED，3/4有效final。Leaf随机无final、critic logloss0.37782，但Leaf所有池未实际改选，不能归因critic。
+Spaceship随机0.80805、critic0.61839，差−18.96600pp，与seed11的+5.28700pp相反。
+seed12的实际slot及代码改选发生在Spaceship step1/3；两臂生成独立，仍不把全部差值归因为选择。
+目前没有稳定、可归因的critic收益。停止盲目扩同配方，不挑胜例、反转排序或补失败final。
+按预先条件方案，执行已冻结seed11两个任务critic首池的全部8原程序，原gpu28/SIF/6CPU/300秒，单卡最多1.5GPUh；
+不新生成、不调用critic、不训练。只测有限池即时有效率/条件成绩，不冒充end-to-end、免费oracle或泛化证据。
+源代码已准备并测试；实际提交看短交接，不能从本段计划推断已开跑。
+本块1.853888888888889GPUh、64API/0.143920179USD；累计已结算0.718421106USD加旧0.70未知，责任1.418421106USD。
+保护集与所有关闭方向保持不动。见[完整复验](FORETS_SEED12_CLOSEOUT_20260912.md)、
+[固定首池方案](FORETS_CURRENT_POOL_PLAN_20260912.md)。
+
 ## 0L165. 2026-09-12：首次真实可比对出现正差值，冻结同版本seed12复验
 
 13115整组COMPLETED后独立核对：2/4有效最终解、1/2可比对。Spaceship accuracy random0.74368、

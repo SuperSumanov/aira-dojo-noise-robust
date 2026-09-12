@@ -1,0 +1,81 @@
+{
+  "role": "two_seed_development_comparison_not_confirmation",
+  "pairs": [
+    {
+      "task": "leaf-classification",
+      "seed": 11,
+      "status": "neither_valid",
+      "random_score": null,
+      "critic_score": null,
+      "signed_critic_improvement": null,
+      "accuracy_improvement_percentage_points": null,
+      "metric": "logloss",
+      "higher_signed_delta_is_better": true
+    },
+    {
+      "task": "leaf-classification",
+      "seed": 12,
+      "status": "critic_only_valid",
+      "random_score": null,
+      "critic_score": 0.37782,
+      "signed_critic_improvement": null,
+      "accuracy_improvement_percentage_points": null,
+      "metric": "logloss",
+      "higher_signed_delta_is_better": true
+    },
+    {
+      "task": "spaceship-titanic",
+      "seed": 11,
+      "status": "both_valid",
+      "random_score": 0.74368,
+      "critic_score": 0.79655,
+      "signed_critic_improvement": "0.05287",
+      "accuracy_improvement_percentage_points": "5.28700",
+      "metric": "accuracy",
+      "higher_signed_delta_is_better": true
+    },
+    {
+      "task": "spaceship-titanic",
+      "seed": 12,
+      "status": "both_valid",
+      "random_score": 0.80805,
+      "critic_score": 0.61839,
+      "signed_critic_improvement": "-0.18966",
+      "accuracy_improvement_percentage_points": "-18.96600",
+      "metric": "accuracy",
+      "higher_signed_delta_is_better": true
+    }
+  ],
+  "tasks": [
+    {
+      "task": "leaf-classification",
+      "planned_seed_pairs": 2,
+      "comparable_seed_pairs": 0,
+      "critic_only_valid": 1,
+      "random_only_valid": 0,
+      "neither_valid": 1,
+      "conditional_median_improvement": null,
+      "conditional_sample_variance": null,
+      "positive_seed_pairs": 0,
+      "negative_seed_pairs": 0
+    },
+    {
+      "task": "spaceship-titanic",
+      "planned_seed_pairs": 2,
+      "comparable_seed_pairs": 2,
+      "critic_only_valid": 0,
+      "random_only_valid": 0,
+      "neither_valid": 0,
+      "conditional_median_improvement": "-0.068395",
+      "conditional_sample_variance": "0.02941040045",
+      "positive_seed_pairs": 1,
+      "negative_seed_pairs": 1
+    }
+  ],
+  "limitations": [
+    "Final-score contrast is not sufficient evidence of critic attribution; read selector/code contrast too.",
+    "No pooled mean across different task metrics. Missing finals are not zeros or ties.",
+    "Two seeds and two tasks cannot establish stable generalization or clean scaling.",
+    "Same configured budgets, not identical realized generation draws or resource usage."
+  ]
+}

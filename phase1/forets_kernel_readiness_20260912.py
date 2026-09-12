@@ -9,6 +9,10 @@ import math
 import time
 
 
+class KernelReadinessError(RuntimeError):
+    """Infrastructure failure; no candidate execution or quality label exists."""
+
+
 def wait_for_ready(client, timeout_seconds=120., *, clock=time.monotonic, interval=1.):
     if timeout_seconds is None: timeout_seconds=120.
     if (not isinstance(timeout_seconds,(float,int)) or isinstance(timeout_seconds,bool)

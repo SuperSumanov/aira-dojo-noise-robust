@@ -1,0 +1,29 @@
+{
+  "utc": "2026-09-12T00:19:25.208089+00:00",
+  "output": "/research/d7/spc/yzyang4/senior-complete-root-20260912-m6u2vavt",
+  "legacy_entries": 50,
+  "embedded_entries": 50,
+  "additional_entries": 0,
+  "september_directories": [
+    "0901",
+    "0902",
+    "0903",
+    "0904",
+    "0905",
+    "0906",
+    "0907",
+    "0909",
+    "0910"
+  ],
+  "additional_september_directories": [],
+  "repeated_listing_equal": true,
+  "legacy_inclusion_passed": true,
+  "prior_listing_inclusion_passed": true,
+  "requests": 3,
+  "private_inventory_sha256": "8a4df68c9573ea160bd8058005d8ef9f99d61c4a93b8de77b5f51d04857f55d4",
+  "archives_downloaded": 0,
+  "archive_contents_opened": false,
+  "production_or_latest_changed": false,
+  "complete_index_attested": false,
+  "source": "https://github.com/wkentaro/gdown/blob/v6.0.0/gdown/download_folder.py"
+}

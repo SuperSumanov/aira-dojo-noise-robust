@@ -1,0 +1,13 @@
+{
+  "attribution_sha256": "d593d4b46e23aa991185d662317bb674d0a0cf278a06b42bce294cb98be8ded1",
+  "csv_sha256": "f9432dd929bdd51c08eab7ea81b8e0c4bf8d4f9945ccb602536dbed8c01b82f5",
+  "readers": {
+    "attribute_forets_wallclock_20260912.py": "c0758cfb7f6f615aae9b8ca8ed217301914ddcf1027d7f1c5d3280503614d342",
+    "readout_forets_generation_capacity_20260912.py": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+    "readout_forets_single_vote_20260913.py": "4a00f5296e5241811df9227ce44ac60966ef87604748169d4bff581c696859c3",
+    "readout_forets_wallclock_20260912.py": "1b303926e446c8a20249d12c6a77330f7a4d81675e570d327639ad48c8fef939"
+  },
+  "status": "verified",
+  "summary_sha256": "e1722e9277dda73a9c73471f2cb2c53703e260d107e8bdaa31311fe48259cdab",
+  "utc": "2026-09-12T18:23:08.050221+00:00"
+}

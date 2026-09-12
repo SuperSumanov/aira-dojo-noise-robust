@@ -1,0 +1,388 @@
+{
+  "groups": [
+    {
+      "arm": "uniform_random",
+      "counts": {
+        "categorical_fill_new_category": 3,
+        "other_or_no_recognized_error": 12
+      },
+      "saved_journal_executions": 15,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "counts": {
+        "categorical_fill_new_category": 4,
+        "early_stopping_without_eval": 1,
+        "other_or_no_recognized_error": 2,
+        "target_column_missing": 5,
+        "target_type_unknown": 1,
+        "xgboost_fit_keyword": 3
+      },
+      "saved_journal_executions": 16,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "inspector_sha256": "3648e6a682db40eb24532592683b981926f12815e33583558d902f798f6bbd35",
+  "limitation": "Journal can omit returned calls interrupted before analysis. Other category is not success. No raw logs or new execution.",
+  "receipts": [
+    {
+      "credential_shape_hits": null,
+      "journal_sha256": null,
+      "missing_journal": true,
+      "run_id": "00-leaf-classification-s26-uniform_random"
+    },
+    {
+      "credential_shape_hits": null,
+      "journal_sha256": null,
+      "missing_journal": true,
+      "run_id": "01-leaf-classification-s26-critic_topk_random"
+    },
+    {
+      "credential_shape_hits": 0,
+      "journal_sha256": "edf5f7539763b23349391bedfea87bd84f81965e1c5ed53fa9e6367dab28cbf4",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random"
+    },
+    {
+      "credential_shape_hits": 0,
+      "journal_sha256": "1e7f7e57bc81eb8f009dd50a648e3031d5a587b9bd1adfd4fc75823bc6abf0a5",
+      "run_id": "03-spaceship-titanic-s26-uniform_random"
+    },
+    {
+      "credential_shape_hits": null,
+      "journal_sha256": null,
+      "missing_journal": true,
+      "run_id": "04-leaf-classification-s27-critic_topk_random"
+    },
+    {
+      "credential_shape_hits": null,
+      "journal_sha256": null,
+      "missing_journal": true,
+      "run_id": "05-leaf-classification-s27-uniform_random"
+    },
+    {
+      "credential_shape_hits": 0,
+      "journal_sha256": "fc7e950086b20349896c8af61904638a0341ed9d22f7b443318f88c1d89476fc",
+      "run_id": "06-spaceship-titanic-s27-uniform_random"
+    },
+    {
+      "credential_shape_hits": 0,
+      "journal_sha256": "1f29d64dfde40ad22fbcb52b94f7f2fb6a3e4648bd72384bbbc9f0de7468cd7b",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random"
+    }
+  ],
+  "role": "posthoc_taxonomy_not_causal_or_full_execution_coverage",
+  "rows": [
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 0,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "xgboost_fit_keyword"
+      ],
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "xgboost_fit_keyword"
+      ],
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "xgboost_fit_keyword"
+      ],
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "early_stopping_without_eval"
+      ],
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "categorical_fill_new_category"
+      ],
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "categorical_fill_new_category"
+      ],
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 0,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 0,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "categorical_fill_new_category"
+      ],
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "categorical_fill_new_category"
+      ],
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "categorical_fill_new_category"
+      ],
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "other_or_no_recognized_error"
+      ],
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 0,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "categorical_fill_new_category"
+      ],
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "target_column_missing"
+      ],
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "categorical_fill_new_category"
+      ],
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "target_column_missing"
+      ],
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "target_column_missing"
+      ],
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "target_column_missing"
+      ],
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "target_column_missing"
+      ],
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "categories": [
+        "target_type_unknown"
+      ],
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 8,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "summary_sha256": "e1722e9277dda73a9c73471f2cb2c53703e260d107e8bdaa31311fe48259cdab"
+}

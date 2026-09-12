@@ -1,0 +1,716 @@
+{
+  "groups": [
+    {
+      "arm": "uniform_random",
+      "by_role": {
+        "candidate": {
+          "program_timeout": 2
+        },
+        "debug": {
+          "exit_zero_not_submission_validation": 1,
+          "unfinished": 1
+        }
+      },
+      "calls": 4,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "by_role": {
+        "candidate": {
+          "program_timeout": 2
+        },
+        "debug": {
+          "unfinished": 2
+        }
+      },
+      "calls": 4,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "by_role": {
+        "candidate": {
+          "exit_zero_not_submission_validation": 7,
+          "program_error": 5
+        },
+        "debug": {
+          "exit_zero_not_submission_validation": 1,
+          "program_error": 2
+        }
+      },
+      "calls": 15,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "by_role": {
+        "candidate": {
+          "program_error": 8
+        },
+        "debug": {
+          "program_error": 8
+        }
+      },
+      "calls": 16,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "inspector_sha256": "0967b8a0fc6da0841f6d03af23bec431c9dd16a429a828cf24cad078b1ba6181",
+  "limitation": "Exit zero is not valid submission; timed-out and unfinished calls stay distinct. No new execution or raw logs.",
+  "role": "posthoc_development_diagnostic_not_new_effect_test",
+  "rows": [
+    {
+      "arm": "uniform_random",
+      "batch_step": 1,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 309.5408031451516,
+        "exit_code_reported": 1,
+        "timed_out_reported": true
+      },
+      "ledger_sha256": "ccbacc31997fc165f795482adc6f9255134064ef2f7199340581ead4ba021596",
+      "role": "candidate",
+      "run_id": "00-leaf-classification-s26-uniform_random",
+      "seed": 26,
+      "state": "program_timeout",
+      "task": "leaf-classification",
+      "task_wall_ns": 316643929785
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 1,
+      "call_id": 1,
+      "execution_metadata": null,
+      "ledger_sha256": "ccbacc31997fc165f795482adc6f9255134064ef2f7199340581ead4ba021596",
+      "role": "debug",
+      "run_id": "00-leaf-classification-s26-uniform_random",
+      "seed": 26,
+      "state": "unfinished",
+      "task": "leaf-classification",
+      "task_wall_ns": null
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 1,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 338.1761910300702,
+        "exit_code_reported": 1,
+        "timed_out_reported": true
+      },
+      "ledger_sha256": "a38504c13b0964bb4df155c7af87cf8eea9b96c2895c41bb2ba4c75342d0af8e",
+      "role": "candidate",
+      "run_id": "01-leaf-classification-s26-critic_topk_random",
+      "seed": 26,
+      "state": "program_timeout",
+      "task": "leaf-classification",
+      "task_wall_ns": 344561734168
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 1,
+      "call_id": 1,
+      "execution_metadata": null,
+      "ledger_sha256": "a38504c13b0964bb4df155c7af87cf8eea9b96c2895c41bb2ba4c75342d0af8e",
+      "role": "debug",
+      "run_id": "01-leaf-classification-s26-critic_topk_random",
+      "seed": 26,
+      "state": "unfinished",
+      "task": "leaf-classification",
+      "task_wall_ns": null
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 1,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.128434718120843,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "8df4ef2b63630627d3ed1cbc2b4f9738c33de227c955ba81f8abee14413349fe",
+      "role": "candidate",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11704498081
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 1,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.114941226085648,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "8df4ef2b63630627d3ed1cbc2b4f9738c33de227c955ba81f8abee14413349fe",
+      "role": "debug",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 10856186820
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 3,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 13.088566928170621,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "e628ee7e4a9c162947c7a7f8cb4713bd054b0d7ea162292b366360ee9d694d64",
+      "role": "candidate",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 17582752279
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 3,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 37.277407464105636,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "e628ee7e4a9c162947c7a7f8cb4713bd054b0d7ea162292b366360ee9d694d64",
+      "role": "debug",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 42191759067
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 5,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 16.87828644597903,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "c83247b6b44c44e97d0503fb9066965b67c1784411d220f8e98b3e461a188361",
+      "role": "candidate",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 22144994391
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 5,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 17.21213327581063,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "c83247b6b44c44e97d0503fb9066965b67c1784411d220f8e98b3e461a188361",
+      "role": "debug",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 22159989011
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 7,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 16.72423184500076,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "f6bf9b97b67fc9685bcedbb398dbe72c78519c27f923531a2e27b73f4fdf974a",
+      "role": "candidate",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 21531106331
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 7,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 17.595891567878425,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "f6bf9b97b67fc9685bcedbb398dbe72c78519c27f923531a2e27b73f4fdf974a",
+      "role": "debug",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 22179836508
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 1,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 9.731261268025264,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "143ee178817b279fdcf590464c76cb7dff159f4836ffabe2c37d95bb42fba6c7",
+      "role": "candidate",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 14914935362
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 1,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 9.77773117297329,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "143ee178817b279fdcf590464c76cb7dff159f4836ffabe2c37d95bb42fba6c7",
+      "role": "debug",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 14612651858
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 3,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 19.313642010092735,
+        "exit_code_reported": 0,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "53dd82b7a6c9181ed6f583272152fb36a58b6200349ae6e63cb08a700094da4c",
+      "role": "candidate",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "state": "exit_zero_not_submission_validation",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 23953673320
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 4,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 19.372959221946076,
+        "exit_code_reported": 0,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "741df00f54654b16a62227d065075eb7c553564decd874276bfebc3be985a22d",
+      "role": "candidate",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "state": "exit_zero_not_submission_validation",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 24058055232
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 5,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 25.17661942495033,
+        "exit_code_reported": 0,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "c78cec7519fb53aec2a8465218aa76a30ffa70fb2328af6220c990c36872350d",
+      "role": "candidate",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "state": "exit_zero_not_submission_validation",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 29950314277
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 6,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 25.584199539851397,
+        "exit_code_reported": 0,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "d92e637218c872914b6ae3e23887a96346f61ff14865ebff85e557b6be3a50b8",
+      "role": "candidate",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "state": "exit_zero_not_submission_validation",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 30606311992
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 7,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 25.423274236964062,
+        "exit_code_reported": 0,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "d2ba9169886743ed0dde5c921dc58ff878c714d268743b5aeab038563c2e1e9e",
+      "role": "candidate",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "state": "exit_zero_not_submission_validation",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 30148903433
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 8,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 7.156998239923269,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "7167459828faac07aa56b72cefdc4e5156c0ec8f9c9ccb7c1bad08cb3109f6c0",
+      "role": "candidate",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11885940613
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 1,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 307.1588031100109,
+        "exit_code_reported": 1,
+        "timed_out_reported": true
+      },
+      "ledger_sha256": "db1e6374f86a5da8713549631cde363e7dd4b5bf25b5ffd63fb85e94827fde2a",
+      "role": "candidate",
+      "run_id": "04-leaf-classification-s27-critic_topk_random",
+      "seed": 27,
+      "state": "program_timeout",
+      "task": "leaf-classification",
+      "task_wall_ns": 313754031201
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 1,
+      "call_id": 1,
+      "execution_metadata": null,
+      "ledger_sha256": "db1e6374f86a5da8713549631cde363e7dd4b5bf25b5ffd63fb85e94827fde2a",
+      "role": "debug",
+      "run_id": "04-leaf-classification-s27-critic_topk_random",
+      "seed": 27,
+      "state": "unfinished",
+      "task": "leaf-classification",
+      "task_wall_ns": null
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 1,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 340.20282658492215,
+        "exit_code_reported": 1,
+        "timed_out_reported": true
+      },
+      "ledger_sha256": "2bbc78c0a390e7c49aa66b1f7c10839e609d1d1d8572ae0382491c69472e0a8d",
+      "role": "candidate",
+      "run_id": "05-leaf-classification-s27-uniform_random",
+      "seed": 27,
+      "state": "program_timeout",
+      "task": "leaf-classification",
+      "task_wall_ns": 345900713252
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 1,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 57.088183101965114,
+        "exit_code_reported": 0,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "2bbc78c0a390e7c49aa66b1f7c10839e609d1d1d8572ae0382491c69472e0a8d",
+      "role": "debug",
+      "run_id": "05-leaf-classification-s27-uniform_random",
+      "seed": 27,
+      "state": "exit_zero_not_submission_validation",
+      "task": "leaf-classification",
+      "task_wall_ns": 62235536752
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 1,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 27.032595395110548,
+        "exit_code_reported": 0,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "7e07b229519a5f401b5cfeedc68bf0934dea6f31b9ff311434e1e8102c53354a",
+      "role": "candidate",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "state": "exit_zero_not_submission_validation",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 32972259928
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 2,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 29.772926478879526,
+        "exit_code_reported": 0,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "945939192891e0802a8529e4859ecdb77daa6b0779d3721a84d049985442dd7f",
+      "role": "candidate",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "state": "exit_zero_not_submission_validation",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 34870847174
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 3,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.211133043980226,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "2ecf3024d484c192c6395c02bd60967069456d57213e573e6a8aa720e7c79cb1",
+      "role": "candidate",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11159716001
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 3,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.310776233905926,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "2ecf3024d484c192c6395c02bd60967069456d57213e573e6a8aa720e7c79cb1",
+      "role": "debug",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11092703605
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 5,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.664740290958434,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "c0f24c66049cb924d8c0afbd95113c1433da18b6b1b6abd12dd95e930faf10b7",
+      "role": "candidate",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11539159997
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 5,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 33.770696646068245,
+        "exit_code_reported": 0,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "c0f24c66049cb924d8c0afbd95113c1433da18b6b1b6abd12dd95e930faf10b7",
+      "role": "debug",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "state": "exit_zero_not_submission_validation",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 38745509340
+    },
+    {
+      "arm": "uniform_random",
+      "batch_step": 7,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 2.797071815934032,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "e3f63312b6e192db708ff8460e89c00c9c8234e5b63300ce904b9917f0034e7d",
+      "role": "candidate",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 7062252353
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 1,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.340439925901592,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "aabb533f77d49be4a8085065442a69c6f17be97c5d6009ff71399a4aa1cb637e",
+      "role": "candidate",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11708132447
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 1,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.521937237121165,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "aabb533f77d49be4a8085065442a69c6f17be97c5d6009ff71399a4aa1cb637e",
+      "role": "debug",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11708370911
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 3,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.359470678027719,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "1655ec833981c4bb685b958f84bc4c2083cf8590e56139d75dc13010a3bda94f",
+      "role": "candidate",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11356408328
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 3,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.267721944954246,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "1655ec833981c4bb685b958f84bc4c2083cf8590e56139d75dc13010a3bda94f",
+      "role": "debug",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11041575310
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 5,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.230269197141752,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "843d8de60443f535524bb1e8417d5a4e58bb2445a05dda3496db996aef48a105",
+      "role": "candidate",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11163061923
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 5,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.265768459998071,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "843d8de60443f535524bb1e8417d5a4e58bb2445a05dda3496db996aef48a105",
+      "role": "debug",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11207278966
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 7,
+      "call_id": 0,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.300559423863888,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "1be4e57b9c8f20c72e5d97be7b761598769533f9cf34413548162223c3e41a8b",
+      "role": "candidate",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 11266602836
+    },
+    {
+      "arm": "critic_topk_random",
+      "batch_step": 7,
+      "call_id": 1,
+      "execution_metadata": {
+        "exec_time_reported_seconds": 6.074851498939097,
+        "exit_code_reported": 1,
+        "timed_out_reported": false
+      },
+      "ledger_sha256": "1be4e57b9c8f20c72e5d97be7b761598769533f9cf34413548162223c3e41a8b",
+      "role": "debug",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "state": "program_error",
+      "task": "spaceship-titanic",
+      "task_wall_ns": 10672971747
+    }
+  ],
+  "summary_sha256": "e1722e9277dda73a9c73471f2cb2c53703e260d107e8bdaa31311fe48259cdab"
+}

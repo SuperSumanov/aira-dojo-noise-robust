@@ -1,0 +1,15 @@
+{
+  "jobs": [
+    "13184",
+    "13185"
+  ],
+  "mode": "all-eight-both-allocations-terminal-first-readout",
+  "reader_commit": "afb42b0ca0e1dde9bd898510781b1e40d96e22bd",
+  "readers": {
+    "attribute_forets_wallclock_20260912.py": "c0758cfb7f6f615aae9b8ca8ed217301914ddcf1027d7f1c5d3280503614d342",
+    "readout_forets_generation_capacity_20260912.py": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+    "readout_forets_single_vote_20260913.py": "4a00f5296e5241811df9227ce44ac60966ef87604748169d4bff581c696859c3",
+    "readout_forets_wallclock_20260912.py": "1b303926e446c8a20249d12c6a77330f7a4d81675e570d327639ad48c8fef939"
+  },
+  "utc": "2026-09-12T17:48:49.557792+00:00"
+}

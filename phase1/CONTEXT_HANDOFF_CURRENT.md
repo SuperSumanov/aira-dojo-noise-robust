@@ -1,122 +1,45 @@
-# 短交接：单票同预算新矩阵已提交；尚无新e2e结果
+# 短交接：单票同预算全8闭合，未出现critic收益
 
-2026-09-13 HK / 09-12 17:44:56 UTC：单次提交13184/13185，两seed26/27×Leaf/Space×random/单票critic，共8搜索。
+更新2026-09-13 HK / 09-12 18:30 UTC；恢复先fetch→CURRENT_DIRECTION顶部0L186→核现场。
+用户要一小时内实质工作，已真实运行8次搜索、独立读出、核对选择与程序错误；不重复G0。
+
+## 最新事实与边界
+
+- 13184/13185已结束，gpu28两份单3090/6CPU，seed26/27×Leaf/Space×random/单票Plus critic。
+  每seed内同物理GPU、原镜像/Flash生成/600秒搜索/300秒程序。不是8B checkpoint训练或scaling。
+- 18:23:08 UTC独立读出verified。技术合格8/8；random有效2/4、critic0/4。Leaf全缺，
+  Space random .80230/.81034，critic均缺。无双方有效配对，不填0，不再追加同配方seed追显著。
+- 25池、24选择全部独立回放匹配；critic10排名中6次改选，总排名时间21.15828978922218秒。
+  Leaf4首选均超时；Space critic8候选/8修复均程序报错。39调用元数据已核，退出码0不是有效提交。
+  错误分类为posthoc，journal可缺；root占位不计执行，v2才是有效分类，原first-pass保留但不引用其总数。
+- 实际4298秒=1.193888888888889GPUh；8搜索API .496488499USD、含route本轮 .496715947USD。
+  累计815调用、结算2.697577935/含未知责任4.097577935USD，仅两旧未知、新搜索无未知。总cap10USD，不清零。
+- 揭盲前后继规则dd9d5d91：终点严重缺失→共同起点诊断，不能代替cold-start结果；
+  单候选直接执行成本强基线纯配置入口已测试、实际typed配置通过，但尚未提交/新收费。
+  不把经验检索或减票当新颖性；新矩阵须新seed/同期对照/保留失败，预算仍累计。
+
+## 精确位置，禁止重跑已闭合读出
+
 ROOT /research/d7/spc/yzyang4/forets-wallclock-20260912-bll4ghfa
 STAGE /research/d7/spc/yzyang4/forets-singlevote-stage-20260913-NV8o3rXI
-source fb2c041c8ec8e352847881ee6fe2fb56d9561aec；controller dbf204d0a94844cf4ee4743b3a7cca769d2c5899。
-prepared 29349e0d78ce57701db2d5eae8bc35648f1fa50165df5eaff17a6502b3e402fe。
-两独立gpu28单3090/6CPU allocation，每份90分钟=总3GPUh上限；搜索600秒/程序300秒/原镜像。
-一次原序排名、top2/common-priority选1；与random同时对照，不是单/双票直接消融。全8闭合后统一读出，不能中期挑结果。
-账本已排他从cxb9p0og转交ROOT/paid.sqlite；旧658条/两旧未知完整继承，总责任cap10USD，不重置。
-新AUTH 81c286978ff9ff58f79d7e9f8029aab335686a2d15158c6f2462efc035ea3279。两route均通过。
-17:45:24 UTC最后观察：两job均RUNNING/gpu28，各第一条worker已running，不是G0/模型验收。
-4新本地测试、5单/双票实现测试和实际8配置CPU接线通过；未调用G0。研究计划FORETS_SINGLE_VOTE_PLAN_20260913.md。
-09-12 17:36 UTC学长共享镜像仍PermissionError，未绕权；最新fetch学长仍113e25e7。无新automation。
-以下为已闭合旧结果与证据，不能当作实时状态；旧readers/job禁止重跑。
+source fb2c041c8ec8e352847881ee6fe2fb56d9561aec
+controller dbf204d0a94844cf4ee4743b3a7cca769d2c5899
+prepared 29349e0d78ce57701db2d5eae8bc35648f1fa50165df5eaff17a6502b3e402fe
+AUTH 81c286978ff9ff58f79d7e9f8029aab335686a2d15158c6f2462efc035ea3279
+reader commit afb42b0ca0e1dde9bd898510781b1e40d96e22bd；selection另在揭盲前冻结a4331b04。
+summary e1722e9277dda73a9c73471f2cb2c53703e260d107e8bdaa31311fe48259cdab
+CSV f9432dd929bdd51c08eab7ea81b8e0c4bf8d4f9945ccb602536dbed8c01b82f5
+readout-intent/finished、singlevote-selection-verification均已存在；一次性reader不可再跑。
+本地phase1/results/forets_singlevote_s26_s27_20260913，报告FORETS_SINGLE_VOTE_RESULTS_20260913.md。
+旧13156/13165已闭合，旧账在cxb9p0og已封、现账ROOT/paid.sqlite；旧细节见原报告/Git。
 
-2026-09-12本轮完成；正式读出12:58:18 UTC。恢复先fetch→CURRENT_DIRECTION顶部0L184→本文件→核现场。
-最新用户：继续推进，希望一小时内有价值结果；本轮已完成定向排障、12程序补齐、独立评分/平分敏感性与成本控制准备。
-不得重跑13156、首次读出或已闭合生成池；不得重复G0/旧模型验收。
+## 约束与外部状态
 
-## 当前一小时推进
-
-- 用户12:13 UTC要求一小时内推进实质工作。根因定位与已揭盲机制分析；不追加同配方paid seed。
-- 13161单卡gpu28诊断已COMPLETED/114秒，root /research/d7/spc/yzyang4/forets-kernel-wire-20260912-joepk5ej。
-  commit316667d0e5bbac31f7d286c3f847c966170de4f6；32次fresh gateway均ready/marker，但通道trace仅loaded。
-  generic jupyter CLI换进程导致hook丢失；不能算有效通道诊断或故障修复，原回执保留。
-  修正独立诊断入口后13164 COMPLETED/101秒，32次均ready/marker且真incoming/reply可见，仍未复现，不扩循环。
-  修正版root /research/d7/spc/yzyang4/forets-kernel-wire-20260912-qSZRVKYS，commit c22250b39ea94eef3ee5addab9e74db3e6963eef。
-  result SHA 0b2b236e2623546116674d2b2553439b167fbdc6cf1a401c56c9ee90488ac6a7。不是根因修复或e2e验收。
-  两次原ZMQ non-socket发生在握手超时和开始清理之后，不能说是失败原因。旧12次测试只复用一个gateway。
-- 旧并发e2e和本地模型状态见下；队列动态以重新检查为准。
-- 12:39:15单次提交13165：补齐13156全部四个critic首池中未尝试的12个程序，不重跑旧选中项（含握手失败）。
-  root /research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4
-  source e07cb8c61bca347c61bb8253c84eda826b1add6a，controller7b706ab1c69469b4c6c31bdd52161c441466476c
-  prepared959590741963d55dc60d53d45b604bd5e0344fb31b221e0a2d2deb34812d4d16。
-  gpu28单3090/6CPU，原镜像，300秒程序/120秒握手，最多90分钟allocation，0API；首infra错误停止、不重试。
-  四项本地隔离/无重复/旧执行默认值测试和实际生产导入通过；不拿这些称模型结果。
-  当时冻结的排名不变；全12已闭合，12:58:18独立读出通过，禁止重跑/重新调用已有输出的reader。
-  原Space25选中项仍unknown，不能补0/冒充完整池。是开发机制分析，不是新e2e/干净scaling。
-- 新reader已冻结commit19a6e77cbdb2b4ba01926771ab669e90903bec60；5项界限/无填补/精确归档匹配测试通过。
-  工具dir /research/d7/spc/yzyang4/forets-pool-completion-tools-20260912-BXnxKK4x；ROOT/readout-plan/intent/finished均已写且成功。
-  reader SHA473cbe3133baa4b465a3428de6028cf19c23b9524be8aca371a8c8cd16ab105e；数值helper SHA2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582。
-  13165 COMPLETED/1101秒，12/12尝试、0新infra失败；9代码错误/3超时，无新有效submission。
-  summary SHA4af0927191826f5c574f5c6caafe61337651c4d4aca62a96badcd6252749afb6，CSV878aaacd6b7e2387ee0e252d431418d249109f92ad92904046e9624268058e02。
-  原选中项2有效/1失败/1unknown；两个有效原首项独立数值核验（Space24 .76322、Leaf25 .71343），不能换成后续final。
-  原top2两混合池25%→50%；追加敏感性证明Space24依赖按编号打破平分，均匀同分时增量0，不能把它当稳健正信号。
-  Leaf25无截止位平分，+25pp不依赖此规则；只有一个较稳健开发信号，不是跨seed稳定/质量排序/同预算e2e提升。
-  四池固定规则界限[+.125,+.1875]，均匀平分[+.0625,+.125]，任意同分最坏含0，均不是统计置信区间。
-  全报告FORETS_POOL_COMPLETION_RESULTS_20260912.md，独立tie-sensitivity.json，16代码ZIP已制作，不必研究盘权限。
-  新16代码对已发布24程序无SHA重合；无数据/标签表/密钥/完整stdout公开。所有新失败和原unknown保留。
-- 旧13156全11完成排名池中9个加第二票后保留集合不变；第二票11调用费用.07961525USD。
-  只是一份保留集合/费用描述，不是取消第二票的e2e收益；1个只做首票的未完成池费用也计入。
-  见FORETS_RANK_COST_AUDIT_20260912.md；rank-cost-audit.json已远端一次生成，勿重复执行。
-- 12:49 UTC再fetch学长branch仍113e25e7，无更新部署/共享接入信息；没有改学长分支。
-- 一票/两票对照入口forets_rank_budget_variant_20260912.py已准备，5项测试含实际rank_pool模拟传输通过；未部署。
-  两票保持Borda，一票仅去反序调用；共同加真实排名计时。不是新颖性/效果结论，不修改13165或旧source。
-- 最后观察13:05:28 UTC，队列仅旧held12535；本轮13161/13164/13165均已结束，没有后台新实验/automation。
-  本轮实际GPUh合计0.3655555555555555555555555556，0新API；学长共享服务权限问题仍等待已有问询回复。
-
-## 本轮真实结果
-
-- 13156全8闭合，Slurm FAILED/4009秒/gpu28，实际1.113611111111111GPUh。
-  600秒科学截止/程序300秒/原Flash生成+Plus裁判/单3090/6CPU/seed24,25，两臂共同最多4路生成在途。
-  5份合格原submission独立数值复验一致；技术合格6/8。
-- Leaf24：random缺终点，critic logloss .47866；Leaf25：random握手故障，critic .71343。
-  Space24：random accuracy .81839，critic .80230（−.01609）；Space25：random .75402、critic握手故障。
-  全8有效random2/4、critic3/4；不称稳定正效果/干净scaling，不追加同配方追显著。
-  条件统计、所有缺失和局部有效性信号见FORETS_PARALLEL_RESULTS_20260912.md。
-- 51次内嵌握手中两次失败，均120请求、0匹配reply/idle、仅3条无关parent消息。
-  不是只缺idle；kernel/server/WebSocket根因仍未知。不能靠放宽成功条件、重试或合成测试称解决。
-  两条random cutoff中尚有未闭合task调用，时间归因余量包含它，不能全算critic/生成。
-- 8搜索API .547526252USD（排名 .178036040USD）；累计账658条、结算2.200861988USD、
-  责任3.600861988USD、仍两条历史未知，新8无新增未知。账路径不变、未清零。
-  客户端129计时覆盖非排名请求，另23排名无此计时；不能相加并发时长或声称服务端加速。
-
-## 完成位置与恢复事实
-
-- ROOT /research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og
-  原STAGE /research/d7/spc/yzyang4/forets-parallel-stage-20260912-ykh87_no
-  source e07cb8c61bca347c61bb8253c84eda826b1add6a
-  producer/controller 8df9858fa6f746e598b6fe56527d081fe51383aa
-  prepared 96e624e811e8152627e93bcb8976cb2ae9218f5f15361901178f08dd19d6b077
-- PID4016707早已退出。自动收尾08:38:53遇SlurmDB连接超时，closeout-finished.json失败且readout_called=false。
-  原失败记录保留，不把它改成成功。核全终态/8槽无running/四固定SHA/无原readout intent后，原固定reader首次调用通过。
-  recovery-readout-finished.json verified于11:55:43；recovery-attribution-finished与diagnostics-finished于12:00完成。
-  新补充工具只在ROOT/recovery-tools；原stage四文件未改。不可再次调用已有输出的一次性读出/归因。
-- 本地结果目录phase1/results/forets_parallel_s24_s25_20260912，已下载完整CSV/summary/原失败及恢复回执/归因/安全计数。
-  summary SHA a127831408688b545e3d666b790fe1f75b65e82f9324d21c8c4cfc0243d39e90
-  CSV SHA b535b6a439cefdcb29ada9d5ef26baeb3e8b0793f90bca0fa31c5c79bda37f81
-  attribution SHA 3a144d4db72f5889cefee2704a689a1198e99426d7d4d89669a891919a99154c
-  diagnostics SHA c1bb304c8d1ffa4be487100bf14c75d67eb93eef63984ec8235e79c0e0b79a36
-- 旧13152也全闭合：Space22单对+.03218但Space23 critic缺失，不能只引正例；旧结果不重跑。
-  已公开24开发程序包和四盲池结果继续保留，不能改为新的冻结评测。
-
-## 学长最新安排与可继续工作
-
-- 新head113e25e7fa2570cb5f60401d051a1de3cce307c2已fetch，只读且credential-first远端脱敏。
-  新本地模型YAML/部署文档；0911 outcome这次仅变链接，不是新scaling结果。
-  模型served名qwen3.8-27b，双卡cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4，单卡AWQ-INT4不同来源。
-  文档3处凭据形状命中，绝不回显/复制/使用。ADVISOR_DIRECTIVES O节记录新反馈。
-- 文档镜像、两份权重snapshot目录对我方PermissionError，未绕过权限。
-  http://127.0.0.1:8000/v1只在计算节点本地；已异步询问可读共享路径或共用服务安排，不再问密钥。
-  不擅自占用学长allocation、修改他server、下载大模型或升级MLE镜像。
-- 长draft文档约12分钟，不能直接套当前600秒搜索/120秒API上限；命令上下文131072与表格262144也不一致。
-  下一份新对照先按真实可用配置/延迟定共同预算，全算子同模型，服务GPU/初始化/缓存负载计账。
-  历史API训练/开发数据继续利用，新本地run可检验跨生成器转移；不是直接合并成干净scaling。
-- 已准备本地认证保护补丁与不联网构造器测试，尚未部署；模型专用凭据缺失停止，不回退全局PRIMARY_KEY。
-  4项本地认证、29项截止/读出/归因、6项并发测试分别通过；不是模型效果或实际本地服务验收。
-  详细见LOCAL_GENERATOR_TRANSITION_20260912.md。没有新GPU/API/model-fit；12:07:26 UTC队列仅旧held12535。
-  可继续定位内核无回复根因，但不再重复无指向的短验收/同配方扩seed。
-
-## 操作硬边界
-
-SSH linux5；BASE /research/d7/spc/yzyang4；venvs/aira/bin/python；
-网络需source /uac/y24/yzyang4/env_setup.sh（不回显），Slurm /opt1/slurm/gpu-slurm.conf。
-复杂远端命令Python stdin，避免PowerShell→bash CRLF/SSH内引号坑。gpu28不是projgpu28；
-原MLE镜像不得投projgpu39、不升级Torch/CPU回退、不传--mem8G（Slurm登记内存不可信）。
-现有OpenRouter凭据仅远端aira-dojo/.env的OPENROUTER_API_KEY，运行PRIMARY_KEY；本地模型必须专用凭据。
-first-960/Target-300/Target-522仍封闭；不恢复HCE/多保真/Probe/score-channel/K≥1 lookahead，不更新agent底座。
-旧held12535不碰，g0-r5 PAUSED，无新增automation。1TB研究盘2026-09-29到期，续期未知。
-只正常push myfork HEAD:phase1-value-critic，先内容/文件名凭据检查，核remote SHA；绝不改学长分支。
-保留无关untracked codex_tmp/、output/、tmp/、旧tests.xml与2026-09-01实验记录。
+- SSH linux5；Slurm配置/代理沿用现有入口；MLE原镜像仅gpu27/gpu28兼容3090，不能投projgpu39。
+  不绕权限、升级Torch或CPU回退；旧held12535不动。本矩阵已完成，没有新GPU/API投放或automation。
+- 09-12 18:19前最后fetch：学长dojo-reproduce仍113e25e7fa2570cb5f60401d051a1de3cce307c2。
+  17:36观察共享镜像PermissionError；已有问询待回复，勿再索要key，未修改学长分支。
+- Key仅远端aira-dojo/.env，OPENROUTER_API_KEY→运行时PRIMARY_KEY，不向本地服务自动转发。
+  不读first960/Target300/Target522；不恢复HCE/多保真/Probe/score-channel/lookahead，不更新底座。
+- push仅myfork phase1-value-critic，先内容/归档secret扫描，正常快进；不force、不动学长分支。
+  无关未跟踪codex_tmp/output/tmp、旧tests.xml/09-01记录保留。研究盘到期2026-09-29，续期未知。

@@ -1,0 +1,34 @@
+{
+  "agent_training": false,
+  "billing": {
+    "accounted_usd": 3.601089436,
+    "authorization_sha256": "81c286978ff9ff58f79d7e9f8029aab335686a2d15158c6f2462efc035ea3279",
+    "calls": 662,
+    "settled_usd": 2.201089436,
+    "stopped": false,
+    "unresolved": 2
+  },
+  "blocks": 2,
+  "controller_commit": "dbf204d0a94844cf4ee4743b3a7cca769d2c5899",
+  "cpus_per_block": 6,
+  "gpus_per_block": 1,
+  "launchers": {
+    "1": "9e7c31d2b8876aa89e0130f8331720f0fb3ece3933cd395c13b3d569f5368440",
+    "2": "e303be28f3de094c69f79c7c2b49b93f3c67abbe8e5a5e0fe569fc43d0f2e868"
+  },
+  "no_automatic_retry": true,
+  "original_image": true,
+  "prepared_sha256": "29349e0d78ce57701db2d5eae8bc35648f1fa50165df5eaff17a6502b3e402fe",
+  "prior_unknown_preserved": 2,
+  "program_seconds": 300,
+  "protected_cohort_read": false,
+  "query_duration_logged": true,
+  "rank_votes": 1,
+  "readout_after_all_blocks": true,
+  "search_seconds": 600,
+  "source_tree": "fb2c041c8ec8e352847881ee6fe2fb56d9561aec",
+  "total_gpu_hours_cap": 3,
+  "total_runs": 8,
+  "typed_equal_arm_configs": 4,
+  "utc": "2026-09-12T17:44:55.970430+00:00"
+}

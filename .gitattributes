@@ -570,3 +570,5 @@ phase1/results/forets_kernel_wire_20260912/*.json -text diff
 phase1/results/forets_kernel_wire_20260912/README.md text eol=lf diff
 phase1/results/forets_pool_completion_20260912/*.json -text diff
 phase1/results/forets_pool_completion_20260912/*.csv -text diff whitespace=cr-at-eol
+phase1/results/forets_singlevote_s26_s27_20260913/*.json -text diff
+phase1/results/forets_singlevote_s26_s27_20260913/*.csv -text diff whitespace=cr-at-eol

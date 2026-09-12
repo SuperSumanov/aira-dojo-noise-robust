@@ -1,0 +1,7 @@
+{
+  "changes_to_live_experiment": false,
+  "declared_before_any_matrix_result_read": true,
+  "helper_sha256": "2fc9cae3ac3fe31f38916da7009a7cc72d2dcbb7fccd1db25be67a443b193216",
+  "utc": "2026-09-12T17:53:46.679627+00:00",
+  "verifier_sha256": "dda8e03db5f4e0a98a9b65f005d3941ac680d213a69ddaad78cb8b42b41985e0"
+}

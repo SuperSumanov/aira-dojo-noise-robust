@@ -1,0 +1,103 @@
+{
+  "job": "13129",
+  "verification": "passed",
+  "independent_numerical_regrade": true,
+  "same_native_gpu": true,
+  "rows": [
+    {
+      "index": 0,
+      "task": "leaf-classification",
+      "status": "program_error",
+      "official_score": null,
+      "independent_score": null
+    },
+    {
+      "index": 1,
+      "task": "leaf-classification",
+      "status": "program_error",
+      "official_score": null,
+      "independent_score": null
+    },
+    {
+      "index": 2,
+      "task": "leaf-classification",
+      "status": "program_timeout",
+      "official_score": null,
+      "independent_score": null
+    },
+    {
+      "index": 3,
+      "task": "leaf-classification",
+      "status": "program_timeout",
+      "official_score": null,
+      "independent_score": null
+    },
+    {
+      "index": 4,
+      "task": "spaceship-titanic",
+      "status": "program_error",
+      "official_score": null,
+      "independent_score": null
+    },
+    {
+      "index": 5,
+      "task": "spaceship-titanic",
+      "status": "program_error",
+      "official_score": null,
+      "independent_score": null
+    },
+    {
+      "index": 6,
+      "task": "spaceship-titanic",
+      "status": "program_error",
+      "official_score": null,
+      "independent_score": null
+    },
+    {
+      "index": 7,
+      "task": "spaceship-titanic",
+      "status": "program_error",
+      "official_score": null,
+      "independent_score": null
+    }
+  ],
+  "tasks": [
+    {
+      "task": "leaf-classification",
+      "metric": "logloss",
+      "lower_is_better": true,
+      "uniform4": {
+        "executions": 4,
+        "valid": 0,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      },
+      "top2": {
+        "executions": 2,
+        "valid": 0,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      }
+    },
+    {
+      "task": "spaceship-titanic",
+      "metric": "accuracy",
+      "lower_is_better": false,
+      "uniform4": {
+        "executions": 4,
+        "valid": 0,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      },
+      "top2": {
+        "executions": 2,
+        "valid": 0,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      }
+    }
+  ],
+  "protected_cohort_read": false,
+  "no_e2e_or_generality_claim": true,
+  "script_sha256": "7eef6f9eafa5cb5d8e85f3b8626c5965b2e51ce7808aa2e1f63165a14679e897"
+}

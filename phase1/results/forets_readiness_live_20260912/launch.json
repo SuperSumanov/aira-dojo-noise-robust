@@ -1,0 +1,19 @@
+{
+  "job": "13133",
+  "commit": "66ec716f12ad4899c1189ddcf894fed4436c1558",
+  "files": {
+    "forets_readiness_live_20260912.sbatch": "66c24af5ea378e63a3b4229e88281969d85c9e703e96d68ea005d23d96201593",
+    "forets_readiness_live_20260912.py": "096953eeafa33de58fcf1855e74aec8cb7508d0be7d2e9962bcb5e02ff286474",
+    "forets_kernel_readiness_20260912.py": "45649c8d5beabaf671074deccf604be5911510781b4a7fca808aea06a54186d1"
+  },
+  "utc": "2026-09-12T04:10:47.505370+00:00",
+  "kernels": 12,
+  "conditions": [
+    "old",
+    "new"
+  ],
+  "node": "gpu28",
+  "maximum_gpu_hours": 0.5833333333333334,
+  "api_calls": 0,
+  "task_executions": 0
+}

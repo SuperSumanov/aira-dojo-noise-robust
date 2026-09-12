@@ -1,0 +1,48 @@
+{
+  "role": "all_seed14_first_pools_immediate_quality_not_e2e",
+  "tasks": [
+    {
+      "task": "leaf-classification",
+      "metric": "logloss",
+      "lower_is_better": true,
+      "uniform4": {
+        "executions": 4,
+        "valid": 0,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      },
+      "top2": {
+        "executions": 2,
+        "valid": 0,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      }
+    },
+    {
+      "task": "spaceship-titanic",
+      "metric": "accuracy",
+      "lower_is_better": false,
+      "uniform4": {
+        "executions": 4,
+        "valid": 0,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      },
+      "top2": {
+        "executions": 2,
+        "valid": 0,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      }
+    }
+  ],
+  "independent_search_seeds": 1,
+  "limitations": [
+    "Finite first-pool immediate quality only, not e2e or a free oracle.",
+    "Duplicate program slots retained; one execution each cannot estimate test-retest variation.",
+    "Conditional score means must be read alongside valid probability; no missing-score imputation."
+  ],
+  "job": "13129",
+  "allocation_gpu_hours": 0.22,
+  "utc": "2026-09-12T03:58:37.008699+00:00"
+}

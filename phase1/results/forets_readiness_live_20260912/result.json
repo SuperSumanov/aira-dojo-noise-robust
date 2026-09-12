@@ -1,0 +1,124 @@
+{
+  "job": "13133",
+  "commit": "66ec716f12ad4899c1189ddcf894fed4436c1558",
+  "completed": true,
+  "rows": [
+    {
+      "index": 0,
+      "condition": "old",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.05922780209220946
+    },
+    {
+      "index": 1,
+      "condition": "new",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.05856875283643603
+    },
+    {
+      "index": 2,
+      "condition": "new",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.06601966009475291
+    },
+    {
+      "index": 3,
+      "condition": "old",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.059155523078516126
+    },
+    {
+      "index": 4,
+      "condition": "old",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.06349787581712008
+    },
+    {
+      "index": 5,
+      "condition": "new",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.06428970210254192
+    },
+    {
+      "index": 6,
+      "condition": "new",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.06738009699620306
+    },
+    {
+      "index": 7,
+      "condition": "old",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.6015685759484768
+    },
+    {
+      "index": 8,
+      "condition": "old",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.06116593210026622
+    },
+    {
+      "index": 9,
+      "condition": "new",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.05566196097061038
+    },
+    {
+      "index": 10,
+      "condition": "new",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.06135600619018078
+    },
+    {
+      "index": 11,
+      "condition": "old",
+      "ready": true,
+      "marker_ok": true,
+      "readiness_seconds": 0.06265085097402334
+    }
+  ],
+  "conditions": [
+    {
+      "condition": "old",
+      "kernels": 6,
+      "ready": 6,
+      "marker_ok": 6,
+      "median_handshake_seconds": 0.06190839153714478,
+      "sample_std_seconds": 0.22063620380400564
+    },
+    {
+      "condition": "new",
+      "kernels": 6,
+      "ready": 6,
+      "marker_ok": 6,
+      "median_handshake_seconds": 0.06282285414636135,
+      "sample_std_seconds": 0.004526219872235502
+    }
+  ],
+  "source_tree": "54e353963a6899965896b2e8ea492207829b3cbd",
+  "client_sha256": "a6c6abdca37745ce8d5137f48595a3c0e6332c113e8133b0782425b7bbb291bf",
+  "original_image_unchanged": true,
+  "cold_starts_all_included": true,
+  "api_calls": 0,
+  "task_executions": 0,
+  "model_loads": 0,
+  "candidate_reruns": 0,
+  "seconds": 15.11306548397988,
+  "utc": "2026-09-12T04:11:05.597531+00:00",
+  "limitations": [
+    "Kernel startup/marker test only, not GPU compute acceptance or critic/e2e gain.",
+    "No historical failed task retried; twelve new cold kernels in a single new gateway.",
+    "If old does not fail here, this does not show a lower failure rate."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "utc": "2026-09-12T04:23:24.405807+00:00",
+  "passed": true,
+  "source_tree": "900fa3bdf6971381c37a9792723dba42c63e5ac6",
+  "controller_commit": "f20017521c85b93976c991d8c36693e5872ab3f7",
+  "archive_sha256": "221f20372c0b52472172238b4674bb012799d1781dfbb1f05102cbc858a00a71",
+  "source_files_checked": 239,
+  "failure_case": {
+    "raised": "KernelReadinessError",
+    "candidate_dispatches": 0,
+    "witness_status": "raised",
+    "quality_metadata": null
+  },
+  "code_error_control": {
+    "dispatches": 1,
+    "exit_code": 1,
+    "witness_status": "returned"
+  },
+  "gpu_jobs": 0,
+  "api_calls": 0,
+  "real_candidate_executions": 0,
+  "activated_paid_release": false,
+  "limitation": "Actual production executor/witness imports with synthetic kernel. Not a live failure-rate or e2e gain test."
+}

@@ -1,0 +1,497 @@
+{
+  "api_calls": 8,
+  "billing": {
+    "accounted_usd": 2.613580368,
+    "authorization_sha256": "f799ccb82373b1a3d4bcaf5ea1031b5cc67207f30270f8b25212d95a693f3344",
+    "calls": 362,
+    "scopes": [
+      {
+        "calls": 15,
+        "held_usd": 0.030800835,
+        "scope": "00-leaf-classification-s10-uniform_random",
+        "settled_usd": 0.030800835,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.033476859,
+        "scope": "00-leaf-classification-s11-critic_topk_random",
+        "settled_usd": 0.033476859,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.031420311,
+        "scope": "00-leaf-classification-s12-uniform_random",
+        "settled_usd": 0.031420311,
+        "unresolved": 0
+      },
+      {
+        "calls": 18,
+        "held_usd": 0.056606342,
+        "scope": "00-leaf-classification-s13-critic_topk_random",
+        "settled_usd": 0.056606342,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.030109326,
+        "scope": "00-leaf-classification-s14-uniform_random",
+        "settled_usd": 0.030109326,
+        "unresolved": 0
+      },
+      {
+        "calls": 19,
+        "held_usd": 0.045247826,
+        "scope": "00-leaf-classification-s15-critic_topk_random",
+        "settled_usd": 0.045247826,
+        "unresolved": 0
+      },
+      {
+        "calls": 3,
+        "held_usd": 0.704222023,
+        "scope": "01-leaf-classification-s10-critic_topk_random",
+        "settled_usd": 0.004222023,
+        "unresolved": 1
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.036235446,
+        "scope": "01-leaf-classification-s11-uniform_random",
+        "settled_usd": 0.036235446,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.025891086,
+        "scope": "01-leaf-classification-s12-critic_topk_random",
+        "settled_usd": 0.025891086,
+        "unresolved": 0
+      },
+      {
+        "calls": 9,
+        "held_usd": 0.715406677,
+        "scope": "01-leaf-classification-s13-uniform_random",
+        "settled_usd": 0.015406677,
+        "unresolved": 1
+      },
+      {
+        "calls": 19,
+        "held_usd": 0.048437779,
+        "scope": "01-leaf-classification-s14-critic_topk_random",
+        "settled_usd": 0.048437779,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.02784171,
+        "scope": "01-leaf-classification-s15-uniform_random",
+        "settled_usd": 0.02784171,
+        "unresolved": 0
+      },
+      {
+        "calls": 16,
+        "held_usd": 0.037944933,
+        "scope": "02-spaceship-titanic-s10-critic_topk_random",
+        "settled_usd": 0.037944933,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.045580002,
+        "scope": "02-spaceship-titanic-s11-uniform_random",
+        "settled_usd": 0.045580002,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.038064936,
+        "scope": "02-spaceship-titanic-s12-critic_topk_random",
+        "settled_usd": 0.038064936,
+        "unresolved": 0
+      },
+      {
+        "calls": 19,
+        "held_usd": 0.070479552,
+        "scope": "02-spaceship-titanic-s14-critic_topk_random",
+        "settled_usd": 0.070479552,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.041187393,
+        "scope": "02-spaceship-titanic-s15-uniform_random",
+        "settled_usd": 0.041187393,
+        "unresolved": 0
+      },
+      {
+        "calls": 12,
+        "held_usd": 0.029666832,
+        "scope": "03-spaceship-titanic-s10-uniform_random",
+        "settled_usd": 0.029666832,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.036710856,
+        "scope": "03-spaceship-titanic-s11-critic_topk_random",
+        "settled_usd": 0.036710856,
+        "unresolved": 0
+      },
+      {
+        "calls": 17,
+        "held_usd": 0.048390186,
+        "scope": "03-spaceship-titanic-s12-uniform_random",
+        "settled_usd": 0.048390186,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.043196673,
+        "scope": "03-spaceship-titanic-s14-uniform_random",
+        "settled_usd": 0.043196673,
+        "unresolved": 0
+      },
+      {
+        "calls": 19,
+        "held_usd": 0.05677048,
+        "scope": "03-spaceship-titanic-s15-critic_topk_random",
+        "settled_usd": 0.05677048,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.318775548,
+        "scope": "closed_predecessor",
+        "settled_usd": 0.318775548,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.000178425,
+        "scope": "compat2_failure",
+        "settled_usd": 0.000178425,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.000102453,
+        "scope": "compat2_success",
+        "settled_usd": 0.000102453,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.000178425,
+        "scope": "compat_failure",
+        "settled_usd": 0.000178425,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 8.4903e-05,
+        "scope": "compat_success",
+        "settled_usd": 8.4903e-05,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0058773,
+        "scope": "context-judge-0",
+        "settled_usd": 0.0058773,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00501202,
+        "scope": "context-judge-1",
+        "settled_usd": 0.00501202,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00734045,
+        "scope": "context-judge-2",
+        "settled_usd": 0.00734045,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00594269,
+        "scope": "context-judge-3",
+        "settled_usd": 0.00594269,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 9.8553e-05,
+        "scope": "fixture_failure",
+        "settled_usd": 9.8553e-05,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.000137514,
+        "scope": "fixture_success",
+        "settled_usd": 0.000137514,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0056108,
+        "scope": "information-0",
+        "settled_usd": 0.0056108,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0049452,
+        "scope": "information-1",
+        "settled_usd": 0.0049452,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00115817,
+        "scope": "information-2",
+        "settled_usd": 0.00115817,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00535145,
+        "scope": "information-3",
+        "settled_usd": 0.00535145,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0077857,
+        "scope": "information-4",
+        "settled_usd": 0.0077857,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00658762,
+        "scope": "information-5",
+        "settled_usd": 0.00658762,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00192153,
+        "scope": "information-6",
+        "settled_usd": 0.00192153,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00192153,
+        "scope": "information-7",
+        "settled_usd": 0.00192153,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.00015366,
+        "scope": "route",
+        "settled_usd": 0.00015366,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.00015366,
+        "scope": "route_s11",
+        "settled_usd": 0.00015366,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.00015366,
+        "scope": "route_s12",
+        "settled_usd": 0.00015366,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.00015366,
+        "scope": "route_s13",
+        "settled_usd": 0.00015366,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.00015366,
+        "scope": "route_s14",
+        "settled_usd": 0.00015366,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.000113724,
+        "scope": "route_s15",
+        "settled_usd": 0.000113724,
+        "unresolved": 0
+      }
+    ],
+    "settled_usd": 1.213580368,
+    "stopped": false,
+    "unresolved": 2
+  },
+  "complete": true,
+  "controller_commit": "65f0228d54ac93e281fb6607d84e6b2bac9080b7",
+  "gpu_jobs": 0,
+  "new_pool_outcomes_read": false,
+  "protected_cohort_read": false,
+  "ranking_values_exported": false,
+  "requests": [
+    {
+      "condition": "full",
+      "description_sha256": "7b57af084dd30eb953dc8aacdf48372b2c190f5118fb2217a2390b82c98092b7",
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "index": 0,
+      "model": "qwen/qwen3-coder-plus",
+      "provider_confirmed": "Alibaba",
+      "request_sha256": "d8989932bba63af89322458424651cb2a8d32e23a5eb7ba8a8aef2246a5bdb82",
+      "settled_usd": 0.0056108,
+      "status": "ranked",
+      "task": "leaf-classification",
+      "utc": "2026-09-12T03:43:32.606237+00:00"
+    },
+    {
+      "condition": "full",
+      "description_sha256": "7b57af084dd30eb953dc8aacdf48372b2c190f5118fb2217a2390b82c98092b7",
+      "display_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "index": 1,
+      "model": "qwen/qwen3-coder-plus",
+      "provider_confirmed": "Alibaba",
+      "request_sha256": "55b675028bda45953eb47157da404c9038f9db28de6b4176f5b5b37c59547d17",
+      "settled_usd": 0.0049452,
+      "status": "ranked",
+      "task": "leaf-classification",
+      "utc": "2026-09-12T03:43:34.317285+00:00"
+    },
+    {
+      "condition": "omitted",
+      "description_sha256": "7b57af084dd30eb953dc8aacdf48372b2c190f5118fb2217a2390b82c98092b7",
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "index": 2,
+      "model": "qwen/qwen3-coder-plus",
+      "provider_confirmed": "Alibaba",
+      "request_sha256": "34d02156bd645f9b8a95eb2b9d6442b4b7a8005e31443ce845561fba63891ce5",
+      "settled_usd": 0.00115817,
+      "status": "ranked",
+      "task": "leaf-classification",
+      "utc": "2026-09-12T03:43:35.674798+00:00"
+    },
+    {
+      "condition": "omitted",
+      "description_sha256": "7b57af084dd30eb953dc8aacdf48372b2c190f5118fb2217a2390b82c98092b7",
+      "display_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "index": 3,
+      "model": "qwen/qwen3-coder-plus",
+      "provider_confirmed": "Alibaba",
+      "request_sha256": "b4f2b2c434764071ea0d6889aca7e16cbde742afa0efbb5981e00984faa17ae2",
+      "settled_usd": 0.00535145,
+      "status": "ranked",
+      "task": "leaf-classification",
+      "utc": "2026-09-12T03:43:36.991676+00:00"
+    },
+    {
+      "condition": "omitted",
+      "description_sha256": "ee35380587404b263ef8b38d9a2fff4196563abb2e12bc086b02c9808b7f37cb",
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "index": 4,
+      "model": "qwen/qwen3-coder-plus",
+      "provider_confirmed": "Alibaba",
+      "request_sha256": "3d003d1b60dd62a6fa7ff9417760bfb712ee7019c27bf21cbc4ff5ff2bdff5c7",
+      "settled_usd": 0.0077857,
+      "status": "ranked",
+      "task": "spaceship-titanic",
+      "utc": "2026-09-12T03:43:38.239955+00:00"
+    },
+    {
+      "condition": "omitted",
+      "description_sha256": "ee35380587404b263ef8b38d9a2fff4196563abb2e12bc086b02c9808b7f37cb",
+      "display_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "index": 5,
+      "model": "qwen/qwen3-coder-plus",
+      "provider_confirmed": "Alibaba",
+      "request_sha256": "4a933ba345b7e3c7fd5c4994267ff76f4d6f94773240d8f2faf1629f9a9eb170",
+      "settled_usd": 0.00658762,
+      "status": "ranked",
+      "task": "spaceship-titanic",
+      "utc": "2026-09-12T03:43:39.768440+00:00"
+    },
+    {
+      "condition": "full",
+      "description_sha256": "ee35380587404b263ef8b38d9a2fff4196563abb2e12bc086b02c9808b7f37cb",
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "index": 6,
+      "model": "qwen/qwen3-coder-plus",
+      "provider_confirmed": "Alibaba",
+      "request_sha256": "9fd7941c0bf8db2272a363cc5189f8c03ee4892bfa234620de4403dabeb77b1f",
+      "settled_usd": 0.00192153,
+      "status": "ranked",
+      "task": "spaceship-titanic",
+      "utc": "2026-09-12T03:43:41.525198+00:00"
+    },
+    {
+      "condition": "full",
+      "description_sha256": "ee35380587404b263ef8b38d9a2fff4196563abb2e12bc086b02c9808b7f37cb",
+      "display_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "index": 7,
+      "model": "qwen/qwen3-coder-plus",
+      "provider_confirmed": "Alibaba",
+      "request_sha256": "89d0ef815acc8c042a1f5b4d1f5ce6b46f88a306a12a8658b4b00cb9b81e2d0a",
+      "settled_usd": 0.00192153,
+      "status": "ranked",
+      "task": "spaceship-titanic",
+      "utc": "2026-09-12T03:43:43.314228+00:00"
+    }
+  ],
+  "root": "/research/d7/spc/yzyang4/forets-information-ablation-20260912-rwohlohw",
+  "task_executions": 0,
+  "utc": "2026-09-12T03:43:44.493263+00:00"
+}

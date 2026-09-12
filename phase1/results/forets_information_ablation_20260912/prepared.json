@@ -1,0 +1,123 @@
+{
+  "api_calls": 0,
+  "controller_commit": "65f0228d54ac93e281fb6607d84e6b2bac9080b7",
+  "dependencies": {
+    "forets_context_judge_20260912.py": "f66c5434297346f3e22503820b488e76111ad0e27b7941cd03aca88247aaf5b2",
+    "forets_environment_context_20260912.py": "b5878cf30fd58cabfa2c4e58c7cef4451d6103a80ca8922934dcd6e02c205d11",
+    "forets_paid_budget_20260911.py": "96ef46a35c9e83ed075d0ff30c8b6a0b5bbe4f0a7785783e846dd43a25c41492"
+  },
+  "gpu_jobs": 0,
+  "incremental_cap_nano": 3000000000,
+  "new_pool_outcomes_read": false,
+  "pool_plan_sha256": "6bbe805e1113bbd7d899914178da79ef773ae8ae5f1306ba645066c397c0f02c",
+  "requests": [
+    {
+      "condition": "full",
+      "description_sha256": "7b57af084dd30eb953dc8aacdf48372b2c190f5118fb2217a2390b82c98092b7",
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "index": 0,
+      "request_sha256": "d8989932bba63af89322458424651cb2a8d32e23a5eb7ba8a8aef2246a5bdb82",
+      "task": "leaf-classification"
+    },
+    {
+      "condition": "full",
+      "description_sha256": "7b57af084dd30eb953dc8aacdf48372b2c190f5118fb2217a2390b82c98092b7",
+      "display_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "index": 1,
+      "request_sha256": "55b675028bda45953eb47157da404c9038f9db28de6b4176f5b5b37c59547d17",
+      "task": "leaf-classification"
+    },
+    {
+      "condition": "omitted",
+      "description_sha256": "7b57af084dd30eb953dc8aacdf48372b2c190f5118fb2217a2390b82c98092b7",
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "index": 2,
+      "request_sha256": "34d02156bd645f9b8a95eb2b9d6442b4b7a8005e31443ce845561fba63891ce5",
+      "task": "leaf-classification"
+    },
+    {
+      "condition": "omitted",
+      "description_sha256": "7b57af084dd30eb953dc8aacdf48372b2c190f5118fb2217a2390b82c98092b7",
+      "display_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "index": 3,
+      "request_sha256": "b4f2b2c434764071ea0d6889aca7e16cbde742afa0efbb5981e00984faa17ae2",
+      "task": "leaf-classification"
+    },
+    {
+      "condition": "omitted",
+      "description_sha256": "ee35380587404b263ef8b38d9a2fff4196563abb2e12bc086b02c9808b7f37cb",
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "index": 4,
+      "request_sha256": "3d003d1b60dd62a6fa7ff9417760bfb712ee7019c27bf21cbc4ff5ff2bdff5c7",
+      "task": "spaceship-titanic"
+    },
+    {
+      "condition": "omitted",
+      "description_sha256": "ee35380587404b263ef8b38d9a2fff4196563abb2e12bc086b02c9808b7f37cb",
+      "display_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "index": 5,
+      "request_sha256": "4a933ba345b7e3c7fd5c4994267ff76f4d6f94773240d8f2faf1629f9a9eb170",
+      "task": "spaceship-titanic"
+    },
+    {
+      "condition": "full",
+      "description_sha256": "ee35380587404b263ef8b38d9a2fff4196563abb2e12bc086b02c9808b7f37cb",
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "index": 6,
+      "request_sha256": "9fd7941c0bf8db2272a363cc5189f8c03ee4892bfa234620de4403dabeb77b1f",
+      "task": "spaceship-titanic"
+    },
+    {
+      "condition": "full",
+      "description_sha256": "ee35380587404b263ef8b38d9a2fff4196563abb2e12bc086b02c9808b7f37cb",
+      "display_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "index": 7,
+      "request_sha256": "89d0ef815acc8c042a1f5b4d1f5ce6b46f88a306a12a8658b4b00cb9b81e2d0a",
+      "task": "spaceship-titanic"
+    }
+  ],
+  "root": "/research/d7/spc/yzyang4/forets-information-ablation-20260912-rwohlohw",
+  "script_sha256": "5915660edbd5a926adb7f59d242a5bf796468533bfe6d6e54bc72492ac5bc60e",
+  "task_executions": 0,
+  "utc": "2026-09-12T03:16:46.180243+00:00"
+}

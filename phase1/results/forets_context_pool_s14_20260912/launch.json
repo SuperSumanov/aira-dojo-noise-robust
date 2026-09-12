@@ -1,0 +1,12 @@
+{
+  "job": "13129",
+  "utc": "2026-09-12T03:43:10.736990+00:00",
+  "plan_sha256": "6bbe805e1113bbd7d899914178da79ef773ae8ae5f1306ba645066c397c0f02c",
+  "controller_commit": "d3331edafc4ca3277131e5a5a4f44a1189a72940",
+  "source_tree": "f70eb4859c48c61bba37b298fbf8e32e367644ae",
+  "programs": 8,
+  "node": "gpu28",
+  "maximum_gpu_hours": 1.5,
+  "generation_api_calls": 0,
+  "critic_calls": 0
+}

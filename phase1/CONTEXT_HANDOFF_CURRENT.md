@@ -1,4 +1,18 @@
-# 短交接：首池补齐闭合；一处非平分驱动可行性信号，尚无e2e胜利
+# 短交接：单票同预算新矩阵已提交；尚无新e2e结果
+
+2026-09-13 HK / 09-12 17:44:56 UTC：单次提交13184/13185，两seed26/27×Leaf/Space×random/单票critic，共8搜索。
+ROOT /research/d7/spc/yzyang4/forets-wallclock-20260912-bll4ghfa
+STAGE /research/d7/spc/yzyang4/forets-singlevote-stage-20260913-NV8o3rXI
+source fb2c041c8ec8e352847881ee6fe2fb56d9561aec；controller dbf204d0a94844cf4ee4743b3a7cca769d2c5899。
+prepared 29349e0d78ce57701db2d5eae8bc35648f1fa50165df5eaff17a6502b3e402fe。
+两独立gpu28单3090/6CPU allocation，每份90分钟=总3GPUh上限；搜索600秒/程序300秒/原镜像。
+一次原序排名、top2/common-priority选1；与random同时对照，不是单/双票直接消融。全8闭合后统一读出，不能中期挑结果。
+账本已排他从cxb9p0og转交ROOT/paid.sqlite；旧658条/两旧未知完整继承，总责任cap10USD，不重置。
+新AUTH 81c286978ff9ff58f79d7e9f8029aab335686a2d15158c6f2462efc035ea3279。两route均通过。
+17:45:24 UTC最后观察：两job均RUNNING/gpu28，各第一条worker已running，不是G0/模型验收。
+4新本地测试、5单/双票实现测试和实际8配置CPU接线通过；未调用G0。研究计划FORETS_SINGLE_VOTE_PLAN_20260913.md。
+09-12 17:36 UTC学长共享镜像仍PermissionError，未绕权；最新fetch学长仍113e25e7。无新automation。
+以下为已闭合旧结果与证据，不能当作实时状态；旧readers/job禁止重跑。
 
 2026-09-12本轮完成；正式读出12:58:18 UTC。恢复先fetch→CURRENT_DIRECTION顶部0L184→本文件→核现场。
 最新用户：继续推进，希望一小时内有价值结果；本轮已完成定向排障、12程序补齐、独立评分/平分敏感性与成本控制准备。

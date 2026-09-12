@@ -34,6 +34,11 @@ class EffectsTests(unittest.TestCase):
         self.assertEqual(len(effects(rows,seeds=(24,25))['pairs']),4)
         with self.assertRaises(ValueError):effects(rows)
         with self.assertRaises(ValueError):effects(rows,seeds=(24,24))
+    def test_single_vote_complete_seeds(self):
+        rows=self.rows()
+        for r in rows:r['seed']+=4
+        self.assertEqual(len(effects(rows,seeds=(26,27))['pairs']),4)
+        with self.assertRaises(ValueError):effects(rows[:-1],seeds=(26,27))
 
 
 if __name__=='__main__':unittest.main()

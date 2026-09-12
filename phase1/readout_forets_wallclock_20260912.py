@@ -28,7 +28,7 @@ def read(path):
 
 
 def effects(rows, seeds=(22,23)):
-    if tuple(seeds) not in ((22,23),(24,25)):
+    if tuple(seeds) not in ((22,23),(24,25),(26,27)):
         raise ValueError('explicit frozen seed pair required')
     expected={(t,s,a) for t in TASKS for s in seeds for a in ARMS}
     if len(rows)!=8 or {(r['task'],r['seed'],r['arm']) for r in rows}!=expected:
@@ -61,12 +61,15 @@ def effects(rows, seeds=(22,23)):
     return dict(pairs=pairs,groups=groups,gain_summary=gains)
 
 
-def verify(root, seeds=(22,23)):
+def verify(root, seeds=(22,23), blocks=(1,)):
     root=root.resolve(strict=True)
     if root.parent!=Path('/research/d7/spc/yzyang4') or not root.name.startswith('forets-wallclock-20260912-'):
         raise ValueError('explicit new development package only')
     if (root/'wallclock-summary.json').exists():raise ValueError('readout already complete')
-    build,launch=read(root/'build.json'),read(root/'launch.json')
+    if (tuple(seeds),tuple(blocks)) not in (((22,23),(1,)),((24,25),(1,)),((26,27),(1,2))):
+        raise ValueError('explicit frozen seed/allocation layout required')
+    build=read(root/'build.json')
+    launches={b:read(root/(f'launch-b{b}.json' if len(blocks)>1 else 'launch.json')) for b in blocks}
     if sha((root/'prepared.json').read_bytes())!=build['prepared_sha256']:raise ValueError('preparation hash')
     prepared=read(root/'prepared.json');os.environ['SLURM_CONF']='/opt1/slurm/gpu-slurm.conf'
     artifact=read(root/'artifact.json')
@@ -75,22 +78,25 @@ def verify(root, seeds=(22,23)):
         path=root/'source'/relative
         if path.is_symlink() or not path.resolve().is_relative_to(root/'source') or sha(path.read_bytes())!=digest:
             raise ValueError('source changed during the experiment')
-    acct=subprocess.check_output(['sacct','-j',launch['job'],'-nP','-o','JobIDRaw,State%32,NodeList,ElapsedRaw,AllocTRES%128'],text=True,timeout=25)
+    acct=subprocess.check_output(['sacct','-j',','.join(launches[b]['job'] for b in blocks),'-nP','-o','JobIDRaw,State%32,NodeList,ElapsedRaw,AllocTRES%128'],text=True,timeout=25)
     records={}
     for line in acct.splitlines():
         fields=line.split('|')
         if len(fields)!=5 or fields[0] in records:raise ValueError('accounting shape/duplicates')
         records[fields[0]]=fields
-    allocation=records[launch['job']]
-    if allocation[1].split()[0].rstrip('+') not in TERMINAL or allocation[2]!='gpu28':raise ValueError('allocation not closed')
-    tres=dict(x.split('=',1) for x in allocation[4].split(',') if '=' in x)
-    if tres.get('gres/gpu')!='1':raise ValueError('allocation GPU count')
-    start=read(root/'block-1.runtime/started.json')
-    pool=read(root/start['pool_manifest'])
-    if pool['allocation_id']!=launch['job'] or set(pool['tasks'])!={r['run_id'] for r in prepared['run_configs']}:
-        raise ValueError('pool identity')
-    if any(t['status'] in ('launching','running') for t in pool['tasks'].values()):
-        raise ValueError('closed allocation has unresolved controller rows; diagnose first')
+    allocations={};pools={}
+    if {r['block'] for r in prepared['run_configs']}!=set(blocks):raise ValueError('prepared blocks')
+    for block in blocks:
+        launch=launches[block];allocation=records[launch['job']];allocations[block]=allocation
+        if allocation[1].split()[0].rstrip('+') not in TERMINAL or allocation[2]!='gpu28':raise ValueError('allocation not closed')
+        tres=dict(x.split('=',1) for x in allocation[4].split(',') if '=' in x)
+        if tres.get('gres/gpu')!='1':raise ValueError('allocation GPU count')
+        start=read(root/f'block-{block}.runtime/started.json')
+        pool=read(root/start['pool_manifest']);pools[block]=pool
+        if pool['allocation_id']!=launch['job'] or set(pool['tasks'])!={r['run_id'] for r in prepared['run_configs'] if r['block']==block}:
+            raise ValueError('pool identity')
+        if any(t['status'] in ('launching','running') for t in pool['tasks'].values()):
+            raise ValueError('closed allocation has unresolved controller rows; diagnose first')
     sys.path[:0]=[str(root/'source/src'),str(root/'code')]
     from dojo.solvers.fore_ts.wallclock import read_incumbent
     from forets_paid_budget_20260911 import snapshot
@@ -98,8 +104,9 @@ def verify(root, seeds=(22,23)):
     import pandas as pd
     registry=registry.set_data_dir(root.parent/'mle-bench-data')
     billing=snapshot(root/'paid.sqlite');scopes={r['scope']:r for r in billing['scopes']}
-    rows=[];proofs=[];uuids=set();answers={}
+    rows=[];proofs=[];uuids={b:set() for b in blocks};answers={}
     for planned in prepared['run_configs']:
+        block=planned['block'];launch=launches[block];pool=pools[block]
         rid=planned['run_id'];task=pool['tasks'][rid];scope=scopes.get(rid,{})
         row={k:planned[k] for k in ('run_id','task','seed','arm')}
         row.update(job=launch['job'],source_tree=build['source_tree'],controller_commit=build['commit'],
@@ -107,6 +114,7 @@ def verify(root, seeds=(22,23)):
             provider='alibaba',image_version='2026-07-macos-v1',node='gpu28',allocated_gpus=1,allocated_cpus=6,
             program_timeout_seconds=300,selection_top_k=2,selection_coupling='common_priority_v1',
             search_budget_seconds=600,planned_step_cap=64,runtime_status=task['status'],
+            critic_ranking_votes=(1 if tuple(seeds)==(26,27) else 2) if planned['arm']==ARMS[1] else 0,
             api_cost_usd=scope.get('settled_usd',0),api_responsibility_usd=scope.get('held_usd',0),
             valid=False,score=None,independent_score=None,selected_step=None,selected_code_sha256=None,
             worker_elapsed_seconds=None,technical_eligible=False,termination_reason='not_started')
@@ -141,7 +149,7 @@ def verify(root, seeds=(22,23)):
             binding=read(binding_path)
             if (binding['native_identity']['job']!=launch['job'] or not binding['namespace']['exact_device_namespace']):
                 raise ValueError('task hardware binding')
-            uuids.add(binding['native_identity']['selected_uuid'])
+            uuids[block].add(binding['native_identity']['selected_uuid'])
         row['technical_eligible']=bool(bindings) and reason in ('completed','timed_out','api_admission_budget_expired') and not scope.get('unresolved',0)
         selected=read_incumbent(root/'incumbents'/rid,expected_start_ns=summary['search_start_ns'],expected_seconds=600)
         if selected is not None and selected['submission'] is not None:
@@ -163,12 +171,15 @@ def verify(root, seeds=(22,23)):
             proofs.append(dict(run_id=rid,submission_sha256=receipt['submission_sha256'],
                 report_sha256=receipt['report_sha256'],durable_cutoff_selected=True))
         rows.append(row)
-    if len(uuids)>1:raise ValueError('physical GPU differed within allocation')
+    if any(len(u)>1 for u in uuids.values()):raise ValueError('physical GPU differed within allocation')
     result=effects(rows,seeds=seeds)
-    result.update(source_tree=build['source_tree'],controller_commit=build['commit'],job=launch['job'],
+    seconds=sum(int(a[3]) for a in allocations.values())
+    result.update(source_tree=build['source_tree'],controller_commit=build['commit'],job=launch['job'] if len(blocks)==1 else None,
+        jobs_by_block={str(b):launches[b]['job'] for b in blocks},
         role='wallclock_development_e2e_not_confirmatory',seeds=list(seeds),all_planned_slots_reported=True,rows=rows,proofs=proofs,
-        independent_numeric_regrades=len(proofs),allocation_seconds=int(allocation[3]),allocation_gpu_hours=int(allocation[3])/3600,
-        billing={k:v for k,v in billing.items() if k!='scopes'},same_physical_gpu=len(uuids)==1,
+        independent_numeric_regrades=len(proofs),allocation_seconds=seconds,allocation_gpu_hours=seconds/3600,
+        billing={k:v for k,v in billing.items() if k!='scopes'},same_physical_gpu=(len(blocks)==1 and len(uuids[blocks[0]])==1),
+        same_physical_gpu_within_each_block=all(len(u)==1 for u in uuids.values()),
         complete_technical_matrix=all(r['technical_eligible'] for r in rows),
         verifier_sha256=sha(Path(__file__).read_bytes()),
         numerical_helper_sha256=sha(Path(__file__).with_name('readout_forets_generation_capacity_20260912.py').read_bytes()),

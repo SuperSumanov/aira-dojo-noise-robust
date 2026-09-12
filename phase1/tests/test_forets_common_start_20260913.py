@@ -35,6 +35,7 @@ class CommonStartTests(unittest.TestCase):
         batch=src['src/dojo/solvers/fore_ts/batch_runtime.py'].decode()
         self.assertIn('count = 1 if bootstrap',batch)
         self.assertIn('if bootstrap else await',batch)
+        self.assertIn('digest as start_digest',batch)
 
 
 if __name__=='__main__':unittest.main()

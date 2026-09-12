@@ -60,7 +60,7 @@ def run(root):
                 counters['generation']+=1
                 return MCTSNode(code='print(1)',parents=[],operators_used=['fixture'],operators_metrics=[])
             async def rank(*args):counters['rank']+=1;return [1.,2.,3.,4.]
-            def parse(node,eval_result):node.is_buggy=False;node.metric=NS(value=.5)
+            def parse(node,eval_result):node.is_buggy=False;node.metric=NS(value=.5,info={},maximize=True)
             s._draft=s._improve=generate;s.parse_eval_result=parse;s.log_journal=lambda:None
             s._backprop_step=lambda *args,**kw:None;s.set_global_q_values=lambda v:None
             def step(state,code):

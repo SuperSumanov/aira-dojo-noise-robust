@@ -70,9 +70,9 @@ def changed_sources():
         '        if self.common_start_protocol not in ("none", "rf_common_v1"):\n            raise ValueError("common start protocol")\n        for name in ("num_children",')
     batch=git('show',BASE+':src/dojo/solvers/fore_ts/batch_runtime.py').decode()
     batch=once(batch,'    count = min(solver.cfg.num_children, solver.remaining_steps)',
-        '    from dojo.solvers.fore_ts.common_start import initial, make_node, digest\n    bootstrap = initial(solver, path)\n    count = 1 if bootstrap else min(solver.cfg.num_children, solver.remaining_steps)')
+        '    from dojo.solvers.fore_ts.common_start import initial, make_node, digest as start_digest\n    bootstrap = initial(solver, path)\n    count = 1 if bootstrap else min(solver.cfg.num_children, solver.remaining_steps)')
     batch=once(batch,"    binding.update(selection_coupling=coupling)",
-        "    binding.update(selection_coupling=coupling)\n    if bootstrap:\n        binding['common_start'] = dict(protocol=solver.cfg.common_start_protocol, code_sha256=digest(solver.task_name))")
+        "    binding.update(selection_coupling=coupling)\n    if bootstrap:\n        binding['common_start'] = dict(protocol=solver.cfg.common_start_protocol, code_sha256=start_digest(solver.task_name))")
     batch=once(batch,'                    node = await (solver._draft(parent) if not parent.parents else solver._improve(parent))',
         '                    node = make_node(solver.task_name, node_type) if bootstrap else await (solver._draft(parent) if not parent.parents else solver._improve(parent))')
     return {PREFIX+'paid_budget.py':budget.encode(), 'src/dojo/config_dataclasses/solver/fore_ts.py':cfg.encode(),

@@ -11,6 +11,7 @@ import socket
 import statistics
 import sys
 import time
+import re
 
 BASE=Path('/research/d7/spc/yzyang4')
 SOURCE=BASE/'forets-repeat-20260912-3no2iopd/source'
@@ -21,6 +22,20 @@ ORDER=['old','new','new','old','old','new','new','old','old','new','new','old']
 
 def write(path,data):
     with path.open('x') as f:json.dump(data,f,indent=2,allow_nan=False);f.write('\n')
+
+
+def context():
+    logging.disable(logging.CRITICAL)
+    os.environ.update(PYTHON_DOTENV_DISABLED='1',PYTHONDONTWRITEBYTECODE='1',
+        NO_PROXY='localhost,127.0.0.1,0.0.0.0',LOGGING_DIR=str(ROOT),
+        SUPERIMAGE_DIR=str(BASE/'aira-dojo/build/superimage'),MLE_BENCH_DATA_DIR=str(BASE/'mle-bench-data'),
+        DEFAULT_SLURM_PARTITION='gpu_24h',DEFAULT_SLURM_ACCOUNT='gpu',DEFAULT_SLURM_QOS='gpu')
+    for name in ['DOJO_WORKER_IDENTITY_PATH','FORETS_NATIVE_RELEASE','FORETS_CURRENT_POOL_ROOT','FORETS_CLOSED_POOL_ROOT']:
+        os.environ.pop(name,None)
+    sys.path[:0]=[str(ROOT),str(SOURCE/'src')]
+    from forets_kernel_readiness_20260912 import wait_for_ready
+    from dojo.core.interpreters.jupyter.singularity_jupyter_server import SingularityJupyterServer
+    return wait_for_ready,SingularityJupyterServer
 
 
 def run(commit):
@@ -35,13 +50,7 @@ def run(commit):
     if hashlib.sha256((SOURCE/'src/dojo/core/interpreters/jupyter/jupyter_client.py').read_bytes()).hexdigest()!=CLIENT_SHA:
         raise ValueError('original client drift')
     write(ROOT/'started.json',dict(utc=dt.datetime.now(dt.timezone.utc).isoformat(),job=os.environ['SLURM_JOB_ID'],commit=commit))
-    logging.disable(logging.CRITICAL)
-    os.environ.update(PYTHON_DOTENV_DISABLED='1',PYTHONDONTWRITEBYTECODE='1',NO_PROXY='localhost,127.0.0.1,0.0.0.0')
-    for name in ['DOJO_WORKER_IDENTITY_PATH','FORETS_NATIVE_RELEASE','FORETS_CURRENT_POOL_ROOT','FORETS_CLOSED_POOL_ROOT']:
-        os.environ.pop(name,None)
-    sys.path[:0]=[str(ROOT),str(SOURCE/'src')]
-    from forets_kernel_readiness_20260912 import wait_for_ready
-    from dojo.core.interpreters.jupyter.singularity_jupyter_server import SingularityJupyterServer
+    wait_for_ready,SingularityJupyterServer=context()
     image_dir=BASE/'aira-dojo/build/superimage'
     work=ROOT/'workspace';work.mkdir()
     rows=[];server=None;started=time.monotonic()
@@ -89,4 +98,9 @@ def run(commit):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--commit',required=True);a=p.parse_args();run(a.commit)
+    p=argparse.ArgumentParser();p.add_argument('--commit');p.add_argument('--root',required=True)
+    p.add_argument('--check-import',action='store_true');a=p.parse_args()
+    ROOT=Path(a.root).resolve(strict=True)
+    if ROOT.parent!=BASE or not re.fullmatch('forets-readiness-live-20260912-[A-Za-z0-9_]+',ROOT.name):raise ValueError('root scope')
+    if a.check_import:context();print('original_runtime_import_passed_no_kernel_started')
+    else:run(a.commit)

@@ -1,0 +1,9 @@
+{
+  "csv_sha256": "404491a060ac8b5b7be54e568cc9934108a1d6c52ae409c91e6c8e2a3e30fa23",
+  "job": "13152",
+  "readout_called": true,
+  "readout_exit_code": 0,
+  "status": "verified",
+  "summary_sha256": "da78d63c89c401b2bd7c3b8263496eb4d15a48b0a3a3bf84aa04240263dfd150",
+  "utc": "2026-09-12T07:09:46.087525+00:00"
+}

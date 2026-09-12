@@ -1,9 +1,26 @@
-# 短交接：截止预算e2e 13152已在gpu28开跑
+# 短交接：13152全8闭合，单对正差未复现
 
-2026-09-12最后更新06:38 UTC。用户05:36继续推进；旧三小时轮次已闭合，新轮为600秒预算e2e。
+2026-09-12最后更新08:10 UTC。用户要求状态并继续推进；以下最新裁决覆盖后文旧运行观察。
 恢复先fetch→CURRENT_DIRECTION顶部→本文件→现场；主线同预算MLE-bench最终收益，不以旧状态替代当前事实。
 
-## 当前接续：正在进行，不可重复提交
+## 当前接续：真实结果闭合，不重复提交/读出
+
+- 13152全8已终态，07:09:46自动收尾verified；summarySHA da78d63c89c401b2bd7c3b8263496eb4d15a48b0a3a3bf84aa04240263dfd150。
+  Space22 critic .75402 vs random .72184；Space23 random .81264而critic缺失；Leaf均无合格终点。
+  3原submission数值复验一致；7条是API预算结束，Leaf23 critic是生成前KernelReadinessError，0API/0任务调用。
+  1.0222222222222221 GPUh，搜索API .325743769USD；整账504calls/责任3.053182076/结算1.653182076USD，两旧未知保留。
+- attribute脚本08:06已执行一次，SHA7749ed7ed7d02aa85e9d101b69015dfd3e9c559c6372b7dfafa3f00db10859e1。
+  全部结果见results/forets_wallclock_s22_s23_20260912与FORETS_WALLCLOCK_RESULTS_20260912.md。
+  Space task调用占11.88%–27.49%，余量不是critic实测延迟。公共传输Lock串行化四候选生成已由源代码确认。
+- 后继拟两臂共同受控并发，另加不含代码/结果的握手消息计数；尚未提交，先冻结新版本/矩阵/预算。
+  不追加旧同配方seed，不回改旧分数、不声称底层握手原因已修复，不重复G0/镜像验收。
+  当前唯一有效账仍0t4odqpn，后继尚未移交；旧closeout三个固定文件不变、不可再跑。
+- 08:16后继方案FORETS_PARALLEL_E2E_PLAN_20260912.md已冻结24/25全8、600秒/3GPUh；新增责任4.5USD，原10USD总预算不重置。
+  六项新CPU测试与25项截止相关回归通过，真实同源异步模块mock验证四路上限/请求不变/取消保留责任/原子账本拒绝超额。
+  这些不是实测加速或GPU验收；首个Windows SQLite测试夹具因未关闭连接清理失败，已修测试连接生命周期，没有GPU/API产生。
+  build_forets_parallel_20260912.py复用现有包构建器，仅3生产文件变化；尚未生成/激活新包。不要重跑13152。
+
+## 13152执行时的历史观察（以下不代表当前运行）
 
 - 新包 /research/d7/spc/yzyang4/forets-wallclock-20260912-0t4odqpn，stage forets-wallclock-stage-20260912-2C42Vyve。
   code ee544097a59b70b51493184a6d19b2ea7453ba8e；source6780e383d20d6051ba53cace793f0db910027315；

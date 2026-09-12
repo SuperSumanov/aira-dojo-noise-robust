@@ -26,11 +26,14 @@ AUTH_PARENT = '4d66bef41f5ad23d64a8e6f26350a25486eb65bbde5c416a531879d6b48925ca'
 PREPARED = '883062309b6edeee43ac93be26042c9376279ab712948e034bceb39dc67dae1e'
 PLAN = 'FORETS_WALLCLOCK_E2E_PLAN_20260912.md'
 NEW_CAP = 3500000000
+SEEDS = (22, 23)
+ROUTE_SCOPE = 'route_wallclock'
+SBATCH_TEMPLATE = 'forets_repeat_20260912.sbatch'
 
 
 def order():
     rows = []
-    for seed in (22, 23):
+    for seed in SEEDS:
         for i, task in enumerate(('leaf-classification', 'spaceship-titanic')):
             arms = ['uniform_random', 'critic_topk_random']
             if (seed+i) % 2: arms.reverse()
@@ -174,7 +177,7 @@ def build(stage):
     budget=(root/'source'/PREFIX/'paid_budget.py').read_bytes(); ns={};exec(compile(budget,'<budget>','exec'),ns)
     release=read(PARENT/'code/forets_native_e2e_release_20260911.json'); old_release_sha=sha(encode(release))
     if old_release_sha!=sha((PARENT/'code/forets_native_e2e_release_20260911.json').read_bytes()): raise ValueError('release encoding')
-    release.update(package=str(root),source_tree=info['source_tree'],seeds=[22,23],runs=8,block_minutes=180,
+    release.update(package=str(root),source_tree=info['source_tree'],seeds=list(SEEDS),runs=8,block_minutes=180,
         gpus_per_block=1,cpus_per_block=6,maximum_gpu_hours_including_observed_killwait=None,
         nominal_allocation_gpu_hours=3,paid_authorization_sha256=ns['AUTH_SHA'],
         development_purpose='wallclock_600_complete_iteration_incumbent',scientific_search_seconds=600,
@@ -194,13 +197,13 @@ def build(stage):
     os.chmod(root/'code/bin/singularity',0o700)
     files={str(p.relative_to(root/'code')):sha(p.read_bytes()) for p in (root/'code').rglob('*') if p.is_file()}
     write(root/'code/code-manifest.json',encode(dict(commit=info['commit'],files=files,derivation=derivation)))
-    script=(PARENT/'launchers/forets_repeat_20260912.sbatch').read_text().replace(str(PARENT),str(root)).replace('forets-repeat-s15','forets-wallclock').replace('04:40:00','03:00:00')
+    script=(PARENT/'launchers'/SBATCH_TEMPLATE).read_text().replace(str(PARENT),str(root)).replace('forets-repeat-s15','forets-wallclock').replace('04:40:00','03:00:00')
     write(root/'launchers/forets_wallclock.sbatch',script.encode())
     write(root/'plan.md',(stage/PLAN).read_bytes());write(root/'artifact.json',encode(info))
     write(root/'parent-facts.json',encode(dict(parent=str(BILLING),authorization=AUTH_PARENT,calls_sha256=sha(encode(calls)))))
     result=dict(package=str(root),source_tree=info['source_tree'],commit=info['commit'],prepared_sha256=prep_sha,
         authorization_sha256=ns['AUTH_SHA'],status='BUILT_NOT_ACTIVE',runs=8,nominal_gpu_hours=3,
-        maximum_new_api_liability_usd=3.5,api_calls=0,gpu_dispatches=0)
+        maximum_new_api_liability_usd=NEW_CAP/10**9,api_calls=0,gpu_dispatches=0)
     write(root/'build.json',encode(result));print(json.dumps(result))
 
 
@@ -216,7 +219,7 @@ def activate(root):
         prior.execute('UPDATE auth SET stopped=1');prior.commit()
         with closing(sqlite3.connect(root/'paid.sqlite')) as new: prior.backup(new)
     ns={};exec(compile((root/'code/forets_paid_budget_20260911.py').read_bytes(),'<budget>','exec'),ns)
-    scopes=[r['run_id'] for r in read(root/'prepared.json')['run_configs']]+['route_wallclock']
+    scopes=[r['run_id'] for r in read(root/'prepared.json')['run_configs']]+[ROUTE_SCOPE]
     with closing(sqlite3.connect(root/'paid.sqlite')) as db:
         db.execute('UPDATE auth SET digest=?,body=?,stopped=0',(ns['AUTH_SHA'],ns['AUTH_RAW'].decode()))
         db.execute('UPDATE scopes SET cap=COALESCE((SELECT SUM(held) FROM calls WHERE calls.scope=scopes.scope),0)')

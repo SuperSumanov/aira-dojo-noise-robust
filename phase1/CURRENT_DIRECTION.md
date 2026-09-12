@@ -7,6 +7,18 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L179. 2026-09-12 08:05 UTC：截止e2e闭合；单对正差、未复现，转查公共开销
+
+13152全8已终态，07:09:46独立读出通过，3个原submission数值一致；不是整矩阵技术完全合格。
+Space22 critic0.75402 vs random0.72184（+0.03218），但Space23 random0.81264、critic缺失；
+Leaf两seed均无合格终点，其中Leaf23 critic在任何生成/API前有一次KernelReadinessError。
+七条其他退出为预设API准入预算结束，不把scheduler FAILED统一当基础设施失败或补0。
+完整报告[截止预算结果](FORETS_WALLCLOCK_RESULTS_20260912.md)，不得追加同配方seed追显著。
+Space task调用仅占11.88%–27.49%worker时间，余量不能全归critic；公共付费层Lock使四候选生成串行，
+后继拟在两臂共同恢复受控并发、逐请求原子预留；这是执行层修正，不独立称算法创新。
+尚未提交后继，必须先冻结新矩阵并核账；不改镜像/底座/闭合结果，不重复G0。
+握手失败底层原因尚不充分，后继只加安全通道计数，不用增加超时或默默重试掩盖它。
+
 ## 0L178. 2026-09-12：新采样的截止预算e2e，先留存可核验incumbent
 
 用户继续推进授权下，冻结Leaf/Space × seed22/23 × random/contextual critic，共8个新搜索run；

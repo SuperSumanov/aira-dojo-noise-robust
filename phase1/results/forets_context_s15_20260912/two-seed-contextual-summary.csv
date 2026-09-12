@@ -1,0 +1,9 @@
+run_id,task,arm,seed,comparable_final,official_final_score,independent_score,archived_submissions,executed_nodes,source_tree,job,api_calls,settled_api_cost_usd,unresolved_api_calls,task_calls,execution_timeout_seconds,step_limit,worker_wall_cap_seconds
+00-leaf-classification-s14-uniform_random,leaf-classification,uniform_random,14,True,0.50877,0.5087683219215733,1,5,f70eb4859c48c61bba37b298fbf8e32e367644ae,13124,15,0.030109326,0,5,300,6,3540
+01-leaf-classification-s14-critic_topk_random,leaf-classification,critic_topk_random,14,True,1.42793,1.4279324386944696,2,5,f70eb4859c48c61bba37b298fbf8e32e367644ae,13124,19,0.048437779,0,5,300,6,3540
+02-spaceship-titanic-s14-critic_topk_random,spaceship-titanic,critic_topk_random,14,True,0.81839,0.8183908045977012,1,5,f70eb4859c48c61bba37b298fbf8e32e367644ae,13124,19,0.070479552,0,5,300,6,3540
+03-spaceship-titanic-s14-uniform_random,spaceship-titanic,uniform_random,14,False,,,0,5,f70eb4859c48c61bba37b298fbf8e32e367644ae,13124,15,0.043196673,0,5,300,6,3540
+00-leaf-classification-s15-critic_topk_random,leaf-classification,critic_topk_random,15,True,0.46435,0.46435268829741644,2,5,54e353963a6899965896b2e8ea492207829b3cbd,13128,19,0.045247826,0,5,300,6,3540
+01-leaf-classification-s15-uniform_random,leaf-classification,uniform_random,15,True,0.3367,0.3366959028935364,1,5,54e353963a6899965896b2e8ea492207829b3cbd,13128,15,0.02784171,0,5,300,6,3540
+02-spaceship-titanic-s15-uniform_random,spaceship-titanic,uniform_random,15,True,0.80575,0.8057471264367816,1,5,54e353963a6899965896b2e8ea492207829b3cbd,13128,15,0.041187393,0,5,300,6,3540
+03-spaceship-titanic-s15-critic_topk_random,spaceship-titanic,critic_topk_random,15,True,0.79655,0.7965517241379311,1,5,54e353963a6899965896b2e8ea492207829b3cbd,13128,19,0.05677048,0,5,300,6,3540

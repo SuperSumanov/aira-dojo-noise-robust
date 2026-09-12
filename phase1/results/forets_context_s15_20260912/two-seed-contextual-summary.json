@@ -1,0 +1,263 @@
+{
+  "role": "two_seed_contextual_e2e_development_comparison",
+  "rows": [
+    {
+      "run_id": "00-leaf-classification-s14-uniform_random",
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "seed": 14,
+      "comparable_final": true,
+      "official_final_score": 0.50877,
+      "independent_score": 0.5087683219215733,
+      "archived_submissions": 1,
+      "executed_nodes": 5,
+      "source_tree": "f70eb4859c48c61bba37b298fbf8e32e367644ae",
+      "job": "13124",
+      "api_calls": 15,
+      "settled_api_cost_usd": 0.030109326,
+      "unresolved_api_calls": 0,
+      "task_calls": 5,
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540
+    },
+    {
+      "run_id": "01-leaf-classification-s14-critic_topk_random",
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "seed": 14,
+      "comparable_final": true,
+      "official_final_score": 1.42793,
+      "independent_score": 1.4279324386944696,
+      "archived_submissions": 2,
+      "executed_nodes": 5,
+      "source_tree": "f70eb4859c48c61bba37b298fbf8e32e367644ae",
+      "job": "13124",
+      "api_calls": 19,
+      "settled_api_cost_usd": 0.048437779,
+      "unresolved_api_calls": 0,
+      "task_calls": 5,
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540
+    },
+    {
+      "run_id": "02-spaceship-titanic-s14-critic_topk_random",
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "seed": 14,
+      "comparable_final": true,
+      "official_final_score": 0.81839,
+      "independent_score": 0.8183908045977012,
+      "archived_submissions": 1,
+      "executed_nodes": 5,
+      "source_tree": "f70eb4859c48c61bba37b298fbf8e32e367644ae",
+      "job": "13124",
+      "api_calls": 19,
+      "settled_api_cost_usd": 0.070479552,
+      "unresolved_api_calls": 0,
+      "task_calls": 5,
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540
+    },
+    {
+      "run_id": "03-spaceship-titanic-s14-uniform_random",
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "seed": 14,
+      "comparable_final": false,
+      "official_final_score": null,
+      "independent_score": null,
+      "archived_submissions": 0,
+      "executed_nodes": 5,
+      "source_tree": "f70eb4859c48c61bba37b298fbf8e32e367644ae",
+      "job": "13124",
+      "api_calls": 15,
+      "settled_api_cost_usd": 0.043196673,
+      "unresolved_api_calls": 0,
+      "task_calls": 5,
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540
+    },
+    {
+      "run_id": "00-leaf-classification-s15-critic_topk_random",
+      "task": "leaf-classification",
+      "arm": "critic_topk_random",
+      "seed": 15,
+      "comparable_final": true,
+      "official_final_score": 0.46435,
+      "independent_score": 0.46435268829741644,
+      "archived_submissions": 2,
+      "executed_nodes": 5,
+      "source_tree": "54e353963a6899965896b2e8ea492207829b3cbd",
+      "job": "13128",
+      "api_calls": 19,
+      "settled_api_cost_usd": 0.045247826,
+      "unresolved_api_calls": 0,
+      "task_calls": 5,
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540
+    },
+    {
+      "run_id": "01-leaf-classification-s15-uniform_random",
+      "task": "leaf-classification",
+      "arm": "uniform_random",
+      "seed": 15,
+      "comparable_final": true,
+      "official_final_score": 0.3367,
+      "independent_score": 0.3366959028935364,
+      "archived_submissions": 1,
+      "executed_nodes": 5,
+      "source_tree": "54e353963a6899965896b2e8ea492207829b3cbd",
+      "job": "13128",
+      "api_calls": 15,
+      "settled_api_cost_usd": 0.02784171,
+      "unresolved_api_calls": 0,
+      "task_calls": 5,
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540
+    },
+    {
+      "run_id": "02-spaceship-titanic-s15-uniform_random",
+      "task": "spaceship-titanic",
+      "arm": "uniform_random",
+      "seed": 15,
+      "comparable_final": true,
+      "official_final_score": 0.80575,
+      "independent_score": 0.8057471264367816,
+      "archived_submissions": 1,
+      "executed_nodes": 5,
+      "source_tree": "54e353963a6899965896b2e8ea492207829b3cbd",
+      "job": "13128",
+      "api_calls": 15,
+      "settled_api_cost_usd": 0.041187393,
+      "unresolved_api_calls": 0,
+      "task_calls": 5,
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540
+    },
+    {
+      "run_id": "03-spaceship-titanic-s15-critic_topk_random",
+      "task": "spaceship-titanic",
+      "arm": "critic_topk_random",
+      "seed": 15,
+      "comparable_final": true,
+      "official_final_score": 0.79655,
+      "independent_score": 0.7965517241379311,
+      "archived_submissions": 1,
+      "executed_nodes": 5,
+      "source_tree": "54e353963a6899965896b2e8ea492207829b3cbd",
+      "job": "13128",
+      "api_calls": 19,
+      "settled_api_cost_usd": 0.05677048,
+      "unresolved_api_calls": 0,
+      "task_calls": 5,
+      "execution_timeout_seconds": 300,
+      "step_limit": 6,
+      "worker_wall_cap_seconds": 3540
+    }
+  ],
+  "pairs": [
+    {
+      "task": "leaf-classification",
+      "seed": 14,
+      "availability": "both_valid",
+      "conditional_score_outcome": "random_better",
+      "conditional_benefit_delta": "-0.91916"
+    },
+    {
+      "task": "spaceship-titanic",
+      "seed": 14,
+      "availability": "critic_only_valid",
+      "conditional_score_outcome": null,
+      "conditional_benefit_delta": null
+    },
+    {
+      "task": "leaf-classification",
+      "seed": 15,
+      "availability": "both_valid",
+      "conditional_score_outcome": "random_better",
+      "conditional_benefit_delta": "-0.12765"
+    },
+    {
+      "task": "spaceship-titanic",
+      "seed": 15,
+      "availability": "both_valid",
+      "conditional_score_outcome": "random_better",
+      "conditional_benefit_delta": "-0.00920"
+    }
+  ],
+  "task_summaries": [
+    {
+      "task": "leaf-classification",
+      "total_seed_pairs": 2,
+      "comparable_seed_pairs": 2,
+      "median_conditional_benefit": "-0.523405",
+      "sample_std_conditional_benefit": 0.5596820883769642,
+      "positive_comparable_pairs": 0,
+      "negative_comparable_pairs": 2,
+      "valid_score_ties": 0
+    },
+    {
+      "task": "spaceship-titanic",
+      "total_seed_pairs": 2,
+      "comparable_seed_pairs": 1,
+      "median_conditional_benefit": "-0.00920",
+      "sample_std_conditional_benefit": null,
+      "positive_comparable_pairs": 0,
+      "negative_comparable_pairs": 1,
+      "valid_score_ties": 0
+    }
+  ],
+  "availability": [
+    {
+      "arm": "critic_topk_random",
+      "total_runs": 4,
+      "valid_final_runs": 4,
+      "settled_api_usd": "0.220935637",
+      "api_calls": 76
+    },
+    {
+      "arm": "uniform_random",
+      "total_runs": 4,
+      "valid_final_runs": 3,
+      "settled_api_usd": "0.142335102",
+      "api_calls": 60
+    }
+  ],
+  "billing": [
+    {
+      "seed": 14,
+      "job": "13124",
+      "allocation_gpu_hours": 0.8955555555555555,
+      "new_api_calls_including_route": 70,
+      "new_settled_usd": "0.192376990"
+    },
+    {
+      "seed": 15,
+      "job": "13128",
+      "allocation_gpu_hours": 0.7980555555555555,
+      "new_api_calls_including_route": 70,
+      "new_settled_usd": "0.171161133"
+    }
+  ],
+  "limitations": [
+    "Two exploratory seeds on two tasks; no formal significance or broad generalization established.",
+    "Conditional score summaries exclude missing scores; complete availability counts must accompany them.",
+    "Different task metrics are not averaged together.",
+    "Equal search/resource caps do not imply identical realized token, dollar or wall-time expenditure.",
+    "Independent LLM generation and downstream trajectories prevent attributing every final difference to one selection."
+  ],
+  "evidence_sha256": {
+    "forets-repeat-20260912-x3pkniqp/independent-context-verification.json": "93313ffb7777a549397c08d98716b2373a38224b2d28c7b473e0510fb61571b2",
+    "forets-repeat-20260912-x3pkniqp/diagnostics.json": "0ed6e050b0d382dcfeb88fc525637ffb3287777d2a926d1279e166eb58b91eaa",
+    "forets-repeat-20260912-3no2iopd/independent-context-verification.json": "4ca4ff5e5f8c5f666d109f41763562a66ae9f16ff60a24e6a8e7413a6a105fd5",
+    "forets-repeat-20260912-3no2iopd/diagnostics.json": "5e5684f181d688534090f736358020faf6e4a61b3657b553d45cf6762def36c9"
+  },
+  "script_sha256": "ed211e50fc840198f298e7170ab45ca2690021c4170029c0d0c122973076443d"
+}

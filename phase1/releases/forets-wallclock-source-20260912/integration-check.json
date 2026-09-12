@@ -1,0 +1,15 @@
+{
+  "actual_paid_reserve_rejects_late_call": true,
+  "actual_posix_timeout": true,
+  "actual_typed_configs": 8,
+  "api_requests": 0,
+  "formatted_execution_bound": true,
+  "gpu_dispatches": 0,
+  "imported_task_archive_mcts": true,
+  "interrupted_iteration_excluded": true,
+  "models_loaded": 0,
+  "no_archive_in_agent_feedback": true,
+  "slurm_cgroup_verified": false,
+  "source_tree": "6780e383d20d6051ba53cace793f0db910027315",
+  "status": "PASSED_CPU_INTEGRATION_NOT_GPU_ACCEPTANCE"
+}

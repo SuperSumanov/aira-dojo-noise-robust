@@ -7,6 +7,20 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L178. 2026-09-12：新采样的截止预算e2e，先留存可核验incumbent
+
+用户继续推进授权下，冻结Leaf/Space × seed22/23 × random/contextual critic，共8个新搜索run；
+每run600秒搜索截止、64步安全上限，包含生成/裁判/执行/分析，原Flash/Plus/原镜像/gpu28单3090不变。
+唯一臂间旋钮仍为候选选择规则；此轮是固定墙钟下的可兑现收益探索，不把计费/截止本身称算法创新。
+原源码只在整迭代后检查runtime，所以先增加完整迭代后、原journal最佳解的不可变submission绑定与截止资格回执。
+POSIX监督只杀进程组；Slurm步骤清理另核验并计入真实资源，不能宣称物理GPU用量精确相等。两臂相同请求余量135秒。
+新source6780e383d20d6051ba53cace793f0db910027315，代码commit ee544097a59b70b51493184a6d19b2ea7453ba8e；
+17本地测试与实际生产类/进程组CPU接线通过，06:07:51提交13152、06:08在gpu28第一worker运行中。
+旧账已排他转交新包0t4odqpn，公开catalog/route通过；不是重复G0/模型验收。实际变化见短交接。
+全8按原顺序完成/报告，缺失不补0，不因结果好坏追加seed；计划3GPUh allocation上限、额外API责任3.5USD，整账不重置。
+严禁用截止后新执行或外部分数重选替代冻结incumbent；本轮不恢复G0、旧checkpoint或已关闭分支。
+见[截止预算e2e方案](FORETS_WALLCLOCK_E2E_PLAN_20260912.md)。
+
 ## 0L177. 2026-09-12：计划内复验已全闭合，有限有效性信号，不升级为e2e收益
 
 05:26:35独立读出13149，COMPLETED181秒，8原程序全执行、4有效submission数值一致；

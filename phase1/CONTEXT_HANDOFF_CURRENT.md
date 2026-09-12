@@ -1,7 +1,26 @@
-# 短交接：三批真实执行与两批盲排名闭合，局部正信号但无e2e收益
+# 短交接：截止预算e2e 13152已在gpu28开跑
 
-2026-09-12最后更新05:34 UTC。用户本轮02:44起要求三小时有价值证据，目标05:44 UTC；本轮实验证据与发布均已闭合，无新automation。
+2026-09-12最后更新06:09 UTC。用户05:36继续推进；旧三小时轮次已闭合，新轮为600秒预算e2e。
 恢复先fetch→CURRENT_DIRECTION顶部→本文件→现场；主线同预算MLE-bench最终收益，不以旧状态替代当前事实。
+
+## 当前接续：正在进行，不可重复提交
+
+- 新包 /research/d7/spc/yzyang4/forets-wallclock-20260912-0t4odqpn，stage forets-wallclock-stage-20260912-2C42Vyve。
+  code ee544097a59b70b51493184a6d19b2ea7453ba8e；source6780e383d20d6051ba53cace793f0db910027315；
+  prepared9194eb00bcff646bad70e8422f8af50aae59b549a3d707d96b93f8e77aed1e00；source archive1207df148f3d8ba1a838c76df168ee070376d10add5e5b31db011d9ad07d93d6。
+- 新矩阵两任务×22/23×random/Plus上下文critic，全8，600秒worker截止，64step，单3090/6CPU/原镜像。
+  每完整迭代后冻结原journal选出的incumbent与原submission，不用外部分数重选、不重跑最终代码；135秒API准入余量两臂相同。
+- 17本地测试通过；真实Task/archive/MCTS/paid reserve导入接线与实际POSIX截止核验已通过，integration-check.json。
+  06:07:51单次提交 **13152**；06:08现场RUNNING gpu28，第一worker **13152.0**，其余7pending。
+  source/controller/plan已冻结，不在运行中改源码/选择器；预计80–110分钟，全8闭合后独立读出。
+  POSIX只杀进程组，Slurm终态/额外清理资源必须另报；不宣称物理用量精确相等。
+- 预算已从thgk111r排他转交 **0t4odqpn/paid.sqlite**，旧ledger stopped1，完整继承402calls/两旧未知。
+  新AUTH **2129c34aa8758e9b5e2e07e98f6b2e9864fd9e896853c07c6b6333e98d716039**；不得重复activate。
+  Plus catalog+2真实公开route fixture通过；整账10USD不重置、新责任上限3.5USD，实际新费用看当前ledger。
+  最初只读catalog检查漏source proxy、Network unreachable且0API收费；已修为整个route进程显式source远端env_setup。
+- readout_forets_wallclock_20260912.py在全allocation终态后读全部8槽，只用截止合格incumbent与原submission独立重评分。
+  必须核同GPU/额外清理资源；不要使用旧完整六步e2e读出器（本轮预算终止是预期状态）。不重做G0/镜像验收。
+- 原分享报告/24程序包结论仍有效：仅有效性局部线索，无e2e质量收益。学长分支不改；我方代码尚未push本轮准备。
 
 ## 最新20/21已完成，禁止重跑/重写读出
 

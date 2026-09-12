@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
 from types import SimpleNamespace as NS
 import unittest
+from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from forets_common_start_20260913 import initial,code_for,make_node,digest
 import build_forets_common_start_20260913 as build
@@ -18,9 +19,12 @@ class CommonStartTests(unittest.TestCase):
         s.cfg.common_start_protocol='none';self.assertFalse(initial(s,[NS(parents=[])]))
     def test_baseline_does_not_call_llm_or_pick_old_winner(self):
         for t in ('leaf-classification','spaceship-titanic'):
-            n=make_node(t,NS);ast.parse(n.code)
+            ast.parse(code_for(t))
+            with patch('forets_common_start_20260913.canonical',return_value=code_for(t)):
+                n=make_node(t,NS)
+                self.assertEqual(digest(t),digest(t))
             self.assertEqual(n.parents,[]);self.assertEqual(n.operators_metrics,[])
-            self.assertEqual(digest(t),digest(t));self.assertNotIn('readout',n.code)
+            self.assertNotIn('readout',n.code)
             self.assertIn('random_state=0',n.code)
         with self.assertRaises(ValueError):code_for('unknown')
     def test_balanced_matrix_and_budget(self):

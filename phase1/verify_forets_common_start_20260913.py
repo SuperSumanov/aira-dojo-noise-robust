@@ -18,6 +18,7 @@ def run(root):
     common.run(root,blocks=(1,2))
     from dojo.solvers.fore_ts.batch_runtime import expand_batch
     from dojo.solvers.fore_ts.common_start import code_for,digest
+    from dojo.core.solvers.utils.response import extract_code
     from dojo.solvers.mcts.mcts import MCTSNode
     from dojo.core.solvers.utils.journal import Journal
     from dojo.core.tasks.constants import EXECUTION_OUTPUT
@@ -69,7 +70,7 @@ def run(root):
                 return state,{EXECUTION_OUTPUT:output}
             state={'solver_interpreter':NS(timeout=300)}
             with patch('dojo.solvers.fore_ts.batch_runtime.rank_pool',side_effect=rank):
-                expand_batch(s,[node],state,NS(step_task=step),MCTSNode,lambda x:x,cfg)
+                expand_batch(s,[node],state,NS(step_task=step),MCTSNode,extract_code,cfg)
                 assert counters==dict(generation=0,rank=0,execution=1)
                 first_path=Path(c.checkpoint_path)/'forets-candidates-private/batch-1.sqlite'
                 with sqlite3.connect(first_path) as db:first=json.loads(db.execute('select payload from snapshot').fetchone()[0])
@@ -77,7 +78,7 @@ def run(root):
                 assert first['binding']['common_start']['code_sha256']==digest('leaf-classification')
                 assert first['task_calls'][0]['intent']['code_sha256']==digest('leaf-classification')
                 child=journal.nodes[-1]
-                expand_batch(s,[node,child],state,NS(step_task=step),MCTSNode,lambda x:x,cfg)
+                expand_batch(s,[node,child],state,NS(step_task=step),MCTSNode,extract_code,cfg)
                 assert counters==dict(generation=4,rank=int(arm=='critic_topk_random'),execution=2)
             checks.append(dict(arm=arm,**counters,first_generation_calls=0,first_ranking_calls=0))
     result=dict(status='PASS_SYNTHETIC_NOT_REAL_TASK_RESULT',source_tree=read(root/'build.json')['source_tree'],

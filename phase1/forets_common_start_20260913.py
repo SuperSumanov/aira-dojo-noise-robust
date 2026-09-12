@@ -53,10 +53,16 @@ def initial(solver, path):
 
 
 def make_node(task, node_type):
-    code = code_for(task)
+    code = canonical(task)
     return node_type(code=code, plan='Fixed common starting program; no score-based selection or LLM generation.',
         parents=[], operators_used=['fixed_common_start'], operators_metrics=[])
 
 
 def digest(task):
-    return hashlib.sha256(code_for(task).encode()).hexdigest()
+    return hashlib.sha256(canonical(task).encode()).hexdigest()
+
+
+def canonical(task):
+    # Match the same formatter used by actual task dispatch and normal operators.
+    from dojo.core.solvers.utils.response import extract_code
+    return extract_code(code_for(task))

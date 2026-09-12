@@ -124,7 +124,9 @@ def derive(name, text):
     return text
 
 
-def build(stage):
+def build(stage, *, block_minutes=180, block_ids=(1,)):
+    if (block_minutes, block_ids) not in ((180,(1,)), (90,(1,2))):
+        raise ValueError('explicit supported allocation layout required')
     info=read(stage/'artifact.json'); old=read(PARENT/'prepared.json',PREPARED); calls=parent_calls()
     if info['base_tree']!=BASE or info['matrix']!=[list(r) for r in order()]: raise ValueError('wrong frozen matrix/source')
     if sha((stage/PLAN).read_bytes())!=info['plan_sha256'] or sha((stage/'source.tar').read_bytes())!=info['archive_sha256']:
@@ -164,20 +166,21 @@ def build(stage):
     launcher=dict(old['launcher'],worker_wall_seconds=600,step_time_limit_minutes=11,
         min_remaining_seconds_to_launch=1020,step_termination_allowance_seconds=330,fail_fast=False)
     prepared=replace(old,{str(PARENT):str(root)})
-    prepared.update(source_tree=info['source_tree'],base_source_tree=BASE,run_configs=rows,run_count=8,step_limit=64,
+    prepared.update(source_tree=info['source_tree'],base_source_tree=BASE,run_configs=rows,run_count=8,step_limit=64,blocks=len(block_ids),paired_configs=4,
         launcher=launcher,nominal_gpu_hours=3,preparation_commit=info['commit'],source_archive_sha256=info['archive_sha256'],
         source_files=len(seen),paired_config_sha256=[sha(encode(normalized[i])) for i in range(0,8,2)],
         plan_sha256=info['plan_sha256'],remaining=['integration check','ledger activation','route/catalog','8-run dispatch'])
     prep_sha=write(root/'prepared.json',encode(prepared))
     manifest=read(PARENT/'manifest.json'); manifest.update(source_tree=info['source_tree'],runs=rows)
-    write(root/'manifest.json',encode(manifest));write(root/'launchers/block-1.json',encode(launcher))
-    correction=read(PARENT/'allocation-budget-correction.json');correction['proposed_block_minutes']=180
+    write(root/'manifest.json',encode(manifest))
+    for block in block_ids: write(root/f'launchers/block-{block}.json',encode(launcher))
+    correction=read(PARENT/'allocation-budget-correction.json');correction['proposed_block_minutes']=block_minutes
     correction_sha=write(root/'allocation-budget-correction.json',encode(correction))
     write(root/'PACKAGE_STATE.json',encode(read(PARENT/'PACKAGE_STATE.json')))
     budget=(root/'source'/PREFIX/'paid_budget.py').read_bytes(); ns={};exec(compile(budget,'<budget>','exec'),ns)
     release=read(PARENT/'code/forets_native_e2e_release_20260911.json'); old_release_sha=sha(encode(release))
     if old_release_sha!=sha((PARENT/'code/forets_native_e2e_release_20260911.json').read_bytes()): raise ValueError('release encoding')
-    release.update(package=str(root),source_tree=info['source_tree'],seeds=list(SEEDS),runs=8,block_minutes=180,
+    release.update(package=str(root),source_tree=info['source_tree'],seeds=list(SEEDS),runs=8,block_minutes=block_minutes,blocks=list(block_ids),
         gpus_per_block=1,cpus_per_block=6,maximum_gpu_hours_including_observed_killwait=None,
         nominal_allocation_gpu_hours=3,paid_authorization_sha256=ns['AUTH_SHA'],
         development_purpose='wallclock_600_complete_iteration_incumbent',scientific_search_seconds=600,

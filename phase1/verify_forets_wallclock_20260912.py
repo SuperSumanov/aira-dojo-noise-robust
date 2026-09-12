@@ -16,7 +16,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 
-def run(root):
+def run(root, blocks=(1,)):
     root=Path(root).resolve(strict=True)
     if root.parent!=Path('/research/d7/spc/yzyang4') or not root.name.startswith('forets-wallclock-20260912-'):
         raise ValueError('explicit new development root required')
@@ -42,8 +42,10 @@ def run(root):
     from dojo.config_dataclasses.launcher.srun_pool import SrunPoolConfig
     from forets_block_controller_20260911 import inspect_draft
     from forets_native_run_20260911 import static_ready
-    spec,configs=inspect_draft(root,1);SrunPoolConfig(**spec.launcher).validate()
-    static_ready(root/'code',1)
+    configs=[]
+    for block in blocks:
+        spec,part=inspect_draft(root,block);SrunPoolConfig(**spec.launcher).validate()
+        static_ready(root/'code',block);configs.extend(part)
     if len(configs)!=8 or spec.launcher['worker_wall_seconds']!=600: raise ValueError('wrong experiment matrix')
     for cfg in configs:
         if cfg['solver']['step_limit']!=64 or cfg['solver']['time_limit_secs']!=600: raise ValueError('wrong cutoff configuration')

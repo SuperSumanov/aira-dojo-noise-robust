@@ -1,0 +1,95 @@
+{
+  "limitation": "Exact pre-rejection ledger state was not captured. Shared concurrent-reservation pressure is a source-and-scope-based inference, not a replayed peak measurement.",
+  "role": "posthoc_terminal_diagnosis_not_a_changed_eligibility_rule",
+  "rows": [
+    {
+      "classification": "timed_out",
+      "last_exception_type": "ValueError",
+      "run_id": "00-leaf-classification-s28-uniform_random",
+      "scope_calls": 17,
+      "scope_cap_nano_usd": 4000000000,
+      "scope_final_held_nano_usd": 34753407,
+      "scope_unresolved": 0,
+      "stderr_sha256": "905017c955f09349aa4c5a12d8e0bc57c9bfa1aaa2a470d2e9e21c548378f5cc",
+      "technical_eligible": true
+    },
+    {
+      "classification": "api_admission_budget_expired",
+      "last_exception_type": "dojo.solvers.fore_ts.wallclock.SearchBudgetExpired",
+      "run_id": "01-leaf-classification-s28-critic_topk_random",
+      "scope_calls": 13,
+      "scope_cap_nano_usd": 4000000000,
+      "scope_final_held_nano_usd": 31507710,
+      "scope_unresolved": 0,
+      "stderr_sha256": "3f695b76a42204ebee2a4787b812977b646bb8f0b2922f12cbf0f92e98f84ac9",
+      "technical_eligible": true
+    },
+    {
+      "classification": "kernel_readiness_before_candidate_dispatch",
+      "last_exception_type": "dojo.core.interpreters.jupyter.kernel_readiness.KernelReadinessError",
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random",
+      "scope_calls": 32,
+      "scope_cap_nano_usd": 4000000000,
+      "scope_final_held_nano_usd": 93671656,
+      "scope_unresolved": 0,
+      "stderr_sha256": "7c1416bc6b482d75003be03c8b59eeb5bd4dc5a4ae805a0fccc7097c4694b20f",
+      "technical_eligible": false
+    },
+    {
+      "classification": "bounded_api_attempt_budget_stopped",
+      "last_exception_type": "dojo.core.solvers.llm_helpers.backends.bounded_retry.BoundedAttemptError",
+      "run_id": "03-spaceship-titanic-s28-uniform_random",
+      "scope_calls": 4,
+      "scope_cap_nano_usd": 4000000000,
+      "scope_final_held_nano_usd": 7792122,
+      "scope_unresolved": 0,
+      "stderr_sha256": "3565b1082c662f27d7ae8a12a3809db7ef5473b3c899f87169530076d80115a6",
+      "technical_eligible": false
+    },
+    {
+      "classification": "api_admission_budget_expired",
+      "last_exception_type": "dojo.solvers.fore_ts.wallclock.SearchBudgetExpired",
+      "run_id": "04-leaf-classification-s29-critic_topk_random",
+      "scope_calls": 8,
+      "scope_cap_nano_usd": 4000000000,
+      "scope_final_held_nano_usd": 16885414,
+      "scope_unresolved": 0,
+      "stderr_sha256": "44f75616007a867efef2b352f7a755cc96b9ee34013b7312e1a22efd34a94692",
+      "technical_eligible": true
+    },
+    {
+      "classification": "api_admission_budget_expired",
+      "last_exception_type": "dojo.solvers.fore_ts.wallclock.SearchBudgetExpired",
+      "run_id": "05-leaf-classification-s29-uniform_random",
+      "scope_calls": 19,
+      "scope_cap_nano_usd": 4000000000,
+      "scope_final_held_nano_usd": 36082644,
+      "scope_unresolved": 0,
+      "stderr_sha256": "a69fbb64f0aeb092b00f5aa720d067b9055dbfc8fde21f23339f19e4ec1d193a",
+      "technical_eligible": true
+    },
+    {
+      "classification": "api_admission_budget_expired",
+      "last_exception_type": "dojo.solvers.fore_ts.wallclock.SearchBudgetExpired",
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "scope_calls": 33,
+      "scope_cap_nano_usd": 4000000000,
+      "scope_final_held_nano_usd": 109717296,
+      "scope_unresolved": 0,
+      "stderr_sha256": "fdd292e7ad03318bf00da5ea3f909555f210be32f2f2f6f2f8f0c07a6b6d490f",
+      "technical_eligible": true
+    },
+    {
+      "classification": "api_admission_budget_expired",
+      "last_exception_type": "dojo.solvers.fore_ts.wallclock.SearchBudgetExpired",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random",
+      "scope_calls": 36,
+      "scope_cap_nano_usd": 4000000000,
+      "scope_final_held_nano_usd": 133851601,
+      "scope_unresolved": 0,
+      "stderr_sha256": "23271e7f16c43994c0d15b41da69b5c1b525b03a85376336b6e1e03fd0989601",
+      "technical_eligible": true
+    }
+  ],
+  "summary_sha256": "3b1322cea5406d5e0197694f6b9e9af85a466bd005d590416f6070989a4ce408"
+}

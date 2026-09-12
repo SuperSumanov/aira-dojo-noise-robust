@@ -1,0 +1,42 @@
+{
+  "api_calls": 0,
+  "deployed": false,
+  "gpu_dispatches": 0,
+  "inspector_sha256": "b30e625cd6598345aeeb083e1daf70dd60609148ded2a6756bccbbaeac1947a8",
+  "rows": [
+    {
+      "actual_siblings": 2,
+      "arm": "uniform_random",
+      "counts": {
+        "execution": 3,
+        "generation": 4,
+        "ranking": 0
+      },
+      "first_executions": 1,
+      "later_executions": 2,
+      "selected_slots": [
+        1,
+        2
+      ],
+      "unexecuted_export_only": 2
+    },
+    {
+      "actual_siblings": 2,
+      "arm": "critic_topk_random",
+      "counts": {
+        "execution": 3,
+        "generation": 4,
+        "ranking": 1
+      },
+      "first_executions": 1,
+      "later_executions": 2,
+      "selected_slots": [
+        2,
+        3
+      ],
+      "unexecuted_export_only": 2
+    }
+  ],
+  "source_tree": "1ec18564f176d58a3a7ac3a46852ad92044777b5",
+  "status": "CPU_ACTUAL_BATCH_BRANCHING_NOT_EFFICACY"
+}

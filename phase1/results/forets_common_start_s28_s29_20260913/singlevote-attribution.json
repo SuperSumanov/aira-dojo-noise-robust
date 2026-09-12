@@ -1,0 +1,467 @@
+{
+  "limitation": "Complete task-call duration includes startup/fetch/grading, not pure GPU compute. Unfinished tasks remain in remainder. Rank clocks only cover completed votes. Two-seed exploratory evidence, no significance or scaling claim.",
+  "role": "predeclared_development_cost_and_execution_mechanism_not_causal_double_vote_ablation",
+  "rows": [
+    {
+      "arm": "uniform_random",
+      "fees": {
+        "other": {
+          "calls": 17,
+          "responsibility_nano_usd": 34753407,
+          "settled_nano_usd": 34753407,
+          "unresolved": 0
+        },
+        "ranking": {
+          "calls": 0,
+          "responsibility_nano_usd": 0,
+          "settled_nano_usd": 0,
+          "unresolved": 0
+        }
+      },
+      "ranking": {
+        "completed_pools": 0,
+        "measured_pools": [],
+        "measured_total_seconds": 0,
+        "median_seconds": null,
+        "unfinished_pools": []
+      },
+      "run_id": "00-leaf-classification-s28-uniform_random",
+      "seed": 28,
+      "selected_step": 5,
+      "task": "leaf-classification",
+      "timing": {
+        "batch_phases": {
+          "complete": 3,
+          "executing": 1
+        },
+        "batches": 4,
+        "closed_task_call_fraction": 0.438436216227891,
+        "closed_task_call_seconds": 263.097111083,
+        "recorded_generation_requests": 12,
+        "remainder_kind": "non_task_plus_unfinished_task",
+        "remainder_seconds": 336.9835878760637,
+        "returned_generation_requests": 12,
+        "task_call_roles": {
+          "candidate": 4,
+          "debug": 1
+        },
+        "task_call_states": {
+          "returned": 4,
+          "started": 1
+        },
+        "task_calls": 5,
+        "unfinished_task_calls": 1
+      },
+      "valid_final": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "fees": {
+        "other": {
+          "calls": 12,
+          "responsibility_nano_usd": 25556310,
+          "settled_nano_usd": 25556310,
+          "unresolved": 0
+        },
+        "ranking": {
+          "calls": 1,
+          "responsibility_nano_usd": 5951400,
+          "settled_nano_usd": 5951400,
+          "unresolved": 0
+        }
+      },
+      "ranking": {
+        "completed_pools": 1,
+        "measured_pools": [
+          {
+            "batch": "batch-2",
+            "seconds": 1.9230457032099366
+          }
+        ],
+        "measured_total_seconds": 1.9230457032099366,
+        "median_seconds": 1.9230457032099366,
+        "unfinished_pools": [
+          "batch-4"
+        ]
+      },
+      "run_id": "01-leaf-classification-s28-critic_topk_random",
+      "seed": 28,
+      "selected_step": 4,
+      "task": "leaf-classification",
+      "timing": {
+        "batch_phases": {
+          "collecting": 1,
+          "complete": 2
+        },
+        "batches": 3,
+        "closed_task_call_fraction": 0.7187535346328224,
+        "closed_task_call_seconds": 340.165525796,
+        "recorded_generation_requests": 8,
+        "remainder_kind": "non_task",
+        "remainder_seconds": 133.10592179385378,
+        "returned_generation_requests": 8,
+        "task_call_roles": {
+          "candidate": 2,
+          "debug": 1
+        },
+        "task_call_states": {
+          "returned": 3
+        },
+        "task_calls": 3,
+        "unfinished_task_calls": 0
+      },
+      "valid_final": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "fees": {
+        "other": {
+          "calls": 28,
+          "responsibility_nano_usd": 67958436,
+          "settled_nano_usd": 67958436,
+          "unresolved": 0
+        },
+        "ranking": {
+          "calls": 4,
+          "responsibility_nano_usd": 25713220,
+          "settled_nano_usd": 25713220,
+          "unresolved": 0
+        }
+      },
+      "ranking": {
+        "completed_pools": 4,
+        "measured_pools": [
+          {
+            "batch": "batch-2",
+            "seconds": 1.6459704299923033
+          },
+          {
+            "batch": "batch-4",
+            "seconds": 1.6859313840977848
+          },
+          {
+            "batch": "batch-6",
+            "seconds": 1.8748906429391354
+          },
+          {
+            "batch": "batch-8",
+            "seconds": 1.922699450980872
+          }
+        ],
+        "measured_total_seconds": 7.129491908010095,
+        "median_seconds": 1.78041101351846,
+        "unfinished_pools": []
+      },
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random",
+      "seed": 28,
+      "selected_step": 8,
+      "task": "spaceship-titanic",
+      "timing": {
+        "batch_phases": {
+          "complete": 4,
+          "executing": 1
+        },
+        "batches": 5,
+        "closed_task_call_fraction": 0.4324009833879229,
+        "closed_task_call_seconds": 199.800778051,
+        "recorded_generation_requests": 16,
+        "remainder_kind": "non_task",
+        "remainder_seconds": 262.27212586686954,
+        "returned_generation_requests": 16,
+        "task_call_roles": {
+          "candidate": 5,
+          "debug": 4
+        },
+        "task_call_states": {
+          "raised": 1,
+          "returned": 8
+        },
+        "task_calls": 9,
+        "unfinished_task_calls": 0
+      },
+      "valid_final": true
+    },
+    {
+      "arm": "uniform_random",
+      "fees": {
+        "other": {
+          "calls": 4,
+          "responsibility_nano_usd": 7792122,
+          "settled_nano_usd": 7792122,
+          "unresolved": 0
+        },
+        "ranking": {
+          "calls": 0,
+          "responsibility_nano_usd": 0,
+          "settled_nano_usd": 0,
+          "unresolved": 0
+        }
+      },
+      "ranking": {
+        "completed_pools": 0,
+        "measured_pools": [],
+        "measured_total_seconds": 0,
+        "median_seconds": null,
+        "unfinished_pools": []
+      },
+      "run_id": "03-spaceship-titanic-s28-uniform_random",
+      "seed": 28,
+      "selected_step": 2,
+      "task": "spaceship-titanic",
+      "timing": {
+        "batch_phases": {
+          "collecting": 1,
+          "complete": 1
+        },
+        "batches": 2,
+        "closed_task_call_fraction": 0.13878513683969945,
+        "closed_task_call_seconds": 8.723443136,
+        "recorded_generation_requests": 4,
+        "remainder_kind": "non_task",
+        "remainder_seconds": 54.13230161191065,
+        "returned_generation_requests": 3,
+        "task_call_roles": {
+          "candidate": 1
+        },
+        "task_call_states": {
+          "returned": 1
+        },
+        "task_calls": 1,
+        "unfinished_task_calls": 0
+      },
+      "valid_final": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "fees": {
+        "other": {
+          "calls": 7,
+          "responsibility_nano_usd": 11699064,
+          "settled_nano_usd": 11699064,
+          "unresolved": 0
+        },
+        "ranking": {
+          "calls": 1,
+          "responsibility_nano_usd": 5186350,
+          "settled_nano_usd": 5186350,
+          "unresolved": 0
+        }
+      },
+      "ranking": {
+        "completed_pools": 1,
+        "measured_pools": [
+          {
+            "batch": "batch-2",
+            "seconds": 1.2608090059366077
+          }
+        ],
+        "measured_total_seconds": 1.2608090059366077,
+        "median_seconds": 1.2608090059366077,
+        "unfinished_pools": []
+      },
+      "run_id": "04-leaf-classification-s29-critic_topk_random",
+      "seed": 29,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "timing": {
+        "batch_phases": {
+          "complete": 1,
+          "executing": 1
+        },
+        "batches": 2,
+        "closed_task_call_fraction": 0.8501931159387047,
+        "closed_task_call_seconds": 452.715948495,
+        "recorded_generation_requests": 4,
+        "remainder_kind": "non_task",
+        "remainder_seconds": 79.77007145489438,
+        "returned_generation_requests": 4,
+        "task_call_roles": {
+          "candidate": 2,
+          "debug": 1
+        },
+        "task_call_states": {
+          "returned": 3
+        },
+        "task_calls": 3,
+        "unfinished_task_calls": 0
+      },
+      "valid_final": true
+    },
+    {
+      "arm": "uniform_random",
+      "fees": {
+        "other": {
+          "calls": 19,
+          "responsibility_nano_usd": 36082644,
+          "settled_nano_usd": 36082644,
+          "unresolved": 0
+        },
+        "ranking": {
+          "calls": 0,
+          "responsibility_nano_usd": 0,
+          "settled_nano_usd": 0,
+          "unresolved": 0
+        }
+      },
+      "ranking": {
+        "completed_pools": 0,
+        "measured_pools": [],
+        "measured_total_seconds": 0,
+        "median_seconds": null,
+        "unfinished_pools": []
+      },
+      "run_id": "05-leaf-classification-s29-uniform_random",
+      "seed": 29,
+      "selected_step": 5,
+      "task": "leaf-classification",
+      "timing": {
+        "batch_phases": {
+          "complete": 3,
+          "executing": 1
+        },
+        "batches": 4,
+        "closed_task_call_fraction": 0.7192521781875764,
+        "closed_task_call_seconds": 359.949140589,
+        "recorded_generation_requests": 12,
+        "remainder_kind": "non_task",
+        "remainder_seconds": 140.50000854812998,
+        "returned_generation_requests": 12,
+        "task_call_roles": {
+          "candidate": 4,
+          "debug": 2
+        },
+        "task_call_states": {
+          "returned": 6
+        },
+        "task_calls": 6,
+        "unfinished_task_calls": 0
+      },
+      "valid_final": true
+    },
+    {
+      "arm": "uniform_random",
+      "fees": {
+        "other": {
+          "calls": 33,
+          "responsibility_nano_usd": 109717296,
+          "settled_nano_usd": 109717296,
+          "unresolved": 0
+        },
+        "ranking": {
+          "calls": 0,
+          "responsibility_nano_usd": 0,
+          "settled_nano_usd": 0,
+          "unresolved": 0
+        }
+      },
+      "ranking": {
+        "completed_pools": 0,
+        "measured_pools": [],
+        "measured_total_seconds": 0,
+        "median_seconds": null,
+        "unfinished_pools": []
+      },
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "seed": 29,
+      "selected_step": 10,
+      "task": "spaceship-titanic",
+      "timing": {
+        "batch_phases": {
+          "complete": 5,
+          "executing": 1
+        },
+        "batches": 6,
+        "closed_task_call_fraction": 0.20971623622180535,
+        "closed_task_call_seconds": 108.143313292,
+        "recorded_generation_requests": 20,
+        "remainder_kind": "non_task",
+        "remainder_seconds": 407.52164064901365,
+        "returned_generation_requests": 20,
+        "task_call_roles": {
+          "candidate": 6,
+          "debug": 4
+        },
+        "task_call_states": {
+          "returned": 10
+        },
+        "task_calls": 10,
+        "unfinished_task_calls": 0
+      },
+      "valid_final": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "fees": {
+        "other": {
+          "calls": 31,
+          "responsibility_nano_usd": 94417401,
+          "settled_nano_usd": 94417401,
+          "unresolved": 0
+        },
+        "ranking": {
+          "calls": 5,
+          "responsibility_nano_usd": 39434200,
+          "settled_nano_usd": 39434200,
+          "unresolved": 0
+        }
+      },
+      "ranking": {
+        "completed_pools": 5,
+        "measured_pools": [
+          {
+            "batch": "batch-2",
+            "seconds": 1.7802930269390345
+          },
+          {
+            "batch": "batch-3",
+            "seconds": 2.0974200819619
+          },
+          {
+            "batch": "batch-5",
+            "seconds": 2.135969630908221
+          },
+          {
+            "batch": "batch-7",
+            "seconds": 2.5877826248761266
+          },
+          {
+            "batch": "batch-9",
+            "seconds": 2.4057198371738195
+          }
+        ],
+        "measured_total_seconds": 11.007185201859102,
+        "median_seconds": 2.135969630908221,
+        "unfinished_pools": []
+      },
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random",
+      "seed": 29,
+      "selected_step": 9,
+      "task": "spaceship-titanic",
+      "timing": {
+        "batch_phases": {
+          "complete": 5,
+          "executing": 1
+        },
+        "batches": 6,
+        "closed_task_call_fraction": 0.22295995548444852,
+        "closed_task_call_seconds": 105.112569482,
+        "recorded_generation_requests": 20,
+        "remainder_kind": "non_task",
+        "remainder_seconds": 366.3289019410224,
+        "returned_generation_requests": 20,
+        "task_call_roles": {
+          "candidate": 6,
+          "debug": 3
+        },
+        "task_call_states": {
+          "returned": 9
+        },
+        "task_calls": 9,
+        "unfinished_task_calls": 0
+      },
+      "valid_final": true
+    }
+  ],
+  "source_tree": "1ec18564f176d58a3a7ac3a46852ad92044777b5",
+  "summary_sha256": "7f00525e9ec6be9517032de4231d1e1288669daab81eeb03bbe5a00f75639833"
+}

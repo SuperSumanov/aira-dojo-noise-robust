@@ -1,0 +1,65 @@
+{
+  "calls": [
+    {
+      "fixture_matched": true,
+      "index": 0,
+      "usage": {
+        "adapter_attempts": 1,
+        "completion_tokens": 17,
+        "cost": 7.683e-05,
+        "prompt_tokens": 309,
+        "total_tokens": 326
+      }
+    },
+    {
+      "fixture_matched": true,
+      "index": 1,
+      "usage": {
+        "adapter_attempts": 1,
+        "completion_tokens": 17,
+        "cost": 7.683e-05,
+        "prompt_tokens": 309,
+        "total_tokens": 326
+      }
+    }
+  ],
+  "generation_attempt_cap": 2,
+  "gpu_jobs": 0,
+  "logical_request_cap": 2,
+  "model": "qwen/qwen3-coder-flash",
+  "output_tokens_per_attempt": 8192,
+  "paid_authorization_sha256": "f38b37f695e122d8f5df7a26fe781b80952708d8701dec22ab9dbca17ad70613",
+  "paid_ledger": "/research/d7/spc/yzyang4/forets-context-e2e-20260912-5xz0w6iy/paid.sqlite",
+  "public_artificial_input_only": true,
+  "reserved_attempts": 2,
+  "source_hashes": {
+    "bounded_retry.py": "41c62d7526cd287c248a6626994675c01c79bbf54be6f5c65d6f98c721feb33f",
+    "lite_llm.py": "21a9ff7e40bf34dd10d3d9881b28089beb6257140de211dd84c6653074d01d8f",
+    "paid_budget.py": "b143b912d932b308ac6751cd0db299ae60405f96f00fd181fcbd6d51c6a6c103",
+    "paid_transport.py": "42d50a25713f93afc907fd672b9a1ccfb2b8fbf1513794d902ce2710452ac77e"
+  },
+  "status": "READY",
+  "task_runs": 0,
+  "timeout_per_attempt_seconds": 120,
+  "transport_events": [
+    {
+      "error_type": null,
+      "http_status": null,
+      "latency": 1.5124456569901668,
+      "retryable": null,
+      "run_attempt_ordinal": 1,
+      "state": "response_returned",
+      "success": true
+    },
+    {
+      "error_type": null,
+      "http_status": null,
+      "latency": 1.2935841520084068,
+      "retryable": null,
+      "run_attempt_ordinal": 2,
+      "state": "response_returned",
+      "success": true
+    }
+  ],
+  "utc": "2026-09-12T00:52:28.158524+00:00"
+}

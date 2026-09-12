@@ -1,0 +1,39 @@
+{
+  "accounted_cny_ceiling": "43.4948233808",
+  "conservative_cny_per_usd": 8,
+  "context_tokens": 1000000,
+  "currency": "USD",
+  "experiment": "contextual-judge-e2e-seed13",
+  "fee_multiplier": "1.10",
+  "incremental_cap": 3500000000,
+  "judge_model": "qwen/qwen3-coder-plus",
+  "judge_reservation": 2600000000,
+  "logical_request_cap": 100,
+  "model": "qwen/qwen3-coder-flash",
+  "output_tokens": 8192,
+  "predecessor_accounted": 1442593566,
+  "predecessor_authorization": "69e6d156ea7ec0f172edf3f46f432661c1da8ca0c1249301212ac59bac209fbe",
+  "predecessor_calls": 185,
+  "predecessor_cost": 318775548,
+  "predecessor_settled": 742593566,
+  "predecessor_unresolved": 1,
+  "provider": {
+    "allow_fallbacks": false,
+    "max_price": {
+      "completion": 2.6,
+      "prompt": 0.65,
+      "request": 0
+    },
+    "only": [
+      "alibaba"
+    ],
+    "require_parameters": true
+  },
+  "reservation": 700000000,
+  "route_limit": 4000000000,
+  "run_limit": 4000000000,
+  "serial_transport_per_worker": true,
+  "total": 4942593566,
+  "user_cny_cap": 100,
+  "version": 7
+}

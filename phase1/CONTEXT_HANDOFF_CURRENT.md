@@ -1,4 +1,4 @@
-# 当前交接：全首池与通用裁判已闭合，准备新seed真实对照
+# 当前交接：资源条件化裁判新seed13已开跑13123
 
 2026-09-12香港。恢复：fetch→CURRENT_DIRECTION最新0L169→本文件→现场。
 用户要求持续会话实质工作，不增自动任务；准备/测试不冒充效果，学长分支不改。
@@ -23,25 +23,35 @@
 - 合并reader已成功一次，独立映射原响应一致。comparison SHA785df0a492c7b850996915f53132147cde5d12fe257d4a4e8152dc7b39c62f49。
   数值回执SHAe25cf89b77e03d90e8beba26cd75646eace1a14d29ed1afbc1d82b239bd53404。
   10公开文件secret scan0、SCP SHA全匹配；原代码/响应/排名/submission只留远端。
-- 当前API账为judge根/paid.sqlite，AUTH69e6d156ea7ec0f172edf3f46f432661c1da8ca0c1249301212ac59bac209fbe。
+- 裁判窗口账为judge根/paid.sqlite，AUTH69e6d156ea7ec0f172edf3f46f432661c1da8ca0c1249301212ac59bac209fbe；现已封存。
   新4调用0.02417246USD；累计结算0.742593566、含旧0.70未知责任1.442593566USD。
   185账行=181旧行+4新行，含历史聚合行，行数不是总实际API数。
   13118旧账已stopped封存；后继只能从judge账逐行结转，原100人民币/10USD不重置、未知不释放。
   该窗口已结束，禁止再run/失败补问。
 
-## 正在推进（尚未提交/调用）
+## 正在推进（00:53:11 UTC已观察RUNNING）
 - 新seed13真实e2e已写定FORETS_CONTEXT_E2E_PLAN_20260912.md：Flash生成不变，两原任务各random/资源条件化Plus，共4run。
   固定双顺序Borda→原top2/common-priority随机选1，仅用于未来新池，不在旧8代码上找最优规则。
   新增≤5GPUh/3.50USD责任，总责任上限4.942593566USD；全API每run共同≤100次。
-  代码forets_contextual_rank、forets_context_e2e_patch、forets_context_e2e_build三个20260912模块；尚未build/activate/提交。
-  stage /research/d7/spc/yzyang4/forets-context-e2e-stage-20260912-vzIVzZUQ，19测试和远端24父Python派生语法通过。
-  下一步commit→local artifact→scp source.tar/artifact.json→远端build→实际import/配置/留档隔离检查→activate→两次生成路由/Plus公开catalog→submit。
+  代码forets_contextual_rank、forets_context_e2e_patch、forets_context_e2e_build三个20260912模块已部署。
+  根 /research/d7/spc/yzyang4/forets-context-e2e-20260912-5xz0w6iy；stage forets-context-e2e-stage-20260912-vzIVzZUQ。
+  controller4c00af32133c411827a0f3d9678ccec0e1318656，source5950c7d3acf1e03173ba2ea7081d8ba6593279d9，
+  prepared aa8fcffdfefe12e7bd93ce0c1925b28bc03f296b593ee6f321f1c4a7130566a1。
+  19逻辑测试、24父Python派生语法、237真实source哈希/import、typed config与A/B、留档隔离、shell语法通过。
+  Plus公开catalog通过；新生成路由2实际调用通过、结算0.00015366USD，无新增未知。
+  当前唯一账为本根paid.sqlite，AUTH f38b37f695e122d8f5df7a26fe781b80952708d8701dec22ab9dbca17ad70613。
+  judge旧账185行完整继承且已stopped封存；当前187行、责任1.442747226USD（截至路线检查）。不得重新activate。
+  00:52:57 UTC单次提交13123；00:53:11观察gpu28 RUNNING，Leaf critic运行，其余3pending，attempt无重试。
+  00:58:54观察首个contextual池finished文件已产生；新10调用结算0.023001706USD，旧未知仍1，无新未结责任。
+  不再build/activate/route/submit。实际session为本根forets_environment_session_20260912.py，status只读。
+  原session watch会自动closeout，不使用；只读observe_forets_context_e2e_20260912.py --watch已在会话PTY86012观察，不写结果。
+  独立verify_forets_context_e2e_20260912.py已准备，16项相关测试通过；stage已部署、未执行读数。全4终态后单次session closeout，再独立验证。
 - 已读真正父版13118根/code与seed11公开capsule。本地forets_block_runtime等有旧draft文本，不能直接部署旧本地副本。
   当前ForeTS逐候选HTTP取分；新全池裁判应接在batch_runtime完整生成并freeze_pool后，不能假装旧接口已支持。
 - 设计新版本不加载8B服务，API裁判在worker内；1GPU/6CPU同硬件两臂，不伪造CUDA服务marker。
   原launcher max_parallel1、每worker1GPU/6CPU、6step/300秒/3540秒、100API/8192输出。
   新judge费用/时间计入共同预算。考虑前瞻双顺序Borda，不能用旧池重算漂亮结果。
-- forets_submission_archive_20260912.py将在此新包两臂共用，原镜像/评分/反馈不变，留档host-only，已测未部署。
+- forets_submission_archive_20260912.py已在新包两臂共用，原镜像/评分/反馈不变，留档host-only。
 - 保护集仍封闭，不更新agent底座，不恢复旧HCE/多保真/Probe/score-channel/K≥1lookahead/旧CPU期限筛查。
 
 ## 旧真实结果（勿重跑/改写）
@@ -64,7 +74,7 @@
   venvs/aira控制CPU、venvs/exp GPU/gdown；source /uac/y24/yzyang4/env_setup.sh。
   SLURM_CONF=/opt1/slurm/gpu-slurm.conf；MLE用gpu28/27，不是projgpu28/39；镜像不升级、不退CPU。
 - key只在远端aira-dojo/.env OPENROUTER_API_KEY→worker PRIMARY_KEY；不回显/本地/Git、不再索要。
-- 只push myfork HEAD:phase1-value-critic；最近成功094f8ee5308e39b8271f33124d31482c281e4adf，完整池/通用裁判结果已公开。
+- 只push myfork HEAD:phase1-value-critic；最近成功4c00af32133c411827a0f3d9678ccec0e1318656，完整池/通用裁判结果和新seed13固定实现已公开。
   staged文件名+内容扫描，不全add用户untracked codex_tmp/output/tmp/旧报告。
 - g0-r5 PAUSED，无新automation；12535 held不碰，不索要gres.conf或使用失修pool恢复。
 - 研究盘1TB/2026-09-29到期，续期未知；共享df不是个人quota。

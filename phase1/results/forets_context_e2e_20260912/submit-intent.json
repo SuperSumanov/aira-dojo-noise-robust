@@ -1,0 +1,11 @@
+{
+  "utc": "2026-09-12T00:52:57.504626+00:00",
+  "argv": [
+    "sbatch",
+    "--parsable",
+    "--output=/research/d7/spc/yzyang4/forets-context-e2e-20260912-5xz0w6iy/allocation-%j.log",
+    "/research/d7/spc/yzyang4/forets-context-e2e-20260912-5xz0w6iy/launchers/forets_context_20260912.sbatch"
+  ],
+  "script_sha256": "ffe459d8a60d86f5ebeda274ede046439b67b0ff88a0a85468c5e3e38787f154",
+  "maximum_new_gpu_hours": 5
+}

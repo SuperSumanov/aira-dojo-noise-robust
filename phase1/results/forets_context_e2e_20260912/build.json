@@ -1,0 +1,26 @@
+{
+  "authorization_sha256": "f38b37f695e122d8f5df7a26fe781b80952708d8701dec22ab9dbca17ad70613",
+  "commit": "4c00af32133c411827a0f3d9678ccec0e1318656",
+  "inventory_sha256": "46d580776b1ed13be74a89f859693381bb1862091a511a47afcb5bd80d7ceaac",
+  "maximum_incremental_usd": 3.5,
+  "maximum_new_gpu_hours": 5,
+  "modified_source_files": [
+    "src/dojo/core/solvers/llm_helpers/backends/paid_budget.py",
+    "src/dojo/solvers/fore_ts/batch_runtime.py",
+    "src/dojo/solvers/fore_ts/context_environment.py",
+    "src/dojo/solvers/fore_ts/contextual_rank.py",
+    "src/dojo/tasks/mlebench/evaluate.py",
+    "src/dojo/tasks/mlebench/submission_archive.py"
+  ],
+  "package": "/research/d7/spc/yzyang4/forets-context-e2e-20260912-5xz0w6iy",
+  "prepared_sha256": "aa8fcffdfefe12e7bd93ce0c1925b28bc03f296b593ee6f321f1c4a7130566a1",
+  "release_sha256": "ba663cf6e7354131957c690950570e37c0e1ff1fc258db43690ae8305c3631b6",
+  "run_ids": [
+    "00-leaf-classification-s13-critic_topk_random",
+    "01-leaf-classification-s13-uniform_random",
+    "02-spaceship-titanic-s13-uniform_random",
+    "03-spaceship-titanic-s13-critic_topk_random"
+  ],
+  "source_tree": "5950c7d3acf1e03173ba2ea7081d8ba6593279d9",
+  "status": "BUILT_NOT_ACTIVE"
+}

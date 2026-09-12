@@ -1,0 +1,7 @@
+{
+  "context_tokens": 1000000,
+  "model": "qwen/qwen3-coder-plus",
+  "provider": "alibaba",
+  "reservation_nano": 2600000000,
+  "utc": "2026-09-12T00:52:07.703508+00:00"
+}

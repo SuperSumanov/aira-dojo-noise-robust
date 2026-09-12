@@ -1,5 +1,6 @@
 """Synthetic diagnostic boundary tests, not GPU acceptance or positive evidence."""
 import copy
+import json
 import sys
 from pathlib import Path
 import pytest
@@ -48,3 +49,36 @@ def test_invalid_results_rejected(change):
 
 def test_protected_or_arbitrary_roots_fail_before_open(tmp_path):
     with pytest.raises(ValueError):current.checked_root(tmp_path)
+
+
+def test_submit_never_contacts_scheduler_before_parent_receipt(tmp_path,monkeypatch):
+    import subprocess
+    monkeypatch.setattr(current,'plan',lambda root: {})
+    monkeypatch.setattr(current,'REPEAT',tmp_path/'absent_parent')
+    def forbidden(*args,**kwargs):raise AssertionError('scheduler contacted too early')
+    monkeypatch.setattr(subprocess,'check_output',forbidden)
+    with pytest.raises(FileNotFoundError):current.submit(tmp_path,'a'*40)
+    assert not (tmp_path/'submit-intent.json').exists()
+
+
+def test_submit_once_and_queued_code_drift(tmp_path,monkeypatch):
+    import subprocess
+    monkeypatch.setattr(current,'plan',lambda root: {})
+    monkeypatch.setattr(current,'REPEAT',tmp_path)
+    (tmp_path/'independent-final-verification.json').write_text(json.dumps(dict(job='13118',state='COMPLETED',
+        verification='selected-node/external-grade consistency passed')))
+    (tmp_path/'bin').mkdir();(tmp_path/'bin/singularity').write_text('artificial wrapper')
+    (tmp_path/'forets_current_pool_20260912.sbatch').write_text('# artificial script')
+    submitted=[]
+    def fake(args,**kwargs):
+        if args[0]=='sacct':return '13118|COMPLETED\n'
+        if args[0]=='squeue':return 'unrelated\n'
+        assert args[0]=='sbatch';submitted.append(args);return '999999\n'
+    monkeypatch.setattr(subprocess,'check_output',fake)
+    current.submit(tmp_path,'a'*40)
+    assert json.loads((tmp_path/'launch.json').read_text())['job']=='999999'
+    current.check_frozen_code(tmp_path,'a'*40)
+    with pytest.raises(ValueError,match='already attempted'):current.submit(tmp_path,'a'*40)
+    assert len(submitted)==1
+    (tmp_path/'bin/singularity').write_text('changed')
+    with pytest.raises(ValueError,match='changed'):current.check_frozen_code(tmp_path,'a'*40)

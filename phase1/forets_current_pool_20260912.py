@@ -27,6 +27,7 @@ TREE='6ca01fba9892a350cbb24152054b5296dc7095f1'
 TASKS=('leaf-classification','spaceship-titanic')
 ROLE='all_seed11_first_pools_immediate_quality_not_e2e'
 ORDER=tuple((i,0) for i in range(8))
+FIXED_PLAN_SHA='08ac4d511382e78efb1a1c66e5cd4c4b12c3a92712e632068d9c15fb2f9773d9'
 
 
 def checked_root(path):
@@ -100,7 +101,8 @@ def prepare():
 def plan(root):
     root=checked_root(root);receipt=json.loads((root/'preparation.json').read_text())
     raw=(root/'plan.private.json').read_bytes()
-    if digest(raw)!=receipt['plan_sha256'] or receipt['root']!=str(root):raise ValueError('plan drift')
+    if digest(raw)!=FIXED_PLAN_SHA or receipt['plan_sha256']!=FIXED_PLAN_SHA or receipt['root']!=str(root):
+        raise ValueError('plan drift')
     p=json.loads(raw)
     if (p['role']!=ROLE or p['source_tree']!=TREE or p['execution_seconds']!=300
         or p['startup_seconds']!=90 or p['cpus']!=6 or p['gpus']!=1 or len(p['programs'])!=8
@@ -128,9 +130,12 @@ def run(root):
     p=plan(root)
     if socket.gethostname().split('.')[0]!='gpu28' or not os.environ.get('SLURM_STEP_ID','').isdigit():
         raise ValueError('requires dedicated gpu28 step')
+    deadline=time.monotonic()+10
+    while not (root/'launch.json').exists() and time.monotonic()<deadline:time.sleep(.2)
     launch=json.loads((root/'launch.json').read_text())
     if launch['job']!=os.environ['SLURM_JOB_ID'] or launch['plan_sha256']!=digest((root/'plan.private.json').read_bytes()):
         raise ValueError('no matching approved launch')
+    check_frozen_code(root,os.environ.get('FORETS_SOURCE_COMMIT'))
     # The launch decision is separate from preparation; both paired outcomes
     # must close first, but this reader never opens those outcomes itself.
     if not (REPEAT/'independent-final-verification.json').is_file():raise ValueError('seed12 not closed')
@@ -155,6 +160,50 @@ def run(root):
     write(root/'finished.json',dict(utc=now(),role=ROLE,completed_slots=len(rows),planned=8,
         seconds=time.monotonic()-started,api_calls=0,critic_calls=0))
     return 0 if len(rows)==8 and all(r['status']!='infrastructure_error' for r in rows) else 1
+
+
+def check_frozen_code(root,commit):
+    intent=json.loads((root/'submit-intent.json').read_text())
+    if intent['controller_commit']!=commit or intent['plan_sha256']!=FIXED_PLAN_SHA:
+        raise ValueError('launch commit or plan differs')
+    for name,sha in intent['code_sha256'].items():
+        path=root/name
+        if path.is_symlink() or not path.resolve().is_relative_to(root) or digest(path.read_bytes())!=sha:
+            raise ValueError('queued diagnostic code changed')
+
+
+def submit(root,commit):
+    """Manual post-readout decision only; no automatic gate-to-GPU chain."""
+    import subprocess
+    plan(root)
+    if not re.fullmatch('[0-9a-f]{40}',commit or ''):raise ValueError('controller commit required')
+    os.environ['SLURM_CONF']='/opt1/slurm/gpu-slurm.conf'
+    verified=json.loads((REPEAT/'independent-final-verification.json').read_text())
+    if (verified['job']!='13118' or verified['state']!='COMPLETED'
+        or verified['verification']!='selected-node/external-grade consistency passed'):
+        raise ValueError('same-version replication not closed')
+    status=subprocess.check_output(['sacct','-X','-j','13118','-nP','--format=JobIDRaw,State'],text=True,timeout=25)
+    if status.strip()!='13118|COMPLETED':raise ValueError('parent still active')
+    names=subprocess.check_output(['squeue','-u','yzyang4','-h','-o','%j'],text=True,timeout=25)
+    if 'forets-first-pools-s11' in names:raise ValueError('matching diagnostic already queued')
+    if any((root/name).exists() for name in ('submit-intent.json','launch.json','execution.claim.json')):
+        raise ValueError('already attempted; no resubmit')
+    code={}
+    for path in sorted(list(root.glob('*.py'))+[root/'forets_current_pool_20260912.sbatch',root/'bin/singularity']):
+        raw=path.read_bytes()
+        if path.is_symlink() or SECRET.search(raw.decode()):raise ValueError('unsafe diagnostic code')
+        code[str(path.relative_to(root))]=digest(raw)
+    argv=['sbatch','--parsable','--output='+str(root/'allocation-%j.log'),
+          str(root/'forets_current_pool_20260912.sbatch'),str(root),commit]
+    write(root/'submit-intent.json',dict(utc=now(),argv=argv,controller_commit=commit,
+        plan_sha256=FIXED_PLAN_SHA,code_sha256=code,maximum_gpu_hours=1.5,
+        purpose=ROLE,generation_api_calls=0,critic_calls=0))
+    answer=subprocess.check_output(argv,text=True,timeout=25).strip()
+    if not re.fullmatch(r'\d+(?:;[A-Za-z0-9_-]+)?',answer):raise ValueError('ambiguous submission; inspect, do not retry')
+    receipt=dict(job=answer.split(';')[0],utc=now(),plan_sha256=FIXED_PLAN_SHA,
+        controller_commit=commit,source_tree=TREE,programs=8,node='gpu28',maximum_gpu_hours=1.5,
+        generation_api_calls=0,critic_calls=0)
+    write(root/'launch.json',receipt);print(json.dumps(receipt))
 
 
 def summarize(rows,programs):
@@ -211,8 +260,10 @@ def readout(root):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('mode',choices=('prepare','run','readout'));parser.add_argument('--root')
+    parser=argparse.ArgumentParser();parser.add_argument('mode',choices=('prepare','run','readout','submit'))
+    parser.add_argument('--root');parser.add_argument('--commit')
     args=parser.parse_args()
     if args.mode=='prepare':prepare()
     elif args.mode=='run':raise SystemExit(run(checked_root(args.root)))
+    elif args.mode=='submit':submit(checked_root(args.root),args.commit)
     else:readout(checked_root(args.root))

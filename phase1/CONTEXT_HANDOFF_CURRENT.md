@@ -1,21 +1,29 @@
-# 短交接：同池筛选出现有效性信号，固定新采样复验
+# 短交接：三批真实执行与两批盲排名闭合，局部正信号但无e2e收益
 
-2026-09-12最后更新05:23 UTC。用户本轮02:44起要求三小时有价值证据，目标05:44 UTC；留在会话，不新建automation。
+2026-09-12最后更新05:32 UTC。用户本轮02:44起要求三小时有价值证据，目标05:44 UTC；本轮实验证据已闭合，无新automation。
 恢复先fetch→CURRENT_DIRECTION顶部→本文件→现场；主线同预算MLE-bench最终收益，不以旧状态替代当前事实。
 
-## 当前新采样20/21：13149已提交，不重试
+## 最新20/21已完成，禁止重跑/重写读出
 
 - root **/research/d7/spc/yzyang4/forets-generation-capacity-20260912-thgk111r**；
   stage **forets-generation-stage-20260912-d2GRvV4f**；controller **fa55d4a692eccb0154d6d2e551daac697d0a1a6b**；
   preparedSHA **e98bfb3b91a6176a8162b619962a4a22211916270e2b64e45f07d14ff8d599c8**。
-  05:22:01完整12API结束，session19918已完成；05:23:01单次提交job13149，不重试/补槽/改代码/读部分值。
+  05:22:01完整12API结束，session19918已完成；05:23:01单次提交job13149，现COMPLETED181秒。
+  05:26:35独立读出全8、4数值重评分通过；summarySHA **76c3387a3ff942aaffa60c996c293d0b73dea761a2f532fb32b1c193a07afcc3**。
   冻结方案FORETS_MIXED_POOL_SECOND_REPLICATION_20260912.md：8新生成+4执行前双序盲排名，两任务同原规则；
   原镜像、source900fa3bdf6971381c37a9792723dba42c63e5ac6、gpu28单3090/6CPU/300秒配置不变。
-- 当前唯一API后继账在thgk111r；前账hp7jtagu完整封存，活跃账金额待检查，不再用前账发请求。
-  前账390行，settled1.291528875USD/accounted2.691528875USD、两个旧.70未知；原100人民币/10USD不重置。
-  本批额外责任≤3USD，单卡≤75分钟/1.25GPUh；不克隆账本，没有新训练/G0。
-- 新root全8闭合+sacctCOMPLETED后，用d2GRvV4f/readout_forets_generation_capacity_20260912.py单次读出。
-  uniform4与top2主比较、alwaysFlash次要参照保留；不因结果挑任务/排序/追加第三轮追显著。
+- 当前唯一API后继账在thgk111r；05:32查hp7jtagu stopped1、thgk111r stopped0，无运行API进程。
+  AUTH **4d66bef41f5ad23d64a8e6f26350a25486eb65bbde5c416a531879d6b48925ca**；402calls，
+  settled1.327324583USD/accounted2.727324583USD、两个旧.70未知。原100人民币/10USD不重置，不克隆账本。
+- 已用d2GRvV4f/readout_forets_generation_capacity_20260912.py完成排他读出，不再运行。
+  Leaf全池4/4、top2有效2/2，条件质量 .4979475→.479845；Space全池0/4、top2为0/2。
+  同质池不能提供新有效性区分证据；正逆top2集合都不同，不能称稳定顺序。未提交后继paid e2e或新训练/G0。
+- 两批四盲池合计保留6/8=.75，对全池9/16=.5625，次要Flash4/8=.5；Leaf质量一负一正，不称e2e正收益。
+  三批24程序Flash8/12、Plus5/12，13原submission独立核对；0代码SHA重复。停止追加同配方追显著。
+- 新结果已下载results/forets_generation_capacity_s20_s21_20260912；完整汇总results/forets_mixed_pool_combined_20260912.json。
+  分享ZIP：releases/forets-development-20260912/forets-development-20260912.zip（38,466字节/24代码+3JSON），
+  SHA **dc99104b0faf0d175b9dac7be5fd54aaf02037f2b7268e974571a15afc8322b4**，远端forets-development-export-20260912-scdlkfn4。
+  已credential-scan/逐项回读；标签都已读，只能开发，不得当新冻结测试。正在完成最终安全push。
 
 ## 已闭合实际证据，不重复排他读出/执行
 
@@ -24,7 +32,7 @@
   05:17:49完整8程序、5有效submission独立数值复验通过，summarySHA **84ff9345b0123f90555b278371308be3680ebf6d2d5a362eaa8377efa2ceeba7**。
   Flash2/4、Plus3/4有效；盲top2 Leaf2/2 vs池3/4、Space2/2 vs池2/4；正逆top2集合一致。
   alwaysFlash两任务1/2，次要参照为执行后/揭盲前追加，不能称主要预注册。Leaf条件质量变差，不能称最终质量收益。
-  API生成.020848919USD、排名.0144118USD。results/forets_generation_capacity_s18_s19_20260912待安全push。
+  API生成.020848919USD、排名.0144118USD。results/forets_generation_capacity_s18_s19_20260912已安全push至504601d6。
 - 16/17 job13143 COMPLETED125秒，root **forets-generation-capacity-20260912-asl_0ytg**；
   controllerf3b2c68551b9eea728b67781e630cb5bb0426810，preparedSHA ab7bfcd9d1c93b14fbb6f65c04995d9ec3faca42299aba1120f2f9dd4e2fad06。
   Flash4/4、Plus0/4，4数值复验；summarySHA1ab23e7ff96910cdd3a73a671e9139c20edbc2856abf237060d6f4fa0c1d23e2。
@@ -58,4 +66,6 @@
   gpu28的Slurm RealMemory=1MB是不可信登记值，不加--mem8G；真实物理内存并非1MB。原镜像，不退CPU、不投projgpu39。
 - key仅远端aira-dojo/.env OPENROUTER_API_KEY，不回显/本地/Git/再索要。仅push myfork HEAD:phase1-value-critic且先secret扫描。
 - held12535不碰，g0-r5 PAUSED，无新automation；研究盘1TB/2026-09-29到期，续期未知。保留无关untracked。
-- 主要用户交付FORETS_PROGRESS_FOR_ADVISOR_20260912.md；更新新池结论、下载/安全push后结束本轮，不把待做写已完成。
+- 主要用户交付FORETS_PROGRESS_FOR_ADVISOR_20260912.md，已补全部新池结果/复验边界/下一科学问题。
+  05:32队列仅旧held12535，本轮三批任务已完成；学长分支仍9c46cca1dccd7633b556374d33c6c76390d1d061，无新报告commit。
+  17项单元测试通过；最终代码/报告/开发ZIP安全push后交付，不把有限池信号包装成最终搜索收益。

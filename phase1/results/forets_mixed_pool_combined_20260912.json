@@ -1,0 +1,195 @@
+{
+  "inputs": [
+    {
+      "seeds": [
+        16,
+        17
+      ],
+      "job": "13143",
+      "summary_sha256": "1ab23e7ff96910cdd3a73a671e9139c20edbc2856abf237060d6f4fa0c1d23e2",
+      "csv_sha256": "a42ef0c7dae128fe1cc2d6cdc5aafc92dc6429f16c70fb93439af9b619f24712"
+    },
+    {
+      "seeds": [
+        18,
+        19
+      ],
+      "job": "13148",
+      "summary_sha256": "84ff9345b0123f90555b278371308be3680ebf6d2d5a362eaa8377efa2ceeba7",
+      "csv_sha256": "31698b8e22ec329aa8b3c93b8e11e3abc70d0a683e4edf509a99276890d41037"
+    },
+    {
+      "seeds": [
+        20,
+        21
+      ],
+      "job": "13149",
+      "summary_sha256": "76c3387a3ff942aaffa60c996c293d0b73dea761a2f532fb32b1c193a07afcc3",
+      "csv_sha256": "46721b8344a5d410822a978744a949b54b79fb4022ec05713d46e46323f3dcb5"
+    }
+  ],
+  "programs": 24,
+  "blind_pools": 4,
+  "generation_models": [
+    {
+      "model": "qwen/qwen3-coder-flash",
+      "valid": 8,
+      "total": 12
+    },
+    {
+      "model": "qwen/qwen3-coder-plus",
+      "valid": 5,
+      "total": 12
+    }
+  ],
+  "selection": [
+    {
+      "task": "leaf-classification",
+      "batch": [
+        18,
+        19
+      ],
+      "uniform4": {
+        "valid": 3,
+        "total": 4,
+        "valid_probability": 0.75,
+        "conditional_mean_score": 0.5549366666666666
+      },
+      "blind_borda_top2": {
+        "valid": 2,
+        "total": 2,
+        "valid_probability": 1.0,
+        "conditional_mean_score": 0.5885100000000001
+      },
+      "prior_batch_metadata_flash": {
+        "valid": 1,
+        "total": 2,
+        "valid_probability": 0.5,
+        "conditional_mean_score": 0.48779
+      },
+      "validity_gain": 0.25,
+      "order_top2_invariant": true
+    },
+    {
+      "task": "spaceship-titanic",
+      "batch": [
+        18,
+        19
+      ],
+      "uniform4": {
+        "valid": 2,
+        "total": 4,
+        "valid_probability": 0.5,
+        "conditional_mean_score": 0.81609
+      },
+      "blind_borda_top2": {
+        "valid": 2,
+        "total": 2,
+        "valid_probability": 1.0,
+        "conditional_mean_score": 0.81609
+      },
+      "prior_batch_metadata_flash": {
+        "valid": 1,
+        "total": 2,
+        "valid_probability": 0.5,
+        "conditional_mean_score": 0.81264
+      },
+      "validity_gain": 0.5,
+      "order_top2_invariant": true
+    },
+    {
+      "task": "leaf-classification",
+      "batch": [
+        20,
+        21
+      ],
+      "uniform4": {
+        "valid": 4,
+        "total": 4,
+        "valid_probability": 1.0,
+        "conditional_mean_score": 0.4979475
+      },
+      "blind_borda_top2": {
+        "valid": 2,
+        "total": 2,
+        "valid_probability": 1.0,
+        "conditional_mean_score": 0.47984499999999997
+      },
+      "prior_batch_metadata_flash": {
+        "valid": 2,
+        "total": 2,
+        "valid_probability": 1.0,
+        "conditional_mean_score": 0.51605
+      },
+      "validity_gain": 0.0,
+      "order_top2_invariant": false
+    },
+    {
+      "task": "spaceship-titanic",
+      "batch": [
+        20,
+        21
+      ],
+      "uniform4": {
+        "valid": 0,
+        "total": 4,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      },
+      "blind_borda_top2": {
+        "valid": 0,
+        "total": 2,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      },
+      "prior_batch_metadata_flash": {
+        "valid": 0,
+        "total": 2,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      },
+      "validity_gain": 0.0,
+      "order_top2_invariant": false
+    }
+  ],
+  "taskgroups": [
+    {
+      "task": "leaf-classification",
+      "pools": 2,
+      "validity_gains": [
+        0.25,
+        0.0
+      ],
+      "median_validity_gain": 0.125,
+      "sample_std_validity_gain": 0.1767766952966369,
+      "selected_valid": 4,
+      "selected_total": 4,
+      "uniform_valid": 7,
+      "uniform_total": 8,
+      "metadata_flash_valid": 3,
+      "metadata_flash_total": 4
+    },
+    {
+      "task": "spaceship-titanic",
+      "pools": 2,
+      "validity_gains": [
+        0.5,
+        0.0
+      ],
+      "median_validity_gain": 0.25,
+      "sample_std_validity_gain": 0.3535533905932738,
+      "selected_valid": 2,
+      "selected_total": 4,
+      "uniform_valid": 2,
+      "uniform_total": 8,
+      "metadata_flash_valid": 1,
+      "metadata_flash_total": 4
+    }
+  ],
+  "generation_api_usd": 0.062936276,
+  "ranking_api_usd": 0.029017300000000003,
+  "total_api_usd": 0.09195357600000001,
+  "allocation_gpu_hours": 0.12583333333333332,
+  "repeated_code_hashes": 0,
+  "limitation": "Four finite mixed-generator development pools on two tasks, not four independent tasks or e2e searches. No significance/generalization/equal-budget search claim. All three generator batches included."
+}

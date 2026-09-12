@@ -1,0 +1,883 @@
+{
+  "groups": [
+    {
+      "task": "leaf-classification",
+      "model": "qwen/qwen3-coder-flash",
+      "n": 2,
+      "valid": 2,
+      "valid_probability": 1.0,
+      "conditional_median_score": 0.51605,
+      "conditional_sample_std_score": 0.011384419177103417,
+      "median_execution_seconds": 23.748014102573507,
+      "sample_std_execution_seconds": 1.68438575908708,
+      "api_cost_usd": 0.0016210740000000001
+    },
+    {
+      "task": "leaf-classification",
+      "model": "qwen/qwen3-coder-plus",
+      "n": 2,
+      "valid": 2,
+      "valid_probability": 1.0,
+      "conditional_median_score": 0.47984499999999997,
+      "conditional_sample_std_score": 0.07729384225150149,
+      "median_execution_seconds": 33.437905991100706,
+      "sample_std_execution_seconds": 12.71322904286795,
+      "api_cost_usd": 0.00599508
+    },
+    {
+      "task": "spaceship-titanic",
+      "model": "qwen/qwen3-coder-flash",
+      "n": 2,
+      "valid": 0,
+      "valid_probability": 0.0,
+      "conditional_median_score": null,
+      "conditional_sample_std_score": null,
+      "median_execution_seconds": 6.0549320300342515,
+      "sample_std_execution_seconds": 0.0731781343143515,
+      "api_cost_usd": 0.003430674
+    },
+    {
+      "task": "spaceship-titanic",
+      "model": "qwen/qwen3-coder-plus",
+      "n": 2,
+      "valid": 0,
+      "valid_probability": 0.0,
+      "conditional_median_score": null,
+      "conditional_sample_std_score": null,
+      "median_execution_seconds": 5.43680092797149,
+      "sample_std_execution_seconds": 0.12755620833880502,
+      "api_cost_usd": 0.01014338
+    }
+  ],
+  "pairs": [
+    {
+      "task": "leaf-classification",
+      "replicate": 20,
+      "flash_valid": true,
+      "plus_valid": true,
+      "comparable": true,
+      "plus_oriented_score_gain": -0.010399999999999965
+    },
+    {
+      "task": "leaf-classification",
+      "replicate": 21,
+      "flash_valid": true,
+      "plus_valid": true,
+      "comparable": true,
+      "plus_oriented_score_gain": 0.08281
+    },
+    {
+      "task": "spaceship-titanic",
+      "replicate": 20,
+      "flash_valid": false,
+      "plus_valid": false,
+      "comparable": false,
+      "plus_oriented_score_gain": null
+    },
+    {
+      "task": "spaceship-titanic",
+      "replicate": 21,
+      "flash_valid": false,
+      "plus_valid": false,
+      "comparable": false,
+      "plus_oriented_score_gain": null
+    }
+  ],
+  "totals": [
+    {
+      "model": "qwen/qwen3-coder-flash",
+      "valid": 2,
+      "programs": 4,
+      "api_cost_usd": 0.005051748
+    },
+    {
+      "model": "qwen/qwen3-coder-plus",
+      "valid": 2,
+      "programs": 4,
+      "api_cost_usd": 0.01613846
+    }
+  ],
+  "limitation": "Two requested program seeds per task; API sampling not guaranteed deterministic. Not critic/e2e or equal-dollar advantage.",
+  "blind_selection": [
+    {
+      "task": "leaf-classification",
+      "uniform4": {
+        "slots": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "valid": 4,
+        "total": 4,
+        "valid_probability": 1.0,
+        "conditional_mean_score": 0.4979475
+      },
+      "blind_borda_top2": {
+        "slots": [
+          2,
+          1
+        ],
+        "valid": 2,
+        "total": 2,
+        "valid_probability": 1.0,
+        "conditional_mean_score": 0.47984499999999997
+      },
+      "prior_batch_metadata_flash": {
+        "slots": [
+          0,
+          3
+        ],
+        "valid": 2,
+        "total": 2,
+        "valid_probability": 1.0,
+        "conditional_mean_score": 0.51605
+      },
+      "validity_difference_vs_prior_batch_flash": 0.0,
+      "validity_probability_difference": 0.0,
+      "individual_order_top2": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "order_top2_invariant": false
+    },
+    {
+      "task": "spaceship-titanic",
+      "uniform4": {
+        "slots": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "valid": 0,
+        "total": 4,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      },
+      "blind_borda_top2": {
+        "slots": [
+          0,
+          1
+        ],
+        "valid": 0,
+        "total": 2,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      },
+      "prior_batch_metadata_flash": {
+        "slots": [
+          1,
+          2
+        ],
+        "valid": 0,
+        "total": 2,
+        "valid_probability": 0.0,
+        "conditional_mean_score": null
+      },
+      "validity_difference_vs_prior_batch_flash": 0.0,
+      "validity_probability_difference": 0.0,
+      "individual_order_top2": [
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "order_top2_invariant": false
+    }
+  ],
+  "ranking_api_cost_usd": 0.0146055,
+  "selection_limitation": "Finite mixed-generator development pools, each code executed once. Not single-generator production/e2e confirmation; ranking fees are additional.",
+  "metadata_baseline_registration": "Secondary always-Flash baseline retained before replicate20/21 acquisition; not reselected after batch18/19 outcomes.",
+  "role": "paired_generator_capacity_development_diagnostic",
+  "job": "13149",
+  "utc": "2026-09-12T05:26:35.071259+00:00",
+  "controller_commit": "fa55d4a692eccb0154d6d2e551daac697d0a1a6b",
+  "source_tree": "900fa3bdf6971381c37a9792723dba42c63e5ac6",
+  "prepared_sha256": "e98bfb3b91a6176a8162b619962a4a22211916270e2b64e45f07d14ff8d599c8",
+  "same_native_gpu": true,
+  "independent_numerical_regrades": 4,
+  "all_program_slots_included": true,
+  "rows": [
+    {
+      "index": 0,
+      "status": "valid",
+      "official_score": 0.5241,
+      "independent_score": 0.5240968075246559
+    },
+    {
+      "index": 1,
+      "status": "valid",
+      "official_score": 0.5345,
+      "independent_score": 0.534498215519184
+    },
+    {
+      "index": 2,
+      "status": "program_error",
+      "official_score": null,
+      "independent_score": null
+    },
+    {
+      "index": 3,
+      "status": "program_error",
+      "official_score": null,
+      "independent_score": null
+    },
+    {
+      "index": 4,
+      "status": "valid",
+      "official_score": 0.42519,
+      "independent_score": 0.4251916998042801
+    },
+    {
+      "index": 5,
+      "status": "valid",
+      "official_score": 0.508,
+      "independent_score": 0.507996286265227
+    },
+    {
+      "index": 6,
+      "status": "program_error",
+      "official_score": null,
+      "independent_score": null
+    },
+    {
+      "index": 7,
+      "status": "program_error",
+      "official_score": null,
+      "independent_score": null
+    }
+  ],
+  "billing": {
+    "accounted_usd": 2.727324583,
+    "authorization_sha256": "4d66bef41f5ad23d64a8e6f26350a25486eb65bbde5c416a531879d6b48925ca",
+    "calls": 402,
+    "scopes": [
+      {
+        "calls": 15,
+        "held_usd": 0.030800835,
+        "scope": "00-leaf-classification-s10-uniform_random",
+        "settled_usd": 0.030800835,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.033476859,
+        "scope": "00-leaf-classification-s11-critic_topk_random",
+        "settled_usd": 0.033476859,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.031420311,
+        "scope": "00-leaf-classification-s12-uniform_random",
+        "settled_usd": 0.031420311,
+        "unresolved": 0
+      },
+      {
+        "calls": 18,
+        "held_usd": 0.056606342,
+        "scope": "00-leaf-classification-s13-critic_topk_random",
+        "settled_usd": 0.056606342,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.030109326,
+        "scope": "00-leaf-classification-s14-uniform_random",
+        "settled_usd": 0.030109326,
+        "unresolved": 0
+      },
+      {
+        "calls": 19,
+        "held_usd": 0.045247826,
+        "scope": "00-leaf-classification-s15-critic_topk_random",
+        "settled_usd": 0.045247826,
+        "unresolved": 0
+      },
+      {
+        "calls": 3,
+        "held_usd": 0.704222023,
+        "scope": "01-leaf-classification-s10-critic_topk_random",
+        "settled_usd": 0.004222023,
+        "unresolved": 1
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.036235446,
+        "scope": "01-leaf-classification-s11-uniform_random",
+        "settled_usd": 0.036235446,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.025891086,
+        "scope": "01-leaf-classification-s12-critic_topk_random",
+        "settled_usd": 0.025891086,
+        "unresolved": 0
+      },
+      {
+        "calls": 9,
+        "held_usd": 0.715406677,
+        "scope": "01-leaf-classification-s13-uniform_random",
+        "settled_usd": 0.015406677,
+        "unresolved": 1
+      },
+      {
+        "calls": 19,
+        "held_usd": 0.048437779,
+        "scope": "01-leaf-classification-s14-critic_topk_random",
+        "settled_usd": 0.048437779,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.02784171,
+        "scope": "01-leaf-classification-s15-uniform_random",
+        "settled_usd": 0.02784171,
+        "unresolved": 0
+      },
+      {
+        "calls": 16,
+        "held_usd": 0.037944933,
+        "scope": "02-spaceship-titanic-s10-critic_topk_random",
+        "settled_usd": 0.037944933,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.045580002,
+        "scope": "02-spaceship-titanic-s11-uniform_random",
+        "settled_usd": 0.045580002,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.038064936,
+        "scope": "02-spaceship-titanic-s12-critic_topk_random",
+        "settled_usd": 0.038064936,
+        "unresolved": 0
+      },
+      {
+        "calls": 19,
+        "held_usd": 0.070479552,
+        "scope": "02-spaceship-titanic-s14-critic_topk_random",
+        "settled_usd": 0.070479552,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.041187393,
+        "scope": "02-spaceship-titanic-s15-uniform_random",
+        "settled_usd": 0.041187393,
+        "unresolved": 0
+      },
+      {
+        "calls": 12,
+        "held_usd": 0.029666832,
+        "scope": "03-spaceship-titanic-s10-uniform_random",
+        "settled_usd": 0.029666832,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.036710856,
+        "scope": "03-spaceship-titanic-s11-critic_topk_random",
+        "settled_usd": 0.036710856,
+        "unresolved": 0
+      },
+      {
+        "calls": 17,
+        "held_usd": 0.048390186,
+        "scope": "03-spaceship-titanic-s12-uniform_random",
+        "settled_usd": 0.048390186,
+        "unresolved": 0
+      },
+      {
+        "calls": 15,
+        "held_usd": 0.043196673,
+        "scope": "03-spaceship-titanic-s14-uniform_random",
+        "settled_usd": 0.043196673,
+        "unresolved": 0
+      },
+      {
+        "calls": 19,
+        "held_usd": 0.05677048,
+        "scope": "03-spaceship-titanic-s15-critic_topk_random",
+        "settled_usd": 0.05677048,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.318775548,
+        "scope": "closed_predecessor",
+        "settled_usd": 0.318775548,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.000178425,
+        "scope": "compat2_failure",
+        "settled_usd": 0.000178425,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.000102453,
+        "scope": "compat2_success",
+        "settled_usd": 0.000102453,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.000178425,
+        "scope": "compat_failure",
+        "settled_usd": 0.000178425,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 8.4903e-05,
+        "scope": "compat_success",
+        "settled_usd": 8.4903e-05,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0058773,
+        "scope": "context-judge-0",
+        "settled_usd": 0.0058773,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00501202,
+        "scope": "context-judge-1",
+        "settled_usd": 0.00501202,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00734045,
+        "scope": "context-judge-2",
+        "settled_usd": 0.00734045,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00594269,
+        "scope": "context-judge-3",
+        "settled_usd": 0.00594269,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 9.8553e-05,
+        "scope": "fixture_failure",
+        "settled_usd": 9.8553e-05,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.000137514,
+        "scope": "fixture_success",
+        "settled_usd": 0.000137514,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0016029,
+        "scope": "gen-cap-0",
+        "settled_usd": 0.0016029,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0032955,
+        "scope": "gen-cap-1",
+        "settled_usd": 0.0032955,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00559858,
+        "scope": "gen-cap-2",
+        "settled_usd": 0.00559858,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.001453335,
+        "scope": "gen-cap-3",
+        "settled_usd": 0.001453335,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00203528,
+        "scope": "gen-cap-4",
+        "settled_usd": 0.00203528,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.001744509,
+        "scope": "gen-cap-5",
+        "settled_usd": 0.001744509,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.001513785,
+        "scope": "gen-cap-6",
+        "settled_usd": 0.001513785,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00454675,
+        "scope": "gen-cap-7",
+        "settled_usd": 0.00454675,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00092937,
+        "scope": "gen-cap:forets-generation-capacity-20260912-asl_0ytg:0",
+        "settled_usd": 0.00092937,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0026689,
+        "scope": "gen-cap:forets-generation-capacity-20260912-asl_0ytg:1",
+        "settled_usd": 0.0026689,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00569023,
+        "scope": "gen-cap:forets-generation-capacity-20260912-asl_0ytg:2",
+        "settled_usd": 0.00569023,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.001692444,
+        "scope": "gen-cap:forets-generation-capacity-20260912-asl_0ytg:3",
+        "settled_usd": 0.001692444,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00224718,
+        "scope": "gen-cap:forets-generation-capacity-20260912-asl_0ytg:4",
+        "settled_usd": 0.00224718,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00093912,
+        "scope": "gen-cap:forets-generation-capacity-20260912-asl_0ytg:5",
+        "settled_usd": 0.00093912,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.001649505,
+        "scope": "gen-cap:forets-generation-capacity-20260912-asl_0ytg:6",
+        "settled_usd": 0.001649505,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0050804,
+        "scope": "gen-cap:forets-generation-capacity-20260912-asl_0ytg:7",
+        "settled_usd": 0.0050804,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00148512,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:0",
+        "settled_usd": 0.00148512,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00293215,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:1",
+        "settled_usd": 0.00293215,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00480285,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:10",
+        "settled_usd": 0.00480285,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00347165,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:11",
+        "settled_usd": 0.00347165,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0061451,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:2",
+        "settled_usd": 0.0061451,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00182403,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:3",
+        "settled_usd": 0.00182403,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00202943,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:4",
+        "settled_usd": 0.00202943,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00093717,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:5",
+        "settled_usd": 0.00093717,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.001143519,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:6",
+        "settled_usd": 0.001143519,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0043524,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:7",
+        "settled_usd": 0.0043524,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00306865,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:8",
+        "settled_usd": 0.00306865,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00306865,
+        "scope": "gen-cap:forets-generation-capacity-20260912-hp7jtagu:9",
+        "settled_usd": 0.00306865,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.000949845,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:0",
+        "settled_usd": 0.000949845,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00347165,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:1",
+        "settled_usd": 0.00347165,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0050687,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:10",
+        "settled_usd": 0.0050687,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0037375,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:11",
+        "settled_usd": 0.0037375,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00545623,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:2",
+        "settled_usd": 0.00545623,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.001713894,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:3",
+        "settled_usd": 0.001713894,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00252343,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:4",
+        "settled_usd": 0.00252343,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.000671229,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:5",
+        "settled_usd": 0.000671229,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00171678,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:6",
+        "settled_usd": 0.00171678,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00468715,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:7",
+        "settled_usd": 0.00468715,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00289965,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:8",
+        "settled_usd": 0.00289965,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00289965,
+        "scope": "gen-cap:forets-generation-capacity-20260912-thgk111r:9",
+        "settled_usd": 0.00289965,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0056108,
+        "scope": "information-0",
+        "settled_usd": 0.0056108,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0049452,
+        "scope": "information-1",
+        "settled_usd": 0.0049452,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00115817,
+        "scope": "information-2",
+        "settled_usd": 0.00115817,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00535145,
+        "scope": "information-3",
+        "settled_usd": 0.00535145,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.0077857,
+        "scope": "information-4",
+        "settled_usd": 0.0077857,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00658762,
+        "scope": "information-5",
+        "settled_usd": 0.00658762,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00192153,
+        "scope": "information-6",
+        "settled_usd": 0.00192153,
+        "unresolved": 0
+      },
+      {
+        "calls": 1,
+        "held_usd": 0.00192153,
+        "scope": "information-7",
+        "settled_usd": 0.00192153,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.00015366,
+        "scope": "route",
+        "settled_usd": 0.00015366,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.00015366,
+        "scope": "route_s11",
+        "settled_usd": 0.00015366,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.00015366,
+        "scope": "route_s12",
+        "settled_usd": 0.00015366,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.00015366,
+        "scope": "route_s13",
+        "settled_usd": 0.00015366,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.00015366,
+        "scope": "route_s14",
+        "settled_usd": 0.00015366,
+        "unresolved": 0
+      },
+      {
+        "calls": 2,
+        "held_usd": 0.000113724,
+        "scope": "route_s15",
+        "settled_usd": 0.000113724,
+        "unresolved": 0
+      }
+    ],
+    "settled_usd": 1.327324583,
+    "stopped": false,
+    "unresolved": 2
+  },
+  "allocation_gpu_hours": 0.050277777777777775,
+  "verifier_sha256": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+  "protected_cohort_read": false
+}

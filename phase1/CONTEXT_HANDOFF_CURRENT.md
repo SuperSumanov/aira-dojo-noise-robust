@@ -1,6 +1,6 @@
 # 短交接：三批真实执行与两批盲排名闭合，局部正信号但无e2e收益
 
-2026-09-12最后更新05:32 UTC。用户本轮02:44起要求三小时有价值证据，目标05:44 UTC；本轮实验证据已闭合，无新automation。
+2026-09-12最后更新05:34 UTC。用户本轮02:44起要求三小时有价值证据，目标05:44 UTC；本轮实验证据与发布均已闭合，无新automation。
 恢复先fetch→CURRENT_DIRECTION顶部→本文件→现场；主线同预算MLE-bench最终收益，不以旧状态替代当前事实。
 
 ## 最新20/21已完成，禁止重跑/重写读出
@@ -23,7 +23,9 @@
 - 新结果已下载results/forets_generation_capacity_s20_s21_20260912；完整汇总results/forets_mixed_pool_combined_20260912.json。
   分享ZIP：releases/forets-development-20260912/forets-development-20260912.zip（38,466字节/24代码+3JSON），
   SHA **dc99104b0faf0d175b9dac7be5fd54aaf02037f2b7268e974571a15afc8322b4**，远端forets-development-export-20260912-scdlkfn4。
-  已credential-scan/逐项回读；标签都已读，只能开发，不得当新冻结测试。正在完成最终安全push。
+  已credential-scan/逐项回读；标签都已读，只能开发，不得当新冻结测试。结果/报告/ZIP均已发布到
+  **88f7f6b3412d9269c74d9449fd2ddda002a177ee**，05:34 ls-remote核对同SHA；只改我方phase1-value-critic，学长分支未改。
+  最初发布门唯一命中是新scanner自身正则声明（非凭据）；定位后按实际API/PEM形状扫全部11个暂存文件为0，ZIP27项另行解压扫描为0。
 
 ## 已闭合实际证据，不重复排他读出/执行
 
@@ -68,4 +70,4 @@
 - held12535不碰，g0-r5 PAUSED，无新automation；研究盘1TB/2026-09-29到期，续期未知。保留无关untracked。
 - 主要用户交付FORETS_PROGRESS_FOR_ADVISOR_20260912.md，已补全部新池结果/复验边界/下一科学问题。
   05:32队列仅旧held12535，本轮三批任务已完成；学长分支仍9c46cca1dccd7633b556374d33c6c76390d1d061，无新报告commit。
-  17项单元测试通过；最终代码/报告/开发ZIP安全push后交付，不把有限池信号包装成最终搜索收益。
+  17项单元测试通过；最终代码/报告/开发ZIP已安全push，可直接交付，不把有限池信号包装成最终搜索收益。

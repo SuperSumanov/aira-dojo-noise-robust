@@ -61,6 +61,29 @@ class WireHookTests(unittest.TestCase):
         for name in ('kernel_wire_hook_20260912.py', 'forets_kernel_wire_20260912.py'):
             ast.parse((PHASE/name).read_text())
 
+    def test_loaded_only_trace_is_rejected(self):
+        spec = importlib.util.spec_from_file_location('wire_worker', PHASE/'forets_kernel_wire_20260912.py')
+        worker = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(worker)
+        trace = {'event_counts': {'instrumentation_loaded': 1}}
+        self.assertFalse(worker.trace_is_observable(trace, True))
+        self.assertFalse(worker.trace_is_observable(trace, False))
+        trace['event_counts'].update(server_connect=1, server_incoming=2)
+        self.assertTrue(worker.trace_is_observable(trace, False))
+        self.assertFalse(worker.trace_is_observable(trace, True))
+        trace['matched_egress'] = {'shell:kernel_info_reply': 1}
+        self.assertTrue(worker.trace_is_observable(trace, True))
+        trace['event_counts']['instrumentation_error'] = 1
+        self.assertFalse(worker.trace_is_observable(trace, True))
+
+    def test_bootstrap_does_not_delegate_to_execing_jupyter_cli(self):
+        spec = importlib.util.spec_from_file_location('wire_bootstrap', PHASE/'forets_kernel_wire_20260912.py')
+        worker = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(worker)
+        ast.parse(worker.DIAGNOSTIC_BOOTSTRAP)
+        self.assertIn("run_module('kernel_gateway'", worker.DIAGNOSTIC_BOOTSTRAP)
+        self.assertNotIn("run_module('jupyter'", worker.DIAGNOSTIC_BOOTSTRAP)
+
 
 if __name__=='__main__':
     unittest.main()

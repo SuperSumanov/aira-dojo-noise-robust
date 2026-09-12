@@ -1,8 +1,18 @@
-# 短交接：并发e2e已闭合；本地生成器迁移待共享访问
+# 短交接：定向内核排障；e2e已闭合，本地生成器待共享访问
 
-2026-09-12 12:00 UTC完成收尾；恢复先fetch→CURRENT_DIRECTION顶部0L181→本文件→核现场。
+2026-09-12 12:28 UTC更新；恢复先fetch→CURRENT_DIRECTION顶部0L182→本文件→核现场。
 最新用户：继续工作，并转达学长后续多数run用本地qwen3.8 27B AWQ INT4、旧API数据继续利用。
 不得重跑13156、首次读出或已闭合生成池；不得重复G0/旧模型验收。
+
+## 当前一小时推进
+
+- 用户12:13 UTC要求一小时内推进实质工作。根因定位与已揭盲机制分析；不追加同配方paid seed。
+- 13161单卡gpu28诊断已COMPLETED/114秒，root /research/d7/spc/yzyang4/forets-kernel-wire-20260912-joepk5ej。
+  commit316667d0e5bbac31f7d286c3f847c966170de4f6；32次fresh gateway均ready/marker，但通道trace仅loaded。
+  generic jupyter CLI换进程导致hook丢失；不能算有效通道诊断或故障修复，原回执保留。
+  正修正独立诊断入口为同一kernel_gateway模块直接启动，并要求真incoming/reply事件；尚未提交修正版。
+  两次原ZMQ non-socket发生在握手超时和开始清理之后，不能说是失败原因。旧12次测试只复用一个gateway。
+- 旧并发e2e和本地模型状态见下；队列动态以重新检查为准。
 
 ## 本轮真实结果
 

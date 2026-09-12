@@ -18,6 +18,25 @@ SOURCE = BASE/'forets-wallclock-20260912-cxb9p0og/source'
 MAX_TRIALS = 32
 MAX_SECONDS = 1950
 
+# Running the generic `jupyter` CLI execs a new interpreter and discards hooks.
+# Invoke the identical installed gateway entry point in this process instead.
+DIAGNOSTIC_BOOTSTRAP = (
+    "import sys, runpy, site; from pathlib import Path; "
+    "Path(site.getusersitepackages()).mkdir(parents=True, exist_ok=True); "
+    "assert sys.argv[1] == 'kernelgateway'; sys.argv.pop(1); "
+    "sys.path.insert(0, '/workspace'); import kernel_wire_hook_20260912; "
+    "runpy.run_module('kernel_gateway', run_name='__main__')"
+)
+
+
+def trace_is_observable(trace, ready):
+    counts = trace.get('event_counts', {})
+    if counts.get('instrumentation_loaded') != 1 or counts.get('instrumentation_error', 0):
+        return False
+    if not counts.get('server_connect') or not counts.get('server_incoming'):
+        return False
+    return not ready or trace.get('matched_egress', {}).get('shell:kernel_info_reply', 0) > 0
+
 
 def write(path, data):
     with path.open('x') as stream:
@@ -37,9 +56,7 @@ def setup(root):
     from dojo.core.interpreters.jupyter.jupyter_client import JupyterKernelClient
     from dojo.core.interpreters.jupyter.jupyter_interpreter import _gateway_port
     # Instrument an isolated diagnostic process, not the image or source files.
-    server_module._JUPYTER_BOOTSTRAP = (
-        "import sys; sys.path.insert(0, '/workspace'); import kernel_wire_hook_20260912; "
-        + server_module._JUPYTER_BOOTSTRAP)
+    server_module._JUPYTER_BOOTSTRAP = DIAGNOSTIC_BOOTSTRAP
     return server_module.SingularityJupyterServer, JupyterKernelClient, _gateway_port
 
 
@@ -142,8 +159,8 @@ def run(root, commit):
         write(root/f'row-{index:02d}.json', row)
         print(json.dumps(dict(completed=len(rows), ready=row['ready'], marker_ok=row['marker_ok'],
                              error_type=row.get('error_type'))), flush=True)
-        if row['trace_complete'].get('event_counts', {}).get('instrumentation_loaded') != 1:
-            stop = 'instrumentation_missing_or_duplicated'
+        if not trace_is_observable(row['trace_complete'], row['ready']):
+            stop = 'instrumentation_not_observing_actual_channel'
             break
         if not row['ready'] or not row['marker_ok']:
             stop = 'first_failure_preserved_and_diagnosed'

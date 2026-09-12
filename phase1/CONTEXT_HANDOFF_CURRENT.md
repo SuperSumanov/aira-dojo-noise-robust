@@ -1,6 +1,6 @@
 # 短交接：截止预算e2e 13152已在gpu28开跑
 
-2026-09-12最后更新06:28 UTC。用户05:36继续推进；旧三小时轮次已闭合，新轮为600秒预算e2e。
+2026-09-12最后更新06:38 UTC。用户05:36继续推进；旧三小时轮次已闭合，新轮为600秒预算e2e。
 恢复先fetch→CURRENT_DIRECTION顶部→本文件→现场；主线同预算MLE-bench最终收益，不以旧状态替代当前事实。
 
 ## 当前接续：正在进行，不可重复提交
@@ -28,6 +28,11 @@
   单次CPU收尾阶段已启动：**PID3943532**，06:24核实存活，等待13152终态后仅调用固定读出一次。
   closeout-intent.json已固定stage中closeout/readout/numerical helper三个SHA；**不可改远端这三文件、不可重复启动/读出**。
   该阶段不发GPU/API/新实验，不是新automation；等待上限14400秒、读出另限180秒。结束查closeout-finished.json和wallclock-summary.json。
+  **06:38现场**：前三条已终态，第四条13152.3（Space s22 random）运行，余四pending；allocation仍RUNNING，未读新成绩。
+  新增attribute_forets_wallclock_20260912.py只在closeout-finished=verified后允许读取开发记录；尚未执行真实读出。
+  它将有完成计时的task调用（含启动/抓取/评分）与其余时间分开；未完成调用归入未知剩余，不把余量误称critic延迟。
+  只按真实账本拆ranking/other收费，不加并发LLM延迟、不从mtime猜时间。25项wallclock相关本地测试通过。
+  此补充分析不是新效果试验、不改三个已固定收尾文件；整批闭合后才可运行。
   如果读出失败，保留原回执后查具体原因；不得把失败当0分或自动重跑。20项wallclock/closeout本地测试通过，另3机制测试通过。
   06:24现场仍13152 RUNNING第二条，417累计API记录/两旧未知，责任2.757976529USD、结算1.357976529USD；不是结果闭合。
 - 原分享报告/24程序包结论仍有效：仅有效性局部线索，无e2e质量收益。我方本轮已push并ls-remote核对
@@ -46,7 +51,7 @@
   05:26:35独立读出全8、4数值重评分通过；summarySHA **76c3387a3ff942aaffa60c996c293d0b73dea761a2f532fb32b1c193a07afcc3**。
   冻结方案FORETS_MIXED_POOL_SECOND_REPLICATION_20260912.md：8新生成+4执行前双序盲排名，两任务同原规则；
   原镜像、source900fa3bdf6971381c37a9792723dba42c63e5ac6、gpu28单3090/6CPU/300秒配置不变。
-- 当前唯一API后继账在thgk111r；05:32查hp7jtagu stopped1、thgk111r stopped0，无运行API进程。
+- 历史05:32时唯一API后继账在thgk111r，hp7jtagu stopped1、thgk111r stopped0，无运行API进程；后来已排他转交0t4odqpn，以本文件顶部为准。
   AUTH **4d66bef41f5ad23d64a8e6f26350a25486eb65bbde5c416a531879d6b48925ca**；402calls，
   settled1.327324583USD/accounted2.727324583USD、两个旧.70未知。原100人民币/10USD不重置，不克隆账本。
 - 已用d2GRvV4f/readout_forets_generation_capacity_20260912.py完成排他读出，不再运行。

@@ -13,6 +13,7 @@ CAPSULE=Path(__file__).resolve().parents[1]/'releases/forets-context-20260912/re
 def test_checked_legacy_binding_and_entire_matrix():
     ns=load_builder()
     assert ns['BASE']=='5950c7d3acf1e03173ba2ea7081d8ba6593279d9'
+    assert 12 not in ns['build'].__code__.co_consts  # both config and manifest row seeds changed
     assert order()==[('leaf-classification','uniform_random'),('leaf-classification','critic_topk_random'),
         ('spaceship-titanic','critic_topk_random'),('spaceship-titanic','uniform_random')]
 

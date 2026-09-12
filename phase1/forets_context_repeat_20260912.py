@@ -91,6 +91,7 @@ def load_builder():
     # The checked functions below override the old gate/order/budget/derive.
     # The remaining reusable functions are artifact, build, activate and facts.
     edits=[("rid=f'{index:02d}-{task}-s12-{arm}'","rid=f'{index:02d}-{task}-s14-{arm}'"),
+        ('rows.append(dict(prior,run_id=rid,seed=12,config_sha256=digest))','rows.append(dict(prior,run_id=rid,seed=14,config_sha256=digest))'),
         ("cfg['metadata']['seed']=cfg['solver']['selector_seed']=12","cfg['metadata']['seed']=cfg['solver']['selector_seed']=14\n        cfg['solver']['skip_redundant_critic']=True"),
         ('seeds=[12]','seeds=[14]'),
         ("'launchers/forets_review_20260912.sbatch'","'launchers/forets_context_20260912.sbatch'"),

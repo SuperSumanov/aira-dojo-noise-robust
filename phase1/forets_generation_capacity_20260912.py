@@ -22,8 +22,8 @@ from forets_environment_context_20260912 import CONTEXT
 import forets_paid_budget_20260911 as budget
 
 BASE=Path('/research/d7/spc/yzyang4')
-PARENT=BASE/'forets-generation-capacity-20260912-asl_0ytg'
-PARENT_AUTH='f2ee650241a1f96f7038d9580cb5aef77bf5a58542993925cbd3173ebe7c3abe'
+PARENT=BASE/'forets-generation-capacity-20260912-hp7jtagu'
+PARENT_AUTH='d2340cc16e04870a76f09938419e6adb98a971b15edf5cdbfa26a919ee99605b'
 FAILED_TRANSFER=BASE/'forets-generation-capacity-20260912-vkgl8inm'
 ADAPTER=BASE/'forets-current-pool-20260912-0hz06xtj'
 SOURCE_ROOT=BASE/'forets-readiness-source-20260912-BQletMGi'
@@ -32,7 +32,7 @@ TASKS=('leaf-classification','spaceship-titanic')
 MODELS=('qwen/qwen3-coder-flash','qwen/qwen3-coder-plus')
 PROVIDER=dict(only=['alibaba'],allow_fallbacks=False,require_parameters=True,
               max_price=dict(prompt=2.4375,completion=9.75,request=0))
-MATRIX=((0,18,0),(0,18,1),(1,18,1),(1,18,0),(0,19,1),(0,19,0),(1,19,0),(1,19,1))
+MATRIX=((0,20,0),(0,20,1),(1,20,1),(1,20,0),(0,21,1),(0,21,0),(1,21,0),(1,21,1))
 HELPERS=('forets_closed_pool_20260911.py','forets_closed_pool_native_20260911.py',
          'forets_current_pool_native_20260912.py','forets_gpu_binding_20260911.py',
          'forets_native_cuda_identity_20260911.py','forets_native_gpu_binding_20260911.py',
@@ -120,10 +120,10 @@ def prepare(commit):
     if not re.fullmatch('[a-f0-9]{40}',commit):raise ValueError('exact controller')
     source_check()
     closed=(PARENT/'generation-capacity-summary.json').read_bytes()
-    if digest(closed)!='1ab23e7ff96910cdd3a73a671e9139c20edbc2856abf237060d6f4fa0c1d23e2':raise ValueError('parent numerical closure changed')
+    if digest(closed)!='84ff9345b0123f90555b278371308be3680ebf6d2d5a362eaa8377efa2ceeba7':raise ValueError('parent numerical closure changed')
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
-    terminal=subprocess.check_output(['sacct','-X','-j','13143','-nP','--format=JobIDRaw,State'],env=env,text=True,timeout=25).strip()
-    if terminal!='13143|COMPLETED':raise ValueError('old allocation not closed')
+    terminal=subprocess.check_output(['sacct','-X','-j','13148','-nP','--format=JobIDRaw,State'],env=env,text=True,timeout=25).strip()
+    if terminal!='13148|COMPLETED':raise ValueError('old allocation not closed')
     root=Path(tempfile.mkdtemp(prefix='forets-generation-capacity-20260912-',dir=BASE));os.chmod(root,0o700)
     (root/'codes').mkdir();items=[]
     for i,(taskno,replicate,modelno) in enumerate(MATRIX):

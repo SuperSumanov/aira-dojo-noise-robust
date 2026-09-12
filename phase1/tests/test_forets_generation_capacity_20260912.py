@@ -17,7 +17,7 @@ class GenerationTests(unittest.TestCase):
             a,b=[target.payload(t,'Public task specification',16,m) for m in target.MODELS]
             self.assertNotEqual(a.pop('model'),b.pop('model'));self.assertEqual(a,b)
     def test_matrix(self):
-        self.assertEqual(set(target.MATRIX),{(t,s,m) for t in range(2) for s in (18,19) for m in range(2)})
+        self.assertEqual(set(target.MATRIX),{(t,s,m) for t in range(2) for s in (20,21) for m in range(2)})
         self.assertEqual(len(target.MATRIX),8)
     def test_real_mount_path_in_request(self):
         request=target.payload(target.TASKS[0],'public',16,target.MODELS[0])

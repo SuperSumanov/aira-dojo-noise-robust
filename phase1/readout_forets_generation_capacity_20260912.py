@@ -16,8 +16,8 @@ MATRIX=((0,16,0),(0,16,1),(1,16,1),(1,16,0),(0,17,1),(0,17,0),(1,17,0),(1,17,1))
 ALLOWED={'valid','program_error','program_timeout','missing_submission','invalid_submission'}
 
 
-def summarize(rows):
-    expected={(TASKS[t],s,MODELS[m]) for t,s,m in MATRIX}
+def summarize(rows,matrix=MATRIX):
+    expected={(TASKS[t],s,MODELS[m]) for t,s,m in matrix}
     if len(rows)!=8 or {(r['task'],r['replicate'],r['model']) for r in rows}!=expected:
         raise ValueError('complete unique matrix required')
     for r in rows:
@@ -37,7 +37,7 @@ def summarize(rows):
                 conditional_sample_std_score=statistics.stdev(values) if len(values)>1 else None,
                 median_execution_seconds=statistics.median(times),sample_std_execution_seconds=statistics.stdev(times),
                 api_cost_usd=sum(r['api_cost_usd'] for r in rs)))
-        for seed in (16,17):
+        for seed in sorted({s for _,s,_ in matrix}):
             a,b=[next(r for r in rows if (r['task'],r['replicate'],r['model'])==(task,seed,m)) for m in MODELS]
             comparable=a['valid'] and b['valid']
             gain=((a['score']-b['score']) if task==TASKS[0] else (b['score']-a['score'])) if comparable else None
@@ -111,7 +111,35 @@ def verify(root):
         proofs.append(dict(index=i,status=row['status'],official_score=row['score'],independent_score=value))
         rows.append(dict(row,model=item['model'],replicate=item['replicate'],api_cost_usd=g['records'][i]['cost_usd']))
     if len(uuids)!=1:raise ValueError('hardware differed within matrix')
-    summary=summarize(rows)
+    summary=summarize(rows,worker.MATRIX)
+    if 'rank_records' in g:
+        if len(g['rank_records'])!=4 or any(r['status']!='ranked' for r in g['rank_records']):raise ValueError('incomplete blind ranks')
+        selection=[]
+        for task in TASKS:
+            rs=[r for r in rows if r['task']==task];ranks=[]
+            for receipt in [r for r in g['rank_records'] if r['task']==task]:
+                i=receipt['index'];raw=(root/f'rank-{i}.private.json').read_bytes()
+                if hashlib.sha256(raw).hexdigest()!=receipt['ranking_sha256']:raise ValueError('rank changed')
+                saved=json.loads(raw);response=(root/f'rank-response-{i}.private.json').read_bytes()
+                if hashlib.sha256(response).hexdigest()!=saved['response_sha256']:raise ValueError('rank response changed')
+                request=(root/f'rank-request-{i}.private.json').read_bytes()
+                if hashlib.sha256(request).hexdigest()!=receipt['request_sha256']:raise ValueError('rank request changed')
+                ranked=worker.remap(json.loads(json.loads(response)['choices'][0]['message']['content']),receipt['display_order'])
+                if ranked!=saved['ranking'] or receipt['program_indices']!=[r['index'] for r in rs]:raise ValueError('rank identity/order')
+                ranks.append(ranked)
+            def stats(slots):
+                valid=[rs[s]['score'] for s in slots if rs[s]['valid']]
+                return dict(slots=slots,valid=len(valid),total=len(slots),valid_probability=len(valid)/len(slots),
+                    conditional_mean_score=sum(valid)/len(valid) if valid else None)
+            slots=sorted(range(4),key=lambda s:(sum(rank.index(s) for rank in ranks),s))[:2]
+            a,b=stats(list(range(4))),stats(slots)
+            selection.append(dict(task=task,uniform4=a,blind_borda_top2=b,
+                validity_probability_difference=b['valid_probability']-a['valid_probability'],
+                individual_order_top2=[rank[:2] for rank in ranks],
+                order_top2_invariant=set(ranks[0][:2])==set(ranks[1][:2])))
+        summary['blind_selection']=selection
+        summary['ranking_api_cost_usd']=sum(r['cost_usd'] for r in g['rank_records'])
+        summary['selection_limitation']='Finite mixed-generator development pools, each code executed once. Not single-generator production/e2e confirmation; ranking fees are additional.'
     summary.update(role='paired_generator_capacity_development_diagnostic',job=launch['job'],utc=worker.now(),
         controller_commit=prepared['controller_commit'],source_tree=worker.TREE,
         prepared_sha256=hashlib.sha256((root/'prepared.json').read_bytes()).hexdigest(),

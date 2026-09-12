@@ -17,13 +17,13 @@ import sys
 import tempfile
 import time
 
-from forets_context_judge_20260912 import SECRET, digest, now, write
+from forets_context_judge_20260912 import SECRET, SYSTEM, remap, digest, now, write
 from forets_environment_context_20260912 import CONTEXT
 import forets_paid_budget_20260911 as budget
 
 BASE=Path('/research/d7/spc/yzyang4')
-PARENT=BASE/'forets-generation-capacity-20260912-ngtb47lk'
-PARENT_AUTH='6229ed384de7c46139cf0c6c24e67a849fb0a54fb997133ead0464569f7e21b5'
+PARENT=BASE/'forets-generation-capacity-20260912-asl_0ytg'
+PARENT_AUTH='f2ee650241a1f96f7038d9580cb5aef77bf5a58542993925cbd3173ebe7c3abe'
 FAILED_TRANSFER=BASE/'forets-generation-capacity-20260912-vkgl8inm'
 ADAPTER=BASE/'forets-current-pool-20260912-0hz06xtj'
 SOURCE_ROOT=BASE/'forets-readiness-source-20260912-BQletMGi'
@@ -32,7 +32,7 @@ TASKS=('leaf-classification','spaceship-titanic')
 MODELS=('qwen/qwen3-coder-flash','qwen/qwen3-coder-plus')
 PROVIDER=dict(only=['alibaba'],allow_fallbacks=False,require_parameters=True,
               max_price=dict(prompt=2.4375,completion=9.75,request=0))
-MATRIX=((0,16,0),(0,16,1),(1,16,1),(1,16,0),(0,17,1),(0,17,0),(1,17,0),(1,17,1))
+MATRIX=((0,18,0),(0,18,1),(1,18,1),(1,18,0),(0,19,1),(0,19,0),(1,19,0),(1,19,1))
 HELPERS=('forets_closed_pool_20260911.py','forets_closed_pool_native_20260911.py',
          'forets_current_pool_native_20260912.py','forets_gpu_binding_20260911.py',
          'forets_native_cuda_identity_20260911.py','forets_native_gpu_binding_20260911.py',
@@ -119,12 +119,11 @@ def source_check():
 def prepare(commit):
     if not re.fullmatch('[a-f0-9]{40}',commit):raise ValueError('exact controller')
     source_check()
-    invalidation=json.loads((PARENT/'controller-path-invalidation.json').read_text())
-    if invalidation['job']!='13141' or not invalidation['whole_matrix_invalidated'] or invalidation['outcomes_read']:
-        raise ValueError('technical invalidation boundary')
+    closed=(PARENT/'generation-capacity-summary.json').read_bytes()
+    if digest(closed)!='1ab23e7ff96910cdd3a73a671e9139c20edbc2856abf237060d6f4fa0c1d23e2':raise ValueError('parent numerical closure changed')
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
-    terminal=subprocess.check_output(['sacct','-X','-j','13141','-nP','--format=JobIDRaw,State'],env=env,text=True,timeout=25).strip()
-    if not terminal.startswith('13141|CANCELLED'):raise ValueError('old allocation not closed')
+    terminal=subprocess.check_output(['sacct','-X','-j','13143','-nP','--format=JobIDRaw,State'],env=env,text=True,timeout=25).strip()
+    if terminal!='13143|COMPLETED':raise ValueError('old allocation not closed')
     root=Path(tempfile.mkdtemp(prefix='forets-generation-capacity-20260912-',dir=BASE));os.chmod(root,0o700)
     (root/'codes').mkdir();items=[]
     for i,(taskno,replicate,modelno) in enumerate(MATRIX):
@@ -149,7 +148,8 @@ def prepare(commit):
     files={str(p.relative_to(root)):digest(p.read_bytes()) for p in root.rglob('*') if p.is_file() and 'request-' not in p.name}
     value=dict(root=str(root),utc=now(),controller_commit=commit,source_tree=TREE,requests=items,
         files=files,execution_timeout=300,kernels=8,cpu=6,gpu=1,max_gpu_hours=1.25,
-        incremental_api_nano=3_000_000_000,api_calls=0,task_executions=0,role='generator_capacity_not_critic_e2e')
+        incremental_api_nano=3_000_000_000,api_calls=0,task_executions=0,role='generator_replication_with_blind_mixedpool_selection',
+        blind_rank_requests=4,ranking_model=MODELS[1],ranking_orders=[[0,1,2,3],[3,2,1,0]],top_k=2,tie_rule='slot_ascending')
     write(root/'prepared.json',value)
     print(json.dumps(dict(root=str(root),controller_commit=commit,prepared_sha256=digest((root/'prepared.json').read_bytes()),requests=8)))
 
@@ -158,6 +158,8 @@ def checked(root,commit=None):
     root=root_checked(root);p=json.loads((root/'prepared.json').read_text())
     if p['root']!=str(root) or p['source_tree']!=TREE or (commit and p['controller_commit']!=commit):raise ValueError('scope drift')
     if len(p['requests'])!=8:raise ValueError('matrix count')
+    if (p.get('blind_rank_requests'),p.get('ranking_model'),p.get('ranking_orders'),p.get('top_k'),p.get('tie_rule'))!=(
+        4,MODELS[1],[[0,1,2,3],[3,2,1,0]],2,'slot_ascending'):raise ValueError('blind ranking protocol changed')
     for i,(tn,s,mn) in enumerate(MATRIX):
         row=p['requests'][i]
         if (row['index'],row['task'],row['replicate'],row['model'])!=(i,TASKS[tn],s,MODELS[mn]):raise ValueError('matrix changed')
@@ -192,19 +194,19 @@ def transfer(root):
     budget.AUTH=dict(budget.AUTH,version=11,total=held+3_000_000_000,model=None,models=list(MODELS),
         provider=PROVIDER,reservation=budget.RESERVE,run_limit=3_000_000_000,
         incremental_cap=3_000_000_000,predecessor_authorization=PARENT_AUTH,predecessor_calls=len(rows),
-        predecessor_accounted=held,experiment='generation-capacity-eight-calls',scope_id=root.name,logical_request_cap=8,
+        predecessor_accounted=held,experiment='generation-replication-and-blind-ranking',scope_id=root.name,logical_request_cap=12,
         accounted_cny_ceiling=str(Decimal(held+3_000_000_000)/10**9*Decimal('8.8')))
     budget.AUTH_RAW=json.dumps(budget.AUTH,sort_keys=True,separators=(',',':')).encode();budget.AUTH_SHA=digest(budget.AUTH_RAW)
     with closing(sqlite3.connect(root/'paid.sqlite')) as new:
         new.execute('UPDATE auth SET digest=?,body=?,stopped=0',(budget.AUTH_SHA,budget.AUTH_RAW.decode()))
         new.execute('UPDATE scopes SET cap=COALESCE((SELECT SUM(held) FROM calls WHERE calls.scope=scopes.scope),0)')
-        new.executemany('INSERT INTO scopes VALUES (?,?)',[(scope(root,i),3_000_000_000) for i in range(8)]);new.commit()
+        new.executemany('INSERT INTO scopes VALUES (?,?)',[(scope(root,i),3_000_000_000) for i in range(12)]);new.commit()
         if new.execute('SELECT * FROM calls ORDER BY id').fetchall()!=rows:raise ValueError('ledger carry-forward')
     write(root/'authorization.json',budget.AUTH)
 
 
 def scope(root,index):
-    if index not in range(8):raise ValueError('request index outside fixed matrix')
+    if index not in range(12):raise ValueError('request index outside fixed matrix')
     return 'gen-cap:'+root.name+':'+str(index)
 
 
@@ -215,6 +217,7 @@ def generate(root,commit):
     key=dotenv_values(BASE/'aira-dojo/.env',interpolate=False).get('OPENROUTER_API_KEY')
     if not key:raise ValueError('remote credential missing')
     if (root/'generation-intent.json').exists():raise ValueError('no second generation attempt')
+    rank_records=[]
     with requests.Session() as session:
         catalogs=[]
         for model in MODELS:
@@ -243,10 +246,65 @@ def generate(root,commit):
             records.append(record);write(root/f'generation-{i}.json',record)
             print(json.dumps(dict(index=i,status=record['status'])),flush=True)
             if record['status']!='generated':break
-    result=dict(utc=now(),complete=len(records)==8 and all(r['status']=='generated' for r in records),
-                records=records,billing=budget.snapshot(root/'paid.sqlite'),task_executions=0)
+        if len(records)==8 and all(r['status']=='generated' for r in records):
+            rank_records=blind_rank(root,p,records,session,key)
+    result=dict(utc=now(),complete=len(records)==8 and all(r['status']=='generated' for r in records)
+                and len(rank_records)==4 and all(r['status']=='ranked' for r in rank_records),
+                records=records,rank_records=rank_records,billing=budget.snapshot(root/'paid.sqlite'),task_executions=0)
     write(root/'generation-finished.json',result)
     print(json.dumps({k:v for k,v in result.items() if k not in ('records','billing')}),flush=True)
+
+
+def rank_payload(task,description,codes,order):
+    if len(codes)!=4 or tuple(sorted(order))!=(0,1,2,3):raise ValueError('complete blinded pool')
+    value=dict(task=task,public_task_description=description,verified_shared_environment=CONTEXT,
+        resources=dict(cpu_cores=6,gpu='one RTX3090',program_wall_limit_seconds=300),
+        candidates=[dict(displayed_index=i,code=codes[s]) for i,s in enumerate(order)])
+    request=dict(model=MODELS[1],provider=PROVIDER,temperature=0,top_p=1,max_tokens=8192,stream=False,
+        messages=[dict(role='system',content=SYSTEM),dict(role='user',content=json.dumps(value))],
+        response_format=dict(type='json_object'))
+    if len(json.dumps(request).encode())>500000 or SECRET.search(json.dumps(request).encode()):raise ValueError('rank input security/envelope')
+    return request
+
+
+def blind_rank(root,p,programs,session,key):
+    if any(root.glob('result-*.json')) or (root/'execution.claim.json').exists():raise ValueError('must rank before any new execution')
+    records=[]
+    for task in TASKS:
+        ids=[row['index'] for row in p['requests'] if row['task']==task]
+        codes=[]
+        for i in ids:
+            code=(root/'codes'/f'{i}.py').read_bytes()
+            if digest(code)!=programs[i]['code_sha256']:raise ValueError('code drift')
+            codes.append(code.decode())
+        description=json.loads((root/f'request-{ids[0]}.private.json').read_text())['messages'][1]['content']
+        description=json.loads(description)['public_task_description']
+        for order in ((0,1,2,3),(3,2,1,0)):
+            i=len(records);sid=scope(root,8+i);record=dict(index=i,task=task,program_indices=ids,display_order=order,status='not_sent')
+            request=rank_payload(task,description,codes,order);write(root/f'rank-request-{i}.private.json',request)
+            record['request_sha256']=digest((root/f'rank-request-{i}.private.json').read_bytes())
+            try:
+                budget.reserve(root/'paid.sqlite',sid,sid)
+                def expired(signum,frame):raise TimeoutError('fixed 120s blind rank timeout')
+                handler=signal.signal(signal.SIGALRM,expired);signal.setitimer(signal.ITIMER_REAL,120)
+                try:
+                    response=session.post('https://openrouter.ai/api/v1/chat/completions',json=request,
+                        headers={'Authorization':'Bearer '+key},timeout=(10,120),allow_redirects=False)
+                finally:signal.setitimer(signal.ITIMER_REAL,0);signal.signal(signal.SIGALRM,handler)
+                response.raise_for_status();data=response.json();cost=budget.settle(root/'paid.sqlite',sid,data.get('usage'))
+                if SECRET.search(response.content):raise ValueError('unsafe rank response')
+                if data.get('model')!=MODELS[1] or str(data.get('provider','')).lower()!='alibaba':raise ValueError('rank route')
+                choices=data.get('choices',[])
+                if len(choices)!=1 or choices[0].get('finish_reason')!='stop':raise ValueError('incomplete rank')
+                ranking=remap(json.loads(choices[0]['message']['content']),order)
+                (root/f'rank-response-{i}.private.json').write_bytes(response.content)
+                write(root/f'rank-{i}.private.json',dict(ranking=ranking,response_sha256=digest(response.content)))
+                record.update(status='ranked',cost_usd=cost,ranking_sha256=digest((root/f'rank-{i}.private.json').read_bytes()))
+            except Exception as exc:record.update(status='failed',error_type=type(exc).__name__)
+            records.append(record);write(root/f'rank-receipt-{i}.json',record)
+            print(json.dumps(dict(blind_rank_index=i,status=record['status'])),flush=True)
+            if record['status']!='ranked':return records
+    return records
 
 
 def programs(root):

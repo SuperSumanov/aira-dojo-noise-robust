@@ -67,6 +67,12 @@ def verify(root):
     build,launch=read(root/'build.json'),read(root/'launch.json')
     if sha((root/'prepared.json').read_bytes())!=build['prepared_sha256']:raise ValueError('preparation hash')
     prepared=read(root/'prepared.json');os.environ['SLURM_CONF']='/opt1/slurm/gpu-slurm.conf'
+    artifact=read(root/'artifact.json')
+    if artifact['source_tree']!=build['source_tree']:raise ValueError('source tree mismatch')
+    for relative,digest in artifact['source_files'].items():
+        path=root/'source'/relative
+        if path.is_symlink() or not path.resolve().is_relative_to(root/'source') or sha(path.read_bytes())!=digest:
+            raise ValueError('source changed during the experiment')
     acct=subprocess.check_output(['sacct','-j',launch['job'],'-nP','-o','JobIDRaw,State%32,NodeList,ElapsedRaw,AllocTRES%128'],text=True,timeout=25)
     records={}
     for line in acct.splitlines():
@@ -95,6 +101,9 @@ def verify(root):
         rid=planned['run_id'];task=pool['tasks'][rid];scope=scopes.get(rid,{})
         row={k:planned[k] for k in ('run_id','task','seed','arm')}
         row.update(job=launch['job'],source_tree=build['source_tree'],controller_commit=build['commit'],
+            generator='qwen/qwen3-coder-flash',critic='qwen/qwen3-coder-plus' if planned['arm']==ARMS[1] else None,
+            provider='alibaba',image_version='2026-07-macos-v1',node='gpu28',allocated_gpus=1,allocated_cpus=6,
+            program_timeout_seconds=300,selection_top_k=2,selection_coupling='common_priority_v1',
             search_budget_seconds=600,planned_step_cap=64,runtime_status=task['status'],
             api_cost_usd=scope.get('settled_usd',0),api_responsibility_usd=scope.get('held_usd',0),
             valid=False,score=None,independent_score=None,selected_step=None,selected_code_sha256=None,
@@ -103,6 +112,8 @@ def verify(root):
             if task['attempts']:raise ValueError('unstarted slot has attempts')
             rows.append(row);continue
         if task['attempt']!=1 or len(task['attempts'])!=1:raise ValueError('replayed run')
+        prepared_config=root/'configs'/(rid+'.json')
+        if sha(prepared_config.read_bytes())!=planned['config_sha256']:raise ValueError('run config changed')
         identity=Path(task['attempts'][0]['identity_path'])
         if not identity.resolve().is_relative_to(root/'runs/srun_pool'):raise ValueError('identity outside pool')
         ident=read(identity);step=records[ident['full_step_id']]
@@ -157,6 +168,8 @@ def verify(root):
         independent_numeric_regrades=len(proofs),allocation_seconds=int(allocation[3]),allocation_gpu_hours=int(allocation[3])/3600,
         billing={k:v for k,v in billing.items() if k!='scopes'},same_physical_gpu=len(uuids)==1,
         complete_technical_matrix=all(r['technical_eligible'] for r in rows),
+        verifier_sha256=sha(Path(__file__).read_bytes()),
+        numerical_helper_sha256=sha(Path(__file__).with_name('readout_forets_generation_capacity_20260912.py').read_bytes()),
         limitation='Two tasks/two fresh seeds; cutoff includes online critic. Cleanup is extra and charged. No exact physical-cost equality or scaling claim.')
     with (root/'wallclock-summary.json').open('x') as f:json.dump(result,f,indent=2,allow_nan=False)
     with (root/'wallclock-runs.csv').open('x',newline='') as f:

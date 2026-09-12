@@ -1,0 +1,92 @@
+{
+  "allocation_gpu_hours": 0.22361111111111112,
+  "controller_commit": "c62033a3eaf737ed195d9b6e2a7781954ea989c6",
+  "cumulative_liability_usd": 1.442593566,
+  "cumulative_settled_usd": 0.742593566,
+  "historical_unknown_requests": 1,
+  "inputs_sha256": {
+    "judge_finished": "3f0b1ef36f70bb339e39a14311e2813b371ea7c97d42f7b016852ffdb45aae0c",
+    "judge_prepared": "d5f6a0b7d0e58fc25f429d58ab5c32039315d4c8a887218e68a5aa68113d783c",
+    "numeric": "e25cf89b77e03d90e8beba26cd75646eace1a14d29ed1afbc1d82b239bd53404",
+    "primary": "bfa9b8787d74a03940022d202cc177e9df54b147edf814924e485fd8eba942fd"
+  },
+  "job": "13120",
+  "judge_closed_before_primary_score_readout": true,
+  "limitations": [
+    "One generated first pool per task; repeated program slots remain.",
+    "Only one execution per program; finite pool frequencies are not cross-seed estimates.",
+    "Stronger model and richer context change together; this does not isolate either factor.",
+    "Not an end-to-end benefit or a new-method novelty claim; no protected cohort used."
+  ],
+  "new_api_calls": 4,
+  "new_api_settled_usd": 0.02417246,
+  "original_parent_ledger_preserved": true,
+  "pool_plan_sha256": "08ac4d511382e78efb1a1c66e5cd4c4b12c3a92712e632068d9c15fb2f9773d9",
+  "rank_replay_independently_verified": true,
+  "readout_script_sha256": "c7e80087f849f5d3c6f6cfd4da96d4c087dccb1e29d042bbaa461887ff036cb0",
+  "role": "finite_development_pool_diagnostic_not_e2e",
+  "tasks": [
+    {
+      "existing_critic_top2": {
+        "conditional_mean_score": null,
+        "executions": 2,
+        "valid": 0,
+        "valid_probability": 0.0
+      },
+      "forward_top2": {
+        "candidate_slots": 2,
+        "conditional_mean_score": null,
+        "valid_candidates": 0,
+        "valid_probability": 0.0
+      },
+      "full_order_invariant": false,
+      "lower_is_better": true,
+      "metric": "logloss",
+      "reverse_top2": {
+        "candidate_slots": 2,
+        "conditional_mean_score": null,
+        "valid_candidates": 0,
+        "valid_probability": 0.0
+      },
+      "task": "leaf-classification",
+      "top2_order_invariant": false,
+      "uniform4": {
+        "candidate_slots": 4,
+        "conditional_mean_score": null,
+        "valid_candidates": 0,
+        "valid_probability": 0.0
+      }
+    },
+    {
+      "existing_critic_top2": {
+        "conditional_mean_score": null,
+        "executions": 2,
+        "valid": 0,
+        "valid_probability": 0.0
+      },
+      "forward_top2": {
+        "candidate_slots": 2,
+        "conditional_mean_score": 0.8069,
+        "valid_candidates": 1,
+        "valid_probability": 0.5
+      },
+      "full_order_invariant": false,
+      "lower_is_better": false,
+      "metric": "accuracy",
+      "reverse_top2": {
+        "candidate_slots": 2,
+        "conditional_mean_score": 0.8069,
+        "valid_candidates": 1,
+        "valid_probability": 0.5
+      },
+      "task": "spaceship-titanic",
+      "top2_order_invariant": false,
+      "uniform4": {
+        "candidate_slots": 4,
+        "conditional_mean_score": 0.8069,
+        "valid_candidates": 1,
+        "valid_probability": 0.25
+      }
+    }
+  ]
+}

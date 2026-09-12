@@ -1,0 +1,66 @@
+{
+  "api_calls": 0,
+  "controller_commit": "c62033a3eaf737ed195d9b6e2a7781954ea989c6",
+  "dependencies": {
+    "forets_environment_context_20260912.py": "b5878cf30fd58cabfa2c4e58c7cef4451d6103a80ca8922934dcd6e02c205d11",
+    "forets_paid_budget_20260911.py": "96ef46a35c9e83ed075d0ff30c8b6a0b5bbe4f0a7785783e846dd43a25c41492"
+  },
+  "generation_or_execution_outcomes_opened": false,
+  "gpu_jobs": 0,
+  "incremental_cap_nano": 3000000000,
+  "model": "qwen/qwen3-coder-plus",
+  "pool_plan_sha256": "08ac4d511382e78efb1a1c66e5cd4c4b12c3a92712e632068d9c15fb2f9773d9",
+  "requests": [
+    {
+      "description_sha256": "7b57af084dd30eb953dc8aacdf48372b2c190f5118fb2217a2390b82c98092b7",
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "index": 0,
+      "request_sha256": "72e7d05660fa6acce9a9772ef4dbd57cb59f883a32a1da167e023d563afdb06b",
+      "task": "leaf-classification"
+    },
+    {
+      "description_sha256": "7b57af084dd30eb953dc8aacdf48372b2c190f5118fb2217a2390b82c98092b7",
+      "display_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "index": 1,
+      "request_sha256": "b65c6393218822164614c8464d6c6c45c5654f3550b3a60f59125730c9c7ee05",
+      "task": "leaf-classification"
+    },
+    {
+      "description_sha256": "ee35380587404b263ef8b38d9a2fff4196563abb2e12bc086b02c9808b7f37cb",
+      "display_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "index": 2,
+      "request_sha256": "821533356eabe177a9cc3ed728d17b9f42cb2bb419e1915af80672f29e42356e",
+      "task": "spaceship-titanic"
+    },
+    {
+      "description_sha256": "ee35380587404b263ef8b38d9a2fff4196563abb2e12bc086b02c9808b7f37cb",
+      "display_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "index": 3,
+      "request_sha256": "0a1e29ab2287f0785bb554e118923e51e57e3907beace2c45fc64f9e781bd2f1",
+      "task": "spaceship-titanic"
+    }
+  ],
+  "root": "/research/d7/spc/yzyang4/forets-context-judge-20260912-42qtmhgi",
+  "script_sha256": "f66c5434297346f3e22503820b488e76111ad0e27b7941cd03aca88247aaf5b2",
+  "utc": "2026-09-12T00:26:35.984124+00:00"
+}

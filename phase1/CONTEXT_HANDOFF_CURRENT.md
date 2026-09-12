@@ -1,77 +1,67 @@
-# 当前交接：13120全8执行闭合；准备结果盲态通用裁判对照
+# 当前交接：全首池与通用裁判已闭合，准备新seed真实对照
 
-更新2026-09-12香港；最新GPU现场2026-09-12 00:21:39.344048 UTC。
-恢复顺序：fetch→CURRENT_DIRECTION.md最新0L167→本文件→核现场。ADVISOR_DIRECTIVES.md最新意见仍有效。
-用户要求会话内持续实质工作，不增自动任务，不把旧队列、准备或人工测试称为模型正结果。
+2026-09-12香港。恢复：fetch→CURRENT_DIRECTION最新0L168→本文件→现场。
+用户要求持续会话实质工作，不增自动任务；准备/测试不冒充效果，学长分支不改。
 
-## 刚完成GPU作业：13120
-- 00:07:59.332899 UTC提交，00:21:39 COMPLETED/gpu28，8/8回执且finished存在；805秒单卡。没有读结果值。
-- 会话内只读PTY78873已正常结束：只看状态和回执数量，没有读分或收尾。
-- 根 /research/d7/spc/yzyang4/forets-current-pool-20260912-wnm9cxd0。
-  stage /research/d7/spc/yzyang4/forets-current-pool-stage-20260912-awArkuah。
-- controller 0fd4d1a7e76e06760d01027bfb96b0c5793782b5；task source tree 6ca01fba9892a350cbb24152054b5296dc7095f1。
-  固定plan.private SHA256 08ac4d511382e78efb1a1c66e5cd4c4b12c3a92712e632068d9c15fb2f9773d9。
-- 原两任务seed11 critic臂step1全部4+4原代码，重复slot保留，按任务/slot升序，各执行一次。
-  原SIF/300秒/6CPU/1GPU，84分钟分配加停止余量≤1.5GPUh；0生成API、0critic调用、0训练。
-- prepare、submit-intent、launch已存在；不要再次prepare/submit、不要改运行中的代码或补跑槽位。
-  代码冻结已绑定submit-intent；不能覆盖bin/opencl-vendors或已经复制的native文件。
-- 这是全池即时选择质量诊断，不是e2e、不含K≥1lookahead/多保真、不重跑旧13085。
-  原方案FORETS_CURRENT_POOL_PLAN_20260912.md；当前启动条件来自13118复验未确认收益，不按候选好坏选池。
-- 全部8槽和Slurm闭合后，调用根/forets_current_pool_20260912.py readout --root 同一根一次，
-  然后根/verify_forets_current_pool_20260912.py --root 同一根一次。当前两者尚未执行。
-  readout要求COMPLETED和完整8槽；基础设施失败则保留失败、解释原因，不重试。
-- 当前保留原始submission，未来数值校验按实际sklearn1.6.1/原task规则；4人工例一致不当真实任务结果。
-  6个继承绑定文件匹配父manifest，10Python解析/依赖导入及shell语法通过；不是重复GPU验收。
+## 刚完成的执行13120
+- 00:21:39 UTC观察COMPLETED/gpu28，8/8原程序、805秒单卡=0.22361111111111112GPUh。
+  根 /research/d7/spc/yzyang4/forets-current-pool-20260912-wnm9cxd0；stage forets-current-pool-stage-20260912-awArkuah。
+  controller0fd4d1a7e76e06760d01027bfb96b0c5793782b5，task source6ca01fba9892a350cbb24152054b5296dc7095f1。
+  plan SHA08ac4d511382e78efb1a1c66e5cd4c4b12c3a92712e632068d9c15fb2f9773d9。
+- 原seed11两个critic首池各4原代码全执行含重复；原SIF/6CPU/300秒/RTX3090，0生成/旧critic调用/训练。
+  Leaf0/4有效（2错2超时）；Spaceship1/4有效accuracy0.8069，原critic top2未保留它。
+- readout与独立原submission数值verifier已各一次成功，同物理GPU、原字节/数值一致。
+  不再prepare/submit/readout/verifier，不补失败槽。只读PTY78873已结束，GPU已释放。
 
-## 正在准备：Plus资源条件化通用裁判
-- FORETS_CONTEXT_JUDGE_PLAN_20260912.md，forets_context_judge_20260912.py；只2任务×正反序4请求，0GPU/训练/执行。
-- 代码/方案已人工审查并经8项人工测试，尚未prepare/激活/调用；不能说已取得排名。
-- 先封存请求，再调用，再运行13120收尾/数值verifier及连接；不读结果后改prompt、翻rank或挑顺序。
-- 费用从13118 paid.sqlite逐行结转，旧0.70未知保留，增量≤3USD、单请求预留2.60USD，原总≤10USD/100人民币不重置。
-- 后续须记新根、账本、实际调用与当前费用；prepare不花钱，run才封旧账/激活新账。禁止重复run或失败补问。
+## 通用裁判4调用已完成
+- 根 /research/d7/spc/yzyang4/forets-context-judge-20260912-42qtmhgi；stage forets-context-judge-stage-20260912-VcfwMAFN。
+  controller c62033a3eaf737ed195d9b6e2a7781954ea989c6，forets_context_judge_20260912.py。
+- 00:26:35请求固定，00:26:58–00:27:04四调用闭合，00:27:26才生成GPU主汇总；裁判未见执行值/原分/答案。
+  Plus/Alibaba、完整代码/任务/资源、温度0/top_p1/8192输出，正逆序、无截断/重试/fallback。PTY50160已结束。
+- Space两顺序都保留唯一有效程序：有限池random25%、旧critic0%、通用裁判各50%；Leaf均0。
+  两任务top2集合均不具顺序不变性；顺序不等于独立seed，强模型/信息两因素一起改变，更不是e2e收益。
+- 合并reader已成功一次，独立映射原响应一致。comparison SHA785df0a492c7b850996915f53132147cde5d12fe257d4a4e8152dc7b39c62f49。
+  数值回执SHAe25cf89b77e03d90e8beba26cd75646eace1a14d29ed1afbc1d82b239bd53404。
+  10公开文件secret scan0、SCP SHA全匹配；原代码/响应/排名/submission只留远端。
+- 当前API账为judge根/paid.sqlite，AUTH69e6d156ea7ec0f172edf3f46f432661c1da8ca0c1249301212ac59bac209fbe。
+  新4调用0.02417246USD；累计结算0.742593566、含旧0.70未知责任1.442593566USD。
+  185账行=181旧行+4新行，含历史聚合行，行数不是总实际API数。
+  13118旧账已stopped封存；后继只能从judge账逐行结转，原100人民币/10USD不重置、未知不释放。
+  该窗口已结束，禁止再run/失败补问。
 
-## 已闭合：13118 seed12 与 13115 seed11
-- 13118 COMPLETED/gpu28，3337秒双卡=1.853888888888889GPUh；4进程完成、3有效final、1可比成绩对。
-  Leaf：random无final，critic logloss0.37782；Spaceship：random0.80805、critic0.61839，差−18.96600pp。
-- 13115：2有效final，Leaf双方无final；Spaceship random0.74368、critic0.79655，差+5.28700pp。
-  其4564秒双卡=2.5355555555555553GPUh。正差值没有复现，不能宣称稳定收益/clean scaling。
-- seed11 Spaceship全池未实际改选；seed12 Leaf全池未实际改选。两处有利表象均不能归功于critic选择。
-  seed12实际slot及原字节/AST改选仅Spaceship step1/3；独立生成随机性仍存在，也不能将全部降幅归因于critic。
-- 不将缺失补零/称打平，不跨任务混合平均，不反转score或按结果选k。
-  两seed完整表/条件中位数/方差见FORETS_SEED12_CLOSEOUT_20260912.md与results/forets_repeat_20260912。
-- 13118原watch PTY34987 SSH断开；原PID3678839随后已退出。确认所有primary输出不存在后，
-  00:03:01只执行一次closeout；00:03:24独立final、00:03:30独立selection各一次，均已完成。
-  只读PTY11591已正常结束。不得重复收尾或再次运行这些只写一次的verifier。
-- 13118根 /research/d7/spc/yzyang4/forets-repeat-20260912-zuvnt3oa，
-  stage /research/d7/spc/yzyang4/forets-repeat-stage-20260912-qtUUmjQE。
-  controller aa4f13c2cc480f7ead84b1970b3511c5b6dd6a30；source35711518b3b7262bccd3bebfdd2b4a4b7c726715。
-  两版本源码只差paid_budget.py的授权结转，不是科学旋钮变化。
-- 13118本块64API/0.143920179USD；累计304API、0.718421106USD已结算，旧0.70未知保留，
-  累计责任1.418421106USD。13120不使用此API账本；后续API仍需逐行结转，不能另开100人民币/10USD总额。
-- 8份新导出远端credential scan 0、传输SHA全部匹配。初次本地检查误纳入目录中已有build/parent-seal两文件而中止，
-  后按明确8文件范围核对通过；两旧文件Git跟踪且未变，无实际hash漂移/覆盖。
-- 独立final SHA 8d7d97426828227bbdd5df758956f8245db74a8d962d9a6fd854012a7341bd9f；
-  selection SHA 82498f29b793e7ca43ee0d73bed4296112d3ae16265dfb9bea8692f26188d66a；
-  两seed汇总SHA 6d373c97fe91527b081b1b0308ed0c5c43a5876c946192c5ee7b7b5bb245beaa。
-- 13115根 /research/d7/spc/yzyang4/forets-review-20260912-csh5q4i8，旧收尾全部完成。
-  两e2e块原task删CSV，因此是所选节点/外部grade一致性，不是独立数值重评分。
-  代码capsule在phase1/releases/forets-review-20260912，含实际源及匹配LICENSE；不重新打包私有候选。
+## 正在推进（尚未提交/调用）
+- 新seed13真实e2e，Flash生成器保持，两原任务各random与资源条件化Plus裁判；不挑Space胜例。
+  计划双顺序Borda再top2、仍common-priority随机选1，仅用于未来新池，不在旧8代码上找最优规则。
+  尚需冻结具体矩阵/预算、写生产接入；不能称已经开跑或收益成立。
+- 已读真正父版13118根/code与seed11公开capsule。本地forets_block_runtime等有旧draft文本，不能直接部署旧本地副本。
+  当前ForeTS逐候选HTTP取分；新全池裁判应接在batch_runtime完整生成并freeze_pool后，不能假装旧接口已支持。
+- 设计新版本不加载8B服务，API裁判在worker内；1GPU/6CPU同硬件两臂，不伪造CUDA服务marker。
+  原launcher max_parallel1、每worker1GPU/6CPU、6step/300秒/3540秒、100API/8192输出。
+  新judge费用/时间计入共同预算。考虑前瞻双顺序Borda，不能用旧池重算漂亮结果。
+- forets_submission_archive_20260912.py被动留档已测试未部署，可在新版本两臂共同接入，让最终CSV可数值复核。
+- 保护集仍封闭，不更新agent底座，不恢复旧HCE/多保真/Probe/score-channel/K≥1lookahead/旧CPU期限筛查。
 
-## 学长上传与长期边界
-- 0910六包/115079888bytes已隔离到 /research/d7/spc/yzyang4/senior-quarantine-0910-20260912，
-  24配置、2commit、num_children=2/3；不是24新增有效run。未开journal/env/code/outcome、未正式摄取或训练。
-  61459c0a提交日期8月26日，上传日期不能当运行日期。
-  00:19:25 UTC两次新embedded接口与即时旧接口及前次清单均50项一致，额外0；未见0911/0912。
-  仍非全上传索引完成证明，0新归档下载/正文读取，实验环境未升级；root_crosscheck.json已保存。
-  见SENIOR_0910_INTAKE_STATUS_20260912.md；不要重下载/重写隔离输出。
-- 学长分支未改。最后head dojo-reproduce065b0fbaa89e0eb663f2834ec768081f5d56394d，
-  collect4029f62688b28f2bb979b5dc18a500cc6d669a79。LATEST最后759physical/733eligible、closure=false，未重新推进。
-- first-960/Target-300/522保持封闭；不恢复HCE/多保真/Probe/score-channel/K≥1lookahead，不更新agent底座。
-  13113、13088/13112、13004/13085、旧CPU期限筛查的失败保留；不再G0/12892/13076或免费路由窗口。
-- 只push myfork HEAD:phase1-value-critic；最近确认公开3bfa0af62fbfdda002e8a0fc3eb84c73b1d31bb2，seed12收尾已公开。
-  每次扫描staged内容及env/key/token/secret文件名；不全add用户untracked codex_tmp/output/tmp/旧报告。
-- repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5；venvs/aira CPU/控制，venvs/exp GPU/gdown。
-  网络/uac/y24/yzyang4/env_setup.sh；SLURM_CONF=/opt1/slurm/gpu-slurm.conf；gpu28不是projgpu28/39，原MLE镜像不投39。
-- 凭据仅远端aira-dojo/.env OPENROUTER_API_KEY→worker PRIMARY_KEY；不回显/本地/Git，不再索要。
-- g0-r5 PAUSED，无新automation；12535 JobHeldUser不碰，不索要gres.conf，不使用失修pool恢复或猜物理设备9。
-- 研究盘1TB、2026-09-29到期，续期未知。df显示共享盘32T可用不是个人quota；quota -s只列home，不能混为研究盘余额。
+## 旧真实结果（勿重跑/改写）
+- 13118 seed12：3/4final，Leaf random缺失/critic0.37782但无实际改选；Space0.80805→0.61839，−18.96600pp。
+  实际改选仅Space step1/3，独立生成随机性仍存在。
+- 13115 seed11：Leaf双方缺失；Space0.74368→0.79655，+5.28700pp但未实际改选。
+  无稳定/可归因critic收益或clean scaling；不补零、不重写final。旧数值CSV被原task删，只有外部分/选择一致性。
+- 13118根forets-repeat-20260912-zuvnt3oa，source35711518b3b7262bccd3bebfdd2b4a4b7c726715，
+  prepared963418d10d5645f7401a85da42d6fc3d5b2f7553e76cf44eecbeb342f17d44d5，
+  inventory67516a4d01ddb6093ad405da538add47fbe0f9e64016df1b9b35036d306b9545，
+  releasea64e8b24afc538a9446060cf847a5310288a3041ffa6a700b132949340b86bc0。
+  旧AUTH0b74ccfd16ae8e5f5bb3d255ee3d5200e133e6016b0ae6128a3c72504164795a已封，closeout/final/selection均已完成。
+- 13115根forets-review-20260912-csh5q4i8；公开code capsule保留真实source/许可证，不重新打包私有候选。
+
+## 上传与运行规则
+- 0910六包115079888bytes已隔离senior-quarantine-0910-20260912，24配置≠24新run，两个commit/children2及3不可混。
+  未读journal/env/code/outcome或正式摄取，不重下载。00:19:25新embedded两次与旧及之前列表50项一致、额外0，
+  未见0911/0912，不是全上传索引完成证明。metadata根senior-complete-root-20260912-m6u2vavt，无环境升级。
+- repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5；BASE /research/d7/spc/yzyang4。
+  venvs/aira控制CPU、venvs/exp GPU/gdown；source /uac/y24/yzyang4/env_setup.sh。
+  SLURM_CONF=/opt1/slurm/gpu-slurm.conf；MLE用gpu28/27，不是projgpu28/39；镜像不升级、不退CPU。
+- key只在远端aira-dojo/.env OPENROUTER_API_KEY→worker PRIMARY_KEY；不回显/本地/Git、不再索要。
+- 只push myfork HEAD:phase1-value-critic；最近成功c62033a3eaf737ed195d9b6e2a7781954ea989c6；结果报告待push。
+  staged文件名+内容扫描，不全add用户untracked codex_tmp/output/tmp/旧报告。
+- g0-r5 PAUSED，无新automation；12535 held不碰，不索要gres.conf或使用失修pool恢复。
+- 研究盘1TB/2026-09-29到期，续期未知；共享df不是个人quota。

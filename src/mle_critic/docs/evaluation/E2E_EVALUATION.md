@@ -50,7 +50,7 @@ PYTHONPATH=src/mle_critic srun \
   -o tmp/critic_%j.log \
   -e tmp/critic_%j.err \
   python -m src.evaluation.bradley_terry_server \
-  --checkpoint outputs/augmented_mle_critic/Qwen3-8B_reward_seed1/checkpoint-100 \
+  --checkpoint outputs/augmented_mle_critic/store/Qwen3-8B_reward_seed1/checkpoint-100 \
   --base-model Qwen/Qwen3-8B-Base \
   --host 127.0.0.1 \
   --port 8765 \
@@ -98,14 +98,14 @@ python -m dojo.main_runner_job_array \
   'solver/client@solver.operators.draft.llm.client=litellm_minimax-m3' \
   'solver/client@solver.operators.improve.llm.client=litellm_minimax-m3' \
   metadata.git_issue_id=us-patent-phrase-to-phrase-matching-4seeds \
-  solver.execution_timeout=7200 \
-  solver.time_limit_secs=86400 \
+  solver.execution_timeout=3600 \
+  solver.time_limit_secs=39600 \
   solver.num_children=8 \
   solver.critic_host=127.0.0.1 \
   solver.critic_port=8765 \
   solver.critic_max_attempts=5 \
-  solver.critic_top_k=4 \
-  solver.num_children_to_choose=2 \
+  solver.critic_top_k=1 \
+  solver.num_children_to_choose=1 \
   launcher=srun_pool \
   launcher.debug=false \
   launcher.max_parallel=5 \

@@ -31,6 +31,8 @@
   只是一份保留集合/费用描述，不是取消第二票的e2e收益；1个只做首票的未完成池费用也计入。
   见FORETS_RANK_COST_AUDIT_20260912.md；rank-cost-audit.json已远端一次生成，勿重复执行。
 - 12:49 UTC再fetch学长branch仍113e25e7，无更新部署/共享接入信息；没有改学长分支。
+- 一票/两票对照入口forets_rank_budget_variant_20260912.py已准备，5项测试含实际rank_pool模拟传输通过；未部署。
+  两票保持Borda，一票仅去反序调用；共同加真实排名计时。不是新颖性/效果结论，不修改13165或旧source。
 
 ## 本轮真实结果
 

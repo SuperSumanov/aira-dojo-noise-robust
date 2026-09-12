@@ -28,6 +28,12 @@ class EffectsTests(unittest.TestCase):
         with self.assertRaises(ValueError):effects(self.rows()[:-1])
         rows=self.rows();rows[-1]=copy.deepcopy(rows[0])
         with self.assertRaises(ValueError):effects(rows)
+    def test_explicit_successor_seed_pair(self):
+        rows=self.rows()
+        for r in rows:r['seed']+=2
+        self.assertEqual(len(effects(rows,seeds=(24,25))['pairs']),4)
+        with self.assertRaises(ValueError):effects(rows)
+        with self.assertRaises(ValueError):effects(rows,seeds=(24,24))
 
 
 if __name__=='__main__':unittest.main()

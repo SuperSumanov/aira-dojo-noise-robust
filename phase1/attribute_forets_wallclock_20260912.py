@@ -14,6 +14,7 @@ import re
 import sqlite3
 
 ROOT = Path('/research/d7/spc/yzyang4/forets-wallclock-20260912-0t4odqpn')
+ROOTS = (ROOT, Path('/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og'))
 UNIT = 10**9
 
 
@@ -113,15 +114,18 @@ def read(path, root):
 
 def analyze(root):
     root = root.resolve(strict=True)
-    if root != ROOT:
+    if root not in ROOTS:
         raise ValueError('only the fixed new development experiment')
     finish = read(root/'closeout-finished.json', root)
-    if finish['status'] != 'verified' or finish['job'] != '13152':
+    launch = read(root/'launch.json', root)
+    if finish['status'] != 'verified' or finish['job'] != launch['job']:
         raise ValueError('wait for successful independent whole-allocation readout')
     summary_raw = contained(root/'wallclock-summary.json', root).read_bytes()
     if sha(summary_raw) != finish['summary_sha256']:
         raise ValueError('closed summary hash changed')
     summary = json.loads(summary_raw)
+    if summary['job'] != finish['job']:
+        raise ValueError('summary allocation binding')
     if len(summary['rows']) != 8 or len({r['run_id'] for r in summary['rows']}) != 8:
         raise ValueError('all eight planned slots required')
     rows = []
@@ -153,7 +157,7 @@ def analyze(root):
                 raise ValueError('random control contains critic billing')
             rows.append(dict(run_id=rid, task=original['task'], seed=original['seed'], arm=original['arm'],
                              worker_elapsed_seconds=elapsed, timing=partition, fees=fees))
-    return dict(job='13152', summary_sha256=finish['summary_sha256'], rows=rows,
+    return dict(job=finish['job'], summary_sha256=finish['summary_sha256'], rows=rows,
                 role='posthoc_mechanism_description_not_new_effect_test',
                 reader_sha256=sha(Path(__file__).read_bytes()),
                 limitation='Task-call time includes fetching/grading/startup, not pure kernel compute. Remainder includes initialization, generation, ranking, analysis and other work; an unfinished task is explicitly included when present. Ranking latency is unmeasured. No time-saving causal attribution or outcome-based selection.')

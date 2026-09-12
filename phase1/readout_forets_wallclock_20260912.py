@@ -27,8 +27,10 @@ def read(path):
     return json.loads(path.read_bytes())
 
 
-def effects(rows):
-    expected={(t,s,a) for t in TASKS for s in (22,23) for a in ARMS}
+def effects(rows, seeds=(22,23)):
+    if tuple(seeds) not in ((22,23),(24,25)):
+        raise ValueError('explicit frozen seed pair required')
+    expected={(t,s,a) for t in TASKS for s in seeds for a in ARMS}
     if len(rows)!=8 or {(r['task'],r['seed'],r['arm']) for r in rows}!=expected:
         raise ValueError('all eight unique planned rows required')
     for r in rows:
@@ -37,7 +39,7 @@ def effects(rows):
         elif r['score'] is not None:raise ValueError('invalid missing imputation')
     pairs=[];groups=[]
     for task in TASKS:
-        for seed in (22,23):
+        for seed in seeds:
             a,b=[next(r for r in rows if (r['task'],r['seed'],r['arm'])==(task,seed,arm)) for arm in ARMS]
             comparable=a['valid'] and b['valid']
             gain=((a['score']-b['score']) if task==TASKS[0] else (b['score']-a['score'])) if comparable else None
@@ -59,7 +61,7 @@ def effects(rows):
     return dict(pairs=pairs,groups=groups,gain_summary=gains)
 
 
-def verify(root):
+def verify(root, seeds=(22,23)):
     root=root.resolve(strict=True)
     if root.parent!=Path('/research/d7/spc/yzyang4') or not root.name.startswith('forets-wallclock-20260912-'):
         raise ValueError('explicit new development package only')
@@ -162,9 +164,9 @@ def verify(root):
                 report_sha256=receipt['report_sha256'],durable_cutoff_selected=True))
         rows.append(row)
     if len(uuids)>1:raise ValueError('physical GPU differed within allocation')
-    result=effects(rows)
+    result=effects(rows,seeds=seeds)
     result.update(source_tree=build['source_tree'],controller_commit=build['commit'],job=launch['job'],
-        role='wallclock_development_e2e_not_confirmatory',all_planned_slots_reported=True,rows=rows,proofs=proofs,
+        role='wallclock_development_e2e_not_confirmatory',seeds=list(seeds),all_planned_slots_reported=True,rows=rows,proofs=proofs,
         independent_numeric_regrades=len(proofs),allocation_seconds=int(allocation[3]),allocation_gpu_hours=int(allocation[3])/3600,
         billing={k:v for k,v in billing.items() if k!='scopes'},same_physical_gpu=len(uuids)==1,
         complete_technical_matrix=all(r['technical_eligible'] for r in rows),
@@ -178,4 +180,6 @@ def verify(root):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('root',type=Path);args=parser.parse_args();verify(args.root)
+    parser=argparse.ArgumentParser();parser.add_argument('root',type=Path)
+    parser.add_argument('--seeds',type=int,nargs=2,default=(22,23));args=parser.parse_args()
+    verify(args.root,seeds=tuple(args.seeds))

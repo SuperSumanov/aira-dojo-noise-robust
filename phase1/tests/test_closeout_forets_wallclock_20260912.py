@@ -42,6 +42,16 @@ class CloseoutTests(unittest.TestCase):
               patch.object(target.subprocess,'run') as run):
             target.run(self.root);run.assert_not_called();self.assertEqual(query.call_count,1)
         self.assertFalse(self.finish()['readout_called'])
+    def test_explicit_successor_seeds_reach_reader(self):
+        path=self.root/'closeout-intent.json'
+        intent=json.loads(path.read_text());intent['seeds']=[24,25];path.write_text(json.dumps(intent))
+        def reader(command,**kwargs):
+            self.assertEqual(command[-3:],['--seeds','24','25'])
+            (self.root/'wallclock-summary.json').write_text('{}');(self.root/'wallclock-runs.csv').write_text('header\n')
+            return SimpleNamespace(returncode=0,stdout='',stderr='')
+        with patch.object(target.subprocess,'check_output',return_value='13152|COMPLETED|gpu28|7'),patch.object(target.subprocess,'run',side_effect=reader):
+            target.run(self.root,seeds=(24,25))
+        self.assertEqual(self.finish()['status'],'verified')
 
 
 if __name__=='__main__':unittest.main()

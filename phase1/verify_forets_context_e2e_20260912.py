@@ -54,6 +54,35 @@ def independent_borda(ranks,n):
     return [(2*n-ranks[0].index(i)-ranks[1].index(i))/2 for i in range(n)]
 
 
+def complete_pair_outcomes(rows):
+    """Keep availability separate from conditional score; never impute missing."""
+    grouped={}
+    for row in rows:
+        key=(row['task'],row['seed']);arms=grouped.setdefault(key,{})
+        if row['arm'] not in ('uniform_random','critic_topk_random') or row['arm'] in arms:
+            raise ValueError('duplicate/unplanned pair arm')
+        if row['comparable_final']:
+            score=row['official_final_score']
+            if type(score) not in (int,float) or not math.isfinite(score):raise ValueError('valid final needs a finite score')
+        elif row['official_final_score'] is not None:raise ValueError('missing final cannot carry a score')
+        arms[row['arm']]=row
+    pairs=[]
+    for (task,seed),arms in sorted(grouped.items()):
+        if set(arms)!={'uniform_random','critic_topk_random'}:raise ValueError('missing planned arm')
+        random=arms['uniform_random'];critic=arms['critic_topk_random'];delta=None;outcome=None
+        if random['comparable_final'] and critic['comparable_final']:
+            availability='both_valid'
+            r=Decimal(str(random['official_final_score']));c=Decimal(str(critic['official_final_score']))
+            delta=(r-c) if task=='leaf-classification' else (c-r)
+            outcome='critic_better' if delta>0 else 'random_better' if delta<0 else 'equal_valid_score'
+        elif critic['comparable_final']:availability='critic_only_valid'
+        elif random['comparable_final']:availability='random_only_valid'
+        else:availability='both_missing_not_a_score_tie'
+        pairs.append(dict(task=task,seed=seed,availability=availability,
+            conditional_score_outcome=outcome,conditional_benefit_delta=str(delta) if delta is not None else None))
+    return pairs
+
+
 def main():
     if not (ROOT/'diagnostics.json').is_file():raise ValueError('whole-block closeout not available')
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
@@ -176,7 +205,7 @@ def main():
                 **code_contrast([c['node']['code'] for c in candidates],selected[0],uniform[0])))
             if hashlib.sha256(path.read_bytes()).hexdigest()!=before:raise ValueError('ledger changed during verification')
     report=dict(utc=datetime.now(timezone.utc).isoformat(),job=JOB,source_tree=TREE,seed=13,
-        verification='passed',numerical_final_regrades=len(numeric),rows=rows,pools=pools,
+        verification='passed',numerical_final_regrades=len(numeric),rows=rows,pools=pools,pairs=complete_pair_outcomes(rows),
         valid_finals=sum(r['comparable_final'] for r in rows),
         cumulative_settled_usd=str(Decimal(sum(c[3] or 0 for c in calls))/10**9),
         cumulative_accounted_usd=str(Decimal(sum(c[2] for c in calls))/10**9),

@@ -1,0 +1,8 @@
+{
+  "utc": "2026-09-12T01:17:52.483370+00:00",
+  "job": "13123",
+  "observed": "13123|yzyang4|forets-context-s13|RUNNING",
+  "reason": "infrastructure mismatch: skip_redundant_critic false with rank_pool rejecting widths 1/2",
+  "outcomes_read": false,
+  "action": "cancel whole block; no slot retry or in-place patch"
+}

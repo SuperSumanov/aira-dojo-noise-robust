@@ -1,0 +1,51 @@
+{
+  "utc": "2026-09-12T01:20:02.546322+00:00",
+  "job": "13123",
+  "state": "CANCELLED by 7542",
+  "node": "gpu28",
+  "elapsed_seconds": 1494,
+  "allocation_gpu_hours": 0.415,
+  "reason": "contextual_rank rejects width1 while actual skip_redundant_critic=false",
+  "effect_comparison_valid": false,
+  "outcomes_read": false,
+  "runs": [
+    {
+      "run_id": "00-leaf-classification-s13-critic_topk_random",
+      "status": "failed",
+      "attempt": 1,
+      "skip_redundant_critic": false
+    },
+    {
+      "run_id": "01-leaf-classification-s13-uniform_random",
+      "status": "cancelled",
+      "attempt": 1,
+      "skip_redundant_critic": false
+    },
+    {
+      "run_id": "02-spaceship-titanic-s13-uniform_random",
+      "status": "pending",
+      "attempt": 0,
+      "skip_redundant_critic": false
+    },
+    {
+      "run_id": "03-spaceship-titanic-s13-critic_topk_random",
+      "status": "pending",
+      "attempt": 0,
+      "skip_redundant_critic": false
+    }
+  ],
+  "billing": {
+    "rows": 214,
+    "settled_nano": 814760245,
+    "accounted_nano": 2214760245,
+    "unresolved": 2,
+    "auth": [
+      [
+        "f38b37f695e122d8f5df7a26fe781b80952708d8701dec22ab9dbca17ad70613",
+        0
+      ]
+    ]
+  },
+  "scope": "infrastructure closure only, no final scores or program content",
+  "required_repair": "new package with explicit true bypass in both configs and consistent validator; no old slot replay"
+}

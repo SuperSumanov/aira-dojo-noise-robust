@@ -28,18 +28,22 @@ def test_actual_single_gpu_controllers_only_seed_changes():
             with pytest.raises(ValueError):derive(name,changed)
         for name in ('forets_block_runtime_20260911.py','forets_block_collect_20260911.py'):
             text=t.extractfile('code/'+name).read().decode();assert derive(name,text)==text
+        text=t.extractfile('code/forets_e2e_package.py').read().decode()
+        changed=derive('forets_e2e_package.py',text);ast.parse(changed)
+        assert 'or not config.solver.skip_redundant_critic:' in changed
+        with pytest.raises(ValueError):derive('forets_e2e_package.py',changed)
 
 
 def test_carryover_preserves_all_live_reservation_and_model_logic():
     with tarfile.open(CAPSULE) as t:source=t.extractfile('code/forets_paid_budget_20260911.py').read().decode()
-    facts=dict(accounted=1900000000,settled=1200000000,calls=260,unknown=1,authorization=AUTH,seed=14)
+    facts=dict(accounted=2214760245,settled=814760245,calls=214,unknown=2,authorization=AUTH,seed=14)
     changed,auth=patch_budget(source,'qwen/qwen3-coder-flash',**facts)
     original={};new={};exec(compile(source,'<original>','exec'),original);exec(compile(changed,'<repeat>','exec'),new)
-    assert new['AUTH']['total']==5400000000
+    assert new['AUTH']['total']==5714760245
     assert new['AUTH']['judge_reservation']==2600000000
     assert new['AUTH']['logical_request_cap']==100
     assert new['AUTH']['run_limit']==4000000000
     assert (original['MODEL'],original['RESERVE'],original['PROVIDER'])==(new['MODEL'],new['RESERVE'],new['PROVIDER'])
     assert source.split('def reserve(',1)[1]==changed.split('def reserve(',1)[1]
-    for bad in (dict(facts,unknown=2),dict(facts,accounted=9800000000),dict(facts,seed=15)):
+    for bad in (dict(facts,unknown=3),dict(facts,accounted=9800000000),dict(facts,seed=15)):
         with pytest.raises(ValueError):patch_budget(source,'qwen/qwen3-coder-flash',**bad)

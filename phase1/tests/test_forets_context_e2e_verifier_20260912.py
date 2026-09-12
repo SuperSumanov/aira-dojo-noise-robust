@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from verify_forets_context_e2e_20260912 import independent_borda,independent_rank,match_archive,parsed_report
+from verify_forets_context_e2e_20260912 import independent_borda,independent_rank,match_archive,parsed_report,complete_pair_outcomes
 from forets_contextual_rank_20260912 import borda
 
 
@@ -34,3 +34,18 @@ def test_response_reverse_mapping_and_incomplete_rejection():
     for rank in ([True,1,2],[0,0,2],[0,1],['0',1,2]):
         bad=copy.deepcopy(raw);bad['choices'][0]['message']['content']=json.dumps({'ranking':rank})
         with pytest.raises(ValueError):independent_rank(bad,[2,1,0])
+
+
+def test_all_planned_pairs_keep_missingness_outside_score_arithmetic():
+    def row(arm,score,task='leaf-classification'):
+        return dict(task=task,seed=13,arm=arm,comparable_final=score is not None,official_final_score=score)
+    a='uniform_random';b='critic_topk_random'
+    for left,right,availability in [(None,None,'both_missing_not_a_score_tie'),(0,None,'random_only_valid'),(None,0,'critic_only_valid')]:
+        pair=complete_pair_outcomes([row(a,left),row(b,right)])[0]
+        assert pair['availability']==availability and pair['conditional_benefit_delta'] is None
+    pair=complete_pair_outcomes([row(a,.4),row(b,.3)])[0]
+    assert pair['conditional_benefit_delta']=='0.1' and pair['conditional_score_outcome']=='critic_better'
+    pair=complete_pair_outcomes([row(a,.4,'spaceship-titanic'),row(b,.3,'spaceship-titanic')])[0]
+    assert pair['conditional_benefit_delta']=='-0.1' and pair['conditional_score_outcome']=='random_better'
+    with pytest.raises(ValueError):complete_pair_outcomes([row(a,1)])
+    with pytest.raises(ValueError):complete_pair_outcomes([row(a,1),row(a,1),row(b,2)])

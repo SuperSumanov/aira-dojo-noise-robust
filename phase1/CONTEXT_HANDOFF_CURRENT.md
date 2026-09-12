@@ -1,7 +1,25 @@
-# 当前交接：资源条件化裁判新seed13已开跑13123
+# 当前交接：13123小池配置不一致，已申请整组停止，待修复新seed
 
 2026-09-12香港。恢复：fetch→CURRENT_DIRECTION最新0L169→本文件→现场。
 用户要求持续会话实质工作，不增自动任务；准备/测试不冒充效果，学长分支不改。
+
+## 最新裁决（优先于下文运行历史）
+- 01:14:41 UTC Leaf critic失败，随机臂开始。01:17只读异常栈+结构核验定位：contextual_rank.py:54拒绝n=1。
+  真实四run配置继承skip_redundant_critic=false，不是早先方案所称已启用；batch1宽4、batch3宽3完成，batch5宽1进入打分报错。
+  属我方接入缺陷，不是critic效果负结果；之前typed/import检查未核对这个语义开关，撤回“预检已覆盖小池”的含义。
+- 01:17:52 UTC对精确13123/yzyang4/forets-context-s13执行整组scancel。cancellation-intent.json保存原因；未读最终成绩。
+  需确认Slurm完全终态/所有请求结算或未知保留后再封旧账。不得重投13123或在原包改动，不补失败槽。
+- 01:20:02 UTC结构收尾确认CANCELLED/1494秒单卡=0.415GPUh；214账行、结算0.814760245USD、责任2.214760245USD、未知2（旧0.70+取消中0.70）。
+  cancellation-closeout.json SHA82cc005902f4926f4c48e1eccf5da60e2d56fa8baedaeded000f5a0d1eef0ae4；未做成绩closeout/verifier，PTY86012已结束。
+- 原FORETS_CONTEXT_REPLICATION_GATE_20260912.md技术门未通过，不能据此称seed14是同版本复验。
+  推荐新修复批次：两臂真实配置显式skip_redundant_critic=true，同时更新旧package validator对应约束；保留原top2/common-priority规则。
+  先对真实配置×两臂×1/2/3/4全部宽度做接线测试，再新seed14完整4run；不改Borda平分、不混入人工排序新想法。
+  当前forets_context_repeat_20260912.py仅旧同版本后继准备，不能直接facts/build/activate使用，需明确改成修复方案。
+  先更新方向与修复计划，承认13123是基础设施失败，旧数据不做收益证据。
+- 新修复stage /research/d7/spc/yzyang4/forets-smallpool-repair-stage-20260912-wNS7Kw；本地artifact codex_tmp/forets-smallpool-s14-artifact-20260912。
+  forets_context_repeat已改成取消后修复gate：214行/未知2完整保留、总上限5.714760245USD；两臂true与validator要求true。
+  真实旧batch/config的16人工派发案例复现12通过/4小池拒绝（无API/GPU/执行）；新包必须16/16且旧flag负对照4拒绝。
+  下一步commit→artifact→新stage build→真实新config/全宽度派发+inspect→activate旧账封存→路由/catalog→新seed14单次提交。
 
 ## 刚完成的执行13120
 - 00:21:39 UTC观察COMPLETED/gpu28，8/8原程序、805秒单卡=0.22361111111111112GPUh。

@@ -1,0 +1,332 @@
+{
+  "root": "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4",
+  "commit": "7b706ab1c69469b4c6c31bdd52161c441466476c",
+  "utc": "2026-09-12T12:33:46.341897+00:00",
+  "parent_summary_sha256": "a127831408688b545e3d666b790fe1f75b65e82f9324d21c8c4cfc0243d39e90",
+  "source_tree": "e07cb8c61bca347c61bb8253c84eda826b1add6a",
+  "rows": [
+    {
+      "index": 0,
+      "parent_run_id": "01-leaf-classification-s24-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 24,
+      "parent_slot": 0,
+      "code_sha256": "eb2acd44f3e1368888335a7ef78eabcc9bf1c5d6229381493afc5d3cfc013b8f"
+    },
+    {
+      "index": 1,
+      "parent_run_id": "01-leaf-classification-s24-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 24,
+      "parent_slot": 2,
+      "code_sha256": "3abfc54f3e2e522b5c8f8998c43a90c13323e60d7e3f7927edbe28b095b27214"
+    },
+    {
+      "index": 2,
+      "parent_run_id": "01-leaf-classification-s24-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 24,
+      "parent_slot": 3,
+      "code_sha256": "23fe3c4e343becc25a5958a350f9bc5cd2b982a28554b98108275cbd698a55d4"
+    },
+    {
+      "index": 3,
+      "parent_run_id": "02-spaceship-titanic-s24-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 24,
+      "parent_slot": 1,
+      "code_sha256": "42fb34da6034ff9014cf0b782d9044766964a72cbe863402ac378e9d8ea374a7"
+    },
+    {
+      "index": 4,
+      "parent_run_id": "02-spaceship-titanic-s24-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 24,
+      "parent_slot": 2,
+      "code_sha256": "bbe3dafc28ca46b15abd8c7098856f7157a72368137c52ec816c63d5ea7a8838"
+    },
+    {
+      "index": 5,
+      "parent_run_id": "02-spaceship-titanic-s24-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 24,
+      "parent_slot": 3,
+      "code_sha256": "fb46ccc8bb8200e711070d4dfba50cd9158fabd80e7189bed4f635ab184c7cc6"
+    },
+    {
+      "index": 6,
+      "parent_run_id": "04-leaf-classification-s25-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 25,
+      "parent_slot": 0,
+      "code_sha256": "e21acf8e751b7bd2baf9448fa1c9bc03a6e9d29794699a3a15eed417d946e118"
+    },
+    {
+      "index": 7,
+      "parent_run_id": "04-leaf-classification-s25-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 25,
+      "parent_slot": 1,
+      "code_sha256": "8b4a15de2ebaf698eaa851b927853431f1d96acf997c33c20b44ca2763bc6094"
+    },
+    {
+      "index": 8,
+      "parent_run_id": "04-leaf-classification-s25-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 25,
+      "parent_slot": 3,
+      "code_sha256": "91edc73b3265af7aa33792180442f95b3f0c6ae82b2d88f3756eeaf0bc95d64c"
+    },
+    {
+      "index": 9,
+      "parent_run_id": "07-spaceship-titanic-s25-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 25,
+      "parent_slot": 0,
+      "code_sha256": "1d1d57b0aa7bb249848fd9f87681d3deee50e7d56c7bb09f919f107d57d3f134"
+    },
+    {
+      "index": 10,
+      "parent_run_id": "07-spaceship-titanic-s25-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 25,
+      "parent_slot": 1,
+      "code_sha256": "f337b04b33175cedb853912bc79a4f82cee0f9d3666c98394d683d45bfa4084e"
+    },
+    {
+      "index": 11,
+      "parent_run_id": "07-spaceship-titanic-s25-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 25,
+      "parent_slot": 3,
+      "code_sha256": "9dbc87511837e630bcb068c65b160b271573fb3a2bc3c1af60e834f5c33485cb"
+    }
+  ],
+  "pools": [
+    {
+      "parent_run_id": "01-leaf-classification-s24-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 24,
+      "code_sha256": [
+        "eb2acd44f3e1368888335a7ef78eabcc9bf1c5d6229381493afc5d3cfc013b8f",
+        "e06d2107f361e76e40edbb09e349c3a02a83475a5e2c01981960f1e5e50c2148",
+        "3abfc54f3e2e522b5c8f8998c43a90c13323e60d7e3f7927edbe28b095b27214",
+        "23fe3c4e343becc25a5958a350f9bc5cd2b982a28554b98108275cbd698a55d4"
+      ],
+      "previously_attempted_slots": [
+        1
+      ],
+      "rankings": [
+        [
+          1,
+          3,
+          0,
+          2
+        ],
+        [
+          1,
+          3,
+          0,
+          2
+        ]
+      ],
+      "borda": [
+        2.0,
+        4.0,
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "parent_run_id": "02-spaceship-titanic-s24-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 24,
+      "code_sha256": [
+        "baeb71ca77e118b0fd36ae6fc23888f7fd54046df22c289b579453c237003ca5",
+        "42fb34da6034ff9014cf0b782d9044766964a72cbe863402ac378e9d8ea374a7",
+        "bbe3dafc28ca46b15abd8c7098856f7157a72368137c52ec816c63d5ea7a8838",
+        "fb46ccc8bb8200e711070d4dfba50cd9158fabd80e7189bed4f635ab184c7cc6"
+      ],
+      "previously_attempted_slots": [
+        0
+      ],
+      "rankings": [
+        [
+          2,
+          0,
+          3,
+          1
+        ],
+        [
+          2,
+          3,
+          0,
+          1
+        ]
+      ],
+      "borda": [
+        2.5,
+        1.0,
+        4.0,
+        2.5
+      ]
+    },
+    {
+      "parent_run_id": "04-leaf-classification-s25-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 25,
+      "code_sha256": [
+        "e21acf8e751b7bd2baf9448fa1c9bc03a6e9d29794699a3a15eed417d946e118",
+        "8b4a15de2ebaf698eaa851b927853431f1d96acf997c33c20b44ca2763bc6094",
+        "b05bade3304d325c2fa023057800ac09ef36819719423aea2cfe5480714284bf",
+        "91edc73b3265af7aa33792180442f95b3f0c6ae82b2d88f3756eeaf0bc95d64c"
+      ],
+      "previously_attempted_slots": [
+        2
+      ],
+      "rankings": [
+        [
+          2,
+          3,
+          1,
+          0
+        ],
+        [
+          2,
+          3,
+          1,
+          0
+        ]
+      ],
+      "borda": [
+        1.0,
+        2.0,
+        4.0,
+        3.0
+      ]
+    },
+    {
+      "parent_run_id": "07-spaceship-titanic-s25-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 25,
+      "code_sha256": [
+        "1d1d57b0aa7bb249848fd9f87681d3deee50e7d56c7bb09f919f107d57d3f134",
+        "f337b04b33175cedb853912bc79a4f82cee0f9d3666c98394d683d45bfa4084e",
+        "b9bc6508618d87cbfc6366b0b4a4cfde87357ecf64e33777c7ea8010e22b2c1c",
+        "9dbc87511837e630bcb068c65b160b271573fb3a2bc3c1af60e834f5c33485cb"
+      ],
+      "previously_attempted_slots": [
+        2
+      ],
+      "rankings": [
+        [
+          2,
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          3,
+          1
+        ]
+      ],
+      "borda": [
+        3.5,
+        1.5,
+        3.5,
+        1.5
+      ]
+    }
+  ],
+  "parent_evidence": {
+    "runs/00-leaf-classification-s24-uniform_random/checkpoint/forets-candidates-private/batch-1.sqlite": "9b573aa5cdc4c28b6438375d944f9dffacae25edb06cbb1cc76106c6bba3a77a",
+    "runs/00-leaf-classification-s24-uniform_random/checkpoint/forets-candidates-private/batch-3.sqlite": "794627131301c493d9fd3e57d3bd5f1708c5a5e47751c0faeabd245e944cd3b2",
+    "runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-candidates-private/batch-1.sqlite": "72abc532ba60aa8f96b79800bcc95677e90942f9be1ef53fe220cd4664e30733",
+    "runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-candidates-private/batch-3.sqlite": "8671adefd5804769006f8451acd6693341c9136694a8bafb91052ee5deca8efb",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-candidates-private/batch-1.sqlite": "4df01137bdd37b651e443f2bdb61f08b839db97afc227d0a212f7fdf93dcaa35",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-candidates-private/batch-2.sqlite": "ca6d92fbf91f88a507f1c87195905b69ceb3f19764be344cdd084da6c75e53ba",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-candidates-private/batch-3.sqlite": "237e8a4d917ed9a050f1324b639b292f2fb08d4a01cfcc6b68c50c0a6a1122e4",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-candidates-private/batch-5.sqlite": "f492b4e576f602971f5c973ad686103ad4806713fa327a9ea19fe91c5f5146c3",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-candidates-private/batch-7.sqlite": "74b256273e4d5f2062e0748f2f8d0fefc899fec4fe2a32f43ed049f78924cabc",
+    "runs/03-spaceship-titanic-s24-uniform_random/checkpoint/forets-candidates-private/batch-1.sqlite": "7abc7cf06854ab2957c8d75cca4a98be871717dfef2d3067935e9ca045006a6f",
+    "runs/03-spaceship-titanic-s24-uniform_random/checkpoint/forets-candidates-private/batch-3.sqlite": "ed85116cc99ef5320e37d3d54100c155014f61cb19e6b5cc9946e35224bb328a",
+    "runs/03-spaceship-titanic-s24-uniform_random/checkpoint/forets-candidates-private/batch-4.sqlite": "a6307b698d1e26eed04487c93f894e2eeaf89efc398054b490b51b061d12a348",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-candidates-private/batch-1.sqlite": "231b9395c8a959c677c5edcdd8d716089965509f42a4556ce777426da9c745b8",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-candidates-private/batch-2.sqlite": "4c48418f9f25063314914f0084bbacbe1576bfc6d0a8d61d0c87deb2db4c1427",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-candidates-private/batch-4.sqlite": "297e08365d6b8c77884cca92da1b9275e02f42458048fc66a6caa45414a1c636",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-candidates-private/batch-6.sqlite": "f005df8e88c4fcb9b690995f9e99687175dec330831a6638eb470e7606070498",
+    "runs/05-leaf-classification-s25-uniform_random/checkpoint/forets-candidates-private/batch-1.sqlite": "5db84b627b9b6b4143a25f6d88876378440ff4b3de586aa113853d5846d3ba66",
+    "runs/06-spaceship-titanic-s25-uniform_random/checkpoint/forets-candidates-private/batch-1.sqlite": "22e93ea0180aeae8793878697adb150ef329ab0e1c11d01132a1aef826ebdf3a",
+    "runs/06-spaceship-titanic-s25-uniform_random/checkpoint/forets-candidates-private/batch-3.sqlite": "768c8f8a3f6e644b3300fb07f9a99ae933e7addcb00e4a0b53097a5381198b2a",
+    "runs/06-spaceship-titanic-s25-uniform_random/checkpoint/forets-candidates-private/batch-5.sqlite": "46ae89b964902c2d80290abe8ede0df6d7fc48c79e6cf98b32efe50700980c36",
+    "runs/06-spaceship-titanic-s25-uniform_random/checkpoint/forets-candidates-private/batch-7.sqlite": "6c8ddc865bb2735bde631d2da1c05013fb7482bd76137259a1716e152fc4da2b",
+    "runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-candidates-private/batch-1.sqlite": "c1a29ef03acf8e716a75b0e165ce0519a844d641dbdc2c7cd8295bf14d8a0568",
+    "runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/input.json": "cd5647eb7b5b2c30aaa30046df64de4fab0576eee615b901ec34d9023050b92f",
+    "runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/finished.json": "2eaeb13e6e09bd17ebfc81ae8aa5e4dd42607badb7769961d9b3445b29b15dfb",
+    "runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-0.json": "74795ff535ba24a9ea38738e8c2165c38ae27d73d0503823595e5e8565dc9839",
+    "runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-1.json": "16b87a7bd021d385899e79619ecf992e57a049db45572185ffc658f332aa8ccf",
+    "runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/response-0.json": "178efa8863c710c97af108ed40bdfacb0bfdc2965f0a273df08c5883da0b4b86",
+    "runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/response-1.json": "8ff6b71b6624b086822192dbaf2b1f475e3c2418eb241f1cb3e37868bf0f7c46",
+    "runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-0.json": "72ebe9d4ea99fd004099ab64a2298a0cff5ad72060eb38459300e25ee3b4d46b",
+    "runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-1.json": "4edd9a778bf36a3cc2331346e4fbe1d10dae3f272fd5fb3fda4c2f21365effd3",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/input.json": "29f92777a01741224399d2f57ac73a672fedc2d0ec0fb8a2ccbac04ba38d76af",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/finished.json": "00105f399081949b35f0b4d4b8882a6fb95aac3c18f4fd373318411ffc154b34",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-0.json": "dad5050c497d0a3561efd17ec47345cc0299779a912e9b7b7c1b7293af1af013",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-1.json": "7824f488940346c0f80cf28801167564e6120cbf43069186e2eab73e08382fc6",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/response-0.json": "2878524edd27494504ae91de08379c13cfd7960e997e846bc3d0d225bee778e2",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/response-1.json": "4b394051718abdd23ba9083c5c74b3360c18e8a97b4a9e8fcbc94e62c5346ba4",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-0.json": "396e27f7b8797b949d22d8f9d5e1768bc73d86680a41d1c4acb93e2fbbbe1e2c",
+    "runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-1.json": "51a310077ce406faf70eba296d7bcadfe76ced9f0fc6e67449552fa48ed2cf4d",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/input.json": "f7bcef54b10417a20ae98de4e51a49ee7005fa94c6afacdc1f4dd37355e9e655",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/finished.json": "a410ccc205c13e14104dd7e6a4ef6aba7b1ceab9a03f47cd04b47b9ee7c14811",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-0.json": "f9459a0dbc8f0fdee37c386a6fb5403cf71934435d74ed1912f78515970500a5",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-1.json": "ec720ab9e577adce5ea05f948fa8793d73cea8a78f9cf1255d735d5ea843d867",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/response-0.json": "822f81835ae6fc2b1dbbb74ffd74054689d69f866c95f8965d0b5a7442a4306f",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/response-1.json": "ea891072b5c4f3069f2214ba9ab3fcd068100dc9a5dab50a531200c4d6f1dabf",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-0.json": "dac63fe9ac04e754bfd78a7b94432c0fd53561742b23acfe1992b598b06edf0f",
+    "runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-1.json": "8458587988bfd081e647ebc13ce07978b79b642eaa773870fb7d2ba7b4488d39",
+    "runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/input.json": "91791812261d069d3977d88960266529a3a91328b4b636617114df9e751642b3",
+    "runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/finished.json": "5f326ef3b6d50102938fba934d5854bb42f0910a7c4064f6a655f0ec06f2292a",
+    "runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-0.json": "1da2034507c4d6c54251273d2e71724d40eb61b4bc434f99185ddfbc30f3344f",
+    "runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-1.json": "ec1d8ee3aab5b157ae685933865691330e720a33cbad990efb749fefdb1632e4",
+    "runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/response-0.json": "b2ed18f84016da49a0573e87b6aeedc1cb116759874775d5d5505350f1b722ee",
+    "runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/response-1.json": "40c3ec4a8ba96e04b931976ac02380e1ae5515f2adb2df7fb78776cec7a3a105",
+    "runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-0.json": "573150d7a082debab174aab1bb87649629e26d496520e75c5ff7d682ab374717",
+    "runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-1.json": "75504695513eff6e0e41bfc6e65f175c99bf2503171e65e1e84350a9c702bf70"
+  },
+  "files": {
+    "forets_closed_pool_native_20260911.py": "2afb152cfcc7f1c76ca9a99aeee43d81bc684f6639509ee654231e22d24ae6a6",
+    "forets_current_pool_native_20260912.py": "64e45fee135d023fa802ba9bcbf8eafa9e3cc0b693084ac7aee9c34a3447f9e1",
+    "forets_gpu_binding_20260911.py": "8f31fee796d89a63381810a8a6663d50e9ce988226885bf7b4498d17338c0d8d",
+    "forets_native_cuda_identity_20260911.py": "f2c0bc0845796f280fe535e334cb03537e4c704e54db72ed56ff177caeb1cd84",
+    "forets_native_gpu_binding_20260911.py": "01fc0908dea6a4119e04948ea5641a602e36336c5e1a7ab1780f48996cbdb88e",
+    "forets_opencl_allowlist_20260911.py": "5f99d7142a2203f29a6abe706117ce8ea0748516845109cf309b872a359d13c4",
+    "forets_opencl_readonly_ab.py": "b0546c7a81b11eaa558c197cc05cf576adbe014ae5878eb5ba0782c212575b6c",
+    "forets_pool_completion_20260912.py": "1a883a8833127528914e7f7e6df8ce1adc7b605f25b5c08c67b6427baaadaa00",
+    "forets_pool_completion_20260912.sbatch": "9859692b9b4dba2ca3aaca1ffe16612077649be8767449bc581b57a31467ea13",
+    "forets_closed_pool_20260911.py": "3a397a57f53be36a8763cb860753eed5d5e1b8dc5e2683cefc01b7793c08e56d",
+    "FORETS_POOL_COMPLETION_PLAN_20260912.md": "51a393b741985c226c17fc8af9f8841bad6bf614c5b930c95db4f83fac358275",
+    "forets_current_pool_20260912.py": "898653a327b00e93f3c410c7ed4be677cc30c4bb3ef437575a0c0b323fa08747",
+    "codes/0.py": "eb2acd44f3e1368888335a7ef78eabcc9bf1c5d6229381493afc5d3cfc013b8f",
+    "codes/1.py": "3abfc54f3e2e522b5c8f8998c43a90c13323e60d7e3f7927edbe28b095b27214",
+    "codes/2.py": "23fe3c4e343becc25a5958a350f9bc5cd2b982a28554b98108275cbd698a55d4",
+    "codes/3.py": "42fb34da6034ff9014cf0b782d9044766964a72cbe863402ac378e9d8ea374a7",
+    "codes/4.py": "bbe3dafc28ca46b15abd8c7098856f7157a72368137c52ec816c63d5ea7a8838",
+    "codes/5.py": "fb46ccc8bb8200e711070d4dfba50cd9158fabd80e7189bed4f635ab184c7cc6",
+    "codes/6.py": "e21acf8e751b7bd2baf9448fa1c9bc03a6e9d29794699a3a15eed417d946e118",
+    "codes/7.py": "8b4a15de2ebaf698eaa851b927853431f1d96acf997c33c20b44ca2763bc6094",
+    "codes/8.py": "91edc73b3265af7aa33792180442f95b3f0c6ae82b2d88f3756eeaf0bc95d64c",
+    "codes/9.py": "1d1d57b0aa7bb249848fd9f87681d3deee50e7d56c7bb09f919f107d57d3f134",
+    "codes/10.py": "f337b04b33175cedb853912bc79a4f82cee0f9d3666c98394d683d45bfa4084e",
+    "codes/11.py": "9dbc87511837e630bcb068c65b160b271573fb3a2bc3c1af60e834f5c33485cb",
+    "bin/singularity": "08c609ebdb7b720e05d5dbadfc1e4fb872378f7c3fb8f8d0b78fd0285d5bb9dc",
+    "opencl-vendors/nvidia.icd": "4ad07f8afc189894374aecb91023e6ff16bbceedf82496c04c0fdb0e2fe81e73"
+  },
+  "fixed_program_timeout_seconds": 300,
+  "handshake_timeout_seconds": 120,
+  "api_calls": 0,
+  "maximum_allocation_gpu_hours": 1.5,
+  "role": "posthoc_frozen_rank_development_completion_not_e2e"
+}

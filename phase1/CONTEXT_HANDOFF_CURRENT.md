@@ -1,7 +1,7 @@
-# 短交接：定向内核排障；e2e已闭合，本地生成器待共享访问
+# 短交接：首池补齐闭合；一处非平分驱动可行性信号，尚无e2e胜利
 
-2026-09-12 12:39 UTC更新；恢复先fetch→CURRENT_DIRECTION顶部0L183→本文件→核现场。
-最新用户：继续工作，并转达学长后续多数run用本地qwen3.8 27B AWQ INT4、旧API数据继续利用。
+2026-09-12本轮完成；正式读出12:58:18 UTC。恢复先fetch→CURRENT_DIRECTION顶部0L184→本文件→核现场。
+最新用户：继续推进，希望一小时内有价值结果；本轮已完成定向排障、12程序补齐、独立评分/平分敏感性与成本控制准备。
 不得重跑13156、首次读出或已闭合生成池；不得重复G0/旧模型验收。
 
 ## 当前一小时推进
@@ -21,18 +21,27 @@
   prepared959590741963d55dc60d53d45b604bd5e0344fb31b221e0a2d2deb34812d4d16。
   gpu28单3090/6CPU，原镜像，300秒程序/120秒握手，最多90分钟allocation，0API；首infra错误停止、不重试。
   四项本地隔离/无重复/旧执行默认值测试和实际生产导入通过；不拿这些称模型结果。
-  当时冻结的排名不变、全12闭合后独立数值复验；新reader尚在准备，不运行旧readout。
+  当时冻结的排名不变；全12已闭合，12:58:18独立读出通过，禁止重跑/重新调用已有输出的reader。
   原Space25选中项仍unknown，不能补0/冒充完整池。是开发机制分析，不是新e2e/干净scaling。
 - 新reader已冻结commit19a6e77cbdb2b4ba01926771ab669e90903bec60；5项界限/无填补/精确归档匹配测试通过。
-  工具dir /research/d7/spc/yzyang4/forets-pool-completion-tools-20260912-BXnxKK4x；ROOT/readout-plan.json已写，尚未读新结果。
+  工具dir /research/d7/spc/yzyang4/forets-pool-completion-tools-20260912-BXnxKK4x；ROOT/readout-plan/intent/finished均已写且成功。
   reader SHA473cbe3133baa4b465a3428de6028cf19c23b9524be8aca371a8c8cd16ab105e；数值helper SHA2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582。
-  最后观察12:47 UTC：13165 RUNNING，6/12尝试文件，未闭合；恢复先核现场，不重交/重跑。
+  13165 COMPLETED/1101秒，12/12尝试、0新infra失败；9代码错误/3超时，无新有效submission。
+  summary SHA4af0927191826f5c574f5c6caafe61337651c4d4aca62a96badcd6252749afb6，CSV878aaacd6b7e2387ee0e252d431418d249109f92ad92904046e9624268058e02。
+  原选中项2有效/1失败/1unknown；两个有效原首项独立数值核验（Space24 .76322、Leaf25 .71343），不能换成后续final。
+  原top2两混合池25%→50%；追加敏感性证明Space24依赖按编号打破平分，均匀同分时增量0，不能把它当稳健正信号。
+  Leaf25无截止位平分，+25pp不依赖此规则；只有一个较稳健开发信号，不是跨seed稳定/质量排序/同预算e2e提升。
+  四池固定规则界限[+.125,+.1875]，均匀平分[+.0625,+.125]，任意同分最坏含0，均不是统计置信区间。
+  全报告FORETS_POOL_COMPLETION_RESULTS_20260912.md，独立tie-sensitivity.json，16代码ZIP已制作，不必研究盘权限。
+  新16代码对已发布24程序无SHA重合；无数据/标签表/密钥/完整stdout公开。所有新失败和原unknown保留。
 - 旧13156全11完成排名池中9个加第二票后保留集合不变；第二票11调用费用.07961525USD。
   只是一份保留集合/费用描述，不是取消第二票的e2e收益；1个只做首票的未完成池费用也计入。
   见FORETS_RANK_COST_AUDIT_20260912.md；rank-cost-audit.json已远端一次生成，勿重复执行。
 - 12:49 UTC再fetch学长branch仍113e25e7，无更新部署/共享接入信息；没有改学长分支。
 - 一票/两票对照入口forets_rank_budget_variant_20260912.py已准备，5项测试含实际rank_pool模拟传输通过；未部署。
   两票保持Borda，一票仅去反序调用；共同加真实排名计时。不是新颖性/效果结论，不修改13165或旧source。
+- 最后观察13:05:28 UTC，队列仅旧held12535；本轮13161/13164/13165均已结束，没有后台新实验/automation。
+  本轮实际GPUh合计0.3655555555555555555555555556，0新API；学长共享服务权限问题仍等待已有问询回复。
 
 ## 本轮真实结果
 

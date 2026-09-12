@@ -1,0 +1,9 @@
+{
+  "job": "13165",
+  "utc": "2026-09-12T12:57:36.492809+00:00",
+  "planned": 12,
+  "completed": 12,
+  "stop_reason": "matrix_complete",
+  "complete": true,
+  "seconds": 1098.951801297022
+}

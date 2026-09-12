@@ -1,0 +1,625 @@
+{
+  "job": "13165",
+  "utc": "2026-09-12T12:58:17.766092+00:00",
+  "role": "posthoc_frozen_rank_development_completion_not_e2e",
+  "prepared_sha256": "959590741963d55dc60d53d45b604bd5e0344fb31b221e0a2d2deb34812d4d16",
+  "controller_commit": "7b706ab1c69469b4c6c31bdd52161c441466476c",
+  "source_tree": "e07cb8c61bca347c61bb8253c84eda826b1add6a",
+  "execution_complete": true,
+  "attempted": 12,
+  "planned": 12,
+  "pools": [
+    {
+      "parent_run_id": "01-leaf-classification-s24-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 24,
+      "rows": [
+        {
+          "parent_run_id": "01-leaf-classification-s24-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 24,
+          "slot": 0,
+          "code_sha256": "eb2acd44f3e1368888335a7ef78eabcc9bf1c5d6229381493afc5d3cfc013b8f",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 13.132543673040345,
+          "wall_seconds": 18.369272634852678
+        },
+        {
+          "parent_run_id": "01-leaf-classification-s24-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 24,
+          "slot": 1,
+          "code_sha256": "e06d2107f361e76e40edbb09e349c3a02a83475a5e2c01981960f1e5e50c2148",
+          "origin": "original_first_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        },
+        {
+          "parent_run_id": "01-leaf-classification-s24-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 24,
+          "slot": 2,
+          "code_sha256": "3abfc54f3e2e522b5c8f8998c43a90c13323e60d7e3f7927edbe28b095b27214",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.017874993849546,
+          "wall_seconds": 9.845770213054493
+        },
+        {
+          "parent_run_id": "01-leaf-classification-s24-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 24,
+          "slot": 3,
+          "code_sha256": "23fe3c4e343becc25a5958a350f9bc5cd2b982a28554b98108275cbd698a55d4",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_timeout",
+          "execution_seconds": 305.57480499800295,
+          "wall_seconds": 309.5498141371645
+        }
+      ],
+      "full_outcome_coverage": true,
+      "unknown_slots": [],
+      "policies": {
+        "uniform4": {
+          "slots": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "known_valid": 0,
+          "unknown": 0,
+          "total": 4,
+          "validity_probability_bounds": [
+            0.0,
+            0.0
+          ],
+          "conditional_mean_score": null,
+          "conditional_median_score": null,
+          "conditional_program_sample_std": null
+        },
+        "frozen_borda_top2": {
+          "slots": [
+            1,
+            3
+          ],
+          "known_valid": 0,
+          "unknown": 0,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.0,
+            0.0
+          ],
+          "conditional_mean_score": null,
+          "conditional_median_score": null,
+          "conditional_program_sample_std": null
+        },
+        "first_order_top2": {
+          "slots": [
+            1,
+            3
+          ],
+          "known_valid": 0,
+          "unknown": 0,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.0,
+            0.0
+          ],
+          "conditional_mean_score": null,
+          "conditional_median_score": null,
+          "conditional_program_sample_std": null
+        },
+        "reverse_order_top2": {
+          "slots": [
+            1,
+            3
+          ],
+          "known_valid": 0,
+          "unknown": 0,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.0,
+            0.0
+          ],
+          "conditional_mean_score": null,
+          "conditional_median_score": null,
+          "conditional_program_sample_std": null
+        }
+      },
+      "top2_order_invariant": true,
+      "validity_gain_bounds": [
+        0.0,
+        0.0
+      ],
+      "sample_std_role": "across these candidate programs, not independent search seeds"
+    },
+    {
+      "parent_run_id": "02-spaceship-titanic-s24-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 24,
+      "rows": [
+        {
+          "parent_run_id": "02-spaceship-titanic-s24-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 24,
+          "slot": 0,
+          "code_sha256": "baeb71ca77e118b0fd36ae6fc23888f7fd54046df22c289b579453c237003ca5",
+          "origin": "original_first_call_never_rerun",
+          "valid": true,
+          "score": 0.76322,
+          "status": "original_valid"
+        },
+        {
+          "parent_run_id": "02-spaceship-titanic-s24-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 24,
+          "slot": 1,
+          "code_sha256": "42fb34da6034ff9014cf0b782d9044766964a72cbe863402ac378e9d8ea374a7",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.414855563081801,
+          "wall_seconds": 10.421313320985064
+        },
+        {
+          "parent_run_id": "02-spaceship-titanic-s24-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 24,
+          "slot": 2,
+          "code_sha256": "bbe3dafc28ca46b15abd8c7098856f7157a72368137c52ec816c63d5ea7a8838",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.275821946095675,
+          "wall_seconds": 10.131535110995173
+        },
+        {
+          "parent_run_id": "02-spaceship-titanic-s24-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 24,
+          "slot": 3,
+          "code_sha256": "fb46ccc8bb8200e711070d4dfba50cd9158fabd80e7189bed4f635ab184c7cc6",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.066718230955303,
+          "wall_seconds": 9.919747617095709
+        }
+      ],
+      "full_outcome_coverage": true,
+      "unknown_slots": [],
+      "policies": {
+        "uniform4": {
+          "slots": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "known_valid": 1,
+          "unknown": 0,
+          "total": 4,
+          "validity_probability_bounds": [
+            0.25,
+            0.25
+          ],
+          "conditional_mean_score": 0.76322,
+          "conditional_median_score": 0.76322,
+          "conditional_program_sample_std": null
+        },
+        "frozen_borda_top2": {
+          "slots": [
+            2,
+            0
+          ],
+          "known_valid": 1,
+          "unknown": 0,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.5,
+            0.5
+          ],
+          "conditional_mean_score": 0.76322,
+          "conditional_median_score": 0.76322,
+          "conditional_program_sample_std": null
+        },
+        "first_order_top2": {
+          "slots": [
+            2,
+            0
+          ],
+          "known_valid": 1,
+          "unknown": 0,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.5,
+            0.5
+          ],
+          "conditional_mean_score": 0.76322,
+          "conditional_median_score": 0.76322,
+          "conditional_program_sample_std": null
+        },
+        "reverse_order_top2": {
+          "slots": [
+            2,
+            3
+          ],
+          "known_valid": 0,
+          "unknown": 0,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.0,
+            0.0
+          ],
+          "conditional_mean_score": null,
+          "conditional_median_score": null,
+          "conditional_program_sample_std": null
+        }
+      },
+      "top2_order_invariant": false,
+      "validity_gain_bounds": [
+        0.25,
+        0.25
+      ],
+      "sample_std_role": "across these candidate programs, not independent search seeds"
+    },
+    {
+      "parent_run_id": "04-leaf-classification-s25-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 25,
+      "rows": [
+        {
+          "parent_run_id": "04-leaf-classification-s25-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 25,
+          "slot": 0,
+          "code_sha256": "e21acf8e751b7bd2baf9448fa1c9bc03a6e9d29794699a3a15eed417d946e118",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_timeout",
+          "execution_seconds": 338.0262631531805,
+          "wall_seconds": 341.8259764900431
+        },
+        {
+          "parent_run_id": "04-leaf-classification-s25-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 25,
+          "slot": 1,
+          "code_sha256": "8b4a15de2ebaf698eaa851b927853431f1d96acf997c33c20b44ca2763bc6094",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 38.461773043032736,
+          "wall_seconds": 42.3628004679922
+        },
+        {
+          "parent_run_id": "04-leaf-classification-s25-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 25,
+          "slot": 2,
+          "code_sha256": "b05bade3304d325c2fa023057800ac09ef36819719423aea2cfe5480714284bf",
+          "origin": "original_first_call_never_rerun",
+          "valid": true,
+          "score": 0.71343,
+          "status": "original_valid"
+        },
+        {
+          "parent_run_id": "04-leaf-classification-s25-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 25,
+          "slot": 3,
+          "code_sha256": "91edc73b3265af7aa33792180442f95b3f0c6ae82b2d88f3756eeaf0bc95d64c",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_timeout",
+          "execution_seconds": 305.621517021209,
+          "wall_seconds": 309.7525588788558
+        }
+      ],
+      "full_outcome_coverage": true,
+      "unknown_slots": [],
+      "policies": {
+        "uniform4": {
+          "slots": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "known_valid": 1,
+          "unknown": 0,
+          "total": 4,
+          "validity_probability_bounds": [
+            0.25,
+            0.25
+          ],
+          "conditional_mean_score": 0.71343,
+          "conditional_median_score": 0.71343,
+          "conditional_program_sample_std": null
+        },
+        "frozen_borda_top2": {
+          "slots": [
+            2,
+            3
+          ],
+          "known_valid": 1,
+          "unknown": 0,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.5,
+            0.5
+          ],
+          "conditional_mean_score": 0.71343,
+          "conditional_median_score": 0.71343,
+          "conditional_program_sample_std": null
+        },
+        "first_order_top2": {
+          "slots": [
+            2,
+            3
+          ],
+          "known_valid": 1,
+          "unknown": 0,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.5,
+            0.5
+          ],
+          "conditional_mean_score": 0.71343,
+          "conditional_median_score": 0.71343,
+          "conditional_program_sample_std": null
+        },
+        "reverse_order_top2": {
+          "slots": [
+            2,
+            3
+          ],
+          "known_valid": 1,
+          "unknown": 0,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.5,
+            0.5
+          ],
+          "conditional_mean_score": 0.71343,
+          "conditional_median_score": 0.71343,
+          "conditional_program_sample_std": null
+        }
+      },
+      "top2_order_invariant": true,
+      "validity_gain_bounds": [
+        0.25,
+        0.25
+      ],
+      "sample_std_role": "across these candidate programs, not independent search seeds"
+    },
+    {
+      "parent_run_id": "07-spaceship-titanic-s25-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 25,
+      "rows": [
+        {
+          "parent_run_id": "07-spaceship-titanic-s25-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 25,
+          "slot": 0,
+          "code_sha256": "1d1d57b0aa7bb249848fd9f87681d3deee50e7d56c7bb09f919f107d57d3f134",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 5.94711958989501,
+          "wall_seconds": 9.678268890129402
+        },
+        {
+          "parent_run_id": "07-spaceship-titanic-s25-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 25,
+          "slot": 1,
+          "code_sha256": "f337b04b33175cedb853912bc79a4f82cee0f9d3666c98394d683d45bfa4084e",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.236701969988644,
+          "wall_seconds": 10.188561003888026
+        },
+        {
+          "parent_run_id": "07-spaceship-titanic-s25-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 25,
+          "slot": 2,
+          "code_sha256": "b9bc6508618d87cbfc6366b0b4a4cfde87357ecf64e33777c7ea8010e22b2c1c",
+          "origin": "original_first_call_never_rerun",
+          "valid": null,
+          "score": null,
+          "status": "original_infrastructure_unknown"
+        },
+        {
+          "parent_run_id": "07-spaceship-titanic-s25-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 25,
+          "slot": 3,
+          "code_sha256": "9dbc87511837e630bcb068c65b160b271573fb3a2bc3c1af60e834f5c33485cb",
+          "origin": "new_unattempted_code",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 5.885709028923884,
+          "wall_seconds": 9.646225192118436
+        }
+      ],
+      "full_outcome_coverage": false,
+      "unknown_slots": [
+        2
+      ],
+      "policies": {
+        "uniform4": {
+          "slots": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "known_valid": 0,
+          "unknown": 1,
+          "total": 4,
+          "validity_probability_bounds": [
+            0.0,
+            0.25
+          ],
+          "conditional_mean_score": null,
+          "conditional_median_score": null,
+          "conditional_program_sample_std": null
+        },
+        "frozen_borda_top2": {
+          "slots": [
+            0,
+            2
+          ],
+          "known_valid": 0,
+          "unknown": 1,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.0,
+            0.5
+          ],
+          "conditional_mean_score": null,
+          "conditional_median_score": null,
+          "conditional_program_sample_std": null
+        },
+        "first_order_top2": {
+          "slots": [
+            2,
+            0
+          ],
+          "known_valid": 0,
+          "unknown": 1,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.0,
+            0.5
+          ],
+          "conditional_mean_score": null,
+          "conditional_median_score": null,
+          "conditional_program_sample_std": null
+        },
+        "reverse_order_top2": {
+          "slots": [
+            0,
+            2
+          ],
+          "known_valid": 0,
+          "unknown": 1,
+          "total": 2,
+          "validity_probability_bounds": [
+            0.0,
+            0.5
+          ],
+          "conditional_mean_score": null,
+          "conditional_median_score": null,
+          "conditional_program_sample_std": null
+        }
+      },
+      "top2_order_invariant": true,
+      "validity_gain_bounds": [
+        0.0,
+        0.25
+      ],
+      "sample_std_role": "across these candidate programs, not independent search seeds"
+    }
+  ],
+  "independent_numerical_regrades": 2,
+  "proofs": [
+    {
+      "submission_sha256": "a0b44ddce5a880b62e1afc06356f1d2ebfb858977db5e2f0504f5854891176e1",
+      "task": "spaceship-titanic",
+      "official_score": 0.76322,
+      "independent_score": 0.7632183908045977
+    },
+    {
+      "submission_sha256": "0683d7f7311652d812df48b93c4224f895886b0ff19fcb2c45ec892a9563942e",
+      "task": "leaf-classification",
+      "official_score": 0.71343,
+      "independent_score": 0.7134334104369733
+    }
+  ],
+  "evidence_sha256": {
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-0.json": "262bb5b71c24e12c737d0858caacd08bd346171fc6342206399be532f8e6dfed",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-0.native-binding.json": "0199580d1a3b0c41d1a70634de40da46b8720833d1d3e3ffe7f137f7403e7797",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-1.json": "9ef8ea7c45d03f8322581c8ada7bceb14913b63a4cb58ea37d6c452a950955a4",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-1.native-binding.json": "28cd0e51cde7526981174cf4c5626cc230646548d1c412f3168a2b4b721239b2",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-2.json": "5a9e803af9ed6c45327f711ceac6ca146e4b0b12a42d39a4bae8af3e82be3a92",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-2.native-binding.json": "085c5e59fdc03399cf7eba22095ea9982cbf5a9cd26de1ebef69c495f5581e07",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-3.json": "55b30d49e64e5c7741e6ef67022a7372d5caadd330483cca247919c2361a8e4a",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-3.native-binding.json": "82410cb05a0cdf0b4837107ca6bd44f70ef95b1f5b179cd93a0e46f6c568f139",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-4.json": "d78788bd6213cc6a112548c07201c2e10df6bf3329268f2c516b7155c5264e35",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-4.native-binding.json": "ed70572d17f82f76caba30e73a5d37c575e1ac49ba284626ff35019b7b337b5d",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-5.json": "16b9efd67e78d56751329f410fcdfc74675426fb438226038b0b3f18a006d3a4",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-5.native-binding.json": "70211c9201e38f801a49a9e233f89d33eac721c286d05b0013dafff1adf29327",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-6.json": "abd287b4f80e10bd64ef785169ac02a632e6b7f7646fc33fbe0d80b34830cd46",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-6.native-binding.json": "baa47e69ebfc1906e7818c9888c3f819765a1d138bc1a19363df636133ec1b02",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-7.json": "7e66727e6ff71aeb890b7ca16a08ab88401c72a435270cb1b9a8b1f554bcdb60",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-7.native-binding.json": "40ee3754afd40cc10d778c6757164abc9f130736201be6c0372e0d6551d03abc",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-8.json": "9d7da92d0f2b4098ee15db2798d991a3c89fab2d04126da5a5ccb75565b4eb40",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-8.native-binding.json": "dd505998d149be9c0c8ea85695901bd3d266eecd4d75eda10a0873c270caacbd",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-9.json": "c5575c07fad45ae3192fe8b91013a75a9c5fdd4e61efeda88474ce670dce386b",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-9.native-binding.json": "d3af669f70ba52008b44ade30b83f5cb6f8639bd078b505b239ad8414cd5bac5",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-10.json": "7de3d2a5da931b3720a22a035c6c51a3b4547fd8b234495525dc87ae64b5208c",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-10.native-binding.json": "032de4b2e13e5b7884d8dbf2007811f3f04ab5f01efa6334d83336ed138bb67f",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/result-11.json": "e91354fd5240c44bb906784ac2a470ef0746053df6f218ae7542c327849b9470",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-2u45zbx4/identity-11.native-binding.json": "9f4588f7aae881298795a4321bbd1cbc5128a34aaab8e46da4549f941de94942",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/configs/01-leaf-classification-s24-critic_topk_random.json": "e1bff65c0dba4eb1d4ab3db6db170eccf4e81969a06413a725adad1b47d5cd0a",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-0.json": "74795ff535ba24a9ea38738e8c2165c38ae27d73d0503823595e5e8565dc9839",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-0.json": "72ebe9d4ea99fd004099ab64a2298a0cff5ad72060eb38459300e25ee3b4d46b",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-1.json": "16b87a7bd021d385899e79619ecf992e57a049db45572185ffc658f332aa8ccf",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/01-leaf-classification-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-1.json": "4edd9a778bf36a3cc2331346e4fbe1d10dae3f272fd5fb3fda4c2f21365effd3",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/configs/02-spaceship-titanic-s24-critic_topk_random.json": "dc9543bf7aecabd1ddcaa531163a37c891f0ed101956990bb3ef506c41493bb5",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/02-spaceship-titanic-s24-critic_topk_random/results/submission-escrow/grade-qjf8k_o4/complete.json": "4d07fc4aa8c9d83041377cd62e6b7313ebbc9049d1aad8652dfa33bdd6d2f7c4",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/02-spaceship-titanic-s24-critic_topk_random/results/submission-escrow/grade-qjf8k_o4/report.json": "22b28a2f3d2483e6c3365a88d1e6738200eb3ba4f08f5d771bebaf9e01c5f65e",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/02-spaceship-titanic-s24-critic_topk_random/results/submission-escrow/grade-vgufitsq/complete.json": "99315d96f12b7e4e8d26d234cb1d65b64500a770398891a3fcc4d62e250bb30c",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/02-spaceship-titanic-s24-critic_topk_random/results/submission-escrow/grade-vgufitsq/report.json": "8c8f37dfb80743f89cf54e93e7ec773e8dbba0feccb41a79d260a33bca5e11b2",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/02-spaceship-titanic-s24-critic_topk_random/results/submission-escrow/grade-y0oqplrk/complete.json": "5b186a613addbecf5a6df03db3dc7862e8f314fc2e889a2bb17e7fc408fe81dc",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/02-spaceship-titanic-s24-critic_topk_random/results/submission-escrow/grade-y0oqplrk/report.json": "0f06c7f0e2f6f534a53d5387ef4f9d987e63840da7f8204f0b3fe34644346a9f",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-0.json": "dad5050c497d0a3561efd17ec47345cc0299779a912e9b7b7c1b7293af1af013",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-0.json": "396e27f7b8797b949d22d8f9d5e1768bc73d86680a41d1c4acb93e2fbbbe1e2c",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-1.json": "7824f488940346c0f80cf28801167564e6120cbf43069186e2eab73e08382fc6",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/02-spaceship-titanic-s24-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-1.json": "51a310077ce406faf70eba296d7bcadfe76ced9f0fc6e67449552fa48ed2cf4d",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/configs/04-leaf-classification-s25-critic_topk_random.json": "1128abf143b9bc2aa5b13420d6485c603cc1e197f645f861dd5286e1fb63ef7e",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/04-leaf-classification-s25-critic_topk_random/results/submission-escrow/grade-lyr7ernp/complete.json": "a17ce71ea1adf47d7c9ed93a7056ed4b242ede9537e94a2a93544383015fc651",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/04-leaf-classification-s25-critic_topk_random/results/submission-escrow/grade-lyr7ernp/report.json": "f51eee5b8ff1fb363bfce9babc5140b8119d6ea2a96044ab227cd7e1527587d0",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-0.json": "f9459a0dbc8f0fdee37c386a6fb5403cf71934435d74ed1912f78515970500a5",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-0.json": "dac63fe9ac04e754bfd78a7b94432c0fd53561742b23acfe1992b598b06edf0f",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-1.json": "ec720ab9e577adce5ea05f948fa8793d73cea8a78f9cf1255d735d5ea843d867",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/04-leaf-classification-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-1.json": "8458587988bfd081e647ebc13ce07978b79b642eaa773870fb7d2ba7b4488d39",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/configs/07-spaceship-titanic-s25-critic_topk_random.json": "9a5ea97674294b11cbdb1ea944b4da119203d33c1cc228bc4a89662bbe1b9482",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-0.json": "1da2034507c4d6c54251273d2e71724d40eb61b4bc434f99185ddfbc30f3344f",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-0.json": "573150d7a082debab174aab1bb87649629e26d496520e75c5ff7d682ab374717",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/rank-1.json": "ec1d8ee3aab5b157ae685933865691330e720a33cbad990efb749fefdb1632e4",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-cxb9p0og/runs/07-spaceship-titanic-s25-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-1/request-1.json": "75504695513eff6e0e41bfc6e65f175c99bf2503171e65e1e84350a9c702bf70"
+  },
+  "allocation_seconds": 1101,
+  "allocation_gpu_hours": 0.30583333333333335,
+  "same_gpu_within_new_attempts": true,
+  "old_new_same_physical_gpu_claimed": false,
+  "api_calls": 0,
+  "protected_cohort_read": false,
+  "reader_sha256": "473cbe3133baa4b465a3428de6028cf19c23b9524be8aca371a8c8cd16ab105e",
+  "numerical_reader_sha256": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+  "limitation": "Ranks frozen before original/new execution, but this completion selected after some parent outcomes were known. Four finite development pools, unknown original infrastructure result preserved; not equal-budget end-to-end or fresh confirmatory evidence."
+}

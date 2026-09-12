@@ -1,6 +1,6 @@
 # 当前交接：全首池与通用裁判已闭合，准备新seed真实对照
 
-2026-09-12香港。恢复：fetch→CURRENT_DIRECTION最新0L168→本文件→现场。
+2026-09-12香港。恢复：fetch→CURRENT_DIRECTION最新0L169→本文件→现场。
 用户要求持续会话实质工作，不增自动任务；准备/测试不冒充效果，学长分支不改。
 
 ## 刚完成的执行13120
@@ -30,15 +30,18 @@
   该窗口已结束，禁止再run/失败补问。
 
 ## 正在推进（尚未提交/调用）
-- 新seed13真实e2e，Flash生成器保持，两原任务各random与资源条件化Plus裁判；不挑Space胜例。
-  计划双顺序Borda再top2、仍common-priority随机选1，仅用于未来新池，不在旧8代码上找最优规则。
-  尚需冻结具体矩阵/预算、写生产接入；不能称已经开跑或收益成立。
+- 新seed13真实e2e已写定FORETS_CONTEXT_E2E_PLAN_20260912.md：Flash生成不变，两原任务各random/资源条件化Plus，共4run。
+  固定双顺序Borda→原top2/common-priority随机选1，仅用于未来新池，不在旧8代码上找最优规则。
+  新增≤5GPUh/3.50USD责任，总责任上限4.942593566USD；全API每run共同≤100次。
+  代码forets_contextual_rank、forets_context_e2e_patch、forets_context_e2e_build三个20260912模块；尚未build/activate/提交。
+  stage /research/d7/spc/yzyang4/forets-context-e2e-stage-20260912-vzIVzZUQ，19测试和远端24父Python派生语法通过。
+  下一步commit→local artifact→scp source.tar/artifact.json→远端build→实际import/配置/留档隔离检查→activate→两次生成路由/Plus公开catalog→submit。
 - 已读真正父版13118根/code与seed11公开capsule。本地forets_block_runtime等有旧draft文本，不能直接部署旧本地副本。
   当前ForeTS逐候选HTTP取分；新全池裁判应接在batch_runtime完整生成并freeze_pool后，不能假装旧接口已支持。
 - 设计新版本不加载8B服务，API裁判在worker内；1GPU/6CPU同硬件两臂，不伪造CUDA服务marker。
   原launcher max_parallel1、每worker1GPU/6CPU、6step/300秒/3540秒、100API/8192输出。
   新judge费用/时间计入共同预算。考虑前瞻双顺序Borda，不能用旧池重算漂亮结果。
-- forets_submission_archive_20260912.py被动留档已测试未部署，可在新版本两臂共同接入，让最终CSV可数值复核。
+- forets_submission_archive_20260912.py将在此新包两臂共用，原镜像/评分/反馈不变，留档host-only，已测未部署。
 - 保护集仍封闭，不更新agent底座，不恢复旧HCE/多保真/Probe/score-channel/K≥1lookahead/旧CPU期限筛查。
 
 ## 旧真实结果（勿重跑/改写）
@@ -61,7 +64,7 @@
   venvs/aira控制CPU、venvs/exp GPU/gdown；source /uac/y24/yzyang4/env_setup.sh。
   SLURM_CONF=/opt1/slurm/gpu-slurm.conf；MLE用gpu28/27，不是projgpu28/39；镜像不升级、不退CPU。
 - key只在远端aira-dojo/.env OPENROUTER_API_KEY→worker PRIMARY_KEY；不回显/本地/Git、不再索要。
-- 只push myfork HEAD:phase1-value-critic；最近成功c62033a3eaf737ed195d9b6e2a7781954ea989c6；结果报告待push。
+- 只push myfork HEAD:phase1-value-critic；最近成功094f8ee5308e39b8271f33124d31482c281e4adf，完整池/通用裁判结果已公开。
   staged文件名+内容扫描，不全add用户untracked codex_tmp/output/tmp/旧报告。
 - g0-r5 PAUSED，无新automation；12535 held不碰，不索要gres.conf或使用失修pool恢复。
 - 研究盘1TB/2026-09-29到期，续期未知；共享df不是个人quota。

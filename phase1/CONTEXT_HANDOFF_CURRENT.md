@@ -23,6 +23,14 @@
   四项本地隔离/无重复/旧执行默认值测试和实际生产导入通过；不拿这些称模型结果。
   当时冻结的排名不变、全12闭合后独立数值复验；新reader尚在准备，不运行旧readout。
   原Space25选中项仍unknown，不能补0/冒充完整池。是开发机制分析，不是新e2e/干净scaling。
+- 新reader已冻结commit19a6e77cbdb2b4ba01926771ab669e90903bec60；5项界限/无填补/精确归档匹配测试通过。
+  工具dir /research/d7/spc/yzyang4/forets-pool-completion-tools-20260912-BXnxKK4x；ROOT/readout-plan.json已写，尚未读新结果。
+  reader SHA473cbe3133baa4b465a3428de6028cf19c23b9524be8aca371a8c8cd16ab105e；数值helper SHA2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582。
+  最后观察12:47 UTC：13165 RUNNING，6/12尝试文件，未闭合；恢复先核现场，不重交/重跑。
+- 旧13156全11完成排名池中9个加第二票后保留集合不变；第二票11调用费用.07961525USD。
+  只是一份保留集合/费用描述，不是取消第二票的e2e收益；1个只做首票的未完成池费用也计入。
+  见FORETS_RANK_COST_AUDIT_20260912.md；rank-cost-audit.json已远端一次生成，勿重复执行。
+- 12:49 UTC再fetch学长branch仍113e25e7，无更新部署/共享接入信息；没有改学长分支。
 
 ## 本轮真实结果
 

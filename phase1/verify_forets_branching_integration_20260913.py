@@ -76,6 +76,12 @@ def run():
             with closing(sqlite3.connect(path.as_uri()+'?mode=ro', uri=True)) as db:
                 value=json.loads(db.execute('select payload from snapshot').fetchone()[0])
             assert value['phase']=='complete' and len(value['selected'])==2 and len(value['task_calls'])==2
+            # Independent replay runs on actual production ledger payloads.
+            from verify_branching_selection_20260913 import verify_pool
+            inp = dict(codes_sha256=[sha(c['node']['code'].encode()) for c in value['candidates']],
+                aggregation='single_order_rank_v1') if arm=='critic_topk_random' else None
+            done = dict(borda=[1.,2.,3.,4.]) if arm=='critic_topk_random' else None
+            verify_pool(value,cfg,dict(task=solver.task_name,arm=arm,seed=cfg['selector_seed']),inp,done)
             if arm=='critic_topk_random': assert set(value['selected'])=={2,3}
             assert len(journal.nodes)==4 and len(solver.journal_for_unselected.nodes)==2
             records.append(dict(arm=arm, counts=counts, first_executions=1, later_executions=2,

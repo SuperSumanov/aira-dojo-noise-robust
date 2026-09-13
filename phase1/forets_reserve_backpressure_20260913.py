@@ -44,7 +44,7 @@ def reserve_wait(path, scope, attempt_id, amount, *, connect, authorize, auth,
             # No sleeping while holding a transaction: settlement must proceed.
             db.close()
         waits += 1
-        sleep(min(poll, max_wait-(clock()-began)))
+        sleep(max(0., min(poll, max_wait-(clock()-began))))
 
 
 def patch_budget(text):

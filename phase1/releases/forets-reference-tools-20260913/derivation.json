@@ -1,0 +1,22 @@
+{
+  "launch_forets_reference_20260913.py": {
+    "base_file": "launch_forets_branching_20260913.py",
+    "base_sha256": "194539654db3b9bd55cfdef738211a39413a9debc2e950441399203f0a3063d8",
+    "derived_sha256": "f9d7904c83e457cdc882980c719e4aa6d611698e8e5dbcb32d183341d1aed7e6"
+  },
+  "readout_forets_reference_20260913.py": {
+    "base_file": "readout_forets_branching_20260913.py",
+    "base_sha256": "d9be18d97ea655cc734f58d0deb558eb939cd3427d3109ce5c6085f25aaad0d0",
+    "derived_sha256": "cd7994c75b27b135d1a5b77e80d09b52d55a418fc986fca80439d159180d4d40"
+  },
+  "readout_forets_reference_core_20260913.py": {
+    "base_file": "readout_forets_branching_core_20260913.py",
+    "base_sha256": "304c6988454a36f4a08f1b0aa9f6ffb60b6c6cd43de0c38a01b099d188dbfa1a",
+    "derived_sha256": "53733276c7e8a76a7872a9b7346084db704d0b3bbfdd25e88e78b5b9cad7be2e"
+  },
+  "readout_forets_reference_cost_20260913.py": {
+    "base_file": "readout_forets_single_vote_20260913.py",
+    "base_sha256": "4a00f5296e5241811df9227ce44ac60966ef87604748169d4bff581c696859c3",
+    "derived_sha256": "784de50b62c3d7f0351d048b744d7a0f49b13fb7996c7cffc6ff59db35ad6b54"
+  }
+}

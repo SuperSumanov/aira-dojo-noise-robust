@@ -1,5 +1,5 @@
 # 短交接：真实双分支八次搜索已提交
-2026-09-13 03:17:40 UTC最后核提交；用户要求会话内工作三小时，开始02:58 UTC，目标05:58 UTC，不建automation。
+2026-09-13 03:45:53 UTC最后核现场；用户要求会话内工作三小时，开始02:58 UTC，目标05:58 UTC，不建automation。
 恢复先fetch→CURRENT_DIRECTION 0L189→核现场；不能按本文件旧动态状态重投。
 
 ## 当前唯一活动实验
@@ -33,7 +33,20 @@ v3已修复并承接所有费用。原未调用的同名scope只在新账重建�
 - 完整逐run报告（含失败）、合格配对差/跨seed离散度与实际费用；不因单个好数换任务seed、缺失不填0。
 - 并行推进成本强基线/机制分析，可用于后继但不混改本轮。
 - 本地新结果目录phase1/results/forets_branching_s30_s31_20260913；发布前scan staged与tar，正常push myfork HEAD:phase1-value-critic。
-本轮提交尚未push，最新公共仍6a0c2b3429e5533fc8ec4f9a21c511ec57522f83，需核后更新。
+03:45最后观察：两job都进行到第三run；首四终态，首00/04已确认是600秒截止而非内核启动失败。整组未揭盲。
+当前账1063调用/结算3314546989/责任5414546989nanoUSD/3未决，其中可能包含实时在途，不能当作新未知已丢失。
+最新公共36144e465ec2fc2de5db97c431ed1cb80ec805b8已ls-remote验证；学长分支仍113e25e7...。
+
+## 未部署后继准备
+
+已准备reference-context候选：新32/33×Leaf/Space×random/参考critic全8，仍600秒、原模型/镜像/execute2。
+只给critic已执行parent/incumbent/最近两节点，代码+运行反馈+搜索可见validation；不带metric.info/隐藏grade/原始日志。
+12本地测试通过，包含实际源码补丁及独立prior-reference回放；合成根可能有exec_time=0，必须明确排除，已加回归。
+新STAGE /research/d7/spc/yzyang4/forets-reference-stage-20260913-m3U9toWD，只有准备脚本，未build/activate/API/GPU。
+计划FORETS_REFERENCE_CONTEXT_PLAN_20260913.md；新builder需前组readout-finished与精确账快照facts，不得提前封旧账。
+新reader在phase1/releases/forets-reference-tools-20260913，不能改变旧STAGE的冻结reader。
+尚需生产CPU实际请求接线→冻结新reader/源→按前组全量结果决定是否投入；有故障则先解决，不能盲跑。
+CEB强相关已核，参考提示是机制基线、不是算法novelty。新同预算收益尚未知。
 
 ## 已闭合旧结果（不可覆盖）
 13190/13191 ROOT2o9mw39n：8初始+8最终原提交数值复核；6技术合格/3对。

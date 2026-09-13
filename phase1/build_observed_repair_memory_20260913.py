@@ -1,7 +1,8 @@
-"""Outcome-independent *old development* repair inventory, not a new method.
+"""Final-grade-value-independent old development inventory, not a new method.
 
 Retain every observed failed-parent/successful-debug transition. Store full
 code only in a new remote private directory; public export has hashes/counts.
+Old execution success/failure is an input: this is NOT outcome-blind intake.
 No new memory trial is an input and no final numerical score selects examples.
 """
 import ast

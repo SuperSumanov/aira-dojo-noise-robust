@@ -1,0 +1,85 @@
+{
+  "api_calls": 0,
+  "executed_builder_commit": "b2593046982ff57e244377f08ce8e2f75c72a1a9",
+  "executed_builder_sha256": "cb70725c4d323bae119be0d103149cf49cf35acb9761b9d581b3b053cd7ef55d",
+  "gpu_jobs": 0,
+  "inventory_public_sha256": "825e8c253e72200a64be2edf9e45919cb1be21fb9fcc9b98550f5681133a8095",
+  "limitations": "Independent archival verification only. No rerun, portable repair guarantee, memory efficacy, or novelty claim.",
+  "patch_sizes": [
+    {
+      "added_lines": 19,
+      "code_pair_sha256": "325881a570bc0cd8ea7473923278e4010901f6129f12f2b247fd9f6845b287db",
+      "removed_lines": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "added_lines": 12,
+      "code_pair_sha256": "27aa43d30aa255f8268fee16d907c8b2426d84a6fe24054e6767333ddf33d1dd",
+      "removed_lines": 8,
+      "task": "leaf-classification"
+    },
+    {
+      "added_lines": 25,
+      "code_pair_sha256": "95bfe46d0cc84581d04440c67d47ec455d321b4d7de52cf683494714675a4c13",
+      "removed_lines": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "added_lines": 6,
+      "code_pair_sha256": "1f2541f23164d293c7c43e388b2e63a2f24b14c938bc30022ed1af5b83b9d77b",
+      "removed_lines": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "added_lines": 11,
+      "code_pair_sha256": "1059743b032eeb9c7835b5390ef9b65167c9e9dc93b80c3c8a680b8ed576a252",
+      "removed_lines": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "added_lines": 21,
+      "code_pair_sha256": "97f7a5f28c501c265b807209fadff1b1c9b53043b8f3d980095690ef8e779299",
+      "removed_lines": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "added_lines": 15,
+      "code_pair_sha256": "dba3fdb4c58f2df81608a1facf93c4ab471c155c37c724b2226b1db3c7fc00f7",
+      "removed_lines": 7,
+      "task": "leaf-classification"
+    },
+    {
+      "added_lines": 10,
+      "code_pair_sha256": "a257b84992b7a9991a9bbad3f2eb25fb8bee266cee9eeed68832a4a512c5765b",
+      "removed_lines": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "added_lines": 7,
+      "code_pair_sha256": "1ed6c178fbdec611d4b8e71c077da6f057b04729d5e987851f35b4213933542c",
+      "removed_lines": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "added_lines": 4,
+      "code_pair_sha256": "147ae6320624d1d7fd7e2a6232285044bf91bcf3c960a8546f3ebaec2e886e6a",
+      "removed_lines": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "added_lines": 4,
+      "code_pair_sha256": "2a3d1ca51c8c368f448b48d4ef21ac7f3f096a416fc5fad76da9f7d632754ad4",
+      "removed_lines": 5,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "private_code_mode": "0600",
+  "private_inventory_sha256": "4caeb8a6494705b7fd103bc66a015b1e8e63f38ffd086267b2bf0499d9884dcb",
+  "status": "INDEPENDENT_OLD_SOURCE_ELIGIBILITY_AND_EXACT_CODE_VERIFIED",
+  "tasks": {
+    "leaf-classification": 2,
+    "spaceship-titanic": 9
+  },
+  "transitions": 11,
+  "verifier_sha256": "2631d844745f09eb30890d43ac35c62a4b56d969f0b1907324156f66b0af3cea"
+}

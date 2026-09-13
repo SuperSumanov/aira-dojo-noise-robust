@@ -46,6 +46,9 @@ Leaf是一大胜一负，Space两次均更差。不能只摘取Leaf中位数，�
 
 ## 方法新颖性与当前裁决
 
+08:32–08:37又准备了下一阶段输入资产：从旧59条debug父子边保留11条历史成功调试转换，来自9条run，原代码/diff与全量资格集合独立复核。
+代码只在远端，未部署、未复跑，不能算11个通用修复或e2e收益；这不是outcome-blind数据处理。见[经验候选库](FORETS_OBSERVED_REPAIR_INVENTORY_20260913.md)。
+
 [Demystify the Role of Memory in Machine Learning Engineering Agents](https://aclanthology.org/2026.findings-acl.525/)已经直接研究调试记忆与可靠性/多样性取舍。
 因此本轮记忆对照首先是实用强基线验证，不是原创方法声明；缩短预算到600秒本身也不是新颖性。
 另外HASTE、CEB、ReASearch等先例及更具体的方法问题见[方法判断](FORETS_METHOD_HYPOTHESIS_20260913.md)。

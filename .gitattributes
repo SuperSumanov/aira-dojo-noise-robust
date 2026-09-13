@@ -594,3 +594,4 @@ phase1/results/forets_memory_control_20260913/*.csv -text diff whitespace=cr-at-
 phase1/releases/forets-width-source-20260913/source.tar -text
 phase1/releases/forets-memory-tools-20260913-v2/* -text
 phase1/releases/forets-memory-source-20260913/source.tar -text
+phase1/results/forets_repair_inventory_20260913/*.json -text diff

@@ -1,6 +1,6 @@
 # 短交接：三组24条全部闭合；经验1胜2平1对不可比，不扩大
 
-最后观察2026-09-13 08:27 UTC。本轮05:53–08:53 UTC窗口持续会话工作，三组24条真实搜索均已结束并独立读出；不是全24技术合格。
+最后观察2026-09-13 08:37 UTC。本轮05:53–08:53 UTC窗口持续会话工作，三组24条真实搜索均已结束并独立读出，23技术合格；未新增GPU/API实验。
 恢复先fetch→CURRENT_DIRECTION最新节→本文件→现场。保护first960/Target300/Target522仍封；不更新agent底座，不重复G0。
 
 ## 刚完成：冻结旧错误经验 vs 无记忆，禁止重复提交或读出
@@ -25,7 +25,7 @@ Space41经验臂次要迭代.81034 > action .80805；较新节点内部CV .81004
 memory-summary SHA a7e5aaf94cf1ecf4d12f6debde0ee0342a6a972c7a19b2ea7615287e573c08c0；closure bfb9ac89ce29b1c03553b28ce2314592e39afef9d66a44af1d8b143a4a4ab13a。
 work SHA112b0c875003dfcb7648418c4b30922a8b9d56b5c0d6d7d60815a3722c3e33e2；boundary3c4800fef97e61060f56f2e649232011620a8b000ecc6aeb9abd8c685b0f8780。
 1.1780555555555556GPUh；经验API .141458109 vs无记忆.126357348 USD（包含失败）。无已记录完成预留等待/拒绝，不证明取消等待不存在。
-FORETS_MEMORY_RESULTS_20260913.md、FORETS_THREE_HOUR_E2E_UPDATE_20260913.md及results/forets_memory_control_20260913随本条提交保存完整结果。push回执另核，不能仅凭本句假定已上传。
+FORETS_MEMORY_RESULTS_20260913.md、FORETS_THREE_HOUR_E2E_UPDATE_20260913.md及results/forets_memory_control_20260913已随e776ac8345134d6963e96fd202e6243561fa7b0b推送并ls-remote核验。
 
 ## 刚完成：宽度对照，不再读出/激活/提交
 
@@ -60,6 +60,14 @@ memory text222da8b9d643c2023bc17683eed9b3a112260cbf443598b7275c753f7626a25c，�
 closed-error-time SHA58a57c5d5ef4f2396c16b05956b121b0817868b111bab0fbadbaf0296b977091；closed-measurement-gaps SHAd80381431f78ec47dda4519cbe4d80536a7fd9cb774dc573e02b037b7ac46e67。
 ACL Findings2026 Demystify the Role of Memory in Machine Learning Engineering Agents是直接先例；另有HASTE/CEB/ReASearch/MLEvolve。
 错误记忆、可靠性—多样性取舍、按阶段记忆都非原创；40/41定位经验强基线，不是顶会方法确认。FORETS_METHOD_HYPOTHESIS_20260913.md。
+
+## 新备好、但未部署：历史成功调试转换库
+
+08:32构建，08:35–08:37独立完整复核；旧59边筛出11转换/9run（Space9、Leaf2），47子失败不合格、1父非非零执行错误。
+根 /research/d7/spc/yzyang4/forets-repair-memory-inventory-20260913-vcg12_1y；私有代码0600，没有复制本地或Git，不重复构建/覆盖。
+公开825e8c253e72200a64be2edf9e45919cb1be21fb9fcc9b98550f5681133a8095；私有4caeb8a6494705b7fd103bc66a015b1e8e63f38ffd086267b2bf0499d9884dcb；验证4eff435ad4178864b8c989f2f37e95d74988e4057a6bf39a802bf527a01786ac。
+源码归档b2593046982ff57e244377f08ce8e2f75c72a1a9（执行后归档，字节核验）；后续同名builder只澄清docstring，不要将旧执行成败使用称outcome-blind。
+这是经验候选不是11通用修复；未独立移植/重跑、无增益、无新颖性结论。FORETS_OBSERVED_REPAIR_INVENTORY_20260913.md。最终push核验保存至results/forets_repair_inventory_20260913/post-push-receipt.local.json；文件不存在时不能假定已推送。
 
 ## 学长资料最后核验
 

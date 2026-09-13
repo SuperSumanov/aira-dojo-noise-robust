@@ -22,10 +22,12 @@ def main():
     flags = defaultdict(Counter)
     nested = defaultdict(Counter)
     rows = 0
+    tasks = Counter()
     with SOURCE.open('rb') as stream:
         for line in stream:
             card = json.loads(line)
             rows += 1
+            tasks[card['task']['name']] += 1
             for key, value in card.items():
                 fields[key][type(value).__name__] += 1
                 if isinstance(value, dict):
@@ -35,7 +37,7 @@ def main():
                     flags[key][json.dumps(value, sort_keys=True)] += 1
     if rows != 14323:
         raise ValueError('v9 row count differs')
-    print(json.dumps(dict(source_sha256=EXPECTED, rows=rows, fields=fields, nested=nested, flags=flags), sort_keys=True))
+    print(json.dumps(dict(source_sha256=EXPECTED, rows=rows, fields=fields, nested=nested, flags=flags, tasks=tasks), sort_keys=True))
 
 if __name__ == '__main__':
     main()

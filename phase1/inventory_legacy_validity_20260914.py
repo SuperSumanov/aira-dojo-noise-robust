@@ -28,7 +28,7 @@ def write(path, value):
     with path.open('xb') as f: f.write(raw)
     return sha(raw)
 
-def main():
+def main(group_names=None, output_prefix='forets-legacy-validity-20260914-', required_task=None):
     os.umask(0o077)
     digest = hashlib.sha256()
     with SOURCE.open('rb') as f:
@@ -43,8 +43,10 @@ def main():
             if c['id'] in public_ids: raise ValueError('duplicate public identity')
             public_ids[c['id']] = c['task']['name']
     skipped = Counter(); records = []; proofs = []; counts = Counter(); task_counts = {}
-    for suffix in SUFFIXES:
-        group = RUNS / ('user_yzyang4_issue_mcts_data_' + suffix)
+    names = list(group_names) if group_names is not None else ['user_yzyang4_issue_mcts_data_' + suffix for suffix in SUFFIXES]
+    for name in names:
+        if not name.startswith('user_yzyang4_issue_') or '/' in name or '\\' in name: raise ValueError('fixed old group basename')
+        group = RUNS / name
         if not group.is_dir(): skipped['missing_named_group'] += 1; continue
         for run in sorted(group.iterdir()):
             if not run.is_dir() or run.name == 'srun_pool': continue
@@ -65,7 +67,10 @@ def main():
                 identity = f"{task}__{n.get('id', n.get('step'))}"
                 if identity in public_ids: matches.add(public_ids[identity])
             if len(matches) != 1: skipped['no_unique_public_v9_run_anchor'] += 1; continue
-            task = matches.pop(); seen = set(); local = []
+            task = matches.pop()
+            if required_task is not None and task != required_task:
+                skipped['outside_requested_task'] += 1; continue
+            seen = set(); local = []
             for n in nodes:
                 if n.get('step') in seen: raise ValueError('duplicate step in old journal')
                 seen.add(n.get('step'))
@@ -81,14 +86,14 @@ def main():
             proofs.append(dict(path=str(path),sha256=sha(raw),mtime_utc=dt.datetime.fromtimestamp(before.st_mtime,dt.timezone.utc).isoformat(),
                 task=task,observed_nodes=len(local),positive=sum(r['label'] for r in local)))
             records.extend(local); counts[task] += len(local)
-    root = Path(tempfile.mkdtemp(prefix='forets-legacy-validity-20260914-',dir=BASE))
+    root = Path(tempfile.mkdtemp(prefix=output_prefix,dir=BASE))
     with (root/'nodes.private.jsonl').open('xb') as f:
         for row in records: f.write((json.dumps(row,sort_keys=True)+'\n').encode())
     for task in sorted(counts):
         rr = [r for r in records if r['task']==task]
         task_counts[task] = dict(nodes=len(rr),positive=sum(r['label'] for r in rr),runs=len({r['run'] for r in rr}))
     report = dict(role='legacy_development_validity_not_scores',public_anchor_sha256=EXPECTED,cutoff_utc='2026-08-12T00:00:00Z',
-        allowlisted_groups=list(SUFFIXES),source_proofs=proofs,skipped=dict(skipped),nodes=len(records),
+        allowlisted_groups=names,required_task=required_task,source_proofs=proofs,skipped=dict(skipped),nodes=len(records),
         runs=len({r['run'] for r in records}),task_counts=task_counts,script_sha256=sha(Path(__file__).read_bytes()),
         private_nodes_sha256=sha((root/'nodes.private.jsonl').read_bytes()),
         caveat='Requires a public graded-node anchor: all-failed runs without such an anchor are absent. Old heterogeneous environments; not a representative population or frozen confirmation cohort.')

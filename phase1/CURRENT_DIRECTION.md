@@ -13,7 +13,10 @@
 只增加被动逐动作交付记录，原选择、CV、分析器、生成器、执行/debug、镜像不变。对同一实际轨迹比较两种持久化输出，不是16个独立run。
 记录开销计共同预算；选择只用原get_best_node，外部分数仅全八闭合后独立读出。不追改旧结果、不恢复旧score-channel优越性。
 这是交付机制研究而非critic胜出、新算法或无开销反事实；无收益则不扩大。0L193的单点CV问题未在此实验修复，避免混变量。
-方案[FORETS_ACTION_PROSPECTIVE_PLAN_20260913.md](FORETS_ACTION_PROSPECTIVE_PLAN_20260913.md)；当前仍准备，真实提交以短交接为准。
+方案[FORETS_ACTION_PROSPECTIVE_PLAN_20260913.md](FORETS_ACTION_PROSPECTIVE_PLAN_20260913.md)；06:07单次提交13233/13234，06:12已观察两块首轨迹运行、握手正常。
+全八结束前只监控运行结构，不读成绩；冻结读出不改。exact source/plan与动态状态见短交接。
+06:15另冻结[宽度成本强基线](FORETS_WIDTH_CONTROL_PLAN_20260913.md)：新38/39×两任务×生成二全执行/生成四随机执行二，共8次；仅fanout不同。
+主终点action、次终点iteration都报；不依赖34–37分差正负决定启动，只依赖完整闭合与资源/新接线门。尚未提交，新增上限3GPUh且累计API帽不变。
 
 ## 0L193. 2026-09-13 05:51 UTC：单池选择正信号、真实CV错位已验证，尚非e2e收益
 

@@ -1,0 +1,22 @@
+{
+  "launch_width_control_20260913.py": {
+    "base_file": "releases/forets-action-tools-20260913-v2/launch_action_prospective_20260913.py",
+    "base_sha256": "8315c5ad2226b4fd55f1bf636161d5dc38201dfa1006810e1d219803fac643d7",
+    "derived_sha256": "e1cfff1cd2207ad50c3a156b6e59c297822febc87d14441add019ac8ccc99e1e"
+  },
+  "readout_width_core_20260913.py": {
+    "base_file": "readout_forets_wallclock_20260912.py",
+    "base_sha256": "d800d3986a9d88251c30a0194df413d302183a714bbfcd4f7b137d4aa3726b0e",
+    "derived_sha256": "5728162980af29c2faae48e94fefaa604c3db6ac0b76c027909217995ea281a7"
+  },
+  "verify_width_action_hook_20260913.py": {
+    "base_file": "releases/forets-action-tools-20260913-v2/verify_deployed_action_hook_20260913.py",
+    "base_sha256": "f640643ed7298091a04acc9703f81e3e788b9af23feb265b9676e6ade8b62ab5",
+    "derived_sha256": "00e933e56f94ee3a537af0e6934cb377b6199dd338ae70cf5aacdd411c77b4a4"
+  },
+  "verify_width_batch_20260913.py": {
+    "base_file": "verify_forets_reference_integration_20260913.py",
+    "base_sha256": "614bb85721b92f3096fea33f17c0c08453f06bd6527bb8f991e85d0a7bfa0d97",
+    "derived_sha256": "e22ce1bde16ceb19e5fce8fe0b30d36cab3828c1d7a299048aa04a3ecfc1ff58"
+  }
+}

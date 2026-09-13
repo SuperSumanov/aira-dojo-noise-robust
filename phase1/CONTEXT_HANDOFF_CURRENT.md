@@ -1,5 +1,5 @@
-# 短交接：新逐动作交付前瞻验证准备；此前CV与critic结果不变
-最后观察：2026-09-13 06:04 UTC。用户再次要求三小时持续研究，当前窗口05:53–08:53 UTC；不要创建automation替代会话内工作。
+# 短交接：逐动作交付八轨迹已开跑；此前CV与critic结果不变
+最后观察：2026-09-13 06:12 UTC。用户再次要求三小时持续研究，当前窗口05:53–08:53 UTC；不要创建automation替代会话内工作。
 恢复先fetch→CURRENT_DIRECTION 0L194→本文件→核现场。长期约束见AGENTS，详细历史在报告/Git。
 
 ## 本轮当前包（覆盖下方上一轮动态状态）
@@ -14,8 +14,17 @@ Leaf/Space×34/35/36/37全8条uniform轨迹，每条600秒/程序300秒/四选�
 首个派生测试脚本错误使用Windows路径分隔符，未发生GPU/API，修正为POSIX后仅补剩余测试；正式source未改。
 使用forets-action-tools-20260913-v2（v1失败路径夹具不用）。未重跑已完成integration-check。
 新责任账已激活且旧5_czzimk封账；完整继承1310调用及2旧未知，原累计10USD帽不变。禁止再次activate/旧包付费。
-正在单次route；尚未提交GPU。控制入口STAGE/forets_action_control_20260913.sh。路线成功后单次submit，不重复route。
+route两块均成功、共4调用；06:07:08单次提交13233/13234。06:12两块各第一条轨迹running、余下各三条pending，GPU容器握手正常；禁止重复route/submit。
+控制入口STAGE/forets_action_control_20260913.sh；当前只运行monitor，全部终态后一次readout。
 新reader readout_action_prospective_20260913.py，全八终态后一次读取，两种原submission各自独立重评分；运行时只用monitor_action_prospective_20260913.py看结构/账。
+
+## 同步准备：宽度成本强基线（未提交，不改当前实验）
+06:15 UTC在34–37结果未读时确定Leaf/Space×38/39×batch_four/direct_two全8同期矩阵。
+实际selection_policy均uniform、执行二，只改num_children四/二；两臂共同逐动作记录，主终点action、次终点iteration，全报。
+新上限3GPUh，沿用累计10USD帽；不是新算法/critic扩大。仅待当前全终态与读出/账闭合才允许转移账提交。
+计划FORETS_WIDTH_CONTROL_PLAN_20260913.md；builder/readout/derive工具和7项本地测试已通过；真实生产CPU接线尚待新包。
+源算法不改，仅收费继承身份变；严禁将配置arm标签batch_four/direct_two错当实际selection_policy。
+releases/forets-width-tools-20260913保存派生工具；新root/STAGE/source/账尚未创建，不要猜。
 
 ## 上一轮已完成事实与裁决（不得重跑）
 - 主实验13213/13214已闭合：8技术合格、4配对0胜1平3负；停止扩大同配方，不启动24run。
@@ -55,10 +64,10 @@ CV逐行NPZ只留远端，不下载/推Git。本地results保存聚合证据；J
 ## 运维与保留边界
 SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python。
 SLURM_CONF=/opt1/slurm/gpu-slurm.conf；MLE任务用gpu27/gpu28 RTX3090，不是projgpu28/39；镜像不升级、无CPU回退。
-本轮新GPU作业均已结束；旧held12535不动。不要按历史队列盲投。
-累计责任账最后闭合1310调用、5388558392nUSD责任、3988558392nUSD已结算、仅2旧未知；原帽不重置。
+当前13233/13234运行中；上一轮新作业已结束，旧held12535不动。不要按历史队列盲投。
+06:12累计责任账1329调用、5413809137nUSD责任、4013809137nUSD已结算、仅2旧未知；原帽不重置。
 PRIMARY_KEY远端映射OPENROUTER_API_KEY；不要读/记密钥值，不要再次向用户索取。
-最近已核公开commit d413bc6a8f30c8cd697159d12b84f24a99494d59；新报告提交以实际git/ls-remote为准。
+最新本地及成功push commit 4696bf81eca9a2d2845be6aaa1ebe169bcea284f（公开ref尚待ls-remote复核）；本记录是其后的状态更新。
 只push myfork HEAD:phase1-value-critic；不改学长分支、不新建分支、不强推。
 05:46 fetch学长dojo-reproduce仍113e25e7fa2570cb5f60401d051a1de3cce307c2；Git未更新不证明远端语料未更新。
 官方1TB研究盘到期2026-09-29，延期未知。无清理授权范围外删除。

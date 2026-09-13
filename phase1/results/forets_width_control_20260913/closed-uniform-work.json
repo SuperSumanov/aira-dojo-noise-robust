@@ -1,0 +1,394 @@
+{
+  "kind": "width",
+  "limitations": [
+    "Generated/execution counts include the common fixed RF start, not only LLM outputs.",
+    "Observed completed task-call wall time includes task/grade work. Missing/in-flight intervals are not zero work.",
+    "Remaining worker time is not all model or critic latency; setup, analysis, logging, waiting also contribute.",
+    "Exit zero is not a valid or high-quality final submission. Saved journal coverage can be incomplete.",
+    "Error families use the unchanged historical parser, may overlap, and are auxiliary; no exclusions or new success endpoint."
+  ],
+  "role": "closed_uniform_work_error_supplement_not_primary_endpoint",
+  "rows": [
+    {
+      "arm": "batch_four",
+      "batch_proofs": [
+        {
+          "sha256": "bb6692ec02fa7dbb8f4ad756dd53eb5083f1b8d17d30e7dcd907dbc47aff1e4f",
+          "step": 1
+        },
+        {
+          "sha256": "a3dfd6b46c738abf45fa1b4e06112dc24e90f44d2fc7d362407916b5ffeda3c9",
+          "step": 2
+        }
+      ],
+      "candidate_task_calls": 3,
+      "debug_task_calls": 2,
+      "generated_candidates": 5,
+      "interpreter_exit_zero_calls": 1,
+      "interpreter_seconds_observed": 361.80309914494865,
+      "interpreter_timeout_calls": 1,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "saved_executed_nodes": 1,
+        "valid_submission_nodes": 1
+      },
+      "journal_present": true,
+      "journal_sha256": "608a489c889a686798b2127eb69b0a10fa8e68418e9d6795da5265c075ab5779",
+      "measured_task_calls": 5,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.8184005789268447,
+      "raised_task_calls": 0,
+      "returned_task_calls": 5,
+      "run_id": "00-leaf-classification-s38-batch_four",
+      "seed": 38,
+      "task": "leaf-classification",
+      "task_wall_seconds_observed": 388.374709457,
+      "technical_eligible": true,
+      "total_task_calls": 5,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 474.553317113081
+    },
+    {
+      "arm": "direct_two",
+      "batch_proofs": [
+        {
+          "sha256": "be8b0c9d7d46ea65e2cd544a6147691b65c247b8daabba058f83e8f88c238ef1",
+          "step": 1
+        },
+        {
+          "sha256": "d5f45a60333a7f8bda11724db37a85ffdc67d7dceca4a9857017398fa16cdef8",
+          "step": 2
+        },
+        {
+          "sha256": "95f5d9b41715134cd551e9adc1fe57d056b9d0c748988d53cebdea920fede910",
+          "step": 6
+        }
+      ],
+      "candidate_task_calls": 4,
+      "debug_task_calls": 2,
+      "generated_candidates": 5,
+      "interpreter_exit_zero_calls": 2,
+      "interpreter_seconds_observed": 441.01142468792386,
+      "interpreter_timeout_calls": 1,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "nonzero_nodes": 3,
+        "saved_executed_nodes": 5,
+        "unclassified_nonzero_nodes": 3,
+        "valid_submission_nodes": 2
+      },
+      "journal_present": true,
+      "journal_sha256": "d003b3d8b4bc9b936513eecba1fccd669cb27f5ae50d535d626997c17ee9e2de",
+      "measured_task_calls": 6,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.8332543132462721,
+      "raised_task_calls": 0,
+      "returned_task_calls": 6,
+      "run_id": "01-leaf-classification-s38-direct_two",
+      "seed": 38,
+      "task": "leaf-classification",
+      "task_wall_seconds_observed": 473.121725784,
+      "technical_eligible": true,
+      "total_task_calls": 6,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 567.7999120589811
+    },
+    {
+      "arm": "direct_two",
+      "batch_proofs": [
+        {
+          "sha256": "8bcd3316311cdf7a3bd764ced9b39dff0e94d9cdd5fd6208e4968a275a375b36",
+          "step": 1
+        },
+        {
+          "sha256": "411f20bfbf51ea0d7a98fe19eaf974f54db5f0d3e6025e68b62dc6fe66efe559",
+          "step": 10
+        },
+        {
+          "sha256": "ba709514474527921445932e77c283cf02f7744ca9ee79772183bc016e2b405c",
+          "step": 2
+        },
+        {
+          "sha256": "e1ab4ed125d0db7db66d5c125a7791c056175f5d471caec5ff7f3592e4b9bbce",
+          "step": 6
+        }
+      ],
+      "candidate_task_calls": 7,
+      "debug_task_calls": 6,
+      "generated_candidates": 7,
+      "interpreter_exit_zero_calls": 1,
+      "interpreter_seconds_observed": 105.2199921591673,
+      "interpreter_timeout_calls": 0,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "error_family:catboost_nan_category": 1,
+        "error_family:categorical_new_fill_value": 2,
+        "error_family:early_stopping_without_validation": 2,
+        "nonzero_nodes": 8,
+        "saved_executed_nodes": 9,
+        "unclassified_nonzero_nodes": 3,
+        "valid_submission_nodes": 1
+      },
+      "journal_present": true,
+      "journal_sha256": "b65e9b1d62a5aa0f0d8670b6dca082d4ac58323029bb6014c41fb8dda1afd1be",
+      "measured_task_calls": 13,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.3616177900215326,
+      "raised_task_calls": 0,
+      "returned_task_calls": 13,
+      "run_id": "02-spaceship-titanic-s38-direct_two",
+      "seed": 38,
+      "task": "spaceship-titanic",
+      "task_wall_seconds_observed": 170.887735942,
+      "technical_eligible": true,
+      "total_task_calls": 13,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 472.56451606494375
+    },
+    {
+      "arm": "batch_four",
+      "batch_proofs": [
+        {
+          "sha256": "96b99bb0b7e73b3660163fc142279b10a3e5a4c2a72b91ce8a4c042ee148418f",
+          "step": 1
+        },
+        {
+          "sha256": "0b0d112eadad78442c753606a9d215d1cef02518d080c1ec579dcad05ad5a8d0",
+          "step": 10
+        },
+        {
+          "sha256": "0bc2f021ef77e3a8fb3173692624df01941f2246033b07490db49eb71ed0da64",
+          "step": 2
+        },
+        {
+          "sha256": "1f07b8f098094f31a658eec598ef094cbbd77428ae8d7c2c9d9649eb642be439",
+          "step": 6
+        }
+      ],
+      "candidate_task_calls": 6,
+      "debug_task_calls": 5,
+      "generated_candidates": 13,
+      "interpreter_exit_zero_calls": 3,
+      "interpreter_seconds_observed": 197.53430508542806,
+      "interpreter_timeout_calls": 0,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "error_family:categorical_new_fill_value": 3,
+        "error_family:early_stopping_without_validation": 1,
+        "nonzero_nodes": 7,
+        "saved_executed_nodes": 9,
+        "unclassified_nonzero_nodes": 3,
+        "valid_submission_nodes": 2
+      },
+      "journal_present": true,
+      "journal_sha256": "9b713cd885575b0edc157e55f3fdac684cb4b31a38599e9d6b6879ce2420a8a9",
+      "measured_task_calls": 11,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.48576394455338473,
+      "raised_task_calls": 0,
+      "returned_task_calls": 11,
+      "run_id": "03-spaceship-titanic-s38-batch_four",
+      "seed": 38,
+      "task": "spaceship-titanic",
+      "task_wall_seconds_observed": 248.71749648399998,
+      "technical_eligible": true,
+      "total_task_calls": 11,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 512.0130863410886
+    },
+    {
+      "arm": "direct_two",
+      "batch_proofs": [
+        {
+          "sha256": "0b6e5b429020d2a650f917ce3b63169eeeeeb89212328937c11041095787a435",
+          "step": 1
+        },
+        {
+          "sha256": "a4d826e81996db5abf1c4c50ec843f8573ee7c6fcd8048ad20c4c8a112a446c0",
+          "step": 2
+        },
+        {
+          "sha256": "2a324350090459be321956d56e59d0ad94e99633b39adc8abf97c37841c492aa",
+          "step": 5
+        }
+      ],
+      "candidate_task_calls": 4,
+      "debug_task_calls": 1,
+      "generated_candidates": 5,
+      "interpreter_exit_zero_calls": 2,
+      "interpreter_seconds_observed": 232.96450145193376,
+      "interpreter_timeout_calls": 0,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "nonzero_nodes": 2,
+        "saved_executed_nodes": 4,
+        "unclassified_nonzero_nodes": 2,
+        "valid_submission_nodes": 2
+      },
+      "journal_present": true,
+      "journal_sha256": "8d274f774494d9414cb083bb00094e1b39827727e8291c7fb5ba81bb5e337512",
+      "measured_task_calls": 4,
+      "metadata_missing_calls": 1,
+      "observed_task_wall_fraction": 0.42274243985002835,
+      "raised_task_calls": 0,
+      "returned_task_calls": 4,
+      "run_id": "04-leaf-classification-s39-direct_two",
+      "seed": 39,
+      "task": "leaf-classification",
+      "task_wall_seconds_observed": 253.696680766,
+      "technical_eligible": true,
+      "total_task_calls": 5,
+      "unresolved_task_calls": 1,
+      "worker_elapsed_seconds": 600.1211538070347
+    },
+    {
+      "arm": "batch_four",
+      "batch_proofs": [
+        {
+          "sha256": "15ba206418dc094e2fe30ede8141a2becc6529c77c790cf0795144df28271f9e",
+          "step": 1
+        },
+        {
+          "sha256": "f5186d047bb078a070058086017f7b0ae0a9876c270cb69e890a7450c873b219",
+          "step": 2
+        },
+        {
+          "sha256": "9a230ea6060196e78bcbb3cb833d123fbc5fba0859a4385294668ed0398b2e4d",
+          "step": 6
+        }
+      ],
+      "candidate_task_calls": 4,
+      "debug_task_calls": 2,
+      "generated_candidates": 9,
+      "interpreter_exit_zero_calls": 3,
+      "interpreter_seconds_observed": 347.77530028740875,
+      "interpreter_timeout_calls": 0,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "nonzero_nodes": 2,
+        "saved_executed_nodes": 5,
+        "unclassified_nonzero_nodes": 2,
+        "valid_submission_nodes": 3
+      },
+      "journal_present": true,
+      "journal_sha256": "32761db629f845eea2cb0a5cf11c7f1dd14ac2cb4bc65967b630e932076133b4",
+      "measured_task_calls": 5,
+      "metadata_missing_calls": 1,
+      "observed_task_wall_fraction": 0.6195127622006501,
+      "raised_task_calls": 0,
+      "returned_task_calls": 5,
+      "run_id": "05-leaf-classification-s39-batch_four",
+      "seed": 39,
+      "task": "leaf-classification",
+      "task_wall_seconds_observed": 371.75865236600004,
+      "technical_eligible": true,
+      "total_task_calls": 6,
+      "unresolved_task_calls": 1,
+      "worker_elapsed_seconds": 600.082314762054
+    },
+    {
+      "arm": "batch_four",
+      "batch_proofs": [
+        {
+          "sha256": "fc551de24e4eae2039e0dd2b14b03a916d7de1e0c23c2f866583efe36139c249",
+          "step": 1
+        },
+        {
+          "sha256": "0e825b09be65cefe6fcdec18f97d7e7300e84be9e180f36e103da5a9ebbe3396",
+          "step": 10
+        },
+        {
+          "sha256": "f8106e9583affdc77c637bbe92d1c074e986a1d3ea7173472e942b7bcd2b1c94",
+          "step": 2
+        },
+        {
+          "sha256": "516b79ef3ad2b733af4608c92dee8b833eb0b68f62c449f4b701ab1abaaf1d35",
+          "step": 6
+        }
+      ],
+      "candidate_task_calls": 6,
+      "debug_task_calls": 5,
+      "generated_candidates": 13,
+      "interpreter_exit_zero_calls": 2,
+      "interpreter_seconds_observed": 211.76392618194222,
+      "interpreter_timeout_calls": 0,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "error_family:categorical_new_fill_value": 1,
+        "nonzero_nodes": 8,
+        "saved_executed_nodes": 9,
+        "unclassified_nonzero_nodes": 7,
+        "valid_submission_nodes": 1
+      },
+      "journal_present": true,
+      "journal_sha256": "9785444ef85a6a3f7728ce2dab88e3d4016dd2161754a95ed7c7b1189f1f8c99",
+      "measured_task_calls": 11,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.5258417566897176,
+      "raised_task_calls": 0,
+      "returned_task_calls": 11,
+      "run_id": "06-spaceship-titanic-s39-batch_four",
+      "seed": 39,
+      "task": "spaceship-titanic",
+      "task_wall_seconds_observed": 262.21509451599997,
+      "technical_eligible": true,
+      "total_task_calls": 11,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 498.65780185791664
+    },
+    {
+      "arm": "direct_two",
+      "batch_proofs": [
+        {
+          "sha256": "4d1949ae2642fd5ab2eef7e1dff3723e0617ee42eead99e1ff485ea952fdd279",
+          "step": 1
+        },
+        {
+          "sha256": "12283ef7ed4d79bc2bd9d97ecbcd28fdbecad9dd659980311d1f36be9c18cdc4",
+          "step": 10
+        },
+        {
+          "sha256": "c043a21dffca68d09abae9c85e6b8955d11bcf964228b671c36eb24fa4ebbe6b",
+          "step": 2
+        },
+        {
+          "sha256": "232ea03becf03ea6cd6de6a43e17bbcd6bb1cb9986ffe4656bc25249b49e393b",
+          "step": 6
+        }
+      ],
+      "candidate_task_calls": 6,
+      "debug_task_calls": 4,
+      "generated_candidates": 7,
+      "interpreter_exit_zero_calls": 4,
+      "interpreter_seconds_observed": 218.5402004418429,
+      "interpreter_timeout_calls": 0,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "error_family:categorical_new_fill_value": 1,
+        "error_family:early_stopping_without_validation": 1,
+        "error_family:feature_count_mismatch": 1,
+        "nonzero_nodes": 5,
+        "saved_executed_nodes": 9,
+        "unclassified_nonzero_nodes": 2,
+        "valid_submission_nodes": 4
+      },
+      "journal_present": true,
+      "journal_sha256": "9f502fe4d8ad4afc0dc4b900df84cd914dc3648c6ebe74909064d7e6ecbf8202",
+      "measured_task_calls": 10,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.5125738163251592,
+      "raised_task_calls": 0,
+      "returned_task_calls": 10,
+      "run_id": "07-spaceship-titanic-s39-direct_two",
+      "seed": 39,
+      "task": "spaceship-titanic",
+      "task_wall_seconds_observed": 268.803467693,
+      "technical_eligible": true,
+      "total_task_calls": 10,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 524.4190380619839
+    }
+  ],
+  "script_sha256": "62ea62c33d0c05707339dd7d1c6ff4b14dcccf4df1b1144cef15e3ff16e4aa88",
+  "source_finish_sha256": "277ad5aaa0eac4fd15bb56ecad3c828725448926d0e1fbaabb75b9e11b4ebd85"
+}

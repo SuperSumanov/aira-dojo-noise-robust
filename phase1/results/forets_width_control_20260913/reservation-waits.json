@@ -1,0 +1,103 @@
+{
+  "limitations": "Only emitted completed-wait and rejection messages are observable. Cancellation during waiting may lack a terminal message; zero logged waits is not a proof of zero true wait. No quality eligibility changes or exclusions.",
+  "role": "accounting_backpressure_sensitivity_not_quality_endpoint",
+  "rows": [
+    {
+      "any_logged_permanent_rejection": false,
+      "arm": "batch_four",
+      "log_sha256": "5b125eaccde810467e5cf337f9cb36e934ffbfd9fdcc846b73f90ea985610caa",
+      "logged_rejected_wait_seconds": 0,
+      "logged_rejections": 0,
+      "logged_successful_wait_seconds": 0,
+      "logged_successful_waits": 0,
+      "run_id": "00-leaf-classification-s38-batch_four",
+      "seed": 38,
+      "task": "leaf-classification"
+    },
+    {
+      "any_logged_permanent_rejection": false,
+      "arm": "direct_two",
+      "log_sha256": "2b42917cc8393163117cacc67f05c0734b82533682395c81a5d11a12d10f018c",
+      "logged_rejected_wait_seconds": 0,
+      "logged_rejections": 0,
+      "logged_successful_wait_seconds": 0,
+      "logged_successful_waits": 0,
+      "run_id": "01-leaf-classification-s38-direct_two",
+      "seed": 38,
+      "task": "leaf-classification"
+    },
+    {
+      "any_logged_permanent_rejection": false,
+      "arm": "direct_two",
+      "log_sha256": "142e13e134e6d96eec767c8149f70b348b8b134c6fb7d6feda4131db3267886f",
+      "logged_rejected_wait_seconds": 0,
+      "logged_rejections": 0,
+      "logged_successful_wait_seconds": 0,
+      "logged_successful_waits": 0,
+      "run_id": "02-spaceship-titanic-s38-direct_two",
+      "seed": 38,
+      "task": "spaceship-titanic"
+    },
+    {
+      "any_logged_permanent_rejection": false,
+      "arm": "batch_four",
+      "log_sha256": "5bb8d20694443c6a1ab2d9994b298d5832c903577579f7e284629b7a94b492b4",
+      "logged_rejected_wait_seconds": 0,
+      "logged_rejections": 0,
+      "logged_successful_wait_seconds": 0,
+      "logged_successful_waits": 0,
+      "run_id": "03-spaceship-titanic-s38-batch_four",
+      "seed": 38,
+      "task": "spaceship-titanic"
+    },
+    {
+      "any_logged_permanent_rejection": false,
+      "arm": "direct_two",
+      "log_sha256": "49cef170c8d7a32865254ff0fda588c84345d2606af931b373c9338098593b05",
+      "logged_rejected_wait_seconds": 0,
+      "logged_rejections": 0,
+      "logged_successful_wait_seconds": 0,
+      "logged_successful_waits": 0,
+      "run_id": "04-leaf-classification-s39-direct_two",
+      "seed": 39,
+      "task": "leaf-classification"
+    },
+    {
+      "any_logged_permanent_rejection": false,
+      "arm": "batch_four",
+      "log_sha256": "a00ae2a59c2ebdb22134a66bbf1abcd58301dfa04ed6a0da1ce599fffb7bf9ca",
+      "logged_rejected_wait_seconds": 0,
+      "logged_rejections": 0,
+      "logged_successful_wait_seconds": 0,
+      "logged_successful_waits": 0,
+      "run_id": "05-leaf-classification-s39-batch_four",
+      "seed": 39,
+      "task": "leaf-classification"
+    },
+    {
+      "any_logged_permanent_rejection": false,
+      "arm": "batch_four",
+      "log_sha256": "f4066b21c3d0a7ffb2a63a29295cf7cc0094b43ba10eb62b81740d778bc9de1a",
+      "logged_rejected_wait_seconds": 0,
+      "logged_rejections": 0,
+      "logged_successful_wait_seconds": 0,
+      "logged_successful_waits": 0,
+      "run_id": "06-spaceship-titanic-s39-batch_four",
+      "seed": 39,
+      "task": "spaceship-titanic"
+    },
+    {
+      "any_logged_permanent_rejection": false,
+      "arm": "direct_two",
+      "log_sha256": "b9d77471b489acedaacde3d4c04e7966017c5301082eb2985254be9b187e83fc",
+      "logged_rejected_wait_seconds": 0,
+      "logged_rejections": 0,
+      "logged_successful_wait_seconds": 0,
+      "logged_successful_waits": 0,
+      "run_id": "07-spaceship-titanic-s39-direct_two",
+      "seed": 39,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "source_finish_sha256": "277ad5aaa0eac4fd15bb56ecad3c828725448926d0e1fbaabb75b9e11b4ebd85"
+}

@@ -1,0 +1,344 @@
+{
+  "limitation": "Exit zero is not external submission validity. Parsed nodes in partial batches are not retrospectively eligible incumbents. Concurrent reservation waits are not additive wall time. No unexecuted outcomes or causal mechanism mediation inferred.",
+  "rows": [
+    {
+      "arm": "uniform_random",
+      "execution_counts": {
+        "candidate_attempts": 4,
+        "candidate_exit_nonzero": 3,
+        "candidate_exit_zero": 1,
+        "debug_attempts": 3,
+        "debug_exit_nonzero": 2,
+        "debug_started": 1
+      },
+      "geometry": {
+        "branching_nodes": 1,
+        "max_saved_children": 2,
+        "persisted_nodes": 6,
+        "roots": 1,
+        "unpersisted_child_references": 0,
+        "unreachable_saved_nodes": 0
+      },
+      "handshakes": {
+        "True": 9
+      },
+      "journal_present": true,
+      "maximum_single_reservation_wait_seconds": 0,
+      "partial_batches": [
+        {
+          "attempted_candidates": 1,
+          "parsed_candidates_in_final_journal": 0,
+          "phase": "executing",
+          "returned_candidates": 1,
+          "step": 6
+        }
+      ],
+      "reservation_rejections": 0,
+      "reservation_wait_events": 0,
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "seed": 30,
+      "task": "leaf-classification",
+      "wire_events": {
+        "connect": 8,
+        "connect_finished": 8,
+        "info_egress": 27,
+        "info_ingress": 9,
+        "loaded": 8
+      }
+    },
+    {
+      "arm": "critic_topk_random",
+      "execution_counts": {
+        "candidate_attempts": 3,
+        "candidate_exit_nonzero": 1,
+        "candidate_exit_zero": 2,
+        "debug_attempts": 1,
+        "debug_started": 1
+      },
+      "geometry": {
+        "branching_nodes": 0,
+        "max_saved_children": 1,
+        "persisted_nodes": 2,
+        "roots": 1,
+        "unpersisted_child_references": 0,
+        "unreachable_saved_nodes": 0
+      },
+      "handshakes": {
+        "True": 7
+      },
+      "journal_present": true,
+      "maximum_single_reservation_wait_seconds": 0,
+      "partial_batches": [
+        {
+          "attempted_candidates": 2,
+          "parsed_candidates_in_final_journal": 0,
+          "phase": "executing",
+          "returned_candidates": 2,
+          "step": 2
+        }
+      ],
+      "reservation_rejections": 0,
+      "reservation_wait_events": 0,
+      "run_id": "01-leaf-classification-s30-critic_topk_random",
+      "seed": 30,
+      "task": "leaf-classification",
+      "wire_events": {
+        "connect": 5,
+        "connect_finished": 5,
+        "info_egress": 21,
+        "info_ingress": 7,
+        "loaded": 5
+      }
+    },
+    {
+      "arm": "critic_topk_random",
+      "execution_counts": {
+        "candidate_attempts": 7,
+        "candidate_exit_nonzero": 4,
+        "candidate_exit_zero": 3,
+        "debug_attempts": 4,
+        "debug_exit_nonzero": 1,
+        "debug_exit_zero": 3
+      },
+      "geometry": {
+        "branching_nodes": 2,
+        "max_saved_children": 2,
+        "persisted_nodes": 8,
+        "roots": 1,
+        "unpersisted_child_references": 0,
+        "unreachable_saved_nodes": 0
+      },
+      "handshakes": {
+        "True": 18
+      },
+      "journal_present": true,
+      "maximum_single_reservation_wait_seconds": 5.670969,
+      "partial_batches": [
+        {
+          "attempted_candidates": 2,
+          "parsed_candidates_in_final_journal": 0,
+          "phase": "executing",
+          "returned_candidates": 2,
+          "step": 8
+        }
+      ],
+      "reservation_rejections": 0,
+      "reservation_wait_events": 1,
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "seed": 30,
+      "task": "spaceship-titanic",
+      "wire_events": {
+        "connect": 12,
+        "connect_finished": 12,
+        "info_egress": 54,
+        "info_ingress": 18,
+        "loaded": 12
+      }
+    },
+    {
+      "arm": "uniform_random",
+      "execution_counts": {},
+      "geometry": null,
+      "handshakes": {
+        "False": 1
+      },
+      "journal_present": false,
+      "maximum_single_reservation_wait_seconds": 0,
+      "partial_batches": [],
+      "reservation_rejections": 0,
+      "reservation_wait_events": 0,
+      "run_id": "03-spaceship-titanic-s30-uniform_random",
+      "seed": 30,
+      "task": "spaceship-titanic",
+      "wire_events": {
+        "connect": 1,
+        "connect_finished": 1,
+        "info_ingress": 120,
+        "loaded": 1
+      }
+    },
+    {
+      "arm": "critic_topk_random",
+      "execution_counts": {
+        "candidate_attempts": 4,
+        "candidate_exit_nonzero": 2,
+        "candidate_exit_zero": 1,
+        "candidate_started": 1,
+        "debug_attempts": 2,
+        "debug_exit_nonzero": 1,
+        "debug_exit_zero": 1
+      },
+      "geometry": {
+        "branching_nodes": 1,
+        "max_saved_children": 2,
+        "persisted_nodes": 6,
+        "roots": 1,
+        "unpersisted_child_references": 0,
+        "unreachable_saved_nodes": 0
+      },
+      "handshakes": {
+        "True": 9
+      },
+      "journal_present": true,
+      "maximum_single_reservation_wait_seconds": 11.01222,
+      "partial_batches": [
+        {
+          "attempted_candidates": 1,
+          "parsed_candidates_in_final_journal": 0,
+          "phase": "executing",
+          "returned_candidates": 0,
+          "step": 6
+        }
+      ],
+      "reservation_rejections": 0,
+      "reservation_wait_events": 1,
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "seed": 31,
+      "task": "leaf-classification",
+      "wire_events": {
+        "connect": 7,
+        "connect_finished": 7,
+        "info_egress": 27,
+        "info_ingress": 9,
+        "loaded": 7
+      }
+    },
+    {
+      "arm": "uniform_random",
+      "execution_counts": {
+        "candidate_attempts": 4,
+        "candidate_exit_nonzero": 2,
+        "candidate_exit_zero": 1,
+        "candidate_started": 1,
+        "debug_attempts": 2,
+        "debug_exit_nonzero": 1,
+        "debug_timeout": 1
+      },
+      "geometry": {
+        "branching_nodes": 1,
+        "max_saved_children": 2,
+        "persisted_nodes": 6,
+        "roots": 1,
+        "unpersisted_child_references": 0,
+        "unreachable_saved_nodes": 0
+      },
+      "handshakes": {
+        "True": 8
+      },
+      "journal_present": true,
+      "maximum_single_reservation_wait_seconds": 0,
+      "partial_batches": [
+        {
+          "attempted_candidates": 1,
+          "parsed_candidates_in_final_journal": 0,
+          "phase": "executing",
+          "returned_candidates": 0,
+          "step": 6
+        }
+      ],
+      "reservation_rejections": 0,
+      "reservation_wait_events": 0,
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "seed": 31,
+      "task": "leaf-classification",
+      "wire_events": {
+        "connect": 7,
+        "connect_finished": 7,
+        "info_egress": 24,
+        "info_ingress": 8,
+        "loaded": 7
+      }
+    },
+    {
+      "arm": "uniform_random",
+      "execution_counts": {
+        "candidate_attempts": 7,
+        "candidate_exit_nonzero": 6,
+        "candidate_exit_zero": 1,
+        "debug_attempts": 6,
+        "debug_exit_nonzero": 4,
+        "debug_exit_zero": 2
+      },
+      "geometry": {
+        "branching_nodes": 3,
+        "max_saved_children": 2,
+        "persisted_nodes": 14,
+        "roots": 1,
+        "unpersisted_child_references": 0,
+        "unreachable_saved_nodes": 0
+      },
+      "handshakes": {
+        "True": 17
+      },
+      "journal_present": true,
+      "maximum_single_reservation_wait_seconds": 0,
+      "partial_batches": [
+        {
+          "attempted_candidates": 0,
+          "parsed_candidates_in_final_journal": 0,
+          "phase": "collecting",
+          "returned_candidates": 0,
+          "step": 14
+        }
+      ],
+      "reservation_rejections": 0,
+      "reservation_wait_events": 0,
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "task": "spaceship-titanic",
+      "wire_events": {
+        "connect": 14,
+        "connect_finished": 14,
+        "info_egress": 51,
+        "info_ingress": 17,
+        "loaded": 14
+      }
+    },
+    {
+      "arm": "critic_topk_random",
+      "execution_counts": {
+        "candidate_attempts": 7,
+        "candidate_exit_nonzero": 6,
+        "candidate_exit_zero": 1,
+        "debug_attempts": 6,
+        "debug_exit_nonzero": 6
+      },
+      "geometry": {
+        "branching_nodes": 2,
+        "max_saved_children": 2,
+        "persisted_nodes": 10,
+        "roots": 1,
+        "unpersisted_child_references": 0,
+        "unreachable_saved_nodes": 0
+      },
+      "handshakes": {
+        "True": 15
+      },
+      "journal_present": true,
+      "maximum_single_reservation_wait_seconds": 0,
+      "partial_batches": [
+        {
+          "attempted_candidates": 2,
+          "parsed_candidates_in_final_journal": 0,
+          "phase": "executing",
+          "returned_candidates": 2,
+          "step": 10
+        }
+      ],
+      "reservation_rejections": 0,
+      "reservation_wait_events": 0,
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "seed": 31,
+      "task": "spaceship-titanic",
+      "wire_events": {
+        "connect": 14,
+        "connect_finished": 14,
+        "info_egress": 45,
+        "info_ingress": 15,
+        "loaded": 14
+      }
+    }
+  ],
+  "source_tree": "35321718fef54f1907b469ab44334a30fe66b6cd",
+  "summary_sha256": "d9a61dbacca59e6557ebc25283b59d425b1f08c8517bb468fce0dfef7179bd77"
+}

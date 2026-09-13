@@ -1,0 +1,20 @@
+{
+  "files": {
+    "common-start-runs.csv": "080387f4c120821e9e5da588b6bdc052b6cd652dca48f74b3497bc5e717ba035",
+    "common-start-summary.json": "d9a61dbacca59e6557ebc25283b59d425b1f08c8517bb468fce0dfef7179bd77",
+    "singlevote-attribution.json": "ba93f9b7986eb11c11e2146421cd44ed094bcbf2c9c45b60b3d17db28249d9b4",
+    "wallclock-runs.csv": "5e51884494284e13d5f4f83601becf57d7ea894224a4c841a4639e20b5075de1",
+    "wallclock-summary.json": "59d9463c127aa0c9fc10d1ab95a09af287e6650c708078330e20edc69f60c2d1"
+  },
+  "readers": {
+    "attribute_forets_wallclock_20260912.py": "c0758cfb7f6f615aae9b8ca8ed217301914ddcf1027d7f1c5d3280503614d342",
+    "readout_forets_branching_20260913.py": "d9be18d97ea655cc734f58d0deb558eb939cd3427d3109ce5c6085f25aaad0d0",
+    "readout_forets_branching_core_20260913.py": "304c6988454a36f4a08f1b0aa9f6ffb60b6c6cd43de0c38a01b099d188dbfa1a",
+    "readout_forets_generation_capacity_20260912.py": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+    "readout_forets_single_vote_20260913.py": "4a00f5296e5241811df9227ce44ac60966ef87604748169d4bff581c696859c3",
+    "verify_branching_selection_20260913.py": "510893e1d2aaa4517c7c1c850e06e0af2c758ab4ebefe2d2dbb4f25cf7adda50",
+    "verify_forets_review_selection_20260912.py": "2fc9cae3ac3fe31f38916da7009a7cc72d2dcbb7fccd1db25be67a443b193216"
+  },
+  "status": "verified",
+  "utc": "2026-09-13T04:01:43.863308+00:00"
+}

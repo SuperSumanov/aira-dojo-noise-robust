@@ -1,0 +1,482 @@
+{
+  "role": "transport_only_not_efficacy",
+  "utc": "2026-09-13T04:03:05.805178+00:00",
+  "rows": [
+    {
+      "trial": 0,
+      "ready": true,
+      "elapsed": 3.68935653695371,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 1,
+      "ready": true,
+      "elapsed": 3.5130383759969845,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 2,
+      "ready": true,
+      "elapsed": 3.290716409916058,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 3,
+      "ready": true,
+      "elapsed": 3.2025364050641656,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 4,
+      "ready": true,
+      "elapsed": 3.083995563094504,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 5,
+      "ready": true,
+      "elapsed": 3.1880499840481207,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 6,
+      "ready": true,
+      "elapsed": 3.48926785599906,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 7,
+      "ready": true,
+      "elapsed": 3.34364831505809,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 8,
+      "ready": true,
+      "elapsed": 3.116948500974104,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 9,
+      "ready": true,
+      "elapsed": 3.577699319925159,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 10,
+      "ready": true,
+      "elapsed": 3.245730433962308,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 11,
+      "ready": true,
+      "elapsed": 3.37931003596168,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 12,
+      "ready": true,
+      "elapsed": 3.328754995018244,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 13,
+      "ready": true,
+      "elapsed": 3.2866181860445067,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 14,
+      "ready": true,
+      "elapsed": 3.4211935539497063,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 15,
+      "ready": true,
+      "elapsed": 3.207376406993717,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 16,
+      "ready": true,
+      "elapsed": 3.2643343979725614,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 17,
+      "ready": true,
+      "elapsed": 3.2946333129657432,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 18,
+      "ready": true,
+      "elapsed": 3.210481817019172,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 19,
+      "ready": true,
+      "elapsed": 3.2186905009439215,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 20,
+      "ready": true,
+      "elapsed": 3.1612096009775996,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 21,
+      "ready": true,
+      "elapsed": 3.182029528892599,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 22,
+      "ready": true,
+      "elapsed": 3.383834559004754,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 23,
+      "ready": true,
+      "elapsed": 3.3234408530406654,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 24,
+      "ready": true,
+      "elapsed": 3.345860278001055,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 25,
+      "ready": true,
+      "elapsed": 3.2382176329847425,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 26,
+      "ready": true,
+      "elapsed": 3.230328315985389,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 27,
+      "ready": true,
+      "elapsed": 3.0509575490141287,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 28,
+      "ready": true,
+      "elapsed": 3.064475827035494,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 29,
+      "ready": true,
+      "elapsed": 3.5609104899922386,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 30,
+      "ready": true,
+      "elapsed": 3.6652195869246498,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 31,
+      "ready": true,
+      "elapsed": 3.3902153639355674,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    }
+  ],
+  "elapsed": 127.12790197704453,
+  "api_calls": 0,
+  "gpu_jobs": 0,
+  "mle_executions": 0,
+  "script_sha256": "5c6adddd26fa18087f91f2e4d50cfa7bd8e3ff2ce3c284a42736ddde7e803132",
+  "limitation": "No-reproduction does not establish a fix. Follow-up connections change timing and connection identity together."
+}

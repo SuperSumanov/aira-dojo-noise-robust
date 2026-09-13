@@ -1,0 +1,492 @@
+{
+  "cutoffs": [
+    120,
+    240,
+    360,
+    480,
+    600
+  ],
+  "independently_regraded_distinct_submissions": 9,
+  "inspector_sha256": "4ff0b697e0bd9b4e8461a5087b51050593a14d4a019b6046ff3418e259d92cd2",
+  "limitation": "Primary endpoint is 600 seconds. No best-cutoff selection, partial-iteration recovery, missing-to-zero or statistical significance claim.",
+  "receipt_hashes": {
+    "00-leaf-classification-s30-uniform_random": {
+      "step-000002.commit.json": "994e65c2e631741a88332c549616871d617d45e1b2394180005f7e530e72c91e",
+      "step-000006.commit.json": "db04fbe402a4748d87c48b22e419d869fa6629a8d48a2fd11566aecff30c6abd"
+    },
+    "01-leaf-classification-s30-critic_topk_random": {
+      "step-000002.commit.json": "39c910a6d719d2725975afcb72406c54bd049e82032fa9377de903e8a32e16d1"
+    },
+    "02-spaceship-titanic-s30-critic_topk_random": {
+      "step-000002.commit.json": "dacd57f984c8e5c47add41324e98abf92ea8baf850cc518d587de3ed9c308353",
+      "step-000006.commit.json": "e80cb7c30003115c1712eeb22e95b2723e950d5ce29856fff83b41de8eca4a13",
+      "step-000008.commit.json": "244ac00f29b173957936950241bd262e49077311d610d28a04ed8850c77a808c"
+    },
+    "03-spaceship-titanic-s30-uniform_random": {},
+    "04-leaf-classification-s31-critic_topk_random": {
+      "step-000002.commit.json": "323209c21ef42f10feecc0e3065faa3eea5a606d93d5391046c0f5002978ef16",
+      "step-000006.commit.json": "6750ebf504688fcb09893f6bac8b5f2ce644886f825852d0dddb8464db06b480"
+    },
+    "05-leaf-classification-s31-uniform_random": {
+      "step-000002.commit.json": "4bf3ef05910f47c8d8b5272090c7209b06a7fda664219a7126b2ad1b35a6b6ad",
+      "step-000006.commit.json": "c8a3f5b2f032ac83c3ddd769c0614a53923631620217c63c739639d25377d2bc"
+    },
+    "06-spaceship-titanic-s31-uniform_random": {
+      "step-000002.commit.json": "f6f9cf8a41db863ffed7835b9e3af1fab8be2777d085e3bddbc4e36ffea29296",
+      "step-000006.commit.json": "bde21854c05dab11be91b8d558c26ee8e5580fac8a07b826803a5650bc67c2f6",
+      "step-000010.commit.json": "561b4299ec6e59ad004440b12df8639e0ecbba8d81136a59c1889a7b5e6704eb",
+      "step-000014.commit.json": "ae1319072776881928123dfed8b18bd1906498a687416dc9719853843bf0272a"
+    },
+    "07-spaceship-titanic-s31-critic_topk_random": {
+      "step-000002.commit.json": "e56a2cdde23c08315810a44a05434b85fe6db34287a4bf2b3ce72d9fab78a439",
+      "step-000006.commit.json": "75de04801a493a982f17d123f2db3ed26e98e2cf366011eeac7216200e6d7737",
+      "step-000010.commit.json": "74d35037460daba97f35d5f14aaa02cf9687f5e24c61c707918049ace1826d6e"
+    }
+  },
+  "role": "secondary_fixed_time_delivery_not_budget_optimization",
+  "rows": [
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 120,
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "score": 1.51485,
+      "seed": 30,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 240,
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "score": 1.51485,
+      "seed": 30,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 360,
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "score": 1.51485,
+      "seed": 30,
+      "selected_step": 6,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 480,
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "score": 1.51485,
+      "seed": 30,
+      "selected_step": 6,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 600,
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "score": 1.51485,
+      "seed": 30,
+      "selected_step": 6,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 120,
+      "run_id": "01-leaf-classification-s30-critic_topk_random",
+      "score": 1.51485,
+      "seed": 30,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 240,
+      "run_id": "01-leaf-classification-s30-critic_topk_random",
+      "score": 1.51485,
+      "seed": 30,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 360,
+      "run_id": "01-leaf-classification-s30-critic_topk_random",
+      "score": 1.51485,
+      "seed": 30,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 480,
+      "run_id": "01-leaf-classification-s30-critic_topk_random",
+      "score": 1.51485,
+      "seed": 30,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 600,
+      "run_id": "01-leaf-classification-s30-critic_topk_random",
+      "score": 1.51485,
+      "seed": 30,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 120,
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "score": 0.79655,
+      "seed": 30,
+      "selected_step": 2,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 240,
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "score": 0.81839,
+      "seed": 30,
+      "selected_step": 6,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 360,
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "score": 0.81839,
+      "seed": 30,
+      "selected_step": 8,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 480,
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "score": 0.81839,
+      "seed": 30,
+      "selected_step": 8,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 600,
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "score": 0.81839,
+      "seed": 30,
+      "selected_step": 8,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 120,
+      "run_id": "03-spaceship-titanic-s30-uniform_random",
+      "score": null,
+      "seed": 30,
+      "selected_step": null,
+      "task": "spaceship-titanic",
+      "valid": false,
+      "whole_run_technical_eligible": false
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 240,
+      "run_id": "03-spaceship-titanic-s30-uniform_random",
+      "score": null,
+      "seed": 30,
+      "selected_step": null,
+      "task": "spaceship-titanic",
+      "valid": false,
+      "whole_run_technical_eligible": false
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 360,
+      "run_id": "03-spaceship-titanic-s30-uniform_random",
+      "score": null,
+      "seed": 30,
+      "selected_step": null,
+      "task": "spaceship-titanic",
+      "valid": false,
+      "whole_run_technical_eligible": false
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 480,
+      "run_id": "03-spaceship-titanic-s30-uniform_random",
+      "score": null,
+      "seed": 30,
+      "selected_step": null,
+      "task": "spaceship-titanic",
+      "valid": false,
+      "whole_run_technical_eligible": false
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 600,
+      "run_id": "03-spaceship-titanic-s30-uniform_random",
+      "score": null,
+      "seed": 30,
+      "selected_step": null,
+      "task": "spaceship-titanic",
+      "valid": false,
+      "whole_run_technical_eligible": false
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 120,
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "score": 1.51485,
+      "seed": 31,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 240,
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "score": 1.51485,
+      "seed": 31,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 360,
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "score": 0.37782,
+      "seed": 31,
+      "selected_step": 6,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 480,
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "score": 0.37782,
+      "seed": 31,
+      "selected_step": 6,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 600,
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "score": 0.37782,
+      "seed": 31,
+      "selected_step": 6,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 120,
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "score": 1.51485,
+      "seed": 31,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 240,
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "score": 1.51485,
+      "seed": 31,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 360,
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "score": 1.51485,
+      "seed": 31,
+      "selected_step": 2,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 480,
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "score": 1.51485,
+      "seed": 31,
+      "selected_step": 6,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 600,
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "score": 1.51485,
+      "seed": 31,
+      "selected_step": 6,
+      "task": "leaf-classification",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 120,
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "score": 0.79655,
+      "seed": 31,
+      "selected_step": 2,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 240,
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "score": 0.79655,
+      "seed": 31,
+      "selected_step": 6,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 360,
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "score": 0.81839,
+      "seed": 31,
+      "selected_step": 10,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 480,
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "score": 0.8069,
+      "seed": 31,
+      "selected_step": 14,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "uniform_random",
+      "cutoff_seconds": 600,
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "score": 0.8069,
+      "seed": 31,
+      "selected_step": 14,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 120,
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "score": 0.79655,
+      "seed": 31,
+      "selected_step": 2,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 240,
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "score": 0.79655,
+      "seed": 31,
+      "selected_step": 6,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 360,
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "score": 0.79655,
+      "seed": 31,
+      "selected_step": 10,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 480,
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "score": 0.79655,
+      "seed": 31,
+      "selected_step": 10,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    },
+    {
+      "arm": "critic_topk_random",
+      "cutoff_seconds": 600,
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "score": 0.79655,
+      "seed": 31,
+      "selected_step": 10,
+      "task": "spaceship-titanic",
+      "valid": true,
+      "whole_run_technical_eligible": true
+    }
+  ],
+  "source_tree": "35321718fef54f1907b469ab44334a30fe66b6cd",
+  "summary_sha256": "d9a61dbacca59e6557ebc25283b59d425b1f08c8517bb468fce0dfef7179bd77",
+  "utc": "2026-09-13T04:05:11.070977+00:00"
+}

@@ -1,0 +1,559 @@
+{
+  "limitation": "Uniform slots are replayed on the critic observed pool only. No claim about unexecuted scores, alternative downstream generations, ordering-mediated gain, or causal attribution.",
+  "role": "posthoc_lineage_not_counterfactual_score",
+  "rows": [
+    {
+      "final_program_journal_nodes": [
+        {
+          "is_buggy": false,
+          "parents": [
+            0
+          ],
+          "step": 1
+        }
+      ],
+      "improvement": 0.0,
+      "pools": [
+        {
+          "actual_slots": [
+            0
+          ],
+          "final_program_sources": [
+            {
+              "call_state": "returned",
+              "candidate_original_same_code": true,
+              "role": "candidate",
+              "same_pool_uniform_would_attempt_slot": true,
+              "slot": 0
+            }
+          ],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 1,
+          "same_pool_uniform_slots": [
+            0
+          ],
+          "selected_set_changed": false,
+          "step": 1,
+          "strict_top2_boundary": null
+        },
+        {
+          "actual_slots": [
+            1,
+            3
+          ],
+          "final_program_sources": [],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            1,
+            3
+          ],
+          "selected_set_changed": false,
+          "step": 2,
+          "strict_top2_boundary": null
+        },
+        {
+          "actual_slots": [
+            2,
+            1
+          ],
+          "final_program_sources": [],
+          "order_changed": false,
+          "phase": "executing",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            2,
+            1
+          ],
+          "selected_set_changed": false,
+          "step": 6,
+          "strict_top2_boundary": null
+        }
+      ],
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "final_program_journal_nodes": [
+        {
+          "is_buggy": false,
+          "parents": [
+            0
+          ],
+          "step": 1
+        }
+      ],
+      "improvement": 0.0,
+      "pools": [
+        {
+          "actual_slots": [
+            0
+          ],
+          "final_program_sources": [
+            {
+              "call_state": "returned",
+              "candidate_original_same_code": true,
+              "role": "candidate",
+              "same_pool_uniform_would_attempt_slot": true,
+              "slot": 0
+            }
+          ],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 1,
+          "same_pool_uniform_slots": [
+            0
+          ],
+          "selected_set_changed": false,
+          "step": 1,
+          "strict_top2_boundary": null
+        },
+        {
+          "actual_slots": [
+            3,
+            0
+          ],
+          "final_program_sources": [],
+          "order_changed": true,
+          "phase": "executing",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            1,
+            3
+          ],
+          "selected_set_changed": true,
+          "step": 2,
+          "strict_top2_boundary": true
+        }
+      ],
+      "run_id": "01-leaf-classification-s30-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "final_program_journal_nodes": [
+        {
+          "is_buggy": false,
+          "parents": [
+            2
+          ],
+          "step": 3
+        }
+      ],
+      "improvement": 0.02183999999999997,
+      "pools": [
+        {
+          "actual_slots": [
+            0
+          ],
+          "final_program_sources": [],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 1,
+          "same_pool_uniform_slots": [
+            0
+          ],
+          "selected_set_changed": false,
+          "step": 1,
+          "strict_top2_boundary": null
+        },
+        {
+          "actual_slots": [
+            2,
+            1
+          ],
+          "final_program_sources": [
+            {
+              "call_state": "returned",
+              "candidate_original_same_code": false,
+              "role": "debug",
+              "same_pool_uniform_would_attempt_slot": true,
+              "slot": 2
+            }
+          ],
+          "order_changed": true,
+          "phase": "complete",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            0,
+            2
+          ],
+          "selected_set_changed": true,
+          "step": 2,
+          "strict_top2_boundary": true
+        },
+        {
+          "actual_slots": [
+            3,
+            1
+          ],
+          "final_program_sources": [],
+          "order_changed": true,
+          "phase": "complete",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            2,
+            3
+          ],
+          "selected_set_changed": true,
+          "step": 6,
+          "strict_top2_boundary": true
+        },
+        {
+          "actual_slots": [
+            2,
+            1
+          ],
+          "final_program_sources": [],
+          "order_changed": true,
+          "phase": "executing",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            3,
+            2
+          ],
+          "selected_set_changed": true,
+          "step": 8,
+          "strict_top2_boundary": true
+        }
+      ],
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "final_program_journal_nodes": [],
+      "improvement": null,
+      "pools": [],
+      "run_id": "03-spaceship-titanic-s30-uniform_random",
+      "technical_eligible": false
+    },
+    {
+      "final_program_journal_nodes": [
+        {
+          "is_buggy": false,
+          "parents": [
+            2
+          ],
+          "step": 3
+        }
+      ],
+      "improvement": 1.13703,
+      "pools": [
+        {
+          "actual_slots": [
+            0
+          ],
+          "final_program_sources": [],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 1,
+          "same_pool_uniform_slots": [
+            0
+          ],
+          "selected_set_changed": false,
+          "step": 1,
+          "strict_top2_boundary": null
+        },
+        {
+          "actual_slots": [
+            1,
+            3
+          ],
+          "final_program_sources": [
+            {
+              "call_state": "returned",
+              "candidate_original_same_code": false,
+              "role": "debug",
+              "same_pool_uniform_would_attempt_slot": true,
+              "slot": 1
+            }
+          ],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            1,
+            3
+          ],
+          "selected_set_changed": false,
+          "step": 2,
+          "strict_top2_boundary": true
+        },
+        {
+          "actual_slots": [
+            0,
+            2
+          ],
+          "final_program_sources": [],
+          "order_changed": false,
+          "phase": "executing",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            0,
+            2
+          ],
+          "selected_set_changed": false,
+          "step": 6,
+          "strict_top2_boundary": true
+        }
+      ],
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "final_program_journal_nodes": [
+        {
+          "is_buggy": false,
+          "parents": [
+            0
+          ],
+          "step": 1
+        }
+      ],
+      "improvement": 0.0,
+      "pools": [
+        {
+          "actual_slots": [
+            0
+          ],
+          "final_program_sources": [
+            {
+              "call_state": "returned",
+              "candidate_original_same_code": true,
+              "role": "candidate",
+              "same_pool_uniform_would_attempt_slot": true,
+              "slot": 0
+            }
+          ],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 1,
+          "same_pool_uniform_slots": [
+            0
+          ],
+          "selected_set_changed": false,
+          "step": 1,
+          "strict_top2_boundary": null
+        },
+        {
+          "actual_slots": [
+            1,
+            3
+          ],
+          "final_program_sources": [],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            1,
+            3
+          ],
+          "selected_set_changed": false,
+          "step": 2,
+          "strict_top2_boundary": null
+        },
+        {
+          "actual_slots": [
+            0,
+            2
+          ],
+          "final_program_sources": [],
+          "order_changed": false,
+          "phase": "executing",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            0,
+            2
+          ],
+          "selected_set_changed": false,
+          "step": 6,
+          "strict_top2_boundary": null
+        }
+      ],
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "final_program_journal_nodes": [
+        {
+          "is_buggy": false,
+          "parents": [
+            12
+          ],
+          "step": 13
+        }
+      ],
+      "improvement": 0.01034999999999997,
+      "pools": [
+        {
+          "actual_slots": [
+            0
+          ],
+          "final_program_sources": [],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 1,
+          "same_pool_uniform_slots": [
+            0
+          ],
+          "selected_set_changed": false,
+          "step": 1,
+          "strict_top2_boundary": null
+        },
+        {
+          "actual_slots": [
+            1,
+            2
+          ],
+          "final_program_sources": [
+            {
+              "call_state": "returned",
+              "candidate_original_same_code": false,
+              "role": "debug",
+              "same_pool_uniform_would_attempt_slot": true,
+              "slot": 2
+            }
+          ],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            1,
+            2
+          ],
+          "selected_set_changed": false,
+          "step": 10,
+          "strict_top2_boundary": null
+        },
+        {
+          "actual_slots": [
+            1,
+            0
+          ],
+          "final_program_sources": [],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            1,
+            0
+          ],
+          "selected_set_changed": false,
+          "step": 2,
+          "strict_top2_boundary": null
+        },
+        {
+          "actual_slots": [
+            0,
+            1
+          ],
+          "final_program_sources": [],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            0,
+            1
+          ],
+          "selected_set_changed": false,
+          "step": 6,
+          "strict_top2_boundary": null
+        }
+      ],
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "final_program_journal_nodes": [
+        {
+          "is_buggy": false,
+          "parents": [
+            0
+          ],
+          "step": 1
+        }
+      ],
+      "improvement": 0.0,
+      "pools": [
+        {
+          "actual_slots": [
+            0
+          ],
+          "final_program_sources": [
+            {
+              "call_state": "returned",
+              "candidate_original_same_code": true,
+              "role": "candidate",
+              "same_pool_uniform_would_attempt_slot": true,
+              "slot": 0
+            }
+          ],
+          "order_changed": false,
+          "phase": "complete",
+          "pool_width": 1,
+          "same_pool_uniform_slots": [
+            0
+          ],
+          "selected_set_changed": false,
+          "step": 1,
+          "strict_top2_boundary": null
+        },
+        {
+          "actual_slots": [
+            1,
+            0
+          ],
+          "final_program_sources": [],
+          "order_changed": true,
+          "phase": "executing",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            1,
+            2
+          ],
+          "selected_set_changed": true,
+          "step": 10,
+          "strict_top2_boundary": true
+        },
+        {
+          "actual_slots": [
+            1,
+            3
+          ],
+          "final_program_sources": [],
+          "order_changed": true,
+          "phase": "complete",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            1,
+            0
+          ],
+          "selected_set_changed": true,
+          "step": 2,
+          "strict_top2_boundary": true
+        },
+        {
+          "actual_slots": [
+            1,
+            3
+          ],
+          "final_program_sources": [],
+          "order_changed": true,
+          "phase": "complete",
+          "pool_width": 4,
+          "same_pool_uniform_slots": [
+            0,
+            1
+          ],
+          "selected_set_changed": true,
+          "step": 6,
+          "strict_top2_boundary": true
+        }
+      ],
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "technical_eligible": true
+    }
+  ],
+  "source_tree": "35321718fef54f1907b469ab44334a30fe66b6cd"
+}

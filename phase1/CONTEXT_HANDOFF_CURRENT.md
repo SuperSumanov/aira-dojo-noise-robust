@@ -1,4 +1,20 @@
-# 短交接：真实双分支八次搜索已提交
+# 短交接：双分支全八已独立闭合；参考条件后继准备中
+2026-09-13 04:10 UTC更新：以下更早动态状态均仅历史。目标本会话05:58 UTC前实质推进，不建automation。
+13201/13202全8终态，04:01:43 readout-finished status=verified；只执行了一次原冻结读出。
+ROOT仍y_p2tlmi/source35321718...；本地results/forets_branching_s30_s31_20260913五主产物逐hash一致。
+技术合格7/8、3质量配对：Leaf30平；Leaf31 critic .37782 vs random1.51485；Space31 critic.79655 vs random.80690。
+Space30 critic.81839但random首内核故障，整对不合格；不可补0/补跑。新正信号不代表稳健收益。
+实际1.3375GPUh；累计1140调用/结算3.558619389USD/责任4.958619389USD/两旧未知不变。
+固定120/240/360/480/600曲线40行/9个不同原提交独立重评分完成，600严格与主结果相同。
+Leaf31正结果360秒已交付；Space31 random由360秒.81839回落到终点.80690，不按外部最优重选。
+机制/lineage为闭合后诊断；不得把部分批次里的程序加回原终点。
+内核失败120 ingress/0 matched egress/3 foreign；32次login原镜像CPU纯连接均通过，未复现不等于治好。
+04:08左右单次提交13204 gpu28单卡6CPU15分钟纯连接诊断，最多64内核，0API/0MLE；日志logs/forets_transport_13204.out。
+新bounded同内核首次连接替换helper已7测试过，尚未投入生产：只在候选从未dispatch时、原120秒内最多一次重连，无重启/重试候选。
+reference新32/33全8仍未build/activate/submit；先实际镜像故障注入、明确基础设施风险与共同修复后才决定。
+本地HEAD96791864；公共最后核118c21e5339d8ffb9136d9a9e8d9c18b3f47adbb。下面旧排队/未揭盲叙述不得当现状。
+
+## 历史运行配置（保留至本轮收尾再压缩）
 2026-09-13 03:45:53 UTC最后核现场；用户要求会话内工作三小时，开始02:58 UTC，目标05:58 UTC，不建automation。
 恢复先fetch→CURRENT_DIRECTION 0L189→核现场；不能按本文件旧动态状态重投。
 

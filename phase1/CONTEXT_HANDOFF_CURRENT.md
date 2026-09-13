@@ -1,4 +1,10 @@
 # 短交接：新交付机制2胜6平；宽度同期对照正在跑
+07:10增量：width13240第一条已600秒停止/账归档；曾等待集群清理，已自然进入第二条，未人工取消。
+集群KillWait300秒/UnkillableStepTimeout180秒；清理额外GPU耗时计账，不把step延迟当搜索超时失效。
+memory STAGE /research/d7/spc/yzyang4/forets-memory-stage-20260913-jiwvOhj8 已上传全部辅助/冻结工具；还无root/账/任务。
+24次真实operator→GenericLLM离线请求预览通过（26f2b4c49a869b303d2a26bd2c256a2ff7237a29abd897be80a1335c1a66bdd6）；只是当前width源码预览，不替代新包最终生产接线。
+capture_width_closed_facts及audit_closed_reservation_waits已上传width STAGE，均未运行；后者只在闭合后记录费用等待，不改变资格/主终点。
+最新公开24c949fc25fe841e853978d879114bde809b0f99；action结果及源包已推，新的诊断/提示入口待后续提交。
 最后更新2026-09-13 07:00 UTC。用户要求连续会话05:53–08:53 UTC推进，不新建automation/任务替代。
 恢复先fetch→CURRENT_DIRECTION 0L195→本文件→现场；详细历史见报告，不重复验收/读出/索要key。
 

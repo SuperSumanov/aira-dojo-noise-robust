@@ -23,6 +23,13 @@ def checked(root):
     if check['status']!='PASSED_CPU_INTEGRATION_NOT_GPU_ACCEPTANCE' or check['source_tree']!=build['source_tree']:raise ValueError('integration')
     branch=read(root/'reference-integration.json')
     if branch['source_tree']!=build['source_tree'] or len(branch['rows'])!=2 or any(r['actual_siblings']!=2 for r in branch['rows']):raise ValueError('actual branching integration')
+    # Failed new recovery is NOT shipped. Verify the original interpreter bytes,
+    # not a fresh gate selected by whether a diagnostic happened to pass.
+    original=Path('/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/source/src/dojo/core/interpreters/jupyter')
+    current=root/'source/src/dojo/core/interpreters/jupyter'
+    if (current/'initial_channel_recovery.py').exists():raise ValueError('unproven recovery shipped')
+    for name in ('jupyter_client.py','jupyter_code_executor.py','kernel_readiness.py','gateway_wire.py','singularity_jupyter_server.py'):
+        if sha((original/name).read_bytes())!=sha((current/name).read_bytes()):raise ValueError('original interpreter changed')
     sys.path[:0]=[str(root/'code'),str(root/'source/src')]
     from forets_native_run_20260911 import static_ready
     for block in (1,2):static_ready(root/'code',block)
@@ -54,6 +61,9 @@ def submit(root):
         query_duration_logged=True,original_image=True,protected_cohort_read=False,agent_training=False,
         prior_unknown_preserved=2,no_automatic_retry=True,readout_after_all_blocks=True,
         readout_plan_sha256=sha((root/'readout-plan.json').read_bytes()),selected_per_pool=2,
+        interpreter_unchanged_from_parent=True,unproven_recovery_deployed=False,
+        intermittent_readiness_risk_retained=True,failed_runs_never_imputed_or_retried=True,
+        references_search_visible_only=True,unexecuted_candidate_feedback=False,
         billing={k:v for k,v in state.items() if k!='scopes'},launchers={str(b):sha((root/f'launchers/singlevote-b{b}.sbatch').read_bytes()) for b in (1,2)})
     write(root/'preflight.json',encode(preflight))
     for block in (1,2):

@@ -11,7 +11,6 @@ import build_forets_wallclock_20260912 as common
 from forets_environment_build_20260912 import git, read, write, encode, sha, PREFIX
 from forets_paid_patch_20260911 import once
 from forets_reference_context_20260913 import patch_sources
-from forets_initial_channel_recovery_20260913 import patch_sources as patch_channel
 
 BASE='35321718fef54f1907b469ab44334a30fe66b6cd'
 PARENT=Path('/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi')
@@ -62,18 +61,14 @@ def changed_sources():
         'AUTH.update('+repr(auth)+')\nAUTH_RAW = json.dumps(AUTH,')
     prefix='src/dojo/solvers/fore_ts/'
     batch,rank=patch_sources(*[git('show',BASE+':'+prefix+n).decode() for n in ('batch_runtime.py','contextual_rank.py')])
-    jprefix='src/dojo/core/interpreters/jupyter/'
-    client,executor=patch_channel(*[git('show',BASE+':'+jprefix+n).decode() for n in ('jupyter_client.py','jupyter_code_executor.py')])
     return {PREFIX+'paid_budget.py':budget.encode(),prefix+'batch_runtime.py':batch.encode(),prefix+'contextual_rank.py':rank.encode(),
-        prefix+'reference_context.py':Path(__file__).with_name('forets_reference_context_20260913.py').read_bytes().replace(b'\r\n',b'\n'),
-        jprefix+'jupyter_client.py':client.encode(),jprefix+'jupyter_code_executor.py':executor.encode(),
-        jprefix+'initial_channel_recovery.py':Path(__file__).with_name('forets_initial_channel_recovery_20260913.py').read_bytes().replace(b'\r\n',b'\n')}
+        prefix+'reference_context.py':Path(__file__).with_name('forets_reference_context_20260913.py').read_bytes().replace(b'\r\n',b'\n')}
 
 
 def configure(facts):
     global FACTS
     FACTS=read(facts)
-    if (FACTS['root'],FACTS['source_tree'],FACTS['prepared_sha256'],FACTS['authorization'])!=(str(PARENT),BASE,PREPARED,AUTH_PARENT):
+    if (FACTS['root'],FACTS['source_tree'],FACTS['prepared_sha256'],FACTS['authorization'])!=(PARENT.as_posix(),BASE,PREPARED,AUTH_PARENT):
         raise ValueError('exact parent')
     count,held,settled,unknown=FACTS['billing_counts']
     if unknown!=2 or not 0<=settled<=held<10**10 or count<989:raise ValueError('billing facts')

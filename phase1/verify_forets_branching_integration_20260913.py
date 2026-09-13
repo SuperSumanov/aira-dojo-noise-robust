@@ -53,7 +53,7 @@ def run():
             counts = dict(generation=0, ranking=0, execution=0)
             async def generate(*args):
                 counts['generation'] += 1
-                return MCTSNode(code='print('+str(counts['generation'])+')', parents=[], operators_metrics=[])
+                return MCTSNode(code=extract_code('print('+str(counts['generation'])+')'), parents=[], operators_metrics=[])
             async def rank(*args): counts['ranking'] += 1; return [1., 2., 3., 4.]
             def parse(node, eval_result):
                 node.is_buggy=False; node.metric=NS(value=.5, info={}, maximize=True)
@@ -89,7 +89,7 @@ def run():
     result=dict(status='CPU_ACTUAL_BATCH_BRANCHING_NOT_EFFICACY', source_tree=build['source_tree'],
         rows=records, api_calls=0, gpu_dispatches=0, deployed=False,
         inspector_sha256=sha(Path(__file__).read_bytes()))
-    digest=write(stage/'branching-reference-integration.json', encode(result))
+    digest=write(ROOT/'branching-integration.json', encode(result))
     print(json.dumps(dict(result=result, sha256=digest)))
 
 

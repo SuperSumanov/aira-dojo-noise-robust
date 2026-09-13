@@ -13,10 +13,16 @@ def checked(root):
     root=root.resolve(strict=True)
     if root.parent!=Path('/research/d7/spc/yzyang4') or not root.name.startswith('forets-wallclock-20260912-'):raise ValueError('new package only')
     build=read(root/'build.json');prepared=read(root/'prepared.json',build['prepared_sha256'])
+    plan=read(root/'readout-plan.json')
+    if (plan['root'],plan['source_tree'],plan['prepared_sha256'])!=(str(root),build['source_tree'],build['prepared_sha256']):raise ValueError('readout binding')
+    for name,digest in plan['readers'].items():
+        if sha(Path(__file__).with_name(name).read_bytes())!=digest:raise ValueError('reader drift')
     from build_forets_branching_20260913 import order
     if [tuple((r['block'],r['task'],r['seed'],r['arm'])) for r in prepared['run_configs']]!=order():raise ValueError('matrix')
     check=read(root/'integration-check.json')
     if check['status']!='PASSED_CPU_INTEGRATION_NOT_GPU_ACCEPTANCE' or check['source_tree']!=build['source_tree']:raise ValueError('integration')
+    branch=read(root/'branching-integration.json')
+    if branch['source_tree']!=build['source_tree'] or len(branch['rows'])!=2 or any(r['actual_siblings']!=2 for r in branch['rows']):raise ValueError('actual branching integration')
     sys.path[:0]=[str(root/'code'),str(root/'source/src')]
     from forets_native_run_20260911 import static_ready
     for block in (1,2):static_ready(root/'code',block)
@@ -47,6 +53,7 @@ def submit(root):
         typed_equal_arm_configs=4,search_seconds=600,program_seconds=300,rank_votes=1,
         query_duration_logged=True,original_image=True,protected_cohort_read=False,agent_training=False,
         prior_unknown_preserved=2,no_automatic_retry=True,readout_after_all_blocks=True,
+        readout_plan_sha256=sha((root/'readout-plan.json').read_bytes()),selected_per_pool=2,
         billing={k:v for k,v in state.items() if k!='scopes'},launchers={str(b):sha((root/f'launchers/singlevote-b{b}.sbatch').read_bytes()) for b in (1,2)})
     write(root/'preflight.json',encode(preflight))
     for block in (1,2):
@@ -59,6 +66,13 @@ def submit(root):
         record=dict(job=job,block=block,utc=dt.datetime.now(dt.timezone.utc).isoformat(),package=str(root),source_tree=build['source_tree'],controller_commit=build['commit'])
         write(root/f'launch-b{block}.json',encode(record));print(json.dumps(record),flush=True)
 
+def freeze(root):
+    from readout_forets_branching_20260913 import FILES
+    build=read(root/'build.json')
+    plan=dict(root=str(root.resolve(strict=True)),source_tree=build['source_tree'],prepared_sha256=build['prepared_sha256'],
+        readers={f:sha(Path(__file__).with_name(f).read_bytes()) for f in FILES})
+    write(root/'readout-plan.json',encode(plan));print(json.dumps(dict(readout_plan_sha256=sha((root/'readout-plan.json').read_bytes()))))
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('mode',choices=('route','submit'));p.add_argument('root',type=Path)
+    p=argparse.ArgumentParser();p.add_argument('mode',choices=('freeze','route','submit'));p.add_argument('root',type=Path)
     a=p.parse_args();os.umask(0o077);globals()[a.mode](a.root)

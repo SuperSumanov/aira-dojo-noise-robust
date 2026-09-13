@@ -1,0 +1,42 @@
+{
+  "agent_training": false,
+  "billing": {
+    "accounted_usd": 4.958846837,
+    "authorization_sha256": "96191b7393556fc5c978d82d2f3f2789ffb5f8c8c0243605b425df6843c07540",
+    "calls": 1144,
+    "settled_usd": 3.558846837,
+    "stopped": false,
+    "unresolved": 2
+  },
+  "blocks": 2,
+  "controller_commit": "9cf2e7ec921730630568f3a090d81ca49cda46d2",
+  "cpus_per_block": 6,
+  "failed_runs_never_imputed_or_retried": true,
+  "gpus_per_block": 1,
+  "intermittent_readiness_risk_retained": true,
+  "interpreter_unchanged_from_parent": true,
+  "launchers": {
+    "1": "325751f38819054328251efafb13ab8bbd490494630ea839206b5b99f1d84870",
+    "2": "20425f4f354134c457fae2348861976f351aad1469d8cba901bb30357c646a0d"
+  },
+  "no_automatic_retry": true,
+  "original_image": true,
+  "prepared_sha256": "82a85e630b4d58830cd382d2b7af549c454aed3645a2b3ca3c1f7d36e74fd571",
+  "prior_unknown_preserved": 2,
+  "program_seconds": 300,
+  "protected_cohort_read": false,
+  "query_duration_logged": true,
+  "rank_votes": 1,
+  "readout_after_all_blocks": true,
+  "readout_plan_sha256": "4b3529a780484723475b8e7cd0c0169b8df5f26a5ffe552c69133b288430e282",
+  "references_search_visible_only": true,
+  "search_seconds": 600,
+  "selected_per_pool": 2,
+  "source_tree": "f1cdee3a9e553e8efeedaa1a66a2c6bd778f9798",
+  "total_gpu_hours_cap": 3,
+  "total_runs": 8,
+  "typed_equal_arm_configs": 4,
+  "unexecuted_candidate_feedback": false,
+  "unproven_recovery_deployed": false,
+  "utc": "2026-09-13T04:32:45.489475+00:00"
+}

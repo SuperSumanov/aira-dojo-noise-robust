@@ -574,3 +574,9 @@ phase1/results/forets_singlevote_s26_s27_20260913/*.json -text diff
 phase1/results/forets_singlevote_s26_s27_20260913/*.csv -text diff whitespace=cr-at-eol
 phase1/results/forets_common_start_s28_s29_20260913/*.json -text diff
 phase1/results/forets_common_start_s28_s29_20260913/*.csv -text diff whitespace=cr-at-eol
+phase1/results/forets_branching_s30_s31_20260913/*.json -text diff
+phase1/results/forets_branching_s30_s31_20260913/*.csv -text diff whitespace=cr-at-eol
+phase1/results/forets_branching_completion_s30_s31_20260913/*.json -text diff
+phase1/results/forets_branching_completion_s30_s31_20260913/*.csv -text diff whitespace=cr-at-eol
+phase1/results/forets_reference_s32_s33_20260913/*.json -text diff
+phase1/results/forets_reference_s32_s33_20260913/*.csv -text diff whitespace=cr-at-eol

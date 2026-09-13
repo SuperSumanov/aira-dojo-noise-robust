@@ -1,0 +1,129 @@
+{
+  "role": "posthoc_error_signatures_no_new_execution",
+  "summary_sha256": "eb1e8e1f61c4e95040b1345e6f1c5669051f7d3314255fd817560aa881d01be2",
+  "rows": [
+    {
+      "index": 0,
+      "task": "leaf-classification",
+      "seed": 30,
+      "status": "program_error",
+      "errors": [
+        "KeyError: 'shape_1'",
+        "KeyError: 'shape_1'",
+        "KeyError: 'shape_1'"
+      ],
+      "output_sha256": "0bda1e6efdeb807e5071226000b733698b6a0f91ebb8b872475b9a72eecbb0c1",
+      "code_mentions_input": false,
+      "code_mentions_workspace": false,
+      "code_mentions_parent_file": false,
+      "credential_shape_hits": 0
+    },
+    {
+      "index": 1,
+      "task": "leaf-classification",
+      "seed": 30,
+      "status": "program_error",
+      "errors": [
+        "KeyError: 'shape_mean'",
+        "KeyError: 'shape_mean'",
+        "KeyError: 'shape_mean'"
+      ],
+      "output_sha256": "1d7bfa316b2e43b8b7504be13658ad0bb8396fa9aae712e7c14e02f897b536a5",
+      "code_mentions_input": false,
+      "code_mentions_workspace": false,
+      "code_mentions_parent_file": false,
+      "credential_shape_hits": 0
+    },
+    {
+      "index": 2,
+      "task": "spaceship-titanic",
+      "seed": 30,
+      "status": "program_error",
+      "errors": [
+        "TypeError: 'Categorical' with dtype category does not support reduction 'median'",
+        "TypeError: 'Categorical' with dtype category does not support reduction 'median'"
+      ],
+      "output_sha256": "bb7b5c357f8085be7d48159b4c38b36f6b0d316feb8f8d5cf0ab595bd58af70f",
+      "code_mentions_input": false,
+      "code_mentions_workspace": false,
+      "code_mentions_parent_file": false,
+      "credential_shape_hits": 0
+    },
+    {
+      "index": 3,
+      "task": "spaceship-titanic",
+      "seed": 30,
+      "status": "program_error",
+      "errors": [
+        "TypeError: Cannot setitem on a Categorical with a new category (Unknown), set the categories first",
+        "TypeError: Cannot setitem on a Categorical with a new category (Unknown), set the categories first"
+      ],
+      "output_sha256": "1d182c194827c48abd2ad6ec14ad3622d23130bdc7be6f7e11d91d8a3dd30e9c",
+      "code_mentions_input": false,
+      "code_mentions_workspace": false,
+      "code_mentions_parent_file": false,
+      "credential_shape_hits": 0
+    },
+    {
+      "index": 4,
+      "task": "leaf-classification",
+      "seed": 31,
+      "status": "program_error",
+      "errors": [
+        "ValueError: pandas dtypes must be int, float or bool.",
+        "ValueError: pandas dtypes must be int, float or bool."
+      ],
+      "output_sha256": "9914d0de8420c26ba869b2aff165c21940677625ef4b9d5d29d4b067ed50ebea",
+      "code_mentions_input": false,
+      "code_mentions_workspace": false,
+      "code_mentions_parent_file": false,
+      "credential_shape_hits": 0
+    },
+    {
+      "index": 5,
+      "task": "leaf-classification",
+      "seed": 31,
+      "status": "program_error",
+      "errors": [
+        "ValueError: pandas dtypes must be int, float or bool.",
+        "ValueError: pandas dtypes must be int, float or bool."
+      ],
+      "output_sha256": "7baf18a9bd7799d9cd0fcfe7170f629346c3b4e08762e96d0fddc35a862efe8d",
+      "code_mentions_input": false,
+      "code_mentions_workspace": false,
+      "code_mentions_parent_file": false,
+      "credential_shape_hits": 0
+    },
+    {
+      "index": 6,
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "status": "program_error",
+      "errors": [
+        "TypeError: LGBMClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'",
+        "TypeError: LGBMClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'"
+      ],
+      "output_sha256": "5793c94a1bfcf128a9553745c98b1086a2a30afc7585e58b830338831e94c335",
+      "code_mentions_input": false,
+      "code_mentions_workspace": false,
+      "code_mentions_parent_file": false,
+      "credential_shape_hits": 0
+    },
+    {
+      "index": 7,
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "status": "program_error",
+      "errors": [
+        "ValueError: pandas dtypes must be int, float or bool.",
+        "ValueError: pandas dtypes must be int, float or bool."
+      ],
+      "output_sha256": "6ab95c906f4c14afee60b6bc1a15f4f068978cfa88b952baaf184dc2dab8be9d",
+      "code_mentions_input": false,
+      "code_mentions_workspace": false,
+      "code_mentions_parent_file": false,
+      "credential_shape_hits": 0
+    }
+  ],
+  "inspector_sha256": "67345687bd1abdd36312519a8adb757e108ab1191bfd8092d10ca1f0659ce70a"
+}

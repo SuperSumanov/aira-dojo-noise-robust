@@ -1,0 +1,13 @@
+{
+  "api_calls": 0,
+  "authorization_sha256": "96191b7393556fc5c978d82d2f3f2789ffb5f8c8c0243605b425df6843c07540",
+  "commit": "9cf2e7ec921730630568f3a090d81ca49cda46d2",
+  "gpu_dispatches": 0,
+  "maximum_new_api_liability_usd": 5.041380611,
+  "nominal_gpu_hours": 3,
+  "package": "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk",
+  "prepared_sha256": "82a85e630b4d58830cd382d2b7af549c454aed3645a2b3ca3c1f7d36e74fd571",
+  "runs": 8,
+  "source_tree": "f1cdee3a9e553e8efeedaa1a66a2c6bd778f9798",
+  "status": "BUILT_NOT_ACTIVE"
+}

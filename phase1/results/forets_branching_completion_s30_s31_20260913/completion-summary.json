@@ -1,0 +1,347 @@
+{
+  "role": "posthoc_direct_program_completion_not_e2e",
+  "job": "13218",
+  "utc": "2026-09-13T04:44:31.327280+00:00",
+  "source_tree": "35321718fef54f1907b469ab44334a30fe66b6cd",
+  "controller_commit": "a569f0d48c4d290a66d11a6b73ffb0e2426249b2",
+  "prepared_sha256": "9bef03ebcdfce94a35bb53faf4a39cfaa579cd5590be79f2e017e292ff9b492b",
+  "pools": [
+    {
+      "parent_run_id": "01-leaf-classification-s30-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 30,
+      "rows": [
+        {
+          "parent_run_id": "01-leaf-classification-s30-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 30,
+          "slot": 0,
+          "code_sha256": "62694fc51175ece5512a9004be5024a25393b787619d9f48f62a88c74a3c41b8",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        },
+        {
+          "parent_run_id": "01-leaf-classification-s30-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 30,
+          "slot": 1,
+          "code_sha256": "39905c2f7dd430ef80cdede747f874b67ac3271e5d1f909b421408ca3108feb5",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.399335246998817,
+          "wall_seconds": 10.640221178065985
+        },
+        {
+          "parent_run_id": "01-leaf-classification-s30-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 30,
+          "slot": 2,
+          "code_sha256": "4a9e239ac14f8256c754d100d547010229a46bfcbb1ccd9c05d829119c8406c4",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 5.919959594029933,
+          "wall_seconds": 10.165947359986603
+        },
+        {
+          "parent_run_id": "01-leaf-classification-s30-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 30,
+          "slot": 3,
+          "code_sha256": "591be745e88b836b1db5603e3ab5852f60ac2b415c949971d89f05f78e068209",
+          "origin": "original_direct_call_never_rerun",
+          "valid": null,
+          "score": null,
+          "status": "original_exit_zero_uncommitted_node_unknown"
+        }
+      ],
+      "top2": [
+        3,
+        0
+      ],
+      "unknown_slots": [
+        3
+      ],
+      "complete_direct_outcomes": false,
+      "top2_any_valid_bounds": [
+        0.0,
+        1.0
+      ],
+      "uniform_two_any_valid_bounds": [
+        0.0,
+        0.5
+      ],
+      "any_valid_gain_bounds": [
+        0.0,
+        0.5
+      ],
+      "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility."
+    },
+    {
+      "parent_run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 30,
+      "rows": [
+        {
+          "parent_run_id": "02-spaceship-titanic-s30-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 30,
+          "slot": 0,
+          "code_sha256": "9e4c5659794f2bb90bdc4af58e91bfcd8db2760a0390ffd16fca10b6aeb6caf3",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.5987412261310965,
+          "wall_seconds": 10.875688306055963
+        },
+        {
+          "parent_run_id": "02-spaceship-titanic-s30-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 30,
+          "slot": 1,
+          "code_sha256": "659546ca448d936c5fa14739451138ac23ca458f7ceaa5cc84aba443af502480",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        },
+        {
+          "parent_run_id": "02-spaceship-titanic-s30-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 30,
+          "slot": 2,
+          "code_sha256": "ca41e5fa98acc3c0675e9b1638315886db1e4c880203858955eedb466538c3cc",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        },
+        {
+          "parent_run_id": "02-spaceship-titanic-s30-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 30,
+          "slot": 3,
+          "code_sha256": "dd1ff550cbcc78a9f555385dcee77b2b85c7ece226932687131c1c49591ae47a",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.639170226175338,
+          "wall_seconds": 11.097400193102658
+        }
+      ],
+      "top2": [
+        2,
+        1
+      ],
+      "unknown_slots": [],
+      "complete_direct_outcomes": true,
+      "top2_any_valid_bounds": [
+        0.0,
+        0.0
+      ],
+      "uniform_two_any_valid_bounds": [
+        0.0,
+        0.0
+      ],
+      "any_valid_gain_bounds": [
+        0.0,
+        0.0
+      ],
+      "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility."
+    },
+    {
+      "parent_run_id": "04-leaf-classification-s31-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 31,
+      "rows": [
+        {
+          "parent_run_id": "04-leaf-classification-s31-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 31,
+          "slot": 0,
+          "code_sha256": "2095c817eca0644c2c24d33475834c03f2698000bd538dd14aaa0bc0b7dda372",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.145733445184305,
+          "wall_seconds": 10.396561705041677
+        },
+        {
+          "parent_run_id": "04-leaf-classification-s31-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 31,
+          "slot": 1,
+          "code_sha256": "e1bc2e71a2282f373114183eb9cc2ad52ea44d0f1d905641c4c8022edabc351d",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        },
+        {
+          "parent_run_id": "04-leaf-classification-s31-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 31,
+          "slot": 2,
+          "code_sha256": "8693ebf85470b131c37381bb50c0c4688c02f271cabfe6b57dd7ce2a59480778",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 5.916167892049998,
+          "wall_seconds": 10.200257001910359
+        },
+        {
+          "parent_run_id": "04-leaf-classification-s31-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 31,
+          "slot": 3,
+          "code_sha256": "82d77e9473c8d48b1c36c5b2cbe6adbc5950b61da017be3886ce386665f8a8e0",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        }
+      ],
+      "top2": [
+        3,
+        1
+      ],
+      "unknown_slots": [],
+      "complete_direct_outcomes": true,
+      "top2_any_valid_bounds": [
+        0.0,
+        0.0
+      ],
+      "uniform_two_any_valid_bounds": [
+        0.0,
+        0.0
+      ],
+      "any_valid_gain_bounds": [
+        0.0,
+        0.0
+      ],
+      "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility."
+    },
+    {
+      "parent_run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "rows": [
+        {
+          "parent_run_id": "07-spaceship-titanic-s31-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 31,
+          "slot": 0,
+          "code_sha256": "5e07027002206612b0a823dd606a27c7297f4046fcdde19a3143abd9febc7e17",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.166433152044192,
+          "wall_seconds": 10.363033768953755
+        },
+        {
+          "parent_run_id": "07-spaceship-titanic-s31-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 31,
+          "slot": 1,
+          "code_sha256": "fac90f3b2ca045bb522e6d8322ca9b24693d153d494bc95bedd738594fd38c0a",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        },
+        {
+          "parent_run_id": "07-spaceship-titanic-s31-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 31,
+          "slot": 2,
+          "code_sha256": "27202e42affcd408c3cf14011e827e875f011b692c82616d055e6ed709f10038",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 5.979652552865446,
+          "wall_seconds": 10.303587944013998
+        },
+        {
+          "parent_run_id": "07-spaceship-titanic-s31-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 31,
+          "slot": 3,
+          "code_sha256": "56b77443e9cbdcab54788a23823e32de692273d4d96e777b3320fa39af15b88d",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        }
+      ],
+      "top2": [
+        1,
+        3
+      ],
+      "unknown_slots": [],
+      "complete_direct_outcomes": true,
+      "top2_any_valid_bounds": [
+        0.0,
+        0.0
+      ],
+      "uniform_two_any_valid_bounds": [
+        0.0,
+        0.0
+      ],
+      "any_valid_gain_bounds": [
+        0.0,
+        0.0
+      ],
+      "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility."
+    }
+  ],
+  "planned": 8,
+  "attempted": 8,
+  "execution_complete": true,
+  "allocation_seconds": 88,
+  "allocation_gpu_hours": 0.024444444444444446,
+  "proofs": [],
+  "evidence_sha256": {
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/result-0.json": "1dee2e8ce76ee4b6148ccb9992b4d3999980435d8337c70ee29a48d914e51642",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/identity-0.native-binding.json": "9f8171fe2ad622f8356e92965eca0a9a65f95d182754dd87a05ff35060f9db8f",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/result-1.json": "3f06a3a29efd7b2242043edb2c4ee1b979165145a53275df3b87983986fabe29",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/identity-1.native-binding.json": "30ad9da20815d27bee6a1b0b2106f9ea0b09bd3e272358083fb4dbb374a58409",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/result-2.json": "c91b8041576d15a9fe422e4ae42f12198bbaa2389ae9577b6ca852b27c31dc2a",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/identity-2.native-binding.json": "05df028c29a252e5b81541a95c3a7357936c794388cf6dda99d061be5c81b509",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/result-3.json": "d42cddf9198dff952aec2f149e4b15c1c3d6f54cbdc2bc85a6b174a48cc2bfc6",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/identity-3.native-binding.json": "fbceb4266799f2f94192947675003823f0707491b3a535c1d9978b6153ace0cf",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/result-4.json": "def63295765a62c2a898c25f32d4ac8ba864aab3931f2418400f959da2c2c02d",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/identity-4.native-binding.json": "33d5368fe13e69d433585e8cb3ddc99548e20804d5166feeb0d25afd3712c15a",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/result-5.json": "e05b895402cc809a1e3954fff1743415d62f72bf8580e82931d9c50902f25d4f",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/identity-5.native-binding.json": "ede517f05883f4f3a806c9808248fc0749429583282c1545678ffb7c779352d9",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/result-6.json": "471e1f2db22599009c228208e8e4d4c0d6d8d892b5e7469343b22d30594ca3a5",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/identity-6.native-binding.json": "d6eb3f644394d84f02dca4cd84db559c7bf27ef285c067b63ecb8eecb96e3b4f",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/result-7.json": "3dac7545f2278594288e618d7ac84b64d5bb51c16f5df6b301a6bd41dffa6e0b",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp/identity-7.native-binding.json": "2e6f34b9e7ce4ba4ec95ab9f1f916afa77b17239d45c45f3b8971b484aecda32",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/configs/01-leaf-classification-s30-critic_topk_random.json": "5e3bef661b3787d99ee0d09c3d0aa08b3ac9d13c9a0fda9608666f2812548cc8",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/runs/01-leaf-classification-s30-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/rank-0.json": "1435a1de913f754b820022f8ec10b188970fb702eb11e150612554e6d6a1e7da",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/runs/01-leaf-classification-s30-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/request-0.json": "f9449b69e188ceadcbb1318075b828b722716acc74ad27303ee00a21dece3c44",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/configs/02-spaceship-titanic-s30-critic_topk_random.json": "7ee930bb63ec597e44332af07cecceb8935b85e01514e267bc787263be968576",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/runs/02-spaceship-titanic-s30-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/rank-0.json": "634333c65adfb43f56ca24155c1c94b807d673ba832ddfc38e9245bf213f0458",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/runs/02-spaceship-titanic-s30-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/request-0.json": "f57bc12f74c98eacc36cad528412b404baf4780e73414b4859b2ca24c2310912",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/configs/04-leaf-classification-s31-critic_topk_random.json": "6af5a416a40803436da9572c7605f9426f55b31c126bb46f08b6200440d71246",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/runs/04-leaf-classification-s31-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/rank-0.json": "dcf2b57af43b6ad0728da7b63cfd6ec5c5cbdea67d119a79d71721f5b2260380",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/runs/04-leaf-classification-s31-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/request-0.json": "a67eefb5d374fded511b5ee9f9a410b38eedf8e5f0829ebc3100148a412147e6",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/configs/07-spaceship-titanic-s31-critic_topk_random.json": "5e9fb6d08f95e9400515cda46aaee94bc11f92cacb7f2136aa249a2e4ecd7f52",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/runs/07-spaceship-titanic-s31-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/rank-0.json": "284b37b38db6b24e6682ba3540d8e500aaa5d833a4a95998370778ad7dc49caa",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi/runs/07-spaceship-titanic-s31-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/request-0.json": "cb1ea5f3a1706ac446a4c839f3f92bf5e2a70561ef4949618641d1f140af0977"
+  },
+  "api_calls": 0,
+  "reader_sha256": "9b1909bcca0fe33d54042f44d6fcfa18a0f95ed15b4cf47cda51d30a40aba149",
+  "limitation": "Four previously observed development pools. Direct validity ignores debug and scheduling cost; no new e2e, causal historical winner attribution or independent confirmation. Unknown original partial nodes stay unknown."
+}

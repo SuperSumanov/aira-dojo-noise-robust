@@ -1,0 +1,12 @@
+{
+  "readers": {
+    "readout_branching_completion_20260913.py": "9b1909bcca0fe33d54042f44d6fcfa18a0f95ed15b4cf47cda51d30a40aba149",
+    "readout_forets_pool_completion_20260912.py": "473cbe3133baa4b465a3428de6028cf19c23b9524be8aca371a8c8cd16ab105e",
+    "readout_forets_generation_capacity_20260912.py": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582"
+  },
+  "source_tree": "35321718fef54f1907b469ab44334a30fe66b6cd",
+  "programs": 8,
+  "api_calls": 0,
+  "root": "/research/d7/spc/yzyang4/forets-pool-completion-20260912-cwhdnjnp",
+  "commit": "a569f0d48c4d290a66d11a6b73ffb0e2426249b2"
+}

@@ -1,0 +1,560 @@
+{
+  "role": "all_closed_parent_choices_not_effect",
+  "rows": [
+    {
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "task": "leaf-classification",
+      "seed": 30,
+      "arm": "uniform_random",
+      "step": 1,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": true,
+      "parent_executed_seconds": 0,
+      "operators": [
+        [
+          "fixed_common_start"
+        ]
+      ],
+      "snapshot_sha256": "470970205538b716283c34dcb40ad90acb7643da069668edaeed334d7a1f67a3"
+    },
+    {
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "task": "leaf-classification",
+      "seed": 30,
+      "arm": "uniform_random",
+      "step": 2,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 4.388591086026281,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "e8180b624786bd5ee57024ca1bbd6d8f2bc3ed186065c6ef51bd1a759fb06564"
+    },
+    {
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "task": "leaf-classification",
+      "seed": 30,
+      "arm": "uniform_random",
+      "step": 6,
+      "phase": "executing",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 98.83254171116278,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "cb9ea8d0b31bf300a173ab5238f642fd29953ac090e327bdb147e68fdb18e2d5"
+    },
+    {
+      "run_id": "01-leaf-classification-s30-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 30,
+      "arm": "critic_topk_random",
+      "step": 1,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": true,
+      "parent_executed_seconds": 0,
+      "operators": [
+        [
+          "fixed_common_start"
+        ]
+      ],
+      "snapshot_sha256": "39c6ce2b3581c7b133532820b909138b743b72a34b1ef055373307a9eb637f09"
+    },
+    {
+      "run_id": "01-leaf-classification-s30-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 30,
+      "arm": "critic_topk_random",
+      "step": 2,
+      "phase": "executing",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 4.0566979178693146,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "5a18e2bca15b97f75e421bf7751ae920b4d35b6f9fc110047cc83d53fabc4a47"
+    },
+    {
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 30,
+      "arm": "critic_topk_random",
+      "step": 1,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": true,
+      "parent_executed_seconds": 0,
+      "operators": [
+        [
+          "fixed_common_start"
+        ]
+      ],
+      "snapshot_sha256": "48466a8d68e341b5a86020168aee31fd10b5d79298a78c2532ee07054910afa5"
+    },
+    {
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 30,
+      "arm": "critic_topk_random",
+      "step": 2,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 3.3586396139580756,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "6baf6758c64b4d3c730d7629a358748f7b97756bb2f04351974361625232029b"
+    },
+    {
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 30,
+      "arm": "critic_topk_random",
+      "step": 6,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 24.529159020166844,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "5eaec64daf675d9081cfb646993876e842a5f63efd74f543b86621e7e018e21b"
+    },
+    {
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 30,
+      "arm": "critic_topk_random",
+      "step": 8,
+      "phase": "executing",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 21.60977795999497,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "d16a5dcb258a03cdea78c4b6820abe946ea9b3d55d21a35513625e0495a56d22"
+    },
+    {
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 31,
+      "arm": "critic_topk_random",
+      "step": 1,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": true,
+      "parent_executed_seconds": 0,
+      "operators": [
+        [
+          "fixed_common_start"
+        ]
+      ],
+      "snapshot_sha256": "e7e952700eb56a4e1919abfa5ebeb3bf458e51b3c7bd5738efdc0387d953337a"
+    },
+    {
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 31,
+      "arm": "critic_topk_random",
+      "step": 2,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 4.3009452619589865,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "91876debe335b56b171a1bc7c85ea761e348c017efc35eb36f7fdd9c63b626c8"
+    },
+    {
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 31,
+      "arm": "critic_topk_random",
+      "step": 6,
+      "phase": "executing",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 127.70939964498393,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "76d37707d074f18d854e521c9a3319e8fe75f0d7f82c41095f926fb96c199e64"
+    },
+    {
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "task": "leaf-classification",
+      "seed": 31,
+      "arm": "uniform_random",
+      "step": 1,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": true,
+      "parent_executed_seconds": 0,
+      "operators": [
+        [
+          "fixed_common_start"
+        ]
+      ],
+      "snapshot_sha256": "4bb878d90217bf2e0fde42af84f7d23d198ff63a8721cb8abb6591c47865dcf3"
+    },
+    {
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "task": "leaf-classification",
+      "seed": 31,
+      "arm": "uniform_random",
+      "step": 2,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 3.7357271159999073,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "2615fd9b0b69066df1377cedc126799e05267b10c1b5e21e554182ea1ac585e5"
+    },
+    {
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "task": "leaf-classification",
+      "seed": 31,
+      "arm": "uniform_random",
+      "step": 6,
+      "phase": "executing",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 308.3463929980062,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "c86fe1bee9eeae05ad0bb05c0b68d1be3b041745addeaf293d332909db693a82"
+    },
+    {
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "arm": "uniform_random",
+      "step": 1,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": true,
+      "parent_executed_seconds": 0,
+      "operators": [
+        [
+          "fixed_common_start"
+        ]
+      ],
+      "snapshot_sha256": "2be6f5d7e04bdf1450228ca695a63217cfc083e352a98d499a7c4122f6b48eda"
+    },
+    {
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "arm": "uniform_random",
+      "step": 10,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 8.651890614069998,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "b68ff6c3533527efca8b4588d3be315641b1aca81d332f9e0969b8655a01ed16"
+    },
+    {
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "arm": "uniform_random",
+      "step": 14,
+      "phase": "collecting",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 43.493471293943,
+      "operators": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "snapshot_sha256": "b5a492cb3eac794c12ff778ab55aea30a4e9941ed5acd48ab61e08297c5a08f6"
+    },
+    {
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "arm": "uniform_random",
+      "step": 2,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 3.568526688963175,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "460d99642db825f6496ca0ae6181b00f1dfc3f5d3eee279f432f3e9bd0bffa33"
+    },
+    {
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "arm": "uniform_random",
+      "step": 6,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 5.696907676989213,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "25d4a076ed258ed561b2b4a22a5545a53ff63a7d98474ee472e13600b44d8ace"
+    },
+    {
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "arm": "critic_topk_random",
+      "step": 1,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": true,
+      "parent_executed_seconds": 0,
+      "operators": [
+        [
+          "fixed_common_start"
+        ]
+      ],
+      "snapshot_sha256": "8d7af4a9bd42c9ff8e6a1a9d23d7991186ea40bdfeab8610d53c93fec9be8879"
+    },
+    {
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "arm": "critic_topk_random",
+      "step": 10,
+      "phase": "executing",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 5.808519104961306,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "7b8b44b02ed7622b827809e0aaaae86f5887f1fc83d17f4818630412c8f9ba80"
+    },
+    {
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "arm": "critic_topk_random",
+      "step": 2,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 3.7154713689815253,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "4426289aad4d98031befd8a5ba51d6ad1170560dba8ee8ada503883e9076c959"
+    },
+    {
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 31,
+      "arm": "critic_topk_random",
+      "step": 6,
+      "phase": "complete",
+      "parent_found": true,
+      "parent_is_synthetic_root": false,
+      "parent_executed_seconds": 5.697664652019739,
+      "operators": [
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ],
+        [
+          "improve"
+        ]
+      ],
+      "snapshot_sha256": "8dc1eee26659176c2fdccbd5c9b248bb3601ee3eb689f329852e2255bd2dcc56"
+    }
+  ],
+  "summary_sha256": "d9a61dbacca59e6557ebc25283b59d425b1f08c8517bb468fce0dfef7179bd77",
+  "inspector_sha256": "1daf72d26055ed82d756c3f1d4730681535ff1cd1b05405accafb6bff67d62d2"
+}

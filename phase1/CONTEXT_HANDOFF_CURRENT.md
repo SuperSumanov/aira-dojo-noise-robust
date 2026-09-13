@@ -1,11 +1,11 @@
-# 当前短交接 — 2026-09-14 HK；最后整理23:03 UTC
+# 当前短交接 — 2026-09-14 HK；最后整理23:27 UTC
 
 方向CURRENT_DIRECTION 0L200。六小时会话窗口：2026-09-13 21:06:43至09-14 03:06:43 UTC（HK11:06:43结束）。继续会话内实质研究，不用新自动任务代替，不保证正数或隐藏失败。
 
 ## 主实验未揭盲
 
 EScope：Leaf/Space×42–45×whole_program/model_module，共16次1200秒搜索；2生成2执行uniform、原UCT/debug/action主终点、共享重构RF起点（实际执行计预算）、原镜像/gpu28 RTX3090/6CPU。编辑范围/输出格式/指令有意变化，不是同算子空间critic对照。模块内可更换预处理；Space外壳删PassengerId/Name；不称安全沙箱。
-13282/13283于21:29:37单次提交，各单卡4小时、总帽8GPUh。最后观察23:11仍RUNNING：block1的00–06闭合、07运行；block2的08–12闭合、13运行，14/15待跑。Leaf42 whole、Space42 module、Leaf43 module三项KernelReadinessError保留；Leaf45 module在1010.898163836915秒触发100次adapter-attempt上限，已独立核实际100/100，不是美元费用帽。冻结reader将其保留为technical未知，不改读出资格。两臂原本均100次请求上限，不能称仅1200秒无其他资源限制。
+13282/13283于21:29:37单次提交，各单卡4小时、总帽8GPUh。最后观察23:24：block1全部8条闭合、13282终态FAILED/6862秒（不等于八条效果失败）；block2的08–13闭合、14运行，15待跑。Leaf42 whole、Space42 module、Leaf43 module三项KernelReadinessError保留；Leaf45 module在1010.898163836915秒触发100次adapter-attempt上限，已核实际100/100，不是美元帽。冻结reader将其保留technical未知，不改资格。两臂原本均100次请求上限，不能称纯1200秒无其他限制。
 **原扩大门（至少6/8完整配对、每任务至少3）已不可能通过。不得放松门、补跑失败seed或启动条件12次preservation后继。** 仍完成全部16条，未知保持未知；全闭合前不读新效果/轨迹值。
 
 ROOT=/research/d7/spc/yzyang4/forets-wallclock-20260912-88v5m9dr
@@ -18,9 +18,11 @@ source tree8bb325fa167a9db54656dd6535ce1f3d69859c22；控制commit07ab932c206149
 ## 当前累计费用（不是账户余额）
 
 唯一活动账ROOT/paid.sqlite，auth643792f11da84620df02fe88ada4759272ff2915dbdf3c8466c5730cb16a3318。T1及更早账均原子封闭，不复用。100人民币对应保守10USD累计责任帽，两个旧未知保留。
-23:11最后观察2409calls、held8728728988nUSD、settled5928728988nUSD、4unresolved（2旧+2正常在途），stopped=false；不是实时数字。生成器Qwen3-Coder-Flash/Alibaba-only/nofallback。凭据仅远端aira-dojo/.env的OPENROUTER_API_KEY，不回显/复制/索要。无共享免费端点可达性确认，不借他人allocation。
+23:24最后观察2478calls、held7435571672nUSD、settled6035571672nUSD、2unresolved（均旧未知），stopped=false；不是实时数字，下一调用可又有正常在途。生成器Qwen3-Coder-Flash/Alibaba-only/nofallback。凭据仅远端aira-dojo/.env的OPENROUTER_API_KEY，不回显/复制/索要。无共享免费端点可达性确认，不借他人allocation。
 
 ## 已完成，不重复
+
+- 新CPU有效性预测已结束：157节点/27run、4旧协议。预先公开69a4ec5c63619b67bdad6aa87394340df81a1a4a；主跨协议macro AUC .3754612189703468，门失败，不调参/翻转/部署或送新池试。短代码预设基线macro .7814240638784249只作旧相关。独立原标签/314OOF/隔离/直接配对AUC通过。根forets-validity-cpu-20260914-ieceg8zb；完整报告VALIDITY_CPU_TRANSFER_RESULTS_20260914.md。新short-code双候选池分析只在主16全闭合后，可用原technical合格run；不是策略反事实/e2e，脚本尚未调用。
 
 - 传统强参照13284：8/8有效0未知、512候选完成；Leaf median log-loss .05948，sample SD .011336106033378479；Space median accuracy .790805，SD .0067900288413722636。API0，每run226.162336068–292.523665136秒因64候选cap结束，非用满20分钟/完整AutoGluon。已双重数值复核；结果/SHA见ESCOPE_CLASSIC_RESULTS_20260914.md及results/forets_classic_control_20260914，不重复grade。
 - 独立进程诊断13286：22:38:33完成，80秒，固定合成对照/错误/超时/CUDA六条件过；不是普遍可靠性证明。
@@ -32,6 +34,7 @@ source tree8bb325fa167a9db54656dd6535ce1f3d69859c22；控制commit07ab932c206149
 ## 主张边界与禁止重做
 
 传统参照与新执行路径是真资产，尚不是新agent胜出。局部编辑/技能/记忆/可执行约束已有直接先例：MARS/Gome/MLE-STAR/iML/AlphaEvolve/PRISM/AgentHPOBench/HASP/WML/Getafix。见ESCOPE_DISCRIMINATING_CONTROLS及ESCOPE_ADDITIONAL_PRIOR_ART_20260914，不称新颖性保证。
+23:27源码语义澄清：build_model函数仍可访问train/test全局变量与公开文件，可修改全局状态；Space的X/Z删列只是默认传参，不是绝对限制可用信息。外壳AST不变不保证语义/验证行为不变。既有“非安全沙箱”限制具体化，不改原冻结计划/代码/门。
 T1单次diff：20已知未成功4未知、0有效修复，不补旧八例/扩大同配方。11条旧修复转换仅开发资产。旧34–37交付2胜6平是我方交付修复；宽度38/39为1胜3负；短记忆40/41为1胜2平1不可比；参考critic32/33为0胜1平3负。G0/8B12892完成，不重做。旧kernel recovery已失败，不恢复。
 first960/Target300/Target522仍封闭；不恢复HCE/多保真/Probe/score-channel/K>=1/agent底座更新。
 

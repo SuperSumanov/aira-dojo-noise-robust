@@ -49,5 +49,11 @@ class WidthTests(unittest.TestCase):
         rows[0]['action_score']=None;self.assertFalse(r.paired_effects(rows)['pairs'][0]['quality_comparable'])
         rows[-1]=rows[0]
         with self.assertRaises(ValueError):r.paired_effects(rows)
+    def test_pending_ledger_slots_not_returned_programs(self):
+        value={'candidates':[{'node':None},{'node':{'code':'print(1)'}},{'node':None}],
+            'task_calls':[{'intent':{'role':'candidate'},'state':'started'},
+                          {'intent':{'role':'debug'},'state':'returned'}]}
+        out=r.candidate_counts(value)
+        self.assertEqual(out,dict(generated=1,candidate_execution_attempts=1,candidate_execution_returned=0,debug_attempts=1))
 
 if __name__=='__main__':unittest.main()

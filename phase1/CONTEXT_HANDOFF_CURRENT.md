@@ -1,5 +1,6 @@
 # 短交接：逐动作交付八轨迹已开跑；此前CV与critic结果不变
-最后观察：2026-09-13 06:12 UTC。用户再次要求三小时持续研究，当前窗口05:53–08:53 UTC；不要创建automation替代会话内工作。
+最后观察：2026-09-13 06:31 UTC。用户再次要求三小时持续研究，当前窗口05:53–08:53 UTC；不要创建automation替代会话内工作。
+06:42增量：六轨迹结束、Space35/37仍运行，结果未读。13项width/memory本地测试通过；正式width CPU接线仍待新包。
 恢复先fetch→CURRENT_DIRECTION 0L194→本文件→核现场。长期约束见AGENTS，详细历史在报告/Git。
 
 ## 本轮当前包（覆盖下方上一轮动态状态）
@@ -15,6 +16,8 @@ Leaf/Space×34/35/36/37全8条uniform轨迹，每条600秒/程序300秒/四选�
 使用forets-action-tools-20260913-v2（v1失败路径夹具不用）。未重跑已完成integration-check。
 新责任账已激活且旧5_czzimk封账；完整继承1310调用及2旧未知，原累计10USD帽不变。禁止再次activate/旧包付费。
 route两块均成功、共4调用；06:07:08单次提交13233/13234。06:12两块各第一条轨迹running、余下各三条pending，GPU容器握手正常；禁止重复route/submit。
+06:31已观察四条Leaf结束，两块分别在Space34/36，余Space35/37未开始。已核Leaf34/35为API准入截止、Leaf36为600秒到时；不是据状态failed就判GPU坏/任务成绩为0。
+在途请求会短暂增加unresolved；只有全闭合后仍多于两旧未知才是新未决账，不能边运行将预留误当已失败调用。
 控制入口STAGE/forets_action_control_20260913.sh；当前只运行monitor，全部终态后一次readout。
 新reader readout_action_prospective_20260913.py，全八终态后一次读取，两种原submission各自独立重评分；运行时只用monitor_action_prospective_20260913.py看结构/账。
 
@@ -22,9 +25,26 @@ route两块均成功、共4调用；06:07:08单次提交13233/13234。06:12两�
 06:15 UTC在34–37结果未读时确定Leaf/Space×38/39×batch_four/direct_two全8同期矩阵。
 实际selection_policy均uniform、执行二，只改num_children四/二；两臂共同逐动作记录，主终点action、次终点iteration，全报。
 新上限3GPUh，沿用累计10USD帽；不是新算法/critic扩大。仅待当前全终态与读出/账闭合才允许转移账提交。
-计划FORETS_WIDTH_CONTROL_PLAN_20260913.md；builder/readout/derive工具和7项本地测试已通过；真实生产CPU接线尚待新包。
+计划FORETS_WIDTH_CONTROL_PLAN_20260913.md；builder/readout/derive工具和8项本地测试已通过；真实生产CPU接线尚待新包。
 源算法不改，仅收费继承身份变；严禁将配置arm标签batch_four/direct_two错当实际selection_policy。
-releases/forets-width-tools-20260913保存派生工具；新root/STAGE/source/账尚未创建，不要猜。
+releases/forets-width-tools-20260913保存派生工具；STAGE /research/d7/spc/yzyang4/forets-width-stage-20260913-ODIHCjEU已上传辅助代码。
+新root/source/账尚未创建，不要猜；capture_action_closed_facts_20260913.py已经放在action STAGE，只允许其readout-finished完成后一次导出width-parent-facts.json。
+未冻结新reader前静态核查修正pending候选槽计数：仅有node/code才计返回程序；没有修改正在运行的source或action冻结reader。
+
+## 同步准备：错误经验对照（未提交）
+06:38在当前成绩未读时冻结FORETS_EXECUTION_MEMORY_PLAN_20260913.md；两任务×40/41×no_memory/execution_memory，全8。
+两臂均二生成二执行，仅draft/improve/debug追加同一三条历史错误；不改analyze/选解，不含外部成绩/新34–39结果。
+来源是旧32开发run的闭合错误诊断，类别填值31次对应31份不同代码/11条Space轨迹；单任务且相关，不能称普遍性或已解决。
+taxonomy fbea5f58486ea518255e6227f5d26014a5e5b0d138c78ce335b66086e3c1ef2b；recurrence f6b3b807c6c859e9c3fec6aff69a55467181f8131bb9dabd568c22b2e3bec97f。
+memory text 222da8b9d643c2023bc17683eed9b3a112260cbf443598b7275c753f7626a25c；未构建/未验实际请求，不能当生产接入。
+须width先闭合、原累计10USD责任帽及窗口允许才做；第三实验上限3GPUh，不为赶时缩短run预算。
+
+## 学长新上传（仅隔离、未入训练）
+06:21–06:25 UTC，完整根列表稳定52项（旧解析器只50）；新0911目录一份包16011265bytes。
+隔离 /research/d7/spc/yzyang4/senior-quarantine-0911-20260913；manifest c1ee6108efc3bdb08cb5ffd676df141573629cd81011f8cbe68ab56cbd0411e1。
+只读四份credential-screened dojo_config，均git_commit_id 065b0fbaa89e0eb663f2834ec768081f5d56394d（Git时间09-09），num_children=2。
+四份配置不是验证通过的四physical runs；未开journal/env/code/outcomes，未入production/训练/保护集。新包已下载，禁止重复下载覆盖。
+本地安全汇总results/senior_0911_metadata_20260913。此类Drive检查用venvs/exp/bin/python；aira缺gdown，首次ModuleNotFoundError后换既有exp成功，无环境升级。
 
 ## 上一轮已完成事实与裁决（不得重跑）
 - 主实验13213/13214已闭合：8技术合格、4配对0胜1平3负；停止扩大同配方，不启动24run。
@@ -67,7 +87,7 @@ SLURM_CONF=/opt1/slurm/gpu-slurm.conf；MLE任务用gpu27/gpu28 RTX3090，不是
 当前13233/13234运行中；上一轮新作业已结束，旧held12535不动。不要按历史队列盲投。
 06:12累计责任账1329调用、5413809137nUSD责任、4013809137nUSD已结算、仅2旧未知；原帽不重置。
 PRIMARY_KEY远端映射OPENROUTER_API_KEY；不要读/记密钥值，不要再次向用户索取。
-最新本地及成功push commit 4696bf81eca9a2d2845be6aaa1ebe169bcea284f（公开ref尚待ls-remote复核）；本记录是其后的状态更新。
+最近公开ref已核2c0353fdf29ba0cae84572f6e545a31ba58d1e5c；有其后的新辅助/状态未提交，按git现场处理。
 只push myfork HEAD:phase1-value-critic；不改学长分支、不新建分支、不强推。
 05:46 fetch学长dojo-reproduce仍113e25e7fa2570cb5f60401d051a1de3cce307c2；Git未更新不证明远端语料未更新。
 官方1TB研究盘到期2026-09-29，延期未知。无清理授权范围外删除。

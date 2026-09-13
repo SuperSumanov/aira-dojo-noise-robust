@@ -1,0 +1,389 @@
+{
+  "categorical": {
+    "distinct_code_hashes": 31,
+    "distinct_runs": 11,
+    "occurrences": 31,
+    "protocols": 4,
+    "rows": [
+      {
+        "code_sha256": "39b4c0182818074e6f9651d5b4d9686c5fc968590faf80b34fff519b21b36cbd",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-bll4ghfa",
+        "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+        "step": 5,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "a15017ff00fa99f7dd6389eb8b1deac4eed097c4af69ccb0b6aae66a65dc08c8",
+        "operators": [
+          "debug",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-bll4ghfa",
+        "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+        "step": 6,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "1b97a15b1d95b80bd7ef8a9b804c37d9e8bcd371e5a204c980b30cf4948d819c",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-bll4ghfa",
+        "run_id": "06-spaceship-titanic-s27-uniform_random",
+        "step": 3,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "de1376c74ad8c4d90c044e003131594508d9c9fe205ae1ab50b706851b0936e6",
+        "operators": [
+          "debug",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-bll4ghfa",
+        "run_id": "06-spaceship-titanic-s27-uniform_random",
+        "step": 4,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "8b5d781963cb54ea91aeec3af3679e3eb1c90d0ee8fe6bfb4c2c445fa1596c61",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-bll4ghfa",
+        "run_id": "06-spaceship-titanic-s27-uniform_random",
+        "step": 5,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "d4028443b0d3ba1234a1f46db0e7c44d0226d652561f757e1b88c4ee9f3ae583",
+        "operators": [
+          "draft",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-bll4ghfa",
+        "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+        "step": 1,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "5655a1e3482a2bb1afbdbe624abfd847529cf319f67aca718cf90cd29188923f",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-bll4ghfa",
+        "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+        "step": 3,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "329f91fcbf435e634e841140199fbaeb9ff0a9037e1c883e76edf7aea8608131",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-2o9mw39n",
+        "run_id": "06-spaceship-titanic-s29-uniform_random",
+        "step": 2,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "b6a4279eb10b3f87d1c20edb75409b8e55ee2863af3b0cd01eb6f3615b48913e",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-2o9mw39n",
+        "run_id": "06-spaceship-titanic-s29-uniform_random",
+        "step": 6,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "a683d2593c371d601caa7d05ba80d91539a6da4870428c4fbefc3989183fa091",
+        "operators": [
+          "debug",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-2o9mw39n",
+        "run_id": "06-spaceship-titanic-s29-uniform_random",
+        "step": 7,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "ca41e5fa98acc3c0675e9b1638315886db1e4c880203858955eedb466538c3cc",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-y_p2tlmi",
+        "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+        "step": 2,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "659546ca448d936c5fa14739451138ac23ca458f7ceaa5cc84aba443af502480",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-y_p2tlmi",
+        "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+        "step": 4,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "0c4f6994d399bec247acd63c33b76105b5cfc1c6169f474c5936d2b5542c912a",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-y_p2tlmi",
+        "run_id": "06-spaceship-titanic-s31-uniform_random",
+        "step": 4,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "9d362f99914debc0c7d8a237c08b2fd90a314c7fd930335f9486ddb54b6866ce",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-y_p2tlmi",
+        "run_id": "06-spaceship-titanic-s31-uniform_random",
+        "step": 6,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "08f44a80c35f65ced1f9181ad5757f7ca1c1981f8bfa168ddfd80a317253c3bb",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-y_p2tlmi",
+        "run_id": "06-spaceship-titanic-s31-uniform_random",
+        "step": 8,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "f5ed5e769c3da10db018f7096cc1006a77656c88716a048f5df248bf0bd7e812",
+        "operators": [
+          "debug",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-y_p2tlmi",
+        "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+        "step": 3,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "56b77443e9cbdcab54788a23823e32de692273d4d96e777b3320fa39af15b88d",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-y_p2tlmi",
+        "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+        "step": 4,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "4be1b961c1c24cba61cb8af238f65750af69311a7a4801f25d5f6730a40ec3c4",
+        "operators": [
+          "debug",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-y_p2tlmi",
+        "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+        "step": 5,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "070e57b5cd22aa396a0600bd3f13b3d62d3dd51c6bae91876b2209961196cfec",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+        "step": 2,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "fc0b9fb8ef524f831b6c5f304a383a598ead5cff32d08aca92eb7125bd5c44d3",
+        "operators": [
+          "debug",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+        "step": 9,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "93b96879481299031cb33cafbb4cf714f7fd939afed76e4bd6c841fb9e480094",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "03-spaceship-titanic-s32-uniform_random",
+        "step": 2,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "79df1d57825fa244c0b54176f884e0cf4c33b63f45643dc73dcb8592b5b258ff",
+        "operators": [
+          "debug",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "03-spaceship-titanic-s32-uniform_random",
+        "step": 5,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "9c40e7c5e9361fa29b55ee8a02a4ac5a90c293c57cb91528edfbfa80f091f8c0",
+        "operators": [
+          "debug",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "03-spaceship-titanic-s32-uniform_random",
+        "step": 11,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "41bf0602d7aa55856cfb6849ca2a178ea5e56ff6b112ff19e2cc5606303c2b90",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "06-spaceship-titanic-s33-uniform_random",
+        "step": 4,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "8e0117b1acf28655bea77cb15e8b6c1bcecb9a944469f63343016917061f7233",
+        "operators": [
+          "debug",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "06-spaceship-titanic-s33-uniform_random",
+        "step": 10,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "cfcf0445e91f4ab5e68579d144657c94e87224c4fa691c08db21382e53f50a8f",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+        "step": 2,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "439013a8e2fdc366ff636ffd9483e3965271e65904d0a27479a2643f493224f3",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+        "step": 4,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "a050c1be1a530d6211c9d13d3d732e9ef4f0b4157331ec3a3ad6f1c30638effe",
+        "operators": [
+          "debug",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+        "step": 5,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "bdea1ff9d5c059404f351fe6bfba9129fb621f79fd47a9e2e10441de6f0ec3b5",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+        "step": 6,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "b22ec6ef71ea021aa1628dbb184334131d55b33672dcc980455351739e527b37",
+        "operators": [
+          "improve",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+        "step": 8,
+        "task": "spaceship-titanic"
+      },
+      {
+        "code_sha256": "596616d3646e11e921bccf9a8b6861b5be8f1ca5682eea42c0e51fa9e19d8098",
+        "operators": [
+          "debug",
+          "analysis"
+        ],
+        "root": "forets-wallclock-20260912-5_czzimk",
+        "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+        "step": 9,
+        "task": "spaceship-titanic"
+      }
+    ],
+    "tasks": [
+      "spaceship-titanic"
+    ]
+  },
+  "keyword_examples": [
+    {
+      "argument": "ntree_limit",
+      "callable": "Booster.predict",
+      "distinct_runs": 1,
+      "occurrences": 1
+    },
+    {
+      "argument": "eval_set",
+      "callable": "CatBoostClassifier.__init__",
+      "distinct_runs": 1,
+      "occurrences": 1
+    },
+    {
+      "argument": "smoothing",
+      "callable": "TargetEncoder.__init__",
+      "distinct_runs": 2,
+      "occurrences": 2
+    },
+    {
+      "argument": "callbacks",
+      "callable": "XGBClassifier.fit",
+      "distinct_runs": 1,
+      "occurrences": 1
+    },
+    {
+      "argument": "early_stopping_rounds",
+      "callable": "XGBClassifier.fit",
+      "distinct_runs": 5,
+      "occurrences": 6
+    }
+  ],
+  "limitations": "Code uniqueness is byte-level only, not independent strategies. All categorical cases are a single-task finding; heterogeneous protocols, incomplete saved journals.",
+  "role": "closed_development_error_recurrence_not_repair_efficacy",
+  "source_summary_sha256": "fbea5f58486ea518255e6227f5d26014a5e5b0d138c78ce335b66086e3c1ef2b"
+}

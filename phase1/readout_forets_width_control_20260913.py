@@ -19,6 +19,15 @@ SEEDS=(38,39)
 FILES=('readout_forets_width_control_20260913.py','readout_width_core_20260913.py',
     'read_forets_action_delivery_20260913.py','readout_forets_generation_capacity_20260912.py','verify_branching_selection_20260913.py')
 
+def candidate_counts(value):
+    # The ledger preallocates pending slots. They are not returned programs.
+    returned=sum(isinstance(c.get('node'),dict) and isinstance(c['node'].get('code'),str)
+        for c in value['candidates'])
+    attempts=[c for c in value['task_calls'] if c['intent']['role']=='candidate']
+    return dict(generated=returned,candidate_execution_attempts=len(attempts),
+        candidate_execution_returned=sum(c['state']=='returned' for c in attempts),
+        debug_attempts=sum(c['intent']['role']=='debug' for c in value['task_calls']))
+
 def paired_effects(rows):
     if len(rows)!=8 or {(r['task'],r['seed'],r['arm']) for r in rows}!={(t,s,a) for t in TASKS for s in SEEDS for a in ARMS}:
         raise ValueError('all eight distinct planned searches required')
@@ -79,11 +88,8 @@ def main(root):
             if sha(payload.encode())!=digest or sha(path.read_bytes())!=before:raise ValueError('pool snapshot drift')
             value=json.loads(payload);replay=verify_pool(value,s,{**r,'arm':'uniform_random'})
             if len(value['candidates'])>width:raise ValueError('observed width exceeds config')
-            counts['pools']+=1;counts['generated']+=len(value['candidates'])
-            for c in value['task_calls']:
-                if c['intent']['role']=='candidate':
-                    counts['candidate_execution_attempts']+=1;counts['candidate_execution_returned']+=c['state']=='returned'
-                else:counts['debug_attempts']+=1
+            counts['pools']+=1
+            for key,number in candidate_counts(value).items():counts[key]+=number
             replays.append(dict(run_id=r['run_id'],pool=path.name,sha256=before,**replay))
         # Candidate totals include the shared fixed RF start; it does not call
         # the generator. Do not rename this count as actual LLM calls.

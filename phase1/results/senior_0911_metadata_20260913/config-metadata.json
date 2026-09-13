@@ -1,0 +1,37 @@
+{
+  "archive_count_expected": 1,
+  "archives_extracted": 0,
+  "cross_group_config_parent_path_overlap": 0,
+  "groups": {
+    "0911": {
+      "archives": 1,
+      "commits": {
+        "065b0fbaa89e0eb663f2834ec768081f5d56394d": 4
+      },
+      "configs_opened": 4,
+      "credential_refused": 0,
+      "distinct_config_parent_paths": 4,
+      "header_counts": {
+        "dojo_config.json": 4,
+        "env_variables.json": 4,
+        "journal.jsonl": 4
+      },
+      "solver_configs": [
+        {
+          "configs": 4,
+          "fields": {
+            "num_children": 2
+          }
+        }
+      ]
+    }
+  },
+  "journals_env_code_outcomes_opened": false,
+  "manifest_sha256": "c1ee6108efc3bdb08cb5ffd676df141573629cd81011f8cbe68ab56cbd0411e1",
+  "production_source_changed": false,
+  "protected_values_read": false,
+  "quarantine_root": "/research/d7/spc/yzyang4/senior-quarantine-0911-20260913",
+  "script_sha256": "27ed7ea83f6876002f467ccf24188b8ba49a37ab6856e4b039850efdccc8a018",
+  "status": "CONFIG_METADATA_ONLY_NOT_RUN_VALIDATION_OR_TRAINING",
+  "utc": "2026-09-13T06:24:56.327925+00:00"
+}

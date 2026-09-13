@@ -1,0 +1,30 @@
+{
+  "utc": "2026-09-13T06:21:25.335159+00:00",
+  "output": "/research/d7/spc/yzyang4/senior-complete-root-20260912-2hvxcn5k",
+  "legacy_entries": 50,
+  "embedded_entries": 52,
+  "additional_entries": 2,
+  "september_directories": [
+    "0901",
+    "0902",
+    "0903",
+    "0904",
+    "0905",
+    "0906",
+    "0907",
+    "0909",
+    "0910",
+    "0911"
+  ],
+  "additional_september_directories": [],
+  "repeated_listing_equal": true,
+  "legacy_inclusion_passed": true,
+  "prior_listing_inclusion_passed": true,
+  "requests": 3,
+  "private_inventory_sha256": "da781f0225d1474a6381d50dd283a6c84ebfaab9770cc3e6c9593214cc377e81",
+  "archives_downloaded": 0,
+  "archive_contents_opened": false,
+  "production_or_latest_changed": false,
+  "complete_index_attested": false,
+  "source": "https://github.com/wkentaro/gdown/blob/v6.0.0/gdown/download_folder.py"
+}

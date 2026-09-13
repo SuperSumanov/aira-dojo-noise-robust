@@ -1,0 +1,2466 @@
+{
+  "groups": [
+    {
+      "counts": {
+        "missing_journals": 4,
+        "planned_runs": 4
+      },
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "task": "leaf-classification"
+    },
+    {
+      "counts": {
+        "exception:KeyError": 5,
+        "exception:TypeError": 12,
+        "exception:ValueError": 2,
+        "nonzero_exit_nodes": 19,
+        "pattern:categorical_new_fill_value": 7,
+        "pattern:early_stopping_without_validation": 1,
+        "pattern:fit_or_train_keyword": 4,
+        "pattern:missing_target_column": 5,
+        "pattern:unclassified": 1,
+        "pattern:unknown_target_type": 1,
+        "planned_runs": 4,
+        "saved_executed_nodes": 27,
+        "valid_submission_nodes": 8
+      },
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "task": "spaceship-titanic"
+    },
+    {
+      "counts": {
+        "exception:ValueError": 4,
+        "exception:no_recognized_exception": 1,
+        "nonzero_exit_nodes": 5,
+        "pattern:early_stopping_without_validation": 1,
+        "pattern:unclassified": 4,
+        "planned_runs": 4,
+        "saved_executed_nodes": 12,
+        "valid_submission_nodes": 7
+      },
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "task": "leaf-classification"
+    },
+    {
+      "counts": {
+        "exception:ImportError": 2,
+        "exception:TypeError": 10,
+        "exception:ValueError": 6,
+        "nonzero_exit_nodes": 18,
+        "pattern:categorical_new_fill_value": 3,
+        "pattern:fit_or_train_keyword": 2,
+        "pattern:unclassified": 13,
+        "planned_runs": 4,
+        "saved_executed_nodes": 25,
+        "valid_submission_nodes": 7
+      },
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "task": "spaceship-titanic"
+    },
+    {
+      "counts": {
+        "exception:KeyError": 4,
+        "exception:TypeError": 2,
+        "exception:ValueError": 4,
+        "exception:no_recognized_exception": 1,
+        "nonzero_exit_nodes": 11,
+        "pattern:early_stopping_without_validation": 1,
+        "pattern:fit_or_train_keyword": 2,
+        "pattern:unclassified": 8,
+        "planned_runs": 4,
+        "saved_executed_nodes": 16,
+        "valid_submission_nodes": 5
+      },
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "task": "leaf-classification"
+    },
+    {
+      "counts": {
+        "exception:CatBoostError": 2,
+        "exception:ImportError": 1,
+        "exception:KeyError": 1,
+        "exception:TypeError": 11,
+        "exception:ValueError": 5,
+        "missing_journals": 1,
+        "nonzero_exit_nodes": 20,
+        "pattern:categorical_new_fill_value": 8,
+        "pattern:early_stopping_without_validation": 1,
+        "pattern:unclassified": 11,
+        "planned_runs": 4,
+        "saved_executed_nodes": 29,
+        "valid_submission_nodes": 9
+      },
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "task": "spaceship-titanic"
+    },
+    {
+      "counts": {
+        "exception:CatBoostError": 1,
+        "exception:KeyError": 1,
+        "nonzero_exit_nodes": 2,
+        "pattern:unclassified": 2,
+        "planned_runs": 4,
+        "saved_executed_nodes": 7,
+        "valid_submission_nodes": 5
+      },
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "task": "leaf-classification"
+    },
+    {
+      "counts": {
+        "exception:KeyError": 6,
+        "exception:TypeError": 20,
+        "exception:ValueError": 4,
+        "nonzero_exit_nodes": 30,
+        "pattern:categorical_new_fill_value": 13,
+        "pattern:early_stopping_without_validation": 3,
+        "pattern:fit_or_train_keyword": 3,
+        "pattern:unclassified": 11,
+        "planned_runs": 4,
+        "saved_executed_nodes": 41,
+        "valid_submission_nodes": 11
+      },
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "task": "spaceship-titanic"
+    }
+  ],
+  "limitations": "Only saved executed nodes; missing/interrupted journals not complete coverage. Four heterogeneous protocols, correlated nodes. Message patterns can overlap; unclassified is not success. No new execution, remediation, current experiment outcomes or protected corpus.",
+  "planned_runs": 32,
+  "proof": [
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "edf5f7539763b23349391bedfea87bd84f81965e1c5ed53fa9e6367dab28cbf4",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "1e7f7e57bc81eb8f009dd50a648e3031d5a587b9bd1adfd4fc75823bc6abf0a5",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "03-spaceship-titanic-s26-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "fc7e950086b20349896c8af61904638a0341ed9d22f7b443318f88c1d89476fc",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "06-spaceship-titanic-s27-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "1f29d64dfde40ad22fbcb52b94f7f2fb6a3e4648bd72384bbbc9f0de7468cd7b",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "1fd193a6c879919c35f40db95693b5159dd0755ad3aa1ee7a8864964e856bc28",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "00-leaf-classification-s28-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "db307c89dd3f9066b3d92bb378254702ea78630d77bf9f8989f76b86b7cd23da",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "01-leaf-classification-s28-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "4dc42611c4436d9abe3b3a4fd4678a9bcaed14e061f13ee14578c15c31e8debb",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "01951e9bbe1ce214258d21f5073efc6e15272c8570c0b5d9c7f22fab11cf0d0e",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "03-spaceship-titanic-s28-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "23c95226a3f68cc78333fd72fb330a7d60f13300375176d1dd55590c452677dc",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "04-leaf-classification-s29-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "dc4ed0b1c8c44baccbd42a7fb5996b0a153c7f71914757424209dc2d3770ea25",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "05-leaf-classification-s29-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "02e7932ce59778bc408695f650b5cb0dfa6cd90179a13226e81eb9a67b929b1e",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "744fbaf471905f95ac7de473169d9b9716f5633af31b1c5f4002fae2d7bf291f",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "bc802740617c0852e76e68c29b7e2dc3a9fdf67b5b674d58e7be67ec1ece0146",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "00-leaf-classification-s30-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "249715ad32a8d37457ac8e8f5ec5dff72dac881e895f60345041148572075044",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "01-leaf-classification-s30-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "514bafc5fc510cda596ef7345f48a992ab9d11f4712fd44f030b97a1477eb6a0",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "9ffc79fd8ebf2f1db6eb3868e4f46f991605d008358421724d6e9ea11ddbe496",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "04-leaf-classification-s31-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "c6b334d00f36f0e7bc5ce4c256391452b74c2d5da38f646015a8adaebc6cb278",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "05-leaf-classification-s31-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "277fd28484704c2c51720bb7c571161d717bbed60382f12113a973a960769549",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "e375aea15d1707095a293bc773b07bbd6314d256f9193b1ec2ebc60253ce840e",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "e27447fc85e03530584392c5c5c282cf1af5b0d8260be56fa13427969c6a53cc",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "00-leaf-classification-s32-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "25fee946fe9cddaf16aa88de97246ddda09598901e02f6a41b5b1139c95a5a97",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "01-leaf-classification-s32-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "ae4d0ac00569f0416668df5405702a294cc7ae6dff743f53a559c6a654fe6868",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "ec162acfd1738814ef04fe31b96a961fcf53afa7d8ff4b60363ad517d0c4a9f3",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "6d798435ccb29b60bcb715b64f6512ca322aec669ac7bae8dd9ae25f2109faa3",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "04-leaf-classification-s33-critic_topk_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "f7940361fc0bbdeb2394cf41fe95c6e737d9ce513d0d4a3f01d814cd9ce84984",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "05-leaf-classification-s33-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "d69cbe45fc9ab5886ba41b1577f28dba05f503c13c8606b2be453009d94d466e",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random"
+    },
+    {
+      "credential_shape_redactions": 0,
+      "journal_sha256": "09efe3d9be2329cf178537068a8e60173bbf2aaf9f24699e21de3f855d84b8e5",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random"
+    }
+  ],
+  "role": "retrospective_observed_error_taxonomy_not_repair_efficacy",
+  "rows": [
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "fit_or_train_keyword"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "fit_or_train_keyword"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "fit_or_train_keyword"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "early_stopping_without_validation"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "seed": 26,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "fit_or_train_keyword"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "seed": 26,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "seed": 27,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "missing_target_column"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "missing_target_column"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "missing_target_column"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "missing_target_column"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "missing_target_column"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "unknown_target_type"
+      ],
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "seed": 27,
+      "step": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "00-leaf-classification-s28-uniform_random",
+      "seed": 28,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "00-leaf-classification-s28-uniform_random",
+      "seed": 28,
+      "step": 2,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "00-leaf-classification-s28-uniform_random",
+      "seed": 28,
+      "step": 3,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "00-leaf-classification-s28-uniform_random",
+      "seed": 28,
+      "step": 4,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "01-leaf-classification-s28-critic_topk_random",
+      "seed": 28,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "01-leaf-classification-s28-critic_topk_random",
+      "seed": 28,
+      "step": 2,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "01-leaf-classification-s28-critic_topk_random",
+      "seed": 28,
+      "step": 3,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random",
+      "seed": 28,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random",
+      "seed": 28,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random",
+      "seed": 28,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ImportError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random",
+      "seed": 28,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random",
+      "seed": 28,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random",
+      "seed": 28,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random",
+      "seed": 28,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "03-spaceship-titanic-s28-uniform_random",
+      "seed": 28,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "04-leaf-classification-s29-critic_topk_random",
+      "seed": 29,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "05-leaf-classification-s29-uniform_random",
+      "seed": 29,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "05-leaf-classification-s29-uniform_random",
+      "seed": 29,
+      "step": 2,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "early_stopping_without_validation"
+      ],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "05-leaf-classification-s29-uniform_random",
+      "seed": 29,
+      "step": 3,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "05-leaf-classification-s29-uniform_random",
+      "seed": 29,
+      "step": 4,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "seed": 29,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "seed": 29,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "seed": 29,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "seed": 29,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "seed": 29,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "seed": 29,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "seed": 29,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "seed": 29,
+      "step": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "seed": 29,
+      "step": 9,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random",
+      "seed": 29,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random",
+      "seed": 29,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random",
+      "seed": 29,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random",
+      "seed": 29,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ImportError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random",
+      "seed": 29,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "fit_or_train_keyword"
+      ],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random",
+      "seed": 29,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "fit_or_train_keyword"
+      ],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random",
+      "seed": 29,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random",
+      "seed": 29,
+      "step": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "seed": 30,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "seed": 30,
+      "step": 2,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "early_stopping_without_validation"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "seed": 30,
+      "step": 3,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "fit_or_train_keyword"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "seed": 30,
+      "step": 4,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "seed": 30,
+      "step": 5,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "01-leaf-classification-s30-critic_topk_random",
+      "seed": 30,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "seed": 30,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "seed": 30,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "seed": 30,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "seed": 30,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "seed": 30,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "seed": 30,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "seed": 30,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "seed": 31,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "seed": 31,
+      "step": 2,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "seed": 31,
+      "step": 3,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "seed": 31,
+      "step": 4,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "fit_or_train_keyword"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "seed": 31,
+      "step": 5,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "seed": 31,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "seed": 31,
+      "step": 2,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "seed": 31,
+      "step": 3,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "seed": 31,
+      "step": 4,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "seed": 31,
+      "step": 5,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "early_stopping_without_validation"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 9,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 10,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 11,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ImportError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 12,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "seed": 31,
+      "step": 13,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "seed": 31,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "seed": 31,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "seed": 31,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "seed": 31,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "seed": 31,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "seed": 31,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "seed": 31,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "CatBoostError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "seed": 31,
+      "step": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "CatBoostError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "seed": 31,
+      "step": 9,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "00-leaf-classification-s32-uniform_random",
+      "seed": 32,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "01-leaf-classification-s32-critic_topk_random",
+      "seed": 32,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "seed": 32,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "seed": 32,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "seed": 32,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "seed": 32,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "seed": 32,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "fit_or_train_keyword"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "seed": 32,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "seed": 32,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "seed": 32,
+      "step": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "seed": 32,
+      "step": 9,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "seed": 32,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "seed": 32,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "seed": 32,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "seed": 32,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "seed": 32,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "seed": 32,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "seed": 32,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "fit_or_train_keyword"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "seed": 32,
+      "step": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "seed": 32,
+      "step": 9,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "seed": 32,
+      "step": 10,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "seed": 32,
+      "step": 11,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "04-leaf-classification-s33-critic_topk_random",
+      "seed": 33,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "05-leaf-classification-s33-uniform_random",
+      "seed": 33,
+      "step": 1,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "05-leaf-classification-s33-uniform_random",
+      "seed": 33,
+      "step": 2,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "CatBoostError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "05-leaf-classification-s33-uniform_random",
+      "seed": 33,
+      "step": 3,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "05-leaf-classification-s33-uniform_random",
+      "seed": 33,
+      "step": 4,
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "early_stopping_without_validation"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "early_stopping_without_validation"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 9,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 10,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "KeyError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 11,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "uniform_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "fit_or_train_keyword"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "seed": 33,
+      "step": 12,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "no_recognized_exception",
+      "exit_nonzero": false,
+      "external_submission_valid": true,
+      "is_buggy": false,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "seed": 33,
+      "step": 1,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "seed": 33,
+      "step": 2,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "ValueError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "early_stopping_without_validation"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "seed": 33,
+      "step": 3,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "seed": 33,
+      "step": 4,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "seed": 33,
+      "step": 5,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "seed": 33,
+      "step": 6,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "seed": 33,
+      "step": 7,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "seed": 33,
+      "step": 8,
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "critic_topk_random",
+      "exception_type": "TypeError",
+      "exit_nonzero": true,
+      "external_submission_valid": false,
+      "is_buggy": true,
+      "message_families": [
+        "categorical_new_fill_value"
+      ],
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "seed": 33,
+      "step": 9,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "script_sha256": "7b0116ea8152fc29f7b1b4dc011ba7af2a83443386a95851c273bb946541c3cc",
+  "totals": {
+    "exception:CatBoostError": 3,
+    "exception:ImportError": 3,
+    "exception:KeyError": 17,
+    "exception:TypeError": 55,
+    "exception:ValueError": 25,
+    "exception:no_recognized_exception": 2,
+    "missing_journals": 5,
+    "nonzero_exit_nodes": 105,
+    "pattern:categorical_new_fill_value": 31,
+    "pattern:early_stopping_without_validation": 7,
+    "pattern:fit_or_train_keyword": 11,
+    "pattern:missing_target_column": 5,
+    "pattern:unclassified": 50,
+    "pattern:unknown_target_type": 1,
+    "saved_executed_nodes": 157,
+    "valid_submission_nodes": 52
+  }
+}

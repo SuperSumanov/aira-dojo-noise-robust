@@ -1,0 +1,376 @@
+{
+  "kind": "memory",
+  "limitations": [
+    "Generated/execution counts include the common fixed RF start, not only LLM outputs.",
+    "Observed completed task-call wall time includes task/grade work. Missing/in-flight intervals are not zero work.",
+    "Remaining worker time is not all model or critic latency; setup, analysis, logging, waiting also contribute.",
+    "Exit zero is not a valid or high-quality final submission. Saved journal coverage can be incomplete.",
+    "Error families use the unchanged historical parser, may overlap, and are auxiliary; no exclusions or new success endpoint."
+  ],
+  "role": "closed_uniform_work_error_supplement_not_primary_endpoint",
+  "rows": [
+    {
+      "arm": "no_memory",
+      "batch_proofs": [
+        {
+          "sha256": "8993c2c7e0a4406122225c8fc2bc830f97460c571720a203fd22dfc5b5f8c2b6",
+          "step": 1
+        },
+        {
+          "sha256": "d01ec2703a374ace817acb5f3e83bc740cba0802b8b1e9d94003300b9404838c",
+          "step": 2
+        }
+      ],
+      "candidate_task_calls": 3,
+      "debug_task_calls": 1,
+      "generated_candidates": 3,
+      "interpreter_exit_zero_calls": 1,
+      "interpreter_seconds_observed": 378.64010685728863,
+      "interpreter_timeout_calls": 1,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "saved_executed_nodes": 1,
+        "valid_submission_nodes": 1
+      },
+      "journal_present": true,
+      "journal_sha256": "fa073c96409922076779b36565309fefdcf4667c4deb6d867c289dae3fd18f4b",
+      "measured_task_calls": 4,
+      "metadata_missing_calls": 1,
+      "observed_task_wall_fraction": 0.8891946716771885,
+      "raised_task_calls": 1,
+      "returned_task_calls": 3,
+      "run_id": "00-leaf-classification-s40-no_memory",
+      "seed": 40,
+      "task": "leaf-classification",
+      "task_wall_seconds_observed": 517.424231188,
+      "technical_eligible": false,
+      "total_task_calls": 4,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 581.9020824900363
+    },
+    {
+      "arm": "execution_memory",
+      "batch_proofs": [
+        {
+          "sha256": "4f3cc20f255ff2c54e95a8e5d36ef9eb53123463a23533488ae9da0c882eb6f9",
+          "step": 1
+        },
+        {
+          "sha256": "4bdffdcf4b4abea6d570cacf5e76c9300c1939e86018b38fc9b2dd04207d6b14",
+          "step": 2
+        }
+      ],
+      "candidate_task_calls": 3,
+      "debug_task_calls": 2,
+      "generated_candidates": 3,
+      "interpreter_exit_zero_calls": 1,
+      "interpreter_seconds_observed": 410.44576582382433,
+      "interpreter_timeout_calls": 1,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "saved_executed_nodes": 1,
+        "valid_submission_nodes": 1
+      },
+      "journal_present": true,
+      "journal_sha256": "f0a9ed2916e93c32dbc7e4c663829f84bad8fbba5480596d099c3ca6080c3bd1",
+      "measured_task_calls": 5,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.8393730869172006,
+      "raised_task_calls": 0,
+      "returned_task_calls": 5,
+      "run_id": "01-leaf-classification-s40-execution_memory",
+      "seed": 40,
+      "task": "leaf-classification",
+      "task_wall_seconds_observed": 434.854540454,
+      "technical_eligible": true,
+      "total_task_calls": 5,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 518.0706258418504
+    },
+    {
+      "arm": "execution_memory",
+      "batch_proofs": [
+        {
+          "sha256": "fd0d9e8bdad785e9b17a2bf068345964e32492fbd7eb56b062521d3a586219ca",
+          "step": 1
+        },
+        {
+          "sha256": "3c14a922cd62d36a01e7b9d21f03d6d10ff5d1f0a3965e5f1ffef0d3c3189e9c",
+          "step": 10
+        },
+        {
+          "sha256": "65b4cb24558b2121f09128d94769d53bdb7c456dfaf3e43367449b2d61a95b75",
+          "step": 14
+        },
+        {
+          "sha256": "2803ed6c6c32bc8affb398af4d9a556dab3b5c91b6298a8a6d9df5da16c79238",
+          "step": 2
+        },
+        {
+          "sha256": "55ae82c1aa1e5770ce6a0a14367812706f113ee0e065b069632890db37f30648",
+          "step": 6
+        }
+      ],
+      "candidate_task_calls": 9,
+      "debug_task_calls": 8,
+      "generated_candidates": 9,
+      "interpreter_exit_zero_calls": 1,
+      "interpreter_seconds_observed": 80.40265630790964,
+      "interpreter_timeout_calls": 0,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "error_family:categorical_new_fill_value": 4,
+        "nonzero_nodes": 12,
+        "saved_executed_nodes": 13,
+        "unclassified_nonzero_nodes": 8,
+        "valid_submission_nodes": 1
+      },
+      "journal_present": true,
+      "journal_sha256": "41b59ab21f225e58cfeedc8faf31e6c0543686cd6f17d8af75d4792cf1068044",
+      "measured_task_calls": 17,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.3204362635770132,
+      "raised_task_calls": 0,
+      "returned_task_calls": 17,
+      "run_id": "02-spaceship-titanic-s40-execution_memory",
+      "seed": 40,
+      "task": "spaceship-titanic",
+      "task_wall_seconds_observed": 158.93430965,
+      "technical_eligible": true,
+      "total_task_calls": 17,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 495.99351794901304
+    },
+    {
+      "arm": "no_memory",
+      "batch_proofs": [
+        {
+          "sha256": "b5dd453ada62074f4282c201ed04a91d88b0d0135ae70e76d3443b6fa42314e3",
+          "step": 1
+        },
+        {
+          "sha256": "8bbde96adf09bff3c09faeb60f9b2b326179bf219637f002816d00257ef37952",
+          "step": 10
+        },
+        {
+          "sha256": "d5534ac07371212fd7ffb76f9a4516f35c23d20ba4da6448ed5a0a7e90d59ed5",
+          "step": 2
+        },
+        {
+          "sha256": "78f3a34fbbf5a8d41d051f782e24013850dcd8beb3d388ed117c5fcb02af34a7",
+          "step": 6
+        }
+      ],
+      "candidate_task_calls": 7,
+      "debug_task_calls": 6,
+      "generated_candidates": 7,
+      "interpreter_exit_zero_calls": 2,
+      "interpreter_seconds_observed": 96.0167557739187,
+      "interpreter_timeout_calls": 0,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "error_family:categorical_new_fill_value": 2,
+        "nonzero_nodes": 7,
+        "saved_executed_nodes": 9,
+        "unclassified_nonzero_nodes": 5,
+        "valid_submission_nodes": 2
+      },
+      "journal_present": true,
+      "journal_sha256": "abb52e06702a8f9a6f3ac572c238061e6c79d345d1628b774c4ed11c5310748f",
+      "measured_task_calls": 13,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.3303891592673777,
+      "raised_task_calls": 0,
+      "returned_task_calls": 13,
+      "run_id": "03-spaceship-titanic-s40-no_memory",
+      "seed": 40,
+      "task": "spaceship-titanic",
+      "task_wall_seconds_observed": 154.95279576899998,
+      "technical_eligible": true,
+      "total_task_calls": 13,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 469.00084770517424
+    },
+    {
+      "arm": "execution_memory",
+      "batch_proofs": [
+        {
+          "sha256": "ac0cad762ea8394dcb51f1c58bd2b6c8576822e5671a6a933198088d72903332",
+          "step": 1
+        },
+        {
+          "sha256": "bd3bc8ab1bc249d47878b1285c63423496bfa9e42a6418fdb86d90699a37306c",
+          "step": 2
+        }
+      ],
+      "candidate_task_calls": 3,
+      "debug_task_calls": 2,
+      "generated_candidates": 3,
+      "interpreter_exit_zero_calls": 1,
+      "interpreter_seconds_observed": 405.9045622497797,
+      "interpreter_timeout_calls": 1,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "saved_executed_nodes": 1,
+        "valid_submission_nodes": 1
+      },
+      "journal_present": true,
+      "journal_sha256": "0c0af162ddbd46cbe56b83f21de5ea37e2c4918af35724fbc7eb59b8f93e1881",
+      "measured_task_calls": 5,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.842676546120517,
+      "raised_task_calls": 0,
+      "returned_task_calls": 5,
+      "run_id": "04-leaf-classification-s41-execution_memory",
+      "seed": 41,
+      "task": "leaf-classification",
+      "task_wall_seconds_observed": 429.968284886,
+      "technical_eligible": true,
+      "total_task_calls": 5,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 510.2411914339755
+    },
+    {
+      "arm": "no_memory",
+      "batch_proofs": [
+        {
+          "sha256": "d0b07c581fd67a29191fafcd8e26446a821bd18ccb697ae2028e74d44a4264ad",
+          "step": 1
+        },
+        {
+          "sha256": "57214ff36b817dedf12ff181eb2985e731a7e489970a55d1cb3949b935dffaf6",
+          "step": 2
+        }
+      ],
+      "candidate_task_calls": 3,
+      "debug_task_calls": 2,
+      "generated_candidates": 3,
+      "interpreter_exit_zero_calls": 1,
+      "interpreter_seconds_observed": 368.4595895500388,
+      "interpreter_timeout_calls": 1,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "saved_executed_nodes": 1,
+        "valid_submission_nodes": 1
+      },
+      "journal_present": true,
+      "journal_sha256": "e1b7c14caae6f86e9b2f503e1c95d527b9a05b029c66a5659564123e97adb09c",
+      "measured_task_calls": 5,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.8368924355283089,
+      "raised_task_calls": 0,
+      "returned_task_calls": 5,
+      "run_id": "05-leaf-classification-s41-no_memory",
+      "seed": 41,
+      "task": "leaf-classification",
+      "task_wall_seconds_observed": 393.35336778899995,
+      "technical_eligible": true,
+      "total_task_calls": 5,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 470.01663665496744
+    },
+    {
+      "arm": "no_memory",
+      "batch_proofs": [
+        {
+          "sha256": "2cfe942722b9e711b32eb848f387f7812c5450d660941cbef4bbbaa363cfd631",
+          "step": 1
+        },
+        {
+          "sha256": "9a25286a9d072549d9b45e32d90b2f50ee65c8418ee8003040d6f5d02c9f7741",
+          "step": 10
+        },
+        {
+          "sha256": "607352339960319680b34e9a0188e5f88f3496f44a5c5e4727f9f2ccc0dc16a6",
+          "step": 2
+        },
+        {
+          "sha256": "57660b2eb689662b0358e81d4a5abf0dbdb6d765624fa071afe77f989c48fa21",
+          "step": 6
+        }
+      ],
+      "candidate_task_calls": 6,
+      "debug_task_calls": 5,
+      "generated_candidates": 7,
+      "interpreter_exit_zero_calls": 4,
+      "interpreter_seconds_observed": 211.21200850512832,
+      "interpreter_timeout_calls": 0,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "error_family:early_stopping_without_validation": 1,
+        "nonzero_nodes": 6,
+        "saved_executed_nodes": 9,
+        "unclassified_nonzero_nodes": 5,
+        "valid_submission_nodes": 3
+      },
+      "journal_present": true,
+      "journal_sha256": "5fcdcf84b6ad3c468e81d504901ba206141636e35fb80fc995db405971a22d1d",
+      "measured_task_calls": 11,
+      "metadata_missing_calls": 0,
+      "observed_task_wall_fraction": 0.4915097627282265,
+      "raised_task_calls": 0,
+      "returned_task_calls": 11,
+      "run_id": "06-spaceship-titanic-s41-no_memory",
+      "seed": 41,
+      "task": "spaceship-titanic",
+      "task_wall_seconds_observed": 262.199268941,
+      "technical_eligible": true,
+      "total_task_calls": 11,
+      "unresolved_task_calls": 0,
+      "worker_elapsed_seconds": 533.4568890058435
+    },
+    {
+      "arm": "execution_memory",
+      "batch_proofs": [
+        {
+          "sha256": "15034df2d760b13e4e36107dc7d47ec07d19cef67b8fa5a8473b6e7189ff5768",
+          "step": 1
+        },
+        {
+          "sha256": "03a5f6adc1cfc8d851e9ac0118b2d75ece6079e3826cb16a97212bd0de8faa95",
+          "step": 2
+        },
+        {
+          "sha256": "c222b43ba6ab19bc01d8a91d7106e04bb278afca4a6f386717871303670d5f4b",
+          "step": 5
+        },
+        {
+          "sha256": "24db71f1638c4233fdf902b7d2db44e74e796f53c9813adaff3a7f9fc077f180",
+          "step": 9
+        }
+      ],
+      "candidate_task_calls": 7,
+      "debug_task_calls": 5,
+      "generated_candidates": 7,
+      "interpreter_exit_zero_calls": 3,
+      "interpreter_seconds_observed": 145.97213175310753,
+      "interpreter_timeout_calls": 0,
+      "invalid_return_task_calls": 0,
+      "journal_counts": {
+        "error_family:categorical_new_fill_value": 1,
+        "error_family:early_stopping_without_validation": 1,
+        "nonzero_nodes": 6,
+        "saved_executed_nodes": 8,
+        "unclassified_nonzero_nodes": 4,
+        "valid_submission_nodes": 2
+      },
+      "journal_present": true,
+      "journal_sha256": "0701f40e6c1e65b6e32aa0dc293fae5d86fb53be6d5cee4a0641cf8797669cae",
+      "measured_task_calls": 11,
+      "metadata_missing_calls": 1,
+      "observed_task_wall_fraction": 0.33211991297931814,
+      "raised_task_calls": 0,
+      "returned_task_calls": 11,
+      "run_id": "07-spaceship-titanic-s41-execution_memory",
+      "seed": 41,
+      "task": "spaceship-titanic",
+      "task_wall_seconds_observed": 199.313115181,
+      "technical_eligible": true,
+      "total_task_calls": 12,
+      "unresolved_task_calls": 1,
+      "worker_elapsed_seconds": 600.1239534029737
+    }
+  ],
+  "script_sha256": "62ea62c33d0c05707339dd7d1c6ff4b14dcccf4df1b1144cef15e3ff16e4aa88",
+  "source_finish_sha256": "bfb9ac89ce29b1c03553b28ce2314592e39afef9d66a44af1d8b143a4a4ab13a"
+}

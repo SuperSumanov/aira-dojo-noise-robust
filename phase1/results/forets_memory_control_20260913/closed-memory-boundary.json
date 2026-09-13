@@ -1,0 +1,46 @@
+{
+  "endpoint_differences": [
+    {
+      "matching_observed_search_nodes": {
+        "action": [
+          {
+            "code_sha256": "dcb725efc0d8d3c432ecd063f533ab9ca38732a88f799e86e25777f1d6a1a1f4",
+            "is_buggy": false,
+            "maximize": true,
+            "node_id": "19e76ac8fdca4c309d97280e76366673",
+            "search_value": 0.810046
+          }
+        ],
+        "iteration": [
+          {
+            "code_sha256": "5c5aa2b78b729a7779b14118333d036535ec68db2222ab048898faf29c58fd05",
+            "is_buggy": false,
+            "maximize": true,
+            "node_id": "3c11e2461c6045e1afd4d339c7f7820c",
+            "search_value": 0.8088947811379033
+          }
+        ]
+      },
+      "observation_elapsed_seconds": 444.206283233,
+      "original_action_node": "19e76ac8fdca4c309d97280e76366673",
+      "run_id": "07-spaceship-titanic-s41-execution_memory"
+    }
+  ],
+  "failures": [
+    {
+      "eligibility_unchanged": true,
+      "exception_tail": [
+        "ValueError: For early stopping, at least one dataset and eval metric is required for evaluationExecution time: a minute (time limit is 5 minutes).'",
+        "ValueError: For early stopping, at least one dataset and eval metric is required for evaluationExecution time: a minute (time limit is 5 minutes).'",
+        "dojo.core.interpreters.jupyter.kernel_readiness.KernelReadinessError: Kernel readiness failed before candidate dispatch"
+      ],
+      "log_sha256": "73a514975b3c353e24e21dd990b4d59c1fb95a8a434aee1bc0a97645ba692686",
+      "run_id": "00-leaf-classification-s40-no_memory",
+      "source_termination_reason": "failed"
+    }
+  ],
+  "limitations": "Original frozen exclusions/endpoints unchanged; no retry or new score-based selection; redacted exception messages only.",
+  "role": "closed_memory_boundary_diagnosis_not_new_readout_or_reselection",
+  "script_sha256": "5ab36523adebb668abdd6d15dad9bd1f76fb15d31f8e64bd64dc78a304110c7a",
+  "source_finish_sha256": "bfb9ac89ce29b1c03553b28ce2314592e39afef9d66a44af1d8b143a4a4ab13a"
+}

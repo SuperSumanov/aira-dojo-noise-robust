@@ -1,0 +1,916 @@
+{
+  "limitations": [
+    "Only the same saved nodes in 27 journals of 32 planned old searches, heterogeneous protocols.",
+    "Reported interpreter execution time is not allocation time, GPU utilization, model latency, or entire failed-attempt cost.",
+    "Families overlap; their times cannot be added as exclusive costs. No estimate of counterfactual saved time.",
+    "The frozen future memory observations remain unchanged; this is not a new selection rule."
+  ],
+  "role": "same_closed_development_count_vs_execution_time_not_savings",
+  "rows": [
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 96.6997700582724,
+          "nodes": 6
+        },
+        "debug": {
+          "interpreter_seconds": 60.60448196600191,
+          "nodes": 3
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 60.60448196600191,
+          "nodes": 3
+        },
+        "family:categorical_new_fill_value": {
+          "interpreter_seconds": 34.09041972178966,
+          "nodes": 2
+        },
+        "family:early_stopping_without_validation": {
+          "interpreter_seconds": 37.277407464105636,
+          "nodes": 1
+        },
+        "family:fit_or_train_keyword": {
+          "interpreter_seconds": 25.331942872377113,
+          "nodes": 3
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 96.6997700582724,
+          "nodes": 6
+        }
+      },
+      "journal_sha256": "edf5f7539763b23349391bedfea87bd84f81965e1c5ed53fa9e6367dab28cbf4",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 134.37968687480316,
+          "nodes": 7
+        },
+        "debug": {
+          "interpreter_seconds": 9.77773117297329,
+          "nodes": 1
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 9.77773117297329,
+          "nodes": 1
+        },
+        "family:fit_or_train_keyword": {
+          "interpreter_seconds": 9.77773117297329,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 19.508992440998554,
+          "nodes": 2
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 9.731261268025264,
+          "nodes": 1
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 114.8706944338046,
+          "nodes": 5
+        }
+      },
+      "journal_sha256": "1e7f7e57bc81eb8f009dd50a648e3031d5a587b9bd1adfd4fc75823bc6abf0a5",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "03-spaceship-titanic-s26-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 109.7628680889029,
+          "nodes": 6
+        },
+        "debug": {
+          "interpreter_seconds": 40.08147287997417,
+          "nodes": 2
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 6.310776233905926,
+          "nodes": 1
+        },
+        "debug_zero_or_unreported_exit": {
+          "interpreter_seconds": 33.770696646068245,
+          "nodes": 1
+        },
+        "family:categorical_new_fill_value": {
+          "interpreter_seconds": 19.186649568844587,
+          "nodes": 3
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 19.186649568844587,
+          "nodes": 3
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 90.57621852005832,
+          "nodes": 3
+        }
+      },
+      "journal_sha256": "fc7e950086b20349896c8af61904638a0341ed9d22f7b443318f88c1d89476fc",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "06-spaceship-titanic-s27-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 50.36101836594753,
+          "nodes": 8
+        },
+        "debug": {
+          "interpreter_seconds": 25.13027914101258,
+          "nodes": 4
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 25.13027914101258,
+          "nodes": 4
+        },
+        "family:categorical_new_fill_value": {
+          "interpreter_seconds": 12.699910603929311,
+          "nodes": 2
+        },
+        "family:missing_target_column": {
+          "interpreter_seconds": 31.58625626307912,
+          "nodes": 5
+        },
+        "family:unknown_target_type": {
+          "interpreter_seconds": 6.074851498939097,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 50.36101836594753,
+          "nodes": 8
+        }
+      },
+      "journal_sha256": "1f29d64dfde40ad22fbcb52b94f7f2fb6a3e4648bd72384bbbc9f0de7468cd7b",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 242.51039152499288,
+          "nodes": 4
+        },
+        "debug": {
+          "interpreter_seconds": 113.0954561419785,
+          "nodes": 1
+        },
+        "debug_zero_or_unreported_exit": {
+          "interpreter_seconds": 113.0954561419785,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 9.347862599883229,
+          "nodes": 1
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 9.347862599883229,
+          "nodes": 1
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 233.16252892510965,
+          "nodes": 3
+        }
+      },
+      "journal_sha256": "1fd193a6c879919c35f40db95693b5159dd0755ad3aa1ee7a8864964e856bc28",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "00-leaf-classification-s28-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 324.62349219690077,
+          "nodes": 3
+        },
+        "debug": {
+          "interpreter_seconds": 315.01216564513743,
+          "nodes": 1
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 315.01216564513743,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 320.833461771952,
+          "nodes": 2
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 320.833461771952,
+          "nodes": 2
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 3.7900304249487817,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "db307c89dd3f9066b3d92bb378254702ea78630d77bf9f8989f76b86b7cd23da",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "01-leaf-classification-s28-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 32.97314457781613,
+          "nodes": 7
+        },
+        "debug": {
+          "interpreter_seconds": 16.220579268643633,
+          "nodes": 3
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 16.220579268643633,
+          "nodes": 3
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 29.456124716671184,
+          "nodes": 6
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 29.456124716671184,
+          "nodes": 6
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 3.517019861144945,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "4dc42611c4436d9abe3b3a4fd4678a9bcaed14e061f13ee14578c15c31e8debb",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 3.5685533629730344,
+          "nodes": 1
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 3.5685533629730344,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "01951e9bbe1ce214258d21f5073efc6e15272c8570c0b5d9c7f22fab11cf0d0e",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "03-spaceship-titanic-s28-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 4.602998279035091,
+          "nodes": 1
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 4.602998279035091,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "23c95226a3f68cc78333fd72fb330a7d60f13300375176d1dd55590c452677dc",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "04-leaf-classification-s29-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 271.89776925346814,
+          "nodes": 4
+        },
+        "debug": {
+          "interpreter_seconds": 129.88695836183615,
+          "nodes": 1
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 129.88695836183615,
+          "nodes": 1
+        },
+        "family:early_stopping_without_validation": {
+          "interpreter_seconds": 129.88695836183615,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 137.29039380978793,
+          "nodes": 2
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 7.403435447951779,
+          "nodes": 1
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 134.6073754436802,
+          "nodes": 2
+        }
+      },
+      "journal_sha256": "dc4ed0b1c8c44baccbd42a7fb5996b0a153c7f71914757424209dc2d3770ea25",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "05-leaf-classification-s29-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 54.573264858685434,
+          "nodes": 9
+        },
+        "debug": {
+          "interpreter_seconds": 27.350111324107274,
+          "nodes": 4
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 18.030532050179318,
+          "nodes": 3
+        },
+        "debug_zero_or_unreported_exit": {
+          "interpreter_seconds": 9.319579273927957,
+          "nodes": 1
+        },
+        "family:categorical_new_fill_value": {
+          "interpreter_seconds": 18.912293115863577,
+          "nodes": 3
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 41.89663511677645,
+          "nodes": 7
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 22.984342000912875,
+          "nodes": 4
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 12.676629741908982,
+          "nodes": 2
+        }
+      },
+      "journal_sha256": "02e7932ce59778bc408695f650b5cb0dfa6cd90179a13226e81eb9a67b929b1e",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 56.42810266651213,
+          "nodes": 8
+        },
+        "debug": {
+          "interpreter_seconds": 30.874852171866223,
+          "nodes": 3
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 14.654353159945458,
+          "nodes": 2
+        },
+        "debug_zero_or_unreported_exit": {
+          "interpreter_seconds": 16.220499011920765,
+          "nodes": 1
+        },
+        "family:fit_or_train_keyword": {
+          "interpreter_seconds": 14.651200792985037,
+          "nodes": 2
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 29.188551141647622,
+          "nodes": 5
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 14.537350348662585,
+          "nodes": 3
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 27.23955152486451,
+          "nodes": 3
+        }
+      },
+      "journal_sha256": "744fbaf471905f95ac7de473169d9b9716f5633af31b1c5f4002fae2d7bf291f",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 142.56019642413594,
+          "nodes": 5
+        },
+        "debug": {
+          "interpreter_seconds": 113.78686855128035,
+          "nodes": 2
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 113.78686855128035,
+          "nodes": 2
+        },
+        "family:early_stopping_without_validation": {
+          "interpreter_seconds": 98.83254171116278,
+          "nodes": 1
+        },
+        "family:fit_or_train_keyword": {
+          "interpreter_seconds": 16.370302931871265,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 138.17160533810966,
+          "nodes": 4
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 22.968760695075616,
+          "nodes": 2
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 4.388591086026281,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "bc802740617c0852e76e68c29b7e2dc3a9fdf67b5b674d58e7be67ec1ece0146",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "00-leaf-classification-s30-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 4.0566979178693146,
+          "nodes": 1
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 4.0566979178693146,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "249715ad32a8d37457ac8e8f5ec5dff72dac881e895f60345041148572075044",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "01-leaf-classification-s30-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 118.20062206592411,
+          "nodes": 7
+        },
+        "debug": {
+          "interpreter_seconds": 49.629444684134796,
+          "nodes": 2
+        },
+        "debug_zero_or_unreported_exit": {
+          "interpreter_seconds": 49.629444684134796,
+          "nodes": 2
+        },
+        "family:categorical_new_fill_value": {
+          "interpreter_seconds": 11.563808053964749,
+          "nodes": 2
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 11.563808053964749,
+          "nodes": 2
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 106.63681401195936,
+          "nodes": 5
+        }
+      },
+      "journal_sha256": "514bafc5fc510cda596ef7345f48a992ab9d11f4712fd44f030b97a1477eb6a0",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 165.97329426533543,
+          "nodes": 5
+        },
+        "debug": {
+          "interpreter_seconds": 149.71343033015728,
+          "nodes": 2
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 22.004030685173348,
+          "nodes": 1
+        },
+        "debug_zero_or_unreported_exit": {
+          "interpreter_seconds": 127.70939964498393,
+          "nodes": 1
+        },
+        "family:fit_or_train_keyword": {
+          "interpreter_seconds": 22.004030685173348,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 33.96294935839251,
+          "nodes": 3
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 11.95891867321916,
+          "nodes": 2
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 132.01034490694292,
+          "nodes": 2
+        }
+      },
+      "journal_sha256": "9ffc79fd8ebf2f1db6eb3868e4f46f991605d008358421724d6e9ea11ddbe496",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "04-leaf-classification-s31-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 331.3932275371626,
+          "nodes": 5
+        },
+        "debug": {
+          "interpreter_seconds": 314.8870771860238,
+          "nodes": 2
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 314.8870771860238,
+          "nodes": 2
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 327.6575004211627,
+          "nodes": 4
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 327.6575004211627,
+          "nodes": 4
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 3.7357271159999073,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "c6b334d00f36f0e7bc5ce4c256391452b74c2d5da38f646015a8adaebc6cb278",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "05-leaf-classification-s31-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 112.27133504976518,
+          "nodes": 13
+        },
+        "debug": {
+          "interpreter_seconds": 74.95567777915858,
+          "nodes": 6
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 22.810315871145576,
+          "nodes": 4
+        },
+        "debug_zero_or_unreported_exit": {
+          "interpreter_seconds": 52.145361908013,
+          "nodes": 2
+        },
+        "family:categorical_new_fill_value": {
+          "interpreter_seconds": 15.761661143740639,
+          "nodes": 3
+        },
+        "family:early_stopping_without_validation": {
+          "interpreter_seconds": 6.715273160953075,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 56.55744645278901,
+          "nodes": 10
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 34.080512148095295,
+          "nodes": 6
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 55.713888596976176,
+          "nodes": 3
+        }
+      },
+      "journal_sha256": "277fd28484704c2c51720bb7c571161d717bbed60382f12113a973a960769549",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 50.642089421860874,
+          "nodes": 9
+        },
+        "debug": {
+          "interpreter_seconds": 23.611410178709775,
+          "nodes": 4
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 23.611410178709775,
+          "nodes": 4
+        },
+        "family:categorical_new_fill_value": {
+          "interpreter_seconds": 17.28383817896247,
+          "nodes": 3
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 46.92661805287935,
+          "nodes": 8
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 29.64277987391688,
+          "nodes": 5
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 3.7154713689815253,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "e375aea15d1707095a293bc773b07bbd6314d256f9193b1ec2ebc60253ce840e",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 3.6405959848780185,
+          "nodes": 1
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 3.6405959848780185,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "e27447fc85e03530584392c5c5c282cf1af5b0d8260be56fa13427969c6a53cc",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "00-leaf-classification-s32-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 3.5405841150786728,
+          "nodes": 1
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 3.5405841150786728,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "25fee946fe9cddaf16aa88de97246ddda09598901e02f6a41b5b1139c95a5a97",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "01-leaf-classification-s32-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 113.25243101664819,
+          "nodes": 9
+        },
+        "debug": {
+          "interpreter_seconds": 61.38532984512858,
+          "nodes": 4
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 12.00076337507926,
+          "nodes": 2
+        },
+        "debug_zero_or_unreported_exit": {
+          "interpreter_seconds": 49.38456647004932,
+          "nodes": 2
+        },
+        "family:categorical_new_fill_value": {
+          "interpreter_seconds": 11.7302947351709,
+          "nodes": 2
+        },
+        "family:fit_or_train_keyword": {
+          "interpreter_seconds": 6.647658102214336,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 30.093926643487066,
+          "nodes": 5
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 11.715973806101829,
+          "nodes": 2
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 83.15850437316112,
+          "nodes": 4
+        }
+      },
+      "journal_sha256": "ae4d0ac00569f0416668df5405702a294cc7ae6dff743f53a559c6a654fe6868",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 99.13745143031701,
+          "nodes": 11
+        },
+        "debug": {
+          "interpreter_seconds": 48.56302389013581,
+          "nodes": 4
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 21.015126035083085,
+          "nodes": 3
+        },
+        "debug_zero_or_unreported_exit": {
+          "interpreter_seconds": 27.547897855052724,
+          "nodes": 1
+        },
+        "family:categorical_new_fill_value": {
+          "interpreter_seconds": 21.121290328213945,
+          "nodes": 3
+        },
+        "family:fit_or_train_keyword": {
+          "interpreter_seconds": 7.112039568834007,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 48.90565515309572,
+          "nodes": 7
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 20.67232525604777,
+          "nodes": 3
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 50.23179627722129,
+          "nodes": 4
+        }
+      },
+      "journal_sha256": "ec162acfd1738814ef04fe31b96a961fcf53afa7d8ff4b60363ad517d0c4a9f3",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 3.779139676131308,
+          "nodes": 1
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 3.779139676131308,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "6d798435ccb29b60bcb715b64f6512ca322aec669ac7bae8dd9ae25f2109faa3",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "04-leaf-classification-s33-critic_topk_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 293.2439535399899,
+          "nodes": 4
+        },
+        "debug": {
+          "interpreter_seconds": 89.87529004388489,
+          "nodes": 1
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 89.87529004388489,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 96.34831281192601,
+          "nodes": 2
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 96.34831281192601,
+          "nodes": 2
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 196.89564072806388,
+          "nodes": 2
+        }
+      },
+      "journal_sha256": "f7940361fc0bbdeb2394cf41fe95c6e737d9ce513d0d4a3f01d814cd9ce84984",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "05-leaf-classification-s33-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 73.91865041689016,
+          "nodes": 12
+        },
+        "debug": {
+          "interpreter_seconds": 34.89118118188344,
+          "nodes": 5
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 34.89118118188344,
+          "nodes": 5
+        },
+        "family:categorical_new_fill_value": {
+          "interpreter_seconds": 12.377542898990214,
+          "nodes": 2
+        },
+        "family:early_stopping_without_validation": {
+          "interpreter_seconds": 14.853937395149842,
+          "nodes": 2
+        },
+        "family:fit_or_train_keyword": {
+          "interpreter_seconds": 7.710228483891115,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 62.92867392464541,
+          "nodes": 10
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 27.98696514661424,
+          "nodes": 5
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 10.98997649224475,
+          "nodes": 2
+        }
+      },
+      "journal_sha256": "d69cbe45fc9ab5886ba41b1577f28dba05f503c13c8606b2be453009d94d466e",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random"
+    },
+    {
+      "groups": {
+        "all_saved_executed": {
+          "interpreter_seconds": 50.03813153342344,
+          "nodes": 9
+        },
+        "debug": {
+          "interpreter_seconds": 23.363241924205795,
+          "nodes": 4
+        },
+        "debug_nonzero_exit": {
+          "interpreter_seconds": 23.363241924205795,
+          "nodes": 4
+        },
+        "family:categorical_new_fill_value": {
+          "interpreter_seconds": 34.45550995506346,
+          "nodes": 6
+        },
+        "family:early_stopping_without_validation": {
+          "interpreter_seconds": 6.688627428142354,
+          "nodes": 1
+        },
+        "nonzero_exit": {
+          "interpreter_seconds": 46.42804943327792,
+          "nodes": 8
+        },
+        "unclassified_failure": {
+          "interpreter_seconds": 5.283912050072104,
+          "nodes": 1
+        },
+        "zero_or_unreported_exit": {
+          "interpreter_seconds": 3.610082100145519,
+          "nodes": 1
+        }
+      },
+      "journal_sha256": "09efe3d9be2329cf178537068a8e60173bbf2aaf9f24699e21de3f855d84b8e5",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random"
+    }
+  ],
+  "script_sha256": "8d19defb318492d4a803d301a86fe299538f4d824e78e16f87882d552fb8c004",
+  "source_summary_sha256": "fbea5f58486ea518255e6227f5d26014a5e5b0d138c78ce335b66086e3c1ef2b",
+  "totals": {
+    "all_saved_executed": {
+      "interpreter_seconds": 2948.0294605037197,
+      "nodes": 157
+    },
+    "debug": {
+      "interpreter_seconds": 1752.6960636682343,
+      "nodes": 59
+    },
+    "debug_nonzero_exit": {
+      "interpreter_seconds": 1273.873162032105,
+      "nodes": 47
+    },
+    "debug_zero_or_unreported_exit": {
+      "interpreter_seconds": 478.82290163612925,
+      "nodes": 12
+    },
+    "family:categorical_new_fill_value": {
+      "interpreter_seconds": 209.1832183045335,
+      "nodes": 31
+    },
+    "family:early_stopping_without_validation": {
+      "interpreter_seconds": 294.25474552134983,
+      "nodes": 7
+    },
+    "family:fit_or_train_keyword": {
+      "interpreter_seconds": 109.60513461031951,
+      "nodes": 11
+    },
+    "family:missing_target_column": {
+      "interpreter_seconds": 31.58625626307912,
+      "nodes": 5
+    },
+    "family:unknown_target_type": {
+      "interpreter_seconds": 6.074851498939097,
+      "nodes": 1
+    },
+    "nonzero_exit": {
+      "interpreter_seconds": 1653.3140052345116,
+      "nodes": 105
+    },
+    "unclassified_failure": {
+      "interpreter_seconds": 1002.6097990362905,
+      "nodes": 50
+    },
+    "zero_or_unreported_exit": {
+      "interpreter_seconds": 1294.7154552692082,
+      "nodes": 52
+    }
+  }
+}

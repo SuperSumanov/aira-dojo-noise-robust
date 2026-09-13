@@ -1,0 +1,11 @@
+{
+  "files": {
+    "memory-runs.csv": "1ea2dd00a4ddc70282dc82589b4551001e4a07967ca07f7c79b5b043628b64e9",
+    "memory-summary.json": "a7e5aaf94cf1ecf4d12f6debde0ee0342a6a972c7a19b2ea7615287e573c08c0",
+    "wallclock-runs.csv": "2431070a90eae0e226d91941a0538a83bdd43977a5f3f4456249840fbc61389a",
+    "wallclock-summary.json": "bab8732de5d01d82102a503d4205a1056c76a67bb8301abf2103c1e4bfdc6882"
+  },
+  "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+  "status": "verified",
+  "utc": "2026-09-13T08:20:44.172608+00:00"
+}

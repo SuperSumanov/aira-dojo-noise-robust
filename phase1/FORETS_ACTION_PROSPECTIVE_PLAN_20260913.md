@@ -35,3 +35,10 @@ RNG不变、无额外LLM调用、默认关闭、root/bug/missing/tie/cutoff分�
 旋钮从实际配置/receipt看；新路径CPU先过；无训练切分/过采样/新模型checkpoint，相关项不适用而非已完成scaling。
 按任务分层不混loss/accuracy；原seed流水不改候选列表；发布凭据扫描；两分配90分钟预算和每slot终止余量由原controller约束。
 保留失败rc、确定冻结八槽位，不因成绩换seed。样本小、模型未更新，不能凭小样本预设正结果。
+
+## 实际预检补记（不改协议）
+
+首个派生CPU夹具将远端路径写成Windows分隔符，发生FileNotFoundError；task/archive/deadline主检查已过，仅修夹具后补两项余下测试，生产source不改。
+实际部署ForeTS的parse/log/debug钩子通过；uniform真实batch路径四生成、二执行、零ranking/reservation，独立选择回放一致。
+首次route在缺少checked_catalog所属辅助模块时停于导入，核账仍1310且无route/call产物，随后补齐模块；不把它当模型失败或隐藏重试。
+冻结readout-plan SHA `44ae3e6a947bfea55f43630872edf97e72557cbb5e34e2450a18bfe932dac1ef`；原实验plan快照仍为pre-run版本，补记不覆盖它。

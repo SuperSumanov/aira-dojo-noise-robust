@@ -1,0 +1,22 @@
+{
+  "launch_action_prospective_20260913.py": {
+    "base_file": "releases\\forets-reference-tools-20260913\\launch_forets_reference_20260913.py",
+    "base_sha256": "3926a7a70671f65a74bbdb0512c2389749883ecf1454a3dc309b846a962e5b84",
+    "derived_sha256": "8315c5ad2226b4fd55f1bf636161d5dc38201dfa1006810e1d219803fac643d7"
+  },
+  "readout_action_prospective_core_20260913.py": {
+    "base_file": "readout_forets_wallclock_20260912.py",
+    "base_sha256": "d800d3986a9d88251c30a0194df413d302183a714bbfcd4f7b137d4aa3726b0e",
+    "derived_sha256": "aba8be37948c88dcf62646e758e81fbd63ff396ca946796e4b66be1fe50c3bcf"
+  },
+  "verify_deployed_action_hook_20260913.py": {
+    "base_file": "verify_forets_action_delivery_integration_20260913.py",
+    "base_sha256": "3afba30e5955bcf1e1c1ccc6d10b32c7e6e4c127bca6bc55d3330bf67b16d144",
+    "derived_sha256": "f640643ed7298091a04acc9703f81e3e788b9af23feb265b9676e6ade8b62ab5"
+  },
+  "verify_uniform_delivery_batch_20260913.py": {
+    "base_file": "verify_forets_reference_integration_20260913.py",
+    "base_sha256": "614bb85721b92f3096fea33f17c0c08453f06bd6527bb8f991e85d0a7bfa0d97",
+    "derived_sha256": "b2f38933f42a9bb2e3c5b47342a687b4ac5646ab7a5ab61e81050a331b59a158"
+  }
+}

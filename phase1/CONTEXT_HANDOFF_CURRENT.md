@@ -1,8 +1,23 @@
-# 短交接：真实对照无收益；单池选中好程序、CV错位已验证
-最后观察：2026-09-13 05:51 UTC；本连续工作窗口02:58开始、目标05:58。不要创建automation替代会话内工作。
-恢复先fetch→CURRENT_DIRECTION 0L193→本文件→核现场。长期约束见AGENTS，详细历史在报告/Git。
+# 短交接：新逐动作交付前瞻验证准备；此前CV与critic结果不变
+最后观察：2026-09-13 06:04 UTC。用户再次要求三小时持续研究，当前窗口05:53–08:53 UTC；不要创建automation替代会话内工作。
+恢复先fetch→CURRENT_DIRECTION 0L194→本文件→核现场。长期约束见AGENTS，详细历史在报告/Git。
 
-## 最新事实与裁决
+## 本轮当前包（覆盖下方上一轮动态状态）
+ROOT /research/d7/spc/yzyang4/forets-wallclock-20260912-7wzrny21
+STAGE /research/d7/spc/yzyang4/forets-action-stage-20260913-egtJPLRg
+source f7a8b9e3c07b530467573315d55f62203cc67895；controller d389e4a1969be747c0af1a20d4a50256df55632f。
+prepared ab146978b54b763a4295fc6261a633174e054c1bbd00f1d0602f5c8f3da53cf9；AUTH b00f6e77b018028a544d2c8c066ca4e239d4f50878436c182c059ccf104b2e04。
+readout-plan 44ae3e6a947bfea55f43630872edf97e72557cbb5e34e2450a18bfe932dac1ef，已冻结，禁修改reader。
+Leaf/Space×34/35/36/37全8条uniform轨迹，每条600秒/程序300秒/四选二/原debug/RF起点；只加被动动作保存，不改CV或选解。
+同一条轨迹双交付，不是16独立run/critic重试/外部oracle。2单3090、6CPU、90min分配，总上限3GPUh。
+真实task/archive/deadline CPU接线、实际生产action/log/debug钩子、实际uniform四生成二执行及独立回放均通过。
+首个派生测试脚本错误使用Windows路径分隔符，未发生GPU/API，修正为POSIX后仅补剩余测试；正式source未改。
+使用forets-action-tools-20260913-v2（v1失败路径夹具不用）。未重跑已完成integration-check。
+新责任账已激活且旧5_czzimk封账；完整继承1310调用及2旧未知，原累计10USD帽不变。禁止再次activate/旧包付费。
+正在单次route；尚未提交GPU。控制入口STAGE/forets_action_control_20260913.sh。路线成功后单次submit，不重复route。
+新reader readout_action_prospective_20260913.py，全八终态后一次读取，两种原submission各自独立重评分；运行时只用monitor_action_prospective_20260913.py看结构/账。
+
+## 上一轮已完成事实与裁决（不得重跑）
 - 主实验13213/13214已闭合：8技术合格、4配对0胜1平3负；停止扩大同配方，不启动24run。
 - 13227 COMPLETED121秒：全部9未尝试原程序零API补齐，合全16为1有效14失败1历史未知。
 - Space32唯一有效原程序.81494已被critic排第一且入top2；两个便宜排序前二漏掉。只是一池探索性正信号。

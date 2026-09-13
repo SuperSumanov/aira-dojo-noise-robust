@@ -1,0 +1,25 @@
+{
+  "actual_prediction_rows": 7823,
+  "after": {
+    "is_buggy": true,
+    "maximize": null,
+    "metric": null
+  },
+  "api_calls": 0,
+  "before": {
+    "is_buggy": true,
+    "maximize": null,
+    "metric": null
+  },
+  "changed_live_source": false,
+  "contract_sha256": "bffca38ae34088d5ebb2b39f8734c57ee802389d2a2e9911168bc82e6195646a",
+  "external_score_supplied_to_parser": false,
+  "gpu_jobs": 0,
+  "initial_expectation_rejected": "Two preliminary attempts expected a nonexistent stdout fallback; both rejected. No live source changed.",
+  "marker_alone_restores_node": false,
+  "measurement_sha256": "60b903f151eda292a251b6579c570086292c8e4662b9a47a01f4f3086a688da7",
+  "oof_contract_matches_independent_measurement": true,
+  "role": "real_parser_negative_marker_integration_not_autonomous_repair_or_e2e",
+  "script_sha256": "74cf7976fa562366d1f0f8301fee03638aec9878d0d17ac84c6c3b3c8886c874",
+  "source_tree": "f1cdee3a9e553e8efeedaa1a66a2c6bd778f9798"
+}

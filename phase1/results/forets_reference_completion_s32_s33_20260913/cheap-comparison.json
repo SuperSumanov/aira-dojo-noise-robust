@@ -1,0 +1,241 @@
+{
+  "completion_sha256": "9112b9d4a5bd5c7c0508e28b382d2777689e0fa7625220889929df37c2ca9013",
+  "limitation": "Cheap order designed after parent e2e outcomes, before new completion readout. No selection/tuning after new outcomes. Four pools and one unresolved original; no significance/novelty/general superiority claim.",
+  "orders_sha256": "10c8bd320e73fe16bd62e1f45ecd841158b2862c73845f9b55928508ec565473",
+  "role": "exploratory_finite_pool_comparators_not_e2e",
+  "rows": [
+    {
+      "code_length": {
+        "any_valid_gain_bounds": [
+          0.0,
+          0.5
+        ],
+        "complete_direct_outcomes": false,
+        "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility.",
+        "top2": [
+          2,
+          1
+        ],
+        "top2_any_valid_bounds": [
+          0.0,
+          1.0
+        ],
+        "uniform_two_any_valid_bounds": [
+          0.0,
+          0.5
+        ],
+        "unknown_slots": [
+          1
+        ]
+      },
+      "critic": {
+        "gain_bounds": [
+          0.0,
+          0.5
+        ],
+        "top2": [
+          1,
+          3
+        ]
+      },
+      "parent_distance": {
+        "any_valid_gain_bounds": [
+          -0.5,
+          0.0
+        ],
+        "complete_direct_outcomes": false,
+        "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility.",
+        "top2": [
+          2,
+          0
+        ],
+        "top2_any_valid_bounds": [
+          0.0,
+          0.0
+        ],
+        "uniform_two_any_valid_bounds": [
+          0.0,
+          0.5
+        ],
+        "unknown_slots": [
+          1
+        ]
+      },
+      "parent_run_id": "01-leaf-classification-s32-critic_topk_random",
+      "seed": 32,
+      "task": "leaf-classification"
+    },
+    {
+      "code_length": {
+        "any_valid_gain_bounds": [
+          -0.5,
+          -0.5
+        ],
+        "complete_direct_outcomes": true,
+        "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility.",
+        "top2": [
+          2,
+          0
+        ],
+        "top2_any_valid_bounds": [
+          0.0,
+          0.0
+        ],
+        "uniform_two_any_valid_bounds": [
+          0.5,
+          0.5
+        ],
+        "unknown_slots": []
+      },
+      "critic": {
+        "gain_bounds": [
+          0.5,
+          0.5
+        ],
+        "top2": [
+          3,
+          1
+        ]
+      },
+      "parent_distance": {
+        "any_valid_gain_bounds": [
+          -0.5,
+          -0.5
+        ],
+        "complete_direct_outcomes": true,
+        "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility.",
+        "top2": [
+          2,
+          1
+        ],
+        "top2_any_valid_bounds": [
+          0.0,
+          0.0
+        ],
+        "uniform_two_any_valid_bounds": [
+          0.5,
+          0.5
+        ],
+        "unknown_slots": []
+      },
+      "parent_run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "seed": 32,
+      "task": "spaceship-titanic"
+    },
+    {
+      "code_length": {
+        "any_valid_gain_bounds": [
+          0.0,
+          0.0
+        ],
+        "complete_direct_outcomes": true,
+        "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility.",
+        "top2": [
+          1,
+          3
+        ],
+        "top2_any_valid_bounds": [
+          0.0,
+          0.0
+        ],
+        "uniform_two_any_valid_bounds": [
+          0.0,
+          0.0
+        ],
+        "unknown_slots": []
+      },
+      "critic": {
+        "gain_bounds": [
+          0.0,
+          0.0
+        ],
+        "top2": [
+          2,
+          0
+        ]
+      },
+      "parent_distance": {
+        "any_valid_gain_bounds": [
+          0.0,
+          0.0
+        ],
+        "complete_direct_outcomes": true,
+        "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility.",
+        "top2": [
+          1,
+          3
+        ],
+        "top2_any_valid_bounds": [
+          0.0,
+          0.0
+        ],
+        "uniform_two_any_valid_bounds": [
+          0.0,
+          0.0
+        ],
+        "unknown_slots": []
+      },
+      "parent_run_id": "04-leaf-classification-s33-critic_topk_random",
+      "seed": 33,
+      "task": "leaf-classification"
+    },
+    {
+      "code_length": {
+        "any_valid_gain_bounds": [
+          0.0,
+          0.0
+        ],
+        "complete_direct_outcomes": true,
+        "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility.",
+        "top2": [
+          3,
+          0
+        ],
+        "top2_any_valid_bounds": [
+          0.0,
+          0.0
+        ],
+        "uniform_two_any_valid_bounds": [
+          0.0,
+          0.0
+        ],
+        "unknown_slots": []
+      },
+      "critic": {
+        "gain_bounds": [
+          0.0,
+          0.0
+        ],
+        "top2": [
+          2,
+          0
+        ]
+      },
+      "parent_distance": {
+        "any_valid_gain_bounds": [
+          0.0,
+          0.0
+        ],
+        "complete_direct_outcomes": true,
+        "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility.",
+        "top2": [
+          3,
+          0
+        ],
+        "top2_any_valid_bounds": [
+          0.0,
+          0.0
+        ],
+        "uniform_two_any_valid_bounds": [
+          0.0,
+          0.0
+        ],
+        "unknown_slots": []
+      },
+      "parent_run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "seed": 33,
+      "task": "spaceship-titanic"
+    }
+  ],
+  "script_sha256": "c6927d558a06f3469a70e9ddf20e47259a60db0cacdf33c9ce445385faf273cc"
+}

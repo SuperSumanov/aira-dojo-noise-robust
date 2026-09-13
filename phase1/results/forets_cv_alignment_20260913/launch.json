@@ -1,0 +1,15 @@
+{
+  "commit": "d413bc6a8f30c8cd697159d12b84f24a99494d59",
+  "utc": "2026-09-13T05:36:49.276491+00:00",
+  "prepared_sha256": "d8e71e66c12527c664ec4ecfe59e05f30e617f8e607cf08d240e7cc77d6dcfb4",
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--chdir=/research/d7/spc/yzyang4/forets-pool-completion-20260912-dcrffcf9",
+    "--output=/research/d7/spc/yzyang4/forets-pool-completion-20260912-dcrffcf9/allocation-%j.out",
+    "--error=/research/d7/spc/yzyang4/forets-pool-completion-20260912-dcrffcf9/allocation-%j.err",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-dcrffcf9/forets_pool_completion_20260912.sbatch",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-dcrffcf9"
+  ],
+  "job": "13232"
+}

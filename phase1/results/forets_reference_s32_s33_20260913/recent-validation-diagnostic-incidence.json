@@ -1,0 +1,378 @@
+{
+  "cases": [
+    {
+      "code_sha256": "ac6c125b38d2851dd3602eeea5fb7f140ec4c6b12468f5714069a637cbc27987",
+      "concatenation_pattern_needs_review": true,
+      "external_valid": true,
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "search_metric_missing": true,
+      "step": 4,
+      "valid_exit_zero_marked_buggy": true
+    }
+  ],
+  "limitation": "Four heterogeneous development protocols, not iid confirmation. Missing/partial journals cannot reveal every action. Syntactic patterns require manual semantic review; valid-submission/bug disagreement can be justified by missing validation, not necessarily a false alarm.",
+  "proof": [
+    {
+      "finish_sha256": "0e61fbacd9efc470f0f93c4e7d262b2507c390a34faf82bc32f130b725abd058",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "summary_sha256": "e1722e9277dda73a9c73471f2cb2c53703e260d107e8bdaa31311fe48259cdab"
+    },
+    {
+      "finish_sha256": "1094a7aef0232d2f699293de05f28191cf2c893c70632259f89a9abb0aa7b4e8",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "summary_sha256": "7f00525e9ec6be9517032de4231d1e1288669daab81eeb03bbe5a00f75639833"
+    },
+    {
+      "finish_sha256": "0bb7cdb563ceb2274645926314ab5bdf74d5b043bebeb7356e329bea0053fd95",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "summary_sha256": "59d9463c127aa0c9fc10d1ab95a09af287e6650c708078330e20edc69f60c2d1"
+    },
+    {
+      "finish_sha256": "6a456108ae1e9895bc4ae8902d3d58eac33e297a5cf2117c626694dfbac40f1e",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "summary_sha256": "4d89d47dd47877c04ceebeb24adc6a7773f13cfbe3bdc65517eef878b933d11e"
+    }
+  ],
+  "role": "retrospective_saved_journal_incidence_not_e2e_or_score_channel_effect",
+  "rows": [
+    {
+      "counts": {
+        "journal_missing": 1
+      },
+      "journal_sha256": null,
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "00-leaf-classification-s26-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "journal_missing": 1
+      },
+      "journal_sha256": null,
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "01-leaf-classification-s26-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 6
+      },
+      "journal_sha256": "edf5f7539763b23349391bedfea87bd84f81965e1c5ed53fa9e6367dab28cbf4",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "02-spaceship-titanic-s26-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 7,
+        "valid_nonbaseline_submissions": 5,
+        "valid_submissions": 5
+      },
+      "journal_sha256": "1e7f7e57bc81eb8f009dd50a648e3031d5a587b9bd1adfd4fc75823bc6abf0a5",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "03-spaceship-titanic-s26-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "journal_missing": 1
+      },
+      "journal_sha256": null,
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "04-leaf-classification-s27-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "journal_missing": 1
+      },
+      "journal_sha256": null,
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "05-leaf-classification-s27-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 6,
+        "valid_nonbaseline_submissions": 3,
+        "valid_submissions": 3
+      },
+      "journal_sha256": "fc7e950086b20349896c8af61904638a0341ed9d22f7b443318f88c1d89476fc",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "06-spaceship-titanic-s27-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 8
+      },
+      "journal_sha256": "1f29d64dfde40ad22fbcb52b94f7f2fb6a3e4648bd72384bbbc9f0de7468cd7b",
+      "root": "forets-wallclock-20260912-bll4ghfa",
+      "run_id": "07-spaceship-titanic-s27-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 4,
+        "valid_nonbaseline_submissions": 2,
+        "valid_submissions": 3
+      },
+      "journal_sha256": "1fd193a6c879919c35f40db95693b5159dd0755ad3aa1ee7a8864964e856bc28",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "00-leaf-classification-s28-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 3,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "db307c89dd3f9066b3d92bb378254702ea78630d77bf9f8989f76b86b7cd23da",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "01-leaf-classification-s28-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 7,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "4dc42611c4436d9abe3b3a4fd4678a9bcaed14e061f13ee14578c15c31e8debb",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "02-spaceship-titanic-s28-critic_topk_random",
+      "technical_eligible": false
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 1,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "01951e9bbe1ce214258d21f5073efc6e15272c8570c0b5d9c7f22fab11cf0d0e",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "03-spaceship-titanic-s28-uniform_random",
+      "technical_eligible": false
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 1,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "23c95226a3f68cc78333fd72fb330a7d60f13300375176d1dd55590c452677dc",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "04-leaf-classification-s29-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 4,
+        "valid_nonbaseline_submissions": 1,
+        "valid_submissions": 2
+      },
+      "journal_sha256": "dc4ed0b1c8c44baccbd42a7fb5996b0a153c7f71914757424209dc2d3770ea25",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "05-leaf-classification-s29-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 9,
+        "valid_nonbaseline_submissions": 1,
+        "valid_submissions": 2
+      },
+      "journal_sha256": "02e7932ce59778bc408695f650b5cb0dfa6cd90179a13226e81eb9a67b929b1e",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "06-spaceship-titanic-s29-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 8,
+        "valid_nonbaseline_submissions": 2,
+        "valid_submissions": 3
+      },
+      "journal_sha256": "744fbaf471905f95ac7de473169d9b9716f5633af31b1c5f4002fae2d7bf291f",
+      "root": "forets-wallclock-20260912-2o9mw39n",
+      "run_id": "07-spaceship-titanic-s29-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 5,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "bc802740617c0852e76e68c29b7e2dc3a9fdf67b5b674d58e7be67ec1ece0146",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "00-leaf-classification-s30-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 1,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "249715ad32a8d37457ac8e8f5ec5dff72dac881e895f60345041148572075044",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "01-leaf-classification-s30-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 7,
+        "valid_nonbaseline_submissions": 4,
+        "valid_submissions": 5
+      },
+      "journal_sha256": "514bafc5fc510cda596ef7345f48a992ab9d11f4712fd44f030b97a1477eb6a0",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "02-spaceship-titanic-s30-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "journal_missing": 1
+      },
+      "journal_sha256": null,
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "03-spaceship-titanic-s30-uniform_random",
+      "technical_eligible": false
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 5,
+        "valid_nonbaseline_submissions": 1,
+        "valid_submissions": 2
+      },
+      "journal_sha256": "9ffc79fd8ebf2f1db6eb3868e4f46f991605d008358421724d6e9ea11ddbe496",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "04-leaf-classification-s31-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 5,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "c6b334d00f36f0e7bc5ce4c256391452b74c2d5da38f646015a8adaebc6cb278",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "05-leaf-classification-s31-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 13,
+        "valid_nonbaseline_submissions": 2,
+        "valid_submissions": 3
+      },
+      "journal_sha256": "277fd28484704c2c51720bb7c571161d717bbed60382f12113a973a960769549",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "06-spaceship-titanic-s31-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 9,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "e375aea15d1707095a293bc773b07bbd6314d256f9193b1ec2ebc60253ce840e",
+      "root": "forets-wallclock-20260912-y_p2tlmi",
+      "run_id": "07-spaceship-titanic-s31-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 1,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "e27447fc85e03530584392c5c5c282cf1af5b0d8260be56fa13427969c6a53cc",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "00-leaf-classification-s32-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 1,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "25fee946fe9cddaf16aa88de97246ddda09598901e02f6a41b5b1139c95a5a97",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "01-leaf-classification-s32-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 9,
+        "syntactic_concatenation_review_candidates": 1,
+        "valid_exit_zero_marked_buggy": 1,
+        "valid_nonbaseline_submissions": 3,
+        "valid_submissions": 4
+      },
+      "journal_sha256": "ae4d0ac00569f0416668df5405702a294cc7ae6dff743f53a559c6a654fe6868",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 11,
+        "valid_nonbaseline_submissions": 3,
+        "valid_submissions": 4
+      },
+      "journal_sha256": "ec162acfd1738814ef04fe31b96a961fcf53afa7d8ff4b60363ad517d0c4a9f3",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "03-spaceship-titanic-s32-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 1,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "6d798435ccb29b60bcb715b64f6512ca322aec669ac7bae8dd9ae25f2109faa3",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "04-leaf-classification-s33-critic_topk_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 4,
+        "valid_nonbaseline_submissions": 1,
+        "valid_submissions": 2
+      },
+      "journal_sha256": "f7940361fc0bbdeb2394cf41fe95c6e737d9ce513d0d4a3f01d814cd9ce84984",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "05-leaf-classification-s33-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 12,
+        "valid_nonbaseline_submissions": 1,
+        "valid_submissions": 2
+      },
+      "journal_sha256": "d69cbe45fc9ab5886ba41b1577f28dba05f503c13c8606b2be453009d94d466e",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "06-spaceship-titanic-s33-uniform_random",
+      "technical_eligible": true
+    },
+    {
+      "counts": {
+        "saved_executed_nodes": 9,
+        "valid_submissions": 1
+      },
+      "journal_sha256": "09efe3d9be2329cf178537068a8e60173bbf2aaf9f24699e21de3f855d84b8e5",
+      "root": "forets-wallclock-20260912-5_czzimk",
+      "run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "technical_eligible": true
+    }
+  ],
+  "runs": 32,
+  "script_sha256": "735d584b752894c0bf1db542a86ed5ef0eab14f59eb5641e25e4c1605ed3f9a9",
+  "totals": {
+    "journal_missing": 5,
+    "saved_executed_nodes": 157,
+    "syntactic_concatenation_review_candidates": 1,
+    "valid_exit_zero_marked_buggy": 1,
+    "valid_nonbaseline_submissions": 29,
+    "valid_submissions": 52
+  }
+}

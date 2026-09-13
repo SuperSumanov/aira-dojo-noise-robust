@@ -1,0 +1,29 @@
+{
+  "original_code_sha256": "ac6c125b38d2851dd3602eeea5fb7f140ec4c6b12468f5714069a637cbc27987",
+  "changes": [
+    [
+      "import numpy as np",
+      "import numpy as np\nimport random\nrandom.seed(20260913)\nnp.random.seed(20260913)"
+    ],
+    [
+      "study = optuna.create_study(direction=\"maximize\")",
+      "study = optuna.create_study(direction=\"maximize\", sampler=optuna.samplers.TPESampler(seed=20260913))"
+    ],
+    [
+      "predictions = []\n",
+      "predictions = []\ndiag_oof = np.empty(len(y), dtype=int)\ndiag_seen = np.zeros(len(y), dtype=int)\ndiag_order = []\n"
+    ],
+    [
+      "    predictions.extend(pred_labels)",
+      "    predictions.extend(pred_labels)\n    diag_oof[val_idx] = pred_labels\n    diag_seen[val_idx] += 1\n    diag_order.extend(val_idx)"
+    ],
+    [
+      "cv_score = accuracy_score(y, predictions)",
+      "cv_score = accuracy_score(y, predictions)\nassert np.all(diag_seen == 1)\nassert np.array_equal(np.sort(diag_order), np.arange(len(y)))\nassert np.array_equal(np.asarray(predictions), diag_oof[np.asarray(diag_order)])\ndiag_aligned_score = accuracy_score(y, diag_oof)\nnp.savez(\"cv_alignment_private.npz\", y=y.to_numpy(), concatenated=np.asarray(predictions), aligned=diag_oof, order=np.asarray(diag_order), counts=diag_seen)\nprint(\"FORETS_CV_ALIGNMENT_DIAGNOSTIC \" + __import__(\"json\").dumps(dict(original_concatenated_accuracy=float(cv_score), aligned_accuracy=float(diag_aligned_score), rows=len(y), seed=20260913)))"
+    ]
+  ],
+  "seed": 20260913,
+  "original_optuna_seed_was_unspecified": true,
+  "not_historical_model_replay": true,
+  "one_fit_shared_predictions": true
+}

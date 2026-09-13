@@ -1,0 +1,10 @@
+{
+  "root": "/research/d7/spc/yzyang4/forets-pool-completion-20260912-dcrffcf9",
+  "utc": "2026-09-13T05:36:28.665846+00:00",
+  "readers": {
+    "readout_cv_alignment_20260913.py": "daa5ed7a0d75654b393b8753d0bc2a69dc849cf636f9ddea56bf3a50c4e5e083",
+    "readout_forets_generation_capacity_20260912.py": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582"
+  },
+  "prepared_sha256": "d8e71e66c12527c664ec4ecfe59e05f30e617f8e607cf08d240e7cc77d6dcfb4",
+  "original_training_predict_calls_unchanged": true
+}

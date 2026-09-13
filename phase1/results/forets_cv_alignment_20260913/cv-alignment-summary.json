@@ -1,0 +1,28 @@
+{
+  "role": "same_fit_measurement_diagnostic_not_e2e",
+  "job": "13232",
+  "status": "valid",
+  "source_tree": "f1cdee3a9e553e8efeedaa1a66a2c6bd778f9798",
+  "controller_commit": "d413bc6a8f30c8cd697159d12b84f24a99494d59",
+  "seed": 20260913,
+  "prepared_sha256": "d8e71e66c12527c664ec4ecfe59e05f30e617f8e607cf08d240e7cc77d6dcfb4",
+  "code_sha256": "558621663b50c4ea62d7aab6c100086f3fa0e6b884ec27646c252889f84c69a9",
+  "allocation_gpu_hours": 0.01361111111111111,
+  "api_calls": 0,
+  "metrics": {
+    "rows": 7823,
+    "original_concatenated_accuracy": 0.49431164514891984,
+    "aligned_accuracy": 0.8097916400357918,
+    "aligned_minus_original": 0.315479994886872,
+    "nonidentity_row_positions": 7823,
+    "exact_coverage_once": true,
+    "same_fold_predictions": true
+  },
+  "external_submission_score": 0.8069,
+  "original_model_replayed": false,
+  "limitation": "One selected diagnostic case; original unseeded Optuna now seeded. Both statistics share one fit/predictions. Remaining CV preprocessing/HPO bias not fixed; no recovered old endpoint or prospective method effect.",
+  "private_array_sha256": "de6987cf56d2b9985c340fb639057a4217ebf4ad8f307a9a17abf4a33c150948",
+  "independent_external_score": 0.8068965517241379,
+  "submission_sha256": "a10674d7e74542f68eef2fc2b45edd5faddcd614f770102524836f69aacd3544",
+  "reader_sha256": "daa5ed7a0d75654b393b8753d0bc2a69dc849cf636f9ddea56bf3a50c4e5e083"
+}

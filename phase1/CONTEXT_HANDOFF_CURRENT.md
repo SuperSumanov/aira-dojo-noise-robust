@@ -1,4 +1,4 @@
-# 当前短交接 — 2026-09-13，T1真实修复生成中
+# 当前短交接 — 2026-09-13，T1真实执行已提交
 
 方向入口CURRENT_DIRECTION 0L198；当前目标是重要、独特、充分证明的同预算e2e主张，不是增加资产/审计数量。新问题及完整方案FORETS_CLAIM_PROGRAM_20260913.md。
 
@@ -12,9 +12,12 @@ selection-public SHA48605345d740b81f50b387cae3368269a6d2449ff8c665e024c2aec7a1ba
 新worker/run/readout/test均在phase1；run_repair_transfer_20260913.py有prepare/activate/generate/gpu_prepare/submit/execute。
 11:09预算原子移交，前驱账已封，不能再用旧scopes。真实请求独立检查PASS、8单元测试通过；控制提交dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4已推。
 新auth a3a4561fb81d538d797e32997cf75deff8131784d8fa12da5b329a76f023743e；prepared c6e1e0e76a98dda3c5913f3c8ac38e5beb3000fac95d401d40569c8640b5e027。
-11:10:56最后观察：generation PID908080活跃，已4/24 generated，第5调用在途；总1760calls、3unresolved=2旧+1在途，不误报为新增遗失调用。
-API生成已启动、GPU尚未提交。进度只用inspect_repair_transfer_20260913.py读公共结构，不看response/code或提前读评分。
-生成完整且无新未知后gpu_prepare，再两block分别submit/execute；全终态后readout_repair_transfer_20260913.py一次读出。不得重跑prepare/activate/generate已存在claim。
+11:16:15生成全24闭合：22 generated、2格式/语法失败，不补样；共380.746秒。11:17:21独立返回路由/费用/字节核验PASS，24全为Flash/Alibaba，新增0.064408812USD，最长调用22.110秒。
+1779总调用/held6366536198nUSD/settled4966536198nUSD/仍2旧未知；验证SHA4d51d6a88c2062d39db69765ba8410e25f9cf039c3a7b22124a14be9101a558a。
+11:18已单次提交：block0 Leaf job13258、block1 Space job13257，各11份代码，共22执行+2生成失败，分母仍24。11:18队列两者均RUNNING/gpu28，11:19:13 Space已5条执行回执、Leaf首条仍运行；未读成绩。
+进度只用inspect_repair_transfer_20260913.py读公共结构；全终态后readout_repair_transfer_20260913.py一次读出。不得重跑prepare/activate/generate/gpu_prepare/submit已有claim。
+执行根下block-0/block-1各有launch.json和prepared.json；两份2h单GPU上限4GPUh。新增API全结算，不需要新的model/G0/route实验。
+边界：HTTP timeout为逐传输阶段120秒，不是独立的单调用总时钟；整个生成进程限3300秒。本次实际全部<23秒，T1仍不是同严格总墙钟e2e，不能把提示7分钟当硬计时证明。
 随机与相关经验在4案例抽中同一库存条目，保留；对照检验信息有限，不据此改规则。
 远端上传阶段 /research/d7/spc/yzyang4/forets-action-stage-20260913-egtJPLRg；等scp完成再运行。后续准备、账移交、调用和提交必须一次性，不盲重试已有claim。
 
@@ -38,6 +41,7 @@ CV错位仅一个开发病例；157节点中52正常有效提交仅1缺分，不
 ## 新颖性、语料、交付
 
 错误记忆、可靠性/多样性、经验critic、门控再生成、类型条件修复已分别被ACL Findings memory/HASTE/CEB/MERIT/ReASearch覆盖。T1是强基线必要条件，不是新方法声明。
+新增查重：When To Solve When To Verify、VG-Search、Adaptive Generate-Rank-Verify已覆盖广义生成/验证计算分配；普通预算分配也非原创。FORETS_CLAIM_NOVELTY_BOUNDARY_20260913.md，不回改进行中的T1。
 历史11转换根 /research/d7/spc/yzyang4/forets-repair-memory-inventory-20260913-vcg12_1y；只观察历史成功、非通用因果修复。私有码不复制本地/Git。
 学长Drive0911已隔离 /research/d7/spc/yzyang4/senior-quarantine-0911-20260913，4配置不等于4验证run，不重下/不读未知归属outcomes。
 学长branch最后be9335348b569086ef9b0af36a15b13e61fec45c，10:50fetch未见更新。qwen3.8-27b仅节点localhost服务，镜像/权重我方无读权限，不借用allocation/绕过。

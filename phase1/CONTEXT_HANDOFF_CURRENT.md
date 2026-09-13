@@ -1,5 +1,5 @@
 # 短交接：参考条件八次闭合无收益；新首池零API补齐准备
-最后核现场：2026-09-13 05:24 UTC。用户要求本会话持续三小时，开始02:58、目标05:58 UTC；不建automation。
+最后核现场：2026-09-13 05:36 UTC。用户要求本会话持续三小时，开始02:58、目标05:58 UTC；不建automation。
 恢复先fetch→CURRENT_DIRECTION 0L192及本文件→核现场，不按早期摘要重投。
 
 ## 当前裁决（覆盖下方历史观察）
@@ -10,7 +10,15 @@ readout最初flat-metric解析失败：原intent和三个结果未动，complete
 finish6a456108ae1e9895bc4ae8902d3d58eac33e297a5cf2117c626694dfbac40f1e；commonf46e5767077a98eeaecabc415b19bd6b21b74bfdf6263dca1d8c2bbdd7b01f54。
 lineage/branching-mechanism/anytime-curve已全部生成且下载；不要重跑。五主产物本地SHA通过。
 新补齐scope：四critic首个后基线池全部未尝试原代码9份；原已dispatch不重试，0API，单3090/6CPU/90min上限。
-STAGE /research/d7/spc/yzyang4/forets-reference-completion-stage-20260913-YAc7gQ；目前只上传工具，尚未prepare/submit。
+STAGE /research/d7/spc/yzyang4/forets-reference-completion-stage-20260913-YAc7gQ。
+13227于05:25:16单次提交，COMPLETED121秒；ROOT/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb。
+05:28:23已唯一读出，9/9新原程序均程序失败；合成全16为1有效、14失败、1旧未知。0API。
+Space32唯一有效slot3已被critic排第一且在top2，原提交.81494已独立重算；两个便宜诊断排序的top2均漏掉它。
+但原e2e仍.79655，不能回改。分析定位step4出口0+有效提交却被标bug：原CV把fold预测顺序与原行标签错配。
+analysis-mismatch/selection-diagnostic均已生成，禁重跑；未向任何决策暴露外部分数。
+当前新准备：CV对齐诊断单程序、0API、1卡6CPU/15min上限，STAGE/research/d7/spc/yzyang4/forets-cv-alignment-stage-20260913-ywSbfE。
+保留原训练算法/特征/模型，固定原未seed的Optuna=20260913；同一次训练同预测算错误/正确对齐，不是原模型重放或新e2e效果。
+本地FORETS_CV_ALIGNMENT_DIAGNOSTIC_PLAN_20260913.md与derive_cv_alignment_tools_20260913.py；还未prepare/submit。
 本地派生release用forets-reference-completion-tools-20260913-v2（v1在提交前发现planned元数据仍8，未投入）。
 新报告FORETS_REFERENCE_RESULTS_20260913.md；补齐计划FORETS_REFERENCE_COMPLETION_PLAN_20260913.md。
 action组件15测试及真实ForeTS解析/debug钩子CPU接线通过，未生产启用；不可冒充收益。

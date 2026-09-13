@@ -1,0 +1,366 @@
+{
+  "role": "posthoc_direct_program_completion_not_e2e",
+  "job": "13227",
+  "utc": "2026-09-13T05:28:23.131579+00:00",
+  "source_tree": "f1cdee3a9e553e8efeedaa1a66a2c6bd778f9798",
+  "controller_commit": "f36a29f73bf538e601302c8efc9ef5fdc44e9f7a",
+  "prepared_sha256": "676beb84187fb74511e6bd63f1af3a05d495a26c3bfee3832eae2e35508b3787",
+  "pools": [
+    {
+      "parent_run_id": "01-leaf-classification-s32-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 32,
+      "rows": [
+        {
+          "parent_run_id": "01-leaf-classification-s32-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 32,
+          "slot": 0,
+          "code_sha256": "c4a3aa42df9a98ef4c1690c5a964a4f2e90a14f6b876109537213d475e3e0264",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 31.96358096296899,
+          "wall_seconds": 39.14650656701997
+        },
+        {
+          "parent_run_id": "01-leaf-classification-s32-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 32,
+          "slot": 1,
+          "code_sha256": "09abba124c67e41d303f432267cc55d858c1eeff25213a3e00588281efc70803",
+          "origin": "original_direct_call_never_rerun",
+          "valid": null,
+          "score": null,
+          "status": "original_unresolved"
+        },
+        {
+          "parent_run_id": "01-leaf-classification-s32-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 32,
+          "slot": 2,
+          "code_sha256": "e51ce68aead95955782b19ff23c29bc2f557befb76397cec1acf4a66679e6786",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 5.38930504093878,
+          "wall_seconds": 9.10506230709143
+        },
+        {
+          "parent_run_id": "01-leaf-classification-s32-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 32,
+          "slot": 3,
+          "code_sha256": "b0438751d1b5ce8e8b513620e229cf494134eef28c12cfcbef7188ef2957d044",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        }
+      ],
+      "top2": [
+        1,
+        3
+      ],
+      "unknown_slots": [
+        1
+      ],
+      "complete_direct_outcomes": false,
+      "top2_any_valid_bounds": [
+        0.0,
+        1.0
+      ],
+      "uniform_two_any_valid_bounds": [
+        0.0,
+        0.5
+      ],
+      "any_valid_gain_bounds": [
+        0.0,
+        0.5
+      ],
+      "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility."
+    },
+    {
+      "parent_run_id": "02-spaceship-titanic-s32-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 32,
+      "rows": [
+        {
+          "parent_run_id": "02-spaceship-titanic-s32-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 32,
+          "slot": 0,
+          "code_sha256": "9ff1265525ae9e4edb12ed5fd0a997c7c19b8ffe8677658faa872725383520a9",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.7250883399974555,
+          "wall_seconds": 10.353365855989978
+        },
+        {
+          "parent_run_id": "02-spaceship-titanic-s32-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 32,
+          "slot": 1,
+          "code_sha256": "070e57b5cd22aa396a0600bd3f13b3d62d3dd51c6bae91876b2209961196cfec",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        },
+        {
+          "parent_run_id": "02-spaceship-titanic-s32-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 32,
+          "slot": 2,
+          "code_sha256": "ce9e9cb0f16741b6808435df14449f4cb082281409b92f0b672c2478df5a98d2",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 5.691051873145625,
+          "wall_seconds": 9.540405555162579
+        },
+        {
+          "parent_run_id": "02-spaceship-titanic-s32-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 32,
+          "slot": 3,
+          "code_sha256": "ac6c125b38d2851dd3602eeea5fb7f140ec4c6b12468f5714069a637cbc27987",
+          "origin": "original_direct_call_never_rerun",
+          "valid": true,
+          "score": 0.81494,
+          "status": "original_valid"
+        }
+      ],
+      "top2": [
+        3,
+        1
+      ],
+      "unknown_slots": [],
+      "complete_direct_outcomes": true,
+      "top2_any_valid_bounds": [
+        1.0,
+        1.0
+      ],
+      "uniform_two_any_valid_bounds": [
+        0.5,
+        0.5
+      ],
+      "any_valid_gain_bounds": [
+        0.5,
+        0.5
+      ],
+      "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility."
+    },
+    {
+      "parent_run_id": "04-leaf-classification-s33-critic_topk_random",
+      "task": "leaf-classification",
+      "seed": 33,
+      "rows": [
+        {
+          "parent_run_id": "04-leaf-classification-s33-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 33,
+          "slot": 0,
+          "code_sha256": "1e9383323faead7ace8f286974b92ecf86fa3345e624a0c999d7324ad7bc5035",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        },
+        {
+          "parent_run_id": "04-leaf-classification-s33-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 33,
+          "slot": 1,
+          "code_sha256": "a7979cc406eff34756208c4d2adbd399c617287b99022b8707239afc6013564b",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 5.34571222984232,
+          "wall_seconds": 9.365054832072929
+        },
+        {
+          "parent_run_id": "04-leaf-classification-s33-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 33,
+          "slot": 2,
+          "code_sha256": "fc40279389d19773202e3f37581f3bc7322af050d2d43d076d2ba0b0fc81d399",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 5.6692535118199885,
+          "wall_seconds": 9.277654167963192
+        },
+        {
+          "parent_run_id": "04-leaf-classification-s33-critic_topk_random",
+          "task": "leaf-classification",
+          "seed": 33,
+          "slot": 3,
+          "code_sha256": "f44939343367c50863e648f4a8280f844f4d0c404ce5cf725a6b9f776b52126e",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 6.676317696925253,
+          "wall_seconds": 10.330368512077257
+        }
+      ],
+      "top2": [
+        2,
+        0
+      ],
+      "unknown_slots": [],
+      "complete_direct_outcomes": true,
+      "top2_any_valid_bounds": [
+        0.0,
+        0.0
+      ],
+      "uniform_two_any_valid_bounds": [
+        0.0,
+        0.0
+      ],
+      "any_valid_gain_bounds": [
+        0.0,
+        0.0
+      ],
+      "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility."
+    },
+    {
+      "parent_run_id": "07-spaceship-titanic-s33-critic_topk_random",
+      "task": "spaceship-titanic",
+      "seed": 33,
+      "rows": [
+        {
+          "parent_run_id": "07-spaceship-titanic-s33-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 33,
+          "slot": 0,
+          "code_sha256": "cfcf0445e91f4ab5e68579d144657c94e87224c4fa691c08db21382e53f50a8f",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        },
+        {
+          "parent_run_id": "07-spaceship-titanic-s33-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 33,
+          "slot": 1,
+          "code_sha256": "db860c98051b4a3ac1a390435fccbeddd66df3a85e1c546b0a6eaaf9d578a6e0",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 5.692454389063641,
+          "wall_seconds": 9.41545981913805
+        },
+        {
+          "parent_run_id": "07-spaceship-titanic-s33-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 33,
+          "slot": 2,
+          "code_sha256": "439013a8e2fdc366ff636ffd9483e3965271e65904d0a27479a2643f493224f3",
+          "origin": "original_direct_call_never_rerun",
+          "valid": false,
+          "score": null,
+          "status": "original_program_invalid"
+        },
+        {
+          "parent_run_id": "07-spaceship-titanic-s33-critic_topk_random",
+          "task": "spaceship-titanic",
+          "seed": 33,
+          "slot": 3,
+          "code_sha256": "6b566531deca2b6d11db22d91159de6cb275b5d3d60924a17f615e34fcf741c8",
+          "origin": "new_unattempted_original",
+          "valid": false,
+          "score": null,
+          "status": "program_error",
+          "execution_seconds": 5.617811145959422,
+          "wall_seconds": 9.52995870495215
+        }
+      ],
+      "top2": [
+        2,
+        0
+      ],
+      "unknown_slots": [],
+      "complete_direct_outcomes": true,
+      "top2_any_valid_bounds": [
+        0.0,
+        0.0
+      ],
+      "uniform_two_any_valid_bounds": [
+        0.0,
+        0.0
+      ],
+      "any_valid_gain_bounds": [
+        0.0,
+        0.0
+      ],
+      "contract": "Two direct executions, no debug or 600-second scheduling model. Not end-to-end search utility."
+    }
+  ],
+  "planned": 9,
+  "attempted": 9,
+  "execution_complete": true,
+  "allocation_seconds": 121,
+  "allocation_gpu_hours": 0.03361111111111111,
+  "proofs": [
+    {
+      "task": "spaceship-titanic",
+      "submission_sha256": "bcf4955b0d123a02553ca4385c264572fa2feb0d58a92aca7a30129f9ce9cac2",
+      "score": 0.81494,
+      "independent_score": 0.8149425287356322
+    }
+  ],
+  "evidence_sha256": {
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/result-0.json": "be880207e56e7b59710f2918a895b36d40613435e1011ad4d68dcd80b5b7de3f",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/identity-0.native-binding.json": "4dba4bf704cb34ffa7ecb34522847823183fe767350c509adffb2e5938dd5a6f",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/result-1.json": "fcea6afeb89b2c74e1337b28fed28abdf277a322e954d2954c0e1acdc509febd",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/identity-1.native-binding.json": "96482fa42c306b43bf8c4eb3727957fa13ad024fb3b27b91ad7926ae21ee8dde",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/result-2.json": "42d2a8f75b4afe749faaa5f2516295276132ddf5117ddfcb0841c5e7e759d3df",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/identity-2.native-binding.json": "eb7a94afd6f151215b6f936f800c5aa341d400e212dcbf6ce4d4a1855c77252c",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/result-3.json": "1dd05c26ad94b49d643aef91e88a089a7bb4570a1678770f1b7bce25782f24e6",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/identity-3.native-binding.json": "f80a59f30dd808a64cb9ad6c67cad847c08ae4c05a67efae7e1876bd2e2a7bda",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/result-4.json": "329a3d7417be554889d2dc283a4566503645555ca2cd3bc5e0d7165b12880e78",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/identity-4.native-binding.json": "00dc90ae06a6ac36843992d8e4127289083c0ea2d4fe6c0fbfac11d64249ea40",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/result-5.json": "77632d29893b1044a8a668213f224c858fb291692bf05c01bcfa14bce8278160",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/identity-5.native-binding.json": "1a68764adbb1d8bf788ae24bc1a91906e58f4880d15fcd9a2c6d04067104adfa",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/result-6.json": "98a95a4b216c4460fcaeb76f42cbc9f051ec59670a9266cd4035c91eb4a09caf",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/identity-6.native-binding.json": "cecaada7530f9fc7026f005d604bf9adcc046b28b97e0970f7737b7f61701a01",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/result-7.json": "ba2894aeebf8394331dbf81778d46bda3c9d9d64c2aeb182e679cc99053c4ae8",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/identity-7.native-binding.json": "2d91f8a7fdb6b9f208000a5e43c086cb6152af2bee364d0bc3cf8b41fe357740",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/result-8.json": "762eea575e25d3adc8b6af95f48bd0b1b11255f4957c840705fe8c2e60f26ca2",
+    "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb/identity-8.native-binding.json": "6fc3574abe1a5233758fc31c8d14451aa144884d59c82ec7f386cb91e5b078a3",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/configs/01-leaf-classification-s32-critic_topk_random.json": "f30db3eb1a864687ded5d8bea5c2541959f6aa0bf2f81bd0960f16bcd44224fc",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/01-leaf-classification-s32-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/rank-0.json": "121b3f51727f05c636ccb352e7cbee695478906a8218c2db9356e2a1277321f6",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/01-leaf-classification-s32-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/request-0.json": "aa7744162fe7d6ecfb580e68efb5c96f658b16e85c69205310036621c204f2ed",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/configs/02-spaceship-titanic-s32-critic_topk_random.json": "8b4c3536c6726cf4fb6653be496f8c6a44f12c0f1372f569a543a2a3b1da1412",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/02-spaceship-titanic-s32-critic_topk_random/results/submission-escrow/grade-0cesnut4/complete.json": "3329d6cc9c3b4cfba2612cab42058518edc4ded1926af19f442008f0bced7ccb",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/02-spaceship-titanic-s32-critic_topk_random/results/submission-escrow/grade-0cesnut4/report.json": "b308a97a109a495f629652ac8e70feb57a67958a9824cd15e0972995769273ce",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/02-spaceship-titanic-s32-critic_topk_random/results/submission-escrow/grade-85lv6lyf/complete.json": "80873311f2aaf409922c6c783b6e4090481838c1dab50d0177862ee5f499eac8",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/02-spaceship-titanic-s32-critic_topk_random/results/submission-escrow/grade-85lv6lyf/report.json": "670c906aae22ad843b0c6834170019e4b7333cef7db5902c8e0f32b949e12dce",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/02-spaceship-titanic-s32-critic_topk_random/results/submission-escrow/grade-hu90mvia/complete.json": "eafdeac282615740d0506ff18cc7fa67d89c695a75c36b877919d1e4ab24e760",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/02-spaceship-titanic-s32-critic_topk_random/results/submission-escrow/grade-hu90mvia/report.json": "3b4ee8b44d642f8a628944079576c6a46a1d50441763ec840e1eefecdc639f36",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/02-spaceship-titanic-s32-critic_topk_random/results/submission-escrow/grade-itxkdk6m/complete.json": "f62fd48c92a1fc6c39265319e03f6d23dd2b3e163d9b6cafef7dd43b6f53c017",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/02-spaceship-titanic-s32-critic_topk_random/results/submission-escrow/grade-itxkdk6m/report.json": "3a1616295e525b478b68ad03ac71bf0d319e86d98069f03ab7d5ac57169a9006",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/02-spaceship-titanic-s32-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/rank-0.json": "a026cf43668ed751047ac2aa76606ff9b7d5f09d88d214f594a0d00a5aa05f45",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/02-spaceship-titanic-s32-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/request-0.json": "53cf687a99596ab0197a71fe3671c32bbbf280b75a11722a1141d769c6efbac0",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/configs/04-leaf-classification-s33-critic_topk_random.json": "14b5d8ccc6d776b72b74a684f1a06f3d3c77f88d70874fedb796e4dbb5052c04",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/04-leaf-classification-s33-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/rank-0.json": "3194f1d0b7cef10edefa8e02a18907bf38dc60bf4dab6f87a8a4867a729af164",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/04-leaf-classification-s33-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/request-0.json": "db111e470fc53eb9b5bbdb74ad918f2940f0113e1241a1b2661cd10702b464bc",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/configs/07-spaceship-titanic-s33-critic_topk_random.json": "0711bd792f07113e7bcd7e3d72c66ef9d69217b9d3726803869dc6ac72f8ff58",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/07-spaceship-titanic-s33-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/rank-0.json": "76282f79e2d84c2863455067509d896c7cc3b86981aa04bb3238789c6397ff08",
+    "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk/runs/07-spaceship-titanic-s33-critic_topk_random/checkpoint/forets-contextual-judge-private/batch-2/request-0.json": "56c103ae15ee55f74ea616df1ef48c64144e1876c599def9e4e4a596d6dd2bab"
+  },
+  "api_calls": 0,
+  "reader_sha256": "2c414113cff40f980d365f6331dc2d6c1a40b66e592d60f8f95133a9fc661e73",
+  "limitation": "Four previously observed development pools. Direct validity ignores debug and scheduling cost; no new e2e, causal historical winner attribution or independent confirmation. Unknown original partial nodes stay unknown."
+}

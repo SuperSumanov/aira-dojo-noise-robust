@@ -1,0 +1,17 @@
+{
+  "root": "/research/d7/spc/yzyang4/forets-pool-completion-20260912-n3c3ijtb",
+  "utc": "2026-09-13T05:25:11.989345+00:00",
+  "planned_programs": 9,
+  "all_original_candidates": 16,
+  "prepared_sha256": "676beb84187fb74511e6bd63f1af3a05d495a26c3bfee3832eae2e35508b3787",
+  "readers": {
+    "readout_reference_completion_20260913.py": "2c414113cff40f980d365f6331dc2d6c1a40b66e592d60f8f95133a9fc661e73",
+    "readout_forets_generation_capacity_20260912.py": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+    "readout_forets_pool_completion_20260912.py": "473cbe3133baa4b465a3428de6028cf19c23b9524be8aca371a8c8cd16ab105e"
+  },
+  "freeze_script_sha256": "eb7b8d77b2b2d0406de3e10895a4b07a14f5da8ccf06634c97bf68eb7dddb5ca",
+  "no_api": true,
+  "no_retry": true,
+  "no_debug": true,
+  "unknown": "preserve tri-state, no missing-to-zero"
+}

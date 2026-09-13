@@ -580,3 +580,7 @@ phase1/results/forets_branching_completion_s30_s31_20260913/*.json -text diff
 phase1/results/forets_branching_completion_s30_s31_20260913/*.csv -text diff whitespace=cr-at-eol
 phase1/results/forets_reference_s32_s33_20260913/*.json -text diff
 phase1/results/forets_reference_s32_s33_20260913/*.csv -text diff whitespace=cr-at-eol
+phase1/results/forets_reference_completion_s32_s33_20260913/*.json -text diff
+phase1/results/forets_reference_completion_s32_s33_20260913/*.csv -text diff whitespace=cr-at-eol
+phase1/results/forets_cv_alignment_20260913/*.json -text diff
+phase1/results/forets_cv_alignment_20260913/*.csv -text diff whitespace=cr-at-eol

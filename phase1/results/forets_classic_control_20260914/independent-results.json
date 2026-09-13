@@ -1,0 +1,98 @@
+{
+  "allocation_gpu_hours": 0.5705555555555556,
+  "csv_sha256": "756f270da337b33d1b98bfa6d15d9be5c80c126e75500a43138c5ee2dc8ddcfd",
+  "groups": [
+    {
+      "median": 0.05948,
+      "planned": 4,
+      "sd": 0.011336106033378479,
+      "task": "leaf-classification",
+      "unknown": 0,
+      "valid": 4
+    },
+    {
+      "median": 0.790805,
+      "planned": 4,
+      "sd": 0.0067900288413722636,
+      "task": "spaceship-titanic",
+      "unknown": 0,
+      "valid": 4
+    }
+  ],
+  "limitation": "No agent comparison until its full matrix closes. Traditional reference is not a novel method or AutoGluon replication.",
+  "numeric_regrades": 8,
+  "rows": 8,
+  "scores": [
+    {
+      "independent_score": 0.04116246930902734,
+      "index": 0,
+      "score": 0.04116,
+      "seed": 42,
+      "submission_sha256": "48d2f2c582974ce2a0aaf7aaa6fae8f258aaddbea55234e3cd6137b24a59ce73",
+      "task": "leaf-classification"
+    },
+    {
+      "independent_score": 0.7873563218390804,
+      "index": 1,
+      "score": 0.78736,
+      "seed": 42,
+      "submission_sha256": "62b4161834bf5e15751ccbc907a4ffe9681b87ea8d99333723a9578ed0aa116a",
+      "task": "spaceship-titanic"
+    },
+    {
+      "independent_score": 0.05948252825728084,
+      "index": 2,
+      "score": 0.05948,
+      "seed": 43,
+      "submission_sha256": "f03ab5237aa8ac59fede3062d3f8573bd2a4955fddb1634ef2319654ffa76e9b",
+      "task": "leaf-classification"
+    },
+    {
+      "independent_score": 0.8,
+      "index": 3,
+      "score": 0.8,
+      "seed": 43,
+      "submission_sha256": "2c9c4b1ff142b037b50c8ecb314f270caa00a49a59cc8697b710fc73fb4d505b",
+      "task": "spaceship-titanic"
+    },
+    {
+      "independent_score": 0.05947868984295516,
+      "index": 4,
+      "score": 0.05948,
+      "seed": 44,
+      "submission_sha256": "0d5e0867e7af2b6bdd39abbc81b08688e2feb74bd01bdd5ce07b553a98d9801a",
+      "task": "leaf-classification"
+    },
+    {
+      "independent_score": 0.7942528735632184,
+      "index": 5,
+      "score": 0.79425,
+      "seed": 44,
+      "submission_sha256": "8b980d8988b0b44dbc486a5e31b9c80c69ccb0d969d616b0c139292847395b25",
+      "task": "spaceship-titanic"
+    },
+    {
+      "independent_score": 0.06806022971145771,
+      "index": 6,
+      "score": 0.06806,
+      "seed": 45,
+      "submission_sha256": "e68a3840df83c97ca82da4c81e244b845784886c5d59557f9b28561fac0c28cd",
+      "task": "leaf-classification"
+    },
+    {
+      "independent_score": 0.7850574712643679,
+      "index": 7,
+      "score": 0.78506,
+      "seed": 45,
+      "submission_sha256": "1fb43873713a173805d5d6410dbe2b9b24c7c76523f8dfb5b96d1293beaaf97e",
+      "task": "spaceship-titanic"
+    }
+  ],
+  "script_sha256": "4b38f6e6c1829ada2c695ee5061434a9acd05d5dfe305f3c89895f60c2d24b08",
+  "status": "INDEPENDENT_NUMERIC_CSV_AND_MATRIX_PASS",
+  "summary_sha256": "d249d01bfc372d9eb91e8634202d21c201dabb09c59c646c18b36cc046627c88",
+  "total_trial_attempts": 512,
+  "trial_status_counts": {
+    "completed": 512
+  }
+}

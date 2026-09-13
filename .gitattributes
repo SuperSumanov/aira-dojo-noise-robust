@@ -600,3 +600,5 @@ phase1/results/forets_repair_transfer_20260913/*.csv -text diff whitespace=cr-at
 phase1/releases/forets-edit-scope-source-20260914/source.tar -text
 phase1/releases/forets-edit-scope-source-20260914/artifact.json -text diff
 phase1/releases/forets-scope-preservation-tools-20260914/* -text diff
+phase1/results/forets_classic_control_20260914/*.json -text diff
+phase1/results/forets_classic_control_20260914/*.csv -text diff whitespace=cr-at-eol

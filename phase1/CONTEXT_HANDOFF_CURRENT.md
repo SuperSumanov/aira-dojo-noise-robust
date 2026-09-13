@@ -1,7 +1,9 @@
-# 当前短交接 — 2026-09-14 HK，EScope正式运行中
+# 当前短交接 — 2026-09-14 HK，EScope运行中/传统强对照已完成
 方向CURRENT_DIRECTION 0L200；用户要求会话内持续六小时实质研究。本轮2026-09-13 21:06:43 UTC开始，目标到09-14 03:06:43 UTC / HK11:06:43。不得靠新自动任务替代，不保证正数或隐藏失败。
 
 ## 新方案与状态
+22:36 UTC第三例Leaf43 module的145.782136247959秒失败独立确认为KernelReadinessError，连同Leaf42 whole/Space42 module，原>=6/8且每任务>=3完整配对门不可能通过。保持原完整矩阵，不补跑，不读尚未全闭合的新效果，不启动有条件12次保留指令后继。基础设施诊断与效果实验严格分开。
+22:40前已编写15分钟/零API/新容器独立Python进程诊断，本地5单测通过；尚未prepare/submit。见PROCESS_TRANSPORT_DIAGNOSTIC_PLAN_20260914.md。不是G0验收，不改主实验，不重演旧seed；需实际计算/错误/超时/隔离全部通过才讨论未来协议，不能用合成通过当e2e收益。
 EScope：Leaf/Space×新seed42–45×whole_program/model_module，共16次1200秒完整搜索，2生成2执行uniform、原UCT/debug/action主终点。模块臂仅返回build_model(X)，外部I/O/验证/提交由共享RF基线拼接；完整臂可自由重写。是编辑范围/格式干预，不是固定算子集critic对照。
 原RF起点仅重构为函数，超参/划分不变，实际初始执行计每次预算。接口限制不是安全沙箱或防泄漏证明。模块错误留作失败候选进入原debug，不替换成好解、不补样。
 两份gpu28 RTX3090/6CPU/原镜像/4小时分配，上限8GPUh。16次全闭合才读效果；不追样本。具体门见FORETS_EDIT_SCOPE_PLAN_20260914.md。
@@ -21,6 +23,8 @@ source tree8bb325fa167a9db54656dd6535ce1f3d69859c22，控制commit07ab932c206149
 原100人民币/保守10USD总帽，不重置。凭据只远端aira-dojo/.env OPENROUTER_API_KEY，不回显/索要/本地保存。
 
 ## 并行传统强对照（新增实际运行）
+22:24左右13284已正常完成，八条全闭合后独立grade，再以第二数值实现复核8/8。512候选尝试全正常、8/8有效0未知，Leaf中位log-loss .05948/样本SD .011336106033378479，Space中位accuracy .790805/样本SD .0067900288413722636；实际每run226.162336068–292.523665136秒，因64候选cap结束，非用满20分钟。实际分配.5705555555555556GPUh、API0。不能提前与未闭合EScope比较。
+结果已本地逐字节复制，summary d249d01bfc372d9eb91e8634202d21c201dabb09c59c646c18b36cc046627c88，CSV756f270da337b33d1b98bfa6d15d9be5c80c126e75500a43138c5ee2dc8ddcfd，independent7a2ebceb6dd74fc15b8d5963fb68bef0bebab2672f40639df04a8d39d33c92b8。不要重复readout/independent grader；报告ESCOPE_CLASSIC_RESULTS_20260914.md。后继强对照门在b20362dfe81a6f4af5f4d801228d661e2050edc1中先于此组效果读出固定。
 21:49:42 UTC提交13284，21:50:43现场确认gpu28 RUNNING、首条搜索运行中。独立8次Leaf/Space×42–45，固定RF/ET/HistGB/LR/SVC/KNN随机搜索；零API，每次1200秒/候选300秒/6CPU/原镜像/3090，新增分配帽4GPUh。本轮总帽12GPUh。
 根 /research/d7/spc/yzyang4/forets-classic-control-20260914-6jkjkwd5，prepared ef230ef69b1cd31e29844585f0793fe2bdfea5986d51c1fb65c5dce2b7746708，实际代码commit0e07a9779014df3b4374f520ab2527df018933fa。
 CPU预检efff9849552c00ed470b92d9c8286e578f864ea0157605fa9bcc6b2792361ba9：5单测、两任务合成原RF等价atol1e-12、全六族接口、真实子进程→fsync→只按内部验证发布及读出通过。最初字节比较/重复RF假设不稳与测试变量遮蔽均在提交前修复；不改变搜索或正式成绩。

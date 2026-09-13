@@ -1,5 +1,6 @@
 """Mechanical derivation of frozen readers/checks; no experiment execution."""
 import argparse
+import re
 from pathlib import Path
 from forets_environment_build_20260912 import write, encode, sha
 from forets_paid_patch_20260911 import once
@@ -17,9 +18,8 @@ def run(output):
             ('readout_memory_core_20260913','readout_edit_scope_core_20260914'),
             ('readout_forets_memory_control_20260913','readout_edit_scope_20260914'),
             ('memory_oriented_gain','module_oriented_gain'),('memory_minus_control_api_usd','module_minus_control_api_usd'),
-            ('memory-summary.json','edit-scope-summary.json'),('memory-runs.csv','edit-scope-runs.csv'),
-            ('600','1200')]:text=text.replace(a,b)
-        return text
+            ('memory-summary.json','edit-scope-summary.json'),('memory-runs.csv','edit-scope-runs.csv')]:text=text.replace(a,b)
+        return re.sub(r'\b600\b', '1200', text)
     path=old/'readout_memory_core_20260913.py';text=common(path.read_text())
     text=text.replace('eight exact width-control rows','sixteen exact edit-scope rows')
     text=text.replace('Two tasks/two new seeds, frozen error memory on vs off.', 'Two tasks/four new seeds; edit scope comparison. Same refactored start.')
@@ -37,6 +37,7 @@ def run(output):
     text=text.replace('all eight distinct planned searches','all sixteen distinct planned searches')
     save('readout_edit_scope_20260914.py',text,path)
     path=base/'verify_forets_wallclock_20260912.py';text=path.read_text()
+    text=once(text,'def run(root, blocks=(1,)):','def run(root, blocks=(1,2)):')
     for a,b in [('len(configs)!=8','len(configs)!=16'),("spec.launcher['worker_wall_seconds']!=600","spec.launcher['worker_wall_seconds']!=1200"),
         ("cfg['solver']['time_limit_secs']!=600","cfg['solver']['time_limit_secs']!=1200"),('actual_typed_configs=8','actual_typed_configs=16')]:text=once(text,a,b)
     save('verify_edit_scope_cutoff_20260914.py',text,path)

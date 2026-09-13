@@ -5,7 +5,7 @@
     "source_sha256": "b59ed3a975bf57fca99205663eda5ebe4979056af298b66cc0d671ddc8cc8382"
   },
   "readout_edit_scope_core_20260914.py": {
-    "derived_sha256": "1aa2a35302528fca3077ac94b7715e6fa44305c0e06d0035519a917e360ef7b5",
+    "derived_sha256": "1b392935f3d2bcda8cfd1fb0e89e887c942ae102b389334b6d24ceda3fd8cf34",
     "source": "releases\\forets-memory-tools-20260913\\readout_memory_core_20260913.py",
     "source_sha256": "e0f8bb1ea429d4d593c98d4c409ea159220056fec8ba4915b30ad536e3d6c519"
   },
@@ -20,7 +20,7 @@
     "source_sha256": "8c50aeba35c6cff67d6fd3d3a6e37076e1311a0013ad2ca7ad5657e4a3cd17b3"
   },
   "verify_edit_scope_cutoff_20260914.py": {
-    "derived_sha256": "4cce968ebf62a4e117d36fc6deca89d421c22c6d1bb6a7bd45182280cbc3e5c0",
+    "derived_sha256": "3c6bed065adde5cf985d3dc5647a108f4240ab75a02c3adcd709f0eb9a9a70c6",
     "source": "verify_forets_wallclock_20260912.py",
     "source_sha256": "c539a7db66ceaf27ccd06cd47280f9cc37b19667a17d56a1c94d945e811d0f87"
   }

@@ -153,7 +153,7 @@ def verify(root, seeds=(22,23), blocks=(1,)):
     result.update(source_tree=build['source_tree'],controller_commit=build['commit'],job=launch['job'] if len(blocks)==1 else None,
         jobs_by_block={str(b):launches[b]['job'] for b in blocks},
         role='wallclock_development_e2e_not_confirmatory',seeds=list(seeds),all_planned_slots_reported=True,rows=rows,proofs=proofs,
-        independent_numeric_regrades=len(proofs),allocation_seconds=seconds,allocation_gpu_hours=seconds/31200,
+        independent_numeric_regrades=len(proofs),allocation_seconds=seconds,allocation_gpu_hours=seconds/3600,
         billing={k:v for k,v in billing.items() if k!='scopes'},same_physical_gpu=(len(blocks)==1 and len(uuids[blocks[0]])==1),
         same_physical_gpu_within_each_block=all(len(u)==1 for u in uuids.values()),
         complete_technical_matrix=all(r['technical_eligible'] for r in rows),

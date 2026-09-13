@@ -16,7 +16,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 
-def run(root, blocks=(1,)):
+def run(root, blocks=(1,2)):
     root=Path(root).resolve(strict=True)
     if root.parent!=Path('/research/d7/spc/yzyang4') or not root.name.startswith('forets-wallclock-20260912-'):
         raise ValueError('explicit new development root required')

@@ -1,9 +1,22 @@
-# 短交接：参考条件新八次已开跑；并行补齐旧首决策池
-最后核现场：2026-09-13 04:54 UTC。用户要求本会话持续三小时，开始02:58、目标05:58 UTC；不建automation。
-恢复先fetch→CURRENT_DIRECTION 0L191及本文件→核现场，不按早期摘要重投。
+# 短交接：参考条件八次闭合无收益；新首池零API补齐准备
+最后核现场：2026-09-13 05:24 UTC。用户要求本会话持续三小时，开始02:58、目标05:58 UTC；不建automation。
+恢复先fetch→CURRENT_DIRECTION 0L192及本文件→核现场，不按早期摘要重投。
 
-## 当前唯一收费搜索
-13213/13214已04:32:45单次提交；04:54仍在gpu28运行，分别第二/第三条搜索，尚未读成绩。
+## 当前裁决（覆盖下方历史观察）
+13213/13214已结束，05:18:39独立读出完成；全8技术合格/有效，4配对零胜一平三负。
+Leaf32平、Leaf33−.87212、Space32−.01494、Space33−.02069；四条critic均未改善RF起点。
+扩大门不通过，不启动24run、不继续追加同配置。费用1310调用/责任5388558392nUSD/结算3988558392nUSD，仍2旧未知。
+readout最初flat-metric解析失败：原intent和三个结果未动，complete_forets_reference_readout续读已完成，禁止再跑任一reader。
+finish6a456108ae1e9895bc4ae8902d3d58eac33e297a5cf2117c626694dfbac40f1e；commonf46e5767077a98eeaecabc415b19bd6b21b74bfdf6263dca1d8c2bbdd7b01f54。
+lineage/branching-mechanism/anytime-curve已全部生成且下载；不要重跑。五主产物本地SHA通过。
+新补齐scope：四critic首个后基线池全部未尝试原代码9份；原已dispatch不重试，0API，单3090/6CPU/90min上限。
+STAGE /research/d7/spc/yzyang4/forets-reference-completion-stage-20260913-YAc7gQ；目前只上传工具，尚未prepare/submit。
+本地派生release用forets-reference-completion-tools-20260913-v2（v1在提交前发现planned元数据仍8，未投入）。
+新报告FORETS_REFERENCE_RESULTS_20260913.md；补齐计划FORETS_REFERENCE_COMPLETION_PLAN_20260913.md。
+action组件15测试及真实ForeTS解析/debug钩子CPU接线通过，未生产启用；不可冒充收益。
+
+## 已结束收费搜索的来源（以下运行状态仅历史）
+13213/13214于04:32:45单次提交，现已闭合，见顶部。
 ROOT /research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk
 STAGE /research/d7/spc/yzyang4/forets-reference-stage-20260913-m3U9toWD
 source f1cdee3a9e553e8efeedaa1a66a2c6bd778f9798

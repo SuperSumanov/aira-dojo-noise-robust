@@ -1,0 +1,36 @@
+{
+  "files": {
+    "common-start-runs.csv": "e96938557183e19b02c6a5e38f82d88714f2fdb05241d1dc7e55de02cd550b43",
+    "common-start-summary.json": "f46e5767077a98eeaecabc415b19bd6b21b74bfdf6263dca1d8c2bbdd7b01f54",
+    "singlevote-attribution.json": "ac18632a3460c8992f4ad12f0e7374cfe1ff120af80b30b55ddfc3adfe35d46f",
+    "wallclock-runs.csv": "39ccfd4672179918d6acc3e96ef160f07922845e2302f84c2880f4a563bbbe3e",
+    "wallclock-summary.json": "4d89d47dd47877c04ceebeb24adc6a7773f13cfbe3bdc65517eef878b933d11e"
+  },
+  "readers": {
+    "attribute_forets_wallclock_20260912.py": "c0758cfb7f6f615aae9b8ca8ed217301914ddcf1027d7f1c5d3280503614d342",
+    "readout_forets_generation_capacity_20260912.py": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+    "readout_forets_reference_20260913.py": "cd7994c75b27b135d1a5b77e80d09b52d55a418fc986fca80439d159180d4d40",
+    "readout_forets_reference_core_20260913.py": "53733276c7e8a76a7872a9b7346084db704d0b3bbfdd25e88e78b5b9cad7be2e",
+    "readout_forets_reference_cost_20260913.py": "784de50b62c3d7f0351d048b744d7a0f49b13fb7996c7cffc6ff59db35ad6b54",
+    "verify_branching_selection_20260913.py": "510893e1d2aaa4517c7c1c850e06e0af2c758ab4ebefe2d2dbb4f25cf7adda50",
+    "verify_forets_reference_records_20260913.py": "7e39aeeb71f53d0826768401b8fcd12b079fe41ca685a6e965c79b965f3d4423",
+    "verify_forets_review_selection_20260912.py": "2fc9cae3ac3fe31f38916da7009a7cc72d2dcbb7fccd1db25be67a443b193216"
+  },
+  "readout_compatibility_recovery": {
+    "cause": "frozen reference verifier expected nested metric; actual journal stores scalar metric and metric_maximize",
+    "compatibility_verifier_sha256": "c15b1fee23138a894657f829ee4a99a8c59443cc2489f20f55580f7981c79a6a",
+    "continuation_sha256": "3b49105e50e23b013c324f5e7a8ede06a6d3ed3ffb458fd5d306e32daeaff43b",
+    "journal_serializer_sha256": "7c847a1c40541537b1cbefd3f84951d98bb7d406e68cee0ae790839b1023ac22",
+    "policy": "original source/configs/selection/metrics/eligibility/primary scores unchanged; only journal schema normalization",
+    "preserved": {
+      "readout-intent.json": "4d9798580760847677dd4bb22656158d22731dddfabe0f2f0b3614c882439efa",
+      "singlevote-attribution.json": "ac18632a3460c8992f4ad12f0e7374cfe1ff120af80b30b55ddfc3adfe35d46f",
+      "wallclock-runs.csv": "39ccfd4672179918d6acc3e96ef160f07922845e2302f84c2880f4a563bbbe3e",
+      "wallclock-summary.json": "4d89d47dd47877c04ceebeb24adc6a7773f13cfbe3bdc65517eef878b933d11e"
+    },
+    "recovery_script_sha256": "7663e4a97b7b85a385e8c6ef7f97b1a821035a6d1ef1b9cb548c024d0b39a9f4",
+    "utc": "2026-09-13T05:18:32.682473+00:00"
+  },
+  "status": "verified",
+  "utc": "2026-09-13T05:18:39.775801+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "authorization": "96191b7393556fc5c978d82d2f3f2789ffb5f8c8c0243605b425df6843c07540",
+  "billing_counts": [
+    1310,
+    5388558392,
+    3988558392,
+    2
+  ],
+  "calls_sha256": "a58a37f894b6357d036161c40ab51f09cf99e615a0f0ff0a41a00ca6289cd79b",
+  "finish_sha256": "6a456108ae1e9895bc4ae8902d3d58eac33e297a5cf2117c626694dfbac40f1e",
+  "prepared_sha256": "82a85e630b4d58830cd382d2b7af549c454aed3645a2b3ca3c1f7d36e74fd571",
+  "root": "/research/d7/spc/yzyang4/forets-wallclock-20260912-5_czzimk",
+  "source_tree": "f1cdee3a9e553e8efeedaa1a66a2c6bd778f9798"
+}

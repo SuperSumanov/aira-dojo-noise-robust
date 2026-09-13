@@ -1,0 +1,17 @@
+{
+  "api_calls": 0,
+  "debug_hook_exercised": true,
+  "files": {
+    "forets_action_delivery_20260913.py": "f2041f6758a9cb2b21d47dc63a180a78ed457e9fcac5cefcb04c2e986282f552",
+    "read_forets_action_delivery_20260913.py": "b88907c303f3343183c756d3a6491a761a43721e8a81432b05c9a8ebd6acf808",
+    "verify_forets_action_delivery_integration_20260913.py": "3afba30e5955bcf1e1c1ccc6d10b32c7e6e4c127bca6bc55d3330bf67b16d144"
+  },
+  "gpu_jobs": 0,
+  "hidden_marker_exported": false,
+  "independent_reader_matches": true,
+  "original_log_calls": 4,
+  "original_primary_receipts_written": 0,
+  "parsed_actions": 3,
+  "role": "real_source_hooks_with_fake_execution_not_efficacy",
+  "source_tree": "f1cdee3a9e553e8efeedaa1a66a2c6bd778f9798"
+}

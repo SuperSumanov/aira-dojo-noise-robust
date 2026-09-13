@@ -1,0 +1,13 @@
+{
+  "readers": {
+    "attribute_forets_wallclock_20260912.py": "c0758cfb7f6f615aae9b8ca8ed217301914ddcf1027d7f1c5d3280503614d342",
+    "readout_forets_generation_capacity_20260912.py": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+    "readout_forets_reference_20260913.py": "cd7994c75b27b135d1a5b77e80d09b52d55a418fc986fca80439d159180d4d40",
+    "readout_forets_reference_core_20260913.py": "53733276c7e8a76a7872a9b7346084db704d0b3bbfdd25e88e78b5b9cad7be2e",
+    "readout_forets_reference_cost_20260913.py": "784de50b62c3d7f0351d048b744d7a0f49b13fb7996c7cffc6ff59db35ad6b54",
+    "verify_branching_selection_20260913.py": "510893e1d2aaa4517c7c1c850e06e0af2c758ab4ebefe2d2dbb4f25cf7adda50",
+    "verify_forets_reference_records_20260913.py": "7e39aeeb71f53d0826768401b8fcd12b079fe41ca685a6e965c79b965f3d4423",
+    "verify_forets_review_selection_20260912.py": "2fc9cae3ac3fe31f38916da7009a7cc72d2dcbb7fccd1db25be67a443b193216"
+  },
+  "utc": "2026-09-13T05:15:25.541748+00:00"
+}

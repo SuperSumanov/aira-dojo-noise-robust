@@ -1,0 +1,66 @@
+{
+  "base_sha256": "89a41bfbd00b7b5bae9719088a0e00157187ec190df254125adce0d922ba9759",
+  "changes": [
+    [
+      "PARENT=BASE/'forets-wallclock-20260912-y_p2tlmi'",
+      "PARENT=BASE/'forets-wallclock-20260912-5_czzimk'"
+    ],
+    [
+      "TREE='35321718fef54f1907b469ab44334a30fe66b6cd'",
+      "TREE='f1cdee3a9e553e8efeedaa1a66a2c6bd778f9798'"
+    ],
+    [
+      "SUMMARY='59d9463c127aa0c9fc10d1ab95a09af287e6650c708078330e20edc69f60c2d1'",
+      "SUMMARY='4d89d47dd47877c04ceebeb24adc6a7773f13cfbe3bdc65517eef878b933d11e'"
+    ],
+    [
+      "if set(old)!=set(selected) or len(old)!=2:",
+      "if len(selected)!=2 or not set(old).issubset(selected) or len(old) not in (1,2):"
+    ],
+    [
+      "summary['seeds']!=[30,31]",
+      "summary['seeds']!=[32,33]"
+    ],
+    [
+      "for s in (30,31)",
+      "for s in (32,33)"
+    ],
+    [
+      "done['observed_task_outcomes'] is not False",
+      "done['observed_candidate_outcomes'] is not False"
+    ],
+    [
+      "if set(omitted)!=set(d['selected']) or len(omitted)!=2:",
+      "if not set(omitted).issubset(d['selected']) or len(omitted) not in (1,2):"
+    ],
+    [
+      "if len(rows)!=8:raise ValueError('fixed eight unattempted codes')",
+      "if len(rows)!=9:raise ValueError('fixed nine unattempted codes')"
+    ],
+    [
+      "len(p['rows'])!=8",
+      "len(p['rows'])!=9"
+    ],
+    [
+      "for i in range(8)",
+      "for i in range(9)"
+    ],
+    [
+      "planned=8,completed=len(done)",
+      "planned=9,completed=len(done)"
+    ],
+    [
+      "complete=len(done)==8",
+      "complete=len(done)==9"
+    ],
+    [
+      "FORETS_BRANCHING_COMPLETION_PLAN_20260913.md",
+      "FORETS_REFERENCE_COMPLETION_PLAN_20260913.md"
+    ]
+  ],
+  "files": {
+    "forets_pool_completion_20260912.py": "284a15a5aa8975e6d24b58d1dea18df80d544e84ab1e9d6da414e1a41fbec2ee",
+    "forets_pool_completion_20260912.sbatch": "df15dc27adfc060685e84fd74b494e8aad3ac7452153c6b1f6d5e2052ee6dc9d",
+    "readout_reference_completion_20260913.py": "2c414113cff40f980d365f6331dc2d6c1a40b66e592d60f8f95133a9fc661e73"
+  }
+}

@@ -1,0 +1,5 @@
+defaults:
+    - jupyter
+    - _self_
+
+_target_: dojo.config_dataclasses.interpreter.fresh_container.FreshContainerInterpreterConfig

@@ -6,5 +6,10 @@
 
 from dojo.core.interpreters.python import PythonInterpreter
 from dojo.core.interpreters.jupyter.jupyter_interpreter import JupyterInterpreterFactory
+from dojo.core.interpreters.fresh_container import FreshContainerInterpreter
 
-INTERPRETER_MAP = {"PythonInterpreterConfig": PythonInterpreter, "JupyterInterpreterConfig": JupyterInterpreterFactory}
+INTERPRETER_MAP = {
+    "PythonInterpreterConfig": PythonInterpreter,
+    "JupyterInterpreterConfig": JupyterInterpreterFactory,
+    "FreshContainerInterpreterConfig": FreshContainerInterpreter,
+}

@@ -20,6 +20,12 @@ for block in (1,2):
         log=work/'stderr.private.log'
         with log.open('rb') as f:f.seek(max(0,log.stat().st_size-24000));raw=f.read()
         names=re.findall(rb'(?:^|\n)(?:[a-zA-Z_][a-zA-Z0-9_]*\.)*([a-zA-Z_][a-zA-Z0-9_]*(?:Error|Exception|Expired)):',raw)
+        allowed=(b'run adapter-attempt budget exhausted',b'request output limit exceeds run policy',
+            b'budget reservation failed; no dispatch allowed',b'unsupported budget policy')
+        reasons=[v.decode() for v in allowed if b'RunBudgetError: '+v in raw]
+        start=es.read(work.parent/'started.json')
+        end=es.read(work.parent/'finished.json') if (work.parent/'finished.json').exists() else {}
         rows.append(dict(run_id=rid,status=s['status'],elapsed_seconds=s['elapsed_seconds'],exception_classes=[v.decode() for v in names[-3:]],
-            raw_exported=False))
+            run_attempt_guard_reasons=reasons,max_api_attempts=start.get('max_api_attempts'),
+            reserved_adapter_attempts=end.get('reserved_adapter_attempts'),raw_exported=False))
 print(json.dumps(rows))

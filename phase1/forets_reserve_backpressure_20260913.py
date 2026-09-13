@@ -3,9 +3,9 @@ import logging
 import time
 
 
-def reserve_wait(path, scope, attempt_id, amount, *, connect, authorize, auth,
+def reservation_steps(path, scope, attempt_id, amount, *, connect, authorize, auth,
                  stopped_error, clock=time.monotonic, wall=time.time,
-                 sleep=time.sleep, max_wait=90., poll=.1):
+                 max_wait=90., poll=.1):
     if type(amount) is not int or amount not in (700000000, 2600000000):
         raise stopped_error('unapproved request reservation')
     began = clock()
@@ -44,7 +44,19 @@ def reserve_wait(path, scope, attempt_id, amount, *, connect, authorize, auth,
             # No sleeping while holding a transaction: settlement must proceed.
             db.close()
         waits += 1
-        sleep(max(0., min(poll, max_wait-(clock()-began))))
+        yield max(0., min(poll, max_wait-(clock()-began)))
+
+
+def reserve_wait(*args, sleep=time.sleep, **kwargs):
+    for delay in reservation_steps(*args, **kwargs):
+        sleep(delay)
+
+
+async def reserve_async(*args, **kwargs):
+    import asyncio
+    for delay in reservation_steps(*args, **kwargs):
+        # No thread survives cancellation and no transaction crosses an await.
+        await asyncio.sleep(delay)
 
 
 def patch_budget(text):
@@ -54,5 +66,12 @@ def patch_budget(text):
     from dojo.solvers.fore_ts.wallclock import admit_request
     from dojo.solvers.fore_ts.reserve_backpressure import reserve_wait
     return reserve_wait(path, scope, attempt_id, RESERVE if amount is None else amount,
+        connect=connect, authorize=admit_request, auth=AUTH, stopped_error=BudgetStopped)
+
+
+async def reserve_async(path, scope, attempt_id, amount=None):
+    from dojo.solvers.fore_ts.wallclock import admit_request
+    from dojo.solvers.fore_ts.reserve_backpressure import reserve_async as wait
+    return await wait(path, scope, attempt_id, RESERVE if amount is None else amount,
         connect=connect, authorize=admit_request, auth=AUTH, stopped_error=BudgetStopped)
 ''' + text[end:]

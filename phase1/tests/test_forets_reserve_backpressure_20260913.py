@@ -5,7 +5,7 @@ import sys
 import unittest
 from contextlib import closing
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from forets_reserve_backpressure_20260913 import reserve_wait, patch_budget
+from forets_reserve_backpressure_20260913 import reserve_wait, reserve_async, patch_budget
 
 
 class Stopped(RuntimeError): pass
@@ -82,6 +82,34 @@ class ReserveTests(unittest.TestCase):
         raw=subprocess.check_output(['git','show','1ec18564f176d58a3a7ac3a46852ad92044777b5:src/dojo/core/solvers/llm_helpers/backends/paid_budget.py']).decode()
         patched=patch_budget(raw);compile(patched,'actual-budget','exec')
         self.assertEqual(raw[raw.index('def settle('):],patched[patched.index('def settle('):])
+
+    def test_same_event_loop_settlement(self):
+        import asyncio,time
+        self.add('flight','b',2100000000,age=0)
+        async def settle():
+            await asyncio.sleep(.02)
+            with closing(sqlite3.connect(self.path,timeout=.2)) as db,db:
+                db.execute("UPDATE calls SET held=1,cost=1,state='settled' WHERE id='flight'")
+        async def run():
+            await asyncio.gather(settle(),reserve_async(self.path,'a','new',700000000,
+                connect=self.connect,authorize=lambda:None,auth=self.auth,stopped_error=Stopped,
+                wall=lambda:self.now,max_wait=.5,poll=.01))
+        asyncio.run(run())
+        with closing(sqlite3.connect(self.path)) as db:
+            self.assertEqual(db.execute('SELECT count(*) FROM calls').fetchone()[0],2)
+
+    def test_cancel_wait_leaves_no_new_reservation(self):
+        import asyncio
+        self.add('flight','b',2100000000)
+        async def run():
+            t=asyncio.create_task(reserve_async(self.path,'a','new',700000000,
+                connect=self.connect,authorize=lambda:None,auth=self.auth,stopped_error=Stopped,
+                wall=lambda:self.now,max_wait=.5,poll=.01))
+            await asyncio.sleep(.02);t.cancel()
+            with self.assertRaises(asyncio.CancelledError):await t
+        asyncio.run(run())
+        with closing(sqlite3.connect(self.path)) as db:
+            self.assertEqual(db.execute('SELECT count(*) FROM calls').fetchone()[0],1)
 
 
 if __name__=='__main__':unittest.main()

@@ -212,7 +212,7 @@ def build(stage, *, block_minutes=180, block_ids=(1,), config_transform=None):
     write(root/'build.json',encode(result));print(json.dumps(result))
 
 
-def activate(root):
+def activate(root, *, reuse_unattempted_scopes=False):
     if root.resolve().parent!=PARENT.parent or not root.name.startswith('forets-wallclock-20260912-'): raise ValueError('explicit fresh root')
     facts=read(root/'parent-facts.json'); calls=parent_calls()
     if facts['calls_sha256']!=sha(encode(calls)) or (root/'paid.sqlite').exists(): raise ValueError('handover already attempted/drift')
@@ -228,6 +228,15 @@ def activate(root):
     with closing(sqlite3.connect(root/'paid.sqlite')) as db:
         db.execute('UPDATE auth SET digest=?,body=?,stopped=0',(ns['AUTH_SHA'],ns['AUTH_RAW'].decode()))
         db.execute('UPDATE scopes SET cap=COALESCE((SELECT SUM(held) FROM calls WHERE calls.scope=scopes.scope),0)')
+        if reuse_unattempted_scopes:
+            # Only pre-dispatch preparation scopes with NO call can be reused.
+            # The sealed predecessor remains untouched; all call rows are copied.
+            for scope in scopes:
+                prior_scope=db.execute('SELECT cap FROM scopes WHERE scope=?',(scope,)).fetchone()
+                if prior_scope is None:continue
+                if prior_scope!=(0,) or db.execute('SELECT COUNT(*) FROM calls WHERE scope=?',(scope,)).fetchone()!=(0,):
+                    raise ValueError('cannot reuse attempted scope')
+                db.execute('DELETE FROM scopes WHERE scope=?',(scope,))
         db.executemany('INSERT INTO scopes VALUES (?,?)',[(s,4000000000) for s in scopes]);db.commit()
         if db.execute('SELECT * FROM calls ORDER BY id').fetchall()!=calls: raise ValueError('old calls altered')
     write(root/'paid-authorization.json',encode(ns['AUTH']));write(root/'activation-complete.json',encode(facts))

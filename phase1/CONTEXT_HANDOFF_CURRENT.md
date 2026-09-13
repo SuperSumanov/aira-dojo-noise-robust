@@ -4,8 +4,8 @@
 memory STAGE /research/d7/spc/yzyang4/forets-memory-stage-20260913-jiwvOhj8 已上传全部辅助/冻结工具；还无root/账/任务。
 24次真实operator→GenericLLM离线请求预览通过（26f2b4c49a869b303d2a26bd2c256a2ff7237a29abd897be80a1335c1a66bdd6）；只是当前width源码预览，不替代新包最终生产接线。
 capture_width_closed_facts及audit_closed_reservation_waits已上传width STAGE，均未运行；后者只在闭合后记录费用等待，不改变资格/主终点。
-最新公开24c949fc25fe841e853978d879114bde809b0f99；action结果及源包已推，新的诊断/提示入口待后续提交。
-最后更新2026-09-13 07:00 UTC。用户要求连续会话05:53–08:53 UTC推进，不新建automation/任务替代。
+最新公开d6fd861ba65ea251ebdf3771d4e531cce0a5a4e5；action结果及源包、memory控制入口、旧debug父子链诊断已推。
+最后更新2026-09-13 07:24 UTC。用户要求连续会话05:53–08:53 UTC推进，不新建automation/任务替代。
 恢复先fetch→CURRENT_DIRECTION 0L195→本文件→现场；详细历史见报告，不重复验收/读出/索要key。
 
 ## 当前唯一活动实验：宽度对照
@@ -14,7 +14,7 @@ STAGE /research/d7/spc/yzyang4/forets-width-stage-20260913-ODIHCjEU
 source cda5e378046811fa20eadc7bc9a0d2343e69ddca；controller f3b601ace676aa8bec8f29578d8eac72ef331970。
 prepared 2db1750a9173cf128aae0bb96631cdc199e913ef398fa554d33544a50afbd303；AUTH 1f5c301efee2702e378c682f2d3db112f075f0e1c21e6f02d11bd35308838711。
 readout-plan 6f6d86050ea0127d2635ea8267567967ae669169f5ee731eb920d7eda0b0cbe3；冻结readers不得改。
-06:51:13单次提交13239/13240，06:52已观察gpu28开跑。06:59 Leaf38 batch_four结束/direct_two开始，另一块Leaf39 direct_two运行。
+06:51:13单次提交13239/13240，06:52已观察gpu28开跑。07:23最后观察：block1最后一条Space38 batch_four运行；block2第三条Space39 batch_four运行，最后direct_two待运行。
 Leaf/Space×38/39×batch_four/direct_two共8真实搜索；实际selection_policy均uniform，生成四/二、执行二，只有fanout不同。
 600秒搜索/300秒程序/64步/原UCT-debug/RF起点；两臂共同逐动作保存，主action次iteration在34–37读出前已固定。
 实际task/archive/deadline、typed8、原action/log/debug、实际batch4/2及独立选集回放全部通过；新分配上限3GPUh。
@@ -22,7 +22,8 @@ Leaf/Space×38/39×batch_four/direct_two共8真实搜索；实际selection_polic
 activate/route/submit均完成，禁止重复。运行时未决增加可能只是预留，全闭合仍>2才是新未决。
 控制STAGE/forets_width_control_20260913.sh；monitor_width_control_20260913.py ROOT。
 全八和两allocation终态后一次readout_forets_width_control_20260913.py ROOT；不要先读成绩。
-本地verify_delivery_width_exports_20260913.py width RESULTS独立复核。capture_width_closed_facts_20260913.py供下一实验，目前尚未上传/运行。
+本地verify_delivery_width_exports_20260913.py width RESULTS独立复核。capture_width_closed_facts_20260913.py供下一实验，已上传尚未运行。
+audit_closed_uniform_work_20260913.py是闭合后辅助统计，不改结果/资格；只执行在全八正式读出之后。
 
 ## 本轮已完成：逐动作交付，禁止重跑
 ROOT /research/d7/spc/yzyang4/forets-wallclock-20260912-7wzrny21
@@ -48,6 +49,7 @@ memory text 222da8b9d643c2023bc17683eed9b3a112260cbf443598b7275c753f7626a25c；�
 用releases/forets-memory-tools-20260913-v2（v1字段名已弃用未部署），derivation c02fd0d22ba328dd5118bc5b3ebaa63f717bd18f759cc43a25e5e1bd6d615a0d。
 先等width全闭合/capture事实/账无新未知，再artifact/build/实际CPU检查/冻结/激活/route/submit；不根据38/39结果换seed/宽度/提示。
 上限3GPUh，原累计API帽；窗口不够就不缩短预算赶工。无新增费用授权或服务借用。
+07:20找到ACL Findings 2026直接先例Demystify the Role of Memory in Machine Learning Engineering Agents；错误记忆、可靠性/多样性取舍、按阶段记忆都非原创。详见FORETS_METHOD_HYPOTHESIS_20260913.md；40/41定位经验强基线验证，不是新算法确认。
 
 ## 学长资料最新核验
 06:21新Drive0911一包16011265bytes已隔离；remote /research/d7/spc/yzyang4/senior-quarantine-0911-20260913。
@@ -69,6 +71,6 @@ SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；Drive用ven
 SLURM_CONF=/opt1/slurm/gpu-slurm.conf；MLE gpu27/gpu28 RTX3090，非projgpu28/39；镜像不升级/不退CPU。
 旧held12535不动。两当前block各1GPU/6CPU/90min；最大4jobs/8GPUs。
 PRIMARY_KEY远端映射OPENROUTER_API_KEY，绝不存/回显key。原100RMB/保守10USD累计责任帽含两旧未知。
-只push myfork HEAD:phase1-value-critic，不动学长branch/不强推/不新建branch。最近公开f3b601ace676aa8bec8f29578d8eac72ef331970。
+只push myfork HEAD:phase1-value-critic，不动学长branch/不强推/不新建branch。最近公开见顶部。
 研究盘到期2026-09-29延期未知；无清理。无关untracked旧release/tmp/output保留。
 复杂SSH用脚本/scp；远端无rg；本地rg用-g而非literal通配路径。接力build用POSIX路径。

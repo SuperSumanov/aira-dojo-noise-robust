@@ -12,6 +12,20 @@ def close(a,b):
         if a is not b:raise ValueError('missing summary statistic')
     elif not math.isclose(a,b,rel_tol=1e-12,abs_tol=1e-12):raise ValueError('statistic differs')
 
+
+def task_arm_statistics(rows):
+    """Descriptive arm stats, explicitly not the median of paired differences."""
+    result=[]
+    for task,arm in sorted({(r['task'],r['arm']) for r in rows}):
+        selected=[r for r in rows if (r['task'],r['arm'])==(task,arm)]
+        for endpoint in ('action','iteration'):
+            vals=[r[endpoint+'_score'] for r in selected if r['technical_eligible'] and r[endpoint+'_valid']]
+            result.append(dict(task=task,arm=arm,endpoint=endpoint,planned_runs=len(selected),
+                technical_eligible=sum(r['technical_eligible'] for r in selected),valid_scores=len(vals),
+                median=statistics.median(vals) if vals else None,sample_std=statistics.stdev(vals) if len(vals)>1 else None,
+                summed_api_usd=sum(r['api_cost_usd'] for r in selected)))
+    return result
+
 def validate(path,kind):
     prefix={'action':'action-delivery','width':'width','memory':'memory'}[kind]
     finish=json.loads((path/'readout-finished.json').read_bytes())
@@ -58,8 +72,12 @@ def validate(path,kind):
             raise ValueError('gain counts')
         close(group['median_gain'],statistics.median(gains) if gains else None)
         close(group['sample_std_gain'],statistics.stdev(gains) if len(gains)>1 else None)
-    return dict(status='EXPORT_BYTES_CSV_AND_INDEPENDENT_ARITHMETIC_VERIFIED',kind=kind,runs=len(rows),groups=len(groups),
+    result=dict(status='EXPORT_BYTES_CSV_AND_INDEPENDENT_ARITHMETIC_VERIFIED',kind=kind,runs=len(rows),groups=len(groups),
         closure_sha256=hashlib.sha256((path/'readout-finished.json').read_bytes()).hexdigest())
+    if kind!='action':
+        result.update(task_arm_statistics=task_arm_statistics(rows),paired_groups=value['groups'],
+            allocation_gpu_hours=value['allocation_gpu_hours'])
+    return result
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('kind',choices=('action','width','memory'));p.add_argument('directory',type=Path);a=p.parse_args()

@@ -1,0 +1,11 @@
+{
+  "files": {
+    "action-delivery-runs.csv": "4519e156b1b3248824c1e7f7590d325a7a5307509df19a39137666215b39ea0e",
+    "action-delivery-summary.json": "182e8a424cc99e7cdd0ec9a46a219ba84f05a1c578ca6d2dc8ff9685fbb80d65",
+    "wallclock-runs.csv": "b6a10e33dc0d725e6ef6199e8d162e029ff80d745f2bf7ab493a727b8af05eb7",
+    "wallclock-summary.json": "4ae50c4edd6c7e57547eea142ff21d2d1275ffd199a7f51ecc1d6eaeb32866ac"
+  },
+  "source_tree": "f7a8b9e3c07b530467573315d55f62203cc67895",
+  "status": "verified",
+  "utc": "2026-09-13T06:46:32.584398+00:00"
+}

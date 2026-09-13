@@ -1,0 +1,163 @@
+{
+  "limitation": "Intervals include node projection, payload construction and data write/fsync; exclude the following commit write/fsync and original journal logging. Lower bound, not full recording overhead or an uninstrumented counterfactual.",
+  "observed_data_record_seconds_total": 0.332013901,
+  "role": "post_closeout_persistence_timing_and_exact_submission_identity",
+  "rows": [
+    {
+      "code_bytes_differ": false,
+      "commit_hashes": [
+        "2c36d6081626c7d6c27460550ff462f53cabbad6fb623b6b865a31247b1d8047",
+        "9b285f3c9e15fc92a74dd53a1f43ac347b32f45f09e0548781a0e51bf1334157",
+        "26027b0a3a270e4d74bae55db461683307a659e22862f026a38436b2394e3db6"
+      ],
+      "exact_submission_bytes_differ": false,
+      "incomplete_commits_ignored": 0,
+      "max_data_record_seconds": 0.005442001,
+      "median_data_record_seconds": 0.00401385,
+      "recording_seconds_lower_bound": 0.013443251,
+      "records": 3,
+      "run_id": "00-leaf-classification-s34-uniform_random"
+    },
+    {
+      "code_bytes_differ": true,
+      "commit_hashes": [
+        "c02215c3e5114463ebfcbaaf5112ffb004f1f18b6182650480d4ee028718fb49",
+        "34c898d953b7c461343182cf66d0a699f40b6eab2c67204989a1b7b27700fa85",
+        "914b794caf0b24b20588ffdbff5dc87be4416e8161c2656e33e885d447d95995"
+      ],
+      "exact_submission_bytes_differ": true,
+      "incomplete_commits_ignored": 0,
+      "max_data_record_seconds": 0.005925383,
+      "median_data_record_seconds": 0.004669767,
+      "recording_seconds_lower_bound": 0.014087486,
+      "records": 3,
+      "run_id": "01-leaf-classification-s35-uniform_random"
+    },
+    {
+      "code_bytes_differ": false,
+      "commit_hashes": [
+        "073e179e5f7a6ba0b7e836ae2b05ad8402d8a1c0b534b34efbbf97fe6cfe1778",
+        "0af72d17b6fe5ca75c76ffea99ca01a727bb77043c42e7c68b1028ab5254f4cf",
+        "1f704df0b6961a1f9a4d76a69f4d1282b831b6dfb95480ee3a40b48dffd95a2c",
+        "abf3522310d9d2423fb92ee41d6ba6cac6019673f4474f6ae7093b4d990504fe",
+        "4941b2ff0b94de5a0124994296e52befc7845cb5c0c77267cd1e4a6224cf5405",
+        "1ecae7f6c2561eb89b7036bcef3cbb27dab7f7304fb5b37c281102c3f4b15bd9",
+        "0e9c6e7de485a4434b592ef2fff32c79506212df90f41d7d9ab767ac7f3b0328",
+        "617793c54bfd229fae1af2c7d19d15b488b831a47e31527335231231b32b6d20",
+        "22bbc481d91ebe726b9df26f627439c3df811ef40e4ca4ed05cb36b27c225035",
+        "c056b8f32e045ae0491e74ef0b6ac1fb2263539842c45266c0d62ae958d1d580"
+      ],
+      "exact_submission_bytes_differ": false,
+      "incomplete_commits_ignored": 0,
+      "max_data_record_seconds": 0.006310659,
+      "median_data_record_seconds": 0.0048387775000000004,
+      "recording_seconds_lower_bound": 0.048707312,
+      "records": 10,
+      "run_id": "02-spaceship-titanic-s34-uniform_random"
+    },
+    {
+      "code_bytes_differ": false,
+      "commit_hashes": [
+        "840ad365712b6ee34a875c29e803049cc99ba062a7e713aaa518d6de0407e457",
+        "684213cab810e9a03fd1b72620a2b29518aa4e27003f0cf7a96fd84a5fdda180",
+        "f2d7acc7f047f370cd5483ebce258e405f6389ee17bb8edddfed4e7bd5e5ec14",
+        "a680d6d2c15baf75defc81afe6417e0b87cfe5480900dbe06ba7e05f2c83eadd",
+        "73d4fe5afc290f586b21a66c9788923bfd8eacdba6751a9560110be1fda29a8d",
+        "618b12b2bedb9a3d82627f76e2228924dcf85857129d47e345c4a6bef1bc0fa1",
+        "2de051760624389920f4f74315032fa2ffe8d35c3100846c50f1c0b59ddde318",
+        "416802971ed38816cda76b31c3685294277139c3066e211367b967faacb1298e",
+        "b3fcc5096f56a4303f1e0b2bd78a08e5a5b1dddbfca456e2fa9caaf8945313a3",
+        "99460a6e8826ad4b83e8dc9dc0d23eec53990a9e038c94207bd34e1eb01c695b",
+        "abb437a2de2cfe5c30d8d1e95b55285d51c31f25d0a5a4ff944b0249b0a49f62",
+        "8f291c6420a0cdde692972be282ab69fd96df67155906f373ca27a0f1784f775"
+      ],
+      "exact_submission_bytes_differ": false,
+      "incomplete_commits_ignored": 0,
+      "max_data_record_seconds": 0.042743718,
+      "median_data_record_seconds": 0.0048426065,
+      "recording_seconds_lower_bound": 0.100842578,
+      "records": 12,
+      "run_id": "03-spaceship-titanic-s35-uniform_random"
+    },
+    {
+      "code_bytes_differ": false,
+      "commit_hashes": [
+        "e867dd1f79e8d7593bf6e11e6adbd1182a50663fd03c390165200cb06ef1774a",
+        "4769749c1f56b35352e1ee6da4d698548f55032308794aee2aff85ad0b6446a4",
+        "a7556d9c0b553f74e6a38bba5c63156e0c07d90e68377fcb47530707332eb9bd",
+        "a9ef578c12698b35c7e3ff852f83e0c58fc5d435d2c97863b3345a205cdafb64",
+        "25b5c702dd02b48b10c562a66c0fdb82db72d0b841fef254788ad87c945bb82b"
+      ],
+      "exact_submission_bytes_differ": false,
+      "incomplete_commits_ignored": 0,
+      "max_data_record_seconds": 0.007072043,
+      "median_data_record_seconds": 0.004691693,
+      "recording_seconds_lower_bound": 0.025040939,
+      "records": 5,
+      "run_id": "04-leaf-classification-s36-uniform_random"
+    },
+    {
+      "code_bytes_differ": true,
+      "commit_hashes": [
+        "5f8edee399f0e1fac5747b562799e4d96327d7ff66a705792a3afd3f33fe0aed",
+        "279259431502c4740bbedec72e0cf33c32d11676505079fc9a3cd6d544057b98"
+      ],
+      "exact_submission_bytes_differ": true,
+      "incomplete_commits_ignored": 0,
+      "max_data_record_seconds": 0.004966145,
+      "median_data_record_seconds": 0.0045943655,
+      "recording_seconds_lower_bound": 0.009188731,
+      "records": 2,
+      "run_id": "05-leaf-classification-s37-uniform_random"
+    },
+    {
+      "code_bytes_differ": false,
+      "commit_hashes": [
+        "ca3ca51574ad1921e29c680086d0e164f69a8d44727cf2213bb61e6844268ad2",
+        "239afa739e925fd361e7e682dc48af82bb41734f93fc13f31cac0408c2cf3738",
+        "57bcf0e9d944f02139c79fedc2b6f1c76e4b5d1790d38518a532cd9b95919a73",
+        "d78c713c385c5f906b49b1cfb7de149ec847003500cda5fbf1975d664c2d1106",
+        "8fc280a02cf802b469b0a2da14cef2c04bd54b722f6ded22fec8114f1712c0f1",
+        "4aa436d78a7f10fbe4adc41477225a9f7401228781321cb17674e9067e267bff",
+        "edce7699caca90ff5b02ef1c77662e1a02aecb5bbab78312a4eaaa7a3b4dec91",
+        "e18299e88e6e510c8af7843715465d55b5291e46f5f30b7f16342f18efa8e05e",
+        "7e40478f75788b821d0d0e9e064643828bb5141a6d2a1c598da5e5e0f2590ac4",
+        "e2829ce16303f022cf2d39deaa5ac89d81fbc48a596ffdf3eb0f20808d83e3b4",
+        "323ebde3e33e45701e8c3a25eef115c821693b5c3d575b4dee7e92c978f5ebcb",
+        "c7f5929297e7199b58ddcd2b477a0202e80e0ce71a123eba534baf33c786a4c2",
+        "b30245a1c6a561236c2c6aa2cb2273af1eec6b3ed36e7552318e7ead7da708f1"
+      ],
+      "exact_submission_bytes_differ": false,
+      "incomplete_commits_ignored": 0,
+      "max_data_record_seconds": 0.006578506,
+      "median_data_record_seconds": 0.004895656,
+      "recording_seconds_lower_bound": 0.063506725,
+      "records": 13,
+      "run_id": "06-spaceship-titanic-s36-uniform_random"
+    },
+    {
+      "code_bytes_differ": false,
+      "commit_hashes": [
+        "febabec521c828fc7230def851b94ac34dc94d5bee3663a3ca80e673827d54ee",
+        "86733533757e8eb7717e315ee4fa1796f8b7159cc58dc8ef4b80e682491b9cc1",
+        "713cdb419ed241f29442e552a51aefafd2839b50b5b96d70acf8cd6c9c7f2be2",
+        "4be02aecf390544b51210d71a70de6b090eafd42dcca7303ccfeaa649d92f4d6",
+        "f1a2755697fbc35ebd97110bad8350065874e0a978771f2db8d7c644b9faa9de",
+        "9ad6eecc1edc09626ec45fc0c1a5f22ec5a123b2b8f7169620b50327a26f985d",
+        "91e51bdef48b20883742122d9376d56433e1b628c78064c549a3e3242f583fb0",
+        "7ac365371323b6a3684144d826874ef9ecd34ba02bd29d32bbd1190c3af43778",
+        "436d37acaa5f219f6ce5f282e03b35264ef6904d219506aba676e609b70aa46c",
+        "a86be2b8b12750728b57e671174e7bb214f13d1efd6f135471eecd36c02e7afc",
+        "8cc03025b2c6764265fdad01d33f7d767bef27d50eae7c07073cbd1d20e72695"
+      ],
+      "exact_submission_bytes_differ": false,
+      "incomplete_commits_ignored": 0,
+      "max_data_record_seconds": 0.006453946,
+      "median_data_record_seconds": 0.005379119,
+      "recording_seconds_lower_bound": 0.057196879,
+      "records": 11,
+      "run_id": "07-spaceship-titanic-s37-uniform_random"
+    }
+  ],
+  "source_summary_sha256": "182e8a424cc99e7cdd0ec9a46a219ba84f05a1c578ca6d2dc8ff9685fbb80d65"
+}

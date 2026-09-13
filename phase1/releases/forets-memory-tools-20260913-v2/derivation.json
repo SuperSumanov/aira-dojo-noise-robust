@@ -1,0 +1,32 @@
+{
+  "launch_memory_control_20260913.py": {
+    "base_file": "releases/forets-width-tools-20260913/launch_width_control_20260913.py",
+    "base_sha256": "e1cfff1cd2207ad50c3a156b6e59c297822febc87d14441add019ac8ccc99e1e",
+    "derived_sha256": "d9e7981a4eea756bfca5b3e87b84b6844c701861c57e5a1cc314dc1afa42cd46"
+  },
+  "monitor_memory_control_20260913.py": {
+    "base_file": "monitor_width_control_20260913.py",
+    "base_sha256": "d07596eb439ac871a35dcd68ab71755feb9a691dbe67c9909a1b4b4fa1e32f5a",
+    "derived_sha256": "688a0b7430dccdfed9960562a3ba7a8d8d6ffbc4312bcb52fc190b2d08ef8113"
+  },
+  "readout_forets_memory_control_20260913.py": {
+    "base_file": "readout_forets_width_control_20260913.py",
+    "base_sha256": "38fbe6c8d56e72825be14a45f8b4a57faacb1c537d9fc1f5c86459c1a93685f4",
+    "derived_sha256": "10f3f6b12f310be5177679e38c1daa15bb109098911261fd11d0abaa12f73e83"
+  },
+  "readout_memory_core_20260913.py": {
+    "base_file": "releases/forets-width-tools-20260913/readout_width_core_20260913.py",
+    "base_sha256": "5728162980af29c2faae48e94fefaa604c3db6ac0b76c027909217995ea281a7",
+    "derived_sha256": "e0f8bb1ea429d4d593c98d4c409ea159220056fec8ba4915b30ad536e3d6c519"
+  },
+  "verify_memory_action_hook_20260913.py": {
+    "base_file": "releases/forets-width-tools-20260913/verify_width_action_hook_20260913.py",
+    "base_sha256": "00e933e56f94ee3a537af0e6934cb377b6199dd338ae70cf5aacdd411c77b4a4",
+    "derived_sha256": "78d5b277533b54a5f3ff195b35fcea18c8f5a81164a2db294f2537ecbae88773"
+  },
+  "verify_memory_batch_20260913.py": {
+    "base_file": "releases/forets-width-tools-20260913/verify_width_batch_20260913.py",
+    "base_sha256": "e22ce1bde16ceb19e5fce8fe0b30d36cab3828c1d7a299048aa04a3ecfc1ff58",
+    "derived_sha256": "8c50aeba35c6cff67d6fd3d3a6e37076e1311a0013ad2ca7ad5657e4a3cd17b3"
+  }
+}

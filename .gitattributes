@@ -589,3 +589,7 @@ phase1/results/forets_action_prospective_20260913/*.csv -text diff whitespace=cr
 phase1/results/forets_width_control_20260913/*.json -text diff
 phase1/results/forets_width_control_20260913/*.csv -text diff whitespace=cr-at-eol
 phase1/results/senior_0911_metadata_20260913/*.json -text diff
+phase1/results/forets_memory_control_20260913/*.json -text diff
+phase1/results/forets_memory_control_20260913/*.csv -text diff whitespace=cr-at-eol
+phase1/releases/forets-width-source-20260913/source.tar -text
+phase1/releases/forets-memory-tools-20260913-v2/* -text

@@ -1,0 +1,1502 @@
+{
+  "api_calls": 0,
+  "gpu_jobs": 0,
+  "protected_cohort_read": false,
+  "role": "all_closed_action_delivery_mechanisms_not_new_effects",
+  "rows": [
+    {
+      "action_gain": 0.0,
+      "actions": [
+        {
+          "action": 1,
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 29.368387448,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 1.4853508895245304,
+          "step": 1
+        },
+        {
+          "action": 2,
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 71.880610444,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 1.4853508895245304,
+          "step": 2
+        },
+        {
+          "action": 3,
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 153.074735621,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 1.4853508895245304,
+          "step": 3
+        }
+      ],
+      "final_submission_ever_in_iteration_receipt": true,
+      "first_action_selection_of_final_submission_seconds": 29.368387448,
+      "iterations": [
+        {
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "seconds": 29.38844327,
+          "step": 2
+        }
+      ],
+      "pools": [
+        {
+          "phase": "complete",
+          "pool": "batch-1.sqlite",
+          "roles": [
+            "candidate"
+          ],
+          "sha256": "20696b0f05b6a20e55440840833d22a3a7987e8b6e6d605ad638f82b77fdccc8",
+          "states": [
+            "returned"
+          ]
+        },
+        {
+          "phase": "executing",
+          "pool": "batch-2.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate"
+          ],
+          "sha256": "80b2cef21a4500c226f6b92db181014000768c9979dc9d1de2aec278d1a56fe6",
+          "states": [
+            "returned",
+            "returned",
+            "returned"
+          ]
+        }
+      ],
+      "run_id": "00-leaf-classification-s34-uniform_random",
+      "seed": 34,
+      "selected_roles": [
+        "candidate"
+      ],
+      "task": "leaf-classification"
+    },
+    {
+      "action_gain": 1.18929,
+      "actions": [
+        {
+          "action": 1,
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 27.156358087,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 1.4853508895245304,
+          "step": 1
+        },
+        {
+          "action": 2,
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 58.635842092,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 1.4853508895245304,
+          "step": 2
+        },
+        {
+          "action": 3,
+          "code_sha256": "30db4508d1adf08c5a504b1185af831117609043e1d9930c3f88a98ecd2c9c1f",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 216.381330953,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.273403,
+          "step": 3
+        }
+      ],
+      "final_submission_ever_in_iteration_receipt": false,
+      "first_action_selection_of_final_submission_seconds": 216.381330953,
+      "iterations": [
+        {
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "seconds": 27.18048383,
+          "step": 2
+        }
+      ],
+      "pools": [
+        {
+          "phase": "complete",
+          "pool": "batch-1.sqlite",
+          "roles": [
+            "candidate"
+          ],
+          "sha256": "70980990547f843f817683db4c197867101a3495e40bd9a2bfae44814f2008c1",
+          "states": [
+            "returned"
+          ]
+        },
+        {
+          "phase": "executing",
+          "pool": "batch-2.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate"
+          ],
+          "sha256": "7b979467f1bdf2f63faf62165f848e22223caa73deaec0b3e549878683bf9fe0",
+          "states": [
+            "returned",
+            "returned",
+            "returned"
+          ]
+        }
+      ],
+      "run_id": "01-leaf-classification-s35-uniform_random",
+      "seed": 35,
+      "selected_roles": [
+        "debug"
+      ],
+      "task": "leaf-classification"
+    },
+    {
+      "action_gain": 0.0,
+      "actions": [
+        {
+          "action": 1,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 29.167209657,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 1
+        },
+        {
+          "action": 2,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 68.370650758,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 2
+        },
+        {
+          "action": 3,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 108.264889592,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 3
+        },
+        {
+          "action": 4,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 117.985131755,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 4
+        },
+        {
+          "action": 5,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 149.469367739,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 5
+        },
+        {
+          "action": 6,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 191.412358456,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 6
+        },
+        {
+          "action": 7,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 242.762671439,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 7
+        },
+        {
+          "action": 8,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 253.890397276,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 8
+        },
+        {
+          "action": 9,
+          "code_sha256": "cfb693dd2fa6ec926d203babca3c0e716d5569db586f7bf8eb1a645a9990a3ec",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 409.755700951,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.8112,
+          "step": 9
+        },
+        {
+          "action": 10,
+          "code_sha256": "cfb693dd2fa6ec926d203babca3c0e716d5569db586f7bf8eb1a645a9990a3ec",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 455.706777853,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.8112,
+          "step": 10
+        }
+      ],
+      "final_submission_ever_in_iteration_receipt": true,
+      "first_action_selection_of_final_submission_seconds": 409.755700951,
+      "iterations": [
+        {
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "seconds": 29.190184753,
+          "step": 2
+        },
+        {
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "seconds": 149.50706171,
+          "step": 6
+        },
+        {
+          "code_sha256": "cfb693dd2fa6ec926d203babca3c0e716d5569db586f7bf8eb1a645a9990a3ec",
+          "seconds": 409.784918541,
+          "step": 10
+        }
+      ],
+      "pools": [
+        {
+          "phase": "complete",
+          "pool": "batch-1.sqlite",
+          "roles": [
+            "candidate"
+          ],
+          "sha256": "c1e6aeee7cf3e14b1bf260673d41cbba8676f4f0bac5a92d1e8ea98312796ba2",
+          "states": [
+            "returned"
+          ]
+        },
+        {
+          "phase": "executing",
+          "pool": "batch-10.sqlite",
+          "roles": [
+            "candidate",
+            "debug"
+          ],
+          "sha256": "b14d02901d40a191f3e7c9d7b0c030f144215f53e19bf4466a9d22049f0f8169",
+          "states": [
+            "returned",
+            "returned"
+          ]
+        },
+        {
+          "phase": "complete",
+          "pool": "batch-2.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate",
+            "debug"
+          ],
+          "sha256": "ea0d19016cf92d77c27b4f3a7d17a259dfff5a7fe50bad765e2c209fefc68a88",
+          "states": [
+            "returned",
+            "returned",
+            "returned",
+            "returned"
+          ]
+        },
+        {
+          "phase": "complete",
+          "pool": "batch-6.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate",
+            "debug"
+          ],
+          "sha256": "0b81121327dcf41a65ab6c1d9d665a3850225e1e538122980ce08ac5feeb780c",
+          "states": [
+            "returned",
+            "returned",
+            "returned",
+            "returned"
+          ]
+        }
+      ],
+      "run_id": "02-spaceship-titanic-s34-uniform_random",
+      "seed": 34,
+      "selected_roles": [
+        "debug"
+      ],
+      "task": "spaceship-titanic"
+    },
+    {
+      "action_gain": 0.0,
+      "actions": [
+        {
+          "action": 1,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 28.018119432,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 1
+        },
+        {
+          "action": 2,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 64.624885339,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 2
+        },
+        {
+          "action": 3,
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 98.191893101,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.815974,
+          "step": 3
+        },
+        {
+          "action": 4,
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 110.30885357,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.815974,
+          "step": 4
+        },
+        {
+          "action": 5,
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 138.824400428,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.815974,
+          "step": 5
+        },
+        {
+          "action": 6,
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 196.588782372,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.815974,
+          "step": 6
+        },
+        {
+          "action": 7,
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 238.441365922,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.815974,
+          "step": 7
+        },
+        {
+          "action": 8,
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 252.80105208,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.815974,
+          "step": 8
+        },
+        {
+          "action": 9,
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 293.590028036,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.815974,
+          "step": 9
+        },
+        {
+          "action": 10,
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 371.365967577,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.815974,
+          "step": 10
+        },
+        {
+          "action": 11,
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 416.932028356,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.815974,
+          "step": 11
+        },
+        {
+          "action": 12,
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 464.003697558,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.815974,
+          "step": 12
+        }
+      ],
+      "final_submission_ever_in_iteration_receipt": true,
+      "first_action_selection_of_final_submission_seconds": 98.191893101,
+      "iterations": [
+        {
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "seconds": 28.044300669,
+          "step": 2
+        },
+        {
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "seconds": 138.856497413,
+          "step": 6
+        },
+        {
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "seconds": 293.616653667,
+          "step": 10
+        },
+        {
+          "code_sha256": "e7efe019b870e09b608735c504e32ec323f87c9e922acd48b4c59637dabecc9d",
+          "seconds": 416.959619676,
+          "step": 12
+        }
+      ],
+      "pools": [
+        {
+          "phase": "complete",
+          "pool": "batch-1.sqlite",
+          "roles": [
+            "candidate"
+          ],
+          "sha256": "369ec0935c965317aa15e2402e8f30b26268d9615baacef0fd9db786ab5f4505",
+          "states": [
+            "returned"
+          ]
+        },
+        {
+          "phase": "complete",
+          "pool": "batch-10.sqlite",
+          "roles": [
+            "candidate",
+            "candidate"
+          ],
+          "sha256": "a6c301be2fd839e33cdc83bbd8a54729ee797238d178eb6c86dbc7162e7fab07",
+          "states": [
+            "returned",
+            "returned"
+          ]
+        },
+        {
+          "phase": "executing",
+          "pool": "batch-12.sqlite",
+          "roles": [
+            "candidate",
+            "debug"
+          ],
+          "sha256": "fdb8cb9bc15076160f19e6550486dfab5155a92e48dac00b04517120f083397f",
+          "states": [
+            "returned",
+            "returned"
+          ]
+        },
+        {
+          "phase": "complete",
+          "pool": "batch-2.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate",
+            "debug"
+          ],
+          "sha256": "7c834dc8f714456fb4b95ed9573a0576c0d5894a9964b67f9590d262ec4d6771",
+          "states": [
+            "returned",
+            "returned",
+            "returned",
+            "returned"
+          ]
+        },
+        {
+          "phase": "complete",
+          "pool": "batch-6.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate",
+            "debug"
+          ],
+          "sha256": "70b3801421c03b0ffddeef60f6ace677786f1e714381a9f8bc052d2848cafebd",
+          "states": [
+            "returned",
+            "returned",
+            "returned",
+            "returned"
+          ]
+        }
+      ],
+      "run_id": "03-spaceship-titanic-s35-uniform_random",
+      "seed": 35,
+      "selected_roles": [
+        "debug"
+      ],
+      "task": "spaceship-titanic"
+    },
+    {
+      "action_gain": 0.0,
+      "actions": [
+        {
+          "action": 1,
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 29.598925779,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 1.4853508895245304,
+          "step": 1
+        },
+        {
+          "action": 2,
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 72.755587303,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 1.4853508895245304,
+          "step": 2
+        },
+        {
+          "action": 3,
+          "code_sha256": "1ca6ea25f1836dd22ca0d7e0a7695758ee8c265dee683bf7d360d85a10eb17b1",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 233.604983874,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.298595,
+          "step": 3
+        },
+        {
+          "action": 4,
+          "code_sha256": "1ca6ea25f1836dd22ca0d7e0a7695758ee8c265dee683bf7d360d85a10eb17b1",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 247.088213747,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.298595,
+          "step": 4
+        },
+        {
+          "action": 5,
+          "code_sha256": "1ca6ea25f1836dd22ca0d7e0a7695758ee8c265dee683bf7d360d85a10eb17b1",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 377.077878334,
+          "selected_roles": [
+            "debug"
+          ],
+          "selected_search_value": 0.298595,
+          "step": 5
+        }
+      ],
+      "final_submission_ever_in_iteration_receipt": true,
+      "first_action_selection_of_final_submission_seconds": 233.604983874,
+      "iterations": [
+        {
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "seconds": 29.617153583,
+          "step": 2
+        },
+        {
+          "code_sha256": "1ca6ea25f1836dd22ca0d7e0a7695758ee8c265dee683bf7d360d85a10eb17b1",
+          "seconds": 377.100974452,
+          "step": 6
+        }
+      ],
+      "pools": [
+        {
+          "phase": "complete",
+          "pool": "batch-1.sqlite",
+          "roles": [
+            "candidate"
+          ],
+          "sha256": "02e7898efde7fc59702baf8c07a55655021674e7fbb850112ce6b7785fca9c66",
+          "states": [
+            "returned"
+          ]
+        },
+        {
+          "phase": "complete",
+          "pool": "batch-2.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate",
+            "debug"
+          ],
+          "sha256": "2149f9705b1ea24d894afe5a6aa820ca561ae929c71db4d24795596181b3d5b2",
+          "states": [
+            "returned",
+            "returned",
+            "returned",
+            "returned"
+          ]
+        },
+        {
+          "phase": "executing",
+          "pool": "batch-6.sqlite",
+          "roles": [
+            "candidate"
+          ],
+          "sha256": "496fb2b7d8a25a8c0395215a70392e4f8dc10a268179190f7b00e28effcc75fb",
+          "states": [
+            "started"
+          ]
+        }
+      ],
+      "run_id": "04-leaf-classification-s36-uniform_random",
+      "seed": 36,
+      "selected_roles": [
+        "debug"
+      ],
+      "task": "leaf-classification"
+    },
+    {
+      "action_gain": 1.14009,
+      "actions": [
+        {
+          "action": 1,
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 27.785604372,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 1.4853508895245304,
+          "step": 1
+        },
+        {
+          "action": 2,
+          "code_sha256": "bb31fba1a434d8265197c5091308e586134eb204a4b82eaa88c0db5f496b7a9d",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 305.415241488,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.258525,
+          "step": 2
+        }
+      ],
+      "final_submission_ever_in_iteration_receipt": false,
+      "first_action_selection_of_final_submission_seconds": 305.415241488,
+      "iterations": [
+        {
+          "code_sha256": "bdac82a587f1c3ca1fa70cbc701f7f753823b367fddb7a53e5b578126fa42e6f",
+          "seconds": 27.808198986,
+          "step": 2
+        }
+      ],
+      "pools": [
+        {
+          "phase": "complete",
+          "pool": "batch-1.sqlite",
+          "roles": [
+            "candidate"
+          ],
+          "sha256": "6069067f7ebb7005e51d052ad5b6e30964b126088590ab99777afd2f8e10b2c2",
+          "states": [
+            "returned"
+          ]
+        },
+        {
+          "phase": "executing",
+          "pool": "batch-2.sqlite",
+          "roles": [
+            "candidate",
+            "candidate"
+          ],
+          "sha256": "9d9250630f59c55c5c5da2b6d38231fac6f8cdc7cf4ba3cdc345f07100148687",
+          "states": [
+            "returned",
+            "returned"
+          ]
+        }
+      ],
+      "run_id": "05-leaf-classification-s37-uniform_random",
+      "seed": 37,
+      "selected_roles": [
+        "candidate"
+      ],
+      "task": "leaf-classification"
+    },
+    {
+      "action_gain": 0.0,
+      "actions": [
+        {
+          "action": 1,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 28.012649608,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 1
+        },
+        {
+          "action": 2,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 70.91411182,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 2
+        },
+        {
+          "action": 3,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 102.694911927,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 3
+        },
+        {
+          "action": 4,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 116.210798819,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 4
+        },
+        {
+          "action": 5,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 148.198292802,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 5
+        },
+        {
+          "action": 6,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 187.132273628,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 6
+        },
+        {
+          "action": 7,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 222.774908056,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 7
+        },
+        {
+          "action": 8,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 234.889285434,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 8
+        },
+        {
+          "action": 9,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 268.987527685,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 9
+        },
+        {
+          "action": 10,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 328.373683948,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 10
+        },
+        {
+          "action": 11,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 388.381754446,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 11
+        },
+        {
+          "action": 12,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 401.679107303,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 12
+        },
+        {
+          "action": 13,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 442.673016842,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 13
+        }
+      ],
+      "final_submission_ever_in_iteration_receipt": true,
+      "first_action_selection_of_final_submission_seconds": 28.012649608,
+      "iterations": [
+        {
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "seconds": 28.032155751,
+          "step": 2
+        },
+        {
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "seconds": 148.221087749,
+          "step": 6
+        },
+        {
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "seconds": 269.025452949,
+          "step": 10
+        },
+        {
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "seconds": 442.70151887,
+          "step": 14
+        }
+      ],
+      "pools": [
+        {
+          "phase": "complete",
+          "pool": "batch-1.sqlite",
+          "roles": [
+            "candidate"
+          ],
+          "sha256": "6ba804ed96b5dd7a352b185cabce0b4c65ce7facf15615f2f542733ce0e0a8d3",
+          "states": [
+            "returned"
+          ]
+        },
+        {
+          "phase": "complete",
+          "pool": "batch-10.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate",
+            "debug"
+          ],
+          "sha256": "990d9b0f7caa0a70d8b47d7afc3589b7198d1b339c4a416a12b24a8f4c11efe1",
+          "states": [
+            "returned",
+            "returned",
+            "returned",
+            "returned"
+          ]
+        },
+        {
+          "phase": "executing",
+          "pool": "batch-14.sqlite",
+          "roles": [
+            "candidate"
+          ],
+          "sha256": "73c43b5439a9856bffde8622d9a0d544f92b08576565a757b6492d091309124e",
+          "states": [
+            "returned"
+          ]
+        },
+        {
+          "phase": "complete",
+          "pool": "batch-2.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate",
+            "debug"
+          ],
+          "sha256": "4969eacc7e61d1d325242e189c3ad1624a0408508f750ad34a74a737126e1725",
+          "states": [
+            "returned",
+            "returned",
+            "returned",
+            "returned"
+          ]
+        },
+        {
+          "phase": "complete",
+          "pool": "batch-6.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate",
+            "debug"
+          ],
+          "sha256": "30939889d5753a886368b4c8d40320e474eb90b0a3960f800e9bfb3cb2058551",
+          "states": [
+            "returned",
+            "returned",
+            "returned",
+            "returned"
+          ]
+        }
+      ],
+      "run_id": "06-spaceship-titanic-s36-uniform_random",
+      "seed": 36,
+      "selected_roles": [
+        "candidate"
+      ],
+      "task": "spaceship-titanic"
+    },
+    {
+      "action_gain": 0.0,
+      "actions": [
+        {
+          "action": 1,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 26.924923951,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 1
+        },
+        {
+          "action": 2,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 87.79546222,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 2
+        },
+        {
+          "action": 3,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 118.987941715,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 3
+        },
+        {
+          "action": 4,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 131.027465883,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 4
+        },
+        {
+          "action": 5,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 163.11299592,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 5
+        },
+        {
+          "action": 6,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 219.742261762,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 6
+        },
+        {
+          "action": 7,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 257.434389858,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 7
+        },
+        {
+          "action": 8,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 275.139455469,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 8
+        },
+        {
+          "action": 9,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": false,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 0,
+          "seconds": 353.797780345,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 9
+        },
+        {
+          "action": 10,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "candidate"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 410.46134615,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 10
+        },
+        {
+          "action": 11,
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "latest_buggy": true,
+          "latest_execution_roles": [
+            "debug"
+          ],
+          "latest_exit_code": 1,
+          "seconds": 459.039382271,
+          "selected_roles": [
+            "candidate"
+          ],
+          "selected_search_value": 0.7904153354632588,
+          "step": 11
+        }
+      ],
+      "final_submission_ever_in_iteration_receipt": true,
+      "first_action_selection_of_final_submission_seconds": 26.924923951,
+      "iterations": [
+        {
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "seconds": 26.949974991,
+          "step": 2
+        },
+        {
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "seconds": 163.144118493,
+          "step": 6
+        },
+        {
+          "code_sha256": "6610c17e158b33592ce355f460761826cc30cf05c1fd0099e75ba4ac7b0022c9",
+          "seconds": 353.827678461,
+          "step": 10
+        }
+      ],
+      "pools": [
+        {
+          "phase": "complete",
+          "pool": "batch-1.sqlite",
+          "roles": [
+            "candidate"
+          ],
+          "sha256": "6a5a597a247f741173a1089ffb4e124838f69cb4141a7ae865f1399fa7a78da5",
+          "states": [
+            "returned"
+          ]
+        },
+        {
+          "phase": "executing",
+          "pool": "batch-10.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate"
+          ],
+          "sha256": "afa5309a37955a395c3b400520ff82eed8e6c88d67fb7d3d48ea9b641ebc41f5",
+          "states": [
+            "returned",
+            "returned",
+            "returned"
+          ]
+        },
+        {
+          "phase": "complete",
+          "pool": "batch-2.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate",
+            "debug"
+          ],
+          "sha256": "9f7d73ddf94f10dcb0b5a006454a9abe1e11753a0a490476a7b09eb3970b15fc",
+          "states": [
+            "returned",
+            "returned",
+            "returned",
+            "returned"
+          ]
+        },
+        {
+          "phase": "complete",
+          "pool": "batch-6.sqlite",
+          "roles": [
+            "candidate",
+            "debug",
+            "candidate",
+            "debug"
+          ],
+          "sha256": "cafb93ac7474caa29e652ed02528cedf426a869e08663bcfe4fe7ef0ce0a0a74",
+          "states": [
+            "returned",
+            "returned",
+            "returned",
+            "returned"
+          ]
+        }
+      ],
+      "run_id": "07-spaceship-titanic-s37-uniform_random",
+      "seed": 37,
+      "selected_roles": [
+        "candidate"
+      ],
+      "task": "spaceship-titanic"
+    }
+  ],
+  "source_finish_sha256": "34eafb5d6a6e2b347f86b380697f0d4eb5ff52fc45ce441cd5361e4e60c33011"
+}

@@ -13,7 +13,7 @@ def close(a,b):
     elif not math.isclose(a,b,rel_tol=1e-12,abs_tol=1e-12):raise ValueError('statistic differs')
 
 def validate(path,kind):
-    prefix={'action':'action-delivery','width':'width'}[kind]
+    prefix={'action':'action-delivery','width':'width','memory':'memory'}[kind]
     finish=json.loads((path/'readout-finished.json').read_bytes())
     for name,digest in finish['files'].items():
         if hashlib.sha256((path/name).read_bytes()).hexdigest()!=digest:raise ValueError('export bytes differ from remote closure')
@@ -38,18 +38,19 @@ def validate(path,kind):
                 if gain is not None:gains.append(gain)
             groups.append((next(g for g in value['groups'] if g['task']==task),gains))
     else:
-        if {(r['task'],r['seed'],r['arm']) for r in rows}!={(t,s,a) for t in tasks for s in (38,39) for a in ('batch_four','direct_two')}:raise ValueError('width matrix')
+        seeds,arms,gain_key=((38,39),('batch_four','direct_two'),'direct_oriented_gain') if kind=='width' else ((40,41),('no_memory','execution_memory'),'memory_oriented_gain')
+        if {(r['task'],r['seed'],r['arm']) for r in rows}!={(t,s,a) for t in tasks for s in seeds for a in arms}:raise ValueError('exact contrast matrix')
         if value['primary_endpoint']!='action' or value['secondary_endpoint']!='iteration':raise ValueError('endpoint switching')
         for endpoint in ('action','iteration'):
             for task in tasks:
                 gains=[]
-                for seed in (38,39):
-                    a,b=[next(r for r in rows if (r['task'],r['seed'],r['arm'])==(task,seed,arm)) for arm in ('batch_four','direct_two')]
+                for seed in seeds:
+                    a,b=[next(r for r in rows if (r['task'],r['seed'],r['arm'])==(task,seed,arm)) for arm in arms]
                     valid=a['technical_eligible'] and b['technical_eligible'] and a[endpoint+'_valid'] and b[endpoint+'_valid']
                     gain=((a[endpoint+'_score']-b[endpoint+'_score']) if task==tasks[0] else (b[endpoint+'_score']-a[endpoint+'_score'])) if valid else None
                     pair=next(p for p in value['pairs'] if (p['endpoint'],p['task'],p['seed'])==(endpoint,task,seed))
                     if pair['quality_comparable']!=valid:raise ValueError('width eligibility')
-                    close(gain,pair['direct_oriented_gain'])
+                    close(gain,pair[gain_key])
                     if gain is not None:gains.append(gain)
                 groups.append((next(g for g in value['groups'] if (g['endpoint'],g['task'])==(endpoint,task)),gains))
     for group,gains in groups:
@@ -61,5 +62,5 @@ def validate(path,kind):
         closure_sha256=hashlib.sha256((path/'readout-finished.json').read_bytes()).hexdigest())
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('kind',choices=('action','width'));p.add_argument('directory',type=Path);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('kind',choices=('action','width','memory'));p.add_argument('directory',type=Path);a=p.parse_args()
     print(json.dumps(validate(a.directory,a.kind)))

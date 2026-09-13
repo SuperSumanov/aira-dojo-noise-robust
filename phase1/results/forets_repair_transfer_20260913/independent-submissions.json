@@ -1,0 +1,31 @@
+{
+  "allocation_gpu_hours": 0.4738888888888889,
+  "allocation_seconds": 1706,
+  "allocations": [
+    {
+      "cpus": 6,
+      "elapsed_seconds": 1587,
+      "gpu_count": 1,
+      "job": "13258",
+      "node": "gpu28",
+      "physical_devices": 1,
+      "state": "FAILED"
+    },
+    {
+      "cpus": 6,
+      "elapsed_seconds": 119,
+      "gpu_count": 1,
+      "job": "13257",
+      "node": "gpu28",
+      "physical_devices": 1,
+      "state": "COMPLETED"
+    }
+  ],
+  "caveat": "Checks delivered predictions and arithmetic, not training-data integrity or e2e utility. No rerun or replacement.",
+  "numeric_regrades": 0,
+  "numerical_reader_sha256": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+  "proofs": [],
+  "summary_sha256": "4157031453885d61f8129ba116cbb7d8d8a5307dddd388df9b7efa714d14cb17",
+  "utc": "2026-09-13T11:45:35.864628+00:00",
+  "verified": true
+}

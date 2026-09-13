@@ -1,0 +1,108 @@
+{
+  "verified": true,
+  "hashes": {
+    "summary.json": "4157031453885d61f8129ba116cbb7d8d8a5307dddd388df9b7efa714d14cb17",
+    "runs.csv": "40bd54bfdb8bdeea2f50cd78dbbaeedef27988e5a05c42b50e7c1b2926e42b0a"
+  },
+  "planned": 24,
+  "cases": 8,
+  "comparisons": [
+    {
+      "right": "no_external_memory",
+      "planned_pairs": 8,
+      "known_pairs": 6,
+      "unknown_pairs": 2,
+      "wins": 0,
+      "losses": 0,
+      "ties": 6,
+      "mean_paired_success_difference": 0,
+      "descriptive_two_sided_sign_p": 1.0
+    },
+    {
+      "right": "random_repair",
+      "planned_pairs": 8,
+      "known_pairs": 6,
+      "unknown_pairs": 2,
+      "wins": 0,
+      "losses": 0,
+      "ties": 6,
+      "mean_paired_success_difference": 0,
+      "descriptive_two_sided_sign_p": 1.0
+    }
+  ],
+  "task_comparisons": [
+    {
+      "task": "leaf-classification",
+      "right": "no_external_memory",
+      "planned_pairs": 4,
+      "known_pairs": 2,
+      "unknown_pairs": 2,
+      "wins": 0,
+      "losses": 0,
+      "ties": 2,
+      "mean_paired_success_difference": 0,
+      "descriptive_two_sided_sign_p": 1.0
+    },
+    {
+      "task": "leaf-classification",
+      "right": "random_repair",
+      "planned_pairs": 4,
+      "known_pairs": 2,
+      "unknown_pairs": 2,
+      "wins": 0,
+      "losses": 0,
+      "ties": 2,
+      "mean_paired_success_difference": 0,
+      "descriptive_two_sided_sign_p": 1.0
+    },
+    {
+      "task": "spaceship-titanic",
+      "right": "no_external_memory",
+      "planned_pairs": 4,
+      "known_pairs": 4,
+      "unknown_pairs": 0,
+      "wins": 0,
+      "losses": 0,
+      "ties": 4,
+      "mean_paired_success_difference": 0,
+      "descriptive_two_sided_sign_p": 1.0
+    },
+    {
+      "task": "spaceship-titanic",
+      "right": "random_repair",
+      "planned_pairs": 4,
+      "known_pairs": 4,
+      "unknown_pairs": 0,
+      "wins": 0,
+      "losses": 0,
+      "ties": 4,
+      "mean_paired_success_difference": 0,
+      "descriptive_two_sided_sign_p": 1.0
+    }
+  ],
+  "development_expansion_gate": false,
+  "same_memory_cases": [
+    {
+      "case": 0,
+      "same_code": true,
+      "same_success": true
+    },
+    {
+      "case": 1,
+      "same_code": false,
+      "same_success": true
+    },
+    {
+      "case": 2,
+      "same_code": true,
+      "same_success": false
+    },
+    {
+      "case": 5,
+      "same_code": true,
+      "same_success": true
+    }
+  ],
+  "api_cost_usd": 0.064408812,
+  "caveat": "Independent public arithmetic, not a second execution, learning-integrity audit, multiplicity-adjusted test, or confirmatory e2e evidence."
+}

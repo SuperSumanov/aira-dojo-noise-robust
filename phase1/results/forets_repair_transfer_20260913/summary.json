@@ -1,0 +1,864 @@
+{
+  "billing": {
+    "accounted_usd": 6.366536198,
+    "authorization_sha256": "a3a4561fb81d538d797e32997cf75deff8131784d8fa12da5b329a76f023743e",
+    "calls": 1779,
+    "settled_usd": 4.966536198,
+    "stopped": false,
+    "unresolved": 2
+  },
+  "caveats": [
+    "Eight old-development failed states, not a new untouched test cohort or eight full searches.",
+    "Primary success is zero-error execution plus valid-format scored submission, not clean-learning proof.",
+    "One call and 300-second execution allowance per arm; not equal realized cost or strict combined walltime.",
+    "Same-source-task memories, not cross-task transfer; random and retrieved may select identical examples.",
+    "No claim of novelty, stable generality, critic gain, scaling, or full-search improvement."
+  ],
+  "comparisons": [
+    {
+      "case_bootstrap_95_percentile": [
+        0.0,
+        0.0
+      ],
+      "caveat": "Small descriptive case bootstrap, not task-population CI or sequential significance test.",
+      "known_pairs": 6,
+      "left": "retrieved_repair",
+      "losses": 0,
+      "mean_paired_success_difference": 0,
+      "paired_rows": [
+        {
+          "case": 0,
+          "delta": 0,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 1,
+          "delta": 0,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 2,
+          "delta": null,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 3,
+          "delta": null,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 4,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 5,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 6,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 7,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        }
+      ],
+      "planned_pairs": 8,
+      "right": "no_external_memory",
+      "ties": 6,
+      "unknown_pairs": 2,
+      "wins": 0
+    },
+    {
+      "case_bootstrap_95_percentile": [
+        0.0,
+        0.0
+      ],
+      "caveat": "Small descriptive case bootstrap, not task-population CI or sequential significance test.",
+      "known_pairs": 6,
+      "left": "retrieved_repair",
+      "losses": 0,
+      "mean_paired_success_difference": 0,
+      "paired_rows": [
+        {
+          "case": 0,
+          "delta": 0,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 1,
+          "delta": 0,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 2,
+          "delta": null,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 3,
+          "delta": null,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 4,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 5,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 6,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 7,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        }
+      ],
+      "planned_pairs": 8,
+      "right": "random_repair",
+      "ties": 6,
+      "unknown_pairs": 2,
+      "wins": 0
+    }
+  ],
+  "development_expansion_gate": false,
+  "groups": [
+    {
+      "api_cost_usd": 0.009421737,
+      "arm": "no_external_memory",
+      "conditional_score_median": null,
+      "conditional_score_sample_sd": null,
+      "conservative_success_fraction": 0.0,
+      "execution_wall_seconds": 722.8011863152497,
+      "generation_seconds": 55.72395256080199,
+      "known_failure": 3,
+      "planned": 4,
+      "success": 0,
+      "task": "leaf-classification",
+      "unknown": 1
+    },
+    {
+      "api_cost_usd": 0.009443499,
+      "arm": "retrieved_repair",
+      "conditional_score_median": null,
+      "conditional_score_sample_sd": null,
+      "conservative_success_fraction": 0.0,
+      "execution_wall_seconds": 534.603222167585,
+      "generation_seconds": 56.76180975791067,
+      "known_failure": 2,
+      "planned": 4,
+      "success": 0,
+      "task": "leaf-classification",
+      "unknown": 2
+    },
+    {
+      "api_cost_usd": 0.010336716,
+      "arm": "random_repair",
+      "conditional_score_median": null,
+      "conditional_score_sample_sd": null,
+      "conservative_success_fraction": 0.0,
+      "execution_wall_seconds": 322.15415257867426,
+      "generation_seconds": 58.85575982602313,
+      "known_failure": 3,
+      "planned": 4,
+      "success": 0,
+      "task": "leaf-classification",
+      "unknown": 1
+    },
+    {
+      "api_cost_usd": 0.011120733,
+      "arm": "no_external_memory",
+      "conditional_score_median": null,
+      "conditional_score_sample_sd": null,
+      "conservative_success_fraction": 0.0,
+      "execution_wall_seconds": 30.08480268344283,
+      "generation_seconds": 66.82725405192468,
+      "known_failure": 4,
+      "planned": 4,
+      "success": 0,
+      "task": "spaceship-titanic",
+      "unknown": 0
+    },
+    {
+      "api_cost_usd": 0.011649729000000001,
+      "arm": "retrieved_repair",
+      "conditional_score_median": null,
+      "conditional_score_sample_sd": null,
+      "conservative_success_fraction": 0.0,
+      "execution_wall_seconds": 41.59029842633754,
+      "generation_seconds": 70.27594300999772,
+      "known_failure": 4,
+      "planned": 4,
+      "success": 0,
+      "task": "spaceship-titanic",
+      "unknown": 0
+    },
+    {
+      "api_cost_usd": 0.012436398000000001,
+      "arm": "random_repair",
+      "conditional_score_median": null,
+      "conditional_score_sample_sd": null,
+      "conservative_success_fraction": 0.0,
+      "execution_wall_seconds": 40.25682210037485,
+      "generation_seconds": 71.38229415472597,
+      "known_failure": 4,
+      "planned": 4,
+      "success": 0,
+      "task": "spaceship-titanic",
+      "unknown": 0
+    }
+  ],
+  "prepared_sha256": "c6e1e0e76a98dda3c5913f3c8ac38e5beb3000fac95d401d40569c8640b5e027",
+  "proof": {
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-0/execution-finished.json": "fddd913b5d87d787ddbe99428538febb5491d074d4923e429a72f809b5a04f1a",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-0/result-0.json": "ff8b299d2d684931d94835552449ef8257f6051705c21fc42617f3df4ab23c3e",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-0/result-1.json": "30b5717a71abdd10bf30d3526a2050bb39eba7096ea5a2a95d4db2acfbce2af4",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-0/result-2.json": "15b58f6a2d83c4798ecee976e2cb5686dd4a3d1db6795bbeddc03d32f3f381c3",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-0/result-3.json": "c8298c177419b341cc7da0576093c719afa098b3d90c686284b50e96855c901e",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-0/result-4.json": "d213e12eb056acbf333c28080937291231adb69a88498b07325afdb5def7cde8",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-0/result-5.json": "65a51ed86069545ba7b87aad5b4656ebefede2db47dd855e20d9a83ea2c927ae",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-0/result-6.json": "f53ede7554983a34b52151cb48efe6ed89e29a2fb0a90cfaa10641cb3d79985f",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-0/result-7.json": "c3bd3895c16ba90cfa1db38f591d9623a9830eeb41ce64b22019e718afa5e1a6",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/execution-finished.json": "fd5f41561849bdbcf359b361e37d15e6143ea19e332d164d76e44c0069e702f5",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/result-0.json": "dced1ad301522ecf5f0d0824195eb2852f824dee4be0280403da3fb670505f89",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/result-1.json": "6a7339f69308bd868dbf2b5d583182eebdbf96a86251f86ad676fa24b1db18ca",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/result-10.json": "3a9f52b15eda436472ef97db0ff0b3a8810c624b68773ac9ac13620d2480f9e1",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/result-2.json": "73673579368182e8c5dd3a0af72b759c71164e5ccff4670291a6cf9eecca3414",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/result-3.json": "eb5e5128210ca21e33c779821733413daf3334ea1ecb7bd2fd33e8c8e0c97cf3",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/result-4.json": "6b3948a794afdbe5ee752f9b99642feeb1350ed1657fb05885f73be66e30daa8",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/result-5.json": "00345afda1c17c2428381de6a4ce65d6df040dac75b5153b4d7f51b3cdfb0248",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/result-6.json": "0e112c8085205c146f9fd4ea3973283da28fe6e258fa32af861d434cbb52b156",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/result-7.json": "7279b122ae9b50a421d3680457c9002cf237baccce4a6df5c689723402cce23e",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/result-8.json": "228c4246055122f274d620eccb9f0570bced78e41867143a783f86b914639723",
+    "/research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61/block-1/result-9.json": "c4c62995fdd91590aee57723f5e3f6d93599f554208f9ede179604d4d77626ba"
+  },
+  "role": "T1_same_execution_allowance_repair_transfer_not_wallclock_e2e",
+  "rows": [
+    {
+      "arm": "no_external_memory",
+      "case": 0,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.002894775,
+      "execution_wall_seconds": 315.78171215206385,
+      "generated_code_sha256": "dfe9388b6e9aefe8334e49208ff08ffded44f8c4c194f5d0b06108761b797761",
+      "generation_seconds": 16.496935154893436,
+      "index": 0,
+      "job": "13258",
+      "memory_diff_sha256": null,
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091300,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_timeout",
+      "target_code_sha256": "a0d8b4b9b85b1e62431b988ef72127daffa8cd0b943d269fa7f5c96bca545ea0",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 0,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.002932371,
+      "execution_wall_seconds": 312.81957060517743,
+      "generated_code_sha256": "60f4afd3bc50b51bfda27dc16dad788e84bc653ca4648f39f912a5d6c80f5787",
+      "generation_seconds": 16.845819465001114,
+      "index": 1,
+      "job": "13258",
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091300,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_timeout",
+      "target_code_sha256": "a0d8b4b9b85b1e62431b988ef72127daffa8cd0b943d269fa7f5c96bca545ea0",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "random_repair",
+      "case": 0,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.003291795,
+      "execution_wall_seconds": 312.47675707098097,
+      "generated_code_sha256": "60f4afd3bc50b51bfda27dc16dad788e84bc653ca4648f39f912a5d6c80f5787",
+      "generation_seconds": 16.62415987602435,
+      "index": 2,
+      "job": "13258",
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091300,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_timeout",
+      "target_code_sha256": "a0d8b4b9b85b1e62431b988ef72127daffa8cd0b943d269fa7f5c96bca545ea0",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 1,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.00217971,
+      "execution_wall_seconds": 98.07252296432853,
+      "generated_code_sha256": "570f2568dc36419373aa16372cd99a23d9d2653645608b376bf0ea2d982acd40",
+      "generation_seconds": 8.246836220961995,
+      "index": 3,
+      "job": "13258",
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091301,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "78838e587622dd63996f7115195834b44d3802c6442ffb71d5852b5b0ed4c110",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "random_repair",
+      "case": 1,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.001502748,
+      "execution_wall_seconds": null,
+      "generated_code_sha256": null,
+      "generation_seconds": 7.662193687981926,
+      "index": 4,
+      "job": null,
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091301,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "generation_format_or_syntax_failure",
+      "target_code_sha256": "78838e587622dd63996f7115195834b44d3802c6442ffb71d5852b5b0ed4c110",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 1,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.001423266,
+      "execution_wall_seconds": 97.7672443781048,
+      "generated_code_sha256": "cfcafc58eb03579195302445cee0e93dac6f24023f5bf02b5b0642a65facf575",
+      "generation_seconds": 7.887534128967673,
+      "index": 5,
+      "job": "13258",
+      "memory_diff_sha256": null,
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091301,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "78838e587622dd63996f7115195834b44d3802c6442ffb71d5852b5b0ed4c110",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "random_repair",
+      "case": 2,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.002780778,
+      "execution_wall_seconds": 9.67739550769329,
+      "generated_code_sha256": "f3b4dcb7be8bf037142723deb5e1e1adfb8fb5fec16f6ccf6d27c8aaeeb93008",
+      "generation_seconds": 21.244147176039405,
+      "index": 6,
+      "job": "13258",
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091302,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "15310019b0bacc0beb658f6f03e1903519be50e5425bd9f7f73d0f5143baab8b",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 2,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.00311727,
+      "execution_wall_seconds": 309.252229785081,
+      "generated_code_sha256": "992de0b9a0a2651c68fa5d2d075e5d133d00012d743e17f757f3cdfa716aca2f",
+      "generation_seconds": 18.966272932011634,
+      "index": 7,
+      "job": "13258",
+      "memory_diff_sha256": null,
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091302,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_timeout",
+      "target_code_sha256": "15310019b0bacc0beb658f6f03e1903519be50e5425bd9f7f73d0f5143baab8b",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 2,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.00226161,
+      "execution_wall_seconds": 123.71112859807909,
+      "generated_code_sha256": "f3b4dcb7be8bf037142723deb5e1e1adfb8fb5fec16f6ccf6d27c8aaeeb93008",
+      "generation_seconds": 18.420198795967735,
+      "index": 8,
+      "job": "13258",
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "repair_success": null,
+      "score": null,
+      "seed": 2026091302,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "infrastructure_error",
+      "target_code_sha256": "15310019b0bacc0beb658f6f03e1903519be50e5425bd9f7f73d0f5143baab8b",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 3,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.001986426,
+      "execution_wall_seconds": null,
+      "generated_code_sha256": "54640d81f4fe9fe2e2ad1a198d3f740b4a9d3f8d85a8eeffbb1a1af91ae8f96d",
+      "generation_seconds": 12.373210344929248,
+      "index": 9,
+      "job": null,
+      "memory_diff_sha256": null,
+      "repair_success": null,
+      "score": null,
+      "seed": 2026091303,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "not_executed",
+      "target_code_sha256": "418c63ba6e34374f38ccc03e0e0490e12c31c1f6ab80277f5ec87c69689626d9",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 3,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.002069808,
+      "execution_wall_seconds": null,
+      "generated_code_sha256": "54640d81f4fe9fe2e2ad1a198d3f740b4a9d3f8d85a8eeffbb1a1af91ae8f96d",
+      "generation_seconds": 13.248955275979824,
+      "index": 10,
+      "job": null,
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "repair_success": null,
+      "score": null,
+      "seed": 2026091303,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "not_executed",
+      "target_code_sha256": "418c63ba6e34374f38ccc03e0e0490e12c31c1f6ab80277f5ec87c69689626d9",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "random_repair",
+      "case": 3,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.002761395,
+      "execution_wall_seconds": null,
+      "generated_code_sha256": "54640d81f4fe9fe2e2ad1a198d3f740b4a9d3f8d85a8eeffbb1a1af91ae8f96d",
+      "generation_seconds": 13.32525908597745,
+      "index": 11,
+      "job": null,
+      "memory_diff_sha256": "dda73117d08dbe2fe4355f9dc8cb6e0e239a1084bc7682b64a499e0f29777afb",
+      "repair_success": null,
+      "score": null,
+      "seed": 2026091303,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "not_executed",
+      "target_code_sha256": "418c63ba6e34374f38ccc03e0e0490e12c31c1f6ab80277f5ec87c69689626d9",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 4,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.003236025,
+      "execution_wall_seconds": 11.02317197015509,
+      "generated_code_sha256": "e44c17e9bb4e168658af3cc1f70baa515c23b748ea6553c5599a922ecde93af9",
+      "generation_seconds": 16.298055352992378,
+      "index": 12,
+      "job": "13257",
+      "memory_diff_sha256": "31d49b26882b3248c83364999f3c451bf6cd06a0d33911c854e7536c5079ab74",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091304,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "8d7adb43b65ed1bf75e2d1f54f7bdccd911fa38bdb8381054123779e235e84ab",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "random_repair",
+      "case": 4,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.003154515,
+      "execution_wall_seconds": 9.96414968976751,
+      "generated_code_sha256": "34897cef4ebd3df8070861295da98bd33a8f27982eea2035c3fa2d2d8a1944d5",
+      "generation_seconds": 18.97713929391466,
+      "index": 13,
+      "job": "13257",
+      "memory_diff_sha256": "b9b95dc4599fbc8eefc8ea0b9ca31be79578869d32dc4602e37e317232074fa5",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091304,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "8d7adb43b65ed1bf75e2d1f54f7bdccd911fa38bdb8381054123779e235e84ab",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 4,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.00273117,
+      "execution_wall_seconds": null,
+      "generated_code_sha256": null,
+      "generation_seconds": 16.327273526927456,
+      "index": 14,
+      "job": null,
+      "memory_diff_sha256": null,
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091304,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "generation_format_or_syntax_failure",
+      "target_code_sha256": "8d7adb43b65ed1bf75e2d1f54f7bdccd911fa38bdb8381054123779e235e84ab",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "random_repair",
+      "case": 5,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.002918565,
+      "execution_wall_seconds": 10.136245453730226,
+      "generated_code_sha256": "c6402cfecc1f53a688f402e01a9f0df40224a0bbb4a0adc7c82bcd7bd4256930",
+      "generation_seconds": 15.790391195914708,
+      "index": 15,
+      "job": "13257",
+      "memory_diff_sha256": "b9b95dc4599fbc8eefc8ea0b9ca31be79578869d32dc4602e37e317232074fa5",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091305,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "cfcf0445e91f4ab5e68579d144657c94e87224c4fa691c08db21382e53f50a8f",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 5,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.002774655,
+      "execution_wall_seconds": 9.470260690432042,
+      "generated_code_sha256": "0fc61404eb44a96cdca4a10790779d9df1cd7e4950316962300ce13fbc498cac",
+      "generation_seconds": 14.675148937967606,
+      "index": 16,
+      "job": "13257",
+      "memory_diff_sha256": null,
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091305,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "cfcf0445e91f4ab5e68579d144657c94e87224c4fa691c08db21382e53f50a8f",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 5,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.002359461,
+      "execution_wall_seconds": 10.26202288409695,
+      "generated_code_sha256": "c6402cfecc1f53a688f402e01a9f0df40224a0bbb4a0adc7c82bcd7bd4256930",
+      "generation_seconds": 14.771606863010675,
+      "index": 17,
+      "job": "13257",
+      "memory_diff_sha256": "b9b95dc4599fbc8eefc8ea0b9ca31be79578869d32dc4602e37e317232074fa5",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091305,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "cfcf0445e91f4ab5e68579d144657c94e87224c4fa691c08db21382e53f50a8f",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 6,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.003169413,
+      "execution_wall_seconds": 11.05791152594611,
+      "generated_code_sha256": "a4cd9585e441f8aa981a6f7c2af94b728d2daaeeda3ed61ca911dc4908df8319",
+      "generation_seconds": 21.337406627018936,
+      "index": 18,
+      "job": "13257",
+      "memory_diff_sha256": null,
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091306,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "d4028443b0d3ba1234a1f46db0e7c44d0226d652561f757e1b88c4ee9f3ae583",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 6,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.003757455,
+      "execution_wall_seconds": 10.663717442192137,
+      "generated_code_sha256": "2197b8238092078eeac1298bdcdbb63879c188439d176b07994349c3c2e17ecb",
+      "generation_seconds": 22.110375802963972,
+      "index": 19,
+      "job": "13257",
+      "memory_diff_sha256": "b9b95dc4599fbc8eefc8ea0b9ca31be79578869d32dc4602e37e317232074fa5",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091306,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "d4028443b0d3ba1234a1f46db0e7c44d0226d652561f757e1b88c4ee9f3ae583",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "random_repair",
+      "case": 6,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.003587493,
+      "execution_wall_seconds": 10.543656528927386,
+      "generated_code_sha256": "f9651112470ad7ce62a42b7743a3073b673c6f8c29194013edf372a7b165e385",
+      "generation_seconds": 21.973976960987784,
+      "index": 20,
+      "job": "13257",
+      "memory_diff_sha256": "b8a6bb87c489a3cf0dcdbafe42431ca18bc036679ecb829c1edf4c6b6c90cdab",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091306,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "d4028443b0d3ba1234a1f46db0e7c44d0226d652561f757e1b88c4ee9f3ae583",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 7,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.002296788,
+      "execution_wall_seconds": 9.641386129893363,
+      "generated_code_sha256": "a20d97b84a419c633ae62cf10f00770c36d0abb020d3e6d6147e4894d93006ec",
+      "generation_seconds": 17.095904991030693,
+      "index": 21,
+      "job": "13257",
+      "memory_diff_sha256": "d426d4c3010689461aab9d067c1bfbd9989b6ccce0c6239bcbef0cd38bde1f4c",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091307,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "89b5ea071d357ceb898ec0d12bc9c516195a7a682d731a571acba8495607b995",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "random_repair",
+      "case": 7,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.002775825,
+      "execution_wall_seconds": 9.612770427949727,
+      "generated_code_sha256": "a20d97b84a419c633ae62cf10f00770c36d0abb020d3e6d6147e4894d93006ec",
+      "generation_seconds": 14.640786703908816,
+      "index": 22,
+      "job": "13257",
+      "memory_diff_sha256": "d20c2e5ecb16968b25e4b224c731530f5dd322eef4336a5e1c63f13af1cf5c9d",
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091307,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "89b5ea071d357ceb898ec0d12bc9c516195a7a682d731a571acba8495607b995",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 7,
+      "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+      "cost_usd": 0.002445495,
+      "execution_wall_seconds": 9.556630467064679,
+      "generated_code_sha256": "05022ad0cb458843714cd0e8a46faf7b45fe22fb08a1cb64427eae7d0ed7ddf3",
+      "generation_seconds": 14.487424960010685,
+      "index": 23,
+      "job": "13257",
+      "memory_diff_sha256": null,
+      "repair_success": false,
+      "score": null,
+      "seed": 2026091307,
+      "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+      "status": "program_error",
+      "target_code_sha256": "89b5ea071d357ceb898ec0d12bc9c516195a7a682d731a571acba8495607b995",
+      "task": "spaceship-titanic"
+    }
+  ],
+  "task_comparisons": [
+    {
+      "case_bootstrap_95_percentile": [
+        0.0,
+        0.0
+      ],
+      "caveat": "Small descriptive case bootstrap, not task-population CI or sequential significance test.",
+      "known_pairs": 2,
+      "left": "retrieved_repair",
+      "losses": 0,
+      "mean_paired_success_difference": 0,
+      "paired_rows": [
+        {
+          "case": 0,
+          "delta": 0,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 1,
+          "delta": 0,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 2,
+          "delta": null,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 3,
+          "delta": null,
+          "task": "leaf-classification"
+        }
+      ],
+      "planned_pairs": 4,
+      "right": "no_external_memory",
+      "task": "leaf-classification",
+      "ties": 2,
+      "unknown_pairs": 2,
+      "wins": 0
+    },
+    {
+      "case_bootstrap_95_percentile": [
+        0.0,
+        0.0
+      ],
+      "caveat": "Small descriptive case bootstrap, not task-population CI or sequential significance test.",
+      "known_pairs": 2,
+      "left": "retrieved_repair",
+      "losses": 0,
+      "mean_paired_success_difference": 0,
+      "paired_rows": [
+        {
+          "case": 0,
+          "delta": 0,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 1,
+          "delta": 0,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 2,
+          "delta": null,
+          "task": "leaf-classification"
+        },
+        {
+          "case": 3,
+          "delta": null,
+          "task": "leaf-classification"
+        }
+      ],
+      "planned_pairs": 4,
+      "right": "random_repair",
+      "task": "leaf-classification",
+      "ties": 2,
+      "unknown_pairs": 2,
+      "wins": 0
+    },
+    {
+      "case_bootstrap_95_percentile": [
+        0.0,
+        0.0
+      ],
+      "caveat": "Small descriptive case bootstrap, not task-population CI or sequential significance test.",
+      "known_pairs": 4,
+      "left": "retrieved_repair",
+      "losses": 0,
+      "mean_paired_success_difference": 0,
+      "paired_rows": [
+        {
+          "case": 4,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 5,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 6,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 7,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        }
+      ],
+      "planned_pairs": 4,
+      "right": "no_external_memory",
+      "task": "spaceship-titanic",
+      "ties": 4,
+      "unknown_pairs": 0,
+      "wins": 0
+    },
+    {
+      "case_bootstrap_95_percentile": [
+        0.0,
+        0.0
+      ],
+      "caveat": "Small descriptive case bootstrap, not task-population CI or sequential significance test.",
+      "known_pairs": 4,
+      "left": "retrieved_repair",
+      "losses": 0,
+      "mean_paired_success_difference": 0,
+      "paired_rows": [
+        {
+          "case": 4,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 5,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 6,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        },
+        {
+          "case": 7,
+          "delta": 0,
+          "task": "spaceship-titanic"
+        }
+      ],
+      "planned_pairs": 4,
+      "right": "random_repair",
+      "task": "spaceship-titanic",
+      "ties": 4,
+      "unknown_pairs": 0,
+      "wins": 0
+    }
+  ],
+  "utc": "2026-09-13T11:45:03.171200+00:00"
+}

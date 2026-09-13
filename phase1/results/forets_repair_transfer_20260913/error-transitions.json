@@ -1,0 +1,459 @@
+{
+  "caveat": "Trace patterns may overlap or occur before a later failure. Disappearance of an error does not prove its cause fixed, valid learning, or higher quality. No arm/row excluded, no changed primary gate.",
+  "groups": [
+    {
+      "after_families": {
+        "early_stopping_without_validation": 1
+      },
+      "arm": "no_external_memory",
+      "original_families": {},
+      "repeated_recognized_family": 0,
+      "status_counts": {
+        "not_executed": 1,
+        "program_error": 1,
+        "program_timeout": 2
+      },
+      "task": "leaf-classification"
+    },
+    {
+      "after_families": {
+        "early_stopping_without_validation": 1
+      },
+      "arm": "retrieved_repair",
+      "original_families": {},
+      "repeated_recognized_family": 0,
+      "status_counts": {
+        "infrastructure_error": 1,
+        "not_executed": 1,
+        "program_error": 1,
+        "program_timeout": 1
+      },
+      "task": "leaf-classification"
+    },
+    {
+      "after_families": {},
+      "arm": "random_repair",
+      "original_families": {},
+      "repeated_recognized_family": 0,
+      "status_counts": {
+        "generation_format_or_syntax_failure": 1,
+        "not_executed": 1,
+        "program_error": 1,
+        "program_timeout": 1
+      },
+      "task": "leaf-classification"
+    },
+    {
+      "after_families": {
+        "categorical_new_fill_value": 1
+      },
+      "arm": "no_external_memory",
+      "original_families": {
+        "categorical_new_fill_value": 2
+      },
+      "repeated_recognized_family": 1,
+      "status_counts": {
+        "generation_format_or_syntax_failure": 1,
+        "program_error": 3
+      },
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_families": {
+        "early_stopping_without_validation": 1,
+        "missing_target_column": 1
+      },
+      "arm": "retrieved_repair",
+      "original_families": {
+        "categorical_new_fill_value": 2
+      },
+      "repeated_recognized_family": 0,
+      "status_counts": {
+        "program_error": 4
+      },
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_families": {
+        "early_stopping_without_validation": 1,
+        "missing_target_column": 1
+      },
+      "arm": "random_repair",
+      "original_families": {
+        "categorical_new_fill_value": 2
+      },
+      "repeated_recognized_family": 0,
+      "status_counts": {
+        "program_error": 4
+      },
+      "task": "spaceship-titanic"
+    }
+  ],
+  "role": "T1_exploratory_complete_error_transitions_not_new_endpoint",
+  "rows": [
+    {
+      "after_exception": "no_recognized_exception",
+      "after_families": [],
+      "arm": "no_external_memory",
+      "case": 0,
+      "index": 0,
+      "original_exception": "ValueError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_timeout",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": "no_recognized_exception",
+      "after_families": [],
+      "arm": "retrieved_repair",
+      "case": 0,
+      "index": 1,
+      "original_exception": "ValueError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_timeout",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": "no_recognized_exception",
+      "after_families": [],
+      "arm": "random_repair",
+      "case": 0,
+      "index": 2,
+      "original_exception": "ValueError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_timeout",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": "ValueError",
+      "after_families": [
+        "early_stopping_without_validation"
+      ],
+      "arm": "retrieved_repair",
+      "case": 1,
+      "index": 3,
+      "original_exception": "ValueError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": null,
+      "after_families": [],
+      "arm": "random_repair",
+      "case": 1,
+      "index": 4,
+      "original_exception": "ValueError",
+      "original_families": [],
+      "output_recorded": false,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "generation_format_or_syntax_failure",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": "ValueError",
+      "after_families": [
+        "early_stopping_without_validation"
+      ],
+      "arm": "no_external_memory",
+      "case": 1,
+      "index": 5,
+      "original_exception": "ValueError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": "KeyError",
+      "after_families": [],
+      "arm": "random_repair",
+      "case": 2,
+      "index": 6,
+      "original_exception": "KeyError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": "no_recognized_exception",
+      "after_families": [],
+      "arm": "no_external_memory",
+      "case": 2,
+      "index": 7,
+      "original_exception": "KeyError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_timeout",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": null,
+      "after_families": [],
+      "arm": "retrieved_repair",
+      "case": 2,
+      "index": 8,
+      "original_exception": "KeyError",
+      "original_families": [],
+      "output_recorded": false,
+      "repair_success": null,
+      "same_recognized_family": false,
+      "status": "infrastructure_error",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": null,
+      "after_families": [],
+      "arm": "no_external_memory",
+      "case": 3,
+      "index": 9,
+      "original_exception": "KeyError",
+      "original_families": [],
+      "output_recorded": false,
+      "repair_success": null,
+      "same_recognized_family": false,
+      "status": "not_executed",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": null,
+      "after_families": [],
+      "arm": "retrieved_repair",
+      "case": 3,
+      "index": 10,
+      "original_exception": "KeyError",
+      "original_families": [],
+      "output_recorded": false,
+      "repair_success": null,
+      "same_recognized_family": false,
+      "status": "not_executed",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": null,
+      "after_families": [],
+      "arm": "random_repair",
+      "case": 3,
+      "index": 11,
+      "original_exception": "KeyError",
+      "original_families": [],
+      "output_recorded": false,
+      "repair_success": null,
+      "same_recognized_family": false,
+      "status": "not_executed",
+      "task": "leaf-classification"
+    },
+    {
+      "after_exception": "TypeError",
+      "after_families": [],
+      "arm": "retrieved_repair",
+      "case": 4,
+      "index": 12,
+      "original_exception": "TypeError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_exception": "TypeError",
+      "after_families": [],
+      "arm": "random_repair",
+      "case": 4,
+      "index": 13,
+      "original_exception": "TypeError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_exception": null,
+      "after_families": [],
+      "arm": "no_external_memory",
+      "case": 4,
+      "index": 14,
+      "original_exception": "TypeError",
+      "original_families": [],
+      "output_recorded": false,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "generation_format_or_syntax_failure",
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_exception": "ValueError",
+      "after_families": [
+        "early_stopping_without_validation"
+      ],
+      "arm": "random_repair",
+      "case": 5,
+      "index": 15,
+      "original_exception": "TypeError",
+      "original_families": [
+        "categorical_new_fill_value"
+      ],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_exception": "TypeError",
+      "after_families": [],
+      "arm": "no_external_memory",
+      "case": 5,
+      "index": 16,
+      "original_exception": "TypeError",
+      "original_families": [
+        "categorical_new_fill_value"
+      ],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_exception": "ValueError",
+      "after_families": [
+        "early_stopping_without_validation"
+      ],
+      "arm": "retrieved_repair",
+      "case": 5,
+      "index": 17,
+      "original_exception": "TypeError",
+      "original_families": [
+        "categorical_new_fill_value"
+      ],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_exception": "TypeError",
+      "after_families": [
+        "categorical_new_fill_value"
+      ],
+      "arm": "no_external_memory",
+      "case": 6,
+      "index": 18,
+      "original_exception": "TypeError",
+      "original_families": [
+        "categorical_new_fill_value"
+      ],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": true,
+      "status": "program_error",
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_exception": "KeyError",
+      "after_families": [
+        "missing_target_column"
+      ],
+      "arm": "retrieved_repair",
+      "case": 6,
+      "index": 19,
+      "original_exception": "TypeError",
+      "original_families": [
+        "categorical_new_fill_value"
+      ],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_exception": "KeyError",
+      "after_families": [
+        "missing_target_column"
+      ],
+      "arm": "random_repair",
+      "case": 6,
+      "index": 20,
+      "original_exception": "TypeError",
+      "original_families": [
+        "categorical_new_fill_value"
+      ],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_exception": "ValueError",
+      "after_families": [],
+      "arm": "retrieved_repair",
+      "case": 7,
+      "index": 21,
+      "original_exception": "TypeError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_exception": "ValueError",
+      "after_families": [],
+      "arm": "random_repair",
+      "case": 7,
+      "index": 22,
+      "original_exception": "TypeError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "spaceship-titanic"
+    },
+    {
+      "after_exception": "ValueError",
+      "after_families": [],
+      "arm": "no_external_memory",
+      "case": 7,
+      "index": 23,
+      "original_exception": "TypeError",
+      "original_families": [],
+      "output_recorded": true,
+      "repair_success": false,
+      "same_recognized_family": false,
+      "status": "program_error",
+      "task": "spaceship-titanic"
+    }
+  ],
+  "summary_sha256": "4157031453885d61f8129ba116cbb7d8d8a5307dddd388df9b7efa714d14cb17",
+  "taxonomy_sha256": "7b0116ea8152fc29f7b1b4dc011ba7af2a83443386a95851c273bb946541c3cc"
+}

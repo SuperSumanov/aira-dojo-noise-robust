@@ -1,0 +1,293 @@
+{
+  "authorization_sha256": "db774f27fc464e4db40bc851e84c8dac643d3003030aa54070f959bbdad74467",
+  "coincident_memory_cases": 4,
+  "commit": "dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4",
+  "files": {
+    "FORETS_CLAIM_PROGRAM_20260913.md": "695b1facccf927f2e6886b059a7097038dd2555e6424aa41108bf5d695a09d53",
+    "forets_closed_pool_20260911.py": "3a397a57f53be36a8763cb860753eed5d5e1b8dc5e2683cefc01b7793c08e56d",
+    "forets_paid_budget_20260911.py": "96ef46a35c9e83ed075d0ff30c8b6a0b5bbe4f0a7785783e846dd43a25c41492",
+    "forets_paid_route_20260911.py": "6c121cc60c4954ecdab0b44fb42093c92ba063042e656d2b8823269f988e15fb",
+    "prepare_repair_transfer_20260913.py": "c51ab0bd470ff1d0bda57fc48ffc9f8b7e7a743205cb001a721b2ef0d29fa4b7",
+    "readout_repair_transfer_20260913.py": "ab6e25cc5dc7fcd52e933fd9bf877d876d1836b0c2e8ec9187bf6d2afea837a4",
+    "run_repair_transfer_20260913.py": "f6fc6e136eb5b0d1d0aa30dff4dd7059f33ae8f1d19b55f115d1ebc428ad52a6"
+  },
+  "predecessor_counts": [
+    1755,
+    6302127386,
+    4902127386,
+    2
+  ],
+  "predecessor_journal_mode": "delete",
+  "private_input_sha256": "792a7a46a54c6196743ec2d569d4d4d5bb7dfd2d0d594327fa6916d61d77384c",
+  "rows": [
+    {
+      "arm": "no_external_memory",
+      "case": 0,
+      "index": 0,
+      "memory_diff_sha256": null,
+      "request_bytes": 25173,
+      "request_sha256": "7a205f14ccf3ded0307940ceaa9efe1ee455d546bc29f7e1ff5cc86350e9447a",
+      "seed": 2026091300,
+      "target_code_sha256": "a0d8b4b9b85b1e62431b988ef72127daffa8cd0b943d269fa7f5c96bca545ea0",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 0,
+      "index": 1,
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "request_bytes": 32693,
+      "request_sha256": "1d71af3cc52fabeb5092216dae7adb092745faa1577a859a65bf17a83a6757d4",
+      "seed": 2026091300,
+      "target_code_sha256": "a0d8b4b9b85b1e62431b988ef72127daffa8cd0b943d269fa7f5c96bca545ea0",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "random_repair",
+      "case": 0,
+      "index": 2,
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "request_bytes": 32693,
+      "request_sha256": "1d71af3cc52fabeb5092216dae7adb092745faa1577a859a65bf17a83a6757d4",
+      "seed": 2026091300,
+      "target_code_sha256": "a0d8b4b9b85b1e62431b988ef72127daffa8cd0b943d269fa7f5c96bca545ea0",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 1,
+      "index": 3,
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "request_bytes": 28350,
+      "request_sha256": "a67270b6cbfd974f52d803eda9cfd6c3bc7b3934d626de084598b6a393dd57cc",
+      "seed": 2026091301,
+      "target_code_sha256": "78838e587622dd63996f7115195834b44d3802c6442ffb71d5852b5b0ed4c110",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "random_repair",
+      "case": 1,
+      "index": 4,
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "request_bytes": 28350,
+      "request_sha256": "a67270b6cbfd974f52d803eda9cfd6c3bc7b3934d626de084598b6a393dd57cc",
+      "seed": 2026091301,
+      "target_code_sha256": "78838e587622dd63996f7115195834b44d3802c6442ffb71d5852b5b0ed4c110",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 1,
+      "index": 5,
+      "memory_diff_sha256": null,
+      "request_bytes": 20830,
+      "request_sha256": "94cf4dfc259bba14214cfd4adfb95be8f7b63187e37b29833727a5e6670340f3",
+      "seed": 2026091301,
+      "target_code_sha256": "78838e587622dd63996f7115195834b44d3802c6442ffb71d5852b5b0ed4c110",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "random_repair",
+      "case": 2,
+      "index": 6,
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "request_bytes": 30697,
+      "request_sha256": "3d97d7db46cdc28389fc0c903e34d74499a0daf9440aad72c583ab54c9450391",
+      "seed": 2026091302,
+      "target_code_sha256": "15310019b0bacc0beb658f6f03e1903519be50e5425bd9f7f73d0f5143baab8b",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 2,
+      "index": 7,
+      "memory_diff_sha256": null,
+      "request_bytes": 23177,
+      "request_sha256": "356579469a7de36f99d9455503d8dc400734fb6c776f00c9ca63fa5913e7900a",
+      "seed": 2026091302,
+      "target_code_sha256": "15310019b0bacc0beb658f6f03e1903519be50e5425bd9f7f73d0f5143baab8b",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 2,
+      "index": 8,
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "request_bytes": 30697,
+      "request_sha256": "3d97d7db46cdc28389fc0c903e34d74499a0daf9440aad72c583ab54c9450391",
+      "seed": 2026091302,
+      "target_code_sha256": "15310019b0bacc0beb658f6f03e1903519be50e5425bd9f7f73d0f5143baab8b",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 3,
+      "index": 9,
+      "memory_diff_sha256": null,
+      "request_bytes": 21204,
+      "request_sha256": "2e352eb12b45c2eada7625d098b62816a53a903e3830253a68acbc925bb09158",
+      "seed": 2026091303,
+      "target_code_sha256": "418c63ba6e34374f38ccc03e0e0490e12c31c1f6ab80277f5ec87c69689626d9",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 3,
+      "index": 10,
+      "memory_diff_sha256": "b1d618b895a83d6894b4b2b32d0fa6fdf1b23c52e90630996f9211e0b2e8afa6",
+      "request_bytes": 28724,
+      "request_sha256": "3a874fe6fb34137695b34b117ede5ddf8cc7e7b96645a98feee667f4713ca17e",
+      "seed": 2026091303,
+      "target_code_sha256": "418c63ba6e34374f38ccc03e0e0490e12c31c1f6ab80277f5ec87c69689626d9",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "random_repair",
+      "case": 3,
+      "index": 11,
+      "memory_diff_sha256": "dda73117d08dbe2fe4355f9dc8cb6e0e239a1084bc7682b64a499e0f29777afb",
+      "request_bytes": 28987,
+      "request_sha256": "e17d40cea24d8d36ec710dcea1d01bf71c8d64882e88fb6da87be8b1bafcfa2c",
+      "seed": 2026091303,
+      "target_code_sha256": "418c63ba6e34374f38ccc03e0e0490e12c31c1f6ab80277f5ec87c69689626d9",
+      "task": "leaf-classification"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 4,
+      "index": 12,
+      "memory_diff_sha256": "31d49b26882b3248c83364999f3c451bf6cd06a0d33911c854e7536c5079ab74",
+      "request_bytes": 32387,
+      "request_sha256": "22a60a64959008664e27e8c8d859aaed369fe4bfbf3d214971e0c52db3a07b4f",
+      "seed": 2026091304,
+      "target_code_sha256": "8d7adb43b65ed1bf75e2d1f54f7bdccd911fa38bdb8381054123779e235e84ab",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "random_repair",
+      "case": 4,
+      "index": 13,
+      "memory_diff_sha256": "b9b95dc4599fbc8eefc8ea0b9ca31be79578869d32dc4602e37e317232074fa5",
+      "request_bytes": 32533,
+      "request_sha256": "afa42630e5a31871ea91eade3b23c039f3f921c8e540e2c24bb3b839c1421f95",
+      "seed": 2026091304,
+      "target_code_sha256": "8d7adb43b65ed1bf75e2d1f54f7bdccd911fa38bdb8381054123779e235e84ab",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 4,
+      "index": 14,
+      "memory_diff_sha256": null,
+      "request_bytes": 26108,
+      "request_sha256": "5459bd69b22a5580f131601ffc9fdfc816ffb3ef2787679294f0c857a85b61ef",
+      "seed": 2026091304,
+      "target_code_sha256": "8d7adb43b65ed1bf75e2d1f54f7bdccd911fa38bdb8381054123779e235e84ab",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "random_repair",
+      "case": 5,
+      "index": 15,
+      "memory_diff_sha256": "b9b95dc4599fbc8eefc8ea0b9ca31be79578869d32dc4602e37e317232074fa5",
+      "request_bytes": 33324,
+      "request_sha256": "cf399d0fd49c3bd9ab4727b658d904e2d0dbc5d8ac6387f40b1c586d9e033597",
+      "seed": 2026091305,
+      "target_code_sha256": "cfcf0445e91f4ab5e68579d144657c94e87224c4fa691c08db21382e53f50a8f",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 5,
+      "index": 16,
+      "memory_diff_sha256": null,
+      "request_bytes": 26899,
+      "request_sha256": "d298ae270fad77986dd37310d54584aeb8c9631adb38c712c54e7f1032554a0a",
+      "seed": 2026091305,
+      "target_code_sha256": "cfcf0445e91f4ab5e68579d144657c94e87224c4fa691c08db21382e53f50a8f",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 5,
+      "index": 17,
+      "memory_diff_sha256": "b9b95dc4599fbc8eefc8ea0b9ca31be79578869d32dc4602e37e317232074fa5",
+      "request_bytes": 33324,
+      "request_sha256": "cf399d0fd49c3bd9ab4727b658d904e2d0dbc5d8ac6387f40b1c586d9e033597",
+      "seed": 2026091305,
+      "target_code_sha256": "cfcf0445e91f4ab5e68579d144657c94e87224c4fa691c08db21382e53f50a8f",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 6,
+      "index": 18,
+      "memory_diff_sha256": null,
+      "request_bytes": 29983,
+      "request_sha256": "3a0e1e5335f5cf434d9e76fb67e37131b6a07d9006a0e76e69be38a0227ae7e7",
+      "seed": 2026091306,
+      "target_code_sha256": "d4028443b0d3ba1234a1f46db0e7c44d0226d652561f757e1b88c4ee9f3ae583",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 6,
+      "index": 19,
+      "memory_diff_sha256": "b9b95dc4599fbc8eefc8ea0b9ca31be79578869d32dc4602e37e317232074fa5",
+      "request_bytes": 36408,
+      "request_sha256": "ae233740a1a6a3cfbff4cf9e8c9b9f3fcbbc7c282d8a222abf09dcb651a0e808",
+      "seed": 2026091306,
+      "target_code_sha256": "d4028443b0d3ba1234a1f46db0e7c44d0226d652561f757e1b88c4ee9f3ae583",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "random_repair",
+      "case": 6,
+      "index": 20,
+      "memory_diff_sha256": "b8a6bb87c489a3cf0dcdbafe42431ca18bc036679ecb829c1edf4c6b6c90cdab",
+      "request_bytes": 37457,
+      "request_sha256": "85c947e946384f5aab50a38099f2715c1dcd300ba9504478aa1e5e8029b5ce87",
+      "seed": 2026091306,
+      "target_code_sha256": "d4028443b0d3ba1234a1f46db0e7c44d0226d652561f757e1b88c4ee9f3ae583",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "retrieved_repair",
+      "case": 7,
+      "index": 21,
+      "memory_diff_sha256": "d426d4c3010689461aab9d067c1bfbd9989b6ccce0c6239bcbef0cd38bde1f4c",
+      "request_bytes": 28343,
+      "request_sha256": "850c4fd51ea415764f4943ab3f5f8f149bf6d1c1e58e46b51b7b387c4df868e5",
+      "seed": 2026091307,
+      "target_code_sha256": "89b5ea071d357ceb898ec0d12bc9c516195a7a682d731a571acba8495607b995",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "random_repair",
+      "case": 7,
+      "index": 22,
+      "memory_diff_sha256": "d20c2e5ecb16968b25e4b224c731530f5dd322eef4336a5e1c63f13af1cf5c9d",
+      "request_bytes": 27940,
+      "request_sha256": "1f2338b61dab866f022b6442240fbcc1bacc3ba28687e087dbf696ecb75f8a49",
+      "seed": 2026091307,
+      "target_code_sha256": "89b5ea071d357ceb898ec0d12bc9c516195a7a682d731a571acba8495607b995",
+      "task": "spaceship-titanic"
+    },
+    {
+      "arm": "no_external_memory",
+      "case": 7,
+      "index": 23,
+      "memory_diff_sha256": null,
+      "request_bytes": 25388,
+      "request_sha256": "77f9e8748f1717afaaa8f0a1071d1fafe8e04349cdb7d73af09fc5dbc22023d5",
+      "seed": 2026091307,
+      "target_code_sha256": "89b5ea071d357ceb898ec0d12bc9c516195a7a682d731a571acba8495607b995",
+      "task": "spaceship-titanic"
+    }
+  ],
+  "selection_sha256": "48605345d740b81f50b387cae3368269a6d2449ff8c665e024c2aec7a1ba94ca",
+  "source_tree": "746d97a67922896b7d1581c4689f8b5f85204d30",
+  "target_ast_unique": 8,
+  "target_runs": 8,
+  "utc": "2026-09-13T11:07:28.638162+00:00"
+}

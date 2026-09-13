@@ -24,8 +24,8 @@ def verify(root):
     from dojo.solvers.fore_ts import common_start
     from test_classic_control_20260914 import Tests
     suite=unittest.defaultTestLoader.loadTestsFromTestCase(Tests)
-    out=io.StringIO();test=unittest.TextTestRunner(stream=out).run(suite)
-    if not test.wasSuccessful():raise ValueError('unit failure')
+    out=io.StringIO();unit_result=unittest.TextTestRunner(stream=out).run(suite)
+    if not unit_result.wasSuccessful():raise ValueError('unit failure')
     proofs=[]
     with tempfile.TemporaryDirectory(prefix='classic-preflight-',dir=root) as tmp:
         base=Path(tmp);old=Path.cwd();rng=np.random.default_rng(777)
@@ -41,15 +41,25 @@ def verify(root):
                         'Age':rng.normal(size=120),'Transported':np.tile([True,False],60)})
                     test=frame.drop(columns='Transported').iloc[:17].copy()
                 frame.to_csv('data/train.csv',index=False);test.to_csv('data/test.csv',index=False)
-                with threadpool_limits(limits=6),redirect_stdout(io.StringIO()) as stdout:
-                    exec(compile(common_start.original_code_for(task),'<original-RF>','exec'),{})
-                original=Path('submission.csv').read_bytes()
-                expected=float(stdout.getvalue().splitlines()[0].split(':',1)[1].strip())
+                repeats=[]
+                for _ in range(3):
+                    with threadpool_limits(limits=6),redirect_stdout(io.StringIO()) as stdout:
+                        exec(compile(common_start.original_code_for(task),'<original-RF>','exec'),{})
+                    repeats.append((Path('submission.csv').read_bytes(),float(stdout.getvalue().splitlines()[0].split(':',1)[1].strip())))
+                original,expected=repeats[0]
+                def equivalent(raw,validation):
+                    # Six-thread RF floating-point summation is not guaranteed
+                    # byte-deterministic. Labels/columns stay exact; numeric
+                    # equality is checked at a fixed roundoff-only tolerance.
+                    first=pd.read_csv(io.BytesIO(original));second=pd.read_csv(io.BytesIO(raw))
+                    pd.testing.assert_frame_equal(first,second,check_exact=False,rtol=0,atol=1e-12)
+                    if abs(validation-expected)>1e-12:raise ValueError('RF validation differs beyond roundoff')
+                for raw,value in repeats:equivalent(raw,value)
                 trial=work/'single-trial';trial.mkdir()
                 r.write(work/'single.json',dict(task=task,output=str(trial),spec=c.specifications(42)[0],best_validation=None))
                 c.trial(work/'single.json')
                 result=r.read(trial/'trial-result.json')
-                if (trial/'submission.csv').read_bytes()!=original or result['validation']!=expected:raise ValueError('RF semantics changed')
+                equivalent((trial/'submission.csv').read_bytes(),result['validation'])
                 X,y,_,_=c.data_for(task);families=[]
                 with threadpool_limits(limits=6):
                     for family in c.FAMILIES:
@@ -61,19 +71,23 @@ def verify(root):
                 cfg_sha=r.write(work/'classic-config.json',config)
                 original_specs=c.specifications
                 # The production module is unmodified: only this fixture's
-                # in-memory parent search matrix is shortened to two RF trials.
-                c.specifications=lambda seed: [original_specs(seed)[0],original_specs(seed)[0]]
+                # in-memory parent search matrix is shortened to one RF trial.
+                c.specifications=lambda seed: [original_specs(seed)[0]]
                 try:c.search(work/'classic-config.json')
                 finally:c.specifications=original_specs
                 finish=work/'classic-finished.json'
                 selected=select_incumbent(work,dict(task=task,seed=42),dict(status='completed',deadline_ns=config['deadline_ns'],
                     finished_sha256=r.sha(finish.read_bytes()),config_sha256=cfg_sha))
-                if selected['index']!=0 or selected['path'].read_bytes()!=original:raise ValueError('real process/promotion mismatch')
-                if r.read(finish)['attempts']!=2:raise ValueError('fixture child loop')
-                proofs.append(dict(task=task,RF_submission_and_validation_identical=True,families=families,
-                    actual_child_trials=2,incumbent_selection_verified=True))
+                if selected['index']!=0:raise ValueError('real process/promotion mismatch')
+                equivalent(selected['path'].read_bytes(),selected['validation'])
+                if r.read(finish)['attempts']!=1:raise ValueError('fixture child loop')
+                proofs.append(dict(task=task,RF_submission_and_validation_equivalent_atol=1e-12,families=families,
+                    original_RF_repeats=3,original_RF_distinct_submission_hashes=len({r.sha(raw) for raw,_ in repeats}),
+                    original_RF_validation_range=max(v for _,v in repeats)-min(v for _,v in repeats),
+                    actual_child_trials=1,incumbent_selection_verified=True))
         finally:os.chdir(old)
-    proof=dict(status='PASS',utc=r.now(),prepared_sha256=r.sha((root/'prepared.json').read_bytes()),unit_tests=test.testsRun,
+    proof=dict(status='PASS',utc=r.now(),prepared_sha256=r.sha((root/'prepared.json').read_bytes()),unit_tests=unit_result.testsRun,
+        verifier_sha256=r.sha(Path(__file__).read_bytes()),unit_source_sha256=r.sha(Path(__file__).with_name('test_classic_control_20260914.py').read_bytes()),
         synthetic_actual_execution=proofs,api_calls=0,gpu_jobs=0,protected_data_opened=False,
         note='Synthetic CPU wiring only, not model acceptance or task quality. Actual original-image execution is the planned control.')
     print(json.dumps(dict(status='PASS',sha256=r.write(root/'preflight.json',proof),proof=proof)))

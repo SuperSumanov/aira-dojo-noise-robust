@@ -25,8 +25,9 @@ source tree8bb325fa167a9db54656dd6535ce1f3d69859c22，控制commit07ab932c206149
 根 /research/d7/spc/yzyang4/forets-classic-control-20260914-6jkjkwd5，prepared ef230ef69b1cd31e29844585f0793fe2bdfea5986d51c1fb65c5dce2b7746708，实际代码commit0e07a9779014df3b4374f520ab2527df018933fa。
 CPU预检efff9849552c00ed470b92d9c8286e578f864ea0157605fa9bcc6b2792361ba9：5单测、两任务合成原RF等价atol1e-12、全六族接口、真实子进程→fsync→只按内部验证发布及读出通过。最初字节比较/重复RF假设不稳与测试变量遮蔽均在提交前修复；不改变搜索或正式成绩。
 不是只移除LLM的因果消融，也不是完整AutoGluon；作用是检查agent是否超过合理传统小搜索。独立8条全闭合后 readout_classic_control_20260914.py ROOT，一次外部grade，未知不填零/补跑。主EScope16条仍按原门读出，不换分母。
-最新学长目录只做元数据：21:49前两次嵌入索引一致53条，出现0912；与旧50条索引一处非日期目录同ID异名，摄取fail-closed，尚未下载0912/入库。学长Git head仍be9335348b569086ef9b0af36a15b13e61fec45c。
+22:06 UTC新0912已独立隔离：一个11,844,727-byte包、四份配置均commit61459c0a1248900079dafed7c505afa87e476b40/num_children2；四份配置不等于四合格run。只读配置，未打开journal/env/code正文，不入训练/LATEST。隔离根senior-quarantine-0912-20260914，manifest d7297d76a39a1e141ff2b63f1f22c45148b9d5b8075fede8da0716b13ea7822c。旧全根一处非日期目录同ID异名仍未解决。详见SENIOR_0912_METADATA_20260914.md。学长Git head仍be9335348b569086ef9b0af36a15b13e61fec45c。
 截至21:53，预写ESCOPE_DISCRIMINATING_CONTROLS_20260914.md及analyze_edit_scope_mechanism_20260914.py；机制工具只在16条完整读出后运行，不提前读新的轨迹/效果。后续三臂whole/preserve/module×46/47×两任务12次只是有条件方案，尚未构建/提交，不另动活动账。补查MLE-STAR/iML/PRISM直接先例，不把模块接口当原创。
+22:08前强保留指令的真实源码接线检查通过：12配置/36个mock传输调用，只差编辑接口/指令，API0/GPU0；prepare-only builder还未生成或激活后继包。独立scope/classic算术与原开发门工具已预写（compare_scope_classic_20260914.py），须两组全闭合后才调用。原叶片42 whole就绪未知保留，不补样。
 生成Flash/Alibaba only/nofallback；原APIcritic Plus但本轮不调用。不存在免费共享Qwen可达性确认，不借别人的allocation或绕权限。
 继承搜索source tree746d97a67922896b7d1581c4689f8b5f85204d30；配置/控制器前驱 /research/d7/spc/yzyang4/forets-wallclock-20260912-103zf3nb，prepared b676bfa46afae3c6e83b1d98855e77a368994fe7fdc22263f6693d581a4a57fd。
 该PARENT旧账已被T1封闭，T1也被新根封闭，均不再用。新source/interface已冻结为上述actual tree。
@@ -41,6 +42,6 @@ G0/8B验收12892已完成不重跑；旧未通过kernel recovery补丁不得部�
 ## 操作
 SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
 MLE镜像仅gpu27/gpu28兼容3090，不用projgpu39/不升级Torch/不静默CPU替换。节点名gpu28不是projgpu28。
-本地repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813。只push myfork HEAD:phase1-value-critic；不强推/新branch/修改学长branch。最近已公开a94b1693f3773ad0dfd8a828589c87fdd00b9ad7。
+本地repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813。只push myfork HEAD:phase1-value-critic；不强推/新branch/修改学长branch。最近已公开8b574f8a9e45a2864d1929f5b17824e490d5cbed；22:10 fetch确认未变。该提交含逐文件校验的完整冻结源码capsule，非只有不可访问tree哈希。
 apply_patch本地编辑；复杂SSH脚本scp后确认完成才调用。保持无关untracked不动。结果CSV/JSON若要逐字节，scoped -text并git add --renormalize后核index bytes。
 研究盘1TB到期09-29，延期未知。0911包已隔离 senior-quarantine-0911-20260913，四配置非四合格run，不重下或打开未知cohort结果。学长doc先远端credential-shape scan命中流式脱敏再读。

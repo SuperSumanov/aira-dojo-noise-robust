@@ -58,7 +58,7 @@ srun -J vllmserve \
       --gpu-memory-utilization 0.95 \
       --kv-cache-dtype fp8_e5m2 \
       --limit-mm-per-prompt '{"image":0,"video":0}' \
-      --max-num-seqs 4 &
+      --max-num-seqs 6 &
 ```
 
 和单卡版的区别只有四处：`--gres=gpu:2` + `--tensor-parallel-size 2`、`--max-model-len` 直接开到模型原生上限 262144、去掉 `--enforce-eager`（省下的显存本来就是为了开 CUDA graph，两卡不需要牺牲它）、去掉 `--override-generation-config` 的输出上限。`--gpu-memory-utilization` 用 0.95 就够，不需要像单卡那样抠到 0.97。

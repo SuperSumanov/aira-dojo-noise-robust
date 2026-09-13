@@ -23,7 +23,7 @@ litellm.api_version = "2024-12-01-preview"
 litellm.set_verbose = False
 
 NUM_RETRIES = 10
-TIMEOUT = 1500
+TIMEOUT = 14400
 STRUCTURED_OUTPUT_RETRIES = 2
 
 

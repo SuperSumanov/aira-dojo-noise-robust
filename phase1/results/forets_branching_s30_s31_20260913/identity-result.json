@@ -1,0 +1,126 @@
+{
+  "role": "balanced_identity_transport_not_mle",
+  "utc": "2026-09-13T04:22:05.499740+00:00",
+  "rows": [
+    {
+      "repetition": 0,
+      "mode": "omitted",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.052777453092858195
+    },
+    {
+      "repetition": 0,
+      "mode": "aligned",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.05370326107367873
+    },
+    {
+      "repetition": 0,
+      "mode": "unique_mismatch",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.05446859891526401
+    },
+    {
+      "repetition": 0,
+      "mode": "omitted_delayed",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.05577132501639426
+    },
+    {
+      "repetition": 1,
+      "mode": "aligned",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.055296128848567605
+    },
+    {
+      "repetition": 1,
+      "mode": "unique_mismatch",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.055384916020557284
+    },
+    {
+      "repetition": 1,
+      "mode": "omitted_delayed",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.05200478876940906
+    },
+    {
+      "repetition": 1,
+      "mode": "omitted",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.051192831015214324
+    },
+    {
+      "repetition": 2,
+      "mode": "unique_mismatch",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.05703454604372382
+    },
+    {
+      "repetition": 2,
+      "mode": "omitted_delayed",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.05492049781605601
+    },
+    {
+      "repetition": 2,
+      "mode": "omitted",
+      "initial_ready": false,
+      "reconnected_ready": true,
+      "probe_seconds": 0.062062697019428015
+    },
+    {
+      "repetition": 2,
+      "mode": "aligned",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.05439928895793855
+    },
+    {
+      "repetition": 3,
+      "mode": "omitted_delayed",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.054050046019256115
+    },
+    {
+      "repetition": 3,
+      "mode": "omitted",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.05636335909366608
+    },
+    {
+      "repetition": 3,
+      "mode": "aligned",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.05126121500506997
+    },
+    {
+      "repetition": 3,
+      "mode": "unique_mismatch",
+      "initial_ready": true,
+      "reconnected_ready": true,
+      "probe_seconds": 0.055691447108983994
+    }
+  ],
+  "source_tree": "35321718fef54f1907b469ab44334a30fe66b6cd",
+  "image": "2026-07-macos-v1",
+  "job": "13206",
+  "node": "gpu28",
+  "elapsed": 60.733532957034186,
+  "api_calls": 0,
+  "mle_executions": 0,
+  "script_sha256": "9e64f1f4c1eb98c95671cca805fa76db951d6ad8fdfc6192760bc4fd970f5488"
+}

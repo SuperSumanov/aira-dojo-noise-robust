@@ -1,0 +1,83 @@
+{
+  "base_sha256": "1a883a8833127528914e7f7e6df8ce1adc7b605f25b5c08c67b6427baaadaa00",
+  "derived_sha256": "89a41bfbd00b7b5bae9719088a0e00157187ec190df254125adce0d922ba9759",
+  "changes": [
+    [
+      "PARENT=BASE/'forets-wallclock-20260912-cxb9p0og'",
+      "PARENT=BASE/'forets-wallclock-20260912-y_p2tlmi'"
+    ],
+    [
+      "TREE='e07cb8c61bca347c61bb8253c84eda826b1add6a'",
+      "TREE='35321718fef54f1907b469ab44334a30fe66b6cd'"
+    ],
+    [
+      "SUMMARY='a127831408688b545e3d666b790fe1f75b65e82f9324d21c8c4cfc0243d39e90'",
+      "SUMMARY='59d9463c127aa0c9fc10d1ab95a09af287e6650c708078330e20edc69f60c2d1'"
+    ],
+    [
+      "if old!=selected or len(old)!=1:",
+      "if set(old)!=set(selected) or len(old)!=2:"
+    ],
+    [
+      "PARENT/'recovery-readout-finished.json'",
+      "PARENT/'readout-finished.json'"
+    ],
+    [
+      "receipt['summary_sha256']!=SUMMARY",
+      "receipt['files']['wallclock-summary.json']!=SUMMARY"
+    ],
+    [
+      "if len(summary['rows'])!=8 or summary['job']!='13156':",
+      "if len(summary['rows'])!=8 or summary['seeds']!=[30,31]:"
+    ],
+    [
+      "path.name=='batch-1.sqlite'",
+      "path.name=='batch-2.sqlite'"
+    ],
+    [
+      "for s in (24,25)",
+      "for s in (30,31)"
+    ],
+    [
+      "rankdir=cp/'forets-contextual-judge-private/batch-1'",
+      "rankdir=cp/'forets-contextual-judge-private/batch-2'"
+    ],
+    [
+      "d['binding']['step']!=1",
+      "d['binding']['step']!=2"
+    ],
+    [
+      "('input.json','finished.json','rank-0.json','rank-1.json','response-0.json','response-1.json','request-0.json','request-1.json')",
+      "('input.json','finished.json','rank-0.json','response-0.json','request-0.json')"
+    ],
+    [
+      "if omitted!=d['selected'] or len(omitted)!=1:",
+      "if set(omitted)!=set(d['selected']) or len(omitted)!=2:"
+    ],
+    [
+      "if len(rows)!=12:raise ValueError('fixed twelve unattempted codes')",
+      "if len(rows)!=8:raise ValueError('fixed eight unattempted codes')"
+    ],
+    [
+      "or len(p['rows'])!=12:",
+      "or len(p['rows'])!=8:"
+    ],
+    [
+      "for i in range(12)",
+      "for i in range(8)"
+    ],
+    [
+      "planned=12,completed=len(done)",
+      "planned=8,completed=len(done)"
+    ],
+    [
+      "complete=len(done)==12",
+      "complete=len(done)==8"
+    ],
+    [
+      "FORETS_POOL_COMPLETION_PLAN_20260912.md",
+      "FORETS_BRANCHING_COMPLETION_PLAN_20260913.md"
+    ]
+  ],
+  "role": "same native execution adapter; eight unattempted first post-baseline candidates from all four closed critic pools"
+}

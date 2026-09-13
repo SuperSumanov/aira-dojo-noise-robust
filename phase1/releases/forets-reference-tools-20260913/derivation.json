@@ -2,7 +2,8 @@
   "launch_forets_reference_20260913.py": {
     "base_file": "launch_forets_branching_20260913.py",
     "base_sha256": "194539654db3b9bd55cfdef738211a39413a9debc2e950441399203f0a3063d8",
-    "derived_sha256": "f9d7904c83e457cdc882980c719e4aa6d611698e8e5dbcb32d183341d1aed7e6"
+    "derived_sha256": "3926a7a70671f65a74bbdb0512c2389749883ecf1454a3dc309b846a962e5b84",
+    "amendment": "2026-09-13 before freeze: failed recovery not deployed; require original interpreter byte identity in both arms"
   },
   "readout_forets_reference_20260913.py": {
     "base_file": "readout_forets_branching_20260913.py",

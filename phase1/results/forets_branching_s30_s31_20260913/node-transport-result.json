@@ -1,0 +1,962 @@
+{
+  "role": "transport_only_not_efficacy",
+  "utc": "2026-09-13T04:11:07.575905+00:00",
+  "rows": [
+    {
+      "trial": 0,
+      "ready": true,
+      "elapsed": 3.5102887991815805,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 1,
+      "ready": true,
+      "elapsed": 2.6671961289830506,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 2,
+      "ready": true,
+      "elapsed": 2.5795000409707427,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 3,
+      "ready": true,
+      "elapsed": 2.570902445120737,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 4,
+      "ready": true,
+      "elapsed": 2.642298618797213,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 5,
+      "ready": true,
+      "elapsed": 2.5823215460404754,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 6,
+      "ready": true,
+      "elapsed": 2.6862801059614867,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 7,
+      "ready": true,
+      "elapsed": 2.677977747982368,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 8,
+      "ready": true,
+      "elapsed": 2.5658057320397347,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 9,
+      "ready": true,
+      "elapsed": 2.546656257007271,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 10,
+      "ready": true,
+      "elapsed": 2.557159261079505,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 11,
+      "ready": true,
+      "elapsed": 2.554910050937906,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 12,
+      "ready": true,
+      "elapsed": 2.557112774113193,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 13,
+      "ready": true,
+      "elapsed": 2.561344707850367,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 14,
+      "ready": true,
+      "elapsed": 2.5357418870553374,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 15,
+      "ready": true,
+      "elapsed": 2.576234542997554,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 16,
+      "ready": true,
+      "elapsed": 2.5933715510182083,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 17,
+      "ready": true,
+      "elapsed": 2.5430976550560445,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 18,
+      "ready": true,
+      "elapsed": 2.654214372159913,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 19,
+      "ready": true,
+      "elapsed": 2.532889117952436,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 20,
+      "ready": true,
+      "elapsed": 2.5414762711152434,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 21,
+      "ready": true,
+      "elapsed": 2.606825103983283,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 22,
+      "ready": true,
+      "elapsed": 2.5452890410088003,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 23,
+      "ready": true,
+      "elapsed": 2.5286225830204785,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 24,
+      "ready": true,
+      "elapsed": 2.5605421289801598,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 25,
+      "ready": true,
+      "elapsed": 2.6390188951045275,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 26,
+      "ready": true,
+      "elapsed": 2.563469526125118,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 27,
+      "ready": true,
+      "elapsed": 2.5590272122062743,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 28,
+      "ready": true,
+      "elapsed": 2.5488823470659554,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 29,
+      "ready": true,
+      "elapsed": 2.629409878049046,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 30,
+      "ready": true,
+      "elapsed": 2.5888205531518906,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 31,
+      "ready": true,
+      "elapsed": 2.559331343974918,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 32,
+      "ready": true,
+      "elapsed": 2.556928250938654,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 33,
+      "ready": true,
+      "elapsed": 2.48478289693594,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 34,
+      "ready": true,
+      "elapsed": 2.5493569490499794,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 35,
+      "ready": true,
+      "elapsed": 2.6085205648560077,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 36,
+      "ready": true,
+      "elapsed": 2.5901170650031418,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 37,
+      "ready": true,
+      "elapsed": 2.650005355011672,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 38,
+      "ready": true,
+      "elapsed": 2.5432780201081187,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 39,
+      "ready": true,
+      "elapsed": 2.6026843248400837,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 40,
+      "ready": true,
+      "elapsed": 2.602557009086013,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 41,
+      "ready": true,
+      "elapsed": 2.555784741882235,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 42,
+      "ready": true,
+      "elapsed": 2.559209262020886,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 43,
+      "ready": true,
+      "elapsed": 2.5408306648023427,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 44,
+      "ready": true,
+      "elapsed": 2.5801635519601405,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 45,
+      "ready": true,
+      "elapsed": 2.523741495097056,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 46,
+      "ready": true,
+      "elapsed": 2.628593726782128,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 47,
+      "ready": true,
+      "elapsed": 2.5432376069948077,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 48,
+      "ready": true,
+      "elapsed": 2.5490389009937644,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 49,
+      "ready": true,
+      "elapsed": 2.65724463108927,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 50,
+      "ready": true,
+      "elapsed": 2.50814590905793,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 51,
+      "ready": true,
+      "elapsed": 2.532978696981445,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 52,
+      "ready": true,
+      "elapsed": 2.636757177999243,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 53,
+      "ready": true,
+      "elapsed": 2.522115834057331,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 54,
+      "ready": true,
+      "elapsed": 3.1633924341294914,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 55,
+      "ready": true,
+      "elapsed": 2.632469068048522,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 56,
+      "ready": true,
+      "elapsed": 2.555009964853525,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 57,
+      "ready": true,
+      "elapsed": 2.7453086599707603,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 58,
+      "ready": true,
+      "elapsed": 2.526178214000538,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 59,
+      "ready": true,
+      "elapsed": 2.613799767103046,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 60,
+      "ready": true,
+      "elapsed": 2.5084173039067537,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 61,
+      "ready": true,
+      "elapsed": 2.6207428970374167,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 62,
+      "ready": true,
+      "elapsed": 2.5452011949382722,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    },
+    {
+      "trial": 63,
+      "ready": true,
+      "elapsed": 2.5394937959499657,
+      "control": {
+        "channel": "control",
+        "reply": true,
+        "matching_types": [
+          "status",
+          "status",
+          "kernel_info_reply"
+        ],
+        "foreign": 0
+      }
+    }
+  ],
+  "elapsed": 201.44702437892556,
+  "api_calls": 0,
+  "gpu_jobs": 1,
+  "mle_executions": 0,
+  "job": "13204",
+  "node": "gpu28",
+  "script_sha256": "70dfa2ef501847907c8bc2993ebfa531e31af33fecd43b96f673ce7545323753",
+  "limitation": "No-reproduction does not establish a fix. Follow-up connections change timing and connection identity together."
+}

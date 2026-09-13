@@ -16,6 +16,7 @@ import re
 import shutil
 import socket
 import sqlite3
+from string import Template
 import subprocess
 import sys
 import time
@@ -103,8 +104,8 @@ def prepare(commit):
     candidates=[r for r in manifest['run_configs'] if r['arm']=='no_memory']
     cfgs={r['task']:read(PARENT/'configs'/(r['run_id']+'.json')) for r in candidates}
     instructions=(SOURCE/'src/dojo/tasks/mlebench/instructions.txt').read_text()
-    os.environ['TIME_LIMIT_SECS']='300'
-    instructions=os.path.expandvars(instructions)
+    instructions=Template(instructions).substitute(HARDWARE='one NVIDIA RTX 3090, 6 CPU cores',
+        TIME_LIMIT='7 minutes (one repair generation plus one complete program execution)',STEP_LIMIT='1')
     if re.search(r'\$\{?[A-Z_][A-Z_0-9]*',instructions):raise ValueError('unresolved task instruction environment')
     rendered=[]
     (ROOT/'requests').mkdir()

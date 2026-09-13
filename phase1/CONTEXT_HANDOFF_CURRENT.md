@@ -12,7 +12,7 @@ EScope：Leaf/Space×新seed42–45×whole_program/model_module，共16次1200�
 source tree8bb325fa167a9db54656dd6535ce1f3d69859c22，控制commit07ab932c206149b8a0621bc66476cdc75cf63436，prepared731001dfa4c054ec16823bbfb685de1f2ad14314e5d5ad4597d12097b713b979。
 48实际操作接线、16配置/截止、双slot、action、合成起点等价均通过。source未在跑时修改。详细ESCOPE_PREFLIGHT_20260914.md；工具读出修复已在任何API/GPU前完成，reader commit94d18ae3。
 冻结reader SHA028a421cc832650d16b6515e2a0d3a0f2482f91eb80169b003338fba59b0b065；全16闭合再一次读出，不改端点/补跑/追seed。
-会话内合并monitor函数cell190存活（158已停，仅停本地监控未取消作业）；三作业合并只输出状态/握手/账，不读成绩。不要创建新automation或重复提交。functions store current_experiment_status可能要cell结束才可见，不据undefined判作业故障；看wait190输出或必要时单次远端monitor。
+会话内合并monitor函数cell241存活（190/158已停，仅停本地监控未取消作业）；三作业合并只输出状态/握手/账，不读成绩。不要创建新automation或重复提交。functions store可能要cell结束才可见，不据undefined判作业故障；看wait241输出或必要时单次远端monitor。
 新文件build_edit_scope_20260914.py、forets_edit_scope_20260914.py、verify_edit_scope_20260914.py、launch_edit_scope_20260914.py、derive_edit_scope_tools_20260914.py及release/forets-edit-scope-tools-20260914。先完整CPU接线与冻结reader再开跑。
 
 ## 账与源码
@@ -28,6 +28,7 @@ CPU预检efff9849552c00ed470b92d9c8286e578f864ea0157605fa9bcc6b2792361ba9：5单
 22:06 UTC新0912已独立隔离：一个11,844,727-byte包、四份配置均commit61459c0a1248900079dafed7c505afa87e476b40/num_children2；四份配置不等于四合格run。只读配置，未打开journal/env/code正文，不入训练/LATEST。隔离根senior-quarantine-0912-20260914，manifest d7297d76a39a1e141ff2b63f1f22c45148b9d5b8075fede8da0716b13ea7822c。旧全根一处非日期目录同ID异名仍未解决。详见SENIOR_0912_METADATA_20260914.md。学长Git head仍be9335348b569086ef9b0af36a15b13e61fec45c。
 截至21:53，预写ESCOPE_DISCRIMINATING_CONTROLS_20260914.md及analyze_edit_scope_mechanism_20260914.py；机制工具只在16条完整读出后运行，不提前读新的轨迹/效果。后续三臂whole/preserve/module×46/47×两任务12次只是有条件方案，尚未构建/提交，不另动活动账。补查MLE-STAR/iML/PRISM直接先例，不把模块接口当原创。
 22:08前强保留指令的真实源码接线检查通过：12配置/36个mock传输调用，只差编辑接口/指令，API0/GPU0；prepare-only builder还未生成或激活后继包。独立scope/classic算术与原开发门工具已预写（compare_scope_classic_20260914.py），须两组全闭合后才调用。原叶片42 whole就绪未知保留，不补样。
+22:16现场：传统搜索6条完整结束、第7条运行，13284仍RUNNING。EScope闭合5条、两条运行；Space42 module也KernelReadinessError(268.3585885660723秒)，不补样。其他closed理由按冻结预算尾标识区分。22:18补查MARS/Gome直接先例，新增classic后继门事先明定，见DISCRIMINATING_CONTROLS。三臂reader派生文件与prefix辅助诊断已经预写，仍未调用效果、未构建/激活后继包。
 生成Flash/Alibaba only/nofallback；原APIcritic Plus但本轮不调用。不存在免费共享Qwen可达性确认，不借别人的allocation或绕权限。
 继承搜索source tree746d97a67922896b7d1581c4689f8b5f85204d30；配置/控制器前驱 /research/d7/spc/yzyang4/forets-wallclock-20260912-103zf3nb，prepared b676bfa46afae3c6e83b1d98855e77a368994fe7fdc22263f6693d581a4a57fd。
 该PARENT旧账已被T1封闭，T1也被新根封闭，均不再用。新source/interface已冻结为上述actual tree。
@@ -42,6 +43,6 @@ G0/8B验收12892已完成不重跑；旧未通过kernel recovery补丁不得部�
 ## 操作
 SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
 MLE镜像仅gpu27/gpu28兼容3090，不用projgpu39/不升级Torch/不静默CPU替换。节点名gpu28不是projgpu28。
-本地repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813。只push myfork HEAD:phase1-value-critic；不强推/新branch/修改学长branch。最近已公开8b574f8a9e45a2864d1929f5b17824e490d5cbed；22:10 fetch确认未变。该提交含逐文件校验的完整冻结源码capsule，非只有不可访问tree哈希。
+本地repo C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813。只push myfork HEAD:phase1-value-critic；不强推/新branch/修改学长branch。最近已公开23f67114e926ef391c3111d08f037499575af9db；22:18 ls-remote确认。前驱8b574含逐文件校验的完整冻结源码capsule，非只有不可访问tree哈希。
 apply_patch本地编辑；复杂SSH脚本scp后确认完成才调用。保持无关untracked不动。结果CSV/JSON若要逐字节，scoped -text并git add --renormalize后核index bytes。
 研究盘1TB到期09-29，延期未知。0911包已隔离 senior-quarantine-0911-20260913，四配置非四合格run，不重下或打开未知cohort结果。学长doc先远端credential-shape scan命中流式脱敏再读。

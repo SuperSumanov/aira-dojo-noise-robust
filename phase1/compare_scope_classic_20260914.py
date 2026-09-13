@@ -75,7 +75,13 @@ def reference_summary(rows,classic):
                 pairs.append(dict(arm=arm,task=task,seed=seed,agent_minus_reference_oriented=d))
             groups.append(dict(arm=arm,task=task,wins=sum(d>0 for d in diffs),ties=sum(d==0 for d in diffs),
                 losses=sum(d<0 for d in diffs),unknown_pairs=4-len(diffs),**describe(diffs)))
-    return dict(groups=groups,pairs=pairs,
+    module=[g for g in groups if g['arm']=='model_module']
+    conditions=dict(at_least_six_quality_pairs=sum(g['n'] for g in module)>=6,
+        at_least_three_each_task=all(g['n']>=3 for g in module),
+        no_task_net_negative=all(g['wins']>=g['losses'] for g in module),
+        at_least_one_strict_win=sum(g['wins'] for g in module)>=1)
+    return dict(groups=groups,pairs=pairs,successor_investment_conditions=conditions,
+        successor_reference_gate=all(conditions.values()),
         limitation='Matching task/seed labels, not identical random-number streams. Different search spaces/control loops and physical card/time; practical resource-cap baseline, not one-knob causal ablation.')
 
 

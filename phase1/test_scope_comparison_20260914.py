@@ -24,5 +24,16 @@ class Tests(unittest.TestCase):
     def test_complete_denominator(self):
         for rows in (fixture()[:-1],fixture()[:-1]+[fixture()[0]]):
             with self.assertRaises(ValueError):c.scope_summary(rows)
+    def test_strong_reference_gate(self):
+        classic=[dict(task=t,seed=s,valid=True,status='completed',score=.5) for t in c.TASKS for s in c.SEEDS]
+        self.assertTrue(c.reference_summary(fixture(),classic)['successor_reference_gate'])
+        for r in classic:r['score']=.1 if r['task']==c.TASKS[0] else .9
+        self.assertFalse(c.reference_summary(fixture(),classic)['successor_reference_gate'])
+    def test_reference_missingness_is_not_a_win(self):
+        classic=[dict(task=t,seed=s,valid=True,status='completed',score=.5) for t in c.TASKS for s in c.SEEDS]
+        for r in classic[:2]:r.update(valid=None,status='infrastructure_error',score=None)
+        out=c.reference_summary(fixture(),classic)
+        self.assertFalse(out['successor_reference_gate'])
+        self.assertEqual(sum(g['unknown_pairs'] for g in out['groups'] if g['arm']=='model_module'),2)
 
 if __name__=='__main__':unittest.main()

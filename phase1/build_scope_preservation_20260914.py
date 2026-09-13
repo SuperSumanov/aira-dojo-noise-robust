@@ -33,6 +33,9 @@ def load_facts(path):
     counts=facts['counts']
     if len(counts)!=4 or counts[3]!=2 or counts[1]>=10**10:raise ValueError('remaining original budget')
     if facts.get('dispatch_allowed') is not True:raise ValueError('development gates not passed')
+    conditions=facts.get('comparison_conditions',{})
+    if set(conditions)!={'original_scope_gate','strong_reference_gate','headroom_for_two_concurrent_requests'} or any(v is not True for v in conditions.values()):
+        raise ValueError('complete investment conditions required')
     return facts
 
 
@@ -124,7 +127,21 @@ def build(stage):
     write(root/'closed-parent-facts.json',encode(FACTS));print(json.dumps(info))
 
 
+def activate(root):
+    """Reuse the already-tested attached-database atomic handover, new scopes only."""
+    if root.resolve().parent!=PARENT.parent or not root.name.startswith('forets-wallclock-20260912-'):
+        raise ValueError('explicit fresh successor root')
+    if read(root/'closed-parent-facts.json')!=FACTS:raise ValueError('successor facts drift')
+    import build_edit_scope_20260914 as previous
+    text=inspect.getsource(previous.activate)
+    text=once(text,"['route_edit_scope']","['route_scope_preservation']")
+    space=dict(vars(previous))
+    space.update(parent_calls=parent_calls,BILLING=PARENT,AUTH_PARENT=AUTH_PARENT,NEW_CAP=10**10-FACTS['counts'][1])
+    exec(compile(text,'<atomic-preservation-handover>','exec'),space)
+    space['activate'](root)
+
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('mode',choices=('artifacts','build'));p.add_argument('path',type=Path);p.add_argument('--facts',required=True,type=Path);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('mode',choices=('artifacts','build','activate'));p.add_argument('path',type=Path);p.add_argument('--facts',required=True,type=Path);a=p.parse_args()
     os.umask(0o077);configure(a.facts)
-    (artifact_builder.artifacts if a.mode=='artifacts' else build)(a.path)
+    (artifact_builder.artifacts if a.mode=='artifacts' else globals()[a.mode])(a.path)

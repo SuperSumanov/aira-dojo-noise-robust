@@ -1,0 +1,17 @@
+{
+  "readout_scope_preservation_20260914.py": {
+    "parent": "releases\\forets-edit-scope-tools-20260914\\readout_edit_scope_20260914.py",
+    "parent_sha256": "aab9f0bf9af28ca4388167a1fdc50773d31b1bf68fb8b7b5f7fc66ac1f6edf04",
+    "sha256": "8cda1e09327ef2665fd72cc0f18e56b7984c8e47529d90ef0bedec6a71482112"
+  },
+  "readout_scope_preservation_core_20260914.py": {
+    "parent": "releases\\forets-edit-scope-tools-20260914\\readout_edit_scope_core_20260914.py",
+    "parent_sha256": "1b392935f3d2bcda8cfd1fb0e89e887c942ae102b389334b6d24ceda3fd8cf34",
+    "sha256": "3b3552b435054a6c3a89c009fa0a50c98cfedd0475cb5fa3ea80bac3f89c1c51"
+  },
+  "scope_preservation_effects_20260914.py": {
+    "parent": "scope_preservation_effects_20260914.py",
+    "parent_sha256": "ba87ef1d3cfdf5abcad33e1a906d86e5dcc71faf7b475a2bfcc0175cd89d15bc",
+    "sha256": "ba87ef1d3cfdf5abcad33e1a906d86e5dcc71faf7b475a2bfcc0175cd89d15bc"
+  }
+}

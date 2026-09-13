@@ -1,4 +1,4 @@
-# 当前短交接 — 2026-09-13，T1准备中
+# 当前短交接 — 2026-09-13，T1真实修复生成中
 
 方向入口CURRENT_DIRECTION 0L198；当前目标是重要、独特、充分证明的同预算e2e主张，不是增加资产/审计数量。新问题及完整方案FORETS_CLAIM_PROGRAM_20260913.md。
 
@@ -10,7 +10,12 @@ T1三臂修复迁移：同一个旧失败状态，无外部经验/相关历史�
 根 /research/d7/spc/yzyang4/forets-repair-transfer-20260913-d151en61。
 selection-public SHA48605345d740b81f50b387cae3368269a6d2449ff8c665e024c2aec7a1ba94ca；私有inputs SHA792a7a46a54c6196743ec2d569d4d4d5bb7dfd2d0d594327fa6916d61d77384c。
 新worker/run/readout/test均在phase1；run_repair_transfer_20260913.py有prepare/activate/generate/gpu_prepare/submit/execute。
-最后状态：8单元测试通过，尚未activate/API/GPU。10:56队列只有旧held12535，无活跃实验。不能根据计划写成在跑。
+11:09预算原子移交，前驱账已封，不能再用旧scopes。真实请求独立检查PASS、8单元测试通过；控制提交dc92d2e15f44444abfffe799fe4c4ca9f51cb5c4已推。
+新auth a3a4561fb81d538d797e32997cf75deff8131784d8fa12da5b329a76f023743e；prepared c6e1e0e76a98dda3c5913f3c8ac38e5beb3000fac95d401d40569c8640b5e027。
+11:10:56最后观察：generation PID908080活跃，已4/24 generated，第5调用在途；总1760calls、3unresolved=2旧+1在途，不误报为新增遗失调用。
+API生成已启动、GPU尚未提交。进度只用inspect_repair_transfer_20260913.py读公共结构，不看response/code或提前读评分。
+生成完整且无新未知后gpu_prepare，再两block分别submit/execute；全终态后readout_repair_transfer_20260913.py一次读出。不得重跑prepare/activate/generate已存在claim。
+随机与相关经验在4案例抽中同一库存条目，保留；对照检验信息有限，不据此改规则。
 远端上传阶段 /research/d7/spc/yzyang4/forets-action-stage-20260913-egtJPLRg；等scp完成再运行。后续准备、账移交、调用和提交必须一次性，不盲重试已有claim。
 
 ## 预算与冻结读出

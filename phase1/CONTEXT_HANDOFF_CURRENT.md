@@ -3,7 +3,7 @@
 
 ## 新方案与状态
 22:36 UTC第三例Leaf43 module的145.782136247959秒失败独立确认为KernelReadinessError，连同Leaf42 whole/Space42 module，原>=6/8且每任务>=3完整配对门不可能通过。保持原完整矩阵，不补跑，不读尚未全闭合的新效果，不启动有条件12次保留指令后继。基础设施诊断与效果实验严格分开。
-22:40前已编写15分钟/零API/新容器独立Python进程诊断，本地5单测通过；尚未prepare/submit。见PROCESS_TRANSPORT_DIAGNOSTIC_PLAN_20260914.md。不是G0验收，不改主实验，不重演旧seed；需实际计算/错误/超时/隔离全部通过才讨论未来协议，不能用合成通过当e2e收益。
+22:36前已编写15分钟/零API/新容器独立Python进程诊断，本地与远端各5单测通过。22:37单次提交13286，根/research/d7/spc/yzyang4/forets-process-transport-20260914-83zx3mg1，prepared6bc0b114c74ae0debcef3566e18ccbd5cec6e7235f3e030eab1b3f0521e8067b，worker ded7bc359eaef33fcbae110958e487d40e7e1ac3。见PROCESS_TRANSPORT_DIAGNOSTIC_PLAN_20260914.md。不是G0验收，不改主实验，不重演旧seed；需实际计算/错误/超时/隔离全部通过才讨论未来协议，不能用合成通过当e2e收益。
 EScope：Leaf/Space×新seed42–45×whole_program/model_module，共16次1200秒完整搜索，2生成2执行uniform、原UCT/debug/action主终点。模块臂仅返回build_model(X)，外部I/O/验证/提交由共享RF基线拼接；完整臂可自由重写。是编辑范围/格式干预，不是固定算子集critic对照。
 原RF起点仅重构为函数，超参/划分不变，实际初始执行计每次预算。接口限制不是安全沙箱或防泄漏证明。模块错误留作失败候选进入原debug，不替换成好解、不补样。
 两份gpu28 RTX3090/6CPU/原镜像/4小时分配，上限8GPUh。16次全闭合才读效果；不追样本。具体门见FORETS_EDIT_SCOPE_PLAN_20260914.md。

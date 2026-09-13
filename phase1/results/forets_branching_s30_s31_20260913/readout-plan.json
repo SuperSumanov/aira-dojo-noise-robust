@@ -1,0 +1,14 @@
+{
+  "prepared_sha256": "56efc43be970f45b328e3ce29daceca31350d2966ce8929aa7f34f400a2e15e8",
+  "readers": {
+    "attribute_forets_wallclock_20260912.py": "c0758cfb7f6f615aae9b8ca8ed217301914ddcf1027d7f1c5d3280503614d342",
+    "readout_forets_branching_20260913.py": "d9be18d97ea655cc734f58d0deb558eb939cd3427d3109ce5c6085f25aaad0d0",
+    "readout_forets_branching_core_20260913.py": "304c6988454a36f4a08f1b0aa9f6ffb60b6c6cd43de0c38a01b099d188dbfa1a",
+    "readout_forets_generation_capacity_20260912.py": "2a320f28e49f17d5a1c796cbe2b81d492a9b4c7dc266c68f0a047cd1a984b582",
+    "readout_forets_single_vote_20260913.py": "4a00f5296e5241811df9227ce44ac60966ef87604748169d4bff581c696859c3",
+    "verify_branching_selection_20260913.py": "510893e1d2aaa4517c7c1c850e06e0af2c758ab4ebefe2d2dbb4f25cf7adda50",
+    "verify_forets_review_selection_20260912.py": "2fc9cae3ac3fe31f38916da7009a7cc72d2dcbb7fccd1db25be67a443b193216"
+  },
+  "root": "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi",
+  "source_tree": "35321718fef54f1907b469ab44334a30fe66b6cd"
+}

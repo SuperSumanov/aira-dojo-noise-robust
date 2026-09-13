@@ -1,0 +1,13 @@
+{
+  "api_calls": 0,
+  "authorization_sha256": "ee05b65d5870a607144bed13bdcd474337cd5b46228552fdf36d0ca6df74c9a5",
+  "commit": "be59c7363d79710ae166a2530c03ef10854bf0ff",
+  "gpu_dispatches": 0,
+  "maximum_new_api_liability_usd": 5.437705319,
+  "nominal_gpu_hours": 3,
+  "package": "/research/d7/spc/yzyang4/forets-wallclock-20260912-y_p2tlmi",
+  "prepared_sha256": "56efc43be970f45b328e3ce29daceca31350d2966ce8929aa7f34f400a2e15e8",
+  "runs": 8,
+  "source_tree": "35321718fef54f1907b469ab44334a30fe66b6cd",
+  "status": "BUILT_NOT_ACTIVE"
+}

@@ -607,3 +607,10 @@ phase1/results/validity_cpu_transfer_20260914/*.json -text diff
 phase1/results/validity_cpu_transfer_20260914/*.csv -text diff whitespace=cr-at-eol
 phase1/results/legacy_validity_transfer_20260914/*.json -text diff
 phase1/results/legacy_validity_transfer_20260914/*.csv -text diff whitespace=cr-at-eol
+phase1/results/task_conditioned_validity_20260914/*.json -text diff
+phase1/results/task_conditioned_validity_20260914/*.csv -text diff whitespace=cr-at-eol
+phase1/releases/forets-cheap-selector-source-20260914*/source.tar -text
+phase1/releases/forets-cheap-selector-source-20260914*/artifact.json -text diff
+phase1/releases/forets-cheap-selector-tools-20260914/* -text diff
+phase1/results/forets_edit_scope_20260914/*.json -text diff
+phase1/results/forets_edit_scope_20260914/*.csv -text diff whitespace=cr-at-eol

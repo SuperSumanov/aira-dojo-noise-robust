@@ -7,6 +7,14 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L201. 2026-09-14 00:12 UTC：旧失败资产产生廉价预测候选，转入新三臂最终收益验证
+
+源完整性补齐后，2482历史节点/138run训练的code-only静态HGB通过预先冻结的开发门：Leaf AUC .9215686274509804、Space .6581280788177338；task one-hot版本失败，不称task-conditioning收益。314预测由独立特征实现/固定模型重放，最大差0。157目标是反复使用的开发数据；仅3个同池关键对3/3，不是确认或E2E。见TASK_CONDITIONED_VALIDITY_RESULTS_20260914.md。
+
+新固定12次：Leaf/Space×46/47×随机/短代码/学习有效性，600秒、两生成一执行、所有臂共用FreshContainerInterpreter及原镜像/3090。只有选择器变；新后端共同变化不与旧8B/Jupyter做单旋钮比较。最多3GPUh，原累计10USD帽/两旧未知保留。当前只准备，实际提交见短交接。方案FORETS_CHEAP_SELECTOR_PLAN_20260914.md。禁止用离线AUC或少量同池诊断冒充最终收益。
+
+EScope16已全闭合：主终点4可比对0胜4负，4对技术未知；原扩大门和preservation后继均失败，绝不补seed/放宽门。首次主读出器漏算原生extract_code导致失败；明确addendum修正后234个执行调用全部核验，146个表示变化均与原生提取完全对应，原始文件/端点/技术资格未改。summary8fd3598f99041d7878daec43ef107da68f2e91a340203a726f3c9e8aff1911cd，addendum21bf08bbeb3e08ecc7350c696ad2540d5a0901f930cc60b05705adc7048c0545。新三臂来自独立廉价模型开发门，不是绕过失败编辑范围门。
+
 ## 0L200. 2026-09-14 HK：新同预算编辑范围实验，已运行、尚未揭盲
 
 用户要求六小时会话内推进重要、独特、充分证明的主张。新EScope固定Leaf/Space×seed42–45×完整改写/模型模块编辑，共16次1200秒搜索。

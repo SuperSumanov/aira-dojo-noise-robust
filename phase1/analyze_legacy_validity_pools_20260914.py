@@ -28,6 +28,9 @@ def pick(scores,labels):
 def main():
     s=json.loads(checked(ROOT/'summary.json',SUMMARY_SHA))
     predictions=list(csv.DictReader(checked(ROOT/'predictions.csv',s['predictions_sha256']).decode().splitlines()))
+    if predictions and 'condition' in predictions[0]:
+        if any(r['condition'] not in ('code_only','code_plus_task') for r in predictions):raise ValueError('unsupported fixed condition')
+        predictions=[dict(r,scope=r['condition'],model='static_hgb') for r in predictions]
     lookup={(r['scope'],r['model'],r['run'],int(r['step'])):r for r in predictions}
     models=sorted({(r['scope'],r['model']) for r in predictions});rows=[];reasons=Counter();proof=[];run_counts=Counter()
     for source in s['target_source_proofs']:

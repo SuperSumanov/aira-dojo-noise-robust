@@ -1,12 +1,12 @@
-# 当前短交接 — 2026-09-14 12:46 UTC
+# 当前短交接 — 2026-09-14 12:48 UTC
 
 ## 当前裁决与用户
-方向以CURRENT_DIRECTION 0L209为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
+方向以CURRENT_DIRECTION 0L210为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
 原六小时窗口09-13 21:06:43→09-14 03:06:43 UTC；最后新作业03:10:02结束，独立读出06:04–06:18完成，收尾晚于目标，不假装准时或虚构网络原因。
 学长新回复：27B INT4是较弱的降API成本替代，不是更强生成器；建议我方一次申请8卡、2卡部署生成服务，提供vllm.sif下载链接。
-不再等待共享endpoint；我方自部署中。镜像下载/校验/版本检查已完成，用户刚明确批准下载，27B权重正在下载，未启动GPU，不借allocation、不索key。
+不再等待共享endpoint；27B完整下载/校验已完成，已提交13365自有gpu28三卡接入作业，是否运行以现场核验为准。不借allocation、不索key。
 下一对照区分筛选机制与同总GPUh系统效率，不让无critic基线闲卡来证明划算；原短时间预算不盲搬。无新自动任务。
-此前GPU/API实验全部结束；本轮0新GPU/API/fit，不重复读出/补seed/调门槛。
+此前GPU/API实验全部结束；本轮新提交13365（≤3GPUh），0付费API/fit，不重复旧读出/补seed/调门槛。
 
 ## 正在推进的27B接入
 
@@ -24,7 +24,9 @@ local_generator_runtime_20260914.py已写controller/server/worker/prepare/cpu/su
 v2已12:40:16 prepare，commit5954661954adb6dabc5a953fe6a2f06ef6831cd9，prepared SHA4e7c441cd27486231bfaf7229f3a5efb622bdce0fd11941b4259b2b42fda592d；12:40:36四配置CPU门PASS，12:41:14双native draft mock-transport门PASS，0真实推理/执行/GPU。三回执已复制到results/local_generator_integration_20260914/v2，不能覆盖旧v1回执。
 12:42现场gpu28 idle/9RTX3090，用户squeue仅12535旧held；这不是资源预留。
 12:44全部6分片/17模型文件已落盘，仍等最终镜像重核/complete。发现接入asset_check硬编码17少算了镜像；固定plan实际18项。已改按固定plan SHA982e97a454ee502f89a0df72b2c3ae1626d24cc942f828137ed6f45aaaf8e4cd检查完整集合/重复，7驱动测试通过。
-生产准备转integration-v3，v1/v2均只CPU测试且未submit，不能运行。v3待prepare/cpu/driver后、完整18资产回执出现才可按原≤3GPUh矩阵submit；这不是重跑GPU/G0。
+生产已转integration-v3，v1/v2均只CPU测试且未submit，不能运行。v3 commitd58c43d29ea5891f24bce0ff585c1fcf07cb4a84，prepared02527b5874cf96397ec5957e1574cdea785087827cc86c0f64b63d2c81c5ca4c；12:47前cpu及双native mock-transport门PASS。
+完整18资产于12:45:46 UTC校验完成，总36,808,331,288bytes、模型28,868,542,488bytes；complete SHA0d5c2f4a0c46b4e9b151b584582834f8054f5013be7287a378bed3bba3078b2a，launcher已退出。禁止重复下载。
+12:47:28已提交job13365到gpu28：2卡服务＋1卡原MLE执行、12CPU、60min≤3GPUh。12:47:58 squeue RUNNING/29秒；12:48:02服务真实Torch2.13+cu130双卡CUDA计算正确，启动中，尚未真实draft。ROOT/integration-v3/launch.json为唯一新提交回执；不得重复submit。监控已上传status_local_generator_20260914.py（指v3），不读raw response/.service.env/旧保护集。
 status_local_generator_20260914.py只看资产/公开结构字段、脱敏启动日志，不读模型回答、.env、原程序输出或保护集。
 新4项驱动单测＋5项下载器单测通过，远端4条真实FreshContainer配置解析通过。Slurm19.05.4无--exact，提交前已删除该参数；保持既有exclusive分卡。
 服务容器入口python3 -m vllm.entrypoints.cli.main已静态确认，保留原CUDA库路径，不把服务--nv路径替换到MLE。service/worker UUID不相交门在真实请求前。
@@ -46,7 +48,7 @@ source.tar SHA c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291�
 修复只对本地模型容许1200秒，旧付费provider仍300秒上限，本地强制1次/无付费回退，记录finish_reason；成本标志不代替实际GPU账。
 calibration-inputs SHA 7da450b0e9a2517216de79f8ad4398621d68bd615a865b259784cb37608d1f77；真实数据预览/生成/执行尚未跑。
 拟Leaf/Space×新seed49，各1draft；3卡(2服务1执行)/12CPU/60min≤3GPUh，有界配置见LOCAL_GENERATOR_CALIBRATION_PLAN_20260914.md。
-v2代码接线与CPU预检已完成，但资产计数修正后生产改v3；不能称GPU预检已过。空间已具备，无需因存储等待学长回复。
+v3代码接线、CPU预检、完整资产已齐并提交13365；不能把提交称为真实GPU预检已过。无需等待学长回复。
 
 ## 已完成、独立验证的新结果
 13311 FAILED（冻结准入截止正常占多数，但1个异常），gpu28/3808秒/1.0577777777777777 GPUh。

@@ -7,6 +7,14 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L210. 2026-09-14 12:47 UTC：27B下载完成，已提交本地原生接入验证
+
+完整18资产（17模型文件＋镜像）于12:45:46 UTC校验完成，36,808,331,288bytes，complete SHA
+0d5c2f4a0c46b4e9b151b584582834f8054f5013be7287a378bed3bba3078b2a；此前计数17遗漏镜像，已在提交前按固定清单修正并测试，未产生失败GPU作业。
+13365已提交gpu28：2卡生成服务＋1卡原MLE执行、12CPU、60min≤3GPUh。仅Leaf/Space各1个新seed49 native draft、各完整程序300秒，无critic/训练/付费API/外部分数读取。
+真实运行状态尚待核；不能把资产下载、CPU测试或提交当生成/方法收益。部署commitd58c43d29ea5891f24bce0ff585c1fcf07cb4a84，integration-v3 prepared02527b5874cf96397ec5957e1574cdea785087827cc86c0f64b63d2c81c5ca4c。
+旧integration/v2从未GPU提交，仅保留CPU准备记录。关闭方向和保护集不变；仍先量实际生成/执行时延再冻结同总资源E2E矩阵。
+
 ## 0L209. 2026-09-14 12:28 UTC：27B权重下载中，真实接线已准备
 
 用户明确批准下载并继续。已实际通过31,016,026,136bytes容量门，12:20开始继续固定revision下载，12:28完整核过2/6权重分片。

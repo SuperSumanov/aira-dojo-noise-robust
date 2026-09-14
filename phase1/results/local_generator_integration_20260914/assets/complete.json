@@ -1,0 +1,139 @@
+{
+  "files": [
+    {
+      "bytes": 11544,
+      "digest": "f938136e3adacfd92be087f6e113b5d6d97f678f",
+      "digest_kind": "git_blob_sha1",
+      "path": "model/LICENSE",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 8952,
+      "digest": "c0c686f9c38d70d179fb7b5f5aa7530bc913dda3",
+      "digest_kind": "git_blob_sha1",
+      "path": "model/chat_template.jinja",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 29898,
+      "digest": "04b58cda6f722b5e36ec7f39529abac840320b57",
+      "digest_kind": "git_blob_sha1",
+      "path": "model/config.json",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 202,
+      "digest": "023756cfadf88e5bf69eefeee3e172f38c448d64",
+      "digest_kind": "git_blob_sha1",
+      "path": "model/generation_config.json",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 3353259,
+      "digest": "a494e019ca1502219fd0128658b979e5f05ae8e8",
+      "digest_kind": "git_blob_sha1",
+      "path": "model/merges.txt",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 5358131840,
+      "digest": "1f4f13bd8a4abf77fb4364c11987beb09590887d1492e65b3c75c856b4ec0323",
+      "digest_kind": "sha256",
+      "path": "model/model-00001-of-00006.safetensors",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 4330813912,
+      "digest": "741885489162037ac9c6ad6f369228f897d91844a105cd6bc29e86301125dd3d",
+      "digest_kind": "sha256",
+      "path": "model/model-00002-of-00006.safetensors",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 5335156112,
+      "digest": "96fd1b2d2d21436449add29c048d27f6874cc4561a7d1382885077e9c9bb0d50",
+      "digest_kind": "sha256",
+      "path": "model/model-00003-of-00006.safetensors",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 5363428152,
+      "digest": "12693dc4dd406eb07db6ea5e92576bd104b5b6000ac0fa6a317a355a6bb67261",
+      "digest_kind": "sha256",
+      "path": "model/model-00004-of-00006.safetensors",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 5318311992,
+      "digest": "16039ab11be9b732f1e7d9a66ec32bdb6f4d69a5377231cc68ff2bda31d7cbe8",
+      "digest_kind": "sha256",
+      "path": "model/model-00005-of-00006.safetensors",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 3139552912,
+      "digest": "edd3cfd7b14a0efae7dada2940ccc120887fe9770f0c04c5cc4946b68f82f47e",
+      "digest_kind": "sha256",
+      "path": "model/model-00006-of-00006.safetensors",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 192931,
+      "digest": "da71707d5bd10e0afe9b818699bfb2d3cacae440",
+      "digest_kind": "git_blob_sha1",
+      "path": "model/model.safetensors.index.json",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 390,
+      "digest": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64",
+      "digest_kind": "git_blob_sha1",
+      "path": "model/preprocessor_config.json",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 12809320,
+      "digest": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+      "digest_kind": "sha256",
+      "path": "model/tokenizer.json",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 17928,
+      "digest": "5de744b3fca2129d7186979ae47c06be33903243",
+      "digest_kind": "git_blob_sha1",
+      "path": "model/tokenizer_config.json",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 385,
+      "digest": "3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe",
+      "digest_kind": "git_blob_sha1",
+      "path": "model/video_preprocessor_config.json",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 6722759,
+      "digest": "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176",
+      "digest_kind": "git_blob_sha1",
+      "path": "model/vocab.json",
+      "publisher_digest_available": true
+    },
+    {
+      "bytes": 7939788800,
+      "digest": "495ca35a3fa7fc534bbd855829af1b86ce75ab9a5675b3b1ab7dba58ca74b7fa",
+      "digest_kind": "sha256",
+      "path": "vllm.sif",
+      "publisher_digest_available": false
+    }
+  ],
+  "image_only": false,
+  "image_publisher_hash_unavailable": true,
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4",
+  "model_ready": true,
+  "no_gpu_or_inference": true,
+  "plan_sha256": "982e97a454ee502f89a0df72b2c3ae1626d24cc942f828137ed6f45aaaf8e4cd",
+  "revision": "dc430725f831dd90d9271738b877879a46a82239",
+  "total_bytes": 36808331288,
+  "utc": "2026-09-14T12:45:46.734551+00:00"
+}

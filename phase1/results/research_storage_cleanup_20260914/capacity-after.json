@@ -1,0 +1,7 @@
+{
+  "allocated_bytes": 42949672960,
+  "requested_bytes": 42949672960,
+  "status": "PASS_REAL_40_GIB_ALLOCATION",
+  "temporary_reservation_released": true,
+  "utc": "2026-09-14T12:10:25.158403+00:00"
+}

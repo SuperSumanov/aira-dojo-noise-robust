@@ -1,0 +1,52 @@
+{
+  "allocated_bytes_reclaimed": 44771426304,
+  "current_critic_and_images_untouched": true,
+  "payload_bytes_removed": 44771405824,
+  "plan_sha256": "f2ac6247a4d4c00c8787dc67c0c8e66aa09d3eb9ee8d01daa4da1faa2d7c9b80",
+  "recovery": [
+    {
+      "command": [
+        "hf",
+        "download",
+        "Qwen/Qwen2.5-Coder-14B-Instruct",
+        "--revision",
+        "aedcc2d42b622764e023cf882b6652e646b95671",
+        "--local-dir",
+        "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct"
+      ],
+      "first_shard_head_200": true,
+      "local_directory": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct",
+      "repo": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+    },
+    {
+      "command": [
+        "hf",
+        "download",
+        "Qwen/Qwen2.5-Coder-7B-Instruct",
+        "--revision",
+        "c03e6d358207e414f1eca0bb1891e29f1db0e242",
+        "--local-dir",
+        "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct"
+      ],
+      "first_shard_head_200": true,
+      "local_directory": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct",
+      "repo": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242"
+    }
+  ],
+  "removed": [
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00001-of-00006.safetensors",
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00002-of-00006.safetensors",
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00003-of-00006.safetensors",
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00004-of-00006.safetensors",
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00005-of-00006.safetensors",
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00006-of-00006.safetensors",
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/model-00001-of-00004.safetensors",
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/model-00002-of-00004.safetensors",
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/model-00003-of-00004.safetensors",
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/model-00004-of-00004.safetensors"
+  ],
+  "retained_files_verified": 54,
+  "utc": "2026-09-14T12:10:25.152569+00:00"
+}

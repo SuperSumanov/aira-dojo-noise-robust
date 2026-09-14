@@ -1,0 +1,751 @@
+{
+  "activity_before": {
+    "linux5_processes_inspected": 1,
+    "protected_files": {
+      "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif": {
+        "allocated_bytes": 19717783552,
+        "bytes": 19717783552,
+        "device": 125,
+        "inode": 101641968617,
+        "mtime_ns": 1784638286000000000
+      },
+      "/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq/unpacked/Qwen3-8B_reward_seed1/checkpoint-100/model.safetensors": {
+        "allocated_bytes": 15136870400,
+        "bytes": 15136866890,
+        "device": 125,
+        "inode": 97414817481,
+        "mtime_ns": 1788869741299202493
+      },
+      "/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy/vllm.sif": {
+        "allocated_bytes": 7939788800,
+        "bytes": 7939788800,
+        "device": 125,
+        "inode": 88375540793,
+        "mtime_ns": 1789386162923362357
+      }
+    },
+    "scheduler": [
+      "12535|PENDING|(JobHeldUser)"
+    ]
+  },
+  "allocated_bytes_to_reclaim": 44771426304,
+  "items": [
+    {
+      "actual_sha256": "b14a60aa35c07e58da61cbe6c8b2819e60a043dd98001f14736045c6062e79a0",
+      "before": {
+        "allocated_bytes": 4986212352,
+        "bytes": 4986211280,
+        "device": 125,
+        "inode": 52182954971,
+        "mtime_ns": 1783536625395508709
+      },
+      "expected_sha256": "b14a60aa35c07e58da61cbe6c8b2819e60a043dd98001f14736045c6062e79a0",
+      "path": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00001-of-00006.safetensors",
+      "repo": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+    },
+    {
+      "actual_sha256": "03b8de22c48a523646ac0a38aa36471529e22cdd1238ce43b44bf5014d64098a",
+      "before": {
+        "allocated_bytes": 4954849280,
+        "bytes": 4954847344,
+        "device": 125,
+        "inode": 52182954986,
+        "mtime_ns": 1783536657467089262
+      },
+      "expected_sha256": "03b8de22c48a523646ac0a38aa36471529e22cdd1238ce43b44bf5014d64098a",
+      "path": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00002-of-00006.safetensors",
+      "repo": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+    },
+    {
+      "actual_sha256": "97587f9d511af15bce6295a15b10c43f504b16fcddf22db9c87356df17ffff3f",
+      "before": {
+        "allocated_bytes": 4954849280,
+        "bytes": 4954847392,
+        "device": 125,
+        "inode": 52182954988,
+        "mtime_ns": 1783536635935371005
+      },
+      "expected_sha256": "97587f9d511af15bce6295a15b10c43f504b16fcddf22db9c87356df17ffff3f",
+      "path": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00003-of-00006.safetensors",
+      "repo": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+    },
+    {
+      "actual_sha256": "ed34a72606341f8774d21661ad8ec9e59deffad8c63ceebd2f6db86f163bee7d",
+      "before": {
+        "allocated_bytes": 4954849280,
+        "bytes": 4954847392,
+        "device": 125,
+        "inode": 52182954990,
+        "mtime_ns": 1783536560268356349
+      },
+      "expected_sha256": "ed34a72606341f8774d21661ad8ec9e59deffad8c63ceebd2f6db86f163bee7d",
+      "path": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00004-of-00006.safetensors",
+      "repo": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+    },
+    {
+      "actual_sha256": "657a6388cfe547498159dfb6507b9c1ead09a6fbab154c22942bbf963aef4208",
+      "before": {
+        "allocated_bytes": 4954849280,
+        "bytes": 4954847392,
+        "device": 125,
+        "inode": 52182954993,
+        "mtime_ns": 1783536536292666892
+      },
+      "expected_sha256": "657a6388cfe547498159dfb6507b9c1ead09a6fbab154c22942bbf963aef4208",
+      "path": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00005-of-00006.safetensors",
+      "repo": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+    },
+    {
+      "actual_sha256": "3dbbc07addfc989662fd6bf88798970b278c98630f88eed5d23256fc99365dae",
+      "before": {
+        "allocated_bytes": 4734533632,
+        "bytes": 4734533160,
+        "device": 125,
+        "inode": 52182954995,
+        "mtime_ns": 1783536638391338897
+      },
+      "expected_sha256": "3dbbc07addfc989662fd6bf88798970b278c98630f88eed5d23256fc99365dae",
+      "path": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model-00006-of-00006.safetensors",
+      "repo": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+    },
+    {
+      "actual_sha256": "0b6f069918b07c064cbba8ae4f00f529aa9bbf84b7cdfcb7fc2694a40f6aa8ef",
+      "before": {
+        "allocated_bytes": 4877664256,
+        "bytes": 4877660776,
+        "device": 125,
+        "inode": 946848641,
+        "mtime_ns": 1783042921769344901
+      },
+      "expected_sha256": "0b6f069918b07c064cbba8ae4f00f529aa9bbf84b7cdfcb7fc2694a40f6aa8ef",
+      "path": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/model-00001-of-00004.safetensors",
+      "repo": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242"
+    },
+    {
+      "actual_sha256": "c3d46733e7aa054ea7b063fbccd0a5a08446e7bd1814bef26936c5aa1331da62",
+      "before": {
+        "allocated_bytes": 4932751360,
+        "bytes": 4932751008,
+        "device": 125,
+        "inode": 945553272,
+        "mtime_ns": 1783042880621840186
+      },
+      "expected_sha256": "c3d46733e7aa054ea7b063fbccd0a5a08446e7bd1814bef26936c5aa1331da62",
+      "path": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/model-00002-of-00004.safetensors",
+      "repo": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242"
+    },
+    {
+      "actual_sha256": "9fe45dacee087385b3d2d6dd27a7413a8a56d95f145772facc148fa86fc73446",
+      "before": {
+        "allocated_bytes": 4330868736,
+        "bytes": 4330865200,
+        "device": 125,
+        "inode": 946848648,
+        "mtime_ns": 1783042840554322473
+      },
+      "expected_sha256": "9fe45dacee087385b3d2d6dd27a7413a8a56d95f145772facc148fa86fc73446",
+      "path": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/model-00003-of-00004.safetensors",
+      "repo": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242"
+    },
+    {
+      "actual_sha256": "5aa6e5cbe642377fd441fb4e60e83cca96b2bcd9820e245b9ea06d94653f17f2",
+      "before": {
+        "allocated_bytes": 1089998848,
+        "bytes": 1089994880,
+        "device": 125,
+        "inode": 945553278,
+        "mtime_ns": 1783042774643115831
+      },
+      "expected_sha256": "5aa6e5cbe642377fd441fb4e60e83cca96b2bcd9820e245b9ea06d94653f17f2",
+      "path": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/model-00004-of-00004.safetensors",
+      "repo": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242"
+    }
+  ],
+  "no_recursive_deletion": true,
+  "payload_bytes_to_reclaim": 44771405824,
+  "recovery": [
+    {
+      "command": [
+        "hf",
+        "download",
+        "Qwen/Qwen2.5-Coder-14B-Instruct",
+        "--revision",
+        "aedcc2d42b622764e023cf882b6652e646b95671",
+        "--local-dir",
+        "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct"
+      ],
+      "first_shard_head_200": true,
+      "local_directory": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct",
+      "repo": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "revision": "aedcc2d42b622764e023cf882b6652e646b95671"
+    },
+    {
+      "command": [
+        "hf",
+        "download",
+        "Qwen/Qwen2.5-Coder-7B-Instruct",
+        "--revision",
+        "c03e6d358207e414f1eca0bb1891e29f1db0e242",
+        "--local-dir",
+        "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct"
+      ],
+      "first_shard_head_200": true,
+      "local_directory": "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct",
+      "repo": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242"
+    }
+  ],
+  "retained": {
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/.gitignore": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 1,
+        "device": 125,
+        "inode": 49994421840,
+        "mtime_ns": 1783536272980009853
+      },
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/CACHEDIR.TAG": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 191,
+        "device": 125,
+        "inode": 49994421838,
+        "mtime_ns": 1783536272868011242
+      },
+      "sha256": "f6572428f6d5e1575e73a1502895a8731f10757dfbb634909c6e154b849af91d"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/.gitattributes.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 52182954976,
+        "mtime_ns": 1783536273164007568
+      },
+      "sha256": "3d50d287de3d0e784ba843e792269b2f85ff189aa7a31eddfc10c9fdf38650f4"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/LICENSE.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 52182954996,
+        "mtime_ns": 1783536273708000816
+      },
+      "sha256": "dfce5db3eb8de7481a2bf0a7fde40b9a2bfd267aed447b05a9f2165ccd38c685"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/README.md.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 52182954991,
+        "mtime_ns": 1783536273700000915
+      },
+      "sha256": "5f2c9340237eee97771b50cc17d85b6c542c198f437a943b000e4aa879a8e8aa"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/config.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 52182954978,
+        "mtime_ns": 1783536273168007518
+      },
+      "sha256": "869a815e16ed26b2974279e96f38fe13d20b1e4b1921f6a98a2125a85f2d0974"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/generation_config.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 100,
+        "device": 125,
+        "inode": 52182954977,
+        "mtime_ns": 1783536273700000915
+      },
+      "sha256": "d87fc778a87ae125b10eada24bdbf9ee14c6f6834ef37c7c5f1c2cdbe7b0ccc5"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/merges.txt.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 52182954981,
+        "mtime_ns": 1783536273744000369
+      },
+      "sha256": "0eb3bcce8c1fe8462a1e609b537f815b31c6cc781c6811e786a0f427a2f39c07"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/model-00001-of-00006.safetensors.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 125,
+        "device": 125,
+        "inode": 52182954982,
+        "mtime_ns": 1783536657575087848
+      },
+      "sha256": "b19968188ce9325a10b1a9764a70b60c33fd8f7be6c8840323c89070bae426ce"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/model-00002-of-00006.safetensors.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 125,
+        "device": 125,
+        "inode": 52182954992,
+        "mtime_ns": 1783536658267078784
+      },
+      "sha256": "a88eae4820187bf07f57fb91ab5f6d3fad7c4ca7885b38f3437255b774c7573f"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/model-00003-of-00006.safetensors.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 125,
+        "device": 125,
+        "inode": 52182955007,
+        "mtime_ns": 1783536657839084390
+      },
+      "sha256": "9f79c816d1f0628b523612ccfb42fd1f321caa05845115de0ee83c7276470de3"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/model-00004-of-00006.safetensors.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 125,
+        "device": 125,
+        "inode": 52182954973,
+        "mtime_ns": 1783536657571087900
+      },
+      "sha256": "c997a7956afc58c17999c7b6e95a6b55fbf65dfa50c87c0afd26c13cd4052c87"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/model-00005-of-00006.safetensors.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 125,
+        "device": 125,
+        "inode": 52182954975,
+        "mtime_ns": 1783536657571087900
+      },
+      "sha256": "e4c67aad57103196b01b572d1d6da527240291aeb4674d15011537ac8200f154"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/model-00006-of-00006.safetensors.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 125,
+        "device": 125,
+        "inode": 52182955006,
+        "mtime_ns": 1783536657831084494
+      },
+      "sha256": "c85bd5dca938cd7d5b9c96c75c22832b7ca1601b896e031cba25aae1e6f95d7d"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/model.safetensors.index.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 52182955000,
+        "mtime_ns": 1783536274011997041
+      },
+      "sha256": "90bbfda6706c0a78ee1867ed377b24643c3c14615acf8f5ca94c772a99350632"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/tokenizer.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 52182955001,
+        "mtime_ns": 1783536274203994658
+      },
+      "sha256": "3c9bfaff87a649db3c52b3bb79dc9ae9c774f6ebeb5d93f7f2e8db2165d3f635"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/tokenizer_config.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 100,
+        "device": 125,
+        "inode": 52182955003,
+        "mtime_ns": 1783536274307993367
+      },
+      "sha256": "9d54e0ee4003dba2b2a3fb14a7e8c23f459a386305201a2796f405afad9375aa"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.cache/huggingface/download/vocab.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 52182955005,
+        "mtime_ns": 1783536274639989244
+      },
+      "sha256": "f21425b0ef7f8109ca4a8ebdc8f78a9dcf99e5489ee5f6a3005e81159e12af1c"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/.gitattributes": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 1519,
+        "device": 125,
+        "inode": 52182954972,
+        "mtime_ns": 1783536273144007817
+      },
+      "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/LICENSE": {
+      "before": {
+        "allocated_bytes": 12288,
+        "bytes": 11343,
+        "device": 125,
+        "inode": 52182954989,
+        "mtime_ns": 1783536273684001113
+      },
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/README.md": {
+      "before": {
+        "allocated_bytes": 8192,
+        "bytes": 6397,
+        "device": 125,
+        "inode": 52182954985,
+        "mtime_ns": 1783536273680001163
+      },
+      "sha256": "2bb69760ec931f9adbe560e95b5b9848dc35198508825547ffdc19934fc6f261"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/config.json": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 663,
+        "device": 125,
+        "inode": 52182954974,
+        "mtime_ns": 1783536273152007717
+      },
+      "sha256": "9051fe83840dcd3a0f7e9f5b3372fc3927419eb56983273eac2dc635a5da7eae"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/generation_config.json": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 243,
+        "device": 125,
+        "inode": 52182954984,
+        "mtime_ns": 1783536273676001213
+      },
+      "sha256": "fdaccbcb02f3e1e7914ccb0f69ebe899071ffd27cf825166d823163e156870f2"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/merges.txt": {
+      "before": {
+        "allocated_bytes": 1675264,
+        "bytes": 1671839,
+        "device": 125,
+        "inode": 52182954987,
+        "mtime_ns": 1783536273724000617
+      },
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/model.safetensors.index.json": {
+      "before": {
+        "allocated_bytes": 49152,
+        "bytes": 47472,
+        "device": 125,
+        "inode": 52182954994,
+        "mtime_ns": 1783536273995997241
+      },
+      "sha256": "425811015c8708208c9efc04c4cfae250c7927a1b04c99dda5a9121caf4bf77a"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/tokenizer.json": {
+      "before": {
+        "allocated_bytes": 7032832,
+        "bytes": 7031645,
+        "device": 125,
+        "inode": 52182954999,
+        "mtime_ns": 1783536274187994857
+      },
+      "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/tokenizer_config.json": {
+      "before": {
+        "allocated_bytes": 8192,
+        "bytes": 7305,
+        "device": 125,
+        "inode": 52182954997,
+        "mtime_ns": 1783536274291993565
+      },
+      "sha256": "959e7f1d9a1b7641a6d6ce05ca97b75c7894fcb66cbe5a040406458fb1128ee4"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-14B-Instruct/vocab.json": {
+      "before": {
+        "allocated_bytes": 2777088,
+        "bytes": 2776833,
+        "device": 125,
+        "inode": 52182954998,
+        "mtime_ns": 1783536274611989593
+      },
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/.gitignore": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 1,
+        "device": 125,
+        "inode": 191221369248,
+        "mtime_ns": 1783042718099796441
+      },
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/CACHEDIR.TAG": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 191,
+        "device": 125,
+        "inode": 191221369246,
+        "mtime_ns": 1783042717983797838
+      },
+      "sha256": "f6572428f6d5e1575e73a1502895a8731f10757dfbb634909c6e154b849af91d"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/.gitattributes.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 946848654,
+        "mtime_ns": 1783042718527791290
+      },
+      "sha256": "c148b7a3ca01702248d867f63b6b7354837dd233387f653443952aa08c346b83"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/LICENSE.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 946848653,
+        "mtime_ns": 1783042718527791290
+      },
+      "sha256": "86d1a48cb0532bb789906a9edf52413908ba70ff529b8c1ac5ba3b07074f68c1"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/README.md.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 100,
+        "device": 125,
+        "inode": 945553274,
+        "mtime_ns": 1783042718255794563
+      },
+      "sha256": "5d0449728e5857ccb72285fa5fa93353093d9f77a365429c7b40a604f2d759cb"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/config.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 100,
+        "device": 125,
+        "inode": 946848655,
+        "mtime_ns": 1783042718527791290
+      },
+      "sha256": "ea299af9f055f5cfb41aacef30b4757be75f817df84a8708477d20fb331d2d73"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/generation_config.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 945553279,
+        "mtime_ns": 1783042718535791193
+      },
+      "sha256": "62fd4f3dadd54f117e329c1780c9ebf3ee7d076fd3d7f3d495d23de0e17fbe33"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/merges.txt.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 946848646,
+        "mtime_ns": 1783042718591790519
+      },
+      "sha256": "74863f18add0f7759ccb938856b18ca3b5649948e550945ff6af0cf7b791c4fd"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/model-00001-of-00004.safetensors.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 125,
+        "device": 125,
+        "inode": 946848640,
+        "mtime_ns": 1783042921893343408
+      },
+      "sha256": "cdd92bc97b66202c817d59b8004a35342a09020f313fd62d21f26faa9cafcfdb"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/model-00002-of-00004.safetensors.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 125,
+        "device": 125,
+        "inode": 946848651,
+        "mtime_ns": 1783042921813344371
+      },
+      "sha256": "4cd3d38e436a5d84fee7fa27b0066059d7e5b0be99e67fd5497afcb742280096"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/model-00003-of-00004.safetensors.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 125,
+        "device": 125,
+        "inode": 945553269,
+        "mtime_ns": 1783042921813344371
+      },
+      "sha256": "2df65da20c106b712641dcc217431979f2ca2d8e71e988d5c1ec4d929a86a1c1"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/model-00004-of-00004.safetensors.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 125,
+        "device": 125,
+        "inode": 946848658,
+        "mtime_ns": 1783042775239108657
+      },
+      "sha256": "006cf7b84b5cd1875d0dc201415d8b1a612a448481e82103047a51590168bca0"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/model.safetensors.index.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 946848659,
+        "mtime_ns": 1783042718875787101
+      },
+      "sha256": "6e07be12c285509cbd09b65414c60376876af385514a14cb6ee18ed5017a7e9d"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/tokenizer.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 946848660,
+        "mtime_ns": 1783042719087784550
+      },
+      "sha256": "ff9ef613402fa97e30239769ddc9c188ad8d75eec0119b4d1bd8709c025b9c2c"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/tokenizer_config.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 946848650,
+        "mtime_ns": 1783042718879787054
+      },
+      "sha256": "10c0ec38ec59f24e29614a6db9c5b89658ba38f2012d0831b028f1edbbf3797e"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.cache/huggingface/download/vocab.json.metadata": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 101,
+        "device": 125,
+        "inode": 946848663,
+        "mtime_ns": 1783042719079784646
+      },
+      "sha256": "9fe0c0ed62cf76f399721f3ff701c018357da3e83decbcc60753e041bd48961f"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/.gitattributes": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 1519,
+        "device": 125,
+        "inode": 946848647,
+        "mtime_ns": 1783042718499791626
+      },
+      "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/LICENSE": {
+      "before": {
+        "allocated_bytes": 12288,
+        "bytes": 11343,
+        "device": 125,
+        "inode": 946848643,
+        "mtime_ns": 1783042718491791723
+      },
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/README.md": {
+      "before": {
+        "allocated_bytes": 8192,
+        "bytes": 6392,
+        "device": 125,
+        "inode": 945553271,
+        "mtime_ns": 1783042718239794756
+      },
+      "sha256": "3c090be37f829adc1e4cdb78733667437732541470430ab2cd785d7f0d460077"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/config.json": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 663,
+        "device": 125,
+        "inode": 946848644,
+        "mtime_ns": 1783042718495791675
+      },
+      "sha256": "c0242402ad6a13b331ea320feea8c7e3776ffb7a4eff0757b9cd667e116d9a28"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/generation_config.json": {
+      "before": {
+        "allocated_bytes": 4096,
+        "bytes": 242,
+        "device": 125,
+        "inode": 946848642,
+        "mtime_ns": 1783042718499791626
+      },
+      "sha256": "1a628a5775bc69cde01c6749a531150ca4d3189652c618a174f7077923acf3b1"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/merges.txt": {
+      "before": {
+        "allocated_bytes": 1675264,
+        "bytes": 1671839,
+        "device": 125,
+        "inode": 946848645,
+        "mtime_ns": 1783042718559790905
+      },
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/model.safetensors.index.json": {
+      "before": {
+        "allocated_bytes": 28672,
+        "bytes": 27752,
+        "device": 125,
+        "inode": 946848656,
+        "mtime_ns": 1783042718847787439
+      },
+      "sha256": "998a078123ffc97763690de7f2a677eb89168af5eaf8a5e12e6bc24d18e25bdb"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/tokenizer.json": {
+      "before": {
+        "allocated_bytes": 7032832,
+        "bytes": 7031645,
+        "device": 125,
+        "inode": 946848649,
+        "mtime_ns": 1783042719063784838
+      },
+      "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/tokenizer_config.json": {
+      "before": {
+        "allocated_bytes": 8192,
+        "bytes": 7305,
+        "device": 125,
+        "inode": 946848657,
+        "mtime_ns": 1783042718855787342
+      },
+      "sha256": "959e7f1d9a1b7641a6d6ce05ca97b75c7894fcb66cbe5a040406458fb1128ee4"
+    },
+    "/research/d7/spc/yzyang4/models/Qwen2.5-Coder-7B-Instruct/vocab.json": {
+      "before": {
+        "allocated_bytes": 2777088,
+        "bytes": 2776833,
+        "device": 125,
+        "inode": 946848661,
+        "mtime_ns": 1783042718999785609
+      },
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  },
+  "utc": "2026-09-14T12:09:43.846497+00:00"
+}

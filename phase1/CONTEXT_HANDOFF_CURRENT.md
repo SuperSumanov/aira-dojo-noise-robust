@@ -1,7 +1,7 @@
-# 当前短交接 — 2026-09-14 11:49 UTC
+# 当前短交接 — 2026-09-14 12:10 UTC
 
 ## 当前裁决与用户
-方向以CURRENT_DIRECTION 0L207为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
+方向以CURRENT_DIRECTION 0L208为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
 原六小时窗口09-13 21:06:43→09-14 03:06:43 UTC；最后新作业03:10:02结束，独立读出06:04–06:18完成，收尾晚于目标，不假装准时或虚构网络原因。
 学长新回复：27B INT4是较弱的降API成本替代，不是更强生成器；建议我方一次申请8卡、2卡部署生成服务，提供vllm.sif下载链接。
 不再等待共享endpoint；已进入我方自部署准备。镜像下载/校验/版本检查已完成，模型未下载，未启动GPU，不借allocation、不索key。
@@ -9,6 +9,12 @@
 此前GPU/API实验全部结束；本轮0新GPU/API/fit，不重复读出/补seed/调门槛。
 
 ## 正在推进的27B接入
+
+用户授权清理已于12:10:25 UTC完成：7月公开Qwen2.5-Coder 14B/7B的10个分片全部上游SHA吻合后删除，回收44,771,426,304bytes。
+54个配置/tokenizer/下载元数据保留并复核；当前critic、两镜像、语料、结果、venv不动，未递归删除。
+cleanup ROOT=/research/d7/spc/yzyang4/research-storage-cleanup-20260914-mlaygiaj；plan SHA f2ac6247a4d4c00c8787dc67c0c8e66aa09d3eb9ee8d01daa4da1faa2d7c9b80。
+reclaimed SHA 0c6f9d1c3cb7b0cac13e175d7c573c5c60008339303a5535ed044809d771cf9e；实际40GiB分配PASS且临时文件已释放，容量回执1ece8dace830567c29a115c90db3b5cf606145eb89dbedaea7fd853a8aa79c57。
+当前27B空间阻塞解除，剩余文件28,868,542,488bytes尚未下载。此批及前轮12GB压缩包均已删除，禁止重跑清理。最后squeue仅12535旧held，未改。
 
 ROOT=/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy。
 完整17资产36,808,331,288bytes；39GB临时容量申请两次EDQUOT（第二次在回收后），两次下载均未开始。
@@ -19,7 +25,7 @@ ROOT=/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy。
 image-complete.json：SHA 495ca35a3fa7fc534bbd855829af1b86ce75ab9a5675b3b1ab7dba58ca74b7fa；这是自行计算，分享方无独立hash。
 image-inspection.json只读核vLLM0.29.0/Torch2.13.0+cu130/Transformers5.16.1；支持VLLM_API_KEY环境变量，尚未生成/使用真实local key。
 镜像无python命令，/usr/bin/python3可用；裸vllm入口未核，不照搬CLI。未加载模型/使用GPU；原MLE镜像不改。
-镜像launcher1884813/子1884814已退出，两个先前失败launcher1868393/1881905也退出；不重下/不重启。模型空间仍需解决。
+镜像launcher1884813/子1884814已退出，两个先前失败launcher1868393/1881905也退出；不重下/不重启。模型空间已于12:10解决，后续下载须新建尝试日志且复核容量。
 
 新源码tree b87178bf16d78c7217f2c88b85faf002553b2d7f，base b7f8ab0f65dba9877ac3af35e3e770fc32546565；
 source.tar SHA c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291。只改本地认证/有界transport，不改闭合source/学长分支。
@@ -27,7 +33,7 @@ source.tar SHA c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291�
 修复只对本地模型容许1200秒，旧付费provider仍300秒上限，本地强制1次/无付费回退，记录finish_reason；成本标志不代替实际GPU账。
 calibration-inputs SHA 7da450b0e9a2517216de79f8ad4398621d68bd615a865b259784cb37608d1f77；真实数据预览/生成/执行尚未跑。
 拟Leaf/Space×新seed49，各1draft；3卡(2服务1执行)/12CPU/60min≤3GPUh，有界配置见LOCAL_GENERATOR_CALIBRATION_PLAN_20260914.md。
-不是完整可提交包，服务启动与原任务执行接线仍待资产齐后完成；不能称GPU预检已过。主要外部阻塞是模型存储/可读共享副本。
+不是完整可提交包，服务启动与原任务执行接线仍待资产齐后完成；不能称GPU预检已过。空间已具备，可继续公开权重下载，无需因存储等待学长回复。
 
 ## 已完成、独立验证的新结果
 13311 FAILED（冻结准入截止正常占多数，但1个异常），gpu28/3808秒/1.0577777777777777 GPUh。
@@ -87,7 +93,7 @@ results/forets_first_pool_replay_20260914/（4原manifest成员）。
 学长branch本轮fetch为aae6f7d685b09cacdc5a3d1992dd81b9eeaa7ad8，仅新增4个H200 recipe/script，无新outcome；我方核验前public head83efa174373816520f899bec120dd920ba61a9ee。
 Drive镜像已下载、hash/只读版本检查完成，见上；HF cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4 revision dc430725f831dd90d9271738b877879a46a82239，public/ungated；未下权重。
 LOCAL_VLLM_SERVER原SHA d65edfaaa0df1875458d422f13ea9f1e5b9a96a4f4f39ca626d651249442a2fa，3credentialshape先远端脱敏；E2E_EVALUATION SHA84954ccce9b872e78f328068869c6a10de59f069b3d85d89dea79289ad3c5463/0shape。
-11:11 UTC最后观察gpu28 idle/gpu27 mix，均9张3090；不是预约/免排队保证。11:40最后squeue我方仅12535旧held，未提交新作业。用户quota余量未知，但39GB申请失败/10GB申请成功有直接证据，文件系统free不能代填。
+11:11 UTC最后观察gpu28 idle/gpu27 mix，均9张3090；不是预约/免排队保证。12:10最后squeue我方仅12535旧held，未提交新作业。用户quota总余量未知，清理后实际40GiB申请成功且释放；覆盖先前39GB申请失败，不用文件系统free代填。
 0912四config已隔离不是4合格run；不重下/不摄取保护cohort。
 SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
 MLE仅gpu27/gpu28原镜像；禁projgpu39/Torch升级/CPUfallback。12535 held不动。

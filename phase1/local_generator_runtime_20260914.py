@@ -5,11 +5,11 @@ Uses the existing native draft/source and original MLE image. One own allocation
 """
 import argparse,asyncio,copy,csv,ctypes,datetime,hashlib,inspect,json,logging,os
 from pathlib import Path
-import random,re,secrets,shutil,signal,socket,subprocess,sys,tarfile,time,urllib.request,uuid
+import random,re,secrets,shutil,signal,socket,subprocess,sys,tarfile,time,urllib.error,urllib.request,uuid
 
 BASE=Path('/research/d7/spc/yzyang4')
 ASSETS=BASE/'local-qwen27b-20260914-zcx1k1dy'
-ROOT=ASSETS/'integration'
+ROOT=ASSETS/'integration-v2'
 PYTHON=BASE/'venvs/aira/bin/python'
 SOURCE_SHA='c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291'
 INPUT_SHA='7da450b0e9a2517216de79f8ad4398621d68bd615a865b259784cb37608d1f77'
@@ -105,8 +105,15 @@ def server():
     os.execve(command[0],command,env)
 
 def own_health():
+    opener=urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    # Require authentication before sending our token. A coincidental node-local
+    # service that accepts all keys must never be mistaken for our allocation.
+    try:
+        with opener.open('http://127.0.0.1:8000/v1/models',timeout=3):return False
+    except urllib.error.HTTPError as e:
+        if e.code!=401:return False
     request=urllib.request.Request('http://127.0.0.1:8000/v1/models',headers={'Authorization':'Bearer '+local_key()})
-    with urllib.request.build_opener(urllib.request.ProxyHandler({})).open(request,timeout=3) as response:
+    with opener.open(request,timeout=3) as response:
         value=json.loads(response.read(100000))
     return [row['id'] for row in value.get('data',[])]==['qwen3.8-27b']
 
@@ -343,6 +350,8 @@ main()
 def prepare(commit):
     if not re.fullmatch('[0-9a-f]{40}',commit):raise ValueError('exact commit')
     if sha(ASSETS/'source.tar')!=SOURCE_SHA or sha(ASSETS/'calibration-inputs.json')!=INPUT_SHA:raise ValueError('input identity')
+    # v1 was CPU-only. Preserve it; this successor adds an explicit 401 auth gate.
+    if (ASSETS/'integration/submit-intent.json').exists():raise ValueError('prior integration may have been submitted')
     ROOT.mkdir(exist_ok=False);prior=read(DONOR/'prepared.json')
     for name in HELPERS:
         if sha(DONOR/name)!=prior['files'][name]:raise ValueError('existing GPU helper changed')

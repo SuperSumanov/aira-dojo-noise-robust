@@ -1,10 +1,26 @@
 import ast,importlib.util,os,unittest
+import io,urllib.error
 from pathlib import Path
 from unittest.mock import patch
 spec=importlib.util.spec_from_file_location('runtime',Path(__file__).with_name('local_generator_runtime_20260914.py'))
 runtime=importlib.util.module_from_spec(spec);spec.loader.exec_module(runtime)
 
 class WiringTests(unittest.TestCase):
+    def test_unauthenticated_other_service_never_receives_our_token(self):
+        from unittest.mock import Mock
+        opener=Mock();opener.open.return_value=io.BytesIO(b'{"data":[]}')
+        with patch.object(runtime.urllib.request,'build_opener',return_value=opener),patch.object(runtime,'local_key') as key:
+            self.assertFalse(runtime.own_health());key.assert_not_called()
+
+    def test_authenticated_own_model_is_required(self):
+        from unittest.mock import Mock
+        opener=Mock()
+        opener.open.side_effect=[urllib.error.HTTPError('http://127.0.0.1:8000/v1/models',401,'Unauthorized',{},None),
+                                 io.BytesIO(b'{"data":[{"id":"qwen3.8-27b"}]}')]
+        with patch.object(runtime.urllib.request,'build_opener',return_value=opener),patch.object(runtime,'local_key',return_value='synthetic-fixture'):
+            self.assertTrue(runtime.own_health())
+        self.assertEqual(opener.open.call_count,2)
+
     def test_roles_share_allocation_and_disjoint_requests(self):
         with patch.dict(os.environ,{'SLURM_JOB_ID':'12345'}):
             for role,gpus in (('server',2),('worker',1)):

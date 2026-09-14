@@ -1,4 +1,4 @@
-# 当前短交接 — 2026-09-14 12:28 UTC
+# 当前短交接 — 2026-09-14 12:38 UTC
 
 ## 当前裁决与用户
 方向以CURRENT_DIRECTION 0L209为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
@@ -17,8 +17,11 @@ reclaimed SHA 0c6f9d1c3cb7b0cac13e175d7c573c5c60008339303a5535ed044809d771cf9e�
 当前27B空间阻塞解除，缺少文件28,868,542,488bytes开始下载。此批及前轮12GB压缩包均已删除，禁止重跑清理。最后squeue仅12535旧held，未改。
 12:18首次下载PID1918178已失败退出：202byte generation_config的307响应330bytes被curl的max-filesize=202拒绝，非上游漂移；直接下载202bytes与上游hash吻合。
 仅将小文件传输上限提高到1MiB，最终size/hash不变，5个本地针对性测试过（最初unittest discover误导入其他包失败，后改直接测试入口）。
-12:20新唯一launcher1919652，日志download-weights-redirect-fixed.log，7200秒上限/独占download.lock。capacity.json申请31,016,026,136bytes并实际分配31,016,030,208bytes后释放；12:28验证2/6分片、正在第3片。不重启旧launcher或重复下载。
-local_generator_runtime_20260914.py已写controller/server/worker/prepare/cpu/submit，有界3卡60min/12CPU，ROOT子目录integration尚未prepare/提交。
+12:20新唯一launcher1919652，日志download-weights-redirect-fixed.log，7200秒上限/独占download.lock。capacity.json申请31,016,026,136bytes并实际分配31,016,030,208bytes后释放；12:37验证4/6分片、正在第5片。不重启旧launcher或重复下载。
+local_generator_runtime_20260914.py已写controller/server/worker/prepare/cpu/submit，有界3卡60min/12CPU；ROOT/integration只做CPU测试，从未提交，保留为历史。
+旧CPU包commit968e77fa6ef1074b3380fe862859774ab15782d1，prepared SHA69dd299aafb61120b97c6c23cc5e52f52138bac61d1f77666182d6fe06d76d20；12:30配置预检、12:32实际驱动双draft mock-transport都PASS，0真实推理。
+12:38生产准备转ROOT/integration-v2，新增未认证401→专用凭据唯一模型检查；6驱动单测通过，预算/模型/任务未改。v2尚未prepare或提交，旧integration禁止submit。
+status_local_generator_20260914.py只看资产/公开结构字段、脱敏启动日志，不读模型回答、.env、原程序输出或保护集。
 新4项驱动单测＋5项下载器单测通过，远端4条真实FreshContainer配置解析通过。Slurm19.05.4无--exact，提交前已删除该参数；保持既有exclusive分卡。
 服务容器入口python3 -m vllm.entrypoints.cli.main已静态确认，保留原CUDA库路径，不把服务--nv路径替换到MLE。service/worker UUID不相交门在真实请求前。
 

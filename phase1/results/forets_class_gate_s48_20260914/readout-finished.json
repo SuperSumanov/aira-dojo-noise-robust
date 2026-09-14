@@ -1,0 +1,11 @@
+{
+  "files": {
+    "cheap-selector-runs.csv": "0f4d00ebfd949029a5501ac0473289e51b7ce7a85c13004ec62169abce729788",
+    "cheap-selector-summary.json": "aa9c4610c0c6bc91011fca4e0edc8a6f6a8f7459351978bc73298d1a70258609",
+    "wallclock-runs.csv": "605a801192d68f21f4496ff05fb30d644ba87a879359a45d1f0137bd50aaf890",
+    "wallclock-summary.json": "970a8d0da57634e94871af6e1311be22e6cbb1619165769f40b543e30ae6d6f3"
+  },
+  "source_tree": "b7f8ab0f65dba9877ac3af35e3e770fc32546565",
+  "status": "verified",
+  "summary_sha256": "aa9c4610c0c6bc91011fca4e0edc8a6f6a8f7459351978bc73298d1a70258609"
+}

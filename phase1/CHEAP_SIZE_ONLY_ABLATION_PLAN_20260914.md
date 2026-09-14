@@ -1,0 +1,7 @@
+# One exploratory size-only supervised control, not a new deployment candidate
+
+The fixed HGB has been compared with monotone size and syntax rules. Those controls do not exclude a *nonlinear learned size-only explanation*. Before fitting this additional baseline, freeze exactly one CPU fit: same2482 historical rows,138 runs, labels, order, run-equal sample weights, sklearn1.6.1 and HGB hyperparameters/random_state20260914; retain only log-prefix-characters and log-prefix-lines instead of all28 features. Prefix remains30000 characters. No tuning or alternative fit.
+
+This adds a post-hoc ablation baseline. It does not refit/replace/reselect the previously frozen deployed model, revise its development gate, or change the ongoing twelve-search experiment. Neither the full nor the size-only model is chosen using the new transfer scores. Do not use this new baseline for an E2E submission in this window.
+
+Evaluate on exactly the existing four closed-source missingness inputs, with their unchanged eligibility, de-duplication and known/unknown labels. Reproduce full-model scores from their existing immutable receipts, then report full-vs-size expected validity on known pairs and sharp missing-label bounds for every task/protocol. Report equal or adverse outcomes, not just a favorable aggregate. No active46/47 outcomes, protected cohorts, GPU or API. One fit, maximum4minutesCPU, no base-LLM updates. Preserve model/input/parameter hashes and verify model delivery and arithmetic independently.

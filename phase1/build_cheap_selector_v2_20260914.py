@@ -87,11 +87,11 @@ def derive(name,text):
         for a,b in [('ALLOCATION_SECONDS = 240 * 60','ALLOCATION_SECONDS = 85 * 60'),('STEP_WITH_TERMINATION_SECONDS = 1620','STEP_WITH_TERMINATION_SECONDS = 1020'),("correction['proposed_block_minutes'] != 240","correction['proposed_block_minutes'] != 85"),('len(spec.run_ids) != 8','len(spec.run_ids) != 6'),('allocation_minutes=240','allocation_minutes=85')]:text=once(text,a,b)
     elif name=='forets_native_run_20260911.py':text=once(text,'len(configs) != 8','len(configs) != 6')
     elif name=='forets_native_context_20260911.py':text=once(text,'FORETS_SEARCH_SECONDS="1200"','FORETS_SEARCH_SECONDS="600"')
-    elif name=='forets_paid_route_20260911.py':text=once(text,"FORETS_PAID_SCOPE='route_edit_scope'","FORETS_PAID_SCOPE='route_cheap_selector'")
+    elif name=='forets_paid_route_20260911.py':text=once(text,"FORETS_PAID_SCOPE='route_edit_scope'","FORETS_PAID_SCOPE='route_cheap_selector_v2'")
     return text
 def configure():
     for k,v in dict(BASE=BASE,PARENT=PARENT,BILLING=BILLING,PREPARED=PREPARED,AUTH_PARENT=AUTH_PARENT,PLAN=PLAN,SEEDS=SEEDS,
-        NEW_CAP=CAP,ROUTE_SCOPE='route_cheap_selector',SBATCH_TEMPLATE='edit-scope-b1.sbatch',order=order,parent_calls=parent_calls,derive=derive).items():setattr(common,k,v)
+        NEW_CAP=CAP,ROUTE_SCOPE='route_cheap_selector_v2',SBATCH_TEMPLATE='edit-scope-b1.sbatch',order=order,parent_calls=parent_calls,derive=derive).items():setattr(common,k,v)
     artifact_builder.BASE=BASE;artifact_builder.PLAN=PLAN;artifact_builder.order=order;artifact_builder.changed_sources=changed_sources
 def build(stage):
     source=inspect.getsource(common.build)
@@ -116,7 +116,7 @@ def build(stage):
     print(json.dumps(info))
 def activate(root):
     import build_edit_scope_20260914 as prior
-    text=once(inspect.getsource(prior.activate),"['route_edit_scope']","['route_cheap_selector']")
+    text=once(inspect.getsource(prior.activate),"['route_edit_scope']","['route_cheap_selector_v2']")
     ns=dict(vars(prior));ns.update(parent_calls=parent_calls,BILLING=BILLING,AUTH_PARENT=AUTH_PARENT,NEW_CAP=CAP)
     exec(compile(text,'<atomic-cheap-selector-handover>','exec'),ns);ns['activate'](root)
 if __name__=='__main__':

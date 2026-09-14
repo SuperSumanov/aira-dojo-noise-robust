@@ -1,0 +1,45 @@
+{
+  "actual_model_inference": false,
+  "completion_receipt_sha256": "5ecaf06267f3714cbc6c82512bcb14672b50154f1e31196f3291cf6ed0cc585c",
+  "facts": {
+    "api_key_environment_references": [
+      {
+        "file": "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/serve/middleware/register.py",
+        "line": 32,
+        "text": "# Ensure --api-key option from CLI takes precedence over VLLM_API_KEY"
+      },
+      {
+        "file": "/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/serve/middleware/register.py",
+        "line": 33,
+        "text": "if tokens := [key for key in (args.api_key or [envs.VLLM_API_KEY]) if key]:"
+      },
+      {
+        "file": "/usr/local/lib/python3.12/dist-packages/vllm/envs.py",
+        "line": 28,
+        "text": "VLLM_API_KEY: str | None = None"
+      },
+      {
+        "file": "/usr/local/lib/python3.12/dist-packages/vllm/envs.py",
+        "line": 800,
+        "text": "\"VLLM_API_KEY\": lambda: os.environ.get(\"VLLM_API_KEY\", None),"
+      },
+      {
+        "file": "/usr/local/lib/python3.12/dist-packages/vllm/envs.py",
+        "line": 2289,
+        "text": "\"VLLM_API_KEY\","
+      }
+    ],
+    "gpu_used": false,
+    "model_loaded": false,
+    "package_code_imported": false,
+    "versions": {
+      "torch": "2.13.0+cu130",
+      "transformers": "5.16.1",
+      "vllm": "0.29.0"
+    }
+  },
+  "gpu_jobs": 0,
+  "image_bytes": 7939788800,
+  "image_sha256": "495ca35a3fa7fc534bbd855829af1b86ce75ab9a5675b3b1ab7dba58ca74b7fa",
+  "status": "IMAGE_METADATA_ONLY_NOT_SERVING_ACCEPTANCE"
+}

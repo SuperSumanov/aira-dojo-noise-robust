@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "bytes": 7939788800,
+      "digest": "495ca35a3fa7fc534bbd855829af1b86ce75ab9a5675b3b1ab7dba58ca74b7fa",
+      "digest_kind": "sha256",
+      "path": "vllm.sif",
+      "publisher_digest_available": false
+    }
+  ],
+  "image_only": true,
+  "image_publisher_hash_unavailable": true,
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4",
+  "model_ready": false,
+  "no_gpu_or_inference": true,
+  "plan_sha256": "982e97a454ee502f89a0df72b2c3ae1626d24cc942f828137ed6f45aaaf8e4cd",
+  "revision": "dc430725f831dd90d9271738b877879a46a82239",
+  "total_bytes": 7939788800,
+  "utc": "2026-09-14T11:46:47.174930+00:00"
+}

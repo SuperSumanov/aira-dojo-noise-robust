@@ -1,0 +1,23 @@
+{
+  "actual_api_calls": 0,
+  "calibration_inputs_sha256": "7da450b0e9a2517216de79f8ad4398621d68bd615a865b259784cb37608d1f77",
+  "calls": [
+    {
+      "prompt_chars": 9610,
+      "prompt_sha256": "810b3671e7d120ab11c4c61896889ad463ab678c8397101b5b7d7a58e151ee8c",
+      "seed": 49
+    },
+    {
+      "prompt_chars": 12735,
+      "prompt_sha256": "abaa9be3f234b6448a6b74df632adf17bac7f2756833923df96fe82092ec772b",
+      "seed": 49
+    }
+  ],
+  "gpu_jobs": 0,
+  "model_fits": 0,
+  "real_data_preview_not_yet_run": true,
+  "real_generation_and_execution_not_yet_run": true,
+  "source_sha256": "c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291",
+  "status": "PASS_TWO_NATIVE_TASK_DRAFTS_MOCK_TRANSPORT_ONLY",
+  "task_count": 2
+}

@@ -1,0 +1,32 @@
+{
+  "all_members_retained": true,
+  "archive": "/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq/Qwen3-8B.tar.gz",
+  "archive_bytes": 12051153651,
+  "archive_sha256": "01dda87a6dfaf77a6c454efcb1a9d5a88964f11f7b4dd88edea1f331be84f1d6",
+  "members": [
+    {
+      "bytes": 15136866890,
+      "path": "Qwen3-8B_reward_seed1/checkpoint-100/model.safetensors",
+      "retained_path": "/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq/unpacked/Qwen3-8B_reward_seed1/checkpoint-100/model.safetensors",
+      "sha256": "bb0c6a1801cf0a753bb1f8aa1c923f9fcc7fff81fd654ae9d3a932ee280dfb74"
+    },
+    {
+      "bytes": 7953,
+      "path": "Qwen3-8B_reward_seed1/checkpoint-100/training_args.bin",
+      "retained_path": "/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq/retained-archive-metadata-20260914/Qwen3-8B_reward_seed1/checkpoint-100/training_args.bin",
+      "sha256": "a80314f871db8715e3e0584efd41b2e2e9bee04b22ac9f27eabbad811be0272a"
+    },
+    {
+      "bytes": 19311,
+      "path": "Qwen3-8B_reward_seed1/checkpoint-100/trainer_state.json",
+      "retained_path": "/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq/retained-archive-metadata-20260914/Qwen3-8B_reward_seed1/checkpoint-100/trainer_state.json",
+      "sha256": "69a42720dd1e19ee3be47b62c5db08c2501662ea2472ad2607da009f159663f3"
+    }
+  ],
+  "model_deleted": false,
+  "prior_allocated_bytes": 12051156992,
+  "recovery_download_head_verified": true,
+  "recovery_source": "Original user-provided Google Drive model link; not republished here.",
+  "removed": true,
+  "utc": "2026-09-14T11:34:12.538866+00:00"
+}

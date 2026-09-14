@@ -10,6 +10,25 @@ metadata:
 
 **用法:每次设计实验、下结论、写汇报前,逐条过一遍这个清单。我已经因为漏掉其中一条(「免费」)白做两天。**
 
+## P. 2026-09-14：27B INT4是降API成本的较弱生成器，不是能力升级
+
+- 用户转述学长：27B INT4其实更弱，是ForeTS成本变高后采用的本地替代；希望证明提高利用率，而不是靠增加成本。
+  → “更弱”是学长的比较判断，尚无我方matched能力测量；明确撤回我方将它称为“更强生成器”的前提。
+  实验问题应是固定这一生成器时，critic是否以同总资源改善最终MLE成绩，不是换模型本身的收益。
+- 学长建议一次`salloc`拿8卡，其中2卡部署生成服务，并提供vLLM镜像下载入口。此为部署建议，
+  不等于已分配8卡、无限时预算或授权借用学长现有allocation；不再把等待共享HTTP endpoint当作唯一阻塞。
+- 本轮远端核验：Google Drive文件`1hhqjRI1LWgyRrd-EXlm4qdCOv_5joAmE`标题`vllm.sif`，下载HEAD为200、
+  7,939,788,800 bytes；公开双卡权重`cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4`的metadata为public/ungated，
+  revision `dc430725f831dd90d9271738b877879a46a82239`。只读元数据，未下载大文件、未验证镜像内容/启动或模型效果。
+- 复核学长`dojo-reproduce@aae6f7d685b09cacdc5a3d1992dd81b9eeaa7ad8`：仅新增H200训练recipe/script，非新outcome。
+  LOCAL_VLLM_SERVER文档SHA仍`d65edfaaa0df1875458d422f13ea9f1e5b9a96a4f4f39ca626d651249442a2fa`，
+  3处凭据形状命中均远端脱敏后阅读，不回显/沿用示例凭据。命令131072与文字262144等不一致仍在。
+- 两卡给生成器后，余下六卡还要覆盖critic和MLE执行，不能当六张worker之外再免费加critic。
+  服务初始化、空闲预留、推理、排队/等待、执行均如实记账；GPU忙碌率/生成条数不等于有效研究进展。
+  同池随机选择只隔离筛选效果，另需允许无critic基线使用节省资源的同总预算系统对照，后者明确属于资源策略整体比较。
+- vLLM镜像仅用于生成服务；MLE仍原superimage与兼容3090节点。禁agent底座更新/保护cohort揭盲/旧失败配方无条件扩大不变。
+  本轮未占卡、未启动API或训练。接入与研究边界详见`LOCAL_GENERATOR_UTILIZATION_UPDATE_20260914.md`。
+
 ## O. 2026-09-12：后续主要用本地Qwen3.8-27B量化生成，历史API语料继续利用
 
 - 用户转述学长：后续绝大部分run改用本地部署的“qwen3.8 27B AWQ INT4”，减少API支出，方便后续训练/部署；

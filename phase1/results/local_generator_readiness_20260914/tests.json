@@ -1,0 +1,11 @@
+{
+  "utc": "2026-09-14 11:51:20 UTC",
+  "status": "PASSED_NINE_TARGETED_CPU_TESTS",
+  "command": "python -m unittest test_local_generator_adapter_20260914 test_local_generator_assets_20260914 -v",
+  "cwd": "phase1",
+  "test_count": 9,
+  "exit_code": 0,
+  "observed_output": "test_exact_patch_and_unrelated_methods_unchanged (test_local_generator_adapter_20260914.AdapterTests.test_exact_patch_and_unrelated_methods_unchanged) ... ok\r\ntest_invalid_timeout_and_paid_route_and_auth_drift_fail_before_call (test_local_generator_adapter_20260914.AdapterTests.test_invalid_timeout_and_paid_route_and_auth_drift_fail_before_call) ... ok\r\ntest_long_local_deadline_preserves_truncation_and_resource_accounting (test_local_generator_adapter_20260914.AdapterTests.test_long_local_deadline_preserves_truncation_and_resource_accounting) ... ok\r\ntest_native_constructor_no_global_auth_fallback (test_local_generator_adapter_20260914.AdapterTests.test_native_constructor_no_global_auth_fallback) ... ok\r\ntest_native_query_rejects_unbounded_or_retried_local_calls (test_local_generator_adapter_20260914.AdapterTests.test_native_query_rejects_unbounded_or_retried_local_calls) ... ok\r\ntest_old_provider_deadline_not_widened (test_local_generator_adapter_20260914.AdapterTests.test_old_provider_deadline_not_widened) ... ok\r\ntest_completed_image_is_not_reserved_twice (test_local_generator_assets_20260914.CapacityTests.test_completed_image_is_not_reserved_twice) ... ok\r\ntest_partial_object_still_reserves_conservatively (test_local_generator_assets_20260914.CapacityTests.test_partial_object_still_reserves_conservatively) ... ok\r\ntest_wrong_existing_size_is_not_silently_replaced (test_local_generator_assets_20260914.CapacityTests.test_wrong_existing_size_is_not_silently_replaced) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 9 tests in 0.089s\r\n\r\nOK\r\n",
+  "not_gpu_or_model_acceptance": true,
+  "prior_broad_discovery_attempt": "Broad discover imported unrelated critics/mock packages and failed on relative imports; targeted modules were not changed to fix that invocation."
+}

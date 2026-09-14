@@ -1,0 +1,15 @@
+{
+  "archive_bytes": 1290240,
+  "archive_sha256": "c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291",
+  "base_tree": "b7f8ab0f65dba9877ac3af35e3e770fc32546565",
+  "changed_files": {
+    "src/dojo/core/solvers/llm_helpers/backends/lite_llm.py": "5640c0462fa04123691fc770ac5ddfd0edf50bfc6d54d9c94371b2e54317bef2",
+    "src/dojo/core/solvers/llm_helpers/backends/selfhosted_guard.py": "39a2a152f93b89685108d3da4e1c8560c0f56cb67c54b80821bb2d6ba0b28675"
+  },
+  "closed_source_changed": false,
+  "constructor_and_bounded_transport_only": true,
+  "gpu_or_inference_started": false,
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4",
+  "revision": "dc430725f831dd90d9271738b877879a46a82239",
+  "source_tree": "b87178bf16d78c7217f2c88b85faf002553b2d7f"
+}

@@ -1,0 +1,140 @@
+{
+  "files": [
+    {
+      "digest_kind": "git_blob_sha1",
+      "expected": "f938136e3adacfd92be087f6e113b5d6d97f678f",
+      "path": "model/LICENSE",
+      "size": 11544,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/LICENSE"
+    },
+    {
+      "digest_kind": "git_blob_sha1",
+      "expected": "c0c686f9c38d70d179fb7b5f5aa7530bc913dda3",
+      "path": "model/chat_template.jinja",
+      "size": 8952,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/chat_template.jinja"
+    },
+    {
+      "digest_kind": "git_blob_sha1",
+      "expected": "04b58cda6f722b5e36ec7f39529abac840320b57",
+      "path": "model/config.json",
+      "size": 29898,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/config.json"
+    },
+    {
+      "digest_kind": "git_blob_sha1",
+      "expected": "023756cfadf88e5bf69eefeee3e172f38c448d64",
+      "path": "model/generation_config.json",
+      "size": 202,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/generation_config.json"
+    },
+    {
+      "digest_kind": "git_blob_sha1",
+      "expected": "a494e019ca1502219fd0128658b979e5f05ae8e8",
+      "path": "model/merges.txt",
+      "size": 3353259,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/merges.txt"
+    },
+    {
+      "digest_kind": "sha256",
+      "expected": "1f4f13bd8a4abf77fb4364c11987beb09590887d1492e65b3c75c856b4ec0323",
+      "path": "model/model-00001-of-00006.safetensors",
+      "size": 5358131840,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/model-00001-of-00006.safetensors"
+    },
+    {
+      "digest_kind": "sha256",
+      "expected": "741885489162037ac9c6ad6f369228f897d91844a105cd6bc29e86301125dd3d",
+      "path": "model/model-00002-of-00006.safetensors",
+      "size": 4330813912,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/model-00002-of-00006.safetensors"
+    },
+    {
+      "digest_kind": "sha256",
+      "expected": "96fd1b2d2d21436449add29c048d27f6874cc4561a7d1382885077e9c9bb0d50",
+      "path": "model/model-00003-of-00006.safetensors",
+      "size": 5335156112,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/model-00003-of-00006.safetensors"
+    },
+    {
+      "digest_kind": "sha256",
+      "expected": "12693dc4dd406eb07db6ea5e92576bd104b5b6000ac0fa6a317a355a6bb67261",
+      "path": "model/model-00004-of-00006.safetensors",
+      "size": 5363428152,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/model-00004-of-00006.safetensors"
+    },
+    {
+      "digest_kind": "sha256",
+      "expected": "16039ab11be9b732f1e7d9a66ec32bdb6f4d69a5377231cc68ff2bda31d7cbe8",
+      "path": "model/model-00005-of-00006.safetensors",
+      "size": 5318311992,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/model-00005-of-00006.safetensors"
+    },
+    {
+      "digest_kind": "sha256",
+      "expected": "edd3cfd7b14a0efae7dada2940ccc120887fe9770f0c04c5cc4946b68f82f47e",
+      "path": "model/model-00006-of-00006.safetensors",
+      "size": 3139552912,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/model-00006-of-00006.safetensors"
+    },
+    {
+      "digest_kind": "git_blob_sha1",
+      "expected": "da71707d5bd10e0afe9b818699bfb2d3cacae440",
+      "path": "model/model.safetensors.index.json",
+      "size": 192931,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/model.safetensors.index.json"
+    },
+    {
+      "digest_kind": "git_blob_sha1",
+      "expected": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64",
+      "path": "model/preprocessor_config.json",
+      "size": 390,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/preprocessor_config.json"
+    },
+    {
+      "digest_kind": "sha256",
+      "expected": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+      "path": "model/tokenizer.json",
+      "size": 12809320,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/tokenizer.json"
+    },
+    {
+      "digest_kind": "git_blob_sha1",
+      "expected": "5de744b3fca2129d7186979ae47c06be33903243",
+      "path": "model/tokenizer_config.json",
+      "size": 17928,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/tokenizer_config.json"
+    },
+    {
+      "digest_kind": "git_blob_sha1",
+      "expected": "3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe",
+      "path": "model/video_preprocessor_config.json",
+      "size": 385,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/video_preprocessor_config.json"
+    },
+    {
+      "digest_kind": "git_blob_sha1",
+      "expected": "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176",
+      "path": "model/vocab.json",
+      "size": 6722759,
+      "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4/resolve/dc430725f831dd90d9271738b877879a46a82239/vocab.json"
+    },
+    {
+      "digest_kind": "sha256",
+      "expected": null,
+      "path": "vllm.sif",
+      "size": 7939788800,
+      "url": "https://drive.usercontent.google.com/download?id=1hhqjRI1LWgyRrd-EXlm4qdCOv_5joAmE&export=download&confirm=t"
+    }
+  ],
+  "gpu_jobs": 0,
+  "inference_calls": 0,
+  "max_download_seconds": 7200,
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4",
+  "revision": "dc430725f831dd90d9271738b877879a46a82239",
+  "root": "/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy",
+  "total_bytes": 36808331288,
+  "transient_reservation_bytes": 38955814936,
+  "user_quota_report_available": false,
+  "utc": "2026-09-14T11:16:49.915692+00:00"
+}

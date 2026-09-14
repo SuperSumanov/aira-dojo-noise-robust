@@ -1,10 +1,33 @@
-# 当前短交接 — 2026-09-14 06:20 UTC
+# 当前短交接 — 2026-09-14 11:49 UTC
 
 ## 当前裁决与用户
-方向以CURRENT_DIRECTION 0L205为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
+方向以CURRENT_DIRECTION 0L207为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
 原六小时窗口09-13 21:06:43→09-14 03:06:43 UTC；最后新作业03:10:02结束，独立读出06:04–06:18完成，收尾晚于目标，不假装准时或虚构网络原因。
-已询问学长本地27B服务共享接口/模型名/调用许可，用户刚回复“我问问学长，等会给你回复”。等待该外部信息，不再索要key、不借allocation、不声称已部署。无新自动任务。
-本轮全部GPU/API工作已结束；不重复读出/补seed/调门槛。
+学长新回复：27B INT4是较弱的降API成本替代，不是更强生成器；建议我方一次申请8卡、2卡部署生成服务，提供vllm.sif下载链接。
+不再等待共享endpoint；已进入我方自部署准备。镜像下载/校验/版本检查已完成，模型未下载，未启动GPU，不借allocation、不索key。
+下一对照区分筛选机制与同总GPUh系统效率，不让无critic基线闲卡来证明划算；原短时间预算不盲搬。无新自动任务。
+此前GPU/API实验全部结束；本轮0新GPU/API/fit，不重复读出/补seed/调门槛。
+
+## 正在推进的27B接入
+
+ROOT=/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy。
+完整17资产36,808,331,288bytes；39GB临时容量申请两次EDQUOT（第二次在回收后），两次下载均未开始。
+已核完并仅删除旧critic压缩包12,051,153,651bytes，三个原成员全部保留，当前15GB权重未动；可由原模型分享恢复压缩包。
+回执在forets-critic-incoming-20260908-3lcjjcwq/archive-reclamation-20260914.json。禁止重跑清理；本地一次性清理脚本含原私有分享链接，不公开。
+官方uv cache prune只删51缓存文件、工具估算309.5KiB，不是18GB；未清venv/模型/语料/结果。学长共享镜像和权重路径仍Permission denied，不绕过。
+后改为只下镜像：10,087,272,448bytes临时预留成功；11:38:54 UTC开传，11:46:47完整7,939,788,800bytes校验完成。
+image-complete.json：SHA 495ca35a3fa7fc534bbd855829af1b86ce75ab9a5675b3b1ab7dba58ca74b7fa；这是自行计算，分享方无独立hash。
+image-inspection.json只读核vLLM0.29.0/Torch2.13.0+cu130/Transformers5.16.1；支持VLLM_API_KEY环境变量，尚未生成/使用真实local key。
+镜像无python命令，/usr/bin/python3可用；裸vllm入口未核，不照搬CLI。未加载模型/使用GPU；原MLE镜像不改。
+镜像launcher1884813/子1884814已退出，两个先前失败launcher1868393/1881905也退出；不重下/不重启。模型空间仍需解决。
+
+新源码tree b87178bf16d78c7217f2c88b85faf002553b2d7f，base b7f8ab0f65dba9877ac3af35e3e770fc32546565；
+source.tar SHA c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291。只改本地认证/有界transport，不改闭合source/学长分支。
+9本地测试过（6adapter+3容量计算）；远端真实GenericLLM文本/JSON两调用、两个真实任务native draft路径CPU mock transport通过，0真实推理。
+修复只对本地模型容许1200秒，旧付费provider仍300秒上限，本地强制1次/无付费回退，记录finish_reason；成本标志不代替实际GPU账。
+calibration-inputs SHA 7da450b0e9a2517216de79f8ad4398621d68bd615a865b259784cb37608d1f77；真实数据预览/生成/执行尚未跑。
+拟Leaf/Space×新seed49，各1draft；3卡(2服务1执行)/12CPU/60min≤3GPUh，有界配置见LOCAL_GENERATOR_CALIBRATION_PLAN_20260914.md。
+不是完整可提交包，服务启动与原任务执行接线仍待资产齐后完成；不能称GPU预检已过。主要外部阻塞是模型存储/可读共享副本。
 
 ## 已完成、独立验证的新结果
 13311 FAILED（冻结准入截止正常占多数，但1个异常），gpu28/3808秒/1.0577777777777777 GPUh。
@@ -48,7 +71,10 @@ S对U/H均4配对胜为事后次要探索比较；共享预留wait不平衡：U1
 旧EScope16门失败（4可比0胜4负4未知），T1/width/memory/旧8B失败保留；不复活G0/12892/8B/经典/Fresh验收。
 
 ## 当前文件与发布
-主报告FORETS_SIX_HOUR_EVIDENCE_20260914.md，旧报告顶部已有后继链接；方向0L205。
+主结果报告FORETS_SIX_HOUR_EVIDENCE_20260914.md，旧报告顶部已有后继链接；最新方向0L207。
+近期汇报ADVISOR_PROGRESS_20260910_20260914.md已补学长最新更正；LOCAL_GENERATOR_UTILIZATION_UPDATE_20260914.md记录接入证据与新比较边界。
+本轮更正/独立source包/9测试/接入回执一并发布；确切发布SHA以Git HEAD及results/local_generator_readiness_20260914/post-push-receipt.local.json为准，后者是推送后本地回执，不重复提交自引用commit。
+新source原包只1.29MB，不含模型、真实凭据、raw私有链接；closed实验结果未改。唯一私有恢复链接的一次性cleanup脚本不stage。
 results/forets_class_gate_s48_20260914/（6原manifest成员+trace/异常/汇总）；
 results/forets_first_pool_replay_20260914/（4原manifest成员）。
 导出tarSHA6cf86ea96092e5e8090d207ce2e96ad3ffe2fe5755dd6f600dfedba6eb777c4a及4f701916b625f70f39542d617fa52048ad753c77807fdaefd9a39215c8e01ca8，逐字节校验；tar本身不需git。
@@ -57,8 +83,12 @@ results/forets_first_pool_replay_20260914/（4原manifest成员）。
 只push myfork HEAD:phase1-value-critic，不新branch/force/修改学长分支。无关untracked和原报告保留。
 
 ## 后续与硬边界
-不扩大当前HGB/短代码/0.5门。强生成器共享信息待用户转学长；新协议将候选供给、真实选择改变、最终修复交付分开测，仍以跨seed同预算E2E收益为终点。不能宣称一般门控/廉价失败预测新颖：CodeScaler、Automata、Verification Horizon已有直接相关；最后一篇只摘要边界。
-学长branch06:14 fetch仍be9335348b569086ef9b0af36a15b13e61fec45c。0912四config已隔离不是4合格run；不重下/不摄取保护cohort。
+不扩大当前HGB/短代码/0.5门。新生成器单独来源/协议，不许称更强或将旧失败配方原样扩量；新协议将候选供给、真实选择改变、最终修复交付分开测，仍以跨seed同总预算E2E收益为终点。不能宣称一般门控/廉价失败预测新颖：CodeScaler、Automata、Verification Horizon已有直接相关；最后一篇只摘要边界。
+学长branch本轮fetch为aae6f7d685b09cacdc5a3d1992dd81b9eeaa7ad8，仅新增4个H200 recipe/script，无新outcome；我方核验前public head83efa174373816520f899bec120dd920ba61a9ee。
+Drive镜像已下载、hash/只读版本检查完成，见上；HF cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4 revision dc430725f831dd90d9271738b877879a46a82239，public/ungated；未下权重。
+LOCAL_VLLM_SERVER原SHA d65edfaaa0df1875458d422f13ea9f1e5b9a96a4f4f39ca626d651249442a2fa，3credentialshape先远端脱敏；E2E_EVALUATION SHA84954ccce9b872e78f328068869c6a10de59f069b3d85d89dea79289ad3c5463/0shape。
+11:11 UTC最后观察gpu28 idle/gpu27 mix，均9张3090；不是预约/免排队保证。11:40最后squeue我方仅12535旧held，未提交新作业。用户quota余量未知，但39GB申请失败/10GB申请成功有直接证据，文件系统free不能代填。
+0912四config已隔离不是4合格run；不重下/不摄取保护cohort。
 SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
 MLE仅gpu27/gpu28原镜像；禁projgpu39/Torch升级/CPUfallback。12535 held不动。
 远端aira-dojo/.env OPENROUTER_API_KEY，source ~/env_setup.sh取proxy；绝不回显/本地/git/重索key。复杂脚本scp完成后再执行。SQLite closing防NFS。

@@ -6,6 +6,17 @@ spec=importlib.util.spec_from_file_location('runtime',Path(__file__).with_name('
 runtime=importlib.util.module_from_spec(spec);spec.loader.exec_module(runtime)
 
 class WiringTests(unittest.TestCase):
+    def test_server_uses_writable_cache_and_retry_keeps_total_budget(self):
+        with patch.object(runtime,'check_files'),patch.object(runtime,'native_service_devices',return_value=['GPU-fixture-a','GPU-fixture-b']),\
+             patch.object(runtime,'write'),patch.object(runtime,'local_key',return_value='synthetic-fixture'),\
+             patch.dict(os.environ,{'SLURM_JOB_ID':'123','SLURM_STEP_ID':'0'}),patch.object(runtime.os,'execve') as execute:
+            runtime.server()
+        env=execute.call_args.args[2]
+        self.assertEqual(env['SINGULARITYENV_FLASHINFER_WORKSPACE_BASE'],'/cache/flashinfer')
+        self.assertEqual(env['SINGULARITYENV_XDG_CACHE_HOME'],'/cache/xdg')
+        self.assertNotIn('SINGULARITYENV_LD_LIBRARY_PATH',env)
+        self.assertLessEqual((80+runtime.ATTEMPT_SECONDS)*3,3*3600)
+
     def test_fixed_plan_accepts_all_files_and_rejects_duplicate_or_missing(self):
         plan=json.loads((Path(__file__).parent/'results/local_generator_integration_20260914/assets/plan.json').read_text())
         self.assertEqual(len(plan['files']),18)

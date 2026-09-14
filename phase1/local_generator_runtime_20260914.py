@@ -9,7 +9,8 @@ import random,re,secrets,shutil,signal,socket,subprocess,sys,tarfile,time,urllib
 
 BASE=Path('/research/d7/spc/yzyang4')
 ASSETS=BASE/'local-qwen27b-20260914-zcx1k1dy'
-ROOT=ASSETS/'integration-v3'
+ROOT=ASSETS/'integration-v4'
+ATTEMPT_SECONDS=3520  # Prior 13365 used 80 seconds * 3 GPUs; both attempts <=3 GPUh.
 PLAN_SHA='982e97a454ee502f89a0df72b2c3ae1626d24cc942f828137ed6f45aaaf8e4cd'
 PYTHON=BASE/'venvs/aira/bin/python'
 SOURCE_SHA='c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291'
@@ -49,7 +50,7 @@ def step_command(role,gpus):
     # Site Slurm is 19.05.4: --exact is not supported. Keep the tested exclusive
     # per-step CPU/GRES requests rather than introducing a newer CLI option.
     return ['srun','--jobid='+os.environ['SLURM_JOB_ID'],'--exclusive','--nodes=1','--ntasks=1',
-            '--cpus-per-task=6','--gres=gpu:'+str(gpus),'--time=00:59:00','--job-name=local27b-'+role,
+            '--cpus-per-task=6','--gres=gpu:'+str(gpus),'--time=00:57:40','--job-name=local27b-'+role,
             str(PYTHON),'-u','-B',str(ROOT/Path(__file__).name),role]
 
 def binding_context(env):
@@ -100,6 +101,7 @@ def server():
                 VLLM_API_KEY=local_key(),VLLM_WORKER_MULTIPROC_METHOD='spawn',
                 VLLM_CACHE_ROOT='/cache/vllm',TRITON_HOME='/cache/triton',TORCH_HOME='/cache/torch',
                 HF_HOME='/cache/hf',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',
+                FLASHINFER_WORKSPACE_BASE='/cache/flashinfer',XDG_CACHE_HOME='/cache/xdg',
                 NO_PROXY='127.0.0.1,localhost',no_proxy='127.0.0.1,localhost')
     # Do not override LD_LIBRARY_PATH: preserve the supplied CUDA-13 image setup.
     env.update({'SINGULARITYENV_'+k:v for k,v in values.items()})
@@ -269,7 +271,7 @@ def controller():
         for role,gpus in (('server',2),('worker',1)):
             log=(ROOT/f'{role}.private.log').open('xb');logs.append(log)
             processes.append(subprocess.Popen(step_command(role,gpus),env=env,stdin=subprocess.DEVNULL,stdout=log,stderr=log,start_new_session=True))
-        while time.monotonic()-started<3500:
+        while time.monotonic()-started<ATTEMPT_SECONDS-100:
             if processes[1].poll() is not None:
                 state='worker_finished' if processes[1].returncode==0 else 'worker_failed';break
             if processes[0].poll() is not None:state='service_exited';break
@@ -322,6 +324,12 @@ def submit():
     p=check_files();complete_sha=asset_check(p);preflight=read(ROOT/'cpu-preflight.json')
     if preflight['status']!='PASS_CPU_WIRING_NOT_GPU_ACCEPTANCE' or preflight['prepared_sha256']!=sha(ROOT/'prepared.json'):raise ValueError('CPU preflight')
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
+    previous=subprocess.check_output(['sacct','-X','-j','13365','-n','-P','-o','JobID,State,ElapsedRaw,AllocTRES'],env=env,text=True,timeout=20).strip().splitlines()
+    if len(previous)!=1:raise ValueError('prior allocation accounting unknown')
+    row=previous[0].split('|')
+    if row[:3]!=['13365','FAILED','80'] or 'gres/gpu=3' not in row[3].split(','):
+        raise ValueError('prior allocation resource accounting differs')
+    if (int(row[2])+ATTEMPT_SECONDS)*3>3*3600:raise ValueError('combined GPU budget exceeded')
     queue=subprocess.check_output(['squeue','-u','yzyang4','-h','-o','%i|%T'],env=env,text=True,timeout=20).strip().splitlines()
     if queue not in ([],['12535|PENDING']):raise ValueError('unexpected concurrent jobs: reassess resource budget')
     write(ROOT/'submit-intent.json',dict(utc=utc(),prepared_sha256=sha(ROOT/'prepared.json'),complete_sha256=complete_sha,gpu_hours_cap=3))
@@ -357,6 +365,8 @@ def prepare(commit):
     # 17 model files plus one image, derived from the fixed plan, not a literal.
     for previous in ('integration','integration-v2'):
         if (ASSETS/previous/'submit-intent.json').exists():raise ValueError('prior integration may have been submitted')
+    failed=read(ASSETS/'integration-v3/closed.json')
+    if failed['job']!='13365' or failed['status']!='service_exited':raise ValueError('previous service attempt not closed')
     ROOT.mkdir(exist_ok=False);prior=read(DONOR/'prepared.json')
     for name in HELPERS:
         if sha(DONOR/name)!=prior['files'][name]:raise ValueError('existing GPU helper changed')
@@ -375,19 +385,20 @@ def prepare(commit):
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:3
 #SBATCH --cpus-per-task=12
-#SBATCH --time=01:00:00
+#SBATCH --time=00:58:40
 #SBATCH --no-requeue
 set -euo pipefail
 umask 077
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 export PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PYTHON_DOTENV_DISABLED=1
-timeout --signal=TERM --kill-after=20s 3550s PYTHON -u -B ROOT/local_generator_runtime_20260914.py controller
+timeout --signal=TERM --kill-after=20s 3470s PYTHON -u -B ROOT/local_generator_runtime_20260914.py controller
 '''.replace('PYTHON -u',str(PYTHON)+' -u').replace('ROOT',str(ROOT))
     (ROOT/'run.sbatch').write_text(sbatch)
     files={str(p.relative_to(ROOT)):sha(p) for p in ROOT.rglob('*') if p.is_file()}
     write(ROOT/'prepared.json',dict(utc=utc(),commit=commit,files=files,source_sha256=SOURCE_SHA,input_sha256=INPUT_SHA,
           model='cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4',revision='dc430725f831dd90d9271738b877879a46a82239',
-          tasks=['leaf-classification','spaceship-titanic'],seed=49,drafts=2,warmup_calls=2,training=False,gpu_hours_cap=3))
+          tasks=['leaf-classification','spaceship-titanic'],seed=49,drafts=2,warmup_calls=2,training=False,gpu_hours_cap=3,
+          attempt_seconds_cap=ATTEMPT_SECONDS,previous_job='13365',previous_allocation_seconds=80,total_gpu_hours_cap=3))
     print(json.dumps(dict(event='PREPARED_NOT_SUBMITTED',root=str(ROOT),prepared_sha256=sha(ROOT/'prepared.json'))))
 
 if __name__=='__main__':

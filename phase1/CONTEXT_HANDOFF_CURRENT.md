@@ -1,10 +1,10 @@
-# 当前短交接 — 2026-09-14 12:48 UTC
+# 当前短交接 — 2026-09-14 12:53 UTC
 
 ## 当前裁决与用户
 方向以CURRENT_DIRECTION 0L210为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
 原六小时窗口09-13 21:06:43→09-14 03:06:43 UTC；最后新作业03:10:02结束，独立读出06:04–06:18完成，收尾晚于目标，不假装准时或虚构网络原因。
 学长新回复：27B INT4是较弱的降API成本替代，不是更强生成器；建议我方一次申请8卡、2卡部署生成服务，提供vllm.sif下载链接。
-不再等待共享endpoint；27B完整下载/校验已完成，已提交13365自有gpu28三卡接入作业，是否运行以现场核验为准。不借allocation、不索key。
+不再等待共享endpoint；27B完整下载/校验已完成。13365启动失败已退出，根因为服务FlashInfer缓存指向只读HOME，正在保持镜像不变修复。不借allocation、不索key。
 下一对照区分筛选机制与同总GPUh系统效率，不让无critic基线闲卡来证明划算；原短时间预算不盲搬。无新自动任务。
 此前GPU/API实验全部结束；本轮新提交13365（≤3GPUh），0付费API/fit，不重复旧读出/补seed/调门槛。
 
@@ -27,6 +27,9 @@ v2已12:40:16 prepare，commit5954661954adb6dabc5a953fe6a2f06ef6831cd9，prepare
 生产已转integration-v3，v1/v2均只CPU测试且未submit，不能运行。v3 commitd58c43d29ea5891f24bce0ff585c1fcf07cb4a84，prepared02527b5874cf96397ec5957e1574cdea785087827cc86c0f64b63d2c81c5ca4c；12:47前cpu及双native mock-transport门PASS。
 完整18资产于12:45:46 UTC校验完成，总36,808,331,288bytes、模型28,868,542,488bytes；complete SHA0d5c2f4a0c46b4e9b151b584582834f8054f5013be7287a378bed3bba3078b2a，launcher已退出。禁止重复下载。
 12:47:28已提交job13365到gpu28：2卡服务＋1卡原MLE执行、12CPU、60min≤3GPUh。12:47:58 squeue RUNNING/29秒；12:48:02服务真实Torch2.13+cu130双卡CUDA计算正确，启动中，尚未真实draft。ROOT/integration-v3/launch.json为唯一新提交回执；不得重复submit。监控已上传status_local_generator_20260914.py（指v3），不读raw response/.service.env/旧保护集。
+后续终态覆盖：13365在12:48:48 UTC FAILED，sacct80秒/3GPU（240GPU秒），closed service_exited。vLLM架构检查的真实最内层错误为FlashInfer建缓存报Read-only filesystem /uac，非GPU架构错误；0真实生成/外评分。
+镜像源码确认FLASHINFER_WORKSPACE_BASE配置。修复仅指定/cache/flashinfer及XDG缓存，不改镜像/Torch/模型/任务。生产转integration-v4；v3保持原失败，不重跑。
+v4尚未prepare/submit，8驱动单测过。重试限3520秒（58:40），与前次80秒合计至多3GPUh；submit先核sacct13365终态/80秒/3卡，未知即停。无需额外预算。
 status_local_generator_20260914.py只看资产/公开结构字段、脱敏启动日志，不读模型回答、.env、原程序输出或保护集。
 新4项驱动单测＋5项下载器单测通过，远端4条真实FreshContainer配置解析通过。Slurm19.05.4无--exact，提交前已删除该参数；保持既有exclusive分卡。
 服务容器入口python3 -m vllm.entrypoints.cli.main已静态确认，保留原CUDA库路径，不把服务--nv路径替换到MLE。service/worker UUID不相交门在真实请求前。

@@ -1,0 +1,9 @@
+# Does validity ranking sacrifice quality among already-valid alternatives?
+
+2026-09-14; exploratory diagnostic, frozen before inspecting these candidate quality values. Use the same complete-case pairs in scope/action/width/memory transfer receipts. Do not select another dataset, refit a model, deploy the size-only baseline, or inspect ongoing46/47 effects. No GPU/API/new program execution.
+
+Keep original technical eligibility and within-run pair deduplication. Report all pair counts, then the subset with both initial candidates valid. Bind each generated candidate to its original returned call and journal node; use its existing external MLE grade, not agent self-report or a debug descendant. Unknown grades remain unknown. Verify every used grade against the original submission escrow/report; fail closed for an ambiguous binding. Do not overwrite earlier validity labels or effects.
+
+Within both-valid pairs compare the fixed full HGB selection with uniform, short-code and the single size-only ablation. Ties use uniform expected selection. Report per-task/protocol run-equal utility differences (negative log-loss for Leaf, accuracy for Space), pair win/tie/loss and the number of independent runs. Do not mix raw metric scales into a cross-task mean. This asks whether observed initial-validity preference also orders quality on its restricted source distribution. It is not an E2E counterfactual, unseen-test confirmation, or revival of score-channel selection: external scores are evaluation only, never a deployed policy input.
+
+If no or few both-valid pairs exist, state that the risk remains unresolved. Report unfavorable quality comparisons as well as favorable ones. This diagnostic cannot change the current twelve-search investment gate, time budget, candidate selection, or checkpoint.

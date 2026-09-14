@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 BASE=Path('/research/d7/spc/yzyang4')
 ASSETS=BASE/'local-qwen27b-20260914-zcx1k1dy'
-sys.path[:0]=[str(ASSETS/'integration-v2'),str(ASSETS/'source/src')]
+sys.path[:0]=[str(ASSETS/'integration-v3'),str(ASSETS/'source/src')]
 import local_generator_runtime_20260914 as runtime
 
 def main():
@@ -38,8 +38,8 @@ def main():
         assert all(r['status']=='code_ready' and r['finish_reason']=='stop' and r['prompt_tokens']==20 and r['completion_tokens']==8 for r in rows)
         assert len(list(Path(folder).glob('code-*.private.py')))==2
     value=dict(status='PASS_PREPARED_DRIVER_MOCK_TRANSPORT_ONLY',utc=runtime.utc(),native_draft_calls=2,
-        actual_model_calls=0,task_executions=0,gpu_jobs=0,prompt_sha256=calls,prepared_sha256=runtime.sha(ASSETS/'integration-v2/prepared.json'))
-    runtime.write(ASSETS/'integration-v2/driver-cpu.json',value)
+        actual_model_calls=0,task_executions=0,gpu_jobs=0,prompt_sha256=calls,prepared_sha256=runtime.sha(ASSETS/'integration-v3/prepared.json'))
+    runtime.write(ASSETS/'integration-v3/driver-cpu.json',value)
     print(json.dumps(value),flush=True)
 
 if __name__=='__main__':main()

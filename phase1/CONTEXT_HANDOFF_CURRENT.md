@@ -1,4 +1,4 @@
-# 当前短交接 — 2026-09-14 12:38 UTC
+# 当前短交接 — 2026-09-14 12:46 UTC
 
 ## 当前裁决与用户
 方向以CURRENT_DIRECTION 0L209为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
@@ -17,16 +17,20 @@ reclaimed SHA 0c6f9d1c3cb7b0cac13e175d7c573c5c60008339303a5535ed044809d771cf9e�
 当前27B空间阻塞解除，缺少文件28,868,542,488bytes开始下载。此批及前轮12GB压缩包均已删除，禁止重跑清理。最后squeue仅12535旧held，未改。
 12:18首次下载PID1918178已失败退出：202byte generation_config的307响应330bytes被curl的max-filesize=202拒绝，非上游漂移；直接下载202bytes与上游hash吻合。
 仅将小文件传输上限提高到1MiB，最终size/hash不变，5个本地针对性测试过（最初unittest discover误导入其他包失败，后改直接测试入口）。
-12:20新唯一launcher1919652，日志download-weights-redirect-fixed.log，7200秒上限/独占download.lock。capacity.json申请31,016,026,136bytes并实际分配31,016,030,208bytes后释放；12:37验证4/6分片、正在第5片。不重启旧launcher或重复下载。
+12:20新唯一launcher1919652，日志download-weights-redirect-fixed.log，7200秒上限/独占download.lock。capacity.json申请31,016,026,136bytes并实际分配31,016,030,208bytes后释放；12:41:49已完成5/6片，第6片831,004,672/3,139,552,912bytes。完整complete.json尚未出现，不重启旧launcher或重复下载。
 local_generator_runtime_20260914.py已写controller/server/worker/prepare/cpu/submit，有界3卡60min/12CPU；ROOT/integration只做CPU测试，从未提交，保留为历史。
 旧CPU包commit968e77fa6ef1074b3380fe862859774ab15782d1，prepared SHA69dd299aafb61120b97c6c23cc5e52f52138bac61d1f77666182d6fe06d76d20；12:30配置预检、12:32实际驱动双draft mock-transport都PASS，0真实推理。
-12:38生产准备转ROOT/integration-v2，新增未认证401→专用凭据唯一模型检查；6驱动单测通过，预算/模型/任务未改。v2尚未prepare或提交，旧integration禁止submit。
+12:38生产准备转ROOT/integration-v2，新增未认证401→专用凭据唯一模型检查；6驱动单测通过，预算/模型/任务未改。旧integration禁止submit。
+v2已12:40:16 prepare，commit5954661954adb6dabc5a953fe6a2f06ef6831cd9，prepared SHA4e7c441cd27486231bfaf7229f3a5efb622bdce0fd11941b4259b2b42fda592d；12:40:36四配置CPU门PASS，12:41:14双native draft mock-transport门PASS，0真实推理/执行/GPU。三回执已复制到results/local_generator_integration_20260914/v2，不能覆盖旧v1回执。
+12:42现场gpu28 idle/9RTX3090，用户squeue仅12535旧held；这不是资源预留。
+12:44全部6分片/17模型文件已落盘，仍等最终镜像重核/complete。发现接入asset_check硬编码17少算了镜像；固定plan实际18项。已改按固定plan SHA982e97a454ee502f89a0df72b2c3ae1626d24cc942f828137ed6f45aaaf8e4cd检查完整集合/重复，7驱动测试通过。
+生产准备转integration-v3，v1/v2均只CPU测试且未submit，不能运行。v3待prepare/cpu/driver后、完整18资产回执出现才可按原≤3GPUh矩阵submit；这不是重跑GPU/G0。
 status_local_generator_20260914.py只看资产/公开结构字段、脱敏启动日志，不读模型回答、.env、原程序输出或保护集。
 新4项驱动单测＋5项下载器单测通过，远端4条真实FreshContainer配置解析通过。Slurm19.05.4无--exact，提交前已删除该参数；保持既有exclusive分卡。
 服务容器入口python3 -m vllm.entrypoints.cli.main已静态确认，保留原CUDA库路径，不把服务--nv路径替换到MLE。service/worker UUID不相交门在真实请求前。
 
 ROOT=/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy。
-完整17资产36,808,331,288bytes；39GB临时容量申请两次EDQUOT（第二次在回收后），两次下载均未开始。
+完整18资产（17模型文件＋镜像）36,808,331,288bytes；39GB临时容量申请两次EDQUOT（第二次在回收后），两次下载均未开始。
 已核完并仅删除旧critic压缩包12,051,153,651bytes，三个原成员全部保留，当前15GB权重未动；可由原模型分享恢复压缩包。
 回执在forets-critic-incoming-20260908-3lcjjcwq/archive-reclamation-20260914.json。禁止重跑清理；本地一次性清理脚本含原私有分享链接，不公开。
 官方uv cache prune只删51缓存文件、工具估算309.5KiB，不是18GB；未清venv/模型/语料/结果。学长共享镜像和权重路径仍Permission denied，不绕过。
@@ -42,7 +46,7 @@ source.tar SHA c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291�
 修复只对本地模型容许1200秒，旧付费provider仍300秒上限，本地强制1次/无付费回退，记录finish_reason；成本标志不代替实际GPU账。
 calibration-inputs SHA 7da450b0e9a2517216de79f8ad4398621d68bd615a865b259784cb37608d1f77；真实数据预览/生成/执行尚未跑。
 拟Leaf/Space×新seed49，各1draft；3卡(2服务1执行)/12CPU/60min≤3GPUh，有界配置见LOCAL_GENERATOR_CALIBRATION_PLAN_20260914.md。
-不是完整可提交包，服务启动与原任务执行接线仍待资产齐后完成；不能称GPU预检已过。空间已具备，可继续公开权重下载，无需因存储等待学长回复。
+v2代码接线与CPU预检已完成，但资产计数修正后生产改v3；不能称GPU预检已过。空间已具备，无需因存储等待学长回复。
 
 ## 已完成、独立验证的新结果
 13311 FAILED（冻结准入截止正常占多数，但1个异常），gpu28/3808秒/1.0577777777777777 GPUh。

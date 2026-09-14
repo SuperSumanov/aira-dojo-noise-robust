@@ -9,7 +9,8 @@ import random,re,secrets,shutil,signal,socket,subprocess,sys,tarfile,time,urllib
 
 BASE=Path('/research/d7/spc/yzyang4')
 ASSETS=BASE/'local-qwen27b-20260914-zcx1k1dy'
-ROOT=ASSETS/'integration-v2'
+ROOT=ASSETS/'integration-v3'
+PLAN_SHA='982e97a454ee502f89a0df72b2c3ae1626d24cc942f828137ed6f45aaaf8e4cd'
 PYTHON=BASE/'venvs/aira/bin/python'
 SOURCE_SHA='c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291'
 INPUT_SHA='7da450b0e9a2517216de79f8ad4398621d68bd615a865b259784cb37608d1f77'
@@ -282,11 +283,13 @@ def controller():
     if state!='worker_finished':raise SystemExit(1)
 
 def asset_check(p):
+    if sha(ASSETS/'plan.json')!=PLAN_SHA:raise ValueError('fixed asset plan drift')
     complete=read(ASSETS/'complete.json');plan=read(ASSETS/'plan.json')
     if (not complete.get('model_ready') or complete['revision']!=p['revision'] or
         complete['model']!=p['model'] or complete['plan_sha256']!=sha(ASSETS/'plan.json')):raise ValueError('assets incomplete')
     records={v['path']:v for v in complete['files']}
-    if len(records)!=17 or set(records)!={v['path'] for v in plan['files']}:raise ValueError('incomplete asset manifest')
+    if (len(records)!=len(complete['files']) or len(records)!=len(plan['files']) or
+        set(records)!={v['path'] for v in plan['files']}):raise ValueError('incomplete or duplicate asset manifest')
     for entry in plan['files']:
         path=ASSETS/entry['path'];row=records[entry['path']]
         if path.is_symlink() or path.stat().st_size!=entry['size'] or row['bytes']!=entry['size']:raise ValueError('asset size drift')
@@ -350,8 +353,10 @@ main()
 def prepare(commit):
     if not re.fullmatch('[0-9a-f]{40}',commit):raise ValueError('exact commit')
     if sha(ASSETS/'source.tar')!=SOURCE_SHA or sha(ASSETS/'calibration-inputs.json')!=INPUT_SHA:raise ValueError('input identity')
-    # v1 was CPU-only. Preserve it; this successor adds an explicit 401 auth gate.
-    if (ASSETS/'integration/submit-intent.json').exists():raise ValueError('prior integration may have been submitted')
+    # Preserve the CPU-only predecessors. v3 fixes the manifest count gate:
+    # 17 model files plus one image, derived from the fixed plan, not a literal.
+    for previous in ('integration','integration-v2'):
+        if (ASSETS/previous/'submit-intent.json').exists():raise ValueError('prior integration may have been submitted')
     ROOT.mkdir(exist_ok=False);prior=read(DONOR/'prepared.json')
     for name in HELPERS:
         if sha(DONOR/name)!=prior['files'][name]:raise ValueError('existing GPU helper changed')

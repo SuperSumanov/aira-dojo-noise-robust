@@ -9,8 +9,8 @@ import random,re,secrets,shutil,signal,socket,subprocess,sys,tarfile,time,urllib
 
 BASE=Path('/research/d7/spc/yzyang4')
 ASSETS=BASE/'local-qwen27b-20260914-zcx1k1dy'
-ROOT=ASSETS/'integration-v5'
-PREVIOUS_ATTEMPTS={'13365':80,'13366':123}
+ROOT=ASSETS/'integration-v6'
+PREVIOUS_ATTEMPTS={'13365':80,'13366':123,'13367':369}
 ATTEMPT_SECONDS=3600-sum(PREVIOUS_ATTEMPTS.values())
 PLAN_SHA='982e97a454ee502f89a0df72b2c3ae1626d24cc942f828137ed6f45aaaf8e4cd'
 PYTHON=BASE/'venvs/aira/bin/python'
@@ -84,6 +84,7 @@ def service_command():
     return ['/usr/bin/singularity','exec','--containall','--cleanenv','--no-home','--nv',
             '--no-mount','bind-paths,cwd','--bind',str(ASSETS/'model')+':/model:ro',
             '--bind',str(ROOT/'service-cache')+':/cache:rw',
+            '--bind',str(ROOT/'service-cache/tmp')+':/tmp:rw',
             '--bind',str(ROOT/'service_entry.py')+':/run/service_entry.py:ro',
             '--pwd','/cache',str(ASSETS/'vllm.sif'),'/usr/bin/python3','/run/service_entry.py']
 
@@ -104,6 +105,7 @@ def server():
                 VLLM_CACHE_ROOT='/cache/vllm',TRITON_HOME='/cache/triton',TORCH_HOME='/cache/torch',
                 HF_HOME='/cache/hf',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',
                 FLASHINFER_WORKSPACE_BASE='/cache/flashinfer',XDG_CACHE_HOME='/cache/xdg',
+                TMPDIR='/tmp',MAX_JOBS='2',VLLM_NO_USAGE_STATS='1',VLLM_CONFIG_ROOT='/cache/vllm-config',
                 NO_PROXY='127.0.0.1,localhost',no_proxy='127.0.0.1,localhost')
     # Do not override LD_LIBRARY_PATH: preserve the supplied CUDA-13 image setup.
     env.update({'SINGULARITYENV_'+k:v for k,v in values.items()})
@@ -376,7 +378,7 @@ def prepare(commit):
     # 17 model files plus one image, derived from the fixed plan, not a literal.
     for previous in ('integration','integration-v2'):
         if (ASSETS/previous/'submit-intent.json').exists():raise ValueError('prior integration may have been submitted')
-    for folder,job in (('integration-v3','13365'),('integration-v4','13366')):
+    for folder,job in (('integration-v3','13365'),('integration-v4','13366'),('integration-v5','13367')):
         failed=read(ASSETS/folder/'closed.json')
         if failed['job']!=job or failed['status']!='service_exited':raise ValueError('previous service attempt not closed')
     ROOT.mkdir(exist_ok=False);prior=read(DONOR/'prepared.json')
@@ -386,7 +388,7 @@ def prepare(commit):
     shutil.copy2(Path(__file__),ROOT/Path(__file__).name)
     (ROOT/'forets_current_pool_20260912.py').write_text('from local_generator_runtime_20260914 import binding_context\n')
     (ROOT/'opencl-vendors').mkdir();(ROOT/'opencl-vendors/nvidia.icd').write_text('libnvidia-opencl.so.1\n')
-    (ROOT/'service-cache').mkdir();(ROOT/'service_entry.py').write_text(SERVICE_ENTRY)
+    (ROOT/'service-cache').mkdir();(ROOT/'service-cache/tmp').mkdir();(ROOT/'service_entry.py').write_text(SERVICE_ENTRY)
     sbatch='''#!/bin/bash
 #SBATCH --job-name=local27b-native-drafts
 #SBATCH --partition=gpu_24h

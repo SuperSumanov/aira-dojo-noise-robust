@@ -1,4 +1,4 @@
-# 当前短交接 — 2026-09-14 12:58 UTC
+# 当前短交接 — 2026-09-14 13:08 UTC
 
 ## 当前裁决与用户
 方向以CURRENT_DIRECTION 0L210为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
@@ -33,7 +33,12 @@ v4已prepare/cpu/driver通过，prepared13e39c206b1085c9991a8d37ed550385de12d965
 12:53已提交13366，重试限3520秒（58:40），与前次80秒合计至多3GPUh；submit实际核sacct13365终态/80秒/3卡通过。唯一活跃新ROOT=integration-v4，status脚本也已指v4；不得重复submit/下载/读取旧闭合集。实际开跑/生成待核。
 终态覆盖：13366于12:55:54 UTC FAILED/123秒/3GPU，closed service_exited；架构检查已过，最内层multiprocessing _check_not_importing_main证明服务入口被spawn重入。已修main guard，子进程重入CPU回归通过，共9驱动测试过。
 诊断时曾尝试TERM 13366.0，但任务已自行结束，scancel返回Invalid job id，未改变任何任务；不再假设step序号对应角色，须读实际service-native中的step。
-下一生产ROOT=integration-v5，尚未prepare/submit。前两次总203allocation秒，余3397秒=56:37；三次合计上界仍3GPUh。submit固定核两次sacct，旧v3/v4禁止重跑。status/CPU-driver源码已指v5，待上传。
+当前生产ROOT=integration-v5，已prepare/cpu/driver通过并于12:59提交13367。commit825cf1bb9a39ebdf10a92cc755e493e0ad94dea6，preparedc415a845d9ceeed69493d059c873ab1d1b1998b5988565a399e6f0096525f936。
+前两次总203allocation秒，13367上限3397秒=56:37；三次合计上界仍3GPUh。submit已固定核两次sacct，旧v3/v4禁止重跑。status/CPU-driver已上传指v5，禁止重复submit；真实开跑/生成待核。
+终态覆盖：13367于13:05:49 UTC FAILED/369秒/3GPU；2原MLE数据预览通过，服务双卡权重实际加载成功、每卡12.9GiB，图编译成功，0模型生成。
+失败为NVCC临时文件写满容器/tmp。完整日志先No space left，随后Invalid argument；同镜像CPU实际核/tmp总67,108,864bytes、128MiB分配ENOSPC，/cache实际128MiB分配通过。不是研究盘再次耗尽。
+下一生产ROOT=integration-v6，尚未prepare/submit。新服务专用service-cache/tmp绑定到/tmp，MAX_JOBS=2，关闭可选usage上报并指定config目录；不改模型/图编译方式/任务镜像/采样。9驱动测试通过。需新挂载内临时空间检查过后提交。
+前3次合计572allocation秒，剩3028秒=50:28，总上界仍3GPUh。status与CPU-driver源码已指v6，待上传；旧v3/v4/v5保持失败终态，不重复run/readout。只读收尾脚本read_local_generator_calibration_20260914.py已准备但不能在活跃作业上运行，不读原回答/分数。
 status_local_generator_20260914.py只看资产/公开结构字段、脱敏启动日志，不读模型回答、.env、原程序输出或保护集。
 新4项驱动单测＋5项下载器单测通过，远端4条真实FreshContainer配置解析通过。Slurm19.05.4无--exact，提交前已删除该参数；保持既有exclusive分卡。
 服务容器入口python3 -m vllm.entrypoints.cli.main已静态确认，保留原CUDA库路径，不把服务--nv路径替换到MLE。service/worker UUID不相交门在真实请求前。

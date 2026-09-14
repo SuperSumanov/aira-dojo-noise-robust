@@ -14,9 +14,12 @@ class WiringTests(unittest.TestCase):
         env=execute.call_args.args[2]
         self.assertEqual(env['SINGULARITYENV_FLASHINFER_WORKSPACE_BASE'],'/cache/flashinfer')
         self.assertEqual(env['SINGULARITYENV_XDG_CACHE_HOME'],'/cache/xdg')
+        self.assertEqual(env['SINGULARITYENV_MAX_JOBS'],'2')
+        self.assertEqual(env['SINGULARITYENV_VLLM_NO_USAGE_STATS'],'1')
+        self.assertEqual(env['SINGULARITYENV_TMPDIR'],'/tmp')
         self.assertNotIn('SINGULARITYENV_LD_LIBRARY_PATH',env)
         self.assertLessEqual((sum(runtime.PREVIOUS_ATTEMPTS.values())+runtime.ATTEMPT_SECONDS)*3,3*3600)
-        self.assertEqual(runtime.slurm_duration(runtime.ATTEMPT_SECONDS),'00:56:37')
+        self.assertEqual(runtime.slurm_duration(runtime.ATTEMPT_SECONDS),'00:50:28')
 
     def test_fixed_plan_accepts_all_files_and_rejects_duplicate_or_missing(self):
         plan=json.loads((Path(__file__).parent/'results/local_generator_integration_20260914/assets/plan.json').read_text())
@@ -70,6 +73,7 @@ class WiringTests(unittest.TestCase):
         self.assertNotIn('LD_LIBRARY_PATH',' '.join(cmd))
         self.assertNotIn('--api-key',cmd)
         self.assertIn('--no-home',cmd)
+        self.assertIn(str(runtime.ROOT/'service-cache/tmp')+':/tmp:rw',cmd)
 
     def test_service_entry_parses_and_pins_caps(self):
         tree=ast.parse(runtime.SERVICE_ENTRY)

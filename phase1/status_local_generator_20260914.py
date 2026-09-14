@@ -2,7 +2,7 @@
 import datetime,json,os,re
 from pathlib import Path
 ASSETS=Path('/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy')
-ROOT=ASSETS/'integration-v5'
+ROOT=ASSETS/'integration-v6'
 PRIVATE_LINE=re.compile(r'(?i)(api[_ -]?key|access[_ -]?token|auth[_ -]?token|bearer|password|credential|https?://[^\s]*[?&](token|key|secret)=)')
 SHAPE=re.compile(r'(?i)(?<![a-z0-9])(?:sk-[a-z0-9_.-]{12,}|hf_[a-z0-9]{20,}|gh[pousr]_[a-z0-9]{20,}|github_pat_[a-z0-9_]{20,}|[a-f0-9]{64})')
 def read(path):return json.loads(path.read_bytes())
@@ -30,6 +30,10 @@ def snapshot():
       'completion_tokens','code_chars','generation_seconds','error_type','execution_status','execution_seconds','exit_code',
       'timed_out','submission_present','execution_error')
     value['integration']={}
+    value['integration']['stage_files']={
+        'native_previews_completed':sum((ROOT/f'preview-{i}.private.json').exists() for i in range(2)),
+        'warmup_completed':(ROOT/'warmup.json').exists(),
+        'calibration_completed':(ROOT/'calibration-results.json').exists()}
     for name in ('launch.json','cpu-preflight.json','driver-cpu.json','ready.json','closed.json',
                  'generation-0.json','generation-1.json','execution-0.json','execution-1.json'):
         path=ROOT/name
@@ -42,7 +46,7 @@ def snapshot():
         lines=[]
         for line in tail(path).splitlines()[-18:]:
             if PRIVATE_LINE.search(line):line='[REDACTED_CREDENTIAL_LINE]'
-            lines.append(SHAPE.sub('[REDACTED_TOKEN_OR_DIGEST]',line))
+            lines.append(SHAPE.sub('[REDACTED_TOKEN_OR_DIGEST]',line)[:700])
         value['integration'][name+'_redacted_tail']=lines
     print(json.dumps(value,sort_keys=True),flush=True)
 if __name__=='__main__':snapshot()

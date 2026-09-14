@@ -1,5 +1,5 @@
 """One read-only status snapshot; never read model responses or task labels."""
-import datetime,json,os,re
+import datetime,json,os,re,time
 from pathlib import Path
 ASSETS=Path('/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy')
 ROOT=ASSETS/'integration-v6'
@@ -34,6 +34,26 @@ def snapshot():
         'native_previews_completed':sum((ROOT/f'preview-{i}.private.json').exists() for i in range(2)),
         'warmup_completed':(ROOT/'warmup.json').exists(),
         'calibration_completed':(ROOT/'calibration-results.json').exists()}
+    cache=ROOT/'service-cache'
+    if cache.exists():
+        tmp_stats=[]
+        for path in (cache/'tmp').glob('*'):
+            try:
+                if path.is_file() and not path.is_symlink():tmp_stats.append(path.stat())
+            except FileNotFoundError:pass
+        value['integration']['compile_structure']={
+            'tmp_files':len(tmp_stats),'tmp_allocated_bytes':sum(s.st_blocks*512 for s in tmp_stats),
+            'tmp_updated_seconds_ago':round(time.time()-max(s.st_mtime for s in tmp_stats),1) if tmp_stats else None,
+            'jit_objects':len(list((cache/'flashinfer').rglob('*.o'))),
+            'jit_shared_libraries':len(list((cache/'flashinfer').rglob('*.so')))}
+        recent=[]
+        for folder in ('triton','flashinfer','tmp'):
+            for path in (cache/folder).rglob('*'):
+                try:
+                    if path.is_file() and not path.is_symlink():recent.append(path.stat().st_mtime)
+                except FileNotFoundError:pass
+        value['integration']['compile_structure'].update(
+            compilation_files=len(recent),last_compilation_write_seconds_ago=round(time.time()-max(recent),1) if recent else None)
     for name in ('launch.json','cpu-preflight.json','driver-cpu.json','ready.json','closed.json',
                  'generation-0.json','generation-1.json','execution-0.json','execution-1.json'):
         path=ROOT/name

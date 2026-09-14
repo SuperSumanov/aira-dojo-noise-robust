@@ -1,0 +1,13 @@
+{
+  "actual_model_calls": 0,
+  "gpu_jobs": 0,
+  "native_draft_calls": 2,
+  "prepared_sha256": "21d01b917dd8de716bf1bc1a19a38058e236b21da29c81ec50d1b2a1d5356d61",
+  "prompt_sha256": [
+    "53121f7aeec1af7bf2fdbc5cf75f8f0ecbe332822862240605fcb4f677991e61",
+    "ef354239f405fd686e74ff09044cdfa808f1d0a462ac70b2482761058e8007e6"
+  ],
+  "status": "PASS_PREPARED_DRIVER_MOCK_TRANSPORT_ONLY",
+  "task_executions": 0,
+  "utc": "2026-09-14T13:10:25.502236+00:00"
+}

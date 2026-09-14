@@ -1,4 +1,4 @@
-# 当前短交接 — 2026-09-14 13:08 UTC
+# 当前短交接 — 2026-09-14 13:19 UTC
 
 ## 当前裁决与用户
 方向以CURRENT_DIRECTION 0L210为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
@@ -37,8 +37,11 @@ v4已prepare/cpu/driver通过，prepared13e39c206b1085c9991a8d37ed550385de12d965
 前两次总203allocation秒，13367上限3397秒=56:37；三次合计上界仍3GPUh。submit已固定核两次sacct，旧v3/v4禁止重跑。status/CPU-driver已上传指v5，禁止重复submit；真实开跑/生成待核。
 终态覆盖：13367于13:05:49 UTC FAILED/369秒/3GPU；2原MLE数据预览通过，服务双卡权重实际加载成功、每卡12.9GiB，图编译成功，0模型生成。
 失败为NVCC临时文件写满容器/tmp。完整日志先No space left，随后Invalid argument；同镜像CPU实际核/tmp总67,108,864bytes、128MiB分配ENOSPC，/cache实际128MiB分配通过。不是研究盘再次耗尽。
-下一生产ROOT=integration-v6，尚未prepare/submit。新服务专用service-cache/tmp绑定到/tmp，MAX_JOBS=2，关闭可选usage上报并指定config目录；不改模型/图编译方式/任务镜像/采样。9驱动测试通过。需新挂载内临时空间检查过后提交。
-前3次合计572allocation秒，剩3028秒=50:28，总上界仍3GPUh。status与CPU-driver源码已指v6，待上传；旧v3/v4/v5保持失败终态，不重复run/readout。只读收尾脚本read_local_generator_calibration_20260914.py已准备但不能在活跃作业上运行，不读原回答/分数。
+当前生产ROOT=integration-v6，已prepare/cpu/driver/挂载容量检查通过并于13:11:06 UTC提交13368。commitdf785db5adaf6aeef1dd7f2f3885da141c4e7260，prepared21d01b917dd8de716bf1bc1a19a38058e236b21da29c81ec50d1b2a1d5356d61。
+新服务专用service-cache/tmp绑定到/tmp，MAX_JOBS=2，关闭可选usage上报并指定config目录；不改模型/图编译方式/任务镜像/采样。9驱动测试通过。新容器/tmp实际128MiB分配PASS，/cache实际2GiB分配PASS，临时文件已自动释放；不是共享fs空闲冒充个人quota。
+前3次合计572allocation秒，13368上限3028秒=50:28，总上界仍3GPUh。status与CPU-driver均已上传指v6；旧v3/v4/v5保持失败终态，不重复run/readout。只读收尾脚本read_local_generator_calibration_20260914.py已上传，但仅在13368终态后运行，不读原回答/分数。唯一新作业13368，禁止重复submit。真实生成尚未开始。
+最后观察13:19:09：13368已RUNNING，2原MLE公开数据预览通过；双卡权重13:14:12加载、每卡12.9GiB，图编译完成。FlashInfer内核object从13:17的2个增长为8个，临时文件持续更新；还未ready/warmup/draft，没有重复失败。
+可选linux5→gpu28直SSH读进程因Host key verification failed未执行，未绕过校验。使用现有login通道的sstat/共享路径结构观察即可；不能因此宣称主监控失联。sstat extern CPU溢出字段不采信，GPU账仍只用最终allocation ElapsedRaw×3。
 status_local_generator_20260914.py只看资产/公开结构字段、脱敏启动日志，不读模型回答、.env、原程序输出或保护集。
 新4项驱动单测＋5项下载器单测通过，远端4条真实FreshContainer配置解析通过。Slurm19.05.4无--exact，提交前已删除该参数；保持既有exclusive分卡。
 服务容器入口python3 -m vllm.entrypoints.cli.main已静态确认，保留原CUDA库路径，不把服务--nv路径替换到MLE。service/worker UUID不相交门在真实请求前。

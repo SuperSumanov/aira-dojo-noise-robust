@@ -1,46 +1,46 @@
-# 当前短交接 — 2026-09-14 00:41 UTC
-方向CURRENT_DIRECTION 0L202。六小时会话窗口09-13 21:06:43→09-14 03:06:43 UTC（HK11:06:43结束）。继续会话内研究，不新建自动任务替代，不伪造/保证正数。
+# 当前短交接 — 2026-09-14 01:20 UTC
+方向CURRENT_DIRECTION 0L203。六小时会话窗口09-13 21:06:43→09-14 03:06:43 UTC（HK11:06:43结束）。必须继续会话内研究到端点；不新建自动任务替代。用户希望正结果，不能保证/伪造/隐藏失败。
 
-## 廉价选择器v2已真实运行
-00:38:17单次提交13298/13299；00:40:54确认两者gpu28 RUNNING，首条各native绑定4/3，已越过原路径失败处。预计约01:40–01:55 UTC全12闭合；最长两85分钟。不要中期读分/改策略/补seed。
+## 正在运行，尚未读效果
+13298/13299于00:38:17单次提交。最后01:13:53均gpu28 RUNNING；六条Leaf已按预算闭合，两条Space运行、四条待执行。观察到的结束类型只有timed_out/API剩余预算不够，不能把controller failed直接当模型失败。
 ROOT=/research/d7/spc/yzyang4/forets-wallclock-20260912-km65uuej
 STAGE=/research/d7/spc/yzyang4/forets-cheap-v2-stage-20260914-bqkP9eR8
+预计约01:40–01:55 UTC全12闭合；两allocation各85分钟。全闭合前不读当前label/quality/预测值、不改模型/seed/预算/策略、不补跑。
+矩阵Leaf/Space×46/47×uniform/short_code/learned_validity=12；600秒总搜索，300秒程序，64step/100adapter，2生成1执行。Fresh原镜像gpu28/6CPU，共同RF起点。只有选择器不同；与旧8B/Jupyter不能做单旋钮因果比较。
 source61b48862532d048f5f04a517e3f89b211c59bd3d；controller e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3；preparedb2f53da2f6c9cde40c3a6b066a2670a13073f08547bb5d7f301ae4ba8293720b；auth42c7dff9a962500c91bc40b7e5928d688a525638b8afb66c0bcd20e4206031b7。
-readout plan4affb5b380bf7aabd71a956208b7c3c96e243d0ab907158aa56c092ec48408fe。source archive57323979e6d07f3edc0a9991a3bad8abcccdbe04270737a85bf752425ea3ca67（same tree归档时间会使tar不同，必须成套复制）。actualbatch12+80tie、cutoff、两route均通过。
-矩阵Leaf/Space×46/47×uniform/short_code/learned_validity=12，600秒/300秒程序/64step/100adapter、2生成1执行、固定HGB、共用Fresh原镜像gpu28/6CPU。只有选择器不同。每6搜索一allocation。真实最终action主终点；全12及两allocation闭合后运行STAGE/readout_cheap_selector_20260914.py ROOT，不改冻结reader。
-用STAGE/monitor_cheap_selector_v2_20260914.py，只读结构/账。不同root的v1monitor不可复用。00:40:54账2635calls/held7679679107/settled6279679107nUSD/旧unresolved2，未stopped；在途请求可能临时增加unresolved，不能直接叫未知失败。现有reserve_backpressure会等待额度，不改费用策略。
+source archive57323979e6d07f3edc0a9991a3bad8abcccdbe04270737a85bf752425ea3ca67，local releases/forets-cheap-selector-source-20260914-v4/，成套archive+artifact，不能根据相同tree猜tar相同。
+readout-plan4affb5b380bf7aabd71a956208b7c3c96e243d0ab907158aa56c092ec48408fe。
+两allocation及12行全闭合后一次运行STAGE/readout_cheap_selector_20260914.py ROOT。它有exclusive文件；如中途失败，先核已写产物，不盲重跑。主action、次iteration，全部技术合格且对两个基线均净胜/两任务无净退步才过原投资门。
+STAGE/monitor_cheap_selector_v2_20260914.py只读结构/账；01:13账2736calls held8587723047/settled6487723047nUSD、unresolved3（含在途），stoppedfalse。2条旧未知始终保留，不把在途误叫新增未知失败。
+闭合后STAGE/audit_cheap_closed_waits_20260914.py另核共享责任预留等待，2解析测试过；不减等待伪造同预算分、不改资格。
 
-## 原失败尝试/费用接线，保留并禁止重跑
-v1 q_imzdb_：13293/13294各67秒取消，共134秒；4生产回执存在但backend找错integration固定名。四行报错、两中断、六未开始。proofa775e0d9a6dcf62accf055f31ebd6822fcf9b06a2adf225b16c03ada227ea8e7证明0生成/0评分/0search API，只4route调用。全矩阵保留，未按效果选seed。
-修正仅生产childPID回执定位/拒绝旧回执，不改执行/image/GPU；4针对测试+7reader测试通过。v2临时草稿tpjljg17激活被重复route scope主键拒绝，独立验证原账仍active/2623calls、目标db空表，原子rollback无消费。改名route_cheap_selector_v2后新建正式km65uuej，旧草稿不复用。原q_imzdb_现在sealed。
-两85分钟+失败134秒<=原3GPUh；原累计100RMB/保守10USD帽及两未知保留。禁止重试active原包/重新激活/复制旧账为新钱。
+## 新实质结果，正负一起保留
+报告CHEAP_TRANSFER_FINDINGS_20260914.md与0L203。线上固定模型SHA05379469122879c798f1d2c571eb733956a067dac314050feeb06d3e09c641d1。
+模型root=/research/d7/spc/yzyang4/forets-task-validity-20260914-n8q3h72y；2482旧节点/138run/14任务，929有效1553无效；旧v9有锚点的run补回失败，排除无锚点全失败run，不能称无偏全语料。
+四旧协议全部计划来源32run→15有完整对run/45完整对/11discordant。HGB有效选择10/11，短代码4/11，行数5/11，syntax-only5.5期望，一次同参尺寸HGB6/11。HGB vs短代码6pair胜0负，但只有4run胜0负11平，不能用11pairs做独立显著性。vs尺寸5pair胜1负。
+四来源scope88v5m9dr/action7wzrny21/width2z2s7sc3/memory103zf3nb；完整及含未知全对独立原始label/生产特征/模型重算通过；跨run完整unordered pair重复0。较新protocol是看见scope信号后新增post-hoc压力检验，不是假装确认。
+含未知62pair/17unknown。scope完整程序组HGB-vs-short最不利界：Leaf[.0555555556,.277777778]；Space[.0669642857,.200892857]。vs尺寸Leaf[.0555555556,.5]、Space[.0119047619,.110119048]。不是CI/总体保证。width vs短0；memory Leaf[-.666667,+.666667]仍未知，全部组必须报。130代码出现前缀可parse，不是130unique。
+本地已验哈希results/cheap_transfer_robustness_20260914/（17文件）与cheap_size_ablation_20260914/（summary67fdb9c4...、independent9203b6f6...）。公开包04f4cfb711a964df06681f802977a58684a09b298bc1bcee1c86869550c7f5d4；尺寸包b583472eecc65bd7436da673ebccf08c86b6e4d46d970a95c31ad2a0f969ed69。
 
-## 并行已完成EScope旧轨迹固定模型迁移
-冻结CHEAP_SELECTOR_TRANSFER_PLAN_20260914在公开e4f9dfcf，跑完初分析ec995b738f2c49fb57b6e0e8cb3f7c26833f20a5ecf8db93a226963e60483cfb。
-旧whole_program八run，原资格主组Leaf3run5pair/2discordant；Space4run25pair/7discordant。固定HGB关键对Leaf2成功vs短代码1；Space6vs2；每任务run bootstrap下界0。API/GPU/fit0；仅initial validity，非最终搜索收益/确认。31all observed，30eligible，训练重合/重复0（逐run完整原因在结果）。
-ROOT88v5m9dr/cheap-selector-transfer.json；独立verify_cheap_scope_transfer_20260914正在CPU session37557，尚未确认。不根据该诊断修改当前E2E矩阵。
+## 新反证已独立通过，不能选择性隐藏
+quality：45完整pair仅3 both-valid，全Space/3run。原journal全部report字段唯一匹配原escrow，6提交独立数值重评分。HGB全3偏低质量；vsuniform平均-.004405，vs短代码-.0057433333333333225（0胜2负1平）。不是完整E2E反事实。summary93beff6761de70a1632e4fefc09a55329b254b108a9f007f64d27b1bea37a752，independent8c7dc0202df7e806c672e7fa2df4c1aeaf952f53acb1dd9fa2c313a647844fd5。
+LOTO：固定14历史task×full/size=28CPUfit，28.716913531068712秒；不部署、不重选。rootforets-leave-task-out-20260914-3bppxdqh。
+primary任务宏平均within-run AUC full.48886771165193804/size.5158798185810396/short.5558735851921456。full vs short3task胜11负，vs size10胜4负但均值较差，不能仅挑task胜数。purge0，独立vector/模型/加权pairwise AUC126cells验证，预测差0。summary43573a5c8dcf96b72fa60a3dfbd195c1c966a5fe12746c977ef8df95c2cdaeba；independentc8fd3a01d9659a77352736bda955e9bf7f29134611e01f4f2ed0c9780a3d0a59。
+上述本地results/cheap_transfer_stress_20260914/，4manifest文件哈希已同；tar2b4f82520060f62e4927c3cda558875d1e3f6794d62d2afc7b4a1b539a92103e。
+当前只能主张有限任务相关有效性先验，不能叫通用质量预测器/任务外能力。下一决定性证据仍12搜索实际最终成绩。
 
-## CPU实质结果
-旧v9过滤了无分节点，另恢复锚定旧run失败记录2296/123run，并补早期Space186/15run；合2482/138run/14任务、929有效1553无效。只限<08-12且与公开v9有节点对应的run，不代表无锚点全失败run。与157旧目标hash/AST/30k前缀purge0。
-旧小TFIDF及历史四-fit门均失败，不重判。补Space后独立冻结两-fit（03942ad9278b356f28180d9a0b4f82ca69db4a86在训练前）：code_only Leaf .9215686274509804/Space .6581280788177338/macro .7898483531343572，CI[.7128176728118785,.8819572347335004]，通过开发门；task one-hot版本失败，不能称任务条件化有效。
-短代码Leaf .9084967320261438/Space .6543513957307061；优势小且157/27run目标反复用于开发，非未触碰确认。独立raw labels/独立AST/固定模型314预测最大差0。同21旧双候选池仅3个discordant，code_only3/3 vs短代码1/3；不是21胜/E2E/策略反事实。两-fit CPU24.049559558043256秒/API0/GPU0。
-模型根 /research/d7/spc/yzyang4/forets-task-validity-20260914-n8q3h72y，code_only.private.joblib SHA05379469122879c798f1d2c571eb733956a067dac314050feeb06d3e09c641d1，sklearn1.6.1，不重训。summary66be27cbde084c433df25e95cd803bc7f42df3c71ad7d72af23528205d928a33；independent8fbd1c92e404ffbe585810a174ce78611e6df71ead976ced669019e84b2265cb。报告TASK_CONDITIONED_VALIDITY_RESULTS_20260914.md。
+## 先前失败/禁止重做
+v1 q_imzdb_ 13293/13294各67秒取消，4生产回执有但backend找错integration固定名；proofa775e0d9a6dcf62accf055f31ebd6822fcf9b06a2adf225b16c03ada227ea8e7证0生成0评分0search API，只4route。完整同seed12v2重启非按效果换seed；仅修childPID绑定/拒绝旧receipt，4tests+7reader过。失败134秒+v2两85分<=原3GPUh。
+临时tpjljg17激活重复route scope原子回滚（旧账active/新db空），已封存，勿复用。km65uuej唯一active，q旧账sealed。
+EScope88v5m9dr全16闭合主4可比对0胜4负4未知；272module输出全部接口拒绝。原扩大门/preservation失败，不补seed。native extract_code补充修正原reader representation验证234调用/146转换，结果完整保留，见相关报告。不能重新main读出exclusive。
+传统13284八条8/8有效512候选、API0，非完整AutoGluon。Fresh原验收有限，G0/12892/8B不重做。旧critic/宽度/记忆/T1失败均留报告不扩大同配方。
+CodeScaler已读3/4.2.1；Automata已读length-vs-structure相关段；MARS4.3/4.4/5.1等已有先例。静态失败预测/AST/HGB/模块化/记忆不自称原创，详ESCOPE_ADDITIONAL_PRIOR_ART。
+学长branch最后fetch仍be9335348b569086ef9b0af36a15b13e61fec45c（01:18本地ref核对）。0912包已隔离11,844,727bytes/4config，不是4eligible，未入训练/LATEST；unknown duplicate保持failclosed，不重下。不借其他人allocation/未确认共享免费端点。
 
-## EScope16已完，禁止扩大同配方
-ROOT=/research/d7/spc/yzyang4/forets-wallclock-20260912-88v5m9dr
-STAGE=/research/d7/spc/yzyang4/forets-edit-scope-stage-20260914-HDeOvQ6i
-source8bb325fa167a9db54656dd6535ce1f3d69859c22；prepared731001dfa4c054ec16823bbfb685de1f2ad14314e5d5ad4597d12097b713b979。
-13282/13283终态FAILED/6862、8983秒，总4.401388888888889GPUh。实际保存了搜索产物；4技术未知（3kernel、1原100请求cap）。主action4可比对0胜4负、4对未知；Leaf1对gain−1.1474；Space3对median−.019540000000000002。原扩大门/preservation后继均失败，不补seed、不改资格。
-首次主reader core完成后因漏原生extract_code的表示转换而失败。234候选调用只读排查，146处差异全部等于原生转换。明确addendum修正比较表示；原六reader/原始文件/资格/端点未改，core不重复。
-summary8fd3598f99041d7878daec43ef107da68f2e91a340203a726f3c9e8aff1911cd；addendum21bf08bbeb3e08ecc7350c696ad2540d5a0901f930cc60b05705adc7048c0545；compare46494fc368919745e32fef789dbb8908597553f9650c132f354fe423875bf4f6；mechanismee9d1414ab9884c4ecd9af27cfb084ca2b3f6ef1f61ca812a061d7e355e1e100。剩余prefix/short-control按原脚本可运行。禁止重跑原main（exclusive结果已写）。新三臂来自独立cheap模型开发门，不是绕EScope失败门。
-
-## 费用与已完成资产
-传统13284完成8/8有效512候选；Leafmedian.05948logloss/Space .790805acc；API0/2054秒，非完整AutoGluon。Fresh13286/13287合成+真实RF四对1e-12一致、24双worker/IPython通过，非普遍可靠性/E2E。不重复G0。
-0912学长包11,844,727bytes已隔离，4config producer61459c0a1248900079dafed7c505afa87e476b40，不是4合格run；未入训练/LATEST。别重下。免费共享端点未确认，不借他人allocation。
-
-## 禁止重做/操作
-G0/12892/8B完成；T1修复0有效门失败；旧宽度1胜3负/短记忆1胜2平1未知/参考critic0胜1平3负。旧HCE/多保真/Probe/score-channel/K>=1/底座更新禁；first960/Target300/Target522封闭。
-CodeScaler/MARS/Gome/MLE-STAR/iML等已有相关先例，静态失败预测不自称原创。scope只是代码表面约定，非语义/安全隔离。
-SSH linux5；airaPython=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。MLE只gpu27/gpu28原镜像，禁projgpu39/Torch升级。旧12535 JobHeldUser不动。
-凭据只远端aira-dojo/.env OPENROUTER_API_KEY，不回显/本地保存/索要；累计100RMB保守USD10责任帽。
-本地C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；push仅myfork HEAD:phase1-value-critic，最后确认公开e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3。精确暂存、secret计数扫描再push；不强推/新branch/改学长branch。apply_patch编辑，复杂SSH经文件，无关untracked保留。研究盘1TB到2026-09-29，续期未知。
+## 操作/交接
+SSH linux5，airaPython=/research/d7/spc/yzyang4/venvs/aira/bin/python，SLURM_CONF=/opt1/slurm/gpu-slurm.conf。MLE原镜像仅gpu27/gpu28，禁projgpu39/Torch升级/CPU退路；旧12535不动。
+remote aira-dojo/.env OPENROUTER_API_KEY，proxy需source ~/env_setup.sh；绝不回显/本地/git/重索。原累计100RMB→保守10USD责任帽；两旧未知不清、不重置/借钱。
+保护first960/Target300/522封闭；HCE/多保真/Probe/score-channel/K>=1/agent底座更新禁止。
+本地C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813，push只myfork HEAD:phase1-value-critic。最后确认公开1b39efe363a898bec87dd7b901f661cddaec51f0（LOTO plan）；当前一批代码/结果/报告待精确暂存扫描再push，不改学长branch、不新建branch。无关untracked保留。
+apply_patch编辑，复杂SSH经scp文件；wait scp完成再执行。SQLite连接用closing避免NFS句柄。读取只credential扫描后的明确旧根，不碰新保护数据。
+研究盘1TB到2026-09-29，续期未知。未重新核验动态状态要写最后观察。不要用记录替代实质工作。

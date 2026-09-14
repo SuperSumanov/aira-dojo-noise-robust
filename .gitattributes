@@ -614,3 +614,8 @@ phase1/releases/forets-cheap-selector-source-20260914*/artifact.json -text diff
 phase1/releases/forets-cheap-selector-tools-20260914/* -text diff
 phase1/results/forets_edit_scope_20260914/*.json -text diff
 phase1/results/forets_edit_scope_20260914/*.csv -text diff whitespace=cr-at-eol
+phase1/results/cheap_transfer_robustness_20260914/**/*.json -text diff
+phase1/results/cheap_transfer_robustness_20260914/*.json -text diff
+phase1/results/cheap_size_ablation_20260914/*.json -text diff
+phase1/results/cheap_transfer_stress_20260914/**/*.json -text diff
+phase1/results/cheap_transfer_stress_20260914/*.json -text diff

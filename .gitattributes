@@ -623,3 +623,4 @@ phase1/results/forets_cheap_e2e_s46_s47_20260914/*.json -text diff
 phase1/results/forets_cheap_e2e_s46_s47_20260914/*.csv -text diff whitespace=cr-at-eol
 phase1/releases/forets-class-gate-source-20260914/source.tar -text
 phase1/releases/forets-class-gate-source-20260914/artifact.json -text diff
+phase1/results/forets_cheap_mechanism_20260914/*.json -text diff

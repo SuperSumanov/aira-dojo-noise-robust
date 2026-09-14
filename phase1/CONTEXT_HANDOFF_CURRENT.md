@@ -52,8 +52,8 @@ S对U/H均4配对胜为事后次要探索比较；共享预留wait不平衡：U1
 results/forets_class_gate_s48_20260914/（6原manifest成员+trace/异常/汇总）；
 results/forets_first_pool_replay_20260914/（4原manifest成员）。
 导出tarSHA6cf86ea96092e5e8090d207ce2e96ad3ffe2fe5755dd6f600dfedba6eb777c4a及4f701916b625f70f39542d617fa52048ad753c77807fdaefd9a39215c8e01ca8，逐字节校验；tar本身不需git。
-新汇总dbffe89448a594d06c299f6ec19ec11d57b4989183c25e759212abd301bc0766，10单元测试通过，PS独立计数9/3/0/0及Space4/4选择/空code通过。首次unittest错cwd模块未找到，改cwd通过，非科学代码变动。
-最新已确认公开fcaffc14aaf8c665e1ec95172971dbd06d4d5751；本轮新结果/脚本/报告正在stage和push，恢复时先核git实际SHA不盲重复。
+新汇总dbffe89448a594d06c299f6ec19ec11d57b4989183c25e759212abd301bc0766，新增10测试及原主读出/独立检查合计18测试通过，PS独立计数9/3/0/0及Space4/4选择/空code通过。首次unittest错cwd模块未找到，改cwd通过，非科学代码变动。
+本轮结果已公开74427889240d7b9d2cc476ae2b69004c1803765e；push成功后ls-remote核对同一SHA，16份数据产物与staged blobs逐字节一致，credentialshape/sensitive文件名均0。之后的纯交接更新不改变结果commit；恢复先核git实际HEAD，不盲重跑/重发。
 只push myfork HEAD:phase1-value-critic，不新branch/force/修改学长分支。无关untracked和原报告保留。
 
 ## 后续与硬边界

@@ -1,0 +1,1262 @@
+{
+  "allocation_gpu_hours": 1.7869444444444444,
+  "billing": {
+    "accounted_usd": 8.13968438,
+    "authorization_sha256": "42c7dff9a962500c91bc40b7e5928d688a525638b8afb66c0bcd20e4206031b7",
+    "calls": 2837,
+    "settled_usd": 6.73968438,
+    "stopped": false,
+    "unresolved": 2
+  },
+  "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+  "groups": [
+    {
+      "baseline": "uniform",
+      "endpoint": "action",
+      "losses": 0,
+      "median_gain": 0.0,
+      "sample_sd_gain": 0.0,
+      "task": "leaf-classification",
+      "ties": 2,
+      "unknown": 0,
+      "wins": 0
+    },
+    {
+      "baseline": "uniform",
+      "endpoint": "action",
+      "losses": 1,
+      "median_gain": 0.0046000000000000485,
+      "sample_sd_gain": 0.00975807358037438,
+      "task": "spaceship-titanic",
+      "ties": 0,
+      "unknown": 0,
+      "wins": 1
+    },
+    {
+      "baseline": "short_code",
+      "endpoint": "action",
+      "losses": 2,
+      "median_gain": -1.1547049999999999,
+      "sample_sd_gain": 0.007643824304626569,
+      "task": "leaf-classification",
+      "ties": 0,
+      "unknown": 0,
+      "wins": 0
+    },
+    {
+      "baseline": "short_code",
+      "endpoint": "action",
+      "losses": 2,
+      "median_gain": -0.007469999999999921,
+      "sample_sd_gain": 0.00405879292401076,
+      "task": "spaceship-titanic",
+      "ties": 0,
+      "unknown": 0,
+      "wins": 0
+    },
+    {
+      "baseline": "uniform",
+      "endpoint": "iteration",
+      "losses": 0,
+      "median_gain": 0.0,
+      "sample_sd_gain": 0.0,
+      "task": "leaf-classification",
+      "ties": 2,
+      "unknown": 0,
+      "wins": 0
+    },
+    {
+      "baseline": "uniform",
+      "endpoint": "iteration",
+      "losses": 1,
+      "median_gain": 0.0046000000000000485,
+      "sample_sd_gain": 0.00975807358037438,
+      "task": "spaceship-titanic",
+      "ties": 0,
+      "unknown": 0,
+      "wins": 1
+    },
+    {
+      "baseline": "short_code",
+      "endpoint": "iteration",
+      "losses": 2,
+      "median_gain": -1.1547049999999999,
+      "sample_sd_gain": 0.007643824304626569,
+      "task": "leaf-classification",
+      "ties": 0,
+      "unknown": 0,
+      "wins": 0
+    },
+    {
+      "baseline": "short_code",
+      "endpoint": "iteration",
+      "losses": 2,
+      "median_gain": -0.007469999999999921,
+      "sample_sd_gain": 0.00405879292401076,
+      "task": "spaceship-titanic",
+      "ties": 0,
+      "unknown": 0,
+      "wins": 0
+    }
+  ],
+  "investment_gate": false,
+  "limitation": "Four task-seed triples, development pilot; no confirmatory significance or novel failure-prediction algorithm claim.",
+  "pairs": [
+    {
+      "baseline": "uniform",
+      "baseline_valid": true,
+      "endpoint": "action",
+      "gain": 0.0,
+      "learned_valid": true,
+      "seed": 46,
+      "sign": 0,
+      "task": "leaf-classification",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "uniform",
+      "baseline_valid": true,
+      "endpoint": "action",
+      "gain": 0.0,
+      "learned_valid": true,
+      "seed": 47,
+      "sign": 0,
+      "task": "leaf-classification",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "uniform",
+      "baseline_valid": true,
+      "endpoint": "action",
+      "gain": 0.011500000000000066,
+      "learned_valid": true,
+      "seed": 46,
+      "sign": 1,
+      "task": "spaceship-titanic",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "uniform",
+      "baseline_valid": true,
+      "endpoint": "action",
+      "gain": -0.0022999999999999687,
+      "learned_valid": true,
+      "seed": 47,
+      "sign": -1,
+      "task": "spaceship-titanic",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "short_code",
+      "baseline_valid": true,
+      "endpoint": "action",
+      "gain": -1.16011,
+      "learned_valid": true,
+      "seed": 46,
+      "sign": -1,
+      "task": "leaf-classification",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "short_code",
+      "baseline_valid": true,
+      "endpoint": "action",
+      "gain": -1.1493,
+      "learned_valid": true,
+      "seed": 47,
+      "sign": -1,
+      "task": "leaf-classification",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "short_code",
+      "baseline_valid": true,
+      "endpoint": "action",
+      "gain": -0.010339999999999905,
+      "learned_valid": true,
+      "seed": 46,
+      "sign": -1,
+      "task": "spaceship-titanic",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "short_code",
+      "baseline_valid": true,
+      "endpoint": "action",
+      "gain": -0.0045999999999999375,
+      "learned_valid": true,
+      "seed": 47,
+      "sign": -1,
+      "task": "spaceship-titanic",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "uniform",
+      "baseline_valid": true,
+      "endpoint": "iteration",
+      "gain": 0.0,
+      "learned_valid": true,
+      "seed": 46,
+      "sign": 0,
+      "task": "leaf-classification",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "uniform",
+      "baseline_valid": true,
+      "endpoint": "iteration",
+      "gain": 0.0,
+      "learned_valid": true,
+      "seed": 47,
+      "sign": 0,
+      "task": "leaf-classification",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "uniform",
+      "baseline_valid": true,
+      "endpoint": "iteration",
+      "gain": 0.011500000000000066,
+      "learned_valid": true,
+      "seed": 46,
+      "sign": 1,
+      "task": "spaceship-titanic",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "uniform",
+      "baseline_valid": true,
+      "endpoint": "iteration",
+      "gain": -0.0022999999999999687,
+      "learned_valid": true,
+      "seed": 47,
+      "sign": -1,
+      "task": "spaceship-titanic",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "short_code",
+      "baseline_valid": true,
+      "endpoint": "iteration",
+      "gain": -1.16011,
+      "learned_valid": true,
+      "seed": 46,
+      "sign": -1,
+      "task": "leaf-classification",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "short_code",
+      "baseline_valid": true,
+      "endpoint": "iteration",
+      "gain": -1.1493,
+      "learned_valid": true,
+      "seed": 47,
+      "sign": -1,
+      "task": "leaf-classification",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "short_code",
+      "baseline_valid": true,
+      "endpoint": "iteration",
+      "gain": -0.010339999999999905,
+      "learned_valid": true,
+      "seed": 46,
+      "sign": -1,
+      "task": "spaceship-titanic",
+      "technical_comparable": true
+    },
+    {
+      "baseline": "short_code",
+      "baseline_valid": true,
+      "endpoint": "iteration",
+      "gain": -0.0045999999999999375,
+      "learned_valid": true,
+      "seed": 47,
+      "sign": -1,
+      "task": "spaceship-titanic",
+      "technical_comparable": true
+    }
+  ],
+  "primary": "action",
+  "role": "cheap_selector_three_arm_development",
+  "rows": [
+    {
+      "action_code_sha256": "5657c0bc9164a703b0fb311ee9b68c2665778d106588186607f7aaed66ff5fd9",
+      "action_score": 1.51485,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.016456128,
+      "api_responsibility_usd": 0.016456128,
+      "arm": "uniform",
+      "candidate_executions": 3,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 5,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 1.514851560522969,
+      "iteration_score": 1.51485,
+      "iteration_valid": true,
+      "job": "13298",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 3,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "00-leaf-classification-s46-uniform",
+      "runtime_status": "failed",
+      "score": 1.51485,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2147837599397515,
+      "seed": 46,
+      "selected_code_sha256": "5657c0bc9164a703b0fb311ee9b68c2665778d106588186607f7aaed66ff5fd9",
+      "selected_pools": 3,
+      "selected_step": 4,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "leaf-classification",
+      "technical_eligible": true,
+      "termination_reason": "timed_out",
+      "valid": true,
+      "worker_elapsed_seconds": 600.1812594220974
+    },
+    {
+      "action_code_sha256": "59f262184c419cf9ae82ba78eec753e60395b70219c8131e38c0fc0db0543ab0",
+      "action_score": 0.35474,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.018337761,
+      "api_responsibility_usd": 0.018337761,
+      "arm": "short_code",
+      "candidate_executions": 3,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 5,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 0.35474416919629,
+      "iteration_score": 0.35474,
+      "iteration_valid": true,
+      "job": "13298",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 3,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "01-leaf-classification-s46-short_code",
+      "runtime_status": "failed",
+      "score": 0.35474,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2148453020560960,
+      "seed": 46,
+      "selected_code_sha256": "59f262184c419cf9ae82ba78eec753e60395b70219c8131e38c0fc0db0543ab0",
+      "selected_pools": 3,
+      "selected_step": 3,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "leaf-classification",
+      "technical_eligible": true,
+      "termination_reason": "api_admission_budget_expired",
+      "valid": true,
+      "worker_elapsed_seconds": 593.7375628422014
+    },
+    {
+      "action_code_sha256": "5657c0bc9164a703b0fb311ee9b68c2665778d106588186607f7aaed66ff5fd9",
+      "action_score": 1.51485,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.008153106,
+      "api_responsibility_usd": 0.008153106,
+      "arm": "learned_validity",
+      "candidate_executions": 2,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 3,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 1.514851560522969,
+      "iteration_score": 1.51485,
+      "iteration_valid": true,
+      "job": "13298",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 2,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "02-leaf-classification-s46-learned_validity",
+      "runtime_status": "failed",
+      "score": 1.51485,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2149053426263252,
+      "seed": 46,
+      "selected_code_sha256": "5657c0bc9164a703b0fb311ee9b68c2665778d106588186607f7aaed66ff5fd9",
+      "selected_pools": 2,
+      "selected_step": 2,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "leaf-classification",
+      "technical_eligible": true,
+      "termination_reason": "api_admission_budget_expired",
+      "valid": true,
+      "worker_elapsed_seconds": 562.1793246152811
+    },
+    {
+      "action_code_sha256": "1f87b9451b0af8e669d8405112312892e5d7a11d16d15320898a7223624c42ad",
+      "action_score": 0.81839,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.059891403,
+      "api_responsibility_usd": 0.059891403,
+      "arm": "short_code",
+      "candidate_executions": 7,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 13,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 0.8183908045977012,
+      "iteration_score": 0.81839,
+      "iteration_valid": true,
+      "job": "13298",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 7,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "03-spaceship-titanic-s46-short_code",
+      "runtime_status": "failed",
+      "score": 0.81839,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2149623544015937,
+      "seed": 46,
+      "selected_code_sha256": "1f87b9451b0af8e669d8405112312892e5d7a11d16d15320898a7223624c42ad",
+      "selected_pools": 7,
+      "selected_step": 11,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "spaceship-titanic",
+      "technical_eligible": true,
+      "termination_reason": "api_admission_budget_expired",
+      "valid": true,
+      "worker_elapsed_seconds": 493.8708138628863
+    },
+    {
+      "action_code_sha256": "d6edada71c41d9c4dda8d2d5ecf9f215bd3ee6c3c2d77876a6f20059f72ad708",
+      "action_score": 0.80805,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.052035009,
+      "api_responsibility_usd": 0.052035009,
+      "arm": "learned_validity",
+      "candidate_executions": 5,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 9,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 0.8080459770114943,
+      "iteration_score": 0.80805,
+      "iteration_valid": true,
+      "job": "13298",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 5,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "04-spaceship-titanic-s46-learned_validity",
+      "runtime_status": "failed",
+      "score": 0.80805,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2150123723872447,
+      "seed": 46,
+      "selected_code_sha256": "d6edada71c41d9c4dda8d2d5ecf9f215bd3ee6c3c2d77876a6f20059f72ad708",
+      "selected_pools": 5,
+      "selected_step": 8,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "spaceship-titanic",
+      "technical_eligible": true,
+      "termination_reason": "api_admission_budget_expired",
+      "valid": true,
+      "worker_elapsed_seconds": 492.1867927312851
+    },
+    {
+      "action_code_sha256": "c9280f3ee762f57168326c8c5dda08595fd0784624c8a65102526aae4a7f7b13",
+      "action_score": 0.79655,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.064000053,
+      "api_responsibility_usd": 0.064000053,
+      "arm": "uniform",
+      "candidate_executions": 6,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 11,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 0.7965517241379311,
+      "iteration_score": 0.79655,
+      "iteration_valid": true,
+      "job": "13298",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 6,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "05-spaceship-titanic-s46-uniform",
+      "runtime_status": "failed",
+      "score": 0.79655,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2150623934284723,
+      "seed": 46,
+      "selected_code_sha256": "c9280f3ee762f57168326c8c5dda08595fd0784624c8a65102526aae4a7f7b13",
+      "selected_pools": 6,
+      "selected_step": 10,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "spaceship-titanic",
+      "technical_eligible": true,
+      "termination_reason": "api_admission_budget_expired",
+      "valid": true,
+      "worker_elapsed_seconds": 507.3819539719261
+    },
+    {
+      "action_code_sha256": "081dd84ffa6e9346bdb8f7cac10fff12813b70d0f9070c7c41aed628e12cf8f1",
+      "action_score": 0.36555,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.013422201,
+      "api_responsibility_usd": 0.013422201,
+      "arm": "short_code",
+      "candidate_executions": 3,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 5,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 0.36554945915030873,
+      "iteration_score": 0.36555,
+      "iteration_valid": true,
+      "job": "13299",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 3,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "06-leaf-classification-s47-short_code",
+      "runtime_status": "failed",
+      "score": 0.36555,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2147837599529572,
+      "seed": 47,
+      "selected_code_sha256": "081dd84ffa6e9346bdb8f7cac10fff12813b70d0f9070c7c41aed628e12cf8f1",
+      "selected_pools": 3,
+      "selected_step": 4,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "leaf-classification",
+      "technical_eligible": true,
+      "termination_reason": "timed_out",
+      "valid": true,
+      "worker_elapsed_seconds": 600.088107123971
+    },
+    {
+      "action_code_sha256": "5657c0bc9164a703b0fb311ee9b68c2665778d106588186607f7aaed66ff5fd9",
+      "action_score": 1.51485,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.041334072,
+      "api_responsibility_usd": 0.041334072,
+      "arm": "learned_validity",
+      "candidate_executions": 5,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 9,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 1.514851560522969,
+      "iteration_score": 1.51485,
+      "iteration_valid": true,
+      "job": "13299",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 5,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "07-leaf-classification-s47-learned_validity",
+      "runtime_status": "failed",
+      "score": 1.51485,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2148453020957840,
+      "seed": 47,
+      "selected_code_sha256": "5657c0bc9164a703b0fb311ee9b68c2665778d106588186607f7aaed66ff5fd9",
+      "selected_pools": 5,
+      "selected_step": 8,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "leaf-classification",
+      "technical_eligible": true,
+      "termination_reason": "api_admission_budget_expired",
+      "valid": true,
+      "worker_elapsed_seconds": 468.21051830006763
+    },
+    {
+      "action_code_sha256": "5657c0bc9164a703b0fb311ee9b68c2665778d106588186607f7aaed66ff5fd9",
+      "action_score": 1.51485,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.015210429,
+      "api_responsibility_usd": 0.015210429,
+      "arm": "uniform",
+      "candidate_executions": 3,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 5,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 1.514851560522969,
+      "iteration_score": 1.51485,
+      "iteration_valid": true,
+      "job": "13299",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 3,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "08-leaf-classification-s47-uniform",
+      "runtime_status": "failed",
+      "score": 1.51485,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2148928314146870,
+      "seed": 47,
+      "selected_code_sha256": "5657c0bc9164a703b0fb311ee9b68c2665778d106588186607f7aaed66ff5fd9",
+      "selected_pools": 3,
+      "selected_step": 4,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "leaf-classification",
+      "technical_eligible": true,
+      "termination_reason": "api_admission_budget_expired",
+      "valid": true,
+      "worker_elapsed_seconds": 530.3408238673583
+    },
+    {
+      "action_code_sha256": "c447ee151053ace9eb41ded6d2672a0544df78865525384c38e2a00ab35c07e1",
+      "action_score": 0.8023,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.064713012,
+      "api_responsibility_usd": 0.064713012,
+      "arm": "learned_validity",
+      "candidate_executions": 7,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 13,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 0.8022988505747126,
+      "iteration_score": 0.8023,
+      "iteration_valid": true,
+      "job": "13299",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 7,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "09-spaceship-titanic-s47-learned_validity",
+      "runtime_status": "failed",
+      "score": 0.8023,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2149468727991893,
+      "seed": 47,
+      "selected_code_sha256": "c447ee151053ace9eb41ded6d2672a0544df78865525384c38e2a00ab35c07e1",
+      "selected_pools": 7,
+      "selected_step": 11,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "spaceship-titanic",
+      "technical_eligible": true,
+      "termination_reason": "api_admission_budget_expired",
+      "valid": true,
+      "worker_elapsed_seconds": 509.15889504924417
+    },
+    {
+      "action_code_sha256": "ba924b59330f36b0315e5bbd2c3c232fb3f250ce875da8a52450db035a3115bb",
+      "action_score": 0.8046,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.062212449,
+      "api_responsibility_usd": 0.062212449,
+      "arm": "uniform",
+      "candidate_executions": 7,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 13,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 0.8045977011494253,
+      "iteration_score": 0.8046,
+      "iteration_valid": true,
+      "job": "13299",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 7,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "10-spaceship-titanic-s47-uniform",
+      "runtime_status": "failed",
+      "score": 0.8046,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2149984046199789,
+      "seed": 47,
+      "selected_code_sha256": "ba924b59330f36b0315e5bbd2c3c232fb3f250ce875da8a52450db035a3115bb",
+      "selected_pools": 7,
+      "selected_step": 10,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "spaceship-titanic",
+      "technical_eligible": true,
+      "termination_reason": "api_admission_budget_expired",
+      "valid": true,
+      "worker_elapsed_seconds": 506.6722900113091
+    },
+    {
+      "action_code_sha256": "f225984ec18de179d4f2bf72585e46a819b29f8f77c120e01a81c664e82a1c6f",
+      "action_score": 0.8069,
+      "action_valid": true,
+      "allocated_cpus": 6,
+      "allocated_gpus": 1,
+      "api_cost_usd": 0.057411471,
+      "api_responsibility_usd": 0.057411471,
+      "arm": "short_code",
+      "candidate_executions": 6,
+      "controller_commit": "e4f9dfcf409b62ea7d6d00e6e4b9189712029ee3",
+      "critic": null,
+      "critic_ranking_votes": 0,
+      "generated_including_start": 11,
+      "generator": "qwen/qwen3-coder-flash",
+      "image_version": "2026-07-macos-v1",
+      "independent_score": 0.8068965517241379,
+      "iteration_score": 0.8069,
+      "iteration_valid": true,
+      "job": "13299",
+      "node": "gpu28",
+      "planned_step_cap": 64,
+      "pools": 6,
+      "program_timeout_seconds": 300,
+      "provider": "alibaba",
+      "run_id": "11-spaceship-titanic-s47-short_code",
+      "runtime_status": "failed",
+      "score": 0.8069,
+      "search_budget_seconds": 600,
+      "search_start_ns": 2150499396408700,
+      "seed": 47,
+      "selected_code_sha256": "f225984ec18de179d4f2bf72585e46a819b29f8f77c120e01a81c664e82a1c6f",
+      "selected_pools": 6,
+      "selected_step": 10,
+      "selection_coupling": "common_priority_v1",
+      "selection_top_k": 1,
+      "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d",
+      "task": "spaceship-titanic",
+      "technical_eligible": true,
+      "termination_reason": "api_admission_budget_expired",
+      "valid": true,
+      "worker_elapsed_seconds": 466.10126659087837
+    }
+  ],
+  "secondary": "iteration",
+  "selection_replays": [
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "00-leaf-classification-s46-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "3907538398344456052a51900aee4ebf029c034ea0ce2e05884b1d650186496f"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "00-leaf-classification-s46-uniform",
+      "selected": [
+        1
+      ],
+      "sha256": "2513e5a618b6713574a8c35ae4cef5b348115743b06645c83d182a87177df635"
+    },
+    {
+      "pool": "batch-4.sqlite",
+      "run_id": "00-leaf-classification-s46-uniform",
+      "selected": [
+        1
+      ],
+      "sha256": "c954e62ac5e80b4c6508c45352e791a330404d4c642420eacb4cbebbd6b615f3"
+    },
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "01-leaf-classification-s46-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "a91d09a960140fe0de11700ef9ea362d8289f945b7fe27b358ad5b0893d506b3"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "01-leaf-classification-s46-short_code",
+      "selected": [
+        1
+      ],
+      "sha256": "ecec0df5aabc1850b4ca2a15cd6907eaa57bfeb064782b46ba95e435909ed3aa"
+    },
+    {
+      "pool": "batch-3.sqlite",
+      "run_id": "01-leaf-classification-s46-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "c3fb9e25c6b759f649e9a0379b56ffdd2a87945dc92548bbe56e86e3b6fed206"
+    },
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "02-leaf-classification-s46-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "2861af0c6d0d5d1ad1ee9ed13832249bf665ca2cb648521f0765a4a8fc6468f7"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "02-leaf-classification-s46-learned_validity",
+      "selected": [
+        1
+      ],
+      "sha256": "2de4c0c94f255710e1a72ff4dbe39840b51dc811da16900f60e8bc33e9bd7530"
+    },
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "03-spaceship-titanic-s46-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "5036391620e7fa0bd0352afad4eca0a34a0448187a1100a5601ec7bee3066c38"
+    },
+    {
+      "pool": "batch-10.sqlite",
+      "run_id": "03-spaceship-titanic-s46-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "44dbe0ec534a2413f76036c5ef65438181317596f4775097905db8f0770f72f8"
+    },
+    {
+      "pool": "batch-11.sqlite",
+      "run_id": "03-spaceship-titanic-s46-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "4396f6f60331af82f8cc84813a5315e611d91ed772a7fbfdd41b2dafd89c07d3"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "03-spaceship-titanic-s46-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "499c1361666fc0a26bdec5178a56ec5eac659edbaca348ce11b2ab9eb78a6f9a"
+    },
+    {
+      "pool": "batch-4.sqlite",
+      "run_id": "03-spaceship-titanic-s46-short_code",
+      "selected": [
+        1
+      ],
+      "sha256": "cc55dfabeb0c39f77f067a51c86df1fc69c960be854480a9da3442f94ae5a966"
+    },
+    {
+      "pool": "batch-6.sqlite",
+      "run_id": "03-spaceship-titanic-s46-short_code",
+      "selected": [
+        1
+      ],
+      "sha256": "7b1f767190f8db64baeca18069df56a910d9170013228ad0cf1d1baf5cea917d"
+    },
+    {
+      "pool": "batch-8.sqlite",
+      "run_id": "03-spaceship-titanic-s46-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "b51ac58c156ea661a681059751ec05a8c98537aa4072598a108c45d488a46f99"
+    },
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "04-spaceship-titanic-s46-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "4320d4afdcc0cb9e6f1a5cdb103b7f6ac29c212048726446712ee1a1a93f882f"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "04-spaceship-titanic-s46-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "0706e11a702fd12d45d68e9b3e80f1896d8fa672eefde4320c1429cfe289cde7"
+    },
+    {
+      "pool": "batch-4.sqlite",
+      "run_id": "04-spaceship-titanic-s46-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "6b383e860d0b92623dcec79f448e9838c4bc7480b2da0d9c325eba4732b88c32"
+    },
+    {
+      "pool": "batch-6.sqlite",
+      "run_id": "04-spaceship-titanic-s46-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "e4f904c24f59f6aed89f9e1302a65bc42f5d3d4bf9c9f32052b5a4f6933fab4c"
+    },
+    {
+      "pool": "batch-8.sqlite",
+      "run_id": "04-spaceship-titanic-s46-learned_validity",
+      "selected": [
+        1
+      ],
+      "sha256": "ea740dfc4870e7dfd2058c7fe34373919bfc33498ae93196d487d139706262ac"
+    },
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "05-spaceship-titanic-s46-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "b2d532309d8aad063f1d5f348d03aa2a7eee000f0c415044215c3da40734c635"
+    },
+    {
+      "pool": "batch-10.sqlite",
+      "run_id": "05-spaceship-titanic-s46-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "95fd886fa745cef8f65087cb5eeccc0485e6f4e033ad8a7a4d98cf576b27b7bf"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "05-spaceship-titanic-s46-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "6601b0da9845b753bc046bb05de18e1702d97402ac62199ed747e8cd58e980a7"
+    },
+    {
+      "pool": "batch-4.sqlite",
+      "run_id": "05-spaceship-titanic-s46-uniform",
+      "selected": [
+        1
+      ],
+      "sha256": "6d6a26b511693fabed3ac2c1e6b456814ffee2ef859ab1a61e87ae0637a1ddd8"
+    },
+    {
+      "pool": "batch-6.sqlite",
+      "run_id": "05-spaceship-titanic-s46-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "8fe6fe6dee681f454387aebd3a39c5fde131ed916dc798e1730aeadb4c0d2848"
+    },
+    {
+      "pool": "batch-8.sqlite",
+      "run_id": "05-spaceship-titanic-s46-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "91a01f45a1a478630acdda1dec04c8097f6182e6a0647ad41c4ad7ceda8f1990"
+    },
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "06-leaf-classification-s47-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "64a89d1d8dfa5b880b1b7aa92b95f3eb059ccba7e2fed8073640061bc45efcbb"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "06-leaf-classification-s47-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "e77faaea7f6d995424eee8c0abc7010669e136409ad709d12ef25e39b6a47b9a"
+    },
+    {
+      "pool": "batch-4.sqlite",
+      "run_id": "06-leaf-classification-s47-short_code",
+      "selected": [
+        1
+      ],
+      "sha256": "bbbd3a1df2eb82cf2db01886ba11389bd8cd423c40ed85355f1fe468c33dd95d"
+    },
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "07-leaf-classification-s47-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "e3d6fbdc947618e5a8c57f819fc382edce27e515bf8bb457b15d540f37a55154"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "07-leaf-classification-s47-learned_validity",
+      "selected": [
+        1
+      ],
+      "sha256": "d0f33cc36dc91e948c4eed7c40321efa967c5abfec74578142bd5f4c42c0fca2"
+    },
+    {
+      "pool": "batch-4.sqlite",
+      "run_id": "07-leaf-classification-s47-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "744a238c399609fcd0c66ec18bd3d045df719a88272800a0d9979b94dccef95f"
+    },
+    {
+      "pool": "batch-6.sqlite",
+      "run_id": "07-leaf-classification-s47-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "70bec6d47f5445fe93a564caf7dbbf4630361c37f20e33043911ffc94916eb7e"
+    },
+    {
+      "pool": "batch-8.sqlite",
+      "run_id": "07-leaf-classification-s47-learned_validity",
+      "selected": [
+        1
+      ],
+      "sha256": "01bf2f5024096f9f3a766641a4e89e984504ba1bbe536f4eae1022ac9b3d1748"
+    },
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "08-leaf-classification-s47-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "8b01c5d17a652b62b43c6fec8ae4227c00f83481342523c269d724f6494aabd0"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "08-leaf-classification-s47-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "440fd991ff4b8fe7c14dc90805946f6e974412c912309fa09ce6287cf3f82371"
+    },
+    {
+      "pool": "batch-4.sqlite",
+      "run_id": "08-leaf-classification-s47-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "eb11ec140974013010a8a8579b4fee433e9408a15669ed8bc56321f8ad4fe1f5"
+    },
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "09-spaceship-titanic-s47-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "8b0a8c096c6aaf8ec35cce5fad2c13a358e74a098dc5cd093243f74a3af8d100"
+    },
+    {
+      "pool": "batch-11.sqlite",
+      "run_id": "09-spaceship-titanic-s47-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "40e737c6d501ebcdf00760ab4afe5b86aac20db3a2e5f6705c6370c8b4b3242d"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "09-spaceship-titanic-s47-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "60d1acb019275fbfbfdf6825a39d1d3bb4ce0f07d2c510e4023138154a626297"
+    },
+    {
+      "pool": "batch-4.sqlite",
+      "run_id": "09-spaceship-titanic-s47-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "01edfd3a81a99e9aeded1bbf41f2a7e9c8da82a267478e026803403ce5ef1c3f"
+    },
+    {
+      "pool": "batch-6.sqlite",
+      "run_id": "09-spaceship-titanic-s47-learned_validity",
+      "selected": [
+        0
+      ],
+      "sha256": "85383fd32b73729e7d1bec7c6ca22932958b88784396c919194d4dda3b3d7811"
+    },
+    {
+      "pool": "batch-8.sqlite",
+      "run_id": "09-spaceship-titanic-s47-learned_validity",
+      "selected": [
+        1
+      ],
+      "sha256": "157d624986e49f24941c37a9bebcdbc74af94d7cb363e19522840b624ad811d0"
+    },
+    {
+      "pool": "batch-9.sqlite",
+      "run_id": "09-spaceship-titanic-s47-learned_validity",
+      "selected": [
+        1
+      ],
+      "sha256": "f0ae1d887802b987eb26e9df7d15668a196917209bb32c123f544b5e292d061d"
+    },
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "10-spaceship-titanic-s47-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "516a149f9807fa947af662c40eeea90435f352e1a3917827fbdf8c9cd13a667b"
+    },
+    {
+      "pool": "batch-10.sqlite",
+      "run_id": "10-spaceship-titanic-s47-uniform",
+      "selected": [
+        1
+      ],
+      "sha256": "ec03c0e25ce89e8482bfae6106d191312a3b8b86ee5928951cc4aed67c139dd6"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "10-spaceship-titanic-s47-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "4e5db614471a849e2c0d2e21608908bf1afac528f61e258d7d166745a23d5b7c"
+    },
+    {
+      "pool": "batch-4.sqlite",
+      "run_id": "10-spaceship-titanic-s47-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "d8e394c1f61a07862d8283b32c1e5a700ee0e5af632f40f28cff6b226067b0a7"
+    },
+    {
+      "pool": "batch-6.sqlite",
+      "run_id": "10-spaceship-titanic-s47-uniform",
+      "selected": [
+        1
+      ],
+      "sha256": "d79b20f03fb6cce9c32bf93aabe94ad363d52ff8b6f6b09d3d6cb00e72746e5c"
+    },
+    {
+      "pool": "batch-7.sqlite",
+      "run_id": "10-spaceship-titanic-s47-uniform",
+      "selected": [
+        0
+      ],
+      "sha256": "133f688391f1874039c421859efc5b87d569b0b79318f571fd8276a859773ab6"
+    },
+    {
+      "pool": "batch-9.sqlite",
+      "run_id": "10-spaceship-titanic-s47-uniform",
+      "selected": [
+        1
+      ],
+      "sha256": "8084566ccd6fc72276add9a0c3c66f8b5843140e31804c95eb3aaaba07b4a395"
+    },
+    {
+      "pool": "batch-1.sqlite",
+      "run_id": "11-spaceship-titanic-s47-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "40982ab4dfbb3d9b89786adf8a8c6b6c71bd6dbd40b2f834c9d0946896f96ed9"
+    },
+    {
+      "pool": "batch-10.sqlite",
+      "run_id": "11-spaceship-titanic-s47-short_code",
+      "selected": [
+        1
+      ],
+      "sha256": "595d31e1c362b276e46b3b3115781b9bb84717e67cd950f96743777b0496dae6"
+    },
+    {
+      "pool": "batch-2.sqlite",
+      "run_id": "11-spaceship-titanic-s47-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "4f9160c7e18098cf156f886d5d6168a91863bd2a4c3026b45b4a74e3e46389c0"
+    },
+    {
+      "pool": "batch-4.sqlite",
+      "run_id": "11-spaceship-titanic-s47-short_code",
+      "selected": [
+        0
+      ],
+      "sha256": "4baa741bf5ef9b0486600378d506d62d450b541ed7784bd3e92edcfa78ef3a4f"
+    },
+    {
+      "pool": "batch-6.sqlite",
+      "run_id": "11-spaceship-titanic-s47-short_code",
+      "selected": [
+        1
+      ],
+      "sha256": "eafd36d555e4f72059cfec3a14fef7bcddc67e7501b6b740ee35830a24b52a79"
+    },
+    {
+      "pool": "batch-8.sqlite",
+      "run_id": "11-spaceship-titanic-s47-short_code",
+      "selected": [
+        1
+      ],
+      "sha256": "85ce2299044e663f80bb0f8dc60c49496e566909cedf932ac04613d8b937cd15"
+    }
+  ],
+  "source_tree": "61b48862532d048f5f04a517e3f89b211c59bd3d"
+}

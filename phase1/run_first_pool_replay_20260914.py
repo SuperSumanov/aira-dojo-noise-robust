@@ -127,10 +127,11 @@ def setup(root,p):
     sys.path[:0]=[str(root),str(SOURCE/'src')];logging.disable(logging.CRITICAL)
 def one(root,row,factory=None):
     from dojo.config_dataclasses.interpreter.fresh_container import FreshContainerInterpreterConfig
+    from dojo.config_dataclasses.utils import dataclass_from_dict
     if factory is None:
         from dojo.core.interpreters.fresh_container import FreshContainerInterpreter
         factory=FreshContainerInterpreter
-    i=row['index'];cfg=FreshContainerInterpreterConfig.from_dict(read(root/'configs'/f'{i}.json'));cfg.validate()
+    i=row['index'];cfg=dataclass_from_dict(FreshContainerInterpreterConfig,read(root/'configs'/f'{i}.json'));cfg.validate()
     work=Path(cfg.working_dir);work.mkdir(exist_ok=False);identity=root/f'identity-{i}.json';write(identity,{})
     os.environ['DOJO_WORKER_IDENTITY_PATH']=str(identity);start=time.monotonic();worker=None
     out=dict(row,status='infrastructure_unknown',submission_sha256=None,utc=now(),code_timeout_seconds=300)

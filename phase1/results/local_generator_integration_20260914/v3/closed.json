@@ -1,0 +1,12 @@
+{
+  "actual_gpu_hours_from_sacct_pending": true,
+  "controller_seconds": 76.12737624300644,
+  "gpu_hours_cap": 3,
+  "job": "13365",
+  "process_codes": [
+    1,
+    137
+  ],
+  "status": "service_exited",
+  "utc": "2026-09-14T12:48:48.896198+00:00"
+}

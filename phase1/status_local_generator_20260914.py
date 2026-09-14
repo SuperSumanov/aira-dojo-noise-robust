@@ -2,7 +2,7 @@
 import datetime,json,os,re
 from pathlib import Path
 ASSETS=Path('/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy')
-ROOT=ASSETS/'integration-v4'
+ROOT=ASSETS/'integration-v5'
 PRIVATE_LINE=re.compile(r'(?i)(api[_ -]?key|access[_ -]?token|auth[_ -]?token|bearer|password|credential|https?://[^\s]*[?&](token|key|secret)=)')
 SHAPE=re.compile(r'(?i)(?<![a-z0-9])(?:sk-[a-z0-9_.-]{12,}|hf_[a-z0-9]{20,}|gh[pousr]_[a-z0-9]{20,}|github_pat_[a-z0-9_]{20,}|[a-f0-9]{64})')
 def read(path):return json.loads(path.read_bytes())

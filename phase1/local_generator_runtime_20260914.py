@@ -9,8 +9,9 @@ import random,re,secrets,shutil,signal,socket,subprocess,sys,tarfile,time,urllib
 
 BASE=Path('/research/d7/spc/yzyang4')
 ASSETS=BASE/'local-qwen27b-20260914-zcx1k1dy'
-ROOT=ASSETS/'integration-v4'
-ATTEMPT_SECONDS=3520  # Prior 13365 used 80 seconds * 3 GPUs; both attempts <=3 GPUh.
+ROOT=ASSETS/'integration-v5'
+PREVIOUS_ATTEMPTS={'13365':80,'13366':123}
+ATTEMPT_SECONDS=3600-sum(PREVIOUS_ATTEMPTS.values())
 PLAN_SHA='982e97a454ee502f89a0df72b2c3ae1626d24cc942f828137ed6f45aaaf8e4cd'
 PYTHON=BASE/'venvs/aira/bin/python'
 SOURCE_SHA='c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291'
@@ -23,6 +24,7 @@ HELPERS=('forets_closed_pool_native_20260911.py','forets_current_pool_native_202
 SHAPES=re.compile(rb'(?i)(?<![a-z0-9])(?:sk-[a-z0-9_.-]{12,}|hf_[a-z0-9]{20,}|gh[pousr]_[a-z0-9]{20,}|Bearer\s+[a-z0-9_.-]{20,})')
 
 def utc():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def slurm_duration(seconds):return f'{seconds//3600:02d}:{seconds//60%60:02d}:{seconds%60:02d}'
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def read(path):return json.loads(path.read_bytes())
 def write(path,value):
@@ -50,7 +52,7 @@ def step_command(role,gpus):
     # Site Slurm is 19.05.4: --exact is not supported. Keep the tested exclusive
     # per-step CPU/GRES requests rather than introducing a newer CLI option.
     return ['srun','--jobid='+os.environ['SLURM_JOB_ID'],'--exclusive','--nodes=1','--ntasks=1',
-            '--cpus-per-task=6','--gres=gpu:'+str(gpus),'--time=00:57:40','--job-name=local27b-'+role,
+            '--cpus-per-task=6','--gres=gpu:'+str(gpus),'--time='+slurm_duration(ATTEMPT_SECONDS-60),'--job-name=local27b-'+role,
             str(PYTHON),'-u','-B',str(ROOT/Path(__file__).name),role]
 
 def binding_context(env):
@@ -324,12 +326,15 @@ def submit():
     p=check_files();complete_sha=asset_check(p);preflight=read(ROOT/'cpu-preflight.json')
     if preflight['status']!='PASS_CPU_WIRING_NOT_GPU_ACCEPTANCE' or preflight['prepared_sha256']!=sha(ROOT/'prepared.json'):raise ValueError('CPU preflight')
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
-    previous=subprocess.check_output(['sacct','-X','-j','13365','-n','-P','-o','JobID,State,ElapsedRaw,AllocTRES'],env=env,text=True,timeout=20).strip().splitlines()
-    if len(previous)!=1:raise ValueError('prior allocation accounting unknown')
-    row=previous[0].split('|')
-    if row[:3]!=['13365','FAILED','80'] or 'gres/gpu=3' not in row[3].split(','):
-        raise ValueError('prior allocation resource accounting differs')
-    if (int(row[2])+ATTEMPT_SECONDS)*3>3*3600:raise ValueError('combined GPU budget exceeded')
+    previous=subprocess.check_output(['sacct','-X','-j',','.join(PREVIOUS_ATTEMPTS),'-n','-P','-o','JobID,State,ElapsedRaw,AllocTRES'],env=env,text=True,timeout=20).strip().splitlines()
+    if len(previous)!=len(PREVIOUS_ATTEMPTS):raise ValueError('prior allocation accounting unknown')
+    seen=set()
+    for line in previous:
+        row=line.split('|');job=row[0]
+        if job in seen or job not in PREVIOUS_ATTEMPTS or row[1:3]!=['FAILED',str(PREVIOUS_ATTEMPTS[job])] or 'gres/gpu=3' not in row[3].split(','):
+            raise ValueError('prior allocation resource accounting differs')
+        seen.add(job)
+    if (sum(PREVIOUS_ATTEMPTS.values())+ATTEMPT_SECONDS)*3>3*3600:raise ValueError('combined GPU budget exceeded')
     queue=subprocess.check_output(['squeue','-u','yzyang4','-h','-o','%i|%T'],env=env,text=True,timeout=20).strip().splitlines()
     if queue not in ([],['12535|PENDING']):raise ValueError('unexpected concurrent jobs: reassess resource budget')
     write(ROOT/'submit-intent.json',dict(utc=utc(),prepared_sha256=sha(ROOT/'prepared.json'),complete_sha256=complete_sha,gpu_hours_cap=3))
@@ -340,22 +345,28 @@ def submit():
     write(ROOT/'launch.json',dict(job=job,utc=utc(),commit=p['commit'],gpu_hours_cap=3))
     print(json.dumps(dict(event='SUBMITTED',job=job,root=str(ROOT),gpu_hours_cap=3)),flush=True)
 
-SERVICE_ENTRY=r'''import json,os,sys,torch
-expected=os.environ['EXPECTED_GPU_UUIDS'].split(',')
-if not torch.cuda.is_available() or torch.cuda.device_count()!=2:raise RuntimeError('two CUDA GPUs required; no CPU fallback')
-actual=[]
-for i in range(2):
- p=torch.cuda.get_device_properties(i)
- actual.append(str(p.uuid).lower().removeprefix('gpu-'))
- x=torch.tensor([[1.,2.],[3.,4.]],device='cuda:'+str(i))
- if (x@x).cpu().tolist()!=[[7.,10.],[15.,22.]]:raise RuntimeError('service CUDA arithmetic')
-if actual!=[x.lower().removeprefix('gpu-') for x in expected]:raise RuntimeError('container GPU identity mismatch')
-print('LOCAL_SERVICE_CUDA '+json.dumps({'torch':torch.__version__,'uuids':expected,'correct':True}),flush=True)
-sys.argv=['vllm','serve','/model','--served-model-name','qwen3.8-27b','--host','127.0.0.1','--port','8000',
- '--tensor-parallel-size','2','--max-model-len','131072','--gpu-memory-utilization','0.95','--kv-cache-dtype','fp8_e5m2',
- '--limit-mm-per-prompt','{"image":0,"video":0}','--max-num-seqs','6','--seed','49']
-from vllm.entrypoints.cli.main import main
-main()
+SERVICE_ENTRY=r'''import json,os,sys
+
+def start_service():
+ import torch
+ expected=os.environ['EXPECTED_GPU_UUIDS'].split(',')
+ if not torch.cuda.is_available() or torch.cuda.device_count()!=2:raise RuntimeError('two CUDA GPUs required; no CPU fallback')
+ actual=[]
+ for i in range(2):
+  p=torch.cuda.get_device_properties(i)
+  actual.append(str(p.uuid).lower().removeprefix('gpu-'))
+  x=torch.tensor([[1.,2.],[3.,4.]],device='cuda:'+str(i))
+  if (x@x).cpu().tolist()!=[[7.,10.],[15.,22.]]:raise RuntimeError('service CUDA arithmetic')
+ if actual!=[x.lower().removeprefix('gpu-') for x in expected]:raise RuntimeError('container GPU identity mismatch')
+ print('LOCAL_SERVICE_CUDA '+json.dumps({'torch':torch.__version__,'uuids':expected,'correct':True}),flush=True)
+ sys.argv=['vllm','serve','/model','--served-model-name','qwen3.8-27b','--host','127.0.0.1','--port','8000',
+  '--tensor-parallel-size','2','--max-model-len','131072','--gpu-memory-utilization','0.95','--kv-cache-dtype','fp8_e5m2',
+  '--limit-mm-per-prompt','{"image":0,"video":0}','--max-num-seqs','6','--seed','49']
+ from vllm.entrypoints.cli.main import main
+ main()
+
+if __name__=='__main__':
+ start_service()
 '''
 
 def prepare(commit):
@@ -365,8 +376,9 @@ def prepare(commit):
     # 17 model files plus one image, derived from the fixed plan, not a literal.
     for previous in ('integration','integration-v2'):
         if (ASSETS/previous/'submit-intent.json').exists():raise ValueError('prior integration may have been submitted')
-    failed=read(ASSETS/'integration-v3/closed.json')
-    if failed['job']!='13365' or failed['status']!='service_exited':raise ValueError('previous service attempt not closed')
+    for folder,job in (('integration-v3','13365'),('integration-v4','13366')):
+        failed=read(ASSETS/folder/'closed.json')
+        if failed['job']!=job or failed['status']!='service_exited':raise ValueError('previous service attempt not closed')
     ROOT.mkdir(exist_ok=False);prior=read(DONOR/'prepared.json')
     for name in HELPERS:
         if sha(DONOR/name)!=prior['files'][name]:raise ValueError('existing GPU helper changed')
@@ -385,20 +397,20 @@ def prepare(commit):
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:3
 #SBATCH --cpus-per-task=12
-#SBATCH --time=00:58:40
+#SBATCH --time=ATTEMPT_TIME
 #SBATCH --no-requeue
 set -euo pipefail
 umask 077
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 export PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PYTHON_DOTENV_DISABLED=1
-timeout --signal=TERM --kill-after=20s 3470s PYTHON -u -B ROOT/local_generator_runtime_20260914.py controller
-'''.replace('PYTHON -u',str(PYTHON)+' -u').replace('ROOT',str(ROOT))
+timeout --signal=TERM --kill-after=20s ATTEMPT_TIMEOUTs PYTHON -u -B ROOT/local_generator_runtime_20260914.py controller
+'''.replace('PYTHON -u',str(PYTHON)+' -u').replace('ROOT',str(ROOT)).replace('ATTEMPT_TIMEOUT',str(ATTEMPT_SECONDS-50)).replace('ATTEMPT_TIME',slurm_duration(ATTEMPT_SECONDS))
     (ROOT/'run.sbatch').write_text(sbatch)
     files={str(p.relative_to(ROOT)):sha(p) for p in ROOT.rglob('*') if p.is_file()}
     write(ROOT/'prepared.json',dict(utc=utc(),commit=commit,files=files,source_sha256=SOURCE_SHA,input_sha256=INPUT_SHA,
           model='cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4',revision='dc430725f831dd90d9271738b877879a46a82239',
           tasks=['leaf-classification','spaceship-titanic'],seed=49,drafts=2,warmup_calls=2,training=False,gpu_hours_cap=3,
-          attempt_seconds_cap=ATTEMPT_SECONDS,previous_job='13365',previous_allocation_seconds=80,total_gpu_hours_cap=3))
+          attempt_seconds_cap=ATTEMPT_SECONDS,previous_attempts=PREVIOUS_ATTEMPTS,total_gpu_hours_cap=3))
     print(json.dumps(dict(event='PREPARED_NOT_SUBMITTED',root=str(ROOT),prepared_sha256=sha(ROOT/'prepared.json'))))
 
 if __name__=='__main__':

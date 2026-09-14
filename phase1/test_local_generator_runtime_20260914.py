@@ -15,7 +15,8 @@ class WiringTests(unittest.TestCase):
         self.assertEqual(env['SINGULARITYENV_FLASHINFER_WORKSPACE_BASE'],'/cache/flashinfer')
         self.assertEqual(env['SINGULARITYENV_XDG_CACHE_HOME'],'/cache/xdg')
         self.assertNotIn('SINGULARITYENV_LD_LIBRARY_PATH',env)
-        self.assertLessEqual((80+runtime.ATTEMPT_SECONDS)*3,3*3600)
+        self.assertLessEqual((sum(runtime.PREVIOUS_ATTEMPTS.values())+runtime.ATTEMPT_SECONDS)*3,3*3600)
+        self.assertEqual(runtime.slurm_duration(runtime.ATTEMPT_SECONDS),'00:56:37')
 
     def test_fixed_plan_accepts_all_files_and_rejects_duplicate_or_missing(self):
         plan=json.loads((Path(__file__).parent/'results/local_generator_integration_20260914/assets/plan.json').read_text())
@@ -72,12 +73,19 @@ class WiringTests(unittest.TestCase):
 
     def test_service_entry_parses_and_pins_caps(self):
         tree=ast.parse(runtime.SERVICE_ENTRY)
-        assignment=next(n for n in tree.body if isinstance(n,ast.Assign) and isinstance(n.targets[0],ast.Attribute) and n.targets[0].attr=='argv')
+        assignment=next(n for n in ast.walk(tree) if isinstance(n,ast.Assign) and isinstance(n.targets[0],ast.Attribute) and n.targets[0].attr=='argv')
         args=ast.literal_eval(assignment.value)
         for name,value in (('--tensor-parallel-size','2'),('--max-model-len','131072'),('--max-num-seqs','6'),('--host','127.0.0.1'),('--seed','49')):
             self.assertEqual(args[args.index(name)+1],value)
         self.assertNotIn('--api-key',args)
         self.assertNotIn('--enforce-eager',args)
+
+    def test_spawn_import_does_not_start_service_or_initialize_cuda(self):
+        namespace={'__name__':'__mp_main__'}
+        exec(compile(runtime.SERVICE_ENTRY,'service_entry.py','exec'),namespace)
+        self.assertNotIn('torch',namespace)
+        self.assertNotIn('main',namespace)
+        self.assertTrue(callable(namespace['start_service']))
 
     def test_mle_binding_must_belong_to_current_allocation(self):
         env={'FORETS_CURRENT_POOL_ROOT':str(runtime.ROOT),'DOJO_WORKER_IDENTITY_PATH':str(runtime.ROOT/'identity-2.json'),'SLURM_JOB_ID':'123'}

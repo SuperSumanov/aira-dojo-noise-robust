@@ -1,10 +1,10 @@
-# 当前短交接 — 2026-09-14 12:53 UTC
+# 当前短交接 — 2026-09-14 12:58 UTC
 
 ## 当前裁决与用户
 方向以CURRENT_DIRECTION 0L210为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
 原六小时窗口09-13 21:06:43→09-14 03:06:43 UTC；最后新作业03:10:02结束，独立读出06:04–06:18完成，收尾晚于目标，不假装准时或虚构网络原因。
 学长新回复：27B INT4是较弱的降API成本替代，不是更强生成器；建议我方一次申请8卡、2卡部署生成服务，提供vllm.sif下载链接。
-不再等待共享endpoint；27B完整下载/校验已完成。13365启动失败已退出，根因为服务FlashInfer缓存指向只读HOME，正在保持镜像不变修复。不借allocation、不索key。
+不再等待共享endpoint；27B完整下载/校验已完成。13365缓存路径、13366启动入口缺少main guard，均为我方接入错误，0生成，已退出。镜像/模型不变修复后准备v5，不借allocation、不索key。
 下一对照区分筛选机制与同总GPUh系统效率，不让无critic基线闲卡来证明划算；原短时间预算不盲搬。无新自动任务。
 此前GPU/API实验全部结束；本轮新提交13365（≤3GPUh），0付费API/fit，不重复旧读出/补seed/调门槛。
 
@@ -29,7 +29,11 @@ v2已12:40:16 prepare，commit5954661954adb6dabc5a953fe6a2f06ef6831cd9，prepare
 12:47:28已提交job13365到gpu28：2卡服务＋1卡原MLE执行、12CPU、60min≤3GPUh。12:47:58 squeue RUNNING/29秒；12:48:02服务真实Torch2.13+cu130双卡CUDA计算正确，启动中，尚未真实draft。ROOT/integration-v3/launch.json为唯一新提交回执；不得重复submit。监控已上传status_local_generator_20260914.py（指v3），不读raw response/.service.env/旧保护集。
 后续终态覆盖：13365在12:48:48 UTC FAILED，sacct80秒/3GPU（240GPU秒），closed service_exited。vLLM架构检查的真实最内层错误为FlashInfer建缓存报Read-only filesystem /uac，非GPU架构错误；0真实生成/外评分。
 镜像源码确认FLASHINFER_WORKSPACE_BASE配置。修复仅指定/cache/flashinfer及XDG缓存，不改镜像/Torch/模型/任务。生产转integration-v4；v3保持原失败，不重跑。
-v4尚未prepare/submit，8驱动单测过。重试限3520秒（58:40），与前次80秒合计至多3GPUh；submit先核sacct13365终态/80秒/3卡，未知即停。无需额外预算。
+v4已prepare/cpu/driver通过，prepared13e39c206b1085c9991a8d37ed550385de12d96516f5203155e94e591bd78e41，commita81bd104633185f3ff96776eb8d255636d735c6c。12:53:29原服务镜像CPU import FlashInfer及qwen3_5模块PASS（无模型加载/GPU），正确缓存/cache/flashinfer/.cache/flashinfer/0.6.18。
+12:53已提交13366，重试限3520秒（58:40），与前次80秒合计至多3GPUh；submit实际核sacct13365终态/80秒/3卡通过。唯一活跃新ROOT=integration-v4，status脚本也已指v4；不得重复submit/下载/读取旧闭合集。实际开跑/生成待核。
+终态覆盖：13366于12:55:54 UTC FAILED/123秒/3GPU，closed service_exited；架构检查已过，最内层multiprocessing _check_not_importing_main证明服务入口被spawn重入。已修main guard，子进程重入CPU回归通过，共9驱动测试过。
+诊断时曾尝试TERM 13366.0，但任务已自行结束，scancel返回Invalid job id，未改变任何任务；不再假设step序号对应角色，须读实际service-native中的step。
+下一生产ROOT=integration-v5，尚未prepare/submit。前两次总203allocation秒，余3397秒=56:37；三次合计上界仍3GPUh。submit固定核两次sacct，旧v3/v4禁止重跑。status/CPU-driver源码已指v5，待上传。
 status_local_generator_20260914.py只看资产/公开结构字段、脱敏启动日志，不读模型回答、.env、原程序输出或保护集。
 新4项驱动单测＋5项下载器单测通过，远端4条真实FreshContainer配置解析通过。Slurm19.05.4无--exact，提交前已删除该参数；保持既有exclusive分卡。
 服务容器入口python3 -m vllm.entrypoints.cli.main已静态确认，保留原CUDA库路径，不把服务--nv路径替换到MLE。service/worker UUID不相交门在真实请求前。

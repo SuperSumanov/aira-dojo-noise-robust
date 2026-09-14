@@ -1,0 +1,37 @@
+{
+  "attempt_seconds_cap": 3520,
+  "commit": "a81bd104633185f3ff96776eb8d255636d735c6c",
+  "drafts": 2,
+  "files": {
+    "bin/singularity": "08c609ebdb7b720e05d5dbadfc1e4fb872378f7c3fb8f8d0b78fd0285d5bb9dc",
+    "forets_closed_pool_20260911.py": "3a397a57f53be36a8763cb860753eed5d5e1b8dc5e2683cefc01b7793c08e56d",
+    "forets_closed_pool_native_20260911.py": "2afb152cfcc7f1c76ca9a99aeee43d81bc684f6639509ee654231e22d24ae6a6",
+    "forets_current_pool_20260912.py": "f8681de14f4ae9070383ba5fb27d0f901d9c1e8914b5be9cc9ffd87336ef6e28",
+    "forets_current_pool_native_20260912.py": "64e45fee135d023fa802ba9bcbf8eafa9e3cc0b693084ac7aee9c34a3447f9e1",
+    "forets_gpu_binding_20260911.py": "8f31fee796d89a63381810a8a6663d50e9ce988226885bf7b4498d17338c0d8d",
+    "forets_native_cuda_identity_20260911.py": "f2c0bc0845796f280fe535e334cb03537e4c704e54db72ed56ff177caeb1cd84",
+    "forets_native_gpu_binding_20260911.py": "01fc0908dea6a4119e04948ea5641a602e36336c5e1a7ab1780f48996cbdb88e",
+    "forets_opencl_allowlist_20260911.py": "5f99d7142a2203f29a6abe706117ce8ea0748516845109cf309b872a359d13c4",
+    "forets_opencl_readonly_ab.py": "b0546c7a81b11eaa558c197cc05cf576adbe014ae5878eb5ba0782c212575b6c",
+    "local_generator_runtime_20260914.py": "825977ad9b16bc6df8152aa594e6bc4ddf483db9744e1734ebcedc5f7b843500",
+    "opencl-vendors/nvidia.icd": "4ad07f8afc189894374aecb91023e6ff16bbceedf82496c04c0fdb0e2fe81e73",
+    "run.sbatch": "4e8b035d3047b75e84f0accc57bf1e99afcb707e9b9337d43165b076c4c48e9d",
+    "service_entry.py": "5107fb9b4988115ba7dea49d35bb6794d0fc8ba55d9ae411eaeb29b4ea1a8a0f"
+  },
+  "gpu_hours_cap": 3,
+  "input_sha256": "7da450b0e9a2517216de79f8ad4398621d68bd615a865b259784cb37608d1f77",
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4",
+  "previous_allocation_seconds": 80,
+  "previous_job": "13365",
+  "revision": "dc430725f831dd90d9271738b877879a46a82239",
+  "seed": 49,
+  "source_sha256": "c1206c13df05d9ab6b73119aabfb75820e90807e55a76f9f288f5d305a769291",
+  "tasks": [
+    "leaf-classification",
+    "spaceship-titanic"
+  ],
+  "total_gpu_hours_cap": 3,
+  "training": false,
+  "utc": "2026-09-14T12:52:34.294066+00:00",
+  "warmup_calls": 2
+}

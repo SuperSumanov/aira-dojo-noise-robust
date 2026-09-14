@@ -34,6 +34,17 @@ def positive(v):
     return float(v)
 
 
+def native_binding_path(identity, child_pid, environment):
+    """Mirror the actual adapter's two explicit modes, never an arbitrary glob."""
+    identity=Path(identity)
+    if type(child_pid) is not int or child_pid<=1:raise ValueError('owned child PID required')
+    if environment.get('FORETS_NATIVE_RELEASE'):
+        return identity.with_name(identity.name+f'.native-binding-{child_pid}.json')
+    if environment.get('FORETS_NATIVE_INTEGRATION_ROOT') or environment.get('FORETS_CURRENT_POOL_ROOT'):
+        return identity.with_suffix('.native-binding.json')
+    raise ProcessInfrastructureError('explicit native adapter mode required')
+
+
 def cell_command(filename):
     # run_cell, not exec/runpy: preserve the existing IPython input/magic language.
     # The trusted launcher is outside model text, which is read as data from file.
@@ -101,14 +112,17 @@ class FreshContainerInterpreter(Interpreter):
         args=args[:start_payload]+['python','-c',cell_command(relative_name)]
         logpath=self.working_dir.parent/('.process-output-'+uuid.uuid4().hex+'.private.log')
         identity=Path(os.environ['DOJO_WORKER_IDENTITY_PATH'])
-        binding=identity.with_suffix('.native-binding.json')
-        before_binding=hashlib.sha256(binding.read_bytes()).hexdigest() if binding.exists() else None
+        production=bool(os.environ.get('FORETS_NATIVE_RELEASE'))
+        prior_names={p.name for p in identity.parent.glob(identity.name+'.native-binding-*.json')} if production else set()
+        fixed=identity.with_suffix('.native-binding.json')
+        before_binding=hashlib.sha256(fixed.read_bytes()).hexdigest() if not production and fixed.exists() else None
         timed=False;process=None;returncode=None
         try:
             with logpath.open('xb') as log:
                 process=subprocess.Popen(args,stdout=log,stderr=log,stdin=subprocess.DEVNULL,
                     start_new_session=True,shell=False,env=_build_runtime_environment(os.environ))
                 self.process=process
+                binding=native_binding_path(identity,process.pid,os.environ)
                 _publish_container_identity(process.pid)
                 try:returncode=process.wait(timeout=max(.001,self.timeout-(time.monotonic()-started)))
                 except subprocess.TimeoutExpired:timed=True
@@ -116,7 +130,7 @@ class FreshContainerInterpreter(Interpreter):
             if returncode is None:returncode=process.returncode
             raw=logpath.read_bytes()
             after_binding=hashlib.sha256(binding.read_bytes()).hexdigest() if binding.exists() else None
-            if after_binding is None or before_binding==after_binding:
+            if after_binding is None or (production and binding.name in prior_names) or (not production and before_binding==after_binding):
                 raise ProcessInfrastructureError('native binding or launcher failed; no quality label')
             lines=raw.decode('utf-8',errors='replace').splitlines(keepends=True)
             elapsed=time.monotonic()-started

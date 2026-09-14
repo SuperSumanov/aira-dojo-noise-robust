@@ -1,11 +1,12 @@
-# 当前短交接 — 2026-09-14 00:17 UTC
-方向CURRENT_DIRECTION 0L201。六小时会话窗口09-13 21:06:43→09-14 03:06:43 UTC（HK11:06:43结束）。继续会话内研究，不新建自动任务替代，不伪造/保证正数。
+# 当前短交接 — 2026-09-14 00:33 UTC
+方向CURRENT_DIRECTION 0L202。六小时会话窗口09-13 21:06:43→09-14 03:06:43 UTC（HK11:06:43结束）。继续会话内研究，不新建自动任务替代，不伪造/保证正数。
 
-## 正在准备：廉价有效性选择器真实E2E
-Leaf/Space×46/47×uniform/short_code/learned_validity=12搜索。600秒、300秒程序、64step/100adapter-attempt、2生成1执行；共同完整改写/RF起点/原UCT/debug/action主终点。三臂均FreshContainerInterpreter+原镜像+gpu28 RTX3090/6CPU；只变选择器，不与旧8B/Jupyter作单旋钮因果比较。最多3GPUh/2份90分钟单卡，原累计10USD帽/2旧未知保留。全12闭合后看效果，不中途调参/补seed。方案FORETS_CHEAP_SELECTOR_PLAN_20260914.md。
-00:17未激活费用/提交GPU。候选source6d44da7737e4bfdc66a39f160ddbb041d3ac2c18；CPU准备根forets-wallclock-20260912-idbcvb77；stage=/research/d7/spc/yzyang4/forets-cheap-selector-stage-20260914-f0rxxIeh。12真实batch/真HGB/真实typed-config+factory测试通过，80tie/strict和7读出算术测试通过。首次CPU测试计算完成但未close SQLite导致NFS临时清理失败，显式close后完整重测通过。首次build错误task.interpreter改为真实顶层typed interpreter，未提交。
-待cutoff/controller测试、公开代码commit绑定、冻结读出、原子承接费用与单次提交。新代码build/verify/launch/readout_cheap_selector_20260914。正式root待记录，不把idbcvb77称上线。先确认scp完成才build，第一次曾因source.tar尚传输被hash gate拒绝，无激活。
-source归档v1元数据commit旧03942，最终须新公开commit重新生成artifact/rebuild（源码tree可以相同）。
+## 廉价选择器v2正在准备，原尝试已明确失败
+v1 ROOT=/research/d7/spc/yzyang4/forets-wallclock-20260912-q_imzdb_；STAGE=/research/d7/spc/yzyang4/forets-cheap-selector-stage-20260914-f0rxxIeh。
+13293/13294各67秒后取消，共134秒；四生产回执存在但backend找错integration固定文件名。四行报错、两行中断、六行未开始。关闭proof SHAa775e0d9a6dcf62accf055f31ebd6822fcf9b06a2adf225b16c03ada227ea8e7：0生成/0评分/0search API，只4route测试请求。原计划行全部保留，不读效果换seed。00:33队列仅旧12535。
+仅修改FreshContainerInterpreter的生产childPID回执定位，拒绝预先存在同名回执；不改镜像/GPU/代码执行/预算/选择器。4路径测试+7读出测试通过。新build_cheap_selector_v2/launch_cheap_selector_v2，方案FORETS_CHEAP_SELECTOR_RESTART_20260914.md；尚未新建root/激活/提交。
+仍Leaf/Space×46/47×uniform/short_code/learned_validity=12，600秒/300秒程序/64step/100adapter、2生成1执行、固定HGB、共用Fresh原镜像gpu28/6CPU。只有选择器不同。两85分钟单GPU加原134秒<=3GPUh；费用原子从v1继承，旧两未知保留。所有12和两allocation闭合后才读效果。不复跑G0、不新fit、不恢复失败EScope门。
+下一步：提交修正源码，归档新commit，远端CPU实际batch+cutoff→冻结readout→原子承接账→当前route→单次提交。必须等scp结束再build，source shell env_setup后才网络；不要把旧固定root的monitor用在新包。
 
 ## CPU实质结果
 旧v9过滤了无分节点，另恢复锚定旧run失败记录2296/123run，并补早期Space186/15run；合2482/138run/14任务、929有效1553无效。只限<08-12且与公开v9有节点对应的run，不代表无锚点全失败run。与157旧目标hash/AST/30k前缀purge0。
@@ -22,7 +23,7 @@ source8bb325fa167a9db54656dd6535ce1f3d69859c22；prepared731001dfa4c054ec16823bb
 summary8fd3598f99041d7878daec43ef107da68f2e91a340203a726f3c9e8aff1911cd；addendum21bf08bbeb3e08ecc7350c696ad2540d5a0901f930cc60b05705adc7048c0545；compare46494fc368919745e32fef789dbb8908597553f9650c132f354fe423875bf4f6；mechanismee9d1414ab9884c4ecd9af27cfb084ca2b3f6ef1f61ca812a061d7e355e1e100。剩余prefix/short-control按原脚本可运行。禁止重跑原main（exclusive结果已写）。新三臂来自独立cheap模型开发门，不是绕EScope失败门。
 
 ## 费用与已完成资产
-唯一活跃账最后00:03 ROOT/paid.sqlite，auth643792f11da84620df02fe88ada4759272ff2915dbdf3c8466c5730cb16a3318；2619calls/held7666052390nUSD/settled6266052390/2旧unresolved，最大新责任2.33394761USD。前账sealed，新包必须原子承接，不可双账消费。
+唯一活跃账最后00:25为forets-wallclock-20260912-q_imzdb_/paid.sqlite，authc102fefa484c9902367aa4dca4ea1a451c241f482e4b30eb3953fe2c6fdad3e8；2623calls/held7666279838nUSD/settled6266279838/2旧unresolved。前账sealed，新包必须原子承接，不可双账消费。
 传统13284完成8/8有效512候选；Leafmedian.05948logloss/Space .790805acc；API0/2054秒，非完整AutoGluon。Fresh13286/13287合成+真实RF四对1e-12一致、24双worker/IPython通过，非普遍可靠性/E2E。不重复G0。
 0912学长包11,844,727bytes已隔离，4config producer61459c0a1248900079dafed7c505afa87e476b40，不是4合格run；未入训练/LATEST。别重下。免费共享端点未确认，不借他人allocation。
 
@@ -31,4 +32,4 @@ G0/12892/8B完成；T1修复0有效门失败；旧宽度1胜3负/短记忆1胜2�
 CodeScaler/MARS/Gome/MLE-STAR/iML等已有相关先例，静态失败预测不自称原创。scope只是代码表面约定，非语义/安全隔离。
 SSH linux5；airaPython=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。MLE只gpu27/gpu28原镜像，禁projgpu39/Torch升级。旧12535 JobHeldUser不动。
 凭据只远端aira-dojo/.env OPENROUTER_API_KEY，不回显/本地保存/索要；累计100RMB保守USD10责任帽。
-本地C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；push仅myfork HEAD:phase1-value-critic，最后确认公开03942ad9278b356f28180d9a0b4f82ca69db4a86。精确暂存、secret计数扫描再push；不强推/新branch/改学长branch。apply_patch编辑，复杂SSH经文件，无关untracked保留。研究盘1TB到2026-09-29，续期未知。
+本地C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；push仅myfork HEAD:phase1-value-critic，最后确认公开798b4076959a865c2842efd7b31c9da63ef00888。精确暂存、secret计数扫描再push；不强推/新branch/改学长branch。apply_patch编辑，复杂SSH经文件，无关untracked保留。研究盘1TB到2026-09-29，续期未知。

@@ -1,10 +1,10 @@
-# 当前短交接 — 2026-09-14 12:10 UTC
+# 当前短交接 — 2026-09-14 12:28 UTC
 
 ## 当前裁决与用户
-方向以CURRENT_DIRECTION 0L208为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
+方向以CURRENT_DIRECTION 0L209为准。用户要求把资产变成重要、独特、充分证明的同预算E2E主张；不接受只堆审计/G0。必须实际推进但不制造正结果。
 原六小时窗口09-13 21:06:43→09-14 03:06:43 UTC；最后新作业03:10:02结束，独立读出06:04–06:18完成，收尾晚于目标，不假装准时或虚构网络原因。
 学长新回复：27B INT4是较弱的降API成本替代，不是更强生成器；建议我方一次申请8卡、2卡部署生成服务，提供vllm.sif下载链接。
-不再等待共享endpoint；已进入我方自部署准备。镜像下载/校验/版本检查已完成，模型未下载，未启动GPU，不借allocation、不索key。
+不再等待共享endpoint；我方自部署中。镜像下载/校验/版本检查已完成，用户刚明确批准下载，27B权重正在下载，未启动GPU，不借allocation、不索key。
 下一对照区分筛选机制与同总GPUh系统效率，不让无critic基线闲卡来证明划算；原短时间预算不盲搬。无新自动任务。
 此前GPU/API实验全部结束；本轮0新GPU/API/fit，不重复读出/补seed/调门槛。
 
@@ -14,7 +14,13 @@
 54个配置/tokenizer/下载元数据保留并复核；当前critic、两镜像、语料、结果、venv不动，未递归删除。
 cleanup ROOT=/research/d7/spc/yzyang4/research-storage-cleanup-20260914-mlaygiaj；plan SHA f2ac6247a4d4c00c8787dc67c0c8e66aa09d3eb9ee8d01daa4da1faa2d7c9b80。
 reclaimed SHA 0c6f9d1c3cb7b0cac13e175d7c573c5c60008339303a5535ed044809d771cf9e；实际40GiB分配PASS且临时文件已释放，容量回执1ece8dace830567c29a115c90db3b5cf606145eb89dbedaea7fd853a8aa79c57。
-当前27B空间阻塞解除，剩余文件28,868,542,488bytes尚未下载。此批及前轮12GB压缩包均已删除，禁止重跑清理。最后squeue仅12535旧held，未改。
+当前27B空间阻塞解除，缺少文件28,868,542,488bytes开始下载。此批及前轮12GB压缩包均已删除，禁止重跑清理。最后squeue仅12535旧held，未改。
+12:18首次下载PID1918178已失败退出：202byte generation_config的307响应330bytes被curl的max-filesize=202拒绝，非上游漂移；直接下载202bytes与上游hash吻合。
+仅将小文件传输上限提高到1MiB，最终size/hash不变，5个本地针对性测试过（最初unittest discover误导入其他包失败，后改直接测试入口）。
+12:20新唯一launcher1919652，日志download-weights-redirect-fixed.log，7200秒上限/独占download.lock。capacity.json申请31,016,026,136bytes并实际分配31,016,030,208bytes后释放；12:28验证2/6分片、正在第3片。不重启旧launcher或重复下载。
+local_generator_runtime_20260914.py已写controller/server/worker/prepare/cpu/submit，有界3卡60min/12CPU，ROOT子目录integration尚未prepare/提交。
+新4项驱动单测＋5项下载器单测通过，远端4条真实FreshContainer配置解析通过。Slurm19.05.4无--exact，提交前已删除该参数；保持既有exclusive分卡。
+服务容器入口python3 -m vllm.entrypoints.cli.main已静态确认，保留原CUDA库路径，不把服务--nv路径替换到MLE。service/worker UUID不相交门在真实请求前。
 
 ROOT=/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy。
 完整17资产36,808,331,288bytes；39GB临时容量申请两次EDQUOT（第二次在回收后），两次下载均未开始。

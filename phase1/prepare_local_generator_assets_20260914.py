@@ -87,6 +87,13 @@ def capacity_required(root, entries):
     return missing + 2*1024**3
 
 
+def transfer_limit(size):
+    # curl also applies this ceiling to intermediate redirect responses. Small
+    # HF objects can have a larger 307 body than their final payload. Final
+    # payload size and publisher hash below remain exact, including on resume.
+    return max(size, 1024*1024)
+
+
 def download(root, image_only=False):
     root, value = checked(root)
     entries = [entry for entry in value['files'] if not image_only or entry['path']=='vllm.sif']
@@ -138,7 +145,7 @@ def download(root, image_only=False):
                 if not part.exists() or part.stat().st_size < entry['size']:
                     result = subprocess.run(['curl', '--fail', '--location', '--silent', '--show-error', '--proto', '=https',
                         '--connect-timeout', '20', '--max-time', '3600', '--retry', '3', '--retry-delay', '5', '--retry-max-time', '120',
-                        '--continue-at', '-', '--max-filesize', str(entry['size']), '--output', str(part), entry['url']],
+                        '--continue-at', '-', '--max-filesize', str(transfer_limit(entry['size'])), '--output', str(part), entry['url']],
                         env=clean_env, capture_output=True)
                     if result.returncode:
                         print(json.dumps(dict(event='download_failed', file=entry['path'], curl_rc=result.returncode)), flush=True)

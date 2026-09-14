@@ -31,4 +31,11 @@ class CapacityTests(unittest.TestCase):
             root=Path(name);(root/'image.partial').write_bytes(b'123')
             self.assertEqual(self.module.capacity_required(root,[{'path':'image','size':10}]),2*1024**3+10)
 
+    def test_tiny_redirect_can_exceed_payload_without_changing_payload_size(self):
+        self.assertEqual(self.module.transfer_limit(202),1024*1024)
+        self.assertGreater(self.module.transfer_limit(202),330)
+
+    def test_large_weight_transport_ceiling_stays_exact(self):
+        self.assertEqual(self.module.transfer_limit(5358131840),5358131840)
+
 if __name__=='__main__':unittest.main()

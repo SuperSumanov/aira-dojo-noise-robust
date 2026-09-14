@@ -26,6 +26,21 @@ case "$task_attempt" in
     task_stem=download-image-only
     task_mode=image
     task_timeout=1800s ;;
+  weights-after-cleanup)
+    test -s /research/d7/spc/yzyang4/research-storage-cleanup-20260914-mlaygiaj/reclaimed.json
+    test -s /research/d7/spc/yzyang4/research-storage-cleanup-20260914-mlaygiaj/capacity-after.json
+    test -s "$task_root/image-complete.json"
+    read -r task_prior_pid < "$task_root/download-image-only-launch.pid"
+    [[ "$task_prior_pid" =~ ^[0-9]+$ ]]
+    if kill -0 "$task_prior_pid" 2>/dev/null; then exit 1; fi
+    task_stem=download-weights-after-cleanup ;;
+  weights-redirect-fixed)
+    test -s "$task_root/capacity.json"
+    test -s "$task_root/image-complete.json"
+    read -r task_prior_pid < "$task_root/download-weights-after-cleanup-launch.pid"
+    [[ "$task_prior_pid" =~ ^[0-9]+$ ]]
+    if kill -0 "$task_prior_pid" 2>/dev/null; then exit 1; fi
+    task_stem=download-weights-redirect-fixed ;;
   *) exit 2 ;;
 esac
 test ! -e "$task_root/$task_stem-launch.pid"

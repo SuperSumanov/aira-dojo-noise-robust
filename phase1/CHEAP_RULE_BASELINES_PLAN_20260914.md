@@ -1,0 +1,7 @@
+# Fixed inexpensive-rule controls on completed transfer inputs
+
+Before evaluating these new rules, fix three additional no-fit baselines: fewer newline-delimited lines; AST-parseable prefix first with uniform ties; AST-parseable prefix first then shorter prefix. All consume the same first30000 code characters as the HGB/short-code comparison. No threshold tuning, library-specific regex or selection among rule variants. Include every previously defined applicable pair from the four closed-source missingness analyses; no current E2E score access.
+
+Use exact source pool/code hashes and the same raw initial validity labels. Independently reproduce all HGB predictions with the deployed production feature implementation. Check unknown labels against actual call return/journal availability. For fully known pools show discordant counts and outcomes for every comparator; for all applicable pools report sharp paired unknown-label bounds, de-duplicated within run, original technical qualification. Report each protocol/task, including empty groups and negative results. These are post-hoc stress tests, not a new or changed deployment gate. No CPU model fit, GPU or API.
+
+This directly tests whether any apparent learned signal is merely syntax validity or a different code-size proxy. It cannot establish general semantic understanding, a novel algorithm, final search quality, or freedom from source-distribution shift. All prior complete-case and missingness results remain unchanged.

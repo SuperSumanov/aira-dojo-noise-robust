@@ -1,0 +1,11 @@
+# Historical leave-task-out validity transfer: locked exploratory stress test
+
+Question: does the static initial-validity signal transfer to different historical tasks, or is it mainly a task/size association? This is an additional post-hoc diagnostic of the chosen feature family, NOT untouched confirmation or a new deployment candidate.
+
+Use only the exact2482 previously assembled historical rows/138runs/14tasks in the two source inventories already bound to model05379469. No protected corpus, current46/47 outcomes, new senior raw archive, or alternative source selection. For each of all14 tasks, hold out every run of that task. Remove any training row sharing raw-code, AST-normalized-code, or30000-character-prefix identity with held-out code. Report all removed rows. No task identity feature, score, runtime or feedback input.
+
+Exactly28 CPU fits: each leave-task-out fold fits the identical HGB100iter/15leaves/minleaf20/l2=1/seed20260914 with (a) full28 code-only features and (b) first2 size features. Same run-equal training weights and sklearn1.6.1. No tuning, refit-after-results, early success stopping or deployment. Preserve each model and input/fold hashes. Maximum10minutes single-thread CPU,0GPU,0API. Current deployed model must remain byte-identical.
+
+Primary diagnostic: for each held-out task, mean within-run AUC over runs with both validity classes (all such runs included; undefined runs counted explicitly). Also report run-equal weighted task AUC, node AUC and coverage. Compare every task with size-only learned HGB, fixed short-code, and chance0.5. Report macro summaries across the defined tasks, each task's signs, and all negative/undefined results. Do not pool nodes as independent trials or claim confidence from28fits.
+
+Independent verification reconstructs features and purge identities, checks saved-model predictions, and calculates AUC from positive-negative weighted comparisons rather than the first scorer. Models are not retrained in verification. Historical outcome selection, variable execution/config conditions and prior model-family development remain limitations. This diagnostic cannot establish same-budget final quality or change the live twelve-search gate.

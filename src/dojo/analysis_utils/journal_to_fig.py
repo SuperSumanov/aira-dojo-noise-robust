@@ -57,13 +57,23 @@ def read_journal(path: str | Path) -> list[dict[str, Any]]:
             except json.JSONDecodeError:
                 continue
             info = node.get("metric_info") or {}
-            records.append(
-                {
-                    "metric": node.get("metric"),
-                    "score": info.get("score"),
-                    "creation_time": node.get("creation_time"),
-                }
-            )
+            is_lower_better = info.get("is_lower_better")
+            if is_lower_better and is_lower_better > 0.5:
+                records.append(
+                    {
+                        "metric": -node.get("metric") if node.get("metric") is not None else None,
+                        "score": -info.get("score") if info.get("score") is not None else None,
+                        "creation_time": node.get("creation_time"),
+                    }
+                )
+            elif is_lower_better and is_lower_better < 0.5:
+                records.append(
+                    {
+                        "metric": node.get("metric"),
+                        "score": info.get("score"),
+                        "creation_time": node.get("creation_time"),
+                    }
+                )
     return records
 
 

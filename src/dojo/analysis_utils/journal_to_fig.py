@@ -58,22 +58,14 @@ def read_journal(path: str | Path) -> list[dict[str, Any]]:
                 continue
             info = node.get("metric_info") or {}
             is_lower_better = info.get("is_lower_better")
-            if is_lower_better and is_lower_better > 0.5:
-                records.append(
-                    {
-                        "metric": -node.get("metric") if node.get("metric") is not None else None,
-                        "score": -info.get("score") if info.get("score") is not None else None,
-                        "creation_time": node.get("creation_time"),
-                    }
-                )
-            elif is_lower_better and is_lower_better < 0.5:
-                records.append(
-                    {
-                        "metric": node.get("metric"),
-                        "score": info.get("score"),
-                        "creation_time": node.get("creation_time"),
-                    }
-                )
+            sign = -1 if (is_lower_better is not None and float(is_lower_better) > 0.5) else 1
+            records.append(
+                {
+                    "metric": sign * node["metric"] if node.get("metric") is not None else None,
+                    "score": sign * info["score"] if info.get("score") is not None else None,
+                    "creation_time": node.get("creation_time"),
+                }
+            )
     return records
 
 

@@ -243,7 +243,7 @@ bash src/mle_critic/scripts/preprocess/build_batch_value_pairs.sh \
 python -m src.preprocess.build_bt_pairs.build_subtree_pairs \
   <batch_dir>/batch_value_pairs.jsonl \
   <batch_dir>/batch_cards.json \
-  --cap 200 \
+  --cap 75 \
   --seed 7 \
   --budget-steps -1
 ```

@@ -103,6 +103,37 @@ def runtime_seconds(card: Card) -> float:
     """Treat a missing runtime as zero, matching the old data pipeline."""
     return float(card.obs.runtime_s) if card.obs.runtime_s is not None else 0.0
 
+def calculate_sampled_pairs(total_pairs: int) -> dict:
+    """
+    Calculate the recommended number of pairs to sample for 95% and 99% 
+    complete coverage confidence based on the total candidate pairs M.
+    
+    Parameters:
+        total_pairs (int): Total number of candidate pairs M = n(n - 1) / 2.
+        
+    Returns:
+        dict: Inferred element count n, sampling ratio x, and required sample count m 
+              for both 95% and 99% confidence levels.
+    """
+    if total_pairs <= 0:
+        raise ValueError("Total candidate pairs must be greater than 0.")
+
+    # Solve for set size n from M = n(n - 1) / 2: n^2 - n - 2M = 0
+    n = (1 + math.sqrt(1 + 8 * total_pairs)) / 2
+
+    # -ln(epsilon) for failure probabilities epsilon = 0.1 and 0.05
+    c_90 = math.log(1 / 0.1)  
+    c_95 = math.log(1 / 0.05) 
+
+    ln_n = math.log(n)
+    x_90 = (ln_n + c_90) / n
+    x_95 = (ln_n + c_95) / n
+
+    # Compute sample count (rounded up) and cap at total_pairs
+    m_90 = min(total_pairs, math.ceil(x_90 * total_pairs))
+    m_95 = min(total_pairs, math.ceil(x_95 * total_pairs))
+
+    return m_90, m_95
 
 def find_descendants(
     ancestor_id: str,
@@ -327,6 +358,14 @@ def build_value_pairs(
             if pair[0].best_subtree_grade != pair[1].best_subtree_grade
         ]
         random_generator.shuffle(candidate_pairs)
+        if len(candidate_pairs) == 0:
+            summaries[task_name] = {
+                "eligible_nodes": len(task_node_values),
+                "candidate_pairs": 0,
+                "written_pairs": 0,
+            }
+            continue
+        m_90, m_95 = calculate_sampled_pairs(len(candidate_pairs))
 
         for left, right in candidate_pairs:
             if abs(left.tree_depth - right.tree_depth) <= control_depth:
@@ -339,13 +378,13 @@ def build_value_pairs(
                         budget_seconds,
                     )
                 )
-            if cap_per_task and len(records) >= cap_per_task:
+            if (cap_per_task and len(records) >= cap_per_task) or (len(records) >= m_90):
                 break
 
         summaries[task_name] = {
             "eligible_nodes": len(task_node_values),
             "candidate_pairs": len(candidate_pairs),
-            "written_pairs": len(candidate_pairs),
+            "written_pairs": len(records),
         }
 
     return records, summaries

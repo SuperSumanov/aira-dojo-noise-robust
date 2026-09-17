@@ -43,3 +43,26 @@ bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_c
 bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0903/
 bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0904/
 bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0905/
+
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0906/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0907/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0908/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0909/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0910/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0911/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0912/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/0916/
+
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/AI4Code/7200/qwen/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/AI4Code/7200/qwen/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/AI4Code/10800/minimax/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/leaf-classification/7200/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/leaf-classification/7200/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/random-acts-of-pizza/7200/qwen/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/random-acts-of-pizza/7200/qwen/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/random-acts-of-pizza/7200/qwen/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/spooky-author-identification/7200/qwen/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/spooky-author-identification/7200/qwen/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/spooky-author-identification/7200/qwen/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/us-patent-phrase-to-phrase-matching/3600/minimax/
+bash src/mle_critic/scripts/preprocess/build_batch_cards.sh data/augmented_mle_critic/raw_journal/comparison/0912-17/us-patent-phrase-to-phrase-matching/7200/minimax/

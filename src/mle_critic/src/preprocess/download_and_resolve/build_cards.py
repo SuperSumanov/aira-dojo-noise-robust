@@ -123,22 +123,26 @@ def _read_solver_metadata(run_config: dict, journal_path: str) -> tuple:
         )
     return time_limit, execution_timeout, client
 
-
 def _make_run_key(run_config: dict) -> str:
-    """Build ``<id>__<YYYY-MM-DD>`` from the run config."""
+    """Build ``<id>__<YYYY-MM-DD-HH>`` from the run config."""
     launch_time = (run_config.get("metadata") or {}).get("launch_time")
     if not isinstance(launch_time, str):
         raise ValueError("Missing string 'metadata.launch_time' in dojo_config.json")
 
-    date_match = re.match(r"^(\d{4}-\d{2}-\d{2})", launch_time)
-    if date_match is None:
+    match = re.match(r"^(\d{4}-\d{2}-\d{2})[ T](\d{2})", launch_time)
+    if match is None:
         raise ValueError(f"Invalid metadata.launch_time: {launch_time!r}")
-    launch_date = date_match.group(1)
+
+    launch_date, launch_hour = match.group(1), match.group(2)
+
     try:
-        datetime.date.fromisoformat(launch_date)
+        datetime.datetime.strptime(f"{launch_date} {launch_hour}", "%Y-%m-%d %H")
     except ValueError as error:
-        raise ValueError(f"Invalid date in metadata.launch_time: {launch_time!r}") from error
-    return f"{run_config['id']}__{launch_date}"
+        raise ValueError(
+            f"Invalid date/hour in metadata.launch_time: {launch_time!r}"
+        ) from error
+
+    return f"{run_config['id']}__{launch_date}-{launch_hour}"
 
 
 def _validate_integer_range(

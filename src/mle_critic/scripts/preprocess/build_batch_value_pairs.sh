@@ -6,7 +6,7 @@ set -euo pipefail
 DIRECTORY=${1:?expected a directory containing batch_cards.json files}
 shift
 
-CAP=200
+CAP=75
 SEED=7
 BUDGET_STEPS=-1
 CONTROL_DEPTH=999

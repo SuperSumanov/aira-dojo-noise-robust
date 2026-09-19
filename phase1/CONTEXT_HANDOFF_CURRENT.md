@@ -1,49 +1,45 @@
-# 当前短交接 — 2026-09-19 22:56 UTC
+# 当前短交接 — 2026-09-19 23:43 UTC
 
-14165已完整关闭并补充校验通过：两pair一胜一平，seed2直接缓存49.211306715995306s有效/.66883，baseline35min未接受；seed1两臂失败，非总体/完整E2E。原reader精度错误已保留、独立补充目录不覆盖旧证据。14167同原选batch顺序对照22:52最后观察RUNNING/310秒、服务加载中；新值未读。精确身份、版本和边界分节如下；未复核动态状态仅称最后观察。
+## 当前任务、边界
 
-## 授权、边界
+用户21:15:49 UTC要求会话内推进三小时，里程碑09-20 00:15 UTC/08:15香港。不要新任务/自动化/代理，不例行写报告；正常push及合理实验已有授权。先fetch、方向顶部、此文件、现场；旧动态仅称最后观察。
+first960/Target300/522仍封；不恢复HCE/多保真/Probe/score-channel/K>=1/G0/旧失败cheap选择器，不微调agent底座。不改学长分支、共享source、冻结root。原始代码/回答/日志仅远端私有，密钥不回显/下载/Git。条件单batch不是完整E2E，初始候选生成不是免费。
 
-用户21:15UTC恢复三小时会话内工作，目标09-20 00:15UTC。不新建任务/自动化，不例行写报告；自主实验和正常push有效。先fetch、CURRENT_DIRECTION顶部、此文件、核现场。目标为固定总资源的真实MLE收益；缓存条件续跑只是开发检验，不是完整E2E。27B为较弱低成本生成器。
-first960/Target300/522仍封；不恢复HCE/多保真/Probe/score-channel/K>=1/G0/旧失败cheap选择器；不微调agent底座。不改学长分支、共享source、既有冻结root；代码/日志/回答远端私有，密钥仅远端.env，不回显/本地/Git。
+## 活跃14167：原入选batch只改执行次序
 
-## 已闭合并复核：14165 Pizza完整时限
+ROOT=BASE/comparison-native-batch-order-20260919-hz3c589n；deployment dc4a7dbc6951f5bd8d24b49ca7eb2e2de3d5ccec；prepared25d55a42517e586b677dd72a7296a4453c0c68bfda03c551eeb30570e8274428。gpu28六卡24CPU100min≤10GPUh，0API/fit。23:34:38最后观察RUNNING、第二wave23:32:01开始，预计00:07 UTC闭合。新值未读。
+Pizza原seed1/2、同失败prefix/原第二入选程序/first debug cycle，只换repair→second / second→repair。两阶段均做，不因首成功停止；共同35min、有限内部metric最大为实际最终提交、平分保首个。debug到首次原生有效/20步/时限/完整回答限制；无额外max_tokens、无重试/截断抢救。第二seed交换lane。
+四episode及allocation闭合后仅用BASE/comparison-roundtrip-reader-20260919-Ral9kyiB/readout_comparison_native_batch_order_20260919.py --reader-commit 530d5739960b29fae03fccd5f1c4740ee6719c8c。shared SHA c9a83c66e02c104193a81570f4c38726c9db973a65a13529c3f129dbbba16c76；wrapper d083528f31078b41854aa90475b92edce225a56936120482392873a24a276a03。不用旧Pt3BsrGK/ee3c6da。CSV独立AUC必须round_trip；闭合后再独立verify_comparison_online_results_20260919.py。status_comparison_native_batch_20260919.py只查结构。
 
-ROOT=BASE/comparison-pizza-full-deadline-20260919-yaywhbo1；commit a37e3595a62989746c5ffb96943bbfea8ec65e96；prepared a153be4e55a98da9e07fb75f60cee4d320da5aa91b551ce7b65bbf7967ef4ee3。22:46核COMPLETED/4813秒/all_four_episodes_closed，0/1/2共同硬截止、3正常原生接受。8.021666666666667GPUh，0API/fit。官方读入round_trip与默认pandas改变极近概率并列关系；原e7d969 claim e792e7fe0667055fdf5792e499ce0d4e2822d6e3dd96cf936778e9b118aa0490及原grades保留，禁止重跑/覆盖。22:54补充唯一读出530d5739960b29fae03fccd5f1c4740ee6719c8c在ROOT/readout-roundtrip-v1通过，官方不变；summary b9630d42453652391bc68544afad350ad40da636215a6ad7c7dea6651c080725，runs e7e94cd8a8be2e7ad0f197b19d0741aa531d5ca6b0f5beedd042f658eb9ec340。本地results/comparison_pizza_online_20260919含独立核验与精度诊断，1胜0负1平/sign p=1/0unknown；仅条件开发正例，不重跑。
-固定Pizza原seed1/2×native debug / uniform-cache-then-debug，35分钟每episode/20debug，首次原生接受即停，第二组交换lane；gpu28六卡24CPU100min≤10GPUh，0API/fit。两独立双卡服务+各一任务卡；启动不计episode但全allocation成本计入。cache RNG预先固定，未按新分数选。
-full-deadline策略在14146效果前冻结：API不传max_tokens，vLLM默认/上下文限制；debug/analyze均用episode剩余时间，无额外1200s/300s上限、无重试/截断代码抢救。exact-source进程级overlay只改local，共享文件不动。原model generation_config无max_new_tokens，镜像get_max_tokens源码已核。实接线26mock/四完整循环/绑定桥CPU PASS，非效果。
-已闭合，禁止再跑任何14165主reader或补充reader。评分AUC higher-better，独立rank_auc/穷举测试；独立verify_comparison_online_results_20260919.py通过。旧Spooky reader也已闭合不重跑。
+## 活跃14170：冻结8B对完整30候选评分
 
-## 正在运行：14167同原生批次只换顺序
+ROOT=BASE/comparison-frozen-reward-20260919-ac_f34fz；deployment7d5c31c706c4bb18faeda18a27243ff7be539c93；prepareda16acaa7b96946f90d1a171a7accf16a3e0c170c08f1df7545f7d9f958ba2362。23:43提交14170、尚待核运行。1GPU6CPUgpu28，1784秒上限，加两次失败16秒合计≤0.5GPUh，0API/fit。不再自动重试。
+固定Leaf1/2/3及Spooky1/2五池全部30原候选；既有checkpoint-100、16384ctx/.25 head/task_cond/bf16/batch1，完整执行代码仅encoder截断，torchseed20260919。不训练/挑模型/候选；uniform2-of6、top2、top3-uniform2、slot平分均在新预测前固定。既有开发outcome已见，非新测试或历史rank复原；oracle-best不是部署最终选择。
+14168（ROOT ...72slmwzt）FAILED12秒0模型0预测，14169（...zobjollo）FAILED4秒0模型0预测，原root/log保留。真实根因是我方新入口误用了aira环境Torch2.12.1+cpu；补exclusive srun并未解决。23:37已只读确认原GPU critic用exp环境Torch2.11.0+cu128/CUDA12.8，与旧campaign一致；最终修正使用该已有环境，无安装/镜像变动。不得称模型效果失败。
+未提交 ..._yu28miq 误用占位SHA，仅CPU、禁投；新代码已拒绝全零commit。当前readout/status代码尚指14169，须更新为14170/root/prepared并在读预测前commit；失败作业不得读出。全30预测及allocation关闭后才唯一读，全失败池也保留。12相关CPU测试通过。
 
-run_comparison_native_batch_order_20260919.py / comparison_native_batch_order_plan_20260919.json：同原第二入选程序和first debug cycle，只换repair→second / second→repair；两阶段均做（不因首成功停止），共同35分钟、按有限内部metric最大选最终提交（ties保首个）、首有效延迟单独记录。2seed×2arm、6GPU/100min≤10GPUh，已在14165终态后用冻结root driver提交14167；22:47观察RUNNING，预计若正常预热则约00:07UTC闭合。开发条件单batch而非完整搜索E2E。
-22:05 CPU prepare c2c4e21b失败ROOT comparison-native-batch-order-20260919-8pdj0u_r，未提交GPU：模拟分类用字符串pass注释，原生formatter改空格使之误识别为sibling；改AST只识别单Pass。新ROOT comparison-native-batch-order-20260919-hz3c589n，部署commit dc4a7dbc6951f5bd8d24b49ca7eb2e2de3d5ccec，prepared25d55a42517e586b677dd72a7296a4453c0c68bfda03c551eeb30570e8274428；真实原生CPU预检通过，尚未提交。168相关单测通过，随后计时新增2项测试所在20测试模块组通过。独立batch reader已上传到BASE/comparison-batch-reader-20260919-Pt3BsrGK，commit ee3c6da24bfdf453dbdf0e124deca9b06500b10e，wrapper SHAe833ab7a130c61f78d91c02f9a770624ebb4bb3c83e4f4421124e0ddb527d105，shared SHA2a6e57da3bfcef9d157d8abdcc7e1e3a6a727789bf002c9555457fd7b35cd948；四依赖本远端hash逐一匹配，不改BASE旧reader。审计每次内部metric incumbent更新、首原生接受而非首官方有效的时延；只累计已完成请求的实测latency，下界非全量耗时，不给截断调用补值。14165仍只用BASE e7d969 reader，禁混版本。
-22:53在任何14167值读取前对reader作唯一精度修正：不再用旧Pt3BsrGK/ee3c6da版本，使用BASE/comparison-roundtrip-reader-20260919-Ral9kyiB/readout_comparison_native_batch_order_20260919.py --reader-commit 530d5739960b29fae03fccd5f1c4740ee6719c8c。shared SHA c9a83c66e02c104193a81570f4c38726c9db973a65a13529c3f129dbbba16c76，batch wrapper SHA d083528f31078b41854aa90475b92edce225a56936120482392873a24a276a03；本远端一致。仍须四episode/allocation关闭才读；方法/选择/预算/官方评分不变，只将独立复核CSV读入对齐官方round_trip。172测试PASS。
+## 已验证窄正例14165（勿重跑）
 
-14166 original-second闭合88秒2GPU/.04888888888888889GPUh，ROOT comparison-pizza-selected-second-20260919-u2nkqs5y，prepared51f32ba6bc25e6e25a58f8a1f8c4594206c2780c6cdcc5c9cbdd96b6e4400103，reader7ae3622574c926e9e044ca686b7dd1fc7c9c1ad6已唯一读出。seed1第二原选有效AUC .74184/87.09747589100152s，seed2 exit1失败；未native分析，非策略收益。本地results/comparison_pizza_selected_second_20260919，summary19668b47b51cbcec7c99af1ea9d16e7d8559ad02274b28c5c65ef74bb9da0d0f；仅安全summary/runs/cpu-preflight，无原始代码。不重跑。
-全25初始池严格延迟有效兄弟机会0；独立事后次级7组成本较小但质量3胜4负，所以不用首成功替代最终质量。不修改零结果或称普遍更优。
-未来完整ForeTS候选批次开关已写为forets_ready_batch_patch_20260919.py：只对exact be933生产fixture返回补丁bytes，native默认关闭，ready_first仅推迟debug。7CPU测试覆盖不同成功/失败/步数门的默认等价路径、无bug时启用等价、同候选/critic/生成；未修改远端源、未部署，不当E2E收益。下一实际完整搜索仍须预算/环境/源码接入，无条件正收益或方法新颖性尚未证明。
-新增真实config默认/验证测试亦通过。注意当前ASSETS/source基于b7f8批次ledger接入、与be933 fixture不同；不能把此补丁直接声称已接入当前完整运行器。完整E2E还须统一逐动作incumbent记录与硬截止，原wallclock仅整轮存结果；不让两臂提交持久化规则不同，不自动投未核矩阵。
-旧Pizza root comparison-pizza-online-20260919-1qiyjkqy（prepared8192d964d11b042d49724c854947839faa01153ea2a96fe84500a9dc00966e6f）从未提交，禁投/改旧root。
+ROOT BASE/comparison-pizza-full-deadline-20260919-yaywhbo1；deployment a37e3595a62989746c5ffb96943bbfea8ec65e96；prepareda153be4e55a98da9e07fb75f60cee4d320da5aa91b551ce7b65bbf7967ef4ee3。COMPLETED4813秒六卡=8.021666666666667GPUh。两pair1胜1平，seed2预先随机缓存49.211306715995306s原生接受/AUC .66883，baseline35min无有效；seed1两臂失败；sign p1/0unknown。来自缓存本身，不是后来debug，不代表总体/完整E2E/critic改善。
+原e7d969 reader因独立默认CSV精度失败，原claim/grades保留。官方round_trip与默认概率差1.1102230246251565e-16，正确AUC .6688342527307931、默认 .6688362823057595。不改提交、官方分数或容差。独立ROOT/readout-roundtrip-v1、reader530d573在22:54唯一补充完成；summaryb9630d42453652391bc68544afad350ad40da636215a6ad7c7dea6651c080725，runs e7e94cd8a8be2e7ad0f197b19d0741aa531d5ca6b0f5beedd042f658eb9ec340。本地results/comparison_pizza_online_20260919含独立PASS/精度诊断，已push。禁止再跑主/补充reader。
 
-## 已完成，不要重做
+## 已完成不要重做
 
-14146 COMPLETED/3008秒/5.013333333333334GPUh。ROOT=BASE/comparison-online-continuation-20260919-qpw9ys94；部署8b117df27026cf2eef7920bd2332cc03fcbab48e；prepared99cff06463fa986bfa6a5d732d81cc1b392b4d08b61a194bf78c12cd4bc9783b。唯一reader版本9822af286bd900389f52960575b1f902f1a5c2a7已执行。
-summary a958946c49bca5248c0ca7e647c71b22a493231657ee18f73ffd219ecb5c196e；本地results/comparison_online_continuation_20260919，独立PASS。两physical run一胜一平/p=1，不能总体确认。cache arm seed1有效loss .50338/795.8959797470015s，其余三条无有效提交且32k截断。两实际cache均失败，成功来自后续debug；两臂首次debug提示SHA相同、回答不同。单次优势可能生成波动，不当缓存机制或生产debug被击败。mechanism-diagnostic.json已一次生成，不重跑reader。
-14149前缀COMPLETED/10秒2GPU，ROOT=BASE/comparison-pizza-prefix-20260919-0guhqznb；commit9822af286bd900389f52960575b1f902f1a5c2a7；prepared0581d1ac911f6152caff200c6f11ad5eca3ec49e76ec655afbe2da78df23c68e，summaryb3fff2aa4228b7b09e82296c0f3929e4fa7b9083a6bb510cdfcef63f28ddaa29。seed1原门通过、seed2因humanize“a moment”尾缀失败；独立按原exec_time精确去尾缀后两核心NameError匹配。原summary保留，prefix-format-supplement.json已闭合；cache结果未读。
-14135第三Spooky银行闭合6程序2有效4无效/6.6883333333333335GPUh，summary7dd466d42627e642ded6cd34af5660e0d0f6f76ed1150fb423565e13f7fb9371；原门失败和严格格式补充匹配同时保留。历史debug有效.38821、四cache一有效.35692，非在线增益。
-14115/14128银行、14127/14133新debug、14134截断、14136native接受、旧Leaf3池/Spooky2池及reader全闭合；细节CURRENT_DIRECTION/results，不再重复GPU/读出/验收。
+14146 Spooky32k：ROOT comparison-online-continuation-20260919-qpw9ys94，COMPLETED3008秒六卡5.013333333333334GPUh；summarya958946c49bca5248c0ca7e647c71b22a493231657ee18f73ffd219ecb5c196e。1胜1平/sign p1；两个cache均失败，唯一成功来自后来随机debug，三轨迹32k截断，不能归因缓存。reader/mechanism全闭合。
+14166原第二候选：ROOT comparison-pizza-selected-second-20260919-u2nkqs5y，88秒2GPU/.04888888888888889GPUh，summary19668b47b51cbcec7c99af1ea9d16e7d8559ad02274b28c5c65ef74bb9da0d0f；seed1 AUC .74184、seed2失败，未native分析，不是策略收益。
+14149原Pizza前缀、14135/14115/14128银行、14127/14133debug、14134截断、14136分析、Leaf3/Spooky2完整池及reader均闭合，不重复GPU/读出/G0。旧Pizza32k root ...1qiyjkqy及CPU失败batch ...8pdj0u_r从未投GPU，禁投。
+25池20调试阻塞、严格延迟有效兄弟机会0；次级7组便宜ready候选质量3胜4负。保留零结果，不用首成功替代最终质量。
 
-## 并行核查
+## 并行CPU资产、学长更新
 
-AGR-V已有未验证池和动态生成/验证，Recovering Wasted Compute已有回溯+兄弟选择，AI Research Preference Models已在AIRA排序/E2E。缓存/排序本身不是新颖；先验证公平预算下的真实收益，不把小样本升级成论文主张。
-22:26补充只读primary核查：AGR-V(https://arxiv.org/html/2605.17609v1)建模固定标量成本、找首个二值通过者；其结尾明确变量成本/并行扩展。Recovering Wasted Compute(https://arxiv.org/html/2608.10424v1)已有同draft规模消融和MLEvolve严格TS对照，不能批评它只靠多draft。Matryoshka Agent(https://arxiv.org/html/2607.25090v1)已有层次调度、下游分支偏好和orchestrator/RL训练；不是我方新颖性，更不能借其恢复K>=1或agent微调。本次窄问题是同原选批次执行先后在实际最终提交上的影响，未证明重要/新颖/普适。
-21:30学长head仍e4181fac5edb319e14d4d819088778d5d2708912；0918目录双读仍0可见文件，listingSHA d36f39e6e9476279df19da46f006f182236737f29e64e5808e93733d676ae239，仅当前可见列表，非学长没上传。
+真实b7f8 source默认native的ready_first开关/SQLite ledger/两臂共同逐动作incumbent已准备：ROOT BASE/forets-ready-source-20260919-qkdl5y2i；builder26e121e31278fcb1d868e8394a60651c79e266f4；preparedd0f5d57f6785d35396942d38b577be751e78bb203de925f921ea72b90a3b03e5。249源文件仅改5，真实CPU导入PASS，0GPU/API/model；186相关CPU测试实际通过。不是可启动E2E。
+**旧source的critic_topk_random实际走contextual_rank旧付费Qwen路由，不是8B！禁止直接把此source当E2E提交。** 必须显式本地reward接线、共同worker/硬时钟、CPU实际dispatch，不误恢复旧paid selector。be933旧patch只是原型。
+23:00:27同gdown双列表正控制PASS：0912五可见/listing c02e5001cbfbddd4e096d1d6921a78132cc22b1b971222c6375912b51312cdec；0918零可见/d36f39e6e9476279df19da46f006f182236737f29e64e5808e93733d676ae239，不等于没上传。22:59学长head仍e4181fac5edb319e14d4d819088778d5d2708912。
+AGR-V动态生成/验证、Recovering Wasted Compute回溯兄弟及固定draft消融、AI Research Preference Models critic/E2E均强相关；缓存/排序本身非新颖，尚未证明独特普适的方法主张。
 
 ## 环境、发布
 
-本地C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5；BASE=/research/d7/spc/yzyang4；Python BASE/venvs/aira/bin/python。SLURM_CONF=/opt1/slurm/gpu-slurm.conf，4jobs/8GPU，旧held12535不动。
-MLE原镜像在gpu28 RTX3090（gpu27兼容、adapter锁gpu28），禁projgpu39/改Torch/CPUfallback。镜像BASE/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif。
-ASSETS=BASE/local-qwen27b-20260914-zcx1k1dy；27B revisiondc430725f831dd90d9271738b877879a46a82239，18文件36808331288bytes，不重下载/验收。ASSETS/source原生算子/FreshContainer；DONOR=BASE/forets-fresh-integration-20260914-ih6u0mpw。研究盘1TB至09-29，延期未知，容量门通过、无需清理。
-0912五包BASE/comparison-quarantine-20260919-_tda9fh6，703326526bytes；只新Qwen46config/43journal，nodesSHA370976e31c8a9f501bc75fb7826f529f85b0e34059146291f2e7bb3cab4062c9；保护LATEST/日期/journal隔离已核。
-分支codex-prospective-decision-v1-20260814，只正常push myfork HEAD:phase1-value-critic。22:12公开HEAD20ed7d45cc43d24c1ce7ee7ac7673e55cc1c915c，ls-remote匹配，23待推文件/凭据与敏感路径0；本地后续新增待推。无关untracked保留。发布前扫全部待推blob凭据形状及敏感文件名，仅报数量；结果JSON/CSV -text；标题无数字或只复制已打印值。
+本地C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5；BASE=/research/d7/spc/yzyang4。编排Python venvs/aira/bin/python（CPU），**critic GPU必须venvs/exp/bin/python**。SLURM_CONF=/opt1/slurm/gpu-slurm.conf；4jobs/8GPU；旧held12535不动。MLE原镜像gpu28 RTX3090，禁projgpu39/改Torch/CPUfallback。
+ASSETS BASE/local-qwen27b-20260914-zcx1k1dy；revisiondc430725f831dd90d9271738b877879a46a82239，18文件36808331288bytes不重下载。DONOR BASE/forets-fresh-integration-20260914-ih6u0mpw。8B BASE/forets-critic-incoming-20260908-3lcjjcwq；loader BASE/forets-e2e-dev-20260908-IMuJx6/critic-offline-v1/src/mle_critic/src/evaluation。盘1TB至09-29、延期未知，无需清理。
+0912五包BASE/comparison-quarantine-20260919-_tda9fh6，703326526bytes；仅新Qwen46config/43journal、保护集隔离已核。
+只正常push myfork HEAD:phase1-value-critic；22:58已验证公开173c9fd8caa8e15c1c87b0b2cf2468ba379e42c5，后续待推。全部待推blob凭据/敏感文件名扫描只报数量，JSON/CSV -text，无关untracked保留。数字标题只复制打印结果。

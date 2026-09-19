@@ -7,6 +7,12 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L225. 2026-09-19 23:43 UTC：原批次顺序对照续跑，冻结critic完整池诊断
+
+14167第二wave23:32启动，23:34最后结构观察RUNNING，预期00:07闭合；新分数仍未读。完整ForeTS的默认关闭顺序开关与两臂共同逐动作提交保存已在隔离真实source通过CPU导入，但旧source仍走付费contextual_rank，不能直接投为冻结8B实验。必须明确本地reward接线，不能暗中恢复旧paid selector。
+并行固定现有8B对Leaf1/2/3和Spooky1/2全部30既有fresh候选评分，top2/top3-uniform2对uniform2-of6，slot平分、完整代码/既有16384 encoder，不训练或挑模型。已见开发outcome，仅探索性predictor诊断，oracle-best不是E2E选择器。14168/14169分别12/4秒在模型前失败，根因为我方误用CPU版aira解释器，非模型或GPU兼容失败；原记录保留。已核原CUDA版exp解释器后最终修正提交14170，ROOT comparison-frozen-reward-20260919-ac_f34fz、deployment7d5c31c706c4bb18faeda18a27243ff7be539c93、prepareda16acaa7b96946f90d1a171a7accf16a3e0c170c08f1df7545f7d9f958ba2362。1GPU1784秒与失败合计≤0.5GPUh/0API/fit，无进一步自动重试；全30及allocation闭合后才读，不删全失败池。未产生新critic收益结论。
+学长0918目录仍0可见，但同读取器0912五文件正控制通过；仅说明当前权限下可见性，不声称未上传。短交接已覆盖旧冲突状态，不例行写报告。
+
 ## 0L224. 2026-09-19 22:56 UTC：完整时限条件救援出现直接缓存正例，顺序对照已实跑
 
 14165四episode完整关闭，4813秒/六卡=8.021666666666667GPUh。固定Pizza seed1两臂35min均无原生接受；seed2预先随机缓存49.211306715995306秒原生接受、官方AUC .66883，native debug到35min无有效提交。该正例来自缓存本身，不是后来debug回答波动；两pair一胜一平，独立sign p=1，不能宣称总体显著、完整搜索E2E或critic能力改善。初始候选生成仍为沉没前缀，不能按免费计算总系统成本。

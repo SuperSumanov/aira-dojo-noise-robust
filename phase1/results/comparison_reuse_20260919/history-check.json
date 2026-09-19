@@ -1,0 +1,45 @@
+{
+  "role": "source_failure_and_cache_repeatability_check_not_new_independent_runs",
+  "cache_repeats": [
+    {
+      "node": "e4ecc3bf9f19482781c40c8a8f9b25a8",
+      "validity_agrees": true,
+      "previous_valid": true,
+      "current_valid": true,
+      "score_agrees_at_reported_precision": true
+    },
+    {
+      "node": "1368c211e847436fb32301b125c39a76",
+      "validity_agrees": true,
+      "previous_valid": true,
+      "current_valid": true,
+      "score_agrees_at_reported_precision": true
+    },
+    {
+      "node": "bc14d75cae454970ae588d066500a351",
+      "validity_agrees": true,
+      "previous_valid": true,
+      "current_valid": true,
+      "score_agrees_at_reported_precision": true
+    },
+    {
+      "node": "76eb6d81ae5046d4ad48027b9a5a1e41",
+      "validity_agrees": true,
+      "previous_valid": false,
+      "current_valid": false,
+      "score_agrees_at_reported_precision": true
+    }
+  ],
+  "debug_historical_exit_code": 1,
+  "debug_fresh_exit_code": 1,
+  "historical_debug_was_buggy": true,
+  "debug_error_literal_equal": false,
+  "known_framework_timing_suffix_only": true,
+  "same_debug_error_core": true,
+  "caveat": "A matching terminal error rules out this failure arising only in the fresh execution, not all possible workspace/environment differences.",
+  "source_sha256": [
+    "721f995ca597568303f65c32e9d04667bcdd173c174b2e6af99bb78e765c0eb1",
+    "f3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce",
+    "4c5f97dae638ec04e2cead62caf1db209309163e5665fe8090c4659bf4bfb069"
+  ]
+}

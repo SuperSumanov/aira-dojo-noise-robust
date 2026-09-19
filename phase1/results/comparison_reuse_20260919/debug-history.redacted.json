@@ -1,0 +1,17 @@
+{
+  "role": "same_code_historical_debug_error_check",
+  "source_summary_sha256": "f3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce",
+  "records": [
+    {
+      "node": "1c1118ec11004c5b86dd2adb6dcbb55a",
+      "run": "3277c81be72a1c30",
+      "raw_code_sha256": "b8e2d2947ddc47ecd13d14e6c24d9bcad0b733972debbddd7951e263dcc9b0db",
+      "historical_exit_code": 1,
+      "historical_is_buggy": true,
+      "fresh_exit_code": 1,
+      "historical_terminal_error": "ValueError: The 'liblinear' solver does not support multiclass classification (n_classes >= 3). Either use another solver or wrap the estimator in a OneVsRestClassifier to keep applying a one-versus-rest scheme.Execution time: 9 seconds (time limit is 2 hours).",
+      "fresh_terminal_error": "ValueError: The 'liblinear' solver does not support multiclass classification (n_classes >= 3). Either use another solver or wrap the estimator in a OneVsRestClassifier to keep applying a one-versus-rest scheme.",
+      "same_terminal_error": false
+    }
+  ]
+}

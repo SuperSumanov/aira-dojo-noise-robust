@@ -40,6 +40,7 @@ def prepare(commit):
     acc=subprocess.check_output(['sacct','-X','-j',job,'-nP','-o','JobIDRaw,State%24,ElapsedRaw,AllocTRES%120'],env=env,text=True,timeout=25)
     allocation,=[line.split('|') for line in acc.splitlines() if line.split('|')[0]==job]
     if allocation[1]!='COMPLETED':raise ValueError('generation allocation not COMPLETED')
+    if dict(item.split('=',1) for item in allocation[3].split(','))['gres/gpu']!='2':raise ValueError('generation GPU accounting')
     root=Path(tempfile.mkdtemp(prefix='comparison-fresh-debug-exec-20260919-',dir=BASE));setup(root,commit)
     from dojo.config_dataclasses.interpreter.fresh_container import FreshContainerInterpreterConfig
     for name in ('codes','configs','opencl-vendors'):(root/name).mkdir()
@@ -47,7 +48,8 @@ def prepare(commit):
     for name in HELPERS:
         if sha((DONOR/name).read_bytes())!=prior['files'][name]:raise ValueError('adapter drift')
         dst=root/name;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(DONOR/name,dst)
-    for name in (SCRIPT,'readout_comparison_live_debug_20260919.py'):
+    for name in (SCRIPT,'readout_comparison_live_debug_20260919.py',
+                 'run_comparison_spooky_pool_20260919.py','readout_comparison_spooky_pool_20260919.py'):
         shutil.copy2(Path(__file__).with_name(name),root/name)
     (root/'forets_current_pool_20260912.py').write_text('from run_comparison_live_debug_execute_20260919 import binding_context\n')
     (root/'opencl-vendors/nvidia.icd').write_text('libnvidia-opencl.so.1\n')

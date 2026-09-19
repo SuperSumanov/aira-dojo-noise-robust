@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "groups": [
+    {
+      "seed": 1,
+      "status": "unknown"
+    },
+    {
+      "seed": 2,
+      "status": "verified_by_independent_path_enumeration"
+    }
+  ],
+  "unit": "two exploratory physical runs; four cache alternatives are not seeds",
+  "boundary": "Arithmetic verification only; no live E2E or fresh-generation claim",
+  "summary_sha256": "54154a13de4d5dbcb34ba09a47adf24162382fd0818669fb914856dc6ce15ded"
+}

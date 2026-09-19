@@ -7,6 +7,12 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L219. 2026-09-19 13:32 UTC：两组动作对照均闭合，新生成已结束待完整执行
+
+14128 COMPLETED，653秒/6GPU=1.0883333333333334GPUh；第二组原前缀同错误复现，原debug和四cache全失败，缓存回退管线只增加平均282.3882801755026秒执行，不能普遍使用。两组共12程序3有效9无输出0unknown，实耗3.8983333333333334GPUh；官方/独立数值/独立路径枚举均PASS。合并SHA8fb886426df3b73caecd5adf8d1ba6375c6d437728d6c31f1f7313c550bac720，两个原summary保留。
+seed1三有效cache两次fresh执行的五位成绩相同；该组原debug在生产时也为liblinear不支持多分类错误，完整字符串仅差框架计时后缀，strict equality false与core equality true同时保留。证据results/comparison_reuse_20260919/history-check.json；不是两次独立生成或普遍排除环境影响。
+14127双卡生成结构上已有两条回执并正常closed，先核生成状态/实际成本，再执行所有可运行的新回答，不挑选、替代历史回答。新执行入口6CPU测试通过；分析器7测试含“新回答可推翻旧正例”通过，禁止把缓存oracle/plug-in时间公式称E2E收益。当前source/作业位置见短交接；保护集不变、不新写报告。
+
 ## 0L218. 2026-09-19 13:07 UTC：首个动作对照闭合，单独补未启动的第二组
 
 14115 COMPLETED，1686秒/六卡=2.81GPUh。seed1原前缀同错误复现，原首次debug仍无有效提交；四cache三有效，均匀单条有效率.75、对该debug三胜一平零负。官方/独立分数与独立路径枚举通过，summary SHAf3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce。执行均值cache471.1243743110026秒、debug23.66096251300769秒；符号生成临界604.5048699016625秒，不是实测E2E提速或成功延迟。

@@ -1,4 +1,9 @@
-# 当前短交接 — 2026-09-19 13:53 UTC
+# 当前短交接 — 2026-09-19 14:44 UTC
+
+## 最新现场（覆盖下方历史最后观察）
+14134已COMPLETED/2021秒2GPU，第二轮两回答均finish_reason=length/32768tokens，无完整代码；不补采样或回收截断回答。两条结果未知，不是程序失败，也不能推缓存更优。执行预检ROOT=BASE/comparison-depth2-debug-exec-20260919-126ifhtp，prepared a6cdef6122f7d5c4c693ac41c9e426e20ca1f0c2f30cfd3a3723528e96943834，runnable=0，未submit且不得submit。新增readout_comparison_unrunnable_20260919.py专门闭合未知并保留真实生成成本，尚待运行。
+14136缓存原生接受率已提交，ROOT与下方prepare相同，2GPU70min；只模型分析，无任务再执行/付费API。安全状态status_comparison_cache_acceptance_20260919.py。readout上传到BASE，使用--reader-commit 86dc5061ddd3c50de87cc563c1307361e4e2d288（6测试），只在allocation终止后读出。14135第三银行14:41最后观察RUNNING/1836秒/4结果6绑定，未读结果值。
+14:44统一68离线测试通过，包括零完整代码闭合5测试。此前一条测试模块名拼错仅导入失败，改为仓库实际test_comparison_fresh_contrast_20260919后重跑通过，未涉及远端实验。
 
 ## 立即入口与授权
 用户本轮12:10UTC要求在会话内继续三小时，目标15:10UTC前有价值结果；不要每轮写报告，需其明确要求才写。只维护本文件、CURRENT_DIRECTION和实验配置/真实结果。自主实验/正常push授权有效，不改学长分支。

@@ -118,13 +118,16 @@ def cpu(root):
     calls=[];cases=runtime.read(root/'inputs.private.json')['cases']
     async def complete(**kwargs):
         case=cases[len(calls)]
-        assert kwargs['model']=='openai/qwen3.8-27b' and kwargs['base_url']=='http://127.0.0.1:8000/v1'
-        assert kwargs['seed']==case['request_seed'] and kwargs['max_tokens']==32768
-        assert kwargs['request_timeout'].read==1200 and kwargs['max_retries']==kwargs['num_retries']==0
         messages=kwargs['messages'];text=json.dumps(messages)
-        assert case['code'][:80] in text.replace('\\n','\n').replace('\\"','"') or case['code'][:50] in str(messages)
+        content='\n'.join(str(m.get('content','')) for m in messages)
         import humanize
-        assert 'CPU_PUBLIC_PREVIEW' in text and humanize.naturaldelta(7200) in text
+        checks=dict(route=kwargs['model']=='openai/qwen3.8-27b' and kwargs['base_url']=='http://127.0.0.1:8000/v1',
+                    seed=kwargs['seed']==case['request_seed'],tokens=kwargs['max_tokens']==32768,
+                    timeout=kwargs['request_timeout'].read==1200,retries=kwargs['max_retries']==kwargs['num_retries']==0,
+                    code=case['code'].strip() in content,preview='CPU_PUBLIC_PREVIEW' in content,
+                    budget=humanize.naturaldelta(7200) in content)
+        print(json.dumps(dict(event='CPU_REQUEST_CHECKS',seed=case['request_seed'],checks=checks)),flush=True)
+        assert all(checks.values())
         calls.append(dict(seed=case['request_seed'],prompt_sha256=hashlib.sha256(text.encode()).hexdigest()))
         choice=types.SimpleNamespace(message=types.SimpleNamespace(content='```python\npass\n```'),finish_reason='stop')
         return types.SimpleNamespace(choices=[choice],to_dict=lambda:{'usage':{'prompt_tokens':1,'completion_tokens':1}})
